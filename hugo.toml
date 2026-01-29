@@ -136,7 +136,7 @@ defaultContentLanguageInSubdir = true
   keywords = "i2p, privacy, anonymity, dark net, encryption, security"
 
   # GitLab repository configuration for "Edit this page" links
-  gitlabRepo = "github.com/i2p/i2p.www"
+  gitlabRepo = "i2pgit.org/I2P_Developers/i2p.website"
   gitlabBranch = "main"
 
   # Docs feedback configuration (zero-JS Cloudflare Worker)

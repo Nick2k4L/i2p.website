@@ -69,7 +69,7 @@
   </div>
 
   <p class="feedback-note">
-    Found an issue? <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/-/blob/{{ .Site.Params.gitlabBranch }}/hugo-site/content/{{ .Language.Lang }}/{{ .File.Path }}?ref_type=heads" target="_blank" rel="noopener">Edit this page on GitLab</a>
+    Found an issue? <a href="https://{{ .Site.Params.gitlabRepo }}/src/branch/{{ .Site.Params.gitlabBranch }}/content/{{ .Language.Lang }}/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener">Edit this page</a>
   </p>
 
   {{/* Fallback for I2P/Tor users or when JS is disabled */}}
