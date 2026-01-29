@@ -2,7 +2,18 @@
 <div class="blog-page">
     <div class="container">
         <header class="blog-header">
-            <h1>{{ .Title }}</h1>
+            <div class="blog-header-top">
+                <h1>{{ .Title }}</h1>
+                {{ with .OutputFormats.Get "RSS" }}
+                <a href="{{ .Permalink }}" class="rss-link" title="Subscribe via RSS">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="6.18" cy="17.82" r="2.18"/>
+                        <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+                    </svg>
+                    RSS Feed
+                </a>
+                {{ end }}
+            </div>
             {{ with .Description }}
             <p class="blog-description">{{ . }}</p>
             {{ end }}
@@ -160,14 +171,47 @@
     margin-bottom: var(--spacing-2xl);
 }
 
+.blog-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
 .blog-header h1 {
     font-size: 2rem;
-    margin-bottom: var(--spacing-sm);
+    margin: 0;
 }
 
 .blog-description {
     font-size: 1rem;
     color: var(--color-text-secondary);
+}
+
+.rss-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.rss-link:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: var(--color-bg);
+}
+
+.rss-link svg {
+    flex-shrink: 0;
 }
 
 /* Category Filter */
@@ -400,8 +444,17 @@
 }
 
 @media (max-width: 768px) {
+    .blog-header-top {
+        flex-wrap: wrap;
+    }
+
     .blog-header h1 {
         font-size: 1.75rem;
+    }
+
+    .rss-link {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
     }
 
     .category-filter {

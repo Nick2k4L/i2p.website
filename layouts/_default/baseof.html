@@ -33,6 +33,11 @@
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link rel="icon" type="image/png" href="/images/i2plogo.png" sizes="32x32">
 
+    <!-- RSS Feed -->
+    {{ with .OutputFormats.Get "RSS" }}
+    <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
+    {{ end }}
+
     <!-- Styles -->
     {{ $styles := resources.Get "css/main.css" }}
     {{ if $styles }}
