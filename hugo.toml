@@ -139,9 +139,9 @@ defaultContentLanguageInSubdir = true
   gitlabRepo = "i2pgit.org/I2P_Developers/i2p.website"
   gitlabBranch = "main"
 
-  # Docs feedback configuration (zero-JS Cloudflare Worker)
+  # Docs feedback configuration
   [params.feedback]
-    workerUrl = "https://i2p-docs-feedback.tight-heart-b33b.workers.dev"
+    workerUrl = "https://beta.i2p.net"
 
 
 
