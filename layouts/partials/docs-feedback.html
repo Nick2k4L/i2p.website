@@ -3,15 +3,11 @@
 
   Uses Cloudflare Worker to handle form submissions server-side.
   No client-side JavaScript required for core functionality.
+  Works on clearnet, I2P, and Tor via nginx proxy_pass.
 
   Usage: {{ partial "docs-feedback.html" . }}
-
-  Requires hugo.toml params:
-    [params.feedback]
-      workerUrl = "https://i2p-docs-feedback.example.workers.dev"
 */}}
 
-{{ $workerUrl := site.Params.feedback.workerUrl | default "https://i2p-docs-feedback.example.workers.dev" }}
 {{ $documentId := .RelPermalink }}
 {{ $redirectUrl := .Permalink }}
 
@@ -20,7 +16,7 @@
 
   <div class="docs-feedback-buttons">
     {{/* Yes Button - Direct form submission */}}
-    <form method="POST" action="{{ $workerUrl }}/feedback/vote" class="docs-feedback-form">
+    <form method="POST" action="/feedback/vote" class="docs-feedback-form">
       <input type="hidden" name="document_id" value="{{ $documentId }}">
       <input type="hidden" name="type" value="up">
       <input type="hidden" name="redirect_url" value="{{ $redirectUrl }}#docs-feedback">
@@ -45,7 +41,7 @@
       <h3 class="feedback-form-title">Help us improve</h3>
       <p class="feedback-form-description">Sorry this page wasn't helpful. Please let us know what we could improve.</p>
 
-      <form method="POST" action="{{ $workerUrl }}/feedback/submit-form" class="feedback-inline-form">
+      <form method="POST" action="/feedback/submit-form" class="feedback-inline-form">
         <input type="hidden" name="document_id" value="{{ $documentId }}">
         <input type="hidden" name="redirect_url" value="{{ $redirectUrl }}#docs-feedback">
 
@@ -72,13 +68,6 @@
     Found an issue? <a href="https://{{ .Site.Params.gitlabRepo }}/src/branch/{{ .Site.Params.gitlabBranch }}/content/{{ .Language.Lang }}/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener">Edit this page</a>
   </p>
 
-  {{/* Fallback for I2P/Tor users or when JS is disabled */}}
-  <noscript>
-    <p class="feedback-darknet-notice">
-      Feedback submission requires clearnet access.
-      <a href="https://i2p.net{{ .RelPermalink }}#docs-feedback">Submit feedback via clearnet</a>
-    </p>
-  </noscript>
 </div>
 
 <style>
