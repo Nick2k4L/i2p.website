@@ -7,7 +7,7 @@
             <h1 class="docs-title">{{ .Title }}</h1>
             <p class="docs-subtitle">{{ .Description }}</p>
 
-            <!-- Search Bar (hidden on I2P/Tor, requires Cloudflare worker) -->
+            <!-- Search Bar (works on clearnet, I2P, and Tor via nginx proxy) -->
             <div class="docs-search" data-search-bar>
                 <form method="GET" action="{{ relLangURL "docs/search" }}">
                     <input type="search" name="q" placeholder="Search documentation..." autocomplete="off" />
@@ -170,9 +170,8 @@
     margin-bottom: 0;
 }
 
-/* Add margin below subtitle only when search bar is visible */
-html.clearnet .docs-subtitle,
-body.clearnet .docs-subtitle {
+/* Add margin below subtitle when search bar is present */
+.docs-subtitle {
     margin-bottom: var(--spacing-xl);
 }
 
@@ -183,25 +182,8 @@ body.clearnet .docs-subtitle {
     position: relative;
 }
 
-/* Hide search bar on I2P/Tor (search requires Cloudflare worker which only works on clearnet) */
-/* Server should add 'clearnet' class to <html> or <body> element for clearnet visitors */
-/* Hide by default, show only when clearnet class is present */
-[data-search-bar] {
-    display: none;
-}
-
-html.clearnet [data-search-bar],
-body.clearnet [data-search-bar] {
-    display: block;
-}
-
-/* Add extra padding to hero when search bar is hidden (non-clearnet) */
+/* Search bar is now visible everywhere - nginx proxy_pass handles I2P/Tor */
 .docs-hero {
-    padding: var(--spacing-3xl) 0;
-}
-
-html.clearnet .docs-hero,
-body.clearnet .docs-hero {
     padding: var(--spacing-2xl) 0;
 }
 
