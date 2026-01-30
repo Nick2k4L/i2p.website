@@ -55,5 +55,5 @@ jobs:
         if: steps.check.outputs.needs_sync == 'true'
         run: |
           set -euo pipefail
-          git push --force-with-lease origin main
+          git push --force origin main
           echo "Successfully synced Gitea main -> GitHub main"
