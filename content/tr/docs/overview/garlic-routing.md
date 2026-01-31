@@ -66,7 +66,7 @@ Tunnel'ların üzerindeki katmanda, I2P [Destination'lar](/docs/specs/common-str
 
 Genel olarak, bir Garlic Message yalnızca bir clove içerir. Ancak, router periyodik olarak Garlic Message içinde iki ek clove paketler:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **Bir Teslimat Durumu Mesajı**, kaynak router'a onay olarak geri gönderilmesini belirten Teslimat Talimatları ile birlikte. Bu, referanslarda açıklanan "yanıt bloğu" veya "yanıt onion"a benzerdir. Uçtan uca mesaj teslimatının başarısını veya başarısızlığını belirlemek için kullanılır. Kaynak router, Teslimat Durumu Mesajını beklenen süre içinde alamama durumunda, uzak uç Destination'a olan yönlendirmeyi değiştirebilir veya başka eylemler gerçekleştirebilir.
 

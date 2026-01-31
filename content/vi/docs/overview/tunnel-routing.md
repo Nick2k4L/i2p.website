@@ -12,7 +12,7 @@ Trang này chứa tổng quan về thuật ngữ và hoạt động của tunnel
 
 Như đã giải thích ngắn gọn trong [phần giới thiệu](/docs/overview/intro/), I2P xây dựng các "tunnel" ảo - những đường dẫn tạm thời và một chiều qua một chuỗi các router. Những tunnel này được phân loại thành tunnel đến (inbound tunnel) (nơi mọi thứ được đưa vào đều hướng về phía người tạo ra tunnel) hoặc tunnel đi (outbound tunnel) (nơi người tạo tunnel đẩy các thông điệp ra xa khỏi họ). Khi Alice muốn gửi một thông điệp cho Bob, cô ấy sẽ (thông thường) gửi nó qua một trong những tunnel đi hiện có của mình với hướng dẫn cho điểm cuối của tunnel đó chuyển tiếp nó đến router cổng cho một trong những tunnel đến hiện tại của Bob, và tunnel này sẽ chuyển thông điệp đến Bob.
 
-![Alice kết nối qua tunnel gửi đi của cô ấy đến Bob thông qua tunnel nhận của anh ấy](/images/tunnelSending.png)
+![Alice kết nối qua tunnel gửi đi của cô ấy đến Bob thông qua tunnel nhận của anh ấy](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

@@ -12,7 +12,7 @@ Bu sayfa, daha teknik sayfalara, ayrıntılara ve spesifikasyonlara bağlantıla
 
 [Girişte](/docs/overview/intro/) kısaca açıklandığı gibi, I2P sanal "tunnel'lar" oluşturur - router'ların bir dizisi üzerinden geçen geçici ve tek yönlü yollar. Bu tunnel'lar ya gelen tunnel'lar (kendisine verilen her şeyin tunnel'ı oluşturanın yönüne gittiği) ya da giden tunnel'lar (tunnel oluşturanın mesajları kendisinden uzağa ittiği) olarak sınıflandırılır. Alice, Bob'a bir mesaj göndermek istediğinde, (genellikle) mevcut giden tunnel'larından birinden mesajı gönderir ve bu tunnel'ın uç noktasına, mesajı Bob'un mevcut gelen tunnel'larından birinin ağ geçidi router'ına iletmesi talimatını verir, bu da mesajı Bob'a aktarır.
 
-![Alice giden tunnel'ı üzerinden Bob'un gelen tunnel'ına bağlanıyor](/images/tunnelSending.png)
+![Alice giden tunnel'ı üzerinden Bob'un gelen tunnel'ına bağlanıyor](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

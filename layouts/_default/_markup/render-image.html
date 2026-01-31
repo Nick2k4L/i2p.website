@@ -1,10 +1,20 @@
 {{- $image := .Destination -}}
 {{- $alt := .Text | default "" -}}
 {{- $title := .Title | default "" -}}
+{{- $class := .Attributes.class | default "" -}}
 
-<figure{{ with $title }} class="image-container"{{ end }}>
-  <img 
-    src="{{ $image | safeURL }}" 
+{{- $figureClass := "" -}}
+{{- if and $title $class -}}
+  {{- $figureClass = printf "image-container %s" $class -}}
+{{- else if $title -}}
+  {{- $figureClass = "image-container" -}}
+{{- else if $class -}}
+  {{- $figureClass = $class -}}
+{{- end -}}
+
+<figure{{ with $figureClass }} class="{{ . }}"{{ end }}>
+  <img
+    src="{{ $image | safeURL }}"
     alt="{{ $alt }}"
     {{- if $title }} title="{{ $title }}"{{ end -}}
     loading="lazy"

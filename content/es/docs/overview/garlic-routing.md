@@ -66,7 +66,7 @@ En la capa por encima de los tunnels, I2P entrega mensajes extremo a extremo ent
 
 Generalmente, un Garlic Message contendrá solo un clove. Sin embargo, el router empaquetará periódicamente dos cloves adicionales en el Garlic Message:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **Un Mensaje de Estado de Entrega**, con Instrucciones de Entrega especificando que debe ser enviado de vuelta al router de origen como un acuse de recibo. Esto es similar al "bloque de respuesta" o "cebolla de respuesta" descrito en las referencias. Se utiliza para determinar el éxito o fallo de la entrega de mensajes de extremo a extremo. El router de origen puede, ante la falla de recibir el Mensaje de Estado de Entrega dentro del período de tiempo esperado, modificar el enrutamiento hacia el Destination del extremo lejano, o tomar otras acciones.
 

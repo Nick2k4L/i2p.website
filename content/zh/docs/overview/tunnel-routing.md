@@ -12,7 +12,7 @@ accurateFor: "0.8.7"
 
 正如在[介绍](/docs/overview/intro/)中简要说明的那样，I2P 构建虚拟的"tunnel"——通过一系列 router 的临时单向路径。这些 tunnel 被分类为入站 tunnel（传送给它的所有内容都会流向 tunnel 创建者）或出站 tunnel（tunnel 创建者将消息推送离开自己）。当 Alice 想要向 Bob 发送消息时，她通常会通过她现有的某个出站 tunnel 发送消息，并指示该 tunnel 的端点将消息转发到 Bob 当前某个入站 tunnel 的网关 router，然后该网关将消息传递给 Bob。
 
-![Alice 通过她的出站 tunnel 连接到 Bob 的入站 tunnel](/images/tunnelSending.png)
+![Alice 通过她的出站 tunnel 连接到 Bob 的入站 tunnel](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

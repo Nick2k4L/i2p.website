@@ -3,7 +3,7 @@
    viewBox="0 35 400 265"
    version="1.1"
    id="svg14"
-   sodipodi:docname="network-database-diagram.svg"
+   sodipodi:docname="netdb_get_routerinfo_1.svg"
    inkscape:export-filename="network-database-diagram.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -26,8 +26,8 @@
      inkscape:cy="216.59091"
      inkscape:window-width="1785"
      inkscape:window-height="1186"
-     inkscape:window-x="336"
-     inkscape:window-y="30"
+     inkscape:window-x="335"
+     inkscape:window-y="31"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg14" />
   <defs
@@ -82,63 +82,192 @@
          transform="matrix(.98 0 0 1.01 .7 -.6)"
          id="path5" />
     </g>
-    <!-- Database icon -->
+    <!-- Webserver icon -->
     <linearGradient
-       id="db-grad"
-       x1="50%"
-       x2="50%"
-       y1="0%"
-       y2="100%">
+       id="webserver-grad-top"
+       x1="23.7"
+       x2="23.7"
+       y1="1.5"
+       y2="20.6"
+       gradientUnits="userSpaceOnUse">
       <stop
          offset="0"
-         stop-color="#9ca3af"
+         stop-color="#5f8dd3"
+         id="stop3" />
+      <stop
+         offset="1"
+         stop-color="#214478"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       id="webserver-grad-bottom"
+       x1="23.7"
+       x2="23.7"
+       y1="20.6"
+       y2="39.5"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#5f5fd3"
          id="stop5" />
       <stop
          offset="1"
-         stop-color="#4b5563"
+         stop-color="#212178"
          id="stop6" />
     </linearGradient>
     <g
        id="database">
-      <ellipse
-         cx="0"
-         cy="40"
-         rx="30"
-         ry="8"
-         fill="#4b5563"
-         id="ellipse6" />
-      <rect
-         x="-30"
-         y="0"
-         width="60"
-         height="40"
-         fill="url(#db-grad)"
-         id="rect6" />
-      <ellipse
-         cx="0"
-         cy="0"
-         rx="30"
-         ry="8"
-         fill="#9ca3af"
-         id="ellipse7" />
-      <ellipse
-         cx="0"
-         cy="13"
-         rx="30"
-         ry="7"
-         fill="none"
-         stroke="#6b7280"
-         stroke-width="1"
-         id="ellipse8" />
-      <ellipse
-         cx="0"
-         cy="27"
-         rx="30"
-         ry="7"
-         fill="none"
-         stroke="#6b7280"
-         stroke-width="1"
-         id="ellipse9" />
+      <g
+         transform="scale(1.07)"
+         id="g31">
+        <path
+           fill="url(#webserver-grad-top)"
+           d="M55.4 20.5H4.6A3.6 3.6 0 011 16.9V5a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 5.1V17a3.6 3.6 0 01-3.6 3.6z"
+           id="path6" />
+        <circle
+           cx="30"
+           cy="53.5"
+           r="4"
+           fill="#0f0"
+           stroke="#424a9d"
+           stroke-width="2"
+           id="circle6" />
+        <path
+           fill="url(#webserver-grad-bottom)"
+           d="M55.4 39.5H4.6A3.6 3.6 0 011 35.9V24a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 24v11.8a3.6 3.6 0 01-3.6 3.6z"
+           id="path7" />
+        <g
+           fill="none"
+           stroke="#424a9d"
+           stroke-width="2"
+           id="g9">
+          <path
+             stroke-linecap="round"
+             d="M1 53.5h25m8 0h25"
+             id="path8" />
+          <path
+             d="M30 49.5v-10"
+             id="path9" />
+        </g>
+        <g
+           fill="#07be2d"
+           id="g10">
+          <circle
+             cx="10.5"
+             cy="11"
+             r="3.5"
+             id="circle9" />
+          <circle
+             cx="10.5"
+             cy="30"
+             r="3.5"
+             id="circle10" />
+        </g>
+        <g
+           fill="#afc6e9"
+           id="g30">
+          <circle
+             cx="50"
+             cy="9.5"
+             r="1"
+             id="circle11" />
+          <circle
+             cx="46"
+             cy="9.5"
+             r="1"
+             id="circle12" />
+          <circle
+             cx="52"
+             cy="12.5"
+             r="1"
+             id="circle13" />
+          <circle
+             cx="48"
+             cy="12.5"
+             r="1"
+             id="circle14" />
+          <circle
+             cx="42"
+             cy="9.5"
+             r="1"
+             id="circle15" />
+          <circle
+             cx="44"
+             cy="12.5"
+             r="1"
+             id="circle16" />
+          <circle
+             cx="38"
+             cy="9.5"
+             r="1"
+             id="circle17" />
+          <circle
+             cx="40"
+             cy="12.5"
+             r="1"
+             id="circle18" />
+          <circle
+             cx="34"
+             cy="9.5"
+             r="1"
+             id="circle19" />
+          <circle
+             cx="36"
+             cy="12.5"
+             r="1"
+             id="circle20" />
+          <circle
+             cx="50"
+             cy="28.5"
+             r="1"
+             id="circle21" />
+          <circle
+             cx="46"
+             cy="28.5"
+             r="1"
+             id="circle22" />
+          <circle
+             cx="52"
+             cy="31.5"
+             r="1"
+             id="circle23" />
+          <circle
+             cx="48"
+             cy="31.5"
+             r="1"
+             id="circle24" />
+          <circle
+             cx="42"
+             cy="28.5"
+             r="1"
+             id="circle25" />
+          <circle
+             cx="44"
+             cy="31.5"
+             r="1"
+             id="circle26" />
+          <circle
+             cx="38"
+             cy="28.5"
+             r="1"
+             id="circle27" />
+          <circle
+             cx="40"
+             cy="31.5"
+             r="1"
+             id="circle28" />
+          <circle
+             cx="34"
+             cy="28.5"
+             r="1"
+             id="circle29" />
+          <circle
+             cx="36"
+             cy="31.5"
+             r="1"
+             id="circle30" />
+        </g>
+      </g>
     </g>
     <!-- Arrowhead marker -->
     <marker
@@ -155,85 +284,89 @@
     </marker>
   </defs>
   <!-- Alice -->
-  <g
-     transform="matrix(0.7,0,0,0.7,46.363637,52.272727)"
-     id="g9">
-    <use
-       href="#client"
-       id="use9" />
-  </g>
-  <text
-     x="68.363632"
-     y="50.727272"
-     class="name"
-     id="text9">Alice</text>
   <!-- John -->
-  <g
-     transform="matrix(0.7,0,0,0.7,141.63636,52.272727)"
-     id="g10">
-    <use
-       href="#client"
-       id="use10" />
-  </g>
-  <text
-     x="163.18182"
-     y="50.727272"
-     class="name"
-     id="text10">John</text>
   <!-- Peter -->
-  <g
-     transform="matrix(0.7,0,0,0.7,217.81819,52.272727)"
-     id="g11">
-    <use
-       href="#client"
-       id="use11" />
-  </g>
-  <text
-     x="241.18182"
-     y="50.727272"
-     class="name"
-     id="text11">Peter</text>
   <!-- Database -->
-  <g
-     transform="translate(200, 230)"
-     id="g12">
-    <use
-       href="#database"
-       id="use12" />
-  </g>
-  <text
-     x="200"
-     y="295"
-     class="db-label"
-     id="text12">Network database</text>
   <!-- Arrow down from Alice - GET routerInfo -->
-  <line
-     x1="65"
-     y1="105"
-     x2="175"
-     y2="218"
-     class="arrow"
-     marker-end="url(#arrowhead)"
-     id="line12" />
-  <text
-     x="162.31314"
-     y="45.319115"
-     class="label"
-     transform="rotate(45)"
-     id="text13">GET routerInfo</text>
   <!-- Arrow up to Alice - routerInfo John, Peter -->
-  <line
-     x1="188.18182"
-     y1="213.45454"
-     x2="83.181816"
-     y2="105.45454"
-     class="arrow"
-     marker-end="url(#arrowhead)"
-     id="line13" />
-  <text
-     x="166.81291"
-     y="8.0353041"
-     class="label"
-     transform="rotate(45)"
-     id="text14">routerInfo John, Peter</text>
+  <g
+     id="g34"
+     transform="translate(41.480682,0.26917648)">
+    <g
+       transform="matrix(0.7,0,0,0.7,46.363637,52.272727)"
+       id="g32">
+      <use
+         href="#client"
+         id="use9" />
+    </g>
+    <text
+       x="68.363632"
+       y="50.727272"
+       class="name"
+       id="text9">Alice</text>
+    <g
+       transform="matrix(0.7,0,0,0.7,141.63636,52.272727)"
+       id="g33">
+      <use
+         href="#client"
+         id="use10" />
+    </g>
+    <text
+       x="163.18182"
+       y="50.727272"
+       class="name"
+       id="text10">John</text>
+    <g
+       transform="matrix(0.7,0,0,0.7,217.81819,52.272727)"
+       id="g11">
+      <use
+         href="#client"
+         id="use11" />
+    </g>
+    <text
+       x="241.18182"
+       y="50.727272"
+       class="name"
+       id="text11">Peter</text>
+    <g
+       transform="matrix(0.9,0,0,0.9,168,225)"
+       id="g12">
+      <use
+         href="#database"
+         id="use12" />
+    </g>
+    <text
+       x="200"
+       y="295"
+       class="db-label"
+       id="text12">Network database</text>
+    <line
+       x1="65"
+       y1="105"
+       x2="175"
+       y2="218"
+       class="arrow"
+       marker-end="url(#arrowhead)"
+       id="line12" />
+    <text
+       x="162.31314"
+       y="45.319115"
+       class="label"
+       transform="rotate(45)"
+       id="text13">GET routerInfo</text>
+    <line
+       x1="188.18182"
+       y1="213.45454"
+       x2="83.181816"
+       y2="105.45454"
+       class="arrow"
+       marker-end="url(#arrowhead)"
+       id="line13" />
+    <text
+       x="166.81291"
+       y="8.0353041"
+       class="label"
+       transform="rotate(45)"
+       id="text14">routerInfo John, Peter</text>
+  </g>
 </svg>

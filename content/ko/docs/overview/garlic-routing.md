@@ -66,7 +66,7 @@ tunnel 위의 계층에서 I2P는 [Destinations](/docs/specs/common-structures/)
 
 일반적으로 Garlic Message는 하나의 clove만 포함합니다. 그러나 router는 주기적으로 Garlic Message에 두 개의 추가 clove를 번들로 묶습니다:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **배송 상태 메시지**, 승인으로써 원래 router로 다시 보내도록 지정하는 배송 지침과 함께. 이는 참조 문서에 설명된 "응답 블록" 또는 "응답 어니언"과 유사합니다. 종단 간 메시지 배송의 성공 또는 실패를 판단하는 데 사용됩니다. 원래 router는 예상 시간 내에 배송 상태 메시지를 받지 못할 경우, 원격 목적지로의 라우팅을 수정하거나 다른 조치를 취할 수 있습니다.
 

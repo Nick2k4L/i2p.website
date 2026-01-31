@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   viewBox="0 0 900 400"
+   viewBox="0 0 868.22266 288.36496"
    version="1.1"
    id="svg88"
-   sodipodi:docname="garlic-message-diagram.svg"
+   sodipodi:docname="garliccloves.svg"
    inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   width="868.22266"
+   height="288.36496"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -18,13 +20,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="0.97777778"
-     inkscape:cx="634.60227"
-     inkscape:cy="126.30682"
+     inkscape:zoom="5.5311464"
+     inkscape:cx="476.4835"
+     inkscape:cy="43.119452"
      inkscape:window-width="2234"
      inkscape:window-height="1186"
      inkscape:window-x="991"
-     inkscape:window-y="112"
+     inkscape:window-y="84"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg88" />
   <defs
@@ -44,10 +46,10 @@
     <!-- Client icon -->
     <linearGradient
        id="client-grad"
-       x1="7.8"
+       x1="7.8000002"
        x2="23.1"
        y1="10.4"
-       y2="33.3"
+       y2="33.299999"
        gradientUnits="userSpaceOnUse">
       <stop
          offset="0"
@@ -61,36 +63,36 @@
     <g
        id="client">
       <path
-         fill="#999"
-         d="M35.2 44.9l1 7.6h-8.4l1.1-7.6z"
+         fill="#999999"
+         d="m 35.2,44.9 1,7.6 h -8.4 l 1.1,-7.6 z"
          id="path2" />
       <path
-         fill="gray"
-         d="M60 46c0 1.3-1.1 2.4-2.4 2.4H6.4A2.4 2.4 0 014 46V10c0-1.3 1.1-2.4 2.4-2.4h51.2c1.3 0 2.4 1 2.4 2.4zM23 52.2h18a2 2 45 012 2v.2a2 2 135 01-2 2H23a2 2 45 01-2-2v-.2a2 2 135 012-2z"
+         fill="#808080"
+         d="m 60,46 c 0,1.3 -1.1,2.4 -2.4,2.4 H 6.4 A 2.4,2.4 0 0 1 4,46 V 10 C 4,8.7 5.1,7.6 6.4,7.6 h 51.2 c 1.3,0 2.4,1 2.4,2.4 z m -37,6.2 h 18 a 2,2 45 0 1 2,2 v 0.2 a 2,2 135 0 1 -2,2 H 23 a 2,2 45 0 1 -2,-2 v -0.2 a 2,2 135 0 1 2,-2 z"
          id="path3" />
       <circle
          cx="32"
-         cy="44.8"
+         cy="44.799999"
          r="1.3"
-         fill="#ccc"
+         fill="#cccccc"
          id="circle3" />
       <path
          fill="#87aade"
-         d="M8.1 12v29.3h48V12z"
+         d="m 8.1,12 v 29.3 h 48 V 12 Z"
          id="path4" />
       <path
          fill="url(#client-grad)"
-         d="M7.5 12.5v29l49-29z"
-         transform="matrix(.98 0 0 1.01 .7 -.6)"
+         d="m 7.5,12.5 v 29 l 49,-29 z"
+         transform="matrix(0.98,0,0,1.01,0.7,-0.6)"
          id="path5" />
     </g>
     <!-- Server icon -->
     <linearGradient
        id="server-grad-a"
-       x1="32.8"
-       x2="32.8"
+       x1="32.799999"
+       x2="32.799999"
        y1="32"
-       y2="57.6"
+       y2="57.599998"
        gradientUnits="userSpaceOnUse">
       <stop
          offset="0"
@@ -103,9 +105,9 @@
     </linearGradient>
     <linearGradient
        id="server-grad-b"
-       x1="27.2"
-       x2="27.2"
-       y1="6.3"
+       x1="27.200001"
+       x2="27.200001"
+       y1="6.3000002"
        y2="32"
        gradientUnits="userSpaceOnUse">
       <stop
@@ -119,52 +121,52 @@
     </linearGradient>
     <path
        id="server-dot"
-       d="M50.4 42.2c0 1.2-.8 2-1.9 2s-1.9-.8-1.9-2 .8-1.9 1.9-1.9 1.9.8 1.9 2" />
+       d="m 50.4,42.2 c 0,1.2 -0.8,2 -1.9,2 -1.1,0 -1.9,-0.8 -1.9,-2 0,-1.2 0.8,-1.9 1.9,-1.9 1.1,0 1.9,0.8 1.9,2" />
     <g
        id="server">
       <path
          fill="url(#server-grad-a)"
-         d="M56.8 58.3H7.2c-2 0-3.6-1.6-3.6-3.6V35.6c0-2 1.6-3.6 3.6-3.6h49.6c2 0 3.6 1.6 3.6 3.6v19.1c0 2-1.6 3.6-3.6 3.6"
+         d="M 56.8,58.3 H 7.2 c -2,0 -3.6,-1.6 -3.6,-3.6 V 35.6 c 0,-2 1.6,-3.6 3.6,-3.6 h 49.6 c 2,0 3.6,1.6 3.6,3.6 v 19.1 c 0,2 -1.6,3.6 -3.6,3.6"
          id="path8" />
       <path
          fill="url(#server-grad-b)"
-         d="M56.8 32H7.2c-2 0-3.6-1.6-3.6-3.6V9.3c0-2 1.6-3.6 3.6-3.6h49.6c2 0 3.6 1.6 3.6 3.6v19.1c0 2-1.6 3.6-3.6 3.6"
+         d="M 56.8,32 H 7.2 C 5.2,32 3.6,30.4 3.6,28.4 V 9.3 c 0,-2 1.6,-3.6 3.6,-3.6 h 49.6 c 2,0 3.6,1.6 3.6,3.6 v 19.1 c 0,2 -1.6,3.6 -3.6,3.6"
          id="path9" />
       <g
-         fill="#ccc"
+         fill="#cccccc"
          id="g18">
         <use
            href="#server-dot"
            id="use9" />
         <use
            href="#server-dot"
-           x="-7.6"
+           x="-7.5999999"
            id="use10" />
         <use
            href="#server-dot"
            x="3.8"
-           y="5.7"
+           y="5.6999998"
            id="use11" />
         <use
            href="#server-dot"
            x="-3.8"
-           y="5.7"
+           y="5.6999998"
            id="use12" />
         <use
            href="#server-dot"
            x="-15.1"
            id="use13" />
         <path
-           d="M39 47.9c0 1.1-.7 1.9-1.9 1.9-1 0-1.9-.8-1.9-1.9s.8-1.9 2-1.9 1.8.8 1.8 1.9"
+           d="m 39,47.9 c 0,1.1 -0.7,1.9 -1.9,1.9 -1,0 -1.9,-0.8 -1.9,-1.9 0,-1.1 0.8,-1.9 2,-1.9 1.2,0 1.8,0.8 1.8,1.9"
            id="path13" />
         <use
            href="#server-dot"
-           y="-26.3"
+           y="-26.299999"
            id="use14" />
         <use
            href="#server-dot"
-           x="-7.6"
-           y="-26.3"
+           x="-7.5999999"
+           y="-26.299999"
            id="use15" />
         <use
            href="#server-dot"
@@ -179,23 +181,23 @@
         <use
            href="#server-dot"
            x="-15.1"
-           y="-26.3"
+           y="-26.299999"
            id="use18" />
         <path
-           d="M39 21.6c0 1.1-.7 1.9-1.9 1.9-1 0-1.9-.8-1.9-1.9s.8-1.9 2-1.9 1.8.8 1.8 1.9"
+           d="m 39,21.6 c 0,1.1 -0.7,1.9 -1.9,1.9 -1,0 -1.9,-0.8 -1.9,-1.9 0,-1.1 0.8,-1.9 2,-1.9 1.2,0 1.8,0.8 1.8,1.9"
            id="path18" />
       </g>
       <g
-         fill="#0f0"
+         fill="#00ff00"
          id="g19">
         <circle
            cx="13.9"
-           cy="45.2"
+           cy="45.200001"
            r="3.3"
            id="circle18" />
         <circle
            cx="13.9"
-           cy="18.8"
+           cy="18.799999"
            r="3.3"
            id="circle19" />
       </g>
@@ -295,8 +297,8 @@
     </linearGradient>
     <linearGradient
        id="ws-grad-b"
-       x1="23.7"
-       x2="23.7"
+       x1="23.700001"
+       x2="23.700001"
        y1="20.6"
        y2="39.5"
        gradientUnits="userSpaceOnUse">
@@ -316,19 +318,19 @@
          id="g52">
         <path
            fill="url(#ws-grad-a)"
-           d="M55.4 20.5H4.6A3.6 3.6 0 011 16.9V5a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 5.1V17a3.6 3.6 0 01-3.6 3.6z"
+           d="M 55.4,20.5 H 4.6 A 3.6,3.6 0 0 1 1,16.9 V 5 A 3.6,3.6 0 0 1 4.6,1.4 H 55.4 A 3.6,3.6 0 0 1 59,5.1 V 17 a 3.6,3.6 0 0 1 -3.6,3.6 z"
            id="path27" />
         <circle
            cx="30"
            cy="53.5"
            r="4"
-           fill="#0f0"
+           fill="#00ff00"
            stroke="#424a9d"
            stroke-width="2"
            id="circle27" />
         <path
            fill="url(#ws-grad-b)"
-           d="M55.4 39.5H4.6A3.6 3.6 0 011 35.9V24a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 24v11.8a3.6 3.6 0 01-3.6 3.6z"
+           d="M 55.4,39.5 H 4.6 A 3.6,3.6 0 0 1 1,35.9 V 24 A 3.6,3.6 0 0 1 4.6,20.4 H 55.4 A 3.6,3.6 0 0 1 59,24 v 11.8 a 3.6,3.6 0 0 1 -3.6,3.6 z"
            id="path28" />
         <g
            fill="none"
@@ -337,10 +339,10 @@
            id="g30">
           <path
              stroke-linecap="round"
-             d="M1 53.5h25m8 0h25"
+             d="m 1,53.5 h 25 m 8,0 h 25"
              id="path29" />
           <path
-             d="M30 49.5v-10"
+             d="m 30,49.5 v -10"
              id="path30" />
         </g>
         <g
@@ -472,7 +474,7 @@
        refY="3.5"
        orient="auto">
       <polygon
-         points="0 0, 10 3.5, 0 7"
+         points="10,3.5 0,7 0,0 "
          fill="#94a3b8"
          id="polygon52" />
     </marker>
@@ -484,369 +486,702 @@
        refY="3.5"
        orient="auto">
       <polygon
-         points="0 0, 10 3.5, 0 7"
+         points="10,3.5 0,7 0,0 "
          fill="#dc2626"
          id="polygon53" />
     </marker>
   </defs>
   <!-- GARLIC MESSAGE label -->
   <text
-     x="450.01758"
-     y="74.537651"
+     x="440.47168"
+     y="13.104492"
      class="garlic-label"
      style="font-size:18px"
      id="text53">GARLIC MESSAGE</text>
   <!-- Browser -->
   <g
-     transform="translate(15, 175)"
+     transform="translate(5.4541016,113.56684)"
      id="g53">
     <use
        href="#browser"
        id="use53" />
   </g>
   <text
-     x="40"
-     y="235"
+     x="30.454102"
+     y="173.56683"
      class="label"
      id="text54">HTTP</text>
   <text
-     x="40"
-     y="247"
+     x="30.454102"
+     y="185.56683"
      class="label"
      id="text55">Request</text>
   <text
-     x="40"
-     y="265"
+     x="30.454102"
+     y="203.56683"
      class="name"
      id="text56">BROWSER</text>
   <!-- Arrow Browser to Alice -->
   <line
-     x1="70"
-     y1="195"
-     x2="100"
-     y2="195"
+     x1="60.454102"
+     y1="133.56683"
+     x2="90.454102"
+     y2="133.56683"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line56" />
   <!-- Alice -->
   <g
-     transform="translate(103, 163) scale(0.55)"
+     transform="matrix(0.55,0,0,0.55,93.454102,101.56684)"
      id="g56">
     <use
        href="#client"
        id="use56" />
   </g>
   <text
-     x="125"
-     y="225"
+     x="115.4541"
+     y="163.56683"
      class="name"
      id="text57">Alice</text>
   <!-- Top row - Outbound tunnel (C -> D -> E) then Inbound (F) -->
   <!-- C -->
   <circle
-     cx="220"
-     cy="120"
+     cx="210.4541"
+     cy="58.566841"
      r="20"
      class="hop-circle"
      id="circle57" />
   <text
-     x="220"
-     y="125"
+     x="210.4541"
+     y="63.566841"
      class="hop-label"
      id="text58">C</text>
   <!-- D -->
   <circle
-     cx="320"
-     cy="120"
+     cx="310.4541"
+     cy="58.566841"
      r="20"
      class="hop-circle"
      id="circle58" />
   <text
-     x="320"
-     y="125"
+     x="310.4541"
+     y="63.566841"
      class="hop-label"
      id="text59">D</text>
   <!-- E -->
   <circle
-     cx="450"
-     cy="120"
+     cx="440.4541"
+     cy="58.566841"
      r="20"
      class="hop-circle"
      id="circle59" />
   <text
-     x="450"
-     y="125"
+     x="440.4541"
+     y="63.566841"
      class="hop-label"
      id="text60">E</text>
   <!-- F -->
   <circle
-     cx="580"
-     cy="120"
+     cx="570.4541"
+     cy="58.566841"
      r="20"
      class="hop-circle"
      id="circle60" />
   <text
-     x="580"
-     y="125"
+     x="570.4541"
+     y="63.566841"
      class="hop-label"
      id="text61">F</text>
   <!-- Top row arrows -->
   <line
-     x1="150"
-     y1="175"
-     x2="200"
-     y2="130"
+     x1="140.4541"
+     y1="113.56684"
+     x2="190.4541"
+     y2="68.566841"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line61" />
   <line
-     x1="240"
-     y1="120"
-     x2="298"
-     y2="120"
+     x1="230.4541"
+     y1="58.566841"
+     x2="288.4541"
+     y2="58.566841"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line62" />
   <line
-     x1="340"
-     y1="120"
-     x2="428"
-     y2="120"
+     x1="330.4541"
+     y1="58.566841"
+     x2="418.4541"
+     y2="58.566841"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line63" />
   <line
-     x1="470"
-     y1="120"
-     x2="558"
-     y2="120"
+     x1="460.4541"
+     y1="58.566841"
+     x2="548.4541"
+     y2="58.566841"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line64" />
   <line
-     x1="600"
-     y1="120"
-     x2="665"
-     y2="175"
+     x1="590.4541"
+     y1="58.566841"
+     x2="655.4541"
+     y2="113.56684"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line65" />
   <!-- Top row labels -->
   <text
-     x="240"
-     y="108"
+     x="230.4541"
+     y="46.566841"
      class="tunnel-label"
      id="text65">Outbound</text>
   <text
-     x="510"
-     y="108"
+     x="500.4541"
+     y="46.566841"
      class="tunnel-label"
      id="text66">Inbound</text>
   <text
-     x="320"
-     y="155"
+     x="310.4541"
+     y="93.566841"
      class="label"
      id="text67">Alice Client</text>
   <text
-     x="320"
-     y="167"
+     x="310.4541"
+     y="105.56684"
      class="label"
      id="text68">Tunnels</text>
   <text
-     x="510"
-     y="155"
+     x="500.4541"
+     y="93.566841"
      class="label"
      id="text69">Bob Server</text>
   <text
-     x="510"
-     y="167"
+     x="500.4541"
+     y="105.56684"
      class="label"
      id="text70">Tunnels</text>
   <!-- Bottom row - Inbound tunnel (K <- J <- H <- G) -->
   <!-- K -->
   <circle
-     cx="220"
-     cy="280"
+     cx="210.4541"
+     cy="218.56683"
      r="20"
      class="hop-circle"
      id="circle70" />
   <text
-     x="220"
-     y="285"
+     x="210.4541"
+     y="223.56683"
      class="hop-label"
      id="text71">K</text>
   <!-- J -->
   <circle
-     cx="320"
-     cy="280"
+     cx="310.4541"
+     cy="218.56683"
      r="20"
      class="hop-circle"
      id="circle71" />
   <text
-     x="320"
-     y="285"
+     x="310.4541"
+     y="223.56683"
      class="hop-label"
      id="text72">J</text>
   <!-- H -->
   <circle
-     cx="450"
-     cy="280"
+     cx="440.4541"
+     cy="218.56683"
      r="20"
      class="hop-circle"
      id="circle72" />
   <text
-     x="450"
-     y="285"
+     x="440.4541"
+     y="223.56683"
      class="hop-label"
      id="text73">H</text>
   <!-- G -->
   <circle
-     cx="580"
-     cy="280"
+     cx="570.4541"
+     cy="218.56683"
      r="20"
      class="hop-circle"
      id="circle73" />
   <text
-     x="580"
-     y="285"
+     x="570.4541"
+     y="223.56683"
      class="hop-label"
      id="text74">G</text>
   <!-- Bottom row arrows (reversed direction) -->
   <line
-     x1="200"
-     y1="280"
-     x2="155"
-     y2="225"
+     x1="190.4541"
+     y1="218.56683"
+     x2="145.4541"
+     y2="163.56683"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line74" />
   <line
-     x1="298"
-     y1="280"
-     x2="240"
-     y2="280"
+     x1="288.4541"
+     y1="218.56683"
+     x2="230.4541"
+     y2="218.56683"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line75" />
   <line
-     x1="428"
-     y1="280"
-     x2="340"
-     y2="280"
+     x1="418.4541"
+     y1="218.56683"
+     x2="330.4541"
+     y2="218.56683"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line76" />
   <line
-     x1="558"
-     y1="280"
-     x2="470"
-     y2="280"
+     x1="548.4541"
+     y1="218.56683"
+     x2="460.4541"
+     y2="218.56683"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line77" />
   <line
-     x1="665"
-     y1="225"
-     x2="600"
-     y2="280"
+     x1="655.4541"
+     y1="163.56683"
+     x2="590.4541"
+     y2="218.56683"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line78" />
   <!-- Bottom row labels -->
   <text
-     x="265"
-     y="318"
+     x="255.4541"
+     y="256.56683"
      class="tunnel-label"
      id="text78">Inbound</text>
   <text
-     x="510"
-     y="318"
+     x="500.4541"
+     y="256.56683"
      class="tunnel-label"
      id="text79">Outbound</text>
   <!-- Bob -->
   <g
-     transform="translate(665, 163) scale(0.55)"
+     transform="matrix(0.55,0,0,0.55,655.4541,101.56684)"
      id="g79">
     <use
        href="#server"
        id="use79" />
   </g>
   <text
-     x="690"
-     y="230"
+     x="680.4541"
+     y="168.56683"
      class="name"
      id="text80">BOB</text>
   <!-- Web Server -->
   <g
-     transform="translate(780, 155)"
+     transform="translate(770.4541,93.566841)"
      id="g80">
     <use
        href="#webserver"
        id="use80" />
   </g>
   <text
-     x="810"
-     y="225"
+     x="800.4541"
+     y="163.56683"
      class="name"
      id="text81">WEB SERVER</text>
   <!-- Arrow Bob to Web Server -->
   <line
-     x1="725"
-     y1="195"
-     x2="775"
-     y2="195"
+     x1="715.4541"
+     y1="133.56683"
+     x2="765.4541"
+     y2="133.56683"
      class="arrow"
      marker-end="url(#arrowhead)"
      id="line81" />
   <!-- Garlic message curves - positioned to not cover text -->
   <!-- Top curve - main garlic message -->
   <path
-     d="M 155 160 Q 400 45 690 160"
+     d="m 145.4541,98.566841 q 245,-115 535,0"
      class="garlic-arrow"
      marker-end="url(#arrowhead-red)"
      id="path81" />
   <!-- Clove 1 label -->
   <text
-     x="765"
-     y="130"
+     x="755.4541"
+     y="68.566841"
      class="clove-label"
      id="text82">Clove 1:</text>
   <text
-     x="765"
-     y="142"
+     x="755.4541"
+     y="80.566841"
      class="clove-label"
      id="text83">HTTP Request data</text>
   <!-- Clove 3 label (at Bob) -->
   <text
-     x="765"
-     y="250"
+     x="755.4541"
+     y="188.56683"
      class="clove-label"
      id="text84">Clove 3:</text>
   <text
-     x="765"
-     y="262"
+     x="755.4541"
+     y="200.56683"
      class="clove-label"
      id="text85">Database Store Message</text>
   <text
-     x="765"
-     y="274"
+     x="755.4541"
+     y="212.56683"
      class="clove-label"
      id="text86">with Alice client LeaseSet</text>
   <text
-     x="765"
-     y="286"
+     x="755.4541"
+     y="224.56683"
      class="clove-label"
      id="text87">(Router J and Tunnel ID)</text>
   <!-- Bottom curve - Delivery Status Message -->
   <path
-     d="M 690 240 Q 400 355 155 240"
+     d="m 680.4541,178.56684 q -290,115 -535,0"
      class="garlic-arrow"
      marker-end="url(#arrowhead-red)"
      id="path87" />
   <!-- Clove 2 label -->
   <text
-     x="449.93848"
-     y="347.27274"
+     x="440.39258"
+     y="285.83957"
      class="garlic-label"
      id="text88">Clove 2: Delivery Status Message</text>
+  <text
+     x="440.47168"
+     y="13.104492"
+     class="garlic-label"
+     style="font-size:18px"
+     id="text1">GARLIC MESSAGE</text>
+  <g
+     transform="translate(5.4541016,113.56684)"
+     id="g1">
+    <use
+       href="#browser"
+       id="use1" />
+  </g>
+  <text
+     x="30.454102"
+     y="173.56683"
+     class="label"
+     id="text2">HTTP</text>
+  <text
+     x="30.454102"
+     y="185.56683"
+     class="label"
+     id="text3">Request</text>
+  <text
+     x="30.454102"
+     y="203.56683"
+     class="name"
+     id="text4">BROWSER</text>
+  <line
+     x1="60.454102"
+     y1="133.56683"
+     x2="90.454102"
+     y2="133.56683"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line4" />
+  <g
+     transform="matrix(0.55,0,0,0.55,93.454102,101.56684)"
+     id="g4">
+    <use
+       href="#client"
+       id="use4" />
+  </g>
+  <text
+     x="115.4541"
+     y="163.56683"
+     class="name"
+     id="text5">Alice</text>
+  <circle
+     cx="210.4541"
+     cy="58.566841"
+     r="20"
+     class="hop-circle"
+     id="circle5" />
+  <text
+     x="210.4541"
+     y="63.566841"
+     class="hop-label"
+     id="text6">C</text>
+  <circle
+     cx="310.4541"
+     cy="58.566841"
+     r="20"
+     class="hop-circle"
+     id="circle6" />
+  <text
+     x="310.4541"
+     y="63.566841"
+     class="hop-label"
+     id="text7">D</text>
+  <circle
+     cx="440.4541"
+     cy="58.566841"
+     r="20"
+     class="hop-circle"
+     id="circle7" />
+  <text
+     x="440.4541"
+     y="63.566841"
+     class="hop-label"
+     id="text8">E</text>
+  <circle
+     cx="570.4541"
+     cy="58.566841"
+     r="20"
+     class="hop-circle"
+     id="circle8" />
+  <text
+     x="570.4541"
+     y="63.566841"
+     class="hop-label"
+     id="text9">F</text>
+  <line
+     x1="140.4541"
+     y1="113.56684"
+     x2="190.4541"
+     y2="68.566841"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line9" />
+  <line
+     x1="230.4541"
+     y1="58.566841"
+     x2="288.4541"
+     y2="58.566841"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line10" />
+  <line
+     x1="330.4541"
+     y1="58.566841"
+     x2="418.4541"
+     y2="58.566841"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line11" />
+  <line
+     x1="460.4541"
+     y1="58.566841"
+     x2="548.4541"
+     y2="58.566841"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line12" />
+  <line
+     x1="590.4541"
+     y1="58.566841"
+     x2="655.4541"
+     y2="113.56684"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line13" />
+  <text
+     x="230.4541"
+     y="46.566841"
+     class="tunnel-label"
+     id="text13">Outbound</text>
+  <text
+     x="500.4541"
+     y="46.566841"
+     class="tunnel-label"
+     id="text14">Inbound</text>
+  <text
+     x="310.4541"
+     y="93.566841"
+     class="label"
+     id="text15">Alice Client</text>
+  <text
+     x="310.4541"
+     y="105.56684"
+     class="label"
+     id="text16">Tunnels</text>
+  <text
+     x="500.4541"
+     y="93.566841"
+     class="label"
+     id="text17">Bob Server</text>
+  <text
+     x="500.4541"
+     y="105.56684"
+     class="label"
+     id="text18">Tunnels</text>
+  <circle
+     cx="210.4541"
+     cy="218.56683"
+     r="20"
+     class="hop-circle"
+     id="circle20" />
+  <text
+     x="210.4541"
+     y="223.56683"
+     class="hop-label"
+     id="text20">K</text>
+  <circle
+     cx="310.4541"
+     cy="218.56683"
+     r="20"
+     class="hop-circle"
+     id="circle25" />
+  <text
+     x="310.4541"
+     y="223.56683"
+     class="hop-label"
+     id="text25">J</text>
+  <circle
+     cx="440.4541"
+     cy="218.56683"
+     r="20"
+     class="hop-circle"
+     id="circle26" />
+  <text
+     x="440.4541"
+     y="223.56683"
+     class="hop-label"
+     id="text26">H</text>
+  <circle
+     cx="570.4541"
+     cy="218.56683"
+     r="20"
+     class="hop-circle"
+     id="circle28" />
+  <text
+     x="570.4541"
+     y="223.56683"
+     class="hop-label"
+     id="text28">G</text>
+  <line
+     x1="190.4541"
+     y1="218.56683"
+     x2="145.4541"
+     y2="163.56683"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line28" />
+  <line
+     x1="288.4541"
+     y1="218.56683"
+     x2="230.4541"
+     y2="218.56683"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line29" />
+  <line
+     x1="418.4541"
+     y1="218.56683"
+     x2="330.4541"
+     y2="218.56683"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line30" />
+  <line
+     x1="548.4541"
+     y1="218.56683"
+     x2="460.4541"
+     y2="218.56683"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line31" />
+  <line
+     x1="655.4541"
+     y1="163.56683"
+     x2="590.4541"
+     y2="218.56683"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line32" />
+  <text
+     x="255.4541"
+     y="256.56683"
+     class="tunnel-label"
+     id="text32">Inbound</text>
+  <text
+     x="500.4541"
+     y="256.56683"
+     class="tunnel-label"
+     id="text33">Outbound</text>
+  <g
+     transform="matrix(0.55,0,0,0.55,655.4541,101.56684)"
+     id="g33">
+    <use
+       href="#server"
+       id="use33" />
+  </g>
+  <text
+     x="680.4541"
+     y="168.56683"
+     class="name"
+     id="text34">BOB</text>
+  <g
+     transform="translate(770.4541,93.566841)"
+     id="g34">
+    <use
+       href="#webserver"
+       id="use34" />
+  </g>
+  <text
+     x="800.4541"
+     y="163.56683"
+     class="name"
+     id="text35">WEB SERVER</text>
+  <line
+     x1="715.4541"
+     y1="133.56683"
+     x2="765.4541"
+     y2="133.56683"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line35" />
+  <path
+     d="m 145.4541,98.566841 q 245,-115 535,0"
+     class="garlic-arrow"
+     marker-end="url(#arrowhead-red)"
+     id="path35" />
+  <text
+     x="755.4541"
+     y="68.566841"
+     class="clove-label"
+     id="text36">Clove 1:</text>
+  <text
+     x="755.4541"
+     y="80.566841"
+     class="clove-label"
+     id="text37">HTTP Request data</text>
+  <text
+     x="755.4541"
+     y="188.56683"
+     class="clove-label"
+     id="text38">Clove 3:</text>
+  <text
+     x="755.4541"
+     y="200.56683"
+     class="clove-label"
+     id="text39">Database Store Message</text>
+  <text
+     x="755.4541"
+     y="212.56683"
+     class="clove-label"
+     id="text40">with Alice client LeaseSet</text>
+  <text
+     x="755.4541"
+     y="224.56683"
+     class="clove-label"
+     id="text41">(Router J and Tunnel ID)</text>
+  <path
+     d="m 680.4541,178.56684 q -290,115 -535,0"
+     class="garlic-arrow"
+     marker-end="url(#arrowhead-red)"
+     id="path41" />
+  <text
+     x="440.39258"
+     y="285.83957"
+     class="garlic-label"
+     id="text42">Clove 2: Delivery Status Message</text>
 </svg>

@@ -66,7 +66,7 @@ Ve vrstvě nad tunely doručuje I2P end-to-end zprávy mezi [Destinations](/docs
 
 Obecně bude Garlic Message obsahovat pouze jeden clove. Router však periodicky zabalí dva další cloves do Garlic Message:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **Zpráva o stavu doručení**, s instrukcemi pro doručení specifikujícími, že má být odeslána zpět do původního routeru jako potvrzení. To je podobné "reply bloku" nebo "reply onionu" popsanému v referencích. Používá se pro určení úspěchu nebo neúspěchu doručení zprávy end-to-end. Původní router může při neobdržení zprávy o stavu doručení v očekávaném časovém období upravit směrování k cílové destinaci nebo podniknout jiné kroky.
 

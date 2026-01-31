@@ -12,7 +12,7 @@ accurateFor: "0.8.7"
 
 [소개](/docs/overview/intro/)에서 간략히 설명했듯이, I2P는 가상 "tunnel"을 구축합니다 - 이는 일련의 router를 통한 임시적이고 단방향적인 경로입니다. 이러한 tunnel은 인바운드 tunnel(해당 tunnel에 전달된 모든 것이 tunnel 생성자에게 향하는)이나 아웃바운드 tunnel(tunnel 생성자가 메시지를 자신으로부터 밀어내는) 중 하나로 분류됩니다. Alice가 Bob에게 메시지를 보내고 싶을 때, 그녀는 (일반적으로) 기존의 아웃바운드 tunnel 중 하나를 통해 메시지를 보내며, 해당 tunnel의 엔드포인트가 Bob의 현재 인바운드 tunnel 중 하나의 게이트웨이 router로 전달하도록 지시하고, 이는 차례로 Bob에게 전달합니다.
 
-![Alice가 자신의 outbound tunnel을 통해 Bob의 inbound tunnel을 거쳐 Bob에게 연결하는 모습](/images/tunnelSending.png)
+![Alice가 자신의 outbound tunnel을 통해 Bob의 inbound tunnel을 거쳐 Bob에게 연결하는 모습](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

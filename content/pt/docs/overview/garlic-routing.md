@@ -66,7 +66,7 @@ Na camada acima dos tunnels, o I2P entrega mensagens ponta-a-ponta entre [Destin
 
 Geralmente, uma Garlic Message conterá apenas um clove. No entanto, o router irá periodicamente agrupar dois cloves adicionais na Garlic Message:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **Uma Mensagem de Status de Entrega**, com Instruções de Entrega especificando que ela deve ser enviada de volta ao router originário como uma confirmação. Isso é similar ao "bloco de resposta" ou "cebola de resposta" descrita nas referências. É usada para determinar o sucesso ou falha da entrega de mensagem de ponta a ponta. O router originário pode, ao falhar em receber a Mensagem de Status de Entrega dentro do período de tempo esperado, modificar o roteamento para o Destination de destino final, ou tomar outras ações.
 

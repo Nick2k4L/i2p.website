@@ -66,7 +66,7 @@ Auf der Schicht oberhalb der tunnel übermittelt I2P End-to-End-Nachrichten zwis
 
 Im Allgemeinen enthält eine Garlic Message nur eine einzige Clove. Der Router wird jedoch regelmäßig zwei zusätzliche Cloves in die Garlic Message bündeln:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **Eine Delivery Status Message**, mit Delivery Instructions, die festlegen, dass sie als Bestätigung an den ursprünglichen router zurückgesendet wird. Dies ist ähnlich dem "reply block" oder "reply onion", die in den Referenzen beschrieben werden. Sie wird verwendet, um den Erfolg oder Misserfolg der Ende-zu-Ende-Nachrichtenzustellung zu bestimmen. Der ursprüngliche router kann beim Ausbleiben der Delivery Status Message innerhalb des erwarteten Zeitraums das Routing zur entfernten Destination ändern oder andere Maßnahmen ergreifen.
 

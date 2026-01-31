@@ -36,7 +36,7 @@ I2P'nin işleyişini anlamak için birkaç temel kavramı anlamak gereklidir. İ
 
 Anlaşılması gereken bir diğer kritik kavram da "tunnel"dır. Tunnel, açıkça seçilmiş router listesi üzerinden geçen yönlendirilmiş bir yoldur. Katmanlı şifreleme kullanılır, böylece router'ların her biri yalnızca tek bir katmanın şifresini çözebilir. Şifresi çözülen bilgi, bir sonraki router'ın IP'sini ve iletilecek şifrelenmiş bilgiyi içerir. Her tunnel'ın bir başlangıç noktası (ilk router, "gateway" olarak da bilinir) ve bir bitiş noktası vardır. Mesajlar yalnızca tek yönde gönderilebilir. Mesajları geri göndermek için başka bir tunnel gereklidir.
 
-![Gelen ve giden tunnel şeması](/images/tunnels.png) *Şekil 1: İki tür tunnel vardır: gelen ve giden.*
+![Gelen ve giden tunnel şeması](/images/tunnels.svg) *Şekil 1: İki tür tunnel vardır: gelen ve giden.*
 
 İki tür tunnel bulunur: **"outbound" tunnel'lar** mesajları tunnel yaratıcısından uzağa gönderirken, **"inbound" tunnel'lar** mesajları tunnel yaratıcısına getirir. Bu iki tunnel'ın birleşimi kullanıcıların birbirlerine mesaj göndermesine olanak tanır. Gönderen ("Alice" yukarıdaki resimde) bir outbound tunnel kurarken, alıcı ("Bob" yukarıdaki resimde) bir inbound tunnel oluşturur. Bir inbound tunnel'ın gateway'i herhangi bir başka kullanıcıdan mesaj alabilir ve bunları endpoint'e ("Bob") kadar iletir. Outbound tunnel'ın endpoint'i mesajı inbound tunnel'ın gateway'ine iletmesi gerekir. Bunu yapmak için, gönderen ("Alice") şifreli mesajına talimatlar ekler. Outbound tunnel'ın endpoint'i mesajın şifresini çözdüğünde, mesajı doğru inbound gateway'ine ("Bob"'a giden gateway) yönlendirme talimatlarına sahip olacaktır.
 
@@ -52,13 +52,13 @@ Ağda başarılı bağlantılar kurmak için yukarıdaki kavramları birleştire
 
 Kendi gelen ve giden tunnel'larını kurmak için Alice, routerInfo toplamak amacıyla netDb'de arama yapar. Bu şekilde, tunnel'larında hop olarak kullanabileceği eş listelerini toplar. Daha sonra ilk hop'a bir yapı mesajı gönderebilir, bir tunnel'ın yapımını talep edebilir ve o router'dan yapım mesajını tunnel yapılana kadar ileriye iletmesini isteyebilir.
 
-![Diğer router'lar hakkında bilgi talep et](/images/netdb_get_routerinfo_1.png)
+![Diğer router'lar hakkında bilgi talep et](/images/netdb_get_routerinfo_1.svg)
 
-![Router bilgilerini kullanarak tunnel oluşturma](/images/netdb_get_routerinfo_2.png) *Şekil 2: Router bilgileri tunnel oluşturmak için kullanılır.*
+![Router bilgilerini kullanarak tunnel oluşturma](/images/netdb_get_routerinfo_2.svg) *Şekil 2: Router bilgileri tunnel oluşturmak için kullanılır.*
 
 Alice, Bob'a bir mesaj göndermek istediğinde, önce netDb'de Bob'un leaseSet'ini bulmak için arama yapar ve böylece Bob'un mevcut gelen tunnel gateway'lerini elde eder. Daha sonra kendi giden tunnel'larından birini seçer ve mesajı, giden tunnel'ın bitiş noktasına mesajı Bob'un gelen tunnel gateway'lerinden birine iletmesi talimatıyla birlikte gönderir. Giden tunnel bitiş noktası bu talimatları aldığında, mesajı talep edildiği gibi iletir ve Bob'un gelen tunnel gateway'i mesajı aldığında, tunnel boyunca Bob'un router'ına iletilir. Alice, Bob'un mesajı yanıtlayabilmesini istiyorsa, kendi hedefini mesajın bir parçası olarak açıkça iletmesi gerekir. Bu, [streaming](#streaming-library) kütüphanesinde yapıldığı gibi üst düzey bir katman tanıtarak gerçekleştirilebilir. Alice ayrıca en güncel LeaseSet'ini mesajla birlikte paketleyerek yanıt süresini kısaltabilir, böylece Bob yanıt vermek istediğinde bunun için netDb araması yapmasına gerek kalmaz, ancak bu isteğe bağlıdır.
 
-![LeaseSet'ler kullanarak tünelleri bağlama](/images/netdb_get_leaseset.png) *Şekil 3: LeaseSet'ler giden ve gelen tünelleri bağlamak için kullanılır.*
+![LeaseSet'ler kullanarak tünelleri bağlama](/images/netdb_get_leaseset.svg) *Şekil 3: LeaseSet'ler giden ve gelen tünelleri bağlamak için kullanılır.*
 
 Tunnel'ların kendileri ağ içindeki eşlere yetkisiz ifşayı önlemek için katmanlı şifrelemeye sahip olsa da (transport katmanının kendisi de ağ dışındaki eşlere yetkisiz ifşayı önlemek için yaptığı gibi), mesajı outbound tunnel uç noktasından ve inbound tunnel ağ geçidinden gizlemek için ek bir uçtan uca şifreleme katmanı eklemek gereklidir. Bu "[garlic encryption](#garlic-messages)", Alice'in router'ının birden fazla mesajı tek bir "garlic mesajı" içinde paketlemesine izin verir ve belirli bir public key ile şifrelenir, böylece ara eşler ne garlic içinde kaç mesaj olduğunu, ne bu mesajların ne dediğini, ne de bu bireysel clove'ların nereye gideceğini belirleyemez. Alice ve Bob arasındaki tipik uçtan uca iletişim için, garlic Bob'un leaseSet'inde yayınlanan public key ile şifrelenir ve bu sayede mesaj Bob'un kendi router'ına public key vermeden şifrelenmesine olanak tanır.
 

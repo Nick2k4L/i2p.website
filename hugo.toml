@@ -196,7 +196,7 @@ defaultContentLanguageInSubdir = true
       unsafe = true
     [markup.goldmark.parser]
       [markup.goldmark.parser.attribute]
-        block = false
+        block = true
         title = true
 
   [markup.tableOfContents]
