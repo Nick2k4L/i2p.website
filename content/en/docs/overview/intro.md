@@ -36,7 +36,7 @@ To understand I2P's operation, it is essential to understand a few key concepts.
 
 Another critical concept to understand is the "tunnel". A tunnel is a directed path through an explicitly selected list of routers. Layered encryption is used, so each of the routers can only decrypt a single layer. The decrypted information contains the IP of the next router, along with the encrypted information to be forwarded. Each tunnel has a starting point (the first router, also known as "gateway") and an end point. Messages can be sent only in one way. To send messages back, another tunnel is required.
 
-![Inbound and outbound tunnel schematic](/images/tunnels.png)
+![Inbound and outbound tunnel schematic](/images/tunnels.svg)
 *Figure 1: Two types of tunnels exist: inbound and outbound.*
 
 Two types of tunnels exist: **"outbound" tunnels** send messages away from the tunnel creator, while **"inbound" tunnels** bring messages to the tunnel creator. Combining these two tunnels allows users to send messages to each other. The sender ("Alice" in the above image) sets up an outbound tunnel, while the receiver ("Bob" in the above image) creates an inbound tunnel. The gateway of an inbound tunnel can receive messages from any other user and will send them on until the endpoint ("Bob"). The endpoint of the outbound tunnel will need to send the message on to the gateway of the inbound tunnel. To do this, the sender ("Alice") adds instructions to her encrypted message. Once the endpoint of the outbound tunnel decrypts the message, it will have instructions to forward the message to the correct inbound gateway (the gateway to "Bob").
