@@ -53,3 +53,6 @@ __pycache__/
 
 # Translation batch state
 scripts/claude_batch_state.json
+
+# Environment variables
+.env

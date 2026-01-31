@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Translate Hugo markdown files using OpenAI Batch API for cost savings.
+"""Translate Hugo markdown files using Anthropic Batch API for cost savings.
 
 The Batch API provides 50% cost reduction compared to regular API calls,
 with a 24-hour completion window. Perfect for bulk translation jobs.
@@ -9,19 +9,19 @@ Example usage:
     python3 translate_claude_batch.py --submit \
         --source ../content/en/blog/2025-10-16-new-i2p-routers.md \
         --target-lang de \
-        --model gpt-4.1-mini
+        --model claude-sonnet-4-20250514
 
     # Check batch status
-    python3 translate_claude_batch.py --check batch_abc123
+    python3 translate_claude_batch.py --check msgbatch_abc123
 
     # Wait for completion and process results
-    python3 translate_claude_batch.py --check batch_abc123 --wait
+    python3 translate_claude_batch.py --check msgbatch_abc123 --wait
 
     # List all batches
     python3 translate_claude_batch.py --list
 
 Environment:
-    OPENAI_API_KEY (required)
+    ANTHROPIC_API_KEY (required)
 """
 from __future__ import annotations
 
@@ -38,17 +38,10 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any
 
 try:
-    from openai import OpenAI
+    import anthropic
 except ImportError:
-    print("Error: openai package not installed. Run: pip install openai", file=sys.stderr)
+    print("Error: anthropic package not installed. Run: pip install anthropic", file=sys.stderr)
     sys.exit(1)
-
-# === COMMENTED OUT CLAUDE IMPORTS ===
-# try:
-#     import anthropic
-# except ImportError:
-#     print("Error: anthropic package not installed. Run: pip install anthropic", file=sys.stderr)
-#     sys.exit(1)
 
 BATCH_STATE_FILE = Path(__file__).resolve().parent / "claude_batch_state.json"
 TRANSLATION_HASHES_FILE = Path(__file__).resolve().parent / "claude_translation_hashes.json"
@@ -653,14 +646,14 @@ def tokenize_markdown(text: str) -> List[Token]:
     return tokens
 
 
-def generate_openai_batch_requests(
+def generate_anthropic_batch_requests(
     files: List[Path],
     target_lang: str,
     source_lang: str,
     model: str,
     output_root: Path
 ) -> tuple[List[Dict[str, Any]], List[FileMapping], List[FrontMatterEntry], List[List[Token]]]:
-    """Generate OpenAI batch API requests for all files."""
+    """Generate Anthropic batch API requests for all files."""
 
     # Language name mapping
     lang_names = {
@@ -714,16 +707,14 @@ def generate_openai_batch_requests(
 {entry.text}
 </source_text>"""
 
-            # OpenAI Batch API format (JSONL line)
+            # Anthropic Batch API format
             request = {
                 "custom_id": custom_id,
-                "method": "POST",
-                "url": "/v1/chat/completions",
-                "body": {
+                "params": {
                     "model": model,
-                    "max_completion_tokens": 4096,
+                    "max_tokens": 4096,
+                    "system": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name),
                     "messages": [
-                        {"role": "system", "content": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name)},
                         {"role": "user", "content": user_prompt}
                     ]
                 }
@@ -755,13 +746,11 @@ def generate_openai_batch_requests(
 
                 request = {
                     "custom_id": custom_id,
-                    "method": "POST",
-                    "url": "/v1/chat/completions",
-                    "body": {
+                    "params": {
                         "model": model,
-                        "max_completion_tokens": 4096,
+                        "max_tokens": 4096,
+                        "system": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name),
                         "messages": [
-                            {"role": "system", "content": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name)},
                             {"role": "user", "content": user_prompt}
                         ]
                     }
@@ -785,13 +774,11 @@ def generate_openai_batch_requests(
 
                 request = {
                     "custom_id": custom_id,
-                    "method": "POST",
-                    "url": "/v1/chat/completions",
-                    "body": {
+                    "params": {
                         "model": model,
-                        "max_completion_tokens": 4096,
+                        "max_tokens": 4096,
+                        "system": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name),
                         "messages": [
-                            {"role": "system", "content": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name)},
                             {"role": "user", "content": user_prompt}
                         ]
                     }
@@ -817,13 +804,11 @@ def generate_openai_batch_requests(
 
                 request = {
                     "custom_id": custom_id,
-                    "method": "POST",
-                    "url": "/v1/chat/completions",
-                    "body": {
+                    "params": {
                         "model": model,
-                        "max_completion_tokens": 4096,
+                        "max_tokens": 4096,
+                        "system": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name),
                         "messages": [
-                            {"role": "system", "content": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name)},
                             {"role": "user", "content": user_prompt}
                         ]
                     }
@@ -848,13 +833,11 @@ def generate_openai_batch_requests(
 
                 request = {
                     "custom_id": custom_id,
-                    "method": "POST",
-                    "url": "/v1/chat/completions",
-                    "body": {
+                    "params": {
                         "model": model,
-                        "max_completion_tokens": 4096,
+                        "max_tokens": 4096,
+                        "system": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name),
                         "messages": [
-                            {"role": "system", "content": SYSTEM_PROMPT.replace("{target_lang}", target_lang_name)},
                             {"role": "user", "content": user_prompt}
                         ]
                     }
@@ -893,10 +876,10 @@ def submit_batch(
     output_root: Path,
     dry_run: bool = False
 ) -> Optional[str]:
-    """Submit a batch translation job using OpenAI Batch API."""
+    """Submit a batch translation job using Anthropic Batch API."""
 
     print(f"\n{'='*60}")
-    print(f"Batch Translation Submission (OpenAI)")
+    print(f"Batch Translation Submission (Anthropic)")
     print(f"{'='*60}")
     print(f"Files: {len(files)}")
     print(f"Target language: {target_lang.upper()}")
@@ -906,7 +889,7 @@ def submit_batch(
     print(f"{'='*60}\n")
 
     # Generate requests
-    requests, file_mappings, _, _ = generate_openai_batch_requests(
+    requests, file_mappings, _, _ = generate_anthropic_batch_requests(
         files, target_lang, source_lang, model, output_root
     )
 
@@ -923,60 +906,38 @@ def submit_batch(
         print(f"... and {len(requests) - 5} more requests")
         return None
 
-    # Submit to OpenAI
-    api_key = os.getenv("OPENAI_API_KEY")
+    # Submit to Anthropic
+    api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
-        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        print("❌ Error: ANTHROPIC_API_KEY environment variable is not set")
         sys.exit(1)
 
-    client = OpenAI(api_key=api_key)
+    client = anthropic.Anthropic(api_key=api_key)
 
     print("\n🚀 Creating batch job...")
 
     try:
-        # Write JSONL file
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.jsonl', delete=False, encoding='utf-8') as f:
-            for req in requests:
-                f.write(json.dumps(req, ensure_ascii=False) + '\n')
-            jsonl_path = f.name
-
-        print(f"📝 Created JSONL file: {jsonl_path}")
-
-        # Upload file to OpenAI
-        with open(jsonl_path, 'rb') as f:
-            batch_file = client.files.create(
-                file=f,
-                purpose="batch"
-            )
-
-        print(f"📤 Uploaded file: {batch_file.id}")
-
-        # Create batch job
-        batch = client.batches.create(
-            input_file_id=batch_file.id,
-            endpoint="/v1/chat/completions",
-            completion_window="24h"
+        # Create batch job directly with Anthropic API
+        batch = client.messages.batches.create(
+            requests=requests
         )
 
         print(f"✅ Batch job created: {batch.id}")
-        print(f"   Status: {batch.status}")
+        print(f"   Status: {batch.processing_status}")
         print(f"   Created: {batch.created_at}")
-
-        # Clean up temp file
-        os.unlink(jsonl_path)
 
         # Save state
         batches = load_batch_state()
         batches[batch.id] = BatchJobState(
             id=batch.id,
-            status=batch.status,
+            status=batch.processing_status,
             model=model,
             created_at=datetime.now(timezone.utc).isoformat(),
             target_lang=target_lang,
             source_lang=source_lang,
             files=file_mappings,
             total_requests=len(requests),
-            input_file_id=batch_file.id
+            input_file_id=None
         )
         save_batch_state(batches)
 
@@ -1136,7 +1097,7 @@ def reconstruct_files(
 
 
 def check_batch(batch_id: str, wait: bool = False) -> None:
-    """Check batch status and process results if complete (OpenAI)."""
+    """Check batch status and process results if complete (Anthropic)."""
 
     # Load state
     batches = load_batch_state()
@@ -1146,12 +1107,12 @@ def check_batch(batch_id: str, wait: bool = False) -> None:
 
     batch_state = batches[batch_id]
 
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
-        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        print("❌ Error: ANTHROPIC_API_KEY environment variable is not set")
         sys.exit(1)
 
-    client = OpenAI(api_key=api_key)
+    client = anthropic.Anthropic(api_key=api_key)
 
     print(f"\n{'='*60}")
     print(f"Batch Status: {batch_id}")
@@ -1159,21 +1120,21 @@ def check_batch(batch_id: str, wait: bool = False) -> None:
 
     while True:
         try:
-            batch = client.batches.retrieve(batch_id)
+            batch = client.messages.batches.retrieve(batch_id)
 
-            print(f"Status: {batch.status}")
+            print(f"Status: {batch.processing_status}")
             print(f"Created: {batch.created_at}")
             print(f"Total requests: {batch_state.total_requests}")
 
             if batch.request_counts:
-                print(f"Completed: {batch.request_counts.completed}")
-                print(f"Failed: {batch.request_counts.failed}")
-                print(f"Total: {batch.request_counts.total}")
+                print(f"Succeeded: {batch.request_counts.succeeded}")
+                print(f"Errored: {batch.request_counts.errored}")
+                print(f"Processing: {batch.request_counts.processing}")
 
             # Update state
-            batch_state.status = batch.status
+            batch_state.status = batch.processing_status
 
-            if batch.status == "completed":
+            if batch.processing_status == "ended":
                 print(f"\n✅ Batch completed!")
 
                 # Download and process results
@@ -1182,34 +1143,24 @@ def check_batch(batch_id: str, wait: bool = False) -> None:
                 results = {}
                 error_count = 0
 
-                # Get output file
-                if batch.output_file_id:
-                    output_content = client.files.content(batch.output_file_id)
-                    output_text = output_content.text
+                # Get results using the results iterator
+                for result in client.messages.batches.results(batch_id):
+                    custom_id = result.custom_id
 
-                    for line in output_text.strip().split('\n'):
-                        if not line.strip():
-                            continue
-                        try:
-                            result = json.loads(line)
-                            custom_id = result.get("custom_id")
+                    if result.result.type == "succeeded":
+                        message = result.result.message
+                        # Extract text from content blocks
+                        translation = ""
+                        for block in message.content:
+                            if hasattr(block, 'text'):
+                                translation += block.text
 
-                            if result.get("response") and result["response"].get("body"):
-                                body = result["response"]["body"]
-                                if body.get("choices") and len(body["choices"]) > 0:
-                                    message = body["choices"][0].get("message", {})
-                                    translation = message.get("content", "").strip()
-
-                                    # Clean up translation artifacts
-                                    translation = clean_translation_artifacts(translation)
-
-                                    results[custom_id] = translation
-                            elif result.get("error"):
-                                print(f"⚠️  Failed: {custom_id} - {result['error']}")
-                                error_count += 1
-                        except json.JSONDecodeError as e:
-                            print(f"⚠️  JSON decode error: {e}")
-                            error_count += 1
+                        # Clean up translation artifacts
+                        translation = clean_translation_artifacts(translation.strip())
+                        results[custom_id] = translation
+                    else:
+                        print(f"⚠️  Failed: {custom_id} - {result.result.type}")
+                        error_count += 1
 
                 batch_state.error_count = error_count
                 print(f"\n✅ Retrieved {len(results)} translations ({error_count} errors)")
@@ -1239,12 +1190,9 @@ def check_batch(batch_id: str, wait: bool = False) -> None:
 
                 break
 
-            elif batch.status in ("failed", "cancelled", "expired"):
-                print(f"\n❌ Batch {batch.status}")
-                if batch.errors:
-                    for error in batch.errors.data[:5]:  # Show first 5 errors
-                        print(f"   Error: {error.message}")
-                batch_state.status = batch.status
+            elif batch.processing_status in ("failed", "canceled", "expired"):
+                print(f"\n❌ Batch {batch.processing_status}")
+                batch_state.status = batch.processing_status
                 save_batch_state(batches)
                 break
 
@@ -1279,24 +1227,24 @@ def check_batch(batch_id: str, wait: bool = False) -> None:
 
 
 def cancel_batch(batch_id: str) -> None:
-    """Cancel a batch job (OpenAI)."""
+    """Cancel a batch job (Anthropic)."""
 
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
-        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        print("❌ Error: ANTHROPIC_API_KEY environment variable is not set")
         sys.exit(1)
 
-    client = OpenAI(api_key=api_key)
+    client = anthropic.Anthropic(api_key=api_key)
 
     try:
-        batch = client.batches.cancel(batch_id)
+        batch = client.messages.batches.cancel(batch_id)
         print(f"✅ Batch cancellation requested: {batch_id}")
-        print(f"   Status: {batch.status}")
+        print(f"   Status: {batch.processing_status}")
 
         # Update state
         batches = load_batch_state()
         if batch_id in batches:
-            batches[batch_id].status = batch.status
+            batches[batch_id].status = batch.processing_status
             save_batch_state(batches)
 
     except Exception as e:
@@ -1330,7 +1278,7 @@ def list_batches() -> None:
 
 
 def check_all_batches(wait: bool = False, interval: int = 60) -> None:
-    """Check status of all batch jobs at once (OpenAI)."""
+    """Check status of all batch jobs at once (Anthropic)."""
 
     batches = load_batch_state()
 
@@ -1338,12 +1286,12 @@ def check_all_batches(wait: bool = False, interval: int = 60) -> None:
         print("No batch jobs found")
         return
 
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
-        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        print("❌ Error: ANTHROPIC_API_KEY environment variable is not set")
         sys.exit(1)
 
-    client = OpenAI(api_key=api_key)
+    client = anthropic.Anthropic(api_key=api_key)
 
     print(f"\n{'='*80}")
     print(f"Batch Status Summary - {len(batches)} batch(es)")
@@ -1355,22 +1303,22 @@ def check_all_batches(wait: bool = False, interval: int = 60) -> None:
 
         for batch_id, batch_state in batches.items():
             try:
-                batch = client.batches.retrieve(batch_id)
-                batch_state.status = batch.status
+                batch = client.messages.batches.retrieve(batch_id)
+                batch_state.status = batch.processing_status
 
                 # Print status
-                status_icon = "✅" if batch.status == "completed" else "⏳" if batch.status in ("validating", "in_progress", "finalizing") else "❌"
-                print(f"{status_icon} {batch_id[:20]}... | {batch_state.target_lang.upper():3s} | {batch.status:12s} | ", end="")
+                status_icon = "✅" if batch.processing_status == "ended" else "⏳" if batch.processing_status == "in_progress" else "❌"
+                print(f"{status_icon} {batch_id[:20]}... | {batch_state.target_lang.upper():3s} | {batch.processing_status:12s} | ", end="")
 
                 if batch.request_counts:
-                    print(f"Completed: {batch.request_counts.completed:4d} | Failed: {batch.request_counts.failed:4d} | Total: {batch.request_counts.total:4d}")
+                    print(f"Succeeded: {batch.request_counts.succeeded:4d} | Errored: {batch.request_counts.errored:4d} | Processing: {batch.request_counts.processing:4d}")
                 else:
                     print("No request counts available")
 
-                if batch.status not in ("completed", "failed", "cancelled", "expired"):
+                if batch.processing_status not in ("ended", "failed", "canceled", "expired"):
                     all_completed = False
                     all_ended = False
-                elif batch.status == "completed":
+                elif batch.processing_status == "ended":
                     all_ended = True
 
             except Exception as e:
@@ -1399,7 +1347,7 @@ def check_all_batches(wait: bool = False, interval: int = 60) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Batch translate Hugo markdown using OpenAI Batch API")
+    parser = argparse.ArgumentParser(description="Batch translate Hugo markdown using Anthropic Batch API")
 
     # Mode selection
     mode_group = parser.add_mutually_exclusive_group(required=True)
@@ -1415,7 +1363,7 @@ def main() -> int:
     parser.add_argument("--pattern", help="File pattern for source-dir (e.g., '2025-*.md')")
     parser.add_argument("--target-lang", help="Target language code (e.g., de, ko, es)")
     parser.add_argument("--source-lang", default="en", help="Source language code (default: en)")
-    parser.add_argument("--model", default="gpt-5", help="OpenAI model (default: gpt-5)")
+    parser.add_argument("--model", default="claude-sonnet-4-20250514", help="Anthropic model (default: claude-sonnet-4-20250514)")
     parser.add_argument("--output-root", help="Output root directory (default: auto-detect)")
     parser.add_argument("--dry-run", action="store_true", help="Preview without submitting")
 
