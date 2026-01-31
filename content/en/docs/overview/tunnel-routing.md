@@ -12,7 +12,7 @@ This page contains an overview of I2P tunnel terminology and operation, with lin
 
 As briefly explained in the [introduction](/docs/overview/intro/), I2P builds virtual "tunnels" - temporary and unidirectional paths through a sequence of routers. These tunnels are classified as either inbound tunnels (where everything given to it goes towards the creator of the tunnel) or outbound tunnels (where the tunnel creator shoves messages away from them). When Alice wants to send a message to Bob, she will (typically) send it out one of her existing outbound tunnels with instructions for that tunnel's endpoint to forward it to the gateway router for one of Bob's current inbound tunnels, which in turn passes it to Bob.
 
-![Alice connecting through her outbound tunnel to Bob via his inbound tunnel](/images/tunnelSending.png)
+![Alice connecting through her outbound tunnel to Bob via his inbound tunnel](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

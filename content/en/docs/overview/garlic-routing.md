@@ -66,7 +66,7 @@ At the layer above tunnels, I2P delivers end-to-end messages between [Destinatio
 
 Generally, a Garlic Message will contain only one clove. However, the router will periodically bundle two additional cloves in the Garlic Message:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **A Delivery Status Message**, with Delivery Instructions specifying that it be sent back to the originating router as an acknowledgment. This is similar to the "reply block" or "reply onion" described in the references. It is used for determining the success or failure of end to end message delivery. The originating router may, upon failure to receive the Delivery Status Message within the expected time period, modify the routing to the far-end Destination, or take other actions.
 

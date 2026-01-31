@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 900 400"
+   version="1.1"
+   id="svg88"
+   sodipodi:docname="garlic-message-diagram.svg"
+   inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview88"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.97777778"
+     inkscape:cx="634.60227"
+     inkscape:cy="126.30682"
+     inkscape:window-width="2234"
+     inkscape:window-height="1186"
+     inkscape:window-x="991"
+     inkscape:window-y="112"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg88" />
+  <defs
+     id="defs53">
+    <style
+       id="style1">
+      .name { font-family: Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #94a3b8; text-anchor: middle; }
+      .label { font-family: Arial, sans-serif; font-size: 10px; font-weight: 500; fill: #94a3b8; text-anchor: middle; }
+      .tunnel-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: 500; fill: #94a3b8; }
+      .garlic-label { font-family: Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #dc2626; text-anchor: middle; }
+      .clove-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: 500; fill: #dc2626; }
+      .arrow { fill: none; stroke: #94a3b8; stroke-width: 2; }
+      .garlic-arrow { fill: none; stroke: #dc2626; stroke-width: 2; }
+      .hop-circle { fill: none; stroke: #94a3b8; stroke-width: 2; }
+      .hop-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #94a3b8; text-anchor: middle; }
+    </style>
+    <!-- Client icon -->
+    <linearGradient
+       id="client-grad"
+       x1="7.8"
+       x2="23.1"
+       y1="10.4"
+       y2="33.3"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#d5e5ff"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#acf"
+         id="stop2" />
+    </linearGradient>
+    <g
+       id="client">
+      <path
+         fill="#999"
+         d="M35.2 44.9l1 7.6h-8.4l1.1-7.6z"
+         id="path2" />
+      <path
+         fill="gray"
+         d="M60 46c0 1.3-1.1 2.4-2.4 2.4H6.4A2.4 2.4 0 014 46V10c0-1.3 1.1-2.4 2.4-2.4h51.2c1.3 0 2.4 1 2.4 2.4zM23 52.2h18a2 2 45 012 2v.2a2 2 135 01-2 2H23a2 2 45 01-2-2v-.2a2 2 135 012-2z"
+         id="path3" />
+      <circle
+         cx="32"
+         cy="44.8"
+         r="1.3"
+         fill="#ccc"
+         id="circle3" />
+      <path
+         fill="#87aade"
+         d="M8.1 12v29.3h48V12z"
+         id="path4" />
+      <path
+         fill="url(#client-grad)"
+         d="M7.5 12.5v29l49-29z"
+         transform="matrix(.98 0 0 1.01 .7 -.6)"
+         id="path5" />
+    </g>
+    <!-- Server icon -->
+    <linearGradient
+       id="server-grad-a"
+       x1="32.8"
+       x2="32.8"
+       y1="32"
+       y2="57.6"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#b7bec8"
+         id="stop5" />
+      <stop
+         offset="1"
+         stop-color="#373e48"
+         id="stop6" />
+    </linearGradient>
+    <linearGradient
+       id="server-grad-b"
+       x1="27.2"
+       x2="27.2"
+       y1="6.3"
+       y2="32"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#b7b7c8"
+         id="stop7" />
+      <stop
+         offset="1"
+         stop-color="#373748"
+         id="stop8" />
+    </linearGradient>
+    <path
+       id="server-dot"
+       d="M50.4 42.2c0 1.2-.8 2-1.9 2s-1.9-.8-1.9-2 .8-1.9 1.9-1.9 1.9.8 1.9 2" />
+    <g
+       id="server">
+      <path
+         fill="url(#server-grad-a)"
+         d="M56.8 58.3H7.2c-2 0-3.6-1.6-3.6-3.6V35.6c0-2 1.6-3.6 3.6-3.6h49.6c2 0 3.6 1.6 3.6 3.6v19.1c0 2-1.6 3.6-3.6 3.6"
+         id="path8" />
+      <path
+         fill="url(#server-grad-b)"
+         d="M56.8 32H7.2c-2 0-3.6-1.6-3.6-3.6V9.3c0-2 1.6-3.6 3.6-3.6h49.6c2 0 3.6 1.6 3.6 3.6v19.1c0 2-1.6 3.6-3.6 3.6"
+         id="path9" />
+      <g
+         fill="#ccc"
+         id="g18">
+        <use
+           href="#server-dot"
+           id="use9" />
+        <use
+           href="#server-dot"
+           x="-7.6"
+           id="use10" />
+        <use
+           href="#server-dot"
+           x="3.8"
+           y="5.7"
+           id="use11" />
+        <use
+           href="#server-dot"
+           x="-3.8"
+           y="5.7"
+           id="use12" />
+        <use
+           href="#server-dot"
+           x="-15.1"
+           id="use13" />
+        <path
+           d="M39 47.9c0 1.1-.7 1.9-1.9 1.9-1 0-1.9-.8-1.9-1.9s.8-1.9 2-1.9 1.8.8 1.8 1.9"
+           id="path13" />
+        <use
+           href="#server-dot"
+           y="-26.3"
+           id="use14" />
+        <use
+           href="#server-dot"
+           x="-7.6"
+           y="-26.3"
+           id="use15" />
+        <use
+           href="#server-dot"
+           x="3.8"
+           y="-20.6"
+           id="use16" />
+        <use
+           href="#server-dot"
+           x="-3.8"
+           y="-20.6"
+           id="use17" />
+        <use
+           href="#server-dot"
+           x="-15.1"
+           y="-26.3"
+           id="use18" />
+        <path
+           d="M39 21.6c0 1.1-.7 1.9-1.9 1.9-1 0-1.9-.8-1.9-1.9s.8-1.9 2-1.9 1.8.8 1.8 1.9"
+           id="path18" />
+      </g>
+      <g
+         fill="#0f0"
+         id="g19">
+        <circle
+           cx="13.9"
+           cy="45.2"
+           r="3.3"
+           id="circle18" />
+        <circle
+           cx="13.9"
+           cy="18.8"
+           r="3.3"
+           id="circle19" />
+      </g>
+    </g>
+    <!-- Browser icon -->
+    <g
+       id="browser">
+      <!-- Window frame -->
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="40"
+         rx="4"
+         fill="#4b5563"
+         stroke="#6b7280"
+         stroke-width="1"
+         id="rect19" />
+      <!-- Title bar -->
+      <rect
+         x="0"
+         y="0"
+         width="50"
+         height="10"
+         rx="4"
+         fill="#6b7280"
+         id="rect20" />
+      <rect
+         x="0"
+         y="6"
+         width="50"
+         height="4"
+         fill="#6b7280"
+         id="rect21" />
+      <!-- Window buttons -->
+      <circle
+         cx="7"
+         cy="5"
+         r="2"
+         fill="#ef4444"
+         id="circle21" />
+      <circle
+         cx="14"
+         cy="5"
+         r="2"
+         fill="#eab308"
+         id="circle22" />
+      <circle
+         cx="21"
+         cy="5"
+         r="2"
+         fill="#22c55e"
+         id="circle23" />
+      <!-- Globe/content area -->
+      <circle
+         cx="25"
+         cy="25"
+         r="10"
+         fill="none"
+         stroke="#60a5fa"
+         stroke-width="1.5"
+         id="circle24" />
+      <ellipse
+         cx="25"
+         cy="25"
+         rx="4"
+         ry="10"
+         fill="none"
+         stroke="#60a5fa"
+         stroke-width="1"
+         id="ellipse24" />
+      <line
+         x1="15"
+         y1="25"
+         x2="35"
+         y2="25"
+         stroke="#60a5fa"
+         stroke-width="1"
+         id="line24" />
+    </g>
+    <!-- Webserver icon -->
+    <linearGradient
+       id="ws-grad-a"
+       x1="27.6"
+       x2="27.6"
+       y1="1.5"
+       y2="20.6"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#5f8dd3"
+         id="stop24" />
+      <stop
+         offset="1"
+         stop-color="#214478"
+         id="stop25" />
+    </linearGradient>
+    <linearGradient
+       id="ws-grad-b"
+       x1="23.7"
+       x2="23.7"
+       y1="20.6"
+       y2="39.5"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#5f5fd3"
+         id="stop26" />
+      <stop
+         offset="1"
+         stop-color="#212178"
+         id="stop27" />
+    </linearGradient>
+    <g
+       id="webserver">
+      <g
+         transform="scale(0.85)"
+         id="g52">
+        <path
+           fill="url(#ws-grad-a)"
+           d="M55.4 20.5H4.6A3.6 3.6 0 011 16.9V5a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 5.1V17a3.6 3.6 0 01-3.6 3.6z"
+           id="path27" />
+        <circle
+           cx="30"
+           cy="53.5"
+           r="4"
+           fill="#0f0"
+           stroke="#424a9d"
+           stroke-width="2"
+           id="circle27" />
+        <path
+           fill="url(#ws-grad-b)"
+           d="M55.4 39.5H4.6A3.6 3.6 0 011 35.9V24a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 24v11.8a3.6 3.6 0 01-3.6 3.6z"
+           id="path28" />
+        <g
+           fill="none"
+           stroke="#424a9d"
+           stroke-width="2"
+           id="g30">
+          <path
+             stroke-linecap="round"
+             d="M1 53.5h25m8 0h25"
+             id="path29" />
+          <path
+             d="M30 49.5v-10"
+             id="path30" />
+        </g>
+        <g
+           fill="#07be2d"
+           id="g31">
+          <circle
+             cx="10.5"
+             cy="11"
+             r="3.5"
+             id="circle30" />
+          <circle
+             cx="10.5"
+             cy="30"
+             r="3.5"
+             id="circle31" />
+        </g>
+        <g
+           fill="#afc6e9"
+           id="g51">
+          <circle
+             cx="50"
+             cy="9.5"
+             r="1"
+             id="circle32" />
+          <circle
+             cx="46"
+             cy="9.5"
+             r="1"
+             id="circle33" />
+          <circle
+             cx="52"
+             cy="12.5"
+             r="1"
+             id="circle34" />
+          <circle
+             cx="48"
+             cy="12.5"
+             r="1"
+             id="circle35" />
+          <circle
+             cx="42"
+             cy="9.5"
+             r="1"
+             id="circle36" />
+          <circle
+             cx="44"
+             cy="12.5"
+             r="1"
+             id="circle37" />
+          <circle
+             cx="38"
+             cy="9.5"
+             r="1"
+             id="circle38" />
+          <circle
+             cx="40"
+             cy="12.5"
+             r="1"
+             id="circle39" />
+          <circle
+             cx="34"
+             cy="9.5"
+             r="1"
+             id="circle40" />
+          <circle
+             cx="36"
+             cy="12.5"
+             r="1"
+             id="circle41" />
+          <circle
+             cx="50"
+             cy="28.5"
+             r="1"
+             id="circle42" />
+          <circle
+             cx="46"
+             cy="28.5"
+             r="1"
+             id="circle43" />
+          <circle
+             cx="52"
+             cy="31.5"
+             r="1"
+             id="circle44" />
+          <circle
+             cx="48"
+             cy="31.5"
+             r="1"
+             id="circle45" />
+          <circle
+             cx="42"
+             cy="28.5"
+             r="1"
+             id="circle46" />
+          <circle
+             cx="44"
+             cy="31.5"
+             r="1"
+             id="circle47" />
+          <circle
+             cx="38"
+             cy="28.5"
+             r="1"
+             id="circle48" />
+          <circle
+             cx="40"
+             cy="31.5"
+             r="1"
+             id="circle49" />
+          <circle
+             cx="34"
+             cy="28.5"
+             r="1"
+             id="circle50" />
+          <circle
+             cx="36"
+             cy="31.5"
+             r="1"
+             id="circle51" />
+        </g>
+      </g>
+    </g>
+    <!-- Arrowhead markers -->
+    <marker
+       id="arrowhead"
+       markerWidth="10"
+       markerHeight="7"
+       refX="9"
+       refY="3.5"
+       orient="auto">
+      <polygon
+         points="0 0, 10 3.5, 0 7"
+         fill="#94a3b8"
+         id="polygon52" />
+    </marker>
+    <marker
+       id="arrowhead-red"
+       markerWidth="10"
+       markerHeight="7"
+       refX="9"
+       refY="3.5"
+       orient="auto">
+      <polygon
+         points="0 0, 10 3.5, 0 7"
+         fill="#dc2626"
+         id="polygon53" />
+    </marker>
+  </defs>
+  <!-- GARLIC MESSAGE label -->
+  <text
+     x="450.01758"
+     y="74.537651"
+     class="garlic-label"
+     style="font-size:18px"
+     id="text53">GARLIC MESSAGE</text>
+  <!-- Browser -->
+  <g
+     transform="translate(15, 175)"
+     id="g53">
+    <use
+       href="#browser"
+       id="use53" />
+  </g>
+  <text
+     x="40"
+     y="235"
+     class="label"
+     id="text54">HTTP</text>
+  <text
+     x="40"
+     y="247"
+     class="label"
+     id="text55">Request</text>
+  <text
+     x="40"
+     y="265"
+     class="name"
+     id="text56">BROWSER</text>
+  <!-- Arrow Browser to Alice -->
+  <line
+     x1="70"
+     y1="195"
+     x2="100"
+     y2="195"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line56" />
+  <!-- Alice -->
+  <g
+     transform="translate(103, 163) scale(0.55)"
+     id="g56">
+    <use
+       href="#client"
+       id="use56" />
+  </g>
+  <text
+     x="125"
+     y="225"
+     class="name"
+     id="text57">Alice</text>
+  <!-- Top row - Outbound tunnel (C -> D -> E) then Inbound (F) -->
+  <!-- C -->
+  <circle
+     cx="220"
+     cy="120"
+     r="20"
+     class="hop-circle"
+     id="circle57" />
+  <text
+     x="220"
+     y="125"
+     class="hop-label"
+     id="text58">C</text>
+  <!-- D -->
+  <circle
+     cx="320"
+     cy="120"
+     r="20"
+     class="hop-circle"
+     id="circle58" />
+  <text
+     x="320"
+     y="125"
+     class="hop-label"
+     id="text59">D</text>
+  <!-- E -->
+  <circle
+     cx="450"
+     cy="120"
+     r="20"
+     class="hop-circle"
+     id="circle59" />
+  <text
+     x="450"
+     y="125"
+     class="hop-label"
+     id="text60">E</text>
+  <!-- F -->
+  <circle
+     cx="580"
+     cy="120"
+     r="20"
+     class="hop-circle"
+     id="circle60" />
+  <text
+     x="580"
+     y="125"
+     class="hop-label"
+     id="text61">F</text>
+  <!-- Top row arrows -->
+  <line
+     x1="150"
+     y1="175"
+     x2="200"
+     y2="130"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line61" />
+  <line
+     x1="240"
+     y1="120"
+     x2="298"
+     y2="120"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line62" />
+  <line
+     x1="340"
+     y1="120"
+     x2="428"
+     y2="120"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line63" />
+  <line
+     x1="470"
+     y1="120"
+     x2="558"
+     y2="120"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line64" />
+  <line
+     x1="600"
+     y1="120"
+     x2="665"
+     y2="175"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line65" />
+  <!-- Top row labels -->
+  <text
+     x="240"
+     y="108"
+     class="tunnel-label"
+     id="text65">Outbound</text>
+  <text
+     x="510"
+     y="108"
+     class="tunnel-label"
+     id="text66">Inbound</text>
+  <text
+     x="320"
+     y="155"
+     class="label"
+     id="text67">Alice Client</text>
+  <text
+     x="320"
+     y="167"
+     class="label"
+     id="text68">Tunnels</text>
+  <text
+     x="510"
+     y="155"
+     class="label"
+     id="text69">Bob Server</text>
+  <text
+     x="510"
+     y="167"
+     class="label"
+     id="text70">Tunnels</text>
+  <!-- Bottom row - Inbound tunnel (K <- J <- H <- G) -->
+  <!-- K -->
+  <circle
+     cx="220"
+     cy="280"
+     r="20"
+     class="hop-circle"
+     id="circle70" />
+  <text
+     x="220"
+     y="285"
+     class="hop-label"
+     id="text71">K</text>
+  <!-- J -->
+  <circle
+     cx="320"
+     cy="280"
+     r="20"
+     class="hop-circle"
+     id="circle71" />
+  <text
+     x="320"
+     y="285"
+     class="hop-label"
+     id="text72">J</text>
+  <!-- H -->
+  <circle
+     cx="450"
+     cy="280"
+     r="20"
+     class="hop-circle"
+     id="circle72" />
+  <text
+     x="450"
+     y="285"
+     class="hop-label"
+     id="text73">H</text>
+  <!-- G -->
+  <circle
+     cx="580"
+     cy="280"
+     r="20"
+     class="hop-circle"
+     id="circle73" />
+  <text
+     x="580"
+     y="285"
+     class="hop-label"
+     id="text74">G</text>
+  <!-- Bottom row arrows (reversed direction) -->
+  <line
+     x1="200"
+     y1="280"
+     x2="155"
+     y2="225"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line74" />
+  <line
+     x1="298"
+     y1="280"
+     x2="240"
+     y2="280"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line75" />
+  <line
+     x1="428"
+     y1="280"
+     x2="340"
+     y2="280"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line76" />
+  <line
+     x1="558"
+     y1="280"
+     x2="470"
+     y2="280"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line77" />
+  <line
+     x1="665"
+     y1="225"
+     x2="600"
+     y2="280"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line78" />
+  <!-- Bottom row labels -->
+  <text
+     x="265"
+     y="318"
+     class="tunnel-label"
+     id="text78">Inbound</text>
+  <text
+     x="510"
+     y="318"
+     class="tunnel-label"
+     id="text79">Outbound</text>
+  <!-- Bob -->
+  <g
+     transform="translate(665, 163) scale(0.55)"
+     id="g79">
+    <use
+       href="#server"
+       id="use79" />
+  </g>
+  <text
+     x="690"
+     y="230"
+     class="name"
+     id="text80">BOB</text>
+  <!-- Web Server -->
+  <g
+     transform="translate(780, 155)"
+     id="g80">
+    <use
+       href="#webserver"
+       id="use80" />
+  </g>
+  <text
+     x="810"
+     y="225"
+     class="name"
+     id="text81">WEB SERVER</text>
+  <!-- Arrow Bob to Web Server -->
+  <line
+     x1="725"
+     y1="195"
+     x2="775"
+     y2="195"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line81" />
+  <!-- Garlic message curves - positioned to not cover text -->
+  <!-- Top curve - main garlic message -->
+  <path
+     d="M 155 160 Q 400 45 690 160"
+     class="garlic-arrow"
+     marker-end="url(#arrowhead-red)"
+     id="path81" />
+  <!-- Clove 1 label -->
+  <text
+     x="765"
+     y="130"
+     class="clove-label"
+     id="text82">Clove 1:</text>
+  <text
+     x="765"
+     y="142"
+     class="clove-label"
+     id="text83">HTTP Request data</text>
+  <!-- Clove 3 label (at Bob) -->
+  <text
+     x="765"
+     y="250"
+     class="clove-label"
+     id="text84">Clove 3:</text>
+  <text
+     x="765"
+     y="262"
+     class="clove-label"
+     id="text85">Database Store Message</text>
+  <text
+     x="765"
+     y="274"
+     class="clove-label"
+     id="text86">with Alice client LeaseSet</text>
+  <text
+     x="765"
+     y="286"
+     class="clove-label"
+     id="text87">(Router J and Tunnel ID)</text>
+  <!-- Bottom curve - Delivery Status Message -->
+  <path
+     d="M 690 240 Q 400 355 155 240"
+     class="garlic-arrow"
+     marker-end="url(#arrowhead-red)"
+     id="path87" />
+  <!-- Clove 2 label -->
+  <text
+     x="449.93848"
+     y="347.27274"
+     class="garlic-label"
+     id="text88">Clove 2: Delivery Status Message</text>
+</svg>
