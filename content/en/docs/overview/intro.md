@@ -53,14 +53,14 @@ We can combine the above concepts to build successful connections in the network
 
 To build up her own inbound and outbound tunnels, Alice does a lookup in the netDb to collect routerInfo. This way, she gathers lists of peers she can use as hops in her tunnels. She can then send a build message to the first hop, requesting the construction of a tunnel and asking that router to send the construction message onward, until the tunnel has been constructed.
 
-![Request information on other routers](/images/netdb_get_routerinfo_1.png)
+![Request information on other routers](/images/netdb_get_routerinfo_1.svg)
 
-![Build tunnel using router information](/images/netdb_get_routerinfo_2.png)
+![Build tunnel using router information](/images/netdb_get_routerinfo_2.svg)
 *Figure 2: Router information is used to build tunnels.*
 
 When Alice wants to send a message to Bob, she first does a lookup in the netDb to find Bob's leaseSet, giving her his current inbound tunnel gateways. She then picks one of her outbound tunnels and sends the message down it with instructions for the outbound tunnel's endpoint to forward the message on to one of Bob's inbound tunnel gateways. When the outbound tunnel endpoint receives those instructions, it forwards the message as requested, and when Bob's inbound tunnel gateway receives it, it is forwarded down the tunnel to Bob's router. If Alice wants Bob to be able to reply to the message, she needs to transmit her own destination explicitly as part of the message itself. This can be done by introducing a higher-level layer, which is done in the [streaming](#streaming-library) library. Alice may also cut down on the response time by bundling her most recent LeaseSet with the message so that Bob doesn't need to do a netDb lookup for it when he wants to reply, but this is optional.
 
-![Connect tunnels using LeaseSets](/images/netdb_get_leaseset.png)
+![Connect tunnels using LeaseSets](/images/netdb_get_leaseset.svg)
 *Figure 3: LeaseSets are used to connect outbound and inbound tunnels.*
 
 While the tunnels themselves have layered encryption to prevent unauthorized disclosure to peers inside the network (as the transport layer itself does to prevent unauthorized disclosure to peers outside the network), it is necessary to add an additional end to end layer of encryption to hide the message from the outbound tunnel endpoint and the inbound tunnel gateway. This "[garlic encryption](#garlic-messages)" lets Alice's router wrap up multiple messages into a single "garlic message", encrypted to a particular public key so that intermediary peers cannot determine either how many messages are within the garlic, what those messages say, or where those individual cloves are destined. For typical end to end communication between Alice and Bob, the garlic will be encrypted to the public key published in Bob's leaseSet, allowing the message to be encrypted without giving out the public key to Bob's own router.
