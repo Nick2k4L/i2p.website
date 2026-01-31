@@ -1,117 +1,130 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 280">
   <defs>
     <style>
-      .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #6b7280; text-anchor: middle; }
-      .label { font-family: Arial, sans-serif; font-size: 12px; fill: #6b7280; text-anchor: middle; }
-      .name { font-family: Arial, sans-serif; font-size: 13px; fill: #6b7280; text-anchor: middle; font-weight: bold; }
-      .brace { fill: none; stroke: #6b7280; stroke-width: 3; }
-      .arrow { fill: none; stroke: #9ca3af; stroke-width: 2; }
-      .dashed-arrow { fill: none; stroke: #9ca3af; stroke-width: 2; stroke-dasharray: 6,4; }
+      .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #94a3b8; text-anchor: middle; }
+      .label { font-family: Arial, sans-serif; font-size: 12px; fill: #94a3b8; text-anchor: middle; }
+      .name { font-family: Arial, sans-serif; font-size: 13px; fill: #94a3b8; text-anchor: middle; font-weight: bold; }
+      .brace { fill: none; stroke: #94a3b8; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .arrow { fill: none; stroke: #94a3b8; stroke-width: 2; }
+      .dashed-arrow { fill: none; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6,4; }
     </style>
-
-    <!-- Computer/Monitor Icon -->
-    <g id="computer">
-      <!-- Monitor -->
-      <rect x="-22" y="-30" width="44" height="32" rx="2" fill="#a8b4a0" stroke="#6b7280" stroke-width="1.5"/>
-      <rect x="-18" y="-26" width="36" height="24" fill="#8b9a82" stroke="#6b7280" stroke-width="1"/>
-      <!-- Monitor stand -->
-      <rect x="-8" y="2" width="16" height="4" fill="#9ca3af" stroke="#6b7280" stroke-width="1"/>
-      <rect x="-14" y="6" width="28" height="4" rx="1" fill="#9ca3af" stroke="#6b7280" stroke-width="1"/>
-      <!-- Keyboard -->
-      <rect x="-20" y="14" width="40" height="8" rx="1" fill="#9ca3af" stroke="#6b7280" stroke-width="1"/>
-      <line x1="-16" y1="17" x2="16" y2="17" stroke="#6b7280" stroke-width="0.5"/>
-      <line x1="-16" y1="19" x2="16" y2="19" stroke="#6b7280" stroke-width="0.5"/>
+    
+    <!-- Client icon from uploaded SVG -->
+    <linearGradient id="client-grad" x1="7.8" x2="23.1" y1="10.4" y2="33.3" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d5e5ff"/>
+      <stop offset="1" stop-color="#acf"/>
+    </linearGradient>
+    <g id="client">
+      <path fill="#999" d="M35.2 44.9l1 7.6h-8.4l1.1-7.6z"/>
+      <path fill="gray" d="M60 46c0 1.3-1.1 2.4-2.4 2.4H6.4A2.4 2.4 0 014 46V10c0-1.3 1.1-2.4 2.4-2.4h51.2c1.3 0 2.4 1 2.4 2.4zM23 52.2h18a2 2 45 012 2v.2a2 2 135 01-2 2H23a2 2 45 01-2-2v-.2a2 2 135 012-2z"/>
+      <circle cx="32" cy="44.8" r="1.3" fill="#ccc"/>
+      <path fill="#87aade" d="M8.1 12v29.3h48V12z"/>
+      <path fill="url(#client-grad)" d="M7.5 12.5v29l49-29z" transform="matrix(.98 0 0 1.01 .7 -.6)"/>
     </g>
-
-    <!-- Server Icon -->
+    
+    <!-- Server icon from uploaded SVG -->
+    <linearGradient id="server-grad-b" x1="27.2" x2="27.2" y1="6.3" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b7b7c8"/>
+      <stop offset="1" stop-color="#373748"/>
+    </linearGradient>
+    <linearGradient id="server-grad-a" x1="32.8" x2="32.8" y1="32" y2="57.6" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b7bec8"/>
+      <stop offset="1" stop-color="#373e48"/>
+    </linearGradient>
+    <path id="server-dot" d="M50.4 42.2c0 1.2-.8 2-1.9 2s-1.9-.8-1.9-2 .8-1.9 1.9-1.9 1.9.8 1.9 2"/>
     <g id="server">
-      <!-- Server tower -->
-      <rect x="-18" y="-35" width="36" height="60" rx="2" fill="#a8b4a0" stroke="#6b7280" stroke-width="1.5"/>
-      <!-- Drive bays -->
-      <rect x="-14" y="-30" width="28" height="8" fill="#9ca3af" stroke="#6b7280" stroke-width="0.5"/>
-      <rect x="-14" y="-20" width="28" height="8" fill="#9ca3af" stroke="#6b7280" stroke-width="0.5"/>
-      <rect x="-14" y="-10" width="28" height="8" fill="#9ca3af" stroke="#6b7280" stroke-width="0.5"/>
-      <!-- Vents -->
-      <line x1="-10" y1="5" x2="10" y2="5" stroke="#6b7280" stroke-width="1"/>
-      <line x1="-10" y1="9" x2="10" y2="9" stroke="#6b7280" stroke-width="1"/>
-      <line x1="-10" y1="13" x2="10" y2="13" stroke="#6b7280" stroke-width="1"/>
-      <line x1="-10" y1="17" x2="10" y2="17" stroke="#6b7280" stroke-width="1"/>
-      <!-- Power button -->
-      <circle cx="0" cy="-26" r="2" fill="#68a868" stroke="#6b7280" stroke-width="0.5"/>
+      <path fill="url(#server-grad-a)" d="M56.8 58.3H7.2c-2 0-3.6-1.6-3.6-3.6V35.6c0-2 1.6-3.6 3.6-3.6h49.6c2 0 3.6 1.6 3.6 3.6v19.1c0 2-1.6 3.6-3.6 3.6"/>
+      <path fill="url(#server-grad-b)" d="M56.8 32H7.2c-2 0-3.6-1.6-3.6-3.6V9.3c0-2 1.6-3.6 3.6-3.6h49.6c2 0 3.6 1.6 3.6 3.6v19.1c0 2-1.6 3.6-3.6 3.6"/>
+      <g fill="#ccc">
+        <use href="#server-dot"/>
+        <use href="#server-dot" x="-7.6"/>
+        <use href="#server-dot" x="3.8" y="5.7"/>
+        <use href="#server-dot" x="-3.8" y="5.7"/>
+        <use href="#server-dot" x="-15.1"/>
+        <path d="M39 47.9c0 1.1-.7 1.9-1.9 1.9-1 0-1.9-.8-1.9-1.9s.8-1.9 2-1.9 1.8.8 1.8 1.9"/>
+        <use href="#server-dot" y="-26.3"/>
+        <use href="#server-dot" x="-7.6" y="-26.3"/>
+        <use href="#server-dot" x="3.8" y="-20.6"/>
+        <use href="#server-dot" x="-3.8" y="-20.6"/>
+        <use href="#server-dot" x="-15.1" y="-26.3"/>
+        <path d="M39 21.6c0 1.1-.7 1.9-1.9 1.9-1 0-1.9-.8-1.9-1.9s.8-1.9 2-1.9 1.8.8 1.8 1.9"/>
+      </g>
+      <g fill="#0f0">
+        <circle cx="13.9" cy="45.2" r="3.3"/>
+        <circle cx="13.9" cy="18.8" r="3.3"/>
+      </g>
     </g>
-
+    
     <!-- Arrowhead marker -->
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af"/>
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
     </marker>
   </defs>
-
-  <!-- No background - transparent -->
-
+  
   <!-- Outbound Tunnel Brace -->
   <path class="brace" d="M 60 50 Q 60 35, 80 35 L 200 35 Q 220 35, 220 25 Q 220 35, 240 35 L 360 35 Q 380 35, 380 50"/>
-
+  
   <!-- Inbound Tunnel Brace -->
   <path class="brace" d="M 500 50 Q 500 35, 520 35 L 640 35 Q 660 35, 660 25 Q 660 35, 680 35 L 800 35 Q 820 35, 820 50"/>
-
+  
   <!-- Tunnel Labels -->
   <text x="220" y="20" class="title">Outbound tunnel</text>
   <text x="660" y="20" class="title">Inbound tunnel</text>
-
+  
   <!-- Outbound Tunnel Nodes -->
   <!-- Alice - Outbound Gateway -->
-  <g transform="translate(90, 130)">
-    <use href="#computer"/>
+  <g transform="translate(58, 95) scale(0.9)">
+    <use href="#client"/>
   </g>
-  <text x="90" y="175" class="name">Alice</text>
-  <text x="90" y="195" class="label">Outbound</text>
-  <text x="90" y="208" class="label">Gateway</text>
-
+  <text x="90" y="170" class="name">Alice</text>
+  <text x="90" y="190" class="label">Outbound</text>
+  <text x="90" y="203" class="label">Gateway</text>
+  
   <!-- Outbound Participant -->
-  <g transform="translate(220, 130)">
-    <use href="#computer"/>
+  <g transform="translate(188, 95) scale(0.9)">
+    <use href="#client"/>
   </g>
-  <text x="220" y="195" class="label">Outbound</text>
-  <text x="220" y="208" class="label">Participant</text>
-
+  <text x="220" y="190" class="label">Outbound</text>
+  <text x="220" y="203" class="label">Participant</text>
+  
   <!-- Outbound Endpoint -->
-  <g transform="translate(350, 130)">
-    <use href="#computer"/>
+  <g transform="translate(318, 95) scale(0.9)">
+    <use href="#client"/>
   </g>
-  <text x="350" y="195" class="label">Outbound</text>
-  <text x="350" y="208" class="label">Endpoint</text>
-
+  <text x="350" y="190" class="label">Outbound</text>
+  <text x="350" y="203" class="label">Endpoint</text>
+  
   <!-- Inbound Tunnel Nodes -->
   <!-- Inbound Gateway -->
-  <g transform="translate(530, 130)">
-    <use href="#computer"/>
+  <g transform="translate(498, 95) scale(0.9)">
+    <use href="#client"/>
   </g>
-  <text x="530" y="195" class="label">Inbound</text>
-  <text x="530" y="208" class="label">Gateway</text>
-
+  <text x="530" y="190" class="label">Inbound</text>
+  <text x="530" y="203" class="label">Gateway</text>
+  
   <!-- Inbound Participant -->
-  <g transform="translate(660, 130)">
-    <use href="#computer"/>
+  <g transform="translate(628, 95) scale(0.9)">
+    <use href="#client"/>
   </g>
-  <text x="660" y="195" class="label">Inbound</text>
-  <text x="660" y="208" class="label">Participant</text>
-
+  <text x="660" y="190" class="label">Inbound</text>
+  <text x="660" y="203" class="label">Participant</text>
+  
   <!-- Bob - Inbound Endpoint (Server) -->
-  <g transform="translate(790, 125)">
+  <g transform="translate(758, 90) scale(0.9)">
     <use href="#server"/>
   </g>
-  <text x="790" y="175" class="name">Bob</text>
-  <text x="790" y="195" class="label">Inbound</text>
-  <text x="790" y="208" class="label">Endpoint</text>
-
+  <text x="790" y="170" class="name">Bob</text>
+  <text x="790" y="190" class="label">Inbound</text>
+  <text x="790" y="203" class="label">Endpoint</text>
+  
   <!-- Arrows - Outbound tunnel -->
-  <line x1="118" y1="130" x2="190" y2="130" class="arrow" marker-end="url(#arrowhead)"/>
-  <line x1="248" y1="130" x2="320" y2="130" class="arrow" marker-end="url(#arrowhead)"/>
-
+  <line x1="120" y1="120" x2="188" y2="120" class="arrow" marker-end="url(#arrowhead)"/>
+  <line x1="250" y1="120" x2="318" y2="120" class="arrow" marker-end="url(#arrowhead)"/>
+  
   <!-- Dashed arrow between tunnels -->
-  <line x1="378" y1="130" x2="500" y2="130" class="dashed-arrow" marker-end="url(#arrowhead)"/>
-
+  <line x1="382" y1="120" x2="498" y2="120" class="dashed-arrow" marker-end="url(#arrowhead)"/>
+  
   <!-- Arrows - Inbound tunnel -->
-  <line x1="558" y1="130" x2="630" y2="130" class="arrow" marker-end="url(#arrowhead)"/>
-  <line x1="688" y1="130" x2="760" y2="130" class="arrow" marker-end="url(#arrowhead)"/>
+  <line x1="560" y1="120" x2="628" y2="120" class="arrow" marker-end="url(#arrowhead)"/>
+  <line x1="690" y1="120" x2="758" y2="120" class="arrow" marker-end="url(#arrowhead)"/>
 </svg>
