@@ -3,7 +3,7 @@
     <style>
       .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #94a3b8; text-anchor: middle; }
       .label { font-family: Arial, sans-serif; font-size: 16px; font-weight: 500; fill: #94a3b8; text-anchor: middle; }
-      .name { font-family: Arial, sans-serif; font-size: 17px; fill: #94a3b8; text-anchor: middle; font-weight: bold; }
+      .name { font-family: Arial, sans-serif; font-size: 17px; fill: #94a3b8; text-anchor: middle; font-weight: 600; }
       .brace { fill: none; stroke: #94a3b8; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
       .arrow { fill: none; stroke: #94a3b8; stroke-width: 2; }
       .dashed-arrow { fill: none; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6,4; }
@@ -78,21 +78,21 @@
   </g>
   <text x="90" y="170" class="name">Alice</text>
   <text x="90" y="190" class="label">Outbound</text>
-  <text x="90" y="203" class="label">Gateway</text>
+  <text x="90" y="208" class="label">Gateway</text>
   
   <!-- Outbound Participant -->
   <g transform="translate(188, 95) scale(0.9)">
     <use href="#client"/>
   </g>
   <text x="220" y="190" class="label">Outbound</text>
-  <text x="220" y="203" class="label">Participant</text>
+  <text x="220" y="208" class="label">Participant</text>
   
   <!-- Outbound Endpoint -->
   <g transform="translate(318, 95) scale(0.9)">
     <use href="#client"/>
   </g>
   <text x="350" y="190" class="label">Outbound</text>
-  <text x="350" y="203" class="label">Endpoint</text>
+  <text x="350" y="208" class="label">Endpoint</text>
   
   <!-- Inbound Tunnel Nodes -->
   <!-- Inbound Gateway -->
@@ -100,22 +100,22 @@
     <use href="#client"/>
   </g>
   <text x="530" y="190" class="label">Inbound</text>
-  <text x="530" y="203" class="label">Gateway</text>
+  <text x="530" y="208" class="label">Gateway</text>
   
   <!-- Inbound Participant -->
   <g transform="translate(628, 95) scale(0.9)">
     <use href="#client"/>
   </g>
   <text x="660" y="190" class="label">Inbound</text>
-  <text x="660" y="203" class="label">Participant</text>
+  <text x="660" y="208" class="label">Participant</text>
   
   <!-- Bob - Inbound Endpoint (Server) -->
-  <g transform="translate(758, 90) scale(0.9)">
+  <g transform="translate(762, 95) scale(0.8)">
     <use href="#server"/>
   </g>
   <text x="790" y="170" class="name">Bob</text>
   <text x="790" y="190" class="label">Inbound</text>
-  <text x="790" y="203" class="label">Endpoint</text>
+  <text x="790" y="208" class="label">Endpoint</text>
   
   <!-- Arrows - Outbound tunnel -->
   <line x1="120" y1="120" x2="188" y2="120" class="arrow" marker-end="url(#arrowhead)"/>
