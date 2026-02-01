@@ -288,22 +288,27 @@ jobs:
         with:
           name: public-site
           path: public
-      - name: Install SSHPass
-        run: sudo apt-get install -y sshpass
-      - name: Deploy via Rsync (Password)
+      - name: Deploy via Rsync
         env:
-          DEPLOY_PASS: ${{ secrets.DEPLOY_SSH_KEY2 }} # Mapped from password secret
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY2 }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST2 }}
           DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT2 }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER2 }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH2 }}
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p $DEPLOY_PORT -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+          echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
-          sshpass -p "$DEPLOY_PASS" ssh -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
-          sshpass -p "$DEPLOY_PASS" rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-          sshpass -p "$DEPLOY_PASS" ssh -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
+          # Fix permissions (ownership) - requires sudo NOPASSWD on remote
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
+
+          # Sync files
+          rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
+
+          # Fix permissions (www-data)
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
 
   # =================================================================================================
   # SECURITY SCANNING
