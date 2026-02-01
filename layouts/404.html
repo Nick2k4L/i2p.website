@@ -49,6 +49,47 @@
             margin-bottom: 2rem;
             line-height: 1.6;
         }
+        .suggestions-section {
+            margin-top: 2rem;
+            text-align: left;
+            max-width: 500px;
+            width: 100%;
+        }
+        .suggestions-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            text-align: center;
+        }
+        .suggestions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .suggestions-list li {
+            margin-bottom: 0.75rem;
+        }
+        .suggestions-list a {
+            display: block;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .suggestions-list a:hover {
+            background: var(--color-bg-secondary);
+        }
+        .suggestions-list strong {
+            display: block;
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
+        }
+        .suggestions-list span {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
     </style>
 </head>
 
@@ -70,6 +111,13 @@
                 <a href="/" class="btn btn-primary">
                     Return Home
                 </a>
+
+                <div id="suggestions-container" class="suggestions-section" style="display: none;">
+                    <h3 class="suggestions-title">Were you looking for one of these?</h3>
+                    <ul class="suggestions-list">
+                        <!-- Cloudflare Worker injects suggestions here -->
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
