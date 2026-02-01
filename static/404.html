@@ -81,6 +81,22 @@
             width: auto;
         }
 
+        .logo .logo-light {
+            display: block;
+        }
+
+        .logo .logo-dark {
+            display: none;
+        }
+
+        [data-theme="dark"] .logo .logo-light {
+            display: none;
+        }
+
+        [data-theme="dark"] .logo .logo-dark {
+            display: block;
+        }
+
         main {
             flex: 1;
             display: flex;
@@ -98,7 +114,7 @@
         }
 
         .error-mascot {
-            max-width: 300px;
+            max-width: 150px;
             height: auto;
             margin-bottom: 2rem;
         }
@@ -204,8 +220,8 @@
     <header class="header">
         <div class="header-inner">
             <a href="/" class="logo">
-                <img src="/images/i2plogo.png" alt="I2P Logo">
-                <span>I2P</span>
+                <img src="/images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo-light">
+                <img src="/images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo-dark">
             </a>
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -218,8 +234,10 @@
 
     <main>
         <div class="error-page">
-            <img src="/images/mascot-404.png" alt="404 - Page Not Found" class="error-mascot">
+            <img src="/images/lost.svg" alt="Lost I2P mascot" class="error-mascot">
 
+            <h1 class="error-title">404</h1>
+            <h2 class="error-subtitle">Page Not Found</h2>
 
             <p class="error-text">
                 Oops! It seems you've ventured into the unknown. The page you are looking for might have been moved, deleted, or never existed.

@@ -1,0 +1,16 @@
+{{- $pages := slice -}}
+{{- range where .Site.RegularPages "Kind" "page" -}}
+  {{- $content := .Content | plainify -}}
+  {{- $page := dict
+    "id" .File.UniqueID
+    "title" .Title
+    "url" .RelPermalink
+    "description" .Description
+    "content" $content
+    "section" .Section
+    "lang" .Lang
+    "categories" .Params.categories
+  -}}
+  {{- $pages = $pages | append $page -}}
+{{- end -}}
+{{- $pages | jsonify -}}

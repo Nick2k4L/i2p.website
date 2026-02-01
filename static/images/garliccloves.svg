@@ -809,35 +809,41 @@
      id="path81" />
   <!-- Clove 1 label -->
   <text
-     x="755.4541"
+     x="730.4541"
      y="68.566841"
      class="clove-label"
+     style="font-size:12px"
      id="text82">Clove 1:</text>
   <text
-     x="755.4541"
-     y="80.566841"
+     x="730.4541"
+     y="82.566841"
      class="clove-label"
+     style="font-size:12px"
      id="text83">HTTP Request data</text>
   <!-- Clove 3 label (at Bob) -->
   <text
-     x="755.4541"
+     x="730.4541"
      y="188.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text84">Clove 3:</text>
   <text
-     x="755.4541"
-     y="200.56683"
+     x="730.4541"
+     y="202.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text85">Database Store Message</text>
   <text
-     x="755.4541"
-     y="212.56683"
+     x="730.4541"
+     y="216.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text86">with Alice client LeaseSet</text>
   <text
-     x="755.4541"
-     y="224.56683"
+     x="730.4541"
+     y="230.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text87">(Router J and Tunnel ID)</text>
   <!-- Bottom curve - Delivery Status Message -->
   <path
@@ -1145,34 +1151,40 @@
      marker-end="url(#arrowhead-red)"
      id="path35" />
   <text
-     x="755.4541"
+     x="730.4541"
      y="68.566841"
      class="clove-label"
+     style="font-size:12px"
      id="text36">Clove 1:</text>
   <text
-     x="755.4541"
-     y="80.566841"
+     x="730.4541"
+     y="82.566841"
      class="clove-label"
+     style="font-size:12px"
      id="text37">HTTP Request data</text>
   <text
-     x="755.4541"
+     x="730.4541"
      y="188.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text38">Clove 3:</text>
   <text
-     x="755.4541"
-     y="200.56683"
+     x="730.4541"
+     y="202.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text39">Database Store Message</text>
   <text
-     x="755.4541"
-     y="212.56683"
+     x="730.4541"
+     y="216.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text40">with Alice client LeaseSet</text>
   <text
-     x="755.4541"
-     y="224.56683"
+     x="730.4541"
+     y="230.56683"
      class="clove-label"
+     style="font-size:12px"
      id="text41">(Router J and Tunnel ID)</text>
   <path
      d="m 680.4541,178.56684 q -290,115 -535,0"

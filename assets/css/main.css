@@ -1568,9 +1568,16 @@ a[title="Torrent"],
 .article-content p img {
     display: block;
     margin: 1rem auto !important;
-    width: 100%;
-    max-height: 340px;
+    max-width: 100%;
+    width: auto;
     height: auto;
+}
+
+/* SVGs scale to full width for light/dark mode compatibility */
+.prose img[src$=".svg"],
+.article-content img[src$=".svg"],
+.article-content p img[src$=".svg"] {
+    width: 100%;
 }
 
 .article-content p:has(img) {
@@ -1589,9 +1596,15 @@ a[title="Torrent"],
 .prose figure img {
     display: block;
     margin: 0 auto;
-    width: 100%;
-    max-height: 340px;
+    max-width: 100%;
+    width: auto;
     height: auto;
+}
+
+/* SVGs in figures scale to full width */
+.article-content figure img[src$=".svg"],
+.prose figure img[src$=".svg"] {
+    width: 100%;
 }
 
 .article-content figcaption,

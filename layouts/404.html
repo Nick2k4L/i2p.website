@@ -11,14 +11,14 @@
     <meta name="description" content="The page you are looking for could not be found.">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-    <link rel="icon" type="image/png" href="/images/i2plogo.png" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="{{ "/images/favicon.svg" | absURL }}">
+    <link rel="icon" type="image/png" href="{{ "/images/i2plogo.png" | absURL }}" sizes="32x32">
 
     <!-- Styles -->
     {{ $styles := resources.Get "css/main.css" }}
     {{ if $styles }}
     {{ $styles = $styles | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+    <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
     {{ end }}
 
     <style>
@@ -32,21 +32,9 @@
             padding: 2rem;
         }
         .error-mascot {
-            max-width: 300px;
+            max-width: 200px;
             height: auto;
             margin-bottom: 2rem;
-        }
-        .error-mascot.light-only {
-            display: block;
-        }
-        .error-mascot.dark-only {
-            display: none;
-        }
-        [data-theme="dark"] .error-mascot.light-only {
-            display: none;
-        }
-        [data-theme="dark"] .error-mascot.dark-only {
-            display: block;
         }
         .error-title {
             font-size: 3rem;
@@ -71,10 +59,9 @@
     <main id="main-content">
         <div class="container">
             <div class="error-page">
-                <img src="/images/mascot-404.png" alt="404 - Page Not Found" class="error-mascot light-only">
-                <img src="/images/mascot-404-dark.png" alt="404 - Page Not Found" class="error-mascot dark-only">
+                <img src="{{ "/images/lost.svg" | absURL }}" alt="Lost I2P mascot" class="error-mascot">
 
-                <h1 class="error-title">404</h1>
+                <h1 class="error-title">404 - Page Not Found</h1>
 
                 <p class="error-text">
                     Oops! It seems you've ventured into the unknown. The page you are looking for might have been moved, deleted, or never existed.
