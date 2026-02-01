@@ -11,7 +11,7 @@ The I2P network thrives because of our community. Whether you're a developer, tr
 ### Core Development
 I2P is open source and we welcome contributions to the codebase. Whether you want to fix bugs, add features, or improve performance, your code contributions make a difference.
 
-- **Get started**: Check out our [new developer guide](/docs/developers/new-developers)
+- **Get started**: Check out our [new developer guide](/docs/development/new-developers/)
 - **Source code**: [GitLab](https://i2pgit.org) (also available inside I2P at http://git.idk.i2p)
 - **Monthly meetings**: Join us on the first Tuesday of each month
 - **IRC channels**: #i2p-dev on IRC2P for development discussions
