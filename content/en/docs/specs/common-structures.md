@@ -592,17 +592,10 @@ specifying the size of the certificate payload, then that many bytes.
 |type| length  | payload
 +----+----+----+----+----+-/
 
-type :: `Integer`
+type :: Integer
         length -> 1 byte
 
-        case 0 -> NULL
-        case 1 -> HASHCASH
-        case 2 -> HIDDEN
-        case 3 -> SIGNED
-        case 4 -> MULTIPLE
-        case 5 -> KEY
-
-length :: `Integer`
+length :: Integer
           length -> 2 bytes
 
 payload :: data
@@ -1109,26 +1102,7 @@ Mapping entries must be sorted by key, so the signature is immutable.
 Failure to sort by key will result in signature failures!
 
 
-```
-+----+----+----+----+----+----+----+----+
-|  size   | key_string (len + data)| =  |
-+----+----+----+----+----+----+----+----+
-| val_string (len + data)     | ;  | ...
-+----+----+----+----+----+----+----+
-size :: `Integer`
-        length -> 2 bytes
-        Total number of bytes that follow
-
-key_string :: `String`
-              A string (one byte length followed by UTF-8 encoded characters)
-
-= :: A single byte containing '='
-
-val_string :: `String`
-              A string (one byte length followed by UTF-8 encoded characters)
-
-; :: A single byte containing ';'
-```
+![Mapping Structure](/images/specs/mapping-structure.svg)
 
 #### Notes
 * The encoding isn't optimal - we either need the '=' and ';' characters, or

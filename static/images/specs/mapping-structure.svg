@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280">
+  <style>
+    .box { fill: none; stroke: currentColor; stroke-width: 2; }
+    .label { font-family: monospace; font-size: 14px; fill: currentColor; }
+    .label-small { font-family: monospace; font-size: 11px; fill: currentColor; }
+    .desc { font-family: sans-serif; font-size: 12px; fill: currentColor; opacity: 0.7; }
+    .arrow { stroke: currentColor; stroke-width: 1.5; fill: none; }
+    .bracket { stroke: currentColor; stroke-width: 1.5; fill: none; }
+  </style>
+
+  <!-- Row 1: size | key_string | = -->
+  <rect x="20" y="30" width="80" height="40" class="box"/>
+  <text x="60" y="55" text-anchor="middle" class="label">size</text>
+  <text x="60" y="85" text-anchor="middle" class="desc">2 bytes</text>
+
+  <rect x="100" y="30" width="200" height="40" class="box"/>
+  <text x="200" y="55" text-anchor="middle" class="label">key_string</text>
+  <text x="200" y="80" text-anchor="middle" class="desc">len + UTF-8 data</text>
+
+  <rect x="300" y="30" width="40" height="40" class="box"/>
+  <text x="320" y="55" text-anchor="middle" class="label">=</text>
+  <text x="320" y="80" text-anchor="middle" class="desc">1 byte</text>
+
+  <!-- Row 2: val_string | ; | ... -->
+  <rect x="340" y="30" width="200" height="40" class="box"/>
+  <text x="440" y="55" text-anchor="middle" class="label">val_string</text>
+  <text x="440" y="80" text-anchor="middle" class="desc">len + UTF-8 data</text>
+
+  <rect x="540" y="30" width="40" height="40" class="box"/>
+  <text x="560" y="55" text-anchor="middle" class="label">;</text>
+  <text x="560" y="80" text-anchor="middle" class="desc">1 byte</text>
+
+  <text x="600" y="55" class="label">...</text>
+
+  <!-- Bracket showing repeating section -->
+  <path d="M 100 95 L 100 105 L 580 105 L 580 95" class="bracket"/>
+  <text x="340" y="120" text-anchor="middle" class="desc">repeats for each key=value; pair</text>
+
+  <!-- Field descriptions -->
+  <g transform="translate(20, 150)">
+    <text x="0" y="0" class="label">size</text>
+    <text x="120" y="0" class="desc">Total number of bytes that follow</text>
+
+    <text x="0" y="30" class="label">key_string</text>
+    <text x="120" y="30" class="desc">1-byte length + UTF-8 encoded key name</text>
+
+    <text x="0" y="60" class="label">=</text>
+    <text x="120" y="60" class="desc">Literal '=' separator (0x3D)</text>
+
+    <text x="0" y="90" class="label">val_string</text>
+    <text x="120" y="90" class="desc">1-byte length + UTF-8 encoded value</text>
+
+    <text x="0" y="120" class="label">;</text>
+    <text x="120" y="120" class="desc">Literal ';' terminator (0x3B)</text>
+  </g>
+</svg>
