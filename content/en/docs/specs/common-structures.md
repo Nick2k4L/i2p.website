@@ -1102,7 +1102,7 @@ Mapping entries must be sorted by key, so the signature is immutable.
 Failure to sort by key will result in signature failures!
 
 
-![Mapping Structure](/images/specs/mapping-structure.svg)
+![Mapping Structure](/images/mapping-structure.svg)
 
 #### Notes
 * The encoding isn't optimal - we either need the '=' and ';' characters, or
@@ -1151,45 +1151,7 @@ either a RouterIdentity or a Destination.
 #### Contents
 A [PublicKey](#publickey) followed by a [SigningPublicKey](#signingpublickey) and then a [Certificate](#certificate).
 
-```
-+----+----+----+----+----+----+----+----+
-| public_key                            |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| padding (optional)                    |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| signing_key                           |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| certificate                           |
-+----+----+----+-/
-
-public_key :: `PublicKey` (partial or full)
-              length -> 256 bytes or as specified in key certificate
-
-padding :: random data
-           length -> 0 bytes or as specified in key certificate
-           public_key length + padding length + signing_key length == 384 bytes
-
-signing__key :: `SigningPublicKey` (partial or full)
-                length -> 128 bytes or as specified in key certificate
-
-certificate :: `Certificate`
-               length -> >= 3 bytes
-
-total length: 387+ bytes
-```
+![KeysAndCert Structure](/images/keysandcert-structure.svg)
 
 
 #### Padding Generation Guidelines
@@ -1318,30 +1280,7 @@ a [Destination](#destination).
 SHA256 [Hash](#hash) of the [RouterIdentity](#routeridentity) of the gateway router, then the [TunnelId](#tunnelid),
 and finally an end [Date](#date).
 
-```
-+----+----+----+----+----+----+----+----+
-| tunnel_gw                             |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|     tunnel_id     |      end_date
-+----+----+----+----+----+----+----+----+
-                    |
-+----+----+----+----+
-
-tunnel_gw :: Hash of the `RouterIdentity` of the tunnel gateway
-             length -> 32 bytes
-
-tunnel_id :: `TunnelId`
-             length -> 4 bytes
-
-end_date :: `Date`
-            length -> 8 bytes
-```
+![Lease Structure](/images/lease-structure.svg)
 
 #### Notes
 * Total size: 44 bytes
@@ -1365,83 +1304,7 @@ which can be used to revoke this version of the LeaseSet, then a 1 byte
 actual [Lease](#lease) structures and finally a [Signature](#signature) of the previous bytes signed
 by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey).
 
-```
-+----+----+----+----+----+----+----+----+
-| destination                           |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| encryption_key                        |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| signing_key                           |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| num| Lease 0                          |
-+----+                                  +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| Lease 1                               |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| Lease ($num-1)                        |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| signature                             |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-
-destination :: `Destination`
-               length -> >= 387+ bytes
-
-encryption_key :: `PublicKey`
-                  length -> 256 bytes
-
-signing_key :: `SigningPublicKey`
-               length -> 128 bytes or as specified in destination's key
-                         certificate
-
-num :: `Integer`
-       length -> 1 byte
-       Number of leases to follow
-       value: 0 <= num <= 16
-
-leases :: [`Lease`]
-          length -> $num*44 bytes
-
-signature :: `Signature`
-             length -> 40 bytes or as specified in destination's key
-                       certificate
-```
+![LeaseSet Structure](/images/leaseset-structure.svg)
 
 #### Notes
 * The public key of the destination was used for the old I2CP-to-I2CP

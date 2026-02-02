@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 449.146 263.315"
+   version="1.1"
+   id="svg14"
+   sodipodi:docname="keysandcert-structure.svg"
+   width="449.146"
+   height="263.315"
+   inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.4193548"
+     inkscape:cx="290.625"
+     inkscape:cy="120.82955"
+     inkscape:window-width="2454"
+     inkscape:window-height="1186"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg14" />
+  <style
+     id="style1">
+    .box { fill: none; stroke: #94a3b8; stroke-width: 2; }
+    .box-pubkey { fill: rgba(96, 165, 250, 0.15); stroke: #60a5fa; stroke-width: 2; }
+    .box-padding { fill: rgba(168, 85, 247, 0.15); stroke: #a855f7; stroke-width: 2; }
+    .box-sigkey { fill: rgba(52, 211, 153, 0.15); stroke: #34d399; stroke-width: 2; }
+    .box-cert { fill: rgba(251, 191, 36, 0.15); stroke: #fbbf24; stroke-width: 2; }
+    .label { font-family: Arial, sans-serif; font-size: 13px; font-weight: 600; fill: #94a3b8; }
+    .label-pubkey { fill: #60a5fa; }
+    .label-padding { fill: #a855f7; }
+    .label-sigkey { fill: #34d399; }
+    .label-cert { fill: #fbbf24; }
+    .desc { font-family: Arial, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .field-desc { font-family: Arial, sans-serif; font-size: 11px; fill: #64748b; }
+    .connector { stroke: #94a3b8; stroke-width: 1; stroke-dasharray: 3,3; fill: none; }
+  </style>
+  <!-- Stacked boxes diagram -->
+  <!-- Connectors and descriptions on right -->
+  <!-- Constraint note at bottom -->
+  <g
+     id="g14"
+     transform="translate(5.0002441,5.0000305)">
+    <g
+       transform="translate(1,1)"
+       id="g4">
+      <!-- public_key box -->
+      <rect
+         x="0"
+         y="0"
+         width="200"
+         height="55"
+         class="box-pubkey"
+         rx="4"
+         id="rect1" />
+      <text
+         x="100"
+         y="32"
+         text-anchor="middle"
+         class="label label-pubkey"
+         id="text1">public_key</text>
+      <!-- padding box -->
+      <rect
+         x="0"
+         y="60"
+         width="200"
+         height="45"
+         class="box-padding"
+         rx="4"
+         id="rect2" />
+      <text
+         x="100"
+         y="87"
+         text-anchor="middle"
+         class="label label-padding"
+         id="text2">padding (optional)</text>
+      <!-- signing_key box -->
+      <rect
+         x="0"
+         y="110"
+         width="200"
+         height="55"
+         class="box-sigkey"
+         rx="4"
+         id="rect3" />
+      <text
+         x="100"
+         y="142"
+         text-anchor="middle"
+         class="label label-sigkey"
+         id="text3">signing_key</text>
+      <!-- certificate box -->
+      <rect
+         x="0"
+         y="170"
+         width="200"
+         height="40"
+         class="box-cert"
+         rx="4"
+         id="rect4" />
+      <text
+         x="100"
+         y="195"
+         text-anchor="middle"
+         class="label label-cert"
+         id="text4">certificate</text>
+    </g>
+    <g
+       transform="translate(211,1)"
+       id="g12">
+      <!-- public_key description -->
+      <line
+         x1="0"
+         y1="27"
+         x2="20"
+         y2="27"
+         class="connector"
+         id="line4" />
+      <text
+         x="25"
+         y="25"
+         class="label label-pubkey"
+         id="text5">PublicKey</text>
+      <text
+         x="25"
+         y="40"
+         class="field-desc"
+         id="text6">256 bytes or as specified in key certificate</text>
+      <!-- padding description -->
+      <line
+         x1="0"
+         y1="82"
+         x2="20"
+         y2="82"
+         class="connector"
+         id="line6" />
+      <text
+         x="25"
+         y="80"
+         class="label label-padding"
+         id="text7">Random data</text>
+      <text
+         x="25"
+         y="95"
+         class="field-desc"
+         id="text8">0 bytes or as specified in key certificate</text>
+      <!-- signing_key description -->
+      <line
+         x1="0"
+         y1="137"
+         x2="20"
+         y2="137"
+         class="connector"
+         id="line8" />
+      <text
+         x="25"
+         y="135"
+         class="label label-sigkey"
+         id="text9">SigningPublicKey</text>
+      <text
+         x="25"
+         y="150"
+         class="field-desc"
+         id="text10">128 bytes or as specified in key certificate</text>
+      <!-- certificate description -->
+      <line
+         x1="0"
+         y1="190"
+         x2="20"
+         y2="190"
+         class="connector"
+         id="line10" />
+      <text
+         x="25"
+         y="188"
+         class="label label-cert"
+         id="text11">Certificate</text>
+      <text
+         x="25"
+         y="203"
+         class="field-desc"
+         id="text12">3+ bytes</text>
+    </g>
+    <text
+       x="1"
+       y="236"
+       class="desc"
+       id="text13">Note: public_key + padding + signing_key = 384 bytes</text>
+    <text
+       x="1"
+       y="251"
+       class="desc"
+       id="text14">Total length: 387+ bytes</text>
+  </g>
+</svg>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 352 230"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="lease-structure.svg"
+   width="352"
+   height="230"
+   inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.3157895"
+     inkscape:cx="170.78409"
+     inkscape:cy="106.01136"
+     inkscape:window-width="2554"
+     inkscape:window-height="1186"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg9" />
+  <style
+     id="style1">
+    .box { fill: none; stroke: #94a3b8; stroke-width: 2; }
+    .box-hash { fill: rgba(96, 165, 250, 0.15); stroke: #60a5fa; stroke-width: 2; }
+    .box-id { fill: rgba(168, 85, 247, 0.15); stroke: #a855f7; stroke-width: 2; }
+    .box-date { fill: rgba(52, 211, 153, 0.15); stroke: #34d399; stroke-width: 2; }
+    .label { font-family: Arial, sans-serif; font-size: 13px; font-weight: 600; fill: #94a3b8; }
+    .label-hash { fill: #60a5fa; }
+    .label-id { fill: #a855f7; }
+    .label-date { fill: #34d399; }
+    .desc { font-family: Arial, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .field-name { font-family: monospace; font-size: 12px; font-weight: 600; fill: #94a3b8; }
+    .field-desc { font-family: Arial, sans-serif; font-size: 11px; fill: #64748b; }
+  </style>
+  <!-- Stacked boxes diagram -->
+  <!-- Field descriptions at bottom -->
+  <g
+     id="g10"
+     transform="translate(5,5)">
+    <g
+       transform="translate(1,1)"
+       id="g3">
+      <!-- tunnel_gw box - tall (32 bytes) -->
+      <rect
+         x="0"
+         y="0"
+         width="340"
+         height="70"
+         class="box-hash"
+         rx="4"
+         id="rect1" />
+      <text
+         x="170"
+         y="40"
+         text-anchor="middle"
+         class="label label-hash"
+         id="text1">tunnel_gw</text>
+      <!-- tunnel_id and end_date row -->
+      <rect
+         x="0"
+         y="75"
+         width="120"
+         height="40"
+         class="box-id"
+         rx="4"
+         id="rect2" />
+      <text
+         x="60"
+         y="100"
+         text-anchor="middle"
+         class="label label-id"
+         id="text2">tunnel_id</text>
+      <rect
+         x="125"
+         y="75"
+         width="215"
+         height="40"
+         class="box-date"
+         rx="4"
+         id="rect3" />
+      <text
+         x="232"
+         y="100"
+         text-anchor="middle"
+         class="label label-date"
+         id="text3">end_date</text>
+    </g>
+    <g
+       transform="translate(1,151)"
+       id="g9">
+      <rect
+         x="0"
+         y="-12"
+         width="90"
+         height="20"
+         class="box-hash"
+         rx="3"
+         id="rect4" />
+      <text
+         x="45"
+         y="3"
+         text-anchor="middle"
+         class="field-name label-hash"
+         id="text4">tunnel_gw</text>
+      <text
+         x="100"
+         y="3"
+         class="field-desc"
+         id="text5">Hash of RouterIdentity - 32 bytes</text>
+      <rect
+         x="0"
+         y="18"
+         width="90"
+         height="20"
+         class="box-id"
+         rx="3"
+         id="rect5" />
+      <text
+         x="45"
+         y="33"
+         text-anchor="middle"
+         class="field-name label-id"
+         id="text6">tunnel_id</text>
+      <text
+         x="100"
+         y="33"
+         class="field-desc"
+         id="text7">TunnelId - 4 bytes</text>
+      <rect
+         x="0"
+         y="48"
+         width="90"
+         height="20"
+         class="box-date"
+         rx="3"
+         id="rect7" />
+      <text
+         x="45"
+         y="63"
+         text-anchor="middle"
+         class="field-name label-date"
+         id="text8">end_date</text>
+      <text
+         x="100"
+         y="63"
+         class="field-desc"
+         id="text9">Date - 8 bytes | Total: 44 bytes</text>
+    </g>
+  </g>
+</svg>
