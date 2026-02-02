@@ -1602,6 +1602,37 @@ a[title="Torrent"],
     font-style: italic;
 }
 
+/* Image size utility classes */
+.prose figure.img-xs img,
+.article-content figure.img-xs img {
+    max-width: 200px;
+    width: auto;
+}
+
+.prose figure.img-sm img,
+.article-content figure.img-sm img {
+    max-width: 300px;
+    width: auto;
+}
+
+.prose figure.img-md img,
+.article-content figure.img-md img {
+    max-width: 400px;
+    width: auto;
+}
+
+.prose figure.img-lg img,
+.article-content figure.img-lg img {
+    max-width: 600px;
+    width: auto;
+}
+
+/* Specific image size overrides */
+img[src*="netdb_get_routerinfo_2.svg"] {
+    max-width: 300px;
+    width: auto;
+}
+
 /* ==========================================================================
    Media/Press Page
    ========================================================================== */

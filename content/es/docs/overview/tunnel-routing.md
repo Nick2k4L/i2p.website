@@ -12,7 +12,7 @@ Esta página contiene una descripción general de la terminología y operación 
 
 Como se explica brevemente en la [introducción](/docs/overview/intro/), I2P construye "tunnels" virtuales - rutas temporales y unidireccionales a través de una secuencia de routers. Estos tunnels se clasifican como tunnels entrantes (donde todo lo que se les da va hacia el creador del tunnel) o tunnels salientes (donde el creador del tunnel empuja los mensajes lejos de él). Cuando Alice quiere enviar un mensaje a Bob, ella (típicamente) lo enviará a través de uno de sus tunnels salientes existentes con instrucciones para que el endpoint de ese tunnel lo reenvíe al router de enlace para uno de los tunnels entrantes actuales de Bob, que a su vez se lo pasa a Bob.
 
-![Alice conectándose a través de su tunnel saliente a Bob vía su tunnel entrante](/images/tunnelSending.png)
+![Alice conectándose a través de su tunnel saliente a Bob vía su tunnel entrante](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

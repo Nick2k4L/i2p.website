@@ -66,7 +66,7 @@ Les tunnels sont un mécanisme polyvalent pour transporter tous les [messages I2
 
 En général, un Garlic Message ne contiendra qu'un seul clove. Cependant, le router regroupera périodiquement deux cloves supplémentaires dans le Garlic Message :
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **Un Message de Statut de Livraison**, avec des Instructions de Livraison spécifiant qu'il doit être renvoyé au router d'origine comme accusé de réception. Ceci est similaire au "bloc de réponse" ou "oignon de réponse" décrit dans les références. Il est utilisé pour déterminer le succès ou l'échec de la livraison de message de bout en bout. Le router d'origine peut, en cas d'échec de réception du Message de Statut de Livraison dans la période de temps attendue, modifier le routage vers la Destination distante, ou prendre d'autres actions.
 

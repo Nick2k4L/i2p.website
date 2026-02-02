@@ -66,7 +66,7 @@ tunnel 是传输所有 [I2NP 消息](/docs/specs/i2np/) 的通用机制，而 Ga
 
 通常，Garlic Message 只包含一个 clove。但是，router 会定期在 Garlic Message 中捆绑两个额外的 clove：
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **传递状态消息**，带有传递指令，指定将其发送回始发router作为确认。这类似于参考文献中描述的"回复块"或"回复洋葱"。它用于确定端到端消息传递的成功或失败。始发router如果在预期时间内未收到传递状态消息，可能会修改到远端目标的路由，或采取其他行动。
 

@@ -12,7 +12,7 @@ accurateFor: "0.8.7"
 
 जैसा कि [परिचय](/docs/overview/intro/) में संक्षेप में बताया गया है, I2P वर्चुअल "tunnels" बनाता है - routers के एक क्रम के माध्यम से अस्थायी और एकदिशीय पथ। इन tunnels को या तो inbound tunnels (जहां इसे दी गई हर चीज tunnel के निर्माता की ओर जाती है) या outbound tunnels (जहां tunnel निर्माता संदेशों को अपने से दूर धकेलता है) के रूप में वर्गीकृत किया जाता है। जब Alice, Bob को एक संदेश भेजना चाहती है, तो वह (आमतौर पर) इसे अपने मौजूदा outbound tunnels में से किसी एक के माध्यम से भेजेगी और उस tunnel के endpoint को निर्देश देगी कि वह इसे Bob के वर्तमान inbound tunnels में से किसी एक के gateway router को forward करे, जो बदले में इसे Bob को पास करता है।
 
-![Alice अपनी outbound tunnel के माध्यम से Bob की inbound tunnel के द्वारा उससे जुड़ रही है](/images/tunnelSending.png)
+![Alice अपनी outbound tunnel के माध्यम से Bob की inbound tunnel के द्वारा उससे जुड़ रही है](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

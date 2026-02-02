@@ -12,7 +12,7 @@ Tato stránka obsahuje přehled terminologie a fungování I2P tunnelů s odkazy
 
 Jak bylo stručně vysvětleno v [úvodu](/docs/overview/intro/), I2P vytváří virtuální "tunnely" - dočasné a jednosměrné cesty přes sekvenci routerů. Tyto tunnely jsou klasifikovány buď jako příchozí tunnely (kde vše, co je do nich vloženo, směřuje k tvůrci tunnelu) nebo odchozí tunnely (kde tvůrce tunnelu odesílá zprávy od sebe pryč). Když chce Alice poslat zprávu Bobovi, (obvykle) ji pošle jedním ze svých existujících odchozích tunnelů s instrukcemi pro koncový bod tohoto tunnelu, aby ji přeposlal na gateway router jednoho z Bobových aktuálních příchozích tunnelů, který ji následně předá Bobovi.
 
-![Alice se připojuje přes svůj odchozí tunnel k Bobovi prostřednictvím jeho příchozího tunnelu](/images/tunnelSending.png)
+![Alice se připojuje přes svůj odchozí tunnel k Bobovi prostřednictvím jeho příchozího tunnelu](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

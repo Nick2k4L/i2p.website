@@ -12,7 +12,7 @@ accurateFor: "0.8.7"
 
 Как кратко объяснялось во [введении](/docs/overview/intro/), I2P создает виртуальные "tunnel" - временные и однонаправленные пути через последовательность router'ов. Эти tunnel классифицируются либо как входящие tunnel (где всё, что в них поступает, направляется к создателю tunnel), либо как исходящие tunnel (где создатель tunnel отправляет сообщения от себя). Когда Алиса хочет отправить сообщение Бобу, она (обычно) отправляет его через один из своих существующих исходящих tunnel с инструкциями для конечной точки этого tunnel переслать его к шлюзовому router'у одного из текущих входящих tunnel Боба, который в свою очередь передает его Бобу.
 
-![Alice connecting through her outbound tunnel to Bob via his inbound tunnel](/images/tunnelSending.png)
+![Alice connecting through her outbound tunnel to Bob via his inbound tunnel](/images/tunnelSending.svg)
 
 ```
 A: Outbound Gateway (Alice)

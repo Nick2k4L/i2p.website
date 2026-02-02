@@ -66,7 +66,7 @@ Tunnel là cơ chế đa năng để vận chuyển tất cả [I2NP messages](/
 
 Thông thường, một Garlic Message sẽ chỉ chứa một clove. Tuy nhiên, router sẽ định kỳ gộp hai clove bổ sung vào trong Garlic Message:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **Một Thông điệp Trạng thái Giao hàng**, với Hướng dẫn Giao hàng chỉ định rằng nó được gửi trả lại cho router khởi tạo như một xác nhận. Điều này tương tự như "reply block" hoặc "reply onion" được mô tả trong các tài liệu tham khảo. Nó được sử dụng để xác định thành công hay thất bại của việc giao hàng thông điệp đầu cuối đến đầu cuối. Router khởi tạo có thể, khi không nhận được Thông điệp Trạng thái Giao hàng trong khoảng thời gian dự kiến, thay đổi định tuyến đến Destination đầu xa, hoặc thực hiện các hành động khác.
 

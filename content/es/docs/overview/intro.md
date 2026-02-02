@@ -36,7 +36,7 @@ Para entender el funcionamiento de I2P, es esencial comprender algunos conceptos
 
 Otro concepto crítico a entender es el "tunnel". Un tunnel es una ruta dirigida a través de una lista explícitamente seleccionada de routers. Se utiliza cifrado por capas, por lo que cada uno de los routers solo puede descifrar una sola capa. La información descifrada contiene la IP del siguiente router, junto con la información cifrada que debe ser reenviada. Cada tunnel tiene un punto de inicio (el primer router, también conocido como "gateway") y un punto final. Los mensajes pueden enviarse solo en una dirección. Para enviar mensajes de vuelta, se requiere otro tunnel.
 
-![Esquema de túneles de entrada y salida](/images/tunnels.png) *Figura 1: Existen dos tipos de túneles: de entrada y de salida.*
+![Esquema de túneles de entrada y salida](/images/tunnels.svg) *Figura 1: Existen dos tipos de túneles: de entrada y de salida.*
 
 Existen dos tipos de tunnels: los **tunnels "de salida"** envían mensajes lejos del creador del tunnel, mientras que los **tunnels "de entrada"** traen mensajes hacia el creador del tunnel. Combinando estos dos tunnels, los usuarios pueden enviarse mensajes entre sí. El remitente ("Alice" en la imagen anterior) configura un tunnel de salida, mientras que el receptor ("Bob" en la imagen anterior) crea un tunnel de entrada. El gateway de un tunnel de entrada puede recibir mensajes de cualquier otro usuario y los enviará hasta el endpoint ("Bob"). El endpoint del tunnel de salida necesitará enviar el mensaje hacia el gateway del tunnel de entrada. Para hacer esto, el remitente ("Alice") agrega instrucciones a su mensaje cifrado. Una vez que el endpoint del tunnel de salida descifra el mensaje, tendrá las instrucciones para reenviar el mensaje al gateway de entrada correcto (el gateway hacia "Bob").
 
@@ -52,13 +52,13 @@ Podemos combinar los conceptos anteriores para construir conexiones exitosas en 
 
 Para construir sus propios tunnels de entrada y salida, Alice realiza una búsqueda en la netDb para recopilar routerInfo. De esta manera, reúne listas de peers que puede usar como saltos en sus tunnels. Luego puede enviar un mensaje de construcción al primer salto, solicitando la construcción de un tunnel y pidiendo a ese router que reenvíe el mensaje de construcción, hasta que el tunnel haya sido construido.
 
-![Solicitar información sobre otros routers](/images/netdb_get_routerinfo_1.png)
+![Solicitar información sobre otros routers](/images/netdb_get_routerinfo_1.svg)
 
-![Build tunnel using router information](/images/netdb_get_routerinfo_2.png) *Figura 2: La información del router se utiliza para construir túneles.*
+![Build tunnel using router information](/images/netdb_get_routerinfo_2.svg) *Figura 2: La información del router se utiliza para construir túneles.*
 
 Cuando Alice quiere enviar un mensaje a Bob, primero hace una búsqueda en la netDb para encontrar el leaseSet de Bob, obteniendo así sus gateways de túnel de entrada actuales. Luego elige uno de sus túneles de salida y envía el mensaje a través de él con instrucciones para que el endpoint del túnel de salida reenvíe el mensaje a uno de los gateways de túnel de entrada de Bob. Cuando el endpoint del túnel de salida recibe esas instrucciones, reenvía el mensaje como se solicitó, y cuando el gateway de túnel de entrada de Bob lo recibe, se reenvía a través del túnel al router de Bob. Si Alice quiere que Bob pueda responder al mensaje, necesita transmitir su propio destino explícitamente como parte del mensaje mismo. Esto se puede hacer introduciendo una capa de nivel superior, lo cual se hace en la biblioteca de [streaming](#streaming-library). Alice también puede reducir el tiempo de respuesta incluyendo su LeaseSet más reciente con el mensaje para que Bob no necesite hacer una búsqueda en la netDb cuando quiera responder, pero esto es opcional.
 
-![Connect tunnels using LeaseSets](/images/netdb_get_leaseset.png) *Figura 3: Los LeaseSets se utilizan para conectar túneles de salida y de entrada.*
+![Connect tunnels using LeaseSets](/images/netdb_get_leaseset.svg) *Figura 3: Los LeaseSets se utilizan para conectar túneles de salida y de entrada.*
 
 Aunque los tunnels en sí tienen cifrado por capas para prevenir la divulgación no autorizada a pares dentro de la red (como la capa de transporte misma lo hace para prevenir la divulgación no autorizada a pares fuera de la red), es necesario agregar una capa adicional de cifrado de extremo a extremo para ocultar el mensaje del punto final del tunnel de salida y la puerta de enlace del tunnel de entrada. Este "garlic encryption" permite que el router de Alice empaquete múltiples mensajes en un solo "mensaje garlic", cifrado con una clave pública particular para que los pares intermediarios no puedan determinar ni cuántos mensajes hay dentro del garlic, qué dicen esos mensajes, o hacia dónde están destinados esos dientes individuales. Para la comunicación típica de extremo a extremo entre Alice y Bob, el garlic será cifrado con la clave pública publicada en el leaseSet de Bob, permitiendo que el mensaje sea cifrado sin revelar la clave pública al propio router de Bob.
 

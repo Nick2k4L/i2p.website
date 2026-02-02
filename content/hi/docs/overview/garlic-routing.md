@@ -66,7 +66,7 @@ tunnel की ऊपरी परत पर, I2P [Destinations](/docs/specs/comm
 
 आमतौर पर, एक Garlic Message में केवल एक clove होगा। हालांकि, router समय-समय पर Garlic Message में दो अतिरिक्त cloves को bundle करेगा:
 
-![Garlic Message Cloves](/images/garliccloves.png)
+![Garlic Message Cloves](/images/garliccloves.svg)
 
 1. **एक डिलिवरी स्टेटस मैसेज**, जिसमें डिलिवरी निर्देश होते हैं जो निर्दिष्ट करते हैं कि इसे पुष्टिकरण के रूप में मूल router को वापस भेजा जाए। यह संदर्भों में वर्णित "reply block" या "reply onion" के समान है। इसका उपयोग end to end मैसेज डिलिवरी की सफलता या विफलता निर्धारित करने के लिए किया जाता है। मूल router, अपेक्षित समयावधि के भीतर डिलिवरी स्टेटस मैसेज प्राप्त न करने पर, दूर के Destination के लिए routing में संशोधन कर सकता है, या अन्य कार्रवाई कर सकता है।
 

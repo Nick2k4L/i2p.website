@@ -36,7 +36,7 @@ I2P의 작동 방식을 이해하려면 몇 가지 핵심 개념을 파악하는
 
 이해해야 할 또 다른 핵심 개념은 "tunnel"입니다. tunnel은 명시적으로 선택된 router 목록을 통과하는 방향성 경로입니다. 계층 암호화가 사용되므로 각 router는 단일 계층만 복호화할 수 있습니다. 복호화된 정보에는 다음 router의 IP와 함께 전달될 암호화된 정보가 포함됩니다. 각 tunnel에는 시작점(첫 번째 router, "gateway"라고도 함)과 종료점이 있습니다. 메시지는 한 방향으로만 전송할 수 있습니다. 메시지를 다시 보내려면 다른 tunnel이 필요합니다.
 
-![Inbound and outbound tunnel schematic](/images/tunnels.png) *그림 1: 두 가지 유형의 tunnel이 존재합니다: inbound와 outbound.*
+![Inbound and outbound tunnel schematic](/images/tunnels.svg) *그림 1: 두 가지 유형의 tunnel이 존재합니다: inbound와 outbound.*
 
 두 가지 유형의 tunnel이 존재합니다: **"outbound" tunnel**은 tunnel 생성자로부터 메시지를 보내고, **"inbound" tunnel**은 tunnel 생성자에게 메시지를 가져옵니다. 이 두 tunnel을 결합하면 사용자들이 서로 메시지를 주고받을 수 있습니다. 발신자(위 이미지의 "Alice")는 outbound tunnel을 설정하고, 수신자(위 이미지의 "Bob")는 inbound tunnel을 생성합니다. Inbound tunnel의 게이트웨이는 다른 모든 사용자로부터 메시지를 받을 수 있으며, 이를 종단점("Bob")까지 전달합니다. Outbound tunnel의 종단점은 메시지를 inbound tunnel의 게이트웨이로 전달해야 합니다. 이를 위해 발신자("Alice")는 암호화된 메시지에 지시사항을 추가합니다. Outbound tunnel의 종단점이 메시지를 복호화하면, 올바른 inbound 게이트웨이("Bob"으로 가는 게이트웨이)로 메시지를 전달하라는 지시사항을 갖게 됩니다.
 
@@ -52,13 +52,13 @@ Router들은 자신의 routerInfo를 netDb에 직접 전송하는 반면, leaseS
 
 자신의 인바운드 및 아웃바운드 tunnel을 구축하기 위해 Alice는 netDb에서 조회를 수행하여 routerInfo를 수집합니다. 이를 통해 그녀는 자신의 tunnel에서 홉으로 사용할 수 있는 피어 목록을 수집합니다. 그런 다음 그녀는 첫 번째 홉에 빌드 메시지를 보내어 tunnel 구축을 요청하고, 해당 router가 tunnel이 구축될 때까지 구축 메시지를 계속 전달하도록 요청할 수 있습니다.
 
-![다른 router들에 대한 정보 요청](/images/netdb_get_routerinfo_1.png)
+![다른 router들에 대한 정보 요청](/images/netdb_get_routerinfo_1.svg)
 
-![Build tunnel using router information](/images/netdb_get_routerinfo_2.png) *그림 2: Router 정보가 tunnel 구축에 사용됩니다.*
+![Build tunnel using router information](/images/netdb_get_routerinfo_2.svg) *그림 2: Router 정보가 tunnel 구축에 사용됩니다.*
 
 Alice가 Bob에게 메시지를 보내려고 할 때, 먼저 netDb에서 Bob의 leaseSet을 조회하여 그의 현재 인바운드 tunnel 게이트웨이들을 찾습니다. 그런 다음 자신의 아웃바운드 tunnel 중 하나를 선택하고, 아웃바운드 tunnel의 엔드포인트가 Bob의 인바운드 tunnel 게이트웨이 중 하나로 메시지를 전달하도록 하는 지시사항과 함께 메시지를 보냅니다. 아웃바운드 tunnel 엔드포인트가 이러한 지시사항을 받으면, 요청된 대로 메시지를 전달하고, Bob의 인바운드 tunnel 게이트웨이가 이를 받으면 tunnel을 통해 Bob의 router로 전달됩니다. Alice가 Bob이 메시지에 응답할 수 있기를 원한다면, 메시지 자체의 일부로 자신의 목적지를 명시적으로 전송해야 합니다. 이는 [streaming](#streaming-library) 라이브러리에서 수행되는 상위 레벨 계층을 도입함으로써 가능합니다. Alice는 또한 자신의 최신 LeaseSet을 메시지와 함께 번들로 제공하여 Bob이 응답할 때 netDb 조회를 할 필요가 없도록 함으로써 응답 시간을 단축할 수도 있지만, 이는 선택사항입니다.
 
-![leaseSet을 사용한 터널 연결](/images/netdb_get_leaseset.png) *그림 3: leaseSet은 아웃바운드 터널과 인바운드 터널을 연결하는 데 사용됩니다.*
+![leaseSet을 사용한 터널 연결](/images/netdb_get_leaseset.svg) *그림 3: leaseSet은 아웃바운드 터널과 인바운드 터널을 연결하는 데 사용됩니다.*
 
 tunnel 자체는 네트워크 내부의 피어들로부터 무단 공개를 방지하기 위한 계층화된 암호화를 가지고 있지만(전송 계층 자체가 네트워크 외부의 피어들로부터 무단 공개를 방지하는 것처럼), 아웃바운드 tunnel 엔드포인트와 인바운드 tunnel 게이트웨이로부터 메시지를 숨기기 위해 추가적인 종단 간 암호화 계층을 추가하는 것이 필요합니다. 이 "[garlic encryption](#garlic-messages)"은 Alice의 router가 여러 메시지를 단일 "garlic message"로 묶어서, 특정 공개키로 암호화하여 중간 피어들이 garlic 내에 몇 개의 메시지가 있는지, 그 메시지들이 무엇을 말하는지, 또는 개별 clove들이 어디로 향하는지를 알 수 없도록 합니다. Alice와 Bob 간의 일반적인 종단 간 통신에서, garlic은 Bob의 leaseSet에 게시된 공개키로 암호화되어, Bob 자신의 router에게 공개키를 노출하지 않고도 메시지를 암호화할 수 있게 합니다.
 

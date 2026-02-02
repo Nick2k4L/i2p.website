@@ -1,111 +1,484 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280">
-  <defs>
-    <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 583.73096 217.35645"
+   version="1.1"
+   id="svg20"
+   sodipodi:docname="netdb_get_leaseset.svg"
+   width="583.73096"
+   height="217.35645"
+   inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview20"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.2571429"
+     inkscape:cx="297.89773"
+     inkscape:cy="111.76136"
+     inkscape:window-width="1024"
+     inkscape:window-height="1186"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg20" />
+  <defs
+     id="defs9">
+    <style
+       id="style1">
       .name { font-family: Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #94a3b8; text-anchor: middle; }
       .label { font-family: Arial, sans-serif; font-size: 11px; font-weight: 500; fill: #94a3b8; }
       .connect-label { font-family: Arial, sans-serif; font-size: 12px; font-weight: 500; fill: #94a3b8; text-anchor: middle; }
       .db-label { font-family: Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #94a3b8; text-anchor: middle; }
       .arrow { fill: none; stroke: #94a3b8; stroke-width: 2; }
     </style>
-    
     <!-- Client icon -->
-    <linearGradient id="client-grad" x1="7.8" x2="23.1" y1="10.4" y2="33.3" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#d5e5ff"/>
-      <stop offset="1" stop-color="#acf"/>
+    <linearGradient
+       id="client-grad"
+       x1="7.8000002"
+       x2="23.1"
+       y1="10.4"
+       y2="33.299999"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#d5e5ff"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#acf"
+         id="stop2" />
     </linearGradient>
-    <g id="client">
-      <path fill="#999" d="M35.2 44.9l1 7.6h-8.4l1.1-7.6z"/>
-      <path fill="gray" d="M60 46c0 1.3-1.1 2.4-2.4 2.4H6.4A2.4 2.4 0 014 46V10c0-1.3 1.1-2.4 2.4-2.4h51.2c1.3 0 2.4 1 2.4 2.4zM23 52.2h18a2 2 45 012 2v.2a2 2 135 01-2 2H23a2 2 45 01-2-2v-.2a2 2 135 012-2z"/>
-      <circle cx="32" cy="44.8" r="1.3" fill="#ccc"/>
-      <path fill="#87aade" d="M8.1 12v29.3h48V12z"/>
-      <path fill="url(#client-grad)" d="M7.5 12.5v29l49-29z" transform="matrix(.98 0 0 1.01 .7 -.6)"/>
+    <g
+       id="client">
+      <path
+         fill="#999999"
+         d="m 35.2,44.9 1,7.6 h -8.4 l 1.1,-7.6 z"
+         id="path2" />
+      <path
+         fill="#808080"
+         d="m 60,46 c 0,1.3 -1.1,2.4 -2.4,2.4 H 6.4 A 2.4,2.4 0 0 1 4,46 V 10 C 4,8.7 5.1,7.6 6.4,7.6 h 51.2 c 1.3,0 2.4,1 2.4,2.4 z m -37,6.2 h 18 a 2,2 45 0 1 2,2 v 0.2 a 2,2 135 0 1 -2,2 H 23 a 2,2 45 0 1 -2,-2 v -0.2 a 2,2 135 0 1 2,-2 z"
+         id="path3" />
+      <circle
+         cx="32"
+         cy="44.799999"
+         r="1.3"
+         fill="#cccccc"
+         id="circle3" />
+      <path
+         fill="#87aade"
+         d="m 8.1,12 v 29.3 h 48 V 12 Z"
+         id="path4" />
+      <path
+         fill="url(#client-grad)"
+         d="m 7.5,12.5 v 29 l 49,-29 z"
+         transform="matrix(0.98,0,0,1.01,0.7,-0.6)"
+         id="path5" />
     </g>
-    
-    <!-- Database icon -->
-    <linearGradient id="db-grad" x1="50%" x2="50%" y1="0%" y2="100%">
-      <stop offset="0" stop-color="#9ca3af"/>
-      <stop offset="1" stop-color="#4b5563"/>
+    <!-- Webserver icon -->
+    <linearGradient id="webserver-grad-top" x1="23.7" x2="23.7" y1="1.5" y2="20.6" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5f8dd3"/>
+      <stop offset="1" stop-color="#214478"/>
+    </linearGradient>
+    <linearGradient id="webserver-grad-bottom" x1="23.7" x2="23.7" y1="20.6" y2="39.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5f5fd3"/>
+      <stop offset="1" stop-color="#212178"/>
     </linearGradient>
     <g id="database">
-      <ellipse cx="0" cy="40" rx="30" ry="8" fill="#4b5563"/>
-      <rect x="-30" y="0" width="60" height="40" fill="url(#db-grad)"/>
-      <ellipse cx="0" cy="0" rx="30" ry="8" fill="#9ca3af"/>
-      <ellipse cx="0" cy="13" rx="30" ry="7" fill="none" stroke="#6b7280" stroke-width="1"/>
-      <ellipse cx="0" cy="27" rx="30" ry="7" fill="none" stroke="#6b7280" stroke-width="1"/>
+      <g transform="scale(1.07)">
+        <path fill="url(#webserver-grad-top)" d="M55.4 20.5H4.6A3.6 3.6 0 011 16.9V5a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 5.1V17a3.6 3.6 0 01-3.6 3.6z"/>
+        <circle cx="30" cy="53.5" r="4" fill="#0f0" stroke="#424a9d" stroke-width="2"/>
+        <path fill="url(#webserver-grad-bottom)" d="M55.4 39.5H4.6A3.6 3.6 0 011 35.9V24a3.6 3.6 0 013.6-3.6h50.8A3.6 3.6 0 0159 24v11.8a3.6 3.6 0 01-3.6 3.6z"/>
+        <g fill="none" stroke="#424a9d" stroke-width="2">
+          <path stroke-linecap="round" d="M1 53.5h25m8 0h25"/>
+          <path d="M30 49.5v-10"/>
+        </g>
+        <g fill="#07be2d">
+          <circle cx="10.5" cy="11" r="3.5"/>
+          <circle cx="10.5" cy="30" r="3.5"/>
+        </g>
+        <g fill="#afc6e9">
+          <circle cx="50" cy="9.5" r="1"/>
+          <circle cx="46" cy="9.5" r="1"/>
+          <circle cx="52" cy="12.5" r="1"/>
+          <circle cx="48" cy="12.5" r="1"/>
+          <circle cx="42" cy="9.5" r="1"/>
+          <circle cx="44" cy="12.5" r="1"/>
+          <circle cx="38" cy="9.5" r="1"/>
+          <circle cx="40" cy="12.5" r="1"/>
+          <circle cx="34" cy="9.5" r="1"/>
+          <circle cx="36" cy="12.5" r="1"/>
+          <circle cx="50" cy="28.5" r="1"/>
+          <circle cx="46" cy="28.5" r="1"/>
+          <circle cx="52" cy="31.5" r="1"/>
+          <circle cx="48" cy="31.5" r="1"/>
+          <circle cx="42" cy="28.5" r="1"/>
+          <circle cx="44" cy="31.5" r="1"/>
+          <circle cx="38" cy="28.5" r="1"/>
+          <circle cx="40" cy="31.5" r="1"/>
+          <circle cx="34" cy="28.5" r="1"/>
+          <circle cx="36" cy="31.5" r="1"/>
+        </g>
+      </g>
     </g>
-    
     <!-- Arrowhead marker -->
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    <marker
+       id="arrowhead"
+       markerWidth="10"
+       markerHeight="7"
+       refX="9"
+       refY="3.5"
+       orient="auto">
+      <polygon
+         points="10,3.5 0,7 0,0 "
+         fill="#94a3b8"
+         id="polygon9" />
     </marker>
   </defs>
-  
   <!-- Alice -->
-  <g transform="translate(50, 45) scale(0.6)">
-    <use href="#client"/>
+  <g
+     transform="matrix(0.6,0,0,0.6,-2.269043,17.192383)"
+     id="g9">
+    <use
+       href="#client"
+       id="use9" />
   </g>
-  <text x="69" y="38" class="name">Alice</text>
-  
+  <text
+     x="16.730957"
+     y="10.192383"
+     class="name"
+     id="text9">Alice</text>
   <!-- John -->
-  <g transform="translate(150, 45) scale(0.6)">
-    <use href="#client"/>
+  <g
+     transform="matrix(0.6,0,0,0.6,97.730957,17.192383)"
+     id="g10">
+    <use
+       href="#client"
+       id="use10" />
   </g>
-  <text x="169" y="38" class="name">John</text>
-  
+  <text
+     x="116.73096"
+     y="10.192383"
+     class="name"
+     id="text10">John</text>
   <!-- Peter -->
-  <g transform="translate(250, 45) scale(0.6)">
-    <use href="#client"/>
+  <g
+     transform="matrix(0.6,0,0,0.6,197.73096,17.192383)"
+     id="g11">
+    <use
+       href="#client"
+       id="use11" />
   </g>
-  <text x="269" y="38" class="name">Peter</text>
-  
+  <text
+     x="216.73096"
+     y="10.192383"
+     class="name"
+     id="text11">Peter</text>
   <!-- Cloë -->
-  <g transform="translate(400, 45) scale(0.6)">
-    <use href="#client"/>
+  <g
+     transform="matrix(0.6,0,0,0.6,347.73096,17.192383)"
+     id="g12">
+    <use
+       href="#client"
+       id="use12" />
   </g>
-  <text x="419" y="38" class="name">Cloë</text>
-  
+  <text
+     x="366.73096"
+     y="10.192383"
+     class="name"
+     id="text12">Cloë</text>
   <!-- Dan -->
-  <g transform="translate(500, 45) scale(0.6)">
-    <use href="#client"/>
+  <g
+     transform="matrix(0.6,0,0,0.6,447.73096,17.192383)"
+     id="g13">
+    <use
+       href="#client"
+       id="use13" />
   </g>
-  <text x="519" y="38" class="name">Dan</text>
-  
+  <text
+     x="466.73096"
+     y="10.192383"
+     class="name"
+     id="text13">Dan</text>
   <!-- Bob -->
-  <g transform="translate(600, 45) scale(0.6)">
-    <use href="#client"/>
+  <g
+     transform="matrix(0.6,0,0,0.6,547.73096,17.192383)"
+     id="g14">
+    <use
+       href="#client"
+       id="use14" />
   </g>
-  <text x="619" y="38" class="name">Bob</text>
-  
+  <text
+     x="566.73096"
+     y="10.192383"
+     class="name"
+     id="text14">Bob</text>
   <!-- Arrow Alice to John -->
-  <line x1="90" y1="75" x2="148" y2="75" class="arrow" marker-end="url(#arrowhead)"/>
-  
+  <line
+     x1="37.730957"
+     y1="47.192383"
+     x2="95.730957"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line14" />
   <!-- Arrow John to Peter -->
-  <line x1="190" y1="75" x2="248" y2="75" class="arrow" marker-end="url(#arrowhead)"/>
-  
+  <line
+     x1="137.73096"
+     y1="47.192383"
+     x2="195.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line15" />
   <!-- CONNECT tunnels label -->
-  <text x="344" y="55" class="connect-label">CONNECT</text>
-  <text x="344" y="68" class="connect-label">tunnels</text>
-  
+  <text
+     x="291.73096"
+     y="27.192383"
+     class="connect-label"
+     id="text15">CONNECT</text>
+  <text
+     x="291.73096"
+     y="40.192383"
+     class="connect-label"
+     id="text16">tunnels</text>
   <!-- Arrow Peter to Cloë -->
-  <line x1="290" y1="75" x2="398" y2="75" class="arrow" marker-end="url(#arrowhead)"/>
-  
+  <line
+     x1="237.73096"
+     y1="47.192383"
+     x2="345.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line16" />
   <!-- Arrow Cloë to Dan -->
-  <line x1="440" y1="75" x2="498" y2="75" class="arrow" marker-end="url(#arrowhead)"/>
-  
+  <line
+     x1="387.73096"
+     y1="47.192383"
+     x2="445.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line17" />
   <!-- Arrow Dan to Bob -->
-  <line x1="540" y1="75" x2="598" y2="75" class="arrow" marker-end="url(#arrowhead)"/>
-  
+  <line
+     x1="487.73096"
+     y1="47.192383"
+     x2="545.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line18" />
   <!-- Database -->
-  <g transform="translate(200, 180)">
-    <use href="#database"/>
+  <g
+     transform="translate(115,150) scale(0.9)"
+     id="g18">
+    <use
+       href="#database"
+       id="use18" />
   </g>
-  <text x="200" y="245" class="db-label">Network database</text>
-  
+  <text
+     x="147.73096"
+     y="217.19238"
+     class="db-label"
+     id="text18">Network database</text>
   <!-- Arrow down from Alice - GET leaseSet -->
-  <line x1="71" y1="94" x2="169" y2="175" class="arrow" marker-end="url(#arrowhead)"/>
-  <text x="85" y="125" class="label" transform="rotate(39.5, 85, 125)">GET leaseSet</text>
-  
+  <line
+     x1="18.730957"
+     y1="66.192383"
+     x2="116.73096"
+     y2="147.19238"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line19" />
+  <text
+     x="87.077972"
+     y="54.176582"
+     class="label"
+     transform="rotate(39.5)"
+     id="text19">GET leaseSet</text>
   <!-- Arrow up to Alice - leaseSet to Bob -->
-  <line x1="177" y1="166" x2="81" y2="86" class="arrow" marker-end="url(#arrowhead)"/>
-  <text x="118" y="103" class="label" transform="rotate(39.5, 118, 103)">leaseSet to Bob</text>
+  <line
+     x1="124.73096"
+     y1="138.19238"
+     x2="28.730957"
+     y2="58.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line20" />
+  <text
+     x="98.547859"
+     y="16.21026"
+     class="label"
+     transform="rotate(39.5)"
+     id="text20">leaseSet to Bob</text>
+  <g
+     transform="matrix(0.6,0,0,0.6,-2.269043,17.192383)"
+     id="g20">
+    <use
+       href="#client"
+       id="use20" />
+  </g>
+  <text
+     x="16.730957"
+     y="10.192383"
+     class="name"
+     id="text21">Alice</text>
+  <g
+     transform="matrix(0.6,0,0,0.6,97.730957,17.192383)"
+     id="g21">
+    <use
+       href="#client"
+       id="use21" />
+  </g>
+  <text
+     x="116.73096"
+     y="10.192383"
+     class="name"
+     id="text22">John</text>
+  <g
+     transform="matrix(0.6,0,0,0.6,197.73096,17.192383)"
+     id="g22">
+    <use
+       href="#client"
+       id="use22" />
+  </g>
+  <text
+     x="216.73096"
+     y="10.192383"
+     class="name"
+     id="text23">Peter</text>
+  <g
+     transform="matrix(0.6,0,0,0.6,347.73096,17.192383)"
+     id="g23">
+    <use
+       href="#client"
+       id="use23" />
+  </g>
+  <text
+     x="366.73096"
+     y="10.192383"
+     class="name"
+     id="text24">Cloë</text>
+  <g
+     transform="matrix(0.6,0,0,0.6,447.73096,17.192383)"
+     id="g24">
+    <use
+       href="#client"
+       id="use24" />
+  </g>
+  <text
+     x="466.73096"
+     y="10.192383"
+     class="name"
+     id="text25">Dan</text>
+  <g
+     transform="matrix(0.6,0,0,0.6,547.73096,17.192383)"
+     id="g25">
+    <use
+       href="#client"
+       id="use25" />
+  </g>
+  <text
+     x="566.73096"
+     y="10.192383"
+     class="name"
+     id="text26">Bob</text>
+  <line
+     x1="37.730957"
+     y1="47.192383"
+     x2="95.730957"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line26" />
+  <line
+     x1="137.73096"
+     y1="47.192383"
+     x2="195.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line27" />
+  <text
+     x="291.73096"
+     y="27.192383"
+     class="connect-label"
+     id="text27">CONNECT</text>
+  <text
+     x="291.73096"
+     y="40.192383"
+     class="connect-label"
+     id="text28">tunnels</text>
+  <line
+     x1="237.73096"
+     y1="47.192383"
+     x2="345.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line28" />
+  <line
+     x1="387.73096"
+     y1="47.192383"
+     x2="445.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line29" />
+  <line
+     x1="487.73096"
+     y1="47.192383"
+     x2="545.73096"
+     y2="47.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line30" />
+  <g
+     transform="translate(115,150) scale(0.9)"
+     id="g30">
+    <use
+       href="#database"
+       id="use30" />
+  </g>
+  <text
+     x="147.73096"
+     y="217.19238"
+     class="db-label"
+     id="text30">Network database</text>
+  <line
+     x1="18.730957"
+     y1="66.192383"
+     x2="116.73096"
+     y2="147.19238"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line31" />
+  <text
+     x="87.077972"
+     y="54.176582"
+     class="label"
+     transform="rotate(39.5)"
+     id="text31">GET leaseSet</text>
+  <line
+     x1="124.73096"
+     y1="138.19238"
+     x2="28.730957"
+     y2="58.192383"
+     class="arrow"
+     marker-end="url(#arrowhead)"
+     id="line32" />
+  <text
+     x="98.547859"
+     y="16.21026"
+     class="label"
+     transform="rotate(39.5)"
+     id="text32">leaseSet to Bob</text>
 </svg>
