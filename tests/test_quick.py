@@ -356,6 +356,9 @@ class TestStaticAssets:
         """Check that image references in markdown point to existing files."""
         md_img = re.compile(r"!\[.*?\]\((.*?)\)")
         html_img = re.compile(r'<img[^>]+src=["\'](.*?)["\']', re.IGNORECASE)
+        # Patterns to strip code blocks before checking image refs
+        fenced_code = re.compile(r"```[\s\S]*?```", re.MULTILINE)
+        indented_code = re.compile(r"^(?: {4}|\t).*$", re.MULTILINE)
 
         broken = []
         static_dir = project_root / "static"
@@ -369,10 +372,14 @@ class TestStaticAssets:
             except UnicodeDecodeError:
                 continue
 
+            # Strip code blocks to avoid false positives from example code
+            content_no_code = fenced_code.sub("", content)
+            content_no_code = indented_code.sub("", content_no_code)
+
             refs = []
-            for m in md_img.finditer(content):
+            for m in md_img.finditer(content_no_code):
                 refs.append(m.group(1).split()[0])
-            for m in html_img.finditer(content):
+            for m in html_img.finditer(content_no_code):
                 refs.append(m.group(1))
 
             for ref in refs:
