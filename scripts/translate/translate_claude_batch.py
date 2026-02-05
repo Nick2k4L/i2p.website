@@ -43,6 +43,23 @@ except ImportError:
     print("Error: anthropic package not installed. Run: pip install anthropic", file=sys.stderr)
     sys.exit(1)
 
+# Fix Windows console encoding for emoji support
+# This ensures print() works correctly with Unicode characters on all platforms
+if sys.stdout.encoding != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except AttributeError:
+        # Python < 3.7 fallback
+        import io
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+if sys.stderr.encoding != 'utf-8':
+    try:
+        sys.stderr.reconfigure(encoding='utf-8')
+    except AttributeError:
+        import io
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
 BATCH_STATE_FILE = Path(__file__).resolve().parent / "claude_batch_state.json"
 TRANSLATION_HASHES_FILE = Path(__file__).resolve().parent / "claude_translation_hashes.json"
 
