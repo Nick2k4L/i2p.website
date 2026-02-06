@@ -1177,44 +1177,15 @@ either a RouterIdentity or a Destination.
 #### Contents
 A [PublicKey](#publickey) followed by a [SigningPublicKey](#signingpublickey) and then a [Certificate](#certificate).
 
-```
-+----+----+----+----+----+----+----+----+
-| public_key                            |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| padding (optional)                    |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| signing_key                           |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| certificate                           |
-+----+----+----+-/
-
-public_key :: `PublicKey` (partial or full)
-              length -> 256 bytes or as specified in key certificate
-
-padding :: random data
-           length -> 0 bytes or as specified in key certificate
-           public_key length + padding length + signing_key length == 384 bytes
-
-signing__key :: `SigningPublicKey` (partial or full)
-                length -> 128 bytes or as specified in key certificate
-
-certificate :: `Certificate`
-               length -> >= 3 bytes
-
-total length: 387+ bytes
+```bytefield
+public_key          | 8 | blue   | PublicKey (partial or full), 256 bytes or as specified in key cert
+~ 
+padding (optional)  | 8 | yellow | random data, pub + pad + sig == 384 bytes
+~ 
+signing_key         | 8 | green  | SigningPublicKey (partial or full), 128 bytes or as specified
+~ 
+certificate         | 3 | purple | Certificate, >= 3 bytes
+= total length: 387+ bytes
 ```
 
 
@@ -1344,33 +1315,15 @@ a [Destination](#destination).
 SHA256 [Hash](#hash) of the [RouterIdentity](#routeridentity) of the gateway router, then the [TunnelId](#tunnelid),
 and finally an end [Date](#date).
 
-```
-+----+----+----+----+----+----+----+----+
-| tunnel_gw                             |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|     tunnel_id     |      end_date
-+----+----+----+----+----+----+----+----+
-                    |
-+----+----+----+----+
-
-tunnel_gw :: Hash of the `RouterIdentity` of the tunnel gateway
-             length -> 32 bytes
-
-tunnel_id :: `TunnelId`
-             length -> 4 bytes
-
-end_date :: `Date`
-            length -> 8 bytes
+```bytefield
+tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
+~
+tunnel_id   | 4 | green  | TunnelId, 4 bytes
+end_date    | 4 | yellow | Date, 8 bytes
+~
+= Total size 44 bytes
 ```
 
-#### Notes
-* Total size: 44 bytes
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html
 

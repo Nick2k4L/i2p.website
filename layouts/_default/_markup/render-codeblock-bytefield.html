@@ -1,0 +1,60 @@
+{{- /*
+  Render hook for ```bytefield code blocks.
+  Parses a simple pipe-delimited format and generates styled HTML directly.
+  No external tools needed - all styling via CSS classes.
+
+  Format (one item per line):
+    field_name | span | color | description
+    ~ optional gap label
+    = footer text
+
+  Colors: blue, green, yellow, purple, red, gray, orange, cyan
+  ~ = gap (variable-length indicator), with optional label
+  = = footer row (e.g. total length)
+  # = comment (ignored)
+  Blank lines are ignored.
+
+  Example:
+    public_key          | 8 | blue   | PublicKey, 256 bytes
+    ~ variable
+    padding (optional)  | 8 | yellow | random data, variable length
+    ~ variable
+    signing_key         | 8 | green  | SigningPublicKey, 128 bytes
+    ~ variable
+    certificate         | 3 | purple | Certificate, >= 3 bytes
+    = total length: 387+ bytes
+*/ -}}
+<div class="bf">
+  {{- $lines := split .Inner "\n" -}}
+  {{- range $lines -}}
+    {{- $line := trim . " \t\r" -}}
+    {{- if and (ne $line "") (not (strings.HasPrefix $line "#")) -}}
+      {{- if strings.HasPrefix $line "~" -}}
+        {{- $gapLabel := trim (strings.TrimPrefix "~" $line) " \t" -}}
+        <div class="bf-gap">
+          {{- if ne $gapLabel "" -}}
+            <span class="bf-gap-label">{{ $gapLabel }}</span>
+          {{- else -}}
+            <span class="bf-gap-dots"></span>
+          {{- end -}}
+        </div>
+      {{- else if strings.HasPrefix $line "=" -}}
+        {{- $footerText := trim (strings.TrimPrefix "=" $line) " \t" -}}
+        <div class="bf-footer">{{ $footerText }}</div>
+      {{- else -}}
+        {{- $parts := split $line "|" -}}
+        {{- $name := "" -}}{{- $span := "8" -}}{{- $color := "gray" -}}{{- $desc := "" -}}
+        {{- if ge (len $parts) 1 -}}{{- $name = trim (index $parts 0) " \t" -}}{{- end -}}
+        {{- if ge (len $parts) 2 -}}{{- $span = trim (index $parts 1) " \t" -}}{{- end -}}
+        {{- if ge (len $parts) 3 -}}{{- $color = trim (index $parts 2) " \t" -}}{{- end -}}
+        {{- if ge (len $parts) 4 -}}{{- $desc = trim (index $parts 3) " \t" -}}{{- end -}}
+        <div class="bf-field bf-span-{{ $span }} bf-{{ $color }}">
+          <span class="bf-name">{{ $name }}</span>
+          {{- if ne $desc "" -}}
+            <span class="bf-desc">{{ $desc }}</span>
+          {{- end -}}
+        </div>
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+</div>
