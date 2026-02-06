@@ -3576,6 +3576,16 @@ details.content-section summary:hover {
 .bf-cyan   { background: #cffafe; color: #164e63; }
 .bf-gray   { background: var(--color-bg-secondary); color: var(--color-text); }
 
+/* Empty spacer (pads row to force next field onto new line) */
+.bf-spacer {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 48px;
+}
+
+[data-theme="dark"] .bf-spacer {
+    border-color: rgba(255, 255, 255, 0.03);
+}
+
 /* Gap indicator (variable-length field separator) */
 .bf-gap {
     grid-column: span 8;

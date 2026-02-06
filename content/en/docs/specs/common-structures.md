@@ -1179,11 +1179,11 @@ A [PublicKey](#publickey) followed by a [SigningPublicKey](#signingpublickey) an
 
 ```bytefield
 public_key          | 8 | blue   | PublicKey (partial or full), 256 bytes or as specified in key cert
-~ 
+
 padding (optional)  | 8 | yellow | random data, pub + pad + sig == 384 bytes
-~ 
+
 signing_key         | 8 | green  | SigningPublicKey (partial or full), 128 bytes or as specified
-~ 
+
 certificate         | 3 | purple | Certificate, >= 3 bytes
 = total length: 387+ bytes
 ```
@@ -1317,10 +1317,10 @@ and finally an end [Date](#date).
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
-~
+
 tunnel_id   | 4 | green  | TunnelId, 4 bytes
 end_date    | 4 | yellow | Date, 8 bytes
-~
+
 = Total size 44 bytes
 ```
 
@@ -1344,82 +1344,16 @@ which can be used to revoke this version of the LeaseSet, then a 1 byte
 actual [Lease](#lease) structures and finally a [Signature](#signature) of the previous bytes signed
 by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey).
 
-```
-+----+----+----+----+----+----+----+----+
-| destination                           |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| encryption_key                        |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| signing_key                           |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| num| Lease 0                          |
-+----+                                  +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| Lease 1                               |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| Lease ($num-1)                        |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| signature                             |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
+```bytefield
+destination     | 8 | blue   | Destination, >= 387+ bytes
+encryption_key  | 8 | green  | PublicKey, 256 bytes
+signing_key     | 8 | cyan   | SigningPublicKey, 128 bytes or as specified in destination's key cert
+num             | 1 | red    | Integer, 1 byte, number of leases (0-16)
+Lease 0         | 7 | yellow | Lease, 44 bytes
+Lease 1         | 8 | yellow | Lease, 44 bytes
+Lease ($num-1)  | 8 | yellow | Lease, 44 bytes
+signature       | 8 | purple | Signature, 40 bytes or as specified in destination's key cert
 
-destination :: `Destination`
-               length -> >= 387+ bytes
-
-encryption_key :: `PublicKey`
-                  length -> 256 bytes
-
-signing_key :: `SigningPublicKey`
-               length -> 128 bytes or as specified in destination's key
-                         certificate
-
-num :: `Integer`
-       length -> 1 byte
-       Number of leases to follow
-       value: 0 <= num <= 16
-
-leases :: [`Lease`]
-          length -> $num*44 bytes
-
-signature :: `Signature`
-             length -> 40 bytes or as specified in destination's key
-                       certificate
 ```
 
 #### Notes
@@ -1470,29 +1404,11 @@ Supported as of 0.9.38; see proposal 123 for more information.
 SHA256 [Hash](#hash) of the [RouterIdentity](#routeridentity) of the gateway router, then the [TunnelId](#tunnelid),
 and finally a 4 byte end date.
 
-```
-+----+----+----+----+----+----+----+----+
-| tunnel_gw                             |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|     tunnel_id     |      end_date     |
-+----+----+----+----+----+----+----+----+
+```bytefield
+tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
 
-tunnel_gw :: Hash of the `RouterIdentity` of the tunnel gateway
-             length -> 32 bytes
-
-tunnel_id :: `TunnelId`
-             length -> 4 bytes
-
-end_date :: 4 byte date
-            length -> 4 bytes
-            Seconds since the epoch, rolls over in 2106.
-
+tunnel_id   | 4 | green  | TunnelId, 4 bytes
+end_date    | 4 | yellow | 4 byte date, seconds since epoch, rolls over in 2106
 ```
 
 #### Notes
@@ -1513,36 +1429,13 @@ Supported as of 0.9.38; see proposal 123 for more information.
 
 Contains an expiration, a sigtype and transient [SigningPublicKey](#signingpublickey), and a [Signature](#signature).
 
-```
-+----+----+----+----+----+----+----+----+
-|     expires       | sigtype |         |
-+----+----+----+----+----+----+         +
-|       transient_public_key            |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-|           signature                   |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
+```bytefield
+expires              | 4 | yellow | 4 byte date, seconds since epoch, rolls over in 2106
+sigtype              | 2 | cyan   | 2 byte type of the transient_public_key
+_ | 2
+transient_public_key | 8 | green  | SigningPublicKey, as inferred from sigtype
 
-expires :: 4 byte date
-           length -> 4 bytes
-           Seconds since the epoch, rolls over in 2106.
-
-sigtype :: 2 byte type of the transient_public_key
-           length -> 2 bytes
-
-transient_public_key :: `SigningPublicKey`
-                        length -> As inferred from the sigtype
-
-signature :: `Signature`
-             length -> As inferred from the sigtype of the signing public key
-                       in the `Destination` that preceded this offline signature.
-             Signature of expires timestamp, transient sig type, and public key,
-             by the destination public key.
+signature            | 8 | purple | Signature, as inferred from sigtype of the Destination's key
 
 ```
 
@@ -1560,57 +1453,23 @@ Supported as of 0.9.38; see proposal 123 for more information.
 
 Contains the [Destination](#destination), two timestamps, and an optional [OfflineSignature](#offlinesignature).
 
-```
-+----+----+----+----+----+----+----+----+
-| destination                           |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-|     published     | expires |  flags  |
-+----+----+----+----+----+----+----+----+
-| offline_signature (optional)          |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
+```bytefield
+destination          | 8 | blue   | Destination, >= 387+ bytes
 
-destination :: `Destination`
-               length -> >= 387+ bytes
-
-published :: 4 byte date
-             length -> 4 bytes
-             Seconds since the epoch, rolls over in 2106.
-
-expires :: 2 byte time
-           length -> 2 bytes
-           Offset from published timestamp in seconds, 18.2 hours max
-
-flags :: 2 bytes
-  Bit order: 15 14 ... 3 2 1 0
-  Bit 0: If 0, no offline keys; if 1, offline keys
-  Bit 1: If 0, a standard published leaseset.
-         If 1, an unpublished leaseset. Should not be flooded, published, or
-         sent in response to a query. If this leaseset expires, do not query the
-         netdb for a new one, unless bit 2 is set.
-  Bit 2: If 0, a standard published leaseset.
-         If 1, this unencrypted leaseset will be blinded and encrypted when published.
-         If this leaseset expires, query the blinded location in the netdb for a new one.
-         If this bit is set to 1, set bit 1 to 1 also.
-         As of release 0.9.42.
-  Bits 15-3: set to 0 for compatibility with future uses
-
-offline_signature :: `OfflineSignature`
-                     length -> varies
-                     Optional, only present if bit 0 is set in the flags.
+published            | 4 | yellow | 4 byte date, seconds since epoch, rolls over in 2106
+expires              | 2 | cyan   | 2 byte time, offset from published in seconds, 18.2 hours max
+flags                | 2 | red
+offline_signature    | 8 | purple | OfflineSignature, varies, optional (present if flags bit 0 set
 
 ```
 
 #### Notes
+* **Flags** (2 bytes):
+  * Bit 0: If set, offline keys are present (see [OfflineSignature](#offlinesignature))
+  * Bit 1: If set, this is an unpublished leaseset
+  * Bit 2: If set, this is a blinded leaseset
+  * Bits 15-3: Reserved, set to 0
+
 * Total size: 395 bytes minimum
 
 * Maximum actual expires time is about 660 (11 minutes) for
@@ -1644,86 +1503,27 @@ contained [Destination](#destination).
 actual [Lease2](#lease2) structures and finally a [Signature](#signature) of the previous bytes signed
 by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey) or the transient key.
 
-```
-+----+----+----+----+----+----+----+----+
-|         ls2_header                    |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-|          options                      |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-|numk| keytype0| keylen0 |              |
-+----+----+----+----+----+              +
-|          encryption_key_0             |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| keytypen| keylenn |                   |
-+----+----+----+----+                   +
-|          encryption_key_n             |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| num| Lease2 0                         |
-+----+                                  +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| Lease2($num-1)                        |
-+                                       +
-|                                       |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-| signature                             |
-~                                       ~
-~                                       ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-
-ls2header :: `LeaseSet2Header`
-             length -> varies
-
-options :: `Mapping`
-           length -> varies, 2 bytes minimum
-
-numk :: `Integer`
-        length -> 1 byte
-        Number of key types, key lengths, and `PublicKey`s to follow
-        value: 1 <= numk <= max TBD
-
-keytype :: The encryption type of the `PublicKey` to follow.
-           length -> 2 bytes
-
-keylen :: The length of the `PublicKey` to follow.
-          Must match the specified length of the encryption type.
-          length -> 2 bytes
-
-encryption_key :: `PublicKey`
-                  length -> keylen bytes
-
-num :: `Integer`
-       length -> 1 byte
-       Number of `Lease2`s to follow
-       value: 0 <= num <= 16
-
-leases :: [`Lease2`]
-          length -> $num*40 bytes
-
-signature :: `Signature`
-             length -> 40 bytes or as specified in destination's key
-                       certificate, or by the sigtype of the transient public key,
-                       if present in the header
-
+```bytefield
+ls2_header       | 8 | blue   | LeaseSet2Header, varies
+~
+options          | 8 | gray   | Mapping, varies, 2 bytes minimum
+~
+numk             | 1 | red    | Integer, 1 byte, number of encryption keys (1 <= numk <= max TBD)
+keytype0         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
+keylen0          | 2 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_0 | 3 | green  | PublicKey, keylen bytes
+~
+keytypen         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
+keylenn          | 2 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_n | 4 | green  | PublicKey, keylen bytes
+~
+num              | 1 | red    | Integer, 1 byte, number of Lease2s (0-16)
+Lease2 0         | 7 | yellow | Lease2, 40 bytes
+~
+Lease2 ($num-1)  | 8 | yellow | Lease2, 40 bytes
+~
+signature        | 8 | purple | Signature, 40 bytes or as specified in destination's key cert
+~
 ```
 
 

@@ -7,22 +7,21 @@
     field_name | span | color | description
     ~ optional gap label
     = footer text
+    _ | span                  (empty spacer to pad out a row)
 
   Colors: blue, green, yellow, purple, red, gray, orange, cyan
   ~ = gap (variable-length indicator), with optional label
   = = footer row (e.g. total length)
+  _ = empty spacer (use to force next field onto a new row)
   # = comment (ignored)
   Blank lines are ignored.
 
   Example:
-    public_key          | 8 | blue   | PublicKey, 256 bytes
-    ~ variable
-    padding (optional)  | 8 | yellow | random data, variable length
-    ~ variable
-    signing_key         | 8 | green  | SigningPublicKey, 128 bytes
-    ~ variable
-    certificate         | 3 | purple | Certificate, >= 3 bytes
-    = total length: 387+ bytes
+    expires             | 4 | yellow | 4 byte date
+    sigtype             | 2 | cyan   | sig type, 2 bytes
+    _ | 2
+    transient_key       | 8 | green  | SigningPublicKey
+    ~
 */ -}}
 <div class="bf">
   {{- $lines := split .Inner "\n" -}}
@@ -48,12 +47,16 @@
         {{- if ge (len $parts) 2 -}}{{- $span = trim (index $parts 1) " \t" -}}{{- end -}}
         {{- if ge (len $parts) 3 -}}{{- $color = trim (index $parts 2) " \t" -}}{{- end -}}
         {{- if ge (len $parts) 4 -}}{{- $desc = trim (index $parts 3) " \t" -}}{{- end -}}
-        <div class="bf-field bf-span-{{ $span }} bf-{{ $color }}">
-          <span class="bf-name">{{ $name }}</span>
-          {{- if ne $desc "" -}}
-            <span class="bf-desc">{{ $desc }}</span>
-          {{- end -}}
-        </div>
+        {{- if eq $name "_" -}}
+          <div class="bf-spacer bf-span-{{ $span }}"></div>
+        {{- else -}}
+          <div class="bf-field bf-span-{{ $span }} bf-{{ $color }}">
+            <span class="bf-name">{{ $name }}</span>
+            {{- if ne $desc "" -}}
+              <span class="bf-desc">{{ $desc }}</span>
+            {{- end -}}
+          </div>
+        {{- end -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
