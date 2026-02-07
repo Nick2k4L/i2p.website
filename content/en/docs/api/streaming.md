@@ -2,8 +2,8 @@
 title: "Streaming Protocol"
 description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
-lastUpdated: "2025-07"
-accurateFor: "0.9.67"
+lastUpdated: "2026-01"
+accurateFor: "0.9.68"
 ---
 
 
@@ -434,6 +434,50 @@ As of release 0.9.18, pings and pongs may contain a payload.
 The payload in the ping, up to a maximum of 32 bytes, is returned in the pong.
 
 Streaming may be configured to disable sending pongs with the configuration i2p.streaming.answerPings=false.
+
+
+### 0-RTT Issues {#0rtt}
+
+As noted above, unlike TCP, streaming allows 0-RTT delivery of data by bundling data
+in the SYN packet. This is the preferred implementation.
+ALSO, streaming permits additional data packets (up to the initial window size) to be sent after the SYN,
+before the SYN-ACK is received. These packets will have a nonzero sequence number,
+will not have the SYN flag set, and will have a zero sendStreamID.
+
+Receivers should design for out-of-order or dropped packets during the handshake,
+including having data packets arrive before the SYN.
+The preferred implementation is to queue, not drop, non-SYN packets for an unknown ID,
+and retrieve them from the queue after the SYN is received.
+
+In the reverse direction, things are similar. The connection recipient (Bob)
+should delay sending the SYN-ACK (ACK DELAY) and wait a short time for data from the application.
+Upon receiving data from the application, put it (up to the max packet size)
+into the SYN-ACK packet and send it. Additional data packets, up to the initial window size,
+may also be sent, without waiting for an ACK of the SYN-ACK.
+
+The originator should buffer any data packets received before the SYN-ACK,
+the same as out-of-order handling after the handshake is complete.
+
+
+### Testing Streaming Libraries {#testing}
+
+For developers testing new or changed streaming libraries, Java I2P provides a
+simple local test utility for reproducible testing of real network conditions,
+including latency, packet loss, and delay jitter.
+It is a small stub implementing only a I2CP server for local connections.
+
+Developers should test with a wide range of typical parameters, including
+latency from 10ms to at least 15s, and packet loss of 0 to 10%.
+Adding jitter makes it easy to test out-of-order handling.
+
+This is also a good setup to test buffer overflow (CHOKE/UNCHOKE) by
+manually suspending one of the two applications.
+
+From the i2p.i2p source package:
+
+- `ant buildTest`
+- `java -cp build/routertest.jar net.i2p.router.client.LocalClientManager -?` (to see options help)
+- `java -cp build/routertest.jar net.i2p.router.client.LocalClientManager [options]` (to run)
 
 
 ### i2p.streaming.profile Notes {#profile}
