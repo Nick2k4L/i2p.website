@@ -1,38 +1,38 @@
 ---
-title: "بروتوكول البث المباشر"
-description: "نقل يشبه TCP يستخدم من قبل معظم تطبيقات I2P"
+title: "Streaming Protocol"
+description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
-lastUpdated: "2025-07"
-accurateFor: "0.9.67"
+lastUpdated: "2026-01"
+accurateFor: "0.9.68"
 ---
 
-## نظرة عامة {#overview}
+## Overview
 
-مكتبة streaming هي تقنياً جزء من طبقة "التطبيق"، حيث أنها ليست وظيفة أساسية في router. ولكن في الممارسة العملية، تقدم وظيفة حيوية لجميع تطبيقات I2P الموجودة تقريباً، من خلال توفير تدفقات شبيهة بـ TCP عبر I2P، والسماح للتطبيقات الموجودة بأن يتم نقلها بسهولة إلى I2P. مكتبة النقل الأخرى من النهاية إلى النهاية لاتصال العميل هي [مكتبة datagram](/docs/specs/datagrams).
+The **I2P Streaming Library** provides reliable, in-order, authenticated transport over I2P’s message layer, similar to **TCP over IP**.   It sits above the [I2CP protocol](/docs/specs/i2cp/) and is used by nearly all interactive I2P applications, including HTTP proxies, IRC, BitTorrent, and email.
 
-مكتبة streaming هي طبقة فوق [I2CP API](/docs/specs/i2cp) الأساسية التي تسمح بتدفقات موثوقة ومرتبة ومصادق عليها من الرسائل للعمل عبر طبقة رسائل غير موثوقة وغير مرتبة وغير مصادق عليها. تماماً مثل العلاقة بين TCP و IP، تحتوي هذه الوظيفة للـ streaming على سلسلة كاملة من المقايضات والتحسينات المتاحة، ولكن بدلاً من تضمين هذه الوظيفة في كود I2P الأساسي، تم فصلها إلى مكتبتها الخاصة سواء للحفاظ على تعقيدات TCP منفصلة أو للسماح بتطبيقات محسّنة بديلة.
+This design enables small HTTP requests and responses to complete in a single round-trip.   A SYN packet may carry the request payload, while the responder’s SYN/ACK/FIN may contain the full response body.
 
-نظراً للتكلفة المرتفعة نسبياً للرسائل، تم تحسين بروتوكول مكتبة streaming لجدولة وتسليم تلك الرسائل للسماح للرسائل الفردية المرسلة بأن تحتوي على أكبر قدر ممكن من المعلومات المتاحة. على سبيل المثال، يمكن إكمال معاملة HTTP صغيرة تم توصيلها عبر مكتبة streaming في رحلة واحدة فقط - الرسائل الأولى تجمع SYN و FIN وحمولة طلب HTTP الصغيرة، والرد يجمع SYN و FIN و ACK وحمولة استجابة HTTP. بينما يجب إرسال ACK إضافية لإخبار خادم HTTP أنه تم استلام SYN/FIN/ACK، يمكن لوكيل HTTP المحلي غالباً تسليم الاستجابة الكاملة إلى المتصفح فوراً.
+---
 
-تتشابه مكتبة streaming إلى حد كبير مع تجريد لبروتوكول TCP، مع نوافذها المنزلقة، وخوارزميات التحكم في الازدحام (كل من البدء البطيء وتجنب الازدحام)، والسلوك العام للحزم (ACK، SYN، FIN، RST، حساب rto، إلخ).
+The Java streaming API mirrors standard Java socket programming:
 
-مكتبة streaming هي مكتبة قوية محسّنة للعمل عبر I2P. تحتوي على إعداد من مرحلة واحدة، وتتضمن تنفيذاً كاملاً للنوافذ.
+Full Javadocs are available from the I2P router console or [here](/docs/specs/streaming/).
 
-## API {#api}
+## API Basics
 
-توفر واجهة برمجة التطبيقات لمكتبة التدفق نموذجاً قياسياً للمقابس لتطبيقات Java. واجهة برمجة التطبيقات [I2CP](/docs/specs/i2cp) منخفضة المستوى مخفية تماماً، باستثناء أن التطبيقات قد تمرر [معاملات I2CP](/docs/specs/i2cp#options) من خلال مكتبة التدفق، ليتم تفسيرها بواسطة I2CP.
+---
 
-الواجهة المعيارية لمكتبة streaming هي أن يستخدم التطبيق I2PSocketManagerFactory لإنشاء I2PSocketManager. يطلب التطبيق بعدها من مدير المقابس I2PSession، مما سيؤدي إلى الاتصال بالـ router عبر [I2CP](/docs/specs/i2cp). يمكن للتطبيق بعد ذلك إعداد الاتصالات باستخدام I2PSocket أو استقبال الاتصالات باستخدام I2PServerSocket.
+You can pass configuration properties when creating a socket manager via:
 
-للحصول على مثال جيد للاستخدام، راجع كود i2psnark.
+Newer features since version 0.9.4 include reject log suppression, DSA list support (0.9.21), and mandatory protocol enforcement (0.9.36).   Routers since 2.10.0 include post-quantum hybrid encryption (ML-KEM + X25519) at the transport layer.
 
-### الخيارات والقيم الافتراضية {#options}
+### Core Characteristics
 
-الخيارات والقيم الافتراضية الحالية مدرجة أدناه. الخيارات حساسة لحالة الأحرف ويمكن تعيينها للـ router بأكمله، أو لعميل معين، أو لـ socket فردي على أساس كل اتصال. العديد من القيم مضبوطة لأداء HTTP في ظروف I2P النموذجية. التطبيقات الأخرى مثل خدمات الند للند مشجعة بقوة على التعديل حسب الضرورة، عن طريق تعيين الخيارات وتمريرها عبر الاستدعاء إلى I2PSocketManagerFactory.createManager(_i2cpHost, _i2cpPort, opts). قيم الوقت بالميلي ثانية.
+---
 
-لاحظ أن واجهات برمجة التطبيقات عالية المستوى، مثل [SAM](/docs/api/samv3) و [BOB](/docs/legacy/bob) و [I2PTunnel](/docs/api/i2ptunnel)، قد تتجاوز هذه الإعدادات الافتراضية بإعداداتها الافتراضية الخاصة. لاحظ أيضاً أن العديد من الخيارات تنطبق فقط على الخوادم التي تستمع للاتصالات الواردة.
+Each stream is identified by a **Stream ID**. Packets carry control flags similar to TCP: `SYNCHRONIZE`, `ACK`, `FIN`, and `RESET`.   Packets may contain both data and control flags simultaneously, improving efficiency for short-lived connections.
 
-اعتبارًا من الإصدار 0.9.1، يمكن تغيير معظم الخيارات، ولكن ليس جميعها، على socket manager أو جلسة نشطة. راجع javadocs للحصول على التفاصيل.
+Because I2P tunnels introduce latency and message reordering, the library buffers packets from unknown or early-arriving streams.   Buffered messages are stored until synchronization completes, ensuring complete, in-order delivery.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -235,128 +235,138 @@ accurateFor: "0.9.67"
     </tr>
   </tbody>
 </table>
-## مواصفات البروتوكول {#spec}
+## Configuration and Tuning
 
-[انظر صفحة مواصفات مكتبة التدفق.](/docs/specs/streaming)
+The option `i2p.streaming.enforceProtocol=true` (default since 0.9.36) ensures connections use the correct I2CP protocol number, preventing conflicts between multiple subsystems sharing one destination.
 
-## تفاصيل التنفيذ {#implementation}
+## Protocol Details
 
-### الإعداد {#setup}
+### Key Options
 
-يرسل المُبادِر حزمة بيانات مع تعيين علامة SYNCHRONIZE. قد تحتوي هذه الحزمة على البيانات الأولية أيضاً. يرد النظير بحزمة بيانات مع تعيين علامة SYNCHRONIZE. قد تحتوي هذه الحزمة على بيانات الاستجابة الأولية أيضاً.
+---
 
-يمكن للمبادر إرسال حزم بيانات إضافية، حتى حجم النافذة الأولية، قبل تلقي استجابة SYNCHRONIZE. ستحتوي هذه الحزم أيضًا على حقل معرف Stream الإرسال مضبوط على 0. يجب على المستقبلين تخزين الحزم المستلمة مؤقتًا على streams غير معروفة لفترة قصيرة من الزمن، حيث قد تصل خارج الترتيب، قبل حزمة SYNCHRONIZE.
+The streaming protocol coexists with the **Datagram API**, giving developers the choice between connection-oriented and connectionless transports.
 
-### اختيار وتفاوض MTU {#mtu}
+### Behavior by Workload
 
-يتم التفاوض على الحد الأقصى لحجم الرسالة (المسمى أيضاً MTU / MRU) إلى القيمة الأقل المدعومة من قبل النظيرين. نظراً لأن رسائل tunnel يتم حشوها إلى 1KB، فإن الاختيار السيء لـ MTU سيؤدي إلى كمية كبيرة من النفقات الإضافية. يتم تحديد MTU بواسطة الخيار i2p.streaming.maxMessageSize. تم اختيار MTU الافتراضي الحالي البالغ 1730 ليتناسب بدقة مع رسالتي I2NP tunnel بحجم 1K، بما في ذلك النفقات الإضافية للحالة النموذجية.
+Applications can reuse existing tunnels by running as **shared clients**, allowing multiple services to share the same destination.   While this reduces overhead, it increases cross-service correlation risk—use with care.
 
-ملاحظة: هذا هو الحد الأقصى لحجم الحمولة فقط، لا يشمل الرأس.
+Because I2P adds several hundred milliseconds of base latency, applications should minimize round-trips.   Bundle data with connection setup where possible (e.g., HTTP requests in SYN).   Avoid designs relying on many small sequential exchanges.
 
-ملاحظة: بالنسبة لاتصالات ECIES، والتي لديها overhead مخفض، فإن MTU الموصى به هو 1812. يبقى MTU الافتراضي 1730 لجميع الاتصالات، بغض النظر عن نوع المفتاح المستخدم. يجب على العملاء استخدام الحد الأدنى من MTU المُرسل والمُستقبل، كالمعتاد. انظر الاقتراح 155.
+---
 
-الرسالة الأولى في الاتصال تتضمن 387 بايت (نموذجية) Destination مضافة بواسطة طبقة التدفق، وعادة 898 بايت (نموذجية) LeaseSet، ومفاتيح الجلسة، مجمعة في رسالة Garlic بواسطة الموجه. (لن يتم تجميع LeaseSet ومفاتيح الجلسة إذا تم إنشاء جلسة ElGamal مسبقاً). لذلك، فإن هدف ملاءمة طلب HTTP كامل في رسالة I2NP واحدة بحجم 1KB ليس قابلاً للتحقيق دائماً. ومع ذلك، فإن اختيار MTU، جنباً إلى جنب مع التنفيذ الدقيق لاستراتيجيات التجزئة والتجميع في معالج بوابة tunnel، هي عوامل مهمة في عرض النطاق الترددي للشبكة، والكمون، والموثوقية، والكفاءة، خاصة للاتصالات طويلة المدى.
+Performance depends heavily on tunnel configuration:   - **Short tunnels (1–2 hops)** → lower latency, reduced anonymity.   - **Long tunnels (3+ hops)** → higher anonymity, increased RTT.
 
-### سلامة البيانات {#integrity}
+### Connection Lifecycle
 
-يتم ضمان تكامل البيانات من خلال مجموع التحقق gzip CRC-32 المطبق في [طبقة I2CP](/docs/specs/i2cp#format). لا يوجد حقل مجموع تحقق في بروتوكول التدفق.
+---
 
-### تغليف الحزم {#encapsulation}
+### Fragmentation and Reordering
 
-يتم إرسال كل حزمة عبر I2P كرسالة واحدة (أو كفص منفرد في [رسالة Garlic](/docs/overview/garlic-routing)). يتم تنفيذ تغليف الرسائل في طبقات [I2CP](/docs/specs/i2cp) و [I2NP](/docs/specs/i2np) و [رسالة tunnel](/docs/specs/tunnel-message) الأساسية. لا توجد آلية فاصل حزم أو حقل طول البيانات النافعة في بروتوكول البث المتدفق.
+---
 
-### التأخير الاختياري {#delay}
+### Protocol Enforcement
 
-قد تتضمن حزم البيانات حقل تأخير اختياري يحدد التأخير المطلوب، بالملي ثانية، قبل أن يقوم المستقبل بإرسال إقرار الاستلام للحزمة. القيم الصالحة هي من 0 إلى 60000 شاملة. قيمة 0 تطلب إقرار استلام فوري. هذا استشاري فقط، ويجب على المستقبلات التأخير قليلاً حتى يمكن إقرار حزم إضافية بإقرار استلام واحد. قد تتضمن بعض التطبيقات قيمة استشارية من (RTT المقاس / 2) في هذا الحقل. لقيم التأخير الاختياري غير الصفرية، يجب على المستقبلات تحديد الحد الأقصى للتأخير قبل إرسال إقرار الاستلام إلى بضع ثوانٍ كحد أقصى. قيم التأخير الاختياري الأكبر من 60000 تشير إلى الاختناق، انظر أدناه.
+The **I2P Streaming Library** is the backbone of all reliable communication within I2P.   It ensures in-order, authenticated, encrypted message delivery and provides a near drop-in replacement for TCP in anonymous environments.
 
-### نوافذ الإرسال/الاستقبال والاختناق {#windows}
+### Shared Clients
 
-تتضمن رؤوس TCP نافذة الاستقبال بالبايتات؛ ومع ذلك، فإن بروتوكول البث المباشر لا يوفر طريقة لتبادل الحد الأقصى لحجم نافذة الاستقبال سواء بالبايتات أو الحزم. يوجد فقط مؤشر بسيط للحجب/إلغاء الحجب يشير إلى أن مخزن الاستقبال ممتلئ. يجب على كل نقطة نهاية الحفاظ على تقديرها الخاص لنافذة استقبال الطرف البعيد، سواء بالبايتات أو الحزم. لاحظ أن مخزن الاستقبال قد يفيض عند أي حجم نافذة إذا كان تطبيق العميل بطيئاً في إفراغ المخزن.
+To achieve optimal performance: - Minimize round-trips with SYN+payload bundling.   - Tune window and timeout parameters for your workload.   - Favor shorter tunnels for latency-sensitive applications.   - Use congestion-friendly designs to avoid overloading peers.
 
-الحد الأقصى الافتراضي لحجم نافذة الإرسال والاستقبال في تنفيذ Java هو 128 حزمة. التنفيذات التي تضع حداً أقصى لحجم نافذة الإرسال أعلى من 128 يجب أن تأخذ في الاعتبار القضايا التالية:
+الحد الأقصى الافتراضي لحجم نافذة الإرسال والاستقبال في تطبيق Java هو 128 حزمة. التطبيقات التي تحدد حداً أقصى لحجم نافذة الإرسال أعلى من 128 يجب أن تأخذ في الاعتبار المسائل التالية:
 
-- استجابات CHOKE من Java routers بسبب فيض buffer الاستقبال أكثر احتمالاً بكثير.
-- يجب تنفيذ تقدير حجم buffer المستقبِل البعيد لتخفيف الفيضانات المتكررة (انظر أعلاه)
-- يجب التعامل مع CHOKE بشكل صحيح (انظر أدناه)
-- أحجام النوافذ القصوى التي تزيد عن 256 أكثر عرضة للأخطاء، لأن طول حقل خيار عدد nack هو بايت واحد، مما يحد من الحد الأقصى لـ NACKs إلى 255. هذه المواصفة لا تتناول ما يجب فعله إذا كان هناك أكثر من 255 NACK. أحجام النوافذ القصوى التي تزيد عن 256 غير مُوصى بها.
+- One-phase connection setup using **SYN**, **ACK**, and **FIN** flags that can be bundled with payload data to reduce round-trips.
+- **Sliding-window congestion control**, with slow start and congestion avoidance tuned for I2P’s high-latency environment.
+- Packet compression (default 4KB compressed segments) balancing retransmission cost and fragmentation latency.
+- Fully **authenticated, encrypted**, and **reliable** channel abstraction between I2P destinations.
 
-الحد الأدنى المُوصى به لحجم المخزن المؤقت لتنفيذ المستقبل هو 128 حزمة أو 232 كيلوبايت (تقريباً 128 * 1812). بسبب زمن الاستجابة لشبكة I2P وفقدان الحزم والتحكم في الازدحام الناتج عن ذلك، نادراً ما يمتلئ مخزن مؤقت بهذا الحجم. ومع ذلك، فإن الفيض أكثر احتمالاً للحدوث في اتصالات "local loopback" عالية النطاق الترددي (نفس الـ router) أو في الاختبار المحلي.
+الحد الأدنى الموصى به لحجم المخزن المؤقت لتطبيقات المستقبِل هو 128 حزمة أو 232 كيلوبايت (تقريباً 128 * 1812). بسبب زمن الاستجابة في شبكة I2P وفقدان الحزم والتحكم في الازدحام الناتج عن ذلك، نادراً ما يتم ملء مخزن مؤقت بهذا الحجم. ومع ذلك، فإن الفيض أكثر احتمالاً للحدوث في اتصالات "local loopback" عالية النطاق الترددي (نفس الـ router) أو في الاختبار المحلي.
 
-للإشارة السريعة والتعافي السلس من حالات الفيض، هناك آلية بسيطة للضغط العكسي في بروتوكول البث. إذا تم استلام حزمة تحتوي على حقل تأخير اختياري بقيمة 60001 أو أعلى، فهذا يشير إلى "الخنق" أو نافذة استقبال بقيمة صفر. الحزمة التي تحتوي على حقل تأخير اختياري بقيمة 60000 أو أقل تشير إلى "إلغاء الخنق". الحزم التي لا تحتوي على حقل تأخير اختياري لا تؤثر على حالة الخنق/إلغاء الخنق.
+للإشارة السريعة والتعافي السلس من حالات الفيض، توجد آلية بسيطة للدفع العكسي في بروتوكول التدفق. إذا تم استقبال حزمة بحقل تأخير اختياري بقيمة 60001 أو أعلى، فهذا يشير إلى "الخنق" أو نافذة استقبال بقيمة صفر. الحزمة التي تحتوي على حقل تأخير اختياري بقيمة 60000 أو أقل تشير إلى "إلغاء الخنق". الحزم التي لا تحتوي على حقل تأخير اختياري لا تؤثر على حالة الخنق/إلغاء الخنق.
 
-بعد التعرض للخنق، لا ينبغي إرسال المزيد من الحزم التي تحتوي على بيانات حتى يتم إلغاء خنق المرسل، باستثناء حزم البيانات "الاستطلاعية" العرضية للتعويض عن حزم إلغاء الخنق المفقودة المحتملة. يجب على النقطة النهائية المخنوقة بدء "مؤقت الاستمرار" للتحكم في الاستطلاع، كما في TCP. يجب على النقطة النهائية التي تلغي الخنق إرسال عدة حزم مع تعيين هذا الحقل، أو الاستمرار في إرسالها بشكل دوري حتى يتم استقبال حزم البيانات مرة أخرى. الحد الأقصى لوقت الانتظار لإلغاء الخنق يعتمد على التطبيق. حجم نافذة المرسل واستراتيجية التحكم في الازدحام بعد إلغاء الخنق يعتمد على التطبيق.
+بعد التعرض للاختناق، يجب عدم إرسال المزيد من الحزم التي تحتوي على بيانات حتى يتم إلغاء اختناق المرسل، باستثناء حزم البيانات "الاستطلاعية" العرضية للتعويض عن حزم إلغاء الاختناق المحتملة المفقودة. يجب على النقطة النهائية المختنقة بدء "مؤقت الثبات" للتحكم في الاستطلاع، كما هو الحال في TCP. يجب على النقطة النهائية التي تلغي الاختناق إرسال عدة حزم مع تعيين هذا الحقل، أو الاستمرار في إرسالها بشكل دوري حتى يتم استقبال حزم البيانات مرة أخرى. الحد الأقصى لوقت انتظار إلغاء الاختناق يعتمد على التنفيذ. حجم نافذة المرسل واستراتيجية التحكم في الازدحام بعد إلغاء الاختناق يعتمد على التنفيذ.
 
-### التحكم في الازدحام {#congestion}
+### Congestion Control
 
-تستخدم مكتبة التدفق مرحلتي البدء البطيء القياسي (النمو الأسي للنافذة) وتجنب الازدحام (النمو الخطي للنافذة)، مع التراجع الأسي. النوافذ والإقرارات تستخدم عدد الحزم وليس عدد البايتات.
+تستخدم مكتبة الـ streaming الطرق المعيارية للبدء البطيء (النمو الأسي للنافذة) ومراحل تجنب الازدحام (النمو الخطي للنافذة)، مع التراجع الأسي. تستخدم النوافذ والإقرارات عدد الحزم، وليس عدد البايتات.
 
-### إغلاق {#close}
+### Latency Considerations
 
-أي حزمة، بما في ذلك تلك التي تحتوي على علامة SYNCHRONIZE، قد تحتوي أيضاً على علامة CLOSE. لا يتم إغلاق الاتصال حتى يستجيب النظير بعلامة CLOSE. قد تحتوي حزم CLOSE على بيانات أيضاً.
+أي حزمة، بما في ذلك التي تحتوي على علم SYNCHRONIZE، قد تحتوي أيضًا على علم CLOSE. لا يتم إغلاق الاتصال حتى يستجيب النظير بعلم CLOSE. قد تحتوي حزم CLOSE على بيانات أيضًا.
 
 ### Ping / Pong {#ping}
 
-لا توجد وظيفة ping في طبقة I2CP (المعادلة لـ ICMP echo) أو في datagrams. هذه الوظيفة متوفرة في streaming. لا يمكن دمج pings و pongs مع حزمة streaming عادية؛ إذا تم تعيين خيار ECHO، فسيتم تجاهل معظم العلامات والخيارات الأخرى مثل ackThrough و sequenceNum و NACKs وغيرها.
+لا توجد وظيفة ping في طبقة I2CP (مكافئة لـ ICMP echo) أو في datagrams. هذه الوظيفة متوفرة في streaming. لا يمكن دمج Pings و pongs مع حزمة streaming قياسية؛ إذا تم تعيين خيار ECHO، فإن معظم الأعلام والخيارات الأخرى و ackThrough و sequenceNum و NACKs وما إلى ذلك يتم تجاهلها.
 
-يجب أن تحتوي حزمة ping على العلامات ECHO و SIGNATURE_INCLUDED و FROM_INCLUDED مضبوطة. يجب أن يكون sendStreamId أكبر من الصفر، ويتم تجاهل receiveStreamId. قد يتطابق sendStreamId مع اتصال موجود أو لا يتطابق معه.
+يجب أن تحتوي حزمة ping على العلامات ECHO و SIGNATURE_INCLUDED و FROM_INCLUDED. يجب أن يكون sendStreamId أكبر من الصفر، ويتم تجاهل receiveStreamId. قد يتطابق sendStreamId مع اتصال موجود أو قد لا يتطابق.
 
-يجب أن تحتوي حزمة pong على تعيين علامة ECHO. يجب أن يكون sendStreamId صفراً، وreceiveStreamId هو sendStreamId من ping. قبل الإصدار 0.9.18، لا تتضمن حزمة pong أي حمولة كانت موجودة في ping.
+يجب أن تحتوي حزمة pong على علامة ECHO مُعيَّنة. يجب أن يكون sendStreamId صفراً، وreceiveStreamId هو sendStreamId من ping. قبل الإصدار 0.9.18، حزمة pong لا تتضمن أي بيانات مُحمَّلة كانت موجودة في ping.
 
-اعتباراً من الإصدار 0.9.18، قد تحتوي رسائل ping و pong على حمولة بيانات. الحمولة في رسالة ping، حتى حد أقصى 32 بايت، يتم إرجاعها في رسالة pong.
+اعتباراً من الإصدار 0.9.18، قد تحتوي pings و pongs على حمولة بيانات. الحمولة في ping، بحد أقصى 32 بايت، يتم إرجاعها في pong.
 
-يمكن تكوين Streaming لتعطيل إرسال pongs باستخدام التكوين i2p.streaming.answerPings=false.
+يمكن تكوين Streaming لتعطيل إرسال pongs مع التكوين i2p.streaming.answerPings=false.
+
+### مشاكل 0-RTT {#0rtt}
+
+كما ذُكر أعلاه، على عكس TCP، يسمح streaming بتسليم البيانات بـ 0-RTT من خلال تجميع البيانات في حزمة SYN. هذا هو التنفيذ المفضل. أيضاً، يسمح streaming بإرسال حزم بيانات إضافية (حتى حجم النافذة الأولي) بعد SYN، قبل استلام SYN-ACK. هذه الحزم ستحمل رقم تسلسل غير صفري، ولن تحتوي على علامة SYN، وستحمل sendStreamID بقيمة صفر.
+
+يجب على المستقبلات أن تصمم للتعامل مع الحزم غير المرتبة أو المفقودة أثناء المصافحة، بما في ذلك وصول حزم البيانات قبل SYN. التنفيذ المفضل هو وضع حزم غير-SYN للمعرف غير المعروف في طابور انتظار بدلاً من إسقاطها، واسترجاعها من الطابور بعد استلام SYN.
+
+في الاتجاه العكسي، الأمور متشابهة. يجب على مستقبل الاتصال (Bob) تأخير إرسال SYN-ACK (ACK DELAY) والانتظار لفترة قصيرة للحصول على البيانات من التطبيق. عند استقبال البيانات من التطبيق، ضعها (حتى الحد الأقصى لحجم الحزمة) في حزمة SYN-ACK وأرسلها. قد يتم أيضاً إرسال حزم بيانات إضافية، حتى حجم النافذة الأولي، دون انتظار ACK للـ SYN-ACK.
+
+يجب على المُرسِل الأصلي تخزين أي حزم بيانات مستلمة قبل SYN-ACK مؤقتاً، بنفس طريقة التعامل مع الحزم غير المرتبة بعد اكتمال المصافحة.
+
+### اختبار مكتبات التدفق {#testing}
+
+للمطورين الذين يختبرون مكتبات البث الجديدة أو المُحدثة، يوفر Java I2P أداة اختبار محلية بسيطة لاختبار قابل للتكرار لظروف الشبكة الحقيقية، بما في ذلك زمن الاستجابة وفقدان الحزم وتذبذب التأخير. إنها عبارة عن stub صغير يطبق فقط خادم I2CP للاتصالات المحلية.
+
+يجب على المطورين إجراء الاختبارات مع مجموعة واسعة من المعاملات النموذجية، بما في ذلك زمن الاستجابة من 10 مللي ثانية إلى 15 ثانية على الأقل، وفقدان الحزم من 0 إلى 10%. إضافة التذبذب يجعل من السهل اختبار التعامل مع الحزم غير المرتبة.
+
+هذا أيضاً إعداد جيد لاختبار تجاوز المخزن المؤقت (CHOKE/UNCHOKE) عن طريق تعليق إحدى التطبيقين يدوياً.
+
+من حزمة المصدر i2p.i2p:
+
+- `I2PSocketManagerFactory` negotiates or reuses a router session via I2CP.  
+- If no key is provided, a new destination is automatically generated.  
+- Developers can pass I2CP options (e.g., tunnel lengths, encryption types, or connection settings) through the `options` map.  
+- `I2PSocket` and `I2PServerSocket` mirror standard Java `Socket` interfaces, making migration straightforward.
 
 ### ملاحظات i2p.streaming.profile {#profile}
 
-يدعم هذا الخيار قيمتين؛ 1=bulk و 2=interactive. يوفر الخيار تلميحاً لمكتبة التدفق و/أو الـ router حول نمط حركة البيانات المتوقع.
+يدعم هذا الخيار قيمتين؛ 1=bulk و 2=interactive. يوفر الخيار تلميحاً لمكتبة التدفق و/أو router حول نمط حركة البيانات المتوقع.
 
-"Bulk" يعني التحسين لعرض النطاق الترددي العالي، ربما على حساب زمن الاستجابة. هذا هو الإعداد الافتراضي. "Interactive" يعني التحسين لزمن استجابة منخفض، ربما على حساب عرض النطاق الترددي أو الكفاءة. استراتيجيات التحسين، إن وجدت، تعتمد على التنفيذ، وقد تشمل تغييرات خارج بروتوكول التدفق.
+"Bulk" يعني التحسين من أجل عرض نطاق ترددي عالي، ربما على حساب زمن الاستجابة. هذا هو الإعداد الافتراضي. "Interactive" يعني التحسين من أجل زمن استجابة منخفض، ربما على حساب عرض النطاق الترددي أو الكفاءة. استراتيجيات التحسين، إن وجدت، تعتمد على التنفيذ، وقد تشمل تغييرات خارج بروتوكول البث المتدفق.
 
-حتى إصدار API 0.9.63، كان Java I2P يُرجع خطأ لأي قيمة غير 1 (bulk) وكان tunnel يفشل في البدء. اعتباراً من API 0.9.64، يتجاهل Java I2P القيمة. حتى إصدار API 0.9.63، كان i2pd يتجاهل هذا الخيار؛ تم تنفيذه في i2pd اعتباراً من API 0.9.64.
+حتى إصدار API 0.9.63، كان Java I2P يُرجع خطأ لأي قيمة غير 1 (bulk) وكان tunnel يفشل في البدء. اعتباراً من API 0.9.64، Java I2P يتجاهل القيمة. حتى إصدار API 0.9.63، كان i2pd يتجاهل هذا الخيار؛ تم تنفيذه في i2pd اعتباراً من API 0.9.64.
 
-بينما يتضمن بروتوكول التدفق حقل علم لتمرير إعداد الملف الشخصي إلى الطرف الآخر، إلا أن هذا غير مُنفَّذ في أي router معروف.
+بينما يتضمن بروتوكول التدفق حقل علامة لتمرير إعداد الملف الشخصي إلى الطرف الآخر، إلا أن هذا غير مطبق في أي router معروف.
 
-### مشاركة كتلة التحكم {#sharing}
+### مشاركة Control Block {#sharing}
 
-تدعم مكتبة التدفق مشاركة "TCP" Control Block. هذا يشارك ثلاثة معاملات مهمة لمكتبة التدفق (حجم النافذة، وقت الرحلة ذهاباً وإياباً، تباين وقت الرحلة ذهاباً وإياباً) عبر الاتصالات مع نفس النظير البعيد. يتم استخدام هذا للمشاركة "الزمنية" في وقت فتح/إغلاق الاتصال، وليس المشاركة "الجماعية" أثناء الاتصال (انظر [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). هناك مشاركة منفصلة لكل ConnectionManager (أي لكل وجهة محلية) بحيث لا يحدث تسرب للمعلومات إلى وجهات أخرى على نفس router. تنتهي صلاحية بيانات المشاركة لنظير معين بعد بضع دقائق. يمكن تعيين معاملات مشاركة Control Block التالية لكل router:
+تدعم مكتبة streaming مشاركة "TCP" Control Block. هذا يشارك ثلاثة معاملات مهمة في مكتبة streaming (حجم النافذة، وقت الرحلة الدائرية، تباين وقت الرحلة الدائرية) عبر الاتصالات إلى نفس النظير البعيد. يُستخدم هذا للمشاركة "الزمنية" في وقت فتح/إغلاق الاتصال، وليس المشاركة "الجماعية" أثناء الاتصال (انظر [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). هناك مشاركة منفصلة لكل ConnectionManager (أي لكل Destination محلي) بحيث لا يحدث تسرب معلومات إلى Destinations أخرى على نفس router. تنتهي صلاحية بيانات المشاركة لنظير معين بعد بضع دقائق. يمكن تعيين معاملات Control Block Sharing التالية لكل router:
 
-- RTT_DAMPENING = 0.75
-- RTTDEV_DAMPENING = 0.75
-- WINDOW_DAMPENING = 0.75
+1. **SYN sent** — initiator includes optional data.  
+2. **SYN/ACK response** — responder includes optional data.  
+3. **ACK finalization** — establishes reliability and session state.  
+4. **FIN/RESET** — used for orderly closure or abrupt termination.
 
-### معاملات أخرى {#other}
+### المعاملات الأخرى {#other}
 
 المعاملات التالية هي القيم الافتراضية الموصى بها. قد تختلف القيم الافتراضية حسب التنفيذ:
 
-- MIN_RESEND_DELAY = 100 ms (أدنى RTO)
-- MAX_RESEND_DELAY = 45 sec (أقصى RTO)
-- MIN_WINDOW_SIZE = 1
-- MAX_WINDOW_SIZE = 128
-- TREND_COUNT = 3
-- MIN_MESSAGE_SIZE = 512 (أدنى MTU)
-- INBOUND_BUFFER_SIZE = maxMessageSize * (maxWindowSize + 2)
-- INITIAL_TIMEOUT (صالح فقط قبل أخذ عينة RTT) = 9 sec
-- "alpha" (عامل التخميد RTT حسب RFC 6298) = 0.125
-- "beta" (عامل التخميد RTTDEV حسب RFC 6298) = 0.25
-- "K" (مضاعف RTDEV حسب RFC 6298) = 4
-- PASSIVE_FLUSH_DELAY = 175 ms
-- أقصى تقدير RTT: 60 sec
+- The streaming layer continuously adapts to network latency and throughput via RTT-based feedback.  
+- Applications perform best when routers are contributing peers (participating tunnels enabled).  
+- TCP-like congestion control mechanisms prevent overloading slow peers and help balance bandwidth use across tunnels.
 
 ### التاريخ {#history}
 
-نمت مكتبة streaming بشكل عضوي لـ I2P - أولاً قام mihi بتنفيذ "مكتبة streaming المصغرة" كجزء من I2PTunnel، والتي كانت محدودة بحجم نافذة من رسالة واحدة (تتطلب ACK قبل إرسال الرسالة التالية)، ثم تم إعادة هيكلتها إلى واجهة streaming عامة (تحاكي TCP sockets) وتم نشر تنفيذ streaming الكامل مع بروتوكول النافذة المنزلقة والتحسينات لأخذ منتج عرض النطاق الترددي العالي x التأخير في الاعتبار. يمكن للتدفقات الفردية تعديل الحد الأقصى لحجم الحزمة والخيارات الأخرى. يتم اختيار حجم الرسالة الافتراضي ليناسب بدقة رسالتين من رسائل I2NP tunnel بحجم 1K، وهو مقايضة معقولة بين تكاليف عرض النطاق الترددي لإعادة إرسال الرسائل المفقودة، وزمن الاستجابة والنفقات العامة للرسائل المتعددة.
+نمت مكتبة streaming بشكل طبيعي لـ I2P - أولاً قام mihi بتطوير "mini streaming library" كجزء من I2PTunnel، والتي كانت محدودة بحجم نافذة من رسالة واحدة (تتطلب ACK قبل إرسال التالية)، ثم تم إعادة هيكلتها إلى واجهة streaming عامة (تحاكي TCP sockets) وتم نشر تطبيق streaming الكامل مع بروتوكول نافذة متحركة وتحسينات لأخذ ناتج النطاق الترددي العالي × التأخير بعين الاعتبار. قد تقوم التدفقات الفردية بتعديل الحد الأقصى لحجم الحزمة والخيارات الأخرى. حجم الرسالة الافتراضي محدد ليناسب بدقة رسالتين من I2NP tunnel بحجم 1K، وهو مقايضة معقولة بين تكاليف النطاق الترددي لإعادة إرسال الرسائل المفقودة، وزمن الاستجابة والحمولة الإضافية للرسائل المتعددة.
 
-## العمل المستقبلي {#future}
+## Interoperability and Best Practices
 
-يؤثر سلوك مكتبة التدفق (streaming library) بشكل عميق على الأداء على مستوى التطبيق، وبالتالي فهي مجال مهم للتحليل الإضافي.
+سلوك مكتبة streaming له تأثير عميق على الأداء على مستوى التطبيق، وبالتالي، فهو مجال مهم لمزيد من التحليل.
 
-- قد يكون من الضروري إجراء ضبط إضافي لمعاملات مكتبة streaming lib.
-- مجال آخر للبحث هو تفاعل مكتبة streaming lib مع طبقات النقل NTCP و SSU. راجع [صفحة مناقشة NTCP](/docs/historical/ntcp-discussion) للتفاصيل.
-- تفاعل خوارزميات التوجيه مع مكتبة streaming lib يؤثر بقوة على الأداء. على وجه الخصوص، التوزيع العشوائي للرسائل إلى عدة tunnels في مجموعة واحدة يؤدي إلى درجة عالية من التسليم غير المرتب مما ينتج عنه أحجام نوافذ أصغر مما سيكون عليه الحال في غير ذلك. يقوم الـ router حالياً بتوجيه الرسائل لزوج وجهة واحد من/إلى عبر مجموعة ثابتة من tunnels، حتى انتهاء صلاحية tunnel أو فشل التسليم. يجب مراجعة خوارزميات فشل الـ router واختيار tunnel للتحسينات المحتملة.
-- قد تتجاوز البيانات في أول حزمة SYN حجم MTU الخاص بالمستقبل.
-- يمكن استخدام حقل DELAY_REQUESTED أكثر.
-- حزم SYNCHRONIZE الأولية المكررة في streams قصيرة المدى قد لا يتم التعرف عليها وإزالتها.
-- لا ترسل MTU في إعادة الإرسال.
-- يتم إرسال البيانات إلا إذا كانت النافذة الصادرة ممتلئة. (أي no-Nagle أو TCP_NODELAY) ربما يجب أن يكون هناك خيار تكوين لهذا.
-- أضاف zzz كود تصحيح أخطاء إلى مكتبة streaming لتسجيل الحزم بتنسيق متوافق مع wireshark (pcap)؛ استخدم هذا لتحليل الأداء أكثر. قد يتطلب التنسيق تحسيناً لربط المزيد من معاملات streaming lib بحقول TCP.
-- هناك مقترحات لاستبدال مكتبة streaming lib بـ TCP قياسي (أو ربما طبقة فارغة مع raw sockets). هذا للأسف سيكون غير متوافق مع مكتبة streaming lib ولكن سيكون من الجيد مقارنة أداء الاثنين.
+- Always test against both **Java I2P** and **i2pd** to ensure full compatibility.  
+- Although the protocol is standardized, minor implementation differences may exist.  
+- Handle older routers gracefully—many peers still run pre-2.0 versions.  
+- Monitor connection stats using `I2PSocket.getOptions()` and `getSession()` to read RTT and retransmission metrics.

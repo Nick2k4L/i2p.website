@@ -1,38 +1,38 @@
 ---
-title: "Giao thức Streaming"
-description: "Giao thức vận chuyển giống TCP được sử dụng bởi hầu hết các ứng dụng I2P"
+title: "Streaming Protocol"
+description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
-lastUpdated: "2025-07"
-accurateFor: "0.9.67"
+lastUpdated: "2026-01"
+accurateFor: "0.9.68"
 ---
 
-## Tổng quan {#overview}
+## Overview
 
-Thư viện streaming về mặt kỹ thuật là một phần của tầng "ứng dụng", vì nó không phải là chức năng cốt lõi của router. Tuy nhiên, trong thực tế, nó cung cấp một chức năng quan trọng cho hầu hết tất cả các ứng dụng I2P hiện có, bằng cách cung cấp các luồng giống TCP qua I2P, và cho phép các ứng dụng hiện có được chuyển đổi dễ dàng sang I2P. Thư viện truyền tải end-to-end khác cho giao tiếp máy khách là [thư viện datagram](/docs/specs/datagrams).
+The **I2P Streaming Library** provides reliable, in-order, authenticated transport over I2P’s message layer, similar to **TCP over IP**.   It sits above the [I2CP protocol](/docs/specs/i2cp/) and is used by nearly all interactive I2P applications, including HTTP proxies, IRC, BitTorrent, and email.
 
-Thư viện streaming là một lớp nằm trên [I2CP API](/docs/specs/i2cp) cốt lõi, cho phép các luồng tin nhắn đáng tin cậy, theo thứ tự và được xác thực hoạt động trên một lớp tin nhắn không đáng tin cậy, không theo thứ tự và không được xác thực. Giống như mối quan hệ giữa TCP và IP, chức năng streaming này có một loạt các đánh đổi và tối ưu hóa có sẵn, nhưng thay vì nhúng chức năng đó vào mã I2P cơ bản, nó đã được tách ra thành một thư viện riêng biệt để giữ cho các phức tạp giống TCP tách biệt và để cho phép các triển khai tối ưu hóa thay thế.
+This design enables small HTTP requests and responses to complete in a single round-trip.   A SYN packet may carry the request payload, while the responder’s SYN/ACK/FIN may contain the full response body.
 
-Xem xét chi phí tương đối cao của các thông điệp, giao thức của thư viện streaming cho việc lập lịch và gửi các thông điệp đó đã được tối ưu hóa để cho phép các thông điệp riêng lẻ được truyền chứa càng nhiều thông tin có sẵn càng tốt. Ví dụ, một giao dịch HTTP nhỏ được ủy quyền thông qua thư viện streaming có thể được hoàn thành trong một lần gửi-nhận duy nhất - các thông điệp đầu tiên gộp SYN, FIN và payload yêu cầu HTTP nhỏ, và phản hồi gộp SYN, FIN, ACK và payload phản hồi HTTP. Trong khi một ACK bổ sung phải được truyền để thông báo cho máy chủ HTTP rằng SYN/FIN/ACK đã được nhận, proxy HTTP cục bộ thường có thể gửi phản hồi đầy đủ đến trình duyệt ngay lập tức.
+---
 
-Thư viện streaming có nhiều điểm tương đồng với một sự trừu tượng hóa của TCP, với các cửa sổ trượt, thuật toán kiểm soát tắc nghẽn (cả slow start và congestion avoidance), và hành vi gói tin chung (ACK, SYN, FIN, RST, tính toán rto, v.v.).
+The Java streaming API mirrors standard Java socket programming:
 
-Thư viện streaming là một thư viện mạnh mẽ được tối ưu hóa để hoạt động trên I2P. Nó có thiết lập một giai đoạn và chứa một triển khai windowing đầy đủ.
+Full Javadocs are available from the I2P router console or [here](/docs/specs/streaming/).
 
-## API {#api}
+## API Basics
 
-API thư viện streaming cung cấp mô hình socket tiêu chuẩn cho các ứng dụng Java. API [I2CP](/docs/specs/i2cp) cấp thấp hơn được ẩn hoàn toàn, ngoại trừ việc các ứng dụng có thể truyền [tham số I2CP](/docs/specs/i2cp#options) thông qua thư viện streaming để được I2CP diễn giải.
+---
 
-Giao diện tiêu chuẩn cho thư viện streaming là ứng dụng sử dụng I2PSocketManagerFactory để tạo ra I2PSocketManager. Sau đó ứng dụng yêu cầu socket manager cung cấp một I2PSession, điều này sẽ tạo ra kết nối tới router thông qua [I2CP](/docs/specs/i2cp). Ứng dụng sau đó có thể thiết lập kết nối bằng I2PSocket hoặc nhận kết nối bằng I2PServerSocket.
+You can pass configuration properties when creating a socket manager via:
 
-Để xem ví dụ sử dụng tốt, hãy tham khảo mã nguồn i2psnark.
+Newer features since version 0.9.4 include reject log suppression, DSA list support (0.9.21), and mandatory protocol enforcement (0.9.36).   Routers since 2.10.0 include post-quantum hybrid encryption (ML-KEM + X25519) at the transport layer.
 
-### Các tùy chọn và giá trị mặc định {#options}
+### Core Characteristics
 
-Các tùy chọn và giá trị mặc định hiện tại được liệt kê dưới đây. Các tùy chọn phân biệt chữ hoa chữ thường và có thể được thiết lập cho toàn bộ router, cho một client cụ thể, hoặc cho một socket riêng lẻ trên cơ sở từng kết nối. Nhiều giá trị được điều chỉnh cho hiệu suất HTTP trong điều kiện I2P điển hình. Các ứng dụng khác như các dịch vụ peer-to-peer được khuyến khích mạnh mẽ sửa đổi khi cần thiết, bằng cách thiết lập các tùy chọn và truyền chúng qua cuộc gọi đến I2PSocketManagerFactory.createManager(_i2cpHost, _i2cpPort, opts). Giá trị thời gian tính bằng ms.
+---
 
-Lưu ý rằng các API tầng cao hơn, chẳng hạn như [SAM](/docs/api/samv3), [BOB](/docs/legacy/bob), và [I2PTunnel](/docs/api/i2ptunnel), có thể ghi đè các giá trị mặc định này bằng các giá trị mặc định riêng của chúng. Cũng lưu ý rằng nhiều tùy chọn chỉ áp dụng cho các server đang lắng nghe kết nối đến.
+Each stream is identified by a **Stream ID**. Packets carry control flags similar to TCP: `SYNCHRONIZE`, `ACK`, `FIN`, and `RESET`.   Packets may contain both data and control flags simultaneously, improving efficiency for short-lived connections.
 
-Kể từ phiên bản 0.9.1, hầu hết các tùy chọn, nhưng không phải tất cả, có thể được thay đổi trên socket manager hoặc session đang hoạt động. Xem javadocs để biết chi tiết.
+Because I2P tunnels introduce latency and message reordering, the library buffers packets from unknown or early-arriving streams.   Buffered messages are stored until synchronization completes, ensuring complete, in-order delivery.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -235,128 +235,138 @@ Kể từ phiên bản 0.9.1, hầu hết các tùy chọn, nhưng không phải
     </tr>
   </tbody>
 </table>
-## Đặc tả Giao thức {#spec}
+## Configuration and Tuning
 
-[Xem trang Đặc tả Thư viện Streaming.](/docs/specs/streaming)
+The option `i2p.streaming.enforceProtocol=true` (default since 0.9.36) ensures connections use the correct I2CP protocol number, preventing conflicts between multiple subsystems sharing one destination.
 
-## Chi Tiết Triển Khai {#implementation}
+## Protocol Details
 
-### Thiết lập {#setup}
+### Key Options
 
-Bên khởi tạo gửi một gói tin với cờ SYNCHRONIZE được thiết lập. Gói tin này cũng có thể chứa dữ liệu ban đầu. Bên đồng cấp trả lời bằng một gói tin với cờ SYNCHRONIZE được thiết lập. Gói tin này cũng có thể chứa dữ liệu phản hồi ban đầu.
+---
 
-Bên khởi tạo có thể gửi thêm các gói dữ liệu, lên đến kích thước cửa sổ ban đầu, trước khi nhận được phản hồi SYNCHRONIZE. Những gói tin này cũng sẽ có trường send Stream ID được đặt thành 0. Bên nhận phải đệm các gói tin nhận được trên các stream chưa biết trong một khoảng thời gian ngắn, vì chúng có thể đến không theo thứ tự, trước gói tin SYNCHRONIZE.
+The streaming protocol coexists with the **Datagram API**, giving developers the choice between connection-oriented and connectionless transports.
 
-### Lựa chọn và Thương lượng MTU {#mtu}
+### Behavior by Workload
 
-Kích thước thông điệp tối đa (còn gọi là MTU / MRU) được thương lượng theo giá trị thấp hơn được hỗ trợ bởi hai peer. Vì các thông điệp tunnel được đệm lên 1KB, việc chọn MTU kém sẽ dẫn đến một lượng lớn overhead. MTU được chỉ định bởi tùy chọn i2p.streaming.maxMessageSize. MTU mặc định hiện tại là 1730 được chọn để vừa chính xác vào hai thông điệp I2NP tunnel 1K, bao gồm overhead cho trường hợp điển hình.
+Applications can reuse existing tunnels by running as **shared clients**, allowing multiple services to share the same destination.   While this reduces overhead, it increases cross-service correlation risk—use with care.
 
-Lưu ý: Đây là kích thước tối đa của payload (dữ liệu tải trọng) chỉ bao gồm phần dữ liệu, không bao gồm header.
+Because I2P adds several hundred milliseconds of base latency, applications should minimize round-trips.   Bundle data with connection setup where possible (e.g., HTTP requests in SYN).   Avoid designs relying on many small sequential exchanges.
 
-Lưu ý: Đối với các kết nối ECIES, có overhead giảm, MTU được khuyến nghị là 1812. MTU mặc định vẫn là 1730 cho tất cả các kết nối, bất kể loại key nào được sử dụng. Client phải sử dụng giá trị nhỏ nhất của MTU được gửi và nhận, như thường lệ. Xem proposal 155.
+---
 
-Tin nhắn đầu tiên trong một kết nối bao gồm một Destination 387 byte (điển hình) được thêm bởi streaming layer, và thường là một LeaseSet 898 byte (điển hình), cùng với Session keys, được đóng gói trong tin nhắn Garlic bởi router. (LeaseSet và Session Keys sẽ không được đóng gói nếu một ElGamal Session đã được thiết lập trước đó). Do đó, mục tiêu đưa một HTTP request hoàn chỉnh vào một tin nhắn I2NP 1KB duy nhất không phải lúc nào cũng đạt được. Tuy nhiên, việc lựa chọn MTU, cùng với việc triển khai cẩn thận các chiến lược phân mảnh và gộp lô trong tunnel gateway processor, là những yếu tố quan trọng trong băng thông mạng, độ trễ, độ tin cậy và hiệu quả, đặc biệt đối với các kết nối tồn tại lâu dài.
+Performance depends heavily on tunnel configuration:   - **Short tunnels (1–2 hops)** → lower latency, reduced anonymity.   - **Long tunnels (3+ hops)** → higher anonymity, increased RTT.
 
-### Tính toàn vẹn dữ liệu {#integrity}
+### Connection Lifecycle
 
-Tính toàn vẹn dữ liệu được đảm bảo bởi checksum gzip CRC-32 được triển khai trong [lớp I2CP](/docs/specs/i2cp#format). Không có trường checksum trong giao thức streaming.
+---
 
-### Đóng gói Gói tin {#encapsulation}
+### Fragmentation and Reordering
 
-Mỗi gói tin được gửi qua I2P dưới dạng một tin nhắn đơn lẻ (hoặc như một clove riêng lẻ trong [Garlic Message](/docs/overview/garlic-routing)). Việc đóng gói tin nhắn được thực hiện trong các lớp [I2CP](/docs/specs/i2cp), [I2NP](/docs/specs/i2np), và [tunnel message](/docs/specs/tunnel-message) bên dưới. Không có cơ chế phân định gói tin hoặc trường độ dài payload trong giao thức streaming.
+---
 
-### Độ trễ tùy chọn {#delay}
+### Protocol Enforcement
 
-Các gói dữ liệu có thể bao gồm một trường delay tùy chọn chỉ định độ trễ được yêu cầu, tính bằng ms, trước khi bên nhận phải ack gói tin. Các giá trị hợp lệ là từ 0 đến 60000 (bao gồm). Giá trị 0 yêu cầu ack ngay lập tức. Đây chỉ là khuyến nghị, và các bên nhận nên trễ một chút để có thể ack nhiều gói tin khác bằng một ack duy nhất. Một số triển khai có thể bao gồm giá trị khuyến nghị (RTT đo được / 2) trong trường này. Đối với các giá trị delay tùy chọn khác không, các bên nhận nên giới hạn độ trễ tối đa trước khi gửi ack tối đa vài giây. Các giá trị delay tùy chọn lớn hơn 60000 chỉ ra tình trạng nghẹt, xem bên dưới.
+The **I2P Streaming Library** is the backbone of all reliable communication within I2P.   It ensures in-order, authenticated, encrypted message delivery and provides a near drop-in replacement for TCP in anonymous environments.
 
-### Cửa sổ Truyền/Nhận và Chặn {#windows}
+### Shared Clients
 
-Các header TCP bao gồm cửa sổ nhận theo byte; tuy nhiên, giao thức streaming không cung cấp cách thức để trao đổi kích thước cửa sổ nhận tối đa theo byte hoặc gói tin. Chỉ có một chỉ báo choke/unchoke đơn giản cho biết rằng bộ đệm nhận đã đầy. Mỗi điểm cuối phải duy trì ước tính riêng về cửa sổ nhận của đầu xa, theo byte hoặc gói tin. Lưu ý rằng bộ đệm nhận có thể bị tràn ở bất kỳ kích thước cửa sổ nào nếu ứng dụng client chậm trong việc làm trống bộ đệm.
+To achieve optimal performance: - Minimize round-trips with SYN+payload bundling.   - Tune window and timeout parameters for your workload.   - Favor shorter tunnels for latency-sensitive applications.   - Use congestion-friendly designs to avoid overloading peers.
 
-Kích thước cửa sổ truyền và nhận tối đa mặc định trong triển khai Java là 128 gói tin. Các triển khai thiết lập kích thước cửa sổ truyền tối đa cao hơn 128 phải xem xét các vấn đề sau:
+Kích thước cửa sổ truyền và nhận tối đa mặc định trong triển khai Java là 128 gói tin. Các triển khai đặt kích thước cửa sổ truyền tối đa cao hơn 128 phải xem xét các vấn đề sau:
 
-- Các phản hồi CHOKE từ Java router do tràn bộ đệm nhận có khả năng xảy ra cao hơn nhiều.
-- Việc ước tính kích thước bộ đệm nhận ở đầu xa phải được triển khai để giảm thiểu tình trạng tràn lặp lại (xem phía trên)
-- CHOKE phải được xử lý một cách chính xác (xem phía dưới)
-- Kích thước cửa sổ tối đa trên 256 thậm chí còn dễ xảy ra lỗi hơn, vì độ dài trường tùy chọn đếm nack là một byte, giới hạn số NACK tối đa là 255. Đặc tả này không đề cập đến việc phải làm gì nếu có hơn 255 NACK. Kích thước cửa sổ tối đa trên 256 không được khuyến nghị.
+- One-phase connection setup using **SYN**, **ACK**, and **FIN** flags that can be bundled with payload data to reduce round-trips.
+- **Sliding-window congestion control**, with slow start and congestion avoidance tuned for I2P’s high-latency environment.
+- Packet compression (default 4KB compressed segments) balancing retransmission cost and fragmentation latency.
+- Fully **authenticated, encrypted**, and **reliable** channel abstraction between I2P destinations.
 
-Kích thước buffer tối thiểu được khuyến nghị cho các triển khai receiver là 128 packet hoặc 232 KB (xấp xỉ 128 * 1812). Do độ trễ mạng I2P, packet bị mất, và việc kiểm soát tắc nghẽn kết quả, buffer có kích thước này hiếm khi bị đầy. Tuy nhiên, tình trạng tràn buffer có khả năng xảy ra cao hơn nhiều trên các kết nối băng thông rộng "local loopback" (cùng router) hoặc trong quá trình thử nghiệm cục bộ.
+Kích thước buffer tối thiểu được khuyến nghị cho các triển khai receiver là 128 packets hoặc 232 KB (khoảng 128 * 1812). Do độ trễ mạng I2P, packet drops, và kiểm soát tắc nghẽn kết quả, buffer có kích thước này hiếm khi bị đầy. Tuy nhiên, tràn buffer có khả năng xảy ra cao hơn nhiều trên các kết nối "local loopback" băng thông cao (cùng router) hoặc trong kiểm thử cục bộ.
 
-Để nhanh chóng báo hiệu và phục hồi mượt mà từ các tình trạng tràn bộ đệm, có một cơ chế đơn giản cho pushback trong giao thức streaming. Nếu một gói tin được nhận với trường delay tùy chọn có giá trị 60001 hoặc cao hơn, điều đó cho biết trạng thái "choking" hoặc cửa sổ nhận bằng không. Một gói tin với trường delay tùy chọn có giá trị 60000 hoặc thấp hơn cho biết trạng thái "unchoking". Các gói tin không có trường delay tùy chọn không ảnh hưởng đến trạng thái choke/unchoke.
+Để nhanh chóng báo hiệu và phục hồi mượt mà từ các tình trạng tràn bộ đệm, có một cơ chế đơn giản để đẩy ngược trong giao thức streaming. Nếu một gói tin được nhận với trường delay tùy chọn có giá trị 60001 hoặc cao hơn, điều đó cho biết trạng thái "choking" hoặc cửa sổ nhận bằng không. Một gói tin với trường delay tùy chọn có giá trị 60000 hoặc thấp hơn cho biết trạng thái "unchoking". Các gói tin không có trường delay tùy chọn sẽ không ảnh hưởng đến trạng thái choke/unchoke.
 
-Sau khi bị chặn (choked), không nên gửi thêm gói tin nào có dữ liệu cho đến khi thiết bị truyền được bỏ chặn (unchoked), ngoại trừ các gói tin dữ liệu "thăm dò" (probe) thỉnh thoảng để bù đắp cho các gói tin bỏ chặn có thể bị mất. Điểm cuối bị chặn nên khởi động "bộ đếm thời gian kiên trì" để kiểm soát việc thăm dò, như trong TCP. Điểm cuối bỏ chặn nên gửi một số gói tin với trường này được đặt, hoặc tiếp tục gửi chúng định kỳ cho đến khi nhận được gói tin dữ liệu trở lại. Thời gian tối đa để chờ bỏ chặn phụ thuộc vào cách triển khai. Kích thước cửa sổ truyền và chiến lược kiểm soát tắc nghẽn sau khi được bỏ chặn phụ thuộc vào cách triển khai.
+Sau khi bị choke, không nên gửi thêm gói tin nào có dữ liệu cho đến khi transmitter được unchoke, ngoại trừ các gói tin dữ liệu "thăm dò" thỉnh thoảng để bù đắp cho các gói tin unchoke có thể bị mất. Endpoint bị choke nên bắt đầu một "persist timer" để kiểm soát việc thăm dò, như trong TCP. Endpoint thực hiện unchoke nên gửi một số gói tin với trường này được thiết lập, hoặc tiếp tục gửi chúng định kỳ cho đến khi nhận được gói tin dữ liệu trở lại. Thời gian tối đa để chờ unchoke phụ thuộc vào implementation. Kích thước cửa sổ transmitter và chiến lược kiểm soát tắc nghẽn sau khi được unchoke phụ thuộc vào implementation.
 
-### Kiểm Soát Tắc Nghẽn {#congestion}
+### Congestion Control
 
-Thư viện streaming sử dụng các pha slow-start tiêu chuẩn (tăng trưởng cửa sổ theo cấp số nhân) và tránh tắc nghẽn (tăng trưởng cửa sổ tuyến tính), với exponential backoff. Windowing và acknowledgments sử dụng số lượng gói tin, không phải số lượng byte.
+Thư viện streaming sử dụng các giai đoạn slow-start chuẩn (tăng trưởng cửa sổ theo cấp số nhân) và tránh tắc nghẽn (tăng trưởng cửa sổ tuyến tính), với exponential backoff. Windowing và acknowledgments sử dụng số lượng gói tin, không phải số byte.
 
-### Đóng {#close}
+### Latency Considerations
 
-Bất kỳ gói tin nào, bao gồm cả gói tin có thiết lập cờ SYNCHRONIZE, cũng có thể được gửi kèm với cờ CLOSE. Kết nối sẽ không được đóng cho đến khi peer phản hồi với cờ CLOSE. Các gói tin CLOSE cũng có thể chứa dữ liệu.
+Bất kỳ gói tin nào, bao gồm cả gói tin có cờ SYNCHRONIZE được đặt, cũng có thể được gửi kèm với cờ CLOSE. Kết nối sẽ không được đóng cho đến khi peer phản hồi với cờ CLOSE. Các gói tin CLOSE cũng có thể chứa dữ liệu.
 
 ### Ping / Pong {#ping}
 
-Không có chức năng ping ở lớp I2CP (tương đương với ICMP echo) hay trong datagram. Chức năng này được cung cấp trong streaming. Ping và pong không thể kết hợp với gói streaming tiêu chuẩn; nếu tùy chọn ECHO được thiết lập, thì hầu hết các cờ, tùy chọn, ackThrough, sequenceNum, NACK khác sẽ bị bỏ qua.
+Không có chức năng ping tại lớp I2CP (tương đương với ICMP echo) hoặc trong datagram. Chức năng này được cung cấp trong streaming. Ping và pong không thể kết hợp với gói streaming tiêu chuẩn; nếu tùy chọn ECHO được thiết lập, thì hầu hết các cờ, tùy chọn, ackThrough, sequenceNum, NACK khác, v.v. sẽ bị bỏ qua.
 
-Một gói ping phải có các cờ ECHO, SIGNATURE_INCLUDED, và FROM_INCLUDED được thiết lập. sendStreamId phải lớn hơn không, và receiveStreamId bị bỏ qua. sendStreamId có thể tương ứng hoặc không tương ứng với một kết nối hiện có.
+Gói ping phải có các cờ ECHO, SIGNATURE_INCLUDED, và FROM_INCLUDED được thiết lập. sendStreamId phải lớn hơn không, và receiveStreamId sẽ được bỏ qua. sendStreamId có thể hoặc không tương ứng với một kết nối đang tồn tại.
 
-Một gói pong phải có cờ ECHO được thiết lập. Giá trị sendStreamId phải bằng không, và receiveStreamId chính là sendStreamId từ gói ping. Trước phiên bản 0.9.18, gói pong không bao gồm bất kỳ payload nào có trong gói ping.
+Một gói pong phải có cờ ECHO được thiết lập. sendStreamId phải bằng không, và receiveStreamId là sendStreamId từ ping. Trước phiên bản 0.9.18, gói pong không bao gồm bất kỳ payload nào có trong ping.
 
-Từ phiên bản 0.9.18, các ping và pong có thể chứa payload. Payload trong ping, tối đa 32 byte, sẽ được trả về trong pong.
+Từ phiên bản phát hành 0.9.18, các ping và pong có thể chứa payload. Payload trong ping, tối đa 32 byte, sẽ được trả về trong pong.
 
-Streaming có thể được cấu hình để vô hiệu hóa việc gửi pong bằng cách đặt i2p.streaming.answerPings=false.
+Streaming có thể được cấu hình để vô hiệu hóa việc gửi pong bằng cách thiết lập i2p.streaming.answerPings=false.
+
+### Các Vấn Đề 0-RTT {#0rtt}
+
+Như đã lưu ý ở trên, không giống như TCP, streaming cho phép truyền dữ liệu 0-RTT bằng cách gộp dữ liệu vào gói SYN. Đây là cách triển khai được ưu tiên. NGOÀI RA, streaming cho phép các gói dữ liệu bổ sung (tối đa bằng kích thước cửa sổ ban đầu) được gửi sau SYN, trước khi nhận được SYN-ACK. Những gói này sẽ có số thứ tự khác không, sẽ không có cờ SYN được đặt, và sẽ có sendStreamID bằng không.
+
+Các bên nhận nên thiết kế để xử lý các gói tin bị lộn xộn thứ tự hoặc bị mất trong quá trình handshake, bao gồm việc các gói tin dữ liệu đến trước gói SYN. Cách triển khai được khuyên dùng là xếp hàng đợi, không loại bỏ, các gói tin không phải SYN cho một ID không xác định, và lấy chúng từ hàng đợi sau khi nhận được gói SYN.
+
+Theo chiều ngược lại, mọi thứ cũng tương tự. Người nhận kết nối (Bob) nên trì hoãn việc gửi SYN-ACK (ACK DELAY) và đợi một khoảng thời gian ngắn để nhận dữ liệu từ ứng dụng. Khi nhận được dữ liệu từ ứng dụng, đặt nó (tối đa là kích thước gói tin tối đa) vào gói tin SYN-ACK và gửi đi. Các gói tin dữ liệu bổ sung, tối đa đến kích thước cửa sổ ban đầu, cũng có thể được gửi mà không cần đợi ACK của SYN-ACK.
+
+Bên khởi tạo nên đệm các gói dữ liệu nhận được trước SYN-ACK, tương tự như việc xử lý không theo thứ tự sau khi quá trình bắt tay hoàn tất.
+
+### Kiểm thử Thư viện Streaming {#testing}
+
+Đối với các nhà phát triển đang thử nghiệm các thư viện streaming mới hoặc đã thay đổi, Java I2P cung cấp một tiện ích thử nghiệm cục bộ đơn giản để thử nghiệm có thể tái tạo các điều kiện mạng thực tế, bao gồm độ trễ, mất gói tin và jitter độ trễ. Đây là một stub nhỏ chỉ triển khai một máy chủ I2CP cho các kết nối cục bộ.
+
+Các nhà phát triển nên kiểm thử với một phạm vi rộng các tham số điển hình, bao gồm độ trễ từ 10ms đến ít nhất 15s, và tỷ lệ mất gói từ 0 đến 10%. Thêm jitter giúp dễ dàng kiểm thử việc xử lý các gói tin không theo thứ tự.
+
+Đây cũng là một thiết lập tốt để kiểm tra tràn bộ đệm (CHOKE/UNCHOKE) bằng cách tạm dừng thủ công một trong hai ứng dụng.
+
+Từ gói mã nguồn i2p.i2p:
+
+- `I2PSocketManagerFactory` negotiates or reuses a router session via I2CP.  
+- If no key is provided, a new destination is automatically generated.  
+- Developers can pass I2CP options (e.g., tunnel lengths, encryption types, or connection settings) through the `options` map.  
+- `I2PSocket` and `I2PServerSocket` mirror standard Java `Socket` interfaces, making migration straightforward.
 
 ### Ghi chú về i2p.streaming.profile {#profile}
 
 Tùy chọn này hỗ trợ hai giá trị; 1=bulk và 2=interactive. Tùy chọn này cung cấp gợi ý cho thư viện streaming và/hoặc router về mẫu lưu lượng dự kiến.
 
-"Bulk" có nghĩa là tối ưu hóa cho băng thông cao, có thể phải đánh đổi độ trễ. Đây là cài đặt mặc định. "Interactive" có nghĩa là tối ưu hóa cho độ trễ thấp, có thể phải đánh đổi băng thông hoặc hiệu suất. Các chiến lược tối ưu hóa, nếu có, phụ thuộc vào cách triển khai và có thể bao gồm những thay đổi bên ngoài giao thức streaming.
+"Bulk" có nghĩa là tối ưu hóa cho băng thông cao, có thể phải đánh đổi độ trễ. Đây là mặc định. "Interactive" có nghĩa là tối ưu hóa cho độ trễ thấp, có thể phải đánh đổi băng thông hoặc hiệu suất. Các chiến lược tối ưu hóa, nếu có, phụ thuộc vào cách triển khai và có thể bao gồm các thay đổi bên ngoài giao thức streaming.
 
-Từ phiên bản API 0.9.63, Java I2P sẽ trả về lỗi cho bất kỳ giá trị nào khác ngoài 1 (bulk) và tunnel sẽ không khởi động được. Từ API 0.9.64, Java I2P bỏ qua giá trị này. Từ phiên bản API 0.9.63, i2pd đã bỏ qua tùy chọn này; nó được triển khai trong i2pd từ API 0.9.64.
+Qua phiên bản API 0.9.63, Java I2P sẽ trả về lỗi cho bất kỳ giá trị nào khác ngoài 1 (bulk) và tunnel sẽ không khởi động được. Từ API 0.9.64 trở đi, Java I2P bỏ qua giá trị này. Qua phiên bản API 0.9.63, i2pd đã bỏ qua tùy chọn này; nó được triển khai trong i2pd từ API 0.9.64.
 
-Mặc dù giao thức streaming bao gồm một trường flag để truyền cài đặt profile tới đầu kia, điều này không được triển khai trong bất kỳ router nào đã biết.
+Mặc dù giao thức streaming bao gồm một trường flag để truyền cài đặt profile đến đầu kia, điều này không được triển khai trong bất kỳ router nào đã biết.
 
 ### Chia sẻ Control Block {#sharing}
 
-Streaming lib hỗ trợ chia sẻ "TCP" Control Block. Điều này chia sẻ ba tham số quan trọng của streaming lib (kích thước cửa sổ, thời gian khứ hồi, phương sai thời gian khứ hồi) qua các kết nối đến cùng một peer từ xa. Điều này được sử dụng cho chia sẻ "tạm thời" tại thời điểm mở/đóng kết nối, không phải chia sẻ "tập hợp" trong suốt một kết nối (Xem [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). Có một chia sẻ riêng biệt cho mỗi ConnectionManager (tức là mỗi Destination cục bộ) để không có rò rỉ thông tin đến các Destination khác trên cùng một router. Dữ liệu chia sẻ cho một peer nhất định sẽ hết hạn sau vài phút. Các tham số Control Block Sharing sau có thể được thiết lập cho mỗi router:
+Thư viện streaming hỗ trợ chia sẻ "TCP" Control Block. Điều này chia sẻ ba tham số quan trọng của thư viện streaming (kích thước cửa sổ, thời gian khứ hồi, phương sai thời gian khứ hồi) giữa các kết nối tới cùng một peer từ xa. Tính năng này được sử dụng cho chia sẻ "tạm thời" tại thời điểm mở/đóng kết nối, không phải chia sẻ "tập hợp" trong suốt một kết nối (Xem [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). Có một chia sẻ riêng biệt cho mỗi ConnectionManager (tức là mỗi Destination cục bộ) để không có rò rỉ thông tin sang các Destination khác trên cùng một router. Dữ liệu chia sẻ cho một peer nhất định sẽ hết hạn sau vài phút. Các tham số Control Block Sharing sau đây có thể được thiết lập cho mỗi router:
 
-- RTT_DAMPENING = 0.75
-- RTTDEV_DAMPENING = 0.75
-- WINDOW_DAMPENING = 0.75
+1. **SYN sent** — initiator includes optional data.  
+2. **SYN/ACK response** — responder includes optional data.  
+3. **ACK finalization** — establishes reliability and session state.  
+4. **FIN/RESET** — used for orderly closure or abrupt termination.
 
 ### Các Tham Số Khác {#other}
 
 Các tham số sau đây là giá trị mặc định được khuyến nghị. Giá trị mặc định có thể khác nhau, tùy thuộc vào cách triển khai:
 
-- MIN_RESEND_DELAY = 100 ms (RTO tối thiểu)
-- MAX_RESEND_DELAY = 45 giây (RTO tối đa)
-- MIN_WINDOW_SIZE = 1
-- MAX_WINDOW_SIZE = 128
-- TREND_COUNT = 3
-- MIN_MESSAGE_SIZE = 512 (MTU tối thiểu)
-- INBOUND_BUFFER_SIZE = maxMessageSize * (maxWindowSize + 2)
-- INITIAL_TIMEOUT (chỉ có hiệu lực trước khi RTT được lấy mẫu) = 9 giây
-- "alpha" (hệ số giảm chấn RTT theo RFC 6298) = 0.125
-- "beta" (hệ số giảm chấn RTTDEV theo RFC 6298) = 0.25
-- "K" (hệ số nhân RTDEV theo RFC 6298) = 4
-- PASSIVE_FLUSH_DELAY = 175 ms
-- Ước tính RTT tối đa: 60 giây
+- The streaming layer continuously adapts to network latency and throughput via RTT-based feedback.  
+- Applications perform best when routers are contributing peers (participating tunnels enabled).  
+- TCP-like congestion control mechanisms prevent overloading slow peers and help balance bandwidth use across tunnels.
 
 ### Lịch sử {#history}
 
-Thư viện streaming đã phát triển một cách tự nhiên cho I2P - đầu tiên mihi đã triển khai "mini streaming library" như một phần của I2PTunnel, với giới hạn window size chỉ 1 tin nhắn (yêu cầu ACK trước khi gửi tin nhắn tiếp theo), sau đó nó được tái cấu trúc thành một giao diện streaming tổng quát (phản chiếu TCP socket) và việc triển khai streaming đầy đủ được triển khai với giao thức sliding window và các tối ưu hóa để tính đến tích số bandwidth x delay cao. Các stream riêng lẻ có thể điều chỉnh kích thước packet tối đa và các tùy chọn khác. Kích thước tin nhắn mặc định được chọn để khớp chính xác với hai I2NP tunnel message 1K, và là sự cân bằng hợp lý giữa chi phí bandwidth của việc truyền lại các tin nhắn bị mất, và độ trễ cũng như overhead của nhiều tin nhắn.
+Thư viện streaming đã phát triển một cách tự nhiên cho I2P - đầu tiên mihi đã triển khai "mini streaming library" như một phần của I2PTunnel, được giới hạn ở kích thước cửa sổ là 1 message (yêu cầu ACK trước khi gửi message tiếp theo), sau đó nó được tái cấu trúc thành một giao diện streaming tổng quát (phản ánh TCP sockets) và triển khai streaming đầy đủ được triển khai với giao thức sliding window và các tối ưu hóa để tính đến sản phẩm băng thông cao x độ trễ. Các stream riêng lẻ có thể điều chỉnh kích thước packet tối đa và các tùy chọn khác. Kích thước message mặc định được chọn để phù hợp chính xác với hai tunnel message I2NP 1K, và là một sự cân bằng hợp lý giữa chi phí băng thông của việc truyền lại các message bị mất và độ trễ cùng overhead của nhiều message.
 
-## Công việc tương lai {#future}
+## Interoperability and Best Practices
 
-Hành vi của thư viện streaming có tác động sâu sắc đến hiệu suất ở tầng ứng dụng, và do đó, đây là một lĩnh vực quan trọng cần phân tích thêm.
+Hành vi của thư viện streaming có tác động sâu sắc đến hiệu suất ở cấp độ ứng dụng, và do đó, đây là một lĩnh vực quan trọng cần được phân tích thêm.
 
-- Có thể cần thiết điều chỉnh thêm các tham số của streaming lib.
-- Một lĩnh vực nghiên cứu khác là sự tương tác của streaming lib với các lớp transport NTCP và SSU. Xem [trang thảo luận NTCP](/docs/historical/ntcp-discussion) để biết chi tiết.
-- Sự tương tác của các thuật toán định tuyến với streaming lib ảnh hưởng mạnh đến hiệu suất. Cụ thể, việc phân phối ngẫu nhiên các tin nhắn đến nhiều tunnel trong một pool dẫn đến mức độ cao việc giao hàng không theo thứ tự, kết quả là kích thước cửa sổ nhỏ hơn so với trường hợp bình thường. Router hiện tại định tuyến các tin nhắn cho một cặp đích từ/đến duy nhất thông qua một tập hợp tunnel nhất quán, cho đến khi tunnel hết hạn hoặc giao hàng thất bại. Các thuật toán lỗi và lựa chọn tunnel của router nên được xem xét để có thể cải thiện.
-- Dữ liệu trong gói SYN đầu tiên có thể vượt quá MTU của người nhận.
-- Trường DELAY_REQUESTED có thể được sử dụng nhiều hơn.
-- Các gói SYNCHRONIZE ban đầu trùng lặp trên các luồng tồn tại ngắn có thể không được nhận dạng và loại bỏ.
-- Không gửi MTU trong việc truyền lại.
-- Dữ liệu được gửi đi trừ khi cửa sổ outbound đầy. (tức là no-Nagle hoặc TCP_NODELAY) Có lẽ nên có một tùy chọn cấu hình cho điều này.
-- zzz đã thêm mã debug vào thư viện streaming để ghi log các gói theo định dạng tương thích với wireshark (pcap); Sử dụng điều này để phân tích thêm hiệu suất. Định dạng có thể cần cải tiến để ánh xạ nhiều tham số streaming lib hơn vào các trường TCP.
-- Có những đề xuất thay thế streaming lib bằng TCP tiêu chuẩn (hoặc có thể là một lớp null cùng với raw socket). Điều này thật không may sẽ không tương thích với streaming lib nhưng sẽ tốt nếu so sánh hiệu suất của hai cái.
+- Always test against both **Java I2P** and **i2pd** to ensure full compatibility.  
+- Although the protocol is standardized, minor implementation differences may exist.  
+- Handle older routers gracefully—many peers still run pre-2.0 versions.  
+- Monitor connection stats using `I2PSocket.getOptions()` and `getSession()` to read RTT and retransmission metrics.
