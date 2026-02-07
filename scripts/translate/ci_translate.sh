@@ -92,42 +92,45 @@ for file in "${FILES_TO_TRANSLATE[@]}"; do
     echo "  - $(relpath "$file" "$REPO_ROOT")"
 done
 
-# Process each target language
+# Process each target language (in parallel)
 SUCCESSFULLY_TRANSLATED_FILES=()
 FAILED_LANGUAGES=()
 
-for TARGET_LANG in $TARGET_LANGUAGES; do
+# Max parallel translation jobs (avoid API rate limits)
+MAX_PARALLEL=${MAX_PARALLEL_TRANSLATIONS:-4}
+
+# Test if Python script exists and is readable
+if [ ! -f "$PYTHON_SCRIPT" ]; then
+    log_error "Python script not found: $PYTHON_SCRIPT"
+    exit 1
+fi
+
+# Create temp directory for per-language results
+RESULT_DIR=$(mktemp -d)
+trap "rm -rf $RESULT_DIR" EXIT
+
+# Function to translate all files for a single language
+translate_language() {
+    local TARGET_LANG="$1"
+    local RESULT_FILE="$RESULT_DIR/$TARGET_LANG"
+
     log_info "Processing translations for language: $TARGET_LANG"
 
-    TRANSLATION_FAILED=0
+    local TRANSLATION_FAILED=0
 
-    # Process each file individually
     for FILE_PATH in "${FILES_TO_TRANSLATE[@]}"; do
         if [ ! -f "$FILE_PATH" ]; then
             continue
         fi
 
+        local REL_PATH
         REL_PATH=$(relpath "$FILE_PATH" "$REPO_ROOT")
-        log_info "  Translating: $REL_PATH"
 
-        # Translate file using realtime API
-        # Hash checking ensures we only translate if content actually changed
-        # For HTML files, add --copy-html flag to copy instead of translate
-        COPY_HTML_FLAG=""
+        local COPY_HTML_FLAG=""
         if [[ "$FILE_PATH" == *.html ]]; then
             COPY_HTML_FLAG="--copy-html"
-            log_info "  HTML file detected - will copy without translation"
         fi
 
-        log_info "  Running translation command..."
-
-        # Test if Python script exists and is readable
-        if [ ! -f "$PYTHON_SCRIPT" ]; then
-            log_error "  Python script not found: $PYTHON_SCRIPT"
-            exit 1
-        fi
-
-        # Run translation
         if python3 "$PYTHON_SCRIPT" \
             --source "$FILE_PATH" \
             --target-lang "$TARGET_LANG" \
@@ -138,33 +141,79 @@ for TARGET_LANG in $TARGET_LANGUAGES; do
             --quiet \
             $COPY_HTML_FLAG; then
 
-            TRANSLATE_EXIT=$?
-
-            # Check if translated file actually exists
+            local REL_PATH_FOR_TRANS
             REL_PATH_FOR_TRANS=$(relpath "$FILE_PATH" "$REPO_ROOT")
+            local TRANSLATED_PATH
             TRANSLATED_PATH=$(echo "$REL_PATH_FOR_TRANS" | sed "s|^content/en/|content/$TARGET_LANG/|")
             if [ -f "$REPO_ROOT/$TRANSLATED_PATH" ]; then
-                # Track successfully translated file
-                FILE_ABS_PATH=$(realpath "$FILE_PATH")
-                if [[ ! " ${SUCCESSFULLY_TRANSLATED_FILES[@]} " =~ " ${FILE_ABS_PATH} " ]]; then
-                    SUCCESSFULLY_TRANSLATED_FILES+=("$FILE_ABS_PATH")
-                fi
-                log_info "    Successfully translated: $REL_PATH"
+                log_info "  [$TARGET_LANG] Translated: $REL_PATH"
+                echo "$FILE_PATH" >> "$RESULT_FILE.success"
             else
-                log_warn "    Translation completed but output file not found: $TRANSLATED_PATH"
+                log_warn "  [$TARGET_LANG] Output not found: $TRANSLATED_PATH"
             fi
         else
-            TRANSLATE_EXIT=$?
-            log_error "    Failed to translate: $REL_PATH"
-            log_error "    Exit code: $TRANSLATE_EXIT"
+            log_error "  [$TARGET_LANG] Failed: $REL_PATH"
             TRANSLATION_FAILED=1
         fi
     done
 
     if [ $TRANSLATION_FAILED -eq 1 ]; then
+        echo "failed" > "$RESULT_FILE.status"
+    else
+        echo "ok" > "$RESULT_FILE.status"
+    fi
+}
+
+export -f translate_language relpath log_info log_warn log_error
+export PYTHON_SCRIPT REPO_ROOT FILES_TO_TRANSLATE RESULT_DIR
+export RED GREEN YELLOW NC
+
+# Launch translations in parallel, limited to MAX_PARALLEL at a time
+log_info "Translating to $( echo $TARGET_LANGUAGES | wc -w | tr -d ' ') languages with up to $MAX_PARALLEL parallel jobs..."
+RUNNING_PIDS=()
+
+for TARGET_LANG in $TARGET_LANGUAGES; do
+    # Wait if we've hit the parallel limit
+    while [ ${#RUNNING_PIDS[@]} -ge $MAX_PARALLEL ]; do
+        # Wait for any one job to finish
+        wait -n 2>/dev/null || true
+        # Clean up finished PIDs
+        NEW_PIDS=()
+        for pid in "${RUNNING_PIDS[@]}"; do
+            if kill -0 "$pid" 2>/dev/null; then
+                NEW_PIDS+=("$pid")
+            fi
+        done
+        RUNNING_PIDS=("${NEW_PIDS[@]}")
+    done
+
+    translate_language "$TARGET_LANG" &
+    RUNNING_PIDS+=($!)
+done
+
+# Wait for all remaining jobs
+wait
+
+# Collect results
+for TARGET_LANG in $TARGET_LANGUAGES; do
+    STATUS_FILE="$RESULT_DIR/$TARGET_LANG.status"
+    SUCCESS_FILE="$RESULT_DIR/$TARGET_LANG.success"
+
+    if [ -f "$STATUS_FILE" ] && [ "$(cat "$STATUS_FILE")" = "failed" ]; then
         FAILED_LANGUAGES+=("$TARGET_LANG")
     fi
+
+    if [ -f "$SUCCESS_FILE" ]; then
+        while IFS= read -r file; do
+            FILE_ABS_PATH=$(realpath "$file")
+            if [[ ! " ${SUCCESSFULLY_TRANSLATED_FILES[@]:-} " =~ " ${FILE_ABS_PATH} " ]]; then
+                SUCCESSFULLY_TRANSLATED_FILES+=("$FILE_ABS_PATH")
+            fi
+        done < "$SUCCESS_FILE"
+    fi
 done
+
+log_info "Parallel translation complete. Success: ${#SUCCESSFULLY_TRANSLATED_FILES[@]} files, Failed languages: ${#FAILED_LANGUAGES[@]}"
 
 # Commit and push translated files (even if some languages failed)
 # We commit partial translations because:
