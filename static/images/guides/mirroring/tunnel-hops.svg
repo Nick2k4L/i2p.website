@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="hShadow" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="200" rx="12" fill="#fafbfc" stroke="#e1e4e8" stroke-width="1"/>
+  <text x="450" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#24292f">Tunnel Hops: Speed vs Privacy</text>
+
+  <!-- Scale bar -->
+  <text x="100" y="58" text-anchor="middle" font-size="10" fill="#757575">⚡ FASTER</text>
+  <text x="800" y="58" text-anchor="middle" font-size="10" fill="#757575">🔒 MORE PRIVATE</text>
+  <line x1="160" y1="54" x2="740" y2="54" stroke="#e0e0e0" stroke-width="1"/>
+  <polygon points="155,54 165,49 165,59" fill="#e0e0e0"/>
+  <polygon points="745,54 735,49 735,59" fill="#e0e0e0"/>
+
+  <!-- 1 hop -->
+  <g transform="translate(52, 75)">
+    <rect width="190" height="105" rx="8" fill="white" stroke="#ffa726" stroke-width="2" filter="url(#hShadow)"/>
+    <rect width="190" height="26" rx="8" fill="#ffa726"/>
+    <rect y="13" width="190" height="13" fill="#ffa726"/>
+    <text x="95" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="white">1 Hop</text>
+    <text x="95" y="48" text-anchor="middle" font-size="10" fill="#e65100">Latency: ~1-2 seconds</text>
+    <text x="95" y="64" text-anchor="middle" font-size="10" fill="#e65100">Privacy: Minimal</text>
+    <line x1="15" y1="74" x2="175" y2="74" stroke="#ffe0b2" stroke-width="1"/>
+    <text x="95" y="90" text-anchor="middle" font-size="9" fill="#757575">Public mirrors where</text>
+    <text x="95" y="102" text-anchor="middle" font-size="9" fill="#757575">server identity is known</text>
+  </g>
+
+  <!-- 2 hops -->
+  <g transform="translate(262, 75)">
+    <rect width="190" height="105" rx="8" fill="white" stroke="#66bb6a" stroke-width="2" filter="url(#hShadow)"/>
+    <rect width="190" height="26" rx="8" fill="#66bb6a"/>
+    <rect y="13" width="190" height="13" fill="#66bb6a"/>
+    <text x="95" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="white">2 Hops</text>
+    <text x="95" y="48" text-anchor="middle" font-size="10" fill="#2e7d32">Latency: ~2-4 seconds</text>
+    <text x="95" y="64" text-anchor="middle" font-size="10" fill="#2e7d32">Privacy: Moderate</text>
+    <line x1="15" y1="74" x2="175" y2="74" stroke="#c8e6c9" stroke-width="1"/>
+    <text x="95" y="90" text-anchor="middle" font-size="9" fill="#757575">Good balance for most</text>
+    <text x="95" y="102" text-anchor="middle" font-size="9" fill="#757575">non-anonymous mirrors</text>
+  </g>
+
+  <!-- 3 hops -->
+  <g transform="translate(472, 75)">
+    <rect width="190" height="105" rx="8" fill="white" stroke="#42a5f5" stroke-width="2" filter="url(#hShadow)"/>
+    <rect width="190" height="26" rx="8" fill="#42a5f5"/>
+    <rect y="13" width="190" height="13" fill="#42a5f5"/>
+    <text x="95" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="white">⭐ 3 Hops (Default)</text>
+    <text x="95" y="48" text-anchor="middle" font-size="10" fill="#1565c0">Latency: ~3-6 seconds</text>
+    <text x="95" y="64" text-anchor="middle" font-size="10" fill="#1565c0">Privacy: Strong</text>
+    <line x1="15" y1="74" x2="175" y2="74" stroke="#bbdefb" stroke-width="1"/>
+    <text x="95" y="90" text-anchor="middle" font-size="9" fill="#757575">Recommended default.</text>
+    <text x="95" y="102" text-anchor="middle" font-size="9" fill="#757575">Best for most services</text>
+  </g>
+
+  <!-- 4+ hops -->
+  <g transform="translate(682, 75)">
+    <rect width="190" height="105" rx="8" fill="white" stroke="#7e57c2" stroke-width="2" filter="url(#hShadow)"/>
+    <rect width="190" height="26" rx="8" fill="#7e57c2"/>
+    <rect y="13" width="190" height="13" fill="#7e57c2"/>
+    <text x="95" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="white">4+ Hops</text>
+    <text x="95" y="48" text-anchor="middle" font-size="10" fill="#4527a0">Latency: ~4-8+ seconds</text>
+    <text x="95" y="64" text-anchor="middle" font-size="10" fill="#4527a0">Privacy: Maximum</text>
+    <line x1="15" y1="74" x2="175" y2="74" stroke="#d1c4e9" stroke-width="1"/>
+    <text x="95" y="90" text-anchor="middle" font-size="9" fill="#757575">High-security services</text>
+    <text x="95" y="102" text-anchor="middle" font-size="9" fill="#757575">where anonymity is critical</text>
+  </g>
+</svg>

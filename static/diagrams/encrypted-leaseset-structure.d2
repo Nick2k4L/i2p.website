@@ -1,0 +1,58 @@
+# Encrypted LeaseSet (Type 5) Structure
+
+structure: {
+  shape: sql_table
+
+  sigtype: "2 bytes" {constraint: "Signature type of blinded public key"}
+  blinded_public_key: "Variable" {constraint: "SigningPublicKey, as inferred from sigtype"}
+  published: "4 bytes" {constraint: "Seconds since epoch, rolls over 2106"}
+  expires: "2 bytes" {constraint: "Offset from published, 18.2h max"}
+  flags: "2 bytes" {constraint: "Bit 0: offline keys, Bit 1: unpublished"}
+  offline_signature: "Variable" {constraint: "Optional, if flags bit 0 set"}
+  len: "2 bytes" {constraint: "Length of encrypted_data"}
+  encrypted_data: "len bytes" {constraint: "Encrypted data"}
+  signature: "Variable" {constraint: "As specified by sigtype"}
+}
+
+# Field descriptions
+fields: {
+  sigtype: |md
+    A two byte signature type of the public key to follow
+  |
+
+  blinded_public_key: |md
+    `SigningPublicKey` - length as inferred from the sigtype
+  |
+
+  published: |md
+    4 byte date - seconds since the epoch, rolls over in 2106
+  |
+
+  expires: |md
+    2 byte time - offset from published timestamp in seconds, 18.2 hours max
+  |
+
+  flags: |md
+    2 bytes, bit order: 15 14 ... 3 2 1 0
+    - Bit 0: If 0, no offline keys; if 1, offline keys
+    - Bit 1: If 0, standard published leaseset; if 1, unpublished leaseset
+    - Bits 15-2: set to 0 for compatibility
+  |
+
+  offline_signature: |md
+    `OfflineSignature` - variable length, only present if bit 0 is set in flags
+  |
+
+  len: |md
+    `Integer` - 2 bytes, length of encrypted_data to follow (1 <= len <= max TBD)
+  |
+
+  encrypted_data: |md
+    Data encrypted - length is len bytes
+  |
+
+  signature: |md
+    `Signature` - length as specified by the sigtype of the blinded public key,
+    or by the sigtype of the transient public key if present in the header
+  |
+}

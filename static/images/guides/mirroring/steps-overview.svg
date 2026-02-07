@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="stepGrad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e3f2fd"/>
+      <stop offset="100%" stop-color="#bbdefb"/>
+    </linearGradient>
+    <linearGradient id="stepGrad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8f5e9"/>
+      <stop offset="100%" stop-color="#c8e6c9"/>
+    </linearGradient>
+    <linearGradient id="stepGrad3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff3e0"/>
+      <stop offset="100%" stop-color="#ffe0b2"/>
+    </linearGradient>
+    <linearGradient id="stepGrad4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3e5f5"/>
+      <stop offset="100%" stop-color="#e1bee7"/>
+    </linearGradient>
+    <linearGradient id="stepGrad5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fce4ec"/>
+      <stop offset="100%" stop-color="#f8bbd0"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="112%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="320" rx="12" fill="#fafbfc" stroke="#e1e4e8" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="450" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#24292f">The 5 Steps to Mirror Your Site on I2P</text>
+  <text x="450" y="54" text-anchor="middle" font-size="12" fill="#656d76">From start to finish in about 15 minutes</text>
+
+  <!-- Step 1 -->
+  <g transform="translate(30, 75)">
+    <rect width="158" height="210" rx="10" fill="url(#stepGrad1)" stroke="#64b5f6" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <circle cx="79" cy="30" r="18" fill="#1976d2"/>
+    <text x="79" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="white">1</text>
+    <text x="79" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#1565c0">Install I2P</text>
+    <line x1="25" y1="78" x2="133" y2="78" stroke="#90caf9" stroke-width="1"/>
+    <text x="79" y="96" text-anchor="middle" font-size="10" fill="#1976d2">Install the I2P</text>
+    <text x="79" y="110" text-anchor="middle" font-size="10" fill="#1976d2">router on your</text>
+    <text x="79" y="124" text-anchor="middle" font-size="10" fill="#1976d2">server and let it</text>
+    <text x="79" y="138" text-anchor="middle" font-size="10" fill="#1976d2">integrate with</text>
+    <text x="79" y="152" text-anchor="middle" font-size="10" fill="#1976d2">the network</text>
+    <text x="79" y="198" text-anchor="middle" font-size="9" fill="#42a5f5" font-style="italic">~10 min setup</text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <text x="200" y="185" text-anchor="middle" font-size="20" fill="#bdbdbd">›</text>
+
+  <!-- Step 2 -->
+  <g transform="translate(206, 75)">
+    <rect width="158" height="210" rx="10" fill="url(#stepGrad2)" stroke="#81c784" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <circle cx="79" cy="30" r="18" fill="#388e3c"/>
+    <text x="79" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="white">2</text>
+    <text x="79" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#2e7d32">Configure Web</text>
+    <line x1="25" y1="78" x2="133" y2="78" stroke="#a5d6a7" stroke-width="1"/>
+    <text x="79" y="96" text-anchor="middle" font-size="10" fill="#388e3c">Add a localhost</text>
+    <text x="79" y="110" text-anchor="middle" font-size="10" fill="#388e3c">listener to your</text>
+    <text x="79" y="124" text-anchor="middle" font-size="10" fill="#388e3c">web server for</text>
+    <text x="79" y="138" text-anchor="middle" font-size="10" fill="#388e3c">I2P traffic</text>
+    <text x="79" y="198" text-anchor="middle" font-size="9" fill="#66bb6a" font-style="italic">~5 min config</text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <text x="376" y="185" text-anchor="middle" font-size="20" fill="#bdbdbd">›</text>
+
+  <!-- Step 3 -->
+  <g transform="translate(382, 75)">
+    <rect width="158" height="210" rx="10" fill="url(#stepGrad3)" stroke="#ffb74d" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <circle cx="79" cy="30" r="18" fill="#f57c00"/>
+    <text x="79" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="white">3</text>
+    <text x="79" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#e65100">Create Tunnel</text>
+    <line x1="25" y1="78" x2="133" y2="78" stroke="#ffcc80" stroke-width="1"/>
+    <text x="79" y="96" text-anchor="middle" font-size="10" fill="#e65100">Use the I2P</text>
+    <text x="79" y="110" text-anchor="middle" font-size="10" fill="#e65100">Router Console</text>
+    <text x="79" y="124" text-anchor="middle" font-size="10" fill="#e65100">to create an</text>
+    <text x="79" y="138" text-anchor="middle" font-size="10" fill="#e65100">HTTP Server</text>
+    <text x="79" y="152" text-anchor="middle" font-size="10" fill="#e65100">tunnel</text>
+    <text x="79" y="198" text-anchor="middle" font-size="9" fill="#ffa726" font-style="italic">~2 min wizard</text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <text x="552" y="185" text-anchor="middle" font-size="20" fill="#bdbdbd">›</text>
+
+  <!-- Step 4 -->
+  <g transform="translate(558, 75)">
+    <rect width="158" height="210" rx="10" fill="url(#stepGrad4)" stroke="#ba68c8" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <circle cx="79" cy="30" r="18" fill="#7b1fa2"/>
+    <text x="79" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="white">4</text>
+    <text x="79" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#6a1b9a">Start &amp; Test</text>
+    <line x1="25" y1="78" x2="133" y2="78" stroke="#ce93d8" stroke-width="1"/>
+    <text x="79" y="96" text-anchor="middle" font-size="10" fill="#7b1fa2">Start the tunnel,</text>
+    <text x="79" y="110" text-anchor="middle" font-size="10" fill="#7b1fa2">wait for it to</text>
+    <text x="79" y="124" text-anchor="middle" font-size="10" fill="#7b1fa2">integrate, then</text>
+    <text x="79" y="138" text-anchor="middle" font-size="10" fill="#7b1fa2">visit your .b32.i2p</text>
+    <text x="79" y="152" text-anchor="middle" font-size="10" fill="#7b1fa2">address</text>
+    <text x="79" y="198" text-anchor="middle" font-size="9" fill="#ab47bc" font-style="italic">~5 min wait</text>
+  </g>
+
+  <!-- Arrow 4-5 -->
+  <text x="728" y="185" text-anchor="middle" font-size="20" fill="#bdbdbd">›</text>
+
+  <!-- Step 5 -->
+  <g transform="translate(734, 75)">
+    <rect width="158" height="210" rx="10" fill="url(#stepGrad5)" stroke="#e57373" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <circle cx="79" cy="30" r="18" fill="#c62828"/>
+    <text x="79" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="white">5</text>
+    <text x="79" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#b71c1c">Register Name</text>
+    <line x1="25" y1="78" x2="133" y2="78" stroke="#ef9a9a" stroke-width="1"/>
+    <text x="79" y="96" text-anchor="middle" font-size="10" fill="#c62828">Register a</text>
+    <text x="79" y="110" text-anchor="middle" font-size="10" fill="#c62828">human-readable</text>
+    <text x="79" y="124" text-anchor="middle" font-size="10" fill="#c62828">.i2p domain so</text>
+    <text x="79" y="138" text-anchor="middle" font-size="10" fill="#c62828">people can find</text>
+    <text x="79" y="152" text-anchor="middle" font-size="10" fill="#c62828">you easily</text>
+    <text x="79" y="198" text-anchor="middle" font-size="9" fill="#ef5350" font-style="italic">optional</text>
+  </g>
+
+  <!-- Bottom note -->
+  <rect x="30" y="294" width="840" height="20" rx="4" fill="#f5f5f5"/>
+  <text x="450" y="309" text-anchor="middle" font-size="10" fill="#757575">⏱️ Total time: ~15-20 minutes  •  Your clearnet site keeps running normally the entire time</text>
+</svg>

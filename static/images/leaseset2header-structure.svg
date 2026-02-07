@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 424.20801 456.315"
+   version="1.1"
+   id="svg31"
+   sodipodi:docname="leaseset2header-structure.svg"
+   width="424.20801"
+   height="456.315"
+   inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs31" />
+  <sodipodi:namedview
+     id="namedview31"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.5714286"
+     inkscape:cx="261.22727"
+     inkscape:cy="221.13636"
+     inkscape:window-width="2142"
+     inkscape:window-height="1186"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg31" />
+  <style
+     id="style1">
+    .box { fill: none; stroke: #94a3b8; stroke-width: 2; }
+    .box-dest { fill: rgba(96, 165, 250, 0.15); stroke: #60a5fa; stroke-width: 2; }
+    .box-date { fill: rgba(52, 211, 153, 0.15); stroke: #34d399; stroke-width: 2; }
+    .box-expires { fill: rgba(168, 85, 247, 0.15); stroke: #a855f7; stroke-width: 2; }
+    .box-flags { fill: rgba(251, 191, 36, 0.15); stroke: #fbbf24; stroke-width: 2; }
+    .box-offsig { fill: rgba(248, 113, 113, 0.15); stroke: #f87171; stroke-width: 2; }
+    .label { font-family: Arial, sans-serif; font-size: 13px; font-weight: 600; fill: #94a3b8; }
+    .label-dest { fill: #60a5fa; }
+    .label-date { fill: #34d399; }
+    .label-expires { fill: #a855f7; }
+    .label-flags { fill: #fbbf24; }
+    .label-offsig { fill: #f87171; }
+    .desc { font-family: Arial, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .field-name { font-family: monospace; font-size: 12px; font-weight: 600; fill: #94a3b8; }
+    .field-desc { font-family: Arial, sans-serif; font-size: 11px; fill: #64748b; }
+    .connector { stroke: #94a3b8; stroke-width: 1; stroke-dasharray: 3,3; fill: none; }
+  </style>
+  <!-- Stacked boxes diagram -->
+  <!-- Connectors and descriptions on right -->
+  <!-- Field descriptions at bottom -->
+  <!-- Flags bit descriptions -->
+  <g
+     id="g32"
+     transform="translate(4.9997559,5.0000305)">
+    <g
+       transform="translate(1,1)"
+       id="g6">
+      <!-- destination box -->
+      <rect
+         x="0"
+         y="0"
+         width="250"
+         height="70"
+         class="box-dest"
+         rx="4"
+         id="rect1" />
+      <text
+         x="125"
+         y="40"
+         text-anchor="middle"
+         class="label label-dest"
+         id="text1">destination</text>
+      <!-- published, expires, flags row -->
+      <rect
+         x="0"
+         y="75"
+         width="125"
+         height="45"
+         class="box-date"
+         rx="4"
+         id="rect2" />
+      <text
+         x="62"
+         y="102"
+         text-anchor="middle"
+         class="label label-date"
+         id="text2">published</text>
+      <rect
+         x="130"
+         y="75"
+         width="60"
+         height="45"
+         class="box-expires"
+         rx="4"
+         id="rect3" />
+      <text
+         x="160"
+         y="102"
+         text-anchor="middle"
+         class="label label-expires"
+         id="text3">expires</text>
+      <rect
+         x="195"
+         y="75"
+         width="55"
+         height="45"
+         class="box-flags"
+         rx="4"
+         id="rect4" />
+      <text
+         x="222"
+         y="102"
+         text-anchor="middle"
+         class="label label-flags"
+         id="text4">flags</text>
+      <!-- offline_signature box -->
+      <rect
+         x="0"
+         y="125"
+         width="250"
+         height="70"
+         class="box-offsig"
+         rx="4"
+         id="rect5" />
+      <text
+         x="125"
+         y="155"
+         text-anchor="middle"
+         class="label label-offsig"
+         id="text5">offline_signature</text>
+      <text
+         x="125"
+         y="172"
+         text-anchor="middle"
+         class="desc"
+         id="text6">(optional)</text>
+    </g>
+    <g
+       transform="translate(261,1)"
+       id="g16">
+      <!-- destination description -->
+      <line
+         x1="0"
+         y1="35"
+         x2="15"
+         y2="35"
+         class="connector"
+         id="line6" />
+      <text
+         x="20"
+         y="32"
+         class="label label-dest"
+         id="text7">Destination</text>
+      <text
+         x="20"
+         y="47"
+         class="field-desc"
+         id="text8">387+ bytes</text>
+      <!-- published description -->
+      <line
+         x1="0"
+         y1="97"
+         x2="15"
+         y2="97"
+         class="connector"
+         id="line8" />
+      <text
+         x="20"
+         y="82"
+         class="label label-date"
+         id="text9">4 byte date</text>
+      <text
+         x="20"
+         y="97"
+         class="field-desc"
+         id="text10">Seconds since epoch</text>
+      <!-- expires description -->
+      <text
+         x="20"
+         y="127"
+         class="label label-expires"
+         id="text11">2 byte offset</text>
+      <text
+         x="20"
+         y="142"
+         class="field-desc"
+         id="text12">From published, 18.2h max</text>
+      <!-- flags description -->
+      <text
+         x="20"
+         y="172"
+         class="label label-flags"
+         id="text13">2 bytes</text>
+      <text
+         x="20"
+         y="187"
+         class="field-desc"
+         id="text14">Bit 0: offline keys</text>
+      <!-- offline_signature description -->
+      <line
+         x1="0"
+         y1="160"
+         x2="15"
+         y2="160"
+         class="connector"
+         id="line14" />
+      <text
+         x="20"
+         y="217"
+         class="label label-offsig"
+         id="text15">OfflineSignature</text>
+      <text
+         x="20"
+         y="232"
+         class="field-desc"
+         id="text16">Variable, if flags bit 0 set</text>
+    </g>
+    <g
+       transform="translate(1,221)"
+       id="g26">
+      <rect
+         x="0"
+         y="0"
+         width="95"
+         height="20"
+         class="box-dest"
+         rx="3"
+         id="rect16" />
+      <text
+         x="47"
+         y="14"
+         text-anchor="middle"
+         class="field-name label-dest"
+         id="text17">destination</text>
+      <text
+         x="105"
+         y="14"
+         class="field-desc"
+         id="text18">387+ bytes</text>
+      <rect
+         x="0"
+         y="30"
+         width="80"
+         height="20"
+         class="box-date"
+         rx="3"
+         id="rect18" />
+      <text
+         x="40"
+         y="44"
+         text-anchor="middle"
+         class="field-name label-date"
+         id="text19">published</text>
+      <text
+         x="90"
+         y="44"
+         class="field-desc"
+         id="text20">4 bytes</text>
+      <rect
+         x="0"
+         y="60"
+         width="70"
+         height="20"
+         class="box-expires"
+         rx="3"
+         id="rect20" />
+      <text
+         x="35"
+         y="74"
+         text-anchor="middle"
+         class="field-name label-expires"
+         id="text21">expires</text>
+      <text
+         x="80"
+         y="74"
+         class="field-desc"
+         id="text22">2 bytes - offset from published</text>
+      <rect
+         x="0"
+         y="90"
+         width="55"
+         height="20"
+         class="box-flags"
+         rx="3"
+         id="rect22" />
+      <text
+         x="27"
+         y="104"
+         text-anchor="middle"
+         class="field-name label-flags"
+         id="text23">flags</text>
+      <text
+         x="65"
+         y="104"
+         class="field-desc"
+         id="text24">2 bytes</text>
+      <rect
+         x="0"
+         y="120"
+         width="130"
+         height="20"
+         class="box-offsig"
+         rx="3"
+         id="rect24" />
+      <text
+         x="65"
+         y="134"
+         text-anchor="middle"
+         class="field-name label-offsig"
+         id="text25">offline_signature</text>
+      <text
+         x="140"
+         y="134"
+         class="field-desc"
+         id="text26">Variable (optional, if bit 0 set)</text>
+    </g>
+    <g
+       transform="translate(1,381)"
+       id="g31">
+      <text
+         x="0"
+         y="0"
+         class="desc"
+         id="text27">Flags bits:</text>
+      <text
+         x="0"
+         y="18"
+         class="field-desc"
+         id="text28">Bit 0: offline keys present</text>
+      <text
+         x="0"
+         y="33"
+         class="field-desc"
+         id="text29">Bit 1: unpublished leaseset</text>
+      <text
+         x="0"
+         y="48"
+         class="field-desc"
+         id="text30">Bit 2: blinded/encrypted when published</text>
+      <text
+         x="0"
+         y="63"
+         class="field-desc"
+         id="text31">Bits 3-15: reserved (set to 0)</text>
+    </g>
+  </g>
+</svg>

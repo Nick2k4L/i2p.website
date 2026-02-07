@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 473.327 306"
+   version="1.1"
+   id="svg18"
+   sodipodi:docname="offline-signature-structure.svg"
+   width="473.327"
+   height="306"
+   inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs18" />
+  <sodipodi:namedview
+     id="namedview18"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.76"
+     inkscape:cx="231.53409"
+     inkscape:cy="151.42045"
+     inkscape:window-width="2458"
+     inkscape:window-height="1186"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg18" />
+  <style
+     id="style1">
+    .box { fill: none; stroke: #94a3b8; stroke-width: 2; }
+    .box-date { fill: rgba(52, 211, 153, 0.15); stroke: #34d399; stroke-width: 2; }
+    .box-type { fill: rgba(251, 191, 36, 0.15); stroke: #fbbf24; stroke-width: 2; }
+    .box-key { fill: rgba(96, 165, 250, 0.15); stroke: #60a5fa; stroke-width: 2; }
+    .box-sig { fill: rgba(248, 113, 113, 0.15); stroke: #f87171; stroke-width: 2; }
+    .label { font-family: Arial, sans-serif; font-size: 13px; font-weight: 600; fill: #94a3b8; }
+    .label-date { fill: #34d399; }
+    .label-type { fill: #fbbf24; }
+    .label-key { fill: #60a5fa; }
+    .label-sig { fill: #f87171; }
+    .desc { font-family: Arial, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .field-name { font-family: monospace; font-size: 12px; font-weight: 600; fill: #94a3b8; }
+    .field-desc { font-family: Arial, sans-serif; font-size: 11px; fill: #64748b; }
+    .connector { stroke: #94a3b8; stroke-width: 1; stroke-dasharray: 3,3; fill: none; }
+  </style>
+  <!-- Stacked boxes diagram -->
+  <!-- Connectors and descriptions on right -->
+  <!-- Field descriptions at bottom -->
+  <g
+     id="g19"
+     transform="translate(4.9999237,4.5)">
+    <g
+       transform="translate(1,1)"
+       id="g4">
+      <!-- expires and sigtype row -->
+      <rect
+         x="0"
+         y="0"
+         width="170"
+         height="45"
+         class="box-date"
+         rx="4"
+         id="rect1" />
+      <text
+         x="85"
+         y="27"
+         text-anchor="middle"
+         class="label label-date"
+         id="text1">expires</text>
+      <rect
+         x="175"
+         y="0"
+         width="75"
+         height="45"
+         class="box-type"
+         rx="4"
+         id="rect2" />
+      <text
+         x="212"
+         y="27"
+         text-anchor="middle"
+         class="label label-type"
+         id="text2">sigtype</text>
+      <!-- transient_public_key box -->
+      <rect
+         x="0"
+         y="50"
+         width="250"
+         height="70"
+         class="box-key"
+         rx="4"
+         id="rect3" />
+      <text
+         x="125"
+         y="90"
+         text-anchor="middle"
+         class="label label-key"
+         id="text3">transient_public_key</text>
+      <!-- signature box -->
+      <rect
+         x="0"
+         y="125"
+         width="250"
+         height="70"
+         class="box-sig"
+         rx="4"
+         id="rect4" />
+      <text
+         x="125"
+         y="165"
+         text-anchor="middle"
+         class="label label-sig"
+         id="text4">signature</text>
+    </g>
+    <g
+       transform="translate(261,1)"
+       id="g10">
+      <!-- expires description -->
+      <line
+         x1="0"
+         y1="22"
+         x2="15"
+         y2="22"
+         class="connector"
+         id="line4" />
+      <text
+         x="20"
+         y="20"
+         class="label label-date"
+         id="text5">4 byte date</text>
+      <text
+         x="20"
+         y="35"
+         class="field-desc"
+         id="text6">Seconds since epoch, rolls over 2106</text>
+      <!-- transient_public_key description -->
+      <line
+         x1="0"
+         y1="85"
+         x2="15"
+         y2="85"
+         class="connector"
+         id="line6" />
+      <text
+         x="20"
+         y="82"
+         class="label label-key"
+         id="text7">SigningPublicKey</text>
+      <text
+         x="20"
+         y="97"
+         class="field-desc"
+         id="text8">As inferred from sigtype</text>
+      <!-- signature description -->
+      <line
+         x1="0"
+         y1="160"
+         x2="15"
+         y2="160"
+         class="connector"
+         id="line8" />
+      <text
+         x="20"
+         y="157"
+         class="label label-sig"
+         id="text9">Signature</text>
+      <text
+         x="20"
+         y="172"
+         class="field-desc"
+         id="text10">As inferred from Destination sigtype</text>
+    </g>
+    <g
+       transform="translate(1,216)"
+       id="g18">
+      <rect
+         x="0"
+         y="0"
+         width="70"
+         height="20"
+         class="box-date"
+         rx="3"
+         id="rect10" />
+      <text
+         x="35"
+         y="14"
+         text-anchor="middle"
+         class="field-name label-date"
+         id="text11">expires</text>
+      <text
+         x="80"
+         y="14"
+         class="field-desc"
+         id="text12">4 bytes</text>
+      <rect
+         x="150"
+         y="0"
+         width="70"
+         height="20"
+         class="box-type"
+         rx="3"
+         id="rect12" />
+      <text
+         x="185"
+         y="14"
+         text-anchor="middle"
+         class="field-name label-type"
+         id="text13">sigtype</text>
+      <text
+         x="230"
+         y="14"
+         class="field-desc"
+         id="text14">2 bytes</text>
+      <rect
+         x="0"
+         y="30"
+         width="160"
+         height="20"
+         class="box-key"
+         rx="3"
+         id="rect14" />
+      <text
+         x="80"
+         y="44"
+         text-anchor="middle"
+         class="field-name label-key"
+         id="text15">transient_public_key</text>
+      <text
+         x="170"
+         y="44"
+         class="field-desc"
+         id="text16">Variable (from sigtype)</text>
+      <rect
+         x="0"
+         y="60"
+         width="80"
+         height="20"
+         class="box-sig"
+         rx="3"
+         id="rect16" />
+      <text
+         x="40"
+         y="74"
+         text-anchor="middle"
+         class="field-name label-sig"
+         id="text17">signature</text>
+      <text
+         x="90"
+         y="74"
+         class="field-desc"
+         id="text18">Variable (from Destination sigtype)</text>
+    </g>
+  </g>
+</svg>

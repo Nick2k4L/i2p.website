@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="softShadow" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="routerBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f5e9"/>
+      <stop offset="100%" stop-color="#c8e6c9"/>
+    </linearGradient>
+    <pattern id="grid" patternUnits="userSpaceOnUse" width="20" height="20">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="360" rx="12" fill="#fafbfc" stroke="#e1e4e8" stroke-width="1"/>
+  <rect width="900" height="360" rx="12" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#24292f">Tunnel Types: Which One Do You Need?</text>
+
+  <!-- HTTP Server Tunnel -->
+  <g transform="translate(30, 55)">
+    <rect width="410" height="125" rx="10" fill="white" stroke="#43a047" stroke-width="2" filter="url(#softShadow)"/>
+    <rect width="410" height="30" rx="10" fill="#43a047"/>
+    <rect y="15" width="410" height="15" fill="#43a047"/>
+    <text x="16" y="20" font-size="13" font-weight="700" fill="white">⭐ HTTP Server Tunnel</text>
+
+
+    <text x="16" y="52" font-size="11" font-weight="600" fill="#2e7d32">Best for: Websites, web apps, blogs, CMS</text>
+
+    <text x="16" y="72" font-size="10" fill="#424242">✓ Filters HTTP headers automatically</text>
+    <text x="16" y="88" font-size="10" fill="#424242">✓ Built-in gzip compression</text>
+    <text x="16" y="104" font-size="10" fill="#424242">✓ Connection throttling &amp; rate limiting</text>
+    <text x="16" y="120" font-size="10" fill="#424242">✓ Hostname spoofing for .i2p domains</text>
+  </g>
+
+  <!-- Standard Server Tunnel -->
+  <g transform="translate(460, 55)">
+    <rect width="410" height="125" rx="10" fill="white" stroke="#1976d2" stroke-width="2" filter="url(#softShadow)"/>
+    <rect width="410" height="30" rx="10" fill="#1976d2"/>
+    <rect y="15" width="410" height="15" fill="#1976d2"/>
+    <text x="16" y="20" font-size="13" font-weight="700" fill="white">Standard Server Tunnel</text>
+
+    <text x="16" y="52" font-size="11" font-weight="600" fill="#1565c0">Best for: SSH, Git (SSH), custom TCP apps</text>
+
+    <text x="16" y="72" font-size="10" fill="#424242">✓ Raw TCP forwarding (any protocol)</text>
+    <text x="16" y="88" font-size="10" fill="#424242">✓ Works with non-HTTP services</text>
+    <text x="16" y="104" font-size="10" fill="#424242">✓ Good for development tools</text>
+    <text x="16" y="120" font-size="10" fill="#424242">✗ No HTTP-specific features</text>
+  </g>
+
+  <!-- HTTP Bidir Server Tunnel -->
+  <g transform="translate(30, 200)">
+    <rect width="410" height="125" rx="10" fill="white" stroke="#f57c00" stroke-width="2" filter="url(#softShadow)"/>
+    <rect width="410" height="30" rx="10" fill="#f57c00"/>
+    <rect y="15" width="410" height="15" fill="#f57c00"/>
+    <text x="16" y="20" font-size="13" font-weight="700" fill="white">HTTP Bidir Server Tunnel</text>
+
+    <text x="16" y="52" font-size="11" font-weight="600" fill="#e65100">Best for: Apps that make outbound requests</text>
+
+    <text x="16" y="72" font-size="10" fill="#424242">✓ Bidirectional HTTP connections</text>
+    <text x="16" y="88" font-size="10" fill="#424242">✓ Server can initiate outbound I2P requests</text>
+    <text x="16" y="104" font-size="10" fill="#424242">✓ Good for federated apps, APIs</text>
+    <text x="16" y="120" font-size="10" fill="#424242">✗ More complex to configure</text>
+  </g>
+
+  <!-- IRC Server Tunnel -->
+  <g transform="translate(460, 200)">
+    <rect width="410" height="125" rx="10" fill="white" stroke="#7b1fa2" stroke-width="2" filter="url(#softShadow)"/>
+    <rect width="410" height="30" rx="10" fill="#7b1fa2"/>
+    <rect y="15" width="410" height="15" fill="#7b1fa2"/>
+    <text x="16" y="20" font-size="13" font-weight="700" fill="white">IRC Server Tunnel</text>
+
+    <text x="16" y="52" font-size="11" font-weight="600" fill="#6a1b9a">Best for: IRC servers &amp; chat services</text>
+
+    <text x="16" y="72" font-size="10" fill="#424242">✓ WEBIRC support for hostname display</text>
+    <text x="16" y="88" font-size="10" fill="#424242">✓ Automatic hostname cloaking</text>
+    <text x="16" y="104" font-size="10" fill="#424242">✓ Designed for IRC protocol specifics</text>
+    <text x="16" y="120" font-size="10" fill="#424242">✗ IRC-specific only</text>
+  </g>
+
+  <!-- Decision hint -->
+  <rect x="180" y="338" width="540" height="18" rx="4" fill="#e8f5e9"/>
+  <text x="450" y="352" text-anchor="middle" font-size="10" fill="#2e7d32">💡 Not sure? Start with HTTP Server Tunnel — it's the right choice for 90% of use cases</text>
+</svg>
