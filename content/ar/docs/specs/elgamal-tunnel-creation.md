@@ -10,13 +10,13 @@ accurateFor: "0.9.66"
 
 ملاحظة: مهجور - هذه هي مواصفات بناء tunnel الخاصة بـ ElGamal. راجع [مواصفات بناء tunnel X25519](/docs/specs/tunnel-creation-ecies) للطريقة الحالية.
 
-تحدد هذه الوثيقة تفاصيل رسائل بناء tunnel المشفرة المستخدمة لإنشاء tunnels باستخدام طريقة "التلسكوب غير التفاعلي". راجع وثيقة بناء tunnel [TUNNEL-IMPL] للحصول على نظرة عامة على العملية، بما في ذلك طرق اختيار وترتيب الأقران.
+تحدد هذه الوثيقة تفاصيل رسائل بناء tunnel المشفرة المستخدمة لإنشاء tunnels باستخدام طريقة "التلسكوب غير التفاعلي". راجع وثيقة بناء tunnel [TUNNEL-IMPL](/docs/specs/tunnel-implementation) للحصول على نظرة عامة على العملية، بما في ذلك طرق اختيار وترتيب الأقران.
 
-يتم إنجاز إنشاء tunnel من خلال رسالة واحدة يتم تمريرها عبر مسار النظراء في tunnel، تُعاد كتابتها في المكان نفسه، وتُرسل مرة أخرى إلى منشئ tunnel. تتكون رسالة tunnel الواحدة هذه من عدد متغير من السجلات (حتى 8) - سجل واحد لكل نظير محتمل في tunnel. يتم تشفير السجلات الفردية بشكل غير متماثل (ElGamal [CRYPTO-ELG]) لتكون قابلة للقراءة فقط من قِبل نظير محدد على طول المسار، بينما يُضاف طبقة إضافية من التشفير المتماثل (AES [CRYPTO-AES]) في كل نقطة انتقال لكشف السجل المُشفر بشكل غير متماثل فقط في الوقت المناسب.
+يتم إنجاز إنشاء tunnel من خلال رسالة واحدة يتم تمريرها عبر مسار النظراء في tunnel، تُعاد كتابتها في المكان نفسه، وتُرسل مرة أخرى إلى منشئ tunnel. تتكون رسالة tunnel الواحدة هذه من عدد متغير من السجلات (حتى 8) - سجل واحد لكل نظير محتمل في tunnel. يتم تشفير السجلات الفردية بشكل غير متماثل (ElGamal [CRYPTO-ELG](/docs/specs/cryptography#elgamal)) لتكون قابلة للقراءة فقط من قِبل نظير محدد على طول المسار، بينما يُضاف طبقة إضافية من التشفير المتماثل (AES [CRYPTO-AES](/docs/specs/cryptography#AES)) في كل نقطة انتقال لكشف السجل المُشفر بشكل غير متماثل فقط في الوقت المناسب.
 
 ### عدد السجلات {#number}
 
-ليس من الضروري أن تحتوي جميع السجلات على بيانات صالحة. رسالة البناء لـ tunnel من 3 قفزات، على سبيل المثال، قد تحتوي على سجلات أكثر لإخفاء الطول الفعلي للـ tunnel عن المشاركين. هناك نوعان من رسائل البناء. رسالة Tunnel Build Message الأصلية ([TBM]) تحتوي على 8 سجلات، وهو أكثر من كافٍ لأي طول عملي للـ tunnel. رسالة Variable Tunnel Build Message الأحدث ([VTBM]) تحتوي على 1 إلى 8 سجلات. يمكن للمنشئ الموازنة بين حجم الرسالة والمقدار المرغوب من إخفاء طول الـ tunnel.
+ليس من الضروري أن تحتوي جميع السجلات على بيانات صالحة. رسالة البناء لـ tunnel من 3 قفزات، على سبيل المثال، قد تحتوي على سجلات أكثر لإخفاء الطول الفعلي للـ tunnel عن المشاركين. هناك نوعان من رسائل البناء. رسالة Tunnel Build Message الأصلية ([TBM](/docs/specs/i2np#msg-tunnelbuild)) تحتوي على 8 سجلات، وهو أكثر من كافٍ لأي طول عملي للـ tunnel. رسالة Variable Tunnel Build Message الأحدث ([VTBM](/docs/specs/i2np#msg-variabletunnelbuild)) تحتوي على 1 إلى 8 سجلات. يمكن للمنشئ الموازنة بين حجم الرسالة والمقدار المرغوب من إخفاء طول الـ tunnel.
 
 في الشبكة الحالية، معظم الأنفاق يبلغ طولها 2 أو 3 قفزات. التنفيذ الحالي يستخدم VTBM من 5 سجلات لبناء أنفاق بطول 4 قفزات أو أقل، و TBM من 8 سجلات للأنفاق الأطول. إن VTBM من 5 سجلات (والذي، عند تجزئته، يتسع في ثلاث رسائل tunnel بحجم 1KB) يقلل من حركة المرور في الشبكة ويزيد من معدل نجاح البناء، لأن الرسائل الأصغر أقل عرضة للإسقاط.
 
@@ -24,7 +24,7 @@ accurateFor: "0.9.66"
 
 ### مواصفات سجل الطلب {#tunnelcreate-requestrecord}
 
-محدد أيضًا في مواصفات I2NP [BRR].
+محدد أيضًا في مواصفات I2NP [BRR](/docs/specs/i2np#struct-buildrequestrecord).
 
 النص الواضح للسجل، مرئي فقط للقفزة المطلوبة:
 
@@ -63,13 +63,13 @@ bits 5-0: Undefined, must set to 0 for compatibility with future options
 
 #### تشفير سجل الطلب {#encryption}
 
-يتم تشفير هذا السجل النصي الواضح باستخدام ElGamal 2048 [CRYPTO-ELG] بمفتاح التشفير العام الخاص بالقفزة وتنسيقه في سجل بحجم 528 بايت:
+يتم تشفير هذا السجل النصي الواضح باستخدام ElGamal 2048 [CRYPTO-ELG](/docs/specs/cryptography#elgamal) بمفتاح التشفير العام الخاص بالقفزة وتنسيقه في سجل بحجم 528 بايت:
 
 ```
 bytes   0-15: First 16 bytes of the SHA-256 of the current hop's router identity
 bytes 16-527: ElGamal-2048 encrypted request record
 ```
-في السجل المشفر بحجم 512 بايت، تحتوي بيانات ElGamal على البايتات 1-256 و 258-513 من كتلة ElGamal المشفرة بحجم 514 بايت [CRYPTO-ELG]. يتم إزالة بايتَي الحشو من الكتلة (البايتات الصفرية في المواقع 0 و 257).
+في السجل المشفر بحجم 512 بايت، تحتوي بيانات ElGamal على البايتات 1-256 و 258-513 من كتلة ElGamal المشفرة بحجم 514 بايت [CRYPTO-ELG](/docs/specs/cryptography#elgamal). يتم إزالة بايتَي الحشو من الكتلة (البايتات الصفرية في المواقع 0 و 257).
 
 نظراً لأن النص الواضح يستخدم الحقل كاملاً، فلا حاجة لحشو إضافي بعد `SHA256(cleartext) + cleartext`.
 
@@ -79,7 +79,7 @@ bytes 16-527: ElGamal-2048 encrypted request record
 
 عندما يتلقى hop رسالة TunnelBuildMessage، يبحث خلال السجلات الموجودة بداخلها عن واحد يبدأ بـ identity hash الخاص به (مقطوع إلى 16 بايت). ثم يقوم بفك تشفير كتلة ElGamal من ذلك السجل ويسترد النص الواضح المحمي. في تلك النقطة، يتأكدون من أن طلب tunnel ليس مكررًا عن طريق إدخال مفتاح الرد AES-256 في مرشح Bloom. الطلبات المكررة أو غير الصالحة يتم إسقاطها. السجلات التي لا تحمل طابع الساعة الحالية، أو الساعة السابقة إذا كان بعد بداية الساعة بقليل، يجب إسقاطها. على سبيل المثال، خذ الساعة في الطابع الزمني، حوّلها إلى وقت كامل، ثم إذا كانت متأخرة أكثر من 65 دقيقة أو متقدمة 5 دقائق عن الوقت الحالي، فهي غير صالحة. مرشح Bloom يجب أن يكون له مدة لا تقل عن ساعة واحدة (بالإضافة إلى بضع دقائق، للسماح بانحراف الساعة)، بحيث أن السجلات المكررة في الساعة الحالية التي لا يتم رفضها بفحص الطابع الزمني للساعة في السجل، سيتم رفضها بواسطة المرشح.
 
-بعد أن يقرروا ما إذا كانوا سيوافقون على المشاركة في tunnel أم لا، يقومون باستبدال السجل الذي احتوى على الطلب بكتلة رد مشفرة. جميع السجلات الأخرى مشفرة بـ AES-256 [CRYPTO-AES] باستخدام مفتاح الرد و IV المرفقين. كل منها مشفر بشكل منفصل بـ AES/CBC باستخدام نفس مفتاح الرد و reply IV. وضع CBC لا يستمر (مترابط) عبر السجلات.
+بعد أن يقرروا ما إذا كانوا سيوافقون على المشاركة في tunnel أم لا، يقومون باستبدال السجل الذي احتوى على الطلب بكتلة رد مشفرة. جميع السجلات الأخرى مشفرة بـ AES-256 [CRYPTO-AES](/docs/specs/cryptography#AES) باستخدام مفتاح الرد و IV المرفقين. كل منها مشفر بشكل منفصل بـ AES/CBC باستخدام نفس مفتاح الرد و reply IV. وضع CBC لا يستمر (مترابط) عبر السجلات.
 
 كل hop يعرف فقط استجابته الخاصة. إذا وافق، سيحافظ على النفق حتى انتهاء صلاحيته، حتى لو لم يتم استخدامه، لأنه لا يستطيع معرفة ما إذا كانت جميع الـ hops الأخرى قد وافقت.
 
@@ -105,11 +105,11 @@ bytes   0-31 : SHA-256 of bytes 32-527
 bytes 32-526 : Random padding
 byte 527     : Reply value
 ```
-هذا موضح أيضاً في مواصفات I2NP [BRR].
+هذا موضح أيضاً في مواصفات I2NP [BRR](/docs/specs/i2np#struct-buildrequestrecord).
 
 ### إعداد رسالة بناء Tunnel {#tunnelcreate-requestpreparation}
 
-عند بناء رسالة Tunnel Build Message جديدة، يجب أولاً بناء جميع سجلات Build Request Records وتشفيرها بشكل غير متماثل باستخدام ElGamal [CRYPTO-ELG]. ثم يتم فك تشفير كل سجل مسبقاً باستخدام مفاتيح الرد وقيم IV الخاصة بالقفزات السابقة في المسار، باستخدام AES [CRYPTO-AES]. يجب تشغيل فك التشفير هذا بترتيب عكسي بحيث تظهر البيانات المشفرة بشكل غير متماثل بوضوح في القفزة الصحيحة بعد أن يقوم سلفها بتشفيرها.
+عند بناء رسالة Tunnel Build Message جديدة، يجب أولاً بناء جميع سجلات Build Request Records وتشفيرها بشكل غير متماثل باستخدام ElGamal [CRYPTO-ELG](/docs/specs/cryptography#elgamal). ثم يتم فك تشفير كل سجل مسبقاً باستخدام مفاتيح الرد وقيم IV الخاصة بالقفزات السابقة في المسار، باستخدام AES [CRYPTO-AES](/docs/specs/cryptography#AES). يجب تشغيل فك التشفير هذا بترتيب عكسي بحيث تظهر البيانات المشفرة بشكل غير متماثل بوضوح في القفزة الصحيحة بعد أن يقوم سلفها بتشفيرها.
 
 السجلات الزائدة غير المطلوبة للطلبات الفردية يتم ملؤها ببساطة ببيانات عشوائية من قبل المنشئ.
 
@@ -119,7 +119,7 @@ byte 527     : Reply value
 
 ### معالجة نقطة النهاية لرسالة بناء Tunnel {#tunnelcreate-endpointhandling}
 
-لإنشاء tunnel صادر، عندما يصل الطلب إلى نقطة نهاية صادرة (كما هو محدد بواسطة علم 'السماح بالرسائل لأي شخص')، يتم معالجة الوصلة كالمعتاد، تشفير رد مكان السجل وتشفير جميع السجلات الأخرى، ولكن نظراً لعدم وجود 'وصلة تالية' لإعادة توجيه TunnelBuildMessage إليها، فإنها بدلاً من ذلك تضع سجلات الرد المشفرة في TunnelBuildReplyMessage ([TBRM]) أو VariableTunnelBuildReplyMessage ([VTBRM]) (يجب أن يتطابق نوع الرسالة وعدد السجلات مع تلك الموجودة في الطلب) وتسلمها إلى tunnel الرد المحدد ضمن سجل الطلب. ذلك tunnel الرد يعيد توجيه Tunnel Build Reply Message إلى منشئ tunnel، تماماً كما هو الحال مع أي رسالة أخرى [TUNNEL-OP]. ثم يقوم منشئ tunnel بمعالجتها، كما هو موضح أدناه.
+لإنشاء tunnel صادر، عندما يصل الطلب إلى نقطة نهاية صادرة (كما هو محدد بواسطة علم 'السماح بالرسائل لأي شخص')، يتم معالجة الوصلة كالمعتاد، تشفير رد مكان السجل وتشفير جميع السجلات الأخرى، ولكن نظراً لعدم وجود 'وصلة تالية' لإعادة توجيه TunnelBuildMessage إليها، فإنها بدلاً من ذلك تضع سجلات الرد المشفرة في TunnelBuildReplyMessage ([TBRM](/docs/specs/i2np#msg-tunnelbuildreply)) أو VariableTunnelBuildReplyMessage ([VTBRM](/docs/specs/i2np#msg-variabletunnelbuildreply)) (يجب أن يتطابق نوع الرسالة وعدد السجلات مع تلك الموجودة في الطلب) وتسلمها إلى tunnel الرد المحدد ضمن سجل الطلب. ذلك tunnel الرد يعيد توجيه Tunnel Build Reply Message إلى منشئ tunnel، تماماً كما هو الحال مع أي رسالة أخرى [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation). ثم يقوم منشئ tunnel بمعالجتها، كما هو موضح أدناه.
 
 يتم اختيار tunnel الرد من قبل المنشئ كما يلي: عادة ما يكون tunnel واردًا من نفس المجموعة التي ينتمي إليها tunnel الصادر الجديد الذي يتم إنشاؤه. إذا لم يكن هناك tunnel وارد متاح في تلك المجموعة، يتم استخدام tunnel استكشافي وارد. عند بدء التشغيل، عندما لا يوجد بعد tunnel استكشافي وارد، يتم استخدام tunnel وارد وهمي بـ 0 قفزة.
 
@@ -129,11 +129,11 @@ byte 527     : Reply value
 
 لمعالجة سجلات الرد، يحتاج المنشئ ببساطة إلى فك تشفير AES لكل سجل بشكل فردي، باستخدام مفتاح الرد و IV لكل قفزة في tunnel بعد النظير (بترتيب عكسي). هذا يكشف عن الرد الذي يحدد ما إذا كانوا يوافقون على المشاركة في tunnel أو سبب رفضهم. إذا وافقوا جميعاً، يُعتبر tunnel مُنشأ ويمكن استخدامه فوراً، ولكن إذا رفض أي شخص، يتم التخلص من tunnel.
 
-يتم تسجيل الموافقات والرفض في ملف تعريف كل peer [PEER-SELECTION]، لاستخدامها في التقييمات المستقبلية لسعة tunnel الخاصة بالـ peer.
+يتم تسجيل الموافقات والرفض في ملف تعريف كل peer [PEER-SELECTION](/docs/overview/peer-selection)، لاستخدامها في التقييمات المستقبلية لسعة tunnel الخاصة بالـ peer.
 
 ## التاريخ والملاحظات {#tunnelcreate-notes}
 
-نشأت هذه الاستراتيجية خلال نقاش في القائمة البريدية لـ I2P بين مايكل روجرز وماثيو توسلاند (toad) وjrandom بخصوص هجوم predecessor. انظر [TUNBUILD-SUMMARY]، [TUNBUILD-REASONING]. تم تقديمها في الإصدار 0.6.1.10 في 2006-02-16، والذي كان آخر مرة تم فيها إجراء تغيير غير متوافق مع الإصدارات السابقة في I2P.
+نشأت هذه الاستراتيجية خلال نقاش في القائمة البريدية لـ I2P بين مايكل روجرز وماثيو توسلاند (toad) وjrandom بخصوص هجوم predecessor. انظر [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)، [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html). تم تقديمها في الإصدار 0.6.1.10 في 2006-02-16، والذي كان آخر مرة تم فيها إجراء تغيير غير متوافق مع الإصدارات السابقة في I2P.
 
 ملاحظات:
 
@@ -163,18 +163,18 @@ byte 527     : Reply value
 
 ## المراجع {#ref}
 
-- [BRR] /docs/specs/i2np#struct-buildrequestrecord
-- [CRYPTO-AES] /docs/specs/cryptography#AES
-- [CRYPTO-ELG] /docs/specs/cryptography#elgamal
-- [HASHING-IT-OUT] http://www-users.cs.umn.edu/~hopper/hashing_it_out.pdf
-- [PEER-SELECTION] /docs/overview/peer-selection
-- [PREDECESSOR] http://forensics.umass.edu/pubs/wright-tissec.pdf
-- [PREDECESSOR-2008] http://forensics.umass.edu/pubs/wright.tissec.2008.pdf
-- [TBM] /docs/specs/i2np#msg-tunnelbuild
-- [TBRM] /docs/specs/i2np#msg-tunnelbuildreply
-- [TUNBUILD-REASONING] http://zzz.i2p/archive/2005-10/msg00129.html
-- [TUNBUILD-SUMMARY] http://zzz.i2p/archive/2005-10/msg00138.html
-- [TUNNEL-IMPL] /docs/specs/tunnel-implementation
-- [TUNNEL-OP] /docs/specs/tunnel-implementation#tunnel.operation
-- [VTBM] /docs/specs/i2np#msg-variabletunnelbuild
-- [VTBRM] /docs/specs/i2np#msg-variabletunnelbuildreply
+- [BRR](/docs/specs/i2np#struct-buildrequestrecord) - Build Request Record
+- [CRYPTO-AES](/docs/specs/cryptography#AES) - AES Encryption
+- [CRYPTO-ELG](/docs/specs/cryptography#elgamal) - ElGamal Encryption
+- [HASHING-IT-OUT](http://www-users.cs.umn.edu/~hopper/hashing_it_out.pdf) - Hashing It Out Paper
+- [PEER-SELECTION](/docs/overview/peer-selection) - Peer Selection
+- [PREDECESSOR](http://forensics.umass.edu/pubs/wright-tissec.pdf) - Predecessor Attack Paper
+- [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf) - Predecessor Attack Paper (2008)
+- [TBM](/docs/specs/i2np#msg-tunnelbuild) - Tunnel Build Message
+- [TBRM](/docs/specs/i2np#msg-tunnelbuildreply) - Tunnel Build Reply Message
+- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html) - Tunnel Build Reasoning
+- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html) - Tunnel Build Summary
+- [TUNNEL-IMPL](/docs/specs/tunnel-implementation) - Tunnel Implementation
+- [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation) - Tunnel Operation
+- [VTBM](/docs/specs/i2np#msg-variabletunnelbuild) - Variable Tunnel Build Message
+- [VTBRM](/docs/specs/i2np#msg-variabletunnelbuildreply) - Variable Tunnel Build Reply Message

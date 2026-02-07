@@ -10,13 +10,13 @@ accurateFor: "0.9.66"
 
 HINWEIS: VERALTET - Dies ist die ElGamal tunnel build Spezifikation. Siehe die [X25519 tunnel build Spezifikation](/docs/specs/tunnel-creation-ecies) für die aktuelle Methode.
 
-Dieses Dokument spezifiziert die Details der verschlüsselten tunnel-Build-Nachrichten, die zur Erstellung von tunnels mit einer "nicht-interaktiven Teleskopierung"-Methode verwendet werden. Siehe das tunnel-Build-Dokument [TUNNEL-IMPL] für einen Überblick über den Prozess, einschließlich Peer-Auswahl und Anordnungsmethoden.
+Dieses Dokument spezifiziert die Details der verschlüsselten tunnel-Build-Nachrichten, die zur Erstellung von tunnels mit einer "nicht-interaktiven Teleskopierung"-Methode verwendet werden. Siehe das tunnel-Build-Dokument [TUNNEL-IMPL](/docs/specs/tunnel-implementation) für einen Überblick über den Prozess, einschließlich Peer-Auswahl und Anordnungsmethoden.
 
-Die Tunnel-Erstellung wird durch eine einzige Nachricht bewerkstelligt, die entlang des Pfades der Peers im Tunnel weitergegeben, vor Ort umgeschrieben und an den Tunnel-Ersteller zurückübertragen wird. Diese einzelne Tunnel-Nachricht besteht aus einer variablen Anzahl von Datensätzen (bis zu 8) - einen für jeden potenziellen Peer im Tunnel. Einzelne Datensätze werden asymmetrisch (ElGamal [CRYPTO-ELG]) verschlüsselt, um nur von einem bestimmten Peer entlang des Pfades gelesen werden zu können, während eine zusätzliche symmetrische Verschlüsselungsebene (AES [CRYPTO-AES]) an jedem Hop hinzugefügt wird, um den asymmetrisch verschlüsselten Datensatz nur zum angemessenen Zeitpunkt freizulegen.
+Die Tunnel-Erstellung wird durch eine einzige Nachricht bewerkstelligt, die entlang des Pfades der Peers im Tunnel weitergegeben, vor Ort umgeschrieben und an den Tunnel-Ersteller zurückübertragen wird. Diese einzelne Tunnel-Nachricht besteht aus einer variablen Anzahl von Datensätzen (bis zu 8) - einen für jeden potenziellen Peer im Tunnel. Einzelne Datensätze werden asymmetrisch (ElGamal [CRYPTO-ELG](/docs/specs/cryptography#elgamal)) verschlüsselt, um nur von einem bestimmten Peer entlang des Pfades gelesen werden zu können, während eine zusätzliche symmetrische Verschlüsselungsebene (AES [CRYPTO-AES](/docs/specs/cryptography#AES)) an jedem Hop hinzugefügt wird, um den asymmetrisch verschlüsselten Datensatz nur zum angemessenen Zeitpunkt freizulegen.
 
 ### Anzahl der Datensätze {#number}
 
-Nicht alle Datensätze müssen gültige Daten enthalten. Die Build-Nachricht für einen 3-Hop-Tunnel kann beispielsweise mehr Datensätze enthalten, um die tatsächliche Länge des Tunnels vor den Teilnehmern zu verbergen. Es gibt zwei Arten von Build-Nachrichten. Die ursprüngliche Tunnel Build Message ([TBM]) enthält 8 Datensätze, was mehr als ausreichend für jede praktische Tunnellänge ist. Die neuere Variable Tunnel Build Message ([VTBM]) enthält 1 bis 8 Datensätze. Der Initiator kann zwischen der Größe der Nachricht und dem gewünschten Maß an Tunnellängen-Verschleierung abwägen.
+Nicht alle Datensätze müssen gültige Daten enthalten. Die Build-Nachricht für einen 3-Hop-Tunnel kann beispielsweise mehr Datensätze enthalten, um die tatsächliche Länge des Tunnels vor den Teilnehmern zu verbergen. Es gibt zwei Arten von Build-Nachrichten. Die ursprüngliche Tunnel Build Message ([TBM](/docs/specs/i2np#msg-tunnelbuild)) enthält 8 Datensätze, was mehr als ausreichend für jede praktische Tunnellänge ist. Die neuere Variable Tunnel Build Message ([VTBM](/docs/specs/i2np#msg-variabletunnelbuild)) enthält 1 bis 8 Datensätze. Der Initiator kann zwischen der Größe der Nachricht und dem gewünschten Maß an Tunnellängen-Verschleierung abwägen.
 
 Im aktuellen Netzwerk sind die meisten tunnel 2 oder 3 Hops lang. Die aktuelle Implementierung verwendet eine 5-Datensatz VTBM um tunnel mit 4 Hops oder weniger zu erstellen, und die 8-Datensatz TBM für längere tunnel. Die 5-Datensatz VTBM (die, wenn fragmentiert, in drei 1KB tunnel-Nachrichten passt) reduziert den Netzwerkverkehr und erhöht die Erfolgsrate beim Erstellen, da kleinere Nachrichten weniger wahrscheinlich verworfen werden.
 
@@ -24,7 +24,7 @@ Die Antwortnachricht muss denselben Typ und dieselbe Länge wie die Build-Nachri
 
 ### Request Record Spezifikation {#tunnelcreate-requestrecord}
 
-Auch spezifiziert in der I2NP-Spezifikation [BRR].
+Auch spezifiziert in der I2NP-Spezifikation [BRR](/docs/specs/i2np#struct-buildrequestrecord).
 
 Klartext des Datensatzes, nur für den angefragten Hop sichtbar:
 
@@ -63,13 +63,13 @@ Jeder Hop erhält eine zufällige Tunnel-ID, die nicht null ist. Die aktuellen u
 
 #### Request Record Encryption {#encryption}
 
-Dieser Klartext-Datensatz wird mit ElGamal 2048 verschlüsselt [CRYPTO-ELG] unter Verwendung des öffentlichen Verschlüsselungsschlüssels des Hops und in einen 528 Byte Datensatz formatiert:
+Dieser Klartext-Datensatz wird mit ElGamal 2048 verschlüsselt [CRYPTO-ELG](/docs/specs/cryptography#elgamal) unter Verwendung des öffentlichen Verschlüsselungsschlüssels des Hops und in einen 528 Byte Datensatz formatiert:
 
 ```
 bytes   0-15: First 16 bytes of the SHA-256 of the current hop's router identity
 bytes 16-527: ElGamal-2048 encrypted request record
 ```
-Im 512-Byte verschlüsselten Datensatz enthalten die ElGamal-Daten die Bytes 1-256 und 258-513 des 514-Byte ElGamal verschlüsselten Blocks [CRYPTO-ELG]. Die beiden Padding-Bytes aus dem Block (die Null-Bytes an den Positionen 0 und 257) werden entfernt.
+Im 512-Byte verschlüsselten Datensatz enthalten die ElGamal-Daten die Bytes 1-256 und 258-513 des 514-Byte ElGamal verschlüsselten Blocks [CRYPTO-ELG](/docs/specs/cryptography#elgamal). Die beiden Padding-Bytes aus dem Block (die Null-Bytes an den Positionen 0 und 257) werden entfernt.
 
 Da der Klartext das gesamte Feld verwendet, ist keine zusätzliche Auffüllung über `SHA256(cleartext) + cleartext` hinaus erforderlich.
 
@@ -79,7 +79,7 @@ Jeder 528-Byte-Datensatz wird dann iterativ verschlüsselt (unter Verwendung von
 
 Wenn ein Hop eine TunnelBuildMessage erhält, durchsucht er die darin enthaltenen Datensätze nach einem, der mit seinem eigenen Identity-Hash beginnt (auf 16 Bytes gekürzt). Anschließend entschlüsselt er den ElGamal-Block aus diesem Datensatz und ruft den geschützten Klartext ab. An diesem Punkt stellen sie sicher, dass die Tunnel-Anfrage kein Duplikat ist, indem sie den AES-256-Antwortschlüssel in einen Bloom-Filter einspeisen. Duplikate oder ungültige Anfragen werden verworfen. Datensätze, die nicht mit der aktuellen Stunde oder der vorherigen Stunde gestempelt sind (falls kurz nach der vollen Stunde), müssen verworfen werden. Zum Beispiel: Nimm die Stunde aus dem Zeitstempel, wandle sie in eine vollständige Zeit um, und wenn sie mehr als 65 Minuten zurück oder 5 Minuten voraus zur aktuellen Zeit liegt, ist sie ungültig. Der Bloom-Filter muss eine Dauer von mindestens einer Stunde haben (plus ein paar Minuten, um Uhrenabweichungen zu berücksichtigen), damit doppelte Datensätze in der aktuellen Stunde, die nicht durch Prüfung des Stunden-Zeitstempels im Datensatz abgelehnt werden, vom Filter abgelehnt werden.
 
-Nachdem sie entschieden haben, ob sie der Teilnahme am tunnel zustimmen oder nicht, ersetzen sie den Datensatz, der die Anfrage enthielt, durch einen verschlüsselten Antwortblock. Alle anderen Datensätze werden mit AES-256 [CRYPTO-AES] unter Verwendung des enthaltenen Antwortschlüssels und IV verschlüsselt. Jeder wird separat mit AES/CBC unter Verwendung desselben Antwortschlüssels und Antwort-IV verschlüsselt. Der CBC-Modus wird nicht über Datensätze hinweg fortgesetzt (verkettet).
+Nachdem sie entschieden haben, ob sie der Teilnahme am tunnel zustimmen oder nicht, ersetzen sie den Datensatz, der die Anfrage enthielt, durch einen verschlüsselten Antwortblock. Alle anderen Datensätze werden mit AES-256 [CRYPTO-AES](/docs/specs/cryptography#AES) unter Verwendung des enthaltenen Antwortschlüssels und IV verschlüsselt. Jeder wird separat mit AES/CBC unter Verwendung desselben Antwortschlüssels und Antwort-IV verschlüsselt. Der CBC-Modus wird nicht über Datensätze hinweg fortgesetzt (verkettet).
 
 Jeder Hop kennt nur seine eigene Antwort. Wenn er zustimmt, wird er den tunnel bis zum Ablauf aufrechterhalten, auch wenn er nicht genutzt wird, da er nicht wissen kann, ob alle anderen Hops zugestimmt haben.
 
@@ -105,11 +105,11 @@ bytes   0-31 : SHA-256 of bytes 32-527
 bytes 32-526 : Random padding
 byte 527     : Reply value
 ```
-Dies wird auch in der I2NP-Spezifikation [BRR] beschrieben.
+Dies wird auch in der I2NP-Spezifikation [BRR](/docs/specs/i2np#struct-buildrequestrecord) beschrieben.
 
 ### Tunnel Build Message Vorbereitung {#tunnelcreate-requestpreparation}
 
-Beim Erstellen einer neuen Tunnel Build Message müssen zunächst alle Build Request Records erstellt und asymmetrisch mit ElGamal [CRYPTO-ELG] verschlüsselt werden. Jeder Record wird dann vorausschauend mit den Antwortschlüsseln und IVs der Hops entschlüsselt, die früher im Pfad liegen, unter Verwendung von AES [CRYPTO-AES]. Diese Entschlüsselung sollte in umgekehrter Reihenfolge ausgeführt werden, damit die asymmetrisch verschlüsselten Daten im Klartext am richtigen Hop erscheinen, nachdem ihr Vorgänger sie verschlüsselt hat.
+Beim Erstellen einer neuen Tunnel Build Message müssen zunächst alle Build Request Records erstellt und asymmetrisch mit ElGamal [CRYPTO-ELG](/docs/specs/cryptography#elgamal) verschlüsselt werden. Jeder Record wird dann vorausschauend mit den Antwortschlüsseln und IVs der Hops entschlüsselt, die früher im Pfad liegen, unter Verwendung von AES [CRYPTO-AES](/docs/specs/cryptography#AES). Diese Entschlüsselung sollte in umgekehrter Reihenfolge ausgeführt werden, damit die asymmetrisch verschlüsselten Daten im Klartext am richtigen Hop erscheinen, nachdem ihr Vorgänger sie verschlüsselt hat.
 
 Die überschüssigen Datensätze, die nicht für einzelne Anfragen benötigt werden, werden vom Ersteller einfach mit zufälligen Daten gefüllt.
 
@@ -119,7 +119,7 @@ Für ausgehende tunnel wird die Zustellung direkt vom tunnel-Ersteller zum erste
 
 ### Tunnel Build Message Endpoint Handling {#tunnelcreate-endpointhandling}
 
-Für die Erstellung eines ausgehenden tunnels wird, wenn die Anfrage einen ausgehenden Endpunkt erreicht (wie durch das 'allow messages to anyone' Flag bestimmt), der Hop wie üblich verarbeitet, wobei eine Antwort anstelle des Datensatzes verschlüsselt und alle anderen Datensätze verschlüsselt werden. Da es jedoch keinen 'nächsten Hop' gibt, an den die TunnelBuildMessage weitergeleitet werden kann, platziert er stattdessen die verschlüsselten Antwortdatensätze in eine TunnelBuildReplyMessage ([TBRM]) oder VariableTunnelBuildReplyMessage ([VTBRM]) (der Nachrichtentyp und die Anzahl der Datensätze müssen mit denen der Anfrage übereinstimmen) und liefert sie an den im Anfragedatensatz angegebenen Antworttunnel. Dieser Antworttunnel leitet die Tunnel Build Reply Message zurück an den tunnel-Ersteller weiter, genau wie bei jeder anderen Nachricht [TUNNEL-OP]. Der tunnel-Ersteller verarbeitet sie dann wie unten beschrieben.
+Für die Erstellung eines ausgehenden tunnels wird, wenn die Anfrage einen ausgehenden Endpunkt erreicht (wie durch das 'allow messages to anyone' Flag bestimmt), der Hop wie üblich verarbeitet, wobei eine Antwort anstelle des Datensatzes verschlüsselt und alle anderen Datensätze verschlüsselt werden. Da es jedoch keinen 'nächsten Hop' gibt, an den die TunnelBuildMessage weitergeleitet werden kann, platziert er stattdessen die verschlüsselten Antwortdatensätze in eine TunnelBuildReplyMessage ([TBRM](/docs/specs/i2np#msg-tunnelbuildreply)) oder VariableTunnelBuildReplyMessage ([VTBRM](/docs/specs/i2np#msg-variabletunnelbuildreply)) (der Nachrichtentyp und die Anzahl der Datensätze müssen mit denen der Anfrage übereinstimmen) und liefert sie an den im Anfragedatensatz angegebenen Antworttunnel. Dieser Antworttunnel leitet die Tunnel Build Reply Message zurück an den tunnel-Ersteller weiter, genau wie bei jeder anderen Nachricht [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation). Der tunnel-Ersteller verarbeitet sie dann wie unten beschrieben.
 
 Der Reply-Tunnel wurde vom Ersteller wie folgt ausgewählt: Im Allgemeinen ist es ein eingehender Tunnel aus demselben Pool wie der neue ausgehende Tunnel, der gebaut wird. Wenn kein eingehender Tunnel in diesem Pool verfügbar ist, wird ein eingehender Explorations-Tunnel verwendet. Beim Systemstart, wenn noch kein eingehender Explorations-Tunnel existiert, wird ein gefälschter 0-Hop eingehender Tunnel verwendet.
 
@@ -129,11 +129,11 @@ Für die Erstellung eines inbound tunnel, wenn die Anfrage den inbound endpoint 
 
 Um die Antwort-Datensätze zu verarbeiten, muss der Ersteller einfach jeden Datensatz einzeln AES-entschlüsseln, wobei er den Antwortschlüssel und IV jedes Hops im tunnel nach dem Peer verwendet (in umgekehrter Reihenfolge). Dies legt dann die Antwort frei, die angibt, ob sie der Teilnahme am tunnel zustimmen oder warum sie ablehnen. Wenn alle zustimmen, gilt der tunnel als erstellt und kann sofort verwendet werden, aber wenn jemand ablehnt, wird der tunnel verworfen.
 
-Die Zustimmungen und Ablehnungen werden im Profil jedes Peers [PEER-SELECTION] vermerkt, um bei zukünftigen Bewertungen der Peer-tunnel-Kapazität verwendet zu werden.
+Die Zustimmungen und Ablehnungen werden im Profil jedes Peers [PEER-SELECTION](/docs/overview/peer-selection) vermerkt, um bei zukünftigen Bewertungen der Peer-tunnel-Kapazität verwendet zu werden.
 
 ## Geschichte und Hinweise {#tunnelcreate-notes}
 
-Diese Strategie entstand während einer Diskussion in der I2P-Mailingliste zwischen Michael Rogers, Matthew Toseland (toad) und jrandom bezüglich des Predecessor-Angriffs. Siehe [TUNBUILD-SUMMARY], [TUNBUILD-REASONING]. Sie wurde in Release 0.6.1.10 am 2006-02-16 eingeführt, was das letzte Mal war, dass eine nicht-rückwärtskompatible Änderung in I2P vorgenommen wurde.
+Diese Strategie entstand während einer Diskussion in der I2P-Mailingliste zwischen Michael Rogers, Matthew Toseland (toad) und jrandom bezüglich des Predecessor-Angriffs. Siehe [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html), [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html). Sie wurde in Release 0.6.1.10 am 2006-02-16 eingeführt, was das letzte Mal war, dass eine nicht-rückwärtskompatible Änderung in I2P vorgenommen wurde.
 
 Hinweise:
 
@@ -164,18 +164,18 @@ Hinweise:
 
 ## Referenzen {#ref}
 
-- [BRR] /docs/specs/i2np#struct-buildrequestrecord
-- [CRYPTO-AES] /docs/specs/cryptography#AES
-- [CRYPTO-ELG] /docs/specs/cryptography#elgamal
-- [HASHING-IT-OUT] http://www-users.cs.umn.edu/~hopper/hashing_it_out.pdf
-- [PEER-SELECTION] /docs/overview/peer-selection
-- [PREDECESSOR] http://forensics.umass.edu/pubs/wright-tissec.pdf
-- [PREDECESSOR-2008] http://forensics.umass.edu/pubs/wright.tissec.2008.pdf
-- [TBM] /docs/specs/i2np#msg-tunnelbuild
-- [TBRM] /docs/specs/i2np#msg-tunnelbuildreply
-- [TUNBUILD-REASONING] http://zzz.i2p/archive/2005-10/msg00129.html
-- [TUNBUILD-SUMMARY] http://zzz.i2p/archive/2005-10/msg00138.html
-- [TUNNEL-IMPL] /docs/specs/tunnel-implementation
-- [TUNNEL-OP] /docs/specs/tunnel-implementation#tunnel.operation
-- [VTBM] /docs/specs/i2np#msg-variabletunnelbuild
-- [VTBRM] /docs/specs/i2np#msg-variabletunnelbuildreply
+- [BRR](/docs/specs/i2np#struct-buildrequestrecord) - Build Request Record
+- [CRYPTO-AES](/docs/specs/cryptography#AES) - AES Encryption
+- [CRYPTO-ELG](/docs/specs/cryptography#elgamal) - ElGamal Encryption
+- [HASHING-IT-OUT](http://www-users.cs.umn.edu/~hopper/hashing_it_out.pdf) - Hashing It Out Paper
+- [PEER-SELECTION](/docs/overview/peer-selection) - Peer Selection
+- [PREDECESSOR](http://forensics.umass.edu/pubs/wright-tissec.pdf) - Predecessor Attack Paper
+- [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf) - Predecessor Attack Paper (2008)
+- [TBM](/docs/specs/i2np#msg-tunnelbuild) - Tunnel Build Message
+- [TBRM](/docs/specs/i2np#msg-tunnelbuildreply) - Tunnel Build Reply Message
+- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html) - Tunnel Build Reasoning
+- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html) - Tunnel Build Summary
+- [TUNNEL-IMPL](/docs/specs/tunnel-implementation) - Tunnel Implementation
+- [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation) - Tunnel Operation
+- [VTBM](/docs/specs/i2np#msg-variabletunnelbuild) - Variable Tunnel Build Message
+- [VTBRM](/docs/specs/i2np#msg-variabletunnelbuildreply) - Variable Tunnel Build Reply Message

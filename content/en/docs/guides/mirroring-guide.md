@@ -29,7 +29,7 @@ There are several practical reasons to mirror your services:
 
 Before you start, make sure you have:
 
-- **A running I2P router** on your server (the Java implementation). If you don't have one yet, follow the [I2P Installation Guide](/guides/install) first.
+- **A running I2P router** on your server (the Java implementation). If you don't have one yet, follow the [I2P Installation Guide](/downloads/) first.
 - **Your website or service already working** — it should be serving content on your server.
 - **Basic command-line comfort** — you'll be editing a config file and running a few commands.
 - **About 15–20 minutes** — that's all it takes.
