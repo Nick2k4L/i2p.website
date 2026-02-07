@@ -105,33 +105,48 @@ All fields are big-endian.
 
 Unencrypted size: 464 bytes
 
-```
-bytes     0-3: tunnel ID to receive messages as, nonzero
-bytes     4-7: next tunnel ID, nonzero
-bytes    8-39: next router identity hash
-bytes   40-71: AES-256 tunnel layer key
-bytes  72-103: AES-256 tunnel IV key
-bytes 104-135: AES-256 reply key
-bytes 136-151: AES-256 reply IV
-byte      152: flags
-bytes 153-155: more flags, unused, set to 0 for compatibility
-bytes 156-159: request time (in minutes since the epoch, rounded down)
-bytes 160-163: request expiration (in seconds since creation)
-bytes 164-167: next message ID
-bytes   168-x: tunnel build options (Mapping)
-bytes     x-x: other data as implied by flags or options
-bytes   x-463: random padding
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-3</td><td style="border:1px solid var(--color-border); padding:0.6rem;">tunnel ID to receive messages as, nonzero</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">4-7</td><td style="border:1px solid var(--color-border); padding:0.6rem;">next tunnel ID, nonzero</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">8-39</td><td style="border:1px solid var(--color-border); padding:0.6rem;">next router identity hash</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">40-71</td><td style="border:1px solid var(--color-border); padding:0.6rem;">AES-256 tunnel layer key</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">72-103</td><td style="border:1px solid var(--color-border); padding:0.6rem;">AES-256 tunnel IV key</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">104-135</td><td style="border:1px solid var(--color-border); padding:0.6rem;">AES-256 reply key</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">136-151</td><td style="border:1px solid var(--color-border); padding:0.6rem;">AES-256 reply IV</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">152</td><td style="border:1px solid var(--color-border); padding:0.6rem;">flags</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">153-155</td><td style="border:1px solid var(--color-border); padding:0.6rem;">more flags, unused, set to 0 for compatibility</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">156-159</td><td style="border:1px solid var(--color-border); padding:0.6rem;">request time (in minutes since the epoch, rounded down)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">160-163</td><td style="border:1px solid var(--color-border); padding:0.6rem;">request expiration (in seconds since creation)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">164-167</td><td style="border:1px solid var(--color-border); padding:0.6rem;">next message ID</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">168-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">tunnel build options (Mapping)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">other data as implied by flags or options</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-463</td><td style="border:1px solid var(--color-border); padding:0.6rem;">random padding</td></tr>
+</tbody>
+</table>
 
 The flags field is the same as defined in [Tunnel-Creation](/docs/specs/tunnel-creation/) and contains the following:
 
-```
-Bit order: 76543210 (bit 7 is MSB)
-bit 7: if set, allow messages from anyone
-bit 6: if set, allow messages to anyone, and send the reply to the
-       specified next hop in a Tunnel Build Reply Message
-bits 5-0: Undefined, must set to 0 for compatibility with future options
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bit</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;" colspan="2"><em>Bit order: 76543210 (bit 7 is MSB)</em></td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">7</td><td style="border:1px solid var(--color-border); padding:0.6rem;">if set, allow messages from anyone</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">6</td><td style="border:1px solid var(--color-border); padding:0.6rem;">if set, allow messages to anyone, and send the reply to the specified next hop in a Tunnel Build Reply Message</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">5-0</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Undefined, must set to 0 for compatibility with future options</td></tr>
+</tbody>
+</table>
 
 Bit 7 indicates that the hop will be an inbound gateway (IBGW). Bit 6 indicates that the hop will be an outbound endpoint (OBEP). If neither bit is set, the hop will be an intermediate participant. Both cannot be set at once.
 
@@ -145,12 +160,20 @@ All fields are big-endian except for the ephemeral public key which is little-en
 
 Encrypted size: 528 bytes
 
-```
-bytes    0-15: Hop's truncated identity hash
-bytes   16-47: Sender's ephemeral X25519 public key
-bytes  48-511: ChaCha20 encrypted BuildRequestRecord
-bytes 512-527: Poly1305 MAC
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-15</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Hop's truncated identity hash</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">16-47</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Sender's ephemeral X25519 public key</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">48-511</td><td style="border:1px solid var(--color-border); padding:0.6rem;">ChaCha20 encrypted BuildRequestRecord</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">512-527</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Poly1305 MAC</td></tr>
+</tbody>
+</table>
 
 ### Build Reply Records
 
@@ -169,12 +192,20 @@ All fields are big-endian.
 
 Unencrypted size: 512 bytes
 
-```
-bytes    0-x: Tunnel Build Reply Options (Mapping)
-bytes    x-x: other data as implied by options
-bytes  x-510: Random padding
-byte     511: Reply byte
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Tunnel Build Reply Options (Mapping)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">other data as implied by options</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-510</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Random padding</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">511</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Reply byte</td></tr>
+</tbody>
+</table>
 
 The tunnel build reply options is a Mapping structure as defined in [Common](/docs/specs/common-structures/). The only options currently defined are for bandwidth parameters, as of API 0.9.65, see below for details. If the Mapping structure is empty, this is two bytes 0x00 0x00. The maximum size of the Mapping (including the length field) is 511 bytes, and the maximum value of the Mapping length field is 509.
 
@@ -187,10 +218,18 @@ The reply byte is one of the following values as defined in [Tunnel-Creation](/d
 
 Encrypted size: 528 bytes
 
-```
-bytes   0-511: ChaCha20 encrypted BuildReplyRecord
-bytes 512-527: Poly1305 MAC
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-511</td><td style="border:1px solid var(--color-border); padding:0.6rem;">ChaCha20 encrypted BuildReplyRecord</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">512-527</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Poly1305 MAC</td></tr>
+</tbody>
+</table>
 
 After full transition to ECIES records, ranged padding rules are the same as for request records.
 
@@ -450,30 +489,45 @@ All fields are big-endian.
 
 Unencrypted size: 154 bytes.
 
-```
-bytes     0-3: tunnel ID to receive messages as, nonzero
-bytes     4-7: next tunnel ID, nonzero
-bytes    8-39: next router identity hash
-byte       40: flags
-bytes   41-42: more flags, unused, set to 0 for compatibility
-byte       43: layer encryption type
-bytes   44-47: request time (in minutes since the epoch, rounded down)
-bytes   48-51: request expiration (in seconds since creation)
-bytes   52-55: next message ID
-bytes    56-x: tunnel build options (Mapping)
-bytes     x-x: other data as implied by flags or options
-bytes   x-153: random padding (see below)
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-3</td><td style="border:1px solid var(--color-border); padding:0.6rem;">tunnel ID to receive messages as, nonzero</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">4-7</td><td style="border:1px solid var(--color-border); padding:0.6rem;">next tunnel ID, nonzero</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">8-39</td><td style="border:1px solid var(--color-border); padding:0.6rem;">next router identity hash</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">40</td><td style="border:1px solid var(--color-border); padding:0.6rem;">flags</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">41-42</td><td style="border:1px solid var(--color-border); padding:0.6rem;">more flags, unused, set to 0 for compatibility</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">43</td><td style="border:1px solid var(--color-border); padding:0.6rem;">layer encryption type</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">44-47</td><td style="border:1px solid var(--color-border); padding:0.6rem;">request time (in minutes since the epoch, rounded down)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">48-51</td><td style="border:1px solid var(--color-border); padding:0.6rem;">request expiration (in seconds since creation)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">52-55</td><td style="border:1px solid var(--color-border); padding:0.6rem;">next message ID</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">56-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">tunnel build options (Mapping)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">other data as implied by flags or options</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-153</td><td style="border:1px solid var(--color-border); padding:0.6rem;">random padding (see below)</td></tr>
+</tbody>
+</table>
 
 The flags field is the same as defined in [Tunnel-Creation](/docs/specs/tunnel-creation/) and contains the following:
 
-```
-Bit order: 76543210 (bit 7 is MSB)
-bit 7: if set, allow messages from anyone
-bit 6: if set, allow messages to anyone, and send the reply to the
-       specified next hop in a Tunnel Build Reply Message
-bits 5-0: Undefined, must set to 0 for compatibility with future options
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bit</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;" colspan="2"><em>Bit order: 76543210 (bit 7 is MSB)</em></td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">7</td><td style="border:1px solid var(--color-border); padding:0.6rem;">if set, allow messages from anyone</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">6</td><td style="border:1px solid var(--color-border); padding:0.6rem;">if set, allow messages to anyone, and send the reply to the specified next hop in a Tunnel Build Reply Message</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">5-0</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Undefined, must set to 0 for compatibility with future options</td></tr>
+</tbody>
+</table>
 
 Bit 7 indicates that the hop will be an inbound gateway (IBGW). Bit 6 indicates that the hop will be an outbound endpoint (OBEP). If neither bit is set, the hop will be an intermediate participant. Both cannot be set at once.
 
@@ -491,12 +545,20 @@ All fields are big-endian except for the ephemeral public key which is little-en
 
 Encrypted size: 218 bytes
 
-```
-bytes    0-15: Hop's truncated identity hash
-bytes   16-47: Sender's ephemeral X25519 public key
-bytes  48-201: ChaCha20 encrypted ShortBuildRequestRecord
-bytes 202-217: Poly1305 MAC
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-15</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Hop's truncated identity hash</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">16-47</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Sender's ephemeral X25519 public key</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">48-201</td><td style="border:1px solid var(--color-border); padding:0.6rem;">ChaCha20 encrypted ShortBuildRequestRecord</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">202-217</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Poly1305 MAC</td></tr>
+</tbody>
+</table>
 
 ### Short Build Reply Records
 
@@ -515,12 +577,20 @@ All fields are big-endian.
 
 Unencrypted size: 202 bytes.
 
-```
-bytes    0-x: Tunnel Build Reply Options (Mapping)
-bytes    x-x: other data as implied by options
-bytes  x-200: Random padding (see below)
-byte     201: Reply byte
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Tunnel Build Reply Options (Mapping)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-x</td><td style="border:1px solid var(--color-border); padding:0.6rem;">other data as implied by options</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">x-200</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Random padding (see below)</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">201</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Reply byte</td></tr>
+</tbody>
+</table>
 
 The tunnel build reply options is a Mapping structure as defined in [Common](/docs/specs/common-structures/). The only options currently defined are for bandwidth parameters, as of API 0.9.65, see below for details. If the Mapping structure is empty, this is two bytes 0x00 0x00. The maximum size of the Mapping (including the length field) is 201 bytes, and the maximum value of the Mapping length field is 199.
 
@@ -535,10 +605,18 @@ An additional reply value may be defined in the future to represent rejection fo
 
 Encrypted size: 218 bytes
 
-```
-bytes   0-201: ChaCha20 encrypted ShortBuildReplyRecord
-bytes 202-217: Poly1305 MAC
-```
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+<thead>
+<tr>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bytes</th>
+<th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">0-201</td><td style="border:1px solid var(--color-border); padding:0.6rem;">ChaCha20 encrypted ShortBuildReplyRecord</td></tr>
+<tr><td style="border:1px solid var(--color-border); padding:0.6rem;">202-217</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Poly1305 MAC</td></tr>
+</tbody>
+</table>
 
 ### KDF
 

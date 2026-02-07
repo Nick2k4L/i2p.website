@@ -80,15 +80,57 @@ Therefore, we take advantage of symmetric AES encryption
 to "decrypt" at the outbound tunnel gateway,
 so that the plaintext is revealed at the outbound endpoint.
 
-| Role | Preprocessing | Encryption Operation | Postprocessing |
-|------|---------------|---------------------|----------------|
-| Outbound Gateway (Creator) | Fragment, Batch, and Pad | Iteratively encrypt (using decryption operations) | Forward to next hop |
-| Participant | | Decrypt (using an encryption operation) | Forward to next hop |
-| Outbound Endpoint | | Decrypt (using an encryption operation) to reveal plaintext tunnel message | Reassemble Fragments, Forward as instructed to Inbound Gateway or Router |
-| | | | |
-| Inbound Gateway | Fragment, Batch, and Pad | Encrypt | Forward to next hop |
-| Participant | | Encrypt | Forward to next hop |
-| Inbound Endpoint (Creator) | | Iteratively decrypt to reveal plaintext tunnel message | Reassemble Fragments, Receive data |
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Role</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Preprocessing</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Encryption Operation</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Postprocessing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Outbound Gateway (Creator)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Fragment, Batch, and Pad</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Iteratively encrypt (using decryption operations)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Forward to next hop</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Participant</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Decrypt (using an encryption operation)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Forward to next hop</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Outbound Endpoint</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Decrypt (using an encryption operation) to reveal plaintext tunnel message</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reassemble Fragments, Forward as instructed to Inbound Gateway or Router</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;" colspan="4"></td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Inbound Gateway</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Fragment, Batch, and Pad</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Encrypt</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Forward to next hop</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Participant</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Encrypt</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Forward to next hop</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Inbound Endpoint (Creator)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Iteratively decrypt to reveal plaintext tunnel message</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reassemble Fragments, Receive data</td>
+    </tr>
+  </tbody>
+</table>
 
 
 ### Gateway Processing {#tunnel.gateway}
