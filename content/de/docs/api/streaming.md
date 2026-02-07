@@ -1,38 +1,38 @@
 ---
 title: "Streaming Protocol"
-description: "TCP-ähnlicher Transport, der von den meisten I2P-Anwendungen verwendet wird"
+description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
-lastUpdated: "2025-07"
-accurateFor: "0.9.67"
+lastUpdated: "2026-01"
+accurateFor: "0.9.68"
 ---
 
-## Überblick {#overview}
+## Overview
 
-Die Streaming-Bibliothek gehört technisch zur "Anwendungs"-Schicht, da sie keine Kernfunktion des routers ist. In der Praxis stellt sie jedoch eine wichtige Funktion für fast alle existierenden I2P-Anwendungen bereit, indem sie TCP-ähnliche Streams über I2P ermöglicht und bestehende Apps einfach zu I2P portieren lässt. Die andere End-to-End-Transport-Bibliothek für Client-Kommunikation ist die [Datagramm-Bibliothek](/docs/specs/datagrams).
+The **I2P Streaming Library** provides reliable, in-order, authenticated transport over I2P’s message layer, similar to **TCP over IP**.   It sits above the [I2CP protocol](/docs/specs/i2cp/) and is used by nearly all interactive I2P applications, including HTTP proxies, IRC, BitTorrent, and email.
 
-Die Streaming-Bibliothek ist eine Schicht auf der Kern-[I2CP API](/docs/specs/i2cp), die zuverlässige, geordnete und authentifizierte Nachrichtenströme über eine unzuverlässige, ungeordnete und nicht authentifizierte Nachrichtenschicht ermöglicht. Genau wie bei der TCP-zu-IP-Beziehung bietet diese Streaming-Funktionalität eine ganze Reihe von Kompromissen und Optimierungen, aber anstatt diese Funktionalität in den I2P-Basis-Code einzubetten, wurde sie in eine eigene Bibliothek ausgelagert, um sowohl die TCP-ähnlichen Komplexitäten getrennt zu halten als auch alternative optimierte Implementierungen zu ermöglichen.
+This design enables small HTTP requests and responses to complete in a single round-trip.   A SYN packet may carry the request payload, while the responder’s SYN/ACK/FIN may contain the full response body.
 
-In Anbetracht der relativ hohen Kosten von Nachrichten wurde das Protokoll der Streaming-Bibliothek für die Planung und Zustellung dieser Nachrichten optimiert, um zu ermöglichen, dass einzelne übertragene Nachrichten so viele Informationen wie verfügbar enthalten können. Zum Beispiel kann eine kleine HTTP-Transaktion, die über die Streaming-Bibliothek geleitet wird, in einem einzigen Roundtrip abgeschlossen werden - die ersten Nachrichten bündeln ein SYN, FIN und die kleine HTTP-Request-Nutzlast, und die Antwort bündelt das SYN, FIN, ACK und die HTTP-Response-Nutzlast. Während ein zusätzliches ACK übertragen werden muss, um dem HTTP-Server mitzuteilen, dass das SYN/FIN/ACK empfangen wurde, kann der lokale HTTP-Proxy oft die vollständige Antwort sofort an den Browser liefern.
+---
 
-Die Streaming-Bibliothek weist große Ähnlichkeit mit einer Abstraktion von TCP auf, mit ihren Sliding Windows, Congestion-Control-Algorithmen (sowohl Slow Start als auch Congestion Avoidance) und dem allgemeinen Paketverhalten (ACK, SYN, FIN, RST, RTO-Berechnung, etc.).
+The Java streaming API mirrors standard Java socket programming:
 
-Die Streaming-Bibliothek ist eine robuste Bibliothek, die für den Betrieb über I2P optimiert ist. Sie verfügt über eine einstufige Einrichtung und enthält eine vollständige Windowing-Implementierung.
+Full Javadocs are available from the I2P router console or [here](/docs/specs/streaming/).
 
-## API {#api}
+## API Basics
 
-Die Streaming-Bibliotheks-API bietet Java-Anwendungen ein Standard-Socket-Paradigma. Die darunterliegende [I2CP](/docs/specs/i2cp)-API ist vollständig verborgen, außer dass Anwendungen [I2CP-Parameter](/docs/specs/i2cp#options) durch die Streaming-Bibliothek weiterleiten können, um von I2CP interpretiert zu werden.
+---
 
-Die Standardschnittstelle zur Streaming-Bibliothek besteht darin, dass die Anwendung die I2PSocketManagerFactory verwendet, um einen I2PSocketManager zu erstellen. Die Anwendung fragt dann den Socket-Manager nach einer I2PSession, was eine Verbindung zum router über [I2CP](/docs/specs/i2cp) verursacht. Die Anwendung kann dann Verbindungen mit einem I2PSocket einrichten oder Verbindungen mit einem I2PServerSocket empfangen.
+You can pass configuration properties when creating a socket manager via:
 
-Ein gutes Beispiel für die Verwendung finden Sie im i2psnark-Code.
+Newer features since version 0.9.4 include reject log suppression, DSA list support (0.9.21), and mandatory protocol enforcement (0.9.36).   Routers since 2.10.0 include post-quantum hybrid encryption (ML-KEM + X25519) at the transport layer.
 
-### Optionen und Standardwerte {#options}
+### Core Characteristics
 
-Die Optionen und aktuellen Standardwerte sind unten aufgeführt. Optionen sind groß-/kleinschreibungssensitiv und können für den gesamten router, für einen bestimmten Client oder für einen einzelnen Socket auf Verbindungsbasis gesetzt werden. Viele Werte sind für HTTP-Performance unter typischen I2P-Bedingungen optimiert. Andere Anwendungen wie Peer-to-Peer-Dienste werden ausdrücklich ermutigt, diese nach Bedarf zu ändern, indem sie die Optionen setzen und über den Aufruf an I2PSocketManagerFactory.createManager(_i2cpHost, _i2cpPort, opts) übergeben. Zeitwerte sind in ms angegeben.
+---
 
-Beachten Sie, dass höhere APIs wie [SAM](/docs/api/samv3), [BOB](/docs/legacy/bob) und [I2PTunnel](/docs/api/i2ptunnel) diese Standardwerte mit ihren eigenen Standardwerten überschreiben können. Beachten Sie auch, dass viele Optionen nur für Server gelten, die auf eingehende Verbindungen lauschen.
+Each stream is identified by a **Stream ID**. Packets carry control flags similar to TCP: `SYNCHRONIZE`, `ACK`, `FIN`, and `RESET`.   Packets may contain both data and control flags simultaneously, improving efficiency for short-lived connections.
 
-Ab Version 0.9.1 können die meisten, aber nicht alle Optionen in einem aktiven Socket-Manager oder einer aktiven Session geändert werden. Details finden Sie in der Javadoc.
+Because I2P tunnels introduce latency and message reordering, the library buffers packets from unknown or early-arriving streams.   Buffered messages are stored until synchronization completes, ensuring complete, in-order delivery.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -235,128 +235,138 @@ Ab Version 0.9.1 können die meisten, aber nicht alle Optionen in einem aktiven 
     </tr>
   </tbody>
 </table>
-## Protokollspezifikation {#spec}
+## Configuration and Tuning
 
-[Siehe die Streaming Library Spezifikationsseite.](/docs/specs/streaming)
+The option `i2p.streaming.enforceProtocol=true` (default since 0.9.36) ensures connections use the correct I2CP protocol number, preventing conflicts between multiple subsystems sharing one destination.
 
-## Implementierungsdetails {#implementation}
+## Protocol Details
 
-### Einrichtung {#setup}
+### Key Options
 
-Der Initiator sendet ein Paket mit gesetztem SYNCHRONIZE-Flag. Dieses Paket kann auch die initialen Daten enthalten. Der Peer antwortet mit einem Paket mit gesetztem SYNCHRONIZE-Flag. Dieses Paket kann auch die initiale Antwortdaten enthalten.
+---
 
-Der Initiator kann zusätzliche Datenpakete senden, bis zur anfänglichen Fenstergröße, bevor er die SYNCHRONIZE-Antwort erhält. Diese Pakete haben ebenfalls das Feld "send Stream ID" auf 0 gesetzt. Empfänger müssen Pakete, die auf unbekannten Streams empfangen werden, für eine kurze Zeit puffern, da sie außer der Reihe ankommen können, noch vor dem SYNCHRONIZE-Paket.
+The streaming protocol coexists with the **Datagram API**, giving developers the choice between connection-oriented and connectionless transports.
 
-### MTU-Auswahl und -Verhandlung {#mtu}
+### Behavior by Workload
 
-Die maximale Nachrichtengröße (auch MTU / MRU genannt) wird auf den niedrigeren Wert verhandelt, der von beiden Peers unterstützt wird. Da tunnel-Nachrichten auf 1KB aufgefüllt werden, führt eine schlechte MTU-Auswahl zu einem großen Overhead. Die MTU wird durch die Option i2p.streaming.maxMessageSize festgelegt. Die aktuelle Standard-MTU von 1730 wurde gewählt, um genau in zwei 1K I2NP tunnel-Nachrichten zu passen, einschließlich des Overheads für den typischen Fall.
+Applications can reuse existing tunnels by running as **shared clients**, allowing multiple services to share the same destination.   While this reduces overhead, it increases cross-service correlation risk—use with care.
 
-Hinweis: Dies ist die maximale Größe der Nutzdaten nur, ohne den Header.
+Because I2P adds several hundred milliseconds of base latency, applications should minimize round-trips.   Bundle data with connection setup where possible (e.g., HTTP requests in SYN).   Avoid designs relying on many small sequential exchanges.
 
-Hinweis: Für ECIES-Verbindungen, die einen reduzierten Overhead haben, wird eine MTU von 1812 empfohlen. Die Standard-MTU bleibt für alle Verbindungen bei 1730, unabhängig davon, welcher Schlüsseltyp verwendet wird. Clients müssen wie gewöhnlich das Minimum der gesendeten und empfangenen MTU verwenden. Siehe Vorschlag 155.
+---
 
-Die erste Nachricht in einer Verbindung enthält eine 387 Byte (typisch) große Destination, die von der Streaming-Schicht hinzugefügt wird, und normalerweise ein 898 Byte (typisch) großes LeaseSet sowie Session-Schlüssel, die vom Router in der Garlic-Nachricht gebündelt werden. (Das LeaseSet und die Session-Schlüssel werden nicht gebündelt, wenn zuvor eine ElGamal-Session etabliert wurde). Daher ist das Ziel, eine vollständige HTTP-Anfrage in eine einzige 1KB I2NP-Nachricht zu packen, nicht immer erreichbar. Jedoch sind die Auswahl der MTU zusammen mit einer sorgfältigen Implementierung von Fragmentierungs- und Stapelungsstrategien im Tunnel-Gateway-Prozessor wichtige Faktoren für Netzwerkbandbreite, Latenz, Zuverlässigkeit und Effizienz, insbesondere bei langlebigen Verbindungen.
+Performance depends heavily on tunnel configuration:   - **Short tunnels (1–2 hops)** → lower latency, reduced anonymity.   - **Long tunnels (3+ hops)** → higher anonymity, increased RTT.
 
-### Datenintegrität {#integrity}
+### Connection Lifecycle
 
-Die Datenintegrität wird durch die gzip CRC-32 Prüfsumme gewährleistet, die in [der I2CP-Schicht](/docs/specs/i2cp#format) implementiert ist. Es gibt kein Prüfsummenfeld im Streaming-Protokoll.
+---
 
-### Paket-Kapselung {#encapsulation}
+### Fragmentation and Reordering
 
-Jedes Paket wird durch I2P als einzelne Nachricht (oder als individuelle Gewürznelke in einer [Garlic Message](/docs/overview/garlic-routing)) gesendet. Die Nachrichtenkapselung wird in den zugrundeliegenden [I2CP](/docs/specs/i2cp)-, [I2NP](/docs/specs/i2np)- und [tunnel message](/docs/specs/tunnel-message)-Schichten implementiert. Es gibt keinen Paketbegrenzungsmechanismus oder ein Payload-Längenfeld im Streaming-Protokoll.
+---
 
-### Optionale Verzögerung {#delay}
+### Protocol Enforcement
 
-Datenpakete können ein optionales Verzögerungsfeld enthalten, das die angeforderte Verzögerung in ms angibt, bevor der Empfänger das Paket bestätigen soll. Gültige Werte sind 0 bis 60000 einschließlich. Ein Wert von 0 fordert eine sofortige Bestätigung an. Dies ist nur beratend, und Empfänger sollten leicht verzögern, damit zusätzliche Pakete mit einer einzigen Bestätigung quittiert werden können. Einige Implementierungen können einen beratenden Wert von (gemessene RTT / 2) in diesem Feld enthalten. Bei Verzögerungswerten ungleich null sollten Empfänger die maximale Verzögerung vor dem Senden einer Bestätigung auf höchstens wenige Sekunden begrenzen. Optionale Verzögerungswerte größer als 60000 zeigen Drosselung an, siehe unten.
+The **I2P Streaming Library** is the backbone of all reliable communication within I2P.   It ensures in-order, authenticated, encrypted message delivery and provides a near drop-in replacement for TCP in anonymous environments.
 
-### Sende-/Empfangsfenster und Choking {#windows}
+### Shared Clients
 
-TCP-Header enthalten das Empfangsfenster in Bytes; das Streaming-Protokoll bietet jedoch keine Möglichkeit, die maximale Empfangsfenstergröße weder in Bytes noch in Paketen auszutauschen. Es gibt nur eine einfache Choke/Unchoke-Anzeige, die signalisiert, dass der Empfangspuffer voll ist. Jeder Endpunkt muss seine eigene Schätzung des Empfangsfensters am anderen Ende aufrechterhalten, entweder in Bytes oder Paketen. Beachten Sie, dass ein Empfangspuffer bei jeder Fenstergröße überlaufen kann, wenn die Client-Anwendung zu langsam ist, den Puffer zu leeren.
+To achieve optimal performance: - Minimize round-trips with SYN+payload bundling.   - Tune window and timeout parameters for your workload.   - Favor shorter tunnels for latency-sensitive applications.   - Use congestion-friendly designs to avoid overloading peers.
 
-Die standardmäßige maximale Übertragung- und Empfangsfenstergröße in der Java-Implementierung beträgt 128 Pakete. Implementierungen, die eine maximale Übertragungsfenstergröße höher als 128 setzen, müssen die folgenden Punkte berücksichtigen:
+Die standardmäßige maximale Übertragung- und Empfangsfenstergröße in der Java-Implementierung beträgt 128 Pakete. Implementierungen, die eine maximale Übertragungsfenstergröße höher als 128 setzen, müssen die folgenden Probleme berücksichtigen:
 
-- CHOKE-Antworten von Java-Routern aufgrund von Empfangspuffer-Überläufen sind viel wahrscheinlicher.
-- Eine Schätzung der Empfangspuffergröße am anderen Ende muss implementiert werden, um wiederholte Überläufe zu vermeiden (siehe oben)
-- CHOKE muss korrekt behandelt werden (siehe unten)
-- Maximale Fenstergrößen über 256 sind noch fehleranfälliger, da das Nack-Count-Optionsfeld eine Länge von einem Byte hat, was die maximalen NACKs auf 255 begrenzt. Diese Spezifikation behandelt nicht, was zu tun ist, wenn es mehr als 255 NACKs gibt. Maximale Fenstergrößen über 256 werden nicht empfohlen.
+- One-phase connection setup using **SYN**, **ACK**, and **FIN** flags that can be bundled with payload data to reduce round-trips.
+- **Sliding-window congestion control**, with slow start and congestion avoidance tuned for I2P’s high-latency environment.
+- Packet compression (default 4KB compressed segments) balancing retransmission cost and fragmentation latency.
+- Fully **authenticated, encrypted**, and **reliable** channel abstraction between I2P destinations.
 
-Die empfohlene Mindestpuffergröße für Empfänger-Implementierungen beträgt 128 Pakete oder 232 KB (ungefähr 128 * 1812). Aufgrund der I2P-Netzwerklatenz, Paketverlusten und der daraus resultierenden Überlastungskontrolle wird ein Puffer dieser Größe selten vollständig gefüllt. Ein Überlauf ist jedoch viel wahrscheinlicher bei Verbindungen mit hoher Bandbreite über "local loopback" (gleicher router) oder bei lokalen Tests.
+Die empfohlene minimale Puffergröße für Empfänger-Implementierungen beträgt 128 Pakete oder 232 KB (ungefähr 128 * 1812). Aufgrund der I2P-Netzwerk-Latenz, Paketverlusten und der daraus resultierenden Staukontrolle wird ein Puffer dieser Größe selten gefüllt. Ein Überlauf tritt jedoch viel wahrscheinlicher bei hochbandbreitigen "local loopback"-Verbindungen (gleicher router) oder bei lokalen Tests auf.
 
-Um Überlaufbedingungen schnell anzuzeigen und reibungslos zu beheben, gibt es einen einfachen Mechanismus für Pushback im Streaming-Protokoll. Wenn ein Paket mit einem optionalen Verzögerungsfeld mit einem Wert von 60001 oder höher empfangen wird, zeigt dies "Choking" oder ein Empfangsfenster von Null an. Ein Paket mit einem optionalen Verzögerungsfeld mit einem Wert von 60000 oder weniger zeigt "Unchoking" an. Pakete ohne optionales Verzögerungsfeld beeinflussen den Choke/Unchoke-Zustand nicht.
+Um Überlaufsituationen schnell anzuzeigen und reibungslos davon zu erholen, gibt es einen einfachen Mechanismus für Rückstau im Streaming-Protokoll. Wenn ein Paket mit einem optionalen Verzögerungsfeld mit einem Wert von 60001 oder höher empfangen wird, zeigt dies "Choking" oder ein Empfangsfenster von Null an. Ein Paket mit einem optionalen Verzögerungsfeld mit einem Wert von 60000 oder weniger zeigt "Unchoking" an. Pakete ohne ein optionales Verzögerungsfeld beeinflussen den Choke/Unchoke-Zustand nicht.
 
-Nachdem gedrosselt wurde, sollten keine weiteren Datenpakete gesendet werden, bis der Sender wieder entdrosselt wird, außer gelegentlichen "Sondierungs"-Datenpaketen, um mögliche verlorene Entdrosselungspakete zu kompensieren. Der gedrosselte Endpunkt sollte einen "Persistenz-Timer" starten, um die Sondierung zu steuern, wie bei TCP. Der entdrosselnde Endpunkt sollte mehrere Pakete mit diesem Feld gesetzt senden oder sie periodisch weiter senden, bis wieder Datenpakete empfangen werden. Die maximale Wartezeit für die Entdrosselung ist implementierungsabhängig. Die Senderfenstergröße und Staukontrollstrategie nach der Entdrosselung ist implementierungsabhängig.
+Nach dem Drosseln sollten keine weiteren Pakete mit Daten gesendet werden, bis der Sender wieder entdrosselt wird, außer gelegentlichen "Probe"-Datenpaketen zum Ausgleich möglicher verlorener Entdrosselungspakete. Der gedrosselte Endpunkt sollte einen "Persistenz-Timer" starten, um das Probing zu steuern, wie bei TCP. Der entdrosselnde Endpunkt sollte mehrere Pakete mit diesem gesetzten Feld senden oder sie regelmäßig weiter senden, bis wieder Datenpakete empfangen werden. Die maximale Wartezeit für die Entdrosselung ist implementierungsabhängig. Die Senderfenstergröße und Staukontrollstrategie nach der Entdrosselung ist implementierungsabhängig.
 
-### Congestion Control {#congestion}
+### Congestion Control
 
-Die Streaming-Bibliothek verwendet Standard-Slow-Start (exponentielles Fensterwachstum) und Congestion-Avoidance-Phasen (lineares Fensterwachstum) mit exponentiellem Backoff. Windowing und Bestätigungen verwenden Paketzählung, nicht Bytezählung.
+Die streaming lib verwendet standardmäßige slow-start (exponentielles Fensterwachstum) und congestion avoidance (lineares Fensterwachstum) Phasen, mit exponentiellem Backoff. Windowing und Bestätigungen verwenden Paketanzahl, nicht Byte-Anzahl.
 
-### Schließen {#close}
+### Latency Considerations
 
-Jedes Paket, einschließlich eines mit gesetztem SYNCHRONIZE-Flag, kann auch das CLOSE-Flag gesetzt haben. Die Verbindung wird erst geschlossen, wenn der Peer mit dem CLOSE-Flag antwortet. CLOSE-Pakete können ebenfalls Daten enthalten.
+Jedes Paket, einschließlich eines mit gesetztem SYNCHRONIZE-Flag, kann auch das CLOSE-Flag gesetzt haben. Die Verbindung wird nicht geschlossen, bis der Peer mit dem CLOSE-Flag antwortet. CLOSE-Pakete können ebenfalls Daten enthalten.
 
 ### Ping / Pong {#ping}
 
-Es gibt keine Ping-Funktion auf der I2CP-Ebene (äquivalent zu ICMP-Echo) oder in Datagrammen. Diese Funktion wird im Streaming bereitgestellt. Pings und Pongs dürfen nicht mit einem Standard-Streaming-Paket kombiniert werden; wenn die ECHO-Option gesetzt ist, werden die meisten anderen Flags, Optionen, ackThrough, sequenceNum, NACKs usw. ignoriert.
+Es gibt keine Ping-Funktion auf der I2CP-Ebene (entspricht ICMP Echo) oder in Datagrammen. Diese Funktion wird im Streaming bereitgestellt. Pings und Pongs dürfen nicht mit einem Standard-Streaming-Paket kombiniert werden; wenn die ECHO-Option gesetzt ist, werden die meisten anderen Flags, Optionen, ackThrough, sequenceNum, NACKs usw. ignoriert.
 
 Ein Ping-Paket muss die Flags ECHO, SIGNATURE_INCLUDED und FROM_INCLUDED gesetzt haben. Die sendStreamId muss größer als null sein, und die receiveStreamId wird ignoriert. Die sendStreamId kann einer bestehenden Verbindung entsprechen oder auch nicht.
 
 Ein Pong-Paket muss das ECHO-Flag gesetzt haben. Die sendStreamId muss null sein, und die receiveStreamId ist die sendStreamId aus dem Ping. Vor Release 0.9.18 enthält das Pong-Paket keine Nutzdaten, die im Ping enthalten waren.
 
-Ab Release 0.9.18 können Pings und Pongs eine Nutzlast enthalten. Die Nutzlast im Ping, bis zu maximal 32 Bytes, wird im Pong zurückgegeben.
+Ab Version 0.9.18 können Pings und Pongs eine Nutzlast enthalten. Die Nutzlast im Ping, bis zu maximal 32 Bytes, wird im Pong zurückgegeben.
 
 Streaming kann so konfiguriert werden, dass das Senden von Pongs mit der Konfiguration i2p.streaming.answerPings=false deaktiviert wird.
 
-### i2p.streaming.profile Notizen {#profile}
+### 0-RTT Probleme {#0rtt}
+
+Wie oben erwähnt, ermöglicht Streaming im Gegensatz zu TCP die 0-RTT-Zustellung von Daten, indem Daten im SYN-Paket gebündelt werden. Dies ist die bevorzugte Implementierung. AUSSERDEM erlaubt Streaming zusätzliche Datenpakete (bis zur anfänglichen Fenstergröße), die nach dem SYN gesendet werden, bevor das SYN-ACK empfangen wird. Diese Pakete haben eine von Null verschiedene Sequenznummer, haben das SYN-Flag nicht gesetzt und haben eine sendStreamID von Null.
+
+Empfänger sollten für ungeordnete oder verlorene Pakete während des Handshakes ausgelegt sein, einschließlich des Ankommens von Datenpaketen vor dem SYN. Die bevorzugte Implementierung ist es, Nicht-SYN-Pakete für eine unbekannte ID in eine Warteschlange einzureihen, anstatt sie zu verwerfen, und sie nach dem Empfang des SYN aus der Warteschlange abzurufen.
+
+In umgekehrter Richtung sind die Abläufe ähnlich. Der Verbindungsempfänger (Bob) sollte das Senden des SYN-ACK verzögern (ACK DELAY) und kurz auf Daten von der Anwendung warten. Beim Erhalt von Daten von der Anwendung sollten diese (bis zur maximalen Paketgröße) in das SYN-ACK-Paket eingefügt und gesendet werden. Zusätzliche Datenpakete, bis zur anfänglichen Fenstergröße, können ebenfalls gesendet werden, ohne auf eine ACK-Bestätigung des SYN-ACK zu warten.
+
+Der Ursprungssender sollte alle Datenpakete puffern, die vor dem SYN-ACK empfangen werden, genauso wie bei der Behandlung von Paketen außerhalb der Reihenfolge nach Abschluss des Handshakes.
+
+### Testen von Streaming-Bibliotheken {#testing}
+
+Für Entwickler, die neue oder geänderte Streaming-Bibliotheken testen, bietet Java I2P ein einfaches lokales Test-Hilfsprogramm für reproduzierbare Tests realer Netzwerkbedingungen, einschließlich Latenz, Paketverlust und Delay-Jitter. Es ist ein kleiner Stub, der nur einen I2CP-Server für lokale Verbindungen implementiert.
+
+Entwickler sollten mit einer breiten Palette typischer Parameter testen, einschließlich Latenz von 10ms bis mindestens 15s und Paketverlust von 0 bis 10%. Das Hinzufügen von Jitter erleichtert das Testen der Behandlung von Paketen außer der Reihenfolge.
+
+Dies ist auch eine gute Konfiguration, um Pufferüberläufe (CHOKE/UNCHOKE) zu testen, indem man eine der beiden Anwendungen manuell pausiert.
+
+Aus dem i2p.i2p Quellcode-Paket:
+
+- `I2PSocketManagerFactory` negotiates or reuses a router session via I2CP.  
+- If no key is provided, a new destination is automatically generated.  
+- Developers can pass I2CP options (e.g., tunnel lengths, encryption types, or connection settings) through the `options` map.  
+- `I2PSocket` and `I2PServerSocket` mirror standard Java `Socket` interfaces, making migration straightforward.
+
+### i2p.streaming.profile Hinweise {#profile}
 
 Diese Option unterstützt zwei Werte; 1=bulk und 2=interactive. Die Option gibt der Streaming-Bibliothek und/oder dem router einen Hinweis auf das erwartete Verkehrsmuster.
 
 "Bulk" bedeutet die Optimierung für hohe Bandbreite, möglicherweise auf Kosten der Latenz. Dies ist die Standardeinstellung. "Interactive" bedeutet die Optimierung für niedrige Latenz, möglicherweise auf Kosten der Bandbreite oder Effizienz. Optimierungsstrategien, falls vorhanden, sind implementierungsabhängig und können Änderungen außerhalb des Streaming-Protokolls beinhalten.
 
-Bis API-Version 0.9.63 gab Java I2P einen Fehler für jeden anderen Wert als 1 (bulk) zurück und der tunnel konnte nicht gestartet werden. Ab API 0.9.64 ignoriert Java I2P den Wert. Bis API-Version 0.9.63 ignorierte i2pd diese Option; sie ist in i2pd ab API 0.9.64 implementiert.
+Bis zur API-Version 0.9.63 gab Java I2P einen Fehler für jeden anderen Wert als 1 (bulk) zurück und der tunnel konnte nicht gestartet werden. Ab API 0.9.64 ignoriert Java I2P den Wert. Bis zur API-Version 0.9.63 ignorierte i2pd diese Option; sie ist in i2pd ab API 0.9.64 implementiert.
 
 Obwohl das Streaming-Protokoll ein Flag-Feld enthält, um die Profil-Einstellung an das andere Ende zu übertragen, ist dies in keinem bekannten router implementiert.
 
 ### Control Block Sharing {#sharing}
 
-Die Streaming-Bibliothek unterstützt "TCP" Control Block Sharing. Dies teilt drei wichtige Parameter der Streaming-Bibliothek (Fenstergröße, Round-Trip-Zeit, Round-Trip-Zeit-Varianz) zwischen Verbindungen zum selben entfernten Peer. Dies wird für "zeitliches" Teilen beim Öffnen/Schließen von Verbindungen verwendet, nicht für "Ensemble"-Teilen während einer Verbindung (Siehe [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). Es gibt einen separaten Share pro ConnectionManager (d.h. pro lokaler Destination), sodass keine Informationsleckage zu anderen Destinations auf demselben router auftritt. Die Share-Daten für einen bestimmten Peer laufen nach einigen Minuten ab. Die folgenden Control Block Sharing Parameter können pro router gesetzt werden:
+Die Streaming-Bibliothek unterstützt "TCP" Control Block Sharing. Dabei werden drei wichtige Parameter der Streaming-Bibliothek (Fenstergröße, Round-Trip-Zeit, Round-Trip-Zeit-Varianz) zwischen Verbindungen zum gleichen entfernten Peer geteilt. Dies wird für "temporäres" Sharing beim Öffnen/Schließen von Verbindungen verwendet, nicht für "Ensemble"-Sharing während einer Verbindung (Siehe [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). Es gibt eine separate Freigabe pro ConnectionManager (d.h. pro lokale Destination), damit keine Informationen an andere Destinations auf demselben router weitergegeben werden. Die Freigabedaten für einen bestimmten Peer laufen nach wenigen Minuten ab. Die folgenden Control Block Sharing Parameter können pro router eingestellt werden:
 
-- RTT_DAMPENING = 0.75
-- RTTDEV_DAMPENING = 0.75
-- WINDOW_DAMPENING = 0.75
+1. **SYN sent** — initiator includes optional data.  
+2. **SYN/ACK response** — responder includes optional data.  
+3. **ACK finalization** — establishes reliability and session state.  
+4. **FIN/RESET** — used for orderly closure or abrupt termination.
 
-### Andere Parameter {#other}
+### Weitere Parameter {#other}
 
-Die folgenden Parameter sind empfohlene Standardwerte. Standardwerte können je nach Implementierung variieren:
+Die folgenden Parameter sind empfohlene Standardwerte. Standardwerte können variieren, abhängig von der Implementierung:
 
-- MIN_RESEND_DELAY = 100 ms (minimale RTO)
-- MAX_RESEND_DELAY = 45 Sek (maximale RTO)
-- MIN_WINDOW_SIZE = 1
-- MAX_WINDOW_SIZE = 128
-- TREND_COUNT = 3
-- MIN_MESSAGE_SIZE = 512 (minimale MTU)
-- INBOUND_BUFFER_SIZE = maxMessageSize * (maxWindowSize + 2)
-- INITIAL_TIMEOUT (gültig nur bevor RTT gemessen wird) = 9 Sek
-- "alpha" (RTT-Dämpfungsfaktor gemäß RFC 6298) = 0,125
-- "beta" (RTTDEV-Dämpfungsfaktor gemäß RFC 6298) = 0,25
-- "K" (RTDEV-Multiplikator gemäß RFC 6298) = 4
-- PASSIVE_FLUSH_DELAY = 175 ms
-- Maximale RTT-Schätzung: 60 Sek
+- The streaming layer continuously adapts to network latency and throughput via RTT-based feedback.  
+- Applications perform best when routers are contributing peers (participating tunnels enabled).  
+- TCP-like congestion control mechanisms prevent overloading slow peers and help balance bandwidth use across tunnels.
 
 ### Geschichte {#history}
 
-Die Streaming-Bibliothek ist organisch für I2P gewachsen - zuerst implementierte mihi die "Mini-Streaming-Bibliothek" als Teil von I2PTunnel, die auf eine Fenstergröße von 1 Nachricht begrenzt war (ein ACK war erforderlich, bevor die nächste gesendet werden konnte), und dann wurde sie in eine generische Streaming-Schnittstelle (die TCP-Sockets nachahmt) refaktoriert und die vollständige Streaming-Implementierung wurde mit einem Sliding-Window-Protokoll und Optimierungen bereitgestellt, um das hohe Bandbreite x Verzögerung-Produkt zu berücksichtigen. Einzelne Streams können die maximale Paketgröße und andere Optionen anpassen. Die Standard-Nachrichtengröße ist so gewählt, dass sie exakt in zwei 1K I2NP tunnel-Nachrichten passt und stellt einen vernünftigen Kompromiss zwischen den Bandbreitenkosten für die Neuübertragung verlorener Nachrichten und der Latenz und dem Overhead mehrerer Nachrichten dar.
+Die streaming library ist organisch für I2P gewachsen - zuerst implementierte mihi die "Mini-Streaming-Bibliothek" als Teil von I2PTunnel, die auf eine Fenstergröße von 1 Nachricht beschränkt war (erforderte eine ACK vor dem Senden der nächsten), und dann wurde sie zu einer generischen Streaming-Schnittstelle refaktoriert (nach dem Vorbild von TCP-Sockets) und die vollständige Streaming-Implementierung wurde mit einem Sliding-Window-Protokoll und Optimierungen bereitgestellt, um das hohe Bandbreite × Verzögerungs-Produkt zu berücksichtigen. Einzelne Streams können die maximale Paketgröße und andere Optionen anpassen. Die Standard-Nachrichtengröße ist so gewählt, dass sie genau in zwei 1K I2NP tunnel messages passt und stellt einen vernünftigen Kompromiss zwischen den Bandbreitenkosten der Neuübertragung verlorener Nachrichten und der Latenz und dem Overhead mehrerer Nachrichten dar.
 
-## Zukünftige Arbeiten {#future}
+## Interoperability and Best Practices
 
-Das Verhalten der Streaming-Bibliothek hat einen tiefgreifenden Einfluss auf die Anwendungsleistung und ist daher ein wichtiger Bereich für weitere Analysen.
+Das Verhalten der Streaming-Bibliothek hat einen tiefgreifenden Einfluss auf die Anwendungsebenen-Performance und ist daher ein wichtiger Bereich für weitere Analysen.
 
-- Zusätzliche Feinabstimmung der streaming lib Parameter könnte erforderlich sein.
-- Ein weiterer Bereich für die Forschung ist die Interaktion der streaming lib mit den NTCP- und SSU-Transportschichten. Siehe [die NTCP-Diskussionsseite](/docs/historical/ntcp-discussion) für Details.
-- Die Interaktion der Routing-Algorithmen mit der streaming lib beeinflusst die Leistung stark. Insbesondere führt die zufällige Verteilung von Nachrichten auf mehrere tunnel in einem Pool zu einem hohen Grad an Auslieferung in falscher Reihenfolge, was zu kleineren Fenstergrößen führt, als dies sonst der Fall wäre. Der router leitet derzeit Nachrichten für ein einzelnes Von/Zu-Zielpaar durch eine konsistente Menge von tunneln weiter, bis zum tunnel-Ablauf oder Zustellungsfehler. Die Fehler- und tunnel-Auswahlalgorithmen des routers sollten auf mögliche Verbesserungen überprüft werden.
-- Die Daten im ersten SYN-Paket könnten die MTU des Empfängers überschreiten.
-- Das DELAY_REQUESTED-Feld könnte mehr genutzt werden.
-- Doppelte initiale SYNCHRONIZE-Pakete bei kurzlebigen Streams werden möglicherweise nicht erkannt und entfernt.
-- Die MTU nicht bei einer Neuübertragung senden.
-- Daten werden gesendet, es sei denn, das ausgehende Fenster ist voll. (d.h. kein-Nagle oder TCP_NODELAY) Sollte wahrscheinlich eine Konfigurationsoption dafür haben.
-- zzz hat Debug-Code zur streaming library hinzugefügt, um Pakete in einem wireshark-kompatiblen (pcap) Format zu protokollieren; Verwende dies zur weiteren Leistungsanalyse. Das Format könnte eine Erweiterung benötigen, um mehr streaming lib Parameter zu TCP-Feldern zu mappen.
-- Es gibt Vorschläge, die streaming lib durch Standard-TCP (oder vielleicht eine Null-Schicht zusammen mit Raw-Sockets) zu ersetzen. Dies wäre leider inkompatibel mit der streaming lib, aber es wäre gut, die Leistung der beiden zu vergleichen.
+- Always test against both **Java I2P** and **i2pd** to ensure full compatibility.  
+- Although the protocol is standardized, minor implementation differences may exist.  
+- Handle older routers gracefully—many peers still run pre-2.0 versions.  
+- Monitor connection stats using `I2PSocket.getOptions()` and `getSession()` to read RTT and retransmission metrics.

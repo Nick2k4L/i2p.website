@@ -1,38 +1,38 @@
 ---
-title: "Akış Protokolü"
-description: "Çoğu I2P uygulaması tarafından kullanılan TCP benzeri taşıma protokolü"
+title: "Streaming Protocol"
+description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
-lastUpdated: "2025-07"
-accurateFor: "0.9.67"
+lastUpdated: "2026-01"
+accurateFor: "0.9.68"
 ---
 
-## Genel Bakış {#overview}
+## Overview
 
-Streaming kütüphanesi teknik olarak "uygulama" katmanının bir parçasıdır, çünkü temel router işlevi değildir. Ancak pratikte, I2P üzerinde TCP benzeri akışlar sağlayarak ve mevcut uygulamaların I2P'ye kolayca taşınmasına izin vererek, hemen hemen tüm mevcut I2P uygulamaları için hayati bir işlev sunar. İstemci iletişimi için diğer uçtan uca aktarım kütüphanesi [datagram kütüphanesidir](/docs/specs/datagrams).
+The **I2P Streaming Library** provides reliable, in-order, authenticated transport over I2P’s message layer, similar to **TCP over IP**.   It sits above the [I2CP protocol](/docs/specs/i2cp/) and is used by nearly all interactive I2P applications, including HTTP proxies, IRC, BitTorrent, and email.
 
-Streaming kütüphanesi, güvenilir, sıralı ve kimlik doğrulamalı mesaj akışlarının güvenilmez, sırasız ve kimlik doğrulamasız mesaj katmanı üzerinde çalışmasına olanak tanıyan temel [I2CP API](/docs/specs/i2cp) üzerinde bir katmandır. Tıpkı TCP ile IP ilişkisi gibi, bu streaming işlevselliği bir dizi denge ve optimizasyon seçeneğine sahiptir, ancak bu işlevselliği temel I2P koduna gömek yerine, hem TCP benzeri karmaşıklıkları ayrı tutmak hem de alternatif optimize edilmiş implementasyonlara olanak sağlamak için kendi kütüphanesine ayrılmıştır.
+This design enables small HTTP requests and responses to complete in a single round-trip.   A SYN packet may carry the request payload, while the responder’s SYN/ACK/FIN may contain the full response body.
 
-Mesajların nispeten yüksek maliyeti göz önünde bulundurularak, streaming kütüphanesinin bu mesajları planlama ve iletme protokolü, geçirilen tek tek mesajların mevcut olan mümkün olduğunca fazla bilgiyi içerebilmesine olanak sağlayacak şekilde optimize edilmiştir. Örneğin, streaming kütüphanesi üzerinden proxy edilen küçük bir HTTP işlemi tek bir gidiş-dönüş ile tamamlanabilir - ilk mesajlar bir SYN, FIN ve küçük HTTP istek yükünü paketler, yanıt ise SYN, FIN, ACK ve HTTP yanıt yükünü paketler. HTTP sunucusuna SYN/FIN/ACK'ın alındığını bildirmek için ek bir ACK iletilmesi gerekse de, yerel HTTP proxy genellikle tam yanıtı tarayıcıya hemen iletebilir.
+---
 
-Streaming kütüphanesi, kayar pencereleri, tıkanıklık kontrol algoritmaları (hem yavaş başlangıç hem de tıkanıklık önleme) ve genel paket davranışları (ACK, SYN, FIN, RST, rto hesaplama vb.) ile TCP soyutlamasına büyük benzerlik gösterir.
+The Java streaming API mirrors standard Java socket programming:
 
-Streaming kütüphanesi, I2P üzerinde çalışmak için optimize edilmiş sağlam bir kütüphanedir. Tek aşamalı kuruluma sahiptir ve tam bir pencere uygulaması içerir.
+Full Javadocs are available from the I2P router console or [here](/docs/specs/streaming/).
 
-## API {#api}
+## API Basics
 
-Streaming kütüphanesi API'si, Java uygulamalarına standart bir soket paradigması sağlar. Alt seviye [I2CP](/docs/specs/i2cp) API'si tamamen gizlidir, ancak uygulamalar I2CP tarafından yorumlanmak üzere [I2CP parametrelerini](/docs/specs/i2cp#options) streaming kütüphanesi aracılığıyla geçirebilir.
+---
 
-Streaming kütüphanesinin standart arayüzü, uygulamanın bir I2PSocketManager oluşturmak için I2PSocketManagerFactory'yi kullanmasıdır. Uygulama daha sonra socket manager'dan bir I2PSession ister, bu da [I2CP](/docs/specs/i2cp) aracılığıyla router'a bağlantıya neden olur. Uygulama daha sonra bir I2PSocket ile bağlantıları kurabilir veya bir I2PServerSocket ile bağlantıları alabilir.
+You can pass configuration properties when creating a socket manager via:
 
-İyi bir kullanım örneği için i2psnark koduna bakın.
+Newer features since version 0.9.4 include reject log suppression, DSA list support (0.9.21), and mandatory protocol enforcement (0.9.36).   Routers since 2.10.0 include post-quantum hybrid encryption (ML-KEM + X25519) at the transport layer.
 
-### Seçenekler ve Varsayılanlar {#options}
+### Core Characteristics
 
-Seçenekler ve mevcut varsayılan değerler aşağıda listelenmiştir. Seçenekler büyük-küçük harf duyarlıdır ve tüm router için, belirli bir istemci için veya bağlantı başına tek bir soket için ayarlanabilir. Birçok değer, tipik I2P koşulları altında HTTP performansı için optimize edilmiştir. Peer-to-peer hizmetler gibi diğer uygulamaların, I2PSocketManagerFactory.createManager(_i2cpHost, _i2cpPort, opts) çağrısı aracılığıyla seçenekleri ayarlayarak ve ileterek gerektiği şekilde değiştirmeleri şiddetle önerilir. Zaman değerleri ms cinsindendir.
+---
 
-SAM, [BOB](/docs/legacy/bob) ve [I2PTunnel](/docs/api/i2ptunnel) gibi üst katman API'lerinin bu varsayılan ayarları kendi varsayılan değerleriyle geçersiz kılabileceğini unutmayın. Ayrıca birçok seçeneğin yalnızca gelen bağlantıları dinleyen sunucular için geçerli olduğunu da unutmayın.
+Each stream is identified by a **Stream ID**. Packets carry control flags similar to TCP: `SYNCHRONIZE`, `ACK`, `FIN`, and `RESET`.   Packets may contain both data and control flags simultaneously, improving efficiency for short-lived connections.
 
-0.9.1 sürümü itibariyle, aktif bir socket yöneticisi veya oturumda çoğu seçenek değiştirilebilir, ancak hepsi değil. Ayrıntılar için javadoc'lara bakın.
+Because I2P tunnels introduce latency and message reordering, the library buffers packets from unknown or early-arriving streams.   Buffered messages are stored until synchronization completes, ensuring complete, in-order delivery.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -235,128 +235,138 @@ SAM, [BOB](/docs/legacy/bob) ve [I2PTunnel](/docs/api/i2ptunnel) gibi üst katma
     </tr>
   </tbody>
 </table>
-## Protokol Belirtimi {#spec}
+## Configuration and Tuning
 
-[Streaming Kütüphanesi Spesifikasyon sayfasına bakın.](/docs/specs/streaming)
+The option `i2p.streaming.enforceProtocol=true` (default since 0.9.36) ensures connections use the correct I2CP protocol number, preventing conflicts between multiple subsystems sharing one destination.
 
-## Uygulama Detayları {#implementation}
+## Protocol Details
 
-### Kurulum {#setup}
+### Key Options
 
-Başlatıcı SYNCHRONIZE bayrağı ayarlanmış bir paket gönderir. Bu paket aynı zamanda başlangıç verisini de içerebilir. Karşı taraf SYNCHRONIZE bayrağı ayarlanmış bir paketle yanıtlar. Bu paket aynı zamanda başlangıç yanıt verisini de içerebilir.
+---
 
-Başlatıcı, SYNCHRONIZE yanıtını almadan önce başlangıç pencere boyutuna kadar ek veri paketleri gönderebilir. Bu paketlerin de gönderme Stream ID alanı 0 olarak ayarlanacaktır. Alıcılar, bilinmeyen akışlarda alınan paketleri kısa bir süre boyunca arabelleğe almalıdır, çünkü bu paketler sıra dışı olarak, SYNCHRONIZE paketinden önce gelebilir.
+The streaming protocol coexists with the **Datagram API**, giving developers the choice between connection-oriented and connectionless transports.
 
-### MTU Seçimi ve Müzakeresi {#mtu}
+### Behavior by Workload
 
-Maksimum mesaj boyutu (MTU / MRU olarak da adlandırılır) iki peer tarafından desteklenen daha düşük değere göre müzakere edilir. Tunnel mesajları 1KB'ye doldurulduğu için, kötü bir MTU seçimi büyük miktarda ek yüke yol açar. MTU, i2p.streaming.maxMessageSize seçeneği ile belirtilir. Mevcut varsayılan MTU değeri olan 1730, tipik durum için ek yük dahil olmak üzere tam olarak iki adet 1K I2NP tunnel mesajına sığacak şekilde seçilmiştir.
+Applications can reuse existing tunnels by running as **shared clients**, allowing multiple services to share the same destination.   While this reduces overhead, it increases cross-service correlation risk—use with care.
 
-Not: Bu, yalnızca yük verilerinin maksimum boyutudur, başlık dahil değildir.
+Because I2P adds several hundred milliseconds of base latency, applications should minimize round-trips.   Bundle data with connection setup where possible (e.g., HTTP requests in SYN).   Avoid designs relying on many small sequential exchanges.
 
-Not: Azaltılmış ek yüke sahip ECIES bağlantıları için önerilen MTU 1812'dir. Varsayılan MTU, hangi anahtar türü kullanılırsa kullanılsın tüm bağlantılar için 1730 olarak kalır. İstemciler her zamanki gibi gönderilen ve alınan MTU'nun minimum değerini kullanmalıdır. Öneri 155'e bakın.
+---
 
-Bir bağlantıdaki ilk mesaj, streaming katmanı tarafından eklenen 387 bayt (tipik) Destination ve genellikle 898 bayt (tipik) LeaseSet ile Session anahtarlarını içerir, bunlar router tarafından Garlic mesajında paketlenir. (Daha önce ElGamal Session kurulduysa LeaseSet ve Session Anahtarları paketlenmez). Bu nedenle, tam bir HTTP isteğini tek bir 1KB I2NP mesajına sığdırma hedefi her zaman ulaşılabilir değildir. Ancak, MTU seçimi ve tunnel gateway işlemcisinde fragmentation ve batching stratejilerinin dikkatli uygulanması, özellikle uzun süreli bağlantılarda ağ bant genişliği, gecikme, güvenilirlik ve verimlilik açısından önemli faktörlerdir.
+Performance depends heavily on tunnel configuration:   - **Short tunnels (1–2 hops)** → lower latency, reduced anonymity.   - **Long tunnels (3+ hops)** → higher anonymity, increased RTT.
 
-### Veri Bütünlüğü {#integrity}
+### Connection Lifecycle
 
-Veri bütünlüğü, [I2CP katmanında](/docs/specs/i2cp#format) uygulanan gzip CRC-32 sağlama toplamı ile garanti edilir. Streaming protokolünde sağlama toplamı alanı bulunmaz.
+---
 
-### Paket Kapsülleme {#encapsulation}
+### Fragmentation and Reordering
 
-Her paket I2P üzerinden tek bir mesaj olarak (veya bir [Garlic Message](/docs/overview/garlic-routing) içinde bireysel bir clove olarak) gönderilir. Mesaj kapsülleme, alttaki [I2CP](/docs/specs/i2cp), [I2NP](/docs/specs/i2np) ve [tunnel message](/docs/specs/tunnel-message) katmanlarında uygulanır. Akış protokolünde paket ayırıcı mekanizması veya yük uzunluğu alanı yoktur.
+---
 
-### İsteğe Bağlı Gecikme {#delay}
+### Protocol Enforcement
 
-Veri paketleri, alıcının paketi onaylamadan önce talep edilen gecikmeyi ms cinsinden belirten isteğe bağlı bir gecikme alanı içerebilir. Geçerli değerler 0 ile 60000 arasındadır (dahil). 0 değeri anında onay talep eder. Bu yalnızca tavsiye niteliğindedir ve alıcılar, ek paketlerin tek bir onay ile onaylanabilmesi için biraz gecikme yapmalıdır. Bazı uygulamalar bu alanda (ölçülen RTT / 2) tavsiye değerini içerebilir. Sıfır olmayan isteğe bağlı gecikme değerleri için alıcılar, onay göndermeden önceki maksimum gecikmeyi en fazla birkaç saniye ile sınırlamalıdır. 60000'den büyük isteğe bağlı gecikme değerleri tıkanmayı gösterir, aşağıya bakın.
+The **I2P Streaming Library** is the backbone of all reliable communication within I2P.   It ensures in-order, authenticated, encrypted message delivery and provides a near drop-in replacement for TCP in anonymous environments.
 
-### İletim/Alma Pencereleri ve Tıkanma {#windows}
+### Shared Clients
 
-TCP başlıkları alım penceresini bayt cinsinden içerir; ancak, streaming protokolü maksimum alım penceresi boyutunu bayt veya paket cinsinden değiştirmek için bir yol sağlamaz. Yalnızca alım arabelleğinin dolu olduğunu gösteren basit bir engelleme/engellemeyi kaldırma göstergesi vardır. Her endpoint, uzak uç alım penceresinin kendi tahminini bayt veya paket cinsinden tutmalıdır. İstemci uygulaması arabelleği boşaltmakta yavaşsa, herhangi bir pencere boyutunda alım arabelleğinin taşabileceğini unutmayın.
+To achieve optimal performance: - Minimize round-trips with SYN+payload bundling.   - Tune window and timeout parameters for your workload.   - Favor shorter tunnels for latency-sensitive applications.   - Use congestion-friendly designs to avoid overloading peers.
 
-Java implementasyonunda varsayılan maksimum iletim ve alma pencere boyutu 128 pakettir. Maksimum iletim pencere boyutunu 128'den yüksek olarak ayarlayan implementasyonlar aşağıdaki konuları göz önünde bulundurmalıdır:
+Java uygulamasında varsayılan maksimum iletim ve alma penceresi boyutu 128 pakettir. Maksimum iletim penceresi boyutunu 128'den yüksek olarak ayarlayan uygulamalar aşağıdaki konuları göz önünde bulundurmalıdır:
 
-- Java router'larından gelen CHOKE yanıtları, alım buffer taşması nedeniyle çok daha olasıdır.
-- Tekrarlanan taşmaları azaltmak için uzak uç alıcı buffer boyutu tahmini uygulanmalıdır (yukarıya bakınız)
-- CHOKE doğru şekilde ele alınmalıdır (aşağıya bakınız)
-- 256'dan büyük maksimum pencere boyutları daha da hata eğilimlidir, çünkü nack sayısı seçenek alanı uzunluğu bir bayttır ve maksimum NACK'leri 255 ile sınırlar. Bu spesifikasyon 255'den fazla NACK olması durumunda ne yapılacağını ele almaz. 256'dan büyük maksimum pencere boyutları önerilmez.
+- One-phase connection setup using **SYN**, **ACK**, and **FIN** flags that can be bundled with payload data to reduce round-trips.
+- **Sliding-window congestion control**, with slow start and congestion avoidance tuned for I2P’s high-latency environment.
+- Packet compression (default 4KB compressed segments) balancing retransmission cost and fragmentation latency.
+- Fully **authenticated, encrypted**, and **reliable** channel abstraction between I2P destinations.
 
-Alıcı uygulamaları için önerilen minimum tampon boyutu 128 paket veya 232 KB'dir (yaklaşık 128 * 1812). I2P ağ gecikmesi, paket kayıpları ve bunun sonucu olan tıkanıklık kontrolü nedeniyle, bu boyuttaki bir tampon nadiren dolar. Ancak taşma, yüksek bant genişlikli "yerel geri döngü" (aynı router) bağlantılarında veya yerel testlerde çok daha olası bir durumdur.
+Alıcı uygulamaları için önerilen minimum arabellek boyutu 128 paket veya 232 KB'dır (yaklaşık 128 * 1812). I2P ağ gecikmesi, paket kayıpları ve bunun sonucunda oluşan tıkanıklık kontrolü nedeniyle, bu boyuttaki bir arabellek nadiren dolar. Ancak taşma, yüksek bant genişlikli "yerel geri döngü" (aynı router) bağlantılarında veya yerel testlerde çok daha olası bir durumdur.
 
-Taşma durumlarını hızlıca belirtmek ve sorunsuzca kurtulmak için, akış protokolünde pushback için basit bir mekanizma vardır. 60001 veya daha yüksek değerli isteğe bağlı gecikme alanı ile bir paket alınırsa, bu "tıkanma" veya sıfır alma penceresini gösterir. 60000 veya daha düşük değerli isteğe bağlı gecikme alanı olan bir paket "tıkanmayı kaldırmayı" gösterir. İsteğe bağlı gecikme alanı olmayan paketler choke/unchoke durumunu etkilemez.
+Taşma durumlarını hızlıca belirtmek ve sorunsuzca kurtarmak için, akış protokolünde basit bir geri itme mekanizması bulunmaktadır. 60001 veya daha yüksek değerli isteğe bağlı gecikme alanı ile bir paket alınırsa, bu "boğma" veya sıfır alma penceresi anlamına gelir. 60000 veya daha düşük değerli isteğe bağlı gecikme alanına sahip bir paket "boğmayı kaldırma" anlamına gelir. İsteğe bağlı gecikme alanı olmayan paketler boğma/boğmayı kaldırma durumunu etkilemez.
 
-Choke durumuna alındıktan sonra, kaybolmuş olabilecek unchoke paketlerini telafi etmek için ara sıra gönderilen "probe" veri paketleri haricinde, transmitter unchoke durumuna gelinceye kadar veri içeren başka paket gönderilmemelidir. Choke durumundaki endpoint, TCP'deki gibi probing'i kontrol etmek için bir "persist timer" başlatmalıdır. Unchoke yapan endpoint bu alanı ayarlanmış olarak birkaç paket göndermeli veya tekrar veri paketleri alınana kadar periyodik olarak göndermeye devam etmelidir. Unchoke için beklenecek maksimum süre implementasyona bağlıdır. Unchoke durumundan sonra transmitter pencere boyutu ve tıkanıklık kontrolü stratejisi implementasyona bağlıdır.
+Choke edildikten sonra, muhtemel kayıp unchoke paketlerini telafi etmek için ara sıra gönderilen "probe" veri paketleri dışında, transmitter unchoke edilene kadar veri içeren başka paket gönderilmemelidir. Choke edilmiş endpoint, TCP'deki gibi probing'i kontrol etmek için bir "persist timer" başlatmalıdır. Unchoking endpoint bu alanı ayarlanmış olarak birkaç paket göndermeli veya veri paketleri tekrar alınana kadar bunları periyodik olarak göndermeye devam etmelidir. Unchoking için beklenecek maksimum süre implementasyona bağlıdır. Unchoke edildikten sonra transmitter pencere boyutu ve congestion control stratejisi implementasyona bağlıdır.
 
-### Tıkanıklık Kontrolü {#congestion}
+### Congestion Control
 
-Streaming lib standart yavaş başlangıç (üstel pencere büyümesi) ve tıkanıklık önleme (doğrusal pencere büyümesi) fazlarını üstel geri çekilme ile kullanır. Pencereleme ve onaylamalar bayt sayısı değil, paket sayısı kullanır.
+Streaming kütüphanesi standart yavaş başlama (üssel pencere büyütme) ve tıkanıklık önleme (doğrusal pencere büyütme) fazlarını üssel geri çekilme ile kullanır. Pencereleme ve onaylamalar bayt sayısı değil, paket sayısı kullanır.
 
-### Kapat {#close}
+### Latency Considerations
 
-SYNCHRONIZE bayrağı ayarlanmış olanlar dahil herhangi bir paket, CLOSE bayrağının da gönderilmesini sağlayabilir. Bağlantı, eş CLOSE bayrağı ile yanıt verene kadar kapatılmaz. CLOSE paketleri de veri içerebilir.
+SYNCHRONIZE bayrağı ayarlanmış olanlar dahil herhangi bir paket, CLOSE bayrağını da gönderebilir. Bağlantı, eş CLOSE bayrağıyla yanıt verene kadar kapatılmaz. CLOSE paketleri de veri içerebilir.
 
 ### Ping / Pong {#ping}
 
-I2CP katmanında (ICMP echo'ya eşdeğer) veya datagramlarda ping işlevi bulunmamaktadır. Bu işlev streaming'de sağlanmaktadır. Ping'ler ve pong'lar standart bir streaming paketi ile birleştirilemez; ECHO seçeneği ayarlanmışsa, diğer çoğu flag, seçenek, ackThrough, sequenceNum, NACK'ler vb. göz ardı edilir.
+I2CP katmanında (ICMP echo'ya eşdeğer) veya datagramlarda ping fonksiyonu bulunmaz. Bu fonksiyon streaming'de sağlanır. Ping'ler ve pong'lar standart bir streaming paketi ile birleştirilemez; ECHO seçeneği ayarlanırsa, diğer çoğu bayrak, seçenek, ackThrough, sequenceNum, NACK'ler vb. göz ardı edilir.
 
 Bir ping paketi ECHO, SIGNATURE_INCLUDED ve FROM_INCLUDED bayraklarının ayarlanmış olması gerekir. sendStreamId sıfırdan büyük olmalıdır ve receiveStreamId göz ardı edilir. sendStreamId mevcut bir bağlantıya karşılık gelebilir veya gelmeyebilir.
 
-Bir pong paketi ECHO bayrağının ayarlanmış olması gerekir. sendStreamId sıfır olmalıdır ve receiveStreamId, ping'den gelen sendStreamId'dir. 0.9.18 sürümünden önce, pong paketi ping'de bulunan herhangi bir payload içermez.
+Bir pong paketi ECHO bayrağının ayarlanmış olması gerekir. sendStreamId sıfır olmalıdır ve receiveStreamId ping'den gelen sendStreamId'dir. 0.9.18 sürümünden önce, pong paketi ping'de bulunan herhangi bir payload içermez.
 
-0.9.18 sürümünden itibaren, ping ve pong mesajları bir payload içerebilir. Ping içindeki payload, maksimum 32 bayt olmak üzere, pong ile geri döndürülür.
+0.9.18 sürümünden itibaren, ping ve pong mesajları bir yük içerebilir. Ping içindeki yük, maksimum 32 bayt olmak üzere, pong içinde geri döndürülür.
 
 Streaming, i2p.streaming.answerPings=false yapılandırması ile pong gönderimini devre dışı bırakacak şekilde yapılandırılabilir.
 
+### 0-RTT Sorunları {#0rtt}
+
+Yukarıda belirtildiği gibi, TCP'den farklı olarak, streaming veriyi SYN paketine dahil ederek 0-RTT veri iletimi sağlar. Bu tercih edilen uygulamadır. AYRICA, streaming SYN-ACK alınmadan önce SYN'den sonra ek veri paketlerinin (başlangıç pencere boyutuna kadar) gönderilmesine izin verir. Bu paketler sıfır olmayan bir sıra numarasına sahip olacak, SYN bayrağı ayarlanmayacak ve sıfır sendStreamID'ye sahip olacaktır.
+
+Alıcılar, handshake sırasında sıra dışı veya düşen paketler için tasarım yapmalıdır; bu, SYN'den önce veri paketlerinin gelmesi durumunu da içerir. Tercih edilen uygulama, bilinmeyen bir ID için SYN olmayan paketleri bırakmak yerine kuyruğa almak ve SYN alındıktan sonra bunları kuyruktan geri almaktır.
+
+Ters yönde de durum benzerdir. Bağlantı alıcısı (Bob) SYN-ACK göndermeyi geciktirmeli (ACK DELAY) ve uygulamadan gelen veri için kısa bir süre beklemelidir. Uygulamadan veri aldığında, bunu (maksimum paket boyutuna kadar) SYN-ACK paketine koymalı ve göndermelidir. İlk pencere boyutuna kadar ek veri paketleri de SYN-ACK'nin ACK'sını beklemeden gönderilebilir.
+
+Başlatıcı, SYN-ACK'den önce alınan tüm veri paketlerini tamponlamalıdır, bu da el sıkışma tamamlandıktan sonraki sıra dışı işleme ile aynıdır.
+
+### Streaming Kütüphanelerini Test Etme {#testing}
+
+Yeni veya değiştirilmiş streaming kütüphanelerini test eden geliştiriciler için Java I2P, gecikme, paket kaybı ve gecikme jitter'ı dahil gerçek ağ koşullarının tekrarlanabilir testleri için basit bir yerel test yardımcı programı sağlar. Bu, yalnızca yerel bağlantılar için I2CP sunucusu uygulayan küçük bir saplama programıdır.
+
+Geliştiriciler, 10ms'den en az 15s'ye kadar gecikme ve %0 ile %10 arasında paket kaybı dahil olmak üzere geniş bir tipik parametre yelpazesi ile test etmelidir. Jitter eklemek, sıra dışı işleme testini kolaylaştırır.
+
+Bu aynı zamanda iki uygulamadan birini manuel olarak askıya alarak buffer overflow (CHOKE/UNCHOKE) test etmek için iyi bir kurulum.
+
+i2p.i2p kaynak paketinden:
+
+- `I2PSocketManagerFactory` negotiates or reuses a router session via I2CP.  
+- If no key is provided, a new destination is automatically generated.  
+- Developers can pass I2CP options (e.g., tunnel lengths, encryption types, or connection settings) through the `options` map.  
+- `I2PSocket` and `I2PServerSocket` mirror standard Java `Socket` interfaces, making migration straightforward.
+
 ### i2p.streaming.profile Notları {#profile}
 
-Bu seçenek iki değeri destekler; 1=toplu ve 2=etkileşimli. Bu seçenek, beklenen trafik desenine dair streaming kütüphanesine ve/veya router'a bir ipucu sağlar.
+Bu seçenek iki değeri destekler; 1=toplu ve 2=etkileşimli. Bu seçenek, streaming kütüphanesi ve/veya router'a beklenen trafik desenine dair bir ipucu sağlar.
 
-"Bulk" yüksek bant genişliği için optimize etmek anlamına gelir, muhtemelen gecikme pahasına. Bu varsayılan ayardır. "Interactive" düşük gecikme için optimize etmek anlamına gelir, muhtemelen bant genişliği veya verimlilik pahasına. Optimizasyon stratejileri, varsa, uygulamaya bağımlıdır ve streaming protokolü dışındaki değişiklikleri içerebilir.
+"Bulk" yüksek bant genişliği için optimize etmeyi, muhtemelen gecikme pahasına yapmayı ifade eder. Bu varsayılan ayardır. "Interactive" düşük gecikme için optimize etmeyi, muhtemelen bant genişliği veya verimlilik pahasına yapmayı ifade eder. Optimizasyon stratejileri, varsa, uygulamaya bağlıdır ve akış protokolü dışındaki değişiklikleri de içerebilir.
 
-API sürüm 0.9.63'e kadar, Java I2P 1 (bulk) dışındaki herhangi bir değer için hata döndürür ve tunnel başlatılamaz. API 0.9.64'ten itibaren, Java I2P bu değeri görmezden gelir. API sürüm 0.9.63'e kadar, i2pd bu seçeneği görmezden gelirdi; API 0.9.64'ten itibaren i2pd'de uygulanmıştır.
+API sürüm 0.9.63'e kadar, Java I2P 1 (toplu) dışındaki herhangi bir değer için hata döndürür ve tunnel başlatılamazdı. API 0.9.64 itibariyle, Java I2P bu değeri görmezden gelir. API sürüm 0.9.63'e kadar, i2pd bu seçeneği görmezden gelirdi; API 0.9.64 itibariyle i2pd'de uygulanmıştır.
 
-Streaming protokolü, profil ayarını karşı tarafa iletmek için bir bayrak alanı içerse de, bu özellik bilinen hiçbir router'da uygulanmamıştır.
+Streaming protokolü profil ayarını diğer uca iletmek için bir bayrak alanı içerse de, bu özellik bilinen hiçbir router'da uygulanmamıştır.
 
 ### Kontrol Bloğu Paylaşımı {#sharing}
 
-Streaming kütüphanesi "TCP" Kontrol Bloğu paylaşımını destekler. Bu, aynı uzak eş ile yapılan bağlantılar arasında üç önemli streaming kütüphanesi parametresini (pencere boyutu, gidiş-dönüş süresi, gidiş-dönüş süresi varyansı) paylaşır. Bu, bir bağlantı sırasında "topluluk" paylaşımı için değil, bağlantı açma/kapama zamanında "zamansal" paylaşım için kullanılır ([RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)'a bakın). Her ConnectionManager için (yani her yerel Destination için) ayrı bir paylaşım vardır, böylece aynı router üzerindeki diğer Destination'lara bilgi sızıntısı olmaz. Belirli bir eş için paylaşım verileri birkaç dakika sonra sona erer. Aşağıdaki Kontrol Bloğu Paylaşımı parametreleri router başına ayarlanabilir:
+Streaming kütüphanesi "TCP" Kontrol Bloğu paylaşımını destekler. Bu, aynı uzak eşe (peer) yapılan bağlantılar arasında üç önemli streaming kütüphanesi parametresini (pencere boyutu, gidiş-dönüş süresi, gidiş-dönüş süresi varyansı) paylaşır. Bu, bağlantı sırasında "ensemble" paylaşım değil, bağlantı açma/kapama zamanında "temporal" paylaşım için kullanılır ([RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)'a bakınız). Aynı router üzerindeki diğer Destination'lara bilgi sızıntısı olmaması için ConnectionManager başına (yani yerel Destination başına) ayrı bir paylaşım vardır. Belirli bir eş için paylaşım verisi birkaç dakika sonra sona erer. Aşağıdaki Kontrol Bloğu Paylaşım parametreleri router başına ayarlanabilir:
 
-- RTT_DAMPENING = 0.75
-- RTTDEV_DAMPENING = 0.75
-- WINDOW_DAMPENING = 0.75
+1. **SYN sent** — initiator includes optional data.  
+2. **SYN/ACK response** — responder includes optional data.  
+3. **ACK finalization** — establishes reliability and session state.  
+4. **FIN/RESET** — used for orderly closure or abrupt termination.
 
 ### Diğer Parametreler {#other}
 
 Aşağıdaki parametreler önerilen varsayılan değerlerdir. Varsayılan değerler uygulamaya bağlı olarak değişebilir:
 
-- MIN_RESEND_DELAY = 100 ms (minimum RTO)
-- MAX_RESEND_DELAY = 45 saniye (maximum RTO)
-- MIN_WINDOW_SIZE = 1
-- MAX_WINDOW_SIZE = 128
-- TREND_COUNT = 3
-- MIN_MESSAGE_SIZE = 512 (minimum MTU)
-- INBOUND_BUFFER_SIZE = maxMessageSize * (maxWindowSize + 2)
-- INITIAL_TIMEOUT (yalnızca RTT örneklenmeden önce geçerli) = 9 saniye
-- "alpha" ( RFC 6298'e göre RTT sönümleme faktörü ) = 0.125
-- "beta" ( RFC 6298'e göre RTTDEV sönümleme faktörü ) = 0.25
-- "K" ( RFC 6298'e göre RTDEV çarpanı ) = 4
-- PASSIVE_FLUSH_DELAY = 175 ms
-- Maksimum RTT tahmini: 60 saniye
+- The streaming layer continuously adapts to network latency and throughput via RTT-based feedback.  
+- Applications perform best when routers are contributing peers (participating tunnels enabled).  
+- TCP-like congestion control mechanisms prevent overloading slow peers and help balance bandwidth use across tunnels.
 
 ### Geçmiş {#history}
 
-Streaming kütüphanesi I2P için organik olarak büyümüştür - önce mihi, I2PTunnel'ın bir parçası olarak "mini streaming kütüphanesini" uygulamıştır, bu 1 mesaj pencere boyutuyla sınırlıydı (bir sonrakini göndermeden önce ACK gerektiriyordu), daha sonra bu generic streaming arayüzüne (TCP soketlerini yansıtan) dönüştürülmüş ve tam streaming uygulaması, yüksek bant genişliği x gecikme çarpımını hesaba katan kayan pencere protokolü ve optimizasyonlarla dağıtılmıştır. Bireysel stream'ler maksimum paket boyutunu ve diğer seçenekleri ayarlayabilir. Varsayılan mesaj boyutu, tam olarak iki adet 1K I2NP tunnel mesajına sığacak şekilde seçilmiştir ve kayıp mesajları yeniden iletmenin bant genişliği maliyetleri ile birden fazla mesajın gecikmesi ve ek yükü arasında makul bir dengedir.
+Streaming kütüphanesi I2P için organik olarak büyüdü - önce mihi, I2PTunnel'ın bir parçası olarak "mini streaming kütüphanesini" uyguladı, bu da 1 mesajlık pencere boyutuyla sınırlıydı (bir sonrakini göndermeden önce ACK gerektiriyordu), daha sonra genel bir streaming arayüzüne (TCP soketlerini yansıtan) yeniden yapılandırıldı ve tam streaming uygulaması, kayan pencere protokolü ve yüksek bant genişliği x gecikme ürününü hesaba katacak optimizasyonlarla dağıtıldı. Bireysel akışlar maksimum paket boyutunu ve diğer seçenekleri ayarlayabilir. Varsayılan mesaj boyutu, tam olarak iki adet 1K I2NP tunnel mesajına sığacak şekilde seçilmiştir ve kayıp mesajları yeniden iletmenin bant genişliği maliyetleri ile birden fazla mesajın gecikme süresi ve ek yükü arasında makul bir dengeyi temsil eder.
 
-## Gelecekteki Çalışmalar {#future}
+## Interoperability and Best Practices
 
-Streaming kütüphanesinin davranışı, uygulama düzeyindeki performans üzerinde derin bir etkiye sahiptir ve bu nedenle daha ileri analiz için önemli bir alandır.
+Streaming kütüphanesinin davranışı, uygulama seviyesindeki performans üzerinde derin bir etkiye sahiptir ve bu nedenle daha fazla analiz için önemli bir alandır.
 
-- Streaming lib parametrelerinin ek ayarlanması gerekli olabilir.
-- Araştırma için başka bir alan da streaming lib'in NTCP ve SSU transport katmanları ile etkileşimidir. Ayrıntılar için [NTCP tartışma sayfasına](/docs/historical/ntcp-discussion) bakın.
-- Routing algoritmalarının streaming lib ile etkileşimi performansı güçlü bir şekilde etkiler. Özellikle, mesajların bir havuzdaki birden fazla tunnel'a rastgele dağıtılması, yüksek derecede sıra dışı teslimat ile sonuçlanır ve bu da normalde olacağından daha küçük pencere boyutlarına yol açar. Router şu anda tek bir from/to hedef çifti için mesajları, tunnel'ın süresi dolana veya teslimat hatası oluşana kadar tutarlı bir tunnel seti aracılığıyla yönlendirir. Router'ın hata ve tunnel seçim algoritmaları olası iyileştirmeler için gözden geçirilmelidir.
-- İlk SYN paketindeki veriler alıcının MTU'sunu aşabilir.
-- DELAY_REQUESTED alanı daha fazla kullanılabilir.
-- Kısa ömürlü akışlarda duplicate başlangıç SYNCHRONIZE paketleri tanınmayabilir ve kaldırılmayabilir.
-- Yeniden iletimde MTU gönderme.
-- Giden pencere dolu olmadığı sürece veriler gönderilir. (yani no-Nagle veya TCP_NODELAY) Muhtemelen bunun için bir yapılandırma seçeneği olmalı.
-- zzz paketleri wireshark-uyumlu (pcap) formatta kaydetmek için streaming library'ye debug kodu eklemiştir; Performansı daha fazla analiz etmek için bunu kullanın. Format, daha fazla streaming lib parametresini TCP alanlarına eşlemek için geliştirme gerektirebilir.
-- Streaming lib'i standart TCP (veya belki raw socketlerle birlikte null katman) ile değiştirme önerileri vardır. Bu ne yazık ki streaming lib ile uyumsuz olacaktır ancak ikisinin performansını karşılaştırmak iyi olacaktır.
+- Always test against both **Java I2P** and **i2pd** to ensure full compatibility.  
+- Although the protocol is standardized, minor implementation differences may exist.  
+- Handle older routers gracefully—many peers still run pre-2.0 versions.  
+- Monitor connection stats using `I2PSocket.getOptions()` and `getSession()` to read RTT and retransmission metrics.

@@ -1,38 +1,38 @@
 ---
-title: "Streaming protokol"
-description: "TCP-podobný transport používaný většinou I2P aplikací"
+title: "Streaming Protocol"
+description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
-lastUpdated: "2025-07"
-accurateFor: "0.9.67"
+lastUpdated: "2026-01"
+accurateFor: "0.9.68"
 ---
 
-## Přehled {#overview}
+## Overview
 
-Streaming knihovna je technicky částí "aplikační" vrstvy, protože není základní funkcí routeru. V praxi však poskytuje zásadní funkci pro téměř všechny existující I2P aplikace tím, že poskytuje TCP-like proudy přes I2P a umožňuje snadné portování existujících aplikací na I2P. Druhou end-to-end transportní knihovnou pro klientskou komunikaci je [datagram knihovna](/docs/specs/datagrams).
+The **I2P Streaming Library** provides reliable, in-order, authenticated transport over I2P’s message layer, similar to **TCP over IP**.   It sits above the [I2CP protocol](/docs/specs/i2cp/) and is used by nearly all interactive I2P applications, including HTTP proxies, IRC, BitTorrent, and email.
 
-Streaming knihovna je vrstva nad základním [I2CP API](/docs/specs/i2cp), která umožňuje spolehlivé, uspořádané a autentizované proudy zpráv fungovat přes nespolehlivou, neuspořádanou a neautentizovanou vrstvu zpráv. Stejně jako vztah TCP k IP má tato streaming funkcionalita celou řadu kompromisů a optimalizací k dispozici, ale namísto vložení této funkcionality do základního I2P kódu byla vyčleněna do vlastní knihovny, aby se TCP-podobné složitosti udržely oddělené a umožnily se alternativní optimalizované implementace.
+This design enables small HTTP requests and responses to complete in a single round-trip.   A SYN packet may carry the request payload, while the responder’s SYN/ACK/FIN may contain the full response body.
 
-Vzhledem k relativně vysokým nákladům na zprávy byl protokol streaming knihovny pro plánování a doručování těchto zpráv optimalizován tak, aby umožnil jednotlivým zprávám obsahovat co nejvíce dostupných informací. Například malá HTTP transakce proxovaná přes streaming knihovnu může být dokončena v jediném round tripu - první zpráva spojuje SYN, FIN a malý HTTP request payload, a odpověď spojuje SYN, FIN, ACK a HTTP response payload. I když musí být odeslán dodatečný ACK, aby se HTTP serveru oznámilo, že SYN/FIN/ACK bylo přijato, místní HTTP proxy často může doručit úplnou odpověď do prohlížeče okamžitě.
+---
 
-Streaming knihovna má velkou podobnost s abstrakcí TCP, se svými posuvnými okny, algoritmy řízení zahlcení (jak pomalý start, tak prevence zahlcení) a obecným chováním paketů (ACK, SYN, FIN, RST, výpočet rto atd.).
+The Java streaming API mirrors standard Java socket programming:
 
-Streaming knihovna je robustní knihovna optimalizovaná pro provoz v rámci I2P. Má jednofázové nastavení a obsahuje kompletní implementaci oken.
+Full Javadocs are available from the I2P router console or [here](/docs/specs/streaming/).
 
-## API {#api}
+## API Basics
 
-API knihovny pro streaming poskytuje standardní paradigma socketů pro Java aplikace. Nižší úroveň [I2CP](/docs/specs/i2cp) API je zcela skryta, kromě toho, že aplikace mohou předávat [I2CP parametry](/docs/specs/i2cp#options) skrze streaming knihovnu, které jsou interpretovány I2CP.
+---
 
-Standardní rozhraní ke streaming knihovně je takové, že aplikace použije I2PSocketManagerFactory pro vytvoření I2PSocketManager. Aplikace pak požádá socket manager o I2PSession, což způsobí připojení k routeru prostřednictvím [I2CP](/docs/specs/i2cp). Aplikace pak může nastavit připojení pomocí I2PSocket nebo přijímat připojení pomocí I2PServerSocket.
+You can pass configuration properties when creating a socket manager via:
 
-Pro dobrý příklad použití se podívejte na kód i2psnark.
+Newer features since version 0.9.4 include reject log suppression, DSA list support (0.9.21), and mandatory protocol enforcement (0.9.36).   Routers since 2.10.0 include post-quantum hybrid encryption (ML-KEM + X25519) at the transport layer.
 
-### Možnosti a výchozí hodnoty {#options}
+### Core Characteristics
 
-Možnosti a současné výchozí hodnoty jsou uvedeny níže. Možnosti rozlišují velká a malá písmena a mohou být nastaveny pro celý router, pro konkrétního klienta nebo pro jednotlivý socket na bázi připojení. Mnoho hodnot je laděno pro HTTP výkon za typických I2P podmínek. Ostatní aplikace jako peer-to-peer služby jsou důrazně vybízeny k úpravám podle potřeby nastavením možností a jejich předáním prostřednictvím volání I2PSocketManagerFactory.createManager(_i2cpHost, _i2cpPort, opts). Časové hodnoty jsou v ms.
+---
 
-Vezměte na vědomí, že vyšší úrovně API, jako jsou [SAM](/docs/api/samv3), [BOB](/docs/legacy/bob) a [I2PTunnel](/docs/api/i2ptunnel), mohou tyto výchozí hodnoty přepsat svými vlastními výchozími hodnotami. Také vezměte na vědomí, že mnohé možnosti se vztahují pouze na servery, které naslouchají příchozím spojením.
+Each stream is identified by a **Stream ID**. Packets carry control flags similar to TCP: `SYNCHRONIZE`, `ACK`, `FIN`, and `RESET`.   Packets may contain both data and control flags simultaneously, improving efficiency for short-lived connections.
 
-Od verze 0.9.1 lze většinu, ale ne všechny možnosti změnit na aktivním správci socketů nebo relaci. Podrobnosti najdete v javadocs.
+Because I2P tunnels introduce latency and message reordering, the library buffers packets from unknown or early-arriving streams.   Buffered messages are stored until synchronization completes, ensuring complete, in-order delivery.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -235,128 +235,138 @@ Od verze 0.9.1 lze většinu, ale ne všechny možnosti změnit na aktivním spr
     </tr>
   </tbody>
 </table>
-## Specifikace protokolu {#spec}
+## Configuration and Tuning
 
-[Viz stránku Specifikace knihovny Streaming.](/docs/specs/streaming)
+The option `i2p.streaming.enforceProtocol=true` (default since 0.9.36) ensures connections use the correct I2CP protocol number, preventing conflicts between multiple subsystems sharing one destination.
 
-## Detaily implementace {#implementation}
+## Protocol Details
 
-### Nastavení {#setup}
+### Key Options
 
-Iniciátor odešle paket s nastaveným příznakem SYNCHRONIZE. Tento paket může obsahovat také počáteční data. Partner odpoví paketem s nastaveným příznakem SYNCHRONIZE. Tento paket může obsahovat také počáteční odpověď.
+---
 
-Iniciátor může odeslat další datové pakety, až do velikosti počátečního okna, před přijetím odpovědi SYNCHRONIZE. Tyní pakety budou mít také pole send Stream ID nastavené na 0. Příjemci musí po krátkou dobu ukládat do vyrovnávací paměti pakety přijaté na neznámých streamech, protože mohou dorazit mimo pořadí, před paketem SYNCHRONIZE.
+The streaming protocol coexists with the **Datagram API**, giving developers the choice between connection-oriented and connectionless transports.
 
-### Výběr a vyjednávání MTU {#mtu}
+### Behavior by Workload
 
-Maximální velikost zprávy (také nazývaná MTU / MRU) je vyjednána na nižší hodnotu podporovanou oběma protějšky. Jelikož tunnel zprávy jsou doplněny na 1KB, špatný výběr MTU povede k velkému množství režie. MTU je specifikováno možností i2p.streaming.maxMessageSize. Současná výchozí MTU 1730 byla zvolena tak, aby se přesně vešla do dvou 1K I2NP tunnel zpráv, včetně režie pro typický případ.
+Applications can reuse existing tunnels by running as **shared clients**, allowing multiple services to share the same destination.   While this reduces overhead, it increases cross-service correlation risk—use with care.
 
-Poznámka: Toto je maximální velikost pouze užitečného zatížení (payload), nezahrnuje hlavičku.
+Because I2P adds several hundred milliseconds of base latency, applications should minimize round-trips.   Bundle data with connection setup where possible (e.g., HTTP requests in SYN).   Avoid designs relying on many small sequential exchanges.
 
-Poznámka: Pro ECIES spojení, která mají sníženou režii, je doporučené MTU 1812. Výchozí MTU zůstává 1730 pro všechna spojení, bez ohledu na použitý typ klíče. Klienti musí použít minimum z odeslaného a přijatého MTU, jak je obvyklé. Viz návrh 155.
+---
 
-První zpráva v připojení obsahuje 387 bajtů (typicky) Destination přidanou streaming vrstvou a obvykle 898 bajtů (typicky) leaseSet a klíče relace, zabalené v garlic zprávě routerem. (leaseSet a klíče relace nebudou zabaleny, pokud byla dříve navázána ElGamal relace). Proto cíl vejít kompletní HTTP požadavek do jediné 1KB I2NP zprávy není vždy dosažitelný. Výběr MTU však společně s pečlivou implementací strategií fragmentace a dávkování v tunnel gateway procesoru jsou důležité faktory pro šířku pásma sítě, latenci, spolehlivost a efektivitu, zejména pro dlouhodobá připojení.
+Performance depends heavily on tunnel configuration:   - **Short tunnels (1–2 hops)** → lower latency, reduced anonymity.   - **Long tunnels (3+ hops)** → higher anonymity, increased RTT.
 
-### Integrita dat {#integrity}
+### Connection Lifecycle
 
-Integrita dat je zajištěna pomocí gzip CRC-32 kontrolního součtu implementovaného v [I2CP vrstvě](/docs/specs/i2cp#format). Ve streaming protokolu není žádné pole pro kontrolní součet.
+---
 
-### Zapouzdření paketů {#encapsulation}
+### Fragmentation and Reordering
 
-Každý paket je odeslán přes I2P jako jedna zpráva (nebo jako jednotlivý hřebíček v [Garlic Message](/docs/overview/garlic-routing)). Zapouzdření zprávy je implementováno v základních vrstvách [I2CP](/docs/specs/i2cp), [I2NP](/docs/specs/i2np) a [tunnel message](/docs/specs/tunnel-message). Ve streaming protokolu neexistuje mechanismus oddělovače paketů ani pole délky užitečného zatížení.
+---
 
-### Volitelné zpoždění {#delay}
+### Protocol Enforcement
 
-Datové pakety mohou obsahovat volitelné pole zpoždění specifikující požadované zpoždění v ms, před tím než příjemce potvrdí paket. Platné hodnoty jsou 0 až 60000 včetně. Hodnota 0 požaduje okamžité potvrzení. Toto je pouze doporučující a příjemci by měli mírně zpozdit, aby mohly být další pakety potvrzeny jediným potvrzením. Některé implementace mohou do tohoto pole zahrnout doporučující hodnotu (naměřené RTT / 2). Pro nenulové volitelné hodnoty zpoždění by příjemci měli omezit maximální zpoždění před odesláním potvrzení na nejvýše několik sekund. Volitelné hodnoty zpoždění větší než 60000 indikují škrcení, viz níže.
+The **I2P Streaming Library** is the backbone of all reliable communication within I2P.   It ensures in-order, authenticated, encrypted message delivery and provides a near drop-in replacement for TCP in anonymous environments.
 
-### Okna pro odesílání/příjem a omezování {#windows}
+### Shared Clients
 
-TCP hlavičky zahrnují okno příjmu v bajtech; streaming protokol však neposkytuje způsob, jak vyměňovat maximální velikost okna příjmu buď v bajtech nebo paketech. Existuje pouze jednoduché označení choke/unchoke indikující, že buffer příjmu je plný. Každý koncový bod musí udržovat svůj vlastní odhad okna příjmu vzdáleného konce, buď v bajtech nebo paketech. Všimněte si, že buffer příjmu se může přeplnit při jakékoli velikosti okna, pokud je klientská aplikace pomalá při vyprazdňování bufferu.
+To achieve optimal performance: - Minimize round-trips with SYN+payload bundling.   - Tune window and timeout parameters for your workload.   - Favor shorter tunnels for latency-sensitive applications.   - Use congestion-friendly designs to avoid overloading peers.
 
-Výchozí maximální velikost okna pro odesílání a příjem v Java implementaci je 128 paketů. Implementace nastavující maximální velikost okna pro odesílání vyšší než 128 musí zvážit následující problémy:
+Výchozí maximální velikost vysílacího a přijímacího okna v implementaci Java je 128 paketů. Implementace nastavující maximální velikost vysílacího okna vyšší než 128 musí zvážit následující problémy:
 
-- CHOKE odpovědi od Java routerů kvůli přetečení přijímacího bufferu jsou mnohem pravděpodobnější.
-- Musí být implementován odhad velikosti bufferu vzdáleného příjemce pro zmírnění opakovaných přetečení (viz výše)
-- CHOKE musí být zpracováno správně (viz níže)
-- Maximální velikosti oken nad 256 jsou ještě náchylnější k chybám, protože délka pole volby počtu nack je jeden byte, což omezuje maximální počet NACKů na 255. Tato specifikace neřeší, co dělat, pokud je NACKů více než 255. Maximální velikosti oken nad 256 se nedoporučují.
+- One-phase connection setup using **SYN**, **ACK**, and **FIN** flags that can be bundled with payload data to reduce round-trips.
+- **Sliding-window congestion control**, with slow start and congestion avoidance tuned for I2P’s high-latency environment.
+- Packet compression (default 4KB compressed segments) balancing retransmission cost and fragmentation latency.
+- Fully **authenticated, encrypted**, and **reliable** channel abstraction between I2P destinations.
 
-Doporučená minimální velikost bufferu pro implementace přijímače je 128 paketů nebo 232 KB (přibližně 128 * 1812). Kvůli latenci I2P sítě, ztrátám paketů a výsledné kontrole zahlcení se buffer této velikosti zřídka zcela naplní. Přetečení je však mnohem pravděpodobnější při vysokorychlostních "local loopback" (stejný router) spojeních nebo při lokálním testování.
+Doporučená minimální velikost bufferu pro implementace příjemců je 128 paketů nebo 232 KB (přibližně 128 * 1812). Kvůli latenci I2P sítě, ztrátám paketů a výsledné kontrole přetížení se buffer této velikosti zřídka zaplní. Přetečení je však mnohem pravděpodobnější u vysokorychlostních "local loopback" (stejný router) spojení nebo při lokálním testování.
 
-Pro rychlé indikování a plynulé obnovení z přetečení existuje jednoduchý mechanismus pro zpětný tlak ve streamovacím protokolu. Pokud je přijat paket s volitelným polem zpoždění s hodnotou 60001 nebo vyšší, indikuje to "choking" nebo okno příjmu s nulovou velikostí. Paket s volitelným polem zpoždění s hodnotou 60000 nebo nižší indikuje "unchoking". Pakety bez volitelného pole zpoždění neovlivňují stav choke/unchoke.
+Pro rychlé indikování a plynulé zotavení z přetečení existuje jednoduchý mechanismus pro zpětný tlak ve streamovacím protokolu. Pokud je přijat paket s volitelným polem zpoždění s hodnotou 60001 nebo vyšší, znamená to "dušení" nebo přijímací okno o velikosti nula. Paket s volitelným polem zpoždění s hodnotou 60000 nebo nižší indikuje "ukončení dušení". Pakety bez volitelného pole zpoždění neovlivňují stav dušení/ukončení dušení.
 
-Po udušení by neměly být odesílány žádné další pakety s daty, dokud není odesílatel odušen, kromě občasných "sondovacích" datových paketů pro kompenzaci možných ztracených paketů pro odušení. Udušený koncový bod by měl spustit "persist timer" pro řízení sondování, stejně jako v TCP. Odušující koncový bod by měl odeslat několik paketů s nastaveným tímto polem, nebo je nadále odesílat periodicky, dokud nejsou znovu přijímány datové pakety. Maximální doba čekání na odušení závisí na implementaci. Velikost okna odesílatele a strategie řízení zahlcení po odušení závisí na implementaci.
+Po zadušení by neměly být odesílány žádné další pakety s daty, dokud není vysílač odblokován, s výjimkou občasných "sondovacích" datových paketů pro kompenzaci možných ztracených odblokujících paketů. Zadušený koncový bod by měl spustit "persist timer" pro řízení sondování, podobně jako v TCP. Odblokující koncový bod by měl odeslat několik paketů s tímto polem nastaveným, nebo je nadále posílat periodicky, dokud nebudou znovu přijaty datové pakety. Maximální čas čekání na odblokování je závislý na implementaci. Velikost okna vysílače a strategie řízení zahlcení po odblokování je závislá na implementaci.
 
-### Řízení zahlcení {#congestion}
+### Congestion Control
 
-Streaming knihovna používá standardní pomalý start (exponenciální růst okna) a fáze vyhýbání se zahlcení (lineární růst okna), s exponenciálním zpětným krokem. Okenní mechanismus a potvrzování používají počet paketů, nikoli počet bajtů.
+Streaming knihovna používá standardní slow-start (exponenciální růst okna) a fáze vyhýbání se přetížení (lineární růst okna) s exponenciálním zpožděním. Okénkování a potvrzování používají počet paketů, ne počet bajtů.
 
-### Zavřít {#close}
+### Latency Considerations
 
-Jakýkoliv paket, včetně paketu s nastaveným příznakem SYNCHRONIZE, může mít také nastaven příznak CLOSE. Spojení není ukončeno, dokud protistrana neodpoví s příznakem CLOSE. Pakety CLOSE mohou také obsahovat data.
+Jakýkoli paket, včetně paketu s nastaveným příznakem SYNCHRONIZE, může mít také nastaven příznak CLOSE. Spojení není uzavřeno, dokud protistrana neodpoví s příznakem CLOSE. Pakety CLOSE mohou také obsahovat data.
 
 ### Ping / Pong {#ping}
 
-Na vrstvě I2CP neexistuje funkce ping (ekvivalent ICMP echo) ani v datagramech. Tato funkce je poskytována ve streamování. Pingy a pongy nemohou být kombinovány se standardním streamovacím paketem; pokud je nastavena možnost ECHO, pak jsou většina ostatních příznaků, možností, ackThrough, sequenceNum, NACKs atd. ignorovány.
+Na vrstvě I2CP neexistuje žádná ping funkce (ekvivalentní k ICMP echo) ani v datagramech. Tato funkce je poskytována ve streaming. Pingy a pongy nesmí být kombinovány se standardním streaming paketem; pokud je nastavena možnost ECHO, pak jsou ignorovány většina ostatních příznaků, možností, ackThrough, sequenceNum, NACK atd.
 
-Ping paket musí mít nastavené příznaky ECHO, SIGNATURE_INCLUDED a FROM_INCLUDED. SendStreamId musí být větší než nula a receiveStreamId se ignoruje. SendStreamId může, ale nemusí odpovídat existujícímu spojení.
+Ping paket musí mít nastavené příznaky ECHO, SIGNATURE_INCLUDED a FROM_INCLUDED. SendStreamId musí být větší než nula a receiveStreamId se ignoruje. SendStreamId může nebo nemusí odpovídat existujícímu připojení.
 
-Pong paket musí mít nastaven příznak ECHO. SendStreamId musí být nula a receiveStreamId je sendStreamId z ping paketu. Před verzí 0.9.18 pong paket neobsahuje žádný payload, který byl obsažen v ping paketu.
+Pong paket musí mít nastaven příznak ECHO. SendStreamId musí být nula a receiveStreamId je sendStreamId z ping paketu. Před verzí 0.9.18 pong paket neobsahoval žádná data, která byla obsažena v ping paketu.
 
-Od verze 0.9.18 mohou ping a pong obsahovat datovou část. Datová část v ping, až do maximálně 32 bajtů, je vrácena v pong.
+Od verze 0.9.18 mohou ping a pong obsahovat užitečný obsah. Užitečný obsah v ping, až do maxima 32 bajtů, je vrácen v pong.
 
 Streaming může být nakonfigurován tak, aby zakázal odesílání pongů pomocí konfigurace i2p.streaming.answerPings=false.
+
+### Problémy s 0-RTT {#0rtt}
+
+Jak bylo uvedeno výše, na rozdíl od TCP umožňuje streaming 0-RTT doručování dat pomocí zabalení dat do SYN paketu. Toto je preferovaná implementace. TAKÉ streaming povoluje odeslání dalších datových paketů (až do velikosti počátečního okna) po SYN, před přijetím SYN-ACK. Tyto pakety budou mít nenulové pořadové číslo, nebudou mít nastaven příznak SYN a budou mít nulové sendStreamID.
+
+Příjemci by měli navrhovat s ohledem na pakety doručené mimo pořadí nebo ztracené pakety během handshake, včetně situace kdy datové pakety dorazí před SYN. Preferovaná implementace je zařadit do fronty, nikoli zahazovat, non-SYN pakety pro neznámé ID a načíst je z fronty poté, co je přijat SYN.
+
+V opačném směru jsou věci podobné. Příjemce připojení (Bob) by měl zpozdit odeslání SYN-ACK (ACK DELAY) a krátkou dobu počkat na data z aplikace. Po přijetí dat z aplikace je vložit (až do maximální velikosti paketu) do SYN-ACK paketu a odeslat ho. Další datové pakety, až do velikosti počátečního okna, mohou být také odeslány, aniž by se čekalo na ACK pro SYN-ACK.
+
+Původce by měl ukládat do bufferu všechny datové pakety přijaté před SYN-ACK, stejně jako při zpracování pořadí po dokončení handshaku.
+
+### Testování Streaming knihoven {#testing}
+
+Pro vývojáře testující nové nebo změněné streamovací knihovny poskytuje Java I2P jednoduchý místní testovací nástroj pro reprodukovatelné testování skutečných síťových podmínek, včetně latence, ztráty paketů a kolísání zpoždění. Jedná se o malý stub implementující pouze I2CP server pro místní připojení.
+
+Vývojáři by měli testovat s širokou škálou typických parametrů, včetně latence od 10ms do alespoň 15s a ztráty paketů od 0 do 10%. Přidání jitteru usnadňuje testování zpracování neuspořádaných paketů.
+
+Toto je také dobré nastavení pro testování přetečení bufferu (CHOKE/UNCHOKE) manuálním pozastavením jedné ze dvou aplikací.
+
+Ze zdrojového balíčku i2p.i2p:
+
+- `I2PSocketManagerFactory` negotiates or reuses a router session via I2CP.  
+- If no key is provided, a new destination is automatically generated.  
+- Developers can pass I2CP options (e.g., tunnel lengths, encryption types, or connection settings) through the `options` map.  
+- `I2PSocket` and `I2PServerSocket` mirror standard Java `Socket` interfaces, making migration straightforward.
 
 ### i2p.streaming.profile Poznámky {#profile}
 
 Tato možnost podporuje dvě hodnoty; 1=bulk a 2=interactive. Možnost poskytuje nápovědu pro streaming knihovnu a/nebo router ohledně očekávaného vzoru provozu.
 
-"Bulk" znamená optimalizaci pro vysokou šířku pásma, případně na úkor latence. Toto je výchozí nastavení. "Interactive" znamená optimalizaci pro nízkou latenci, případně na úkor šířky pásma nebo efektivity. Strategie optimalizace, pokud nějaké existují, závisí na implementaci a mohou zahrnovat změny mimo streamovací protokol.
+"Bulk" znamená optimalizaci pro vysokou šířku pásma, případně na úkor latence. Toto je výchozí nastavení. "Interactive" znamená optimalizaci pro nízkou latenci, případně na úkor šířky pásma nebo efektivity. Strategie optimalizace, pokud nějaké existují, jsou závislé na implementaci a mohou zahrnovat změny mimo streaming protokol.
 
-Do verze API 0.9.63 Java I2P vracelo chybu pro jakoukoli hodnotu jinou než 1 (bulk) a tunnel se nepodařilo spustit. Od verze API 0.9.64 Java I2P tuto hodnotu ignoruje. Do verze API 0.9.63 i2pd tuto možnost ignorovalo; v i2pd je implementována od verze API 0.9.64.
+Do verze API 0.9.63 by Java I2P vrátil chybu pro jakoukoliv hodnotu jinou než 1 (bulk) a tunnel by se nepodařilo spustit. Od verze API 0.9.64 Java I2P tuto hodnotu ignoruje. Do verze API 0.9.63 i2pd tuto možnost ignoroval; je implementována v i2pd od verze API 0.9.64.
 
-Zatímco streaming protokol obsahuje pole pro příznak pro předání nastavení profilu na druhý konec, toto není implementováno v žádném známém routeru.
+Zatímco streaming protokol obsahuje pole pro příznak k předání nastavení profilu na druhý konec, toto není implementováno v žádném známém router.
 
-### Sdílení Control Blocku {#sharing}
+### Sdílení kontrolního bloku {#sharing}
 
-Streaming knihovna podporuje sdílení "TCP" Control Block. Toto sdílí tři důležité parametry streaming knihovny (velikost okna, doba odezvy, rozptyl doby odezvy) napříč připojeními ke stejnému vzdálenému peer. Používá se pro "časové" sdílení při otevření/uzavření připojení, ne pro "souborové" sdílení během připojení (Viz [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). Existuje samostatné sdílení pro každý ConnectionManager (tj. pro každou místní Destination), takže nedochází k úniku informací do jiných Destinations na stejném router. Data sdílení pro daný peer vyprší po několika minutách. Následující parametry Control Block Sharing lze nastavit pro každý router:
+Streaming knihovna podporuje sdílení "TCP" Control Block. Toto sdílí tři důležité parametry streaming knihovny (velikost okna, doba odezvy, rozptyl doby odezvy) napříč připojeními ke stejnému vzdálenému peer. Toto se používá pro "temporální" sdílení v době otevírání/zavírání připojení, nikoliv pro "ensemble" sdílení během připojení (viz [RFC 2140](http://www.ietf.org/rfc/rfc2140.txt)). Existuje samostatné sdílení pro každý ConnectionManager (tj. pro každou lokální Destination), takže nedochází k úniku informací do jiných Destinations na stejném router. Sdílená data pro daný peer vyprší po několika minutách. Následující parametry Control Block Sharing lze nastavit pro každý router:
 
-- RTT_DAMPENING = 0.75
-- RTTDEV_DAMPENING = 0.75
-- WINDOW_DAMPENING = 0.75
+1. **SYN sent** — initiator includes optional data.  
+2. **SYN/ACK response** — responder includes optional data.  
+3. **ACK finalization** — establishes reliability and session state.  
+4. **FIN/RESET** — used for orderly closure or abrupt termination.
 
-### Další parametry {#other}
+### Ostatní parametry {#other}
 
 Následující parametry jsou doporučené výchozí hodnoty. Výchozí hodnoty se mohou lišit v závislosti na implementaci:
 
-- MIN_RESEND_DELAY = 100 ms (minimální RTO)
-- MAX_RESEND_DELAY = 45 sec (maximální RTO)
-- MIN_WINDOW_SIZE = 1
-- MAX_WINDOW_SIZE = 128
-- TREND_COUNT = 3
-- MIN_MESSAGE_SIZE = 512 (minimální MTU)
-- INBOUND_BUFFER_SIZE = maxMessageSize * (maxWindowSize + 2)
-- INITIAL_TIMEOUT (platný pouze před vzorkováním RTT) = 9 sec
-- "alpha" (faktor tlumení RTT podle RFC 6298) = 0.125
-- "beta" (faktor tlumení RTTDEV podle RFC 6298) = 0.25
-- "K" (násobitel RTDEV podle RFC 6298) = 4
-- PASSIVE_FLUSH_DELAY = 175 ms
-- Maximální odhad RTT: 60 sec
+- The streaming layer continuously adapts to network latency and throughput via RTT-based feedback.  
+- Applications perform best when routers are contributing peers (participating tunnels enabled).  
+- TCP-like congestion control mechanisms prevent overloading slow peers and help balance bandwidth use across tunnels.
 
 ### Historie {#history}
 
-Streaming knihovna se vyvinula organicky pro I2P - nejprve mihi implementoval "mini streaming knihovnu" jako součást I2PTunnel, která byla omezena na velikost okna 1 zprávy (vyžadovala ACK před odesláním další zprávy), a poté byla refaktorována do generického streaming rozhraní (zrcadlící TCP sockety) a byla nasazena úplná streaming implementace s protokolem posuvného okna a optimalizacemi, které berou v úvahu vysoký součin šířky pásma x zpoždění. Jednotlivé streamy mohou upravit maximální velikost paketu a další možnosti. Výchozí velikost zprávy je vybrána tak, aby se přesně vešla do dvou 1K I2NP tunnel zpráv, a představuje rozumný kompromis mezi náklady na šířku pásma při opakovaném přenosu ztracených zpráv a latencí a režií více zpráv.
+Streaming knihovna se pro I2P vyvinula organicky - nejprve mihi implementoval "mini streaming knihovnu" jako součást I2PTunnel, která byla omezena na velikost okna 1 zprávy (vyžadovala ACK před odesláním další), a poté byla refaktorována do generického streaming rozhraní (zrcadlícího TCP sockety) a plná streaming implementace byla nasazena s protokolem posuvného okna a optimalizacemi zohledňujícími vysoký součin šířky pásma x zpoždění. Jednotlivé streamy mohou upravit maximální velikost paketu a další možnosti. Výchozí velikost zprávy je vybrána tak, aby přesně zapadla do dvou 1K I2NP tunnel zpráv, a představuje rozumný kompromis mezi náklady šířky pásma na retransmisi ztracených zpráv a latencí a režijí více zpráv.
 
-## Budoucí práce {#future}
+## Interoperability and Best Practices
 
-Chování streaming knihovny má zásadní vliv na výkon na úrovni aplikace, a proto je důležitou oblastí pro další analýzu.
+Chování streaming knihovny má zásadní dopad na výkon na úrovni aplikace, a proto je to důležitá oblast pro další analýzu.
 
-- Může být nutné další ladění parametrů streaming lib.
-- Další oblast pro výzkum je interakce streaming lib s transportními vrstvami NTCP a SSU. Podrobnosti najdete v [diskusní stránce o NTCP](/docs/historical/ntcp-discussion).
-- Interakce směrovacích algoritmů se streaming lib silně ovlivňuje výkon. Konkrétně náhodná distribuce zpráv do více tunnelů v poolu vede k vysokému stupni doručování mimo pořadí, což má za následek menší velikosti oken, než by jinak bylo. Router aktuálně směruje zprávy pro jeden pár cíl/zdroj přes konzistentní sadu tunnelů, dokud nevyprší tunnel nebo nedojde k selhání doručení. Algoritmy selhání a výběru tunnelů routeru by měly být přezkoumány kvůli možným vylepšením.
-- Data v prvním SYN paketu mohou překročit MTU příjemce.
-- Pole DELAY_REQUESTED by mohlo být více využíváno.
-- Duplicitní počáteční SYNCHRONIZE pakety na krátkodobých streamech nemusí být rozpoznány a odstraněny.
-- Neposílat MTU v retransmisi.
-- Data jsou odesílána, pokud není výstupní okno plné. (tj. no-Nagle nebo TCP_NODELAY) Pravděpodobně by měla existovat konfigurační možnost pro toto.
-- zzz přidal do streaming library debug kód pro logování paketů ve formátu kompatibilním s wireshark (pcap); Použijte to k další analýze výkonu. Formát může vyžadovat vylepšení pro mapování více parametrů streaming lib na TCP pole.
-- Existují návrhy nahradit streaming lib standardním TCP (nebo možná null vrstvou spolu s raw sockety). To by bohužel bylo nekompatibilní se streaming lib, ale bylo by dobré porovnat výkon těchto dvou.
+- Always test against both **Java I2P** and **i2pd** to ensure full compatibility.  
+- Although the protocol is standardized, minor implementation differences may exist.  
+- Handle older routers gracefully—many peers still run pre-2.0 versions.  
+- Monitor connection stats using `I2PSocket.getOptions()` and `getSession()` to read RTT and retransmission metrics.
