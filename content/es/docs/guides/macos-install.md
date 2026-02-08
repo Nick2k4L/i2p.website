@@ -1,280 +1,280 @@
 ---
 title: "Instalando I2P en macOS"
-description: "Step-by-step guide to manually installing I2P and its dependencies on macOS"
+description: "Guía paso a paso para instalar manualmente I2P y sus dependencias en macOS"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---
 
-## What You'll Need
+## Lo que necesitarás
 
-- A Mac running macOS 10.14 (Mojave) or later
-- Administrator access to install applications
-- About 15-20 minutes of time
-- Internet connection for downloading installers
+- Una Mac ejecutando macOS 10.14 (Mojave) o posterior
+- Acceso de administrador para instalar aplicaciones
+- Aproximadamente 15-20 minutos de tiempo
+- Conexión a Internet para descargar los instaladores
 
-## Overview
+## Descripción general
 
-This installation process has four main steps:
+Este proceso de instalación tiene cuatro pasos principales:
 
-1. **Install Java** - Download and install Oracle Java Runtime Environment
-2. **Install I2P** - Download and run the I2P installer
-3. **Configure I2P App** - Set up the launcher and add to your dock
-4. **Configure I2P Bandwidth** - Run the setup wizard to optimize your connection
+1. **Instalar Java** - Descargar e instalar Oracle Java Runtime Environment
+2. **Instalar I2P** - Descargar y ejecutar el instalador de I2P
+3. **Configurar la aplicación I2P** - Configurar el lanzador y agregar al dock
+4. **Configurar el ancho de banda de I2P** - Ejecutar el asistente de configuración para optimizar tu conexión
 
-## Part One: Install Java
+## Parte Uno: Instalar Java
 
-I2P requires Java to run. If you already have Java 8 or later installed, you can [skip to Part Two](#part-two-download-and-install-i2p).
+I2P requiere Java para ejecutarse. Si ya tienes Java 8 o posterior instalado, puedes [saltar a la Parte Dos](#part-two-download-and-install-i2p).
 
-### Step 1: Download Java
+### Paso 1: Descargar Java
 
-Visit the [Oracle Java download page](https://www.oracle.com/java/technologies/downloads/) and download the macOS installer for Java 8 or later.
+Visita la [página de descarga de Oracle Java](https://www.oracle.com/java/technologies/downloads/) y descarga el instalador de macOS para Java 8 o posterior.
 
-![Download Oracle Java for macOS](/images/guides/macos-install/0-jre.png)
+![Descargar Oracle Java para macOS](/images/guides/macos-install/0-jre.png)
 
-### Step 2: Run the Installer
+### Paso 2: Ejecutar el Instalador
 
-Locate the downloaded `.dmg` file in your Downloads folder and double-click to open it.
+Localiza el archivo `.dmg` descargado en tu carpeta de Descargas y haz doble clic para abrirlo.
 
-![Open the Java installer](/images/guides/macos-install/1-jre.png)
+![Abre el instalador de Java](/images/guides/macos-install/1-jre.png)
 
-### Step 3: Allow Installation
+### Paso 3: Permitir la instalación
 
-macOS may display a security prompt because the installer is from an identified developer. Click **Open** to proceed.
+macOS puede mostrar una advertencia de seguridad porque el instalador proviene de un desarrollador identificado. Haz clic en **Abrir** para continuar.
 
-![Give the installer permission to proceed](/images/guides/macos-install/2-jre.png)
+![Otorga al instalador permiso para continuar](/images/guides/macos-install/2-jre.png)
 
-### Step 4: Install Java
+### Paso 4: Instalar Java
 
-Click **Install** to begin the Java installation process.
+Haz clic en **Instalar** para comenzar el proceso de instalación de Java.
 
-![Start installing Java](/images/guides/macos-install/3-jre.png)
+![Comenzar instalación de Java](/images/guides/macos-install/3-jre.png)
 
-### Step 5: Wait for Installation
+### Paso 5: Esperar a que termine la instalación
 
-The installer will copy files and configure Java on your system. This usually takes 1-2 minutes.
+El instalador copiará archivos y configurará Java en tu sistema. Esto generalmente toma de 1 a 2 minutos.
 
-![Wait for the installer to complete](/images/guides/macos-install/4-jre.png)
+![Espera a que se complete el instalador](/images/guides/macos-install/4-jre.png)
 
-### Step 6: Installation Complete
+### Paso 6: Instalación Completa
 
-When you see the success message, Java is installed! Click **Close** to finish.
+Cuando veas el mensaje de éxito, ¡Java está instalado! Haz clic en **Cerrar** para finalizar.
 
-![Java installation complete](/images/guides/macos-install/5-jre.png)
+![Instalación de Java completada](/images/guides/macos-install/5-jre.png)
 
-## Part Two: Download and Install I2P
+## Parte Dos: Descargar e Instalar I2P
 
-Now that Java is installed, you can install the I2P router.
+Ahora que Java está instalado, puedes instalar el router I2P.
 
-### Step 1: Download I2P
+### Paso 1: Descargar I2P
 
-Visit the [Downloads page](/downloads/) and download the **I2P for Unix/Linux/BSD/Solaris** installer (the `.jar` file).
+Visita la [página de Descargas](/downloads/) y descarga el instalador **I2P para Unix/Linux/BSD/Solaris** (el archivo `.jar`).
 
-![Download I2P installer](/images/guides/macos-install/0-i2p.png)
+![Descargar el instalador de I2P](/images/guides/macos-install/0-i2p.png)
 
-### Step 2: Run the Installer
+### Paso 2: Ejecutar el Instalador
 
-Double-click the downloaded `i2pinstall_X.X.X.jar` file. The installer will launch and ask you to select your preferred language.
+Haz doble clic en el archivo descargado `i2pinstall_X.X.X.jar`. El instalador se iniciará y te pedirá que selecciones tu idioma preferido.
 
-![Select your language](/images/guides/macos-install/1-i2p.png)
+![Selecciona tu idioma](/images/guides/macos-install/1-i2p.png)
 
-### Step 3: Welcome Screen
+### Paso 3: Pantalla de Bienvenida
 
-Read the welcome message and click **Next** to continue.
+Lee el mensaje de bienvenida y haz clic en **Siguiente** para continuar.
 
 ![Installer introduction](/images/guides/macos-install/2-i2p.png)
 
-### Step 4: Important Notice
+### Paso 4: Aviso Importante
 
-The installer will display an important notice about updates. I2P updates are **end-to-end signed** and verified, even though this installer itself is unsigned. Click **Next**.
+El instalador mostrará un aviso importante sobre las actualizaciones. Las actualizaciones de I2P están **firmadas de extremo a extremo** y verificadas, aunque este instalador en sí mismo no esté firmado. Haz clic en **Siguiente**.
 
-![Important notice about updates](/images/guides/macos-install/3-i2p.png)
+![Aviso importante sobre actualizaciones](/images/guides/macos-install/3-i2p.png)
 
-### Step 5: License Agreement
+### Paso 5: Acuerdo de Licencia
 
-Read the I2P license agreement (BSD-style license). Click **Next** to accept.
+Lee el acuerdo de licencia de I2P (licencia estilo BSD). Haz clic en **Siguiente** para aceptar.
 
-![License agreement](/images/guides/macos-install/4-i2p.png)
+![Acuerdo de licencia](/images/guides/macos-install/4-i2p.png)
 
-### Step 6: Select Installation Directory
+### Paso 6: Seleccionar Directorio de Instalación
 
-Choose where to install I2P. The default location (`/Applications/i2p`) is recommended. Click **Next**.
+Elige dónde instalar I2P. Se recomienda la ubicación predeterminada (`/Applications/i2p`). Haz clic en **Siguiente**.
 
-![Select installation directory](/images/guides/macos-install/5-i2p.png)
+![Seleccionar directorio de instalación](/images/guides/macos-install/5-i2p.png)
 
-### Step 7: Select Components
+### Paso 7: Seleccionar Componentes
 
-Leave all components selected for a complete installation. Click **Next**.
+Deja todos los componentes seleccionados para una instalación completa. Haz clic en **Siguiente**.
 
-![Select components to install](/images/guides/macos-install/6-i2p.png)
+![Seleccionar componentes a instalar](/images/guides/macos-install/6-i2p.png)
 
-### Step 8: Start Installation
+### Paso 8: Iniciar la Instalación
 
-Review your choices and click **Next** to begin installing I2P.
+Revisa tus selecciones y haz clic en **Siguiente** para comenzar a instalar I2P.
 
-![Start the installation](/images/guides/macos-install/7-i2p.png)
+![Iniciar la instalación](/images/guides/macos-install/7-i2p.png)
 
-### Step 9: Installing Files
+### Paso 9: Instalando Archivos
 
-The installer will copy I2P files to your system. This takes about 1-2 minutes.
+El instalador copiará los archivos de I2P a tu sistema. Esto toma aproximadamente 1-2 minutos.
 
-![Installation in progress](/images/guides/macos-install/8-i2p.png)
+![Instalación en progreso](/images/guides/macos-install/8-i2p.png)
 
-### Step 10: Generate Launch Scripts
+### Paso 10: Generar Scripts de Lanzamiento
 
-The installer creates launch scripts for starting I2P.
+El instalador crea scripts de lanzamiento para iniciar I2P.
 
-![Generating launch scripts](/images/guides/macos-install/9-i2p.png)
+![Generando scripts de inicio](/images/guides/macos-install/9-i2p.png)
 
-### Step 11: Installation Shortcuts
+### Paso 11: Atajos de Instalación
 
-The installer offers to create desktop shortcuts and menu entries. Make your selections and click **Next**.
+El instalador ofrece crear accesos directos en el escritorio y entradas en el menú. Haz tus selecciones y haz clic en **Siguiente**.
 
-![Create shortcuts](/images/guides/macos-install/10-i2p.png)
+![Crear accesos directos](/images/guides/macos-install/10-i2p.png)
 
-### Step 12: Installation Complete
+### Paso 12: Instalación Completada
 
-Success! I2P is now installed. Click **Done** to finish.
+¡Éxito! I2P está ahora instalado. Haz clic en **Hecho** para finalizar.
 
-![Installation complete](/images/guides/macos-install/11-i2p.png)
+![Instalación completa](/images/guides/macos-install/11-i2p.png)
 
-## Part Three: Configure I2P App
+## Parte Tres: Configurar la Aplicación I2P
 
-Now let's make I2P easy to launch by adding it to your Applications folder and Dock.
+Ahora hagamos que I2P sea fácil de ejecutar agregándolo a tu carpeta de Aplicaciones y al Dock.
 
-### Step 1: Open Applications Folder
+### Paso 1: Abrir la carpeta Aplicaciones
 
-Open Finder and navigate to your **Applications** folder.
+Abre Finder y navega a tu carpeta **Aplicaciones**.
 
-![Open the Applications folder](/images/guides/macos-install/0-conf.png)
+![Abrir la carpeta Aplicaciones](/images/guides/macos-install/0-conf.png)
 
-### Step 2: Find I2P Launcher
+### Paso 2: Buscar el Lanzador de I2P
 
-Look for the **I2P** folder or the **Start I2P Router** application inside `/Applications/i2p/`.
+Busca la carpeta **I2P** o la aplicación **Start I2P Router** dentro de `/Applications/i2p/`.
 
-![Find the I2P launcher](/images/guides/macos-install/1-conf.png)
+![Encuentra el lanzador de I2P](/images/guides/macos-install/1-conf.png)
 
-### Step 3: Add to Dock
+### Paso 3: Agregar al Dock
 
-Drag the **Start I2P Router** application to your Dock for easy access. You can also create an alias on your desktop.
+Arrastra la aplicación **Start I2P Router** a tu Dock para un acceso fácil. También puedes crear un alias en tu escritorio.
 
-![Add I2P to your Dock](/images/guides/macos-install/2-conf.png)
+![Agregar I2P a tu Dock](/images/guides/macos-install/2-conf.png)
 
-**Tip**: Right-click the I2P icon in the Dock and select **Options → Keep in Dock** to make it permanent.
+**Consejo**: Haz clic derecho en el icono de I2P en el Dock y selecciona **Opciones → Mantener en el Dock** para hacerlo permanente.
 
-## Part Four: Configure I2P Bandwidth
+## Parte Cuatro: Configurar el Ancho de Banda de I2P
 
-When you first launch I2P, you'll run through a setup wizard to configure your bandwidth settings. This helps optimize I2P's performance for your connection.
+Cuando inicies I2P por primera vez, ejecutarás un asistente de configuración para ajustar la configuración de ancho de banda. Esto ayuda a optimizar el rendimiento de I2P para tu conexión.
 
-### Step 1: Launch I2P
+### Paso 1: Iniciar I2P
 
-Click the I2P icon in your Dock (or double-click the launcher). Your default web browser will open to the I2P Router Console.
+Haz clic en el icono de I2P en tu Dock (o haz doble clic en el lanzador). Tu navegador web predeterminado se abrirá en la Consola del Router I2P.
 
-![I2P Router Console welcome screen](/images/guides/macos-install/0-wiz.png)
+![Pantalla de bienvenida de la Consola del Router I2P](/images/guides/macos-install/0-wiz.png)
 
-### Step 2: Welcome Wizard
+### Paso 2: Asistente de Bienvenida
 
-The setup wizard will greet you. Click **Next** to begin configuring I2P.
+El asistente de configuración te dará la bienvenida. Haz clic en **Siguiente** para comenzar a configurar I2P.
 
-![Setup wizard introduction](/images/guides/macos-install/1-wiz.png)
+![Introducción del asistente de configuración](/images/guides/macos-install/1-wiz.png)
 
-### Step 3: Language and Theme
+### Paso 3: Idioma y Tema
 
-Select your preferred **interface language** and choose between **light** or **dark** theme. Click **Next**.
+Selecciona tu **idioma de interfaz** preferido y elige entre el tema **claro** o **oscuro**. Haz clic en **Siguiente**.
 
-![Select language and theme](/images/guides/macos-install/2-wiz.png)
+![Seleccionar idioma y tema](/images/guides/macos-install/2-wiz.png)
 
-### Step 4: Bandwidth Test Information
+### Paso 4: Información de Prueba de Ancho de Banda
 
-The wizard will explain the bandwidth test. This test connects to the **M-Lab** service to measure your internet speed. Click **Next** to proceed.
+El asistente explicará la prueba de ancho de banda. Esta prueba se conecta al servicio **M-Lab** para medir la velocidad de tu internet. Haz clic en **Siguiente** para continuar.
 
 ![Bandwidth test explanation](/images/guides/macos-install/3-wiz.png)
 
-### Step 5: Run Bandwidth Test
+### Paso 5: Ejecutar Prueba de Ancho de Banda
 
-Click **Run Test** to measure your upload and download speeds. The test takes about 30-60 seconds.
+Haz clic en **Ejecutar Prueba** para medir tus velocidades de subida y descarga. La prueba toma aproximadamente 30-60 segundos.
 
-![Running the bandwidth test](/images/guides/macos-install/4-wiz.png)
+![Ejecutando la prueba de ancho de banda](/images/guides/macos-install/4-wiz.png)
 
-### Step 6: Test Results
+### Paso 6: Resultados de las Pruebas
 
-Review your test results. I2P will recommend bandwidth settings based on your connection speed.
+Revisa los resultados de tu prueba. I2P recomendará configuraciones de ancho de banda basadas en la velocidad de tu conexión.
 
-![Bandwidth test results](/images/guides/macos-install/5-wiz.png)
+![Resultados de la prueba de ancho de banda](/images/guides/macos-install/5-wiz.png)
 
-### Step 7: Configure Bandwidth Sharing
+### Paso 7: Configurar Compartición de Ancho de Banda
 
-Choose how much bandwidth you want to share with the I2P network:
+Elige cuánto ancho de banda quieres compartir con la red I2P:
 
-- **Automatic** (Recommended): I2P manages bandwidth based on your usage
-- **Limited**: Set specific upload/download limits
-- **Unlimited**: Share as much as possible (for fast connections)
+- **Automático** (Recomendado): I2P gestiona el ancho de banda basado en tu uso
+- **Limitado**: Establece límites específicos de subida/descarga
+- **Ilimitado**: Comparte tanto como sea posible (para conexiones rápidas)
 
-Click **Next** to save your settings.
+Haz clic en **Siguiente** para guardar tu configuración.
 
-![Configure bandwidth sharing](/images/guides/macos-install/6-wiz.png)
+![Configurar compartición de ancho de banda](/images/guides/macos-install/6-wiz.png)
 
-### Step 8: Configuration Complete
+### Paso 8: Configuración Completa
 
-Your I2P router is now configured and running! The router console will show your connection status and allow you to browse I2P sites.
+¡Tu router I2P ahora está configurado y funcionando! La consola del router mostrará el estado de tu conexión y te permitirá navegar por sitios I2P.
 
-## Getting Started with I2P
+## Comenzando con I2P
 
-Now that I2P is installed and configured, you can:
+Ahora que I2P está instalado y configurado, puedes:
 
-1. **Browse I2P sites**: Visit the [I2P homepage](http://127.0.0.1:7657/home) to see links to popular I2P services
-2. **Configure your browser**: Set up a [browser profile](/docs/guides/browser-config) to access `.i2p` sites
-3. **Explore services**: Check out I2P email, forums, file sharing, and more
-4. **Monitor your router**: The [console](http://127.0.0.1:7657/console) shows your network status and statistics
+1. **Navegar sitios I2P**: Visita la [página principal de I2P](http://127.0.0.1:7657/home) para ver enlaces a servicios populares de I2P
+2. **Configurar tu navegador**: Configura un [perfil de navegador](/docs/guides/browser-config) para acceder a sitios `.i2p`
+3. **Explorar servicios**: Descubre el correo electrónico de I2P, foros, compartir archivos y más
+4. **Monitorear tu router**: La [consola](http://127.0.0.1:7657/console) muestra el estado de tu red y estadísticas
 
-### Useful Links
+### Enlaces Útiles
 
-- **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Configuration**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Address Book**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Bandwidth Settings**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Consola del Router**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
+- **Configuración**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Libreta de Direcciones**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
+- **Configuración de Ancho de Banda**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
-## Re-running the Setup Wizard
+## Volver a ejecutar el Asistente de configuración
 
-If you want to change your bandwidth settings or re-configure I2P later, you can re-run the welcome wizard from the Router Console:
+Si quieres cambiar la configuración de ancho de banda o reconfigurar I2P más tarde, puedes ejecutar nuevamente el asistente de bienvenida desde la Consola del Router:
 
-1. Go to [I2P Setup Wizard](http://127.0.0.1:7657/welcome)
-2. Follow the wizard steps again
+1. Ve al [Asistente de Configuración de I2P](http://127.0.0.1:7657/welcome)
+2. Sigue los pasos del asistente nuevamente
 
-## Troubleshooting
+## Solución de problemas
 
-### I2P Won't Start
+### I2P No Inicia
 
-- **Check Java**: Make sure Java is installed by running `java -version` in Terminal
-- **Check permissions**: Ensure the I2P folder has the correct permissions
-- **Check logs**: Look at `~/.i2p/wrapper.log` for error messages
+- **Verificar Java**: Asegúrate de que Java esté instalado ejecutando `java -version` en Terminal
+- **Verificar permisos**: Asegúrate de que la carpeta de I2P tenga los permisos correctos
+- **Verificar logs**: Revisa `~/.i2p/wrapper.log` para mensajes de error
 
-### Browser Can't Access I2P Sites
+### El navegador no puede acceder a sitios I2P
 
-- Make sure I2P is running (check the Router Console)
-- Configure your browser's proxy settings to use HTTP proxy `127.0.0.1:4444`
-- Wait 5-10 minutes after starting for I2P to integrate into the network
+- Asegúrate de que I2P esté funcionando (verifica la Consola del Router)
+- Configura los ajustes de proxy de tu navegador para usar el proxy HTTP `127.0.0.1:4444`
+- Espera 5-10 minutos después del inicio para que I2P se integre en la red
 
-### Slow Performance
+### Rendimiento Lento
 
-- Run the bandwidth test again and adjust your settings
-- Make sure you're sharing some bandwidth with the network
-- Check your connection status in the Router Console
+- Ejecuta la prueba de ancho de banda nuevamente y ajusta tu configuración
+- Asegúrate de estar compartiendo algo de ancho de banda con la red
+- Verifica el estado de tu conexión en la Consola del Router
 
-## Uninstalling I2P
+## Desinstalando I2P
 
-To remove I2P from your Mac:
+Para eliminar I2P de tu Mac:
 
-1. Quit the I2P router if it's running
-2. Delete the `/Applications/i2p` folder
-3. Delete the `~/.i2p` folder (your I2P configuration and data)
-4. Remove the I2P icon from your Dock
+1. Cierra el router I2P si está ejecutándose
+2. Elimina la carpeta `/Applications/i2p`
+3. Elimina la carpeta `~/.i2p` (tu configuración y datos de I2P)
+4. Quita el icono de I2P de tu Dock
 
-## Next Steps
+## Próximos Pasos
 
-- **Join the community**: Visit [i2pforum.net](http://i2pforum.net) or check out I2P on Reddit
-- **Learn more**: Read the [I2P documentation](/en/docs) to understand how the network works
-- **Get involved**: Consider [contributing to I2P](/en/get-involved) development or running infrastructure
+- **Únete a la comunidad**: Visita [i2pforum.net](http://i2pforum.net) o echa un vistazo a I2P en Reddit
+- **Aprende más**: Lee la [documentación de I2P](/en/docs) para entender cómo funciona la red
+- **Involúcrate**: Considera [contribuir al desarrollo de I2P](/en/get-involved) o ejecutar infraestructura
 
-Congratulations! You're now part of the I2P network. Welcome to the invisible internet!
+¡Felicidades! Ahora eres parte de la red I2P. ¡Bienvenido al internet invisible!
 
 ---

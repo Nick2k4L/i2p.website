@@ -1,280 +1,280 @@
 ---
 title: "Установка I2P на macOS"
-description: "Step-by-step guide to manually installing I2P and its dependencies on macOS"
+description: "Пошаговое руководство по ручной установке I2P и его зависимостей на macOS"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---
 
-## What You'll Need
+## Что вам понадобится
 
-- A Mac running macOS 10.14 (Mojave) or later
-- Administrator access to install applications
-- About 15-20 minutes of time
-- Internet connection for downloading installers
+- Mac с macOS 10.14 (Mojave) или более поздней версией
+- Права администратора для установки приложений
+- Около 15-20 минут времени
+- Подключение к интернету для загрузки установщиков
 
-## Overview
+## Обзор
 
-This installation process has four main steps:
+Этот процесс установки состоит из четырех основных шагов:
 
-1. **Install Java** - Download and install Oracle Java Runtime Environment
-2. **Install I2P** - Download and run the I2P installer
-3. **Configure I2P App** - Set up the launcher and add to your dock
-4. **Configure I2P Bandwidth** - Run the setup wizard to optimize your connection
+1. **Установите Java** - Скачайте и установите Oracle Java Runtime Environment
+2. **Установите I2P** - Скачайте и запустите установщик I2P
+3. **Настройте приложение I2P** - Настройте лаунчер и добавьте его в док
+4. **Настройте пропускную способность I2P** - Запустите мастер настройки для оптимизации вашего соединения
 
-## Part One: Install Java
+## Часть первая: Установка Java
 
-I2P requires Java to run. If you already have Java 8 or later installed, you can [skip to Part Two](#part-two-download-and-install-i2p).
+I2P требует Java для работы. Если у вас уже установлена Java 8 или более поздняя версия, вы можете [перейти к Части Два](#part-two-download-and-install-i2p).
 
-### Step 1: Download Java
+### Шаг 1: Скачайте Java
 
-Visit the [Oracle Java download page](https://www.oracle.com/java/technologies/downloads/) and download the macOS installer for Java 8 or later.
+Посетите [страницу загрузки Oracle Java](https://www.oracle.com/java/technologies/downloads/) и скачайте установщик для macOS для Java 8 или более поздней версии.
 
 ![Download Oracle Java for macOS](/images/guides/macos-install/0-jre.png)
 
-### Step 2: Run the Installer
+### Шаг 2: Запустите установщик
 
-Locate the downloaded `.dmg` file in your Downloads folder and double-click to open it.
+Найдите загруженный файл `.dmg` в папке «Загрузки» и дважды щелкните по нему, чтобы открыть.
 
-![Open the Java installer](/images/guides/macos-install/1-jre.png)
+![Открыть установщик Java](/images/guides/macos-install/1-jre.png)
 
-### Step 3: Allow Installation
+### Шаг 3: Разрешить установку
 
-macOS may display a security prompt because the installer is from an identified developer. Click **Open** to proceed.
+macOS может отобразить предупреждение безопасности, поскольку установщик от идентифицированного разработчика. Нажмите **Открыть** для продолжения.
 
-![Give the installer permission to proceed](/images/guides/macos-install/2-jre.png)
+![Дайте установщику разрешение продолжить](/images/guides/macos-install/2-jre.png)
 
-### Step 4: Install Java
+### Шаг 4: Установка Java
 
-Click **Install** to begin the Java installation process.
+Нажмите **Установить**, чтобы начать процесс установки Java.
 
-![Start installing Java](/images/guides/macos-install/3-jre.png)
+![Начать установку Java](/images/guides/macos-install/3-jre.png)
 
-### Step 5: Wait for Installation
+### Шаг 5: Ожидание установки
 
-The installer will copy files and configure Java on your system. This usually takes 1-2 minutes.
+Установщик скопирует файлы и настроит Java в вашей системе. Обычно это занимает 1-2 минуты.
 
-![Wait for the installer to complete](/images/guides/macos-install/4-jre.png)
+![Дождитесь завершения установки](/images/guides/macos-install/4-jre.png)
 
-### Step 6: Installation Complete
+### Шаг 6: Установка завершена
 
-When you see the success message, Java is installed! Click **Close** to finish.
+Когда вы увидите сообщение об успехе, Java установлена! Нажмите **Закрыть** для завершения.
 
 ![Java installation complete](/images/guides/macos-install/5-jre.png)
 
-## Part Two: Download and Install I2P
+## Часть вторая: Загрузка и установка I2P
 
-Now that Java is installed, you can install the I2P router.
+Теперь, когда Java установлена, вы можете установить I2P router.
 
-### Step 1: Download I2P
+### Шаг 1: Скачайте I2P
 
-Visit the [Downloads page](/downloads/) and download the **I2P for Unix/Linux/BSD/Solaris** installer (the `.jar` file).
+Посетите [страницу загрузок](/downloads/) и загрузите установщик **I2P для Unix/Linux/BSD/Solaris** (файл `.jar`).
 
-![Download I2P installer](/images/guides/macos-install/0-i2p.png)
+![Загрузить установщик I2P](/images/guides/macos-install/0-i2p.png)
 
-### Step 2: Run the Installer
+### Шаг 2: Запустите установщик
 
-Double-click the downloaded `i2pinstall_X.X.X.jar` file. The installer will launch and ask you to select your preferred language.
+Дважды щёлкните на скачанный файл `i2pinstall_X.X.X.jar`. Запустится установщик и попросит вас выбрать предпочитаемый язык.
 
-![Select your language](/images/guides/macos-install/1-i2p.png)
+![Выберите ваш язык](/images/guides/macos-install/1-i2p.png)
 
-### Step 3: Welcome Screen
+### Шаг 3: Экран приветствия
 
-Read the welcome message and click **Next** to continue.
+Прочитайте приветственное сообщение и нажмите **Далее** для продолжения.
 
 ![Installer introduction](/images/guides/macos-install/2-i2p.png)
 
-### Step 4: Important Notice
+### Шаг 4: Важное уведомление
 
-The installer will display an important notice about updates. I2P updates are **end-to-end signed** and verified, even though this installer itself is unsigned. Click **Next**.
+Установщик покажет важное уведомление об обновлениях. Обновления I2P имеют **сквозную цифровую подпись** и проверяются, даже несмотря на то, что сам этот установщик не подписан. Нажмите **Далее**.
 
-![Important notice about updates](/images/guides/macos-install/3-i2p.png)
+![Важное уведомление об обновлениях](/images/guides/macos-install/3-i2p.png)
 
-### Step 5: License Agreement
+### Шаг 5: Лицензионное соглашение
 
-Read the I2P license agreement (BSD-style license). Click **Next** to accept.
+Прочитайте лицензионное соглашение I2P (лицензия в стиле BSD). Нажмите **Далее**, чтобы принять.
 
-![License agreement](/images/guides/macos-install/4-i2p.png)
+![Лицензионное соглашение](/images/guides/macos-install/4-i2p.png)
 
-### Step 6: Select Installation Directory
+### Шаг 6: Выберите папку для установки
 
-Choose where to install I2P. The default location (`/Applications/i2p`) is recommended. Click **Next**.
+Выберите место для установки I2P. Рекомендуется использовать расположение по умолчанию (`/Applications/i2p`). Нажмите **Далее**.
 
-![Select installation directory](/images/guides/macos-install/5-i2p.png)
+![Выберите директорию установки](/images/guides/macos-install/5-i2p.png)
 
-### Step 7: Select Components
+### Шаг 7: Выберите компоненты
 
-Leave all components selected for a complete installation. Click **Next**.
+Оставьте все компоненты выбранными для полной установки. Нажмите **Далее**.
 
-![Select components to install](/images/guides/macos-install/6-i2p.png)
+![Выберите компоненты для установки](/images/guides/macos-install/6-i2p.png)
 
-### Step 8: Start Installation
+### Шаг 8: Начать установку
 
-Review your choices and click **Next** to begin installing I2P.
+Просмотрите ваши настройки и нажмите **Далее**, чтобы начать установку I2P.
 
-![Start the installation](/images/guides/macos-install/7-i2p.png)
+![Начать установку](/images/guides/macos-install/7-i2p.png)
 
-### Step 9: Installing Files
+### Шаг 9: Установка файлов
 
-The installer will copy I2P files to your system. This takes about 1-2 minutes.
+Установщик скопирует файлы I2P в вашу систему. Это займёт около 1-2 минут.
 
-![Installation in progress](/images/guides/macos-install/8-i2p.png)
+![Установка в процессе](/images/guides/macos-install/8-i2p.png)
 
-### Step 10: Generate Launch Scripts
+### Шаг 10: Генерация скриптов запуска
 
-The installer creates launch scripts for starting I2P.
+Установщик создает скрипты запуска для старта I2P.
 
-![Generating launch scripts](/images/guides/macos-install/9-i2p.png)
+![Генерация скриптов запуска](/images/guides/macos-install/9-i2p.png)
 
-### Step 11: Installation Shortcuts
+### Шаг 11: Ярлыки установки
 
-The installer offers to create desktop shortcuts and menu entries. Make your selections and click **Next**.
+Установщик предлагает создать ярлыки на рабочем столе и пункты меню. Сделайте свой выбор и нажмите **Далее**.
 
-![Create shortcuts](/images/guides/macos-install/10-i2p.png)
+![Создать ярлыки](/images/guides/macos-install/10-i2p.png)
 
-### Step 12: Installation Complete
+### Шаг 12: Установка завершена
 
-Success! I2P is now installed. Click **Done** to finish.
+Успешно! I2P теперь установлен. Нажмите **Готово** для завершения.
 
-![Installation complete](/images/guides/macos-install/11-i2p.png)
+![Установка завершена](/images/guides/macos-install/11-i2p.png)
 
-## Part Three: Configure I2P App
+## Часть третья: Настройка приложения I2P
 
-Now let's make I2P easy to launch by adding it to your Applications folder and Dock.
+Теперь давайте сделаем запуск I2P удобным, добавив его в папку «Программы» и в Dock.
 
-### Step 1: Open Applications Folder
+### Шаг 1: Откройте папку Приложения
 
-Open Finder and navigate to your **Applications** folder.
+Откройте Finder и перейдите в папку **Программы**.
 
-![Open the Applications folder](/images/guides/macos-install/0-conf.png)
+![Откройте папку Приложения](/images/guides/macos-install/0-conf.png)
 
-### Step 2: Find I2P Launcher
+### Шаг 2: Найти I2P Launcher
 
-Look for the **I2P** folder or the **Start I2P Router** application inside `/Applications/i2p/`.
+Найдите папку **I2P** или приложение **Start I2P Router** внутри `/Applications/i2p/`.
 
-![Find the I2P launcher](/images/guides/macos-install/1-conf.png)
+![Найдите лаунчер I2P](/images/guides/macos-install/1-conf.png)
 
-### Step 3: Add to Dock
+### Шаг 3: Добавить в Dock
 
-Drag the **Start I2P Router** application to your Dock for easy access. You can also create an alias on your desktop.
+Перетащите приложение **Start I2P Router** в свой Dock для удобного доступа. Вы также можете создать псевдоним на рабочем столе.
 
-![Add I2P to your Dock](/images/guides/macos-install/2-conf.png)
+![Добавить I2P в Dock](/images/guides/macos-install/2-conf.png)
 
-**Tip**: Right-click the I2P icon in the Dock and select **Options → Keep in Dock** to make it permanent.
+**Совет**: Щелкните правой кнопкой мыши по значку I2P в Dock и выберите **Параметры → Оставить в Dock**, чтобы закрепить его там постоянно.
 
-## Part Four: Configure I2P Bandwidth
+## Часть четвертая: Настройка пропускной способности I2P
 
-When you first launch I2P, you'll run through a setup wizard to configure your bandwidth settings. This helps optimize I2P's performance for your connection.
+При первом запуске I2P вы пройдете через мастер настройки для конфигурации параметров пропускной способности. Это помогает оптимизировать производительность I2P для вашего подключения.
 
-### Step 1: Launch I2P
+### Шаг 1: Запуск I2P
 
-Click the I2P icon in your Dock (or double-click the launcher). Your default web browser will open to the I2P Router Console.
+Нажмите на иконку I2P в вашем Dock (или дважды щелкните по лаунчеру). Ваш браузер по умолчанию откроется на странице консоли I2P Router.
 
-![I2P Router Console welcome screen](/images/guides/macos-install/0-wiz.png)
+![Экран приветствия консоли I2P Router](/images/guides/macos-install/0-wiz.png)
 
-### Step 2: Welcome Wizard
+### Шаг 2: Мастер приветствия
 
-The setup wizard will greet you. Click **Next** to begin configuring I2P.
+Вас приветствует мастер настройки. Нажмите **Далее**, чтобы начать настройку I2P.
 
 ![Setup wizard introduction](/images/guides/macos-install/1-wiz.png)
 
-### Step 3: Language and Theme
+### Шаг 3: Язык и тема
 
-Select your preferred **interface language** and choose between **light** or **dark** theme. Click **Next**.
+Выберите предпочтительный **язык интерфейса** и выберите между **светлой** или **тёмной** темой. Нажмите **Далее**.
 
-![Select language and theme](/images/guides/macos-install/2-wiz.png)
+![Выбор языка и темы](/images/guides/macos-install/2-wiz.png)
 
-### Step 4: Bandwidth Test Information
+### Шаг 4: Информация о тестировании пропускной способности
 
-The wizard will explain the bandwidth test. This test connects to the **M-Lab** service to measure your internet speed. Click **Next** to proceed.
+Мастер объяснит тест пропускной способности. Этот тест подключается к сервису **M-Lab** для измерения скорости вашего интернет-соединения. Нажмите **Далее** для продолжения.
 
 ![Bandwidth test explanation](/images/guides/macos-install/3-wiz.png)
 
-### Step 5: Run Bandwidth Test
+### Шаг 5: Запуск теста пропускной способности
 
-Click **Run Test** to measure your upload and download speeds. The test takes about 30-60 seconds.
+Нажмите **Запустить тест**, чтобы измерить скорость загрузки и выгрузки. Тест займет около 30-60 секунд.
 
-![Running the bandwidth test](/images/guides/macos-install/4-wiz.png)
+![Запуск теста пропускной способности](/images/guides/macos-install/4-wiz.png)
 
-### Step 6: Test Results
+### Шаг 6: Результаты тестирования
 
-Review your test results. I2P will recommend bandwidth settings based on your connection speed.
+Просмотрите результаты тестирования. I2P порекомендует настройки пропускной способности на основе скорости вашего соединения.
 
-![Bandwidth test results](/images/guides/macos-install/5-wiz.png)
+![Результаты теста пропускной способности](/images/guides/macos-install/5-wiz.png)
 
-### Step 7: Configure Bandwidth Sharing
+### Шаг 7: Настройка совместного использования пропускной способности
 
-Choose how much bandwidth you want to share with the I2P network:
+Выберите, сколько пропускной способности вы хотите выделить для сети I2P:
 
-- **Automatic** (Recommended): I2P manages bandwidth based on your usage
-- **Limited**: Set specific upload/download limits
-- **Unlimited**: Share as much as possible (for fast connections)
+- **Автоматический** (Рекомендуется): I2P управляет пропускной способностью на основе вашего использования
+- **Ограниченный**: Установить определенные лимиты загрузки/выгрузки
+- **Неограниченный**: Делиться максимально возможным объемом (для быстрых соединений)
 
-Click **Next** to save your settings.
+Нажмите **Далее**, чтобы сохранить настройки.
 
-![Configure bandwidth sharing](/images/guides/macos-install/6-wiz.png)
+![Настройка совместного использования пропускной способности](/images/guides/macos-install/6-wiz.png)
 
-### Step 8: Configuration Complete
+### Шаг 8: Конфигурация завершена
 
-Your I2P router is now configured and running! The router console will show your connection status and allow you to browse I2P sites.
+Ваш I2P router теперь настроен и работает! Консоль router покажет статус вашего соединения и позволит просматривать I2P сайты.
 
-## Getting Started with I2P
+## Начало работы с I2P
 
-Now that I2P is installed and configured, you can:
+Теперь, когда I2P установлен и настроен, вы можете:
 
-1. **Browse I2P sites**: Visit the [I2P homepage](http://127.0.0.1:7657/home) to see links to popular I2P services
-2. **Configure your browser**: Set up a [browser profile](/docs/guides/browser-config) to access `.i2p` sites
-3. **Explore services**: Check out I2P email, forums, file sharing, and more
-4. **Monitor your router**: The [console](http://127.0.0.1:7657/console) shows your network status and statistics
+1. **Просматривайте I2P сайты**: Посетите [главную страницу I2P](http://127.0.0.1:7657/home), чтобы увидеть ссылки на популярные I2P сервисы
+2. **Настройте ваш браузер**: Установите [профиль браузера](/docs/guides/browser-config) для доступа к сайтам `.i2p`
+3. **Изучайте сервисы**: Ознакомьтесь с I2P электронной почтой, форумами, обменом файлами и многим другим
+4. **Отслеживайте ваш router**: [Консоль](http://127.0.0.1:7657/console) показывает статус вашей сети и статистику
 
-### Useful Links
+### Полезные ссылки
 
-- **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Configuration**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Address Book**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Bandwidth Settings**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Консоль Router**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
+- **Конфигурация**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Адресная книга**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
+- **Настройки пропускной способности**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
-## Re-running the Setup Wizard
+## Повторный запуск мастера настройки
 
-If you want to change your bandwidth settings or re-configure I2P later, you can re-run the welcome wizard from the Router Console:
+Если вы хотите изменить настройки пропускной способности или перенастроить I2P позже, вы можете повторно запустить мастер приветствия из консоли router:
 
-1. Go to [I2P Setup Wizard](http://127.0.0.1:7657/welcome)
-2. Follow the wizard steps again
+1. Перейдите в [Мастер настройки I2P](http://127.0.0.1:7657/welcome)
+2. Снова выполните шаги мастера
 
-## Troubleshooting
+## Устранение неполадок
 
-### I2P Won't Start
+### I2P не запускается
 
-- **Check Java**: Make sure Java is installed by running `java -version` in Terminal
-- **Check permissions**: Ensure the I2P folder has the correct permissions
-- **Check logs**: Look at `~/.i2p/wrapper.log` for error messages
+- **Проверьте Java**: Убедитесь, что Java установлена, выполнив `java -version` в Terminal
+- **Проверьте разрешения**: Убедитесь, что папка I2P имеет правильные разрешения
+- **Проверьте логи**: Просмотрите `~/.i2p/wrapper.log` для сообщений об ошибках
 
-### Browser Can't Access I2P Sites
+### Браузер не может получить доступ к I2P сайтам
 
-- Make sure I2P is running (check the Router Console)
-- Configure your browser's proxy settings to use HTTP proxy `127.0.0.1:4444`
-- Wait 5-10 minutes after starting for I2P to integrate into the network
+- Убедитесь, что I2P запущен (проверьте Router Console)
+- Настройте прокси-сервер в браузере на использование HTTP-прокси `127.0.0.1:4444`
+- Подождите 5-10 минут после запуска, чтобы I2P интегрировался в сеть
 
-### Slow Performance
+### Медленная производительность
 
-- Run the bandwidth test again and adjust your settings
-- Make sure you're sharing some bandwidth with the network
-- Check your connection status in the Router Console
+- Запустите тест пропускной способности снова и скорректируйте настройки
+- Убедитесь, что вы предоставляете часть пропускной способности сети
+- Проверьте статус подключения в консоли router
 
-## Uninstalling I2P
+## Удаление I2P
 
-To remove I2P from your Mac:
+Чтобы удалить I2P с вашего Mac:
 
-1. Quit the I2P router if it's running
-2. Delete the `/Applications/i2p` folder
-3. Delete the `~/.i2p` folder (your I2P configuration and data)
-4. Remove the I2P icon from your Dock
+1. Остановите I2P router, если он запущен
+2. Удалите папку `/Applications/i2p`
+3. Удалите папку `~/.i2p` (ваша конфигурация и данные I2P)
+4. Удалите иконку I2P из Dock
 
-## Next Steps
+## Следующие шаги
 
-- **Join the community**: Visit [i2pforum.net](http://i2pforum.net) or check out I2P on Reddit
-- **Learn more**: Read the [I2P documentation](/en/docs) to understand how the network works
-- **Get involved**: Consider [contributing to I2P](/en/get-involved) development or running infrastructure
+- **Присоединяйтесь к сообществу**: Посетите [i2pforum.net](http://i2pforum.net) или ознакомьтесь с I2P на Reddit
+- **Узнайте больше**: Прочитайте [документацию I2P](/en/docs), чтобы понять, как работает сеть
+- **Примите участие**: Рассмотрите возможность [участия в разработке I2P](/en/get-involved) или управления инфраструктурой
 
-Congratulations! You're now part of the I2P network. Welcome to the invisible internet!
+Поздравляем! Теперь вы являетесь частью сети I2P. Добро пожаловать в невидимый интернет!
 
 ---
