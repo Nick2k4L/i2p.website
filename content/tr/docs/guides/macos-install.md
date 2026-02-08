@@ -1,13 +1,13 @@
 ---
-title: "macOS'ta I2P Kurulumu (Uzun Yol)"
-description: "macOS üzerinde I2P ve bağımlılıklarını manuel olarak kurma adım adım kılavuzu"
+title: "macOS'ta I2P Kurulumu"
+description: "macOS'ta I2P ve bağımlılıklarını manuel olarak yükleme rehberi"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---
 
-## Neye İhtiyacınız Olacak
+## İhtiyacınız Olanlar
 
-- macOS 10.14 (Mojave) veya sonraki sürümleri çalıştıran bir Mac
+- macOS 10.14 (Mojave) veya daha yeni sürüm çalıştıran bir Mac
 - Uygulama yüklemek için yönetici erişimi
 - Yaklaşık 15-20 dakika süre
 - Yükleyicileri indirmek için internet bağlantısı
@@ -16,192 +16,192 @@ accurateFor: "2.10.0"
 
 Bu kurulum süreci dört ana adımdan oluşur:
 
-1. **Java Yükleyin** - Oracle Java Runtime Environment'ı indirin ve kurun
-2. **I2P Yükleyin** - I2P yükleyicisini indirin ve çalıştırın
+1. **Java'yı Kurun** - Oracle Java Runtime Environment'ı indirin ve kurun
+2. **I2P'yi Kurun** - I2P kurulum dosyasını indirin ve çalıştırın
 3. **I2P Uygulamasını Yapılandırın** - Başlatıcıyı ayarlayın ve dock'unuza ekleyin
 4. **I2P Bant Genişliğini Yapılandırın** - Bağlantınızı optimize etmek için kurulum sihirbazını çalıştırın
 
 ## Birinci Bölüm: Java Kurulumu
 
-I2P'nin çalışması için Java gereklidir. Eğer Java 8 veya daha yeni bir sürümü zaten yüklüyseniz, [İkinci Bölüme atlayabilirsiniz](#part-two-download-and-install-i2p).
+I2P çalışmak için Java gerektirir. Eğer Java 8 veya daha yeni bir sürümü zaten yüklüyse, [İkinci Bölüme atlayabilirsiniz](#part-two-download-and-install-i2p).
 
-### Step 1: Download Java
+### Adım 1: Java İndirin
 
-[Oracle Java indirme sayfasını](https://www.oracle.com/java/technologies/downloads/) ziyaret edin ve Java 8 veya sonrası için macOS yükleyicisini indirin.
+[Oracle Java indirme sayfasını](https://www.oracle.com/java/technologies/downloads/) ziyaret edin ve Java 8 veya daha yeni sürüm için macOS yükleyicisini indirin.
 
-![macOS için Oracle Java'yı İndirin](/images/guides/macos-install/0-jre.png)
+![macOS için Oracle Java İndir](/images/guides/macos-install/0-jre.png)
 
-### Step 2: Run the Installer
+### Adım 2: Yükleyiciyi Çalıştırın
 
 İndirilen `.dmg` dosyasını İndirilenler klasörünüzde bulun ve açmak için çift tıklayın.
 
-![Java yükleyiciyi açın](/images/guides/macos-install/1-jre.png)
+![Java yükleyicisini açın](/images/guides/macos-install/1-jre.png)
 
-### Step 3: Allow Installation
+### Adım 3: Kuruluma İzin Ver
 
-macOS, yükleyici tanımlanmış bir geliştiriciden olduğu için bir güvenlik uyarısı gösterebilir. Devam etmek için **Aç** düğmesine tıklayın.
+macOS, yükleyici tanımlı bir geliştirici tarafından sağlandığı için bir güvenlik uyarısı gösterebilir. Devam etmek için **Aç**'a tıklayın.
 
-![Yükleyiciye devam etmesi için izin verin](/images/guides/macos-install/2-jre.png)
+![Kurulum programına devam etme izni verin](/images/guides/macos-install/2-jre.png)
 
-### Adım 1: Java'yı İndirin
+### Adım 4: Java Kurulumu
 
-Java kurulum işlemini başlatmak için **Yükle** düğmesine tıklayın.
+Java kurulum sürecini başlatmak için **Kur**'a tıklayın.
 
-![Java'yı yüklemeye başla](/images/guides/macos-install/3-jre.png)
-
-### Adım 2: Yükleyiciyi Çalıştırın
-
-Yükleyici dosyaları kopyalayacak ve sisteminizde Java'yı yapılandıracaktır. Bu genellikle 1-2 dakika sürer.
-
-![Yükleyicinin tamamlanmasını bekleyin](/images/guides/macos-install/4-jre.png)
-
-### Adım 3: Kuruluma İzin Verin
-
-Başarı mesajını gördüğünüzde, Java kurulmuş demektir! Bitirmek için **Kapat**'a tıklayın.
-
-![Java kurulumu tamamlandı](/images/guides/macos-install/5-jre.png)
-
-## Part Two: Download and Install I2P
-
-Java kurulduktan sonra, I2P router'ını kurabilirsiniz.
-
-### Adım 4: Java'yı Kurun
-
-[İndirmeler sayfasını](/downloads/) ziyaret edin ve **Unix/Linux/BSD/Solaris için I2P** yükleyicisini (`.jar` dosyası) indirin.
-
-![I2P yükleyicisini indir](/images/guides/macos-install/0-i2p.png)
+![Java kurulumunu başlat](/images/guides/macos-install/3-jre.png)
 
 ### Adım 5: Kurulumun Tamamlanmasını Bekleyin
 
-İndirilen `i2pinstall_X.X.X.jar` dosyasına çift tıklayın. Yükleyici başlatılacak ve tercih ettiğiniz dili seçmenizi isteyecektir.
+Yükleyici dosyaları kopyalayacak ve sisteminizde Java'yı yapılandıracak. Bu işlem genellikle 1-2 dakika sürer.
 
-![Dilinizi seçin](/images/guides/macos-install/1-i2p.png)
+![Yükleyicinin tamamlanmasını bekleyin](/images/guides/macos-install/4-jre.png)
 
 ### Adım 6: Kurulum Tamamlandı
 
-Hoş geldiniz mesajını okuyun ve devam etmek için **İleri**'ye tıklayın.
+Başarı mesajını gördüğünüzde, Java yüklenmiştir! Bitirmek için **Kapat**'a tıklayın.
 
-![Yükleyici tanıtımı](/images/guides/macos-install/2-i2p.png)
+![Java kurulumu tamamlandı](/images/guides/macos-install/5-jre.png)
 
-### Step 4: Important Notice
+## İkinci Bölüm: I2P'yi İndirin ve Kurun
 
-Yükleyici, güncellemeler hakkında önemli bir bildirim gösterecektir. I2P güncellemeleri, bu yükleyicinin kendisi imzasız olsa bile **uçtan uca imzalanır** ve doğrulanır. **İleri**'ye tıklayın.
-
-![Güncellemeler hakkında önemli uyarı](/images/guides/macos-install/3-i2p.png)
+Artık Java kurulu olduğuna göre, I2P router'ını kurabilirsiniz.
 
 ### Adım 1: I2P'yi İndirin
 
-I2P lisans sözleşmesini okuyun (BSD tarzı lisans). Kabul etmek için **İleri**'ye tıklayın.
+[İndirmeler sayfasını](/downloads/) ziyaret edin ve **Unix/Linux/BSD/Solaris için I2P** kurulum dosyasını (`.jar` dosyası) indirin.
+
+![I2P kurulum programını indirin](/images/guides/macos-install/0-i2p.png)
+
+### Adım 2: Kurulum Programını Çalıştırın
+
+İndirilen `i2pinstall_X.X.X.jar` dosyasına çift tıklayın. Yükleyici başlatılacak ve tercih ettiğiniz dili seçmenizi isteyecektir.
+
+![Select your language](/images/guides/macos-install/1-i2p.png)
+
+### Adım 3: Karşılama Ekranı
+
+Hoş geldin mesajını okuyun ve devam etmek için **İleri**'ye tıklayın.
+
+![Installer introduction](/images/guides/macos-install/2-i2p.png)
+
+### Adım 4: Önemli Uyarı
+
+Yükleyici güncellemeler hakkında önemli bir uyarı gösterecektir. I2P güncellemeleri **uçtan uca imzalı** ve doğrulanmıştır, bu yükleyicinin kendisi imzasız olsa bile. **İleri**'ye tıklayın.
+
+![Important notice about updates](/images/guides/macos-install/3-i2p.png)
+
+### Adım 5: Lisans Sözleşmesi
+
+I2P lisans anlaşmasını okuyun (BSD tarzı lisans). Kabul etmek için **İleri**'ye tıklayın.
 
 ![Lisans sözleşmesi](/images/guides/macos-install/4-i2p.png)
 
-### Adım 2: Yükleyiciyi Çalıştırın
+### Adım 6: Kurulum Dizinini Seçin
 
 I2P'nin nereye kurulacağını seçin. Varsayılan konum (`/Applications/i2p`) önerilir. **İleri**'ye tıklayın.
 
 ![Kurulum dizinini seçin](/images/guides/macos-install/5-i2p.png)
 
-### Adım 3: Hoş Geldiniz Ekranı
+### Adım 7: Bileşenleri Seçin
 
-Eksiksiz bir kurulum için tüm bileşenlerin seçili bırakılması. **İleri**'ye tıklayın.
+Tam kurulum için tüm bileşenleri seçili bırakın. **İleri**'ye tıklayın.
 
-![Yüklenecek bileşenleri seçin](/images/guides/macos-install/6-i2p.png)
+![Kurulacak bileşenleri seçin](/images/guides/macos-install/6-i2p.png)
 
-### Adım 4: Önemli Uyarı
+### Adım 8: Kurulumu Başlat
 
-Seçimlerinizi gözden geçirin ve I2P'yi kurmaya başlamak için **İleri**'ye tıklayın.
+Seçimlerinizi gözden geçirin ve I2P kurulumunu başlatmak için **İleri**'ye tıklayın.
 
 ![Kurulumu başlat](/images/guides/macos-install/7-i2p.png)
 
-### Adım 5: Lisans Sözleşmesi
+### Adım 9: Dosyaları Yükleme
 
-Yükleyici I2P dosyalarını sisteminize kopyalayacaktır. Bu işlem yaklaşık 1-2 dakika sürer.
+Yükleyici I2P dosyalarını sisteminize kopyalayacak. Bu işlem yaklaşık 1-2 dakika sürer.
 
 ![Kurulum devam ediyor](/images/guides/macos-install/8-i2p.png)
 
-### Adım 6: Kurulum Dizinini Seçin
+### Adım 10: Başlatma Betiklerini Oluştur
 
 Yükleyici, I2P'yi başlatmak için başlatma betikleri oluşturur.
 
-![Başlatma betikleri oluşturuluyor](/images/guides/macos-install/9-i2p.png)
+![Başlatma komut dosyaları oluşturuluyor](/images/guides/macos-install/9-i2p.png)
 
-### Adım 7: Bileşenleri Seçin
+### Adım 11: Kurulum Kısayolları
 
 Yükleyici masaüstü kısayolları ve menü girişleri oluşturmayı önerir. Seçimlerinizi yapın ve **İleri**'ye tıklayın.
 
 ![Kısayollar oluştur](/images/guides/macos-install/10-i2p.png)
 
-### Adım 8: Kurulumu Başlat
+### Adım 12: Kurulum Tamamlandı
 
-Başarılı! I2P artık yüklendi. Bitirmek için **Bitti**'ye tıklayın.
+Başarılı! I2P şimdi yüklendi. Bitirmek için **Tamam**'a tıklayın.
 
 ![Kurulum tamamlandı](/images/guides/macos-install/11-i2p.png)
 
-## Part Three: Configure I2P App
+## Üçüncü Bölüm: I2P Uygulamasını Yapılandırma
 
-Şimdi I2P'yi Uygulamalar klasörünüze ve Dock'unuza ekleyerek başlatmayı kolaylaştıralım.
+Şimdi I2P'yi Uygulamalar klasörünüze ve Dock'unuza ekleyerek başlatmasını kolaylaştıralım.
 
-### Adım 9: Dosyaların Kurulumu
+### Adım 1: Uygulamalar Klasörünü Açın
 
 Finder'ı açın ve **Uygulamalar** klasörünüze gidin.
 
-![Applications klasörünü açın](/images/guides/macos-install/0-conf.png)
+![Uygulamalar klasörünü açın](/images/guides/macos-install/0-conf.png)
 
-### Adım 10: Başlatma Betiklerini Oluştur
+### Adım 2: I2P Başlatıcısını Bulun
 
 `/Applications/i2p/` klasörü içinde **I2P** klasörünü veya **Start I2P Router** uygulamasını arayın.
 
 ![I2P başlatıcısını bulun](/images/guides/macos-install/1-conf.png)
 
-### Adım 11: Kurulum Kısayolları
+### Adım 3: Dock'a Ekle
 
-**Start I2P Router** uygulamasını kolay erişim için Dock'unuza sürükleyin. Masaüstünüzde bir takma ad da oluşturabilirsiniz.
+Kolay erişim için **Start I2P Router** uygulamasını Dock'unuza sürükleyin. Ayrıca masaüstünüzde bir takma ad oluşturabilirsiniz.
 
 ![I2P'yi Dock'unuza Ekleyin](/images/guides/macos-install/2-conf.png)
 
-**İpucu**: Dock'taki I2P simgesine sağ tıklayın ve kalıcı hale getirmek için **Seçenekler → Dock'ta Tut** seçeneğini seçin.
+**İpucu**: Dock'taki I2P simgesine sağ tıklayın ve kalıcı hale getirmek için **Seçenekler → Dock'ta Tut**'u seçin.
 
-## Part Four: Configure I2P Bandwidth
+## Dördüncü Bölüm: I2P Bant Genişliğini Yapılandırma
 
-I2P'yi ilk kez başlattığınızda, bant genişliği ayarlarınızı yapılandırmak için bir kurulum sihirbazından geçeceksiniz. Bu, I2P'nin performansını bağlantınıza göre optimize etmeye yardımcı olur.
+I2P'yi ilk kez başlattığınızda, bant genişliği ayarlarınızı yapılandırmak için bir kurulum sihirbazı çalıştırırsınız. Bu, I2P'nin performansını bağlantınız için optimize etmeye yardımcı olur.
 
-### Adım 12: Kurulum Tamamlandı
+### Adım 1: I2P'yi Başlatın
 
-Dock'ınızdaki I2P simgesine tıklayın (veya başlatıcıya çift tıklayın). Varsayılan web tarayıcınız I2P Router Console'a açılacaktır.
+Dock'unuzdaki I2P simgesine tıklayın (veya başlatıcıya çift tıklayın). Varsayılan web tarayıcınız I2P Router Console'a açılacaktır.
 
 ![I2P Router Console karşılama ekranı](/images/guides/macos-install/0-wiz.png)
 
-### Step 2: Welcome Wizard
+### Adım 2: Hoş Geldiniz Sihirbazı
 
 Kurulum sihirbazı sizi karşılayacaktır. I2P'yi yapılandırmaya başlamak için **İleri**'ye tıklayın.
 
-![Kurulum sihirbazı tanıtımı](/images/guides/macos-install/1-wiz.png)
+![Setup wizard introduction](/images/guides/macos-install/1-wiz.png)
 
-### Adım 1: Uygulamalar Klasörünü Açın
+### Adım 3: Dil ve Tema
 
-Tercih ettiğiniz **arayüz dilini** seçin ve **açık** veya **koyu** tema arasında tercih yapın. **İleri**'ye tıklayın.
+Tercih ettiğiniz **arayüz dilini** seçin ve **açık** veya **koyu** tema arasından birini seçin. **İleri**'ye tıklayın.
 
-![Dil ve tema seçimi](/images/guides/macos-install/2-wiz.png)
+![Dil ve tema seçin](/images/guides/macos-install/2-wiz.png)
 
-### Adım 2: I2P Başlatıcısını Bulun
+### Adım 4: Bant Genişliği Test Bilgileri
 
-Sihirbaz bant genişliği testini açıklayacaktır. Bu test, internet hızınızı ölçmek için **M-Lab** servisine bağlanır. Devam etmek için **İleri**'ye tıklayın.
+Sihirbaz bant genişliği testini açıklayacaktır. Bu test internet hızınızı ölçmek için **M-Lab** servisine bağlanır. Devam etmek için **İleri**'ye tıklayın.
 
-![Bant genişliği testi açıklaması](/images/guides/macos-install/3-wiz.png)
+![Bandwidth test explanation](/images/guides/macos-install/3-wiz.png)
 
-### Adım 3: Dock'a Ekle
+### Adım 5: Bant Genişliği Testi Çalıştırın
 
 Yükleme ve indirme hızlarınızı ölçmek için **Testi Çalıştır**'a tıklayın. Test yaklaşık 30-60 saniye sürer.
 
 ![Bant genişliği testini çalıştırma](/images/guides/macos-install/4-wiz.png)
 
-### Step 6: Test Results
+### Adım 6: Test Sonuçları
 
-Test sonuçlarınızı gözden geçirin. I2P, bağlantı hızınıza göre bant genişliği ayarları önerecektir.
+Test sonuçlarınızı inceleyin. I2P, bağlantı hızınıza göre bant genişliği ayarları önerecektir.
 
 ![Bant genişliği test sonuçları](/images/guides/macos-install/5-wiz.png)
 
-### Adım 1: I2P'yi Başlatın
+### Adım 7: Bant Genişliği Paylaşımını Yapılandırın
 
 I2P ağı ile ne kadar bant genişliği paylaşmak istediğinizi seçin:
 
@@ -213,67 +213,68 @@ Ayarlarınızı kaydetmek için **İleri**'ye tıklayın.
 
 ![Bant genişliği paylaşımını yapılandır](/images/guides/macos-install/6-wiz.png)
 
-### Adım 2: Hoş Geldiniz Sihirbazı
+### Adım 8: Yapılandırma Tamamlandı
 
 I2P router'ınız artık yapılandırılmış ve çalışıyor! Router konsolu bağlantı durumunuzu gösterecek ve I2P sitelerine göz atmanızı sağlayacak.
 
-## Getting Started with I2P
+## I2P ile Başlarken
 
 I2P kurulup yapılandırıldığına göre, artık şunları yapabilirsiniz:
 
-1. **I2P sitelerini gezin**: Popüler I2P hizmetlerine bağlantıları görmek için [I2P ana sayfasını](http://127.0.0.1:7657/home) ziyaret edin
+1. **I2P sitelerini gezin**: Popüler I2P hizmetlerinin bağlantılarını görmek için [I2P ana sayfasını](http://127.0.0.1:7657/home) ziyaret edin
 2. **Tarayıcınızı yapılandırın**: `.i2p` sitelerine erişmek için bir [tarayıcı profili](/docs/guides/browser-config) oluşturun
 3. **Hizmetleri keşfedin**: I2P e-posta, forum, dosya paylaşımı ve daha fazlasını inceleyin
 4. **Router'ınızı izleyin**: [Konsol](http://127.0.0.1:7657/console) ağ durumunuzu ve istatistiklerinizi gösterir
 
-### Adım 3: Dil ve Tema
+### Faydalı Bağlantılar
 
-- **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
+- **Router Konsolu**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
 - **Yapılandırma**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 - **Adres Defteri**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
 - **Bant Genişliği Ayarları**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
-## Re-running the Setup Wizard
+## Kurulum Sihirbazını Yeniden Çalıştırma
 
-Bant genişliği ayarlarınızı değiştirmek veya I2P'yi daha sonra yeniden yapılandırmak isterseniz, hoş geldin sihirbazını Router Console'dan tekrar çalıştırabilirsiniz:
+Bant genişliği ayarlarınızı değiştirmek veya I2P'yi daha sonra yeniden yapılandırmak istiyorsanız, Router Console'dan hoş geldin sihirbazını yeniden çalıştırabilirsiniz:
 
 1. [I2P Kurulum Sihirbazı](http://127.0.0.1:7657/welcome)'na gidin
 2. Sihirbaz adımlarını tekrar takip edin
 
-## Troubleshooting
+## Sorun Giderme
 
-### Adım 4: Bant Genişliği Testi Bilgileri
+### I2P Başlamıyor
 
-- **Java'yı kontrol edin**: Terminal'de `java -version` komutunu çalıştırarak Java'nın kurulu olduğundan emin olun
+- **Java'yı kontrol edin**: Terminal'de `java -version` komutunu çalıştırarak Java'nın yüklü olduğundan emin olun
 - **İzinleri kontrol edin**: I2P klasörünün doğru izinlere sahip olduğundan emin olun
 - **Logları kontrol edin**: Hata mesajları için `~/.i2p/wrapper.log` dosyasına bakın
 
-### Adım 5: Bant Genişliği Testi Çalıştırın
+### Tarayıcı I2P Sitelerine Erişemiyor
 
-- I2P'nin çalıştığından emin olun (Yönlendirici Konsolu'nu kontrol edin)
+- I2P'nin çalıştığından emin olun (Router Console'u kontrol edin)
 - Tarayıcınızın proxy ayarlarını HTTP proxy `127.0.0.1:4444` kullanacak şekilde yapılandırın
-- Başlattıktan sonra I2P'nin ağa entegre olması için 5-10 dakika bekleyin
+- I2P'nin ağa entegre olması için başlattıktan sonra 5-10 dakika bekleyin
 
-### Adım 6: Test Sonuçları
+### Yavaş Performans
 
 - Bant genişliği testini tekrar çalıştırın ve ayarlarınızı düzenleyin
-- Ağ ile bant genişliği paylaştığınızdan emin olun
+- Ağ ile bir miktar bant genişliği paylaştığınızdan emin olun
 - Router Console'da bağlantı durumunuzu kontrol edin
 
-## İkinci Bölüm: I2P'yi İndirin ve Kurun
+## I2P'yi Kaldırma
 
-Mac bilgisayarınızdan I2P'yi kaldırmak için:
+I2P'yi Mac'inizden kaldırmak için:
 
-1. I2P router çalışıyorsa kapatın
+1. Çalışıyorsa I2P router'ı kapatın
 2. `/Applications/i2p` klasörünü silin
-3. `~/.i2p` klasörünü silin (I2P yapılandırma ve verileriniz)
+3. `~/.i2p` klasörünü silin (I2P yapılandırmanız ve verileriniz)
 4. I2P simgesini Dock'tan kaldırın
 
-## Next Steps
+## Sonraki Adımlar
 
 - **Topluluğa katılın**: [i2pforum.net](http://i2pforum.net) adresini ziyaret edin veya Reddit'te I2P'yi inceleyin
-- **Daha fazla bilgi edinin**: Ağın nasıl çalıştığını anlamak için [I2P belgelerini](/en/docs) okuyun
-- **Katkıda bulunun**: I2P [geliştirmeye katkıda bulunmayı](/en/get-involved) veya altyapı çalıştırmayı düşünün
+- **Daha fazla öğrenin**: Ağın nasıl çalıştığını anlamak için [I2P belgelerini](/en/docs) okuyun
+- **Dahil olun**: [I2P'ye katkıda bulunmayı](/en/get-involved) düşünün - geliştirme veya altyapı işletimi konularında
 
 Tebrikler! Artık I2P ağının bir parçasısınız. Görünmez internete hoş geldiniz!
 
+---
