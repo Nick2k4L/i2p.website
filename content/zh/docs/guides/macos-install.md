@@ -1,279 +1,280 @@
 ---
-title: "在 macOS 上安装 I2P(详细方式)"
-description: "在 macOS 上手动安装 I2P 及其依赖项的分步指南"
+title: "在 macOS 上安装 I2P"
+description: "Step-by-step guide to manually installing I2P and its dependencies on macOS"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---
 
-## 您需要准备的内容
+## What You'll Need
 
-- 运行 macOS 10.14 (Mojave) 或更高版本的 Mac
-- 安装应用程序所需的管理员权限
-- 大约 15-20 分钟时间
-- 用于下载安装程序的互联网连接
+- A Mac running macOS 10.14 (Mojave) or later
+- Administrator access to install applications
+- About 15-20 minutes of time
+- Internet connection for downloading installers
 
-## 概述
+## Overview
 
-此安装过程包含四个主要步骤:
+This installation process has four main steps:
 
-1. **安装 Java** - 下载并安装 Oracle Java Runtime Environment
-2. **安装 I2P** - 下载并运行 I2P 安装程序
-3. **配置 I2P 应用** - 设置启动器并添加到程序坞
-4. **配置 I2P 带宽** - 运行设置向导以优化您的连接
+1. **Install Java** - Download and install Oracle Java Runtime Environment
+2. **Install I2P** - Download and run the I2P installer
+3. **Configure I2P App** - Set up the launcher and add to your dock
+4. **Configure I2P Bandwidth** - Run the setup wizard to optimize your connection
 
-## 第一部分:安装 Java
+## Part One: Install Java
 
-I2P 需要 Java 才能运行。如果你已经安装了 Java 8 或更高版本,可以[跳到第二部分](#part-two-download-and-install-i2p)。
+I2P requires Java to run. If you already have Java 8 or later installed, you can [skip to Part Two](#part-two-download-and-install-i2p).
 
 ### Step 1: Download Java
 
-访问 [Oracle Java 下载页面](https://www.oracle.com/java/technologies/downloads/) 并下载适用于 macOS 的 Java 8 或更高版本的安装程序。
+Visit the [Oracle Java download page](https://www.oracle.com/java/technologies/downloads/) and download the macOS installer for Java 8 or later.
 
-![下载适用于 macOS 的 Oracle Java](/images/guides/macos-install/0-jre.png)
+![Download Oracle Java for macOS](/images/guides/macos-install/0-jre.png)
 
 ### Step 2: Run the Installer
 
-在"下载"文件夹中找到已下载的 `.dmg` 文件,双击打开它。
+Locate the downloaded `.dmg` file in your Downloads folder and double-click to open it.
 
-![打开 Java 安装程序](/images/guides/macos-install/1-jre.png)
+![Open the Java installer](/images/guides/macos-install/1-jre.png)
 
 ### Step 3: Allow Installation
 
-macOS 可能会显示安全提示,因为安装程序来自已识别的开发者。点击**打开**继续。
+macOS may display a security prompt because the installer is from an identified developer. Click **Open** to proceed.
 
-![授予安装程序继续进行的权限](/images/guides/macos-install/2-jre.png)
+![Give the installer permission to proceed](/images/guides/macos-install/2-jre.png)
 
-### 步骤 1：下载 Java
+### Step 4: Install Java
 
-点击 **Install** 开始 Java 安装过程。
+Click **Install** to begin the Java installation process.
 
-![开始安装 Java](/images/guides/macos-install/3-jre.png)
+![Start installing Java](/images/guides/macos-install/3-jre.png)
 
-### 步骤 2：运行安装程序
+### Step 5: Wait for Installation
 
-安装程序将复制文件并在您的系统上配置 Java。这通常需要 1-2 分钟。
+The installer will copy files and configure Java on your system. This usually takes 1-2 minutes.
 
-![等待安装程序完成](/images/guides/macos-install/4-jre.png)
+![Wait for the installer to complete](/images/guides/macos-install/4-jre.png)
 
-### 步骤 3：允许安装
+### Step 6: Installation Complete
 
-当您看到成功消息时,Java 已安装完成!点击 **关闭** 以完成操作。
+When you see the success message, Java is installed! Click **Close** to finish.
 
-![Java 安装完成](/images/guides/macos-install/5-jre.png)
+![Java installation complete](/images/guides/macos-install/5-jre.png)
 
 ## Part Two: Download and Install I2P
 
-现在 Java 已经安装完成，你可以安装 I2P router 了。
+Now that Java is installed, you can install the I2P router.
 
-### 步骤 4：安装 Java
+### Step 1: Download I2P
 
-访问[下载页面](/downloads/)并下载 **I2P for Unix/Linux/BSD/Solaris** 安装程序（`.jar` 文件）。
+Visit the [Downloads page](/downloads/) and download the **I2P for Unix/Linux/BSD/Solaris** installer (the `.jar` file).
 
-![下载 I2P 安装程序](/images/guides/macos-install/0-i2p.png)
+![Download I2P installer](/images/guides/macos-install/0-i2p.png)
 
-### 步骤 5：等待安装完成
+### Step 2: Run the Installer
 
-双击下载的 `i2pinstall_X.X.X.jar` 文件。安装程序将启动并要求您选择首选语言。
+Double-click the downloaded `i2pinstall_X.X.X.jar` file. The installer will launch and ask you to select your preferred language.
 
-![选择您的语言](/images/guides/macos-install/1-i2p.png)
+![Select your language](/images/guides/macos-install/1-i2p.png)
 
-### 步骤 6：安装完成
+### Step 3: Welcome Screen
 
-阅读欢迎信息并点击 **Next** 继续。
+Read the welcome message and click **Next** to continue.
 
-![安装程序介绍](/images/guides/macos-install/2-i2p.png)
+![Installer introduction](/images/guides/macos-install/2-i2p.png)
 
 ### Step 4: Important Notice
 
-安装程序将显示一条关于更新的重要通知。I2P 更新是**端到端签名**和验证的,即使安装程序本身未签名。点击 **Next**。
+The installer will display an important notice about updates. I2P updates are **end-to-end signed** and verified, even though this installer itself is unsigned. Click **Next**.
 
-![关于更新的重要提示](/images/guides/macos-install/3-i2p.png)
+![Important notice about updates](/images/guides/macos-install/3-i2p.png)
 
-### 步骤 1：下载 I2P
+### Step 5: License Agreement
 
-阅读 I2P 许可协议（BSD 风格许可证）。点击**下一步**接受。
+Read the I2P license agreement (BSD-style license). Click **Next** to accept.
 
-![许可协议](/images/guides/macos-install/4-i2p.png)
+![License agreement](/images/guides/macos-install/4-i2p.png)
 
-### 步骤 2:运行安装程序
+### Step 6: Select Installation Directory
 
-选择 I2P 的安装位置。推荐使用默认位置（`/Applications/i2p`）。点击**下一步**。
+Choose where to install I2P. The default location (`/Applications/i2p`) is recommended. Click **Next**.
 
-![选择安装目录](/images/guides/macos-install/5-i2p.png)
+![Select installation directory](/images/guides/macos-install/5-i2p.png)
 
-### 步骤 3:欢迎界面
+### Step 7: Select Components
 
-保持所有组件被选中以进行完整安装。点击 **Next**。
+Leave all components selected for a complete installation. Click **Next**.
 
-![选择要安装的组件](/images/guides/macos-install/6-i2p.png)
+![Select components to install](/images/guides/macos-install/6-i2p.png)
 
-### 步骤 4：重要提示
+### Step 8: Start Installation
 
-检查您的选择并点击 **Next** 开始安装 I2P。
+Review your choices and click **Next** to begin installing I2P.
 
-![开始安装](/images/guides/macos-install/7-i2p.png)
+![Start the installation](/images/guides/macos-install/7-i2p.png)
 
-### 步骤 5:许可协议
+### Step 9: Installing Files
 
-安装程序将复制 I2P 文件到您的系统。这大约需要 1-2 分钟。
+The installer will copy I2P files to your system. This takes about 1-2 minutes.
 
-![安装进行中](/images/guides/macos-install/8-i2p.png)
+![Installation in progress](/images/guides/macos-install/8-i2p.png)
 
-### 步骤 6：选择安装目录
+### Step 10: Generate Launch Scripts
 
-安装程序会创建用于启动 I2P 的启动脚本。
+The installer creates launch scripts for starting I2P.
 
-![生成启动脚本](/images/guides/macos-install/9-i2p.png)
+![Generating launch scripts](/images/guides/macos-install/9-i2p.png)
 
-### 步骤 7：选择组件
+### Step 11: Installation Shortcuts
 
-安装程序会询问是否创建桌面快捷方式和菜单条目。做出选择后点击**下一步**。
+The installer offers to create desktop shortcuts and menu entries. Make your selections and click **Next**.
 
-![创建快捷方式](/images/guides/macos-install/10-i2p.png)
+![Create shortcuts](/images/guides/macos-install/10-i2p.png)
 
-### 步骤 8：开始安装
+### Step 12: Installation Complete
 
-成功！I2P 现已安装完成。点击 **完成** 结束安装。
+Success! I2P is now installed. Click **Done** to finish.
 
-![安装完成](/images/guides/macos-install/11-i2p.png)
+![Installation complete](/images/guides/macos-install/11-i2p.png)
 
 ## Part Three: Configure I2P App
 
-现在让我们将 I2P 添加到你的"应用程序"文件夹和程序坞，以便轻松启动。
+Now let's make I2P easy to launch by adding it to your Applications folder and Dock.
 
-### 步骤 9：安装文件
+### Step 1: Open Applications Folder
 
-打开访达并导航到您的**应用程序**文件夹。
+Open Finder and navigate to your **Applications** folder.
 
-![打开应用程序文件夹](/images/guides/macos-install/0-conf.png)
+![Open the Applications folder](/images/guides/macos-install/0-conf.png)
 
-### 步骤 10：生成启动脚本
+### Step 2: Find I2P Launcher
 
-在 `/Applications/i2p/` 目录中查找 **I2P** 文件夹或 **Start I2P Router** 应用程序。
+Look for the **I2P** folder or the **Start I2P Router** application inside `/Applications/i2p/`.
 
-![查找 I2P 启动器](/images/guides/macos-install/1-conf.png)
+![Find the I2P launcher](/images/guides/macos-install/1-conf.png)
 
-### 步骤 11：安装快捷方式
+### Step 3: Add to Dock
 
-将 **Start I2P Router** 应用程序拖动到您的程序坞以便快速访问。您也可以在桌面上创建一个替身。
+Drag the **Start I2P Router** application to your Dock for easy access. You can also create an alias on your desktop.
 
-![将 I2P 添加到您的 Dock](/images/guides/macos-install/2-conf.png)
+![Add I2P to your Dock](/images/guides/macos-install/2-conf.png)
 
-**提示**：右键点击 Dock 中的 I2P 图标,选择 **选项 → 在 Dock 中保留**,使其永久固定。
+**Tip**: Right-click the I2P icon in the Dock and select **Options → Keep in Dock** to make it permanent.
 
 ## Part Four: Configure I2P Bandwidth
 
-当您首次启动 I2P 时,您将进入一个设置向导来配置您的带宽设置。这有助于为您的连接优化 I2P 的性能。
+When you first launch I2P, you'll run through a setup wizard to configure your bandwidth settings. This helps optimize I2P's performance for your connection.
 
-### 步骤 12:安装完成
+### Step 1: Launch I2P
 
-点击 Dock 中的 I2P 图标（或双击启动器）。您的默认网络浏览器将打开 I2P Router Console。
+Click the I2P icon in your Dock (or double-click the launcher). Your default web browser will open to the I2P Router Console.
 
-![I2P 路由器控制台欢迎界面](/images/guides/macos-install/0-wiz.png)
+![I2P Router Console welcome screen](/images/guides/macos-install/0-wiz.png)
 
 ### Step 2: Welcome Wizard
 
-设置向导将会欢迎您。点击 **Next** 开始配置 I2P。
+The setup wizard will greet you. Click **Next** to begin configuring I2P.
 
-![安装向导介绍](/images/guides/macos-install/1-wiz.png)
+![Setup wizard introduction](/images/guides/macos-install/1-wiz.png)
 
-### 步骤 1：打开应用程序文件夹
+### Step 3: Language and Theme
 
-选择您首选的**界面语言**并在**浅色**或**深色**主题之间进行选择。点击**下一步**。
+Select your preferred **interface language** and choose between **light** or **dark** theme. Click **Next**.
 
-![选择语言和主题](/images/guides/macos-install/2-wiz.png)
+![Select language and theme](/images/guides/macos-install/2-wiz.png)
 
-### 步骤 2：找到 I2P 启动器
+### Step 4: Bandwidth Test Information
 
-向导将解释带宽测试。此测试连接到 **M-Lab** 服务以测量您的互联网速度。点击**下一步**继续。
+The wizard will explain the bandwidth test. This test connects to the **M-Lab** service to measure your internet speed. Click **Next** to proceed.
 
 ![Bandwidth test explanation](/images/guides/macos-install/3-wiz.png)
 
-### 步骤 3：添加到程序坞
+### Step 5: Run Bandwidth Test
 
-点击 **Run Test** 来测量你的上传和下载速度。测试大约需要 30-60 秒。
+Click **Run Test** to measure your upload and download speeds. The test takes about 30-60 seconds.
 
-![运行带宽测试](/images/guides/macos-install/4-wiz.png)
+![Running the bandwidth test](/images/guides/macos-install/4-wiz.png)
 
 ### Step 6: Test Results
 
-查看您的测试结果。I2P 将根据您的连接速度推荐带宽设置。
+Review your test results. I2P will recommend bandwidth settings based on your connection speed.
 
-![带宽测试结果](/images/guides/macos-install/5-wiz.png)
+![Bandwidth test results](/images/guides/macos-install/5-wiz.png)
 
-### 步骤 1：启动 I2P
+### Step 7: Configure Bandwidth Sharing
 
-选择您想要与 I2P 网络共享多少带宽:
+Choose how much bandwidth you want to share with the I2P network:
 
-- **自动**（推荐）：I2P 根据你的使用情况管理带宽
-- **受限**：设置特定的上传/下载限制
-- **无限制**：尽可能多地共享（适用于快速连接）
+- **Automatic** (Recommended): I2P manages bandwidth based on your usage
+- **Limited**: Set specific upload/download limits
+- **Unlimited**: Share as much as possible (for fast connections)
 
-点击 **Next** 保存您的设置。
+Click **Next** to save your settings.
 
-![配置带宽共享](/images/guides/macos-install/6-wiz.png)
+![Configure bandwidth sharing](/images/guides/macos-install/6-wiz.png)
 
-### 步骤 2:欢迎向导
+### Step 8: Configuration Complete
 
-您的 I2P router 现在已配置完成并正在运行!router console 将显示您的连接状态,并允许您浏览 I2P 站点。
+Your I2P router is now configured and running! The router console will show your connection status and allow you to browse I2P sites.
 
 ## Getting Started with I2P
 
-现在 I2P 已安装并配置完成,您可以:
+Now that I2P is installed and configured, you can:
 
-1. **浏览 I2P 站点**:访问 [I2P 主页](http://127.0.0.1:7657/home)查看热门 I2P 服务的链接
-2. **配置浏览器**:设置[浏览器配置文件](/docs/guides/browser-config)以访问 `.i2p` 站点
-3. **探索服务**:体验 I2P 电子邮件、论坛、文件共享等更多功能
-4. **监控 router**:[控制台](http://127.0.0.1:7657/console)显示网络状态和统计信息
+1. **Browse I2P sites**: Visit the [I2P homepage](http://127.0.0.1:7657/home) to see links to popular I2P services
+2. **Configure your browser**: Set up a [browser profile](/docs/guides/browser-config) to access `.i2p` sites
+3. **Explore services**: Check out I2P email, forums, file sharing, and more
+4. **Monitor your router**: The [console](http://127.0.0.1:7657/console) shows your network status and statistics
 
-### 步骤 3:语言和主题
+### Useful Links
 
 - **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **配置**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **地址簿**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **带宽设置**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Configuration**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Address Book**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
+- **Bandwidth Settings**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
 ## Re-running the Setup Wizard
 
-如果您想更改带宽设置或稍后重新配置 I2P,可以从 Router Console 重新运行欢迎向导:
+If you want to change your bandwidth settings or re-configure I2P later, you can re-run the welcome wizard from the Router Console:
 
-1. 访问 [I2P 设置向导](http://127.0.0.1:7657/welcome)
-2. 再次按照向导步骤操作
+1. Go to [I2P Setup Wizard](http://127.0.0.1:7657/welcome)
+2. Follow the wizard steps again
 
 ## Troubleshooting
 
-### 步骤 4:带宽测试信息
+### I2P Won't Start
 
-- **检查 Java**：在终端运行 `java -version` 确保已安装 Java
-- **检查权限**：确保 I2P 文件夹具有正确的权限
-- **检查日志**：查看 `~/.i2p/wrapper.log` 中的错误信息
+- **Check Java**: Make sure Java is installed by running `java -version` in Terminal
+- **Check permissions**: Ensure the I2P folder has the correct permissions
+- **Check logs**: Look at `~/.i2p/wrapper.log` for error messages
 
-### 步骤 5：运行带宽测试
+### Browser Can't Access I2P Sites
 
-- 确保 I2P 正在运行(检查 Router Console)
-- 配置浏览器的代理设置,使用 HTTP 代理 `127.0.0.1:4444`
-- 启动后等待 5-10 分钟,让 I2P 集成到网络中
+- Make sure I2P is running (check the Router Console)
+- Configure your browser's proxy settings to use HTTP proxy `127.0.0.1:4444`
+- Wait 5-10 minutes after starting for I2P to integrate into the network
 
-### 步骤 6：测试结果
+### Slow Performance
 
-- 再次运行带宽测试并调整您的设置
-- 确保您与网络共享了一些带宽
-- 在路由器控制台中检查您的连接状态
+- Run the bandwidth test again and adjust your settings
+- Make sure you're sharing some bandwidth with the network
+- Check your connection status in the Router Console
 
-## 第二部分:下载和安装 I2P
+## Uninstalling I2P
 
-从 Mac 中移除 I2P:
+To remove I2P from your Mac:
 
-1. 如果 I2P router 正在运行,请先退出
-2. 删除 `/Applications/i2p` 文件夹
-3. 删除 `~/.i2p` 文件夹(你的 I2P 配置和数据)
-4. 从程序坞中移除 I2P 图标
+1. Quit the I2P router if it's running
+2. Delete the `/Applications/i2p` folder
+3. Delete the `~/.i2p` folder (your I2P configuration and data)
+4. Remove the I2P icon from your Dock
 
 ## Next Steps
 
-- **加入社区**：访问 [i2pforum.net](http://i2pforum.net) 或在 Reddit 上查看 I2P
-- **了解更多**：阅读 [I2P 文档](/en/docs) 以理解网络的工作原理
-- **参与其中**：考虑[为 I2P 做贡献](/en/get-involved)，参与开发或运行基础设施
+- **Join the community**: Visit [i2pforum.net](http://i2pforum.net) or check out I2P on Reddit
+- **Learn more**: Read the [I2P documentation](/en/docs) to understand how the network works
+- **Get involved**: Consider [contributing to I2P](/en/get-involved) development or running infrastructure
 
-恭喜！您现在已经是 I2P 网络的一部分了。欢迎来到隐形互联网！
+Congratulations! You're now part of the I2P network. Welcome to the invisible internet!
 
+---

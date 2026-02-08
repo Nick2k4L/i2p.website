@@ -1,279 +1,280 @@
 ---
-title: "macOS에 I2P 설치하기 (자세한 방법)"
-description: "macOS에서 I2P와 의존성 패키지를 수동으로 설치하는 단계별 가이드"
+title: "macOS에 I2P 설치하기"
+description: "Step-by-step guide to manually installing I2P and its dependencies on macOS"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---
 
-## 필요한 사항
+## What You'll Need
 
-- macOS 10.14(Mojave) 이상을 실행하는 Mac
-- 애플리케이션 설치를 위한 관리자 권한
-- 약 15-20분의 시간
-- 설치 프로그램 다운로드를 위한 인터넷 연결
+- A Mac running macOS 10.14 (Mojave) or later
+- Administrator access to install applications
+- About 15-20 minutes of time
+- Internet connection for downloading installers
 
-## 개요
+## Overview
 
-이 설치 과정은 네 가지 주요 단계로 구성됩니다:
+This installation process has four main steps:
 
-1. **Java 설치** - Oracle Java Runtime Environment를 다운로드하고 설치합니다
-2. **I2P 설치** - I2P 설치 프로그램을 다운로드하고 실행합니다
-3. **I2P 앱 구성** - launcher를 설정하고 dock에 추가합니다
-4. **I2P 대역폭 구성** - 설정 마법사를 실행하여 연결을 최적화합니다
+1. **Install Java** - Download and install Oracle Java Runtime Environment
+2. **Install I2P** - Download and run the I2P installer
+3. **Configure I2P App** - Set up the launcher and add to your dock
+4. **Configure I2P Bandwidth** - Run the setup wizard to optimize your connection
 
-## 1부: Java 설치
+## Part One: Install Java
 
-I2P를 실행하려면 Java가 필요합니다. 이미 Java 8 이상이 설치되어 있다면 [2부로 건너뛸 수 있습니다](#part-two-download-and-install-i2p).
+I2P requires Java to run. If you already have Java 8 or later installed, you can [skip to Part Two](#part-two-download-and-install-i2p).
 
 ### Step 1: Download Java
 
-[Oracle Java 다운로드 페이지](https://www.oracle.com/java/technologies/downloads/)를 방문하여 Java 8 이상의 macOS 설치 프로그램을 다운로드하세요.
+Visit the [Oracle Java download page](https://www.oracle.com/java/technologies/downloads/) and download the macOS installer for Java 8 or later.
 
-![macOS용 Oracle Java 다운로드](/images/guides/macos-install/0-jre.png)
+![Download Oracle Java for macOS](/images/guides/macos-install/0-jre.png)
 
 ### Step 2: Run the Installer
 
-Downloads 폴더에서 다운로드한 `.dmg` 파일을 찾아 더블클릭하여 엽니다.
+Locate the downloaded `.dmg` file in your Downloads folder and double-click to open it.
 
-![Java 설치 프로그램 열기](/images/guides/macos-install/1-jre.png)
+![Open the Java installer](/images/guides/macos-install/1-jre.png)
 
 ### Step 3: Allow Installation
 
-macOS는 설치 프로그램이 확인된 개발자로부터 제공되었기 때문에 보안 알림을 표시할 수 있습니다. 계속 진행하려면 **열기**를 클릭하세요.
+macOS may display a security prompt because the installer is from an identified developer. Click **Open** to proceed.
 
-![설치 관리자에 진행 권한 부여](/images/guides/macos-install/2-jre.png)
+![Give the installer permission to proceed](/images/guides/macos-install/2-jre.png)
 
-### 1단계: Java 다운로드
+### Step 4: Install Java
 
-**Install**을 클릭하여 Java 설치 프로세스를 시작합니다.
+Click **Install** to begin the Java installation process.
 
-![Java 설치 시작](/images/guides/macos-install/3-jre.png)
+![Start installing Java](/images/guides/macos-install/3-jre.png)
 
-### 2단계: 설치 프로그램 실행
+### Step 5: Wait for Installation
 
-설치 프로그램이 파일을 복사하고 시스템에 Java를 구성합니다. 일반적으로 1-2분이 소요됩니다.
+The installer will copy files and configure Java on your system. This usually takes 1-2 minutes.
 
-![설치 프로그램이 완료될 때까지 기다리십시오](/images/guides/macos-install/4-jre.png)
+![Wait for the installer to complete](/images/guides/macos-install/4-jre.png)
 
-### 3단계: 설치 허용
+### Step 6: Installation Complete
 
-성공 메시지가 표시되면 Java가 설치된 것입니다! **Close**를 클릭하여 완료하세요.
+When you see the success message, Java is installed! Click **Close** to finish.
 
-![Java 설치 완료](/images/guides/macos-install/5-jre.png)
+![Java installation complete](/images/guides/macos-install/5-jre.png)
 
 ## Part Two: Download and Install I2P
 
-Java가 설치되었으므로 이제 I2P router를 설치할 수 있습니다.
+Now that Java is installed, you can install the I2P router.
 
-### 4단계: Java 설치
+### Step 1: Download I2P
 
-[다운로드 페이지](/downloads/)를 방문하여 **I2P for Unix/Linux/BSD/Solaris** 설치 프로그램(`.jar` 파일)을 다운로드하세요.
+Visit the [Downloads page](/downloads/) and download the **I2P for Unix/Linux/BSD/Solaris** installer (the `.jar` file).
 
-![I2P 설치 프로그램 다운로드](/images/guides/macos-install/0-i2p.png)
+![Download I2P installer](/images/guides/macos-install/0-i2p.png)
 
-### 단계 5: 설치 대기
+### Step 2: Run the Installer
 
-다운로드한 `i2pinstall_X.X.X.jar` 파일을 더블클릭하세요. 설치 프로그램이 실행되고 선호하는 언어를 선택하라는 메시지가 표시됩니다.
+Double-click the downloaded `i2pinstall_X.X.X.jar` file. The installer will launch and ask you to select your preferred language.
 
-![언어를 선택하세요](/images/guides/macos-install/1-i2p.png)
+![Select your language](/images/guides/macos-install/1-i2p.png)
 
-### 6단계: 설치 완료
+### Step 3: Welcome Screen
 
-환영 메시지를 읽고 **Next**를 클릭하여 계속 진행하세요.
+Read the welcome message and click **Next** to continue.
 
-![설치 프로그램 소개](/images/guides/macos-install/2-i2p.png)
+![Installer introduction](/images/guides/macos-install/2-i2p.png)
 
 ### Step 4: Important Notice
 
-설치 프로그램은 업데이트에 대한 중요한 공지사항을 표시합니다. I2P 업데이트는 이 설치 프로그램 자체는 서명되지 않았지만 **end-to-end 서명**되고 검증됩니다. **다음**을 클릭하세요.
+The installer will display an important notice about updates. I2P updates are **end-to-end signed** and verified, even though this installer itself is unsigned. Click **Next**.
 
-![업데이트에 관한 중요 공지](/images/guides/macos-install/3-i2p.png)
+![Important notice about updates](/images/guides/macos-install/3-i2p.png)
 
-### 1단계: I2P 다운로드
+### Step 5: License Agreement
 
-I2P 라이선스 계약서(BSD 스타일 라이선스)를 읽으십시오. **다음**을 클릭하여 동의합니다.
+Read the I2P license agreement (BSD-style license). Click **Next** to accept.
 
 ![License agreement](/images/guides/macos-install/4-i2p.png)
 
-### 2단계: 설치 프로그램 실행
+### Step 6: Select Installation Directory
 
-I2P를 설치할 위치를 선택하세요. 기본 위치(`/Applications/i2p`)를 권장합니다. **Next**를 클릭하세요.
+Choose where to install I2P. The default location (`/Applications/i2p`) is recommended. Click **Next**.
 
-![설치 디렉토리 선택](/images/guides/macos-install/5-i2p.png)
+![Select installation directory](/images/guides/macos-install/5-i2p.png)
 
-### 3단계: 환영 화면
+### Step 7: Select Components
 
-완전한 설치를 위해 모든 구성 요소를 선택한 상태로 두세요. **다음**을 클릭하세요.
+Leave all components selected for a complete installation. Click **Next**.
 
-![설치할 구성 요소 선택](/images/guides/macos-install/6-i2p.png)
+![Select components to install](/images/guides/macos-install/6-i2p.png)
 
-### 4단계: 중요 공지
+### Step 8: Start Installation
 
-선택 사항을 검토하고 **Next**를 클릭하여 I2P 설치를 시작하세요.
+Review your choices and click **Next** to begin installing I2P.
 
-![설치 시작하기](/images/guides/macos-install/7-i2p.png)
+![Start the installation](/images/guides/macos-install/7-i2p.png)
 
-### 5단계: 라이선스 동의
+### Step 9: Installing Files
 
-설치 프로그램이 I2P 파일을 시스템에 복사합니다. 약 1-2분 정도 소요됩니다.
+The installer will copy I2P files to your system. This takes about 1-2 minutes.
 
-![설치 진행 중](/images/guides/macos-install/8-i2p.png)
+![Installation in progress](/images/guides/macos-install/8-i2p.png)
 
-### 단계 6: 설치 디렉토리 선택
+### Step 10: Generate Launch Scripts
 
-설치 프로그램은 I2P를 시작하기 위한 실행 스크립트를 생성합니다.
+The installer creates launch scripts for starting I2P.
 
-![실행 스크립트 생성 중](/images/guides/macos-install/9-i2p.png)
+![Generating launch scripts](/images/guides/macos-install/9-i2p.png)
 
-### 7단계: 구성 요소 선택
+### Step 11: Installation Shortcuts
 
-설치 프로그램은 바탕화면 바로가기와 메뉴 항목을 만들 것인지 묻습니다. 원하는 항목을 선택하고 **다음**을 클릭하세요.
+The installer offers to create desktop shortcuts and menu entries. Make your selections and click **Next**.
 
-![단축키 생성](/images/guides/macos-install/10-i2p.png)
+![Create shortcuts](/images/guides/macos-install/10-i2p.png)
 
-### 8단계: 설치 시작
+### Step 12: Installation Complete
 
-성공! I2P가 설치되었습니다. **완료**를 클릭하여 마치십시오.
+Success! I2P is now installed. Click **Done** to finish.
 
-![설치 완료](/images/guides/macos-install/11-i2p.png)
+![Installation complete](/images/guides/macos-install/11-i2p.png)
 
 ## Part Three: Configure I2P App
 
-이제 I2P를 응용 프로그램 폴더와 Dock에 추가하여 쉽게 실행할 수 있도록 만들어 봅시다.
+Now let's make I2P easy to launch by adding it to your Applications folder and Dock.
 
-### 9단계: 파일 설치
+### Step 1: Open Applications Folder
 
-Finder를 열고 **Applications** 폴더로 이동합니다.
+Open Finder and navigate to your **Applications** folder.
 
-![Applications 폴더 열기](/images/guides/macos-install/0-conf.png)
+![Open the Applications folder](/images/guides/macos-install/0-conf.png)
 
-### 단계 10: 실행 스크립트 생성
+### Step 2: Find I2P Launcher
 
-`/Applications/i2p/` 안에서 **I2P** 폴더 또는 **Start I2P Router** 애플리케이션을 찾으세요.
+Look for the **I2P** folder or the **Start I2P Router** application inside `/Applications/i2p/`.
 
-![I2P 런처 찾기](/images/guides/macos-install/1-conf.png)
+![Find the I2P launcher](/images/guides/macos-install/1-conf.png)
 
-### 단계 11: 설치 바로가기
+### Step 3: Add to Dock
 
-**Start I2P Router** 애플리케이션을 Dock으로 드래그하여 쉽게 액세스할 수 있습니다. 데스크탑에 별칭을 생성할 수도 있습니다.
+Drag the **Start I2P Router** application to your Dock for easy access. You can also create an alias on your desktop.
 
 ![Add I2P to your Dock](/images/guides/macos-install/2-conf.png)
 
-**팁**: Dock에서 I2P 아이콘을 마우스 오른쪽 버튼으로 클릭하고 **옵션 → Dock에 유지**를 선택하면 영구적으로 고정할 수 있습니다.
+**Tip**: Right-click the I2P icon in the Dock and select **Options → Keep in Dock** to make it permanent.
 
 ## Part Four: Configure I2P Bandwidth
 
-I2P를 처음 실행하면 설정 마법사가 나타나 대역폭 설정을 구성하게 됩니다. 이는 사용자의 연결에 맞게 I2P의 성능을 최적화하는 데 도움이 됩니다.
+When you first launch I2P, you'll run through a setup wizard to configure your bandwidth settings. This helps optimize I2P's performance for your connection.
 
-### 단계 12: 설치 완료
+### Step 1: Launch I2P
 
-Dock에서 I2P 아이콘을 클릭하거나(또는 런처를 더블클릭) 하세요. 기본 웹 브라우저가 I2P Router Console로 열립니다.
+Click the I2P icon in your Dock (or double-click the launcher). Your default web browser will open to the I2P Router Console.
 
-![I2P Router Console 환영 화면](/images/guides/macos-install/0-wiz.png)
+![I2P Router Console welcome screen](/images/guides/macos-install/0-wiz.png)
 
 ### Step 2: Welcome Wizard
 
-설정 마법사가 나타납니다. **Next**를 클릭하여 I2P 구성을 시작하세요.
+The setup wizard will greet you. Click **Next** to begin configuring I2P.
 
 ![Setup wizard introduction](/images/guides/macos-install/1-wiz.png)
 
-### 1단계: Applications 폴더 열기
+### Step 3: Language and Theme
 
-선호하는 **인터페이스 언어**를 선택하고 **라이트** 또는 **다크** 테마 중에서 선택하세요. **다음**을 클릭하세요.
+Select your preferred **interface language** and choose between **light** or **dark** theme. Click **Next**.
 
-![언어와 테마 선택](/images/guides/macos-install/2-wiz.png)
+![Select language and theme](/images/guides/macos-install/2-wiz.png)
 
-### 2단계: I2P Launcher 찾기
+### Step 4: Bandwidth Test Information
 
-마법사는 대역폭 테스트를 설명합니다. 이 테스트는 **M-Lab** 서비스에 연결하여 인터넷 속도를 측정합니다. 계속하려면 **다음**을 클릭하세요.
+The wizard will explain the bandwidth test. This test connects to the **M-Lab** service to measure your internet speed. Click **Next** to proceed.
 
-![대역폭 테스트 설명](/images/guides/macos-install/3-wiz.png)
+![Bandwidth test explanation](/images/guides/macos-install/3-wiz.png)
 
-### 3단계: Dock에 추가
+### Step 5: Run Bandwidth Test
 
-**Run Test**를 클릭하여 업로드 및 다운로드 속도를 측정하세요. 테스트는 약 30-60초가 소요됩니다.
+Click **Run Test** to measure your upload and download speeds. The test takes about 30-60 seconds.
 
-![대역폭 테스트 실행](/images/guides/macos-install/4-wiz.png)
+![Running the bandwidth test](/images/guides/macos-install/4-wiz.png)
 
 ### Step 6: Test Results
 
-테스트 결과를 검토하세요. I2P는 연결 속도에 따라 대역폭 설정을 권장합니다.
+Review your test results. I2P will recommend bandwidth settings based on your connection speed.
 
-![대역폭 테스트 결과](/images/guides/macos-install/5-wiz.png)
+![Bandwidth test results](/images/guides/macos-install/5-wiz.png)
 
-### 1단계: I2P 실행
+### Step 7: Configure Bandwidth Sharing
 
-I2P 네트워크와 공유할 대역폭을 선택하세요:
+Choose how much bandwidth you want to share with the I2P network:
 
-- **자동** (권장): I2P가 사용량에 따라 대역폭을 관리합니다
-- **제한**: 특정 업로드/다운로드 제한을 설정합니다
-- **무제한**: 가능한 많이 공유합니다 (빠른 연결용)
+- **Automatic** (Recommended): I2P manages bandwidth based on your usage
+- **Limited**: Set specific upload/download limits
+- **Unlimited**: Share as much as possible (for fast connections)
 
-**Next**를 클릭하여 설정을 저장합니다.
+Click **Next** to save your settings.
 
-![대역폭 공유 설정](/images/guides/macos-install/6-wiz.png)
+![Configure bandwidth sharing](/images/guides/macos-install/6-wiz.png)
 
-### 단계 2: 환영 마법사
+### Step 8: Configuration Complete
 
-I2P router가 이제 구성되어 실행 중입니다! router console에 연결 상태가 표시되며 I2P 사이트를 탐색할 수 있습니다.
+Your I2P router is now configured and running! The router console will show your connection status and allow you to browse I2P sites.
 
 ## Getting Started with I2P
 
-I2P가 설치 및 구성되었으므로 다음을 수행할 수 있습니다:
+Now that I2P is installed and configured, you can:
 
-1. **I2P 사이트 탐색**: [I2P 홈페이지](http://127.0.0.1:7657/home)를 방문하여 인기 있는 I2P 서비스 링크를 확인하세요
-2. **브라우저 설정**: `.i2p` 사이트에 접속하기 위해 [브라우저 프로필](/docs/guides/browser-config)을 설정하세요
-3. **서비스 탐색**: I2P 이메일, 포럼, 파일 공유 등을 확인해보세요
-4. **router 모니터링**: [콘솔](http://127.0.0.1:7657/console)에서 네트워크 상태와 통계를 확인할 수 있습니다
+1. **Browse I2P sites**: Visit the [I2P homepage](http://127.0.0.1:7657/home) to see links to popular I2P services
+2. **Configure your browser**: Set up a [browser profile](/docs/guides/browser-config) to access `.i2p` sites
+3. **Explore services**: Check out I2P email, forums, file sharing, and more
+4. **Monitor your router**: The [console](http://127.0.0.1:7657/console) shows your network status and statistics
 
-### 3단계: 언어 및 테마
+### Useful Links
 
 - **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **설정**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **주소록**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **대역폭 설정**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Configuration**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Address Book**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
+- **Bandwidth Settings**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
 ## Re-running the Setup Wizard
 
-대역폭 설정을 변경하거나 나중에 I2P를 재구성하려면, Router Console에서 시작 마법사를 다시 실행할 수 있습니다:
+If you want to change your bandwidth settings or re-configure I2P later, you can re-run the welcome wizard from the Router Console:
 
-1. [I2P 설정 마법사](http://127.0.0.1:7657/welcome)로 이동합니다
-2. 마법사 단계를 다시 따라갑니다
+1. Go to [I2P Setup Wizard](http://127.0.0.1:7657/welcome)
+2. Follow the wizard steps again
 
 ## Troubleshooting
 
-### 4단계: 대역폭 테스트 정보
+### I2P Won't Start
 
-- **Java 확인**: 터미널에서 `java -version`을 실행하여 Java가 설치되어 있는지 확인하세요
-- **권한 확인**: I2P 폴더에 올바른 권한이 있는지 확인하세요
-- **로그 확인**: 오류 메시지를 확인하려면 `~/.i2p/wrapper.log`를 확인하세요
+- **Check Java**: Make sure Java is installed by running `java -version` in Terminal
+- **Check permissions**: Ensure the I2P folder has the correct permissions
+- **Check logs**: Look at `~/.i2p/wrapper.log` for error messages
 
-### 5단계: 대역폭 테스트 실행
+### Browser Can't Access I2P Sites
 
-- I2P가 실행 중인지 확인하세요 (라우터 콘솔을 확인하세요)
-- 브라우저의 프록시 설정을 HTTP 프록시 `127.0.0.1:4444`로 구성하세요
-- 시작 후 I2P가 네트워크에 통합되는 데 5-10분 정도 기다리세요
+- Make sure I2P is running (check the Router Console)
+- Configure your browser's proxy settings to use HTTP proxy `127.0.0.1:4444`
+- Wait 5-10 minutes after starting for I2P to integrate into the network
 
-### 6단계: 테스트 결과
+### Slow Performance
 
-- 대역폭 테스트를 다시 실행하고 설정을 조정하세요
-- 네트워크와 일정량의 대역폭을 공유하고 있는지 확인하세요
-- Router Console에서 연결 상태를 확인하세요
+- Run the bandwidth test again and adjust your settings
+- Make sure you're sharing some bandwidth with the network
+- Check your connection status in the Router Console
 
-## Part Two: I2P 다운로드 및 설치
+## Uninstalling I2P
 
-Mac에서 I2P를 제거하려면:
+To remove I2P from your Mac:
 
-1. I2P router가 실행 중이면 종료하세요
-2. `/Applications/i2p` 폴더를 삭제하세요
-3. `~/.i2p` 폴더를 삭제하세요 (I2P 설정 및 데이터)
-4. Dock에서 I2P 아이콘을 제거하세요
+1. Quit the I2P router if it's running
+2. Delete the `/Applications/i2p` folder
+3. Delete the `~/.i2p` folder (your I2P configuration and data)
+4. Remove the I2P icon from your Dock
 
 ## Next Steps
 
-- **커뮤니티 참여**: [i2pforum.net](http://i2pforum.net)을 방문하거나 Reddit의 I2P를 확인하세요
-- **더 알아보기**: 네트워크 작동 방식을 이해하기 위해 [I2P 문서](/en/docs)를 읽어보세요
-- **참여하기**: I2P [개발에 기여](/en/get-involved)하거나 인프라 운영을 고려해보세요
+- **Join the community**: Visit [i2pforum.net](http://i2pforum.net) or check out I2P on Reddit
+- **Learn more**: Read the [I2P documentation](/en/docs) to understand how the network works
+- **Get involved**: Consider [contributing to I2P](/en/get-involved) development or running infrastructure
 
-축하합니다! 이제 여러분은 I2P 네트워크의 일원입니다. 보이지 않는 인터넷에 오신 것을 환영합니다!
+Congratulations! You're now part of the I2P network. Welcome to the invisible internet!
 
+---
