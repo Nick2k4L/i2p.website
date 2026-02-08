@@ -36,6 +36,19 @@ downloads:
       i2p: "http://mirror.stormycloud.i2p/2.10.0/I2P-Easy-Install-Bundle-2.10.0-signed.exe"
       tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.10.0/I2P-Easy-Install-Bundle-2.10.0-signed.exe"
 
+  mac_easy_installer:
+    file: "I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
+    size: "~185M"
+    requirements: "Apple Silicon - No Java needed"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+    beta: true
+    links:
+      primary: "https://files.i2p.net/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
+      mirror: "https://mirror.stormycloud.org/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
+      torrent: "magnet:?xt=urn:btih:placeholder"
+      i2p: "http://mirror.stormycloud.i2p/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
+
   mac_linux:
     file: "i2pinstall_2.10.0.jar"
     size: "~30M"
