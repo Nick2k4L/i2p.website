@@ -1,0 +1,707 @@
+{{ define "main" }}
+
+<style>
+  .support-container {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-xl);
+  }
+
+  /* ── Two-column layout with TOC ── */
+  .support-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+
+  .support-main {
+    min-width: 0;
+    max-width: 740px;
+  }
+
+  .support-toc {
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+  .support-toc nav {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .support-toc .toc-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .support-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .support-toc li {
+    margin-bottom: 0.2rem;
+  }
+
+  .support-toc a {
+    display: block;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    line-height: 1.4;
+  }
+
+  .support-toc a:hover {
+    color: var(--color-primary);
+    background: var(--color-bg-tertiary);
+  }
+
+  @media (max-width: 1024px) {
+    .support-layout {
+      grid-template-columns: 1fr;
+    }
+    .support-toc {
+      display: none;
+    }
+  }
+
+  /* ── Animated Hero ── */
+  .support-hero {
+    padding: 3rem 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: linear-gradient(-45deg, var(--color-bg-secondary), var(--color-bg), rgba(30,64,175,0.06), rgba(124,58,237,0.06));
+    background-size: 400% 400%;
+    animation: heroShift 15s ease infinite;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+
+  @keyframes heroShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .support-hero h1 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .support-hero p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Section styling with alternating backgrounds ── */
+  .support-section {
+    margin-bottom: 0;
+    padding: 3rem 0;
+  }
+
+  .support-section:first-child {
+    padding-top: 0;
+  }
+
+  .support-section:nth-child(even) {
+    background: var(--color-bg-secondary);
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 12px;
+  }
+
+  .support-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 0 1rem 0;
+    font-size: 1.875rem;
+    color: var(--color-text);
+    scroll-margin-top: 100px;
+  }
+
+  .support-section h2 .section-icon {
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  .support-section > p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Card grid ── */
+  .support-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .support-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .support-card {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    background: var(--color-bg);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .support-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--color-primary);
+  }
+
+  .support-card h3 {
+    margin: 0 0 0.35rem 0;
+    padding: 0;
+    color: var(--color-primary);
+    font-size: 1rem;
+  }
+
+  .support-card p {
+    margin: 0 0 0.25rem 0;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* ── Checkmark list ── */
+  .support-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .support-list li {
+    margin-bottom: 0.15rem;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.4;
+    font-size: 0.875rem;
+  }
+
+  .support-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .support-list li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+
+  /* ── Crypto donation cards ── */
+  .donation-methods {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .donation-method {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    background: var(--color-bg);
+    transition: border-color 0.2s ease;
+  }
+
+  .donation-method:hover {
+    border-color: var(--color-primary);
+  }
+
+  .donation-method h4 img.crypto-logo {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 0.35rem;
+    position: relative;
+    top: -1px;
+  }
+
+  .donation-method .crypto-info {
+    min-width: 0;
+  }
+
+  .donation-method h4 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .donation-method p {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .donation-method h4 .badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 20px;
+    background: rgba(30, 64, 175, 0.1);
+    color: var(--color-primary);
+  }
+
+  .donation-method .crypto-info p {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .crypto-address {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    word-break: break-all;
+    color: var(--color-primary);
+    user-select: all;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .crypto-address:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.1);
+  }
+
+  .select-hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.35rem;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .donation-method {
+      flex-direction: row;
+    }
+  }
+
+  /* ── Sponsorship tier cards ── */
+  .tier-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .tier-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .tier-card {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-bg);
+    transition: all 0.2s ease;
+    text-align: center;
+    padding-bottom: 1.5rem;
+  }
+
+  .tier-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .tier-card .tier-header {
+    padding: 1.25rem 1.5rem;
+    color: #fff;
+  }
+
+  .tier-card .tier-header h4 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: inherit;
+  }
+
+  .tier-card .tier-header .tier-price {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+  }
+
+  .tier-card .tier-body {
+    padding: 1.25rem 1.5rem 0;
+  }
+
+  .tier-card .tier-body p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .tier-bronze .tier-header { background: linear-gradient(135deg, #92400e, #b45309); }
+  .tier-silver .tier-header { background: linear-gradient(135deg, #475569, #64748b); }
+  .tier-gold   .tier-header { background: linear-gradient(135deg, #92400e, #ca8a04); }
+
+  .tier-bronze:hover { border-color: #b45309; }
+  .tier-silver:hover { border-color: #64748b; }
+  .tier-gold:hover   { border-color: #ca8a04; }
+
+  /* ── Info box ── */
+  .info-box {
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    padding: 1.25rem 1.5rem;
+    background: var(--color-bg-secondary);
+    margin: 1.5rem 0;
+    line-height: 1.6;
+  }
+
+  .info-box strong {
+    color: var(--color-primary);
+  }
+
+  .info-box p {
+    margin: 0;
+  }
+
+  /* ── Coming soon ── */
+  .coming-soon {
+    border-radius: 8px;
+    border: 2px dashed var(--color-border);
+    padding: 2.5rem 2rem;
+    background: rgba(30, 64, 175, 0.03);
+    text-align: center;
+    color: var(--color-text-secondary);
+  }
+
+  .coming-soon .coming-soon-icon {
+    display: block;
+    margin: 0 auto 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .coming-soon p {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* ── CTA card links ── */
+  .support-card .card-cta {
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .support-card .card-cta a {
+    display: inline-block;
+    padding: 0.4rem 1.15rem;
+    border: 1.5px solid var(--color-primary);
+    border-radius: 20px;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .support-card .card-cta a:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  /* ── Feature highlight ── */
+  .feature-highlight {
+    background: var(--color-bg-secondary);
+    border-left: 4px solid var(--color-primary);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+  }
+
+  .feature-highlight p {
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
+
+<div class="support-container">
+<div class="support-layout">
+
+<aside class="support-toc">
+  <nav>
+    <div class="toc-title">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      {{ i18n "financialSupport.onThisPage" }}
+    </div>
+    <ul>
+      <li><a href="#donate">{{ i18n "financialSupport.tocDonate" }}</a></li>
+      <li><a href="#why-support">{{ i18n "financialSupport.tocWhySupport" }}</a></li>
+      <li><a href="#sponsor">{{ i18n "financialSupport.tocSponsor" }}</a></li>
+      <li><a href="#corporate">{{ i18n "financialSupport.tocCorporate" }}</a></li>
+      <li><a href="#transparency">{{ i18n "financialSupport.tocTransparency" }}</a></li>
+      <li><a href="#other-ways">{{ i18n "financialSupport.tocOtherWays" }}</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div class="support-main">
+
+<div class="support-section">
+  <h2 id="donate">
+    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+    {{ i18n "financialSupport.donateTitle" }}
+  </h2>
+  <p>{{ i18n "financialSupport.donateDescription" }}</p>
+
+  <a href="#XLLURLEG" style="display: none"></a>
+
+  <!-- FundraiseUp Standard Snippet -->
+  <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track'
+  .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+  :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+  j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a;
+  t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=4;o.h=w.location.href;o.l=[];
+  for(i=0;i<7;i++)o[l[i]]=o(l[i]);w[n]=o}
+  })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+
+  <div class="donation-methods">
+    <div class="donation-method">
+      <div class="crypto-info">
+        <h4><img class="crypto-logo" src="/images/monero-xmr-logo.svg" alt="Monero" /> {{ i18n "financialSupport.moneroXmr" }} <span class="badge">{{ i18n "financialSupport.recommended" }}</span></h4>
+        <p>{{ i18n "financialSupport.moneroDesc" }}</p>
+        <div class="crypto-address">85igd4Dw6ychvi8iUYADHfgLCmdT348SA6sMnYgxE86YZxX98Au6rsF9B9DmcqEXWRZWDcPdarufHUUqwP73GVrq6BaC9dr</div>
+        <span class="select-hint">{{ i18n "financialSupport.clickToSelect" }}</span>
+      </div>
+    </div>
+    <div class="donation-method">
+      <div class="crypto-info">
+        <h4><img class="crypto-logo" src="/images/bitcoin-btc-logo.svg" alt="Bitcoin" /> {{ i18n "financialSupport.bitcoinBtc" }}</h4>
+        <p>{{ i18n "financialSupport.bitcoinDesc" }}</p>
+        <div class="crypto-address">3JSSF45pAW5ujWbBuRFe25pBiwp1vjSRNb</div>
+        <span class="select-hint">{{ i18n "financialSupport.clickToSelect" }}</span>
+      </div>
+    </div>
+    <div class="donation-method">
+      <div class="crypto-info">
+        <h4><img class="crypto-logo" src="/images/zcash-zec-logo.svg" alt="Zcash" /> {{ i18n "financialSupport.zcashZec" }}</h4>
+        <p>{{ i18n "financialSupport.zcashDesc" }}</p>
+        <div class="crypto-address">t1TwTuu4qU25aGvh59EMkCAZdmwJepkyQcD</div>
+        <span class="select-hint">{{ i18n "financialSupport.clickToSelect" }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>{{ i18n "financialSupport.privacyFirst" }}</strong> {{ i18n "financialSupport.privacyFirstDesc" }}</p>
+    <p style="margin-top: 0.75rem;"><strong>{{ i18n "financialSupport.otherCryptos" }}</strong> {{ i18n "financialSupport.otherCryptosDesc" }} <a href="{{ relLangURL "contact/" }}">{{ i18n "financialSupport.contactUs" }}</a> {{ i18n "financialSupport.otherCryptosDesc2" }}</p>
+  </div>
+</div>
+
+
+<div class="support-section">
+  <h2 id="why-support">
+    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    {{ i18n "financialSupport.whySupportTitle" }}
+  </h2>
+  <p>{{ i18n "financialSupport.whySupportDesc" }}</p>
+
+  <div class="support-grid">
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.infrastructure" }}</h3>
+      <ul class="support-list">
+        <li>{{ i18n "financialSupport.infraItem1" }}</li>
+        <li>{{ i18n "financialSupport.infraItem2" }}</li>
+        <li>{{ i18n "financialSupport.infraItem3" }}</li>
+        <li>{{ i18n "financialSupport.infraItem4" }}</li>
+      </ul>
+    </div>
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.security" }}</h3>
+      <ul class="support-list">
+        <li>{{ i18n "financialSupport.securityItem1" }}</li>
+        <li>{{ i18n "financialSupport.securityItem2" }}</li>
+        <li>{{ i18n "financialSupport.securityItem3" }}</li>
+        <li>{{ i18n "financialSupport.securityItem4" }}</li>
+      </ul>
+    </div>
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.development" }}</h3>
+      <ul class="support-list">
+        <li>{{ i18n "financialSupport.devItem1" }}</li>
+        <li>{{ i18n "financialSupport.devItem2" }}</li>
+        <li>{{ i18n "financialSupport.devItem3" }}</li>
+        <li>{{ i18n "financialSupport.devItem4" }}</li>
+      </ul>
+    </div>
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.community" }}</h3>
+      <ul class="support-list">
+        <li>{{ i18n "financialSupport.communityItem1" }}</li>
+        <li>{{ i18n "financialSupport.communityItem2" }}</li>
+        <li>{{ i18n "financialSupport.communityItem3" }}</li>
+        <li>{{ i18n "financialSupport.communityItem4" }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="support-section">
+  <h2 id="sponsor">
+    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+    {{ i18n "financialSupport.sponsorTitle" }}
+  </h2>
+  <div class="coming-soon">
+    <svg class="coming-soon-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    <p>{{ i18n "financialSupport.sponsorComingSoon" }}</p>
+  </div>
+</div>
+
+
+<div class="support-section">
+  <h2 id="corporate">
+    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+    {{ i18n "financialSupport.corporateTitle" }}
+  </h2>
+  <p>{{ i18n "financialSupport.corporateDesc" }}</p>
+
+  <div class="tier-grid">
+    <div class="tier-card tier-bronze">
+      <div class="tier-header">
+        <h4>{{ i18n "financialSupport.tierBronze" }}</h4>
+        <div class="tier-price">$1,000+</div>
+      </div>
+      <div class="tier-body">
+        <p>{{ i18n "financialSupport.tierBronzeDesc" }}</p>
+      </div>
+    </div>
+    <div class="tier-card tier-silver">
+      <div class="tier-header">
+        <h4>{{ i18n "financialSupport.tierSilver" }}</h4>
+        <div class="tier-price">$5,000+</div>
+      </div>
+      <div class="tier-body">
+        <p>{{ i18n "financialSupport.tierSilverDesc" }}</p>
+      </div>
+    </div>
+    <div class="tier-card tier-gold">
+      <div class="tier-header">
+        <h4>{{ i18n "financialSupport.tierGold" }}</h4>
+        <div class="tier-price">$10,000+</div>
+      </div>
+      <div class="tier-body">
+        <p>{{ i18n "financialSupport.tierGoldDesc" }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p>{{ i18n "financialSupport.corporateReview" }} <strong>admin@i2p.net</strong> {{ i18n "financialSupport.corporateReview2" }}</p>
+  </div>
+</div>
+
+
+<div class="support-section">
+  <h2 id="transparency">
+    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    {{ i18n "financialSupport.transparencyTitle" }}
+  </h2>
+  <div class="info-box">
+    <p>
+      <strong>{{ i18n "financialSupport.coming2026" }}</strong> {{ i18n "financialSupport.transparencyDesc" }}
+    </p>
+  </div>
+</div>
+
+
+<div class="support-section">
+  <h2 id="other-ways">
+    <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    {{ i18n "financialSupport.otherWaysTitle" }}
+  </h2>
+  <p>{{ i18n "financialSupport.otherWaysDesc" }}</p>
+
+  <div class="support-grid">
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.contributeCode" }}</h3>
+      <p>{{ i18n "financialSupport.contributeCodeDesc" }}</p>
+      <div class="card-cta">
+        <a href="{{ relLangURL "docs/development/applications/" }}">{{ i18n "financialSupport.getStarted" }}</a>
+      </div>
+    </div>
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.runInfrastructure" }}</h3>
+      <p>{{ i18n "financialSupport.runInfrastructureDesc" }}</p>
+      <div class="card-cta">
+        <a href="{{ relLangURL "docs/guides/mirroring-guide/" }}">{{ i18n "financialSupport.mirroringGuide" }}</a>
+      </div>
+    </div>
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.improveDocs" }}</h3>
+      <p>{{ i18n "financialSupport.improveDocsDesc" }}</p>
+      <div class="card-cta">
+        <a href="{{ relLangURL "get-involved/" }}">{{ i18n "financialSupport.learnMore" }}</a>
+      </div>
+    </div>
+    <div class="support-card">
+      <h3>{{ i18n "financialSupport.spreadAwareness" }}</h3>
+      <p>{{ i18n "financialSupport.spreadAwarenessDesc" }}</p>
+      <div class="card-cta">
+        <a href="{{ relLangURL "blog/" }}">{{ i18n "financialSupport.readBlog" }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="info-box" style="text-align: center; margin-top: 3rem;">
+  <p><strong>{{ i18n "financialSupport.thankYou" }}</strong></p>
+  <p style="margin-top: 0.5rem;">{{ i18n "financialSupport.everyContribution" }}</p>
+</div>
+
+</div><!-- /.support-main -->
+</div><!-- /.support-layout -->
+</div><!-- /.support-container -->
+
+{{ end }}
