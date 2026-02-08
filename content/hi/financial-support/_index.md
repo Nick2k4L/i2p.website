@@ -1,5 +1,6 @@
 ---
-title: "Support I2P"
+title: "I2P का समर्थन करें"
 slug: "financial-support"
 layout: single
+aliases: 
 ---

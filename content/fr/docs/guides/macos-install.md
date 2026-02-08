@@ -7,10 +7,10 @@ accurateFor: "2.10.0"
 
 ## Ce dont vous aurez besoin
 
-- Un Mac fonctionnant sous macOS 10.14 (Mojave) ou version ultérieure
+- Un Mac fonctionnant sous macOS 10.14 (Mojave) ou ultérieur
 - Accès administrateur pour installer des applications
-- Environ 15-20 minutes de temps
-- Connexion Internet pour télécharger les programmes d'installation
+- Environ 15 à 20 minutes
+- Connexion Internet pour télécharger les installateurs
 
 ## Aperçu
 
@@ -21,13 +21,13 @@ Ce processus d'installation comprend quatre étapes principales :
 3. **Configurer l'application I2P** - Configurez le lanceur et ajoutez-le à votre dock
 4. **Configurer la bande passante I2P** - Exécutez l'assistant de configuration pour optimiser votre connexion
 
-## Partie 1 : Installer Java
+## Première partie : Installer Java
 
-I2P nécessite Java pour fonctionner. Si vous avez déjà Java 8 ou une version ultérieure installée, vous pouvez [passer à la Partie Deux](#part-two-download-and-install-i2p).
+I2P nécessite Java pour fonctionner. Si vous avez déjà Java 8 ou une version ultérieure installée, vous pouvez [passer à la partie deux](#part-two-download-and-install-i2p).
 
 ### Étape 1 : Télécharger Java
 
-Visitez la [page de téléchargement d'Oracle Java](https://www.oracle.com/java/technologies/downloads/) et téléchargez l'installateur macOS pour Java 8 ou une version ultérieure.
+Visitez la [page de téléchargement Oracle Java](https://www.oracle.com/java/technologies/downloads/) et téléchargez l'installateur macOS pour Java 8 ou version ultérieure.
 
 ![Télécharger Oracle Java pour macOS](/images/guides/macos-install/0-jre.png)
 
@@ -41,7 +41,7 @@ Localisez le fichier `.dmg` téléchargé dans votre dossier Téléchargements e
 
 macOS peut afficher une invite de sécurité car l'installateur provient d'un développeur identifié. Cliquez sur **Ouvrir** pour continuer.
 
-![Donnez l'autorisation à l'installateur de continuer](/images/guides/macos-install/2-jre.png)
+![Donnez l'autorisation à l'installateur de procéder](/images/guides/macos-install/2-jre.png)
 
 ### Étape 4 : Installer Java
 
@@ -73,7 +73,7 @@ Visitez la [page de téléchargements](/downloads/) et téléchargez l'installat
 
 ### Étape 2 : Exécuter l'installateur
 
-Double-cliquez sur le fichier `i2pinstall_X.X.X.jar` téléchargé. L'installateur se lancera et vous demandera de sélectionner votre langue préférée.
+Double-cliquez sur le fichier `i2pinstall_X.X.X.jar` téléchargé. Le programme d'installation se lancera et vous demandera de sélectionner votre langue préférée.
 
 ![Select your language](/images/guides/macos-install/1-i2p.png)
 
@@ -81,17 +81,17 @@ Double-cliquez sur le fichier `i2pinstall_X.X.X.jar` téléchargé. L'installate
 
 Lisez le message de bienvenue et cliquez sur **Suivant** pour continuer.
 
-![Introduction de l'installateur](/images/guides/macos-install/2-i2p.png)
+![Installer introduction](/images/guides/macos-install/2-i2p.png)
 
 ### Étape 4 : Avis important
 
 L'installateur affichera un avis important concernant les mises à jour. Les mises à jour I2P sont **signées de bout en bout** et vérifiées, même si cet installateur lui-même n'est pas signé. Cliquez sur **Suivant**.
 
-![Important notice about updates](/images/guides/macos-install/3-i2p.png)
+![Avis important concernant les mises à jour](/images/guides/macos-install/3-i2p.png)
 
 ### Étape 5 : Accord de licence
 
-Lisez l'accord de licence I2P (licence de style BSD). Cliquez sur **Suivant** pour accepter.
+Lisez l'accord de licence I2P (licence de type BSD). Cliquez sur **Suivant** pour accepter.
 
 ![Accord de licence](/images/guides/macos-install/4-i2p.png)
 
@@ -99,7 +99,7 @@ Lisez l'accord de licence I2P (licence de style BSD). Cliquez sur **Suivant** po
 
 Choisissez où installer I2P. L'emplacement par défaut (`/Applications/i2p`) est recommandé. Cliquez sur **Suivant**.
 
-![Select installation directory](/images/guides/macos-install/5-i2p.png)
+![Sélectionner le répertoire d'installation](/images/guides/macos-install/5-i2p.png)
 
 ### Étape 7 : Sélectionner les composants
 
@@ -115,19 +115,19 @@ Vérifiez vos choix et cliquez sur **Suivant** pour commencer l'installation d'I
 
 ### Étape 9 : Installation des fichiers
 
-L'installateur va copier les fichiers I2P sur votre système. Cela prend environ 1 à 2 minutes.
+L'installateur copiera les fichiers I2P sur votre système. Cela prend environ 1 à 2 minutes.
 
 ![Installation en cours](/images/guides/macos-install/8-i2p.png)
 
 ### Étape 10 : Générer les scripts de lancement
 
-L'installateur crée des scripts de lancement pour démarrer I2P.
+Le programme d'installation crée des scripts de lancement pour démarrer I2P.
 
 ![Génération des scripts de lancement](/images/guides/macos-install/9-i2p.png)
 
 ### Étape 11 : Raccourcis d'installation
 
-L'installateur propose de créer des raccourcis sur le bureau et des entrées de menu. Faites vos sélections et cliquez sur **Suivant**.
+L'installateur propose de créer des raccourcis de bureau et des entrées de menu. Faites vos sélections et cliquez sur **Suivant**.
 
 ![Create shortcuts](/images/guides/macos-install/10-i2p.png)
 
@@ -139,11 +139,11 @@ Succès ! I2P est maintenant installé. Cliquez sur **Terminé** pour finir.
 
 ## Troisième partie : Configurer l'application I2P
 
-Maintenant, rendons I2P facile à lancer en l'ajoutant à votre dossier Applications et au Dock.
+Maintenant, facilitons le lancement d'I2P en l'ajoutant à votre dossier Applications et au Dock.
 
 ### Étape 1 : Ouvrir le dossier Applications
 
-Ouvrez le Finder et naviguez vers votre dossier **Applications**.
+Ouvrez Finder et naviguez vers votre dossier **Applications**.
 
 ![Ouvrir le dossier Applications](/images/guides/macos-install/0-conf.png)
 
@@ -151,19 +151,19 @@ Ouvrez le Finder et naviguez vers votre dossier **Applications**.
 
 Recherchez le dossier **I2P** ou l'application **Start I2P Router** dans `/Applications/i2p/`.
 
-![Trouver le lanceur I2P](/images/guides/macos-install/1-conf.png)
+![Trouvez le lanceur I2P](/images/guides/macos-install/1-conf.png)
 
 ### Étape 3 : Ajouter au Dock
 
-Faites glisser l'application **Start I2P Router** vers votre Dock pour un accès facile. Vous pouvez également créer un alias sur votre bureau.
+Glissez l'application **Start I2P Router** vers votre Dock pour un accès facile. Vous pouvez également créer un alias sur votre bureau.
 
 ![Ajouter I2P à votre Dock](/images/guides/macos-install/2-conf.png)
 
 **Astuce** : Faites un clic droit sur l'icône I2P dans le Dock et sélectionnez **Options → Garder dans le Dock** pour la rendre permanente.
 
-## Partie quatre : Configurer la bande passante I2P
+## Partie Quatre : Configurer la Bande Passante I2P
 
-Lorsque vous lancez I2P pour la première fois, vous passerez par un assistant de configuration pour configurer vos paramètres de bande passante. Cela aide à optimiser les performances d'I2P pour votre connexion.
+Lorsque vous lancez I2P pour la première fois, vous passerez par un assistant de configuration pour paramétrer vos réglages de bande passante. Cela aide à optimiser les performances d'I2P pour votre connexion.
 
 ### Étape 1 : Lancer I2P
 
@@ -171,9 +171,9 @@ Cliquez sur l'icône I2P dans votre Dock (ou double-cliquez sur le lanceur). Vot
 
 ![Écran d'accueil de la console du router I2P](/images/guides/macos-install/0-wiz.png)
 
-### Étape 2 : Assistant de Bienvenue
+### Étape 2 : Assistant de bienvenue
 
-L'assistant de configuration vous accueillera. Cliquez sur **Suivant** pour commencer la configuration d'I2P.
+L'assistant de configuration vous accueillera. Cliquez sur **Suivant** pour commencer à configurer I2P.
 
 ![Setup wizard introduction](/images/guides/macos-install/1-wiz.png)
 
@@ -185,19 +185,19 @@ Sélectionnez votre **langue d'interface** préférée et choisissez entre le th
 
 ### Étape 4 : Informations sur le test de bande passante
 
-L'assistant vous expliquera le test de bande passante. Ce test se connecte au service **M-Lab** pour mesurer votre vitesse internet. Cliquez sur **Suivant** pour continuer.
+L'assistant va expliquer le test de bande passante. Ce test se connecte au service **M-Lab** pour mesurer la vitesse de votre connexion internet. Cliquez sur **Suivant** pour continuer.
 
 ![Explication du test de bande passante](/images/guides/macos-install/3-wiz.png)
 
 ### Étape 5 : Exécuter le test de bande passante
 
-Cliquez sur **Lancer le test** pour mesurer vos vitesses de téléchargement ascendant et descendant. Le test dure environ 30 à 60 secondes.
+Cliquez sur **Lancer le test** pour mesurer vos vitesses de téléchargement ascendant et descendant. Le test prend environ 30 à 60 secondes.
 
 ![Exécution du test de bande passante](/images/guides/macos-install/4-wiz.png)
 
 ### Étape 6 : Résultats des tests
 
-Examinez vos résultats de test. I2P recommandera des paramètres de bande passante basés sur votre vitesse de connexion.
+Examinez vos résultats de test. I2P recommandera des paramètres de bande passante basés sur la vitesse de votre connexion.
 
 ![Résultats du test de bande passante](/images/guides/macos-install/5-wiz.png)
 
@@ -206,53 +206,53 @@ Examinez vos résultats de test. I2P recommandera des paramètres de bande passa
 Choisissez la quantité de bande passante que vous souhaitez partager avec le réseau I2P :
 
 - **Automatique** (Recommandé) : I2P gère la bande passante en fonction de votre utilisation
-- **Limitée** : Définir des limites spécifiques d'upload/téléchargement
+- **Limitée** : Définir des limites spécifiques de téléchargement/envoi
 - **Illimitée** : Partager autant que possible (pour les connexions rapides)
 
-Cliquez sur **Suivant** pour sauvegarder vos paramètres.
+Cliquez sur **Suivant** pour enregistrer vos paramètres.
 
 ![Configurer le partage de bande passante](/images/guides/macos-install/6-wiz.png)
 
 ### Étape 8 : Configuration terminée
 
-Votre router I2P est maintenant configuré et en fonctionnement ! La console du router affichera votre statut de connexion et vous permettra de naviguer sur les sites I2P.
+Votre router I2P est maintenant configuré et en cours d'exécution ! La console du router affichera l'état de votre connexion et vous permettra de naviguer sur les sites I2P.
 
 ## Débuter avec I2P
 
-Maintenant qu'I2P est installé et configuré, vous pouvez :
+Maintenant que I2P est installé et configuré, vous pouvez :
 
 1. **Parcourir les sites I2P** : Visitez la [page d'accueil I2P](http://127.0.0.1:7657/home) pour voir les liens vers les services I2P populaires
-2. **Configurer votre navigateur** : Configurez un [profil de navigateur](/docs/guides/browser-config) pour accéder aux sites `.i2p`
-3. **Explorer les services** : Découvrez l'email I2P, les forums, le partage de fichiers, et plus encore
-4. **Surveiller votre router** : La [console](http://127.0.0.1:7657/console) affiche l'état et les statistiques de votre réseau
+2. **Configurer votre navigateur** : Créez un [profil de navigateur](/docs/guides/browser-config) pour accéder aux sites `.i2p`
+3. **Explorer les services** : Découvrez la messagerie I2P, les forums, le partage de fichiers, et plus encore
+4. **Surveiller votre router** : La [console](http://127.0.0.1:7657/console) affiche l'état de votre réseau et les statistiques
 
 ### Liens utiles
 
-- **Console du Router**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Configuration**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Carnet d'adresses**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Paramètres de bande passante**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Console du router** : [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
+- **Configuration** : [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Carnet d'adresses** : [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
+- **Paramètres de bande passante** : [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
 ## Relancer l'assistant de configuration
 
 Si vous souhaitez modifier vos paramètres de bande passante ou reconfigurer I2P plus tard, vous pouvez relancer l'assistant de bienvenue depuis la Console du router :
 
-1. Allez à [Assistant de configuration I2P](http://127.0.0.1:7657/welcome)
+1. Allez sur [Assistant de configuration I2P](http://127.0.0.1:7657/welcome)
 2. Suivez à nouveau les étapes de l'assistant
 
 ## Dépannage
 
 ### I2P ne démarre pas
 
-- **Vérifier Java** : Assurez-vous que Java est installé en exécutant `java -version` dans Terminal
+- **Vérifier Java** : Assurez-vous que Java est installé en exécutant `java -version` dans le Terminal
 - **Vérifier les permissions** : Assurez-vous que le dossier I2P a les permissions correctes
 - **Vérifier les logs** : Consultez `~/.i2p/wrapper.log` pour les messages d'erreur
 
 ### Le navigateur ne peut pas accéder aux sites I2P
 
-- Assurez-vous qu'I2P fonctionne (vérifiez la Console du router)
-- Configurez les paramètres proxy de votre navigateur pour utiliser le proxy HTTP `127.0.0.1:4444`
-- Attendez 5 à 10 minutes après le démarrage pour qu'I2P s'intègre au réseau
+- Assurez-vous qu'I2P est en cours d'exécution (vérifiez la Console du router)
+- Configurez les paramètres de proxy de votre navigateur pour utiliser le proxy HTTP `127.0.0.1:4444`
+- Attendez 5 à 10 minutes après le démarrage pour qu'I2P s'intègre dans le réseau
 
 ### Performances lentes
 
@@ -269,11 +269,11 @@ Pour supprimer I2P de votre Mac :
 3. Supprimez le dossier `~/.i2p` (votre configuration et données I2P)
 4. Retirez l'icône I2P de votre Dock
 
-## Prochaines étapes
+## Étapes suivantes
 
-- **Rejoignez la communauté** : Visitez [i2pforum.net](http://i2pforum.net) ou découvrez I2P sur Reddit
+- **Rejoindre la communauté** : Visitez [i2pforum.net](http://i2pforum.net) ou découvrez I2P sur Reddit
 - **En savoir plus** : Lisez la [documentation I2P](/en/docs) pour comprendre le fonctionnement du réseau
-- **Participez** : Envisagez de [contribuer au développement d'I2P](/en/get-involved) ou de faire fonctionner l'infrastructure
+- **Participer** : Envisagez de [contribuer au développement d'I2P](/en/get-involved) ou d'exploiter des infrastructures
 
 Félicitations ! Vous faites maintenant partie du réseau I2P. Bienvenue sur l'internet invisible !
 

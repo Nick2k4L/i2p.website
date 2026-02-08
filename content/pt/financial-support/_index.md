@@ -1,5 +1,6 @@
 ---
-title: "Support I2P"
+title: "Apoie o I2P"
 slug: "financial-support"
 layout: single
+aliases: 
 ---
