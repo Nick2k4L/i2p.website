@@ -15,11 +15,11 @@ Este documento descreve alguns tipos de dados comuns a todos os protocolos I2P, 
 
 #### Descrição
 
-Representa um número inteiro não-negativo.
+Representa um número inteiro não negativo.
 
 #### Conteúdo
 
-1 a 8 bytes em ordem de bytes de rede (big endian) representando um número inteiro sem sinal.
+1 a 8 bytes em ordem de bytes de rede (big endian) representando um inteiro sem sinal.
 
 ### Data
 
@@ -45,11 +45,11 @@ Representa uma string codificada em UTF-8.
 
 #### Descrição
 
-Esta estrutura é usada em ElGamal ou outra criptografia assimétrica, representando apenas o expoente, não os primos, que são constantes e definidos na especificação de criptografia [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy). Outros esquemas de criptografia estão em processo de definição, veja a tabela abaixo.
+Esta estrutura é usada no ElGamal ou outras criptografias assimétricas, representando apenas o expoente, não os números primos, que são constantes e definidos na especificação de criptografia [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy). Outros esquemas de criptografia estão em processo de definição, veja a tabela abaixo.
 
 #### Conteúdo
 
-O tipo e comprimento da chave são inferidos do contexto ou especificados no Certificado de Chave de um Destino ou RouterInfo, ou nos campos em um [LeaseSet2](#leaseset2) ou outra estrutura de dados. O tipo padrão é ElGamal. A partir da versão 0.9.38, outros tipos podem ser suportados, dependendo do contexto. As chaves são big-endian, salvo indicação em contrário.
+O tipo e comprimento da chave são inferidos do contexto ou são especificados no Certificado de Chave de um Destination ou RouterInfo, ou nos campos de um [LeaseSet2](#leaseset2) ou outra estrutura de dados. O tipo padrão é ElGamal. A partir da versão 0.9.38, outros tipos podem ser suportados, dependendo do contexto. As chaves são big-endian, salvo indicação em contrário.
 
 Chaves X25519 são suportadas em Destinations e LeaseSet2 a partir da versão 0.9.44. Chaves X25519 são suportadas em RouterIdentities a partir da versão 0.9.48.
 
@@ -155,11 +155,11 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html
 
 #### Descrição
 
-Esta estrutura é usada na descriptografia ElGamal ou outras assimétricas, representando apenas o expoente, não os primos que são constantes e definidos na especificação de criptografia [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy). Outros esquemas de criptografia estão em processo de definição, veja a tabela abaixo.
+Esta estrutura é usada na descriptografia ElGamal ou outra descriptografia assimétrica, representando apenas o expoente, não os números primos que são constantes e definidos na especificação de criptografia [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy). Outros esquemas de criptografia estão em processo de definição, veja a tabela abaixo.
 
 #### Conteúdo
 
-O tipo e comprimento da chave são inferidos do contexto ou são armazenados separadamente numa estrutura de dados ou num ficheiro de chave privada. O tipo padrão é ElGamal. A partir da versão 0.9.38, outros tipos podem ser suportados, dependendo do contexto. As chaves são big-endian salvo indicação em contrário.
+O tipo e o comprimento da chave são inferidos do contexto ou armazenados separadamente em uma estrutura de dados ou arquivo de chave privada. O tipo padrão é ElGamal. A partir da versão 0.9.38, outros tipos podem ser suportados, dependendo do contexto. As chaves são big-endian, salvo indicação em contrário.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -261,7 +261,7 @@ Esta estrutura é usada para verificar assinaturas.
 
 #### Conteúdo
 
-O tipo e o comprimento da chave são inferidos do contexto ou são especificados no Key Certificate de um Destination. O tipo padrão é DSA_SHA1. A partir da versão 0.9.12, outros tipos podem ser suportados, dependendo do contexto.
+O tipo e comprimento da chave são inferidos do contexto ou são especificados no Certificado de Chave de um Destination. O tipo padrão é DSA_SHA1. A partir da versão 0.9.12, outros tipos podem ser suportados, dependendo do contexto.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -338,7 +338,7 @@ O tipo e o comprimento da chave são inferidos do contexto ou são especificados
 #### Notas
 
 * Quando uma chave é composta por dois elementos (por exemplo pontos X,Y), ela é
-  serializada preenchendo cada elemento até comprimento/2 com zeros à esquerda se
+  serializada preenchendo cada elemento com comprimento/2 com zeros à esquerda se
   necessário.
 
 * Todos os tipos são Big Endian, exceto para EdDSA e RedDSA, que são armazenados e transmitidos
@@ -431,11 +431,10 @@ O tipo e comprimento da chave são especificados quando criada. O tipo padrão �
 #### Notas
 
 * Quando uma chave é composta por dois elementos (por exemplo pontos X,Y), ela é
-  serializada preenchendo cada elemento com comprimento/2 com zeros à esquerda se
+  serializada preenchendo cada elemento para comprimento/2 com zeros à esquerda se
   necessário.
 
-* Todos os tipos são Big Endian, exceto para EdDSA e RedDSA, que são armazenados e transmitidos
-  em formato Little Endian.
+* Todos os tipos são Big Endian, exceto para EdDSA e RedDSA, que são armazenados e transmitidos em formato Little Endian.
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html
 
@@ -447,7 +446,7 @@ Esta estrutura representa a assinatura de alguns dados.
 
 #### Conteúdo
 
-O tipo e comprimento da assinatura são inferidos do tipo de chave utilizada. O tipo padrão é DSA_SHA1. A partir da versão 0.9.12, outros tipos podem ser suportados, dependendo do contexto.
+O tipo e comprimento da assinatura são inferidos a partir do tipo de chave utilizada. O tipo padrão é DSA_SHA1. A partir da versão 0.9.12, outros tipos podem ser suportados, dependendo do contexto.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -523,11 +522,11 @@ O tipo e comprimento da assinatura são inferidos do tipo de chave utilizada. O 
 </table>
 #### Notas
 
-* Quando uma assinatura é composta por dois elementos (por exemplo, valores R,S), ela é
-  serializada preenchendo cada elemento até comprimento/2 com zeros à esquerda se
+* Quando uma assinatura é composta por dois elementos (por exemplo valores R,S), ela é
+  serializada preenchendo cada elemento com length/2 com zeros à esquerda se
   necessário.
 
-* Todos os tipos são Big Endian, exceto para EdDSA e RedDSA, que são armazenados e transmitidos
+* Todos os tipos são Big Endian, exceto EdDSA e RedDSA, que são armazenados e transmitidos
   em formato Little Endian.
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html
@@ -544,9 +543,9 @@ Representa o SHA256 de alguns dados.
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html
 
-### Tag de Sessão
+### Session Tag
 
-Nota: Session Tags para destinos ECIES-X25519 (ratchet) e routers ECIES-X25519 são de 8 bytes. Consulte [ECIES](/docs/specs/ecies/) e [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+Nota: Session Tags para destinos ECIES-X25519 (ratchet) e routers ECIES-X25519 são de 8 bytes. Veja [ECIES](/docs/specs/ecies/) e [ECIES-ROUTERS](/docs/specs/ecies-routers/).
 
 #### Descrição
 
@@ -562,11 +561,11 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html
 
 #### Descrição
 
-Define um identificador único para cada router em um tunnel. Um Tunnel ID geralmente é maior que zero; não use um valor zero exceto em casos especiais.
+Define um identificador que é único para cada router em um tunnel. Um Tunnel ID é geralmente maior que zero; não use um valor de zero exceto em casos especiais.
 
 #### Conteúdo
 
-4 bytes [Integer](#integer)
+4 byte [Integer](#integer)
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html
 
@@ -578,24 +577,17 @@ Um certificado é um contêiner para vários recibos ou provas de trabalho usado
 
 #### Conteúdo
 
-1 byte [Integer](#integer) especificando o tipo de certificado, seguido por um [Integer](#integer) de 2 bytes especificando o tamanho da carga útil do certificado, depois essa quantidade de bytes.
+1 byte [Integer](#integer) especificando o tipo de certificado, seguido por um [Integer](#integer) de 2 bytes especificando o tamanho do payload do certificado, então essa quantidade de bytes.
 
 ```
 +----+----+----+----+----+-/
 |type| length  | payload
 +----+----+----+----+----+-/
 
-type :: `Integer`
+type :: Integer
         length -> 1 byte
 
-        case 0 -> NULL
-        case 1 -> HASHCASH
-        case 2 -> HIDDEN
-        case 3 -> SIGNED
-        case 4 -> MULTIPLE
-        case 5 -> KEY
-
-length :: `Integer`
+length :: Integer
           length -> 2 bytes
 
 payload :: data
@@ -608,18 +600,18 @@ payload :: data
   tipos de chave. A partir da 0.9.48, tipos de chave pública de criptografia X25519
   são permitidos. Veja abaixo.
 
-* Para [Garlic Cloves](/docs/specs/i2np/#struct-garlicclove), o Certificado é sempre NULL, nenhum outro está atualmente implementado.
+* Para [Garlic Cloves](/docs/specs/i2np/#struct-garlicclove), o Certificate é sempre NULL, nenhum outro está atualmente implementado.
 
-* Para [Mensagens Garlic](/docs/specs/i2np/#msg-garlic), o Certificado é sempre NULL, nenhum outro está atualmente implementado.
+* Para [Garlic Messages](/docs/specs/i2np/#msg-garlic), o Certificate é sempre NULL, nenhum outro está atualmente implementado.
 
 * Para [Destinations](#destination), o Certificate pode ser não-NULL. A partir da versão 0.9.12, um Key Certificate pode ser usado para especificar o tipo de chave pública de assinatura. Veja abaixo.
 
-* Os implementadores são aconselhados a proibir dados excessivos em Certificados.
+* Os implementadores são alertados para proibir dados em excesso nos Certificados.
   O comprimento apropriado para cada tipo de certificado deve ser aplicado.
 
-#### Tipos de Certificados
+#### Tipos de Certificado
 
-Os seguintes tipos de certificado são definidos:
+Os seguintes tipos de certificado estão definidos:
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -680,7 +672,7 @@ Os seguintes tipos de certificado são definidos:
 
 Os certificados de chave foram introduzidos na versão 0.9.12. Antes dessa versão, todas as PublicKeys eram chaves ElGamal de 256 bytes, e todas as SigningPublicKeys eram chaves DSA-SHA1 de 128 bytes. Um certificado de chave fornece um mecanismo para indicar o tipo da PublicKey e SigningPublicKey no Destination ou RouterIdentity, e para empacotar quaisquer dados de chave que excedam os comprimentos padrão.
 
-Ao manter exatamente 384 bytes antes do certificado, e colocar quaisquer dados de chave excedentes dentro do certificado, mantemos compatibilidade para qualquer software que analise Destinations e Router Identities.
+Ao manter exatamente 384 bytes antes do certificado e colocar qualquer dado de chave excedente dentro do certificado, mantemos a compatibilidade para qualquer software que analise Destinations e Router Identities.
 
 O payload do certificado de chave contém:
 
@@ -710,7 +702,7 @@ O payload do certificado de chave contém:
     </tr>
   </tbody>
 </table>
-Aviso: A ordem do tipo de chave é o oposto do que você pode esperar; o Tipo de Chave Pública de Assinatura vem primeiro.
+Aviso: A ordem dos tipos de chave é o oposto do que você pode esperar; o Tipo de Chave Pública de Assinatura vem primeiro.
 
 Os tipos de Chave Pública de Assinatura definidos são:
 
@@ -982,15 +974,15 @@ Os tipos de Chave Pública Criptográfica definidos são:
 </table>
 Quando um Key Certificate não está presente, os 384 bytes precedentes no Destination ou RouterIdentity são definidos como a PublicKey ElGamal de 256 bytes seguida pela SigningPublicKey DSA-SHA1 de 128 bytes. Quando um Key Certificate está presente, os 384 bytes precedentes são redefinidos da seguinte forma:
 
-* Parte completa ou primeira porção da Chave Pública Criptográfica
+* Chave Pública Criptográfica completa ou primeira porção
 
-* Preenchimento aleatório se o comprimento total das duas chaves for inferior a 384 bytes
+* Preenchimento aleatório se o comprimento total das duas chaves for menor que 384 bytes
 
-* Porção completa ou primeira da Chave Pública de Assinatura
+* Chave Pública de Assinatura completa ou primeira parte
 
-A Chave Pública de Criptografia é alinhada no início e a Chave Pública de Assinatura é alinhada no final. O preenchimento (se houver) fica no meio. Os comprimentos e limites dos dados iniciais da chave, do preenchimento e das porções de dados excedentes da chave nos certificados não são especificados explicitamente, mas são derivados dos comprimentos dos tipos de chave especificados. Se o comprimento total das Chaves Públicas de Criptografia e de Assinatura exceder 384 bytes, o restante será contido no Certificado de Chave. Se o comprimento da Chave Pública de Criptografia não for 256 bytes, o método para determinar a fronteira entre as duas chaves deve ser especificado em uma revisão futura deste documento.
+A Chave Pública Criptográfica é alinhada no início e a Chave Pública de Assinatura é alinhada no final. O preenchimento (se houver) fica no meio. Os comprimentos e limites dos dados iniciais da chave, do preenchimento e das partes de dados de chave excedentes nos certificados não são especificados explicitamente, mas são derivados dos comprimentos dos tipos de chave especificados. Se os comprimentos totais das Chaves Públicas Criptográfica e de Assinatura excederem 384 bytes, o restante será contido no Certificado de Chave. Se o comprimento da Chave Pública Criptográfica não for 256 bytes, o método para determinar o limite entre as duas chaves será especificado em uma revisão futura deste documento.
 
-Exemplos de layouts usando uma Chave Pública Criptográfica ElGamal e o tipo de Chave Pública de Assinatura indicado:
+Layouts de exemplo usando uma Chave Pública Cripto ElGamal e o tipo de Chave Pública de Assinatura indicado:
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -1052,14 +1044,14 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html
 
 #### Notas
 
-* Os implementadores são alertados para proibir dados em excesso nos Key Certificates.
+* Os implementadores são alertados para proibir dados excessivos em Certificados de Chave.
   O comprimento apropriado para cada tipo de certificado deve ser aplicado.
 
 * Um certificado KEY com tipos 0,0 (ElGamal,DSA_SHA1) é permitido mas desencorajado.
   Não é bem testado e pode causar problemas em algumas implementações.
   Use um certificado NULL na representação canônica de um
   Destination (ElGamal,DSA_SHA1) ou RouterIdentity, que será 4 bytes mais curto
-  do que usar um certificado KEY.
+  que usar um certificado KEY.
 
 ### Mapeamento
 
@@ -1067,11 +1059,11 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html
 
 Um conjunto de mapeamentos chave/valor ou propriedades
 
-#### Conteúdos
+#### Conteúdo
 
-Um Integer de tamanho de 2 bytes seguido por uma série de pares String=String;.
+Um Integer de 2 bytes seguido por uma série de pares String=String;.
 
-AVISO: A maioria dos usos de Mapping estão em estruturas assinadas, onde as entradas de Mapping devem ser ordenadas por chave, para que a assinatura seja imutável. Falha ao ordenar por chave resultará em falhas de assinatura!
+AVISO: A maioria dos usos de Mapping estão em estruturas assinadas, onde as entradas do Mapping devem ser ordenadas por chave, para que a assinatura seja imutável. Falha ao ordenar por chave resultará em falhas de assinatura!
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1097,32 +1089,26 @@ val_string :: `String`
 
 * A codificação não é ideal - precisamos dos caracteres '=' e ';', ou dos comprimentos das strings, mas não de ambos
 
-* Alguma documentação diz que as strings podem não incluir '=' ou ';' mas esta
-  codificação os suporta
+* Algumas documentações dizem que as strings podem não incluir '=' ou ';' mas esta codificação suporta eles
 
-* Strings são definidas como UTF-8, mas na implementação atual, I2CP usa
-  UTF-8 mas I2NP não. Por exemplo, strings UTF-8 em um mapeamento de opções
-  RouterInfo em uma I2NP Database Store Message serão corrompidas.
+* Strings são definidas como UTF-8, mas na implementação atual, I2CP usa UTF-8 mas I2NP não. Por exemplo, strings UTF-8 em um mapeamento de opções RouterInfo em uma I2NP Database Store Message serão corrompidas.
 
-* A codificação permite chaves duplicadas, porém em qualquer uso onde o mapeamento é
-  assinado, as duplicatas podem causar uma falha de assinatura.
+* A codificação permite chaves duplicadas, no entanto, em qualquer uso onde o mapeamento é assinado, duplicatas podem causar uma falha de assinatura.
 
 * Mapeamentos contidos em mensagens I2NP (por exemplo, em um RouterAddress ou RouterInfo)
-  devem ser ordenados por chave para que a assinatura seja invariante. Chaves
+  devem ser ordenados por chave para que a assinatura seja invariável. Chaves
   duplicadas não são permitidas.
 
 * Os mapeamentos contidos em um [I2CP SessionConfig](/docs/specs/i2cp/#struct-sessionconfig) devem ser ordenados por chave para que
-  a assinatura seja invariante. Chaves duplicadas não são permitidas.
+  a assinatura seja invariável. Chaves duplicadas não são permitidas.
 
 * O método de ordenação é definido como em Java String.compareTo(), usando o valor Unicode dos caracteres.
 
-* Embora seja dependente da aplicação, chaves e valores são geralmente
-  sensíveis a maiúsculas e minúsculas.
+* Embora dependa da aplicação, chaves e valores são geralmente sensíveis a maiúsculas e minúsculas.
 
-* Os limites de comprimento das strings de chave e valor são de 255 bytes (não caracteres) cada, mais
-  o byte de comprimento. O byte de comprimento pode ser 0.
+* Os limites de comprimento das strings de chave e valor são de 255 bytes (não caracteres) cada, mais o byte de comprimento. O byte de comprimento pode ser 0.
 
-* O limite total de comprimento é 65535 bytes, mais o campo de tamanho de 2 bytes, ou 65537 no total.
+* O limite de comprimento total é 65535 bytes, mais o campo de tamanho de 2 bytes, ou 65537 no total.
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html
 
@@ -1137,6 +1123,19 @@ Uma chave pública de criptografia, uma chave pública de assinatura e um certif
 #### Conteúdo
 
 Uma [PublicKey](#publickey) seguida por uma [SigningPublicKey](#signingpublickey) e então um [Certificate](#certificate).
+
+```bytefield
+public_key          | 8 | blue   | PublicKey (partial or full), 256 bytes or as specified in key cert
+
+padding (optional)  | 8 | yellow | random data, pub + pad + sig == 384 bytes
+
+signing_key         | 8 | green  | SigningPublicKey (partial or full), 128 bytes or as specified
+
+certificate         | 3 | purple | Certificate, >= 3 bytes
+= total length: 387+ bytes
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1177,29 +1176,31 @@ certificate :: `Certificate`
 
 total length: 387+ bytes
 ```
-#### Diretrizes de Geração de Padding
 
-Essas diretrizes foram propostas na Proposta 161 e implementadas na versão 0.9.57 da API. Essas diretrizes são compatíveis com versões anteriores desde a versão 0.6 (2005). Veja a Proposta 161 para informações básicas e detalhes adicionais.
+</details>
+#### Diretrizes de Geração de Preenchimento
 
-Para qualquer combinação de tipos de chave atualmente usada que não seja ElGamal + DSA-SHA1, o padding estará presente. Além disso, para destinos, o campo de chave pública de 256 bytes não tem sido usado desde a versão 0.6 (2005).
+Essas diretrizes foram propostas na Proposta 161 e implementadas na versão da API 0.9.57. Essas diretrizes são compatíveis com versões anteriores desde a versão 0.6 (2005). Consulte a Proposta 161 para informações de contexto e detalhes adicionais.
 
-Os implementadores devem gerar os dados aleatórios para chaves públicas de Destination e preenchimento de Identidade de Destination e Router, de forma que sejam compressíveis em vários protocolos I2P, mantendo a segurança e evitando que as representações Base 64 pareçam corrompidas ou inseguras. Isso fornece a maioria dos benefícios de remover os campos de preenchimento sem mudanças disruptivas nos protocolos.
+Para qualquer combinação atualmente usada de tipos de chave que não seja ElGamal + DSA-SHA1, padding estará presente. Além disso, para destinos, o campo de chave pública de 256 bytes não é usado desde a versão 0.6 (2005).
 
-Rigorosamente falando, apenas a chave pública de assinatura de 32 bytes (tanto em Destinations quanto em Router Identities) e a chave pública de criptografia de 32 bytes (apenas em Router Identities) é um número aleatório que fornece toda a entropia necessária para que os hashes SHA-256 dessas estruturas sejam criptograficamente fortes e distribuídos aleatoriamente no DHT do netDb.
+Os implementadores devem gerar os dados aleatórios para chaves públicas de Destination e preenchimento de Identity de Destination e Router, de modo que sejam compressíveis em vários protocolos I2P enquanto permanecem seguros, e sem que as representações Base 64 pareçam corrompidas ou inseguras. Isso fornece a maioria dos benefícios de remover os campos de preenchimento sem qualquer mudança disruptiva de protocolo.
 
-No entanto, por excesso de cautela, recomendamos que seja usado um mínimo de 32 bytes de dados aleatórios no campo da chave pública ElG e no padding. Além disso, se os campos fossem todos zeros, os destinos Base 64 conteriam longas sequências de caracteres AAAA, o que pode causar alarme ou confusão aos usuários.
+Rigorosamente falando, apenas a chave pública de assinatura de 32 bytes (tanto em Destinations quanto em Router Identities) e a chave pública de criptografia de 32 bytes (apenas em Router Identities) é um número aleatório que fornece toda a entropia necessária para que os hashes SHA-256 dessas estruturas sejam criptograficamente fortes e distribuídos aleatoriamente no DHT do banco de dados da rede.
 
-Repita os 32 bytes de dados aleatórios conforme necessário para que a estrutura KeysAndCert completa seja altamente compressível nos protocolos I2P como I2NP Database Store Message, Streaming SYN, handshake SSU2 e Datagrams que podem ser respondidos.
+No entanto, por excesso de precaução, recomendamos que um mínimo de 32 bytes de dados aleatórios seja usado no campo de chave pública ElG e no preenchimento. Além disso, se os campos fossem todos zeros, os destinos Base 64 conteriam longas sequências de caracteres AAAA, o que pode causar alarme ou confusão aos usuários.
+
+Repita os 32 bytes de dados aleatórios conforme necessário para que a estrutura KeysAndCert completa seja altamente comprimível em protocolos I2P como I2NP Database Store Message, Streaming SYN, handshake SSU2 e Datagrams com resposta.
 
 Exemplos:
 
-* Uma Identidade de Router com tipo de criptografia X25519 e tipo de assinatura Ed25519
+* Uma Router Identity com tipo de criptografia X25519 e tipo de assinatura Ed25519
   conterá 10 cópias (320 bytes) dos dados aleatórios, para uma economia de aproximadamente 288 bytes quando comprimida.
 
 * Um Destination com tipo de assinatura Ed25519
-  conterá 11 cópias (352 bytes) dos dados aleatórios, resultando numa economia de aproximadamente 320 bytes quando comprimido.
+  conterá 11 cópias (352 bytes) dos dados aleatórios, para uma economia de aproximadamente 320 bytes quando comprimido.
 
-As implementações devem, naturalmente, armazenar a estrutura completa de 387+ bytes porque o hash SHA-256 da estrutura abrange todo o conteúdo.
+As implementações devem, é claro, armazenar a estrutura completa de 387+ bytes porque o hash SHA-256 da estrutura cobre todo o conteúdo.
 
 #### Notas
 
@@ -1208,7 +1209,7 @@ As implementações devem, naturalmente, armazenar a estrutura completa de 387+ 
 * A partir da versão 0.9.12, se o certificado for um Key Certificate, os limites dos campos de chave podem variar. Veja a seção Key Certificate acima para detalhes.
 
 * A Chave Pública Criptográfica está alinhada no início e a Chave Pública de Assinatura está
-  alinhada no final. O preenchimento (se houver) está no meio.
+  alinhada no final. O preenchimento (se houver) fica no meio.
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html
 
@@ -1222,18 +1223,17 @@ Define a forma de identificar exclusivamente um router específico
 
 Idêntico ao KeysAndCert.
 
-Consulte [KeysAndCert](#keysandcert) para diretrizes sobre como gerar os dados aleatórios para o campo de preenchimento.
+Veja [KeysAndCert](#keysandcert) para diretrizes sobre como gerar os dados aleatórios para o campo de preenchimento.
 
 #### Notas
 
-* O certificado para uma RouterIdentity era sempre NULL até a versão 0.9.12.
+* O certificado para um RouterIdentity sempre foi NULL até a versão 0.9.12.
 
 * Não assuma que estes são sempre 387 bytes! Eles são 387 bytes mais o comprimento do certificado especificado nos bytes 385-386, que pode ser diferente de zero.
 
-* A partir da versão 0.9.12, se o certificado for um Key Certificate, os limites dos campos de chave podem variar. Consulte a seção Key Certificate acima para detalhes.
+* A partir da versão 0.9.12, se o certificado for um Key Certificate, os limites dos campos de chave podem variar. Veja a seção Key Certificate acima para detalhes.
 
-* A Chave Pública Criptográfica está alinhada no início e a Chave Pública de Assinatura está
-  alinhada no final. O preenchimento (se houver) fica no meio.
+* A Chave Pública Criptográfica está alinhada no início e a Chave Pública de Assinatura está alinhada no final. O preenchimento (se houver) fica no meio.
 
 * RouterIdentities com um certificado de chave e uma chave pública ECIES_X25519
   são suportadas a partir da versão 0.9.48.
@@ -1247,20 +1247,20 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.h
 
 Um Destination define um endpoint específico para o qual as mensagens podem ser direcionadas para entrega segura.
 
-#### Conteúdo
+#### Conteúdos
 
-Idêntico ao [KeysAndCert](#keysandcert), exceto que a chave pública nunca é usada, e pode conter dados aleatórios em vez de uma Chave Pública ElGamal válida.
+Idêntico a [KeysAndCert](#keysandcert), exceto que a chave pública nunca é usada, e pode conter dados aleatórios em vez de uma Chave Pública ElGamal válida.
 
-Consulte [KeysAndCert](#keysandcert) para diretrizes sobre como gerar dados aleatórios para os campos de chave pública e preenchimento.
+Veja [KeysAndCert](#keysandcert) para diretrizes sobre a geração de dados aleatórios para os campos de chave pública e preenchimento.
 
 #### Notas
 
 * A chave pública do destino foi usada para a antiga encriptação i2cp-to-i2cp
   que foi desabilitada na versão 0.6 (2005), atualmente não é usada exceto
-  para o IV para encriptação de LeaseSet, que está deprecada. A chave pública no
+  para o IV para encriptação de LeaseSet, que está obsoleta. A chave pública no
   LeaseSet é usada em seu lugar.
 
-* Não assuma que estes são sempre 387 bytes! Eles são 387 bytes mais o comprimento do certificado especificado nos bytes 385-386, que pode ser diferente de zero.
+* Não assuma que estes são sempre 387 bytes! São 387 bytes mais o comprimento do certificado especificado nos bytes 385-386, que pode ser diferente de zero.
 
 * A partir da versão 0.9.12, se o certificado for um Key Certificate, os limites dos campos de chave podem variar. Consulte a seção Key Certificate acima para detalhes.
 
@@ -1273,11 +1273,22 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html
 
 #### Descrição
 
-Define a autorização para um determinado tunnel receber mensagens direcionadas a um [Destination](#destination).
+Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination).
 
 #### Conteúdo
 
-SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router de gateway, depois o [TunnelId](#tunnelid), e finalmente uma [Date](#date) de fim.
+SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router de gateway, depois o [TunnelId](#tunnelid), e finalmente uma [Date](#date) de término.
+
+```bytefield
+tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
+
+tunnel_id   | 4 | green  | TunnelId, 4 bytes
+end_date    | 4 | yellow | Date, 8 bytes
+
+= Total size 44 bytes
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1303,21 +1314,33 @@ tunnel_id :: `TunnelId`
 end_date :: `Date`
             length -> 8 bytes
 ```
-#### Notas
 
-* Tamanho total: 44 bytes
-
+</details>
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html
 
 ### LeaseSet
 
 #### Descrição
 
-Contém todos os [Leases](#lease) atualmente autorizados para um [Destination](#destination) específico, a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas, e então a [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão específica da estrutura. O LeaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido.
+Contém todos os [Leases](#lease) atualmente autorizados para um [Destination](#destination) específico, a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas, e então a [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão específica da estrutura. O leaseSet é uma das duas estruturas armazenadas no netDb (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido.
 
 #### Conteúdo
 
-[Destination](#destination), seguido por uma [PublicKey](#publickey) para criptografia, depois uma [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão do LeaseSet, depois um [Integer](#integer) de 1 byte especificando quantas estruturas [Lease](#lease) estão no conjunto, seguido pelas estruturas [Lease](#lease) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination).
+[Destination](#destination), seguido por uma [PublicKey](#publickey) para criptografia, depois uma [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão do LeaseSet, então um [Integer](#integer) de 1 byte especificando quantas estruturas [Lease](#lease) estão no conjunto, seguido pelas estruturas [Lease](#lease) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination).
+
+```bytefield
+destination     | 8 | blue   | Destination, >= 387+ bytes
+encryption_key  | 8 | green  | PublicKey, 256 bytes
+signing_key     | 8 | cyan   | SigningPublicKey, 128 bytes or as specified in destination's key cert
+num             | 1 | red    | Integer, 1 byte, number of leases (0-16)
+Lease 0         | 7 | yellow | Lease, 44 bytes
+Lease 1         | 8 | yellow | Lease, 44 bytes
+Lease ($num-1)  | 8 | yellow | Lease, 44 bytes
+signature       | 8 | purple | Signature, 40 bytes or as specified in destination's key cert
+
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1396,37 +1419,32 @@ signature :: `Signature`
              length -> 40 bytes or as specified in destination's key
                        certificate
 ```
+
+</details>
 #### Notas
 
-* A chave pública do destino foi usada para a criptografia I2CP-to-I2CP antiga que foi desabilitada na versão 0.6, atualmente não está sendo usada.
+* A chave pública do destino foi usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não é utilizada.
 
-* A chave de criptografia é usada para criptografia ponta-a-ponta ElGamal/AES+SessionTag
+* A chave de criptografia é usada para criptografia ElGamal/AES+SessionTag de ponta a ponta
   [ELGAMAL-AES](/docs/specs/elgamal-aes/). Atualmente é gerada novamente a cada inicialização do router, não é
   persistente.
 
 * A assinatura pode ser verificada usando a chave pública de assinatura do destino.
 
-* Um LeaseSet com zero Leases é permitido mas não é utilizado.
-  Foi destinado para revogação de LeaseSet, que não está implementada.
-  Todas as variantes de LeaseSet2 requerem pelo menos um Lease.
+* Um LeaseSet com zero Leases é permitido mas não é usado.
+  Era destinado para revogação de LeaseSet, que não está implementado.
+  Todas as variantes de LeaseSet2 exigem pelo menos um Lease.
 
-* A signing_key atualmente não é utilizada. Foi pensada para revogação de LeaseSet,
-  que não está implementada. Atualmente é gerada novamente a cada inicialização do router,
-  não é persistente. O tipo de chave de assinatura é sempre o mesmo que o
-  tipo de chave de assinatura do destino.
+* A signing_key atualmente não é utilizada. Foi destinada para revogação de LeaseSet, que não está implementada. Atualmente é gerada novamente a cada inicialização do router, não é persistente. O tipo de chave de assinatura é sempre o mesmo que o tipo de chave de assinatura do destino.
 
 * A expiração mais antiga de todos os Leases é tratada como o timestamp ou
-  versão do LeaseSet. Os routers geralmente não aceitarão o armazenamento de um
+  versão do LeaseSet. Os routers geralmente não aceitam o armazenamento de um
   LeaseSet a menos que seja "mais novo" que o atual. Tenha cuidado ao publicar
   um novo LeaseSet onde o Lease mais antigo é o mesmo que o Lease mais antigo no
-  LeaseSet anterior. O router de publicação deve geralmente incrementar a
+  LeaseSet anterior. O router de publicação geralmente deve incrementar a
   expiração do Lease mais antigo em pelo menos 1 ms nesse caso.
 
-* Antes da versão 0.9.7, quando incluído em uma DatabaseStore Message enviada pelo
-  router originário, o router definia todas as expirações dos leases publicados para
-  o mesmo valor, aquele do lease mais antigo. A partir da versão 0.9.7, o router
-  publica a expiração real do lease para cada lease. Este é um
-  detalhe de implementação e não faz parte da especificação das estruturas.
+* Antes da versão 0.9.7, quando incluído em uma Mensagem DatabaseStore enviada pelo router originário, o router definia todas as expirações dos leases publicados para o mesmo valor, ou seja, o do lease mais antigo. A partir da versão 0.9.7, o router publica a expiração real do lease para cada lease. Este é um detalhe de implementação e não faz parte da especificação das estruturas.
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html
 
@@ -1434,11 +1452,20 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html
 
 #### Descrição
 
-Define a autorização para um túnel específico receber mensagens direcionadas a um [Destination](#destination). Igual ao [Lease](#lease) mas com um end_date de 4 bytes. Usado pelo [LeaseSet2](#leaseset2). Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações.
+Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination). O mesmo que [Lease](#lease), mas com um end_date de 4 bytes. Usado por [LeaseSet2](#leaseset2). Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações.
 
 #### Conteúdo
 
-SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router gateway, então o [TunnelId](#tunnelid), e finalmente uma data de término de 4 bytes.
+SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router gateway, depois o [TunnelId](#tunnelid), e finalmente uma data de término de 4 bytes.
+
+```bytefield
+tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
+
+tunnel_id   | 4 | green  | TunnelId, 4 bytes
+end_date    | 4 | yellow | 4 byte date, seconds since epoch, rolls over in 2106
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1462,8 +1489,9 @@ tunnel_id :: `TunnelId`
 end_date :: 4 byte date
             length -> 4 bytes
             Seconds since the epoch, rolls over in 2106.
-
 ```
+
+</details>
 #### Notas
 
 * Tamanho total: 40 bytes
@@ -1474,11 +1502,23 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html
 
 #### Descrição
 
-Esta é uma parte opcional do [LeaseSet2Header](#leaseset2header). Também usado no streaming e I2CP. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações.
+Esta é uma parte opcional do [LeaseSet2Header](#leaseset2header). Também usado em streaming e I2CP. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações.
 
 #### Conteúdo
 
-Contém uma expiração, um sigtype e uma [SigningPublicKey](#signingpublickey) transitória, e uma [Signature](#signature).
+Contém uma expiração, um sigtype e [SigningPublicKey](#signingpublickey) transitória, e uma [Signature](#signature).
+
+```bytefield
+expires              | 4 | yellow | 4 byte date, seconds since epoch, rolls over in 2106
+sigtype              | 2 | cyan   | 2 byte type of the transient_public_key
+_ | 2
+transient_public_key | 8 | green  | SigningPublicKey, as inferred from sigtype
+
+signature            | 8 | purple | Signature, as inferred from sigtype of the Destination's key
+
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1510,8 +1550,9 @@ signature :: `Signature`
                        in the `Destination` that preceded this offline signature.
              Signature of expires timestamp, transient sig type, and public key,
              by the destination public key.
-
 ```
+
+</details>
 #### Notas
 
 * Esta seção pode, e deve, ser gerada offline.
@@ -1525,6 +1566,18 @@ Esta é a parte comum do [LeaseSet2](#leaseset2) e [MetaLeaseSet](#metaleaseset)
 #### Conteúdo
 
 Contém o [Destination](#destination), dois timestamps, e uma [OfflineSignature](#offlinesignature) opcional.
+
+```bytefield
+destination          | 8 | blue   | Destination, >= 387+ bytes
+
+published            | 4 | yellow | 4 byte date, seconds since epoch, rolls over in 2106
+expires              | 2 | cyan   | 2 byte time, offset from published in seconds, 18.2 hours max
+flags                | 2 | red
+offline_signature    | 8 | purple | OfflineSignature, varies, optional (present if flags bit 0 set
+
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1560,22 +1613,24 @@ flags :: 2 bytes
   Bit order: 15 14 ... 3 2 1 0
   Bit 0: If 0, no offline keys; if 1, offline keys
   Bit 1: If 0, a standard published leaseset.
-         If 1, an unpublished leaseset. Should not be flooded, published, or
-         sent in response to a query. If this leaseset expires, do not query the
-         netdb for a new one, unless bit 2 is set.
+         If 1, an unpublished leaseset.
   Bit 2: If 0, a standard published leaseset.
          If 1, this unencrypted leaseset will be blinded and encrypted when published.
-         If this leaseset expires, query the blinded location in the netdb for a new one.
-         If this bit is set to 1, set bit 1 to 1 also.
-         As of release 0.9.42.
   Bits 15-3: set to 0 for compatibility with future uses
 
 offline_signature :: `OfflineSignature`
                      length -> varies
                      Optional, only present if bit 0 is set in the flags.
-
 ```
+
+</details>
 #### Notas
+
+* **Flags** (2 bytes):
+  * Bit 0: Se definido, chaves offline estão presentes (veja [OfflineSignature](#offlinesignature))
+  * Bit 1: Se definido, este é um leaseset não publicado
+  * Bit 2: Se definido, este é um leaseset cegado
+  * Bits 15-3: Reservados, definir como 0
 
 * Tamanho total: 395 bytes mínimo
 
@@ -1584,23 +1639,48 @@ offline_signature :: `OfflineSignature`
 
 * [LeaseSet](#leaseset) (1) não tinha um campo 'published', então o versionamento exigia
   uma busca pelo lease mais antigo. LeaseSet2 adiciona um campo 'published'
-  com uma resolução de um segundo. Routers devem limitar a taxa de envio
+  com resolução de um segundo. Os routers devem limitar a taxa de envio
   de novos leasesets para floodfills para uma taxa muito mais lenta que uma vez por segundo (por destino).
   Se isso não for implementado, então o código deve garantir que cada novo leaseset
-  tenha um tempo 'published' pelo menos um segundo posterior ao anterior, ou senão
-  floodfills não irão armazenar ou propagar o novo leaseset.
+  tenha um tempo 'published' pelo menos um segundo posterior ao anterior, caso contrário
+  os floodfills não armazenarão ou propagarão o novo leaseset.
 
 ### LeaseSet2
 
 #### Descrição
 
-Contido numa mensagem I2NP DatabaseStore do tipo 3. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações.
+Contido numa mensagem I2NP DatabaseStore do tipo 3. Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações.
 
-Contém todas as [Lease2](#lease2) atualmente autorizadas para um [Destination](#destination) específico, e a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas. Um LeaseSet é uma das duas estruturas armazenadas na base de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido.
+Contém todos os [Lease2](#lease2) atualmente autorizados para um [Destination](#destination) específico, e a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas. Um leaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido.
 
 #### Conteúdo
 
 [LeaseSet2Header](#leaseset2header), seguido por opções, depois uma ou mais [PublicKey](#publickey) para criptografia, [Integer](#integer) especificando quantas estruturas [Lease2](#lease2) estão no conjunto, seguido pelas estruturas [Lease2](#lease2) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinados pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination) ou pela chave transitória.
+
+```bytefield
+ls2_header       | 8 | blue   | LeaseSet2Header, varies
+~
+options          | 8 | gray   | Mapping, varies, 2 bytes minimum
+~
+numk             | 1 | red    | Integer, 1 byte, number of encryption keys (1 <= numk <= max TBD)
+keytype0         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
+keylen0          | 2 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_0 | 3 | green  | PublicKey, keylen bytes
+~
+keytypen         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
+keylenn          | 2 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_n | 4 | green  | PublicKey, keylen bytes
+~
+num              | 1 | red    | Integer, 1 byte, number of Lease2s (0-16)
+Lease2 0         | 7 | yellow | Lease2, 40 bytes
+~
+Lease2 ($num-1)  | 8 | yellow | Lease2, 40 bytes
+~
+signature        | 8 | purple | Signature, 40 bytes or as specified in destination's key cert
+~
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1681,19 +1761,20 @@ signature :: `Signature`
              length -> 40 bytes or as specified in destination's key
                        certificate, or by the sigtype of the transient public key,
                        if present in the header
-
 ```
+
+</details>
 #### Preferência de Chave de Criptografia
 
-Para leaseSets publicados (servidor), as chaves de criptografia estão em ordem de preferência do servidor, com a mais preferida primeiro. Se os clientes suportam mais de um tipo de criptografia, é recomendado que honrem a preferência do servidor e selecionem o primeiro tipo suportado como método de criptografia a usar para conectar ao servidor. Geralmente, os tipos de chave mais novos (numerados mais alto) são mais seguros ou eficientes e são preferidos, então as chaves devem ser listadas em ordem reversa do tipo de chave.
+Para leaseSets publicados (servidor), as chaves de criptografia estão em ordem de preferência do servidor, com a mais preferida primeiro. Se os clientes suportam mais de um tipo de criptografia, é recomendado que eles honrem a preferência do servidor e selecionem o primeiro tipo suportado como método de criptografia a usar para conectar ao servidor. Geralmente, os tipos de chave mais novos (numerados mais alto) são mais seguros ou eficientes e são preferidos, então as chaves devem ser listadas em ordem reversa do tipo de chave.
 
-No entanto, os clientes podem, dependendo da implementação, selecionar com base na sua preferência, ou usar algum método para determinar a preferência "combinada". Isso pode ser útil como uma opção de configuração, ou para depuração.
+No entanto, os clientes podem, dependendo da implementação, selecionar com base em sua preferência em vez disso, ou usar algum método para determinar a preferência "combinada". Isso pode ser útil como uma opção de configuração, ou para depuração.
 
-A ordem das chaves em leaseSets não publicados (cliente) efetivamente não importa, porque as conexões geralmente não serão tentadas para clientes não publicados. A menos que esta ordem seja usada para determinar uma preferência combinada, conforme descrito acima.
+A ordem das chaves em leaseSets não publicados (cliente) efetivamente não importa, porque conexões geralmente não serão tentadas para clientes não publicados. A menos que esta ordem seja usada para determinar uma preferência combinada, conforme descrito acima.
 
 #### Opções
 
-A partir da API 0.9.66, um formato padrão para opções de registro de serviço é definido. Consulte a proposta 167 para detalhes. Opções diferentes dos registros de serviço, usando um formato diferente, podem ser definidas no futuro.
+A partir da API 0.9.66, é definido um formato padrão para opções de registro de serviço. Consulte a proposta 167 para detalhes. Opções diferentes dos registros de serviço, usando um formato diferente, podem ser definidas no futuro.
 
 As opções LS2 DEVEM ser ordenadas por chave, para que a assinatura seja invariante.
 
@@ -1703,9 +1784,9 @@ As opções de registro de serviço são definidas da seguinte forma:
 - optionkey := _service._proto
 - service := O nome simbólico do serviço desejado. Deve estar em minúsculas. Exemplo: "smtp".
   Caracteres permitidos são [a-z0-9-] e não deve começar ou terminar com '-'.
-  Identificadores padrão de [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) ou Linux /etc/services devem ser usados se definidos lá.
-- proto := O protocolo de transporte do serviço desejado. Deve estar em minúsculas, "tcp" ou "udp".
-  "tcp" significa streaming e "udp" significa datagramas com resposta.
+  Identificadores padrão do [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) ou do Linux /etc/services devem ser usados se definidos lá.
+- proto := O protocolo de transporte do serviço desejado. Deve estar em minúsculas, seja "tcp" ou "udp".
+  "tcp" significa streaming e "udp" significa datagramas respondíveis.
   Indicadores de protocolo para datagramas brutos e datagram2 podem ser definidos posteriormente.
   Caracteres permitidos são [a-z0-9-] e não deve começar ou terminar com '-'.
 - optionvalue := self | srvrecord[,srvrecord]*
@@ -1713,16 +1794,16 @@ As opções de registro de serviço são definidas da seguinte forma:
 - srvrecord := "1" ttl priority weight port target [appoptions]
 - ttl := tempo de vida, segundos inteiros. Inteiro positivo. Exemplo: "86400".
   Um mínimo de 86400 (um dia) é recomendado, veja a seção Recomendações abaixo para detalhes.
-- priority := A prioridade do host de destino, valor menor significa mais preferido. Inteiro não negativo. Exemplo: "0"
-  Útil apenas se mais de um registro, mas obrigatório mesmo se apenas um registro.
-- weight := Um peso relativo para registros com a mesma prioridade. Valor maior significa mais chance de ser escolhido. Inteiro não negativo. Exemplo: "0"
-  Útil apenas se mais de um registro, mas obrigatório mesmo se apenas um registro.
-- port := A porta I2CP na qual o serviço deve ser encontrado. Inteiro não negativo. Exemplo: "25"
+- priority := A prioridade do host de destino, valor menor significa mais preferido. Inteiro não-negativo. Exemplo: "0"
+  Apenas útil se mais de um registro, mas obrigatório mesmo se apenas um registro.
+- weight := Um peso relativo para registros com a mesma prioridade. Valor maior significa mais chance de ser escolhido. Inteiro não-negativo. Exemplo: "0"
+  Apenas útil se mais de um registro, mas obrigatório mesmo se apenas um registro.
+- port := A porta I2CP na qual o serviço deve ser encontrado. Inteiro não-negativo. Exemplo: "25"
   Porta 0 é suportada mas não recomendada.
 - target := O hostname ou b32 do destino que fornece o serviço. Um hostname válido como em [NAMING](/docs/overview/naming/). Deve estar em minúsculas.
   Exemplo: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" ou "example.i2p".
   b32 é recomendado a menos que o hostname seja "bem conhecido", ou seja, em livros de endereços oficiais ou padrão.
-- appoptions := texto arbitrário específico da aplicação, não deve conter " " ou ",". Codificação é UTF-8.
+- appoptions := texto arbitrário específico para a aplicação, não deve conter " " ou ",". A codificação é UTF-8.
 
 Exemplos:
 
@@ -1730,21 +1811,20 @@ No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-Em LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para dois servidores SMTP:
+No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para dois servidores SMTP:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-No LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apontando para si mesmo como servidor SMTP:
+No LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apontando para si mesmo como um servidor SMTP:
 
 "_smtp._tcp" "0 999999 25"
 
 #### Notas
 
-* A chave pública do destino era usada para a antiga criptografia I2CP-para-I2CP
-  que foi desabilitada na versão 0.6, atualmente não é utilizada.
+* A chave pública do destino era usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não é utilizada.
 
-* As chaves de criptografia são usadas para criptografia fim-a-fim ElGamal/AES+SessionTag
-  [ELGAMAL-AES](/docs/specs/elgamal-aes/) (tipo 0) ou outros esquemas de criptografia fim-a-fim.
+* As chaves de criptografia são usadas para criptografia ponta a ponta ElGamal/AES+SessionTag
+  [ELGAMAL-AES](/docs/specs/elgamal-aes/) (tipo 0) ou outros esquemas de criptografia ponta a ponta.
   Veja [ECIES](/docs/specs/ecies/) e propostas 145 e 156.
   Elas podem ser geradas novamente a cada inicialização do router
   ou podem ser persistentes.
@@ -1753,11 +1833,9 @@ No LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apontando para
 * A assinatura é sobre os dados acima, PREFIXADOS com o byte único
   contendo o tipo DatabaseStore (3).
 
-* A assinatura pode ser verificada usando a chave pública de assinatura do
-  destino, ou a chave pública de assinatura transitória, se uma assinatura offline
-  estiver incluída no cabeçalho do leaseset2.
+* A assinatura pode ser verificada usando a chave pública de assinatura do destino, ou a chave pública de assinatura transitória, se uma assinatura offline estiver incluída no cabeçalho do leaseset2.
 
-* O comprimento da chave é fornecido para cada chave, para que floodfills e clientes possam analisar a estrutura mesmo se nem todos os tipos de criptografia forem conhecidos ou suportados.
+* O comprimento da chave é fornecido para cada chave, para que floodfills e clientes possam analisar a estrutura mesmo que nem todos os tipos de criptografia sejam conhecidos ou suportados.
 
 * Veja a nota sobre o campo 'published' em [LeaseSet2Header](#leaseset2header)
 
@@ -1769,11 +1847,11 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html
 
 #### Descrição
 
-Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination). Igual ao [Lease2](#lease2) mas com flags e custo em vez de um ID de tunnel. Usado pelo [MetaLeaseSet](#metaleaseset). Contido em uma mensagem I2NP DatabaseStore do tipo 7. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações.
+Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination). Igual ao [Lease2](#lease2), mas com flags e custo em vez de um ID de tunnel. Usado pelo [MetaLeaseSet](#metaleaseset). Contido em uma mensagem I2NP DatabaseStore do tipo 7. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações.
 
 #### Conteúdo
 
-[Hash](#hash) SHA256 da [RouterIdentity](#routeridentity) do router gateway, seguido por flags e custo, e finalmente uma data de término de 4 bytes.
+SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router gateway, depois flags e custo, e finalmente uma data de término de 4 bytes.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1820,9 +1898,9 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html
 
 #### Descrição
 
-Contido em uma mensagem I2NP DatabaseStore do tipo 7. Definido a partir da versão 0.9.38; programado para estar funcionando a partir da 0.9.40; veja a proposta 123 para mais informações.
+Contido numa mensagem I2NP DatabaseStore do tipo 7. Definido a partir da versão 0.9.38; programado para estar funcional a partir da versão 0.9.40; consulte a proposta 123 para mais informações.
 
-Contém todos os [MetaLease](#metalease) atualmente autorizados para um determinado [Destination](#destination), e a [PublicKey](#publickey) para a qual mensagens garlic podem ser criptografadas. Um LeaseSet é uma das duas estruturas armazenadas na base de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido.
+Contém todos os [MetaLease](#metalease) atualmente autorizados para um [Destination](#destination) específico, e a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas. Um LeaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido.
 
 #### Conteúdo
 
@@ -1902,15 +1980,12 @@ signature :: `Signature`
 ```
 #### Notas
 
-* A chave pública do destino foi usada para a antiga criptografia I2CP-para-I2CP
-  que foi desabilitada na versão 0.6, atualmente não é utilizada.
+* A chave pública do destino foi usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não está sendo utilizada.
 
 * A assinatura é sobre os dados acima, PRECEDIDOS pelo byte único
   contendo o tipo DatabaseStore (7).
 
-* A assinatura pode ser verificada usando a chave pública de assinatura do
-  destino, ou a chave pública de assinatura transitória, se uma assinatura offline
-  estiver incluída no cabeçalho do leaseset2.
+* A assinatura pode ser verificada usando a chave pública de assinatura do destino, ou a chave pública de assinatura transitória, se uma assinatura offline estiver incluída no cabeçalho do leaseset2.
 
 * Veja a nota sobre o campo 'published' em [LeaseSet2Header](#leaseset2header)
 
@@ -1920,13 +1995,13 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html
 
 #### Descrição
 
-Contido em uma mensagem I2NP DatabaseStore do tipo 5. Definido a partir da versão 0.9.38; funcionando a partir da versão 0.9.39; consulte a proposta 123 para mais informações.
+Contido numa mensagem I2NP DatabaseStore do tipo 5. Definido a partir da versão 0.9.38; funcional a partir da versão 0.9.39; consulte a proposta 123 para mais informações.
 
 Apenas a chave cega e a expiração são visíveis em texto claro. O leaseSet real está criptografado.
 
 #### Conteúdo
 
-Um tipo de assinatura de dois bytes, a [SigningPrivateKey](#signingprivatekey) ofuscada, tempo de publicação, expiração e flags. Em seguida, um comprimento de dois bytes seguido por dados criptografados. Finalmente, uma [Signature](#signature) dos bytes anteriores assinados pela [SigningPrivateKey](#signingprivatekey) ofuscada ou pela chave transitória.
+Um tipo de assinatura de dois bytes, a [SigningPrivateKey](#signingprivatekey) cegada, tempo de publicação, expiração e flags. Em seguida, um comprimento de dois bytes seguido por dados criptografados. Finalmente, uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) cegada ou pela chave transitória.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2004,16 +2079,14 @@ signature :: `Signature`
 
 * A chave pública do destino foi usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não é utilizada.
 
-* A assinatura é sobre os dados acima, PRECEDIDOS pelo byte único
+* A assinatura é sobre os dados acima, PRECEDIDOS pelo único byte
   contendo o tipo DatabaseStore (5).
 
-* A assinatura pode ser verificada usando a chave pública de assinatura do
-  destino, ou a chave pública de assinatura transitória, se uma assinatura offline
-  estiver incluída no cabeçalho do leaseset2.
+* A assinatura pode ser verificada usando a chave pública de assinatura do destino, ou a chave pública de assinatura transitória, se uma assinatura offline estiver incluída no cabeçalho do leaseset2.
 
-* Blinding e criptografia são especificados em [EncryptedLeaseSet](/docs/specs/encryptedleaseset/)
+* O mascaramento e criptografia são especificados em [EncryptedLeaseSet](/docs/specs/encryptedleaseset/)
 
-* Esta estrutura não usa o [LeaseSet2Header](#leaseset2header).
+* Esta estrutura não utiliza o [LeaseSet2Header](#leaseset2header).
 
 * O tempo máximo real de expiração é cerca de 660 (11 minutos), a menos que
   seja um [MetaLeaseSet](#metaleaseset) criptografado.
@@ -2021,8 +2094,8 @@ signature :: `Signature`
 * Veja a proposta 123 para notas sobre o uso de assinaturas offline
   com leaseSets criptografados.
 
-* Veja a nota no campo 'published' em [LeaseSet2Header](#leaseset2header)
-  (mesmo problema, mesmo que não usemos o formato LeaseSet2Header aqui)
+* Veja a nota sobre o campo 'published' em [LeaseSet2Header](#leaseset2header)
+  (mesmo problema, embora não usemos o formato LeaseSet2Header aqui)
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html
 
@@ -2034,7 +2107,7 @@ Esta estrutura define os meios para contactar um router através de um protocolo
 
 #### Conteúdo
 
-1 byte [Integer](#integer) definindo o custo relativo de usar o endereço, onde 0 é gratuito e 255 é caro, seguido pela [Date](#date) de expiração após a qual o endereço não deve ser usado, ou se nulo, o endereço nunca expira. Depois disso vem uma [String](#string) definindo o protocolo de transporte que este endereço de router usa. Finalmente há um [Mapping](#mapping) contendo todas as opções específicas de transporte necessárias para estabelecer a conexão, como endereço IP, número da porta, endereço de email, URL, etc.
+1 byte [Integer](#integer) definindo o custo relativo de usar o endereço, onde 0 é gratuito e 255 é caro, seguido pela [Date](#date) de expiração após a qual o endereço não deve ser usado, ou se nulo, o endereço nunca expira. Depois disso vem uma [String](#string) definindo o protocolo de transporte que este endereço de router usa. Finalmente há um [Mapping](#mapping) contendo todas as opções específicas do transporte necessárias para estabelecer a conexão, como endereço IP, número da porta, endereço de email, URL, etc.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2070,7 +2143,13 @@ options :: `Mapping`
 
 * O custo é tipicamente 5 ou 6 para SSU, e 10 ou 11 para NTCP.
 
-* A expiração está atualmente não utilizada, sempre nula (todos zeros). A partir da versão 0.9.3, a expiração é assumida como zero e não é armazenada, então qualquer expiração não-zero falhará na verificação de assinatura do RouterInfo. Implementar a expiração (ou outro uso para estes bytes) será uma mudança incompatível com versões anteriores. Os routers DEVEM definir este campo como todos zeros. A partir da versão 0.9.12, um campo de expiração não-zero é novamente reconhecido, no entanto devemos aguardar várias versões para usar este campo, até que a grande maioria da rede o reconheça.
+* A expiração está atualmente sem uso, sempre nula (todos zeros). A partir da versão
+  0.9.3, a expiração é assumida como zero e não armazenada, então qualquer expiração
+  não-zero falhará na verificação da assinatura do RouterInfo. Implementar
+  expiração (ou outro uso para estes bytes) será uma mudança incompatível com versões
+  anteriores. Os routers DEVEM definir este campo como todos zeros. A partir da versão 0.9.12, um
+  campo de expiração não-zero é novamente reconhecido, no entanto devemos aguardar várias
+  versões para usar este campo, até que a grande maioria da rede o reconheça.
 
 * As seguintes opções, embora não sejam obrigatórias, são padrão e espera-se que estejam presentes na maioria dos endereços de router: "host" (um endereço IPv4 ou IPv6 ou nome de host) e "port".
 
@@ -2080,7 +2159,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.ht
 
 #### Descrição
 
-Define todos os dados que um router quer publicar para que a rede possa ver. O [RouterInfo](#routerinfo) é uma das duas estruturas armazenadas na base de dados da rede (a outra sendo [LeaseSet](#leaseset)), e é indexada sob o SHA256 da [RouterIdentity](#routeridentity) contida.
+Define todos os dados que um router deseja publicar para que a rede possa ver. O [RouterInfo](#routerinfo) é uma das duas estruturas armazenadas na base de dados da rede (a outra sendo [LeaseSet](#leaseset)), e é indexado sob o SHA256 da [RouterIdentity](#routeridentity) contida.
 
 #### Conteúdo
 
@@ -2158,20 +2237,20 @@ signature :: `Signature`
 #### Notas
 
 * O peer_size [Integer](#integer) pode ser seguido por uma lista com essa quantidade de hashes de router.
-  Isto está atualmente não utilizado. Foi destinado para uma forma de rotas restritas,
+  Isso atualmente não é usado. Foi destinado a uma forma de rotas restritas,
   que não está implementada.
   Certas implementações podem exigir que a lista seja ordenada para que a assinatura seja invariante.
-  Para ser pesquisado antes de habilitar esta funcionalidade.
+  Deve ser pesquisado antes de habilitar essa funcionalidade.
 
 * A assinatura pode ser verificada usando a chave pública de assinatura do
   router_ident.
 
-* Veja a página da base de dados da rede [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) para as opções padrão que
+* Consulte a página da base de dados da rede [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) para opções padrão que
   devem estar presentes em todas as informações do router.
 
-* Roteadores muito antigos exigiam que os endereços fossem ordenados pelo SHA256 de seus dados
-  para que a assinatura fosse invariante.
-  Isso não é mais necessário e não vale a pena implementar para compatibilidade com versões anteriores.
+* Routers muito antigos exigiam que os endereços fossem ordenados pelo SHA256 dos seus dados
+  para que a assinatura fosse invariável.
+  Isso não é mais necessário, e não vale a pena implementar para compatibilidade com versões anteriores.
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html
 
