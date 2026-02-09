@@ -2351,6 +2351,2554 @@
           }
         }
       }
+    },
+    "en/docs/specs/common-structures.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "db438db1a949a268",
+          "translations": {
+            "ko": "공통 구조 명세서",
+            "tr": "Ortak Yapılar Belirtimi",
+            "pt": "Especificação de estruturas comuns"
+          }
+        },
+        "fm_description": {
+          "source_hash": "78351dabeda5e077",
+          "translations": {
+            "ko": "모든 I2P 프로토콜에 공통되는 데이터 타입",
+            "tr": "Tüm I2P protokollerinde ortak olan veri türleri",
+            "pt": "Tipos de dados comuns a todos os protocolos I2P"
+          }
+        },
+        "fm_category": {
+          "source_hash": "0072e6b934945d5b",
+          "translations": {
+            "ko": "설계",
+            "tr": "Tasarım",
+            "pt": "Design"
+          }
+        },
+        "p_001": {
+          "source_hash": "2723a18bc038a9cf",
+          "translations": {
+            "ko": "이 문서는 [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/) 등과 같은 모든 I2P 프로토콜에 공통으로 사용되는 일부 데이터 타입을 설명합니다.",
+            "tr": "Bu belge, [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/) vb. gibi tüm I2P protokollerinde ortak olan bazı veri türlerini açıklar.",
+            "pt": "Este documento descreve alguns tipos de dados comuns a todos os protocolos I2P, como [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/), etc."
+          }
+        },
+        "h2_001": {
+          "source_hash": "58874ce9cb3084ad",
+          "translations": {
+            "ko": "일반 타입 명세",
+            "tr": "Ortak tür belirtimi",
+            "pt": "Especificação de tipo comum"
+          }
+        },
+        "h3_001": {
+          "source_hash": "2876814bd73accf5",
+          "translations": {
+            "ko": "정수",
+            "tr": "Tamsayı",
+            "pt": "Inteiro"
+          }
+        },
+        "h4_001": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_002": {
+          "source_hash": "ba5f2c61fa928cc2",
+          "translations": {
+            "ko": "음이 아닌 정수를 나타냅니다.",
+            "tr": "Negatif olmayan bir tamsayıyı temsil eder.",
+            "pt": "Representa um número inteiro não negativo."
+          }
+        },
+        "h4_002": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_003": {
+          "source_hash": "dd77dce70cb397ed",
+          "translations": {
+            "ko": "부호 없는 정수를 나타내는 네트워크 바이트 순서(빅 엔디안)의 1~8바이트입니다.",
+            "tr": "Network byte order (big endian) ile işaretsiz bir tamsayıyı temsil eden 1 ila 8 bayt.",
+            "pt": "1 a 8 bytes em ordem de bytes de rede (big endian) representando um inteiro sem sinal."
+          }
+        },
+        "h3_002": {
+          "source_hash": "99c40ab405926cb5",
+          "translations": {
+            "ko": "날짜",
+            "tr": "Tarih",
+            "pt": "Data"
+          }
+        },
+        "h4_003": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_004": {
+          "source_hash": "941f4c315fbe86c4",
+          "translations": {
+            "ko": "GMT 시간대에서 1970년 1월 1일 자정 이후의 밀리초 수입니다. 숫자가 0이면 날짜가 정의되지 않았거나 null입니다.",
+            "tr": "GMT saat diliminde 1 Ocak 1970 gece yarısından bu yana geçen milisaniye sayısı. Sayı 0 ise, tarih tanımsız veya null'dur.",
+            "pt": "O número de milissegundos desde a meia-noite de 1º de janeiro de 1970 no fuso horário GMT. Se o número for 0, a data é indefinida ou nula."
+          }
+        },
+        "h4_004": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_005": {
+          "source_hash": "405768a04c736c29",
+          "translations": {
+            "ko": "8바이트 [Integer](#integer)",
+            "tr": "8 bayt [Integer](#integer)",
+            "pt": "8 bytes [Integer](#integer)"
+          }
+        },
+        "h3_003": {
+          "source_hash": "b2ef230e7f4f315a",
+          "translations": {
+            "ko": "문자열",
+            "tr": "Dize",
+            "pt": "String"
+          }
+        },
+        "h4_005": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_006": {
+          "source_hash": "f526c7e6ba705113",
+          "translations": {
+            "ko": "UTF-8로 인코딩된 문자열을 나타냅니다.",
+            "tr": "UTF-8 kodlanmış bir dizeyi temsil eder.",
+            "pt": "Representa uma string codificada em UTF-8."
+          }
+        },
+        "h4_006": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_007": {
+          "source_hash": "3a092b3c0f4f2500",
+          "translations": {
+            "ko": "1바이트 이상으로, 첫 번째 바이트는 문자열의 바이트 수(문자 수가 아님!)이고 나머지 0-255 바이트는 null로 종료되지 않는 UTF-8 인코딩된 문자 배열입니다. 길이 제한은 255바이트(문자 수가 아님)입니다. 길이는 0이 될 수 있습니다.",
+            "tr": "İlk baytın string'deki bayt sayısını (karakter sayısını değil!) belirttiği ve kalan 0-255 baytın null ile sonlandırılmamış UTF-8 kodlanmış karakter dizisi olduğu 1 veya daha fazla bayt. Uzunluk sınırı 255 bayttır (karakter değil). Uzunluk 0 olabilir.",
+            "pt": "1 ou mais bytes onde o primeiro byte é o número de bytes (não caracteres!) na string e os 0-255 bytes restantes são o array de caracteres codificado em UTF-8 sem terminação nula. O limite de comprimento é 255 bytes (não caracteres). O comprimento pode ser 0."
+          }
+        },
+        "h3_004": {
+          "source_hash": "19df230f6259c9d4",
+          "translations": {
+            "ko": "PublicKey",
+            "tr": "PublicKey",
+            "pt": "PublicKey"
+          }
+        },
+        "h4_007": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_008": {
+          "source_hash": "67add09fde2fa0cd",
+          "translations": {
+            "ko": "이 구조는 ElGamal이나 다른 비대칭 암호화에서 사용되며, 소수가 아닌 지수만을 나타냅니다. 소수는 상수이며 암호화 명세서 [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)에 정의되어 있습니다. 다른 암호화 방식들이 정의되는 과정에 있으며, 아래 표를 참조하세요.",
+            "tr": "Bu yapı ElGamal veya diğer asimetrik şifreleme yöntemlerinde kullanılır ve yalnızca üssü temsil eder, sabit olan ve kriptografi spesifikasyonunda [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy) tanımlanan asal sayıları değil. Diğer şifreleme şemaları tanımlanma sürecindedir, aşağıdaki tabloyu görün.",
+            "pt": "Esta estrutura é usada no ElGamal ou outras criptografias assimétricas, representando apenas o expoente, não os números primos, que são constantes e definidos na especificação de criptografia [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy). Outros esquemas de criptografia estão em processo de definição, veja a tabela abaixo."
+          }
+        },
+        "h4_008": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_009": {
+          "source_hash": "8752d5a7606a0f9d",
+          "translations": {
+            "ko": "키 유형과 길이는 문맥에서 추론되거나 Destination 또는 RouterInfo의 Key Certificate, 또는 [LeaseSet2](#leaseset2)나 기타 데이터 구조의 필드에서 지정됩니다. 기본 유형은 ElGamal입니다. 릴리스 0.9.38부터 문맥에 따라 다른 유형들이 지원될 수 있습니다. 별도로 명시되지 않는 한 키는 big-endian입니다.",
+            "tr": "Anahtar türü ve uzunluğu bağlamdan çıkarılır veya bir Destination ya da RouterInfo'nun Key Certificate'ında veya bir [LeaseSet2](#leaseset2) ya da diğer veri yapılarındaki alanlarda belirtilir. Varsayılan tür ElGamal'dır. 0.9.38 sürümünden itibaren, bağlama bağlı olarak diğer türler de desteklenebilir. Aksi belirtilmedikçe anahtarlar big-endian formatındadır.",
+            "pt": "O tipo e comprimento da chave são inferidos do contexto ou são especificados no Certificado de Chave de um Destination ou RouterInfo, ou nos campos de um [LeaseSet2](#leaseset2) ou outra estrutura de dados. O tipo padrão é ElGamal. A partir da versão 0.9.38, outros tipos podem ser suportados, dependendo do contexto. As chaves são big-endian, salvo indicação em contrário."
+          }
+        },
+        "p_010": {
+          "source_hash": "0199cbec41c7d68a",
+          "translations": {
+            "ko": "X25519 키는 릴리스 0.9.44부터 Destinations과 LeaseSet2에서 지원됩니다. X25519 키는 릴리스 0.9.48부터 RouterIdentities에서 지원됩니다.",
+            "tr": "X25519 anahtarları, 0.9.44 sürümünden itibaren Destination'larda ve LeaseSet2'de desteklenmektedir. X25519 anahtarları, 0.9.48 sürümünden itibaren RouterIdentity'lerde desteklenmektedir.",
+            "pt": "Chaves X25519 são suportadas em Destinations e LeaseSet2 a partir da versão 0.9.44. Chaves X25519 são suportadas em RouterIdentities a partir da versão 0.9.48."
+          }
+        },
+        "p_011": {
+          "source_hash": "8146898079b2f5d3",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html"
+          }
+        },
+        "h3_005": {
+          "source_hash": "7cfc03d02109aa47",
+          "translations": {
+            "ko": "PrivateKey",
+            "tr": "PrivateKey",
+            "pt": "PrivateKey"
+          }
+        },
+        "h4_009": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_012": {
+          "source_hash": "edd27b874a36b60c",
+          "translations": {
+            "ko": "이 구조는 ElGamal이나 다른 비대칭 복호화에서 사용되며, 소수가 아닌 지수만을 나타냅니다. 소수는 상수이며 암호화 사양 [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)에서 정의됩니다. 다른 암호화 방식들도 정의 과정에 있으며, 아래 표를 참조하십시오.",
+            "tr": "Bu yapı ElGamal veya diğer asimetrik şifre çözmede kullanılır ve yalnızca üssü temsil eder, kriptografi spesifikasyonunda [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy) sabit olarak tanımlanan asal sayıları değil. Diğer şifreleme şemaları tanımlanma sürecindedir, aşağıdaki tabloya bakın.",
+            "pt": "Esta estrutura é usada na descriptografia ElGamal ou outra descriptografia assimétrica, representando apenas o expoente, não os números primos que são constantes e definidos na especificação de criptografia [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy). Outros esquemas de criptografia estão em processo de definição, veja a tabela abaixo."
+          }
+        },
+        "h4_010": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_013": {
+          "source_hash": "a24f418d2f8764da",
+          "translations": {
+            "ko": "키 유형과 길이는 컨텍스트에서 추론되거나 데이터 구조 또는 개인키 파일에 별도로 저장됩니다. 기본 유형은 ElGamal입니다. 0.9.38 릴리스부터 컨텍스트에 따라 다른 유형들이 지원될 수 있습니다. 키는 별도로 명시되지 않는 한 big-endian 방식입니다.",
+            "tr": "Anahtar tipi ve uzunluğu bağlamdan çıkarılır veya bir veri yapısında ya da özel anahtar dosyasında ayrı olarak saklanır. Varsayılan tip ElGamal'dır. 0.9.38 sürümünden itibaren, bağlama bağlı olarak diğer tipler desteklenebilir. Aksi belirtilmedikçe anahtarlar big-endian formatındadır.",
+            "pt": "O tipo e o comprimento da chave são inferidos do contexto ou armazenados separadamente em uma estrutura de dados ou arquivo de chave privada. O tipo padrão é ElGamal. A partir da versão 0.9.38, outros tipos podem ser suportados, dependendo do contexto. As chaves são big-endian, salvo indicação em contrário."
+          }
+        },
+        "p_014": {
+          "source_hash": "89cd09ed8949a46a",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html"
+          }
+        },
+        "h3_006": {
+          "source_hash": "c470a2b2bd008ec3",
+          "translations": {
+            "ko": "SessionKey",
+            "tr": "SessionKey",
+            "pt": "SessionKey"
+          }
+        },
+        "h4_011": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_015": {
+          "source_hash": "de610ea7a38a14ac",
+          "translations": {
+            "ko": "이 구조는 대칭 AES256 암호화 및 복호화에 사용됩니다.",
+            "tr": "Bu yapı simetrik AES256 şifreleme ve şifre çözme için kullanılır.",
+            "pt": "Esta estrutura é usada para criptografia e descriptografia simétrica AES256."
+          }
+        },
+        "h4_012": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_016": {
+          "source_hash": "45e5239ab38c3ab8",
+          "translations": {
+            "ko": "32바이트",
+            "tr": "32 bayt",
+            "pt": "32 bytes"
+          }
+        },
+        "p_017": {
+          "source_hash": "bf6cdc7e748b76e6",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html"
+          }
+        },
+        "h3_007": {
+          "source_hash": "4adb35ad96aafad7",
+          "translations": {
+            "ko": "SigningPublicKey",
+            "tr": "SigningPublicKey",
+            "pt": "SigningPublicKey"
+          }
+        },
+        "h4_013": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_018": {
+          "source_hash": "c71481a6ef0df419",
+          "translations": {
+            "ko": "이 구조는 서명을 검증하는 데 사용됩니다.",
+            "tr": "Bu yapı imzaları doğrulamak için kullanılır.",
+            "pt": "Esta estrutura é usada para verificar assinaturas."
+          }
+        },
+        "h4_014": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_019": {
+          "source_hash": "021fda9ace1a8c8a",
+          "translations": {
+            "ko": "키 유형과 길이는 맥락에서 추론되거나 Destination의 Key Certificate에서 지정됩니다. 기본 유형은 DSA_SHA1입니다. 0.9.12 릴리스부터는 맥락에 따라 다른 유형들이 지원될 수 있습니다.",
+            "tr": "Anahtar türü ve uzunluğu bağlamdan çıkarılır veya bir Destination'ın Key Certificate'inde belirtilir. Varsayılan tür DSA_SHA1'dir. 0.9.12 sürümünden itibaren, bağlama bağlı olarak diğer türler desteklenebilir.",
+            "pt": "O tipo e comprimento da chave são inferidos do contexto ou são especificados no Certificado de Chave de um Destination. O tipo padrão é DSA_SHA1. A partir da versão 0.9.12, outros tipos podem ser suportados, dependendo do contexto."
+          }
+        },
+        "h4_015": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "주의사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_001": {
+          "source_hash": "3676af692b856888",
+          "translations": {
+            "ko": "* 키가 두 개의 요소로 구성된 경우(예: 점 X,Y), 필요한 경우 각 요소를 선행 0으로 length/2까지 패딩하여 직렬화됩니다.",
+            "tr": "* Bir anahtar iki elemandan oluştuğunda (örneğin X,Y noktaları), her eleman gerekirse önünde sıfırlar eklenerek uzunluk/2'ye tamamlanarak serileştirilir.",
+            "pt": "* Quando uma chave é composta por dois elementos (por exemplo pontos X,Y), ela é\n  serializada preenchendo cada elemento com comprimento/2 com zeros à esquerda se\n  necessário."
+          }
+        },
+        "list_002": {
+          "source_hash": "610a55333aded80c",
+          "translations": {
+            "ko": "* 모든 타입은 Big Endian이며, EdDSA와 RedDSA는 예외로 Little Endian 형식으로 저장되고 전송됩니다.",
+            "tr": "* EdDSA ve RedDSA hariç tüm türler Big Endian formatındadır; EdDSA ve RedDSA Little Endian formatında saklanır ve iletilir.",
+            "pt": "* Todos os tipos são Big Endian, exceto para EdDSA e RedDSA, que são armazenados e transmitidos\n  em formato Little Endian."
+          }
+        },
+        "p_020": {
+          "source_hash": "ee8fb77e8acacf71",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html"
+          }
+        },
+        "h3_008": {
+          "source_hash": "9847685fccd6fbcc",
+          "translations": {
+            "ko": "SigningPrivateKey",
+            "tr": "SigningPrivateKey",
+            "pt": "SigningPrivateKey"
+          }
+        },
+        "h4_016": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_021": {
+          "source_hash": "1a49f4a06c29f439",
+          "translations": {
+            "ko": "이 구조체는 서명을 생성하는 데 사용됩니다.",
+            "tr": "Bu yapı imza oluşturmak için kullanılır.",
+            "pt": "Esta estrutura é usada para criar assinaturas."
+          }
+        },
+        "h4_017": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_022": {
+          "source_hash": "c329d00c7dd61931",
+          "translations": {
+            "ko": "키 유형과 길이는 생성할 때 지정됩니다. 기본 유형은 DSA_SHA1입니다. 0.9.12 릴리스부터는 컨텍스트에 따라 다른 유형들이 지원될 수 있습니다.",
+            "tr": "Anahtar türü ve uzunluğu oluşturulurken belirtilir. Varsayılan tür DSA_SHA1'dir. 0.9.12 sürümü itibariyle, bağlama bağlı olarak diğer türler de desteklenebilir.",
+            "pt": "O tipo e comprimento da chave são especificados quando criada. O tipo padrão é DSA_SHA1. A partir da versão 0.9.12, outros tipos podem ser suportados, dependendo do contexto."
+          }
+        },
+        "h4_018": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_003": {
+          "source_hash": "3676af692b856888",
+          "translations": {
+            "ko": "* 키가 두 개의 요소로 구성된 경우 (예: 점 X,Y), 필요시 각 요소를 앞자리 0으로 채워서 길이/2로 맞춘 후 직렬화합니다.",
+            "tr": "* Bir anahtar iki elementten oluştuğunda (örneğin X,Y noktaları), gerekirse her element başına sıfırlar eklenerek uzunluk/2'ye tamamlanarak serileştirilir.",
+            "pt": "* Quando uma chave é composta por dois elementos (por exemplo pontos X,Y), ela é\n  serializada preenchendo cada elemento para comprimento/2 com zeros à esquerda se\n  necessário."
+          }
+        },
+        "list_004": {
+          "source_hash": "610a55333aded80c",
+          "translations": {
+            "ko": "* EdDSA와 RedDSA를 제외한 모든 유형은 Big Endian이며, EdDSA와 RedDSA는 Little Endian 형식으로 저장되고 전송됩니다.",
+            "tr": "* Tüm türler Big Endian formatındadır, EdDSA ve RedDSA hariç - bunlar Little Endian formatında saklanır ve iletilir.",
+            "pt": "* Todos os tipos são Big Endian, exceto para EdDSA e RedDSA, que são armazenados e transmitidos em formato Little Endian."
+          }
+        },
+        "p_023": {
+          "source_hash": "d58e2e5f08d3bebb",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html"
+          }
+        },
+        "h3_009": {
+          "source_hash": "f1a73e2204a11407",
+          "translations": {
+            "ko": "서명",
+            "tr": "İmza",
+            "pt": "Assinatura"
+          }
+        },
+        "h4_019": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_024": {
+          "source_hash": "7c0c2696fc328314",
+          "translations": {
+            "ko": "이 구조는 어떤 데이터의 서명을 나타냅니다.",
+            "tr": "Bu yapı, bazı verilerin imzasını temsil eder.",
+            "pt": "Esta estrutura representa a assinatura de alguns dados."
+          }
+        },
+        "h4_020": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_025": {
+          "source_hash": "38a179e0a154956f",
+          "translations": {
+            "ko": "서명 타입과 길이는 사용된 키의 타입으로부터 추론됩니다. 기본 타입은 DSA_SHA1입니다. 릴리스 0.9.12부터는 컨텍스트에 따라 다른 타입들이 지원될 수 있습니다.",
+            "tr": "İmza türü ve uzunluğu kullanılan anahtarın türünden çıkarılır. Varsayılan tür DSA_SHA1'dir. 0.9.12 sürümünden itibaren, bağlama bağlı olarak diğer türler de desteklenebilir.",
+            "pt": "O tipo e comprimento da assinatura são inferidos a partir do tipo de chave utilizada. O tipo padrão é DSA_SHA1. A partir da versão 0.9.12, outros tipos podem ser suportados, dependendo do contexto."
+          }
+        },
+        "h4_021": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "주의사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_005": {
+          "source_hash": "31384dc4de1e3666",
+          "translations": {
+            "ko": "* 서명이 두 개의 요소로 구성된 경우 (예: R, S 값), 각 요소를 필요시 앞에 0을 붙여 length/2로 패딩하여 직렬화됩니다.",
+            "tr": "* Bir imza iki elemandan oluştuğunda (örneğin R,S değerleri), her eleman gerekirse başına sıfırlar eklenerek length/2 uzunluğuna doldurularak serileştirilir.",
+            "pt": "* Quando uma assinatura é composta por dois elementos (por exemplo valores R,S), ela é\n  serializada preenchendo cada elemento com length/2 com zeros à esquerda se\n  necessário."
+          }
+        },
+        "list_006": {
+          "source_hash": "610a55333aded80c",
+          "translations": {
+            "ko": "* EdDSA와 RedDSA를 제외한 모든 타입은 Big Endian 형식이며, EdDSA와 RedDSA는 Little Endian 형식으로 저장되고 전송됩니다.",
+            "tr": "* Tüm türler Big Endian formatındadır, EdDSA ve RedDSA hariç; bunlar Little Endian formatında saklanır ve iletilir.",
+            "pt": "* Todos os tipos são Big Endian, exceto EdDSA e RedDSA, que são armazenados e transmitidos\n  em formato Little Endian."
+          }
+        },
+        "p_026": {
+          "source_hash": "58e5fe1bed69c63c",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html"
+          }
+        },
+        "h3_010": {
+          "source_hash": "a91069147f9bd924",
+          "translations": {
+            "ko": "해시",
+            "tr": "Hash",
+            "pt": "Hash"
+          }
+        },
+        "h4_022": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_027": {
+          "source_hash": "cbae9ce1ff11c741",
+          "translations": {
+            "ko": "어떤 데이터의 SHA256을 나타냅니다.",
+            "tr": "Bazı verilerin SHA256 değerini temsil eder.",
+            "pt": "Representa o SHA256 de alguns dados."
+          }
+        },
+        "h4_023": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_028": {
+          "source_hash": "45e5239ab38c3ab8",
+          "translations": {
+            "ko": "32바이트",
+            "tr": "32 bayt",
+            "pt": "32 bytes"
+          }
+        },
+        "p_029": {
+          "source_hash": "3b0d9a4a571914be",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html"
+          }
+        },
+        "h3_011": {
+          "source_hash": "cf61ef59e15953cb",
+          "translations": {
+            "ko": "세션 태그",
+            "tr": "Oturum Etiketi",
+            "pt": "Session Tag"
+          }
+        },
+        "p_030": {
+          "source_hash": "f59633003b192937",
+          "translations": {
+            "ko": "참고: ECIES-X25519 목적지(ratchet)와 ECIES-X25519 router에 대한 세션 태그는 8바이트입니다. [ECIES](/docs/specs/ecies/) 및 [ECIES-ROUTERS](/docs/specs/ecies-routers/)를 참조하세요.",
+            "tr": "Not: ECIES-X25519 hedefleri (ratchet) ve ECIES-X25519 router'ları için Session Tag'ler 8 bayttır. Bkz. [ECIES](/docs/specs/ecies/) ve [ECIES-ROUTERS](/docs/specs/ecies-routers/).",
+            "pt": "Nota: Session Tags para destinos ECIES-X25519 (ratchet) e routers ECIES-X25519 são de 8 bytes. Veja [ECIES](/docs/specs/ecies/) e [ECIES-ROUTERS](/docs/specs/ecies-routers/)."
+          }
+        },
+        "h4_024": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_031": {
+          "source_hash": "150e65e691c31e34",
+          "translations": {
+            "ko": "무작위 수",
+            "tr": "Rastgele bir sayı",
+            "pt": "Um número aleatório"
+          }
+        },
+        "h4_025": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_032": {
+          "source_hash": "45e5239ab38c3ab8",
+          "translations": {
+            "ko": "32바이트",
+            "tr": "32 bayt",
+            "pt": "32 bytes"
+          }
+        },
+        "p_033": {
+          "source_hash": "d12c5756c5d4991f",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html"
+          }
+        },
+        "h3_012": {
+          "source_hash": "a3e4bba25f0c07d0",
+          "translations": {
+            "ko": "TunnelId",
+            "tr": "TunnelId",
+            "pt": "TunnelId"
+          }
+        },
+        "h4_026": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_034": {
+          "source_hash": "72b1e3bf72d5473a",
+          "translations": {
+            "ko": "터널 내 각 router에 고유한 식별자를 정의합니다. Tunnel ID는 일반적으로 0보다 큰 값이며, 특별한 경우를 제외하고는 0 값을 사용하지 마세요.",
+            "tr": "Bir tunnel içindeki her router için benzersiz olan bir tanımlayıcı belirler. Tunnel ID genellikle sıfırdan büyüktür; özel durumlar dışında sıfır değeri kullanmayın.",
+            "pt": "Define um identificador que é único para cada router em um tunnel. Um Tunnel ID é geralmente maior que zero; não use um valor de zero exceto em casos especiais."
+          }
+        },
+        "h4_027": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_035": {
+          "source_hash": "913259753ca2dca8",
+          "translations": {
+            "ko": "4바이트 [Integer](#integer)",
+            "tr": "4 bayt [Integer](#integer)",
+            "pt": "4 byte [Integer](#integer)"
+          }
+        },
+        "p_036": {
+          "source_hash": "4283454a65c31b1f",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html"
+          }
+        },
+        "h3_013": {
+          "source_hash": "2a93a8a442e305e8",
+          "translations": {
+            "ko": "인증서",
+            "tr": "Sertifika",
+            "pt": "Certificado"
+          }
+        },
+        "h4_028": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_037": {
+          "source_hash": "d2ed73fe4021c030",
+          "translations": {
+            "ko": "인증서는 I2P 네트워크 전반에서 사용되는 다양한 영수증이나 작업 증명을 담는 컨테이너입니다.",
+            "tr": "Sertifika, I2P ağı boyunca kullanılan çeşitli makbuzlar veya iş kanıtları için bir kapsayıcıdır.",
+            "pt": "Um certificado é um contêiner para vários recibos ou provas de trabalho usados em toda a rede I2P."
+          }
+        },
+        "h4_029": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_038": {
+          "source_hash": "2d8e094b389520f9",
+          "translations": {
+            "ko": "인증서 타입을 지정하는 1바이트 [Integer](#integer), 그 다음 인증서 페이로드의 크기를 지정하는 2바이트 [Integer](#integer), 그리고 해당 크기만큼의 바이트들이 이어집니다.",
+            "tr": "Sertifika türünü belirten 1 bayt [Integer](#integer), ardından sertifika yük boyutunu belirten 2 bayt [Integer](#integer), sonra o kadar bayt.",
+            "pt": "1 byte [Integer](#integer) especificando o tipo de certificado, seguido por um [Integer](#integer) de 2 bytes especificando o tamanho do payload do certificado, então essa quantidade de bytes."
+          }
+        },
+        "h4_030": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_007": {
+          "source_hash": "ece05c95142b6138",
+          "translations": {
+            "ko": "* [Router Identities](#routeridentity)의 경우, 버전 0.9.15까지는 Certificate가 항상 NULL입니다. 0.9.16부터는 키 유형을 지정하기 위해 Key Certificate가 사용됩니다. 0.9.48부터는 X25519 암호화 공개 키 유형이 허용됩니다. 아래를 참조하십시오.",
+            "tr": "* [Router Identities](#routeridentity) için, Certificate 0.9.15 sürümü dahil olmak üzere her zaman NULL'dur. 0.9.16 sürümünden itibaren, anahtar türlerini belirtmek için bir Key Certificate kullanılır. 0.9.48 sürümünden itibaren, X25519 şifreleme public key türlerine izin verilir. Aşağıya bakınız.",
+            "pt": "* Para [Router Identities](#routeridentity), o Certificate é sempre NULL até a versão\n  0.9.15. A partir da 0.9.16, um Key Certificate é usado para especificar os\n  tipos de chave. A partir da 0.9.48, tipos de chave pública de criptografia X25519\n  são permitidos. Veja abaixo."
+          }
+        },
+        "list_008": {
+          "source_hash": "cb50bc65098b7035",
+          "translations": {
+            "ko": "* [Garlic Cloves](/docs/specs/i2np/#struct-garlicclove)의 경우, Certificate는 항상 NULL이며, 현재 다른 구현은 없습니다.",
+            "tr": "* [Garlic Cloves](/docs/specs/i2np/#struct-garlicclove) için, Certificate her zaman NULL'dur, şu anda başka hiçbiri uygulanmamıştır.",
+            "pt": "* Para [Garlic Cloves](/docs/specs/i2np/#struct-garlicclove), o Certificate é sempre NULL, nenhum outro está atualmente implementado."
+          }
+        },
+        "list_009": {
+          "source_hash": "074b603921fa1394",
+          "translations": {
+            "ko": "* [Garlic Messages](/docs/specs/i2np/#msg-garlic)의 경우, Certificate는 항상 NULL이며, 현재 다른 것들은 구현되지 않았습니다.",
+            "tr": "* [Garlic Messages](/docs/specs/i2np/#msg-garlic) için, Certificate her zaman NULL'dur, şu anda başka hiçbiri uygulanmamıştır.",
+            "pt": "* Para [Garlic Messages](/docs/specs/i2np/#msg-garlic), o Certificate é sempre NULL, nenhum outro está atualmente implementado."
+          }
+        },
+        "list_010": {
+          "source_hash": "40b4c2e45e8cf448",
+          "translations": {
+            "ko": "* [Destinations](#destination)의 경우, Certificate는 NULL이 아닐 수 있습니다. 0.9.12부터 Key Certificate를 사용하여 서명 공개 키 유형을 지정할 수 있습니다. 아래를 참조하세요.",
+            "tr": "* [Destinations](#destination) için, Sertifika NULL olmayabilir. 0.9.12 sürümünden itibaren, imzalama genel anahtar türünü belirtmek için bir Anahtar Sertifikası kullanılabilir. Aşağıya bakınız.",
+            "pt": "* Para [Destinations](#destination), o Certificate pode ser não-NULL. A partir da versão 0.9.12, um Key Certificate pode ser usado para especificar o tipo de chave pública de assinatura. Veja abaixo."
+          }
+        },
+        "list_011": {
+          "source_hash": "7145d11fc82e0645",
+          "translations": {
+            "ko": "* 구현자들은 Certificate에서 초과 데이터를 금지하도록 주의해야 합니다.\n  각 certificate 유형에 대한 적절한 길이가 강제되어야 합니다.",
+            "tr": "* Geliştiriciler, Sertifikalarda fazla veri bulunmasını yasaklamaları konusunda uyarılır.\n  Her sertifika türü için uygun uzunluk zorlanmalıdır.",
+            "pt": "* Os implementadores são alertados para proibir dados em excesso nos Certificados.\n  O comprimento apropriado para cada tipo de certificado deve ser aplicado."
+          }
+        },
+        "h4_031": {
+          "source_hash": "589e976009f87a41",
+          "translations": {
+            "ko": "인증서 유형",
+            "tr": "Sertifika Türleri",
+            "pt": "Tipos de Certificado"
+          }
+        },
+        "p_039": {
+          "source_hash": "af3356106f62ea34",
+          "translations": {
+            "ko": "다음과 같은 인증서 유형이 정의되어 있습니다:",
+            "tr": "Aşağıdaki sertifika türleri tanımlanmıştır:",
+            "pt": "Os seguintes tipos de certificado estão definidos:"
+          }
+        },
+        "h4_032": {
+          "source_hash": "d2e695ee110dcabf",
+          "translations": {
+            "ko": "키 인증서",
+            "tr": "Anahtar Sertifikaları",
+            "pt": "Certificados de Chave"
+          }
+        },
+        "p_040": {
+          "source_hash": "c23d09c2c1454d72",
+          "translations": {
+            "ko": "키 인증서는 릴리스 0.9.12에서 도입되었습니다. 해당 릴리스 이전에는 모든 PublicKey가 256바이트 ElGamal 키였고, 모든 SigningPublicKey가 128바이트 DSA-SHA1 키였습니다. 키 인증서는 Destination 또는 RouterIdentity에서 PublicKey와 SigningPublicKey의 유형을 나타내고, 표준 길이를 초과하는 모든 키 데이터를 패키징하는 메커니즘을 제공합니다.",
+            "tr": "Key certificate'lar 0.9.12 sürümüyle tanıtıldı. Bu sürümden önce, tüm PublicKey'ler 256 baytlık ElGamal anahtarlarıydı ve tüm SigningPublicKey'ler 128 baytlık DSA-SHA1 anahtarlarıydı. Key certificate, Destination veya RouterIdentity içindeki PublicKey ve SigningPublicKey türünü belirtmek ve standart uzunlukları aşan herhangi bir anahtar verisini paketlemek için bir mekanizma sağlar.",
+            "pt": "Os certificados de chave foram introduzidos na versão 0.9.12. Antes dessa versão, todas as PublicKeys eram chaves ElGamal de 256 bytes, e todas as SigningPublicKeys eram chaves DSA-SHA1 de 128 bytes. Um certificado de chave fornece um mecanismo para indicar o tipo da PublicKey e SigningPublicKey no Destination ou RouterIdentity, e para empacotar quaisquer dados de chave que excedam os comprimentos padrão."
+          }
+        },
+        "p_041": {
+          "source_hash": "89fc7ad23932dbc2",
+          "translations": {
+            "ko": "certificate 앞에 정확히 384바이트를 유지하고, 초과하는 키 데이터를 certificate 내부에 배치함으로써, Destinations와 Router Identities를 파싱하는 모든 소프트웨어와의 호환성을 유지합니다.",
+            "tr": "Sertifikadan önce tam olarak 384 bayt koruyarak ve fazla anahtar verilerini sertifikanın içine koyarak, Destination'ları ve Router Identity'lerini ayrıştıran herhangi bir yazılım için uyumluluğu korumuş oluruz.",
+            "pt": "Ao manter exatamente 384 bytes antes do certificado e colocar qualquer dado de chave excedente dentro do certificado, mantemos a compatibilidade para qualquer software que analise Destinations e Router Identities."
+          }
+        },
+        "p_042": {
+          "source_hash": "bffdcfd394ab7756",
+          "translations": {
+            "ko": "키 인증서 페이로드는 다음을 포함합니다:",
+            "tr": "Anahtar sertifikası yükü şunları içerir:",
+            "pt": "O payload do certificado de chave contém:"
+          }
+        },
+        "p_043": {
+          "source_hash": "010589acfd63ebc1",
+          "translations": {
+            "ko": "경고: 키 타입 순서는 예상과 반대입니다. Signing Public Key Type이 먼저 옵니다.",
+            "tr": "Uyarı: Anahtar türü sırası beklediğinizin tersine; İmzalama Public Key Türü ilk sırada.",
+            "pt": "Aviso: A ordem dos tipos de chave é o oposto do que você pode esperar; o Tipo de Chave Pública de Assinatura vem primeiro."
+          }
+        },
+        "p_044": {
+          "source_hash": "bd9310273f5b77cd",
+          "translations": {
+            "ko": "정의된 서명 공개키 유형은 다음과 같습니다:",
+            "tr": "Tanımlanmış İmzalama Genel Anahtarı türleri şunlardır:",
+            "pt": "Os tipos de Chave Pública de Assinatura definidos são:"
+          }
+        },
+        "p_045": {
+          "source_hash": "966973947297b7bb",
+          "translations": {
+            "ko": "정의된 암호화 공개 키 타입은 다음과 같습니다:",
+            "tr": "Tanımlanmış Kripto Açık Anahtar türleri şunlardır:",
+            "pt": "Os tipos de Chave Pública Criptográfica definidos são:"
+          }
+        },
+        "p_046": {
+          "source_hash": "552851f4b681503c",
+          "translations": {
+            "ko": "Key Certificate가 없는 경우, Destination 또는 RouterIdentity의 앞선 384바이트는 256바이트 ElGamal PublicKey와 128바이트 DSA-SHA1 SigningPublicKey로 정의됩니다. Key Certificate가 있는 경우, 앞선 384바이트는 다음과 같이 재정의됩니다:",
+            "tr": "Key Certificate mevcut olmadığında, Destination veya RouterIdentity içindeki önceki 384 byte, 256-byte ElGamal PublicKey ve ardından 128-byte DSA-SHA1 SigningPublicKey olarak tanımlanır. Key Certificate mevcut olduğunda, önceki 384 byte aşağıdaki gibi yeniden tanımlanır:",
+            "pt": "Quando um Key Certificate não está presente, os 384 bytes precedentes no Destination ou RouterIdentity são definidos como a PublicKey ElGamal de 256 bytes seguida pela SigningPublicKey DSA-SHA1 de 128 bytes. Quando um Key Certificate está presente, os 384 bytes precedentes são redefinidos da seguinte forma:"
+          }
+        },
+        "list_012": {
+          "source_hash": "acf4ef3912f67100",
+          "translations": {
+            "ko": "* 암호화 공개 키의 전체 또는 첫 번째 부분",
+            "tr": "* Crypto Public Key'in tamamı veya ilk kısmı",
+            "pt": "* Chave Pública Criptográfica completa ou primeira porção"
+          }
+        },
+        "list_013": {
+          "source_hash": "2e0c08d6303287eb",
+          "translations": {
+            "ko": "* 두 키의 총 길이가 384바이트 미만인 경우 랜덤 패딩",
+            "tr": "* İki anahtarın toplam uzunluğu 384 bayttan azsa rastgele dolgu",
+            "pt": "* Preenchimento aleatório se o comprimento total das duas chaves for menor que 384 bytes"
+          }
+        },
+        "list_014": {
+          "source_hash": "ee000275405b1b7f",
+          "translations": {
+            "ko": "* 서명 공개 키의 전체 또는 첫 번째 부분",
+            "tr": "* İmza Public Key'inin tamamı veya ilk kısmı",
+            "pt": "* Chave Pública de Assinatura completa ou primeira parte"
+          }
+        },
+        "p_047": {
+          "source_hash": "91d164588b493d7d",
+          "translations": {
+            "ko": "Crypto Public Key는 시작 부분에 정렬되고 Signing Public Key는 끝 부분에 정렬됩니다. 패딩(있는 경우)은 가운데에 위치합니다. 인증서 내의 초기 키 데이터, 패딩, 그리고 초과 키 데이터 부분의 길이와 경계는 명시적으로 지정되지 않지만, 지정된 키 타입의 길이로부터 도출됩니다. Crypto와 Signing Public Key의 총 길이가 384바이트를 초과하는 경우, 나머지는 Key Certificate에 포함됩니다. Crypto Public Key 길이가 256바이트가 아닌 경우, 두 키 간의 경계를 결정하는 방법은 이 문서의 향후 개정판에서 명시될 예정입니다.",
+            "tr": "Crypto Public Key başlangıçta hizalanır ve Signing Public Key sonunda hizalanır. Dolgu (varsa) ortadadır. Sertifikalardaki başlangıç anahtar verisi, dolgu ve fazla anahtar verisi bölümlerinin uzunlukları ve sınırları açıkça belirtilmez, ancak belirtilen anahtar türlerinin uzunluklarından türetilir. Crypto ve Signing Public Key'lerin toplam uzunlukları 384 baytı aşarsa, geri kalanı Key Certificate'te yer alacaktır. Crypto Public Key uzunluğu 256 bayt değilse, iki anahtar arasındaki sınırı belirleme yöntemi bu belgenin gelecekteki bir revizyonunda belirtilecektir.",
+            "pt": "A Chave Pública Criptográfica é alinhada no início e a Chave Pública de Assinatura é alinhada no final. O preenchimento (se houver) fica no meio. Os comprimentos e limites dos dados iniciais da chave, do preenchimento e das partes de dados de chave excedentes nos certificados não são especificados explicitamente, mas são derivados dos comprimentos dos tipos de chave especificados. Se os comprimentos totais das Chaves Públicas Criptográfica e de Assinatura excederem 384 bytes, o restante será contido no Certificado de Chave. Se o comprimento da Chave Pública Criptográfica não for 256 bytes, o método para determinar o limite entre as duas chaves será especificado em uma revisão futura deste documento."
+          }
+        },
+        "p_048": {
+          "source_hash": "f2dc878585cad64a",
+          "translations": {
+            "ko": "ElGamal 암호화 공개 키와 표시된 서명 공개 키 유형을 사용한 레이아웃 예시:",
+            "tr": "Belirtilen ElGamal Crypto Public Key ve Signing Public Key türünü kullanan örnek düzenler:",
+            "pt": "Layouts de exemplo usando uma Chave Pública Cripto ElGamal e o tipo de Chave Pública de Assinatura indicado:"
+          }
+        },
+        "p_049": {
+          "source_hash": "b5c1c5bc790e29e7",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html"
+          }
+        },
+        "h4_033": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "노트",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_015": {
+          "source_hash": "3990ab3aa414e9f4",
+          "translations": {
+            "ko": "* 구현자들은 Key Certificate에서 초과 데이터를 금지하도록 주의해야 합니다.\n  각 인증서 유형에 대한 적절한 길이가 강제되어야 합니다.",
+            "tr": "* Uygulayıcıların Key Certificate'larda fazla veri bulunmasını yasaklaması tavsiye edilir.\n  Her sertifika türü için uygun uzunluk zorlanmalıdır.",
+            "pt": "* Os implementadores são alertados para proibir dados excessivos em Certificados de Chave.\n  O comprimento apropriado para cada tipo de certificado deve ser aplicado."
+          }
+        },
+        "list_016": {
+          "source_hash": "2f81782741b47f88",
+          "translations": {
+            "ko": "* 타입 0,0 (ElGamal,DSA_SHA1)의 KEY certificate는 허용되지만 권장되지 않습니다.\n  충분히 테스트되지 않았으며 일부 구현에서 문제를 일으킬 수 있습니다.\n  (ElGamal,DSA_SHA1) Destination 또는 RouterIdentity의 표준 표현에서는 NULL certificate를 사용하십시오.\n  이는 KEY certificate를 사용하는 것보다 4바이트 짧습니다.",
+            "tr": "* 0,0 (ElGamal,DSA_SHA1) türlerindeki bir KEY sertifikası izin veriliyor ancak önerilmiyor.\n  İyi test edilmemiştir ve bazı uygulamalarda sorunlara neden olabilir.\n  (ElGamal,DSA_SHA1) Destination veya RouterIdentity'nin kanonik temsilinde\n  KEY sertifikası kullanmaktan 4 bayt daha kısa olacak bir NULL sertifikası kullanın.",
+            "pt": "* Um certificado KEY com tipos 0,0 (ElGamal,DSA_SHA1) é permitido mas desencorajado.\n  Não é bem testado e pode causar problemas em algumas implementações.\n  Use um certificado NULL na representação canônica de um\n  Destination (ElGamal,DSA_SHA1) ou RouterIdentity, que será 4 bytes mais curto\n  que usar um certificado KEY."
+          }
+        },
+        "h3_014": {
+          "source_hash": "1ff9a5f8b4bd530e",
+          "translations": {
+            "ko": "매핑",
+            "tr": "Eşleme",
+            "pt": "Mapeamento"
+          }
+        },
+        "h4_034": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_050": {
+          "source_hash": "fc49be5d17059e75",
+          "translations": {
+            "ko": "키/값 매핑 또는 속성의 집합",
+            "tr": "Bir anahtar/değer eşlemeleri veya özellikler kümesi",
+            "pt": "Um conjunto de mapeamentos chave/valor ou propriedades"
+          }
+        },
+        "h4_035": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_051": {
+          "source_hash": "4d5a689ab6a73dc3",
+          "translations": {
+            "ko": "2바이트 크기의 Integer 다음에 String=String; 쌍의 연속이 옵니다.",
+            "tr": "2-byte boyutunda Integer ardından String=String; çiftleri serisi.",
+            "pt": "Um Integer de 2 bytes seguido por uma série de pares String=String;."
+          }
+        },
+        "p_052": {
+          "source_hash": "77ba1d94b8afc6cc",
+          "translations": {
+            "ko": "경고: Mapping의 대부분의 사용은 서명된 구조에서 이루어지며, 여기서 Mapping 엔트리들은 키에 따라 정렬되어야 하므로 서명이 불변입니다. 키에 따라 정렬하지 않으면 서명 실패가 발생합니다!",
+            "tr": "UYARI: Mapping kullanımlarının çoğu imzalı yapılarda olup, Mapping girdilerinin anahtar değerine göre sıralanması gerekir, böylece imza değiştirilemez hale gelir. Anahtar değerine göre sıralama yapılmaması imza hatalarına neden olacaktır!",
+            "pt": "AVISO: A maioria dos usos de Mapping estão em estruturas assinadas, onde as entradas do Mapping devem ser ordenadas por chave, para que a assinatura seja imutável. Falha ao ordenar por chave resultará em falhas de assinatura!"
+          }
+        },
+        "h4_036": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_017": {
+          "source_hash": "be36f79c714fce79",
+          "translations": {
+            "ko": "* 인코딩이 최적화되지 않았습니다 - '=' 및 ';' 문자 또는 문자열 길이 중 하나가 필요하지만 둘 다 필요하지는 않습니다",
+            "tr": "* Kodlama optimal değil - ya '=' ve ';' karakterlerine ya da string uzunluklarına ihtiyacımız var, ikisine birden değil",
+            "pt": "* A codificação não é ideal - precisamos dos caracteres '=' e ';', ou dos comprimentos das strings, mas não de ambos"
+          }
+        },
+        "list_018": {
+          "source_hash": "874de0e1173bcec2",
+          "translations": {
+            "ko": "* 일부 문서에서는 문자열에 '=' 또는 ';'를 포함할 수 없다고 나와 있지만 이 인코딩은 이를 지원합니다",
+            "tr": "* Bazı belgelerde dizgelerin '=' veya ';' karakterlerini içeremeyeceği belirtilse de bu kodlama bunları destekler",
+            "pt": "* Algumas documentações dizem que as strings podem não incluir '=' ou ';' mas esta codificação suporta eles"
+          }
+        },
+        "list_019": {
+          "source_hash": "5af5b3a262535aef",
+          "translations": {
+            "ko": "* 문자열은 UTF-8로 정의되지만 현재 구현에서는 I2CP는 UTF-8을 사용하지만 I2NP는 그렇지 않습니다. 예를 들어, I2NP Database Store Message의 RouterInfo 옵션 매핑에 있는 UTF-8 문자열은 손상됩니다.",
+            "tr": "* String'ler UTF-8 olarak tanımlanmıştır ancak mevcut uygulamada I2CP UTF-8 kullanır fakat I2NP kullanmaz. Örneğin, bir I2NP Database Store Message içindeki RouterInfo seçenekleri eşlemesindeki UTF-8 string'ler bozulacaktır.",
+            "pt": "* Strings são definidas como UTF-8, mas na implementação atual, I2CP usa UTF-8 mas I2NP não. Por exemplo, strings UTF-8 em um mapeamento de opções RouterInfo em uma I2NP Database Store Message serão corrompidas."
+          }
+        },
+        "list_020": {
+          "source_hash": "0a3b50e7fafae829",
+          "translations": {
+            "ko": "* 인코딩은 중복 키를 허용하지만, 매핑이 서명되는 모든 사용에서 중복은 서명 실패를 일으킬 수 있습니다.",
+            "tr": "* Kodlama duplicate anahtarlara izin verir, ancak eşlemenin imzalandığı herhangi bir kullanımda, duplicate'lar imza hatasına neden olabilir.",
+            "pt": "* A codificação permite chaves duplicadas, no entanto, em qualquer uso onde o mapeamento é assinado, duplicatas podem causar uma falha de assinatura."
+          }
+        },
+        "list_021": {
+          "source_hash": "63f503dca8aac53e",
+          "translations": {
+            "ko": "* I2NP 메시지에 포함된 매핑들(예: RouterAddress 또는 RouterInfo에서)은\n  서명이 불변하도록 키별로 정렬되어야 합니다. 중복 키는\n  허용되지 않습니다.",
+            "tr": "* I2NP mesajlarında bulunan eşlemeler (örneğin RouterAddress veya RouterInfo'da)\n  imzanın değişmez olması için anahtara göre sıralanmalıdır. Yinelenen anahtarlara\n  izin verilmez.",
+            "pt": "* Mapeamentos contidos em mensagens I2NP (por exemplo, em um RouterAddress ou RouterInfo)\n  devem ser ordenados por chave para que a assinatura seja invariável. Chaves\n  duplicadas não são permitidas."
+          }
+        },
+        "list_022": {
+          "source_hash": "304cba13d4518418",
+          "translations": {
+            "ko": "* [I2CP SessionConfig](/docs/specs/i2cp/#struct-sessionconfig)에 포함된 매핑은 서명이 불변이 되도록 키별로 정렬되어야 합니다. 중복 키는 허용되지 않습니다.",
+            "tr": "* Bir [I2CP SessionConfig](/docs/specs/i2cp/#struct-sessionconfig) içinde bulunan eşlemeler, imzanın değişmez olması için anahtar bazında sıralanmış olmalıdır. Yinelenen anahtarlara izin verilmez.",
+            "pt": "* Os mapeamentos contidos em um [I2CP SessionConfig](/docs/specs/i2cp/#struct-sessionconfig) devem ser ordenados por chave para que\n  a assinatura seja invariável. Chaves duplicadas não são permitidas."
+          }
+        },
+        "list_023": {
+          "source_hash": "935e0ddf4766d7d0",
+          "translations": {
+            "ko": "* 정렬 방법은 문자의 유니코드 값을 사용하여 Java String.compareTo()와 동일하게 정의됩니다.",
+            "tr": "* Sıralama yöntemi, karakterlerin Unicode değerlerini kullanarak Java String.compareTo() metodunda olduğu gibi tanımlanır.",
+            "pt": "* O método de ordenação é definido como em Java String.compareTo(), usando o valor Unicode dos caracteres."
+          }
+        },
+        "list_024": {
+          "source_hash": "333f397d2af5a5cb",
+          "translations": {
+            "ko": "* 애플리케이션에 따라 다르지만, 키와 값은 일반적으로 대소문자를 구분합니다.",
+            "tr": "* Uygulamaya bağlı olmakla birlikte, anahtarlar ve değerler genellikle büyük/küçük harf duyarlıdır.",
+            "pt": "* Embora dependa da aplicação, chaves e valores são geralmente sensíveis a maiúsculas e minúsculas."
+          }
+        },
+        "list_025": {
+          "source_hash": "237dce19ac2351cc",
+          "translations": {
+            "ko": "* 키와 값 문자열 길이 제한은 각각 255바이트(문자가 아님)이며, 여기에 길이 바이트가 추가됩니다. 길이 바이트는 0일 수 있습니다.",
+            "tr": "* Anahtar ve değer dizesi uzunluk limitleri her biri için 255 bayt (karakter değil) artı uzunluk baytıdır. Uzunluk baytı 0 olabilir.",
+            "pt": "* Os limites de comprimento das strings de chave e valor são de 255 bytes (não caracteres) cada, mais o byte de comprimento. O byte de comprimento pode ser 0."
+          }
+        },
+        "list_026": {
+          "source_hash": "ea51f32a2324287f",
+          "translations": {
+            "ko": "* 총 길이 제한은 65535바이트이며, 2바이트 크기 필드를 더해 총 65537바이트입니다.",
+            "tr": "* Toplam uzunluk sınırı 65535 bayt artı 2 baytlık boyut alanı, yani toplamda 65537'dir.",
+            "pt": "* O limite de comprimento total é 65535 bytes, mais o campo de tamanho de 2 bytes, ou 65537 no total."
+          }
+        },
+        "p_053": {
+          "source_hash": "63ef25d38c8a5828",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html"
+          }
+        },
+        "h2_002": {
+          "source_hash": "0d8b1dbe57e4dc99",
+          "translations": {
+            "ko": "공통 구조 명세서",
+            "tr": "Ortak yapı spesifikasyonu",
+            "pt": "Especificação de estrutura comum"
+          }
+        },
+        "h3_015": {
+          "source_hash": "e41b09eac4a0692d",
+          "translations": {
+            "ko": "KeysAndCert",
+            "tr": "KeysAndCert",
+            "pt": "KeysAndCert"
+          }
+        },
+        "h4_037": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_054": {
+          "source_hash": "00b2ef771aa7ee7d",
+          "translations": {
+            "ko": "RouterIdentity 또는 Destination으로 사용되는 암호화 공개 키, 서명 공개 키, 그리고 인증서입니다.",
+            "tr": "Bir şifreleme public key'i, bir imzalama public key'i ve RouterIdentity ya da Destination olarak kullanılan bir sertifika.",
+            "pt": "Uma chave pública de criptografia, uma chave pública de assinatura e um certificado, usado como RouterIdentity ou Destination."
+          }
+        },
+        "h4_038": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_055": {
+          "source_hash": "cc22d1e4ba91179a",
+          "translations": {
+            "ko": "[PublicKey](#publickey) 뒤에 [SigningPublicKey](#signingpublickey)가 오고, 그 다음에 [Certificate](#certificate)가 따라옵니다.",
+            "tr": "Bir [PublicKey](#publickey) ardından bir [SigningPublicKey](#signingpublickey) ve sonra bir [Certificate](#certificate).",
+            "pt": "Uma [PublicKey](#publickey) seguida por uma [SigningPublicKey](#signingpublickey) e então um [Certificate](#certificate)."
+          }
+        },
+        "h4_039": {
+          "source_hash": "999debf4fd3035be",
+          "translations": {
+            "ko": "패딩 생성 가이드라인",
+            "tr": "Dolgu Oluşturma Yönergeleri",
+            "pt": "Diretrizes de Geração de Preenchimento"
+          }
+        },
+        "p_056": {
+          "source_hash": "78618ed69a9c7b37",
+          "translations": {
+            "ko": "이러한 가이드라인은 Proposal 161에서 제안되었고 API 버전 0.9.57에서 구현되었습니다. 이 가이드라인은 0.6 (2005) 이후의 모든 버전과 하위 호환됩니다. 배경과 추가 정보는 Proposal 161을 참조하세요.",
+            "tr": "Bu kılavuzlar Öneri 161'de önerilmiş ve API sürüm 0.9.57'de uygulanmıştır. Bu kılavuzlar 0.6 (2005) sürümünden itibaren tüm sürümlerle geriye dönük uyumludur. Geçmiş bilgi ve daha fazla ayrıntı için Öneri 161'e bakınız.",
+            "pt": "Essas diretrizes foram propostas na Proposta 161 e implementadas na versão da API 0.9.57. Essas diretrizes são compatíveis com versões anteriores desde a versão 0.6 (2005). Consulte a Proposta 161 para informações de contexto e detalhes adicionais."
+          }
+        },
+        "p_057": {
+          "source_hash": "93d2e584622130ea",
+          "translations": {
+            "ko": "ElGamal + DSA-SHA1 이외의 현재 사용되는 키 유형 조합에는 패딩이 존재합니다. 또한 목적지의 경우, 256바이트 공개 키 필드는 버전 0.6(2005년) 이후로 사용되지 않고 있습니다.",
+            "tr": "ElGamal + DSA-SHA1 dışında şu anda kullanılan herhangi bir anahtar türü kombinasyonu için dolgu mevcut olacaktır. Ayrıca, hedefler için 256-bayt'lık genel anahtar alanı sürüm 0.6'dan (2005) beri kullanılmamaktadır.",
+            "pt": "Para qualquer combinação atualmente usada de tipos de chave que não seja ElGamal + DSA-SHA1, padding estará presente. Além disso, para destinos, o campo de chave pública de 256 bytes não é usado desde a versão 0.6 (2005)."
+          }
+        },
+        "p_058": {
+          "source_hash": "dd161e51b50f0d68",
+          "translations": {
+            "ko": "구현자는 Destination 공개 키와 Destination 및 Router Identity 패딩을 위한 랜덤 데이터를 생성할 때, 다양한 I2P 프로토콜에서 압축 가능하면서도 여전히 안전하고, Base 64 표현이 손상되거나 안전하지 않은 것으로 보이지 않도록 해야 합니다. 이는 파괴적인 프로토콜 변경 없이 패딩 필드를 제거하는 것의 대부분의 이점을 제공합니다.",
+            "tr": "Uygulayıcılar, Destination genel anahtarları ve Destination ile Router Identity dolgusu için rastgele veri üretirken, çeşitli I2P protokollerinde sıkıştırılabilir olmasını sağlamalı, güvenliği koruyarak Base 64 temsillerinin bozuk veya güvensiz görünmesini önlemelidir. Bu yaklaşım, dolgu alanlarını kaldırmanın faydalarının çoğunu disruptif protokol değişiklikleri olmadan sağlar.",
+            "pt": "Os implementadores devem gerar os dados aleatórios para chaves públicas de Destination e preenchimento de Identity de Destination e Router, de modo que sejam compressíveis em vários protocolos I2P enquanto permanecem seguros, e sem que as representações Base 64 pareçam corrompidas ou inseguras. Isso fornece a maioria dos benefícios de remover os campos de preenchimento sem qualquer mudança disruptiva de protocolo."
+          }
+        },
+        "p_059": {
+          "source_hash": "696a0a122e759f3e",
+          "translations": {
+            "ko": "엄밀히 말하면, 32바이트 서명 공개키만으로도 (Destination과 Router Identity 모두에서) 그리고 32바이트 암호화 공개키 (Router Identity에서만)는 이러한 구조체들의 SHA-256 해시가 암호학적으로 강력하고 netDb DHT에서 무작위로 분산되는 데 필요한 모든 엔트로피를 제공하는 난수입니다.",
+            "tr": "Kesin olarak konuşmak gerekirse, tek başına 32-byte'lık imzalama public key'i (hem Destination'larda hem de Router Identity'lerde) ve 32-byte'lık şifreleme public key'i (sadece Router Identity'lerde) bu yapıların SHA-256 hash'lerinin kriptografik olarak güçlü olması ve network database DHT'sinde rastgele dağıtılması için gerekli tüm entropi'yi sağlayan rastgele bir sayıdır.",
+            "pt": "Rigorosamente falando, apenas a chave pública de assinatura de 32 bytes (tanto em Destinations quanto em Router Identities) e a chave pública de criptografia de 32 bytes (apenas em Router Identities) é um número aleatório que fornece toda a entropia necessária para que os hashes SHA-256 dessas estruturas sejam criptograficamente fortes e distribuídos aleatoriamente no DHT do banco de dados da rede."
+          }
+        },
+        "p_060": {
+          "source_hash": "7558ff11269acb64",
+          "translations": {
+            "ko": "그러나 충분한 주의를 기하기 위해 ElG 공개 키 필드와 패딩에 최소 32바이트의 랜덤 데이터를 사용할 것을 권장합니다. 또한 필드가 모두 0이면 Base 64 목적지에 AAAA 문자가 길게 연속되어 나타나 사용자에게 경고나 혼란을 야기할 수 있습니다.",
+            "tr": "Ancak, aşırı ihtiyatlı olmak adına, ElG public key alanında ve padding'de minimum 32 bayt rastgele veri kullanılmasını öneriyoruz. Ayrıca, alanların hepsi sıfır olsaydı, Base 64 hedefleri uzun AAAA karakter dizileri içerecekti ve bu da kullanıcılarda alarm veya karışıklığa neden olabilirdi.",
+            "pt": "No entanto, por excesso de precaução, recomendamos que um mínimo de 32 bytes de dados aleatórios seja usado no campo de chave pública ElG e no preenchimento. Além disso, se os campos fossem todos zeros, os destinos Base 64 conteriam longas sequências de caracteres AAAA, o que pode causar alarme ou confusão aos usuários."
+          }
+        },
+        "p_061": {
+          "source_hash": "37b6cd0d4ead4304",
+          "translations": {
+            "ko": "I2NP Database Store Message, Streaming SYN, SSU2 handshake, repliable Datagrams와 같은 I2P 프로토콜에서 전체 KeysAndCert 구조가 높은 압축률을 가질 수 있도록 32바이트의 랜덤 데이터를 필요에 따라 반복합니다.",
+            "tr": "Tam KeysAndCert yapısının I2NP Database Store Message, Streaming SYN, SSU2 handshake ve yanıtlanabilir Datagrams gibi I2P protokollerinde yüksek oranda sıkıştırılabilir olması için gerektiği kadar 32 baytlık rastgele veriyi tekrarlayın.",
+            "pt": "Repita os 32 bytes de dados aleatórios conforme necessário para que a estrutura KeysAndCert completa seja altamente comprimível em protocolos I2P como I2NP Database Store Message, Streaming SYN, handshake SSU2 e Datagrams com resposta."
+          }
+        },
+        "p_062": {
+          "source_hash": "1889f03338b79bba",
+          "translations": {
+            "ko": "예시:",
+            "tr": "Örnekler:",
+            "pt": "Exemplos:"
+          }
+        },
+        "list_027": {
+          "source_hash": "39a4a35e28d96d9b",
+          "translations": {
+            "ko": "* X25519 암호화 타입과 Ed25519 서명 타입을 가진 Router Identity는 랜덤 데이터의 10개 사본(320바이트)을 포함하며, 압축 시 약 288바이트를 절약할 수 있습니다.",
+            "tr": "* X25519 şifreleme türü ve Ed25519 imza türüne sahip bir Router Identity, rastgele verinin 10 kopyasını (320 bayt) içerecektir ve sıkıştırıldığında yaklaşık 288 bayt tasarruf sağlayacaktır.",
+            "pt": "* Uma Router Identity com tipo de criptografia X25519 e tipo de assinatura Ed25519\n  conterá 10 cópias (320 bytes) dos dados aleatórios, para uma economia de aproximadamente 288 bytes quando comprimida."
+          }
+        },
+        "list_028": {
+          "source_hash": "d40cf6eb255a956b",
+          "translations": {
+            "ko": "* Ed25519 서명 유형을 가진 Destination은\n  랜덤 데이터의 11개 복사본(352바이트)을 포함하며, 압축 시 약 320바이트를 절약할 수 있습니다.",
+            "tr": "* Ed25519 imza türüne sahip bir Destination, rastgele verinin 11 kopyasını (352 bayt) içerecek ve sıkıştırıldığında yaklaşık 320 bayt tasarruf sağlayacaktır.",
+            "pt": "* Um Destination com tipo de assinatura Ed25519\n  conterá 11 cópias (352 bytes) dos dados aleatórios, para uma economia de aproximadamente 320 bytes quando comprimido."
+          }
+        },
+        "p_063": {
+          "source_hash": "7ba20602f311ba4d",
+          "translations": {
+            "ko": "구현체들은 당연히 전체 387+ 바이트 구조를 저장해야 합니다. 왜냐하면 구조의 SHA-256 해시가 전체 내용을 포함하기 때문입니다.",
+            "tr": "Uygulamalar, elbette, tam 387+ bayt yapısını saklamalıdır çünkü yapının SHA-256 hash'i tüm içeriği kapsar.",
+            "pt": "As implementações devem, é claro, armazenar a estrutura completa de 387+ bytes porque o hash SHA-256 da estrutura cobre todo o conteúdo."
+          }
+        },
+        "h4_040": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_029": {
+          "source_hash": "37bdd8e771d9f1ea",
+          "translations": {
+            "ko": "* 이것들이 항상 387바이트라고 가정하지 마세요! 이들은 387바이트에 385-386바이트에서 지정된 인증서 길이를 더한 것으로, 0이 아닐 수 있습니다.",
+            "tr": "* Bunların her zaman 387 bayt olduğunu varsaymayın! Bunlar 387 bayt artı 385-386 baytlarında belirtilen sertifika uzunluğudur ve bu uzunluk sıfırdan farklı olabilir.",
+            "pt": "* Não assuma que estes são sempre 387 bytes! Eles são 387 bytes mais o comprimento do certificado especificado nos bytes 385-386, que pode ser diferente de zero."
+          }
+        },
+        "list_030": {
+          "source_hash": "6973f9ad35874ae3",
+          "translations": {
+            "ko": "* 릴리스 0.9.12부터, 인증서가 Key Certificate인 경우 키 필드의 경계가 달라질 수 있습니다. 자세한 내용은 위의 Key Certificate 섹션을 참조하세요.",
+            "tr": "* 0.9.12 sürümünden itibaren, sertifika bir Key Certificate ise, anahtar alanlarının sınırları değişebilir. Ayrıntılar için yukarıdaki Key Certificate bölümüne bakın.",
+            "pt": "* A partir da versão 0.9.12, se o certificado for um Key Certificate, os limites dos campos de chave podem variar. Veja a seção Key Certificate acima para detalhes."
+          }
+        },
+        "list_031": {
+          "source_hash": "af6a3361f143a48e",
+          "translations": {
+            "ko": "* Crypto Public Key는 시작 부분에 정렬되고 Signing Public Key는 끝 부분에 정렬됩니다. 패딩(있는 경우)은 중간에 위치합니다.",
+            "tr": "* Crypto Public Key başlangıçta hizalanır ve Signing Public Key sonunda hizalanır. Dolgu (varsa) ortadadır.",
+            "pt": "* A Chave Pública Criptográfica está alinhada no início e a Chave Pública de Assinatura está\n  alinhada no final. O preenchimento (se houver) fica no meio."
+          }
+        },
+        "p_064": {
+          "source_hash": "ab701cc9ffea4491",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html"
+          }
+        },
+        "h3_016": {
+          "source_hash": "af220bbb38ed160f",
+          "translations": {
+            "ko": "RouterIdentity",
+            "tr": "RouterIdentity",
+            "pt": "RouterIdentity"
+          }
+        },
+        "h4_041": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_065": {
+          "source_hash": "2b3164b84c094c7e",
+          "translations": {
+            "ko": "특정 router를 고유하게 식별하는 방법을 정의합니다",
+            "tr": "Belirli bir router'ı benzersiz şekilde tanımlamanın yolunu belirler",
+            "pt": "Define a forma de identificar exclusivamente um router específico"
+          }
+        },
+        "h4_042": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_066": {
+          "source_hash": "5c5ed31eaeb9ec25",
+          "translations": {
+            "ko": "KeysAndCert와 동일합니다.",
+            "tr": "KeysAndCert ile aynı.",
+            "pt": "Idêntico ao KeysAndCert."
+          }
+        },
+        "p_067": {
+          "source_hash": "622dc7029cc7a202",
+          "translations": {
+            "ko": "패딩 필드의 랜덤 데이터 생성 가이드라인은 [KeysAndCert](#keysandcert)를 참조하세요.",
+            "tr": "Padding alanı için rastgele veri üretme konusunda yönergeler için [KeysAndCert](#keysandcert) bölümüne bakın.",
+            "pt": "Veja [KeysAndCert](#keysandcert) para diretrizes sobre como gerar os dados aleatórios para o campo de preenchimento."
+          }
+        },
+        "h4_043": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_032": {
+          "source_hash": "12790f649be3e7c4",
+          "translations": {
+            "ko": "* RouterIdentity에 대한 인증서는 0.9.12 릴리스까지 항상 NULL이었습니다.",
+            "tr": "* RouterIdentity için sertifika 0.9.12 sürümüne kadar her zaman NULL idi.",
+            "pt": "* O certificado para um RouterIdentity sempre foi NULL até a versão 0.9.12."
+          }
+        },
+        "list_033": {
+          "source_hash": "37bdd8e771d9f1ea",
+          "translations": {
+            "ko": "* 이것들이 항상 387바이트라고 가정하지 마세요! 이들은 387바이트에 385-386바이트에서 지정된 인증서 길이를 더한 것으로, 0이 아닐 수 있습니다.",
+            "tr": "* Bunların her zaman 387 bayt olduğunu varsaymayın! Bunlar 387 bayt artı 385-386 baytlarında belirtilen sertifika uzunluğudur ve bu uzunluk sıfır olmayabilir.",
+            "pt": "* Não assuma que estes são sempre 387 bytes! Eles são 387 bytes mais o comprimento do certificado especificado nos bytes 385-386, que pode ser diferente de zero."
+          }
+        },
+        "list_034": {
+          "source_hash": "6973f9ad35874ae3",
+          "translations": {
+            "ko": "* 릴리스 0.9.12부터, 인증서가 Key Certificate인 경우 키 필드의 경계가 달라질 수 있습니다. 자세한 내용은 위의 Key Certificate 섹션을 참조하십시오.",
+            "tr": "* 0.9.12 sürümü itibariyle, eğer sertifika bir Key Certificate ise, anahtar alanlarının sınırları değişebilir. Ayrıntılar için yukarıdaki Key Certificate bölümüne bakın.",
+            "pt": "* A partir da versão 0.9.12, se o certificado for um Key Certificate, os limites dos campos de chave podem variar. Veja a seção Key Certificate acima para detalhes."
+          }
+        },
+        "list_035": {
+          "source_hash": "af6a3361f143a48e",
+          "translations": {
+            "ko": "* Crypto Public Key는 시작 부분에 정렬되고 Signing Public Key는 끝 부분에 정렬됩니다. 패딩(있는 경우)은 중간에 위치합니다.",
+            "tr": "* Crypto Public Key başlangıçta hizalanır ve Signing Public Key sonunda hizalanır. Dolgu (varsa) ortadadır.",
+            "pt": "* A Chave Pública Criptográfica está alinhada no início e a Chave Pública de Assinatura está alinhada no final. O preenchimento (se houver) fica no meio."
+          }
+        },
+        "list_036": {
+          "source_hash": "acb6745aff5e10af",
+          "translations": {
+            "ko": "* 키 인증서와 ECIES_X25519 공개 키를 가진 RouterIdentity는 릴리스 0.9.48부터 지원됩니다.\n  그 이전에는 모든 RouterIdentity가 ElGamal이었습니다.",
+            "tr": "* Key certificate (anahtar sertifikası) ve ECIES_X25519 public key içeren RouterIdentity'ler 0.9.48 sürümünden itibaren desteklenmektedir.\n  Bundan önce, tüm RouterIdentity'ler ElGamal idi.",
+            "pt": "* RouterIdentities com um certificado de chave e uma chave pública ECIES_X25519\n  são suportadas a partir da versão 0.9.48.\n  Antes disso, todas as RouterIdentities eram ElGamal."
+          }
+        },
+        "p_068": {
+          "source_hash": "99202db3f622e0bf",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html"
+          }
+        },
+        "h3_017": {
+          "source_hash": "293d404a500f5f9a",
+          "translations": {
+            "ko": "목적지",
+            "tr": "Hedef",
+            "pt": "Destino"
+          }
+        },
+        "h4_044": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_069": {
+          "source_hash": "16f9cdf0c1619de8",
+          "translations": {
+            "ko": "Destination은 메시지가 안전한 전달을 위해 향할 수 있는 특정 엔드포인트를 정의합니다.",
+            "tr": "Bir Destination, mesajların güvenli teslimat için yönlendirilebileceği belirli bir uç noktayı tanımlar.",
+            "pt": "Um Destination define um endpoint específico para o qual as mensagens podem ser direcionadas para entrega segura."
+          }
+        },
+        "h4_045": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdos"
+          }
+        },
+        "p_070": {
+          "source_hash": "efd9f0c91811148a",
+          "translations": {
+            "ko": "[KeysAndCert](#keysandcert)와 동일하지만, 공개 키는 사용되지 않으며 유효한 ElGamal 공개 키 대신 무작위 데이터를 포함할 수 있습니다.",
+            "tr": "[KeysAndCert](#keysandcert) ile aynıdır, ancak public key hiçbir zaman kullanılmaz ve geçerli bir ElGamal Public Key yerine rastgele veri içerebilir.",
+            "pt": "Idêntico a [KeysAndCert](#keysandcert), exceto que a chave pública nunca é usada, e pode conter dados aleatórios em vez de uma Chave Pública ElGamal válida."
+          }
+        },
+        "p_071": {
+          "source_hash": "bdc1cb0f96419853",
+          "translations": {
+            "ko": "공개 키와 패딩 필드를 위한 랜덤 데이터 생성 지침은 [KeysAndCert](#keysandcert)를 참조하세요.",
+            "tr": "Public key ve padding alanları için rastgele veri üretme yönergeleri için [KeysAndCert](#keysandcert) bölümüne bakın.",
+            "pt": "Veja [KeysAndCert](#keysandcert) para diretrizes sobre a geração de dados aleatórios para os campos de chave pública e preenchimento."
+          }
+        },
+        "h4_046": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "주의사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_037": {
+          "source_hash": "c21b4983b6f4dcbe",
+          "translations": {
+            "ko": "* 목적지의 공개 키는 버전 0.6(2005년)에서 비활성화된 기존 i2cp-to-i2cp 암호화에 사용되었으며, 현재는 더 이상 사용되지 않는 LeaseSet 암호화의 IV를 제외하고는 사용되지 않습니다. 대신 LeaseSet의 공개 키가 사용됩니다.",
+            "tr": "* Hedefin public key'i, 0.6 sürümünde (2005) devre dışı bırakılan eski i2cp-to-i2cp şifrelemesi için kullanılıyordu, şu anda kullanımdan kaldırılan LeaseSet şifrelemesi için IV dışında kullanılmamaktadır. Bunun yerine LeaseSet içindeki public key kullanılır.",
+            "pt": "* A chave pública do destino foi usada para a antiga encriptação i2cp-to-i2cp\n  que foi desabilitada na versão 0.6 (2005), atualmente não é usada exceto\n  para o IV para encriptação de LeaseSet, que está obsoleta. A chave pública no\n  LeaseSet é usada em seu lugar."
+          }
+        },
+        "list_038": {
+          "source_hash": "37bdd8e771d9f1ea",
+          "translations": {
+            "ko": "* 이것들이 항상 387바이트라고 가정하지 마세요! 이들은 387바이트에 385-386바이트에 명시된 인증서 길이를 더한 것으로, 이는 0이 아닐 수 있습니다.",
+            "tr": "* Bunların her zaman 387 bayt olduğunu varsaymayın! Bu değerler 387 bayt artı 385-386 baytlarında belirtilen sertifika uzunluğudur ve bu uzunluk sıfır olmayabilir.",
+            "pt": "* Não assuma que estes são sempre 387 bytes! São 387 bytes mais o comprimento do certificado especificado nos bytes 385-386, que pode ser diferente de zero."
+          }
+        },
+        "list_039": {
+          "source_hash": "6973f9ad35874ae3",
+          "translations": {
+            "ko": "* 릴리스 0.9.12부터, 인증서가 Key Certificate인 경우 키 필드의 경계가 달라질 수 있습니다. 자세한 내용은 위의 Key Certificate 섹션을 참조하세요.",
+            "tr": "* Sürüm 0.9.12 itibariyle, sertifika bir Key Certificate ise, anahtar alanlarının sınırları değişebilir. Ayrıntılar için yukarıdaki Key Certificate bölümüne bakın.",
+            "pt": "* A partir da versão 0.9.12, se o certificado for um Key Certificate, os limites dos campos de chave podem variar. Consulte a seção Key Certificate acima para detalhes."
+          }
+        },
+        "list_040": {
+          "source_hash": "af6a3361f143a48e",
+          "translations": {
+            "ko": "* Crypto Public Key는 시작 부분에 정렬되고 Signing Public Key는 끝 부분에 정렬됩니다. 패딩(있는 경우)은 중간에 위치합니다.",
+            "tr": "* Crypto Public Key başlangıçta hizalanır ve Signing Public Key sonunda hizalanır. Dolgu (varsa) ortadadır.",
+            "pt": "* A Chave Pública Criptográfica está alinhada no início e a Chave Pública de Assinatura está\n  alinhada no final. O preenchimento (se houver) fica no meio."
+          }
+        },
+        "p_072": {
+          "source_hash": "fdaceb54a4275a1b",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html"
+          }
+        },
+        "h3_018": {
+          "source_hash": "a789e9e05ec6ae74",
+          "translations": {
+            "ko": "Lease",
+            "tr": "Lease",
+            "pt": "Lease"
+          }
+        },
+        "h4_047": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_073": {
+          "source_hash": "4ac55e5570bd7c36",
+          "translations": {
+            "ko": "특정 tunnel이 [Destination](#destination)을 대상으로 하는 메시지를 수신할 수 있는 권한을 정의합니다.",
+            "tr": "Belirli bir tunnel'ın bir [Destination](#destination)'ı hedefleyen mesajları almak için yetkilendirmesini tanımlar.",
+            "pt": "Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination)."
+          }
+        },
+        "h4_048": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_074": {
+          "source_hash": "ed1c00e822776af5",
+          "translations": {
+            "ko": "게이트웨이 router의 [RouterIdentity](#routeridentity)의 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 마지막으로 종료 [Date](#date).",
+            "tr": "Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından [TunnelId](#tunnelid) ve son olarak bitiş [Date](#date)'i.",
+            "pt": "SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router de gateway, depois o [TunnelId](#tunnelid), e finalmente uma [Date](#date) de término."
+          }
+        },
+        "p_075": {
+          "source_hash": "0b38c231c89d6f84",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html"
+          }
+        },
+        "h3_019": {
+          "source_hash": "032d1c9ad3d8e5b8",
+          "translations": {
+            "ko": "LeaseSet",
+            "tr": "LeaseSet",
+            "pt": "LeaseSet"
+          }
+        },
+        "h4_049": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_076": {
+          "source_hash": "68a097b23dc49b5b",
+          "translations": {
+            "ko": "특정 [Destination](#destination)에 대해 현재 승인된 모든 [Lease](#lease)들, garlic 메시지가 암호화될 수 있는 [PublicKey](#publickey), 그리고 이 구조체의 특정 버전을 취소하는 데 사용될 수 있는 [SigningPublicKey](#signingpublickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 구조체 중 하나이며 (다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시를 키로 사용합니다.",
+            "tr": "Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [Lease](#lease)'leri, garlic mesajlarının şifrelenebileceği [PublicKey](#publickey)'i ve ardından yapının bu belirli sürümünü iptal etmek için kullanılabilecek [SigningPublicKey](#signingpublickey)'i içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)'dur) ve içerdiği [Destination](#destination)'ın SHA256'sı altında anahtarlanır.",
+            "pt": "Contém todos os [Leases](#lease) atualmente autorizados para um [Destination](#destination) específico, a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas, e então a [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão específica da estrutura. O leaseSet é uma das duas estruturas armazenadas no netDb (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido."
+          }
+        },
+        "h4_050": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_077": {
+          "source_hash": "4318fd8c62187db0",
+          "translations": {
+            "ko": "[Destination](#destination), 그 다음에 암호화를 위한 [PublicKey](#publickey), 그리고 이 leaseSet 버전을 철회하는데 사용할 수 있는 [SigningPublicKey](#signingpublickey), 그 다음에 집합에 포함된 [Lease](#lease) 구조의 개수를 지정하는 1바이트 [Integer](#integer), 그 다음에 실제 [Lease](#lease) 구조들, 그리고 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey)로 서명된 이전 바이트들의 [Signature](#signature).",
+            "tr": "[Destination](#destination), ardından şifreleme için bir [PublicKey](#publickey), sonra LeaseSet'in bu sürümünü iptal etmek için kullanılabilecek bir [SigningPublicKey](#signingpublickey), ardından kümede kaç tane [Lease](#lease) yapısı olduğunu belirten 1 byte'lık bir [Integer](#integer), bunu takip eden gerçek [Lease](#lease) yapıları ve son olarak [Destination](#destination)'ın [SigningPrivateKey](#signingprivatekey)'i ile imzalanmış önceki byte'ların [Signature](#signature)'ı.",
+            "pt": "[Destination](#destination), seguido por uma [PublicKey](#publickey) para criptografia, depois uma [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão do LeaseSet, então um [Integer](#integer) de 1 byte especificando quantas estruturas [Lease](#lease) estão no conjunto, seguido pelas estruturas [Lease](#lease) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination)."
+          }
+        },
+        "h4_051": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_041": {
+          "source_hash": "e1ec1b5aafc71efa",
+          "translations": {
+            "ko": "* 목적지의 공개 키는 버전 0.6에서 비활성화된 이전 I2CP-to-I2CP 암호화에 사용되었으며, 현재는 사용되지 않습니다.",
+            "tr": "* Hedefin genel anahtarı, sürüm 0.6'da devre dışı bırakılan eski I2CP-to-I2CP şifrelemesi için kullanılıyordu, şu anda kullanılmıyor.",
+            "pt": "* A chave pública do destino foi usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não é utilizada."
+          }
+        },
+        "list_042": {
+          "source_hash": "d6093189465ba4c5",
+          "translations": {
+            "ko": "* 암호화 키는 종단 간 ElGamal/AES+SessionTag 암호화 [ELGAMAL-AES](/docs/specs/elgamal-aes/)에 사용됩니다. 현재 router 시작 시마다 새로 생성되며, 지속되지 않습니다.",
+            "tr": "* Şifreleme anahtarı uçtan uca ElGamal/AES+SessionTag şifrelemesi \n  [ELGAMAL-AES](/docs/specs/elgamal-aes/) için kullanılır. Şu anda her router başlangıcında yeniden oluşturulur, \n  kalıcı değildir.",
+            "pt": "* A chave de criptografia é usada para criptografia ElGamal/AES+SessionTag de ponta a ponta\n  [ELGAMAL-AES](/docs/specs/elgamal-aes/). Atualmente é gerada novamente a cada inicialização do router, não é\n  persistente."
+          }
+        },
+        "list_043": {
+          "source_hash": "fc875cf80b3717ba",
+          "translations": {
+            "ko": "* 서명은 목적지의 서명 공개키를 사용하여 검증할 수 있습니다.",
+            "tr": "* İmza, hedefin imzalama genel anahtarı kullanılarak doğrulanabilir.",
+            "pt": "* A assinatura pode ser verificada usando a chave pública de assinatura do destino."
+          }
+        },
+        "list_044": {
+          "source_hash": "e7e30beaf4580bf1",
+          "translations": {
+            "ko": "* Lease가 0개인 LeaseSet은 허용되지만 사용되지 않습니다.\n  이는 구현되지 않은 LeaseSet 취소를 위해 의도되었습니다.\n  모든 LeaseSet2 변형은 최소 하나의 Lease가 필요합니다.",
+            "tr": "* Sıfır Lease içeren bir LeaseSet'e izin verilir ancak kullanılmaz.\n  Bu, uygulanmamış olan LeaseSet iptali için tasarlanmıştı.\n  Tüm LeaseSet2 varyantları en az bir Lease gerektirir.",
+            "pt": "* Um LeaseSet com zero Leases é permitido mas não é usado.\n  Era destinado para revogação de LeaseSet, que não está implementado.\n  Todas as variantes de LeaseSet2 exigem pelo menos um Lease."
+          }
+        },
+        "list_045": {
+          "source_hash": "2295548aa48dfd58",
+          "translations": {
+            "ko": "* signing_key는 현재 사용되지 않습니다. LeaseSet 폐기를 위해 의도되었지만 구현되지 않았습니다. 현재 router 시작시마다 새로 생성되며 지속되지 않습니다. signing key 유형은 항상 destination의 signing key 유형과 동일합니다.",
+            "tr": "* signing_key şu anda kullanılmamaktadır. LeaseSet iptal işlemi için tasarlanmıştı ancak bu özellik henüz uygulanmamıştır. Şu anda her router başlatılışında yeniden oluşturulur ve kalıcı değildir. Signing key türü her zaman hedefin signing key türüyle aynıdır.",
+            "pt": "* A signing_key atualmente não é utilizada. Foi destinada para revogação de LeaseSet, que não está implementada. Atualmente é gerada novamente a cada inicialização do router, não é persistente. O tipo de chave de assinatura é sempre o mesmo que o tipo de chave de assinatura do destino."
+          }
+        },
+        "list_046": {
+          "source_hash": "94f98003377c98f1",
+          "translations": {
+            "ko": "* 모든 Lease들 중 가장 빠른 만료 시간이 LeaseSet의 타임스탬프 또는 버전으로 취급됩니다. Router들은 일반적으로 현재 것보다 \"더 새로운\" LeaseSet이 아니면 저장을 허용하지 않습니다. 가장 오래된 Lease가 이전 LeaseSet의 가장 오래된 Lease와 동일한 새로운 LeaseSet을 게시할 때 주의하세요. 이런 경우 게시하는 router는 일반적으로 가장 오래된 Lease의 만료 시간을 최소 1ms 증가시켜야 합니다.",
+            "tr": "* Tüm Lease'lerin en erken sona erme tarihi, LeaseSet'in zaman damgası veya sürümü olarak kabul edilir. Router'lar genellikle bir LeaseSet'in saklanmasını, mevcut olandan \"daha yeni\" olmadığı sürece kabul etmezler. En eski Lease'in önceki LeaseSet'teki en eski Lease ile aynı olduğu yeni bir LeaseSet yayınlarken dikkatli olun. Yayınlayan router bu durumda genellikle en eski Lease'in sona erme süresini en az 1 ms artırmalıdır.",
+            "pt": "* A expiração mais antiga de todos os Leases é tratada como o timestamp ou\n  versão do LeaseSet. Os routers geralmente não aceitam o armazenamento de um\n  LeaseSet a menos que seja \"mais novo\" que o atual. Tenha cuidado ao publicar\n  um novo LeaseSet onde o Lease mais antigo é o mesmo que o Lease mais antigo no\n  LeaseSet anterior. O router de publicação geralmente deve incrementar a\n  expiração do Lease mais antigo em pelo menos 1 ms nesse caso."
+          }
+        },
+        "list_047": {
+          "source_hash": "860f8f65c7b38c65",
+          "translations": {
+            "ko": "* 릴리스 0.9.7 이전에는 원본 router가 보낸 DatabaseStore 메시지에 포함될 때, router는 게시된 모든 lease의 만료 시간을 동일한 값(가장 빠른 lease의 만료 시간)으로 설정했습니다. 릴리스 0.9.7부터는 router가 각 lease의 실제 lease 만료 시간을 게시합니다. 이는 구현 세부사항이며 구조 명세의 일부는 아닙니다.",
+            "tr": "* 0.9.7 sürümünden önce, kaynak router tarafından gönderilen bir DatabaseStore Mesajına dahil edildiğinde, router tüm yayınlanan lease'lerin sona erme sürelerini aynı değere, yani en erken lease'in süresine ayarlıyordu. 0.9.7 sürümünden itibaren, router her lease için gerçek lease sona erme süresini yayınlar. Bu bir uygulama detayıdır ve yapı spesifikasyonunun bir parçası değildir.",
+            "pt": "* Antes da versão 0.9.7, quando incluído em uma Mensagem DatabaseStore enviada pelo router originário, o router definia todas as expirações dos leases publicados para o mesmo valor, ou seja, o do lease mais antigo. A partir da versão 0.9.7, o router publica a expiração real do lease para cada lease. Este é um detalhe de implementação e não faz parte da especificação das estruturas."
+          }
+        },
+        "p_078": {
+          "source_hash": "087a9b3a7420b2ea",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html"
+          }
+        },
+        "h3_020": {
+          "source_hash": "25a40c3803c040f5",
+          "translations": {
+            "ko": "Lease2",
+            "tr": "Lease2",
+            "pt": "Lease2"
+          }
+        },
+        "h4_052": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_079": {
+          "source_hash": "7b6013a971901fe8",
+          "translations": {
+            "ko": "특정 tunnel이 [Destination](#destination)을 대상으로 하는 메시지를 수신할 수 있는 권한을 정의합니다. [Lease](#lease)와 동일하지만 4바이트 end_date를 가집니다. [LeaseSet2](#leaseset2)에서 사용됩니다. 0.9.38부터 지원되며, 자세한 정보는 proposal 123을 참조하세요.",
+            "tr": "Belirli bir tunnel'ın bir [Destination](#destination)'ı hedefleyen mesajları alması için yetkilendirmeyi tanımlar. [Lease](#lease) ile aynıdır ancak 4-byte end_date içerir. [LeaseSet2](#leaseset2) tarafından kullanılır. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için proposal 123'e bakın.",
+            "pt": "Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination). O mesmo que [Lease](#lease), mas com um end_date de 4 bytes. Usado por [LeaseSet2](#leaseset2). Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações."
+          }
+        },
+        "h4_053": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_080": {
+          "source_hash": "69f561be244e9795",
+          "translations": {
+            "ko": "게이트웨이 router의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 그리고 마지막으로 4바이트 종료 날짜.",
+            "tr": "Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından [TunnelId](#tunnelid) ve son olarak 4 byte'lık bitiş tarihi.",
+            "pt": "SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router gateway, depois o [TunnelId](#tunnelid), e finalmente uma data de término de 4 bytes."
+          }
+        },
+        "h4_054": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_048": {
+          "source_hash": "829906fd8de7d3c8",
+          "translations": {
+            "ko": "* 총 크기: 40바이트",
+            "tr": "* Toplam boyut: 40 bayt",
+            "pt": "* Tamanho total: 40 bytes"
+          }
+        },
+        "p_081": {
+          "source_hash": "478deac027d14111",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html"
+          }
+        },
+        "h3_021": {
+          "source_hash": "b1d0fc1b8cb00de7",
+          "translations": {
+            "ko": "OfflineSignature",
+            "tr": "OfflineSignature",
+            "pt": "OfflineSignature"
+          }
+        },
+        "h4_055": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_082": {
+          "source_hash": "b7bc128e4548618c",
+          "translations": {
+            "ko": "이는 [LeaseSet2Header](#leaseset2header)의 선택적 부분입니다. streaming과 I2CP에서도 사용됩니다. 0.9.38부터 지원되며, 자세한 정보는 제안서 123을 참조하십시오.",
+            "tr": "Bu, [LeaseSet2Header](#leaseset2header)'ın isteğe bağlı bir parçasıdır. Ayrıca streaming ve I2CP'de de kullanılır. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için proposal 123'e bakın.",
+            "pt": "Esta é uma parte opcional do [LeaseSet2Header](#leaseset2header). Também usado em streaming e I2CP. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações."
+          }
+        },
+        "h4_056": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_083": {
+          "source_hash": "38d15e1b49297406",
+          "translations": {
+            "ko": "만료일, sigtype 및 임시 [SigningPublicKey](#signingpublickey), 그리고 [Signature](#signature)를 포함합니다.",
+            "tr": "Bir son kullanma tarihi, bir sigtype ve geçici [SigningPublicKey](#signingpublickey) ile bir [Signature](#signature) içerir.",
+            "pt": "Contém uma expiração, um sigtype e [SigningPublicKey](#signingpublickey) transitória, e uma [Signature](#signature)."
+          }
+        },
+        "h4_057": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_049": {
+          "source_hash": "9af55060716c6639",
+          "translations": {
+            "ko": "* 이 섹션은 오프라인에서 생성될 수 있으며, 또한 생성되어야 합니다.",
+            "tr": "* Bu bölüm çevrimdışı oluşturulabilir ve oluşturulmalıdır.",
+            "pt": "* Esta seção pode, e deve, ser gerada offline."
+          }
+        },
+        "h3_022": {
+          "source_hash": "3cd27ea76d551cea",
+          "translations": {
+            "ko": "LeaseSet2Header",
+            "tr": "LeaseSet2Header",
+            "pt": "LeaseSet2Header"
+          }
+        },
+        "h4_058": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_084": {
+          "source_hash": "369974d670f464be",
+          "translations": {
+            "ko": "이것은 [LeaseSet2](#leaseset2)와 [MetaLeaseSet](#metaleaseset)의 공통 부분입니다. 0.9.38부터 지원됩니다; 자세한 정보는 proposal 123을 참조하십시오.",
+            "tr": "Bu, [LeaseSet2](#leaseset2) ve [MetaLeaseSet](#metaleaseset)'in ortak kısmıdır. 0.9.38 sürümünden itibaren desteklenmektedir; daha fazla bilgi için 123 numaralı öneriyi inceleyin.",
+            "pt": "Esta é a parte comum do [LeaseSet2](#leaseset2) e [MetaLeaseSet](#metaleaseset). Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações."
+          }
+        },
+        "h4_059": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_085": {
+          "source_hash": "f3eefedc9c099971",
+          "translations": {
+            "ko": "[Destination](#destination), 두 개의 타임스탬프, 그리고 선택적인 [OfflineSignature](#offlinesignature)를 포함합니다.",
+            "tr": "[Destination](#destination), iki zaman damgası ve isteğe bağlı bir [OfflineSignature](#offlinesignature) içerir.",
+            "pt": "Contém o [Destination](#destination), dois timestamps, e uma [OfflineSignature](#offlinesignature) opcional."
+          }
+        },
+        "h4_060": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_050": {
+          "source_hash": "d84893ff9c9e921b",
+          "translations": {
+            "ko": "* **플래그** (2바이트):\n  * 비트 0: 설정된 경우, 오프라인 키가 존재함 ([OfflineSignature](#offlinesignature) 참조)\n  * 비트 1: 설정된 경우, 이것은 게시되지 않은 leaseset임\n  * 비트 2: 설정된 경우, 이것은 블라인드된 leaseset임\n  * 비트 15-3: 예약됨, 0으로 설정",
+            "tr": "* **Bayraklar** (2 bayt):\n  * Bit 0: Ayarlanmışsa, çevrimdışı anahtarlar mevcut ([OfflineSignature](#offlinesignature) bölümüne bakın)\n  * Bit 1: Ayarlanmışsa, bu yayınlanmamış bir leaseset\n  * Bit 2: Ayarlanmışsa, bu köreltilmiş bir leaseset\n  * Bit 15-3: Ayrılmış, 0'a ayarlanır",
+            "pt": "* **Flags** (2 bytes):\n  * Bit 0: Se definido, chaves offline estão presentes (veja [OfflineSignature](#offlinesignature))\n  * Bit 1: Se definido, este é um leaseset não publicado\n  * Bit 2: Se definido, este é um leaseset cegado\n  * Bits 15-3: Reservados, definir como 0"
+          }
+        },
+        "list_051": {
+          "source_hash": "c4edd007a31a73e6",
+          "translations": {
+            "ko": "* 전체 크기: 최소 395바이트",
+            "tr": "* Toplam boyut: minimum 395 bayt",
+            "pt": "* Tamanho total: 395 bytes mínimo"
+          }
+        },
+        "list_052": {
+          "source_hash": "55cca116c7f91e4c",
+          "translations": {
+            "ko": "* 실제 최대 만료 시간은 [LeaseSet2](#leaseset2)의 경우 약 660초(11분)이고 [MetaLeaseSet](#metaleaseset)의 경우 65535초(전체 18.2시간)입니다.",
+            "tr": "* Maksimum gerçek son kullanma süresi [LeaseSet2](#leaseset2) için yaklaşık 660 (11 dakika) ve [MetaLeaseSet](#metaleaseset) için 65535'tir (tam 18,2 saat).",
+            "pt": "* O tempo máximo real de expiração é cerca de 660 (11 minutos) para\n  [LeaseSet2](#leaseset2) e 65535 (as 18,2 horas completas) para [MetaLeaseSet](#metaleaseset)."
+          }
+        },
+        "list_053": {
+          "source_hash": "f7358ff978703f59",
+          "translations": {
+            "ko": "* [LeaseSet](#leaseset) (1)에는 'published' 필드가 없어서 버전 관리를 위해 \n  가장 이른 lease를 검색해야 했습니다. LeaseSet2는 1초 해상도의 'published' 필드를 \n  추가합니다. router들은 새로운 leaseset을 floodfill에 전송하는 것을 \n  1초보다 훨씬 느린 속도로 제한해야 합니다 (목적지당). \n  이것이 구현되지 않은 경우, 코드는 각각의 새로운 leaseset이 \n  이전 것보다 최소 1초 늦은 'published' 시간을 가지도록 보장해야 하며, \n  그렇지 않으면 floodfill이 새로운 leaseset을 저장하거나 전파하지 않을 것입니다.",
+            "tr": "* [LeaseSet](#leaseset) (1) bir 'published' alanına sahip değildi, bu nedenle sürüm kontrolü için en erken lease'in aranması gerekiyordu. LeaseSet2 bir saniyelik çözünürlüğe sahip bir 'published' alanı ekler. Router'lar yeni leaseset'leri floodfill'lere gönderme hızını saniyede bir defadan çok daha yavaş bir hızla sınırlamalıdır (her destination için). Bu uygulanmazsa, kod her yeni leaseset'in 'published' zamanının bir öncekinden en az bir saniye sonra olduğundan emin olmalıdır, aksi halde floodill'ler yeni leaseset'i saklamaz veya flood etmez.",
+            "pt": "* [LeaseSet](#leaseset) (1) não tinha um campo 'published', então o versionamento exigia\n  uma busca pelo lease mais antigo. LeaseSet2 adiciona um campo 'published'\n  com resolução de um segundo. Os routers devem limitar a taxa de envio\n  de novos leasesets para floodfills para uma taxa muito mais lenta que uma vez por segundo (por destino).\n  Se isso não for implementado, então o código deve garantir que cada novo leaseset\n  tenha um tempo 'published' pelo menos um segundo posterior ao anterior, caso contrário\n  os floodfills não armazenarão ou propagarão o novo leaseset."
+          }
+        },
+        "h3_023": {
+          "source_hash": "f4660dc4ff2ea24b",
+          "translations": {
+            "ko": "LeaseSet2",
+            "tr": "LeaseSet2",
+            "pt": "LeaseSet2"
+          }
+        },
+        "h4_061": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_086": {
+          "source_hash": "399ce018f8186704",
+          "translations": {
+            "ko": "타입 3의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 지원되며, 자세한 정보는 proposal 123을 참조하세요.",
+            "tr": "Tip 3 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için 123 numaralı öneriyi inceleyin.",
+            "pt": "Contido numa mensagem I2NP DatabaseStore do tipo 3. Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações."
+          }
+        },
+        "p_087": {
+          "source_hash": "6f0b9197ae196b30",
+          "translations": {
+            "ko": "특정 [Destination](#destination)에 대해 현재 승인된 모든 [Lease2](#lease2)와 garlic 메시지를 암호화할 수 있는 [PublicKey](#publickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 가지 구조 중 하나이며 (다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시 값을 키로 사용합니다.",
+            "tr": "Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [Lease2](#lease2)'leri ve garlic mesajlarının şifrelenebileceği [PublicKey](#publickey)'i içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)), ve içerdiği [Destination](#destination)'ın SHA256 değeri altında anahtarlanır.",
+            "pt": "Contém todos os [Lease2](#lease2) atualmente autorizados para um [Destination](#destination) específico, e a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas. Um leaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido."
+          }
+        },
+        "h4_062": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_088": {
+          "source_hash": "bfa043f84e9ddb7e",
+          "translations": {
+            "ko": "[LeaseSet2Header](#leaseset2header), 그 다음 옵션들, 그리고 암호화를 위한 하나 이상의 [PublicKey](#publickey), 세트에 있는 [Lease2](#lease2) 구조체의 개수를 명시하는 [Integer](#integer), 그 다음 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).",
+            "tr": "[LeaseSet2Header](#leaseset2header), ardından seçenekler, sonra şifreleme için bir veya daha fazla [PublicKey](#publickey), kümede kaç [Lease2](#lease2) yapısı bulunduğunu belirten [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'ın [SigningPrivateKey](#signingprivatekey) veya geçici anahtarı tarafından imzalandığı bir [Signature](#signature).",
+            "pt": "[LeaseSet2Header](#leaseset2header), seguido por opções, depois uma ou mais [PublicKey](#publickey) para criptografia, [Integer](#integer) especificando quantas estruturas [Lease2](#lease2) estão no conjunto, seguido pelas estruturas [Lease2](#lease2) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinados pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination) ou pela chave transitória."
+          }
+        },
+        "h4_063": {
+          "source_hash": "9f6f4d637d10b339",
+          "translations": {
+            "ko": "암호화 키 선호도",
+            "tr": "Şifreleme Anahtarı Tercihi",
+            "pt": "Preferência de Chave de Criptografia"
+          }
+        },
+        "p_089": {
+          "source_hash": "ee3e1452be39068f",
+          "translations": {
+            "ko": "게시된(서버) leaseSet의 경우, 암호화 키들은 서버 선호도 순으로 배열되며, 가장 선호되는 것이 먼저 옵니다. 클라이언트가 둘 이상의 암호화 유형을 지원하는 경우, 서버의 선호도를 존중하여 서버에 연결할 때 사용할 암호화 방법으로 지원되는 첫 번째 유형을 선택하는 것이 권장됩니다. 일반적으로 더 새로운(번호가 높은) 키 유형들이 더 안전하거나 효율적이어서 선호되므로, 키들은 키 유형의 역순으로 나열되어야 합니다.",
+            "tr": "Yayınlanmış (sunucu) leaseSet'ler için, şifreleme anahtarları sunucu tercihine göre sıralanır, en tercih edilen ilk sırada yer alır. İstemciler birden fazla şifreleme türünü destekliyorsa, sunucu tercihini gözetmeleri ve sunucuya bağlanmak için destekledikleri ilk türü şifreleme yöntemi olarak seçmeleri önerilir. Genel olarak, daha yeni (daha yüksek numaralı) anahtar türleri daha güvenli veya verimlidir ve tercih edilir, bu nedenle anahtarlar anahtar türünün ters sırasına göre listelenmelidir.",
+            "pt": "Para leaseSets publicados (servidor), as chaves de criptografia estão em ordem de preferência do servidor, com a mais preferida primeiro. Se os clientes suportam mais de um tipo de criptografia, é recomendado que eles honrem a preferência do servidor e selecionem o primeiro tipo suportado como método de criptografia a usar para conectar ao servidor. Geralmente, os tipos de chave mais novos (numerados mais alto) são mais seguros ou eficientes e são preferidos, então as chaves devem ser listadas em ordem reversa do tipo de chave."
+          }
+        },
+        "p_090": {
+          "source_hash": "bfef4bfff5845ca0",
+          "translations": {
+            "ko": "그러나 클라이언트는 구현에 따라 자신의 선호도에 기반하여 선택하거나, \"결합된\" 선호도를 결정하는 방법을 사용할 수 있습니다. 이는 구성 옵션이나 디버깅에 유용할 수 있습니다.",
+            "tr": "Ancak, istemciler uygulama-bağımlı olarak bunun yerine kendi tercihlerine göre seçim yapabilir veya \"birleşik\" tercihi belirlemek için bazı yöntemler kullanabilir. Bu, bir yapılandırma seçeneği olarak veya hata ayıklama için yararlı olabilir.",
+            "pt": "No entanto, os clientes podem, dependendo da implementação, selecionar com base em sua preferência em vez disso, ou usar algum método para determinar a preferência \"combinada\". Isso pode ser útil como uma opção de configuração, ou para depuração."
+          }
+        },
+        "p_091": {
+          "source_hash": "835bb55da3e3d836",
+          "translations": {
+            "ko": "게시되지 않은 (클라이언트) leaseSet에서 키 순서는 실질적으로 중요하지 않습니다. 게시되지 않은 클라이언트에 대한 연결은 일반적으로 시도되지 않기 때문입니다. 위에서 설명한 바와 같이 이 순서가 결합된 선호도를 결정하는 데 사용되는 경우를 제외하고는 말입니다.",
+            "tr": "Yayınlanmamış (istemci) leaseset'lerdeki anahtar sırası etkili bir şekilde önemli değildir, çünkü yayınlanmamış istemcilere genellikle bağlantı girişiminde bulunulmaz. Bu sıra, yukarıda açıklandığı gibi birleşik bir tercihi belirlemek için kullanılmadığı sürece.",
+            "pt": "A ordem das chaves em leaseSets não publicados (cliente) efetivamente não importa, porque conexões geralmente não serão tentadas para clientes não publicados. A menos que esta ordem seja usada para determinar uma preferência combinada, conforme descrito acima."
+          }
+        },
+        "h4_064": {
+          "source_hash": "d0db8b5e364b6989",
+          "translations": {
+            "ko": "옵션",
+            "tr": "Seçenekler",
+            "pt": "Opções"
+          }
+        },
+        "p_092": {
+          "source_hash": "d125a342400df5ec",
+          "translations": {
+            "ko": "API 0.9.66부터 서비스 레코드 옵션에 대한 표준 형식이 정의되었습니다. 자세한 내용은 proposal 167을 참조하십시오. 서비스 레코드가 아닌 다른 형식을 사용하는 옵션들은 향후 정의될 수 있습니다.",
+            "tr": "API 0.9.66 itibariyle, servis kaydı seçenekleri için standart bir format tanımlanmıştır. Ayrıntılar için öneri 167'ye bakınız. Farklı bir format kullanan servis kayıtları dışındaki seçenekler gelecekte tanımlanabilir.",
+            "pt": "A partir da API 0.9.66, é definido um formato padrão para opções de registro de serviço. Consulte a proposta 167 para detalhes. Opções diferentes dos registros de serviço, usando um formato diferente, podem ser definidas no futuro."
+          }
+        },
+        "p_093": {
+          "source_hash": "28466697a38b8980",
+          "translations": {
+            "ko": "LS2 옵션은 키로 정렬되어야 하므로 서명이 불변입니다.",
+            "tr": "LS2 seçenekleri anahtar değerine göre sıralanmalıdır, böylece imza değişmez kalır.",
+            "pt": "As opções LS2 DEVEM ser ordenadas por chave, para que a assinatura seja invariante."
+          }
+        },
+        "p_094": {
+          "source_hash": "37fb982e508ed9f9",
+          "translations": {
+            "ko": "서비스 레코드 옵션은 다음과 같이 정의됩니다:",
+            "tr": "Servis kaydı seçenekleri aşağıdaki gibi tanımlanır:",
+            "pt": "As opções de registro de serviço são definidas da seguinte forma:"
+          }
+        },
+        "list_054": {
+          "source_hash": "118b03ebb6e25ea3",
+          "translations": {
+            "ko": "- serviceoption := optionkey optionvalue\n- optionkey := _service._proto\n- service := 원하는 서비스의 심볼릭 이름. 반드시 소문자여야 함. 예시: \"smtp\".\n  허용되는 문자는 [a-z0-9-]이며 '-'로 시작하거나 끝날 수 없음.\n  [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)나 Linux /etc/services에 정의된 표준 식별자가 있으면 반드시 사용해야 함.\n- proto := 원하는 서비스의 전송 프로토콜. 반드시 소문자여야 하며, \"tcp\" 또는 \"udp\" 중 하나.\n  \"tcp\"는 스트리밍을 의미하고 \"udp\"는 응답 가능한 데이터그램을 의미함.\n  원시 데이터그램과 datagram2용 프로토콜 지시자는 나중에 정의될 수 있음.\n  허용되는 문자는 [a-z0-9-]이며 '-'로 시작하거나 끝날 수 없음.\n- optionvalue := self | srvrecord[,srvrecord]*\n- self := \"0\" ttl port [appoptions]\n- srvrecord := \"1\" ttl priority weight port target [appoptions]\n- ttl := 생존 시간, 정수 초. 양의 정수. 예시: \"86400\".\n  최소 86400 (하루)이 권장되며, 자세한 내용은 아래 권장사항 섹션을 참조.\n- priority := 대상 호스트의 우선순위, 값이 낮을수록 더 선호됨. 음이 아닌 정수. 예시: \"0\"\n  여러 레코드가 있을 때만 유용하지만, 레코드가 하나뿐이어도 필수.\n- weight := 동일한 우선순위를 가진 레코드들의 상대적 가중치. 값이 높을수록 선택될 확률이 높음. 음이 아닌 정수. 예시: \"0\"\n  여러 레코드가 있을 때만 유용하지만, 레코드가 하나뿐이어도 필수.\n- port := 서비스를 찾을 I2CP 포트. 음이 아닌 정수. 예시: \"25\"\n  포트 0은 지원되지만 권장되지 않음.\n- target := 서비스를 제공하는 목적지의 호스트명 또는 b32. [NAMING](/docs/overview/naming/)에서와 같은 유효한 호스트명. 반드시 소문자여야 함.\n  예시: \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p\" 또는 \"example.i2p\".\n  호스트명이 \"잘 알려진\" 것, 즉 공식 또는 기본 주소록에 있는 것이 아니라면 b32가 권장됨.\n- appoptions := 애플리케이션별 임의 텍스트, \" \" 또는 \",\"를 포함할 수 없음. 인코딩은 UTF-8.",
+            "tr": "- serviceoption := optionkey optionvalue\n- optionkey := _service._proto\n- service := İstenen hizmetin sembolik adı. Küçük harf olmalıdır. Örnek: \"smtp\".\n  İzin verilen karakterler [a-z0-9-] ve '-' ile başlayamaz veya bitemez.\n  [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) veya Linux /etc/services'den standart tanımlayıcılar orada tanımlanmışsa kullanılmalıdır.\n- proto := İstenen hizmetin aktarım protokolü. Küçük harf olmalıdır, \"tcp\" veya \"udp\" olabilir.\n  \"tcp\" akış demektir ve \"udp\" yanıtlanabilir datagram'lar demektir.\n  Ham datagram'lar ve datagram2 için protokol göstergeleri daha sonra tanımlanabilir.\n  İzin verilen karakterler [a-z0-9-] ve '-' ile başlayamaz veya bitemez.\n- optionvalue := self | srvrecord[,srvrecord]*\n- self := \"0\" ttl port [appoptions]\n- srvrecord := \"1\" ttl priority weight port target [appoptions]\n- ttl := yaşam süresi, saniye cinsinden tamsayı. Pozitif tamsayı. Örnek: \"86400\".\n  En az 86400 (bir gün) önerilir, ayrıntılar için aşağıdaki Öneriler bölümüne bakın.\n- priority := Hedef ana bilgisayarın önceliği, düşük değer daha tercih edilir demektir. Negatif olmayan tamsayı. Örnek: \"0\"\n  Sadece birden fazla kayıt varsa yararlıdır, ancak tek kayıt olsa bile gereklidir.\n- weight := Aynı önceliğe sahip kayıtlar için göreceli ağırlık. Yüksek değer seçilme şansının daha fazla olması demektir. Negatif olmayan tamsayı. Örnek: \"0\"\n  Sadece birden fazla kayıt varsa yararlıdır, ancak tek kayıt olsa bile gereklidir.\n- port := Hizmetin bulunacağı I2CP portu. Negatif olmayan tamsayı. Örnek: \"25\"\n  Port 0 desteklenir ancak önerilmez.\n- target := Hizmeti sağlayan hedefin ana bilgisayar adı veya b32'si. [NAMING](/docs/overview/naming/) bölümündeki gibi geçerli bir ana bilgisayar adı. Küçük harf olmalıdır.\n  Örnek: \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p\" veya \"example.i2p\".\n  Ana bilgisayar adı \"iyi bilinen\", yani resmi veya varsayılan adres defterlerinde olmadığı sürece b32 önerilir.\n- appoptions := uygulamaya özgü keyfi metin, \" \" veya \",\" içeremez. Kodlama UTF-8'dir.",
+            "pt": "- serviceoption := optionkey optionvalue\n- optionkey := _service._proto\n- service := O nome simbólico do serviço desejado. Deve estar em minúsculas. Exemplo: \"smtp\".\n  Caracteres permitidos são [a-z0-9-] e não deve começar ou terminar com '-'.\n  Identificadores padrão do [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) ou do Linux /etc/services devem ser usados se definidos lá.\n- proto := O protocolo de transporte do serviço desejado. Deve estar em minúsculas, seja \"tcp\" ou \"udp\".\n  \"tcp\" significa streaming e \"udp\" significa datagramas respondíveis.\n  Indicadores de protocolo para datagramas brutos e datagram2 podem ser definidos posteriormente.\n  Caracteres permitidos são [a-z0-9-] e não deve começar ou terminar com '-'.\n- optionvalue := self | srvrecord[,srvrecord]*\n- self := \"0\" ttl port [appoptions]\n- srvrecord := \"1\" ttl priority weight port target [appoptions]\n- ttl := tempo de vida, segundos inteiros. Inteiro positivo. Exemplo: \"86400\".\n  Um mínimo de 86400 (um dia) é recomendado, veja a seção Recomendações abaixo para detalhes.\n- priority := A prioridade do host de destino, valor menor significa mais preferido. Inteiro não-negativo. Exemplo: \"0\"\n  Apenas útil se mais de um registro, mas obrigatório mesmo se apenas um registro.\n- weight := Um peso relativo para registros com a mesma prioridade. Valor maior significa mais chance de ser escolhido. Inteiro não-negativo. Exemplo: \"0\"\n  Apenas útil se mais de um registro, mas obrigatório mesmo se apenas um registro.\n- port := A porta I2CP na qual o serviço deve ser encontrado. Inteiro não-negativo. Exemplo: \"25\"\n  Porta 0 é suportada mas não recomendada.\n- target := O hostname ou b32 do destino que fornece o serviço. Um hostname válido como em [NAMING](/docs/overview/naming/). Deve estar em minúsculas.\n  Exemplo: \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p\" ou \"example.i2p\".\n  b32 é recomendado a menos que o hostname seja \"bem conhecido\", ou seja, em livros de endereços oficiais ou padrão.\n- appoptions := texto arbitrário específico para a aplicação, não deve conter \" \" ou \",\". A codificação é UTF-8."
+          }
+        },
+        "p_095": {
+          "source_hash": "1889f03338b79bba",
+          "translations": {
+            "ko": "예제:",
+            "tr": "Örnekler:",
+            "pt": "Exemplos:"
+          }
+        },
+        "p_096": {
+          "source_hash": "bf0218b1b59b323c",
+          "translations": {
+            "ko": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p에 대한 LS2에서 하나의 SMTP 서버를 가리키는 경우:",
+            "tr": "LS2'de aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için, bir SMTP sunucusuna işaret ederek:",
+            "pt": "No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para um servidor SMTP:"
+          }
+        },
+        "p_097": {
+          "source_hash": "5816945a92d3839c",
+          "translations": {
+            "ko": "\"_smtp._tcp\" \"1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p\"",
+            "tr": "\"_smtp._tcp\" \"1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p\"",
+            "pt": "\"_smtp._tcp\" \"1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p\""
+          }
+        },
+        "p_098": {
+          "source_hash": "5184d1d5d9b7e005",
+          "translations": {
+            "ko": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p에 대한 LS2에서 두 개의 SMTP 서버를 가리키는 경우:",
+            "tr": "LS2'de aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için, iki SMTP sunucusuna işaret eden:",
+            "pt": "No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para dois servidores SMTP:"
+          }
+        },
+        "p_099": {
+          "source_hash": "7eec306c56befd6b",
+          "translations": {
+            "ko": "\"_smtp._tcp\" \"1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p\"",
+            "tr": "\"_smtp._tcp\" \"1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p\"",
+            "pt": "\"_smtp._tcp\" \"1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p\""
+          }
+        },
+        "p_100": {
+          "source_hash": "7390ea21acbfa134",
+          "translations": {
+            "ko": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p에 대한 LS2에서, 자신을 SMTP 서버로 가리키는 경우:",
+            "tr": "LS2'de bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p için, kendisini bir SMTP sunucusu olarak gösteren:",
+            "pt": "No LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apontando para si mesmo como um servidor SMTP:"
+          }
+        },
+        "p_101": {
+          "source_hash": "e338f4ef39d0be21",
+          "translations": {
+            "ko": "\"_smtp._tcp\" \"0 999999 25\"",
+            "tr": "\"_smtp._tcp\" \"0 999999 25\"",
+            "pt": "\"_smtp._tcp\" \"0 999999 25\""
+          }
+        },
+        "h4_065": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고 사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_055": {
+          "source_hash": "e1ec1b5aafc71efa",
+          "translations": {
+            "ko": "* 목적지의 공개 키는 버전 0.6에서 비활성화된 이전 I2CP-to-I2CP 암호화에 사용되었으며, 현재는 사용되지 않습니다.",
+            "tr": "* Hedefin public key'i, 0.6 sürümünde devre dışı bırakılan eski I2CP-to-I2CP şifrelemesi için kullanılıyordu, şu anda kullanılmıyor.",
+            "pt": "* A chave pública do destino era usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não é utilizada."
+          }
+        },
+        "list_056": {
+          "source_hash": "49cbcadbe19853a3",
+          "translations": {
+            "ko": "* 암호화 키는 종단 간 ElGamal/AES+SessionTag 암호화 \n  [ELGAMAL-AES](/docs/specs/elgamal-aes/) (타입 0) 또는 기타 종단 간 암호화 방식에 사용됩니다.\n  [ECIES](/docs/specs/ecies/) 및 제안 145, 156을 참조하십시오.\n  이 키들은 router 시작 시마다 새로 생성되거나 지속적으로 유지될 수 있습니다.\n  X25519 (타입 4, [ECIES](/docs/specs/ecies/) 참조)는 릴리스 0.9.44부터 지원됩니다.",
+            "tr": "* Şifreleme anahtarları uçtan uca ElGamal/AES+SessionTag şifrelemesi\n  [ELGAMAL-AES](/docs/specs/elgamal-aes/) (tip 0) veya diğer uçtan uca şifreleme şemaları için kullanılır.\n  [ECIES](/docs/specs/ecies/) ve 145 ve 156 numaralı tekliflere bakın.\n  Her router başlangıcında yeniden oluşturulabilir\n  veya kalıcı olabilirler.\n  X25519 (tip 4, [ECIES](/docs/specs/ecies/) bakın) 0.9.44 sürümü itibariyle desteklenmektedir.",
+            "pt": "* As chaves de criptografia são usadas para criptografia ponta a ponta ElGamal/AES+SessionTag\n  [ELGAMAL-AES](/docs/specs/elgamal-aes/) (tipo 0) ou outros esquemas de criptografia ponta a ponta.\n  Veja [ECIES](/docs/specs/ecies/) e propostas 145 e 156.\n  Elas podem ser geradas novamente a cada inicialização do router\n  ou podem ser persistentes.\n  X25519 (tipo 4, veja [ECIES](/docs/specs/ecies/)) é suportado a partir da versão 0.9.44."
+          }
+        },
+        "list_057": {
+          "source_hash": "ff4d5131692d8062",
+          "translations": {
+            "ko": "* 서명은 위의 데이터에 DatabaseStore 타입(3)을 포함하는 단일 바이트를 앞에 붙인(PREPENDED) 것에 대한 것입니다.",
+            "tr": "* İmza, yukarıdaki verinin ÖNCESİNE DatabaseStore türünü içeren tek bayt (3) EKLENMİŞ haliyle yapılır.",
+            "pt": "* A assinatura é sobre os dados acima, PREFIXADOS com o byte único\n  contendo o tipo DatabaseStore (3)."
+          }
+        },
+        "list_058": {
+          "source_hash": "9db2e7e3c48685bc",
+          "translations": {
+            "ko": "* 서명은 목적지의 서명 공개키 또는 leaseset2 헤더에 오프라인 서명이 포함되어 있는 경우 임시 서명 공개키를 사용하여 검증할 수 있습니다.",
+            "tr": "* İmza, hedefin imzalama genel anahtarı veya leaseset2 başlığında çevrimdışı bir imza bulunuyorsa geçici imzalama genel anahtarı kullanılarak doğrulanabilir.",
+            "pt": "* A assinatura pode ser verificada usando a chave pública de assinatura do destino, ou a chave pública de assinatura transitória, se uma assinatura offline estiver incluída no cabeçalho do leaseset2."
+          }
+        },
+        "list_059": {
+          "source_hash": "f8296ae9dae1fc62",
+          "translations": {
+            "ko": "* 각 키에 대해 키 길이가 제공되므로, floodfill과 클라이언트가 모든 암호화 타입을 알지 못하거나 지원하지 않더라도 구조를 파싱할 수 있습니다.",
+            "tr": "* Her anahtar için anahtar uzunluğu sağlanır, böylece floodfill'ler ve istemciler tüm şifreleme türleri bilinmese veya desteklenmese bile yapıyı ayrıştırabilir.",
+            "pt": "* O comprimento da chave é fornecido para cada chave, para que floodfills e clientes possam analisar a estrutura mesmo que nem todos os tipos de criptografia sejam conhecidos ou suportados."
+          }
+        },
+        "list_060": {
+          "source_hash": "f4d103f007b9ca42",
+          "translations": {
+            "ko": "* [LeaseSet2Header](#leaseset2header)의 'published' 필드에 대한 참고사항을 참조하세요",
+            "tr": "* [LeaseSet2Header](#leaseset2header) içindeki 'published' alanıyla ilgili nota bakın",
+            "pt": "* Veja a nota sobre o campo 'published' em [LeaseSet2Header](#leaseset2header)"
+          }
+        },
+        "list_061": {
+          "source_hash": "ef7757e1d5c5f45f",
+          "translations": {
+            "ko": "* 크기가 1보다 큰 경우, 옵션 매핑은 키로 정렬되어야 하므로 서명이 불변입니다.",
+            "tr": "* Seçenekler eşlemesi, boyut birden büyükse, anahtar tarafından sıralanmalıdır, böylece imza değişmez olur.",
+            "pt": "* O mapeamento de opções, se o tamanho for maior que um, deve ser ordenado por chave, para que a assinatura seja invariante."
+          }
+        },
+        "p_102": {
+          "source_hash": "7651137580a1058c",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html"
+          }
+        },
+        "h3_024": {
+          "source_hash": "fc9a04adff98fdf7",
+          "translations": {
+            "ko": "MetaLease",
+            "tr": "MetaLease",
+            "pt": "MetaLease"
+          }
+        },
+        "h4_066": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_103": {
+          "source_hash": "48a298aa7a2e9df8",
+          "translations": {
+            "ko": "특정 tunnel이 [Destination](#destination)을 대상으로 하는 메시지를 수신할 수 있는 권한을 정의합니다. [Lease2](#lease2)와 동일하지만 tunnel id 대신 플래그와 비용을 사용합니다. [MetaLeaseSet](#metaleaseset)에서 사용됩니다. 타입 7의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 지원됩니다. 자세한 정보는 proposal 123을 참조하세요.",
+            "tr": "Belirli bir tunnel'ın bir [Destination](#destination)'ı hedefleyen mesajları alması için yetkilendirmeyi tanımlar. [Lease2](#lease2) ile aynıdır ancak tunnel id yerine bayraklar ve maliyet içerir. [MetaLeaseSet](#metaleaseset) tarafından kullanılır. Tip 7 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için proposal 123'e bakın.",
+            "pt": "Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination). Igual ao [Lease2](#lease2), mas com flags e custo em vez de um ID de tunnel. Usado pelo [MetaLeaseSet](#metaleaseset). Contido em uma mensagem I2NP DatabaseStore do tipo 7. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações."
+          }
+        },
+        "h4_067": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_104": {
+          "source_hash": "66cae0830d057f6b",
+          "translations": {
+            "ko": "게이트웨이 router의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 플래그와 비용, 마지막으로 4바이트 종료 날짜.",
+            "tr": "Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından bayraklar ve maliyet, ve son olarak 4 byte'lık bitiş tarihi.",
+            "pt": "SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router gateway, depois flags e custo, e finalmente uma data de término de 4 bytes."
+          }
+        },
+        "h4_068": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고 사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_062": {
+          "source_hash": "829906fd8de7d3c8",
+          "translations": {
+            "ko": "* 총 크기: 40바이트",
+            "tr": "* Toplam boyut: 40 bayt",
+            "pt": "* Tamanho total: 40 bytes"
+          }
+        },
+        "p_105": {
+          "source_hash": "f728842a0204b8d8",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html"
+          }
+        },
+        "h3_025": {
+          "source_hash": "2b8111eaeba77e0b",
+          "translations": {
+            "ko": "MetaLeaseSet",
+            "tr": "MetaLeaseSet",
+            "pt": "MetaLeaseSet"
+          }
+        },
+        "h4_069": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_106": {
+          "source_hash": "0bb158b9c8992037",
+          "translations": {
+            "ko": "타입 7의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 정의되었으며, 0.9.40부터 작동하도록 예정되어 있습니다. 자세한 정보는 제안서 123을 참조하세요.",
+            "tr": "Tip 7'li bir I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren tanımlanmıştır; 0.9.40 sürümünden itibaren çalışması planlanmıştır; daha fazla bilgi için 123 numaralı öneriye bakınız.",
+            "pt": "Contido numa mensagem I2NP DatabaseStore do tipo 7. Definido a partir da versão 0.9.38; programado para estar funcional a partir da versão 0.9.40; consulte a proposta 123 para mais informações."
+          }
+        },
+        "p_107": {
+          "source_hash": "d11e5643b3508e1e",
+          "translations": {
+            "ko": "특정 [Destination](#destination)에 대해 현재 승인된 모든 [MetaLease](#metalease)와 garlic 메시지를 암호화할 수 있는 [PublicKey](#publickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 가지 구조 중 하나이며(다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256으로 키가 지정됩니다.",
+            "tr": "Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [MetaLease](#metalease) ve garlic mesajlarının şifrelenebileceği [PublicKey](#publickey) içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo) olan) ve içerdiği [Destination](#destination)'ın SHA256'sı altında anahtarlanır.",
+            "pt": "Contém todos os [MetaLease](#metalease) atualmente autorizados para um [Destination](#destination) específico, e a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas. Um LeaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido."
+          }
+        },
+        "h4_070": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_108": {
+          "source_hash": "0b90f266c935395e",
+          "translations": {
+            "ko": "[LeaseSet2Header](#leaseset2header), 그 다음에 옵션들, 세트에 포함된 [Lease2](#lease2) 구조체의 개수를 지정하는 [Integer](#integer), 그 다음에 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).",
+            "tr": "[LeaseSet2Header](#leaseset2header), ardından seçenekler, sette kaç tane [Lease2](#lease2) yapısı olduğunu belirten bir [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'ın [SigningPrivateKey](#signingprivatekey)'i veya geçici anahtar tarafından imzalanmış [Signature](#signature)'ı.",
+            "pt": "[LeaseSet2Header](#leaseset2header), seguido por opções, [Integer](#integer) especificando quantas estruturas [Lease2](#lease2) estão no conjunto, seguido pelas estruturas [Lease2](#lease2) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinados pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination) ou pela chave transitória."
+          }
+        },
+        "h4_071": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_063": {
+          "source_hash": "e1ec1b5aafc71efa",
+          "translations": {
+            "ko": "* 목적지의 공개 키는 버전 0.6에서 비활성화된 구 I2CP-to-I2CP 암호화에 사용되었으며, 현재는 사용되지 않습니다.",
+            "tr": "* Hedefin genel anahtarı, 0.6 sürümünde devre dışı bırakılan eski I2CP-to-I2CP şifrelemesi için kullanılıyordu, şu anda kullanılmamaktadır.",
+            "pt": "* A chave pública do destino foi usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não está sendo utilizada."
+          }
+        },
+        "list_064": {
+          "source_hash": "748c4464183e5b0e",
+          "translations": {
+            "ko": "* 서명은 위의 데이터에 DatabaseStore 타입(7)을 포함하는 단일 바이트가 앞에 붙은 상태로 적용됩니다.",
+            "tr": "* İmza, yukarıdaki verilerin üzerinde olup, DatabaseStore türünü (7) içeren tek baytın BAŞINA EKLENMESİ ile oluşturulur.",
+            "pt": "* A assinatura é sobre os dados acima, PRECEDIDOS pelo byte único\n  contendo o tipo DatabaseStore (7)."
+          }
+        },
+        "list_065": {
+          "source_hash": "9db2e7e3c48685bc",
+          "translations": {
+            "ko": "* 서명은 destination의 서명 공개 키를 사용하거나, leaseset2 헤더에 오프라인 서명이 포함된 경우 임시 서명 공개 키를 사용하여 검증할 수 있습니다.",
+            "tr": "* İmza, hedefin imzalama genel anahtarı kullanılarak doğrulanabilir veya leaseset2 başlığında çevrimdışı bir imza bulunuyorsa geçici imzalama genel anahtarı kullanılarak doğrulanabilir.",
+            "pt": "* A assinatura pode ser verificada usando a chave pública de assinatura do destino, ou a chave pública de assinatura transitória, se uma assinatura offline estiver incluída no cabeçalho do leaseset2."
+          }
+        },
+        "list_066": {
+          "source_hash": "f4d103f007b9ca42",
+          "translations": {
+            "ko": "* [LeaseSet2Header](#leaseset2header)의 'published' 필드에 대한 참고사항을 참조하세요",
+            "tr": "* [LeaseSet2Header](#leaseset2header) içindeki 'published' alanına ilişkin nota bakın",
+            "pt": "* Veja a nota sobre o campo 'published' em [LeaseSet2Header](#leaseset2header)"
+          }
+        },
+        "p_109": {
+          "source_hash": "74f7afffd5158231",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html"
+          }
+        },
+        "h3_026": {
+          "source_hash": "77c20ebbacb2ad3e",
+          "translations": {
+            "ko": "EncryptedLeaseSet",
+            "tr": "EncryptedLeaseSet",
+            "pt": "EncryptedLeaseSet"
+          }
+        },
+        "h4_072": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_110": {
+          "source_hash": "391f84f695ccfb2c",
+          "translations": {
+            "ko": "타입 5의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 정의되었으며, 0.9.39부터 작동합니다. 자세한 정보는 제안서 123을 참조하세요.",
+            "tr": "Tip 5 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren tanımlanmıştır; 0.9.39 sürümünden itibaren çalışmaktadır; daha fazla bilgi için öneri 123'e bakın.",
+            "pt": "Contido numa mensagem I2NP DatabaseStore do tipo 5. Definido a partir da versão 0.9.38; funcional a partir da versão 0.9.39; consulte a proposta 123 para mais informações."
+          }
+        },
+        "p_111": {
+          "source_hash": "9ac62993fa6b477c",
+          "translations": {
+            "ko": "블라인드 키와 만료 시간만 평문으로 볼 수 있습니다. 실제 leaseSet은 암호화되어 있습니다.",
+            "tr": "Sadece blinded key ve son kullanma tarihi açık metin olarak görülebilir. Gerçek lease set şifrelidir.",
+            "pt": "Apenas a chave cega e a expiração são visíveis em texto claro. O leaseSet real está criptografado."
+          }
+        },
+        "h4_073": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_112": {
+          "source_hash": "d1217855346debe0",
+          "translations": {
+            "ko": "2바이트 서명 타입, 블라인드된 [SigningPrivateKey](#signingprivatekey), 발행 시간, 만료 시간, 그리고 플래그. 그 다음, 2바이트 길이와 그에 따른 암호화된 데이터. 마지막으로, 블라인드된 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).",
+            "tr": "İki baytlık imza türü, kör edilmiş [SigningPrivateKey](#signingprivatekey), yayınlanma zamanı, son kullanma tarihi ve bayraklar. Ardından, iki baytlık uzunluk ve şifrelenmiş veri. Son olarak, kör edilmiş [SigningPrivateKey](#signingprivatekey) veya geçici anahtar tarafından imzalanmış önceki baytların [Signature](#signature)'ı.",
+            "pt": "Um tipo de assinatura de dois bytes, a [SigningPrivateKey](#signingprivatekey) cegada, tempo de publicação, expiração e flags. Em seguida, um comprimento de dois bytes seguido por dados criptografados. Finalmente, uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) cegada ou pela chave transitória."
+          }
+        },
+        "h4_074": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_067": {
+          "source_hash": "e1ec1b5aafc71efa",
+          "translations": {
+            "ko": "* destination의 공개 키는 버전 0.6에서 비활성화된 기존 I2CP-to-I2CP 암호화에 사용되었으며, 현재는 사용되지 않습니다.",
+            "tr": "* Hedefin genel anahtarı, 0.6 sürümünde devre dışı bırakılan eski I2CP-to-I2CP şifrelemesi için kullanılıyordu, şu anda kullanılmıyor.",
+            "pt": "* A chave pública do destino foi usada para a antiga criptografia I2CP-para-I2CP que foi desabilitada na versão 0.6, atualmente não é utilizada."
+          }
+        },
+        "list_068": {
+          "source_hash": "890ad8080af25592",
+          "translations": {
+            "ko": "* 서명은 위의 데이터에 DatabaseStore 타입(5)을 포함하는 단일 바이트를 앞에 붙인 것에 대해 적용됩니다.",
+            "tr": "* İmza, yukarıdaki veriler üzerindedir ve DatabaseStore türünü (5) içeren tek bayt ile BAŞINA EKLENMİŞTİR.",
+            "pt": "* A assinatura é sobre os dados acima, PRECEDIDOS pelo único byte\n  contendo o tipo DatabaseStore (5)."
+          }
+        },
+        "list_069": {
+          "source_hash": "9db2e7e3c48685bc",
+          "translations": {
+            "ko": "* 서명은 목적지의 서명 공개 키를 사용하거나, leaseSet2 헤더에 오프라인 서명이 포함된 경우 임시 서명 공개 키를 사용하여 검증할 수 있습니다.",
+            "tr": "* İmza, hedefin imzalama public key'i kullanılarak doğrulanabilir veya leaseset2 başlığında çevrimdışı imza bulunuyorsa geçici imzalama public key'i kullanılarak doğrulanabilir.",
+            "pt": "* A assinatura pode ser verificada usando a chave pública de assinatura do destino, ou a chave pública de assinatura transitória, se uma assinatura offline estiver incluída no cabeçalho do leaseset2."
+          }
+        },
+        "list_070": {
+          "source_hash": "53ec92fe361b20e2",
+          "translations": {
+            "ko": "* Blinding과 암호화는 [EncryptedLeaseSet](/docs/specs/encryptedleaseset/)에 명시되어 있습니다",
+            "tr": "* Kör etme ve şifreleme [EncryptedLeaseSet](/docs/specs/encryptedleaseset/) içinde belirtilmiştir",
+            "pt": "* O mascaramento e criptografia são especificados em [EncryptedLeaseSet](/docs/specs/encryptedleaseset/)"
+          }
+        },
+        "list_071": {
+          "source_hash": "86b4f7ca38c46750",
+          "translations": {
+            "ko": "* 이 구조는 [LeaseSet2Header](#leaseset2header)를 사용하지 않습니다.",
+            "tr": "* Bu yapı [LeaseSet2Header](#leaseset2header) kullanmaz.",
+            "pt": "* Esta estrutura não utiliza o [LeaseSet2Header](#leaseset2header)."
+          }
+        },
+        "list_072": {
+          "source_hash": "01b996f62af59582",
+          "translations": {
+            "ko": "* 실제 최대 만료 시간은 약 660(11분)이며, 암호화된 [MetaLeaseSet](#metaleaseset)이 아닌 경우입니다.",
+            "tr": "* Maksimum gerçek sona erme süresi yaklaşık 660'tır (11 dakika), şifreli bir [MetaLeaseSet](#metaleaseset) olmadığı sürece.",
+            "pt": "* O tempo máximo real de expiração é cerca de 660 (11 minutos), a menos que\n  seja um [MetaLeaseSet](#metaleaseset) criptografado."
+          }
+        },
+        "list_073": {
+          "source_hash": "504d6129d9da6c90",
+          "translations": {
+            "ko": "* 암호화된 leaseSet과 함께 오프라인 서명을 사용하는 방법에 대한 참고사항은 제안서 123을 참조하세요.",
+            "tr": "* Şifrelenmiş leaseSet'ler ile çevrimdışı imzaların kullanımına ilişkin notlar için 123 numaralı öneriyi inceleyin.",
+            "pt": "* Veja a proposta 123 para notas sobre o uso de assinaturas offline\n  com leaseSets criptografados."
+          }
+        },
+        "list_074": {
+          "source_hash": "9f5dd2ada515653d",
+          "translations": {
+            "ko": "* [LeaseSet2Header](#leaseset2header)의 'published' 필드에 대한 참고사항을 참조하세요\n  (여기서는 LeaseSet2Header 형식을 사용하지 않지만 동일한 문제입니다)",
+            "tr": "* [LeaseSet2Header](#leaseset2header) içindeki 'published' alanı hakkındaki nota bakın\n  (aynı sorun, burada LeaseSet2Header formatını kullanmasak bile)",
+            "pt": "* Veja a nota sobre o campo 'published' em [LeaseSet2Header](#leaseset2header)\n  (mesmo problema, embora não usemos o formato LeaseSet2Header aqui)"
+          }
+        },
+        "p_113": {
+          "source_hash": "3d3a91a81c0e9997",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html"
+          }
+        },
+        "h3_027": {
+          "source_hash": "1fabfcd385ecf524",
+          "translations": {
+            "ko": "RouterAddress",
+            "tr": "RouterAddress",
+            "pt": "RouterAddress"
+          }
+        },
+        "h4_075": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_114": {
+          "source_hash": "e3ee737d289d5cfb",
+          "translations": {
+            "ko": "이 구조는 전송 프로토콜을 통해 router에 연결하는 방법을 정의합니다.",
+            "tr": "Bu yapı, bir router ile taşıma protokolü aracılığıyla iletişim kurma yöntemlerini tanımlar.",
+            "pt": "Esta estrutura define os meios para contactar um router através de um protocolo de transporte."
+          }
+        },
+        "h4_076": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_115": {
+          "source_hash": "635a62ca0f8d1f57",
+          "translations": {
+            "ko": "주소 사용의 상대적 비용을 정의하는 1바이트 [Integer](#integer) (0은 무료, 255는 비싼 비용을 의미), 이어서 주소가 사용되지 않아야 하는 만료 [Date](#date) (null인 경우 주소가 만료되지 않음). 그 다음에는 이 router 주소가 사용하는 전송 프로토콜을 정의하는 [String](#string)이 온다. 마지막으로 IP 주소, 포트 번호, 이메일 주소, URL 등과 같이 연결을 설정하는 데 필요한 모든 전송별 옵션을 포함하는 [Mapping](#mapping)이 있다.",
+            "tr": "Adresi kullanmanın göreceli maliyetini tanımlayan 1 byte [Integer](#integer), burada 0 ücretsiz ve 255 pahalı anlamına gelir, ardından adresin kullanılmaması gereken son kullanma [Date](#date) tarihi gelir, veya null ise adresin süresi asla dolmaz. Bundan sonra bu router adresinin kullandığı taşıma protokolünü tanımlayan bir [String](#string) gelir. Son olarak, IP adresi, port numarası, e-posta adresi, URL vb. gibi bağlantıyı kurmak için gerekli tüm taşıma protokolüne özgü seçenekleri içeren bir [Mapping](#mapping) bulunur.",
+            "pt": "1 byte [Integer](#integer) definindo o custo relativo de usar o endereço, onde 0 é gratuito e 255 é caro, seguido pela [Date](#date) de expiração após a qual o endereço não deve ser usado, ou se nulo, o endereço nunca expira. Depois disso vem uma [String](#string) definindo o protocolo de transporte que este endereço de router usa. Finalmente há um [Mapping](#mapping) contendo todas as opções específicas do transporte necessárias para estabelecer a conexão, como endereço IP, número da porta, endereço de email, URL, etc."
+          }
+        },
+        "h4_077": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고 사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_075": {
+          "source_hash": "d04875055fbdc2c0",
+          "translations": {
+            "ko": "* 비용은 일반적으로 SSU의 경우 5 또는 6이고, NTCP의 경우 10 또는 11입니다.",
+            "tr": "* Maliyet genellikle SSU için 5 veya 6, NTCP için 10 veya 11'dir.",
+            "pt": "* O custo é tipicamente 5 ou 6 para SSU, e 10 ou 11 para NTCP."
+          }
+        },
+        "list_076": {
+          "source_hash": "d2fd27ab6ed7bff8",
+          "translations": {
+            "ko": "* Expiration은 현재 사용되지 않으며, 항상 null(모든 비트가 0)입니다. 릴리스 0.9.3부터 expiration은 0으로 가정되고 저장되지 않으므로, 0이 아닌 expiration 값은 RouterInfo 서명 검증에서 실패합니다. expiration을 구현하거나 이 바이트들을 다른 용도로 사용하는 것은 역호환되지 않는 변경사항이 될 것입니다. Router들은 이 필드를 모두 0으로 설정해야 합니다. 릴리스 0.9.12부터 0이 아닌 expiration 필드가 다시 인식되지만, 네트워크의 대부분이 이를 인식할 때까지 몇 개의 릴리스를 더 기다려야 이 필드를 사용할 수 있습니다.",
+            "tr": "* Expiration şu anda kullanılmamaktadır, her zaman null'dur (tüm sıfırlar). 0.9.3 sürümünden itibaren, expiration sıfır olarak varsayılır ve saklanmaz, bu nedenle sıfır olmayan herhangi bir expiration RouterInfo imza doğrulamasında başarısız olacaktır. Expiration'ın uygulanması (veya bu byte'lar için başka bir kullanım) geriye dönük uyumsuz bir değişiklik olacaktır. Router'lar bu alanı tüm sıfırlar olarak ayarlamalıdır (MUST). 0.9.12 sürümünden itibaren, sıfır olmayan expiration alanı tekrar tanınmaktadır, ancak ağın büyük çoğunluğu bunu tanıyana kadar bu alanı kullanmak için birkaç sürüm beklemeliyiz.",
+            "pt": "* A expiração está atualmente sem uso, sempre nula (todos zeros). A partir da versão\n  0.9.3, a expiração é assumida como zero e não armazenada, então qualquer expiração\n  não-zero falhará na verificação da assinatura do RouterInfo. Implementar\n  expiração (ou outro uso para estes bytes) será uma mudança incompatível com versões\n  anteriores. Os routers DEVEM definir este campo como todos zeros. A partir da versão 0.9.12, um\n  campo de expiração não-zero é novamente reconhecido, no entanto devemos aguardar várias\n  versões para usar este campo, até que a grande maioria da rede o reconheça."
+          }
+        },
+        "list_077": {
+          "source_hash": "4c2c1e5876b97d62",
+          "translations": {
+            "ko": "* 다음 옵션들은 필수는 아니지만 표준이며 대부분의 router 주소에 존재할 것으로 예상됩니다: \"host\" (IPv4 또는 IPv6 주소나 호스트 이름)와 \"port\".",
+            "tr": "* Aşağıdaki seçenekler zorunlu olmamakla birlikte standart kabul edilir ve çoğu router adresinde bulunması beklenir: \"host\" (bir IPv4 veya IPv6 adresi ya da host adı) ve \"port\".",
+            "pt": "* As seguintes opções, embora não sejam obrigatórias, são padrão e espera-se que estejam presentes na maioria dos endereços de router: \"host\" (um endereço IPv4 ou IPv6 ou nome de host) e \"port\"."
+          }
+        },
+        "p_116": {
+          "source_hash": "5902f9793de52684",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html"
+          }
+        },
+        "h3_028": {
+          "source_hash": "054082d177b9db19",
+          "translations": {
+            "ko": "RouterInfo",
+            "tr": "RouterInfo",
+            "pt": "RouterInfo"
+          }
+        },
+        "h4_078": {
+          "source_hash": "526e0087cc3f254d",
+          "translations": {
+            "ko": "설명",
+            "tr": "Açıklama",
+            "pt": "Descrição"
+          }
+        },
+        "p_117": {
+          "source_hash": "663fc74d011928d2",
+          "translations": {
+            "ko": "router가 네트워크에 공개하고자 하는 모든 데이터를 정의합니다. [RouterInfo](#routerinfo)는 네트워크 데이터베이스에 저장되는 두 구조 중 하나이며(다른 하나는 [LeaseSet](#leaseset)), 포함된 [RouterIdentity](#routeridentity)의 SHA256 해시값을 키로 사용합니다.",
+            "tr": "Bir router'ın ağın görmesi için yayınlamak istediği tüm verileri tanımlar. [RouterInfo](#routerinfo), ağ veritabanında saklanan iki yapıdan biridir (diğeri [LeaseSet](#leaseset)) ve içerdiği [RouterIdentity](#routeridentity)'nin SHA256'sı altında anahtarlanır.",
+            "pt": "Define todos os dados que um router deseja publicar para que a rede possa ver. O [RouterInfo](#routerinfo) é uma das duas estruturas armazenadas na base de dados da rede (a outra sendo [LeaseSet](#leaseset)), e é indexado sob o SHA256 da [RouterIdentity](#routeridentity) contida."
+          }
+        },
+        "h4_079": {
+          "source_hash": "437aea62a5bd6ad4",
+          "translations": {
+            "ko": "목차",
+            "tr": "İçindekiler",
+            "pt": "Conteúdo"
+          }
+        },
+        "p_118": {
+          "source_hash": "99c300d5b00376c1",
+          "translations": {
+            "ko": "항목이 게시된 날짜인 [Date](#date)가 뒤따르는 [RouterIdentity](#routeridentity)",
+            "tr": "[RouterIdentity](#routeridentity) ardından girişin yayınlandığı [Date](#date)",
+            "pt": "[RouterIdentity](#routeridentity) seguido pela [Date](#date), quando a entrada foi publicada"
+          }
+        },
+        "h4_080": {
+          "source_hash": "8a7525b1492fb848",
+          "translations": {
+            "ko": "참고 사항",
+            "tr": "Notlar",
+            "pt": "Notas"
+          }
+        },
+        "list_078": {
+          "source_hash": "498edce9f5119887",
+          "translations": {
+            "ko": "* peer_size [Integer](#integer) 다음에는 그만큼의 router 해시 목록이 올 수 있습니다.\n  이는 현재 사용되지 않습니다. 제한된 경로의 한 형태를 위해 의도되었으나,\n  구현되지 않았습니다.\n  특정 구현체에서는 서명이 불변이 되도록 목록이 정렬되어야 할 수 있습니다.\n  이 기능을 활성화하기 전에 연구가 필요합니다.",
+            "tr": "* peer_size [Integer](#integer) değerini, o kadar router hash'inin listesi takip edebilir.\n  Bu şu anda kullanılmamaktadır. Henüz uygulanmamış olan kısıtlı rotalar (restricted routes) için tasarlanmıştı.\n  Belirli uygulamalar, imzanın değişmez olması için listenin sıralanmasını gerektirebilir.\n  Bu özelliği etkinleştirmeden önce araştırılmalıdır.",
+            "pt": "* O peer_size [Integer](#integer) pode ser seguido por uma lista com essa quantidade de hashes de router.\n  Isso atualmente não é usado. Foi destinado a uma forma de rotas restritas,\n  que não está implementada.\n  Certas implementações podem exigir que a lista seja ordenada para que a assinatura seja invariante.\n  Deve ser pesquisado antes de habilitar essa funcionalidade."
+          }
+        },
+        "list_079": {
+          "source_hash": "e4cebfd2cbe1f179",
+          "translations": {
+            "ko": "* 서명은 router_ident의 서명 공개 키를 사용하여 검증할 수 있습니다.",
+            "tr": "* İmza, router_ident'in imzalama genel anahtarı kullanılarak doğrulanabilir.",
+            "pt": "* A assinatura pode ser verificada usando a chave pública de assinatura do\n  router_ident."
+          }
+        },
+        "list_080": {
+          "source_hash": "b25c53fe24cc1c10",
+          "translations": {
+            "ko": "* 모든 router 정보에 포함되어야 하는 표준 옵션에 대해서는 네트워크 데이터베이스 페이지 [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)를 참조하세요.",
+            "tr": "* Tüm router bilgilerinde bulunması beklenen standart seçenekler için network veritabanı sayfasındaki [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) bölümüne bakın.",
+            "pt": "* Consulte a página da base de dados da rede [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) para opções padrão que\n  devem estar presentes em todas as informações do router."
+          }
+        },
+        "list_081": {
+          "source_hash": "6369ae33d08bba14",
+          "translations": {
+            "ko": "* 매우 오래된 router들은 서명이 불변이 되도록 데이터의 SHA256으로 주소를 정렬할 것을 요구했습니다.\n  이는 더 이상 필요하지 않으며, 하위 호환성을 위해 구현할 가치가 없습니다.",
+            "tr": "* Çok eski router'lar, imzanın değişmez olması için adreslerin verilerinin SHA256'sına göre sıralanmasını gerektiriyordu.\n  Bu artık gerekli değil ve geriye dönük uyumluluk için uygulanmaya değmez.",
+            "pt": "* Routers muito antigos exigiam que os endereços fossem ordenados pelo SHA256 dos seus dados\n  para que a assinatura fosse invariável.\n  Isso não é mais necessário, e não vale a pena implementar para compatibilidade com versões anteriores."
+          }
+        },
+        "p_119": {
+          "source_hash": "061cbc3f8a0bf2c0",
+          "translations": {
+            "ko": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html",
+            "tr": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html",
+            "pt": "JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html"
+          }
+        },
+        "h3_029": {
+          "source_hash": "9c77e74d1532f160",
+          "translations": {
+            "ko": "배송 지침",
+            "tr": "Teslimat Talimatları",
+            "pt": "Instruções de Entrega"
+          }
+        },
+        "p_120": {
+          "source_hash": "61484402c388be82",
+          "translations": {
+            "ko": "Tunnel 메시지 전달 지침은 Tunnel 메시지 사양 [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)에 정의되어 있습니다.",
+            "tr": "Tunnel Message Delivery Instructions, Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) belgesinde tanımlanmıştır.",
+            "pt": "As Instruções de Entrega de Mensagem de Tunnel são definidas na Especificação de Mensagem de Tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)."
+          }
+        },
+        "p_121": {
+          "source_hash": "b49065ec589577f9",
+          "translations": {
+            "ko": "Garlic Message Delivery Instructions는 I2NP Message Specification [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)에서 정의됩니다.",
+            "tr": "Garlic Message Delivery Instructions, I2NP Mesaj Spesifikasyonunda [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions) tanımlanmıştır.",
+            "pt": "As Instruções de Entrega de Mensagem Garlic são definidas na Especificação de Mensagem I2NP [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)."
+          }
+        },
+        "h2_003": {
+          "source_hash": "69824d3b0e70ca6a",
+          "translations": {
+            "ko": "참조",
+            "tr": "Kaynaklar",
+            "pt": "Referências"
+          }
+        },
+        "list_082": {
+          "source_hash": "270dc7fc220c2083",
+          "translations": {
+            "ko": "- [ECIES](/docs/specs/ecies/)\n- [ECIES-HYBRID](/docs/specs/ecies-hybrid/)\n- [ECIES-ROUTERS](/docs/specs/ecies-routers/)\n- [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)\n- [ELGAMAL-AES](/docs/specs/elgamal-aes/)\n- [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)\n- [I2CP](/docs/specs/i2cp/)\n- [I2NP](/docs/specs/i2np/)\n- [NAMING](/docs/overview/naming/)\n- [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)\n- [Prop134](/proposals/134-gost/)\n- [Prop169](/proposals/169-pq-crypto/)\n- [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)\n- [SSU](/docs/legacy/ssu/)\n- [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)",
+            "tr": "- [ECIES](/docs/specs/ecies/)\n- [ECIES-HYBRID](/docs/specs/ecies-hybrid/)\n- [ECIES-ROUTERS](/docs/specs/ecies-routers/)\n- [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)\n- [ELGAMAL-AES](/docs/specs/elgamal-aes/)\n- [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)\n- [I2CP](/docs/specs/i2cp/)\n- [I2NP](/docs/specs/i2np/)\n- [NAMING](/docs/overview/naming/)\n- [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)\n- [Prop134](/proposals/134-gost/)\n- [Prop169](/proposals/169-pq-crypto/)\n- [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)\n- [SSU](/docs/legacy/ssu/)\n- [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)",
+            "pt": "- [ECIES](/docs/specs/ecies/)\n- [ECIES-HYBRID](/docs/specs/ecies-hybrid/)\n- [ECIES-ROUTERS](/docs/specs/ecies-routers/)\n- [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)\n- [ELGAMAL-AES](/docs/specs/elgamal-aes/)\n- [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)\n- [I2CP](/docs/specs/i2cp/)\n- [I2NP](/docs/specs/i2np/)\n- [NAMING](/docs/overview/naming/)\n- [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)\n- [Prop134](/proposals/134-gost/)\n- [Prop169](/proposals/169-pq-crypto/)\n- [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)\n- [SSU](/docs/legacy/ssu/)\n- [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)"
+          }
+        }
+      }
     }
   }
 }
