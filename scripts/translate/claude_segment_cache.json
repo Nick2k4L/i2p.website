@@ -5004,7 +5004,10 @@
           "translations": {
             "ko": "I2P 2.11.0 릴리스",
             "tr": "I2P 2.11.0 Sürümü",
-            "pt": "Lançamento I2P 2.11.0"
+            "pt": "Lançamento I2P 2.11.0",
+            "zh": "I2P 2.11.0 发布版本",
+            "fr": "Version I2P 2.11.0",
+            "ar": "إصدار I2P 2.11.0"
           }
         },
         "fm_description": {
@@ -5012,7 +5015,10 @@
           "translations": {
             "ko": "I2P 2.11.0 출시",
             "tr": "I2P 2.11.0 Yayınlandı",
-            "pt": "I2P 2.11.0 Lançado"
+            "pt": "I2P 2.11.0 Lançado",
+            "zh": "I2P 2.11.0 发布",
+            "fr": "I2P 2.11.0 Publié",
+            "ar": "تم إصدار I2P 2.11.0"
           }
         },
         "p_001": {
@@ -5020,7 +5026,10 @@
           "translations": {
             "ko": "이번 릴리스부터 I2P는 Java 17 이상이 필요합니다. Java 업데이트 방법은 운영체제 문서를 참조하시기 바랍니다. I2P는 이제 Jetty 12도 사용합니다. 마이그레이션 문제는 router 로그를 확인해 주세요.",
             "tr": "Bu sürüm itibariyle, I2P artık Java 17 veya daha yeni bir sürüm gerektirmektedir. Java'yı nasıl güncelleyeceğiniz konusunda lütfen işletim sisteminizin belgelerine başvurun. I2P artık Jetty 12 kullanmaktadır. Geçiş sorunları için lütfen router günlüklerinizi kontrol edin.",
-            "pt": "A partir desta versão, o I2P agora requer Java 17 ou posterior. Por favor, consulte a documentação do seu sistema operacional para saber como atualizar o Java. O I2P agora também usa o Jetty 12. Por favor, verifique os logs do seu router para problemas de migração."
+            "pt": "A partir desta versão, o I2P agora requer Java 17 ou posterior. Por favor, consulte a documentação do seu sistema operacional para saber como atualizar o Java. O I2P agora também usa o Jetty 12. Por favor, verifique os logs do seu router para problemas de migração.",
+            "zh": "自此版本起，I2P 现在需要 Java 17 或更高版本。请查阅您操作系统的文档以了解如何更新 Java。I2P 现在还使用 Jetty 12。请检查您的 router 日志以查看迁移问题。",
+            "fr": "À partir de cette version, I2P nécessite maintenant Java 17 ou une version ultérieure. Veuillez consulter la documentation de votre système d'exploitation pour savoir comment mettre à jour Java. I2P utilise maintenant également Jetty 12. Veuillez vérifier les journaux de votre router pour détecter d'éventuels problèmes de migration.",
+            "ar": "اعتباراً من هذا الإصدار، يتطلب I2P الآن Java 17 أو أحدث. يرجى مراجعة وثائق نظام التشغيل الخاص بك لمعرفة كيفية تحديث Java. يستخدم I2P الآن أيضاً Jetty 12. يرجى التحقق من سجلات router الخاصة بك لمعرفة مشاكل الترحيل."
           }
         },
         "p_002": {
@@ -5028,7 +5037,10 @@
           "translations": {
             "ko": "이번 릴리스에서는 양자 후 암호화(post-quantum cryptography) 지원을 개선하는 작업이 계속되었습니다. 양자 후 암호화가 이제 ratchet 계층에서 기본적으로 활성화됩니다.",
             "tr": "Bu sürümdeki çalışmalar, kuantum-sonrası kriptografi desteğini iyileştirmeye devam ediyor. Kuantum-sonrası kriptografi artık ratchet katmanında varsayılan olarak etkinleştirilmiştir.",
-            "pt": "O trabalho nesta versão continua a melhorar o suporte para criptografia pós-quântica. A criptografia pós-quântica agora está habilitada por padrão na camada ratchet."
+            "pt": "O trabalho nesta versão continua a melhorar o suporte para criptografia pós-quântica. A criptografia pós-quântica agora está habilitada por padrão na camada ratchet.",
+            "zh": "本版本的工作继续改进对后量子密码学的支持。后量子加密现在默认在棘轮层启用。",
+            "fr": "Le travail dans cette version continue d'améliorer le support de la cryptographie post-quantique. La cryptographie post-quantique est désormais activée par défaut au niveau de la couche ratchet.",
+            "ar": "العمل في هذا الإصدار يواصل تحسين الدعم لتشفير ما بعد الكم. تشفير ما بعد الكم مُفعّل الآن في طبقة ratchet افتراضياً."
           }
         },
         "p_003": {
@@ -5036,7 +5048,10 @@
           "translations": {
             "ko": "진행 중인 스팸 공격에 대한 첫 번째 완화 조치를 구현했습니다. 추가적인 완화 조치가 개발되고 있습니다.",
             "tr": "Devam eden spam saldırılarına karşı ilk tur önlemleri uyguladık. Ek önlemler geliştirilmektedir.",
-            "pt": "Implementamos a primeira rodada de medidas de mitigação aos ataques de spam em andamento. Medidas de mitigação adicionais estão sendo desenvolvidas."
+            "pt": "Implementamos a primeira rodada de medidas de mitigação aos ataques de spam em andamento. Medidas de mitigação adicionais estão sendo desenvolvidas.",
+            "zh": "我们已经实施了针对持续垃圾邮件攻击的第一轮缓解措施。正在开发额外的缓解措施。",
+            "fr": "Nous avons mis en place la première série de mesures d'atténuation contre les attaques de spam en cours. Des mesures d'atténuation supplémentaires sont en cours de développement.",
+            "ar": "لقد نفذنا الجولة الأولى من التدابير المضادة لهجمات الرسائل المزعجة الجارية. يجري تطوير تدابير إضافية مضادة."
           }
         },
         "p_004": {
@@ -5044,7 +5059,10 @@
           "translations": {
             "ko": "SAMv3 API가 새로운 데이터그램 타입 2와 3을 지원하도록 업그레이드되었습니다.",
             "tr": "SAMv3 API'si yeni datagram türleri 2 ve 3'ü desteklemek için yükseltilmiştir.",
-            "pt": "A API SAMv3 foi atualizada para suportar os novos tipos de datagrama 2 e 3."
+            "pt": "A API SAMv3 foi atualizada para suportar os novos tipos de datagrama 2 e 3.",
+            "zh": "SAMv3 API 已升级以支持新的数据报类型 2 和 3。",
+            "fr": "L'API SAMv3 a été mise à niveau pour prendre en charge les nouveaux types de datagrammes 2 et 3.",
+            "ar": "تم ترقية واجهة برمجة التطبيقات SAMv3 لدعم أنواع البيانات الجديدة 2 و 3."
           }
         },
         "p_005": {
@@ -5052,7 +5070,10 @@
           "translations": {
             "ko": "평소와 같이 이 릴리스로 업데이트하실 것을 권장합니다. 보안을 유지하고 네트워크에 도움이 되는 가장 좋은 방법은 최신 릴리스를 실행하는 것입니다.",
             "tr": "Her zamanki gibi, bu sürüme güncelleme yapmanızı öneririz. Güvenliği korumak ve ağa yardımcı olmanın en iyi yolu en son sürümü çalıştırmaktır.",
-            "pt": "Como sempre, recomendamos que você atualize para esta versão. A melhor forma de manter a segurança e ajudar a rede é executar a versão mais recente."
+            "pt": "Como sempre, recomendamos que você atualize para esta versão. A melhor forma de manter a segurança e ajudar a rede é executar a versão mais recente.",
+            "zh": "如往常一样，我们建议您更新到此版本。维护安全性并帮助网络的最佳方式是运行最新版本。",
+            "fr": "Comme d'habitude, nous recommandons de mettre à jour vers cette version. La meilleure façon de maintenir la sécurité et d'aider le réseau est d'exécuter la dernière version.",
+            "ar": "كالعادة، ننصح بالتحديث إلى هذا الإصدار. أفضل طريقة للحفاظ على الأمان ومساعدة الشبكة هي تشغيل أحدث إصدار."
           }
         }
       }
