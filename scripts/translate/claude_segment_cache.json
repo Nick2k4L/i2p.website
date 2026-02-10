@@ -4987,6 +4987,66 @@
           }
         }
       }
+    },
+    "en/blog/2026-02-09-i2p-2-11-0-release.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "094281898298a51c",
+          "translations": {
+            "ko": "I2P 2.11.0 릴리스",
+            "tr": "I2P 2.11.0 Sürümü",
+            "pt": "Lançamento I2P 2.11.0"
+          }
+        },
+        "fm_description": {
+          "source_hash": "ffff4a429df6d3c5",
+          "translations": {
+            "ko": "I2P 2.11.0 출시",
+            "tr": "I2P 2.11.0 Yayınlandı",
+            "pt": "I2P 2.11.0 Lançado"
+          }
+        },
+        "p_001": {
+          "source_hash": "5c185ad82f3c354c",
+          "translations": {
+            "ko": "이번 릴리스부터 I2P는 Java 17 이상이 필요합니다. Java 업데이트 방법은 운영체제 문서를 참조하시기 바랍니다. I2P는 이제 Jetty 12도 사용합니다. 마이그레이션 문제는 router 로그를 확인해 주세요.",
+            "tr": "Bu sürüm itibariyle, I2P artık Java 17 veya daha yeni bir sürüm gerektirmektedir. Java'yı nasıl güncelleyeceğiniz konusunda lütfen işletim sisteminizin belgelerine başvurun. I2P artık Jetty 12 kullanmaktadır. Geçiş sorunları için lütfen router günlüklerinizi kontrol edin.",
+            "pt": "A partir desta versão, o I2P agora requer Java 17 ou posterior. Por favor, consulte a documentação do seu sistema operacional para saber como atualizar o Java. O I2P agora também usa o Jetty 12. Por favor, verifique os logs do seu router para problemas de migração."
+          }
+        },
+        "p_002": {
+          "source_hash": "4e2ffe14bf3f1c42",
+          "translations": {
+            "ko": "이번 릴리스에서는 양자 후 암호화(post-quantum cryptography) 지원을 개선하는 작업이 계속되었습니다. 양자 후 암호화가 이제 ratchet 계층에서 기본적으로 활성화됩니다.",
+            "tr": "Bu sürümdeki çalışmalar, kuantum-sonrası kriptografi desteğini iyileştirmeye devam ediyor. Kuantum-sonrası kriptografi artık ratchet katmanında varsayılan olarak etkinleştirilmiştir.",
+            "pt": "O trabalho nesta versão continua a melhorar o suporte para criptografia pós-quântica. A criptografia pós-quântica agora está habilitada por padrão na camada ratchet."
+          }
+        },
+        "p_003": {
+          "source_hash": "698b9c2caefb8175",
+          "translations": {
+            "ko": "진행 중인 스팸 공격에 대한 첫 번째 완화 조치를 구현했습니다. 추가적인 완화 조치가 개발되고 있습니다.",
+            "tr": "Devam eden spam saldırılarına karşı ilk tur önlemleri uyguladık. Ek önlemler geliştirilmektedir.",
+            "pt": "Implementamos a primeira rodada de medidas de mitigação aos ataques de spam em andamento. Medidas de mitigação adicionais estão sendo desenvolvidas."
+          }
+        },
+        "p_004": {
+          "source_hash": "8f2d5a3573eb6385",
+          "translations": {
+            "ko": "SAMv3 API가 새로운 데이터그램 타입 2와 3을 지원하도록 업그레이드되었습니다.",
+            "tr": "SAMv3 API'si yeni datagram türleri 2 ve 3'ü desteklemek için yükseltilmiştir.",
+            "pt": "A API SAMv3 foi atualizada para suportar os novos tipos de datagrama 2 e 3."
+          }
+        },
+        "p_005": {
+          "source_hash": "ef52bd87a733b521",
+          "translations": {
+            "ko": "평소와 같이 이 릴리스로 업데이트하실 것을 권장합니다. 보안을 유지하고 네트워크에 도움이 되는 가장 좋은 방법은 최신 릴리스를 실행하는 것입니다.",
+            "tr": "Her zamanki gibi, bu sürüme güncelleme yapmanızı öneririz. Güvenliği korumak ve ağa yardımcı olmanın en iyi yolu en son sürümü çalıştırmaktır.",
+            "pt": "Como sempre, recomendamos que você atualize para esta versão. A melhor forma de manter a segurança e ajudar a rede é executar a versão mais recente."
+          }
+        }
+      }
     }
   }
 }
