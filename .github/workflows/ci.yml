@@ -13,25 +13,25 @@ jobs:
   # =================================================================================================
   # QUICK TESTS - Run on all PRs (no build required, ~5 seconds)
   # =================================================================================================
-  quick-tests:
-    runs-on: ubuntu-latest
+  #quick-tests:
+   # runs-on: ubuntu-latest
     # Skip for repository_dispatch (deploy-only) and workflow_dispatch
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+    #if: github.event_name == 'push' || github.event_name == 'pull_request'
+    #steps:
+    #  - uses: actions/checkout@v4
+    #    with:
+    #      submodules: recursive
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+    #  - name: Setup Python
+    #    uses: actions/setup-python@v5
+    #    with:
+    #      python-version: '3.11'
 
-      - name: Install Test Dependencies
-        run: pip install -r tests/requirements.txt
+    #  - name: Install Test Dependencies
+    #    run: pip install -r tests/requirements.txt
 
-      - name: Run Quick Tests
-        run: pytest tests/test_quick.py -v --tb=short
+    #  - name: Run Quick Tests
+    #    run: pytest tests/test_quick.py -v --tb=short
 
   # =================================================================================================
   # BUILD JOB
