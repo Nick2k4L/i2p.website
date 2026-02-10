@@ -1,6 +1,6 @@
 ---
 title: "Stormy Weather"
-date: 2026-02-08
+date: 2026-02-04
 author: "idk"
 description: "The I2P network is currently experiencing instability due to ongoing attacks"
 categories: ["news"]
