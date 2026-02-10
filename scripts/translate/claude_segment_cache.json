@@ -4907,7 +4907,10 @@
           "translations": {
             "ko": "폭풍우 날씨",
             "tr": "Fırtınalı Hava",
-            "pt": "Tempo Tempestuoso"
+            "pt": "Tempo Tempestuoso",
+            "zh": "暴风雨天气",
+            "de": "Stürmisches Wetter",
+            "ar": "طقس عاصف"
           }
         },
         "fm_description": {
@@ -4915,7 +4918,10 @@
           "translations": {
             "ko": "I2P 네트워크는 현재 진행 중인 공격으로 인해 불안정성을 겪고 있습니다",
             "tr": "I2P ağı, devam eden saldırılar nedeniyle şu anda kararsızlık yaşamaktadır",
-            "pt": "A rede I2P está atualmente enfrentando instabilidade devido a ataques em andamento"
+            "pt": "A rede I2P está atualmente enfrentando instabilidade devido a ataques em andamento",
+            "zh": "I2P网络目前由于持续的攻击正在经历不稳定状况",
+            "de": "Das I2P-Netzwerk erfährt derzeit Instabilität aufgrund anhaltender Angriffe",
+            "ar": "تواجه شبكة I2P حاليًا عدم استقرار بسبب الهجمات الجارية"
           }
         },
         "p_001": {
@@ -4923,7 +4929,10 @@
           "translations": {
             "ko": "I2P 네트워크는 현재 진행 중인 서비스 거부 공격과 자원 고갈 공격으로 인해 불안정을 겪고 있습니다. 이러한 공격들은 I2P 서비스와 숨겨진 사이트의 성능과 신뢰성에 영향을 미치고 있습니다. I2P 개발팀은 이러한 공격에 대응하기 위해 적극적으로 조사하고 완화 방법을 구현하고 있습니다.",
             "tr": "I2P ağı şu anda devam eden Hizmet Reddi ve kaynak tüketme saldırıları nedeniyle kararsızlık yaşamaktadır. Bu saldırılar I2P hizmetlerinin ve gizli sitelerin performansını ve güvenilirliğini etkilemektedir. I2P Geliştirme Ekibi bu saldırılara karşı koymak için aktif olarak araştırma yapmakta ve önlemler uygulamaktadır.",
-            "pt": "A rede I2P está atualmente enfrentando instabilidade devido a ataques contínuos de Negação de Serviço e esgotamento de recursos. Estes ataques estão impactando o desempenho e a confiabilidade dos serviços I2P e sites ocultos. A Equipe de Desenvolvimento I2P está investigando ativamente e implementando mitigações para combater esses ataques."
+            "pt": "A rede I2P está atualmente enfrentando instabilidade devido a ataques contínuos de Negação de Serviço e esgotamento de recursos. Estes ataques estão impactando o desempenho e a confiabilidade dos serviços I2P e sites ocultos. A Equipe de Desenvolvimento I2P está investigando ativamente e implementando mitigações para combater esses ataques.",
+            "zh": "I2P网络目前正经历不稳定状况，这是由于持续的拒绝服务攻击和资源耗尽攻击造成的。这些攻击正在影响I2P服务和隐藏站点的性能和可靠性。I2P开发团队正在积极调查并实施缓解措施来对抗这些攻击。",
+            "de": "Das I2P-Netzwerk erlebt derzeit Instabilität aufgrund laufender Denial-of-Service- und Ressourcenerschöpfungsangriffe. Diese Angriffe beeinträchtigen die Leistung und Zuverlässigkeit von I2P-Diensten und versteckten Websites. Das I2P-Entwicklungsteam untersucht aktiv die Situation und implementiert Gegenmaßnahmen, um diesen Angriffen entgegenzuwirken.",
+            "ar": "تواجه شبكة I2P حالياً عدم استقرار بسبب هجمات الحرمان من الخدمة وهجمات استنزاف الموارد المستمرة. هذه الهجمات تؤثر على أداء وموثوقية خدمات I2P والمواقع المخفية. فريق تطوير I2P يقوم بالتحقيق بنشاط وتنفيذ تدابير مضادة لمواجهة هذه الهجمات."
           }
         }
       }
