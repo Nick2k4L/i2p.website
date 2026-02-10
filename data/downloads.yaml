@@ -1,7 +1,7 @@
 # Centralized Download Configuration
 # Update this single file for new releases - all language pages read from here
 
-current_version: "2.10.0"
+current_version: "2.11.0"
 android_version: "2.10.1"
 
 # GPG Signing Key (idk - for releases 0.9.57+)
@@ -12,16 +12,16 @@ signing_key:
 
 downloads:
   windows:
-    file: "i2pinstall_2.10.0-0_windows.exe"
-    size: "~24M"
+    file: "i2pinstall_2.11.0_windows.exe"
+    size: "~26M"
     requirements: "Java required"
-    sha256: "f96110b00c28591691d409bd2f1768b7906b80da5cab2e20ddc060cbb4389fbf"
+    sha256: "8f093e5d6a97f5c080f7f54ec7cbe203771e158ccaf01584e177bcb0f35ce0d3"
     links:
-      primary: "https://files.i2p.net/2.10.0/i2pinstall_2.10.0-0_windows.exe"
-      mirror: "https://mirror.stormycloud.org/2.10.0/i2pinstall_2.10.0-0_windows.exe"
-      torrent: "magnet:?xt=urn:btih:75d8c74e9cc52f5cb4982b941d7e49f9f890c458&dn=i2pinstall_2.10.0-0_windows.exe&tr=http%3A%2F%2Ftracker2.postman.i2p%2Fannounce.php&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonoid.ch%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce&tr=udp%3A%2F%2Fbt.bontal.net%3A6969%2Fannounce&tr=udp%3A%2F%2F6ahddutb1ucc3cp.ru%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.pmman.tech%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.moeking.me%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.cutie.dating%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.alaskantf.com%3A443%2Fannounce&tr=https%3A%2F%2Ftorrent.tracker.durukanbal.com%3A443%2Fannounce&tr=https%3A%2F%2Fbt.bontal.net%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.zhuqiy.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.uraniumhexafluori.de%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.qingwa.pro%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.moeblog.cn%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.leechshield.link%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.ghostchu-services.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.gcrenwp.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.bt4g.com%3A443%2Fannounce&tr=https%3A%2F%2Ftr.nyacat.pw%3A443%2Fannounce&tr=https%3A%2F%2Ft.213891.xyz%3A443%2Fannounce&tr=https%3A%2F%2Fshahidrazi.online%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.tritan.gg%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.mywaifu.best%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dhitechnical.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.darkness.services%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.cutie.dating%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.23794.top%3A6969%2Fannounce&tr=http%3A%2F%2Ftr.kxmp.cf%3A80%2Fannounce&tr=http%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=http%3A%2F%2Flucke.fenesisu.moe%3A6969%2Fannounce&tr=http%3A%2F%2Fextracker.dahrkael.net%3A6969%2Fannounce&tr=http%3A%2F%2Fbvarf.tracker.sh%3A2086%2Fannounce&tr=http%3A%2F%2F1337.abcvg.info%3A80%2Fannounce&tr=http%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.zhuqiy.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.waaa.moe%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.ghostchu-services.top%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftr.nyacat.pw%3A80%2Fannounce&tr=http%3A%2F%2Ftr.highstar.shop%3A80%2Fannounce&tr=http%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=http%3A%2F%2Fopen.acgtracker.com%3A1096%2Fannounce&tr=http%3A%2F%2Fbt.rer.lol%3A2710%2Fannounce&tr=http%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=http%3A%2F%2Faboutbeautifulgallopinghorsesinthegreenpasture.online%3A80%2Fannounce&tr=udp%3A%2F%2Fudp.tracker.projectk.org%3A23333%2Fannounce&tr=udp%3A%2F%2Ftracker3.t-1.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker1.t-1.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tvunderground.org.ru%3A3218%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.t-1.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.startwork.cv%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.skynetcloud.site%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.plx.im%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.playground.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentorrent.top%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.fnix.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.flatuslifir.is%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ducks.party%3A1984%2Fannounce&tr=udp%3A%2F%2Ftracker.1h.is%3A1337%2Fannounce&tr=udp%3A%2F%2Ftr4ck3r.duckdns.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftorrentclub.online%3A54123%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fns575949.ip-51-222-82.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fipv4announce.sktorrent.eu%3A6969%2Fannounce&tr=udp%3A%2F%2Fevan.im%3A6969%2Fannounce&tr=udp%3A%2F%2Fd40969.acod.regrucolo.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fconcen.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A6969%2Fannounce&tr=udp%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Fdht.transmissionbt.com%3A6881&tr=udp%3A%2F%2Fdht.aelitis.com%3A6881&tr=udp%3A%2F%2Frouter.bittorrent.com%3A6881&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=http%3A%2F%2Fopentracker.simp.i2p%2Fa&tr=http%3A%2F%2Fopentracker.skank.i2p%2Fa&tr=http%3A%2F%2Fopentracker.dg2.i2p%2Fa&tr=http%3A%2F%2Fopentracker.eeptorrent.i2p%3A80%2Fa&tr=http%3A%2F%2Fopentracker.fattydove.i2p%3A80%2Fa&tr=http%3A%2F%2Fopentracker.r4sas.i2p%3A80%2Fa&tr=http%3A%2F%2Fqimlze77z7w32lx2ntnwkuqslrzlsqy7774v3urueuarafyqik5a.b32.i2p%3A80%2Fa&tr=http%3A%2F%2Fsigmatracker.i2p%3A80%2Fa&tr=udp%3A%2F%2Fopentracker.simp.i2p%3A6969%2Fa&tr=udp%3A%2F%2Fopentracker.skank.i2p%3A6969%2Fa"
-      i2p: "http://mirror.stormycloud.i2p/2.10.0/i2pinstall_2.10.0-0_windows.exe"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.10.0/i2pinstall_2.10.0-0_windows.exe"
+      primary: "https://files.i2p.net/2.11.0/i2pinstall_2.11.0_windows.exe"
+      mirror: "https://mirror.stormycloud.org/2.11.0/i2pinstall_2.11.0_windows.exe"
+      torrent: "magnet:?xt=urn:btih:missing"
+      i2p: "http://mirror.stormycloud.i2p/2.11.0/i2pinstall_2.11.0_windows.exe"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.11.0/i2pinstall_2.11.0_windows.exe"
 
   windows_easy_installer:
     file: "I2P-Easy-Install-Bundle-2.10.0-signed.exe"
@@ -37,39 +37,37 @@ downloads:
       tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.10.0/I2P-Easy-Install-Bundle-2.10.0-signed.exe"
 
   mac_easy_installer:
-    file: "I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
-    size: "~185M"
+    file: "I2P-2.11.0.dmg"
+    size: "~72M"
     requirements: "Apple Silicon - No Java needed"
-    sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+    sha256: "c8d9d38942ce44e86ef10c97133a4109b46031380684a21364c6f68f76096fee"
     beta: true
     links:
-      primary: "https://files.i2p.net/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
-      mirror: "https://mirror.stormycloud.org/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
-      torrent: "magnet:?xt=urn:btih:placeholder"
-      i2p: "http://mirror.stormycloud.i2p/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.10.0/I2P-Easy-Install-Bundle-2.10.0-macos.dmg"
+      primary: "https://files.i2p.net/2.11.0/I2P-2.11.0.dmg"
+      mirror: "https://mirror.stormycloud.org/2.11.0/I2P-2.11.0.dmg"
+      torrent: "magnet:?xt=urn:btih:missing"
+      i2p: "http://mirror.stormycloud.i2p/2.11.0/I2P-2.11.0.dmg"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.11.0/I2P-2.11.0.dmg"
 
   mac_linux:
-    file: "i2pinstall_2.10.0.jar"
-    size: "~30M"
+    file: "i2pinstall_2.11.0.jar"
+    size: "~32M"
     requirements: "Java 8 or higher"
-    sha256: "76372d552dddb8c1d751dde09bae64afba81fef551455e85e9275d3d031872ea"
-    sig: "https://files.i2p.net/2.10.0/i2pinstall_2.10.0.jar.sig"
+    sha256: "5154e9ffe092c6e8fcfb5d60637646a5d1465d5e2f07e6114b35915690da07fe"
     links:
-      primary: "https://files.i2p.net/2.10.0/i2pinstall_2.10.0.jar"
-      mirror: "https://mirror.stormycloud.org/2.10.0/i2pinstall_2.10.0.jar"
+      primary: "https://files.i2p.net/2.11.0/i2pinstall_2.11.0.jar"
+      mirror: "https://mirror.stormycloud.org/2.11.0/i2pinstall_2.11.0.jar"
       torrent: "magnet:?xt=urn:btih:missing"
-      i2p: "http://mirror.stormycloud.i2p/2.10.0/i2pinstall_2.10.0.jar"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.10.0/i2pinstall_2.10.0.jar"
+      i2p: "http://mirror.stormycloud.i2p/2.11.0/i2pinstall_2.11.0.jar"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.11.0/i2pinstall_2.11.0.jar"
 
   source:
-    file: "i2psource_2.10.0.tar.bz2"
-    size: "~33M"
-    sha256: "3b651b761da530242f6db6536391fb781bc8e07129540ae7e96882bcb7bf2375"
-    sig: "https://files.i2p.net/2.10.0/i2psource_2.10.0.tar.bz2.sig"
+    file: "i2psource_2.11.0.tar.bz2"
+    size: "~38M"
+    sha256: "ddc1f2b8f7fffbd5a301a02740d0d0e2387735011bc9a965aab6719f86ce3800"
     links:
-      primary: "https://files.i2p.net/2.10.0/i2psource_2.10.0.tar.bz2"
-      torrent: "magnet:?xt=urn:btih:f62f519204abefb958d553f737ac0a7e84698f35&dn=i2psource_2.10.0.tar.bz2&tr=http%3A%2F%2Ftracker2.postman.i2p%2Fannounce.php&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonoid.ch%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce&tr=udp%3A%2F%2Fbt.bontal.net%3A6969%2Fannounce&tr=udp%3A%2F%2F6ahddutb1ucc3cp.ru%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.pmman.tech%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.moeking.me%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.cutie.dating%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.alaskantf.com%3A443%2Fannounce&tr=https%3A%2F%2Ftorrent.tracker.durukanbal.com%3A443%2Fannounce&tr=https%3A%2F%2Fbt.bontal.net%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.zhuqiy.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.uraniumhexafluori.de%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.qingwa.pro%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.moeblog.cn%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.leechshield.link%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.ghostchu-services.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.gcrenwp.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.bt4g.com%3A443%2Fannounce&tr=https%3A%2F%2Ftr.nyacat.pw%3A443%2Fannounce&tr=https%3A%2F%2Ft.213891.xyz%3A443%2Fannounce&tr=https%3A%2F%2Fshahidrazi.online%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.tritan.gg%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.mywaifu.best%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dhitechnical.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.darkness.services%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.cutie.dating%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.23794.top%3A6969%2Fannounce&tr=http%3A%2F%2Ftr.kxmp.cf%3A80%2Fannounce&tr=http%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=http%3A%2F%2Flucke.fenesisu.moe%3A6969%2Fannounce&tr=http%3A%2F%2Fextracker.dahrkael.net%3A6969%2Fannounce&tr=http%3A%2F%2Fbvarf.tracker.sh%3A2086%2Fannounce&tr=http%3A%2F%2F1337.abcvg.info%3A80%2Fannounce&tr=http%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.zhuqiy.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.waaa.moe%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.ghostchu-services.top%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftr.nyacat.pw%3A80%2Fannounce&tr=http%3A%2F%2Ftr.highstar.shop%3A80%2Fannounce&tr=http%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=http%3A%2F%2Fopen.acgtracker.com%3A1096%2Fannounce&tr=http%3A%2F%2Fbt.rer.lol%3A2710%2Fannounce&tr=http%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=http%3A%2F%2Faboutbeautifulgallopinghorsesinthegreenpasture.online%3A80%2Fannounce&tr=udp%3A%2F%2Fudp.tracker.projectk.org%3A23333%2Fannounce&tr=udp%3A%2F%2Ftracker3.t-1.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker1.t-1.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tvunderground.org.ru%3A3218%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.t-1.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.startwork.cv%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.skynetcloud.site%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.plx.im%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.playground.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentorrent.top%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.fnix.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.flatuslifir.is%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ducks.party%3A1984%2Fannounce&tr=udp%3A%2F%2Ftracker.1h.is%3A1337%2Fannounce&tr=udp%3A%2F%2Ftr4ck3r.duckdns.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftorrentclub.online%3A54123%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fns575949.ip-51-222-82.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fipv4announce.sktorrent.eu%3A6969%2Fannounce&tr=udp%3A%2F%2Fevan.im%3A6969%2Fannounce&tr=udp%3A%2F%2Fd40969.acod.regrucolo.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fconcen.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A6969%2Fannounce&tr=udp%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Fdht.transmissionbt.com%3A6881&tr=udp%3A%2F%2Fdht.aelitis.com%3A6881&tr=udp%3A%2F%2Frouter.bittorrent.com%3A6881&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=http%3A%2F%2Fopentracker.simp.i2p%2Fa&tr=http%3A%2F%2Fopentracker.skank.i2p%2Fa&tr=http%3A%2F%2Fopentracker.dg2.i2p%2Fa&tr=http%3A%2F%2Fopentracker.eeptorrent.i2p%3A80%2Fa&tr=http%3A%2F%2Fopentracker.fattydove.i2p%3A80%2Fa&tr=http%3A%2F%2Fopentracker.r4sas.i2p%3A80%2Fa&tr=http%3A%2F%2Fqimlze77z7w32lx2ntnwkuqslrzlsqy7774v3urueuarafyqik5a.b32.i2p%3A80%2Fa&tr=http%3A%2F%2Fsigmatracker.i2p%3A80%2Fa&tr=udp%3A%2F%2Fopentracker.simp.i2p%3A6969%2Fa&tr=udp%3A%2F%2Fopentracker.skank.i2p%3A6969%2Fa"
+      primary: "https://files.i2p.net/2.11.0/i2psource_2.11.0.tar.bz2"
+      torrent: "magnet:?xt=urn:btih:missing"
       github: "https://github.com/i2p/i2p.i2p"
   android:
     file: "I2P.apk"
