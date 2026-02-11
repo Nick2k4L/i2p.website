@@ -14,7 +14,7 @@ downloads:
   windows:
     file: "i2pinstall_2.11.0_windows.exe"
     size: "~26M"
-    requirements: "Java required"
+    requirements: "Java 17 or higher"
     sha256: "8f093e5d6a97f5c080f7f54ec7cbe203771e158ccaf01584e177bcb0f35ce0d3"
     links:
       primary: "https://files.i2p.net/2.11.0/i2pinstall_2.11.0_windows.exe"
@@ -40,7 +40,7 @@ downloads:
   mac_linux:
     file: "i2pinstall_2.11.0.jar"
     size: "~32M"
-    requirements: "Java 8 or higher"
+    requirements: "Java 17 or higher"
     sha256: "5154e9ffe092c6e8fcfb5d60637646a5d1465d5e2f07e6114b35915690da07fe"
     sig: "https://files.i2p.net/2.11.0/i2pinstall_2.11.0.jar.sig"
     links:

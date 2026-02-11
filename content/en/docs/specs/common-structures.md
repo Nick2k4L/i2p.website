@@ -1102,26 +1102,31 @@ Mapping entries must be sorted by key, so the signature is immutable.
 Failure to sort by key will result in signature failures!
 
 
+```bytefield
+size       | 4 | red    | Integer, 2 bytes
+key_string | 4 | blue   | String (len + data)
+val_string | 8 | green  | String (len + data)
+;          | 8 | yellow | :: A single byte containing ';'
+```
+
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
+
 ```
 +----+----+----+----+----+----+----+----+
 |  size   | key_string (len + data)| =  |
 +----+----+----+----+----+----+----+----+
 | val_string (len + data)     | ;  | ...
 +----+----+----+----+----+----+----+
-size :: `Integer`
-        length -> 2 bytes
-        Total number of bytes that follow
-
-key_string :: `String`
-              A string (one byte length followed by UTF-8 encoded characters)
-
-= :: A single byte containing '='
-
-val_string :: `String`
-              A string (one byte length followed by UTF-8 encoded characters)
-
-; :: A single byte containing ';'
 ```
+</details>
+
+#### Field Descriptions
+* **size**: `Integer`, 2 bytes, total number of bytes that follow
+* **key_string**: `String`, one byte length followed by UTF-8 encoded characters
+* **=**: A single byte containing '='
+* **val_string**: `String`, one byte length followed by UTF-8 encoded characters
+* **;**: A single byte containing ';'
 
 #### Notes
 * The encoding isn't optimal - we either need the '=' and ';' characters, or
@@ -1769,25 +1774,18 @@ by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey) or 
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
-~
 options          | 8 | gray   | Mapping, varies, 2 bytes minimum
-~
-numk             | 1 | red    | Integer, 1 byte, number of encryption keys (1 <= numk <= max TBD)
-keytype0         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
-keylen0          | 2 | cyan   | Length of PublicKey, 2 bytes
-encryption_key_0 | 3 | green  | PublicKey, keylen bytes
-~
-keytypen         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
-keylenn          | 2 | cyan   | Length of PublicKey, 2 bytes
-encryption_key_n | 4 | green  | PublicKey, keylen bytes
-~
+numk             | 2 | red    | Integer, 1 byte, number of encryption keys (1 <= numk <= max TBD)
+keytype0         | 3 | cyan   | Encryption type of PublicKey, 2 bytes
+keylen0          | 3 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_0 | 8 | green  | PublicKey, keylen bytes
+keytypen         | 4 | cyan   | Encryption type of PublicKey, 2 bytes
+keylenn          | 4 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_n | 8 | green  | PublicKey, keylen bytes
 num              | 1 | red    | Integer, 1 byte, number of Lease2s (0-16)
 Lease2 0         | 7 | yellow | Lease2, 40 bytes
-~
 Lease2 ($num-1)  | 8 | yellow | Lease2, 40 bytes
-~
 signature        | 8 | purple | Signature, 40 bytes or as specified in destination's key cert
-~
 ```
 
 <details class="content-section">
@@ -1987,6 +1985,16 @@ Supported as of 0.9.38; see proposal 123 for more information.
 SHA256 [Hash](#hash) of the [RouterIdentity](#routeridentity) of the gateway router, then flags and cost,
 and finally a 4 byte end date.
 
+```bytefield
+tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
+flags     | 3 | red    | 3 bytes
+cost      | 1 | green  | 1 byte
+end_date  | 4 | yellow | 4 bytes, seconds since epoch
+```
+
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
+
 ```
 +----+----+----+----+----+----+----+----+
 | tunnel_gw                             |
@@ -2022,8 +2030,15 @@ end_date :: 4 byte date
             Seconds since the epoch, rolls over in 2106.
 
 ```
+</details>
 
 #### Notes
+* **Flags** (3 bytes):
+  * Bit order: 23 22 ... 3 2 1 0
+  * Bits 3-0: Type of the entry (0 = unknown, 1 = `LeaseSet`, 3 = `LeaseSet2`, 5 = `MetaLeaseSet`)
+  * Bits 23-4: set to 0 for compatibility with future uses
+* **Cost**: 1 byte, 0-255. Lower value is higher priority.
+* **End date**: 4 byte date, seconds since the epoch, rolls over in 2106.
 * Total size: 40 bytes
 
 JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html
@@ -2049,6 +2064,21 @@ contained [Destination](#destination).
 [Integer](#integer) specifying how many [Lease2](#lease2) structures are in the set, followed by the
 actual [Lease2](#lease2) structures and finally a [Signature](#signature) of the previous bytes signed
 by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey) or the transient key.
+
+```bytefield
+ls2_header       | 8 | blue   | LeaseSet2Header, varies
+options          | 8 | green  | Mapping, varies, 2 bytes minimum
+num              | 1 | red    | Integer, 1 byte
+MetaLease 0      | 7 | yellow | 40 bytes
+MetaLease ($num-1) | 8 | yellow | 40 bytes
+numr             | 1 | red    | Integer, 1 byte
+revocation_0     | 8 | cyan   | Hash, 32 bytes
+revocation_n     | 8 | cyan   | Hash, 32 bytes
+signature        | 8 | purple | Signature, 40+ bytes
+```
+
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2122,6 +2152,7 @@ signature :: `Signature`
                        if present in the header
 
 ```
+</details>
 
 #### Notes
 * The public key of the destination was used for the old I2CP-to-I2CP
@@ -2158,6 +2189,21 @@ Then, a two byte length followed by encrypted data.
 Finally, a [Signature](#signature) of the previous bytes signed
 by the blinded [SigningPrivateKey](#signingprivatekey) or the transient key.
 
+```bytefield
+sigtype            | 2 | red    | 2 bytes
+blinded_public_key | 8 | blue   | SigningPublicKey, varies
+published          | 4 | green  | 4 bytes, seconds since epoch
+expires            | 2 | yellow | 2 bytes
+flags              | 2 | red    | 2 bytes
+offline_signature  | 8 | orange | OfflineSignature, optional, varies
+len                | 2 | gray   | Integer, 2 bytes
+encrypted_data     | 8 | cyan   | Encrypted data, len bytes
+signature          | 8 | purple | Signature, varies
+```
+
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
+
 ```
 +----+----+----+----+----+----+----+----+
 | sigtype |                             |
@@ -2188,50 +2234,24 @@ by the blinded [SigningPrivateKey](#signingprivatekey) or the transient key.
 ~                                       ~
 |                                       |
 +----+----+----+----+----+----+----+----+
-
-sigtype :: A two byte signature type of the public key to follow
-           length -> 2 bytes
-
-blinded_public_key :: `SigningPublicKey`
-                      length -> As inferred from the sigtype
-
-published :: 4 byte date
-             length -> 4 bytes
-             Seconds since the epoch, rolls over in 2106.
-
-expires :: 2 byte time
-           length -> 2 bytes
-           Offset from published timestamp in seconds, 18.2 hours max
-
-flags :: 2 bytes
-  Bit order: 15 14 ... 3 2 1 0
-  Bit 0: If 0, no offline keys; if 1, offline keys
-  Bit 1: If 0, a standard published leaseset.
-         If 1, an unpublished leaseset. Should not be flooded, published, or
-         sent in response to a query. If this leaseset expires, do not query the
-         netdb for a new one.
-  Bits 15-2: set to 0 for compatibility with future uses
-
-offline_signature :: `OfflineSignature`
-                     length -> varies
-                     Optional, only present if bit 0 is set in the flags.
-
-len :: `Integer`
-        length -> 2 bytes
-        length of encrypted_data to follow
-        value: 1 <= num <= max TBD
-
-encrypted_data :: Data encrypted
-                  length -> len bytes
-
-signature :: `Signature`
-             length -> As specified by the sigtype of the blinded pubic key,
-                       or by the sigtype of the transient public key,
-                       if present in the header
-
 ```
+</details>
 
 #### Notes
+* **sigtype**: 2 byte signature type of the public key to follow
+* **blinded_public_key**: `SigningPublicKey`, length as inferred from the sigtype
+* **published**: 4 byte date, seconds since the epoch, rolls over in 2106
+* **expires**: 2 byte offset from published timestamp in seconds, 18.2 hours max
+* **flags** (2 bytes):
+  * Bit order: 15 14 ... 3 2 1 0
+  * Bit 0: If 0, no offline keys; if 1, offline keys
+  * Bit 1: If 0, a standard published leaseset. If 1, an unpublished leaseset. Should not be flooded, published, or sent in response to a query. If this leaseset expires, do not query the netdb for a new one.
+  * Bits 15-2: set to 0 for compatibility with future uses
+* **offline_signature**: `OfflineSignature`, varies, optional, only present if bit 0 is set in the flags
+* **len**: 2 byte `Integer`, length of encrypted_data to follow (1 <= len <= max TBD)
+* **encrypted_data**: Encrypted data, len bytes
+* **signature**: `Signature`, length as specified by the sigtype of the blinded public key, or by the sigtype of the transient public key if present in the header
+
 * The public key of the destination was used for the old I2CP-to-I2CP
   encryption which was disabled in version 0.6, it is currently unused.
 
@@ -2275,6 +2295,16 @@ Finally there is a [Mapping](#mapping) containing all of the transport specific 
 necessary to establish the connection, such as IP address, port number, email
 address, URL, etc.
 
+```bytefield
+cost            | 1 | green  | Integer, 1 byte
+expiration      | 7 | yellow | Date, 8 bytes
+transport_style | 8 | blue   | String, 1-256 bytes
+options         | 8 | purple | Mapping
+```
+
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
+
 ```
 +----+----+----+----+----+----+----+----+
 |cost|           expiration
@@ -2288,25 +2318,15 @@ address, URL, etc.
 ~                                       ~
 |                                       |
 +----+----+----+----+----+----+----+----+
-
-cost :: `Integer`
-        length -> 1 byte
-
-        case 0 -> free
-        case 255 -> expensive
-
-expiration :: `Date` (must be all zeros, see notes below)
-              length -> 8 bytes
-
-              case null -> never expires
-
-transport_style :: `String`
-                   length -> 1-256 bytes
-
-options :: `Mapping`
 ```
+</details>
 
 #### Notes
+* **cost**: `Integer`, 1 byte (0 = free, 255 = expensive)
+* **expiration**: `Date`, 8 bytes (must be all zeros, see below)
+* **transport_style**: `String`, 1-256 bytes
+* **options**: `Mapping`
+
 * Cost is typically 5 or 6 for SSU, and 10 or 11 for NTCP.
 
 * Expiration is currently unused, always null (all zeroes). As of release
@@ -2334,6 +2354,21 @@ other being [LeaseSet](#leaseset)), and is keyed under the SHA256 of the contain
 
 #### Contents
 [RouterIdentity](#routeridentity) followed by the [Date](#date), when the entry was published
+
+```bytefield
+router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
+published              | 8 | green  | Date, 8 bytes
+size                   | 1 | red    | Integer, 1 byte
+RouterAddress 0        | 7 | yellow | varies
+RouterAddress 1        | 8 | yellow | varies
+RouterAddress ($size-1)| 8 | yellow | varies
+psiz                   | 1 | red    | Integer, 1 byte
+options                | 7 | purple | Mapping
+signature              | 8 | cyan   | Signature, 40+ bytes
+```
+
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2379,33 +2414,18 @@ other being [LeaseSet](#leaseset)), and is keyed under the SHA256 of the contain
 +                                       +
 |                                       |
 +----+----+----+----+----+----+----+----+
-
-router_ident :: `RouterIdentity`
-                length -> >= 387+ bytes
-
-published :: `Date`
-             length -> 8 bytes
-
-size :: `Integer`
-        length -> 1 byte
-        The number of `RouterAddress`es to follow, 0-255
-
-addresses :: [`RouterAddress`]
-             length -> varies
-
-peer_size :: `Integer`
-             length -> 1 byte
-             The number of peer `Hash`es to follow, 0-255, unused, always zero
-             value -> 0
-
-options :: `Mapping`
-
-signature :: `Signature`
-             length -> 40 bytes or as specified in router_ident's key
-                       certificate
 ```
+</details>
 
 #### Notes
+* **router_ident**: `RouterIdentity`, >= 387+ bytes
+* **published**: `Date`, 8 bytes
+* **size**: `Integer`, 1 byte, number of `RouterAddress`es to follow (0-255)
+* **addresses**: [`RouterAddress`], varies
+* **psiz** (peer_size): `Integer`, 1 byte, number of peer `Hash`es to follow (0-255, unused, always zero)
+* **options**: `Mapping`
+* **signature**: `Signature`, 40 bytes or as specified in router_ident's key certificate
+
 * The peer_size [Integer](#integer) may be followed by a list of that many router hashes.
   This is currently unused. It was intended for a form of restricted routes,
   which is unimplemented.
