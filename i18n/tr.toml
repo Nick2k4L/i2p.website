@@ -276,9 +276,9 @@ thankYou = "İnternet gizliliğini ve özgürlüğünü desteklediğiniz için t
 everyContribution = "Büyük veya küçük her katkı, I2P'nin güçlü ve bağımsız kalmasına yardımcı olur."
 
 [banner]
-banner_message = "I2P Beta Sitesi Artık Yayında E-posta sorunları için stormycloud@mail.i2p"
-banner_link_text = "Learn more"
-banner_link_url = ""
+banner_message = "I2P 2.11.0 yayınlandı"
+banner_link_text = "Duyuruyu okuyun"
+banner_link_url = "/blog/2026/02/09/i2p-2.11.0-release/"
 banner_close = "Banner"
 
 [donatePage]

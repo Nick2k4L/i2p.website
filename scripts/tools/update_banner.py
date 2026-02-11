@@ -39,7 +39,7 @@ except ImportError:
 
 # Project paths
 SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
 I18N_DIR = PROJECT_ROOT / "i18n"
 HUGO_TOML = PROJECT_ROOT / "hugo.toml"
 
