@@ -5,7 +5,7 @@
             <span class="banner-message">{{ i18n "banner.banner_message" }}</span>
             {{ with i18n "banner.banner_link_url" }}
                 {{ if ne . "banner.banner_link_url" }}
-                <a href="{{ . }}" class="banner-link">{{ i18n "banner.banner_link_text" }}</a>
+                <a href="/{{ $.Site.Language.Lang }}{{ . }}" class="banner-link">{{ i18n "banner.banner_link_text" }}</a>
                 {{ end }}
             {{ end }}
         </div>
