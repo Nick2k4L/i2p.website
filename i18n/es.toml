@@ -276,9 +276,9 @@ thankYou = "¡Gracias por apoyar la privacidad y la libertad en internet!"
 everyContribution = "Cada contribución, grande o pequeña, ayuda a mantener I2P fuerte e independiente."
 
 [banner]
-banner_message = "Sitio Beta I2P Ahora Activo - Reportar problemas por correo a stormycloud@mail.i2p"
-banner_link_text = "Learn more"
-banner_link_url = ""
+banner_message = "I2P 2.11.0 ha sido lanzado"
+banner_link_text = "Leer el anuncio"
+banner_link_url = "/blog/2026/02/09/i2p-2.11.0-release/"
 banner_close = "Cerrar banner"
 
 [donatePage]

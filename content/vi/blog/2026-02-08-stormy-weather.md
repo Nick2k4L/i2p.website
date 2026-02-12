@@ -2,7 +2,7 @@
 title: "Thời Tiết Bão Tố"
 date: 2026-02-04
 author: "idk"
-description: "Mạng I2P hiện đang gặp phải tình trạng bất ổn do các cuộc tấn công đang diễn ra"
+description: "Mạng I2P hiện đang gặp tình trạng bất ổn do các cuộc tấn công đang diễn ra"
 categories: ["news"]
 ---
 
