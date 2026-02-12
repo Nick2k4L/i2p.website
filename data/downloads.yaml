@@ -16,6 +16,7 @@ downloads:
     size: "~26M"
     requirements: "Java 17 or higher"
     sha256: "8f093e5d6a97f5c080f7f54ec7cbe203771e158ccaf01584e177bcb0f35ce0d3"
+    sig: "https://files.i2p.net/2.11.0/i2pinstall_2.11.0_windows.exe.sig"
     links:
       primary: "https://files.i2p.net/2.11.0/i2pinstall_2.11.0_windows.exe"
       mirror: "https://mirror.stormycloud.org/2.11.0/i2pinstall_2.11.0_windows.exe"
