@@ -50,6 +50,14 @@ The main I2P client implementation uses **Java**. If you cannot or prefer not to
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Early-stage Go implementation; not yet production ready</td>
     </tr>
     <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Emissary</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Rust</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Experimental</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">⚙️ In development</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Developers, embedded use</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Rust I2P implementation; embeddable router with eepsite, torrent, IRC and email support</td>
+    </tr>
+    <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2P+</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Java</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Stable (fork)</td>
@@ -77,6 +85,15 @@ i2pd (the *I2P Daemon*) is a full-featured I2P client implemented in C++. It has
 
 **Description:**
 Go-I2P is an I2P client written in the Go programming language. It is an independent implementation of the I2P router, aiming to leverage Go’s efficiency and portability. The project is under active development, but it is still in an early stage and not yet feature-complete. As of 2025, Go-I2P is considered experimental — it is being actively worked on by community developers, but it is not recommended for production use until it matures further. The goal of Go-I2P is to provide a modern, lightweight I2P router with full compatibility with the I2P network once development is complete.
+
+---
+
+## Emissary (Rust)
+
+**Website:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)
+
+**Description:**
+Emissary is a Rust implementation of the I2P protocol stack, designed to function as an embeddable I2P router. It can be integrated into other applications or run standalone. Emissary supports eepsite hosting, torrents, IRC and email services. The project includes extensive documentation covering quick-start setup, embedding for developers, and detailed configuration. As an experimental project, it is under active development and not yet recommended for production use.
 
 ---
 
