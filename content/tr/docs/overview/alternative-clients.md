@@ -6,7 +6,7 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---
 
-Ana I2P istemci uygulaması **Java** kullanır. Belirli bir sistemde Java kullanamıyor veya kullanmayı tercih etmiyorsanız, topluluk üyeleri tarafından geliştirilen ve sürdürülen alternatif I2P istemci uygulamaları mevcuttur. Bu programlar, farklı programlama dilleri veya yaklaşımlar kullanarak aynı temel işlevselliği sağlar.
+Ana I2P istemci uygulaması **Java** kullanır. Belirli bir sistemde Java kullanamıyorsanız veya kullanmamayı tercih ediyorsanız, topluluk üyeleri tarafından geliştirilen ve sürdürülen alternatif I2P istemci uygulamaları mevcuttur. Bu programlar farklı programlama dilleri veya yaklaşımlar kullanarak aynı temel işlevselliği sağlar.
 
 ---
 
@@ -49,6 +49,14 @@ Ana I2P istemci uygulaması **Java** kullanır. Belirli bir sistemde Java kullan
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Early-stage Go implementation; not yet production ready</td>
     </tr>
     <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Emissary</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Rust</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Experimental</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">⚙️ In development</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Developers, embedded use</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Rust I2P implementation; embeddable router with eepsite, torrent, IRC and email support</td>
+    </tr>
+    <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2P+</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Java</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Stable (fork)</td>
@@ -62,9 +70,9 @@ Ana I2P istemci uygulaması **Java** kullanır. Belirli bir sistemde Java kullan
 
 ## i2pd (C++)
 
-**Web Sitesi:** [https://i2pd.website](https://i2pd.website)
+**Website:** [https://i2pd.website](https://i2pd.website)
 
-**Açıklama:** i2pd (*I2P Daemon*) C++ ile geliştirilmiş tam özellikli bir I2P istemcisidir. Uzun yıllardır (yaklaşık 2016'dan beri) üretim ortamında kullanım için kararlı durumdadır ve topluluk tarafından aktif olarak sürdürülmektedir. i2pd, I2P ağ protokollerini ve API'lerini tam olarak uygular, bu da Java I2P ağıyla tamamen uyumlu olmasını sağlar. Bu C++ router genellikle Java çalışma ortamının bulunmadığı veya istenmediği sistemlerde hafif bir alternatif olarak kullanılır. i2pd, yapılandırma ve izleme için yerleşik web tabanlı bir konsol içerir. Platformlar arası çalışır ve birçok paketleme formatında mevcuttur — hatta Android için bile bir i2pd sürümü bulunmaktadır (örneğin, F-Droid üzerinden).
+**Açıklama:** i2pd (*I2P Daemon*) C++ ile geliştirilmiş tam özellikli bir I2P istemcisidir. Uzun yıllardır (yaklaşık 2016'dan beri) üretim ortamında kararlı bir şekilde çalışmaktadır ve topluluk tarafından aktif olarak sürdürülmektedir. i2pd, I2P ağ protokollerini ve API'lerini tam olarak uygulayarak Java I2P ağı ile tamamen uyumlu hale getirir. Bu C++ router genellikle Java çalışma zamanının mevcut olmadığı veya istenmediği sistemlerde hafif bir alternatif olarak kullanılır. i2pd, yapılandırma ve izleme için yerleşik web tabanlı bir konsol içerir. Çapraz platform desteği sunar ve birçok paketleme formatında mevcuttur — hatta i2pd'nin bir Android sürümü bile bulunmaktadır (örneğin, F-Droid aracılığıyla).
 
 ---
 
@@ -72,12 +80,20 @@ Ana I2P istemci uygulaması **Java** kullanır. Belirli bir sistemde Java kullan
 
 **Depo:** [https://github.com/go-i2p/go-i2p](https://github.com/go-i2p/go-i2p)
 
-**Açıklama:** Go-I2P, Go programlama dilinde yazılmış bir I2P istemcisidir. I2P router'ının bağımsız bir uygulamasıdır ve Go'nun verimliliği ve taşınabilirliğinden yararlanmayı amaçlar. Proje aktif geliştirme aşamasındadır, ancak hala erken aşamadadır ve henüz tüm özellikleri tamamlanmamıştır. 2025 itibariyle, Go-I2P deneysel olarak kabul edilmektedir — topluluk geliştiricileri tarafından aktif olarak üzerinde çalışılmaktadır, ancak daha fazla olgunlaşana kadar üretim ortamında kullanılması önerilmez. Go-I2P'nin amacı, geliştirme tamamlandığında I2P ağı ile tam uyumlu, modern ve hafif bir I2P router sağlamaktır.
+**Açıklama:** Go-I2P, Go programlama dilinde yazılmış bir I2P istemcisidir. I2P router'ının bağımsız bir uygulaması olup, Go'nun verimliliği ve taşınabilirliğinden yararlanmayı hedeflemektedir. Proje aktif geliştirme aşamasındadır, ancak henüz erken aşamada olup özellik açısından tamamlanmamıştır. 2025 itibariyle, Go-I2P deneysel olarak kabul edilmektedir — topluluk geliştiricileri tarafından aktif olarak üzerinde çalışılmaktadır, ancak daha fazla olgunlaşana kadar üretim kullanımı için önerilmez. Go-I2P'nin amacı, geliştirme tamamlandığında I2P ağı ile tam uyumluluk sağlayan modern, hafif bir I2P router sunmaktır.
+
+---
+
+## Emissary (Rust)
+
+**Website:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)
+
+**Açıklama:** Emissary, I2P protokol yığınının Rust uygulamasıdır ve gömülebilir bir I2P router olarak çalışacak şekilde tasarlanmıştır. Diğer uygulamalara entegre edilebilir veya bağımsız olarak çalıştırılabilir. Emissary, eepsite barındırma, torrent, IRC ve e-posta hizmetlerini destekler. Proje, hızlı başlangıç kurulumu, geliştiriciler için gömme ve ayrıntılı yapılandırmayı kapsayan kapsamlı dokümantasyon içerir. Deneysel bir proje olarak, aktif geliştirme aşamasındadır ve henüz üretim kullanımı için önerilmez.
 
 ---
 
 ## I2P+ (Java çatalı)
 
-**Web sitesi:** [https://i2pplus.github.io](https://i2pplus.github.io)
+**Website:** [https://i2pplus.github.io](https://i2pplus.github.io)
 
-**Açıklama:** I2P+, standart Java I2P istemcisinin topluluk tarafından sürdürülen bir çatallamasıdır (fork). Yeni bir dilde yeniden uygulama değil, ek özellikler ve optimizasyonlarla geliştirilmiş Java router'ının bir sürümüdür. I2P+, resmi I2P ağıyla tamamen uyumlu kalırken geliştirilmiş kullanıcı deneyimi ve daha iyi performans sunmaya odaklanır. Yenilenmiş bir web konsolu arayüzü, daha kullanıcı dostu yapılandırma seçenekleri ve çeşitli optimizasyonlar (örneğin, geliştirilmiş torrent performansı ve özellikle güvenlik duvarı arkasındaki router'lar için daha iyi ağ eşleri yönetimi) sunar. I2P+, resmi I2P yazılımı gibi bir Java ortamı gerektirir, dolayısıyla Java olmayan ortamlar için bir çözüm değildir. Ancak, Java'ya sahip olan ve ekstra yeteneklere sahip alternatif bir yapı isteyen kullanıcılar için I2P+ cazip bir seçenek sunar. Bu çatallama, upstream I2P sürümleriyle güncel tutulmaktadır (sürüm numaralandırmasına "+" ekleyerek) ve projenin web sitesinden edinilebilir.
+**Açıklama:** I2P+, standart Java I2P istemcisinin topluluk tarafından sürdürülen bir fork'udur. Yeni bir dilde yeniden uygulama değil, aksine ek özellikler ve optimizasyonlar içeren Java router'ının geliştirilmiş bir sürümüdür. I2P+, resmi I2P ağıyla tam uyumluluğu korurken gelişmiş kullanıcı deneyimi ve daha iyi performans sunmaya odaklanır. Yenilenmiş bir web konsol arayüzü, daha kullanıcı dostu yapılandırma seçenekleri ve çeşitli optimizasyonlar (örneğin, gelişmiş torrent performansı ve özellikle güvenlik duvarları arkasındaki router'lar için ağ eşlerinin daha iyi işlenmesi) sunar. I2P+, resmi I2P yazılımı gibi bir Java ortamı gerektirir, dolayısıyla Java olmayan ortamlar için bir çözüm değildir. Ancak Java'ya sahip olan ve ekstra yeteneklere sahip alternatif bir yapı isteyen kullanıcılar için I2P+ cazip bir seçenek sunar. Bu fork, upstream I2P sürümleriyle güncel tutulur (sürüm numaralarına "+" ekleyerek) ve projenin web sitesinden edinilebilir.

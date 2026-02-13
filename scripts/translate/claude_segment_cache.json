@@ -68,6 +68,178 @@
           }
         }
       }
+    },
+    "en/docs/overview/alternative-clients.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "6a98e1310bf2339b",
+          "translations": {
+            "ko": "대안 I2P 클라이언트",
+            "tr": "Alternatif I2P İstemcileri",
+            "pt": "Clientes I2P Alternativos"
+          }
+        },
+        "fm_description": {
+          "source_hash": "7047c656bf7d9566",
+          "translations": {
+            "ko": "커뮤니티에서 유지 관리하는 I2P 클라이언트 구현체 (2025년 업데이트)",
+            "tr": "Topluluk tarafından sürdürülen I2P istemci uygulamaları (2025 için güncellenmiş)",
+            "pt": "Implementações de clientes I2P mantidas pela comunidade (atualizado para 2025)"
+          }
+        },
+        "p_001": {
+          "source_hash": "9ca01265e496e1ea",
+          "translations": {
+            "ko": "주요 I2P 클라이언트 구현체는 **Java**를 사용합니다. 특정 시스템에서 Java를 사용할 수 없거나 선호하지 않는 경우, 커뮤니티 구성원들이 개발하고 유지 관리하는 대안적인 I2P 클라이언트 구현체들이 있습니다. 이러한 프로그램들은 다른 프로그래밍 언어나 접근 방식을 사용하여 동일한 핵심 기능을 제공합니다.",
+            "tr": "Ana I2P istemci uygulaması **Java** kullanır. Belirli bir sistemde Java kullanamıyorsanız veya kullanmamayı tercih ediyorsanız, topluluk üyeleri tarafından geliştirilen ve sürdürülen alternatif I2P istemci uygulamaları mevcuttur. Bu programlar farklı programlama dilleri veya yaklaşımlar kullanarak aynı temel işlevselliği sağlar.",
+            "pt": "A implementação principal do cliente I2P usa **Java**. Se você não pode ou prefere não usar Java em um sistema específico, existem implementações alternativas de cliente I2P desenvolvidas e mantidas por membros da comunidade. Esses programas fornecem a mesma funcionalidade principal usando diferentes linguagens de programação ou abordagens."
+          }
+        },
+        "p_002": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "ko": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_001": {
+          "source_hash": "6f06caa66a9b8546",
+          "translations": {
+            "ko": "비교표",
+            "tr": "Karşılaştırma Tablosu",
+            "pt": "Tabela de Comparação"
+          }
+        },
+        "p_003": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "ko": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2e6cfa92cc95cee9",
+          "translations": {
+            "ko": "i2pd (C++)",
+            "tr": "i2pd (C++)",
+            "pt": "i2pd (C++)"
+          }
+        },
+        "p_004": {
+          "source_hash": "06e80b6c6f328dcb",
+          "translations": {
+            "ko": "**웹사이트:** [https://i2pd.website](https://i2pd.website)",
+            "tr": "**Website:** [https://i2pd.website](https://i2pd.website)",
+            "pt": "**Website:** [https://i2pd.website](https://i2pd.website)"
+          }
+        },
+        "p_005": {
+          "source_hash": "341dfea57d752c66",
+          "translations": {
+            "ko": "**설명:** i2pd (*I2P Daemon*)는 C++로 구현된 모든 기능을 갖춘 I2P 클라이언트입니다. 수년간(2016년경부터) 프로덕션 사용에서 안정적이었으며 커뮤니티에서 적극적으로 유지보수하고 있습니다. i2pd는 I2P 네트워크 프로토콜과 API를 완전히 구현하여 Java I2P 네트워크와 완전히 호환됩니다. 이 C++ router는 Java 런타임을 사용할 수 없거나 원하지 않는 시스템에서 경량 대안으로 자주 사용됩니다. i2pd에는 구성 및 모니터링을 위한 내장 웹 기반 콘솔이 포함되어 있습니다. 크로스 플랫폼이며 다양한 패키징 형식으로 제공되며, i2pd의 Android 버전도 이용 가능합니다(예: F-Droid를 통해).",
+            "tr": "**Açıklama:** i2pd (*I2P Daemon*) C++ ile geliştirilmiş tam özellikli bir I2P istemcisidir. Uzun yıllardır (yaklaşık 2016'dan beri) üretim ortamında kararlı bir şekilde çalışmaktadır ve topluluk tarafından aktif olarak sürdürülmektedir. i2pd, I2P ağ protokollerini ve API'lerini tam olarak uygulayarak Java I2P ağı ile tamamen uyumlu hale getirir. Bu C++ router genellikle Java çalışma zamanının mevcut olmadığı veya istenmediği sistemlerde hafif bir alternatif olarak kullanılır. i2pd, yapılandırma ve izleme için yerleşik web tabanlı bir konsol içerir. Çapraz platform desteği sunar ve birçok paketleme formatında mevcuttur — hatta i2pd'nin bir Android sürümü bile bulunmaktadır (örneğin, F-Droid aracılığıyla).",
+            "pt": "**Descrição:** i2pd (o *I2P Daemon*) é um cliente I2P completo implementado em C++. Tem sido estável para uso em produção por muitos anos (desde cerca de 2016) e é mantido ativamente pela comunidade. O i2pd implementa completamente os protocolos de rede e APIs do I2P, tornando-o totalmente compatível com a rede Java I2P. Este router C++ é frequentemente usado como uma alternativa leve em sistemas onde o runtime Java não está disponível ou não é desejado. O i2pd inclui um console web integrado para configuração e monitoramento. É multiplataforma e disponível em muitos formatos de empacotamento — existe até mesmo uma versão Android do i2pd disponível (por exemplo, via F-Droid)."
+          }
+        },
+        "p_006": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "ko": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_003": {
+          "source_hash": "26a11613795efe84",
+          "translations": {
+            "ko": "Go-I2P (Go)",
+            "tr": "Go-I2P (Go)",
+            "pt": "Go-I2P (Go)"
+          }
+        },
+        "p_007": {
+          "source_hash": "3c6831271084f014",
+          "translations": {
+            "ko": "**저장소:** [https://github.com/go-i2p/go-i2p](https://github.com/go-i2p/go-i2p)",
+            "tr": "**Depo:** [https://github.com/go-i2p/go-i2p](https://github.com/go-i2p/go-i2p)",
+            "pt": "**Repositório:** [https://github.com/go-i2p/go-i2p](https://github.com/go-i2p/go-i2p)"
+          }
+        },
+        "p_008": {
+          "source_hash": "4d65e2cf442d3c69",
+          "translations": {
+            "ko": "**설명:** Go-I2P는 Go 프로그래밍 언어로 작성된 I2P 클라이언트입니다. I2P router의 독립적인 구현으로, Go의 효율성과 이식성을 활용하는 것을 목표로 합니다. 프로젝트는 활발히 개발되고 있지만 아직 초기 단계이며 기능이 완전하지 않습니다. 2025년 현재, Go-I2P는 실험적인 것으로 간주됩니다 — 커뮤니티 개발자들이 활발히 작업하고 있지만, 더 성숙해질 때까지는 프로덕션 환경에서의 사용은 권장되지 않습니다. Go-I2P의 목표는 개발이 완료되면 I2P 네트워크와 완전히 호환되는 현대적이고 경량의 I2P router를 제공하는 것입니다.",
+            "tr": "**Açıklama:** Go-I2P, Go programlama dilinde yazılmış bir I2P istemcisidir. I2P router'ının bağımsız bir uygulaması olup, Go'nun verimliliği ve taşınabilirliğinden yararlanmayı hedeflemektedir. Proje aktif geliştirme aşamasındadır, ancak henüz erken aşamada olup özellik açısından tamamlanmamıştır. 2025 itibariyle, Go-I2P deneysel olarak kabul edilmektedir — topluluk geliştiricileri tarafından aktif olarak üzerinde çalışılmaktadır, ancak daha fazla olgunlaşana kadar üretim kullanımı için önerilmez. Go-I2P'nin amacı, geliştirme tamamlandığında I2P ağı ile tam uyumluluk sağlayan modern, hafif bir I2P router sunmaktır.",
+            "pt": "**Descrição:** Go-I2P é um cliente I2P escrito na linguagem de programação Go. É uma implementação independente do router I2P, visando aproveitar a eficiência e portabilidade do Go. O projeto está em desenvolvimento ativo, mas ainda está em estágio inicial e não possui todas as funcionalidades completas. A partir de 2025, Go-I2P é considerado experimental — está sendo ativamente trabalhado por desenvolvedores da comunidade, mas não é recomendado para uso em produção até amadurecer mais. O objetivo do Go-I2P é fornecer um router I2P moderno e leve com compatibilidade total com a rede I2P uma vez que o desenvolvimento esteja completo."
+          }
+        },
+        "p_009": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "ko": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_004": {
+          "source_hash": "3c35fca4e4191abf",
+          "translations": {
+            "ko": "Emissary (Rust)",
+            "tr": "Emissary (Rust)",
+            "pt": "Emissary (Rust)"
+          }
+        },
+        "p_010": {
+          "source_hash": "46be04bc0883a15c",
+          "translations": {
+            "ko": "**웹사이트:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)",
+            "tr": "**Website:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)",
+            "pt": "**Website:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)"
+          }
+        },
+        "p_011": {
+          "source_hash": "7d71201ba2eb70f2",
+          "translations": {
+            "ko": "**설명:** Emissary는 임베디드 I2P router로 작동하도록 설계된 I2P 프로토콜 스택의 Rust 구현체입니다. 다른 애플리케이션에 통합하거나 독립적으로 실행할 수 있습니다. Emissary는 eepsite 호스팅, 토렌트, IRC 및 이메일 서비스를 지원합니다. 이 프로젝트에는 빠른 설정, 개발자를 위한 임베딩, 상세한 구성을 다루는 광범위한 문서가 포함되어 있습니다. 실험적인 프로젝트로서 활발한 개발 중이며 아직 프로덕션 사용에는 권장되지 않습니다.",
+            "tr": "**Açıklama:** Emissary, I2P protokol yığınının Rust uygulamasıdır ve gömülebilir bir I2P router olarak çalışacak şekilde tasarlanmıştır. Diğer uygulamalara entegre edilebilir veya bağımsız olarak çalıştırılabilir. Emissary, eepsite barındırma, torrent, IRC ve e-posta hizmetlerini destekler. Proje, hızlı başlangıç kurulumu, geliştiriciler için gömme ve ayrıntılı yapılandırmayı kapsayan kapsamlı dokümantasyon içerir. Deneysel bir proje olarak, aktif geliştirme aşamasındadır ve henüz üretim kullanımı için önerilmez.",
+            "pt": "**Descrição:** Emissary é uma implementação em Rust da pilha de protocolos I2P, projetada para funcionar como um router I2P incorporável. Pode ser integrado em outras aplicações ou executado de forma independente. O Emissary suporta hospedagem de eepsites, torrents, IRC e serviços de email. O projeto inclui documentação extensa cobrindo configuração rápida, incorporação para desenvolvedores e configuração detalhada. Como um projeto experimental, está em desenvolvimento ativo e ainda não é recomendado para uso em produção."
+          }
+        },
+        "p_012": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "ko": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_005": {
+          "source_hash": "e9eb1e3ede3fc730",
+          "translations": {
+            "ko": "I2P+ (Java 포크)",
+            "tr": "I2P+ (Java çatalı)",
+            "pt": "I2P+ (fork Java)"
+          }
+        },
+        "p_013": {
+          "source_hash": "243abd338a489b32",
+          "translations": {
+            "ko": "**웹사이트:** [https://i2pplus.github.io](https://i2pplus.github.io)",
+            "tr": "**Website:** [https://i2pplus.github.io](https://i2pplus.github.io)",
+            "pt": "**Website:** [https://i2pplus.github.io](https://i2pplus.github.io)"
+          }
+        },
+        "p_014": {
+          "source_hash": "4afc3778881594e8",
+          "translations": {
+            "ko": "**설명:** I2P+는 표준 Java I2P 클라이언트의 커뮤니티 유지 관리 포크입니다. 새로운 언어로 재구현한 것이 아니라, 추가 기능과 최적화가 포함된 Java router의 향상된 버전입니다. I2P+는 공식 I2P 네트워크와 완전한 호환성을 유지하면서 개선된 사용자 경험과 더 나은 성능 제공에 중점을 둡니다. 새로워진 웹 콘솔 인터페이스, 더 사용자 친화적인 구성 옵션, 그리고 다양한 최적화(예: 향상된 torrent 성능과 특히 방화벽 뒤의 router를 위한 네트워크 피어 처리 개선)를 도입합니다. I2P+는 공식 I2P 소프트웨어와 마찬가지로 Java 환경이 필요하므로, Java가 없는 환경을 위한 해결책은 아닙니다. 하지만 Java를 보유하고 있으면서 추가 기능이 있는 대안적인 빌드를 원하는 사용자에게는 I2P+가 매력적인 선택지를 제공합니다. 이 포크는 업스트림 I2P 릴리스와 함께 최신 상태로 유지되며(버전 번호에 \"+\" 추가), 프로젝트 웹사이트에서 구할 수 있습니다.",
+            "tr": "**Açıklama:** I2P+, standart Java I2P istemcisinin topluluk tarafından sürdürülen bir fork'udur. Yeni bir dilde yeniden uygulama değil, aksine ek özellikler ve optimizasyonlar içeren Java router'ının geliştirilmiş bir sürümüdür. I2P+, resmi I2P ağıyla tam uyumluluğu korurken gelişmiş kullanıcı deneyimi ve daha iyi performans sunmaya odaklanır. Yenilenmiş bir web konsol arayüzü, daha kullanıcı dostu yapılandırma seçenekleri ve çeşitli optimizasyonlar (örneğin, gelişmiş torrent performansı ve özellikle güvenlik duvarları arkasındaki router'lar için ağ eşlerinin daha iyi işlenmesi) sunar. I2P+, resmi I2P yazılımı gibi bir Java ortamı gerektirir, dolayısıyla Java olmayan ortamlar için bir çözüm değildir. Ancak Java'ya sahip olan ve ekstra yeteneklere sahip alternatif bir yapı isteyen kullanıcılar için I2P+ cazip bir seçenek sunar. Bu fork, upstream I2P sürümleriyle güncel tutulur (sürüm numaralarına \"+\" ekleyerek) ve projenin web sitesinden edinilebilir.",
+            "pt": "**Descrição:** I2P+ é um fork mantido pela comunidade do cliente Java I2P padrão. Não é uma reimplementação em uma nova linguagem, mas sim uma versão aprimorada do router Java com recursos e otimizações adicionais. O I2P+ foca em oferecer uma experiência do usuário melhorada e melhor desempenho, mantendo-se totalmente compatível com a rede I2P oficial. Ele introduz uma interface de console web renovada, opções de configuração mais amigáveis ao usuário e várias otimizações (por exemplo, desempenho aprimorado de torrent e melhor tratamento de peers de rede, especialmente para routers atrás de firewalls). O I2P+ requer um ambiente Java assim como o software I2P oficial, portanto não é uma solução para ambientes sem Java. No entanto, para usuários que possuem Java e desejam uma versão alternativa com capacidades extras, o I2P+ oferece uma opção atraente. Este fork é mantido atualizado com os lançamentos upstream do I2P (com sua numeração de versão adicionando um \"+\") e pode ser obtido no site do projeto."
+          }
+        }
+      }
     }
   }
 }
