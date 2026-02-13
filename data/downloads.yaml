@@ -24,6 +24,11 @@ downloads:
       i2p: "http://mirror.stormycloud.i2p/2.11.0/i2pinstall_2.11.0_windows.exe"
       tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.11.0/i2pinstall_2.11.0_windows.exe"
 
+  windows_easy_installer:
+    file: "I2P-2.11.0.exe"
+    coming_soon: true
+
+
   mac_easy_installer:
     file: "I2P-2.11.0.dmg"
     size: "~72M"
@@ -63,14 +68,7 @@ downloads:
   android:
     file: "I2P.apk"
     version: "2.10.1"
-    size: "~28 MB"
-    requirements: "Android 4.0+, 512MB RAM minimum"
-    sha256: "c3d4e5f6789012345678901234567890123456789012345678901234abcdef00"
-    sig: "https://download.i2p.io/android/I2P.apk.sig"
-    links:
-      primary: "https://download.i2p.io/android/I2P.apk"
-      torrent: "magnet:?xt=urn:btih:android_example"
-      i2p: "http://stats.i2p/android/I2P.apk"
+    coming_soon: true
 
 # Mirrors
 mirrors:
