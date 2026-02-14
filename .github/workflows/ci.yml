@@ -161,6 +161,19 @@ jobs:
           else
             echo "committed=false" >> $GITHUB_OUTPUT
           fi
+      - name: Push translations to Gitea
+        if: steps.translate.outputs.committed == 'true'
+        env:
+          GITEA_SSH_KEY: ${{ secrets.GITEA_SSH_KEY }}
+          GITEA_SSH_PORT: ${{ secrets.GITEA_SSH_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$GITEA_SSH_KEY" > ~/.ssh/gitea_key
+          chmod 600 ~/.ssh/gitea_key
+          ssh-keyscan -H -p "$GITEA_SSH_PORT" i2pgit.org >> ~/.ssh/known_hosts 2>/dev/null
+          git remote add gitea "ssh://git@i2pgit.org:${GITEA_SSH_PORT}/I2P_Developers/i2p.website.git" || true
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/gitea_key -p $GITEA_SSH_PORT" git push gitea HEAD:main
+
       - name: Trigger Deploy Workflow
         if: steps.translate.outputs.committed == 'true'
         env:
