@@ -7,7 +7,7 @@ description: "Current development plans and historical milestones for the I2P ne
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** November 2025
+**Last Updated:** February 2026
 
 </div>
 
@@ -465,8 +465,8 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 ## Development Resources
 
 - **Source Code**: [i2pgit.org](https://i2pgit.org)
-- **Issue Tracker**: GitLab issues
-- **Monthly Meetings**: First Tuesday of each month
+- **Issue Tracker**: i2pgit.org issues
+- **Monthly Meetings**: Not currently active
 - **IRC**: #i2p-dev on IRC2P
 - **Release Notes**: [I2P Blog](/blog/)
 
