@@ -265,6 +265,16 @@ if [ ${#SUCCESSFULLY_TRANSLATED_FILES[@]} -gt 0 ]; then
         CURRENT_BRANCH="${CI_COMMIT_REF_NAME:-$(git branch --show-current)}"
         log_info "Pushing to branch: $CURRENT_BRANCH"
 
+        # Rebase on top of any commits that landed while we were translating
+        # (e.g. Gitea mirror pushing back a previous translation commit)
+        log_info "Rebasing on latest origin/$CURRENT_BRANCH before pushing..."
+        git fetch origin "$CURRENT_BRANCH"
+        git rebase "origin/$CURRENT_BRANCH" || {
+            log_error "Failed to rebase on origin/$CURRENT_BRANCH"
+            git rebase --abort 2>/dev/null || true
+            exit 1
+        }
+
         # GitHub Actions: GITHUB_TOKEN is already configured via checkout action
         # The checkout action with token sets up authentication automatically
         if [ -n "${GITHUB_ACTIONS:-}" ]; then

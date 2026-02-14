@@ -458,7 +458,7 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 **Version Numbering:**
 - Started with 0.9.x series (through 0.9.66)
 - Transitioned to 1.x series (1.5.0 through 1.9.0)
-- Now in 2.x series (2.0.0+)
+- Now in 2.x series (2.0.0+) 
 
 ---
 
