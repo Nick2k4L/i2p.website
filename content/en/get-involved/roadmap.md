@@ -15,24 +15,38 @@ description: "Current development plans and historical milestones for the I2P ne
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
-### Version 2.11.0
+### Version 2.12.0
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-Target: Late January / Early February 2026
+Target: May 2026
 </div>
 
-- Hybrid PQ MLKEM Ratchet final, enable by default (prop. 169)
-- Jetty 12, require Java 17+
-- Continue work on PQ (transports) (prop. 169)
+- NTCP2-PQ transport (prop. 169)
+- Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
 - Per-tunnel throttling
 - Prometheus-friendly stat subsystem
-- SAM support for Datagram 2/3
 
 </div>
 
 ---
 
 ## 📦 Recent Releases
+
+### 2026 Releases
+
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+
+**Version 2.11.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released February 9, 2026</span>
+
+- Sybil mitigations
+- Hybrid PQ MLKEM Ratchet final, enable by default (prop. 169)
+- Jetty 12, require Java 17+
+- Continue work on PQ (transports) (prop. 169)
+- SAM support for Datagram 2/3
+
+</div>
+
+
 
 ### 2025 Releases
 
