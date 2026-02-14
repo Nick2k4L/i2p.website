@@ -1,8 +1,8 @@
 ---
-title: "I2P-Entwicklertreffen"
+title: "I2P Entwicklertreffen"
 date: 2002-12-03
 author: "nop"
-description: "Protokoll der I2P-Entwicklungsbesprechung vom 3. Dezember 2002."
+description: "I2P-Entwicklungsbesprechungsprotokoll vom 3. Dezember 2002."
 categories: ["meeting"]
 ---
 
@@ -12,6 +12,151 @@ categories: ["meeting"]
 
 <p class="attendees-inline"><strong>Anwesend:</strong> hezekiah, mids, nemesis, nop, pox, UserX</p>
 
-## Besprechungsprotokoll
+## Sitzungsprotokoll
 
-<div class="irc-log"> --- Log geöffnet Tue Dec 03 23:52:14 2002 23:52 -!- Thema für #iip-dev: IIP-Meeting | Logs: http://mids.student.utwente.nl/~mids/iip/ | Sneak-Preview von RC3 für Unix http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz | bitte um Feedback 23:52 [Benutzer #iip-dev] 23:52 [ codeshark2] [ Disposable] [ logger] [ nemesis] [ nop] [ root_] 23:52 [ Debolaz   ] [ icepick   ] [ mids  ] [ Neo    ] [ pox] [ UserX] 23:52 -!- Irssi: #iip-dev: Insgesamt 12 Nicks [0 ops, 0 halfops, 0 voices, 12 normal] 23:52 -!- Irssi: Beitritt zu #iip-dev wurde in 3 Sek. synchronisiert --- Tag gewechselt Wed Dec 04 2002 00:01 < mids> Tue Dec  3 23:01:00 UTC 2002 00:01 < mids> Willkommen zusammen 00:02 < mids> heute sprechen wir über schöne Websites 00:02 < mids> zumindest, bis nop in 8 Minuten zurückkommt 00:02 < mids> und hier kommt meine schöne Website: 00:02 < hezekiah> lol 00:02 < mids> http://www.longbets.org/ 00:02 < mids> "The purpose of the Long Bet Foundation is to improve long-term thinking" 00:03 < mids> Weitere Informationen gibt es auf der Website 00:03 < mids> . 00:03 < hezekiah> mids ... du musst mal auf einem MC-Camp einen Kurs über "tote Luft füllen" belegen. 00:03 < hezekiah> Wie steht's um RC3? Weißt du was? 00:03 < mids> 1) du nimmst eine Flasche Luft 00:03 < mids> 2) du füllst sie mit Wasser 00:03 < mids> 3) die tote Luft ist gefüllt. 00:03 < mids> . 00:03 < hezekiah> Irgendwelches Feedback zum "Vor" RC3? 00:04 < mids> jemand fragte, wie das Upgrade gemacht werden kann 00:04 < mids> ansonsten keine Kommentare, an die ich mich erinnere 00:05 < mids> codeshark hat einige Commits für die Windows-Version von RC3 in CVS gemacht 00:05 < mids> wie die letzten Wochen gesagt: RC3 ist nah 00:05 < mids> uns fehlt nur Entwicklerzeit, um es zu releasen :) 00:06 < hezekiah> Das configure-Skript sollte jetzt Linux, FreeBSD und Mac OS X unterstützen. Wenn du es ausprobieren willst, check den "development"-Branch von CVS aus und probier's aus! 00:06 < mids> Ich habe es ausprobiert 00:06 < mids> aber ich bekam alle möglichen Fehler 00:06 < hezekiah> Wann hast du es ausprobiert? 00:06 < mids> vor 3 Tagen 00:06 < hezekiah> Hmmm ... welches Betriebssystem? 00:06 < mids> linux 00:07 < hezekiah> Seltsam. Schick mir die Fehlermeldungen. 00:07 < hezekiah> Ich schaue mir das an. 00:08 < mids> ./configure funktioniert gut... braucht aber tatsächlich ziemlich lange 00:08 < mids> im Vergleich mit anderen Open-Source-Projekten 00:08 < hezekiah> Hmm ... es sollte nur etwa eine Minute dauern. 00:08 < mids> ja 00:08 < mids> aber länger als andere Projekte mit der gleichen Größe 00:09 < hezekiah> Müssen die Krypto machen? 00:09 < hezekiah> Das kann einen großen Unterschied machen. (Ein beträchtlicher Teil der Zeit geht dafür drauf, OpenSSL zu finden sowie Integer-Typen zu bestimmen und Makros dafür zu erzeugen.) 00:09 < mids> hm nein 00:09 < mids> es kompiliert jetzt 00:09 < hezekiah> Gut! :) 00:09 < mids> aber es weigert sich, an Port 6667 zu binden 00:10 < mids> ist das Konfigurationsdateiformat geändert? 00:10 < hezekiah> Sollte. 00:10 < mids> oh warte 00:10 < hezekiah> Du hast bereits isproxy auf Port 6667 laufen, seit du mit mir sprichst. (Außer du hast den isproxy, den du zuvor gestartet hast, angepasst.) 00:10 < mids> es ist dieses FIESE Timeout 00:10 < mids> das wirklich behoben werden sollte... 00:11 < mids> es funktioniert 00:11 < hezekiah> Das Timeout, das auftritt, wenn eine Kopie von isproxy abstürzt und der Port noch gebunden ist? 00:11 < mids> hip hip 00:11 < hezekiah> hurra! 00:11 < mids> ja, dieses Timeout 00:11 < hezekiah> Ugh. Du hast recht. 00:11 < mids> . 00:11 < mids> Andere Frage, die ich von einem Nutzer bekommen habe: 00:12 < hezekiah> Nun, das ist der aktuelle Stand in Entwicklerland aus meiner Sicht, Leute! Mehr um 11:00! 00:12 < hezekiah> Was? 00:12 < mids> warum speist sich die Entropieerzeugung direkt aus den Tastendrücken? 00:12 < mids> und nicht aus /dev/random wie GnuPG usw.? 00:12 < hezekiah> Weiß ich nicht. UserX? 00:12 < mids> /dev/random nutzt auch Maus, Netzwerk und andere Zufälligkeiten 00:13 < hezekiah> (Nun, /dev/random nutzt das Netzwerk nicht, wenn man es im Kernel untersagt; ... was ich tue.) 00:13 < mids> hängt vom OS ab, denke ich 00:14 < mids> . 00:14 < UserX> der Grund ist, dass nicht alle /dev/randoms sichere Zufallsdaten erzeugen 00:15 < hezekiah> Ah ... 00:15 < mids> UserX: wie handhabt GnuPG das dann? Ich bin sicher, die machen das richtig :) 00:15 < hezekiah> Vielleicht sollten wir prüfen lassen, ob das System es richtig macht ... und es dann verwenden. 00:16 < UserX> mids: ich bin nicht sicher. ich schau mir das an 00:16 < hezekiah> Wenn es in deren configure-Skript ist, kann ich es vielleicht finden. 00:16 < mids> super 00:16 < mids> Ich muss jetzt _wirklich_ schlafen 00:17 < hezekiah> Tschüss, mids! : 00:17 < hezekiah> :) 00:17 < mids> nacht 00:17 < hezekiah> 'nacht. 00:17 < mids> (Logfiles auf http://mids.student.utwente.nl/~mids/iip/) 00:18 < hezekiah> (In der Zwischenzeit untersuchen unsere Reporter noch das mysteriöse Verschwinden von "nop"! Wir bringen Ihnen die Eilmeldungen "as it happens (r)"!) 00:18 < hezekiah> [Falls es noch niemand bemerkt hat, gebe ich es als Erster zu: Ich bin nicht gut darin, tote Luft zu füllen.] 00:19 < hezekiah> Ich möchte der Person, die ein Logo an die iip-dev-Mailingliste geschickt hat, offiziell danken. 00:19 < hezekiah> Es ist das beste, das ich bisher gesehen habe. (Hinweis: Es ist auch das einzige, das ich bisher gesehen habe ...) 00:20 < hezekiah> Nun, während wir auf nop warten ... 00:20 < hezekiah> ... hat jemand eine Frage!? 00:21 < hezekiah> Jemand? 00:21 < hezekiah> Überhaupt jemand? 00:21 < pox> bpb schrieb an einer Lizenz.  ist sie zustande gekommen? 00:22 < hezekiah> Mir war keine Lizenz in Arbeit bekannt. Derzeit, glaube ich, ist IIP unter der GPL lizenziert. 00:23 < hezekiah> Jap. IIP ist unter der GPL lizenziert 00:23 < nop> hi 00:23 < nop> ok 00:23 < nop> sorry 00:24 < hezekiah> Der Mann ist HIER! 00:24 < nop> alles klar 00:24 < nop> RC3 sollte heute herauskommen 00:24 < nop> es wird gerade getestet, während wir sprechen 00:25 < hezekiah> Yay! 00:25 < nop> abgesehen davon 00:25 < nop> glaube ich nicht, dass es diese Woche viel zu sagen gibt 00:25 < nop> ziemlich ruhige Woche 00:25 < nop> für die meisten Leute beschäftigt 00:25 < nop> Nebenbemerkung 00:25 < nop> das Leben ist gut 00:25 < nop> :) 00:25 < nop> irgendwelche Fragen 00:25 < nop> Kommentare 00:26 < nop> . 00:26 < hezekiah> Wann können wir mit IIP 1.1 final rechnen? 00:27 < nop> hezekiah, sag du es mir ;) 00:27 < nop> j/k 00:27 < nop> wahrscheinlich ein paar Wochen, nachdem RC3 heute veröffentlicht wurde 00:27 < hezekiah> Ich arbeite an der 1.2-Entwicklung! 00:27 < nop> haha 00:27 < hezekiah> OK. :) 00:27 < nop> Ich weiß 00:27 < nop> Ich scherze 00:27 < hezekiah> Das würdest du! 00:27 < hezekiah> lo 00:27 < nop> ausstehende Bugs usw. 00:27 < hezekiah> lol 00:30 < hezekiah> Hat sonst noch jemand eine Frage? 00:30 < nemesis> hm... 00:31 < nemesis> plant codeshark ein Tutorial für fileserv? 00:40 < hezekiah> Nun ... ich bin dann weg. Viel Spaß, alle zusammen. ;-) 03:09 < nemesis> http://forum.pcwelt.de/fastCGI/pcwforum/topic_show.fpl?tid=82168&pg=5 loooooooooooooooooooooooooooooooooooooooooooooooooooooool 03:10 < nemesis> ups, sorry, eine URL ;) 03:10 < nemesis> *gg* 04:07 < nemesis> cu@all 04:11  * Disposable hört System of a Down - Spiders 13:17 -!- Thema für #iip-dev: IIP-Meeting | Logs: http://mids.student.utwente.nl/~mids/iip/ | Sneak-Preview von RC3 für Unix http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz | bitte um Feedback 13:17 [Benutzer #iip-dev] 13:17 [ Debolaz   ] [ icepick] [ pox   ] [ UserX] 13:17 [ Disposable] [ logger ] [ root__] 13:17 -!- Irssi: #iip-dev: Insgesamt 7 Nicks [0 ops, 0 halfops, 0 voices, 7 normal] 13:17 -!- Irssi: Beitritt zu #iip-dev wurde in 8 Sek. synchronisiert --- Log geschlossen Wed Dec 04 19:49:58 2002 </div>
+<div class="irc-log">
+--- Log opened Tue Dec 03 23:52:14 2002
+23:52 -!- Topic for #iip-dev: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | sneak rc3 preview for unix http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz | please give feedback
+23:52 [Users #iip-dev]
+23:52 [ codeshark2] [ Disposable] [ logger] [ nemesis] [ nop] [ root_]
+23:52 [ Debolaz   ] [ icepick   ] [ mids  ] [ Neo    ] [ pox] [ UserX]
+23:52 -!- Irssi: #iip-dev: Total of 12 nicks [0 ops, 0 halfops, 0 voices, 12 normal]
+23:52 -!- Irssi: Join to #iip-dev was synced in 3 secs
+--- Day changed Wed Dec 04 2002
+00:01 < mids> Tue Dec  3 23:01:00 UTC 2002
+00:01 < mids> Welcome everybody
+00:02 < mids> today we are going to talk about nice websites
+00:02 < mids> atleast, until nop comes back in 8 minutes
+00:02 < mids> now here comes my nice website:
+00:02 < hezekiah> lol
+00:02 < mids> http://www.longbets.org/
+00:02 < mids> "The purpose of the Long Bet Foundation is to improve long-term thinking"
+00:03 < mids> consult the website for more information
+00:03 < mids> .
+00:03 < hezekiah> mids ... you need to take a course at an MC camp about "filling dead air."
+00:03 < hezekiah> How's RC3? Do you know?
+00:03 < mids> 1) you take a bottle of air
+00:03 < mids> 2) you fill it with water
+00:03 < mids> 3) the dead air is filled.
+00:03 < mids> .
+00:03 < hezekiah> Any feedback on the "pre" RC3?
+00:04 < mids> someone asked how the upgrade could be done
+00:04 < mids> otherwise no comments that I can remember
+00:05 < mids> codeshark made some commits for the windows version of rc3 to CVS
+00:05 < mids> like said last weeks: rc3 is near
+00:05 < mids> only we lack developertime to release it :)
+00:06 < hezekiah> The configure script should now support Linux, FreeBSD, and Mac OS X. If you want to try it, check out the "development" branch of CVS and give it a whirl!
+00:06 < mids> I tried it
+00:06 < mids> but I got all kind of errors
+00:06 < hezekiah> When did you try it?
+00:06 < mids> 3 days ago
+00:06 < hezekiah> Hmmm ... what operating system?
+00:06 < mids> linux
+00:07 < hezekiah> Odd. Send me the errors.
+00:07 < hezekiah> I'll look into it.
+00:08 < mids> ./configure works fine... but takes quite long actually
+00:08 < mids> compared with other opensource projects
+00:08 < hezekiah> Hmm ... it should take only a minute or so.
+00:08 < mids> yeah
+00:08 < mids> but longer as other projects with the same size
+00:09 < hezekiah> Do they have to do crypto?
+00:09 < hezekiah> That can make a big difference. (A fair section of the time is spent finding OpenSSL, and finding integer types and making macros for them.)
+00:09 < mids> hm nope
+00:09 < mids> it compiles now
+00:09 < hezekiah> Good! :)
+00:09 < mids> but it refuses to bind to port 6667
+00:10 < mids> is the configuration file format changed?
+00:10 < hezekiah> It should.
+00:10 < mids> oh wait
+00:10 < hezekiah> You already have isproxy running on port 6667 since your talking to me. (Unless you customized the isproxy you ran before.)
+00:10 < mids> it is this NASTY timeout
+00:10 < mids> that should really be fixed...
+00:11 < mids> it works
+00:11 < hezekiah> The timeout that occures when a copy of isproxy bombs out with the port still bound?
+00:11 < mids> hip hip
+00:11 < hezekiah> hurra!
+00:11 < mids> yeah that timeout
+00:11 < hezekiah> Ugh. You're right.
+00:11 < mids> .
+00:11 < mids> Other question that I got through some user:
+00:12 < hezekiah> Well, that's the current state in developerland from my view folks! More at 11:00!
+00:12 < hezekiah> What?
+00:12 < mids> why does the entropy generation feed directly from the keypresses?
+00:12 < mids> and not from /dev/random like GnuPG etc do?
+00:12 < hezekiah> I don't know. UserX?
+00:12 < mids> /dev/random uses mouse, network and other randomness too
+00:13 < hezekiah> (Well, /dev/random doesn't use network if you say not to in the kernel; ... which I do.)
+00:13 < mids> depens on the os I think
+00:14 < mids> .
+00:14 < UserX> reason for that is not all /dev/randoms produce secure random data
+00:15 < hezekiah> Ah ...
+00:15 < mids> UserX: then how does GnuPG handle it? I am sure they do it right :)
+00:15 < hezekiah> Maybe we should make it check to see if the system does ... and use it if so.
+00:16 < UserX> mids: i'm not sure. i'll look into that
+00:16 < hezekiah> If it's in their configure script, then I might be able to find it.
+00:16 < mids> great
+00:16 < mids> I _really_ need to sleep now
+00:17 < hezekiah> Bye, mids! :
+00:17 < hezekiah> :)
+00:17 < mids> night
+00:17 < hezekiah> 'night.
+00:17 < mids> (logfiles on http://mids.student.utwente.nl/~mids/iip/)
+00:18 < hezekiah> (Meanwhile, our reports are still investigating the mysterious dissapearence of "nop"! We'll give you the breaking news "as it happens (r)!")
+00:18 < hezekiah> [If no one has noticed yet, I'll be the first to admit: I don't do well at filling dead air.]
+00:19 < hezekiah> I would like to officially thank the person who submitted a logo to the iip-dev mailing list.
+00:19 < hezekiah> It's the best one I've seen yet. (Note: It's also the only one I've seen yet ...)
+00:20 < hezekiah> Well, while we wait for nop ...
+00:20 < hezekiah> ... Does anyone have question!?
+00:21 < hezekiah> Anyone?
+00:21 < hezekiah> Anyone at all?
+00:21 < pox> bpb was writing a license.  did it materialize?
+00:22 < hezekiah> I wasn't aware of any license in the works. Currently, I beleive is IIP licensed under the GPL.
+00:23 < hezekiah> Yup. IIP is licensed under the GPL
+00:23 < nop> hi
+00:23 < nop> ok
+00:23 < nop> sorry
+00:24 < hezekiah> The man is HERE!
+00:24 < nop> alright
+00:24 < nop> rc3 should be coming out today
+00:24 < nop> it's getting tested as we speak
+00:25 < hezekiah> Yay!
+00:25 < nop> other than that
+00:25 < nop> I don't think there's much to say this week
+00:25 < nop> rather slow week
+00:25 < nop> busy for most people
+00:25 < nop> side note
+00:25 < nop> life is good
+00:25 < nop> :)
+00:25 < nop> any questions
+00:25 < nop> comments
+00:26 < nop> .
+00:26 < hezekiah> When can we expect IIP 1.1 final to be out?
+00:27 < nop> hezekiah you tell me ;)
+00:27 < nop> j/k
+00:27 < nop> probably a few weeks after rc3 is released today
+00:27 < hezekiah> I'm working on 1.2 development!
+00:27 < nop> haha
+00:27 < hezekiah> OK. :)
+00:27 < nop> I know
+00:27 < nop> I'm kidding
+00:27 < hezekiah> You would!
+00:27 < hezekiah> lo
+00:27 < nop> pending bugs etc
+00:27 < hezekiah> lol
+00:30 < hezekiah> Does any else have a question?
+00:30 < nemesis> hm...
+00:31 < nemesis> plan codeshark a tut for fileserv?
+00:40 < hezekiah> Well ... I'm off. Have fun everyone. ;-)
+03:09 < nemesis> http://forum.pcwelt.de/fastCGI/pcwforum/topic_show.fpl?tid=82168&pg=5 loooooooooooooooooooooooooooooooooooooooooooooooooooooool
+03:10 < nemesis> ups, sorry, an url ;)
+03:10 < nemesis> *gg*
+04:07 < nemesis> cu@all
+04:11  * Disposable is listening to System of a Down - Spiders
+13:17 -!- Topic for #iip-dev: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | sneak rc3 preview for unix http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz | please give feedback
+13:17 [Users #iip-dev]
+13:17 [ Debolaz   ] [ icepick] [ pox   ] [ UserX]
+13:17 [ Disposable] [ logger ] [ root__]
+13:17 -!- Irssi: #iip-dev: Total of 7 nicks [0 ops, 0 halfops, 0 voices, 7 normal]
+13:17 -!- Irssi: Join to #iip-dev was synced in 8 secs
+--- Log closed Wed Dec 04 19:49:58 2002
+</div>

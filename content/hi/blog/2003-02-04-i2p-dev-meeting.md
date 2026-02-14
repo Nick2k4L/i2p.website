@@ -1,17 +1,214 @@
 ---
-title: "I2P डेवलपर बैठक"
+title: "I2P डेव मीटिंग"
 date: 2003-02-04
 author: "nop"
-description: "I2P विकास बैठक जो प्रोजेक्ट अपडेट और तकनीकी चर्चाओं को कवर करती है"
+description: "4 फरवरी, 2003 के लिए I2P विकास बैठक का लॉग।"
 categories: ["meeting"]
 ---
 
-(Wayback Machine के सौजन्य से http://www.archive.org/)
+(http://www.archive.org/ की wayback machine की सौजन्य से)
 
-## संक्षिप्त पुनरावलोकन
+## त्वरित सारांश
 
 <p class="attendees-inline"><strong>उपस्थित:</strong> FillaMent, hezekiah, jrandom, lonelynerd, mids, MrEcho</p>
 
 ## बैठक लॉग
 
-<div class="irc-log"> --- लॉग खोला गया Tue Feb 04 23:38:39 2003 23:38 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ 23:38 [Users #iip-dev] 23:38 [ co    ] [ mids  ] [ Neo] [ ptm  ] 23:38 [ logger] [ MrEcho] [ pox] [ UserX] 23:38 -!- Irssi: #iip-dev: Total of 8 nicks [0 ops, 0 halfops, 0 voices, 8 normal] 23:38 -!- Irssi: Join to #iip-dev was synced in 12 secs 23:51 < mids> nop नहीं आएगा 23:51 -!- mode/#iip-dev [+o mids] by Trent 23:51 -!- mode/#iip-dev [+o UserX] by mids 23:59 -!- mode/#iip-dev [+o hezekiah] by mids 23:59 -!- mode/#iip-dev [+o hezekiah] by Trent 23:59 <@hezekiah> उफ़! 23:59 <@hezekiah> मैं अभी वही कोशिश करने वाला था, mids! :) 23:59 <@hezekiah> मुझे लगता है मैंने समझ लिया! 23:59 <@mids> तुमने कर दिखाया 23:59  * hezekiah IRC के बारे में और सीखने पर खुद से बहुत खुश महसूस करता है. :) --- दिन बदल गया Wed Feb 05 2003 00:00 < MrEcho> lol 00:00 <@mids> Tue Feb  4 23:00:10 UTC 2003 00:00 <@mids> 29वें iip बैठक में आपका स्वागत है 00:00 <@mids> nop ने मुझे ईमेल किया कि वह वहाँ नहीं होगा 00:00 <@mids> तो आपको उसके बिना ही करना होगा 00:00 <@mids> मेरे पास कोई विशेष एजेंडा नहीं है 00:00 <@mids> इसके अलावा यह 00:01 <@mids> 1) स्वागत :) 00:01 <@mids> 2) सप्ताह की प्रमुख बातें 00:01 <@mids> 3) प्रश्न 00:01 <@mids> . 00:01 <@mids> रिपोर्ट करने के लिए कोई प्रमुख बातें? 00:02 <@hezekiah> उह, मेरी तरफ़ से नहीं। मैं अभी भी UserX या nop के GnuMP BigNum impl. को देखने का इंतज़ार कर रहा हूँ कि वह ठीक है या नहीं। 00:02 <@mids> userx ने isproxy में कुछ कोड जोड़ा है ताकि यदि आप अपलोड करें तो खाली node.ref फ़ाइल नुकसान न करे 00:02 <@hezekiah> हालाँकि इसके लिए configure विकल्प अपलोड हो गए। 00:02 <@hezekiah> क्या IIP 1.1 आ गया? 00:03 <@mids> देखा नहीं है 00:03 <@hezekiah> शायद नहीं। 00:03 <@mids> बस हमें उस लोकेशन पर नज़र डालनी है जहाँ फाइलें सेव होती हैं 00:04 <@hezekiah> हम्म ... 00:04 <@mids> और क्या वह अलग-अलग ऑपरेटिंग सिस्टम्स पर बग्स देता है 00:04 <@hezekiah> समस्या ठीक-ठीक क्या है? 00:05  * mids sourceforge bugtracker लोड करता है 00:05 <@mids> http://sourceforge.net/tracker/index.php?func=detail&aid=651711&group_id=50945&atid=461514 00:05  * hezekiah भी वही कर रहा है। 00:05 <@hezekiah> धन्यवाद. :) 00:06 <@hezekiah> मुझे याद है कि मैंने उसे एक बार संक्षेप में देखा था। 00:07 <@hezekiah> कठिन हिस्सा यह है कि Windows में क्या करना चाहिए। 00:07 <@hezekiah> *nix/*BSD वाला हिस्सा इतना मुश्किल नहीं होना चाहिए। (आशा है।) 00:07 <@mids> Windows में यह सिर्फ current working directory देखता है 00:08 <@hezekiah> Windows वाला हिस्सा मैं UserX पर छोड़ दूँगा। :) 00:08 <@mids> मेरी राय में Windows का व्यवहार नहीं बदलना चाहिए 00:09 <@hezekiah> जो भी हो। मैं linux चलाता हूँ, और जहाँ तक संभव हो Windows से बचता हूँ। ;-) 00:09 <@mids> मेरे साथ भी 00:09 <@mids> लेकिन Unix के लिए हम कौन-सा व्यवहार चाहते हैं? 00:09 <@hezekiah> व्यवहार प्लेटफ़ॉर्म के आधार पर कोड में #ifdef's का उपयोग करके परिभाषित है। 00:09 <@mids> आपको ~iip/.iip तक पहुँचने के लिए root/iip अकाउंट तक पहुँच चाहिए 00:10 <@mids> तो इसे अन्य डिरेक्टरीज़ में भी देखना चाहिए 00:10 <@mids> जैसे ~/.iip 00:10 <@mids> या current dir 00:10 <@hezekiah> खैर, अगर isproxy इंस्टॉल है तो प्रोग्राम का डिफ़ॉल्ट काम /home/<user's homedir name>/.iip में देखना होना चाहिए 00:10 <@hezekiah> तो मेरे मामले में: /home/hezekiah/.iip 00:10 <@hezekiah> node.ref /home/hezekiah/.iip/node.ref होगा 00:11 <@hezekiah> फिर हर उपयोगकर्ता की अपनी सेटिंग्स आदि हो सकती हैं। 00:11 < MrEcho> NT में भी आप कुछ ऐसा ही कर सकते हैं 00:11 < MrEcho> मेरे doc's फ़ोल्डर पर सुरक्षा है 00:11 <@hezekiah> लेकिन Win9[58] पर सच में 00:11 < MrEcho> हाँ 00:11 <@hezekiah> उपयोगकर्ता-विशिष्ट home डिरेक्टरीज़ नहीं होतीं। 00:12 < MrEcho> जो भी 9x उपयोग कर रहा है उसे वैसे भी मदद की ज़रूरत है .... 00:12  * hezekiah हँसता है 00:12 <@hezekiah> ठीक है, मैं nop को ईमेल करूँगा और पूछूँगा कि *nix के लिए वह इसे कैसे चाहता है। फिर, देखूँगा कि मैं क्या कर सकता हूँ। 00:12 <@mids> कृपया सूची को मेल करें 00:13 <@mids> तब हम सब चर्चा कर सकते हैं 00:13 < MrEcho> 9x लोगों के लिए बस फाइलें ./.iip/ में रख दें 00:13 <@hezekiah> ठीक है। 00:13 <@hezekiah> या जब IIP इंस्टॉल हो तो इसे Program Files/IIP में इंस्टॉल किया जा सकता है। 00:14 < MrEcho> 9x लोगों के लिए 00:14 <@hezekiah> node.ref, isproxy.ini, seed.rnd, आदि वहाँ रखे जा सकते हैं। 00:14 <@mids> यदि आप IIP को Windows के स्टार्ट वाली चीज़ से शुरू करते हैं, तो आप workingdirectory सेट कर सकते हैं 00:15 <@hezekiah> खैर, वैसे भी, मैं Windows implementation को दस फुट की छड़ी से भी नहीं छुऊँगा। यह UserX समझ लेगा। ;-) 00:15 < MrEcho> :P 00:15 <@mids> ठीक 00:15 < FillaMent> आप एक अजीब-सा WSH script देख सकते हैं। तब आप जानकारी को रजिस्ट्री में स्टोर कर सकते हैं 00:15 <@hezekiah> (मेरा compiler शायद Windows पर IIP को _compile_ भी न करे!) 00:15 <@mids> :) 00:15 < MrEcho> रजिस्ट्री की ऐसी-तैसी 00:15 <@hezekiah> FillaMent: अगर हम रजिस्ट्री का उपयोग ऐसे प्रोग्राम में करें जिसे *nix पर भी काम करना है, तो वह एक #ifdef NIGHTMARE होगा!! 00:16 < FillaMent> मैं यह नहीं कह रहा हूँ 00:16 <@hezekiah> (लेकिन मानता हूँ कि मैंने भी कुछ सेकंड के लिए इसके बारे में सोचा था ... बस कुछ ही, ध्यान रहे।) 00:16 <@hezekiah> ओह? 00:16 <@hezekiah> समझाइए? :) 00:17 < FillaMent> डेटा फ़ाइल का लोकेशन रजिस्ट्री में स्टोर हो, फिर WSH script से IIP लॉन्च करें जो रजिस्ट्री से path निकालकर उसे प्रोग्राम को cmnd line विकल्प के रूप में पास कर दे 00:17 < MrEcho> http://bofh.st/bofh/images/traffic.gif 00:18 <@hezekiah> यह किया जा सकता है। 00:19 <@mids> मुझसे बस किसी ने कहा था कि Windows में वहाँ वर्तमान सिस्टम न बदला जाए 00:19 <@mids> शायद रजिस्ट्री के बिना काम करने देना बेहतर होगा 00:19 < FillaMent> कुछ समय पहले मैंने एक स्क्रिप्ट लिखी थी जो last logged in user का नाम किसी भी मनमाने स्ट्रिंग से बदल देती थी। NT Ninja Vanish =) ऐसा करना पड़ा क्योंकि जनरल्स और कर्नल्स घबरा जाते थे क्योंकि वहाँ एक और लॉगिन नम 00:19 <@mids> security / anonymity के दृष्टिकोण से 00:20 <@hezekiah> मानना पड़ेगा कि मुझे Windoze रजिस्ट्री से बेहद नफ़रत है, हालांकि यह सिर्फ़ मेरी निजी राय है। :) 00:20 < MrEcho> मेरे साथ भी वही, hezekiah 00:20 < MrEcho> लेकिन मैंने इसके साथ काम करना सीख लिया है 00:20 <@hezekiah> मैंने भी ... पर फिर भी इससे नफ़रत करता हूँ। :) 00:20 <@mids> तो 00:20 <@mids> आइए इस हफ्ते जाँचें कि सिस्टम अभी कैसे काम करता है 00:21 <@mids> और सूची पर चर्चा करें कि इसे कैसे होना चाहिए 00:21 <@hezekiah> ठीक है। 00:21 <@mids> उसके बाद, इसे वैसे काम कराएँ जैसे करना चाहिए :) 00:21 <@hezekiah> बातचीत शुरू करने के लिए मैं एक ईमेल पोस्ट करूँगा। 00:21 <@mids> वाह 00:21 <@mids>   तो 00:21 <@mids> अगला विषय? 00:22 <@hezekiah> 3.) प्रश्न 00:22 < MrEcho> 1.1 आखिर है कहाँ 00:22 <@mids> *सिर हिलाता है* 00:22 < MrEcho> hehe 00:22 <@hezekiah> मुझे नहीं पता। 00:22 <@hezekiah> लेकिन मुझे लगता है कि इसके न आने का कारण वही ऊपर बताई गई बग है। 00:22 <@hezekiah> (वही जिसके बारे में हम मेलिंग लिस्ट पर बात करने वाले हैं।) 00:23 < MrEcho> मैं बस उम्मीद करता हूँ कि यह तेज़ी से कनेक्ट हो और ज़्यादा स्थिर कनेक्शन्स दे 00:24 <@hezekiah> (मानता हूँ कि मुझे अस्थिर कनेक्शनों की समस्या नहीं रही, और मैं आमतौर पर पहली या दूसरी node से ही कनेक्ट हो जाता हूँ जिसे मैं आज़माता हूँ।) 00:24 <@mids> लेकिन वह सिर्फ इसलिए क्योंकि आपके पास साफ़ node.ref है, मेरा मानना है? 00:24 <@hezekiah> नहीं। 00:24 <@hezekiah> मेरे पास सामान्य node.ref है 00:24 <@mids> ओह 00:25 <@mids> लेकिन आप कभी 24 घंटे ऑनलाइन नहीं रहते 00:25 <@hezekiah> वही है जो सर्वर मुझे हर बार देता है जब मैं कनेक्ट करता हूँ। 00:25 < FillaMent> मैं आमतौर पर कुछ दिनों तक कनेक्टेड रह सकता हूँ। 00:25 <@hezekiah> नहीं। मेरी भी ज़िंदगी है। ;-) 00:25 <@mids> कोई IRC किए बिना भी ऑनलाइन रह सकता है, बेशक 00:25 <@mids> *geeh* 00:25 <@hezekiah> और मेरे परिवार की फोन लाइन वही है जिस पर इंटरनेट कनेक्शन है। :) 00:25 < jrandom> छी 00:26 <@mids> तो अभी ऑफ़लाइन हो जाओ! 00:26 <@mids> :) 00:26 <@hezekiah> और प्रश्न? 00:26 <@mids> मेरे पास नहीं हैं 00:28 < FillaMent> HaZaa... 00:28 <@hezekiah> HaZaa? 00:28 <@mids> स्वस्थ रहो 00:28 <@hezekiah> *lol* 00:28 <@hezekiah> वह कोई प्रश्न था, FillaMent? 00:28 < FillaMent> मेरा FServe 00:29 <@hezekiah> ठीक है। मैं खो गया हूँ। :) 00:29 <@mids> हमें इसके बारे में बताओ hezekiah 00:29 <@mids> s/hezekiah/FillaMent/ 00:30 < FillaMent> मैं बस सोच रहा था कि बहुत सारे फ़ाइल ब्राउज़िंग के लिए IIP को संचार बैकबोन के रूप में उपयोग करने में कोई समस्या अपेक्षित है क्या। 00:30 < FillaMent> और अंततः HTTP जैसे टेक्स्ट-आधारित प्रोटोकॉल 00:30 <@mids> आप IIP की धीमेपन से बंधे रहेंगे 00:30 <@mids> 50B/s की सीमा 00:31 <@hezekiah> IIP हमेशा धीमा नहीं भी हो सकता, mids. ;-) 00:31 <@hezekiah> हम अनुकूलित करेंगे और सुधारेंगे। :) 00:31 <@mids> हुर्रे 00:31 < FillaMent> यह बड़ी बात नहीं है क्योंकि हम IIP पर वास्तविक फ़ाइल ट्रांसफ़र नहीं कर रहे। सिर्फ संचार। मुझे चिंता है कि यह बोझ बनेगा या नहीं। 00:32 < lonelynerd> telnet के लिए 50B/s ठीक हो सकता है 00:32 <@hezekiah> (Mids? क्या तुम यह सब जवाब देना चाहोगे? मैं सचमुच बहुत ही खो गया हूँ।) 00:32 <@mids> ठीक 00:32 <@mids> FillaMent HaZaa नाम की किसी चीज़ पर काम कर रहा है 00:32 <@mids> यह IIP पर कोई FServe है 00:33 <@mids> जो वास्तविक फ़ाइल शेयरिंग के लिए Freenet का उपयोग करता है 00:33 <@mids> सही? 00:33 < FillaMent> हाँ... ब्राउज़िंग के लिए IIP। 00:33 <@mids> तो आपके पास लोकली telnet/ftp जैसी इंटरफ़ेस है 00:33 < FillaMent> अभी इसे चालू कर रहा हूँ। 00:34 < FillaMent> haz: /msg hazaaclone shell 00:36 < FillaMent> haz: /msg hazaaclone cd /stuff/mp3s 00:38 <@hezekiah> बुरा नहीं!! 00:38 <@hezekiah> उह ... शेल से बाहर कैसे निकलते हैं? 00:38 < FillaMent> यह बस टाइमआउट हो जाती है। 00:38 <@hezekiah> ओह ... 00:39 < FillaMent> क्या ऐसे ट्रैफ़िक से कोई समस्या होगी... मुझे अपेक्षा है कि /बहुत से/ लोग इन्हें चलाएँगे। ख़ासकर क्योंकि DALnet ने अभी FServes पर बैन लगाया है 00:40 < HazaaClone> मैं तुम्हारे चैट नेटवर्क को जाम कर सकता हूँ =) 00:40 <@hezekiah> हम्म ... 00:40 <@hezekiah> वह समस्या होगी। :) 00:41 < FillaMent> पता नहीं कितना ट्रैफ़िक होगा या IIP पर इसका क्या असर पड़ेगा। 00:41 <@mids> Slashdot अटैक के दौरान हमने काफ़ी अच्छा काम किया था 00:41 < FillaMent> तो फिर यह मज़बूत लगता है। 00:41 <@mids> कुल लोगों की संख्या बहुत अधिक नहीं थी 00:41 <@mids> लेकिन लगातार जुड़ना और निकलना हो रहा था 00:42 < FillaMent> मुझे /लगता है/ कि मैंने flooding मुद्दा ठीक कर दिया है। 00:43 <@hezekiah> ठीक है, अगर आप एक "exit/quit" कमांड डाल दें, तो शायद कनेक्शनों की संख्या कम हो जाए। बस एक सुझाव। :) 00:44 <@hezekiah> ठीक है, अब मैं चलता हूँ। फिर मिलते हैं। :) 00:44 < FillaMent> अंततः संस्करण IIP का उपयोग सर्च क्वेरी और क्वेरी परिणाम पास करने के लिए करेगा। 00:45 <@hezekiah> mids: मैं file placement बग पर कोड देख रहा हूँ। जल्द ही मेलिंग लिस्ट पर एक ईमेल डालूँगा। :) 00:45 <@hezekiah> सबको अलविदा! :) 00:45 <@mids> बाय 00:46 < MrEcho> हे mids .. क्या तुमने हाल में iip-im देखा है 00:46 <@mids> नहीं 00:46 <@mids> लेकिन मुझे ज़्यादा CVS अपडेट नहीं मिले 00:46 < MrEcho> काफ़ी चीज़ें कर लीं 00:46 <@mids> चलिए बैठक के आधिकारिक हिस्से को समाप्त करते हैं 00:46 < MrEcho> मैं अभी  xml थीम्स पर काम कर रहा हूँ 00:46 <@mids> और दोस्ताना गप्प-शप्प पर चलें 00:46 < MrEcho> ... 00:47 < FillaMent> ओओओओओ! इससे मुझे एक आइडिया मिला। 00:48 < FillaMent> ओओओ.... यह जबरदस्त होने वाला है! 00:48 <@mids> ? --- लॉग बंद हुआ Wed Feb 05 00:48:36 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Feb 04 23:38:39 2003
+23:38 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+23:38 [Users #iip-dev]
+23:38 [ co    ] [ mids  ] [ Neo] [ ptm  ]
+23:38 [ logger] [ MrEcho] [ pox] [ UserX]
+23:38 -!- Irssi: #iip-dev: Total of 8 nicks [0 ops, 0 halfops, 0 voices, 8 normal]
+23:38 -!- Irssi: Join to #iip-dev was synced in 12 secs
+23:51 < mids> nop wont be on
+23:51 -!- mode/#iip-dev [+o mids] by Trent
+23:51 -!- mode/#iip-dev [+o UserX] by mids
+23:59 -!- mode/#iip-dev [+o hezekiah] by mids
+23:59 -!- mode/#iip-dev [+o hezekiah] by Trent
+23:59 <@hezekiah> Oops!
+23:59 <@hezekiah> I was just about to try that, mids! :)
+23:59 <@hezekiah> I think I figured it out!
+23:59 <@mids> you did
+23:59  * hezekiah feals very happy with himself for learning more about IRC. :)
+--- Day changed Wed Feb 05 2003
+00:00 < MrEcho> lol
+00:00 <@mids> Tue Feb  4 23:00:10 UTC 2003
+00:00 <@mids> Welcome to the 29th iip meeting
+00:00 <@mids> nop emailed me that he wont be there
+00:00 <@mids> so you got to do it without him
+00:00 <@mids> I dont have a specific agenda
+00:00 <@mids> except for this
+00:01 <@mids> 1) welcome :)
+00:01 <@mids> 2) highlights of the week
+00:01 <@mids> 3) questions
+00:01 <@mids> .
+00:01 <@mids> any highlights to report?
+00:02 <@hezekiah> Uh, not on my side. I'm still waiting for UserX or nop to look at the GnuMP BigNum impl. to see if it's OK.
+00:02 <@mids> userx added some code to the isproxy so that an empty node.ref file wont do harm if you upload
+00:02 <@hezekiah> The configure options for it got uploaded though.
+00:02 <@hezekiah> Is IIP 1.1 out yet?
+00:03 <@mids> havent seen it
+00:03 <@hezekiah> I guess not.
+00:03 <@mids> only thing is that we need to look at the location where the files are saved
+00:04 <@hezekiah> Hmmm ...
+00:04 <@mids> and if that gives bugs on different operating systems
+00:04 <@hezekiah> What exactly is the problem?
+00:05  * mids loads the sourceforge bugtracker
+00:05 <@mids> http://sourceforge.net/tracker/index.php?func=detail&aid=651711&group_id=50945&atid=461514
+00:05  * hezekiah is doing the same.
+00:05 <@hezekiah> Thanks. :)
+00:06 <@hezekiah> I remeber looking at that briefly once.
+00:07 <@hezekiah> The tricky part is what you are supposed to do in Windows.
+00:07 <@hezekiah> The *nix/*BSD part shouldn't be that difficult. (I hope.)
+00:07 <@mids> in windows it does just look at the current working directory
+00:08 <@hezekiah> I'll leave the Windows part to UserX. :)
+00:08 <@mids> the windows behavious shouldnt change imho
+00:09 <@hezekiah> Whatever. I run linux, and avoid Windows whenever I can. ;-)
+00:09 <@mids> same
+00:09 <@mids> but what behaviour do we want for unix?
+00:09 <@hezekiah> The behavior is defined in the code using #ifdef's based on platform.
+00:09 <@mids> you need to have access to the root/iip account to be able to access ~iip/.iip
+00:10 <@mids> so it should also look in other dirs
+00:10 <@mids> like ~/.iip
+00:10 <@mids> or the current dir
+00:10 <@hezekiah> Well, if isproxy is installed the default thing for a program to do would be look in /home/<user's homedir name>/.iip
+00:10 <@hezekiah> So in my case: /home/hezekiah/.iip
+00:10 <@hezekiah> node.ref would be /home/hezekiah/.iip/node.ref
+00:11 <@hezekiah> Then each user can have their own settings, etc.
+00:11 < MrEcho> you can kind of do the same thing in NT
+00:11 < MrEcho> my doc's folder is protected
+00:11 <@hezekiah> But under Win9[58] there really aren
+00:11 < MrEcho> ya
+00:11 <@hezekiah> aren't user specific home dirs.
+00:12 < MrEcho> anyone using 9x needs help anyways ....
+00:12  * hezekiah laughs
+00:12 <@hezekiah> Well, I'll email nop and ask him how he wants it done for *nix. Then, I'll see what I can do.
+00:12 <@mids> mail the list please
+00:13 <@mids> the we can all discuss
+00:13 < MrEcho> for the 9x ppl just put the files in ./.iip/
+00:13 <@hezekiah> OK.
+00:13 <@hezekiah> Or when IIP is installed it could be installed in Program Files/IIP.
+00:14 < MrEcho> for 9x ppl
+00:14 <@hezekiah> node.ref, isproxy.ini, seed.rnd, etc. could be placed there.
+00:14 <@mids> if you start IIP with a windows start thingie, then you can set the workingdirectory
+00:15 <@hezekiah> Well, anyway, I don't intend to touch the Windows implementation with a ten-foot poll. UserX can figure this one out. ;-)
+00:15 < MrEcho> :P
+00:15 <@mids> ok
+00:15 < FillaMent> You could look into a nasty WSH script. Then you can store in info in the registry
+00:15 <@hezekiah> (My compiler might not even _compile_ IIP under Windows!)
+00:15 <@mids> :)
+00:15 < MrEcho> fuck the registry
+00:15 <@hezekiah> FillaMent: if we used the registry in a program that needs to work under *nix, it would be an #ifdef NIGHTMARE!!
+00:16 < FillaMent> Not what I"m saying
+00:16 <@hezekiah> (But I will admit I tought of it to for a few seconds ... only a few, mind you.)
+00:16 <@hezekiah> Oh?
+00:16 <@hezekiah> Explain? :)
+00:17 < FillaMent> Have the location of the data file stored in the registry, then launch IIP with a WSH script that pulls the path out of the registry and pass it to the program as a cmnd line option
+00:17 < MrEcho> http://bofh.st/bofh/images/traffic.gif
+00:18 <@hezekiah> That might be doable.
+00:19 <@mids> I only had someone asking for windows NOT to change the current system there
+00:19 <@mids> maybe it would be nice to let it work without registry
+00:19 < FillaMent> A while back I wrote a script that would replace the name of the last logged in user with an arbitrary string. NT Ninja Vanish =) Had to do it because Generals and Colonels would freak because there was another login nam
+00:19 <@mids> from a security / anonymity pov
+00:20 <@hezekiah> I have to admit that I hate the Windoze registry with a pasion, just my personal opinion, though. :)
+00:20 < MrEcho> same here hezekiah
+00:20 < MrEcho> but ive learned to work with it
+00:20 <@hezekiah> So have I, ... but I still hate it. :)
+00:20 <@mids> so
+00:20 <@mids> lets investigate this week how the system currently works
+00:21 <@mids> and discuss on the list about how it should
+00:21 <@hezekiah> Right.
+00:21 <@mids> after that, make it work like it should :)
+00:21 <@hezekiah> I'll post an email to start up the conversation.
+00:21 <@mids> yay
+00:21 <@mids>  so
+00:21 <@mids> next item?
+00:22 <@hezekiah> 3.) questions
+00:22 < MrEcho> where the hell is 1.1
+00:22 <@mids> *nod*
+00:22 < MrEcho> hehe
+00:22 <@hezekiah> I don't know.
+00:22 <@hezekiah> But I think the reason it's not out is because of the aforementioned bug.
+00:22 <@hezekiah> (The one we are going to talk about on the mailing list.)
+00:23 < MrEcho> i just hope it connects faster and more stable connections
+00:24 <@hezekiah> (I have to admit I haven't had a problem with unstable connections, and I usually connect to the 1st or 2nd node I try.)
+00:24 <@mids> but that is just because you have a clean node.ref, I assume?
+00:24 <@hezekiah> No.
+00:24 <@hezekiah> I have a normal node.ref
+00:24 <@mids> oh
+00:25 <@mids> but you never stay online for 24 h
+00:25 <@hezekiah> It's the one the server gives me each time I conect.
+00:25 < FillaMent> I can stay connected for a couple days, usually.
+00:25 <@hezekiah> No. I have a life. ;-)
+00:25 <@mids> one can stay online without irc-ing ofcourse
+00:25 <@mids> *geeh*
+00:25 <@hezekiah> And my family's phone line is the same on the internet connection is on. :)
+00:25 < jrandom> eww
+00:26 <@mids> then get offline now!
+00:26 <@mids> :)
+00:26 <@hezekiah> Other questions?
+00:26 <@mids> I dont have those
+00:28 < FillaMent> HaZaa...
+00:28 <@hezekiah> HaZaa?
+00:28 <@mids> gesundheit
+00:28 <@hezekiah> *lol*
+00:28 <@hezekiah> Was that a question, FillaMent?
+00:28 < FillaMent> My FServe
+00:29 <@hezekiah> OK. I'm lost. :)
+00:29 <@mids> tell us about it hezekiah
+00:29 <@mids> s/hezekiah/FillaMent/
+00:30 < FillaMent> I was just wondering if there'd be any expected problems using IIP as a comm backbone for a lot of file browsing.
+00:30 < FillaMent> And eventually a text-based protocol like HTTP
+00:30 <@mids> you will be bound to the slowness of IIP
+00:30 <@mids> the 50B/s limit
+00:31 <@hezekiah> IIP might not always be slow, mids. ;-)
+00:31 <@hezekiah> We shall optimize and improve. :)
+00:31 <@mids> hurray
+00:31 < FillaMent> That's not a big deal since we're not doing actual file transfer of IIP. Just comm. I'm concerned with whether or not it would be a strain.
+00:32 < lonelynerd> 50B/s might be ok for telnet
+00:32 <@hezekiah> (Mids? You want to answer all this? I'm reeaaallllyyy lost.)
+00:32 <@mids> ok
+00:32 <@mids> FillaMent is working on something caled HaZaa
+00:32 <@mids> it is some fserve on IIP
+00:33 <@mids> which uses Freenet for the actual file sharing
+00:33 <@mids> right?
+00:33 < FillaMent> Yeah... IIP for the browsing.
+00:33 <@mids> so you have some telnet/ftp like interface locally
+00:33 < FillaMent> firing it up now.
+00:34 < FillaMent> haz: /msg hazaaclone shell
+00:36 < FillaMent> haz: /msg hazaaclone cd /stuff/mp3s
+00:38 <@hezekiah> Not bad!!
+00:38 <@hezekiah> Uh ... how do you leave the shell?
+00:38 < FillaMent> It just times out.
+00:38 <@hezekiah> Oh ...
+00:39 < FillaMent> Think traffic like that would be a problem... I expect /lots/ of people will run them. Especially since DALnet just put a ban on FServes
+00:40 < HazaaClone> I might clog your chat network =)
+00:40 <@hezekiah> Hmmm ...
+00:40 <@hezekiah> That would be a problem. :)
+00:41 < FillaMent> Dunno how much traffic it would be or what effect it will have on IIP.
+00:41 <@mids> during the slashdot attack we did do pretty well
+00:41 < FillaMent> Sounds solid then.
+00:41 <@mids> the total amount of people wasnt too high
+00:41 <@mids> but it was constant joining and parting
+00:42 < FillaMent> I /think/ I got the flooding issue fixed.
+00:43 <@hezekiah> Well, if you threw in an "exit/quit" command, maybe the connections would be lower. Just a suggestion. :)
+00:44 <@hezekiah> Well, I had better go. See you all around. :)
+00:44 < FillaMent> THe eventual version will use IIP to pass search queries and query results.
+00:45 <@hezekiah> mids: I'm looking into the code on the file placement bug. I should have an email up on the mailing list shortly. :)
+00:45 <@hezekiah> Bye, all! :)
+00:45 <@mids> bye
+00:46 < MrEcho> hey mids .. have you checked out iip-im latly
+00:46 <@mids> nope
+00:46 <@mids> but I didnt get many CVS updates
+00:46 < MrEcho> got a bunch of stuff done
+00:46 <@mids> lets end the official part of the meeting
+00:46 < MrEcho> im working on xml themes right  now
+00:46 <@mids> and move over to friendly chit chat
+00:46 < MrEcho> ...
+00:47 < FillaMent> ooooo! That just gave me an idea.
+00:48 < FillaMent> Oooo.... this is going to ROCK!
+00:48 <@mids> ?
+--- Log closed Wed Feb 05 00:48:36 2003
+</div>

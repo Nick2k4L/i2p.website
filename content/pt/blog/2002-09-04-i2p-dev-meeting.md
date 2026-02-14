@@ -1,12 +1,12 @@
 ---
-title: "Reunião de desenvolvimento do I2P, 4 de setembro de 2002"
+title: "Reunião de desenvolvimento I2P, 4 de setembro de 2002"
 date: 2002-09-04
 author: "nop"
-description: "Registro da reunião de desenvolvimento do I2P de 4 de setembro de 2002."
+description: "Log da reunião de desenvolvimento do I2P de 4 de setembro de 2002."
 categories: ["meeting"]
 ---
 
-(Cortesia da Wayback Machine http://www.archive.org/)
+(Cortesia do wayback machine http://www.archive.org/)
 
 ## Resumo rápido
 
@@ -14,4 +14,167 @@ categories: ["meeting"]
 
 ## Registro da Reunião
 
-<div class="irc-log"> --- Log aberto Tue Sep 03 23:55:46 2002 23:56 <@mids> teste --- Dia alterado Wed Sep 04 2002 00:34 < athena> olá :) 00:34 < athena> sem pauta específica hoje? 00:36 -!- mode/#iip-dev [+o nop] por mids 00:36 -!- mode/#iip-dev [+v logger] por mids 00:36 <@mids> ainda não, pelo menos 00:55 < athena> OQP... fofo :) 00:56 <@mids> o que é OQP? 00:56 < athena> occupe', imagino 00:56 <@mids> entendi 00:58 < gabierOQP> OQP=occupé em francês 00:58 < gabierOQP> ocupado 00:58 -!- gabierOQP agora é conhecido como legabier 00:59 <@mids> compris 01:00 <@mids> Tue Sep  3 23:00:00 UTC 2002 01:00 <@mids> Bem-vindos à 10ª reunião do IIP 01:00 <@mids> Agenda: 01:00 <@mids> 1) Boas-vindas 01:00 <@mids> 2) Atualização do status do site 01:00 <@mids> 3) ... 01:00 <@mids> a) Perguntas 01:00 <@mids> . 01:00 <@mids> vamos ao ponto 1 01:00 <@mids> bem-vindos todos 01:00 < legabier> por que o Freenet é tão lento e o IIP tão rápido? 01:01 <@mids> legabier: podemos guardar isso até a parte a? 01:01 < legabier> ok 01:01 <@mids> parte 2 01:01 <@mids> nop: atualização de status? 01:02 <@mids> hm 01:02 <@mids> o site está no CVS 01:02 <@mids> nop revisou os arquivos 01:03 <@mids> mas há algumas partes sem um bom texto 01:03 <@mids> e a área de suporte precisa de um layout melhor 01:03 <@mids> à parte disso, está pronto 01:03 <@mids> não vou dizer quando o site estará no ar 01:03 <@mids> mas fiquem à vontade para fazer apostas privadas sobre a hora em que ficará online :) 01:04 <@mids> . 01:04 <@mids> provavelmente o nop tem algo a acrescentar 01:04 <@mids> vamos esperar 3 min ou algo assim 01:06 < athena> lol 01:06 <@mids> acho que o nop está ocupado demais editando o site para responder 01:06 <@mids> certo, bem... 01:06 <@mids> antes de irmos para a rodada de perguntas... há outros itens que devemos discutir? 01:08 <@mids> acho que não :-) 01:08 <@mids> gosto quando todo mundo concorda :) 01:08 <@mids> . 01:08 <@mids> pergunta de legabier: "por que o Freenet é tão lento e o IIP tão rápido?" 01:08 <@mids> Freenet é um programa diferente, não há relação técnica entre IIP e Freenet 01:08 <@mids> Freenet é completamente descentralizado... IIP não é (ainda) 01:08 <@nop> haha 01:09 <@mids> Freenet é voltado para transferência de arquivos, enquanto IRC sobre IIP usa linhas curtas 01:09 <@nop> só porque o Freenet é descentralizado 01:09 <@nop> não é o motivo de o IIP ser rápido 01:09 <@mids> bem, ilumine-nos, ó mestre Yoda :) 01:10 <@nop> diferenças 01:10 <@nop> Freenet == alto volume, baixa velocidade, conteúdo estático (arquivado) 01:10 <@nop> IIP == baixo volume, alta velocidade, conteúdo dinâmico 01:10 <@nop> conceitos totalmente diferentes; centralizado ou descentralizado, o IIP continuará rápido 01:11  * mids também espera isso 01:11  * nop sabe disso 01:11 <@mids> ok 01:11 <@mids> isso responde sua pergunta, legabier? 01:12 < legabier> sim merci :) 01:13  * mids vira o holofote para a plateia... procurando a próxima pergunta e/ou comentário 01:13 < athena> por que há tão poucos relays públicos (retransmissores) (além dos que o nop roda e o do mids, vejo só 2 ou 3 outros geralmente)?  não temos voluntários ou o verificador de tempo de atividade rejeita muitos deles? 01:13 < Sheige> Tenho 8 deles... acho 01:14 < Sheige> (ainda poucos) 01:14 < athena> quantos são se você não contar os do mids e do nop? 01:14 <@mids> 5 01:14 <@mids> fonte: http://invisiblenet.net/iip/crypto/node.ref 01:15 < athena> hmmm, ok... acho que preciso baixar um novo... ainda assim, uns 20 nós públicos seriam legais :) 01:15 <@mids> eu _acho_ que o verificador de tempo de atividade é um pouco rígido demais 01:16 <@mids> codeshark teve que pausá-lo algum tempo atrás quando a rede estava fora do ar 01:16 <@mids> senão ele expulsaria todos os relays 01:17 <@nop> a verificação rígida é uma coisa boa 01:17 <@nop> você teria mais problemas se tivesse muitos relays sem funcionar 01:17 <@nop> é melhor ter um número menor com conexão de relay sólida 01:17 <@mids> nop: bem... mas os reanúncios não parecem funcionar 01:17 <@nop> do que um monte de ruins 01:17 <@nop> sim, eles funcionam 01:17 <@mids> hm 01:17 <@nop> só leva tempo 01:17 <@nop> além disso, se você é um relay, você não verá sua rota 01:17 <@mids> então por que temos apenas 7 :) 01:17 <@nop> por causa da estabilidade dos relays 01:18 <@nop> pode levar mais alguns dias para eles aparecerem 01:20 <@nop> fale com o codeshark sobre isso 01:20 <@nop> ele teria mais detalhes 01:20 <@nop> vou testar isso com ele 01:20 <@mids> ok 01:21 <@mids> acho que tenho, de algum modo, muitos nós conectando ao meu relay 01:21 <@mids> mas talvez haja muito mais usuários do que sabemos :) 01:21 < athena> quantas conexões você tem? 01:22 <@mids> não sei se devo dizer isso 01:22  * mids faz alguma conversa por canais paralelos 01:22 < athena> pode ser que você seja o relay mais acessível 01:22 <@mids> heh, eu não diria isso com a recente falta de estabilidade 01:22 < athena> frequentemente percebo que não consigo conectar por metade dos hosts em node.ref 01:22 < athena> e quando você começa com 7, não é um grande número de relays confiáveis 01:23 <@nop> bem, a maioria geralmente é, as que estão no ar 01:23 < athena> só relatando minha experiência... 01:24 <@nop> talvez seja recente 01:25 <@mids> seria interessante medir o tempo de atividade... 01:25 <@mids> mas... 01:25 < athena> você teria que medi-lo a partir de sites topologicamente diversos 01:27 <@mids> nop: você seria contra isso? 01:27 <@mids> se tudo isso não fosse sobre anonimato, eu adoraria ver muitas estatísticas :) 01:27 <@nop> hmm, se isso expuser informações para ataque, sim 01:28 <@nop> talvez montemos um sistema não anônimo weary mais tarde e colhamos estatísticas 01:28 < athena> eu diria que quaisquer estatísticas publicamente disponíveis DEVERIAM ser publicadas 01:28 <@nop> especialmente à medida que isso crescer 01:28 < athena> confie na segurança do IIP, não em manter informações secretas 01:28 <@nop> bem, athena, se alguém estivesse coletando estatísticas, elas deveriam ser publicadas 01:28 <@nop> mas ninguém está, até agora 01:28 <@nop> quem estiver, por favor publique suas descobertas 01:28 <@nop> ;) 01:29 < athena> talvez eu faça :p 01:29 <@mids> bem... vou tentar coletar estatísticas de uma forma 'justa' 01:29 <@mids> sem abusar dos meus poderes de nó público 01:29 <@mids> o que eu puder coletar desse jeito, qualquer um pode 01:29 < athena> era exatamente o que eu queria dizer, ótimo 01:30 < ArdVark> por que não abusar do seu poder de nó público e nos mostrar o que isso implica também, mids? 01:30 <@mids> agora, se eu desaparecer do sistema de chat do IIP... é porque alguém não gosta que eu colete as estatísticas ;) 01:30 <@mids> ArdVark: talvez esse seja o próximo passo... 01:30 < athena> ArdVark: lol, excelente ponto!  já que qualquer um pode se tornar um nó público... 01:30 < athena> s/anyway/anyone/ 01:31 <@mids> athena: instale um relay público e faça você :) 01:31 < ArdVark> quero ver os fracassos tanto quanto os sucessos dessa fera reportados 01:32 <@mids> seria legal ter 100 'agências' todas rodando um relay público para registrar conexões e, ao mesmo tempo, ajudando a aumentar o anonimato 01:33 < ArdVark> em um tópico diferente, não para encerrar o atual, já houve alguma ideia de adicionar wiki ao invisiblnet?  ou é complicado demais? 01:33 <@mids> wiki como em wikiwiki? 01:33 < ArdVark> sim 01:33 <@mids> aqueles $#@&%@ infobots já são uma espécie de wiki 01:33 < athena> mids: como você sabe que eu já não rodo um relay público ;) 01:34 < ArdVark> adoro aqueles infobots, mids   ;) 01:34 <@mids> ArdVark: eu sei que você adora 01:34 <@mids> ArdVark: se você colocar um servidor web 'por trás' do IIP... então poderia instalar um wiki nele 01:35 < ArdVark> ok, isso é razoável, acho 01:35 <@mids> mas rodar um servidor web sobre IRC não é lá muito bom 01:35 < ArdVark> não, eu quis dizer o site 01:35 <@mids> ah 01:35 <@mids> você quer dizer no site normal 01:35 < ArdVark> sim 01:36 <@mids> acho que você poderia fazer isso 01:36 <@mids> por outro lado... você poderia usar um wiki público também.... 01:36 < ArdVark> certo 01:37 <@mids> acho que não deveríamos realmente instalar o wiki no SourceForge... não agora 01:37 <@mids> já que dá um certo trabalho para instalar/ajustar etc. 01:38 <@mids> mas alguém poderia rodar um wiki, e então o IIP poderia apontar para ele 01:38 < ArdVark> ok 01:39 <@mids> ArdVark: mas talvez um wiki público para o IIP (como o Freenet tem agora) seja o caminho a seguir 01:39 <@mids> . 01:39 < ArdVark> sim, ok 01:41 <@mids> vou dormir. fiquem à vontade para continuar conversando aqui :) 01:41 < athena> boa noite, mids 01:49 <@mids> para quem quiser brincar com um wiki: http://mids.student.utwente.nl/~mids/phpwiki/ 01:49 <@mids> não me importo com o que vocês fizerem com isso :) 02:00 -!- mode/#iip-dev [+o codeshark] por Trent --- Log fechado Wed Sep 04 07:03:17 2002 </div>
+<div class="irc-log">
+--- Log opened Tue Sep 03 23:55:46 2002
+23:56 <@mids> test
+--- Day changed Wed Sep 04 2002
+00:34 < athena> hello :)
+00:34 < athena> no specific agenda today?
+00:36 -!- mode/#iip-dev [+o nop] by mids
+00:36 -!- mode/#iip-dev [+v logger] by mids
+00:36 <@mids> not yet atleast
+00:55 < athena> OQP... cute :)
+00:56 <@mids> what is OQP?
+00:56 < athena> occupe', i'm guessing
+00:56 <@mids> ic
+00:58 < gabierOQP> OQP=occupé in french
+00:58 < gabierOQP> busy
+00:58 -!- gabierOQP is now known as legabier
+00:59 <@mids> compris
+01:00 <@mids> Tue Sep  3 23:00:00 UTC 2002
+01:00 <@mids> Welcome to the 10th IIP meeting
+01:00 <@mids> Agenda:
+01:00 <@mids> 1) Welcome
+01:00 <@mids> 2) Website status update
+01:00 <@mids> 3) ...
+01:00 <@mids> a) Questions
+01:00 <@mids> .
+01:00 <@mids> lets go to point 1
+01:00 <@mids> welcome all
+01:00 < legabier> why freenet is so slow and iip so fast?
+01:01 <@mids> legabier: can we keep that till part a ?
+01:01 < legabier> ok
+01:01 <@mids> part 2
+01:01 <@mids> nop: status update?
+01:02 <@mids> hm
+01:02 <@mids> the website is in CVS
+01:02 <@mids> nop has reviewed the files
+01:03 <@mids> but there are some parts without good text
+01:03 <@mids> and the support area needs a better layout
+01:03 <@mids> appart from that it is done
+01:03 <@mids> I wont tell you when the site is up
+01:03 <@mids> but you are free to do private bettings on the online time :)
+01:04 <@mids> .
+01:04 <@mids> nop probably has something to add
+01:04 <@mids> lets wait 3 min or something
+01:06 < athena> lol
+01:06 <@mids> I guess nop is too busy with editing the website to answer
+01:06 <@mids> okay well...
+01:06 <@mids> before we go to the question round.. any other items we should discuss?
+01:08 <@mids> guess not :-)
+01:08 <@mids> I like it when everybody agrees :)
+01:08 <@mids> .
+01:08 <@mids> question from legabier: "why freenet is so slow and iip so fast?"
+01:08 <@mids> freenet is a different program, there is no technical relationship between IIP and Freenet
+01:08 <@mids> Freenet is completely decentralized.. IIP isn't (yet)
+01:08 <@nop> haha
+01:09 <@mids> Freenet is intended for file transfer, while IRC over IIP uses short lines
+01:09 <@nop> just because freenet is decentralized
+01:09 <@nop> is not the reason why IIP is fast
+01:09 <@mids> well, enlighten us, o master yoda :)
+01:10 <@nop> differences
+01:10 <@nop> freenet == high volume, low speed, static (archived) content
+01:10 <@nop> iip == low volume, high speed, dynamic content
+01:10 <@nop> different concepts all together, centralized or decentralized, IIP will remain fast
+01:11  * mids hopes that too
+01:11  * nop knows that
+01:11 <@mids> ok
+01:11 <@mids> does that answer your question legabier ?
+01:12 < legabier> yes merci :)
+01:13  * mids aims the spotlight in the audience.. searching for the next question and/or comment
+01:13 < athena> why are there so few public relays (besides the ones nop runs and mids', i see only 2 or 3 others usually)?  do we have no volunteers or does the uptime checker reject a lot of them?
+01:13 < Sheige> I got 8 of them.... I guess
+01:14 < Sheige> (still a few)
+01:14 < athena> how many is that if you don't count mids' and nop's?
+01:14 <@mids> 5
+01:14 <@mids> source: http://invisiblenet.net/iip/crypto/node.ref
+01:15 < athena> hmmm, ok... guess i need to pull down a new one... still, 20 or so public nodes would be nice :)
+01:15 <@mids> I _think_ that the uptime checker is a bit too strict
+01:16 <@mids> codeshark had to pause it some time ago when the net was down
+01:16 <@mids> otherwise it would kick all relays out
+01:17 <@nop> the strict checking is a good thing
+01:17 <@nop> you'd have more problems if you had a lot of relays not working
+01:17 <@nop> it's better to have lower number with solid relay connection
+01:17 <@mids> nop: well.. but the reannounces dont seem to work
+01:17 <@nop> than a bunch of crappy ones
+01:17 <@nop> yes they do
+01:17 <@mids> hm
+01:17 <@nop> it just takes time
+01:17 <@nop> plus if you're a relay you won't see your route
+01:17 <@mids> then why do we only have 7 :)
+01:17 <@nop> because the stability of the relays
+01:18 <@nop> it may take a few more days for them to show up
+01:20 <@nop> talk to codeshark about this
+01:20 <@nop> he would have more detail
+01:20 <@nop> I will test it with him
+01:20 <@mids> ok
+01:21 <@mids> I think that I have somehow too many nodes connecting to my relay
+01:21 <@mids> but maybe there are a lot more users then we know about :)
+01:21 < athena> how many connections do you have?
+01:22 <@mids> I dont know if I should tell that
+01:22  * mids does some back channel talking
+01:22 < athena> could be that you're the best reachable relay
+01:22 <@mids> heh, I wouldnt say that with the recent lack of stability
+01:22 < athena> i often find that i can't connect through half of the hosts in node.ref
+01:22 < athena> and when you start with 7 that's not a whole lot of reliable relays
+01:23 <@nop> well, most usually are that are on
+01:23 < athena> just relating my experience...
+01:24 <@nop> maybe it's recent
+01:25 <@mids> it would be interesting to measure uptime...
+01:25 <@mids> but...
+01:25 < athena> you'd have to measure it from topologically diverse sites
+01:27 <@mids> nop: would you be against that?
+01:27 <@mids> if this whole thing wasn't about anonymity, I would love to see a lot of statistics :)
+01:27 <@nop> umm, if it exposes attacking info, yes
+01:28 <@nop> maybe we'll set up a non-anonymous weary system later and take stats
+01:28 < athena> i would say any publicly available stats SHOULD be published
+01:28 <@nop> especially as it gets bigger
+01:28 < athena> rely on the security of IIP, not on keeping info secret
+01:28 <@nop> well athena, if anyone was taking stats, they should be published
+01:28 <@nop> but no one is so far
+01:28 <@nop> anyone who is please publish your findings
+01:28 <@nop> ;)
+01:29 < athena> maybe i will :p
+01:29 <@mids> well.. I'll try to collect stats in a 'fair' way
+01:29 <@mids> without abusing my public node-powers
+01:29 <@mids> what I can collect that way, everybody can
+01:29 < athena> that's exactly what i meant, great
+01:30 < ArdVark> why not abuse your public node power and show us what that entails too mids?
+01:30 <@mids> now if I disappear from the IIP chat system... it is because someone doesnt like me collecting the stats ;)
+01:30 <@mids> ArdVark: maybe that is the next step...
+01:30 < athena> ArdVark: lol, excellent point!  since anyway can become a public node...
+01:30 < athena> s/anyway/anyone/
+01:31 <@mids> athena: install a public relay and you do it :)
+01:31 < ArdVark> I wanna see the failures as well as the successes of this beast reported
+01:32 <@mids> would be cool to have 100 'agencies' all running a public relay to log connections, but in the meanwhile helping to boost the anonymity
+01:33 < ArdVark> on a different topic, not to end the current one, has there ever been any thought to adding wiki to invisiblnet?  or too much trouble?
+01:33 <@mids> wiki as in wikiwiki?
+01:33 < ArdVark> yes
+01:33 <@mids> those $#@&%@ infobots are already some wiki
+01:33 < athena> mids: how do you know i don't already run a public relay ;)
+01:34 < ArdVark> I love those infobots mids   ;)
+01:34 <@mids> ArdVark: I know you do
+01:34 <@mids> ArdVark: if you put a webserver 'behind' IIP.. then you could install a wiki on it
+01:35 < ArdVark> ok, that is reasonable I guess
+01:35 <@mids> but running a webserver over irc isnt too great
+01:35 < ArdVark> no I meant the website
+01:35 <@mids> oh
+01:35 <@mids> you mean on the normal website
+01:35 < ArdVark> yes
+01:36 <@mids> guess you could do that
+01:36 <@mids> otoh.. you could use a public wiki too....
+01:36 < ArdVark> fine
+01:37 <@mids> I think we shouldnt really install the wiki on sourceforge.... not now
+01:37 <@mids> since it is some work to install/tweak etc
+01:38 <@mids> but someone could run a wiki, and then IIP could point to it
+01:38 < ArdVark> ok
+01:39 <@mids> ArdVark: but maybe a public wiki for IIP (like freenet has now) is the way to go
+01:39 <@mids> .
+01:39 < ArdVark> yeah ok
+01:41 <@mids> I am going to sleep. feel free to keep chatting here :)
+01:41 < athena> night mids
+01:49 <@mids> for those who want to play with a wiki: http://mids.student.utwente.nl/~mids/phpwiki/
+01:49 <@mids> I dont care what you do with it :)
+02:00 -!- mode/#iip-dev [+o codeshark] by Trent
+--- Log closed Wed Sep 04 07:03:17 2002
+</div>

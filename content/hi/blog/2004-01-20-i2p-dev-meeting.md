@@ -1,19 +1,202 @@
 ---
-title: "I2P डेवलपर बैठक - 20 जनवरी 2004"
+title: "I2P Dev Meeting - 20 जनवरी, 2004"
 date: 2004-01-20
 author: "jrand0m"
-description: "20 जनवरी 2004 की I2P विकास बैठक का लॉग।"
+description: "20 जनवरी, 2004 के लिए I2P विकास बैठक का लॉग।"
 categories: ["meeting"]
 ---
 
-(वेबैक मशीन http://www.archive.org/ के सौजन्य से)
+(वेबैक मशीन http://www.archive.org/ की सौजन्य से)
 
-## त्वरित पुनरावलोकन
+## त्वरित सारांश
 
 <p class="attendees-inline"><strong>उपस्थित:</strong> dm, duck, Frontier, jar, jrand0m, mihi, Ophite1</p>
 
 ## बैठक लॉग
 
-<div class="irc-log"> [22:07] &lt;jrand0m&gt; कार्यसूची: [22:07] &lt;jrand0m&gt; 0) नमस्ते (पढ़ें http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html) [22:07] &lt;jrand0m&gt; 1) router विकास स्थिति [22:07] &lt;jrand0m&gt; 2) twisted-i2p [22:07] &lt;jrand0m&gt; 3) यूनिट टेस्ट [22:07] &lt;jrand0m&gt; 4) नेटवर्क परीक्षण / मॉनिटरिंग [22:07] &lt;jrand0m&gt; 5) ??? [22:07] &lt;jrand0m&gt; 0) नमस्ते [22:07] &lt;jrand0m&gt; नमस्ते [22:07] * jrand0m हाथ हिलाता है [22:07] &lt;dm&gt; ओह्ह्ह मीटिंग! [22:07] * dm वापस हाथ हिलाता है। [22:07] &lt;jrand0m&gt; हर मंगलवार 9p GMT :) [22:08] &lt;jrand0m&gt; लोगों को वह URL (http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html) पढ़ना चाहिए क्योंकि उसमें ऐसी बातें हैं जिन पर मुझे कार्यसूची के मद 4 के दौरान फीडबैक चाहिए [22:08] &lt;jrand0m&gt; 1) router विकास स्थिति [22:09] &lt;jrand0m&gt; प्रगति हो रही है, अभी cvs में जो कोड है वह अच्छा लग रहा है। पिछले एक दिन से मेरे पास एक स्क्रिप्ट कुछ routers की सीरीज़ टेस्ट कर रही है और उनमें से किसी ने भी एक भी ERROR मैसेज नहीं उगला है [22:09] &lt;duck&gt; पढ़ रहा हूँ... [22:10] &lt;jrand0m&gt; लेकिन बेशक ये सिर्फ बेसलाइन परीक्षण है (सुनिश्चित करना कि routers सही ढंग से tunnels बना रहे हैं, i2ptunnel के ज़रिए एक से दूसरे तक डेटा टनलिंग करना, आदि) [22:11] * jnk ने #i2p जॉइन किया है [22:11] &lt;jrand0m&gt; खुले माहौल में और भी चीज़ें हैं जिन्हें ठीक करने की ज़रूरत है, इसी वजह से अगले एक-दो दिन में 0.2.3.5 रिलीज़ आने वाली है ताकि फ़ंक्शनैलिटी की पुष्टि हो सके या नए बग मिल सकें [22:11] &lt;jrand0m&gt; ठीक है, आगे बढ़ते हैं [22:12] &lt;jrand0m&gt; 2) twisted+i2p [22:12] &lt;duck&gt; मुझे त्रुटियाँ मिल रही हैं [22:12] &lt;duck&gt; पर शायद दूसरों की वजह से [22:12] &lt;jrand0m&gt; dropped messages और unknown tunnels, सही? [22:12] &lt;duck&gt; जांच रहा हूँ [22:13] &lt;jrand0m&gt; (वो वे errors हैं जो मुझे अपने एक 'live' router पर दिखते हैं, पर टेस्ट नेटवर्क पर नहीं) [22:13] &lt;duck&gt;
-22:13:15.371 ERROR [ Sender 1148] er.transport.phttp.PHTTPSender: Error sending the message [22:13] &lt;jrand0m&gt; आह ठीक, हाँ, मैं phttp relay को भी घुमा-फिरा कर देख रहा था [22:13] &lt;duck&gt;
-21:01:01.509 ERROR [JobQueue28  ] eDatabaseSearchReplyMessageJob: Invalid router info returned from [Rout [22:14] &lt;jrand0m&gt; हम्म वो वाला थोड़ा अजीब है - क्या आप मुझे stacktrace भेज सकते हैं? [22:14] &lt;duck&gt; मैं इसे डाल दूँगा। [22:14] &lt;duck&gt; . [22:14] &lt;jrand0m&gt; gracias [22:15] &lt;jrand0m&gt; असल में, आने वाली रिलीज़ों के लिए एक सामान्य नियम होगा - WARN या INFO या DEBUG संदेश ठीक हैं, और ERROR या CRIT संदेशों के बारे में मैं सुनना चाहूँगा [22:16] &lt;jrand0m&gt; ठीक है, वापस 2) पर [22:16] &lt;jrand0m&gt; human ने Python और Twisted framework के ज़रिए i2p इस्तेमाल करने का तरीका तैयार किया है (वाह!) [22:17] &lt;jrand0m&gt; ज़्यादा जानकारी के लिए उसका ईमेल देखें (http://i2p.dnsalias.net/pipermail/i2p/2004-January/000100.html)  [22:17] &lt;jrand0m&gt; human, कुछ जोड़ना चाहोगे? (यदि तुम यहाँ हो) [22:17] &lt;duck&gt; it is _so_ cool [22:17] &lt;jrand0m&gt; हाँ, echo server और client के लिए sample code जबर्दस्त दिखता है [22:18] &lt;jrand0m&gt; ठीक है, 3) यूनिट टेस्ट पर बढ़ते हैं [22:19] &lt;jrand0m&gt; हाँ, ज़्यादातर data structures के लिए कुछ यूनिट टेस्ट हैं, लेकिन वे "one click testable" नहीं हैं, इसलिए मैं हर बिल्ड पर उन्हें नहीं चलाता।   [22:20] &lt;jrand0m&gt; मौजूदा सोच यह है कि उन्हें jUnit में माइग्रेट किया जाए, साथ ही अन्य यूनिट टेस्टों को भी जितना हो सके विभिन्न कॉम्पोनेंट्स के main(..) मेथड में लागू किए गए टेस्टों (खासकर crypto वाले) के साथ मर्ज किया जाए  [22:21] &lt;duck&gt; शायद ज़्यादा जटिल चीज़ों का परीक्षण करना कठिन है [22:21] &lt;jrand0m&gt; वो जल्दी ही critical path पर आ जाएगा, इस पर निर्भर करता है कि debugging हमें कहाँ ले जाती है [22:21] &lt;jrand0m&gt; सही, अभी के यूनिट टेस्ट सिर्फ बेसिक्स टेस्ट करते हैं [22:21] &lt;duck&gt; जैसे routing, TCP से जुड़ी चीज़ें आदि [22:21] &lt;jrand0m&gt; सही [22:21] * dm यूनिट टेस्टिंग के मूल्य पर बहस आते हुए देखता है। [22:21] &lt;jrand0m&gt; लेकिन AESInputStream जैसी चीज़ों का परीक्षण AESOutputStream के साथ मिलकर किया जा सकता है [22:22] &lt;duck&gt; unit test = kickass [22:22] &lt;jrand0m&gt; (और जो लोग अपने लॉग्स ध्यान से देख रहे हैं, decrypt streaming के दौरान कुछ अजीब "pushed back" व्यवहार दिखा है) [22:22] &lt;jrand0m&gt; बिल्कुल। [22:23] &lt;jrand0m&gt; यूनिट टेस्ट तो, उह, units के लिए ही हैं। बड़े कॉम्पोनेंट्स के लिए नहीं (जो कि कार्यसूची के मद 4 का विषय है ;) [22:24] &lt;jrand0m&gt; लेकिन किसी भी हालत में, अगर कोई मौजूदा data structure यूनिट टेस्टों को jUnit framework में कन्वर्ट करने में मदद करना चाहता है, तो मुझे बताइए - बहुत सराहा जाएगा (और इससे आपको i2p codebase की अच्छी नींव मिल जाएगी) [22:24] * mihi_away अब mihi के नाम से जाना जाएगा [22:25] &lt;dm&gt; अगर यह वीकेंड तक नहीं हुआ तो मैं देख सकता हूँ। मुझे यूनिट टेस्टिंग के बारे में कुछ नहीं पता, तो मैं करते-करते सीख सकता हूँ। [22:25] &lt;jrand0m&gt; कमाल! [22:25] &lt;dm&gt; हालांकि कोई वादा नहीं। [22:25] &lt;jrand0m&gt; सही सही [22:25] &lt;jrand0m&gt; ठीक है, 4) नेटवर्क परीक्षण / मॉनिटरिंग पर चलते हैं [22:26] &lt;jrand0m&gt; क्या सबने http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html पढ़ा? मैं उसे बस कॉपी-पेस्ट नहीं करना चाहता [22:26] * Frontier ने #i2p जॉइन किया है [22:27] * jrand0m लोगों को समझने के लिए समय देता है [22:27] * dm कहता है... [22:28] &lt;Frontier&gt; क्या पचाना? [22:28] &lt;dm&gt; C) लेकिन ऑटोमैटिक सेंडिंग के बिना। [22:28] &lt;dm&gt; यानी आप टाइप करते हैं emaillogstojrandom.sh (.bat) [22:28] &lt;dm&gt; ईमेल या पोस्ट, या जो भी। [22:29] &lt;dm&gt; और जब वो ऐसा करे तो आपका लॉग साफ कर दे, या उसे कहीं और ले जाए, ताकि आप वही डेटा दो बार न भेजें। [22:29] &lt;jrand0m&gt; तो मूलतः B [22:29] &lt;jrand0m&gt; (या A) [22:29] &lt;dm&gt; हाँ, यूज़र-फ्रेंडली B) :) [22:29] &lt;jrand0m&gt; डेटा के संदर्भ में यही समस्या है... वह लॉग एक रात में दर्जनों मेग्स तक बढ़ जाता है [22:29] &lt;jrand0m&gt; सही  [22:30] &lt;dm&gt; माफ़ करना, C के लिए history=false नहीं देखा। [22:30] &lt;jrand0m&gt; Frontier) हम http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html की सेक्शन 4 पर चर्चा कर रहे हैं? [22:30] &lt;mihi&gt; jrand0m: man bzip2 [22:30] &lt;dm&gt; तो history=false और एक स्क्रिप्ट जो कमांड पर पोस्ट करे। [22:30] &lt;dm&gt; माफ़ करना, history=true :) [22:30] &lt;dm&gt; अरे, मैंने तो गड़बड़ कर दी। [22:31] &lt;jrand0m&gt; सही कहा mihi, पर bzip2 Windows पर नहीं है (जब तक कि हम उसे अनिवार्य न करें और इंस्टॉल न करें)। या तुम्हारा मतलब है bzip2 में कोई फ्लैग है जिससे एक फ़ाइल को किसी URL पर सबमिट किया जा सके? [22:32] &lt;dm&gt; मैं साइज की चिंता नहीं करूँगा, यहाँ जो छोटा समूह है उसके लिए दर्जनों मेग्स ठीक है। [22:32] &lt;Ophite1&gt; मैं C के पक्ष में वोट देता हूँ। [22:32] &lt;dm&gt; बशर्ते जब आप सबमिट करने वाली स्क्रिप्ट चलाएँ तो वो आर्काइव हो जाए। [22:32] &lt;Ophite1&gt; यह एक debug client है। [22:32] &lt;Ophite1&gt; प्रोडक्शन क्लाइंट में तो A, बेशक :) [22:32] &lt;mihi&gt; jrand0m: then use GZipOutputStream [22:32] &lt;jrand0m&gt; सही सही Ophite1 ;) [22:33] &lt;jrand0m&gt; mihi&gt; लोग इन फ़ाइलों को पढ़ना भी चाहेंगे ;) [22:33] &lt;duck&gt; हाँ, debugging भागीदारी के लिए opt-in हो, लेकिन एक बार जुड़ने पर यूज़र के लिए जितना हो सके आसान बनाओ (तो C) [22:33] &lt;mihi&gt; man zcat ;) [22:33] &lt;Ophite1&gt; jrandom: gzcat | less ;-) [22:33] &lt;mihi&gt; Ophite1: zless ;) [22:33] &lt;jrand0m&gt; C:\Documents and Settings\dev&gt;man [22:33] &lt;jrand0m&gt; 'man' is not recognized as an internal or external command, [22:33] &lt;jrand0m&gt; operable program or batch file. [22:33] &lt;jrand0m&gt; ;) [22:34] &lt;mihi&gt; cd \cygwin &lt;Ctrl+T&gt; call cygwin.bat [22:34] * dm अँगूठे घुमाता है। [22:34] &lt;Ophite1&gt; double-click -&gt; winrar -&gt; view [22:34] &lt;jrand0m&gt; ठीक है, तो हमारे पास एक B, दो C हैं, तुम्हारा क्या कहना है mihi? [22:34] &lt;jrand0m&gt; (और किसी और का?) [22:34] &lt;dm&gt; अँगूठे घुमाओ, नाक खुजाओ, क्लिक क्लिक। [22:34] &lt;mihi&gt; double-click - 7zop - view. मैं C कहूँगा। [22:35] &lt;mihi&gt; s/7zop/7zip/ [22:35] &lt;jrand0m&gt; 3 C, एक B. मुझे भी C ही थोड़ा ज़्यादा पसंद है, और बेशक अगर कोई /doesnt/ यह डेटा सबमिट करना नहीं चाहता, तो वे कह सकते हैं और यह कुछ नहीं करेगा [22:36] &lt;jrand0m&gt; मैं देखूँगा कि क्या मैं C और B दोनों लागू कर सकता हूँ [22:36] &lt;dm&gt; लगता है C ही है। [22:36] &lt;dm&gt; अपना समय बर्बाद मत करो, B वाला व्यक्ति डायलअप पर है और वैसी भी बहुत कम डेटा देगा ;) [22:36] &lt;jrand0m&gt; हेहे [22:36] &lt;jrand0m&gt; ठीक है, C शायद B के ऊपर ही लागू होगा, तो अतिरिक्त काम नहीं लगेगा [22:37] &lt;jar&gt; मेरी तरफ से: बिलकुल जैसे Ophite1 ने कहा! प्रोड क्लाइंट के लिए A, डिबग के लिए C ... [22:37] &lt;jrand0m&gt; सही, jar [22:37] &lt;jar&gt; बिलकुल जैसे Ophite1 ने कहा! प्रोड क्लाइंट के लिए A, डिबग के लिए C ... [22:37] &lt;Ophite1&gt; जाहिर है प्रोड क्लाइंट के लिए A के अलावा कुछ नहीं... [22:37] &lt;jar&gt; बिलकुल जैसे Ophite1 ने कहा! प्रोड क्लाइंट के लिए A, डिबग के लिए C ... [22:37] &lt;Ophite1&gt; ये तो स्पष्ट है :) [22:37] &lt;jar&gt; माफ़ करना ... :( [22:37] &lt;jrand0m&gt; सब ठीक है jar, हम तुम्हें kickban नहीं करेंगे (... इस बार ;) [22:38] &lt;jrand0m&gt; ठीक है, मैं उस पर काम शुरू करता हूँ, और जैसे ही वो टेस्ट हो जाएगा हमारे पास नया 0.2.3.5 रिलीज़ होगा (शायद कल) [22:39] &lt;jrand0m&gt; ठीक है, 5) ??? पर चलते हैं [22:39] &lt;jrand0m&gt; किसी के पास और कुछ है? सवाल, विचार, चिंताएँ? [22:39] * duck फ्री होस्टिंग ऑफर करता है [22:39] * dm फ्री होस्टिंग स्वीकार करता है [22:39] &lt;jrand0m&gt; ओह, बढ़िया। हाँ, लोगों को host.duck.i2p पर साइट्स होस्ट करनी चाहिए, पहुंच योग्य पेज होना अच्छा लगता है  [22:39] &lt;jrand0m&gt; (बेशक लोग खुद भी होस्ट करने के लिए स्वतंत्र महसूस करें ;) [22:40] &lt;duck&gt; हाँ, बस उनके लिए जो 24/7 ऑनलाइन नहीं रह सकते [22:40] &lt;jrand0m&gt; ठीक है [22:40] &lt;mihi&gt; streaming api का क्या हुआ (क्या होगा?) [22:40] &lt;jrand0m&gt; mihi&gt; वह टास्क लिस्ट में है, पर अभी नेटवर्क को भरोसेमंद तरीके से चलाना ज्यादा प्राथमिकता है :/ [22:41] &lt;mihi&gt; पर उसे पूरी तरह ड्रॉप तो नहीं किया गया? (मैं यही जानना चाहता हूँ...) [22:41] &lt;jrand0m&gt; मैं 0.3.1 रिलीज़ के लिए streaming api पर वापस आऊँगा (शायद उससे पहले, पर पक्का नहीं) [22:41] &lt;jrand0m&gt; उसे बिल्कुल भी ड्रॉप नहीं किया गया है। [22:41] &lt;jrand0m&gt; यह किया जाएगा। [22:41] &lt;dm&gt; ये streaming API क्या है? क्लाइंट्स के लिए नेटवर्क को एक्सपोज़ करने का एक अलग तरीका? [22:42] &lt;jrand0m&gt; dm&gt; http://wiki.invisiblenet.net/iip-wiki?I2PSocketLibrary [22:43] &lt;jrand0m&gt; मैंने शायद गलती की कि शुरुआत से ही router में mode=guaranteed शामिल कर दिया, बजाय इसे अलग lib में रखने के (और अब मैं उसे router से बाहर ले जाने की कोशिश कर रहा हूँ :) [22:43] &lt;jrand0m&gt; (उस गलती का पागलपन भरा शानदार फायदा यह हुआ कि mihi आया और i2ptunnel लिख डाला :) [22:44] * wn-user ने #i2p जॉइन किया है [22:44] &lt;jrand0m&gt; किसी और के पास कुछ है? [22:44] * dm समझ गया। [22:45] &lt;jrand0m&gt; w3rd [22:45] &lt;dm&gt; हम्म, मीटिंग खत्म करने के लिए बहुत जल्दी नहीं है? [22:45] &lt;duck&gt; hosts.txt का क्या? [22:45] &lt;duck&gt; ये बढ़ता ही जा रहा है [22:45] &lt;jrand0m&gt; खैर, 45 मिनट। दो हफ्ते पहले 20 मिनट थे [22:45] &lt;jrand0m&gt; आह, सही कहा [22:45] &lt;duck&gt; लेकिन 75% ऑफ़लाइन है [22:45] &lt;duck&gt; और लगता है 50% स्थायी रूप से ऑफ़लाइन है [22:45] &lt;jrand0m&gt; शायद [22:46] &lt;jrand0m&gt; मुझे नहीं पता [22:46] &lt;duck&gt; बस इसे बढ़ने दो, ताकि DNS समाधान के लिए प्रोत्साहन बढ़े :) [22:46] &lt;jrand0m&gt; हह, बिल्कुल [22:46] &lt;Ophite1&gt; मैं थोड़ी देरी के पक्ष में हूँ, मैं हर तरह की Windows समस्याओं से बहुत मज़े कर रहा हूँ... [22:46] &lt;dm&gt; Ophite1: Windows शैतान है! [22:46] &lt;Ophite1&gt; आप सच में यह नहीं समझते कि Windows कितना खराब है, जब तक कि उसके लिए सॉफ्टवेयर नहीं लिखते। [22:47] &lt;jrand0m&gt; Java इस्तेमाल करने का कारण #941  [22:47] &lt;dm&gt; जब तक आप .NET इस्तेमाल नहीं कर रहे। [22:47] &lt;dm&gt; जिसे java++ भी कहते हैं [22:47] &lt;Ophite1&gt; dm/jrand0m: यह फिर भी Windows पर ही चलता है, और कुछ चीज़ें ऐसी हैं जिनसे आप बार-बार टकराते ही रहते हैं। [22:47] &lt;duck&gt; jrand0m: उन्हीं आखिरी पैचों से, क्या वे disconnects सुलझेंगे? या और connection समस्याएँ [22:47] &lt;Ophite1&gt; Path lengths उदाहरण के लिए। Bloody Unicode. [22:48] &lt;mihi&gt; या फाइल नामों में \n का इस्तेमाल न करना ;) [22:48] &lt;mihi&gt; जो वैसे भी cvs को क्रैश कर देगा (on *nix, BTDT) [22:48] &lt;jrand0m&gt; duck&gt; आज के कोई पैच critical नहीं हैं [22:48] &lt;duck&gt; मेरा मतलब कल वाले से है [22:49] &lt;dm&gt; अगर आप filenamE में \n इस्तेमाल करें तो क्या होगा? :) [22:49] &lt;mihi&gt; dm: ट्राइ करो ;) *nix पर कुछ नहीं होता, जब तक कि आप बाद में cvs update चलाने की कोशिश न करें। [22:49] &lt;jrand0m&gt; ओह, कल अच्छे पैच थे जो कुछ (ज्यादातर? सब?) i2ptunnel Peer unreachable मैसेज सुलझाएँगे। लेकिन i2cp disconnects नहीं [22:50] &lt;dm&gt; मुझे लगता है यह एक exception फेंकेगा। [22:50] &lt;jrand0m&gt; (यही कारणों में से एक है कि 0.2.3.5 आ रहा है) [22:51] &lt;mihi&gt; dm: यह लोकल रिपॉज़िटरी के साथ काम करता है, लेकिन pserver या ssh के साथ नहीं। [22:51] &lt;mihi&gt; कुछ वैसा 'protocol error'। [22:51] &lt;mihi&gt; (प्रोटोकॉल फ़ाइल नामों को \n से टर्मिनेट करता है ;) ) [22:51] &lt;Ophite1&gt; कुछ वैसा ही जैसा direct connect में होता है अगर आपके filenames में $ और | हों। मुझे DC से नफ़रत है। [22:51] &lt;duck&gt; . [22:52] &lt;Ophite1&gt; मैं चाहे कुछ भी कोड करूँ, कभी भी, वह इतना बुरा नहीं हो सकता :) [22:52] &lt;jrand0m&gt; नहीं, तुम C devs तो बस \0 को $ की जगह special मानते हो ;) [22:52] &lt;jrand0m&gt; ठीक है, i2p पर और कुछ या हम जाने को तैयार हैं? [22:53] * madman2003 has quit IRC (12( www.nnscript.de 12:: NoNameScript 3.8 12:: www.XLhost.de 12)) [22:54] &lt;jrand0m&gt; 'k बस इतना ही [22:54] * jrand0m *baf*s करते हुए बैठक समाप्त करता है </div>
+<div class="irc-log">
+[22:07] &lt;jrand0m&gt; agenda:
+[22:07] &lt;jrand0m&gt; 0) hi (read http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html)
+[22:07] &lt;jrand0m&gt; 1) router dev status
+[22:07] &lt;jrand0m&gt; 2) twisted-i2p
+[22:07] &lt;jrand0m&gt; 3) unit tests
+[22:07] &lt;jrand0m&gt; 4) network testing / monitoring
+[22:07] &lt;jrand0m&gt; 5) ???
+[22:07] &lt;jrand0m&gt; 0) hi
+[22:07] &lt;jrand0m&gt; hi
+[22:07] * jrand0m waves
+[22:07] &lt;dm&gt; ohhhh meeting!
+[22:07] * dm waves back.
+[22:07] &lt;jrand0m&gt; 9p gmt every tuesday :)
+[22:08] &lt;jrand0m&gt; people should read that url (http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html) since there's stuff in it that I need feedback on during agenda item 4
+[22:08] &lt;jrand0m&gt; 1) router dev status
+[22:09] &lt;jrand0m&gt; making progress, code currently in cvs is looking good.  i've had a script testing a series of routers for the last day or so and none of them have popped out a single ERROR message
+[22:09] &lt;duck&gt; reading...
+[22:10] &lt;jrand0m&gt; but of course thats just baseline testing (keeping the routers building tunnels correctly, tunneling data through one to another via i2ptunnel, etc)
+[22:11] * jnk has joined #i2p
+[22:11] &lt;jrand0m&gt; theres certainly other things that need to be fixed up in the wild, which is why there's going to be a 0.2.3.5 release in the next day or so to confirm functionality or to find new bugs
+[22:11] &lt;jrand0m&gt; ok, moving on
+[22:12] &lt;jrand0m&gt; 2) twisted+i2p
+[22:12] &lt;duck&gt; I do have errors
+[22:12] &lt;duck&gt; but probably due to others
+[22:12] &lt;jrand0m&gt; dropped messages and unknown tunnels, right?
+[22:12] &lt;duck&gt; checking
+[22:13] &lt;jrand0m&gt; (those are the errors I see with one of my 'live' routers but not on the test network)
+[22:13] &lt;duck&gt; 22:13:15.371 ERROR [ Sender 1148] er.transport.phttp.PHTTPSender: Error sending the message
+[22:13] &lt;jrand0m&gt; ah ok, yeah, i've been smacking around the phttp relay too
+[22:13] &lt;duck&gt; 21:01:01.509 ERROR [JobQueue28  ] eDatabaseSearchReplyMessageJob: Invalid router info returned from [Rout
+[22:14] &lt;jrand0m&gt; hmm that one is funky - could you bounce me the stacktrace?
+[22:14] &lt;duck&gt; I'll put it up.
+[22:14] &lt;duck&gt; .
+[22:14] &lt;jrand0m&gt; gracias
+[22:15] &lt;jrand0m&gt; actually, thats going to be a general rule with the future releases - WARN or INFO or DEBUG messages are fine, and ERROR or CRIT messages are things I'd like to hear about
+[22:16] &lt;jrand0m&gt; ok, back to 2)
+[22:16] &lt;jrand0m&gt; human has put together a way to use i2p via python and the twisted framework (yay!)
+[22:17] &lt;jrand0m&gt; see his email for more info (http://i2p.dnsalias.net/pipermail/i2p/2004-January/000100.html) 
+[22:17] &lt;jrand0m&gt; anything to add human?  (if you're here)
+[22:17] &lt;duck&gt; it is _so_ cool
+[22:17] &lt;jrand0m&gt; yeah, the sample code for the echo server and client look kick-ass
+[22:18] &lt;jrand0m&gt; ok, moving on to 3) unit tests
+[22:19] &lt;jrand0m&gt; yeah, there are some unit tests for most of the data structures, but they aren't "one click testable" so I don't run them on every build.  
+[22:20] &lt;jrand0m&gt; current thoughts are to migrate them to jUnit, as well as to merge as many of the other unit tests currently implemented in the main(..) method of various components (specifically the crypto ones) 
+[22:21] &lt;duck&gt; probably it is difficult to test more complex things
+[22:21] &lt;jrand0m&gt; thats going to come up to be on the critical path sooner rather than later, depending on where the debugging leads us
+[22:21] &lt;jrand0m&gt; right, the unit tests as is just test the basics
+[22:21] &lt;duck&gt; like routing, tcp stuff etc
+[22:21] &lt;jrand0m&gt; right
+[22:21] * dm sees a debate on value of unit testing coming.
+[22:21] &lt;jrand0m&gt; but things like the AESInputStream can be tested in collaboration with AESOutputStream
+[22:22] &lt;duck&gt; unit test = kickass
+[22:22] &lt;jrand0m&gt; (and for those watching their logs closely, there's been some funky "pushed back" behavior during decrypt streaming)
+[22:22] &lt;jrand0m&gt; definitely.
+[22:23] &lt;jrand0m&gt; unit tests are just for the, er, units.  not for the larger components (which is what agenda item 4 is about ;)
+[22:24] &lt;jrand0m&gt; but in any case, if someone is interested in helping out convert the existing data structure unit tests to the jUnit framework, lemmie know - it'd be much appreciated (and would give you a good foundation of the i2p codebase)
+[22:24] * mihi_away is now known as mihi
+[22:25] &lt;dm&gt; If it's not done by the weekend I can take a look. I know nothing about unit testing so I could learn through it.
+[22:25] &lt;jrand0m&gt; wikked!
+[22:25] &lt;dm&gt; No promises though.
+[22:25] &lt;jrand0m&gt; right right
+[22:25] &lt;jrand0m&gt; ok, moving on to 4) network testing / monitoring
+[22:26] &lt;jrand0m&gt; has everyone read http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html?  I don't want to just copy and paste that
+[22:26] * Frontier has joined #i2p
+[22:27] * jrand0m gives people time to digest
+[22:27] * dm says...
+[22:28] &lt;Frontier&gt; digest wat?
+[22:28] &lt;dm&gt; C) but not with automatic sending.
+[22:28] &lt;dm&gt; i.e. you type emaillogstojrandom.sh (.bat)
+[22:28] &lt;dm&gt; email or post, or whatever.
+[22:29] &lt;dm&gt; and when it does that it clears you log, or moves it somewhere, so you don't submit the same data twice.
+[22:29] &lt;jrand0m&gt; so basically B
+[22:29] &lt;jrand0m&gt; (or A)
+[22:29] &lt;dm&gt; Yeah, user-friendly B) :)
+[22:29] &lt;jrand0m&gt; thats one of the tricks wrt the data... that log grows to tens of megs per night
+[22:29] &lt;jrand0m&gt; right 
+[22:30] &lt;dm&gt; sorry, didn't see history=false for C.
+[22:30] &lt;jrand0m&gt; Frontier) we're discussing section 4 of http://i2p.dnsalias.net/pipermail/i2p/2004-January/000101.html?
+[22:30] &lt;mihi&gt; jrand0m: man bzip2
+[22:30] &lt;dm&gt; So history=false with a script to post on command.
+[22:30] &lt;dm&gt; sorry, history=true :)
+[22:30] &lt;dm&gt; god, I've made a mess of it.
+[22:31] &lt;jrand0m&gt; right mihi, but bzip2 isn't on windows (unless we require it and install it).  or do you mean bzip2 has a flag to submit a file to a url?
+[22:32] &lt;dm&gt; I wouldn't worry about the size, 10s of megs for the small group of people you have here is fine.
+[22:32] &lt;Ophite1&gt; I vote C.
+[22:32] &lt;dm&gt; As long as it gets archived when you run the script to submit.
+[22:32] &lt;Ophite1&gt; This is a debug client.
+[22:32] &lt;Ophite1&gt; A in a production client of course :)
+[22:32] &lt;mihi&gt; jrand0m: then use GZipOutputStream
+[22:32] &lt;jrand0m&gt; right right Ophite1 ;)
+[22:33] &lt;jrand0m&gt; mihi&gt; people might like to read these files ;)
+[22:33] &lt;duck&gt; yeah, opt-in for debugging participation, but once you join, make it as easy as possible for the user (so C)
+[22:33] &lt;mihi&gt; man zcat ;)
+[22:33] &lt;Ophite1&gt; jrandom: gzcat | less ;-)
+[22:33] &lt;mihi&gt; Ophite1: zless ;)
+[22:33] &lt;jrand0m&gt; C:\Documents and Settings\dev&gt;man
+[22:33] &lt;jrand0m&gt; 'man' is not recognized as an internal or external command,
+[22:33] &lt;jrand0m&gt; operable program or batch file.
+[22:33] &lt;jrand0m&gt; ;)
+[22:34] &lt;mihi&gt; cd \cygwin &lt;Ctrl+T&gt; call cygwin.bat
+[22:34] * dm twiddles his thumbs.
+[22:34] &lt;Ophite1&gt; double-click -&gt; winrar -&gt; view
+[22:34] &lt;jrand0m&gt; ok, so we have one B, two C, whats your take mihi?
+[22:34] &lt;jrand0m&gt; (and anyone else?)
+[22:34] &lt;dm&gt; twiddle thumbs, pick nose, click click.
+[22:34] &lt;mihi&gt; double-click - 7zop - view. I'd say C.
+[22:35] &lt;mihi&gt; s/7zop/7zip/
+[22:35] &lt;jrand0m&gt; 3 c one b.  i kind of prefer c too, and of course if someone /doesnt/ want to submit this data, they can always say so and it won't do shit
+[22:36] &lt;jrand0m&gt; i'll see if i can implement both c and b
+[22:36] &lt;dm&gt; Looks like C it is.
+[22:36] &lt;dm&gt; Don't waste your time, the B person is on dialup and would offer very little data anyway ;)
+[22:36] &lt;jrand0m&gt; hehe
+[22:36] &lt;jrand0m&gt; well, c is probably going to be implemented on top of b, so it won't take any more work
+[22:37] &lt;jar&gt; for me : just like Ophite1 said ! A for prod client, C for debug ...
+[22:37] &lt;jrand0m&gt; word jar
+[22:37] &lt;jar&gt; just like Ophite1 said ! A for prod client, C for debug ...
+[22:37] &lt;Ophite1&gt; obviously not anything other than A for prod client...
+[22:37] &lt;jar&gt; just like Ophite1 said ! A for prod client, C for debug ...
+[22:37] &lt;Ophite1&gt; that's a no-brainer :)
+[22:37] &lt;jar&gt; sorry ... :(
+[22:37] &lt;jrand0m&gt; s'all good jar, we won't kickban you (... this time ;)
+[22:38] &lt;jrand0m&gt; ok, so i'll get cracking on that, and pretty much once thats tested we'll have a new 0.2.3.5 release (sometime tomorrow)
+[22:39] &lt;jrand0m&gt; ok, moving on to 5) ???
+[22:39] &lt;jrand0m&gt; anyone have anything else?  questions, thoughts, concerns?
+[22:39] * duck offers free hosting
+[22:39] * dm accepts free hosting
+[22:39] &lt;jrand0m&gt; oh word.  yeah, people should host sites on host.duck.i2p, its nice having reachable pages 
+[22:39] &lt;jrand0m&gt; (of course people should also feel free to host for themselves too ;)
+[22:40] &lt;duck&gt; sure, just for those who can't stay online 24/7
+[22:40] &lt;jrand0m&gt; right
+[22:40] &lt;mihi&gt; what happened (will happen?) to the streaming api?
+[22:40] &lt;jrand0m&gt; mihi&gt; its in the task list, but getting the network functioning reliably is higher priority at the moment :/
+[22:41] &lt;mihi&gt; but it is not dropped completely? (that's what i wanna know...)
+[22:41] &lt;jrand0m&gt; i'll get back to the streaming api for the 0.3.1 release (perhaps sooner, but not sure)
+[22:41] &lt;jrand0m&gt; its definitely NOT dropped completely.
+[22:41] &lt;jrand0m&gt; it will be done.
+[22:41] &lt;dm&gt; What's this streaming API? A different way of exposing the network to clients?
+[22:42] &lt;jrand0m&gt; dm&gt; http://wiki.invisiblenet.net/iip-wiki?I2PSocketLibrary
+[22:43] &lt;jrand0m&gt; I made what is arguably a mistake of including mode=guaranteed in the router from the beginning instead of putting it in a seperate lib (and now i'm trying to move it out of the router :)
+[22:43] &lt;jrand0m&gt; (the insanely awesome benefit of that mistake was mihi coming along and writing i2ptunnel :)
+[22:44] * wn-user has joined #i2p
+[22:44] &lt;jrand0m&gt; anyone else have anything?
+[22:44] * dm gets it.
+[22:45] &lt;jrand0m&gt; w3rd
+[22:45] &lt;dm&gt; Hmmm, too early to end meeting, ain't it?
+[22:45] &lt;duck&gt; what about the hosts.txt
+[22:45] &lt;duck&gt; it is growing and growing
+[22:45] &lt;jrand0m&gt; well, 45 mins.  two weeks ago we had 20 mins
+[22:45] &lt;jrand0m&gt; ah, true that
+[22:45] &lt;duck&gt; but 75% is offline
+[22:45] &lt;duck&gt; and it looks like 50% is permanently offline
+[22:45] &lt;jrand0m&gt; prolly
+[22:46] &lt;jrand0m&gt; I dunno
+[22:46] &lt;duck&gt; just keep it growing, to raise the incentive for a DNS solution :)
+[22:46] &lt;jrand0m&gt; heh exactly
+[22:46] &lt;Ophite1&gt; I'm all for a little delay, I'm having a lot of fun with all kinds of Windows problems...
+[22:46] &lt;dm&gt; Ophite1: windows is the devil!
+[22:46] &lt;Ophite1&gt; You never really understand just how awful Windows is, until you write software for it.
+[22:47] &lt;jrand0m&gt; reason #941 to use java 
+[22:47] &lt;dm&gt; Unless you're using .NET.
+[22:47] &lt;dm&gt; also known as java++
+[22:47] &lt;Ophite1&gt; dm/jrand0m: it's still running *on* Windows, and there are still some things you just keep running into.
+[22:47] &lt;duck&gt; jrand0m: those last patches, would they solve disconnects? or more connection problems
+[22:47] &lt;Ophite1&gt; Path lengths for example. Bloody unicode.
+[22:48] &lt;mihi&gt; Or not to use \n in file names ;)
+[22:48] &lt;mihi&gt; which will crash cvs anyway (on *nix, BTDT)
+[22:48] &lt;jrand0m&gt; duck&gt; no patches today are critical
+[22:48] &lt;duck&gt; from yesterday I mean
+[22:49] &lt;dm&gt; What happens if you use \n in a filenamE? :)
+[22:49] &lt;mihi&gt; dm: try it ;) on *nix, nothing happens, as long as you don't try to run cvs update afterwards.
+[22:49] &lt;jrand0m&gt; oh, yesterday there were Good patches that would solve some (most? all?) i2ptunnel Peer unreachable messages.  not i2cp disconnects though
+[22:50] &lt;dm&gt; I think it would throw an exception.
+[22:50] &lt;jrand0m&gt; (which is one of the reasons 0.2.3.5 is coming out)
+[22:51] &lt;mihi&gt; dm: it works w/ local repository, but not w/ pserver or ssh.
+[22:51] &lt;mihi&gt; something like 'protocol error'.
+[22:51] &lt;mihi&gt; (the protocol terminates file names by \n ;) )
+[22:51] &lt;Ophite1&gt; sort of like what happens with direct connect if you have filenames with $ and | in them. I hate DC.
+[22:51] &lt;duck&gt; .
+[22:52] &lt;Ophite1&gt; No matter what I code, ever, it could never be that bad :)
+[22:52] &lt;jrand0m&gt; naw, you c devs just treat \0 as special instead of $ ;)
+[22:52] &lt;jrand0m&gt; ok, anything else on i2p or we good to go?
+[22:53] * madman2003 has quit IRC (12( www.nnscript.de 12:: NoNameScript 3.8 12:: www.XLhost.de 12))
+[22:54] &lt;jrand0m&gt; 'k thazzit
+[22:54] * jrand0m *baf*s the meeting to a close
+</div>

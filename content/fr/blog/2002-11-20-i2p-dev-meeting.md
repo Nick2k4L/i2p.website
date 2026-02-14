@@ -1,17 +1,218 @@
 ---
-title: "Réunion des développeurs I2P"
+title: "Réunion de développement I2P"
 date: 2002-11-20
 author: "nop"
 description: "Journal de la réunion de développement I2P du 20 novembre 2002."
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)
 
-## Bref récapitulatif
+## Récapitulatif rapide
 
 <p class="attendees-inline"><strong>Présents :</strong> al-jabr, Chocolate, dd0c, Fairwitness, goc, hezekiah, mids, nemesis, Neo, nop, Robert, sanity, sinster, tarpY, tc, zic</p>
 
 ## Journal de réunion
 
-<div class="irc-log"> --- Journal ouvert Tue Nov 19 23:51:34 2002 23:52 < logger> test 23:52 -!- mode/#iip-dev [+o mids] by Trent 23:52 -!- mode/#iip-dev [+v logger] by mids 23:53 -!- mode/#iip-dev [+oo nop UserX] by mids 23:57 <@mids> réunion publique IIP sur le canal #iip-dev commençant dans 2,5 minutes 23:57 < nemesis> lol 23:57 < zic> quelqu'un d'Ukraine ? envoyez-moi un message ! héhéhé 23:58 -!- mode/#iip-dev [+o hezekiah] by mids 23:58 <@hezekiah> Bonjour encore, mids ! 23:58 < Robert> Hey Nemesis, as-tu vu http://www.bash.org/?top 23:58  * athena voit hezekiah sous un tout nouveau jour :p 23:58 < nemesis> bash ? 23:58 <@mids> Robert : ils sont indisponibles 23:58 <@mids> quoi ! 23:58 <@mids> ils sont de retour ! --- Jour changé Wed Nov 20 2002 00:00 <@mids> Tue Nov 19 23:00:00 UTC 2002 00:00 <@nop> bienvenue 00:00 <@nop> bienvenue 00:00 <@nop> à la 20e ? 00:00 <@nop> réunion IIP 00:00 <@hezekiah> 20e ! 00:00 <@mids> oui 00:00 <@nop> oui, à l'ordre du jour aujourd'hui... 00:01 <@nop> mids... 00:01 <@mids> 1) bienvenue 00:02 <@mids> 2) sortir rc3 00:02 <@mids> 3) aperçu en avant-première de rc3 00:02 <@mids> 4) en-cas et boissons 00:02 <@mids> 5) questions 00:02 <@mids> . 00:02 <@nop> merci 00:02 <@nop> ok 00:02 <@nop> donc nous publierons officiellement rc3 jeudi 00:02 <@nop> merci de le noter dans vos agendas 00:02 <@mids> on l'espère :) 00:02 <@mids> (à moins que SourceForge soit de nouveau en panne) 00:03 <@nop> d'accord, ont-ils corrigé le ro sur nfs ? 00:03 <@mids> oui 00:03 <@nop> c'était leur erreur ? 00:03 < tarpY> je suis ici pour la nourriture 00:03 <@mids> c'était annoncé sur leur page de statut, au fait 00:03 <@nop> ok 00:03 <@mids> maintenance 00:03 <@nop> compris 00:03 <@nop> ils faisaient probablement des sauvegardes 00:03 < tarpY> je voulais commander une pizza via le freenet et j'ai découvert qu'ils ne veulent pas 00:03 <@nop> :) 00:03 < tarpY> où puis-je trouver à manger ici 00:03 <@mids> tarpY : #muchnies-to-take-away 00:04 <@nop> ok 00:04 <@mids> quoi de neuf dans rc3 : 00:04 <@nop> donc jeudi nous sortirons ça 00:04 <@nop> oh 00:04 <@nop> Mids, je crois que tu as le journal des modifications sous la main 00:04 <@nop> sinon 00:04 <@mids> moi aussi 00:04 <@nop> je l'affiche 00:04 <@nop> ok 00:04 < sinster> rc3 aura-t-il un script d'installation correct pour *nix ? 00:04 <@mids> - Affichage du numéro de version pour Windows (option de menu) et Unix (ligne de commande). 00:04 <@mids> - Correction de la génération de nombres aléatoires. 00:04 <@mids> - Les connexions réseau IIP ne sont plus mises en pause pendant l'écran de configuration. 00:04 <@mids> - Quitte désormais si elle ne peut pas faire un bind sur un socket au démarrage. 00:04 <@mids>   Sous Windows, une boîte de dialogue informe désormais qu'il est impossible de faire un bind sur le port. 00:04 <@mids> - Plusieurs corrections de bogues et une fuite de mémoire corrigée. 00:04 <@mids> . 00:04 <@mids> sinster : non, c'est ce sur quoi hezekiah travaille 00:05 <@mids> ce sera pour la 1.2 00:05 <@hezekiah> Pas exactement ... 00:05 <@nop> ok 00:05 < zic> y a-t-il des plans pour traduire la (sympa) FAQ @ help.invisiblenet.net ? 00:05 <@nop> toute personne souhaitant traduire 00:05 <@nop> allez-y s'il vous plaît 00:05 < sinster> mids/hezekiah : est-ce que ça ajoutera iip à /etc/rc.d/ pour qu'il démarre automatiquement ? juste une suggestion 00:05 <@nop> nous apprécierions beaucoup 00:05 <@nop> et nous la mettrons sur le site 00:05 < zic> rc3 exigera-t-il des modifs dans la FAQ ? 00:06 <@mids> sinster : j'ai un script ici... mais il a besoin de plus de tests 00:06 <@mids> sinster : peut-être que nous l'ajouterons avec la 1.1 finale 00:06 <@hezekiah> sinster : ce ne serait pas compatible entre distributions, puisque différentes distros mettent les scripts de démarrage à des endroits différents. 00:06 <@mids> zic : non 00:06 < sinster> mids : oui, assure-toi de le tester sur les principales variantes Linux, Red Hat, Debian, etc. 00:06 <@nop> bon, peut-on attendre pour les questions 00:06 <@nop> s'il vous plaît 00:06 < zic> mon isproxy est scripté dans /etc/init.d (debian), fonctionne parfaitement 00:06 <@mids> oups 00:06 <@nop> jusqu'aux questions-réponses 00:06 < zic> désolé ! 00:06 < zic> désolé ! 00:06 <@hezekiah> Désolé. 00:06 <@nop> ça devient confus 00:06 <@nop> ;) 00:06 <@nop> désolé 00:06 < sinster> nop : ok 00:06 < tarpY> pas de traduction, tout le monde devrait parler anglais. 00:07 < sinster> nop : ma faute 00:07 <@nop> pas de souci 00:07 <@mids> des questions sur le journal des modifications ? 00:07 <@mids> non ? 00:07 <@mids> nop : aperçu en avant-première ? 00:07 <@nop> attendez, mon relais vient de rendre l’âme 00:08 <@nop> attendons que tout le monde revienne 00:08 <@mids> aïe 00:08 <@nop> le délai peut être agaçant dans une réunion 00:08 <@nop> ;) 00:08 <@nop> tout le monde est toujours là ? 00:08 <@mids> on dirait bien 00:09 <@hezekiah> Je n'ai vu personne partir. 00:09 <@nop> ok 00:09 < zic> je suis là (est-ce que je compte ? hehe) 00:09 <@nop> eh bien nous avons une fonction de délai 00:09 <@nop> ;) 00:09 <@nop> ok 00:09 < al-jabr> Moi non plus. 00:09 <@nop> je suppose que mon relais a été retiré de la liste pour manque de fiabilité 00:09 <@nop> haha 00:09 <@mids> hehe 00:09  * Robert rejoint #muchnies-to-take-away pendant qu'il attend... 00:09 <@mids> voilà 00:09 <@nop> yep 00:10 <@nop> en voilà un autre 00:10 <@nop> ;) 00:10 < al-jabr> là, ça en fait cinq. 00:10 <@hezekiah> Il faut vraiment qu'on fasse quelque chose à ce sujet. :( 00:10 < nemesis> euh 00:10 < nemesis> mids 00:10 <@nop> hezekiah : routage à spectre étalé 00:11 < tc> ce sont des ratés dans le système de relais ? 00:11 <@nop> ;) 00:11 <@nop> ma machine relais Windows a planté 00:11 <@nop> typique 00:11 < nemesis> pour Win2k / XP, y aura-t-il à l'avenir une build sans GUI 00:11 <@hezekiah> lol 00:11 < nemesis> ou seulement une GUI pour la configuration 00:11 < nemesis> et le reste en daemon ? 00:11 <@nop> ce serait bien de l'avoir comme service 00:11 <@nop> ;) 00:12 < nemesis> oui 00:12 < nemesis> ;) 00:12 <@nop> il existe un programme appelé Service Installer 00:13 <@nop> ok 00:13 <@nop> bon 00:13 < nemesis> iip.exe --install 00:13 <@nop> plus de délais 00:13 < nemesis> comme Apache pour Windows 00:13 <@mids> est-ce que tout le monde est déjà revenu ? 00:14 <@nop> ok 00:15 <@nop> bienvenue baci 00:15 <@nop> de retour 00:15 < nemesis> le Neo de Matrix ? ;) 00:15 <@nop> ok 00:15 <@nop> je pense qu'ils sont de retour 00:16 <@mids> oui 00:16 <@nop> ok 00:16 <@nop> aperçu en avant-première 00:16 <@mids> J'ai créé un FLT-iip.1.1-rc3-pre1-mids-sneak-preview-screaner.tgz 00:16 <@mids> tout le monde sous Unix peut le tester 00:16 <@mids> pas encore de version Windows 00:16 <@nop> je peux en faire une tout de suite 00:16 <@nop> si tu veux 00:16 < zic> lol 00:16 <@mids> http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz 00:16 < nemesis> ça va 00:16 < nemesis> j'attends 00:16 < zic> Audio OGG ou LAME ? 00:17 <@mids> j'attends surtout des retours sur des versions Unix obscures 00:17 <@mids> comme NetBSD etc. 00:17 < nemesis> je pense que ce n'est pas si grave quand une machine Unix plante après 30 jours d'uptime 00:17 <@mids> et MacOS X 00:17 < nemesis> comparé à une machine Windows avec 3 jours d'uptime ;) 00:17 < tc> mids : cette modification concerne uniquement isproxy ou aussi d'autres éléments du relais ? 00:17 <@nop> non 00:17 <@nop> vous gardez vos paramètres 00:17 <@nop> avons-nous testé qu'il peut s'installer par-dessus la précédente 00:17 <@nop> hmm 00:18 <@nop> à noter 00:18 < zic> nemesis : mais ce serait cool si ça ne plantait jamais. mais arrêtons de bavarder. nous sommes dans une réunion formelle 00:18 < nemesis> héhé 00:18 <@nop> ok 00:18 <@nop> si quelqu'un veut tester si le processus de mise à niveau est trivial 00:18 < nemesis> ne testez pas les jours de réunion ;) 00:18 <@nop> alors allez-y 00:18 <@nop> et envoyez un mail ou informez un des devs des résultats 00:18 <@mids> merci de le tester à côté de votre relais actuel 00:18 <@mids> et oui, merci de faire des retours 00:19 <@mids> sur ce qui s'est mal passé 00:19 <@mids> etc. 00:19 <@nop> re-bienvenue tarpY 00:19 <@nop> mettons ce screener dans le topic 00:19 < goc> est-il possible d'exécuter isproxy-rc2 et isproxy-almost-rc3 simultanément ? 00:19 <@nop> oui 00:20 <@nop> paramètres de ports différents 00:20 <@nop> et ce n'est pas difficile du tout 00:20 < goc> où est stocké le fichier de conf ? 00:20 <@nop> mais rc3 devrait pouvoir passer par-dessus rc2 00:20 <@nop> il se peut que vous ayez à faire un -f /dir 00:20 <@nop> ou que vous le fassiez passer par-dessus l'installation rc2 00:21 < tarpY> allez-vous finir par supprimer le proxy et l'intégrer dans un client ? </div>
+<div class="irc-log">
+--- Log opened Tue Nov 19 23:51:34 2002
+23:52 < logger> test
+23:52 -!- mode/#iip-dev [+o mids] by Trent
+23:52 -!- mode/#iip-dev [+v logger] by mids
+23:53 -!- mode/#iip-dev [+oo nop UserX] by mids
+23:57 <@mids> public IIP meeting in channel #iip-dev starting in 2.5 minutes
+23:57 < nemesis> lol
+23:57 < zic> anybody from Ukrain? message me! hehehe
+23:58 -!- mode/#iip-dev [+o hezekiah] by mids
+23:58 <@hezekiah> Hello again, mids!
+23:58 < Robert> Hey Nemesis, have you seen http://www.bash.org/?top
+23:58  * athena sees hezekiah in a whole new light :p
+23:58 < nemesis> bash?
+23:58 <@mids> Robert: they are down
+23:58 <@mids> what!
+23:58 <@mids> they are back!
+--- Day changed Wed Nov 20 2002
+00:00 <@mids> Tue Nov 19 23:00:00 UTC 2002
+00:00 <@nop> welcome
+00:00 <@nop> welcome
+00:00 <@nop> to the 20th?
+00:00 <@nop> IIP meeting
+00:00 <@hezekiah> 20th!
+00:00 <@mids> yes
+00:00 <@nop> yes on the agenda today...
+00:01 <@nop> mids...
+00:01 <@mids> 1) welcome
+00:02 <@mids> 2) getting rc3 out
+00:02 <@mids> 3) sneak preview on rc3
+00:02 <@mids> 4) snacks and drinks
+00:02 <@mids> 5) questions
+00:02 <@mids> .
+00:02 <@nop> thnx
+00:02 <@nop> ok
+00:02 <@nop> so we are having rc3 officially released thursday
+00:02 <@nop> please mark that in your calendars
+00:02 <@mids> we hope :)
+00:02 <@mids> (unless sourceforge is down again)
+00:03 <@nop> right, did they fix the ro on nfs?
+00:03 <@mids> yes
+00:03 <@nop> was it their mistake?
+00:03 < tarpY> i am here for the food
+00:03 <@mids> it was announced on their status page btw
+00:03 <@nop> ok
+00:03 <@mids> maintenance
+00:03 <@nop> gotcha
+00:03 <@nop> probably doing backups
+00:03 < tarpY> i wanted to order pizza off of the freenet and i found out they wont
+00:03 <@nop> :)
+00:03 < tarpY> where can i get food here
+00:03 <@mids> tarpY: #muchnies-to-take-away
+00:04 <@nop> ok
+00:04 <@mids> what will be new in rc3:
+00:04 <@nop> so Thursday we will get that out
+00:04 <@nop> oh
+00:04 <@nop> Mids, I believe you have the changelog handy
+00:04 <@nop> if not
+00:04 <@mids> me too
+00:04 <@nop> I'll display
+00:04 <@nop> ok
+00:04 < sinster> will rc3 have a decent install script for *nix?
+00:04 <@mids> - Display of version number for windows (menu option) and unix (command line).
+00:04 <@mids> - Random number generation fix.
+00:04 <@mids> - IIP network connections are no longer paused while in the setup screen.
+00:04 <@mids> - Now exits if it can't bind to a socket at startup.
+00:04 <@mids>   Windows now displays a message box informing that it can't bind to port.
+00:04 <@mids> - Several bugfixes and one memory leak fixed.
+00:04 <@mids> .
+00:04 <@mids> sinster: no, that is what hezekiah is working on
+00:05 <@mids> that will be 1.2
+00:05 <@hezekiah> Not quite ...
+00:05 <@nop> ok
+00:05 < zic> are there plans for translating the (nice) faq @ help.invisiblenet.net ?
+00:05 <@nop> anyone who wants to translate
+00:05 <@nop> please do
+00:05 < sinster> mids/hezekiah: will it add iip to /etc/rc.d/ so that it starts automatically?  just a suggestion
+00:05 <@nop> we would very much appreciate it
+00:05 <@nop> and have it on the site
+00:05 < zic> will rc3 demand any mod in the FAQ?
+00:06 <@mids> sinster: I got a script here... but that needs more testing
+00:06 <@mids> sinster: maybe we'll add that with 1.1 final
+00:06 <@hezekiah> sinster: that would not be distribution compatible, since different distros put startup stuff in different places.
+00:06 <@mids> zic: no
+00:06 < sinster> mids: yeah, make sure you test it on the major linux flavors, redhat, debian etc
+00:06 <@nop> well, can we wait on quesitons
+00:06 <@nop> please
+00:06 < zic> my isproxy is scripted in /etc/init.d (debian), works perfectly
+00:06 <@mids> oops
+00:06 <@nop> till the questions and answers
+00:06 < zic> sorry!
+00:06 < zic> sorry!
+00:06 <@hezekiah> Sorry.
+00:06 <@nop> it gets confusing
+00:06 <@nop> ;)
+00:06 <@nop> sorry
+00:06 < sinster> nop: ok
+00:06 < tarpY> no translating everyone should speak english.
+00:07 < sinster> nop: my bad
+00:07 <@nop> no prob
+00:07 <@mids> any questions on the changelog?
+00:07 <@mids> no?
+00:07 <@mids> nop: sneak preview?
+00:07 <@nop> hold my relay just bit the dust
+00:08 <@nop> wait till everyone comes back
+00:08 <@mids> auch
+00:08 <@nop> delay can be annoying in a meeting
+00:08 <@nop> ;)
+00:08 <@nop> everyone still here?
+00:08 <@mids> seems like it
+00:09 <@hezekiah> I didn't see anyone leave.
+00:09 <@nop> ok
+00:09 < zic> i am (does i matter? hehe)
+00:09 <@nop> well there is a delay feature we have
+00:09 <@nop> ;)
+00:09 <@nop> ok
+00:09 < al-jabr> I didn't either.
+00:09 <@nop> guess my relay got kicked off the list for unreliability
+00:09 <@nop> haha
+00:09 <@mids> hehe
+00:09  * Robert joins #muchnies-to-take-away while he waits...
+00:09 <@mids> there we go
+00:09 <@nop> yep
+00:10 <@nop> there's another
+00:10 <@nop> ;)
+00:10 < al-jabr> there goes five.
+00:10 <@hezekiah> We really need to do something about that. :(
+00:10 < nemesis> erm
+00:10 < nemesis> mids
+00:10 <@nop> hezekiah: spread spectrum routing
+00:11 < tc> is this glitches in the relay system?
+00:11 <@nop> ;)
+00:11 <@nop> my windows relay box crashed
+00:11 <@nop> typical
+00:11 < nemesis> for win2k / xp, thers in the future a build without gui
+00:11 <@hezekiah> lol
+00:11 < nemesis> or only gui to setup
+00:11 < nemesis> and the rest as an daemon?
+00:11 <@nop> it would be nice to have it as a service
+00:11 <@nop> ;)
+00:12 < nemesis> yes
+00:12 < nemesis> ;)
+00:12 <@nop> there is a program out there called service installer
+00:13 <@nop> ok
+00:13 <@nop> well
+00:13 < nemesis> iip.exe --install
+00:13 <@nop> no more delays
+00:13 < nemesis> like apache for win
+00:13 <@mids> is everybody already back?
+00:14 <@nop> ok
+00:15 <@nop> welcome baci
+00:15 <@nop> back
+00:15 < nemesis> matrix's neo? ;)
+00:15 <@nop> ok
+00:15 <@nop> I think they are back
+00:16 <@mids> yes
+00:16 <@nop> ok
+00:16 <@nop> sneak preview
+00:16 <@mids> I made a FLT-iip.1.1-rc3-pre1-mids-sneak-preview-screaner.tgz
+00:16 <@mids> everybody with unix can test it
+00:16 <@mids> no windows version yet
+00:16 <@nop> I can make one right now
+00:16 <@nop> if you want
+00:16 < zic> lol
+00:16 <@mids> http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz
+00:16 < nemesis> thats ok
+00:16 < nemesis> i wait
+00:16 < zic> OGG or LAME audio?
+00:17 <@mids> I am especially looking forward to reports on obscure unix versions
+00:17 <@mids> like netbsd etc
+00:17 < nemesis> i think, its not so important when a unix machine crash with 30 days uptime
+00:17 <@mids> and macosx
+00:17 < nemesis> as an windows machine with 3 days uptime ;)
+00:17 < tc> mids:  is this change just in the isproxy or in any other relay stuff also?
+00:17 <@nop> no
+00:17 <@nop> you keep your settings
+00:17 <@nop> did we test that it can install over the previous one
+00:17 <@nop> hmm
+00:18 <@nop> make a note
+00:18 < zic> nemesis: but it would be cool if it never crashed. but let's kill the talking here. we are in a formal meeting
+00:18 < nemesis> hehe
+00:18 <@nop> ok
+00:18 <@nop> if anyone wants to test if the upgrade process is trivial
+00:18 < nemesis> don't test it on meeting days ;)
+00:18 <@nop> then please go ahead
+00:18 <@nop> and email or notify one of the devs of the results
+00:18 <@mids> please test it next to your current relay
+00:18 <@mids> and yes, please give feedback
+00:19 <@mids> on what went wrong
+00:19 <@mids> etc
+00:19 <@nop> wb tarpY
+00:19 <@nop> let's put that screener in the topic
+00:19 < goc> is it possible to run isproxy-rc2 and isproxy-almost-rc3 simultaneously?
+00:19 <@nop> yes
+00:20 <@nop> different port settings
+00:20 <@nop> and it's not hard at all
+00:20 < goc> where's the conf file stored?
+00:20 <@nop> but rc3 should be able to go over rc2
+00:20 <@nop> you might have to do a -f /dir
+00:20 <@nop> or you may have it go over the rc2 install
+00:21 < tarpY> are you going to eventually remove the proxy and integrate it into a client?
+</div>

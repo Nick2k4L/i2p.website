@@ -2,16 +2,277 @@
 title: "اجتماع مطوري I2P"
 date: 2003-01-15
 author: "nop"
-description: "سجل اجتماع تطوير I2P ليوم 15 يناير 2003."
+description: "سجل اجتماع تطوير I2P لتاريخ 15 يناير 2003."
 categories: ["meeting"]
 ---
 
-(بفضل Wayback Machine http://www.archive.org/)
+(بإذن من wayback machine http://www.archive.org/)
 
 ## ملخص سريع
 
-<p class="attendees-inline"><strong>الحاضرون:</strong> FillaMent، hezekiah، LeeroklaLacerta، mids، nop، sdgg، thecrypto</p>
+<p class="attendees-inline"><strong>الحاضرون:</strong> FillaMent, hezekiah, LeeroklaLacerta, mids, nop, sdgg, thecrypto</p>
 
 ## سجل الاجتماع
 
-<div class="irc-log"> --- تم فتح السجل Tue Jan 14 22:44:57 2003 22:45 -!- الموضوع لـ #iip-dev: اجتماع IIP - ملفات السجل: http://mids.student.utwente.nl/~mids/iip/ 22:45 [المستخدمون #iip-dev] 22:45 [ logger] [ pox] 22:45 -!- Irssi: #iip-dev: إجمالي 2 اسمًا مستعارًا [0 ops, 0 halfops, 0 voices, 2 normal] 22:45 -!- Irssi: تمت مزامنة الانضمام إلى #iip-dev خلال 3 ثوانٍ 23:48 -!- StoVoKor|away أصبح يُعرف الآن باسم StoVoKor 23:58 < mids> Tue Jan 14 22:58:16 UTC 2003 23:59 < mids> دقيقة واحدة --- تم تغيير اليوم إلى Wed Jan 15 2003 00:00 < mids> Tue Jan 14 23:00:00 UTC 2003 00:00 < mids> مرحبًا بكم في الاجتماع السادس والعشرين لـ IIP 00:00 < mids> لم أتلقَّ أي بنود لجدول الأعمال من أي أحد، لذا سأقترح خاصتي: 00:00 < mids> - إصدار 1.1-final 00:00 < mids> هل لديكم أي شيء آخر لإضافته؟ 00:00 < hezekiah> (أقترح بندًا لجدول الأعمال: ما هي الميزة الرئيسية الحالية التي يتم العمل عليها في تطوير IIP 1.2؟) 00:01 < mids> رائع 00:01 < FillaMent> لدي اقتراحان لإضافات إلى anonymail 00:01 < mids> حسنًا 00:01 < mids> جدول الأعمال: 00:02 < mids> - ما هي الميزة الرئيسية الحالية التي يتم العمل عليها في تطوير IIP 1.2 00:02 < mids> - اقتراحات anonymail 00:02 < mids> - إصدار 1.1-final 00:02 < mids> . 00:02  * mids يُسلم الميكروفون إلى hezekiah 00:02 < FillaMent> كما أود الإشارة إلى مشروع أعمل عليه يستخدم IIP 00:02 < hezekiah> لا فكرة لدي. كان سؤالًا في الواقع. :) Nop؟ 00:02  * hezekiah يُسلم الميكروفون إلى nop. 00:02 < nop> مرحبًا 00:02 < nop> حسنًا 00:02 < nop> أهلًا بكم 00:03 < nop> حسنًا على جدول الأعمال 00:03 < nop> mids تفضل 00:04 < mids> لا، أخبرنا ما هي حالة 1.2 00:04 < nop> حسنًا 00:04 < nop> حسنًا 00:04 < nop> الكثير من الأعمال المرهِقة 00:04 < nop> نهتم أساسًا بالأعمال الروتينية الثقيلة 00:04 < hezekiah> (آمين!) 00:04 < nop> نجهز النواة لتوجه قوي نحو اللامركزية والتشفير، نحن بصدد اختيار مكتبات التشفير، نعتقد cryptlib و GnuMP 00:05 < nop> وننظر في بعض إمكانيات التوجيه، إما مفهوم listener route، أو ربما chord type routing 00:05 < nop> وهذا بشكل رئيسي كل ما لدينا الآن 00:05 < nop> لـ 1.2 00:05 < mids> رائع 00:05 < nop> حالة 1.1، إذا لم يبلغ أحد عن أية علل خلال أسبوع 00:06 < nop> فسننتقل على الأرجح إلى defcon 1.1 00:06 < nop> ;) 00:06 < nop> أي إصدار 1.1 00:06 < mids> الزم جدول الأعمال يا nop 00:06 < mids> ميزات anonymail أولًا 00:06 < nop> لم أرَ جدول أعمال 00:06 < mids> :p 00:06 < hezekiah> Mids، كن مهذبًا! :) 00:06 < hezekiah> ;-) 00:06 < nop> حسنًا 00:06 < nop> أظن اقتراحات anonymail 00:06 < mids> - اقتراحات anonymail 00:06 < nop> تفضل أيًّا كان 00:06 < mids> FillaMent؟ 00:06 < FillaMent> حسنًا، لدي اثنان سريعان فقط... 00:07 < FillaMent> 1) نوع من محرف الهروب لتنفيذ \n. 00:07 < hezekiah> نعم! 00:07 < FillaMent> نناقش أم ننتقل إلى رقم 2؟ 00:07 < hezekiah> ربما، "\n" لسطر جديد، و "\\n" للحرفي، "\n". 00:08 < mids> أي محرف تقترح؟ 00:08 < mids> حسنًا 00:08 < hezekiah> (كما تفعل في C مع printf.) 00:08 < FillaMent> C, Perl, Java.... 00:08 < hezekiah> C++ ... :) 00:08 < FillaMent> لا، اجعلها vbCRLF 00:08 < mids> و \\\\n من أجل \\n حرفيًا :) 00:08 < hezekiah> Yup1 00:08 < mids> vbCRLF؟ 00:09 < FillaMent> visualbasicCarriageReturnLineFeed 00:09 < mids> هل أنت جاد؟ 00:09 < hezekiah> (آمل ألا.) 00:09 < FillaMent> كنت أعبث بـ vbScript (لا، لست جادًا. \n هو ما يعرفه الجميع) 00:09 < hezekiah> إذًا، ما كان الاقتراح رقم 2؟ 00:10 < thecrypto> تبا للشبكة اللاسلكية 00:10 < FillaMent> 2) تجريد محتوى MIME غير النصي الصِرف من الرسائل القادمة من الإنترنت واستبداله بشيء على غرار <One part MIME binary/word-doc stripped> 00:11 < FillaMent> اعذروني إن كنت أُلمح إلى MIME بشكل غير دقيق 00:11 < mids> لا أتفق تمامًا 00:11 < mids> يجب أن تكون قادرًا على تلقي تواقيع PGP المتوافقة مع RFC2015 00:11 < mids> وما إلى ذلك 00:11 < hezekiah> نعم. 00:12 < hezekiah> لكن تحويل Quoted-Printable إلى ASCII نصي قد لا يكون فكرة سيئة إن لم يكن منفذًا بالفعل. 00:12 < FillaMent> وهل هذا نوع MIME محدد؟ 00:12 < FillaMent> أعني توقيع PGP. 00:12 < mids> نعم 00:12 < hezekiah> هناك تواقيع OpenPGP لها نوع MIME. 00:12 < mids> أتفهم أن تنفيذ MIME بشكل صحيح سيكون عملاً كبيرًا 00:13 < mids> نظرًا لوجود الكثير من أنواع MIME 00:13 < mids> ومتصفحات تخالفه 00:14 < hezekiah> "2) تجريد محتوى MIME غير النصي ..." (ألن تكون بصيغة base64 إن لم تكن ASCII نصية على أي حال؟ وإن لم تكن، ألن يمكن مجرد تحويلها؟) 00:14 < mids> ربما ينبغي فقط تمرير الاقتراحات إلى codeshark 00:15 < mids> لأنه يعرف كيف تبدو التطبيق 00:15 < hezekiah> أو حتى، إن كان لا بد من تجريدها، يمكن تقديم خيار لاسترجاعها (بصيغة base64 أو 7-bit.) بحيث يمكنك حفظها عبر النسخ واللصق، ثم فك ترميزها/قراءتها على القرص الصلب لديك. 00:15 < mids> (هو من صنعها) 00:15 < mids> وما الذي يمكنه تنفيذه 00:15 < hezekiah> فكرة جيدة! 00:15 < FillaMent> منذ أيام وصلني بريد كُتب ببرنامج MS Outaluck/W3rd وجاء كـ MIME متعدد الأجزاء. كان الجزء الأول نسخة txt نصية من الرسالة، والثاني RTF مع كل وسوم التنسيق 00:15 < nop> هذا شيء 00:15 < nop> يجب إرساله إلى anonymail 00:15 < nop> عفوًا 00:15 < nop> codeshark 00:15 < mids> نعم 00:15  * FillaMent يخرج عن الموضوع. 00:15 < mids> دعونا فقط ننقله 00:15 < mids> ونرى ما رأيه 00:16 < mids> - إصدار IIP 1.1-final 00:16 < mids> تعليقاتي: يجب التحقق من متتبع العلل في SourceForge 00:16 < mids> لكني لا أظن أن هناك أية علل في الشفرة ما زالت مفتوحة 00:17 < hezekiah> ليس آخر مرة رأيت فيها ... (أتحقق الآن.) 00:17 < mids> http://sourceforge.net/tracker/index.php?func=detail&aid=651711&group_id=50945&atid=461514 00:17 < mids> (files stored in wrong dir) 00:17 < mids> http://sourceforge.net/tracker/index.php?func=detail&aid=655568&group_id=50945&atid=461514 00:17 < mids> (-h doesnt work) 00:17 < mids> ذلك الخيار يعمل لدي بالفعل 00:17 < mids> يرجى التحقق منه 00:18 < mids> وإن كان يعمل لدى الجميع، علينا وسم ذلك البلاغ كغير صالح 00:18 < mids> http://sourceforge.net/tracker/index.php?func=detail&aid=654147&group_id=50945&atid=461514 00:18 < mids> (FreeBSD socket call) 00:18 < mids> ليس لدي FreeBSD، ينبغي على من لديه FreeBSD أن يتحقق 00:19 < mids> . 00:19 < mids> كما ينبغي حقًا أن نوفر نصًا برمجيًا يمكن للناس وضعه في /etc/init.d/ 00:20 < mids> ping؟ 00:20 < hezekiah> يبدو أن الشخص الذي قدّم علّة FreeBSD ... 00:21 < hezekiah> ... قد وجد المشكلة وأشار إليها بالفعل. 00:21 < hezekiah> http://sourceforge.net/tracker/download.php?group_id=50945&atid=461514&file_id=37660&aid=654147 00:22 < hezekiah> هذا رابط ملف التصحيح. على ما يبدو يجب استخدام PF_INET بدل AF_INET على FreeBSD. 00:22 < hezekiah> كان التصحيح بسيطًا: 00:23 < hezekiah> 484,489c484 00:23 < hezekiah> < 	// If statement added by wiht, since FreeBSD uses PF_INET. 00:23 < hezekiah> < 	#ifdef __FreeBSD__ 00:23 < hezekiah> < 		sh->Socket = socket(PF_INET, SOCK_STREAM, 0); 00:23 < hezekiah> < 	#else 00:23 < hezekiah> < 		sh->Socket = socket(AF_INET, SOCK_STREAM, 0); 00:23 < hezekiah> < 	#endif 00:23 < hezekiah> --- 00:23 < hezekiah> > 	sh->Socket = socket(AF_INET, SOCK_STREAM, 0);//PF_INET); 00:23 < mids> أفهم، لكني لا أعرف لماذا كان هناك ifdef أصلاً؟ 00:23 < hezekiah> ما رأيك، يا nop؟ 00:23 < hezekiah> ينبغي أن يكون القسم العلوي هو الشفرة الجديدة. والسفلي هو القديمة. 00:23 < nop> هذا ينبغي أن يعمل 00:24 < hezekiah> نعم. السفلي هو القديم. 00:24 < nop> عليك أن تقوم بـ commit، يبدو جيدًا 00:24 < hezekiah> هل تريدني أن أكتب ذلك، وأنفذ commit، وأصنّف العلة كمُصلَحة، يا nop؟ 00:24 < nop> لكن لماذا هو مختلف 00:24 < hezekiah> على ما يبدو، يتطلب FreeBSD استخدام PF_INET بدل AF_INET كوسيط أول لـ socket. 00:25 < hezekiah> لا أعرف لماذا. 00:25 < hezekiah> لكن، قال الكاتب إن هذا أصلح المشكلة. Commit؟ 00:25 < nop> نعم 00:25 < hezekiah> حسنًا. 00:25 < mids> حسنًا 00:26 < mids> من يمكنه النظر في مشكلة مسار الملف؟ 00:27 < FillaMent> لا أواجه تلك المشكلة. إذا حاولت تشغيل IIP كمستخدم مختلف أو ليس في ~iip فإنه يقول إنه لا يستطيع كتابة السجل 00:28 < mids> حسنًا، علينا التحقق من العلل المُبلّغ عنها وإعداد تقرير بذلك على القائمة البريدية 00:28 < mids> فلنحاول القيام بذلك هذا الأسبوع 00:28 < mids> . 00:28 < mids> أكبر مشكلة هي قابلية التوسع في IIP 00:28 < mids> كانت RC2 مستقرة نوعًا ما 00:28 < mids> RC3 ليست كذلك 00:29 < mids> لماذا؟ 00:29 < mids> برأيي لأن node.ref كبير جدًا 00:29 < mids> لذا هناك عدد كبير من العُقَد المحتملة السيئة 00:29 < mids> nodes 00:29 < mids> إنها حقًا، مجهولية مقابل استقرار 00:29 < mids> . 00:29 < hezekiah> لاحظت ذلك. لكن بعضها بطيء فحسب، وليس بالضرورة سيئًا. 00:29 < mids> المشكلة هي أن الكثيرين Pinging Out 00:30 < mids> الحل الذي أقترحه هو إصدار RC3 مع node.ref حدّ أدنى 00:30 < mids> فقط 4 عُقَد أو شيء من هذا القبيل 00:30 < mids> . 00:31 < nop> أوافق 00:31 < FillaMent> اعذروا نقص معرفتي بالتصميم... على ما أذكر (IIRC) يستخدم مُرحِّلات مثل freenet و IRC، صحيح؟ 00:32 < FillaMent> node == relay 00:32 < mids> هي أكثر ثباتًا 00:32 < mids> بمجرد أن تتصل 00:32 < nop> حسنًا 00:32 < nop> على الأقل في 1.1 00:32 < mids> تبقى متصلًا عبرها طوال الجلسة نفسها 00:32 < nop> لن يكون الحال كذلك إلى الأبد 00:32 < FillaMent> لكنه ما يزال: عقدة تمرر إلى عُقَد أخرى 00:32 < nop> نعم 00:33 < mids> إذا احتفظت بقائمة كبيرة من العُقَد، يصبح المسار طويلًا جدًا 00:33 < mids> وبالتالي الكثير من المشكلات المحتملة 00:33 < FillaMent> لماذا لا نجعل الأمر يمر عبر node.ref ويختار عددًا قليلًا عشوائيًا، ويستمر هكذا. ربما يستطيع المستخدم ضبط العدد. قد يوزّع هذا الحمل قليلًا؟ 00:34 < mids> البروتوكول الحالي لا يدعم اختيار عدد القفزات 00:34 < nop> ولن نغير ذلك في هذا الإصدار 00:34 < nop> ;) 00:34 < FillaMent> حسنًا، إذًا هذا خارج نطاق معرفتي التقنية... ماذا عن نقطة البداية؟ 00:34 < FillaMent> أم أن TTL هو عدد or nodes in node.ref 00:35 < FillaMent> s/or/of/ 00:35 < mids> كل عقدة تتصل بعقدة في node.ref الخاص بها بشكل عشوائي 00:35 < mids> إلى أن "تصادف" الخادم 00:35 < mids> لذا إن كان لديك الكثير من العُقَد 00:35 < FillaMent> فهمت. 00:35 < mids> ستكون المسارات طويلة جدًا 00:36 < mids> لهذا أقترح طبقة أولى مُعدّة يدويًا من العُقَد العامة 00:36 < FillaMent> هل يمكن أن يكون حل آخر هو جعل 'the' server مجرد 'a' server؟ 00:36 < mids> بحيث تقلل عدد القفزات 00:36 < LeeroklaLacerta> هل هناك أي شيء مثل مؤشر موثوقية؟ 00:36 < mids> لديك عقدة نهاية واحدة فقط 00:36 < mids> لا يوجد، لأنك لا تعرف عبر أية عُقَد تتصل عقدةٌ ما 00:37 < mids> إذا انقطع اتصالك، فأنت لا تعرف أي عقدة تسببت بذلك 00:37 < mids> قد تكون أيًّا كانت على مسارك 00:37 < LeeroklaLacerta> حسنًا. 00:37 < mids> وأنت لا تعرف مسارك 00:37 < FillaMent> هل هناك أي طريقة للمستخدم النهائي لزيادة موثوقية IIP؟ 00:37 < mids> نعم، حرّر node.ref يدويًا 00:38 < mids> وضع عليه بعض العُقَد المستقرة فقط 00:38 < mids> ولا تدعه يحدّث node.ref تلقائيًا 00:38 < FillaMent> mids: أقصد إعداد مُرحِّل أو شيء من هذا القبيل. 00:38 < mids> بالطبع لا تعرف ما هي العُقَد المستقرة، إلا إذا كان لديك معرفة داخلية بطبوغرافية IIP 00:39 < mids> Trent مثلاً يتصل مباشرةً بعقدة تتصل بعقدة خادم IIP 00:39 < mids> وإلا لكان الاتصال يسقط طوال الوقت 00:39 < mids> مما ينتج عنه شبكة سيئة جدًا 00:41 < FillaMent> لتوفير وقتي، أين يخزن iip ملف nodes.ref على جهاز لينكس؟ 00:41 < mids> ~/.iip/ 00:41 < mids> أو الدليل المحلي 00:42 < mids> حسنًا، أريد إنهاء هذا البند 00:42 < mids> واجب الأسبوع القادم: 00:42 < mids> فكروا في القضايا 00:42 < mids> واقترحوا اقتراحات على القائمة البريدية 00:42 < FillaMent> أعطوني 10 دقائق وسيكون لدي حل ترقيعي (kludge) لمشكلة قائمة العُقَد الضخمة 00:42 < mids> أو إلى مطوّر (إن لم تكنوا مشتركين) 00:43 < mids> . 00:43 < mids> أسئلة؟ 00:51 < hezekiah> هل أنهيت تقريبًا "kludge" (لا أعرف معنى هذه الكلمة) لمشكلة قائمة العُقَد، يا FillaMent؟ 00:52 < FillaMent> kludge هو شريط لاصق برمجي، ونعم. 00:52 < hezekiah> آه. 00:53 < thecrypto> التعريف الكامل هو http://www.tuxedo.org/~esr/jargon/html/entry/kluge.html 00:54 < mids> hezekiah: شكرًا لتولّيك هذين البندين في متتبع العلل 00:55 < hezekiah> لا مشكلة. ما زلت لا أعرف كيف أُسند علّة لنفسي. وإلا لكنت قد التقطت قضية PF_INET "رسميًا". 00:55 < hezekiah> لم أجد زر/رابط/أياً يكن الذي يسمح لك بإسناد علّة لنفسك. 00:57 < mids> يبدو أن مديري المشروع فقط هم من يمكنهم إسناد العلل في مشروعنا 00:57 < hezekiah> آه 00:57 < hezekiah> هذا يفسر الأمر! :) 00:59 < hezekiah> حسنًا. على أي حال، سأغادر الآن. وداعًا للجميع! :) 00:59 < LeeroklaLacerta> إلى اللقاء. 01:04 < mids> حسنًا 01:04 < mids> سأغادر أيضًا 01:04 < mids> مع السلامة 01:08 < LeeroklaLacerta> الجميع يغادر؟ 01:08 < LeeroklaLacerta> هل انتهى الاجتماع؟ 01:09 < FillaMent> ما زلت هنا. ربما كان تقديري للوقت غير دقيق قليلًا. أحب/أكره Perl. 01:10 < LeeroklaLacerta> وما علاقة Perl بالأمر؟ 01:10 < FillaMent> حلّي الترقيعي (kludge) لـ node.ref 01:10 < LeeroklaLacerta> آه. 01:11 < FillaMent> ينبغي أن أصفه لشخص كفؤ وأدعَه ينفذه في نحو 5 دقائق 01:11 < LeeroklaLacerta> أنا هنا لمجرد التسلية. 01:16 < LeeroklaLacerta> سأعود إلى #anonymous. 01:17 < FillaMent> هاها! 01:39 < FillaMent> هل يود أحد أن يوضح لي لماذا في Perl، عندما أنفّذ push لعنصر داخل مصفوفة، ينتهي الأمر بأن يصبح /كل/ عنصر هو ذلك العنصر؟ 02:59 < sdgg> مرحبًا 03:05 < FillaMent> أتعرف كم يجب أن يكون طول توقيع md5؟ 03:10 < sdgg> أعتقد 128 بت 03:14 < sdgg> أيوجد أحد يعرف درسًا جيدًا عن c/c++ لبرمجة *nix؟ 03:14 < sdgg> أو مكانًا يمكنني أن أبحث فيه؟ 05:10  * FillaMent بعيد: أتخلص من الرائحة الكريهة </div>
+<div class="irc-log">
+--- Log opened Tue Jan 14 22:44:57 2003
+22:45 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+22:45 [Users #iip-dev]
+22:45 [ logger] [ pox]
+22:45 -!- Irssi: #iip-dev: Total of 2 nicks [0 ops, 0 halfops, 0 voices, 2 normal]
+22:45 -!- Irssi: Join to #iip-dev was synced in 3 secs
+23:48 -!- StoVoKor|away is now known as StoVoKor
+23:58 < mids> Tue Jan 14 22:58:16 UTC 2003
+23:59 < mids> 1 minute
+--- Day changed Wed Jan 15 2003
+00:00 < mids> Tue Jan 14 23:00:00 UTC 2003
+00:00 < mids> Welcome to the 26th IIP meeting
+00:00 < mids> I didn't get any agenda items from anybody, so I'll just propose my own:
+00:00 < mids> - Release of 1.1-final
+00:00 < mids> do you guys have anything else to add?
+00:00 < hezekiah> (I propose an agenda item: What's the current major feature being worked on in IIP 1.2 dev?)
+00:01 < mids> great
+00:01 < FillaMent> I have a couple suggestions for additions to anonymail
+00:01 < mids> ok
+00:01 < mids> Agenda:
+00:02 < mids> - What's the current major feature being worked on in IIP 1.2 dev
+00:02 < mids> - Anonymail suggestions
+00:02 < mids> - Release of 1.1-final
+00:02 < mids> .
+00:02  * mids hands the microphone to hezekiah
+00:02 < FillaMent> Also like to note a project that I'm working on that uses IIP
+00:02 < hezekiah> I have no clue. It was actually a question. :) Nop?
+00:02  * hezekiah hands the microphone to nop.
+00:02 < nop> hi
+00:02 < nop> ok
+00:02 < nop> welcome
+00:03 < nop> ok on the agenda
+00:03 < nop> mids take it away
+00:04 < mids> no, you tell what the status of 1.2 is
+00:04 < nop> ok
+00:04 < nop> well
+00:04 < nop> lots of grindy stuff
+00:04 < nop> mainly taking care of the grunt stuff
+00:04 < hezekiah> (Ahmen!)
+00:04 < nop> getting the core ready for hardcore decentralization and crypto, we're in the midst of deciding crypto libraries, we think cryptlib and GnuMP
+00:05 < nop> and are looking at a few possibilities for routing, either the listener route concept, or possibly chord type routing
+00:05 < nop> and that's mainly it for right now
+00:05 < nop> for 1.2
+00:05 < mids> cool
+00:05 < nop> 1.1 status, is if no one has any bugs in a weeks time
+00:06 < nop> then we will probably move to defcon 1.1
+00:06 < nop> ;)
+00:06 < nop> meaning 1.1 Release
+00:06 < mids> stick to the agenda nop
+00:06 < mids> anonymail features are first
+00:06 < nop> I didn't see an agenda
+00:06 < mids> :p
+00:06 < hezekiah> Mids, behave! :)
+00:06 < hezekiah> ;-)
+00:06 < nop> ok
+00:06 < nop> I guess anonymail suggestions
+00:06 < mids> - Anonymail suggestions
+00:06 < nop> take it away whoever that was
+00:06 < mids> FillaMent?
+00:06 < FillaMent> Okay, I just have two quick ones...
+00:07 < FillaMent> 1) Some sort of escape character to do \n's.
+00:07 < hezekiah> Yeah!
+00:07 < FillaMent> Discuss or move on to #2?
+00:07 < hezekiah> Perhaps, "\n" for a newline, and "\\n" for a literal, "\n".
+00:08 < mids> what character do you suggest?
+00:08 < mids> ok
+00:08 < hezekiah> (Like how you would do in C with printf.)
+00:08 < FillaMent> C, Perl, Java....
+00:08 < hezekiah> C++ ... :)
+00:08 < FillaMent> Nah, make it vbCRLF
+00:08 < mids> and \\\\n for literal \\n :)
+00:08 < hezekiah> Yup1
+00:08 < mids> vbCRLF?
+00:09 < FillaMent> visualbasicCarriageReturnLineFeed
+00:09 < mids> are you serious?
+00:09 < hezekiah> (I hope not.)
+00:09 < FillaMent> I used to hack vbScript (no, I'm not serious. \n is what everyone will be familiar with)
+00:09 < hezekiah> So, what was suggestion number 2?
+00:10 < thecrypto> damn wireless network
+00:10 < FillaMent> 2) Stripping non-plain text MIME garbage from mails that come from the internet and replacing it with something to the effect of <One part MIME binary/word-doc stripped>
+00:11 < FillaMent> Forgive me if I'm incorrectly implying MIME
+00:11 < mids> I dont really agree
+00:11 < mids> you should be able to receive RFC2015 compatible PGP signatures
+00:11 < mids> and stuff
+00:11 < hezekiah> Yeah.
+00:12 < hezekiah> But changing Quoted-Printable to plain ASCII might not be a bad idea if it isn't already implemented.
+00:12 < FillaMent> And that's a specific mime type?
+00:12 < FillaMent> PGP sig I mean.
+00:12 < mids> it is
+00:12 < hezekiah> There are OpenPGP sigs that have a mime type.
+00:12 < mids> I can understand that it will be a lot of work to do MIME right
+00:13 < mids> since there are a lot of MIME types
+00:13 < mids> and browsers who violate it
+00:14 < hezekiah> "2) Stripping non-plain text MIME ..." (Wouldn't they be in base64 if they aren't plain ASCII anyway? And if not, then couldn't they just be converted?)
+00:14 < mids> maybe we should just forward the suggestions to codeshark
+00:15 < mids> since he knows how the app looks
+00:15 < hezekiah> Or even, if it has to be stripped, you could offer an option to retrieve it (in base64 or 7-bit.) That way you can save it via copy-paste, and decode/read it on your hard drive.
+00:15 < mids> (he made it)
+00:15 < mids> and what he can implement
+00:15 < hezekiah> Good idea!
+00:15 < FillaMent> The other day I got a mail that was written with MS Outaluck/W3rd and it came in as multipart MIME. The first part was a plain txt version of the message, the second was an RTF will all the formatting Markup
+00:15 < nop> this is something
+00:15 < nop> that needs to be sent to anonymail
+00:15 < nop> oops
+00:15 < nop> codeshark
+00:15 < mids> yeah
+00:15  * FillaMent digresses.
+00:15 < mids> lets just pass it on
+00:15 < mids> and see what his imput is
+00:16 < mids> - Release of IIP 1.1-final
+00:16 < mids> my comments: got to check the sourceforge bugtracker
+00:16 < mids> but I dont think that there are any code bugs open
+00:17 < hezekiah> Not the last time I saw ... (checking now.)
+00:17 < mids> http://sourceforge.net/tracker/index.php?func=detail&aid=651711&group_id=50945&atid=461514
+00:17 < mids> (files stored in wrong dir)
+00:17 < mids> http://sourceforge.net/tracker/index.php?func=detail&aid=655568&group_id=50945&atid=461514
+00:17 < mids> (-h doesnt work)
+00:17 < mids> that option DOES work for me
+00:17 < mids> please check it
+00:18 < mids> and if it works for everybody, we got to mark that report as invalid
+00:18 < mids> http://sourceforge.net/tracker/index.php?func=detail&aid=654147&group_id=50945&atid=461514
+00:18 < mids> (FreeBSD socket call)
+00:18 < mids> I dont have FreeBSD, someone with FreeBSD should check
+00:19 < mids> .
+00:19 < mids> Also we should really really supply some script that people can put in their /etc/init.d/
+00:20 < mids> ping?
+00:20 < hezekiah> It looks like the guy who did the FreeBSD bug ...
+00:21 < hezekiah> ... already found and pointed out the problem.
+00:21 < hezekiah> http://sourceforge.net/tracker/download.php?group_id=50945&atid=461514&file_id=37660&aid=654147
+00:22 < hezekiah> That's the link to the patch file. AF_INET apparently needs to be PF_INET on FreeBSD.
+00:22 < hezekiah> The patch was simple:
+00:23 < hezekiah> 484,489c484
+00:23 < hezekiah> < 	// If statement added by wiht, since FreeBSD uses PF_INET.
+00:23 < hezekiah> < 	#ifdef __FreeBSD__
+00:23 < hezekiah> < 		sh->Socket = socket(PF_INET, SOCK_STREAM, 0);
+00:23 < hezekiah> < 	#else
+00:23 < hezekiah> < 		sh->Socket = socket(AF_INET, SOCK_STREAM, 0);
+00:23 < hezekiah> < 	#endif
+00:23 < hezekiah> ---
+00:23 < hezekiah> > 	sh->Socket = socket(AF_INET, SOCK_STREAM, 0);//PF_INET);
+00:23 < mids> I see, but then I dont know why the original ifdef was there at first?
+00:23 < hezekiah> What do you think, nop?
+00:23 < hezekiah> The top section should be the new code. The bottom section should be the old.
+00:23 < nop> that should work
+00:24 < hezekiah> Yeah. The bottom is the old.
+00:24 < nop> you should commit looks fine
+00:24 < hezekiah> Do you want me to write it up, commit, and label the bug as fixed, nop?
+00:24 < nop> but why is it different
+00:24 < hezekiah> Apparently, FreeBSD requires PF_INET instead of AF_INET as the first arguement for socket.
+00:25 < hezekiah> I don't know why.
+00:25 < hezekiah> But, the writter said this fixed the problem. Commit?
+00:25 < nop> yes
+00:25 < hezekiah> OK.
+00:25 < mids> ok
+00:26 < mids> who can look into the filepath problem?
+00:27 < FillaMent> I don't get that problem. If I try and start IIP as a different user or not in ~iip it says it can't write the log
+00:28 < mids> ok, we got to check the reported bugs and report on that on the mailinglist
+00:28 < mids> lets try to do that this week
+00:28 < mids> .
+00:28 < mids> The biggest problem is the scalability of IIP
+00:28 < mids> RC2 was kinda stable
+00:28 < mids> RC3 isnt
+00:29 < mids> why?
+00:29 < mids> Imho it is because the node.ref is so big
+00:29 < mids> so a lot of potential bad node
+00:29 < mids> nodes
+00:29 < mids> it is really, anonymity vs stability
+00:29 < mids> .
+00:29 < hezekiah> I noticed that. But some of them are just slow, not necisarily bad.
+00:29 < mids> the problem is the lot of people Pinging Out
+00:30 < mids> the solution that I suggest is releasing RC3 with a minimal node.ref
+00:30 < mids> only 4 nodes or something
+00:30 < mids> .
+00:31 < nop> I agree
+00:31 < FillaMent> Pardon my lack of design knowledge... IIRC uses relays like freenet and IRC, right?
+00:32 < FillaMent> node == relay
+00:32 < mids> they are more static
+00:32 < mids> once you connect
+00:32 < nop> well
+00:32 < nop> at least in 1.1
+00:32 < mids> you stay connected through them for the same session
+00:32 < nop> they won't be forever
+00:32 < FillaMent> But, it's still one node passes to other nodes
+00:32 < nop> yes
+00:33 < mids> if you keep a big list of nodes, then the path is very long
+00:33 < mids> hence a lot of potential problems
+00:33 < FillaMent> Why not just make it so that it goes through the node.ref and picks a few at random, and keeps doing that. The user could maybe set the number. This would maybe distribute the load a little more?
+00:34 < mids> the current protocol doesnt support selecting the amount of hops
+00:34 < nop> and we're not changing it in this version
+00:34 < nop> ;)
+00:34 < FillaMent> Okay, then it's outside my technical knowledge... what about the starting point?
+00:34 < FillaMent> or is the TTL the number or nodes in node.ref
+00:35 < FillaMent> s/or/of/
+00:35 < mids> each node connects to a node in its node.ref at random
+00:35 < mids> until it 'accidently' hits the server
+00:35 < mids> so if you have a lot of nodes
+00:35 < FillaMent> got it.
+00:35 < mids> it will have huge paths
+00:36 < mids> that is why I would suggest a manually crafter first layer of public nodes
+00:36 < FillaMent> Could another solution be to make 'the' server 'a' server?
+00:36 < mids> so you decrease the amount of hops
+00:36 < LeeroklaLacerta> Is there any sort of reliability-index-type thing?
+00:36 < mids> you only have 1 end-node
+00:36 < mids> there isnt, since you dont know what nodes a node connects through
+00:37 < mids> if your connection goes down, you dont know what node caused it
+00:37 < mids> it can be anyone on your path
+00:37 < LeeroklaLacerta> K.
+00:37 < mids> and you dont know your path
+00:37 < FillaMent> Is there anyway for the end user it increase the reliability of IIP?
+00:37 < mids> yes, manually edit your node.ref
+00:38 < mids> and put only some stable nodes on it
+00:38 < mids> and dont let it update the node.ref automatically
+00:38 < FillaMent> mids: I mean setting up a relay or something.
+00:38 < mids> ofcourse you dont know what are stable nodes, unless you have some inside knowledge about the IIP topography
+00:39 < mids> Trent for example directly connects to a node which connects to the IIP server node
+00:39 < mids> otherwise it would go down all the time
+00:39 < mids> resulting in a really bad network
+00:41 < FillaMent> To save me some time, where does iip store the nodes.ref on a linux box?
+00:41 < mids> ~/.iip/
+00:41 < mids> or the local directory
+00:42 < mids> ok, I want to quit this item
+00:42 < mids> homework for next week:
+00:42 < mids> think about the issues
+00:42 < mids> and propose suggestions to the mailinglist
+00:42 < FillaMent> Give me 10 min and I'll have a kludge for the massive node list problem
+00:42 < mids> or to a developper (if you arent subscribed)
+00:43 < mids> .
+00:43 < mids> questions?
+00:51 < hezekiah> You almost have your "kludge" (I don't know what that word means) for the node list problem yet, FillaMent?
+00:52 < FillaMent> kludge is coding duct tape, and yes.
+00:52 < hezekiah> Ah.
+00:53 < thecrypto> the full definition is http://www.tuxedo.org/~esr/jargon/html/entry/kluge.html
+00:54 < mids> hezekiah: thanks for putting your hands on those 2 bugtracker items
+00:55 < hezekiah> No problem. I still don't know how to assign a bug to myself. Otherwise, I would have "officially" picked up the PF_INET one.
+00:55 < hezekiah> I couldn't find the button/link/whatever that lets you assign a bug to yourself.
+00:57 < mids> only project admins seem to be able to assign bugs for our project
+00:57 < hezekiah> Ah
+00:57 < hezekiah> That would explain it! :)
+00:59 < hezekiah> OK. Well, I'm going to leave now. Bye everyone! :)
+00:59 < LeeroklaLacerta> Good bye.
+01:04 < mids> ok
+01:04 < mids> I am gone too
+01:04 < mids> bye
+01:08 < LeeroklaLacerta> Everyone's leavin'?
+01:08 < LeeroklaLacerta> Is the meeting over?
+01:09 < FillaMent> I'm still here. Perhaps my time estimate was a bit off. I love/hate perl.
+01:10 < LeeroklaLacerta> What's perl got to do with it?
+01:10 < FillaMent> My node.ref kluge
+01:10 < LeeroklaLacerta> Ah.
+01:11 < FillaMent> I should just describe it to someone competant and let them do it in like 5min
+01:11 < LeeroklaLacerta> I'm just here for the heck of it.
+01:16 < LeeroklaLacerta> I'm going back to #anonymous.
+01:17 < FillaMent> Ha ha!
+01:39 < FillaMent> Anyone care to enlighten me as to why in perl, when I push an item into an array, /every/ item ends up being that item?
+02:59 < sdgg> hi
+03:05 < FillaMent> Know how long an md5 signature is supposed to be?
+03:10 < sdgg> 128 bits I believe
+03:14 < sdgg> Does anyone know of a good tutorial on c/c++ for *nix programming?
+03:14 < sdgg> Or somewhere I can look?
+05:10  * FillaMent is away: Destinking myself
+</div>

@@ -2,16 +2,463 @@
 title: "Réunion des développeurs I2P, 3 juillet 2002"
 date: 2002-07-03
 author: "nop"
-description: "Réunion de développement I2P couvrant les mises à jour du projet et des discussions techniques"
+description: "Journal de la réunion de développement I2P du 3 juillet 2002."
 categories: ["meeting"]
 ---
 
-(Avec l’aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)
 
-## Bref récapitulatif
+## Récapitulatif rapide
 
 <p class="attendees-inline"><strong>Présents :</strong> AgentDelta, ArdVark, CyberLOK1, Kyl3, mids, Neo, nop, UnDeRToW, wilde</p>
 
 ## Journal de réunion
 
-<div class="irc-log"> --- Journal ouvert Wed Jul 03 00:33:19 2002 00:33 <+logger> journalisation démarrée 00:47 -!- mode/#iip-dev [+o nop] by mids 00:54 < UnDeRToW> salut 00:54 <@mids> salut 01:01 <@nop> ok 01:01 <@nop> salut 01:01 <@nop> bienvenue 01:01 <@nop> à la 5e réunion je crois 01:01 <@mids> 7e 01:02 <@nop> vraiment 01:02 <@nop> ok 01:02 <@mids> http://mids.student.utwente.nl/~mids/iip/ 01:02 <@nop> wilde tu as anonymail 01:02 <@nop> ok 01:03 <@nop> iip 1.1 rc2 sera publié en attendant quelques changements de doc et que je soumette quelques docs techniques pour fusion avec la doc 01:03 <@nop> euh, cs et moi travaillerons à transformer inform pour que ça fonctionne avec la dernière version 01:04 <@nop> et quelques personnes ont essayé quelques vérifications de sécurité sur IIP 01:04 <@nop> malheureusement sans succès 01:04 <@nop> mais 01:04 <@nop> c'est l'esprit 01:04 <@nop> ;) 01:04 <@nop> bref 01:05 <@nop> ce n'est pas vraiment une réunion aujourd'hui, mais si quelqu'un a quelque chose à ajouter, sentez-vous libre de le faire à la partie questions 01:05 <@nop> donc... mids, tu as quelque chose 01:05 <@mids> oui 01:05 <@mids> j'aimerais avoir une discussion publique sur les avantages et les inconvénients des bots (robots) dans les canaux publics 01:06 <@mids> avec ArdVark et quelques autres j'ai eu un débat à ce sujet 01:06 <@mids> chacun a ses idées personnelles 01:06 <@mids> et elles ne sont pas toutes compatibles 01:06 <@mids> mais puisque nous ne sommes pas ici pour tout censurer 01:06 <@mids> discutons 01:06 <@mids> permettez-moi d'énoncer le problème actuel 01:07 <@mids> sauf si quelqu'un veut déjà ajouter quelque chose 01:07 <@mids> 3 2 1 0 01:07 <@mids> ok 01:07 <@mids> dans #anonymous (et #iip et #help) nous avons eu quelques infobots 01:07 <@mids> Herod, camabot et maintenant visix 01:08 <@mids> personnellement je n'y vois rien de bon... puisqu'ils semblent n'être 'utilisés abusivement' que pour le flooding (inondation de messages) du canal 01:08 <@mids> mais je comprends que ma vision est biaisée 01:08 <@mids> basée sur des années de traumatismes IRC :) 01:09 < Kyl3> oui mais il y a des bots qui sont utiles 01:09 <@mids> À quoi servent ces bots ? 01:09 <@mids> . 01:09 < ArdVark> comment définir le flooding d'un canal ? 01:09 < UnDeRToW> pour quoi ? 01:10 < Kyl3> il existe des bots utilisés pour la protection de canal 01:11 <@mids> comme ? 01:11 <@mids> ArdVark : bonne question... quelqu'un ? 01:11 < Kyl3> comme mon eggdrop sur DALnet 01:11 < UnDeRToW> mais ici la protection de canal n'est pas nécessaire 01:11 <@mids> je dirais : remplir le canal de communication de données 01:11 < Kyl3> toutes protections anti-flood personnalisées 01:11 < UnDeRToW> du moins pour l'instant 01:12 <@mids> Kyl3 : vrai, mais avec Trent, je ne pense pas que ce soit un vrai problème ici 01:12 < ArdVark> excuse-moi, mais merci de définir 'remplir le canal de communication de données' 01:12 <@mids> à propos du flooding : je reconnais que ce qui est perçu comme du flood est très personnel 01:12 <@mids> Kyl3 : qu'entends-tu par flood ? 01:12 <@mids> le canal de communication, c'est le canal IRC / la fenêtre de requête / la fenêtre de messages 01:13 <@mids> données = caractères ASCII sur itc 01:13 < Kyl3> donc Trent a des protections de canal intégrées ? 01:13 <@mids> et 'remplir', c'est y mettre trop de choses 01:13 <@mids> Kyl3 : non, pas comme tu l'entends... 01:13 < ArdVark> non j'ai vu des utilisateurs poster d'énormes paragraphes de mots dans un canal sans aucune réaction négative ; peut-être un ami d'un OP 01:14 < UnDeRToW> je pense que la meilleure manière de contrôler ça est d'avoir des @ sur les canaux publics qui ne prennent l'op que lorsqu'un problème apparaît 01:14 <@mids> ArdVark : les gros collages (qu'est-ce qui est 'gros' ?) c'est du flood à mon humble avis 01:14 <@mids> et Jésus qui énonce tous les chapitres de la Bible aussi... toujours à mon humble avis 01:15 < ArdVark> cependant mids tu n'as adressé aucune réponse négative à certains individus ; des amis à toi peut-être ? 01:15 < ArdVark> qui collent de gros paragraphes 01:15 <@mids> peut-être des amis 01:15 <@mids> peut-être que j'étais absent 01:15 <@nop> voilà ce que je propose 01:15 <@nop> la meilleure façon 01:15 <@nop> de trancher 01:15 <@nop> c'est de laisser l'ircd le déterminer 01:15 <@nop> l'ircd a une limite de flood 01:15 <@nop> et s'ils la dépassent 01:15 <@nop> il les expulsera 01:16 <@nop> en dehors de ça, si vous ne le faites pas intentionnellement 01:16 <@nop> alors où est le problème 01:16 <@mids> on peut quand même flooder très facilement 01:16 <@nop> oui 01:16 <@nop> mais l'intentionnel est évident 01:16 <@nop> donc si c'est intentionnel 01:16 <@nop> on s'en occupe 01:16 <@nop> si ça ne l'est pas 01:16 <@nop> alors on continue nos affaires 01:16 < ArdVark> non, il est trop facile de décider que quelqu'un flood intentionnellement, nop 01:16 <@nop> pas besoin de drame inutile 01:16 <@nop> mais 01:16 <@nop> il est facile de demander aux gens de parler au bot dans un canal privé 01:17 <@nop> et s'ils sont belliqueux 01:17 <@nop> alors vous avez très probablement une raison probable de leurs intentions 01:17 < ArdVark> je ne suis pas d'accord 01:17 <@nop> ok 01:17 <@nop> ardvark 01:17 <@nop> merci de définir alors 01:17 <@nop> parce que si nous pouvons fixer des limites 01:18 <@nop> ce débat sera vite clos 01:18 < ArdVark> je n'ai aucun problème avec l'idée de contrôle de flood par l'ircd ; j'ai un gros problème avec un OP qui fait la "protection" 01:19 < ArdVark> les OP peuvent avoir des amis qu'ils autorisent à "flooder" ; tandis que d'autres sont traités différemment 01:19 <@nop> oui 01:19 <@mids> je pense que ton problème, ce sont les OP... 01:19 <@nop> la question du biais 01:19 < CyberLOK1> désolé je viens de voir le msg j'étais au travail 01:19 < CyberLOK1> ai-je raté la réunion ? 01:19 < ArdVark> oui ma préoccupation ultime, ce sont les OP, à cause du potentiel de limitation de la parole, mids 01:19 <@mids> CyberLOK1 : on parle de flooding en ce moment 01:19 <@mids> CyberLOK1 : logs : http://mids.student.utwente.nl/~mids/iip/ 01:19 < CyberLOK1> merci mids 01:20 <@mids> ArdVark : je suis totalement d'accord sur le plan théorique 01:20 <@nop> et si on parlait d'un agent 01:20 < ArdVark> je continuerai à exprimer mon désaccord à ce sujet 01:20 <@mids> mais sur le plan pratique... sans ops, comment gérer les utilisateurs problématiques qui empêchent les autres de parler ? (par le flooding) 01:22 < ArdVark> les OP sont une menace pour la liberté d'expression, point final ; décider du flooding par des OP n'est pas objectif 01:22 <@mids> alors dis-moi comment tu vois #anonymous sans OP... avec la technologie disponible actuellement 01:23 <@mids> tout va bien... 01:23 <@nop> un agent pour fixer un standard 01:23 <@mids> puis 10 emmerdeurs arrivent 01:23 <@nop> pour le flooding 01:23 <@mids> et commencent à spammer de la merde 01:23 <@mids> quelle est ta solution, ArdVark ? 01:24 < ArdVark> spam est un terme chargé émotionnellement utilisé pour désigner une parole que d'autres, peut-être la plupart, n'aiment pas ; la liberté d'expression ne concerne pas que la parole que j'aime 01:24 <@mids> donc ces 10 types collent des ##### au débit maximal que l'ircd autorise 01:25 <@mids> de sorte que personne ne peut voir aucun texte 01:25 < UnDeRToW> mais un oper peut monter quand un problème survient 01:25 < UnDeRToW> et le reste du temps redescendre 01:25 < ArdVark> et l'idée c'est que ces types vont rester pour toujours ? 01:25 <@mids> UnDeRToW : c'est comme ça maintenant 01:26 < UnDeRToW> je sais 01:26 < UnDeRToW> et si quelqu'un fait une mauvaise chose 01:26 < UnDeRToW> ou si un oper fait une mauvaise chose 01:26 <@mids> ArdVark : pourquoi pas... ils ont un botnet avec 100 connexions T3 01:26 < UnDeRToW> on en parle et il/elle comprend son erreur 01:26 < UnDeRToW> et si ça persiste 01:26 < UnDeRToW> plus de @ 01:27 < ArdVark> eh bien je perçois une menace réelle pour la liberté d'expression autour de cette question 01:27 < UnDeRToW> mais pour l'instant il n'y a pas de problème lié à ça, n'est-ce pas ? 01:28 <@mids> ok, j'ai une proposition 01:28 <@mids> on pourrait essayer une période sans aucun opérateur dans #anonymous 01:29 <@mids> quelques semaines 01:29 <@mids> et voir comment ça se passe 01:29 <@mids> fixer le sujet à quelque chose de statique 01:29 <@mids> channel mode +tn 01:29 <@mids> et tout le monde retiré de la liste d'accès de trent 01:29 <@nop> vous savez 01:29 <@nop> ce n'est vraiment pas juste 01:29 <@nop> les gens passent à côté du point 01:30 <@nop> IRC a un ensemble de règles, un contrôle des canaux et tout ce bordel 01:30 <@nop> je comprends la nature de la liberté d'expression 01:30 <@nop> mais nous devons aussi avoir une forme de défense 01:30 <@nop> le flooding peut causer des problèmes sur les réseaux 01:30 <@nop> etc. 01:30 < wilde> mais quel est le problème au fond ? chacun est libre d'ouvrir un nouveau canal et d'avoir des ops ? Alors pourquoi les ops seraient un problème dans #anonymous ? Ouvre un nouveau canal et parle librement 01:30 <@nop> on ne peut pas dire que c'est de la parole, vraiment, ce sont des 1 et des 0 détournés 01:30 < ArdVark> je ne suis pas d'accord, nop 01:30 <@nop> les fondateurs de canaux spécifiques, ils ont le choix de contrôler le canal 01:31 <@nop> s'ils veulent le canal #freespeech 01:31 <@nop> alors soit 01:31 <@nop> car là 01:31 <@nop> vous pouvez le flooder 01:31 <@nop> autant que vous voulez 01:31 <@nop> et l'appeler #freespeech 01:31 <@nop> la technologie offre la liberté 01:31 <@nop> mais les détenteurs du canal ne l'offrent pas forcément 01:31 <@nop> et c'est le design 01:31 <@nop> vous avez des choix 01:31 < ArdVark> je dois exprimer officiellement mon désaccord total 01:31 <@nop> et toute la gamme de choix 01:31 <@nop> et c'est ça la liberté de choix 01:32 <@nop> c'est-à-dire que si tu dis 'je ne suis pas d'accord', je ne peux pas dire 'non tu dois être d'accord' 01:32 <@nop> mais dans un canal de fondateur 01:32 <@nop> je peux dire 01:32 <@nop> nous considérons cela comme du flooding 01:32 <@nop> nous ne sommes pas op sur chaque canal 01:32 <@nop> et s'il y a une inquiétude 01:32 <@nop> alors il y a une inquiétude 01:32 <@nop> mais #anonymous est public 01:32 <@nop> ce qui exige un minimum de gouvernance de règles très basiques 01:32 <@nop> parce que tout le monde doit avoir une chance de parler 01:32 <@nop> mais le flooding, interprété ou non 01:32 <@nop> ne sera pas toléré 01:33 < ArdVark> eh bien encore une fois je m'y oppose 01:33 <@nop> ça n'aurait tout simplement aucun sens 01:33 <@nop> c'est comme dire 01:33 <@nop> j'ai la liberté de tuer 10 personnes 01:33 < UnDeRToW> mais nop, et tout le monde sans op, et si quelqu'un commence à flooder on monte et on règle le problème 01:33 < UnDeRToW> puis on redescend 01:33 <@nop> oui 01:33 <@nop> c'est juste 01:33 <@nop> mais 01:33 <@nop> l'interprétation 01:33 <@nop> est le défi 01:33 <@mids> UnDeRToW : c'est ce que nous disons tous sauf ardvark... 01:33 < ArdVark> parce que j'ai été accusé de provoquer du flooding alors que quelqu'un d'autre qui collait de gros paragraphes dans le canal auparavant n'a pas été admonesté 01:34 < CyberLOK1> essayons-nous de justifier le flooding ? 01:34 <@nop> je suis d'accord avec l'avis d'Ardvark en ce sens qu'il peut exercer sa liberté d'expression 01:34 <@nop> expression 01:34 <@nop> mais l'interprétation semble biaisée 01:34 <@nop> et pour résoudre ça 01:34 <@nop> il nous faut une norme 01:34 < UnDeRToW> mids je sais 01:34 <@nop> mais on ne peut pas simplement autoriser le flooding 01:34 < ArdVark> les OP sont incohérents dans leur approche ; ils laissent les amis faire des trucs et pas les autres 01:35 < CyberLOK1> et si on mettait un contrôle du nombre de personnes et un limiteur du nombre d'envois max par seconde 01:35 < CyberLOK1> ainsi il serait impossible de flooder les gens trop longtemps et ça ne ferait vraiment rien 01:35 <@nop> hmm 01:36 <@nop> ce n'est pas vraiment un si gros problème 01:36 <@nop> et nous sommes peut-être un peu sensibles 01:36 < CyberLOK1> ArdVark, enlève la partie humaine alors 01:36 <@nop> parce qu'on est habitués à l'irc public 01:36 <@nop> et le biais est un problème 01:37 <@nop> je dis 01:37 <@nop> qu'à moins que ce soit du flooding de script kiddie (débutant qui lance des scripts) manifestement évident 01:37 <@nop> on laisse faire 01:37 <@nop> et au pire 01:37 <@nop> on peut poser des questions ou demander poliment s'ils veulent parler au bot dans un canal privé 01:37 < ArdVark> le problème avec le flooding, c'est : et si personne ne parle dans le canal ? soudain je tape beaucoup ; puisque personne d'autre ne parle, je ne porte pas atteinte à la parole de quelqu'un d'autre 01:37 <@nop> non, tu ne le fais pas 01:37 <@nop> et tu devrais y être autorisé 01:37 < ArdVark> eh bien c'était le problème l'autre jour 01:38 <@mids> aprogas t'a demandé d'arrêter 01:38 <@mids> mais tu ne l'as pas vu 01:38 <@mids> à cause de la sortie du bot je pense... 01:38 <@nop> eh bien 01:38 <@nop> je pense que si aprogas demande d'arrêter 01:38 <@nop> il devrait le faire en privé 01:38 <@nop> alors il devrait le voir 01:38 <@nop> à moins qu'il n'utilise certains clients irc 01:38 <@mids> ça dépend 01:38 <@nop> mais c'est une autre question 01:38 <@mids> beaucoup de gens ne regardent pas les messages privés 01:38 < ArdVark> il peut le faire en privé, mais j'ai le sentiment que je n'ai pas à m'arrêter à sa demande 01:39 < ArdVark> si personne d'autre ne parle 01:39 <@mids> il parlait 01:39 < CyberLOK1> mids l'ignorance n'est pas une excuse 01:39 < CyberLOK1> désolé pour l'orthographe 01:39 <@mids> maintenant tu ne veux pas t'arrêter 01:39 <@mids> combien de conversation faut-il pour que tu t'arrêtes ? 01:39 < ArdVark> encore une fois nous avons Aprogas, ami d'un OP, soutenu par cet OP 01:39 < ArdVark> c'est là que réside le problème 01:40 <@mids> je comprends ton point 01:40 < ArdVark> une menace pour moi qui ne suis l'ami d'aucun OP et pour ma parole 01:40 <@mids> mais je ne vois pas de solution, sauf que tu crées ton propre canal avec tes règles 01:41 < ArdVark> eh bien pourquoi me dire d'en créer un, pourquoi ne pas le dire plutôt à ton ami ? 01:41 <@mids> nous avons créé #anonymous 01:41 < CyberLOK1> euh et si on mettait 1 bot dans chaque canal créé qui a l'op... puis quand un flooding de script kiddie est détecté, il protège le canal 01:41 < ArdVark> tu vois comment on revient au problème des OP et de leurs amis 01:41 < CyberLOK1> du coup il n'y a plus de problème... personne n'est opé, sauf 1 personne et ce n'est même pas une personne donc personne ne peut invoquer un biad 01:41 < CyberLOK1> biais 01:42 <@nop> mais c'est le programmeur qui écrit le biais 01:42 < ArdVark> exact 01:42 < CyberLOK1> nop des règles basiques 01:42 < CyberLOK1> si canal == lignes par seconde 01:42 < CyberLOK1> si tant de personnes arrivent et partent 01:42 <@nop> hmm, mids est-ce que trent peut faire ça 01:42 < CyberLOK1> alors 01:42 < CyberLOK1> verrouiller le canal, éjecter les gens qui floodent au-dessus de tel seuil 01:42 < CyberLOK1> temporisation à une valeur prédéfinie 01:43 <@mids> nop : techniquement oui, mais je ne veux pas que trent espionne tous les canaux 01:43 <@nop> bon point 01:43 <@nop> et si c'était seulement pour #anonymous 01:43 < CyberLOK1> eh bien ça éliminerait ce "biais" 01:43 <@nop> qui est "LE" canal pub 01:43 < CyberLOK1> je veux dire 01:43 < CyberLOK1> faisons face à un fait ici 01:44 < CyberLOK1> on prend des risques en courant dans la rue pour crier ses mots 01:44 < CyberLOK1> ici on risque peut-être qu'on soit tous là pour t'atteindre et enregistrer ce que tu dis 01:44 < CyberLOK1> le risque fait partie de la vie, et s'ils ne peuvent pas gérer "l'espionnage" (ce qui n'en est pas, mais bon) alors dis-leur de sortir leurs banderoles et d'aller dans la rue 01:45 <@nop> non 01:45 <@nop> pas d'espionnage 01:45 <@nop> nous ne voulons pas d'espionnage 01:45 <@nop> ce n'est pas l'objet du débat 01:45 < CyberLOK1> nop n'importe qui et n'importe quoi peut espionner 01:45 <@nop> c'est que #anonymous est un canal public 01:46 <@nop> ce que je dis, c'est 01:46 <@nop> que nous n'allons pas abuser de la puissance de trent 01:46 <@nop> et devenir le gouvernement 01:46 < CyberLOK1> ahhh 01:46 < CyberLOK1> d'accord alors 01:46 <@nop> ce n'est pas vraiment nécessaire 01:46 < CyberLOK1> on peut former des groupes de canaux "publics" 01:46 < CyberLOK1> cela consiste en des canaux créés par des personnes 01:46 < CyberLOK1> qui ne veulent plus d'ops mais veulent leur canal protégé 01:47 < CyberLOK1> et donc ce serait une auto-sélection 01:47 < CyberLOK1> une "option" 01:47 < CyberLOK1> de cette façon, le choix de personne n'est retiré 01:47 < CyberLOK1> et vous pourriez utiliser trent pour protéger le canal anonymous comme exemple 01:47 <@nop> juste trent pour #anonymous car #anonymous est fondé comme le canal Public sur IIP 01:47 < CyberLOK1> les autres peuvent laisser ça aux guerres d'op et autres absurdités 01:47 <@nop> le reste n'est pas le devoir de trent 01:48 <@nop> regardez 01:48 < CyberLOK1> nop je pensais 01:48 < CyberLOK1> je veux former un canal 01:48 < CyberLOK1> mais moi-même je ne veux pas gérer des ops et tout ça 01:48 < CyberLOK1> je veux, comme vous, la liberté d'expression 01:48 <@nop> ardvark je comprends ta préoccupation, elle a parfaitement du sens, mais sans solution ni idée de ta part, j'ai besoin de savoir ce qu'on peut faire 01:48 < CyberLOK1> à moins qu'on m'autorise à faire tourner un bot dans mon canal 01:48 <@nop> as-tu une proposition 01:48 <@nop> et/ou peux-tu en proposer une d'ici la prochaine réunion 01:49 < ArdVark> eh bien si vous utilisez trent pour "contrôler" #anonymous, pouvez-vous s'il vous plaît toujours l'indiquer dans le sujet ou avoir une intro pour chaque utilisateur ? 01:49 < ArdVark> pour les en informer 01:49 <@nop> je ne pense pas que nous ferons cela 01:49 <@nop> mais si nous pouvions avoir une proposition de ta part 01:49 <@nop> d'ici la prochaine réunion 01:49 <@nop> sur les idées que tu juges acceptables 01:50 <@nop> alors cela pourra être accepté et nous pourrons arranger les choses pour que tout le monde soit content 01:50 <@nop> nous essayons aussi de protéger le réseau 01:50 <@nop> et c'est de ce point de vue que je parle 01:50 <@nop> pour que tout le monde puisse l'utiliser efficacement 01:50 < CyberLOK1> heure de manger 01:50 <@nop> et je veux aussi respecter la liberté d'expression 01:50 < ArdVark> nop je pense que cela doit se travailler avec le temps, je ne peux pas promettre, de façon "business", une solution pour la prochaine fois 01:50 < CyberLOK1> bravo nop 01:50 <@mids> ok, merci d'être passé CyberLOK1 01:51 <@nop> ok 01:51 <@nop> c'est juste 01:51 < CyberLOK1> np mids 01:51 <@nop> mais réglons ça 01:51 <@nop> alors 01:51 <@nop> le fait brut, c'est 01:51 <@nop> que nous sommes humains 01:51 <@nop> et une communauté 01:52 <@nop> donc c'est un défi de ne pas vouloir contrôler 01:52 < ArdVark> non, trop de gens sont habitués aux OP IRC où, si tu n'es pas d'accord avec eux, tu es expulsé 01:52 <@nop> ok 01:52 < ArdVark> donc si je m'oppose à un OP qui expulse quelqu'un 01:52 <@nop> je comprends la plain 01:52 <@nop> plainte 01:52 <@nop> et je crois que cela peut être un problème 01:52 <@nop> et que personne n'est parfait 01:52 <@nop> donc ce qu'on peut faire, c'est mettre en place un standard 01:52 <@nop> je pense que l'idée de mids 01:52 <@nop> de pas d'ops 01:52 <@nop> dans #anonymous 01:52 <@nop> pendant un moment 01:52 <@nop> pourrait être une solution viable 01:52 < ArdVark> en fait nop la plupart des gens ne se plaindront pas, ils partiront et ne reviendront pas 01:53 <@nop> ok 01:53 <@nop> alors 01:53 <@nop> pas d'ops pendant 2 semaines 01:53 <@nop> dans #anonymous 01:53 <@mids> je propose toujours pas d'ops pendant 2 semaines 01:53 <@nop> et le seul, et strictement seul moment 01:53 <@nop> c'est s'il y a sans aucun doute une attaque malveillante sur #anonymous 01:53 <@nop> par un script kiddie 01:53 <@mids> non 01:53 <@mids> pas d'ops, c'est pas d'ops 01:53 <@nop> ok 01:53 <@nop> très bien 01:54 <@nop> pas d'ops 01:54 <@nop> deux semaines 01:54 <@nop> dans #anonymous 01:54 <@nop> d'accord ? 01:54 < UnDeRToW> pas d'accord avec pas d'ops 01:54 <@nop> que tous disent oui 01:54 <@nop> on peut voter, n'est-ce pas 01:54 < UnDeRToW> un seul op uniquement pour les gros problèmes 01:54 <@nop> ça, on ne peut pas 01:54 <@nop> il y aurait toujours du biais 01:54 <@nop> ce n'est que 2 semaines 01:54 <@nop> au pire on gère 01:54 <@nop> et on évalue 01:55 <@nop> et on dit 01:55 <@nop> est-ce que ça en vaut la peine 01:55 <@nop> dans 2 semaines 01:55 <@nop> ardvark 01:55 <@mids> ce serait une expérience, peut-être avec des résultats très intéressants 01:55 <@nop> cela te satisferait-il temporairement jusqu'à ce qu'on puisse envisager de meilleures options 01:55 < ArdVark> OK 01:55 <@nop> ok 01:55 <@nop> c'est fait 01:55 < ArdVark> merci 01:55 <@mids> super 01:56 <@mids> maintenant quel sujet utilisons-nous ? 01:56 <@nop> celui qui est affiché 01:56 <@nop> ;) 01:56 <@mids> ok, tu retires tout le monde de la liste d'accès ? 01:58 <@nop> peux-tu s'il te plaît, mids 01:58 <@nop> pendant deux semaines 02:00 < ArdVark> cependant je ne pense vraiment pas que nous ayons résolu la question de ce qu'est le flooding ; et les implications qui en découlent 02:00 < ArdVark> si vous voulez parler de ce que le réseau peut supporter 02:00 < ArdVark> car je comprends que les programmes ont des limites 02:01 <@mids> (la liste d'accès de #anonymous est vide) 02:01 < ArdVark> mais as-tu déjà été dans #anonymous quand la conversation est rapide et furieuse 02:01 < ArdVark> certains mots de certaines personnes passent sans être lisibles pour moi 02:01 <@mids> oui, alors je pense que la saisie normale dépasse le floodrate de l'ircd :) 02:02 < ArdVark> en quoi est-ce différent du soi-disant spam ou du flooding ? 02:02 < AgentDelta> une question hypothétique, j'espère que je ne suis pas hors sujet... s'il existait une sorte de système d'authentification forte pour s'authentifier comme un utilisateur anonyme connu avec un compte de micropaiement associé pour que les utilisateurs paient lorsqu'ils enfreignent un comportement spécifié, est-ce que cela répondrait aux préoccupations sur le flooding ? à quel point serait-il difficile d'intégrer une telle API dans le système ? 02:02 <@mids> AgentDelta : comme hashcash par exemple ? 02:02 <@mids> AgentDelta : non... le spam est aussi jugé de manière personnelle 02:03 < wilde> La liberté d'expression ne signifie pas obliger les gens à écouter, #anonymous est un lieu général de discussion, mais si vous voulez plus de liberté vous devriez créer votre propre canal et discuter de ce que vous voulez et avec autant de phrases que vous voulez par seconde 02:03 <@mids> s/agentdelta/ardvark/ 02:03 < ArdVark> je suis d'accord, mids, le spam est personnel 02:04 <@mids> AgentDelta : et il en va de même du flood... même le flood que l'ircd refuse... un humain a choisi les valeurs pour ça 02:04 < Neo> wilde : ouais, alors tu mets l'op et appliques tes propres règles dans ton propre canal. 02:04 < ArdVark> écoute, je n'ai aucun problème avec des gens ayant leurs propres canaux avec leurs propres règles ; soit 02:04 < ArdVark> #anonymous a été lancé, si je me souviens, pour la liberté d'expression anonyme 02:05 < AgentDelta> si les canaux n'appartiennent à personne, j'imagine que tu as la tragédie des communs 02:05 < ArdVark> les communs ne sont pas une tragédie 02:06 < AgentDelta> non, les communs ne sont pas une tragédie, mais ils n'ont pas de propriétaire spécifique qui veille sur eux 02:06 < AgentDelta> et les déchets et autres artefacts de cette absence de propriétaire s'appellent la tragédie 02:07 < Neo> les communs peuvent devenir une tragédie, et c'est pourquoi nous parlons de comment gérer les gens qui floodent le système et pourraient transformer #anonymous en zone de flood 02:07 < AgentDelta> ok 02:07 < ArdVark> tu veux dire quelqu'un qui soit "accountable", AgentDelta ? En utilisant la vision économique de la vie 02:08 < AgentDelta> non, "accountable" implique une responsabilité vis-à-vis d'un pouvoir externe. si je possède ce bout de terrain, je vais le garder en bon état pour mes propres raisons égoïstes 02:08 < Neo> AgentDelta : non, "accountable" peut vouloir dire responsable devant les utilisateurs internes du système. 02:09 < Neo> On réfléchissait à des mentors de forum pour les forums DC. 02:09 < Neo> Ils ne sont pas des dictateurs de canal tout-puissants, 02:09 < Neo> mais s'ils censurent des gens, ils devront rendre des comptes aux utilisateurs du système. 02:10 < Neo> Donc si mids est l'op de #anonymous et qu'il abuse du pouvoir d'op, alors il peut être démis de son statut, 02:10 < Neo> et il subit aussi un dommage de réputation. 02:10 < Neo> Ainsi quelqu'un d'impartial contrôle le vrai FLOODING et les véritables abus du système par des utilisateurs. 02:10 < AgentDelta> ok, donc vous avez une norme définie des circonstances strictes sous lesquelles quelqu'un pourrait être réduit au silence, et si quelqu'un utilise les pouvoirs d'op manifestement en dehors des directives listées, il perd le statut d'op ? 02:10 < wilde> En fait je pense que cette discussion n'est vraiment pas un gros truc, chacun est libre de démarrer ses propres canaux modérés/non modérés, si c'est une bataille autour du canal #anonymous je pense que la plupart des utilisateurs s'accordent à dire que ce canal de discussion générale est meilleur sans flooding ni promotion de pornographie infantile par exemple, donc un contrôle minimal est nécessaire 02:11 < ArdVark> je ne suis pas d'accord, wilde 02:12 <@mids> AgentDelta : oui, mais maintenant les fondateurs de canaux sont libres de choisir leurs standards 02:12 < AgentDelta> en l'absence de mécanisme pour établir l'ordre, le plus puissant prend le contrôle de n'importe quel endroit, physique ou virtuel, et je soutiens que dans un canal irc, les "flooders" et "spammers" sont les plus puissants. 02:13 < AgentDelta> le simple volume de bruit peut submerger n'importe quel argument logique 02:13 < AgentDelta> hehe 02:13 <@mids> AgentDelta : mais qu'est-ce que le bruit ? :) 02:13 < ArdVark> le bruit a aussi sa valeur 02:13 < AgentDelta> c'est vrai, 02:14 < AgentDelta> tu pourrais avoir un canal avec tellement de bruit que tu peux y insérer des données sténographiques qui ne sont pas évidentes 02:14 < wilde> ArdVark : Tu dis que tu n'es pas d'accord, mais sur quoi ? 02:15 < ArdVark> wilde je vais m'en tenir à cette déclaration pour l'instant, désolé 02:15 < AgentDelta> un canal anonyme avec un flux constant de bruit semble servir un but complètement différent d'un canal anonyme avec des attentes de communication en temps réel vers/de autres esprits 02:15 < Neo> La question en ce moment n'est pas le bruit. 02:15 < AgentDelta> peut-être qu'il faut un canal séparé pour la communication anonyme d'usage général, et un autre pour la communication anonyme de conversation 02:15 < Neo> Il s'agit de l'abus du canal #anonymous par des utilisateurs qui floodent le système. 02:15 < wilde> ArdVark : tes arguments sont brillants 02:16 < wilde> s/you're/your 02:16 <@mids> Neo : et l'abus (potentiel) du pouvoir des opérateurs 02:16 <@mids> bref, je vais dormir.. merci d'être passés. Les logs du canal sont et seront disponibles sur  http://mids.student.utwente.nl/~mids/iip/ 02:20 < ArdVark> la réunion est finie ? j'imagine que oui 02:21 < Neo> ouais, c'est devenu calme ici. 02:21 < ArdVark> bonne discussion à tous, on se voit dans #anonymous 02:22 < UnDeRToW> l'heure de dormir 02:22 < UnDeRToW> bye tout le monde 02:22 < Neo> l8r 02:22 < UnDeRToW> nop 02:22 < UnDeRToW> je vais commencer bientôt la traduction des nouveaux docs 02:22 < UnDeRToW> à plus 02:22 < UnDeRToW> bye 10:12 -!- UserX_ est maintenant connu sous le nom de UserX --- Journal fermé Wed Jul 03 10:29:14 2002 </div>
+<div class="irc-log">
+--- Log opened Wed Jul 03 00:33:19 2002
+00:33 <+logger> logging started
+00:47 -!- mode/#iip-dev [+o nop] by mids
+00:54 < UnDeRToW> hi
+00:54 <@mids> hi
+01:01 <@nop> ok
+01:01 <@nop> hi
+01:01 <@nop> welcome
+01:01 <@nop> to the 5th meeting I believe
+01:01 <@mids> 7th
+01:02 <@nop> really
+01:02 <@nop> ok
+01:02 <@mids> http://mids.student.utwente.nl/~mids/iip/
+01:02 <@nop> wilde you have anonymail
+01:02 <@nop> ok
+01:03 <@nop> iip 1.1 rc2 will be released pending a few doc changes and me submitting a couple of technical docs for merging with docs
+01:03 <@nop> umm, cs and I will work on transforming inform to work with latest version
+01:04 <@nop> and we have had a few people try out some security checks on IIP
+01:04 <@nop> unfortunately with no success
+01:04 <@nop> but
+01:04 <@nop> that's the spirit
+01:04 <@nop> ;)
+01:04 <@nop> anyway
+01:05 <@nop> this is not much of a meeting today, but if anyone has anything to add please feel free at the questions part
+01:05 <@nop> so... mids, do you have anything
+01:05 <@mids> yes
+01:05 <@mids> I would like to have a public discussion about the pro's and con's of bots in the public channels
+01:06 <@mids> with ArdVark and some others I have had an argument about that
+01:06 <@mids> everybody has its personal ideas
+01:06 <@mids> and they aren't all compatible
+01:06 <@mids> but since we are not here to censor everything
+01:06 <@mids> lets discuss
+01:06 <@mids> allow me to state the current issue
+01:07 <@mids> unless someone already wants to add something
+01:07 <@mids> 3 2 1 0
+01:07 <@mids> ok
+01:07 <@mids> in #anonymous (and #iip and #help) we have had a few infobots
+01:07 <@mids> Herod, camabot and now visix
+01:08 <@mids> personally I dont see any good in those things.. since they seem to be only 'abused' for channel flooding
+01:08 <@mids> but I understand that my vision on that is biased
+01:08 <@mids> based on years of IRC trauma's :)
+01:09 < Kyl3> yes but there are some bots that are useful
+01:09 <@mids> Where are those bots good for?
+01:09 <@mids> .
+01:09 < ArdVark> what is defined as channel flooding?
+01:09 < UnDeRToW> for what?
+01:10 < Kyl3> there are some bots that are used for channel protection
+01:11 <@mids> like?
+01:11 <@mids> ArdVark: good one... anybody?
+01:11 < Kyl3> like my eggdrop on DALnet
+01:11 < UnDeRToW> but here is not necesary channel protection
+01:11 <@mids> I would say: filling the communication channel with data
+01:11 < Kyl3> all custom flood protection
+01:11 < UnDeRToW> at least now
+01:12 <@mids> Kyl3: true, but with Trent, I don't think that is a real issue here
+01:12 < ArdVark> excuse me but please define filling the communication channel with data
+01:12 <@mids> re flooding: but I agree that it is very personal what is seen as flood
+01:12 <@mids> Kyl3: what is flood in your wording?
+01:12 <@mids> communcation channel is irc channel / query window / message window
+01:13 <@mids> data = ascii characters on itc
+01:13 < Kyl3> so Trent has channel protections built into it?
+01:13 <@mids> and filling is putting too much into it
+01:13 <@mids> Kyl3: no, not like you mean...
+01:13 < ArdVark> no I have seen users place huge paragraphs of words in a channel without any negative response; perhaps a friend of an OP
+01:14 < UnDeRToW> I think the best way to control that is some @ on public channels that only go up when a problem appear
+01:14 <@mids> ArdVark: big pastes (what is big) is flood to imho
+01:14 <@mids> and jesus stating all the bible chapters is too... imho again
+01:15 < ArdVark> however mids you have offered no negative responses to some individuals; friends of your perhaps?
+01:15 < ArdVark> who paste large paragraphs
+01:15 <@mids> maybe friends
+01:15 <@mids> maybe I was away
+01:15 <@nop> tell you what
+01:15 <@nop> the best way
+01:15 <@nop> to determine this
+01:15 <@nop> is to let ircd determine it
+01:15 <@nop> ircd has a flood limit
+01:15 <@nop> and if they exceed that
+01:15 <@nop> it will kick them
+01:16 <@nop> other than that, if you're not intentionally doing it
+01:16 <@nop> then what's the problem
+01:16 <@mids> still, you can flood very easilly
+01:16 <@nop> yes
+01:16 <@nop> but intentional is obvious
+01:16 <@nop> so if it's intentional
+01:16 <@nop> we handle it
+01:16 <@nop> if it's not
+01:16 <@nop> then go on about our business
+01:16 < ArdVark> no too easy to decide someone is intentionally flooding nop
+01:16 <@nop> no need for unnecessary drama
+01:16 <@nop> but
+01:16 <@nop> it's easy to ask people to talk to the bot in a private channel
+01:17 <@nop> and if they are belligerent
+01:17 <@nop> then most likely you have probable cause of their intentions
+01:17 < ArdVark> I disagree
+01:17 <@nop> ok
+01:17 <@nop> ardvark
+01:17 <@nop> please define then
+01:17 <@nop> because if we can set boundaries
+01:18 <@nop> this argument will be quickly over
+01:18 < ArdVark> I have no problem with your ircd flood control notion; I have a big problem with an OP doing the "protecting"
+01:19 < ArdVark> OP's may have friends that they permit to "flood"; while  others are dealt with differently
+01:19 <@nop> yes
+01:19 <@mids> I think that your problem is having OPs...
+01:19 <@nop> the biased issue
+01:19 < CyberLOK1> sorry just saw msg I have been at work
+01:19 < CyberLOK1> did I miss meeting?
+01:19 < ArdVark> yes my ultimate concern is  OP's because of the  potential to limit  speech mids
+01:19 <@mids> CyberLOK1: talking about flooding right now
+01:19 <@mids> CyberLOK1: logs: http://mids.student.utwente.nl/~mids/iip/
+01:19 < CyberLOK1> mids thanks
+01:20 <@mids> ArdVark: I totally agree on the theoretical side of that
+01:20 <@nop> well what about an agent
+01:20 < ArdVark> I will continually express my dissent about that issue
+01:20 <@mids> but on the practical side... without ops, how to deal with problem users that deny others to speak? (by flooding)
+01:22 < ArdVark> OP's are a threat to free speech, end of statement; deciding on flooding  by OP's is not objective
+01:22 <@mids> then please tell me how you see #anonymous without OPs.. using current available technology
+01:23 <@mids> everything is fine...
+01:23 <@nop> agent to set a standard
+01:23 <@mids> then 10 trouble guys enter
+01:23 <@nop> for flooding
+01:23 <@mids> and start spamming crap
+01:23 <@mids> what is your solution ArdVark ?
+01:24 < ArdVark> spam is an emotionally laden term used to point out speech other's, perhaps  most others do  not like; free speech is not just about speech I like
+01:24 <@mids> so these 10 guys paste #####'s with the maximum rate that the ircd allows
+01:25 <@mids> resulting in nobdy beeing able to see any text
+01:25 < UnDeRToW> but an oper can go up when a problem occur
+01:25 < UnDeRToW> and the rest of the time down
+01:25 < ArdVark> and the point is  that these guys  are  going to remain forever?
+01:25 <@mids> UnDeRToW: that is how it is now
+01:26 < UnDeRToW> i know
+01:26 < UnDeRToW> and if someone do a bad thing
+01:26 < UnDeRToW> or an oper do bad thing
+01:26 <@mids> ArdVark: why not.. they have a botnet with 100 t3 connections
+01:26 < UnDeRToW> talk and he/she know his error
+01:26 < UnDeRToW> and if persist
+01:26 < UnDeRToW> no more @
+01:27 < ArdVark> well I sense a real threat to free speech concern surrounding this  issue
+01:27 < UnDeRToW> but at least now any problem related with that, isnt it?
+01:28 <@mids> okay, I have a proposal
+01:28 <@mids> maybe we should try a period without any operators in #anonymous
+01:29 <@mids> few weeks
+01:29 <@mids> and see how it goes
+01:29 <@mids> fix topic to something static
+01:29 <@mids> channel mode +tn
+01:29 <@mids> and everybody removed from the trent access list
+01:29 <@nop> you know
+01:29 <@nop> this is really not fair
+01:29 <@nop> people are missing the point
+01:30 <@nop> IRC has a ruleset, and channel control and all this other shit
+01:30 <@nop> I understand the nature of freedom of speech
+01:30 <@nop> but we also have to have some sort of defense
+01:30 <@nop> flooding can cause problems on networks
+01:30 <@nop> etc
+01:30 < wilde> but what's the problem really? anyone is free to open a new channel and get ops? So why is ops a bad thing in #anonymous? Open a new channel and speak freely
+01:30 <@nop> you can't say that's speech, really, it's 1's and 0's being abused
+01:30 < ArdVark> I disagree nop
+01:30 <@nop> the founders of specific channels, they have a choice to control the channel
+01:31 <@nop> if they want the #freespeech channel
+01:31 <@nop> then so be it
+01:31 <@nop> because then
+01:31 <@nop> you can flood it
+01:31 <@nop> all you want
+01:31 <@nop> and call it #freespeech
+01:31 <@nop> the technology provides the freedom
+01:31 <@nop> but the channel holders might not
+01:31 <@nop> and this is the design
+01:31 <@nop> you have choices
+01:31 < ArdVark> I must express my complete dissent officially
+01:31 <@nop> and all the choices range
+01:31 <@nop> and that's the freedom of choice
+01:32 <@nop> is that if you say I disagree, I can't say, no you must agree
+01:32 <@nop> but in a founder's channel
+01:32 <@nop> I can say
+01:32 <@nop> we take this as flooding
+01:32 <@nop> we're not an op on every channel
+01:32 <@nop> and if there is concern
+01:32 <@nop> then there is concern
+01:32 <@nop> but #anonymous is public
+01:32 <@nop> which requires some governing of very basic rules
+01:32 <@nop> because everyone must have a chance to speak
+01:32 <@nop> but flooding, interpreted or not
+01:32 <@nop> is not going to be tolerated
+01:33 < ArdVark> well again I dissent
+01:33 <@nop> that just wouldn't make sense
+01:33 <@nop> it's like saying
+01:33 <@nop> I have the freedom to kill 10 people
+01:33 < UnDeRToW> but nop, and all people without op and if someone start flooding just go up and fix the prob
+01:33 < UnDeRToW> and then go down
+01:33 <@nop> yes
+01:33 <@nop> that's fair
+01:33 <@nop> but
+01:33 <@nop> the interpretation
+01:33 <@nop> is the challenge
+01:33 <@mids> UnDeRToW: thats what we all minus ardvark are saying...
+01:33 < ArdVark> because I was accused of causing flooding when someone else pasted large paragraphs into channel previously was not admonished
+01:34 < CyberLOK1> are we tring to justify flooding?
+01:34 <@nop> I agree with Ardvark's view in the sense that he may be executing his free speach
+01:34 <@nop> speech
+01:34 <@nop> but the interpretation seems to be biased
+01:34 <@nop> and to solve that
+01:34 <@nop> we need to have a standard
+01:34 < UnDeRToW> mids i know
+01:34 <@nop> but we can't just allow flooding
+01:34 < ArdVark> OP's are inconsistent in their  approach; let friends do stuff and  others  not
+01:35 < CyberLOK1> how about a control on the number of people and a throttle of max sends per second
+01:35 < CyberLOK1> this way it would be impossible to flood people for to long and it would really do nothing
+01:35 <@nop> hmm
+01:36 <@nop> it's not really an issue that much
+01:36 <@nop> and we might be a little sensitve
+01:36 < CyberLOK1> ArdVark remove the human part then
+01:36 <@nop> because we're used to public irc
+01:36 <@nop> and the biased ness is an issue
+01:37 <@nop> I say
+01:37 <@nop> that unless it's seriously obvious script kiddie flooding
+01:37 <@nop> then we just leave it be
+01:37 <@nop> and at the most
+01:37 <@nop> we can ask questions or ask politely if they will talk to the bot in a private channel
+01:37 < ArdVark> problem with flooding is what if no one  is talking in channel?  suddenly I just type a lot; since no one else is talking I am not  infringing  on anyone else's speech
+01:37 <@nop> no you're not
+01:37 <@nop> and you should be allowed
+01:37 < ArdVark> well that was the issue the other day
+01:38 <@mids> aprogas asked you to stop
+01:38 <@mids> but you didnt see it
+01:38 <@mids> because of the bot output I think...
+01:38 <@nop> well
+01:38 <@nop> I think if aprogas asks to stop
+01:38 <@nop> he should do it privately
+01:38 <@nop> then he should see it
+01:38 <@nop> unless he's running certain irc clients
+01:38 <@mids> depends
+01:38 <@nop> but that's another issue
+01:38 <@mids> lot of people dont check private messages
+01:38 < ArdVark> he cann do it privately, but I sense  I need not stop because  of his/her request
+01:39 < ArdVark> if no one  else is talking
+01:39 <@mids> he was talking
+01:39 < CyberLOK1> mids ignorance is not an excuss
+01:39 < CyberLOK1> sorry spelling
+01:39 <@mids> now you dont want to stop
+01:39 <@mids> how much talking is needed for you to stop?
+01:39 < ArdVark> once again we have  Aprogas a friend of  an OP being  supported by that OP
+01:39 < ArdVark> therein lies the  problem
+01:40 <@mids> I understand your point
+01:40 < ArdVark> a threat to me who is no friend to the OP's and my speech
+01:40 <@mids> but I dont see a solution, except that you create your own channel with your rules
+01:41 < ArdVark> well why tell me to create one, why not tell your frend instead?
+01:41 <@mids> we created #anonymous
+01:41 < CyberLOK1> um how about 1 bot in each created channel that is oped.. then when a script kiddie flood is detected it protects the channel
+01:41 < ArdVark> see how it goes back to problem with OP's and their friends
+01:41 < CyberLOK1> then there is no more issue... no one is opped only 1 person and its not even a person so no one can claim biad
+01:41 < CyberLOK1> bias
+01:42 <@nop> but the programmer writes the biasedness
+01:42 < ArdVark> right
+01:42 < CyberLOK1> nop basic rules
+01:42 < CyberLOK1> if channel == lines per sec
+01:42 < CyberLOK1> if this many people are comming and going
+01:42 <@nop> hmm, mids can trent do this
+01:42 < CyberLOK1> then
+01:42 < CyberLOK1> lock channel kick out people flooding above this much
+01:42 < CyberLOK1> timeout at predefined
+01:43 <@mids> nop: technically yes, but I dont want trent to snoop on all channels
+01:43 <@nop> good point
+01:43 <@nop> what about just for #anonymous
+01:43 < CyberLOK1> well it would eliminate this "bias"
+01:43 <@nop> which is "THE" pub channel
+01:43 < CyberLOK1> I mean
+01:43 < CyberLOK1> lets face a fact here
+01:44 < CyberLOK1> you take risk running to the street shouting your words
+01:44 < CyberLOK1> here you risk maybe we all are out to get you and record what you say
+01:44 < CyberLOK1> risk is all of life and if they can not deal with "snooping" (which its not but hey) then tell um to get out thier banners and head to the street
+01:45 <@nop> no
+01:45 <@nop> no snooping
+01:45 <@nop> we don't want snooping
+01:45 <@nop> the argument is not of this
+01:45 < CyberLOK1> nop anyone and anything can snoop
+01:45 <@nop> it's that #anonymous is a pub channel
+01:46 <@nop> what I'm saying is
+01:46 <@nop> we're not going to abuse the power of trent
+01:46 <@nop> and become the gov't
+01:46 < CyberLOK1> ahhh
+01:46 < CyberLOK1> kk well
+01:46 <@nop> that's hardly called for
+01:46 < CyberLOK1> we can form "public" channel groups
+01:46 < CyberLOK1> this consists of channels formed by people
+01:46 < CyberLOK1> who dont want ops anymore but want thier channel protected
+01:47 < CyberLOK1> and there for it would be a self election
+01:47 < CyberLOK1> an "option"
+01:47 < CyberLOK1> this way no one choice is taken away
+01:47 < CyberLOK1> and you could use trent to protect the anonymous channel as an example
+01:47 <@nop> just trent for #anonymous because #anonymous is founded as the Public channel on IIP
+01:47 < CyberLOK1> others can leave it to op wars and other such nonsense
+01:47 <@nop> the rest is not trent's duty
+01:48 <@nop> look
+01:48 < CyberLOK1> nop I was thinking
+01:48 < CyberLOK1> I want to form a channel
+01:48 < CyberLOK1> but I myself dont want to deal with ops and yada
+01:48 < CyberLOK1> I want just like you guys freedom of speech
+01:48 <@nop> ardvark I understand your concern, it makes complete sense, but without a solution or idea from you, I need to know what can be done
+01:48 < CyberLOK1> unless I would be allowed to run a bot in my channel
+01:48 <@nop> do you have a proposal
+01:48 <@nop> and/or can you offer one by the next meeting
+01:49 < ArdVark> well if you are using trent to "control" #anonymous, can you please always place in the topic or have an intro for each user?
+01:49 < ArdVark> to let them know of this
+01:49 <@nop> I don't think we will do this
+01:49 <@nop> but if we could have a proposal from you
+01:49 <@nop> by next meeting
+01:49 <@nop> on what ideas you think would be acceptable
+01:50 <@nop> then that can be accepted and we can work it out so that it make everyone happy
+01:50 <@nop> we are just trying to protect the network as well
+01:50 <@nop> and that's the stance I'm coming from
+01:50 <@nop> so that everyone can use it efficiently
+01:50 < CyberLOK1> foofd time
+01:50 <@nop> and I want to respect the freedom of speech as well
+01:50 < ArdVark> nop I believe that must be worked out  over time, I cannot promise in some business-like  fashion a solution for next time
+01:50 < CyberLOK1> here here nop
+01:50 <@mids> okay, thanks for dropping by CyberLOK1
+01:51 <@nop> ok
+01:51 <@nop> that's fair
+01:51 < CyberLOK1> np mids
+01:51 <@nop> but let's just work it out
+01:51 <@nop> then
+01:51 <@nop> the hard fact is
+01:51 <@nop> we're humans
+01:51 <@nop> and a community
+01:52 <@nop> so it' s a challenge to not want to control
+01:52 < ArdVark> no too many people are used to irc OP's where if you dissent with them you are kicked
+01:52 <@nop> ok
+01:52 < ArdVark> so if I dissent with an OP kicking someone
+01:52 <@nop> I understand the complain
+01:52 <@nop> complaint
+01:52 <@nop> and I believe that this can be a problem
+01:52 <@nop> and that no one is perfect
+01:52 <@nop> so what we can do is set up a standard
+01:52 <@nop> I think that mids idea
+01:52 <@nop> of no ops
+01:52 <@nop> in #anonymous
+01:52 <@nop> for a while
+01:52 <@nop> might be a workable solution
+01:52 < ArdVark> actually nop most people  will  not  complain, they will just  leave and not  return
+01:53 <@nop> ok
+01:53 <@nop> well
+01:53 <@nop> no ops for 2 weeks
+01:53 <@nop> in #anonymous
+01:53 <@mids> I still propose no ops for 2 weeks
+01:53 <@nop> and the only, and strictly only time
+01:53 <@nop> is if there is without a doubt a malicious attack on #anonymous
+01:53 <@nop> by a script kiddie
+01:53 <@mids> no
+01:53 <@mids> no ops is no ops
+01:53 <@nop> ok
+01:53 <@nop> fair enough
+01:54 <@nop> no ops
+01:54 <@nop> two weeks
+01:54 <@nop> in #anonymous
+01:54 <@nop> agreed?
+01:54 < UnDeRToW> not agree with no ops
+01:54 <@nop> all say I
+01:54 <@nop> we can vote can't we
+01:54 < UnDeRToW> one op only for big problems
+01:54 <@nop> that can't be done
+01:54 <@nop> it would still have biased
+01:54 <@nop> it's just 2 weeks
+01:54 <@nop> worse case scenario we deal with it
+01:54 <@nop> and measure it out
+01:55 <@nop> and say
+01:55 <@nop> is it worth it
+01:55 <@nop> in 2 weeks
+01:55 <@nop> ardvark
+01:55 <@mids> it would be an experiment, maybe with very interesting results
+01:55 <@nop> will that satisfy you for this temporarily till we can look at better options
+01:55 < ArdVark> OK
+01:55 <@nop> ok
+01:55 <@nop> done
+01:55 < ArdVark> thanks
+01:55 <@mids> great
+01:56 <@mids> now what topic do we use?
+01:56 <@nop> the one that's up there
+01:56 <@nop> ;)
+01:56 <@mids> ok, do you remove everyone from the access list?
+01:58 <@nop> can you please mids
+01:58 <@nop> for two weeks
+02:00 < ArdVark> however I really do not think we have resolved the issue  of what is flooding; and the implications therein
+02:00 < ArdVark> if you want to talk about what  the network can handle
+02:00 < ArdVark> cause I understand programs have  limitations
+02:01 <@mids> (#anonymous accesslist is clear)
+02:01 < ArdVark> but have you ever  been in #anonymous when the conversation is  fast a furious
+02:01 < ArdVark> some people words pass by without being readable for me
+02:01 <@mids> yes, then I think that the normal typing exceeds the ircd floodrate :)
+02:02 < ArdVark> how is that different from so called spam or flooding?
+02:02 < AgentDelta> a hypothetical question, i hope i'm not out of line... if there was some kind of strong authentication system to authenticate to a known anonymous user with a micropayment account attached so users pay for breaking specified behavior, would that address flooding concerns? how difficult would it be to integrate such an api into the system?
+02:02 <@mids> AgentDelta: like hashcash for instance?
+02:02 <@mids> AgentDelta: not.. spam is also personal judged
+02:03 < wilde> Freedom of speech isn't equal to forcing people to listen, #anonymous is general place for chat, but if you want more freedom you should start your own channel and discuss what you want and with as many sentences as you like per second
+02:03 <@mids> s/agentdelta/ardvark/
+02:03 < ArdVark> I agree mids, spam is personal
+02:04 <@mids> AgentDelta: and so it flood... even the flood that the ircd denies... some human picked the values for it
+02:04 < Neo> wilde: yeah, then you OP your own rules in your own channel.
+02:04 < ArdVark> look, I have no problem with people  having their  own channels with their own rules; so be it
+02:04 < ArdVark> #anonymous was started as I remember for anonymous free speech
+02:05 < AgentDelta> if the channels aren't owned, i guess you have the tragedy of the commons
+02:05 < ArdVark> commons is not a tragedy
+02:06 < AgentDelta> no, commons isn't a tragedy, but it doesn't have a specific owner who looks out for it
+02:06 < AgentDelta> and litter and other artifacts of this absence of an owner is called the tragedy
+02:07 < Neo> the commons can become a tragedy, and that is why we are talking about how to deal with people who flood the system and could turn #anonymous into nothing but a flood zone.
+02:07 < AgentDelta> ok
+02:07 < ArdVark> you mean like someone to be "accountable" AgentDelta?  Using the economic view of life
+02:08 < AgentDelta> no, "accountable" implies accountability to some outside power. if i own this piece of land, i'm going to keep it in good shape for my own selfish reasons
+02:08 < Neo> AgentDelta: no, accountable could mean accountable to internal users of the system.
+02:09 < Neo> We were thinking about forum mentors for DC forums.
+02:09 < Neo> They are not all powerfull channel dictators,
+02:09 < Neo> but if they censor people, they will be held accountable to the users of the system.
+02:10 < Neo> So if mids is the op of #anonymous and he abuses op power, then he can get removed of his status,
+02:10 < Neo> and he also suffers reputation damage.
+02:10 < Neo> So someone that is impartial controls true FLOODING and real abuse of the system by users.
+02:10 < AgentDelta> ok, so you have some stated standard of under what strict circumstances someone could be silenced, and if someone uses op powers demonstrably outside of the listed guidelines, he loses op status?
+02:10 < wilde> Actually I think this discussion is really not a big thing, everyone is free to start their own moderated/unmoderated channels, if this is a battle of the #anonymous channel I think most users agree that this general chat channel is best without flooding or promotion of child porn for example, so some minimal control is needed
+02:11 < ArdVark> I disagree wilde
+02:12 <@mids> AgentDelta: yes, but now the channel founders are free to choose their standards
+02:12 < AgentDelta> absent some mechanism to establish order, the most powerful takes control over any place, physical or virtual, and i submit in an irc channel, flooders and spammers are the most powerful.
+02:13 < AgentDelta> the sheer volume of noise can overwhelm any logical argument
+02:13 < AgentDelta> hehe
+02:13 <@mids> AgentDelta: but what is noise? :)
+02:13 < ArdVark> noise has it's value too
+02:13 < AgentDelta> that's true,
+02:14 < AgentDelta> you could have a channel with so much noise in it that you can insert stenographic data that is'nt obvious
+02:14 < wilde> ArdVark: You say you disagree, but on what?
+02:15 < ArdVark> wilde I will just stand on that statement for now, sorry
+02:15 < AgentDelta> an anonymous channel with a constant stream of noise seems to serve an entirely different purpose from an anonymous channel with expectation of real-time communication to/from other minds
+02:15 < Neo> The issue right now is not about noise.
+02:15 < AgentDelta> maybe it needs a separate channel for anonymous communication for a general purpose, and anonymous communication for conversation
+02:15 < Neo> It is about abuse of the #anonymous channel from users flooding the system.
+02:15 < wilde> ArdVark: you're arguments are brilliant
+02:16 < wilde> s/you're/your
+02:16 <@mids> Neo: and (potential) abuse of operator power
+02:16 <@mids> anyway, I am going to sleep.. thanks for dropping by. The channel logs are and will be available on  http://mids.student.utwente.nl/~mids/iip/
+02:20 < ArdVark> is the meeting  over?  guess so
+02:21 < Neo> yeah, got quiet in here.
+02:21 < ArdVark> nice discussion all, see you in #anonymous
+02:22 < UnDeRToW> time to sleep
+02:22 < UnDeRToW> bye everybody
+02:22 < Neo> l8r
+02:22 < UnDeRToW> nop
+02:22 < UnDeRToW> i will start with the translation of new docs soon
+02:22 < UnDeRToW> see you
+02:22 < UnDeRToW> bye
+10:12 -!- UserX_ is now known as UserX
+--- Log closed Wed Jul 03 10:29:14 2002
+</div>

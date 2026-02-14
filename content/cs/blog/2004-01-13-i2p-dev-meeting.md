@@ -1,17 +1,155 @@
 ---
-title: "Setkání vývojářů I2P - 13. ledna 2004"
+title: "I2P Dev Meeting - 13. ledna 2004"
 date: 2004-01-13
 author: "jrand0m"
-description: "Setkání vývojářů I2P zaměřené na aktualizace projektu a technické diskuse"
+description: "Zápis z vývojářské schůze I2P ze 13. ledna 2004."
 categories: ["meeting"]
 ---
 
-(S laskavým svolením Wayback Machine http://www.archive.org/)
+(S laskavým svolením wayback machine http://www.archive.org/)
 
-## Stručné shrnutí
+## Rychlé shrnutí
 
-<p class="attendees-inline"><strong>Přítomní:</strong> duck, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, wiht, wilde</p>
+<p class="attendees-inline"><strong>Přítomni:</strong> duck, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, wiht, wilde</p>
 
-## Zápis ze schůzky
+## Zápis ze schůze
 
-<div class="irc-log"> [22:01] &lt;jrand0m&gt; 0) ahoj [22:01] &lt;jrand0m&gt; 1) 0.2.3.4 [22:01] &lt;jrand0m&gt; 2) 0.3 [22:01] &lt;jrand0m&gt; 3) streamovací knihovna, I2COCP, CI2CP [22:01] &lt;jrand0m&gt; 4) aplikace [22:01] &lt;jrand0m&gt; 5) ??? [22:01] &lt;jrand0m&gt; 0) ahoj [22:01] &lt;jrand0m&gt; ahoj všichni [22:01] &lt;jrand0m&gt; viděli jste http://i2p.dnsalias.net/pipermail/i2p/2004-January/000082.html? [22:01] &lt;jrand0m&gt; pokud ne, teď máte příležitost :) [22:02] &lt;jrand0m&gt; iip se poslední dobou trochu zlobí, takže kdyby někdo občas něco řekl, bylo by to fajn  [22:02] &lt;MrEcho&gt; . [22:02] &lt;jrand0m&gt; jo [22:02] &lt;jrand0m&gt; ok, jdeme dál, 1) 0.2.3.4 [22:03] &lt;jrand0m&gt; během jednoho dne či tak vyjde nové vydání se současným stavem kódu, které zahrnuje spoustu oprav chyb a další funkce [22:03] &lt;jrand0m&gt; např. tunnelmanager ještě není v 0.2.3.3 [22:03] &lt;MrEcho&gt; super [22:03] &lt;jrand0m&gt; bude to nekompatibilní zpětně, protože jsem zlej [22:04] &lt;jrand0m&gt; přeskakujeme na 2) 0.3 [22:04] &lt;MrEcho&gt; :P [22:04] &lt;jrand0m&gt; to vyjde poměrně brzy, ale zjevně ne ve čtvrtek [22:04] &lt;jrand0m&gt; nevydáme to, dokud 0.2.3.4 nebude pracovat spolehlivě tak, aby se všichni dostali na všechny stránky, na které by měli [22:05] &lt;MrEcho&gt; super [22:05] &lt;jrand0m&gt; tak jo, rovnou dál k 3) streamovací knihovna / atd. [22:05] &lt;jrand0m&gt; no, to je všechno rozepsané v tom e-mailu :) [22:05] * eco se připojil k #i2p [22:05] * mihi_away je nyní znám jako mihi [22:05] &lt;jrand0m&gt; kdo se do toho chce zapojit, dejte mi prosím vědět [22:06] * ion se připojil k #i2p [22:06] &lt;jrand0m&gt; 'čau eco, mihi, ion [22:06] &lt;jrand0m&gt; ok, přecházíme k 4) aplikace  [22:06] &lt;jrand0m&gt; má někdo, kdo pracuje na aplikaci, která poběží přes i2p, něco k doplnění? [22:07] * wiht se připojil k #i2p [22:07] &lt;MrEcho&gt; re ask the quest j [22:07] &lt;jrand0m&gt; no, jsme u posledního bodu programu, tak proč ne :) [22:08] &lt;MrEcho&gt; wiht .. dorazil ti můj e-mail? [22:08] &lt;jrand0m&gt; má někdo něco mimo příspěvek http://i2p.dnsalias.net/pipermail/i2p/2004-January/000082.html? [22:08] &lt;wiht&gt; Ano, nech mě si to přečíst. [22:08] &lt;jrand0m&gt; MrEcho&gt; četl jsi už zookovu stránku o pojmenování? [22:08] * jar se připojil k #i2p [22:08] &lt;MrEcho&gt; ne .. ztratil jsem odkaz [22:09] &lt;jrand0m&gt; (z logů minulého týdne, http://zooko.com/distnames.html) [22:10] &lt;jrand0m&gt; má někdo něco k doplnění, nebo držíme rekordní 10minutovou schůzku? [22:10] &lt;MrEcho&gt; pořád pracuju na svém nápadu s DNS [22:10] &lt;jrand0m&gt; fajn [22:10] &lt;wiht&gt; MrEcho: Ano, rád bych spolupracoval na naming service (pojmenovávací službě). [22:10] &lt;MrEcho&gt; paráda [22:11] &lt;wiht&gt; Ale nebudu mít čas až do příští středy. [22:11] &lt;MrEcho&gt; ok [22:11] &lt;MrEcho&gt; to mi dá trochu času dokončit pár věcí [22:11] &lt;mrflibble&gt; za jak dlouho je setkání? [22:11] &lt;jrand0m&gt; -11 minut [22:11] &lt;mrflibble&gt; ups [22:11] * mrflibble přichází hodně pozdě [22:11] &lt;mrflibble&gt; :) [22:12] &lt;jrand0m&gt; (prošli jsme si těch 5 bodů programu strašně rychle :) [22:12] * mrflibble se vrací k lurkování a pročítání zpětného scrollu [22:12] &lt;jrand0m&gt; heh [22:12] &lt;wiht&gt; jrand0m: Měřil jsi, kolik CPU používá server na jeden tunnel? [22:14] &lt;wiht&gt; Upravím otázku: když máš pět spojení k jiným routerům a používají 20 % CPU, kolik se použije po 6. spojení? Měřil jsi to? [22:15] &lt;jrand0m&gt; neměly by spotřebovávat 20 % CPU, ani 1 % [22:15] &lt;jrand0m&gt; (pro client tunnels – server tunnels mohou spotřebovat víc) [22:15] &lt;wiht&gt; Server tunnels. [22:16] * eco has quit IRC (Ping timeout) [22:16] &lt;wiht&gt; Ale to bude nejspíš záviset na rychlosti tvého CPU, takže ta otázka byla špatně položená. [22:16] &lt;jrand0m&gt; server tunnels před streamovací knihovnou budou vyžadovat zátěž CPU pokaždé, když se připojí nový peer  [22:18] &lt;wiht&gt; Dobře. [22:19] &lt;duck&gt; už jsme u #5? [22:19] * ion has quit IRC (Ping timeout) [22:19] &lt;jrand0m&gt; jj [22:20] * duck zmiňuje možnosti hostingu, které poskytuje home.duck.i2p [22:20] &lt;jrand0m&gt; ooOOoo [22:20] &lt;duck&gt; ale kromě mě to nikdo netestoval [22:20] &lt;duck&gt; čekám, až se ukáže beta tester Ardvark [22:20] &lt;jrand0m&gt; takže hosting umožní někomu provozovat apache / atd.? [22:21] &lt;jrand0m&gt; (nebo musí provozovat i2p router? [22:21] &lt;duck&gt; ani jedno [22:21] &lt;duck&gt; můžou dát své html soubory do /home/username/public_html/ [22:21] &lt;duck&gt; a objeví se to na http://home.duck.i2p/~username/ [22:21] &lt;jrand0m&gt; ah, pěkné [22:21] &lt;jrand0m&gt; podpora php?  cgi / .pl / atd.?  nebo jen html? [22:22] &lt;jrand0m&gt; (každopádně to je sakra hustý) [22:22] &lt;duck&gt; php a html [22:22] &lt;jrand0m&gt; hustýýýýý [22:22] &lt;mihi&gt; duck: to neohrozí tvoji anonymitu? [22:22] &lt;duck&gt; jak? [22:22] &lt;mihi&gt; phpshell? [22:22] &lt;mihi&gt; nebo běží celý apache v vmware/UML boxu? [22:22] &lt;duck&gt; system, exec, atd. jsou zakázané [22:23] &lt;duck&gt; a navíc host nemůže přistupovat ven [22:23] * wilde se připojil k #i2p [22:23] &lt;duck&gt; (je to uvnitř UML boxu) [22:23] &lt;duck&gt; (pl a jiné CGI se bez přístupu na shell těžko ladí a navíc často padají) [22:23] * mihi_backup se připojil k #i2p [22:23] &lt;jrand0m&gt; přístup k jsp?  :) [22:23] * madman2003 has quit IRC (12( www.nnscript.de 12:: NoNameScript 3.8 12:: www.XLhost.de 12)) [22:23] &lt;duck&gt; samozřejmě že ne [22:24] &lt;mihi&gt; a proč ne i ssh přístup, když je to UML box? [22:24] &lt;duck&gt; protože průměrný uživatel IIP začne pouštět forkbomby [22:24] &lt;jrand0m&gt; s přístupem přes ssh by mohli spustit traceroute i2p.dnsalias.net [22:24] &lt;mihi&gt; man ulimit [22:24] &lt;jrand0m&gt; aha, pravda [22:24] &lt;mihi&gt; man limiting cpu time on uml boxes. [22:25] &lt;mihi&gt; (dobře, shodí to apache, sakra...) [22:25] &lt;duck&gt; člověče, provozuj si vlastní host :) [22:25] &lt;jrand0m&gt; hehe [22:25] &lt;lucky&gt; ahoj [22:25] &lt;duck&gt; přidám to na todo [22:25] &lt;jrand0m&gt; spolehlivý poskytovatel hostingu bude KRÁLOVAT [22:25] &lt;kaji&gt; teď už potřebujeme jen wiki [22:25] * wiht opustil #i2p (wiht) [22:26] * lucky má spolehlivé připojení k netu... [22:26] &lt;duck&gt; wiki už máte [22:26] &lt;jrand0m&gt; kaji&gt; duck.i2p jednu má [22:26] &lt;duck&gt; wiki.invisiblenet.net [22:26] &lt;jrand0m&gt; to taky [22:26] &lt;kaji&gt; tak to je super [22:26] &lt;jrand0m&gt; (jo, hlavní i2p wiki je http://wiki.invisiblenet.net/iip-wiki?I2P ) [22:26] * dm has quit IRC (Ping timeout) [22:28] * mihi je nyní znám jako mihi_away [22:28] * mihi_backup has quit IRC (Ping timeout) [22:29] &lt;jrand0m&gt; 'k, ještě něco, než uzavřeme schůzku? [22:29] &lt;kaji&gt; sakra, zmeškal jsem schůzku? [22:29] &lt;jrand0m&gt; ještě nejsme úplně hotovi, ale skoro [22:29] &lt;lucky&gt; schůzka? [22:29] &lt;lucky&gt; ach, to je fakt nefér [22:29] &lt;lucky&gt; právě jsem dorazil domů. [22:29] &lt;wilde&gt; jsou někde logy? [22:29] &lt;wilde&gt; log ze schůzky [22:30] * lucky má log... [22:30] &lt;kaji&gt; může někdo napsat návod, jak používat wget přes i2p ve Windows? [22:30] &lt;jrand0m&gt; logy ze schůzek na http://wiki.invisiblenet.net/iip-wiki?Meetings [22:30] &lt;jrand0m&gt; kaji, budeš asi muset přidat http_proxy do prostředí [22:32] &lt;jrand0m&gt; ok, pojďme to uzavřít, logy hned zveřejním.  kdo má ještě něco, může to poslat do mailing listu nebo si prostě psát tady :) [22:32] &lt;kaji&gt; taky teď sdílím /books/ a /audio/ na kaji.i2p a myslím, že udělám krátký návod o chybách v apache alias pro Windows [22:32] &lt;jrand0m&gt; souhlas, kaji! [22:32] * jrand0m *baf* uzavírá schůzku tímto </div>
+<div class="irc-log">
+[22:01] &lt;jrand0m&gt; 0) hi
+[22:01] &lt;jrand0m&gt; 1) 0.2.3.4
+[22:01] &lt;jrand0m&gt; 2) 0.3
+[22:01] &lt;jrand0m&gt; 3) streaming library, I2COCP, CI2CP
+[22:01] &lt;jrand0m&gt; 4) apps
+[22:01] &lt;jrand0m&gt; 5) ???
+[22:01] &lt;jrand0m&gt; 0) hi
+[22:01] &lt;jrand0m&gt; hi everyone
+[22:01] &lt;jrand0m&gt; y'all seen http://i2p.dnsalias.net/pipermail/i2p/2004-January/000082.html?
+[22:01] &lt;jrand0m&gt; if not, now's your chance :)
+[22:02] &lt;jrand0m&gt; iip has been acting up a bit, so if someone could say something every once in a while, that'd be swell 
+[22:02] &lt;MrEcho&gt; .
+[22:02] &lt;jrand0m&gt; w3rd
+[22:02] &lt;jrand0m&gt; ok, moving on, 1) 0.2.3.4
+[22:03] &lt;jrand0m&gt; there'll be a new release in the next day or so with the current state of the code, which includes a lot of bugfixes and more features
+[22:03] &lt;jrand0m&gt; e.g. tunnelmanager isn't in 0.2.3.3 yet
+[22:03] &lt;MrEcho&gt; col
+[22:03] &lt;jrand0m&gt; it'll be backwards incompatible, because i'm mean
+[22:04] &lt;jrand0m&gt; jumping onto 2) 0.3
+[22:04] &lt;MrEcho&gt; :P
+[22:04] &lt;jrand0m&gt; that'll be out fairly soon, but obviously not on thursday
+[22:04] &lt;jrand0m&gt; it won't be out until 0.2.3.4 is performing reliably so that everyone can reach all sites they should be able to
+[22:05] &lt;MrEcho&gt; cool
+[22:05] &lt;jrand0m&gt; well, moving right along to 3) streaming lib / etc
+[22:05] &lt;jrand0m&gt; well, thats all spelled out in the email :)
+[22:05] * eco has joined #i2p
+[22:05] * mihi_away is now known as mihi
+[22:05] &lt;jrand0m&gt; if anyone wants to get involved in it, please let me know
+[22:06] * ion has joined #i2p
+[22:06] &lt;jrand0m&gt; 'lo eco, mihi, ion
+[22:06] &lt;jrand0m&gt; ok, moving on to 4) apps 
+[22:06] &lt;jrand0m&gt; anyone working on an app that will run over i2p that has anything to add?
+[22:07] * wiht has joined #i2p
+[22:07] &lt;MrEcho&gt; re ask the quest j
+[22:07] &lt;jrand0m&gt; well, we're at the last agenda item, so might as well :)
+[22:08] &lt;MrEcho&gt; wiht .. get my email?
+[22:08] &lt;jrand0m&gt; anyone have anything to bring up outside the http://i2p.dnsalias.net/pipermail/i2p/2004-January/000082.html post?
+[22:08] &lt;wiht&gt; Yes, let me read it.
+[22:08] &lt;jrand0m&gt; MrEcho&gt; have you read zooko's naming page yet?
+[22:08] * jar has joined #i2p
+[22:08] &lt;MrEcho&gt; no .. lost the link
+[22:09] &lt;jrand0m&gt; (from the logs last week, http://zooko.com/distnames.html)
+[22:10] &lt;jrand0m&gt; anyone have anything to add, or are we at a record breaking 10 minute meeting?
+[22:10] &lt;MrEcho&gt; still working on my dns idea
+[22:10] &lt;jrand0m&gt; coo'
+[22:10] &lt;wiht&gt; MrEcho: Yes, I would like to work together on naming service.
+[22:10] &lt;MrEcho&gt; sweet
+[22:11] &lt;wiht&gt; But I will not have time until next Wednesday.
+[22:11] &lt;MrEcho&gt; ok
+[22:11] &lt;MrEcho&gt; will give me some time to finish up on a few things
+[22:11] &lt;mrflibble&gt; how long till the meet?
+[22:11] &lt;jrand0m&gt; -11 minutes
+[22:11] &lt;mrflibble&gt; oops
+[22:11] * mrflibble is v late
+[22:11] &lt;mrflibble&gt; :)
+[22:12] &lt;jrand0m&gt; (we've gone through the 5 agenda items very very quicky :)
+[22:12] * mrflibble goes back to lurking and the backscroll
+[22:12] &lt;jrand0m&gt; heh
+[22:12] &lt;wiht&gt; jrand0m: Have you measured how much CPU is used per tunnel by the server?
+[22:14] &lt;wiht&gt; Let me restate that: if you have five connections to other routers, and they are using 20% of CPU, how much will be used after 6th connection? Have you measured this?
+[22:15] &lt;jrand0m&gt; they shouldn't consume 20% of the cpu, or even 1%
+[22:15] &lt;jrand0m&gt; (for client tunnels - server tunnels may consume more)
+[22:15] &lt;wiht&gt; Server tunnels.
+[22:16] * eco has quit IRC (Ping timeout)
+[22:16] &lt;wiht&gt; But that will probably be dependent on your CPU speed, so that was a badly stated question.
+[22:16] &lt;jrand0m&gt; server tunnels before the streaming lib will require cpu load whenever a new peer connects 
+[22:18] &lt;wiht&gt; All right.
+[22:19] &lt;duck&gt; are we at #5 already?
+[22:19] * ion has quit IRC (Ping timeout)
+[22:19] &lt;jrand0m&gt; yup
+[22:20] * duck mentions the hosting options that home.duck.i2p provides
+[22:20] &lt;jrand0m&gt; ooOOoo
+[22:20] &lt;duck&gt; it hasnt been tested by anybody besides me though
+[22:20] &lt;duck&gt; waiting for betatester Ardvark to show up
+[22:20] &lt;jrand0m&gt; so the hosting lets someone run apache / etc?
+[22:21] &lt;jrand0m&gt; (or do they have to run the i2p router?
+[22:21] &lt;duck&gt; neither
+[22:21] &lt;duck&gt; they can put their html files on /home/username/public_html/
+[22:21] &lt;duck&gt; and it will show up on http://home.duck.i2p/~username/
+[22:21] &lt;jrand0m&gt; ah nice
+[22:21] &lt;jrand0m&gt; php support?  cgi / .pl / etc?  or just html?
+[22:22] &lt;jrand0m&gt; (thats kick fucking ass, in any case)
+[22:22] &lt;duck&gt; php and html
+[22:22] &lt;jrand0m&gt; wwwwwwwwwicked
+[22:22] &lt;mihi&gt; duck: won't that compromize your anonymity?
+[22:22] &lt;duck&gt; how?
+[22:22] &lt;mihi&gt; phpshell?
+[22:22] &lt;mihi&gt; or is the full apache in a vmware/UML box?
+[22:22] &lt;duck&gt; system, exec, etc are disabled
+[22:23] &lt;duck&gt; plus the host cant connect to the outsite
+[22:23] * wilde has joined #i2p
+[22:23] &lt;duck&gt; (it is inside an UML box)
+[22:23] &lt;duck&gt; (pl and other cgis are too difficult to debug without shell access, plus they often break)
+[22:23] * mihi_backup has joined #i2p
+[22:23] &lt;jrand0m&gt; jsp access?  :)
+[22:23] * madman2003 has quit IRC (12( www.nnscript.de 12:: NoNameScript 3.8 12:: www.XLhost.de 12))
+[22:23] &lt;duck&gt; ofcourse not
+[22:24] &lt;mihi&gt; and why not ssh access as well, when it's an UML box?
+[22:24] &lt;duck&gt; because the average IIP user will start running forkbombs
+[22:24] &lt;jrand0m&gt; with ssh access, they could traceroute i2p.dnsalias.net
+[22:24] &lt;mihi&gt; man ulimit
+[22:24] &lt;jrand0m&gt; ah true
+[22:24] &lt;mihi&gt; man limiting cpu time on uml boxes.
+[22:25] &lt;mihi&gt; (okay, it will crash apache, shit...)
+[22:25] &lt;duck&gt; man run your own host :)
+[22:25] &lt;jrand0m&gt; hehe
+[22:25] &lt;lucky&gt; hi
+[22:25] &lt;duck&gt; I'll add it on the todo
+[22:25] &lt;jrand0m&gt; a reliable hosting service provider will RULE
+[22:25] &lt;kaji&gt; now all we need is a wiki
+[22:25] * wiht has left #i2p (wiht)
+[22:26] * lucky has a reliable net connection...
+[22:26] &lt;duck&gt; you already have a wiki
+[22:26] &lt;jrand0m&gt; kaji&gt; duck.i2p has one
+[22:26] &lt;duck&gt; wiki.invisiblenet.net
+[22:26] &lt;jrand0m&gt; that too
+[22:26] &lt;kaji&gt; oh sweet then
+[22:26] &lt;jrand0m&gt; (yeah, the main i2p wiki is http://wiki.invisiblenet.net/iip-wiki?I2P )
+[22:26] * dm has quit IRC (Ping timeout)
+[22:28] * mihi is now known as mihi_away
+[22:28] * mihi_backup has quit IRC (Ping timeout)
+[22:29] &lt;jrand0m&gt; 'k, anything else before we close out the meeting?
+[22:29] &lt;kaji&gt; doh, i missed the meeting?
+[22:29] &lt;jrand0m&gt; we're not quite done yet, but about it
+[22:29] &lt;lucky&gt; meeting?
+[22:29] &lt;lucky&gt; Oh, thats so not fair
+[22:29] &lt;lucky&gt; i just got home.
+[22:29] &lt;wilde&gt; are there logs anywhere?
+[22:29] &lt;wilde&gt; meeting log
+[22:30] * lucky has a log...
+[22:30] &lt;kaji&gt; can some one write a howto for using wget over i2p in windows?
+[22:30] &lt;jrand0m&gt; meeting logs at http://wiki.invisiblenet.net/iip-wiki?Meetings
+[22:30] &lt;jrand0m&gt; kaji you'll probably need to add the http_proxy to the environment
+[22:32] &lt;jrand0m&gt; ok, lets wrap this one up, and I'll post up the logs momentarily.  anyone who has anything else can post to the mailing list or just chat on here :)
+[22:32] &lt;kaji&gt; also im now sharing /books/ and /audio/ at kaji.i2p and i think i will make a short howto about the bugs in apache alias for windows
+[22:32] &lt;jrand0m&gt; word kaji!
+[22:32] * jrand0m *baf*s the meeting closed on that note
+</div>

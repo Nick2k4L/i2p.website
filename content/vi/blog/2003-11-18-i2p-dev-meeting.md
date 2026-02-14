@@ -1,17 +1,635 @@
 ---
-title: "Cuộc họp các nhà phát triển I2P - 18 tháng 11 năm 2003"
+title: "Cuộc họp phát triển I2P - 18 tháng 11, 2003"
 date: 2003-11-18
 author: "jrand0m"
-description: "Cuộc họp phát triển I2P về cập nhật dự án và các cuộc thảo luận kỹ thuật"
+description: "Nhật ký cuộc họp phát triển I2P ngày 18 tháng 11 năm 2003."
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi Wayback Machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine http://www.archive.org/)
 
 ## Tóm tắt nhanh
 
 <p class="attendees-inline"><strong>Có mặt:</strong> dm, duck, godmode0, jrand0m, mihi, Ophite1, soros, TC, tusko, yodel</p>
 
-## Nhật ký cuộc họp
+## Nhật ký Cuộc họp
 
-<div class="irc-log"> [22:02] &lt;jrand0m&gt; chương trình:  [22:02] &lt;jrand0m&gt; 0) chào mừng  [22:02] &lt;jrand0m&gt; 1) tình trạng phát triển i2p  [22:02] &lt;jrand0m&gt;  - 0.2.1.1 đã phát hành (cập nhật và kiểm thử peer và tunnel, cải tiến tinh chỉnh, giới hạn tốc độ tunnel, một biện pháp phòng vệ DoS)   [22:02] &lt;jrand0m&gt;  - đừng dùng giới hạn băng thông (bw) (vẫn còn đang gỡ lỗi một số vấn đề)  [22:02] &lt;jrand0m&gt;  - giữ đồng hồ hệ thống của bạn tương đối chính xác (biên độ sai số 30 phút) [dùng cho hết hạn lease và garlic]  [22:02] &lt;jrand0m&gt; 2) kademlia, 0.3, và idn  [22:02] &lt;jrand0m&gt; 3) sửa đổi lộ trình (0.2.3 --&gt; 0.4, 0.2.2 --&gt; 0.3.1)?  [22:02] &lt;jrand0m&gt; 4) tình trạng ứng dụng [ppp2p, i2ptunnel, im, ns, squid]  [22:02] &lt;duck&gt; 5) tại sao jrand0m uống bia địa phương rẻ tiền? [22:02] &lt;jrand0m&gt; 5) bình luận / câu hỏi / v.v.  [22:02] &lt;jrand0m&gt; heh  [22:02] &lt;jrand0m&gt; ừ, cơ bản cái đó nằm trong mục 5 :)  [22:02] &lt;mihi_&gt; 5 kép ;) [22:03] &lt;mihi_&gt; oops... [22:03] &lt;jrand0m&gt; 0) chào mừng  [22:03] * mihi_ đã không nhìn sang cột bên trái [22:03] &lt;jrand0m&gt; chào.  chắc là cuộc họp lần thứ 65 rồi.  [22:03] &lt;jrand0m&gt; hehe  [22:03] &lt;jrand0m&gt; 1) mấy thứ code đó  [22:04] &lt;jrand0m&gt; 0.2.1.1 phát hành tối qua  [22:04] &lt;jrand0m&gt; rất nhiều thứ hay ho trong đó.  [22:04] * mihi đang thử nó ngay lúc này. [22:04] &lt;jrand0m&gt; các tunnel được kiểm thử và fail nhanh, phạt tất cả các bên tham gia để họ khó có khả năng được đưa vào quá trình rebuild  [22:05] &lt;jrand0m&gt; các thông điệp trong i2ptunnel cũng bị giới hạn kích thước tối đa 64k (thông điệp lớn hơn gây vấn đề)  [22:05] &lt;jrand0m&gt; có vài lỗi đang được xử lý trong code giới hạn băng thông, nên hãy đảm bảo giới hạn bw trong router.config là các giá trị âm  [22:06] &lt;jrand0m&gt; (hiện i2p không có đủ lưu lượng để gây tải thực sự đâu)  [22:06] &lt;jrand0m&gt; (nhưng giới hạn băng thông sẽ được unit test và sửa cho 0.2.1.2)  [22:07] &lt;jrand0m&gt; ngoài ra, vui lòng cố gắng giữ đồng hồ của bạn gần đúng. thật tệ khi phải cần đến điều đó, nhưng lúc này chúng ta vẫn cần.  [22:07] &lt;jrand0m&gt; chúng ta có thể tìm ra cách để không cần đồng hồ bán đồng bộ, nhưng nó khá tinh tế.  [22:07] &lt;jrand0m&gt; 2) mấy thứ vui  [22:08] &lt;jrand0m&gt; nhiều lỗi được xử lý trong vài bản phát hành gần đây liên quan đến cái chắp vá tệ hại là BroadcastNetworkDB.  [22:08] &lt;jrand0m&gt; vì nó dự kiến được thay thế trong 0.3, nên nhắc qua về cái sẽ thay nó  [22:09] &lt;jrand0m&gt; kademlia là một Distributed Hash Table (DHT) có cấu trúc, cho phép chèn và truy xuất trong thời gian dưới O(log(N)), có đảm bảo  [22:09] &lt;jrand0m&gt; [với một ngoại lệ nhỏ vẫn đang được xử lý]  [22:10] &lt;jrand0m&gt; code kademlia đó cần được viết cho 0.3 để chúng ta có thể chèn và truy xuất các cấu trúc RouterInfo và LeaseSet.  [22:10] &lt;jrand0m&gt; tuy nhiên, mọi thứ sẽ đơn giản hơn nếu triển khai tách biệt - và do đó có thể kiểm thử tách biệt.  [22:10] &lt;jrand0m&gt; (unit testing == good)  [22:11] &lt;jrand0m&gt; vậy, cách đơn giản để unit test một DHT là gì?  viết một dịch vụ lưu trữ/tra cứu tệp đơn giản trên đó.  [22:11] &lt;dm&gt; insert fetch? chúng ta đang nói về nội dung à? [22:11] &lt;jrand0m&gt; giới thiệu idn: (Link: http://wiki.invisiblenet.net/iip-wiki?I2PIDN)http://wiki.invisiblenet.net/iip-wiki?I2PIDN  [22:11] &lt;Ophite1&gt; dm: Không, chỉ các cấu trúc RouterInfo và LeaseSet. [22:12] &lt;jrand0m&gt; dm&gt; networkDatabase của i2p hiện chỉ chứa hai cấu trúc chuyên biệt, như ophite nói  [22:12] &lt;dm&gt; được rồi, cảm ơn. [22:12] &lt;Ophite1&gt; có thể hữu ích hoặc không để dùng nó bootstrap các giao thức khác nữa, nhưng bản thân nó không ẩn danh. (?) [22:12] *** grimps (~grimp@anon.iip) đã tham gia kênh #iip-dev [22:12] &lt;tusko&gt; một câu hỏi: hiện networkDatabase dùng giao thức nào? [22:13] &lt;jrand0m&gt; xin lỗi, điện thoại.  [22:13] *** Signoff: godmode0 (Ping timeout) [22:13] &lt;jrand0m&gt; đúng, kademlia không ẩn danh, nhưng cũng không hẳn là "không ẩn danh"  [22:13] &lt;Ophite1&gt; kademlia đã chỉnh sửa sẽ mở rộng tốt. ngẫu nhiên thì không. [22:13] &lt;jrand0m&gt; tusko&gt; hiện tại chúng tôi dùng flooded broadcast  [22:13] &lt;duck&gt; còn việc kademlia bị chia tách thì sao? [22:13] &lt;dm&gt; cấm mang điện thoại di động vào cuộc họp. [22:13] &lt;duck&gt; &lt;chèn bình luận của zooko&gt; [22:13] &lt;Ophite1&gt; flooded broadcast còn gọi là kiểu gnutella chắc chắn sẽ không ;) [22:13] &lt;jrand0m&gt; Ophite1&gt; đúng, kademlia không dùng ngẫu nhiên :)  [22:13] &lt;duck&gt; Ophite1: hoạt động tốt hơn như định tuyến freenet :) [22:14] &lt;jrand0m&gt; duck&gt; chính xác (&lt;jrand0m&gt; [với một ngoại lệ nhỏ vẫn đang được xử lý] )  [22:14] &lt;Ophite1&gt; duck: tôi xin dừng ở đây... ;) [22:14] *** Signoff: mihi (Ping timeout) [22:14] &lt;tusko&gt; kademlia có phải một dạng siêu lập phương không? [22:14] &lt;Ophite1&gt; không, một vòng tròn. [22:14] *** Signoff: mihi_ (Ping timeout) [22:14] &lt;jrand0m&gt; và/hoặc một cây XOR :)  [22:15] &lt;Ophite1&gt; tách/ghép... xáo trộn lại cây? chúng ta có thể xem qua overnet của emule cho việc này không? :) [22:15] &lt;jrand0m&gt; đó là một giao thức khá dễ, nhưng ta chắc chắn có thể nhìn quanh.  [22:16] &lt;jrand0m&gt; icepick cũng đã triển khai kademlia bằng python cho ent (tên kashmir)  [22:16] *** mihi (~mihi@anon.iip) đã tham gia kênh #iip-dev [22:16] &lt;Ophite1&gt; cũng cần cân nhắc các nút độc hại cố tình phân mảnh cây. [22:16] &lt;jrand0m&gt; chắc chắn rồi.  nhưng nó khá chống chịu tấn công  [22:16] &lt;Ophite1&gt; không gian khóa 256 bit thì chống chịu việc đó tốt hơn. [22:17] &lt;Ophite1&gt; và sẽ phải tạo rất nhiều cấu trúc routeridentity = khó. [22:17] &lt;tusko&gt; tôi thấy thú vị các bài viết của grapevine: (Link: http://grapevine.sourceforge.net/)http://grapevine.sourceforge.net/ [22:17] &lt;jrand0m&gt; đây cũng là lý do tôi muốn triển khai nó trước như một ứng dụng, thay vì rút ruột lõi i2p - để ta có thể xử lý hết các chi tiết rắc rối trước  [22:17] &lt;Ophite1&gt; nên tôi hài lòng với mục 3 của bản nháp 0.9. [22:17] *** Signoff: nickthief54450 (Excess Flood) [22:18] *** nickthief54450 (~chatzilla@anon.iip) đã tham gia kênh #iip-dev [22:18] &lt;tusko&gt; xem (Link: http://grapevine.sourceforge.net/tech-overview.php)http://grapevine.sourceforge.net/tech-overview.php [22:18] &lt;Ophite1&gt; tuy nhiên tôi muốn chỉ ra rằng nếu message 0, DatabasePing, được triển khai, bạn có thể muốn kèm một hashcash trong đó. [22:18] &lt;jrand0m&gt; thú vị đấy tusko, tôi nghĩ mô hình kinh tế của họ có thể cần chỉnh sửa, cũng như phòng vệ Sybil của họ  [22:19] &lt;Ophite1&gt; (có thể bạn đã làm rồi; tôi chưa đọc phần đó) [22:19] &lt;jrand0m&gt; chắc chắn rồi Ophite1.  Tôi thực ra đang nghĩ đến việc đưa cert hashcash vào tất cả các message (bao gồm cả DatabaseLookup)  [22:20] &lt;Ophite1&gt; ý hay. tuy nhiên, hãy cẩn thận về hiệu năng và cân chỉnh so với phòng vệ DoS, và có thể bạn muốn chạy việc tính toán hashcash trong một luồng riêng, ưu tiên thấp hơn? [22:21] &lt;jrand0m&gt; ừ, xác minh hashcash thì gần như tức thời  [22:21] &lt;jrand0m&gt; và sinh hashcash thì không nên có thể tiền biên dịch  [22:21] &lt;jrand0m&gt; à, tiền tính toán  [22:21] &lt;dm&gt; có lẽ Ophite1 là một avatar do jrand0m tạo ra để cuối cùng anh ta có thể nói về I2P với ai đó hiểu anh ta đang nói quái gì. [22:22] &lt;jrand0m&gt; lol  [22:22] * dm không bị lừa. [22:22] *** godmode0 (~enter@anon.iip) đã tham gia kênh #iip-dev [22:22] &lt;Ophite1&gt; một cách để ngăn điều đó là dùng các đạo hàm của session key như một phần của hashcash.. [22:22] &lt;jrand0m&gt; đúng rồi.  và/hoặc đưa vào một nonce và ngày tháng  [22:22] &lt;Ophite1&gt; nhưng ngày tháng dẫn đến những vấn đề thời gian rắc rối. có thể là vấn đề thực sự. [22:22] &lt;Ophite1&gt; trừ khi bạn muốn viết lại ntp ;-) [22:22] *** Signoff: mihi (Ping timeout) [22:23] &lt;jrand0m&gt; heh  [22:23] &lt;jrand0m&gt; ừ, chúng ta đã vấp phải chuyện đó một chút rồi  [22:23] &lt;jrand0m&gt; (do đó có biên độ sai số 30 phút)  [22:23] &lt;jrand0m&gt; session hash có thể khả thi.  ý hay.  [22:24] &lt;Ophite1&gt; và không, tôi không phải là bản sao của jrand0m ;) [22:24] &lt;jrand0m&gt; ok, với idn, tôi có lẽ chỉ triển khai những gì trên trang wiki I2PIDN   [22:25] *** Signoff: dm (Ping timeout) [22:25] &lt;jrand0m&gt; sẽ tuyệt nếu ai đó lấy nó và phát triển tiếp - làm giao diện người dùng thực sự, ứng dụng get/store tốt hơn, fec/ecc/etc.  [22:25] &lt;jrand0m&gt; ngoài ra, tôi có vài ý tưởng về một mạng tìm kiếm xây dựng song song nữa  [22:26] &lt;jrand0m&gt; nhưng, ờ, có lẽ có ích cho i2p hơn nếu tôi tập trung thời gian vào router  [22:26] &lt;Ophite1&gt; nó chạy trên i2p? [22:26] &lt;jrand0m&gt; (làm cho nó hoạt động, mở rộng, và an toàn)  [22:26] &lt;jrand0m&gt; đúng  [22:26] &lt;jrand0m&gt; i2p giúp idn trở nên ẩn danh  [22:27] &lt;Ophite1&gt; ý tưởng mạng tìm kiếm của bạn là gì? [22:27] &lt;jrand0m&gt; lưu ý: nó chưa được viết, nhưng có vẻ như nó là hạng mục số 2 trong danh sách việc cần làm của tôi  [22:27] &lt;Ophite1&gt; có thể xây một DHT khác thông qua tunnel không? [22:27] *** mihi (~mihi@anon.iip) đã tham gia kênh #iip-dev [22:27] &lt;jrand0m&gt; cơ bản là một cơ sở dữ liệu phân tán sao chép, với chèn và đồng bộ kèm hashcash, nơi mọi người lưu khóa idn cùng metadata / v.v.  [22:27] *** dm (~as@anon.iip) đã tham gia kênh #iip-dev [22:28] &lt;jrand0m&gt; hmm, có, chắc chắn.  nhưng i2p vốn không dựa trên tunnel - nó dựa trên message (i2p là IP, i2ptunnel là TCP)  [22:28] &lt;Ophite1&gt; nếu ~tất cả các node tham gia = rất hữu ích cho việc "khám phá" các giao thức khác. [22:28] &lt;jrand0m&gt; chắc chắn rồi  [22:28] &lt;Ophite1&gt; vậy nên, nên chuẩn hóa. [22:28] &lt;Ophite1&gt; dhcp/zeroconf cho i2p? :) [22:28] &lt;jrand0m&gt; idn sẽ là một ứng dụng rất tốt để đóng gói cùng i2p cho người dùng có trải nghiệm "sẵn dùng"  [22:29] &lt;Ophite1&gt; Nếu nó được định là một ứng dụng giao tiếp/truyền tệp/lưu trữ đầy đủ tính năng, tôi muốn đề xuất tên "Darknet". [22:29] &lt;jrand0m&gt; :)  [22:29] &lt;Ophite1&gt; Tất nhiên, có lẽ bạn đã biết nó xuất phát từ đâu. :) [22:30] &lt;dm&gt; Từ đâu? [22:30] &lt;Ophite1&gt; Bài báo của MS Research: The Darknet and the Future of Content Distribution. [22:30] *** Signoff: godmode0 (Ping timeout) [22:30] &lt;TC&gt; link? [22:30] *** tonious (~Flag@anon.iip) đã tham gia kênh #iip-dev [22:30] &lt;jrand0m&gt; ờ, tim nói anh ấy nghĩ ra thuật ngữ đó cách đây ~11 năm ;)  [22:30] &lt;tusko&gt; trang wiki I2PIDN ở đâu? [22:30] &lt;dm&gt; (Link: http://crypto.stanford.edu/DRM2002/darknet5.doc)http://crypto.stanford.edu/DRM2002/darknet5.doc [22:30] &lt;jrand0m&gt; tusko&gt; (Link: http://wiki.invisiblenet.net/iip-wiki?I2PIDN)http://wiki.invisiblenet.net/iip-wiki?I2PIDN  [22:30] &lt;Ophite1&gt; cũng hàm ý mạng hoạt động "trong bóng tối" - không ai biết ai là ai ;) [22:30] &lt;jrand0m&gt; chính xác.  [22:31] *** mihi_ (~mihi@anon.iip) đã tham gia kênh #iip-dev [22:31] &lt;jrand0m&gt; ờ, i2p bản thân là một darknet theo nghĩa đó, nhưng nó là nhắn tin tổng quát - nó là lớp IP cho một darknet như vậy.  [22:31] &lt;jrand0m&gt; i2ptunnel là lớp TCP, và idn là NFS :)  [22:31] &lt;Ophite1&gt; i2p là giao thức cho phép tạo một mạng như vậy từ thứ gì đó tương tự overnet. [22:31] &lt;Ophite1&gt; nói đến chuyện đó... có cách nào chỉ định mức ưu tiên trong message không? [22:32] *** mihi hiện được biết đến là nickthief76430 [22:32] *** mihi_ hiện được biết đến là mihi [22:32] &lt;jrand0m&gt; buồn cười là bạn nhắc đến điều đó :)  [22:32] *** nickthief76430 hiện được biết đến là mihi_backup [22:32] &lt;mihi&gt; oops... [22:32] &lt;jrand0m&gt; Tôi vừa đọc một số bài báo HotNets2 sắp tới ((Link: http://nms.lcs.mit.edu/HotNets-II/program.html)http://nms.lcs.mit.edu/HotNets-II/program.html) và được truyền cảm hứng cho vài cơ chế QoS trên i2p  [22:33] &lt;Ophite1&gt; một bit khối lượng lớn/độ trễ thấp liệu có làm giảm ẩn danh đôi chút (intersection attack?) bằng cách cho phép liên kết lưu lượng không? ừ, ngay cả khi nó đôi khi đảo chiều? [22:33] &lt;Ophite1&gt; à, cái đó có thể hoạt động tốt hơn dĩ nhiên =) [22:33] &lt;Ophite1&gt; Đừng lo về plausible deniability cục bộ. [22:33] &lt;jrand0m&gt; đúng, i2p giả định máy cục bộ là đáng tin cậy  [22:33] *** Signoff: dm (Ping timeout) [22:33] &lt;Ophite1&gt; Đó là vấn đề dành cho Rubberhose/Marutukku và Thermite, không phải I2P. [22:34] &lt;jrand0m&gt; chính xác.  (nếu không, phần mềm bị xâm nhập và chúng ta làm gì cũng vô nghĩa)  [22:34] * TC hy vọng máy cục bộ của mình là đáng tin [22:34] &lt;jrand0m&gt; heh  [22:34] &lt;Ophite1&gt; TC: cách dễ để biết; hãy gửi lời đe dọa giết bush và xem liệu đặc vụ Mật vụ (SS) có gõ cửa nhà bạn không ;-) [22:34] &lt;jrand0m&gt; lol  [22:34] &lt;TC&gt; làm rồi làm rồi [22:34] *** Signoff: tonious (Ping timeout) [22:34] &lt;jrand0m&gt; hah!  [22:35] * jrand0m xem squid proxy của mình bị fbi hạ gục [22:35] &lt;TC&gt; đó là cái bẫy! [22:35] &lt;jrand0m&gt; lấy cái rìu đi!  [22:35] &lt;jrand0m&gt; :)  [22:35] &lt;TC&gt; ai chơi uplink chưa? [22:35] &lt;Ophite1&gt; đã hoàn thành. đã crack. đã phát hành. [22:35] &lt;Ophite1&gt; còn huấn luyện nữa ;) [22:36] * jrand0m coi như đó là "có" [22:36] *** dm (~as@anon.iip) đã tham gia kênh #iip-dev [22:37] &lt;Ophite1&gt; có thể có vài khả năng DoS trong caching, mấy thứ trong bộ nhớ... [22:37] &lt;jrand0m&gt; ok, đó là những gì tôi nghĩ về idn/kademlia.  triển khai idn và chạy trên mã 0.2., đập nó một chút, rồi triển khai 0.3 với triển khai kademlia đó  [22:37] &lt;jrand0m&gt; ồ chắc chắn rồi.  danh sách việc cần làm có 'đồng bộ các message đang chờ và lớn xuống đĩa' :)  [22:37] &lt;dm&gt; chẳng phải IDN nên được triển khai sau khi I2P được kiểm thử và ổn định sao? [22:38] &lt;jrand0m&gt; đó là một trong những vấn đề chúng tôi gặp phải khi thử một tệp lớn của eepsite của TC  [22:38] &lt;Ophite1&gt; dm: không, vì nó là bệ thử cho cơ sở dữ liệu xịn. [22:38] &lt;jrand0m&gt; dm&gt; tôi cũng nghĩ thế, nhưng tôi cần triển khai code kademlia để chuẩn bị cho 0.3.  về cơ bản code kademlia CHÍNH LÀ 0.3  [22:38] &lt;Ophite1&gt; tuy nhiên tôi thích bản chất DHT lai mà một mạng như vậy sẽ cung cấp. [22:39] &lt;dm&gt; à ha...  [22:39] &lt;jrand0m&gt; nhưng nếu không ai muốn gắn giao diện bình thường vào nó cho đến i2p 1.0, đó cũng có thể là ý hay  [22:39] &lt;Ophite1&gt; khám phá node DHT + định tuyến kiểu ngr = khả năng mở rộng để xử lý khối lượng tới hạn [22:39] &lt;dm&gt; cái danh sách mốc ban đầu đó đâu rồi. secure--&gt;anonymous--&gt;không thể harvest, v.v... [22:39] &lt;Ophite1&gt; jrand0m: Tôi sẽ kiềm chế không quảng cáo nó cho giới vi phạm bản quyền cho đến khi nó sẵn sàng. vậy đủ chưa? [22:39] &lt;jrand0m&gt; ờ, trừ định tuyến kiểu ngr :) chúng ta dùng tunnel :)  [22:39] &lt;TC&gt; miễn là ta giữ cli [22:39] &lt;dm&gt; à mở rộng là một trong các mục trong chuỗi đó. [22:39] &lt;jrand0m&gt; dm&gt; 0.3 là cần thiết cho khả năng mở rộng.  và nó đến trước "không thể harvest"  [22:39] &lt;jrand0m&gt; cảm ơn Ophite1 :)  [22:40] &lt;jrand0m&gt; chắc chắn TC.  Tôi sẽ cần cli để kiểm thử nó  [22:40] &lt;Ophite1&gt; khả năng mở rộng của phần ẩn danh thực sự liên quan trực tiếp tới lựa chọn trong định tuyến cho tunnel, và đó là chuyện triển khai router? [22:40] &lt;jrand0m&gt; (và, nào, có lẽ chúng ta sẽ phân phối phần mềm / phát hành bằng idn)  [22:40] *** godmode0 (~enter@anon.iip) đã tham gia kênh #iip-dev [22:40] &lt;dm&gt; được rồi... nghe ổn. [22:40] &lt;jrand0m&gt; chắc chắn rồi ophite.  [22:40] &lt;Ophite1&gt; gợi ý: kích thước thông điệp tối đa? [22:40] &lt;jrand0m&gt; đó là vấn đề Khó  [22:41] &lt;jrand0m&gt; kích thước thông điệp tối đa hiện tại lớn điên rồ (4g) nhưng tôi đang nghĩ cắt xuống 64k hoặc 128k  [22:41] &lt;jrand0m&gt; nhưng tôi chưa muốn phải dùng đến vậy  [22:41] * Ophite1 lục ghi chú [22:41] &lt;Ophite1&gt; ghi chú khả năng mở rộng BitTorrent/Scone gợi ý 512K. [22:42] &lt;jrand0m&gt; heh ok hay đấy.  (có tài liệu tham khảo nào tôi có thể đào sâu không?)  [22:42] &lt;Ophite1&gt; nhưng, nghĩ về nó như kích thước cửa sổ tcp. [22:42] &lt;jrand0m&gt; đúng  [22:42] &lt;Ophite1&gt; không có cho scone, xin lỗi - dự án nghiên cứu của bạn tôi. [22:42] &lt;jrand0m&gt; hay, không sao  [22:42] *** Signoff: mihi_backup (Ping timeout) [22:42] &lt;Ophite1&gt; dù sao, kademlia của bạn cũng tốt ngang cô ấy :) [22:42] &lt;jrand0m&gt; hehe  [22:42] &lt;jrand0m&gt; (ờ, tôi vẫn chưa triển khai nó ;)  [22:42] &lt;Ophite1&gt; à, ý tôi là của cô ấy :/ [22:42] &lt;jrand0m&gt; ôi tuyệt  [22:43] &lt;dm&gt; quê quá.. [22:43] *** mihi_backup (~mihi@anon.iip) đã tham gia kênh #iip-dev [22:43] &lt;jrand0m&gt; heh  [22:43] &lt;jrand0m&gt; vậy, đó là 2) kademlia, 0.3, và idn  [22:43] &lt;Ophite1&gt; cô ấy đặt tên đồ chơi theo món tráng miệng. custard, crumble (giống Waste), strudel.. "bittorrent-a-like" của cô ấy là pudding nhanh nhất thế giới - 'scone ;) [22:43] &lt;jrand0m&gt; haha  [22:45] &lt;Ophite1&gt; cô ấy là dân toán. [22:45] &lt;jrand0m&gt; càng hay  [22:45] &lt;jrand0m&gt; sẽ có nhiều thu thập/phân tích thống kê sắp tới cho việc chọn peer nâng cao  [22:45] &lt;Ophite1&gt; nhưng tôi sẽ xem có thể bàn qua với cô ấy không. khả năng mở rộng từ i2np 0.9 là từ cô ấy - cô ấy thích nó. [22:45] &lt;jrand0m&gt; (đáng tiếc là ta không thể "gian lận" như mnet, mixminion, và tor)  [22:46] &lt;jrand0m&gt; nghe tuyệt  [22:46] &lt;Ophite1&gt; một bình luận - dsa? [22:46] *** nickthief54450 (~chatzilla@anon.iip) đã tham gia kênh #iip-dev [22:46] &lt;Ophite1&gt; dsa 1024 bit, như SHA-1? [22:46] &lt;jrand0m&gt; ừ  [22:47] &lt;Ophite1&gt; chắc là đã được thử nghiệm kỹ. [22:47] &lt;Ophite1&gt; cũng nhỏ. [22:47] &lt;jrand0m&gt; đúng.  nhưng tôi không gắn 100% với các triển khai crypto cụ thể của chúng ta  [22:47] &lt;Ophite1&gt; thôi chuyển sang lộ trình. [22:47] &lt;TC&gt; haha, hãy đặt tên bản windows là 'Microsoft Darknet (r)' [22:47] &lt;jrand0m&gt; heh tc  [22:48] &lt;jrand0m&gt; ok, 3) sửa đổi lộ trình (0.2.3 --&gt; 0.4, 0.2.2 --&gt; 0.3.1)?  [22:48] &lt;jrand0m&gt; vì tất cả những lỗi tôi đã gặp phải liên quan đến broadcast db, tôi muốn đẩy sớm bản 0.3 (kademlia db)  [22:48] &lt;TC&gt; thật sướng khi không bị giới hạn bởi nhãn hiệu như một dự án mã nguồn mở bình thường [22:49] *** tonious (~Flag@anon.iip) đã tham gia kênh #iip-dev [22:49] &lt;jrand0m&gt; 0.2.3 là route bị hạn chế / đồng đẳng tin cậy (trusted peers), và có lẽ không phải là yêu cầu tính năng cấp bách mà ai ở đây cần.  tôi nghĩ nó có thể dời sang 0.4 mà không vấn đề  [22:50] &lt;jrand0m&gt; 0.2.2 là sửa đổi tunnel, nhưng tôi nghĩ nhiều áp lực phải triển khai sẽ giảm bớt với bản 0.2.1.1 (kiểm thử và rebuild tunnel khi cần, thay vì chờ 10 phút)  [22:50] &lt;Ophite1&gt; đồng đẳng tin cậy là một lĩnh vực cần xem xét lại theo ý tôi. [22:50] &lt;jrand0m&gt; đồng ý.  [22:50] *** dm_backup (~as@anon.iip) đã tham gia kênh #iip-dev [22:50] &lt;Ophite1&gt; là khu vực duy nhất không cho tôi cảm giác chắc chắn. [22:50] &lt;Ophite1&gt; dù có thể đó chỉ là vì từ "tin cậy". :) [22:50] &lt;jrand0m&gt; cơ bản suy nghĩ hiện tại của tôi là công bố tunnel tới các router  [22:50] &lt;jrand0m&gt; heh  [22:51] &lt;jrand0m&gt; (nếu ta công bố tunnel tới các router, ta có thể dùng gateway không tin cậy, tức là bỏ được chữ 'tin cậy' khỏi trusted peers)  [22:51] *** Signoff: dm (Ping timeout) [22:51] *** dm_backup hiện được biết đến là dm [22:51] &lt;Ophite1&gt; cần phân tích hệ quả ẩn danh của việc đó. [22:51] &lt;jrand0m&gt; nhưng đồng đẳng tin cậy vốn dĩ là cần trong một hệ thống ẩn danh hạng "chiến", nơi /mọi/ node bạn có thể liên lạc đều được coi là kẻ tấn công.  [22:52] &lt;Ophite1&gt; tôi không nghĩ điều đó thực sự khả thi... [22:52] &lt;jrand0m&gt; chắc chắn.  thêm một lý do nó nên dời sang 0.4  [22:52] &lt;jrand0m&gt; Ophite1&gt; các node tin cậy có tự hủy theo thời gian / kích hoạt.  [22:52] &lt;jrand0m&gt; dựng một "bù nhìn", định tuyến qua nó, rồi "giết" nó  [22:52] &lt;jrand0m&gt; chính xác, nếu "bù nhìn" xóa log sau N giờ / N byte / N message  [22:52] &lt;Ophite1&gt; ý tôi là nếu bạn muốn tôi phát tán một con sâu thiết lập vài triệu... [22:53] &lt;Ophite1&gt; log? log nào? [22:53] &lt;jrand0m&gt; :)  [22:53] &lt;jrand0m&gt; ok, format đĩa nhé ;)  [22:53] * Ophite1 đã viết trojan ẩn cấp kernel [22:53] &lt;jrand0m&gt; hay đấy  [22:53] * dm đã viết plugin outlook calendar cấp kernel. [22:53] &lt;Ophite1&gt; ...lúc tôi 19 tuổi :) [22:53] &lt;Ophite1&gt; vẫn chạy. :) [22:54] &lt;Ophite1&gt; nhưng tôi sẽ không đưa nó vào đây đâu, đừng lo, hoặc, ờ, hãy kiểm tra code của tôi, có lẽ đó cũng là Điều Nên Làm Tốt ;) [22:54] &lt;dm&gt; lúc tôi 12 tuổi. [22:54] &lt;jrand0m&gt; tôi không nghĩ i2p sẽ muốn phân phối /lớn/ đến vậy cho đến sau khi 1.0 ổn định và được rà soát kỹ  [22:54] &lt;jrand0m&gt; heh Ophite1  [22:54] &lt;jrand0m&gt; heh dm  [22:54] &lt;Ophite1&gt; thẳng thắn mà nói, tôi nghĩ đó là tính năng màu mè. [22:54] &lt;jrand0m&gt; có thể.  [22:55] &lt;jrand0m&gt; nhưng route bị hạn chế thì cần thiết  [22:55] &lt;jrand0m&gt; đó là chức năng cơ bản cho người sau tường lửa  [22:55] &lt;jrand0m&gt; (tường lửa rất hạn chế)  [22:55] &lt;Ophite1&gt; chào, các transport. [22:55] &lt;Ophite1&gt; chúng ta sẽ nói đến. [22:55] &lt;Ophite1&gt; hay bây giờ là lúc thích hợp để bàn về chúng? [22:55] &lt;jrand0m&gt; được, đào sâu nào :)  [22:56] &lt;jrand0m&gt; chúng ta đã gặp vấn đề với một peer không thể tới được mà route bị hạn chế có thể giải quyết  [22:56] *** tusko đã rời #iip-dev [22:56] &lt;jrand0m&gt; mặc dù do cấu hình sai, nhưng nó có thể phổ biến hơn  [22:57] &lt;Ophite1&gt; Ngoài ra: giả sử có hai peer hợp tác ở sau tường lửa lọc inbound và loại bỏ gói xấu, và một peer hợp tác không sau tường lửa có thể gửi gói với địa chỉ nguồn IP giả mạo đến cả hai peer kia... [22:57] &lt;Ophite1&gt; Bạn có thể thiết lập một kết nối TCP giữa hai peer bị tường lửa mà cả hai tường lửa đều nghĩ là kết nối đi ra. [22:57] &lt;jrand0m&gt; chắc chắn  [22:57] &lt;dm&gt; địa chỉ IP giả mạo?!? [22:58] &lt;Ophite1&gt; tin tôi đi, tường lửa là vấn đề RẤT phổ biến. [22:58] &lt;Ophite1&gt; đôi khi người dùng kiểm soát chúng nhưng người dùng ngốc. cái đó có thể xử lý bằng việc trình cài đặt cấu hình hộ tường lửa :) [22:58] &lt;dm&gt; I2P sẽ dùng IP spoofing? :) [22:58] &lt;jrand0m&gt; chắc chắn rồi.  nếu i2p không thể hoạt động sau tường lửa / NAT / proxy, thì không có lý do để tiếp tục.  [22:59] &lt;Ophite1&gt; đôi khi chúng thù địch, cổng ra của doanh nghiệp hoặc trường học cố tình phá hỏng mọi thứ. Nó phải vượt qua được chúng, và vượt qua một cách sạch sẽ. [22:59] &lt;jrand0m&gt; dm&gt; tùy chọn transport  [22:59] &lt;jrand0m&gt; hoàn toàn đúng Ophite1  [22:59] &lt;Ophite1&gt; dm: tôi có một triển khai hoạt động - trong giao thức Direct Connect. [22:59] &lt;jrand0m&gt; i2p muốn là chiến trường cho đoạn code đó.  [22:59] &lt;Ophite1&gt; dm: Nếu cái ĐÓ chịu được, i2p chịu được. [22:59] *** Signoff: tonious (Ping timeout) [23:00] &lt;Ophite1&gt; Tôi đề nghị để nó tắt theo mặc định. Chỉ rất ít người muốn bật, và sẽ hay nếu họ có thể quảng bá là họ là ai để các yêu cầu có thể được định tuyến tới họ. [23:00] &lt;dm&gt; bạn không thể spoof IP nếu không có native code, phải không? [23:00] &lt;Ophite1&gt; lợi thế là họ không phải định tuyến *xuyên qua*, chỉ giúp thiết lập. [23:00] &lt;Ophite1&gt; = tăng tốc lớn. [23:01] &lt;jrand0m&gt; chắc chắn rồi Ophite1, đó là việc mà cấu trúc RouterInfo.routerAddress[] dùng cho  [23:01] &lt;Ophite1&gt; dm: ừ, như thể cái này sẽ không được viết lại à? [23:01] *** tonious (~Flag@anon.iip) đã tham gia kênh #iip-dev [23:01] &lt;dm&gt; ok, chỉ kiểm tra thôi... [23:01] &lt;jrand0m&gt; đúng dm, tôi hoàn toàn không ngại đưa native code vào i2p  [23:01] &lt;Ophite1&gt; Tôi muốn nói rằng tôi không nghĩ java là giải pháp vĩnh viễn. [23:01] &lt;Ophite1&gt; Và tôi xem router viết bằng java là bệ thử/mẫu thử. [23:01] &lt;jrand0m&gt; ổn.  miễn là nó đưa ta đến 1.0, làm rõ giao thức, v.v., là đủ tốt.  [23:02] &lt;Ophite1&gt; ...và hy vọng nó không mắc kẹt ở đó như freenet ;) [23:02] &lt;dm&gt; IPAddress.Spoof(192.168.32.1); [23:02] *** alient (alient@anon.iip) đã tham gia kênh #iip-dev [23:02] &lt;jrand0m&gt; lol dm  [23:02] &lt;dm&gt; import IPSpoofing; [23:02] &lt;Ophite1&gt; mmm... raw sockets trong java ;) [23:02] &lt;jrand0m&gt; fcntl / ioctl trong java... mmMMmm  [23:02] &lt;mihi&gt; hmm, raw sockets yêu cầu root trên unix, đúng không? [23:02] &lt;dm&gt; phụ nữ ngực to liếm dương vật của tôi.. mmMMmmm [23:02] &lt;jrand0m&gt; vậy ta đưa kèm một rootkit  [23:03] &lt;jrand0m&gt; ;)  [23:03] &lt;Ophite1&gt; jrand0m: có sẵn rồi =) [23:03] &lt;jrand0m&gt; heh  [23:03] &lt;Ophite1&gt; ngoài ra như tôi nói; chỉ một vài người cần nó. [23:03] &lt;jrand0m&gt; đúng  [23:04] &lt;jrand0m&gt; và chỉ vì lý do hợp lệ, dĩ nhiên.  [23:04] &lt;Ophite1&gt; trên dc hub của tôi, chỉ có một (bot) có khả năng, và hub báo cho nó khi các node thụ động muốn kết nối tới node thụ động. [23:04] &lt;Ophite1&gt; điều đó gây ngạc nhiên kha khá. [23:04] &lt;jrand0m&gt; hehe  [23:04] &lt;Ophite1&gt; cũng khiến host của bot bị đóng, nên đề xuất của tôi là có lẽ tắt theo mặc định :) [23:04] &lt;jrand0m&gt; chắc chắn đó là tính năng đáng có sẵn  [23:04] &lt;jrand0m&gt; lol  [23:05] *** Signoff: nickthief54450 (Excess Flood) [23:05] &lt;jrand0m&gt; ok, vậy với việc đẩy route bị hạn chế sang 0.4, ta có khoảng một tháng để tiếp tục tranh luận xem chức năng đó có cần thiết không  [23:06] &lt;jrand0m&gt; còn ý nào khác / thứ nên có trong lộ trình mà chưa có, thứ nào ở sai chỗ, v.v.?  [23:06] &lt;Ophite1&gt; Tôi nói chắc chắn đẩy sang 0.4. Nó sẽ gây vấn đề tường lửa lúc này nhưng ta vẫn đang thử nghiệm... [23:06] &lt;Ophite1&gt; ...ai không mở nổi cổng tường lửa có lẽ chưa nên thử. [23:06] *** nickthief54450 (~chatzilla@anon.iip) đã tham gia kênh #iip-dev [23:06] &lt;jrand0m&gt; đúng.  và ngay cả với tường lửa, PHTTP cũng cho qua.  [23:07] &lt;Ophite1&gt; dù vậy cần thử phttp với proxy thù địch. [23:07] * jrand0m đang ở sau một tường lửa mà tôi không kiểm soát và tôi vẫn tham gia đầy đủ vào i2p [23:07] &lt;dm&gt; hax0r [23:07] &lt;jrand0m&gt; ờ, đúng là proxy thù địch có thể giả mạo xác nhận, nhưng mọi thứ đều được ký, nên message không thể đi nhầm nơi / v.v.  [23:08] &lt;jrand0m&gt; nhưng phttp relay và transport có nhiều tính năng cần thiết  [23:08] &lt;Ophite1&gt; đặc biệt, để xem xét khả năng tương lai mà các router mức ứng dụng có thể làm trong việc phát hiện/phá hoại giao thức. [23:08] &lt;jrand0m&gt; hm?  [23:08] &lt;Ophite1&gt; tôi có chút kinh nghiệm với tunneling qua tường lửa. [23:08] &lt;Ophite1&gt; có thể muốn thêm một phương án dự phòng GET. [23:09] &lt;jrand0m&gt; hmm.  GET đi vào log.  nhưng có lẽ dùng như phương án dự phòng  [23:09] &lt;jrand0m&gt; (POST có thể tới /index.html)  [23:09] &lt;Ophite1&gt; jrand0m: nhưng nếu mọi thứ đều được ký/mã hóa nếu noderef ổn...? [23:10] &lt;Ophite1&gt; trừ khi proxy cũng trở thành kẻ tấn công chủ động, sẽ khá khó cho nó. [23:10] &lt;jrand0m&gt; tất cả các message đều được mã hóa tới router đích, và chỉ định phttp relay nào để đi qua thì được ký trong RouterInfo  [23:10] &lt;jrand0m&gt; đúng.  phttp proxy như hiện tại chắc chắn không đủ mạnh để đối đầu kẻ tấn công chủ động  [23:11] *** Signoff: grimps (Leaving) [23:12] &lt;jrand0m&gt; tôi nghĩ sẽ rất hay nếu mọi người đăng vài ý tưởng transport thay thế lên wiki :)  [23:12] &lt;jrand0m&gt; ok, 4) tình trạng app [ppp2p, i2ptunnel, im, ns, squid]  [23:12] &lt;jrand0m&gt; chết, tusko rời rồi  [23:12] &lt;jrand0m&gt; tusko viết một script python (ppp2p) để cho phép chạy ppp qua i2p thông qua i2ptunnel  [23:13] &lt;Ophite1&gt; Đã bảo sẽ có người làm mà :) [23:13] &lt;dm&gt; ppp qua i2p? [23:13] &lt;jrand0m&gt; tôi chưa xem, nhưng lần cuối tôi nghe là anh ấy chạy một vpn qua i2p với ping 5s  [23:13] &lt;jrand0m&gt; heh đúng  [23:13] &lt;Ophite1&gt; dm: tất nhiên. [23:13] &lt;dm&gt; khi nào bạn có thể dùng cái đó? [23:13] &lt;dm&gt; có thể/sẽ [23:13] &lt;jrand0m&gt; dm&gt; outproxy ẩn danh  [23:13] &lt;Ophite1&gt; dm: ẨN DANH BẤT CỨ THỨ GÌ. [23:13] &lt;jrand0m&gt; để, ví dụ, chạy một nút kazaa ẩn danh, hay gì đó  [23:13] * Ophite1 chỉ ra rằng ai chạy outbound i2p-&gt;ppp là điên và có thể bị đưa vào blacklist/bị săn [23:13] &lt;dm&gt; à, tôi hiểu rồi. [23:13] &lt;jrand0m&gt; chắc chắn rồi Ophite1  [23:14] &lt;jrand0m&gt; nên hiện tại, chỉ dành cho peer tin cậy.    [23:14] &lt;Ophite1&gt; xem thêm: dải JAP ở dresden... :) [23:14] &lt;jrand0m&gt; mà, ờ, cũng không hợp lý cho ẩn danh...  [23:14] &lt;jrand0m&gt; heh  [23:14] &lt;Ophite1&gt; và hầu hết thứ đi ra khỏi node của họ sẽ là không mã hóa... [23:14] * jrand0m nghĩ về ike qua ppp qua i2p [23:15] * jrand0m xem đầu mình nổ tung [23:15] *** fiaga (~po@anon.iip) đã tham gia kênh #iip-dev [23:15] &lt;Ophite1&gt; jrand0m: sao không i2p qua ppp qua i2p? [23:15] &lt;jrand0m&gt; chắc chắn làm được.  đệ quy vui chứ?  [23:15] &lt;soros&gt; i2p qua i2p  :-o [23:15] &lt;jrand0m&gt; hoặc i2p qua ppp qua i2p qua i2p qua freenet qua kazaa  [23:15] &lt;Ophite1&gt; như thế thì ngớ ngẩn rồi. Freenet không thể hoạt động nổi ;) [23:16] &lt;godmode0&gt; qua kết nối chậm :) [23:16] &lt;jrand0m&gt; heh chắc chắn sẽ có độ trễ :)  [23:16] &lt;mihi&gt; ... qua một icmp tunnel qua ... [23:16] &lt;Ophite1&gt; ôi đúng, loki :) [23:16] &lt;Ophite1&gt; 0ldsk00l :) [23:17] &lt;Ophite1&gt; địa chỉ I2P, vốn là public key, ... khá dài. [23:17] &lt;jrand0m&gt; đúng vậy.  [23:17] &lt;jrand0m&gt; nhân tiện, ta đang ở mục 4: ns  [23:17] &lt;Ophite1&gt; Ví dụ một url I2P www thực sự quá dài để dán vào chỗ nào hợp lý (&gt;512 ký tự?!!) [23:17] &lt;mihi&gt; co hứa sẽ viết một naming service... [23:17] &lt;jrand0m&gt; ừ.  [23:17] &lt;jrand0m&gt; tôi nghĩ khi idn được triển khai, sẽ rất dễ cho ai đó thích ứng code kademlia thành một dns phân tán   [23:17] &lt;mihi&gt; Ophite1: post chúng lên diễn đàn eepsite. [23:18] &lt;Ophite1&gt; rắc rối với namespace theo như tôi hình dung là hoặc phải có một mức độ kiểm soát tập trung nào đó HOẶC bạn phải chấp nhận va chạm. [23:18] *** Signoff: fiaga (Ping timeout) [23:18] &lt;jrand0m&gt; (chỉ cần thêm một CA hoặc CA theo WoT, và thế là xong.  (Link: www.mihi.i2p)www.mihi.i2p)  [23:18] &lt;jrand0m&gt; không hẳn.  [23:18] &lt;Ophite1&gt; vậy xin chỉ tôi ý tưởng hay hơn của bạn. [23:18] &lt;jrand0m&gt; Ophite1&gt; xem specs của co/wiht trên danh sách iip-dev.    [23:19] &lt;Ophite1&gt; tốt nhất tôi nghĩ ra là root key tạo namespace có chữ ký. kiểu dnssec. [23:19] &lt;jrand0m&gt; anh ấy không đi đến DHT đầy đủ, nhưng quản lý theo nhóm  [22:19] &lt;jrand0m&gt; giống như hiện tại - chúng ta /đều/ có thể chọn root dns server của mình là ai.  [23:19] &lt;jrand0m&gt; theo cùng hướng, chúng ta /đều/ nên có thể chọn CA (hoặc CA theo WoT) của mình  [23:20] &lt;jrand0m&gt; vậy tôi đoán về mặt kỹ thuật /có thể/ có va chạm, nhưng chỉ khi có nhiều nhóm CA không tương tác  [23:20] * Ophite1 lưu ý điều đó khó xảy ra [23:20] &lt;jrand0m&gt; đồng ý  [23:20] &lt;Ophite1&gt; bạn hoặc tin root CA hoặc không. [23:20] &lt;jrand0m&gt; và nếu bạn không tin root, bạn tạo cái của riêng bạn  [23:21] &lt;jrand0m&gt; (hoặc tìm cái khác)  [23:21] &lt;Ophite1&gt; và nếu bạn không tin root CA thì phải có lý do, lý do đó sẽ nhanh chóng lan truyền. [23:21] &lt;jrand0m&gt; chính xác  [23:21] &lt;jrand0m&gt; nhất là khi có xuất bản ẩn danh :)  [23:21] &lt;Ophite1&gt; vì mục đích thực sự của CA là đảm bảo không va chạm - như Trent... [23:21] &lt;jrand0m&gt; đúng  [23:22] &lt;Ophite1&gt; điều duy nhất gây mất niềm tin với CA là (1) rò rỉ khóa hoặc (2) từ chối đăng ký thứ chưa được đăng ký. [23:22] * jrand0m nhắc đến "độ tin cậy" của verisign [23:23] * Ophite1 lưu ý Verisign tuyên bố xác minh danh tính của chủ chứng chỉ - một thuộc tính mà namespace I2P thực ra được đảm bảo KHÔNG làm [23:23] &lt;jrand0m&gt; chứng chỉ tự ký+++  [23:24] &lt;Ophite1&gt; tôi cũng muốn chỉ ra rằng các hệ thống phân tán - như Darknet, từ giờ tôi sẽ gọi thế cho đến khi nó "dính" :) - xây trên i2p có lẽ sẽ không dùng namespace. [23:24] &lt;Ophite1&gt; Nó dành cho server, thực ra. [23:24] &lt;jrand0m&gt; heh  [23:24] &lt;jrand0m&gt; đúng  [23:24] &lt;Ophite1&gt; Server không mở rộng tốt. Vấn đề đó sẽ tồn tại trong i2p như trong IP. [23:24] &lt;Ophite1&gt; vậy, tôi nghĩ việc sử dụng thực tế sẽ hạn chế đáng ngạc nhiên. [23:24] &lt;jrand0m&gt; idn ("darknet") sẽ giữ tham chiếu tới các đích - toàn bộ 387 bit khóa của họ, chứ không phải một cái tên đẹp  [23:24] &lt;jrand0m&gt; đồng ý.  [23:25] &lt;jrand0m&gt; trừ / cho đến khi ai đó viết một hệ thống outproxy phân tán  [23:25] &lt;jrand0m&gt; còn gọi là o-r / freedom  trên i2p  [23:25] &lt;TC&gt; chúng ta có thể có bao nhiêu khóa khác nhau? [23:25] * jrand0m mong đến ngày đó [23:25] &lt;jrand0m&gt; tc&gt; 2^2048  [23:25] &lt;Ophite1&gt; jrand0m: lúc đó root key ký cho họ một namespace: .proxy.i2p [23:26] &lt;dm&gt; Đây hẳn là cuộc họp phát triển mã nguồn mở mang tính giả định/hoang tưởng vĩ cuồng nhất từ trước đến nay :) [23:26] &lt;jrand0m&gt; không gian con thật tuyệt :)  [23:26] &lt;jrand0m&gt; lol dm  [23:26] &lt;jrand0m&gt; này, chúng ta được phép nhắm cao mà, đúng không?  [23:26] &lt;dm&gt; tôi chắc hầu hết họp dev kiểu: "Vậy, ta để 3 bit cho header mpeg-5 hay 4?" [23:26] &lt;Ophite1&gt; jrand0m: kỳ lạ là không phải số nào cũng dùng được cho elgamal ;-) [23:26] &lt;TC&gt; dm, bạn đã xem các buổi họp debian chưa? [23:26] &lt;jrand0m&gt; ôi thôi nào, 000000000000000000000000000 là một khóa an toàn mà  [23:26] * Ophite1 phát bánh quy Chocolate Digestives [23:26] &lt;dm&gt; TC: chưa, chúng thế nào? [23:26] &lt;Ophite1&gt; jrand0m: ôi, identity. [23:26] &lt;TC&gt; dm, tôi không biết, tôi hỏi đó [23:27] &lt;jrand0m&gt; ok.  thecrypto không ở đây... ai có ý tưởng về im không?  [23:27] &lt;Ophite1&gt; chết tiệt, tôi sắp hỏi về cái đó. [23:27] &lt;Ophite1&gt; ứng dụng khá quan trọng. [23:27] &lt;dm&gt; Dù sao, kiểu họp này thân thiện với lurker hơn, nên tôi ủng hộ. [23:27] * dm thấy giải trí. [23:27] &lt;jrand0m&gt; heh  [23:27] &lt;TC&gt; co đâu rồi? [23:27] &lt;Ophite1&gt; vì nhiều người sẽ kỳ vọng i2p là hậu duệ của iip. [23:28] &lt;jrand0m&gt; iip chạy trên i2p thì khá dễ, nếu chúng ta không cần dcc  [23:28] &lt;Ophite1&gt; (tôi đoán có thể, nếu ta chỉ chạy một irc server iip trên i2p...) [23:28] &lt;jrand0m&gt; iip trên i2p với dcc thì cần app mới  [23:28] &lt;jrand0m&gt; chính xác Ophite1  [23:28] &lt;jrand0m&gt; 0 dòng code  [23:28] &lt;TC&gt; chẳng phải ta có thể chạy irc qua i2p? [23:28] &lt;Ophite1&gt; Tôi không thích ý đó vì ... ờ, nó không cho ta thứ gì ta chưa có :) [23:28] &lt;jrand0m&gt; nhưng lần cuối tôi nghe, thecrypto đang làm việc gì đó về app IM  [23:28] &lt;jrand0m&gt; chắc chắn tc  [23:29] &lt;jrand0m&gt; đúng Ophite1, và nó không mở rộng  [23:29] &lt;jrand0m&gt; (tất cả lưu lượng bị dồn vào ircd)  [23:29] &lt;Ophite1&gt; Ngoài ra IRCd có thể do thám lưu lượng. [23:29] &lt;TC&gt; à, đúng điểm hay [23:29] &lt;jrand0m&gt; (đây là lúc UserX nên xuất hiện và bàn về ý tưởng cho iip2.0)  [23:29] &lt;jrand0m&gt; đúng là Ophite1  [23:29] &lt;jrand0m&gt; tất cả vấn đề của iip hiện tại  [23:29] &lt;Ophite1&gt; jrand0m: Và tuyệt đối không có gì khác biệt. [23:29] &lt;jrand0m&gt; thêm độ trễ.  [23:30] &lt;Ophite1&gt; trừ việc nó viết bằng java. tuyệt vời. :) [23:30] &lt;jrand0m&gt; heh  [23:30] &lt;Ophite1&gt; Giờ thì, cả đống người đã tập tành thời sinh viên bằng cách thử và thất bại khi xây ứng dụng chat phân tán. [23:30] &lt;jrand0m&gt; ok, vậy ai đó nên hoặc giúp thecrypto hoặc thúc anh ấy thêm :)  [23:30] * Ophite1 chỉ ra IRC3 [23:30] &lt;jrand0m&gt; ừ, đề tài hoàn hảo cho đồ án trường  [23:30] &lt;Ophite1&gt; ..và SILC... [23:30] &lt;Ophite1&gt; ...và... [23:31] &lt;Ophite1&gt; ờ, khoảng cả tỷ cái khác. [23:31] &lt;jrand0m&gt; chính xác  [23:31] &lt;Ophite1&gt; Tất cả những thứ này, xin nói thêm, đều là trước thời DHT theo như tôi thấy. [23:31] &lt;jrand0m&gt; yup  [23:31] &lt;Ophite1&gt; Thật thất vọng vì đó là một cấu trúc hữu ích khủng khiếp. [23:31] &lt;jrand0m&gt; một DHT cho lookup / P3P, rồi kết nối trực tiếp cho IM  [23:31] &lt;jrand0m&gt; chat nhóm khó hơn, nhưng không quá khó  [23:31] &lt;Ophite1&gt; ờ, trực tiếp theo nghĩa i2p :) [23:31] &lt;jrand0m&gt; heh đúng  [23:32] &lt;Ophite1&gt; còn darkmail/i2pmail thì sao? [23:32] &lt;soros&gt; sex nhóm cũng thế [23:32] &lt;dm&gt; soros: đồng ý. [23:32] &lt;jrand0m&gt; sex nhóm không khó thế đâu soros ;)  [23:32] &lt;jrand0m&gt; lol  [23:32] &lt;jrand0m&gt; email qua i2p thì dễ.  ai đó chỉ cần chạy một pop server  [23:32] &lt;jrand0m&gt; hoặc webmail  [23:32] &lt;jrand0m&gt; hahah  [23:33] &lt;Ophite1&gt; jrand0m: được thôi, miễn là theo đúng nghĩa đen MỌI NGƯỜI đều chịu được vụ pgp đẫm máu :) [23:33] * Ophite1 lại ám ảnh CKT [23:33] &lt;jrand0m&gt; ờ, đúng.  cái đó sẽ để lộ nội dung cho server ;)  [23:33] &lt;Ophite1&gt; Còn nữa... spam. [23:33] &lt;jrand0m&gt; chuẩn  [23:33] &lt;Ophite1&gt; Chúng ta có thứ gọi là hashcash. [23:33] &lt;Ophite1&gt; Chúng khá hợp nhau, phải không? [23:34] &lt;jrand0m&gt; ok, vậy ừ, ai đó nên bắt tay vào một app email dành riêng cho i2p :)  [23:34] &lt;Ophite1&gt; hiển nhiên nó sẽ hoạt động tốt nhất như một phần của im. [23:34] &lt;Ophite1&gt; Rốt cuộc, khác biệt giữa irc và email là gì? [23:34] &lt;jrand0m&gt; đúng, như một hộp thư thoại (VMB) cho IM  [23:34] &lt;Ophite1&gt; Việc bạn có thể cuộn lên và xem mình bỏ lỡ gì sau khi quay lại hay không... [23:34] &lt;jrand0m&gt; được đặt vào DHT  [23:34] &lt;jrand0m&gt; ý hay  [23:35] * jrand0m ước có một đội cả tá coder [23:35] &lt;Ophite1&gt; lưu ý, tuy nhiên, mail cần lưu trữ vì nó là giao tiếp offline. irc không cần lưu trữ vì là giao tiếp online. [23:35] &lt;dm&gt; email cũng có nhiều quảng cáo tăng kích cỡ dương vật hơn. [23:35] &lt;Ophite1&gt; jrand0m: tìm nguồn tài trợ đi. [23:35] &lt;Ophite1&gt; dm: xem ở trên về hashcash. [23:35] &lt;jrand0m&gt; đúng, P3P có thể chứa các message đang chờ  [23:36] &lt;Ophite1&gt; dm: Một primitive mà ông đã hack email trong một đêm không có sẵn. [23:36] &lt;Ophite1&gt; (Ít ra ta sẽ không phải dùng đường dẫn ! để chỉ định tunnel thủ công. heh. heh. heh.) [23:36] * dm sẽ nhớ các giao thức văn bản rõ ràng siêu đơn giản. [23:36] &lt;jrand0m&gt; jrandom%ophite!dm!mihi  [23:37] &lt;Ophite1&gt; không, đây là i2p. Chèn ~520 ký tự rác giữa các dấu chấm than rồi bạn gần đúng hơn ;) [23:37] &lt;jrand0m&gt; haha  [23:37] &lt;Ophite1&gt; vài thứ trong số này *liên quan* với nhau. [23:37] &lt;jrand0m&gt; đúng, 387 byte được mã hóa base64...  [23:38] &lt;Ophite1&gt; hay nói cách khác, ELONGURL :) [23:38] &lt;jrand0m&gt; heh  [23:38] &lt;Ophite1&gt; [IE có cắt ở 512 không?] [23:38] &lt;jrand0m&gt; không, chạy ổn  [23:38] &lt;Ophite1&gt; bạn thừa nhận dùng IE? [23:38] &lt;Ophite1&gt; Để duyệt ẩn danh?! [23:38] &lt;jrand0m&gt; ;)  [23:38] * Ophite1 rút sáu khẩu của Lưu Đức Hoa và chờ =) [23:38] * jrand0m dùng ie cho eppsite, moz cho squid [23:39] &lt;duck&gt; ta đang ở mục nào? [23:39] &lt;duck&gt; 4? [23:39] &lt;jrand0m&gt; ừ, ok ok  [23:39] &lt;Ophite1&gt; vẫn là 4 tôi nghĩ. [23:39] &lt;jrand0m&gt; i2ptunnel.  vẫn rất tuyệt.  [23:39] &lt;jrand0m&gt; ý kiến gì không?  bình luận gì không mihi?  [23:40] &lt;jrand0m&gt; một điều tôi muốn lưu ý về squid outproxy là tôi đã cập nhật lọc header để CHO PHÉP COOKIE và thay user agent bằng thứ gì đó ngớ ngẩn   [23:40] * mihi chỉ đang đợi naming service... [23:40] &lt;jrand0m&gt; mihi (hoặc ai đó)&gt; sẽ rất dễ để bootstrap một naming service như vậy bằng một i2p ns kiểu /etc/hosts  [23:41] &lt;mihi&gt; btw: có dest công khai nào khác ngoài squid của bạn và eepsite của tc không? [23:41] &lt;jrand0m&gt; i2pcvs.dest  [23:41] &lt;jrand0m&gt; (trỏ tới i2p cvs pserver)  [23:41] &lt;jrand0m&gt; (nhưng không phải lúc nào cũng bật)  [23:41] *** yodel (yodel@anon.iip) đã tham gia kênh #iip-dev [23:41] &lt;jrand0m&gt; hola yodel  [23:41] &lt;yodel&gt; hela [23:42] &lt;jrand0m&gt; ok, tôi nghĩ thế là xong mục 4) app  [23:42] &lt;jrand0m&gt; 5) bình luận / câu hỏi / v.v.  [23:42] &lt;mihi&gt; trình cài đặt gui? [23:42] &lt;TC&gt; chào yodel [23:43] &lt;yodel&gt; Tôi phải bắt đầu thử đưa xml-rpc chạy qua i2p [23:43] &lt;yodel&gt; chắc chạy được với httptunnel [23:43] &lt;jrand0m&gt; câu hỏi hay mihi.  lần cuối tôi nghe MrEcho có một phần chạy được  [23:43] &lt;jrand0m&gt; tuyệt yodel  [23:43] &lt;jrand0m&gt; chắc chắn rồi.  [23:43] &lt;jrand0m&gt; stream lớn cỡ nào?  [23:43] &lt;jrand0m&gt; (tức là giao thức "lắm lời" đến mức nào?)  [23:44] * Ophite1 dự định thử BitTorrent qua I2P như bài stress test [23:44] &lt;yodel&gt; xml qua http [23:44] &lt;yodel&gt; lớp ssl sẽ không cần với i2p [23:44] &lt;Ophite1&gt; vậy, ờ, khá lắm lời? :) [23:44] &lt;jrand0m&gt; à hay, POST lớn hay reply lớn?  [23:44] &lt;jrand0m&gt; (hay chỉ nhỏ và nhỏ?)  [23:45] &lt;jrand0m&gt; đáng ghét thật Ophite1 :)  [23:45] &lt;yodel&gt; kích thước tương đương nhau [23:45] &lt;yodel&gt; httptunnel có hỗ trợ http nén gzip không? [23:45] &lt;jrand0m&gt; nhưng bt có dùng địa chỉ IP không?  [23:45] &lt;jrand0m&gt; hmm, httptunnel không có nén nội tại, nó chỉ là bitstream  [23:45] &lt;TC&gt; hmm, đóng gói i2p+ppp\vpn+gui như một giải pháp bảo mật cho chia sẻ không dây trên windows [23:45] &lt;yodel&gt; vậy chắc chạy được... [23:45] &lt;godmode0&gt; jrand0m&gt; bạn thử i2p trong nntp news server chưa ? [23:45] &lt;jrand0m&gt; ừ yodel  [23:45] &lt;yodel&gt; gửi 500-1000 byte, reply cũng vậy [23:46] &lt;jrand0m&gt; hmm cái đó tôi chưa thử godmode0  [23:46] &lt;yodel&gt; nén thì ít hơn nhiều [23:46] &lt;jrand0m&gt; ô tuyệt yodel, cái đó sẽ chạy không vấn đề  [23:46] &lt;yodel&gt; độ trễ cho một msg/gói/lv... là bao nhiêu? [23:46] &lt;jrand0m&gt; 2-5s, đôi khi đến 10s  [23:46] &lt;jrand0m&gt; (hiện tại)  [23:46] &lt;Ophite1&gt; không tệ cho thời kỳ tiền DHT :) [23:46] &lt;yodel&gt; vậy khứ hồi 20s? [23:47] &lt;jrand0m&gt; tôi thường mở một trang web trong 5-10s  [23:47] &lt;yodel&gt; à [23:47] &lt;yodel&gt; tố [23:47] &lt;yodel&gt; +t [23:48] &lt;jrand0m&gt; chà, chúng ta sắp chạm mốc 2 giờ.  ai còn câu hỏi / ý tưởng gì nữa không?  [23:48] &lt;Ophite1&gt; Pie thì ngon. [23:48] &lt;duck&gt; jrand0m: tại sao bạn uống bia địa phương rẻ tiền? [23:48] &lt;Ophite1&gt; Orgy và pie thì ngon hơn. [23:48] &lt;jrand0m&gt; rofl duck  [23:49] &lt;Ophite1&gt; duck: Nó còn ngon hơn Tesco Value Lager? [23:49] * Ophite1 phun ra theo phản xạ [23:49] &lt;jrand0m&gt; heh  [23:49] * duck lo cho sức khỏe của jrand0m [23:49] &lt;jrand0m&gt; bạn lo thói quen uống bia rẻ của tôi mà không lo thói quen whiskey ngon của tôi à?  [23:50] * Ophite1 nhắc về chai single malt trên đầu Cary Sherman [23:50] &lt;duck&gt; bạn ăn uống ổn chứ? [23:50] &lt;godmode0&gt; corona [23:50] &lt;duck&gt; bạn có tập thể dục hàng ngày không? [23:50] &lt;jrand0m&gt; ờ, tôi thuộc dạng ăn chay  [23:50] &lt;Ophite1&gt; Đó có phải là câu hỏi riêng tư không, duck? [23:50] &lt;jrand0m&gt; gõ phím có tính không?  [23:50] &lt;duck&gt; bạn uống nhiều đến mức đó rồi à? [23:50] &lt;duck&gt; đến mức thành ăn chay [23:50] &lt;jrand0m&gt; heh  [23:50] &lt;Ophite1&gt; bia rẻ sẽ khiến thế. [23:51] &lt;duck&gt; Ophite1: sức khỏe của jrand0m nên là mối bận tâm của tất cả chúng ta, vì nó thiết yếu cho I2P [23:51] *** Signoff: mihi_backup (mihi đưa cho jrand0m cái *BAF*er) [23:51] &lt;jrand0m&gt; heh ok ok mihi  [23:51] * jrand0m lên dây cót [23:51] * jrand0m *baf* tuyên bố kết thúc cuộc họp </div>
+<div class="irc-log">
+[22:02] &lt;jrand0m&gt; agenda: 
+[22:02] &lt;jrand0m&gt; 0) welcome 
+[22:02] &lt;jrand0m&gt; 1) i2p dev status 
+[22:02] &lt;jrand0m&gt;  - 0.2.1.1 is out (peer and tunnel updating and testing, tuning enhancements, tunnel throttling, a DoS defense)  
+[22:02] &lt;jrand0m&gt;  - don't use bw limiting (still some debugging) 
+[22:02] &lt;jrand0m&gt;  - keep your clocks generally correct (30 minute fudge factor) [used for lease expirations and garlics] 
+[22:02] &lt;jrand0m&gt; 2) kademlia, 0.3, and idn 
+[22:02] &lt;jrand0m&gt; 3) roadmap revise (0.2.3 --&gt; 0.4, 0.2.2 --&gt; 0.3.1)? 
+[22:02] &lt;jrand0m&gt; 4) app status [ppp2p, i2ptunnel, im, ns, squid] 
+[22:02] &lt;duck&gt; 5) why does jrand0m drink cheap local beer?
+[22:02] &lt;jrand0m&gt; 5) comments / questions / etc 
+[22:02] &lt;jrand0m&gt; heh 
+[22:02] &lt;jrand0m&gt; so yeah, basically that fits under 5 :) 
+[22:02] &lt;mihi_&gt; double 5 ;)
+[22:03] &lt;mihi_&gt; oops...
+[22:03] &lt;jrand0m&gt; 0) welcome 
+[22:03] * mihi_ did not look 2 the left column
+[22:03] &lt;jrand0m&gt; hi.  65th meeting I suppose. 
+[22:03] &lt;jrand0m&gt; hehe 
+[22:03] &lt;jrand0m&gt; 1) that code stuff 
+[22:04] &lt;jrand0m&gt; 0.2.1.1 came out last night 
+[22:04] &lt;jrand0m&gt; lots of goodness in there. 
+[22:04] * mihi tests it atm.
+[22:04] &lt;jrand0m&gt; tunnels are tested and fail fast, penalizing all participants so they won't likely get into the rebuild 
+[22:05] &lt;jrand0m&gt; messages in i2ptunnel are also throttled to max 64k size (larger messages caused badness) 
+[22:05] &lt;jrand0m&gt; there are some bugs being worked out with the bw limiting code, so make sure your bw limits in router.config are negative values 
+[22:06] &lt;jrand0m&gt; (i2p doesn't have enough traffic on it to cause real load atm anyway) 
+[22:06] &lt;jrand0m&gt; (but bw limiting will be unit tested and fixed for 0.2.1.2) 
+[22:07] &lt;jrand0m&gt; also, please try to keep your clocks close to correct.  it sucks that we have to need that, but right now we do. 
+[22:07] &lt;jrand0m&gt; we may be able to work out a way to not require semi-sync'ed clocks, but its delicate. 
+[22:07] &lt;jrand0m&gt; 2) fun stuff 
+[22:08] &lt;jrand0m&gt; a lot of the bugs being worked out in the last few releases are related to the crappy kludge of a BroadcastNetworkDB. 
+[22:08] &lt;jrand0m&gt; since its planned for replacement in 0.3, might as well at least mention what its being replaced with 
+[22:09] &lt;jrand0m&gt; kademlia is a structured distributed hash table (DHT) that lets us insert and fetch in under O(log(N)) time, guaranteed 
+[22:09] &lt;jrand0m&gt; [with one small caveat thats still being worked out] 
+[22:10] &lt;jrand0m&gt; that kademlia code needs to get written for 0.3 so we can do insert and fetch of RouterInfo and LeaseSet structures. 
+[22:10] &lt;jrand0m&gt; however, things would be simpler if it were implemented seperately - and hence testable seperately. 
+[22:10] &lt;jrand0m&gt; (unit testing == good) 
+[22:11] &lt;jrand0m&gt; so, whats a simple way to unit test a dht?  to write a simple file store/lookup service on it. 
+[22:11] &lt;dm&gt; insert fetch? are we talking about content?
+[22:11] &lt;jrand0m&gt; enter idn: (Link: http://wiki.invisiblenet.net/iip-wiki?I2PIDN)http://wiki.invisiblenet.net/iip-wiki?I2PIDN 
+[22:11] &lt;Ophite1&gt; dm: No, only routerinfo and leaseset structures.
+[22:12] &lt;jrand0m&gt; dm&gt; i2p's networkDatabase currently contains only two specialized structures, as ophite said 
+[22:12] &lt;dm&gt; okay, thanks.
+[22:12] &lt;Ophite1&gt; may or may not be useful to use it for bootstrapping other protocols too, but it's not anonymous itself. (?)
+[22:12] *** grimps (~grimp@anon.iip) has joined channel #iip-dev
+[22:12] &lt;tusko&gt; one question: which protocol is used now for networkDatabase?
+[22:13] &lt;jrand0m&gt; sorry, phone. 
+[22:13] *** Signoff: godmode0 (Ping timeout)
+[22:13] &lt;jrand0m&gt; correct, kademlia is not anonymous, but not non-anonymous either 
+[22:13] &lt;Ophite1&gt; modified kademlia will scale. random will not.
+[22:13] &lt;jrand0m&gt; tusko&gt; currently we do a flooded broadcast 
+[22:13] &lt;duck&gt; what about kademlia getting splitted?
+[22:13] &lt;dm&gt; no cell phones allowed into meeting.
+[22:13] &lt;duck&gt; &lt;insert zooko comments&gt;
+[22:13] &lt;Ophite1&gt; flooded broadcast aka gnutella method definitely won't ;)
+[22:13] &lt;jrand0m&gt; Ophite1&gt; right, kademlia doesn't use random ones :) 
+[22:13] &lt;duck&gt; Ophite1: works better as freenet routing :)
+[22:14] &lt;jrand0m&gt; duck&gt; exactly (&lt;jrand0m&gt; [with one small caveat thats still being worked out] ) 
+[22:14] &lt;Ophite1&gt; duck: i rest my case... ;)
+[22:14] *** Signoff: mihi (Ping timeout)
+[22:14] &lt;tusko&gt; is kademlia some sort of hypercube?
+[22:14] &lt;Ophite1&gt; no, a circle.
+[22:14] *** Signoff: mihi_ (Ping timeout)
+[22:14] &lt;jrand0m&gt; and/or a xor tree :) 
+[22:15] &lt;Ophite1&gt; splits/joins... reshuffle tree? can we take a peek at emule's overnetalike for this? :)
+[22:15] &lt;jrand0m&gt; its a fairly easy protocol, but we can definnitely look around. 
+[22:16] &lt;jrand0m&gt; icepick has implemented kademlia in python too, for ent (as kashmir) 
+[22:16] *** mihi (~mihi@anon.iip) has joined channel #iip-dev
+[22:16] &lt;Ophite1&gt; consider also malicious nodes deliberately fragmenting the tree.
+[22:16] &lt;jrand0m&gt; absolutely.  but its fairly attack resistant 
+[22:16] &lt;Ophite1&gt; 256 bit keyspace is more resistant to that though.
+[22:17] &lt;Ophite1&gt; plus would have to make a lot of routeridentity structures = hard.
+[22:17] &lt;tusko&gt; i found interesting the papers of gravepine: (Link: http://grapevine.sourceforge.net/)http://grapevine.sourceforge.net/
+[22:17] &lt;jrand0m&gt; this is also why I want to implement it first as an application, rather than rip out the core of i2p - so we can work out all the messy details first 
+[22:17] &lt;Ophite1&gt; so I'm pleased with sec 3 of 0.9 draft.
+[22:17] *** Signoff: nickthief54450 (Excess Flood)
+[22:18] *** nickthief54450 (~chatzilla@anon.iip) has joined channel #iip-dev
+[22:18] &lt;tusko&gt; look to (Link: http://grapevine.sourceforge.net/tech-overview.php)http://grapevine.sourceforge.net/tech-overview.php
+[22:18] &lt;Ophite1&gt; though I might point out that if message 0, DatabasePing, is inplemented, you might want to include a hashcash in it.
+[22:18] &lt;jrand0m&gt; interesting tusko, I think their economic model might require some revision, as with their sybyl defenses 
+[22:19] &lt;Ophite1&gt; (you may already; haven't ready that part)
+[22:19] &lt;jrand0m&gt; absolutely Ophite1.  I was actually thinking about putting hashcash certs into all of the messages (DatabaseLookup included) 
+[22:20] &lt;Ophite1&gt; good idea. though, be careful of performance and tuning vs. dos defense there, and you might want to run hashcash calc in a separate, lower-priority thread?
+[22:21] &lt;jrand0m&gt; well, hashcash verification should be near instantaneous 
+[22:21] &lt;jrand0m&gt; and hashcash generation shouldn't be able to be precompiled 
+[22:21] &lt;jrand0m&gt; er, precomputed 
+[22:21] &lt;dm&gt; Ophite1 must be an avatar created by jrand0m so that he can finally talk about I2P with someone who understands wtf he's saying.
+[22:22] &lt;jrand0m&gt; lol 
+[22:22] * dm is not fooled.
+[22:22] *** godmode0 (~enter@anon.iip) has joined channel #iip-dev
+[22:22] &lt;Ophite1&gt; one way of preventing that is to use derivatives of session keys as part of the hashcash..
+[22:22] &lt;jrand0m&gt; right.  and/or put in a nonce and the date 
+[22:22] &lt;Ophite1&gt; date leads to those troublesome timing problems though. that could be a real issue.
+[22:22] &lt;Ophite1&gt; unless you feel like rewriting ntp as well ;-)
+[22:22] *** Signoff: mihi (Ping timeout)
+[22:23] &lt;jrand0m&gt; heh 
+[22:23] &lt;jrand0m&gt; well, we've already run into that a little bit 
+[22:23] &lt;jrand0m&gt; (hence the 30 minute fudge factor) 
+[22:23] &lt;jrand0m&gt; a session hash may be workable though.  good idea. 
+[22:24] &lt;Ophite1&gt; and no, i'm not jrand0m's clone ;)
+[22:24] &lt;jrand0m&gt; ok, so for idn, I'm probably only going to implement the stuff on that I2PIDN wiki page  
+[22:25] *** Signoff: dm (Ping timeout)
+[22:25] &lt;jrand0m&gt; what would probably rule would be if someone would take that and run with it - make a real user interface, better get/store apps, fec/ecc/etc. 
+[22:25] &lt;jrand0m&gt; also, I had some ideas about a search network built in parallel as well 
+[22:26] &lt;jrand0m&gt; but, well, its probably more useful to i2p that I focus my time on the router 
+[22:26] &lt;Ophite1&gt; it runs on top of i2p?
+[22:26] &lt;jrand0m&gt; (making it functional, scalable, and secure) 
+[22:26] &lt;jrand0m&gt; yes 
+[22:26] &lt;jrand0m&gt; i2p lets idn be anonymous 
+[22:27] &lt;Ophite1&gt; what were your search network ideas?
+[22:27] &lt;jrand0m&gt; note: its not written yet, but its looking like its #2 on my task list 
+[22:27] &lt;Ophite1&gt; can another dht be built through tunnels?
+[22:27] *** mihi (~mihi@anon.iip) has joined channel #iip-dev
+[22:27] &lt;jrand0m&gt; basically a distributed replicated db, with hashcash inserts and syncs, where people store idn keys along side metadata / etc 
+[22:27] *** dm (~as@anon.iip) has joined channel #iip-dev
+[22:28] &lt;jrand0m&gt; hmm, yes, certainly.  but i2p isn't inherently tunnel based - its message based (i2p is IP, i2ptunnel is TCP) 
+[22:28] &lt;Ophite1&gt; if ~all node participate = very useful for "discovering" other protocols.
+[22:28] &lt;jrand0m&gt; definitely 
+[22:28] &lt;Ophite1&gt; so, should be standard.
+[22:28] &lt;Ophite1&gt; dhcp/zeroconf for the i2p? :)
+[22:28] &lt;jrand0m&gt; idn would be a very good app to bundle with i2p to let people have an 'out of box experience' 
+[22:29] &lt;Ophite1&gt; If it's meant to be a fully featured communication/file transfer/storage application, I'd like to propose the name "Darknet".
+[22:29] &lt;jrand0m&gt; :) 
+[22:29] &lt;Ophite1&gt; You, of course, probably already know where that comes from. :)
+[22:30] &lt;dm&gt; Where does it come from?
+[22:30] &lt;Ophite1&gt; MS Research's paper: The Darknet and the Future of Content Distribution.
+[22:30] *** Signoff: godmode0 (Ping timeout)
+[22:30] &lt;TC&gt; link?
+[22:30] *** tonious (~Flag@anon.iip) has joined channel #iip-dev
+[22:30] &lt;jrand0m&gt; well, tim may says he invented the term ~11 years ago ;) 
+[22:30] &lt;tusko&gt; where is the I2PIDN wiki page?
+[22:30] &lt;dm&gt; (Link: http://crypto.stanford.edu/DRM2002/darknet5.doc)http://crypto.stanford.edu/DRM2002/darknet5.doc
+[22:30] &lt;jrand0m&gt; tusko&gt; (Link: http://wiki.invisiblenet.net/iip-wiki?I2PIDN)http://wiki.invisiblenet.net/iip-wiki?I2PIDN 
+[22:30] &lt;Ophite1&gt; also implies that the network works "in the dark" - noone knows who anyone is ;)
+[22:30] &lt;jrand0m&gt; exactly. 
+[22:31] *** mihi_ (~mihi@anon.iip) has joined channel #iip-dev
+[22:31] &lt;jrand0m&gt; well, i2p itself is a darknet in that sense, but its generic messaging - it is the IP layer for such a darknet. 
+[22:31] &lt;jrand0m&gt; i2ptunnel is the TCP layer, and idn is NFS :) 
+[22:31] &lt;Ophite1&gt; i2p is the protocol that allows such a network to be created from something broadly like overnet.
+[22:31] &lt;Ophite1&gt; speaking of which... is there a way to specify priority in messages?
+[22:32] *** mihi is now known as nickthief76430
+[22:32] *** mihi_ is now known as mihi
+[22:32] &lt;jrand0m&gt; funny that you mention that :) 
+[22:32] *** nickthief76430 is now known as mihi_backup
+[22:32] &lt;mihi&gt; oops...
+[22:32] &lt;jrand0m&gt; I was just reading some of the upcoming HotNets2 papers ((Link: http://nms.lcs.mit.edu/HotNets-II/program.html)http://nms.lcs.mit.edu/HotNets-II/program.html) and got inspired for some QoS over i2p mechanisms 
+[22:33] &lt;Ophite1&gt; would a bulk/low-latency bit compromise anonymity slightly (intersection attack?) by allowing traffic linkage? well, even if it were sometimes flips?
+[22:33] &lt;Ophite1&gt; ah, well that might work better of course =)
+[22:33] &lt;Ophite1&gt; Don't worry about local plausible denability.
+[22:33] &lt;jrand0m&gt; right, i2p assumes the local machine is trusted 
+[22:33] *** Signoff: dm (Ping timeout)
+[22:33] &lt;Ophite1&gt; That is a problem to be solved by Rubberhose/Marutukku and Thermite, not I2P.
+[22:34] &lt;jrand0m&gt; exactly.  (otherwise, the software is compromised and it doesn't matter what we do) 
+[22:34] * TC hopes his local machine is trusted
+[22:34] &lt;jrand0m&gt; heh 
+[22:34] &lt;Ophite1&gt; TC: easy way to find out; make death threats against bush and see if SS agents turn up at your door ;-)
+[22:34] &lt;jrand0m&gt; lol 
+[22:34] &lt;TC&gt; done and done
+[22:34] *** Signoff: tonious (Ping timeout)
+[22:34] &lt;jrand0m&gt; hah! 
+[22:35] * jrand0m watches my squid proxy get taken down by the fbi
+[22:35] &lt;TC&gt; its a trap!
+[22:35] &lt;jrand0m&gt; get an axe! 
+[22:35] &lt;jrand0m&gt; :) 
+[22:35] &lt;TC&gt; anybody play uplink?
+[22:35] &lt;Ophite1&gt; completed it. cracked it. released it.
+[22:35] &lt;Ophite1&gt; trained it too ;)
+[22:36] * jrand0m takes that as a "yes"
+[22:36] *** dm (~as@anon.iip) has joined channel #iip-dev
+[22:37] &lt;Ophite1&gt; there may be some dos possibilities in caching, in memory stuff...
+[22:37] &lt;jrand0m&gt; ok, so thats what I'm thinking with idn/kademlia.  get idn implemented and working over the 0.2. code, smash it in a bit, then implement 0.3 with that kademlia implementation 
+[22:37] &lt;jrand0m&gt; oh certainly.  the todo list has 'sync pending and large messages to disk' :) 
+[22:37] &lt;dm&gt; shouldn't IDN be implemented after I2P is tested and mature?
+[22:38] &lt;jrand0m&gt; thats one of the problems we ran into testing a large file of TC's eepsite 
+[22:38] &lt;Ophite1&gt; dm: not given as it's a testbed for the fancy db.
+[22:38] &lt;jrand0m&gt; dm&gt; I was thinking that too, but I need to implement the kademlia code to get 0.3 ready.  basically the kademlia code IS 0.3 
+[22:38] &lt;Ophite1&gt; I do like the hybrid dht nature such a network would provide though.
+[22:39] &lt;dm&gt; aha... 
+[22:39] &lt;jrand0m&gt; but if no one wants to toss a normal UI onto it until i2p 1.0, that might be a good idea as well 
+[22:39] &lt;Ophite1&gt; dht node discovery + ngr-like routing = scalability capable of handling critical mass
+[22:39] &lt;dm&gt; what happened to that original milestone list. secure--&gt;anonymous--&gt;not harvestable, etc...
+[22:39] &lt;Ophite1&gt; jrand0m: I will refrain from advertising it to pirates until it's ready. that enough?
+[22:39] &lt;jrand0m&gt; well, minus the ngr-like routing :) we tunnel :) 
+[22:39] &lt;TC&gt; as long as we keep the cli
+[22:39] &lt;dm&gt; ah scalable was one of the items in that chain.
+[22:39] &lt;jrand0m&gt; dm&gt; 0.3 is necessary for scalable.  which is before not harvestable 
+[22:39] &lt;jrand0m&gt; thanks Ophite1 :) 
+[22:40] &lt;jrand0m&gt; definitely TC.  I'll need the cli to test it 
+[22:40] &lt;Ophite1&gt; scalability of the actual anonymous stuff is directly related to choices made in the routing for the tunnels, and that's a router implementation thing?
+[22:40] &lt;jrand0m&gt; (and, c'mon, we'll probably do software distribution / releases with idn) 
+[22:40] *** godmode0 (~enter@anon.iip) has joined channel #iip-dev
+[22:40] &lt;dm&gt; alrighty... sounds okay then.
+[22:40] &lt;jrand0m&gt; absolutely ophite. 
+[22:40] &lt;Ophite1&gt; suggestion: maximum message size?
+[22:40] &lt;jrand0m&gt; thats the Hard problem 
+[22:41] &lt;jrand0m&gt; max message size is currently insanely large (4g) but I'm thinking of trimming it to 64k or 128k 
+[22:41] &lt;jrand0m&gt; but I don't want to resort to that yet 
+[22:41] * Ophite1 goes digging in notes
+[22:41] &lt;Ophite1&gt; BitTorrent/Scone scalability notes indicate 512K.
+[22:42] &lt;jrand0m&gt; heh ok cool.  (any refs I can dig into?) 
+[22:42] &lt;Ophite1&gt; but, think of it like tcp window size.
+[22:42] &lt;jrand0m&gt; right 
+[22:42] &lt;Ophite1&gt; not for scone, sorry - friend's research project.
+[22:42] &lt;jrand0m&gt; coo', no worry 
+[22:42] *** Signoff: mihi_backup (Ping timeout)
+[22:42] &lt;Ophite1&gt; fwiw, your kademlia is about as good as his though :)
+[22:42] &lt;jrand0m&gt; hehe 
+[22:42] &lt;jrand0m&gt; (well, I haven't implemented it yet ;) 
+[22:42] &lt;Ophite1&gt; uh, hers I mean :/
+[22:42] &lt;jrand0m&gt; oh wikked 
+[22:43] &lt;dm&gt; boner..
+[22:43] *** mihi_backup (~mihi@anon.iip) has joined channel #iip-dev
+[22:43] &lt;jrand0m&gt; heh 
+[22:43] &lt;jrand0m&gt; so, thats 2) kademlia, 0.3, and idn 
+[22:43] &lt;Ophite1&gt; she named her toys after puddings. custard, crumble (Waste-like), strudel.. her bittorrent-a-like was the fastest pudding in the world - 'scone ;)
+[22:43] &lt;jrand0m&gt; haha 
+[22:45] &lt;Ophite1&gt; she's a math.
+[22:45] &lt;jrand0m&gt; even better 
+[22:45] &lt;jrand0m&gt; there's a lot of stats gathering / analysis that will be coming up for advanced peer selection 
+[22:45] &lt;Ophite1&gt; but I'll see if I can bounce stuff past her. scalability from i2np 0.9 was from her - she likes it.
+[22:45] &lt;jrand0m&gt; (unfortunately we can't cheat like mnet, mixminion, and tor) 
+[22:46] &lt;jrand0m&gt; great to hear 
+[22:46] &lt;Ophite1&gt; one comment - dsa?
+[22:46] *** nickthief54450 (~chatzilla@anon.iip) has joined channel #iip-dev
+[22:46] &lt;Ophite1&gt; dsa 1024 bit, as in SHA-1?
+[22:46] &lt;jrand0m&gt; yea 
+[22:47] &lt;Ophite1&gt; 'spose it is tried and tested.
+[22:47] &lt;Ophite1&gt; also small.
+[22:47] &lt;jrand0m&gt; right.  but I'm not 100% tied to our particular crypto impls 
+[22:47] &lt;Ophite1&gt; anyway. to roadmap.
+[22:47] &lt;TC&gt; haha, lets name a windows version 'Microsoft Darknet (r)'
+[22:47] &lt;jrand0m&gt; heh tc 
+[22:48] &lt;jrand0m&gt; ok, 3) roadmap revise (0.2.3 --&gt; 0.4, 0.2.2 --&gt; 0.3.1)? 
+[22:48] &lt;jrand0m&gt; because of all the bugs I've been running into wrt the broadcast db, I want to escalate the 0.3 (kademlia db) release 
+[22:48] &lt;TC&gt; its nice not being limmited by trademarks like a normal open source project
+[22:49] *** tonious (~Flag@anon.iip) has joined channel #iip-dev
+[22:49] &lt;jrand0m&gt; 0.2.3 is restricted routes / trusted peers, and probably not a hard feature requirement that anyone here has.  it can be shuffled out to 0.4 without problem, I think 
+[22:50] &lt;jrand0m&gt; 0.2.2 is tunnel mods, but I think a lot of the pressure to get that implemented will be eased with the 0.2.1.1 release (which tests and rebuilds tunnels as necessary, rather than waiting 10 minutes) 
+[22:50] &lt;Ophite1&gt; trusted peers is an area that needs some revision imho.
+[22:50] &lt;jrand0m&gt; agreed. 
+[22:50] *** dm_backup (~as@anon.iip) has joined channel #iip-dev
+[22:50] &lt;Ophite1&gt; only area that doesn't give me warm fuzzies.
+[22:50] &lt;Ophite1&gt; though that may just be the word "trusted". :)
+[22:50] &lt;jrand0m&gt; basically my current thoughts are to publish tunnels to routers 
+[22:50] &lt;jrand0m&gt; heh 
+[22:51] &lt;jrand0m&gt; (if we publish tunnels to routers, we can get away with untrusted gateways, which drops the 'trusted' from trusted peers) 
+[22:51] *** Signoff: dm (Ping timeout)
+[22:51] *** dm_backup is now known as dm
+[22:51] &lt;Ophite1&gt; need to analyse anonymity implications of that.
+[22:51] &lt;jrand0m&gt; but trusted peers is inherently necessary in a militant grade anon system, where /all/ nodes you can contact are considered attackers. 
+[22:52] &lt;Ophite1&gt; don't think that is truly possible...
+[22:52] &lt;jrand0m&gt; certainly.  yet another reason it should get 0.4 
+[22:52] &lt;jrand0m&gt; Ophite1&gt; trusted nodes with timed / triggered self destruct. 
+[22:52] &lt;jrand0m&gt; set up a patsy, route through it, kill it 
+[22:52] &lt;jrand0m&gt; exactly, if patsies delete their logs after N hours / N bytes / N messages 
+[22:52] &lt;Ophite1&gt; I mean if you want me to release a worm that sets up a couple of million...
+[22:53] &lt;Ophite1&gt; logs? what logs?
+[22:53] &lt;jrand0m&gt; :) 
+[22:53] &lt;jrand0m&gt; ok, format the disks ;) 
+[22:53] * Ophite1 wrote kernel-level stealth trojan
+[22:53] &lt;jrand0m&gt; nice 
+[22:53] * dm wrote kernel level outlook calendar plugin.
+[22:53] &lt;Ophite1&gt; ...when I was 19 :)
+[22:53] &lt;Ophite1&gt; still works. :)
+[22:54] &lt;Ophite1&gt; not going to include it in this though, don't worry, or, uh, check my code, which would probably be a Good Thing To Do anyway ;)
+[22:54] &lt;dm&gt; when I was 12.
+[22:54] &lt;jrand0m&gt; I don't think i2p will want /that/ large distribution until after 1.0 is stable and heavily peer reviewed 
+[22:54] &lt;jrand0m&gt; heh Ophite1 
+[22:54] &lt;jrand0m&gt; heh dm 
+[22:54] &lt;Ophite1&gt; frankly, think that is a fluff feature.
+[22:54] &lt;jrand0m&gt; perhaps. 
+[22:55] &lt;jrand0m&gt; restricted routes is a necessity though 
+[22:55] &lt;jrand0m&gt; its basic functionality for people behind firewalls 
+[22:55] &lt;jrand0m&gt; (very restrictive firewalls) 
+[22:55] &lt;Ophite1&gt; hello, transports.
+[22:55] &lt;Ophite1&gt; we'll get to that.
+[22:55] &lt;Ophite1&gt; or is now the appropriate time to discuss them?
+[22:55] &lt;jrand0m&gt; sure, lets dig in :) 
+[22:56] &lt;jrand0m&gt; we've already run into a problem with an unreachable peer that could be solved with restricted routes 
+[22:56] *** tusko has left #iip-dev
+[22:56] &lt;jrand0m&gt; even though it was due to misconfiguration, it could be more common 
+[22:57] &lt;Ophite1&gt; Also: given two cooperating peers behind inbound-filtering firewalls that drop bad packets, and one cooperating peer which is not behind a firewall and can send packets with forged IP source addresses to both of the other peers...
+[22:57] &lt;Ophite1&gt; You can establish a TCP connection between the two firewalled peers that both firewalls think is outbound.
+[22:57] &lt;jrand0m&gt; definitely 
+[22:57] &lt;dm&gt; forged IP addresses?!?
+[22:58] &lt;Ophite1&gt; believe me, firewalls are a VERY common problem.
+[22:58] &lt;Ophite1&gt; sometimes they are user-controlled but the user is a doofus. that can be handled with the installer handling the firewall :)
+[22:58] &lt;dm&gt; I2P is gonna use IP spoofing? :)
+[22:58] &lt;jrand0m&gt; definitely.  if i2p can't operate behind firewalls / NATs / proxies, there's no reason to continue. 
+[22:59] &lt;Ophite1&gt; sometimes they are actively hostile, corporate or educational gateways seeking to deliberately mess up everything. It's got to traverse those, and traverse them cleanly.
+[22:59] &lt;jrand0m&gt; dm&gt; transport options 
+[22:59] &lt;jrand0m&gt; absolutely Ophite1 
+[22:59] &lt;Ophite1&gt; dm: I have a working implementation - in the Direct Connect protocol.
+[22:59] &lt;jrand0m&gt; i2p wants to be the battleground for that code. 
+[22:59] &lt;Ophite1&gt; dm: If *that* can handle it, i2p can.
+[22:59] *** Signoff: tonious (Ping timeout)
+[23:00] &lt;Ophite1&gt; I suggest leaving it turned off by default though. Only a very few want it turned on, and it would be nice if they can advertise which they are so requests can be routed to them.
+[23:00] &lt;dm&gt; you can't spoof IPs without native code can you?
+[23:00] &lt;Ophite1&gt; the advantage is that they don't have to route *through*, just help the setup.
+[23:00] &lt;Ophite1&gt; = massive speed boost.
+[23:01] &lt;jrand0m&gt; definitely Ophite1, thats what the RouterInfo.routerAddress[] structure is for 
+[23:01] &lt;Ophite1&gt; dm: yeah, like this isn't going to be rewritten?
+[23:01] *** tonious (~Flag@anon.iip) has joined channel #iip-dev
+[23:01] &lt;dm&gt; okay, just checking...
+[23:01] &lt;jrand0m&gt; right dm, I have no qualms whatsoever with including native code in i2p 
+[23:01] &lt;Ophite1&gt; I would like to state that I don't think java is a permanent solution.
+[23:01] &lt;Ophite1&gt; And that I regard java router as testbed/prototype.
+[23:01] &lt;jrand0m&gt; thats fine.  if it gets us to 1.0, works out the protocol, etc, good enough. 
+[23:02] &lt;Ophite1&gt; ...and hope it doesn't get stuck there as freenet has ;)
+[23:02] &lt;dm&gt; IPAddress.Spoof(192.168.32.1);
+[23:02] *** alient (alient@anon.iip) has joined channel #iip-dev
+[23:02] &lt;jrand0m&gt; lol dm 
+[23:02] &lt;dm&gt; import IPSpoofing;
+[23:02] &lt;Ophite1&gt; mmm... raw sockets in java ;)
+[23:02] &lt;jrand0m&gt; fcntl / ioctl in java... mmMMmm 
+[23:02] &lt;mihi&gt; hmm, raw sockets require root on unix, don't they?
+[23:02] &lt;dm&gt; women with large breasts lickig my penis.. mmMMmmm
+[23:02] &lt;jrand0m&gt; so we include a rootkit 
+[23:03] &lt;jrand0m&gt; ;) 
+[23:03] &lt;Ophite1&gt; jrand0m: got it covered =)
+[23:03] &lt;jrand0m&gt; heh 
+[23:03] &lt;Ophite1&gt; besides as I said; only a few need it.
+[23:03] &lt;jrand0m&gt; right 
+[23:04] &lt;jrand0m&gt; and only for legitimate reasons, of course. 
+[23:04] &lt;Ophite1&gt; on my dc hub, only one (bot) had the capability, and the hub told it when passives wanted to connect to passives.
+[23:04] &lt;Ophite1&gt; caused a bit of amazement that did.
+[23:04] &lt;jrand0m&gt; hehe 
+[23:04] &lt;Ophite1&gt; also got the bot's host shut down, hence my suggestion to perhaps turn it off by default :)
+[23:04] &lt;jrand0m&gt; thats definitely a good feature to have avail 
+[23:04] &lt;jrand0m&gt; lol 
+[23:05] *** Signoff: nickthief54450 (Excess Flood)
+[23:05] &lt;jrand0m&gt; ok, so with restricted routes pushed to 0.4, we have a month or so to continue the debate as to whether the functionality is necessary 
+[23:06] &lt;jrand0m&gt; any other thoughts / things that should be in the roadmap that aren't, things that are in the wrong place, etc? 
+[23:06] &lt;Ophite1&gt; I say push it to 0.4 definitely. It will cause firewall issues at the moment but we are still in testing...
+[23:06] &lt;Ophite1&gt; ...someone that can't open a firewall port probably shouldn't be trying it yet.
+[23:06] *** nickthief54450 (~chatzilla@anon.iip) has joined channel #iip-dev
+[23:06] &lt;jrand0m&gt; right.  and even with firewalls, PHTTP lets them through. 
+[23:07] &lt;Ophite1&gt; though need to test phttp against hostile proxies.
+[23:07] * jrand0m is behind a firewall I don't control and I participate fully in i2p
+[23:07] &lt;dm&gt; hax0r
+[23:07] &lt;jrand0m&gt; well, yes, hostile proxies can fake confirm, but its all signed, so the message can't go to the wrong place / etc 
+[23:08] &lt;jrand0m&gt; but the phttp relay and transport does have a lot of features needed 
+[23:08] &lt;Ophite1&gt; in particular, to examine the future possibilities application level routers might have at detecting/fucking up the protocol.
+[23:08] &lt;jrand0m&gt; hm? 
+[23:08] &lt;Ophite1&gt; have some experience with firewall tunnelling though.
+[23:08] &lt;Ophite1&gt; might want to include a GET fallback.
+[23:09] &lt;jrand0m&gt; hmm.  GET goes into logs.  but perhaps as a fallback 
+[23:09] &lt;jrand0m&gt; (POST can be to /index.html) 
+[23:09] &lt;Ophite1&gt; jrand0m: but it's all signed/encrypted if noderefs are cool...?
+[23:10] &lt;Ophite1&gt; unless the proxy becomes an active attacker too, that's going to be quite hard for it.
+[23:10] &lt;jrand0m&gt; all messages are encrypted to the destination router, and the designation as to what phttp relay to go through is signed in the routerInfo 
+[23:10] &lt;jrand0m&gt; right.  phttp proxy as is certainly isn't strong enough to go against an active attacker 
+[23:11] *** Signoff: grimps (Leaving)
+[23:12] &lt;jrand0m&gt; I think it'd be great if people posted some alternate transport ideas to the wiki :) 
+[23:12] &lt;jrand0m&gt; ok, 4) app status [ppp2p, i2ptunnel, im, ns, squid] 
+[23:12] &lt;jrand0m&gt; damn, tusko left 
+[23:12] &lt;jrand0m&gt; tusko wrote a python script (ppp2p) to let people run ppp over i2p via i2ptunnel 
+[23:13] &lt;Ophite1&gt; Told you someone would do that :)
+[23:13] &lt;dm&gt; ppp over i2p?
+[23:13] &lt;jrand0m&gt; I haven't looked at it, but last I heard he was running a vpn over i2p with 5s ping times 
+[23:13] &lt;jrand0m&gt; heh yeah 
+[23:13] &lt;Ophite1&gt; dm: of course.
+[23:13] &lt;dm&gt; when could you use that?
+[23:13] &lt;dm&gt; could/would
+[23:13] &lt;jrand0m&gt; dm&gt; anonymous outproxy 
+[23:13] &lt;Ophite1&gt; dm: anonymous ANYTHING.
+[23:13] &lt;jrand0m&gt; to, say, run a kazaa node anonymously, or whatever 
+[23:13] * Ophite1 points out that anyone running an outbound i2p-&gt;ppp link is insane and will probably be blacklisted/hunted down
+[23:13] &lt;dm&gt; ah, I understand.
+[23:13] &lt;jrand0m&gt; definitely Ophite1 
+[23:14] &lt;jrand0m&gt; so right now, its only for trusted peers.   
+[23:14] &lt;Ophite1&gt; see also: the dresden JAP cascade... :)
+[23:14] &lt;jrand0m&gt; which, well, doesnt really make sense for anonymity... 
+[23:14] &lt;jrand0m&gt; heh 
+[23:14] &lt;Ophite1&gt; also most of the stuff going out of their node will be unencrypted...
+[23:14] * jrand0m thinks about ike over ppp over i2p
+[23:15] * jrand0m watches my head explode
+[23:15] *** fiaga (~po@anon.iip) has joined channel #iip-dev
+[23:15] &lt;Ophite1&gt; jrand0m: why not i2p over ppp over i2p?
+[23:15] &lt;jrand0m&gt; definitely doable.  aint recursion fun? 
+[23:15] &lt;soros&gt; i2p over i2p  :-o
+[23:15] &lt;jrand0m&gt; or i2p over ppp over i2p over i2p over freenet over kazaa 
+[23:15] &lt;Ophite1&gt; now that's just silly. Freenet wouldn't possibly work ;)
+[23:16] &lt;godmode0&gt; over slow connect :)
+[23:16] &lt;jrand0m&gt; heh it'd have latency issues, certainly :) 
+[23:16] &lt;mihi&gt; ... over an icmp tunnel over ...
+[23:16] &lt;Ophite1&gt; ooh yes, loki :)
+[23:16] &lt;Ophite1&gt; 0ldsk00l :)
+[23:17] &lt;Ophite1&gt; I2P addresses, being the public keys, are ... rather long.
+[23:17] &lt;jrand0m&gt; yes. 
+[23:17] &lt;jrand0m&gt; actually, since we're on agenda item 4: ns 
+[23:17] &lt;Ophite1&gt; As in an I2P www url being actually too long to paste into any sane place (&gt;512 chars?!!)
+[23:17] &lt;mihi&gt; co promised to write a naming service...
+[23:17] &lt;jrand0m&gt; yeah. 
+[23:17] &lt;jrand0m&gt; I think with idn implemented, it would be very easy for someone to adapt the kademlia code into a distributed dns  
+[23:17] &lt;mihi&gt; Ophite1: post them to the eepsite forum.
+[23:18] &lt;Ophite1&gt; trouble with namespace as I can figure it out is that there has to be either some degree of central control OR you have to allow collisions.
+[23:18] *** Signoff: fiaga (Ping timeout)
+[23:18] &lt;jrand0m&gt; (just toss on a CA or WoT CAs, and voila.  (Link: www.mihi.i2p)www.mihi.i2p) 
+[23:18] &lt;jrand0m&gt; not necessarily. 
+[23:18] &lt;Ophite1&gt; please enlighten me with your better ideas then.
+[23:18] &lt;jrand0m&gt; Ophite1&gt; check out co/wiht's specs on the iip-dev list.   
+[23:19] &lt;Ophite1&gt; best I could come up with is root key creates signed namespaces. dnssec stylee.
+[23:19] &lt;jrand0m&gt; he doesn't go the full route with a dht, but he manages groups 
+[23:19] &lt;jrand0m&gt; just like how we do now - we /all/ can choose who our root dns servers are. 
+[23:19] &lt;jrand0m&gt; in the same vein, we /all/ should be able to choose who our CA (or CA WoT) is 
+[23:20] &lt;jrand0m&gt; so I guess technically there /could/ be collisions, but only once there are multiple CA groups that don't interact 
+[23:20] * Ophite1 notes that is unlikely
+[23:20] &lt;jrand0m&gt; agreed 
+[23:20] &lt;Ophite1&gt; you either trust the root CA or you don't.
+[23:20] &lt;jrand0m&gt; and if you don't trust the root, you create your own 
+[23:21] &lt;jrand0m&gt; (or find another) 
+[23:21] &lt;Ophite1&gt; and if you don't trust the root CA it's for a reason, a reason that will rapidly get around.
+[23:21] &lt;jrand0m&gt; exactly 
+[23:21] &lt;jrand0m&gt; especially when there's anonymous publishing :) 
+[23:21] &lt;Ophite1&gt; being as CA's only real purpose is to insure anti-collision - like Trent...
+[23:21] &lt;jrand0m&gt; right 
+[23:22] &lt;Ophite1&gt; about the only thing that would cause lack of trust in CA is (1) key leakage or (2) refusal to register something that isn't already registered.
+[23:22] * jrand0m notes verisign's "trustworthiness"
+[23:23] * Ophite1 notes that Verisign purports to verify the identity of the certificate holder - one of the properties that an I2P namespace is in fact guaranteed NOT to do
+[23:23] &lt;jrand0m&gt; self signed certs+++ 
+[23:24] &lt;Ophite1&gt; also I'd point out that distributed systems - like Darknet, as I will call it from here on in until it sticks :) - built on top of i2p probably wouldn't use the namespace.
+[23:24] &lt;Ophite1&gt; It's for servers, really.
+[23:24] &lt;jrand0m&gt; heh 
+[23:24] &lt;jrand0m&gt; right 
+[23:24] &lt;Ophite1&gt; Servers don't scale. That problem will be in i2p as much as in IP.
+[23:24] &lt;Ophite1&gt; so, I think that the usage in practice will actually be surprisingly limited.
+[23:24] &lt;jrand0m&gt; the idn ("darknet") would keep references to destinations - the full 387 bits of their keys, not some pretty name 
+[23:24] &lt;jrand0m&gt; agreed. 
+[23:25] &lt;jrand0m&gt; except / until someone writes a distributed outproxy system 
+[23:25] &lt;jrand0m&gt; aka o-r / freedom  over i2p 
+[23:25] &lt;TC&gt; how many diffrent keys can we have?
+[23:25] * jrand0m looks forward to that day
+[23:25] &lt;jrand0m&gt; tc&gt; 2^2048 
+[23:25] &lt;Ophite1&gt; jrand0m: at which point the root key signs them a namespace: .proxy.i2p
+[23:26] &lt;dm&gt; This must be the most hypothetical/megalomaniac open source development meeting ever :)
+[23:26] &lt;jrand0m&gt; aint subspaces grand :) 
+[23:26] &lt;jrand0m&gt; lol dm 
+[23:26] &lt;jrand0m&gt; hey, we're alowed to aim high, aint we? 
+[23:26] &lt;dm&gt; I'm sure most devl meetings are like: "So, do we put 3 bits for the mpeg-5 header or 4?"
+[23:26] &lt;Ophite1&gt; jrand0m: oddly as it may seem, not every number works for elgamal ;-)
+[23:26] &lt;TC&gt; dm, youve seen debian meetings right?
+[23:26] &lt;jrand0m&gt; awww c'mon, 000000000000000000000000000 is a secure key 
+[23:26] * Ophite1 hands out Chocolate Digestives
+[23:26] &lt;dm&gt; TC: no, what are the like?
+[23:26] &lt;Ophite1&gt; jrand0m: ooh, identity.
+[23:26] &lt;TC&gt; dm, i dont know, i was asking
+[23:27] &lt;jrand0m&gt; ok.  thecrypto isn't here either... anyone have im thoughts? 
+[23:27] &lt;Ophite1&gt; damn, I was about to ask about that.
+[23:27] &lt;Ophite1&gt; quite an important app.
+[23:27] &lt;dm&gt; Anyway, this type of meeting is more lurker-friendly, so I'm all for it.
+[23:27] * dm is entertained.
+[23:27] &lt;jrand0m&gt; heh 
+[23:27] &lt;TC&gt; where is co?
+[23:27] &lt;Ophite1&gt; as many people will expect i2p to be iip's successor.
+[23:28] &lt;jrand0m&gt; iip over i2p is fairly easy, if we don't want dcc 
+[23:28] &lt;Ophite1&gt; (I guess it could be, if we just run an iip irc server over i2p...)
+[23:28] &lt;jrand0m&gt; iip over i2p with dcc requires a new app 
+[23:28] &lt;jrand0m&gt; exactly Ophite1 
+[23:28] &lt;jrand0m&gt; 0 coding 
+[23:28] &lt;TC&gt; cant we just run irc over i2p?
+[23:28] &lt;Ophite1&gt; I don't like that idea 'cause ... well, it doesn't give us anything we don't already have :)
+[23:28] &lt;jrand0m&gt; but last I heard, thecrypto was doing some work on an IM app 
+[23:28] &lt;jrand0m&gt; certainly tc 
+[23:29] &lt;jrand0m&gt; right Ophite1, and it doesn't scale 
+[23:29] &lt;jrand0m&gt; (all the traffic gets funneled to the ircd) 
+[23:29] &lt;Ophite1&gt; Also the IRCd can spy on traffic.
+[23:29] &lt;TC&gt; ah, goodpoint
+[23:29] &lt;jrand0m&gt; (this would be when UserX should show up and discuss his ideas for iip2.0) 
+[23:29] &lt;jrand0m&gt; right Ophite1 
+[23:29] &lt;jrand0m&gt; all the problems of the current iip 
+[23:29] &lt;Ophite1&gt; jrand0m: And absolutely nothing different.
+[23:29] &lt;jrand0m&gt; more lag. 
+[23:30] &lt;Ophite1&gt; except it's in java. lovely. :)
+[23:30] &lt;jrand0m&gt; heh 
+[23:30] &lt;Ophite1&gt; Now, shitloads of people have cut their undergraduate teeth trying and failing to build distributed chat applications.
+[23:30] &lt;jrand0m&gt; ok, so someone should either help thecrypto out or push him along some more :) 
+[23:30] * Ophite1 points out IRC3
+[23:30] &lt;jrand0m&gt; yeah, its a perfect school project 
+[23:30] &lt;Ophite1&gt; ..and SILC...
+[23:30] &lt;Ophite1&gt; ...and...
+[23:31] &lt;Ophite1&gt; well about a gazillion others.
+[23:31] &lt;jrand0m&gt; 'zactly 
+[23:31] &lt;Ophite1&gt; Literally all of these, I might add, are pre-DHT as far as I can tell.
+[23:31] &lt;jrand0m&gt; yup 
+[23:31] &lt;Ophite1&gt; That's disappointing 'cause that's a freakishly useful structure.
+[23:31] &lt;jrand0m&gt; a DHT for lookup / P3P, and then direct con for IM 
+[23:31] &lt;jrand0m&gt; group chat is harder though, but not too hard 
+[23:31] &lt;Ophite1&gt; well, direct in the i2p sense :)
+[23:31] &lt;jrand0m&gt; heh right 
+[23:32] &lt;Ophite1&gt; what about darkmail/i2pmail?
+[23:32] &lt;soros&gt; group sex too
+[23:32] &lt;dm&gt; soros: agreed.
+[23:32] &lt;jrand0m&gt; group sex isn't that hard soros ;) 
+[23:32] &lt;jrand0m&gt; lol 
+[23:32] &lt;jrand0m&gt; email over i2p is easy.  someone just needs to run a pop server 
+[23:32] &lt;jrand0m&gt; or webmail 
+[23:32] &lt;jrand0m&gt; hahah 
+[23:33] &lt;Ophite1&gt; jrand0m: sure, as long as literally everyone is okay with bloody pgp :)
+[23:33] * Ophite1 gets CKT nightmares again
+[23:33] &lt;jrand0m&gt; oh, true.  that'd expose the contents to hte server ;) 
+[23:33] &lt;Ophite1&gt; Also... spam.
+[23:33] &lt;jrand0m&gt; yup 
+[23:33] &lt;Ophite1&gt; We have this thing called hashcash.
+[23:33] &lt;Ophite1&gt; They sort of fit together, no?
+[23:34] &lt;jrand0m&gt; ok, so yeah, someone should get working on an i2p specific email app :) 
+[23:34] &lt;Ophite1&gt; obviously that would work best as part of the im.
+[23:34] &lt;Ophite1&gt; What, after all, is the distinction between irc and email?
+[23:34] &lt;jrand0m&gt; true, like an IM VMB 
+[23:34] &lt;Ophite1&gt; Whether or not you can page up and see what you missed after you rejoin...
+[23:34] &lt;jrand0m&gt; placed into the dht 
+[23:34] &lt;jrand0m&gt; good point 
+[23:35] * jrand0m wishes we had a team of a dozen coders
+[23:35] &lt;Ophite1&gt; note, however, that mail requires storage, as it is offline communication. irc requires no storage, as it is online communication.
+[23:35] &lt;dm&gt; also email has a lot more penis enlargement adverts.
+[23:35] &lt;Ophite1&gt; jrand0m: ask around for funding.
+[23:35] &lt;Ophite1&gt; dm: see above re: hashcash.
+[23:35] &lt;jrand0m&gt; right, the P3P could contain pending messages 
+[23:36] &lt;Ophite1&gt; dm: A primitive that was not available to the bloke who hacked up email in a night.
+[23:36] &lt;Ophite1&gt; (At least we won't have to use ! paths to specify the tunnel manually. heh. heh. heh.)
+[23:36] * dm is gonna miss clear-text dead simple protocols.
+[23:36] &lt;jrand0m&gt; jrandom%ophite!dm!mihi 
+[23:37] &lt;Ophite1&gt; no, this is i2p. Insert ~520 garbage characters between the bangs then you're closer ;)
+[23:37] &lt;jrand0m&gt; haha 
+[23:37] &lt;Ophite1&gt; several of these things *are* sort of related.
+[23:37] &lt;jrand0m&gt; true, 387 bytes base64 encoded... 
+[23:38] &lt;Ophite1&gt; or to put it another way, ELONGURL :)
+[23:38] &lt;jrand0m&gt; heh 
+[23:38] &lt;Ophite1&gt; [does IE chop at 512?]
+[23:38] &lt;jrand0m&gt; naw, works fine 
+[23:38] &lt;Ophite1&gt; you admit to using IE?
+[23:38] &lt;Ophite1&gt; To browse anonymously?!
+[23:38] &lt;jrand0m&gt; ;) 
+[23:38] * Ophite1 pulls out six of Liu De Yiu's best and waits =)
+[23:38] * jrand0m uses ie for eppsites, moz for squiding
+[23:39] &lt;duck&gt; what item are we now?
+[23:39] &lt;duck&gt; 4?
+[23:39] &lt;jrand0m&gt; yeah, ok ok 
+[23:39] &lt;Ophite1&gt; still 4 I think.
+[23:39] &lt;jrand0m&gt; i2ptunnel.  still kicks ass. 
+[23:39] &lt;jrand0m&gt; any thoughts?  any comments mihi? 
+[23:40] &lt;jrand0m&gt; one thing I want to note wrt the squid outproxy is that I've updated the header filtering to ALLOW COOKIES and replace the user agent with something silly  
+[23:40] * mihi just waits for naming service...
+[23:40] &lt;jrand0m&gt; mihi (or someone else)&gt; it'd be really easy to bootstrap such a naming service with an /etc/hosts style i2p ns 
+[23:41] &lt;mihi&gt; btw: are there any other public dests except your squid and tc's eepsite?
+[23:41] &lt;jrand0m&gt; i2pcvs.dest 
+[23:41] &lt;jrand0m&gt; (points at the i2p cvs pserver) 
+[23:41] &lt;jrand0m&gt; (but isn't always up) 
+[23:41] *** yodel (yodel@anon.iip) has joined channel #iip-dev
+[23:41] &lt;jrand0m&gt; hola yodel 
+[23:41] &lt;yodel&gt; hela
+[23:42] &lt;jrand0m&gt; ok, I think thats it for 4) apps 
+[23:42] &lt;jrand0m&gt; 5) comments / questions / etc 
+[23:42] &lt;mihi&gt; gui installer?
+[23:42] &lt;TC&gt; hi yodel
+[23:43] &lt;yodel&gt; I have to start experimenting putting the xml-rpc over i2p
+[23:43] &lt;yodel&gt; should work with httptunnel
+[23:43] &lt;jrand0m&gt; good question mihi.  last I heard MrEcho had some of it working 
+[23:43] &lt;jrand0m&gt; awesome yodel 
+[23:43] &lt;jrand0m&gt; definitely. 
+[23:43] &lt;jrand0m&gt; how large are the streams? 
+[23:43] &lt;jrand0m&gt; (aka how chatty is the protocol?) 
+[23:44] * Ophite1 plans to try BitTorrent over I2P as a stress test
+[23:44] &lt;yodel&gt; xml over http
+[23:44] &lt;yodel&gt; the ssl layer wont be needed with i2p
+[23:44] &lt;Ophite1&gt; so, uh, very chatty? :)
+[23:44] &lt;jrand0m&gt; ah cool, large POST or large replies? 
+[23:44] &lt;jrand0m&gt; (or just small and small?) 
+[23:45] &lt;jrand0m&gt; damn you Ophite1 :) 
+[23:45] &lt;yodel&gt; equal sizes
+[23:45] &lt;yodel&gt; does httptunnel support gzipped http?
+[23:45] &lt;jrand0m&gt; but doesn't bt use IP addresses? 
+[23:45] &lt;jrand0m&gt; hmm, httptunnel doesn't have any inherent compression, its just a bitstream 
+[23:45] &lt;TC&gt; hmm, package i2p+ppp\vpn+gui as a security solution for wireless windows shares
+[23:45] &lt;yodel&gt; so should work...
+[23:45] &lt;godmode0&gt; jrand0m&gt; you test i2p in nntp news server ?
+[23:45] &lt;jrand0m&gt; yup yodel 
+[23:45] &lt;yodel&gt; 500-1000 byte send, same for reply
+[23:46] &lt;jrand0m&gt; hmm I haven't tested that yet godmode0 
+[23:46] &lt;yodel&gt; much less when zipped
+[23:46] &lt;jrand0m&gt; oh cool yodel, that'll work without any problem 
+[23:46] &lt;yodel&gt; what is the latency for a single msg/package/whatever?
+[23:46] &lt;jrand0m&gt; 2-5s, sometimes up to 10s 
+[23:46] &lt;jrand0m&gt; (currently) 
+[23:46] &lt;Ophite1&gt; not bad for a pre-dht :)
+[23:46] &lt;yodel&gt; so 20s roundtime?
+[23:47] &lt;jrand0m&gt; I usually pull up a web page in 5-10s 
+[23:47] &lt;yodel&gt; ah
+[23:47] &lt;yodel&gt; goo
+[23:47] &lt;yodel&gt; +d
+[23:48] &lt;jrand0m&gt; damn, we're coming up to the 2 hour mark.  anyone have any other questions / thoughts? 
+[23:48] &lt;Ophite1&gt; Pie is good.
+[23:48] &lt;duck&gt; jrand0m: why do you drink cheap local beer?
+[23:48] &lt;Ophite1&gt; Orgy and pie is better.
+[23:48] &lt;jrand0m&gt; rofl duck 
+[23:49] &lt;Ophite1&gt; duck: It's better than Tesco Value Lager?
+[23:49] * Ophite1 spits from reflex
+[23:49] &lt;jrand0m&gt; heh 
+[23:49] * duck is concerned about jrand0m's health
+[23:49] &lt;jrand0m&gt; you're concerned about my cheap beer habits but not my good whiskey habits? 
+[23:50] * Ophite1 reminds about the single malt on Cary Sherman's head
+[23:50] &lt;duck&gt; do you eat well?
+[23:50] &lt;godmode0&gt; corona
+[23:50] &lt;duck&gt; do you do your daily exercises?
+[23:50] &lt;jrand0m&gt; well, i'm one of those veggies 
+[23:50] &lt;Ophite1&gt; Isn't that a personal question, duck?
+[23:50] &lt;jrand0m&gt; does typing count? 
+[23:50] &lt;duck&gt; you did drink that much already?
+[23:50] &lt;duck&gt; that you became a veggie
+[23:50] &lt;jrand0m&gt; heh 
+[23:50] &lt;Ophite1&gt; cheap beer will do that.
+[23:51] &lt;duck&gt; Ophite1: jrand0m's health should concern us all, since it is essential for I2P
+[23:51] *** Signoff: mihi_backup (mihi hands jrand0m the *BAF*er)
+[23:51] &lt;jrand0m&gt; heh ok ok mihi 
+[23:51] * jrand0m winds up
+[23:51] * jrand0m *baf*s the meeting closed
+</div>

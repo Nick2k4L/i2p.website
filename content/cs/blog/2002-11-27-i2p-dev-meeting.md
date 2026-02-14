@@ -1,17 +1,219 @@
 ---
-title: "Setkání vývojářů I2P"
+title: "I2P dev meeting"
 date: 2002-11-27
 author: "nop"
-description: "Setkání vývojářů I2P zaměřené na novinky v projektu a technické diskuse"
+description: "Záznam z vývojového setkání I2P ze dne 27. listopadu 2002."
 categories: ["meeting"]
 ---
 
-(S laskavým svolením Wayback Machine http://www.archive.org/)
+(Se svolením wayback machine http://www.archive.org/)
 
-## Stručné shrnutí
+## Rychlé shrnutí
 
-<p class="attendees-inline"><strong>Přítomní:</strong> Aprogas, athena, bpb, crunchman, Disposable, Fairwitness, Gilles2Rais, hezekiah, Kyfhon, mateofree, nemesis, nop, ptsc, Rain, rda, xenode</p>
+<p class="attendees-inline"><strong>Přítomni:</strong> Aprogas, athena, bpb, crunchman, Disposable, Fairwitness, Gilles2Rais, hezekiah, Kyfhon, mateofree, nemesis, nop, ptsc, Rain, rda, xenode</p>
 
-## Zápis ze schůzky
+## Záznam ze schůzky
 
-<div class="irc-log"> --- Záznam otevřen Tue Nov 26 22:43:56 2002 22:44 -!- Téma pro #iip-dev: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | sneak rc3 preview for unix http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz | prosím o zpětnou vazbu 22:44 [Uživatelé #iip-dev] 22:44 [ CwZ|away] [ Disposable] [ icepick] [ logger] [ pox] [ UserX] 22:44 -!- Irssi: #iip-dev: Celkem 6 nicků [0 ops, 0 halfops, 0 voices, 6 normálních] 22:44 -!- Irssi: Připojení k #iip-dev bylo synchronizováno za 2 s 22:44 < logger> test 23:35 < nop> Setkání vývojářů IIP za 25 minut, zvláštní účast Capn' crunch alias John Draper 23:36 < Disposable> cool 23:36 < Disposable> ten slavný capncrunch 23:36 < Disposable> :P 23:36 < nop> ano 23:37 < nop> můj kamarád 23:37 < nop> ;) 23:37 < Disposable> fakt? 23:37 < nop> pracuje na portování iip na mac os 9 23:37 < Disposable>  super 23:37 < ptsc> bohužel musím vyprat, ale budu lurkovat 23:37 < nop> ok 23:37 < ptsc> nop, proč ne čistou verzi pro os x.2? 23:37  * Disposable poslouchá The Beets - Killer Tofu 23:37 < nop> cože? 23:37 < nop> ptsc, máme verze pro os x 23:37 < Disposable> hmmm 23:37 < nop> potřebujeme os 9 23:38 < nop> protože na něm pořád jede spousta lidí 23:38 < ptsc> aha, ok. uvažoval jsem, že si pořídím mac, který zvládne os x 23:38 < nop> ano 23:38 < nop> ale jen 20 % uživatelů macu přešlo na X 23:38 < ptsc> já bych na mac přešel právě kvůli X 23:39 < Disposable> lol 23:39 < Disposable> jo 23:39 < Disposable> vypadá to fakt skvěle 23:39 < Disposable> :) 23:39 < Disposable> chci to zkusit 23:39 < Rain> někteří říkají „unix pro uživatele udělaný správně“ 23:39 < ptsc> viděl jsem to u kamaráda, co je leta mac-šílenec 23:39 < ptsc> a vypadá to prostě parádně 23:39 < ptsc> a navíc vrátili prohlížeč souborů ve stylu NeXT 23:39 < ptsc> který vždycky vládl 23:39 < ptsc> ok bbl 23:39 < Rain> „první rozhraní, na které máte chuť si líznout,“ podle pana Jobse. 23:40 < ptsc> ok bbl 23:41 < Disposable> :/ 23:48 < Disposable> wb --- Den změněn Wed Nov 27 2002 00:00 < nemesis> blubb 00:00 < nemesis> 23 UTC 00:00 < nop> ok 00:00 < nop> vítejte na 21. setkání iip 00:01 < nop> na programu 00:01 < nop> 1) uvítání 00:01 < nop> 2) proč ještě nevyšlo rc3 00:01 < nop> 3) kdy vyjde 00:01 < nop> 4) port na OS 9 od Cap'n Crunch 00:01 < nop> 5) Otázky a komentáře 00:02 < nop> ok 00:02 < nop> vítejte 00:02 < nop> :) 00:02 < nop> codeshark je pracovně mimo zemi a vrátí se později tento týden 00:02 < nop> je to náš koordinátor vydání 00:02 < nop> a pokud se brzy nevrátí, domluvíme s midsem release candidate 00:02 < nop> a uděláme to takhle do pátku 00:02 < Aprogas> člověk by měl přijmout funkci koordinátora vydání jen tehdy, když ví, že na to bude mít čas 00:02 < nop> kdy to vyjde, nejpozději v pátek 00:03 < nop> komentáře si necháme na konec 00:03 < nop> díky, aprogasi 00:03 < Aprogas> ok 00:03 < nop> dobře, port na os 9, Cap'n Crunch pracuje (se svým kamarádem) na portování IIP pro uživatele mac os 00:04 < nop> doufejme, že tu bude co nevidět, aby nám dal nějaké detaily 00:04 < nop> pokud ne, pošlu e-mail 00:04 < nop> na iip-dev s posledními informacemi od něj 00:04 < nop> no a hle, už je tu 00:04 < crunchman> Ok, jsem tady 00:04 < nop> Ahoj crunchi 00:04 < Aprogas> nop: to musí být bpb v přestrojení 00:04 < nop> můžeš nám rychle nastínit, jak to vypadá s os 9 00:04 < crunchman> Samozřejmě jsem nestihl projít zdrojáky, takže nemůžu vytáhnout své problémy. 00:05 < nop> k 00:05 < crunchman> ano - můžu. 00:05 < nop> máš slovo, je to tvoje 00:05 < crunchman> v podstatě – způsob, jakým bylo IIP napsané, je to PANDOŘINA SKŘÍŇKA, pokud musím použít struktury, které už používáte. 00:06 < crunchman> Není ŽÁDNÉ jednoznačné oddělení mezi GUI a „vnitřnostmi“. 00:06 < crunchman> Vysvětlím. 00:06 < crunchman> Je to VELMI zaměřené na WinBlows. 00:06 < crunchman> Jak víte, Mac používá pro GUI komponenty „resources“ (systémové zdroje). 00:07 < crunchman> Teď potřebuji prozkoumat kód a rád bych si vzal pár minut na projití poznámek, abych byl konkrétnější. 00:07 < nop> ok 00:07 < nop> každopádně to můžeme probrat později, ale Crunch pracuje na os 9 a my mu pomůžeme, čím budeme moct, aby to nebyl tak úmorný úkol 00:08 < nop> důvody portu: jen 20 % uživatelů macu přešlo na os x 00:08 < nop> stále spoléhají na os 9 00:08 < nop> takže spousta uživatelů mac os přispěla penězi na tento cíl 00:08 < nop> a jakékoli další dary jsou vítány, aby podpořily crunche za čas strávený na tomto projektu 00:09 < nop> otázky a komentáře od uživatelů iip atd. 00:09 < nop> ? 00:09  * Disposable poslouchá Creedence Clearwater Revival - Fortunate Son 00:09 < Aprogas> komentář: člověk by měl přijmout funkci koordinátora vydání jen tehdy, když ví, že na to bude mít čas 00:09 < Rain> otázka: co bude nového v rc3 00:09 < Rain> ? 00:09 < nop> hlavně opravy chyb, vydrž, přinesu changelog 00:09 < Aprogas> /exec -o cat ChangeLog | head -200 00:10 < bpb> otázka: od kdy IIP dostává dary? 00:10 < crunchman> bob se nemůže dostat na 00:10 < nop> + iip1.1-rc3: 00:10 < nop> + - Zobrazení čísla verze pro windows (menu option) a unix (command line). 00:10 < nop> + - Oprava generování náhodných čísel. 00:10 < nop> + - IIP síťová spojení už se při nastavení nepozastavují. 00:10 < nop> + - Nyní se ukončí, pokud se při startu nemůže navázat na socket. 00:10 < nop> +   Windows nyní zobrazí message box informující, že se nemůže navázat na port. 00:10 < nop> + - Několik oprav chyb a opraven jeden únik paměti. 00:10 < crunchman> i 00:10 < nop> + 00:10 < crunchman> jsem na telefonu – pomáhám mu 00:10 < crunchman> vydržte 00:10 < nop> k 00:10 < nop> to je changelog 00:11 < Aprogas> komentář: ženy chodí vždycky pozdě 00:11 < crunchman> vydržte – pořád jsem na telefonu s bobem 00:11 < Rain> ok, díky. 00:11 < nop> haha 00:11 < nop> ok, schůzka je oficiálně u konce 00:11 < bpb> jestli mu nejde zprovoznit iip, mohl by se připojit k mému uzlu 00:11 < Aprogas> cože? 00:12 < nop> Budu pokračovat v hovoru s crunchem tady 00:12 < athena> dobře, tak teď můžu plácnout aprogase? 00:12 < Aprogas> ale možná jsem ještě měl otázky nebo komentáře 00:12 < bpb> :) 00:12 < nop> aprogasi 00:12 < nop> máš ještě nějaké otázky 00:12 < Aprogas> ignorujete mě? 00:12 < nop> nebo komentáře 00:12 < nop> které se týkají IIP 00:12 < Rain> je „sneak release“ stejná jako finální, a troufnu si to v téhle fázi spustit na veřejném proxy? 00:12 < crunchman> schůzka skončila? – ale my jsme se ještě ani nedostali ke slovu! 00:12 < Aprogas> kde je mids? 00:12 < bpb> crunchman: to je prostě nop... 00:12 < nop> crunchi, můžeme tu dál mluvit 00:12 < Aprogas> bez mids není schůzka 00:12 < crunchman> Bob se snaží dostat na IRC server – a schůzka je teď u konce? 00:12 < nop> rain, sneak je stejná, ano 00:12 < nemesis> hm... nop, používám blackbox pod Windows XP, proč není k dispozici verze IIP pro cmd line? 00:12 < nemesis> kterou bych mohl použít jako službu.. 00:12 < crunchman> bpb – nemám tušení, co myslíš „crunchman: to je prostě nop“ 00:12 < Aprogas> bpb tím nic nemyslí 00:12 < Aprogas> rád lidi mate 00:13 < nop> no, nemesis, iip -d by to pro tebe mohl udělat 00:13 < crunchman> pořád se snažím dostat boba přihlášeného. 00:13 < bpb> crunchman: utnul schůzku, ještě než začala 00:13 < nop> „oficiální“ schůzka skončila 00:13 < Disposable> hehe 00:13 < nop> kromě komentářů 00:13 < crunchman> promiňte, že jsem se nedostal dřív. 00:13 < Rain> ok, takže můžu odinstalovat proxy rc2, kterou jsem dnes nainstaloval, a nahradit ji rc3, bez rizika? 00:13 < Aprogas> nop: bude rc4 nebo dokonce rc5, a kdy se čekají, a kdy se čeká iip 1.1? 00:13 < nop> rc3 by měla být finální před 1.1 00:13 < nop> ledaže 00:14 < Aprogas> samozřejmě že release candidate přichází před releasem 00:14 < crunchman> Mohl by někdo zavolat bobovi a pomoct mu 00:14 < nop> ledaže by se našly zásadní chyby 00:14 < nemesis> hm.... 00:14 < Aprogas> nop: proč mám pocit, že pořád zapomínáš, co je to rc? 00:14 < nemesis> nop, musím kvůli -d vypnout svoje běžící iip? 00:14 < Aprogas> nop: takže kdy se čekají 1.1 a 1.1-rc3? 00:14  * bpb vzpomíná, když se čekal decentralized 2.0 ;) 00:14 < nemesis> crunchman: s čím potřebuje pomoct? 00:15 < crunchman> bob se nemůže připojit na tenhle IRC server. 00:15 < crunchman> Snažil jsem se mu pomoct – vzdal jsem to. 00:15  * Aprogas vzpomíná, jak říkal, že iip 1.1 vyjde den po freenet 0.5 00:15 < crunchman> Poprosil jsem Lance, aby mu pomohl se připojit. 00:15 < Aprogas> crunchman: jakou chybu dostává? 00:15 < crunchman> Až tu bude... dá vám update o SVÉM postupu. 00:16  * Disposable poslouchá Creedence Clearwater Revival - Susie Q 00:16 < crunchman> Nevím – nestihl jsem se ho zeptat – promiňte. 00:16 < nemesis> waaaaaaaaaaaaaaaaaaaaaaah *brečí* 00:16 < nemesis> mids 00:16 < nemesis> běží mi 5 procesů iip... 00:16 < crunchman> OPRAVDU bych se teď rád odpojil a znovu prošel práci na IIP, kterou jsem udělal, abych mohl inteligentně odpovědět na otázky k tématům, která chci nastolit. 00:16 < nemesis> seru na to *grrr* 00:16 < crunchman> ale chci sem nejdřív dostat BOBA. 00:17 < crunchman> protože musí vysvětlit i SVOU část projektu 00:17 < Aprogas> hodilo by se vědět, jaký problém má s připojením sem 00:17 < crunchman> Myslím, že skupinu seznámí se svými „socket“ problémy. 00:17 < Aprogas> používá svůj vlastní isproxy, nebo tvůj? 00:17 < crunchman> Nop s ním teď mluví po telefonu – doufám.; 00:18 < crunchman> Bob má Mac... myslím, že používá ircle 00:18 < crunchman> to používám teď já. 00:18 < nop> Mluvím 00:18 < nop> athena 00:18  * Kyfhon vzpomíná, jak zkoušel tu odpornou věc v emulátoru 00:18 < Disposable> otázka: primární vývoj pro Mac bude nejdřív pro os 9? 00:18 < nop> používá athena 00:18 < crunchman> ok, hned jsem zpátky. 00:18 < nemesis> re.... 00:18 < nemesis> nejsou ještě v iip implementovaná PID? 00:18 < nemesis> nebo výstup na cmd line... 00:19 < nop> crunchi, jeho připojení k internetu zlobí 00:19 < nemesis> vždycky jsem spouštěl novou instanci pomocí iip -d  nebo -h nebo -? a ? 00:19 < Aprogas> možná by mohl přijít zítra, nebo na příští týdenní setkání 00:20 < bpb> no, captn crunch dnes aspoň udělal celebritní výstup. 00:20 < bpb> err 00:20 < Aprogas> nikdy jsem o něm neslyšel, jsem z generace Pentia </div>
+<div class="irc-log">
+--- Log opened Tue Nov 26 22:43:56 2002
+22:44 -!- Topic for #iip-dev: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | sneak rc3 preview for unix http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz | please give feedback
+22:44 [Users #iip-dev]
+22:44 [ CwZ|away] [ Disposable] [ icepick] [ logger] [ pox] [ UserX]
+22:44 -!- Irssi: #iip-dev: Total of 6 nicks [0 ops, 0 halfops, 0 voices, 6 normal]
+22:44 -!- Irssi: Join to #iip-dev was synced in 2 secs
+22:44 < logger> test
+23:35 < nop> IIP dev meeting in 25 minutes, Special appearance by Capn' crunch aka John Draper
+23:36 < Disposable> cool
+23:36 < Disposable> the famous capncrunch
+23:36 < Disposable> :P
+23:36 < nop> yes
+23:37 < nop> friend of mine
+23:37 < nop> ;)
+23:37 < Disposable> yeah?
+23:37 < nop> he's working on porting iip to mac os 9
+23:37 < Disposable>  cool
+23:37 < ptsc> unfortunately i'm off to do laundry but will lurk
+23:37 < nop> ok
+23:37 < ptsc> nop, why not an os x.2 clean version?
+23:37  * Disposable is listening to The Beets - Killer Tofu
+23:37 < nop> what?
+23:37 < nop> ptsc, we have os x versions
+23:37 < Disposable> hmmm
+23:37 < nop> we need os 9
+23:38 < nop> because there are still a lot of people on it
+23:38 < ptsc> ah, okay.  i was considering getting a mac that could run os x
+23:38 < nop> yes
+23:38 < nop> but only 20% of mac users have switched to X
+23:38 < ptsc> in my case, i'd be switching to mac specifically *because* of x
+23:39 < Disposable> lol
+23:39 < Disposable> yeah
+23:39 < Disposable> it looks so sweet
+23:39 < Disposable> :)
+23:39 < Disposable> i wunna try it
+23:39 < Rain> "unix for users done right" some feel
+23:39 < ptsc> i saw it at a friend's house who has been a mac freak for ages
+23:39 < ptsc> and it just looks awesome
+23:39 < ptsc> plus they brought back the NeXT-style file browser
+23:39 < ptsc> which has always ruled
+23:39 < ptsc> ok bbl
+23:39 < Rain> "the first lickable interface", according to mr jobs.
+23:40 < ptsc> ok bbl
+23:41 < Disposable> :/
+23:48 < Disposable> wb
+--- Day changed Wed Nov 27 2002
+00:00 < nemesis> blubb
+00:00 < nemesis> 23 UTC
+00:00 < nop> ok
+00:00 < nop> welcome to the 21st iip meeting
+00:01 < nop> on the agenda
+00:01 < nop> 1) welcome
+00:01 < nop> 2) why rc3 isn't released yet
+00:01 < nop> 3) when will it be released
+00:01 < nop> 4) OS 9 port by Cap'n Crunch
+00:01 < nop> 5) Questions and comments
+00:02 < nop> ok
+00:02 < nop> welcome
+00:02 < nop> :)
+00:02 < nop> codeshark is out of the country on business, and will be back later this week
+00:02 < nop> he's our release coordinator
+00:02 < nop> and if he's not back shortly, mids and I will arrange the release candidate
+00:02 < nop> and do it that way by friday
+00:02 < Aprogas> one should only accept the function of release coordinator, if one knows to have time for that function
+00:02 < nop> when will it be released, friday at latest
+00:03 < nop> comments are saved for last
+00:03 < nop> thnx though aprogas
+00:03 < Aprogas> ok
+00:03 < nop> ok, os 9 port, Cap'n Crunch has been working (along with his friend) on porting IIP to mac os 9 users
+00:04 < nop> hopefully, he will be on here shortly to give us some detail
+00:04 < nop> if not I'll send out an email
+00:04 < nop> to iip-dev with the latest from him
+00:04 < nop> oh speak of the devil
+00:04 < crunchman> Ok,   I'm on
+00:04 < nop> Hi crunch
+00:04 < Aprogas> nop: that must be bpb in disguise
+00:04 < nop> can you give us a quick detail of what's going on with os 9
+00:04 < crunchman> Of course I didn't get the chance to read over the source so I can bring up my issues.
+00:05 < nop> k
+00:05 < crunchman> yes - I can.
+00:05 < nop> the floor is yours, take it away
+00:05 < crunchman> basically - the way IIP was written,  it's a CAAN OF WORMS if I have to use the structures you are already using.
+00:06 < crunchman> There is NO discrete seperation between the GUI and the guts.
+00:06 < crunchman> Let me explain.
+00:06 < crunchman> It is VERY baised towards WinBlows.
+00:06 < crunchman> As you know,  the Mac uses resources for the GUI components.
+00:07 < crunchman> I need to examine the code now,   and would like to take a few mins to go over my notes,  so I can be more specific.
+00:07 < nop> ok
+00:07 < nop> either way, we can cover that later, but Crunch is working on the os 9, and we will aid him with what we can so that it may be not so tedious a task
+00:08 < nop> reasons for the port, is only 20% of mac users have made the switch to os x
+00:08 < nop> they still rely on os 9
+00:08 < nop> so a lot of mac os users donated money towards this goal
+00:08 < nop> and any other donations are welcome to assist crunch for his time on this project
+00:09 < nop> questions and comments from iip users etc
+00:09 < nop> ?
+00:09  * Disposable is listening to Creedence Clearwater Revival - Fortunate Son
+00:09 < Aprogas> comment: one should only accept the function of release coordinator, if one knows to have time for that function
+00:09 < Rain> question: what will be new in rc3
+00:09 < Rain> ?
+00:09 < nop> mainly bug fixes, hold, I'll get the changelog
+00:09 < Aprogas> /exec -o cat ChangeLog | head -200
+00:10 < bpb> question: since when does IIP get donations?
+00:10 < crunchman> bob cant get on
+00:10 < nop> + iip1.1-rc3:
+00:10 < nop> + - Display of version number for windows (menu option) and unix (command line).
+00:10 < nop> + - Random number generation fix.
+00:10 < nop> + - IIP network connections are no longer paused while in the setup screen.
+00:10 < nop> + - Now exits if it can't bind to a socket at startup.
+00:10 < nop> +   Windows now displays a message box informing that it can't bind to port.
+00:10 < nop> + - Several bugfixes and one memory leak fixed.
+00:10 < crunchman> i
+00:10 < nop> +
+00:10 < crunchman> im on phone - helping him
+00:10 < crunchman> hold on
+00:10 < nop> k
+00:10 < nop> that is the changelog
+00:11 < Aprogas> comment: women are always late
+00:11 < crunchman> hold on - still on phone w/ bob
+00:11 < Rain> ok, thanks.
+00:11 < nop> haha
+00:11 < nop> ok meeting is officially over
+00:11 < bpb> if he can't get iip to work, he could connect to my node
+00:11 < Aprogas> huh ?
+00:12 < nop> I will resume talks with crunch in here
+00:12 < athena> okay, so i can slap aprogas now?
+00:12 < Aprogas> but maybe i still had questions or commens
+00:12 < bpb> :)
+00:12 < nop> aprogas
+00:12 < nop> do you have any more questions
+00:12 < Aprogas> am i being ignored?
+00:12 < nop> or comments
+00:12 < nop> that pertains to IIP
+00:12 < Rain> is the "sneak release" the same as the final one, and will i dare running it on a public proxy at this stage?
+00:12 < crunchman> meeting is over?  - but we havent even gotten on yet!
+00:12 < Aprogas> where is mids?
+00:12 < bpb> crunchman: that's nop for you...
+00:12 < nop> crunch we can still talk in here
+00:12 < Aprogas> no mids no meeting
+00:12 < crunchman> Bob is trying to get on - and yet the meeting is now over?
+00:12 < nop> rain sneak is the same yes
+00:12 < nemesis> hm... nop, i use blackbox under windows xp, why theres no cmd line version of IIP out?
+00:12 < nemesis> that i can use as an service..
+00:12 < crunchman> bpb - I have no clue what you mean by "crunchman: that's nop for you"
+00:12 < Aprogas> bpb means nothing with it
+00:12 < Aprogas> he loves to confuse people
+00:13 < nop> well, nemesis iip -d might be able to do that for you
+00:13 < crunchman> still trying to get bob logged in.
+00:13 < bpb> crunchman: he's cutting off the meeting after it hasn't begun
+00:13 < nop> the "official" meeting is over
+00:13 < Disposable> hehe
+00:13 < nop> other than comments
+00:13 < crunchman> sorry I couldn't get on sooner.
+00:13 < Rain> ok, so i might as well de-install the rc2 proxy i recently installed today, and replace it with rc3, no risk?
+00:13 < Aprogas> nop: will there be an rc4 or even rc5, and when are they expected, and when is iip 1.1 expected?
+00:13 < nop> rc3 should be final before 1.1
+00:13 < nop> unless
+00:14 < Aprogas> of course the release candidate comes before the release
+00:14 < crunchman> Could someone call bob on phone and help him
+00:14 < nop> unless major bugs were found
+00:14 < nemesis> hm....
+00:14 < Aprogas> nop: why do i get the idea you forget what a rc is all the time ?
+00:14 < nemesis> nop, must i shutdown my current iip for -d?
+00:14 < Aprogas> nop: so when are 1.1 and 1.1-rc3 expected?
+00:14  * bpb remembers when decentralized 2.0 was expected ;)
+00:14 < nemesis> crunchman: help with what?
+00:15 < crunchman> bob cant get on this IRC server.
+00:15 < crunchman> I tried to help him - I gave up.
+00:15  * Aprogas remembers saying that iip 1.1 would be released the day after freenet 0.5
+00:15 < crunchman> I asked Lance to help him get on.
+00:15 < Aprogas> crunchman: what kind of error does he get ?
+00:15 < crunchman> When he's on...  he can give you guys an update in HIS progress.
+00:16  * Disposable is listening to Creedence Clearwater Revival - Susie Q
+00:16 < crunchman> I don't know - I didnt get chance to ask him - sorry.
+00:16 < nemesis> waaaaaaaaaaaaaaaaaaaaaaah *crying*
+00:16 < nemesis> mids
+00:16 < nemesis> i have 5 iip process running...
+00:16 < crunchman> I REALLY would like to go off and re-examine the IIP work I did - so I can answer intellegent questions on the issues I want to bring up.
+00:16 < nemesis> fuck it *grrr*
+00:16 < crunchman> but I want BOB up here first.
+00:17 < crunchman> because he also has to explain HIS part in the project
+00:17 < Aprogas> it would be useful if we would know what kind of problem he has with connecting to here
+00:17 < crunchman> I think he will address the group on his "socket" problems.
+00:17 < Aprogas> is he using his own isproxy or yours?
+00:17 < crunchman> Nop is talking to him on the phone right now - i hope.;
+00:18 < crunchman> Bob has a Mac...   I think he's using ircle
+00:18 < crunchman> this is what I'm using right now.
+00:18 < nop> I am
+00:18 < nop> athena
+00:18  * Kyfhon remembers trying that vile thing in an emulator
+00:18 < Disposable> question: primary mac developeman will before os 9 ?
+00:18 < nop> he's using athena
+00:18 < crunchman> ok,  i'll be right back.
+00:18 < nemesis> re....
+00:18 < nemesis> are no pid implented in iip yet?
+00:18 < nemesis> or cmd line output...
+00:19 < nop> crunch, his inet connection is acting up
+00:19 < nemesis> i always started a new instance with iip -d  or -h or -? and ?
+00:19 < Aprogas> maybe he could come tomorrow, or at next week's meeting then
+00:20 < bpb> well, captn crunch made a atleast celebrity appearance today.
+00:20 < bpb> err
+00:20 < Aprogas> never heard of him, im from the pentium generation
+</div>

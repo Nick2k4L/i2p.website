@@ -1,17 +1,671 @@
 ---
-title: "Reunião de Desenvolvedores do I2P - 6 de janeiro de 2004"
+title: "Reunião de Desenvolvimento I2P - 6 de Janeiro, 2004"
 date: 2004-01-06
 author: "jrand0m"
-description: "Registro da reunião de desenvolvimento do I2P de 6 de janeiro de 2004."
+description: "Registro da reunião de desenvolvimento I2P de 6 de janeiro de 2004."
 categories: ["meeting"]
 ---
 
-(Cortesia da Wayback Machine http://www.archive.org/)
+(Cortesia da wayback machine http://www.archive.org/)
 
 ## Resumo rápido
 
 <p class="attendees-inline"><strong>Presentes:</strong> duck, dup, enduser, FillaMent, human, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, Nightblade, wiht</p>
 
-## Registro da reunião
+## Registro da Reunião
 
-<div class="irc-log"> [22:02] &lt;jrand0m&gt; pauta: [22:02] &lt;jrand0m&gt; 0) oi [22:02] &lt;jrand0m&gt; 1) http://i2p.dnsalias.net/pipermail/i2p/2004-January/000069.html [22:02] &lt;jrand0m&gt; 2) [discussion] [22:02] &lt;wiht&gt; Posso adicionar o instalador à pauta? [22:02] &lt;jrand0m&gt; 0) oi [22:02] &lt;jrand0m&gt; ah sim, claro! [22:02] &lt;jrand0m&gt; estamos tentando algo novo esta semana [22:03] &lt;wiht&gt; Você pode colocá-lo no final da pauta. [22:03] &lt;jrand0m&gt; em vez daquele fala fala fala responde fala fala fala, o post http://i2p.dnsalias.net/pipermail/i2p/2004-January/000069.html descreve a maioria das coisas que eu tinha planejado dizer [22:03] * mihi_ entrou em #i2p [22:04] &lt;jrand0m&gt; em vez disso, estamos tentando nesta semana tornar a reunião mais voltada à discussão — coisas sobre as quais as pessoas queiram falar a partir daquele post, quaisquer posts de acompanhamento e/ou qualquer outra coisa que as pessoas queiram discutir [22:04] &lt;jrand0m&gt; como, por exemplo, um novo instalador [22:05] &lt;jrand0m&gt; então, dito isso, as pessoas devem começar conferindo aquele e-mail/post e seguimos a partir daí :) [22:05] * mihi_away agora é conhecido como mihi [22:05] * kaji lê o post [22:05] * mihi_ agora é conhecido como mihi_backup [22:06] &lt;jrand0m&gt; 27 usuários com apenas um duplicado! u0u [22:07] * dm agora é conhecido como dup [22:07] &lt;jrand0m&gt; ok, quando as pessoas tiverem lido, talvez possamos começar passando pelo índice e ver se há algo que alguém queira acrescentar / comentar / discutir? [22:07] &lt;mihi&gt; jrand0m: como você sabe que não há mais duplicatas? [22:07] &lt;jrand0m&gt; hehe valeu dm [22:07] &lt;jrand0m&gt; mihi&gt; Instalei keyloggers nos computadores de todo mundo (bwhahahaha) [22:07] &lt;wiht&gt; Eu gostaria de adicionar instalador como tópico 10 e, possivelmente, serviço de nomes como tópico 11. [22:07] * mihi enviou o followup para o endereço errado :(, reenviando... [22:08] &lt;jrand0m&gt; boa, wiht [22:09] &lt;MrEcho&gt; o novo dns do mrecho está a caminho [22:09] &lt;jrand0m&gt; legal, mihi, sim eu estava me perguntando ;) [22:09] &lt;kaji&gt; como está indo o dns? - ah [22:09] &lt;jrand0m&gt; MrEcho&gt; seu post, certo? [22:09] &lt;MrEcho&gt; trabalhando no post [22:10] &lt;jrand0m&gt; ok, enquanto isso, alguém tem algo sobre 1) streaming? ou devemos pular para 2) I2PTunnel, TunnelManager e i2pmgr? [22:10] &lt;lucky&gt; misericórdia... eu poderia passar o resto da minha vida tentando entender essas dependências. [22:10] &lt;wiht&gt; Então vamos colocar DNS/NS como tópico 11. [22:10] &lt;jrand0m&gt; parece bom, wiht [22:10] * duck entra [22:11] &lt;jrand0m&gt; boa noite, duck [22:11] &lt;mihi&gt; sobre o 1, eu comitei código para i2ptunnel usando a streaming API [22:11] &lt;jrand0m&gt; ah certo, sensacional, mihi :)  [22:11] &lt;lucky&gt; oi duck [22:11] * twosandals saiu do IRC (Leaving) [22:11] &lt;kaji&gt; jrand0m vários serviços podem usar a mesma chave se estiverem em portas diferentes? [22:11] &lt;jrand0m&gt; não, kaji [22:11] &lt;mihi&gt; aliás: por que seus arquivos do ant sempre apagam o jar antes de reconstruí-lo? [22:11] &lt;jrand0m&gt; mihi&gt; paranoia [22:12] &lt;mihi&gt; roubando meu tempo de depuração, eu diria ;) [22:12] &lt;jrand0m&gt; kaji&gt; em i2p, uma chave /é/ uma porta, essencialmente [22:12] &lt;jrand0m&gt; hehe [22:12] &lt;kaji&gt; ah [22:13] &lt;jrand0m&gt; mihi&gt; se você quiser atualizar isso, contanto que ele gere o jar se os arquivos .class mudarem, tudo bem [22:13] &lt;mihi&gt; se o arquivo for mais novo do que todos os arquivos dentro dele, e poderia pular caso contrário. [22:13] &lt;jrand0m&gt; certo [22:13] &lt;mihi&gt; e por paranoia é melhor adicionar uma tarefa &lt;depends&gt; [22:13] &lt;jrand0m&gt; concordo [22:13] &lt;FillaMent&gt; yo yo [22:13] &lt;jrand0m&gt; oie, FillaMent [22:14] &lt;jrand0m&gt; ok, 2) i2ptunnel / tunnelmanager / i2pmgr [22:14] * TC entrou em #i2p [22:15] &lt;human&gt; fiz um pequeno hack para fazer o TunnelManager retornar os ids dos jobs quando os comandos "openclient" ou "openserver" são chamados [22:16] &lt;jrand0m&gt; irado :) [22:16] &lt;human&gt; assim, apps usando o TunnelManager sabem qual job fechar depois, sem analisar o output do "list" [22:16] &lt;jrand0m&gt; é, eu não estava muito confortável usando o list e o close do tunnelmanager, já que múltiplos clientes podem se b0rkar desse jeito [22:17] &lt;jrand0m&gt; vamos colocar esse patch logo depois da reunião. gracias, human :) [22:17] &lt;human&gt; isso envolveu fazer I2PTunnel.runCommand retornar algumas coisas (atualmente uma Property) [22:17] &lt;human&gt; s/Property/Properties/ [22:17] &lt;jrand0m&gt; ah certo, há algumas coisas para modificar nisso antes de entrar no código [22:18] &lt;human&gt; mas o mihi preferiria adicionar alguns callbacks assíncronos à classe Logging, pelo que entendo... [22:19] &lt;jrand0m&gt; certo — para que as coisas possam obter informações das tarefas imediatamente, sem esperar elas terminarem [22:20] * mihi saiu do IRC (EOF From client) [22:20] &lt;human&gt; jrand0m: a ideia é: deixar I2PTunnel.runCommand() retornar imediatamente e, eventualmente, usar callbacks para obter mais info, certo? [22:21] &lt;jrand0m&gt; certo [22:21] &lt;jrand0m&gt; então as tarefas disparam callbacks sempre que houver dados a distribuir [22:21] * mihi entrou em #i2p [22:21] &lt;human&gt; bem, IMHO há outra questão: «quantas apps Java (vão) usar I2PTunnel.runCommand() de forma assíncrona?»  As apps que atualmente usam I2PTunnel (mesmo via o TunnelManager) estão perfeitamente bem com chamadas .runCommand() síncronas (mesmo que longas), e tornar tudo assíncrono só deixaria as coisas mais complicadas (IMHO) [22:22] * mihi usa via a GUI [22:22] &lt;human&gt; (bem, "todas" significa o TunnelManager e apps que analisam o output do Tunnel manager) [22:22] &lt;jrand0m&gt; certo, a GUI vai travar enquanto o comando é executado [22:22] &lt;mihi&gt; e digitar os próximos 3 comandos de abrir tunnel fica bloqueado enquanto o primeiro está rodando [22:23] &lt;human&gt; mihi: ok, eu não sabia sobre o seu app... então precisamos de alguma solução :-) [22:24] &lt;human&gt; mihi: comportamento assíncrono de .runCommand() exigiria revisar o TunnelManager [22:24] &lt;mihi&gt; human: quando (na sua opinião) o runCommand deve terminar? quando o tunnel é construído, quando a conexão passou? [22:25] &lt;mihi&gt; "destination unreachable" será conhecido *depois* que a primeira tentativa de conexão for feita. [22:25] &lt;jrand0m&gt; o padrão Command teria o execute() retornando apenas após estar completo. [22:26] &lt;mihi&gt; o que *completo* significa? [22:26] &lt;jrand0m&gt; (então, se estivermos seguindo o padrão Command, runCommand bloquearia até que tudo necessário para fazer aquele comando estivesse completo) [22:26] &lt;human&gt; mihi:  eheh, essa é a pergunta :-) [22:26] &lt;jrand0m&gt; completo para "server 1234 privkeys" seria quando o servidor puder aceitar conexões na porta 1234 [22:26] &lt;human&gt; mihi: bem, para TunnelServer, IMHO deveria retornar após a criação do tunnel [22:27] &lt;jrand0m&gt; completo para "client 234 peer" seria quando uma conexão à porta 234 alcançasse com sucesso peer [22:27] &lt;jrand0m&gt; pelo menos, é assim que vejo [22:27] &lt;mihi&gt; como você determina o último? [22:27] &lt;jrand0m&gt; eu realmente não tenho opinião forte de um jeito ou de outro [22:27] &lt;jrand0m&gt; talvez um ping? [22:27] * Sciatica entrou em #i2p [22:28] &lt;mihi&gt; e se o peer cair logo após o ping? [22:28] &lt;mihi&gt; na minha opinião é impossível fazer apps de rede sem callbacks [22:28] &lt;jrand0m&gt; certo [22:28] &lt;mihi&gt; ou um monte de threads, e eu prefiro callbacks a threads sincronizadas até a morte [22:29] &lt;jrand0m&gt; talvez deva retornar apenas depois que conseguir /tentar/ conectar?   [22:29] &lt;jrand0m&gt; ou talvez o padrão Command não seja o padrão desejado [22:29] &lt;mihi&gt; é isso que faz agora. e que resultado deveria retornar então? [22:30] &lt;mihi&gt; o ponto é que você quer ter um resultado (diferente de um int para o id da conexão) [22:30] &lt;jrand0m&gt; certo, para o comando client, quer-se o job (para que possa ser fechado depois), mas para o comando genkey, quer-se a chave pública e a chave privada [22:30] * mihi não consegue pensar em qualquer outra info que seja conhecida nesse ponto. [22:30] &lt;jrand0m&gt; concordo, eu também não. [22:31] &lt;dup&gt; 0! [22:31] &lt;mihi&gt; e genkey deve esperar? ok, se você acha. [22:31] &lt;human&gt; mihi: bem, algo como um status ("ok" ou "error") e mensagens de erro... [22:31] &lt;mihi&gt; human: mensagens de erro serão "tarde demais" IMO [22:31] &lt;mihi&gt; mas façam como quiserem... [22:32] &lt;mihi&gt; contanto que façam funcionar com a streaming API depois também... [22:32] &lt;jrand0m&gt; os pontos doloridos que o human está abordando são as gambiarras no TunnelManager que analisam as mensagens de logging. mas eu concordo, contanto que possamos expor essa informação via a interface de logging, tudo bem [22:32] &lt;dup&gt; mihi é sábio. [22:32] &lt;human&gt; human: algumas podem ser comunicadas imediatamente (por exemplo, quando a porta do tunnel ainda está em uso) [22:32] &lt;mihi&gt; human está falando consigo mesmo ;) [22:32] &lt;human&gt; opa! :-) [22:35] &lt;human&gt; talvez devêssemos ver que tipo de aplicações estão sendo construídas sobre o I2PTunnel [22:35] &lt;human&gt; a interface assíncrona é a Right Thing(TM), mas é mais complicada de usar [22:35] &lt;jrand0m&gt; Acho melhor se pudermos manter a mesma funcionalidade para o software atual — incluindo a GUI. [22:35] &lt;FillaMent&gt; talvez eu esteja entrando ignorantemente, mas talvez um método como se encontra em muitos que lidam com HTTP: getHeader(String headerName) [22:35] &lt;FillaMent&gt; me smake conforme necessário [22:35] &lt;FillaMent&gt; smack [22:36] * jrand0m smake'a o FillaMent [22:36] &lt;human&gt; e o TunnelManager não precisa disso (já que ele *nunca* será capaz de suportar adequadamente eventos assíncronos, devido à sua natureza) [22:36] * kaji tem uma ideia completamente off-topic [22:36] * FillaMent resigna-se à militância =) [22:37] &lt;human&gt; mas se a aplicação do mihi precisa monitorar o estado dos tunnels, então a interface assíncrona é um Must(TM) [22:37] &lt;jrand0m&gt; human&gt; java -jar lib/I2PTunnel.jar\n.  Precisamos suportar async. [22:37] &lt;kaji&gt; i2p como um applet Java para você poder rodar de computadores estranhos rapidamente indo a um website [22:37] * Sciatica saiu do IRC (EOF From client) [22:37] &lt;human&gt; jrand0m: sim, então precisamos refazer o TunnelManager :-) [22:37] &lt;jrand0m&gt; kaji&gt; i2p 3.0 :) [22:38] &lt;jrand0m&gt; concordo, human, a implementação do tunnelmanager foi uma implementação rápida e suja [22:38] &lt;jrand0m&gt; você acha que poderia ver como isso precisaria prosseguir? [22:38] * human pode se voluntariar para adaptar o TunnelManager à interface assíncrona, quando estiver pronta [22:38] &lt;jrand0m&gt; w00t :) [22:40] &lt;jrand0m&gt; ok, estamos prontos para o item 3) I2COCP [22:40] &lt;human&gt; caso contrário, seria possível criar métodos síncronos e assíncronos para o I2PTunnel [22:40] &lt;jrand0m&gt; verdade [22:40] &lt;jrand0m&gt; mas duplicação pode ser exagero quando um pouco de refatoração serviria ao propósito [22:41] * baffled saiu do IRC (Leaving) [22:41] &lt;duck&gt; preocupação pessoal sobre os tunnels: apps não os fechando, então todo o seu tunnelmanager fica inundado [22:41] &lt;human&gt; jrand0m: sim, devemos escolher a solução mais fácil entre refazer o TunnelManager ou adicionar novas APIs ao I2PTunnel :-) [22:42] &lt;jrand0m&gt; é um bom ponto, duck. atualmente não há timeouts/expirações, e assume-se que os apps usando o tunnelManager se comportem bem (e que o tunnelManager não tenha bugs [hah!]) [22:43] &lt;mihi&gt; a propósito de novas APIs: as classes da Streaming API devem "substituir" as antigas ou deve ser possível usar ambas (com comandos diferentes?) [22:43] &lt;jrand0m&gt; mihi&gt; acho que as de streaming vão querer substituir, já que quando a streaming API estiver sólida o mode=GUARANTEED vai sumir [22:43] &lt;jrand0m&gt; (e portanto as antigas não funcionarão) [22:44] * MrEcho 's email sent [22:46] &lt;jrand0m&gt; mais algo para a discussão de tunnels? (obviamente isso não é o fim das discussões de tunnels no geral ;) [22:47] * dup agora é conhecido como dm [22:47] &lt;jrand0m&gt; ok, I2COCP [22:47] &lt;jrand0m&gt; isso foi algo que o human sugeriu outro dia e parece preencher uma lacuna que não é atendida atualmente. mas acho que queremos adiar a implementação até termos algo que queira usá-la :) [22:48] &lt;wiht&gt; Esse é um nome um tanto longo, mesmo abreviado. [22:48] * jrand0m agora chama I2COCP de "Wilma" [22:48] &lt;human&gt; jrand0m: bem, eu ia escrever as mesmas palavras :-) [22:48] &lt;jrand0m&gt; hehe, legal [22:49] &lt;jrand0m&gt; ok, pulando para 4) roadmap [22:49] &lt;human&gt; jrand0m: IMHO, em geral, deveria haver uma forma de apps não-Java terem acesso razoavelmente completo à rede I2P [22:49] &lt;jrand0m&gt; concordo [22:49] &lt;jrand0m&gt; a intenção é que elas usem I2CP [22:50] &lt;jrand0m&gt; (como todas as apps Java, incluindo i2ptunnel e a biblioteca de streaming, usam isso) [22:50] &lt;human&gt; jrand0m: sim [22:50] &lt;MrEcho&gt; I2PDNS "Janessa" [22:50] &lt;jrand0m&gt; mas você está certo, elas também vão querer streaming, então ou tunnelmanager-&gt;i2ptunnel ou i2cocp-&gt;biblioteca de streaming [22:50] * jrand0m nunca conheceu uma Janessa [22:51] * Sciatica entrou em #i2p [22:51] &lt;jrand0m&gt; ok, então, sim, o roadmap foi atualizado. sem mudanças muito grandes além de adiar 0.3 e 0.3.1 por 2 semanas, adicionar info da 2.0 e alguns critérios a mais da 1.0 [22:51] &lt;human&gt; jrand0m: sim, deveria haver protocolos tipo "TCP" e "UDP" para I2P, com relatório completo de eventos de protocolo, acessíveis por apps não-Java [22:52] &lt;MrEcho&gt; human, parece bom [22:52] &lt;jrand0m&gt; Quero que haja toda interface possível, mas não quero me comprometer demais com interfaces demais para suportar [22:52] * human queria I2COCP (ou o que for) para seu transporte do I2P para Twisted (veja http://www.twistedmatrix.com/), mas por ora vai feliz fazer uma gambiarra em volta do TunnelManager :-) [22:53] * w0rmus saiu do IRC (Lost terminal) [22:53] &lt;jrand0m&gt; isso aí. seria o melhor por enquanto [22:54] &lt;jrand0m&gt; ok, algum comentário sobre o roadmap?   [22:55] &lt;jrand0m&gt; [nada a ver aqui, la la] [22:55] &lt;jrand0m&gt; ok, 5) i2pIM [22:55] &lt;jrand0m&gt; thecrypto não está aqui, então podemos só esperar um post para i2p@ com atualizações :) [22:55] &lt;wiht&gt; Temos Jabber agora, se não me engano. Ainda precisamos do i2pIM? [22:55] &lt;jrand0m&gt; sim [22:55] &lt;jrand0m&gt; jabber tem um servidor que recebe texto plano. [22:56] &lt;wiht&gt; Ah. Muito bem, então; eu não sabia disso. [22:56] &lt;jrand0m&gt; são duas faltas (um servidor e texto plano) [22:56] &lt;jrand0m&gt; é uma boa solução para algumas coisas, certamente [22:56] &lt;jrand0m&gt; na verdade, uma coisa em que pensei hoje de manhã foi se poderíamos juntar i2pIM e i2psnark, isso seria Bom. [22:57] &lt;jrand0m&gt; (mas uma coisa de cada vez) [22:57] &lt;jrand0m&gt; falando no diabo, 6) i2psnark :) [22:57] &lt;human&gt; jrand0m: às vezes usei jabber com gnupg... [22:57] &lt;jrand0m&gt; para chats com &gt;2 pessoas? [22:58] &lt;jrand0m&gt; para um a um, concordo totalmente que existem soluções [23:01] &lt;jrand0m&gt; ok, vamos a uma divertida, 7) apresentando I.Toopie :) [23:01] &lt;human&gt; como você implementaria chats criptografados com &gt;2 pessoas? uma chave privada compartilhada? [23:01] &lt;jrand0m&gt; sim, human [23:01] &lt;jrand0m&gt; ou através de n! chaves compartilhadas no grupo [23:02] &lt;human&gt; bem, talvez pudesse ser feito acima do protocolo jabber existente... [23:02] &lt;mihi&gt; human: uma chave simétrica compartilhada enviada a todos os participantes [23:02] &lt;jrand0m&gt; a parte difícil é lidar com entradas & saídas — rotação de chaves /etc [23:03] * Sciatica saiu do IRC (Ping timeout) [23:03] &lt;jrand0m&gt; não é de forma alguma trivial. é muito, muito, muito difícil. [23:03] * mihi reconhece [23:03] * human concorda [23:04] &lt;jrand0m&gt; (por isso ter um app projetado para isso em vez de tentar uma gambiarra em cima de outro protocolo pode valer a pena) [23:04] &lt;jrand0m&gt; mas o thecrypto pode descrever melhor seus planos [23:04] &lt;jrand0m&gt; (embora pelo que entendo ele ainda esteja aberto a ideias de como lidar com grupos) [23:05] * Sciatica entrou em #i2p [23:06] &lt;jrand0m&gt; ok, seguindo :)  [mais discussão em i2p@, etc] [23:06] &lt;wiht&gt; O que é I.Toopee, afinal? [23:06] &lt;lucky&gt; o mascote... [23:06] &lt;jrand0m&gt; I.Toopie é um cara segurando uma máscara amarela na frente do rosto [23:06] * lucky estremece. [23:07] &lt;lucky&gt; aham. [23:07] &lt;lucky&gt; posso ver? [23:07] &lt;jrand0m&gt; http://wiki.invisiblenet.net/iip-wiki?I2PLogo [23:07] * mihi_backup saiu do IRC (EOF From client) [23:07] &lt;lucky&gt; adicionei Java à minha fila de compilação... [23:07] &lt;lucky&gt; mas.. lol [23:07] &lt;lucky&gt; já tenho 7 coisas rodando [23:07] &lt;lucky&gt; vai demorar. [23:08] &lt;lucky&gt; aw, fofo :P [23:08] &lt;MrEcho&gt; lol [23:08] &lt;jrand0m&gt; houve muitos logos legais (não acredito que estamos com o concurso de logo há 3 meses!), e parece que temos um potencial forte com o I.Toopie. na sua simplicidade, sua concepção e sua versatilidade. [23:08] &lt;jrand0m&gt; e, sim, é fofo ;) [23:08] &lt;mihi&gt; algumas imgs estão quebradas ou meu navegador está bugado? [23:08] &lt;jrand0m&gt; sim, algumas estão quebradas [23:09] &lt;jrand0m&gt; (foram colocadas em hospedagens temporárias 3 meses atrás) [23:09] &lt;MrEcho&gt; o bastão do I.Toopie agora é todo amarelo ...  [23:09] &lt;MrEcho&gt; mudei ontem à noite [23:09] &lt;jrand0m&gt; é mesmo? [23:09] &lt;jrand0m&gt; as pessoas deveriam ATUALIZAR A WIKI então  [23:09] &lt;jrand0m&gt; ;) [23:09] &lt;MrEcho&gt; hehe [23:09] &lt;MrEcho&gt; não tenho mais a foto .. sorry [23:10] &lt;wiht&gt; Vejo as imagens com o Opera, mas não com o Mozilla, por algum motivo. [23:10] &lt;jrand0m&gt; você consegue ver http://img.villagephotos.com/p/2003-10/437060/badass.jpg ? [23:10] &lt;jrand0m&gt; (essa é uma das imagens naquela página) [23:11] &lt;duck&gt; Access Denied (User Account Disabled) [23:11] &lt;jrand0m&gt; sim, aqui também. [23:11] &lt;MrEcho&gt; eu consigo ver [23:11] &lt;jrand0m&gt; mas sim, DrWoo fez umas paradas iradas com o I.Toopie [23:11] &lt;MrEcho&gt; moz 1.5 [23:11] * soros saiu do IRC (EOF From client) [23:11] * mihi_away entrou em #i2p [23:11] * lucky saiu do IRC (EOF From client) [23:12] &lt;jrand0m&gt; aqui também, MrEcho.   estranho. [23:12] &lt;wiht&gt; MrEcho: Estou usando Mozilla 1.4. [23:12] &lt;jrand0m&gt; (mesmo no sentido de que estou no moz 1.5 e estou recebendo acesso negado) [23:13] * jrand0m aguarda ansioso por um ícone de tray com o i.toopie :) [23:13] &lt;jrand0m&gt; ok, passando para 8) servidor de xadrez [23:14] * Sciatica saiu do IRC (Ping timeout) [23:14] * ion saiu do IRC (Ping timeout) [23:14] &lt;jrand0m&gt; o hosts.txt mais recente (http://i2p.dnsalias.net/i2p/hosts.txt) contém a referência para chess.fillament.i2p [23:14] &lt;jrand0m&gt; você pode usar qualquer cliente FICS antigo ou apenas telnet para lá e jogar :) [23:14] &lt;jrand0m&gt; (yay) [23:15] &lt;kaji&gt; existe um bom cliente fics para windows? [23:15] &lt;jrand0m&gt; não sei, acabei usando telnet [23:15] &lt;wiht&gt; eboard funciona? [23:15] &lt;jrand0m&gt; (o que teve uma curva de aprendizado bem difícil para aprender os comandos) [23:15] * ion entrou em #i2p [23:16] &lt;jrand0m&gt; não sei [23:16] * BpX entrou em #i2p [23:16] &lt;wiht&gt; Vou testar mais tarde. [23:16] &lt;jrand0m&gt; legal, se você puder postar o que encontrar, seria ótimo [23:17] &lt;jrand0m&gt; ok, 9) DHT [23:17] * wilde saiu do IRC (Ping timeout) [23:17] &lt;jrand0m&gt; ainda não temos uma dht, mas talvez isso seja uma pista de algo que podemos começar a portar [23:18] &lt;jrand0m&gt; (usa UDP, então fazer usar I2CP não seria difícil) [23:18] &lt;MrEcho&gt; dht??? [23:18] &lt;MrEcho&gt; deu branco nessa [23:18] &lt;jrand0m&gt; MrEcho&gt; veja [10] no e-mail ;) [23:18] &lt;jrand0m&gt; http://wiki.invisiblenet.net/iip-wiki?DHT [23:18] &lt;Nightblade&gt; entropy é bom o suficiente como solução temporária [23:18] &lt;jrand0m&gt; concordo [23:19] &lt;jrand0m&gt; embora eu ache que precisamos olhar também para uma solução de longo prazo [23:19] * soros entrou em #i2p [23:19] * lucky entrou em #i2p [23:20] * human está preocupado com compatibilidade gcj/kaffe com DHTs como Bamboo (http://bamboo-dht.org/) [23:20] &lt;jrand0m&gt; sim, bamboo é 1.4 [23:20] &lt;MrEcho&gt; afk [23:20] &lt;jrand0m&gt; essa é a glória do i2cp — o router & tunnels podem ser compilados com gcj, enquanto as coisas que os acessam podem ser qualquer coisa [23:21] &lt;jrand0m&gt; é /puramente/ para um app, porém — não como parte do core [23:21] &lt;jrand0m&gt; só estou tentando pensar em coisas que ajudariam os usuários finais que acabam baixando i2p a fazer algo útil logo de cara [23:22] &lt;jrand0m&gt; (poder publicar conteúdo incensurável anonimamente seria algo útil) [23:22] &lt;jrand0m&gt; s/uncensorable/very censorship resistant/ [23:23] &lt;human&gt; jrand0m: ah, ok - achei que bamboo iria substituir Kademlia para o NetworkDB :-) [23:23] &lt;Nightblade&gt; o proxy squid é algo que eles podem fazer... para usuários por exemplo na China isso seria uma coisa muito legal de ter [23:23] &lt;jrand0m&gt; Nightblade&gt; certo, mas o squid não é escalável [23:24] &lt;Nightblade&gt; sim, acho que seria interessante ter uma espécie de JAP distribuído [23:24] &lt;jrand0m&gt; concordo [23:24] &lt;jrand0m&gt; então isso também é outra coisa que seria ótimo se as pessoas pudessem averiguar :) [23:24] &lt;mihi&gt; Nightblade: o problema é lidar com abuso — eu não vou abrir minha máquina para qualquer HTTP de saída [23:24] &lt;jrand0m&gt; tenho certeza que algumas pessoas vão [23:25] &lt;Nightblade&gt; com uma parte adicional onde um nó individual possa escolher quais sites quer fazer proxy para as pessoas... um cliente poderia enviar uma requisição para "whitehouse.com" e então um dos nós que faz o proxy e permite essa url pode responder [23:25] &lt;Nightblade&gt; sim, acho que teria que ter algum tipo de controle de acesso [23:25] &lt;Nightblade&gt; blacklist ou whitelist [23:25] &lt;jrand0m&gt; certo [23:25] &lt;Nightblade&gt; de nomes de domínio [23:26] &lt;jrand0m&gt; é o sistema de "exit policy". embora isso seja um projeto inteiro por si só [23:27] &lt;MrEcho&gt; poderia andar sobre o sistema de DNS... acho [23:27] &lt;jrand0m&gt; certamente [23:27] &lt;wiht&gt; mihi: E se você limitar a largura de banda usada? Ou são os websites acessados que poderiam te causar problemas? [23:27] &lt;MrEcho&gt; numa data bem depois lol [23:27] &lt;jrand0m&gt; wiht&gt; muitos provedores proíbem explicitamente rodar servidores de qualquer tipo [23:28] &lt;MrEcho&gt; a verizon fode com a porta 21 com certeza... [23:28] &lt;wiht&gt; jrand0m: Ah. Sim, isso é um problema. [23:28] &lt;Nightblade&gt; teria que haver alguma forma para clientes solicitarem os sites que querem baixados para eles.. Broadcast de requisições não é uma solução muito boa, especialmente no i2p [23:29] &lt;mihi&gt; wiht: o problema são os websites que podem ser acessados. compare com o processo do JAP algum tempo atrás. /me mora no mesmo país [23:29] &lt;jrand0m&gt; concordo. embora broadcast não seja possível sem forçar à bruta um espaço de chaves de ~2^2300 ;) [23:30] &lt;jrand0m&gt; certo, mihi, pessoas em regimes opressores não conseguiriam rodar outproxies com segurança [23:30] &lt;wiht&gt; mihi: Qual foi o processo? Não me lembro. [23:30] * dm saiu do IRC (Ping timeout) [23:30] &lt;Nightblade&gt; quero dizer, mesmo que você tivesse uma lista de destinos que fornecem proxy web, você não iria querer ter que fazer broadcast para todos [23:30] &lt;jrand0m&gt; certo, Nightblade [23:30] &lt;Nightblade&gt; broadcast de requisições, quero dizer [23:31] &lt;mihi&gt; o problema foi que alguém acessou um site de pornografia infantil e foi por um proxy do JAP e não podiam dizer de onde veio a requisição. isso foi interpretado como atrapalhar o trabalho da polícia [23:31] &lt;jrand0m&gt; talvez o pessoal queira ver crowds ou rewebber para ver outros projetos que trabalharam nessa mesma tarefa [23:31] &lt;wiht&gt; mihi: Ah. Obrigado pela explicação. Entendo por que você está preocupado agora. [23:31] * mihi_away saiu do IRC (Ping timeout) [23:31] &lt;mihi&gt; e fizeram aquela mudança no software do jap que torna possível pegar pessoas. que foi removida depois [23:32] &lt;wiht&gt; Er, entendo por que você está preocupado. [23:32] &lt;mihi&gt; no fim saiu que o JAP não teria que divulgar os dados, mas eu não quero saber quanto custaram os advogados... [23:32] &lt;Nightblade&gt; sim, mas a polícia não apreendeu a informação de qualquer jeito? [23:32] &lt;jrand0m&gt; sim [23:33] &lt;mihi&gt; eles apreenderam... [23:33] &lt;jrand0m&gt; mas enfim, sim, tanto uma DHT escalável quanto um proxy web escalável seriam Coisas Realmente Boas de ter até a 1.0 [23:34] &lt;mihi&gt; e eles não podem devolver, podem? [23:34] * BpX saiu do IRC (Ping timeout) [23:36] * Sciatica entrou em #i2p [23:36] &lt;jrand0m&gt; ok, mais algo para o ponto 9? ou vamos para 10/11) NS/DNS? [23:36] &lt;wiht&gt; Gostaria de fazer um comentário breve sobre o instalador depois do tópico 10. [23:37] &lt;jrand0m&gt; 'k talvez vamos a isso agora, já que NS/DNS pode não ser super breve? ;) [23:37] &lt;wiht&gt; Tudo bem. O router tem um script de start e um script de stop. [23:37] &lt;jrand0m&gt; certo [23:37] &lt;wiht&gt; Eu gostaria que todos os serviços fossem feitos desse jeito — tivessem um script de start e um de stop. [23:37] &lt;jrand0m&gt; a maioria tem [23:37] &lt;jrand0m&gt; não tem? [23:38] &lt;jrand0m&gt; ah, não scripts de stop [23:38] &lt;wiht&gt; Não, só o router. [23:38] &lt;wiht&gt; Assim, serviços desejados poderiam ser iniciados na inicialização do computador, como o router. Eu fiz um post nesse sentido na lista. [23:38] &lt;jrand0m&gt; aum está trabalhando no i2pmgr, que vai ser tanto um centro de controle em console quanto baseado em GUI para os serviços e para o próprio router [23:38] &lt;wiht&gt; Digamos que eu quero iniciar o eep e o nntp na inicialização. Atualmente, não posso fazer isso. [23:39] &lt;jrand0m&gt; certo, você precisaria fazer nohup startEepProxy.sh &amp; [23:39] &lt;wiht&gt; Certo. A propósito, onde estão esses scripts no CVS? [23:39] &lt;MrEcho&gt; ok voltei [23:39] * mihi_away entrou em #i2p [23:39] &lt;jrand0m&gt; wiht&gt; os scripts estão no Install.java (vulgo hackeado) [23:39] &lt;wiht&gt; jrand0m: Obrigado./ [23:40] &lt;jrand0m&gt; mas bom ponto, queremos que seja o mais simples possível iniciar na inicialização, assim como iniciar sob demanda [23:41] &lt;jrand0m&gt; ok, para 10/11) ns/dns [23:41] &lt;MrEcho&gt; bem, confiram meu e-mail [23:41] &lt;MrEcho&gt; tem algumas coisas que esqueci de colocar lá [23:41] &lt;jrand0m&gt; infelizmente seu e-mail não ficou legal na interface web :/ [23:41] &lt;MrEcho&gt; tipo nomes "temporários" [23:41] &lt;MrEcho&gt; ?? [23:42] * Sciatica saiu do IRC (Ping timeout) [23:42] * ion saiu do IRC (Ping timeout) [23:42] &lt;jrand0m&gt; MrEcho&gt; http://i2p.dnsalias.net/pipermail/i2p/2004-January/000072.html [23:42] &lt;MrEcho&gt; por causa do gif ou algo assim [23:42] &lt;MrEcho&gt; merda .. eu assinei [23:43] &lt;MrEcho&gt; desculpa [23:43] &lt;jrand0m&gt; a lista é realmente destinada a ser apenas texto. assinaturas pgp são ok (outros já postaram coisas assinadas) [23:43] &lt;kaji&gt; qual é um bom antivírus gratuito e pequeno? [23:43] * ion entrou em #i2p [23:43] &lt;jrand0m&gt; kaji&gt; linux [23:43] * Sciatica entrou em #i2p [23:43] &lt;wiht&gt; LOL. [23:43] &lt;kaji&gt; que rode com meu hardware [23:43] &lt;wiht&gt; kaji: Tente AVG Antivirus para Windows. [23:44] * MrEcho_ entrou em #i2p [23:44] * MrEcho saiu do IRC (EOF From client) [23:44] &lt;MrEcho_&gt; porra de iip [23:44] &lt;jrand0m&gt; MrEcho / (e qualquer outra pessoa interessada em NS/DNS)&gt; você leu http://zooko.com/distnames.html ? [23:44] &lt;MrEcho_&gt; j, devo reenviar o e-mail? [23:44] &lt;jrand0m&gt; ele chegou à lista, só não foi arquivado na web corretamente [23:44] &lt;MrEcho_&gt; ya [23:45] &lt;wiht&gt; jrand0m: Eu ainda não li. [23:45] &lt;MrEcho_&gt; vou dar uma olhada mais tarde [23:45] * mrflibble entrou em #i2p [23:45] &lt;jrand0m&gt; para quem não está na lista, eu salvei o e-mail do MrEcho_ em http://i2p.dnsalias.net/~jrandom/mrecho_dns.txt [23:46] &lt;MrEcho_&gt; valeu, J [23:46] &lt;kaji&gt; é chato, ele quer um endereço de email [23:46] &lt;jrand0m&gt; minha preocupação é com a segurança e a escalabilidade do serviço de nomes. quando encontrarmos uma solução que atenda a essas necessidades, fantástico, mas até lá, devemos ter cuidado com soluções intermediárias. [23:47] &lt;jrand0m&gt; kaji&gt; listas de e-mail geralmente querem um endereço de email, sim ;) [23:47] &lt;kaji&gt; quero dizer o AVG Antivirus [23:47] &lt;jrand0m&gt; ah ;) [23:48] &lt;wiht&gt; MrEcho tem várias boas ideias que eu não tinha na minha especificação, como uma lista de banimento para clientes ruins. [23:49] &lt;MrEcho_&gt; não exatamente uma lista de banimento [23:49] &lt;jrand0m&gt; quando houver 1000 clientes, isso significa que levaria 125 buscas para encontrar um valor? [23:49] &lt;MrEcho_&gt; não [23:49] &lt;wiht&gt; Não uma lista, mas banir clientes ruins é algo que eu não tinha. [23:50] &lt;MrEcho_&gt; 2-4 clientes para verificação [23:50] &lt;jrand0m&gt; então todo cliente terá 250 entradas? [23:50] * mihi_away agora é conhecido como mihi_backup [23:50] &lt;MrEcho_&gt; não [23:50] &lt;wiht&gt; Com o que eu tenho, seria uma busca, possivelmente encaminhada algumas vezes para chegar a um servidor autoritativo. [23:50] &lt;MrEcho_&gt; clientes só terão o que precisam [23:51] &lt;MrEcho_&gt; ele continuará consultando outros Clientes até obter dados que correspondam para a verificação [23:51] &lt;jrand0m&gt; então com 4 pares, faria uma busca aleatória e, em média, levaria 125 buscas [23:51] &lt;jrand0m&gt; (1000/4/2) [23:51] &lt;jrand0m&gt; ou os pares formam uma DHT? [23:52] &lt;jrand0m&gt; (com algum protocolo de manutenção?) [23:52] &lt;jrand0m&gt; ou uma árvore de busca? [23:52] &lt;MrEcho_&gt; de certo modo sim [23:52] &lt;MrEcho_&gt; vou ter um limite nas buscas de cliente, ele vai apenas consultar o MS [23:53] &lt;jrand0m&gt; nomeação distribuída segura é um problema bastante estudado — o que tornaria sua proposta mais fácil de analisar quanto à segurança e escalabilidade seria se você pudesse fazer comparações e validar variações de outras abordagens, talvez? [23:54] &lt;MrEcho_&gt; se não encontrar / ou não obtiver dados suficientes dos Clientes dentro de um intervalo definido, então apenas consultará o MS. [23:54] &lt;jrand0m&gt; do jeito que está, não há detalhes suficientes para que eu tenha confiança na escalabilidade ou segurança da arquitetura. não quer dizer que não possa dar certo, só não consigo ver isso ainda. [23:54] &lt;MrEcho_&gt; pode parar de digitar um segundo [23:54] * jrand0m para de digitar. [23:55] &lt;MrEcho_&gt; vai funcionar .. vai ter escalabilidade, vai ter segurança [23:56] &lt;MrEcho_&gt; quanto mais usuários, melhor vai ficar [23:56] &lt;jrand0m&gt; então é "confia em mim", é? [23:56] &lt;MrEcho_&gt; você confia no sistema de DNS da Internet? [23:56] &lt;jrand0m&gt; para algumas tarefas. [23:57] &lt;jrand0m&gt; para muitas, não. [23:57] &lt;jrand0m&gt; (é bem fácil para governos / etc fazerem registros mudarem — processos judiciais ordenam registrars a atualizar o tempo todo) [23:58] &lt;MrEcho_&gt; a única outra forma de fazer é ter listas enormes de Nomes e muita cripto em cada cliente [23:58] &lt;MrEcho_&gt; e ser dinâmico... esquece [23:59] * mrflibble saiu do IRC (EOF From client) [23:59] &lt;jrand0m&gt; sugiro revisar o paper do zooko antes de prosseguir, e responder ao ponto final 5 dele ("why I'm wrong") Session Time: Wed Jan 07 00:00:00 2004 [00:01] &lt;jrand0m&gt; ok, isso provavelmente é tudo para o ponto 10/11 (muita discussão futura ainda restando sobre isso, claro) [00:02] &lt;jrand0m&gt; alguém tem outros pensamentos, etc? [00:02] &lt;wiht&gt; Sim. [00:03] &lt;jrand0m&gt; quer compartilhar com a turma?  :) [00:03] &lt;wiht&gt; Vou reescrever a especificação que escrevi. Gostaria de usar um servidor SQL local para armazenar dados, não arquivos. [00:03] &lt;jrand0m&gt; ah, legal [00:03] &lt;jrand0m&gt; (as mesmas preocupações valem para a spec que você escreveu também — se puder responder à última pergunta do zooko, seria fundamental :) [00:03] * mrflibble entrou em #i2p [00:03] &lt;wiht&gt; Deixe o MySQL ou um servidor similar gerenciar o armazenamento de dados, e deixe o Java consultar esse servidor. [00:04] &lt;duck&gt; hein? especificações do zooko? [00:04] &lt;wiht&gt; Acho que será mais fácil de implementar. [00:04] &lt;jrand0m&gt; duck&gt; não, só estou apontando as pessoas para o artigo antigo dele "Names: Decentralized, Secure, Human-Meaningful: Choose Two" [00:04] &lt;duck&gt; ah, esse [00:04] &lt;Nightblade&gt; wiht: qual especificação é essa (perdi boa parte da reunião)? [00:04] * MrEcho entrou em #i2p [00:04] &lt;jrand0m&gt; (bem mais fácil do que refazer por que supernode/servidores centralizados são questões assustadoras de segurança ;) [00:05] * MrEcho_ saiu do IRC (EOF From client) [00:05] * mihi teria algo para o log também ;) [00:05] &lt;mihi&gt; algo mais longo ;) [00:05] &lt;mihi&gt; *** I2Ping resultados: [00:05] &lt;mihi&gt; + + +   eco.i2p [00:05] &lt;mihi&gt; + - -   jabber.duck.i2p [00:05] &lt;mihi&gt; - + +   i2pcvs.i2p [00:05] &lt;mihi&gt; - + +   duck.i2p [00:05] &lt;mihi&gt; - + -   jap.eco.i2p [00:05] &lt;jrand0m&gt; Nightblade&gt; foi postado no iip-dev lá em... agosto? [00:05] &lt;mihi&gt; - + +   irc.duck.i2p [00:05] &lt;mihi&gt; - + +   human.i2p [00:06] &lt;mihi&gt; - - +   nntp.duck.i2p [00:06] &lt;mihi&gt; - - -   tc.i2p [00:06] &lt;mihi&gt; - - -   dyad.i2p [00:06] &lt;mihi&gt; - - -   bozo.i2p [00:06] &lt;mihi&gt; - - -   ogg.aum.i2p [00:06] &lt;mihi&gt; - - -   fcp.entropy.i2p [00:06] &lt;mihi&gt; - - -   http.entropy.i2p [00:06] &lt;Nightblade&gt; jrandom: oh, antes do meu tempo.. :) [00:06] &lt;mihi&gt; - - -   www.mail.i2p [00:06] &lt;mihi&gt; - - -   mp3.aum.i2p [00:06] &lt;mihi&gt; - - -   smtp.mail.i2p [00:06] &lt;wiht&gt; Nightblade: Eu postei em 15 de setembro. [00:06] &lt;mihi&gt; - - -   pop.mail.i2p [00:06] &lt;mihi&gt; - - -   mp3.tc.i2p [00:06] &lt;mihi&gt; - - -   lp.i2p [00:06] &lt;mihi&gt; - - -   kaji.i2p [00:06] &lt;mihi&gt; - - -   nm.i2p [00:06] &lt;mihi&gt; - - -   squid.i2p [00:06] &lt;mihi&gt; - - -   chess.fillament.i2p [00:06] &lt;mihi&gt; - - -   mesh.firerabbit.i2p [00:06] &lt;mihi&gt; - - -   nightblade.i2p [00:06] &lt;mihi&gt; - - -   aum.i2p [00:06] &lt;MrEcho&gt; puxa, alguém está de pé e rodando? [00:06] &lt;mihi&gt; - - -   fillament.i2p [00:06] &lt;mihi&gt; *** Terminado. [00:06] &lt;mihi&gt; por que tantos hosts estão fora...? [00:06] * jrand0m não está rodando meus servidores no momento [00:07] &lt;FillaMent&gt; Consigo conectar a mim mesmo tanto no eep quanto no chess [00:07] * mrflibble saiu do IRC (Ping timeout) [00:07] &lt;jrand0m&gt; ah espere, i2pcvs está no ar, bacana [00:07] &lt;Nightblade&gt; mihi: o meu não está no ar porque o i2ptunnel trava para mim depois de algumas horas [00:07] &lt;mihi&gt; então meu router está quebrado (ou são os problemas usuais do I2P...) [00:08] &lt;jrand0m&gt; sério, Nightblade? por favor reporte travamentos do i2ptunnel (bugzilla seria legal) [00:08] &lt;Nightblade&gt; está no bugzilla [00:08] &lt;lucky&gt; oi [00:08] &lt;Nightblade&gt; segura.. [00:08] &lt;FillaMent&gt; Nightblade: qual JVM? [00:08] &lt;Nightblade&gt; #39 [00:08] &lt;wiht&gt; Meu router está rodando há mais de 12 horas agora, embora tenha tido um problema ao se registrar. [00:09] &lt;Nightblade&gt; java version "1.4.2-p5" [00:09] &lt;Nightblade&gt; no freebsd... pode ser problema da jvm, não sei. suporte a java não é muito bom no freebsd [00:09] &lt;jrand0m&gt; você tem razão, Nightblade, minha culpa [00:09] &lt;jrand0m&gt; esse é o bug de i2cp relativamente infrequente  [00:09] &lt;jrand0m&gt; isso é consistente pra você? [00:09] &lt;Nightblade&gt; o router é bem estável pra mim, só o tunnel server do i2ptunnel me dá problemas [00:09] &lt;Nightblade&gt; sim, aconteceu várias vezes [00:10] &lt;Nightblade&gt; não testei recentemente, porém [00:10] * jrand0m acabou de puxar o eepsite do fillament [00:10] &lt;jrand0m&gt; (primeira tentativa, acabei de notar que a janela completou) [00:10] &lt;FillaMent&gt; É,, acabei de jabberar com o duck, o wiht está tentando acessar o chess [00:10] &lt;jrand0m&gt; ah legal [00:10] &lt;jrand0m&gt; mas sim, ainda há problemas de confiabilidade a serem tratados na rede. [00:10] * FillaMent cutuca as pessoas com o incluso piscadela, "Ele provavelmente vai querer jogar." [00:10] * human 's eepsite ainda está no ar - significa que 'killall java' ajudou mesmo... :-) [00:10] &lt;wiht&gt; Acabei de conectar com sucesso ao servidor de xadrez. [00:10] &lt;duck&gt; é? [00:11] &lt;jrand0m&gt; lol FillaMent [00:11] * mrflibble entrou em #i2p [00:12] &lt;Nightblade&gt; é seguro rodar a versão cvs do i2p [00:12] &lt;jrand0m&gt; /me buscou com sucesso o 1984-2004: vinte anos de GNU! do human :-)  [00:12] &lt;jrand0m&gt; sim, Nightblade [00:12] &lt;FillaMent&gt; não consegui pegar eco... [00:12] &lt;Nightblade&gt; ok talvez eu tente isso [00:12] &lt;duck&gt; com freenet você deve sempre rodar a última versão cvs! [00:13] &lt;duck&gt; só então não tem bugs [00:13] &lt;duck&gt; s/freenet/i2p/ [00:13] * jrand0m puxou eco.i2p [00:13] &lt;FillaMent&gt; acabei de pegar duck [00:13] &lt;jrand0m&gt; "Jan 4: First field test of I2PSnark. Pretty catastrophic: no transfer at all. Guess my single router test environment wasn't very representative :-) Back to the drawing board... " [00:13] &lt;jrand0m&gt; d'oh [00:13] &lt;duck&gt; bem, na verdade funcionou [00:13] &lt;duck&gt; ardvark conseguiu snarkar algo de mim [00:14] &lt;jrand0m&gt; bt pré-cria os arquivos — os arquivos estavam realmente válidos? [00:14] &lt;duck&gt; mas descobriu no dia seguinte [00:14] &lt;duck&gt; porque estava obscurecido nos logs [00:14] &lt;jrand0m&gt; o quê, você quer dizer que os logs que o i2p gera são bem insanos?  naaaaooo [00:14] &lt;duck&gt; não [00:14] &lt;duck&gt; o output do i2psnark [00:14] &lt;jrand0m&gt; ah [00:15] &lt;duck&gt; além disso, suspeito que o snark faz churning demais (sp?) [00:15] &lt;duck&gt; o cliente bittorrent normal parece ser mais leve [00:15] &lt;duck&gt; também os altos atrasos no i2p podem causar blocos prematuros [00:16] * mrflibble saiu do IRC (Ping timeout) [00:16] &lt;duck&gt; última coisa é que tivemos que reiniciar o i2ptunnel algumas vezes :/ [00:16] &lt;jrand0m&gt; concordo [00:16] &lt;human&gt; pergunta final sobre I2PTunnel / I2PTunnelManager (sim, eu sei, sou chato): e o meu patch para fazer "openclient" e "openserver" retornarem um jobId significativo? [00:16] &lt;jrand0m&gt; então, sim, muito trabalho a fazer [00:16] &lt;human&gt; 1. vamos aceitar para fazer o TunnelManager funcionar até que a nova arquitetura assíncrona esteja ficando foda [00:17] &lt;human&gt; 2. seu patch é uma merda, vai se foder, e foda-se o TunnelManager [00:17] &lt;human&gt; 3. ... [00:17] * MrEcho_ entrou em #i2p [00:17] * mihi é pelo 3 ;) [00:17] * MrEcho saiu do IRC (EOF From client) [00:17] &lt;jrand0m&gt; 4. vamos ver como podemos atualizar o tunnel manager para ficar async? não deve ser muito difícil [00:17] &lt;jrand0m&gt; o patch é bom, mas o mihi tem um ponto [00:18] &lt;human&gt; jrand0m: sim, concordo [00:18] &lt;jrand0m&gt; ainda temos 1+ semanas até a 0.3, então temos tempo até o próximo release completo [00:18] &lt;human&gt; jrand0m: mas minha dúvida é: quanto tempo vai levar para ter a interface async implementada no TunnelManager? [00:18] &lt;jrand0m&gt; o próprio tunnelmanager levou 2 horas, eu poderia adicionar async hoje à noite [00:19] &lt;jrand0m&gt; (tudo que precisa acontecer é uma atualização no BufferedLogging para aceitar chamadas .set) [00:19] &lt;human&gt; jrand0m: (com "ter" eu também quero dizer "ter implementado até no I2PTunnel) [00:19] &lt;jrand0m&gt; (ou .nofity/etc) [00:19] &lt;jrand0m&gt; certo [00:19] * mrflibble entrou em #i2p [00:20] &lt;jrand0m&gt; se você preferir, eu poderia começar com seu patch (que adiciona o job id) e mesclar com as atualizações para async [00:21] &lt;human&gt; jrand0m: eu poderia adicionar a interface async ao TunnelManager eu mesmo, mas a interface ainda não existe :-) [00:22] &lt;jrand0m&gt; certo, só adicione public void notifyEvent(String eventName, Object value); ao Logging.java [00:22] &lt;human&gt; jrand0m: eu sugeriria "vamos mesclar a gambiarra para fazer os job ids na release 0.3 funcionarem de algum modo, e depois trabalhar na interface async" [00:23] &lt;jrand0m&gt; 0.3 ainda está um pouco longe [00:23] &lt;mihi&gt; 0.3 deveria ter a streaming API de qualquer forma, não deveria? [00:23] &lt;human&gt; jrand0m: estou falando do pior caso [00:23] &lt;wiht&gt; jrand0m: Talvez devesse haver outra versão antes da 3.0 para acertar essas questões? [00:23] &lt;jrand0m&gt; sim, mihi [00:23] &lt;mihi&gt; human: o pior caso é "cvs rollback &amp;&amp; patch -p0 your.patch" [00:24] &lt;jrand0m&gt; ok, que tal isso. Vou implementar e fazer commit do async hoje à noite, se você puder olhar amanhã, human, e ver o que precisa ser feito para colocar sua atualização lá? [00:26] &lt;FillaMent&gt; jrand0m: você tem um emprego? [00:27] &lt;jrand0m&gt; i2p [00:27] &lt;duck&gt; faça a 1.0! [00:27] &lt;FillaMent&gt; Quero dizer uma fonte de renda [00:27] &lt;jrand0m&gt; :) [00:27] &lt;FillaMent&gt; pela qual você tenha que trabalhar [00:27] &lt;jrand0m&gt; renda é superestimada. [00:27] * jrand0m demitiu meu chefe [00:27] &lt;Nightblade&gt; "programo por comida"  - esse é meu lema [00:27] &lt;Nightblade&gt; lol [00:27] &lt;human&gt; mihi: bem, mas eu e aum (que está trabalhando em um app Python para o TunnelManager) gostaríamos de ter jobIds o quanto antes... [00:28] &lt;human&gt; jrand0m: ok, vou trabalhar nas suas mudanças mais tarde/amanhã [00:28] &lt;FillaMent&gt; Emprego/Dinheiro, sono/higiene, comida, projetos paralelos, vida social: Escolha quaisquer 3 [00:29] * jrand0m só escolhe um. [00:29] &lt;jrand0m&gt; valeu, human [00:30] &lt;FillaMent&gt; Alguém tem outras ideias de serviços "só tunelar para" que seria legal ter na rede? [00:30] * jrand0m ainda quer um Adventure via telnet :) [00:30] &lt;jrand0m&gt; ou uma waffle BBS [00:30] * duck agora é conhecido como enduser [00:30] * jrand0m chuta o enduser [00:31] &lt;jrand0m&gt; (droga, sem ops) [00:31] &lt;FillaMent&gt; Para OS/2 havia um driver de comunicação que podia mapear uma porta COM para uma porta TCP =) [00:31] &lt;enduser&gt; que diferença eu verei como enduser quando I2PTunnel usar a SteamingAPI? [00:31] * enduser agora é conhecido como duck [00:31] &lt;jrand0m&gt; nenhuma [00:31] &lt;human&gt; lol [00:31] &lt;FillaMent&gt; FillaMent: um amigo meu rodou uma BBS assim por um tempo [00:31] &lt;jrand0m&gt; desempenho, e talvez anonimato [00:31] * human gostaria de um I2P tunnel para um rootshell [00:32] &lt;human&gt; voluntários? :-) [00:32] &lt;duck&gt; rootshell em um UML [00:32] &lt;jrand0m&gt; rootshells em chroot seriam bons [00:32] &lt;jrand0m&gt; ou em UML :) [00:32] &lt;FillaMent&gt; human: se eu tivesse um boxen sobrando, eu faria [00:32] &lt;jrand0m&gt; hehe FillaMent [00:32] &lt;duck&gt; conexão vnc para meu vmware win98? [00:32] &lt;FillaMent&gt; falando sério, galera... [00:32] &lt;wiht&gt; Servidor de e-mail também seria bom. Ou já temos isso? [00:32] &lt;FillaMent&gt; wiht: acho que o TC tem pop e SMTP [00:33] &lt;jrand0m&gt; esse é o aum, mas estão offline, pois a máquina dele está offline [00:33] * human poderia oferecer contas de telnet no seu sistema GNU/Hurd... [00:33] &lt;jrand0m&gt; ooOOoo [00:33] &lt;FillaMent&gt; bem, não estou muito a fim de configurar SMTP aberto ainda [00:33] &lt;jrand0m&gt; compreensível [00:34] &lt;FillaMent&gt; talvez quando a rede estiver mais estável e eu tiver dinheiro para aumentar minha banda [00:34] &lt;wiht&gt; E quanto a um servidor de chaves PGP? [00:34] &lt;mihi&gt; FillaMent: você poderia configurar um tunnel apontando para um remailer em claro [00:34] &lt;FillaMent&gt; wiht: agora ISSO é uma ótima ideia =) [00:35] &lt;FillaMent&gt; mihi heh... eu poderia apenas apontar o tunnel para o meu servidor SMTP do ISP =) [00:35] &lt;mihi&gt; FillaMent: isso tornaria *você* responsável por abuso... [00:35] &lt;mihi&gt; s/be// [00:35] &lt;duck&gt; http://www.mit.edu/people/marc/pks/pks.html [00:36] &lt;duck&gt; falando sério, a duck enterprises deveria considerar rodar um servidor de chaves pgp? [00:37] &lt;FillaMent&gt; duck: eu estava fuçando nisso também... quer cuidar disso? [00:37] &lt;duck&gt; temos sido um dos provedores de serviço mais estáveis de acordo com os logs de ping independentes do mihi [00:37] &lt;jrand0m&gt; hehe [00:37] &lt;wiht&gt; duck: Sim, por favor considere. [00:37] &lt;jrand0m&gt; a propósito, duck, como você faz isso? você reinicia periodicamente ou apenas roda em um SO e JVM confiáveis? [00:38] &lt;FillaMent&gt; pergunta: a JVM faz cache de resoluções de DNS? [00:38] &lt;duck&gt; reiniciar é para atualizações de kernel [00:38] &lt;jrand0m&gt; sim, mas dá para fazer umas malandragens para evitar, FillaMent [00:38] * wiht observa que a reunião já dura 2h40m. [00:38] &lt;jrand0m&gt; ah é, [00:39] * mrflibble levanta a mão [00:39] &lt;jrand0m&gt; hum, o log desta reunião vai ficar enorme. e eu aqui pensando que postar as coisas de antemão iria /encurtar/ a reunião [00:39] &lt;jrand0m&gt; diga, mrflibble? [00:39] &lt;FillaMent&gt; jrand0m: ok... porque estou sem quedas mas meu IP muda periodicamente... meu script de atualização do dyndns roda todo hora então no máximo 60+~10min do meu addy nomeado não apontando para meu IP... [00:39] &lt;FillaMent&gt; como isso afetaria a presença do meu router na rede? [00:40] &lt;mrflibble&gt; minha máquina poderia ficar disponível para algum tipo de coisa daemony [00:40] &lt;jrand0m&gt; legal, FillaMent, não deve ser muito problema, desde que você aponte para seu dyndns [00:40] &lt;wiht&gt; mrflibble: demony? [00:40] &lt;mrflibble&gt; acho que depende de quanta banda a coisa usaria [00:40] &lt;mrflibble&gt; daemony [00:40] &lt;jrand0m&gt; w3rd mrflibble — o router tem funcionado de forma confiável para você, ou você está apenas sendo um bom samaritano?  :) [00:41] &lt;mrflibble&gt; não muito, mas é porque minha banda local está saturada no momento [00:41] &lt;mrflibble&gt; não estou rodando no meu colo ainda [00:41] &lt;mrflibble&gt; quero brincar localmente primeiro [00:41] &lt;jrand0m&gt; ah legal. sim, i2p ainda não está pronto para implantação ampla, ainda é principalmente para testes [00:42] &lt;FillaMent&gt; Heh.. vou apontar um tunnel para meu servidor CUPS e vocês podem ter impressão anônima =) [00:42] &lt;jrand0m&gt; rofl [00:42] &lt;mrflibble&gt; se tiver algo que você quer que eu rode que use &lt;40gb de banda por mês, avisa [00:42] &lt;FillaMent&gt; só incluir uma página de banner para eu saber para onde enviar a cópia impressa =) [00:42] &lt;mrflibble&gt; hehe [00:43] &lt;jrand0m&gt; massa, mrflibble, tenho certeza de que vamos aceitar essa oferta :) [00:43] &lt;mihi&gt; banner | lpr ? ;) [00:43] &lt;FillaMent&gt; mihi você pode configurar o CUPS com uma página de banner [00:43] &lt;mrflibble&gt; oky doky! [00:43] &lt;mihi&gt; banner provavelmente vai criar muitas páginas ;) [00:43] &lt;jrand0m&gt; ok, antes de chegarmos à discussão de gateway mixminion-&gt;impressora-&gt;correios, vamos encerrar esta reunião ;) [00:44] * jrand0m prepara o *baf*'er [00:44] * jrand0m *baf* encerra a reunião. </div>
+<div class="irc-log">
+[22:02] &lt;jrand0m&gt; agenda:
+[22:02] &lt;jrand0m&gt; 0) hi
+[22:02] &lt;jrand0m&gt; 1) http://i2p.dnsalias.net/pipermail/i2p/2004-January/000069.html
+[22:02] &lt;jrand0m&gt; 2) [discussion]
+[22:02] &lt;wiht&gt; Can I add installer to agenda?
+[22:02] &lt;jrand0m&gt; 0) hi
+[22:02] &lt;jrand0m&gt; oh yes, certainly!
+[22:02] &lt;jrand0m&gt; we're trying something new this week
+[22:03] &lt;wiht&gt; You can put it at the end of the agenda.
+[22:03] &lt;jrand0m&gt; rather than the old talktalktalkreplytalktalktalk, the http://i2p.dnsalias.net/pipermail/i2p/2004-January/000069.html post describes most of the things I had planned on saying
+[22:03] * mihi_ has joined #i2p
+[22:04] &lt;jrand0m&gt; instead, we're trying this week to make the meeting more discussion oriented - things people want to talk about from that post, any follow up posts, and/or anything else people want to discuss
+[22:04] &lt;jrand0m&gt; such as a new installer
+[22:05] &lt;jrand0m&gt; so, that said, people should start by checking out that email/post and we'll go from there :)
+[22:05] * mihi_away is now known as mihi
+[22:05] * kaji reads the post
+[22:05] * mihi_ is now known as mihi_backup
+[22:06] &lt;jrand0m&gt; 27 users with only one dup!  w0w
+[22:07] * dm is now known as dup
+[22:07] &lt;jrand0m&gt; ok, when people have read that, perhaps we can start by going over the index and seeing if there's anything someone wants to add / comment on / discuss?
+[22:07] &lt;mihi&gt; jrand0m: where do you know from that there are no more dupes?
+[22:07] &lt;jrand0m&gt; heh thanks dm
+[22:07] &lt;jrand0m&gt; mihi&gt; I installed keyloggers on everyone's computers (bwhahahaha)
+[22:07] &lt;wiht&gt; I would like to add installer as topic 10, and possibly naming service as topic 11.
+[22:07] * mihi sent the followup to the wrong address :(, resending...
+[22:08] &lt;jrand0m&gt; good call wiht
+[22:09] &lt;MrEcho&gt; mrecho's new dns is in the works
+[22:09] &lt;jrand0m&gt; cool mihi, yeah I was wondering ;)
+[22:09] &lt;kaji&gt; how is dns coming along? - ah
+[22:09] &lt;jrand0m&gt; MrEcho&gt; your post, right?
+[22:09] &lt;MrEcho&gt; working on the post
+[22:10] &lt;jrand0m&gt; ok, in the meantime, anyone have anything on 1) streaming? or should we jump to 2) I2PTunnel, TunnelManager, and i2pmgr?
+[22:10] &lt;lucky&gt; good lord... i could spend the rest of my life attempting to figure out these dependecnies.
+[22:10] &lt;wiht&gt; So let's say DNS/NS as topic 11.
+[22:10] &lt;jrand0m&gt; sounds good wiht
+[22:10] * duck walks in
+[22:11] &lt;jrand0m&gt; ev'nin duck
+[22:11] &lt;mihi&gt; ad 1, i committed code for i2ptunnel using the streaming api
+[22:11] &lt;jrand0m&gt; ah right, awesome mihi :) 
+[22:11] &lt;lucky&gt; hi duck
+[22:11] * twosandals has quit IRC (Leaving)
+[22:11] &lt;kaji&gt; jrand0m can several sevices use the same key if they are on diffrent ports?
+[22:11] &lt;jrand0m&gt; no kaji
+[22:11] &lt;mihi&gt; btw: why do your ant files always delete the jar before rebuilding it?
+[22:11] &lt;jrand0m&gt; mihi&gt; paranoia
+[22:12] &lt;mihi&gt; stealing me time with debugging, i'd say ;)
+[22:12] &lt;jrand0m&gt; kaji&gt; in i2p, a key /is/ a port, essentially
+[22:12] &lt;jrand0m&gt; heh
+[22:12] &lt;kaji&gt; ah
+[22:13] &lt;jrand0m&gt; mihi&gt; if you want to update that, as long as it'll build the jar if the class files change thats fine
+[22:13] &lt;mihi&gt; if the file is newer than all files in it, and could skip it otherwise.
+[22:13] &lt;jrand0m&gt; right
+[22:13] &lt;mihi&gt; and for paranoia it is better to add a &lt;depends&gt; task
+[22:13] &lt;jrand0m&gt; agreed
+[22:13] &lt;FillaMent&gt; yo yo
+[22:13] &lt;jrand0m&gt; 'lo FillaMent
+[22:14] &lt;jrand0m&gt; ok, 2) i2ptunnel / tunnelmanager / i2pmgr
+[22:14] * TC has joined #i2p
+[22:15] &lt;human&gt; i did a little hacking to make the TunnelManager return the job ids when "openclient" or "openserver" commands are called
+[22:16] &lt;jrand0m&gt; kickass :)
+[22:16] &lt;human&gt; this way, apps using the TunnelManager know which job to close later, without parsing the "list" output
+[22:16] &lt;jrand0m&gt; yeah, I've not been too comfortable with using tunnelmanager's list and close, since multiple clients can b0rk each other that way
+[22:17] &lt;jrand0m&gt; we'll get that patch in there right after the meeting.  gracias human :)
+[22:17] &lt;human&gt; it involved making I2PTunnel.runCommand return some stuff (currently a Property)
+[22:17] &lt;human&gt; s/Property/Properties/
+[22:17] &lt;jrand0m&gt; oh right, there's some things to modify in that before getting it into the code
+[22:18] &lt;human&gt; but mihi would prefer to add some asynchronous callbacks to the Logging clas, as far as i understand...
+[22:19] &lt;jrand0m&gt; right - so that things can get information from the tasks immediately, without waiting for it to finish
+[22:20] * mihi has quit IRC (EOF From client)
+[22:20] &lt;human&gt; jrand0m: the idea is: let's I2PTunnel.runCommand() return immediately, and eventually use callbacks to get more info, right?
+[22:21] &lt;jrand0m&gt; right
+[22:21] &lt;jrand0m&gt; so the tasks fire callbacks whenever there is data to distribute
+[22:21] * mihi has joined #i2p
+[22:21] &lt;human&gt; well, IMHO there is another question: «how many java apps (will) use I2PTunnel.runCommand() asynchronously?»  *All* the apps currently using I2PTunnel (even via the TunnelManager) are perfectly fine with synchronous (even if long) .runCommand() calls, and making all the stuff asynchronous would only make things more complicated (IMHO)
+[22:22] * mihi uses it via the gui
+[22:22] &lt;human&gt; (well, "all" means the TunnelManager and apps parsing the Tunnel manager output)
+[22:22] &lt;jrand0m&gt; right, the gui will hang while the command is executed
+[22:22] &lt;mihi&gt; and entering the next 3 tunnel open commands is blocked while the first is running
+[22:23] &lt;human&gt; mihi: ok, i didn't know about your app... then we need some solution :-)
+[22:24] &lt;human&gt; mihi: asynchronous .runCommand() behaviour would require to revise the TunnelManager
+[22:24] &lt;mihi&gt; human: when (iyo) should runCommand terminate? when the tunnel is built, when the connection got through?
+[22:25] &lt;mihi&gt; "destination unreachable" will be known *after* the first connection attempt was made.
+[22:25] &lt;jrand0m&gt; the command pattern would have the execute() return only after it was complete.
+[22:26] &lt;mihi&gt; what does *complete* mean?
+[22:26] &lt;jrand0m&gt; (so if we're following the command pattern, runCommand would block until everything required to do that command was complete)
+[22:26] &lt;human&gt; mihi:  eheh, that's the question :-)
+[22:26] &lt;jrand0m&gt; complete for "server 1234 privkeys" would be when the server can accept connections on port 1234
+[22:26] &lt;human&gt; mihi: well, for TunnelServer's IMHO it should return after tunnel creation
+[22:27] &lt;jrand0m&gt; complete for "client 234 peer" would be complete when a connection to port 234 would successfully reach peer
+[22:27] &lt;jrand0m&gt; at least, thats my take
+[22:27] &lt;mihi&gt; how can you determint the latter?
+[22:27] &lt;jrand0m&gt; I really don't feel strongly either way
+[22:27] &lt;jrand0m&gt; perhaps a ping?
+[22:27] * Sciatica has joined #i2p
+[22:28] &lt;mihi&gt; and if the peer goes down just after the ping?
+[22:28] &lt;mihi&gt; imo it is impossible to do network apps without callbacks
+[22:28] &lt;jrand0m&gt; right
+[22:28] &lt;mihi&gt; or lotsa threads, and i prefer callback on threads synchronized to death
+[22:29] &lt;jrand0m&gt; perhaps it should only return after its able to /attempt/ to connect?  
+[22:29] &lt;jrand0m&gt; or maybe the command pattern isn't the desired pattern
+[22:29] &lt;mihi&gt; that's what it's doing now. and what result should it return then?
+[22:30] &lt;mihi&gt; the point is that you want to have a result (different from an int for the connection id)
+[22:30] &lt;jrand0m&gt; right, for the client command, one wants the job (so it can be closed later), but for the genkey command, one wants the public key and private key
+[22:30] * mihi cannot think of any other info that is known at that point.
+[22:30] &lt;jrand0m&gt; agreed, me neither.
+[22:31] &lt;dup&gt; 0!
+[22:31] &lt;mihi&gt; and genkey should wait? okay, if you think so.
+[22:31] &lt;human&gt; mihi: well, something like a status ("ok" or "error") and error messages...
+[22:31] &lt;mihi&gt; human: error messages will be "too late" imo
+[22:31] &lt;mihi&gt; but do what you want...
+[22:32] &lt;mihi&gt; as long as you make it work with the streaming api afterwards as well...
+[22:32] &lt;jrand0m&gt; the pain points human is addressing are the kludges in the TunnelManager that parses the logging messages.  but I agree, as long as we can expose that information via the logging interface, thats fine
+[22:32] &lt;dup&gt; mihi is wise.
+[22:32] &lt;human&gt; human: some can be communicated immediately (e. g. when the tunnel port is still in use)
+[22:32] &lt;mihi&gt; human is talking to himself ;)
+[22:32] &lt;human&gt; oops! :-)
+[22:35] &lt;human&gt; maybe we should see what kind of applications are being built upon I2PTunnel
+[22:35] &lt;human&gt; the asynchronous interface is the Right Thing(TM), but it's more complicated to use
+[22:35] &lt;jrand0m&gt; I think it would be best if we could keep the same functionality for the current software - including the gui.
+[22:35] &lt;FillaMent&gt; maybe I'm jumping in ignorantly, but perhaps a method like one might find many that deal with HTTP: getHeader(String headerName)
+[22:35] &lt;FillaMent&gt; smake me as needed
+[22:35] &lt;FillaMent&gt; smack
+[22:36] * jrand0m smake's FillaMent
+[22:36] &lt;human&gt; and the TunnelManager doesn't need it (since it will *never* be able to properly support asynchronous events, due to its nature)
+[22:36] * kaji has a completely off-topic idea
+[22:36] * FillaMent resigns himself to advocacy =)
+[22:37] &lt;human&gt; but if mihi application needs to monitor the tunnels state, then the asynchronous interface is a Must(TM)
+[22:37] &lt;jrand0m&gt; human&gt; java -jar lib/I2PTunnel.jar\n.  We need to support async.
+[22:37] &lt;kaji&gt; i2p as a java applet so you can run it from strange computers quickly by going to a website
+[22:37] * Sciatica has quit IRC (EOF From client)
+[22:37] &lt;human&gt; jrand0m: yes, then we must rework the TunnelManager :-)
+[22:37] &lt;jrand0m&gt; kaji&gt; i2p 3.0 :)
+[22:38] &lt;jrand0m&gt; agreed human, the tunnelmanager implementation was a quick and dirty impl
+[22:38] &lt;jrand0m&gt; do you think you could look into how that'd need to proceed?
+[22:38] * human can volunteer to adapti the TunnelManager to the asynchronous interface, when ready
+[22:38] &lt;jrand0m&gt; w00t :)
+[22:40] &lt;jrand0m&gt; ok, are we ready for agenda item 3) I2COCP
+[22:40] &lt;human&gt; otherwise, it would be possible to create sync and async methods for I2PTunnel
+[22:40] &lt;jrand0m&gt; true
+[22:40] &lt;jrand0m&gt; but duplication might be overkill when a little refactoring would serve the purpose
+[22:41] * baffled has quit IRC (Leaving)
+[22:41] &lt;duck&gt; personal concern about the tunnels: apps not closing them, so your whole tunnelmanager becomes flooded
+[22:41] &lt;human&gt; jrand0m: yes, we should choose the easiest solution between reworking the TunnelManager or adding new APIs to I2PTunnel :-)
+[22:42] &lt;jrand0m&gt; thats a good point duck.  currently there are no timeouts / expirations, and it assumes the apps using the tunnelManager are well behaving (and that the tunnelManager has no bugs [hah!])
+[22:43] &lt;mihi&gt; apropos new apis: should the Streaming api classes "replace" the old ones or should it be possible to use both (w/ different commands?)
+[22:43] &lt;jrand0m&gt; mihi&gt; I think the streaming ones will want to replace, since once the streaming api is solid mode=GUARANTEED will go away
+[22:43] &lt;jrand0m&gt; (and hence the old ones wont work)
+[22:44] * MrEcho 's email sent
+[22:46] &lt;jrand0m&gt; anything else for the tunnel discussion?  (this obviously isn't the end of tunnel discussions overall ;)
+[22:47] * dup is now known as dm
+[22:47] &lt;jrand0m&gt; ok, I2COCP
+[22:47] &lt;jrand0m&gt; this was just something human suggested the other day and it seems to fill a gap thats not currently met.  but I think we want to hold off on implementing until we have something that wants to use it :)
+[22:48] &lt;wiht&gt; That is a somewhat long name, even abbreviated.
+[22:48] * jrand0m now calls I2COCP "Wilma"
+[22:48] &lt;human&gt; jrand0m: well, i was going to write the same words :-)
+[22:48] &lt;jrand0m&gt; heh cool
+[22:49] &lt;jrand0m&gt; ok, jumping on to 4) roadmap
+[22:49] &lt;human&gt; jrand0m: IMHO, in general, there should be a way for non-java apps to have a somewhat full access to the I2P network
+[22:49] &lt;jrand0m&gt; agreed
+[22:49] &lt;jrand0m&gt; the intent is that they'd use I2CP
+[22:50] &lt;jrand0m&gt; (as all java apps, i2ptunnel and the streaming library included, use that)
+[22:50] &lt;human&gt; jrand0m: yes
+[22:50] &lt;MrEcho&gt; I2PDNS "Janessa"
+[22:50] &lt;jrand0m&gt; but you're right, they'd want streaming too, so either tunnelmanager-&gt;i2ptunnel or i2cocp-&gt;streaming lib
+[22:50] * jrand0m has never met a Janessa
+[22:51] * Sciatica has joined #i2p
+[22:51] &lt;jrand0m&gt; ok, so, yeah, the roadmap has been updated.  no real big changes beyond pushing back 0.3 and 0.3.1 by 2 weeks, adding 2.0 info, and some more 1.0 criteria
+[22:51] &lt;human&gt; jrand0m: yeah, there should be "TCP" and "UDP"-like protocols for I2P, with complete protocol event reporting, accessible from non-java apps
+[22:52] &lt;MrEcho&gt; human, sounds good
+[22:52] &lt;jrand0m&gt; I want there to be every possible interface, but I don't want to overcommit with too many interfaces to be supported
+[22:52] * human wanted I2COCP (or whatever) for his I2P twisted transport (see http://www.twistedmatrix.com/), but for now he will happily kludge around the TunnelManager :-)
+[22:53] * w0rmus has quit IRC (Lost terminal)
+[22:53] &lt;jrand0m&gt; word.  that'd be best for now
+[22:54] &lt;jrand0m&gt; ok, any comments on the roadmap?  
+[22:55] &lt;jrand0m&gt; [nothing to see here, la la]
+[22:55] &lt;jrand0m&gt; ok, 5) i2pIM
+[22:55] &lt;jrand0m&gt; thecrypto isn't here, so we can just wait for a post to i2p@ with updates :)
+[22:55] &lt;wiht&gt; We have Jabber now, if I am not mistaken. Do we still need i2pIM?
+[22:55] &lt;jrand0m&gt; yes
+[22:55] &lt;jrand0m&gt; jabber has a server that gets cleartext.
+[22:56] &lt;wiht&gt; Oh. Very well, then; I was not aware of this.
+[22:56] &lt;jrand0m&gt; thats two strikes (a server, and cleartext)
+[22:56] &lt;jrand0m&gt; its a good solution for some things though, certainly
+[22:56] &lt;jrand0m&gt; actually, once thing I was thinking about this morning was if we could get i2pIM and i2psnark merged together, that would be Good.
+[22:57] &lt;jrand0m&gt; (but once thing at a time)
+[22:57] &lt;jrand0m&gt; actually, speaking of the devil, 6) i2psnark :)
+[22:57] &lt;human&gt; jrand0m: i sometimes used jabber with gnupg...
+[22:57] &lt;jrand0m&gt; for &gt;2 person chats?
+[22:58] &lt;jrand0m&gt; for one on one, I totally agree there are existing solutions
+[23:01] &lt;jrand0m&gt; ok, on to a fun one, 7) introducing I.Toopie :)
+[23:01] &lt;human&gt; how would you implement encrypted &gt;2 people chats? a shared private key?
+[23:01] &lt;jrand0m&gt; yes human
+[23:01] &lt;jrand0m&gt; or through n! shared keys in the group
+[23:02] &lt;human&gt; well, maybe it could be done above the existing jabber protocol...
+[23:02] &lt;mihi&gt; human: a shared symmetric key sent to all participants
+[23:02] &lt;jrand0m&gt; the hard part is dealing with joins &amp; leaves - key rotation /etc
+[23:03] * Sciatica has quit IRC (Ping timeout)
+[23:03] &lt;jrand0m&gt; its in no way a trivial issue.  its really really really hard.
+[23:03] * mihi acks
+[23:03] * human agrees
+[23:04] &lt;jrand0m&gt; (which is why having an app designed for it rather than trying to kludge it on top of another protocol may be worthwhile)
+[23:04] &lt;jrand0m&gt; but thecrypto can best describe his plans
+[23:04] &lt;jrand0m&gt; (though its my understanding he's still open to ideas for how to deal with groups)
+[23:05] * Sciatica has joined #i2p
+[23:06] &lt;jrand0m&gt; ok, moving on :)  [further discussion on i2p@, etc]
+[23:06] &lt;wiht&gt; What is I.Toopee, though?
+[23:06] &lt;lucky&gt; the mascot...
+[23:06] &lt;jrand0m&gt; I.Toopie is a guy holding a yellow mask in front of his face
+[23:06] * lucky shudders.
+[23:07] &lt;lucky&gt; uh huh.
+[23:07] &lt;lucky&gt; can i see it?
+[23:07] &lt;jrand0m&gt; http://wiki.invisiblenet.net/iip-wiki?I2PLogo
+[23:07] * mihi_backup has quit IRC (EOF From client)
+[23:07] &lt;lucky&gt; i have added java to my compile queue...
+[23:07] &lt;lucky&gt; but.. lol
+[23:07] &lt;lucky&gt; i already have 7 things running
+[23:07] &lt;lucky&gt; it'll be a while.
+[23:08] &lt;lucky&gt; aw, cute :P
+[23:08] &lt;MrEcho&gt; lol
+[23:08] &lt;jrand0m&gt; there have been lots of cool logos (I can't believe we've had the logo contest going on for 3 months!), and it looks like we've got some strong potential with I.Toopie.  in its simplicity, its conception, and its versatility.
+[23:08] &lt;jrand0m&gt; and, yeah, its cute ;)
+[23:08] &lt;mihi&gt; are some imgs broken or is my browser buggy?
+[23:08] &lt;jrand0m&gt; yeah, some are broken
+[23:09] &lt;jrand0m&gt; (they were put on temporary hosting sites 3 months ago)
+[23:09] &lt;MrEcho&gt; I.Toopie's stick is now all yellow ... 
+[23:09] &lt;MrEcho&gt; changed lastnight
+[23:09] &lt;jrand0m&gt; it is?
+[23:09] &lt;jrand0m&gt; people should UPDATE THE WIKI then 
+[23:09] &lt;jrand0m&gt; ;)
+[23:09] &lt;MrEcho&gt; hehe
+[23:09] &lt;MrEcho&gt; i dont have the pic anymore .. sorry
+[23:10] &lt;wiht&gt; I see the pictures with Opera, but not with Mozilla somewhy.
+[23:10] &lt;jrand0m&gt; you can see http://img.villagephotos.com/p/2003-10/437060/badass.jpg ?
+[23:10] &lt;jrand0m&gt; (thats one of the images on that page)
+[23:11] &lt;duck&gt; Access Denied (User Account Disabled)
+[23:11] &lt;jrand0m&gt; yeah, same here.
+[23:11] &lt;MrEcho&gt; i can see it
+[23:11] &lt;jrand0m&gt; but yes, DrWoo has done some kickass stuff with I.Toopie
+[23:11] &lt;MrEcho&gt; moz 1.5
+[23:11] * soros has quit IRC (EOF From client)
+[23:11] * mihi_away has joined #i2p
+[23:11] * lucky has quit IRC (EOF From client)
+[23:12] &lt;jrand0m&gt; same here MrEcho.   strange.
+[23:12] &lt;wiht&gt; MrEcho: I am using Mozilla 1.4.
+[23:12] &lt;jrand0m&gt; (same as in I'm on moz 1.5 and I'm getting access denied)
+[23:13] * jrand0m looks forward to a tray icon w/ i.toopie :)
+[23:13] &lt;jrand0m&gt; ok, moving on to 8) chess server
+[23:14] * Sciatica has quit IRC (Ping timeout)
+[23:14] * ion has quit IRC (Ping timeout)
+[23:14] &lt;jrand0m&gt; the latest hosts.txt (http://i2p.dnsalias.net/i2p/hosts.txt) contains the reference for chess.fillament.i2p
+[23:14] &lt;jrand0m&gt; you can use any old FICS client or just telnet to that and play away :)
+[23:14] &lt;jrand0m&gt; (yay)
+[23:15] &lt;kaji&gt; is there a goog fics client for windows?
+[23:15] &lt;jrand0m&gt; dunno, I ended up using telnet
+[23:15] &lt;wiht&gt; Does eboard work?
+[23:15] &lt;jrand0m&gt; (which had some fairly tough rampup to learn the commands)
+[23:15] * ion has joined #i2p
+[23:16] &lt;jrand0m&gt; dunno
+[23:16] * BpX has joined #i2p
+[23:16] &lt;wiht&gt; I will try it later.
+[23:16] &lt;jrand0m&gt; cool, if you could post up what you find, that'd be great
+[23:17] &lt;jrand0m&gt; ok, 9) DHT
+[23:17] * wilde has quit IRC (Ping timeout)
+[23:17] &lt;jrand0m&gt; we still don't have a dht, but perhaps this is a lead for something we can start to port
+[23:18] &lt;jrand0m&gt; (it uses UDP so getting it to use I2CP wouldn't be hard)
+[23:18] &lt;MrEcho&gt; dht???
+[23:18] &lt;MrEcho&gt; im blanking on that one
+[23:18] &lt;jrand0m&gt; MrEcho&gt; see [10] in the email ;)
+[23:18] &lt;jrand0m&gt; http://wiki.invisiblenet.net/iip-wiki?DHT
+[23:18] &lt;Nightblade&gt; entropy is a good enough temporary solution
+[23:18] &lt;jrand0m&gt; agreed
+[23:19] &lt;jrand0m&gt; though I think we need to look at a long term solution as well
+[23:19] * soros has joined #i2p
+[23:19] * lucky has joined #i2p
+[23:20] * human is worried about gcj/kaffe compatibility with DHTs like Bamboo (http://bamboo-dht.org/)
+[23:20] &lt;jrand0m&gt; yeah, bamboo is 1.4
+[23:20] &lt;MrEcho&gt; afk
+[23:20] &lt;jrand0m&gt; thats the glory of i2cp though - the router &amp; tunnels can be gcj'ed, while things that access them can be whatever
+[23:21] &lt;jrand0m&gt; it /is/ purely for an app though - not as part of the core
+[23:21] &lt;jrand0m&gt; I'm just trying to think of things that would help the end users who end up downloading i2p do something useful right off the bat
+[23:22] &lt;jrand0m&gt; (being able to post uncensorable content anonymously would be a good useful thing)
+[23:22] &lt;jrand0m&gt; s/uncensorable/very censorship resistant/
+[23:23] &lt;human&gt; jrand0m: ah, ok - i thought that bamboo was going to replace Kademlia for the NetworkDB :-)
+[23:23] &lt;Nightblade&gt; the squid proxy is something they can do... for users for example in china that would be a very nice thing to have
+[23:23] &lt;jrand0m&gt; Nightblade&gt; right, but the squid isn't scalable
+[23:24] &lt;Nightblade&gt; yeah i think it would be interesting to have a kind of distributed JAP
+[23:24] &lt;jrand0m&gt; agreed
+[23:24] &lt;jrand0m&gt; so that's also another thing that would be great if people could check into :)
+[23:24] &lt;mihi&gt; Nightblade: the prob is abuse handling - i won't open my box for any outgoing http
+[23:24] &lt;jrand0m&gt; I'm sure some people will though
+[23:25] &lt;Nightblade&gt; with an additional part where an individual node could choose what sites they want to proxy for people...  a client could send a requst for "whitehouse.com" and then one of the nodes that will do the proxying and will permit that url can answer
+[23:25] &lt;Nightblade&gt; yeah i think it would have to have some kind of access controls
+[23:25] &lt;Nightblade&gt; blacklist or whitelist
+[23:25] &lt;jrand0m&gt; right
+[23:25] &lt;Nightblade&gt; of domain names
+[23:26] &lt;jrand0m&gt; its the "exit policy" system.  though this is a whole project in and of itself
+[23:27] &lt;MrEcho&gt; it could ride on the DNS system... i guess
+[23:27] &lt;jrand0m&gt; certainly
+[23:27] &lt;wiht&gt; mihi: What if you limit the bandwidth used? Or is it the websites accessed that could get you in trouble?
+[23:27] &lt;MrEcho&gt; at a very later date lol
+[23:27] &lt;jrand0m&gt; wiht&gt; many providers explicitly disallow running servers of any kind
+[23:28] &lt;MrEcho&gt; verizon fucks with port 21 for sure...
+[23:28] &lt;wiht&gt; jrand0m: Oh. Yes, that is a problem.
+[23:28] &lt;Nightblade&gt; there would have to be some way for clients to request the sites they want downloaded for them..  Broadcast requests are not a very good solution, especially on i2p
+[23:29] &lt;mihi&gt; wiht: the problem is the websites that can be accessed. compare the lawsuit of JAP some time ago. /me lives in the same country
+[23:29] &lt;jrand0m&gt; agreed.  though broadcast isn't possible without brute forcing a ~2^2300 keyspace ;)
+[23:30] &lt;jrand0m&gt; right mihi, people in oppresive regimes would not be able to safely run outproxies
+[23:30] &lt;wiht&gt; mihi: What was the lawsuit? I do not remember.
+[23:30] * dm has quit IRC (Ping timeout)
+[23:30] &lt;Nightblade&gt; i mean, even if you had a list of destinations that provide web proxying, you would not want to have to broadcast to them all
+[23:30] &lt;jrand0m&gt; right Nightblade
+[23:30] &lt;Nightblade&gt; request broadcast i mean
+[23:31] &lt;mihi&gt; the prob was that someone had accessed a child porn site and it went over a JAP proxy and they could not tell where the request came from. this was interpreted as thowing stones into police's work
+[23:31] &lt;jrand0m&gt; people may want to check out crowds or rewebber to see other projects that worked on this same task
+[23:31] &lt;wiht&gt; mihi: Ah. Thank you for the explanation. I see understand you are concerned now.
+[23:31] * mihi_away has quit IRC (Ping timeout)
+[23:31] &lt;mihi&gt; and made that change to the jap software that makes it possible to catch people. which was removed later
+[23:32] &lt;wiht&gt; Er, I understand why you are concerned.
+[23:32] &lt;mihi&gt; at the end it came out that the JAP would not have to disclose the data, but i don't want to know what the lawyers cost...
+[23:32] &lt;Nightblade&gt; yeah but didn't the police seize the information anyway?
+[23:32] &lt;jrand0m&gt; yes
+[23:33] &lt;mihi&gt; they did...
+[23:33] &lt;jrand0m&gt; but anyway, yes, both a scalable DHT and a scalable web proxy would be Really Good Things to have by 1.0
+[23:34] &lt;mihi&gt; and they cannot give it backk, can they?
+[23:34] * BpX has quit IRC (Ping timeout)
+[23:36] * Sciatica has joined #i2p
+[23:36] &lt;jrand0m&gt; ok, anything else for point 9? or are we on to 10/11) NS/DNS?
+[23:36] &lt;wiht&gt; I would like to make a brief comment about the installer after topic 10.
+[23:37] &lt;jrand0m&gt; 'k perhaps lets hit that now, since NS/DNS might not be uber-brief? ;)
+[23:37] &lt;wiht&gt; All right. The router has a start script and a stop script.
+[23:37] &lt;jrand0m&gt; right
+[23:37] &lt;wiht&gt; I would like all of the services to be done that way--to have both a start and a stop script.
+[23:37] &lt;jrand0m&gt; most of them do
+[23:37] &lt;jrand0m&gt; don't they?
+[23:38] &lt;jrand0m&gt; oh, not stop scripts
+[23:38] &lt;wiht&gt; No, just the router.
+[23:38] &lt;wiht&gt; That way, desired services could be started on computer bootup, just like the router. I made a post to that effect to the mailing list.
+[23:38] &lt;jrand0m&gt; aum is working on the i2pmgr, which is going to be both a console based and gui based control center for the services and the router itself
+[23:38] &lt;wiht&gt; Let's say I want to start the eep and nntp on bootup. Currently, I can't do that.
+[23:39] &lt;jrand0m&gt; right, you'd need to nohup startEepProxy.sh &amp;
+[23:39] &lt;wiht&gt; All right. By the way, where are these scripts in CVS?
+[23:39] &lt;MrEcho&gt; k im back
+[23:39] * mihi_away has joined #i2p
+[23:39] &lt;jrand0m&gt; wiht&gt; the scripts are in the Install.java (aka hacked)
+[23:39] &lt;wiht&gt; jrand0m: Thanks./
+[23:40] &lt;jrand0m&gt; but good point, we want it to be as simple as possible to start on boot, as well as start on demand
+[23:41] &lt;jrand0m&gt; ok, on to 10/11) ns/dns
+[23:41] &lt;MrEcho&gt; well check my email
+[23:41] &lt;MrEcho&gt; theres a few things i forgot about putting in there
+[23:41] &lt;jrand0m&gt; unfortunately your email didn't really go through to the web interface well :/
+[23:41] &lt;MrEcho&gt; like "temp" names
+[23:41] &lt;MrEcho&gt; ??
+[23:42] * Sciatica has quit IRC (Ping timeout)
+[23:42] * ion has quit IRC (Ping timeout)
+[23:42] &lt;jrand0m&gt; MrEcho&gt; http://i2p.dnsalias.net/pipermail/i2p/2004-January/000072.html
+[23:42] &lt;MrEcho&gt; because of the gif or something
+[23:42] &lt;MrEcho&gt; shit .. i singed it
+[23:43] &lt;MrEcho&gt; sorry
+[23:43] &lt;jrand0m&gt; the mailing list is really intended to be text only.  pgp sigs are fine (others have posted signed things)
+[23:43] &lt;kaji&gt; whats a good free small antivirus?
+[23:43] * ion has joined #i2p
+[23:43] &lt;jrand0m&gt; kaji&gt; linux
+[23:43] * Sciatica has joined #i2p
+[23:43] &lt;wiht&gt; LOL.
+[23:43] &lt;kaji&gt; that runs with my hardware
+[23:43] &lt;wiht&gt; kaji: Try AVG Antivirus for Windows.
+[23:44] * MrEcho_ has joined #i2p
+[23:44] * MrEcho has quit IRC (EOF From client)
+[23:44] &lt;MrEcho_&gt; fuckign iip
+[23:44] &lt;jrand0m&gt; MrEcho / (and anyone else interested in the NS/DNS issue)&gt; have you read http://zooko.com/distnames.html ?
+[23:44] &lt;MrEcho_&gt; j, should i resend the email?
+[23:44] &lt;jrand0m&gt; it went through to the list fine, it just didn't get web archived correctly
+[23:44] &lt;MrEcho_&gt; ya
+[23:45] &lt;wiht&gt; jrand0m: I did not read it yet.
+[23:45] &lt;MrEcho_&gt; ill take a look at it later
+[23:45] * mrflibble has joined #i2p
+[23:45] &lt;jrand0m&gt; for those who aren't on the list, I've saved MrEcho_'s email at http://i2p.dnsalias.net/~jrandom/mrecho_dns.txt
+[23:46] &lt;MrEcho_&gt; thanks J
+[23:46] &lt;kaji&gt; its gay, it wants an email adress
+[23:46] &lt;jrand0m&gt; my concern is with the security and scalability of the naming service.  once we find a solution that meets those needs, fantastic, but until we do, we should be careful of interim solutions.
+[23:47] &lt;jrand0m&gt; kaji&gt; email lists usually want an email address, yeah ;)
+[23:47] &lt;kaji&gt; i mean AVG Antivirus
+[23:47] &lt;jrand0m&gt; oh ;)
+[23:48] &lt;wiht&gt; MrEcho has several good ideas that I did not have in my specification, such as a ban list for bad clients.
+[23:49] &lt;MrEcho_&gt; not really a ban list
+[23:49] &lt;jrand0m&gt; once there are 1000 clients, does that mean that it would take 125 lookups to find a value?
+[23:49] &lt;MrEcho_&gt; no
+[23:49] &lt;wiht&gt; Not a list, but banning bad clients is something I did not have.
+[23:50] &lt;MrEcho_&gt; 2-4 clients for checking
+[23:50] &lt;jrand0m&gt; so every client will have 250 entries?
+[23:50] * mihi_away is now known as mihi_backup
+[23:50] &lt;MrEcho_&gt; no
+[23:50] &lt;wiht&gt; With what I have, it would be one lookup, possibly forwarded a couple of times to reach an authoritative server.
+[23:50] &lt;MrEcho_&gt; clients will only have what they need
+[23:51] &lt;MrEcho_&gt; it will keep querying other Clients untill they get data that matches for the check
+[23:51] &lt;jrand0m&gt; so with 4 peers, it'd do a random search and on average it'd take 125 lookups
+[23:51] &lt;jrand0m&gt; (1000/4/2)
+[23:51] &lt;jrand0m&gt; or are the peers a DHT?
+[23:52] &lt;jrand0m&gt; (with some maintenance protocol?)
+[23:52] &lt;jrand0m&gt; or a search tree?
+[23:52] &lt;MrEcho_&gt; in a way yes
+[23:52] &lt;MrEcho_&gt; ill have a cut off on client searches, it will just query the MS
+[23:53] &lt;jrand0m&gt; secure distributed naming is a fairly well studied problem - what would make your proposal easier to analyze the security and scalability would be if you could draw comparisons and validate variations on other approaches, perhaps?
+[23:54] &lt;MrEcho_&gt; if it doesnt find / or get enough data from Clients within a set range it will then just query the MS.
+[23:54] &lt;jrand0m&gt; as is, there isn't enough detail for me to have confidence in the scalability or security of the architecture.  not to say it couldn't work out well, I just can't see that it would yet.
+[23:54] &lt;MrEcho_&gt; cany u stop typing for a sec
+[23:54] * jrand0m stops typing.
+[23:55] &lt;MrEcho_&gt; its going to work .. it will have scalability, it will have security
+[23:56] &lt;MrEcho_&gt; the more users the better it will get
+[23:56] &lt;jrand0m&gt; so "trust me", 'eh?
+[23:56] &lt;MrEcho_&gt; do you trust the Internet DNS system?
+[23:56] &lt;jrand0m&gt; for some tasks.
+[23:57] &lt;jrand0m&gt; for many, no.
+[23:57] &lt;jrand0m&gt; (its quite easy for govts / etc to get records changed - court cases order registrars to update all the time)
+[23:58] &lt;MrEcho_&gt; only other way of doing it is having big ass lists of Names and lots of crypto on every client
+[23:58] &lt;MrEcho_&gt; and being dynamic .. forget about it
+[23:59] * mrflibble has quit IRC (EOF From client)
+[23:59] &lt;jrand0m&gt; I suggest reviewing zooko's paper before proceeding further, and answering his final point 5 ("why I'm wrong")
+Session Time: Wed Jan 07 00:00:00 2004
+[00:01] &lt;jrand0m&gt; ok, thats probably about it for point 10/11 (lots of future discussion still left on that, of course)
+[00:02] &lt;jrand0m&gt; anyone have any other thoughts, etc?
+[00:02] &lt;wiht&gt; Yes.
+[00:03] &lt;jrand0m&gt; care to share with the class?  :)
+[00:03] &lt;wiht&gt; I will be rewriting the specification I wrote. I would like to use a local SQL server to store data, not files.
+[00:03] &lt;jrand0m&gt; ah cool
+[00:03] &lt;jrand0m&gt; (same concerns go for the spec you wrote too - if you could answer zooko's last question, that'd be key :)
+[00:03] * mrflibble has joined #i2p
+[00:03] &lt;wiht&gt; Let MySQL or a similar server manage data storage, and let Java query that server.
+[00:04] &lt;duck&gt; huh ? zooko specs?
+[00:04] &lt;wiht&gt; I think that will be easier to implement.
+[00:04] &lt;jrand0m&gt; duck&gt; naw, I'm just pointing people at his old article "Names: Decentralized, Secure, Human-Meaningful: Choose Two"
+[00:04] &lt;duck&gt; ah that
+[00:04] &lt;Nightblade&gt; wiht: what specification is that (i missed a lot of the meeting)?
+[00:04] * MrEcho has joined #i2p
+[00:04] &lt;jrand0m&gt; (a lot easier than rehashing why supernode/centralized servers are scary security issues ;)
+[00:05] * MrEcho_ has quit IRC (EOF From client)
+[00:05] * mihi 'd have something for the log as well ;)
+[00:05] &lt;mihi&gt; something longer ;)
+[00:05] &lt;mihi&gt; *** I2Ping results:
+[00:05] &lt;mihi&gt; + + +   eco.i2p
+[00:05] &lt;mihi&gt; + - -   jabber.duck.i2p
+[00:05] &lt;mihi&gt; - + +   i2pcvs.i2p
+[00:05] &lt;mihi&gt; - + +   duck.i2p
+[00:05] &lt;mihi&gt; - + -   jap.eco.i2p
+[00:05] &lt;jrand0m&gt; Nightblade&gt; it was posted to iip-dev back in... august?
+[00:05] &lt;mihi&gt; - + +   irc.duck.i2p
+[00:05] &lt;mihi&gt; - + +   human.i2p
+[00:06] &lt;mihi&gt; - - +   nntp.duck.i2p
+[00:06] &lt;mihi&gt; - - -   tc.i2p
+[00:06] &lt;mihi&gt; - - -   dyad.i2p
+[00:06] &lt;mihi&gt; - - -   bozo.i2p
+[00:06] &lt;mihi&gt; - - -   ogg.aum.i2p
+[00:06] &lt;mihi&gt; - - -   fcp.entropy.i2p
+[00:06] &lt;mihi&gt; - - -   http.entropy.i2p
+[00:06] &lt;Nightblade&gt; jrandom: oh, before my time.. :)
+[00:06] &lt;mihi&gt; - - -   www.mail.i2p
+[00:06] &lt;mihi&gt; - - -   mp3.aum.i2p
+[00:06] &lt;mihi&gt; - - -   smtp.mail.i2p
+[00:06] &lt;wiht&gt; Nightblade: I posted it on September 15th.
+[00:06] &lt;mihi&gt; - - -   pop.mail.i2p
+[00:06] &lt;mihi&gt; - - -   mp3.tc.i2p
+[00:06] &lt;mihi&gt; - - -   lp.i2p
+[00:06] &lt;mihi&gt; - - -   kaji.i2p
+[00:06] &lt;mihi&gt; - - -   nm.i2p
+[00:06] &lt;mihi&gt; - - -   squid.i2p
+[00:06] &lt;mihi&gt; - - -   chess.fillament.i2p
+[00:06] &lt;mihi&gt; - - -   mesh.firerabbit.i2p
+[00:06] &lt;mihi&gt; - - -   nightblade.i2p
+[00:06] &lt;mihi&gt; - - -   aum.i2p
+[00:06] &lt;MrEcho&gt; gezz is anyone up and running?
+[00:06] &lt;mihi&gt; - - -   fillament.i2p
+[00:06] &lt;mihi&gt; *** Finished.
+[00:06] &lt;mihi&gt; why are so many hosts down...?
+[00:06] * jrand0m isn't running my servers atm
+[00:07] &lt;FillaMent&gt; I can connect to myself on both eep and chess
+[00:07] * mrflibble has quit IRC (Ping timeout)
+[00:07] &lt;jrand0m&gt; oh wait, i2pcvs is up, neat
+[00:07] &lt;Nightblade&gt; mihi: mine isn't up because the i2ptunnel crashes for me after a few hours
+[00:07] &lt;mihi&gt; so my router is broken (or it's usual I2P problems...)
+[00:08] &lt;jrand0m&gt; really Nightblade?  please report i2ptunnel crashes (bugzilla would be nice)
+[00:08] &lt;Nightblade&gt; it is in the bugzilla
+[00:08] &lt;lucky&gt; hi
+[00:08] &lt;Nightblade&gt; hold..
+[00:08] &lt;FillaMent&gt; Nightblade: what JVM?
+[00:08] &lt;Nightblade&gt; #39
+[00:08] &lt;wiht&gt; My router has been running for more than 12 hours now, although it had a problem in registering itself.
+[00:09] &lt;Nightblade&gt; java version "1.4.2-p5"
+[00:09] &lt;Nightblade&gt; on freebsd...  it could be a jvm problem, i don't know. java support isn't too good on freebsd
+[00:09] &lt;jrand0m&gt; you're right Nightblade, my bad
+[00:09] &lt;jrand0m&gt; thats the fairly infrequent i2cp bug 
+[00:09] &lt;jrand0m&gt; is that consistent for you?
+[00:09] &lt;Nightblade&gt; the router is very stable for me, just the i2ptunnel server tunnel gives me problems
+[00:09] &lt;Nightblade&gt; yeas it happened several times
+[00:10] &lt;Nightblade&gt; i haven't tried it recently though
+[00:10] * jrand0m just pulled fillament's eepsite
+[00:10] &lt;jrand0m&gt; (first try, just noticed the window was complete)
+[00:10] &lt;FillaMent&gt; Yeah,, I just jabbered with duck, wiht's trying to hit chess
+[00:10] &lt;jrand0m&gt; ah cool
+[00:10] &lt;jrand0m&gt; but yes, there are still reliability issues to be dealt with in the network.
+[00:10] * FillaMent nudges people with the included winking, "He'll probably be wanting to play."
+[00:10] * human 's eepsite is still up - it means that 'killall java' really helped... :-)
+[00:10] &lt;wiht&gt; I just successfully connected to chess server.
+[00:10] &lt;duck&gt; yeah?
+[00:11] &lt;jrand0m&gt; lol FillaMent
+[00:11] * mrflibble has joined #i2p
+[00:12] &lt;Nightblade&gt; is it safe to run the cvs version of i2p
+[00:12] &lt;jrand0m&gt; /me succesfully fetches human's 1984-2004: twenty years of GNU! :-) 
+[00:12] &lt;jrand0m&gt; yes Nightblade
+[00:12] &lt;FillaMent&gt; could not get eco...
+[00:12] &lt;Nightblade&gt; ok maybe i'll give that a try
+[00:12] &lt;duck&gt; with freenet you should always run the latest cvs version!
+[00:13] &lt;duck&gt; only then it is bugfree
+[00:13] &lt;duck&gt; s/freenet/i2p/
+[00:13] * jrand0m pulled eco.i2p
+[00:13] &lt;FillaMent&gt; just got duck
+[00:13] &lt;jrand0m&gt; "Jan 4: First field test of I2PSnark. Pretty catastrophic: no transfer at all. Guess my single router test environment wasn't very representative :-) Back to the drawing board... "
+[00:13] &lt;jrand0m&gt; d'oh
+[00:13] &lt;duck&gt; well, it worked actually
+[00:13] &lt;duck&gt; ardvark could snark something from me
+[00:14] &lt;jrand0m&gt; bt precreates the files - were the files actually valid?
+[00:14] &lt;duck&gt; but ze did find out the next day
+[00:14] &lt;duck&gt; because it was obscured in the logs
+[00:14] &lt;jrand0m&gt; what, you mean the logs i2p generates are fairly insane?  nawwwwww
+[00:14] &lt;duck&gt; no
+[00:14] &lt;duck&gt; the i2psnark output
+[00:14] &lt;jrand0m&gt; ah
+[00:15] &lt;duck&gt; additionally, I suspect that snark does too much churning (sp?)
+[00:15] &lt;duck&gt; the normal bittorrent client seems to be more easy
+[00:15] &lt;duck&gt; also the high delays on i2p might cause premature blocks
+[00:16] * mrflibble has quit IRC (Ping timeout)
+[00:16] &lt;duck&gt; last thing is that we had to restart i2ptunnel a few times :/
+[00:16] &lt;jrand0m&gt; agreed
+[00:16] &lt;human&gt; final question about I2PTunnel / I2PTunnelManager (yes, i know, i'm boring): what about my patch to make "openclient" and "openserver" return a meaningful jobId?
+[00:16] &lt;jrand0m&gt; so, yeah, lots of work to do
+[00:16] &lt;human&gt; 1. let's accept it to make the TunnelManager work until the new asynchronous architecture will be roxoring
+[00:17] &lt;human&gt; 2. your patch plain sucks, fuck off, and fuck the TunnelManager
+[00:17] &lt;human&gt; 3. ...
+[00:17] * MrEcho_ has joined #i2p
+[00:17] * mihi is for 3 ;)
+[00:17] * MrEcho has quit IRC (EOF From client)
+[00:17] &lt;jrand0m&gt; 4. lets see how we can update the tunnel manager to go async?  shouldn't be too hard
+[00:17] &lt;jrand0m&gt; the patch is good, but mihi has a point
+[00:18] &lt;human&gt; jrand0m: yes, i agree
+[00:18] &lt;jrand0m&gt; we still have 1+ weeks until 0.3, so we've got time until the next full release
+[00:18] &lt;human&gt; jrand0m: but my doubt is: how long will it take to have the async interface to be implemented in the TunnelManager?
+[00:18] &lt;jrand0m&gt; tunnelmanager itself was 2 hours, I could add async tonight
+[00:19] &lt;jrand0m&gt; (all that needs to happen is an update to the BufferedLogging to accept .set calls)
+[00:19] &lt;human&gt; jrand0m: (with "to have" i also mean "to have it implemented even in I2PTunnel)
+[00:19] &lt;jrand0m&gt; (or .nofity/etc)
+[00:19] &lt;jrand0m&gt; right
+[00:19] * mrflibble has joined #i2p
+[00:20] &lt;jrand0m&gt; if you'd prefer, I could start with your patch (which adds the job id) and merge it with the updates for async
+[00:21] &lt;human&gt; jrand0m: i could add the async interface to TunnelManager myself, but the interface still doesn't exist :-)
+[00:22] &lt;jrand0m&gt; right, just add public void notifyEvent(String eventName, Object value); to Logging.java
+[00:22] &lt;human&gt; jrand0m: i'd suggest "let's merge the dirty hack to make the job ids in the 0.3 release somewhat work, and then work on the async interface"
+[00:23] &lt;jrand0m&gt; 0.3 is still a ways off
+[00:23] &lt;mihi&gt; 0.3 should have the streaming api anyway, shouldn't it?
+[00:23] &lt;human&gt; jrand0m: i'm talking about the worst case
+[00:23] &lt;wiht&gt; jrand0m: Maybe there should be another version before 3.0 to settle these issues?
+[00:23] &lt;jrand0m&gt; yes mihi
+[00:23] &lt;mihi&gt; human: the worst case is "cvs rollback &amp;&amp; patch -p0 your.patch"
+[00:24] &lt;jrand0m&gt; ok, how about this.  I'll get the async implemented and committed tonight, if you could look at it tomorrow human and see what needs to be done to get your update in there?
+[00:26] &lt;FillaMent&gt; jrand0m: do you have a job?
+[00:27] &lt;jrand0m&gt; i2p
+[00:27] &lt;duck&gt; get 1.0 done!
+[00:27] &lt;FillaMent&gt; I mean a source of income
+[00:27] &lt;jrand0m&gt; :)
+[00:27] &lt;FillaMent&gt; that you have to work for
+[00:27] &lt;jrand0m&gt; income is overrated.
+[00:27] * jrand0m fired my boss
+[00:27] &lt;Nightblade&gt; "will code for food"  - that's my motto
+[00:27] &lt;Nightblade&gt; lol
+[00:27] &lt;human&gt; mihi: well, but i and aum (who is working on a python app for the TunnelManager) would like to have jobIds ASAP...
+[00:28] &lt;human&gt; jrand0m: ok, i'll work on your changes later/tomorrow
+[00:28] &lt;FillaMent&gt; Job/Money, sleep/hygiene, food, side projects, social life: Choose any 3
+[00:29] * jrand0m only choses one.
+[00:29] &lt;jrand0m&gt; word human
+[00:30] &lt;FillaMent&gt; Anyone have any other ideas for "just tunnel to" services that would be nice to have on the network?
+[00:30] * jrand0m still wants a telnet based Adventure :)
+[00:30] &lt;jrand0m&gt; or a waffle bbs
+[00:30] * duck is now known as enduser
+[00:30] * jrand0m kicks enduser
+[00:31] &lt;jrand0m&gt; (damn, no ops)
+[00:31] &lt;FillaMent&gt; For OS/2 there was a comm driver that could map a comm port to a TCP port =)
+[00:31] &lt;enduser&gt; what difference will I see as enduser when I2PTunnel uses the SteamingAPI?
+[00:31] * enduser is now known as duck
+[00:31] &lt;jrand0m&gt; none
+[00:31] &lt;human&gt; lol
+[00:31] &lt;FillaMent&gt; FillaMent: friend of mine ran a BBS that way for a while
+[00:31] &lt;jrand0m&gt; performance, and perhaps anonymity
+[00:31] * human would like a I2P tunnel to a rootshell
+[00:32] &lt;human&gt; any volunteer? :-)
+[00:32] &lt;duck&gt; rootshell on a UML
+[00:32] &lt;jrand0m&gt; chroot'ed rootshells would be good
+[00:32] &lt;jrand0m&gt; or UML'ed :)
+[00:32] &lt;FillaMent&gt; human: had I a spare boxen, I'd do it
+[00:32] &lt;jrand0m&gt; hehe FillaMent
+[00:32] &lt;duck&gt; vnc connection to my vmware win98?
+[00:32] &lt;FillaMent&gt; seriously though guys...
+[00:32] &lt;wiht&gt; E-mail server would be a good one as well. Or do we have that already?
+[00:32] &lt;FillaMent&gt; wiht: think TC has pop and SMTP
+[00:33] &lt;jrand0m&gt; thats aum, but they're offline, as his box is offline
+[00:33] * human could offer telnet accounts on his GNU/Hurd system...
+[00:33] &lt;jrand0m&gt; ooOOoo
+[00:33] &lt;FillaMent&gt; well, I'm not too keen on setting up open SMTP access yet
+[00:33] &lt;jrand0m&gt; understandable
+[00:34] &lt;FillaMent&gt; maybe when the network is more stable and I've got money to up my bandwidth
+[00:34] &lt;wiht&gt; How about a PGP keyserver?
+[00:34] &lt;mihi&gt; FillaMent: you could set up a tunnel pointing to a cleartext remailer
+[00:34] &lt;FillaMent&gt; wiht: now THAT's a great idea =)
+[00:35] &lt;FillaMent&gt; mihi heh... I could just point the tunnel to my ISP SMTP box =)
+[00:35] &lt;mihi&gt; FillaMent: this would make *you* be resposible for abuse...
+[00:35] &lt;mihi&gt; s/be//
+[00:35] &lt;duck&gt; http://www.mit.edu/people/marc/pks/pks.html
+[00:36] &lt;duck&gt; seriously, should duck enterprises consider running a pgp keyserver?
+[00:37] &lt;FillaMent&gt; duck: I was poking into that myself... you want to handle it?
+[00:37] &lt;duck&gt; we have been one of the most stable service providers according to mihi's independent ping logs
+[00:37] &lt;jrand0m&gt; hehe
+[00:37] &lt;wiht&gt; duck: Yes, please consider it.
+[00:37] &lt;jrand0m&gt; btw duck, how do you do that?  do you restart periodically or just run on a reliable OS and JVM?
+[00:38] &lt;FillaMent&gt; question: does the JVM cache DNS resolves?
+[00:38] &lt;duck&gt; restarting is for kernel updates
+[00:38] &lt;jrand0m&gt; yes, but you can do some nasty trickery to avoid it FillaMent
+[00:38] * wiht notes that the meeting has gone on for 2h40m now.
+[00:38] &lt;jrand0m&gt; oh yeah,
+[00:39] * mrflibble sticks his hand up
+[00:39] &lt;jrand0m&gt; um, this meeting's log is going to be huge.  and here I was thinking posthing things up front would /shorten/ the meeting
+[00:39] &lt;jrand0m&gt; sup mrflibble?
+[00:39] &lt;FillaMent&gt; jrand0m: okay... because I am without downage but my IP changes periodically... my dyndns update script runs every hour so max 60+~10min of my named addy not pointing to my IP...
+[00:39] &lt;FillaMent&gt; how would that affect my router's presence on the network?
+[00:40] &lt;mrflibble&gt; my box could be availalbe for some kind of demony thing
+[00:40] &lt;jrand0m&gt; cool FillaMent, shouldn't be much of a problem, as long as you point to your dyndns
+[00:40] &lt;wiht&gt; mrflibble: demony?
+[00:40] &lt;mrflibble&gt; i guess it depends how much bandwidth the thing would use
+[00:40] &lt;mrflibble&gt; daemony
+[00:40] &lt;jrand0m&gt; w3rd mrflibble - has the router been working reliably for you, or are you just being a good sameritan?  :)
+[00:41] &lt;mrflibble&gt; not really, but that's because my local bw is saturated atm
+[00:41] &lt;mrflibble&gt; im not running it on my colo yet
+[00:41] &lt;mrflibble&gt; want to play around with it locally first
+[00:41] &lt;jrand0m&gt; ah cool.  yeah, i2p isn't really ready for wide deployment, still for testing mainly
+[00:42] &lt;FillaMent&gt; Heh.. I'll point a tunnel to my CUPS server and you can have anonymous printing =)
+[00:42] &lt;jrand0m&gt; rofl
+[00:42] &lt;mrflibble&gt; if there's something that u want me to run that would use &lt;40gb bw a month, lmk
+[00:42] &lt;FillaMent&gt; just include a banner page so I know where to mail the hardcopy =)
+[00:42] &lt;mrflibble&gt; hehe
+[00:43] &lt;jrand0m&gt; wikked mrflibble, I'm sure we'll take you up on that :)
+[00:43] &lt;mihi&gt; banner | lpr ? ;)
+[00:43] &lt;FillaMent&gt; mihi you cah set up CUPS with a banner page
+[00:43] &lt;mrflibble&gt; oky doky!
+[00:43] &lt;mihi&gt; banner will most likely create lots of pages ;)
+[00:43] &lt;jrand0m&gt; ok, before we get to the mixminion-&gt;printer-&gt;post office gateway discussion, lets close this meeting ;)
+[00:44] * jrand0m readies the *baf*'er
+[00:44] * jrand0m *baf*'s the meeting closed.
+</div>

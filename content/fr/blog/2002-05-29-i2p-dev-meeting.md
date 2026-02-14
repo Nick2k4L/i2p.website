@@ -1,17 +1,1142 @@
 ---
-title: "Réunion des développeurs I2P, 29 mai 2002"
+title: "Réunion de développement I2P, 29 mai 2002"
 date: 2002-05-29
 author: "nop"
 description: "Journal de la réunion de développement I2P du 29 mai 2002."
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)
 
-## Récapitulatif rapide
+## Récapitulatif
 
-<p class="attendees-inline"><strong>Présents:</strong> Aroonkoa, Aster, athena, Banks, Chocolate, codeshark, ellison, Kronos-X, MiB, mids, Mole, Neo, nop, ptsc, SkyRat, Somedude, tikk, UserX, Zwolly</p>
+<p class="attendees-inline"><strong>Présents :</strong> Aroonkoa, Aster, athena, Banks, Chocolate, codeshark, ellison, Kronos-X, MiB, mids, Mole, Neo, nop, ptsc, SkyRat, Somedude, tikk, UserX, Zwolly</p>
 
 ## Journal de réunion
 
-<div class="irc-log"> --- Journal ouvert Tue May 28 22:39:11 2002 22:39 <+logger> journalisation démarrée 22:40 -!- mids a changé le sujet de #iip-dev en : IIP Development Channel (modéré) | Les réunions de développement hebdomadaires ont lieu ici à 0000 UTC le mercredi. (mardi si vous êtes dans un fuseau horaire négatif) | (pendant les réunions) journal en direct http://mids.student.utwente.nl/~mids/meeting2/livelog.txt 22:52 -!- mode/#iip-dev [-v logger] par mids 23:42 -!- mids a changé le sujet de #iip-dev en : IIP Development Channel (modéré) | Les réunions de développement hebdomadaires ont lieu ici à 0000 UTC le mercredi. (mardi si vous êtes dans un fuseau horaire négatif) | http://mids.student.utwente.nl/~mids/iip/ --- Jour changé Wed May 29 2002 00:16 [Utilisateurs #iip-dev] 00:16 [@mids] [ athena] [ logger] [ MiB] [ SubLiminaL] 00:16 -!- Irssi: #iip-dev: Total de 5 pseudos [1 opérateur, 0 halfops, 0 voix, 4 normaux] 00:26 -!- mode/#iip-dev [+o UserX] par mids 00:29 -!- mode/#iip-dev [+o codeshark] par mids 00:32 <@codeshark> mids: j'ai un point supplémentaire pour aujourd'hui 00:32 <@codeshark> on a besoin de plus de relais 00:33 <@mids> où veux-tu le mettre ? 00:34 <@codeshark> stabilité des réseaux 00:34 <@mids> fait 00:56 <@UserX> mids: je vais devoir partir environ 30 minutes après le début de la réunion 00:56 <@mids> ok, si tu as des points à l'ordre du jour, envoie-les moi en message, et ils seront discutés 00:56 <@mids> pareil si tu veux changer l'ordre 00:57 <@mids> même si j'ai essayé de mettre les plus importants en haut 00:58 <@codeshark> ajoute à l'ordre du jour : changer l'heure de la réunion 00:59 <@mids> pour quand ? 00:59 <@codeshark> il faut en discuter 01:00 <@mids> ok 01:00 <@codeshark> pour moi c'est un peu trop tard 01:00 <@codeshark> 2h du matin... 01:22 -!- mode/#iip-dev [+o nop] par mids 01:51 -!- mode/#iip-dev [-m] par mids 01:51  * mids enlève la modération jusqu'au début 01:51 <@codeshark> mon portable a 38 minutes d'autonomie 01:52  * codeshark se demande si ça suffira 01:52 <@mids> brb 01:53 <@mids> re 01:54 < MiB> Question annexe : j’ai remarqué que la page de mids est en .nl... combien d’entre vous sont Néerlandais ? Moi je suis Belge. 01:54 <@mids> on a au moins 10 néerlandais(es) ici 01:54 < MiB> Wow, leuk om weten :) 01:55 -!- mode/#iip-dev [+o nop] par mids 01:55 < athena> codeshark: tu es où à 2h du matin sans prise de courant ?? :) 01:57 <@codeshark> j’en ai une, mais j’ai la flemme 01:59 -!- mids a changé le sujet de #iip-dev en : Infos réunion, ordre du jour, livelog y compris les journaux en direct au cas où vous êtes en retard) : 01:59 -!- mids a changé le sujet de #iip-dev en : Infos réunion, ordre du jour, livelog (au cas où vous êtes en retard) : http://mids.student.utwente.nl/~mids/iip/ 02:00 <@nop> ok 02:00 <@nop> bienvenue 02:00 <@nop> à notre 2e réunion 02:00 -!- mode/#iip-dev [+m] par mids 02:00 <@nop> chez IIP 02:00 <@mids> C'est la première réunion publique IIP, nous prévoyons d’en tenir une chaque semaine à la même heure et au même endroit. 02:00 <@mids> La réunion précédente ( http://mids.student.utwente.nl/~mids/iip/meeting1/ ) n’était pas publique, celle-ci l’est. 02:00 <@mids> Nous allons modérer les réunions pour éviter le chaos. Après l’annonce du sujet, le canal sera démodéré 02:00 <@mids> pour que vous puissiez parler. Si ça devient trop chaotique, on restera en mode modéré et si vous avez une question ou 02:00 <@mids> voulez contribuer, envoyez un message à quelqu’un avec ops (@) ou voix (+) 02:00 <@mids> Infos réunion, ordre du jour, livelog (au cas où vous êtes en retard) : http://mids.student.utwente.nl/~mids/iip/ 02:00 <@mids> . 02:00 <@nop> ok 02:01 <@nop> commençons, j’ai été très occupé aujourd’hui 02:01 <@nop> multitâche 02:01 <@nop> donc excusez si je fais des allers-retours 02:01 <@mids> np 02:01 <@nop> ordre du jour 02:01 <@mids> Sujets : 02:01 <@mids> 1) Bienvenue 02:01 <@mids> 2) Stabilité du réseau 02:01 <@mids> 3) Gestion de projet 02:01 <@mids> 4) Instant Anonymous Messenger 02:01 <@mids> 5) Site web 02:01 <@mids> 6) Documentation 02:01 <@nop> ok 02:01 <@mids> 7) Autre 02:01 <@nop> stabilité du réseau 02:01 <@mids> 8) Questions ? 02:01 <@mids> 9) Prochaine réunion 02:01 <@mids> . 02:02 -!- mode/#iip-dev [-m] par mids 02:02 <@nop> comme vous l’avez peut-être remarqué 02:02 <@mids> des questions préliminaires ? 02:02 <@nop> sûr 02:02 <@mids> quelqu’un.... 02:02 < Neo> salut. 02:02 < Neo> connaissez-vous les causes des problèmes réseau ? 02:02 <@mids> Neo : ça sera répondu dans une minute 02:02 <@nop> ok 02:02 <@mids> d’abord on regarde s’il y a des questions initiales 02:02 <@nop> des questions initiales 02:02 <@mids> je suppose que non, nop continue (+m) 02:03 <@nop> ok 02:03 <@nop> stabilité réseau 02:03 <@nop> les raisons sont nombreuses 02:03 <@nop> d’abord 02:03 <@nop> ce réseau a resté sur un portable posé sur un bureau à mon travail pendant longtemps 02:03 <@nop> le problème avec ça 02:03 <@nop> quelqu’un a déplacé le portable 02:03 <@nop> sans penser qu’il devait rester allumé 02:03 <@nop> donc... c’était un problème 02:04 <@nop> ensuite 02:04 <@nop> j’ai décidé de le déplacer 02:04 <@nop> vers une machine plus costaud 02:04 <@nop> surtout à cause de tous les calculs Diffie-Hellman 02:05 <@mids> peux-tu expliquer le cas avec le DH ? 02:05 <@nop> il est passé d’un 300 mhz 02:05 <@nop> en fait 02:05 <@nop> 366 mhz 02:05 <@nop> à un 933 mhz 02:05 <@nop> et de 128 Mo de RAM à 512 02:05 <@nop> grosse différence 02:05 <@nop> :) 02:05 <@nop> Pent II - Pent III 02:05 <@nop> ok 02:05 <@nop> à partir de là 02:05 <@nop> on a trouvé une erreur d’assertion memfree - en fait athena l’a aussi découverte en tournant rc2 02:06 <@nop> et ce problème devait être corrigé 02:06 <@nop> ce qui a été fait 02:06 <@nop> et tout récemment 02:06 <@nop> après avoir corrigé ce problème 02:06 <@nop> c’est stable depuis 02:06 <@nop> maintenant 02:06 <@nop> on aimerait vraiment s’éloigner de la centralisation et c’est notre objectif principal 02:06 <@nop> mais c’est une démarche par étapes, et c’est un réseau de développeurs 02:06 <@nop> donc parfois la fiabilité n’est pas optimale 02:07 <@nop> mais j’essaie de contenter tout le monde à ce stade 02:07 <@nop> des questions 02:07 <@nop> à ce sujet 02:07 <@mids> peux-tu expliquer le cas avec le DH ? 02:07 <@nop> Cas DH 02:07 <@nop> Les calculs d’échange de clés Diffie-Hellman prennent beaucoup de ressources 02:07 <@nop> donc quand ça tombe une seconde 02:07 <@nop> et que tout le monde essaie de se connecter 02:07 <@nop> ça fait monter le CPU à 99 % 02:08 <@nop> parce que plein de calculs ont lieu 02:08 <@nop> notre objectif 02:08 -!- mode/#iip-dev [-s] par mids 02:08 <@nop> pour corriger ça 02:08 <@nop> nous avons fait quelques choses 02:08 <@nop> on a mis un poll/délai pour mieux gérer les calculs 02:08 <@nop> et deuxièmement 02:08 <@nop> nous prévoyons d’implémenter une meilleure bibliothèque de multiprécision à l’avenir 02:09 <@nop> d’autres questions sur ce point 02:09 <@mids> j’ai une chose à ajouter : 02:09 <@nop> ok 02:09 <@nop> s’il te plaît 02:09 <@mids> graphe du réseau : http://mids.student.utwente.nl/~mids/iipstats/network.html 02:09 <@mids> comme vous voyez (surtout à l’échelle hebdomadaire) 02:09 <@mids> après une longue panne du réseau 02:09 <@mids> on perd beaucoup d’utilisateurs 02:09 <@mids> et ça prend longtemps pour les récupérer 02:09 <@mids> c’est mauvais pour notre réputation 02:09 <@nop> et pour l’anonymat 02:09 <@mids> peut-être devrions-nous mieux communiquer avec les utilisateurs 02:10 <@nop> plus d’utilisateurs c’est mieux 02:10 <@nop> d’accord 02:10 <@mids> quand tu sais que le réseau va s’arrêter : fais une annonce globale 02:10 <@nop> ok 02:10 <@nop> parfois 02:10 <@nop> je ne sais pas 02:10 <@mids> si tu constates qu’il est down : mets à jour le statut sur le site 02:10 <@mids> . 02:10 <@nop> ok 02:10 <@nop> des questions ou commentaires sur ce sujet 02:10 < athena> si je peux faire une suggestion : une brève mise à jour dans le motd de l’ircd serait aussi très bien 02:10  * Neo pense que mettre à jour le statut sur le site est une très bonne idée 02:11 <@nop> ok athena : c’est noté, et je ferai de mon mieux 02:11 < athena> merci' 02:11 < Neo> (parfois je ne sais pas si c’est le réseau ou juste moi) 02:11 <@nop> Neo et mids je suis d’accord pour une page de statut 02:11 <@nop> excellente idée 02:11 <@mids> codeshark avait quelque chose sur l’état des nœuds 02:11 <@nop> ok 02:11 <@codeshark> je pensais juste que ça pourrait être intégré dans le nodechecker 02:12 <@nop> développe s’il te plaît 02:12 <@codeshark> si je vois que tous les hôtes sont down (=réseau down), je pourrais mettre à jour la page de statut 02:12 <@nop> cool 02:12 <@nop> ça a l’air super 02:13 <@nop> ça pourrait aussi bien aller avec le « who’s online » de nym, au lieu de ça, juste avoir une page de statut du réseau 02:13 <@mids> merci d’utiliser . quand vous avez fini 02:13 <@codeshark> . 02:13 <@nop> . 02:13 < Neo> . 02:13 <@mids> combien de relais publics avons-nous ? 02:13 <@mids> . 02:13 <@codeshark> en ce moment on en a 15 dans la liste du nodechecker 02:13 <@codeshark> 13 sont en ligne 02:14 <@codeshark> . 02:14 <@nop> ordre du jour 02:14 <@mids> en faut-il plus ? 02:14 <@mids> . 02:14 <@nop> on en a toujours besoin de plus 02:14 <@nop> c’est évident 02:14 <@nop> :) 02:14 <@nop> . 02:14 <@codeshark> pas pour la stabilité 02:14 <@codeshark> mais pour l’anonymat 02:14 <@codeshark> . 02:14 <@nop> oui 02:14 <@nop> . 02:14 <@mids> d’autres questions/ 02:14 <@mids> . 02:14 <@nop> ce truc de . est amusant 02:14 <@nop> . 02:14  * mids ne met plus de . après une question 02:15 <@mids> ok, suivant 02:15 <@mids> 3) Gestion de projet 02:15 <@nop> mids - tu veux peut-être introduire 02:15 <@mids> on devrait peut-être essayer d’être plus professionnels 02:15 <@mids> tout en gardant le côté fun 02:15 <@nop> eh bien 02:15 <@nop> peut-être plus organisés 02:15 <@mids> publier nos jalons 02:15 <@nop> professionnel est discutable 02:16 <@mids> déléguer des tâches 02:16 <@nop> le défi avec « professionnel » c’est qu’on ne peut pas s’engager chaque jour à ça, à cause de la vraie vie 02:16 <@nop> mais oui 02:16 <@nop> on devrait définitivement déléguer des tâches 02:16 <@nop> ce que 02:16 <@nop> je pense qu’on fait 02:16 <@nop> mais tout le monde n’est pas resté en contact au sujet de sa tâche 02:16 <@mids> peut-être rendre la délégation plus ouverte 02:16 <@mids> pour que tout le monde sache qui informer de quoi 02:16 <@nop> ok 02:16 <@nop> oui 02:16  * Neo a une suggestion concernant un outil d’aide à la gestion de projet que nous utilisons à DC. 02:16 <@mids> je me souviens de plusieurs cas de double travail 02:16 <@mids> . 02:16 <@mids> oui Neo ? 02:17 < Neo> Mr Project. 02:17 <@nop> un agent ? 02:17 < Neo> Voici notre calendrier de sortie : http://citystateinc.com/dc/dc_project_5-28-2002.gif 02:17 < Neo> C’est un planificateur de tâches, regarde le gif ça explique pas mal. 02:17 < Neo> Ce n’est qu’un outil d’aide. 02:18 <@nop> ça a l’air bien 02:18 <@nop> aussi 02:18 <@nop> il nous faut un dispositif de communication de type tableau blanc 02:18 <@nop> quelque chose qui permette aux développeurs de communiquer visuellement 02:18 <@nop> surtout quand on plonge plus profondément dans les complications des réseaux anonymes 02:18 <@nop> s 02:18 <@codeshark> mids et moi avons essayé des tableaux blancs 02:18 <@nop> réseaux 02:18 <@codeshark> mais ça ne semble pas très utile 02:18 <@codeshark> du moins les outils qu’on a testés 02:18 <@codeshark> . 02:18 <@nop> hmm 02:18 <@mids> ceux qu’on a testés étaient trop lents et limités 02:18 <@mids> . 02:19 <@nop> hmm 02:19 <@nop> qu’avez-vous essayé 02:19 <@mids> quelques projets de freshmeat 02:19 <@nop> ok 02:19 <@mids> quelqu’un a de bonnes expériences avec des tableaux blancs publics ? 02:19 <@nop> on dirait que non 02:19 <@mids> hm, non 02:19 <@mids> :) 02:19 <@nop> bon 02:19 <@nop> on devrait peut-être déléguer une tâche 02:19 <@mids> mets-le sur la todo 02:20 <@nop> todo/délégation de tâche 02:20 <@nop> qui veut aider à trouver un tableau blanc qui convienne aux besoins des développeurs 02:20 <@nop> ça peut aussi être plus d’une personne 02:20 <@mids> eh bien, si j’en trouve un, je ne le garderai pas secret 02:20 <@nop> ok 02:20 <@nop> bon c’est dans la todo 02:20 <@mids> mais il doit être multiplateforme 02:20 <@nop> oui 02:21 <@mids> ok 02:21 < Neo> nop, à quoi vois-tu l’utilité du tableau blanc ? (curieux de tes idées) 02:21 <@nop> eh bien, je suis visuel avec les réseaux 02:22 <@nop> et je sais qu’il y a eu quelques fois 02:22 <@nop> où des schémas visuels ont du sens 02:22 <@nop> plutôt que de discuter sur irc 02:22 < Neo> ok, merci :) 02:22 <@nop> ça peut être limitant et difficile de faire passer ton algorithme/conception réseau 02:22 <@mids> surtout l’explication des relais 02:22 < Neo> des captures d’écran pourraient aussi être utiles pour la doc. 02:22 <@nop> oui 02:23 <@nop> jusqu’ici 02:23 <@nop> j’en suis arrivé à les dessiner et à les faxer la dernière fois 02:23 <@nop> :) 02:23 <@mids> lol 02:23 <@nop> ok - bref 02:23 <@codeshark> nop : email :) 02:23 <@nop> noté qu’un tableau blanc serait un plus 02:23 <@nop> ouais ouais 02:23 <@mids> autre point : 02:23 <@nop> email schmemai 02:23 <@nop> vous croyez qu’on est des geeks ou quoi 02:24 <@mids> banks a suggéré de suivre l’idée de « La Cathédrale et le Bazar » d’Eric Raymond : publier souvent 02:24 <@nop> j’apprends encore l’email ;) 02:24 <@mids> je pense que ça relève aussi de la gestion de projet 02:24 <@nop> euh, lien 02:24 <@codeshark> (... release early) 02:24 <@mids> http://www.tuxedo.org/~esr/writings/cathedral-bazaar/ 02:25 <@codeshark> je pense que c’est ce qu’on fait. ou veux-tu publier plus souvent ? 02:25 <@codeshark> . 02:25 <@mids> Banks ? 02:25 < Banks> je ne suis pas encore sûr 02:26  * mids suppose qu’il est juste pressé de voir RC2 02:26 < Banks> ça aide les gens à voir que la route vers RC2 avance vite :) 02:26 <@nop> RC2 est prêt - c’est la doc qui bloque 02:26 <@mids> la doc est le point 6 02:26 <@nop> ok 02:27 < Banks> La doc sur RC2 ? 02:27 <@mids> Banks : oui 02:27 <@nop> enfin, la doc pour la version 1.1 officielle 02:27 <@nop> mais oui 02:27 <@nop> si on n’avance pas 02:27 <@nop> sur la doc 02:27 <@nop> alors on sera retardés point 02:27 <@nop> pour la sortie de la 1.1 Release 02:27 < Banks> Je viens de faire une tonne sur la doc mais pas pour RC2. Je ne l’ai pas encore envoyée. Je ne connais pas cvs 02:28 <@nop> hehe 02:28 <@nop> ok 02:28 <@codeshark> banks : qu’as-tu fait ? 02:28 < Aster> hola 02:28 <@mids> salut Aster merci de lire les notices 02:28 < Aster> quelles notices ? 02:28 < Aster> je suis perdu 02:28 < Aster> qu’est-ce qui se passe ? aaahhhh 02:28 <@mids> [notice(Aster)] bienvenue, le canal est modéré, si tu as quelque chose à dire, envoie un message à moi ou à quelqu’un d’autre avec ops ou voix 02:28 <@mids> [notice(Aster)] Informations, ordre du jour et journaux : http://mids.student.utwente.nl/~mids/iip/ 02:29 < Banks> codeshark : une poignée de choses. Citations liées au début de chaque chapitre, une petite FAQ ... 02:29 < Banks> Comment contribuer 02:29 < Banks> Pourquoi l’anonymat ? 02:29 < ptsc> suggestion si je puis me permettre : option par défaut, désactivable, de « neutraliser » les URLs pour qu’elles ne soient pas cliquables, dans le proxy. 02:29 <@codeshark> ok. on doit en parler au point 6 02:29 <@mids> super 02:29 < Banks> Comment configurer un pare-feu WinXP pour autoriser IIP 02:30 <@mids> ptsc : que veux-tu dire ? 02:30 < ptsc> peut-être en changeant http en une autre chaîne comme wysiwyg ou url ou quelque chose d’improbable qui compromettrait moins l’anonymat, comme le « tripwire » d’anonymat dans freenet 02:30 <@mids> tu veux dire, que si je dis http://www.google.com/ ce sera censuré ? 02:31 < ptsc> puisque le moyen le plus simple de compromettre l’anonymat est de poster une URL piège dans un canal bondé 02:31 < SkyRat> non juste non cliquable 02:31 <@mids> quelqu’un veut répondre à ça ? 02:31 < ptsc> ça devrait être quelque chose qu’on peut désactiver. 02:31 < Banks> Ça devrait se faire au niveau du client IRC non ? 02:31 < athena> ou serveur 02:32 <@mids> ça peut se faire au niveau serveur 02:32 <@mids> mais je pense qu’il y a une part de responsabilité de l’utilisateur 02:32 < ptsc> contaminer le trafic serveur pourrait être mauvais 02:32 <@mids> doit-on aussi modifier les numéros de téléphone ? 02:32 < Banks> Beaucoup de surcharge non ? 02:32  * Neo pense que la manipulation de contenu ne devrait pas être faite par le système. c’est purement du ressort du client 02:32 < athena> je pense que ce problème ne peut pas être résolu 02:33 < Banks> C’est un bon point néanmoins 02:33 <@mids> peut-être un client sécurisé spécialement modifié 02:33 <@mids> voir point 5 ! 02:33 <@mids> euh 4 02:33  * Banks essaie de ne pas sauter à la partie doc, « Je l’ai mentionné dans la doc » 02:33 <@mids> hehe 02:33  * Neo pense que mids a raison, ça a sa place dans un client personnalisé peut-être, ou dans des patchs « sécurité » pour des clients existants 02:33 < athena> il devrait y avoir une discussion de ça dans le manuel... i.e. « façons de perdre votre anonymat » 02:34 <@mids> je propose de continuer, et de voir ce que le point 4 apporte après le commentaire de MiB 02:34 < MiB> :) 02:34 < MiB> Vous avez parlé d’une meilleure communication avec les utilisateurs un peu plus tôt, que pensez-vous d’une liste de diffusion publique et/ou d’un forum où développeurs et testeurs peuvent converser ensemble ? 02:34 <@mids> autant que je sache on a 1 liste de diffusion 02:34  * athena indique #iip 02:34 <@mids> iip-dev principalement pour le développement 02:35 < Banks> Peut-être un chan IRC où ceux qui ne peuvent pas se connecter à IIP peuvent aller ? 02:35 <@mids> bien que d’autres sujets aussi 02:35 <@codeshark> on a aussi la liste des bugs sur sourceforge 02:35 < ptsc> j’ai en fait écrit une sorte de « guide pour les clueless » 02:35 < ptsc> incluant certains de ceux-ci 02:36 < Banks> J’ai vu ça sur deja, ptsc. Bien. 02:36 < ptsc> http://groups.google.com/groups?selm=ss9rdugclv39cemnk4ue9t8jv6n8se8a3h%404ax.com&output=gplain 02:36 < ptsc> c’est écrit pour un public spécialisé concernant un canal iip qui est encore relativement peu habité 02:36 < ptsc> thx 02:36 < Banks> C’est une bonne idée pour un chan 02:37 < ptsc> je pense que ça capture les « mat en un coup » pour bousiller votre propre anonymat, mais je crois que des attaques plus sophistiquées pourraient être faites surtout par un adversaire qui a des capacités de surveillance et fait tourner un nœud. 02:37 <@mids> cool pour un howto je dirais ! 02:38 <@mids> noe?j 02:38 <@mids> err 02:38 < Neo> À propos du forum - Distributed City est un système communautaire web/ssl hébergé chez xs4all. Nous accueillons des forums IIP dans notre section forum. 02:38 <@mids> neo ? 02:38 < Banks> J’ai essayé d’en mettre une partie dans la doc. 02:38 < ptsc> je pense que c’est au-delà d’un adversaire de niveau moyen comme une Église de scientologie sans aide mais assistée par des hackers et/ou un nœud corrompu, et une agence fédérale manipulée (FBI), je pense qu’on pourrait possiblement le faire tomber 02:39 < ptsc> ça n’a pas la latence du réseau remailer (et en fait ne le pourrait pas, tout en restant raisonnablement « instantané ») 02:39 < Neo> Le système DC a aussi de la messagerie web privée GPG. Mids et moi et d’autres sommes restés en contact quand IIP était down, et aussi des discussions pertinentes liées à IIP. 02:39 < Neo> Nous sommes en bêta maintenant, mais bientôt ouverts au public. 02:39 < Neo> . 02:39 <@mids> Donc on peut utiliser DC pour la partie non-irc d’IIP 02:39 <@mids> forums, annonces 02:39 < Neo> Tu parles. 02:39 < Banks> Un nœud corrompu devrait aussi déchiffrer le chiffrement de bout en bout, non ? 02:39 < Neo> Nous avons jeté notre système de chat, et utilisons IIP, donc allez-y. 02:40 <@mids> Banks : euh, c’est hors-sujet pour l’instant 02:40 < Banks> mids : tu as raison 02:40 <@mids> je propose de discuter des internes IIP plus tard 02:40 < ptsc> j’entendais par « corrompu » la personne plutôt que le nœud 02:40 <@mids> dépêchons-nous et avançons avant que chocolate n’arrive 02:40 <@mids> des objections ? 02:40 < ptsc> et par là, je veux dire juste que la personne va lancer régulièrement netstat et consigner qui se connecte à elle, 02:41 < ptsc> tout en étant connectée sur un canal en tant que nick, en regardant qui arrive, et en éliminant par un processus d’élimination 02:41 < Neo> Nous pouvons donner à IIP ses propres forums personnalisés. - Newbies - Tech - Dev... dites-nous. 02:41 -!- mode/#iip-dev [+o Chocolate] par mids 02:41 < ptsc> elle pourrait aussi obtenir des internes réseau d’autres nœuds auxquels elle se connecte, puis obtenir des assignations/surveillance « carnivore » sur ces nœuds 02:41 <@mids> ptsc : c’est hors-sujet 02:41 <@mids> merci d’en discuter plus tard 02:41 <@mids> (ça devient chaotique) 02:41 < ptsc> excuses 02:41 <@mids> np 02:42 <@mids> 4) Instant Anonymous Messenger (wilde ne sera pas là) 02:42 <@mids> wilde était trop fatigué 02:42 <@mids> donc u 02:42 <@nop> ok 02:42 <@mids> donc je vais juste coller ce qu’il a dit : 02:42 <@nop> vas-y 02:42 <@mids> État et fonctionnalités : 02:42 <@mids> wilde a commencé à travailler sur un IM, un programme facile à utiliser pour se connecter à IIP. 02:42 <@mids> Il a fait fonctionner la connexion IRC. Le système de plugins fonctionne aussi. 02:42 <@mids> En plus du support IRC et IM il y aura aussi des fonctionnalités pour les 02:42 <@mids> monnaies numériques. Il se penche sur la cryptographie maintenant. 02:42 <@mids> Pour plus d’infos email à wilde@invisiblenet.net ou visitez #iam-dev 02:42 <@mids> . 02:42 <@nop> ok 02:42 <@nop> aussi 02:42 <@nop> si freenet devient un jour stable 02:42 <@nop> ce serait bien d’ajouter un transport dcc 02:42 <@nop> qui utilise freenet 02:42 <@nop> comme plugin 02:43 <@mids> oui 02:43 <@nop> ok 02:43 <@nop> ça a l’air bien 02:43 <@nop> des questions 02:43 <@mids> et peut-être, comme l’a suggéré ptsc 02:43 < Banks> Certes, mais RC2 n’aura-t-il pas DCC ? 02:43 <@mids> filtrer l’IRC, pour désactiver les URLs 02:43 <@nop> IIP rc2 n’aura pas de dcc 02:43 <@nop> ça compromet l’anonymat 02:43 <@nop> le partage de fichiers devra venir plus tard dans IIP 02:44 <@nop> mais c’est prévu 02:44 < Banks> ok, je pensais qu’il pourrait y avoir une façon de le faire sans compromis 02:44 <@nop> pas avant qu’on décentralise 02:44 <@nop> alors il y en aura 02:44 <@nop> en utilisant des broker agents 02:44 <@nop> etc 02:44 <@nop> on a un plugin fileserv pour xchat 02:44 <@nop> qui fait du base64 02:44 <@nop> bref 02:44 <@nop> c’est le plan 02:44 <@nop> ok 02:44 <@nop> sujet suivant 02:45 <@mids> peut-être des questions 02:45 <@mids> mais on n’a pas toutes les réponses 02:45 <@mids> car wilde n’est pas là 02:45 <@mids> :) 02:45 <@mids> donc posez juste, il pourra les lire dans les logs 02:45 < Neo> wilde code en perl ? 02:45 <@nop> java 02:45 <@mids> java 02:45 <@nop> je crois 02:46 <@mids> il le base sur un client IM complet qu’un ami à lui a écrit 02:46 < Neo> ah 02:46 <@mids> ok, passons vite au sujet 5 02:46 <@mids> on en a 9 au total 02:47 <@nop> le sujet numéro 5 est ... 02:47 <@nop> roulement de tambour s’il vous plaît 02:47 <@mids> notez vos questions brûlantes 02:47 <@mids> 5) Site web 02:47 <@nop> ahh 02:47 <@nop> oui 02:47 <@nop> le lag 02:47 <@mids> je veux donner la parole à nym 02:47 <@nop> ouais 02:47 <@nop> hum 02:47 <@mids> nym ? 02:47 <@mids> ok 02:47 <@nop> ok 02:47 <@nop> le site a l’air ok 02:47 <@mids> il était là la semaine dernière 02:47 <@nop> ce qui me fait peur 02:47 <@mids> et s’est excusé pour le retard 02:47 <@nop> c’est que ça lui prendra une éternité pour mettre à jour les changements 02:47 <@mids> il a fait un nouveau design mis à jour : 02:47 <@mids> http://buttsnot.com/invisible2.html 02:48 <@nop> ou les communiqués de presse 02:48 <@mids> le premier était http://mids.student.utwente.nl/~mids/iip/meeting1/draft2.jpg 02:48 <@nop> donc je sais pas 02:48 <@mids> des commentaires sur l’apparence ? 02:48 <@nop> et on a besoin d’un plan B 02:48 <@nop> au cas où il ne livrerait jamais un site stable 02:48 < tikk> bon boulot.. et je suis designer 02:48 < tikk> il y a quelques erreurs de tableau 02:48 < Neo> ellison est disponible pour le plan b 02:48 < Aster> c’est ok, pourrait demander un peu plus de travail 02:49 < tikk> cosmétique 02:49 <@nop> neo tu es sûr 02:49 <@nop> ce serait super 02:49 <@nop> aussi Neo 02:49 <@nop> merci pour les trucs IIP que tu as écrits 02:49 <@mids> je pense que ce n’est pas assez bien pour > 15 heures de travail 02:49 <@nop> c’est impressionnant 02:49 < Neo> oui, il a déjà proposé 02:49 <@nop> super 02:49 < Neo> quels trucs IIP ? 02:49 <@nop> dc 02:49 <@nop> sur dc beta 02:50 < Neo> OH. c’est ellison qui a fait ça :) 02:50 <@nop> aussi 02:50 <@nop> eh bien remercie-le 02:50 <@nop> aussi 02:50 <@nop> est-ce qu’ellison fait du design de logo ? 02:50 < Neo> je le ferai, il lira ce log 02:50 <@mids> pour info, ellison est le gars gfx de Distributed City 02:50 < Neo> tu parles. 02:50 <@nop> kewl 02:50 < Neo> et alta/lese/liquid privacy 02:50 <@nop> il travaille vite 02:50 <@nop> genre on pourrait voir quelque chose bientôt 02:50 <@nop> 02:50 <@nop> parce que je suis sur le point de taper du poing 02:50 <@nop> et de passer au plan b 02:51 < Neo> il sera là plus tard, on peut faire une petite réunion alors, je ne peux pas parler pour lui 02:51 <@mids> mise à jour sur nym 02:51 <@nop> ok 02:51 <@mids> il a reçu 100 $ de notre part pour faire un design 02:51 <@mids> payé sur la caisse des dons 02:51 < Neo> maintenant mais je sais qu’il était très intéressé pour faire quelque chose pour IIP si l’occasion se présentait. 02:51 <@mids> tous les donateurs ont été d’accord 02:51 <@mids> mais, ce qu’on a maintenant n’est pas utilisable 02:51 <@mids> ça va trop lentement 02:51 <@nop> et on sait que 100$ c’est pas grand-chose 02:52 <@nop> mais je n’ai pas l’impression qu’on ait même cette valeur 02:52 <@mids> mais bon, on n’a pas plus 02:52 <@mids> je suis sûr que nym a de bonnes intentions 02:52 <@nop> on le lui a donné il y a plus d’un mois 02:52 <@mids> mais manque de temps 02:52 <@nop> oui 02:52 <@nop> je comprends 02:52 <@nop> mais il faut être pragmatiques 02:52 < Aster> une fois qu’il termine le design, quelqu’un d’autre (je veux bien) peut mettre le reste en place 02:52 <@mids> on veut un site web asap 02:52 <@mids> Aster : merci 02:52 <@nop> et de bons logos 02:52 <@nop> oui merci 02:53 <@mids> donc quelles sont les options : 02:53 <@mids> - utiliser ce qu’on a et en faire un site 02:53 <@mids> - mettre un autre graphiste dessus 02:53 <@mids> - garder l’ancien site 02:53 <@nop> l’ancien site doit partir 02:53 <@nop> je l’aime bien 02:53 <@nop> mais c’est trop « villainy » 02:53 <@mids> - attendre que nym le termine 02:54 <@nop> et casper == violation de copyright 02:54 < Banks> Je trouve que l’ancien site est plutôt bon. Logo et Times New Roman mis à part. 02:54 <@nop> hehe 02:54 <@nop> tu sais 02:54 <@nop> tu serais surpris 02:54 <@nop> mais ça a été fait en 10 minutes 02:54 < Banks> dommage que Gamespy ait dû voler notre logo avant qu’on ait la chance de le créer :) 02:54 <@nop> haha 02:55 <@nop> ok 02:55 <@nop> donc sur le sujet du site web 02:55 <@nop> revenir à l’ancien est la dernière option au mieux 02:55 <@nop> je veux vraiment aller vers quelque chose de plus lumineux 02:55 <@nop> plus professionnel 02:55 <@nop> parce que 02:55 <@nop> si on attire la presse 02:55 <@nop> le côté sombre donnera lieu au terme « hacker médiatique » 02:56 < Banks> vrai. Je pense qu’on devrait réfléchir au marché cible et s’y adapter. 02:56 <@nop> et IIP ne sera pas perçu comme ça 02:56 <@nop> Banks : d’accord 02:56 <@nop> le marché cible dépend de la façon dont on le markete 02:56 <@nop> à mon sens 02:56 < Neo> ellison peut vraiment vous aider là-dessus. 02:56 <@nop> oui 02:56 <@nop> je vois 02:56 <@mids> j’ai vu le travail d’ellison 02:56 <@nop> moi aussi, c’est très bon 02:56 <@mids> et s’il veut, donnons-lui sa chance 02:56 <@nop> RP et site web == une seule idée 02:57 < Banks> Certes, mais il y a déjà un public pour ça. Les types Slashdot. 02:57 < Aster> marketez pour les deux groupes : hackers et entreprises... avoir 2 sites 02:57 < Aroonkoa> Et kuro5hin. :) 02:57 <@mids> à propos des 100 $, je considère que c’est perdu 02:57 <@nop> oui 02:57 <@mids> et on ne refait pas ce genre de choses à l’avenir 02:57 < Chocolate> 2 sites c’est bien trop de surcharge 02:57 <@mids> appelons ça une phase d’apprentissage 02:57 <@nop> oui 02:57 < Aster> chocolate : en quoi ? 02:57 <@nop> on veut la page d’accueil d’InvisibleNet 02:57 < Banks> Le programme lui-même est toujours plus important que le site web. 02:57 <@nop> puis la page Invisible Irc Project 02:58 < Banks> Un bon programme se markete lui-même. 02:58 <@nop> InvisibleNet c’est l’équipe de dev 02:58 <@nop> nous tous 02:58 <@nop> toute personne utilisant IIP 02:58 <@nop> fait partie d’un InvisibleNet 02:58 <@nop> :) 02:58 <@nop> une société si secrète que nous ne nous connaissons même pas 02:58 <@nop> ;) 02:58 <@nop> mais sérieusement 02:58 <@nop> et ensuite on a besoin de la page principale IIP 02:58 <@mids> tikk offre aussi son aide 02:58 <@mids> peut-être qu’on peut faire un petit web-board 02:58 <@nop> tikk, très apprécié 02:58 <@mids> pour les retours etc. 02:59 < Neo> Banks : oui, mais une partie du marketing doit s’adresser aux RP pour des raisons politiques, les chiffrements ne vont pas tout seuls 02:59 <@mids> qui veut participer au webboard ? (juste une idée) 02:59  * mids 02:59 <@nop> Neo : développe s’il te plaît ce commentaire 02:59 < Banks> Neo : je suis d’accord 02:59  * nop ne comprend pas encore tout à fait 03:00 <@nop> aussi - mids : à chaque fois que le site web est un sujet, mets site web/RP comme un seul sujet 03:00 <@nop> car c’est la même chose 03:00 <@mids> nop : oui 03:00 <@nop> ok 03:00 <@nop> bon, si ellison est volontaire 03:00 <@nop> et tikk si tu es prêt à conseiller 03:00 <@nop> faisons-le 03:01 < Neo> concernant les RP. Comme ton commentaire ci-dessus sur le terme « hacker médiatique ». Le côté sombre « villainry » (sp ?) 03:01 <@nop> et toute autre personne prête à amener le site web à un point optimal, alors montez à bord et allons-y 03:01 <@nop> Neo : point vu - compris 03:01 < Neo> l’image n’est pas bonne pour les RP - RP politiques et marketing pour les nouveaux utilisateurs. 03:01 < Neo> C’est pourquoi les gens intéressés à économiser de l’argent face à ceux qui essaient de le leur prendre 03:01 < Aster> nop : tu veux dire en tant que webmaster, ou juste terminer le travail du site (commentaire « hop on ») 03:02 < tikk> je veux bien aider en conseil, bien sûr.. je ne sais pas si j’ai +v ici 03:02 < Neo> et utilisent la crypto, il est mieux pour eux d’utiliser la crypto pour la liberté d’expression. pas pour capitaliser sur 03:02 <@mids> tikk : on t’entend 03:02 <@nop> aster c’est discutable, ces derniers temps, j’ai été le semi-webmaster 03:02 <@mids> tikk : le chan n’est pas +m 03:02 <@nop> aster 03:02 < Aster> oui ? 03:02 <@nop> si tu veux c’est un poste ouvert une fois que le site sera en ligne 03:02 < Neo> la manière dont ils protègent des actifs. (assez dit, ça c’est pour une autre salle/fil) 03:02 < Aster> sûr 03:03 <@nop> j’ai le sentiment que ça va être plus gros que ce que je peux gérer 03:03 <@mids> ok 03:03 <@nop> Neo : bon point ;) 03:03  * mids demande les coordonnées aux parties impliquées 03:03 <@mids> et je vous tiendrai au courant 03:03 <@nop> et les clés publiques 03:03 <@nop> aussi 03:03 <@nop> en aparté 03:03 <@nop> tout le monde enregistré chez trent 03:03 <@nop> a accès à anonymail 03:03 <@nop> user@iipmail.net 03:04 <@nop> compatible PGP 03:04 <@nop> en quelque sorte 03:04 <@nop> :) 03:04 <@nop> c’est comme memoserv ici 03:04 <@nop> et c’est très utile 03:04 <@nop> on continue 03:04 <@nop> hors-sujet 03:04 <@mids> ok 03:04 <@nop> mais il fallait le dire 03:04 <@mids> (demandez juste sur #iip pour plus d’infos) 03:04 <@nop> yep 03:05 <@mids> je contacterai les parties qui ont proposé leur intérêt pour le web/RP 03:05 <@mids> passons à la suite 03:05 <@mids> ) Documentation (codeshark, cohesion ou mids) 03:05 <@mids> cohesion n’est pas là 03:05 < Chocolate> je peux glisser quelque chose très vite ? 03:05 <@nop> sûr 03:05 <@mids> ok 03:05 < Chocolate> pour revenir au tableau blanc 03:05  * mids remonte 03:05 < Banks> C’est ce que je dis toujours à ma femme. 03:05 < Chocolate> j’en ai trouvé un appelé « CSV » (si je me souviens bien) 03:06 < Chocolate> je trouverai l’url et l’enverrai à #iip 03:06 < Chocolate> . 03:06 <@mids> sympa 03:06 <@mids> 6) Documentation 03:06 <@mids> la semaine dernière on a eu une longue discussion 03:06 <@mids> 3 personnes impliquées dans la documentation 03:06 <@mids> toutes assez occupées 03:07 <@mids> la doc est vraiment nécessaire avant la sortie 03:07 <@mids> il y a 2 systèmes : 03:07 <@mids> LaTeX ou Docbook 03:07 <@mids> on a convenu d’utiliser LaTeX maintenant 03:07 <@mids> et de passer à docbook plus tard 03:08 <@mids> le LaTeX actuel est disponible sur http://mids.student.utwente.nl/~mids/docdemo/ 03:08 < Banks> J’utilisais HTML vers PDF avec HTMLDOC. 03:08 <@mids> mais ça a besoin de relecture 03:08 <@mids> et il manque aussi certains éléments 03:08 <@mids> (installation unix) 03:08 <@mids> probablement qu’anonymail peut aussi être ajouté en annexe 03:08 <@mids> maintenant, on a entendu que quelques personnes ont fait des ajouts au manuel 03:09 <@mids> le problème c’est qu’on ne sait pas quelle version 03:09 <@mids> donc coordonnons ça 03:09 <@mids> et mettons tout ensemble 03:09 <@mids> . 03:09 <@mids> quelqu’un a quelque chose à ajouter ? 03:10 <@mids> hm 03:10 <@mids> on a 3 traductions 03:10 < Banks> Est-ce que codeshark est toujours là ? 03:10 <@mids> espagnol, français et néerlandais 03:10 <@mids> donc ça devient un peu lourd 03:10 <@mids> on a besoin de gestion de documentation. 03:11 <@mids> des nouvelles du statut de cohesion ? 03:11 <@mids> nop ? 03:11 <@nop> ici 03:11 <@nop> désolé 03:11 <@nop> euh 03:11 <@nop> il est dans le coin 03:11 <@nop> plus tôt aujourd’hui 03:11 <@mids> mais il est responsable de la doc non ? 03:11 <@nop> euh 03:12 <@nop> oui 03:12 <@nop> attends 03:12 <@nop> juste une seconde 03:12 <@nop> quelqu’un au boulot me parle dans l’oreille 03:12 <@mids> :) 03:12 <@mids> --- publicité --- 03:12 < Banks> Codeshark : tu es toujours là ? Regarde ton mp 03:13 <@mids> Banks : si tu lui parles, dis-lui de répondre ici aussi :) 03:13 < Banks> codeshark est inactif depuis 27mins 38secs 03:13 < Banks> :) 03:13 <@mids> mince, plus de batterie 03:13 < Chocolate> lol 03:14 <@nop> de retour 03:14 <@nop> ok 03:14 <@mids> ellison : on en est à la partie 6) Documentation 03:14 <@nop> cohesion est responsable de la doc 03:14 <@mids> ok 03:14 <@nop> et rédacteur technique principal 03:14 <@mids> mais il semble occupé 03:14 <@nop> mais les gens ont une vie 03:14 < ellison> merci, je rattrape dans les logs 03:14 <@nop> et je pense que c’est ce qui se passe 03:14 <@nop> donc... 03:14 <@mids> vrai 03:14 <@nop> on devrait avoir un assistant responsable doc 03:14 <@mids> suggestion : mettre le plus possible dans le CVS, pour que plus de monde puisse travailler dessus 03:14 <@nop> pour que ça continue 03:15 <@nop> mids = tu as l’air d’avoir beaucoup sur le feu 03:15 <@nop> c’est le cas 03:15 <@nop> ou ça en a l’air 03:15 <@nop> pour IIP je veux dire 03:15 < Banks> Je peux aider mais je ne connais pas bien CVS 03:15 <@nop> attends 03:15 <@mids> nop : oui 03:15 <@nop> banks 03:15 <@mids> besoin de déléguer 03:15 <@nop> je t’obtiendrai de la doc sur cvs 03:15 <@nop> bon chocolate - comment ça va ces temps-ci vieux pote 03:16 <@nop> ok 03:16 <@mids> je peux faire l’assistant gestion doc 03:16 < Banks> Quelqu’un veut une copie d’un PDF que j’ai pondu ? Codeshark est occupé pour l’instant. 03:16 <@mids> mais je ne vais pas rédiger 03:16 <@mids> je peux intégrer des apports dans LaTeX 03:16 <@mids> et centraliser 03:17 <@mids> ça ne me prendra pas trop de temps 03:17 <@mids> Banks : url 03:17 <@nop> sûr Banks 03:17 < Banks> Où voulez-vous que je l’envoie par email ? 03:17 <@nop> mids = si tu veux bien l’approuver et le mettre dans cvs comme contrib 03:17 <@nop> waill = will 03:17 <@nop> aster 03:17 <@mids> nop : quoi ? mon latex ou le pdf de Banks ? 03:17 <@nop> je crois oui 03:18 <@nop> aussi 03:18 < Aster> nop : hum ? 03:18 <@nop> ellison a écrit une bonne doc utilisateur final sur dc beta 03:18 <@nop> très apprécié 03:18 <@nop> et ça pourrait être très utile à l’avenir 03:18 <@nop> pour IIP en général 03:18 <@nop> sur le site web 03:18 <@nop> ici 03:18 <@nop> un « démarrer » 03:18 <@nop> en quelque sorte 03:18 < Banks> mids : voulez-vous que je l’envoie à mids@invisiblenet.net ? 03:18 <@mids> Banks : s’il te plaît 03:19 < Banks> ok 03:19 <@nop> aster - ça te dérange si je te délègue webmaster une fois le site en ligne 03:19 < Aster> nop : pas du tout :) 03:19 < Banks> mids : envoyé. 03:19 < ellison> nop : je peux le nettoyer et le réutiliser pour le site 03:19 <@nop> super 03:20 <@nop> ellison - à un moment ultérieur 03:20 <@nop> on voudrait discuter dev web avec toi 03:20 < ellison> ok 03:20 < Banks> mids : dis-moi ce que tu en penses. 03:20 <@mids> Banks : je le ferai une fois reçu 03:21 <@nop> doc - d’autres commentaires sur la doc 03:21 <@nop> ou questions 03:21 < Banks> mids : Ok, je peux envoyer le HTML avec les BMPs plus tard aussi. 03:21 < Banks> J’ai une question. 03:21 <@mids> Banks : je te contacterai et je centraliserai 03:21 <@nop> oui monsieur 03:21 < Banks> Le whitepaper dit « voici un protocole de streaming “steady”, pour ceux qui peuvent se permettre la bande passante, pour un trafic constant, (qui vous protège de toute analyse de trafic, mais causera un lag de 500 millisecondes). » 03:22 < Banks> Et puis « [name of this parameter?] » 03:22 < Banks> Quel est le nom du paramètre ? :) 03:22 <@mids> euh 03:22 <@mids> trop détaillé 03:22 <@mids> c’est une réunion publique :) 03:22 < Chocolate> c’est pas hors-sujet ? 03:22 < Banks> Ma faute. 03:22 <@mids> j’ai les coordonnées de ceux qui ont de la documentation 03:23 <@mids> je vais rassembler 03:23 <@mids> et centraliser 03:23 <@mids> puis trouver des éditeurs pour éditer 03:23 <@mids> n’ayez pas peur de LaTeX ou CVS 03:23 <@mids> vous survivrez 03:23 <@mids> :) 03:23 <@mids> . 03:23 < Banks> Lire sur LaTeX a été un cauchemar :) 03:23 < Chocolate> ok donc la Documentation est terminée ? 03:24 <@mids> Chocolate : lol 03:24 <@mids> Chocolate : ben, le sujet ici l’est 03:24 <@mids> je pense. 03:24  * Chocolate donne un coup de pied à mids 03:24 < Chocolate> c’est ce que je voulais dire 03:24 <@mids> oh :) 03:24 <@mids> avant de passer à un tour de questions libre 03:24 < Chocolate> Je voulais dire « est-ce que le point 6 de l’ordre du jour est terminé » 03:25 <@mids> faisons 1 chose publique de plus 03:25 <@mids> au sujet de l’heure de la réunion 03:25 <@mids> Saut rapide au point 9 Prochaine réunion : 03:25 -!- Chocolate a changé le sujet de #iip-dev en : Infos réunion, ordre du jour, livelog (au cas où vous êtes en retard) : http://mids.student.utwente.nl/~mids/iip/ | sujet actuel : heure de la réunion 03:25 <@mids> affirmation : heure actuelle trop tard pour les Européens, meilleure heure ? 03:25 <@mids> codeshark et moi préférerions 2 heures plus tôt 03:26 <@mids> (il est 3h30 ici maintenant) 03:26 < Aster> aïe 03:26 <@mids> Kronos-X : on a presque fini maintenant 03:27 <@mids> Kronos-X : on essaie de fixer une meilleure heure de réunion 03:27 < Kronos-X> Je suis imprévisible, donc je suis flexible par défaut. 03:27 < Kronos-X> :) 03:27 < MiB> 3:38 ici, 3 à 4 heures plus tôt ce serait bien plus humain pour moi :) 03:27 <@mids> nop : que dirais-tu de 2 heures plus tôt ? choc ? banks ? neo ? 03:28 < Chocolate> Si je me souviens bien 0000 est le plus tôt que nop puisse faire 03:28 < Neo> n’importe quand me va, c’est aux autres qu’il faut demander. :) 03:28 < Chocolate> 2200 mardi devrait m’aller 03:29 < Banks> Ça me va 03:29 < Chocolate> c’est important que nop et/ou userx puissent venir aux réunions cependant 03:29 < Aster> euh, c’est quoi en heure de l’Est ? 03:29 < Chocolate> non, UTC 03:29 < Aster> ce serait quoi en heure de l’Est alors ? (je ne sais pas comment ce truc d’heure marche :) 03:29 <@mids>  http://www.timeanddate.com/worldclock/ 03:29 < Chocolate> EDT est -5 03:29 < Aster> ok 03:29 < ellison> oooh, une réunion conforme à l’ISO ! 03:29 < Kronos-X> Heh 03:30 <@mids> nop semble occupé 03:30 <@mids> il a un veto sur l’heure à mon avis 03:30 < Chocolate> pareil 03:30 <@mids> ceux qui sont venus ne se sont pas plaints 03:30 <@mids> donc proposition : 2 heures plus tôt 03:30 <@mids> fin de l’heure de réunion ? 03:30 <@mids> . 03:31 <@mids> sujet 7/8 Tour de questions libre !!! 03:31 <@mids> désolé de vous avoir coupés plus tôt 03:31 <@mids> vengez-vous maintenant 03:31 < Chocolate> lol 03:31 <@nop> désolé 03:31 <@nop> de retour 03:31 <@mids> nop : réunion 2 heures plus tôt ok ? 03:31 <@nop> ooh 03:31 <@nop> eh bien, je suis en plein travail à ce moment-là 03:31 <@mids> sois honnête 03:32 <@nop> hmm 03:32 <@nop> on peut viser une heure plus tôt 03:33 <@nop> je peux avoir des ennuis à chatter au travail à cette heure de la journée 03:33 <@mids> oui 03:33 <@mids> alors on essaiera ça 03:34 <@nop> ok 03:34 <@mids> ok... questions ! 03:34 -!- mids a changé le sujet de #iip-dev en : Infos réunion, ordre du jour, livelog (au cas où vous êtes en retard) : http://mids.student.utwente.nl/~mids/iip/ | sujet actuel : Questions 03:34 < Kronos-X> mids : Où sont les .debs ? 03:34 < Kronos-X> ;) 03:34 <@nop> enseigne-nous vieux sage 03:34 <@nop> et nous ferons des .debs 03:34 <@nop> :) 03:34 <@mids> Kronos-X : c’est toi qui les ferais ! 03:34 < Kronos-X> Heh. 03:35 < Kronos-X> Désolé, je suis juste là pour augmenter le rapport bruit/signal., 03:35 < Kronos-X> Je laisse le micro à quelqu’un avec une vraie question. 03:35 <@nop> hehe 03:35 <@mids> ptsc : une question sur le protocole ? 03:35 < Banks> ptsc est inactif depuis 53mins 56secs :) 03:36 <@mids> ok, le PDF de banks est en ligne sur http://mids.student.utwente.nl/~mids/iip/meeting2/ 03:36 <@nop> avons-nous discuté des roadmaps 03:36 <@nop> etdd 03:36 <@mids> il a déjà l’air cool 03:36 <@nop> etc 03:37 <@mids> nop : seulement que rc2 dépend fortement de la doc 03:38 <@nop> ok 03:39 <@nop> ce pdf déchire 03:39 <@nop> il ne manque plus que le logo invisible irc là-dedans 03:40 <@nop> et c’est bon hein :) 03:40 <@mids> j’adore les citations et les captures d’écran 03:40 < Banks> Casper ? 03:40 <@mids> même une FAQ ! 03:40 <@mids> Banks : pourquoi ne nous l’as-tu pas dit plus tôt ? 03:40 < Banks> J’ai parlé à codeshark mais il n’a pas vraiment dit quoi que ce soit. 03:42 <@nop> non 03:42 <@nop> prends celui du site 03:42 <@nop> pour l’instant 03:42 < Banks> ok 03:43 <@mids> je vais dormir 03:43 <@mids> logger continuera à tourner un moment 03:43 <@mids> merci à tous d’avoir écouté 03:43 < Neo> l8r mids 03:43 <@mids> bonne nuit 03:44 < Chocolate> bonne nuit 03:44 < Banks> bonne nuit mids 03:44 < Kronos-X> Bonne nuit, mids. 03:44 < Aster> nite 03:45 < ellison> l8r mids 03:46 < Banks> Y a-t-il un logo en préparation ? 03:48 <@nop> euh oui 03:48 <@nop> aussi 03:48 <@nop> on veut avoir 03:48 <@nop> pwered by InvisibleNet 03:48 <@nop> et IIP now des logos 03:49 < Banks> C’est une bonne idée. 03:49 <@nop> banks 03:49 < Banks> C’est dur de penser à un logo qui transmet l’invisibilité IRC :) 03:49 <@nop> excellent pdf 03:49 < Aster> combien de temps avant que ces logos existent 03:49 <@nop> on va certainement l’utiliser pour la distrib avec IIP 03:49 < Banks> Santé 03:49 <@nop> eh bien 03:49 <@nop> j’ai des brouillons de « powered by invisiblenet » 03:49 <@nop> mais tu sais 03:49 <@nop> l’objectif IRC est une chose 03:49 <@nop> mais à l’avenir 03:49 <@nop> Internet Invisible 03:49 <@nop> donc... 03:50 < Banks> Vrai 03:50 <@nop> IRC est le projet principal 03:50 <@nop> mais c’est tellement modulaire 03:50 <@nop> que des rumeurs pourraient commencer 03:50 < Banks> Les logos avec des têtes ou visages marchent plutôt bien. Redhat, Napster, etc. 03:50 < Banks> Des rumeurs ? 03:51 < Aster> banks : mais veut-on copier les autres, ou proposer quelque chose d’unique, tout en restant mémorisable 03:51 <@nop> c’est une blague, en gros ce sera si modulaire que n’importe quoi pourra être mis en tant que protocole à anonymiser 03:51 < Banks> nop : je vois :) 03:52 < Banks> Aster : une tête ou un visage peut rester unique. Je pense que c’est mieux que des motifs géométriques, etc. 03:52 < Aster> ouais 03:53 < Chocolate> quelqu’un a un caméléon comme mascotte ? 03:54 <@nop> geiko 03:54 <@nop> assurance 03:54 <@nop> :) 03:54 < Chocolate> mince 03:54 < Chocolate> ces enfoirés 03:54 < Chocolate> c’est une compagnie terrible 03:55 < Banks> GameSpy a pris le thème de l’Homme invisible 03:55 <@nop> oui 03:55 <@nop> ils ne sont même pas bons pour obtenir une assurance bon marché 03:55 < Chocolate> peut-être un oiseau de proie klingon ? 03:55 < Banks> :) 03:55 < Chocolate> en mode furtif tu sais ;) 03:56 < Banks> Peut-être des empreintes qui disparaissent à travers le texte. 03:57 <@nop> hehe 03:57 <@nop> ok, la réunion est officiellement terminée 03:57 <@nop> juste pour info 03:58 <@nop> c’est libre pour tous 03:58 <@nop> quelqu’un a un bon slogan pour IIP 03:58 <@mids> IIP - ça te tient éveillé 03:58 <@nop> hehe 03:58 < Neo> IIP - « Nique l’État » 03:59 <@nop> euh 03:59 < Neo> oh... désolé... 03:59 <@nop> non 03:59 < Neo> :) lol 03:59 < Banks> Je l’adore celui-là Neo :) 03:59 < Banks> IIP - « Urinateurs bégayants. » 03:59 <@nop> hah 03:59 <@nop> haha 04:00 < Chocolate> IIP - où les animaux parlent 04:00 < Banks> Hé hé 04:01 < Banks> Peut-être un logo de chien, tu sais, sur internet personne ne sait que tu es un chien. 04:01 < Banks> Un chien invisible ! :) 04:01 < ellison> « et doublement avec IIP » 04:02 < Banks> IIP - « Où les AOLers peuvent être libres de tout préjugé » 04:03 <@nop> haha 04:05 < Chocolate> IIP - Parlez-vous à vous-même sans que les gens se moquent de vous 04:05 < Banks> Hé hé 04:10 -!- CwZ|away est maintenant connu sous le nom de Somedude 04:11 < Chocolate> hey Somedude 04:11 < Somedude> hey Chocolate 04:11 < Somedude> ça va ? 04:11 < Chocolate> ça va, toi ? 04:11 < Somedude> bien bien 04:12 < Banks> Hé hé 04:13  * Banks envoie un mp à Somedude, « On déteste tous Chocolate ». 04:13 < Somedude> ouais moi aussi 04:13 <@nop> hey les gars 04:14 <@nop> envoyez-moi des sites que vous aimez 04:14 <@nop> comme exemples de styles pour IIP 04:14 <@nop> 0x90@invisiblenet.net 04:17 < Mole> Ok, voilà le deal : je suis un chercheur p2p et j’ai beaucoup de jolis algorithmes que j’ai inventés et testés pour des systèmes distribués. 04:17 < Mole> Je cherche actuellement un projet avec lequel partager mes connaissances. 04:18 < Banks> Vous êtes au bon endroit :) 04:18 < Banks> nop est votre homme. 04:18 < Mole> Je viens de trouver iip il y a quelques minutes. 04:18 < Mole> Un gars sur #freenet sur openprojects.net vous a recommandé. 04:18 < Mole> Eh bien, voici ce que j’ai pour l’instant : 04:19 <@nop> ok 04:19 < Mole> * Tous mes algorithmes sont complètement distribués et ne dépendent d’aucun serveur central. 04:20 < Mole> * Un algorithme pour maintenir un réseau de 2 à 20000000000 nœuds. :)) 04:20 < Mole> * Ce réseau n’a jamais de netsplits et ne peut pas être crashé autant que je sache. 04:20 <@nop> mole 04:20 <@nop> merci d’envoyer un email à iip@invisiblenet.net 04:20 <@nop> avec ça 04:20 <@nop> ainsi que ta clé publique 04:21 < Mole> * Algorithme pour annoncer des sous-réseaux/services sur le réseau principal. (Ajouter des sous-réseaux sur les sous-réseaux.) 04:21 <@nop> ça peut rester anonyme 04:21 <@nop> et aider à ne pas donner trop d’info 04:21 < Mole> * Algorithmes pour collecter des statistiques comme le nombre de nœuds, les valeurs moyenne et médiane etc. 04:22 < Mole> * Algorithmes pour garder secret ce que différents nœuds font sur le réseau et quels services ils fournissent. 04:22 <@nop> pourquoi Mole comme nick 04:22 < Mole> Et je travaille actuellement à résoudre la base de données distribuée sécurisée et efficace. :) 04:22 <@nop> cool 04:22 < Mole> Eh bien, Mole est mon nick Internet depuis 1991. 04:23 < Mole> Je ne suis pas une personne très secrète moi-même. :) 04:23 < ellison> Mole : tu connais les systèmes de données distribuées basés sur quorum ? 04:23 < Mole> Mais j’aime fournir de la confidentialité aux gens. :) 04:23 <@nop> j’avais le sentiment que ces algos sont secrets 04:23 <@nop> :) 04:23 < Mole> non, pas quorum. 04:23 <@nop> quorum ou quantum 04:23 < ellison> plein de travail cool là-dessus 04:24 < ellison> quorum 04:24 < Mole> J’ai un peu trop été dans ma recherche et mes simulations donc je prends une longue pause pour voir quels projets existent là-dehors. 04:24 < ellison> c’est essentiellement une structure de base de données distribuée où de nombreuses entités peuvent avoir accès lecture/écriture, mais le système est protégé des tentatives de corruption par l’une de ces entités 04:24 < ellison> très utile pour certains types de structures/données/usages 04:25 < ellison> http://citeseer.nj.nec.com/malkhi97byzantine.html 04:25 < Chocolate> Mole : je t’ai recommandé ici :) 04:25 < Chocolate> j’ai un spybot dans #freenet ici 04:26 < Mole> Ok, je vais aussi regarder quorum. 04:26 < Mole> Bon, maintenant j’ai beaucoup de questions sur IIP pour voir en quoi mes algorithmes et connaissances pourraient vous être utiles. :) 04:27 < Mole> Tout d’abord, y a-t-il une documentation sur le fonctionnement d’IIP quelque part ? 04:28 <@nop> oui 04:28 <@nop> banks 04:28 <@nop> où est ce lien 04:28 < Banks> Attends une seconde 04:28 < Banks> http://mids.student.utwente.nl/~mids/iip/meeting2/iipdoc.pdf 04:29 < Banks> Mole : tu voudras probablement lire surtout le chapitre 1 et le chapitre 9. 04:29 < Mole> Ok, téléchargement. 04:32 <@nop> je dois filer 04:32 <@nop> à plus tard les gars 04:33 < Banks> À plus nop 04:33 < Mole> Eh vous êtes vraiment sympas. Plein de chats dans toutes les fenêtres et des chats privés aussi. 04:33 < Banks> :) 04:36 < Mole> Je vais lire tout ce que vous avez recommandé et je vous reparle un autre jour quand j’en saurai plus. :) 04:37 < Banks> Ce serait super :) 06:07 < Mole> Ahh, je viens de parcourir iipdoc.pdf et maintenant je pense comprendre comment IIP fonctionne. 06:08 < Mole> Si j’ai bien compris il y a des serveurs IRC presque normaux dans le « backbone » ? 06:12 < Mole> Et vous prévoyez de rendre la version 2.0 entièrement décentralisée. 06:12 < Mole> Un travail de conception ou une recherche d’algorithmes ont-ils été faits sur la structure décentralisée pour la version 2.0 ? 06:20 < Chocolate> un peu 06:20 < Chocolate> encore R&D 06:21 < Mole> Ok, je pense que je peux vous être utile alors. :) 06:36 < Aster> ok 06:37 < Mole> Ok, voici mes réflexions sur le DCC chat et envoi de fichiers anonymes : 06:38 < Mole> Ajouter un proxy socks au « client IIP ». 06:38 < Mole> Dire aux utilisateurs de configurer leur client IRC pour passer par le proxy socks d’IIP. 06:39 < Mole> Ça veut dire que toutes les connexions DCC iront vers le proxy socks d’IIP. 06:40 < Mole> Ensuite quand le client IRC (comme mIRC) veut se connecter à mole.anon.iip le proxy envoie cette connexion via certains des autres 06:40 < Mole> nœuds du réseau jusqu’à ce qu’elle atteigne finalement le nœud avec lequel tu veux faire un DCC. 06:41 < Mole> Ainsi tu as un DCC anonyme ! 06:41 < Mole> Qu’en pensez-vous ? 06:41 < Aster> dcc implique des fichiers non ? (je ne suis pas un grand utilisateur d’irc) 06:42 < Mole> Oui. 06:43 < Mole> Donc ça va créer beaucoup de charge réseau pour les nœuds par lesquels la connexion « rebondit ». 06:43 < Aster> ouais... le seul problème que je vois c’est que maintenant, quand tu commences à envoyer ton fichier, il doit passer par tous les autres serveurs, causant beaucoup de trafic 06:43 < Aster> ouais 06:44 < Mole> Mais comme presque tous les nœuds devraient aider le réseau distribué, cette charge réseau pourrait être répartie assez équitablement. 06:44 < Mole> Mais ce seront bien sûr des « téléchargements » plus lents que via un DCC non sûr. 06:45 < Mole> Ahh, split réseau ? 06:46 < Aster> désolé, j’ai raté tes quelques derniers messages 06:46 < Mole> Répétition : Mais comme presque tous les nœuds devraient aider le réseau distribué, cette charge réseau pourrait être répartie assez équitablement. 06:46 < Mole> Répétition : Mais ce seront bien sûr des « téléchargements » plus lents que via un DCC non sûr. 06:46 < Aster> ouais 06:47 < Mole> Donc il faut discuter s’il faut l’implémenter. 06:47 < Aster> pas vraiment pour la charge réseau répartie... chaque nœud doit toujours relayer, disons, 10 Mo peu importe combien d’autres nœuds il y a 06:47 < Mole> Mais au moins c’est très simple à implémenter si vous décidez de l’utiliser. 06:47 < Aster> ouais 06:48 < Mole> Pas avec mes algorithmes. :) Alors chaque nœud n’a à relayer qu’environ 500 octets / seconde. 06:48 < Mole> Sauf pour les données DCC bien sûr.... 06:49 < Mole> Passons à mon prochain algorithme simple : 06:49 < Mole> Pour créer des communications de canal efficaces en réseau, vous faites comme ceci : 06:50 < Mole> À condition que chaque utilisateur ait son propre nœud IIP local : 06:51 < Mole> C’est-à-dire, toutes les données que nous créons en discutant ne voyagent qu’entre les nœuds participant à la discussion. 06:51 < Mole> Ainsi on ne charge pas le reste du réseau. 06:51 < Mole> On doit ajouter une chose cependant pour l’anonymat : 06:51 < Mole> Les nœuds qui participent réellement au mini-réseau du canal 06:52 < Mole> ne sont que des front-ends pour les vrais discuteurs. 06:52 < Mole> C’est-à-dire que chaque nœud se connecte à un front-end (peut-être sur deux niveaux ou plus) et c’est le front-end qui rejoint le réseau du canal. 06:53 < Mole> Ça économise beaucoup de bande passante ! 06:53 < Mole> et rend aussi le réseau bien plus robuste. 06:53 < Aster> hum 06:54 < Aster> intéressant 06:55 < Aster> brb.... je dois m’allonger un peu.. mal de dos 06:55 < Mole> nœud du discuteur <-> intermédiaire <-> frontend <- channelnet - 06:55 < Mole> > frontend <-> intermédiaire <-> nœud du discuteur 06:56 < Mole> D’autres parmi vous ont des commentaires ? 07:18 -!- Zwollywood est maintenant connu sous le nom de Zwolly 07:21 < Mole> Salut Zwolly 07:22 < Zwolly> bonjour 07:22 < Zwolly> un moment 07:23 < Mole> Tu travailles sur le développement IIP ? 07:24 < Zwolly> non je suis juste un utilisateur 07:24 < Zwolly> je pense que je suis en retard pour la réunion 07:25 < Mole> Ahh, moi aussi. 07:25 < Mole> Ouais, la réunion c’était il y a des heures. 07:25 < Mole> Je pense à rejoindre l’équipe de développement. 07:25 < Zwolly> http://mids.student.utwente.nl/~mids/iip     il y a des infos là 07:25 < Zwolly> super 07:25 < Zwolly> si tu as les compétences et qu’ils peuvent utiliser quelqu’un 07:26 < Mole> Ouais, j’ai les compétences. Recherche sur les systèmes p2p décentralisés depuis 1997... 07:27 < Mole> Merci pour le rappel de l’URL. 07:28 < Mole> J’ai revérifié et il y avait plus de choses là que je n’avais remarqué lors de mon premier coup d’œil il y a quelques heures. 07:28 < Zwolly> la seule chose que je sais pour faire des programmes c’est comment les faire planter hehe 07:28 < Mole> Eh bien, on dirait que tu pourrais être un bon bêta-testeur alors ? 07:29 < Zwolly> ouais peut-être 07:29 < Zwolly> je suis occupé sur une traduction néerlandaise du manuel donc je peux peut-être aider un peu avec ça 07:29 < Mole> Je trouve drôle qu’ils aient une commande pour ajouter ton site web à ton pseudo. 07:30 < Mole> Je viens de lire sur les commandes supplémentaires qu’IIP a. 07:30 < Zwolly> ouais c’est une bonne option 07:32 < Mole> Oups, j’ai regardé dans le « livelog.txt » sur le site IIP. 07:34 < Mole> Oups, déconnecté. 07:35 < Zwolly> ouais je vois 07:35 < Zwolly> aussi un point à l’ordre du jour 07:35 < Zwolly> des connexions plus stables 07:36 < Mole> hehe, ouais. 07:37 < Mole> Il est possible de construire des réseaux qui utilisent de multiples connexions tcp pour rendre les choses très robustes. 07:38 < Zwolly> ouais je lis là-dessus mais j’ai besoin de le voir avant d’y croire 07:38 < nop> mince 07:38 < nop> la réunion continue toujours ? 07:38 < Zwolly> je lis le fichier log 07:38 < Zwolly> non 07:39 < Zwolly> juste des gens qui parlent et lisent ce qu’ils ont manqué 07:39  * mids met tout le monde dehors 07:40 <@mids> LA RÉUNION EST TERMINÉE --- Journal fermé Wed May 29 07:40:24 2002 </div>
+<div class="irc-log">
+--- Log opened Tue May 28 22:39:11 2002
+22:39 <+logger> logging started
+22:40 -!- mids changed the topic of #iip-dev to: IIP Development Channel (moderated) | Weekly development meetings happen here at 0000 UTC wed. (tue if you are in a minus tz) | (during meetings) live logfile http://mids.student.utwente.nl/~mids/meeting2/livelog.txt
+22:52 -!- mode/#iip-dev [-v logger] by mids
+23:42 -!- mids changed the topic of #iip-dev to: IIP Development Channel (moderated) | Weekly development meetings happen here at 0000 UTC wed. (tue if you are in a minus tz) | http://mids.student.utwente.nl/~mids/iip/
+--- Day changed Wed May 29 2002
+00:16 [Users #iip-dev]
+00:16 [@mids] [ athena] [ logger] [ MiB] [ SubLiminaL]
+00:16 -!- Irssi: #iip-dev: Total of 5 nicks [1 ops, 0 halfops, 0 voices, 4 normal]
+00:26 -!- mode/#iip-dev [+o UserX] by mids
+00:29 -!- mode/#iip-dev [+o codeshark] by mids
+00:32 <@codeshark> mids: i have an additional topic for today
+00:32 <@codeshark> we need more relays
+00:33 <@mids> where do you want it?
+00:34 <@codeshark> stability of networks
+00:34 <@mids> done
+00:56 <@UserX> mids: i'm going to have to leave about 30 minutes after the meeting starts
+00:56 <@mids> ok, if you have agenda items, please msg them to me, and they will be discussed
+00:56 <@mids> same if you want to shuffle the order
+00:57 <@mids> though I tried to move the most important ones to the top
+00:58 <@codeshark> add to agenda items: change meeting time
+00:59 <@mids> to when?
+00:59 <@codeshark> needs to be discussed
+01:00 <@mids> ok
+01:00 <@codeshark> for me it's a bit too late
+01:00 <@codeshark> 2 AM ...
+01:22 -!- mode/#iip-dev [+o nop] by mids
+01:51 -!- mode/#iip-dev [-m] by mids
+01:51  * mids unmoderates till it start
+01:51 <@codeshark> my notebook has power for 38 minutes
+01:52  * codeshark wonders if that's enough
+01:52 <@mids> brb
+01:53 <@mids> re
+01:54 < MiB> Side question: I noticed mids' page is .nl... how many of you are Dutch?  I'm a Belgian myself.
+01:54 <@mids> we have atleast 10 dutch(wo)men here
+01:54 < MiB> Wow, leuk om weten :)
+01:55 -!- mode/#iip-dev [+o nop] by mids
+01:55 < athena> codeshark: where are you at 2am that doesn't have a power outlet?? :)
+01:57 <@codeshark> i have, but i'm too lazy
+01:59 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog including live logs in case you are late):
+01:59 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/
+02:00 <@nop> ok
+02:00 <@nop> welcome
+02:00 <@nop> to our 2nd meeting
+02:00 -!- mode/#iip-dev [+m] by mids
+02:00 <@nop> at IIP
+02:00 <@mids> This is the first public IIP meeting, we plan to have such a meeting each week at the same time and place.
+02:00 <@mids> Previous meeting ( http://mids.student.utwente.nl/~mids/iip/meeting1/ ) was non public, this one is.
+02:00 <@mids> We will moderate the meetings to prevent chaos. After the subject is stated, the channel will be unmoderated
+02:00 <@mids> so you can talk. If this becomes too chaotic, it will be kept moderated and then if you have a question or
+02:00 <@mids> want to contribute something, message someone with ops (@) or voice (+)
+02:00 <@mids> Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/
+02:00 <@mids> .
+02:00 <@nop> ok
+02:01 <@nop> let's get started, I've been so busy today
+02:01 <@nop> multitasking
+02:01 <@nop> so you'll have to excuse if I'm in and out
+02:01 <@mids> np
+02:01 <@nop> agenda list
+02:01 <@mids> Topics:
+02:01 <@mids> 1) Welcome
+02:01 <@mids> 2) Stability network
+02:01 <@mids> 3) Project management
+02:01 <@mids> 4) Instant Anonymous Messenger
+02:01 <@mids> 5) Website
+02:01 <@mids> 6) Documentation
+02:01 <@nop> ok
+02:01 <@mids> 7) Other
+02:01 <@nop> stability network
+02:01 <@mids> 8) Questions?
+02:01 <@mids> 9) Next meeting
+02:01 <@mids> .
+02:02 -!- mode/#iip-dev [-m] by mids
+02:02 <@nop> as you may have noticed
+02:02 <@mids> maybe initial questions?
+02:02 <@nop> sure
+02:02 <@mids> anybody....
+02:02 < Neo> hi.
+02:02 < Neo> do you know the causes of the network problems?
+02:02 <@mids> Neo: that will be answered in a minute
+02:02 <@nop> ok
+02:02 <@mids> first we look if there are initial questions
+02:02 <@nop> any initial questions
+02:02 <@mids> guess not, nop go on (+m)
+02:03 <@nop> ok
+02:03 <@nop> network stability
+02:03 <@nop> the reasons of this are many
+02:03 <@nop> for one
+02:03 <@nop> this network has been sitting in a laptop on a desk at my work for a long time
+02:03 <@nop> problem with this is
+02:03 <@nop> someone moved the laptop
+02:03 <@nop> not thinking it needed to be on
+02:03 <@nop> so... that was one problem
+02:04 <@nop> second
+02:04 <@nop> I decided to move it
+02:04 <@nop> to a beefier box
+02:04 <@nop> especially because of all the Diffie-Hellman calculations
+02:05 <@mids> can you explain the case with the DH?
+02:05 <@nop> it is now gone from a 300 mhz
+02:05 <@nop> actually
+02:05 <@nop> 366 mhz
+02:05 <@nop> to a 933 mhz
+02:05 <@nop> from 128 megs of ram to 512
+02:05 <@nop> big difference
+02:05 <@nop> :)
+02:05 <@nop> Pent II - Pent III
+02:05 <@nop> ok
+02:05 <@nop> from that point
+02:05 <@nop> we found a memfree assertion error - actually athena also discovered it running rc2
+02:06 <@nop> and this problem needed to be addressed
+02:06 <@nop> which was
+02:06 <@nop> and just recently
+02:06 <@nop> upon fixing that problem
+02:06 <@nop> it has been since stable
+02:06 <@nop> now
+02:06 <@nop> we would really love to move away from centralization and that's our main goal
+02:06 <@nop> but it's a one step at a time type of deal, and this is a developer's network
+02:06 <@nop> so sometimes reliability is not it's best
+02:07 <@nop> but I am trying to keep everyone happy at this level
+02:07 <@nop> any questions
+02:07 <@nop> regarding this matter
+02:07 <@mids> can you explain the case with the DH?
+02:07 <@nop> Case with DH
+02:07 <@nop> Diffie-Hellman key exchange calculations take a lot of processes
+02:07 <@nop> so when it goes down for a sec
+02:07 <@nop> and everyone tries to connect
+02:07 <@nop> it spikes the cpu at 99%
+02:08 <@nop> because lots of calculations are taking place
+02:08 <@nop> our goal
+02:08 -!- mode/#iip-dev [-s] by mids
+02:08 <@nop> to fix this
+02:08 <@nop> we have done a few things
+02:08 <@nop> we put a poll/delay to handle calculations better
+02:08 <@nop> and 2
+02:08 <@nop> we are planning on implemented a better Multi-precision library in the future
+02:09 <@nop> any more questions regarding this matter
+02:09 <@mids> I have one thing to ad:
+02:09 <@nop> ok
+02:09 <@nop> please
+02:09 <@mids> network graph: http://mids.student.utwente.nl/~mids/iipstats/network.html
+02:09 <@mids> as you see (especially at weekly)
+02:09 <@mids> after a long network downtime
+02:09 <@mids> we loose a big time of users
+02:09 <@mids> and it takes a long time to gain them back
+02:09 <@mids> this is bad for our reputation
+02:09 <@nop> and for anonymity
+02:09 <@mids> maybe we should communicate better with the users
+02:10 <@nop> more users the better
+02:10 <@nop> agreed
+02:10 <@mids> when you know that the net will go down: do a global announcement
+02:10 <@nop> ok
+02:10 <@nop> sometimes
+02:10 <@nop> I don't know
+02:10 <@mids> if you observe that it is down: update status on site
+02:10 <@mids> .
+02:10 <@nop> ok
+02:10 <@nop> any questions or comments on this topic
+02:10 < athena> if i can make a suggestion: a brief update in the ircd motd would be great also
+02:10  * Neo things update status on site is really good idea
+02:11 <@nop> ok athena : you are noted, and I will make my efforts in doing so
+02:11 < athena> thanks'
+02:11 < Neo> (sometimes I don't know if it is the network or just me)
+02:11 <@nop> Neo and mids I agree on update status
+02:11 <@nop> great idea
+02:11 <@mids> codeshark had something on the node status
+02:11 <@nop> k
+02:11 <@codeshark> just thought it could be integrated in the nodechecker
+02:12 <@nop> please elaborate
+02:12 <@codeshark> if i see that all hosts are down (=network down), i could update the status page
+02:12 <@nop> cool
+02:12 <@nop> sounds great
+02:13 <@nop> this also could go well with nym's who's online, instead of that, just have a network status page
+02:13 <@mids> please use . when done
+02:13 <@codeshark> .
+02:13 <@nop> .
+02:13 < Neo> .
+02:13 <@mids> how many public relays do we have?
+02:13 <@mids> .
+02:13 <@codeshark> right now we 15 in the nodechecker list
+02:13 <@codeshark> 13 are online
+02:14 <@codeshark> .
+02:14 <@nop> agenda
+02:14 <@mids> do we need more?
+02:14 <@mids> .
+02:14 <@nop> we always need more
+02:14 <@nop> that's a given
+02:14 <@nop> :)
+02:14 <@nop> .
+02:14 <@codeshark> not for stability
+02:14 <@codeshark> but for anonymity
+02:14 <@codeshark> .
+02:14 <@nop> yes
+02:14 <@nop> .
+02:14 <@mids> other questions/
+02:14 <@mids> .
+02:14 <@nop> this . thing is funny
+02:14 <@nop> .
+02:14  * mids does no . after a question anymore
+02:15 <@mids> okay, next
+02:15 <@mids> 3) Project management
+02:15 <@nop> mids - you might want to open up on that
+02:15 <@mids> maybe we should try to be more professional
+02:15 <@mids> while keeping it fun
+02:15 <@nop> well
+02:15 <@nop> maybe more organized
+02:15 <@mids> publish our milestones
+02:15 <@nop> professionaly is up for debate
+02:16 <@mids> delegate tasks
+02:16 <@nop> the challenge with professional is we can't be committed every single day to this, because of real life
+02:16 <@nop> but yes
+02:16 <@nop> we should definitely delegate tasks
+02:16 <@nop> which
+02:16 <@nop> I think we do
+02:16 <@nop> but not everyone has remained in contact about their task
+02:16 <@mids> maybe make delegation more open
+02:16 <@mids> so everybody knows who to inform about what
+02:16 <@nop> ok
+02:16 <@nop> yes
+02:16  * Neo has a suggestion re: project management helper that we are using in DC.
+02:16 <@mids> I remember several cases of double work
+02:16 <@mids> .
+02:16 <@mids> yes Neo ?
+02:17 < Neo> Mr Project.
+02:17 <@nop> an agent?
+02:17 < Neo> Here is our release schedule: http://citystateinc.com/dc/dc_project_5-28-2002.gif
+02:17 < Neo> Its a task sheduler thing, take a look at the gif it explains it pretty much.
+02:17 < Neo> Its just a helper tool.
+02:18 <@nop> sounds good
+02:18 <@nop> also
+02:18 <@nop> we need a whiteboard type communication device
+02:18 <@nop> something that can allow developer's to communicate visually
+02:18 <@nop> especially as we dive deeper into complications of anonymous network
+02:18 <@nop> s
+02:18 <@codeshark> mids and I tried some whiteboard stuff
+02:18 <@nop> networks
+02:18 <@codeshark> but it doesn't seem to be very useful
+02:18 <@codeshark> at least the tools we tried
+02:18 <@codeshark> .
+02:18 <@nop> hmm
+02:18 <@mids> those we tried were too slow and limited
+02:18 <@mids> .
+02:19 <@nop> hmm
+02:19 <@nop> what did you try
+02:19 <@mids> some freshmeat ones
+02:19 <@nop> k
+02:19 <@mids> does anybody have good experience with public whiteboards?
+02:19 <@nop> guess not
+02:19 <@mids> hm, nope
+02:19 <@mids> :)
+02:19 <@nop> well
+02:19 <@nop> maybe we should delegate a task
+02:19 <@mids> put it on the todo
+02:20 <@nop> todo/task delegateion
+02:20 <@nop> who wants to assist in finding a whiteboard that would suit developer's needs
+02:20 <@nop> it can always be more than one person as well
+02:20 <@mids> well, if I find one, I wont keep it a secrey
+02:20 <@nop> k
+02:20 <@nop> well it's on the todo
+02:20 <@mids> but it has to be multiplatform
+02:20 <@nop> yes
+02:21 <@mids> ok
+02:21 < Neo> nop, what do you see people finding the whiteboard useful for? (curious of your ideas)
+02:21 <@nop> well, I am visual with networks
+02:22 <@nop> and I know there have been a few times
+02:22 <@nop> that visual drawings make sense
+02:22 <@nop> rather than chatting on irc
+02:22 < Neo> k, thanks :)
+02:22 <@nop> that can be limiting and hard to get your algorithm/network design across
+02:22 <@mids> especially the explination of the relays
+02:22 < Neo> some screen grabs could come in handy for docs also.
+02:22 <@nop> yes
+02:23 <@nop> so far
+02:23 <@nop> I've come to the point of drawing it out and faxing it last time
+02:23 <@nop> :)
+02:23 <@mids> lol
+02:23 <@nop> ok - anyway
+02:23 <@codeshark> nop: email :)
+02:23 <@nop> noted that whiteboard would be a plus
+02:23 <@nop> yeah yeah
+02:23 <@mids> other point:
+02:23 <@nop> email smemail
+02:23 <@nop> you guys think we're like geeks or somethin
+02:24 <@mids> banks suggested to follow the thought of the Cathedral Bazaar thing by Eric Raymond: release often
+02:24 <@nop> I'm still learning email ;)
+02:24 <@mids> I think that is under project management too
+02:24 <@nop> umm, link
+02:24 <@codeshark> (... release early)
+02:24 <@mids> http://www.tuxedo.org/~esr/writings/cathedral-bazaar/
+02:25 <@codeshark> i think that's what we doing. or do you want to release more often?
+02:25 <@codeshark> .
+02:25 <@mids> Banks?
+02:25 < Banks> I'm not sure yet
+02:26  * mids guesses he is just anxious to see RC2
+02:26 < Banks> it helps people to see that the path to RC2 is advancing swiftly :)
+02:26 <@nop> RC2 is done - it's docs that are being the hold up
+02:26 <@mids> docs are point 6
+02:26 <@nop> k
+02:27 < Banks> Docs on RC2?
+02:27 <@mids> Banks: yes
+02:27 <@nop> well, docs for 1.1 official release
+02:27 <@nop> but yes
+02:27 <@nop> if we don't get progress done
+02:27 <@nop> on docs
+02:27 <@nop> then we'll be lagged period
+02:27 <@nop> for release of 1.1 Release
+02:27 < Banks> I've just done a ton on the docs but not for RC2. Haven't sent it yet. Don't know cvs
+02:28 <@nop> hehe
+02:28 <@nop> ok
+02:28 <@codeshark> banks: what did you do?
+02:28 < Aster> hola
+02:28 <@mids> hi Aster please check the notices
+02:28 < Aster> which notices?
+02:28 < Aster> im soo lost
+02:28 < Aster> whats going onn? aaahhhh
+02:28 <@mids> [notice(Aster)] welcome, the channel is moderated if you have something to say, message me or somebody else with ops or voice
+02:28 <@mids> [notice(Aster)] Information, agenda and logs: http://mids.student.utwente.nl/~mids/iip/
+02:29 < Banks> codeshark: A handful of things. Related quotes at the beginning of each chapter, a small FAQ ...
+02:29 < Banks> How to contribute
+02:29 < Banks> Why Anonymity?
+02:29 < ptsc> suggestion if i may be so bold:  default option, which can be disabled, of 'crippling' urls to be non-clickable, in the proxy.
+02:29 <@codeshark> ok. we have to talk about that in point 6
+02:29 <@mids> great
+02:29 < Banks> How to configure a WinXP firewall to allow IIP
+02:30 <@mids> ptsc: what do you mean?
+02:30 < ptsc> perhaps by chaning http to some other string such as wysiwyg or url or something unlikely to be anonymity compromising, like the anonymity tripwire in freenet
+02:30 <@mids> you mean, that if I say http://www.google.com/ that it will be censored?
+02:31 < ptsc> since the easiest means of compromising anonymity is to post a honeypot url to a crowded channel
+02:31 < SkyRat> no just not clickable
+02:31 <@mids> anybody want to respond on that one?
+02:31 < ptsc> this should be something that can be disabled.
+02:31 < Banks> That would have to be done at the IRC client level wouldn't it?
+02:31 < athena> or server
+02:32 <@mids> it can be done on the server level
+02:32 <@mids> but I think there is some responcibility for the user
+02:32 < ptsc> contaminating server traffic might be bad
+02:32 <@mids> should we also change telephone numbers?
+02:32 < Banks> Lot of overhead though isn't it?
+02:32  * Neo thinks manipulating content should not be done with the system. that is a pure client issue
+02:32 < athena> think this problem can't be solved
+02:33 < Banks> It's a good point though
+02:33 <@mids> maybe a specialmodified security client
+02:33 <@mids> see point 5!
+02:33 <@mids> err 4
+02:33  * Banks is trying not to jump to the docs part, "I mentioned it in the docs"
+02:33 <@mids> hehe
+02:33  * Neo thinks mids is correct, it has a place in a custom client maybe, or in "security" patches to existing clients
+02:33 < athena> there should be discussion of this in the manual... i.e. "ways of losing your anonymity"
+02:34 <@mids> I suggest going on , and see what point 4 brings us after MiBs comment
+02:34 < MiB> :)
+02:34 < MiB> You spoke about better communication with users a bit earlier, how do you feel about a public mailing list and/or BBS where developers and testers can conversate with each other?
+02:34 <@mids> afaik we have 1 mailinglist
+02:34  * athena points out #iip
+02:34 <@mids> iip-dev mainly for development
+02:35 < Banks> Maybe an IRC chan where people who can't connect to IIP can go?
+02:35 <@mids> although also other topics
+02:35 <@codeshark> we have the bug-list on sourceforge too
+02:35 < ptsc> i actually have written a sort of 'guide for the clueless'
+02:35 < ptsc> including some of these
+02:36 < Banks> I saw that at deja, ptsc. Nice.
+02:36 < ptsc> http://groups.google.com/groups?selm=ss9rdugclv39cemnk4ue9t8jv6n8se8a3h%404ax.com&output=gplain
+02:36 < ptsc> it is written to a specialized audience concerning an iip channel that is as yet relatively uninhabited
+02:36 < ptsc> thx
+02:36 < Banks> It's a good idea for a chan
+02:37 < ptsc> i think it captures the "fool's mate" ways of trashing your own anonymity, but i do believe more sophisticated attacks could be made especially by an opponent who both has surveillance capability and is running a node.
+02:37 <@mids> cool for an howto I would say!
+02:38 <@mids> noe?j
+02:38 <@mids> err
+02:38 < Neo> Re: BBS - Distribued City is a ssl/web based community system located at xs4all. We welcome IIP forums in our forum section.
+02:38 <@mids> neo?
+02:38 < Banks> I tried to put some of it into the docs.
+02:38 < ptsc> i think it's beyond a mid-level opponent such as an unaided church of scientology but assisted by hackers and/or a corrupt node, and a manipulated federal agency (FBI), i think you could possibly bust it open
+02:39 < ptsc> it doesn't have the latency of the remailer network (and in fact couldn't, and still be reasonably 'instant')
+02:39 < Neo> The DC system also has GPG Web private messaging. Mids and I and others have kept in contact when IIP was down, and also relevant discussion of issues related to IIP.
+02:39 < Neo> We are in beta now, but opening to public soon.
+02:39 < Neo> .
+02:39 <@mids> So we can use DC for the non-irc part of IIP
+02:39 <@mids> forums, announcements
+02:39 < Neo> You bet.
+02:39 < Banks> A corrupt node would have to unscramble the end-to-end encryption too, wouldn't it?
+02:39 < Neo> We trashed our chat system, and are using IIP, so you guys jump right in.
+02:40 <@mids> Banks: err, thats offtopic atm
+02:40 < Banks> mids: You're right
+02:40 <@mids> I suggest discussing the IIP internals later
+02:40 < ptsc> i guess by 'corrupt' i meant the person rather than the node
+02:40 <@mids> lets hurry and move on before chocolate joins
+02:40 <@mids> any objections?
+02:40 < ptsc> and by that, i mean just that the person is going to run netstat periodically and log who is connecting to them,
+02:41 < ptsc> while also being logged in a channel as a nick, watching who shows up, and weeding people out by a process of elimination
+02:41 < Neo> We can give IIP their own custom forums. - Newbies - Tech - Dev... let us know.
+02:41 -!- mode/#iip-dev [+o Chocolate] by mids
+02:41 < ptsc> they could also get network internals of other nodes they connect to, and then obtain subpoenas/'carnivore' capability on those nodes
+02:41 <@mids> ptsc: its offtopic
+02:41 <@mids> please discuss it later
+02:41 <@mids> (getting chaotic)
+02:41 < ptsc> apologies
+02:41 <@mids> np
+02:42 <@mids> 4) Instant Anonymous Messenger (wilde wont be here)
+02:42 <@mids> wilde was too sleepy
+02:42 <@mids> so u
+02:42 <@nop> ok
+02:42 <@mids> so I 'll just paste what he said:
+02:42 <@nop> please do
+02:42 <@mids> Status and features:
+02:42 <@mids> wilde started to work on an IM, easy to use program to connect to IIP.
+02:42 <@mids> He got the IRC connection working. The plugin system works too.
+02:42 <@mids> Apart from IRC and IM support there will also be features for digital
+02:42 <@mids> currencies. He is looking into cryptography now.
+02:42 <@mids> For further information email wilde@invisiblenet.net or visit #iam-dev
+02:42 <@mids> .
+02:42 <@nop> ok
+02:42 <@nop> also
+02:42 <@nop> if freenet ever gets stable
+02:42 <@nop> it would be nice to add a dcc transport
+02:42 <@nop> that utilizes freenet
+02:42 <@nop> as a plugin
+02:43 <@mids> yup
+02:43 <@nop> ok
+02:43 <@nop> sounds good
+02:43 <@nop> any questions
+02:43 <@mids> and maybe, like ptsc suggested
+02:43 < Banks> True, but won't RC2 have DCC?
+02:43 <@mids> filter the IRC, to disable urls
+02:43 <@nop> IIP rc2 will not have dcc
+02:43 <@nop> it compromises anonymity
+02:43 <@nop> file sharing will have to be later within IIP
+02:44 <@nop> but it's in planning
+02:44 < Banks> ok, I thought there might be a way to do it without compromise
+02:44 <@nop> not till we decentralize
+02:44 <@nop> then there will be
+02:44 <@nop> utilizing broker agents
+02:44 <@nop> etc
+02:44 <@nop> we have a fileserv plugin for xchat
+02:44 <@nop> that does base64
+02:44 <@nop> anyway
+02:44 <@nop> that's the plan
+02:44 <@nop> ok
+02:44 <@nop> next topic
+02:45 <@mids> maybe questions
+02:45 <@mids> but we dont know all answers
+02:45 <@mids> cause wilde aint here
+02:45 <@mids> :)
+02:45 <@mids> so just ask, he can read them in the logs
+02:45 < Neo> wilde coding in perl?
+02:45 <@nop> java
+02:45 <@mids> java
+02:45 <@nop> I believe
+02:46 <@mids> he bases it on a full IM client that a friend of him wrote
+02:46 < Neo> ah
+02:46 <@mids> okay, lets hurry to topic 5
+02:46 <@mids> we have 9 in total
+02:47 <@nop> topic number 5 is ...
+02:47 <@nop> drum roll please
+02:47 <@mids> write your burning quesitons down
+02:47 <@mids> 5) Website
+02:47 <@nop> ahh
+02:47 <@nop> yes
+02:47 <@nop> the lag
+02:47 <@mids> I want to give the word to nym
+02:47 <@nop> yeah
+02:47 <@nop> umm
+02:47 <@mids> nym?
+02:47 <@mids> okay
+02:47 <@nop> ok
+02:47 <@nop> site looks ok
+02:47 <@mids> he was here last week
+02:47 <@nop> the fear I have
+02:47 <@mids> and appologied for the delay
+02:47 <@nop> is that it will take him forever to update any changes
+02:47 <@mids> he has made a new updayed design:
+02:47 <@mids> http://buttsnot.com/invisible2.html
+02:48 <@nop> or press releases
+02:48 <@mids> the first one was http://mids.student.utwente.nl/~mids/iip/meeting1/draft2.jpg
+02:48 <@nop> so dunno
+02:48 <@mids> any comments on the looks?
+02:48 <@nop> and we need a plan b
+02:48 <@nop> just in case he never shows a stable site
+02:48 < tikk> nice job.. and i'm a designer
+02:48 < tikk> there's a few table errors
+02:48 < Neo> ellison is available for plan b
+02:48 < Aster> its ok, could use some more work
+02:49 < tikk> cosmetic stuff
+02:49 <@nop> neo are you sure
+02:49 <@nop> that would be great
+02:49 <@nop> also Neo
+02:49 <@nop> thnx for the IIP stuff you wrote
+02:49 <@mids> I think it is not good enough for > 15 hours work
+02:49 <@nop> it's impressive
+02:49 < Neo> yes, he already offered
+02:49 <@nop> great
+02:49 < Neo> what IIP stuff?
+02:49 <@nop> dc
+02:49 <@nop> on dc beta
+02:50 < Neo> OH. ellison did that :)
+02:50 <@nop> also
+02:50 <@nop> well thank him
+02:50 <@nop> also
+02:50 <@nop> does ellison do logo design?
+02:50 < Neo> will do, he will read this log
+02:50 <@mids> FYI, ellison is the gfx guy of Distributed City
+02:50 < Neo> you bet.
+02:50 <@nop> kewl
+02:50 < Neo> and alta/lese/liquid privacy
+02:50 <@nop> is he fast working
+02:50 <@nop> like we would be able to see something soon
+02:50 <@nop> type of deal
+02:50 <@nop> because I"m bout ready to put my foot down
+02:50 <@nop> and go with plan b
+02:51 < Neo> he will be on later, we can have a quick meeting then, I can't speak for him
+02:51 <@mids> update on nym
+02:51 <@nop> ok
+02:51 <@mids> he got $100 from us to do a design
+02:51 <@mids> payed out of the donations depot
+02:51 < Neo> now but I know that he was very interested in doing something for IIP if the opportunity arose.
+02:51 <@mids> all the donators agreed
+02:51 <@mids> but, what we have now is not usable
+02:51 <@mids> it is going too slow
+02:51 <@nop> and we know 100$ ain't much
+02:52 <@nop> but I don't feel that we even have that worth
+02:52 <@mids> but well, we dont have more
+02:52 <@mids> I am sure that nym means it all right
+02:52 <@nop> we gave it to him like more than a month ago
+02:52 <@mids> but lacks the time
+02:52 <@nop> yes
+02:52 <@nop> I understand
+02:52 <@nop> but we have to be practical
+02:52 < Aster> once he gets the design done, someone else (ide be willing to) get the rest together
+02:52 <@mids> we want a website asap
+02:52 <@mids> Aster: thanks
+02:52 <@nop> and good logo's
+02:52 <@nop> yes thanks
+02:53 <@mids> so what are the options:
+02:53 <@mids> - use what we have and craft it into a site
+02:53 <@mids> - put another gfx guy/girl on it
+02:53 <@mids> - keep the old site
+02:53 <@nop> old site has to go
+02:53 <@nop> I like it
+02:53 <@nop> but it's too villany
+02:53 <@mids> - wait for nym to finish it
+02:54 <@nop> and casper == copyright infringement
+02:54 < Banks> I think the old site is pretty good. Logo and Times New Roman aside.
+02:54 <@nop> hehe
+02:54 <@nop> you know
+02:54 <@nop> you'd be surprised
+02:54 <@nop> but that was done in 10 minutes
+02:54 < Banks> shame that Gamespy had to steal our logo before we had a chance to create it :)
+02:54 <@nop> haha
+02:55 <@nop> ok
+02:55 <@nop> so on topic of website
+02:55 <@nop> reverting back to old one is last option at most
+02:55 <@nop> I'm really wanting to go for a brighter look
+02:55 <@nop> something more professional
+02:55 <@nop> because
+02:55 <@nop> if we get attention by press
+02:55 <@nop> the darkness will give way to the "media hacker" term
+02:56 < Banks> true. I think we should think about who the target market is and cater it to that.
+02:56 <@nop> and IIP will not go down like that
+02:56 <@nop> Banks: agreed
+02:56 <@nop> the target market is how you market it though
+02:56 <@nop> the way I see this
+02:56 < Neo> ellison can *REALLY* help you with this.
+02:56 <@nop> yes
+02:56 <@nop> I see
+02:56 <@mids> I have seen ellisons work
+02:56 <@nop> I have as well, it's very good
+02:56 <@mids> and if he wants, lets give him a try
+02:56 <@nop> PR and website == one idea
+02:57 < Banks> True, but there's already an audience for it. Slashdot-types.
+02:57 < Aster> market to both groups: hackers and corp looking...have 2 sites
+02:57 < Aroonkoa> And kuro5hin. :)
+02:57 <@mids> about the $100, I see it as lost
+02:57 <@nop> yes
+02:57 <@mids> and we dont do such things again in the future
+02:57 < Chocolate> 2 sites is way to much overhead
+02:57 <@mids> lets name it a learning phase
+02:57 <@nop> yes
+02:57 < Aster> chocolate: in what way?
+02:57 <@nop> we want the invisibleNet front page
+02:57 < Banks> The program itself is always significantly more important than the website.
+02:57 <@nop> then the Invisible Irc Project page
+02:58 < Banks> A good program markets itself.
+02:58 <@nop> InvisibleNet is the Dev team
+02:58 <@nop> all of us
+02:58 <@nop> everyone using IIP
+02:58 <@nop> is part of an invisibleNet
+02:58 <@nop> :)
+02:58 <@nop> a society so secret we don't even know ourselves
+02:58 <@nop> ;)
+02:58 <@nop> but seriously
+02:58 <@nop> and then we need the main IIP page
+02:58 <@mids> tikk offers his help too
+02:58 <@mids> maybe we can make a little web-board
+02:58 <@nop> tikk, much appreciated
+02:58 <@mids> for input etc
+02:59 < Neo> Banks: yes, but part of the marketing needs to cater to PR for political reasons ciphers only go so far
+02:59 <@mids> who wants to participate in the webboard? (just an idea)
+02:59  * mids
+02:59 <@nop> Neo : please elaborate on that comment
+02:59 < Banks> Neo: I agree
+02:59  * nop doesn't quite understand yet
+03:00 <@nop> also - mids : anytime Website is topic have website/PR as one topic
+03:00 <@nop> because it is one in the same
+03:00 <@mids> nop: yup
+03:00 <@nop> ok
+03:00 <@nop> well, if ellison is willing
+03:00 <@nop> and tikk you are willing to offer advice
+03:00 <@nop> let's do this
+03:01 < Neo> re: PR. Like your comment above about the "media hacker" term. The dark "villianry" (sp?)
+03:01 <@nop> and anyone else willing to get the website to the optimal point then hop on and let's go for it
+03:01 <@nop> Neo: point seen - understood
+03:01 < Neo> image is not good for PR - Political PR and marketing for new users PR.
+03:01 < Neo> That is why people interested in saving money from people who try and take it away from
+03:01 < Aster> nop: you mean as in webmaster, or just finishing the job of the site (hop on comment)
+03:02 < tikk> i'm willing to help advise, sure.. i'm not sure if i'm +v here
+03:02 < Neo> them and use crypto, it is better for them to use crypto for freedom of speech uses. not to capitalize on
+03:02 <@mids> tikk: we hear you
+03:02 <@nop> aster that's debatable, lately, I've been the semi-webmaster
+03:02 <@mids> tikk: the chan isnt +m
+03:02 <@nop> aster
+03:02 < Aster> yup?
+03:02 <@nop> if you want to it's an open position once we get it up
+03:02 < Neo> how they are protecting assets. (nuff said, this is for another room/thread)
+03:02 < Aster> sure
+03:03 <@nop> I have a feeling this is going to be bigger than I can handle
+03:03 <@mids> ok
+03:03 <@nop> Neo : good point ;)
+03:03  * mids asks contact info from parties involved
+03:03 <@mids> and I'll notice you
+03:03 <@nop> and pubkeys
+03:03 <@nop> also
+03:03 <@nop> on a side note
+03:03 <@nop> everyone registered with trent
+03:03 <@nop> has anonymail access
+03:03 <@nop> user@iipmail.net
+03:04 <@nop> pgp compatible
+03:04 <@nop> somewhat
+03:04 <@nop> :)
+03:04 <@nop> it's like memoserv here
+03:04 <@nop> and is very useful
+03:04 <@nop> continue
+03:04 <@nop> off topic
+03:04 <@mids> ok
+03:04 <@nop> but needed to say
+03:04 <@mids> (just ask in #iip for more info)
+03:04 <@nop> yep
+03:05 <@mids> I'll contact the parties who offered their interest in the web/pr
+03:05 <@mids> lets move on
+03:05 <@mids> ) Documentation (codeshark, cohesion or mids)
+03:05 <@mids> cohesion isnt here
+03:05 < Chocolate> can I stick something in real fast?
+03:05 <@nop> sure
+03:05 <@mids> ok
+03:05 < Chocolate> going back to the whiteboard
+03:05  * mids scrolls up
+03:05 < Banks> That's what I'm always saying to my wife.
+03:05 < Chocolate> I found one called "CSV" (if I remeber rigth)
+03:06 < Chocolate> I'll find the url and send it to #iip
+03:06 < Chocolate> .
+03:06 <@mids> nice
+03:06 <@mids> 6) Documentation
+03:06 <@mids> last week we had a lenghty talk
+03:06 <@mids> 3 ppl involved with documentation
+03:06 <@mids> all pretty busy
+03:07 <@mids> docu is really needed before release
+03:07 <@mids> there are 2 systems:
+03:07 <@mids> LaTeX or Docbook
+03:07 <@mids> we agreed on using LaTeX now
+03:07 <@mids> and moving to docbook in a later state
+03:08 <@mids> current latex is available on http://mids.student.utwente.nl/~mids/docdemo/
+03:08 < Banks> I was using HTML to PDF with HTMLDOC.
+03:08 <@mids> but it needs review
+03:08 <@mids> and also misses some items
+03:08 <@mids> (unix install)
+03:08 <@mids> probably anonymail can be added too it too as appendix
+03:08 <@mids> now, we heared that a few people have made additions to the manual
+03:09 <@mids> problem is that we dont know what version
+03:09 <@mids> so lets coordinate that
+03:09 <@mids> and put everything together
+03:09 <@mids> .
+03:09 <@mids> anybody something to add?
+03:10 <@mids> hm
+03:10 <@mids> we have 3 translations
+03:10 < Banks> Is codeshark still here?
+03:10 <@mids> spanish, french and dutch
+03:10 <@mids> so it becomes a bit heavy
+03:10 <@mids> we need documentation management.
+03:11 <@mids> any news about cohesion's status?
+03:11 <@mids> nop?
+03:11 <@nop> here
+03:11 <@nop> sorry
+03:11 <@nop> umm
+03:11 <@nop> he's around
+03:11 <@nop> on earlier today
+03:11 <@mids> but he is documentation manager not?
+03:11 <@nop> umm
+03:12 <@nop> yes
+03:12 <@nop> hold
+03:12 <@nop> just a sec
+03:12 <@nop> someone at work talking in my ear
+03:12 <@mids> :)
+03:12 <@mids> --- advertizement ---
+03:12 < Banks> Codeshark: Are you still here? Check your pm
+03:13 <@mids> Banks: if you talk to him, tell him to respond here too :)
+03:13 < Banks> codeshark has been idle 27mins 38secs
+03:13 < Banks> :)
+03:13 <@mids> darn, out of battery power
+03:13 < Chocolate> lol
+03:14 <@nop> back
+03:14 <@nop> ok
+03:14 <@mids> ellison: we are now at the part 6) Documentation
+03:14 <@nop> cohesion is document manager
+03:14 <@mids> ok
+03:14 <@nop> and main technical writer
+03:14 <@mids> but he seems to be busy
+03:14 <@nop> but people have real life
+03:14 < ellison> thanks, catching up in the logs
+03:14 <@nop> and I think that is what is going on
+03:14 <@nop> so...
+03:14 <@mids> true
+03:14 <@nop> we should have a assistant doc manager
+03:14 <@mids> suggestion: put as much as possible in CVS, so more can work on it
+03:14 <@nop> so that this can continue
+03:15 <@nop> mids = you seem like you have a lot on plate
+03:15 <@nop> do you
+03:15 <@nop> or does it seem that way
+03:15 <@nop> with IIP that is
+03:15 < Banks> I can help but I'm not familiar with CVS
+03:15 <@nop> hold
+03:15 <@mids> nop: yup
+03:15 <@nop> banks
+03:15 <@mids> need to delegate
+03:15 <@nop> I'll get you doc on cvs
+03:15 <@nop> well chocolate - how are you lately ol' buddy ol pal
+03:16 <@nop> ok
+03:16 <@mids> I can do the assistent doc management
+03:16 < Banks> Does anyone want a copy of a PDF I churned out? Codeshark is busy right now.
+03:16 <@mids> but I am not going to write
+03:16 <@mids> I can put input into LaTex
+03:16 <@mids> and keep it central
+03:17 <@mids> it wont be much time for me
+03:17 <@mids> Banks: url
+03:17 <@nop> sure Banks
+03:17 < Banks> Where do you want me to email it?
+03:17 <@nop> mids = if you waill approve and put in cvs as a contrib
+03:17 <@nop> waill =will
+03:17 <@nop> aster
+03:17 <@mids> nop: what? my latex of Banks pdf?
+03:17 <@nop> I believe so
+03:18 <@nop> also
+03:18 < Aster> nop: hum?
+03:18 <@nop> ellison wrote a good end users doc on dc beta
+03:18 <@nop> much appreciated
+03:18 <@nop> and could be very usable in future
+03:18 <@nop> for general IIP
+03:18 <@nop> on website
+03:18 <@nop> here
+03:18 <@nop> a getting started
+03:18 <@nop> type thing
+03:18 < Banks> mids: Do you want me to email it to mids@invisiblenet.net?
+03:18 <@mids> Banks: please
+03:19 < Banks> ok
+03:19 <@nop> aster - mind if I delegate you a webmaster once site goes up
+03:19 < Aster> nop: dont mind at all :)
+03:19 < Banks> mids: Sent.
+03:19 < ellison> nop: i can clean it up and re-purpose it for the site
+03:19 <@nop> great
+03:20 <@nop> ellison - at a later point in time
+03:20 <@nop> we would like to discuss web dev with you
+03:20 < ellison> ok
+03:20 < Banks> mids: Tell me what you think.
+03:20 <@mids> Banks: will do once I got it
+03:21 <@nop> docs - anymore comments on docs
+03:21 <@nop> or questions
+03:21 < Banks> mids: Ok, I can send the HTML with BMPs later too.
+03:21 < Banks> I've got a question.
+03:21 <@mids> Banks: I'll contact you and put it central
+03:21 <@nop> yes sir
+03:21 < Banks> The whitepaper says "here is a "steady" streaming protocol, for those who can afford the bandwidth, for constant traffic, (which protects you from traffic analysis of any form, but will cause a 500 millisecond lag)."
+03:22 < Banks> And then "[name of this parameter?]"
+03:22 < Banks> What is the name of the parameter? :)
+03:22 <@mids> euh
+03:22 <@mids> too detailed
+03:22 <@mids> this is a public meeting :)
+03:22 < Chocolate> isnt that offtopic?
+03:22 < Banks> My bad.
+03:22 <@mids> I got the contact info from those with documentation
+03:23 <@mids> I will gather it
+03:23 <@mids> and put it central
+03:23 <@mids> then find editors to edit
+03:23 <@mids> dont fear LaTeX or CVS
+03:23 <@mids> you'll live
+03:23 <@mids> :)
+03:23 <@mids> .
+03:23 < Banks> Reading up on LaTeX was a nightmare :)
+03:23 < Chocolate> ok so is Documentation finished?
+03:24 <@mids> Chocolate: lol
+03:24 <@mids> Chocolate: well, the subject here is
+03:24 <@mids> I think.
+03:24  * Chocolate kicks mids
+03:24 < Chocolate> thats what I ment
+03:24 <@mids> oh :)
+03:24 <@mids> before we go to a free-for-all question round
+03:24 < Chocolate> I ment "is agenda item 6 finished"
+03:25 <@mids> lets do 1 more public thing
+03:25 <@mids> about the meeting time
+03:25 <@mids> Quick jump to topic 9 Next meeting:
+03:25 -!- Chocolate changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/ | current topic: meeting time
+03:25 <@mids> statement: current time too late for Europeans, better time?
+03:25 <@mids> codeshark and me would prefer 2 hours earlier
+03:26 <@mids> (its 3:30 am here now)
+03:26 < Aster> ouch
+03:26 <@mids> Kronos-X: we are now almost finished
+03:27 <@mids> Kronos-X: trying to settle a better meeting time
+03:27 < Kronos-X> I'm unpredictable, so I'm flexible by default.
+03:27 < Kronos-X> :)
+03:27 < MiB> 3:38 over here, 3 to 4 hours earlier would be much more humane for me :)
+03:27 <@mids> nop: what about 2 hours earlier? choc? banks? neo?
+03:28 < Chocolate> IIRC 0000 is the earlyst nop can make it
+03:28 < Neo> anytime is cool with me, its the others to ask. :)
+03:28 < Chocolate> 2200 tuesday should be ok for me
+03:29 < Banks> Fine by me
+03:29 < Chocolate> it's important that nop and/or userx can make the meetings though
+03:29 < Aster> uh, whats thaht eastern?
+03:29 < Chocolate> no, UTC
+03:29 < Aster> what would be eastern then? ( i dont know how this time stuff works :)
+03:29 <@mids>  http://www.timeanddate.com/worldclock/
+03:29 < Chocolate> EDT is -5
+03:29 < Aster> k
+03:29 < ellison> oooh, an ISO compliant meeting!
+03:29 < Kronos-X> Heh
+03:30 <@mids> nop seems to be busy
+03:30 <@mids> he has a veto on the time imho
+03:30 < Chocolate> same
+03:30 <@mids> those who showed up didnt complain
+03:30 <@mids> so proposal is 2 hours earlier
+03:30 <@mids> end of meeting time?
+03:30 <@mids> .
+03:31 <@mids> topic 7/8 Free 4 all Question round!!!
+03:31 <@mids> sorry for cutting you all off earlier
+03:31 <@mids> take revenge now
+03:31 < Chocolate> lol
+03:31 <@nop> sorry
+03:31 <@nop> back
+03:31 <@mids> nop: 2 hours earlier meeting okay?
+03:31 <@nop> ooh
+03:31 <@nop> well, I'm in prime of working time
+03:31 <@mids> be honest
+03:32 <@nop> hmm
+03:32 <@nop> can we shoot for an hour earlier
+03:33 <@nop> I can get in trouble for chatting at work at that time in the day
+03:33 <@mids> yup
+03:33 <@mids> then we will try that
+03:34 <@nop> ok
+03:34 <@mids> okay... questions!
+03:34 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/ | current topic: Questions
+03:34 < Kronos-X> mids: Where are the .debs?
+03:34 < Kronos-X> ;)
+03:34 <@nop> teach us old wise one
+03:34 <@nop> and we will make .debs
+03:34 <@nop> :)
+03:34 <@mids> Kronos-X: you would make them!
+03:34 < Kronos-X> Heh.
+03:35 < Kronos-X> Sorry, I'm just here to bump the noise-to-signal ratio.,
+03:35 < Kronos-X> Let me pass the mic on to someone with a real question.
+03:35 <@nop> hehe
+03:35 <@mids> ptsc: any Q about the protocol?
+03:35 < Banks> ptsc has been idle 53mins 56secs :)
+03:36 <@mids> okay, banks' PDF is online on http://mids.student.utwente.nl/~mids/iip/meeting2/
+03:36 <@nop> did we discuss roadmaps
+03:36 <@nop> etdd
+03:36 <@mids> it looks cool already
+03:36 <@nop> etc
+03:37 <@mids> nop: only that rc2 depends heavily on docs
+03:38 <@nop> ok
+03:39 <@nop> this pdf kicks ass
+03:39 <@nop> just need the invisible irc logo in there
+03:40 <@nop> and you're done eh:)
+03:40 <@mids> I love the quotes and the screenshots
+03:40 < Banks> Casper?
+03:40 <@mids> even a FAQ!
+03:40 <@mids> Banks: why didn't you tell us before?
+03:40 < Banks> I spoke to codeshark but he didn't really say anything.
+03:42 <@nop> no
+03:42 <@nop> take the one off the site
+03:42 <@nop> for now
+03:42 < Banks> ok
+03:43 <@mids> I am going to sleep
+03:43 <@mids> logger will keep running for a while
+03:43 <@mids> thanks everybody for listening
+03:43 < Neo> l8r mids
+03:43 <@mids> night
+03:44 < Chocolate> night
+03:44 < Banks> night mids
+03:44 < Kronos-X> Night, mids.
+03:44 < Aster> nite
+03:45 < ellison> l8r mids
+03:46 < Banks> Is there a logo in the works?
+03:48 <@nop> umm yeah
+03:48 <@nop> also
+03:48 <@nop> we want to have
+03:48 <@nop> pwered by InvisibleNet
+03:48 <@nop> and IIP now logo's
+03:49 < Banks> That's a good idea.
+03:49 <@nop> banks
+03:49 < Banks> It's hard to think of a logo that conveys IRC invisibility :)
+03:49 <@nop> excellent pdf
+03:49 < Aster> how long till these logos exist
+03:49 <@nop> we will definitely use it for distro with IIP
+03:49 < Banks> Cheers
+03:49 <@nop> well
+03:49 <@nop> I have some drafts of powered by invisiblenet
+03:49 <@nop> but you know
+03:49 <@nop> the goal of IRC is one thing
+03:49 <@nop> but in the future
+03:49 <@nop> Invisible Internet
+03:49 <@nop> so...
+03:50 < Banks> True
+03:50 <@nop> IRC Is main project
+03:50 <@nop> but it's so modular
+03:50 <@nop> that rumors might start
+03:50 < Banks> Logos with heads or faces seem to do pretty well. Redhat, Napster, etc.
+03:50 < Banks> Rumors?
+03:51 < Aster> banks: but do we want to copy the other guys, or come up with something unique, while still remeberable
+03:51 <@nop> it's a joke, basically it will be so modular anything can be put in as a protocol to anonymize
+03:51 < Banks> nop: I see :)
+03:52 < Banks> Aster: A head or face can still be unique. I think they're better than geometric patterns, etc.
+03:52 < Aster> yeah
+03:53 < Chocolate> anyone with a camelion as a maskot?
+03:54 <@nop> geiko
+03:54 <@nop> insurance
+03:54 <@nop> :)
+03:54 < Chocolate> damn
+03:54 < Chocolate> the fuckers
+03:54 < Chocolate> they're a terible companie
+03:55 < Banks> GameSpy has taken the Invisible Man thing
+03:55 <@nop> yes
+03:55 <@nop> they don't even do good at getting cheap insurance
+03:55 < Chocolate> maby a klingon bird of prey?
+03:55 < Banks> :)
+03:55 < Chocolate> cloaked you know ;)
+03:56 < Banks> Maybe footprints that disappear across the text.
+03:57 <@nop> hehe
+03:57 <@nop> ok, meeting is officially over
+03:57 <@nop> just to let you know
+03:58 <@nop> it's free for all
+03:58 <@nop> anyone have a good slogan for IIP
+03:58 <@mids> IIP - it keeps you awake
+03:58 <@nop> hehe
+03:58 < Neo> IIP - "Fuck the State"
+03:59 <@nop> umm
+03:59 < Neo> oh... sorry...
+03:59 <@nop> no
+03:59 < Neo> :) lol
+03:59 < Banks> I love that one Neo :)
+03:59 < Banks> IIP - "Stuttering Urinators."
+03:59 <@nop> hah
+03:59 <@nop> haha
+04:00 < Chocolate> IIP - where animals talk
+04:00 < Banks> Heh heh
+04:01 < Banks> Maybe a Dog logo, you know, on the internet no one knows that you're a dog.
+04:01 < Banks> An invisible dog! :)
+04:01 < ellison> "and doubly-so with IIP"
+04:02 < Banks> IIP - "Where AOLers can be free from prejudice"
+04:03 <@nop> haha
+04:05 < Chocolate> IIP - Talk to yourself without people laughing at you
+04:05 < Banks> Heh heh
+04:10 -!- CwZ|away is now known as Somedude
+04:11 < Chocolate> hey Somedude
+04:11 < Somedude> hey Chocolate
+04:11 < Somedude> how goes?
+04:11 < Chocolate> I'm ok, you?
+04:11 < Somedude> fine fine
+04:12 < Banks> Heh heh
+04:13  * Banks pm's Somedude, "We all hate Chocolate".
+04:13 < Somedude> yea I do too
+04:13 <@nop> hey guyes
+04:14 <@nop> email me sites you like
+04:14 <@nop> for examples of styles for IIP
+04:14 <@nop> 0x90@invisiblenet.net
+04:17 < Mole> Ok, heres the deal: I am a p2p researcher and has al ot of nice algorithms that I have invented and tested for distributed systems.
+04:17 < Mole> I am currently looking for some project with which I should share my knowledge.
+04:18 < Banks> You've come to the right place :)
+04:18 < Banks> nop is your man.
+04:18 < Mole> I just found iip some minutes ago.
+04:18 < Mole> I guy in #freenet on openprojects.net recommend you.
+04:18 < Mole> Well, heres what i got so far:
+04:19 <@nop> k
+04:19 < Mole> * All my algorithms are completely distributed and is not dependant on any central server.
+04:20 < Mole> * An algorithm to keep together a network with anything from 2 to 20000000000 nodes. :))
+04:20 < Mole> * That network never gets netsplits and cant be crashed as far as I know.
+04:20 <@nop> mole
+04:20 <@nop> please email iip@invisiblenet.net
+04:20 <@nop> with it
+04:20 <@nop> along with your pubkey
+04:21 < Mole> * Algorithm to announce subnets/services on the main network. (Aad subnets on the subnets.)
+04:21 <@nop> can it remain anonymous
+04:21 <@nop> and help not give too much info
+04:21 < Mole> * Algorithms to collect statistics like number of nodes, average and median values et.c.
+04:22 < Mole> * Algorithms to keep secret hwhat different nodes does on the network and what services they are suppliyng.
+04:22 <@nop> why Mole for a nick
+04:22 < Mole> And I am curently I am working to solve the distributed secure efficient database. :)
+04:22 <@nop> kewl
+04:22 < Mole> Well, Mole has been my Internet nick since 1991.
+04:23 < Mole> I myself is not a very secret person. :)
+04:23 < ellison> Mole: you familiar with quorum based distributed data systems?
+04:23 < Mole> But I like to supply secresy to people. :)
+04:23 <@nop> had a feeling those algo's are secret
+04:23 <@nop> :)
+04:23 < Mole> nope, not quorum.
+04:23 <@nop> quorum or quantum
+04:23 < ellison> lotsa cool work being done there
+04:24 < ellison> quorum
+04:24 < Mole> Kind of been into my research and simulations to much so I am currently taking a long break to check what other projects there are out there.
+04:24 < ellison> it's basically a distributed databases structure where many entities can have read/write access, but the system is protected from attempts at corruption by any of those entities
+04:24 < ellison> really useful for certain types of data structures/purposes
+04:25 < ellison> http://citeseer.nj.nec.com/malkhi97byzantine.html
+04:25 < Chocolate> Mole: I recomened you here :)
+04:25 < Chocolate> got a spybot going in #freenet here
+04:26 < Mole> Ok, Ill check quorum out to.
+04:26 < Mole> Well, now I have lots of questions about IIP to see what good my algorithms and knowledge might do for you. :)
+04:27 < Mole> First of all, is there any documentation of how IIP works anywhere?
+04:28 <@nop> yes
+04:28 <@nop> banks
+04:28 <@nop> where's that link
+04:28 < Banks> Wait one
+04:28 < Banks> http://mids.student.utwente.nl/~mids/iip/meeting2/iipdoc.pdf
+04:29 < Banks> Mole: You'll probably want to read mainly chapter 1 and chapter 9.
+04:29 < Mole> Ok, downloading it.
+04:32 <@nop> I have to run
+04:32 <@nop> see ya guys later
+04:33 < Banks> Seeya nop
+04:33 < Mole> Hey you gues are really friendly. Lots of chats in all windows and private cahts too.
+04:33 < Banks> :)
+04:36 < Mole> I'll read all the stuff you all recommended and talk to you some other day when I know more. :)
+04:37 < Banks> That'd be great :)
+06:07 < Mole> Ahh, I just browsed through iipdoc.pdf and now I think I understand how IIP works.
+06:08 < Mole> If I got it right there are allmost normal IRC-servers in the "backbone" ?
+06:12 < Mole> And you are planning on making verions 2.0 fully decentralised.
+06:12 < Mole> Have any design work or algorithm research been done on the decentrailsed structure for verison 2.0 ?
+06:20 < Chocolate> some
+06:20 < Chocolate> still r&d
+06:21 < Mole> Ok, I think I can be of use to you then. :)
+06:36 < Aster> k
+06:37 < Mole> Ok, well here are my thoughts on anonymous DCC chat and file send:
+06:38 < Mole> Add a socks-proxy to the "IIP-client".
+06:38 < Mole> Tell the users to configure their IRC client to run through the IIP-socks-proxy.
+06:39 < Mole> That means all the DCC connections will go to the IIP-socks-proxy.
+06:40 < Mole> The when the IRC-client (like mIRC) wants to connect to mole.anon.iip the proxy sends that connection through some of the other
+06:40 < Mole> nodes in the network until it finally reaches the node you want to DCC.
+06:41 < Mole> Thus you got an anonoymous DCC!
+06:41 < Mole> Waht do you think?
+06:41 < Aster> dcc involves files right (im not a big irc kid)
+06:42 < Mole> Yep.
+06:43 < Mole> So it will create much network load for the nodes that the connection "bounces" through.
+06:43 < Aster> yeah...the only problem i see is that now, when you start sending your file, its gotta go through all the other servers, causing lots of traffic
+06:43 < Aster> yeah
+06:44 < Mole> But since allmost all nodes should be assisting the distributed net that network load could be spread pretty equally.
+06:44 < Mole> But it will of course be slower "downloads" than over unsafe DCC.
+06:45 < Mole> Ahh, network split?
+06:46 < Aster> sorry, i missed your last few messages
+06:46 < Mole> Repating: But since allmost all nodes should be assisting the distributed net that network load could be spread pretty equally.
+06:46 < Mole> Repeating: But it will of course be slower "downloads" than over unsafe DCC.
+06:46 < Aster> yeah
+06:47 < Mole> So it has to be discussed if it should be implented.
+06:47 < Aster> not really though about the spread out network load...each node still has to relay, lets say, 10mB no matter how many other nodes are there
+06:47 < Mole> But atleast it is very simple to implement if you decide to use it.
+06:47 < Aster> yeah
+06:48 < Mole> Not with my algorithms. :) Then each node only has to relay about 500 byte / second.
+06:48 < Mole> Excpet for the DCC data ofcourse....
+06:49 < Mole> Lets go to my next simple algorithm:
+06:49 < Mole> To create network efficient channel communications you do like this:
+06:50 < Mole> Provided that each user has his own local IIP-node:
+06:51 < Mole> That is, all the data we are creating while chatting only travles among the nodes taking part in the chat.
+06:51 < Mole> Thus not loading the rest of the network.
+06:51 < Mole> We have to ad one thing though for anonymity:
+06:51 < Mole> The nodes actually taking part in the mini network for the channel
+06:52 < Mole> is only front ends for the real chatters.
+06:52 < Mole> That is each node connects to a front end (perhaps in two or more levels) and it is the front end that joins the channel-network.
+06:53 < Mole> That save a lot of communication bandwidth!
+06:53 < Mole> and also makes the network much more robust.
+06:53 < Aster> hum
+06:54 < Aster> interesting
+06:55 < Aster> brb....i need to lay down for a bit..back hurting
+06:55 < Mole> chatter node <-> intermediate <-> frontend <- channelnet -
+06:55 < Mole> > frontend <-> intermediate <-> chatter node
+06:56 < Mole> Any other of you guys have any comments?
+07:18 -!- Zwollywood is now known as Zwolly
+07:21 < Mole> Hi Zwolly
+07:22 < Zwolly> hello
+07:22 < Zwolly> one moment
+07:23 < Mole> Are you working with IIP-development?
+07:24 < Zwolly> no i am just an user
+07:24 < Zwolly> i think i am to late for the meetibg
+07:25 < Mole> Ahh, me to.
+07:25 < Mole> Yep, the meeting was hours ago.
+07:25 < Mole> I am thinking on joining the development team.
+07:25 < Zwolly> http://mids.student.utwente.nl/~mids/iip     there is some info there
+07:25 < Zwolly> great
+07:25 < Zwolly> if you got the skills and they can use some one
+07:26 < Mole> Yep, I got the skills. Researched decentralised p2p systmes since 1997...
+07:27 < Mole> Thanks for the reminder of the URL.
+07:28 < Mole> I checked it again and there were more stuff there then I noticed when I took a first look some hours ago.
+07:28 < Zwolly> only thing i know of making programs is how to make them crash hehe
+07:28 < Mole> Well, sounds like you could bee a good beta-tester  then?
+07:29 < Zwolly> yeh maybe
+07:29 < Zwolly> i am busy on an dutch translation of the manual so maybe i can help a little with that
+07:29 < Mole> I find it funny that they have a command to add your website to your ncik.
+07:30 < Mole> Just read about the extra commands IIP has.
+07:30 < Zwolly> yeh that is a nice option
+07:32 < Mole> Oops, I looked in the "livelog.txt" on the site IIP site.
+07:34 < Mole> Whoops, got disconnected.
+07:35 < Zwolly> yeh i see
+07:35 < Zwolly> also an point on agenda
+07:35 < Zwolly> more stable connections
+07:36 < Mole> hehe, yep.
+07:37 < Mole> It is possble to build networks that use multiple tcp-connections to make things very robust.
+07:38 < Zwolly> yeh i am reading about that but need to see it first before i believe it
+07:38 < nop> dang
+07:38 < nop> meeting still going?
+07:38 < Zwolly> now reading log file
+07:38 < Zwolly> no
+07:39 < Zwolly> just some people talking and reading what they have missed
+07:39  * mids kicks everybody out
+07:40 <@mids> MEETING IS OVER
+--- Log closed Wed May 29 07:40:24 2002
+</div>

@@ -2,11 +2,11 @@
 title: "اجتماع مطوري I2P"
 date: 2003-01-07
 author: "nop"
-description: "سجل اجتماع تطوير I2P ليوم 7 يناير 2003."
+description: "سجل اجتماع تطوير I2P بتاريخ 7 يناير 2003."
 categories: ["meeting"]
 ---
 
-(مقدمة من Wayback Machine http://www.archive.org/)
+(بإذن من wayback machine http://www.archive.org/)
 
 ## ملخص سريع
 
@@ -14,4 +14,146 @@ categories: ["meeting"]
 
 ## سجل الاجتماع
 
-<div class="irc-log"> --- موضوع #iip-dev هو اجتماع IIP - ملفات السجل: http://mids.student.utwente.nl/~mids/iip/ <nemesis> nop، لا اجتماع اليوم؟ <nop> نعم <nop> آسف <nop> حسناً <nop> مرحباً <nemesis> مرحباً nop ;) <nop> مرحباً <nop> جدول الأعمال <nop> 1) الترحيب <nemesis> ما الأمر؟ الجميع نائم؟ <nop> 2) سنة جديدة سعيدة <nop> 3) عطلات سعيدة <chscrtr> مرحباً، سنة جديدة سعيدة <nop> 4) IIP <nemesis> ههه، سنة جديدة سعيدة لك أيضاً <mrflibble> سنة جديدة سعيدة! :) <nop> 5) مسابقة شعار IIP <nop> 6) CryptoCon <nop> 4) IIP <nop> حسناً IIP <nop> هو نوعاً ما راكد بسبب العطلات <nop> لكن أعتقد أننا سنعاود التقدم <nop> أي تقارير أخطاء الرجاء إرسالها إلى iip@invisiblenet.net <nop> حسناً <nop> 5) مسابقة شعار IIP <nop> سنضع شيئاً على موقعنا عن القواعد وما إلى ذلك <nop> ونعرض الرسومات التي لدينا حتى الآن <nop> يرجى المساعدة إن أمكن <nop> احصل على قميص مجاني وعليه شعارك <nop> 6) CryptoCon <mrflibble> رائع <nop> نحاول تشكيل لجنة برنامج وبعض التخطيط التنظيمي لشهر يناير 2004 لإقامة CryptoCon <nop> انضم إلى #cryptocon لأي مساعدة وما إلى ذلك <nop> على أي حال، هذا كل ما في الأمر <nop> أسئلة؟ <nop> أسئلة؟ <nop> ;) <mrflibble> لا <nop> حسناً <nop> رُفِعَ الاجتماع <Neo> لا <Neo> شكراً. :) <mrflibble> لا مشكلة <mrflibble> أوه، أمر واحد <mrflibble> بخصوص CryptoCon <mrflibble> هل هناك سبب معين لتنظيمكم لمؤتمر خاص بكم؟ <mrflibble> هناك مؤتمرات تشفير عامة يمكنكم تقديم مواد إليها <nop> حسناً <nop> نريد جذب الشركات للقاء Cipherpunks <nop> ودفع التشفير قدماً أكثر مما هو عليه <nop> سيكون هذا مختلفاً <mids> fsck <mrflibble> فهمت <nop> فاتني <nop> ;) <mids> آسف يا جماعة :) <mrflibble> سيكون ذلك مجرد الكثير من العمل عليكم جميعاً <mids> هل ما زال هناك جدوى من إحضار المُسجِّل إلى هنا؟ <mrflibble> لول <nemesis> ههه <nop> حسناً mrflibble لا أظن أنه سيكون --- Log opened Wed Jan 08 00:14:47 2003 00:14 -!- Topic for #iip-dev: اجتماع IIP - ملفات السجل: http://mids.student.utwente.nl/~mids/iip/ 00:14 [Users #iip-dev] 00:14 [ chscrtr] [ logger] [ mrflibble] [ Neo] [ Nostradumbass] [ w    ] 00:14 [ co     ] [ mids  ] [ nemesis  ] [ nop] [ UserX        ] [ wilde] 00:14 -!- Irssi: #iip-dev: إجمالي 12 لقباً [0 مشرفين، 0 أنصاف مشرفين، 0 أصوات، 12 عاديين] 00:15 < nop> لدينا سنة للتخطيط 00:15 < mrflibble> صحيح 00:15 -!- Irssi: تمت مزامنة الانضمام إلى #iip-dev خلال 43 ثانية 00:16 < nop> بالإضافة إلى أننا بحاجة لجمع المال 00:16 < nop> وقد يساعد هذا 00:16 < nop> لأن لا أحد يحب التبرع 00:16 < nop> ;) 00:16 < chscrtr> خطأ - أقل من سنة 00:16 < nemesis> هممم... nop، هل تستخدم knoppix الآن أم ماذا؟ 00:17 < mrflibble> فهمت 00:17 < nop> suse الآن 00:17 < mrflibble> قد تحتاج إلى الإعلان كثيراً للحصول على الرعاة 00:17 < mrflibble> وهذا سيكلّف 00:18 < nemesis> هل تعتقد أن IIP مهم/مستقر بما يكفي لعرضه للعالم؟ 00:18 < chscrtr> ليس كثيراً، يمكن أن تكون العلاقات العامة (PR) رخيصة 00:18 < nop> nemesis لا أظن أني أعرضه للعالم 00:19 < mrflibble> همم، آمل ذلك 00:19 < nop> إنه مؤتمر، مفهوم منفصل 00:19 < mids> حسناً، أثارت lizzy__ نقطة أن وقت الخمول قد يكشف الكثير من المعلومات 00:19 < nemesis> ههه 00:19 < nop> نعم يفعل 00:19 < mids> لذا اقترح(ت) تعطيله من جهة الخادم 00:19 < nop> يمكننا إزالة ذلك 00:19 < nop> كنت أرغب في فعل ذلك 00:19 < nop> حسناً 00:19 < nemesis> لأنه سيكون من الجيد أن تُعبَّأ الإصدارات المستقبلية لـ trustix ;) 00:19 < nop> سأعمل على ذلك 00:19 < mids> أيضاً إن تسجيل لقبك يحددك ويجعلك أكثر قابلية للتتبع 00:19 < mids> لذا ينبغي أن يكون هناك تحذير من ذلك 00:19 < mids> . 00:20 < mids> أقترح أن نذكر المخاطر والقضايا المحتملة بشكل أوضح في التوثيق 00:20 < mids> mention 00:20 < mrflibble> لماذا يجعل التسجيل تتبعك أسهل؟ 00:20 < mrflibble> make 00:20 < mids> mrflibble: لأنه بمجرد أن تُعرّف نفسك، فإن هذا يضمن أنك الشخص نفسه كما من قبل 00:21 < mids> بينما إذا استخدمت نفس اللقب فقط، فقد لا تكون الشخص نفسه 00:21 < mids> إن التسجيل والتعريف بنفسك يجعلانك ذا هوية مستعارة 00:21 < mids> بدلاً من مجهول الهوية 00:21 < mrflibble> أوه 00:21 < mrflibble> لكن ذلك جيد رغم ذلك 00:21 < mrflibble> الثقة مهمة 00:24 < mids> نعم، لكنك تبني سجلاً عاماً من المعلومات 00:24 < mids> في كل مرة تتصل وتقول شيئاً، تضيف المزيد من المعلومات 00:24 < mids> هناك أدوات يمكنها تحديد هوية الأشخاص بناءً على أنماط اللغة. 00:25 < mids> الأدوات التي جربتها ليست جيدة جداً، لكن غالباً ما يكون من السهل إلى حد كبير رصد الأخطاء واستخلاص الاستنتاجات. 00:25 < mids> أعتقد أنه لن يضر أن نضيف فصلاً عن المخاطر حتى في بيئة 'مجهولة' إلى دليلنا 00:25 < mids> وأدعو lizzy__ للبدء بذلك الفصل. 00:25 < mids> . 00:25 < Nostradumbass> لهذا قد يكون تمرير نصك عبر عدة مترجمات لغوية مفيداً 00:27  * mids يعيد الميكروفون إلى الجمهور 00:28 < mids> أوه، أعتذر عن الانضمام متأخراً إلى هذا الحد، إن كان بوسع أحد أن يرسل لي سجلات أول 15 دقيقة فسأكون ممتناً جداً. 00:28 < mids> . 00:29 < mrflibble> أوه 00:29 < mrflibble> فهمت 00:29 < mrflibble> mids، اجعلها نحو 5 دقائق :) 00:29 < mids> هه. 00:30 < mids> هل قال nop بالفعل شيئاً عن 1.1-final؟ 00:30 < mids> مثل متى نزعم أنها ستصدر ;) 00:31 < mrflibble> لا 00:31 < mrflibble> سأرسل لك لقطة 00:31 < mids> شكراً 00:31 < mrflibble> تباً، لا أستطيع 00:31  * mrflibble يصفع mrflibble قليلاً بسمكة تراوت كبيرة 00:31 < mrflibble> سأقص وألصق 00:32 < mrflibble> آمل ألا أغرق نفسي وأُطرد 00:32 < mids> على الخاص من فضلك 00:32 < mids> حسناً، الآن هذا الاجتماع غير الرسمي مُغلق رسمياً 00:32 < mids> :) 00:32 < nemesis> لوووول --- Log closed Wed Jan 08 00:33:43 2003 </div>
+<div class="irc-log">
+--- Topic for #iip-dev is IIP Meeting - logfiles:
+http://mids.student.utwente.nl/~mids/iip/
+<nemesis> nop, no meeting today?
+<nop> yes
+<nop> sorry
+<nop> ok
+<nop> welcome
+<nemesis> hi nop ;)
+<nop> hi
+<nop> agenda
+<nop> 1) welcome
+<nemesis> whats going on? everybody sleeps?
+<nop> 2) Happy New Year
+<nop> 3) Happy Holidays
+<chscrtr> hi, happy new year
+<nop> 4) IIP
+<nemesis> hehe, happy new year too
+<mrflibble> happy new year! :)
+<nop> 5) IIP logo contest
+<nop> 6) CryptoCon
+<nop> 4) IIP
+<nop> ok IIP
+<nop> it's kind of stagnant because of the holidays
+<nop> but I believe we're picking it back up
+<nop> any bug reports please send to iip@invisiblenet.net
+<nop> ok
+<nop> 5) IIP logo contest
+<nop> we'll being putting up something on our site about the rules etc
+<nop> and display the drawings we have so far
+<nop> please help out if you can
+<nop> get a free t-shirt and your logo on it
+<nop> 6) CryptoCon
+<mrflibble> cool
+<nop> we're trying to get a program committee and some organizational
+planning for Jan 2004 to have cryptocon happen
+<nop> join #cryptocon for any assistance etc
+<nop> anyway, that's about it
+<nop> questions?
+<nop> questions?
+<nop> ;)
+<mrflibble> nope
+<nop> ok
+<nop> meeting ajourned
+<Neo> nope
+<Neo> thanks. :)
+<mrflibble> np
+<mrflibble> oo, 1 thing
+<mrflibble> about cryptocon
+<mrflibble> is there a particular reason for organising your/your own?
+<mrflibble> there are general crypto confs out there that cyou could submit
+stuff 2
+<nop> well
+<nop> we want to attract businesses to meet cipherpunks
+<nop> and push cryptography more than it is
+<nop> this will be different
+<mids> fsck
+<mrflibble> gotcha
+<nop> missed it
+<nop> ;)
+<mids> sorry folks :)
+<mrflibble> it will just be a lot of work 4 u all
+<mids> is there still a point in bringing the logger here?
+<mrflibble> lol
+<nemesis> hehe
+<nop> well mrflibble I don't think it will be
+--- Log opened Wed Jan 08 00:14:47 2003
+00:14 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+00:14 [Users #iip-dev]
+00:14 [ chscrtr] [ logger] [ mrflibble] [ Neo] [ Nostradumbass] [ w    ]
+00:14 [ co     ] [ mids  ] [ nemesis  ] [ nop] [ UserX        ] [ wilde]
+00:14 -!- Irssi: #iip-dev: Total of 12 nicks [0 ops, 0 halfops, 0 voices, 12 normal]
+00:15 < nop> we have a year to plan
+00:15 < mrflibble> true
+00:15 -!- Irssi: Join to #iip-dev was synced in 43 secs
+00:16 < nop> plus we need to raise money
+00:16 < nop> and this might help
+00:16 < nop> since no one likes to donate
+00:16 < nop> ;)
+00:16 < chscrtr> error - less than a year
+00:16 < nemesis> hm... nop, you are using knoppix right now, or?
+00:17 < mrflibble> ic
+00:17 < nop> suse right now
+00:17 < mrflibble> u might need to advertise a lot to get the sponsers
+00:17 < mrflibble> which will cost
+00:18 < nemesis> are you think that iip is important/stable enough to show it the world?
+00:18 < chscrtr> not that much, PR can be cheap
+00:18 < nop> nemesis I don't think I'm showing it to the world
+00:19 < mrflibble> hmm, i hope so
+00:19 < nop> It's a conference, separate concept
+00:19 < mids> ok, lizzy__ raised the point that the idleing time might give away too much information
+00:19 < nemesis> hehe
+00:19 < nop> yes it does
+00:19 < mids> so (s)he suggested to disable it server side
+00:19 < nop> we can take that out
+00:19 < nop> I've been wanting to do that
+00:19 < nop> ok
+00:19 < nemesis> cause, it would be nice when future releases are packed for trustix ;)
+00:19 < nop> will work on it
+00:19 < mids> also that registering your nickname pinpoints you and makes you more traceble
+00:19 < mids> so there should be a warning against that
+00:19 < mids> .
+00:20 < mids> I suggest that we metion the possible risks and issues more clear in the documentation
+00:20 < mids> mention
+00:20 < mrflibble> why is registering mae u more traceable?
+00:20 < mrflibble> make
+00:20 < mids> mrflibble: because once you identify, then you are guaranteed the same person as before
+00:21 < mids> while if you just use the same nick, you might not be the same person
+00:21 < mids> registering and identifying makes you pseudonymous
+00:21 < mids> instead of anonymous
+00:21 < mrflibble> oh
+00:21 < mrflibble> but that's good tho
+00:21 < mrflibble> trust is important
+00:24 < mids> yes, but you build a public record of information
+00:24 < mids> each time that you connect and say something, you add more info
+00:24 < mids> there are tools which can identify the identity of people based on language patterns.
+00:25 < mids> the ones that I tried are not that good, but it is often quite easy to spot errors and make conclusions.
+00:25 < mids> I believe that it wouldn't harm to add a chapter about the risks even in an 'anonymous' environment to our manual
+00:25 < mids> and I invite lizzy__ to start with that chapter.
+00:25 < mids> .
+00:25 < Nostradumbass> That's why passing your text through multiple language translators can be useful
+00:27  * mids passes the microphone back to the audience
+00:28 < mids> oh, excuse for joining that late, if someone can send me the logs of the first 15 minutes then I would much appreciate it.
+00:28 < mids> .
+00:29 < mrflibble> ooh
+00:29 < mrflibble> gotcha
+00:29 < mrflibble> mids, make that about 5 minutes :)
+00:29 < mids> heh.
+00:30 < mids> did nop already say something about 1.1-final?
+00:30 < mids> like when we claim that it will be released ;)
+00:31 < mrflibble> nope
+00:31 < mrflibble> ill send u a capture
+00:31 < mids> gracias
+00:31 < mrflibble> shit, i cant
+00:31  * mrflibble slaps mrflibble around a bit with a large trout
+00:31 < mrflibble> ill cut and paste
+00:32 < mrflibble> hope i dont flood myself off
+00:32 < mids> in private please
+00:32 < mids> okay, now this unofficial meeting is officially closed
+00:32 < mids> :)
+00:32 < nemesis> looool
+--- Log closed Wed Jan 08 00:33:43 2003
+</div>

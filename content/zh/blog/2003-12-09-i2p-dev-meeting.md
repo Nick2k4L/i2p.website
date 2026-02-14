@@ -1,17 +1,292 @@
 ---
-title: "I2P Dev Meeting - December 9, 2003"
+title: "I2P 开发会议 - 2003年12月9日"
 date: 2003-12-09
 author: "jrand0m"
-description: "2003年12月9日的 I2P 开发会议记录。"
+description: "2003年12月9日I2P开发会议记录。"
 categories: ["meeting"]
 ---
 
-(由 Wayback Machine 提供 http://www.archive.org/)
+（由wayback machine提供 http://www.archive.org/）
 
-## 简要回顾
+## 快速回顾
 
 <p class="attendees-inline"><strong>出席：</strong> duck, joda, jrand0m, mrflibble, Nostradumbass</p>
 
 ## 会议记录
 
-<div class="irc-log"> [22:02] &lt;jrand0m&gt; 0) 欢迎来到 $num  [22:02] &lt;jrand0m&gt; 1) iip 状态  [22:02] &lt;jrand0m&gt; 2) kademlia 相关内容 + idn  [22:02] &lt;jrand0m&gt; 3) 节点画像相关内容  [22:02] &lt;jrand0m&gt; 4) i2p 服务   [22:02] &lt;jrand0m&gt; 5) 杂项  [22:02] &lt;jrand0m&gt; 0) 欢迎   [22:02] &lt;jrand0m&gt; 嗨  [22:03] &lt;jrand0m&gt; 这是第 67 场还是第 68 场会议……  [22:03] &lt;jrand0m&gt; 1) iip 状态  [22:03] &lt;jrand0m&gt; 我不清楚。有人知道最近的情况吗？  [22:04] &lt;jrand0m&gt; iip 的开发者不在，所以……不知道。  [22:04] &lt;jrand0m&gt; [ping]  [22:04] &lt;jrand0m&gt; （上周我打了大概 10 分钟字，结果客户端把我 ping 掉了……）  [22:05] &lt;jrand0m&gt; （在收到 p0ng 之前我什么都不打了，该死的；））  [22:05] *** Nostradumbass (nostradum@anon.iip) 加入了频道 #iip-dev [22:05] &lt;jrand0m&gt; 嗨，Nostradumbass  [22:06] &lt;Nostradumbass&gt; 嗨 :) [22:06] &lt;jrand0m&gt; 好，太好了，看来我没有被 ping 掉，只是大家都在潜水。不错 :)  [22:06] * jrand0m 跳到下一个议程项目 [22:06] &lt;Nostradumbass&gt; i2p 进展如何？ [22:06] &lt;Nostradumbass&gt; 抱歉？ [22:06] &lt;jrand0m&gt; 不错的引子 ;)  [22:07] &lt;jrand0m&gt; 议程项目 3）i2p 0.2.3 状态 :)  [22:07] *** nerox (~nerox@anon.iip) 加入了频道 #iip-dev [22:07] &lt;jrand0m&gt; 进展挺多的，尽管我离线了。几小时前提交了一大堆代码  [22:07] &lt;jrand0m&gt; 其中包括 kademlia netDb 的一个实现  [22:08] &lt;jrand0m&gt; 所以我很有信心下周发布 0.2.3（基本就是 kademlia netDb + 一个 shell 脚本）  [22:08] &lt;jrand0m&gt; 不过我们对 kademlia 协议做了一些变体，以更适配 i2p  [22:09] &lt;jrand0m&gt; 我们的 kademlia 树会一直非常、非常、/非常/稀疏。  [22:09] &lt;jrand0m&gt; 有 2^256 个可能的槽位，而网络中每个节点只有 1–10 个值。  [22:09] &lt;jrand0m&gt; 所以，就算极端地乐观，实际也几乎用不上什么东西，所有条目都会落在最外层的 kbucket 里  [22:10] &lt;jrand0m&gt; 因此 kademlia 的某些部分会被默默忽略 ;) 但基本思想保持不变，包括搜索算法和距离度量  [22:10] &lt;jrand0m&gt; 不过，idn 已经搁浅了。  [22:11] &lt;jrand0m&gt; 以为 i2p 的 netDb 代码可以和一个发布型 DHT 共用同一套代码，这个想法挺傻的  [22:11] &lt;jrand0m&gt; 已经果断放弃。  [22:11] &lt;jrand0m&gt; idn 总体上还是个好主意，但我不会花 i2p 的开发时间在上面  [22:12] *** tusko (~tusko@anon.iip) 加入了频道 #iip-dev [22:12] &lt;jrand0m&gt; 不过 0.2.3 的一部分变更包括对我们如何选择节点以及组织 router 统计的重大改造  [22:12] &lt;jrand0m&gt; 嗨呀，tusko  [22:12] &lt;jrand0m&gt; 这就带到了议程项目 3）节点画像  [22:12] &lt;jrand0m&gt; 我之前挺傻的……终于把一些数学算了算  [22:13] &lt;jrand0m&gt; 现在收集的统计量非常庞大。  [22:13] &lt;jrand0m&gt; 大约每个节点有 6000 个数据点  [22:13] &lt;duck&gt; 什么是节点画像？ [22:13] &lt;jrand0m&gt; 节点画像就是 router 跟踪每个节点的性能，以便将来决定用谁  [22:13] &lt;duck&gt; 啊 [22:13] &lt;jrand0m&gt; （也就是快速的 router、可靠的 router 等）  [22:13] &lt;duck&gt; 那个吃我内存的进程 :) [22:14] &lt;jrand0m&gt; 嘿，其实那部分还不算太糟  [22:14] &lt;jrand0m&gt; 不过 6000 个数据点是没法扩展的。  [22:14] &lt;jrand0m&gt; 1000 个 router × 每个 6000 个数据点 × 每个数据点 4 字节 = 24MB  [22:15] &lt;jrand0m&gt; 不过对几百个节点保留详细统计大概没问题，即使网络继续增长  [22:15] &lt;jrand0m&gt; 我们/不/需要给所有人都保留统计。只需要对我们想要用于 tunnel、garlic routing 和源路由的那些 router 保留即可。  [22:16] &lt;jrand0m&gt; 从长期看，追踪一百来个节点可能就够了。  [22:16] &lt;jrand0m&gt; 不过，就目前而言，我只能说：去他的。  [22:16] &lt;jrand0m&gt; 对所有节点都保留统计  [22:16] &lt;duck&gt; ping [22:16] &lt;jrand0m&gt; p0ng  [22:17] &lt;duck&gt; 它会尝试了解所有节点吗？ [22:17] &lt;jrand0m&gt; 现在会  [22:17] &lt;duck&gt; 哦等等，你最后几句已经说了 [22:17] &lt;jrand0m&gt; 我们还有一些用于合并并对节点画像做计算的代码  [22:18] &lt;jrand0m&gt; 所以其中一个计算器会决定丢弃哪些节点  [22:18] &lt;jrand0m&gt; 正在收集的数据集示例: (Link: http://i2p.dnsalias.net/~jrandom/profile.txt)http://i2p.dnsalias.net/~jrandom/profile.txt  [22:19] &lt;jrand0m&gt; （你会注意到有很多 0 :)）  [22:19] &lt;jrand0m&gt; 我写了一个关于节点选择和画像的粗略宣言，但需要把它放到 wiki 上  [22:20] &lt;jrand0m&gt; 不过那些基本都是 0.3 的事情。0.2.3 只用到了一点点  [22:21] &lt;jrand0m&gt; 好，节点画像先说到这儿。后面还有很多内容，现在只是先让大家瞄一眼进展  [22:21] &lt;jrand0m&gt; （当然，一如既往，任何愿意亲自上手，研究还该用哪些统计/计算/攻击/等等的人，我们会*非常*感激）  [22:22] &lt;jrand0m&gt; 好，4）i2p 服务  [22:23] &lt;jrand0m&gt; tc 的站点很棒而且很可靠！我终于也访问到了 nightblade 的页面，是个很酷的博客（‘plog’ ;)）。只是希望我能留言评论就好了 :)  [22:23] &lt;jrand0m&gt; 还有 duck 的 Jabber 服务器，按照 tc 的论坛上发布的说明用起来相当简单  [22:24] &lt;jrand0m&gt; 有时会有点小问题，但那是 <= 0.2.2 的 router 里一些 bug 导致的，已经修复（会随着 0.2.3 推出）  [22:24] &lt;jrand0m&gt; squid 代理通常是离线的，因为我经常离线，没法看护我的 kaffe routers :/  [22:25] &lt;jrand0m&gt; 所以目前在 i2p 上最可靠的可能就是那些 eepsites 和 Jabber 聊天，都跑在 i2ptunnel 之上  [22:25] &lt;jrand0m&gt; 接下来出现哪些服务会比较酷？  [22:25] &lt;duck&gt; 我确实试过在 i2ptunnel 上跑一个 ircd [22:25] &lt;duck&gt; 但登录后还没拿到完整的 MOTD，我就已经因为无响应被 ping 超时了 [22:26] &lt;jrand0m&gt; 唉  [22:26] &lt;duck&gt; 而且那还是在同一个 router 上 [22:26] &lt;duck&gt; 所以放到野外性能会更差 [22:26] &lt;jrand0m&gt; 在本地 router 上也会被 ping 掉？！  [22:26] &lt;jrand0m&gt; 本地 router 不该把任何东西 ping 掉  [22:26] &lt;jrand0m&gt; 哦，除了那个竞争条件的 bug  [22:26] &lt;jrand0m&gt; （这大概就是原因，因为是本地，race 会更快触发）  [22:26] &lt;duck&gt; irc 客户端因为未及时响应被 ping 掉了 [22:27] &lt;duck&gt; 我会用 0.2.3 再试试 [22:27] &lt;jrand0m&gt; 好  [22:27] &lt;duck&gt; 不过目前 Jabber 还挺好用的 [22:27] &lt;jrand0m&gt; 确实  [22:27] &lt;jrand0m&gt; 而且从长期看，irc 不是正途  [22:27] &lt;duck&gt; tc、jrandom 和我都在那里可以聊天！ [22:27] &lt;jrand0m&gt; 呵呵 :)  [22:28] &lt;jrand0m&gt; 我们需要一种即时通讯和群聊方案，不会把明文泄露给任何未授权的人，也不需要集中式的卡口  [22:28] &lt;jrand0m&gt; （也就是 iip 2.0）  [22:28] &lt;jrand0m&gt; 现在要是 userx 回归就太好了 ;)  [22:29] * jrand0m 不再屏住呼吸 [22:29] &lt;jrand0m&gt; 一个 NNTP 服务器/也/会非常非常赞。  [22:29] &lt;duck&gt; 我明天试试 [22:29] &lt;jrand0m&gt; r0x0r  [22:30] &lt;duck&gt; Jabber 用来承载其他东西真的挺不错 [22:30] &lt;duck&gt; 看看 Jabber RPC 规范 [22:30] &lt;duck&gt; (Link: http://www.pipetree.com/jabber/jrpc/)http://www.pipetree.com/jabber/jrpc/ [22:30] &lt;duck&gt; 还有其他服务吗？ [22:30] &lt;jrand0m&gt; 这很有意思——本质上把 Jabber 当作命名服务来做  [22:31] &lt;duck&gt; 你是说： [22:31] &lt;jrand0m&gt; 总会有更多服务可加——有邮件（usenet）、聊天（Jabber）和发布/浏览（eepsites），覆盖已经不错了  [22:31] &lt;duck&gt; 名称服务器有一个 Jabber 客户端，你可以通过它注册名称（提供令牌） [22:31] &lt;duck&gt; 也用它来查询？ [22:31] &lt;jrand0m&gt; 不  [22:32] &lt;jrand0m&gt; 让 Jabber 的注册表本身充当命名服务  [22:32] &lt;duck&gt; 好 [22:32] &lt;jrand0m&gt; 它是中心化的，但能用  [22:32] &lt;jrand0m&gt; 就像 hosts.txt :)  [22:33] &lt;duck&gt; 有没有比 SMTP 和 POP/IMAP 更适合这种环境的邮件方案？ [22:33] &lt;jrand0m&gt; 这是个非常好的问题  [22:33] &lt;duck&gt; 因为我不认为把邮件服务器直接连上就能正常工作 [22:34] &lt;jrand0m&gt; 是啊，可能需要一个网关（类似 freemail），或者让命名服务做些有趣的“踢踏舞”  [22:34] &lt;jrand0m&gt; 或者退回到中心化的单一 POP3/IMAP 服务器，大家都用同一台  [22:35] &lt;duck&gt; 我昨天和 aum（freemail 的作者）聊过 [22:35] &lt;duck&gt; 他说想用 Python 重写 fred [22:35] &lt;jrand0m&gt; 哈哈，不错  [22:35] *** mrflibble (mrflibble@anon.iip) 加入了频道 #iip-dev [22:35] &lt;duck&gt; 所以我建议他改为给 i2p 做 Python 版 router [22:35] &lt;jrand0m&gt; 哦，那简直太赞了！  [22:35] &lt;duck&gt; 然后他对那些 PDF 文档非常不满 [22:36] &lt;jrand0m&gt; 嘿，如果他想要 OpenOffice 的原始文档，或者甚至导出成 txt，我可以导出  [22:36] &lt;duck&gt; 我没忍住，告诉他如果好好说，你也会有 m$word 文档的 [22:36] &lt;duck&gt; 嗯，你不导出成 HTML 之类的是个混蛋行为 [22:36] &lt;jrand0m&gt; 不，我试过了 ;)  [22:36] &lt;duck&gt; 我没忍住，叫他去找你谈 [22:36] &lt;jrand0m&gt; OpenOffice 的 HTML 导出太烂了  [22:37] &lt;duck&gt; 嗯 [22:37] &lt;mrflibble&gt; 没错，jr [22:37] &lt;jrand0m&gt; 等规范到 1.0（也就是 router 到 1.0 并更新以匹配代码）时，它们会放到 wiki 上。  [22:37] &lt;duck&gt; 不过 wiki 上已经有大部分信息 [22:37] &lt;jrand0m&gt; 没错  [22:37] &lt;mrflibble&gt; 我试过拿它处理那本 Kevin Mitnick 的书。比 MS Office 还糟 [22:37] &lt;duck&gt; 唉 [22:37] &lt;jrand0m&gt; 正是。  [22:37] &lt;duck&gt; 他也许会来这里露个面 [22:37] &lt;jrand0m&gt; 那就太棒了  [22:38] &lt;duck&gt; 不过以他的态度，也许去加入 Freenet 阵营更好 [22:38] &lt;duck&gt; ... [22:38] &lt;jrand0m&gt; 嗯，投入 Freenet 总归是好事  [22:38] * duck 回到友好模式 [22:38] &lt;jrand0m&gt; :)  [22:38] &lt;duck&gt; aum 的作品很棒 [22:38] &lt;duck&gt; 希望他能在 i2p 上继续发光 [22:39] &lt;jrand0m&gt; 是啊，每当有人谈起在 Freenet 上搜索，我总说“嗯，照着 McNabb 那样做就行”  [22:39] &lt;jrand0m&gt; 我们确实需要帮助  [22:39] &lt;duck&gt; 这把我带到下面的问题： [22:39] &lt;duck&gt; 你对 I2P 做的这些改动，有规格文档吗？ [22:39] &lt;duck&gt; 还是说 Java 源码就是最新信息的文档？ [22:40] &lt;jrand0m&gt; 我在 palmpilot、文件系统和笔记本里都有记录，但不幸的是，我有一阵子没更新 OpenOffice 文档了  [22:40] &lt;jrand0m&gt; 二月是 jrandom 的文档月。  [22:40] &lt;jrand0m&gt; （还有 QA 和修 bug）  [22:41] &lt;jrand0m&gt; （（还有狂欢；））  [22:41] &lt;jrand0m&gt; 规范大体还是正确的，只是细节更多了。  [22:41] &lt;duck&gt; 太好了 [22:41] &lt;jrand0m&gt; 不过数据结构改动更大  [22:42] &lt;jrand0m&gt; 好，关于服务还有别的吗？    [22:43] &lt;jrand0m&gt; 好，5）杂项  [22:43] &lt;jrand0m&gt; 嗨  [22:43] &lt;duck&gt; 嗨！ [22:43] &lt;jrand0m&gt; 最近怎么样？  [22:43] &lt;jrand0m&gt; [任何问题/想法/问题/等等都在这里提]  [22:43] &lt;duck&gt; base64 的技巧应该加到 i2ptricks 页面上 [22:44] &lt;jrand0m&gt; 哦，说得好  [22:44] &lt;duck&gt; 可能还有我还不知道的其他技巧 [22:44] &lt;duck&gt; 我会在源码里 grep 一下 ‘main’ [22:44] &lt;jrand0m&gt; 安装器没做成能让人自动获取 hosts.txt 并 reseed，我感觉很内疚  [22:44] &lt;jrand0m&gt; lol  [22:44] &lt;jrand0m&gt; 有很多很多 main() 方法，但大多都是测试函数  [22:45] &lt;jrand0m&gt; 哦！  [22:45] &lt;jrand0m&gt; 有件事。别指望从 cvs 拉下来的当前代码能和正常的 router 一起工作。  [22:45] *** joda (--@anon.iip) 加入了频道 #iip-dev [22:45] &lt;joda&gt; 嗨 [22:45] &lt;jrand0m&gt; db 消息变了 :)  [22:45] &lt;jrand0m&gt; 嗨 joda  [22:45] &lt;joda&gt; 抱歉，如果我打断了什么 [22:45] &lt;duck&gt; 我有点郁闷，没能让 cvs 跑起来 [22:45] &lt;duck&gt; 但我想起来这不是 Freenet [22:45] &lt;joda&gt; 我只是想问“anonymail”怎么了？ [22:46] &lt;duck&gt; 所以你不需要最新的 cvs 也能用它 [22:46] &lt;jrand0m&gt; joda&gt; 运行它的用户现在好像不在线。应该很快会回来  [22:46] &lt;jrand0m&gt; 呵呵 duck——今天我提交之后对你来说就跑不起来了，还是说在这之前就不行？  [22:46] &lt;duck&gt; 上周某个时候 [22:46] &lt;joda&gt; jrand&gt; 谢谢 :) [22:46] &lt;joda&gt; 回见 :) [22:46] &lt;jrand0m&gt; 啊，好的，duck  [22:46] &lt;jrand0m&gt; 回头见 joda  [22:47] &lt;jrand0m&gt; 是的，我只推荐跑发布版的代码  [22:47] &lt;duck&gt; 0.2.3 会把版本文件放到一个目录里吗？ :) [22:47] &lt;jrand0m&gt; 0.2.3 会去掉版本文件 :)  [22:47] &lt;jrand0m&gt; （非常非常多的改动）  [22:47] &lt;jrand0m&gt; 但这意味着 0.2.3（以及之后）需要大致正确的系统时钟  [22:48] &lt;jrand0m&gt; （当前 Router.CLOCK_FUDGE_FACTOR = 30 分钟）  [22:48] &lt;duck&gt; 0.2.3 的 fudge factor 会是多少？ [22:48] &lt;jrand0m&gt; 可能一样  [22:49] *** joda 离开了 #iip-dev [22:49] &lt;duck&gt; 哦，current = 你的代码 [22:49] &lt;jrand0m&gt; 那个时间将用来让数据库条目过期  [22:49] &lt;duck&gt; 好 [22:49] &lt;jrand0m&gt; 啊，对，嗯 :)  [22:49] &lt;jrand0m&gt; （在 0.2.2 里，那个 clock_fudge_factor 分散在六七个文件里）  [22:49] &lt;duck&gt; 也许安装器可以更友好一些 [22:49] &lt;duck&gt; 比如少问点问题 [22:49] *** 签退：nickthief66282（Excess Flood） [22:50] &lt;duck&gt; 包含默认的 phttp URL，不限带宽等 [22:50] &lt;jrand0m&gt; 我想我们也可以自动猜一个随机端口  [22:50] &lt;jrand0m&gt; 你说得对  [22:50] &lt;jrand0m&gt; 想要提交权限吗？  :)  [22:50] *** 签退：nerox（EOF From client） [22:50] &lt;jrand0m&gt; （如果不要的话，我可以为 0.2.3 来更新它）  [22:51] &lt;duck&gt; 反对的一个理由是用户会过于想当然地接受设置 [22:51] &lt;duck&gt; 而且大家都会用同一个 phttp relay [22:51] *** nickthief24373 (~chatzilla@anon.iip) 加入了频道 #iip-dev [22:51] &lt;jrand0m&gt; 确实。不过 0.3.1 的计划包括更新 phttp relay 的代码，让 relays 彼此通信，并把用户重定向到负载更轻的 relay  [22:52] &lt;jrand0m&gt; 不过我总体上对当前的安装流程还满意——我新装了一个 0.2.2，不到一分钟就能浏览 tc 的页面了  [22:52] &lt;jrand0m&gt; （不过那是因为我知道文案都写了啥，根本没读……）  [22:52] &lt;duck&gt; 我不喜欢很长的密钥 [22:53] &lt;duck&gt; 尤其是当你必须复制粘贴它们时 [22:53] &lt;duck&gt; 最好把它们当作文件来用 [22:53] &lt;jrand0m&gt; 嗯？  [22:53] &lt;duck&gt; 但分发二进制文件很麻烦 [22:53] &lt;duck&gt; 所以你得用 base64 小技巧.. [22:53] &lt;duck&gt; i2ptunnel 能不能也读取 base64 的目标密钥？ [22:53] &lt;duck&gt; 也就是从文件里读 [22:53] &lt;jrand0m&gt; 我正要打这句呢 ;)  [22:53] &lt;jrand0m&gt; 是的，不会有多少工作量  [22:54] &lt;jrand0m&gt; 也许一行代码就够  [22:54] &lt;duck&gt; 另外，加“加密封装”（armouring）怎么样？ [22:54] &lt;duck&gt; 带一个头和尾 [22:54] &lt;duck&gt; 像 PGP 那样 [22:55] &lt;jrand0m&gt; 对，有这种校验会很有用  [22:55] &lt;duck&gt; 当然，那只是个小玩意儿 [22:55] &lt;duck&gt; 但对想使用 tunnel 的人可能有帮助 [22:55] &lt;jrand0m&gt; 不过 Destination 结构本身已经很挑剔了  [22:55] &lt;jrand0m&gt; 但你说得对，裸的 base64 既不直观也不够安全  [22:56] &lt;jrand0m&gt; 我们需要一个 bugzilla  [22:56] &lt;jrand0m&gt; 这样这些事情就能发到待办里  [22:56] &lt;jrand0m&gt; 我就可以不用我 palm 上的待办列表了  [22:56] &lt;duck&gt; bugzilla 有纳粹式的注册要求 [22:56] &lt;duck&gt; 要邮箱之类的…… [22:56] &lt;jrand0m&gt; 确实  [22:57] &lt;duck&gt; 但总比没有好 [22:57] &lt;duck&gt; 其他 bug 跟踪器也都有缺点 [22:57] &lt;jrand0m&gt; 是啊，我待过的公司最后基本都自己造了一个  [22:58] &lt;jrand0m&gt; 再看吧。等开始全面做 QA（0.3 出来之后），我们就需要一个 bug 跟踪器  [22:58] &lt;jrand0m&gt; 所以我们还有几周时间 ;)  [22:58] &lt;jrand0m&gt; 不过要是有人做做调查，找到一个很不错的就太好了  [22:59] &lt;jrand0m&gt; [不是专门说你，duck，任何在家读这些会议记录的人都可以 ;)]  [22:59] &lt;duck&gt; 目前 phpBugTrackers 对我来说还可以 [22:59] &lt;jrand0m&gt; 嗯，没用过那个  [22:59] &lt;duck&gt; 是的，我也不是在跟 jrandom 说话 [22:59] &lt;jrand0m&gt; lol  [22:59] &lt;duck&gt; 而是在跟 I2P 代码开发者群体说话 :) [22:59] * jrand0m 其实是 12 个人共用一个 nym 的马甲 [23:00] &lt;jrand0m&gt; 好，1 小时，正点结束  [23:00] &lt;jrand0m&gt; 在我把 *baf*er 拿出来之前，还有谁要补充吗？  [23:01] * duck 要求再给 1 分钟 [23:01] &lt;duck&gt; 因为我们是 21:02 开始的 [23:01] &lt;jrand0m&gt; 好好好  [23:01] &lt;jrand0m&gt; 啦啦啦  [23:01] &lt;jrand0m&gt; 晚饭吃什么好？  [23:01] &lt;jrand0m&gt; 隔壁有家不错的炸豆丸子店……  [23:01] &lt;jrand0m&gt; 中午还吃了意式土豆团子  [23:01] &lt;jrand0m&gt; 嗯……  [23:01] &lt;jrand0m&gt; 也许来顿液体晚餐  [23:02] &lt;duck&gt; 汤？ [23:02] &lt;jrand0m&gt; 哦哦哦——威士忌汤！  [23:02] * jrand0m 就此用 *baf* 宣布会议结束 </div>
+<div class="irc-log">
+[22:02] &lt;jrand0m&gt; 0) welcome to $num 
+[22:02] &lt;jrand0m&gt; 1) iip status 
+[22:02] &lt;jrand0m&gt; 2) kademlia stuff + idn 
+[22:02] &lt;jrand0m&gt; 3) peer profiling stuff 
+[22:02] &lt;jrand0m&gt; 4) i2p services  
+[22:02] &lt;jrand0m&gt; 5) stuff 
+[22:02] &lt;jrand0m&gt; 0) welcome  
+[22:02] &lt;jrand0m&gt; hi 
+[22:03] &lt;jrand0m&gt; this is meeting 67 or 68...  
+[22:03] &lt;jrand0m&gt; 1) iip status 
+[22:03] &lt;jrand0m&gt; I dunno.  anyone know what the situation has been as of late? 
+[22:04] &lt;jrand0m&gt; the iip devs aren't here, so... dunno. 
+[22:04] &lt;jrand0m&gt; [ping] 
+[22:04] &lt;jrand0m&gt; (last week I typed for probably 10 minutes before my client pinged me out...) 
+[22:05] &lt;jrand0m&gt; (i'm not going to type anything else until I get a p0ng, damnit ;) 
+[22:05] *** Nostradumbass (nostradum@anon.iip) has joined channel #iip-dev
+[22:05] &lt;jrand0m&gt; 'lo Nostradumbass 
+[22:06] &lt;Nostradumbass&gt; hi :)
+[22:06] &lt;jrand0m&gt; ok cool, so I haven't pinged out, people are just lurking.  cool :) 
+[22:06] * jrand0m hops on to the next agenda item
+[22:06] &lt;Nostradumbass&gt; how's i2p coming?
+[22:06] &lt;Nostradumbass&gt; sorry?
+[22:06] &lt;jrand0m&gt; good lead in ;) 
+[22:07] &lt;jrand0m&gt; agenda item 3) i2p 0.2.3 status :) 
+[22:07] *** nerox (~nerox@anon.iip) has joined channel #iip-dev
+[22:07] &lt;jrand0m&gt; there's been a lot of progress, even though I'm offline.  commited a truckload of code a few hours ago 
+[22:07] &lt;jrand0m&gt; that includes an implementation of the kademlia netDb 
+[22:08] &lt;jrand0m&gt; so I'm pretty confident we'll hit the release for 0.2.3 next week (which is basically kademlia netDb + a shell script) 
+[22:08] &lt;jrand0m&gt; there have been a few more variations on the kademlia proto though to make things more relevent for i2p 
+[22:09] &lt;jrand0m&gt; we will always have a very, very, /very/ sparse kademlia tree. 
+[22:09] &lt;jrand0m&gt; 2^256 possible slots, and 1-10 values per peer in the network. 
+[22:09] &lt;jrand0m&gt; so, thinking insanely overzealous, we still wont be using jack shit, and everything will be in the furthest out kbucket 
+[22:10] &lt;jrand0m&gt; so some parts of kademlia are going to be quietly ignored ;)  but the basic gist stays the same, including the search algo &amp; distance metric 
+[22:10] &lt;jrand0m&gt; idn, however, is dead in the water. 
+[22:11] &lt;jrand0m&gt; the idea that i2p's netDb code could run off the same code as a publishing DHT was a silly little idea 
+[22:11] &lt;jrand0m&gt; and has been promptly abandonded. 
+[22:11] &lt;jrand0m&gt; idn is still generally a good idea, but I'm not going to spend my i2p dev time working on it 
+[22:12] *** tusko (~tusko@anon.iip) has joined channel #iip-dev
+[22:12] &lt;jrand0m&gt; but part of the 0.2.3 changes include a dramatic revamp of how we choose peers and organize router stats 
+[22:12] &lt;jrand0m&gt; heya tusko 
+[22:12] &lt;jrand0m&gt; that brings us to agenda item 3) peer profiling 
+[22:12] &lt;jrand0m&gt; I've been pretty silly...and finally did some of the math 
+[22:13] &lt;jrand0m&gt; the stats being gathered now are immense. 
+[22:13] &lt;jrand0m&gt; about 6000 data points /per peer/ 
+[22:13] &lt;duck&gt; what is peer profiling?
+[22:13] &lt;jrand0m&gt; peer profiling is where the router keeps track of the performance of each peer so that it can decide who to use in the future 
+[22:13] &lt;duck&gt; ah
+[22:13] &lt;jrand0m&gt; (aka fast routers, reliable routers, etc) 
+[22:13] &lt;duck&gt; the process that eats up my memory :)
+[22:14] &lt;jrand0m&gt; heh actually that part isn't toooo bad 
+[22:14] &lt;jrand0m&gt; though 6000 data points won't scale. 
+[22:14] &lt;jrand0m&gt; 1000 routers @ 6000 data points each @ 4 bytes / data point = 24Mb 
+[22:15] &lt;jrand0m&gt; though keeping detailed stats on a few hundred peers is probably fine, even as the net grows beyond that 
+[22:15] &lt;jrand0m&gt; we /don't/ need to keep stats on everyone.  just routers we want to 'use' for our tunnels, garlic routing, and source routing. 
+[22:16] &lt;jrand0m&gt; we could probably get away in the long term with just keeping track of a hundred or so peers. 
+[22:16] &lt;jrand0m&gt; but, for now, I'm going to say fuckit. 
+[22:16] &lt;jrand0m&gt; keep stats on all peers 
+[22:16] &lt;duck&gt; ping
+[22:16] &lt;jrand0m&gt; p0ng 
+[22:17] &lt;duck&gt; will it try to learn about all peers?
+[22:17] &lt;jrand0m&gt; right now, yes 
+[22:17] &lt;duck&gt; oh wait, your last lines covered that
+[22:17] &lt;jrand0m&gt; we also have some code for coallescing and running calculations on the peer profiles 
+[22:18] &lt;jrand0m&gt; so one of those calculators will determine what peers to drop 
+[22:18] &lt;jrand0m&gt; an example of the data set being collected: (Link: http://i2p.dnsalias.net/~jrandom/profile.txt)http://i2p.dnsalias.net/~jrandom/profile.txt 
+[22:19] &lt;jrand0m&gt; (you'll notice lots of 0s :) 
+[22:19] &lt;jrand0m&gt; I've written up a rough manifesto for peer selection and profiling, but need to get that onto the wiki 
+[22:20] &lt;jrand0m&gt; but thats all 0.3 stuff, really.  0.2.3 just uses a little of it 
+[22:21] &lt;jrand0m&gt; ok, thats it for the peer profiling.  lots more later, just giving a lil view into whats up 
+[22:21] &lt;jrand0m&gt; (of course, as always, anyone who wants to get down and dirty and figure out what other stats / calculations / attacks / etc should be used would be *very* much appreciated) 
+[22:22] &lt;jrand0m&gt; ok, 4) i2p services 
+[22:23] &lt;jrand0m&gt; tc's site is awesome &amp; really reliable!  I finally got to nightblade's page as well, and its a cool blog ('plog' ;).. I just wish I could leave comments :) 
+[22:23] &lt;jrand0m&gt; there's also duck's jabber server, which works fairly easily with the instructions posted to tc's board 
+[22:24] &lt;jrand0m&gt; things sometimes act up a bit, but thats related to some bugs in the router &lt;= 0.2.2, and have been fixed (and will roll out in 0.2.3) 
+[22:24] &lt;jrand0m&gt; the squid proxy is generally offline, since I'm offline too much to babysit my kaffe routers :/ 
+[22:25] &lt;jrand0m&gt; so for the moment, the eepsites and the jabber chat is probably the most reliable things on i2p, all running on top of i2ptunnel 
+[22:25] &lt;jrand0m&gt; what services would be cool to show up next? 
+[22:25] &lt;duck&gt; I did try to run an ircd over i2ptunnel
+[22:25] &lt;duck&gt; but before it got the full MOTD after logging in, I got ping timeouted already
+[22:26] &lt;jrand0m&gt; d'oh 
+[22:26] &lt;duck&gt; and that was on the same router
+[22:26] &lt;duck&gt; so in the wild performance will be even worse
+[22:26] &lt;jrand0m&gt; on the local router it pinged out?! 
+[22:26] &lt;jrand0m&gt; local router should never ping anything out 
+[22:26] &lt;jrand0m&gt; oh, except for that race bug 
+[22:26] &lt;jrand0m&gt; (which is probably what it was, since it was local and the race is faster there) 
+[22:26] &lt;duck&gt; irc client pinged out for not responding in time
+[22:27] &lt;duck&gt; I'll retry with 0.2.3
+[22:27] &lt;jrand0m&gt; word 
+[22:27] &lt;duck&gt; though jabber is nice for now
+[22:27] &lt;jrand0m&gt; totally 
+[22:27] &lt;jrand0m&gt; and long term, irc is not the way to go 
+[22:27] &lt;duck&gt; tc, jrandom and me are there to chat with!
+[22:27] &lt;jrand0m&gt; hehe :) 
+[22:28] &lt;jrand0m&gt; we need an IM and group chat solution that doesn't give cleartext to anyone unauthorized, and doesn't require centralized choke points 
+[22:28] &lt;jrand0m&gt; (aka iip 2.0) 
+[22:28] &lt;jrand0m&gt; now would be a nice time for userx to come back into the fold ;) 
+[22:29] * jrand0m stops holding breath
+[22:29] &lt;jrand0m&gt; an nntp server would /also/ really really rule. 
+[22:29] &lt;duck&gt; I'll try that tomorrow
+[22:29] &lt;jrand0m&gt; r0x0r 
+[22:30] &lt;duck&gt; jabber is really nice to run other things over
+[22:30] &lt;duck&gt; check out the jabber rpc specs
+[22:30] &lt;duck&gt; (Link: http://www.pipetree.com/jabber/jrpc/)http://www.pipetree.com/jabber/jrpc/
+[22:30] &lt;duck&gt; other services?
+[22:30] &lt;jrand0m&gt; thats interesting - doing jabber as a naming service, essentially 
+[22:31] &lt;duck&gt; you mean:
+[22:31] &lt;jrand0m&gt; there will always be more services to add - with mail (usenet), chat (jabber) and publishing/browsing (eepsites), there's good coverage 
+[22:31] &lt;duck&gt; name server has a jabber client through which you can register names (provided token)
+[22:31] &lt;duck&gt; also use it to query?
+[22:31] &lt;jrand0m&gt; naw 
+[22:32] &lt;jrand0m&gt; jabber's registry being the naming service 
+[22:32] &lt;duck&gt; ok
+[22:32] &lt;jrand0m&gt; its centralized but it works 
+[22:32] &lt;jrand0m&gt; just like hosts.txt :) 
+[22:33] &lt;duck&gt; are there mail solutions that are better suited for there environments than smtp and pop/imap ?
+[22:33] &lt;jrand0m&gt; thats a really good question 
+[22:33] &lt;duck&gt; cause I dont think that it will just work when you hook up mail servers
+[22:34] &lt;jrand0m&gt; yeah, it'd probably need either a gateway (ala freemail) or the naming service doing some interesting tap dancing 
+[22:34] &lt;jrand0m&gt; or it reverts back to centralized single POP3/IMAP server with everyone on the same server 
+[22:35] &lt;duck&gt; I spoke with aum (author of freemail) yesterday
+[22:35] &lt;duck&gt; he was talking about reimplementing fred in python
+[22:35] &lt;jrand0m&gt; lol nice 
+[22:35] *** mrflibble (mrflibble@anon.iip) has joined channel #iip-dev
+[22:35] &lt;duck&gt; so I did suggest him to work on the python routers for i2p instead
+[22:35] &lt;jrand0m&gt; ooh that would TOTALLY rule! 
+[22:35] &lt;duck&gt; then he got totally upset about the pdf documents
+[22:36] &lt;jrand0m&gt; hey, if he wants the openOffice originals, or even a txt export I'll export 
+[22:36] &lt;duck&gt; and I lost my patience and told him that you would also have the m$word docs if he did ask nicely
+[22:36] &lt;duck&gt; well, you were a fuckhead for not doing a html export or something
+[22:36] &lt;jrand0m&gt; naw, I tried that ;) 
+[22:36] &lt;duck&gt; I lost my patience and told him to talk to you
+[22:36] &lt;jrand0m&gt; the openOffice html export SUCKS 
+[22:37] &lt;duck&gt; hm
+[22:37] &lt;mrflibble&gt; true jr
+[22:37] &lt;jrand0m&gt; when the specs turn 1.0 (aka when the router turns 1.0 and they're updated to match the code), they'll be on the wiki. 
+[22:37] &lt;duck&gt; wiki has most info though
+[22:37] &lt;jrand0m&gt; exactly 
+[22:37] &lt;mrflibble&gt; i tried using that for that kevin mitnick book. it was worse than ms office
+[22:37] &lt;duck&gt; oh well
+[22:37] &lt;jrand0m&gt; zactly. 
+[22:37] &lt;duck&gt; he might appear here once
+[22:37] &lt;jrand0m&gt; that'd be awesome 
+[22:38] &lt;duck&gt; but maybe it is better with his attitude to join the freenet gang
+[22:38] &lt;duck&gt; ...
+[22:38] &lt;jrand0m&gt; well, effort on freenet is always a good thing 
+[22:38] * duck goes back to beeing friendly
+[22:38] &lt;jrand0m&gt; :) 
+[22:38] &lt;duck&gt; aums work rocks
+[22:38] &lt;duck&gt; hopefully he'll rock on i2p
+[22:39] &lt;jrand0m&gt; yeah whenever someone talked about searching on freenet, I always just said "well just do a McNabb" 
+[22:39] &lt;jrand0m&gt; we need the help, certainly 
+[22:39] &lt;duck&gt; which brings me to the following question:
+[22:39] &lt;duck&gt; are the changes to I2P that you do specced?
+[22:39] &lt;duck&gt; or is the java source the documentation for the latest info
+[22:40] &lt;jrand0m&gt; there are notes taken in my palmpilot, filesystem, and notebook, but unfortunately I haven't updated the openoffice docs in a while 
+[22:40] &lt;jrand0m&gt; feb is doc-month for jrandom. 
+[22:40] &lt;jrand0m&gt; (and qa, and bugfixing) 
+[22:41] &lt;jrand0m&gt; ((and benders ;)) 
+[22:41] &lt;jrand0m&gt; the specs are still pretty much correct, there are just more details. 
+[22:41] &lt;duck&gt; awesome
+[22:41] &lt;jrand0m&gt; but the datastructures have had more changes 
+[22:42] &lt;jrand0m&gt; ok, anything else for services?   
+[22:43] &lt;jrand0m&gt; ok, 5) stuff 
+[22:43] &lt;jrand0m&gt; hi 
+[22:43] &lt;duck&gt; hi!
+[22:43] &lt;jrand0m&gt; how's tricks? 
+[22:43] &lt;jrand0m&gt; [any questions / thoughts / issues / etc go here] 
+[22:43] &lt;duck&gt; the base64 tricks should be added to the i2ptricks pages
+[22:44] &lt;jrand0m&gt; ooh good point 
+[22:44] &lt;duck&gt; might be some other tricks too that I dont know yet
+[22:44] &lt;duck&gt; will grep the sources for 'main'
+[22:44] &lt;jrand0m&gt; I feel guilty for not having the installer let someoene automatically fetch hosts.txt and reseed 
+[22:44] &lt;jrand0m&gt; lol 
+[22:44] &lt;jrand0m&gt; there are lots and lots of main() methods, but they're mostly test functions 
+[22:45] &lt;jrand0m&gt; oh! 
+[22:45] &lt;jrand0m&gt; one thing.  DONT run the current code from cvs and expect it to work with normal routers. 
+[22:45] *** joda (--@anon.iip) has joined channel #iip-dev
+[22:45] &lt;joda&gt; hi
+[22:45] &lt;jrand0m&gt; the db messages changed :) 
+[22:45] &lt;jrand0m&gt; hi joda 
+[22:45] &lt;joda&gt; sorry, if I interrupt something
+[22:45] &lt;duck&gt; I got a bit upset that I couldnt get cvs to work
+[22:45] &lt;duck&gt; but then I did remember that this isnt freenet
+[22:45] &lt;joda&gt; I was just wondering what happend to "anonymail" ?
+[22:46] &lt;duck&gt; so you dont need latest cvs to be able to use it
+[22:46] &lt;jrand0m&gt; joda&gt; the user who runs it doesn't seem to be online at the moment.  should be back soon 
+[22:46] &lt;jrand0m&gt; hehe duck - did it fail for you today after I committed, or do you mean from before today? 
+[22:46] &lt;duck&gt; last week somewhere
+[22:46] &lt;joda&gt; jrand&gt; thx :)
+[22:46] &lt;joda&gt; cu :)
+[22:46] &lt;jrand0m&gt; ah 'k duck 
+[22:46] &lt;jrand0m&gt; l8r joda 
+[22:47] &lt;jrand0m&gt; yeah, I only endorse running the released code 
+[22:47] &lt;duck&gt; will 0.2.3 put the version files in a directory? :)
+[22:47] &lt;jrand0m&gt; 0.2.3 gets rid of the version files :) 
+[22:47] &lt;jrand0m&gt; (lots and lots and lots of changes) 
+[22:47] &lt;jrand0m&gt; but that means 0.2.3 (and beyond) will require g enerally correct clocks 
+[22:48] &lt;jrand0m&gt; (current Router.CLOCK_FUDGE_FACTOR = 30 minutes) 
+[22:48] &lt;duck&gt; what will the fudge facter be for 0.2.3?
+[22:48] &lt;jrand0m&gt; probably the same 
+[22:49] *** joda has left #iip-dev
+[22:49] &lt;duck&gt; oh, current = your code
+[22:49] &lt;jrand0m&gt; that time will be used to expire db entries 
+[22:49] &lt;duck&gt; k
+[22:49] &lt;jrand0m&gt; ah, right, yeah :) 
+[22:49] &lt;jrand0m&gt; (in 0.2.2 that clock_fudge_factor is spread out throughout half a dozen files) 
+[22:49] &lt;duck&gt; maybe the installer could be a bit more userfriendly
+[22:49] &lt;duck&gt; as in less questions
+[22:49] *** Signoff: nickthief66282 (Excess Flood)
+[22:50] &lt;duck&gt; default phttp urls included, no bandwidth limiting etc
+[22:50] &lt;jrand0m&gt; I guess we could autoguess random ports too 
+[22:50] &lt;jrand0m&gt; you're right 
+[22:50] &lt;jrand0m&gt; want commit privs?  :) 
+[22:50] *** Signoff: nerox (EOF From client)
+[22:50] &lt;jrand0m&gt; (if not I can update it for 0.2.3) 
+[22:51] &lt;duck&gt; an argument against it can be that users will take settings too easily for granted
+[22:51] &lt;duck&gt; and everybody uses the same phttp relay
+[22:51] *** nickthief24373 (~chatzilla@anon.iip) has joined channel #iip-dev
+[22:51] &lt;jrand0m&gt; true.  though 0.3.1 plans include an update to the phttp relay code to let relays talk to each other, and redirect users to a less loaded relay 
+[22:52] &lt;jrand0m&gt; i'm generally happy with the install process atm though - i built a new 0.2.2 install and was browsing tc's page in under a minute 
+[22:52] &lt;jrand0m&gt; (though thats because i know what all the text says and didn't read it...) 
+[22:52] &lt;duck&gt; I dont like the long keys
+[22:53] &lt;duck&gt; especially not if you have to copy&amp;paste them
+[22:53] &lt;duck&gt; better use them as file
+[22:53] &lt;jrand0m&gt; hmm? 
+[22:53] &lt;duck&gt; but distributing the binary files are a pain
+[22:53] &lt;duck&gt; so you have to do the base64 trick..
+[22:53] &lt;duck&gt; could the i2ptunnel read base64 destination keys too?
+[22:53] &lt;duck&gt; from a file that is
+[22:53] &lt;jrand0m&gt; I was just typing that ;) 
+[22:53] &lt;jrand0m&gt; yeah, that wouldnt be much work 
+[22:54] &lt;jrand0m&gt; perhaps even 1 line 
+[22:54] &lt;duck&gt; also, what about armouring?
+[22:54] &lt;duck&gt; with a header&amp;footer
+[22:54] &lt;duck&gt; like pgp etc
+[22:55] &lt;jrand0m&gt; true, it would be useful to have that sort of validation 
+[22:55] &lt;duck&gt; ofcourse that is a gadget
+[22:55] &lt;duck&gt; but it could be helpful for those who want to use the tunnel
+[22:55] &lt;jrand0m&gt; though the Destination structure itself is pretty picky 
+[22:55] &lt;jrand0m&gt; but you're right, a raw base64 isn't the most intuitive or safe thing to pass around 
+[22:56] &lt;jrand0m&gt; we need a bugzilla 
+[22:56] &lt;jrand0m&gt; so things like this can get posted as todo 
+[22:56] &lt;jrand0m&gt; i'd move off my palm's todo list for that 
+[22:56] &lt;duck&gt; bugzilla has nazi registration requirements
+[22:56] &lt;duck&gt; with emails etc..
+[22:56] &lt;jrand0m&gt; true 
+[22:57] &lt;duck&gt; but better as nothing
+[22:57] &lt;duck&gt; other bugtrackers all have their shortcomings
+[22:57] &lt;jrand0m&gt; yeah, every company i've worked at has pretty much ended building their own 
+[22:58] &lt;jrand0m&gt; we'll see.  we need a bugtracker by the time we start doing full on qa (once 0.3 comes out) 
+[22:58] &lt;jrand0m&gt; so we've got a few weeks ;) 
+[22:58] &lt;jrand0m&gt; but if someone did some research and found a really nice one, that'd be great 
+[22:59] &lt;jrand0m&gt; [not you specifically duck, anyone who's reading these meeting logs at home ;)] 
+[22:59] &lt;duck&gt; so far phpBugTrackers has been okay for me
+[22:59] &lt;jrand0m&gt; hmm haven't used that 
+[22:59] &lt;duck&gt; yes, I am not talking to jrandom either
+[22:59] &lt;jrand0m&gt; lol 
+[22:59] &lt;duck&gt; but to the group of I2P code developers :)
+[22:59] * jrand0m is actually 12 people acting under a single nym
+[23:00] &lt;jrand0m&gt; ok, 1 hour, on the dot 
+[23:00] &lt;jrand0m&gt; anyone else have anything before I get the *baf*er out? 
+[23:01] * duck demands 1 more minute
+[23:01] &lt;duck&gt; since we did start on 21:02
+[23:01] &lt;jrand0m&gt; yeah yeah 
+[23:01] &lt;jrand0m&gt; la la la 
+[23:01] &lt;jrand0m&gt; what should i have for dinner? 
+[23:01] &lt;jrand0m&gt; there's a nice falafel place next door... 
+[23:01] &lt;jrand0m&gt; had gnocci for lunch too 
+[23:01] &lt;jrand0m&gt; hmm... 
+[23:01] &lt;jrand0m&gt; maybe a liquid dinner 
+[23:02] &lt;duck&gt; soup?
+[23:02] &lt;jrand0m&gt; ooOooo whiskey soup! 
+[23:02] * jrand0m *baf*'s the meeting closed on that note
+</div>

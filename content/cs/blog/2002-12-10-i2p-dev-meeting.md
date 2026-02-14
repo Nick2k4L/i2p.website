@@ -1,17 +1,349 @@
 ---
-title: "Setkání vývojářů I2P"
+title: "I2P dev meeting"
 date: 2002-12-10
 author: "nop"
-description: "Zápis z vývojářské schůzky I2P ze dne 10. prosince 2002."
+description: "Záznam vývojářského setkání I2P z 10. prosince 2002."
 categories: ["meeting"]
 ---
 
-(S laskavým svolením Wayback Machine http://www.archive.org/)
+(Díky wayback machine http://www.archive.org/)
 
-## Stručné shrnutí
+## Rychlé shrnutí
 
 <p class="attendees-inline"><strong>Přítomni:</strong> codeshark, dangermouse, Debrys, {Due}, \|EN3RGY\|, hezekiah, hobbs, jeremiah_, mids, mrflibble, Neo, nop, Rav-, xcasex, Zwolly</p>
 
 ## Záznam ze schůzky
 
-<div class="irc-log"> --- Záznam otevřen Tue Dec 10 23:32:22 2002 23:32 -!- Topic for #iip-dev: http://www.patrick.fm/boobies/boobies.php?text=IIP <-- mmm, kozy, alias náš nový maskot! 23:32 [Uživatelé #iip-dev] 23:32 [@codeshark] [ icepick] [ Neo] [ pox   ] [ UserX ] 23:32 [ Debolaz  ] [ logger ] [ nop] [ sferic] [ xcasex] 23:32 -!- Irssi: #iip-dev: Celkem 10 přezdívek [1 operátor, 0 halfopů, 0 hlasů, 9 normálních] 23:32 -!- Irssi: Připojení do #iip-dev bylo synchronizováno za 2 s 23:34 -!- mode/#iip-dev [+o mids] by Trent 23:34 -!- mode/#iip-dev [+v logger] by mids 23:53 < |EN3RGY|> wee 23:55 < mrflibble> lol, líbí se mi ten obrázek, je to někdo, koho známe? 23:55  * jeremiah_  přemýšlí, jestli to funguje... používá metropipe JS rozhraní... 23:55 < hobbs> jeremiah_ : aspoň posíláš. :) 23:56 < jeremiah_> hobbs: vypadá to, že to funguje, má schůze brzy začít? Jsem ve veřejné knihovně 23:56 < hobbs> jeremiah_ : za pár minut, jo. 23:56 < Zwolly> chci si objednat maskota IIP, kde ho můžu koupit??? 23:57 < nop> hehe 23:57 < jeremiah_> ahoj nop 23:57 < nop> čau 23:57 < nop> Líbí se mi ta metropipe věc 23:57 < nop> docela pěkné 23:57 < jeremiah_> jo, je to fajn 23:57 < hobbs> jo, a je úžasné, že to funguje. >:) 23:58 < nop> funguje fakt dobře --- Den se změnil Wed Dec 11 2002 00:00 <@mids> Tue Dec 10 23:00:04 UTC 2002 00:00 <@mids> Vítejte na 23. schůzce IIP 00:00 < dangermouse> 22:48 podle mých hodin :p 00:00 < xcasex> díky 00:00 <@mids> Program: 00:00 <@mids> 1) Přivítání 00:00 <@mids> 2) RC3 konečně 00:00 <@mids> 3) Bezpečnostní upozornění 00:00 <@mids> 4) Nekonzistence v síti 00:00 <@mids> 5) Dotazy? 00:00 <@mids> . 00:00 <@mids> Záznamy jsou k dispozici na 00:00 <@mids> http://mids.student.utwente.nl/~mids/iip/ 00:01 <@mids> Máte-li dotazy týkající se aktuálního bodu programu, ptejte se prosím 00:01 <@mids> jinak si je nechte na kolo dotazů 00:01 <@mids> . 00:01 < nop> Chvíli počkám 00:01 <@mids> jo, než se vrátí 00:02 < nop> k 00:02 <@mids> viděli jste všichni nopův návrh maskota IIP? 00:02 <@mids> http://www.patrick.fm/boobies/boobies.php?text=IIP 00:02 < hobbs> nop : mimochodem, co se stalo s těmi pípnutími v MOTD? Mně se to vlastně líbilo. 00:02 < jeremiah_> je to sprosté? Na sprosťárny se fakt nemůžu dívat 00:02 < {Due}> ahoj všichni 00:02 < nop> jo, myslím, že jsem ty problémy opravil 00:02 < hobbs> jeremiah_ : nehodí se do knihovny. 00:02 -!- mids změnil téma #iip-dev na: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ 00:03 < nop> ach, zbavili jsme se našeho maskota 00:03 < nop> :( 00:03 < {Due}> tady lidi píšou jen anglicky? 00:03 -!- mids změnil téma #iip-dev na: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ - IIP Mascot: http://www.patrick.fm/boobies/boobies.php?text=IIP 00:03 <@mids> {Due}: jo 00:04 < |EN3RGY|> la mayoria si, {Due} 00:04 < {Due}> opravdu nerozumím, co to znamená 00:04 < {Due}> :\ 00:04 <@mids> ok, předávám mikrofon nopovi 00:04 < nop> dobře 00:04 < nop> Vítejte 00:04 < nop> na n-té 00:04 < nop> hezekiah: ty bys měl vědět 00:04 < hezekiah> 23. 00:04 < nop> schůzce 00:04 < nop> IIP 00:04 < nop> clockwork 00:05 < nop> mids, program prosím 00:05 <@mids> 1) Přivítání 00:05 <@mids> 2) RC3 konečně 00:05 <@mids> 3) Bezpečnostní upozornění 00:05 <@mids> 4) Nekonzistence v síti 00:05 <@mids> 5) Dotazy? 00:05 < |EN3RGY|> {Due} entiendes algo ? 00:05 < nop> ok 00:05 < {Due}> si |EN3RGY| 00:05 < nop> zkuste si prosím připomínky nechat na část s dotazy 00:05 -!- mode/#iip-dev [+oo nop hezekiah] by mids 00:05 < {Due}> ahora hay "chala", wait 00:05 < |EN3RGY|> XD 00:05 <@nop> abychom se tím mohli prokousat 00:05 < |EN3RGY|> ok 00:05 < {Due}> ;) 00:05 <@nop> 2) RC3 konečně!!! 00:05 <@nop> jo 00:05 <@hezekiah> Jo! 00:05 < |EN3RGY|> q paranoia ! 00:06 <@nop> RC3 je tady a dorazilo o 50 % rychleji než RC2 00:06 < {Due}> |EN3RGY| /say yeah! 00:06 < {Due}> ke todo hay ke decirtelo :\ 00:06 <@mids> ok, buďte potichu, sotva slyším nopa 00:06 <@nop> hmm 00:06 < |EN3RGY|> yeah! 00:06 < |EN3RGY|> XDDD 00:06 <@nop> cayete 00:06 <@nop> nebo jak se to říká 00:06 <@nop> silencio 00:06 < |EN3RGY|> solo me entero 00:06 < |EN3RGY|> de algo sobre el RC3 00:06 < jeremiah_> nosotros hablamos espanol tambien 00:06 < {Due}> |EN3RGY| silencio ;) 00:06 <@nop> překládají ;) 00:06 <@nop> haha 00:06 < |EN3RGY|> ok 00:07 <@nop> ok 00:07 <@nop> každopádně 00:07 < |EN3RGY|> ok jeremiah_ 00:07 <@nop> RC3 je tu a obsahuje to, co bylo požadováno, a také opravy chyb 00:07 <@nop> verze je tam tentokrát určitě :) 00:07 <@nop> takže jsme všichni spokojení 00:07 < {Due}> nop, ještě předtím, co je RC3 ? 00:07 <@nop> aha 00:07 <@nop> Release Candidate 3 verze 1.1 00:07 < {Due}> ajam 00:08 <@nop> pěkné na tom je, že příští verze bude ... 00:08 <@nop> 1.1 STABLE!!! 00:08 <@nop> 1.1.0 STABLE 00:08 <@nop> takže máme prostor na chybu ;) 00:08 < Rav-> haha 00:08 <@nop> zvolíme přístup freent 00:08 < {Due}> nop, o tomhle softu vím teprve 5 minut, prosím řekni mi, co to dělá 00:08 <@nop> build 500392938103967 00:08 <@nop> Due - http://help.invisiblenet.net 00:08 <@mids> {Due}: pomůžeme ti později 00:08 < {Due}> oka 00:09 <@nop> ok 00:09 <@nop> 3) Bezpečnostní upozornění 00:09 <@nop> náhodou jsem narazil na některé slabiny v síti Adelphia PowerLink, které jsou zásadní pro soukromí 00:09 <@nop> takže jsem cítil potřebu jim poslat upozornění 00:09 <@nop> a poslat to na mailing list iip-dev 00:09 < Debrys> Due: http://www.invisiblenet.net/iip/aboutMain.php Podívej se na tuhle stránku....... a také na rozhovor a dokumenty....... většina věcí, na které se ptáš, je tam zodpovězena :) je to vážně bez balastu..... čisté info a rovnou k věci 00:10 <@nop> každopádně 00:10 <@nop> pokud někdo z uživatelů používá adelphii 00:10  * {Due} čte ;) 00:10 <@nop> to je důvod, proč jsem to poslal 00:10 <@nop> pro dobro našich uživatelů 00:10 <@nop> protože mají 5,5 milionu zákazníků 00:10 <@nop> takže jich pár můžeme mít i my 00:11 <@nop> doufejme, že se budou řídit tím upozorněním a opraví to 00:11 <@nop> pokud ne 00:11 <@nop> bude to zveřejněno 30 dní od tohoto data 00:11 <@nop> což vyvine určitý tlak na vyřešení problému 00:11 <@nop> pokračujeme 00:11 <@nop> Problém s připojením 00:11 <@nop> s updatem 00:11 <@nop> spousta lidí pravděpodobně vypínala své předchozí rc2 relaye 00:11 <@nop> a zapínala rc3 00:12 <@nop> to se pravděpodobně bude dít v průběhu několika týdnů 00:12 <@nop> většina lidí není konzistentní ve sledování dne aktualizace 00:12 <@nop> taky 00:12 <@nop> několikrát během minulého týdne měl colocation provoz ircd serveru nějakou údržbu sítě 00:12 <@nop> to způsobilo pár zádrhelů 00:12 <@nop> a mohlo být obtížné se připojit 00:12 <@nop> to už je pryč 00:12 <@nop> a mělo by to být docela čisté (kromě toho, že občas spadnou relaye) 00:13 < jeremiah_> bude relay upozorňovat admina, když by se mělo aktualizovat? 00:13 <@nop> myslíš jako že by o tom upozornil software IIP? 00:13 <@mids> momentálně ne 00:13 <@nop> administrátora relay? 00:13 <@nop> to by mělo být volitelné 00:13 <@nop> z diskutabilních důvodů anonymity 00:13 < jeremiah_> jo, ale teď to není možnost, že? 00:13 <@codeshark> nop: možná by pomohla jednoduchá kontrola verze 00:13 <@nop> správně, není 00:14 <@nop> rozhodně možnost, která by se mohla objevit v 1.1 00:14 <@nop> stabilní 00:14 <@nop> ale nemůžu to slíbit 00:14 <@nop> protože chceme udržet změny na minimu 00:14 < jeremiah_> ok 00:14 <@mids> navrhuji, abychom to nedávali dovnitř 00:14 <@mids> jen opravili chyby 00:14 <@nop> u této verze to vidím stejně 00:14 <@codeshark> ano, žádné nové funkce 00:15 <@hezekiah> Souhlasím. 00:15 <@nop> ok 00:15 <@mids> jsou už nějaké hlášení chyb? 00:15 <@nop> vím, že codeshark měl jedno 00:15 <@codeshark> jo, nemohl jsem odesílat mail, zatracený invisiblenet ;) 00:16 <@nop> haha 00:16 <@nop> pošli to, až budeš moct 00:16 <@nop> je pár otázek ohledně firewallu 00:16 <@codeshark> iip.log, isproxy.ini, mynode.ref, seed.rnd se ukládají do aktuálního adresáře místo do ~iip/.iip  dir 00:16 <@nop> myslím, že bychom měli jasněji říct, že port 6667 není jediné spojení, které by mělo být otevřené 00:17 <@nop> můžeš to oficiálně poslat jako e-mail 00:17 <@nop> pomáhá to se sledováním 00:17 <@codeshark> nefunguje ;) 00:17 <@nop> mail by měl fungovat 00:17 <@mids> nop: máš na mysli pravidla firewallu pro odchozí spojení? 00:18 <@nop> ano 00:18 <@mids> ok 00:18 <@nop> nemyslím si, že všichni uživatelé chápou, jak to funguje 00:18 <@mids> jo, můžeme to přidat do kapitoly firewall ve FAQ 00:18 <@nop> ok 00:18 <@mids> nebo ji vytvořit, pokud neexistuje 00:18 <@nop> každopádně, cs můžeš to poslat na naši stránku reportů chyb na SourceForge 00:18 < {Due}> ok, moment 00:19 < {Due}> můžu se na něco zeptat? 00:19 <@nop> vydrž 00:19 <@nop> co je další na programu 00:19 <@mids> kolo dotazů! 00:19 <@nop> ok 00:19 <@nop> due 00:19 < {Due}> ;) 00:19 <@nop> můžeš se ptát 00:19 < {Due}> oka 00:19 <@codeshark> nop: ok 00:20 < {Due}> 1) mids říká, že tyto servery jsou anonymní 00:20 < {Due}> anonymní 00:20 < {Due}> <mids> nevíme, kde ten server je 00:20 < {Due}> newsserver1.ussc.com 00:20 <@nop> to je relay 00:20 <@nop> jeden z mnoha 00:20 <@nop> tvoji peeri tě chrání 00:20  * Neo se staví do fronty na dotazy 00:21 < {Due}> ale jaký to má smysl? 00:21 < {Due}> myslím, všechny ircu servery 00:21 <@mids> zkusím {Due} pomoct soukromě 00:21 < {Due}> mají vhost 00:21 < {Due}> oka mind 00:21 <@nop> neo ano 00:21 <@mids> pojď na řadu, neo 00:21 < Neo> Ok. 00:22 < Neo> nop: můžeš nám prosím dát: 00:22 < Neo> diff 'invisible internet' 'tarzan' 00:22 < Neo> názory, prosím. 00:22 <@nop> musím dočíst Tarzan, než na to můžu odpovědět 00:22 <@nop> ale jsou si podobné 00:22 <@nop> ale u Tarzan vidím některé problémy 00:22  * jeremiah_  by chtěl URL, které popisuje Tarzan 00:23 <@nop> neo, máš po ruce URL 00:23 < Neo> http://www.pdos.lcs.mit.edu/tarzan/index.html 00:23 < jeremiah_> díky 00:23 <@nop> víš co, neo 00:23 <@nop> až dočtu 00:23 <@nop> pošlu ti e-mail 00:23 <@nop> s mými poznámkami 00:24 <@hezekiah> Co kdybys ten e-mail prostě poslal na iip-dev? 00:24 <@nop> ok 00:24 < Rav-> můžu dát návrh 00:24 < Rav-> co se týče souborů node.ref atd. 00:24 <@nop> jsou aspekty, které lze z Tarzan plně využít 00:24 < Neo> nop: díky 00:24 < Rav-> ukládat je do domovských adresářů uživatelů 00:24 <@hezekiah> To by bylo fajn. 00:24 < Rav-> aby bylo snazší zabezpečit proxy 00:24 < Rav-> a mít neinteraktivní aktualizaci 00:25 < Debrys> ehm:....... bylo by fajn, kdybych mohl používat IIP bez instalace a kopírovaných souborů....... tj. zkopírovat soubory na disketu......... jít k někomu s PC a IRC klientem........ spustit IIP z diskety bez jakýchkoli souborů zkopírovaných na pevný disk....... takže bych byl vděčný, kdyby tahle věc s domovskými adresáři uživatele byla volitelná 00:27 <@mids> aktuálně by se _mělo_ dívat na několik míst 00:27 <@mids> aktuální adresář, domovský adresář 00:27 <@mids> a systémový adresář 00:27 <@mids> nepamatuji si, v jakém pořadí se to děje 00:27 < jeremiah_> taky by bylo dobré mít možnost běžet jen z paměti bez konfiguračních souborů, aby to někdo mohl použít a pak snadno smazat (nejsem si jistý, jak je to teď možné) 00:27 < Debrys> dobře, díky za info, mids 00:28 <@nop> knoppix 00:28 <@nop> www.knoppix.net 00:28 <@mids> Debrys: ale codeshark na to právě nahlásil bug, takže to nemusí fungovat :) 00:28 <@codeshark> Debrys: ano, s tou funkcí je problém 00:28 <@codeshark> některé soubory se ukládají do lokálního adresáře 00:28 < xcasex> jeremiah_: prostě připoj část RAM jako filesystém D: 00:28 < xcasex> :D 00:28 < Debrys> no, jsem v pohodě, pokud vím, že to bude fungovat v budoucnu :) 00:29 < Debrys> je to jen možnost, která by mi chyběla, kdyby byla v budoucím vývoji zrušena 00:29 < Rav-> pokud si dobře pamatuju, lokální musí být jen soubor node.ref.. je to tak? 00:30 <@nop> 7and listen.ref 00:30 <@nop> a 00:30 < Debrys> cs: lokální adresář je v pohodě....... protože lokální adresář by byla disketa? 00:30 <@nop> a isproxy.ini 00:30 < Rav-> jo, to je pravda 00:30 < Rav-> 3 soubory 00:30 <@nop> i když 00:30 < Debrys> jediný problém by byl, kdyby to běželo z CD........ ale to je pro mě v pohodě 00:30 <@mids> můžeš zadat umístění souboru, když spouštíš isproxy 00:30 <@mids> zkus: isproxy -h 00:30 <@mids> to dá přehled možností 00:31 < Debrys> °nods° 00:31 < Rav-> momentálně mám ty 3 soubory pro uživatele rw, protože iip běží jako uživatelský démon, ne systémový démon 00:32 <@nop> ok 00:32 <@nop> za chvilku budu zpět 00:33 <@mids> další dotazy? 00:33 < Debrys> teď ne a ani k 1.1 00:33 < Rav-> hmm... upozornění na aktualizaci? 00:33 < Rav-> asi by to nebylo anonymní 00:34 <@mids> Rav-: server by mohl poslat řídící zprávu 00:34 < Rav-> ok 00:34 <@mids> vlastně už posílá verzi, myslím 00:34 <@mids> ale zase 00:34 <@mids> když provozuju veřejný relay 00:35 <@mids> co má relay dělat, když uvidí, že je příliš starý? 00:35 < Rav-> mohli byste to zahrnout do node.ref 00:35 < Rav-> nevím 00:35 < jeremiah_> mohlo by mít možnost poslat e-mail adminovi 00:35 < jeremiah_> nebo anonymail 00:35 <@mids> jo, možná 00:35 < Debrys> co kdyby se klienti dozvídali o nové verzi od jiných klientů..... ne od serveru? to by mohlo fungovat i v decentralizované síti........ protože pokud je oznámení o aktualizaci závislé na serveru, nebude to fungovat, až bude IIP decentralizované? 00:36 < Rav-> jo, proto jsem myslel na node.ref 00:36 <@mids> nemyslím si, že je to možné v decentralizovaném prostředí 00:36 <@mids> leda že by ty zprávy podepisoval vývojový tým IIP 00:36 <@mids> jinak by bylo příliš snadné posílat falešné zprávy 00:36 < hezekiah> Přesně tak 00:37 < Debrys> to je pravda 00:37 < Rav-> hmm 00:37 <@mids> vlastně 00:37 <@mids> až to bude plně distribuované 00:37 <@mids> klidně může existovat více verzí 00:37 < Debrys> ale bylo by to AŽ tak zlé, kdyby přišla falešná zpráva o „nové verzi“? kromě toho, že by to bylo otravné? 00:37 <@mids> +s 00:37 <@mids> a klony atd. 00:38 <@mids> Debrys: bylo by snadné to udělat a zničit tím jeho užitečnost 00:38 < Rav-> to by měl být dobrý případ pro upozornění na aktualizaci 00:38 < Debrys> dobře 00:38 <@mids> lepší by bylo, kdyby se admini přihlásili k odběru vývojářského mailing listu IIP 00:38 < Rav-> nevím, jak byste tu zprávu distribuovali 00:38 <@mids> :) 00:38 <@mids> možná bychom měli v budoucnu udělat další mailinglisty 00:38 <@mids> jako iip-announce 00:39 < xcasex> nezapomeň na the-iip-133+3 00:39  * jeremiah_  musí jít 00:39 < jeremiah_> čau 00:39 < jeremiah_> přihlásím se později 00:39 < Rav-> když říkáš distribuované, myslíš jako součást decentralizované sítě IIP, nebo že uvolníte serverový démon pro použití na jiných sítích 00:39 < hezekiah> ahoj 00:42 <@mids> Rav-: decentralizované 00:44 < hezekiah> Tak jo, jdu. Mějte se. 00:45 <@mids> ok 00:45 <@mids> tímto prohlašuji schůzku za ukončenou 00:45 <@mids> uvidíme se příští týden, ve stejný čas, na stejném místě 00:46 <@mids> klidně tu ještě chvilku pobuďte 00:46 <@mids> a pokud jsou další otázky / komentáře, ptejte se v #iip nebo #anonymous --- Záznam uzavřen Wed Dec 11 00:48:34 2002 </div>
+<div class="irc-log">
+--- Log opened Tue Dec 10 23:32:22 2002
+23:32 -!- Topic for #iip-dev: http://www.patrick.fm/boobies/boobies.php?text=IIP <-- mmm, boobies, aka our new mascot!
+23:32 [Users #iip-dev]
+23:32 [@codeshark] [ icepick] [ Neo] [ pox   ] [ UserX ]
+23:32 [ Debolaz  ] [ logger ] [ nop] [ sferic] [ xcasex]
+23:32 -!- Irssi: #iip-dev: Total of 10 nicks [1 ops, 0 halfops, 0 voices, 9 normal]
+23:32 -!- Irssi: Join to #iip-dev was synced in 2 secs
+23:34 -!- mode/#iip-dev [+o mids] by Trent
+23:34 -!- mode/#iip-dev [+v logger] by mids
+23:53 < |EN3RGY|> wee
+23:55 < mrflibble> lol, like the pic, is it ne1 we know?
+23:55  * jeremiah_  wonders if this is working... using the metropipe JS interface...
+23:55 < hobbs> jeremiah_ : you're sending, at least. :)
+23:56 < jeremiah_> hobbs: looks like it works, meeting about to start? I'm at the public library
+23:56 < hobbs> jeremiah_ : just a few minutes, yeah.
+23:56 < Zwolly> i want to order an IIP mascot where can i buy them???
+23:57 < nop> hehe
+23:57 < jeremiah_> hey nop
+23:57 < nop> hi
+23:57 < nop> I like the metropipe thing
+23:57 < nop> rather neat
+23:57 < jeremiah_> yeah it's cool
+23:57 < hobbs> yeah, and amazing that it works. >:)
+23:58 < nop> works real well
+--- Day changed Wed Dec 11 2002
+00:00 <@mids> Tue Dec 10 23:00:04 UTC 2002
+00:00 <@mids> Welcome to the 23th IIP meeting
+00:00 < dangermouse> 22:48 by my clock :p
+00:00 < xcasex> thankyou
+00:00 <@mids> Agenda:
+00:00 <@mids> 1) Welcome
+00:00 <@mids> 2) RC3 finally
+00:00 <@mids> 3) Security Advisory
+00:00 <@mids> 4) Network inconsistancies
+00:00 <@mids> 5) Questions?
+00:00 <@mids> .
+00:00 <@mids> Logs are available on
+00:00 <@mids> http://mids.student.utwente.nl/~mids/iip/
+00:01 <@mids> If you got questions related to the current agenda item, please ask
+00:01 <@mids> otherwise safe them for the question round
+00:01 <@mids> .
+00:01 < nop> I'm gonna wait for a sec
+00:01 <@mids> yeah, till they come back
+00:02 < nop> k
+00:02 <@mids> did you all see nop's IIP mascot submission?
+00:02 <@mids> http://www.patrick.fm/boobies/boobies.php?text=IIP
+00:02 < hobbs> nop : btw, whatever happened to those beeps in the MOTD? I actually liked them.
+00:02 < jeremiah_> is it profane? I can't really look at profane stuff
+00:02 < {Due}> hi all
+00:02 < nop> oh, I think I fixed the problems
+00:02 < hobbs> jeremiah_ : not suitable for a library.
+00:02 -!- mids changed the topic of #iip-dev to: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+00:03 < nop> oh, got rid of our mascot
+00:03 < nop> :(
+00:03 < {Due}> here ppl only write in english?
+00:03 -!- mids changed the topic of #iip-dev to: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ - IIP Mascot: http://www.patrick.fm/boobies/boobies.php?text=IIP
+00:03 <@mids> {Due}: yeah
+00:04 < |EN3RGY|> la mayoria si, {Due}
+00:04 < {Due}> i really dont understand what is the meaning of this
+00:04 < {Due}> :\
+00:04 <@mids> ok, me hands the microphone to nop
+00:04 < nop> alright
+00:04 < nop> Welcome
+00:04 < nop> to the nth
+00:04 < nop> hezekiah: you should know
+00:04 < hezekiah> 23rd
+00:04 < nop> meeting
+00:04 < nop> of IIP
+00:04 < nop> clockwork
+00:05 < nop> mids, agenda please
+00:05 <@mids> 1) Welcome
+00:05 <@mids> 2) RC3 finally
+00:05 <@mids> 3) Security Advisory
+00:05 <@mids> 4) Network inconsistancies
+00:05 <@mids> 5) Questions?
+00:05 < |EN3RGY|> {Due} entiendes algo ?
+00:05 < nop> ok
+00:05 < {Due}> si |EN3RGY|
+00:05 < nop> please try and save comments for the questions part
+00:05 -!- mode/#iip-dev [+oo nop hezekiah] by mids
+00:05 < {Due}> ahora hay "chala", wait
+00:05 < |EN3RGY|> XD
+00:05 <@nop> so we can get throught his
+00:05 < |EN3RGY|> ok
+00:05 < {Due}> ;)
+00:05 <@nop> 2) RC3 finally!!!
+00:05 <@nop> yeah
+00:05 <@hezekiah> Yeah!
+00:05 < |EN3RGY|> q paranoia !
+00:06 <@nop> RC3 is here and arrived in 50% less time than RC2
+00:06 < {Due}> |EN3RGY| /say yeah!
+00:06 < {Due}> ke todo hay ke decirtelo :\
+00:06 <@mids> ok, be quiet people, I can barely hear nop
+00:06 <@nop> hmm
+00:06 < |EN3RGY|> yeah!
+00:06 < |EN3RGY|> XDDD
+00:06 <@nop> cayete
+00:06 <@nop> or how ever you say it
+00:06 <@nop> silencio
+00:06 < |EN3RGY|> solo me entero
+00:06 < |EN3RGY|> de algo sobre el RC3
+00:06 < jeremiah_> nosotros hablamos espanol tambien
+00:06 < {Due}> |EN3RGY| silencio ;)
+00:06 <@nop> they are translating ;)
+00:06 <@nop> haha
+00:06 < |EN3RGY|> ok
+00:07 <@nop> ok
+00:07 <@nop> anyway
+00:07 < |EN3RGY|> ok jeremiah_
+00:07 <@nop> RC3 is here, and it includes what was requested as well as bugfixes
+00:07 <@nop> version is definitely there this time :)
+00:07 <@nop> so we're all happy
+00:07 < {Due}> nop, before of that, waht is RC3 ?
+00:07 <@nop> oh
+00:07 <@nop> Release Candidate 3 of 1.1
+00:07 < {Due}> ajam
+00:08 <@nop> the neat thing about it, is the next version will be ...
+00:08 <@nop> 1.1 STABLE!!!
+00:08 <@nop> 1.1.0 STABLE
+00:08 <@nop> so we have room for error ;)
+00:08 < Rav-> haha
+00:08 <@nop> we'll take the freent approach
+00:08 < {Due}> nop i know about this soft just 5 minuts ago, plz tell me what this does
+00:08 <@nop> build 500392938103967
+00:08 <@nop> Due - http://help.invisiblenet.net
+00:08 <@mids> {Due}: we will help you later
+00:08 < {Due}> oka
+00:09 <@nop> ok
+00:09 <@nop> 3) Security Advisory
+00:09 <@nop> accidentally came upon some weaknesses in Adelphia's PowerLink Network that is crucial to privacy
+00:09 <@nop> so I felt the need to send them an advisory
+00:09 <@nop> and post it to iip-dev list
+00:09 < Debrys> Due: http://www.invisiblenet.net/iip/aboutMain.php take a look at this page....... and also the interview and docs....... most of the things you're asking yourself get answered there :) they're really no nonsense page..... pure info and straight to the point
+00:10 <@nop> anyway
+00:10 <@nop> if any users use adelphia
+00:10  * {Due} reading ;)
+00:10 <@nop> that is the reason I posted it
+00:10 <@nop> for the benefit of our users
+00:10 <@nop> as they host 5.5 million customers
+00:10 <@nop> so we might have a few
+00:11 <@nop> hopefully they will adhere to the advisory and fix it
+00:11 <@nop> if not
+00:11 <@nop> it will be publicized 30 days from the date
+00:11 <@nop> which will apply a bit of pressure to fix the problem
+00:11 <@nop> moving on
+00:11 <@nop> Connection issue
+00:11 <@nop> with the upgrade
+00:11 <@nop> a lot of people probably have been shutting off their previous rc2 relay
+00:11 <@nop> and turning on rc3
+00:12 <@nop> this probably will happen over a span of a couple weeks
+00:12 <@nop> most people aren't consistant with keeping track of upgrade day
+00:12 <@nop> also
+00:12 <@nop> there were a few times this past week that the colocation facility of the ircd server had some network maintenance
+00:12 <@nop> this caused a few hiccups
+00:12 <@nop> and it may have beend difficult to get on
+00:12 <@nop> this is over
+00:12 <@nop> and it should be pretty clean (other than relays dropping from time to time)
+00:13 < jeremiah_> will a relay notify the admin when it should be updated?
+00:13 <@nop> as in the IIP software notify?
+00:13 <@mids> currently, no
+00:13 <@nop> the relay admin?
+00:13 <@nop> that should be optional
+00:13 <@nop> for debatable anonymity reasons
+00:13 < jeremiah_> yeah, but it isn't an option right now, correct?
+00:13 <@codeshark> nop: maybe a simple version check would help
+00:13 <@nop> correct it is not
+00:14 <@nop> definitely an option that could appear in 1.1
+00:14 <@nop> stable
+00:14 <@nop> but I can't promise that
+00:14 <@nop> as we want to keep changes to a minimum
+00:14 < jeremiah_> ok
+00:14 <@mids> I suggest we dont put it in
+00:14 <@mids> only fix bugs
+00:14 <@nop> as well do I for this version
+00:14 <@codeshark> yes, no new features
+00:15 <@hezekiah> I agree.
+00:15 <@nop> ok
+00:15 <@mids> are there any bug reports yet?
+00:15 <@nop> I know that codeshark had one
+00:15 <@codeshark> yeah, couldn't send mail, damn invisiblenet ;)
+00:16 <@nop> haha
+00:16 <@nop> send it when you can
+00:16 <@nop> there's a couple of firewall questions
+00:16 <@codeshark> iip.log, isproxy.ini, mynode.ref, seed.rnd are stored in current directory instead of ~iip/.iip  dir
+00:16 <@nop> I think we might have to be more clear that 6667 isn't the only connection that should be open
+00:17 <@nop> can you officially send it as an email
+00:17 <@nop> it helps for tracking
+00:17 <@codeshark> doesn't work ;)
+00:17 <@nop> mail shoudl work
+00:17 <@mids> nop: do you mean firewall rules for outgoing connections?
+00:18 <@nop> yes
+00:18 <@mids> ok
+00:18 <@nop> I don't think all users realize how it works
+00:18 <@mids> yeah we can add that to the firewall chapter of the FAQ
+00:18 <@nop> ok
+00:18 <@mids> or create that one if it doesnt exist
+00:18 <@nop> anyway, cs can you submit it to our sourceforge bug report page
+00:18 < {Due}> ok, one second
+00:19 < {Due}> may i ask something?
+00:19 <@nop> hold
+00:19 <@nop> what's next on agenda
+00:19 <@mids> question round!
+00:19 <@nop> ok
+00:19 <@nop> due
+00:19 < {Due}> ;)
+00:19 <@nop> you can ask
+00:19 < {Due}> oka
+00:19 <@codeshark> nop: ok
+00:20 < {Due}> 1) mids says tha this servers is anonymoues
+00:20 < {Due}> anonymous
+00:20 < {Due}> <mids> we dont know where the server is
+00:20 < {Due}> newsserver1.ussc.com
+00:20 <@nop> that's a relay
+00:20 <@nop> 1 of many
+00:20 <@nop> your peers protect you
+00:20  * Neo stands in question queue
+00:21 < {Due}> but what is the meaning of all that?
+00:21 < {Due}> i mean, all the ircu servers
+00:21 <@mids> I'll try to help {Due} in private
+00:21 < {Due}> has vhost
+00:21 < {Due}> oka mind
+00:21 <@nop> neo yes
+00:21 <@mids> pop queue, neo
+00:21 < Neo> Ok.
+00:22 < Neo> nop: can you please give us:
+00:22 < Neo> diff 'invisible internet' 'tarzan'
+00:22 < Neo> thoughts please.
+00:22 <@nop> I need to finish my read on tarzan before I can answer that
+00:22 <@nop> but they are similar
+00:22 <@nop> but I find some problems with tarzan
+00:22  * jeremiah_  would like a url that describes tarzan
+00:23 <@nop> neo do you have the url handy
+00:23 < Neo> http://www.pdos.lcs.mit.edu/tarzan/index.html
+00:23 < jeremiah_> thank you
+00:23 <@nop> I'll tell you what neo
+00:23 <@nop> when I finish my read
+00:23 <@nop> I will send you an email
+00:23 <@nop> on my thoughts
+00:24 <@hezekiah> What if you just submit the email to iip-dev?
+00:24 <@nop> ok
+00:24 < Rav-> can i make a suggestion
+00:24 < Rav-> for the node.ref etc files
+00:24 <@nop> there are aspects that can be fully utilized from tarzan
+00:24 < Neo> nop: thanks
+00:24 < Rav-> store them in user home directories
+00:24 <@hezekiah> That would be nice.
+00:24 < Rav-> so its easier to secure a proxy
+00:24 < Rav-> and have it update noninteractively
+00:25 < Debrys> ahem:....... it would be nice if i could use IIP withouth installation and copied file....... i.e. copy the files on a disk......... go to someone with a pc and irc-client........ run IIP from disk withouth any files copied to the hard-disk....... so i would be thankfull if this user-home-dirs thingie would be an option
+00:27 <@mids> currently it _should_ look in several places
+00:27 <@mids> current directory, homedir
+00:27 <@mids> and system wide directory
+00:27 <@mids> I dont remember in what order that happens
+00:27 < jeremiah_> it would also good to be able to run the system from memory w/o config files so someoen could use it and then delete it easily (not sure how possible this is right now)
+00:27 < Debrys> okay, thanks for the info mids
+00:28 <@nop> knoppix
+00:28 <@nop> www.knoppix.net
+00:28 <@mids> Debrys: but codeshark just reported a bug on that, so it might not work :)
+00:28 <@codeshark> Debrys: yes, there's a problem with this feature
+00:28 <@codeshark> some files are stored in local directory
+00:28 < xcasex> jeremiah_: just mount a portion of ram to the filesystem D:
+00:28 < xcasex> :D
+00:28 < Debrys> well, i'm okay if i know it will work in the future :)
+00:29 < Debrys> its just a possibility i would miss if it would be discarded in future development
+00:29 < Rav-> from memory only the node.ref file needs to be local.. is that right?
+00:30 <@nop> 7and listen.ref
+00:30 <@nop> and
+00:30 < Debrys> cs: local dir is okay....... because the local dir would be the diskette?
+00:30 <@nop> and isproxy.ini
+00:30 < Rav-> yeah thats right
+00:30 < Rav-> 3 files
+00:30 <@nop> although
+00:30 < Debrys> the only problem would be if its run from a cd........ but thats okay to me
+00:30 <@mids> you can specify the file location if you run isproxy
+00:30 <@mids> try: isproxy -h
+00:30 <@mids> if will give an overview of options
+00:31 < Debrys> °nods°
+00:31 < Rav-> atm i have those 3 files rw for users since iip starts as a user daemon not a system daemon
+00:32 <@nop> ok
+00:32 <@nop> I'll bb in a bit
+00:33 <@mids> other questions?
+00:33 < Debrys> not for now or 1.1
+00:33 < Rav-> mmm... update notification?
+00:33 < Rav-> wouldnt be anonymous i guess
+00:34 <@mids> Rav-: the server could send a control message
+00:34 < Rav-> okay
+00:34 <@mids> atually it already sends the version I think
+00:34 <@mids> but then again
+00:34 <@mids> if I run a public relay
+00:35 <@mids> what should the relay do if it sees that it is too old?
+00:35 < Rav-> you could include it in node.ref
+00:35 < Rav-> dunno
+00:35 < jeremiah_> it could be given the option of emailing the admin
+00:35 < jeremiah_> or anonymail
+00:35 <@mids> yeah maybe
+00:35 < Debrys> what if clients get to know about a new version from other clients..... not the server? this could also work in a decentralized network........ since if update notification is server dependant it wouldn't work when IIP goes decentralized?
+00:36 < Rav-> yeah thats why i was thinking node.ref
+00:36 <@mids> I dont think it is possible to do it in a decentralized environment
+00:36 <@mids> unless you sign those messages by the IIP development team
+00:36 <@mids> since otherwise it would be too easy to send fake messages
+00:36 < hezekiah> Right
+00:37 < Debrys> thats true
+00:37 < Rav-> hmm
+00:37 <@mids> actually
+00:37 <@mids> once it is fully distributed
+00:37 <@mids> it could well be that there are multiple version
+00:37 < Debrys> but would it be THAT evil if a fake "new version" message is received? except of being annoying?
+00:37 <@mids> +s
+00:37 <@mids> and clones etc
+00:38 <@mids> Debrys: it would be easy to do, and make it not useful anymore
+00:38 < Rav-> that should be a good case for update notification
+00:38 < Debrys> okay
+00:38 <@mids> what would be better is the admins subscribing to the IIP development mailinglist
+00:38 < Rav-> dont know how you would dist the message
+00:38 <@mids> :)
+00:38 <@mids> maybe we should make other mailinglists in the future
+00:38 <@mids> like iip-announce
+00:39 < xcasex> dont forget the-iip-133+3
+00:39  * jeremiah_  has to go
+00:39 < jeremiah_> bye
+00:39 < jeremiah_> will login later
+00:39 < Rav-> when you say distributed, do you mean as part of a decentralised iip network or do you mean you are releasing the server daemon for use on other networks
+00:39 < hezekiah> bye
+00:42 <@mids> Rav-: decentralized
+00:44 < hezekiah> Well, I'm off. Bye everyone.
+00:45 <@mids> ok
+00:45 <@mids> hereby I declare the meeting beeing over
+00:45 <@mids> see you next week, same time, same place
+00:46 <@mids> feel free to hang around a bit
+00:46 <@mids> and if there are more questions / comments, ask em in #iip or #anonymous
+--- Log closed Wed Dec 11 00:48:34 2002
+</div>

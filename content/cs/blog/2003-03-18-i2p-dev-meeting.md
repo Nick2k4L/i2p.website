@@ -1,17 +1,145 @@
 ---
-title: "Setkání vývojářů I2P"
+title: "Vývojářská schůzka I2P"
 date: 2003-03-18
 author: "nop"
-description: "Zápis z vývojářské schůzky I2P ze dne 18. března 2003."
+description: "Záznam z vývojářského setkání I2P ze 18. března 2003."
 categories: ["meeting"]
 ---
 
-(S laskavým svolením Wayback Machine http://www.archive.org/)
+(Se svolením wayback machine http://www.archive.org/)
 
-## Stručné shrnutí
+## Rychlé shrnutí
 
 <p class="attendees-inline"><strong>Přítomní:</strong> Aprogas, armpit, hezekiah, Hitman, mids, nop, UserX</p>
 
 ## Záznam ze schůzky
 
-<div class="irc-log"> --- Log otevřen Tue Mar 18 20:14:29 2003 20:15 -!- Téma pro #iip-dev: IIP Meeting - logy: http://mids.student.utwente.nl/~mids/iip/ 20:15 [Uživatelé #iip-dev] 20:15 [ jeremiah] [ logger] [ mids] [ UserX] 20:15 -!- Irssi: #iip-dev: Celkem 4 nicků [0 opů, 0 halfopů, 0 voice, 4 normální] 20:15 -!- Irssi: Připojení do #iip-dev bylo synchronizováno za 5 s 20:17 -!- mode/#iip-dev [+o mids] by Trent 22:00 < nop> ahoj 22:00 <@mids> Tue Mar 18 21:00:10 UTC 2003 22:00 < hezekiah> Ahoj. :) 22:00 <@mids> Ahoj 22:00 <@mids> tak 22:01 <@mids> co je na programu? 22:01 < hezekiah> Nemám tušení. 22:01 < armpit> nazdar 22:01 < hezekiah> Ahoj 22:01 <@mids> ok 22:01 < armpit> nevadí, když tu budu jen číhat? :) 22:01 <@mids> tak si dáme jen kolo otázek 22:01 <@mids> mimochodem, Freenet 0.5.1 je venku 22:01 < hezekiah> Super. :) 22:02 < hezekiah> Možná to někdy zkusím používat. :) 22:02 <@mids> takže nějaké otázky k IIP? 22:02 < Hitman> stručný přehled aktuálního stavu by byl fajn, nop 22:02 < Hitman> abychom se dostali do obrazu, co se kolem toho děje 22:03 <@mids> dobrý postřeh 22:03 < nop> moment 22:03  * hezekiah zapíná krásnou klasickou hudbu, kterou pouštějí na technické podpoře, když na ně čekáme ... 22:04  * Hitman se otřese, když se vracejí ty vzpomínky 22:05  * mids dochází dech 22:06  * mids umírá 22:06 < hezekiah> No, mezitím by se mělo poznamenat, že někteří si zjevně nepamatovali, že schůzka teď začíná o 2 hodiny dřív. 22:06 <@mids> nebo je to prostě nezajímá :) 22:07 < nop> ok 22:07 < nop> zpátky 22:07 < hezekiah> Hurá! :) 22:07 < nop> 1.1.0 je venku, schůzku k 1.2 je potřeba domluvit 22:07 < nop> aby hez, UserX a já mohli probrat další zásadní vývoj 22:08 <@mids> možná by měl být vývojový cyklus otevřenější? 22:08 <@mids> aby i ostatní slyšeli, jaké jsou plány? 22:08 < nop> budeme to logovat a umístíme to do adresáře research 22:08 < nop> na invisiblenet 22:08 <@mids> ok 22:08 < Aprogas> to by vyvrátilo tvrzení, že IIP je vaporware 22:09 < hezekiah> mids: Otevřenost je skvělá, ale může to být dost otravné, když se snažíte probírat kód a posluchači neustále odbíhají od tématu k teorii. :( 22:09 < nop> proto to logujeme 22:09 < nop> ;) 22:09 < hezekiah> Myslím, že logování je dobrý nápad. 22:09 < nop> a publikujeme 22:09 <@mids> hezekiah: kanály lze moderovat 22:09 < hezekiah> Možná bychom ten log mohli poslat i na mailing list iip-dev? To by lidem dalo dobrou představu, co se děje v zákulisí. 22:09 < Hitman> otevřená diskuse nápadů a brainstorming by byla super, ale změny výsledného produktu bude muset zvlášť probrat skutečný tým, co píše kód, jinak se věci nenasadí správně 22:09 <@mids> k 22:09 < hezekiah> Pak by mohli přicházet se všemožnými návrhy. :) 22:10 < hezekiah> UserX? Jsi teď přítomen? 22:10 < UserX> jsem tady 22:10 < hezekiah> OK. :) 22:10 < hezekiah> (Pro UserX i nop): Máte někdo nějaké termíny té schůzky, které by vám vyhovovaly? 22:11 < hezekiah> V e‑mailu jsem zmínil termíny, které mi nevyhovují. Doufám, že je to dost malá množina, aby to nebyl problém. :) 22:12 <@mids> každopádně to můžete dořešit v soukromí 22:12 < Hitman> podle mě je decentralizace sítě prioritou číslo jedna.  Udělat IIP plně p2p by vzalo vládě a dalším nepěkným silám jakoukoli možnost to vypnout.  Dokud existuje centrální server, pořád to mohou ukončit.... tj. Napster 22:12 < hezekiah> OK. 22:12 <@mids> logy si můžeme přečíst potom. 22:13 < hezekiah> Hitman: decentralizace je hlavním tématem 1.2 22:13 < Hitman> paráda 22:14 < hezekiah> Tak kde jsme to skončili? 22:15 < hezekiah> Jo, jasně. Nop vypisoval aktuální stav 1.2. 22:15 < nop> jo 22:15 < hezekiah> Měl jsi ještě něco, co bys dodal, nop? 22:15 < nop> takže k 1.2 potřebujeme na začátek vývojářskou schůzku 22:15 < nop> a od toho bodu se odpíchneme 22:16 < Aprogas> vytvořili jste větev v CVS, aby bylo možné opravovat chyby v 1.1, aniž by uživatelé museli přecházet na alfa nebo beta stav 1.2 ? 22:17 < UserX> Vývoj už je v samostatné větvi oproti 1.1 22:18 < hezekiah> A vydání 1.1 bylo označeno tagem v1-1-0. 22:18 < Aprogas> takže vydání má tag, ale ne tag větve ? 22:18 < Aprogas> předpokládám, že vývoj je na větvi `MAIN' ? 22:19 < hezekiah> Eh, momentálně nevím, jaké příkazy CVS bych měl použít, abych to rozlišil. :) 22:19 < UserX> 1.1 je na větvi MAIN 22:19 < Aprogas> něco jako cvsweb na takové věci dává lepší přehled než příkazy cvs; větve v cvs jsou docela matoucí 22:20 < Aprogas> každopádně mít release na hlavní větvi a vývoj v samostatné větvi je dost neobvyklé uspořádání; a možná to má své důvody 22:20 < Aprogas> možná stojí za to prozkoumat, jestli by nebylo užitečnější to udělat naopak ? 22:25 < hezekiah> No, o CVS toho moc nevím, takže můj vstup by tu moc cenu neměl. :) 22:26 < Aprogas> CVS je děsivá bestie 22:27 < hezekiah> Jo. Zajímalo by mě, jestli sežralo ostatní v místnosti. Je tu ticho jako v hrobě. 22:27 < Aprogas> nakonec jsem musel mnohokrát znovu importovat zdrojáky, protože jsem to pokazil, když jsem se snažil dát do pořádku své větve 22:27 < hezekiah> ;-) 22:28 < Aprogas> takže s tím opatrně 22:28 < hezekiah> *lol* 22:29 < hezekiah> Midsi? Máme na programu další bod? Zdá se, že s tímhle jsme hotovi (nebo někoho sežrala bestie jménem CVS.) 22:31 < Aprogas> no... moc jsem neviděl, že by někdo reagoval na mé `návrhy' 22:31 < Aprogas> přemýšlím, proč tým vývoje IIP používá tenhle odlišný způsob práce s větvemi 22:31 < hezekiah> Nemám tušení. 22:31 < Aprogas> řekl bych, že 99 % projektů používajících CVS vyvíjí na větvi MAIN a vydání drží na samostatných větvích 22:32 < hezekiah> Vím ale, že to funguje dobře. 22:32 < Aprogas> to se ukáže, až dostanete 1.2 22:32 < Aprogas> co bude s 1.1, která je teď na hlavní větvi ? 22:32 < hezekiah> Tak říkám: "Když to není rozbité, nespravuj to." 22:32 < hezekiah> Její zdrojáky jsou otagované. 22:33 < Aprogas> může se v ní najít chyba 22:33 < Aprogas> a možná budete chtít udělat 1.1.1 22:33 < hezekiah> Hádam, že když budeme potřebovat opravu chyby, tak někdo checkoutne v1-1-0, opraví chybu a commitne pod tagem v1-1-1. 22:33 <@mids> hezekiah: ne, žádné 22:33 < Aprogas> hezekiah: i to je možné 22:33 < hezekiah> mids: Jak jsem říkal, o CVS toho moc nevím. :) 22:33 < Aprogas> ale používat vydávací větve je obvyklejší 22:33 < UserX> vývoj se pravděpodobně sloučí zpátky do hlavní větve. a pokud budeme potřebovat opravy chyb/aktualizace pro 1.1, prostě z ní vytvoříme větev 22:33 < Aprogas> userx: ok 22:33 < hezekiah> No dobře. Hraní si s CVS nechám na vývojářích, kteří mu rozumí. :) 22:34 < Aprogas> CVS nikdo nechápe 22:34 < hezekiah> lol 22:34 < Aprogas> to je ten problém 22:34 < Aprogas> je to bestie, kterou opravdu nejde zkrotit 22:34 < hezekiah> Takže, midsi. Co je další na programu? Kolo otázek? 22:34 <@mids> ok, končím. čau 22:35 -!- mode/#iip-dev [+o hezekiah] by Trent 22:35 <@hezekiah> OK. Kolo otázek bylo, hádám, oficiálně zahájeno. :) 22:35 < Aprogas> ó 22:35 <@hezekiah> Otázky? 22:35 <@hezekiah> (Ne že bych mohl slíbit odpověď, ale ptejte se.) 22:37 <@hezekiah> Poprvé ... 22:37 <@hezekiah> Podruhé .. 22:37 <@hezekiah> Prodáno! 22:38 <@hezekiah> Prodáno věčnému tichu věčně se tázající veřejnosti (tedy do příští schůzky iip-dev.) ;-) 22:38 <@hezekiah> Bylo fajn si se všemi popovídat (a je fajn mít na schůzce iip-dev i UserX a slyšet ho mluvit. Jsem rád, že změna času mu to zlepšila.) 22:38 <@hezekiah> Mějte se, všichni! :) 22:38 < nop> ahoj --- Log uzavřen Tue Mar 18 22:43:48 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Mar 18 20:14:29 2003
+20:15 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+20:15 [Users #iip-dev]
+20:15 [ jeremiah] [ logger] [ mids] [ UserX]
+20:15 -!- Irssi: #iip-dev: Total of 4 nicks [0 ops, 0 halfops, 0 voices, 4 normal]
+20:15 -!- Irssi: Join to #iip-dev was synced in 5 secs
+20:17 -!- mode/#iip-dev [+o mids] by Trent
+22:00 < nop> hi
+22:00 <@mids> Tue Mar 18 21:00:10 UTC 2003
+22:00 < hezekiah> Hi. :)
+22:00 <@mids> HEllo
+22:00 <@mids> so
+22:01 <@mids> whats on the agenda?
+22:01 < hezekiah> I have no clue.
+22:01 < armpit> howdy
+22:01 < hezekiah> Hi
+22:01 <@mids> ok
+22:01 < armpit> mind if i lurk around? :)
+22:01 <@mids> then lets just keep a question round
+22:01 <@mids> btw, Freenet 0.5.1 is out
+22:01 < hezekiah> Cool. :)
+22:02 < hezekiah> Maybe one of these days I'll try using it. :)
+22:02 <@mids> so, any IIP questions?
+22:02 < Hitman> quick run down of current status would be nice nop
+22:02 < Hitman> so we can get up to speed on what's happening with it all
+22:03 <@mids> good point
+22:03 < nop> hold
+22:03  * hezekiah turns on beautiful classical music those tech-support hotlines play while we wait for them ...
+22:04  * Hitman shudders as teh memories flood back
+22:05  * mids runs out of breath
+22:06  * mids dies
+22:06 < hezekiah> Well, meanwhile I think it should be noted that some people don't appear to have remembered the meeting starts 2 hours earlier now.
+22:06 <@mids> or they just dont care :)
+22:07 < nop> ok
+22:07 < nop> back
+22:07 < hezekiah> Yay! :)
+22:07 < nop> 1.1.0 is out, 1.2 meeting needs to be set
+22:07 < nop> so that hez, Userx and I can discuss furthur major development
+22:08 <@mids> maybe the development cycle should be more open?
+22:08 <@mids> so others can hear what the plans are too?
+22:08 < nop> we will log and place in research directory
+22:08 < nop> on invisiblenet
+22:08 <@mids> ok
+22:08 < Aprogas> that would counter allegations that IIP is vapourware
+22:09 < hezekiah> mids: I think openess is great, but it can get pretty annoying when you are trying to discuss coding and the listeners are continueally getting off the subject into theory. :(
+22:09 < nop> that's why we log
+22:09 < nop> ;)
+22:09 < hezekiah> I think the logging is a good idra.
+22:09 < nop> and publish
+22:09 <@mids> hezekiah: channels can be moderated
+22:09 < hezekiah> Maybe we could post the log to the iip-dev mailing list too? That would give people a good idea of what's going on behind the scenes.
+22:09 < Hitman> open discussion of ideas and brainstorming would rock, but end product changes will have to be discussed seperately by the actual coding team otherwise thing's won't get implemented correctly
+22:09 <@mids> k
+22:09 < hezekiah> They could pipe up with all kinds of suggestions then. :)
+22:10 < hezekiah> UserX? Are you currently present?
+22:10 < UserX> i'm present
+22:10 < hezekiah> OK. :)
+22:10 < hezekiah> (To both UserX and nop): Do either of you have any times for that meeting that would be good for you?
+22:11 < hezekiah> I mentioned the times that won't work for me, in my email. I hope it's a small enough subset not to be a problem. :)
+22:12 <@mids> anyway, you can settle that in private
+22:12 < Hitman> in my personal opinion I think that decentralisation of the network is the number one priority.  To make IIP completely p2p would take away any ability whatsoever the goverment and other nasty forces have to shut it down.  While a central server exists tehy can still end it....ie napster
+22:12 < hezekiah> OK.
+22:12 <@mids> we can read the logs afterwards.
+22:13 < hezekiah> Hitman: decentralization is the main theme of 1.2
+22:13 < Hitman> sweet
+22:14 < hezekiah> So where were we?
+22:15 < hezekiah> Oh, yeah. Nop was listing the current status of 1.2.
+22:15 < nop> yeah
+22:15 < hezekiah> Did you have anything else to add, nop?
+22:15 < nop> so 1.2 we need a dev meeting to start
+22:15 < nop> and from that point is our start
+22:16 < Aprogas> did you create a branch in CVS so bugs in 1.1 can be fixed without requiring users to update to a alpha or beta state 1.2 ?
+22:17 < UserX> The development is already in a seperate branch from 1.1
+22:18 < hezekiah> And the 1.1 release was tagged v1-1-0.
+22:18 < Aprogas> so there is a tag on the release, but not a branch tag ?
+22:18 < Aprogas> i assume the development is on the `MAIN' branch ?
+22:19 < hezekiah> Uh, I currently don't know what CVS commands I should be running to tell the difference. :)
+22:19 < UserX> 1.1 is on the MAIN branch
+22:19 < Aprogas> something like cvsweb gives more overview of such things than cvs commands anyway; branchs in cvs are quite confusing
+22:20 < Aprogas> anyway, having a release on the main branch and the development in a seperate branch is quite an uncommon setup; and that might have reasons
+22:20 < Aprogas> maybe it is worth investigating if it would not be more useful to do it the other way around ?
+22:25 < hezekiah> Well, I don't know much about CVS so my input wouldn't be much worth here. :)
+22:26 < Aprogas> CVS is a scary beast
+22:27 < hezekiah> Yeah. I wonder if it ate the other people in the room. It seems deathly quiet in here.
+22:27 < Aprogas> i ended up re-importing sources numerous times because i messed up after trying to put my branches right
+22:27 < hezekiah> ;-)
+22:28 < Aprogas> so be careful with it
+22:28 < hezekiah> *lol*
+22:29 < hezekiah> Mids? Do we have another item on the agenda? It seems like we're done with this one (or else someone got eaten by the CVS beast.)
+22:31 < Aprogas> well.. i didnt really see anyone reacting to my `suggestions'
+22:31 < Aprogas> im wondering why the IIP development team uses this different way of using branches
+22:31 < hezekiah> I have no clue.
+22:31 < Aprogas> i guess 99% of the CVS-using project develop on the MAIN branch and keep releases on seperate branches
+22:32 < hezekiah> I do know that it works fine.
+22:32 < Aprogas> that will become obvious when you get 1.2
+22:32 < Aprogas> what will happen with 1.1 which s currently on the main branch ?
+22:32 < hezekiah> So I say that "If it isn't broken, then don't fix it."
+22:32 < hezekiah> It's sources are tagged.
+22:33 < Aprogas> a bug in it might be found
+22:33 < Aprogas> and you might want to create 1.1.1
+22:33 < hezekiah> I guess that if we need to do a bug fix, then someone checks out v1-1-0, fixes the bug, and commits under the tag v1-1-1.
+22:33 <@mids> hezekiah: no, none
+22:33 < Aprogas> hezekiah: that is possible too
+22:33 < hezekiah> mids: As I said, I don't know much about CVS. :)
+22:33 < Aprogas> but using release branches is more common
+22:33 < UserX> the developement will probably be merged back on to the main branch. and if we need to do bug fixes/upgrades to 1.1 we just create a branch from it
+22:33 < Aprogas> userx: ok
+22:33 < hezekiah> Oh, well. I'll leave the CVS playing to the developers that understand it. :)
+22:34 < Aprogas> noone understands CVS
+22:34 < hezekiah> lol
+22:34 < Aprogas> thats the problem
+22:34 < Aprogas> its a beast that cannot really be tamed
+22:34 < hezekiah> So, mids. What's next on the agenda? Question round?
+22:34 <@mids> ok, I am out. cya
+22:35 -!- mode/#iip-dev [+o hezekiah] by Trent
+22:35 <@hezekiah> OK. The question round has officially begun, I guess. :)
+22:35 < Aprogas> oh
+22:35 <@hezekiah> Questions?
+22:35 <@hezekiah> (Not that I can promise an answer, but you can ask.)
+22:37 <@hezekiah> Going once ...
+22:37 <@hezekiah> Going twice ..
+22:37 <@hezekiah> Gone!
+22:38 <@hezekiah> Sold to the eternal silence of the ever questioning public (until the next iip-dev meeting that is.) ;-)
+22:38 <@hezekiah> Well, it was nice talking to you all (and nice to be able to have UserX around and talking in an iip-dev meeting. I'm glad the time change has improved things for him.)
+22:38 <@hezekiah> Bye, all! :)
+22:38 < nop> bye
+--- Log closed Tue Mar 18 22:43:48 2003
+</div>

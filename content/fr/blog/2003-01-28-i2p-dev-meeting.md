@@ -1,17 +1,157 @@
 ---
-title: "Réunion des développeurs d'I2P"
+title: "Réunion de développement I2P"
 date: 2003-01-28
 author: "nop"
 description: "Journal de la réunion de développement I2P du 28 janvier 2003."
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)
 
-## Bref récapitulatif
+## Récapitulatif rapide
 
-<p class="attendees-inline"><strong>Présents:</strong> Bouris, case, Debrys, hezekiah, lonelynerd, mids, MrEcho, nop</p>
+<p class="attendees-inline"><strong>Présents :</strong> Bouris, case, Debrys, hezekiah, lonelynerd, mids, MrEcho, nop</p>
 
 ## Journal de réunion
 
-<div class="irc-log"> --- Journal ouvert Tue Jan 28 22:35:17 2003 22:35 -!- Sujet de #iip-dev: Réunion IIP - fichiers journaux: http://mids.student.utwente.nl/~mids/iip/ 22:35 [Utilisateurs #iip-dev] 22:35 [ co] [ logger] [ pox] [ ptm] [ UserX] 22:35 -!- Irssi: #iip-dev: Total de 5 pseudos [0 opérateurs, 0 demi-opérateurs, 0 voix, 5 normaux] 22:35 -!- Irssi: La jonction à #iip-dev a été synchronisée en 2 s 22:41 -!- mode/#iip-dev [+o mids] par Trent 22:41 -!- mode/#iip-dev [+v logger] par mids 22:41 -!- mode/#iip-dev [+o UserX] par mids 23:56 -!- mode/#iip-dev [+o nop] par mids --- Jour changé Wed Jan 29 2003 00:00 <@mids> Tue Jan 28 23:00:00 UTC 2003 00:00 <@nop> salut 00:00 < Debrys> salutations 00:00 < case> allo 00:00 <@nop> salut 00:00 < Bouris> Salut. 00:00 < MrEcho> salut case 00:00 <@nop> réunion commencée 00:00 < case> quoi de neuf echo 00:01 <@mids> nop: ordre du jour s'il te plaît 00:01 <@nop> ok 00:01 <@nop> je pensais que tu l'avais 00:01 <@nop> ;) 00:01 <@nop> 1) bienvenue 00:01 <@mids> 1) Bienvenue 00:01 <@mids> 2) Choses habituelles 00:01 <@mids> 3) Questions 00:01 <@mids> . 00:01 <@nop> d'accord, ça marche 00:01 <@nop> bienvenue à la énième réunion IIP-dev 00:01 <@nop> 2) Choses habituelles, c.-à-d. mise à jour IIP 00:01 <@nop> ok 00:02 <@nop> nous travaillons à passer de rc3 à la 1.1 finale 00:02 <@nop> je pense qu'il ne reste que quelques bugs liés aux chemins d'accès 00:02 <@mids> hezekiah a fait le patch pour -h, nop est en train de le relire 00:02 <@nop> oui 00:02 <@nop> en fait il peut valider (commit), je vais le prévenir, j'ai oublié de lui envoyer un e-mail 00:02 <@mids> ok 00:02 <@nop> aussi 00:02 <@mids> ensuite on doit juste vérifier l'état de l'autre bug signalé 00:03 <@nop> Hezekiah a compilé avec succès une version de IIP avec la bibliothèque GNU Multi Precision 00:03 <@nop> et c'était une réussite 00:03 < MrEcho> cool 00:03 <@nop> la vitesse de la crypto a été améliorée 00:03 <@nop> donc ce sera quelque chose que nous ferons pour la 1.2 00:03 <@nop> la 1.2 mettra également l'accent sur les standards, moteur crypto standardisé et routines de grands nombres 00:03 <@nop> etc 00:03 <@mids> voilà notre héros ! 00:04 -!- mode/#iip-dev [+o hezekiah] par mids 00:04 <@hezekiah> Qui ? 00:04 <@nop> toi 00:04 <@mids> toi ! 00:04 <@hezekiah> Désolé pour le retard. :) 00:04 <@hezekiah> (Et merci pour le compliment.) 00:06 <@hezekiah> Ai-je raté la réunion ? ... ou est-elle toujours en cours ? 00:06 <@mids> nop était en train de parler de l'avancement des mises à jour 00:06 <@mids> et que tu peux valider (commit) le patch -h 00:06 <@hezekiah> OK. 00:06 <@mids> ensuite il faut voir à quel point les problèmes avec les chemins de fichiers sont graves 00:06 <@hezekiah> Je viens de finir de lire les logs. 00:06 <@mids> tester à plusieurs emplacements etc 00:06 < MrEcho> quelque chose de nouveau pour les utilisateurs Windows ? 00:06 <@mids> plateformes je veux dire 00:08 <@hezekiah> Eh bien, le correctif du bug -h pourrait affecter les utilisateurs Windows. Je ne suis pas sûr que c'était un problème chez eux. 00:09 <@hezekiah> Concernant l'implémentation GnuMP de BigNum (grands entiers arbitraires), cela devrait faire partie de la version 1.2 pour Windows (bien qu'il puisse falloir un peu de travail pour la faire fonctionner sous Windows.) 00:09 < Debrys> puis-je demander de quoi il s'agit avec ce truc de BigNum ? 00:10 < case> avec quelle version de libgmp cela a-t-il été fait ? 00:10 < case> euh 00:10 < case> dones/done 00:10 <@hezekiah> Eh bien, puisque mids et nop semblent avoir disparu pour le moment, je vais l'expliquer pendant qu'on attend leur retour. 00:10 <@mids> J'écoute 00:10 <@mids> fais-nous patienter 00:10 <@hezekiah> D'abord je vais répondre à la question de case parce qu'elle est simple. J'ai utilisé la version 4.1 de GnuMP. 00:10 <@hezekiah> (Gentoo n'a pas encore la 4.1.2.) 00:11 <@hezekiah> Ensuite la question de Debrys : 00:11 <@hezekiah> La structure BigNum est un ensemble de fonctions utilisées dans le code source d'isproxy. 00:11 <@hezekiah> C'est essentiellement une façon d'avoir des entiers VRAIMENT TRÈS grands. 00:11 <@hezekiah> Évidemment, les CPU modernes n'offrent pas de types d'entiers vraiment très grands, donc le C n'en a pas. 00:12 <@hezekiah> ... et la crypto a besoin d'utiliser de très grands nombres. 00:12 <@hezekiah> Ainsi, une implémentation d'un « BigNum » est nécessaire. 00:12 < Debrys> je crois que j'ai compris :) merci 00:12 <@hezekiah> Actuellement, nous avons 2 implémentations de BigNum : une dans SSL et une dans GnuMP. 00:12 <@hezekiah> de rien. :) 00:12 <@hezekiah> À toi, mids. :) 00:12 <@mids> ok 00:12  * hezekiah rend le microphone. 00:13 <@mids> J'en ai fini avec le point 2 00:13 <@mids> passons au tour de questions 00:13 <@mids> des questions ? 00:13 <@hezekiah> (oh, l'ironie.) ;-) 00:13 <@hezekiah> Ouais. On est presque à la publication de la 1.1 ? 00:14 <@hezekiah> Qu'est-ce qu'il reste à faire ? (En dehors d'obtenir de codeshark qu'il fasse une archive tar.) 00:14 <@mids> tester si les fichiers sont stockés dans les bons répertoires 00:14 <@mids> dans tous les cas 00:15 <@mids> hezekiah : s'il te plaît dis-moi si tu as validé (commit) le truc -h, alors je clôturerai le ticket de bug 00:15 <@nop> oh hezekiah tu peux valider (commit) 00:15 <@nop> le truc -h 00:15 <@nop> ;) 00:15 <@hezekiah> Je n'ai pas encore validé (commit) le truc -h. 00:15 <@hezekiah> Je ne sais pas sur quelle branche valider (commit). :) 00:15 <@nop> maintenant, oui ;) 00:16 <@hezekiah> Donne-moi une minute et je 00:16 <@hezekiah> je vais mettre à jour le correctif. 00:16 < Debrys> hmm, qu'est-ce qui sera nouveau ou changé dans la 1.1 ? pas trop de détails - juste en général 00:16 <@hezekiah> 1. Corrections de bugs ! :) 00:17 <@mids> 2. plus de correctifs de bugs 00:17 < Debrys> lol 00:17 <@nop> debrys, pas de changements majeurs 00:17 < Debrys> quelque chose qui rende les connexions plus stables ? 00:17 <@nop> juste des corrections de bugs 00:18 <@mids> Debrys : nous allons essayer cela avec un node.ref plus minimal dans la distribution initiale 00:18 < Debrys> j'ai fait un.......... bidouillage plutôt peu élégant du node.ref.......... 00:19 < Debrys> seulement les relais de l'invisiblenet.......... pas de mise à jour de node.ref 00:19 < Debrys> je n'ai pas eu de ping-timeout depuis des jours........ 00:19 < Debrys> avant ça, j'étais déconnecté en moyenne toutes les 30 minutes 00:20 < Debrys> mais ce n'est pas une très bonne solution :) 00:21 < Debrys> aussi.......... à propos du truc de disquette........ 00:21 < Debrys> j'ai demandé à quelqu'un s'il ferait un hack pour moi sur le code source de boxedIRC...... 00:22 < Debrys> s'il accepte, ça veut dire que j'aurais un client IRC de 120 ko qui n'a besoin d'aucune installation et qui enregistre tous ses réglages dans un fichier ini sur la disquette 00:23 <@mids> sympa 00:23 <@mids> tiens-nous informés s'il te plaît 00:23 < Debrys> si ça marche, il n'y aura pas seulement IIP et un client IRC sur la disquette, mais aussi un client e-mail...... et j'essaie d'y mettre aussi une appli PGP........... peut-être aussi un client de messagerie :) 00:23 < Debrys> je le ferai :) 00:23 < lonelynerd> ça a l'air bien. 00:23 < lonelynerd> [ même mieux. ] 00:24 <@mids> ok 00:24 <@mids> d'autres choses ? 00:24 < Debrys> non 00:25  * mids cherche son marteau de réunion 00:25 <@hezekiah> J'ai presque publié le patch, mids. 00:25 <@mids> hourra 00:25 <@mids> *baff* 00:25 <@mids> réunion close 00:25 <@hezekiah> lol. 00:25 < Debrys> :) 00:26 < Bouris> Hourra ! 00:27 <+logger> à la semaine prochaine --- Journal fermé Wed Jan 29 00:27:06 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Jan 28 22:35:17 2003
+22:35 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+22:35 [Users #iip-dev]
+22:35 [ co] [ logger] [ pox] [ ptm] [ UserX]
+22:35 -!- Irssi: #iip-dev: Total of 5 nicks [0 ops, 0 halfops, 0 voices, 5 normal]
+22:35 -!- Irssi: Join to #iip-dev was synced in 2 secs
+22:41 -!- mode/#iip-dev [+o mids] by Trent
+22:41 -!- mode/#iip-dev [+v logger] by mids
+22:41 -!- mode/#iip-dev [+o UserX] by mids
+23:56 -!- mode/#iip-dev [+o nop] by mids
+--- Day changed Wed Jan 29 2003
+00:00 <@mids> Tue Jan 28 23:00:00 UTC 2003
+00:00 <@nop> hi
+00:00 < Debrys> greetings
+00:00 < case> hallo
+00:00 <@nop> hi
+00:00 < Bouris> Hi.
+00:00 < MrEcho> hey case
+00:00 <@nop> meeting started
+00:00 < case> sup echo
+00:01 <@mids> nop: agenda please
+00:01 <@nop> ok
+00:01 <@nop> I thought you had it
+00:01 <@nop> ;)
+00:01 <@nop> 1) welcome
+00:01 <@mids> 1) Welcome
+00:01 <@mids> 2) Normal stuff
+00:01 <@mids> 3) Questions
+00:01 <@mids> .
+00:01 <@nop> sure that works
+00:01 <@nop> welcome to the nth IIP-dev meeting
+00:01 <@nop> 2) Normal stuff, i.e. IIP update
+00:01 <@nop> ok
+00:02 <@nop> we're working on getting rc3 changed to 1.1 final
+00:02 <@nop> I think all that's left is some path fix bugs
+00:02 <@mids> hezekiah made the patch for -h, nop is reviewing it
+00:02 <@nop> yes
+00:02 <@nop> actually he can commit, I'll let him know, forgot to email him
+00:02 <@mids> ok
+00:02 <@nop> also
+00:02 <@mids> then we just got to check how the other reported bug is
+00:03 <@nop> Hezekiah has successfully compiled a version of IIP with the GNU Multi Precision library
+00:03 <@nop> and it was a success
+00:03 < MrEcho> cool
+00:03 <@nop> the crypto speed was improved
+00:03 <@nop> so that will be something we do for 1.2
+00:03 <@nop> 1.2 is focusing on standards as well, standardized crypto engine and big number routines
+00:03 <@nop> etc
+00:03 <@mids> there is our hero!
+00:04 -!- mode/#iip-dev [+o hezekiah] by mids
+00:04 <@hezekiah> Who?
+00:04 <@nop> you
+00:04 <@mids> you!
+00:04 <@hezekiah> Sorry I'm late. :)
+00:04 <@hezekiah> (And thanks for the compliment.)
+00:06 <@hezekiah> Did I miss the meeting? ... or is it still going?
+00:06 <@mids> nop was just telling about the update works
+00:06 <@mids> and that you can commit the -h patch
+00:06 <@hezekiah> OK.
+00:06 <@mids> then we got to see how severe the problems with the file paths are
+00:06 <@hezekiah> I just got through reading the logs.
+00:06 <@mids> test in multiple locations etc
+00:06 < MrEcho> anything new for windows users?
+00:06 <@mids> platofrms I mean
+00:08 <@hezekiah> Well, the -h bugfix might affect the windows users. I'm not sure if it was a problem over there.
+00:09 <@hezekiah> As for the GnuMP implementation of BigNum, that should be part of the 1.2 release for windows (though it might take some work to get it to run on windows.)
+00:09 < Debrys> may i ask what this BigNum-stuff is all about?
+00:10 < case> what version of libgmp was it dones with?
+00:10 < case> er
+00:10 < case> dones/done
+00:10 <@hezekiah> Well, since mids and nop seem to have dissapeared for the moment, I'll explain it while we wait for them to get back.
+00:10 <@mids> I am listening
+00:10 <@mids> please entertain
+00:10 <@hezekiah> First I'll answer case's question because it is simple. I used version 4.1 of GnuMP.
+00:10 <@hezekiah> (Gentoo doesn't have 4.1.2 yet.)
+00:11 <@hezekiah> Next is Debrys question:
+00:11 <@hezekiah> BigNum structure with a is a bunch of functions used in the isproxy source code.
+00:11 <@hezekiah> It is basically just a way to make integers that are REALLY REALLY big.
+00:11 <@hezekiah> Obviously modern CPU's don't offer really really big integer types, so C doesn't have them.
+00:12 <@hezekiah> ... and crypto needs to use really big numbers.
+00:12 <@hezekiah> Thus, an implementation of a "BigNum" is needed.
+00:12 < Debrys> i think i got it :) thank you
+00:12 <@hezekiah> Currently, we have 2 implentations of BigNum: one in SSL and one in GnuMP.
+00:12 <@hezekiah> You're welcome. :)
+00:12 <@hezekiah> Back to you, mids. :)
+00:12 <@mids> ok
+00:12  * hezekiah hands the microphone back.
+00:13 <@mids> I am done on point 2
+00:13 <@mids> lets go to the question round
+00:13 <@mids> questions?
+00:13 <@hezekiah> (oh, the irony.) ;-)
+00:13 <@hezekiah> Yeah. Are we almost to 1.1 release yet?
+00:14 <@hezekiah> What still needs to be done? (Besides get codeshark to make a tarball.)
+00:14 <@mids> testing if files are stored in the right directories
+00:14 <@mids> in every case
+00:15 <@mids> hezekiah: please tell  me if you did commit the -h thing, then I'll put the bug item closed
+00:15 <@nop> oh hezekiah you can commit
+00:15 <@nop> the -h thing
+00:15 <@nop> ;)
+00:15 <@hezekiah> I haven't commited the -h thing yet.
+00:15 <@hezekiah> I don't know what branch to commit to. :)
+00:15 <@nop> he does now ;)
+00:16 <@hezekiah> Give me a minute and I
+00:16 <@hezekiah> I'll update the bugfix.
+00:16 < Debrys> hmm, what will be new or changed in 1.1? not too much into detail - just in general
+00:16 <@hezekiah> 1. Bugfixes! :)
+00:17 <@mids> 2. more bugfixe
+00:17 < Debrys> lol
+00:17 <@nop> debrys no major changes
+00:17 < Debrys> anything which makes the connections more stable?
+00:17 <@nop> just bug fixes
+00:18 <@mids> Debrys: we will try that with a more minimum node.ref in the initial distribution
+00:18 < Debrys> i did a.......... rather unelegant hack to the node.ref..........
+00:19 < Debrys> only the invisiblenet relays.......... no update of node.ref
+00:19 < Debrys> i havent ping-timeout'ed for days........
+00:19 < Debrys> before of that i god disconnected in 30min intervals on average
+00:20 < Debrys> but its not a very good solution :)
+00:21 < Debrys> also.......... on the floppy-disk thing........
+00:21 < Debrys> i asked someone if he would do a hack for me on the boxedIRC-Source......
+00:22 < Debrys> if he accepts, this means i would have an 120kb IRC-Client which doesn't need any installation and saves all its settings in a ini-file on the disk
+00:23 <@mids> nice
+00:23 <@mids> keep us informed please
+00:23 < Debrys> if this works, there will not only be IIP and a IRC-Client on the disk, but also an email-client...... and i'm trying to get a PGP-App on it too........... maybe also a messenger client :)
+00:23 < Debrys> I'll do :)
+00:23 < lonelynerd> sound nice.
+00:23 < lonelynerd> [ sounds even. ]
+00:24 <@mids> ok
+00:24 <@mids> more things?
+00:24 < Debrys> nope
+00:25  * mids searches for his meeting-hammer
+00:25 <@hezekiah> Almost got the patch up, mids.
+00:25 <@mids> hurray
+00:25 <@mids> *baff*
+00:25 <@mids> meeting closed
+00:25 <@hezekiah> lol.
+00:25 < Debrys> :)
+00:26 < Bouris> Hooray!
+00:27 <+logger> cya next week
+--- Log closed Wed Jan 29 00:27:06 2003
+</div>

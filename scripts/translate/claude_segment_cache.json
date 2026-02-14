@@ -485,6 +485,1826 @@
           }
         }
       }
+    },
+    "en/blog/2002-05-29-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "a456f0aeb2e9b4f1",
+          "translations": {
+            "zh": "I2P开发会议，2002年5月29日",
+            "cs": "I2P vývojářská schůzka, 29. května 2002"
+          }
+        },
+        "fm_description": {
+          "source_hash": "8be637b4dd690cc5",
+          "translations": {
+            "zh": "I2P开发会议记录，2002年5月29日。",
+            "cs": "Záznam vývojářského setkání I2P z 29. května 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（由互联网档案馆 wayback machine 提供 http://www.archive.org/）",
+            "cs": "(Díky wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "cs": "Rychlé shrnutí"
+          }
+        },
+        "p_002": {
+          "source_hash": "bfa52f0a23aa4886",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席人员：</strong> Aroonkoa, Aster, athena, Banks, Chocolate, codeshark, ellison, Kronos-X, MiB, mids, Mole, Neo, nop, ptsc, SkyRat, Somedude, tikk, UserX, Zwolly</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> Aroonkoa, Aster, athena, Banks, Chocolate, codeshark, ellison, Kronos-X, MiB, mids, Mole, Neo, nop, ptsc, SkyRat, Somedude, tikk, UserX, Zwolly</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "cs": "Záznam schůze"
+          }
+        }
+      }
+    },
+    "en/blog/2002-06-05-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8bc1dea103cc9108",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P, 4 de junio de 2002",
+            "de": "I2P-Entwicklertreffen, 4. Juni 2002"
+          }
+        },
+        "fm_description": {
+          "source_hash": "b9928b5bef87143b",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 4 de junio de 2002.",
+            "de": "I2P Entwicklungsbesprechungs-Protokoll vom 4. Juni 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "de": "(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "de": "Kurze Zusammenfassung"
+          }
+        },
+        "p_002": {
+          "source_hash": "70595e71948e3886",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> AndreGoldman, Aroonkoa, Banks, codeshark, cohesion, ellison, k, mids, Neo, nop, Phiberoptika, UserX, Zwolly, Zwollywood</p>",
+            "de": "<p class=\"attendees-inline\"><strong>Anwesend:</strong> AndreGoldman, Aroonkoa, Banks, codeshark, cohesion, ellison, k, mids, Neo, nop, Phiberoptika, UserX, Zwolly, Zwollywood</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "de": "Sitzungsprotokoll"
+          }
+        }
+      }
+    },
+    "en/blog/2002-06-11-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "7198c22fb9a71ba2",
+          "translations": {
+            "ko": "I2P 개발자 회의, 2002년 6월 11일",
+            "cs": "I2P vývojářské setkání, 11. června 2002",
+            "vi": "Cuộc họp phát triển I2P, ngày 11 tháng 6, 2002"
+          }
+        },
+        "fm_description": {
+          "source_hash": "97f1a23b7d02505e",
+          "translations": {
+            "ko": "2002년 6월 11일 I2P 개발 회의 로그.",
+            "cs": "Záznam vývojové schůze I2P ze dne 11. června 2002.",
+            "vi": "Bản ghi cuộc họp phát triển I2P ngày 11 tháng 6 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "ko": "(웨이백 머신 제공 http://www.archive.org/)",
+            "cs": "(Se svolením wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "ko": "빠른 요약",
+            "cs": "Rychlé shrnutí",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "aaaef4c6315b1ea7",
+          "translations": {
+            "ko": "<p class=\"attendees-inline\"><strong>참석자:</strong> BluePaperBoy, codeshark, ellison, I, mids, Neo, nop, Robert, Rooster77, UnDeRToW, UserX</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> BluePaperBoy, codeshark, ellison, I, mids, Neo, nop, Robert, Rooster77, UnDeRToW, UserX</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> BluePaperBoy, codeshark, ellison, I, mids, Neo, nop, Robert, Rooster77, UnDeRToW, UserX</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "ko": "회의 기록",
+            "cs": "Zápis ze schůzky",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-07-03-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "7e0134963b40a40c",
+          "translations": {
+            "ko": "I2P 개발 회의, 2002년 7월 3일",
+            "cs": "I2P vývojářské setkání, 3. července 2002",
+            "vi": "Cuộc họp phát triển I2P, ngày 3 tháng 7, 2002"
+          }
+        },
+        "fm_description": {
+          "source_hash": "04fcb3d5bdf5dd5c",
+          "translations": {
+            "ko": "2002년 7월 3일 I2P 개발 회의 로그.",
+            "cs": "Záznam vývojářské schůzky I2P ze 3. července 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 3 tháng 7 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "ko": "(웨이백 머신 제공 http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "ko": "간단 요약",
+            "cs": "Rychlé shrnutí",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "869979a8e0f55ad3",
+          "translations": {
+            "ko": "<p class=\"attendees-inline\"><strong>참석자:</strong> AgentDelta, ArdVark, CyberLOK1, Kyl3, mids, Neo, nop, UnDeRToW, wilde</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> AgentDelta, ArdVark, CyberLOK1, Kyl3, mids, Neo, nop, UnDeRToW, wilde</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> AgentDelta, ArdVark, CyberLOK1, Kyl3, mids, Neo, nop, UnDeRToW, wilde</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "ko": "회의 기록",
+            "cs": "Záznam ze schůzky",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-09-04-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "088fbdda36038182",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P, 4 de septiembre de 2002",
+            "cs": "Vývojářské setkání I2P, 4. září 2002",
+            "vi": "Cuộc họp phát triển I2P, ngày 4 tháng 9, 2002"
+          }
+        },
+        "fm_description": {
+          "source_hash": "d14fab06b39d387c",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 4 de septiembre de 2002.",
+            "cs": "Zápis z vývojářského setkání I2P ze 4. září 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 4 tháng 9 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "95c0efc3fcc4fdcf",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> ArdVark, athena, gabierOQP, legabier, mids, nop, Sheige</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> ArdVark, athena, gabierOQP, legabier, mids, nop, Sheige</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> ArdVark, athena, gabierOQP, legabier, mids, nop, Sheige</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam ze schůzky",
+            "vi": "Nhật Ký Cuộc Họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-09-18-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "7100716282684461",
+          "translations": {
+            "ru": "Встреча разработчиков I2P, 18 сентября 2002 года",
+            "fr": "Réunion de développement I2P, 18 septembre 2002",
+            "vi": "Cuộc họp phát triển I2P, ngày 18 tháng 9 năm 2002"
+          }
+        },
+        "fm_description": {
+          "source_hash": "1ad0c2e0af8ee1db",
+          "translations": {
+            "ru": "Журнал встречи разработчиков I2P от 18 сентября 2002 года.",
+            "fr": "Journal de la réunion de développement I2P du 18 septembre 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 18 tháng 9 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "ru": "(Предоставлено wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "ru": "Краткое резюме",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "7875c3276012b3e3",
+          "translations": {
+            "ru": "<p class=\"attendees-inline\"><strong>Присутствовали:</strong> _42, Chocolate, codeshark, codeshark2, Lorax, mids, nop, Roto, thecrypto</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> _42, Chocolate, codeshark, codeshark2, Lorax, mids, nop, Roto, thecrypto</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> _42, Chocolate, codeshark, codeshark2, Lorax, mids, nop, Roto, thecrypto</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "ru": "Протокол встречи",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-09-25-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "6af2f9815d668326",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 25 de septiembre de 2002.",
+            "fr": "Journal de la réunion de développement I2P du 25 septembre 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 25 tháng 9 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "92509912723eb1e8",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> athena, aum, Dag, ellison, mids, nemesis, Neo, nop, sferic, Tanthrix, thecrypto, Zwolly</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> athena, aum, Dag, ellison, mids, nemesis, Neo, nop, sferic, Tanthrix, thecrypto, Zwolly</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> athena, aum, Dag, ellison, mids, nemesis, Neo, nop, sferic, Tanthrix, thecrypto, Zwolly</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "vi": "Nhật Ký Cuộc Họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-10-16-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "0097bd7b3f49d13c",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 16 de octubre de 2002.",
+            "fr": "Journal de la réunion de développement I2P du 16 octobre 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 16 tháng 10 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "e21efe8a71df4d3c",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> al-jabr, Chocolate, firegod, geully, Grishnav, hobbs, mason, mids, nemesis, nop, philocs, Robert, UserX, youkai</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> al-jabr, Chocolate, firegod, geully, Grishnav, hobbs, mason, mids, nemesis, nop, philocs, Robert, UserX, youkai</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> al-jabr, Chocolate, firegod, geully, Grishnav, hobbs, mason, mids, nemesis, nop, philocs, Robert, UserX, youkai</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-11-06-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrollo de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "9407c67b2769c0e3",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 6 de noviembre de 2002.",
+            "fr": "Journal de la réunion de développement I2P du 6 novembre 2002.",
+            "vi": "Bản ghi cuộc họp phát triển I2P ngày 6 tháng 11 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "5750b8b102c07cad",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> al-jabr, co, codeshark, dj28, hezekiah, Mak, Neo, nop, Phiberoptika, Povert, UserX</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> al-jabr, co, codeshark, dj28, hezekiah, Mak, Neo, nop, Phiberoptika, Povert, UserX</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> al-jabr, co, codeshark, dj28, hezekiah, Mak, Neo, nop, Phiberoptika, Povert, UserX</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "vi": "Nhật Ký Cuộc Họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-11-20-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion de développement I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "84a5a7356b7b7602",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 20 de noviembre de 2002.",
+            "fr": "Journal de la réunion de développement I2P du 20 novembre 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 20 tháng 11, 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "14cdb64f9a0b11bf",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> al-jabr, Chocolate, dd0c, Fairwitness, goc, hezekiah, mids, nemesis, Neo, nop, Robert, sanity, sinster, tarpY, tc, zic</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> al-jabr, Chocolate, dd0c, Fairwitness, goc, hezekiah, mids, nemesis, Neo, nop, Robert, sanity, sinster, tarpY, tc, zic</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> al-jabr, Chocolate, dd0c, Fairwitness, goc, hezekiah, mids, nemesis, Neo, nop, Robert, sanity, sinster, tarpY, tc, zic</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-11-27-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "ru": "Встреча разработчиков I2P",
+            "fr": "Réunion des développeurs I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "cf5721bcc1257f87",
+          "translations": {
+            "ru": "Журнал совещания разработчиков I2P от 27 ноября 2002 года.",
+            "fr": "Journal de la réunion de développement I2P du 27 novembre 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 27 tháng 11 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "ru": "(Предоставлено wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Nhờ vào wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "ru": "Краткое резюме",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "2e6741d9110275c8",
+          "translations": {
+            "ru": "<p class=\"attendees-inline\"><strong>Присутствовали:</strong> Aprogas, athena, bpb, crunchman, Disposable, Fairwitness, Gilles2Rais, hezekiah, Kyfhon, mateofree, nemesis, nop, ptsc, Rain, rda, xenode</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> Aprogas, athena, bpb, crunchman, Disposable, Fairwitness, Gilles2Rais, hezekiah, Kyfhon, mateofree, nemesis, nop, ptsc, Rain, rda, xenode</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> Aprogas, athena, bpb, crunchman, Disposable, Fairwitness, Gilles2Rais, hezekiah, Kyfhon, mateofree, nemesis, nop, ptsc, Rain, rda, xenode</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "ru": "Журнал встречи",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-12-03-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发者会议",
+            "fr": "Réunion des développeurs I2P",
+            "vi": "Cuộc họp nhà phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "5c4e68d4728b4f0d",
+          "translations": {
+            "zh": "2002年12月3日I2P开发会议记录。",
+            "fr": "Journal de la réunion de développement I2P du 3 décembre 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 3 tháng 12, 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（由网络时光机提供 http://www.archive.org/）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "4f66a9575c72a44c",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席者：</strong> hezekiah, mids, nemesis, nop, pox, UserX</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> hezekiah, mids, nemesis, nop, pox, UserX</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> hezekiah, mids, nemesis, nop, pox, UserX</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2002-12-10-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发者会议",
+            "fr": "Réunion des développeurs I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "3d6ca4dbf7304f25",
+          "translations": {
+            "zh": "2002年12月10日 I2P 开发会议记录。",
+            "fr": "Journal de la réunion de développement I2P du 10 décembre 2002.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 10 tháng 12 năm 2002."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（由wayback machine提供 http://www.archive.org/）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Nhờ vào wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "8ee4c475764f1732",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席人员：</strong> codeshark, dangermouse, Debrys, {Due}, \\|EN3RGY\\|, hezekiah, hobbs, jeremiah_, mids, mrflibble, Neo, nop, Rav-, xcasex, Zwolly</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> codeshark, dangermouse, Debrys, {Due}, \\|EN3RGY\\|, hezekiah, hobbs, jeremiah_, mids, mrflibble, Neo, nop, Rav-, xcasex, Zwolly</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> codeshark, dangermouse, Debrys, {Due}, \\|EN3RGY\\|, hezekiah, hobbs, jeremiah_, mids, mrflibble, Neo, nop, Rav-, xcasex, Zwolly</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2003-01-07-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发会议",
+            "fr": "Réunion de développement I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "c11549c86ee9bced",
+          "translations": {
+            "zh": "I2P开发会议记录，2003年1月7日。",
+            "fr": "Journal de la réunion de développement I2P du 7 janvier 2003.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 7 tháng 1 năm 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（由互联网档案馆 http://www.archive.org/ 提供）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "e11349c03c9252dd",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席：</strong> chscrtr, mids, mrflibble, nemesis, Neo, nop, Nostradumbass</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> chscrtr, mids, mrflibble, nemesis, Neo, nop, Nostradumbass</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> chscrtr, mids, mrflibble, nemesis, Neo, nop, Nostradumbass</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "fr": "Journal de réunion",
+            "vi": "Nhật Ký Cuộc Họp"
+          }
+        }
+      }
+    },
+    "en/blog/2003-01-15-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发者会议",
+            "fr": "Réunion des développeurs I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "cfbc64cd3ac89da8",
+          "translations": {
+            "zh": "2003年1月15日I2P开发会议记录。",
+            "fr": "Journal de la réunion de développement I2P du 15 janvier 2003.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 15 tháng 1 năm 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（由 wayback machine http://www.archive.org/ 提供）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "341fc305c66fbbc0",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席人员：</strong> FillaMent, hezekiah, LeeroklaLacerta, mids, nop, sdgg, thecrypto</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> FillaMent, hezekiah, LeeroklaLacerta, mids, nop, sdgg, thecrypto</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> FillaMent, hezekiah, LeeroklaLacerta, mids, nop, sdgg, thecrypto</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2003-01-28-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发者会议",
+            "fr": "Réunion de développement I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "55f6a8d6c597643f",
+          "translations": {
+            "zh": "I2P开发会议记录，2003年1月28日。",
+            "fr": "Journal de la réunion de développement I2P du 28 janvier 2003.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 28 tháng 1 năm 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（由互联网档案馆提供 http://www.archive.org/）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "2b101606f58c717b",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席：</strong> Bouris, case, Debrys, hezekiah, lonelynerd, mids, MrEcho, nop</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> Bouris, case, Debrys, hezekiah, lonelynerd, mids, MrEcho, nop</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> Bouris, case, Debrys, hezekiah, lonelynerd, mids, MrEcho, nop</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2003-02-04-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发者会议",
+            "fr": "Réunion de développement I2P",
+            "vi": "Cuộc họp phát triển I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "d70feef809aefb87",
+          "translations": {
+            "zh": "2003年2月4日 I2P 开发会议记录。",
+            "fr": "Journal de la réunion de développement I2P du 4 février 2003.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 4 tháng 2 năm 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（由 wayback machine http://www.archive.org/ 提供）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "47fe7d598e2ca1cf",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席：</strong> FillaMent, hezekiah, jrandom, lonelynerd, mids, MrEcho</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> FillaMent, hezekiah, jrandom, lonelynerd, mids, MrEcho</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> FillaMent, hezekiah, jrandom, lonelynerd, mids, MrEcho</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议日志",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2003-02-11-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发者会议",
+            "fr": "Réunion de développement I2P",
+            "vi": "Cuộc họp phát triển I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "67f8ea556ef9506f",
+          "translations": {
+            "zh": "2003年2月11日I2P开发会议记录。",
+            "fr": "Journal de la réunion de développement I2P du 11 février 2003.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 11 tháng 2 năm 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 11 فبراير 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（感谢wayback machine http://www.archive.org/）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "vi": "Tóm tắt nhanh",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "5ff26f295fff7660",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席人员：</strong> _42, hezekiah, hobbs, lonelynerd, mids, nemesis, nop, thecrypto</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> _42, hezekiah, hobbs, lonelynerd, mids, nemesis, nop, thecrypto</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> _42, hezekiah, hobbs, lonelynerd, mids, nemesis, nop, thecrypto</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> _42, hezekiah, hobbs, lonelynerd, mids, nemesis, nop, thecrypto</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "fr": "Journal de réunion",
+            "vi": "Nhật ký cuộc họp",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-02-18-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "c813faba47e39efc",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 18 de febrero de 2003.",
+            "fr": "Journal de la réunion de développement I2P du 18 février 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 18 فبراير 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "37354191ff9a92cf",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> aum, Barney, bpb, hezekiah, jeremiah, LeerokOnKnoppix, lonelynerd, mids, namless, nop, PsionX, _Trent, WindowsHater</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> aum, Barney, bpb, hezekiah, jeremiah, LeerokOnKnoppix, lonelynerd, mids, namless, nop, PsionX, _Trent, WindowsHater</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> aum, Barney, bpb, hezekiah, jeremiah, LeerokOnKnoppix, lonelynerd, mids, namless, nop, PsionX, _Trent, WindowsHater</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-03-04-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "3c679e65db70cca5",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 4 de marzo de 2003.",
+            "fr": "Journal de la réunion de développement I2P du 4 mars 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 4 مارس 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "43e9774300fe8e1d",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> bpb, dm, hezekiah, jake, jeremiah, LeerokLacerta, mids, mrflibble, nop, Nostradumbass</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> bpb, dm, hezekiah, jake, jeremiah, LeerokLacerta, mids, mrflibble, nop, Nostradumbass</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> bpb, dm, hezekiah, jake, jeremiah, LeerokLacerta, mids, mrflibble, nop, Nostradumbass</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de Réunion",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-03-12-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "zh": "I2P 开发会议",
+            "fr": "Réunion de développement I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "d948107f59394b79",
+          "translations": {
+            "zh": "2003年3月12日I2P开发会议记录。",
+            "fr": "Journal de la réunion de développement I2P du 12 mars 2003.",
+            "ar": "سجل اجتماع تطوير I2P في 12 مارس 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "zh": "（感谢 wayback machine http://www.archive.org/）",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "zh": "快速回顾",
+            "fr": "Récapitulatif rapide",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "fb8857d593460716",
+          "translations": {
+            "zh": "<p class=\"attendees-inline\"><strong>出席:</strong> Debolaz, dm, FillaMent, hezekiah, jrand0m, lonelynerd, luckypunk, mids, mihi, nop, someone, toni</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> Debolaz, dm, FillaMent, hezekiah, jrand0m, lonelynerd, luckypunk, mids, mihi, nop, someone, toni</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> Debolaz، dm، FillaMent، hezekiah، jrand0m، lonelynerd، luckypunk، mids، mihi، nop، someone، toni</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "zh": "会议记录",
+            "fr": "Journal de réunion",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-03-18-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "1d244aa35d68fbe5",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 18 de marzo de 2003.",
+            "fr": "Journal de la réunion de développement I2P du 18 mars 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 18 مارس 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "b09dcb4c69bb77a9",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> Aprogas, armpit, hezekiah, Hitman, mids, nop, UserX</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> Aprogas, armpit, hezekiah, Hitman, mids, nop, UserX</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> Aprogas, armpit, hezekiah, Hitman, mids, nop, UserX</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-03-25-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "4b8fcd663aa33feb",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 25 de marzo de 2003.",
+            "fr": "Journal de la réunion de développement I2P du 25 mars 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 25 مارس 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "2de95f74ea654171",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> Aprogas, hezekiah, mids, mihi, nop, noP, UserX</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> Aprogas, hezekiah, mids, mihi, nop, noP, UserX</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> Aprogas, hezekiah, mids, mihi, nop, noP, UserX</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-07-01-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion de développement I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "0843beb2e0a757f2",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 1 de julio de 2003.",
+            "fr": "Journal de la réunion de développement I2P du 1er juillet 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 1 يوليو 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "25f2c95fbcbc0281",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> Addic, al-jebr, Ambience, ChZEROHag, Delly, Ehud, hezekiah, hifi, jrand0m, LeerokLacerta, lonelynerd, luckypunk, mids, Neo, nop, qriff, Rain, sahara, thecrypto, thetower, UserX, wilde</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> Addic, al-jebr, Ambience, ChZEROHag, Delly, Ehud, hezekiah, hifi, jrand0m, LeerokLacerta, lonelynerd, luckypunk, mids, Neo, nop, qriff, Rain, sahara, thecrypto, thetower, UserX, wilde</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> Addic, al-jebr, Ambience, ChZEROHag, Delly, Ehud, hezekiah, hifi, jrand0m, LeerokLacerta, lonelynerd, luckypunk, mids, Neo, nop, qriff, Rain, sahara, thecrypto, thetower, UserX, wilde</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-07-15-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "48fd690f75f586b6",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 15 de julio de 2003.",
+            "fr": "Journal de la réunion de développement I2P du 15 juillet 2003.",
+            "ar": "سجل اجتماع تطوير I2P في 15 يوليو 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "00bbb32fbdb816d4",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> gott, hezekiah, jeremiah, jrand0m, mihi, Neo, nop, WinBear</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> gott, hezekiah, jeremiah, jrand0m, mihi, Neo, nop, WinBear</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> gott, hezekiah, jeremiah, jrand0m, mihi, Neo, nop, WinBear</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-07-22-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "8d3d57e5b3d4497b",
+          "translations": {
+            "es": "Reunión de desarrolladores de I2P",
+            "fr": "Réunion des développeurs I2P",
+            "cs": "Vývojářské setkání I2P",
+            "ar": "اجتماع مطوري I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "ec20e146e979e096",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 22 de julio de 2003.",
+            "fr": "Journal de la réunion de développement I2P du 22 juillet 2003.",
+            "cs": "Záznam vývojářského setkání I2P ze 22. července 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 22 يوليو 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "fr": "(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "fr": "Récapitulatif rapide",
+            "cs": "Rychlé shrnutí",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "d7b535e33f48c444",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> cohesion, hezekiah, jeet, jeremiah, jrand0m, mihi, nemesis, nop, thecrypto, wilde, Zwolly</p>",
+            "fr": "<p class=\"attendees-inline\"><strong>Présents :</strong> cohesion, hezekiah, jeet, jeremiah, jrand0m, mihi, nemesis, nop, thecrypto, wilde, Zwolly</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> cohesion, hezekiah, jeet, jeremiah, jrand0m, mihi, nemesis, nop, thecrypto, wilde, Zwolly</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> cohesion, hezekiah, jeet, jeremiah, jrand0m, mihi, nemesis, nop, thecrypto, wilde, Zwolly</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "fr": "Journal de réunion",
+            "cs": "Záznam ze schůzky",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-11-18-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "df2d26d8fbd78d87",
+          "translations": {
+            "es": "Reunión de Desarrolladores de I2P - 18 de noviembre, 2003",
+            "cs": "I2P Dev Meeting - 18. listopadu 2003",
+            "ar": "اجتماع مطوري I2P - 18 نوفمبر، 2003"
+          }
+        },
+        "fm_description": {
+          "source_hash": "810d604f806fcb1d",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 18 de noviembre de 2003.",
+            "cs": "Záznam vývojářského setkání I2P z 18. listopadu 2003.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 18 نوفمبر 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "9802695b36a742fa",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> dm, duck, godmode0, jrand0m, mihi, Ophite1, soros, TC, tusko, yodel</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> dm, duck, godmode0, jrand0m, mihi, Ophite1, soros, TC, tusko, yodel</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> dm, duck, godmode0, jrand0m, mihi, Ophite1, soros, TC, tusko, yodel</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam ze schůze",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-11-26-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "1c336e6ad51da3f3",
+          "translations": {
+            "es": "Reunión de Desarrolladores I2P - 26 de noviembre, 2003",
+            "cs": "I2P Dev Meeting - 26. listopadu 2003"
+          }
+        },
+        "fm_description": {
+          "source_hash": "68c4643fad253d4b",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 26 de noviembre de 2003.",
+            "cs": "Zápis z vývojářského setkání I2P ze dne 26. listopadu 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "cs": "(Se svolením wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí"
+          }
+        },
+        "p_002": {
+          "source_hash": "4a974987933e496d",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> dm, duck, jrand0m, Nostradumbass, Ophite1, TC, tonious</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> dm, duck, jrand0m, Nostradumbass, Ophite1, TC, tonious</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam ze schůzky"
+          }
+        }
+      }
+    },
+    "en/blog/2003-12-09-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "2a9d6d077f738dea",
+          "translations": {
+            "es": "Reunión de Desarrolladores de I2P - 9 de diciembre de 2003",
+            "cs": "I2P Dev Meeting - 9. prosince 2003",
+            "vi": "Cuộc Họp Phát Triển I2P - 9 Tháng 12, 2003"
+          }
+        },
+        "fm_description": {
+          "source_hash": "51afe2df9cec4fec",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 9 de diciembre de 2003.",
+            "cs": "Protokol z vývojového setkání I2P ze dne 9. prosince 2003.",
+            "vi": "Bản ghi cuộc họp phát triển I2P ngày 9 tháng 12 năm 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de wayback machine http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "vi": "Tóm tắt nhanh"
+          }
+        },
+        "p_002": {
+          "source_hash": "53d7cf5775b267cd",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> duck, joda, jrand0m, mrflibble, Nostradumbass</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> duck, joda, jrand0m, mrflibble, Nostradumbass</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> duck, joda, jrand0m, mrflibble, Nostradumbass</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam jednání",
+            "vi": "Nhật ký Cuộc họp"
+          }
+        }
+      }
+    },
+    "en/blog/2003-12-16-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "164e4224108d7f81",
+          "translations": {
+            "es": "Reunión de Desarrolladores I2P - 16 de diciembre, 2003",
+            "cs": "Vývojářská schůzka I2P - 16. prosince 2003",
+            "vi": "Cuộc họp nhà phát triển I2P - 16 tháng 12, 2003",
+            "ar": "اجتماع مطوري I2P - 16 ديسمبر 2003"
+          }
+        },
+        "fm_description": {
+          "source_hash": "a043df72b9032999",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 16 de diciembre de 2003.",
+            "cs": "Záznam vývojového setkání I2P ze dne 16. prosince 2003.",
+            "vi": "Nhật ký cuộc họp phát triển I2P ngày 16 tháng 12 năm 2003.",
+            "ar": "سجل اجتماع تطوير I2P ليوم 16 ديسمبر 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de wayback machine http://www.archive.org/)",
+            "cs": "(Díky wayback machine http://www.archive.org/)",
+            "vi": "(Được cung cấp bởi wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "vi": "Tóm tắt nhanh",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "10449bb0a467eedf",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> duck, FireRabbit, jrand0m, lonelynerd, mids, mihi, MrEcho, protocol, TC, wiht</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> duck, FireRabbit, jrand0m, lonelynerd, mids, mihi, MrEcho, protocol, TC, wiht</p>",
+            "vi": "<p class=\"attendees-inline\"><strong>Có mặt:</strong> duck, FireRabbit, jrand0m, lonelynerd, mids, mihi, MrEcho, protocol, TC, wiht</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> duck، FireRabbit، jrand0m، lonelynerd، mids، mihi، MrEcho، protocol، TC، wiht</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam ze schůzky",
+            "vi": "Nhật Ký Cuộc Họp",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-12-23-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "c47f445aa827142f",
+          "translations": {
+            "es": "Reunión de Desarrolladores de I2P - 23 de diciembre, 2003",
+            "cs": "I2P Dev Meeting - 23. prosince 2003",
+            "ar": "اجتماع مطوري I2P - 23 ديسمبر 2003"
+          }
+        },
+        "fm_description": {
+          "source_hash": "3beb5d52c2fc1f30",
+          "translations": {
+            "es": "Registro de reunión de desarrollo de I2P del 23 de diciembre de 2003.",
+            "cs": "Záznam vývojářské schůzky I2P ze 23. prosince 2003.",
+            "ar": "سجل اجتماع تطوير I2P لـ 23 ديسمبر 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la máquina del tiempo http://www.archive.org/)",
+            "cs": "(Díky wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من آلة الزمن http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "8267bdd91093ec0e",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> ardvark, duck, FillaMent, jrand0m, luckypunk, TC, thecrypto</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> ardvark, duck, FillaMent, jrand0m, luckypunk, TC, thecrypto</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> ardvark, duck, FillaMent, jrand0m, luckypunk, TC, thecrypto</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam schůzky",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2003-12-30-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "f4f0208826b76c2b",
+          "translations": {
+            "es": "Reunión de Desarrolladores I2P - 30 de diciembre de 2003",
+            "cs": "I2P Dev Meeting - 30. prosince 2003",
+            "ar": "اجتماع مطوري I2P - 30 ديسمبر 2003"
+          }
+        },
+        "fm_description": {
+          "source_hash": "b39f51bbbaee7633",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 30 de diciembre de 2003.",
+            "cs": "Záznam vývojového setkání I2P ze dne 30. prosince 2003.",
+            "ar": "سجل اجتماع تطوير I2P ليوم 30 ديسمبر 2003."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de wayback machine http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من آلة العودة بالزمن http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "1719bbf21286a4a8",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> eco\\_, i2p, jrandom, mihi, Ophite1, polo, rsk</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> eco\\_, i2p, jrandom, mihi, Ophite1, polo, rsk</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> eco\\_, i2p, jrandom, mihi, Ophite1, polo, rsk</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Zápis ze schůzky",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2004-01-06-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "b0ffeecc2dad67a4",
+          "translations": {
+            "es": "Reunión de Desarrolladores de I2P - 6 de enero de 2004",
+            "cs": "I2P Dev Meeting - 6. ledna 2004",
+            "ar": "اجتماع مطوري I2P - 6 يناير 2004"
+          }
+        },
+        "fm_description": {
+          "source_hash": "199b9b6aa7dd43ba",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 6 de enero de 2004.",
+            "cs": "Záznam vývojářského setkání I2P ze 6. ledna 2004.",
+            "ar": "سجل اجتماع تطوير I2P لتاريخ 6 يناير 2004."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de wayback machine http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "355de45c7ac93cc2",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> duck, dup, enduser, FillaMent, human, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, Nightblade, wiht</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> duck, dup, enduser, FillaMent, human, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, Nightblade, wiht</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> duck، dup، enduser، FillaMent، human، jrand0m، kaji، lucky، mihi، MrEcho، mrflibble، Nightblade، wiht</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam ze schůze",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2004-01-13-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "da2f8e0e59b9af91",
+          "translations": {
+            "es": "Reunión de Desarrolladores de I2P - 13 de enero de 2004",
+            "cs": "I2P Dev Meeting - 13. ledna 2004",
+            "ar": "اجتماع مطوري I2P - 13 يناير 2004"
+          }
+        },
+        "fm_description": {
+          "source_hash": "44c0c55df1b75d33",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 13 de enero de 2004.",
+            "cs": "Zápis z vývojářské schůze I2P ze 13. ledna 2004.",
+            "ar": "سجل اجتماع تطوير I2P بتاريخ 13 يناير 2004."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "cs": "(S laskavým svolením wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "ar": "ملخص سريع"
+          }
+        },
+        "p_002": {
+          "source_hash": "b2872b8c11ec5a13",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> duck, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, wiht, wilde</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> duck, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, wiht, wilde</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> duck, jrand0m, kaji, lucky, mihi, MrEcho, mrflibble, wiht, wilde</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Zápis ze schůze",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
+    },
+    "en/blog/2004-01-20-i2p-dev-meeting.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "e437b2911b00c98c",
+          "translations": {
+            "es": "Reunión de Desarrolladores de I2P - 20 de enero de 2004",
+            "cs": "I2P Dev Meeting - 20. ledna 2004",
+            "ar": "اجتماع مطوري I2P - 20 يناير 2004"
+          }
+        },
+        "fm_description": {
+          "source_hash": "0b3b49adedbed514",
+          "translations": {
+            "es": "Registro de la reunión de desarrollo de I2P del 20 de enero de 2004.",
+            "cs": "Záznam vývojářské schůzky I2P ze dne 20. ledna 2004.",
+            "ar": "سجل اجتماع تطوير I2P بتاريخ 20 يناير 2004."
+          }
+        },
+        "p_001": {
+          "source_hash": "177ddc5f015ef365",
+          "translations": {
+            "es": "(Cortesía de la wayback machine http://www.archive.org/)",
+            "cs": "(Se svolením wayback machine http://www.archive.org/)",
+            "ar": "(بإذن من wayback machine http://www.archive.org/)"
+          }
+        },
+        "h2_001": {
+          "source_hash": "0a99b85517c86972",
+          "translations": {
+            "es": "Resumen rápido",
+            "cs": "Rychlé shrnutí",
+            "ar": "مراجعة سريعة"
+          }
+        },
+        "p_002": {
+          "source_hash": "93e6a6027202442f",
+          "translations": {
+            "es": "<p class=\"attendees-inline\"><strong>Presentes:</strong> dm, duck, Frontier, jar, jrand0m, mihi, Ophite1</p>",
+            "cs": "<p class=\"attendees-inline\"><strong>Přítomni:</strong> dm, duck, Frontier, jar, jrand0m, mihi, Ophite1</p>",
+            "ar": "<p class=\"attendees-inline\"><strong>الحاضرون:</strong> dm, duck, Frontier, jar, jrand0m, mihi, Ophite1</p>"
+          }
+        },
+        "h2_002": {
+          "source_hash": "2d4b55e34c9069f3",
+          "translations": {
+            "es": "Registro de Reunión",
+            "cs": "Záznam ze schůze",
+            "ar": "سجل الاجتماع"
+          }
+        }
+      }
     }
   }
 }

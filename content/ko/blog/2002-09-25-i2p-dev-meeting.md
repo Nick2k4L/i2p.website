@@ -1,12 +1,12 @@
 ---
-title: "I2P 개발자 회의"
+title: "I2P 개발자 미팅"
 date: 2002-09-25
 author: "nop"
-description: "2002년 9월 25일자 I2P 개발 회의록."
+description: "2002년 9월 25일 I2P 개발 회의 로그."
 categories: ["meeting"]
 ---
 
-(웨이백 머신 제공 http://www.archive.org/)
+(웨이백 머신 http://www.archive.org/ 제공)
 
 ## 간단 요약
 
@@ -14,4 +14,614 @@ categories: ["meeting"]
 
 ## 회의 기록
 
-<div class="irc-log"> --- 로그 시작 Wed Sep 25 00:57:27 2002 00:57 -!- #iip-dev의 주제: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ 00:57 [사용자 #iip-dev] 00:57 [@mids] [ Dag] [ logger] [ nemesis] [ nop] [ Zwolly] 00:57 -!- Irssi: #iip-dev: 닉네임 총 6명 [운영자 1, 반운영자 0, 보이스 0, 일반 5] 00:57 -!- Irssi: #iip-dev 참여 동기화 완료까지 1초 소요 00:58 -!- mode/#iip-dev [+v logger] 설정: mids 01:00 <@mids> Tue Sep 24 23:00:38 UTC 2002 01:00 <@mids> 모두 환영합니다 01:00 <@mids> 제12차 미팅을 시작합니다 01:01 <@mids> 안건: 01:01 <@mids> 1) 웹사이트 01:01 <@mids> 2) nop의 메시지 01:01 <@mids> 3) 질의응답 01:01 <@mids> 웹사이트: 01:01 <@mids> 새 invisibleNET 사이트 오픈 - http://www.invisiblenet.net/ - 새 IIP 사이트 오픈 - http://www.invisiblenet.net/iip/ 01:02 <@mids> 지금 막 들어오신 분들을 위해: 01:02 <@mids> 새 invisibleNET 사이트 오픈 - http://www.invisiblenet.net/ - 새 IIP 사이트 오픈 - http://www.invisiblenet.net/iip/ 01:02 <@mids> 이런 01:02 <@mids> 바쁘게 지내고 있어요 01:02 < nop> 오케이 01:02 < nop> 잠깐만요 01:02 <@mids> 지금 막 들어오신 분들을 위해: 01:02 <@mids> ㅎㅎ 01:02 < nop> 그걸 주제에 추가하세요 01:03 < nop> 좋아요 01:03 < nop> 진행하죠 01:03 < nop> ;( 01:03 -!- mids가 #iip-dev의 주제를 다음으로 변경: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | new invisibleNET site online - http://www.invisiblenet.net/ - new IIP site online - http://www.invisiblenet.net/iip/ 01:03 < nop> ;) 01:03 <@mids> . 01:04 -!- mode/#iip-dev [+o nop] 설정: mids 01:05 <@mids> 이 주제에 대해 질문 있나요? 없으면 2번으로 넘어갑니다 01:06 <@nop> 좋아요 01:06 <@nop> ellison에게 감사 01:07 <@nop> 그리고 distributedcity 팀에도 01:07 <@nop> 도와줘서 01:07 <@nop> 웹사이트 작업에 01:07 <@nop> 이제 그들에게 큰 빚을 졌죠 ;) 01:07 <@nop> 좋아요 01:07 <@nop> rc2는 내일 나옵니다 01:07 <@nop> 지금 포장 중이고 01:07 <@nop> 릴리스를 준비하고 있어요 01:07 <@nop> 새 기능은 01:07 <@nop> Forward Security(순방향 비밀성) 01:08 <@nop> 종료된 연결을 위한 Close Delay 프로토콜 01:08 <@nop> 몇 가지 버그 수정 01:08 <@nop> 그리고 향후 버전을 위한 업그레이드 기능 01:08 <@nop> 대략 이 정도입니다 01:08 <@nop> IIP를 사용해 주시는 01:08 <@nop> 모든 사용자 여러분 감사합니다 01:08 <@nop> 여러분이 없었다면 01:08 <@nop> 이 프로젝트는 허사였을 거예요 01:08 <@nop> ;) 01:09 <@nop> 소프트웨어를 사용해 주심으로써 보여주신 충성심과 지원에 감사드립니다 01:09 <@nop> 오늘의 코멘트는 여기까지인 듯 ;) 01:09 <@nop> 아 01:09 <@nop> 잠깐 01:09 <@nop> mids에게도 감사 01:09 <@nop> 웹사이트 설정을 도와줬고 01:09 <@nop> 저를 참아줘서 01:09 <@nop> codeshark에게도 감사 01:09 <@nop> 소프트웨어를 세팅해줘서 01:09 <@mids> 천만에요 :) 01:09 <@nop> 그리고 inform 처리도 01:09 <@nop> 어디에 있든 userx에게도 감사 01:10 <@nop> 합니다 01:10 <@nop> 코어 개발의 노고에 01:10 <@nop> 그리고 제 잔소리를 견뎌줘서 ;) 01:10 <@nop> chocolate에게도 감사 01:10 <@nop> 필요한 informity와 스크립트들에 대해 01:10 <@nop> 비록 오래전에 떠났지만, 과거 문서화에 기여한 cohesion에게도 감사 01:10 <@nop> 음, 아카데미에도 감사하고 싶네요 ... 농담입니다(j/k) 01:11 <@nop> 기여하신 모든 분들, 모두 감사합니다 01:11 <@nop> . 01:11 <@mids> nop을 위해 만세 3창 01:11 <@mids> 만세 01:11 < Zwolly> 만세 01:11 < thecrypto> huzzah 01:11 <@nop> 하하 01:11 < athena> 그건 만세 2번과 huzzah 1번이네요 01:11 <@nop> 아, 그리고 DC 사람들이 제 귀에 주님께 감사하라고 속삭였어요 01:11 <@nop> ;) 01:12 < Neo> ㅋㅋ 01:12 <@nop> 뭐, 여담으로, 인생에 감사하세요. 참 멋진 것이니까요 ;) <-- 코멘트 금지 01:12 <@nop> . 01:13 <@nop> 질문 01:13 <@nop> 제안 01:13 <@nop> 리뷰 01:13 <@nop> 아이디어 01:13 <@nop> 등등 01:13 <@nop> ? 01:13 < Neo> 새 사이트 축하해요, 정말 멋져요. 01:13 <@nop> 고맙습니다 01:13 <@mids> forward security가 뭔가요? 01:13 <@nop> 암호화된 내용은 세션 당시가 아니면 복호화할 수 없어요 01:13 <@nop> 즉, 메시지를 재생(replay)해서 01:13 <@nop> 복호화할 수 없다는 뜻이죠 01:14 <@nop> 그 키와 서명이 더 이상 존재하지 않아서 01:14 <@nop> 쓸모가 없거든요 01:14 <@nop> 이건 로그 수집 및 재생 공격에 대비해 설계된 겁니다 01:14 <@nop> . 01:14 <@mids> thx 01:14 < athena> 공개 프록시들이 이런 새 프로토콜 추가 사항을 지원하도록 요구할 건가요? (제 생각엔 모든 프록시는 강제로 업그레이드되어야 해요) 01:14 <@nop> athena 01:14 <@nop> 의무 업그레이드예요 01:14 <@nop> 모든 릴레이 보유자들은 01:14 <@nop> 업그레이드해야 합니다 01:15 <@nop> rc2 릴레이로 01:15 <@nop> 그리고 재공지해야 해요 01:15 < athena> 알겠습니다, 고마워요 01:16 < sferic> 늦게 와서 뭔가 놓친 것 같은데, 더 이상 로그를 남길 수 없다는 뜻인가요? 01:16 <@nop> 아니요 01:16 <@nop> 로그는 남길 수 있어요 01:16 <@nop> 제 말은 01:16 <@nop> 만약 당신이 정부 요원으로 01:16 <@nop> 어떤 릴레이를 염탐하며 01:16 <@nop> 암호화된 트래픽을 기록하고 있었다 해도 01:16 <@nop> 나중에 와서 ircd 종단 노드를 압수해서 01:16 <@nop> 네트워크 비밀키를 이용해 01:16 <@nop> 트래픽을 재생하고 01:16 <@nop> 복호화할 수는 없다는 겁니다 01:17 < sferic> 아하, 고마워요 01:17 <@nop> 네트워크 비밀키의 중요성을 없앱니다 01:17 <@nop> 쓸모가 없어요 01:17 <@nop> 하는 일이라고는 인증뿐 01:17 <@nop> 그 이상은 아니죠 01:17 <@nop> 실제 암호화는 하지 않습니다 01:17 <@nop> 이건 두 가지를 커버합니다 01:17 <@nop> 중간자 공격 방어 01:17 <@nop> 그리고 로그/재생 공격 방어 01:17 <@nop> 즉 forward security 01:17 <@nop> ;) 01:17 < Zwolly> 이제 중앙 서버 없이 동작하나요. 01:18 <@nop> 아직은요 01:18 <@nop> 그건 1.22 01:18 <@nop> 1.2 01:18 <@nop> 정정 01:18 <@nop> 정확히는 1.2.0 01:18 <@nop> ;) 01:18 <@nop> 기본적으로 1.1 이후에 진행됩니다 01:18 <@mids> (내 생각엔 탈중앙화는 2.0쯤) 01:19 < Zwolly> 시스템 자원, 메모리, CPU, 대역폭은 어떤가요 01:19 <@nop> 음, 2.0은 더 완벽한 형태의 탈중앙화예요 01:19 <@nop> 1.2에서 우리는 탈중앙화를 시도할 겁니다 01:20 < Tanthrix> 진정한 P2P는 어떻게 작동하죠? 누군가를 찾을 때까지 IP 블록을 스캔할 수는 없잖아요? 초기 연결에는 어떤 형태의 중앙 서버가 필요한 거 아닌가요? 01:20 <@nop> bootstrap(부트스트랩, 초기 연결)이 필요해요 01:20 <@nop> 하지만 일단 연결되면 01:20 <@nop> 자신의 피어 경로가 생깁니다 01:20 <@nop> 그래서 작은 node.ref를 포함해요 01:20 <@nop> 그게 연결해 주고 01:20 <@nop> 그 다음부터는 01:20 < athena> thanthrix: 믿을 수 있는 친구를 찾아 node.ref를 서로 교환하세요 :) 01:20 <@nop> 네트워크에서 동적으로 업데이트됩니다 01:21 <@nop> 맞아요 01:21 <@nop> 그게 아이디어예요 01:21 <@nop> 이상적인 세상에서는 01:21 <@nop> ;) 01:21 < Tanthrix> 헤헤헤 01:21 <@mids> 친구가 없으면요? 01:21 <@nop> 그럼 우리 소프트웨어의 서명을 믿어보세요 ;) 01:21 <@nop> 하하 01:21 <@nop> 그래요, 디지털 신뢰는 거의 불가능하죠 01:22 < Dag> 아무도 믿지 마라 01:22 < Dag> 헤h 01:22 < athena> 아웅... 내가 네 친구가 되어줄게, mids! 01:22 <@mids> 만세 01:22 < athena> huzzah 01:22 < Tanthrix> 그리고 회색 눈의 athena가 구하러 온다.. 01:22 <@nop> ㅎㅎ 01:22 <@nop> 이 웹사이트 끝내줘요 01:22 <@nop> 이전 것과는 천지차이 01:23 <@mids> 그런 편이죠 :) 01:23 <@nop> 음 01:23 <@nop> 맞아요 01:23 <@nop> 그 '공사 중' 작은 사이트는 정말 형편없었죠 01:24 < Tanthrix> 헤.. 새 invisiblenet 사이트는 어떤 웹 기반 기업의 페이지 같네요 01:25 <@mids> 고마워요... 그런 뜻이겠죠 :) 01:25  * mids가 ellison을 가리킨다 ... 그가 ‘책임자’죠; 명성도 그가 다 가져요 01:25 < Tanthrix> 헤헤헤 01:25  * ellison이 구석의 아이캔디 밑으로 숨는다 01:26 < Zwolly> 안정성은 어느 정도일 거라고 보나요 01:26 <@mids> Zwolly: Trent는 rc2 릴레이에서 2일째 돌고 있어요 01:26 <@mids> 문제 없이요 01:27 < Zwolly> 좋아요. 01:27 <@mids> trent는 트래픽이 가장 많은 IRC 클라이언트/서비스예요 01:27 <@mids> 그래서... 괜찮다고 봐요 01:27 < Zwolly> 두고 봅시다 01:27 <@nop> 그 이유는 01:27 < Zwolly> 벌써 내일인가요? 헤헤 01:28 <@nop> ‘무난한 기업풍’ 01:28 <@nop> 사이트 01:28 <@nop> 라고 불리는 게 steganography(스테가노그래피, 정보 은닉)이기 때문이죠 01:28 <@nop> ;) 01:28 <@nop> 우리의 사악한 블랙햇 활동들은 01:28 <@nop> 만약 우리가 사악하다는 게 01:28 <@nop> 눈에 빤히 보인다면 좋지 않겠죠 01:28 <@nop> 그렇잖아요 01:29 <@nop> 그래서 다른 ‘악’들과 섞여서 01:29 <@nop> 눈에 띄지 않게 하는 거죠 01:29 <@nop> ;) 01:29 <@nop> 농담은 제쳐두고 01:29 <@nop> 모든 사용자층에 어필하려는 겁니다 01:29 <@mids> 두 달 뒤에는 invisibleNET 후원 골프 대회도 열릴 겁니다 01:29 <@nop> 하하하 01:30 <@nop> 아, 그리고 Palladium 사업 01:30 <@nop> 우리가 인수했죠 01:30 <@nop> ;) 01:31 <@nop> 눈치채셨겠지만 01:31 <@nop> www.invisiblenet.net, www.invisiblenet.com, www.invisiblenet.org 모두 우리가 소유예요 01:31 <@nop> 우리는 사악하죠 01:31 <@nop> ;) 01:31 <@nop> 시장을 독점했어요 01:31 <@nop> 못된 녀석들이죠 01:31 < Dag> 도로변 청소 같은 고속도로 표지판 하나 맡는 건 어때요? 01:31 <@nop> 그거요 01:31 <@nop> 진행 중이에요 01:31 <@nop> Microsucks, Intel과 OEM 협력도요 01:32 <@nop> 하하 01:32 <@mids> 어 01:32 <@mids> nop, 괜찮아요? :) 01:32 < Zwolly> 다른 질문이요. 웨어즈 채널이 있고, 어떤 큰 멍청한 나라, 예를 들어 미국이 이 네트워크를 중단시키려 한다면, 유럽 노드만으로도 독자적으로 돌 수 있나요 01:32 <@nop> 네 01:32 <@nop> 가능합니다 01:32 <@nop> 그렇게 할 수 있어요 01:33 <@nop> 게다가 01:33 <@nop> 모든 웨어즈 활동은 01:33 < Dag> 여기에는 /dcc가 없는 줄 알았는데요 01:33 < Dag> 01:33 <@nop> !anonymous 모드 채널을 쓰라고 권합니다 01:33 <@nop> FTP 사이트 거래를 못하란 뜻은 아니고요 01:33 < Dag> 음 01:33 <@nop> 그러면 모니터링하는 사람이 01:33 <@nop> 누가 무엇을 말하는지 01:33 < Dag> 구글에서도 웨어즈 FTP 사이트를 찾아요 01:33 <@nop> 훨씬 까다로워져요 01:33 <@nop> ;) 01:33 <@nop> 맞아요 01:33 < Dag> 뉴스그룹도 그래요 01:33 <@nop> 그쪽을 위협할 거라고는 생각 안 해요 01:33 < Dag> 아니, 그래요 01:33 <@nop> 우리가 주로 우려하는 건 #pedophilia 같은 공개 채널이에요 01:34 < Dag> 어느 날 /list를 한번 했는데 01:34 <@nop> IIP 전체의 존속에 위협이 될 수 있거든요 01:34 < Dag> 그 채널이 목록에 있더군요 01:34 <@mids> 아뇨 01:34 < Dag> 한 달 전쯤이었어요 01:34 <@mids> 그건 너무 두려워하지 않아도 돼요 01:34 <@nop> 개발하는 동안에는 최대한 말썽을 줄이고 싶어요 01:34 <@mids> 여긴 순수 텍스트 기반이에요 01:34 <@nop> 맞아요 01:34 < nemesis> k 01:34 < nemesis> 금방 옴 01:35  * nemesis  가서 라운지로 가는 길에 타르를 바르기로 한다 ()ŻŻŻŻ)ŻŻŻŻŻŻŻŻŻŻŻŻŻŻ)))~~~~ 01:35 < Dag> Freenet은 그런 쓰레기로 넘쳐났죠 01:35 < Dag> 적어도 제가 마지막으로 Frost를 썼을 때는요 01:35 < Dag> 매우 높은 비율이 그 crap이었어요 01:35 < athena> 따라오는 법이죠 01:35 < Dag> Freenet에 무작위 비(非)포르노 이미지랑 미디어 파일을 스팸으로 뿌리면 좋겠어요 01:36 <@nop> 맞아요 01:36 <@nop> 안타깝죠 01:36 < Dag> 그럼 쓰레기의 비율이 내려갈 테니까요 01:36 <@mids> 저는 Freenet을 3~4년 써왔는데 그런 소아성애물은 본 적이 없어요... 01:36 <@nop> 그들의 짓거리 때문에 실수로 하드에 쓰레기를 내려받은 적이 있어요 01:36 <@nop> 역겨워요 01:36 <@nop> 하나 발견했죠 01:36 <@mids> 찾지 않으면, 많이 마주치진 않을 거예요 01:36 <@nop> 우연히 01:36 <@nop> 아니에요 01:36 <@nop> 파일들이 이름이 바뀝니다 01:37 < Dag> mids, 저는 그냥 frost가 제공하는 모든 파일을 나열해 봤어요 01:37 < Dag> 많지 않거든요 01:37 < Dag> 많아야 몇백 개 수준 01:37 < Dag> gnutella 같지 않아요 01:37 <@mids> 음, 그걸 전부 본다면.. 뭔가 나오겠죠 01:37 < Dag> 전 아무것도 다운로드하지 않았어요 01:37 <@mids> 하지만 저는 msc0001a.jpg 같은 걸 볼 이유가 없어요 01:38 < Dag> 저는 그냥 목록만 봤어요 01:38 < ellison> 여러분 www.bitzi.com 봤나요? 01:38 < Dag> 아니요 01:38 < Dag> 그거 스파이웨어 아닌가요 01:38 < ellison> P2P 네트워크상의 엄청난 양의 파일에 대한 데이터베이스예요 01:38 < athena> 아니에요 01:38 <@nop> mids 01:38 < athena> mp3에 지문(fingerprint) 남기는 곳이죠 01:38 <@nop> iip-dev를 확인해봐요 01:38 < ellison> 파일명과 크기를 입력하면 뭔지 알려줘요 01:38 <@nop> 이럴 리가 없는데 01:38 <@nop> Debian 사용자도 몇 있는데 01:38 <@mids> nop: iip-dev 이메일? 01:38 <@nop> 네 01:38 < Dag> ellison, 누가 자금 대죠? 01:39 < ellison> dag: 몰라요 01:40 < Dag> ellison, RIAA일 것 같네요 01:40 < ellison> "Bitzi is a privately-held metadata publishing company based in San Francisco." 01:40 < Dag> 또는 그와 비슷한 단체 01:40 < Dag> ellision, 누가 돈을 내는지요 01:40 < Dag> $$$$$의 흐름을 보세요 01:40 < ellison> 아닐 거예요, 그들의 서비스를 이용해서 RIAA가 올린 가짜와 진짜 미디어 파일을 구분할 수 있어요 01:41 < ellison> 설립자가 RIAA 관련 스레드에 글을 올려 이 용도를 언급했어요 01:41 < Dag> 누가 자금 대는지 확인해봐요 01:41 < ellison> 사이트를 가져온 이유는, 재명명된 불쾌한 것들을 피하는 좋은 방법 같아서예요 01:41 < athena> bitzi는 멋져요... 거기 건 오픈소스예요 01:41 < Dag> 요즘 세상에 한 가지 확실한 건 01:41 < ellison> freenet 파일도 그 서비스에 제출할 수 있어요 01:42 < ellison> dag: RIAA 자금이라는 증거가 있으면 걱정하겠지만, 제가 보기엔 아닌 듯해요 01:42 < Dag> ellison, md5->파일 콘텐츠 데이터베이스 01:42 < Dag> 아마 통할 거예요 01:42 < Dag> 하지만 악용도 가능합니다 01:42 < Dag> 결국 누가 데이터를 통제하느냐의 문제죠 01:43  * athena 가 데이터를 통제한다 01:43 < Dag> 악의적인 사람들이 파일을 약간 바꿀 수도 있어요 01:43 < ellison> 물론 신뢰의 문제가 있죠, 하지만 누구도 믿지 않는다면 서비스 기반 경제에 참여하기가 어렵죠... 01:43 < ellison> 그러면 서명이 달라지죠 01:44 < Dag> 네 01:44 < Dag> 당신이 말한 ‘알려진 악성 파일’을 피하는 문제를 다루고 있어요 01:44 < ellison> 많은 사람들이 bitzi를 사용하면, 한 사람만 내려받아도 나쁜 파일을 신고할 수 있어요 01:45 < Dag> 난 즉석에서 임의 바이트를 덧붙이는 gnutella 서버를 만들 수도 있어요 01:45 < Dag> 파일에 01:45 < ellison> 그리고 RIAA가 P2P 네트워크에 쓰레기를 뿌리기 시작할수록 bitzi의 가치는 더 커지겠죠... 01:45 < Dag> 그리고 매번 파일 서명이 바뀌죠 01:45 < athena> bitzi는 limewire에 통합되는 중이에요 01:45 < ellison> 사람들은 bitzi에 가서 어떤 파일이 좋은지 확인하고, 그것만 받으면 돼요 01:45 < Dag> RIAA가 그 서비스를 더 유용하게 쓸 거라고 봅니다 01:46 < Dag> 그들은 RIAA의 일을 대신해 주는 셈이죠 01:46 < ellison> 좋은 파일을 찾는 문제이기도 해요 - 나쁜 파일을 피하는 건 과정의 절반일 뿐 01:46 < Dag> 그들이 소유한 것들의 키를 찾는 데요 01:46 <@mids> hey aum 01:46 < aum> hi mids 01:47 <@nop> aum 01:47 <@nop> 아마 01:47 <@nop> DH 키 교환일 거예요 01:47 <@nop> 오래되었거나 불량한 노드와 핸드셰이크했을 수도 있고요 01:47 < aum> root로 iip를 돌릴 때는 max-out이 안 생겨요 01:47 < aum> 사용자로 돌릴 때만 그래요 01:47 <@nop> 흥미롭네요 01:47 < athena> 엥? 01:47 <@nop> 사용자에 대한 파일 디스크립터 확인해봤나요 01:47 <@nop> 허용 개수 같은 것들? 01:48 < aum> 모든 파일은 데몬을 실행하는 동일 사용자 소유예요 01:48 < aum> 사용자로 돌릴 때는 심각한 max-out이 생겨요 - 1.5GHz 박스가 멈추다시피 해요 - 마우스도 거의 못 움직여요 01:49 < Zwolly> 여러분 전 이만 가봐야 해요, 즐거웠고 가능한 빨리 새 IIP를 설치할게요 (7시에 출근) 01:49 < aum> 새 웹사이트 멋져요, nop 01:49 <@nop> 고마워요, ellison에게 감사하세요 01:50 <@nop> 그가 했거든요 01:50 <@nop> ;) 01:50 < aum> 너무 프로페셔널해서 다운로드 페이지에 가면 ‘30일 데모 다운로드’ 링크가 있을 것 같아요 01:50 < aum> 자유 소프트웨어 웹사이트가 이렇게 전문적으로 디자인되는 경우는 드물죠 01:50 <@mids> :) 01:50 <@nop> 문서화도 이렇게 잘 되어 있지 않죠 01:51 <@mids> 이렇게 멋진 IRC 채널도 없고요 01:51 <@nop> 우리가 오픈소스에 다시 프로페셔널리즘을 가져다놨어요 ;) 01:51 <@nop> 철자를 엉망으로 썼네요 01:51 <@nop> 하하 01:51 < aum> 제 생각엔 첫 페이지에 ‘free’라는 단어가 나와야 해요 01:51 <@nop> Professionalism 01:51 <@nop> ‘open’이라고 쓰여 있어요 01:51 <@nop> 그리고 ‘available’ 등등 01:51 < aum> ‘open’이라는 단어는 상업용 소프트웨어에서도 점점 더 많이 쓰입니다 01:51 <@nop> 음, 사람들이 읽지 않으면 01:51 <@nop> 배움도 없죠 01:52 <@nop> 그런 사람들은 어차피 IIP를 쓰면 안 되고요 01:52 < ellison> :-) 01:53 < aum> 며칠 전에 ‘파이트 클럽’이라는 기괴한 영화를 봤어요 01:53 <@nop> 이제야? 01:53 <@nop> 하하 01:53 <@nop> 책도 읽어보세요 01:53 <@nop> 더하죠 01:53 < aum> 와! 01:53 <@mids> 모두 잘 자요 01:53 < aum> 신용카드 데이터베이스를 날리는 컨셉이 좋아요 01:53 < aum> 잘 자요 mids 01:53 < ellison> 잘 자요 mids 01:54 <@nop> 잘 자요 mids 01:54 <@nop> 다시 한 번 고마워요 01:54 <@nop> 도움 줘서 01:54 < nemesis> 굳나잇 mids 01:54  * aum 이 IIP가 palladium 기능을 활용할 수 있을지 궁금해한다 01:55  * nop 은 aum이 그 말로 무슨 뜻을 하는지 궁금해한다 01:55 < aum> palladium은 P2P에 큰 도움이 될 수 있어요 01:55 <@nop> 네 01:55 <@nop> 제 IP stego 앱 받았나요? 01:55 < aum> palladium은 root조차 접근 못 하는 프라이빗 태스크 공간을 만들어요 01:55 < aum> 5분 후에 돌아올게요... 01:55 <@nop> ㅇㅋ 02:02 <@nop> 좋아요 02:02 < aum> 복귀 02:02 <@nop> 돌아온 거 환영 02:03 < aum> palladium은 불법복제에 도움을 줄 수도 있어요 02:03 < Dag> 여기 vmware 쓰는 사람? 02:03 <@nop> 저는 palladium이 보안 연구자들을 상대로 안전할 거라고는 확신 못 해요 02:03 < aum> 네 02:03 <@nop> 저요 02:03 <@nop> 씁니다 02:03 < aum> 저도요 02:03 < Dag> 샌드박스로서 얼마나 좋아요? 02:03 <@nop> 훌륭해요 02:03 < aum> 끝내줘요 02:03 <@nop> 윈도우 작업할 때 씁니다 02:03 < Dag> 그게 제 유일한 관심사예요 02:03 <@nop> 메인으로는 리눅스를 돌리면서요 02:03 <@nop> 아 예 02:03 < Dag> 샌드박스로 쓸 만한가요 02:04 <@nop> 네 02:04 <@nop> 아주 좋아요 02:04 <@nop> 설정도 쉬워요 02:04 < aum> vmware의 멋진 점은 디스크 변경을 전부 버리도록 선택할 수 있다는 거죠 02:04 < Dag> 음 02:04 < Dag> 스왑으로 데이터가 새겠죠 02:04 < aum> 그래서 윈도우 엿같은 소프트웨어를 설치해도 c:\windows랑 레지스트리를 뒤질 필요 없이 쉽게 지울 수 있어요 02:04 < Dag> 음 네 02:05 < Dag> 그냥 설치본을 지우면 되죠 02:05 < Dag> 깔끔한 설치본을 하나 유지해요 02:05 < Dag> 아무것도 없는 상태로 02:05 < aum> 3버전의 USB 지원이 마음에 들어요 02:06 < Dag> 놀라운 작은 앱이죠 02:06 < Dag> 오픈소스였으면 좋겠어요 02:06 < Dag> 같은 걸 하려는 오픈소스 시도를 몇 개 봤는데 02:06 < Dag> 정체된 것 같더군요 02:07 < Dag> bochs 같은 거요 02:07 < aum> bochs는 악몽이에요 02:07 < nemesis> AS/400이 vmware보다 나아요 ;p 02:08 < Dag> plex86도 또 하나였던 듯 02:08 < Dag> vmware를 돌리고 filemon, regmon 같은 툴을 돌려봤는데 02:08 < Dag> 등등 02:09 < Dag> 꽤 괜찮은 샌드박스인 것 같더군요 02:09 < Dag> 이상한 데에 읽고 쓰진 않아요 02:09 < Dag> 제가 본 바로는 02:09 < Dag> winternals 소프트웨어 최고 02:09 < Dag> sysinternals/winternals 말이죠 02:10 < Dag> tcpview pro도 제가 좋아하는 툴이고요 02:10 < Dag> erd commander도 02:11 < Dag> 조만간 linux/bsd에서 더 나은 NTFS 지원이 되길 바라요 02:12 < Dag> 읽기 전용(안정적)만으론 꽤 제한적이죠 02:14 <@nop> 너무 신나요 02:14 <@nop> 이번 toorcon 발표는 절 죽게 만들지도 몰라요 ;) 02:14 < nemesis> 흐흐 02:14 < nemesis> 아니야 아니야 02:15 < nemesis> 난 읽기 전용이 좋아요 02:15 <@nop> 미안 02:15 <@nop> 제가 자꾸 끼어드네요 02:15 <@nop> ;) 02:15 < nemesis> NTFS 5.1 파티션에 파일을 좀 넣어놨거든요 02:15 < nemesis> ;) 02:15 < aum> nop - 뒤쪽에 빠르게 탈출할 차를 대고, 스키 마스크 쓰고 발표하세요 02:16 <@nop> 제가 무슨 내용 발표하는지 봤나요 02:16 <@nop> www.toorcon.org 02:16 < aum> 사실, 스키 마스크는 좋은 연출이에요 - 그리고 성대에 마이크를 달고 보이스 체인저에 연결해서 목소리 바꾸면요 02:16 <@nop> 사람들이 내가 누군지 아는 건 상관없어요, 어차피 IIP를 시작하면서 감수해야 할 위험이니까요 02:17 <@nop> 하하 02:17 <@nop> 분장과 변장에 능한 친구가 있어요 02:17 <@nop> 그렇게도 할 수 있죠 02:17 < Dag> nop, 혹시 tammy faye? 02:17 < Dag> katherine harris? 02:17 < aum> 방 안이 첩들로 가득할 거예요 02:18 <@nop> http://www.toorcon.org/speakers/james.html 02:20 <@nop> 정부를 무의미하게 만드는 게 밑바탕 톤이에요 02:21 <@nop> 저는 기조연설자와 상반된 이야기를 해요 02:21 <@nop> 그분은 nasa에서 일하죠 02:23 < Dag> nasa는 사악해요 02:23 < Dag> richard hoagland가 그랬어요 02:23 < Dag> 외계인이 존재한다는 증거를 숨기고 있어요 02:24 <@nop> ㅎㅎ 02:24 < Dag> 화성의 얼굴도 폭격했어요 02:24 <@nop> aum이 조용하네요 02:24 <@nop> ㅎㅎ 02:24 < Dag> 사실 얼굴처럼 보이지 않도록 하려고요 02:24 < Dag> 고해상도 스캔에서도요 02:25 < Dag> nasa만 아니었으면 우리 모두 각자 스타쉽 크루저를 갖고 02:25 < Dag> 지금쯤 휴양 행성에서 휴가 보내고 있을 겁니다 02:25 < Dag> 그 바브스트리트 보이조차 02:25 < Dag> 자기네 멍청한 우주정거장에 못 오게 하잖아요 02:25 <@nop> 하하 01:25 <@nop> nsync지만, 맞아요 02:26 < Dag> 그에게 진짜 주인이 누군지 보지 못하게 하려는 거죠 02:26 <@nop> 하하 02:26 < Dag> 미국 납세자는 아니라는 뜻입니다 02:26 <@nop> 네 02:27 < Dag> 정부는 납세자가 운영하지 않아요 02:27 <@nop> 제가 느끼는 건요 02:27 <@nop> 회사의 모든 직책은 02:27 < Dag> 가장 공정한 정부는 납부한 세금에 비례해 표를 주는 정부라고 생각해요 02:27 <@nop> 이기적인 사람들이 탐낸다는 거죠 02:27 <@nop> 맞아요 02:27 < Dag> 예를 들어 5천 달러당 1표 02:28 < Dag> 정부는 도둑질로 운영돼요 02:28 < Dag> 훔치고 또 훔치죠 02:29 < Dag> rms는 공산주의자예요 02:29 < Dag> 알고 있었나요 02:29 <@nop> 그래서 마약상들을 처벌하는 거예요 02:29 <@nop> 정부가 그들이 버는 돈을 훔치고 있으니까 02:29 <@nop> 보면요 02:29 <@nop> 항상 기다리죠 02:29 <@nop> 딜러가 02:29 <@nop> 큰돈을 벌 때까지 02:29 <@nop> 터는 타이밍을요 02:29 <@nop> 보잘것없는 대마 딜러는 신경도 안 써요 02:29 <@nop> 계속 놔두다가 02:29 <@nop> 알잖아요 02:29 <@nop> 진짜 돈이 들어오기 시작하면 02:30 <@nop> 그때 쾅 02:30 <@nop> 딜러 돈을 털어가죠 02:30 < Dag> bo gritz도 그래요 02:30 < Dag> harry brown을 대통령으로 02:30 < Dag> 더 말할 필요 없죠 02:30 <@nop> ㅎㅎ 02:30 <@nop> charlie brown을 대통령으로 02:31 < Dag> snoopy는 어때요 02:31 <@nop> 멋지죠 02:31 <@nop> 말도 많지 않고 02:31 <@nop> 그러니 좋아요 02:31 < Dag> 항상 침착해 보였어요 02:31 < Dag> 그 새랑 좀 많이 어울린 것 빼고는 02:31 < Dag> charlie brown은 쉽게 속았죠 02:31 < Dag> 그 빌어먹을 축구공을 몇 번이나 차려 했나요? 02:33  * aum 이 돌아왔다 02:33 < Dag> Freenet 설치는 얼마나 커요? 02:33 <@nop> 크지 않아요, 200메가 02:33 <@nop> 데이터스토어 기준으로 02:33 <@nop> ;) 02:33 < aum> 요즘 기본 Freenet 데이터스토어는 1GB예요 02:34 < Dag> 헉 02:34 <@nop> 뭐라고요? 02:34 < aum> 다른 얘기인데, 어젯밤 gentoo를 지우고 debian으로 돌아갔어요 => 행복 02:34 <@nop> 정말요? 02:34 < aum> 소스 기반 배포판은 아직 너무 불안정해요 02:34 < Dag> freebsd로 돌아가요 02:35 < Dag> 아니 앞으로 02:35 < Dag> 헤h 02:35 < aum> 저는 debian이 좋아요 - 방대한 소프트웨어 카탈로그, 바로 실행 가능 02:35 < aum> s/urn/run/ 02:35 < Dag> 서버로 돌리나요 데스크톱으로 돌리나요? 02:35 < aum> debian은 박스에서 꺼내자마자 잘 돌아가요 - 매뉴얼을 수십 메가 읽고 스크립트를 더듬을 필요가 없어요 02:36 < Dag> 제 서버는 항상 컴파일해요 02:36 < aum> 제 서버는 1년 넘게 debian woody였고 - 데스크톱은 2월에 윈도우에서 다시 바꿨어요 02:37 < aum> 제 데스크톱은 windows -> mandrake -> debian -> sourcemage -> gentoo -> debian으로 갔죠 02:37 < Dag> knoppix 써봤나요? 02:37 < aum> 그게 뭐죠? 02:37 < aum> 배포판? 02:37 < Dag> 라이브 파일시스템 리눅스 배포판이에요 02:37 < Dag> debian 기반 02:37 < aum> 응? 02:37 < aum> ‘라이브 파일시스템’이 뭐예요? 02:37 < Dag> 전부 RAM과 CD에서 돌아가요 02:38 < Dag> CD로 부팅하면 02:38 < Dag> 바로 사용 02:39 < Dag> 하드웨어 감지도 꽤 잘해요 02:39 < Dag> KDE도 돌고 openoffice도 있어요 02:39 < Dag> 헤 02:39 < Dag> 전 이젠 리눅스 서버는 안 돌려요 02:39 < Dag> 그래도 가지고 놀기엔 좋아요 02:39 < aum> Dag: freeBSD? 02:40 < Dag> free/openbsd 02:40 < Dag> solaris 02:40 < aum> 큰 장점은요? 02:40 < Dag> 하드웨어에 따라 02:40 < Dag> openbsd는 보안 감사를 잘해요 02:40 < Dag> 그들이 내놓는 건 뭐든 02:40 < Dag> 어떤 리눅스 배포판도 근처에도 못 와요 02:41 < aum> 하지만 리눅스 취약점은 24시간 내에 고쳐지잖아요 02:41 <@nop> 맞아요 02:41 < Dag> 매일 취약점 확인하고 패치하나요? 02:41 <@nop> 저는 해요 02:41 < Dag> 글쎄요 02:41 < Dag> 그러시겠죠 02:41 < Dag> 헤 02:41 <@nop> bugtraq을 구독해요 02:41 <@nop> 가끔 글도 올리고요 02:41 <@nop> 그래서 눈여겨봐요 02:42 < Dag> openbsd는 6년 동안 원격 취약점이 하나 있었어요 02:42 <@nop> 그게 제 본업이라서요 02:42 <@nop> openBSD는 아주 의식적이에요 02:42 <@nop> 좋은 일이죠 02:42 <@nop> 증명하듯 02:42 <@nop> 필요한 건 02:42 <@nop> 의식적인 개발자들 02:42 <@nop> 그리고 의식적인 프레임워크뿐 02:43 < Dag> redhat을 패치 없이 설치하면 02:43 < Dag> 해킹은 보장된 거예요 02:43 < Dag> 전 NOC에서 일했어요 02:43 < Dag> 다른 게으른 동료들이 고객에게 rh 6.2 등등을 설치하는 걸 보면 짜증났죠 02:44 < Dag> 패치를 전혀 안 해주더군요 02:44 < Dag> 어떤 사람은 3년을 일했는데, 박스를 재부팅하는 방법이 전원 스위치를 누르는 거라고 생각했어요 02:46 < aum> 전원 스위치요? 윈도우인 줄 알았나 보네요? 02:46 < nemesis> ㅋㅋ 02:46  * aum 은 가끔 리눅스 블루스크린 스크린세이버를 본다 02:47 < Dag> 4년 전쯤에는 누구나 기술직을 구할 수 있었어요 02:47 < Dag> 지금은 머리도 있고 경험도 있는 사람들이 02:47 < Dag> 일자리를 못 구하죠 02:47 < aum> 뉴질랜드의 한 오픈소스 옹호자가 정보기술부 장관에게 윈도우 보안 취약점에 대한 우려를 표하는 편지를 보냈는데 - 장관은 “우리는 방화벽을 쓰기 때문에 보안 문제는 없다”고 답했어요 02:48 < Dag> XP 최신 이슈 들었나요? 도움말 센터 덕에 URL만 방문해도 파일을 지울 수 있다고 02:48 < Dag> 헤 02:48 < Dag> the register uk에 기사 있어요 02:49 < Dag> 심지어 그 취약점을 이용해 도움말 센터를 제거하는 링크도 있어요 02:49 < Dag> 그러면 취약점에 노출될 가능성도 사라지죠 02:50 < Dag> Win-XP Help Center 요청이 하드를 날립니다 02:50 < Dag> http://www.theregister.co.uk/content/4/27074.html 03:03 < nemesis> 음, 미안 03:03 < nemesis> 질문 03:03 < nemesis> 포트를 특정 NIC에 바인드해서 차단할 수 있나요? 04:14 < nemesis> 다들 이따 봐요, 정확히 50분만 침대에 누웠다가 샤워하고 출근하러 갑니다 *궁시렁* 08:05 < nop> 휴 08:05 < nop> 아직도 여기 있네 --- 로그 종료 Wed Sep 25 10:20:49 2002 </div>
+<div class="irc-log">
+--- Log opened Wed Sep 25 00:57:27 2002
+00:57 -!- Topic for #iip-dev: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/
+00:57 [Users #iip-dev]
+00:57 [@mids] [ Dag] [ logger] [ nemesis] [ nop] [ Zwolly]
+00:57 -!- Irssi: #iip-dev: Total of 6 nicks [1 ops, 0 halfops, 0 voices, 5 normal]
+00:57 -!- Irssi: Join to #iip-dev was synced in 1 secs
+00:58 -!- mode/#iip-dev [+v logger] by mids
+01:00 <@mids> Tue Sep 24 23:00:38 UTC 2002
+01:00 <@mids> welcome et all
+01:00 <@mids> the 12th meeting just started
+01:01 <@mids> agenda:
+01:01 <@mids> 1) website
+01:01 <@mids> 2) nop's messages
+01:01 <@mids> 3) question round
+01:01 <@mids> website:
+01:01 <@mids> new invisibleNET site online - http://www.invisiblenet.net/ - new IIP site online - http://www.invisiblenet.net/iip/
+01:02 <@mids> for those who just joined:
+01:02 <@mids> new invisibleNET site online - http://www.invisiblenet.net/ - new IIP site online - http://www.invisiblenet.net/iip/
+01:02 <@mids> geeh
+01:02 <@mids> I keep busy
+01:02 < nop> ok
+01:02 < nop> pause a sec
+01:02 <@mids> for those who just joined:
+01:02 <@mids> hehe
+01:02 < nop> just add it to topic
+01:03 < nop> ok
+01:03 < nop> go
+01:03 < nop> ;(
+01:03 -!- mids changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | new invisibleNET site online - http://www.invisiblenet.net/ - new IIP site online - http://www.invisiblenet.net/iip/
+01:03 < nop> ;)
+01:03 <@mids> .
+01:04 -!- mode/#iip-dev [+o nop] by mids
+01:05 <@mids> any questions about this topic? otherwise we'll go to #2
+01:06 <@nop> ok
+01:06 <@nop> thanks to ellison
+01:07 <@nop> and the distributedcity crew
+01:07 <@nop> for helping out
+01:07 <@nop> with the website
+01:07 <@nop> we owe them a lot now ;)
+01:07 <@nop> ok
+01:07 <@nop> rc2 is coming out tomorrow
+01:07 <@nop> we're just packaging it up
+01:07 <@nop> and getting it ready for release
+01:07 <@nop> new features
+01:07 <@nop> are Forward Security
+01:08 <@nop> Close Delay protocol for killed connections
+01:08 <@nop> some bug fixes
+01:08 <@nop> and upgrade features for future versions
+01:08 <@nop> I think that's about it
+01:08 <@nop> thank you all you users
+01:08 <@nop> that use IIP
+01:08 <@nop> without you
+01:08 <@nop> the project would be a waste
+01:08 <@nop> ;)
+01:09 <@nop> so thank all of you for your loyalty and support by using the software
+01:09 <@nop> I think that's it for my daily comments ;)
+01:09 <@nop> oh
+01:09 <@nop> wait
+01:09 <@nop> thank you mids
+01:09 <@nop> for assisting me with the website setup
+01:09 <@nop> and for being patient with me
+01:09 <@nop> thank you codeshark
+01:09 <@nop> for setting up the software
+01:09 <@mids> your welcome :)
+01:09 <@nop> and handling inform
+01:09 <@nop> thank you userx wherever you ar
+01:10 <@nop> are
+01:10 <@nop> for your hard work on core development
+01:10 <@nop> and putting up with my ranting ;)
+01:10 <@nop> thanks to chocolate
+01:10 <@nop> for the informity and scripts that are needed
+01:10 <@nop> thanks to cohesion even though long gone, for documentation in the past
+01:10 <@nop> umm, like to thank the academy ... j/k
+01:11 <@nop> everyone who has contributed thank you all
+01:11 <@nop> .
+01:11 <@mids> 3 hurrays for nop
+01:11 <@mids> hurray
+01:11 < Zwolly> hurray
+01:11 < thecrypto> huzzah
+01:11 <@nop> haha
+01:11 < athena> that's 2 hurrays and 1 huzzah
+01:11 <@nop> oh and DC people have been whispering in my ear to thank the Lord
+01:11 <@nop> ;)
+01:12 < Neo> lol
+01:12 <@nop> well, on a side note, thank life for it is a neat thing ;) <-- no comments
+01:12 <@nop> .
+01:13 <@nop> any questions
+01:13 <@nop> suggestions
+01:13 <@nop> review
+01:13 <@nop> ideas
+01:13 <@nop> etc
+01:13 <@nop> ?
+01:13 < Neo> congratulations on the new site, looks great.
+01:13 <@nop> thnx
+01:13 <@mids> what is forward security?
+01:13 <@nop> encryption can only be decrypted at time of session
+01:13 <@nop> aka, you can't replay the messages
+01:13 <@nop> and decrypt them
+01:14 <@nop> as that key and signature doesn't exist anymore
+01:14 <@nop> and will not be useful
+01:14 <@nop> this is designed against log and replay attacks
+01:14 <@nop> .
+01:14 <@mids> thx
+01:14 < athena> will you require public proxies to support these new protocol additions? (methinks all proxies should be forced to upgrade)
+01:14 <@nop> athena
+01:14 <@nop> it's a mandatory upgrade
+01:14 <@nop> all relay holders
+01:14 <@nop> will need to upgrade
+01:15 <@nop> to rc2 relay
+01:15 <@nop> and re-announce
+01:15 < athena> ok, thanks
+01:16 < sferic> I guess I cam ein late and missed something, but do you mean that we can't log anymore?
+01:16 <@nop> no
+01:16 <@nop> you can log
+01:16 <@nop> what I'm saying
+01:16 <@nop> is
+01:16 <@nop> if you were a gov't agent
+01:16 <@nop> spying on a relay
+01:16 <@nop> and you were logging the encrypted traffic
+01:16 <@nop> you couldn't then come and seize the ircd end node
+01:16 <@nop> and use the network secret key
+01:16 <@nop> to replay the traffic
+01:16 <@nop> and decrypt it
+01:17 < sferic> Ahh, thanks
+01:17 <@nop> it eliminates the importance of the network secret key
+01:17 <@nop> it's useless
+01:17 <@nop> all it does is authenticate
+01:17 <@nop> nothing more
+01:17 <@nop> doesn't actually encrypt
+01:17 <@nop> this covers two things
+01:17 <@nop> man in the middle attack protection
+01:17 <@nop> and log and relay protection
+01:17 <@nop> aka forward security
+01:17 <@nop> ;)
+01:17 < Zwolly> is it now without central server.
+01:18 <@nop> not yet
+01:18 <@nop> that's 1.22
+01:18 <@nop> 1.2
+01:18 <@nop> correction
+01:18 <@nop> 1.2.0 to be exact
+01:18 <@nop> ;)
+01:18 <@nop> after 1.1 basically is finished
+01:18 <@mids> (I'd say that decentralization is 2.0)
+01:19 < Zwolly> how about system resources memory cpu and bandwith
+01:19 <@nop> well, 2.0 is a more perfect form of decentralization
+01:19 <@nop> 1.2 we will attempt decentralization
+01:20 < Tanthrix> how does true p2p work, you can't exactly scan IP blocks until you find someone? isn't some sort of a central server neccessary for initial connection?
+01:20 <@nop> bootstrap is needed
+01:20 <@nop> but once connected
+01:20 <@nop> you have your own peer routes
+01:20 <@nop> so we include a small node.ref
+01:20 <@nop> which connects you in
+01:20 <@nop> then from that point
+01:20 < athena> thanthrix: find some friends you trust and trade node.refs :)
+01:20 <@nop> you are dynamically updated from the network
+01:21 <@nop> yes
+01:21 <@nop> that's the idea
+01:21 <@nop> in a nice world
+01:21 <@nop> ;)
+01:21 < Tanthrix> hehehe
+01:21 <@mids> what if you dont have friends?
+01:21 <@nop> then try to trust the signature on our software ;)
+01:21 <@nop> haha
+01:21 <@nop> yeah right, digital trust is rarely possible
+01:22 < Dag> trust no one
+01:22 < Dag> heh
+01:22 < athena> awww...i'll be your friends, mids!
+01:22 <@mids> hurray
+01:22 < athena> huzzah
+01:22 < Tanthrix> and grey-eyed athena comes to the rescue..
+01:22 <@nop> hehe
+01:22 <@nop> this website kicks ass
+01:22 <@nop> far difference then the previous one
+01:23 <@mids> kinda :)
+01:23 <@nop> umm
+01:23 <@nop> yeah
+01:23 <@nop> that nice little under construction site sucked ass
+01:24 < Tanthrix> heh..the new invisiblenet site looks like a page for some web-based corporation
+01:25 <@mids> thanks... I guess :)
+01:25  * mids points at ellison ... he is the one to blame; he gets all fame
+01:25 < Tanthrix> hehehe
+01:25  * ellison hides under some eye candy in the corner
+01:26 < Zwolly> what is the gues about how stable it will be
+01:26 <@mids> Zwolly: Trent is running on a rc2 relay for 2 days now
+01:26 <@mids> without trouble
+01:27 < Zwolly> ok.
+01:27 <@mids> trent is the irc client/service with the heaviest traffic
+01:27 <@mids> so... I think it is okay
+01:27 < Zwolly> we will see
+01:27 <@nop> the reason
+01:27 < Zwolly> is it tomorrow already? hehe
+01:28 <@nop> for the middle of the road
+01:28 <@nop> corporate looking site
+01:28 <@nop> is called steganography
+01:28 <@nop> ;)
+01:28 <@nop> our evil black hat activities
+01:28 <@nop> wouldn't be good
+01:28 <@nop> if it's obvious
+01:28 <@nop> we're evil
+01:28 <@nop> now would it
+01:29 <@nop> so we blend in with the other evil
+01:29 <@nop> and they won't notice us
+01:29 <@nop> ;)
+01:29 <@nop> honestly though
+01:29 <@nop> it's just for attracting all audiences
+01:29 <@mids> in 2 month there will be an invisibleNET sponsored golf tournament
+01:29 <@nop> hahaha
+01:30 <@nop> oh and the palladium efforts
+01:30 <@nop> we bought it out
+01:30 <@nop> ;)
+01:31 <@nop> if you've noticed
+01:31 <@nop> we own www.invisiblenet.net, www.invisiblenet.com, and www.invisiblenet.org
+01:31 <@nop> we're evil
+01:31 <@nop> ;)
+01:31 <@nop> we've monopolized the market
+01:31 <@nop> we're bastards
+01:31 < Dag> what about getting one of those signs on the highway for cleaning up the roadside?
+01:31 <@nop> yeah
+01:31 <@nop> that's in the works
+01:31 <@nop> as well as OEM'ing with Microsucks, and Intel
+01:32 <@nop> haha
+01:32 <@mids> euh
+01:32 <@mids> you okay nop? :)
+01:32 < Zwolly> ok other question what to do if there are warez channels and some big stupid country lets say america for example want this network doun can it run on its own from the european nodes
+01:32 <@nop> yeah
+01:32 <@nop> yes
+01:32 <@nop> it will be possible to do that
+01:33 <@nop> plus
+01:33 <@nop> I advise for all warez activity
+01:33 < Dag> I thought there was no /dcc
+01:33 < Dag> in here
+01:33 <@nop> to use a !anonymous mode channel
+01:33 <@nop> doesn't mean you can't trade ftp sites
+01:33 < Dag> well
+01:33 <@nop> then for anyone monitoring
+01:33 <@nop> who is saying what
+01:33 < Dag> google trades warez ftp sites
+01:33 <@nop> is a bit more tricky
+01:33 <@nop> ;)
+01:33 <@nop> exactly
+01:33 < Dag> so does the newsgroups
+01:33 <@nop> I doubt that we're a threat to that
+01:33 < Dag> er do
+01:33 <@nop> our main concern is #pedophilia public channels
+01:34 < Dag> I did a /list one day
+01:34 <@nop> as they would be a concerned threat to the existance of IIP as a whole
+01:34 < Dag> and saw that channel in the list
+01:34 <@mids> nah
+01:34 < Dag> was a month or so ago
+01:34 <@mids> I wouldnt be too affraid about that
+01:34 <@nop> I like as little trouble as possible while were developing
+01:34 <@mids> this is pure text based
+01:34 <@nop> true
+01:34 < nemesis> k
+01:34 < nemesis> brb
+01:35  * nemesis  decides to go out and tar the way to the loung ()ŻŻŻŻ)ŻŻŻŻŻŻŻŻŻŻŻŻŻŻ)))~~~~
+01:35 < Dag> freenet has been overwhelmed with that crap
+01:35 < Dag> at least last time I used frost
+01:35 < Dag> it was a VERY high percentage of that crap on there
+01:35 < athena> comes with the territory
+01:35 < Dag> I think it would be good for people to spam freenet with random non porn images and media files
+01:36 <@nop> yeah
+01:36 <@nop> it's unfortunate
+01:36 < Dag> just to make the percentage of crap go down
+01:36 <@mids> I am using freenet for 3 or 4 years now and I have never seen any pedo crap...
+01:36 <@nop> I accidentally downloaded trash on my hardrive because of their shit
+01:36 <@nop> sickening
+01:36 <@nop> I found one
+01:36 <@mids> if you dont look for it, I dont think you will run into much
+01:36 <@nop> by accident
+01:36 <@nop> not true
+01:36 <@nop> stuff gets renamed stuf
+01:37 < Dag> mids I just had frost list all the files available
+01:37 < Dag> as there are not many
+01:37 < Dag> maybe a few hundred files max
+01:37 < Dag> its not like gnutella
+01:37 <@mids> well, if you view each of them.. you will probably run into stuff
+01:37 < Dag> I didnt download anything
+01:37 <@mids> but I have no reason to view a msc0001a.jpg
+01:38 < Dag> I just saw the listings
+01:38 < ellison> you guys seen www.bitzi.com?
+01:38 < Dag> no
+01:38 < Dag> isnt that some spyware
+01:38 < ellison> it is a database of tons of files on p2p networks
+01:38 < athena> no
+01:38 <@nop> mids
+01:38 < athena> the fingerprint mp3s
+01:38 <@nop> check iip-dev
+01:38 < ellison> you can enter a filename and size, and it'll tell you what it is
+01:38 <@nop> this can't be true
+01:38 <@nop> we have a few debian users
+01:38 <@mids> nop: iip-dev email?
+01:38 <@nop> yes
+01:38 < Dag> ellison who is funding it?
+01:39 < ellison> dag: dunno
+01:40 < Dag> ellison I would bet its the riaa
+01:40 < ellison> "Bitzi is a privately-held metadata publishing company based in San Francisco."
+01:40 < Dag> or some such org
+01:40 < Dag> ellision who pays the bills
+01:40 < Dag> follow the $$$$$
+01:40 < ellison> doubt it, I think you can use their service to differentiate between valid media files and the fake stuff uploaded by RIAA
+01:41 < ellison> the founder posted on a RIAA thread and mentioned this use of the system
+01:41 < Dag> find out who funds it
+01:41 < ellison> i brought up their site because it seems to be a good way of avoiding nasty re-named stuff
+01:41 < athena> bitzi is cool... their stuff is opensource
+01:41 < Dag> one thing is certain in this day and age
+01:41 < ellison> there's no reason you couldn't submit freenet files to the service
+01:42 < ellison> dag: there would be concern if there was any evidence that they are funded by the RIAA, but it doesn't look like it to me
+01:42 < Dag> ellison a md5->file content database
+01:42 < Dag> would maybe work
+01:42 < Dag> but can be abused as well
+01:42 < Dag> its all about who controlls the data
+01:43  * athena controls the data
+01:43 < Dag> mallicous people can change the file slightly anyhow
+01:43 < ellison> if course there is an issue of trust, but if you don't trust anyone then it'll be difficult to take part in a service-based economy...
+01:43 < ellison> then the signature would change
+01:44 < Dag> yes
+01:44 < Dag> I am addressing your wanting to avoid known bad files
+01:44 < ellison> if lots of people use bitzi, then all it takes is one person downloading and reporting a bad file
+01:45 < Dag> I could write a gnutella server to on the fly randomly tag on some byte
+01:45 < Dag> to a file
+01:45 < ellison> and bitzi will be a more and more valuable service as the RIAA begins seeding P2P networks w/ crap...
+01:45 < Dag> and change the file sig each time
+01:45 < athena> bitzi is being integrated into limewire
+01:45 < ellison> people could go to bitzi and find out which files are the good ones, and only download those
+01:45 < Dag> I think that the riaa would find the service more usefull than not
+01:46 < Dag> they are doing the riaas job for them
+01:46 < ellison> it's also about finding the good ones - avoiding the bad ones is just 1/2 of the process
+01:46 < Dag> finding keys to stuff they own
+01:46 <@mids> hey aum
+01:46 < aum> hi mids
+01:47 <@nop> aum
+01:47 <@nop> it's most likely
+01:47 <@nop> the dh key exchange
+01:47 <@nop> maybe handshaking with a bad or out of date node, or so
+01:47 < aum> the max-out doesn't happen when i run iip as root
+01:47 < aum> only when i run as user
+01:47 <@nop> interesting
+01:47 < athena> huh?
+01:47 <@nop> have you checked your file descriptors for users
+01:47 <@nop> how many are allowed and such?
+01:48 < aum> well, all the files are owned by the same user as is running the daemno
+01:48 < aum> it's a severe max-out when i run as user - a 1.5GHz box grinds to a halt - even the mouse can barely move
+01:49 < Zwolly> people i need to go now it was fun and will install the new IIP as soon as possible (working at 7.00)
+01:49 < aum> compliments on the new website nop
+01:49 <@nop> thnx, thank ellison
+01:50 <@nop> he did it
+01:50 <@nop> ;)
+01:50 < aum> it looks so professional that one could expect to go to the download page, and see a link saying 'download 30-day demo'
+01:50 < aum> free software websites are rarely designed so professionally
+01:50 <@mids> :)
+01:50 <@nop> nor are they documented so well either
+01:51 <@mids> nor do they have such cool irc channels
+01:51 <@nop> we have kind of put the profesionallism back into open source ;)
+01:51 <@nop> I spelled that badly
+01:51 <@nop> haha
+01:51 < aum> the word 'free' needs to appear on the front page IMO
+01:51 <@nop> Professionalism
+01:51 <@nop> it says open
+01:51 <@nop> and available
+01:51 <@nop> etc
+01:51 < aum> the word 'open' is being used more and more with commercial software
+01:51 <@nop> well, if people don't read
+01:51 <@nop> they can't be educated
+01:52 <@nop> and they shouldn't be running IIP anyway
+01:52 < ellison> :-)
+01:53 < aum> i saw a freaky film the other night - 'fight club'
+01:53 <@nop> finally?
+01:53 <@nop> haha
+01:53 <@nop> read the book
+01:53 <@nop> it's worse
+01:53 < aum> wow!
+01:53 <@mids> night all
+01:53 < aum> good concept - taking down the credit card databases
+01:53 < aum> night mids
+01:53 < ellison> night mids
+01:54 <@nop> night mids
+01:54 <@nop> thnx again
+01:54 <@nop> for your help
+01:54 < nemesis> gn8 mids
+01:54  * aum wonders if iip can take advantage of palladium features
+01:55  * nop wonders what aum means by that
+01:55 < aum> palladium could be a huge boon for p2p
+01:55 <@nop> yes
+01:55 <@nop> did you get my ip stego app?
+01:55 < aum> palladium creates a private task space that not even root can access
+01:55 < aum> back in 5...
+01:55 <@nop> k
+02:02 <@nop> ok
+02:02 < aum> back
+02:02 <@nop> wb
+02:03 < aum> palladium can help piracy
+02:03 < Dag> anyone here run vmware?
+02:03 <@nop> I'm not convinced that palladium will be secure against the security researchers of the world
+02:03 < aum> yes
+02:03 <@nop> I do
+02:03 <@nop> I run it
+02:03 < aum> ditto
+02:03 < Dag> how good a sandbox is it?
+02:03 <@nop> great
+02:03 < aum> brilliant
+02:03 <@nop> I use it for my windows stuff
+02:03 < Dag> that is my only real interest for it
+02:03 <@nop> while running linux as the main one
+02:03 <@nop> oh yeah
+02:03 < Dag> is a sandbox potentia;
+02:04 <@nop> yes
+02:04 <@nop> it's great
+02:04 <@nop> easy to set up too
+02:04 < aum> beautiful thing about vmware is that you can choose to discard all disk changes
+02:04 < Dag> well
+02:04 < Dag> i imagine it leaks data to the swap
+02:04 < aum> so if you install some windows fuckware, it's easy to get rid of it without having to hunt through c:\windows and registry etc
+02:04 < Dag> well yes
+02:05 < Dag> just delete the install
+02:05 < Dag> I keep a good install file
+02:05 < Dag> that has nothing on it
+02:05 < aum> i like how vers 3 does usb
+02:06 < Dag> its an amazing little app
+02:06 < Dag> wish it was open sourced
+02:06 < Dag> I looked at some open source attemps
+02:06 < Dag> at the same thing
+02:07 < Dag> and seemed to be stagnating
+02:07 < Dag> bochs and the like
+02:07 < aum> bochs is a nightmare
+02:07 < nemesis> AS/400 are better than vmware ;p
+02:08 < Dag> plex86 was another one I think
+02:08 < Dag> I have run vmware and ran some tools like filemon and regmon
+02:08 < Dag> etc
+02:09 < Dag> and they seem to show that its a decent sandbox
+02:09 < Dag> its not writting or reading to anything unusual
+02:09 < Dag> from waht I saw
+02:09 < Dag> winternals software rules
+02:09 < Dag> sysinternals/winternals that is
+02:10 < Dag> tcpview pro is another of their tools I like
+02:10 < Dag> erd commander is another
+02:11 < Dag> I am hoping someday soon that linux/bsd can have better ntfs support
+02:12 < Dag> read only access (stable) is pretty limiting
+02:14 <@nop> I'm so excited
+02:14 <@nop> this toorcon speech might get me killed ;)
+02:14 < nemesis> hrhr
+02:14 < nemesis> nooo nooo
+02:15 < nemesis> i linke the read only
+02:15 <@nop> sorry
+02:15 <@nop> I'm all interrupting
+02:15 <@nop> ;)
+02:15 < nemesis> because i stored some files in a ntfs5.1 part
+02:15 < nemesis> ;)
+02:15 < aum> nop - you better have a fast car out the back, and deliver the speech in a ski mask
+02:16 <@nop> did you read what I'm talking about
+02:16 <@nop> www.toorcon.org
+02:16 < aum> actually, a ski mask would be a good gimmick - that, and a throat-mike wired up to a harmoniser box to change your voice
+02:16 <@nop> and no I don't care if people know who I am, it's a risk I have to take for starting IIP anyway
+02:17 <@nop> haha
+02:17 <@nop> I have a friend who's an expert in make-up and disguise
+02:17 <@nop> could do that too
+02:17 < Dag> nop is it tammy faye"?
+02:17 < Dag> katherine harris?
+02:17 < aum> room will be fulla spooks
+02:18 <@nop> http://www.toorcon.org/speakers/james.html
+02:20 <@nop> making gov't irrelevant is the underlying tone
+02:21 <@nop> I contradict the keynote speaker
+02:21 <@nop> who works for nasa
+02:23 < Dag> nasa is evil
+02:23 < Dag> richard hoagland says so
+02:23 < Dag> they are withholding proof aliens exist
+02:24 <@nop> hehe
+02:24 < Dag> they bombed the face on mars
+02:24 <@nop> aum is quiet
+02:24 <@nop> hehe
+02:24 < Dag> to cover up that it really looked like a face
+02:24 < Dag> even in high res scans
+02:25 < Dag> if it were not for nasa, we would each have our own starship cruisers
+02:25 < Dag> and vacation planets as we speak
+02:25 < Dag> hell they even wont let that backstreet boy
+02:25 < Dag> on their stupid space station
+02:25 <@nop> haha
+02:25 <@nop> nsync but yeah
+02:26 < Dag> they dont want him to see who their real masters are
+02:26 <@nop> haha
+02:26 < Dag> and I dont mean the american taxpayer
+02:26 <@nop> yep
+02:27 < Dag> the government is not run by the taxpayer
+02:27 <@nop> you know what I notice
+02:27 <@nop> every corporate position in a company
+02:27 < Dag> I think the fairest govt would be one were the number of votes you have is in line with the taxes you pay
+02:27 <@nop> is desired by a selfish person
+02:27 <@nop> right
+02:27 < Dag> maybe 1 vote for each 5k in taxes you pay
+02:28 < Dag> the government is run on theft
+02:28 < Dag> steal steal steal
+02:29 < Dag> rms is a commie too
+02:29 < Dag> did you know that
+02:29 <@nop> that's why they punish drug dealers
+02:29 <@nop> because the gov't is stealing the money they make
+02:29 <@nop> you notice
+02:29 <@nop> they always wait
+02:29 <@nop> till the dealer
+02:29 <@nop> is making big money
+02:29 <@nop> to get their bust
+02:29 <@nop> they don't care about the lowly pot dealer
+02:29 <@nop> they always like to let it continue
+02:29 <@nop> till they know
+02:29 <@nop> there is serious money coming in
+02:30 <@nop> then bam
+02:30 <@nop> robbin' from the dealer
+02:30 < Dag> bo gritz says so
+02:30 < Dag> harry brown for president
+02:30 < Dag> enuf said
+02:30 <@nop> hehe
+02:30 <@nop> charlie brown for president
+02:31 < Dag> what about snoopy
+02:31 <@nop> he's cool
+02:31 <@nop> he doesn't say much
+02:31 <@nop> so yeah
+02:31 < Dag> he always seemed level headed
+02:31 < Dag> cept he hung out with that bird a little to much
+02:31 < Dag> charlie brown was easily duped
+02:31 < Dag> how many times he try to kick that damn football?
+02:33  * aum is back
+02:33 < Dag> how big is a freenet install?
+02:33 <@nop> not big, 200 megs
+02:33 <@nop> for datastore
+02:33 <@nop> ;)
+02:33 < aum> default freenet datastore is 1GB these days
+02:34 < Dag> yikes
+02:34 <@nop> what?
+02:34 < aum> on another subject, i uninstalled gentoo last night and went back to debian => bliss
+02:34 <@nop> really?
+02:34 < aum> the source-based distros are too flaky just now
+02:34 < Dag> go back to freebsd
+02:35 < Dag> er forward
+02:35 < Dag> heh
+02:35 < aum> debian 4 me - huge catalog of software, ready to urn
+02:35 < aum> s/urn/run/
+02:35 < Dag> well you running it as a server or desktop?
+02:35 < aum> debian stuff works wight out of the box - no need to read megs of manuals and grope through scripts
+02:36 < Dag> I always compile my servers
+02:36 < aum> i've had debian woody on my server for over a year - switched desktop from windows back in feb
+02:37 < aum> my desktop went windoes -> mandrake -> debian -> sourcemage -> gentoo -> debian
+02:37 < Dag> you ever try knoppix?
+02:37 < aum> what's that?
+02:37 < aum> a distro?
+02:37 < Dag> is a livefilesystem linux distro
+02:37 < Dag> based off debian
+02:37 < aum> huh?
+02:37 < aum> what does 'livefilesystem' mean?
+02:37 < Dag> the whole thing runs in ram and cd
+02:38 < Dag> boot off the cd
+02:38 < Dag> and away you go
+02:39 < Dag> its pretty good about hw detection
+02:39 < Dag> runs kde and even has openoffice
+02:39 < Dag> heh
+02:39 < Dag> I dont run any linux servers anymore
+02:39 < Dag> but its fun to have around
+02:39 < aum> Dag: freeBSD?
+02:40 < Dag> free/openbsd
+02:40 < Dag> solaris
+02:40 < aum> what's the big advantage?
+02:40 < Dag> depending on HW
+02:40 < Dag> openbsd has a good security audit
+02:40 < Dag> of anything they release
+02:40 < Dag> no distro of linux even comes close
+02:41 < aum> but linux 'ploits get fixed within 24 hours
+02:41 <@nop> true
+02:41 < Dag> do you check for exploits and patch every day?
+02:41 <@nop> I do
+02:41 < Dag> well
+02:41 < Dag> come now
+02:41 < Dag> heh
+02:41 <@nop> I'm on bugtraq
+02:41 <@nop> and I sometimes post
+02:41 <@nop> so I keep my eye out
+02:42 < Dag> openbsd has had ONE remote exploit in 6 years
+02:42 <@nop> it's my daytime job
+02:42 <@nop> openBSD is very conscious
+02:42 <@nop> which is good
+02:42 <@nop> proves
+02:42 <@nop> that all it takes
+02:42 <@nop> is more conscious coders
+02:42 <@nop> and a conscious framework
+02:43 < Dag> if you install redhat without patches
+02:43 < Dag> its a guarantee you will be hacked
+02:43 < Dag> I use to work in a NOC
+02:43 < Dag> it would piss me off when other lazy coworkers would install rh 6.2 etc
+02:43 < Dag> for a client
+02:44 < Dag> and never put any patches on
+02:44 < Dag> one guy worked there 3 years and his idea of rebooting a box was to hit the power switch
+02:46 < aum> power switch? did he think it was windows?
+02:46 < nemesis> lol
+02:46  * aum sometimes sees the linux BSOD screensaver
+02:47 < Dag> there was a time like 4 years back that anyone could get a tech job
+02:47 < Dag> now people who have a brain and experience
+02:47 < Dag> cant find sh*t
+02:47 < aum> an open source advocate here in new zealand wrote to the Minister for Information Technology expressing concerns about windows security vulnerabilities - Minister wrote back saying "we don't have a security problem - we use firewalls"
+02:48 < Dag> you hear the latest with XP and their help center allowing you to delete files by visiting a url
+02:48 < Dag> heh
+02:48 < Dag> there is a story at the register uk about it
+02:49 < Dag> there is even a link to have the exploit remove the help center from your machine
+02:49 < Dag> and in doing so removes the ablity to be exploited
+02:50 < Dag> Win-XP Help Center request wipes your HD
+02:50 < Dag> http://www.theregister.co.uk/content/4/27074.html
+03:03 < nemesis> erm, sorry
+03:03 < nemesis> question
+03:03 < nemesis> can i ban an port with bind to an nic?
+04:14 < nemesis> cu@all für genau 50 mins ins bett legen dann duschen und in arbeit fahren *grummel*
+08:05 < nop> sheesh
+08:05 < nop> still here
+--- Log closed Wed Sep 25 10:20:49 2002
+</div>

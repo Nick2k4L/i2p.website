@@ -1,17 +1,464 @@
 ---
-title: "I2P 개발자 회의"
+title: "I2P 개발자 미팅"
 date: 2003-02-11
 author: "nop"
-description: "2003년 2월 11일자 I2P 개발 회의록."
+description: "2003년 2월 11일 I2P 개발 미팅 로그."
 categories: ["meeting"]
 ---
 
-(웨이백 머신 http://www.archive.org/ 제공)
+(웨이백 머신 제공 http://www.archive.org/)
 
-## 간단 요약
+## 간단한 요약
 
 <p class="attendees-inline"><strong>참석자:</strong> _42, hezekiah, hobbs, lonelynerd, mids, nemesis, nop, thecrypto</p>
 
-## 회의 기록
+## 회의록
 
-<div class="irc-log"> --- 로그 시작 Tue Feb 11 23:36:59 2003 23:37 -!- #iip-dev의 주제: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ 23:37 [사용자 #iip-dev] 23:37 [ ArdVark ] [ logger    ] [ mids] [ ptm      ] [ UserX] 23:37 [ jeremiah] [ lonelynerd] [ pox ] [ thecrypto] 23:37 -!- Irssi: #iip-dev: 닉 9명 [op 0, halfop 0, voice 0, 일반 9] 23:37 -!- Irssi: #iip-dev 합류가 2초 만에 동기화됨 23:57 < nop> 안녕 hezekiah 23:58 < hezekiah> 안녕하세요. :) 23:58 -!- mode/#iip-dev [+o mids] by Trent 23:58 -!- mode/#iip-dev [+o nop] by Trent 23:58 <@mids> h. e. z. e. k. i. a. h 줘봐 23:58 <@mids> hezekiah! 23:58 < hezekiah> ㅋㅋ 23:58 < lonelynerd> :D 23:58 < hezekiah> (흠 ....) 23:59  * hezekiah 가 IRC에서 뭔가 할 수 있을지 아이디어가 떠오름. 23:59 <@nop> 이런 23:59 -!- mode/#iip-dev [+o hezekiah] by Trent 23:59 -!- mode/#iip-dev [+o UserX] by hezekiah 23:59 < _42> 뭐야? 23:59 <@hezekiah> 됐다! 23:59 <@mids> 날 킥할래? 23:59 <@hezekiah> 멋져! 23:59 <@hezekiah> 아니. 23:59 -!- mode/#iip-dev [-o UserX] by mids 23:59 <@hezekiah> UserX에게 op 줄 수 있는지 보려고 23:59 <@nop> 잘 됐어 맞아 23:59 <@hezekiah> 이크. 23:59 <@mids> userx가 identify 안 함 23:59 < _42> 모두에게 op 줘 :) 23:59 <@hezekiah> 아하. 23:59 <@mids> 얘 나쁠 수도 있어 23:59 <@mids> :) 23:59 <@hezekiah> 내 실수. :( 23:59 <@mids> *씨익& 23:59 <@hezekiah> 그냥 내가 할 수 있나 궁금했어. (C는 잘해요. IRC는 갓 시작.) --- 날짜 변경 Wed Feb 12 2003 00:00 <@nop> 익명성도 인증도 연습이 필요해 hezekiah 00:00 <@mids> Tue Feb 11 23:00:05 UTC 2003 00:00 < _42> 그래도, 우리 모두 nop이 sa&nbsp;fe라는 건 알잖아. 00:00 <@nop> 배우게 될 거야, 제자여 00:00 <@nop> 좋아 00:00 <@nop> 환영해 00:00 <@mids> 제30차 미팅에 오신 것을 환영합니다 00:00 <@nop> _42 밖에서 얘기하자 00:00 <@nop> ;) 00:00 < thecrypto> 이야! 00:00 < thecrypto> 30! 00:00 <@nop> 스윗 00:00 <@nop> 좋아 00:01 <@nop> 어쨌든 00:01 <@nop> 환영합니다, 안건에 구체적인 거 있나요 00:01 <@hezekiah> IIP 1.1 나왔나? 00:01 <@mids> 아니! 00:01 < hobbs> 30은 처음 세 개의 소수의 곱이죠. :) 00:02 <@nop> ㅎㅎ 00:02 < thecrypto> 이야! 00:02 < thecrypto> 소수! 00:02 <@nop> 다들 진정해요 00:02 <@mids> IIP 1.1의 출시 차단 이슈: 00:02 <@mids> - 파일 경로 00:02 < _42> 그건 어때? 00:03 <@nop> 42, 질문은 나중에 00:03 <@nop> 이거 다 끝나고 00:03 <@nop> mids 계속해 주세요 00:03 <@mids> 42가 파일 경로는 어떻게 되는지 물었나 보네 00:03 <@mids> 다른 치명적 이슈는 없어요 00:04 <@nop> 아 00:04 <@nop> 그럼 . 해줘 00:04 <@nop> 알아보게 00:04 <@nop> 미안 42 00:04 < _42> 괜찮아 00:04 <@nop> 음, 파일 경로 이슈는 UserX가 작업 중인 걸로 알아요 00:04 <@nop> 지금은 자리에 없는 듯 00:04 <@mids> 아직 안 했어요 00:04 <@mids> 오늘 확인했어요 00:04 <@nop> 하지만 지금 바로 처리할 수 있는지 알아볼게요 00:05 <@hezekiah> 저도 해결책 하나 제안했어요. 00:05 <@nop> 오 좋아요 00:05 <@hezekiah> 무엇을 하면 되는지만 알려주면 제가 코딩할게요. 00:05 <@mids> http://sourceforge.net/tracker/index.php?func=detail&aid=651711&group_id=50945&atid=461514 읽고 00:05 <@mids> 고쳐요 :) 00:05 <@nop> 좋아요, mids 우리가 하려던 일의 세부는 아시는 것 같은데, 올바른 경로에 대해서는 결정했나요? 00:05 <@hezekiah> 그렇다면 00:06 <@hezekiah> mids: ... 그건 버그 트래커 ID니까 이미 읽어봤어요. :) 00:06 <@mids> 맞아 00:06 <@mids> 우선 ~/.iip/ 00:06 <@mids> 없으면, 현재 디렉터리 00:06 <@hezekiah> "install-local" 만들기로 했었죠? 00:07 <@mids> 응 00:07 <@hezekiah> 참고로, 제 테스트에 따르면, 코드는 이미 그렇게 하고 있어요. 00:07 <@mids> 그건 제가 이미 만들었던 것 같아요... 00:07 <@hezekiah> 단지 ~/.iip가 존재해야 해요. 00:07 <@mids> hezekiah: 거기에 iip.log는 절대 안 들어가 00:07 <@hezekiah> 아. 00:07 <@hezekiah> 그건 바로잡을 수 있어요. :) 00:07 <@mids> 그리고 mynode.ref도 아닐지도 00:07 <@hezekiah> 그 밖에 그곳에 있어야 할 파일 있나요? 00:07 <@hezekiah> (거기에 node.ref는 넣는 것 같아요.) 00:08 <@mids> userx의 문제는 로거(logger) 코드가 아주 로우레벨이라는 거였어요 00:08 <@hezekiah> 그게 파일 경로에 어떤 영향을 주죠? 00:08 <@mids> 그리고 '@'가 경로로 확장되는 같은 확장 기능이 없어요 00:09 <@hezekiah> (사람들이 이런 걸 원한다고 말만 해줬으면.) 아마 그걸 대신 작성해줄 수 있어요. 00:09 <@hezekiah> 개발 트리에서는요. HEAD의 로깅 코드가 어떤지는 잘 모르겠어요. 00:10 <@hezekiah> HEAD에서도 그걸 작성해줄 수 있을 거예요. 00:10 <@hezekiah> 정확히 뭘 원하는지 그에게 물어봐야겠네요. :) 00:11 <@mids> 그렇게 해요 00:11 <@hezekiah> 좋아요. :) 00:11 <@hezekiah> 그럼 정확히 어떤 파일들이 ~/.iip에 들어가지 않는 거죠? 00:12 <@hezekiah> iip.log를 얘기했죠. 00:12 <@mids> codeshark에 따르면:  iip.log, isproxy.ini, mynode.ref, seed.rnd 00:12 <@hezekiah> 흠. 00:12 <@hezekiah> 어느 CVS 트리를 테스트했는지는 기억이 안 나지만, isproxy.ini, node.ref, 그리고 seed.rnd는 ~/.iip에 들어갔어요. 00:13 <@hezekiah> ~/.iip가 존재해야 하고, isproxy.ini가 ~/.iip에 있거나 아예 없어야 한다는 점이 핵심이었죠. 00:13 <@hezekiah> 그 조건이 맞으면 제가 나열한 3개 파일이 ~/.iip에 놓여요. 00:13 <@mids> 그렇지 않으면, 현재 디렉터리 00:14 <@hezekiah> 맞아요. 00:14 <@hezekiah> isproxy.ini  listen.ref  node.ref  seed.rnd 00:14 <@hezekiah> 개발 브랜치가 ~/.iip에 넣는 파일들이에요. 00:14 <@mids> mynode.ref는요 ? 00:15 <@hezekiah> mids, mynode.ref라는 파일은 본 적이 없어요. 00:15 <@hezekiah> 그게 뭐죠? 00:15 <@mids> 공용/비공개 릴레이를 만들면 생성돼요 00:15 <@mids> inform로도 전송되는 정보를 담고 있어요 00:15 <@nop> 네 00:16 <@nop> 이웃 노딩(neighbor noding, 이웃 노드 직접 연결)을 하고 싶을 때를 위해 설계됐어요 00:16 <@hezekiah> iip/iip-ui.c:650:에서만 언급돼요 00:16 <@nop> 그들이 당신에게서 정확히 얹혀서(piggyback) 가도록 00:16 <@nop> 그래서 부트스트랩할 수 있도록 00:16 <@nop> 네트워크로 진입 00:18 <@mids> 좋아요 00:18 <@mids> 파일 경로는 변경될 수 있다는 점을 명심하세요 00:18 <@mids> 파일 경로가 바뀌어도 동작해야 해요 00:18 <@hezekiah> (mynode.ref가 어디에 놓이는지 살펴보는 중이에요.) 00:18 <@mids> 또는 개별 파일의 위치가 지정되는 경우에도요 00:18 <@hezekiah> mids: 지금은 파일 경로가 코드에 하드코딩돼 있어요. 00:19 <@mids> -f로 경로를 바꿀 수 있어요 00:19 <@hezekiah> 나중에 그런 기능이 추가되면, 코드도 거기에 맞춰 조정할 수 있어요. 00:19 <@mids> 제 man페이지를 보세요 :) 00:19 <@hezekiah> 흠 ... 이상하네. 00:20 <@hezekiah> 아, 그렇지! 하드코딩된 부분은 기본 매개변수로 쓰이는 거였죠. 00:21 <@mids> 그건 괜찮아요 00:21 <@hezekiah> 아무튼 UserX와 얘기해서 뭘 했고 뭘 원하는지 알아볼게요. :) 00:21 <@nop> 좋지 00:21 <@mids> huya 00:21 <@hezekiah> huya? 00:21 <@mids> 다음 미팅 전에 이걸 끝내봅시다 00:22 <@hezekiah> 다음 미팅 전에 UserX를 잡을 수 있고(그래야죠), 감기도 나으면(그래야죠), 더 멍청한 실수를 안 하면(그러길 바라요), 아마 그때까지 끝낼 수 있을 거예요. 00:22 <@hezekiah> (단, 아무것도 보장하지는 않아요: 코딩은 그런 걸 약속하기엔 너무 변동성이 커요[말장난 의도 없음].) 00:23 <@mids> 그럼 최고죠 00:23 <@mids> 좋아요 00:23 <@mids> 다른 릴리스 이슈 있나요? 00:23 <@mids> 새 man페이지 다들 보셨나요? 00:23 <@mids> 옛 건 지워도 되나요? 00:23 <@hezekiah> 네. 00:23 <@hezekiah> 삭제할까요? 00:24 <@mids> 바로 그렇게 할게요 00:24 <@mids> .1 man페이지는 CVS에 넣지 않을게요 00:24 <@mids> 릴리스하게 되면 만들어야 해요 00:25 <@mids> install-local이 포함된 제 Makefile을 메일링리스트에 보낼게요 00:25 <@hezekiah> Makefile들이 man페이지를 생성해야 할까요? 00:25 <@mids> 지금은 아니에요 00:26 <@mids> 최종 사용자가 perl을 갖출 필요는 없어요 00:26 <@hezekiah> 좋아요. Makefile로 설치되게 해야 할까요? 00:26 <@mids> (perldoc이 따라오죠) 00:26 <@mids> 향후 버전에서는 make distribute 같은 걸 둘 수 있어요 00:27 <@hezekiah> 지금 개발 트리의 automake Makefile들이 isproxy.1 man페이지를 설치하고 있어서 묻는 거예요. 00:27 <@mids> isproxy.pod에서 isproxy.1을 생성하는 지시어를 만드는 건 간단해야 해요 00:28 < lonelynerd> [ 00:28 <@hezekiah> 맞아요. 하지만 그러면 최종 사용자가 perl이 필요해져요. :) 00:28 < lonelynerd> 이런 00:28 <@mids> pod2man  -s 1 -c isproxy -r $VERSION ./$NAME/doc/isproxy.pod >./$NAME/doc/isproxy.1 00:28 <@hezekiah> 기억하세요, 최종 사용자에게 perl이 필요하지 않길 원한다고 하셨잖아요. 00:28 <@mids> 그럼 그건 make distribute 코드에 넣죠 00:28 <@mids> 지금은 1.1의 요구사항을 말하는 거예요 00:28 <@mids> 1.2는 달라요 00:29 <@mids> ㅇㅋ 00:30 <@mids> TODO: mids가 install-local Makefile 메일 발송 00:30 <@mids> hezekiah가 userx에게 연락 00:30 <@hezekiah> 맞아요. 00:30 <@mids> nop: podfile을 봐줘 00:30 <@mids> 좋아요, install-local에 대해 00:30 <@mids> 바이너리와 man페이지는 어디에 설치할까요? 00:30 <@mids> ~/bin, ~/man 같은 곳? 00:31 <@mids> 아니면 man페이지는 설치하지 말까요.. 00:31 <@hezekiah> 이메일 대화에서 UserX는 뭐라고 했나요? 00:31 <@nop> 좋아 00:31 <@hezekiah> 이런. 00:32 <@hezekiah> nop? 00:32 <@nop> 응 00:32 <@nop> 어느 이메일 대화? 00:32 <@hezekiah> 뭔가 말하려고 했잖아요. :) 00:32 <@nop> 아니 00:33 <@nop> 그냥 podfile을 보겠다고 했어 00:33 <@hezekiah> 오, mids, UserX, 그리고 저 셋이 파일 경로 문제를 어떻게 할지 계속 얘기했어요. 00:33 <@hezekiah> 그 일환으로 install-local makefile 타깃을 만드는 것도 있었고요. 00:33 <@hezekiah> 제 메일은 전부 CC로 보냈던 것 같아요. 00:33 <@mids> 몇 개 받았어 00:33 <@hezekiah> 한 번은 당신 메일함이 가득 차서 반송됐고요. 00:33 <@hezekiah> (그건 요약을 익명 메일로 보냈어요.) 00:34 <@hezekiah> UserX의 말 인용: "가능한 해결책은 Makefile에 "install-local" 타깃을 추가하는 것입니다. 이렇게 하면 실행 파일은 ~/bin/에, 다른 파일은 ~/.iip/에 둡니다." 00:35 <@mids> 메일 보냈어 00:37 <@hezekiah> 그럼 지금은 install-local이 node.ref와 isproxy만 복사해요. 00:37 <@hezekiah> 문제가 하나 더 보여요. 00:37 <@hezekiah> 사용자가 그냥 "make install"을 실행하는 경우요. 00:38 <@hezekiah> ... 그러면 ~/.iip가 생성되지 않아요. 00:38 <@hezekiah> 따라서 isproxy는 여전히 현재 디렉터리에 파일을 남겨둘 거예요. 00:38 <@mids> make로 사용자 ID를 확인할 수 있나? 00:38 <@hezekiah> 네? 00:38 <@mids> 그래서 root가 아니면 make install이 오류를 내게 00:39 <@hezekiah> whoami 같은 명령을 실행할 수는 있어요. 00:39 <@mids> 그게 옵션이 될까? 00:39 <@hezekiah> id -u 00:39 <@hezekiah> 그럼 사용자 숫자 ID가 출력될 거예요. 00:40 <@mids> "Error: make install requires you to be root, use make install-local instead" 00:40 <@hezekiah> 글쎄요, /usr/local/bin으로 파일 복사하려 하면 어차피 그건 보게 될 거예요 00:41 <@hezekiah> 그래도 문제는 그대로예요: ~/.iip가 존재하지 않으면 isproxy는 그곳에 파일을 두지 않고, "make install"은 그걸 만들지 않아요. 00:41 < nemesis> 말해도 될까요? 00:41 <@hezekiah> (안 될 이유가 없죠. Nop이나 mids, 말해도 되나요? 00:41 <@hezekiah> ) 00:41 < nemesis> ;) 00:41 <@mids> 말씀하세요 00:42 < nemesis> 리눅스 배포판 SoL (server optimized linux) 아시는 분? 모든 서버를 위한 루트 /server가 있고, unreal도 추가돼 있어요 00:42 <@mids> (hezekiah: make install이 /home/iip/.iip/를 만들고 거기에 설치해요) 00:42 < nemesis> 언젠가 iip가 그 배포판에 들어가면 좋겠네요 00:43 < _42> configure --prefix=~ 는 어때요? 00:43 < nemesis> 의견 있나요? 00:43 <@mids> _42: 1.1에는 아직 configure가 없고, 1.2에는 있어 00:43 < _42> 아. 00:43 <@hezekiah> _42: CVS 메인 브랜치에는 configure 스크립트가 없어요. 00:43 <@mids> _42: 좋은 지적 00:43 <@hezekiah> _42: 하지만 1.2에는 그걸 이미 제안했어요. :) 00:44 <@mids> nemesis: 1.1이 나오면 배포판 쪽에 패키지 생성을 요청할 거예요 00:44 <@mids> 그럼 다음으로, init.d 스크립트가 필요해요 00:44 <@mids> 그건 우리가 제공해야 해요 00:44 < nemesis> SoL은 그걸 XML로 해요 00:44 < nemesis> 설정이 아주 좋아요... 00:44 < _42> mids: 그건 배포판별이에요. Gentoo용은 제가 쓸 수도 있어요. 00:45 <@hezekiah> 그리고 Gentoo는 대부분과 다른 포맷을 써요. 00:45 <@mids> iip.1.1.showstoppers.add(init.d-script) 00:45 <@mids> 일반적인 걸 하나 제공할 수도 있나요? 00:45 <@hezekiah> 그게 잘 동작한다고 장담하진 않겠어요. 00:45 <@mids> 아 00:45 <@mids> 그럼, 안 해도 되나요? 00:45 <@hezekiah> 배포판에 맡기거나, 배포판별로 따로 만드는 게 낫겠어요. 00:45 < _42> mids: Gentoo는 init.d 스크립트에 의존성 시스템을 사용해요. 간단하지만 호환되지 않아요. 00:45 <@mids> ㅇㅋ 00:45 <@mids> 그럼 그건 놔두죠 00:46 <@mids> 데비안 패키저 연락처가 좀 있어요 00:46 <@hezekiah> 특히 모든 배포판이 init.d를 쓰는 것도 아니니까요! (Gentoo는 완전히 다른 포맷을 써요.) 00:46 <@hezekiah> 좋아요. :) 00:46 <@mids> 예전에 iip 패키징을 제안한 적이 있어요 00:46 <@hezekiah> 멋지네요! :) 어디까지 했죠? 00:46 <@mids> 치명적 이슈 00:46 <@mids> 더 있나요? 00:46 <@hezekiah> 아, 맞다. 00:46 <@hezekiah> 없다고 봐요 00:46 < nemesis> 1.1은 언제 릴리스되나요? ;) 00:46 <@mids> nemesis: 모든 치명적 이슈가 해결되면 00:47 <@hezekiah> 쇼스톱퍼들을 다 고치면요! ;-) 00:47 <@mids> Windows 도움말 파일 건은 어때요 00:47 <@mids> 지금은 어떻게 동작하죠? 00:47 < nemesis> *g* ㅇㅋ thx 00:47 <@mids> 뭐라고 나오나요 00:47 < _42> mids: 적절한 시작/중지 명령을 알면 Gentoo runscript를 쓸 수 있어요. 00:47 <@hezekiah> 모르겠어요. 꼭 필요할 때 말고는 Windoze는 안 써요. 00:47 <@mids> codeshark가 'no help right now, see http://help.invisiblenet.net/' 비슷한 걸 만들었던 걸로 알아요 00:47 <@hezekiah> (그렇다면 제가 하나 쓸 수도 있어요, _42. 저는 Gentoo를 써요.) 00:47 <@mids> thx 00:47 < _42> hezekiah: 우리 중 한 명이 ebuild를 하고, 다른 한 명이 init.d를 하는 건 어때요? :) 00:47 <@hezekiah> 좋아요. 상관없어요. :) 00:48 < _42> 좋은데, 누가 뭘 하죠? 00:48 <@mids> 좋아요 00:48 <@mids> Windows 사용자 있나요? 00:48 <@hezekiah> mids가 허락하면 둘 다 해도 돼요. :) 00:49 <@mids> 그건 1.1 릴리스 자체에는 포함되지 않을 거예요 00:49  * hezekiah 가 방안을 울리는 굉음 같은 침묵에 귀 기울인다. 00:49 <@mids> 아 맞다 00:49 <@hezekiah> 뭐죠? 00:49 <@mids> nop이 문서를 쭉 읽어봐야 했어요 00:49 <@mids> 암호 관련 몇 가지가 바뀌었어요 00:50 < _42> 뭐, ebuild? 당연히 아니죠. 그건 Gentoo HQ에서 배포돼요. rsync를 통해 (배포판 보안을 위해 삭제됨)에 있는 신비한 복합시설에서 00:50 <@hezekiah> 그럼 1.1 전까지 해야 할 일 목록이 지금 어떻게 되죠? 00:50 <@hezekiah> _42: 알아요. 하지만 하나 작성해서 Bugzilla 리스트에 제출할 수 있죠. 00:50 <@mids> - 파일 경로 00:50 <@mids> - install-local 00:50 <@mids> - README, INSTALL, AUTHORS 업데이트 00:51 <@mids> - Windows 문서 확인 00:51 <@mids> . 00:51 <@hezekiah> - 그리고 nop이 말한 그 문서를 봐야 했죠? 00:51 <@nop> 좋아 00:51 <@hezekiah> 아니면 그게 Windoze 문서 확인이었나요? 00:52 <@mids> 음 00:52 <@mids> http:L의 문서들 00:52 <@hezekiah> 아! :) 00:52 <@mids> http://help.invisiblenet.net/ 는 릴리스 후에도 바꿀 수 있어요 00:52 <@hezekiah> 그럼 제 일은 파일 경로 관련해서 UserX와 이야기하고 제가 도울 수 있는 걸 보는 거네요. 00:52 <@mids> 네 00:52 <@mids> 그리고 우리를 쪼아서 일을 하게 만드는 것 00:52 <@hezekiah> ㅋㅋ. 00:53 <@hezekiah> 그건 제가 잘 못해요. 당신이 사람들 밀어붙이는 건 더 잘하죠. ;-) 00:53 <@mids> 알겠 00:53 <@mids> 매일 업데이트를 요청할게요 00:53 <@mids> 오전 8시 정각에 00:53 <@mids> :) 00:53 <@hezekiah> 개발용 automake Makefile 템플릿을 당신의 install-local처럼 바꿀까요, 아니면 먼저 검토가 필요할까요? 00:54 <@mids> 그건 의견 요청이에요 00:54 <@hezekiah> 아. 00:54 <@mids> 모두 동의하면 1.1에 먼저 넣죠 00:54 <@mids> CVS dev는 나중에 해도 돼요 00:54 <@hezekiah> 의견 하나: PREFIX 변수를 만듭시다. 00:54 <@hezekiah> 지금은 /usr/local이 여러 변수에 하드코딩돼 있어요. 00:55 <@mids> Makefile에서요? 00:55 <@hezekiah> /usr/local을 쓰지 않는 시스템에 설치해야 하는 사람에겐 고통이에요. 00:55 <@mids> 좋아요 00:55 <@hezekiah> 예: INSTALLEXEPATH는 이렇게 보이게요 00:55 <@hezekiah> > PREFIX=/usr/local 00:55 < _42> 1.1 브랜치를 체크아웃하는 문법은 뭐죠? 00:55 < _42> CVS에서 00:55 <@mids> 1.1은 HEAD예요 00:55 <@hezekiah> > INSTALLEXEPATH=$(INSTALLEXEPATH)/bin 00:55 <@hezekiah> . 00:55 < _42> 알겠어요 00:56 <@hezekiah> 1.2는 development예요. :) 00:56 <@hezekiah> ;-) 00:56 < _42> 오, 참 선(禪)적이군요 00:56 < _42> 개발과 하나가 되어야... 00:56 <@hezekiah> 어쨌든 PREFIX 변수를 쓰면 다른 변수 3~4개를 설정하는 대신 "make PREFIX=/usr install" 로 할 수 있어요 00:57 <@hezekiah> _42: 맞아요. :) 00:57 <@hezekiah> _42: 그래도 1.1 버그픽스도 해요 ... 제 코드 대부분은 development로 가는 것뿐이죠. 00:57 <@mids> make PREFIX=가 Makefile의 PREFIX를 덮어쓰게 하려면 어떻게 하죠? 00:57 <@hezekiah> "make PREFIX=/usr install" 00:57 < _42> 'ㅇㅋ. 그런데 dev가 CVS에 있으면, -r 없이 co하면 그것도 받지 않나요? 00:57 <@mids> 제 말은, Makefile 자체에서요 00:58 <@hezekiah> Makefile에 설정된 PREFIX를 무엇이든 덮어써요. 00:58 <@mids> 자동(automagically)으로요? 00:58 <@hezekiah> Makefile이 PREFIX=/usr/local이어도 "make PREFIX=/usr install" 하면 PREFIX=/usr가 돼요. 00:58 <@mids> 좋네요 00:58 <@hezekiah> 그게 Gentoo ebuild가 성가신 Makefile을 우회하는 한 방법이죠. :) 00:58 <@mids> 좋아요 00:59 <@mids> 한 가지 더 00:59 <@hezekiah> 좋네요. 00:59 <@mids> iip/doc/help/imaghes 에 00:59 <@mids> iomages 00:59 <@mids> images가 맞네요 :) 00:59 <@mids> bmp 파일들이 좀 있어요 00:59 <@mids> 그건 지워도 된다고 봐요 00:59 <@mids> doc/help의 iip.pdf도요 00:59 <@hezekiah> doc/help의 파일들이 그걸 사용하지 않는 게 확실한가요? 00:59 <@mids> 모르겠어요 00:59 <@mids> 저는 Windows 쪽 사람이 아니라서요 00:59 <@hezekiah> (아이구.) 01:00 <@mids> codeshark에게 물어봐야 해요 01:00 <@mids> 그가 만들었어요 01:00 <@hezekiah> 저도요, 하지만 조심하려고 해요. 01:00 <@hezekiah> HEAD 브랜치에서 파일을 지우는 일은 당신께 맡길게요. :) 01:00 <@hezekiah> (... 그리고 제 목은 제 어깨 위에 안전하게 유지하죠.) ;-) 01:00 <@mids> 좋아요, 두 브랜치에서 isproxy.1을 제거했어요 01:00 <@hezekiah> 아. 01:00 <@mids> 슈퍼 TODO: TODO 리스트를 메일링리스트로 발송 01:00 <@mids> :) 01:00 <@hezekiah> ㅋㅋ 01:01 <@hezekiah> 먼저 그걸 업데이트해야 해요. 01:01 <@hezekiah> 제가 했지만 체크되지 않은 것들이 꽤 있어요. 01:01 <@hezekiah> 또 개발 브랜치의 Makefile들이 isproxy.1에 의존했어요. 01:01 <@mids> 오 01:01 <@mids> dev에서 isproxy.1은 이미 지웠어요 01:02 < _42> Makefile은 파일은 한 디렉터리로 복사하고 실행 파일은 다른 디렉터리로 설정하는 걸 지원해야 해요 01:02 <@hezekiah> 그럼 isproxy.pod로 구체적으로 뭘 하죠? 01:02 <@mids> 자, 갑니다: 01:02 < hobbs> 음. pod. 01:02 <@hezekiah> 필요하면 다시 넣을 수 있지만, 더 시급한 일이 있다고 봐요. :) 01:02 <@mids> hezekiah: pod2man  -s 1 -c isproxy -r $VERSION ./$NAME/doc/isproxy.pod >./$NAME/doc/isproxy.1 01:02 <@hezekiah> _42: 그렇습니다. 실행 파일과 Makefile은 서로 다른 곳으로 가요. 다만 둘 다 "make install"의 타깃이긴 했죠. 01:03 <@mids> Makefile이 어떻게든 버전을 알았으면 해요 01:03 <@hezekiah> 그건 제가 처리할 수 있어요. 01:03 <@hezekiah> 하지만 이렇게 하면 사용자에게 perl이 필요해요. 01:03 <@nop> 미안 얘들아 나왔다 들어갔다 해 01:03 <@nop> 일하는 중이라서요 01:03 <@hezekiah> (이건 전에 얘기했죠.) 01:03 < _42> 아니요, 제 말은 Makefile 변수를 덮어써서 지정한 한 디렉터리로 파일을 복사하고, 설정은 다른 디렉터리를 대상으로 하자는 거예요 01:03 <@hezekiah> 문제없어요. :) 01:03 <@mids> "./$NAME/doc/isproxy.pod >./$NAME/doc/isproxy.1" 을 "$? > $@" 로 바꿀 수 있어 01:03 < _42> ㅇㅋ 01:04 <@hezekiah> 좋아요. 01:04 <@hezekiah> 하지만 개발 브랜치 사용자는 여전히 perl에 의존하게 돼요. 01:04 <@hezekiah> 그게 괜찮을까요? 01:04 <@mids> pod2man에 의존하도록 하죠 01:04 <@hezekiah> 좋아요. 01:04 <@hezekiah> 그럼 configure 스크립트가 그걸 찾게 만들게요. 01:04 <@mids> 네 01:05 <@mids> _42: Gentoo는 Makefile 같은 걸 패치하지 않나? 01:05 <@mids> (freenet처럼) 01:05 <@hezekiah> nop: configure 스크립트가 pod2man을 찾고, Makefile(개발 트리)로 man페이지를 빌드하게 하는 것에 이의 있나요? 01:05 <@hezekiah> mids: Gentoo는 패치나 sed를 쓰거나, 그냥 Makefile 변수들을 설정해요. 01:06 <@hezekiah> mids: 필요한 것 중 가장 덜 과격한 방법을 쓰죠. :) 01:06  * mids 는 nop이 반대하지 않을 거라 짐작함 01:06 < _42> mids: 그럴 수도 있지만, PREFIX=${D}/를 추가하는 게 더 쉬워요 01:06 <@mids> _42: yop 01:06 < _42> freenet이 akefiles를 패치하나요? 01:06 <@mids> freebsd 01:06 < _42> 아 01:07 <@mids> 아니면 아닐 수도 01:07 <@mids> 어쨌든 01:08 <@mids> - 파일 경로 (A hezekiah, userx) 01:08 <@mids> - Makefile install-local,PREFIX 01:08 <@mids> - README, INSTALL, AUTHORS (mids) 01:08 <@mids> - Windows 문서 (codeshark) 01:08 <@mids> - 문서 (nop) 01:08 <@mids> 추가할 것 있나요? 01:09 <@mids> 없으면 그걸 메일로 보낼게요 01:09 <@hezekiah> 생각나는 건 없어요. :) 01:10 <@mids> Makefile은 누가 할까요? 01:10 <@mids> 제가요? 01:10 <@hezekiah> HEAD 건 당신이 하세요. 01:10 <@mids> HEAD 얘기하는 거예요 01:11 <@hezekiah> 개발 쪽의 Makefile/ configure 스크립트는 보통 제가 맡아요. :) 01:11 <@hezekiah> 당신이 하세요. :) 01:12 < lonelynerd> 데비안 패키지는요? ;) 01:12 <@mids> lonelynerd: 그건 코드가 동결되거나 릴리스가 된 다음에 하면 돼요 01:12 < lonelynerd> 그렇죠 01:13 <@mids> TODO 발송됨 01:13 <@mids> 좋아요 01:13 <@mids> 질문 시간? 01:14 <@mids> 질문 시간. 01:14 < hezekiah> 미안 그건. 01:14 < hezekiah> 연결이 끊겼어요. 01:14 <@mids> 그랬어요? :) 01:14 < hezekiah> 네. :) 01:16 <@mids> 좋아요, 지금 질문할 수 있는데도 질문 안 한 참석자는 일주일 동안 질문 금지예요 :) 01:16 <@hezekiah> ㅋㅋ. 01:16 <@hezekiah> mids: 정말로 주중에 사람들이 와서 질문하나요? 01:17 <@mids> 엄청 많이요 01:17 <@hezekiah> 와! 01:17 < lonelynerd> ;) 01:17 <@mids> 주로 #iip와 #help에서요 01:17 <@hezekiah> 오. "엄마, 엄마! isproxy가 뭐야!?" 01:17 <@hezekiah> ;-) 01:17 <@mids> RTFM 01:18 <@hezekiah> ㅋㅋ 01:18 <@mids> 좋아요 01:18 <@mids> 끝낼까요? 01:18  * hezekiah 가 mids에게 자신의 gaffle을 건네 'baf' 하라고 함 01:18 <@mids> baf로 하죠 --- 로그 종료 Wed Feb 12 01:19:02 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Feb 11 23:36:59 2003
+23:37 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+23:37 [Users #iip-dev]
+23:37 [ ArdVark ] [ logger    ] [ mids] [ ptm      ] [ UserX]
+23:37 [ jeremiah] [ lonelynerd] [ pox ] [ thecrypto]
+23:37 -!- Irssi: #iip-dev: Total of 9 nicks [0 ops, 0 halfops, 0 voices, 9 normal]
+23:37 -!- Irssi: Join to #iip-dev was synced in 2 secs
+23:57 < nop> hi hezekiah
+23:58 < hezekiah> Hi. :)
+23:58 -!- mode/#iip-dev [+o mids] by Trent
+23:58 -!- mode/#iip-dev [+o nop] by Trent
+23:58 <@mids> gimme an h. e. z. e. k. i. a. h
+23:58 <@mids> hezekiah!
+23:58 < hezekiah> lol
+23:58 < lonelynerd> :D
+23:58 < hezekiah> (Hmmm ....)
+23:59  * hezekiah gets an idea wondering if I can do something in IRC.
+23:59 <@nop> uh oh
+23:59 -!- mode/#iip-dev [+o hezekiah] by Trent
+23:59 -!- mode/#iip-dev [+o UserX] by hezekiah
+23:59 < _42> what?
+23:59 <@hezekiah> It works!
+23:59 <@mids> kick me out?
+23:59 <@hezekiah> Cool!
+23:59 <@hezekiah> No.
+23:59 -!- mode/#iip-dev [-o UserX] by mids
+23:59 <@hezekiah> See if I could op UserX
+23:59 <@nop> it worked yes
+23:59 <@hezekiah> Oops.
+23:59 <@mids> userx didnt identify
+23:59 < _42> op everyone :)
+23:59 <@hezekiah> Oh.
+23:59 <@mids> he might be evil
+23:59 <@mids> :)
+23:59 <@hezekiah> My mistake. :(
+23:59 <@mids> *grin&
+23:59 <@hezekiah> I was just wondering if I could do it. (Good at C. Newborn at IRC.)
+--- Day changed Wed Feb 12 2003
+00:00 <@nop> anonymity and authentication take practice hezekiah
+00:00 <@mids> Tue Feb 11 23:00:05 UTC 2003
+00:00 < _42> Yeah, but we all know that nop is sa&nbsp;fe.
+00:00 <@nop> you will learn grasshoper
+00:00 <@nop> ok
+00:00 <@nop> welcome
+00:00 <@mids> Welcome to the 30th meeting
+00:00 <@nop> _42 let's take this outside
+00:00 <@nop> ;)
+00:00 < thecrypto> yah!
+00:00 < thecrypto> 30!
+00:00 <@nop> sweet
+00:00 <@nop> ok
+00:01 <@nop> anyway
+00:01 <@nop> welcome, do we have anything specific on the agenda
+00:01 <@hezekiah> IIP 1.1 yet?
+00:01 <@mids> nope!
+00:01 < hobbs> 30 is the product of the first three primes. :)
+00:02 <@nop> hehe
+00:02 < thecrypto> yah!
+00:02 < thecrypto> primes!
+00:02 <@nop> simmer down everyone
+00:02 <@mids> showstoppers for IIP 1.1:
+00:02 <@mids> - file paths
+00:02 < _42> what about them?
+00:03 <@nop> 42 we have questions later
+00:03 <@nop> after all this
+00:03 <@nop> continue mids please
+00:03 <@mids> 42 asked what is one with the file paths I guess
+00:03 <@mids> I dont have other showstoppers
+00:04 <@nop> oh
+00:04 <@nop> well than do a .
+00:04 <@nop> so we know
+00:04 <@nop> sorry 42
+00:04 < _42> it's ok
+00:04 <@nop> ok umm, I believe UserX is working on the file path issue
+00:04 <@nop> I don't think he's at his keyboard at this moment
+00:04 <@mids> he didnt yet
+00:04 <@mids> I checked today
+00:04 <@nop> but I'll see if I can get that done stat
+00:05 <@hezekiah> I also proposed a solution.
+00:05 <@nop> oh ok
+00:05 <@hezekiah> I'm willing to code it if someone tells me what to do.
+00:05 <@mids> read http://sourceforge.net/tracker/index.php?func=detail&aid=651711&group_id=50945&atid=461514
+00:05 <@mids> and fix it :)
+00:05 <@nop> ok, mids I think you know the details of what we wanted done, but did we decide on the proper paths?
+00:05 <@hezekiah> If that
+00:06 <@hezekiah> mids: ... that's the bugtracker ID, then I've already read it. :)
+00:06 <@mids> yeah
+00:06 <@mids> first ~/.iip/
+00:06 <@mids> if not, current dir
+00:06 <@hezekiah> Were we going to make an "install-local"?
+00:07 <@mids> yes
+00:07 <@hezekiah> BTW, accourding to my testing, the code already does that.
+00:07 <@mids> I already made that I think...
+00:07 <@hezekiah> It just requires that ~/.iip exists.
+00:07 <@mids> hezekiah: it never ever puts iip.log in there
+00:07 <@hezekiah> Ah.
+00:07 <@hezekiah> That can be corrected. :)
+00:07 <@mids> and maybe also not mynode.ref
+00:07 <@hezekiah> Any other files that need to be there?
+00:07 <@hezekiah> (I think it does put node.ref there.)
+00:08 <@mids> userx' problem was that the logger code is very low level
+00:08 <@hezekiah> How's that affect the file paths?
+00:08 <@mids> and it doesnt have the extended features like '@' extends to path
+00:09 <@hezekiah> (I wish people would tell me they want these things.) I can probably write that up for him.
+00:09 <@hezekiah> In the development tree that is. I'm not sure what the logging code in head looks like.
+00:10 <@hezekiah> I should be able to write that up for him in head as well.
+00:10 <@hezekiah> I'll have to ask him exactly what he wants. :)
+00:11 <@mids> do that
+00:11 <@hezekiah> OK. :)
+00:11 <@hezekiah> So exactly what files _aren't_ getting placed in ~/.iip?
+00:12 <@hezekiah> You mentioned iip.log.
+00:12 <@mids> according to codeshark:  iip.log, isproxy.ini, mynode.ref, seed.rnd
+00:12 <@hezekiah> Hmmm.
+00:12 <@hezekiah> I can't remember which CVS tree I tested, but isproxy.ini, node.ref, and seed.rnd were are placed in ~/.iip.
+00:13 <@hezekiah> The key was that ~/.iip needs to exist _and_ isproxy.ini needs to be in ~/.iip or not exist.
+00:13 <@hezekiah> When those conditions are met, the 3 files I listed are placed in ~/.iip.
+00:13 <@mids> if not, current directory
+00:14 <@hezekiah> Right.
+00:14 <@hezekiah> isproxy.ini  listen.ref  node.ref  seed.rnd
+00:14 <@hezekiah> Those are the files that the development branch places in ~/.iip.
+00:14 <@mids> what about mynode.ref ?
+00:15 <@hezekiah> mids, I've never met a file called mynode.ref.
+00:15 <@hezekiah> What is it?
+00:15 <@mids> it is created if you make a public/private relay
+00:15 <@mids> contains the info that is also sent to inform
+00:15 <@nop> yes
+00:16 <@nop> it's designed for if you want to do neighbor noding
+00:16 <@hezekiah> It is only mentioned in active sourcecode at: iip/iip-ui.c:650
+00:16 <@nop> they specifically piggy back off you
+00:16 <@nop> so they can bootstrap
+00:16 <@nop> into the network
+00:18 <@mids> ok
+00:18 <@mids> keep in mind that the filepath can be changed
+00:18 <@mids> it has to work if the filepath is changed too
+00:18 <@hezekiah> (I'm looking into where mynode.ref gets placed.)
+00:18 <@mids> or if the location for the individual files are specified too
+00:18 <@hezekiah> mids: right now the filepath is hardcoded into the code.
+00:19 <@mids> -f lets you change the path
+00:19 <@hezekiah> If features are added in the future to do those things, then the code can be adapted to work with them.
+00:19 <@mids> see my manpage :)
+00:19 <@hezekiah> Hmmm ... odd.
+00:20 <@hezekiah> Oh, duh! Right, the part that's hardcoded is used as a default parameter.
+00:21 <@mids> thats fine
+00:21 <@hezekiah> Anyway, I'll talk to UserX and see what he has done/wants done. :)
+00:21 <@nop> coo
+00:21 <@mids> huya
+00:21 <@hezekiah> huya?
+00:21 <@mids> lets try to get this done BEFORE the next meeting
+00:22 <@hezekiah> If I can catch UserX before the next meeting (which I should), and I can get rid of this cold (which I should), and I don't make any more braindead mistakes (which I hope I won't), then hopefully, it will be.
+00:22 <@hezekiah> (Note I garuntee nothing: Coding is far to volatile [no pun intended] to do that.)
+00:23 <@mids> would be awesome
+00:23 <@mids> okay
+00:23 <@mids> other release issues?
+00:23 <@mids> did everybody look at the new manpage?
+00:23 <@mids> can the old one be removed?
+00:23 <@hezekiah> Yeah.
+00:23 <@hezekiah> Do you want it removed?
+00:24 <@mids> I'll do that right away
+00:24 <@mids> I wont put the .1 manpage in CVS
+00:24 <@mids> if we release, it has to be created
+00:25 <@mids> I'll send my Makefile with install-local to the mailinglist
+00:25 <@hezekiah> Should the makefiles create the manpage?
+00:25 <@mids> not right now
+00:26 <@mids> end-users dont need to have perl
+00:26 <@hezekiah> OK. Should they be installed by the Makefile?
+00:26 <@mids> (which ships perldoc)
+00:26 <@mids> future versions can have a make distribute or something
+00:27 <@hezekiah> I'm asking these questions because right now the automake Makefiles for the development tree install the isproxy.1 manpage.
+00:27 <@mids> making a directive that makes an isproxy.1 out of isproxy.pod should be simple
+00:28 < lonelynerd> [
+00:28 <@hezekiah> Right. But that makes the end user require perl. :)
+00:28 < lonelynerd> whoops
+00:28 <@mids> pod2man  -s 1 -c isproxy -r $VERSION ./$NAME/doc/isproxy.pod >./$NAME/doc/isproxy.1
+00:28 <@hezekiah> Remember, you said you don't want them to need perl.
+00:28 <@mids> then put that in the make distribute code
+00:28 <@mids> I am more talking about requirements for 1.1
+00:28 <@mids> 1.2 is different
+00:29 <@mids> k
+00:30 <@mids> TODO: mids mail install-local makefile
+00:30 <@mids> hezekiah contact userx
+00:30 <@hezekiah> Right.
+00:30 <@mids> nop: look at podfile
+00:30 <@mids> okay, for install-local
+00:30 <@mids> where should the binary and manpage be installed?
+00:30 <@mids> ~/bin and ~/man or something?
+00:31 <@mids> or not install manpage..
+00:31 <@hezekiah> What did UserX say in our email conversation?
+00:31 <@nop> ok
+00:31 <@hezekiah> Oops.
+00:32 <@hezekiah> nop?
+00:32 <@nop> yes
+00:32 <@nop> which email conversation
+00:32 <@hezekiah> You were saying something. :)
+00:32 <@nop> no
+00:33 <@nop> just saying I'd look at podfile
+00:33 <@hezekiah> Oh, mids, UserX, and I were going back and forth about what to do with the file path problem.
+00:33 <@hezekiah> Part of that involved making an install-local makefile target.
+00:33 <@hezekiah> I think I sent CC's of all my messages to you.
+00:33 <@mids> did get some
+00:33 <@hezekiah> Except for one that your email box wouldn't accept because it was full.
+00:33 <@hezekiah> (I anonymailed you the summary of that one.)
+00:34 <@hezekiah> I quote from UserX: "A possible solution to this is to add a "install-local" target to the Makefile. This would put the executable in ~/bin/ and other files in ~/.iip/."
+00:35 <@mids> mail sent
+00:37 <@hezekiah> So for now, install-local only copies node.ref and isproxy.
+00:37 <@hezekiah> I still see a small problem.
+00:37 <@hezekiah> When the user just runs "make install".
+00:38 <@hezekiah> ... then ~/.iip doesn't get created.
+00:38 <@hezekiah> Thus, isproxy will still leave its files in the current directory.
+00:38 <@mids> can you check userid with make?
+00:38 <@hezekiah> Huh?
+00:38 <@mids> so if you arent root, make install will give an error
+00:39 <@hezekiah> You can run a command like whoami.
+00:39 <@mids> would that be an option?
+00:39 <@hezekiah> id -u
+00:39 <@hezekiah> That should spit out the numeric ID of the user.
+00:40 <@mids> "Error: make install requires you to be root, use make install-local instead"
+00:40 <@hezekiah> Well, they should get that anyway if they are trying to copy files to /usr/local/bin
+00:41 <@hezekiah> It still doesn't fix the problem: isproxy will not place files in ~/.iip unless it exists, and "make install" doesn't create it.
+00:41 < nemesis> can i speak?
+00:41 <@hezekiah> (I don't see why not. Nop or mids can he speak?
+00:41 <@hezekiah> )
+00:41 < nemesis> ;)
+00:41 <@mids> please speak
+00:42 < nemesis> anyone know the linux distri SoL (server optimized linux) ? there are a root /server for all servers, unreal are added too
+00:42 <@mids> (hezekiah: make install makes /home/iip/.iip/ and installs there)
+00:42 < nemesis> it would be nice when iip goes someday in that distri
+00:43 < _42> What about configure --prefix=~ ?
+00:43 < nemesis> any suggestions?
+00:43 <@mids> _42: 1.1 doesnt have configure yet, 1.2 does
+00:43 < _42> oh.
+00:43 <@hezekiah> _42: the main branch of CVS doesn't have a configure script.
+00:43 <@mids> _42: good point though
+00:43 <@hezekiah> _42: but I already suggested that for 1.2. :)
+00:44 <@mids> nemesis: once 1.1 is out, we'll ask distributetions to make packages
+00:44 <@mids> which leads us to the following, we need an init.d script
+00:44 <@mids> we should really supply that
+00:44 < nemesis> SoL usese XML for that
+00:44 < nemesis> very nice configs...
+00:44 < _42> mids: they're distro-defined. I might be able to write a gentoo one.
+00:45 <@hezekiah> And Gentoo uses a different format than most.
+00:45 <@mids> iip.1.1.showstoppers.add(init.d-script)
+00:45 <@mids> maybe we can supply a general one?
+00:45 <@hezekiah> I wouldn't bet on it working.
+00:45 <@mids> ah
+00:45 <@mids> so, we dont have to?
+00:45 <@hezekiah> I'd save leave it to the distros, or make distro-specific ones.
+00:45 < _42> mids: gentoo uses a dependency system with its init.d scripts. It's simple, but incompatible.
+00:45 <@mids> k
+00:45 <@mids> then lets leave it
+00:46 <@mids> I still have some contact info of a debian packages
+00:46 <@hezekiah> _Especially_ when not all distros even USE init.d! (Gentoo uses a totally different format.)
+00:46 <@hezekiah> OK. :)
+00:46 <@mids> he offered to package iip in the past
+00:46 <@hezekiah> Cool! :) So where were we?
+00:46 <@mids> show stoppers
+00:46 <@mids> any more?
+00:46 <@hezekiah> Oh, yeah.
+00:46 <@hezekiah> I don't know of any
+00:46 < nemesis> when will 1.1 be released? ;)
+00:46 <@mids> nemesis: once all the show stoppers are tackled
+00:47 <@hezekiah> When we fix all the showstoppers! ;-)
+00:47 <@mids> what about the windows helpfile thing
+00:47 <@mids> how does that work atm?
+00:47 < nemesis> *g* k thx
+00:47 <@mids> what does it say
+00:47 < _42> mids: If I knew the proper start/stop commands I could write a gentoo runscript.
+00:47 <@hezekiah> I have no clue. I don't use Windoze unless I need to.
+00:47 <@mids> I believe that codeshark made a 'no help right now, see http://help.invisiblenet.net/' or something
+00:47 <@hezekiah> (If it comes to that, I could write one, _42. I use Gentoo.)
+00:47 <@mids> thx
+00:47 < _42> hezekiah: how about one of us does the ebuild, and the other the init.d? :)
+00:47 <@hezekiah> Fine. I don't really care. :)
+00:48 < _42> yes, but who does what?
+00:48 <@mids> ok
+00:48 <@mids> any windows user?
+00:48 <@hezekiah> You can do both if mids lets you. :)
+00:49 <@mids> it wont be bundled in the 1.1 release itself
+00:49  * hezekiah listens to the thunderous silence resounding through the room.
+00:49 <@mids> oh yeah
+00:49 <@hezekiah> What?
+00:49 <@mids> nop had to read through the docs
+00:49 <@mids> some crypto things changed
+00:50 < _42> what, the ebuild? of course not. That's distributed from Gentoo HQ. in a mysteriopus complex in (DELETED FOR DISTRO SECURITY REASONS) via rsync
+00:50 <@hezekiah> So what's the list of stuff we need to do until 1.1 look like now?
+00:50 <@hezekiah> _42: I know. But you can write one and submit it to the bugzilla list.
+00:50 <@mids> - filepath
+00:50 <@mids> - install-local
+00:50 <@mids> - readme, install, authors update
+00:51 <@mids> - windows documentation check
+00:51 <@mids> .
+00:51 <@hezekiah> - and nop needed to look at those docs you mentioned?
+00:51 <@nop> ok
+00:51 <@hezekiah> Or was that the windoze doc check?
+00:52 <@mids> well
+00:52 <@mids> the docs on http:L
+00:52 <@hezekiah> Ah! :)
+00:52 <@mids> http://help.invisiblenet.net/ can be changed also after release
+00:52 <@hezekiah> So my work is talking to UserX about the filepath stuff and seeing how I can help all this.
+00:52 <@mids> yes
+00:52 <@mids> and pushing us to do our stuff
+00:52 <@hezekiah> lol.
+00:53 <@hezekiah> I wouldn't do good at that. You're better at pushing. ;-)
+00:53 <@mids> I k
+00:53 <@mids> I'll request daily updates
+00:53 <@mids> at 8.00 am
+00:53 <@mids> :)
+00:53 <@hezekiah> Do I change the development automake Makefile templates to mimic your install-local, or does it need to be reviewed first?
+00:54 <@mids> it is a request for comments
+00:54 <@hezekiah> Ah.
+00:54 <@mids> lets first put it in 1.1, if everybody agrees
+00:54 <@mids> cvs dev can be done later
+00:54 <@hezekiah> I have a comment: let's make a PREFIX var.
+00:54 <@hezekiah> Right now /usr/local is hardcoded into several variables.
+00:55 <@mids> in Makefile?
+00:55 <@hezekiah> This is a pain for anyone that needs to install on a system that doesn't use /usr/local.
+00:55 <@mids> ok
+00:55 <@hezekiah> i.e. INSTALLEXEPATH would look like this
+00:55 <@hezekiah> > PREFIX=/usr/local
+00:55 < _42> what's the syntax for checking out the 1.1 branch?
+00:55 < _42> from cvs
+00:55 <@mids> 1.1 is HEAD
+00:55 <@hezekiah> > INSTALLEXEPATH=$(INSTALLEXEPATH)/bin
+00:55 <@hezekiah> .
+00:55 < _42> ok
+00:56 <@hezekiah> 1.2 is development. :)
+00:56 <@hezekiah> ;-)
+00:56 < _42> oh, how zen
+00:56 < _42> You must be one with the development...
+00:56 <@hezekiah> Anyway, a PREFIX var would let someone go "make PREFIX=/usr install" instead of setting 3-4 other variables.
+00:57 <@hezekiah> _42: yeah. :)
+00:57 <@hezekiah> _42: but I do bugfix stuff for 1.1 too ... it's just that most my code goes in development.
+00:57 <@mids> how do you let make PREFIX= override the PREFIX in the Makefile?
+00:57 <@hezekiah> "make PREFIX=/usr install"
+00:57 < _42> 'k. But if dev is in CVS, wouldn't a co without a -r get it as well?
+00:57 <@mids> I mean, in the makefile itself
+00:58 <@hezekiah> It would override whatever PREFIX was set to in the makefile.
+00:58 <@mids> automagically?
+00:58 <@hezekiah> If PREFIX=/usr/local in the makefile "make PREFIX=/usr install" makes PREFIX=/usr instead.
+00:58 <@mids> great
+00:58 <@hezekiah> That's one way how Gentoo ebuild get around anoying makefiles. :)
+00:58 <@mids> ok
+00:59 <@mids> nother thing
+00:59 <@hezekiah> Cool.
+00:59 <@mids> in iip/doc/help/imaghes
+00:59 <@mids> iomages
+00:59 <@mids> images even :)
+00:59 <@mids> there are some bmp files
+00:59 <@mids> I believe that they can be removed
+00:59 <@mids> iip.pdf in doc/help too
+00:59 <@hezekiah> You sure the files in doc/help don't use them?
+00:59 <@mids> no idea
+00:59 <@mids> I am not a windows guy
+00:59 <@hezekiah> (Ouch.)
+01:00 <@mids> should ask codeshark
+01:00 <@mids> he made em
+01:00 <@hezekiah> Neither here, but I try to be careful.
+01:00 <@hezekiah> I'll leave the removing of files from the HEAD branch to you. :)
+01:00 <@hezekiah> (... and keep my neck safely on my shoulders.) ;-)
+01:00 <@mids> ok, I removed isproxy.1 from both branches
+01:00 <@hezekiah> Ah.
+01:00 <@mids> super todo: mail todo list to mailinglist
+01:00 <@mids> :)
+01:00 <@hezekiah> lol
+01:01 <@hezekiah> First we should update it.
+01:01 <@hezekiah> There are a bunch of things I've done that never got checked off.
+01:01 <@hezekiah> Also, the development branch makefiles depended on isproxy.1.
+01:01 <@mids> oh
+01:01 <@mids> I already removed isproxy.1 from dev
+01:02 < _42> The Makefile should support copying files to one dir but configuring the executable for another
+01:02 <@hezekiah> So what do I do _exactly_ with isproxy.pod?
+01:02 <@mids> here it comes:
+01:02 < hobbs> mmm. pod.
+01:02 <@hezekiah> Well, we can put it back if we need to, but I think there are better things to do. :)
+01:02 <@mids> hezekiah: pod2man  -s 1 -c isproxy -r $VERSION ./$NAME/doc/isproxy.pod >./$NAME/doc/isproxy.1
+01:02 <@hezekiah> _42: it does. The executable and makefiles go in different places. They were both targets for "make install" though.
+01:03 <@mids> I hope that the makefile knows the version somehow
+01:03 <@hezekiah> I can handle that.
+01:03 <@hezekiah> But this makes the user require perl.
+01:03 <@nop> sorry guys I'm in and out
+01:03 <@nop> at work so
+01:03 <@hezekiah> (We were over this before.)
+01:03 < _42> No, I mean copy the files to one directory specified by overriding a makefile var and configure them for another
+01:03 <@hezekiah> No problem. :)
+01:03 <@mids> you can replace "./$NAME/doc/isproxy.pod >./$NAME/doc/isproxy.1" with "$? > $@"
+01:03 < _42> k
+01:04 <@hezekiah> OK.
+01:04 <@hezekiah> But this still leaves the user of the development branch dependant on perl.
+01:04 <@hezekiah> Is that OK?
+01:04 <@mids> depend on pod2man
+01:04 <@hezekiah> OK.
+01:04 <@hezekiah> So I make the configure script look for it.
+01:04 <@mids> yes
+01:05 <@mids> _42: doesnt gentoo patch makefiles etc?
+01:05 <@mids> (like freenet does)
+01:05 <@hezekiah> nop: any objections to me having the configure script look for pod2man and having the makefile (in the development tree) build the manpage?
+01:05 <@hezekiah> mids: Gentoo uses patches, sed, or just sets makefile VAR's.
+01:06 <@hezekiah> mids: whichever least drastic measure is required. :)
+01:06  * mids guesses that nop doesnt object
+01:06 < _42> mids: it can, but it's easier to add a PREFIX=${D}/
+01:06 <@mids> _42: yop
+01:06 < _42> freenet patches akefiles?
+01:06 <@mids> freebsd
+01:06 < _42> ah
+01:07 <@mids> or maybe it doesnt
+01:07 <@mids> anyway
+01:08 <@mids> - filepath (A hezekiah, userx)
+01:08 <@mids> - Makefile install-local,PREFIX
+01:08 <@mids> - README, INSTALL, AUTHORS (mids)
+01:08 <@mids> - windows documentation (codeshark)
+01:08 <@mids> - docs (nop)
+01:08 <@mids> any additions?
+01:09 <@mids> otherwise I'll mail that
+01:09 <@hezekiah> Not that I can think of. :)
+01:10 <@mids> who will do the makefile?
+01:10 <@mids> me?
+01:10 <@hezekiah> You do the HEAD one.
+01:10 <@mids> I am talking about HEAD
+01:11 <@hezekiah> I usually take care of the makefiles/configure script in development. :)
+01:11 <@hezekiah> You do it. :)
+01:12 < lonelynerd> what about debian packages? ;)
+01:12 <@mids> lonelynerd: that can be done after the code is frozen / release is made
+01:12 < lonelynerd> sure
+01:13 <@mids> TODO mailed
+01:13 <@mids> ok
+01:13 <@mids> question round?
+01:14 <@mids> question round.
+01:14 < hezekiah> Sorry about that.
+01:14 < hezekiah> I got disconnected.
+01:14 <@mids> you did? :)
+01:14 < hezekiah> Yeah. :)
+01:16 <@mids> okay, meeting participants without questions are not allowed to ask any for a week if they could ask them now :)
+01:16 <@hezekiah> lol.
+01:16 <@hezekiah> mids: do people actually come up to you with questions during the week?
+01:17 <@mids> shiploads
+01:17 <@hezekiah> Wow!
+01:17 < lonelynerd> ;)
+01:17 <@mids> mostly in #iip and #help
+01:17 <@hezekiah> Oh. "Mommy, Mommy! What's an isproxy!?"
+01:17 <@hezekiah> ;-)
+01:17 <@mids> RTFM
+01:18 <@hezekiah> lol
+01:18 <@mids> ok
+01:18 <@mids> end?
+01:18  * hezekiah hands mids his gaffle to "baf"
+01:18 <@mids> baf it will be
+--- Log closed Wed Feb 12 01:19:02 2003
+</div>

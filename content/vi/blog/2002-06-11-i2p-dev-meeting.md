@@ -1,17 +1,437 @@
 ---
-title: "Cuộc họp nhà phát triển I2P, ngày 11 tháng 6 năm 2002"
+title: "Cuộc họp phát triển I2P, ngày 11 tháng 6, 2002"
 date: 2002-06-11
 author: "nop"
-description: "Biên bản cuộc họp phát triển của I2P ngày 11 tháng 6 năm 2002."
+description: "Bản ghi cuộc họp phát triển I2P ngày 11 tháng 6 năm 2002."
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi Wayback Machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine http://www.archive.org/)
 
 ## Tóm tắt nhanh
 
 <p class="attendees-inline"><strong>Có mặt:</strong> BluePaperBoy, codeshark, ellison, I, mids, Neo, nop, Robert, Rooster77, UnDeRToW, UserX</p>
 
-## Nhật ký cuộc họp
+## Nhật ký Cuộc họp
 
-<div class="irc-log"> --- Nhật ký được mở Tue Jun 11 22:52:16 2002 22:55 < logger> bắt đầu ghi nhật ký 22:55 <@mids> đã bắt đầu rồi à? 22:55 < logger> vâng :) 22:55 -!- mode/#iip-dev [+v logger] by mids 23:23 < I> 23:23 @933.23 23:23 < I> hêh, giờ quỷ quái --- Ngày chuyển sang Wed Jun 12 2002 00:09 -!- mode/#iip-dev [+oo UserX nop] by mids 00:39 -!- mode/#iip-dev [+o codeshark] by nop 00:39 <@mids> chào codeshark 00:39 <@codeshark> chào 00:41 < UnDeRToW> chào, chúc mọi người ngủ ngon 00:41 <@nop> ngủ ngon 00:49 <+BluePaperBoy> chào 00:49 <+BluePaperBoy> tôi đã lỡ cuộc họp chưa? 00:50 <@mids> Tue Jun 11 22:50:18 UTC 2002 00:50 <@mids> gần như 00:50 <+BluePaperBoy> vừa kịp lúc :) 00:55 <+BluePaperBoy> 4 phút 20 giây ;) 00:56 <@nop> ok 00:57 <+BluePaperBoy> xin lỗi, chỉ là đang nôn nóng :) 00:58 <@nop> hehe 00:59 <@mids> bắt đầu thôi 00:59 <@mids> trước hết tôi muốn chúc mừng UnDeRToW, anh ấy đã vượt qua kỳ thi 01:00 <+BluePaperBoy> 0 01:00 < UnDeRToW> :) 01:00 <+BluePaperBoy> :) 01:00 <@nop> tuyệt 01:00 <+BluePaperBoy> nó đã bắt đầu rồi :P 01:00 <@mids> tất cả tài liệu quan trọng nằm ở http://mids.student.utwente.nl/~mids/iip/ 01:00 <+BluePaperBoy> ờ, bộ đếm ngược của tôi kết thúc rồi :P 01:00 <@mids> đây là cuộc họp thứ 4 01:00 <@mids> đây là cuộc họp công khai, và sẽ không kiểm duyệt chừng nào nó không trở nên hỗn loạn 01:01 <@mids> nếu nó trở thành dạng có kiểm duyệt, hãy nhắn tin cho một operator hoặc người có voice dòng bạn muốn nói 01:01 <@mids> chào mừng :) 01:01 <@nop> chào mừng tất cả 01:01 <@mids> một tệp nhật ký đang được ghi lại 01:01 <@mids> và có sẵn cho mọi người 01:01 <@mids> kể cả những người đến muộn 01:01 <@mids> . 01:02 <@mids> nop có gì muốn bổ sung không? 01:02 <@nop> cảm ơn mọi người đã đến 01:03 <@nop> và đóng góp cho IIP với tư cách người dùng/người thử nghiệm, nhà phát triển, hoặc cách khác 01:03 <@codeshark> tôi đây 01:03 <@nop> hãy xem chương trình nghị sự hôm nay có gì 01:03 <@mids> 1) Chào mừng 01:03 <@mids> 2) Chính sách Mạng/Kênh 01:03 <@mids> 3) Trang web 01:03 <@mids> 4) Tình trạng tài liệu 01:03 <@mids> A) Câu hỏi? 01:03 <@mids> B) Cuộc họp tiếp theo 01:03 <@mids> chú ý: điều gì đó về iip 1.1 01:03 <@mids> (quên thêm mục đó) 01:03 <@mids> . 01:04 <@nop> ok 01:04 <@nop> 2 chính sách mạng/kênh 01:04 <@nop> mids, mời bạn 01:04 <@mids> chắc rồi 01:04 <@mids> đã có chuyện xảy ra ở #anonymous 01:04 <@mids> tôi hơi bỏ lỡ 01:05 <@mids> nhưng nhờ ông anh ghi nhật ký, tôi đã xem lại sau 01:05 <@mids> có một sự cố nhỏ cho thấy chúng ta cần một số chính sách 01:05 <@mids> vì mạng này sẽ trở nên nghiêm túc hơn 01:05 <@mids> với nhiều người tham gia hơn 01:05 <@nop> tôi xin phép bổ sung một điều 01:05 <@mids> nguy cơ xung đột luôn tồn tại 01:05 <@nop> ? 01:05 <@mids> được chứ 01:06 <@nop> Mục tiêu tối thượng của IIP 01:06 <@nop> là cho phép tự do ngôn luận 01:06 <@nop> và chống kiểm duyệt và đàn áp 01:06 <@nop> chúng ta đều có mục tiêu chung này 01:06 <@nop> giả định là vậy 01:06 <@nop> vì thế có các moderator 01:06 <@nop> cho các kênh 01:07 <@nop> việc đó cho ta cảm giác có quyền lực, nhưng thực ra khả năng kiểm soát rất hạn chế; cấm ẩn danh đâu có dễ 01:07 <@nop> nhưng mục đích là đảm bảo không ai bị cản trở vì lời nói của họ 01:07 <@nop> và có thể nói những gì họ muốn nói 01:07 <@mids> như có lẽ mọi người đều biết 01:08 <@nop> giữ điều này trong đầu 01:08 <@nop> tiếp tục đi 01:08 <@mids> 'chúng ta' không thường biết điều gì đang diễn ra trên mạng 01:08 <@mids> ngoại trừ các kênh công khai 01:08 <@mids> bao gồm #anonymous, nhưng cũng có #iip và #help 01:08 <@mids> có thể tôi quên vài kênh chính thức khác, nếu vậy 01:08 <@mids> hãy báo cho tôi 01:08 <@mids> vì những kênh đó phần nào định hình bộ mặt công khai của IIP, chúng ta cần đặt ra vài quy tắc 01:09 <@mids> tại sao? 01:09 <@mids> 2 lý do 01:09 <@mids> nói cho người dùng biết operator có thể làm gì 01:09 <@mids> và ngược lại 01:09 <@mids> thông thường, trên IIP, mỗi kênh 01:09 <@mids> nên được xem như một quốc gia có chủ quyền 01:09 <@mids> vì hầu như không có quyền lực nào trên toàn mạng 01:09 <@mids> mỗi kênh phải có quy tắc riêng 01:10 <@mids> có thể khác nhau giữa các kênh 01:10 <@mids> nếu bạn có một kênh tên #sailing 01:10 <@mids> chúng tôi không thể làm gì ở đó 01:10 <@mids> dù chúng tôi có ghét con thuyền mà bạn thích chèo đi chăng nữa :) 01:10 <@mids> dù sao 01:10 <@mids> tôi muốn đề xuất vài quy tắc 01:11 <@mids> 3 loại 01:11 <@mids> 1) toàn mạng 01:11 <@mids> 2) #anonymous 01:11 <@mids> 3) các kênh chính thức khác 01:11 <@mids> đối với các kênh khác, đội IIP không có quyền lực 01:11 <@mids> ngoại trừ các quy tắc toàn mạng 01:11 <@mids> đến đây có câu hỏi nào không? 01:12 <@mids> không à? 01:12 <@mids> tốt 01:12 <@mids> tôi đã nghĩ ra 3 quy tắc cho toàn mạng: 01:12 < ellison> có vẻ như #iip cũng nên được bảo vệ 01:12 <@mids> - không flood 01:12 <@mids> - không spam 01:13 < ellison> ồ, 3)  các kênh được bảo vệ khác 01:13 <@mids> - không có hành vi nào gây nguy hiểm cho sự tồn tại của IIP 01:13 <@mids> . 01:13 <@mids> ellison: vâng? 01:13 < ellison> không sao, xin lỗi 01:13 <@mids> không vấn đề 01:13 <+BluePaperBoy> các hành vi gây nguy hiểm cho sự tồn tại của IIP? vui lòng làm rõ 01:14 <@mids> được 01:14 <@mids> đó là một chủ đề khá rộng 01:14 <@mids> nhưng dù xảy ra gì ở đây... chúng ta không nên đánh đổi tính liên tục của IIP 01:14 <@mids> một vài khả năng: 01:14 <@mids> tấn công DDoS 01:14 <@mids> nội dung khiêu dâm trẻ em 01:15 <@mids> các tế bào khủng bố, v.v. 01:15 <@mids> nếu chúng ta biết về những việc đó 01:15 <@mids> chúng ta phải cấm 01:15 <@mids> vì các quốc gia sẽ tấn công chúng ta nếu chúng ta ủng hộ những thứ như vậy 01:15 < UnDeRToW> nhưng làm sao chúng ta kiểm soát chuyện đó? 01:15 <@mids> câu hỏi hay 01:16 < UnDeRToW> chúng ta không thể do thám người dùng khác 01:16 <@mids> đúng 01:16 <+BluePaperBoy> ít nhất chúng ta cũng không nên 01:16 < ellison> DDoS là vấn đề riêng, khác mấy cái kia 01:16 <@mids> nhưng nếu chuyện đó xảy ra mà chúng ta không biết thì sao? 01:16 <@mids> ellison: đúng... DDoS giống kiểu flood hơn 01:16 < ellison> đối với nội dung khiêu dâm trẻ em, các tế bào khủng bố, rửa tiền và các điều khiến nhà nước lo ngại khác, chúng ta nên yêu cầu bằng chứng từ thực thể khiếu nại hoặc đe dọa đóng IIP 01:18 <@mids> vậy nếu có một thực thể đưa bằng chứng về hoạt động x 01:18 <@nop> bằng chứng họ phải chứng minh đó là người dùng cụ thể 01:18 < ellison> ừ 01:19 <@mids> khi đó chúng ta có thể xóa sạch tài khoản Trent của hắn, jupe nick của hắn, v.v. 01:19 < ellison> nếu thực thể khiếu nại không có khả năng gây hại cho IIP, ta bỏ qua 01:19 <@mids> nhưng những cáo buộc như vậy luôn phải được xác minh 01:19 <+BluePaperBoy> nếu IIP thực sự ẩn danh, làm sao chứng minh được và có thể thực hiện bước nào để ngăn người bị đề cập 01:19 <@mids> ellison: chính xác 01:20 < ellison> nếu họ có thể gây hại cho IIP, chúng ta kiên quyết đòi bằng chứng 01:20 <@mids> BluePaperBoy: chúng ta chỉ xử lý các bút danh (nym), không xử lý người thật 01:20 <+BluePaperBoy> mids: nhưng khi đó họ chỉ việc đổi danh tính IIP và tiếp tục 01:20 < ellison> nếu họ đáp ứng yêu cầu về bằng chứng, ta xóa tài khoản Trent của họ như bạn nói, rồi gửi báo cáo cho thực thể đã khiếu nại 01:21 < ellison> BPB: ừ, đó là cái hay của một hệ thống giả ẩn danh... 01:21 <@mids> vì lợi ích chung của IIP, tôi nghĩ những khiếu nại như vậy nên được thông báo rộng rãi 01:22 <@nop> đồng ý 01:22 < ellison> BPB: ví dụ một số binh sĩ ở Afghanistan phát hiện một máy tính có nhật ký IIP chứng minh rằng bọn khủng bố đang dùng IIP để liên lạc giữa các tế bào 01:22 <@mids> nop: địa chỉ email chính thức cho những việc như vậy là gì? 01:22 <+BluePaperBoy> đưa lên trang web? 01:22 < ellison> tôi nghĩ vậy là đủ bằng chứng 01:22 <@nop> iip@invisiblenet.net 01:23 <+BluePaperBoy> ellison: nhưng chúng ta sẽ không biết đó là ai hoặc làm sao để ngăn họ 01:23 < ellison> chúng ta sẽ có tên nym của họ 01:23 < ellison> và ta chỉ việc xóa bản ghi của họ khỏi Trent (giả sử họ dùng Trent) 01:23 <@mids> được rồi, các chính phủ và thực thể khác nên email bằng chứng lạm dụng (được ký & mã hóa bằng PGP dĩ nhiên) tới iip@invisiblenet.net 01:23 < ellison> hêh 01:24 <@nop> chúng ta vẫn có rất ít quyền lực 01:24 <@nop> để ngăn họ 01:24 <@nop> và điều tối đa ta có thể làm 01:24 <@nop> là cấm họ dùng Trent 01:24 <@nop> v.v. 01:24 <@nop> ít nhất là dưới nym đó 01:24 <@mids> tất nhiên chúng ta sẽ làm vậy 01:24 <@mids> bất cứ điều gì trong khả năng 01:24 < ellison> (theo tôi, việc không thể áp đặt kiểm duyệt cũng là một phần của thiết kế tốt của IIP) 01:25 <@nop> nó chỉ ngày càng tốt hơn theo thời gian 01:25 <@UserX> chúng ta làm gì nếu có thực thể cố đòi ghi nhật ký? 01:25 <@mids> UserX: họ có thể tham gia các kênh 01:25 < ellison> đưa máy chủ IIP ra ngoài thẩm quyền của họ 01:25 <@mids> và ghi lại mọi lưu lượng 01:25 <+BluePaperBoy> vậy IIP sẽ làm như đa số chính phủ và "lên án chính thức" 01:26 <@nop> từ khóa là "cố" 01:26 <@nop> việc ghi nhật ký nhiều nhất đang diễn ra 01:26 <@nop> là ở các IRC client 01:27 <@nop> nhưng mối lo lớn là ép buộc một người dùng phải ghi nhật ký 01:27 <@mids> mọi người nên hiểu rằng ở đây họ hành động với tư cách một nym 01:28 <@mids> và mọi mối liên hệ giữa danh tính thật và nym của họ là một nguy cơ đối với tính ẩn danh/giả ẩn danh của họ 01:29 <+BluePaperBoy> Còn chuyện nói xấu IIP và thuyết phục người khác rời bỏ/ngừng ủng hộ... có được coi là "hành vi gây nguy hiểm cho sự tồn tại của IIP" không (chỉ để làm rõ) 01:29 <@nop> không 01:29 <+BluePaperBoy> cảm ơn 01:29 <@nop> nhưng 01:29 <@nop> như vậy không hay 01:29 <@nop> ;) 01:30 <+BluePaperBoy> Tôi chỉ tự hỏi tuyên bố của mids sẽ được hiểu rộng tới mức nào :) 01:30 <@mids> ok 01:30 <@mids> giờ ta có chuyện khác 01:30 <@mids> có thể là theo kênh, có thể là toàn mạng 01:30 <@mids> "đừng tiết lộ danh tính của người khác nếu không được phép" 01:31 <+BluePaperBoy> tôi không nghĩ điều đó nên được điều chỉnh 01:31 <@nop> đó thiên về lời đề nghị 01:31 <@nop> không phải quy định 01:31 <@mids> có lẽ theo cá nhân / từng kênh? 01:32 <@mids> ok, phần mạng xong rồi... chuyển sang #anonymous 01:32 <@mids> mục đích chính của kênh này là gì 01:32 <@mids> và tên của nó là gì :) 01:32 <@mids> cá nhân tôi nghĩ đó là về tự do ngôn luận 01:32 <+BluePaperBoy> chọc phá phe tự do? 01:32 <@mids> và đó là điều IIP hướng tới 01:33 <@mids> nên tôi không nghĩ cần thêm quy tắc nào ngoài các quy tắc toàn mạng 01:33 < Robert> . 01:33 <@mids> với gợi ý chuyển các thứ lạc chủ đề sang kênh phù hợp 01:34 <@mids> chuyện về freenet có thể bàn ở đó 01:34 <@mids> nhưng đừng quá nghiêm túc 01:34 <@mids> ờ 01:34 <@mids> thôi thì sao cũng được :) 01:35 <@mids> nếu ai đó đang làm/nói những điều bạn không thích 01:35 <@mids> hãy cân nhắc dùng /ignore 01:35 <@mids> (xem hướng dẫn IRC client của bạn để biết thêm thông tin) 01:35 <@mids> có bổ sung gì khác cho #anonymous không? 01:35 < Neo>  /ignore #anonymous hoạt động khá tốt với tôi :) 01:36 <@mids> Neo: tôi nghĩ bạn muốn nói /part #anonymous :) 01:36 < Neo> :) 01:36 <@mids> giờ đến các kênh chính thức khác... 01:36 <@mids> chúng ta có những kênh nào? 01:36 <@mids> tôi nghĩ: #iip 01:36 <@mids> #iip-dev và #help 01:37 <+BluePaperBoy> còn #freenet thì sao? 01:37 <@mids> ờ, vì không có mối liên hệ thực sự giữa freenet và IIP, tôi nghĩ đó không phải vấn đề chính thức 01:38 < ellison> #terrorist-plots 01:38 < ellison> ;-) 01:38 <@mids> chính sách kênh #freenet nên được thảo luận với người sáng lập và operator của #freenet 01:38 <@mids> -Trent(anon.iip)- Kênh #terrorist-plots KHÔNG được đăng ký 01:38 <@mids> ok 01:38 <@mids> #iip là kênh IIP chính, nghiêm túc 01:38 <@mids> (theo tôi) 01:39 <@mids> vì vậy, những gì ở đó nên liên quan đến IIP 01:39 <@mids> và nên chính xác... đừng đưa thông tin sai ở đó 01:39 <@mids> có lẽ #help cũng vậy 01:39 <@mids> dù sao 01:39 <@mids> tôi nhận tín hiệu là chúng ta đang chán rồi 01:39 <@mids> :) 01:40 <@mids> , 01:40 <@nop> ok 01:40 <@nop> về cơ bản 01:40 <@nop> không cản trở lời nói của người khác 01:40 <@nop> chỉ nên điều tiết khi 01:40 <@nop> người khác đang cản trở tự do ngôn luận 01:40 <@nop> tức là spamming 01:40 <@nop> hoặc flooding 01:41 <@nop> và đừng lạm dụng quyền operator để cản trở phát ngôn 01:41 <@nop> rõ 01:41 <@nop> tốt 01:41 <@nop> tiếp 01:41 <@mids> ừ 01:41 <@mids> việc chính thức 01:41 <@mids> khôi phục quyền cho cohesion 01:41 <@nop> chúng ta sẽ làm sau khi nói chuyện với anh ấy và xem lại quy tắc 01:41 <@nop> anh ấy nên được khôi phục 01:41 <@mids> xong 01:42 <@mids> với cấp độ 2 01:42 <@mids> hết & chào :) 01:42 <@mids> 3) Trang web 01:43 <@mids> -------- 01:43 <@mids> thiết kế tiến triển thế nào? 01:43 <+BluePaperBoy> ? 01:43  * mids nhìn vào chương trình nghị sự 01:43 <@mids> ellison: có gì muốn nói không? :) 01:44 < ellison> à 01:44 < ellison> đang làm ngay bây giờ 01:44 < ellison> trông ngầu lắm, tin tôi đi. 01:44 < ellison> ;-) 01:44 <+BluePaperBoy> "mẫu" nào là của anh ấy 01:44 <+BluePaperBoy> ? 01:44 < ellison> có thể tôi sẽ có gì đó để trình bày vào cuối cuộc họp - nếu không thì tối nay 01:45 <@mids> một thiết kế khác (từ tikk) ở http://www.nokhockey.com/scott/IIP/home2.htm 01:45 <@mids> ờ, nop, bạn có thể nói gì về "wear IIP? 01:47 <@nop> ồ 01:48 <@nop> xin chờ 01:48 <@nop> đang nghe điện thoại 01:48 <@mids> à 01:48 <@mids> "nếu bạn không thể đợi đến khi trang IIP xong và đã muốn thể hiện niềm đam mê với IIP : http://www.cafepress.com/invisiblenet 01:48 <@mids> nop có vài món hay ho ở đó 01:48  * mids đã mua vài áo thun IIP :) 01:49 <@nop> toàn bộ tiền thu được dùng để tài trợ dự án 01:49 <@mids> nhưng phần lớn vào túi mấy anh Cafepress :( 01:49 <@mids> tôi muốn có áo thun đen với logo IIP màu trắng 01:50 <@mids> nếu bạn biết cách có được... nói cho chúng tôi :) 01:50 < ellison> tôi muốn áo thun đen với logo đen... 01:51 <@mids> ellison: ghi nhận... chúng ta cũng sẽ có loại đó :) 01:51 < ellison> :-) 01:51 <@mids> ý kiến khác? 01:51 <+BluePaperBoy> tôi muốn cái gì đó màu xanh :) 01:51 <@mids> ngầu 01:51 <@mids> tôi nghĩ logo mà Banks làm có sẵn 01:51 <+BluePaperBoy> ...nhưng không tìm thấy gì ;( 02:07 -!- Topic for #iip-dev: Info, agenda, log : http://mids.student.utwente.nl/~mids/iip/ | Tuesday 23:00 UTC - http://e-store.invisiblenet.net 02:07 [Users #iip-dev] 02:07 [@codeshark   ] [ ellison] [ logger] [ Robert   ] [ UserX] 02:07 [@nop         ] [ epoch  ] [ mids  ] [ Rooster77] 02:07 [+BluePaperBoy] [ I      ] [ Neo   ] [ UnDeRToW ] 02:07 -!- Irssi: #iip-dev: Total of 13 nicks [2 ops, 0 halfops, 1 voices, 10 normal] 02:07 -!- Irssi: Join to #iip-dev was synced in 1 secs 02:07 < Neo> <UserX> Một giao thức mới đã được triển khai cho IIP 1.1, chi tiết tại: http://mids.student.utwente.nl/~mids/iip/meeting4/iip11proto.txt 02:07 < Neo> <UserX> điều này bổ sung phát hiện lỗi và khắc phục các vấn đề do máy chủ dùng khóa tĩnh gây ra 02:07 < Neo> (cho logger) 02:08 < logger> gracia 02:10 <@nop> ok 02:10 <@nop> tiếp theo 02:10 < logger> 3,4] 02:11 -!- mode/#iip-dev [+o mids] by Trent 02:13 < UnDeRToW> ... 02:14 <@mids> hmpf 02:14 <@mids> xin lỗi mọi người 02:14 <@mids> đổ lỗi cho civ :) 02:14 <@mids> mọi người đã xem các sơ đồ mạng mới chưa? 02:14 <@nop> có 02:14 <@nop> liên kết, v.v. 02:15 <@mids> câu hỏi: 02:15 <@mids> bigendian == network order? 02:15 <@nop> big endian == byte order 02:15 <@mids> byte order != network order? 02:16 <@nop> ok 02:16 <@nop> còn câu hỏi nào 02:16 <@nop> trước khi chúng ta kết thúc cuộc họp 02:16 < UserX> theo tôi hiểu, thứ tự byte bigendian chính là thứ tự byte trên mạng 02:16 <@mids> cảm ơn UserX 02:17 -!- mode/#iip-dev [+o UserX] by mids 02:17 < UnDeRToW> chúng ta có thể dịch isproxy nữa không? 02:18 <@mids> bạn giải thích được không? windows, unix, tài liệu? 02:19 < UnDeRToW> chương trình để vào đây 02:20 <@mids> các chương trình như vậy hoạt động thế nào? chúng có tự động phát hiện ngôn ngữ không? 02:20 <@nop> chắc là dựa vào locale 02:21 < UnDeRToW> hoặc có các phiên bản khác nhau 02:21 < UnDeRToW> tiếng Tây Ban Nha, tiếng Pháp ..... 02:22 <@UserX> có vài hook để thêm bản dịch (kiểu gettext) cho isproxy nhưng chưa hỗ trợ việc dịch thực tế 02:22 <@mids> tôi nghĩ đó là ý hay... chắc chắn không cho 1.1... nhưng ghi nhớ, có lẽ 1.2? 02:22 < UnDeRToW> tuyệt 02:23 < UnDeRToW> và chúng ta cũng phải bắt đầu một FAQ 02:23 <@mids> nhưng tôi nghĩ khối lượng công việc không nên bị xem nhẹ... ký tự tiếng Trung nghe đã thấy phức tạp rồi 02:24 <@mids> UserX: có ý kiến gì về i18n trên Windows không? 02:24 <@codeshark> bạn có thể dùng tệp tài nguyên trên Windows 02:24 <@nop> tiếng Trung cần double byte 02:24 <@nop> unicode 02:24 <@codeshark> vâng 02:24 <@UserX> mids: ý bạn là mức độ khó khi dịch à? 02:24 <@mids> Rooster77 biết chút về chuyện đó 02:25 <@mids> UserX: không, về hỗ trợ unicode/utf8 nhiều hơn 02:26 < Rooster77> Rooster77 chưa thạo lắm, nhưng đang làm việc trên đó.. 02:27 <+BluePaperBoy> cứ đưa cho một lập trình viên người Trung Quốc ;) 02:27 < Rooster77> ý hay...! 02:27 <@UserX> không rành lắm, nhưng theo tôi hiểu bạn có thể chọn codepage để diễn giải ký tự 8-bit 02:28 <@mids> được rồi... còn câu hỏi nào? 02:30 < UnDeRToW> tôi cần tài liệu mới để cập nhật bản dịch 02:30 <@mids> được, trong khi chúng vẫn đang được rà soát, bạn có thể lấy từ CVS 02:30 < UnDeRToW> ok 02:30 <@mids> bạn biết dùng CVS không? 02:30 <+BluePaperBoy> mids: chúng ta mắc kẹt với cái logo iip tệ hại đó à? Chuyện gì đã xảy ra với mấy hình casper có bản quyền? 02:30 < UnDeRToW> có 02:30 <@mids> UnDeRToW: contrib/htmldoc/ 02:31 <@nop> logo nào 02:31 <@mids> UnDeRToW: đó là nơi có mọi thứ 02:31 <+BluePaperBoy> hai anh khoác áo choàng rồi tới chữ p 02:31 < UnDeRToW> ok 02:31 <+BluePaperBoy> ...trên quần áo ;) 02:31 <@mids> tôi thích thiết kế mới 02:32 < UnDeRToW> và FAQ 02:32 < UnDeRToW> chúng ta phải làm một bản 02:32 <@mids> UnDeRToW: banks cũng đã bắt đầu một số mục FAQ trong tài liệu hướng dẫn 02:32 < UnDeRToW> tôi gần như luôn thấy những câu hỏi giống nhau 02:32 < UnDeRToW> ok 02:32 < UnDeRToW> tôi sẽ xem 02:33 < UnDeRToW> điều cuối 02:33 <@nop> k 02:33 <@nop> tôi nghĩ chúng ta xong rồi 02:33 < UnDeRToW> tôi nghĩ 02:34 < UnDeRToW> sẽ hữu ích nếu có thể đổi mật khẩu Trent của bạn 02:35 <@mids> ok 02:35 < UnDeRToW> nếu muốn đổi mật khẩu bạn phải drop nick 02:35 <@mids> có cần nhập mật khẩu hai lần không? 02:35 < UnDeRToW> nhưng nếu drop thì bạn mất các kênh 02:35 <+BluePaperBoy> mids: như vậy sẽ tốt 02:36 <@mids> tôi sẽ nghĩ về việc đó :) 02:37 <@mids> (không có lý do để không làm, chỉ là cần ai đó viết mã) 02:37 <@nop> chắc chỉ khoảng 5 dòng mã 02:37 <@mids> ờ, 6 02:37 <@mids> :) 02:38 <+BluePaperBoy> vậy chắc sẽ làm xong trong vòng một năm :) 02:38 <@mids> rất có thể 02:39 <@nop> ok 02:39 <@mids> nhắc tôi mỗi ngày 02:39 <@mids> ngày 02:39 <@nop> một điều 02:39 <@nop> http://e-store.invisiblenet.net 02:39 <@nop> ủng hộ dự án 02:39 <@nop> sẽ cố gắng có bản đen trên trắng 02:39 <@nop> ellison 02:39 <@nop> đã có gì trên trang web chưa 02:39 < ellison> này, 02:39 < ellison> khoảng 1 giờ nữa tôi sẽ có thứ sẵn sàng để trình bày 02:40 <@nop> ok 02:40 <@nop> nó mới bắt đầu 02:40 <@nop> hay đã đầy đủ chức năng 02:40 <@nop> cái bạn sắp cho xem 02:40 <@nop> ? 02:40 < ellison> đây là bản phác thảo bằng Photoshop 02:40 <+BluePaperBoy> bạn đang code tay hay ăn gian? 02:40 < ellison> ? 02:41 < ellison> còn khá xa so với một trang hoàn chỉnh, nhưng tôi có thể tách HTML cho template trong khoảng một ngày khi chốt thiết kế 02:42 <@nop> ok 02:42 <@nop> ngầu 02:45 <@mids> được rồi mọi người, tôi đi ngủ đây.. cảm ơn vì đã kiên nhẫn  :) 02:46 < UnDeRToW> tôi cũng vậy 02:46 < UnDeRToW> tôi phải dậy trong 4 giờ nữa 02:46 < UnDeRToW> :( 02:46 < UnDeRToW> tạm biệt 02:46 <+BluePaperBoy> tạm biệt 03:08 < logger> kết thúc ghi nhật ký --- Nhật ký đóng Wed Jun 12 03:08:35 2002 </div>
+<div class="irc-log">
+--- Log opened Tue Jun 11 22:52:16 2002
+22:55 < logger> logging started
+22:55 <@mids> already?
+22:55 < logger> yes :)
+22:55 -!- mode/#iip-dev [+v logger] by mids
+23:23 < I> 23:23 @933.23
+23:23 < I> heh, evil time
+--- Day changed Wed Jun 12 2002
+00:09 -!- mode/#iip-dev [+oo UserX nop] by mids
+00:39 -!- mode/#iip-dev [+o codeshark] by nop
+00:39 <@mids> hey codeshark
+00:39 <@codeshark> hey
+00:41 < UnDeRToW> hi, good night everybody
+00:41 <@nop> night
+00:49 <+BluePaperBoy> hi
+00:49 <+BluePaperBoy> did I miss the meeting yet?
+00:50 <@mids> Tue Jun 11 22:50:18 UTC 2002
+00:50 <@mids> almost
+00:50 <+BluePaperBoy> just in time :)
+00:55 <+BluePaperBoy> 4 minutes 20 seconds ;)
+00:56 <@nop> ok
+00:57 <+BluePaperBoy> sorry, just getting antsy :)
+00:58 <@nop> hehe
+00:59 <@mids> lets get started
+00:59 <@mids> first of all I want to congratulate UnDeRToW, he passed his exams
+01:00 <+BluePaperBoy> 0
+01:00 < UnDeRToW> :)
+01:00 <+BluePaperBoy> :)
+01:00 <@nop> awesome
+01:00 <+BluePaperBoy> it has begun :P
+01:00 <@mids> all the important docs are on http://mids.student.utwente.nl/~mids/iip/
+01:00 <+BluePaperBoy> err, my count down ended :P
+01:00 <@mids> this is the 4th meeting
+01:00 <@mids> it is public, and unmoderated as long as it isnt chaotic
+01:01 <@mids> if it become moderated, message an operator or somebody with voice, the line that you want to say
+01:01 <@mids> welcome :)
+01:01 <@nop> welcome all
+01:01 <@mids> a logfile is recorded
+01:01 <@mids> and available for everybody
+01:01 <@mids> including for those who are too late
+01:01 <@mids> .
+01:02 <@mids> got something to add nop ?
+01:02 <@nop> thnx you for all coming
+01:03 <@nop> and contributing to IIP as a user/tester, developer, or otherwise
+01:03 <@codeshark> i'm here
+01:03 <@nop> let's see what's on the agenda for today
+01:03 <@mids> 1) Welcome
+01:03 <@mids> 2) Network / Channel policies
+01:03 <@mids> 3) Website
+01:03 <@mids> 4) Documentation status
+01:03 <@mids> A) Questions?
+01:03 <@mids> B) Next meeting
+01:03 <@mids> attition: something about iip 1.1
+01:03 <@mids> (forgot to add that)
+01:03 <@mids> .
+01:04 <@nop> ok
+01:04 <@nop> 2 network / channel policies
+01:04 <@nop> mids if you would please
+01:04 <@mids> sure
+01:04 <@mids> we had something happening in #anonymous
+01:04 <@mids> I kind of missed it
+01:05 <@mids> but thanks to my big brother logging, I got to see it later
+01:05 <@mids> there was a little incident that showed us the need for some policies
+01:05 <@mids> since this network is going to become more serious
+01:05 <@mids> with more people attending
+01:05 <@nop> may I add something
+01:05 <@mids> the risk of possible conflicts is always there
+01:05 <@nop> ?
+01:05 <@mids> sure
+01:06 <@nop> The definitive goal of IIP
+01:06 <@nop> is to allow freedom of speech
+01:06 <@nop> and to fight censorship and oppression
+01:06 <@nop> now we all share this common goal
+01:06 <@nop> assuming
+01:06 <@nop> so there are moderators
+01:06 <@nop> for channels
+01:07 <@nop> which gives us a sense of power, but really, is very minimal control, banning anonymity is not exactly easy
+01:07 <@nop> but the purpose is to make sure everyone is not inhibited by their speech
+01:07 <@nop> and can say what they would like to say
+01:07 <@mids> as you maybe all know
+01:08 <@nop> so keeping this in mind
+01:08 <@nop> continue
+01:08 <@mids> 'we' dont often know what is going on on the network
+01:08 <@mids> exept for the public channels
+01:08 <@mids> inclusing #anonymous, but also #iip and #help
+01:08 <@mids> maybe I forgot more official channels, if so
+01:08 <@mids> inform me
+01:08 <@mids> because those channels kindof determine the public look of IIP, we need to get some rules done
+01:09 <@mids> why?
+01:09 <@mids> 2 reasons
+01:09 <@mids> tell the users what the operators can do
+01:09 <@mids> and visa versa
+01:09 <@mids> normally, on IIP, every channel
+01:09 <@mids> should be seen as a sovereign country
+01:09 <@mids> since there is almost none network wide power
+01:09 <@mids> every channel got to have its own rules
+01:10 <@mids> which can differ from channel to channel
+01:10 <@mids> if you have a channel names #sailing
+01:10 <@mids> we cant do nothing there
+01:10 <@mids> even if we hate the boat that you like to sail with :)
+01:10 <@mids> anyway
+01:10 <@mids> I want to propose some rules
+01:11 <@mids> 3 categories
+01:11 <@mids> 1) network wide
+01:11 <@mids> 2) #anonymous
+01:11 <@mids> 3) other official channels
+01:11 <@mids> for all other channels, we have no power as IIP team
+01:11 <@mids> except for the network rules
+01:11 <@mids> any questions so far?
+01:12 <@mids> nope?
+01:12 <@mids> great
+01:12 <@mids> I have thought of these 3 rules for the whole network:
+01:12 < ellison> seems to me that #iip should be protected as well
+01:12 <@mids> - no flooding
+01:12 <@mids> - no spamming
+01:13 < ellison> oh, 3)  other protected channels
+01:13 <@mids> - no acts that endanger the existance of IIP
+01:13 <@mids> .
+01:13 <@mids> ellison: yes?
+01:13 < ellison> nevermind, 'scuse me
+01:13 <@mids> np
+01:13 <+BluePaperBoy> acts that endanger the existance of IIP?  please clarify
+01:14 <@mids> sure
+01:14 <@mids> that is a pretty broad subject
+01:14 <@mids> but whatever happens here.. we shouldnt risk the continuity of IIP
+01:14 <@mids> some posibilities:
+01:14 <@mids> ddos attacks
+01:14 <@mids> child porn
+01:15 <@mids> terrorist cells etc
+01:15 <@mids> if we know about those things
+01:15 <@mids> we have to forbid them
+01:15 <@mids> because countries will attack us if we support such things
+01:15 < UnDeRToW> but how we control that?
+01:15 <@mids> good question
+01:16 < UnDeRToW> we cant spy other users
+01:16 <@mids> sure
+01:16 <+BluePaperBoy> we shouldn't atleast
+01:16 < ellison> ddos is a separate matter from the rest
+01:16 <@mids> but if such happens, without us knowing?
+01:16 <@mids> ellison: yes, correct.. ddos is more flooding
+01:16 < ellison> for child porn, terrorist cells, money laundering and other statust bugaboos, we should insist on proof from the entity complaining or threatening to shut down IIP
+01:18 <@mids> so if an entity comes with evidence about activity x
+01:18 <@nop> evidence that they have to prove that it is the specific user
+01:18 < ellison> yup
+01:19 <@mids> then we can nuke his trent accounts, jupe his nick etc
+01:19 < ellison> if the entity complaining has no power to harm IIP, we ignore them
+01:19 <@mids> but such claims should always be verified
+01:19 <+BluePaperBoy> if IIP is truly anonymous, how could that be proven and what steps could be taken to stop the person is question
+01:19 <@mids> ellison: exactly
+01:20 < ellison> if they can harm IIP, we insist on proof
+01:20 <@mids> BluePaperBoy: we can deal with nyms, not with real persons
+01:20 <+BluePaperBoy> mids: but then they can merely change their IIP identity and continue
+01:20 < ellison> if they meet the proof requirements, we delete their Trent accounts as you said, and then send a report to the entity which complained
+01:21 < ellison> BPB: yeah, that's the beauty of a pseudoanonymous system...
+01:21 <@mids> for the sake of the common IIP wealth, such complaints should be globally announced I think
+01:22 <@nop> agreed
+01:22 < ellison> BPB: say some soldiers in afghanistan discovered a computer with IIP logs which proved that terrorists were using IIP to communicate ebtween their cells
+01:22 <@mids> nop: what is the official email address for such things?
+01:22 <+BluePaperBoy> put on the website?
+01:22 < ellison> that would consistute proof, I think
+01:22 <@nop> iip@invisiblenet.net
+01:23 <+BluePaperBoy> ellison: be we would no not who it was or how to stop them
+01:23 < ellison> we'd have their nym names
+01:23 < ellison> and we could just delete their records from Trent (assuming they used Trent)
+01:23 <@mids> okay, governments and other entities should email their proof of misusage (pgp signed & encrypted ofcourse) to iip@invisiblenet.net
+01:23 < ellison> heh
+01:24 <@nop> we still have very little power
+01:24 <@nop> to stop them
+01:24 <@nop> and the most we can do
+01:24 <@nop> is prohibit them from using trent
+01:24 <@nop> etc
+01:24 <@nop> at least under that nym
+01:24 <@mids> ofcourse we will do that
+01:24 <@mids> whatever is in our power
+01:24 < ellison> (this inability to exert controlling censorship is part of the good design of IIP, IMHO)
+01:25 <@nop> it only gets better with age
+01:25 <@UserX> what do we do if entities try and demand logging?
+01:25 <@mids> UserX: they may join channels
+01:25 < ellison> remove IIP servers from their jurisdiction
+01:25 <@mids> and log all traffic
+01:25 <+BluePaperBoy> so IIP'll do like most governments and "officially condemn"
+01:26 <@nop> try being key operative word
+01:26 <@nop> the most logging that is taking place
+01:26 <@nop> is the irc clients
+01:27 <@nop> but the big concern is coercing or forcing a user to log
+01:27 <@mids> everybody should understand that he/she acts here as a nym
+01:28 <@mids> and every relationshop between his/her real identify and the nym is a possible danger on his anon/pseudo nymity
+01:29 <+BluePaperBoy> What about bad mouthing IIP and convincing people to leave/stop supporting...would that be considered "acts that endanger the existance of IIP" (just to clarify)
+01:29 <@nop> no
+01:29 <+BluePaperBoy> thank you
+01:29 <@nop> but
+01:29 <@nop> it's not nice
+01:29 <@nop> ;)
+01:30 <+BluePaperBoy> I was just wondering how liberally mids' statement would be taken :)
+01:30 <@mids> ok
+01:30 <@mids> now we have another thing
+01:30 <@mids> maybe it is channel, maybe network wide
+01:30 <@mids> 'dont reveal the identify of others without permission'
+01:31 <+BluePaperBoy> I don't think that should be regulated
+01:31 <@nop> it's more of a request
+01:31 <@nop> not a regulation
+01:31 <@mids> maybe on a personal / per channel base?
+01:32 <@mids> ok, got network covered... lets move to #anonymous
+01:32 <@mids> what is the main purpose of this channel
+01:32 <@mids> and what is its name :)
+01:32 <@mids> personally I think that it is about freedom of speech
+01:32 <+BluePaperBoy> bash liberals?
+01:32 <@mids> & that is what IIP is about
+01:33 <@mids> so, I don't think that any additional rules are needed except for the network ones
+01:33 < Robert> .
+01:33 <@mids> with the suggestion to move offtopic stuff to the appropriate channels
+01:34 <@mids> freenet stuff may be discussed there
+01:34 <@mids> but should be not taken too seriouyd
+01:34 <@mids> serioud
+01:34 <@mids> err
+01:34 <@mids> whatever :)
+01:35 <@mids> if someone is doing / saying things that you dont like
+01:35 <@mids> consider using /ignore
+01:35 <@mids> (see your IRC client manual for more information)
+01:35 <@mids> other additions to #anonymous?
+01:35 < Neo>  /ignore #anonymous works pretty good for me :)
+01:36 <@mids> Neo: I think you mean /part #anonymous :)
+01:36 < Neo> :)
+01:36 <@mids> now the other official channels...
+01:36 <@mids> which do we have?
+01:36 <@mids> I think : #iip
+01:36 <@mids> #iip-dev and #help
+01:37 <+BluePaperBoy> what about #freenet?
+01:37 <@mids> hm, since there is no real relationship between freenet and IIP, I think that that isnt an official matter
+01:38 < ellison> #terrorist-plots
+01:38 < ellison> ;-)
+01:38 <@mids> #freenet channel policies should be discussed with the #freenet founder and operators
+01:38 <@mids> -Trent(anon.iip)- The channel #terrorist-plots is NOT registered
+01:38 <@mids> ok
+01:38 <@mids> #iip is the main serious IIP channel
+01:38 <@mids> (imho)
+01:39 <@mids> so, stuff there should be related to IIP
+01:39 <@mids> and should be correct.. don't give incorrect info there
+01:39 <@mids> maybe same for #help
+01:39 <@mids> anyway
+01:39 <@mids> I got the hint that we are getting bored
+01:39 <@mids> :)
+01:40 <@mids> ,
+01:40 <@nop> ok
+01:40 <@nop> basically
+01:40 <@nop> no inhibiting people's speech
+01:40 <@nop> only time to regulate
+01:40 <@nop> is if others are inhibiting free speech
+01:40 <@nop> aka spamming
+01:40 <@nop> or flooding
+01:41 <@nop> and do not abuse operator powers to inhibit speech
+01:41 <@nop> got it
+01:41 <@nop> good
+01:41 <@nop> move on
+01:41 <@mids> yup
+01:41 <@mids> official thingL
+01:41 <@mids> reinstate cohesion
+01:41 <@nop> we will once we talk to him and review the rules
+01:41 <@nop> he should be re-instated
+01:41 <@mids> done
+01:42 <@mids> with level 2
+01:42 <@mids> over & out :)
+01:42 <@mids> 3) Website
+01:43 <@mids> --------
+01:43 <@mids> how is the design going?
+01:43 <+BluePaperBoy> ?
+01:43  * mids looks at the agenda
+01:43 <@mids> ellison: got something to say? :)
+01:44 < ellison> ah
+01:44 < ellison> working on it right now
+01:44 < ellison> looks cool, trust me.
+01:44 < ellison> ;-)
+01:44 <+BluePaperBoy> which "sample" is his
+01:44 <+BluePaperBoy> ?
+01:44 < ellison> I might have something to show by the end of the meeting - if not then, later tonight
+01:45 <@mids> another design (from tikk) is on http://www.nokhockey.com/scott/IIP/home2.htm
+01:45 <@mids> hm, nop, can you say something about "wear IIP?
+01:47 <@nop> oh
+01:48 <@nop> hold please
+01:48 <@nop> on phone
+01:48 <@mids> ah
+01:48 <@mids> "if you cant wait till the IIP site is done and already want to show your passion with IIP : http://www.cafepress.com/invisiblenet
+01:48 <@mids> nop got some nice stuff there
+01:48  * mids bought some IIP tshirts :)
+01:49 <@nop> all funding goes to fund the project
+01:49 <@mids> but most goes to the cafepress guys :(
+01:49 <@mids> I want to have a black tshirt with a white IIP logo
+01:50 <@mids> if you know a way to get it... tell us :)
+01:50 < ellison> i want a black t-shirt with a black logo...
+01:51 <@mids> ellison: noted.. we will have them too :)
+01:51 < ellison> :-)
+01:51 <@mids> other comments?
+01:51 <+BluePaperBoy> I want something blue :)
+01:51 <@mids> BluePaperBoy: cool
+01:51 <@mids> I think that the logo's that Banks made are available
+01:51 <+BluePaperBoy> ...can't find anything though ;(
+02:07 -!- Topic for #iip-dev: Info, agenda, log : http://mids.student.utwente.nl/~mids/iip/ | Tuesday 23:00 UTC - http://e-store.invisiblenet.net
+02:07 [Users #iip-dev]
+02:07 [@codeshark   ] [ ellison] [ logger] [ Robert   ] [ UserX]
+02:07 [@nop         ] [ epoch  ] [ mids  ] [ Rooster77]
+02:07 [+BluePaperBoy] [ I      ] [ Neo   ] [ UnDeRToW ]
+02:07 -!- Irssi: #iip-dev: Total of 13 nicks [2 ops, 0 halfops, 1 voices, 10 normal]
+02:07 -!- Irssi: Join to #iip-dev was synced in 1 secs
+02:07 < Neo> <UserX> A new protocol has now been implemented for IIP 1.1 details of it are at: http://mids.student.utwente.nl/~mids/iip/meeting4/iip11proto.txt
+02:07 < Neo> <UserX> this adds error detection and fixes problems introduced by the server having a static key
+02:07 < Neo> (4 the logger)
+02:08 < logger> gracia
+02:10 <@nop> ok
+02:10 <@nop> next
+02:10 < logger> 3,4]
+02:11 -!- mode/#iip-dev [+o mids] by Trent
+02:13 < UnDeRToW> ...
+02:14 <@mids> hmpf
+02:14 <@mids> sorry ppl
+02:14 <@mids> blaim the civ :)
+02:14 <@mids> did you all see the new network diagrams?
+02:14 <@nop> yes
+02:14 <@nop> links etc
+02:15 <@mids> question:
+02:15 <@mids> bigendian == network order?
+02:15 <@nop> big endian == byte order
+02:15 <@mids> byte order != network order?
+02:16 <@nop> ok
+02:16 <@nop> any questions
+02:16 <@nop> before we close the meeting
+02:16 < UserX> as i understand bigendian byte order is the network byte order
+02:16 <@mids> thanks UserX
+02:17 -!- mode/#iip-dev [+o UserX] by mids
+02:17 < UnDeRToW> can we translate the isproxy too?
+02:18 <@mids> can you explain? windows, unix, docs?
+02:19 < UnDeRToW> the program to join here
+02:20 <@mids> how do such programs work? do they detect the language automatically?
+02:20 <@nop> locale I guess
+02:21 < UnDeRToW> or have different versions
+02:21 < UnDeRToW> spannish, french .....
+02:22 <@UserX> there are some hooks for adding translations (gettext style) to isproxy but no support for doing actual translations yet
+02:22 <@mids> I think that is a good thing.. certainly not for 1.1.. but to keep in mind, maybe 1.2 ?
+02:22 < UnDeRToW> great
+02:23 < UnDeRToW> and also a we have to start a FAQ
+02:23 <@mids> but, I think the work involved shouldnt underestimated... chinese characters sound complex to me
+02:24 <@mids> UserX: any idea how the windows i18n is?
+02:24 <@codeshark> you can use resource files on windows
+02:24 <@nop> chinese require double byte
+02:24 <@nop> unicode
+02:24 <@codeshark> yes
+02:24 <@UserX> mids: do you mean how hard it would be to do translation?
+02:24 <@mids> Rooster77 knows something about htat
+02:25 <@mids> UserX: no, more the unicode / utf8 support
+02:26 < Rooster77> Rooster77 is not fluent yet, but is working on it..
+02:27 <+BluePaperBoy> just give it to a chinese programmer ;)
+02:27 < Rooster77> good idea...!
+02:27 <@UserX> not that familar with it but as i understand you can select codepages for interpreting 8 bit characters
+02:28 <@mids> okay... more questions?
+02:30 < UnDeRToW> i need the new docs to update the translation
+02:30 <@mids> okay, while they are still under review, you can get them from the CVS
+02:30 < UnDeRToW> ok
+02:30 <@mids> do you know how to use CVS?
+02:30 <+BluePaperBoy> mids: are we stuck with that crappy iip logo?  What ever happend to the copyrighted casper pics?
+02:30 < UnDeRToW> yes
+02:30 <@mids> UnDeRToW: contrib/htmldoc/
+02:31 <@nop> which logo
+02:31 <@mids> UnDeRToW: thats where everything is
+02:31 <+BluePaperBoy> the two trenchcoat guys then the p
+02:31 < UnDeRToW> ok
+02:31 <+BluePaperBoy> ...on the clothing ;)
+02:31 <@mids> I like the new design
+02:32 < UnDeRToW> and the FAQ
+02:32 < UnDeRToW> we have to do one
+02:32 <@mids> UnDeRToW: banks started some faq items in the manual too
+02:32 < UnDeRToW> i see almost always the same quesitons
+02:32 < UnDeRToW> ok
+02:32 < UnDeRToW> i will take a look
+02:33 < UnDeRToW> last thing
+02:33 <@nop> k
+02:33 <@nop> I think we're done
+02:33 < UnDeRToW> i think
+02:34 < UnDeRToW> would be usefull to being able to change your trent password
+02:35 <@mids> ok
+02:35 < UnDeRToW> if you want to change you pass you have to drop the nick
+02:35 <@mids> would it be needed to enter it twice?
+02:35 < UnDeRToW> but if you drop you loose the channels
+02:35 <+BluePaperBoy> mids: that would be nice
+02:36 <@mids> I'll think about it :)
+02:37 <@mids> (no reason not to do it, just someone has to code it)
+02:37 <@nop> should be like 5 lines of code
+02:37 <@mids> well, 6
+02:37 <@mids> :)
+02:38 <+BluePaperBoy> so it'll be done within a year I guess :)
+02:38 <@mids> very likely
+02:39 <@nop> ok
+02:39 <@mids> remember me everydat
+02:39 <@mids> day
+02:39 <@nop> one thing
+02:39 <@nop> http://e-store.invisiblenet.net
+02:39 <@nop> support the project
+02:39 <@nop> will work on getting black on white
+02:39 <@nop> ellison
+02:39 <@nop> anything on website yet
+02:39 < ellison> hey,
+02:39 < ellison> about 1 hour away from something I'd be comfortable showing
+02:40 <@nop> ok
+02:40 <@nop> is it like just started
+02:40 <@nop> or is it fully functional
+02:40 <@nop> the one you're showing
+02:40 <@nop> ?
+02:40 < ellison> this is a photoshop draft
+02:40 <+BluePaperBoy> are you hardcoding or cheating?
+02:40 < ellison> ?
+02:41 < ellison> it's quite a few steps away from a finished site, but I can break out the HTML for templates in a day or so once the design is finalized
+02:42 <@nop> ok
+02:42 <@nop> kewl
+02:45 <@mids> okay folks, I am going to sleep.. thanks for the patience  :)
+02:46 < UnDeRToW> me too
+02:46 < UnDeRToW> i have to wake up in 4 hours
+02:46 < UnDeRToW> :(
+02:46 < UnDeRToW> bye
+02:46 <+BluePaperBoy> bye
+03:08 < logger> logging ended
+--- Log closed Wed Jun 12 03:08:35 2002
+</div>

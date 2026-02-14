@@ -2,16 +2,186 @@
 title: "I2P 개발자 회의"
 date: 2002-11-06
 author: "nop"
-description: "2002년 11월 6일자 I2P 개발 회의록."
+description: "2002년 11월 6일 I2P 개발 미팅 로그."
 categories: ["meeting"]
 ---
 
 (웨이백 머신 제공 http://www.archive.org/)
 
-## 간단한 요약
+## 빠른 요약
 
 <p class="attendees-inline"><strong>참석자:</strong> al-jabr, co, codeshark, dj28, hezekiah, Mak, Neo, nop, Phiberoptika, Povert, UserX</p>
 
 ## 회의 기록
 
-<div class="irc-log"> --- 로그가 열림 Tue Nov 05 23:14:03 2002 23:14 < logger> 테스트 23:55 < nop> hineo 23:55 < Neo> hinop 23:57 < nop> 안녕 hezekiah --- 날짜 변경 Wed Nov 06 2002 00:00 < Neo> 23:00:00.00 UTC 00:00 < nop> ok 00:00 < nop> welcome 00:00 < nop> 조금만 기다리고 싶네요, 릴레이 하나가 죽은 것 같아요 00:00 < nop> 1분만 더 00:00 < nop> 사람들이 다시 재정비할 수 있게 ;) 00:01 < hezekiah> 맞아요. 방금 30초 전에 튕겼어요. 00:01 < nop> 그렇죠 00:01 < nop> ok 00:01 < nop> ok 00:01 < nop> n번째 iip-dev 미팅에 오신 것을 환영합니다 00:02 < hezekiah> 18번째! 00:02 < nop> 대략 18번째인 것 같네요 00:02 < nop> 맞아요 00:02 < nop> thnx 00:02 < nop> 의제에는 00:02 < nop> 1) 환영 <-- 지금 하고 있죠 00:02 < nop> 2) 안건 목록 <-- 이것도 지금 진행 중 00:02 < nop> 3) ;) 00:03 < nop> 4) IIP 로고 00:03 < nop> 5) 개발 보고 00:03 < nop> 6) RC3 (곧 나옵니다, 약속해요) 00:03 < nop> 7) 질문 00:03 < nop> . 00:03 < nop> 좋아요, 환영과 안건은 끝났고 00:03 < nop> 이제 ;) 하죠 00:03 < nop> ;) 00:04 < nop> 좋아요 IIP 로고 00:04 < nop> 그리고 슬로건 00:04 < co> 제출된 로고들은 어디서 볼 수 있나요? 00:04 < nop> 사실 제출된 게 없어요 00:04 < nop> 하나 빼고는 00:04 < nop> 그리고 제가 InvisibleNet 슬로건을 하나 제출했어요 00:04 < nop> 제 걸 말씀드릴게요 00:05 < nop> 티셔츠 앞면에는 "보이지 않으면 공격할 수 없다..." 00:05 < nop> 그리고 뒷면에는 00:05 < nop> InvisibleNet 00:05 < nop> 다른 것도 하나 있는데, iip-dev로 메일로 보낼게요 00:05 < nop> 근데 아무도 관심이 없는 듯 00:05 < nop> 그래서... :( 00:06 < nop> 다시 말하지만 00:06 < nop> 어차피 IIP 티셔츠를 사려는 사람도 없는 것 같고 00:06 < nop> 그러니... 어쩌겠어요 00:06 < nop> 네, 검은색 티셔츠는 준비 중이에요 00:06 < nop> 다음 안건 00:06 < nop> 개발 보고 00:07 < nop> 똑같이, 개발은 core control(코어 제어)에 집중하고 있어요 00:08 < nop> userx가 간단히 요약해 줄 거예요 00:08 < hezekiah> *박수* 00:09 < UserX> core control은 iip에서 여러 core(코어)를 지원할 수 있는 시스템을 제공합니다. 각 core는 본질적으로 네트워크 프로토콜입니다 00:10 < UserX> . 00:10 < nop> ok 00:10 < nop> 고마워요 UserX 00:10 < nop> 말이 참 많으시네요 00:10 < nop> ;) 00:10 < nop> 아니면 여성분일 수도 00:10 < nop> 모르는 거죠 00:10 < nop> 어쨌든 00:10 < nop> RC3 00:11 < nop> 곧 나올 예정이고, openbsd 호환성 문제가 보고되었는데 제가 알기론 패치되어 cvs에 반영됐습니다 00:11 < nop> (이상하게도, 그에 대한 listserv 메일은 못 받았지만) 00:11 < nop> 이번 주말에 RC3 업그레이드하기 좋을 것 같아요 00:11 < nop> 그리고 rc2와는 어떤 방식으로도 충돌하지 않을 거예요 00:12 < nop> 대부분 버그 수정이에요 00:12 < nop> 질문 00:12 < nop> 누구요? 00:12 < codeshark> 그럼 지금은 전부 cvs에 들어간 건가요? 00:12 < dj28> 네 00:12 < dj28> 바보 같은 질문 하나 있어요 00:12 < dj28> IIP core 서버가 언제 irc 프로토콜에서 벗어나나요? 00:12 < nop> codeshark - 그런 것 같아요, UserX와 확인해서 괜찮은지 보세요 00:13 < nop> 이게 바로 core control 개발 작업이 우리가 할 수 있게 해 주는 부분이에요 00:13 < dj28> 그리고 언제 완전히 분산형이 되나요? 00:13 < dj28> 오 알겠어요 00:13 < nop> 그 위에 기반해 확장할 수 있을 거예요 00:13 < UserX> codeshark: 제 서버가 인터넷과 다시 통신하게 되면요 00:13 < nop> 그리고 1.2에서는 완전히 분산된 버전을 목표로 하고 있어요 00:13 < dj28> 좋아요. 굿 00:13 < nop> 적어도 통신 레벨에서는요 00:13 < nop> 라우팅은 여전히 inform을 통해 돌아갈 수도 있어요 00:14 < nop> 하지만 통신은 분산화될 거예요 00:14 < nop> freenet 0.3 시절과 비슷하게요 00:14 < dj28> 네 00:14 < nop> 다른 질문 있나요? 00:15 < co> 그러니까 core는 네트워크 통신을 가능하게 하는 암호화 알고리즘 패키지인가요? 00:15 < co> 그 개념을 다시 설명해 주세요. 00:15 < Mak> 와... 갑자기 들어왔네요... 미안... 00:16 < nop> 음 00:16 < nop> core는 네트워크 프로토콜이에요 00:16 < nop> 이렇게 하면 모듈식 구조가 되어 00:16 < nop> 여러 라우팅 아키텍처를 지원할 수도 있게 됩니다 00:16 < Neo> 오오 좋네요... 00:17 < nop> 이렇게 하면 많은 프로토콜을 지원할 수 있는 기반이 됩니다 00:18 < nop> core control은 core들을 위한 API와 비슷해요 00:19 < nop> 더 질문 있나요? 00:19 < co> 감사합니다. 00:19 < nop> 별말씀을 00:21 < nop> 아 00:21 < nop> 한 가지 더 00:22 < nop> IIP 관련 El Pais 신문 기사 번역을 멋지게 해준 Phiberoptika에게 큰 감사 00:22 < nop> 스페인어 원문과 영어 번역본(Phiberoptika가 번역)이 iip 사이트 www.invisiblenet.net/iip 에 올라와 있어요 00:22 < nop> 좋은 기사예요 00:22 < hezekiah> 멋지네요! 꼭 확인해 볼게요! 고마워요, Phiberoptika! :) 00:22 < al-jabr> 질문 있어요... 00:22 < nop> 네, 말씀하세요 00:22 < al-jabr> 두 가지예요 00:22 < nop> 물론이죠 00:22 < al-jabr> 문제가 하나 있었어요 00:23 < al-jabr> linux에서 IIP를 실행할 때였는데, 실제로 IIP 문제인지는 모르겠어요 00:23 < al-jabr> isproxy를 kill한 뒤 00:23 < al-jabr> 다시 실행하려 하니 포트에 바인드하지 못했어요 00:23 < al-jabr> 이런 문제가 두어 번 있었고, 포트 번호를 바꿔야 했어요 00:23 < al-jabr> 그런데 (며칠 뒤) 다시 로그오프했다가 로그인하니 그 포트가 사용 가능했어요 00:24 < al-jabr> 그래서 그게 isproxy 자체의 문제인지는 확실치 않아요 00:24 < hezekiah> 재현 가능한가요, 아니면 그냥 랜덤하게 발생하나요? 00:24 < nop> 맞아요, RC2에서는 1분 정도 기다리면 다시 바인드할 수 있어요 00:24 < UserX> 죽였을 때 거기에 연결되어 있던 게 있었나요? 00:24 < al-jabr> 재현해 보겠습니다 00:24 < al-jabr> 그런데 00:24 < al-jabr> 아니요, 6667에는 아무도 연결되어 있지 않았어요 00:25 < nop> 아, 그 포트 00:25 < nop> 흠 00:25 < al-jabr> 세네 번 정도 그런 일이 있었고, 계속 포트를 바꿔야 했어요 00:25 < al-jabr> 네 00:25 < al-jabr> 다른 포트는 아니고요 00:25 < Phiberoptika> 기사 관련: ;)!!! 문제없어요, chicos.. 00:25 < al-jabr> 그 뒤로는 재현하지 못했는데, 시도를 많이 하진 않았어요 00:25 < nop> 헤헤 00:25 < al-jabr> isproxy를 거의 재시작하지 않아서요 00:26 < al-jabr> 아마 시도해 봐야겠죠. 그리고 지난 며칠 동안 네트워크에 문제가 많았어요 00:26 < Povert> 질문 있어요.... 00:26 < al-jabr> 그리고 그게 로컬 문제인지는 모르겠어요 00:26 < UserX> 이상하네요. 제가 아는 한 그런 일이 생기는 이유는, 연결이 제대로 종료되지 않으면 연결이 걸려 있는 상태가 되고, OS가 타임아웃할 때까지 기다려야 한다는 겁니다 00:26 < Povert> openbsd 문제는 정말 해결된 건가요? 00:26 < al-jabr> 왜냐하면, 그 전에는 많아야 하루에 두어 번 정도만 튕겼는데, 갑자기 몇 분마다 튕기고, 아예 접속이 안 될 때도 있고, 가끔은 랙이 심했거든요 00:27 < UserX> al-jabr: netstat을 사용해서 6667 포트에 남아 있는 연결이 있는지 확인해 보셨나요 00:27 < al-jabr> 그리고 node.refs를 바꿔도 도움이 되지 않는 것 같았어요 00:27 < al-jabr> 아니요, 그건 확인했어야 했네요 00:27 < al-jabr> 바보 같았네요 00:27 < al-jabr> 좀 더 시도해 보고 그렇게 해볼게요 00:27 < al-jabr> 서버를 종료한 뒤에도 반대편에 연결이 남아 있을 수 있다고는 생각 못 했어요 00:28 < nop> netstat에서 TIME_WAIT가 나오나요? 00:29 < hezekiah> 또한 가끔 isproxy 프로세스가 멈춰 있을 때가 있어요(하지만 저는 버그 있는 코드를 디버깅할 때만 그랬습니다). 다음 명령으로 isproxy의 걸려 있는 프로세스가 있는지 확인할 수 있어요: ps -e | grep isproxy 00:29 < al-jabr> 그건 했어요 00:29 < al-jabr> 돌아가는 isproxy는 없었어요 00:29 < hezekiah> 좋아요. :) 00:30 < al-jabr> 아니요, 안 좋은 거죠. 00:30 < al-jabr> 어쨌든 좀 더 조사해 볼게요, 아마 큰 문제는 아닐 거예요 00:32 < Povert> nop 00:32 < Povert> openbsd 컴파일 문제는 완전히 해결됐나요? 00:32 < Neo> diff -r1.2 sock.h 00:32 < Neo> 45c45 00:32 < Neo> < #elif defined(__FreeBSD__) || defined(__MACH__) 00:32 < Neo> --- 00:32 < Neo> > #elif defined(__FreeBSD__) || defined(__MACH__) || defined(__OpenBSD__) 00:33 < Povert> 코드 트리 안에서요, 그 말이에요 00:34 < nop> 곧 커밋될 예정이에요 00:34 < Povert> ok 00:34 < Povert> 감사 00:34 < nop> 맞아요 00:37 < nop> 더 질문 있나요? 00:42 < nop> 참석해 주셔서 감사합니다 00:42 < nop> . </div>
+<div class="irc-log">
+--- Log opened Tue Nov 05 23:14:03 2002
+23:14 < logger> test
+23:55 < nop> hineo
+23:55 < Neo> hinop
+23:57 < nop> hi hezekiah
+--- Day changed Wed Nov 06 2002
+00:00 < Neo> 23:00:00.00 UTC
+00:00 < nop> ok
+00:00 < nop> welcome
+00:00 < nop> I kind of want to wait, looks like a relay died
+00:00 < nop> just another minute
+00:00 < nop> so that people can re-assimilate ;)
+00:01 < hezekiah> Yeah. I got bumped out about 30 seconds ago.
+00:01 < nop> right
+00:01 < nop> ok
+00:01 < nop> ok
+00:01 < nop> welcome to the n-th iip-dev meeting
+00:02 < hezekiah> 18th!
+00:02 < nop> I think it's like the 18th
+00:02 < nop> yes
+00:02 < nop> thnx
+00:02 < nop> on the agenda
+00:02 < nop> 1) welcome <-- we're doing this now
+00:02 < nop> 2) agenda list <-- we're doing this now
+00:02 < nop> 3) ;)
+00:03 < nop> 4) IIP logo
+00:03 < nop> 5) Dev report
+00:03 < nop> 6) RC3 (coming soon, we promise)
+00:03 < nop> 7) questions
+00:03 < nop> .
+00:03 < nop> ok we did the welcome and the agenda
+00:03 < nop> let's do the ;)
+00:03 < nop> ;)
+00:04 < nop> Ok IIP logo
+00:04 < nop> and slogan
+00:04 < co> Where can we see the logos that have been submitted?
+00:04 < nop> none have really been submitted
+00:04 < nop> except one
+00:04 < nop> and I submitted a slogan for InvisibleNet
+00:04 < nop> I'll tell you mine
+00:05 < nop> front part of shirt "You can't attack what you can't see..."
+00:05 < nop> then back would say
+00:05 < nop> InvisibleNet
+00:05 < nop> then there's this other one, I'll mail to iip-dev
+00:05 < nop> but no one else seems to care
+00:05 < nop> so... :(
+00:06 < nop> then again
+00:06 < nop> no one seems to want to buy shirts for IIP anyway
+00:06 < nop> so... what can ya do
+00:06 < nop> yes we're working on getting black shirts
+00:06 < nop> next on the agenda
+00:06 < nop> Dev report
+00:07 < nop> same ol' same ol' dev is working on the core control
+00:08 < nop> userx will give a brief summary
+00:08 < hezekiah> *applause*
+00:09 < UserX> core control will provide a system for being able to support multiple cores in iip. each core is esssentially network protocol
+00:10 < UserX> .
+00:10 < nop> ok
+00:10 < nop> thank you UserX
+00:10 < nop> man of many words
+00:10 < nop> ;)
+00:10 < nop> or woman
+00:10 < nop> never know
+00:10 < nop> anyway
+00:10 < nop> RC3
+00:11 < nop> it's on it's way out the door, I believe there is an openbsd compatibility that was reported and from what I know, it's been patched and cvs'd
+00:11 < nop> (for some reason, I haven't got a listserv about it)
+00:11 < nop> but we're hoping that this weekend would be a good time to do an RC3 upgrade
+00:11 < nop> and it's not going to conflict with rc2 in any way
+00:12 < nop> just mostly bug fixes
+00:12 < nop> Questions
+00:12 < nop> anyone?
+00:12 < codeshark> so everything is in cvs now?
+00:12 < dj28> yea
+00:12 < dj28> i have a stupid one
+00:12 < dj28> when will the IIP core server migrate away from the irc protocol?
+00:12 < nop> codeshark - I believe so, please check with UserX to make sure he's comfortable with it
+00:13 < nop> this is what the core control dev work puts us in a position to do
+00:13 < dj28> and when will it become completely distributed?
+00:13 < dj28> oh ok
+00:13 < nop> so then we'll be able to build upon that
+00:13 < UserX> codeshark: it will be once my server is talking to the internet again
+00:13 < nop> and we hope to have 1.2 a fully distributed version
+00:13 < dj28> ok. cool
+00:13 < nop> at least at communication level
+00:13 < nop> the routing might still be run through inform
+00:14 < nop> but the communication should be decentralized
+00:14 < nop> similar to how freenet 0.3 was
+00:14 < dj28> yea
+00:14 < nop> any other questions?
+00:15 < co> So a core is a package of encryption algorithms that allow network communication?
+00:15 < co> Explain that concept again, please.
+00:15 < Mak> wow ...i jumped here ...sorry ...
+00:16 < nop> well
+00:16 < nop> a core is a network protocol
+00:16 < nop> this puts us in a modular position
+00:16 < nop> to possibly support many routing architectures
+00:16 < Neo> oooh nice...
+00:17 < nop> this could position us to support many protocols
+00:18 < nop> the core control is similar to an API for cores
+00:19 < nop> any more questions?
+00:19 < co> Thank you.
+00:19 < nop> np
+00:21 < nop> oh
+00:21 < nop> one more thing
+00:22 < nop> Many thanks to Phiberoptika for her fine translation of the El Pais newspaper article done on IIP
+00:22 < nop> it appears in spanish and with english translation (done by Phiberoptika) on the iip site www.invisiblenet.net/iip
+00:22 < nop> it's a good article
+00:22 < hezekiah> Cool! I'll have to check that out! Thanks, Phiberoptika! :)
+00:22 < al-jabr> I have a question...
+00:22 < nop> yes sir
+00:22 < al-jabr> Two questions
+00:22 < nop> sure
+00:22 < al-jabr> I had one problem
+00:23 < al-jabr> running IIP in linux, don't know if it's actually an IIP problem
+00:23 < al-jabr> after I killed isproxy
+00:23 < al-jabr> and tried to run again, it couldn't bind to the port
+00:23 < al-jabr> had this problem a couple times, had to change the port number
+00:23 < al-jabr> but when i logged of and on again (a few days later) the port was available
+00:24 < al-jabr> so I'm not sure that's directly an issue with isproxy
+00:24 < hezekiah> Is this reproducable, or just a random happening?
+00:24 < nop> right, if you wait like 1 minute with RC2 you can rebind
+00:24 < UserX> was something connected to it when you killed it?
+00:24 < al-jabr> i'll try to reproduce it
+00:24 < al-jabr> but
+00:24 < al-jabr> no, nothing was connected to 6667
+00:25 < nop> oh that port
+00:25 < nop> hmm
+00:25 < al-jabr> and it happened like three or four times and i had to keep changing ports
+00:25 < al-jabr> yeah
+00:25 < al-jabr> not the other one
+00:25 < Phiberoptika> re:article: ;)!!!, no problem chicos..
+00:25 < al-jabr> i haven't reproduced it since then, but i haven't been trying
+00:25 < nop> hehe
+00:25 < al-jabr> since i rarely go restarted isproxy
+00:26 < al-jabr> i should probably try to.  also, i was experiencing a lot of problems with the network for the last few days
+00:26 < Povert> I have a question....
+00:26 < al-jabr> and i don't know if it's something local
+00:26 < UserX> odd. the only reason i know for that to happen is that if the connection is closed properly it will be left hanging and you have to wait for the OS to time it out
+00:26 < Povert> is de openbsd thing realy solved?
+00:26 < al-jabr> because, before the last couple days, i got kicked off, maybe a couple times a day at MOST, then all of the sudden i was getting kicked off every few minutes, and sometimes not getting on at all, and sometimes lagging
+00:27 < UserX> al-jabr: did you try using netstat to see if there were any lingering connections to port 6667
+00:27 < al-jabr> and changing node.refs didn't seem to help
+00:27 < al-jabr> no, i should have investigated that
+00:27 < al-jabr> silly me
+00:27 < al-jabr> i'll try it a bit more and i'll do that
+00:27 < al-jabr> i didn't think that there could be connections on the other end after the server is killed
+00:28 < nop> would netstat give a TIME_WAIT?
+00:29 < hezekiah> Also, sometimes a process of isproxy hangs (but that only has happened to me when I'm debugging buggy code.) You should be able to check to see if there are still a hanging process of isproxy by doing: ps -e | grep isproxy
+00:29 < al-jabr> i did that
+00:29 < al-jabr> no isproxies were running
+00:29 < hezekiah> Good. :)
+00:30 < al-jabr> no, bad.
+00:30 < al-jabr> but anyway, i'll investigate that some more, probably not a big issue
+00:32 < Povert> nop
+00:32 < Povert> is openbsd kompilation ready solved?
+00:32 < Neo> diff -r1.2 sock.h
+00:32 < Neo> 45c45
+00:32 < Neo> < #elif defined(__FreeBSD__) || defined(__MACH__)
+00:32 < Neo> ---
+00:32 < Neo> > #elif defined(__FreeBSD__) || defined(__MACH__) || defined(__OpenBSD__)
+00:33 < Povert> in codetree I meen
+00:34 < nop> it's about to be committed
+00:34 < Povert> ok
+00:34 < Povert> dank
+00:34 < nop> yep
+00:37 < nop> any more questions?
+00:42 < nop> thanks for attending
+00:42 < nop> .
+</div>

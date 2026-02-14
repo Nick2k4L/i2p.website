@@ -1,17 +1,454 @@
 ---
-title: "I2P डेवलपर बैठक"
+title: "I2P डेवलपर मीटिंग"
 date: 2003-02-18
 author: "nop"
-description: "18 फरवरी 2003 की I2P विकास बैठक का लॉग।"
+description: "18 फरवरी, 2003 के लिए I2P विकास बैठक लॉग।"
 categories: ["meeting"]
 ---
 
-(wayback machine के सौजन्य से http://www.archive.org/)
+(वेबैक मशीन की सौजन्य से http://www.archive.org/)
 
-## संक्षिप्त पुनरावलोकन
+## त्वरित सारांश
 
 <p class="attendees-inline"><strong>उपस्थित:</strong> aum, Barney, bpb, hezekiah, jeremiah, LeerokOnKnoppix, lonelynerd, mids, namless, nop, PsionX, _Trent, WindowsHater</p>
 
-## बैठक लॉग
+## मीटिंग लॉग
 
-<div class="irc-log"> --- लॉग खोला गया Tue Feb 18 23:54:43 2003 23:54 -!- #iip-dev के लिए विषय: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ 23:54 [उपयोगकर्ता #iip-dev] 23:54 [ aum   ] [ bpb      ] [ jeremiah       ] [ logger] 23:54 [ Barney] [ codeshark] [ LeerokOnKnoppix] [ mids  ] 23:54 -!- Irssi: #iip-dev: कुल 8 नicks [0 ops, 0 halfops, 0 voices, 8 normal] 23:54 -!- Irssi: #iip-dev से जुड़ना 2 सेकंड में सिंक हुआ 23:55  * bpb लॉगिंग बॉट की ओर इशारा करता है, फिर जापानी एनिमेटेड स्कूल गर्ल की तरह ऊपर-नीचे कूदता है 23:55 -!- mode/#iip-dev [+o mids] Trent द्वारा 23:55 -!- mode/#iip-dev [+v logger] mids द्वारा 23:57 -!- LeerokOnKnoppix अब Trent के नाम से जाना जाता है 23:57 -!- Trent अब nickthief76011 के नाम से जाना जाता है 23:57 <@mids> :p 23:57 -!- nickthief76011 अब LeerokOnKnoppix के नाम से जाना जाता है 23:57 < lonelynerd> क्याआ? 23:58 <@mids> Trent nick की रक्षा करता है 23:58 < lonelynerd> ओह, कुछ नहीं 23:58 < LeerokOnKnoppix> यह ऐसा कैसे करता है? 23:58 -!- LeerokOnKnoppix अब _Trent के नाम से जाना जाता है 23:58 < _Trent> मैं Trent हूँ, मेरी दहाड़ सुनो! 23:58 < _Trent> सारे अनवेरिफाइड यूज़र्स बाहर निकलो! 23:59 -!- mode/#iip-dev [+o hezekiah] Trent द्वारा 23:59 < _Trent> मेरा क्या? 23:59 <@mids> हे hezekiah :) 23:59 -!- _Trent अब LeerokOnKnoppix के नाम से जाना जाता है 23:59 <@hezekiah> हाय, mids. :) 23:59 <@hezekiah> लगता है मुझे इस IRC वाली चीज़ की कुछ समझ होने लगी है! :) 23:59 <@mids> kool --- दिन बदल गया Wed Feb 19 2003 00:00 <@hezekiah> तो क्या किसी बग ने महान IIP dev टीम को चुनौती दी है और आपकी पिछली iip-dev मेलिंगलिस्ट वाली मेल के बाद अपना कुरूप सिर उठाया है? 00:01 < LeerokOnKnoppix> यह कभी-कभार डिस्कनेक्ट हो जाता है। 00:01 <@hezekiah> मुझे वह बग अनुभव नहीं हो रहा। :( 00:01 < lonelynerd> LeerokOnKnoppix, शायद तुम्हारा कनेक्शन होगा। मुझे कोई समस्या नहीं हुई 00:01 < LeerokOnKnoppix> हम्म। 00:01 <@hezekiah> mids: nop और UserX कहाँ हैं? 00:01 <@mids> Tue Feb 18 23:01:51 UTC 2003 00:01 <@mids> user यहाँ था पर वह पिंग आउट हो गया 00:01 < LeerokOnKnoppix> _Trent ने उन्हें बाहर निकाला। 00:02 <@mids> userx 00:02 <@mids> अभी-अभी nop को ICQ किया 00:02 < LeerokOnKnoppix> क्या वह आ रहा है? 00:02 <@mids> पता नहीं 00:02 < bpb> lonelynerd: यह हमेशा हुआ है... और सिर्फ उसके साथ नहीं 00:03 < lonelynerd> bpb, फिर भी, यह iip की समस्या नहीं बल्कि अविश्वसनीय कनेक्शनों की है 00:04 <@mids> nop आ रहा है 00:04 < nop> हाय 00:04 < lonelynerd> हाय 00:04 < nop> ओके 00:04 < nop> स्वागत है 00:04 < LeerokOnKnoppix> नमस्ते nop. 00:04 <@hezekiah> हाय, nop! :) 00:04 < nop> Leerok को Knoppix पसंद है? 00:04 < LeerokOnKnoppix> अभी तक तो। 00:04 < nop> kewl 00:04 < nop> ओके 00:04 < bpb> lonelynerd: फिर तो यह असली नेटवर्क की समस्या है 00:04 < LeerokOnKnoppix> पर मैं इसे हार्ड ड्राइव पर इंस्टॉल करना चाहता हूँ। 00:04 < LeerokOnKnoppix> लेकिन जब मैंने कोशिश की तो यह काम नहीं किया। 00:04 < nop> ठीक है, IIP-dev की 31वीं मीटिंग में आपका स्वागत है 00:04 < nop> IIP-dev की 00:04 < LeerokOnKnoppix> कूल। 00:04 < lonelynerd> bpb, खैर, यह अविश्वसनीय लिंक्स को संभाल सकता है, लेकिन फिलहाल नहीं करता 00:04 < LeerokOnKnoppix> मैं बस यूँ ही ठहरा हूँ ताकि ज्ञान धीरे-धीरे मेरे दिमाग में समा जाए। 00:05 < nop> ओके 00:05 < nop> श्श्श 00:05 < nop> मीटिंग शुरू 00:05 < nop> कार्यसूची में 00:05 -!- mode/#iip-dev [+o nop] mids द्वारा 00:05 <@nop> IIP 1.1 और उससे जुड़ी औपचारिकताएँ 00:05 <@nop> hezekiah: 00:06 <@hezekiah> हाँ? 00:06 <@nop> hezekiah: क्या entropy (यादृच्छिकता का माप) से जुड़े सारे काम हमने सुलझा लिए? उदाहरण के लिए hhhhhh वाला मुद्दा 00:06 <@hezekiah> मैंने तो अभी तुम्हें hhhhhhhh मुद्दे के बारे में बताया था। 00:06 <@hezekiah> हमने अभी तक इसके बारे में कुछ नहीं किया। 00:06 <@nop> ओके 00:06 <@hezekiah> seed.rnd वाला मुद्दा development से --randomdialog विकल्प पोर्ट करके हल हो गया है .. 00:06 <@nop> ओके 00:07 <@nop> और क्या तुम समझा सकते हो कि वे क्या करते हैं 00:07 <@nop> बस रिकॉर्ड के लिए 00:07 <@hezekiah> ... और जब seed.rnd मौजूद नहीं होता, तब IIP को एबॉर्ट कराना। 00:07 <@hezekiah> समझाऊँ कि --randomdialog और --ignoreemptyrandom क्या करते हैं? 00:07 <@nop> हाँ 00:07 <@hezekiah> ओके. :) 00:07 <@nop> आधिकारिक उद्देश्यों के लिए 00:07 <@nop> उर्फ़ मीटिंग 00:07 <@hezekiah> सही। :) 00:08 <@hezekiah> जब isproxy को --randomdialog के साथ चलाया जाता है, तो यूज़र से entropy माँगी जाती है (भले ही seed.rnd पहले से मौजूद हो)। 00:09 <@hezekiah> जब isproxy को --ignoreemptyrandom के साथ चलाया जाता है, और पर्याप्त entropy नहीं होती (ऐसी स्थिति जो isproxy को _normally_ एबॉर्ट करा दे), तब प्रोग्राम बस चलता रहता है। यह एक सुरक्षा जोखिम है, इसलिए help विवरण में एक उपयुक्त रूप से डरावनी चेतावनी जोड़ दी जाती है। 00:09 <@hezekiah> (इन सभी विकल्पों की बात करें तो, जब तक mids ने इन्हें जोड़ नहीं दिया, ये अभी isproxy.pod फाइल में नहीं हैं।) 00:09 <@hezekiah> . 00:09 <@mids> मैंने नहीं जोड़ा 00:09 <@hezekiah> हमें रिलीज़ से पहले यह कर लेना चाहिए। :) 00:10 < lonelynerd> (क्या यह --random-dialog और --ignore-empty-random नहीं होना चाहिए? ;P) 00:10 <@hezekiah> lonelynerd: मैं वही कोड करता हूँ जो UserX आदेश देता है। :) 00:10 < lonelynerd> ओके 00:10 <@hezekiah> nop: तो, seed.rnd की समस्या हल है, लेकिन hhhhhhhh वाली समस्या नहीं। 00:10 <@nop> सही 00:11 <@nop> हम्म, ठीक है, हम एक काउंटर रख सकते हैं जो एक ही कीस्ट्रोक को लगातार तीन बार से ज्यादा होने नहीं देगा 00:11 <@hezekiah> (मुझे तो पता भी नहीं कि hhhhhhhh वाकई समस्या है या नहीं। मैंने बस तुम्हें और UserX को बताया। तुम बताओ!) :) 00:11 <@nop> बहुत सरल 00:11 <@nop> यह एक हल्की समस्या है 00:11 <@hezekiah> PGP किसी तरह जानता है कि टेक्स्ट कितनी entropy के लायक है। 00:11 <@nop> हम कीबोर्ड टाइमिंग्स भी निकालते हैं 00:12 <@nop> हम बस इतना कर सकते हैं कि लगातार 3 समान अक्षरों के आगे इंतज़ार करवाएँ 00:12 <@hezekiah> क्या GPG किसी टेक्स्ट स्ट्रिंग की entropy का आकलन करता है? अगर करता है, तो हम उनका कोड देख सकते हैं। :) 00:12 <@nop> मुझे पक्का नहीं 00:12 <@nop> मैं देखने की सलाह देता हूँ 00:12 < lonelynerd> hezekiah, मुझे लगता है यह बस /dev/random इस्तेमाल करता है, या? 00:12 <@nop> lonelynerd नहीं 00:12 <@nop> नहीं करता 00:13 < lonelynerd> आह 00:13 <@nop> हम entropy बनाने की बात कर रहे हैं 00:13 <@nop> /dev/random से अलग 00:13 <@nop> जैसे Initialization 00:13 <@hezekiah> GPG यूज़र से कीबोर्ड पर धड़ाधड़ टाइप करवाता है। :) 00:13 <@mids> खैर नहीं 00:13 <@mids> यह entropy pool से पढ़ता है 00:13 <@mids> और सुझाता है कि तुम माउस हिलाओ + keys दबाओ 00:14 <@mids> लेकिन entropy pool इंटरप्ट्स आदि से भी भर सकता है 00:14 <@nop> हाँ 00:14 < lonelynerd> हाँ 00:14 <@hezekiah> आह। मुझे याद आया जब GPG ने मुझसे कीबोर्ड पर धुनाई करवाई थी। ;) 00:14 < lonelynerd> शायद pgp था? 00:14 <@hezekiah> नहीं। यह Mandrake Linux पर चलता GPG था। 00:14 < Barney> हाँ 00:15 <@hezekiah> (यह कुछ साल पहले था, मुझे याद है AES रिलीज़ से पहले।) खैर, मुद्दे पर वापस। :) 00:15 <@nop> मेरा मानना है हमें कोड देखना चाहिए 00:15 <@hezekiah> ओके. :) 00:15 < lonelynerd> :) 00:15 <@nop> अगर स्पष्ट न हो तो, मैं सुझाव देता हूँ कि लगातार अक्षरों को सीमित करें 00:15 <@nop> और इंतज़ार करवाएँ 00:15 <@nop> जब तक नए अक्षर न दबें 00:15 <@hezekiah> क्या (शायद विश्वविद्यालयों के श्वेतपत्रों में) ऐसे तरीके बताए गए हैं जो किसी टेक्स्ट स्ट्रिंग की entropy का आकलन करें? 00:16 <@nop> हाँ हैं, मैं थोड़ी देर में ढूँढता हूँ 00:16 <@hezekiah> कूल! :) 00:16 < lonelynerd> "ent - A pseudorandom number sequence test program" 00:16 <@nop> हाँ, chi-square (काई-स्क्वेयर) 00:16 <@hezekiah> हम उनमें से एक को लागू कर सकते हैं। (यकीन मानो, GPG कोड खोदने से तेज़ हो सकता है!) :) 00:16 <@nop> http://www.gnu.org/software/gnu-crypto/api/gnu/crypto/tool/Ent.html 00:17 <@nop> यह जावा है 00:17 <@nop> लेकिन फिर भी 00:17 <@hezekiah> मैं Java पढ़ सकता हूँ। :) 00:17 <@hezekiah> मैं अनुवाद भी कर सकता हूँ। :) 00:17 < lonelynerd> ent C में भी है 00:17 <@nop> हाँ 00:17 <@hezekiah> lonelynerd: C वाला कहाँ मिलेगा? 00:18 < lonelynerd> apt-get inst.. whoops, ;P http://www.fourmilab.ch/random 00:18 < lonelynerd> Upstream Author(s): John Walker 00:21 <@nop> ओके 00:21 <@nop> वैसे 00:21 <@nop> मुझे यकीन है यह 1.1 से पहले सँभालना होगा 00:21 <@nop> इससे mids को isproxy.pod अपडेट करने का समय मिलेगा 00:21 <@hezekiah> lol 00:21 <@mids> प्फ़ 00:22 <@mids> बताओ nop, क्या तुमने docs पर काम किया? :) 00:22 <@nop> ;) 00:22 <@nop> मैं उन पर काम कर रहा हूँ 00:22 <@nop> और मेरे पास एक संपादक भी है ;) 00:22 <@mids> खैर 00:22 <@mids> html को एडिट मत करना 00:22 <@nop> मुझे पता है 00:22 <@nop> मैं बस notepad में लिख रहा हूँ 00:22 <@nop> ;) 00:22 <@mids> बस मुझे टेक्स्ट बदलाव भेज देना, हाँ, वह ठीक है 00:22 <@hezekiah> वाह! असली HTML कोडर! साधारण टेक्स्ट एडिटर इस्तेमाल करता है! ;-) 00:23 <@nop> हाहा 00:23 <@nop> मैं इसे कोड नहीं कर रहा 00:23 <@nop> बस दस्तावेज़ टाइप कर रहा हूँ 00:23 <@nop> ;) 00:23 <@mids> तो 00:24 <@mids> क्या 1.1 के लिए और फीचर्स फिसल कर आएँगे? 00:24  * mids उम्मीद करता है कि नहीं 00:24 <@mids> मैंने codeshark से संपर्क करने की कोशिश की 00:24 <@nop> नहीं 00:24 <@mids> लेकिन अभी तक जवाब नहीं मिला 00:24 <@nop> यह फीचर नहीं है 00:24 <@nop> यह बग फिक्स है 00:24 <@nop> ;) 00:25 <@nop> वैसे 00:25 <@nop> आगे बढ़ते हैं 00:25 <@mids> ओके, मुझे और काम करना है 00:25 <@mids> जरुरत हो तो जोर से पुकारना 00:25 < lonelynerd> (gpg लगता है get_entropy_count(fd) का उपयोग करता है यह देखने के लिए कि /dev/random के पास कितने bytes हैं) 00:26 <@nop> सही 00:26 <@nop> उर्फ़ entropy pool साइज चेक करना 00:26 < lonelynerd> जो कि कोई ioctl है 00:26 < lonelynerd> नहीं पता यह windows पर कैसे काम करेगा 00:26 <@hezekiah> lonelynerd: शायद windows पर _काम नहीं_ करता। यह GNU प्रोजेक्ट है, याद है? :) 00:27 < lonelynerd> बढ़िया :) 00:27 <@hezekiah> हमें वास्तव में (कम से कम मेरा यही मानना है) ऐसा कुछ चाहिए जो टेक्स्ट के बफर में कितनी entropy है, यह आँक सके। 00:27 < lonelynerd> hezekiah, ओके 00:27 <@nop> हाँ 00:27 <@hezekiah> ताकि हम यूज़र को तब तक टाइप करवाते रहें जब तक हमें उतनी _REAL_ entropy न मिल जाए। :) 00:27 < lonelynerd> hezekiah, ओके 00:27 <@nop> हाँ 00:27 <@nop> हमें प्रति 3 characters में 1 bit रखना चाहिए 00:28 <@nop> तकनीकी रूप से वही सुरक्षित entropy मानी जाती है 00:28 < lonelynerd> ओके, लेकिन linux के तहत यह बस /dev/random पढ़ सकता है 00:28 < lonelynerd> windows यूज़र्स को टाइप करने दो ;) 00:28 <@hezekiah> अच्छा, क्या "randomentropyneeded" वह बाइट्स की संख्या नहीं है जितनी entropy अभी चाहिए? 00:28 <@nop> हाँ 00:29 < LeerokOnKnoppix> रजिस्ट्री का MD5sum. 00:29 <@hezekiah> lonelynerd: UserX, nop, और मैं IIP को नियंत्रित परिस्थितियों में /dev/urandom उपयोग कराने के तरीकों पर बात कर चुके हैं। 00:29 < lonelynerd> hezekiah, हम्म 00:29 < lonelynerd> hezekiah, urandom random जैसा ही है, लेकिन जब पर्याप्त entropy नहीं होती तो यह ब्लॉक नहीं करता? 00:31 <@hezekiah> मेरा यही ख्याल है। सही है, nop? 00:31 <@nop> हाँ, urandom के साथ तुम पहले से entropy की मात्रा असाइन कर सकते हो 00:31 < lonelynerd> तो urandom सुरक्षित हो भी सकता है और नहीं भी 00:32 <@nop> urandom बस random का ही इस्तेमाल करता है 00:32 < lonelynerd> हाँ 00:33 <@hezekiah> lonelynerd: यही मुद्दा है। :) हम OS (और उनके संस्करणों) की एक सूची बनाने पर विचार कर रहे हैं जिनमें /dev/urandom सुरक्षित है, और जब वह सुरक्षित हो तो IIP उसे इस्तेमाल करे; जब सुरक्षित न हो, तो IIP मौजूदा तरीकों पर टिका रहे। एक विचार है। :) 00:33 <@nop> सही, पर 1.1 के लिए नहीं 00:33 <@nop> ;) 00:33 <@hezekiah> बेशक! 00:33 < lonelynerd> hezekiah, तब वह "random के सुरक्षित versions" होंगे, urandom नहीं? 00:33 <@hezekiah> मैं जो कुछ भी कह रहा हूँ वह सब 1.2 की बातें हैं। (आम तौर पर मैं 1.2 की ही बात करता हूँ जब तक अलग से न कहूँ!) 00:33 < lonelynerd> ओके 00:33 < lonelynerd> अच्छा लगता है 00:34 <@nop> lonelynerd random सुरक्षित माना जाए तो urandom में कुछ गलत नहीं 00:34 < lonelynerd> खैर अगर तुम जाँच लो कि पर्याप्त entropy है 00:36 <@hezekiah> तो, nop? हम hhhhhhhh समस्या को ठीक से कैसे संभालें? 00:36 <@nop> खैर 00:36 <@nop> 1.1.0 के लिए मैं लगातार दोहराए गए characters की मात्रा सीमित करूँगा 00:36 <@nop> यानी एक पंक्ति में 00:36 <@nop> और फिर इसे 1.2 में गहन चर्चा के लिए छोड़ देंगे 00:37 <@hezekiah> ओके। पर जब कोई "hHhHhHhHhHhHhH" जैसा पैटर्न करता है तो? 00:37 < lonelynerd> :) 00:37 <@nop> हमें ऐसा काउंटर चाहिए जो इसे जगह-जगह फैला दे 00:37 <@hezekiah> (मान लेते हैं उपयोगकर्ता बेवकूफ है। सॉफ्टवेयर उतना ही सुरक्षित है जितना यूज़र!) :) 00:37 <@nop> ताकि इतने bytes में यह अक्षर न आ सके 00:37 <@nop> पिछली बार उपयोग से 00:37 < jeremiah> हेलो 00:37 <@nop> हाय 00:37 <@hezekiah> jeremiah: हाय. :) 00:37 < jeremiah> हे hezekiah 00:38 <@nop> उदाहरण के लिए [h][H][xonH[xonH[ आदि 00:38 <@hezekiah> यानी, 'h' को 'x' bytes में 'm' से ज्यादा बार नहीं दोहराया जा सकता? 00:38 <@nop> हाँ 00:38 < jeremiah> क्या हम buffer overflows की बात कर रहे हैं? 00:38 <@nop> इसे rejected entropy माना जाएगा 00:38 <@hezekiah> jeremiah: नहीं! हम entropy की बात कर रहे हैं! :) 00:38 <@nop> लेकिन कीबोर्ड टाइमिंग्स फिर भी लॉग करें 00:38 <@nop> बस इसे स्ट्रिंग के रूप में न गिनें 00:39 < jeremiah> random number generators को तो यह पक्का करना चाहिए कि संख्याओं में सहसंबंध न हो 00:39 < jeremiah> तुम उसे chi-square से कर सकते हो 00:39 < jeremiah> सही? 00:40 <@nop> खैर yarrow मिश्रण में मदद करता है 00:41 <@hezekiah> तुमने कहा हम "कीबोर्ड टाइमिंग्स लॉग करते हैं"। उसका क्या मतलब? 00:42 < jeremiah> hezekiah: वह समय जो तुमने keys दबाने के बीच लिया 00:42 < lonelynerd> अगर input buffered हो तो यह कठिन है 00:42 <@nop> बस character वाला काम करो, यह ठीक रहेगा 00:42 <@nop> बाकी yarrow कर देगा 00:42 <@hezekiah> nop: क्या हम entropy keys दबने से ले रहे हैं या keys दबने के बीच के timing से? 00:42 <@nop> दोनों से 00:42 <@hezekiah> ओह। ओके. :) 00:42 <@hezekiah> मैं बस ऐसा कोड लिख देता हूँ जो 'char' को 'x' bytes में 'm' बार से ज्यादा दोहराने से रोके। :) 00:43 <@nop> हाँ 00:43 <@nop> धन्यवाद 00:43 <@hezekiah> फिर development के लिए, हम ब्रेनस्टॉर्म करेंगे। ;-) 00:43 <@nop> हाँ 00:44 < LeerokOnKnoppix> क्यों न आप माइक्रोफोन, इंटरनेट, प्रोसेसर स्पीड, तापमान, मेमोरी उपयोग और स्पीड, और अन्य चीज़ों जैसे सभी संभावित इनपुट से entropy लें? 00:44 < lonelynerd> LeerokOnKnoppix, शांत हो जाओ :P 00:44 <@hezekiah> मैं अपनी इंटरनेट कनेक्शन से entropy इकट्ठी करने से मना करता हूँ; अगर कोई उसे स्निफ़ कर सके, तो मेरी entropy की गुणवत्ता घट जाती है। 00:45 <@nop> हाहा 00:45 < lonelynerd> हाँ, और kernel पहले से entropy इकट्ठा करने का अच्छा काम करता है। एप्लिकेशन्स को नहीं करना चाहिए 00:46 <@hezekiah> lonelynerd: यह तब तक ठीक है जब तक IIP ऐसा OS पर चल रहा है जिसमें kernel random number सपोर्ट अच्छा हो। ऐसे OS भी हैं जिनमें अच्छा सपोर्ट _नहीं_ है! 00:46 < PsionX> जैसे windows 00:46 <@hezekiah> lol 00:46 < lonelynerd> hezekiah, हाँ 00:46 -!- PsionX अब WindowsHater के नाम से जाना जाता है 00:46 < WindowsHater> lol 00:46 < lonelynerd> hezekiah, वहाँ कुछ #ifdef इस्तेमाल कर लो 00:47 -!- WindowsHater अब PsionX के नाम से जाना जाता है 00:47 <@nop> यह पहले चर्चा हो चुकी 00:47 <@nop> और हम इसे 1.2 पर देखेंगे 00:47 <@nop> आगे बढ़ते हैं 00:47 < lonelynerd> ओके ओके 00:47 <@nop> नहीं तो हम खुद को 00:47 <@nop> दर्जन भर बार दोहराएँगे 00:47 <@nop> मीटिंग खत्म होने से पहले 00:47 <@hezekiah> हाँ। :) 00:47 <@hezekiah> अगला आइटम! :) 00:49 <@hezekiah> उhm, nop? क्या हमारे पास अगला आइटम है? 00:49 <@hezekiah> शायद: "IIP 1.1 रिलीज़ करने तक की सूची में क्या है" 00:50 <@hezekiah> फिलहाल, मेरे पास है: 00:50 <@hezekiah> 1.) mids isproxy.pod में --randomdialog और --ignoreemptyrandom के लिए docs जोड़ता है 00:50 <@hezekiah> 2.) nop अपने HTML docs पर काम खत्म करता है 00:50 <@nop> हाँ 00:50 <@hezekiah> 3.) हम 'hhhhhhhh' entropy समस्या को निश्चित संख्या में दोहराए गए characters पर रोक लगाकर सुधारते हैं। 00:51 <@hezekiah> और कुछ? 00:51 <@nop> सही 00:51 <@nop> नहीं 00:51 <@nop> मेरी जानकारी में नहीं 00:51 <@hezekiah> खैर, उम्मीद है यह सब अगले हफ्ते तक हो जाएगा! :) 00:51 <@hezekiah> (या पहले!) 00:51 <@nop> हाँ 00:54 <@hezekiah> तो कार्यसूची में अगला क्या है? 00:55 <@nop> उम्म 00:55 <@nop> प्रश्न, 00:55 <@hezekiah> lol! 00:55 < LeerokOnKnoppix> ज़्यादा नहीं, लगता है। 00:55 < LeerokOnKnoppix> क्या socks होंगे? 00:55  * PsionX अपने पैरों को देखता है 00:55 < LeerokOnKnoppix> नहीं, मेरा मतलब proxy वाली चीज़। 00:55 <@nop> 1.1.0 में नहीं 00:56 < LeerokOnKnoppix> हम्म। 00:57 < LeerokOnKnoppix> क्या IP spoofing होगा? 00:57 < lonelynerd> क-क्या? 00:57 <@nop> उम्, इस जन्म में नहीं 00:57 < LeerokOnKnoppix> कोई बात नहीं। 00:57 < LeerokOnKnoppix> मैं बस यूँ ही रैंडम प्रश्न सोच रहा हूँ। 00:58 < lonelynerd> :) 00:58 < LeerokOnKnoppix> क्या किसी तरह का फाइल-ट्रांसफर होगा? 00:58 < LeerokOnKnoppix> *transfer 00:58 <@nop> 1.1 में नहीं 00:58 < LeerokOnKnoppix> क्या बडी आइकॉन होंगे? 00:58 <@hezekiah> LOL 00:59 < PsionX> कोई इसे चुप करा देगा प्लीज़? 00:59 < lonelynerd> LeerokOnKnoppix, तुम पहले से iip पर फाइल्स ट्रांसफर कर सकते हो, बस थोड़ा धीमा है 00:59 < LeerokOnKnoppix> मुझे पता है। 01:01 < LeerokOnKnoppix> क्या Reversi होगा? 01:01 < PsionX> इस बंदे को सब कुछ चाहिए और साथ में चिप्स का पैकेट भी 01:02 < LeerokOnKnoppix> निश्चित रूप से। 01:02 <@nop> सबसे अच्छा प्रश्न 01:02 <@nop> क्या मानव जाति आज़ाद होगी 01:02 <@nop> उत्पीड़न से 01:02 < LeerokOnKnoppix> IIP के साथ? निश्चित ही! 01:02 <@hezekiah> lol! 01:02 < PsionX> मेरे पास एक सवाल है 01:02 < PsionX> ... क्या मैं hezy को बिना वजह ठोकर मार सकता हूँ? 01:02 <@nop> ज़रूर 01:02 < PsionX> lol 01:03 <@hezekiah> nop: तो फिलहाल मेरा काम दोहराए गए-characters-entropy फिक्स लिखना है। 01:03 <@nop> हाँ 01:03 <@nop> ओह और एक ही बैठक में दुनिया बदल दो 01:04 <@hezekiah> lol 01:04  * aum दूसरे विंडोज़ से अपना चेहरा बाहर निकालता है 01:04 < LeerokOnKnoppix> इराक में शांति। 01:04 < aum> सबको हाय 01:04 < LeerokOnKnoppix> नमस्ते। 01:04 <@hezekiah> ओह, भई! मैंने उस पर बहुत ज़्यादा समय लगा दिया! 01:04 <@nop> हाय aum 01:04 < PsionX> ... 01:04 < PsionX> ... मेरे पास स्पाइकीज़ हैं 01:05 <@hezekiah> सवाल! 01:05 < PsionX> जवाब 01:06 <@hezekiah> IIP 1.1 रिलीज़ के बाद, क्या हम बैठकर एक अच्छा रैखिक लिस्ट बनाएँगे कि ircd सर्वर को विकेन्द्रित करने के लिए क्या-क्या करना होगा? (उदाहरण: क्या "core" कोड पहले पूरा करना होगा?) 01:09 <@nop> हाँ हम करेंगे 01:09 <@mids> s/1.1/1.1.0/ 01:09 <@hezekiah> lol. ओके, mids. :) 01:10 <@hezekiah> mids: हालांकि स्पष्टता के लिए शायद s/1\.1/1.1.0/ होना चाहिए। ;-) 01:10 <@mids> ऊप्स, माफ़ करें 01:10 <@hezekiah> lol. :) 01:11 <@hezekiah> साथ ही: 01:11 <@mids> विकेन्द्रीकरण से पहले शायद एक और कदम होना चाहिए 01:11 <@hezekiah> मैंने देखा है कि अलग-अलग crypto cores बनाने की क्षमता है। 01:11 <@mids> central irc रखते हुए, लेकिन proxy को IRC aware बनाना 01:11 <@mids> ताकि यह निजी बातचीत को पहले से संभाल सके 01:11 <@mids> आदि 01:14 <@hezekiah> mids: यानी यह /msg को समझता है और सीधे user-to-user एन्क्रिप्शन करता है? 01:14 <@mids> हाँ 01:14 <@hezekiah> खैर, नहीं पता चीज़ें कितनी abstract रहनी हैं, पर सर्वर के विकेन्द्रीकृत होने तक यह अच्छा विचार है! :) 01:16 <@hezekiah> crypto cores के बारे में: अगर IIP में कई crypto cores हैं (उदा. SOCKS, SSL, और custom), तो क्या होगा जब किसी यूज़र और कई relays के बीच कनेक्शन में हर लिंक पर अलग एन्क्रिप्शन हो? 01:16 <@mids> तुम वही कर सकते हो जो GPG करता है 01:16 <@mids> न्यूनतम आवश्यक रखो 01:16 <@mids> और अगर दोनों पक्षों के पास बेहतर हो, तो उसे उपयोग करो 01:16 <@mids> यह भी देखो कि SILC कैसे करता है 01:17 <@mids> बाय hezekiah 01:17 < PsionX> LOL डायल-अप 01:17 < PsionX> hezy पर lol 01:17 <@mids> ;) 01:17 <@mids> वापस स्वागत है 01:17 < hezekiah> मान लो SOCKS, SSL से कमजोर है (मुझे नहीं पता है कि सच में ऐसा है।) 01:18 < namless> अपने private/public keys के बारे में क्या जो यूज़र (client या IIP proxy में) जोड़ सके ताकि वह कुछ channels या private queries में जो बात करता है उसे crypt कर सके? (मतलब जिन यूज़र्स के पास इन खास channels या private queries के लिए सही key नहीं है वे दूसरों को समझ न सकें और IIP proxy यह crypted टेक्स्ट फ़िल्टर कर दे) 01:18 < hezekiah> (इंटरनेट से नॉक्ड ऑफ होने के लिए माफ़ करना दोस्तों; शायद मेरा भाई कनेक्ट होने की कोशिश कर रहा था।) 01:18 < namless> down -> dont (बेकार अंग्रेज़ी और टाइपोज़ :( 01:19 <@mids> namless: जैसा मौजूदा blowfish आदि एन्क्रिप्शन irc क्लाइंट्स के लिए है, लेकिन फिर सर्वर साइड 01:19 <@mids> (psybnc में भी है) 01:19 < namless> जेप 01:20 < namless> सिस्टम IIP proxy में बिल्ट हो सकता है ताकि यह क्लाइंट के लिए ट्रांसपेरेंट रहे... 01:20 <@mids> एक और चीज़ जो मैं देखना चाहता हूँ वह है एक ही 'mixnet' पर multiple layers का सपोर्ट 01:20 < namless> vould-> could 01:20 <@mids> ताकि तुम एक ही relays के साथ multiple protocols चला सको 01:22 < hezekiah> (ओके। यह परेशान कर रहा है।) 01:22 <@mids> शायद तुम्हारे लिए सोने का समय है :) 01:23 < hezekiah> नहीं। उसमें अभी देर है। 01:23 <@mids> तो कोई दैवी हस्तक्षेप नहीं? 01:23 <@hezekiah> lol 01:23 <@hezekiah> तो, mids. जो लॉग्स में था (लॉग्स के लिए भगवान का शुक्रिया), तुमने कहा था कि हम GPG जैसा कर सकते हैं: न्यूनतम आवश्यक रखें और बेहतर हो तो उसे इस्तेमाल करें। 01:24 <@mids> हाँ 01:24 <@mids> शायद अलग सिस्टम भी संगत हो सकते हैं 01:24 <@mids> जैसे homebrew DH और SSL वाला 01:24 <@mids> जहाँ SSL बस तेज़ हो 01:24 < hezekiah> लेकिन जब कोई कड़ी कम सुरक्षित इस्तेमाल करे तो एक कनेक्शन प्रकार के ज्यादा सुरक्षित होने का सारा लाभ खो जाता है। 01:24 -!- LeerokOnKnoppix अब LeerokShovelSno के नाम से जाना जाता है 01:26 < hezekiah> ऊप्स। s/along the long/along the line/ 01:26 < hezekiah> खैर, इस पर किसी और दिन चिंता करेंगे। 01:26 <@mids> k 01:26 <@mids> btw, POD फॉर्मैट में <br> जैसा कुछ कैसे करें, कोई आइडिया? 01:26 <@hezekiah> nop: कभी हमें RKA लागू करने पर भी काम करना चाहिए। :) 01:27 <@hezekiah> mids: तुम POD के बारे में मुझसे ज्यादा जानते हो क्योंकि मैं POD के बारे में कुछ नहीं जानता! :) 01:29 <@nop> खैर हमारे पास RKA काम करता है लेकिन जितना चाहें उतना अच्छा नहीं 01:29 <@nop> GMP वाली चीज़ें उसे बदल देंगी 01:29 <@hezekiah> mids: "E<escape>" -- a character escape 01:29 <@hezekiah> nop: हमारे पास है? यह कब हुआ? 01:29 <@nop> यह अंदर है 01:30 <@nop> हर 52 blocks पर keys बदलता है 01:30 <@hezekiah> आह 01:30 <@hezekiah> क्या हम key बदलना थोड़ा और random बना सकते हैं? 01:30 < namless> "सब कुछ random होना चाहिए"... 01:31 <@hezekiah> जैसे हर 10 blocks पर एक random number चेक करना और key बदलने की 1 में 3 की संभावना? 01:31 <@hezekiah> ... या पिछली 3 plaintext messages का SHA sum देखना और उसके आधार पर key बदलने की 1 में 3 की संभावना? 01:35 < lonelynerd> हम्म 01:35 <@mids> ओके, --randomdialog और --ignoreemptyrandom की info POD में जोड़ दी 01:35 < namless> वैसे IIP जो ट्रैफिक बना रहा है वह कितना "similar" है? क्या कोई योजना है इस ट्रैफिक को जितना हो सके उतना random दिखाने की? अगर "transfer mechanism" ट्रैफिक में कोई स्थायी निशान बनाता है तो उसे IIP ट्रैफिक के रूप में पहचाना जा सकता है और मॉनिटर करना शुरू किया जा सकता है और फिर... बस आसमान ही सीमा है... 01:35 <@hezekiah> और HEAD और development में commit किया? 01:36 <@mids> ऊप्स 01:36  * mids dev में भी करता है 01:37 <@hezekiah> nop? तुम हो? 01:37 <@nop> सॉरी 01:37 <@nop> क्या 01:37 <@nop> दोस्त, मेरा दिमाग गया 01:37 <@nop> क्या हम यह सब बाद में चर्चा कर सकते हैं 01:37 <@hezekiah> ओके. :) 01:37 <@hezekiah> माफ़ करना। :) 01:38 <@mids> ओके, बंद करें 01:38 <@hezekiah> (अगर इससे तुम्हें अच्छा लगे, तो मेरा दिमाग भी Physics रिव्यू और कुछ कैलकुलस के बाद जाने वाला है!) :) 01:38 <@mids> development में भी कमिट कर दिया 01:38  * hezekiah mids को "baff"र थमाता है 01:38 <@hezekiah> ओके। अच्छा! :0 01:38 <@mids> *baff* 01:38 <@hezekiah> s/0$/)/ 01:38 <@hezekiah> सबको बाय! :) 01:38 <@mids> अगले हफ्ते मिलते हैं 01:40 < lonelynerd> बाय --- लॉग बंद किया गया Wed Feb 19 01:40:48 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Feb 18 23:54:43 2003
+23:54 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+23:54 [Users #iip-dev]
+23:54 [ aum   ] [ bpb      ] [ jeremiah       ] [ logger]
+23:54 [ Barney] [ codeshark] [ LeerokOnKnoppix] [ mids  ]
+23:54 -!- Irssi: #iip-dev: Total of 8 nicks [0 ops, 0 halfops, 0 voices, 8 normal]
+23:54 -!- Irssi: Join to #iip-dev was synced in 2 secs
+23:55  * bpb points at the logging bot then jumps up and down like a japanese animated school girl
+23:55 -!- mode/#iip-dev [+o mids] by Trent
+23:55 -!- mode/#iip-dev [+v logger] by mids
+23:57 -!- LeerokOnKnoppix is now known as Trent
+23:57 -!- Trent is now known as nickthief76011
+23:57 <@mids> :p
+23:57 -!- nickthief76011 is now known as LeerokOnKnoppix
+23:57 < lonelynerd> wwwhat?
+23:58 <@mids> Trent protects the nick
+23:58 < lonelynerd> oh, nothing
+23:58 < LeerokOnKnoppix> How does it do that?
+23:58 -!- LeerokOnKnoppix is now known as _Trent
+23:58 < _Trent> I am Trent, hear me roar!
+23:58 < _Trent> Get out, all unverified users!
+23:59 -!- mode/#iip-dev [+o hezekiah] by Trent
+23:59 < _Trent> What about me?
+23:59 <@mids> hey hezekiah :)
+23:59 -!- _Trent is now known as LeerokOnKnoppix
+23:59 <@hezekiah> Hi, mids. :)
+23:59 <@hezekiah> I think I'm getting the hang of some of this IRC thing! :)
+23:59 <@mids> kool
+--- Day changed Wed Feb 19 2003
+00:00 <@hezekiah> So have any bugs defied the great IIP dev team and risen their ugly heads since your last mail to the iip-dev mailinglist?
+00:01 < LeerokOnKnoppix> It disconnects every now and then.
+00:01 <@hezekiah> I don't seem to experiance that bug. :(
+00:01 < lonelynerd> LeerokOnKnoppix, it's probably your connection. i haven't had any problems
+00:01 < LeerokOnKnoppix> Hmm.
+00:01 <@hezekiah> mids: Where are nop and UserX?
+00:01 <@mids> Tue Feb 18 23:01:51 UTC 2003
+00:01 <@mids> user was here but he pinged out
+00:01 < LeerokOnKnoppix> _Trent kicked them out.
+00:02 <@mids> userx
+00:02 <@mids> just icq-ed nop
+00:02 < LeerokOnKnoppix> Is he coming?
+00:02 <@mids> dunno
+00:02 < bpb> lonelynerd: it's always happened though...  and it's not just him
+00:03 < lonelynerd> bpb, still, it's not a problem with iip but unreliable connections
+00:04 <@mids> nop is comming
+00:04 < nop> hi
+00:04 < lonelynerd> hi
+00:04 < nop> ok
+00:04 < nop> welcome
+00:04 < LeerokOnKnoppix> Hello nop.
+00:04 <@hezekiah> Hi, nop! :)
+00:04 < nop> Leerok likes Knoppix?
+00:04 < LeerokOnKnoppix> So far.
+00:04 < nop> kewl
+00:04 < nop> ok
+00:04 < bpb> lonelynerd: it's a problem with the actual network then
+00:04 < LeerokOnKnoppix> But I want to install it to the hard drive.
+00:04 < LeerokOnKnoppix> But it didn't work when I tried it.
+00:04 < nop> well, welcome to the 31st meeting
+00:04 < nop> of IIP-dev
+00:04 < LeerokOnKnoppix> Cool.
+00:04 < lonelynerd> bpb, well, it could handle unrealiable links, but it doesn't at the moment
+00:04 < LeerokOnKnoppix> I'm just hanging around to let knowledge osmose into my head.
+00:05 < nop> ok
+00:05 < nop> shh
+00:05 < nop> meeting started
+00:05 < nop> on the agenda
+00:05 -!- mode/#iip-dev [+o nop] by mids
+00:05 <@nop> IIP 1.1 and pleasantries with that
+00:05 <@nop> hezekiah:
+00:06 <@hezekiah> Yeah?
+00:06 <@nop> hezekiah: all entropy stuff have we resolved? For instance the hhhhhh issue
+00:06 <@hezekiah> I just told you about the hhhhhhhh isue.
+00:06 <@hezekiah> We haven't done anything about it yet.
+00:06 <@nop> ok
+00:06 <@hezekiah> The seed.rnd issue is resolved by porting the --randomdialog option from development ..
+00:06 <@nop> ok
+00:07 <@nop> and can you explain what they do
+00:07 <@nop> just for the record
+00:07 <@hezekiah> ... and having IIP abort when seed.rnd doesn't exist.
+00:07 <@hezekiah> Explain what --randomdialog and --ignoreemptyrandom do?
+00:07 <@nop> yes
+00:07 <@hezekiah> OK. :)
+00:07 <@nop> for official purposes
+00:07 <@nop> aka the meeting
+00:07 <@hezekiah> Right. :)
+00:08 <@hezekiah> When isproxy is run with --randomdialog, the user is asked for entropy (even is seed.rnd already exists).
+00:09 <@hezekiah> When isproxy is run with --ignoreemptyrandom, and there isn't enough entropy (a condition that would cause isproxy to _normally_ abort), the program just keeps going. This is a security risk, so a suitablely scary warning label is added in the help description.
+00:09 <@hezekiah> (Speaking of all these options, unless mids as already added them, they aren't in the isproxy.pod file yet.)
+00:09 <@hezekiah> .
+00:09 <@mids> I didnt
+00:09 <@hezekiah> We should do that before release. :)
+00:10 < lonelynerd> (shouldn't it be --random-dialog and --ignore-empty-random ? ;P)
+00:10 <@hezekiah> lonelynerd: I code what UserX orders. :)
+00:10 < lonelynerd> ok
+00:10 <@hezekiah> nop: So, the seed.rnd problem is solved, but the hhhhhhhh problem isn't.
+00:10 <@nop> right
+00:11 <@nop> hmm, well, we could have a counter that won't allow the same keystroke more than three times in a row
+00:11 <@hezekiah> (I don't even know if hhhhhhhh is a problem. I just mentioned it to you and UserX. You tell me!) :)
+00:11 <@nop> real simple
+00:11 <@nop> it's a slight problem
+00:11 <@hezekiah> PGP some how knows how much entropy text is worth.
+00:11 <@nop> well, we calculate the keyboard timings as well
+00:12 <@nop> we could just force a wait till something beyond 3 same char in a row are pressed
+00:12 <@hezekiah> Does GPG evaluate the entropy of a string of text? If they do, we could look at their code. :)
+00:12 <@nop> I am not sure
+00:12 <@nop> I advise looking at it
+00:12 < lonelynerd> hezekiah, i think it just uses /dev/random, or?
+00:12 <@nop> lonelynerd no
+00:12 <@nop> it doesn't
+00:13 < lonelynerd> ah
+00:13 <@nop> we're talking about creation of entropy
+00:13 <@nop> aside /dev/random
+00:13 <@nop> like an Initialization
+00:13 <@hezekiah> GPG does make the user pound on the keyboard. :)
+00:13 <@mids> well no
+00:13 <@mids> it reads from the entropy pool
+00:13 <@mids> and suggests that you move the mouse + press keys
+00:14 <@mids> but entropy pool can be filled with interrupts etc too
+00:14 <@nop> yes
+00:14 < lonelynerd> yep
+00:14 <@hezekiah> Ah. I just remembered when GPG made me pound on the keyboard once. ;)
+00:14 < lonelynerd> it was pgp perhaps?
+00:14 <@hezekiah> Nope. It was GPG running under Mandrake Linux.
+00:14 < Barney> yep
+00:15 <@hezekiah> (It was a few years ago, before AES was released I remember.) Anyway, back on topic. :)
+00:15 <@nop> I think we should look at the code
+00:15 <@hezekiah> OK. :)
+00:15 < lonelynerd> :)
+00:15 <@nop> if it's not clear, I suggest limiting the characters in a row
+00:15 <@nop> and waiting
+00:15 <@nop> for new characters to be pressed
+00:15 <@hezekiah> Are there any methods outline (maybe in whitepapers from acedemia) on evalutating the entropy worth of a string of text?
+00:16 <@nop> yes there are, I will dig them up in a bit
+00:16 <@hezekiah> Cool! :)
+00:16 < lonelynerd> "ent - A pseudorandom number sequence test program"
+00:16 <@nop> yes, chi squaring
+00:16 <@hezekiah> We could just implement one of those. (Believe it or not, it might be faster than digging through GPG code!) :)
+00:16 <@nop> http://www.gnu.org/software/gnu-crypto/api/gnu/crypto/tool/Ent.html
+00:17 <@nop> that's java
+00:17 <@nop> but still
+00:17 <@hezekiah> I can read Java. :)
+00:17 <@hezekiah> I can translate too. :)
+00:17 < lonelynerd> ent is in C, too
+00:17 <@nop> yep
+00:17 <@hezekiah> lonelynerd: Where can I find the C version?
+00:18 < lonelynerd> apt-get inst.. whoops, ;P http://www.fourmilab.ch/random
+00:18 < lonelynerd> Upstream Author(s): John Walker
+00:21 <@nop> ok
+00:21 <@nop> anyway
+00:21 <@nop> I'm sure that needs to be taken care of b4 1.1
+00:21 <@nop> this will give mids time to update isproxy.pod
+00:21 <@hezekiah> lol
+00:21 <@mids> pff
+00:22 <@mids> say nop, did you work on the docs? :)
+00:22 <@nop> ;)
+00:22 <@nop> I am working on them
+00:22 <@nop> and I have an editor too ;)
+00:22 <@mids> well
+00:22 <@mids> dont edit the html
+00:22 <@nop> I know
+00:22 <@nop> I'm just writing it in notepad
+00:22 <@nop> ;)
+00:22 <@mids> just send me the text changes, yeah thats fine
+00:22 <@hezekiah> Yay! Real HTML coder! Uses a plain text editor! ;-)
+00:23 <@nop> haha
+00:23 <@nop> I ain't coding it
+00:23 <@nop> just typing the doc
+00:23 <@nop> ;)
+00:23 <@mids> so
+00:24 <@mids> will any more features slip in for 1.1?
+00:24  * mids hopes not
+00:24 <@mids> I tried to contact codeshark
+00:24 <@nop> no
+00:24 <@mids> but didnt get a reply yet
+00:24 <@nop> it's not a feature
+00:24 <@nop> it's a bug fix
+00:24 <@nop> ;)
+00:25 <@nop> anyway
+00:25 <@nop> moving forward
+00:25 <@mids> ok, I got other things to do
+00:25 <@mids> if you need me shout loud
+00:25 < lonelynerd> (gpg seems to use get_entropy_count(fd) to check how many bytes /dev/random has to offer)
+00:26 <@nop> right
+00:26 <@nop> aka checking the entropy pool size
+00:26 < lonelynerd> which is some ioctl
+00:26 < lonelynerd> dunno how that would work under windows
+00:26 <@hezekiah> lonelynerd: It probably _doesn't_ work under windows. This a GNU project, remember? :)
+00:27 < lonelynerd> great :)
+00:27 <@hezekiah> What we really want (at least I think we do) is something that can evaluate how much entropy is in a buffer of text.
+00:27 < lonelynerd> hezekiah, ok
+00:27 <@nop> yes
+00:27 <@hezekiah> That way we can have the user keep pounding until we get that much _REAL_ entropy. :)
+00:27 < lonelynerd> hezekiah, ok
+00:27 <@nop> yes
+00:27 <@nop> we should have 1 bits per 3 characters
+00:28 <@nop> technically that's considered secure entropy
+00:28 < lonelynerd> ok, but under linux it could just read /dev/random
+00:28 < lonelynerd> let the windows users type ;)
+00:28 <@hezekiah> Well, isn't "randomentropyneeded" the number of bytes of entropy still needed?
+00:28 <@nop> yes
+00:29 < LeerokOnKnoppix> MD5sum of the registry.
+00:29 <@hezekiah> lonelynerd: UserX, nop, and I have talked about ways to get IIP to use /dev/urandom under controlled circumstances.
+00:29 < lonelynerd> hezekiah, hmm
+00:29 < lonelynerd> hezekiah, urandom is just like random, but it doesn't block when there isn't enough entropy?
+00:31 <@hezekiah> I think so. Is that right, nop?
+00:31 <@nop> yes, with urandom you can assign the amount of entropy in advanced
+00:31 < lonelynerd> so urandom might or might not be secure
+00:32 <@nop> urandom just uses random
+00:32 < lonelynerd> yep
+00:33 <@hezekiah> lonelynerd: That's the issue. :) We considering compiling a list of OS's (and their versions) with secure instances of /dev/urandom, and having IIP use it when it's secure; when it's not secure, IIP would stick with the current methods. It's a thought. :)
+00:33 <@nop> right, but not for 1.1
+00:33 <@nop> ;)
+00:33 <@hezekiah> Of course!
+00:33 < lonelynerd> hezekiah, wouldn't that be "secure versions of random" and not urandom?
+00:33 <@hezekiah> This is all 1.2 stuff I'm talking about. (I am usually always talking 1.2 unless otherwise stated!)
+00:33 < lonelynerd> ok
+00:33 < lonelynerd> sounds great
+00:34 <@nop> lonelynerd nothing wrong with urandom if random is considered secure
+00:34 < lonelynerd> well if you check that there is enough entropy
+00:36 <@hezekiah> So, nop? How exactly do we handle this hhhhhhhh problem?
+00:36 <@nop> well
+00:36 <@nop> for 1.1.0 I would limit the amount of repeated characters
+00:36 <@nop> in a row that is
+00:36 <@nop> and then leave it for in depth discussion in 1.2
+00:37 <@hezekiah> OK. But what happens when someone does pattern like "hHhHhHhHhHhHhH"?
+00:37 < lonelynerd> :)
+00:37 <@nop> we need to create a counter that spaces it out
+00:37 <@hezekiah> (Let's assume the user is an idiot. The software is only as secure as the user!) :)
+00:37 <@nop> so so many bytes can not contain this letter
+00:37 <@nop> since last used
+00:37 < jeremiah> hello
+00:37 <@nop> hi
+00:37 <@hezekiah> jeremiah: hi. :)
+00:37 < jeremiah> hey hezekiah
+00:38 <@nop> for instance [h][H][xonH[xonH[ etc
+00:38 <@hezekiah> So, 'h' can't be repeated more than _m_ times in _x_ bytes?
+00:38 <@nop> yes
+00:38 < jeremiah> are we talking about buffer overflows?
+00:38 <@nop> it will be considered rejected entropy
+00:38 <@hezekiah> jeremiah: Nope! We're talking about entropy! :)
+00:38 <@nop> but still log the keyboard timings
+00:38 <@nop> just ignore it as a string
+00:39 < jeremiah> random number generators are supposed to make sure there isn't a correlation with the numbers anyways
+00:39 < jeremiah> you can do that with chi-square
+00:39 < jeremiah> right?
+00:40 <@nop> well yarrow helps mix
+00:41 <@hezekiah> You said we "log the keyboard timings". What's that mean?
+00:42 < jeremiah> hezekiah: times between when you hit keys
+00:42 < lonelynerd> that's difficult if input is buffered
+00:42 <@nop> just do the character thing, it will be fine
+00:42 <@nop> yarrow does the rest
+00:42 <@hezekiah> nop: Are we getting the entropy from the keys being hit or the timing between when the keys get hit?
+00:42 <@nop> both
+00:42 <@hezekiah> Oh. OK. :)
+00:42 <@hezekiah> I'll just write up some code that prohibits 'char' repeating more than 'm' times in 'x' bytes. :)
+00:43 <@nop> yes
+00:43 <@nop> thnx
+00:43 <@hezekiah> Then for development, we brainstorm. ;-)
+00:43 <@nop> yes
+00:44 < LeerokOnKnoppix> How 'bout you get entropy from all possible inputs like the microphone, internet, processor speed, temperature, memory usage and speed, and other things?
+00:44 < lonelynerd> LeerokOnKnoppix, calm down :P
+00:44 <@hezekiah> I refuse to collect entropy from my internet connection; if someone can sniff it, then the quality of my entropy is lowwered.
+00:45 <@nop> haha
+00:45 < lonelynerd> yeah, and the kernel already does a nice job in gathering entropy. applications shouldn't do it
+00:46 <@hezekiah> lonelynerd: That works fine as long as IIP is run on an OS with good kernel random number support. There are OS's that exist that _don't_ have good support!
+00:46 < PsionX> like windows
+00:46 <@hezekiah> lol
+00:46 < lonelynerd> hezekiah, yep
+00:46 -!- PsionX is now known as WindowsHater
+00:46 < WindowsHater> lol
+00:46 < lonelynerd> hezekiah, just use some #ifdef there
+00:47 -!- WindowsHater is now known as PsionX
+00:47 <@nop> this was discussed earlier
+00:47 <@nop> and we will look at it on 1.2
+00:47 <@nop> moving on
+00:47 < lonelynerd> ok ok
+00:47 <@nop> we'll end up repeating ourselves
+00:47 <@nop> a dozen times
+00:47 <@nop> before this meeting is over
+00:47 <@hezekiah> Yeah. :)
+00:47 <@hezekiah> Next item! :)
+00:49 <@hezekiah> Uh, nop? Do we have a next item?
+00:49 <@hezekiah> Perhaps: "What's on the list until we can release IIP 1.1"
+00:50 <@hezekiah> Currently, I have:
+00:50 <@hezekiah> 1.) mids adds docs for --randomdialog and --ignoreemptyrandom to isproxy.pod
+00:50 <@hezekiah> 2.) nop finishes working on his HTML docs
+00:50 <@nop> yeah
+00:50 <@hezekiah> 3.) We correct the 'hhhhhhhh' entropy problem by prohibiting a certain number of repeated characters.
+00:51 <@hezekiah> Anything else?
+00:51 <@nop> right
+00:51 <@nop> nope
+00:51 <@nop> not that i know of
+00:51 <@hezekiah> Well, hopefully all that will be done by next week! :)
+00:51 <@hezekiah> (Or earlier!)
+00:51 <@nop> yes
+00:54 <@hezekiah> So what's next on the agenda?
+00:55 <@nop> umm
+00:55 <@nop> questions,
+00:55 <@hezekiah> lol!
+00:55 < LeerokOnKnoppix> Not much, it appears.
+00:55 < LeerokOnKnoppix> Will there be socks?
+00:55  * PsionX looks at his feet
+00:55 < LeerokOnKnoppix> No, I mean the proxy thing.
+00:55 <@nop> not in 1.1.0
+00:56 < LeerokOnKnoppix> Hmm.
+00:57 < LeerokOnKnoppix> Will there be IP spoofing?
+00:57 < lonelynerd> w-what?
+00:57 <@nop> umm, not in this lifetime
+00:57 < LeerokOnKnoppix> Never mind.
+00:57 < LeerokOnKnoppix> I'm just thinking up random questions.
+00:58 < lonelynerd> :)
+00:58 < LeerokOnKnoppix> Will there be any sort of file-transer?
+00:58 < LeerokOnKnoppix> *transfer
+00:58 <@nop> not in 1.1
+00:58 < LeerokOnKnoppix> Will there be buddy icons?
+00:58 <@hezekiah> LOL
+00:59 < PsionX> will someone please shut him up?
+00:59 < lonelynerd> LeerokOnKnoppix, you can already transfer files over iip but it's a bit slow
+00:59 < LeerokOnKnoppix> I know.
+01:01 < LeerokOnKnoppix> Will there be Reversi?
+01:01 < PsionX> this guy wants everything and a bag of chips too
+01:02 < LeerokOnKnoppix> Indeed.
+01:02 <@nop> the best question
+01:02 <@nop> will the human race be freed
+01:02 <@nop> from oppression
+01:02 < LeerokOnKnoppix> With IIP? Certainly!
+01:02 <@hezekiah> lol!
+01:02 < PsionX> i got a question
+01:02 < PsionX> ... can i kick hezy in the butt for no good reson?
+01:02 <@nop> sure
+01:02 < PsionX> lol
+01:03 <@hezekiah> nop: So my work for now is to write up the repeating-character-entropy fix.
+01:03 <@nop> yes
+01:03 <@nop> oh and change the world in one sitting
+01:04 <@hezekiah> lol
+01:04  * aum pulls his face out of the other windows
+01:04 < LeerokOnKnoppix> Peace in Iraq.
+01:04 < aum> hi all
+01:04 < LeerokOnKnoppix> Hello.
+01:04 <@hezekiah> Oh, boy! I spent TOO LONG going over THAT one!
+01:04 <@nop> hi aum
+01:04 < PsionX> ...
+01:04 < PsionX> ... i got spikeys
+01:05 <@hezekiah> Question!
+01:05 < PsionX> Answer
+01:06 <@hezekiah> After IIP 1.1 is released, are we going to sit down and draw up a nice linear list of what needs to be done to decentralize the ircd server? (For example: does the "core" code need to be completed first?)
+01:09 <@nop> yes we will do that
+01:09 <@mids> s/1.1/1.1.0/
+01:09 <@hezekiah> lol. OK, mids. :)
+01:10 <@hezekiah> mids: Though it should probably be s/1\.1/1.1.0/ just for clarity's sake. ;-)
+01:10 <@mids> oops, sorry
+01:10 <@hezekiah> lol. :)
+01:11 <@hezekiah> Also:
+01:11 <@mids> maybe before decentralizing there should be another step
+01:11 <@hezekiah> I've seen that there is the capability to make varios crypto cores.
+01:11 <@mids> keeping a central irc, but letting the proxy be IRC aware
+01:11 <@mids> so it can already handle private conversations
+01:11 <@mids> etc
+01:14 <@hezekiah> mids: i.e. it interprets /msg and does direct user-to-user encryption?
+01:14 <@mids> yes
+01:14 <@hezekiah> Well, I don't know how abstract things have to say, but I think it's a good idea until we can get the server decentralized! :)
+01:16 <@hezekiah> About the crypto cores: if IIP has several crypto cores (SOCKS, SSL, and custom for example), then what happens when you have a connection between a user and several relays that has different encryption between each link?
+01:16 <@mids> you can do what GPG does
+01:16 <@mids> require a minimum
+01:16 <@mids> and if both parties have better, use that
+01:16 <@mids> also look hope SILC does it
+01:17 <@mids> bye hezekiah
+01:17 < PsionX> LOL dial up
+01:17 < PsionX> lol on hezy
+01:17 <@mids> ;)
+01:17 <@mids> wb
+01:17 < hezekiah> Let's say that SOCKS is weaker than SSL (I have no idea if it is.)
+01:18 < namless> what about own privat/publick keys that the user can add to (client or to IIP proxy) so he can crypt what he talks to chertain chanels or private querys? (meaning users who downt have the right key on these special chanels or private queries down  understant other users and IIP proxy filters this crypted text away)
+01:18 < hezekiah> (Sorry about being nocked off the internet folks; my brother probably tried to get on.)
+01:18 < namless> down -> dont (dam bad english and typos :(
+01:19 <@mids> namless: like the existing blowfish etc encryption for irc clients, but then server side
+01:19 <@mids> (psybnc has it too)
+01:19 < namless> jep
+01:20 < namless> the system vould be build into the IIP proxy so it could be transparent to the client...
+01:20 <@mids> another thing that I'd like to see is support for multiple layers on the same 'mixnet'
+01:20 < namless> vould-> could
+01:20 <@mids> so you can do multiple protocols with the same relays
+01:22 < hezekiah> (OK. This is getting annoying.)
+01:22 <@mids> probably it is bedtime for you :)
+01:23 < hezekiah> Nah. That's not for hours.
+01:23 <@mids> so no divine intervention?
+01:23 <@hezekiah> lol
+01:23 <@hezekiah> So, mids. From what the logs said (Thank God for logs), you mentioned that we could do as GPG does: require a minimum and use better if we have it.
+01:24 <@mids> yeah
+01:24 <@mids> probably different systems can be compatible too
+01:24 <@mids> like homebrew DH and SSL one
+01:24 <@mids> with SSL just beeing faster
+01:24 < hezekiah> But all the advantage of one connection type being securer than the other are lost when someone along the long uses something less secure.
+01:24 -!- LeerokOnKnoppix is now known as LeerokShovelSno
+01:26 < hezekiah> Oops. s/along the long/along the line/
+01:26 < hezekiah> Well, we can worry about that another day.
+01:26 <@mids> k
+01:26 <@mids> btw, any idea how to do something like <br> in POD format?
+01:26 <@hezekiah> nop: Sometime we should also work on implementing RKA. :)
+01:27 <@hezekiah> mids: You know more about POD than I do because I know nothing about POD! :)
+01:29 <@nop> well we have RKA working but not as good as we'd like
+01:29 <@nop> the GMP stuff will change that
+01:29 <@hezekiah> mids: "E<escape>" -- a character escape
+01:29 <@hezekiah> nop: We do? When did that happen?
+01:29 <@nop> it's been in
+01:30 <@nop> every 52 blocks it changes keys
+01:30 <@hezekiah> Ah
+01:30 <@hezekiah> Do you think we might make the key changing a little more random?
+01:30 < namless> "everyting should be random"...
+01:31 <@hezekiah> Like having a random number checked every 10 blocks and a 1 out of 3 chance of the key changing?
+01:31 <@hezekiah> ... or having an SHA sum of the last 3 plaintext messages checked and a 1 out of 3 chance of the key changing based on that?
+01:35 < lonelynerd> hmm
+01:35 <@mids> ok, info about --randomdialog and --ignoreemptyrandom added to POD
+01:35 < namless> by the way how "similar" is the traffic IIP is making? is there any plans to make this traffic to look as much random it can be?    if the "transfer macanism" makes a static mark in the traffic then it can be detected as IIP traffic and can be started to be monitored and well there only the sky is the limit...
+01:35 <@hezekiah> And committed to HEAD and development?
+01:36 <@mids> oops
+01:36  * mids does to dev too
+01:37 <@hezekiah> nop? Are you there?
+01:37 <@nop> sorry
+01:37 <@nop> what
+01:37 <@nop> dude, my brain is gone
+01:37 <@nop> can we discuss all this later
+01:37 <@hezekiah> OK. :)
+01:37 <@hezekiah> Sorry. :)
+01:38 <@mids> ok, lets close
+01:38 <@hezekiah> (If it makes you feel any better, my brain is going to be gone too after a Physics review and some calcus!) :)
+01:38 <@mids> commited to development too
+01:38  * hezekiah hands mids the "baff"er
+01:38 <@hezekiah> OK. Good! :0
+01:38 <@mids> *baff*
+01:38 <@hezekiah> s/0$/)/
+01:38 <@hezekiah> Bye all! :)
+01:38 <@mids> cya next week
+01:40 < lonelynerd> bye
+--- Log closed Wed Feb 19 01:40:48 2003
+</div>

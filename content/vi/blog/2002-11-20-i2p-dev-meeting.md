@@ -1,12 +1,12 @@
 ---
-title: "Cuộc họp các nhà phát triển I2P"
+title: "Cuộc họp phát triển I2P"
 date: 2002-11-20
 author: "nop"
-description: "Biên bản cuộc họp phát triển của I2P ngày 20 tháng 11 năm 2002."
+description: "Nhật ký cuộc họp phát triển I2P ngày 20 tháng 11, 2002."
 categories: ["meeting"]
 ---
 
-(Cung cấp bởi Wayback Machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine http://www.archive.org/)
 
 ## Tóm tắt nhanh
 
@@ -14,203 +14,205 @@ categories: ["meeting"]
 
 ## Nhật ký cuộc họp
 
-<div class="irc-log"> --- Nhật ký được mở Tue Nov 19 23:51:34 2002
-23:52 < logger> thử
+<div class="irc-log">
+--- Log opened Tue Nov 19 23:51:34 2002
+23:52 < logger> test
 23:52 -!- mode/#iip-dev [+o mids] by Trent
 23:52 -!- mode/#iip-dev [+v logger] by mids
 23:53 -!- mode/#iip-dev [+oo nop UserX] by mids
-23:57 <@mids> cuộc họp IIP công khai trong kênh #iip-dev sẽ bắt đầu trong 2,5 phút
+23:57 <@mids> public IIP meeting in channel #iip-dev starting in 2.5 minutes
 23:57 < nemesis> lol
-23:57 < zic> có ai từ Ukrain không? nhắn tôi nhé! hehehe
+23:57 < zic> anybody from Ukrain? message me! hehehe
 23:58 -!- mode/#iip-dev [+o hezekiah] by mids
-23:58 <@hezekiah> Chào lại, mids!
-23:58 < Robert> Này Nemesis, bạn đã xem http://www.bash.org/?top chưa
-23:58  * athena thấy hezekiah trong một diện mạo hoàn toàn mới :p
+23:58 <@hezekiah> Hello again, mids!
+23:58 < Robert> Hey Nemesis, have you seen http://www.bash.org/?top
+23:58  * athena sees hezekiah in a whole new light :p
 23:58 < nemesis> bash?
-23:58 <@mids> Robert: họ đang bị down
-23:58 <@mids> gì!
-23:58 <@mids> họ đã trở lại!
---- Ngày đã chuyển sang Wed Nov 20 2002
+23:58 <@mids> Robert: they are down
+23:58 <@mids> what!
+23:58 <@mids> they are back!
+--- Day changed Wed Nov 20 2002
 00:00 <@mids> Tue Nov 19 23:00:00 UTC 2002
-00:00 <@nop> chào mừng
-00:00 <@nop> chào mừng
-00:00 <@nop> đến cuộc họp thứ 20?
-00:00 <@nop> cuộc họp IIP
-00:00 <@hezekiah> thứ 20!
-00:00 <@mids> đúng
-00:00 <@nop> vâng trong chương trình nghị sự hôm nay...
+00:00 <@nop> welcome
+00:00 <@nop> welcome
+00:00 <@nop> to the 20th?
+00:00 <@nop> IIP meeting
+00:00 <@hezekiah> 20th!
+00:00 <@mids> yes
+00:00 <@nop> yes on the agenda today...
 00:01 <@nop> mids...
-00:01 <@mids> 1) chào mừng
-00:02 <@mids> 2) phát hành rc3
-00:02 <@mids> 3) xem trước nhanh rc3
-00:02 <@mids> 4) đồ ăn nhẹ và đồ uống
-00:02 <@mids> 5) câu hỏi
+00:01 <@mids> 1) welcome
+00:02 <@mids> 2) getting rc3 out
+00:02 <@mids> 3) sneak preview on rc3
+00:02 <@mids> 4) snacks and drinks
+00:02 <@mids> 5) questions
 00:02 <@mids> .
-00:02 <@nop> cảm ơn
+00:02 <@nop> thnx
 00:02 <@nop> ok
-00:02 <@nop> vậy chúng ta sẽ phát hành chính thức rc3 vào thứ Năm
-00:02 <@nop> vui lòng đánh dấu điều đó vào lịch của bạn
-00:02 <@mids> hy vọng vậy :)
-00:02 <@mids> (trừ khi sourceforge lại down)
-00:03 <@nop> đúng, họ đã sửa vụ ro trên nfs chưa?
-00:03 <@mids> rồi
-00:03 <@nop> đó là lỗi của họ à?
-00:03 < tarpY> tôi ở đây vì đồ ăn
-00:03 <@mids> nhân tiện, nó đã được thông báo trên trang trạng thái của họ
+00:02 <@nop> so we are having rc3 officially released thursday
+00:02 <@nop> please mark that in your calendars
+00:02 <@mids> we hope :)
+00:02 <@mids> (unless sourceforge is down again)
+00:03 <@nop> right, did they fix the ro on nfs?
+00:03 <@mids> yes
+00:03 <@nop> was it their mistake?
+00:03 < tarpY> i am here for the food
+00:03 <@mids> it was announced on their status page btw
 00:03 <@nop> ok
-00:03 <@mids> bảo trì
-00:03 <@nop> hiểu rồi
-00:03 <@nop> có lẽ đang sao lưu
-00:03 < tarpY> tôi muốn đặt pizza qua freenet và phát hiện ra họ không nhận
+00:03 <@mids> maintenance
+00:03 <@nop> gotcha
+00:03 <@nop> probably doing backups
+00:03 < tarpY> i wanted to order pizza off of the freenet and i found out they wont
 00:03 <@nop> :)
-00:03 < tarpY> tôi có thể lấy đồ ăn ở đâu ở đây
+00:03 < tarpY> where can i get food here
 00:03 <@mids> tarpY: #muchnies-to-take-away
 00:04 <@nop> ok
-00:04 <@mids> những gì mới trong rc3:
-00:04 <@nop> vậy thứ Năm chúng ta sẽ tung ra
-00:04 <@nop> ồ
-00:04 <@nop> Mids, tôi nghĩ bạn có sẵn changelog
-00:04 <@nop> nếu không
-00:04 <@mids> tôi cũng vậy
-00:04 <@nop> tôi sẽ hiển thị
+00:04 <@mids> what will be new in rc3:
+00:04 <@nop> so Thursday we will get that out
+00:04 <@nop> oh
+00:04 <@nop> Mids, I believe you have the changelog handy
+00:04 <@nop> if not
+00:04 <@mids> me too
+00:04 <@nop> I'll display
 00:04 <@nop> ok
-00:04 < sinster> rc3 sẽ có script cài đặt tử tế cho *nix chứ?
-00:04 <@mids> - Hiển thị số phiên bản cho Windows (tùy chọn menu) và Unix (dòng lệnh).
-00:04 <@mids> - Sửa lỗi tạo số ngẫu nhiên.
-00:04 <@mids> - Kết nối mạng IIP không còn bị tạm dừng khi ở màn hình thiết lập.
-00:04 <@mids> - Giờ sẽ thoát nếu không thể bind vào một socket khi khởi động.
-00:04 <@mids>   Windows giờ sẽ hiển thị một hộp thoại thông báo rằng không thể bind vào cổng.
-00:04 <@mids> - Nhiều bản sửa lỗi và đã sửa một lỗi rò rỉ bộ nhớ.
+00:04 < sinster> will rc3 have a decent install script for *nix?
+00:04 <@mids> - Display of version number for windows (menu option) and unix (command line).
+00:04 <@mids> - Random number generation fix.
+00:04 <@mids> - IIP network connections are no longer paused while in the setup screen.
+00:04 <@mids> - Now exits if it can't bind to a socket at startup.
+00:04 <@mids>   Windows now displays a message box informing that it can't bind to port.
+00:04 <@mids> - Several bugfixes and one memory leak fixed.
 00:04 <@mids> .
-00:04 <@mids> sinster: không, đó là thứ hezekiah đang làm
-00:05 <@mids> cái đó sẽ là 1.2
-00:05 <@hezekiah> Chưa hẳn ...
+00:04 <@mids> sinster: no, that is what hezekiah is working on
+00:05 <@mids> that will be 1.2
+00:05 <@hezekiah> Not quite ...
 00:05 <@nop> ok
-00:05 < zic> có kế hoạch dịch FAQ (hay) tại help.invisiblenet.net không?
-00:05 <@nop> ai muốn dịch
-00:05 <@nop> xin cứ làm
-00:05 < sinster> mids/hezekiah: nó có thêm iip vào /etc/rc.d/ để tự động khởi động không?  chỉ là gợi ý
-00:05 <@nop> chúng tôi rất trân trọng điều đó
-00:05 <@nop> và sẽ đưa nó lên trang web
-00:05 < zic> rc3 có yêu cầu chỉnh sửa gì trong FAQ không?
-00:06 <@mids> sinster: tôi có một script ở đây... nhưng cần kiểm thử thêm
-00:06 <@mids> sinster: có lẽ chúng tôi sẽ thêm cái đó trong 1.1 bản cuối
-00:06 <@hezekiah> sinster: cái đó sẽ không tương thích giữa các bản phân phối, vì các distro khác nhau đặt phần khởi động ở những chỗ khác nhau.
-00:06 <@mids> zic: không
-00:06 < sinster> mids: ừ, nhớ kiểm thử trên các biến thể linux chính, redhat, debian v.v.
-00:06 <@nop> ờ, chúng ta có thể chờ phần câu hỏi
-00:06 <@nop> làm ơn
-00:06 < zic> isproxy của tôi được script trong /etc/init.d (debian), chạy hoàn hảo
+00:05 < zic> are there plans for translating the (nice) faq @ help.invisiblenet.net ?
+00:05 <@nop> anyone who wants to translate
+00:05 <@nop> please do
+00:05 < sinster> mids/hezekiah: will it add iip to /etc/rc.d/ so that it starts automatically?  just a suggestion
+00:05 <@nop> we would very much appreciate it
+00:05 <@nop> and have it on the site
+00:05 < zic> will rc3 demand any mod in the FAQ?
+00:06 <@mids> sinster: I got a script here... but that needs more testing
+00:06 <@mids> sinster: maybe we'll add that with 1.1 final
+00:06 <@hezekiah> sinster: that would not be distribution compatible, since different distros put startup stuff in different places.
+00:06 <@mids> zic: no
+00:06 < sinster> mids: yeah, make sure you test it on the major linux flavors, redhat, debian etc
+00:06 <@nop> well, can we wait on quesitons
+00:06 <@nop> please
+00:06 < zic> my isproxy is scripted in /etc/init.d (debian), works perfectly
 00:06 <@mids> oops
-00:06 <@nop> đến phần hỏi đáp
-00:06 < zic> xin lỗi!
-00:06 < zic> xin lỗi!
-00:06 <@hezekiah> Xin lỗi.
-00:06 <@nop> nó trở nên rối
+00:06 <@nop> till the questions and answers
+00:06 < zic> sorry!
+00:06 < zic> sorry!
+00:06 <@hezekiah> Sorry.
+00:06 <@nop> it gets confusing
 00:06 <@nop> ;)
-00:06 <@nop> xin lỗi
+00:06 <@nop> sorry
 00:06 < sinster> nop: ok
-00:06 < tarpY> không cần dịch đâu, mọi người nên nói tiếng Anh.
-00:07 < sinster> nop: lỗi của tôi
-00:07 <@nop> không vấn đề
-00:07 <@mids> có câu hỏi nào về changelog không?
-00:07 <@mids> không?
-00:07 <@mids> nop: xem trước nhanh?
-00:07 <@nop> đợi tí relay của tôi vừa toi rồi
-00:08 <@nop> đợi đến khi mọi người quay lại
+00:06 < tarpY> no translating everyone should speak english.
+00:07 < sinster> nop: my bad
+00:07 <@nop> no prob
+00:07 <@mids> any questions on the changelog?
+00:07 <@mids> no?
+00:07 <@mids> nop: sneak preview?
+00:07 <@nop> hold my relay just bit the dust
+00:08 <@nop> wait till everyone comes back
 00:08 <@mids> auch
-00:08 <@nop> độ trễ có thể thật khó chịu trong một cuộc họp
+00:08 <@nop> delay can be annoying in a meeting
 00:08 <@nop> ;)
-00:08 <@nop> mọi người vẫn ở đây chứ?
-00:08 <@mids> có vẻ vậy
-00:09 <@hezekiah> tôi không thấy ai rời đi.
+00:08 <@nop> everyone still here?
+00:08 <@mids> seems like it
+00:09 <@hezekiah> I didn't see anyone leave.
 00:09 <@nop> ok
-00:09 < zic> tôi đây (tôi có quan trọng không? hehe)
-00:09 <@nop> ờ thì chúng ta có tính năng delay
+00:09 < zic> i am (does i matter? hehe)
+00:09 <@nop> well there is a delay feature we have
 00:09 <@nop> ;)
 00:09 <@nop> ok
-00:09 < al-jabr> tôi cũng không.
-00:09 <@nop> đoán là relay của tôi bị đá khỏi danh sách vì không ổn định
+00:09 < al-jabr> I didn't either.
+00:09 <@nop> guess my relay got kicked off the list for unreliability
 00:09 <@nop> haha
 00:09 <@mids> hehe
-00:09  * Robert tham gia #muchnies-to-take-away trong lúc chờ...
-00:09 <@mids> được rồi
-00:09 <@nop> ừ
-00:10 <@nop> lại nữa rồi
+00:09  * Robert joins #muchnies-to-take-away while he waits...
+00:09 <@mids> there we go
+00:09 <@nop> yep
+00:10 <@nop> there's another
 00:10 <@nop> ;)
-00:10 < al-jabr> mất năm người rồi.
-00:10 <@hezekiah> Chúng ta thật sự cần làm gì đó về chuyện này. :(
-00:10 < nemesis> ờm
+00:10 < al-jabr> there goes five.
+00:10 <@hezekiah> We really need to do something about that. :(
+00:10 < nemesis> erm
 00:10 < nemesis> mids
-00:10 <@nop> hezekiah: spread spectrum routing (định tuyến trải phổ)
-00:11 < tc> đây có phải là lỗi trục trặc trong hệ thống relay không?
+00:10 <@nop> hezekiah: spread spectrum routing
+00:11 < tc> is this glitches in the relay system?
 00:11 <@nop> ;)
-00:11 <@nop> máy relay Windows của tôi bị crash
-00:11 <@nop> điển hình
-00:11 < nemesis> cho win2k / xp, sau này sẽ có bản build không có GUI
+00:11 <@nop> my windows relay box crashed
+00:11 <@nop> typical
+00:11 < nemesis> for win2k / xp, thers in the future a build without gui
 00:11 <@hezekiah> lol
-00:11 < nemesis> hoặc chỉ có GUI để thiết lập
-00:11 < nemesis> và phần còn lại chạy như một daemon?
-00:11 <@nop> sẽ hay nếu có nó như một service
+00:11 < nemesis> or only gui to setup
+00:11 < nemesis> and the rest as an daemon?
+00:11 <@nop> it would be nice to have it as a service
 00:11 <@nop> ;)
-00:12 < nemesis> đúng
+00:12 < nemesis> yes
 00:12 < nemesis> ;)
-00:12 <@nop> có một chương trình ngoài kia tên là service installer
+00:12 <@nop> there is a program out there called service installer
 00:13 <@nop> ok
-00:13 <@nop> ừ
+00:13 <@nop> well
 00:13 < nemesis> iip.exe --install
-00:13 <@nop> không trì hoãn nữa
-00:13 < nemesis> như apache cho win
-00:13 <@mids> mọi người đã quay lại hết chưa?
+00:13 <@nop> no more delays
+00:13 < nemesis> like apache for win
+00:13 <@mids> is everybody already back?
 00:14 <@nop> ok
-00:15 <@nop> chào mừng baci
-00:15 <@nop> quay lại
-00:15 < nemesis> Neo của Matrix à? ;)
+00:15 <@nop> welcome baci
+00:15 <@nop> back
+00:15 < nemesis> matrix's neo? ;)
 00:15 <@nop> ok
-00:15 <@nop> tôi nghĩ họ đã quay lại
-00:16 <@mids> đúng
+00:15 <@nop> I think they are back
+00:16 <@mids> yes
 00:16 <@nop> ok
-00:16 <@nop> xem trước nhanh
-00:16 <@mids> Tôi đã tạo một FLT-iip.1.1-rc3-pre1-mids-sneak-preview-screaner.tgz
-00:16 <@mids> ai dùng Unix đều có thể thử
-00:16 <@mids> chưa có bản Windows
-00:16 <@nop> tôi có thể làm một bản ngay bây giờ
-00:16 <@nop> nếu bạn muốn
+00:16 <@nop> sneak preview
+00:16 <@mids> I made a FLT-iip.1.1-rc3-pre1-mids-sneak-preview-screaner.tgz
+00:16 <@mids> everybody with unix can test it
+00:16 <@mids> no windows version yet
+00:16 <@nop> I can make one right now
+00:16 <@nop> if you want
 00:16 < zic> lol
 00:16 <@mids> http://mids.student.utwente.nl/~mids/iip/iip-1.1-rc3-mids1.tgz
-00:16 < nemesis> thế cũng được
-00:16 < nemesis> tôi đợi
-00:16 < zic> Âm thanh OGG hay LAME?
-00:17 <@mids> Tôi đặc biệt mong các báo cáo về những bản Unix ít gặp
-00:17 <@mids> như NetBSD v.v.
-00:17 < nemesis> tôi nghĩ, không quá quan trọng khi một máy Unix crash sau 30 ngày uptime
-00:17 <@mids> và MacOSX
-00:17 < nemesis> so với một máy Windows với uptime 3 ngày ;)
-00:17 < tc> mids:  thay đổi này chỉ ở isproxy hay còn ở phần relay khác nữa?
-00:17 <@nop> không
-00:17 <@nop> bạn giữ nguyên thiết lập của mình
-00:17 <@nop> chúng ta đã thử xem nó có thể cài đè lên cái trước chưa
+00:16 < nemesis> thats ok
+00:16 < nemesis> i wait
+00:16 < zic> OGG or LAME audio?
+00:17 <@mids> I am especially looking forward to reports on obscure unix versions
+00:17 <@mids> like netbsd etc
+00:17 < nemesis> i think, its not so important when a unix machine crash with 30 days uptime
+00:17 <@mids> and macosx
+00:17 < nemesis> as an windows machine with 3 days uptime ;)
+00:17 < tc> mids:  is this change just in the isproxy or in any other relay stuff also?
+00:17 <@nop> no
+00:17 <@nop> you keep your settings
+00:17 <@nop> did we test that it can install over the previous one
 00:17 <@nop> hmm
-00:18 <@nop> ghi chú lại
-00:18 < zic> nemesis: nhưng sẽ tuyệt nếu nó không bao giờ crash. nhưng hãy dừng tán gẫu ở đây. chúng ta đang trong một cuộc họp trang trọng
+00:18 <@nop> make a note
+00:18 < zic> nemesis: but it would be cool if it never crashed. but let's kill the talking here. we are in a formal meeting
 00:18 < nemesis> hehe
 00:18 <@nop> ok
-00:18 <@nop> nếu ai muốn thử xem quá trình nâng cấp có đơn giản không
-00:18 < nemesis> đừng thử vào ngày họp ;)
-00:18 <@nop> thì xin cứ tiến hành
-00:18 <@nop> và email hoặc báo cho một trong các dev về kết quả
-00:18 <@mids> vui lòng thử nó song song với relay hiện tại của bạn
-00:18 <@mids> và vâng, hãy phản hồi
-00:19 <@mids> về những gì trục trặc
-00:19 <@mids> v.v.
-00:19 <@nop> chào mừng quay lại tarpY
-00:19 <@nop> hãy đưa cái screener đó vào topic
-00:19 < goc> có thể chạy isproxy-rc2 và isproxy-almost-rc3 đồng thời không?
-00:19 <@nop> có
-00:20 <@nop> thiết lập cổng khác nhau
-00:20 <@nop> và không khó chút nào
-00:20 < goc> file conf lưu ở đâu?
-00:20 <@nop> nhưng rc3 nên có thể cài đè rc2
-00:20 <@nop> bạn có thể phải làm một -f /dir
-00:20 <@nop> hoặc bạn có thể để nó cài đè lên cài đặt rc2
-00:21 < tarpY> cuối cùng các bạn có định bỏ proxy và tích hợp nó vào một client không? </div>
+00:18 <@nop> if anyone wants to test if the upgrade process is trivial
+00:18 < nemesis> don't test it on meeting days ;)
+00:18 <@nop> then please go ahead
+00:18 <@nop> and email or notify one of the devs of the results
+00:18 <@mids> please test it next to your current relay
+00:18 <@mids> and yes, please give feedback
+00:19 <@mids> on what went wrong
+00:19 <@mids> etc
+00:19 <@nop> wb tarpY
+00:19 <@nop> let's put that screener in the topic
+00:19 < goc> is it possible to run isproxy-rc2 and isproxy-almost-rc3 simultaneously?
+00:19 <@nop> yes
+00:20 <@nop> different port settings
+00:20 <@nop> and it's not hard at all
+00:20 < goc> where's the conf file stored?
+00:20 <@nop> but rc3 should be able to go over rc2
+00:20 <@nop> you might have to do a -f /dir
+00:20 <@nop> or you may have it go over the rc2 install
+00:21 < tarpY> are you going to eventually remove the proxy and integrate it into a client?
+</div>

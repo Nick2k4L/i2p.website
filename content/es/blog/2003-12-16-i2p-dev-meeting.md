@@ -1,17 +1,262 @@
 ---
-title: "Reunión de desarrolladores de I2P - 16 de diciembre de 2003"
+title: "Reunión de Desarrolladores I2P - 16 de diciembre, 2003"
 date: 2003-12-16
 author: "jrand0m"
 description: "Registro de la reunión de desarrollo de I2P del 16 de diciembre de 2003."
 categories: ["meeting"]
 ---
 
-(Cortesía de la Wayback Machine http://www.archive.org/)
+(Cortesía de wayback machine http://www.archive.org/)
 
 ## Resumen rápido
 
 <p class="attendees-inline"><strong>Presentes:</strong> duck, FireRabbit, jrand0m, lonelynerd, mids, mihi, MrEcho, protocol, TC, wiht</p>
 
-## Registro de la reunión
+## Registro de Reunión
 
-<div class="irc-log"> [22:04] &lt;jrand0m&gt; 0) hola  [22:04] &lt;jrand0m&gt; 1) iip  [22:04] &lt;jrand0m&gt; 2) 0.2.3 &amp; 0.2.3.1  [22:04] &lt;jrand0m&gt; 3) hola  [22:04] &lt;jrand0m&gt; 0) hola  [22:04] &lt;jrand0m&gt; bienvenidos a la ... reunión número algo  [22:05] &lt;jrand0m&gt; (¿68? ¿69?)  [22:05] &lt;MrEcho&gt; maldita sea, aquí son la 1 pm [22:05] &lt;jrand0m&gt; GMT-8?  [22:05] &lt;duck&gt; 69 [22:05] &lt;jrand0m&gt; h0t.  [22:06] &lt;jrand0m&gt; ok, 1) iip  [22:06] *** Desconexión: tusko (EOF del cliente) [22:06] * MrEcho compila un kernel para la reunión [22:06] &lt;jrand0m&gt; iip se está comportando de forma loca. todo lo que sé es que nop está "moviendo servidores", sea lo que sea que signifique. no sé cuándo estará hecho, etc.  [22:06] &lt;jrand0m&gt; ¿alguien tiene más info que quiera compartir con la clase?  [22:06] *** mids (mids@anon.iip) se ha unido al canal #iip-dev [22:06] &lt;MrEcho&gt; sin info de nop [22:07] &lt;mids&gt; esta mañana me dijeron que podía arrancar Trent otra vez [22:07] &lt;mids&gt; (ya lo hice anoche) [22:07] &lt;jrand0m&gt; genial  [22:07] &lt;jrand0m&gt; gracias  [22:07] &lt;mids&gt; eso indica que nop cree que IIP es más estable otra vez [22:07] &lt;mids&gt; si es que eso vale de algo... [22:07] &lt;mids&gt; *tos* [22:07] &lt;jrand0m&gt; ok, genial  [22:08] &lt;jrand0m&gt; [woot mi compañero de piso acaba de darme una copa de vino para la reunión]  [22:08] &lt;MrEcho&gt; lol [22:08] &lt;jrand0m&gt; ok, como nop está en línea y no vendrá a la reunión, tendremos que guardar la turba del linchamiento para más tarde  [22:09] &lt;jrand0m&gt; 2) 0.2.3 &amp; 0.2.3.1  [22:09] &lt;mids&gt; ¿qué pregunta específica quieres hacerle? [22:09] &lt;protocol&gt; ¿cuándo es la reunión? [22:09] &lt;jrand0m&gt; pregunta específica&gt; ¿cuándo hará un anuncio oficial describiendo los problemas pasados y cómo se abordarán los futuros?  [22:09] &lt;jrand0m&gt; la reunión es ahora  [22:10] &lt;jrand0m&gt; (también conocido como, ¿en qué momento deberíamos explorar medios de comunicación no-iip?)  [22:10] &lt;mids&gt; si obtengo una respuesta te lo haré saber. [22:10] &lt;jrand0m&gt; gracias  [22:11] &lt;jrand0m&gt; ok, cosas de i2p. 0.2.3 salió ayer, y aunque la mayor parte del código de kademlia está funcionando bien, están apareciendo algunos bugs de 0.2.2 así como otros bugs que se están investigando.  [22:11] &lt;jrand0m&gt; he hecho commit de un cambio para usar mensajes a través de tunnels para dbStore en lugar de garlics, lo que debería reducir la carga que tc (y otros) han estado viendo en los servidores  [22:12] &lt;jrand0m&gt; también hay un nuevo sessionKeyManager persistente que hará que los reinicios no rompan totalmente un router durante 15 minutos  [22:12] &lt;MrEcho&gt; ¿y los tiempos de conexión del cliente a los routers? [22:12] &lt;duck&gt; hasta ahora se siente tan bueno/malo como 0.2.2; a menos que mi router/tunnels vuelvan a caerse esta noche, en cuyo caso es peor que 0.2.2 [22:13] &lt;jrand0m&gt; MrEcho&gt; eso parece estar en la interacción de dos bugs de 0.2.2 que están dando más guerra que antes. esos dos son mi máxima prioridad.  [22:13] &lt;MrEcho&gt; ok, genial [22:13] &lt;jrand0m&gt; duck&gt; mi sensación es que es peor que 0.2.2, desde la perspectiva del usuario final. estoy trabajando para arreglar eso sin sacrificar anonimato o seguridad.  [22:13] &lt;MrEcho&gt; es difícil trabajar en el DNS con ese maldito bug .. tengo que reiniciar el servidor DNS un montón [22:14] &lt;jrand0m&gt; MrEcho&gt; con routers solo locales no he podido reproducir los bugs; ¿te funciona a ti con solo local?  [22:15] &lt;MrEcho&gt; no [22:15] &lt;jrand0m&gt; ¿podrías enviarme logs de depuración para eso?  [22:15] &lt;MrEcho&gt; ya borrados [22:16] &lt;jrand0m&gt; ok, si lo intentas de nuevo y no funciona, si pudieras enviarme logs de depuración tanto del router como del cliente te lo agradecería.  [22:16] &lt;MrEcho&gt; está haciendo lo mismo de antes .. el cliente recibe el mensaje de que fue enviado .. pero nunca llega al cliente [22:16] &lt;MrEcho&gt; al otro cliente [22:17] &lt;MrEcho&gt; sí .. veré qué puedo hacer [22:17] &lt;jrand0m&gt; ok, suena como el bug de i2psessionImpl2. no he podido reproducirlo localmente, pero una vez que se arregle para remoto, con suerte funcionará en tu situación  [22:17] &lt;jrand0m&gt; gracias  [22:17] &lt;jrand0m&gt; en cualquier caso, gracias por su paciencia con la actualización. estamos avanzando, aunque en la superficie no lo parezca  [22:18] &lt;protocol&gt; sigue brillando, diamante loco [22:18] &lt;duck&gt; en el futuro, digamos una vez que i2p se esté usando realmente, ¿cómo cambiará el proceso de desarrollo/publicación para evitar que versiones rotas estropeen la red? [22:19] &lt;jrand0m&gt; una vez que 1.0 salga, haré desarrollo y lo desplegaré a un grupo de voluntarios locos para que jueguen con ello durante una semana; luego, si las cosas funcionan bien, se desplegará en la versión general.  [22:20] * FireRabbit será un voluntario loco [22:20] &lt;jrand0m&gt; ahora mismo tengo que batallar con kaffe y jetty para las actualizaciones en i2p.dnsalias.net  [22:20] &lt;duck&gt; ¿qué especie? [22:20] * MrEcho ya lo es [22:20] *** tusko (~tusko@anon.iip) se ha unido al canal #iip-dev [22:20] &lt;jrand0m&gt; ya son voluntarios (muy útiles) y locos :)  [22:20] &lt;FireRabbit&gt; ¡gracias! [22:20] &lt;FireRabbit&gt; :) [22:21] *** TC (~TC@anon.iip) se ha unido al canal #iip-dev [22:21] &lt;jrand0m&gt; hey si no es tc  [22:21] * MrEcho azota a TC .. llegas tarde [22:21] &lt;TC&gt; hey [22:21] &lt;TC&gt; ¿hemos vuelto a funcionar? [22:21] &lt;MrEcho&gt; sí, puedo tipear hoy... [22:22] &lt;jrand0m&gt; iip parece estar arriba...  [22:22] &lt;TC&gt; yay [22:22] &lt;jrand0m&gt; en cualquier caso, espero tener 0.2.3.1 en los próximos días, una vez que se arreglen los dos bugs críticos (la sobrecarga de CPU que tc ha visto ya se ha actualizado)  [22:23] *** wiht (anon@anon.iip) se ha unido al canal #iip-dev [22:23] &lt;TC&gt; ¿cuál fue la causa? [22:23] &lt;FireRabbit&gt; me parece haber notado una mayor actividad de disco desde que actualicé a 0.2.3, pero no he dedicado tiempo a ver si eso es realmente i2p o solo el ordenador haciendo tonterías [22:23] *** Desconexión: wiht ((null)) [22:23] &lt;TC&gt; FireRabbit, ¿cuánta memoria tienes? [22:24] &lt;FireRabbit&gt; ese equipo tiene 128, creo [22:24] &lt;FireRabbit&gt; ¿crees que podría ser el archivo de paginación? [22:24] &lt;jrand0m&gt; la causa fue que 0.2.3 envía todos los mensajes dbStore mediante mensajes enrutados garlic en lugar de directamente, lo cual usa o bien ElGamal o AES+SessionTag (dependiendo de si se conocen las tags). el persistentSessionKeyManager hará que las tags duren más, y 0.2.3.1 enviará los mensajes dbStore a través de tunnels en su lugar  [22:24] &lt;TC&gt; porque tengo 512 y i2p me dio un error de 'out of memory' anoche [22:24] &lt;jrand0m&gt; ¿en serio? mierda  [22:24] &lt;FireRabbit&gt; oh, interesante [22:25] &lt;MrEcho&gt; wow [22:25] &lt;jrand0m&gt; sí, ese es el nº 3 en la lista de bugs por resolver (aunque no es un bloqueante para 0.2.3.1)  [22:25] &lt;jrand0m&gt; los OOM no usan los 512 completos  [22:25] &lt;TC&gt; pero ahora parece estar funcionando bien [22:25] &lt;jrand0m&gt; solo usan lo que Java les ha dado (p. ej., 64M)  [22:26] &lt;TC&gt; sí [22:26] &lt;duck&gt; Memoria: En uso: 8187KB [22:26] &lt;jrand0m&gt; eso es  [22:26] &lt;duck&gt; ¡eso no es mucho! [22:26] &lt;duck&gt; todavía [22:26] &lt;MrEcho&gt; Memoria: En uso: 8908KB Libre: 4088KB  [22:27] &lt;jrand0m&gt; sí, hay algo que está creciendo ahí; espero tenerlo localizado para 0.3   [22:27] &lt;jrand0m&gt; genial, 'Libre' significa que solía usar 12,9M, ahora solo usa 8,9  [22:27] &lt;TC&gt; está corriendo en 30 megas de memoria en este momento, pero anoche saltó a (lo que Windows me dijo) '70'; por ahí fue donde se cayó [22:27] &lt;jrand0m&gt; sí, kaffe me hace eso a mí también, tc  [22:28] &lt;jrand0m&gt; ok, en cualquier caso, la gente debería suscribirse a la lista de correo de i2p  [22:28] * FireRabbit está pensando que cuando llegue a casa hoy va a reescribir la lib meshwork ya que tiene algunos problemas [22:28] &lt;FireRabbit&gt; ay [22:28] &lt;jrand0m&gt; ((Link: http://i2p.dnsalias.net/pipermail/i2p/)http://i2p.dnsalias.net/pipermail/i2p/)  [22:28] &lt;jrand0m&gt; d'oh FireRabbit  [22:28] &lt;FireRabbit&gt; esta cosa nunca se va a terminar [22:28] &lt;TC&gt; sí, y la memoria no es gran cosa en su mayor parte [22:28] &lt;jrand0m&gt; je, ningún proyecto va tan fácil como uno espera  [22:28] &lt;FireRabbit&gt; nop [22:28] &lt;protocol&gt; jrand0m: la lista de correo activa la protección de spam de Yahoo! [22:28] &lt;protocol&gt; solo para que lo sepas [22:28] &lt;jrand0m&gt; ¿en serio, protocol?  [22:29] &lt;protocol&gt; sí [22:29] &lt;jrand0m&gt; quizás eso fue lo que activó el guardián de spam cuando hice cc a iip-dev  [22:29] * jrand0m le escribirá a mi ISP [22:29] &lt;jrand0m&gt; (o quizá sea lo de .dnsalias.net)  [22:30] &lt;protocol&gt; no recibí ningún envío hasta ahora, y vacié mi correo de spam antes de poder comprobarlo [22:30] &lt;duck&gt; o el apodo jrandom [22:30] &lt;jrand0m&gt; lol duck  [22:30] &lt;FireRabbit&gt; :) [22:30] &lt;jrand0m&gt; sería genial si mi nick estuviera filtrado :)  [22:30] &lt;FireRabbit&gt; jeje [22:30] *** wiht (anon@anon.iip) se ha unido al canal #iip-dev [22:30] &lt;jrand0m&gt; bienvenido de vuelta wiht  [22:30] &lt;jrand0m&gt; hablando de eso, supongo que debería meter 3.1) apps :)  [22:31] &lt;jrand0m&gt; oye MrEcho, ¿cómo va la batalla?  [22:31] &lt;wiht&gt; jrand0m: Hola. [22:31] &lt;MrEcho&gt; el día que alguien escriba un programa de autodetección para la configuración de compilación de Linux [22:31] &lt;MrEcho&gt; bueno, está en camino [22:31] &lt;duck&gt; knoppix usa alguna cosa de autodetección, ¿no? [22:31] &lt;jrand0m&gt; ./configure ; make ; make check ; make install ; reboot  [22:31] &lt;duck&gt; &lt;/offtopic&gt; [22:31] &lt;MrEcho&gt; más o menos he trazado cómo quiero hacer todo [22:31] &lt;jrand0m&gt; vale  [22:32] &lt;jrand0m&gt; ¿tienes una visión clara de cómo i2ptunnel podría actualizarse para hacer uso de lo que estás haciendo, MrEcho?  [22:32] &lt;FireRabbit&gt; creo que knoppix usa hotplug [22:32] &lt;MrEcho&gt; 0.1 no estará/podría estar bloqueado .. no lo sé aún [22:32] &lt;jrand0m&gt; guay  [22:33] &lt;TC&gt; oh jrand0m, tengo una pregunta sobre el cvs [22:33] &lt;jrand0m&gt; que tal?  [22:33] &lt;MrEcho&gt; para consultas DNS voy a tener un puerto de servidor en el lado del Cliente y RS para consultas de Nombres [22:33] &lt;FireRabbit&gt; ok jrand0m, entonces ilústrame con esto: si tienes dos arrays, uno que está almacenando datos recién recibidos y otro que actúa como buffer, ¿cómo los nombrarías? [22:33] &lt;MrEcho&gt; y voy a construir una lib para que cualquier app la use [22:33] &lt;jrand0m&gt; FireRabbit&gt; src, dest  [22:34] &lt;FireRabbit&gt; hmm [22:34] &lt;TC&gt; pensé que sería buena idea si actualizara el archivo host directamente al cvs basado en i2p para que pudiera incluirse con futuras versiones [22:34] &lt;jrand0m&gt; definitivamente, tc  [22:34] &lt;FireRabbit&gt; esta es una clase bastante grande, creo que querría ir un poco más específico que eso [22:34] * jrand0m debería conseguirte una cuenta de cvs [22:34] &lt;TC&gt; solo me pregunto cómo conectarme [22:34] &lt;duck&gt; TC: necesitas (Link: http://www.tortoisecvs.org/)http://www.tortoisecvs.org/ [22:34] &lt;duck&gt; el cliente CVS más fácil para Windows que conozco [22:35] * MrEcho usa la versión de dos :) [22:35] &lt;mihi&gt; duck: for windows != win9x ;) [22:35] * FireRabbit usa el port de línea de comandos de cvs [22:35] &lt;duck&gt; mihi: lo probé con win9x [22:35] &lt;jrand0m&gt; tc&gt; ¿has usado cvs antes? ¿o te preocupa el anonimato? (deberías poder usar cvs a través de i2p en este momento)  [22:35] * mihi usa WinCVS o el cvs de cygwin [22:35] * jrand0m usa cvs.exe [22:35] &lt;TC&gt; ok, ¿entonces uso ese cliente y configuro el proxy? [22:35] &lt;TC&gt; no, nunca he usado cvs antes [22:35] &lt;jrand0m&gt; ok, te guío con la configuración después de la reunión  [22:36] &lt;TC&gt; claro, gracias [22:36] &lt;duck&gt; sobre hacer cvs a través del tunnel: [22:36] &lt;duck&gt; ¿no serían los mensajes duplicados un gran problema? [22:36] *** Desconexión: wiht (Ping timeout) [22:37] &lt;duck&gt; especialmente para commits [22:37] &lt;jrand0m&gt; sí, duck, pero no me he topado con ese problema (los mensajes de cvs son típicamente pequeños)  [22:37] &lt;jrand0m&gt; los mensajes &gt;64k (p. ej., las especificaciones .pdf o .sxw) por ahora deberían hacerse por la Internet normal  [22:38] &lt;duck&gt; los mensajes de jabber también se duplican muy a menudo [22:38] &lt;jrand0m&gt; aunque tienes razón en que todavía no es una solución a prueba de balas para cvs  [22:38] &lt;duck&gt; aunque son XML, no son tan grandes [22:40] &lt;jrand0m&gt; cierto, los acks perdidos son una de las perras de los bugs actuales perdidos de i2psessionimpl2 :/  [22:40] &lt;duck&gt; k [22:41] &lt;duck&gt; (eso fue un ack parcialmente perdido) [22:41] &lt;jrand0m&gt; (con la red de este tamaño, no debería haber reenvíos nunca, a menos que el par esté desconectado)  [22:42] &lt;jrand0m&gt; hmm ok, ¿alguna otra cosa de i2p?  [22:42] &lt;mihi&gt; jrand0m: ¿qué tal añadir algún tipo de número de secuencia en los paquetes de i2p? [22:43] &lt;jrand0m&gt; ¿paquetes de i2ptunnel?  [22:43] &lt;mihi&gt; eso ayudaría con las duplicaciones. [22:43] &lt;mihi&gt; no, paquetes i2pnp [22:43] &lt;mihi&gt; ok, también se podría hacer a nivel de i2ptunnel. [22:43] &lt;TC&gt; entonces jrand0m, ¿recuperaste tu conexión o sigues en un café? [22:43] &lt;mihi&gt; simplemente, si obtienes dos veces el mismo número, descarta el segundo. [22:44] &lt;jrand0m&gt; esos ya manejan ids duplicadas para la mayoría de las cosas, aunque tienes razón en que habrá una actualización en 0.3 para los mensajes restantes  [22:44] &lt;jrand0m&gt; sí, actualmente mantenemos un historial de las últimas 1000 msgIds para descartar duplicados  [22:44] &lt;mihi&gt; ok, si alguien se ofrece a escribir una buena impl de tcp para i2p, sería mejor ;) [22:44] &lt;jrand0m&gt; ¡sí! :)  [22:44] *** Nostradumbass (nostradum@anon.iip) se ha unido al canal #iip-dev [22:45] * jrand0m piensa que va a haber una recompensa por alguna [app/feature asesina aún por determinar] cuando 1.0 esté cerca [22:45] &lt;duck&gt; ¡gana una sesión de chat privada de 1 hora con UserX! [22:45] &lt;jrand0m&gt; lol  [22:45] &lt;MrEcho&gt; lol [22:46] &lt;jrand0m&gt; ok, ¿alguna otra cosa de i2p, o de iip, o cualquier otra cosa para esta, la 69ª reunión de iip-dev?  [22:46] &lt;jrand0m&gt; (aparte de comentarios de chica pin-up de userx)  [22:47] &lt;duck&gt; ¿alguna otra app que duck inc. deba ejecutar? [22:47] &lt;jrand0m&gt; ¡bluebeep!  [22:47] &lt;TC&gt; 1. jrand0m ¿arreglaste tus problemas de conexión? 2. ¿qué te parece mi nuevo eepsite? [22:47] &lt;TC&gt; ¿bluebeep? [22:47] &lt;jrand0m&gt; oh, perdón tc. sí, por fin tengo acceso a la red :) no he visto tu nuevo eepsite más allá del board (que está de puta madre), pero lo veré luego :)  [22:48] &lt;duck&gt; TC: me gusta el diseño nuevo [22:48] &lt;TC&gt; hmm, debería cambiar el board también para reducir el tiempo de carga [22:48] &lt;duck&gt; solo creo que deberías intentar desactivar la función de email en el phpboard; ahora obtienes un error cada vez [22:48] &lt;TC&gt; gracias, duck [22:48] &lt;jrand0m&gt; quitar imágenes sería un plus  [22:49] &lt;TC&gt; buena idea [22:49] &lt;jrand0m&gt; (bluebeep es un wardialer antiguo)  [22:49] &lt;MrEcho&gt; ya [22:49] &lt;jrand0m&gt; (y un juguete divertido en general)  [22:49] &lt;duck&gt; por favor, ten en cuenta que la edad promedio aquí es 16 [22:50] * MrEcho tiene 24 [22:50] * duck se agacha [22:50] * jrand0m duda que haya demasiados de 3 años para compensar a los geriátricos entre nosotros ;) [22:50] *** wiht (anon@anon.iip) se ha unido al canal #iip-dev [22:50] &lt;MrEcho&gt; lol [22:50] * TC construyó una blackbox una vez [22:50] &lt;jrand0m&gt; w3wt  [22:50] &lt;lonelynerd&gt; ¿ya terminó la reunión? [22:50] &lt;duck&gt; última P: [22:50] *** protocol ahora se conoce como proto_afk [22:51] &lt;duck&gt; ¿cómo podemos leer las estadísticas de kademlia? [22:51] * jrand0m aún no he hecho !baf, lonelynerd, así que pregunta :) [22:51] * MrEcho mata el soporte de pcmcia en el kernel [22:51] &lt;duck&gt; solo para que entendamos lo que vuelca routerConsole.html [22:51] &lt;MrEcho&gt; me estoy cabreando [22:51] &lt;jrand0m&gt; ok, ¿te refieres a las estadísticas de JobQueue?  [22:52] * duck supone que probablemente todo es obvio [22:52] &lt;jrand0m&gt; básicamente, cuando miro las estadísticas de JobQueue, verifico que el tiempo promedio de ejecución para los trabajos Build garlic message, buld tunnel, y handle * message sea pequeño  [22:52] &lt;jrand0m&gt; (esos son los trabajos que suelen tardar más, y cuando la parte pendiente se hace grande, todo sufre)  [22:53] &lt;lonelynerd&gt; (en realidad, mejor leo los logs primero) [22:53] &lt;duck&gt; entendido [22:53] &lt;jrand0m&gt; el tiempo medio pendiente de .1-.6s que he estado viendo es pésimo, y es una de las grandes cosas a las que apuntaré cuando sea momento de ajustarlos  [22:54] &lt;jrand0m&gt; la vivacidad y fiabilidad del contenido de netDb son en gran medida números aleatorios, siempre que sean &gt; 100. 'last sent successfully' significa cuándo fue la última vez que se envió a 2 o más pares   [22:54] &lt;jrand0m&gt; (reenviamos aleatoriamente si no es local)  [22:54] &lt;jrand0m&gt; (aunque no más de una vez cada 5 minutos)  [22:55] &lt;jrand0m&gt; ¿hay alguna estadística que sería útil para la gente, u otra visualización que pudiera ayudar? (si no es trivial puede que no la incluya, pero si es fácil, probablemente sí)  [22:56] &lt;duck&gt; gracias [22:57] &lt;jrand0m&gt; ¿algún otro comentario/pregunta/preocupación/frisbee?  [22:59] &lt;jrand0m&gt; en ese caso  [22:59] * jrand0m se prepara [22:59] * jrand0m *baf* cierra la reunión </div>
+<div class="irc-log">
+[22:04] &lt;jrand0m&gt; 0) hi 
+[22:04] &lt;jrand0m&gt; 1) iip 
+[22:04] &lt;jrand0m&gt; 2) 0.2.3 &amp; 0.2.3.1 
+[22:04] &lt;jrand0m&gt; 3) hi 
+[22:04] &lt;jrand0m&gt; 0) hi 
+[22:04] &lt;jrand0m&gt; welcome to the ... something'th meeting 
+[22:05] &lt;jrand0m&gt; (68?  69?) 
+[22:05] &lt;MrEcho&gt; damm its 1pm here
+[22:05] &lt;jrand0m&gt; GMT-8? 
+[22:05] &lt;duck&gt; 69
+[22:05] &lt;jrand0m&gt; h0t. 
+[22:06] &lt;jrand0m&gt; ok, 1) iip 
+[22:06] *** Signoff: tusko (EOF From client)
+[22:06] * MrEcho compiles a kernel for the meeting
+[22:06] &lt;jrand0m&gt; iip is acting crazy.  all i know is nop is "moving servers", whatever that means.  i don't know when it'll be done, etc. 
+[22:06] &lt;jrand0m&gt; anyone have any more info they want to share with the class? 
+[22:06] *** mids (mids@anon.iip) has joined channel #iip-dev
+[22:06] &lt;MrEcho&gt; no info from nop
+[22:07] &lt;mids&gt; this morning I was told that I could start Trent again
+[22:07] &lt;mids&gt; (I did do so already last night)
+[22:07] &lt;jrand0m&gt; wikked 
+[22:07] &lt;jrand0m&gt; gracias 
+[22:07] &lt;mids&gt; so that indicates that nop believes that IIP is more stable again
+[22:07] &lt;mids&gt; if that is worth anything...
+[22:07] &lt;mids&gt; *cough*
+[22:07] &lt;jrand0m&gt; ok cool 
+[22:08] &lt;jrand0m&gt; [woot roommate just handed me a glass of wine for the meeting] 
+[22:08] &lt;MrEcho&gt; lol
+[22:08] &lt;jrand0m&gt; ok, since nop is online and won't come to hte meeting, we'll have to save the lynch mob for later 
+[22:09] &lt;jrand0m&gt; 2) 0.2.3 &amp; 0.2.3.1 
+[22:09] &lt;mids&gt; what specific question do you want to ask him?
+[22:09] &lt;protocol&gt; when is the meeting
+[22:09] &lt;jrand0m&gt; specific question&gt; when will he make an official announcement describing the past problems and how the future ones will be addressed? 
+[22:09] &lt;jrand0m&gt; the meeting is now 
+[22:10] &lt;jrand0m&gt; (aka, at what point should we explore non-iip means of communication) 
+[22:10] &lt;mids&gt; if I get an answer I'll let you know.
+[22:10] &lt;jrand0m&gt; thanks 
+[22:11] &lt;jrand0m&gt; ok, i2p stuff.  0.2.3 came out yesterday, and while most of hte kademlia code is working fine, there are some 0.2.2 bugs showing up as well as some other bugs being explored. 
+[22:11] &lt;jrand0m&gt; i've committed a change to use tunneled messages for dbStore instead of garlics, which should reduce the load tc (et al) have been seeing on servers 
+[22:12] &lt;jrand0m&gt; there is also a new persistent sessionKeyManager that will make it so restarts won't totally b0rk a router for 15 minutes 
+[22:12] &lt;MrEcho&gt; what about client connect times to routers?
+[22:12] &lt;duck&gt; so far it feels as good/bad as 0.2.2; unless my router/tunnels go down again this night, in which case it is worse as 0.2.2
+[22:13] &lt;jrand0m&gt; MrEcho&gt; that seems to be in the interaction of two bugs from 0.2.2 thats acting up more than before.  those two are my top priority. 
+[22:13] &lt;MrEcho&gt; ok cool
+[22:13] &lt;jrand0m&gt; duck&gt; my feeling is that its worse than 0.2.2, from an end user perspective.  i'm working on fixing that without sacrificing anonymity or security. 
+[22:13] &lt;MrEcho&gt; its hard to work on the dns with that damm bug .. i have to restrt the dns server alot
+[22:14] &lt;jrand0m&gt; MrEcho&gt; with local only routers i have not been able to reproduce the bugs - does it work for you w/ local only? 
+[22:15] &lt;MrEcho&gt; no
+[22:15] &lt;jrand0m&gt; could you send me debug logs for that? 
+[22:15] &lt;MrEcho&gt; already deleted
+[22:16] &lt;jrand0m&gt; ok, if you try again and it doesn't work, if you could send me debug logs from both the router and client I'd appreciate it. 
+[22:16] &lt;MrEcho&gt; its doing the samething as before .. client gets msg that its sent .. but never makes it to the client
+[22:16] &lt;MrEcho&gt; to the other client
+[22:17] &lt;MrEcho&gt; ya .. ill see what i can do
+[22:17] &lt;jrand0m&gt; ok, sounds like the i2psessionImpl2 bug.  i haven't been able to reproduce that locally, but once its fixed for remote hopefully it will work for your situation 
+[22:17] &lt;jrand0m&gt; gracias 
+[22:17] &lt;jrand0m&gt; in any case, thanks for y'all's patience with the update.  we're making progress, even if it doesn't feel like it on the surface 
+[22:18] &lt;protocol&gt; shine on you crazy diamond
+[22:18] &lt;duck&gt; in the future, say once i2p is actually used, how will the development / release process change to prevent broken releases from mess up the net?
+[22:19] &lt;jrand0m&gt; once 1.0 is out, i'll do dev &amp; roll out to an insane group of volunteers to play with for a week, then if things wokr great, it'll get rolled out to general release. 
+[22:20] * FireRabbit will be an insane vollunteer
+[22:20] &lt;jrand0m&gt; right now i've got to battle with kaffe &amp; jetty for updates on i2p.dnsalias.net 
+[22:20] &lt;duck&gt; what species?
+[22:20] * MrEcho already is
+[22:20] *** tusko (~tusko@anon.iip) has joined channel #iip-dev
+[22:20] &lt;jrand0m&gt; y'all already are insane (and very helpful) volunteers :) 
+[22:20] &lt;FireRabbit&gt; thank you!
+[22:20] &lt;FireRabbit&gt; :)
+[22:21] *** TC (~TC@anon.iip) has joined channel #iip-dev
+[22:21] &lt;jrand0m&gt; hey if it aint tc 
+[22:21] * MrEcho wips TC .. your late
+[22:21] &lt;TC&gt; hey
+[22:21] &lt;TC&gt; we back up and running?
+[22:21] &lt;MrEcho&gt; ya i can type todya...
+[22:22] &lt;jrand0m&gt; iip seems up... 
+[22:22] &lt;TC&gt; yay
+[22:22] &lt;jrand0m&gt; in any case, i'm hoping to have 0.2.3.1 out in the next few days, once the two critical bugs get fixed (the cpu overload tc has seen has already been updated) 
+[22:23] *** wiht (anon@anon.iip) has joined channel #iip-dev
+[22:23] &lt;TC&gt; what was the cause?
+[22:23] &lt;FireRabbit&gt; i seem to have noticed increased disk activtiy since updating to 0.2.3 but i havent spent any time to see if thats actually i2p or just the comp being stupid
+[22:23] *** Signoff: wiht ((null))
+[22:23] &lt;TC&gt; FireRabbit, how much memmory do you have?
+[22:24] &lt;FireRabbit&gt; that computer has 128 i believe
+[22:24] &lt;FireRabbit&gt; you think it could be the paging file?
+[22:24] &lt;jrand0m&gt; the cause was that 0.2.3 sends all dbStore messages via garlic routed messages instead of directly, which uses either ElGamal or AES+SessionTag (depending on whether tags are known).  the persistentSessionKeyMAnager will make tags last longer, and 0.2.3.1 will send dbStore messages through tunnels instead 
+[22:24] &lt;TC&gt; because i have 512 and i2p gave me an 'out of memmory' error last night
+[22:24] &lt;jrand0m&gt; really?  shite 
+[22:24] &lt;FireRabbit&gt; oh, intresting
+[22:25] &lt;MrEcho&gt; wow
+[22:25] &lt;jrand0m&gt; yeah, thats #3 on the list of bugs left to crack (though thats not a 0.2.3.1 showstopper) 
+[22:25] &lt;jrand0m&gt; OOMs don't use all 512 
+[22:25] &lt;TC&gt; but it seems to be running fine now
+[22:25] &lt;jrand0m&gt; they only use what java's given (e.g. 64M) 
+[22:26] &lt;TC&gt; yes
+[22:26] &lt;duck&gt; Memory: In use: 8187KB
+[22:26] &lt;jrand0m&gt; word 
+[22:26] &lt;duck&gt; that is not much!
+[22:26] &lt;duck&gt; yet
+[22:26] &lt;MrEcho&gt; Memory: In use: 8908KB Free: 4088KB 
+[22:27] &lt;jrand0m&gt; right, there is something growing in there, i hope to have it tracked down by 0.3  
+[22:27] &lt;jrand0m&gt; cool, free means it used to use 12.9M, now it only uses 8.9 
+[22:27] &lt;TC&gt; its running at 30megs of memory at the moment but last night it jumped up to (what windows told me) '70' about then is where it crashed
+[22:27] &lt;jrand0m&gt; yeah, kaffe does that for me tc 
+[22:28] &lt;jrand0m&gt; ok, in any case, people should subscribe to the i2p mailing list 
+[22:28] * FireRabbit is thinking when he gets home today hes going to rewrite the meshwork lib since it has some problems
+[22:28] &lt;FireRabbit&gt; sigh
+[22:28] &lt;jrand0m&gt; ((Link: http://i2p.dnsalias.net/pipermail/i2p/)http://i2p.dnsalias.net/pipermail/i2p/) 
+[22:28] &lt;jrand0m&gt; d'oh FireRabbit 
+[22:28] &lt;FireRabbit&gt; this thing is never going to gte done
+[22:28] &lt;TC&gt; yah, and memory is no biggy for the most part
+[22:28] &lt;jrand0m&gt; heh, no project goes as easily as one hopes 
+[22:28] &lt;FireRabbit&gt; nope
+[22:28] &lt;protocol&gt; jrand0m: the maillist triggers Yahoo! spam protection
+[22:28] &lt;protocol&gt; just a heads up
+[22:28] &lt;jrand0m&gt; really protocol? 
+[22:29] &lt;protocol&gt; yeah
+[22:29] &lt;jrand0m&gt; perhaps thats what triggered the spam guard when i cc'ed iip-dev 
+[22:29] * jrand0m will write my isp
+[22:29] &lt;jrand0m&gt; (or perhaps its the .dnsalias.net thing) 
+[22:30] &lt;protocol&gt; i didn't get any mailings so far, and i emptied my bulk mail b4 i could check
+[22:30] &lt;duck&gt; or the jrandom nicknam
+[22:30] &lt;jrand0m&gt; lol duck 
+[22:30] &lt;FireRabbit&gt; :)
+[22:30] &lt;jrand0m&gt; that'd be awesome if my nick was filtered :) 
+[22:30] &lt;FireRabbit&gt; hehe
+[22:30] *** wiht (anon@anon.iip) has joined channel #iip-dev
+[22:30] &lt;jrand0m&gt; wb wiht 
+[22:30] &lt;jrand0m&gt; speaking of which, I suppose I should inject 3.1) apps :) 
+[22:31] &lt;jrand0m&gt; hey MrEcho, how goes the battle? 
+[22:31] &lt;wiht&gt; jrand0m: Hello.
+[22:31] &lt;MrEcho&gt; the day somone writes a autodetect program for the linux compile config
+[22:31] &lt;MrEcho&gt; well its on its way
+[22:31] &lt;duck&gt; knoppix uses some autodetect thing, isnt it?
+[22:31] &lt;jrand0m&gt; ./configure ; make ; make check ; make install ; reboot 
+[22:31] &lt;duck&gt; &lt;/offtopic&gt;
+[22:31] &lt;MrEcho&gt; ive pritty much maped out how i want to do everything
+[22:31] &lt;jrand0m&gt; word 
+[22:32] &lt;jrand0m&gt; do you have a clear view on how i2ptunnel could be updated to make use of what you're doing MrEcho? 
+[22:32] &lt;FireRabbit&gt; i think knoppix uses hotplug
+[22:32] &lt;MrEcho&gt; 0.1 wont be/might be locked down .. dont know yet
+[22:32] &lt;jrand0m&gt; coo' 
+[22:33] &lt;TC&gt; oh jrand0m, i have a question about the cvs
+[22:33] &lt;jrand0m&gt; que tal? 
+[22:33] &lt;MrEcho&gt; for dns querys im going to have a server port on the Client and RS side for Names querys
+[22:33] &lt;FireRabbit&gt; ok jrand0m so enlighten me on this, if you have two arrays, one thats storing data just recieved and one thats acting as a buffer what would you name them
+[22:33] &lt;MrEcho&gt; and im going to build a lib for any app to use
+[22:33] &lt;jrand0m&gt; FireRabbit&gt; src, dest 
+[22:34] &lt;FireRabbit&gt; humm
+[22:34] &lt;TC&gt; i thought it would be a good idea if i updated the host file directly to the i2p based cvs so it could be included with future versions
+[22:34] &lt;jrand0m&gt; definitely tc 
+[22:34] &lt;FireRabbit&gt; this is a pretty big class, i think id want to go a little more specific than that
+[22:34] * jrand0m should get you a cvs account
+[22:34] &lt;TC&gt; im just wondering how to connect to it
+[22:34] &lt;duck&gt; TC: you want (Link: http://www.tortoisecvs.org/)http://www.tortoisecvs.org/
+[22:34] &lt;duck&gt; easiest CVS client for windows that I know
+[22:35] * MrEcho uses the dos ver :)
+[22:35] &lt;mihi&gt; duck: for windows != win9x ;)
+[22:35] * FireRabbit uses the cvs command line port
+[22:35] &lt;duck&gt; mihi: I did test it with win9x
+[22:35] &lt;jrand0m&gt; tc&gt; have you used cvs before?  or are you concerned w/ anonymity?  (you should be able to cvs through i2p at the moment) 
+[22:35] * mihi uses either WinCVS or the cygwin cvs
+[22:35] * jrand0m uses cvs.exe
+[22:35] &lt;TC&gt; ok, so i use that client and set up the proxy?
+[22:35] &lt;TC&gt; no, ive never used cvs before
+[22:35] &lt;jrand0m&gt; ok, i'll walk you through the setup after the meeting 
+[22:36] &lt;TC&gt; sure, thanks
+[22:36] &lt;duck&gt; about cvs-ing through the tunnel:
+[22:36] &lt;duck&gt; wouldnt the double messages be a big problem?
+[22:36] *** Signoff: wiht (Ping timeout)
+[22:37] &lt;duck&gt; especially for commits
+[22:37] &lt;jrand0m&gt; yes duck, but I haven't run into that problem (cvs messages are typically small) 
+[22:37] &lt;jrand0m&gt; &gt;64k messages (e.g. the specs .pdf or .sxw) should for now be done through the normal internet 
+[22:38] &lt;duck&gt; jabber msges get also duplicated quite often
+[22:38] &lt;jrand0m&gt; you're right though, in that its not a rock solid solution for cvs yet 
+[22:38] &lt;duck&gt; even though they are XML, they are not that big
+[22:40] &lt;jrand0m&gt; right, lost acks are one of the bitches of the current lost i2psessionimpl2 bugs :/ 
+[22:40] &lt;duck&gt; k
+[22:41] &lt;duck&gt; (that was a partly lost ack)
+[22:41] &lt;jrand0m&gt; (with the network this size, there should be no resends ever, unless that the peer is offline) 
+[22:42] &lt;jrand0m&gt; hmm ok, any other i2p stuff? 
+[22:42] &lt;mihi&gt; jrand0m: how about adding some kinda sequence number into the i2p packets?
+[22:43] &lt;jrand0m&gt; i2ptunnel packets? 
+[22:43] &lt;mihi&gt; this would help with the doubling things.
+[22:43] &lt;mihi&gt; no, i2pnp packets
+[22:43] &lt;mihi&gt; okay, one could do it on i2ptunnel level as well.
+[22:43] &lt;TC&gt; so jrand0m did you get your conncetion back or are you still at a cafe?
+[22:43] &lt;mihi&gt; just if you get twice the same number, disregard the second one.
+[22:44] &lt;jrand0m&gt; those already handle dup ids for most things, though you're right in that there's going to be an update on 0.3 for the remaining messages 
+[22:44] &lt;jrand0m&gt; right, currently we keep a history of the last 1000 msgIds to drop dups 
+[22:44] &lt;mihi&gt; okay, if anyone volunteers to write a good tcp impl for i2p, that would be better ;)
+[22:44] &lt;jrand0m&gt; yes! :) 
+[22:44] *** Nostradumbass (nostradum@anon.iip) has joined channel #iip-dev
+[22:45] * jrand0m thinks there's going to be a bounty for some [yet to be determined killer app/feature] once 1.0 gets near
+[22:45] &lt;duck&gt; win a 1 hour private chat session with UserX!
+[22:45] &lt;jrand0m&gt; lol 
+[22:45] &lt;MrEcho&gt; lol
+[22:46] &lt;jrand0m&gt; ok, any other i2p things, or iip things, or anything else for this, the 69th iip-dev meeting? 
+[22:46] &lt;jrand0m&gt; (other than userx pinup girl comments) 
+[22:47] &lt;duck&gt; any other apps that duck inc. should run?
+[22:47] &lt;jrand0m&gt; bluebeep! 
+[22:47] &lt;TC&gt; 1. jrand0m did you fix your connection issues? 2. what do you think of my new eepsite?
+[22:47] &lt;TC&gt; bluebeep?
+[22:47] &lt;jrand0m&gt; oh sorry tc.  yes, i finally have net access :)  haven't seen your new eepsite beyond the board (which kicks ass), but i'll check later :) 
+[22:48] &lt;duck&gt; TC: I like the new design
+[22:48] &lt;TC&gt; hmm, i should change the board as well to cut down on the load time
+[22:48] &lt;duck&gt; only think you should try to disable the email function in the phpboard, now you get an error each time
+[22:48] &lt;TC&gt; thanks duck
+[22:48] &lt;jrand0m&gt; dropping images would be a plus 
+[22:49] &lt;TC&gt; good idea
+[22:49] &lt;jrand0m&gt; (bluebeep is an old wardialer) 
+[22:49] &lt;MrEcho&gt; ya
+[22:49] &lt;jrand0m&gt; (and all around fun toy) 
+[22:49] &lt;duck&gt; please keep in mind that the average age is 16 here
+[22:50] * MrEcho is 24
+[22:50] * duck ducks
+[22:50] * jrand0m doubts there are too many 3 year olds to balance out the geriatrics among us ;)
+[22:50] *** wiht (anon@anon.iip) has joined channel #iip-dev
+[22:50] &lt;MrEcho&gt; lol
+[22:50] * TC built a blackbox once
+[22:50] &lt;jrand0m&gt; w3wt 
+[22:50] &lt;lonelynerd&gt; is the meeting already over?
+[22:50] &lt;duck&gt; last Q:
+[22:50] *** protocol is now known as proto_afk
+[22:51] &lt;duck&gt; how can we read the kademlia stats?
+[22:51] * jrand0m hasn't !baf'ed yet lonelynerd, so ask away :)
+[22:51] * MrEcho kills pcmcia support in the kernel
+[22:51] &lt;duck&gt; just so that we understand what routerConsole.html dumps
+[22:51] &lt;MrEcho&gt; im getting pissed
+[22:51] &lt;jrand0m&gt; ok, the JobQueue stats I assume you mean? 
+[22:52] * duck guesses that it is all obvious probably
+[22:52] &lt;jrand0m&gt; basically when I look at JobQueue stats, I check to see that the avg execution time for the Build garlic message, buld tunnel, and handle * message jobs are small 
+[22:52] &lt;jrand0m&gt; (those are the jobs that usually take the longest, and when the pending side of things gets large, everything suffers) 
+[22:53] &lt;lonelynerd&gt; (actually, i better read the logs first)
+[22:53] &lt;duck&gt; gotcha
+[22:53] &lt;jrand0m&gt; the .1-.6s avg pending time i've been seeing is shit poor and one of the big things i'm going to aim for once its time to tune 'em 
+[22:54] &lt;jrand0m&gt; the netDb contents liveliness and reliability are largely random numbers, as long as they're &gt; 100.  last sent successfully means when was the last time it was sent to 2 or more peers  
+[22:54] &lt;jrand0m&gt; (we resend randomly if it isn't local) 
+[22:54] &lt;jrand0m&gt; (no more than once every 5 minutes though) 
+[22:55] &lt;jrand0m&gt; is there a stat that would be helpful for people, or some other visualization that might help?  (if its nontrivial i might not throw it in, but if its easy, i probably would) 
+[22:56] &lt;duck&gt; thanks
+[22:57] &lt;jrand0m&gt; any other comments / questions / concerns / frisbees? 
+[22:59] &lt;jrand0m&gt; in that case 
+[22:59] * jrand0m winds up
+[22:59] * jrand0m *baf*s the meeting closed
+</div>

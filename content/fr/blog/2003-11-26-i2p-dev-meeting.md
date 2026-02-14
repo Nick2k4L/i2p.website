@@ -1,17 +1,489 @@
 ---
-title: "Réunion des développeurs d’I2P - 26 novembre 2003"
+title: "Réunion des développeurs I2P - 26 novembre 2003"
 date: 2003-11-26
 author: "jrand0m"
 description: "Journal de la réunion de développement I2P du 26 novembre 2003."
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)
 
-## Bref récapitulatif
+## Récapitulatif rapide
 
-<p class="attendees-inline"><strong>Présents:</strong> dm, duck, jrand0m, Nostradumbass, Ophite1, TC, tonious</p>
+<p class="attendees-inline"><strong>Présents :</strong> dm, duck, jrand0m, Nostradumbass, Ophite1, TC, tonious</p>
 
 ## Journal de réunion
 
-<div class="irc-log"> [22:04] &lt;jrand0m&gt; ordre du jour :  [22:04] &lt;jrand0m&gt; 0) bienvenue  [22:04] &lt;jrand0m&gt; 1) statut  [22:04] &lt;jrand0m&gt; 2) avenir des transports  [22:05] &lt;jrand0m&gt; 3) stats pairs pour la sélection  [22:05] &lt;jrand0m&gt; 4) applis  [22:05] &lt;jrand0m&gt; 5) ...?  [22:05] &lt;jrand0m&gt; 0)  [22:05] &lt;jrand0m&gt; salut.  [22:05] &lt;jrand0m&gt; 66, c’est ça ?  [22:05] &lt;duck&gt; 7) quelle marque de whiskey boit jrand0m ? [22:06] &lt;jrand0m&gt; bushmills, glenlivit  [22:06] &lt;jrand0m&gt; (pour whiskey et whisky, respectivement)  [22:06] &lt;TC&gt; youpi, j’ai râté pas la réunion  [22:06] &lt;jrand0m&gt; woot  [22:06] &lt;jrand0m&gt; ok, 1) statut  [22:06] &lt;jrand0m&gt; les trucs Kademlia avancent très bien.  [22:07] &lt;jrand0m&gt; j’ai construit un petit simulateur qui fait tourner un réseau de cinq nœuds et les passe par les tests de base  [22:07] &lt;jrand0m&gt; aussi, le truc idn est implémenté avec quelques tests également  [22:08] &lt;jrand0m&gt; ces deux derniers jours environ ont été consacrés à s’assurer que le code Kademlia fonctionne à la fois pour idn et pour l’i2p netdb, ce qui a entraîné un paquet de changements  [22:09] &lt;jrand0m&gt; en fait, le gros changement, c’est que je me force à être pragmatique et à faire fonctionner le code Kademlia d’abord avec le netDb et /ensuite/ à penser au truc idn.  [22:10] &lt;jrand0m&gt; idn est pour l’instant en quelque sorte fonctionnel, sauf pour la comm inter‑nœuds (qui sera remplacée par de la comm sur i2p, bien sûr ;)  [22:10] &lt;TC&gt; idn, c’est le truc pour le stockage distribué ? [22:10] &lt;jrand0m&gt; la feuille de route a aussi été mise à jour - http://wiki.invisiblenet.net/iip-wiki?I2PRoadmap  [22:10] &lt;jrand0m&gt; oui  [22:10] &lt;jrand0m&gt; idn = Invisible Distribution Network (réseau de distribution invisible)  [22:10] &lt;jrand0m&gt; (en gros, un akamai anonyme libre et open source)  [22:11] &lt;TC&gt; y a une implémentation publique d’akamai non anonyme avec laquelle je pourrais jouer ? [22:11] *** leenookx (~leenookx@anon.iip) a rejoint le canal #iip-dev [22:12] &lt;jrand0m&gt; mnet est probablement dans ce coin‑là  [22:12] *** Déconnexion : nickthief60934 (Excess Flood) [22:12] &lt;jrand0m&gt; avant de me replonger complètement dans le router, je prévois de laisser le code idn dans un état où /avec un peu de chance/ quelqu’un pourrait s’y mettre et en faire une appli utilisable.  [22:13] *** dm (~sd@anon.iip) a rejoint le canal #iip-dev [22:14] *** nickthief60934 (~chatzilla@anon.iip) a rejoint le canal #iip-dev [22:14] &lt;jrand0m&gt; si vous regardez la feuille de route, Kademlia a été repoussé dans la version 0.2.2.  en plus, il y a aussi deux gros points en suspens que j’espère inclure, corrigeant une paire de bugs qui font des trucs agaçants  [22:14] &lt;TC&gt; serait‑il possible de faire des captures d’images vers idn depuis une eepsite i2ptunnel ? [22:15] &lt;jrand0m&gt; hmm ?  [22:15] &lt;jrand0m&gt; oh, genre &lt;img src="idn:blah"&gt; ?  [22:15] &lt;TC&gt; je pensais justement à économiser de la bande passante, oui [22:15] &lt;Ophite1&gt; un protocole serait la voie évidente, oui. [22:16] &lt;jrand0m&gt; hmm Ophite1 ?  [22:17] &lt;jrand0m&gt; (désolé, je suis encore malade donc je ne suis peut‑être pas au top aujourd’hui)  [22:17] &lt;dm&gt; combien de LOC as‑tu écrites jr ? [22:17] &lt;TC&gt; Ophite1, i2p tunnel pourrait‑il être modifié pour rediriger ? [22:18] &lt;TC&gt; ou le navigateur pourrait‑il le faire tout seul d’une manière ou d’une autre ? [22:18] &lt;jrand0m&gt; dm&gt; "find . -exec grep \\\; {} \; | wc -l" indique actuellement le sdk ~8kloc, le router ~11kloc  [22:18] &lt;dm&gt; ok merci. [22:19] &lt;jrand0m&gt; idn voudrait supporter la réception de requêtes depuis les navigateurs.  [22:19] &lt;Ophite1&gt; ça impliquerait d’intégrer idn dans i2ptunnel. très moche. [22:19] &lt;jrand0m&gt; actuellement idn a une API super‑méga‑facile.  [22:19] &lt;jrand0m&gt; l’API, c’est le système de fichiers.  [22:19] &lt;jrand0m&gt; aka:   [22:19] &lt;jrand0m&gt; command=get  [22:19] &lt;jrand0m&gt; key=zGb1tPM6ARNRTWZLCWK4XXco2Ngk8ccx-ciDUCom~9U  [22:19] &lt;jrand0m&gt; saveAs=testGetOutput.txt  [22:20] &lt;jrand0m&gt; mettez ça dans un fichier dans un répertoire, et voilà.  [22:20] &lt;jrand0m&gt; (c’était le plus simple possible pour que je l’implémente et teste.  on peut certainement trouver et faire mieux)  [22:21] &lt;jrand0m&gt; ok, donc, ouais.  c’est le statut.  j’espère une release 0.2.2 d’ici à la même heure la semaine prochaine, au moins.  [22:22] &lt;jrand0m&gt; elle inclura la première intégration des trucs Kademlia, des corrections de tunnels, et des mises à jour I2CP.  [22:23] &lt;jrand0m&gt; ok, 2) avenir des transports  [22:23] &lt;jrand0m&gt; je n’aime pas notre transport tcp.  et notre transport udp est désactivé.  et notre transport phttp est capricieux.  [22:23] * jrand0m aimerait voir le transport tcp remplacé par tls / ssl / un autre standard [22:24] &lt;Ophite1&gt; le chiffrement de niveau lien est‑il un prérequis ? [22:24] &lt;jrand0m&gt; absolument.  [22:25] &lt;Ophite1&gt; tls, c’est l’enfer, pourtant. demandez à openssl. [22:25] &lt;tonious&gt; ssh ? [22:25] &lt;Ophite1&gt; ça aussi. [22:25] &lt;jrand0m&gt; ouais, j’ai suivi les vilaines discussions sur la liste cryptography le mois dernier, avec intérêt.  [22:25] &lt;jrand0m&gt; ssh est clairement une possibilité.  [22:26] &lt;jrand0m&gt; sûr, aussi, puisqu’on a déjà essentiellement les certificats (dans le RouterInfo.publicKey)  [22:26] &lt;Ophite1&gt; mais on est en java. faudrait qu’on le code nous‑mêmes ? :/ [22:26] &lt;jrand0m&gt; nan, il existe des libs java ssl, tls et ssh  [22:26] *** Déconnexion : nickthief60934 (Ping timeout) [22:26] &lt;tonious&gt; Il y a déjà au moins un client ssh en java.  Pour les serveurs, je ne sais pas. [22:26] &lt;Ophite1&gt; quant à la sécurité de ces libs, vu les nombreuses failles très médiatisées dans openssl, openssh, et cie ? [22:27] &lt;jrand0m&gt; Ophite1&gt; très probablement mieux que du code fait maison.  [22:27] &lt;jrand0m&gt; pas que j’aie une raison de penser qu’il y a des exploits dans le transport tcp tel qu’écrit.  [22:27] &lt;jrand0m&gt; mais il n’a pas été relu.  [22:28] *** nickthief60934 (~chatzilla@anon.iip) a rejoint le canal #iip-dev [22:28] &lt;jrand0m&gt; de toute façon, la mise à jour des transports n’est pas vraiment au programme avant janvier (après la sortie 0.3)  [22:28] &lt;jrand0m&gt; mais si quelqu’un veut creuser et faire un peu de recherche, ce serait super  [22:29] &lt;TC&gt; combien de devs codent activement ? [22:29] &lt;dm&gt; 1 ! :) [22:29] &lt;jrand0m&gt; vous pouvez voir qui commit via (Link: http://i2p.dnsalias.net/pipermail/i2p-cvs/2003-November/thread.html)http://i2p.dnsalias.net/pipermail/i2p-cvs/2003-November/thread.html  [22:29] &lt;tonious&gt; Mais il a la force de dix hommes.... [22:30] &lt;jrand0m&gt; mihi a nettoyé certaines de mes bêtises, heureusement :)  [22:30] &lt;dm&gt; haha, c’est tout jrandom :) [22:30] &lt;dm&gt; jolie manière de dire "juste moi" [22:31] &lt;dm&gt; J’ai remarqué ça chez mihi, quand il s’est impliqué dans frazaa, il a débarqué un jour et a commencé à nettoyer mon (horrible) java. C’était assez amusant. [22:31] &lt;jrand0m&gt; heh  [22:31] &lt;Ophite1&gt; des gens comme ça sont très, très utiles :) [22:32] &lt;jrand0m&gt; tout à fait  [22:32] &lt;dm&gt; "qui écrit tous ces catch statements qui ne font rien ;)" -mihi [22:32] &lt;jrand0m&gt; d’oooh  [22:33] &lt;Ophite1&gt; c’est grâce à des rappels comme ça que le code ne deviendra pas aussi mauvais que freenet (on espère ?) :) [22:33] &lt;jrand0m&gt; si dans 5 ans une quelconque partie du code i2p actuel est encore utilisée, je serai choqué.  [22:34] &lt;jrand0m&gt; (d’ici là il vaut mieux que ce soit porté en ASM finement optimisé !)  [22:34] * Ophite1 fait son discours "l’implémentation java n’est qu’un prototype" [22:34] &lt;dm&gt; eh bien, si tu bosses encore dessus dans 4 ans, je garantis qu’il sera utilisé dans 5 ans :) [22:34] &lt;TC&gt; heh, commente‑le et laisse‑le en place [22:35] &lt;dm&gt; y a un lien pour voir la source sur le web ? pas juste les changements. [22:35] &lt;jrand0m&gt; oui dm, http://i2p.dnsalias.net/  [22:35] &lt;dm&gt; rien, trouvé. [22:35] &lt;jrand0m&gt; :)  [22:35] &lt;jrand0m&gt; ok, 4) stats pairs pour la sélection  [22:36] &lt;jrand0m&gt; qualifier ça de sujet nébuleux est un sacré euphémisme.  [22:36] &lt;jrand0m&gt; des thèses de doctorat pourraient être écrites (et certaines l’ont été) sur comment choisir quels pairs utiliser dans un environnement non digne de confiance.  [22:36] &lt;dm&gt; public interface Job [22:36] &lt;dm&gt; oups, réunion. Désolé, je n’avais pas réalisé. [22:37] &lt;jrand0m&gt; la bonne nouvelle, c’est que la moitié de notre sélection de pairs est déjà prise en charge - la sélection de pairs pour trouver d’autres pairs.  [22:37] &lt;jrand0m&gt; (ça, c’est les trucs Kademlia)  [22:38] &lt;jrand0m&gt; ce qui reste, c’est la sélection de pairs pour participer aux tunnels, router des garlics, et renvoyer les réponses  [22:38] *** Déconnexion : dm (EOF From client) [22:38] *** Déconnexion : TC (EOF From client) [22:38] *** Déconnexion : leenookx (EOF From client) [22:38] &lt;jrand0m&gt; ce que je pense pour 0.3, c’est simplement un petit historique pour chaque pair, testé périodiquement  [22:39] *** TC (~TC@anon.iip) a rejoint le canal #iip-dev [22:39] *** leenookx (~leenookx@anon.iip) a rejoint le canal #iip-dev [22:39] &lt;jrand0m&gt; stats tournant autour de la latence et de la disponibilité  [22:39] *** Déconnexion : soros (Client exiting) [22:39] &lt;Ophite1&gt; je suggère d’être prudent à inclure des informations exactes sur l’usage de bande passante et la latence dans ces stats. [22:40] &lt;Ophite1&gt; comme dans mes questions d’ivrogne. [22:40] &lt;Ophite1&gt; peut‑être une voie plus indirecte, mais c’est un domaine qui demande une attention très soigneuse et réfléchie. [22:40] &lt;jrand0m&gt; hmm, dans l’intention de garder les infos exactes inconnues, ou pour déjouer les prédictibilités ?  [22:40] &lt;jrand0m&gt; ok  [22:41] &lt;jrand0m&gt; cette discussion concerne une release qui ne sortira pas avant au moins le 1er jan  [22:42] * jrand0m comprend et est d’accord qu’on veut éviter les prédictibilités [22:42] &lt;jrand0m&gt; mais je pense qu’on veut collecter et utiliser des infos aussi exactes que possible, /puis/ ajuster pour l’entropie  [22:42] &lt;Ophite1&gt; la simple entropie seule ne suffira peut‑être pas. [22:43] &lt;Ophite1&gt; mais, j’ai besoin de plus de recherches là‑dessus :/ [22:43] &lt;jrand0m&gt; vrai - décider aléatoirement de garlic router un message plutôt que de le router via un tunnel (garlic = technique de regroupement de messages propre à I2P), ou d’utiliser une séquence de tunnels au lieu d’un direct, etc.  [22:44] &lt;jrand0m&gt; pas de stress, je voulais juste planter le sujet dans la tête de ceux qui sont là :)  [22:44] &lt;jrand0m&gt; ok, 4) applis  [22:45] &lt;Ophite1&gt; ça me tracasse depuis une semaine ou plus ; ceci dit, je suis heureux d’annoncer que je me suis pris un mur pour l’instant :) [22:45] &lt;jrand0m&gt; w00t :)  [22:45] &lt;Ophite1&gt; l’inclusion de statistiques exactes ou exactes+un% d’entropie pourrait cependant rendre certaines attaques possibles. [22:46] &lt;TC&gt; oh, avant les applis j’ai une question [22:46] &lt;jrand0m&gt; bah, il est toujours assez facile de simplement jeter les infos exactes si nécessaire  [22:46] *** Déconnexion : nickthief60934 (Excess Flood) [22:46] &lt;jrand0m&gt; sûr tc, vas‑y ?  [22:46] &lt;jrand0m&gt; (les stats (espérons‑le) faciliteront aussi le débogage du fonctionnement du réseau pendant le développement)  [22:46] &lt;TC&gt; quand vont commencer les nombres de sauts minimums obligatoires (ou quelque chose du genre) ?&gt; [22:47] *** nickthief60934 (~chatzilla@anon.iip) a rejoint le canal #iip-dev [22:47] &lt;jrand0m&gt; en ce moment, la longueur minimale de tunnel par défaut est d’un saut non local  [22:47] *** dm (~sd@anon.iip) a rejoint le canal #iip-dev [22:47] * TC ne savait pas ça [22:48] &lt;Ophite1&gt; ce qui va, tant que le saut non local ne SAIT pas qu’il est le seul saut non local. [22:48] &lt;jrand0m&gt; ça passera à 2‑4 une fois que ce sera plus fiable  [22:48] &lt;jrand0m&gt; exact, Ophite1  [22:48] &lt;Ophite1&gt; c’est toujours mieux qu’un raccourci gnunet, donc ça va :) [22:48] &lt;TC&gt; oh, et à quoi ressemblent les améliorations de vitesse ? [22:48] * jrand0m se base sur ces 2‑4 # sur des commentaires o‑r [22:49] &lt;Ophite1&gt; et via un routage plus scalable, ce qui est pour la semaine prochaine :) [22:49] &lt;jrand0m&gt; hmm, les améliorations de vitesse viendront de sélections de pairs plus fiables et plus rapides, ce qui correspond à la release 0.3  [22:49] &lt;dm&gt; pfiou, j’avais oublié à quel point le code de jr ressemble à quelque chose écrit par un robot. [22:49] &lt;dm&gt; Hmmm, ça expliquerait beaucoup. [22:50] &lt;jrand0m&gt; heh désolé dm, j’essaierai d’être plus incohérent ;)  [22:50] &lt;Ophite1&gt; (je voulais dire découverte ?) [22:50] &lt;jrand0m&gt; oui, c’est la découverte, pas vraiment le routage.  [22:51] &lt;jrand0m&gt; i2p est sans échelle pour la comm normale.  [22:51] &lt;jrand0m&gt; (et o(log(n)) pour la découverte)  [22:51] &lt;TC&gt; je pense que l’IA moyenne qui vit sur le net serait pro i2p, qu’en penses‑tu dm ? [22:52] &lt;dm&gt; Je pense que la taille moyenne des méthodes dans ce code est la plus petite que j’aie jamais vue, voilà ce que je pense. [22:53] &lt;Ophite1&gt; dm : propre. très bien pour un proto :) [22:53] &lt;dm&gt; Tu commentes au fur et à mesure ou tu reviens mettre les descriptions ? [22:53] &lt;jrand0m&gt; je commente quand je suis perdu  [22:54] &lt;jrand0m&gt; (j’ai vraiment hâte que collections soient typesafe)  [22:54] &lt;jrand0m&gt; mais, ouais, 4) applis :)  [22:54] &lt;jrand0m&gt; (à moins que quelqu’un ait d’autres questions sur le router / le réseau ?)  [22:55] &lt;TC&gt; pnon  [22:55] &lt;jrand0m&gt; ok, wiht n’est pas là, quelqu’un d’autre a des idées / commentaires sur le service de nommage (mrecho ?)  [22:55] &lt;TC&gt; un serveur de noms distribué ? [22:56] &lt;dm&gt; wiht est‑il jamais là ? [22:56] &lt;tonious&gt; Il pourrait probablement simplement se poser au‑dessus d’IDN. [22:56] &lt;jrand0m&gt; ouais, j’adorerais vraiment voir le service de nommage être un dht (peut‑être en réutilisant le code idn / Kademlia) contenant des entrées signées par une CA  [22:56] &lt;TC&gt; co est mort ? [22:56] &lt;jrand0m&gt; exactement tonious  [22:57] &lt;jrand0m&gt; peut‑être que tu as raison, ça pourrait être une appli qui /utilise/ idn, pas juste le code.  hmmm...  [22:57] &lt;jrand0m&gt; ce serait Bien.  [22:57] &lt;tonious&gt; Peut‑être associer une empreinte de clé en cas de collisions. [22:57] &lt;jrand0m&gt; nan, co/wiht passe tous les quelques jours  [22:57] &lt;tonious&gt; Pas forcément besoin d’une CA centralisée ? [22:57] &lt;jrand0m&gt; on aurait besoin d’une CA si les nyms sont uniques.  [22:58] &lt;Ophite1&gt; la chaîne de signature CA devrait éliminer les collisions. [22:58] &lt;jrand0m&gt; (et on a besoin de nyms uniques pour faire du nommage, en vrai)  [22:58] &lt;Ophite1&gt; bien sûr, ça rend la clé de la CA très importante. [22:58] &lt;TC&gt; et le dys dns ? puis‑je faire en sorte que mon fichier hosts redirige vers une eepsite ? [22:59] &lt;tonious&gt; TC : Pas vraiment.  L’OS ne voit même pas i2p. [22:59] &lt;jrand0m&gt; quoique, on pourrait faire rechercher $nym.$ca  [22:59] &lt;Ophite1&gt; peut‑être tellement important qu’on veuille distribuer la confiance en lui faisant signer des domaines de second niveau .*.i2p, et mettre pratiquement tout là‑dessous, *.*.i2p - p. ex., jrand0m.nym.i2p [22:59] &lt;jrand0m&gt; oui, mais avec le ppp2p de tusko on peut obtenir des mappages i2p vers IP  [23:00] &lt;tonious&gt; Je ne sais pas.  L’idée d’une CA dans un système essentiellement distribué me dérange. [23:00] &lt;tonious&gt; N’étant pas dev, je ne vais pas faire d’histoires :) [23:01] &lt;TC&gt; le dns n’est vraiment pas si important [23:01] &lt;jrand0m&gt; tonious&gt; on peut faire un WoT (Web of Trust, toile de confiance), en gros.  avec, disons, 8 CAs connues distinctes, le serveur de noms local de chacun connaît ces 8, et chacune gère un sous‑domaine (ex. tc.ca1 ou Nightblade.ca2, ou on ajoute un .i2p à la fin)  [23:01] &lt;Ophite1&gt; si tu peux penser à mieux ? [23:02] &lt;Nostradumbass&gt; j’ai une autre question - ça couvre un peu la zone réseau‑application. [23:02] &lt;jrand0m&gt; (c’est vraiment le cas dégénéré d’un WoT)  [23:02] &lt;Ophite1&gt; ce que j’ai dit, en quelque sorte - obtenir une clé racine pour signer des domaines... [23:02] &lt;jrand0m&gt; d’accord tc  [23:02] &lt;jrand0m&gt; vas‑y Nostradumbass  [23:02] &lt;Ophite1&gt; quelqu’un obtient com.i2p ou nym.i2p... [23:02] &lt;Nostradumbass&gt; a‑t‑on réfléchi à une latence garantie ? [23:02] &lt;Ophite1&gt; leur permettre de signer jrand0m.nym.i2p, ou autre. [23:03] &lt;jrand0m&gt; Ophite1&gt; on n’aurait même pas besoin d’une clé .i2p avec ça  [23:03] &lt;tonious&gt; Ophite1 : Et si la CA com se faisait dégager par un commando RIAA ou autre ? [23:03] &lt;jrand0m&gt; Nostradumbass&gt; tu veux dire VoI2P ?  :)  [23:03] &lt;Ophite1&gt; puis une fois que tu as fini, détruis la CA maîtresse. [23:03] &lt;Nostradumbass&gt; oui [23:03] &lt;Ophite1&gt; tonious : il reste toujours les autres. [23:04] &lt;Ophite1&gt; ou un système qui exige des groupes conspirants pour obtenir la clé de signature de nym ? [23:04] &lt;jrand0m&gt; Nostradumbass&gt; on a déjà eu des gens qui faisaient tourner des flux shoutcast sur i2p avec un peu de buffering à 96khz et aucun problème de buffering à des vitesses inférieures.  mais il y a de la latence.  [23:04] &lt;Nostradumbass&gt; avec la sortie imminente du code de cryptophone (Link: http://www.cryptophone.de/)http://www.cryptophone.de/ ça pourrait faire une appli intéressante pour i2p. [23:04] &lt;Ophite1&gt; et un hashcash vraiment énorme ? [23:04] &lt;jrand0m&gt; carrément Nostradumbass  [23:04] &lt;tonious&gt; Ophite1 : Peut‑être un protocole de signature à la majorité ? [23:04] *** Déconnexion : dm (Ping timeout) [23:04] &lt;jrand0m&gt; tonious&gt; la majorité est dangereuse avec Sybil  [23:05] &lt;Ophite1&gt; tonious : d’un autre côté, ça DOIT être non‑répudiable, et garantir la non‑collision. [23:05] &lt;Ophite1&gt; et la majorité ne pourrait pas faire ça. [23:05] &lt;Ophite1&gt; une majorité d’utilisateurs bien connus peut‑être. [23:05] &lt;Ophite1&gt; si ça peut consoler, l’internet a aussi ce problème (pensez Verisign). [23:05] &lt;jrand0m&gt; oui, WoT :)  [23:06] &lt;Ophite1&gt; mais alors le WoT signifie que différentes personnes peuvent avoir des idées différentes de qui faire confiance, ce qui viole peut‑être la non‑collision ? [23:06] *** thecrypto (~thecrypto@anon.iip) a rejoint le canal #iip-dev [23:06] &lt;jrand0m&gt; Nostradumbass&gt; maintenant si on pouvait avoir des codeurs pour bosser sur un RTSP haute performance sur tunnel i2p... ;)  [23:06] &lt;Ophite1&gt; c’est important, vu la longueur d’une "adresse I2P", mais aussi difficile. [23:06] *** Drak0h (~Dr4k0h@anon.iip) a rejoint le canal #iip-dev [23:07] &lt;Ophite1&gt; Nostradumbass : pas de garantie. [23:07] &lt;TC&gt; alors comment sécuriser l’identification des alias (important pour le commerce et la mise en place de multiples eepsites) ? [23:07] &lt;Nostradumbass&gt; la sur‑provision de bande passante est souvent la seule façon simple d’essayer de garantir la latence.  y aura‑t‑il un moyen pour un nœud de déterminer la bande passante disponible à un autre nœud, afin de faciliter le routage pour des applis VoIP ?  [23:07] &lt;jrand0m&gt; oui Nostradumbass, la QoS peut être faite de manière transparente dans i2p, mais malheureusement c’est (je déteste dire ça) &gt; 1.0  [23:07] &lt;tonious&gt; Disons qu’on retire les CAs racines.  Tu génères ta clé et signes tes alias. [23:08] *** Déconnexion : thecrypto (EOF From client) [23:08] &lt;Ophite1&gt; Nostradumbass : également, problématique par rapport à certaines attaques potentielles ? [23:08] &lt;tonious&gt; Tu spécifies aussi quelles clés tu fais confiance, à la PGP.  Je pense que la redondance est plus importante que la collision. [23:08] &lt;Ophite1&gt; tonious : lequel des jrand0m.nym.i2p tu voulais encore ? [23:08] * jrand0m attaque le ns dht pour récupérer mon nym [23:08] &lt;Ophite1&gt; si tout le monde ne fait pas confiance aux mêmes, on ne fait peut‑être pas référence à la même chose quand on utilise le même nom. [23:09] &lt;Ophite1&gt; et ça permettrait probablement des guerres de collision à la freenet‑KSK. [23:09] &lt;jrand0m&gt; oui.  soit le service de nommage a des nyms signés par des CAs, soit il distribue juste des mappages H(destination) --&gt; destination  [23:09] &lt;tonious&gt; Affiche juste un menu ou quelque chose.  Ou si tu conçois une appli qui parle à un serveur spécifique, donne‑lui la clé publique de l’agent de signature ? [23:10] &lt;jrand0m&gt; (et H(destination) == 42 caractères contre ~500 caractères pour une destination)  [23:10] &lt;Ophite1&gt; tonious : si tu vas donner des clés publiques, autant transporter des adresses I2P. [23:10] &lt;Ophite1&gt; voilà une idée intéressante  [23:10] &lt;Ophite1&gt; en supposant que sha‑256 ne puisse pas être inversé, ça donne des adresses I2P de 256 bits qui pourraient être "recherchées" pour révéler la structure. [23:10] *** dm (~sd@anon.iip) a rejoint le canal #iip-dev [23:11] &lt;Ophite1&gt; je sens Kademlia encore. [23:11] &lt;jrand0m&gt; :)  [23:11] &lt;Ophite1&gt; ça peut aussi être simplement vérifié. [23:11] &lt;jrand0m&gt; et il y a du code existant à réutiliser.  [23:11] &lt;Ophite1&gt; d’une certaine façon, ça a du sens. pourquoi ne faisait‑on pas déjà ça ? :) [23:11] &lt;jrand0m&gt; parce qu’on veut des nyms  [23:12] &lt;Ophite1&gt; des nyms pour les hôtes ? [23:12] &lt;jrand0m&gt; mais, je suppose, 42 caractères c’est un bon point de départ  [23:12] &lt;Ophite1&gt; besoin d’une CA racine pour ça :/ [23:12] &lt;jrand0m&gt; oui  [23:12] &lt;Ophite1&gt; dans le cas où tu ne veux pas faire confiance à une CA racine ? [23:12] &lt;Ophite1&gt; 42 caractères c’est assez court pour coller. [23:12] &lt;jrand0m&gt; t’as pas besoin d’une CA racine, tu peux avoir une forêt au lieu d’un arbre  [23:12] &lt;Ophite1&gt; 520 caractères non :) [23:12] &lt;jrand0m&gt; heh  [23:13] &lt;Ophite1&gt; mais si tu as une forêt, comment savoir de quel arbre tu parles ? [23:13] &lt;Ophite1&gt; tu pourrais mettre une clé là‑dedans, mais alors, ooh, on a encore de longues chaînes de déchets aléatoires. [23:13] &lt;jrand0m&gt; suffixe commun.  $nym.$ca  [23:13] &lt;Ophite1&gt; eh bien, j’aimerais $nym.$ca.i2p :) [23:13] &lt;Ophite1&gt; éviter la confusion :) [23:13] &lt;jrand0m&gt; ok.  je veux dire, il y a des attaques possibles.  je ne sais pas.  je suis avec TC toutefois   [23:13] &lt;jrand0m&gt; ça me va   [23:14] &lt;jrand0m&gt; ok, /autres/ applis :)  [23:14] &lt;Ophite1&gt; comment sais‑tu quelle ca est laquelle ? [23:14] &lt;Ophite1&gt; tu as une liste ? qu’est‑ce qui signe la liste ? [23:14] &lt;jrand0m&gt; i2pns.config  [23:14] *** Déconnexion : Drak0h (Ping timeout) [23:14] &lt;Ophite1&gt; comment vas‑tu obtenir ça ? [23:14] &lt;TC&gt; si je pouvais faire ma propre liste dns, façon fichier hosts, je serais content [23:14] &lt;jrand0m&gt; à l’installation  [23:15] &lt;Ophite1&gt; comment vas‑tu vérifier que ce sont les "bonnes" clés ? [23:15] &lt;Ophite1&gt; substitution de ca ? [23:15] &lt;jrand0m&gt; oui tc, on peut même faire ça sans aucun service de nommage distribué  [23:15] &lt;TC&gt; parce que moi je dis que ce sont les bonnes, Ophite1 [23:15] &lt;jrand0m&gt; Ophite1&gt; tu ne vas pas, pas plus que tu ne vérifies que le code source fait tourner le "vrai" i2p  [23:15] &lt;TC&gt; et si tu me fais confiance, tu peux les télécharger sur mon eepsite [23:16] &lt;Ophite1&gt; je suppose qu’à la fin de la journée tu ne peux réduire ça qu’à la confiance dans une clé étant la bonne, donc :) [23:16] &lt;Ophite1&gt; ça me va, oui. [23:16] &lt;Ophite1&gt; tant que j’obtiens o1.i2p ;) [23:16] &lt;jrand0m&gt; heh  [23:17] &lt;tonious&gt; Hmm.  Schéma de seuil révisé :  Chaque CA travaille sur tout l’espace de noms, mais une majorité de CAs doit être d’accord avant d’attribuer un sous‑espace ? [23:17] &lt;jrand0m&gt; ok, la dernière nouvelle que j’ai eue, c’est que tusko avait trouvé un moyen de faire tourner le ppp2p sur des machines Windows ainsi que *nix  [23:17] &lt;TC&gt; ça rendrait le système de domaines i2p\internet beaucoup plus communautaire si on se passait tous un énorme fichier hosts\antisèche [23:17] &lt;Ophite1&gt; tonious : retour à la majorité encore... [23:17] &lt;jrand0m&gt; dangereux pour les attaques, tonious  [23:17] &lt;jrand0m&gt; c’est vrai TC  [23:17] &lt;jrand0m&gt; (et la valeur d’une telle communauté ne doit pas être sous‑estimée)  [23:18] &lt;Ophite1&gt; tc : style ARPANET ? [23:18] &lt;tonious&gt; Soupir. :) [23:18] &lt;Ophite1&gt; je suppose qu’il faut bien que des seeds viennent de quelque part, donc ouais ;) [23:18] &lt;TC&gt; pour obtenir un nom de domaine, tu dirais c’est moi, et si les gens étaient d’accord ils changeraient le fichier, et s’ils étaient de confiance, d’autres téléchargeraient des mises à jour [23:19] &lt;jrand0m&gt; on dirait que ce serait une clé fortement récupérée depuis idn :)  [23:19] &lt;Ophite1&gt; ça sent vaguement la ca aussi :) [23:19] &lt;TC&gt; tu pourrais même avoir une baston, avec plus d’un fichier [23:19] &lt;Ophite1&gt; la nodelist fidonet ! [23:19] &lt;tonious&gt; Et en cas de netsplit il y aurait plusieurs patchfiles. [23:19] &lt;Ophite1&gt; ...ça ne passe pas à l’échelle. [23:19] &lt;jrand0m&gt; avec moins de quelques centaines de domaines, c’est maintenable à la main  [23:20] &lt;TC&gt; après quelques centaines tu passes en "trusted" [23:20] &lt;jrand0m&gt; oui Ophite1.  ce serait juste jusqu’à ce qu’on se mette d’accord sur la Bonne Façon.  [23:20] &lt;tonious&gt; Ça pourrait suffire à lancer un WoT. [23:20] &lt;jrand0m&gt; (ou qu’on convainque les gens que les CAs ne sont pas si mauvaises ;)  [23:20] &lt;jrand0m&gt; vrai, tonious  [23:20] &lt;Ophite1&gt; si tu fais confiance à quelqu’un pour convenir que quelqu’un est quelqu’un d’autre, c’est une CA, pas juste une nodelist :) [23:21] &lt;tonious&gt; Heh.  Désolé d’être le sceptique. [23:21] &lt;TC&gt; jrand0m, au final je ne veux pas dépendre des CA  [23:21] &lt;Ophite1&gt; il suffit de permettre aux gens de donner de l’espace sous le leur... [23:21] &lt;Ophite1&gt; style ca — et ceux sur la nodelist sont les cas. [23:21] &lt;Ophite1&gt; bien sûr, après c’est tout "sur quelle ca est jrand0m ?" [23:21] &lt;jrand0m&gt; les CA ne sont pas nécessairement des points d’étranglement.  si elles ne conviennent pas, on les remplace.    [23:22] &lt;tonious&gt; Ophite1 : J’aime bien. [23:22] &lt;Ophite1&gt; point. qu’une CA se fasse bousiller serait une Nouvelle Assez Grosse pour que quelqu’un la remplace simplement. [23:22] &lt;Ophite1&gt; tonious : donc c’est slashdot.org ou slashdot.com ? goatse.cx ? :) [23:22] &lt;dm&gt; que signifie CA ? :) [23:22] &lt;Ophite1&gt; certification authority. [23:23] &lt;dm&gt; ok, merci. [23:23] &lt;tonious&gt; Heh.  C’est là que ton propre WoT entre en jeu, Ophite1. [23:23] &lt;Ophite1&gt; tonious : oui, mais je dois quand même voir goatse une fois avant de réaliser que ce n’est pas le bon fichu. :) [23:23] &lt;tonious&gt; ‘Je fais confiance à Ophite1 pour ne pas montrer cet horrible trou du cul, et il a signé slashdot.org’ [23:23] &lt;jrand0m&gt; lol  [23:24] &lt;Ophite1&gt; donc essentiellement tu fais confiance à un sous‑ensemble limité de gens, pour ne pas être des horribles trous du cul. [23:24] * jrand0m se réserve le droit d’être parfois un trou du cul [23:24] &lt;Ophite1&gt; et pour distribuer des domaines aux autres. [23:24] &lt;Ophite1&gt; dont au moins un devrait, vraiment, être un bot à la trent, premier arrivé premier servi. [23:24] &lt;Ophite1&gt; (avec.. oui... hashcash.) [23:24] &lt;tonious&gt; Ouais.  Et il peut y avoir des collisions d’espace de noms par des gens hors de mon WoT... [23:25] &lt;jrand0m&gt; ouaip, et un autre devrait être quelque chose comme les redirections tfee/sous‑page de thetower  [23:25] &lt;Ophite1&gt; tonious : quelque chose que tu puisses effectivement UTILISER serait apprécié. ce n’est qu’un système de nommage. :) [23:25] &lt;tonious&gt; Heh. [23:25] &lt;Ophite1&gt; l’avantage de multiples cas, c’est qu’elles peuvent faire leur propre sauce pour ce genre de choses - politiques différentes. [23:26] *** Déconnexion : nickthief60934 (Ping timeout) [23:26] &lt;jrand0m&gt; ok, autres applis...  [23:26] &lt;jrand0m&gt; IM ?  [23:26] &lt;Ophite1&gt; enfin :) [23:26] &lt;Ophite1&gt; nyms signés ! :) [23:26] &lt;tonious&gt; Désolé Ophite1 :) [23:26] &lt;jrand0m&gt; !thwap Ophite1  [23:27] &lt;Ophite1&gt; quoi, qu’est‑ce que vous regardez tous ? :) [23:27] &lt;Ophite1&gt; oui, le WoT serait approprié pour ÇA :) [23:27] &lt;dm&gt; Je crois me souvenir de qui faisait l’IM... thecrypto ? [23:27] &lt;Ophite1&gt; en fait... elgamal 2048‑bit... dsa 1024‑bit... sha‑256... ça me dit quelque chose. openpgp ? [23:27] &lt;jrand0m&gt; yodel était là l’autre jour, a mentionné qu’ils avaient essayé de faire tourner l’interface xml‑rpc de yodel avec leur propre router local, et ça a marché.  donc, yay  [23:27] *** nickthief60934 (~chatzilla@anon.iip) a rejoint le canal #iip-dev [23:28] &lt;tonious&gt; J’ai réussi à faire tourner SOAP chez moi aussi. [23:28] &lt;jrand0m&gt; ouais dm  [23:28] &lt;tonious&gt; Pas d’applis utiles, au‑delà de "Yep, ça marche" pour l’instant. [23:28] &lt;jrand0m&gt; hehe  [23:29] *** Déconnexion : nickthief60934 (Excess Flood) [23:29] &lt;Nostradumbass&gt; tonious : donc SOAP sur i2p = Black SOAP ? [23:29] * jrand0m veut vraiment faire tourner idn pour qu’on puisse utiliser i2p comme une couche IP, pas une couche TCP [23:29] &lt;jrand0m&gt; lol Nostradumbass  [23:29] &lt;Ophite1&gt; joli nom :) [23:29] &lt;tonious&gt; Nostradumbass : Yep, tu as compris. [23:30] &lt;tonious&gt; Maintenant je peux monter mon propre casino I2P. w00t ! [23:30] *** nickthief60934 (~chatzilla@anon.iip) a rejoint le canal #iip-dev [23:30] &lt;jrand0m&gt; w33wt  [23:30] &lt;jrand0m&gt; ok, je crois que c’est à peu près tout pour les applis  [23:30] &lt;jrand0m&gt; 5) ...?  [23:31] &lt;jrand0m&gt; salut  [23:31] &lt;Ophite1&gt; tonious : cool. on pourrait en utiliser quelques‑uns. tu donnes un pourcentage au projet i2p ? :) [23:31] &lt;TC&gt; merchandising [23:31] &lt;tonious&gt; Quelqu’un a pensé à une implémentation C d’I2P ? [23:31] &lt;jrand0m&gt; ouais, louer des boxes en colo et faire tourner des routers :)  [23:32] &lt;jrand0m&gt; tonious&gt; attendons d’avoir le protocole du router implémenté et soigneusement relu avant de porter ;)  [23:32] &lt;tonious&gt; Ou de la colo anonyme : derrière un router I2P et aucun routage internet :) [23:32] &lt;Ophite1&gt; merchandising = logo. [23:32] &lt;TC&gt; stickers, t‑shirts, casquettes, il nous faut le logo [23:32] &lt;Ophite1&gt; tonious : après que ça marche et que ce soit anonyme et tout ? bien sûr. [23:32] &lt;tonious&gt; Ouais, mais je tourne encore sur mon P2 et je suis fauché. [23:32] &lt;tonious&gt; :( [23:32] &lt;Ophite1&gt; i2p a besoin d’un bon logo. [23:32] &lt;Nostradumbass&gt; oui [23:32] &lt;Ophite1&gt; je veux dire, l’internet n’a pas de logo, mais c’est juste du mauvais marketing. :) [23:32] &lt;dm&gt; J’aime bien celui sur le WIKI. [23:32] &lt;TC&gt; aussi, chaque programme fait‑pour‑i2p a besoin de sa version retouchée, ou dérivée du logo [23:32] &lt;jrand0m&gt; et si on avait un logo transparent... il serait, genre, partout, mec  [23:33] &lt;Ophite1&gt; un logo invisible. heh. [23:33] &lt;tonious&gt; Un gif vide de 1 pixel par 1 pixel ? [23:33] &lt;jrand0m&gt; carrément  [23:33] &lt;Ophite1&gt; tonious : on se ferait poursuivre pour violation de copyright ? :) [23:33] &lt;tonious&gt; Ha ! [23:33] &lt;Ophite1&gt; ("Hé, c’est NOTRE gif vide !") [23:33] &lt;jrand0m&gt; lol  [23:33] &lt;Ophite1&gt; Hé, si John Cage peut le faire... [23:33] &lt;tonious&gt; Alors on laisse nos noms dans le champ commentaires :) [23:33] &lt;Nostradumbass&gt; Ophite1 : que dirais‑tu d’un rouleau compresseur qui pave l’Internet ? [23:33] &lt;jrand0m&gt; heh on fait juste le rendu de son audio  [23:34] &lt;Ophite1&gt; celui en bas a le meilleur look à mon humble avis. [23:34] &lt;tonious&gt; Moi j’aime celui du haut.  Il est simple.  Comme moi. [23:34] &lt;Ophite1&gt; avec le design en arc. [23:35] &lt;Ophite1&gt; quelque chose de petit, très simple, et surtout qui fonctionnerait bien comme icône, ou dans la barre système :) [23:35] &lt;Ophite1&gt; et oui, qui peut être personnalisé et utilisé comme base de logos d’applis. [23:35] &lt;jrand0m&gt; oui  [23:35] &lt;dm&gt; Que diriez‑vous d’un cercle noir avec un remplissage blanc. [23:35] &lt;Ophite1&gt; cet arc serait un bon début (changements de couleur ?) [23:35] &lt;dm&gt; ou un triangle, peut‑être un carré ! [23:35] &lt;dm&gt; un parallélogramme ! [23:37] &lt;tonious&gt; Heh.  Ouvrons une boutique cafepress... [23:37] &lt;Ophite1&gt; dieu non, pas cafepress. [23:37] &lt;dm&gt; un nuage blanc ! [23:37] &lt;Ophite1&gt; on exige de la classe.   ... thinkgeek. ;-) [23:37] &lt;dm&gt; petit nuage duveteux. [23:38] &lt;TC&gt; ça ressemblerait trop à une flaque de sperme en miniature [23:38] * jrand0m associe les nuages au ciel, merci bien [23:38] &lt;tonious&gt; Ophite1 : D’abord il faut les convaincre qu’on est whitehat. [23:39] &lt;TC&gt; non, soyons black hat [23:39] &lt;jrand0m&gt; tonious&gt; des anarchistes militants peuvent‑ils être whitehats aussi ?  [23:39] * TC n’aime pas les gens en chapeaux [23:39] &lt;tonious&gt; Je ne sais pas. [23:39] * tonious porte un fedora gris FWIW. [23:39] &lt;Nostradumbass&gt; et pourquoi pas un chapeau blanc et un noir ? [23:39] &lt;TC&gt; et modulus dirait un truc sur la distinction de classe ou autre [23:40] &lt;dm&gt; une petite image du visage de l’oncle Sam ? [23:40] &lt;TC&gt; chapeau à damier ? [23:40] &lt;jrand0m&gt; heh tc  [23:40] &lt;Nostradumbass&gt; ou des chapeaux de sorcier blanc et noir [23:40] &lt;Ophite1&gt; je ne suis PAS un white hat. Comment oses‑tu insinuer ça. Je veux des excuses. [23:41] &lt;TC&gt; ou un bonnet d’âne noir [23:41] &lt;jrand0m&gt; bon, bref...  [23:42] &lt;tonious&gt; "i2p inside" ? [23:42] &lt;jrand0m&gt; heh  [23:42] &lt;dm&gt; Moi aussi, je pisse... [23:42] &lt;jrand0m&gt; dm&gt; sur un autocollant Calvin !  [23:42] &lt;Ophite1&gt; "i2p ... quelque part" [23:42] &lt;TC&gt; alors, les gens du logo, allez !  alors nop peut‑il nous mettre un site i2p cafepress ? [23:43] * jrand0m répète le mantra No PR until its ready. [23:43] &lt;Nostradumbass&gt; dm : ouais, faites‑en un logo‑gramme charade style "Concentration". [23:43] &lt;Nostradumbass&gt; &lt;œil&gt; 2 et un pénis en train de pisser. [23:44] &lt;dm&gt; Fixons une date. [23:44] &lt;jrand0m&gt; heh, ouais, et tu feras cliquer ta mère sur cette icône ?  [23:44] &lt;dm&gt; 1er mars. [23:44] &lt;Nostradumbass&gt; attrape‑le, en fait :) [23:44] &lt;tonious&gt; Ma mère désapprouve le chiffrement :) [23:44] *** UserX (~User@anon.iip) a rejoint le canal #iip-dev [23:44] &lt;dm&gt; Article Slashdot ! Peu importe jusqu’où (ou pas) jrand0m est allé ! [23:44] &lt;dm&gt; Mettons la pression. [23:44] &lt;Ophite1&gt; nooooooo. [23:44] &lt;Ophite1&gt; pas encore ! [23:45] &lt;jrand0m&gt; mince dm, si tu as sorti cette date de nulle part, t’es bon.  dans ma paume j’ai 1.0 prévu vers ~ le 1er mars  [23:45] * dm gifle Ophite1 [23:45] &lt;dm&gt; j’ai dit 1er mars. [23:45] &lt;Ophite1&gt; le bon moment pour promouvoir, c’est quand on a un truc brillant à agiter sous leur nez. [23:45] &lt;Nostradumbass&gt; pitié, pas de slashdot tant que le réseau n’est pas prêt pour l’assaut. [23:45] &lt;jrand0m&gt; oui  [23:45] &lt;dm&gt; Je suis bon, que dire. [23:45] &lt;Ophite1&gt; j’annonce la date de lancement au 4 avril. [23:45] &lt;Ophite1&gt; 04/04/04 ;) [23:45] &lt;jrand0m&gt; pas de PR avant APRÈS la sortie de 1.0.  [23:45] &lt;Nostradumbass&gt; Mojo a failli être détruit par /. [23:46] &lt;dm&gt; non, pas de pensée rationnelle ici. 1er mars, point final. [23:46] &lt;jrand0m&gt; ooOOo Ophite1  [23:46] * jrand0m sent que je vais devoir soumettre à /. pour les amener à NE PAS poster l’article de dm^H^Hune personne anonyme [23:46] &lt;Ophite1&gt; non, ne fais pas ça. malda s’en fout, et il postera ÇA :) [23:46] &lt;jrand0m&gt; heh  [23:47] &lt;dm&gt; Oui, tu seras ridiculisé par mon post : "Euh, genre, y a ce programme genre anonyme trop cool qui est mieux que kazaa, I2P c’est génial, c’est rapide, DSA124. ouais" [23:47] &lt;jrand0m&gt; de toute façon, au fur et à mesure, http://wiki.invisiblenet.net/iip-wiki?I2PRoadmap sera mis à jour  [23:48] &lt;dm&gt; il est temps de faire les bagages. [23:49] &lt;jrand0m&gt; (et un jour je vais prendre une semaine de congé et aller faire du snowboard)  [23:49] *** soros (~soros@anon.iip) a rejoint le canal #iip-dev [23:49] &lt;jrand0m&gt; ouais, on en est à environ 2 heures.  [23:49] &lt;jrand0m&gt; il est temps de...  [23:49] * jrand0m clôt la réunion d’un *baf*. </div>
+<div class="irc-log">
+[22:04] &lt;jrand0m&gt; agenda: 
+[22:04] &lt;jrand0m&gt; 0) welcome 
+[22:04] &lt;jrand0m&gt; 1) status 
+[22:04] &lt;jrand0m&gt; 2) transport futures 
+[22:05] &lt;jrand0m&gt; 3) peer stats for selection 
+[22:05] &lt;jrand0m&gt; 4) apps 
+[22:05] &lt;jrand0m&gt; 5) ...? 
+[22:05] &lt;jrand0m&gt; 0) 
+[22:05] &lt;jrand0m&gt; hi. 
+[22:05] &lt;jrand0m&gt; 66 is it? 
+[22:05] &lt;duck&gt; 7) what brand of whiskey does jrand0m drink?
+[22:06] &lt;jrand0m&gt; bushmills, glenlivit 
+[22:06] &lt;jrand0m&gt; (for whiskey and whisky, respectively) 
+[22:06] &lt;TC&gt; yey, i made the meating
+[22:06] &lt;jrand0m&gt; woot 
+[22:06] &lt;jrand0m&gt; ok, 1) status 
+[22:06] &lt;jrand0m&gt; the kademlia stuff is coming along very well. 
+[22:07] &lt;jrand0m&gt; I've build a little simulator that runs a network of five nodes and puts them through the basic tests 
+[22:07] &lt;jrand0m&gt; also the idn stuff is implemented with some tests as well 
+[22:08] &lt;jrand0m&gt; the last two days or so have been focused on making sure the kademlia code works for both idn and for the i2p netdb, which has caused a bunch of changes 
+[22:09] &lt;jrand0m&gt; actually, the big change is that I'm forcing myself to be practical and make the kademlia code work first with the netDb and /then/ think about the idn stuff. 
+[22:10] &lt;jrand0m&gt; idn right now is kind of functional, except for inter-node comm (which will be replaced with comm over i2p, of course ;) 
+[22:10] &lt;TC&gt; idn is the stuff for the distributed storage?
+[22:10] &lt;jrand0m&gt; roadmap has been updated as well - http://wiki.invisiblenet.net/iip-wiki?I2PRoadmap 
+[22:10] &lt;jrand0m&gt; yes 
+[22:10] &lt;jrand0m&gt; idn = Invisible Distribution Network 
+[22:10] &lt;jrand0m&gt; (free open source anonymous akamai, basically) 
+[22:11] &lt;TC&gt; is there a non anonymous public akamai implemintation i could play with?
+[22:11] *** leenookx (~leenookx@anon.iip) has joined channel #iip-dev
+[22:12] &lt;jrand0m&gt; mnet is probably up that alley 
+[22:12] *** Signoff: nickthief60934 (Excess Flood)
+[22:12] &lt;jrand0m&gt; before I jump back into the router completely, I'm planning on leaving the idn code in a state that /hopefully/ someone would be able to jump in and make that into a usable app. 
+[22:13] *** dm (~sd@anon.iip) has joined channel #iip-dev
+[22:14] *** nickthief60934 (~chatzilla@anon.iip) has joined channel #iip-dev
+[22:14] &lt;jrand0m&gt; if you see the roadmap, kademlia has been pushed into the 0.2.2 release.  in addition, there are also two big outstanding things that I hope to have in there, fixing a pair of bugs that do annoying things 
+[22:14] &lt;TC&gt; would it be posible do image grabs do idn from an i2ptunnel eepsite?
+[22:15] &lt;jrand0m&gt; hmm? 
+[22:15] &lt;jrand0m&gt; oh, like &lt;img src="idn:blah"&gt;? 
+[22:15] &lt;TC&gt; i was just thinking of bandwidth saving, yes
+[22:15] &lt;Ophite1&gt; protocol would be the obvious way to go, yes.
+[22:16] &lt;jrand0m&gt; hmm Ophite1? 
+[22:17] &lt;jrand0m&gt; (sorry, I'm sick again so might not be quite on top of my game today) 
+[22:17] &lt;dm&gt; how many LOC have you written jr?
+[22:17] &lt;TC&gt; Ophite1, could i2p tunnel be modified to redirect?
+[22:18] &lt;TC&gt; or could the browser do it on its own somehow?
+[22:18] &lt;jrand0m&gt; dm&gt; "find . -exec grep \\\; {} \; | wc -l" currently puts the sdk ~8kloc, the router ~11kloc 
+[22:18] &lt;dm&gt; okay thanks.
+[22:19] &lt;jrand0m&gt; idn would want to support receiving requests from browsers. 
+[22:19] &lt;Ophite1&gt; would mean integrating idn into i2ptunnel. very ugly.
+[22:19] &lt;jrand0m&gt; currently idn has a so-god-damn-easy api. 
+[22:19] &lt;jrand0m&gt; the api is the file system. 
+[22:19] &lt;jrand0m&gt; aka:  
+[22:19] &lt;jrand0m&gt; command=get 
+[22:19] &lt;jrand0m&gt; key=zGb1tPM6ARNRTWZLCWK4XXco2Ngk8ccx-ciDUCom~9U 
+[22:19] &lt;jrand0m&gt; saveAs=testGetOutput.txt 
+[22:20] &lt;jrand0m&gt; place that in a file in a directory, and voila. 
+[22:20] &lt;jrand0m&gt; (that was the easiest possible for me to implement and test with.  certainly better ones can be found and made) 
+[22:21] &lt;jrand0m&gt; ok, so, yeah.  thats the status.  I'm hoping for a 0.2.2 release by this time next week, at least. 
+[22:22] &lt;jrand0m&gt; that'll include the first integration of the kademlia stuff, tunnel fixes, and i2cp updates. 
+[22:23] &lt;jrand0m&gt; ok, 2) transport futures 
+[22:23] &lt;jrand0m&gt; I don't like our tcp transport.  and our udp transport is disabled.  and our phttp transport is tweaky. 
+[22:23] * jrand0m would like to see the tcp transport replaced with tls / ssl / some-other-standard
+[22:24] &lt;Ophite1&gt; link-level encryption is a requirement?
+[22:24] &lt;jrand0m&gt; absolutely. 
+[22:25] &lt;Ophite1&gt; tls is _hell_ though. ask openssl.
+[22:25] &lt;tonious&gt; ssh?
+[22:25] &lt;Ophite1&gt; that, too.
+[22:25] &lt;jrand0m&gt; yeah, I followed the nasty discussions on the cryptography list last month, with interest. 
+[22:25] &lt;jrand0m&gt; ssh is definitely a possibility. 
+[22:26] &lt;jrand0m&gt; safe, too, since we already essentially have the certificates (in the RouterInfo.publicKey) 
+[22:26] &lt;Ophite1&gt; but we're in java. we'd have to code it ourselves? :/
+[22:26] &lt;jrand0m&gt; naw, there are ssl, tls, and ssh java libs 
+[22:26] *** Signoff: nickthief60934 (Ping timeout)
+[22:26] &lt;tonious&gt; There's already at least one java ssh client.  Dunno about servers.
+[22:26] &lt;Ophite1&gt; re: security of such libs, given numerous high profile holes in openssl, openssh, et al?
+[22:27] &lt;jrand0m&gt; Ophite1&gt; most likely better than custom built code. 
+[22:27] &lt;jrand0m&gt; not that I have any reason to think there are exploits in the tcp transport as written. 
+[22:27] &lt;jrand0m&gt; but it has not been reviewed. 
+[22:28] *** nickthief60934 (~chatzilla@anon.iip) has joined channel #iip-dev
+[22:28] &lt;jrand0m&gt; in any case, updating the transports isn't really on deck until january (after the 0.3 release goes out) 
+[22:28] &lt;jrand0m&gt; but if anyone wants to look into it and do some research, that'd be great 
+[22:29] &lt;TC&gt; how many devs do we have activly coding?
+[22:29] &lt;dm&gt; 1! :)
+[22:29] &lt;jrand0m&gt; you can see who commits via (Link: http://i2p.dnsalias.net/pipermail/i2p-cvs/2003-November/thread.html)http://i2p.dnsalias.net/pipermail/i2p-cvs/2003-November/thread.html 
+[22:29] &lt;tonious&gt; But he's got the strength of ten men....
+[22:30] &lt;jrand0m&gt; mihi has been cleaning up some of my messes, thankfully :) 
+[22:30] &lt;dm&gt; haha, it's all jrandom :)
+[22:30] &lt;dm&gt; nice way of saying "just me"
+[22:31] &lt;dm&gt; I noticed that about mihi, when he got involved in frazaa, he just showed up one day and started cleaning up my (horrid) java. It was quite entertaining.
+[22:31] &lt;jrand0m&gt; heh 
+[22:31] &lt;Ophite1&gt; people like that are very, very useful :)
+[22:32] &lt;jrand0m&gt; quite 
+[22:32] &lt;dm&gt; "who's writing all these catch statements who do nothing ;)" -mihi
+[22:32] &lt;jrand0m&gt; d'oooh 
+[22:33] &lt;Ophite1&gt; it's cause of reminders like that the code won't get as bad as freenet (we hope?) :)
+[22:33] &lt;jrand0m&gt; if in 5 years any of the current i2p code is still in use, I'll be shocked. 
+[22:34] &lt;jrand0m&gt; (it had better be ported into finely tuned ASM code by then!) 
+[22:34] * Ophite1 makes his "java implementation is just a prototype" speech
+[22:34] &lt;dm&gt; well, if you're still working on it 4 years from now, I'll guarantee that It'll be in use 5 years from now :)
+[22:34] &lt;TC&gt; heh, comment it out and leave it in place
+[22:35] &lt;dm&gt; is there a link to see the source on the web? not just the changes.
+[22:35] &lt;jrand0m&gt; yes dm, http://i2p.dnsalias.net/ 
+[22:35] &lt;dm&gt; nm, found it.
+[22:35] &lt;jrand0m&gt; :) 
+[22:35] &lt;jrand0m&gt; ok, 4) peer stats for selection 
+[22:36] &lt;jrand0m&gt; calling this a nebulus topic is one hell of an understatement. 
+[22:36] &lt;jrand0m&gt; doctoral theses could be written (and some have been) on how to choose what peers to use in an untrusted environment. 
+[22:36] &lt;dm&gt; public interface Job
+[22:36] &lt;dm&gt; oops, meeting. Sorry didn't realize.
+[22:37] &lt;jrand0m&gt; the good part is that half of our peer selection is already taken care of - the selection of peers to find other peers. 
+[22:37] &lt;jrand0m&gt; (thats the kademlia stuff) 
+[22:38] &lt;jrand0m&gt; the part thats left is the selection of peers to participate in tunnels, to route garlics, and to bounce replies through 
+[22:38] *** Signoff: dm (EOF From client)
+[22:38] *** Signoff: TC (EOF From client)
+[22:38] *** Signoff: leenookx (EOF From client)
+[22:38] &lt;jrand0m&gt; what I'm thinking for 0.3 is just going to be a simple history of each peer, tested periodically 
+[22:39] *** TC (~TC@anon.iip) has joined channel #iip-dev
+[22:39] *** leenookx (~leenookx@anon.iip) has joined channel #iip-dev
+[22:39] &lt;jrand0m&gt; stats revolving around  latency and uptime 
+[22:39] *** Signoff: soros (Client exiting)
+[22:39] &lt;Ophite1&gt; suggest you be wary of including accurate information about bandwidth usage and latency in that stats.
+[22:40] &lt;Ophite1&gt; as per my drunken questions.
+[22:40] &lt;Ophite1&gt; perhaps a more indirect route, but it's an area that needs very careful, well considered attention.
+[22:40] &lt;jrand0m&gt; hmm, with the intent of keeping the accurate info unknown, or to defeat predictabilities? 
+[22:40] &lt;jrand0m&gt; right 
+[22:41] &lt;jrand0m&gt; this discussion is for a release that won't go out until at least jan 1 
+[22:42] * jrand0m understands and agrees that we want to avoid the predictabilities
+[22:42] &lt;jrand0m&gt; but I think we want to gather and use as accurate info as we can, /then/ adjust for entropy 
+[22:42] &lt;Ophite1&gt; mere entropy alone may not be enough.
+[22:43] &lt;Ophite1&gt; but, I need more research on this :/
+[22:43] &lt;jrand0m&gt; true - randomly deciding to garlic route a message rather than tunnel route it, or to use a sequence of tunnels instead of one directly, etc 
+[22:44] &lt;jrand0m&gt; no rush, just wanted to plant the subject in the minds of those out there :) 
+[22:44] &lt;jrand0m&gt; ok, 4) apps 
+[22:45] &lt;Ophite1&gt; been troubling me for a week or more; though, I'm happy to announce I've run into a brick wall so far :)
+[22:45] &lt;jrand0m&gt; w00t :) 
+[22:45] &lt;Ophite1&gt; inclusion of accurate or accurate+some%entropy statistics may make some attacks work though.
+[22:46] &lt;TC&gt; oh, before apps i have a question
+[22:46] &lt;jrand0m&gt; well, its always easy enough to simply discard accurate info as necessary 
+[22:46] *** Signoff: nickthief60934 (Excess Flood)
+[22:46] &lt;jrand0m&gt; sure tc, whats up? 
+[22:46] &lt;jrand0m&gt; (stats will also (hopefully) make it easier to debug the network's operation while in development) 
+[22:46] &lt;TC&gt; when are manditory minium hop counts (or something like it) going to start?&gt;
+[22:47] *** nickthief60934 (~chatzilla@anon.iip) has joined channel #iip-dev
+[22:47] &lt;jrand0m&gt; right now the default minimum tunnel length is one non-local hop 
+[22:47] *** dm (~sd@anon.iip) has joined channel #iip-dev
+[22:47] * TC didnt know that
+[22:48] &lt;Ophite1&gt; which is okay as long as the non-local hop doesn't KNOW it's the only non-local hop.
+[22:48] &lt;jrand0m&gt; that will be up'ed to 2-4 once things are more reliable 
+[22:48] &lt;jrand0m&gt; right Ophite1 
+[22:48] &lt;Ophite1&gt; still one better than a gnunet shortcut, so it's cool :)
+[22:48] &lt;TC&gt; oh, and how do speed improvements look?
+[22:48] * jrand0m is basing that 2-4 # on o-r comments
+[22:49] &lt;Ophite1&gt; temporary stats for network testing are okay by me, and very useful, but please bear in mind they may be a dangerous feature for production anonymity.
+[22:49] &lt;jrand0m&gt; hmm, speed improvements will come through more reliable and faster peer selections, which is the 0.3 release 
+[22:49] &lt;dm&gt; jeez, I forgot how jr's code looks like it was written by a robot.
+[22:49] &lt;dm&gt; Hmmm, that would explain a lot.
+[22:50] &lt;Ophite1&gt; and through more scalable routing, which is next weeks' :)
+[22:50] &lt;jrand0m&gt; heh sorry dm, I'll try to be more inconsistent ;) 
+[22:50] &lt;Ophite1&gt; (did I just mean discovery?)
+[22:50] &lt;jrand0m&gt; right, its discovery, not routing, really. 
+[22:51] &lt;jrand0m&gt; i2p is scale free for normal comm. 
+[22:51] &lt;jrand0m&gt; (and o(log(n)) for discovery) 
+[22:51] &lt;TC&gt; i think your average ai who lives on the net would be pro i2p, what do you think dm?
+[22:52] &lt;dm&gt; I think the average method size in this code is the smallest I've ever seen is what I think.
+[22:53] &lt;Ophite1&gt; dm: clean. very good for a proto :)
+[22:53] &lt;dm&gt; Do you comment as you go or do you go back and put those descriptions?
+[22:53] &lt;jrand0m&gt; I comment when I get confused 
+[22:54] &lt;jrand0m&gt; (I really can't wait until collections are typesafe) 
+[22:54] &lt;jrand0m&gt; but, yeah, 4) apps :) 
+[22:54] &lt;jrand0m&gt; (unless anyone else has router / network questions?) 
+[22:55] &lt;TC&gt; pnope
+[22:55] &lt;jrand0m&gt; ok, wiht isn't here, anyone else have any naming service thoughts / comments (mrecho?) 
+[22:55] &lt;TC&gt; a distributed naming server?
+[22:56] &lt;dm&gt; is wiht ever here?
+[22:56] &lt;tonious&gt; It could probably just sit on top of IDN.
+[22:56] &lt;jrand0m&gt; yeah, I'd really love to see the naming service be a dht (perhaps reusing the idn / kademlia code) containing CA signed entries 
+[22:56] &lt;TC&gt; did co die?
+[22:56] &lt;jrand0m&gt; exactly tonious 
+[22:57] &lt;jrand0m&gt; perhaps you're right, it could be an app that /uses/ idn, not just uses the code.  hmmm... 
+[22:57] &lt;jrand0m&gt; that'd be Good. 
+[22:57] &lt;tonious&gt; Mebbe have a key fingerprint associated in case of collisions.
+[22:57] &lt;jrand0m&gt; naw, co/wiht is around every few days 
+[22:57] &lt;tonious&gt; Wouldn't even necessarily need a centralized CA?
+[22:57] &lt;jrand0m&gt; we'd need a CA if nyms are unique. 
+[22:58] &lt;Ophite1&gt; The CA signing chain should elminiate collisions.
+[22:58] &lt;jrand0m&gt; (and we need nyms to be unique to do naming, really) 
+[22:58] &lt;Ophite1&gt; of course this makes CA key very important.
+[22:58] &lt;TC&gt; how about dys dns? can i make my host file redirect to a eepsite?
+[22:59] &lt;tonious&gt; TC: Not really.  The OS doesn't even see i2p.
+[22:59] &lt;jrand0m&gt; though we could have $nym.$ca be the thing looked up for 
+[22:59] &lt;Ophite1&gt; perhaps so important we want to distribute trust by it signing some second level .*.i2p domains, and have virtually all stuff under that, *.*.i2p - i.e., jrand0m.nym.i2p
+[22:59] &lt;jrand0m&gt; right, though with tusko's ppp2p we can get i2p to IP mappings 
+[23:00] &lt;tonious&gt; I dunno.  The idea of a CA in an essentially distributed system disagrees with me.
+[23:00] &lt;tonious&gt; Not bein' a developer though I'm not gonna make a fuss :)
+[23:01] &lt;TC&gt; dns really isnt that importent
+[23:01] &lt;jrand0m&gt; tonious&gt; we can do a web of trust, essentially.  with, say, 8 seperate known CAs, everyone's local name server knows about those 8, and each of them manages a subdomain (e.g. tc.ca1 or Nightblade.ca2, or we add a .i2p at the end) 
+[23:01] &lt;Ophite1&gt; if you can think of a better way?
+[23:02] &lt;Nostradumbass&gt; i have another question - its sort of spans the network-application area.
+[23:02] &lt;jrand0m&gt; (thats really the degenerate case of a WoT) 
+[23:02] &lt;Ophite1&gt; what I said, sort of - get a root key to sign domains...
+[23:02] &lt;jrand0m&gt; agreed tc 
+[23:02] &lt;jrand0m&gt; fire away Nostradumbass 
+[23:02] &lt;Ophite1&gt; someone gets com.i2p or nym.i2p...
+[23:02] &lt;Nostradumbass&gt; has any thought been goven to guaranteed latency?
+[23:02] &lt;Ophite1&gt; allow them to sign jrand0m.nym.i2p, or whatever.
+[23:02] &lt;Nostradumbass&gt; i'm thinking of VoIP.
+[23:03] &lt;jrand0m&gt; Ophite1&gt; we wouldn't even need a .i2p key with that 
+[23:03] &lt;tonious&gt; Ophite1: What if the com ca gets taken out by an RIAA hitsquad or something?
+[23:03] &lt;jrand0m&gt; Nostradumbass&gt; you mean VoI2P?  :) 
+[23:03] &lt;Ophite1&gt; then once you're done, destroy the master CA.
+[23:03] &lt;Nostradumbass&gt; yes
+[23:03] &lt;Ophite1&gt; tonious: then there's still the others.
+[23:04] &lt;Ophite1&gt; or some system that requires conspiring groups to get the nym signing key?
+[23:04] &lt;jrand0m&gt; Nostradumbass&gt; we have already had people run shoutcast streams over i2p with some buffering at 96khz and no buffering problems at less speed.  but there's latency. 
+[23:04] &lt;Nostradumbass&gt; with the upcoming release of cryptophone's (Link: http://www.cryptophone.de/)http://www.cryptophone.de/ source it could make an interesting app for i2p.
+[23:04] &lt;Ophite1&gt; and a really freakin' big hashcash?
+[23:04] &lt;jrand0m&gt; definitely Nostradumbass 
+[23:04] &lt;tonious&gt; Ophite1: Mebbe a majority signing protocol?
+[23:04] *** Signoff: dm (Ping timeout)
+[23:04] &lt;jrand0m&gt; tonious&gt; majority is dangerous with sybil 
+[23:05] &lt;Ophite1&gt; tonious: otoh, it HAS to be non-repudiatory, and has to be able to guarantee non-collision.
+[23:05] &lt;Ophite1&gt; and majority couldn't do that.
+[23:05] &lt;Ophite1&gt; a majority of well known users maybe.
+[23:05] &lt;Ophite1&gt; if it's a consolation, the internet has problems with this too (think Verisign).
+[23:05] &lt;jrand0m&gt; right, WoT :) 
+[23:06] &lt;Ophite1&gt; but then WoT means that different people might have different ideas of who to trust, which violates non-collision maybe?
+[23:06] *** thecrypto (~thecrypto@anon.iip) has joined channel #iip-dev
+[23:06] &lt;jrand0m&gt; Nostradumbass&gt; now if we could get some coders to work on a high performance RTSP over i2p tunnel... ;) 
+[23:06] &lt;Ophite1&gt; it's important, given the length of an "I2P address", but also hard.
+[23:06] *** Drak0h (~Dr4k0h@anon.iip) has joined channel #iip-dev
+[23:07] &lt;Ophite1&gt; Nostradumbass: not guaranteed.
+[23:07] &lt;TC&gt; so how do we secure alias identification (important for commerce and seting up multiple eepsites)?
+[23:07] &lt;Nostradumbass&gt; over-provisioning of bandwidth is often the only simple way to try and guarantee latency.  is there going to ba any way for a node to determine the available bandwidht at another node, so as to ease routing for VoIP apps? 
+[23:07] &lt;jrand0m&gt; yes Nostradumbass, QoS can be done transparently within i2p, but unfortunately thats (I hate saying this) &gt; 1.0 
+[23:07] &lt;tonious&gt; Say we take root CAs out of it.  You generate your key and sign your aliases.
+[23:08] *** Signoff: thecrypto (EOF From client)
+[23:08] &lt;Ophite1&gt; Nostradumbass: also, troublesome re some potential attacks?
+[23:08] &lt;tonious&gt; You also specify who's keys you trust, ala PGP.  I think redundancy is more important than collision.
+[23:08] &lt;Ophite1&gt; tonious: so which jrand0m.nym.i2p did you want again?
+[23:08] * jrand0m attacks the ns dht to get my nym back
+[23:08] &lt;Ophite1&gt; if everyone doesn't trust the same, we might not be referring to the same thing when we use the same name.
+[23:09] &lt;Ophite1&gt; and it would probably allow freenet-KSK-style collision wars.
+[23:09] &lt;jrand0m&gt; right.  either the naming service has CA signed nyms, or it just distributes H(destination) --&gt; destination mappings 
+[23:09] &lt;tonious&gt; Just pop up a menu or something.  Or if you're designing an application that talks to a specific server, give it the public key of the signing agent?
+[23:10] &lt;jrand0m&gt; (and H(destination) == 42 chars as opposed to ~500 chars for a destination) 
+[23:10] &lt;Ophite1&gt; tonious: if you're going to give it public keys, you might as well just sling around I2P addresses.
+[23:10] &lt;Ophite1&gt; now that's an interesting ideal
+[23:10] &lt;Ophite1&gt; assuming sha-256 can't be reversed that yields 256-bit I2P addresses that could be "looked up" to reveal the structure.
+[23:10] *** dm (~sd@anon.iip) has joined channel #iip-dev
+[23:11] &lt;Ophite1&gt; I smell kademlia again.
+[23:11] &lt;jrand0m&gt; :) 
+[23:11] &lt;Ophite1&gt; It can also be simply checked.
+[23:11] &lt;jrand0m&gt; and there's existing code to reuse. 
+[23:11] &lt;Ophite1&gt; somehow, that makes sense. why weren't we doing this already? :)
+[23:11] &lt;jrand0m&gt; because we want nyms 
+[23:12] &lt;Ophite1&gt; nyms for hosts?
+[23:12] &lt;jrand0m&gt; but, I suppose, 42 chars is a good enough starting point 
+[23:12] &lt;Ophite1&gt; need a root CA for that :/
+[23:12] &lt;jrand0m&gt; right 
+[23:12] &lt;Ophite1&gt; in the case where you don't want to trust a root ca?
+[23:12] &lt;Ophite1&gt; 42 chars is short enough to paste.
+[23:12] &lt;jrand0m&gt; you don't need a root CA, you can have a forest instead of a tree 
+[23:12] &lt;Ophite1&gt; 520 chars isn't :)
+[23:12] &lt;jrand0m&gt; heh 
+[23:13] &lt;Ophite1&gt; but if you have a forest, how does anyone know which tree you're talking about?
+[23:13] &lt;Ophite1&gt; you could slap a key in there, but then, ooh, we've got huge strings of random garbage again.
+[23:13] &lt;jrand0m&gt; common suffix.  $nym.$ca 
+[23:13] &lt;Ophite1&gt; well, I'd like $nym.$ca.i2p :)
+[23:13] &lt;Ophite1&gt; avoid confusion :)
+[23:13] &lt;jrand0m&gt; right.  I mean, there are possible attacks.  I dunno.  I'm with TC though  
+[23:13] &lt;jrand0m&gt; good 'nuff for me  
+[23:14] &lt;jrand0m&gt; ok, /other/ apps :) 
+[23:14] &lt;Ophite1&gt; how do you know which ca is which?
+[23:14] &lt;Ophite1&gt; you have a list? what signs the list?
+[23:14] &lt;jrand0m&gt; i2pns.config 
+[23:14] *** Signoff: Drak0h (Ping timeout)
+[23:14] &lt;Ophite1&gt; how're you going to get that?
+[23:14] &lt;TC&gt; if i could make my own dns list, hostfile style i would be happy
+[23:14] &lt;jrand0m&gt; on install 
+[23:15] &lt;Ophite1&gt; how are you going to verify those are the "right" keys?
+[23:15] &lt;Ophite1&gt; ca substitution?
+[23:15] &lt;jrand0m&gt; right tc, we can even do that without any distributed naming service 
+[23:15] &lt;TC&gt; because i say they are Ophite1
+[23:15] &lt;jrand0m&gt; Ophite1&gt; you aren't, any more than you're verifying that the source code is running the "real" i2p 
+[23:15] &lt;TC&gt; and if you trust me, you can download them off my eepsite
+[23:16] &lt;Ophite1&gt; I suppose at the end of the day you can only reduce that to trust in one key being right, so :)
+[23:16] &lt;Ophite1&gt; works for me, yeah.
+[23:16] &lt;Ophite1&gt; as long as I get o1.i2p ;)
+[23:16] &lt;jrand0m&gt; heh 
+[23:17] &lt;tonious&gt; Hmm.  Revised threshold scheme:  Each CA works the entire namespace, but a majority of CAs must agree before handing out subspace?
+[23:17] &lt;jrand0m&gt; ok, last I heard tusko had found a way to get the ppp2p to run off windows machines as well as *nix 
+[23:17] &lt;TC&gt; it would make the i2p\internet doman system much more community based if we all passed around a huge hostfile\cheat sheet
+[23:17] &lt;Ophite1&gt; tonious: back to majority again...
+[23:17] &lt;jrand0m&gt; scary for attacks tonious 
+[23:17] &lt;jrand0m&gt; thats true TC 
+[23:17] &lt;jrand0m&gt; (and the value of such a community should not be underestimated) 
+[23:18] &lt;Ophite1&gt; tc: arpanet stylee?
+[23:18] &lt;tonious&gt; Sigh. :)
+[23:18] &lt;Ophite1&gt; I guess seeds have gotta come from somewhere, so yeah ;)
+[23:18] &lt;TC&gt; to get a domain name, you would say this is me, and if people agreed they would change the file, and if they where trusted, others would download updates
+[23:19] &lt;jrand0m&gt; sounds like that'd be a heavily retrieved key from idn :) 
+[23:19] &lt;Ophite1&gt; smells vaguely ca-like too :)
+[23:19] &lt;TC&gt; you could even have a fight, with more then one file
+[23:19] &lt;Ophite1&gt; the fidonet nodelist!
+[23:19] &lt;tonious&gt; And in case of a netsplit there'd be multiple patchfiles.
+[23:19] &lt;Ophite1&gt; ...doesn't scale.
+[23:19] &lt;jrand0m&gt; with under a few hundred domains, its maintainable manually 
+[23:20] &lt;TC&gt; after a few hundred you go trusted
+[23:20] &lt;jrand0m&gt; right Ophite1.  this would just be until we argue out the Right Way. 
+[23:20] &lt;tonious&gt; It might be enough to jumpstart a WoT.
+[23:20] &lt;jrand0m&gt; (or we convince people that CAs aren't that bad ;) 
+[23:20] &lt;jrand0m&gt; true tonious 
+[23:20] &lt;Ophite1&gt; if you're trusting someone to agree that someone is someone else, that's a CA, not just a nodelist :)
+[23:21] &lt;tonious&gt; Heh.  Sorry for bein' the skeptic.
+[23:21] &lt;TC&gt; jrand0m, in the end i dont whant to be dependent on CA's
+[23:21] &lt;Ophite1&gt; just allow people to give space below theirs...
+[23:21] &lt;Ophite1&gt; castyle -- and those on the nodelist to be the cas.
+[23:21] &lt;Ophite1&gt; course then it's all "which ca is jrand0m on?"
+[23:21] &lt;jrand0m&gt; CA's aren't necessarily choke points.  if they're unsatisfactory, we replace them.   
+[23:22] &lt;tonious&gt; Ophite1: I like that.
+[23:22] &lt;Ophite1&gt; point. CA being crapped out would be Big Enough News for someone to simply replace them.
+[23:22] &lt;Ophite1&gt; tonious: so is it slashdot.org or slashdot.com? goatse.cx? :)
+[23:22] &lt;dm&gt; what does CA stand for? :)
+[23:22] &lt;Ophite1&gt; certification authority.
+[23:23] &lt;dm&gt; k, thanks.
+[23:23] &lt;tonious&gt; Heh.  That's where your own WoT comes in, Ophite1.
+[23:23] &lt;Ophite1&gt; tonious: yes, but I still have to see goatse once before I realise it's the wrong bloody one. :)
+[23:23] &lt;tonious&gt; 'I trust Ophite1 not to show that horrible asshole, and he signed slashdot.org'
+[23:23] &lt;jrand0m&gt; lol 
+[23:24] &lt;Ophite1&gt; so essentially you're trusting a limited subset of people, not to be horrible assholes.
+[23:24] * jrand0m reserves the right to be an asshole at times
+[23:24] &lt;Ophite1&gt; and to hand out domains to the rest.
+[23:24] &lt;Ophite1&gt; at least one of which ought, really, to be a trent-style first-comes-first-served bot.
+[23:24] &lt;Ophite1&gt; (with.. yes... hashcash.)
+[23:24] &lt;tonious&gt; Yeah.  And there may be namespace collisions by people who are outside my WoT...
+[23:25] &lt;jrand0m&gt; yup, and another should be something like thetower's tfee/subpage redirects 
+[23:25] &lt;Ophite1&gt; tonious: something that you can actually USE might be appreciated. it's just a naming system. :)
+[23:25] &lt;tonious&gt; Heh.
+[23:25] &lt;Ophite1&gt; the good thing about multiple cas is that they can do their own thing re: that kind of thing - different policies.
+[23:26] *** Signoff: nickthief60934 (Ping timeout)
+[23:26] &lt;jrand0m&gt; ok, other apps... 
+[23:26] &lt;jrand0m&gt; IM? 
+[23:26] &lt;Ophite1&gt; finally :)
+[23:26] &lt;Ophite1&gt; signed nyms! :)
+[23:26] &lt;tonious&gt; Sorry Ophite1 :)
+[23:26] &lt;jrand0m&gt; !thwap Ophite1 
+[23:27] &lt;Ophite1&gt; what, what are you all looking at? :)
+[23:27] &lt;Ophite1&gt; yes, WoT would be appropriate for _that_ :)
+[23:27] &lt;dm&gt; I think I remember who was doing IM... thecrypto?
+[23:27] &lt;Ophite1&gt; in fact... elgamal 2048-bit... dsa 1024-bit... sha-256... sounds kind of familiar. openpgp?
+[23:27] &lt;jrand0m&gt; yodel was in here the other day, mentioned that they had tried out running yodel's xml-rpc interface over with their own  local router, and it worked.  so, yay 
+[23:27] *** nickthief60934 (~chatzilla@anon.iip) has joined channel #iip-dev
+[23:28] &lt;tonious&gt; I've managed to get SOAP going on mine, too.
+[23:28] &lt;jrand0m&gt; yup dm 
+[23:28] &lt;tonious&gt; No useful apps, beyond 'Yep, it works' so far.
+[23:28] &lt;jrand0m&gt; hehe 
+[23:29] *** Signoff: nickthief60934 (Excess Flood)
+[23:29] &lt;Nostradumbass&gt; tonious: so SOAP over i2p = Black SOAP?
+[23:29] * jrand0m really wants to get idn up and running so we can use i2p as an IP layer, not a TCP layer
+[23:29] &lt;jrand0m&gt; lol Nostradumbass 
+[23:29] &lt;Ophite1&gt; nicename :)
+[23:29] &lt;tonious&gt; Nostradumbass: Yep, you got it.
+[23:30] &lt;tonious&gt; Now I can set up my own I2P casino. w00t!
+[23:30] *** nickthief60934 (~chatzilla@anon.iip) has joined channel #iip-dev
+[23:30] &lt;jrand0m&gt; w33wt 
+[23:30] &lt;jrand0m&gt; ok, I think thats 'bout it for the apps 
+[23:30] &lt;jrand0m&gt; 5) ...? 
+[23:31] &lt;jrand0m&gt; hi 
+[23:31] &lt;Ophite1&gt; tonious: cool. we could use a few of those. donate a percentage to the i2p project? :)
+[23:31] &lt;TC&gt; merchandising
+[23:31] &lt;tonious&gt; Has anybody thought of a C implementation of I2P?
+[23:31] &lt;jrand0m&gt; yeah, rent out colo boxes and run routers :) 
+[23:32] &lt;jrand0m&gt; tonious&gt; lets wait until we get the router protocol implemented and thoroughly reviewed before porting ;) 
+[23:32] &lt;tonious&gt; Or anonymous colo: Behind an I2P router and no internet routing :)
+[23:32] &lt;Ophite1&gt; merchandising = logo.
+[23:32] &lt;TC&gt; stickers, t-shirts, hats, we need the logo
+[23:32] &lt;Ophite1&gt; tonious: after it's working and anonymous and stuff? of course.
+[23:32] &lt;tonious&gt; Yeah, but I'm still running my P2 and I'm a poor guy.
+[23:32] &lt;tonious&gt; :(
+[23:32] &lt;Ophite1&gt; i2p needs a good logo.
+[23:32] &lt;Nostradumbass&gt; yes
+[23:32] &lt;Ophite1&gt; I mean, the internet doesn't have a logo, but that's just bad marketing. :)
+[23:32] &lt;dm&gt; I like the one on the WIKI.
+[23:32] &lt;TC&gt; also, each made-for-i2p program needs its own tweeked version, or take off of the logo
+[23:32] &lt;jrand0m&gt; how about a transparent logo... it'd, be, like, everywhere, dood 
+[23:33] &lt;Ophite1&gt; an invisible logo. heh.
+[23:33] &lt;tonious&gt; A 1 pixel by 1 pixel blank gif?
+[23:33] &lt;jrand0m&gt; definnitely 
+[23:33] &lt;Ophite1&gt; tonious: we'd be sued for copyright infringment? :)
+[23:33] &lt;tonious&gt; Ha!
+[23:33] &lt;Ophite1&gt; ("Hey, that's OUR blank gif!")
+[23:33] &lt;jrand0m&gt; lol 
+[23:33] &lt;Ophite1&gt; Hey, if John Cage can do it...
+[23:33] &lt;tonious&gt; So we leave our names in the comments field :)
+[23:33] &lt;Nostradumbass&gt; Ophite1: how about a stream roller paving over the Internet?
+[23:33] &lt;jrand0m&gt; heh we're just rendering his audio 
+[23:34] &lt;Ophite1&gt; that one on the bottom looks the best imho.
+[23:34] &lt;tonious&gt; I like the one on the top.  It's simple.  Like me.
+[23:34] &lt;Ophite1&gt; with the arc design.
+[23:35] &lt;Ophite1&gt; something that is small, very simple, and above all would work well as an icon, or in the system tray :)
+[23:35] &lt;Ophite1&gt; and yes, which can be customised and used as a basis for logos of apps.
+[23:35] &lt;jrand0m&gt; right 
+[23:35] &lt;dm&gt; How about a black circle with white fill.
+[23:35] &lt;Ophite1&gt; that arc would be a good start (colour changes?)
+[23:35] &lt;dm&gt; or a triangle, maybe a square!
+[23:35] &lt;dm&gt; a parallelogram!
+[23:37] &lt;tonious&gt; Heh.  Open up a cafepress store...
+[23:37] &lt;Ophite1&gt; god no, not cafepress.
+[23:37] &lt;dm&gt; a white cloud!
+[23:37] &lt;Ophite1&gt; we demand class.   ... thinkgeek. ;-)
+[23:37] &lt;dm&gt; little fluffy cloud.
+[23:38] &lt;TC&gt; it would look toomuch like a cumpuddle in minature
+[23:38] * jrand0m associates clouds with the sky, thankyouverymuch
+[23:38] &lt;tonious&gt; Ophite1: First we've gotta convince 'em that we're whitehat.
+[23:39] &lt;TC&gt; no, lets be black hat
+[23:39] &lt;jrand0m&gt; tonious&gt; can militant anarchists be whitehats too? 
+[23:39] * TC doesnt like ppl in hats
+[23:39] &lt;tonious&gt; Dunno.
+[23:39] * tonious wears a grey fedora FWIW.
+[23:39] &lt;Nostradumbass&gt; how about a white and a black hat?
+[23:39] &lt;TC&gt; and modulus would say somthing about class distinction or something
+[23:40] &lt;dm&gt; a small picture of uncle sam's face?
+[23:40] &lt;TC&gt; checkered hat?
+[23:40] &lt;jrand0m&gt; heh tc 
+[23:40] &lt;Nostradumbass&gt; or white and a black wizzard hats
+[23:40] &lt;Ophite1&gt; I am NOT a white hat. How dare you insinuate that. I want an apology.
+[23:41] &lt;TC&gt; or a black dunce hat
+[23:41] &lt;jrand0m&gt; well, anyway... 
+[23:42] &lt;tonious&gt; "i2p inside"?
+[23:42] &lt;jrand0m&gt; heh 
+[23:42] &lt;dm&gt; I, too, pee...
+[23:42] &lt;jrand0m&gt; dm&gt; on a calvin sticker! 
+[23:42] &lt;Ophite1&gt; "i2p ... somewhere"
+[23:42] &lt;TC&gt; so, logo ppl, come on!  so can nop set us up a i2p cafepress site?
+[23:43] * jrand0m repeats the mantra No PR until its ready.
+[23:43] &lt;Nostradumbass&gt; dm: yeah, make it a "Concentration" style chrade logo-gram.
+[23:43] &lt;Nostradumbass&gt; &lt;eye&gt; 2 and a pee-ing penis.
+[23:44] &lt;dm&gt; Let's set a date.
+[23:44] &lt;jrand0m&gt; heh, yeah, and you'll have your mother click on that icon? 
+[23:44] &lt;dm&gt; March 1st.
+[23:44] &lt;Nostradumbass&gt; grab it, in fact :)
+[23:44] &lt;tonious&gt; My mother disapproves of encryption :)
+[23:44] *** UserX (~User@anon.iip) has joined channel #iip-dev
+[23:44] &lt;dm&gt; Slashdot article! No matter how far (or not) jrand0m has gotten!
+[23:44] &lt;dm&gt; Let's pile on the pressure.
+[23:44] &lt;Ophite1&gt; nooooooo.
+[23:44] &lt;Ophite1&gt; not yet!
+[23:45] &lt;jrand0m&gt; damn dm, if you pulled that date out of thin air, you're good.  in my palm I have 1.0 slotted as ~ march 1 
+[23:45] * dm slaps Ophite1
+[23:45] &lt;dm&gt; i said march 1st.
+[23:45] &lt;Ophite1&gt; the appropriate time to promote is when we have a cool shiny thing to wave at them.
+[23:45] &lt;Nostradumbass&gt; please, no slashdot till the network is ready for the onslaught.
+[23:45] &lt;jrand0m&gt; right 
+[23:45] &lt;dm&gt; I'm good, what can I say.
+[23:45] &lt;Ophite1&gt; I call launch date April 4th.
+[23:45] &lt;Ophite1&gt; 04/04/04 ;)
+[23:45] &lt;jrand0m&gt; no PR until AFTER 1.0 comes out. 
+[23:45] &lt;Nostradumbass&gt; Mojo was almost destroyed by /.
+[23:46] &lt;dm&gt; no, none of this rational thinking. March 1st, end of story.
+[23:46] &lt;jrand0m&gt; ooOOo Ophite1 
+[23:46] * jrand0m senses that I'm going to have to submit to /. to get them to NOT post dm^H^Han anonymous person's article
+[23:46] &lt;Ophite1&gt; no, don't do that. malda doesn't give a shit, and he'll post THAT :)
+[23:46] &lt;jrand0m&gt; heh 
+[23:47] &lt;dm&gt; Yes, you will be ridiculed by my post: "Em, like, there's this like anonymous cool program that's better than kazaa, I2P it's awesome, it's fast, DSA124. yeah"
+[23:47] &lt;jrand0m&gt; anyway, as things progress, http://wiki.invisiblenet.net/iip-wiki?I2PRoadmap will be updated 
+[23:48] &lt;dm&gt; time to pack.
+[23:49] &lt;jrand0m&gt; (and some day I'm going to take a week off and go snowboarding) 
+[23:49] *** soros (~soros@anon.iip) has joined channel #iip-dev
+[23:49] &lt;jrand0m&gt; yeah, we're about the 2hour mark. 
+[23:49] &lt;jrand0m&gt; time to... 
+[23:49] * jrand0m *baf*'s the meeting closed.
+</div>

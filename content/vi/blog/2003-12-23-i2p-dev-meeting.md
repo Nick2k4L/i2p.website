@@ -1,8 +1,8 @@
 ---
-title: "Cuộc họp nhà phát triển I2P - ngày 23 tháng 12 năm 2003"
+title: "Cuộc họp phát triển I2P - 23 tháng 12, 2003"
 date: 2003-12-23
 author: "jrand0m"
-description: "Biên bản cuộc họp phát triển của I2P ngày 23 tháng 12 năm 2003."
+description: "Nhật ký cuộc họp phát triển I2P ngày 23 tháng 12 năm 2003."
 categories: ["meeting"]
 ---
 
@@ -14,4 +14,163 @@ categories: ["meeting"]
 
 ## Nhật ký cuộc họp
 
-<div class="irc-log"> [22:01] &lt;jrand0m&gt; 0) chào  [22:01] &lt;jrand0m&gt; 1) việc hành chính  [22:01] &lt;jrand0m&gt; 2) tình trạng phát triển  [22:02] &lt;jrand0m&gt; 3) dịch vụ trên i2p  [22:02] &lt;jrand0m&gt; 4) trạng thái ứng dụng [ns, im, i2ptunnel, ...]  [22:02] &lt;jrand0m&gt; 5) ???  [22:02] &lt;thecrypto&gt; wow, tôi vào đúng lúc ghê [22:02] &lt;jrand0m&gt; 0) chào  [22:02] &lt;jrand0m&gt; đúng vậy, thecrypto :)  [22:02] &lt;jrand0m&gt; chào  [22:02] &lt;jrand0m&gt; chào mừng đến với cuộc họp 70  [22:02] &lt;TC&gt; woot [22:03] &lt;jrand0m&gt; 1) việc hành chính  [22:03] &lt;thecrypto&gt; w00t! [22:03] &lt;jrand0m&gt; danh sách thư, đăng ký để nhận thông báo / thảo luận / v.v.: (Link: http://i2p.dnsalias.net/pipermail/i2p/)http://i2p.dnsalias.net/pipermail/i2p/  [22:04] &lt;jrand0m&gt; bugzilla: nói cho tôi biết chỗ nào hỏng hóc (và có lẽ xem thử bạn có thể giúp thế nào! :) (Link: http://i2p.dnsalias.net/bugzilla/index.cgi)http://i2p.dnsalias.net/bugzilla/index.cgi  [22:04] &lt;jrand0m&gt; mình nghĩ vậy là hết phần hành chính  [22:05] &lt;jrand0m&gt; (lưu ý là tôi chỉ nói chuyện i2p ở đây, tôi không thấy có gì về iip trong chương trình)  [22:05] &lt;jrand0m&gt; 2) tình trạng phát triển  [22:05] &lt;jrand0m&gt; 0.2.3 như phát hành ban đầu có kha khá bug, nên đã có chừng cả chục bản build sau đó, nhưng chưa bản nào đủ ổn định để gọi là 0.2.3.1 cả  [22:06] &lt;jrand0m&gt; tôi đang xây dựng lại subsystem quản lý tunnel, vì đó là nguồn gốc các bug và 0.3 (dự kiến 1 tháng 1) cũng cần trình quản lý tunnel kiểu pooling mới mà.  [22:07] &lt;jrand0m&gt; tiến triển khá tốt, tôi hy vọng nó sẽ sẵn sàng dùng trong một hai ngày tới (tôi đang thử nghiệm)  [22:07] &lt;jrand0m&gt; mô tả về chuyện đó nằm tại (Link: http://wiki.invisiblenet.net/iip-wiki?TunnelManagement)http://wiki.invisiblenet.net/iip-wiki?TunnelManagement  [22:08] &lt;jrand0m&gt; duck cùng những người khác đã cực kỳ hữu ích khi gửi bug, log, và giúp lần ra cả đống vấn đề và các lỗi liên quan bộ nhớ / cpu.  [22:08] &lt;jrand0m&gt; mọi người quá đỉnh, tôi thực sự cảm kích  [22:09] * thecrypto rút tấm biển "VỖ TAY" [22:09] &lt;jrand0m&gt; ;)  [22:09] &lt;jrand0m&gt; số lượng routers cũng tăng lên... trung bình khoảng 9-12  [22:09] &lt;jrand0m&gt; (tăng từ 3-5 một tuần trước, và 6-8 thời 0.2.2)  [22:10] &lt;jrand0m&gt; bản phát hành kế tiếp sẽ cải thiện độ tin cậy đáng kể  [22:10] &lt;jrand0m&gt; (tức là sẽ không phát hành cho tới khi đạt được điều đó)  [22:10] &lt;jrand0m&gt; ok, 3) dịch vụ trên i2p  [22:11] &lt;jrand0m&gt; fillament đã bắt đầu host flog của mình trên i2p :)  [22:12] &lt;FillaMent&gt; và tôi còn một chiêu nữa =) [22:12] &lt;jrand0m&gt; ooOOoo :)  [22:12] &lt;luckypunk&gt; tw [22:12] &lt;luckypunk&gt; hm [22:12] &lt;luckypunk&gt; xin chào. [22:12] &lt;luckypunk&gt; Nó chạy chưa? [22:12] &lt;jrand0m&gt; duck đã khởi chạy một IRC server mới trên i2p với DCC bị tắt (vì lý do bảo mật) cùng vài tính năng kiểu ident  [22:13] &lt;luckypunk&gt; lol [22:13] &lt;jrand0m&gt; luckypunk&gt; những ai dùng máy 350MHz sẽ cần đợi đến khi 0.3 ra mới dùng hiệu quả được ;)  [22:13] &lt;luckypunk&gt; vâng, nhưng i2p đủ ổn định cho việc đó chưa? [22:13] &lt;jrand0m&gt; (nhưng đăng ký danh sách thư i2p để nhận thông báo nhé)  [22:13] &lt;luckypunk&gt; tôi ép xung lên 377 rồi [22:13] &lt;luckypunk&gt; có giúp gì không? [22:13] &lt;luckypunk&gt; lol [22:13] &lt;jrand0m&gt; hôm trước mình còn chat trên IRC server đó, cho đến khi IRC client của mình b0rk  [22:14] &lt;jrand0m&gt; nhưng đúng là lúc này hơi thiếu ổn định trong khi subsystem quản lý tunnel đang được xây lại  [22:14] &lt;luckypunk&gt; thôi thì tôi mừng vì máy tôi không lại ì ạch như mật mía qua đêm nữa. [22:15] &lt;jrand0m&gt; còn dịch vụ mới nào mình bỏ lỡ không?    [22:15] &lt;luckypunk&gt; khi .3 ra mắt... sẽ có một dịch vụ kiểu Yahoo. [22:15] &lt;luckypunk&gt; ;) [22:15] &lt;jrand0m&gt; hay đấy  [22:15] &lt;TC&gt; tôi nên chạy thêm cái gì đó [22:16] &lt;TC&gt; có dịch vụ nào chúng ta cần mà không phải đụng vào Apache không? [22:16] &lt;jrand0m&gt; BBS của bạn tuyệt vời đấy, tc, mình nóng lòng chờ i2p đủ ổn định để mình có thể vào đó thường xuyên  [22:16] &lt;jrand0m&gt; bạn có thể chạy một server game dạng telnet (ví dụ Adventure, v.v.)  [22:16] &lt;luckypunk&gt; lol [22:16] &lt;TC&gt; hah [22:16] &lt;FillaMent&gt; MUSH [22:17] &lt;luckypunk&gt; tôi sẽ làm cái đó... nhu cầu thấp. [22:17] &lt;luckypunk&gt; và tôi đã có khoảng 300k code tinymush rồi. [22:17] &lt;jrand0m&gt; đúng, cả cái kiểu MUSH/MUD/MOO/ đó  [22:17] &lt;luckypunk&gt; heh [22:17] &lt;TC&gt; Ultima Online thì sao? [22:18] &lt;thecrypto&gt; ồ sẽ vui đấy [22:18] &lt;luckypunk&gt; "Tiêu diệt Databugs của FreeNet!" [22:18] &lt;luckypunk&gt; TC: =| [22:18] &lt;thecrypto&gt; vậy thì ta cần một client telnet [22:18] &lt;luckypunk&gt; có lẽ nếu tất cả chúng ta đều có máy 6 GHz với đường truyền OC-128. :D [22:18] &lt;jrand0m&gt; thecrypto&gt; /bin/telnet + i2ptunnel  [22:18] &lt;thecrypto&gt; ...ờ đúng [22:18] &lt;thecrypto&gt; tôi chậm chạp [22:19] &lt;thecrypto&gt; :) [22:19] &lt;jrand0m&gt; còn "trái thấp" nào cho dịch vụ không?  một mail server (pop3/imap không có internet mail) thì tuyệt  [22:19] &lt;jrand0m&gt; (và nếu nó có thể /receive/ email từ internet thì cũng tuyệt)  [22:21] &lt;jrand0m&gt; ok, 4) trạng thái ứng dụng  [22:21] &lt;jrand0m&gt; dịch vụ phân giải tên  [22:21] &lt;jrand0m&gt; wiht / co vừa ở đây lúc trước, nhưng giờ thì không  [22:21] &lt;jrand0m&gt; MrEcho&gt; sao rồi?  *** MrEcho là echo@anon.iip (Digital_Light)  *** trên các kênh: #iip-dev #anonymous  *** trên irc qua server anon.iip (Official IIP ) *** MrEcho đã idle 3 phút, đăng nhập lúc Thu Jan 01 01:00:00 1970  [22:23] &lt;jrand0m&gt; ok, có lẽ ta sẽ quay lại chuyện đó  [22:23] &lt;jrand0m&gt; hosts.txt đang tăng lên khi các đích lên mạng  [22:23] &lt;jrand0m&gt; có một bot trên máy chủ jabber cho phép bạn đăng ký / lấy các mục  [22:24] &lt;jrand0m&gt; (ngoài ra hosts.txt đi kèm bản cài mới được quản lý trong cvs và được mirror tại (Link: http://i2p.dnsalias.net/i2p/hosts.txt)http://i2p.dnsalias.net/i2p/hosts.txt)  [22:24] &lt;jrand0m&gt; tiếp theo, IM  [22:24] &lt;jrand0m&gt; chào thecrypto :)  [22:24] &lt;jrand0m&gt; mừng bạn quay lại  [22:25] &lt;thecrypto&gt; chào [22:25] &lt;thecrypto&gt; i2pim đang được làm lại từ đầu [22:25] &lt;thecrypto&gt; tôi cần hiểu mạng này vận hành sao, nên đang tháo ATalk ra và ghép lại từ từ [22:25] &lt;thecrypto&gt; vì thế tiến độ từ từ [22:25] &lt;jrand0m&gt; chuẩn  [22:25] &lt;thecrypto&gt; tôi không biết có làm được chat nhóm không [22:25] &lt;thecrypto&gt; nhưng đó là một ý tưởng [22:26] &lt;jrand0m&gt; bạn từng nêu ý tưởng kiểu 'chuyền gậy' cho chat nhóm - không tập trung, nhưng vẫn dùng được... mình nghĩ có thể theo hướng đó  [22:26] &lt;thecrypto&gt; có thể sẽ liên quan việc chuyền gậy khá khó để đạt được, nhưng nếu ai có ý tưởng làm chat nhóm theo mô hình của tôi, hãy e-mail cho danh sách mà tôi vừa đăng ký [22:26] &lt;jrand0m&gt; hehe  [22:26] &lt;jrand0m&gt; hay đấy  [22:27] &lt;jrand0m&gt; vâng, bắt đầu với chat 1-1 (có thể kèm gửi/nhận tệp) có lẽ sẽ thận trọng hơn  [22:27] &lt;thecrypto&gt; ừ, vấn đề duy nhất là đồng bộ cái baton sẽ khó [22:27] &lt;thecrypto&gt; vì bạn không muốn 2 người giành gậy cùng lúc, hoặc người đang giữ gậy lại rớt mạng rồi thì v.v. [22:27] &lt;thecrypto&gt; nety [22:27] &lt;TC&gt; token-ring-chat? [22:27] &lt;jrand0m&gt; ừ, mấy hệ thống bỏ phiếu rất mệt.    [22:28] &lt;jrand0m&gt; đúng, 2phaseCommit (giao thức cam kết hai pha) quen thuộc  [22:28] &lt;thecrypto&gt; TC: không, về cơ bản mạng IM không có presence server trung tâm [22:28] &lt;thecrypto&gt; nên tôi đang nghĩ tới việc có một baton máy chủ ảo [22:29] &lt;duck&gt; ok, từ giờ dùng bootdisk... [22:29] &lt;jrand0m&gt; lựa chọn khác là làm chat nhóm phân tán hoàn toàn: "group" chỉ là "gửi các tin nhắn này tới peer X, Y, Z"  [22:29] &lt;jrand0m&gt; d'oh duck  [22:29] &lt;thecrypto&gt; ừ, nhưng đó là mạng theo kiểu broadcast [22:29] &lt;jrand0m&gt; không hẳn  [22:29] &lt;thecrypto&gt; mà thường là ý tưởng ngốc nhất [22:29] &lt;jrand0m&gt; các thông điệp cũng phải được gửi đến peer X, Y, Z bởi ai đó vào lúc nào đó  [22:30] &lt;jrand0m&gt; thực ra còn ít hơn 1 thông điệp so với mô hình dựa trên server (tạm thời)  [22:30] &lt;thecrypto&gt; đúng, nhưng mỗi người lại phải theo dõi nhóm  [22:30] &lt;jrand0m&gt; (và UI có thể làm nhóm trông 'đẹp')  [22:30] &lt;thecrypto&gt; và rồi phải có các thông điệp truyền đi để nói nhóm hiện gồm những ai  [22:30] &lt;jrand0m&gt; đúng, có lẽ một thông điệp điều khiển kiểu "Tôi nghĩ nhóm A là X, Y, Z"  [22:31] &lt;jrand0m&gt; thay vì giao thức bỏ phiếu  [22:31] &lt;jrand0m&gt; đúng, tôi cũng chưa chắc cách nào tốt nhất  [22:31] &lt;jrand0m&gt; chỉ nói là có một lựa chọn  [22:31] &lt;jrand0m&gt; no lo se   [22:31] &lt;thecrypto&gt; ừ [22:32] &lt;jrand0m&gt; dù sao, nếu bạn muốn một 'product' trên bugzilla cho i2pim, báo tôi biết, và cho tôi hay nếu có gì tôi có thể giúp  [22:32] &lt;thecrypto&gt;  à, trước hết tôi cần có code thì mới có bug chứ [22:32] &lt;jrand0m&gt; ;)  [22:33] &lt;thecrypto&gt; nên chờ một chút rồi tôi sẽ có cái gì đó đưa lên bugzilla [22:34] &lt;jrand0m&gt; ok, lúc nào cũng được, thêm vào thì dễ thôi  [22:35] &lt;jrand0m&gt; ok, i2ptunnel  [22:35] &lt;jrand0m&gt; tôi đã ném hai thứ kiểu bug vào bugzilla: (Link: http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=1)http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=1 và (Link: http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=2)http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=2  [22:36] &lt;jrand0m&gt; cộng thêm chuyện một số trình duyệt b0rk khi thiếu dấu / ở cuối  [22:37] &lt;jrand0m&gt; đưa số thứ tự (sequence numbers) vào i2ptunnel sẽ rất tốt, vì các truyền tải lớn đôi khi bị hỏng (mất thông điệp do bị drop, nhưng sequence numbers sẽ phát hiện ngay và fail fast)  [22:37] &lt;jrand0m&gt; ngoài ra thì mấy thứ khác nhỏ thôi, i2ptunnel hoạt động tốt hơn router nhiều :)  [22:38] &lt;jrand0m&gt; ok, còn ứng dụng nào khác?  [22:39] &lt;jrand0m&gt; đã có vài thảo luận về NAT/SOCKS mấy ngày qua trên kênh  [22:39] &lt;jrand0m&gt; một proxy hỗ trợ SOCKS để mọi người dùng FTP, BitTorrent, v.v. thì rất tuyệt  [22:39] &lt;jrand0m&gt; ngoài ra còn thảo luận do aum khởi xướng trên danh sách i2p liên quan đến chia sẻ file / CDN  [22:40] &lt;jrand0m&gt; (thề là tôi không bảo anh ấy đăng bài đó ;)  [22:41] &lt;jrand0m&gt; có lẽ tôi sẽ không làm gì bên ứng dụng ngoài giúp tích hợp với i2p, vì còn cả đống việc ở router, nên nếu bạn muốn thấy chúng xuất hiện, hãy bắt tay vào hack đi  [22:44] &lt;jrand0m&gt; ok, hết phần ứng dụng  [22:44] &lt;jrand0m&gt; 5) ???  [22:44] &lt;jrand0m&gt; chào  [22:44] &lt;jrand0m&gt; có bình luận / câu hỏi / quan ngại / v.v. không?  [22:45] &lt;ardvark&gt; Tôi nghĩ mọi người ngủ gật rồi ;) [22:46] &lt;jrand0m&gt; có người đăng câu hỏi vào FAQ của wiki và nó được trả lời sau khoảng một ngày, nên nếu ai có thắc mắc, hãy đăng ở đó, gửi vào danh sách i2p@i2p.dnsalias.net, hỏi ngay trên kênh này, hoặc xịt sơn lên tường  [22:46] &lt;duck&gt; ồ, họp [22:46] &lt;jrand0m&gt; ừ, hồi hộp lắm nhỉ ;)  [22:46] * jrand0m ném bùn vào duck [22:46] * mihi không theo kịp, xin lỗi. anh ấy sẽ đứng úp mặt vào tường 5 phút tới... [22:46] &lt;jrand0m&gt; hehe  [22:47] &lt;jrand0m&gt; ok, đại khái vậy thôi.  [22:48] * jrand0m *baf* kết thúc cuộc họp </div>
+<div class="irc-log">
+[22:01] &lt;jrand0m&gt; 0) hi 
+[22:01] &lt;jrand0m&gt; 1) administravia 
+[22:01] &lt;jrand0m&gt; 2) dev status 
+[22:02] &lt;jrand0m&gt; 3) services on i2p 
+[22:02] &lt;jrand0m&gt; 4) app status [ns, im, i2ptunnel, ...] 
+[22:02] &lt;jrand0m&gt; 5) ??? 
+[22:02] &lt;thecrypto&gt; wow, i picked a good time
+[22:02] &lt;jrand0m&gt; 0) hi 
+[22:02] &lt;jrand0m&gt; yes you did thecrypto :) 
+[22:02] &lt;jrand0m&gt; hi 
+[22:02] &lt;jrand0m&gt; welcome to meeting 70 
+[22:02] &lt;TC&gt; woot
+[22:03] &lt;jrand0m&gt; 1) administravia 
+[22:03] &lt;thecrypto&gt; w00t!
+[22:03] &lt;jrand0m&gt; mailing list, get on it for announcements / discussion / etc: (Link: http://i2p.dnsalias.net/pipermail/i2p/)http://i2p.dnsalias.net/pipermail/i2p/ 
+[22:04] &lt;jrand0m&gt; bugzilla: tell me where shit is broken (and perhaps look for ways you can help! :) (Link: http://i2p.dnsalias.net/bugzilla/index.cgi)http://i2p.dnsalias.net/bugzilla/index.cgi 
+[22:04] &lt;jrand0m&gt; i think thats it for administravia 
+[22:05] &lt;jrand0m&gt; (note that i'm just talking i2p stuff here, i don't see any iip things on the agenda) 
+[22:05] &lt;jrand0m&gt; 2) dev status 
+[22:05] &lt;jrand0m&gt; 0.2.3 as originally released had a chunk of bugs, so there have been perhaps a dozen subsequent builds, but none quite stable enough to be called 0.2.3.1 yet 
+[22:06] &lt;jrand0m&gt; i'm rebuilding the tunnel management subsystem now, since that is the source of the bugs and 0.3 (scheduled for jan 1) needs the new pooling tunnel manager anyway. 
+[22:07] &lt;jrand0m&gt; making good progress on that, I'm hoping it'll be ready for use in the next day or two (i'm testing it now) 
+[22:07] &lt;jrand0m&gt; a description of whats up with that is on (Link: http://wiki.invisiblenet.net/iip-wiki?TunnelManagement)http://wiki.invisiblenet.net/iip-wiki?TunnelManagement 
+[22:08] &lt;jrand0m&gt; duck among others have been incredibly helpful in submitting bugs, logs, and helping track down a ton of problems and memory / cpu issues. 
+[22:08] &lt;jrand0m&gt; y'all rule, I really appreciate the help 
+[22:09] * thecrypto pulls out the "APPLAUSE" sign
+[22:09] &lt;jrand0m&gt; ;) 
+[22:09] &lt;jrand0m&gt; the # of routers have also been increasing... on avg we're at around 9-12 
+[22:09] &lt;jrand0m&gt; (up from 3-5 a week ago, and 6-8 in 0.2.2 times) 
+[22:10] &lt;jrand0m&gt; the next release will improve the reliability dramatically 
+[22:10] &lt;jrand0m&gt; (aka it won't get out the door until it does) 
+[22:10] &lt;jrand0m&gt; ok, 3) services on i2p 
+[22:11] &lt;jrand0m&gt; fillament started hosting his flog on i2p :) 
+[22:12] &lt;FillaMent&gt; and I've got another trick up my sleeve =)
+[22:12] &lt;jrand0m&gt; ooOOoo :) 
+[22:12] &lt;luckypunk&gt; tw
+[22:12] &lt;luckypunk&gt; hm
+[22:12] &lt;luckypunk&gt; hello.
+[22:12] &lt;luckypunk&gt; Does it work yet?
+[22:12] &lt;jrand0m&gt; duck started a new irc server on i2p with dcc disabled (for security reasons) plus some ident-ish features 
+[22:13] &lt;luckypunk&gt; lol
+[22:13] &lt;jrand0m&gt; luckypunk&gt; people with 350Mhz machines will need to wait until 0.3 is out before being able to use it effectively ;) 
+[22:13] &lt;luckypunk&gt; yes, but is i2p reliable enough for that?
+[22:13] &lt;jrand0m&gt; (but subscribe to the i2p mailing list so you can get announcements) 
+[22:13] &lt;luckypunk&gt; i overclocked to 377
+[22:13] &lt;luckypunk&gt; does that help?
+[22:13] &lt;luckypunk&gt; lol
+[22:13] &lt;jrand0m&gt; i was chatting on that irc server the other day, until my irc client b0rked 
+[22:14] &lt;jrand0m&gt; but yes, things are a bit unreliable at the moment while the tunnel management subsystem is rebuilt 
+[22:14] &lt;luckypunk&gt; well, im happy my computer didn't molassify overnight again.
+[22:15] &lt;jrand0m&gt; any other new services i've missed?   
+[22:15] &lt;luckypunk&gt; well, when .3 comes out...t here'll be a yahooish service.
+[22:15] &lt;luckypunk&gt; ;)
+[22:15] &lt;jrand0m&gt; cool 
+[22:15] &lt;TC&gt; i should run somthing else
+[22:16] &lt;TC&gt; whats a service we need that doesnt require messing with apache?
+[22:16] &lt;jrand0m&gt; your bbs is kick ass tc, i just can't wait until i2p is reliable enough for me to get to it consistently 
+[22:16] &lt;jrand0m&gt; you could run a telnet based games server (e.g. adventure, etc) 
+[22:16] &lt;luckypunk&gt; lol
+[22:16] &lt;TC&gt; hah
+[22:16] &lt;FillaMent&gt; MUSH
+[22:17] &lt;luckypunk&gt; i'll do that... it's low demand.
+[22:17] &lt;luckypunk&gt; and i already had about 300k of tinymush code.
+[22:17] &lt;jrand0m&gt; yeah, the whole mush/mud/moo/ style thaang 
+[22:17] &lt;luckypunk&gt; heh
+[22:17] &lt;TC&gt; what about ultima online?
+[22:18] &lt;thecrypto&gt; ooh that's be fun
+[22:18] &lt;luckypunk&gt; "Slay FreeNet Databugs!"
+[22:18] &lt;luckypunk&gt; TC: =|
+[22:18] &lt;thecrypto&gt; we need to get a telnet client then
+[22:18] &lt;luckypunk&gt; maybe if we all obtained 6 ghz computers with oc-128 lines. :D
+[22:18] &lt;jrand0m&gt; thecrypto&gt; /bin/telnet + i2ptunnel 
+[22:18] &lt;thecrypto&gt; ...yeah
+[22:18] &lt;thecrypto&gt; i'm sloew
+[22:19] &lt;thecrypto&gt; :)
+[22:19] &lt;jrand0m&gt; any other low hanging fruit for services?  a mail server (pop3/imap without internet mail) would rule 
+[22:19] &lt;jrand0m&gt; (and if it could /receive/ internet email that'd rule too) 
+[22:21] &lt;jrand0m&gt; ok, 4) app status 
+[22:21] &lt;jrand0m&gt; naming service 
+[22:21] &lt;jrand0m&gt; wiht / co was here earlier, but not now 
+[22:21] &lt;jrand0m&gt; MrEcho&gt; how goes? 
+*** MrEcho is echo@anon.iip (Digital_Light) 
+*** on channels: #iip-dev #anonymous 
+*** on irc via server anon.iip (Official IIP )
+*** MrEcho has been idle 3 minutes, signed on at Thu Jan 01 01:00:00 1970 
+[22:23] &lt;jrand0m&gt; ok, perhaps we'll get back to that 
+[22:23] &lt;jrand0m&gt; hosts.txt has been growing as destinations have come online 
+[22:23] &lt;jrand0m&gt; there's a bot on the jabber server that will let you register / fetch entries 
+[22:24] &lt;jrand0m&gt; (plus the hosts.txt distributed with new installs is managed in cvs and mirrored at (Link: http://i2p.dnsalias.net/i2p/hosts.txt)http://i2p.dnsalias.net/i2p/hosts.txt) 
+[22:24] &lt;jrand0m&gt; next up, IM 
+[22:24] &lt;jrand0m&gt; hi thecrypto :) 
+[22:24] &lt;jrand0m&gt; welcome back 
+[22:25] &lt;thecrypto&gt; hi
+[22:25] &lt;thecrypto&gt; i2pim is being started from scratch
+[22:25] &lt;thecrypto&gt; i need to figure out how this network works but tearing apart ATalk and slowly putting it back together
+[22:25] &lt;thecrypto&gt; so it's slowly coming along
+[22:25] &lt;jrand0m&gt; word 
+[22:25] &lt;thecrypto&gt; i don't know if i can get group chat working
+[22:25] &lt;thecrypto&gt; but it's an idea
+[22:26] &lt;jrand0m&gt; you had mentioned the idea of 'tossing around the baton' style of group chat - not centralized, but still workable... I think that might be a way to go 
+[22:26] &lt;thecrypto&gt; it might involve some difficult baton passing to get it, but if anyone has an idea for how to do group chat under my model, e-mail the list i just signed onto
+[22:26] &lt;jrand0m&gt; hehe 
+[22:26] &lt;jrand0m&gt; cool 
+[22:27] &lt;jrand0m&gt; yeah, starting off with one on one (perhaps with send/receive file) would probably be prudent 
+[22:27] &lt;thecrypto&gt; yeah, the only problem would be syncronizing the baton will be difficult
+[22:27] &lt;thecrypto&gt; because you don't want 2 people grabbing the baton at the same time, or have the person who has the baton to drop of then et
+[22:27] &lt;thecrypto&gt; nety
+[22:27] &lt;TC&gt; token-ring-chat?
+[22:27] &lt;jrand0m&gt; yup, voting systems are a pain.   
+[22:28] &lt;jrand0m&gt; right, good ol' 2phaseCommit 
+[22:28] &lt;thecrypto&gt; TC: no, basically the IM network has no central presence server
+[22:28] &lt;thecrypto&gt; so what i'm thinking about doing is have a virtual server baton
+[22:29] &lt;duck&gt; ok, using a bootdisk from now on...
+[22:29] &lt;jrand0m&gt; the other option is to do group chat fully distributed: "group" just being "send these messages to peer X, Y, Z" 
+[22:29] &lt;jrand0m&gt; d'oh duck 
+[22:29] &lt;thecrypto&gt; yeah, but that's network by broadcast
+[22:29] &lt;jrand0m&gt; not really 
+[22:29] &lt;thecrypto&gt; which is usually the stupidest idea
+[22:29] &lt;jrand0m&gt; the messages have to get sent to peer X, Y, Z from someone sometime 
+[22:30] &lt;jrand0m&gt; its actually 1 less message than the (temporary) server based model 
+[22:30] &lt;thecrypto&gt; yes, but then each person has to keep track of the group
+[22:30] &lt;jrand0m&gt; (and the UI can make the group 'pretty') 
+[22:30] &lt;thecrypto&gt; and now there has to be messages passed around about what the group is current
+[22:30] &lt;jrand0m&gt; right, perhaps a control message stating "I think group A is X, Y, Z" 
+[22:31] &lt;jrand0m&gt; instead of the voting protocol 
+[22:31] &lt;jrand0m&gt; right, I'm not sure what way is best 
+[22:31] &lt;jrand0m&gt; just saying there's an option 
+[22:31] &lt;jrand0m&gt; no lo se  
+[22:31] &lt;thecrypto&gt; yeah
+[22:32] &lt;jrand0m&gt; anyway, if you want a 'product' on bugzilla for i2pim, lemmie know, as well as if theres anything i can do to help 
+[22:32] &lt;thecrypto&gt;  well, i need code for there to be bugs in first
+[22:32] &lt;jrand0m&gt; ;) 
+[22:33] &lt;thecrypto&gt; so wait a bit and i'll have something to put on bugzilla
+[22:34] &lt;jrand0m&gt; cool, whenever, its trivial to add 
+[22:35] &lt;jrand0m&gt; ok, i2ptunnel 
+[22:35] &lt;jrand0m&gt; i've tossed in two bug-ish things into bugzilla: (Link: http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=1)http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=1 and (Link: http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=2)http://i2p.dnsalias.net/bugzilla/show_bug.cgi?id=2 
+[22:36] &lt;jrand0m&gt; plus there's a thing wrt some browsers b0rking on missing trailing / 
+[22:37] &lt;jrand0m&gt; getting sequence numbers into i2ptunnel would be really good, as large transfers sometimes are getting corrupted (missing message thats dropped, but sequence numbers would notice that immediately and fail fast) 
+[22:37] &lt;jrand0m&gt; other than that, the things are minor, i2ptunnel is behaving a lot better than the router :) 
+[22:38] &lt;jrand0m&gt; ok, any other apps? 
+[22:39] &lt;jrand0m&gt; there was some discussion about NAT/SOCKS the last few days on the channel 
+[22:39] &lt;jrand0m&gt; a socks enabled proxy that would let people ftp, bittorrent, etc would be really great 
+[22:39] &lt;jrand0m&gt; plus there's the discussion aum started on the i2p list wrt file sharing / cdn 
+[22:40] &lt;jrand0m&gt; (i swear i didn't tell him to make that post ;) 
+[22:41] &lt;jrand0m&gt; i probably won't be doing anything on the app side beyond help out integrating with i2p, as there's a truckload of stuff to do in the router, so if you're interested in seeing them show up, get hackin' 
+[22:44] &lt;jrand0m&gt; ok, thats it for apps 
+[22:44] &lt;jrand0m&gt; 5) ??? 
+[22:44] &lt;jrand0m&gt; hi 
+[22:44] &lt;jrand0m&gt; any comments / questions / concerns / etc? 
+[22:45] &lt;ardvark&gt; I think everyone fell asleep ;)
+[22:46] &lt;jrand0m&gt; someone posted a question to the wiki's FAQ and it got answered after about a day, so if anyone has concerns, either post them there, to the i2p@i2p.dnsalias.net mailing list, ask it in this channel, or spraypaint it on the wall 
+[22:46] &lt;duck&gt; oh, meeting
+[22:46] &lt;jrand0m&gt; yeah, exciting, aint it ;) 
+[22:46] * jrand0m slings mud at duck
+[22:46] * mihi did not follow, sorry. he will stand in the corner for the next 5 minutes...
+[22:46] &lt;jrand0m&gt; hehe 
+[22:47] &lt;jrand0m&gt; ok, thats about it. 
+[22:48] * jrand0m *baf*s the meeting to a close
+</div>

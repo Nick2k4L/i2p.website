@@ -2,11 +2,11 @@
 title: "اجتماع مطوري I2P"
 date: 2003-07-15
 author: "nop"
-description: "سجل اجتماع تطوير I2P ليوم 15 يوليو 2003."
+description: "سجل اجتماع تطوير I2P في 15 يوليو 2003."
 categories: ["meeting"]
 ---
 
-(بإذن من Wayback Machine http://www.archive.org/)
+(بإذن من wayback machine http://www.archive.org/)
 
 ## ملخص سريع
 
@@ -14,140 +14,744 @@ categories: ["meeting"]
 
 ## سجل الاجتماع
 
-<div class="irc-log"> --- تم فتح السجل Tue Jul 15 17:46:47 2003 17:46 < gott> مرحباً. 17:46 <@nop> مجرد تنبيه مسبق بشأن صمتي 17:46 <@hezekiah> Tue Jul 15 21:46:49 UTC 2003 17:47 <@hezekiah> حسناً. بدأ اجتماع iip-dev. 17:47 <@hezekiah> هل هو الاجتماع الثامن والأربعون أم التاسع والأربعون؟ 17:47 < jrand0m> nop> لهذا من الضروري جداً أن نحسم معمارية الـ router 	بأسرع ما يمكن. أفهم أن الناس تختلف سرعتهم، وعلينا التقسيم بحيث تتمكن 	المكونات المختلفة من التقدم وفقاً لذلك 17:47 < mihi> التاسع والأربعون 17:47 <@hezekiah> حسناً! مرحباً بكم في الاجتماع التاسع والأربعين لـ iip-dev! 17:47 < jrand0m> تبقى لي ثلاثة أيام في عملي، وبعدها سأكرّس أكثر من 90 ساعة/ 	أسبوع لدفع هذا إلى الأمام 17:48 < jrand0m> أعلم ولا أتوقع من الجميع أن يتمكنوا من ذلك، ولهذا نحتاج 	إلى التقسيم 17:48 < jrand0m> مرحباً hezekiah :) 17:48 <@hezekiah> لول 17:48 <@nop> للرد على ذلك 17:48 <@hezekiah> سأنتظر دقيقة. ثم يمكننا وضع جدول الأعمال. :) 17:48 <@nop> أمن معمارية الـ router يعتمد أيضاً على ألا تتعجلوا 17:49 <@nop> إذا فعلنا 17:49 <@nop> سنغفل 17:49 <@nop> ما قد يتركنا ننظّف فوضى كبيرة لاحقاً 17:49 -!- Rain [Rain@anon.iip] قد خرج [I Quit] 17:49 < jrand0m> nop> مختلف. ما زلنا نستطيع بناء طبقة التطبيقات وواجهات 	API دون تنفيذ الـ router (أو حتى معرفة كيف ستعمل الشبكة) 17:49 <@nop> أتفق مع ذلك 17:50 <@nop> أتحدث تحديداً عن الشبكة التحتية 17:50 < jrand0m> إذا استطعنا الاتفاق على واجهة الـ API التي أرسلتها، فذلك 	هو التقسيم الذي نحتاجه 17:50 < jrand0m> صحيح، تنفيذ الـ router وتصميم الشبكة لم يُنجزا بعد 17:50 <@nop> حسناً 17:50 <@nop> أوه، أستطيع بالتأكيد أن أتفق مع واجهة الـ API خاصتك حتى الآن 17:51 <@hezekiah> jrand0m: مشكلة واحدة. 17:51 < jrand0m> تفضل hezekiah 17:51 <@hezekiah> ستبدو مختلفة إذا نفّذتها بلغة C. 17:51 < jrand0m> ليس مختلفاً كثيراً 17:51 < gott> يا إلهي 17:51 < jrand0m> حروف كبيرة أقل، واستبدال الكائنات بـ structs 17:51 < gott> ما اللغات التي يفكّر الناس في تنفيذها بها؟ 17:51 < jrand0m> (لواجهة الـ API) 17:51 <@hezekiah> أمم، jrand0m؟ لا يوجد 'byte[]' في C. 17:51 < jrand0m> gott> اقرأ أرشيف البريد لبعض الإجابات على ذلك 17:52 <@hezekiah> ستستخدم على الأرجح مؤشّرات من نوع void* مع عدد صحيح 	لتحديد الطول. 17:52 < jrand0m> hezekiah> إذن unsigned int[] 17:52 < gott> jrand0m: للمرة الأولى، حرب دينية لست جزءاً منها 17:52 <@hezekiah> إن لم تخنّي الذاكرة (ساعدني هنا يا nop)، لا يمكنك 	ببساطة إرجاع unsigned int[] من دالة. 17:53 <@hezekiah> gott: على النقيض من ماذا؟ شبه-كود؟ 17:53 < jrand0m> صحيح، تغييرات تركيبية. لكن نعم، إن كانت هناك فروق 	حقيقية، نحتاج إلى حسمها بأسرع وقت. (مثل، اليوم) ربما يكون الآن وقتاً 	مناسباً للنظر في البريد الذي أرسلته بعنوان "high level router architecture 	and API" ومراجعته؟ 17:54 <@hezekiah> nop؟ UserX؟ هل أنتما مستعدان لذلك؟ 17:54 < jrand0m> ليس مختلفاً جداً، لكنه مختلف على أي حال، نعم. ولهذا قلت 	Java API في بريد اليوم :) 17:54 -!- WinBear [WinBear@anon.iip] قد انضمّ إلى #iip-dev 17:55 <@nop> انتظر 17:55 <@nop> أقرأ ما سبق 17:55 -!- mihi_2 [~none@anon.iip] قد انضمّ إلى #iip-dev 17:55 -!- mihi غُيّر اسمه إلى nickthief60234 17:55 -!- mihi_2 غُيّر اسمه إلى mihi 17:55 < jrand0m> مرحباً بعودتك mihi 17:55 < gott> بالمناسبة، هل يتم تسجيل هذا مباشرة؟ 17:55 -!- nickthief60234 [~none@anon.iip] قد خرج [EOF From client] 17:55 <@hezekiah> gott: نعم. 17:55 < mihi> الازدواجية تحكم ;) 17:55 < gott> سأقرأه لاحقاً إذاً. 17:55 -!- gott [~gott@anon.iip] قد غادر #iip-dev [gott] 17:56 <@nop> حسناً 17:56 <@nop> نعم 17:56 < WinBear> jrand0m: مرحباً 17:56 <@nop> بالتأكيد هناك اختلافات 17:56 <@nop> ما نحتاجه 17:56 < jrand0m> أهلاً WinBear 17:56 <@nop> هو فريق من مطوّرين معيّنين لكتابة عناصر التحكم على مستوى الـ 	API الرئيسية لهذه اللغات 17:56 <@nop> نعلم أن jrand0m يمكنه التعامل مع Java 17:56 <@nop> وربما يمكنه أن يعمل مع thecrypto أيضاً 17:56 <@nop> وhezekiah والفريق يمكنهم القيام بـ C 17:56 <@nop> وjeremiah إن كان راغباً 17:56 <@nop> يمكنه القيام بـ Python 17:56 <@hezekiah> أستطيع C++ أيضاً! ;-) 17:56 <@nop> حسناً 17:56 <@nop> C++ أيضاً 17:57 <@hezekiah> لول 17:57 <@nop> قد يعمل C++ 17:57 <@nop> مع C 17:57 <@nop> إذا لم تُفرِط في استخدام القوالب 17:57 < jrand0m> هه 17:57 <@hezekiah> لول 17:57 <@hezekiah> في الواقع، بينما يستطيع MSVC ربط ملفات الكائنات C وC++، 	يبدو أن gcc لا يحب ذلك. 17:57 <@nop> أي التزم بـ structs متوافقة مع C، أم أن ذلك غير عملي؟ 17:57 < jrand0m> أول سؤال، قبل ذلك، ما التطبيقات التي ستستخدم هذه الـ APIs؟ 	أعرف تطبيقات سترغب في استخدام Java، هل سيكون iproxy بلغة C؟ 17:58 <@hezekiah> nop: لا أظن أن C و C++ متوافقان على مستوى الكائنات. 17:58 <@nop> حسناً 17:58 <@hezekiah> nop: C++ لن يتوافق مع C بشكل أفضل كثيراً من Java. 17:58 <@nop> ربما USerX يستطيع القيام بـ C 17:58 <@nop> وأنت يمكنك تولّي C++ 17:58 <@hezekiah> We don 17:58 <@nop> ؟ 17:58 <@hezekiah> لسنا بحاجة حتى إلى _استخدام_ C++ إن لم ترغبوا. فقط أنا 	أفضّلها. 17:59 <@nop> حسناً، الأمر هو 17:59 <@nop> هناك الكثير من مطوّري C++ 17:59 <@nop> خصوصاً في عالم مايكروسوفت 17:59 <@hezekiah> حتى في عالم لينكس. (انظر: KDE وQt.) 17:59 < jrand0m> C و C++ متوافقان ثنائياً إن قمت فقط بعمل .so أو .a 17:59 < jrand0m> (بالمناسبة) 18:00 <@nop> هل يمكن أن تكون C بديلاً جيداً لـ C++، أي أن مطوّري C++ 	سيكونون قادرين على التعامل مع واجهة C API بسهولة أكبر من واجهة C++ مع 	مطوّر C؟ 18:00 <@hezekiah> jrand0m: نعم. يمكنك غالباً أن تملك مكتبات ... ولكن إذا 	كنت 18:00 <@hezekiah> jrand0m: لا يمكنك حتى استخدام الأصناف (classes)، فهذا 	يُفرغ الهدف من مضمونه. 18:00 <@nop> صحيح 18:00 <@nop> لنبقَ مع C 18:01 <@nop> لأن مطوّري C++ ما زالوا يستطيعون استدعاء مكتبة C بسهولة 	نسبية 18:01 <@hezekiah> إذا كان على وحدة استدعاء دوال وحدة أخرى، فمن الأفضل أن 	تكونا باللغة نفسها. 18:01 <@hezekiah> nop: مطوّرو C++ سيعرفون C بما يكفي ... رغم أنه قد يتطلب 	بعض الجهد إن لم /يتعلموا/ C. 18:02 <@hezekiah> ومع ذلك، مطوّرو C لن يعرفوا C++ إذ إن C مجرد مجموعة 	فرعية من C++. 18:02 -!- logger_ [~logger@anon.iip] قد انضمّ إلى #iip-dev 18:02 -!- Topic for #iip-dev: ستتوفر ملفات السجل على الإنترنت بعد الاجتماع: 	http://wiki.invisiblenet.net/?Meetings 18:02 [Users #iip-dev] 18:02 [@hezekiah] [+Ehud    ] [ leenookx] [ moltar] [ tek    ] 18:02 [@nop     ] [ jeremiah] [ logger_ ] [ Neo   ] [ WinBear] 18:02 [@UserX   ] [ jrand0m ] [ mihi    ] [ ptsc  ] 18:02 -!- Irssi: #iip-dev: إجمالي 14 لقباً [3 مشرفين، 0 نصف-مشرف، 1 بصوت، 10 عاديون] 18:02 < jrand0m> صحيح 18:02 -!- Irssi: تمت مزامنة الانضمام إلى #iip-dev خلال 9 ثوانٍ 18:02 < jrand0m> (مع JMS :) 18:02 <@nop> نعم 18:03 -!- أنت الآن معروف باسم logger 18:03 < jrand0m> حسناً، هل يمكننا مراجعة المعمارية العامة لِنرى ما إذا كانت 	واجهات الـ API ذات صلة أصلاً أولاً؟ 18:03 <@nop> حسناً  18:04 < jrand0m> :) 18:04 < jrand0m> حسناً، انظروا البريد الذي أرسلته مع routerArchitecture.png. 	أي آراء حول ذلك الفصل؟ 18:04 -!- tek [~tek@anon.iip] قد خرج [] 18:05 < WinBear> jrand0m: هل هذا على الويكي؟ 18:05 < jrand0m> WinBear> لا، على قائمة البريد، رغم أن الأرشيفات متوقفة. 	دعني أضيفه إلى الويكي 18:06 <@hezekiah> صحّحوني إن كنت مخطئاً ... 18:07 <@hezekiah> ... لكن يبدو أننا سنملك ثلاث واجهات API منفصلة متشابهة 	قدر الإمكان. 18:07 <@hezekiah> صحيح؟ 18:07 < jrand0m> نعم hezekiah 18:07 <@hezekiah> وبما أن كل API بلغة مختلفة، فهل سيكون لكلٍ تنفيذ منفصل؟ 18:07 < jrand0m> نعم 18:07 <@hezekiah> أم هل ثمة طريقة لـ Java أو Python للوصول إلى مكتبة C؟ 18:08 < jrand0m> نعم، لكننا لا نريد سلوك ذلك المسار 18:08 < mihi> لـ Java: JNI 18:08 <@hezekiah> إذن هذا الحديث عن Java وC وC++ وPython إلخ يعملون معاً 	غير ذي جدوى لأنهم لن يفعلوا؟ 18:08 < jrand0m> كيف أُرفِق صورة في الويكي؟ 18:08 <@hezekiah> لكل API واجهة خلفية خاصة بها مكتوبة بتلك اللغة. 18:08 < jrand0m> لا يا hezekiah، انظر إلى المخطط 18:09 <@hezekiah> أوه، طبعاً! 18:09 <@hezekiah> واجهات الـ API لا ترتبط بواجهة خلفية. 18:10 <@hezekiah> إنها تتخاطب عبر sockets. 18:10 < jrand0m> نعم سيدي 18:10 <@hezekiah> لا يزال هذا مربكاً قليلاً. 18:10 <@hezekiah> أعطني لحظة هنا. :) 18:11 <@hezekiah> حسناً. ما الشيء الموسوم بـ 'transport'؟ 18:11 < jrand0m> مثلاً، transport لـ HTTP ثنائي الاتجاه، transport لـ SMTP، 	transport لمقبس عادي، مقبس HTTP يستعلم بشكل دوري، إلخ 18:11 < jrand0m> الشيء الذي ينقل الـ بايتات بين الـ routers 18:12 <@hezekiah> حسناً. 18:12 <@hezekiah> إذن المخطط الذي أنظر إليه يُظهر حاسوب شخص واحد. 18:12 <@hezekiah> لديه router يتخاطب مع حواسيب الآخرين 	عبر الـ transports. 18:12 < jrand0m> صحيح 18:12 <@hezekiah> الشخص 1 (Alice) لديه تطبيقان يعملان. 18:12 <@hezekiah> أحدهما بـ C والآخر بـ Java. 18:13 <@hezekiah> كلاهما مرتبط بمكتبة (وهي الـ API). 18:13 < jrand0m> كلاهما "مرتبط" بمكتبتين منفصلتين (واجهات الـ API) 18:13 <@nop> مفهوم بسيط 18:13 <@nop> نعم 18:13 <@hezekiah> تلك المكتبات تأخذ المُدخل من البرنامج، تُشفّره، وترسله 	عبر sockets (‏UNIX أو TCP) إلى الـ router ... وهو برنامج آخر تُشغّله Alice. 18:13 < jrand0m> صحيح 18:14 <@hezekiah> حسناً. إذن الأمر أشبه بأن isproxy مقسّم إلى جزأين. 18:14 < jrand0m> بالضبط :) 18:14 <@hezekiah> جزء منخفض المستوى ومكتوب بلغة C، والآخر عالي المستوى 	ومكتوب بأي لغة كانت. 18:14 < jrand0m> تماماً 18:14 <@hezekiah> حسناً. فهمت. :) 18:14 < jrand0m> w00t 18:14 <@hezekiah> إذاً ليست هناك حاجة لأن تتوافق أي لغة مع أخرى. 18:14 < jrand0m> WinBear> آسف، لا أستطيع وضعه على الويكي لأنها تقبل النص فقط :/ 18:15 <@hezekiah> وبما أنها جميعاً تتخاطب مع الـ router عبر sockets، يمكنك 	كتابة واجهة API بلغة PASCAL ولن يمانع التصميم ذلك. 18:15 <@nop> نعم 18:15 <@nop> أيّاً كان 18:15 < jrand0m> صحيح 18:15 <@nop> إنه يتعامل مع أي sockets 18:15 < jrand0m> رغم أن بعض الأشياء تحتاج إلى توحيد (مثل هياكل البيانات 	لـ Destination وLease، إلخ) 18:15 < WinBear> jrand0m: بدأت تتكوّن لدي فكرة عامة بناءً على ما يقوله hezekiah 18:15 < jrand0m> تمام 18:16 <@hezekiah> jrand0m: صحيح. بنية وترتيب الـ bytes التي تمر عبر ذلك 	المقبس محدّدة في تصميم ما في مكانٍ ما 18:16 <@hezekiah> في مكانٍ ما. 18:17 <@hezekiah> لكن ما زال بإمكانك تنفيذ طريقة إرسال واستقبال تلك الـ 	bytes بأي طريقة تروق لك. 18:17 <@nop> WinBear: إنها الطريقة ذاتها التي يعمل بها عميل IRC 	مع isproxy 18:17 < jrand0m> تماماً 18:17 <@hezekiah> جيد. 18:17 <@hezekiah> أفهم الآن. :) 18:17 -!- moltar [~me@anon.iip] قد غادر #iip-dev [moltar] 18:17 <@nop> حسناً 18:17 <@nop> ليس تماماً 18:17 <@hezekiah> أوه لا. 18:17 <@nop> لكن تخيّل كيف يعمل ذلك 18:17 <@nop> وستفهم فكرة الـ sockets الاعتباطية 18:17 <@nop> isproxy يقوم فقط بالتوجيه 18:17 <@nop> والتسليم 18:18 <@nop> الآن يا jrand0m 18:18 <@nop> سؤال سريع 18:18 < jrand0m> نعم سيدي؟ 18:18 <@nop> هل صُمّمت هذه الـ API فقط للتطبيقات الجديدة المُصمَّمة 	للعمل على هذه الشبكة 18:18 -!- mode/#iip-dev [+v logger] by hezekiah 18:18 < WinBear> nop: مع أن المستوى العالي يحل محل عميل IRC؟ 18:18 < jrand0m> nop> نعم. رغم أن وكيل SOCKS5 يمكنه استخدام هذه الـ API أيضاً 18:18 <@nop> أم يمكن أن يكون هناك وسيط يسمح للعملاء القياسيين الحاليين 18:18 <@nop> مثلاً 18:19 <@nop> بحيث كل ما علينا هو كتابة الوسيط -> API 18:19 < jrand0m> (لكن لاحظ أنه لا توجد خدمة 'lookup' متاحة - 	لا يوجد DNS لهذه الشبكة) 18:19 < jrand0m> صحيح 18:19 <@nop> لكي ندعم مثلاً Mozilla إلخ 18:19 <@nop> بحيث يمكنهم فقط كتابة إضافات 18:19 < jrand0m> nop> نعم 18:19 <@nop> حسناً 18:19 <@nop> أو transports :) 18:20 < jrand0m> (مثلاً، لدى SOCKS5 وكلاء HTTP الخارجيون مُضمَّنون إلى 	destination1 وdestination2 وdestination3) 18:20 <@nop> حسناً 18:20 < WinBear> أظن أنني فهمت 18:21 < jrand0m> w00t 18:21 < jrand0m> حسناً، من الأمور التي كان علي التفكير فيها في هذا التصميم 	إبقاء المفاتيح الخاصة في مساحة ذاكرة التطبيق - الـ router لا يحصل 	مطلقاً على مفاتيح Destination الخاصة. 18:21 <@hezekiah> إذاً يمكن للتطبيق إرسال بيانات خام عبر شبكة I2P 	بإرسالها إلى الـ API، ولا يحتاج للقلق بشأن الباقي. 18:22 <@hezekiah> صحيح؟ 18:22 < jrand0m> هذا يعني أن على واجهات الـ API تنفيذ جزء التشفير من طرف 	إلى طرف 18:22 < jrand0m> تماماً يا hezekiah 18:22 <@hezekiah> حسناً. 18:22 <@nop> نعم 18:22 <@nop> هذه هي الفكرة 18:22 <@nop> هو يقوم بذلك نيابةً عنك 18:22 <@nop> أنت فقط تستدعي الـ hook 18:23 <@hezekiah> سؤال سريع: 18:23 <@hezekiah> هذا "router" يحتاج بوضوح إلى التحدّث ببروتوكول معيّن 	عبر الـ transports خاصته. 18:23 < jrand0m> صحيح 18:23 <@hezekiah> إذَنْ من الممكن توفير عدة تنفيذات للـ router ... 18:23 < jrand0m> نعم 18:24 <@hezekiah> ... طالما أنها جميعاً تتحدث البروتوكول نفسه. 18:24 < jrand0m> (ولهذا يحتوي الـ spec على أماكن محجوزة لـ bitbuckets) 18:24 < jrand0m> صحيح 18:24 <@hezekiah> إذ يمكنك أن تملك router بـ Java، وآخر بـ C، وآخر 	بـ PASCAL. 18:24  * jrand0m يقشعر 18:24 < jrand0m> لكن نعم 18:24 <@hezekiah> ويمكنها جميعاً التحدث معاً لأنها تتحدث عبر 	TCP/IP باستخدام البروتوكول نفسه. 18:24  * WinBear يقفز 18:24 <@hezekiah> jrand0m: ونعم. لا أذكر أيام PASCAL بحنين كبير أيضاً. 18:25 < jrand0m> حسناً، يمكن لـ Pascal أن يتحدث مع الذي بـ C عبر نقل TCP، 	ويمكن لـ C أن يتحدث مع الذي بـ Java عبر نقل HTTP، مثلاً 18:25 <@hezekiah> صحيح. 18:25 < jrand0m> (الـ transports تتخاطب مع الـ transports المماثلة، والـ 	routers تدير الرسائل المُسلَّمة بينها لكنها لا تتعامل مع كيفية تسليمها) 18:26 <@hezekiah> النقطة التي أردت توضيحها هي أن البروتوكول واحد، لذا لا 	يهم بأي لغة نُفّذ router شخص ما. 18:26 < jrand0m> صحيح 18:26 <@hezekiah> رائع. 18:26 < jrand0m> الآن تفهم لماذا قلت «ومن يهتم» لكل مناظرات C مقابل Java 	مقابل ...؟ :) 18:26 <@hezekiah> نعم. 18:26 <@hezekiah> لول 18:27 <@hezekiah> أحييك يا jrand0m. هذا سيجعل الأمر لطيفاً جداً للمطوّرين 	لكتابة برامج لهذه الشبكة. 18:27 < jrand0m> هه، حسناً، الـ API ليست فكرة أصلية تماماً. هكذا تعمل 	Message Oriented Middleware (MOM) 18:27 <@hezekiah> ويمكنك حتى صنع routers تتخصص بميزات خاصة بمنصات معيّنة 	(مثل معالجات 64-بت). 18:28 < jrand0m> بالتأكيد 18:28 <@hezekiah> jrand0m: ومتواضع أيضاً! ;-) 18:28 <@hezekiah> حسناً، يبدو جيداً لي. 18:28 < jrand0m> حسناً، UserX و nop، هل يبدو هذا الفصل منطقياً؟ 18:28 <@nop> بالطبع 18:28 <@nop> هل UserX ما زال هنا 18:29 <@hezekiah> كان خاملاً لمدة 1:26. 18:29 < jrand0m> 'حسناً'. إذن لدينا مهمتان: تصميم الشبكة، وتصميم كيفية عمل 		الـ API. 18:29 <@nop> صحيح 18:29 <@hezekiah> سؤال بسيط سريع: واجهات الـ API تقوم بتشفير من طرف إلى طرف. هل 	تقوم الـ routers بتشفير عقدة إلى عقدة؟ 18:29 <@nop> نعم 18:30 < jrand0m> نعم 18:30 < jrand0m> (على مستوى الـ transport) 18:30 <@hezekiah> جيد. :) 18:30 <@nop> hezekiah: هذا مشابه جداً لما لدينا حتى الآن 18:30 <@nop> من تلك الناحية 18:31 < jrand0m> حسناً.. آه، اللعنة، thecrypto غير موجود لإبداء التعليقات على 	نموذج الأداء. 18:31 < Neo> وللمهتمين بالخصوصية بشدة، يمكن للتطبيقات إجراء تشفير PGP قبل 	أن يصل إلى الـ API ;) 18:31 < jrand0m> بالتأكيد يا neo 18:31 < jrand0m> لقد راودتني فكرة ترك تشفير الطرف إلى الطرف خارج الـ API 	وتركه للتطبيقات... 18:31 <@hezekiah> jrand0m: ذلك سيكون قاسياً. 18:31 < jrand0m> هههه 18:32 <@hezekiah> بالمناسبة، واجهات الـ API والـ router تتواصل عبر sockets. 18:32 <@hezekiah> على UNIX هل ستستخدم sockets لـ UNIX أم مقابس TCP/IP 	محلية؟ 18:32 < jrand0m> على الأرجح TCP/IP محلياً فقط من باب البساطة 18:32 <@nop> انتظر 18:32 <@hezekiah> (أظن أنه يمكنك صنع router يقبل كليهما.) 18:33  * hezekiah يعجبه حقاً هذا الإعداد ذو الأجزاء القابلة للاستبدال 18:33 <@nop> إن انتظرت لحظة 18:34 <@hezekiah> أنتظر ... :) 18:34 <@nop> سأتصل بـ thecrypto في منزله 18:34 <@nop> لأرى إن كان يستطيع الدخول 18:34 < jrand0m> هه تمام 18:34 <@hezekiah> لول 18:34  * hezekiah يتخذ لهجة إيطالية سميكة 18:34 <@hezekiah> Nop لديه ... علاقات! 18:34 < jeremiah> أهلاً 18:34 <@nop> أهلاً jeremiah 18:35 < jrand0m> أهلاً jeremiah 18:35 <@nop> هل تود على مستوى الـ API المساعدة في واجهة Python API 18:35 < jeremiah> بالتأكيد 18:35  * jeremiah يقرأ السجل السابق 18:35 < jrand0m> هه تمام 18:35  * nop يتصل 18:36 <@nop> ليس في المنزل 18:36 <@nop> سيعود خلال ساعة 18:36 < jrand0m> 'حسناً، هل قرأ أحد غيري ملف .xls و/أو لديه تعليقات على 	النموذج؟ 18:37 <@hezekiah> قرأت ملف .xls ... لكنني لا أعرف الكثير عن p2p لذا كان 	معظمُه فوق مستواي. 18:37 <@hezekiah> UserX جيد في تلك الأمور. 18:37 <@nop> عليّ أن أقرأه بعدُ 18:37 < jrand0m> (بالمناسبة، كانت لدى morphmix أرقام مجنونة... كانوا يقولون 	إنهم يتوقعون أن تكون لدى مضيفين عشوائيين على الشبكة أزمنة ping متوسطة 	بين 20-150ms، بدلاً من 3-500 كما كنت أتوقع) 18:37 < jrand0m> جميل 18:37 <@nop> هل هو StarOffice أم OpenOffice؟ 18:37 < jrand0m> OpenOffice، لكني صدّرته إلى .xls 18:37 <@nop> وهو امتداد Excel؟ 18:37 < jrand0m> صحيح 18:38 <@hezekiah> بالمناسبة، بخصوص الـ API ... 18:38 < jrand0m> نعم سيدي؟ 18:38 <@hezekiah> ... في C سيكون النوع المنطقي boolean عبارة عن int. 18:38 <@nop> أي بريد إلكتروني 18:38 <@nop> hezekiah: نعم 18:38 <@hezekiah> سيتم إرسال الأصناف كمؤشرات إلى هياكل. 18:38 <@nop> إلا إذا عرّفت typedef لـ boolean 18:39 <@hezekiah> والدوال التي تستخدم byte[] ستستخدم void* مع معامل إضافي 	يحدد طول المخبأ (buffer). 18:39 <@nop> hezekiah: أنت تدقق كثيراً :) 18:39 < jrand0m> nop> لا أستطيع الوصول إلى الأرشيفات لذا لست متأكداً مما 	كان سطر الموضوع، لكنه كان الأسبوع الماضي... 18:39 <@nop> دعها لوقت لاحق 18:39 <@hezekiah> nop: أدقق؟ 18:39 < jrand0m> هه، نعم، أنتم الذين تعملون على واجهة C يمكنكم حل هذا 	التفصيل 18:39  * jeremiah أنهى قراءة السجل السابق 18:39 <@nop> ما اسم الملف 18:39 <@hezekiah> nop: أحاول فقط العثور على كل الأشياء المختلفة، لكي 	نحسمها كما طلب jrand0m. 18:40 <@hezekiah> أحاول أن أكون مفيداً. :) 18:40 <@nop> hezekiah: نعم، على الأرجح خارج وقت الاجتماع 18:40 < jrand0m> nop> simple_latency.xls 18:40 <@hezekiah> boolean sendMessage(Destination dest, byte[] payload); 18:40 <@hezekiah>  would be 18:40 <@hezekiah> int sendMessage(Destination dest, void* payload, int length); 18:40 <@hezekiah> . 18:40 <@hezekiah> byte[]  recieveMessage(int msgId); 18:40 <@hezekiah>  that could either be: 18:41 <@hezekiah> void*  recieveMessage(int msgId, int* length); 18:41 <@hezekiah>  أو 18:41 <@nop> jrand0m: got it 18:41 <@hezekiah> void recieveMessage(int msgId, void* buf, int* length); 18:41 <@hezekiah>  أو 18:41 < jrand0m> hezekia: why not typedef struct { int length; void* data; 	} Payload; 18:41 <@hezekiah> DataBlock* recieveMessage(int msgId)l 18:41 <@hezekiah> DataBlock* recieveMessage(int msgId); 18:41 < jeremiah> أين هذا الملف xls؟ 18:41 <@nop> أوه iip-dev 18:41 <@hezekiah> jrand0m: البنية التي ذكرتها هي أساساً ما عليه DataBlock. 18:42 < jrand0m> تمام يا hezekiah 18:42 <@nop> subject more models 18:42 <@hezekiah> على الأرجح نسخة C ستكون لديها DataBlocks. 18:43 <@hezekiah> علاوة على ذلك، الشيء الآخر الوحيد الجدير بالذكر هو أن كل 	'interface' ستكون مجرد مجموعة دوال. 18:43 <@hezekiah> nop: هل وجدت كل الفروقات التي ستوجد في واجهة C API؟ 18:43 < jrand0m> صحيح. ربما #include "i2psession.h" أو شيء كهذا 18:43 < jeremiah> هل توجد نسخة أولية لواجهة Python API؟ 18:44 < jrand0m> لا يا jeremiah، لا أعرف Python حقاً :/ 18:44 <@nop> سأحتاج إلى إعادة مراجعة واجهة Java API، لكنني أقول إنك على 	المسار الصحيح 18:44 < jrand0m> لكنها ستكون على الأرجح مشابهة لـ Java، حيث إن Python OO 18:44 < jeremiah> رائع، يمكنني اشتقاق واحدة من واجهة C 18:44  * nop ليس خبير Java 18:44 < jrand0m> تمام jeremiah 18:44 < jeremiah> هل واجهة C API في الشيء الذي أرسلته قبل أيام؟ 18:44 <@hezekiah> نعم. ينبغي لـ Python أن تتعامل مع واجهة Java API. 18:44 < jrand0m> jeremiah> تلك كانت الخاصة بـ Java 18:45 < jrand0m> أوه، الخاصة بـ Java كانت اليوم 18:45 < jrand0m> والأقدم كانت مستقلة عن اللغة 18:45 <@hezekiah> هممم 18:45 <@nop> يقول UserX إنه يجب أن يكون قادراً على المساعدة في واجهة C API 18:45 < jrand0m> تمام 18:45 <@nop> هو مشغول في العمل حالياً 18:46 < jrand0m> جميل 18:46 <@hezekiah> ملاحظة أخيرة: مع واجهة C API، ربما تأخذ كل دالة structure* 	إلى البنية التي تُعدّ 'واجهة' لها في Java. 18:46 <@nop> hezekiah: يبدو جيداً 18:46 <@nop> يبدو جيداً 18:46 <@hezekiah> I2PSession       createSession(String keyFileToLoadFrom, 	Properties options); 18:46 <@hezekiah>  ستكون: 18:46 <@nop> جافا وأنواع بياناتها غير الأصلية 18:46 <@hezekiah> I2PSession* createSession(I2PClient* client, char* 	keyFileToLoadFrom, Properties* options); 18:46 <@nop> ;) 18:46 < jrand0m> ههه 18:46 < jrand0m> صحيح يا hezekiah 18:47 < jeremiah> هل نتعامل مع Unicode؟ 18:47 <@hezekiah> على أي حال، إن كنتم تستطيعون التعايش مع تلك الفروق، فينبغي 	أن تكون واجهات C وJava API متطابقة فيما عدا ذلك. 18:47 <@hezekiah> nop؟ Unicode؟ :) 18:47 < jrand0m> UTF8 إن لم يكن UTF16 18:48 <@hezekiah> ربما ينبغي التعامل مع Unicode على مستوى التطبيق. 18:48 < jrand0m> صحيح، مجموعة المحارف (charset) هي شأن محتوى الرسالة 18:48 <@hezekiah> أوه. 18:48 < jeremiah> حسناً 18:48 <@hezekiah> سلاسل Java تُدار بـ Unicode، أليس كذلك يا jrand0m؟ 18:48 < jrand0m> جميع الـ bitbuckets ستكون مُعرَّفة على مستوى البِت 18:48 < jrand0m> نعم يا hezekiah 18:48 < jrand0m> (إلا إذا طلبتَ منها صراحةً تغيير مجموعة المحارف) 18:49 <@hezekiah> إذن السلسلة المُرسلة إلى واجهة Java API ستكون مختلفة عن 	تلك المُرسلة إلى واجهة C API ما لم تنفّذ واجهة C API السلاسل باستخدام 	Unicode. 18:49 < jrand0m> غير ذي صلة 18:49 <@hezekiah> حسناً. 18:49 < jrand0m> (app->API != API->router. نحن نعرّف فقط API->router) 18:49 <@hezekiah> ما أقوله هو هذا يا jrand0m: 18:50 <@hezekiah> إذا ضبطتُ كلمة مروري عبر واجهة Java API، فإنها تذهب إلى 	الـ router ومنه إلى مكانٍ آخر. 18:50 < jrand0m> كلمة مرور؟ تقصد أنك تنشئ Destination؟ 18:50 <@hezekiah> ثم يجد router آخر، يرسله إلى واجهة API أخرى 	(؟) مُنفّذة بـ C. 18:50 <@hezekiah>   void            setPassphrase(String old, String new); 18:50 <@hezekiah> تلك الدالة. 18:51 < jrand0m> hezekiah> تلك كلمة المرور الإدارية للوصول إلى الأساليب 	الإدارية للـ router 18:51 <@hezekiah> آه 18:51 <@hezekiah> هل تنتهي أي دوال في الـ API تستخدم سلاسل Java بإرسال تلك 	السلسلة إلى واجهة API أخرى؟ 18:51 < jrand0m> ‏99.9% من التطبيقات ستستخدم I2PSession فقط، وليس I2PAdminSession 18:51 <@nop> أيضاً، أي شيء يحمله الـ router يتحوّل للسفر عبر الشبكة، صحيح؟ 18:51 <@hezekiah> إذاً ينبغي على الأرجح استخدام Unicode. 18:51 <@nop> ‏Unicode لن يكون ذا صلة 18:52 < jrand0m> hezekiah> لا. كل المعلومات بين الـ routers ستُعرَّف عبر 	bit buckets 18:52 <@hezekiah> حسناً. 18:52 < jrand0m> صحيح nop، على مستوى الـ transport 18:52 <@hezekiah> ‏(أفترض أن bit bucket مجرد مخبأ ثنائي، صحيح؟) 18:53 < jrand0m> ‏bit bucket هو توصيف يُفيد بأن البِت الأول يعني X، والبِت الثاني 	يعني Y، والبِتّات 3-42 تعني Z، إلخ 18:53 < jrand0m> ‏(مثلاً قد نرغب في استخدام X.509 لحيّز شهادات الـ bitbucket)
+<div class="irc-log">
+--- Log opened Tue Jul 15 17:46:47 2003
+17:46 < gott> yo.
+17:46 <@nop> just a heads up on my silence
+17:46 <@hezekiah> Tue Jul 15 21:46:49 UTC 2003
+17:47 <@hezekiah> OK. The iip-dev meeting has started.
+17:47 <@hezekiah> Is it the 48th or 49th?
+17:47 < jrand0m> nop> this is why its critical that we get the router
+	architecture pounded out asap.  I understand that different people have
+	different rates of speed, and we must segment so different components can
+	proceed accordingly
+17:47 < mihi> 49th
+17:47 <@hezekiah> OK! Welcome to the 49th iip-dev meeting!
+17:47 < jrand0m> I have three more days at my job, after which 90+ hours /
+	week will be dedicated to getting this going
+17:48 < jrand0m> I know and don't expect everyone to be able to do that,
+	which is why we need to segment
+17:48 < jrand0m> hi hezekiah :)
+17:48 <@hezekiah> lol
+17:48 <@nop> to rebutt on that
+17:48 <@hezekiah> I'll wait a minute. Then we can do the agenda. :)
+17:48 <@nop> the security of the router architecture is dependant that you
+	do not rush as well
+17:49 <@nop> if we do
+17:49 <@nop> we overlook
+17:49 <@nop> which could leave us cleaning up a big mess later
+17:49 -!- Rain [Rain@anon.iip] has quit [I Quit]
+17:49 < jrand0m> nop> disagree.  we can still build app layer and APIs
+	without implementing the router (or even knowing how the network will operate)
+17:49 <@nop> I agree with that
+17:50 <@nop> I'm specifically talking about the underlying network
+17:50 < jrand0m> if we can agree to the API I sent out, then thats the
+	segmentation we need
+17:50 < jrand0m> right, router impl and network design still isn't done
+17:50 <@nop> ok
+17:50 <@nop> oh, I can definitely agree with your api so far
+17:51 <@hezekiah> jrand0m: One problem.
+17:51 < jrand0m> shoot hezekiah
+17:51 <@hezekiah> It will look different if you implement it in C.
+17:51 < jrand0m> not too different
+17:51 < gott> oh dear
+17:51 < jrand0m> less capital letters, and replace the objects with structs
+17:51 < gott> what languages are people considering implementing it in?
+17:51 < jrand0m> (for the api)
+17:51 <@hezekiah> Uh, jrand0m? There is no 'byte[]' in C.
+17:51 < jrand0m> gott> read the mail archives for some example answers to that
+17:52 <@hezekiah> You will be using void*'s with an integer to specifiy the
+	length most likely.
+17:52 < jrand0m> hezekiah> then unsigned int[]
+17:52 < gott> jrand0m: for once, a religious war that I'm not a part of
+17:52 <@hezekiah> If I remember correctly (help me out here nop), you can't
+	just return an unsigned int[] from a function.
+17:53 <@hezekiah> gott: as opposed to what? pseudocode?
+17:53 < jrand0m> right, syntactic changes.  but yes, if there are real
+	differences, we need to get them worked out ASAP.  (like, today)  Perhaps
+	now would be a good tiem to look at the email I sent entitled "high level
+	router architecture and API" and review?
+17:54 <@hezekiah> nop? UserX? Are you game for that?
+17:54 < jrand0m> not too different, but different none the less, yes.
+	which is why I said Java API on todays email :)
+17:54 -!- WinBear [WinBear@anon.iip] has joined #iip-dev
+17:55 <@nop> wait
+17:55 <@nop> reading above
+17:55 -!- mihi_2 [~none@anon.iip] has joined #iip-dev
+17:55 -!- mihi is now known as nickthief60234
+17:55 -!- mihi_2 is now known as mihi
+17:55 < jrand0m> wb mihi
+17:55 < gott> btw, is this being live logged?
+17:55 -!- nickthief60234 [~none@anon.iip] has quit [EOF From client]
+17:55 <@hezekiah> gott: Yes.
+17:55 < mihi> redundancy rules ;)
+17:55 < gott> I'll just read it later on then.
+17:55 -!- gott [~gott@anon.iip] has left #iip-dev [gott]
+17:56 <@nop> ok
+17:56 <@nop> yes
+17:56 < WinBear> jrand0m: hi
+17:56 <@nop> definitely differences
+17:56 <@nop> what we need
+17:56 < jrand0m> heya WinBear
+17:56 <@nop> is a team of certain developers to write the main api level
+	controls for these languages
+17:56 <@nop> we know that jrand0m can handle java
+17:56 <@nop> and probably could team up with thecrypto as well
+17:56 <@nop> and hezekiah and the gang can do C
+17:56 <@nop> and jeremiah if he's willing
+17:56 <@nop> can do python
+17:56 <@hezekiah> I can do C++ too! ;-)
+17:56 <@nop> ok
+17:56 <@nop> C++ as well
+17:57 <@hezekiah> lol
+17:57 <@nop> C++ will probably work
+17:57 <@nop> with C
+17:57 <@nop> if you don't template the crap out of it
+17:57 < jrand0m> heh
+17:57 <@hezekiah> lol
+17:57 <@hezekiah> Actually, while MSVC can link C and C++ object files,
+	gcc doesn't seem to like that.
+17:57 <@nop> aka, stick to structs that are compatible with C, or is that
+	not viable
+17:57 < jrand0m> first question, prior to that, is what applications will use
+	these APIs?  I know of apps that will want to use java, will iproxy be in C?
+17:58 <@hezekiah> nop: I don't think C and C++ are object compatible.
+17:58 <@nop> ok
+17:58 <@hezekiah> nop: C++ won't get along with C much better than Java.
+17:58 <@nop> well maybe USerX could do C
+17:58 <@nop> and you could pull C++
+17:58 <@hezekiah> We don
+17:58 <@nop> ?
+17:58 <@hezekiah> don't even need to _do_ C++ if you don't want to. It's
+	just that I prefer it.
+17:59 <@nop> well, the thing is
+17:59 <@nop> there are a lot of C++ developers
+17:59 <@nop> especially in the microsoft world
+17:59 <@hezekiah> Even in the Linux world. (see: KDE and Qt.)
+17:59 < jrand0m> C and C++ are binary compatible if you just make .so or .a
+17:59 < jrand0m> (btw)
+18:00 <@nop> can C be a good placement for C++, aka C++ developers would be
+	able to handle a c api easier than a C++ api with a c developer?
+18:00 <@hezekiah> jrand0m: Yeah. You can probably have libraries ... but if
+	you can
+18:00 <@hezekiah> jrand0m: can't even use classes, it sorta defeats the
+	purpose.
+18:00 <@nop> right
+18:00 <@nop> let's stick with C
+18:01 <@nop> because C++ coders can still call a C library rather easily
+18:01 <@hezekiah> If one module needs to call anothers functions, then they
+	had best both be the same language.
+18:01 <@hezekiah> nop: C++ coders will know C well enough ... though it
+	might take some work if they never /learned/ C.
+18:02 <@hezekiah> However, C coders wouldn't know C++ since C is just a
+	subset of C++.
+18:02 -!- logger_ [~logger@anon.iip] has joined #iip-dev
+18:02 -!- Topic for #iip-dev: logfiles will be online after the meeting:
+	http://wiki.invisiblenet.net/?Meetings
+18:02 [Users #iip-dev]
+18:02 [@hezekiah] [+Ehud    ] [ leenookx] [ moltar] [ tek    ]
+18:02 [@nop     ] [ jeremiah] [ logger_ ] [ Neo   ] [ WinBear]
+18:02 [@UserX   ] [ jrand0m ] [ mihi    ] [ ptsc  ]
+18:02 -!- Irssi: #iip-dev: Total of 14 nicks [3 ops, 0 halfops, 1 voices,
+10 normal]
+18:02 < jrand0m> right
+18:02 -!- Irssi: Join to #iip-dev was synced in 9 secs
+18:02 < jrand0m> (with JMS :)
+18:02 <@nop> yep
+18:03 -!- You're now known as logger
+18:03 < jrand0m> ok, can we review the overall architecture to see whether
+	the APIs are even relevent first?
+18:03 <@nop> fine  18:04 < jrand0m> :)
+18:04 < jrand0m> ok, see the email I sent w/ the routerArchitecture.png.
+	any thoughts on that seperation?
+18:04 -!- tek [~tek@anon.iip] has quit []
+18:05 < WinBear> jrand0m: is that on the wiki?
+18:05 < jrand0m> WinBear> no, on the mailing list, though the archives
+	are down.  lemmie add it to the wikki
+18:06 <@hezekiah> Correct me if I'm wrong ...
+18:07 <@hezekiah> ... but it looks like we're going to have 3 seperate API's
+	that are as similar as possible.
+18:07 <@hezekiah> Right?
+18:07 < jrand0m> yes hezekiah
+18:07 <@hezekiah> So since each API is in a different language, are they
+	going all each have seperate implementations?
+18:07 < jrand0m> yes
+18:07 <@hezekiah> Or is there a way for Java or Python to access a C library?
+18:08 < jrand0m> yes, but we don't want to go that route
+18:08 < mihi> for java: JNI
+18:08 <@hezekiah> So this talk about Java, C, C++, Python, etc. working
+	together is mute since they never will?
+18:08 < jrand0m> how do I attach an image to the wiki?
+18:08 <@hezekiah> Each API has its own backend written in that language.
+18:08 < jrand0m> no hezekiah, look at the diagram
+18:09 <@hezekiah> Oh, duh!
+18:09 <@hezekiah> The API's don't link to a backend.
+18:10 <@hezekiah> They talk via sockets.
+18:10 < jrand0m> si sr
+18:10 <@hezekiah> This is still a little confusing though.
+18:10 <@hezekiah> Give me a sec here. :)
+18:11 <@hezekiah> OK. What is the thing labeled 'transport'?
+18:11 < jrand0m> for example, bidirectional HTTP transport, SMTP transport,
+	plain socket transport, polling HTTP socket, etc
+18:11 < jrand0m> the thing that moves bytes between routers
+18:12 <@hezekiah> OK.
+18:12 <@hezekiah> So the diagram I'm looking at shows one person's computer.
+18:12 <@hezekiah> He has a router that talks to other people's computers
+	via the transports.
+18:12 < jrand0m> correct
+18:12 <@hezekiah> Person 1 (Alice) has 2 applications running.
+18:12 <@hezekiah> One is in C, the other in Java.
+18:13 <@hezekiah> Both are linked to a library (that's the API).
+18:13 < jrand0m> both are "linked" to seperate libraries (the APIs)
+18:13 <@nop> simple concept
+18:13 <@nop> yes
+18:13 <@hezekiah> Those libraries, take input from the program encrypt it,
+	and send it via sockets (unix or TCP) to the router ... which is another
+	program Alice is running.
+18:13 < jrand0m> correct
+18:14 <@hezekiah> OK. So it's kinda like isproxy being split in two.
+18:14 < jrand0m> bingo :)
+18:14 <@hezekiah> One part is low end and written in C, and the other is
+	high end and written in whatever.
+18:14 < jrand0m> exactly
+18:14 <@hezekiah> OK. I get it. :)
+18:14 < jrand0m> w00t
+18:14 <@hezekiah> So no language needs to play nice with any other language.
+18:14 < jrand0m> WinBear> sorry, I can't toss it on the wiki as it only
+	takes text :/
+18:15 <@hezekiah> Since they all comunicate with the router via sockets,
+	you could write an API in PASCAL for all the design cares.
+18:15 <@nop> yes
+18:15 <@nop> arbitrary
+18:15 < jrand0m> right
+18:15 <@nop> it handles arbitrary sockets
+18:15 < jrand0m> though some things need to be standardized (like the data
+	structures for Destination, Lease, etc)
+18:15 < WinBear> jrand0m: i get a vague idea based on what hezekiah is saying
+18:15 < jrand0m> word
+18:16 <@hezekiah> jrand0m: Right. The structure and order of the bytes that
+	go across that socket is set in a design somewhre
+18:16 <@hezekiah> somewhere.
+18:17 <@hezekiah> But you can still implement how those bytes are send and
+	received any joly way you please.
+18:17 <@nop> WinBear: it's the same exact way that the irc client works
+	with isproxy
+18:17 < jrand0m> exactly
+18:17 <@hezekiah> Good.
+18:17 <@hezekiah> I understand now. :)
+18:17 -!- moltar [~me@anon.iip] has left #iip-dev [moltar]
+18:17 <@nop> well
+18:17 <@nop> not exactly
+18:17 <@hezekiah> Uh oh.
+18:17 <@nop> but imagine how that works
+18:17 <@nop> and you can understand arbitrary sockets
+18:17 <@nop> isproxy just routes
+18:17 <@nop> and delivers
+18:18 <@nop> now jrand0m
+18:18 <@nop> quick question
+18:18 < jrand0m> si sr?
+18:18 <@nop> is this api designed for only new applications that are designed
+	to work on this network
+18:18 -!- mode/#iip-dev [+v logger] by hezekiah
+18:18 < WinBear> nop: with the highlevel replacing the irc client?
+18:18 < jrand0m> nop> yes.  though a SOCKS5 proxy could use this API as well
+18:18 <@nop> or can it be able to have a middle man that can allow already
+	standard clients
+18:18 <@nop> for instance
+18:19 <@nop> so all we would have to do is write the middleman -> api
+18:19 < jrand0m> (but note that there's no 'lookup' service available -
+	no DNS for this network)
+18:19 < jrand0m> correct
+18:19 <@nop> so that we can support say Mozilla etc
+18:19 <@nop> so they can just code plugins
+18:19 < jrand0m> nop> yes
+18:19 <@nop> ok
+18:19 <@nop> or transports :)
+18:20 < jrand0m> (e.g. the SOCKS5 has the HTTP outproxies hardcoded to
+	destination1, destination2, and destination3)
+18:20 <@nop> ok
+18:20 < WinBear> i think i get it
+18:21 < jrand0m> w00t
+18:21 < jrand0m> ok, one of the things I had to think about in this design
+	was keeping the private keys in the app's memory space - the router never
+	gets a hold of destination private keys.
+18:21 <@hezekiah> So the application can send raw data over the I2P network
+	by sending it to the API, and it doesn't need to worry about the rest.
+18:22 <@hezekiah> Right?
+18:22 < jrand0m> that means the APIs need to implement the end to end part
+	of the crypto
+18:22 < jrand0m> exactly hezekiah
+18:22 <@hezekiah> OK.
+18:22 <@nop> yes
+18:22 <@nop> that's the idea
+18:22 <@nop> it does it for you
+18:22 <@nop> you just call the hook
+18:23 <@hezekiah> One quick question:
+18:23 <@hezekiah> This 'router' obviously needs to speak a certain protocol
+	over it's transports.
+18:23 < jrand0m> correct
+18:23 <@hezekiah> So it is possible to provide multiple implementations of
+	the router ...
+18:23 < jrand0m> yes
+18:24 <@hezekiah> ... as long as they both speak the same protocol.
+18:24 < jrand0m> (which is why the spec has placeholders for bitbuckets)
+18:24 < jrand0m> right
+18:24 <@hezekiah> So you have a router in Java, and one in C, and one
+	in PASCAL.
+18:24  * jrand0m cringes
+18:24 < jrand0m> but yeah
+18:24 <@hezekiah> And they all can talk together since they're talking over
+	TCP/IP using the same protocol.
+18:24  * WinBear jumps
+18:24 <@hezekiah> jrand0m: And yes. I don't remember my PASCAL days overly
+	fondly either.
+18:25 < jrand0m> well, Pascal can talk to the C one through the TCP transport,
+	and the C one can talk to the Java one over the HTTP transport, for example
+18:25 <@hezekiah> Right.
+18:25 < jrand0m> (transports talk to other like transports, routers manage
+	the messages delivered between them but don't deal with how they're delivered)
+18:26 <@hezekiah> The point I was looking to make was that the protocol is the
+	same, so it doesn't matter what language someone's router is implemented in.
+18:26 < jrand0m> right
+18:26 <@hezekiah> Cool.
+18:26 < jrand0m> now you understand why I said "who cares" to all the C vs
+	Java vs etc debates?  :)
+18:26 <@hezekiah> Yup.
+18:26 <@hezekiah> lol
+18:27 <@hezekiah> I've got to hand it to you jrand0m. This will make it very
+	kind for develoeprs to write programs for this network.
+18:27 < jrand0m> heh, well, the API ain't quite original.  this is how
+	Message Oriented Middleware (MOM) works
+18:27 <@hezekiah> And you could even make routers that specialize in certain
+	platform specific features (like 64-bit CPU's).
+18:28 < jrand0m> absolutely
+18:28 <@hezekiah> jrand0m: Humble too! ;-)
+18:28 <@hezekiah> Well, it looks good to me.
+18:28 < jrand0m> ok, UserX, nop, does this seperation make sense?
+18:28 <@nop> of course
+18:28 <@nop> is userx still here
+18:29 <@hezekiah> He's been idle for 1:26.
+18:29 < jrand0m> 'k.  so then we have two tasks: design the network, and
+	design how the API works.
+18:29 <@nop> right
+18:29 <@hezekiah> Quick simple question: The API's do end to end crypto. Do
+	the routers to node to node crypto ?
+18:29 <@nop> yes
+18:30 < jrand0m> yes
+18:30 < jrand0m> (transport level)
+18:30 <@hezekiah> Good. :)
+18:30 <@nop> hezekiah: it's very similar to what we have so far
+18:30 <@nop> in that aspect
+18:31 < jrand0m> ok.. er, shit, thecrypto aint around for comments on the
+	performance model.
+18:31 < Neo> and for the paranoid, the apps can do the pgp encryption before
+	it hits the API ;)
+18:31 < jrand0m> absolutely neo
+18:31 < jrand0m> I was even tempted to leave the end to end crypto out of
+	the API and leave it up to the apps...
+18:31 <@hezekiah> jrand0m: That would be cruel.
+18:31 < jrand0m> heheh
+18:32 <@hezekiah> BTW, the API's and the router communicate via sockets.
+18:32 <@hezekiah> On UNIX will they be using UNIX sockets or local TCP/IP
+	sockets?
+18:32 < jrand0m> prolly just local tcp/ip for simplicity
+18:32 <@nop> hold
+18:32 <@hezekiah> (I suppose you could make a router that accepts both.)
+18:33  * hezekiah is really liking this interchangable parts setup
+18:33 <@nop> if you hold on a sec
+18:34 <@hezekiah> Holding ... :)
+18:34 <@nop> I'll call thecrypto at his house
+18:34 <@nop> see if he can get on
+18:34 < jrand0m> hehe word
+18:34 <@hezekiah> lol
+18:34  * hezekiah dons a thick Itallian accent
+18:34 <@hezekiah> Nop ha' got ... CONNECTIONS!
+18:34 < jeremiah> lo
+18:34 <@nop> hey jeremiah
+18:35 < jrand0m> heya jeremiah
+18:35 <@nop> would you be willing at the api level to assist with a python api
+18:35 < jeremiah> sure
+18:35  * jeremiah reads backlog
+18:35 < jrand0m> heh word
+18:35  * nop is calling
+18:36 <@nop> he's not home
+18:36 <@nop> he'll be back in an hour
+18:36 < jrand0m> 'k, has anyone else read the .xls and/or have comments on
+	the model?
+18:37 <@hezekiah> I read the .xls ... but I don't know much about p2p so
+	most of it was over my head.
+18:37 <@hezekiah> UserX is good at that stuff.
+18:37 <@nop> I have to read it still
+18:37 < jrand0m> (btw, morphmix had some insane numbers... they were saying
+	they could expect random hosts on the net to have average 20-150ms ping times,
+	rather than the 3-500 I was expecting)
+18:37 < jrand0m> coo'
+18:37 <@nop> it's staroffice or openoffice?
+18:37 < jrand0m> openoffice, but I exported it to .xls
+18:37 <@nop> which is excell?
+18:37 < jrand0m> correct
+18:38 <@hezekiah> BTW, concerning the API ...
+18:38 < jrand0m> si sr?
+18:38 <@hezekiah> ... in C the boolean would be int.
+18:38 <@nop> which email
+18:38 <@nop> hezekiah: yes
+18:38 <@hezekiah> The classes would be sent as structure pointers.
+18:38 <@nop> unless you typedef boolean
+18:39 <@hezekiah> And the functions that use byte[] would use a void* with
+	an additional parameter that specefies the length of the buffer.
+18:39 <@nop> hezekiah: you're being picky :)
+18:39 < jrand0m> nop> I cant access the archives so I'm not sure what the
+	subject line was, but it was last week...
+18:39 <@nop> save it for a later time
+18:39 <@hezekiah> nop: Picky?
+18:39 < jrand0m> heh, yeah, y'all working on the C api can work that detail out
+18:39  * jeremiah is done reading backlog
+18:39 <@nop> what's the file called
+18:39 <@hezekiah> nop: I'm just trying to find all the stuff that is different,
+	so we can hammer it out like jrand0m asked.
+18:40 <@hezekiah> I'm trying to be helpful. :)
+18:40 <@nop> hezekiah: yes, probably off meeting time
+18:40 < jrand0m> nop> simple_latency.xls
+18:40 <@hezekiah> boolean sendMessage(Destination dest, byte[] payload);
+18:40 <@hezekiah>  would be
+18:40 <@hezekiah> int sendMessage(Destination dest, void* payload, int length);
+18:40 <@hezekiah> .
+18:40 <@hezekiah> byte[]  recieveMessage(int msgId);
+18:40 <@hezekiah>  that could either be:
+18:41 <@hezekiah> void*  recieveMessage(int msgId, int* length);
+18:41 <@hezekiah>  or
+18:41 <@nop> jrand0m: got it
+18:41 <@hezekiah> void recieveMessage(int msgId, void* buf, int* length);
+18:41 <@hezekiah>  or
+18:41 < jrand0m> hezekia: why not typedef struct { int length; void* data;
+	} Payload;
+18:41 <@hezekiah> DataBlock* recieveMessage(int msgId)l
+18:41 <@hezekiah> DataBlock* recieveMessage(int msgId);
+18:41 < jeremiah> where's this xls?
+18:41 <@nop> oh iip-dev
+18:41 <@hezekiah> jrand0m: The struct you just mentioned is basically what
+	DataBlock is.
+18:42 < jrand0m> word hezekiah
+18:42 <@nop> subject more models
+18:42 <@hezekiah> Chances are the C version would have DataBlocks.
+18:43 <@hezekiah> Beyond that the only other thing to note is that each
+	'interface' would just be a set of functions.
+18:43 <@hezekiah> nop: Did I find all the differences that would exist in
+	a C API?
+18:43 < jrand0m> right.  perhaps #include "i2psession.h" or something
+18:43 < jeremiah> is there a mockup python api?
+18:44 < jrand0m> no jeremiah, I don't really know python :/
+18:44 <@nop> I would have to re-review the java api, but I would say that
+	you're right on target
+18:44 < jrand0m> but it would probably be similar to the java, as python is OO
+18:44 < jeremiah> cool, i can derive one from the C one
+18:44  * nop is not a java head
+18:44 < jrand0m> cool jeremiah
+18:44 < jeremiah> is the c api in the thing you sent out a few days ago?
+18:44 <@hezekiah> Yeah. Python should be able to handle the Java api.
+18:44 < jrand0m> jeremiah> that was the Java one
+18:45 < jrand0m> oh, the Java one was today
+18:45 < jrand0m> the older one was language independent
+18:45 <@hezekiah> Hmm
+18:45 <@nop> UserX says he should be able to assist with C api
+18:45 < jrand0m> word
+18:45 <@nop> he's busy at work at the moment
+18:46 < jrand0m> coo'
+18:46 <@hezekiah> One last note: With the C api, each function would probably
+	take a structure* to the structure that it is an 'interface' of in Java.
+18:46 <@nop> hezekiah: loos good
+18:46 <@nop> looks good
+18:46 <@hezekiah> I2PSession       createSession(String keyFileToLoadFrom,
+	Properties options);
+18:46 <@hezekiah>  would be:
+18:46 <@nop> java and their non-native data types
+18:46 <@hezekiah> I2PSession* createSession(I2PClient* client, char*
+	keyFileToLoadFrom, Properties* options);
+18:46 <@nop> ;)
+18:46 < jrand0m> hehe
+18:46 < jrand0m> right hezekiah
+18:47 < jeremiah> are we addressing unicode?
+18:47 <@hezekiah> Anyway, if you can live with those differences, the C and
+	Java API's should be identical beyond that.
+18:47 <@hezekiah> nop? Unicode? :)
+18:47 < jrand0m> UTF8 if not UTF16
+18:48 <@hezekiah> Perhaps Unicode should be dealt with on the application
+	level.
+18:48 < jrand0m> right, charset is all the content of the message
+18:48 <@hezekiah> Oh.
+18:48 < jeremiah> ok
+18:48 <@hezekiah> Java String's are done in Unicode, aren't they jrand0m?
+18:48 < jrand0m> the bitbuckets'll all be bit defined
+18:48 < jrand0m> yes hezekiah
+18:48 < jrand0m> (unless you explicitly instruct them to change charsets)
+18:49 <@hezekiah> So the string sent to the Java API would be different than
+	the one sent to the C API unless the C API implements strings using Unicode.
+18:49 < jrand0m> not relevent
+18:49 <@hezekiah> OK.
+18:49 < jrand0m> (app->API != API->router.  we only define API->router)
+18:49 <@hezekiah> What I'm saying is this, jrand0m:
+18:50 <@hezekiah> If I set my password with the Java API, it goes to the
+	router out someplace else.
+18:50 < jrand0m> password?  you mean you create a Destination?
+18:50 <@hezekiah> Then it find another router, which sends it to another API
+	(?) which is implemented in C.
+18:50 <@hezekiah>   void            setPassphrase(String old, String new);
+18:50 <@hezekiah> That function.
+18:51 < jrand0m> hezekiah> thats the administrative password to access the
+	administrative methods of the router
+18:51 <@hezekiah> Ah
+18:51 <@hezekiah> Do any functions in the API which use Java String's end
+	up with that String being sent to another API?
+18:51 < jrand0m> 99.9% of apps will only use I2PSession, not I2PAdminSession
+18:51 <@nop> also, anything carried with the router gets converted for
+	network travel correct?
+18:51 <@hezekiah> If so, we should probably use Unicode.
+18:51 <@nop> unicode wouldn't be releavant
+18:52 < jrand0m> hezekiah> no.  all inter-router info will be defined by
+	bit buckets
+18:52 <@hezekiah> OK.
+18:52 < jrand0m> correct nop, at the transport level
+18:52 <@hezekiah> (I'm assuming a bit bucket is just a binary buffer, right?)
+18:53 < jrand0m> a bit bucket is a statement that the first bit means X,
+	the second bit means Y, bits 3-42 mean Z, etc
+18:53 < jrand0m> (e.g. we may want to use X.509 for the certificates bitbucket)
 
-18:53 <@hezekiah> لم أتعامل مع ذلك من قبل.
-18:54 <@hezekiah> سأهتم به عندما أصل إليه. :)
-18:54 < jrand0m> هه، صحيح
-18:55 < jrand0m> حسنًا، أربع أمور أردت أن نغطيها اليوم: *هيكلية router	، *نموذج الأداء، *تحليل الهجمات، *psyc. لقد أنجزنا	الأول، thecrypto غير متصل لذا ربما نؤجل هذا (إلا إذا كانت لديك	أفكار حول النموذج يا nop؟)
-18:57 <@hezekiah> أمم ... jrand0m. لدي سؤال آخر.
-18:57 < jeremiah> jrand0m: أين أحدث نسخة من مواصفات الشبكة؟ هل	هي ما أرسلته في الثالث عشر؟
-18:57 < jrand0m> نعم يا سيدي؟
-18:57 <@hezekiah> حسنًا، هيكلية router تجعل واجهة برمجة التطبيقات (API) تتعامل مع المفاتيح	/المرسلة إليها من قِبل التطبيق/.
-18:57 < jrand0m> jeremiah> نعم
-18:57 <@nop> ليس لدي في الوقت الحالي
-18:58 <@hezekiah> الآن ... الطريقة الوحيدة التي أراها لحصول الـAPI على المفتاح هي	عبر createSession.
-18:58 < jrand0m> hezekiah> router يحصل على المفاتيح العامة والتواقيع،	وليس المفاتيح الخاصة
-18:58 < jrand0m> صحيح
-18:58 <@hezekiah> لكن ذلك يتطلب ملفًا.
-18:58 < jrand0m> تُخزَّن المفاتيح في ملف أو في ذاكرة الـAPI
-18:58 < jrand0m> نعم
-18:58 <@hezekiah> الآن، إذا أنشأ التطبيق مفتاحًا، فلماذا لا يمكنه ببساطة	إرساله إلى الـAPI عبر مخزن مؤقت؟
-18:59 <@hezekiah> هل يجب فعلًا تخزينه في ملف، ثم تزويد اسم	الملف؟
-18:59 < jrand0m> لا، يمكن أن يكون في الذاكرة إن أردت
-18:59 <@hezekiah> لكن لا توجد دالة في الـAPI لكل ذلك.
-18:59 <@hezekiah> مجرد فكرة.
-19:00 <@hezekiah> إذا كان من المفترض إنشاء المفتاح مرة واحدة فقط واستخدامه	مرات كثيرة جدًا (مثل مفاتيح GPG)، فإن الملف يكون منطقيًا.
-19:00 -!- mihi [none@anon.iip] قد غادر [وداعًا جميعًا، لقد تأخر الوقت...]
-19:00 <@hezekiah> لكن إن كان سيُولَّد بشكل متكرر أكثر، فربما تكون هناك	طريقة لإرساله مباشرةً إلى الـAPI عبر بنية أو مخزن مؤقت من نوعٍ ما	ستكون لطيفة
+18:53 <@hezekiah> I've never dealt with that before.
+18:54 <@hezekiah> I'll worry about it when I get there. :)
+18:54 < jrand0m> heh word
+18:55 < jrand0m> ok, the four things I wanted us to hit today: *router
+	architecture, *performance model, *attack analysis, *psyc.  We've done
+	the first, thecrypto is offline so perhaps we delay this (unless you have
+	thoughts on the model nop?)
+18:57 <@hezekiah> Um ... jrand0m. I have yet another question.
+18:57 < jeremiah> jrand0m: where's the latest version of the network spec? is
+	it what you sent out on the 13th?
+18:57 < jrand0m> si sr?
+18:57 <@hezekiah> Well the router architecture has the API's handle keys
+	/sent to them by the Application/.
+18:57 < jrand0m> jeremiah> yes
+18:57 <@nop> I don't at this time
+18:58 <@hezekiah> Now ... the only way I see that the API gets the key is
+	from createSession.
+18:58 < jrand0m> hezekiah> the router  gets public keys and signatures,
+	not private keys
+18:58 < jrand0m> right
+18:58 <@hezekiah> But that requires a file.
+18:58 < jrand0m> the keys are stored in a file or in the API's memory
+18:58 < jrand0m> yes
+18:58 <@hezekiah> Now if the application generates a key, why can't it just
+	send it to the API via a buffer?
+18:59 <@hezekiah> Must it really store it in a file, and then provide the
+	file name?
+18:59 < jrand0m> no, it can be in memory if you'd like
+18:59 <@hezekiah> There is not function to all that in the API though.
+18:59 <@hezekiah> It's just a thought.
+19:00 <@hezekiah> If the key is supposed to be generated only once and used
+	many, many times (like GPG keys), then a file makes sense.
+19:00 -!- mihi [none@anon.iip] has quit [bye all, it's getting late...]
+19:00 <@hezekiah> But if it will be generated more often, then perhaps some
+	way to directly send it to the API via a structure or buffer of some sort
+	might be nice
 19:00 <@hezekiah> .
-19:01 < jrand0m> نعم، يُولَّد مرة واحدة وفقط مرة واحدة (إلا إذا كنت ترتدي	قبعة من ورق الألومنيوم)
-19:02 < jrand0m> مع ذلك فإن createDestination(keyFileToSaveTo) تتيح لك	إنشاء ذلك المفتاح
-19:02 <@hezekiah> حسنًا.
-19:02 <@hezekiah> لا حاجة فعلية للنقل مباشرةً من	التطبيق إلى الـAPI. يكفي استخدام ملف.
-19:03 <@hezekiah> إذًا أين كنا قبل أن أقاطعكم بهذه الوقاحة؟ :)
-19:06 < jeremiah> إذًا نحن الآن نعمل فقط على واجهة برمجة تطبيقات router، وليس	الخاصة بالعميل، صحيح؟
-19:06 < jrand0m> حسنًا، سنتجاوز تحليل الأداء الآن	(نأمل أن نحصل على بعض النقاش حوله في قائمة البريد قبل الأسبوع	القادم؟). وعلى الأرجح الأمر نفسه بخصوص تحليل الهجمات (ما لم يكن أحد قرأ	المواصفات الجديدة ولديه تعليقات)
-19:07 <@hezekiah> طالما أننا نتجاوز ذلك، فما الذي يفترض	بنا أن نتحدث عنه الآن؟
-19:07 <@hezekiah> psyc؟
-19:07 < jrand0m> إلا إذا كان لدى أي شخص آخر تعليقات ليطرحها...؟
-19:08 <@hezekiah> حسنًا، للمرة الأولى، حفرة التعليقات لدي (المعروفة	سيئًا باسم فمي) فارغة.
-19:08 < jrand0m> ههه
-19:09 < jrand0m> حسنًا، هل لدى أحد أفكار حول كيف سيعمل جانب IRC من الأمور، وما إذا كان psyc قد يكون ذا صلة أو مفيدًا؟
-19:09 < jeremiah> ملاحظة جانبية (أغضبتني): قائمة wired بعنوان "Wired, Tired,	Expired" وضعت Waste ضمن "wired"
-19:09 < jrand0m> هه
-19:09 < jrand0m> هل تدرك كم سنُذهل الجميع؟
-19:09 < jeremiah> نعم
-19:09 <@hezekiah> jrand0m: هذا يفترض أننا سنجعل هذا يعمل.
-19:10 < jrand0m> أضمن أنه سيعمل.
-19:10 <@hezekiah> هناك الكثير من المحاولات الفاشلة هناك.
-19:10 < jrand0m> تركت عملي لأعمل على هذا.
-19:10 <@hezekiah> إذًا سنُذهل الجميع. :)
-19:10 <@hezekiah> نعم. كيف ستؤمّن لقمة العيش عندما تفعل ذلك؟
-19:10 <@hezekiah> شيفرة GPL لا تدفع جيدًا. ;-)
-19:10 < jrand0m> هه
-19:11 <@hezekiah> أما بالنسبة إلى psyc ... دعني أقولها بهذه الطريقة:
-19:11 <@hezekiah> أول مرة سمعت عنه كانت عندما أرسلتَ لنا بريدًا	بشأنه.
-19:11 < jrand0m> اللعنة، لم أكن أنا من وجده :)
-19:11 <@hezekiah> مع ذلك، IRC على الأرجح واحد من أكثر	بروتوكولات الدردشة انتشارًا (إن لم يكن /الأكثر/).
-19:11 <@hezekiah> سيريد الناس تطبيقات IRC بفترة طويلة قبل أن /يعرفوا/	حتى ما هو psyc.
-19:11 <@hezekiah> jrand0m: أوبس. آسف. نسيت ذلك التفصيل. :)
-19:12 < jrand0m> ليس وفقًا لـpsyc. تاريخهم يعود إلى 86 على ما أظن
-19:12 <@hezekiah> الفكرة هي أن تفوّق البروتوكول ليس	مهمًا بقدر من يستخدمه.
-19:12 <@hezekiah> قد يعود _تاريخهم_ إلى ذلك الوقت.
-19:12 <@hezekiah> لكن كم عدد الأشخاص الذين _يستخدمون_ psyc؟
-19:12 < jeremiah> نعم، إذا كانوا موجودين منذ سنة بعد ولادتي	(إحم) وما زالوا غير كبار إلى هذا الحد
-19:12 <@hezekiah> قصدي أنه حتى لو كان بروتوكولًا أفضل، فإن معظم	الناس _يستخدمون_ IRC.
-19:13 <@hezekiah> يمكننا أن نصنع أفضل شبكة I2P على الكوكب ...
-19:13 -!- Ehud [logger@anon.iip] قد غادر [Ping timeout]
-19:14 < jeremiah> هل يمكن لأحد أن يشرح باختصار لماذا نهتم؟ ظننتُ أن IRC	سيكون مجرد تطبيق ممكن واحد، لكن الشبكة مرنة لدعم psyc أيضًا إذا أرادت
-19:14 <@hezekiah> صحيح.
-19:14 <@hezekiah> يمكن تنفيذ psyc ...
-19:14 <@hezekiah> ... لكنني أقول إن علينا أن نبدأ بـIRC أولًا لأن مزيدًا من	الناس يستخدمونه.
+19:01 < jrand0m> yes, its generated once and only once (unless you're wearing
+	a tinfoil hat)
+19:02 < jrand0m> though the createDestination(keyFileToSaveTo) lets you
+	create that key
+19:02 <@hezekiah> OK.
+19:02 <@hezekiah> So there's really no need for transfer directly from the
+	App to the API. A file will suffice.
+19:03 <@hezekiah> So where were we before I so rudely interupted? :)
+19:06 < jeremiah> so right now we're just working on the router API, not
+	the client one, right?
+19:06 < jrand0m> well, we're skipping on performance analysis for now
+	(hopefully we can get some chatter re: it on the mailing list before next
+	week?).  and probably the same wrt attack analysis (unless anyone read the
+	new spec and has comments)
+19:07 <@hezekiah> So we're since we're skipping that, what are we supposed
+	to be talking about now?
+19:07 <@hezekiah> Psyc?
+19:07 < jrand0m> unless anyone else has other comments to bring up...?
+19:08 <@hezekiah> Well, for once, my comment hole (also notoriously known
+	as my mouth) is empty.
+19:08 < jrand0m> hehe
+19:09 < jrand0m> ok, anyone have any thoughts on how the IRC side of things
+	will work, and whether psyc may be relevent or useful?
+19:09 < jeremiah> sidenote (that pissed me off): wired's "Wired, Tired,
+	Expired" list had Waste as 'wired'
+19:09 < jrand0m> heh
+19:09 < jrand0m> do you realize how much we're going to blow everyone away?
+19:09 < jeremiah> yep
+19:09 <@hezekiah> jrand0m: That assumes we get this to work.
+19:10 < jrand0m> I guarantee it will work.
+19:10 <@hezekiah> There are a lot of other failed efforts out there.
+19:10 < jrand0m> I quit my job to work on this.
+19:10 <@hezekiah> Then we're going to blow everyone away. :)
+19:10 <@hezekiah> Yeah. How is bread getting on the table when you do that?
+19:10 <@hezekiah> GPL code doesn't pay well. ;-)
+19:10 < jrand0m> heh
+19:11 <@hezekiah> As for psyc ... let me put it this way:
+19:11 <@hezekiah> The first time I heard of it was when you emailed us
+	about it.
+19:11 < jrand0m> shit, I wasn't the one who found it :)
+19:11 <@hezekiah> However, IRC is probably one of the most (if not /the/
+	most) prolific chat protocols around.
+19:11 <@hezekiah> People will want IRC apps LONG before they even /know/
+	what psyc is.
+19:11 <@hezekiah> jrand0m: Oops. Sorry. I forgot that detail. :)
+19:12 < jrand0m> not according to psyc.  their history goes back to 86 I think
+19:12 <@hezekiah> The point is that the supperiority of the protocol, isn't
+	really as relevant as to who uses it.
+19:12 <@hezekiah> Their _history_ may go back that far.
+19:12 <@hezekiah> But how many people _use_ Psyc?
+19:12 < jeremiah> yeah if they've been around since a year after I was born
+	(ahem) and they aren't that big yet
+19:12 <@hezekiah> My point is that even if it's a better protocol, most
+	people _use_ IRC.
+19:13 <@hezekiah> We can make the best I2P network on the planet ...
+19:13 -!- Ehud [logger@anon.iip] has quit [Ping timeout]
+19:14 < jeremiah> can someone explain briefly why we care? I thought IRC
+	would only be one possible application but that the network is flexible to
+	support psyc as well if it wanted to
+19:14 <@hezekiah> Right.
+19:14 <@hezekiah> Psyc can be made ...
+19:14 <@hezekiah> ... but I'm saying we should do IRC first because more
+	people use it.
 
-19:14 <@hezekiah> jrand0m, we can make a great I2P network, but people won't 	use it unless it has something they want. 19:14 < jrand0m> jeremiah> the reason psyc is interesting is that we may 	want to implement IRC in the same vein that psyc works 19:15 <@hezekiah> Hence we should provide them with a 'killer-app'. 19:15 < jeremiah> ok 19:15 < jrand0m> right, IIP is invisible IRC project, and will allow people 	to run IRC 19:16 < jrand0m> with no central server (or any server at all, actually), 	theres a lot of thinking to be done to figure out how IRC will work. 	psyc has a possible answer to that 19:16 < jrand0m> though there are others 19:17 <@hezekiah> As I said, psyc might do better, but people want to use IRC, 	not psyc. 19:17 < jrand0m> and they will 19:17 < jrand0m> they'll use irc 19:17 <@hezekiah> It's all about marketing, baby! ;-) 19:17 < jeremiah> I'll try to read the spec and some stuff on psyc tonight 19:17 < jrand0m> word 19:17 <@hezekiah> lol 19:17 < jeremiah> planning to meet at 5:00 UTC tommorow? 19:17 <@hezekiah> No? 19:18 < jeremiah> or whenever 19:18 < jrand0m> I'm on iip 24x7 :) 19:18 < jeremiah> yeah but i eat 19:18 <@hezekiah> jrand0m: I noticed. 19:18 < jrand0m> 05:00 utc or 17:00 utc? 19:18 <@hezekiah> jeremiah: LOL! 19:18 <@hezekiah> Well the iip-dev meeting officially starts at 21:00 UTC. 19:18 -!- Ehud [~logger@anon.iip] has joined #iip-dev 19:19 < jeremiah> ok, i just said 05:00 UTC because I was talking out of my ass 19:19 < jeremiah> where's mids? 19:19 <@hezekiah> mids, left the project for a while. 19:19 <@hezekiah> Weren't you there a few meetings back? 19:19 < jeremiah> ok 19:19 < jeremiah> guess not 19:19 <@hezekiah> We had a goodbye party of sorts as part of the agenda. 19:19 < jeremiah> oh 19:20 <@hezekiah> OK ... 19:20 <@hezekiah> Is there anything still on the agenda? 19:20  * jrand0m doesn't have any left on mine 19:20 < jeremiah> about psyc: 19:20 < jeremiah> if this is a psyc feature, I know you mentioned it a 	while ago 19:20  * hezekiah never had an agenda in the first placve 19:21 <@hezekiah> pace 19:21 <@hezekiah> place 19:21 < jeremiah> I don't think having each user send a message to every 	other use in the room is s smart idea 19:21 <@hezekiah> There! 19:21 < jrand0m> jeremiah> so you'd have redundant nominated pseudoservers 	redistribute the messages? 19:21 < jrand0m> (pseudoservers = peers in the channel who have the list 	of users) 19:21 < jeremiah> I don't think 'broadcasting' is that smart either, but it
+19:14 <@hezekiah> jrand0m, we can make a great I2P network, but people won't
+	use it unless it has something they want.
+19:14 < jrand0m> jeremiah> the reason psyc is interesting is that we may
+	want to implement IRC in the same vein that psyc works
+19:15 <@hezekiah> Hence we should provide them with a 'killer-app'.
+19:15 < jeremiah> ok
+19:15 < jrand0m> right, IIP is invisible IRC project, and will allow people
+	to run IRC
+19:16 < jrand0m> with no central server (or any server at all, actually),
+	theres a lot of thinking to be done to figure out how IRC will work.
+	psyc has a possible answer to that
+19:16 < jrand0m> though there are others
+19:17 <@hezekiah> As I said, psyc might do better, but people want to use IRC,
+	not psyc.
+19:17 < jrand0m> and they will
+19:17 < jrand0m> they'll use irc
+19:17 <@hezekiah> It's all about marketing, baby! ;-)
+19:17 < jeremiah> I'll try to read the spec and some stuff on psyc tonight
+19:17 < jrand0m> word
+19:17 <@hezekiah> lol
+19:17 < jeremiah> planning to meet at 5:00 UTC tommorow?
+19:17 <@hezekiah> No?
+19:18 < jeremiah> or whenever
+19:18 < jrand0m> I'm on iip 24x7 :)
+19:18 < jeremiah> yeah but i eat
+19:18 <@hezekiah> jrand0m: I noticed.
+19:18 < jrand0m> 05:00 utc or 17:00 utc?
+19:18 <@hezekiah> jeremiah: LOL!
+19:18 <@hezekiah> Well the iip-dev meeting officially starts at 21:00 UTC.
+19:18 -!- Ehud [~logger@anon.iip] has joined #iip-dev
+19:19 < jeremiah> ok, i just said 05:00 UTC because I was talking out of my ass
+19:19 < jeremiah> where's mids?
+19:19 <@hezekiah> mids, left the project for a while.
+19:19 <@hezekiah> Weren't you there a few meetings back?
+19:19 < jeremiah> ok
+19:19 < jeremiah> guess not
+19:19 <@hezekiah> We had a goodbye party of sorts as part of the agenda.
+19:19 < jeremiah> oh
+19:20 <@hezekiah> OK ...
+19:20 <@hezekiah> Is there anything still on the agenda?
+19:20  * jrand0m doesn't have any left on mine
+19:20 < jeremiah> about psyc:
+19:20 < jeremiah> if this is a psyc feature, I know you mentioned it a
+	while ago
+19:20  * hezekiah never had an agenda in the first placve
+19:21 <@hezekiah> pace
+19:21 <@hezekiah> place
+19:21 < jeremiah> I don't think having each user send a message to every
+	other use in the room is s smart idea
+19:21 <@hezekiah> There!
+19:21 < jrand0m> jeremiah> so you'd have redundant nominated pseudoservers
+	redistribute the messages?
+19:21 < jrand0m> (pseudoservers = peers in the channel who have the list
+	of users)
+19:21 < jeremiah> I don't think 'broadcasting' is that smart either, but it
 
-يبدو أنه سيتطلب مقدارًا _كبيرًا_ من عرض النطاق لمستخدم معيّن قد يكون على 	مودِم، ومع التأخير الناتج عن إرسال... لنقل 20 رسالة بشكل منفصل، سيؤدي ذلك إلى 	إفساد المحادثة
-19:21 < jeremiah> لا أعرف أفضل حل، ربما يكون ذلك أحدها
-19:22 < jeremiah> أظن أن الرسائل المباشرة ستكون جيدة إن أردتها، 	لكن هناك حالات ربما لا تكون فيها بتلك الأهمية
-19:22 <@hezekiah> يجب توقيع الرسالة بالمفتاح الخاص بالمؤلف 	لضمان الأصالة.
-19:22 <@hezekiah> مع أن هذه المسألة لن تهمّ لفترة طويلة بعد، 	أعتقد أن jeremiah معه حق
-19:22 < jrand0m> hezekiah> ذلك يتطلب مستخدمين يريدون تواصلًا قابلًا للإثبات :)
-19:23 < jrand0m> بالتأكيد.
-19:23 <@hezekiah> إن كان عليّ إرسال رسالة إلى 100 مستخدم في قناة ...
-19:23 < jeremiah> مع أن متوسط رسائلي لا يتجاوز بضع مئات من البايتات، 	فإرسالها إلى مئات المستخدمين قد لا يكون صعبًا جدًا
-19:23 <@hezekiah> ... حسنًا، ستكون محادثتي /بطيئة جدًا/.
-19:23 < jeremiah> خصوصًا إذا لم تنتظر ردًا
-19:23 <@hezekiah> 20K لإرسال رسالة واحدة.
-19:23 <@hezekiah> لا أظن ذلك. :)
-19:23 < jrand0m> حسنًا، إذا كان هناك 100 مستخدم في قناة، فعلى *أحدهم* 	إرسال 100 رسالة
-19:23 < jeremiah> هل هي 20K؟
-19:23 < jeremiah> آه، صحيح
-19:23 <@hezekiah> 200 مستخدم
-19:24 < jeremiah> هممم
-19:24 < jeremiah> ألن تكون routers جيدة في ذلك؟
-19:24 < jeremiah> يمكننا باطمئنان إلى حدّ ما افتراض أنّ لديهم عرض نطاق مناسبًا، 	أليس كذلك؟
-19:24 <@hezekiah> كنت أظن أن لكل شخص 'router implementation'
-19:24 < jrand0m> ليس بالضبط. إذا وُجدت مرحلات، فعلى آلية الترشيح 	أخذ ذلك بالاعتبار
-19:24 < jrand0m> نعم يا hezekiah
-19:24 < jeremiah> لم أقرأ المواصفة
-19:25 < jrand0m> الـ router هو الـ router المحلي لديك
-19:25 <@hezekiah> آخ!
-19:25 <@hezekiah> ما زلت أخلط ألقابكما!
+	seems like it'll require a _lot_ of bandwith for a given user who may be on
+	a modem, and with the lag from sending say... 20 messages separately would
+	screw up conversation
+19:21 < jeremiah> I don't know the best solution, maybe that would be one
+19:22 < jeremiah> I think direct messaging would be good if you wanted it,
+	but there are cases where it's probalby not that important
+19:22 <@hezekiah> The message would need to be signed by the authors private
+	key to garuntee authenticity.
+19:22 <@hezekiah> Though this issue won't matter for a long time still,
+	I think jeremiah has a point
+19:22 < jrand0m> hezekiah> that requires users wanting provable comm :)
+19:23 < jrand0m> definitely.
+19:23 <@hezekiah> If I had to send a message to 100 users in a channel ...
+19:23 < jeremiah> although my average message is only a few hundred bytes,
+	so sending it to hundreds of users might not be so hard
+19:23 <@hezekiah> ... well, my conversation would be /very/ slow.
+19:23 < jeremiah> especially if you didn't wait for a response
+19:23 <@hezekiah> 20K to send one message.
+19:23 <@hezekiah> I don't think so. :)
+19:23 < jrand0m> well, if there are 100 users in a channel, *someone* has
+	to send out 100 messages
+19:23 < jeremiah> it's 20k?
+19:23 < jeremiah> oh, right
+19:23 <@hezekiah> 200 users
+19:24 < jeremiah> hmm
+19:24 < jeremiah> wouldn't the routers be good at that?
+19:24 < jeremiah> we can somewhat safely assume they have decent bandwith,
+	right?
+19:24 <@hezekiah> I thought each person had a 'router implementation'
+19:24 < jrand0m> not really.  if there are relays, the nomination mechanism
+	needs to take that into consideration
+19:24 < jrand0m> yes hezekiah
+19:24 < jeremiah> i haven't read the spec
+19:25 < jrand0m> a router is your local router
+19:25 <@hezekiah> Ugh!
+19:25 <@hezekiah> I'm still mixing your nicks up!
 19:25 <@hezekiah> lol
 19:25 < jrand0m> hehe
-19:25 <@hezekiah> أمم ... إلى أين ذهب nop؟
-19:25 <@hezekiah> أوه.
-19:26 <@hezekiah> ما زال هنا.
-19:26 <@hezekiah> ظننتُ أنه رحل لبرهة،
-19:26 < jrand0m> لكن jeremiah محق، لدى psyc بعض الأفكار التي قد نرغب 	في أخذها بالاعتبار، رغم أننا قد نرغب في رفضها
-19:26 <@hezekiah> دعونا أولًا نجعل الشبكة تعمل.
-19:26  * jrand0m يشرب نخب ذلك
-19:26 <@hezekiah> إذا مددّت رؤيتك نحو خط النهاية، ستتعثر 	بالصخرة التي تبعد 3 بوصات أمامك.
-19:27  * jeremiah يشعر بالإلهام
+19:25 <@hezekiah> Um ... where'd nop go?
+19:25 <@hezekiah> Oh.
+19:26 <@hezekiah> He's still here.
+19:26 <@hezekiah> I thought he was gone for a moment,
+19:26 < jrand0m> but jeremiah is right, psyc has some ideas we may want to
+	consider, though we may want to reject them
+19:26 <@hezekiah> Let's just get the network running first.
+19:26  * jrand0m drinks to that
+19:26 <@hezekiah> If you strech your vision to the finish line, you'll trip
+	over the rock 3 inches in front of you.
+19:27  * jeremiah feels inspired
 19:27 <@hezekiah> lol
-19:27 < jrand0m> أعتقد أنه سيكون رائعًا جدًا لو استهدفنا مراجعة 	مواصفة الشبكة بحلول الأسبوع المقبل، مع إرسال رسائل إلى iip-dev كلما كان لدى أيٍّ منا 	أفكار أو تعليقات.  هل فقدت صوابي؟
-19:27 <@hezekiah> nop؟ هل لديك أي شيء آخر تضيفه إلى جدول الأعمال، 	أم نرفع الجلسة؟
-19:27 <@hezekiah> jrand0m: حسنًا، لا أعلم إن كان بإمكاني قراءة كل ذلك 	بحلول الأسبوع المقبل، لكن يمكنني المحاولة. :)
+19:27 < jrand0m> I think what would be really great if we could aim to review
+	the network spec by next week, sending out emails to iip-dev whenever anyone
+	has thoughts or comments.  am I out of my mind?
+19:27 <@hezekiah> nop? Do you have anything else to add to the agenda,
+	or do we adjurn?
+19:27 <@hezekiah> jrand0m: Well, I don't know if I could read all that by
+	next week, but I can try. :)
 19:27 < jrand0m> heh
-19:28 < jrand0m> إنها 15 صفحة مجهدة ;)
-19:28 <@hezekiah> 15 صفحة؟
-19:28 <@hezekiah> بدت أقرب إلى 120!
-19:29 < jrand0m> هه، حسنًا، يعتمد ذلك على دقّة شاشتك فيما أظن ;)
-19:29 < jeremiah> لديه الكثير من المراسي (anchors) هناك، ما يجعله يبدو 	ضخمًا
+19:28 < jrand0m> its a grueling 15 pages ;)
+19:28 <@hezekiah> 15 pages?
+19:28 <@hezekiah> It looked more like 120!
+19:29 < jrand0m> heh, well, depends on your resolution I suppose ;)
+19:29 < jeremiah> he has a lot of anchors in there, makes it look like
+	it's huge
 19:29 < jrand0m> hehe
-19:29 <@hezekiah> الجانب الأيسر يحتوي على عدد كبير يفوق 15 رابطًا، يا صاح!
-19:29 <@hezekiah> 'اعترف!
-19:29 <@hezekiah> إنها أكثر من 15. :)
-19:29 <@hezekiah> أوه!
-19:29 <@hezekiah> تلك ليست صفحات! إنها مجرد مراسي!
-19:29 <@hezekiah> لقد نجوت!
-19:30  * hezekiah يشعر كبحّار تم إنقاذه للتو من الغرق
-19:30 < jeremiah> يا صفّ، انتقلوا إلى المجلد 4، الفصل 2: بنية بايت الرسالة
+19:29 <@hezekiah> The left side has a LOT more than 15 links, budy!
+19:29 <@hezekiah> 'Fess up!
+19:29 <@hezekiah> It's more than 15. :)
+19:29 <@hezekiah> Oh!
+19:29 <@hezekiah> Those aren't pages! They're just anchors!
+19:29 <@hezekiah> I'm saved!
+19:30  * hezekiah feels like a seaman just rescued from drowning
+19:30 < jeremiah> class turn to volume 4 chapter 2 Message Byte Structure
 19:30 < jrand0m> lol
 19:30 <@hezekiah> lol
-19:30 <@nop> نرفع الجلسة
-19:30 <@hezekiah> *باف*!
-19:30 <@hezekiah> الأسبوع القادم، 21:00 بالتوقيت العالمي UTC، نفس المكان.
-19:30 <@hezekiah> أراكم جميعًا هناك. :)
-19:30 < jeremiah> أراكم --- تم إغلاق السجل Tue Jul 15 19:30:51 2003 </div>
+19:30 <@nop> adjourn
+19:30 <@hezekiah> *baf*!
+19:30 <@hezekiah> Next week, 21:00 UTC, same place.
+19:30 <@hezekiah> See y'all there. :)
+19:30 < jeremiah> seeya
+--- Log closed Tue Jul 15 19:30:51 2003
+</div>

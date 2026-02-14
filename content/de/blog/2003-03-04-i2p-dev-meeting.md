@@ -2,7 +2,7 @@
 title: "I2P Entwicklertreffen"
 date: 2003-03-04
 author: "nop"
-description: "Protokoll der I2P-Entwicklungsbesprechung vom 4. März 2003."
+description: "I2P-Entwicklungsbesprechungsprotokoll vom 4. März 2003."
 categories: ["meeting"]
 ---
 
@@ -14,4 +14,303 @@ categories: ["meeting"]
 
 ## Sitzungsprotokoll
 
-<div class="irc-log"> --- Log geöffnet Tue Mar 04 23:47:24 2003 23:47 -!- Thema für #iip-dev: IIP Meeting - Logdateien: http://mids.student.utwente.nl/~mids/iip/ 23:47 [Benutzer #iip-dev] 23:47 [ eep] [ jeremiah] [ logger] [ mids] [ nop] [ UserX_] 23:47 -!- Irssi: #iip-dev: Insgesamt 6 Nicks [0 Ops, 0 Halfops, 0 Voices, 6 normale] 23:47 -!- Irssi: Beitritt zu #iip-dev wurde in 2 Sek. synchronisiert 23:48 < LeerokLacerta> Geschichte schreiben. 23:48 < mrflibble> hallooo 23:48 < LeerokLacerta> Hallo. 23:52 < nop> hi 23:52 < jeremiah> hi 23:53 < nop> hi 23:53 -!- mode/#iip-dev [+o mids] von Trent 23:53 < LeerokLacerta> Konnichiwa. 23:54 < bpb> konnichiwa 23:58 < nop> hi 23:58 <@mids> Hi hezekiah! 23:58 < hezekiah> Hi. :) 23:58 <@mids> *Igelgeräusch* 23:58 < hezekiah> lol 23:58 < hezekiah> *orgle* 23:58 < LeerokLacerta> Igel? 23:58 < hezekiah> (orgle: Das ist eines der Geräusche, die ein Lama macht.) 23:58 <@mids> LeerokLacerta: relativ große Nagetiere mit scharfen, aufrichtbaren Borsten, die sich mit dem Fell mischen 23:59 < hezekiah> Mids wurde vom Entropie-Bug in einen Igel verwandelt. 23:59 < hezekiah> Ich wurde in ein Lama verwandelt. 23:59 <@mids> nein 23:59 < LeerokLacerta> Ich weiß, was das ist, aber warum machst du Igelgeräusche? 23:59 <@mids> weil ich den Logging-Bug gemeldet habe, den es gar nicht gab 23:59 < hezekiah> Ah. 23:59 < hezekiah> Nun, du hattest erwähnt, dass du dich in einen Igel verwandeln würdest, als du auf den vorherigen Entropie-Bug Bezug genommen hast. --- Tag gewechselt Wed Mar 05 2003 00:00 <@mids> das war damals 00:00 <@mids> Tue Mar  4 23:00:03 UTC 2003 00:00 <@mids> jetzt hier Sitzung 00:00 <@mids> Willkommen allerseits 00:00 <@mids> dies ist das 32. IIP-Meeting 00:00  * LeerokLacerta fühlt sich willkommen. 00:00 <@mids> das vorige wurde abgesagt, weil niemand da war 00:00 <@mids> Logs sind verfügbar unter http://mids.student.utwente.nl/~mids/iip/ 00:01 <@mids> Wir haben eine kleine Agenda: 00:01 <@mids> 1) Willkommen 00:01 <@mids> 2) IIP 1.1.0 Release-Status-Update 00:01 <@mids> 3) Trent-Zugriffslevel für 'voice' 00:01 <@mids> 4) Fragerunde 00:01 <@mids> wenn ihr Fragen zum aktuellen Thema habt, bitte stellen 00:01 <@mids> ansonsten bitte für die Fragerunde aufheben. 00:01 <@mids> . 00:02  * mids verschiebt den Agendazeiger zu #2 "IIP 1.1.0 Release-Status-Update" 00:02 <@mids> also hezekiah, was ist passiert? :) 00:02 < hezekiah> Oh. OK. :) 00:02 < hezekiah> Nun, der erste Entropie-Bug wurde gefixt. 00:02 < hezekiah> Nach viel Kopf-gegen-die-Wand-Schlagen und E-Mail-Austausch ... 00:03 < hezekiah> ... haben UserX, nop und ich es geschafft, einen Fix dafür auszuarbeiten. 00:03 < hezekiah> Jetzt bemerkt mids ein NEUES Problem beim Entropie-Sammeln (nämlich dass seed.rnd nicht gespeichert wird.) 00:03 < hezekiah> Jedenfalls habe ich im Code gesucht und meine Erkenntnisse an die iip-dev-Mailingliste geschickt. 00:04 <@mids> das ist wieder ein Release-Verzögerer 00:04 <@mids> hoffentlich der letzte 00:04 < hezekiah> Ich warte jetzt darauf, dass UserX oder nop mir sagen, was das alles bedeutet und ob ich etwas übersehe (denn ich glaube, das tue ich. Nichts davon ergibt Sinn.) 00:04 < hezekiah> Hoffentlich. *orgle* 00:04 <@mids> . 00:04 < hezekiah> . 00:04 <@mids> Irgendwelche IIP-1.1.0-spezifischen Fragen? 00:05 < LeerokLacerta> Keine Socken? 00:05 <@mids> keine Socken 00:05 < hezekiah> Kein SOCKS. 00:05 < LeerokLacerta> K. 00:05 <@mids> ok 00:05 <@mids> gehen wir weiter zu #3 "Trent-Zugriffslevel für 'voice'" 00:06 <@mids> das hängt mit dem versteckten Agendapunkt #2.9 zusammen. "Der #freenet-opn Channel" 00:06 <@mids> der offizielle Freenet-Projekt-Channel ist auf irc.freenode.net 00:06 <@mids> aber das ist nicht anonym 00:06 <@mids> wir haben hier ein Spiegelbild dieses Channels 00:06 <@mids> in #freenet-opn 00:07 <@mids> der Bot 'eyeKon' erzählt euch alles, was auf der anderen Seite passiert 00:07 <@mids> normalerweise ist das ein Einwegspiegel, aber ihr könnt mit dem "!say :text"-Befehl etwas zurücksagen 00:07 <@mids> dafür müsst ihr Operator- oder Voice-Status haben 00:07 <@mids> wenn ihr etwas sagen wollt, bittet einen Operator, euch Voice zu geben 00:07 <@mids> , 00:08 < dm> Wie wäre es, wenn man, sobald man von Trent identifiziert ist, automatisch Voice bekommt und der eigene Name den Nachrichten vorangestellt wird. Wenn die Leute auf der anderen Seite ein Problem haben, können sie dem Bot einen Befehl schicken, um einen bestimmten Anonyname zu "bannen". In diesem Fall entfernt EyeKon auf dieser Seite dauerhaft Voice für diesen Namen. 00:08 < LeerokLacerta> Dauerhaft? 00:08 < LeerokLacerta> Wie wäre es mit zeitlich befristetem Ban? 00:08 <@mids> das wird ziemlich kompliziert 00:09 <@mids> sie müssten wissen, wie der Bot funktioniert 00:09 <@mids> während es eher als ein einseitig transparentes Ding gedacht ist 00:09 -!- hezekiah heißt jetzt nickthief88099 00:09 <@mids> Ich habe die Channel-Owner von #freenet kontaktiert 00:09 <@mids> und sie hatten kein Problem damit 00:09 < dm> klar, bis mids oder jemand es wiederherstellt. Wir müssen sicherstellen, dass wir die Leute auf der anderen Seite nicht zuspammen/stören. 00:09 <@mids> deshalb bekommt nicht jeder Voice 00:09 <@mids> es ist HÖCHST einfach, hier viele Accounts zu erstellen 00:10 <@mids> daher wird es unmöglich sein, sie alle zu bannen 00:10 < dm> ok, also selektives Voice, über Trent? 00:10 <@mids> was ich WILL, ist selektives Voice über Trent 00:10 < jake> das ist sicher eine interessante Unterhaltung, aber ich muss essen, tschüss 00:10 <@mids> das ist Agendapunkt #3 00:10 <@mids> bye jake, danke fürs Dabeisein 00:10 <@mids> lies danach unbedingt das Logfile 00:10 < jake> danke 00:10 < jake> k 00:10 <@mids> Im Moment hat das Channel-Zugriffssystem 3 Level: 00:11 <@mids> Level 1: Operator 00:11  * mids schaut auf der Seite nach, wie er es genannt hat 00:12 <@mids> Level 1: Normaler Operator, kann sich selbst Ops geben 00:12 <@mids> Level 2: Super-Operator, kann andere Benutzer (mit niedrigerem Level) zum Channel hinzufügen 00:12 <@mids> Level 3: Gründer, am mächtigsten, z.B. erforderlich, um einen Channel zu droppen 00:12 <@mids> Ich möchte ein Voice-Level hinzufügen 00:12 <@mids> damit Leute im Channel Voice bekommen können, wenn sie auf der Access-Liste stehen 00:12 <@mids> aber das Problem ist... welche Nummer sollte das Voice-Level haben? 00:12 < hezekiah> lol 00:13 < hezekiah> Sag mir, dass du keine magischen Zahlen verwendet hast, mids. 00:13 < hezekiah> Bitte. 00:13 <@mids> Ich denke darüber nach, Level 1 in 10 zu ändern 00:13 <@mids> und 2 in 20 00:13 <@mids> und 3 in 30 00:13 <@mids> und Level 5 als Voice hinzuzufügen 00:13 < hezekiah> Klingt gut. Das lässt Raum für weitere Verbesserungen. 00:13 <@mids> genau 00:14 <@mids> beachtet, dass ich nicht vorhabe, Trent zu einem großen, aufgeblähten Service zu machen 00:14 <@mids> Kommentare? Einwände? 00:14 <@mids> . 00:14 < hezekiah> Ähm .. wo liegt dann das Problem? 00:15 <@mids> es gibt kein Problem 00:15 < dm> voice = Voice auf allen Channels? 00:15 < hezekiah> OK. 00:15 < hezekiah> Sah irgendwie so aus. :) 00:15 <@mids> dm: nein, es ist channel-spezifisch 00:15 <@mids> hezekiah: Ich bin immer dramatisch 00:15 < dm> ok 00:15 <@mids> dm: probier das: 00:15 <@mids>  /squery trent chanlist #iip-dev 00:15 <@mids> du bekommst eine Liste der Benutzer auf der Access-Liste 00:15 <@mids> mit dem Level 00:15 < dm> ah, schön 00:16 <@mids> ok 00:17 <@mids> dann ist jetzt Zeit für den letzten Punkt #4: "Fragerunde" 00:17 < dm> gibt es irgendwo eine dokumentierte Roadmap für IIP? 00:18 <@mids> nur intern, glaube ich 00:18 <@mids> ich habe sie nicht... 00:18 <@mids> hezekiah? 00:18 < hezekiah> Und warum liefert "/squery Trent :chanlist #anonymous" eine leere Liste. 00:18 < hezekiah> Oh. 00:18 < hezekiah> Nun, wir haben eine kleine To-do-Liste mit Sachen, die wir im Development-Tree erledigen müssen. 00:18 <@mids> hezekiah: zu spät (da niemand auf der Access-Liste für #anonymous steht, ist es operatorlos) 00:18 < hezekiah> Mir ist allerdings keine Roadmap bekannt. 00:19 <@mids> vielleicht wäre es gut, eine zu erstellen 00:19 < dm> ok, ihr denkt nicht einmal daran, in absehbarer Zeit zu dezentralisieren, richtig? 00:19 < hezekiah> Nun, das wäre nops Abteilung. 00:19 < hezekiah> (Eigentlich habe ich schon nach so etwas gefragt.) 00:20 < hezekiah> (Er sagte, wir würden uns hinsetzen und IIP 1.2 ausarbeiten [oder was immer er sagte], nachdem 1.1 veröffentlicht ist.) 00:20 < hezekiah> . 00:21 <@mids> nun 00:21 < dm> gibt es irgendwo ein Changelog zu 1.1? 00:21 <@mids> nop ist sehr beschäftigt 00:21 <@mids> vielleicht sollte es jemand anders machen 00:21 <@mids> dm: ja, Moment 00:21 < hezekiah> mids: Niemand sonst hat die Befugnis dazu. 00:21 <@mids> http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/invisibleip/iip/CHANGELOG 00:21 < hezekiah> Wir reden hier davon, den zukünftigen Entwicklungskurs für IIP festzulegen. 00:21 < dm> danke, gebookmarkt 00:22 <@mids> hezekiah: verstanden 00:25  * mids hat gerade gehört, dass sie für 1.2 eine Menge zu tun haben 00:25 < hezekiah> Was nop keine Zeit hat, ... 00:25 < hezekiah> Wir haben immer noch reichlich bekannte Arbeiten für 1.2. 00:26 < hezekiah> 1.2 wird nicht an mangelnder Vision sterben. Und selbst wenn wir das, was derzeit auf der Liste steht, fertigbekommen, kommt eine kurze Diskussion auf neue Punkte. 00:26 < hezekiah> Irgendwann wird nop Zeit haben, sich mit uns hinzusetzen und einen Plan für die Entwicklung von 1.2 zu skizzieren. 00:26 < dm> irgendwelche allgemeinen Hinweise, worauf 1.2 abzielt? 00:26 < hezekiah> Der große Punkt: den ircd-Server dezentralisieren! 00:26 < dm> ah, ok, ihr wisst es nicht. 00:27 < dm> ah, das ist für 1.2 geplant? schön. 00:27 <@mids> ist es das schon? 00:27 <@mids> omg 00:27 < hezekiah> Ist die Dezentralisierung fertig? Nein! 00:27 < dm> geplant meinte ich :p 00:27  * mids widerspricht! 00:27 <@mids> wann wollt ihr 1.2 veröffentlichen? 00:27 <@mids> 2010? 00:27  * LeerokLacerta ist ein Objekt. 00:27 < hezekiah> lol 00:28 < hezekiah> Sagen wir einfach irgendwann nach der Veröffentlichung von 1.1. :) 00:28 < hezekiah> Im Moment hat 1.1 Priorität. 00:28 < hezekiah> (Zumindest ist das das Gefühl, das ich habe.) 00:28 < dm> also wird es verteilte ircd-Server oder vollständig dezentral? 00:28 < hezekiah> dm: Ich kenne die Details nicht. 00:28 < dm> ok 00:28 < hezekiah> Ich bin in P2P-Sachen nicht wirklich sehr gut. :) 00:28 < hezekiah> Ich code nur 00:28 <@mids> lass mich eine E-Mail vom 2002-03-19 einfügen 00:28 <@mids> Von: 0x90 (0x90@invisiblenet.net) 00:28 <@mids> Datum: Tue Mar 19 2002 - 00:22:26 CET 00:28 <@mids> Betreff: [iip-dev] 1.1.0 fast fertig 00:28 <@mids> Ok, wir nähern uns dem Abschluss von 1.1.0. Sobald die TODO/Fixes und cui 00:28 <@mids> für Linux fertig sind, sollten wir diese Woche einen Beta-Test des Netzwerks 00:28 <@mids> durchführen, und zwar durch die Entwickler/Tester. Bleibt dran. 00:29 <@mids> --0x90-- 00:29 <@mids> . 00:29 < hezekiah> Autsch. 00:29 < hezekiah> Das tat weh, mids. ;-) 00:29 <@mids> ja, tat es 00:30 < hezekiah> Wann wurde die letzte IIP-Version veröffentlicht? 00:30 <@mids> RC3 war 2002-12-04 00:30 <@mids> aber natürlich war das ganze 'RC'-Zeug falsch 00:31 <@mids> natürlich ist es nur ein Name 00:31 <@mids> RC2 hätte 1.1.0 sein können 00:31 <@mids> dann RC3 1.1.1 00:31 <@mids> und was wir jetzt haben werden 1.1.2 00:32 < nop> nun 00:32 < nop> in der Krypto-Community 00:32 < nop> sollten wir mit RC4, 5 und 6 weitermachen und sehen, ob sie es knacken 00:32 < nop> ;) 00:32 < nop> schlechter Witz 00:33 < Nostradumbass> Entschuldigt, dass ich dazwischenplatze... 00:33 < jake> Ärsche! 00:33 < Nostradumbass> aber es scheint, als hätten die iip-Entwickler das oberste Prinzip von Open Source vergessen, "Release early, release often". 00:34 < LeerokLacerta> IIP ist Open Source? 00:34 < nop> klar 00:34 < nop> richtig 00:34 < nop> aber 00:34 < hezekiah> LeerokLacerta: ja 00:34 < LeerokLacerta> Ich bin dumm. 00:34 < nop> wir legen auch Wert auf Sicherheit 00:34 < Nostradumbass> ich bin noch nicht lange bei iip dabei, aber ich kann mich nicht erinnern, je gehört zu haben, dass es /.'d wurde 00:35 < nop> und wir biegen die Regeln gern 00:35 < nop> es wurde slashdotted 00:35 < Nostradumbass> Entschuldigung 00:35 <@mids> RC2 wurde /.-ed 00:35 < Nostradumbass> k 00:35 <@mids> und es hat uns... hezekiah beschert! 00:35 < nop> ja 00:35 < nop> ;) 00:35 < Nostradumbass> trotzdem ist das schon eine ganze Weile her. 00:36 < hezekiah> mids: eigentlich nein. 00:36 < hezekiah> mids: Ich habe dieses Projekt mehr als ein Jahr vor dem /.ing beobachtet. 00:36 < jake> äh, Leute? zur webbasierten IIP: gibt es Pläne für Verbesserungen? z.B. eine schönere Oberfläche? 00:36 < nop> das ist eine distributedcity-Frage 00:36 < nop> sie machen das Interface 00:36 < jake> oooo k 00:37 < nop> das war etwas, das sie gemacht haben, nicht wirklich direkte Beteiligung von uns 00:37 <@mids> Releases zu machen bringt Publizität 00:37 <@mids> man kann Ankündigungen, Pressemitteilungen machen 00:37 <@mids> wir haben mehrere Orte, die sehr gern von Updates hören 00:38 <@mids> es erhöht das Interesse und die Anzahl der Nutzer im Projekt 00:38 <@mids> und auch potenzielle Mitwirkende / Entwickler 00:38 <@mids> WENN du ein superduper Mixnetz hast 00:38 <@mids> brauchst du viele Nutzer 00:38 <@mids> denn mit 2 Nutzern ist es nicht anonym 00:39 <@mids> es gab stabilere Phasen im Development-Code 00:39 <@mids> in denen wir hätten ein Release machen können 00:39 <@mids> IMHO 00:39 <@mids> das Problem sind vielleicht die Abhängigkeiten... 00:40 <@mids> das Release PGP-signieren, für Windows kompilieren, etc. 00:40 <@mids> wie auch immer, ich habe es schon gesagt ;) 00:42 < hezekiah> Nun, während ich sporadisch aus dem Netzwerk gekickt werde, habe ich versucht, etwas zu sagen, das nicht gesagt wurde. ;-) 00:42 < hezekiah> <hezekiah> nop: mids hat gute Punkte angesprochen. 00:42 < hezekiah> <hezekiah> nop: Nachdem wir 1.1 aus der Tür haben (was _wirklich_ bald sein sollte), werden wir dann einen schönen kohärenten Plan für 1.2 ausarbeiten, damit wir es in angemessener Zeit herausbekommen? 00:42 < hezekiah> <hezekiah> Ich denke, mit guter Planung und Zielen, bestimmte Teile bis zu bestimmten Zeiten fertigzustellen, könnten wir immer noch großartigen Code schreiben, aber ihn in einem vernünftigen Zeitrahmen fertigbekommen. :) 00:42 < hezekiah> So! :) 00:42 <@mids> danke 00:43 < Nostradumbass> zusätzlich zur vorgeschlagenen Feature-Liste wäre vielleicht eine Liste verbotener Features (zur Begrenzung von Feature Creep (Feature-Wildwuchs)) eine gute Idee. 00:43 < dm> 1.2! 1.2! 1.2! 1.2! 00:44 <@mids> guter Vorschlag, Nostradumbass 00:44 < hezekiah> Nun, ich meinte nicht wirklich eine Feature-Liste. Ich meinte, was wir in welcher Reihenfolge und bis zu welcher vorgeschlagenen Zeit coden werden. 00:45 < hezekiah> nop? Was meinst du? 00:46 < nop> gute Idee 00:46 < nop> Organisation ist immer gut 00:46 < nop> aber nicht immer perfekt 00:46 < hezekiah> Vielleicht könnten, nachdem wir 1.1 veröffentlicht haben, alle Entwickler zusammensitzen und wir erstellen eine Liste mit Sachen, die wir in den nächsten 1–2 Monaten zu tun planen, dann eine Liste für die nächsten 5 Monate und schließlich eine vollständige Liste dessen, was IIP 1.2 zu Version 1.2 macht. :) 00:46 < hezekiah> Ich weiß. Es wird _sehr_ flexibel sein. 00:47 < hezekiah> (Für den Anfang würde ich nicht sagen, Feature A ist an Datum 1 fertig und Feature B an Datum 2. Ich würde sagen, Feature A ist hoffentlich in X Wochen fertig, und Feature B hoffentlich Y Wochen nach Feature A.) 00:47 < hezekiah> Ich denke, etwas als allgemeine Leitlinie für das, was wir tun, ist eine gute Idee. 00:48 < hezekiah> Keine eisenharte Liste. :) 00:48 <@mids> ja, verstanden 00:48 < hezekiah> OK ... 00:48 < hezekiah> Noch etwas hinzuzufügen, mids? 00:49 <@mids> nope 00:49 < hezekiah> OK. ;) 00:49 < hezekiah> Also fürs Erste ... 00:49 < hezekiah> warte ich darauf, dass nop oder UserX mich bezüglich der Sachen erleuchten, die ich zu mids' neuem Entropie-Bug ausgegraben habe. 00:49 <@mids> Ich hoffe, dass ich keine weiteren Probleme finde 00:49 < hezekiah> (Es scheint einfach so, als würde randomWriteSeed() nie aufgerufen.) 00:49 < hezekiah> Hoffen wir’s. :) 00:50 < nop> doppelte Verneinung 00:50 < nop> hmm 00:50 < nop> ;) 00:50 <@mids> . 00:50 <@mids> Ich bin durch :) 00:50 < hezekiah> Du hast recht! :) 00:50 < hezekiah> Es scheint, als sollte randomWriteSeed() aufgerufen werden. 00:50 < hezekiah> Aber es sieht nicht so aus, als würde es das. 00:51 <@mids> nicht in randomSlowPoolReseed? 00:52 < hezekiah> Nun, hoffen wir, dass wir diesen Bug bis nächste Woche gefixt haben. 00:52 <@mids> das solltest du besser! 00:52  * mids versucht, ein wütendes Gesicht zu machen 00:53 <@mids> ok, war wieder ein Vergnügen. bis zum nächsten Meeting, auf der Mailingliste, im Chat oder sonstwie! 00:53 <@mids> *boink* 00:53 < hezekiah> randomSlowPoolReseed() ruft randomWriteSeed() auf, aber (wie ich in meiner E-Mail an iip-dev sagte) randomSlowPoolReseed() wird von niemandem aufgerufen! 00:53 < hezekiah> lol -- Log geschlossen Wed Mar 05 23:42:43 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Mar 04 23:47:24 2003
+23:47 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+23:47 [Users #iip-dev]
+23:47 [ eep] [ jeremiah] [ logger] [ mids] [ nop] [ UserX_]
+23:47 -!- Irssi: #iip-dev: Total of 6 nicks [0 ops, 0 halfops, 0 voices, 6 normal]
+23:47 -!- Irssi: Join to #iip-dev was synced in 2 secs
+23:48 < LeerokLacerta> Making history.
+23:48 < mrflibble> helooo
+23:48 < LeerokLacerta> Hello.
+23:52 < nop> hi
+23:52 < jeremiah> hi
+23:53 < nop> hi
+23:53 -!- mode/#iip-dev [+o mids] by Trent
+23:53 < LeerokLacerta> Konnichiwa.
+23:54 < bpb> konnichiwa
+23:58 < nop> hi
+23:58 <@mids> Hi hezekiah!
+23:58 < hezekiah> Hi. :)
+23:58 <@mids> *hedgehog sound*
+23:58 < hezekiah> lol
+23:58 < hezekiah> *orgle*
+23:58 < LeerokLacerta> Hedgehog?
+23:58 < hezekiah> (orgle: That's one of the sounds a llama makes.)
+23:58 <@mids> LeerokLacerta: relatively large rodents with sharp erectile bristles mingled with the fur
+23:59 < hezekiah> Mids got turned into a hedgehog by the entropy bug.
+23:59 < hezekiah> I got turned into a llama.
+23:59 <@mids> no
+23:59 < LeerokLacerta> I know what it is, but why're you making hedgehog noises?
+23:59 <@mids> because I reported the logging bug that didnt exist
+23:59 < hezekiah> Ah.
+23:59 < hezekiah> Well, you had mentioned you were going to turn into a hedgehog when refering to the previous entropy bug.
+--- Day changed Wed Mar 05 2003
+00:00 <@mids> that was back then
+00:00 <@mids> Tue Mar  4 23:00:03 UTC 2003
+00:00 <@mids> meeting NOW in here
+00:00 <@mids> Welcome everybody
+00:00 <@mids> this is the 32th IIP meeting
+00:00  * LeerokLacerta feels welcomed.
+00:00 <@mids> previous one was canceled, because nobody was there
+00:00 <@mids> logs are available on http://mids.student.utwente.nl/~mids/iip/
+00:01 <@mids> We got a little agenda:
+00:01 <@mids> 1) Welcome
+00:01 <@mids> 2) IIP 1.1.0 Release status update
+00:01 <@mids> 3) Trent accesslevel for 'voice'
+00:01 <@mids> 4) Question round
+00:01 <@mids> if you have any questions on the current topic, please ask
+00:01 <@mids> otherwise save them for the question round.
+00:01 <@mids> .
+00:02  * mids moves the agenda pointer to #2 "IIP 1.1.0 Release status update"
+00:02 <@mids> well hezekiah, what happened? :)
+00:02 < hezekiah> Oh. OK. :)
+00:02 < hezekiah> Well, the first entropy bug got fixed.
+00:02 < hezekiah> After much banging of heads and exchanging of emails ...
+00:03 < hezekiah> ... UserX, nop, and myself managed to work out a fix for it.
+00:03 < hezekiah> Now, mids is noticing a NEW problem with the entropy gathering (namely seed.rnd isn't getting saved.)
+00:03 < hezekiah> Anyway, I've hunted in the code and posted my discoveries to the iip-dev mailing list.
+00:04 <@mids> this thing is another release delayer
+00:04 <@mids> hopefully the last one
+00:04 < hezekiah> I am now waiting on UserX or nop to tell me what all this means and if I'm missing something (because I think I am. None of it makes any sense.)
+00:04 < hezekiah> Hopefully. *orgle*
+00:04 <@mids> .
+00:04 < hezekiah> .
+00:04 <@mids> Any IIP 1.1.0 specific questions?
+00:05 < LeerokLacerta> No socks?
+00:05 <@mids> no socks
+00:05 < hezekiah> No SOCKS.
+00:05 < LeerokLacerta> K.
+00:05 <@mids> ok
+00:05 <@mids> lets move on to #3 "Trent accesslevel for 'voice'"
+00:06 <@mids> this is related with the hidden agenda point #2.9 "The #freenet-opn channel"
+00:06 <@mids> the official Freenet project channel is on irc.freenode.net
+00:06 <@mids> but that is not anonymous
+00:06 <@mids> we have a mirror with that channel here
+00:06 <@mids> in #freenet-opn
+00:07 <@mids> the bot 'eyeKon' tells you everything that happens on the other side
+00:07 <@mids> normally this is a one way mirror, but you can say something back with the "!say :text" command
+00:07 <@mids> to use this you got to have operator or voice status
+00:07 <@mids> if you want to say something, ask an operator to give you voice
+00:07 <@mids> ,
+00:08 < dm> How about if you are identified by Trent you get voice automatically and your name gets prefixed to your messages. If people on the other side have a problem they can send a command to the bot to "ban" a certain anonyname. In which case EyeKon on this side removes voice permanently from that name.
+00:08 < LeerokLacerta> Permanently?
+00:08 < LeerokLacerta> How 'bout timed ban?
+00:08 <@mids> it will get pretty complicated
+00:09 <@mids> they have to know how to bot works
+00:09 <@mids> while it is intended more as a one-way transparant thing
+00:09 -!- hezekiah is now known as nickthief88099
+00:09 <@mids> I have contacted the channelowners of #freenet
+00:09 <@mids> and they didnt have a problem with it
+00:09 < dm> sure, until mids or someone restores it. Must make sure not to spam/bother people on the other side.
+00:09 <@mids> that is why not everybody will get voice
+00:09 <@mids> it is VERY easy to create lot of accounts here
+00:10 <@mids> so it will be impossible to ban them all
+00:10 < dm> ok, so selective voice, through trent?
+00:10 <@mids> what I DO want to do is selective voice through Trent
+00:10 < jake> this sure is an interesting conversation but I need to eat buh bye
+00:10 <@mids> which is agenda item #3
+00:10 <@mids> bye jake, thanks for joining
+00:10 <@mids> be sure to read the logfile afterwards
+00:10 < jake> thank you
+00:10 < jake> k
+00:10 <@mids> Right now the channel access system has 3 levels:
+00:11 <@mids> level 1: operator
+00:11  * mids checks the site how he called it
+00:12 <@mids> Level 1: Normal operator, can give him/herself ops
+00:12 <@mids> Level 2: Super operator, can add other users to the channel (with lower level)
+00:12 <@mids> Level 3: Founder, most powerfull, required to drop a channel for example
+00:12 <@mids> I want to add a voice level
+00:12 <@mids> so people can get voice on the channel if they are on the access list
+00:12 <@mids> but the problem is... what number should the voice level be?
+00:12 < hezekiah> lol
+00:13 < hezekiah> Tell me you didn't use magic numbers, mids.
+00:13 < hezekiah> Please.
+00:13 <@mids> I am thinking about changing level 1 into 10
+00:13 <@mids> and 2 into 20
+00:13 <@mids> and 3 into 30
+00:13 <@mids> and adding level 5 as voice
+00:13 < hezekiah> Sounds good. It leaves room for further improvements.
+00:13 <@mids> exactly
+00:14 <@mids> note that I dont plan to make Trent a big & bloaty service
+00:14 <@mids> comments? objections?
+00:14 <@mids> .
+00:14 < hezekiah> Umm .. so what's the problem?
+00:15 <@mids> there is no problem
+00:15 < dm> voice = voice on all channels?
+00:15 < hezekiah> OK.
+00:15 < hezekiah> It sorta looked like that. :)
+00:15 <@mids> dm: no, it is channel specific
+00:15 <@mids> hezekiah: I am always dramatic
+00:15 < dm> ok
+00:15 <@mids> dm: try this:
+00:15 <@mids>  /squery trent chanlist #iip-dev
+00:15 <@mids> you'll get a list of the users on the access list
+00:15 <@mids> with the level
+00:15 < dm> ah, nice
+00:16 <@mids> ok
+00:17 <@mids> then it is now time for the last item #4: "Question Round"
+00:17 < dm> is there a roadmap documented anywhere, for IIP?
+00:18 <@mids> only internally I think
+00:18 <@mids> I dont have it...
+00:18 <@mids> hezekiah?
+00:18 < hezekiah> And why does "/squery Trent :chanlist #anonymous" return a blank list.
+00:18 < hezekiah> Oh.
+00:18 < hezekiah> Well we have a small todo list of stuff we need to do in the development tree.
+00:18 <@mids> hezekiah: too late (because nobody is on the access list for #anonymous, it is oper-less)
+00:18 < hezekiah> I'm not aware of any roadmap though.
+00:19 <@mids> maybe it would be good to make one
+00:19 < dm> ok, you're not even thinking about decentralizing any time soon, correct?
+00:19 < hezekiah> Well, that would be nop's department.
+00:19 < hezekiah> (Actually, I've already asked for something like that.)
+00:20 < hezekiah> (He said we were going to sit down and map out [or whatever he said] IIP 1.2 after 1.1 is released.)
+00:20 < hezekiah> .
+00:21 <@mids> well
+00:21 < dm> 1.1 is there a changelog somewhere?
+00:21 <@mids> nop is very busy
+00:21 <@mids> maybe someone else should do it
+00:21 <@mids> dm: yes, hang on
+00:21 < hezekiah> mids: No one else has the authority to do it.
+00:21 <@mids> http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/invisibleip/iip/CHANGELOG
+00:21 < hezekiah> We are talking about setting the future course of development for IIP.
+00:21 < dm> thanks, bookmarked
+00:22 <@mids> hezekiah: understood
+00:25  * mids just heared that they got plenty of things to do for 1.2
+00:25 < hezekiah> As for nop not having time, ...
+00:25 < hezekiah> We still have plenty of known coding to do on 1.2.
+00:26 < hezekiah> 1.2 will not die for lack of vision. And even if we finish the stuff currently on the list, a short discussion will come up with more.
+00:26 < hezekiah> Eventually nop will have time to sit down with us and describe a plan for development of 1.2.
+00:26 < dm> any general notes on what 1.2 is striving for?
+00:26 < hezekiah> The big one: decentralize the ircd server!
+00:26 < dm> ah, ok, you don't know.
+00:27 < dm> ah, that's in 1.2? sweet.
+00:27 <@mids> is it already?
+00:27 <@mids> omg
+00:27 < hezekiah> Is the decentralization ready? No!
+00:27 < dm> planned for I mean :p
+00:27  * mids objects!
+00:27 <@mids> when do you want to release 1.2?
+00:27 <@mids> 2010?
+00:27  * LeerokLacerta is an object.
+00:27 < hezekiah> lol
+00:28 < hezekiah> Let's just say sometime after 1.1 is released. :)
+00:28 < hezekiah> Right now 1.1 is the priority.
+00:28 < hezekiah> (At least that's the feeling I've gotten.)
+00:28 < dm> so you is it going to be distributed ircd servers or completely decentralized?
+00:28 < hezekiah> dm: I don't know the details.
+00:28 < dm> ok
+00:28 < hezekiah> I'm not really very good at P2P stuff. :)
+00:28 < hezekiah> I just code
+00:28 <@mids> let me paste an email from 2002-03-19
+00:28 <@mids> From: 0x90 (0x90@invisiblenet.net)
+00:28 <@mids> Date: Tue Mar 19 2002 - 00:22:26 CET
+00:28 <@mids> Subject: [iip-dev] 1.1.0 almost complete
+00:28 <@mids> Ok, we're nearing the completion of 1.1.0. As soon as the TODO/Fixes and cui
+00:28 <@mids> for linux are complete, we should run a beta test of the network for this
+00:28 <@mids> week, this is done by the developers/testers. Stay posted.
+00:29 <@mids> --0x90--
+00:29 <@mids> .
+00:29 < hezekiah> Ouch.
+00:29 < hezekiah> That hurt, mids. ;-)
+00:29 <@mids> yes it did
+00:30 < hezekiah> What date was the last release of IIP made?
+00:30 <@mids> RC3 was 2002-12-04
+00:30 <@mids> but ofcourse the whole 'RC' stuff was wrong
+00:31 <@mids> ofcourse it is just a name
+00:31 <@mids> RC2 could have been 1.1.0
+00:31 <@mids> then RC3 1.1.1
+00:31 <@mids> and what we will have now 1.1.2
+00:32 < nop> well
+00:32 < nop> in the crypto community
+00:32 < nop> we should continue with RC4, 5 and 6, and see if they crack it
+00:32 < nop> ;)
+00:32 < nop> bad joke
+00:33 < Nostradumbass> Excuse me for butting in...
+00:33 < jake> butts!
+00:33 < Nostradumbass> but it seems that iip developers have forgotten the prime mazimum of open source, "Release early, release often".
+00:34 < LeerokLacerta> IIP is open source?
+00:34 < nop> sure
+00:34 < nop> right
+00:34 < nop> but
+00:34 < hezekiah> LeerokLacerta: yes
+00:34 < LeerokLacerta> I'm dumb.
+00:34 < nop> we also value security
+00:34 < Nostradumbass> i haven't been around on iip too long but i can't recall ever hearing about it being /.'d
+00:35 < nop> and we like to bend the rules
+00:35 < nop> it's been slashdotted
+00:35 < Nostradumbass> apologies
+00:35 <@mids> RC2 was /.-ed
+00:35 < Nostradumbass> k
+00:35 <@mids> and it gave us... hezekiah !
+00:35 < nop> yes
+00:35 < nop> ;)
+00:35 < Nostradumbass> still that's quite a while back.
+00:36 < hezekiah> mids: actually no.
+00:36 < hezekiah> mids: I was watching this project for more than a year before the /.ing.
+00:36 < jake> um guys? about the web based IIP are there any plans for improvement? like a nicer interface?
+00:36 < nop> that's a distributedcity question
+00:36 < nop> they make the interface
+00:36 < jake> oooo k
+00:37 < nop> it was something that they did, not really direct involvement with us
+00:37 <@mids> doing releases gives publication
+00:37 <@mids> you can do announcements, press releases
+00:37 <@mids> we have multiple places that really like to hear about updates
+00:38 <@mids> it increases the interest and amount of users in the project
+00:38 <@mids> and also potential contributors / developers
+00:38 <@mids> IF you have some super-duper mixnet
+00:38 <@mids> you do need lots of users
+00:38 <@mids> because with 2 users it isnt anonymous
+00:39 <@mids> there have been more stable periods in the development code
+00:39 <@mids> at which point we could have made a release
+00:39 <@mids> IMHO
+00:39 <@mids> problem is maybe the dependencies...
+00:40 <@mids> PGP signing the release, compiling for windows, etc
+00:40 <@mids> anyway, I have said it before ;)
+00:42 < hezekiah> Well, between my being sporadically bumped from the network, I've tried to say something that didn't get said. ;-)
+00:42 < hezekiah> <hezekiah> nop: mids has raised some good points.
+00:42 < hezekiah> <hezekiah> nop: After we get 1.1 out the door (which should be _really_ soon), are we going to come up with a nice coherent plan for 1.2 so that we can get it out in a reasonable amount of time?
+00:42 < hezekiah> <hezekiah> I think with good planning, and goals to get certain parts done by certain times, we could still write great code, but get it done in a reasonable timeframe. :)
+00:42 < hezekiah> There! :)
+00:42 <@mids> thanks
+00:43 < Nostradumbass> in addition to the proposed feature list, perhaps a list of prohibited features (to limit feature creep) might be a good idea.
+00:43 < dm> 1.2! 1.2! 1.2! 1.2!
+00:44 <@mids> good suggestion Nostradumbass
+00:44 < hezekiah> Well, I wasn't really refering to a feature list. I was refering to what we are going to code, in what order, and by what suggested time.
+00:45 < hezekiah> nop? What do you think?
+00:46 < nop> good idea
+00:46 < nop> organization is always good
+00:46 < nop> but not always perfect
+00:46 < hezekiah> Perhaps after we release 1.1, all the developers could sit down and we could make up a list of stuff we plan on doing in the next 1-2 months, then a list of stuff planned for the next 5 months, then with a full list of what will make IIP 1.2 to be version 1.2. :)
+00:46 < hezekiah> I know. It will be _very_ flexable.
+00:47 < hezekiah> (For starters I wouldn't say feature A is one at date 1 and feature B is done at date 2. I'd say feature A is hopefully done in X weeks, and feature B is hopefully done Y weeks after feature A.)
+00:47 < hezekiah> I think that something as a general guide to what we're doing is a good idea.
+00:48 < hezekiah> Not a stiff-as-iron list. :)
+00:48 <@mids> yeah, get it
+00:48 < hezekiah> OK ...
+00:48 < hezekiah> Anything to add mids?
+00:49 <@mids> nope
+00:49 < hezekiah> OK. ;)
+00:49 < hezekiah> So for now ...
+00:49 < hezekiah> I am waiting for nop or UserX to enlighten me concerning the stuff I dug up on mids' new entropy bug.
+00:49 <@mids> I hope that I wont find other issues
+00:49 < hezekiah> (It just doesn't seem like randomWriteSeed() is never called.)
+00:49 < hezekiah> Let's hope. :)
+00:50 < nop> double negative
+00:50 < nop> hmm
+00:50 < nop> ;)
+00:50 <@mids> .
+00:50 <@mids> I am done :)
+00:50 < hezekiah> You're right! :)
+00:50 < hezekiah> It seems like randomWriteSeed() should be called.
+00:50 < hezekiah> But it doesn't look like it is.
+00:51 <@mids> not in randomSlowPoolReseed?
+00:52 < hezekiah> Well, lets hope we have this bug fixed by next week.
+00:52 <@mids> you better do that!
+00:52  * mids tries to put up an angry face
+00:53 <@mids> ok, been a pleasure again. till next meeting, mailinglist, chat or otherwise!
+00:53 <@mids> *boink*
+00:53 < hezekiah> randomSlowPoolReseed() calls randomWriteSeed(), but (as I said in my email to iip-dev), randomSlowPoolReseed() is never called by anyone!
+00:53 < hezekiah> lol
+-- Log closed Wed Mar 05 23:42:43 2003
+</div>

@@ -1,17 +1,435 @@
 ---
-title: "I2P डेवलपर बैठक"
+title: "I2P डेवलपर मीटिंग"
 date: 2003-03-12
 author: "nop"
-description: "12 मार्च 2003 की I2P विकास बैठक का लॉग।"
+description: "12 मार्च, 2003 के लिए I2P विकास बैठक का लॉग।"
 categories: ["meeting"]
 ---
 
-(wayback machine http://www.archive.org/ के सौजन्य से)
+(वेबैक मशीन की सौजन्य से http://www.archive.org/)
 
 ## त्वरित सारांश
 
 <p class="attendees-inline"><strong>उपस्थित:</strong> Debolaz, dm, FillaMent, hezekiah, jrand0m, lonelynerd, luckypunk, mids, mihi, nop, someone, toni</p>
 
-## बैठक लॉग
+## मीटिंग लॉग
 
-<div class="irc-log"> --- लॉग खोला गया Wed Mar 12 00:01:53 2003 00:01 -!- #iip-dev के लिए विषय: IIP Meeting - लॉगफाइल्स: http://mids.student.utwente.nl/~mids/iip/ 00:01 [Users #iip-dev] 00:01 [@mids    ] [ jeremiah] [ mihi] [ pox  ] 00:01 [ hezekiah] [ logger  ] [ nop ] [ UserX] 00:01 -!- Irssi: #iip-dev: कुल 8 नॉट्स [1 ops, 0 halfops, 0 voices, 7 normal] 00:02 -!- Irssi: #iip-dev में जुड़ना 7 सेकंड में सिंक किया गया 00:02 <@mids> 33वीं बैठक में स्वागत है 00:02 < hezekiah> हाय 00:03 <@mids> IIP 1.1.0 कल जारी हो गया 00:03 < toni> क्या यहाँ बस चुपचाप बैठे रहना और चुपके सुनना ठीक है? 00:03 <@mids> toni: हाँ 00:03 <@mids> इस बैठक का एजेंडा: 00:03 <@mids> 1) IIP 1.1.0 00:03 <@mids> 2) IIP का भविष्य 00:03 <@mids> 3) प्रश्न 00:04 <@mids> अगर आपके पास मौजूदा विषय पर सवाल हैं, तो पूछें 00:04 <@mids> नहीं तो उसे तीसरे दौर के लिए बचाकर रखें 00:04 <@mids> . 00:04 < nop> हाय 00:04 <@mids> लॉग्स यहाँ उपलब्ध हैं: http://mids.student.utwente.nl/~mids/iip/ 00:04 < hezekiah> हाय! :) 00:04 < luckypunk> हाय। 00:04 <@mids> . 00:04 < jrand0m> इवनिन' 00:05 <@mids> 1) IIP 1.1.0 (stable) जारी!!! 00:05 < hezekiah> वाह! 00:05 <@mids> आख़िरकार 00:05 < luckypunk> :) 00:05 <@mids> nop की उस पोस्ट के लगभग एक साल बाद जिसमें कहा गया था कि यह जल्द आएगा :) 00:05 < FillaMent> w3rd i$ b0nd 00:05 <@mids> इस संस्करण में Unix के लिए इंस्टॉलेशन बेहतर किया गया है, entropy generation सुधारी गई है और कुछ बग्स ठीक किए गए हैं। 00:05 <@mids> हम इसे एक स्थिर रिलीज़ कहते हैं 00:05 < hezekiah> mids: यह बदलावों की सूची 1.1.0 RC3 की तुलना में है या 1.0.0 की तुलना में? 00:05 <@mids> और अभी तक यह स्थिर दिख रही है 00:06 <@mids> hezekiah: http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/invisibleip/iip/CHANGELOG 00:06 <@mids> मुझे बस इतना ही पता है 00:06 < hezekiah> ठीक है। :) 00:06 < hezekiah> (ऐसा लगता है कि यह 1.1.0 RC3 या RC2 की तुलना है।) 00:07 <@mids> hezekiah: लगता तो है, क्योंकि किसी ने पहले क्या अपडेट हुआ वो लिखा ही नहीं 00:07 < dm> अगर मैं IIP का क्रैक्ड वर्ज़न इस्तेमाल कर रहा हूँ तो क्या मुझे IIP के लिए Service Pack 2 डाउनलोड करना चाहिए? 00:07 < hezekiah> mids: आह ... यही है कहानी! ;-) 00:07 < dm> सॉरी, जारी रखें। 00:07 < hezekiah> dm: मुझे किसी सर्विस पैक की जानकारी नहीं। 00:07 <@mids> रिलीज़ हमारी वेबसाइट, freshmeat, infoanarchy और frost पर घोषित कर दी गई है 00:08 <@mids> मैंने कुछ और साइट्स को भी ईमेल किया है जहाँ यह सूचीबद्ध थी 00:08 <@mids> अगर आप लोग/लड़कियाँ और जगहें जानते हैं बताने के लिए... 00:08 <@mids> तो कृपया बताइए 00:08 < jrand0m> nsa? 00:08 < toni> मुझे पता है, पर मैं iip के लिए बिल्कुल अजनबी हूँ *g* 00:08 < FillaMent> kuro5hin? 00:08 < hezekiah> mids: क्या आपने उस प्रोग्राम आर्काइव को मेल किया जो इसे होस्ट करता है और हाल ही में iip-dev पर ज़िक्र हुआ था? 00:08 < toni> heise.de जर्मन security/internet संबंधित साइट 00:08 < FillaMent> jinx.biz 00:09 <@mids> hezekiah: मैंने vipul's munitions को मेल किया 00:09 < hezekiah> mids: ठीक! :) 00:09 <@mids> kuro5hin एक ढंग का लेख माँगता है 00:09 <@mids> और वे काफ़ी चुनींदा हैं 00:09 <@mids> लेकिन अगर आप कुछ लिखना चाहें... 00:09 <@mids> तो ज़रूर लिखें 00:09 < hezekiah> फिर से slashdot? 00:09 <@mids> toni: क्या आप उन्हें सूचित कर सकते हैं? 00:09 < hezekiah> उन्हें कुछ बहुत उम्दा नहीं चाहिए, और वे पहले हमें उल्लेख कर चुके हैं। ;-) 00:10 < toni> वे भी लेख माँगते हैं, और मुझे नहीं पता वे कितने चुनींदा हैं 00:10 < toni> अगर कोई लेख लिखे, तो मैं उसे जर्मन में अनुवाद कर के उन्हें ईमेल कर सकता/सकती हूँ 00:10 <@mids> आप http://www.infoanarchy.org/story/2003/3/10/23466/2065 पर प्रेस रिलीज़ इस्तेमाल कर सकते हैं 00:11 <@mids> और CHANGELOG को http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/invisibleip/iip/CHANGELOG से लिंक करें 00:11 <@mids> IIP का एक सामान्य विवरण शामिल करना न भूलें 00:11 <@mids> मुझे लगता है हमें /. आज़माना चाहिए। 00:12 <@mids> हम पहले भी इसे झेल चुके हैं 00:12 < hezekiah> mids: नोट: आप infoanarchy लेख में changelog देखने का ज़िक्र करते हैं, लेकिन लोगों को उसका लिंक देते नहीं दिखते! 00:12 < toni> चूँकि मैं iip से वाक़ई परिचित नहीं हूँ, मेरा खयाल है कि मैं ढंग का विवरण नहीं दे पाऊँगा/पाऊँगी, लेकिन अगर आप /. कर दें, तो मैं heise को इशारा कर सकता/सकती हूँ, वे अक्सर वहाँ से खबर लेते हैं और अनुवाद करते हैं 00:12 <@mids> hezekiah: हाँ, मैं भूल गया। 00:12 <@mids> मैं उनके संपादक को मेल करूँगा 00:15 < hezekiah> ठीक ... एजेंडा आइटम 1 (IIP 1.1 रिलीज़) पर और कुछ? 00:17 <@mids> क्या आप सबने /. पर पहले ही कोई न्यूज़स्टोरी सबमिट कर दी? 00:17 < hezekiah> नहीं। 00:18 < hezekiah> मैं प्रोजेक्ट के साथ इतना लंबे समय से नहीं हूँ कि 1.0 के बाद क्या हुआ उस पर अच्छी पकड़ हो। 00:18 < hezekiah> पिछली /. पोस्ट किसने लिखी थी? 00:18 <@mids> हमें नहीं पता 00:18 < hezekiah> LOL! 00:18 < jrand0m> हाहा 00:18 < dm> मुझे लगता है कि no_nick ने 00:18 < mihi> क्या iip बहुत गुमनाम है? ;-) 00:19 <@mids> हाँ :) 00:19 < hezekiah> अच्छा, मैं पिछली पोस्ट ढूँढता हूँ, और देखता हूँ कि मैं क्या लेकर आ सकता हूँ। :) 00:19 <@mids> ठीक... 00:19 <@mids> पिछली वाली kuro5hin लेख की कॉपी थी 00:19 <@mids> जो nop के इंटरव्यू के बारे में थी 00:19 <@mids> ठीक 00:19 <@mids> आइटम 2?? 00:19 < hezekiah> याय! :) 00:20 <@mids> 2) IIP का भविष्य 00:20 <@mids> हमें चाहिए: 00:20 <@mids> विकेंद्रीकरण 00:20 <@mids> लेकिन यह कौन करेगा 00:20 <@mids> और कैसे 00:21 < dm> और क्या यह संभव है। 00:21 < jrand0m> और क्या खोया जाएगा। 00:21 < hezekiah> अगर मैं बीच में बोलूँ: मैं बस यह सुनिश्चित करना चाहता हूँ कि nop और UserX मौजूद हैं और ध्यान दे रहे हैं। इनके बिना यह बातचीत काफ़ी निष्फल रहेगी। :) 00:21 < jrand0m> (उर्फ़ centralized authentication - trent) 00:21 < hezekiah> nop? 00:21 < hezekiah> UserX? 00:21 <@mids> hezekiah? 00:21 < hezekiah> क्या आप मौजूद हैं? 00:21 < hezekiah> mids: हाज़िर! 00:21 < nop> मैं कुछ-कुछ मौजूद हूँ 00:22 < hezekiah> ठीक। :) 00:22 < nop> userx और मैंने चर्चा की है 00:22 < nop> कि हम इसे कैसे करना चाहेंगे 00:23 < hezekiah> क्या वे चर्चाएँ कागज़ों में लिखी गईं और IIP वेबसाइट की research डायरेक्ट्री में रखी गईं? 00:23 < nop> हाँ 00:23 < nop> ज़्यादातर वहाँ हैं 00:23 < nop> userx के पास और भी हैं 00:23 < nop> जिन्हें मैं वहाँ रखना चाहूँगा 00:23 < nop> http://www.invisiblenet.net/research/IIP-WP-Notes.txt 00:23 < hezekiah> ठीक है। क्या आप सबसे प्रासंगिक फाइलनाम बता सकते हैं ताकि मैं उन्हें देख लूँ? :) 00:23 < nop> उसमें काफ़ी कुछ है 00:24 < nop> कुछ औरों का योगदान भी है 00:24 < nop> IIP_netproto.html 00:24 < nop> और architecture.pdf 00:24 < hezekiah> ठीक। :) 00:24 < nop> 00:25 < nop> http://www.invisiblenet.net/research/IIP-Identity.txt 00:25 < nop> यह भी 00:25 < nop> http://www.invisiblenet.net/research/IIP-Messages.txt 00:27 < hezekiah> ठीक। क्या इनमें से कोई पूरी तरह (या मुख्यतः) सिर्फ विकेंद्रीकरण पहलू पर है? 00:27 < nop> हाँ 00:27 < nop> सभी 00:27 < hezekiah> ठीक। :) 00:27 < hezekiah> सभी लिंक्स के लिए धन्यवाद! मैं अभी देख रहा हूँ। :) 00:31 <@mids> ठीक 00:31 <@mids> IIP के भविष्य की अन्य बातें? 00:31 < dm> क्या FillaMent यहाँ है? 00:31 < hezekiah> खैर, निकट भविष्य में, IIP-dev के पास अभी भी "एंट्रॉपी समस्या" का हल नहीं है। 00:31 < dm> उनके पास यह आइडिया था कि trent PGP key exchanges की अनुमति दे 00:31 < dm> जो समझ में आता है। 00:31  * FillaMent मौजूद है 00:32 <@mids> हाँ FillaMent और मैंने इसके बारे में बात की थी 00:32  * mids माइक FillaMent को थमाता है 00:32  * FillaMent उसे दो-तीन बार थपथपाता है, "ये चालू है?" (सॉरी) 00:33  * hezekiah वॉल्यूम बढ़ाता है 00:33 < lonelynerd> :) 00:33 < FillaMent> बात ये है: मुझे लगता है कि IIP पर PGP कुंजी भंडारण और विनिमय का एक मैकेनिज़्म होना उपयोगी होगा। मेरे पास इस तरह की चीज़ कैसे काम करे, इस पर कुछ प्रस्ताव हैं। 00:34 < dm> काफ़ी आसान होना चाहिए? बस trent में PGP के लिए एक फ़ील्ड जोड़ें, और GET/STORE commands जोड़ें? 00:34 < FillaMent> 1) क्षमता trent में ही बनाई जाए। इससे समस्या आती है क्योंकि ज़्यादातर IRC क्लाइंट्स इतने लंबी स्ट्रिंग्स नहीं भेजते 00:35 < dm> आह, ठीक। 00:35 < FillaMent> 2) trent को freenet से एक CHK खींचने में सक्षम बनाना और उस फ़ाइल की सामग्री को Key के रूप में स्टोर करना 00:35 < FillaMent> 3) 1 या 2 करने के लिए एक अलग बॉट बनाना 00:35 < nop> हूँ 00:35 <@mids> अच्छे बिंदु 00:35 < nop> एक ही मुद्दा 00:35 < nop> जो मेरे पास है 00:35 < nop> इस संकल्पना के साथ 00:35 < nop> वह यह कि हम trent या किसी भी बॉट पर पब्लिक कीज़ संभालने के लिए 00:35 < nop> सत्यापन के बिना कैसे भरोसा करें 00:36 <@mids> ठीक 00:36 < FillaMent> खैर, यह जांच सकता है और सुनिश्चित कर सकता है कि निक reg'd और ident'd है 00:36 <@mids> यह सिर्फ एक keyserver के रूप में हो सकता है 00:36 < nop> मेरा विचार यह है 00:36 < nop> कि यह सभी बड़े key servers से वेरीफाई कर सकता है 00:36 < nop> साथ ही 00:36 < nop> ताकि इसे संगत जानकारी मिले 00:36 < FillaMent> nop: मेरे pseudoidentity पर flog एंट्री पढ़ी? 00:36 < nop> लिंक 00:37 < FillaMent> SSK@WxBcPJd1ppZSZ~C8IJI-DHx94oIPAgM/fillament// 00:37 <@mids> keyservers कुछ भी वेरीफाई नहीं करते 00:37 <@mids> वे सिर्फ चीज़ें स्टोर करते हैं 00:37 <@mids> अभी आप Trent के साथ जो कर सकते हैं 00:37 < FillaMent> संक्षेप में ये... अगर आपकी पहचान सिर्फ anonymous space में मौजूद हो? आप क्या वेरीफाई कर सकते हैं? 00:37 <@mids>  /squery trent nickinfo mids 00:38 <@mids> कमेंट लाइन देखें 00:38 <@mids> इसमें कुछ भी हो सकता है 00:38 <@mids> साथ ही urls आदि 00:38 < FillaMent> लेकिन छोटा 00:38 <@mids> तो आप अपने PGP key को लिंक कर सकते हैं 00:39 < FillaMent> मैं बस कुछ ऐसा सोच रहा हूँ जो बीच के सारे कदम हटा दे। 00:39 < hezekiah> mids की ID कमेंट देखते हुए, मुझे दिखता है कि यह एक key fingerprint सूचीबद्ध करता है 00:39 < hezekiah> यह key ID भी सूचीबद्ध करता है। फिर कोई keyserver से कुंजी क्यों नहीं ले सकता, और fingerprint जाँच सकता? 00:39 < FillaMent> hezekiah: कौन-सा key server? 00:39 < FillaMent> इंटरनेट पर वाला? 00:39 < nop> मैं भी वही कह रहा हूँ 00:40 < mihi> किसी key server पर कुंजी कैसे पहुँचाएँ? गुमनाम रूप से? 00:40 < lonelynerd> हमें बस एक बॉट चाहिए जो उन्हें फेच करे 00:40 < FillaMent> अगर आपकी पहचान सिर्फ anonymous space में है, मेरी तरह... मैं इंटरनेट पर कोई निशान नहीं छोड़ना चाहता 00:40 < hezekiah> आह ... 00:40 < hezekiah> ठीक है। समझ गया। :) 00:40 <@mids> तो IIP के लिए एक keyserver बॉट ही ठीक रहेगा 00:40 <@mids> freenet के साथ मिलाकर 00:40 < FillaMent> वह बढ़िया होगा... बस trent को fingerprint दें और यह कुंजी फेच करने की कोशिश करेगा... 00:41 <@mids> फिलहाल trent सर्वर पर freenet चलाना बहुत भारी है 00:41 < lonelynerd> mids, खैर, आप पब्लिक कीज़ को ASCII-armor कर सकते हैं 00:41 < FillaMent> mids: ऐसी चीज़ को trent में बनाना ज़रूरी नहीं है, जैसा कि मेरा पॉइंट 3 00:41 < nop> खैर 00:41 < nop> आप एक गेटवे इस्तेमाल कर सकते हैं mids 00:41 < nop> जैसे groovy 00:41 <@mids> बहुत अविश्वसनीय 00:42 < someone> फिर freenet की ज़रूरत क्यों है, दोबारा? 00:42 < FillaMent> mids: अगर आप trent को सक्षम करना चाहें, तो बस इसे किसी पब्लिक freenet सर्वर तक पहुँचने दें 00:42 <@mids> क्यों न यूज़र कुंजी freenet पर अपलोड करे और बॉट को url दे? 00:42 <@mids> someone: फ़ाइल स्टोरेज के लिए 00:42 < FillaMent> mids: क्योंकि कुछ दिनों में यह गायब हो जाता है अगर कोई उसे एक्सेस नहीं करता। 00:42 < lonelynerd> mids, क्या लोगों द्वारा इस्तेमाल की जाने वाली public keys का एक बड़ा डाइजेस्ट रखना ज़्यादा कुशल नहीं होगा? 00:43 < hezekiah> lonelynerd, mids: आप बस PGP key ID को निक से असाइन करने की क्षमता जोड़ सकते हैं, जैसे आप कमेंट असाइन कर सकते हैं। 00:43 < FillaMent> मुझे लगता है सबसे अच्छा समाधान इसे IIP में इंटीग्रेट न करना है। कोई इसे एक सॉफ्टवेयर के रूप में लिखे (अरे, मैं कर सकता हूँ लेकिन व्यस्त हूँ) फिर सॉफ्टवेयर वितरित करें। जो कोई भी IIP keyserver चलाना चाहता है, चला सकता है। 00:44 < lonelynerd> hezekiah, सच है, लेकिन फिर भी आपको PGP key फेच करनी पड़ेगी 00:44 < nop> अच्छा, मज़ेदार बात ये है 00:44 < lonelynerd> FillaMent, तर्कसंगत लगता है 00:44 < nop> जिन चीज़ों को हम देख सकते हैं 00:44 < nop> हम उन पर भरोसा करते हैं 00:44 < nop> जैसे इंटरनेट 00:44 < nop> फिर भी यह असुरक्षित है 00:44 < someone> क्यों न बस एक बॉट इंटरनेट key servers से कुंजियाँ अपलोड/डाउनलोड करे और trent के साथ fingerprint स्टोर करे 00:44 < nop> फिर भी हमारे पास एक cryptographic network है 00:44 < nop> और हम किसी पर भी pgp keyserver चलाने के लिए भरोसा नहीं करते 00:44 < lonelynerd> someone, मैंने वही सुझाव दिया 00:44 < hezekiah> nop: lol! :) 00:45 < lonelynerd> nop :) 00:45 <@mids> nop 00:45 <@mids> आप समझ नहीं रहे 00:45 < nop> मैं समझ रहा हूँ 00:45 <@mids> keyserver के लिए आपको भरोसे की ज़रूरत नहीं होती 00:45 < nop> मैं मज़ाक कर रहा था 00:45 < FillaMent> nop: ज़रूर होती है... किसी को अपनी pseudoidentity दांव पर लगानी पड़ेगी। 00:45 < FillaMent> दांव पर 00:45 < FillaMent> mids: ज़रूर होती है 00:45 <@mids> यह सिर्फ स्टोरेज के लिए है 00:45 < nop> मुझे पता है mids 00:45 < nop> मैं बस मज़ाक कर रहा था 00:45 < nop> ;) 00:45 <@mids> उपयोगकर्ताओं को हमेशा fingerprint वेरीफाई करनी चाहिए 00:45 < someone> lonelynerd: तो हमें freenet की ज़रूरत नहीं, सही? 00:45 <@mids> और web of trust (विश्वसनीयता का जाल) जाँचना चाहिए 00:45 < FillaMent> mids: मैं बस अपनी कुंजी वहाँ चिपका सकता हूँ और कह सकता हूँ कि वो nop की है। 00:46 <@mids> nop: अगर आप मज़ाकिया हैं तो अच्छा है :) लेकिन अन्य लोग समझ न पाएँ 00:46 < lonelynerd> FillaMent, दरअसल, आपने pseudoidentity के बारे में जो लिखा उसने मुझे सोचने पर मजबूर किया। मैं IIP पर दो पहचान रखकर समय और संसाधन बर्बाद कर रहा हूँ, एक उन लोगों के लिए जो मुझे IRL जानते हैं और फिर यह। 00:46 <@mids> FillaMent: इसलिए आप Trent पर fingerprint डाल सकते हैं 00:46 < lonelynerd> someone, बिल्कुल, freenet अच्छा है, लेकिन इस बार ज़रूरी नहीं 00:46 <@mids> (हालाँकि आपको trent पर भरोसा करना होगा 00:46 < FillaMent> mids: हाँ... और /कितने/ लोग key fingerprints के बारे में जानते हैं? 00:47 < lonelynerd> someone, लेकिन कोई कई कुंजियों वाले कंप्रेस्ड डाइजेस्ट भी पोस्ट कर सकता है 00:47 <@mids> अगर उन्हें नहीं पता, तो उन्हें PGP इस्तेमाल नहीं करना चाहिए 00:47 < FillaMent> mids: हाँ.. चलो यूज़रबेस को अलग-थलग कर दें 00:47 < lonelynerd> सही 00:47 < lonelynerd> :) 00:47 <@mids> नहीं, गंभीरता से 00:47 < FillaMent> मैं यह चर्चा zab के साथ 20x कर चुका हूँ 00:47 < hezekiah> FillaMent: अगर उन्हें key fingerprints के बारे में पर्याप्त नहीं पता, तो शायद उन्हें crypto के बारे में भी पर्याप्त नहीं पता कि मैं भरोसा कर सकूँ कि उन्होंने अपनी कुंजी उड़ा नहीं दी! 00:47 <@mids> fingerprints चेक किए बिना PGP इस्तेमाल करना सुरक्षा का झूठा एहसास देता है 00:48 < FillaMent> hezekiah: और आप ऐसे लोगों को कैसे अलग करेंगे? 00:49 < lonelynerd> FillaMent, यह मुश्किल है। बहुत सारे यूज़र्स PGP असुरक्षित तरीके से इस्तेमाल करते हैं 00:49 < hezekiah> FillaMent: यही अरबों डॉलर का सवाल है! यह बहुत कठिन है। :) 00:49 < FillaMent> अगर आप लोगों से कहेंगे कि वे crypto इस्तेमाल करने के लिए बहुत बेवकूफ़ हैं, तो वे चाहेंगे ही नहीं। वे कहेंगे, 'भाड़ में जाए... मेरे पास प्राइवेसी की परवाह करने का समय नहीं है'... वे भले ही भेड़ हों, लेकिन वोट देने वाले वे हमसे ज़्यादा हैं। हमें भेड़ों के लिए चीज़ें आसान बनानी होंगी। 00:50 <@mids> आप उन्हें शिक्षित करने की कोशिश कर सकते हैं 00:50 < FillaMent> आपको उन्हें क्लासरूम में लाना होगा, और IIP/Fnet सबसे अच्छा क्लासरूम है जो मैं जानता हूँ 00:50 < hezekiah> सही, mids। सुरक्षा उतनी ही मज़बूत है जितना उसके पीछे बैठा व्यक्ति समझदार है। 00:50 <@mids> मैं पूरी तरह सहमत हूँ FillaMent 00:51 < FillaMent> ऐसा key storage बॉट एक motd रख सकता है जो समझाए कि उन्हें fingerprints चेक करनी चाहिए 00:51 <@mids> मुझे बस लगता है कि आपको keyserver को trust से अलग रखना चाहिए 00:51 < hezekiah> तो हम इस बॉट और IIP के साथ क्या करने वाले हैं? हम इससे क्या कराना चाहते हैं, और कैसे? 00:51 < FillaMent> मुझे लगता है यह थर्ड-पार्टी चीज़ होनी चाहिए 00:52 < hezekiah> anonymail जैसा? 00:52 < FillaMent> नहीं... ऐसी चीज़ जो कोई भी चला सके 00:52 <@mids> कोई भी anonymail चला सकता है 00:52 <@mids> अगर आपके पास सोर्स हो 00:52 <@mids> :) 00:52 < FillaMent> mids: फिर भी, आप समझ रहे हैं मेरा मतलब 00:53 <@mids> हाँ 00:53 <@mids> माफ़ करें 00:53 < hezekiah> तो क्या यह कुछ ऐसा है जिसे IIP डेवलपर्स को लिखना होगा, या कोई जो IIP के बारे में कुछ नहीं जानता लेकिन बेसिक IRC जानता है, लिख सकता है? 00:53  * FillaMent के पास पहले से एक फ्रेमवर्क चल रहा है 00:53 < hezekiah> ठीक! :) 00:54 < FillaMent> खैर... मुझे इसका रुख बदलने के लिए हैक करना पड़ेगा 00:54 < FillaMent> GAH!!!!!! और प्रोजेक्ट्स!!!! नहींईईईई! 00:54 < jrand0m> मान जाओ FillaMent, बस मान जाओ 00:54 < FillaMent> jrand0m: मुझे पता है... पता है। 00:54 < hezekiah> मूल रूप से मैं पूछ रहा हूँ, क्या इसे IIP में बनाना है, या यह स्वतंत्र हो सकता है? 00:55 < FillaMent> स्वतंत्र 00:55 < hezekiah> अगर यह स्वतंत्र है, तो मैं कहूँगा, "कर डालो!" :) 00:55 <@mids> hezekiah: IndependEnt 00:55  * mids झुक कर बचता है 00:55 < hezekiah> mids: सच में? 00:55 <@mids> हाँ 00:55  * FillaMent सोचता है कि वह मज़ाक मिस कर रहा है। 00:56 < hezekiah> मेरा स्पेल चेकर कहता है independant ठीक है। 00:56 <@mids> hezekiah: एक टाइपो था 00:56 < FillaMent> ओह... हाँ... 00:56 < FillaMent> dent 00:56 < FillaMent> independEnce 00:56 < hezekiah> ह्म्म ... यह independent भी ठीक बताता है, अजीब। 00:56 <@mids> hezekiah:  grep "^independ.nt$" /usr/share/dict/words 00:56 < FillaMent> शायद नया अंग्रेज़ी/पुराना अंग्रेज़ी वाला मामला 00:56 <@mids> खैर 00:56 < hezekiah> खैर ... :) 00:57 <@mids> मान लीजिए हमारे पास यह keybot है 00:57 < hezekiah> और यह IIP से स्वतंत्र होगा। :) 00:57 <@mids> यह यूज़र से कुंजी कैसे लेगा? 00:57 < FillaMent> /msg 00:57 <@mids> पूरी कुंजी? 00:57 < FillaMent> नहीं 00:57 < FillaMent> freenet 00:57 <@mids> आह 00:58 <@mids> तो आप freenet url मैसेज करेंगे 00:58 <@mids> और यह बैकग्राउंड में डाउनलोड करने की कोशिश करेगा 00:58 < lonelynerd> समस्या क्या है? आप पूरी कुंजी आसानी से iip पर पेस्ट कर सकते हैं। 00:58 < FillaMent> /msg Keybot STORE CHK@lakdjfa;lsdfjasd;lkfj 00:58 <@mids> lonelynerd: मेरी कुंजी 8 KB की है 00:58 < FillaMent> lonelynerd: सभी क्लाइंट्स के साथ नहीं 00:58 < mihi> FillaMent: आप कर सकते हैं अगर आप इसे 10 लाइनों के ब्लॉक्स में करें। 00:59 <@mids> keybot पहचान की जाँच _कर सकता है_ कि आप trent के साथ आइडेंटिफ़ाइड हैं या नहीं 00:59 <@mids> keybot 00:59 <@mids> :) 00:59 < FillaMent> mids: उसे करना ही होगा 01:00 <@mids> और बस उसे एक अतिरिक्त फ़्लैग की तरह जोड़ दें 01:00 < FillaMent> /msg keybot MSGSTORE ad;flkjsflkjsdf;lasdrkfj 01:00 < FillaMent> /msg keybot MSGSTORE ad;flkjsflkjsdf;lasdrkfj 01:00 < FillaMent> /msg keybot MSGSTORE ad;flkjsflkjsdf;lasdrkfj 01:00 <@mids> खैर 01:00 < FillaMent> ऐसी चीज़ को स्क्रिप्ट करना बेहतर होगा 01:00 <@mids> हाँ 01:00 <@mids> बिल्कुल 01:00 < jrand0m> क्या trent जैसा centralized identity manager सचमुच वांछनीय है? 01:00 < FillaMent> तो या तो काटकर msg से भेजें या freenet से 01:00 <@mids> jrand0m: centralized ircd के साथ, हाँ 01:00 <@mids> शायद हमें एक keybot समिति बनानी चाहिए 01:01 <@mids> और उन्हें विवरण पर चर्चा करने दें 01:01 < jrand0m> आह, सही।  हाँ, मैं विकेन्द्रीकृत नेटवर्क मान रहा था। 01:01  * mids #keybot खोलता है 01:01 < FillaMent> mids: मुझे ज़रूरत नहीं लगती 01:01 <@mids> खैर 01:01 <@mids> एजेंडा पर और भी है 01:01 < lonelynerd> mids, उhm. 01:01 <@mids> और हमें 1 घंटा हो चुका है 01:01 < FillaMent> 20 लोग keybots शुरू करेंगे... 1 आख़िरकार सबसे विश्वसनीय साबित होगा और de facto मानक बन जाएगा 01:02 <@mids> मेरा मतलब... IIP के भविष्य की कोई और बातें? 01:02 < hezekiah> nop? 01:02 < hezekiah> 1.2 के लिए आप कौन-सी प्रमुख सुविधाएँ/परिवर्तन योजना बना रहे हैं? 01:02 < nop> क्या 01:02 < nop> विकेंद्रीकरण 01:02 < nop> और चैनल एन्क्रिप्शन 01:02 < nop> साथ ही क्लाइंट-टू-क्लाइंट एन्क्रिप्शन 01:02 < nop> चैनल ट्रस्ट 01:02 < nop> RSA कीरिंग का उपयोग 01:02 < Debolaz> मेरा प्रश्न है। अभी IIP को सबसे ज़्यादा किस चीज़ की ज़रूरत है, जो कोई ISP दे सके? 01:03 <@mids> पैसे! 01:03 <@mids> लाखों 01:03 <@mids> ताकि हम हज़ारों डेवलपर्स हायर कर सकें 01:03 < Debolaz> मैं सेवाओं की दृष्टि से सोच रहा था। 01:04 < jrand0m> OC12? 01:04 <@mids> sf पर होस्टिंग अब तक ठीक है 01:04 <@mids> शायद कहीं एक stable node 01:05 <@mids> ... 01:05 < Debolaz> खैर, मैं एक node जैसी चीज़ के बारे में सोच रहा था। और शायद एक फ़ाइल मिरर। 01:05 <@mids> प्रोजेक्ट रिलीज़ फाइलें पहले से 8 सर्वर्स पर mirrored हैं 01:06 <@mids> साथ ही vipul's munitions पर 01:07  * mids धीरे-धीरे विषय को आइटम 3, प्रश्नों की ओर धकेलता है 01:07 < hezekiah> अरे! 01:07 <@mids> 3) प्रश्न? 01:08 < jrand0m> विकेंद्रीकरण के लिए ETA (1 माह, 3 माह, 6 माह)? 01:08 < jrand0m> यानी, किसी केंद्रीय सर्वर पर निर्भरता के बिना 01:08 <@mids> कोई टिप्पणी नहीं! 01:08 < hezekiah> mids: LOL! 01:08 < hezekiah> मुझे सच में कोई आइडिया नहीं। UserX शायद सबसे बेहतर बता पाएगा 01:09 < hezekiah> nop, UserX: क्या हम isproxy में "core" का विकेंद्रीकरण कर चुके हैं? 01:09 < nop> उhm नहीं 01:11 < hezekiah> मेरा मानना है "core" ircd के विकेंद्रीकरण से पहले आता है, सही? 01:12 < nop> पहले 01:12 < nop> हमें virc बनाना होगा 01:12 < nop> जो एक वर्चुअल irc ट्रांसपोर्ट है 01:12 < nop> ताकि irc क्लाइंट्स अभी भी core से बात कर सकें 01:12 < nop> बिना ircd के 01:13 <@mids> रोडमैप कोई? 01:13 < hezekiah> lol. मैं बिलकुल अनजान हूँ। :) 01:16 <@mids> *सन्नाटा* 01:16 <@mids> मैंने सुना कि कुछ लोग अगली बैठक जल्दी चाहते थे 01:16 < nop> हाँ 01:16  * FillaMent अपने पैर तेज़ी से रगड़ता है लेकिन सही चिरप पैदा करने में विफल रहता है। 01:16 < nop> UserX अभी जो समय है, उसमें नहीं आ सकता 01:16 < nop> काम की वजह से 01:16 < hezekiah> आह। 01:16 < nop> अगर हम इसे कुछ घंटे पहले रखें 01:16 <@mids> कौन-सा समय बेहतर रहेगा? 01:16 < nop> तो यह आसान होगा 01:16 <@mids> 21:00 UTC? 01:16 < hezekiah> अगर UserX ज़्यादा बोले तो हम वाक़ई काफ़ी चीज़ें कर पाएँ! :) 01:16 < nop> यह काम करना चाहिए 01:17 < hezekiah> देखें ... 01:17 < hezekiah> सामान्यतः 23:00 UTC होता है, सही? 01:17 <@mids> हाँ 01:17 < hezekiah> हाँ। 01:17 < hezekiah> यह मेरे लिए काम करेगा। :) 01:17 <@mids> तो 21:00 UTC तय 01:18 <@mids> ठीक 01:18 <@mids> मैं निकलता हूँ 01:18 <@mids> मुझे सुनने के लिए धन्यवाद :) 01:18  * mids झुककर अभिवादन करता है 01:18 <@mids> ओह 01:18 <@mids> भूलने से पहले 01:18 <@mids> UserX, nop, hezekiah, अभी तक IIP पर आपके काम के लिए धन्यवाद! 01:18 < hezekiah> mids: मुझे आपकी बातें सुनना अच्छा लगता है। 01:19 < hezekiah> mids: आनंद आया! :) 01:19 < hezekiah> आप सब इसे सार्थक बनाते हैं! :) 01:19 < jrand0m> हाँ, अपडेट्स के लिए धन्यवाद।  मैं आप सबके सॉफ़्टवेयर का इस्तेमाल सराहता हूँ 01:19 < hezekiah> (नोट: मैं Yankee हूँ। अगर चैनल में लड़कियाँ हैं तो कोई बुरा न माने।) 01:19  * FillaMent उन्हें कोसता है इस नेटवर्क के लिए जो उसका खाली समय खा जाता है। 01:19 < hezekiah> FillaMent: lol! :) 01:19 < jrand0m> हेह 01:20  * hezekiah "baf"er उठाता है 01:20 < hezekiah> *BAF!* 01:20 < hezekiah> बैठक समाप्त! :) 01:22 < mihi> adjourned, आपका मतलब? 01:23 < hezekiah> खत्म। 01:23 < hezekiah> हो गया। 01:23 < hezekiah> अंत। 01:23 < hezekiah> मृत। 01:23 < hezekiah> बैठक समाप्त हो चुकी है। अगली बैठक जिंदाबाद। 01:23 < mihi> ;-) logger अभी भी जीवित है </div>
+<div class="irc-log">
+--- Log opened Wed Mar 12 00:01:53 2003
+00:01 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+00:01 [Users #iip-dev]
+00:01 [@mids    ] [ jeremiah] [ mihi] [ pox  ]
+00:01 [ hezekiah] [ logger  ] [ nop ] [ UserX]
+00:01 -!- Irssi: #iip-dev: Total of 8 nicks [1 ops, 0 halfops, 0 voices, 7 normal]
+00:02 -!- Irssi: Join to #iip-dev was synced in 7 secs
+00:02 <@mids> Welcome to the 33th meeting
+00:02 < hezekiah> Hi
+00:03 <@mids> IIP 1.1.0 is released yesterday
+00:03 < toni> is it okay, to simply idle here and eve's drop?
+00:03 <@mids> toni: yes
+00:03 <@mids> Agenda for this meeting:
+00:03 <@mids> 1) IIP 1.1.0
+00:03 <@mids> 2) Future of IIP
+00:03 <@mids> 3) Questions
+00:04 <@mids> if you have questions about the current subject, please ask
+00:04 <@mids> otherwise save it for round 3
+00:04 <@mids> .
+00:04 < nop> hi
+00:04 <@mids> logs are available on http://mids.student.utwente.nl/~mids/iip/
+00:04 < hezekiah> hi! :)
+00:04 < luckypunk> Hi.
+00:04 <@mids> .
+00:04 < jrand0m> ev'nin
+00:05 <@mids> 1) IIP 1.1.0 (stable) Released!!!
+00:05 < hezekiah> YAY!
+00:05 <@mids> Finally
+00:05 < luckypunk> :)
+00:05 <@mids> almost a year after nop's post that it would be out soon :)
+00:05 < FillaMent> w3rd i$ b0nd
+00:05 <@mids> In this version the installation for Unix is enhanced, entropy generation is improved and a few bugs are fixed.
+00:05 <@mids> We call it a stable release
+00:05 < hezekiah> mids: Is that list of changes as compared to 1.1.0 RC3 or compared to 1.0.0?
+00:05 <@mids> and it looks stable so far
+00:06 <@mids> hezekiah: http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/invisibleip/iip/CHANGELOG
+00:06 <@mids> thats all I know
+00:06 < hezekiah> OK. :)
+00:06 < hezekiah> (It sorta sounds like it is a comparison to 1.1.0 RC3 or RC2.)
+00:07 <@mids> hezekiah: it does, because nobody wrote what was updated before
+00:07 < dm> Should I download the Service Pack 2 for IIP if I'm using a cracked version of IIP?
+00:07 < hezekiah> mids: Ah ... Therein lies the tale! ;-)
+00:07 < dm> sorry, carry on.
+00:07 < hezekiah> dm: I'm not aware of any service packs.
+00:07 <@mids> the release is announced on our website, freshmeat, infoanarchy and frost
+00:08 <@mids> I did email a few other sites that had it listed
+00:08 <@mids> if you guys/girls know other places to tell...
+00:08 <@mids> please do so
+00:08 < jrand0m> nsa?
+00:08 < toni> i know, but im a total stranger to iip *g*
+00:08 < FillaMent> kuro5hin?
+00:08 < hezekiah> mids: Did you email that program archive that hosts it that was recently mentioned on iip-dev?
+00:08 < toni> heise.de german security/internet related site
+00:08 < FillaMent> jinx.biz
+00:09 <@mids> hezekiah: I did mail vipul's munitions
+00:09 < hezekiah> mids: OK! :)
+00:09 <@mids> kuro5hin requires a decent article
+00:09 <@mids> and they are very picky
+00:09 <@mids> but if you want to write something...
+00:09 <@mids> please do so
+00:09 < hezekiah> slashdot again?
+00:09 <@mids> toni: could you inform them?
+00:09 < hezekiah> They don't require anything super decent, and they mentioned us before. ;-)
+00:10 < toni> they also require articles, and i dont know how picky they are
+00:10 < toni> if somebody writes an article, i could translate it to german and email them
+00:10 <@mids> you could use the press release on http://www.infoanarchy.org/story/2003/3/10/23466/2065
+00:11 <@mids> and link the CHANGELOG to http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/invisibleip/iip/CHANGELOG
+00:11 <@mids> be sure to include a general description of IIP
+00:11 <@mids> I think we should try to do /.
+00:12 <@mids> we survived it before
+00:12 < hezekiah> mids: Note: You mention to view the changelog in the infoanarchy article, but you don't appear to provide people with a link to it!
+00:12 < toni> since im not really familiar with iip, i guess i can't give a decent description, but if you /. it, i could give heise a hint, they often take news from there and translate them
+00:12 <@mids> hezekiah: yes, I forgot.
+00:12 <@mids> I'll mail their editor
+00:15 < hezekiah> OK ... anything else on agenda item 1 (IIP 1.1 release) ?
+00:17 <@mids> did you all already submit a newsstory to /.?
+00:17 < hezekiah> No.
+00:18 < hezekiah> I haven't been with the project quite long enough to have a firm grasp of what has happened since 1.0.
+00:18 < hezekiah> Who wrote the last /. post?
+00:18 <@mids> we dont know
+00:18 < hezekiah> LOL!
+00:18 < jrand0m> hahah
+00:18 < dm> I think it might have been no_nick
+00:18 < mihi> is iip too anonymous? ;-)
+00:19 <@mids> yes :)
+00:19 < hezekiah> Well, I'll go hunt up the previous post, and see if I can come up with something. :)
+00:19 <@mids> ok...
+00:19 <@mids> previous one was a copy of the kuro5hin article
+00:19 <@mids> which was about nop's interview
+00:19 <@mids> ok
+00:19 <@mids> Item 2??
+00:19 < hezekiah> Yay! :)
+00:20 <@mids> 2) Future of IIP
+00:20 <@mids> we want:
+00:20 <@mids> DECENTRALIZATION
+00:20 <@mids> but who is going to do it
+00:20 <@mids> and how
+00:21 < dm> and is it possible.
+00:21 < jrand0m> and what will be lost.
+00:21 < hezekiah> If I may interupt: I just want to make sure nop and UserX and present and accounted for. This conversation will be pretty futile without them. :)
+00:21 < jrand0m> (aka centralized authentication - trent)
+00:21 < hezekiah> nop?
+00:21 < hezekiah> UserX?
+00:21 <@mids> hezekiah?
+00:21 < hezekiah> Are you present?
+00:21 < hezekiah> mids: Here!
+00:21 < nop> I'm somewhat present
+00:22 < hezekiah> OK. :)
+00:22 < nop> userx and I have had discussions
+00:22 < nop> on how we would like to do it
+00:23 < hezekiah> Did those get discussions written up in papers and stuck in the research directory of the IIP website?
+00:23 < nop> ues
+00:23 < nop> most are there
+00:23 < nop> userx has more
+00:23 < nop> that I would like pu t there
+00:23 < nop> http://www.invisiblenet.net/research/IIP-WP-Notes.txt
+00:23 < hezekiah> OK. Could you please give the filenames of the most relavent ones so I can give them a look? :)
+00:23 < nop> that one contains quite a bit
+00:24 < nop> there is also some other's contributed
+00:24 < nop> IIP_netproto.html
+00:24 < nop> and architecture.pdf
+00:24 < hezekiah> OK. :)
+00:24 < nop>
+00:25 < nop> http://www.invisiblenet.net/research/IIP-Identity.txt
+00:25 < nop> as well
+00:25 < nop> http://www.invisiblenet.net/research/IIP-Messages.txt
+00:27 < hezekiah> OK. Are any of them completely (or primarily) devoted to just the decentralization aspect?
+00:27 < nop> yes
+00:27 < nop> all of them
+00:27 < hezekiah> OK. :)
+00:27 < hezekiah> Thanks for all the links! I'm checking them out now. :)
+00:31 <@mids> ok
+00:31 <@mids> other IIP Future events?
+00:31 < dm> is FillaMent here?
+00:31 < hezekiah> Well, in the near future, IIP-dev still doesn't have the "entropy problem" fixed.
+00:31 < dm> he had the idea of making trent allow PGP key exchanges
+00:31 < dm> which makes sense.
+00:31  * FillaMent is present
+00:32 <@mids> yes FillaMent and me did talk about that
+00:32  * mids hands the microphone to FillaMent
+00:32  * FillaMent taps it a couple times, "this thing on?" (sorry)
+00:33  * hezekiah turns up the volume
+00:33 < lonelynerd> :)
+00:33 < FillaMent> Here's the deal: I think it'd be handy to have a PGP key storage and exchange mechanism on IIP. I have a few proposals as to how such a thing should work.
+00:34 < dm> Should be fairly easy? Just add a field for PGP to trent, and add GET/STORE commands?
+00:34 < FillaMent> 1) Capability is built into trent. This presents a problem with most IRC clients sending strings that long
+00:35 < dm> ah, ok.
+00:35 < FillaMent> 2) Make trent able to pull a CHK from freenet and store the contents of that file as the Key
+00:35 < FillaMent> 3) Build a separate bot to preform 1 or 2
+00:35 < nop> hmm
+00:35 <@mids> good points
+00:35 < nop> the only issue
+00:35 < nop> I have
+00:35 < nop> with this concept
+00:35 < nop> is how do we trust trent or any bot for that matter to handle pub keys
+00:35 < nop> without verification
+00:36 <@mids> well
+00:36 < FillaMent> Well, it could check and make sure the nick was reg'd and ident'd
+00:36 <@mids> it could be just as a keyserver
+00:36 < nop> the idea I'm thinking
+00:36 < nop> is it can do a verify to all major key servers
+00:36 < nop> as well
+00:36 < nop> so that it gets congruent info
+00:36 < FillaMent> nop: read my flog entry about psuedoidentity?
+00:36 < nop> link
+00:37 < FillaMent> SSK@WxBcPJd1ppZSZ~C8IJI-DHx94oIPAgM/fillament//
+00:37 <@mids> keyservers dont verify anything
+00:37 <@mids> they just store stuff
+00:37 <@mids> what you can do now with Trent
+00:37 < FillaMent> here's the short of it... what if your identity only exists in anonymous space? What can you verify?
+00:37 <@mids>  /squery trent nickinfo mids
+00:38 <@mids> see the comment line
+00:38 <@mids> it can contain anything
+00:38 <@mids> also urls etc
+00:38 < FillaMent> but short
+00:38 <@mids> so you could link to your PGP key
+00:39 < FillaMent> I'm just thinking of something to remove all the middle steps.
+00:39 < hezekiah> Looking at mids' ID comment, I see it lists a key fingerprint
+00:39 < hezekiah> It also lists the key ID. Why can't someone just get the key from a keyserver, and check the fingerprint.
+00:39 < FillaMent> hezekiah: What key server?
+00:39 < FillaMent> one on the internet?
+00:39 < nop> that's what I'm saying
+00:40 < mihi> how get a key up to a key server? anonymously?
+00:40 < lonelynerd> we just need a bot to fetch those
+00:40 < FillaMent> if your identity only exists in anonymous space, like mine... I don't want to leave a trail on the internet
+00:40 < hezekiah> Ah ...
+00:40 < hezekiah> OK. I get it. :)
+00:40 <@mids> so a keyserver bot for IIP would be it
+00:40 <@mids> combined with freenet
+00:40 < FillaMent> that'd be sweet... just feed trent the fingerprint and it'll try to fetch the key...
+00:41 <@mids> currently freenet is too heavy to run on the Trent server
+00:41 < lonelynerd> mids, well, you could ascii armor the public keys
+00:41 < FillaMent> mids: Such a thing need not be built into trent, as my point 3
+00:41 < nop> well
+00:41 < nop> you could use a gateway mids
+00:41 < nop> like groovy
+00:41 <@mids> too unreliable
+00:42 < someone> why do you need freenet, again?
+00:42 < FillaMent> mids: If you wanted to make trent capable, just have it access one of the public freenet servers
+00:42 <@mids> why not let a user upload the key to freenet and give the url to the bot?
+00:42 <@mids> someone: for file storage
+00:42 < FillaMent> mids: Because it a few days it's gone if no one accesses it.
+00:42 < lonelynerd> mids, wouldn't it be more efficient to have a one huge digest of public keys used by people?
+00:43 < hezekiah> lonelynerd, mids: You could just add a the capability to assign PGP key ID's to a nick just like you can assign a comment.
+00:43 < FillaMent> I think the best solution is to have it not integrated into IIP. Someone writes it as a piece of software (hell, I could do it but am busy) then distribute the software. Anyone who wants to run an IIP keyserver, can.
+00:44 < lonelynerd> hezekiah, true, but you still need to fetch the pgp key
+00:44 < nop> ok here's the funny thing
+00:44 < lonelynerd> FillaMent, sounds reasonable
+00:44 < nop> things we can see
+00:44 < nop> we trust
+00:44 < nop> like the internet
+00:44 < nop> yet it's insecure
+00:44 < someone> why not just have a bot upload nad download keys from internet key servers and store a fingerprint with trent
+00:44 < nop> yet we have a cryptographic network
+00:44 < nop> and we don't trust a soul to run a pgp keyserver
+00:44 < lonelynerd> someone, that's what i suggested
+00:44 < hezekiah> nop: lol! :)
+00:45 < lonelynerd> nop :)
+00:45 <@mids> nop
+00:45 <@mids> you dont get it
+00:45 < nop> I do get it
+00:45 <@mids> you DONT need trust for a keyserver
+00:45 < nop> I'm joking
+00:45 < FillaMent> nop: Sure you do... one just has to put their pseudoidentity on line.
+00:45 < FillaMent> on the line
+00:45 < FillaMent> mids: Sure you do
+00:45 <@mids> it is just for storage
+00:45 < nop> I know mids
+00:45 < nop> I was just being funny
+00:45 < nop> ;)
+00:45 <@mids> users should ALWAYS verify fingerprint
+00:45 < someone> lonelynerd: so we don't need freenet, right?
+00:45 <@mids> and check web of trust
+00:45 < FillaMent> mids: I could just stick my key there and say it's nop's.
+00:46 <@mids> nop: good if you are funny :) but others might not understand it
+00:46 < lonelynerd> FillaMent, actually, what you wrote about pseudoidentity got me thinking. i'm wasting time and resources by having two identities on iip, one for people who know me irl and then this.
+00:46 <@mids> FillaMent: thats why you can stick the fingerprint on Trent
+00:46 < lonelynerd> someone, exactly, freenet is cool, but not needed this time
+00:46 <@mids> (you'll have to trust trent though
+00:46 < FillaMent> mids: Yes... and /how/ many people know about key fingerprints?
+00:47 < lonelynerd> someone, but somebody could still post compressed digests contain many keys
+00:47 <@mids> if they dont know, they shouldnt use PGP
+00:47 < FillaMent> mids: yeah.. let's alienate the userbase
+00:47 < lonelynerd> true
+00:47 < lonelynerd> :)
+00:47 <@mids> no seriously
+00:47 < FillaMent> I've already had this discussion 20x with zab
+00:47 < hezekiah> FillaMent: if they don't know enough about key fingerprints, then they probably don't know enough about crypto for me to trust that they haven't given away their key!
+00:47 <@mids> using PGP without checking fingerprints gives a false sense of security
+00:48 < FillaMent> hezekiah: And how do you sort those people out?
+00:49 < lonelynerd> FillaMent, that's tricky. far too many users use pgp insecurely
+00:49 < hezekiah> FillaMent: Tis the billion dollar question! That is very hard. :)
+00:49 < FillaMent> If you tell people that they're too stupid to use crypto, they won't want to. They'll say, 'fuck it... I don't have time to care about privacy'... they may be sheep, but there are more of them voting than us. We have to make it easy for the sheep.
+00:50 <@mids> you can try to educate them
+00:50 < FillaMent> You have to get them in the classroom, and IIP/Fnet is the best classroom I know of
+00:50 < hezekiah> Correct, mids. Security is only as strong as the intelligence of the person behind it.
+00:50 <@mids> I totally agree FillaMent
+00:51 < FillaMent> such a key storage bot would have a motd explaining that they should be checking fingerprints
+00:51 <@mids> I just think that you should seperate keyserver from trust
+00:51 < hezekiah> So what are we going to do with this bot and IIP? What do we want it to do, and how?
+00:51 < FillaMent> I think it should be a 3rd party thing
+00:52 < hezekiah> Like anonymail?
+00:52 < FillaMent> no... like something that anyone can run
+00:52 <@mids> anybody can run anonymail
+00:52 <@mids> IF you would have the source
+00:52 <@mids> :)
+00:52 < FillaMent> mids: You know what I mean though
+00:53 <@mids> yes
+00:53 <@mids> sorry
+00:53 < hezekiah> So is this something, the IIP developers need to write, or can someone who knows nothing about IIP but basic IRC can write?
+00:53  * FillaMent already has a framework going
+00:53 < hezekiah> OK! :)
+00:54 < FillaMent> well... I'd have to hack it to change it's direction
+00:54 < FillaMent> GAH!!!!!! More projects!!!! Nooooooo!
+00:54 < jrand0m> give in FillaMent, just give in
+00:54 < FillaMent> jrand0m: I know... I know.
+00:54 < hezekiah> Basically what I'm asking is, is this something that needs to get built into IIP, or can it be independant?
+00:55 < FillaMent> independent
+00:55 < hezekiah> If it's independant, then I'd say, "GO FOR IT!" :)
+00:55 <@mids> hezekiah: IndependEnt
+00:55  * mids ducks
+00:55 < hezekiah> mids: really?
+00:55 <@mids> yes
+00:55  * FillaMent thinks he's missing a joke.
+00:56 < hezekiah> My spell checker says independant is OK.
+00:56 <@mids> hezekiah: made a typo
+00:56 < FillaMent> oh... yeah...
+00:56 < FillaMent> dent
+00:56 < FillaMent> independEnce
+00:56 < hezekiah> Hmmm ... it says independent is OK too, odd.
+00:56 <@mids> hezekiah:  grep "^independ.nt$" /usr/share/dict/words
+00:56 < FillaMent> probably a new english/old english thing
+00:56 <@mids> anyway
+00:56 < hezekiah> Anyway ... :)
+00:57 <@mids> say we have this keybot
+00:57 < hezekiah> And it will be independent of IIP. :)
+00:57 <@mids> how will it get the key from a user?
+00:57 < FillaMent> /msg
+00:57 <@mids> the full key?
+00:57 < FillaMent> no
+00:57 < FillaMent> freenet
+00:57 <@mids> ah
+00:58 <@mids> so you msg the freenet url
+00:58 <@mids> and it tries to download in the background
+00:58 < lonelynerd> what's the problem? you can easily paste full key to iip.
+00:58 < FillaMent> /msg Keybot STORE CHK@lakdjfa;lsdfjasd;lkfj
+00:58 <@mids> lonelynerd: my key is 8 KB big
+00:58 < FillaMent> lonelynerd: Not will all clients
+00:58 < mihi> FillaMent: you can if you do it in blocks of 10 lines.
+00:59 <@mids> the keyboard _could_ look if you are identified with trent
+00:59 <@mids> keybot
+00:59 <@mids> :)
+00:59 < FillaMent> mids: It would have to
+01:00 <@mids> and just add that as an additional flag
+01:00 < FillaMent> /msg keybot MSGSTORE ad;flkjsflkjsdf;lasdrkfj
+01:00 < FillaMent> /msg keybot MSGSTORE ad;flkjsflkjsdf;lasdrkfj
+01:00 < FillaMent> /msg keybot MSGSTORE ad;flkjsflkjsdf;lasdrkfj
+01:00 <@mids> well
+01:00 < FillaMent> such a thing would best be scripted
+01:00 <@mids> yes
+01:00 <@mids> exactly
+01:00 < jrand0m> is a centralized identity manager like trent really desireable?
+01:00 < FillaMent> so either chopped and sent via msg or via freenet
+01:00 <@mids> jrand0m: with a centralized ircd, yes
+01:00 <@mids> maybe we should form a keybot commitee
+01:01 <@mids> and let them discuss the details
+01:01 < jrand0m> ah, right.  yeah, I was assuming a decentralized net.
+01:01  * mids opens #keybot
+01:01 < FillaMent> mids: I don't see a need
+01:01 <@mids> well
+01:01 <@mids> we got more on the agenda
+01:01 < lonelynerd> mids, uhm.
+01:01 <@mids> and we are already busy for 1 hour
+01:01 < FillaMent> 20 people start keybots... 1 will eventually prove the most reliable and become the defacto standard
+01:02 <@mids> I mean more.. any other Future IIP things?
+01:02 < hezekiah> nop?
+01:02 < hezekiah> What are the major features/changes you plan for 1.2?
+01:02 < nop> what
+01:02 < nop> decentralization
+01:02 < nop> and channel encryption
+01:02 < nop> as well as client to client encryption
+01:02 < nop> channel trust
+01:02 < nop> using RSA keyring
+01:02 < Debolaz> I have a question. What is the thing needed most from IIP now, that an ISP would be able to provide?
+01:03 <@mids> money!
+01:03 <@mids> millions
+01:03 <@mids> so we can hire thousands of developers
+01:03 < Debolaz> I was thinking more in terms of services.
+01:04 < jrand0m> OC12?
+01:04 <@mids> hosting is fine at sf so far
+01:04 <@mids> maybe a stable node somewhere
+01:05 <@mids> ...
+01:05 < Debolaz> Well, I was thinking of a node sort of thing. And perhaps a file mirror.
+01:05 <@mids> project release files are already mirrored on 8 servers so far
+01:06 <@mids> plus on vipul's munitions
+01:07  * mids slowly pushes the topic to item 3, questions
+01:07 < hezekiah> Ack!
+01:07 <@mids> 3) Questions?
+01:08 < jrand0m> eta for decentralization (1 mo, 3 mo, 6 mo)?
+01:08 < jrand0m> aka, without dependence on a central server
+01:08 <@mids> no comment!
+01:08 < hezekiah> mids: LOL!
+01:08 < hezekiah> I really have no idea. UserX would probably have the best bet
+01:09 < hezekiah> nop, UserX: are we done decentralizing "core" in isproxy yet?
+01:09 < nop> um no
+01:11 < hezekiah> I'm assuming that "core" comes before ircd decent., right?
+01:12 < nop> first
+01:12 < nop> we have to make a virc
+01:12 < nop> which is a virtual irc transport
+01:12 < nop> so that the irc clients can still talk to the core
+01:12 < nop> without ircd
+01:13 <@mids> roadmap anybody?
+01:13 < hezekiah> lol. I'm clueless. :)
+01:16 <@mids> *silence*
+01:16 <@mids> I heared that some wanted next meeting to be earlier
+01:16 < nop> yes
+01:16  * FillaMent rubs his legs together furiously but fails to produce the proper chirp.
+01:16 < nop> UserX can't make it at the time we have now
+01:16 < nop> because of work
+01:16 < hezekiah> Ah.
+01:16 < nop> if we had it a couple hours earlier
+01:16 <@mids> what time would be better?
+01:16 < nop> this would be easier
+01:16 <@mids> 21:00 UTC?
+01:16 < hezekiah> If UserX would talk more we could really get some stuff done! :)
+01:16 < nop> that should work
+01:17 < hezekiah> Let's see ...
+01:17 < hezekiah> It's normally 23:00 UTC, right?
+01:17 <@mids> yes
+01:17 < hezekiah> Yeah.
+01:17 < hezekiah> That should work for me. :)
+01:17 <@mids> 21:00 UTC it is
+01:18 <@mids> ok
+01:18 <@mids> I am out
+01:18 <@mids> thanks for listening to me :)
+01:18  * mids bows
+01:18 <@mids> oh
+01:18 <@mids> before I forget
+01:18 <@mids> UserX, nop, hezekiah, thanks for your work on IIP so far!
+01:18 < hezekiah> mids: I enjoy listening to you.
+01:19 < hezekiah> mids: A pleasure! :)
+01:19 < hezekiah> All you guys make it worthwhile! :)
+01:19 < jrand0m> yeah, thanks for the updates.  I appreciate using y'alls software
+01:19 < hezekiah> (Note: I am a Yankee. No offense is meant if there are girls in the channel.)
+01:19  * FillaMent curses them for this network that consumes his free time.
+01:19 < hezekiah> FillaMent: lol! :)
+01:19 < jrand0m> heh
+01:20  * hezekiah picks up the "baf"er
+01:20 < hezekiah> *BAF!*
+01:20 < hezekiah> Meeting adjurned! :)
+01:22 < mihi> adjourned, you mean?
+01:23 < hezekiah> Over.
+01:23 < hezekiah> Done.
+01:23 < hezekiah> End.
+01:23 < hezekiah> Dead.
+01:23 < hezekiah> The meeting is dead. Long live the next meeting.
+01:23 < mihi> ;-) logger is still living
+</div>

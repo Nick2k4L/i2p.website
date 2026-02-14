@@ -2,16 +2,216 @@
 title: "I2P geliştirici toplantısı"
 date: 2003-03-25
 author: "nop"
-description: "25 Mart 2003 tarihli I2P geliştirme toplantısı tutanağı."
+description: "25 Mart 2003 tarihli I2P geliştirme toplantısı kayıtları."
 categories: ["meeting"]
 ---
 
-(wayback machine'in katkılarıyla http://www.archive.org/)
+(wayback machine'nin izniyle http://www.archive.org/)
 
-## Kısa özet
+## Hızlı özet
 
-<p class="attendees-inline"><strong>Hazır bulunanlar:</strong> Aprogas, hezekiah, mids, mihi, nop, noP, UserX</p>
+<p class="attendees-inline"><strong>Katılanlar:</strong> Aprogas, hezekiah, mids, mihi, nop, noP, UserX</p>
 
 ## Toplantı Günlüğü
 
-<div class="irc-log"> --- Günlük açıldı Tue Mar 25 22:07:19 2003 22:07 -!- #iip-dev için konu: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ 22:07 [Kullanıcılar #iip-dev] 22:07 [@hezekiah] [ Aprogas] [ logger] [ mids] [ poX] [ UserX] 22:07 -!- Irssi: #iip-dev: Toplam 6 nick [1 ops, 0 halfops, 0 voices, 5 normal] 22:07 -!- Irssi: #iip-dev kanalına katılım 3 sn içinde senkronlandı 22:07 < UserX> evet 22:07 <@hezekiah> Tamam. :) 22:07 < mids> günlük yayında http://mids.student.utwente.nl/~mids/iip/meeting35/livelog.txt 22:07 < Aprogas> /exec -o tail -f http://mids.student.utwente.nl/~mids/iip/meeting35/livelog.txt 22:08 < Aprogas> döngüler eğlenceli 22:08 < mids> kimsenin bir gündemi yoksa; 22:08 < mids> merkeziyetsiz yönlendirme protokolü için resmî önerilerin neler olduğunu duymak isterim 22:09 < Aprogas> o hâlde en azından gündem şöyle olsun: 1. merkeziyetsiz yönlendirme protokolü 2. soru 22:09 < mids> 1) hoş geldiniz 22:09 < mids> 2) merkeziyetsiz protokol 22:09 < mids> 3) WVTTK 22:09 < mids> 4) sorular 22:09 < Aprogas> bu Felemenkçe 22:10 < mids> bunun İngilizcesi ne? 22:10 < Aprogas> 3) WCTTA 22:10 < Aprogas> belki 22:10 < Aprogas> ama Latince daha elit olurdu 22:10 < Aprogas> susup konuya dönmemi söyleyecek yönetmen nerede? 22:10 <@hezekiah> Aprogas: sessiz ol ve konuya dön. ;-) 22:10 < mids> quod etcetera mensa venit 22:11 < Aprogas> hezekiah: teşekkürler 22:11 < mids> -1- 22:11 < mids> Herkese hoş geldiniz! 22:11 <@hezekiah> Selam! :) 22:11 < mids> gördüğünüz gibi, düzenli toplantılar artık önceki 33 tanesine göre daha erken 22:11 < mihi> selam mids 22:11 < mids> . 22:11 < mids> -2- 22:11 < Aprogas> esas olarak ABD/AB IIP kullanıcılarına daha iyi uyması için mi? 22:12 < nop> yo 22:12 < Aprogas> merhaba nop 22:12 -!- mode/#iip-dev [+o nop] by Trent 22:12 <@nop> sayfayı açtım 22:12 <@hezekiah> Selam, nop! :) 22:12 < mids> Aprogas: UserX / nop için daha iyi olur 22:12 <@nop> userx hayatta mı? 22:12 < Aprogas> nick'ini noP olarak değiştirmeyi unutma 22:12 -!- nop artık noP olarak biliniyor 22:12 < mids> 2) merkeziyetsiz yönlendirme protokolü için resmî önerilerin neler olduğunu duymak isterim 22:12 <@noP> teşekkürler aprogas 22:12 <@noP> Cuma 21:00'e kadar resmî bir teklifimiz yok 22:12 < UserX> noP: buradayım 22:13 <@noP> bu tartışılacak 22:13 <@noP> www.invisiblenet.net/research içinde yarı-resmî öneriler var 22:13 < Aprogas> tamamen işe yaramaz öneriler vermek için o tartışmaya katılabilir miyim? 22:13 <@noP> ki bunlar birçok farklı öneri 22:13 <@hezekiah> Ah, vah. Cuma'dan önce okunacak çok şeyim var gibi görünüyor. ;-) 22:13 <@noP> onu kaydedeceğiz 22:13 <@noP> ve sen öneride bulunabilirsin 22:13 <@noP> iip-dev toplantısı sırasında 22:14 <@noP> evet hezekiah daha fazla şey ekledik ;) 22:14 -!- mids #iip-dev kanalının konusunu şuna değiştirdi: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ - http://www.invisiblenet.net/research/ 22:14 < mids> tamam 22:14 < mids> . 22:14 < mids> quod etcetera mensa venit? 22:14 <@noP> hemen gelirim 22:14 <@hezekiah> mids: bu hangi dil? 22:15 < mids> Latince 22:15 <@hezekiah> Ah. 22:15 < Aprogas> 'mensam' daha doğru geliyor 22:15 < mids> şuna benzer bir anlama gelmeli: masaya başka ne geliyor 22:15 < Aprogas> ve `etcetera' değil 22:15 < mids> et cetera 22:15 < Aprogas> ama bu hâlâ mantıklı değil 22:16 < mihi> quod ceterum ad mensam venit? 22:16 < Aprogas> belki 22:16 < Aprogas> IIP kaynak kodu ne zaman latin.h kullanılarak Latince'ye çevrilecek? 22:16 < mihi> igpay atinlay? ;-) 22:16 < Aprogas> başka bir deyişle, o adam-saatleri benim latin.h projesine aktarabilmek ve onu tamamlayıp sonra IIP'ye uygulamak için IIP geliştirmesi ne zaman dondurulacak? 22:17 <@hezekiah> Asla. 22:17 < mids> quod autem ad mensam venit 22:17 < mids> powered by http://www.latijnnederlands.nl/ 22:17 < mids> . 22:17 < Aprogas> bu W Echter TTK 22:17 < mids> IIP ile ilgili sorular? 22:17 < mids> Aprogas: 2. verder, voorts, en dan (ter voortzetting of uitwerking v. iets voorafgaands). 22:17 < mihi> "*ama* masaya ne geliyor"? 22:17 < Aprogas> `what' does 22:18 < mids> mihi: sorular, öneriler, yorumlar 22:18 < mihi> mids, tırnağı kaçırdın 22:18 < Aprogas> toplantı sırasında konuşulan ama o anda aktif olan maddeye uymayan herhangi bir şey 22:18 <@hezekiah> Bu, gündemdeki madde 3 mü? 22:18 < Aprogas> hezekiah: sanırım hâlâ sorulardayız 22:18 < mids> hezekiah: evet 22:18 < Aprogas> toplantı kaotik ve gerçek bir içeriği yok gibi görünüyor; yönlendirme protokolüyle ilgili kararın sonra verileceği dışında 22:18 <@hezekiah> ... çünkü "WVTTK"nin ne anlama geldiğine dair hiçbir fikrim yok ve bu konuşma kesinlikle yeterince muğlak; olası bir aday. ;-) 22:19 < mids> tamam, /me formalizes 22:19 <@hezekiah> Doğru 22:19 < Aprogas> muhtemelen burada olduğum içindir 22:19 < mids> bir de çok bira içtiğim için 22:19 < Aprogas> WVTTK gerçekte mantık taşımayan herhangi bir şeydir 22:19  * mids 4. maddeye geçer 22:20 < mids> IIP ile ilgili başka soru var mı? 22:20 < Aprogas> IIP ekibi kullanıcı tabanının nasıl büyümesini bekliyor ve daha fazla büyümeyi tetiklemek için yoğun PR ne zaman başlayacak? 22:20 < Aprogas> ayrıca, IIP ekibi başlangıçta ve PR kampanyasıyla ne tür insanları çekmeyi bekliyor 22:21 < mids> geçmiş deneyim, slashdot'a çıkmanın çok kolay olduğunu öğretti 22:21 < mids> bu da kullanıcı sayısında hızlı bir artışla sonuçlanır 22:21 < mids> ama 'Havalı Özellikler' gerekir 22:21 < mids> bir duyuruyu meşrulaştırmak için 22:21 < Aprogas> şey, çoğu slashdot kullanıcısı uzun süre kalmıyor bence 22:21 < Aprogas> birkaçı kalır, ama çoğu sadece `bir bakmak' ister 22:21 <@hezekiah> Doğru. 22:21 <@hezekiah> Öyleyse merkezsizleştirdiğimizde /. üzerinde övünecek bir şeyimiz olur. 22:22 < mids> sonra bazı çevrimiçi dergilere yönelebiliriz 22:22 < mids> mesela theregister 22:22 < mids> ve/veya wired 22:22 < Aprogas> bir duyuruyu gerekçelendirmek için havalı özelliklere, onları tutmak için de havalı bir uygulamaya ihtiyaç var 22:22 <@hezekiah> Doğru. 22:22 < Aprogas> ama slashdot oldukça `sınırlı' bir hedef kitle 22:22 < Aprogas> sadece belirli bir tip insanı çekiyor 22:22 < mids> o bir parça 22:22 < Aprogas> belki biraz daha çeşitlilik iyi olurdu 22:22 < mids> bazı hedef kitlelere de hitap edebilirsiniz 22:22 <@hezekiah> Şahsen insan çekmeyi pek umursamıyorum. Sadece iyi bir program istiyorum. 22:23 < mids> Hollandalı organizasyon Martijn'e yazmak gibi :) 22:24 < mids> belki AA gruplarına, Amnesty'ye, EFF'ye, scientology/mezhep eleştirmenlerine basın bülteni 22:24 < mids> hezekiah: iyi bir programla bile makul trafik sunabilmek için belli bir kullanıcı tabanına ihtiyaç var 22:25 < mids> ultra-anonim ağınızda sadece 2 kullanıcı olamaz 22:25 <@hezekiah> Bana göre, freashmeat/sourceforge üzerinde bulunması yeterince kolaysa ve insanların istediğini sunuyorsa (iyi anonimleştirilmiş sohbet), insanlar kullanır. 22:26 <@hezekiah> Evet. Bu, kullanıcı tabanı büyümesine dair çok ilkel bir bakış açısı. 22:26 < Aprogas> ortalama internet kullanıcısı sourceforge'da arama yapmaz 22:26 < Aprogas> var olduğunu bilmiyorsan bir şeyi aramak zordur 22:26 < mids> hezekiah: freshmeat / sourceforge sadece geek'ler içindir 22:26 < mids> anonimliğin 'havalı' olduğunu düşünürler 22:26 < mids> ama aslında o kadar da ihtiyaç duymazlar 22:26 <@hezekiah> Ya da omuzlarının üzerinden bakmasını istemedikleri insanlar vardır. :) 22:26 < mids> çünkü saklayacak hiçbir şeyleri yok :) 22:27 <@hezekiah> Ama paranoyaları güvenli düğümler kurmalarına yardımcı olur. 22:27 <@hezekiah> Mesaj trafiğimin Great Aunt Edna'nın Windows Me makinesinden geçmesini isteyeceğimden emin değilim. 22:27 < mids> sence hedef kitle nedir? 22:27 < mids> 16-23 yaş arası linux veletleri? 22:27 <@hezekiah> Şey, onu kimin kullandığını gerçekten umursamıyorum. 22:28 < mids> yoksa ortalama vatandaş (Joe Sixpack) 22:28 <@hezekiah> Sadece düğümleri kuran insanların onları güvenli şekilde kurmasını isterim. 22:28 < Aprogas> belki bizi savunacak birkaç avukat 22:28 <@hezekiah> Bunun ötesinde, iyi kod yazarak programı daha iyi yapmak istiyorum. 22:28 < Aprogas> IIP düzgün bir programsa, tüm düğümlerin güvenli olamayacağını hesaba katardı 22:28 <@hezekiah> Nop kullanıcı tabanı gibi bazı şeyler yapıyor. Görünüşe göre bunu oldukça iyi anlıyor. 22:29 < mids> ne demek istiyorsun? 22:29 < Aprogas> hezekiah gerçek bir programcı, kullanıcılardan korkuyor 22:29 <@hezekiah> Aprogas: IIP aptala dayanıklı olmak için elinden geleni yapacak, ama bir sistemin güvenliği her zaman onu işleten insanlara dayanır. 22:29 <@hezekiah> Aprogas: Kullanıcılardan korkmuyorum. Sadece _kim_ olduklarını pek umursamıyorum. 22:29 < mids> http://www.joelonsoftware.com/articles/StrategyLetterV.html 22:30 <@hezekiah> mids: Kurumsal işler yapıyor. İş dünyası tarzı şeyler. Cap'n Crunch'ı işe almak için nasıl fon bulduğunu hâlâ bilmiyorum. 22:30 < mids> yorum yok 22:30 <@hezekiah> lol 22:33 < mids> artık söyleyecek bir şeyim yok 22:33 < mids> başka soru? 22:33 < Aprogas> IIP'in şu anda kaç geliştiricisi var ve bu geliştiriciler haftada (tahminen) kaç saat harcıyor 22:33 <@hezekiah> ıı .. 22:34 <@hezekiah> Aslında bu çakalca bir soru. :) 22:34 < Aprogas> öyle mi? 22:34 <@hezekiah> Hangi _tür_ geliştiricileri kastediyorsun? 22:34 < Aprogas> geliştirici aramıyorum 22:34 < Aprogas> sadece IIP geliştirmesinin nasıl gittiğini bilmek istiyorum 22:34 <@hezekiah> Yani isproxy yazan geliştiricileri mi öğrenmek istiyorsun? 22:35 < Aprogas> IIP sadece isproxy'den fazlası sanırım 22:35 <@hezekiah> Evet. 22:35 < Aprogas> sadece şu anda IIP'ye kaç kişinin zaman harcadığını bilmek istiyorum 22:35 <@hezekiah> Bu yüzden çakalca bir soru. :) 22:35 <@hezekiah> O zaman hiçbir fikrim yok! :) Muhtemelen hepsi kamuya açık değil! 22:35 < mids> o hâlde IIP'e ne kadar zaman harcıyorsun? 22:35 < Aprogas> boş ver, sanırım gidip sf'nin aktivite ölçerine bakacağım 22:36 < Aprogas> böyle bir bilgi varsa 22:36 <@hezekiah> Şu anda (bildiğim kadarıyla) isproxy kaynağı için aktif olarak kod yazan yalnızca iki kişi olduğunu söyleyebilirim. 22:36 <@hezekiah> UserX ve ben. 22:36 < mids> *başını sallar* 22:36 < Aprogas> ben sadece kod yazmaktan bahsetmiyorum 22:36 <@hezekiah> Nop, fırsat buldukça arka planda güzel protokoller ve teoriyle ilgili işler yapıyor. 22:36 < Aprogas> ayrıca planlama işleri, mesela şu yönlendirme protokolü 22:36 < Aprogas> projenin bütünü olarak 22:36 <@hezekiah> Tamam ... bu bir açık kaynak projesi. "Geliştiriciler", bir fikir ortaya atan herkes. 22:37 <@hezekiah> lol 22:37 < Aprogas> aslında IIP üzerinde kaç adam-saat harcandığını (boşa mı?) bilmek istiyorum ki bunun ne kadar paraya tekabül ettiğini hesaplayabileyim 22:37 <@hezekiah> Düşündüğünden cevaplaması çok daha çetrefil, ha? 22:37 <@hezekiah> Şey, ben esasen sadece isproxy üzerindeki çalışmaları biliyorum. 22:37 < Aprogas> tamam 22:37 <@hezekiah> Bu, UserX ve benim ne kadar meşgul olduğumuza göre dalgalanıyor. 22:37 <@noP> aprogas çok detaycı davranıyorsun 22:38 < Aprogas> sadece, bu projeye bağış yapacak olsam doğru miktarı bağışladığımdan emin olmak istiyorum; ne çok fazla, ne çok az 22:38 <@noP> geliştirme ekibinde değilsen 22:38 <@noP> o zaman vaktini harcama 22:38 <@hezekiah> Örneğin, şu anda gerçek hayatta çok meşgulüm, bu yüzden bir haftadan fazladır isproxy koduna dokunamadım! (Ack!) 22:38 < Aprogas> bu yüzden bu projenin adam-saat olarak ne kadar `maliyet' edeceğini bilmek istiyorum 22:39 <@hezekiah> Kod yazabildiğim ortalama bir haftada 4-5 saat çıkarabilirim. Bu da tamamen karanlığa taş atmak! UserX aralıklı kodluyor gibi görünüyor (alınma); bazen pek zamanı olmadığı dönemler, ardından da bir hafta boyunca bir sürü commit oluyor. (Belki de tüm süre boyunca kod yazıp sadece kod tamamlandığında commit ediyordur. Gerçekten bilmiyorum.) 22:39 <@hezekiah> Neyse, bunun hakkında gerçekten fikir sahibi olmam için fazlasıyla dalgalı. 22:40 < Aprogas> tamam 22:41 < Aprogas> başka sorum yok 22:43  * mids çileyi bitirir 22:43  * hezekiah mids'e *baf*eri uzatır 22:44 -!- mode/#iip-dev [+o mids] by Trent 22:44 -!- logger, mids tarafından #iip-dev kanalından atıldı [*baf*] --- Günlük kapatıldı Tue Mar 25 22:45:02 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Mar 25 22:07:19 2003
+22:07 -!- Topic for #iip-dev: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/
+22:07 [Users #iip-dev]
+22:07 [@hezekiah] [ Aprogas] [ logger] [ mids] [ poX] [ UserX]
+22:07 -!- Irssi: #iip-dev: Total of 6 nicks [1 ops, 0 halfops, 0 voices, 5 normal]
+22:07 -!- Irssi: Join to #iip-dev was synced in 3 secs
+22:07 < UserX> yes
+22:07 <@hezekiah> OK. :)
+22:07 < mids> log is up http://mids.student.utwente.nl/~mids/iip/meeting35/livelog.txt
+22:07 < Aprogas> /exec -o tail -f http://mids.student.utwente.nl/~mids/iip/meeting35/livelog.txt
+22:08 < Aprogas> loops are fun
+22:08 < mids> unless anybody has any agenda;
+22:08 < mids> I'd like to hear what the official proposals are for the decentralized routing protocol
+22:09 < Aprogas> then at least have  1. decentral routing protocl 2. question  as agenda
+22:09 < mids> 1) welcome
+22:09 < mids> 2) decentralized protocol
+22:09 < mids> 3) WVTTK
+22:09 < mids> 4) questions
+22:09 < Aprogas> thats dutch
+22:10 < mids> whats the english word for it?
+22:10 < Aprogas> 3) WCTTA
+22:10 < Aprogas> maybe
+22:10 < Aprogas> but latin would be more elite
+22:10 < Aprogas> where is the director to tell me to shut up and get back to the point ?
+22:10 <@hezekiah> Aprogas: be quite and get back to the point. ;-)
+22:10 < mids> quod etcetera mensa venit
+22:11 < Aprogas> hezekiah: thanks
+22:11 < mids> -1-
+22:11 < mids> Welcome everybody!
+22:11 <@hezekiah> Hiya! :)
+22:11 < mids> as you see, the regular meetings are earlier as the other 33 ones from now on
+22:11 < mihi> hi mids
+22:11 < mids> .
+22:11 < mids> -2-
+22:11 < Aprogas> to better fit the mainly US/EU users of IIP ?
+22:12 < nop> yo
+22:12 < Aprogas> hello nop
+22:12 -!- mode/#iip-dev [+o nop] by Trent
+22:12 <@nop> got the page
+22:12 <@hezekiah> Hiya, nop! :)
+22:12 < mids> Aprogas: it would fit better for UserX / nop
+22:12 <@nop> is userx alive?
+22:12 < Aprogas> dont forget to change your nick to noP
+22:12 -!- nop is now known as noP
+22:12 < mids> 2) I'd like to hear what the official proposals are for the decentralized routing protocol
+22:12 <@noP> thnx aprogas
+22:12 <@noP> we have no official proposal till Friday 21:00
+22:12 < UserX> noP: i'm here
+22:13 <@noP> that is to be discussed
+22:13 <@noP> there are semi-official proposals in www.invisiblenet.net/research
+22:13 < Aprogas> can i join that discussion to give totally useless suggestions ?
+22:13 <@noP> which are many different proposals
+22:13 <@hezekiah> Uh, oh. Looks like I have a lot of reading to do before Friday. ;-)
+22:13 <@noP> we will log it
+22:13 <@noP> and you can suggest
+22:13 <@noP> during iip-dev meeting
+22:14 <@noP> yeah hezekiah we added more stuff ;)
+22:14 -!- mids changed the topic of #iip-dev to: IIP Meeting - logfiles: http://mids.student.utwente.nl/~mids/iip/ - http://www.invisiblenet.net/research/
+22:14 < mids> ok
+22:14 < mids> .
+22:14 < mids> quod etcetera mensa venit?
+22:14 <@noP> brb
+22:14 <@hezekiah> mids: What language is that?
+22:15 < mids> latin
+22:15 <@hezekiah> Ah.
+22:15 < Aprogas> mensam sounds more correct
+22:15 < mids> it should mean something like: what else comes to the table
+22:15 < Aprogas> and `etcetera' isnt
+22:15 < mids> et cetera
+22:15 < Aprogas> but that still doesnt make sense
+22:16 < mihi> quod ceterum ad mensam venit?
+22:16 < Aprogas> maybe
+22:16 < Aprogas> when will the IIP sourcecode be translated to latin using latin.h ?
+22:16 < mihi> igpay atinlay? ;-)
+22:16 < Aprogas> in other words, when will IIP development freeze to transfer those manhours to my latin.h project and complete it, only to then implement it in IIP ?
+22:17 <@hezekiah> Never.
+22:17 < mids> quod autem ad mensam venit
+22:17 < mids> powered by http://www.latijnnederlands.nl/
+22:17 < mids> .
+22:17 < Aprogas> thats W Echter TTK
+22:17 < mids> any IIP questions?
+22:17 < mids> Aprogas: 2. verder, voorts, en dan (ter voortzetting of uitwerking v. iets voorafgaands).
+22:17 < mihi> "*but* what comes to the table"?
+22:17 < Aprogas> `what' does
+22:18 < mids> mihi: questions, proposals, comments
+22:18 < mihi> mids, you missed the ""
+22:18 < Aprogas> anything that was talked about during the meeting but didnt fit in the point that was currently active
+22:18 <@hezekiah> Is this item 3 on the agenda?
+22:18 < Aprogas> hezekiah: i think we are at questions yet
+22:18 < mids> hezekiah: yes
+22:18 < Aprogas> the meeting seems chaotic and without any real content, except that the decision on the routing protocol will be made later
+22:18 <@hezekiah> ... because I have no idea what "WVTTK" means and this conversation is definately obscure enough to be a possible candidate. ;-)
+22:19 < mids> ok, /me formalizes
+22:19 <@hezekiah> Right
+22:19 < Aprogas> its probably because i am here
+22:19 < mids> and because I had a lot of beer
+22:19 < Aprogas> WVTTK in reality is anything that does not make sense
+22:19  * mids moves on to point 4
+22:20 < mids> any IIP related questions?
+22:20 < Aprogas> how does the IIP team expect the userbase to grow, and when will massive PR start to stimulate more growth ?
+22:20 < Aprogas> also, what kind of people does the IIP team expect to attract in the beginning, and with the PR campaign
+22:21 < mids> past experience has tought that it is very easy to get on slashdot
+22:21 < mids> which results in a quick increase of users
+22:21 < mids> but you need Cool Features
+22:21 < mids> to excuse an announcement
+22:21 < Aprogas> well, most slashdot users dont stay long i think
+22:21 < Aprogas> a few of them stay, but most just want to `check it out'
+22:21 <@hezekiah> Right.
+22:21 <@hezekiah> So once we decentralize we will have something to brag about on /.
+22:22 < mids> then we can address some online magazines
+22:22 < mids> like theregister
+22:22 < mids> and/or wired
+22:22 < Aprogas> you need cool features to excuse an announcement, and you need a cool application to keep them
+22:22 <@hezekiah> Right.
+22:22 < Aprogas> but slashdot is a pretty `limited' target group
+22:22 < Aprogas> it only attracts a certain type of people
+22:22 < mids> it is a part
+22:22 < Aprogas> perhaps some more diversity would be good
+22:22 < mids> you could also address some target audiences
+22:22 <@hezekiah> I personally don't really care about attracting people. I just want a good program.
+22:23 < mids> like writing to the dutch organisation Martijn :)
+22:24 < mids> maybe some press release to AA groups, amnesty, EFF, scientology/cult critics
+22:24 < mids> hezekiah: even with a good program you require a certain userbase to be able to offer decent traffic
+22:25 < mids> you cant have only 2 users on your ultra-anonymous network
+22:25 <@hezekiah> The way I look at it, if it's easy enough to find on freashmeat/sourceforge and it offers what people want (good anonymized chat), then people will use it.
+22:26 <@hezekiah> Yes. That is a very primitive outlook on userbase growth.
+22:26 < Aprogas> the average internet user does not search at sourceforge
+22:26 < Aprogas> its hard to search for something if you dont know that it exists
+22:26 < mids> hezekiah: freshmeat / sourceforge is only for the geeks
+22:26 < mids> they think that anonymity is 'cool'
+22:26 < mids> but dont really need it that much
+22:26 <@hezekiah> Or they have people they don't want to be looking over their shoulder. :)
+22:26 < mids> cause they have nothing to hide :)
+22:27 <@hezekiah> But their paranoia helps them set up secure nodes.
+22:27 <@hezekiah> I'm not sure I would want my message traffic running through Great Aunt Edna's Windows Me machine.
+22:27 < mids> what is the target audience in your oppinion?
+22:27 < mids> 16-23 year old linux kiddies?
+22:27 <@hezekiah> Well, I really don't care who uses it.
+22:28 < mids> or joe sixpack
+22:28 <@hezekiah> I would just want the people who make the nodes to make them securely.
+22:28 < Aprogas> maybe some lawyers to defend us
+22:28 <@hezekiah> Beyond that, I just want to make the program better by good coding.
+22:28 < Aprogas> if IIP is a proper program, it would take into account that not all nodes can be secure
+22:28 <@hezekiah> Nop does some userbase kind of stuff. He seems to understand it pretty well.
+22:29 < mids> what do you mean?
+22:29 < Aprogas> hezekiah is the true programmer, he is afraid of users
+22:29 <@hezekiah> Aprogas: IIP will do its best to be idiot proof, but the security of a system always comes down to the people who run it.
+22:29 <@hezekiah> Aprogas: I'm not affraid of users. I just don't really care too much _who_ they are.
+22:29 < mids> http://www.joelonsoftware.com/articles/StrategyLetterV.html
+22:30 <@hezekiah> mids: He does corporate stuff. Buisness kind of things. I still don't know how he got funding to hire Cap'n Crunch.
+22:30 < mids> no comment
+22:30 <@hezekiah> lol
+22:33 < mids> I got nothing to say anymore
+22:33 < mids> other questions?
+22:33 < Aprogas> how many developers does IIP have right now, and how many hours per week do those developers spend (estimated)
+22:33 <@hezekiah> Uh ..
+22:34 <@hezekiah> That's a trick question actually. :)
+22:34 < Aprogas> is it ?
+22:34 <@hezekiah> Which _kind_ of developers are you looking for?
+22:34 < Aprogas> i am not looking for developers
+22:34 < Aprogas> i just want to know how the IIP development is doing
+22:34 <@hezekiah> So you want to know about the developers who right isproxy?
+22:35 < Aprogas> IIP is more than just isproxy i guess
+22:35 <@hezekiah> Yeah.
+22:35 < Aprogas> i just want to know how many people are currently spending time on IIP
+22:35 <@hezekiah> That's why it's a trick question. :)
+22:35 <@hezekiah> Then I have no idea! :) Not all of them are probably public!
+22:35 < mids> how much time do you spend on IIP then?
+22:35 < Aprogas> never mind, ill just go watch the sf's actitivity meter i guess
+22:36 < Aprogas> if it has such information
+22:36 <@hezekiah> I can tell you that right now (to the best of my knowledge) there are really only two people actively writting code for the isproxy source.
+22:36 <@hezekiah> UserX and myself.
+22:36 < mids> *nod*
+22:36 < Aprogas> im not only talking about writing code
+22:36 <@hezekiah> Nop is doing stuff in the background when he can that deals with neat protocols and theory.
+22:36 < Aprogas> also about plannig stuff, for example that routing protocol
+22:36 < Aprogas> just the project as a whole
+22:36 <@hezekiah> OK ... this is an opensource project. The "developers" are anyone who pitches in an idea.
+22:37 <@hezekiah> lol
+22:37 < Aprogas> actually i want to know how many manhours are spent (wasted?) on IIP, so i can calculate how much money that represents
+22:37 <@hezekiah> A lot trickier to answer than you thought, eh?
+22:37 <@hezekiah> Well, I pretty much only know about work on isproxy.
+22:37 < Aprogas> ok
+22:37 <@hezekiah> That fluxuates based on how busy UserX and myself are.
+22:37 <@noP> aprogas you're being nit picky
+22:38 < Aprogas> its just that i want to know that if i were to donate money to this project, that i donate the right amount, not too much, not too little
+22:38 <@noP> if you're not on the dev team
+22:38 <@noP> then just don't waste your time
+22:38 <@hezekiah> For example, right now I am very busy in real life, so I haven't been able to touch the isproxy code for over a week! (Ack!)
+22:38 < Aprogas> so i want to know how much this project would `cost' in manhours
+22:39 <@hezekiah> On an average week where I can write code, I might get in 4-5 hours. That's a wild stab in the dark! UserX seems to code in spurts (no offense) having periouds where he doesn't have much time and then one week where there is a flurry of commits. (He might be coding the whole time and just committing when he has completed code. I really don't know.)
+22:39 <@hezekiah> Anyway, it's way to volatile for me to really get a handle on it.
+22:40 < Aprogas> ok
+22:41 < Aprogas> i have no more questions
+22:43  * mids ends the suffering
+22:43  * hezekiah hands mids the *baf*er
+22:44 -!- mode/#iip-dev [+o mids] by Trent
+22:44 -!- logger was kicked from #iip-dev by mids [*baf*]
+--- Log closed Tue Mar 25 22:45:02 2003
+</div>

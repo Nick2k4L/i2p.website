@@ -1,12 +1,12 @@
 ---
-title: "Reunião de desenvolvimento do I2P, 4 de junho de 2002"
+title: "Reunião de desenvolvimento I2P, 4 de junho de 2002"
 date: 2002-06-04
 author: "nop"
-description: "Registro da reunião de desenvolvimento do I2P de 4 de junho de 2002."
+description: "Log da reunião de desenvolvimento do I2P de 4 de junho de 2002."
 categories: ["meeting"]
 ---
 
-(Cortesia da Wayback Machine http://www.archive.org/)
+(Cortesia do wayback machine http://www.archive.org/)
 
 ## Resumo rápido
 
@@ -14,4 +14,614 @@ categories: ["meeting"]
 
 ## Registro da Reunião
 
-<div class="irc-log"> --- Log aberto Wed Jun 05 00:38:00 2002 00:38 <+logger> registro iniciado 00:38 <@codeshark> já? 00:38 <+logger> sim, aquecendo 00:49  * Annemiek está agora ausente [Slapen/sleeping] [p-uit l-uit] 00:49 -!- Annemiek agora é conhecido(a) como keimennA 00:59 <@nop> hora 00:59 <@nop> que horas são 00:59 <@codeshark> 22:59 UTC 01:00 < ellison> rufem os tambores..... 01:00 <@codeshark> 23:00 UTC 01:00 < Zwollywood> 1:00 01:00 <@mids> Tue Jun  4 23:00:50 UTC 2002 01:01 <@mids> vamos começar 01:01 <@nop> ok 01:01 <@nop> Bem-vindos, todos 01:01 <@nop> à 3ª reunião 01:01 <@nop> do IIP 01:02 <@nop> Hoje a reunião provavelmente será mais curta 01:02 <@nop> mas isso não é exatamente algo ruim 01:02 <@nop> então, de qualquer forma 01:02 <@mids> a pedido de alguns europeus, a reunião está sendo realizada 1 hora mais cedo; nop está ocupado trabalhando, então pode estar ausente 01:02 <@nop> vamos começar, certo? 01:02 <@mids> A reunião anterior tem logs em http://mids.student.utwente.nl/~mids/iip/meeting2/ 01:03 <@mids> se ficar lotado, este canal será moderado; nesse caso, direcione sua pergunta a quem tem ops 01:03 <@nop> ok 01:03 <@nop> pauta 01:03 <@mids> 1) Boas-vindas 01:03 <@mids> 2) Status da documentação 01:03 <@mids> 3) Compatibilidade com RC2 01:03 <@mids> 4) Suporte a IPv6 para IIP 1.2 01:03 <@mids> A) Perguntas? 01:03 <@mids> B) Próxima reunião 01:03 <@nop> bem-vindos 01:03 <@nop> vamos ao 2 01:04 <@mids> Graças ao Banks, muitos buracos na documentação foram preenchidos 01:04 <@mids> ele adicionou capturas de tela para Windows 01:04 <@mids> e encontrou citações legais usadas em cada capítulo 01:04 < Banks> sem problema 01:04 <@codeshark> sim, a documentação está bacana 01:04 <@mids> cohesion revisou o trabalho dele nos capítulos 1 e 2 01:04 <@mids> agora está no CVS 01:05 <@mids> demo: http://mids.student.utwente.nl/~mids/iip/htmldoc/en/index.html 01:05 <@mids> nop ainda precisa revisar tudo, então está longe de ser final 01:05 <@mids> . 01:05 <@mids> desculpem o logo, aquele ASCII art é provisório :) 01:05 <@mids> . 01:06 <@mids> Sina: agora todo mundo está olhando a documentação bacana: demo: http://mids.student.utwente.nl/~mids/iip/htmldoc/en/index.html 01:07 < Neo> bom trabalho, banks. ficou ótimo. 01:07 < Banks> valeu :) 01:07 <@nop> um comentário 01:08 <@nop> está ótimo 01:08 <@nop> mas 01:08 <@nop> ah 01:08 <@nop> deixa pra lá 01:08 <@nop> ok 01:08 < Banks> Se conseguirmos um pré-lançamento do RC2, podemos empacotar a documentação mais recente com ele 01:08 <@mids> hehe 01:08 <@nop> tudo certo 01:08 <@nop> vamos conseguir, falaremos de rc2 a seguir 01:08 <@mids> mais algum comentário sobre a documentação? 01:08 < Banks> Tem certeza de que não há um "mas"? :) 01:08 < cohesion> alguém aqui tem Debian? 01:09  * mids 01:09 <@mids> não existe /etc/boot.local 01:09 <@mids> tudo é baseado em scripts 01:09 < cohesion> sys V 01:09 < cohesion> quer dizer? 01:09 <@mids> então você precisa criar um script de inicialização e colocá-lo em /etc/rcS.d/ 01:09 < cohesion> sim 01:09 < cohesion> hum 01:09 < cohesion> *dá de ombros* 01:10 <@nop> ah pessoal 01:10 <@nop> precisamos incluir os dados aleatórios para o snapshot do Windows 01:10 <@nop> pode confundir 01:10 <@nop> mas geramos uma semente lá também 01:10 <@mids> isso é baseado em GUI? 01:10 <@nop> sim 01:10 <@nop> toques do mouse e do teclado 01:10 <@nop> ambos ou um deles 01:11 <@mids> então já está no cvs? 01:11 <@nop> sim, senhor 01:11 <@mids> ok 01:11 <@nop> mas você tem que fazer uma instalação limpa nisso 01:11 <@mids> Banks: pode capturar isso? 01:11 <@nop> cohesion 01:11 <@nop> capítulo 4 01:11 <@nop> instalação em sistemas Unix 01:11 <@nop> isso está concluído, o isproxy -C? 01:12 < Banks> mids: vou tentar 01:12 <@nop> porque ele inicia no começo se você não estiver atualizando 01:12 <@mids> Banks: você vai precisar de uma compilação para Windows então, talvez peça ao codeshark 01:12 <@mids> AndreGoldman: estamos em 2) Status da documentação 01:12 <@nop> Posso compilá-lo para você 01:12 < Banks> nop: Valeu 01:13 <@nop> e enviar para você 01:13 <@mids> AndreGoldman: todo mundo está olhando a demo da documentação: http://mids.student.utwente.nl/~mids/iip/htmldoc/en/ 01:13 < AndreGoldman> Obrigado, vou apenas acompanhar. 01:13 <@nop> Vou enviar daqui a pouco 01:13 <@mids> mais comentários sobre a documentação? 01:13 <@nop> cohesion 01:13 <@nop> precisa finalizar a configuração do isproxy para Unix 01:13 <@nop> no capítulo 4 01:14 <@nop> Vou dar uma olhada depois em outras coisas 01:14 <@nop> mas essa é grande 01:14 < cohesion> hum 01:14 < Zwolly> é só me dizer onde encontrar o original e eu farei uma tradução para holandês 01:14 <@nop> ah, sim 01:14 <@nop> traduções 01:14 <@mids> Zwolly: farei assim que o nop revisar 01:14 <@nop> precisamos incluí-las 01:14 <@nop> no source 01:14 <@nop> isso ajudará muito as pessoas 01:15 <@mids> algum alemão aqui? 01:15 <@nop> Skyrat é 01:15 <@nop> mas não está online agora 01:15 <@mids> ou outros idiomas além de inglês, holandês e francês 01:15 <@nop> além disso 01:15 < Phiberoptika> vocês precisam de espanhol? 01:15 <@nop> cohesion, inclua o diagrama de rede 01:15 <@mids> UnDeRToW me disse que não teve tempo para atualizar o espanhol 01:15 <@nop> Acho que temos espanhol 01:15 <@nop> ah 01:15 <@nop> ok 01:15 <@nop> então sim 01:15 <@nop> espanhol é bom 01:15 < cohesion> qual diagrama? 01:15 <@nop> aquele que enviei um tempo atrás 01:16 <@nop> ASCII art da arquitetura de rede 01:16 < cohesion> ok 01:16 < cohesion> vou encontrar 01:16 <@nop> blz 01:16 <@mids> Phiberoptika: legal, falaremos com você quando necessário :) 01:16 <@nop> porque o que está demonstrado é parte do protocolo de comunicação 01:16 <@nop> não da arquitetura de rede 01:16 <@nop> e vamos rotular aquilo como protocolo de comunicação 01:16 < Phiberoptika> ok : ) 01:16 <@nop> e então incluir a arquitetura de rede 01:16 <@nop> enfim 01:17 <@nop> já falei o que precisava, o resto podemos tratar offline 01:17 <@mids> . 01:17 <@nop> ah 01:17 <@nop> e sobre o rc2 com docs 01:17 <@nop> Vou reescrever a criptografia quando terminar, mas saberemos por quê na próxima parte 01:18 <@mids> próximo item? 01:18 <@nop> sim 01:18 <@mids> 3) Compatibilidade com RC2 01:18 <@nop> ok 01:18 <@nop> decidido ontem 01:18 <@nop> temos mais trabalho no rc2 01:18 <@nop> então, por favor 01:19 <@nop> usem 1.1 rc1 até nova notificação 01:19 <@nop> porque não funcionarão juntos 01:19 <@mids> não havia congelamento de funcionalidades? 01:19 <@nop> e toda a infraestrutura precisa ser atualizada 01:19 <@nop> mas isso precisa ser quando sair o release do rc2 01:19 <@nop> ou pelo menos 1 semana para pré-teste 01:19 <@nop> motivo: 01:19 <@codeshark> nop: precisamos de uma rede rc-2 paralela 01:19 <@nop> teremos uma, cs 01:19 <@codeshark> ok 01:19 <@nop> mas o inform parecerá o mesmo 01:19 <@nop> e você terá que reiniciar o inform 01:20 <@nop> pois não estamos mudando a comunicação com o inform 01:20 <@nop> então quando paralelizarmos 01:20 <@nop> vamos apagando aos poucos conforme atualizamos 01:20 <@codeshark> quer dizer: limpar os relays 01:20 <@nop> atualizamos 01:20 <@nop> sim 01:20 <@nop> exceto por alguns 01:20 <@nop> que podemos discutir depois 01:20 <@codeshark> certo 01:20 <@nop> ok 01:20 <@mids> o que mudou? 01:20 <@nop> motivo: 01:20 <@nop> atualização de segurança obrigatória 01:21 <@nop> IIP 1.1 como está é muito seguro sob circunstâncias normais 01:21 <@nop> hackers, etc. 01:21 <@nop> mas 01:21 <@nop> contra um ataque de governo e paranoia extrema 01:21 <@nop> podem haver certos tipos de ataques físicos para obter a chave secreta do servidor por coerção 01:21 <@nop> por causa desse risco 01:21 <@nop> bem 01:22 <@nop> deixe-me explicar em mais detalhe 01:22 <@nop> por exemplo 01:22 <@nop> estamos todos nos divertindo no IIP 01:22 <@nop> certo? 01:22 <@nop> certo 01:22 <@mids> k: agora estamos em 3) Compatibilidade com RC2 01:22 <@mids> certo 01:22 < Neo> Eu estou. 01:22 <@nop> alguém faz algo estúpido e por acaso vive sob um governo corrupto 01:22 <@mids> (se a rede estiver no ar) 01:22 <@nop> esse governo passa a fazer escuta e monitorar a conexão de internet dele 01:22 < k> ouvindo. 01:23 <@nop> e começa a colocar nós espiões ao redor desse usuário 01:23 <@nop> então 01:23 <@nop> eles logam isso pelo tempo que acharem necessário para pegar o cara 01:23 <@nop> e de repente vêm atrás de mim 01:23 <@nop> e dizem que vão invadir o servidor 01:23 <@nop> você não tem escolha a não ser nos dar a chave 01:23 <@nop> legalmente sou obrigado a fazê-lo 01:23 <@nop> o que é outra questão, se eu faço ou não 01:23 <@nop> digamos o pior cenário 01:24 <@nop> eles atiram na minha cabeça 01:24 <@nop> e pegam a chave 01:24 <@nop> ok 01:24 <@nop> agora, com a análise adequada 01:24 <@nop> eles conseguirão descriptografar as mensagens envolvidas 01:24  * Neo acha que todos sentiríamos sua falta. 01:24 < AndreGoldman> isso se chama 'rubber hose cryptography' 01:24 <@nop> bem 01:24 <@nop> ainda assim 01:25 < Aroonkoa> A chave pode ser mantida completamente na memória? 01:25 <@nop> isso envolve o IIP como protocolo e "rubber hose" não funciona em kernels 2.4 01:25 <@nop> fornecemos uma solução 01:25 <@nop> e estamos no processo de implementá-la 01:25 < Banks> pode nos dizer qual é? 01:25 <@nop> essa solução é ter um protocolo com dupla criptografia de ponta a ponta 01:25 <@nop> claro, somos open source 01:25 <@nop> ;) 01:25 <@nop> o que acontece 01:26 <@nop> usuário A conecta através ---> ao nó final, conecta ao networkid, autentica, e então fará uma troca de chave aleatória separada que desaparecerá após o fim da comunicação 01:26 <@nop> essa chave não será usada novamente 01:26 <@nop> e é após a autenticação do networkid 01:26 <@nop> além de reforçada com o Rolling Key Algorithm que usamos 01:26 <@nop> e a forma como fazemos XOR a cada 8 bytes de dados 01:27 <@codeshark> bem, ainda seria possível fazer um mitm 01:27 <@nop> não 01:27 <@codeshark> por quê não? 01:27 <@nop> porque 01:27 <@codeshark> se você tiver a chave da rede 01:27 <@nop> isso é feito depois do networkid 01:27 <@nop> isso é uma situação contra o ataque de registrar e invadir o servidor 01:27 <@nop> não um ataque em tempo real 01:27 <@codeshark> ok 01:27 <@mids> isso causará mais carga no relay IIP do lado do servidor? 01:27 <@nop> provavelmente não depois que eles estiverem conectados 01:27 <@nop> você pode notar um pico na troca 01:27 <@nop> mas isso acontece de qualquer maneira 01:27 <@nop> e um pouco mais de tempo conectando 01:27 <@nop> além disso 01:28 < Banks> a chave de uso único será apagada com segurança após o uso? 01:28 <@nop> o networkid será alterado por motivos de segurança 01:28 <@nop> e se tornará 2048 bits 01:28 <@nop> e será opcionalmente suportado no software um networkid de 4096 bits 01:28 <@mids> como isso escala? 01:28 <@nop> sim, Banks, será 01:28 <@mids> tivemos grandes problemas no servidor antigo, quando todo mundo conectava ao mesmo tempo 01:28 < Neo> (ataque de registrar e invadir o servidor == registrar todo o tráfego cifrado, depois invadir para pegar a chave, então reproduzir o tráfego e decifrar os dados) 01:28 <@nop> correto 01:28 <@mids> obrigado nop 01:29 <@mids> s/nop/Neo/ 01:29 <@nop> as cifras já usadas ajudam bem contra a maioria dos ataques, as janelas são pequenas por causa do RKA e do tráfego falso forçando a rotação das chaves 01:29 <@nop> mas se um usuário está sendo monitorado 01:29 <@nop> ele está em risco até descentralizarmos completamente 01:29 <@nop> por isso 01:30 <@nop> estamos implementando rc2 como uma atualização de segurança obrigatória 01:30 < Banks> legal 01:30 <@nop> e não será compatível com a versão anterior 01:30 <@nop> e 01:30 <@nop> mais um comentário sobre segurança 01:30 <@nop> precisamos fazer um documento de etiqueta sobre como pensar com segurança e anonimamente 01:30 <@nop> especialmente em canais públicos 01:30 <@nop> também 01:30 <@mids> off-topic :) 01:30 <@nop> pois só de colocar links do iip para muitos sites 01:31 <@nop> faz parte da segurança do IIP 01:31 <@nop> o que eu acredito ser rc2 01:31 <@nop> ;) 01:31 < Banks> heh 01:31 <@nop> apenas linkar o IIP pode levar a software comprometido ruim 01:31 <@nop> mesmo com md5's 01:31 <@nop> precisamos garantir que os servidores que fazem espelho 01:31 <@nop> sejam seguros 01:31 <@nop> etc 01:31 <@nop> enfim 01:32 <@nop> off-topic 01:32 <@nop> então discutiremos isso na próxima reunião 01:32 <@nop> enfi 01:32 <@nop> escalabilidade 01:32 <@nop> IIP realmente não escala por causa de seu design centralizado (temporário) 01:32 <@nop> mas a troca de chaves DH não afetará a escalabilidade 01:32 <@nop> estamos planejando para o futuro 01:32 <@nop> e números primos maiores são essenciais à medida que enfrentamos computadores cada vez mais rápidos por aí 01:33 <@mids> bem, lembro de cargas terríveis quando todo mundo conecta ao mesmo tempo, certo? 01:33 <@nop> não mais 01:33 <@nop> isso foi corrigido recentemente 01:33 <@nop> no back-end 01:33 <@nop> agora tenho um pico de 32% com esse problema 01:33 <@nop> não 99% 01:33 <@mids> legal 01:33 <@mids> por que colocar isso obrigatório no RC2 (que estava congelado em termos de recursos, imho) e não no 1.2? 01:34 <@nop> porque esperaríamos demais 01:34 <@nop> sem ofensa ao governo dos EUA 01:34 <@nop> mas eles têm emitido leis mais rápido do que codamos 01:34 <@nop> especialmente sobre escutas 01:34 <@nop> negabilidade é um ponto chave aqui 01:34 < Banks> de fato 01:34 <@mids> k 01:34 <@nop> especialmente para o servidor 01:34 <@mids> bom ponto então 01:35 <@mids> precisamos de numeração de versão no node.ref? (como o freenet tem) 01:35 <@nop> daí a necessidade de corrigir alguns problemas e avançar na nossa necessidade de privacidade e segurança 01:35 <@nop> é uma batalha constante 01:35 <@nop> mas vale a pena 01:35 <@nop> bem 01:35 <@nop> versionamento pode ser um recurso opcional 01:35 <@nop> parece que se tornará importante em breve 01:36 <@nop> então está em consideração 01:36 <@nop> avisarei na próxima semana 01:36 <@nop> ok 01:36 <@nop> terminei 01:36 <@mids> k 01:36 <@nop> . 01:36 <@nop> alguma pergunta 01:36 <@mids> . 01:36 < Neo> Sim. 01:37 < Neo> A opção de tráfego falso. 01:37 < Neo> Não seria uma boa ideia deixar isso ativado por padrão? 01:37 <@nop> está 01:37 < Neo> bom. 01:37 < Neo> obrigado. 01:37 <@nop> está ativado desde que a criptografia saiu para o IIP 01:37 <@mids> tráfego falso, qual é o comprimento mesmo? 01:37 <@nop> varia 01:38 <@nop> o máximo é 50 bytes 01:38 <@mids> entre valores fixos, não é? 01:38 <@nop> aproximadamente o tamanho de mensagens de chat simuladas 01:38 <@mids> não dá pra variar com base no chat normal? 01:38 <@nop> está o mais próximo que conseguimos no momento 01:38 <@nop> IA vem depois 01:38 <@nop> ;) 01:38 <@mids> heh 01:39 < Banks> o que você quer dizer, mids? 01:39 <@nop> planejamos fazer isso com o iip 2 01:39 <@nop> que terá mais técnicas disponíveis 01:39 <@mids> Banks: bem, talvez 50 no máximo seja muito pouco 01:39 <@mids> Banks: tópicos são muito mais longos, por exemplo 01:39 < Banks> Entendi. É texto aleatório? 01:39 <@mids> Banks: e isso pode denunciar algo 01:39 <@nop> sim 01:39 <@nop> acredito que os valores podem ser alterados com bastante facilidade 01:39 <@nop> ;) 01:40 < Banks> :) 01:40 <@mids> k 01:40 <@nop> mais perguntas 01:40 <@mids> pedido de recurso para 1.2: 01:40 <@nop> ah 01:40 <@nop> pedidos de recurso precisam ser postados no sourceforge 01:40 <@mids> manter registro da média e do DP do comprimento das linhas 01:40 <@mids> sim, eu sei 01:41 <@nop> DP? 01:41 <@mids> desvio padrão 01:41 <@nop> por quê? 01:41 <@mids> para poder falsificar mensagens dentro da escala usada 01:41 < Banks> mids: você quer dizer por usuário ou para todos? 01:42 <@mids> Banks: para todos é mais seguro 01:42 <@mids> hm, mas mais difícil 01:42 <@nop> bem 01:42 <@mids> hm 01:42 <@nop> uma boa meta 01:42 <@nop> seria esta 01:42 <@nop> nó iip pega o tráfego de dados 01:42 <@nop> analisa 01:42 <@nop> e embaralha 01:42 <@nop> e usa como semente para surtos de dados aleatórios 01:43 <@nop> isso daria um pouco de forma de ia 01:43 <@mids> k 01:43 < Banks> talvez seja melhor obter os dados aleatórios de outro lugar. Digo, esses são os dados que estamos tentando manter em segredo :) 01:43 <@nop> o que quero dizer 01:43 <@nop> não dados diretos 01:43 <@nop> mas informações de tamanho de dados 01:44 <@nop> e 01:44 <@nop> razão de surtos de dados normais 01:44 <@nop> de modo que imite 01:44 <@nop> dados reais 01:44 < Banks> entendi 01:44 <@nop> é randomizado usando yarrow 01:44 < Banks> Vocês são notificados de bugs adicionados no sourceforge? 01:44 <@nop> verifico diariamente 01:45 <@mids> e assinantes recebem por e-mail 01:45 < Banks> ok, só queria apontar aquele bug de configurações de node/relay, caso você não tenha visto 01:45 <@nop> qual 01:45 < Banks> legal 01:45 <@mids> aquele que você não viu :) 01:45 < Banks> [ 563246 ] node/relay type settings cancellation 01:46 <@nop> ahh 01:46 <@nop> sim 01:47 <@mids> Banks: obrigado por apontar 01:47 <@mids> quem faz o código do Windows? 01:47 <@nop> isso não é exatamente um bug 01:47 < Banks> sim, mas também não é exatamente um recurso :) 01:47 <@nop> certo 01:47 <@nop> ele avisa sobre suas configurações 01:48 <@nop> mas 01:48 <@nop> vamos analisar 01:48 <@nop> vlw 01:48 < k> que horas são? 01:48 < Banks> sem problema 01:48 <@mids> Tue Jun  4 23:48:37 UTC 2002 01:48 <@mids> mais perguntas do item 2? 01:48 <@nop> próximo na pauta 01:49 < k> que horas são isso na América Central? 01:49 <@mids> 4) Suporte a IPv6 para IIP 1.2 01:49 <@mids> http://www.timeanddate.com/worldclock 01:49 < k> vlw 01:50 <@mids> IPv6 é algo que será usado mais amplamente 01:50 <@mids> tornar o IIP compatível com IPv6 parece útil 01:51 <@mids> alguém tem experiência em tornar daemons compatíveis com IPv6? 01:51 <@nop> bem 01:51 <@nop> acho relativamente simples torná-lo compatível com ipv6 01:51 <@nop> é questão de tamanho e entrada; se sua máquina for compatível 01:51 <@nop> então fará corretamente 01:52 <@codeshark> node.ref parser? 01:53 <@mids> como ele sabe se deve usar o endereço IPv6 ou IPv4 ao fazer uma consulta DNS? 01:54 <@codeshark> o dns retorna 01:54 <@codeshark> ou um registro A 01:54 <@codeshark> ou AAA 01:54 <@mids> dns retorna ambos 01:54 <@mids> (se ambos existirem) 01:54 <@codeshark> hmm, se tiver ambos 01:54 <@mids> s/AAA/AAAA/ 01:54 <@UserX> nós ipv6 provavelmente seriam indicados adicionando um campo "transport" ao noderef com valor "tcp6" ou similar 01:54 <@codeshark> certo :) 01:55 < Aroonkoa>  Nós podem ser tanto ipv4 quanto ipv6, correto? 01:55 <@UserX> . 01:55 <@UserX> sim 01:56 <@mids> seria bom, assim você pode torná-los gateways 01:56 <@codeshark> se nós podem estar em ipv6, preciso conectar à rede ipv6 com o nodechecker 01:56 <@codeshark> . 01:56 <@nop> certo 01:57 <@nop> lembrem que isso é iip 1.2 01:57 <@nop> então espero que estejamos preparados até lá 01:57 <@nop> . 01:57 <@mids> k 01:58 < k> eu? 01:58 < k> j/k 01:58 <@mids> mais IPv6? 01:58 <@nop> mids 01:58 <@nop> não será muito difícil 01:58 <@nop> acho que é isso para ipv6 01:59 <@mids> a ideia do UserX é ótima, isso deve resolver todos os problemas 01:59 <@mids> . 01:59 <@nop> sim 01:59 <@nop> . 01:59 <@nop> ele sempre tem ótimas ideias 01:59 <@nop> . 01:59 <@mids> A) Perguntas 01:59 <@mids> ------------- 01:59 <@mids> Faça uma pergunta 01:59 <@nop> Como todos estão gostando do IIP até agora 01:59 <@nop> ? 01:59 <@nop> ;) 02:00 < Banks> É elite 02:00 < Zwolly> ótimo e impressionado 02:00 <@mids> Eu gosto puro 02:00 <@nop> hehe 02:00 < Neo> Muuuito bom. 02:00 < Aroonkoa> Adoro. 02:00 <@nop> incrível 02:00 < Zwolly> estava procurando por isso toda minha vida de irc na internet 02:00 < Zwolly> mesmo 02:00 < Neo> Amamos pelo que é, e ainda mais pelo que planeja ser. 02:01 <@nop> maneiro 02:01 < Phiberoptika> bravo!: )))) 02:01 < Banks> Não é só um sonho. Está aqui, agora. Com promessa para o futuro. 02:01  * Banks pega os lenços. 02:01 <@nop> hum 02:01 <@nop> essa era a ideia 02:02  * Banks oferece a caixa para todos. 02:02 <@nop> haha 02:02 <@nop> ah 02:02 <@nop> banks 02:02 <@nop> ótimo trabalho no design do logo do iip 02:02 <@nop> um comentário 02:02 <@mids> que logo? 02:02 < Banks> manda 02:02 <@nop> usar nos docs se pudermos 02:02 <@nop> camisetas 02:02 <@nop> e adesivos de para-choque 02:02 <@nop> mas o site provavelmente será mais leve 02:03 <@nop> é bem cínico ;) 02:03 <@nop> e como grupo 02:03 <@nop> gostamos 02:03 <@mids> ah, o banks fez o logo, tinha esquecido 02:03 < Zwolly> camisetas...  lá se vai sua vida anônima 02:03 < Neo> adesivos de para-choque... lol 02:03 <@nop> só dizendo 02:03 <@mids> todo mundo viu? vou colocar no meu site 02:03 < Banks> :) 02:03 <@nop> com certeza na documentação 02:03 <@nop> Isso é o epítome dos docs 02:03 <@nop> e do software 02:04 <@mids> http://mids.student.utwente.nl/~mids/iip/meeting3/IIPlogo_bigger.png 02:04 <@mids> alguém que não está aqui no momento fez um comentário sobre o logo 02:05 <@mids> (s)he não gostou muito de como o P ficou 02:05 < Banks> Podemos mudar IIP para significar Invisible Internet Project se quiserem, o que representa seus objetivos de longo prazo como entendo. 02:05 <@mids> (mas gostou de todo o conceito) 02:05 < Banks> se pensarmos em uma forma de melhorar o P, devemos. 02:06 <@mids> talvez um P normal? 02:06 <@nop> talvez fazer ambos 02:06 <@nop> irc e internet 02:06 <@nop> internet vai demorar 02:06 < k> só não p no chão, né? 02:06 <@nop> temos um piadista aqui 02:06 <@nop> hehe 02:06 <@nop> ;) 02:06 < Banks> :) 02:06 <@mids> bem, aí tem uma ideia 02:07 <@mids> se você colocar o P um pouco mais alto, talvez fique melhor 02:07 <@mids> embora eu goste do conceito! 02:07 < Banks> mids: você pode fazer essas mudanças e enviar para comentários se quiser, ou eu faço. 02:07 <@mids> eu não sou cara de gfx 02:08 < Banks> eu também não muito :) 02:08 <@mids> :) 02:08 < Banks> farei um P normal e vou subir e enviar por aí 02:08 < k> que horas são na costa rica?? 02:11 <@mids> ok, tenho uma ideiazinha 02:11 <@mids> todo mundo pode divulgar seu canal aqui agora, com uma frase 02:11 <@mids> inclua nome do canal + descrição 02:12 <@mids> #anonymous - canal geral da rede, encontre celebridades & malucos 02:12 < Zwolly> canal Annemiek só por diversão e em holandês (ou inglês) 02:12  * keimennA is afwezig [Slapen/sleeping] [1h22m52s] 02:13 < k> que bom saber disso.. 02:13 < Banks> #scientology é um exemplo clássico do tipo de canais para os quais o IIP é ideal 02:13 < Banks> (não é meu, porém :) ) 02:13 < k> lol 02:14 < Neo>  #distributedcity - Indivíduos Soberanos 02:14 <@mids> #test - para todos os seus testes 02:15 <@nop> #vegetarian para vegetarianos (piada) 02:15 < Banks> #hacktivismo não está no ar hoje 02:15 < Banks> Heh 02:16 <@mids> ok, alguma pergunta? (relacionada ao IIP) 02:18 < Banks> Alguma forma de melhorar a velocidade do fserve no curto prazo? Assim poderíamos ter uma base de usuários maior. 02:18 <@nop> hum 02:18 <@nop> não sem ter problemas de flooding 02:18 <@codeshark> compartilhamento de arquivos no iip não é uma boa ideia 02:19 <@codeshark> é muito ineficiente 02:19 <@nop> espere até descentralizar 02:19 <@codeshark> por causa de codificação base64 e cabeçalhos IRC adicionais 02:19 <@codeshark> ... 02:19 <@nop> então vamos garantir que seja possível 02:19 < Banks> Acho que é prioridade para muita gente. Só queria saber se havia alguma forma de melhorar um pouco antes da descentralização. Ok. 02:20 <@nop> quando o freenet se acertar 02:20 <@nop> você pode escrever um plugin de irc 02:20 <@nop> :) 02:20 <@codeshark> sim, integração com o freenet ou algo parecido seria ótima 02:20 <@mids> ajude os testes do freenet executando um nó watchme 02:20 <@codeshark> watchme node? 02:20 <@mids> se colocarem essa coisa para funcionar de novo, freenet será muito útil 02:21 <@mids> http://freenetproject.org/cgi-bin/twiki/view/Main/SpyWare 02:21 <@codeshark> nó de estatísticas? 02:21 < Banks> verdade 02:21 <@mids> é um nó "spyware", destinado à depuração 02:24 < k> woo 02:25 <@mids> sim, k? você tem uma pergunta? 02:25 <@mids> (não, desculpe, não sei o fuso horário da costa rica) 02:26 < k> foi mal - só comemorando em voz alta. 02:27 <@mids> pergunta: como o 'novo' horário fica para você? 02:27 < k> hã? 02:28 <@codeshark> está um pouco melhor, mas precisamos tornar as reuniões mais curtas 02:28 <@codeshark> . 02:28 < Banks> Não vou conseguir ir à próxima reunião. Tenho compromissos inadiáveis o dia todo. 02:28 <@nop> ok 02:28 <@nop> tudo certo 02:28 <@mids> codeshark: alguma ideia de como torná-la mais curta? 02:29 <@codeshark> torná-la mais eficiente 02:29 <@codeshark> alguém tem que liderar cada tópico 02:30 <@codeshark> . 02:30 <@mids> k 02:30 <@mids> vou dormir 02:30 <@mids> obrigado a todos 02:30 <@codeshark> eu também 02:31 <@mids> nop: você pode moderar o canal de novo quando a discussão terminar? 02:31 <@nop> claro 02:31 <@mids> o logger vai continuar rodando por um tempo 02:31 <@codeshark> nop: ficou algo para discussão> 02:31 <@codeshark> ? 02:32 <@nop> na verdade não 02:32 <@nop> não 02:32 <@nop> todo mundo pra casa 02:32 <@nop> haha 02:32 < Zwolly> valeu pai 02:32 <@nop> de nada, filho 02:32 < Zwolly> hehe 02:33 -!- mode/#iip-dev [+m] by nop 02:33 <@nop> todo mundo fora 02:33 <@nop> preciso de um tempo a sós 02:33 <@nop> deixem-me em paz 02:33  * codeshark expulsa todo mundo 02:34 -!- Phiberoptika foi expulso de #iip-dev por nop [nop] 02:34 -!- Neo foi expulso de #iip-dev por nop [nop] 02:34 -!- keimennA foi expulso de #iip-dev por nop [nop] 02:34 -!- keimennA foi expulso de #iip-dev por nop [nop] 02:34 -!- mode/#iip-dev [+i] by codeshark 02:34 -!- keimennA foi expulso de #iip-dev por nop [nop] 02:34 -!- k foi expulso de #iip-dev por nop [nop] 02:34 -!- jakob[oFF] foi expulso de #iip-dev por nop [nop] 02:34 -!- AndreGoldman foi expulso de #iip-dev por codeshark [codeshark] 02:34 -!- Banks foi expulso de #iip-dev por codeshark [codeshark] 02:34 -!- ion foi expulso de #iip-dev por nop [nop] 02:35 -!- ellison foi expulso de #iip-dev por nop [nop] 02:35 -!- Aroonkoa foi expulso de #iip-dev por codeshark [codeshark] 02:35 -!- cohesion foi expulso de #iip-dev por nop [nop] 02:35 <@codeshark> hehe 02:35 <+logger> abusivo 02:35 <+logger> registro encerrado --- Log fechado Wed Jun 05 02:35:32 2002 </div>
+<div class="irc-log">
+--- Log opened Wed Jun 05 00:38:00 2002
+00:38 <+logger> logging started
+00:38 <@codeshark> already?
+00:38 <+logger> yes, warming up
+00:49  * Annemiek is nu afwezig [Slapen/sleeping] [p-uit l-uit]
+00:49 -!- Annemiek is now known as keimennA
+00:59 <@nop> time
+00:59 <@nop> what time is it
+00:59 <@codeshark> 22:59 UTC
+01:00 < ellison> drumroll.....
+01:00 <@codeshark> 23:00 UTC
+01:00 < Zwollywood> 1:00
+01:00 <@mids> Tue Jun  4 23:00:50 UTC 2002
+01:01 <@mids> lets start
+01:01 <@nop> ok
+01:01 <@nop> Welcome all
+01:01 <@nop> to the 3rd meeting
+01:01 <@nop> of IIP
+01:02 <@nop> Today is probably a shorter meeting
+01:02 <@nop> but that's not exactly a bad thing
+01:02 <@nop> so anyway
+01:02 <@mids> on request of some europeans the meeting is held 1 hour earlier, nop is busy working, so he might be away
+01:02 <@nop> let's get started shall we
+01:02 <@mids> Previous meeting has logs on http://mids.student.utwente.nl/~mids/iip/meeting2/
+01:03 <@mids> if it will get crowded, this channel will be moderated, in that case direct your question to those with ops
+01:03 <@nop> ok
+01:03 <@nop> agenda
+01:03 <@mids> 1) Welcome
+01:03 <@mids> 2) Documentation status
+01:03 <@mids> 3) RC2 compatibility
+01:03 <@mids> 4) IPv6 support for IIP 1.2
+01:03 <@mids> A) Questions?
+01:03 <@mids> B) Next meeting
+01:03 <@nop> welcome
+01:03 <@nop> on to 2
+01:04 <@mids> Thanks to Banks a lot of holes in the docs are filled
+01:04 <@mids> he added screenshots for windows
+01:04 <@mids> and found nice quotes that are used in each chapter
+01:04 < Banks> np
+01:04 <@codeshark> yeah, doc looks cool
+01:04 <@mids> cohesion reviewed his work on chapter 1 and 2
+01:04 <@mids> it is in CVS now
+01:05 <@mids> demo: http://mids.student.utwente.nl/~mids/iip/htmldoc/en/index.html
+01:05 <@mids> nop still has to review everything, so it is in no way final
+01:05 <@mids> .
+01:05 <@mids> pardon the logo, that ASCII art is a placeholder :)
+01:05 <@mids> .
+01:06 <@mids> Sina: now everybody is looking at the nice docs: demo: http://mids.student.utwente.nl/~mids/iip/htmldoc/en/index.html
+01:07 < Neo> nice job banks. stuff looks great.
+01:07 < Banks> cheers :)
+01:07 <@nop> one comment
+01:08 <@nop> looks great
+01:08 <@nop> but
+01:08 <@nop> oh
+01:08 <@nop> never mind
+01:08 <@nop> ok
+01:08 < Banks> If we can get an advance release on RC2 we can package the latest docs with it
+01:08 <@mids> hehe
+01:08 <@nop> it's all good
+01:08 <@nop> we will, we'll get to rc2 next
+01:08 <@mids> any other comments on the docs?
+01:08 < Banks> You sure there isn't a but? :)
+01:08 < cohesion> anyone here have debian?
+01:09  * mids
+01:09 <@mids> there is no /etc/boot.local
+01:09 <@mids> everything is script based
+01:09 < cohesion> sys V
+01:09 < cohesion> you mean?
+01:09 <@mids> so you need to create a startup script and put it in /etc/rcS.d/
+01:09 < cohesion> ya
+01:09 < cohesion> hum
+01:09 < cohesion> *shrugs*
+01:10 <@nop> oh guys
+01:10 <@nop> we need to include the random data for windows snapshot
+01:10 <@nop> might throw them off
+01:10 <@nop> but we generate a seed there as well
+01:10 <@mids> is that GUI based?
+01:10 <@nop> yes
+01:10 <@nop> mouse and keyboard strokes
+01:10 <@nop> both or either
+01:11 <@mids> so it is already in cvs?
+01:11 <@nop> yes sir
+01:11 <@mids> ok
+01:11 <@nop> but you have to do a clean install on that
+01:11 <@mids> Banks: can you snap that?
+01:11 <@nop> cohesion
+01:11 <@nop> chapter 4
+01:11 <@nop> installation on Unix systems
+01:11 <@nop> is that completed the isproxy -C
+01:12 < Banks> mids: I'll try
+01:12 <@nop> because it starts up at beginning if you are not upgrading
+01:12 <@mids> Banks: you require a windows compilation then, maybe ask codeshark
+01:12 <@mids> AndreGoldman: we are at 2) Documentation status
+01:12 <@nop> I can compile it for you
+01:12 < Banks> nop: Cheers
+01:13 <@nop> and send it your ways
+01:13 <@mids> AndreGoldman: everybody is looking at the documentation demo: http://mids.student.utwente.nl/~mids/iip/htmldoc/en/
+01:13 < AndreGoldman> Thank, I'll jut follo along.
+01:13 <@nop> I'll send it in a bit
+01:13 <@mids> more comments on docs?
+01:13 <@nop> cohesion
+01:13 <@nop> need to finish isproxy configuration for unix
+01:13 <@nop> on chapt 4
+01:14 <@nop> I'll look over it later for other stuff
+01:14 <@nop> but that's a biggy
+01:14 < cohesion> hum
+01:14 < Zwolly> just let me know where to find original and i will make an dutch translation
+01:14 <@nop> ahh yes
+01:14 <@nop> translations
+01:14 <@mids> Zwolly: will do once reviewed by nop
+01:14 <@nop> we need to include those
+01:14 <@nop> in source
+01:14 <@nop> this will help people tremendously
+01:15 <@mids> any germans here?
+01:15 <@nop> Skyrat is
+01:15 <@nop> but he's not on right now
+01:15 <@mids> or other languages except for english, dutch and french
+01:15 <@nop> also
+01:15 < Phiberoptika> do you need spanish?
+01:15 <@nop> cohesion include the network diagram
+01:15 <@mids> UnDeRToW told me that he didn't have time for up to date spanish
+01:15 <@nop> I think we have spanish
+01:15 <@nop> oh
+01:15 <@nop> ok
+01:15 <@nop> then yes
+01:15 <@nop> spanish is good
+01:15 < cohesion> what diagram?
+01:15 <@nop> the one I sent a while back
+01:16 <@nop> ascii art of the network architecture
+01:16 < cohesion> ok
+01:16 < cohesion> i'll find it
+01:16 <@nop> k
+01:16 <@mids> Phiberoptika: cool, we'll find you when needed :)
+01:16 <@nop> because what's demonstrated is part of the communication protocol
+01:16 <@nop> not the netwrk arch
+01:16 <@nop> and we'll label that communication protocol as such
+01:16 < Phiberoptika> ok : )
+01:16 <@nop> and then include net arch
+01:16 <@nop> anyway
+01:17 <@nop> I've spoken my mind, the rest of that can be worried about offline
+01:17 <@mids> .
+01:17 <@nop> oh
+01:17 <@nop> and pertaining to rc2 with docs
+01:17 <@nop> I will rewrite the encryption when done, but we'll know why in next part
+01:18 <@mids> next item?
+01:18 <@nop> yes
+01:18 <@mids> 3) RC2 compatibility
+01:18 <@nop> ok
+01:18 <@nop> decided yesterday
+01:18 <@nop> we have some more work on rc2
+01:18 <@nop> so please
+01:19 <@nop> use 1.1 rc1 until otherwise notified
+01:19 <@nop> because they won't work together
+01:19 <@mids> wasn't there a function freeze?
+01:19 <@nop> and the entire infrastructure has to be upgraded
+01:19 <@nop> but it must be when release of rc2 is out
+01:19 <@nop> or at least 1 week for pre-testing
+01:19 <@nop> reason:
+01:19 <@codeshark> nop: we need a parallel rc-2 network
+01:19 <@nop> we will have one cs
+01:19 <@codeshark> ok
+01:19 <@nop> but inform will look the same
+01:19 <@nop> and you'll have to restart inform
+01:20 <@nop> because we're not changing the communication to inform
+01:20 <@nop> so when we parallel
+01:20 <@nop> we'll slowly delete out as wel upgrade
+01:20 <@codeshark> you mean: flush the relays
+01:20 <@nop> we upgrade
+01:20 <@nop> yes
+01:20 <@nop> except for a couple
+01:20 <@nop> which we can discuss later
+01:20 <@codeshark> sure
+01:20 <@nop> ok
+01:20 <@mids> what is changed?
+01:20 <@nop> reason:
+01:20 <@nop> mandatory security upgrade
+01:21 <@nop> IIP 1.1 as is, is very secure under normal circumstances
+01:21 <@nop> hackers, etc
+01:21 <@nop> but
+01:21 <@nop> against a gov't attack, and ultimate paranoia
+01:21 <@nop> there can be a few certain types of physical attacks that can be used to obtain the secret server key through coersion
+01:21 <@nop> because of this risk
+01:21 <@nop> well
+01:22 <@nop> let me explain it in more detail
+01:22 <@nop> for instance
+01:22 <@nop> we're all enjoying ourselves on IIP
+01:22 <@nop> right?
+01:22 <@nop> right
+01:22 <@mids> k: we are now on 3) RC2 compatibility
+01:22 <@mids> right
+01:22 < Neo> I am.
+01:22 <@nop> someone does something stupid and happens to live in a corrupt gov't space
+01:22 <@mids> (if the network is up)
+01:22 <@nop> this gov't is now wiretapping and monitoring their internet connection
+01:22 < k> listening.
+01:23 <@nop> and starts putting up spy nodes around this user
+01:23 <@nop> then
+01:23 <@nop> they log this stuff for the amount of time they feel needed to get this guy
+01:23 <@nop> and suddenly they seek me out
+01:23 <@nop> and say we're raidnng the server
+01:23 <@nop> you have no choice but to give us the key
+01:23 <@nop> legally I'm obligated to do so
+01:23 <@nop> which is another issue of whether I do or not
+01:23 <@nop> say worst situation
+01:24 <@nop> they shoot me in the head
+01:24 <@nop> and take the key
+01:24 <@nop> ok
+01:24 <@nop> now with proper analysis
+01:24 <@nop> they will be able to decrypt the messages involved
+01:24  * Neo thinks we would all miss you.
+01:24 < AndreGoldman> it is called 'rubber hose cryptography'
+01:24 <@nop> well
+01:24 <@nop> still
+01:25 < Aroonkoa> Can the key be kept completely in memory?
+01:25 <@nop> this is involving IIP as a protocol and rubber hose doesn't work on 2.4 kernels
+01:25 <@nop> we have provided a solution
+01:25 <@nop> and are currently in the process of implementing it
+01:25 < Banks> can you tell us what it is?
+01:25 <@nop> this solution is to have a double encrypted protocol for end to end
+01:25 <@nop> of course, we're open source
+01:25 <@nop> ;)
+01:25 <@nop> what happens
+01:26 <@nop> user A connects through ---> to end node, connects to networkid, authenticates, and then will be doing a separate random key exchange that will disappear after communication is finished
+01:26 <@nop> this key will not be used again
+01:26 <@nop> and is after networkid authentication
+01:26 <@nop> plus enhanced with the Rolling Key Algorithm we use
+01:26 <@nop> and the way we Xor every 8 bytes of data
+01:27 <@codeshark> well, you could still do a mitm
+01:27 <@nop> no
+01:27 <@codeshark> why not?
+01:27 <@nop> because
+01:27 <@codeshark> if you have the network key
+01:27 <@nop> it's done after the networkid
+01:27 <@nop> this is a situation against the log and raid server attack
+01:27 <@nop> not a live attack
+01:27 <@codeshark> ok
+01:27 <@mids> will this cause more load on the serverside IIP relay?
+01:27 <@nop> most likely not after they are connected
+01:27 <@nop> you might note a spike on exchange
+01:27 <@nop> but that happens anyway
+01:27 <@nop> and a little more time connecting
+01:27 <@nop> also
+01:28 < Banks> the one-time key will be securely wiped after use?
+01:28 <@nop> networkid will be changed for safety reasons
+01:28 <@nop> and become 2048 bit
+01:28 <@nop> and made optionally in the software to support a 4096 bit networkid key
+01:28 <@mids> how well does it scale?
+01:28 <@nop> yes Banks it will
+01:28 <@mids> we had big trouble on the old server, when everybody connected at once
+01:28 < Neo> (log and raid server attack == log all cipher traffic, then raid for the key, then replay the traffic and decrypt the data)
+01:28 <@nop> correct
+01:28 <@mids> thanks nop
+01:29 <@mids> s/nop/Neo/
+01:29 <@nop> the already used ciphers assist quite well for most attacks, the windows are small because of RKA and fake traffic forcing the rolling of keys
+01:29 <@nop> but if a user is being monitored
+01:29 <@nop> they are at risk until we decentralize completely
+01:29 <@nop> so for this reason
+01:30 <@nop> we are implementing rc2 as a mandatory security upgrade
+01:30 < Banks> cool
+01:30 <@nop> and will not be compatible with the previous version
+01:30 <@nop> and
+01:30 <@nop> one more comment on security
+01:30 <@nop> we need to make an ettiquette doc on how to think securely and anonymously
+01:30 <@nop> especially in public channels
+01:30 <@nop> as well
+01:30 <@mids> offtopic :)
+01:30 <@nop> as just putting iip links to lots of websites
+01:31 <@nop> it's part of the security of IIP
+01:31 <@nop> which I believe is rc2
+01:31 <@nop> ;)
+01:31 < Banks> heh
+01:31 <@nop> just linking IIP could lead to bad compromised software
+01:31 <@nop> even with md5's
+01:31 <@nop> we need to make sure that the servers that mirror it
+01:31 <@nop> are secure
+01:31 <@nop> etc
+01:31 <@nop> anyway
+01:32 <@nop> off topic
+01:32 <@nop> so we'll discuss that next meeting
+01:32 <@nop> anywa
+01:32 <@nop> scalability
+01:32 <@nop> IIP doesn't scale at all really because of it's centralized (temporary) design
+01:32 <@nop> but DH key exchange will not affect the scaling
+01:32 <@nop> we are planning for the future
+01:32 <@nop> and bigger prime numbers are essential as we go against faster and faster computers out there
+01:33 <@mids> well I remember terrible loads when everybody connects at once, right?
+01:33 <@nop> not anymore
+01:33 <@nop> this was fixed recently
+01:33 <@nop> on the back end
+01:33 <@nop> I get a spike of 32% now with that issue
+01:33 <@nop> not 99%
+01:33 <@mids> nice
+01:33 <@mids> why put this mandatory thing in RC2 (which was feature frozen imho) and not in 1.2 ?
+01:34 <@nop> because it will be waiting too long
+01:34 <@nop> no offense to the US gov't
+01:34 <@nop> but they have been issuing laws faster than we code
+01:34 <@nop> particularly to wiretapping
+01:34 <@nop> deniability is a key issue here
+01:34 < Banks> indeed
+01:34 <@mids> k
+01:34 <@nop> especially for the server
+01:34 <@mids> good point then
+01:35 <@mids> do we need version numbering in the node.ref? (like freenet has)
+01:35 <@nop> hence the need to fix some issues and advance in our need for privacy and security
+01:35 <@nop> it's an ongoing battle
+01:35 <@nop> but it's worth it
+01:35 <@nop> well
+01:35 <@nop> versioning might be an optional feature
+01:35 <@nop> sounds like it will turn out important soon
+01:36 <@nop> so it's in consideration
+01:36 <@nop> will let you know next week
+01:36 <@nop> ok
+01:36 <@nop> I'm done
+01:36 <@mids> k
+01:36 <@nop> .
+01:36 <@nop> any questions
+01:36 <@mids> .
+01:36 < Neo> Yeah.
+01:37 < Neo> The fake traffic option.
+01:37 < Neo> Wouldn't it be a good idea to have this turned on by default?
+01:37 <@nop> it is
+01:37 < Neo> good.
+01:37 < Neo> thanks.
+01:37 <@nop> it's been on since encryption came out to IIP
+01:37 <@mids> fake traffic, what is the length again?
+01:37 <@nop> it varies
+01:38 <@nop> it's max is 50 bytes
+01:38 <@mids> between fixed values isnt it?
+01:38 <@nop> about the size of simulated chat messages
+01:38 <@mids> cant you let it vary based on normal chat?
+01:38 <@nop> it is as close as we can get at this time
+01:38 <@nop> AI comes later
+01:38 <@nop> ;)
+01:38 <@mids> heh
+01:39 < Banks> what do you mean mids?
+01:39 <@nop> we plan to do that with iip 2
+01:39 <@nop> that will have more available techniques
+01:39 <@mids> Banks: well, maybe 50 maximum is too short
+01:39 <@mids> Banks: topic are much longer for example
+01:39 < Banks> I see. Is it random text?
+01:39 <@mids> Banks: and that might give away something
+01:39 <@nop> yes
+01:39 <@nop> I believe the values can be altered fairly easy
+01:39 <@nop> ;)
+01:40 < Banks> :)
+01:40 <@mids> k
+01:40 <@nop> any more questions
+01:40 <@mids> feature request for 1.2:
+01:40 <@nop> oh
+01:40 <@nop> feature requests need to be posted on sourceforge
+01:40 <@mids> keep record of average and SD of the lenght of lines
+01:40 <@mids> yes, I know
+01:41 <@nop> SD?
+01:41 <@mids> standard diviation
+01:41 <@nop> why?
+01:41 <@mids> to be able to fake messages within the used scale
+01:41 < Banks> mids: you mean per user or for all users?
+01:42 <@mids> Banks: all users is safest
+01:42 <@mids> hm, but harder
+01:42 <@nop> well
+01:42 <@mids> hm
+01:42 <@nop> a nice goal
+01:42 <@nop> would be this
+01:42 <@nop> iip node takes data traffic
+01:42 <@nop> analyzes it
+01:42 <@nop> and scrambles it
+01:42 <@nop> and uses it for it's seed of random spurting data
+01:43 <@nop> that would give a bit of form of ai
+01:43 <@mids> k
+01:43 < Banks> might be better to get the random data from somewhere else. I mean, that's the data we're trying to keep secret :)
+01:43 <@nop> what I mean
+01:43 <@nop> not direct data
+01:43 <@nop> but size of data info
+01:44 <@nop> and
+01:44 <@nop> spurt ratio of normal data
+01:44 <@nop> so that it mimics
+01:44 <@nop> actual data
+01:44 < Banks> I see
+01:44 <@nop> is randomized using yarrow
+01:44 < Banks> Do you guys get notified of bugs added at sourceforge?
+01:44 <@nop> I check daily
+01:45 <@mids> and subscribers are emailed
+01:45 < Banks> ok, just wanted to point out that node/relay settings bug if you hadn't seen it
+01:45 <@nop> which one
+01:45 < Banks> cool
+01:45 <@mids> the one that you didnt see :)
+01:45 < Banks> [ 563246 ] node/relay type settings cancellation
+01:46 <@nop> ahh
+01:46 <@nop> yes
+01:47 <@mids> Banks: thanks for pointing out
+01:47 <@mids> who does the windows code?
+01:47 <@nop> that's not really a bug
+01:47 < Banks> yeah, but it's not really a feature either :)
+01:47 <@nop> right
+01:47 <@nop> it warns you about your settings
+01:48 <@nop> but
+01:48 <@nop> we'll look into it
+01:48 <@nop> thnx
+01:48 < k> what's the time?
+01:48 < Banks> np
+01:48 <@mids> Tue Jun  4 23:48:37 UTC 2002
+01:48 <@mids> more item 2 questions?
+01:48 <@nop> next on agenda
+01:49 < k> what's that in central america?
+01:49 <@mids> 4) IPv6 Support for IIP 1.2
+01:49 <@mids> http://www.timeanddate.com/worldclock
+01:49 < k> thnx
+01:50 <@mids> IPv6 is something that is going to be used more wide spread
+01:50 <@mids> making IIP IPv6 compatible seems usefull
+01:51 <@mids> does anybody have experience with making daemons IPv6 compatible?
+01:51 <@nop> well
+01:51 <@nop> I think it's fairly simple to make it ipv6 compatible
+01:51 <@nop> it's really size and input, if your machine is compatible
+01:51 <@nop> then it will just do it correctly
+01:52 <@codeshark> node.ref parser?
+01:53 <@mids> how does it know if it should use the IPv6 or IPv4 address when doing a DNS query?
+01:54 <@codeshark> dns returns it
+01:54 <@codeshark> either an A record
+01:54 <@codeshark> or AAA
+01:54 <@mids> dns returs both
+01:54 <@mids> (if both exist)
+01:54 <@codeshark> hmm, if it has both
+01:54 <@mids> s/AAA/AAAA/
+01:54 <@UserX> ipv6 nodes would probably be indicated by adding a "transport" field to noderef with a value "tcp6" or similar
+01:54 <@codeshark> right :)
+01:55 < Aroonkoa>  Nodes could be both ipv4 and ipv6, correct?
+01:55 <@UserX> .
+01:55 <@UserX> yes
+01:56 <@mids> would be nice, that way you can make them gateways
+01:56 <@codeshark> if nodes can be on ipv6, i need to connect to the ipv6 network with the nodechecker
+01:56 <@codeshark> .
+01:56 <@nop> right
+01:57 <@nop> remember this is iip 1.2
+01:57 <@nop> so hopefully we'll be prepared for then
+01:57 <@nop> .
+01:57 <@mids> k
+01:58 < k> me?
+01:58 < k> j/k
+01:58 <@mids> more IPv6?
+01:58 <@nop> mids
+01:58 <@nop> it won't be too hard
+01:58 <@nop> I think that's it for ipv6
+01:59 <@mids> UserX's idea is great, that should solve all problems
+01:59 <@mids> .
+01:59 <@nop> yes
+01:59 <@nop> .
+01:59 <@nop> he always has great ideas
+01:59 <@nop> .
+01:59 <@mids> A) Questions
+01:59 <@mids> -------------
+01:59 <@mids> Ask a question
+01:59 <@nop> How does everyone like IIP so far
+01:59 <@nop> ?
+01:59 <@nop> ;)
+02:00 < Banks> It's elite
+02:00 < Zwolly> great and impressed
+02:00 <@mids> I like it pure
+02:00 <@nop> hehe
+02:00 < Neo> Schweeet.
+02:00 < Aroonkoa> Love it.
+02:00 <@nop> awesome
+02:00 < Zwolly> just looking fot this my whole internet irc life
+02:00 < Zwolly> for
+02:00 < Neo> We love it for what it is, and even more so for what it plans to be.
+02:01 <@nop> neato
+02:01 < Phiberoptika> bravo!: ))))
+02:01 < Banks> It's not just a pipe dream. It's here, now. With promise for the future.
+02:01  * Banks reaches for tissues.
+02:01 <@nop> umm
+02:01 <@nop> that was the idea
+02:02  * Banks offers the box around.
+02:02 <@nop> haha
+02:02 <@nop> oh
+02:02 <@nop> banks
+02:02 <@nop> great job on iip logo design
+02:02 <@nop> one comment
+02:02 <@mids> what logo?
+02:02 < Banks> shoot
+02:02 <@nop> use it for docs if we can
+02:02 <@nop> t-shirts
+02:02 <@nop> and bumper stickers
+02:02 <@nop> but website probably will be more light
+02:03 <@nop> it's very cynical ;)
+02:03 <@nop> and as a group
+02:03 <@nop> we like it
+02:03 <@mids> ah, banks did the logo, forgot
+02:03 < Zwolly> t-shirts...  there goes your anonimous life
+02:03 < Neo> bumper stickers... lol
+02:03 <@nop> just saying
+02:03 <@mids> did everybody see it? I will put it on my site
+02:03 < Banks> :)
+02:03 <@nop> defintely on the docs though
+02:03 <@nop> THat is the epitome of the docs
+02:03 <@nop> and the software
+02:04 <@mids> http://mids.student.utwente.nl/~mids/iip/meeting3/IIPlogo_bigger.png
+02:04 <@mids> somebody who isnt here at the moment had a comment on the logo
+02:05 <@mids> (s)he didn't quite like how the P worked out
+02:05 < Banks> We can change IIP to stand for Invisible Internet Project if you like, which represents your long-term goals as I understand it.
+02:05 <@mids> (but liked the whole concept)
+02:05 < Banks> if we can think of a way to improve the P, we should.
+02:06 <@mids> maybe a normal P?
+02:06 <@nop> maybe make both
+02:06 <@nop> irc and internet
+02:06 <@nop> internet is a ways off
+02:06 < k> just don't p on the floor, k?
+02:06 <@nop> we have a joker in here
+02:06 <@nop> hehe
+02:06 <@nop> ;)
+02:06 < Banks> :)
+02:06 <@mids> well, there is an idea
+02:07 <@mids> if you put the P a bit higher, it looks maybe better
+02:07 <@mids> though I like the concept!
+02:07 < Banks> mids: you can make those changes and send them around for comment if you want, or I can do it.
+02:07 <@mids> I am not a gfx guy
+02:08 < Banks> neither am I really :)
+02:08 <@mids> :)
+02:08 < Banks> I'll do a normal P and move it up and send it around
+02:08 < k> what's the time in costa rica??
+02:11 <@mids> okay, I have a little idea
+02:11 <@mids> everybody may promote his channel here now, with a oneliner
+02:11 <@mids> include channelname + description
+02:12 <@mids> #anonymous - general network channel, meet celibrities & crackheads
+02:12 < Zwolly> channel Annemiek just for the fun and in dutch (or english)
+02:12  * keimennA is afwezig [Slapen/sleeping] [1h22m52s]
+02:13 < k> glad I got to know that..
+02:13 < Banks> #scientology is a classic example of the kind of channels which IIP is ideally suited to
+02:13 < Banks> (it's not mine though :) )
+02:13 < k> lol
+02:14 < Neo>  #distributedcity - Sovereign Individuals
+02:14 <@mids> #test - for all your testing
+02:15 <@nop> #vegetarian for vegetarian (joke)
+02:15 < Banks> #hacktivismo isn't up today
+02:15 < Banks> Heh
+02:16 <@mids> okay, any questions? (IIP related)
+02:18 < Banks> Any way to improve fserve speed in the short-term? We could get a bigger user-base then.
+02:18 <@nop> umm
+02:18 <@nop> not without having flooding problems
+02:18 <@codeshark> filesharing in iip is not a very good idea
+02:19 <@codeshark> it's very inefficient
+02:19 <@nop> wait till decentralized
+02:19 <@codeshark> because of base64 encoding and additional irc headers
+02:19 <@codeshark> ...
+02:19 <@nop> then we'll make sure it's possible
+02:19 < Banks> I think it's a priority for a lot of people though. I was just wondering if there was any way to improve it somewhat before decentralization. Ok.
+02:20 <@nop> freenet gets it's act together
+02:20 <@nop> and you can write an irc plugin
+02:20 <@nop> :)
+02:20 <@codeshark> yeah, integration with freenet or somthing like it would be great
+02:20 <@mids> help freenet testing by running a watchme node
+02:20 <@codeshark> watchme node?
+02:20 <@mids> if they get that thing working again, freenet will be very usefull
+02:21 <@mids> http://freenetproject.org/cgi-bin/twiki/view/Main/SpyWare
+02:21 <@codeshark> statistics node?
+02:21 < Banks> true
+02:21 <@mids> it is a 'spyware' node, intended for debugging
+02:24 < k> woo
+02:25 <@mids> yes k? do you have a question?
+02:25 <@mids> (no sorry, dont know the costa rica timezone)
+02:26 < k> sorry - just celebrating out loud.
+02:27 <@mids> question: how does the 'new' time suit you?
+02:27 < k> huh?
+02:28 <@codeshark> it's a bit better, but we need to make the meetings shorter
+02:28 <@codeshark> .
+02:28 < Banks> I won't be able to make it to the next meeting. I have unavoidable business all day.
+02:28 <@nop> ok
+02:28 <@nop> it's all good
+02:28 <@mids> codeshark: any idea how to make it shorter?
+02:29 <@codeshark> make it more efficient
+02:29 <@codeshark> someone has to lead each topic
+02:30 <@codeshark> .
+02:30 <@mids> k
+02:30 <@mids> I am going to sleep
+02:30 <@mids> thanks all
+02:30 <@codeshark> me too
+02:31 <@mids> nop: can you moderate the channel again when the discussion is over?
+02:31 <@nop> sure
+02:31 <@mids> logger will be kept running for a while
+02:31 <@codeshark> nop: anything left for discussion>
+02:31 <@codeshark> ?
+02:32 <@nop> not really
+02:32 <@nop> no
+02:32 <@nop> everyone go home
+02:32 <@nop> haha
+02:32 < Zwolly> thanx dad
+02:32 <@nop> your welcome son
+02:32 < Zwolly> hehe
+02:33 -!- mode/#iip-dev [+m] by nop
+02:33 <@nop> everybody out
+02:33 <@nop> I need my time alone
+02:33 <@nop> leave me be
+02:33  * codeshark kicks out everyone
+02:34 -!- Phiberoptika was kicked from #iip-dev by nop [nop]
+02:34 -!- Neo was kicked from #iip-dev by nop [nop]
+02:34 -!- keimennA was kicked from #iip-dev by nop [nop]
+02:34 -!- keimennA was kicked from #iip-dev by nop [nop]
+02:34 -!- mode/#iip-dev [+i] by codeshark
+02:34 -!- keimennA was kicked from #iip-dev by nop [nop]
+02:34 -!- k was kicked from #iip-dev by nop [nop]
+02:34 -!- jakob[oFF] was kicked from #iip-dev by nop [nop]
+02:34 -!- AndreGoldman was kicked from #iip-dev by codeshark [codeshark]
+02:34 -!- Banks was kicked from #iip-dev by codeshark [codeshark]
+02:34 -!- ion was kicked from #iip-dev by nop [nop]
+02:35 -!- ellison was kicked from #iip-dev by nop [nop]
+02:35 -!- Aroonkoa was kicked from #iip-dev by codeshark [codeshark]
+02:35 -!- cohesion was kicked from #iip-dev by nop [nop]
+02:35 <@codeshark> hehe
+02:35 <+logger> abusive
+02:35 <+logger> logging ended
+--- Log closed Wed Jun 05 02:35:32 2002
+</div>

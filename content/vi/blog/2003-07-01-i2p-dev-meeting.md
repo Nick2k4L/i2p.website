@@ -1,17 +1,925 @@
 ---
-title: "Cuộc họp các nhà phát triển I2P"
+title: "Cuộc họp phát triển I2P"
 date: 2003-07-01
 author: "nop"
-description: "Biên bản cuộc họp phát triển của I2P ngày 1 tháng 7 năm 2003."
+description: "Nhật ký cuộc họp phát triển I2P ngày 1 tháng 7 năm 2003."
 categories: ["meeting"]
 ---
 
-(Nguồn: Wayback Machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine http://www.archive.org/)
 
 ## Tóm tắt nhanh
 
 <p class="attendees-inline"><strong>Có mặt:</strong> Addic, al-jebr, Ambience, ChZEROHag, Delly, Ehud, hezekiah, hifi, jrand0m, LeerokLacerta, lonelynerd, luckypunk, mids, Neo, nop, qriff, Rain, sahara, thecrypto, thetower, UserX, wilde</p>
 
-## Meeting Log
+## Nhật ký Cuộc họp
 
-<div class="irc-log"> -->	Bạn hiện đang nói chuyện trên #iip-dev ---	Chủ đề của #iip-dev là IIP Meeting - logfiles:   http://wiki.invisiblenet.net/?Meetings - http://www.invisiblenet.net/research/ <al-jebr>	bây giờ là 21:13 <--	wilde đã thoát (Hết thời gian chờ Ping) ---	Trent@anon.iip cấp quyền điều hành kênh cho UserX <nop>	ok <qriff> !time <Ambience>	al-jebr: ở đây là 00:21 <nop>	Tôi tin là mọi người đã ổn định <hezekiah>	Bắt đầu thôi. :) <jrand0m>	ở đây là 11:06 <nop>	bắt đầu nào <nop>	ai nhận được chương trình nghị sự của tôi chưa <nop>	để có thể đọc lại <nop>	Tôi quên thứ tự rồi <--	leenookx đã thoát (Hết thời gian chờ Ping) <Ambience>	đồng hồ của tôi nhanh 15 phút :) -->	hifi (~MetroPipe@anon.iip) đã tham gia #iip-dev <hezekiah>	<nop> trong chương trình nghị sự <hezekiah>	<nop> 1) Chào mừng <hezekiah>	<nop> 2) Lời tạm biệt của chúng ta <hezekiah>	<nop> 3) IIP phát triển hiện nay <hezekiah>	<nop> 4) Đề xuất tái cấu trúc phát triển IIP <qriff> thực ra ở mọi nơi là xx:13... <hezekiah>	<nop> 5) Tuyển mộ dịch vụ hỗ trợ IIP <hezekiah>	<-- Delly đã thoát (Hết thời gian chờ Ping) <hezekiah>	<nop> 6) bình luận gợi ý và những người muốn giúp <mids>	23:05:28 <@nop> 1) Chào mừng <mids>	23:05:38 <@nop> 2) Lời tạm biệt của chúng ta <mids>	23:05:43 <@nop> 3) IIP phát triển hiện nay <mids>	23:05:56 <@nop> 4) Đề xuất tái cấu trúc phát triển IIP <mids>	23:06:16 <@nop> 5) Tuyển mộ dịch vụ hỗ trợ IIP <mids>	23:06:53 <@nop> 6) bình luận gợi ý và những người muốn giúp <nop>	wow, đông nghẹt ở đây ;) <nop>	pl <LeerokLacerta> Lời tạm biệt của chúng ta? <hezekiah>	lol <hifi>	TROLLS !!! <nop>	Ok, chào mừng tất cả <nop>	giờ ổn định lại nào :) <hifi>	. <Ambience>	đã ngồi yên -->	wilde (~anon@anon.iip) đã tham gia #iip-dev <hifi>	đã ổn <al-jebr>	có ai đang log không? -->	thecrypto (~thecrypto@anon.iip) đã tham gia #iip-dev <hezekiah>	Tôi có (tạm tạm). <luckypunk>	chắc mids có. *	jrand0m luôn luôn log <al-jebr>	Bắt đầu thôi! <nop>	ok <hezekiah>	nop: Mục số 2 trong chương trình nghị sự? <nop>	Lời tạm biệt của chúng ta <LeerokLacerta> Tạm biệt! <thecrypto>	livelog ở đâu? <nop>	Ok, mids đến lúc chuyển sang dự án khác rồi -->	Phiberoptika (~none@anon.iip) đã tham gia #iip-dev <mids>	Sau hơn 1 năm làm việc cho IIP, tôi đã quyết định từ chức nhà phát triển   IIP. <LeerokLacerta> Awww. <mids>	Đó là một trải nghiệm vui và bổ ích <mids>	nhưng đã đến lúc tiến lên, làm mới tinh thần và xáo lại bộ bài. <Rain>	Bạn vẫn sẽ online/ở quanh chứ? <mids>	Tôi sẽ tiếp tục chạy Trent chừng nào cần và có thể. <mids>	Vâng, tôi dự định sẽ ở lại với tư cách người dùng -->	ntk (~blob@anon.iip) đã tham gia #iip-dev *	nop đang ngồi khóc ở góc <nop>	ồ, a hèm <jrand0m>	cảm ơn mids rất nhiều, iip mà không có trent thì mệt phết <LeerokLacerta> Thật buồn. <nop>	đúng vậy <nop>	cảm ơn mids vì tất cả công việcup <nop>	việc <mids>	Dù sao tôi sắp đi nghỉ mát :) <mids>	. ---	mids tước quyền điều hành kênh của mids <luckypunk>	:D <luckypunk>	Có vẻ bạn đã làm rất tốt.  :) <Rain>	..thật mang tính biểu tượng.. <nop>	chúng tôi yêu bạn mids!!! <nop>	nghe thấy không <nop>	đó là cửa sổ của tôi mở ra <thecrypto>	tất cả chúng tôi đều vậy! <nop>	fan hâm mộ ngoài kia -->	w (~w@anon.iip) đã tham gia #iip-dev ---	nop giờ được gọi là we <luckypunk>	lol, đúng vậy. <luckypunk>	:D *	we yêu bạn mids <Rain>	Go mids go! <jrand0m>	rofl -->	leenookx (~leenookx@anon.iip) đã tham gia #iip-dev ---	LeerokLacerta đã đổi chủ đề thành: IIP Meeting - logfiles:   http://wiki.invisiblenet.net/?Meetings - http://www.invisiblenet.net/research/   | Chúng tôi yêu bạn mids! <Rain>	chúúúúng taàà là nhaàà vô địịịch, bạn tôiiiii... <Neo>	vâng mids, cảm ơn vì tất cả đóng góp, hợp tác và làm việc chăm chỉ trong   code và các việc nhà phát triển chung cho IIP. ---	we giờ được gọi là nop *	mids cúi chào *	Ehud đứng lên và dành tràng vỗ tay đứng cho sự cam kết, kiên trì, nỗ lực,   và những dòng code chăm chỉ tốt mà mids đã cống hiến cho dự án. <hifi>	yeah mids mang đồ chơi của bạn đến tigertown đi lol <nop>	và đừng quên PR và quản lý web <nop>	anh ấy là một phần sống còn với IIP <nop>	đưa nó đến được mức này sẽ khó nếu không có công lao của anh ấy -->	ChZEROHag (hag@anon.iip) đã tham gia #iip-dev <hifi>	hifi cằn nhằn với mids về vụ troll <--	hezekiah đã thoát (Hết thời gian chờ Ping) <mids>	heh hifi -->	hezekiah (~hezekiah@anon.iip) đã tham gia #iip-dev ---	Trent@anon.iip cấp quyền điều hành kênh cho hezekiah <hezekiah>	Tôi về rồi. :) <luckypunk>	Yay. <hezekiah>	(Và nếu ai còn nghi ngờ, Hezekiah == Ehud.) <hifi>	tôi chưa bao giờ dùng frucking trent và không biết mids đã làm gì. tôi chỉ troll thôi. <nop>	rõ ràng cái hezekiah@anon.iip của bạn đã tố cáo điều đó <--	Ehud đã thoát (Hết thời gian chờ Ping) <hezekiah>	Ờ <hezekiah>	Mục số 3? <hezekiah>	(Nếu chúng ta hết khóc rồi ...) <hifi>	và tôi chưa bao giờ bị pingout trong đời. Tôi là người dùng IIP kỷ luật nhất. <mids>	3) IIP phát triển hiện nay <luckypunk>	heh <luckypunk>	Ok mọi người!  Suỵt.  Trở lại đúng hướng! <hifi>	NHƯNG TÔI KHÓC vì MIDS ĐI !!! <hifi>	ok <hifi>	. <luckypunk>	Phát triển IIP.  Tình trạng hiện tại của bản phát hành snapshot mã đó thế nào? <luckypunk>	Lẽ ra là hôm nay? <hezekiah>	Chà, trừ khi UserX phản đối gói tarball tôi đã làm,   là xong rồi. <luckypunk>	Ok.  Đăng lên wiki nhé? <hezekiah>	UserX? Có vấn đề gì với tarball không? <UserX> không vấn đề gì với tarball <luckypunk>	Vâng, nhưng có bản biên dịch cho windows nào không? <hezekiah>	OK1 <hezekiah>	http://invisiblenet.net/hezekiah <hezekiah>	Lấy tarballs của bạn ở đó! <UserX> vẫn chưa có biên dịch windows cho phiên bản windows <luckypunk>	hm <LeerokLacerta> "tarballs" nghe như một loại đồ ăn... *	luckypunk sẽ cố làm một cái. ---	hezekiah đã đổi chủ đề thành: IIP Meeting - logfiles:   http://wiki.invisiblenet.net/?Meetings - http://www.invisiblenet.net/research/ - tarballs của bản phát hành phát triển 'unstable' tại   http://invisiblenet.net/hezekiah | Chúng tôi yêu bạn mids! <luckypunk>	Đúng vậy.  Cho GCC. <luckypunk>	lol <Rain>	Món dính dính. <hezekiah>	Có một 'lỗi đã được ghi nhận'. <nop>	Tôi có thể biên dịch bản win32 nếu bạn muốn <Rain>	Vậy, bạn có thể mô tả nhanh những gì mới trong bản phát hành này không? <hezekiah>	Nếu bạn chạy isproxy, và nó không bind được cổng, thì nó sẽ   không thoát. Nó sẽ chỉ ngồi đó ngốn bộ nhớ. <hezekiah>	Rain: Điều đó quá sức với tôi (chưa kể tôi thậm chí không   biết hết các khác biệt). <Ambience>	cái này tôi đoán: iip-1.2-dev1.tar.bz2    01-Jul-2003 01:45   292k  tar archive ? <hezekiah>	UserX có thể mô tả tốt hơn nhiều <hezekiah>	UserX? <nop>	hezekiah/UserX chúng ta có thể có changelog về các khác biệt không <nop>	có thể sẽ mất một ngày để làm xong <hezekiah>	Ambience: Chuẩn! Hoặc bản Gziped. Đều là cùng một tarball. <nop>	vì có rất nhiều thay đổi <Rain>	Ồ, và khóa ký IIP đã hết hạn được thay chưa? <Ambience>	hezekiah: ok <hezekiah>	nop: Tôi tham gia IIP sau khi nhánh phát triển đã khởi động. -->	Ehud (~hezekiah@anon.iip) đã tham gia #iip-dev <hezekiah>	Rain: Chưa. Tôi phải dùng khóa GPG của mình. <nop>	chưa ai thử biên dịch nhánh dev này trên win32 phải không? <luckypunk>	Này, src này có ở CVS không? <hezekiah>	Rain: Tôi không liên lạc được ai có khóa phát hành IIP. <hezekiah>	luckypunk: Có. *	luckypunk đã thử, nhưng hệ thống của anh ấy không chạy được. <Rain>	hezekiah: Ok, rõ. <UserX> thay đổi: multi-threading,  bignum hỗ trợ qua openSSL hoặc GMP, vô số   cải tiến cho hệ thống quản lý bộ nhớ <hezekiah>	luckypunk: Hiện tại tarball đó là bản sao của những gì bạn nhận được khi   checkout nhánh hezekiah-dev từ CVS và chạy 'make dist-bzip2'. <luckypunk>	Gah!  Tôi ghét windows. <Rain>	UserX: mượt mà ;) <hezekiah>	Và tất nhiên có những thay đổi nội bộ khác chỉ nhà phát triển mới thấy. :) <qriff> hỏi cho tò mò... cái gì xác định holder cho "Trent"... <hezekiah>	Một điều đơn giản là bây giờ BigNum được triển khai bằng   GMP hoặc SSL, đăng nhập nhanh hơn RẤT nhiều. <Rain>	Tôi có thể nhắc đến một điều kỳ quặc của IIP mà tôi thấy hồi hôm nay không? *	luckypunk đoán là được. <hifi>	trên wiki nút tìm kiếm biến mất . chỉ còn ô nhập mà không có chỗ để   click lol . <luckypunk>	nhấn enter. <qriff> còn việc hết hạn channel/nick thì sao... ---	Ehud giờ được gọi là logger <qriff> đăng ký ấy... <Rain>	Ok, có vẻ như bạn không thể khởi động isproxy bằng lệnh /path/to/isproxy   mà phải cd /path/to rồi chạy ./isproxy <hezekiah>	Rain: Để tôi đoán ... bạn nhận màn hình cấu hình hoặc yêu cầu   entropy, đúng không? *	jrand0m có linh cảm đây sẽ là một cuộc họp rất.dài <Rain>	Đó là cố ý, hay chỉ là vấn đề của máy tôi? <Rain>	hezekiah: đúng. <hezekiah>	Rain: Bạn cần tạo thư mục con .iip trong thư mục home của mình. <Rain>	Nó báo không tìm thấy file cấu hình. <Rain>	với file .conf của tôi á? <hezekiah>	Rain: Nếu không có thư mục đó, isproxy sẽ luôn tìm   các file cấu hình trong thư mục hiện tại -->	AmishOne (amishone@anon.iip) đã tham gia #iip-dev <Rain>	À. Dĩ nhiên. <hezekiah>	OK ... <hezekiah>	nop? Còn gì cho mục 3 không? <nop>	chúng ta đã thử cho win32 chưa <nop>	về biên dịch <hezekiah>	Tôi thì chưa. <nop>	UserX: ? <UserX> chưa <nop>	Tôi sẽ thử trong tuần này <hezekiah>	luckypunk, đã thử hezekiah-dev gần đây và phàn nàn vì   lỗi biên dịch. <nop>	điều đó then chốt để duy trì tính portable <hezekiah>	Tôi nghi có thể có vấn đề. *	luckypunk đã thử, nó hục hặc. <hezekiah>	Ừ. Có vấn đề. <Ambience>	Tôi phải rời đi vì người quyền lực hơn đang bắt tôi   và tôi không có lựa chọn. Vậy tôi đi ngủ, nhưng sẽ log #iip-dev   để tham chiếu sau. <Ambience>	gặp các bạn sau! <lonelynerd>	tạm biệt <qriff>	bye <hezekiah>	Tạm biệt, Ambience. :) <luckypunk>	tôi sẽ quay lại. <Ambience>	<--đi đây (bật log) <nop>	ok <nop>	xong chủ đề này <nop>	mục tiếp theo trong chương trình <nop>	mục 4 là gì? <hezekiah>	4) Đề xuất tái cấu trúc phát triển IIP <nop>	ok <nop>	chúng ta đã có một cuộc họp về thảo luận và đề xuất do jrand0m đưa ra   cho phát triển tương lai <nop>	và đồng thời <nop>	Tôi nhận được nhiều tin nhắn riêng gửi cho tôi <nop>	yêu cầu tập trung vào một framework tổng quát, thay vì chỉ IRC <nop>	tức là một framework hỗ trợ IRC + nhiều thứ khác nữa <nop>	vậy nhu cầu rõ ràng là có <nop>	và các nhà phát triển chắc chắn cũng muốn đi hướng đó <hezekiah>	Chuẩn luôn! <nop>	câu hỏi là làm thế nào để thực hiện <nop>	và làm sao sử dụng hiệu quả nhất đội ngũ dev của chúng ta <nop>	vẫn đang treo <ChZEROHag>	XML <mids>	trang framework của anh ấy có cho mọi người không? <nop>	điều này không nói riêng về ngôn ngữ <ChZEROHag>	tạo một giao thức truyền thông <nop>	ok, làm ơn để tôi nói xong <ChZEROHag>	Tôi đã bắt đầu ở đâu đó... <nop>	rồi chúng ta bình luận <ChZEROHag>	Xin lỗi <ChZEROHag>	Tôi hơi ra vào thất thường lúc này <nop>	ok, <nop>	không vấn đề <nop>	Chúng ta đang ở giai đoạn thảo luận một giao thức truyền thông tổng quát   <nop>	cụ thể cho giao tiếp ẩn danh và an toàn <nop>	điểm này jrand0m, có thể đăng log cuộc họp #iip-future không <jrand0m>	được <jrand0m>	có lẽ là những zip tôi gửi bạn để mọi người không phải vất vả   qua freenet cho các trang khác nữa <nop>	ok <nop>	đợi <nop>	làm ơn <jrand0m>	(nhân tiện, log chưa chỉnh sửa, nên cứ mong đợi những câu tán gẫu thông thường) <hezekiah>	lol. Chuẩn! Bạn sẽ thấy tôi KHÔNG biết về   mạng p2p nhiều thế nào! lol <jrand0m>	heh <hezekiah>	(Và có lẽ có cả các thuyết âm mưu của tôi về nop   nữa! Nhớ đọc log nhé! ;-) ) <--	logger đã thoát (Hết thời gian chờ Ping) <hezekiah>	Ờ <nop>	ok <Neo>	log sẽ nhiều để đọc. có ai tóm tắt cho cuộc họp   những gì đã bàn và vài điểm chính không? <nop>	http://office.invisiblenet.net/iip_future.zip <nop>	và <hezekiah>	Ở thời điểm này, bản 'stable' còn bất ổn hơn   bản 'unstable'!! Ớn. <nop>	http://office.invisiblenet.net/meetingPrepnotes.zip <nop>	http://office.invisiblenet.net/jrand0mnetwork_protocol.txt <jrand0m>	meetingPrepnotes.zip là tài liệu nhỏ tóm tắt cuộc họp,   và cuộc họp về cơ bản là "ok, có ý kiến nào không?". <--	Delly đã thoát (EOF từ client) <jrand0m>	tóm gọn, đề xuất là bắt tay vào làm một hệ thống tin nhắn   ẩn danh an toàn tổng quát, và chạy iip ở trên đó <mids>	có zip với anonCommFramework không? <nop>	Tôi không thấy <nop>	jrand0m bạn có thể zip và gửi, tôi sẽ đăng lên site <jrand0m>	được, đợi tôi <--	Phiberoptika đã thoát (* ciaito mua mua *) <Neo>	anonCommFramework là gì? <jrand0m>	tóm tắt siêu nhanh cuộc họp trong iip_future.zip là "ok,   đây là đề xuất, ý kiến gì?" và ý kiến cơ bản là "ok, IIP có chạy   như dự tính trên cái này không? <jrand0m>	nếu bạn ở freenet, anonCommFramework ở   SSK@MQNd5lT-X5wHA4vONvtVadi6q1IPAgM/anonCommFramework/2// *	jrand0m đang gửi cho nop một zip cái đó ngay đây <Rain>	Các bạn có bàn về hỗ trợ nym dựa trên PGP không? <nop>	à hèm, đây là thảo luận sớm <--	ChZEROHag đã thoát (Hết thời gian chờ Ping) <jrand0m>	không, endpoint trong framework không dựa trên nym, chúng là idents <Rain>	Đúng. Vậy nym ở lớp cao hơn. <Rain>	là <jrand0m>	(và vì nhiều lý do, chúng không nên là idents dài hạn   như nym) <jrand0m>	đúng <Rain>	Tôi chỉ nghĩ về thứ giống trent với xác thực chữ ký PGP. <mids>	trent là trung tâm <mids>	trung tâm = xấu -->	logger (~hezekiah@anon.iip) đã tham gia #iip-dev <jrand0m>	tóm lại, anonCommFramework là một meta-network.  một tập   giao thức &amp; cấu trúc tổng quát mà một mạng liên lạc ẩn danh có thể dùng để   tương tác nhằm cung cấp ẩn danh cấp độ "militant" <wilde> giải thích một câu về ý tưởng của bạn về topology mạng là gì? -->	ChZEROHag (~hag@anon.iip) đã tham gia #iip-dev <ChZEROHag>	vui phết -->	Delly (dedede@anon.iip) đã tham gia #iip-dev <Rain>	mids: Ừ. Tôi nói các dịch vụ tương tự. <lonelynerd>	còn chuyện phải trả bằng hashcash để gửi dữ liệu thì sao? có thể   giúp chống flood không? <jrand0m>	wilde> không đồng nhất.  không có câu trả lời duy nhất giải mọi vấn đề.   tương tác, cân bằng độ trễ, băng thông, ẩn danh và độ tin cậy để đáp ứng   nhu cầu người dùng <Delly> vẫn ở 4) à ? <hezekiah>	Delly: Ừ <Delly> cảm ơn <ChZEROHag>	Tôi nghĩ khi bỏ ircd ra khỏi phương trình, ta sẽ có   lựa chọn tốt hơn nhiều so với (hash|think|real)cash <nop>	jrand0m: gửi được chưa <nop>	;) <jrand0m>	đang upload lên hush. <jrand0m>	ChZEROHag> anonCommFramework có sẵn hỗ trợ cung cấp   thông tin xác thực ủy quyền sử dụng mạng <Rain>	Đã có nhiều nói về khả năng tương tác IIP-Freenet. Điều đó   nằm trong framework, hay lại nói tầng ứng dụng nữa? <ChZEROHag>	nói lại? <jrand0m>	tầng ứng dụng <jrand0m>	những gì ta đang bàn là tách iip thành hai phần - phần irc   và mạng tin nhắn ẩn danh an toàn <wilde> một giải pháp có thể là: <Rain>	jrand0m: k. <wilde> Application <-> Giao diện proxy SOCKS5 <-> Trình bọc Onion <-> Bộ định tuyến Onion   1 <-> ... <-> Bộ định tuyến Onion N <-> Relay thoát <-> Máy chủ công khai <jrand0m>	xây một DHT trên lớp tin nhắn sẽ tương đối dễ <hezekiah>	DHT là gì? <jrand0m>	distributed hash table <jrand0m>	(kiểu freenet) <nop>	ok, jrand0m để tôi làm rõ <ChZEROHag>	wilde: Tôi nghĩ kế hoạch là thiết kế sao cho 'máy chủ công khai'   có thể được loại khỏi phương trình tại một thời điểm nào đó <nop>	chúng ta đang nói về tách irc, hay gom lại để tập trung vào anonymity   framework <jrand0m>	chà, nếu có số dev không giới hạn, thì tách và làm cả hai   (ờ, 3 thứ ;) song song. <nop>	ý tôi là phần irc là tầng ứng dụng <jrand0m>	thực tế thì, có lẽ chỉ đủ thời gian dev để chạy   hệ thống truyền thông trước, rồi iip ở trên <jrand0m>	đúng chính xác <nop>	và vì ta có một mạng tương đối khả dụng đang hoạt động với IIP <jrand0m>	irc chỉ là một ứng dụng chạy trên đó <nop>	vậy ý tưởng nên là <nop>	để nhà phát triển bắt đầu tập trung vào các khía cạnh framework <wilde> ChZEROHag: ok, những gì tôi gợi ý là một lớp ẩn danh hóa cho lưu lượng   internet thông thường, không phải mạng riêng biệt <hezekiah>	(Cái này có thể thú vị.) <nop>	wilde có những điểm yếu với cách đó <nop>	để bạn biết <nop>	tức là clear text ở hai đầu <--	AmishOne đã thoát (EOF từ client) <wilde> nop: đúng, nên mọi kết nối phải được mã hóa đến hai đầu <nop>	chúng tôi cũng có nỗ lực để duyệt web ẩn danh có thể với   mạng này <jrand0m>	đúng.  nó phải có khả năng hoạt động mà không bao giờ rời khỏi mixnet <nop>	nhưng nó không trực tiếp theo thời gian thực như đề xuất của bạn wilde <nop>	nó dùng vài chiến thuật trì hoãn thời gian <nop>	với caching v.v. <nop>	tấn công theo thời gian là mối đe dọa nghiêm trọng với ẩn danh <hifi>	TÔI MUỐN ANONYMISER DỰA TRÊN IIP !! TÔI KHÔNG TIN MẤY ANONYSER KHÁC, CHÚNG LÀ   BẪY CỦA FBI !! <mids>	http://mids.student.utwente.nl/~mids/anonCommFramework/ <nop>	hifi, cái này không thay đổi IIP, đây là bước tiến tới <nop>	cảm ơn mids <jrand0m>	heh đúng đó mids, moz của tôi đang treo <nop>	ok <wilde> mặc dù mixnet độc lập rất hay, ứng dụng "killer" có lẽ   sẽ là công cụ ẩn danh hóa lưu lượng ip tổng quát <nop>	wilde, đó là chuyện hoang đường <wilde> killer apps? <nop>	không <--	thetower đã thoát (EOF từ client) <jrand0m>	wilde> đó có thể là một dịch vụ xây dựng trên lớp truyền thông <nop>	ip traffic anonymizers hay nói chung <wilde> hay ẩn danh hóa lưu lượng ip? <nop>	đến giờ chúng không tồn tại <nop>	chúng chỉ tồn tại trên giấy tờ -->	thetower (none@anon.iip) đã tham gia #iip-dev <jrand0m>	nếu bạn xây một dịch vụ ẩn danh hóa trên lớp truyền thông,   tuy nhiên, các outbound router của bạn sẽ bị tắt rất nhanh <thetower>	Haha, tôi vừa nhận ra tôi chưa port forwarding. <thetower>	Ối, xin lỗi, nhầm kênh <wilde> nop: còn hệ thống ZKS thì sao? <nop>	nó còn tồn tại chứ? <nop>	và hoạt động không <wilde> không, làm ăn tệ <wilde> ít người trả tiền <wilde> nhưng framework có vẻ hoạt động, nhưng tất cả node là relay trả phí của ZKS <nop>	wilde nhưng chúng là nội bộ và nó chưa hoàn chỉnh <nop>	nó vẫn có vài lỗ hổng nhất định <nop>	đó là khởi đầu <nop>	Tôi đã gặp Ian Goldberg ở CodeCon 2k2, và anh ấy thừa nhận nó chưa hoàn chỉnh   như anh ấy mong muốn <wilde> đúng, mọi thứ đều có lỗ hổng, chúng ta chỉ tăng chi phí truy vết   lên đáng kể <jrand0m>	đúng, sau khi mixnet chạy, tôi muốn thấy wilde   cung cấp dịch vụ proxy outbound tổng quát.	thế thì hay <jrand0m>	(thật lòng) <nop>	jrand0m: nhưng cuối cùng tốt nhất là dùng khái niệm magic mirror   để bảo vệ tối ưu <ChZEROHag>	Có lẽ là lựa chọn khó nhất, nhưng freenet có phải là   framework tốt để xây từ đó không? <nop>	wilde, có lẽ bạn và tôi sẽ bàn chuyện này ở chỗ khác lúc nào đó <jrand0m>	nhưng dù sao, trước hết phải xây mạng đã <ChZEROHag>	Hay đó không phải là thứ ta đang bàn? <jrand0m>	ChZEROHag> không. <jrand0m>	freenet không cung cấp ẩn danh "cứng" <ChZEROHag>	à <ChZEROHag>	Tôi nên tập trung hơn <nop>	ok, tiếp tục <nop>	UserX bạn còn ở đây không <wilde> nop: đúng, nếu bạn đã quyết định topology thì không cần bàn   công khai nữa <UserX> Tôi vẫn ở đây <nop>	ừ thì nó là tầng ứng dụng, nên phần đó sau thiết kế mạng v.v. <nop>	ok <nop>	chúng ta dừng ở đâu ở cuộc họp #iip-future <--	hezekiah đã thoát (Hết thời gian chờ Ping) <nop>	bắt đầu từ đó ---	logger giờ được gọi là Ehud *	nop đang bắt kịp log cuộc họp <jrand0m>	[04:31] <jrand0m> Tôi nghĩ ta quay lại câu hỏi của bạn.	có /   nên tính năng irc tiến lên như đang đi hay chuyển sang mixnet này không.   có lợi ích đáng kể khi chuyển sang mixnet, nhưng một số khía cạnh của   phía irc có vẻ cần thiết kế lại để hoạt động trên đó. <jrand0m>	[04:31] <jrand0m> hướng đi đúng cho phát triển irc   không phải do tôi nói <Ehud>	Cơ bản là, UserX cần suy nghĩ xem IIP có chạy   ổn thỏa trên mixnet không. <mids>	chúc ngủ ngon <--	mids (mids@anon.iip) đã rời #iip-dev (mids) <ChZEROHag>	Sẽ không hay hơn nếu tạo một irc thay thế song song   với mixnet sao? <ChZEROHag>	Sau tất cả sẽ rất khó dùng một ircd bình thường <jrand0m>	ChZEROHag> nếu giả định số dev vô hạn, thì có <nop>	ok ChZEROHag im lặng nhé :) <ChZEROHag>	Giả định dev vô hạn <ChZEROHag>	Ồ đây không phải phần hỏi đáp à? -->	hezekiah (hezekiah@anon.iip) đã tham gia #iip-dev <nop>	chưa <UserX> Đáng tiếc tôi chưa có thời gian ngồi nghiêm túc nghĩ   đề xuất của bạn sẽ khớp với IIP thế nào <ChZEROHag>	ồ <ChZEROHag>	ốp <nop>	chỉ muốn đi vào thảo luận <nop>	được rồi <jrand0m>	UserX> coi mixnet như một socket <nop>	để tôi đề nghị cái này <nop>	chúng ta có đồng ý rằng mục tiêu không chỉ là IRC chứ? <lonelynerd>	ừm <Delly> ý tưởng hay đấy chắc chắn rồi <hezekiah>	nop: Không nghi ngờ gì nữa, tôi đồng ý mục tiêu là một mạng   ẩn danh. <lonelynerd>	làm gì đó ngốn băng thông có tiềm năng   phá cả dự án <hezekiah>	nop: IRC chỉ là điểm bắt đầu. <nop>	ok, vậy chúng ta nên nhìn vào thế này <jrand0m>	KHÔNG làm gì ngốn băng thông có tiềm năng khiến ta   bỏ sót vấn đề :) <nop>	thay vì nói IIP không khớp <nop>	hoặc có khớp <nop>	hãy xem cần chỉnh gì để irc khớp với mixnet này, liệu là sửa mixnet   hay không <lonelynerd>	jrand0m: hừm <nop>	chẳng hạn <nop>	UserX có tầm nhìn dùng channels làm endpoints <nop>	Jrand0m gọi chúng là idents <nop>	chúng có khác nhau tinh tế <nop>	hay là khác nhau lớn <jrand0m>	có sự khác biệt có nội dung. <nop>	chúng ta xem qua cái đó được không <nop>	từ cả hai phía <nop>	từ jrand0m và UserX <--	hezekiah đã thoát (EOF từ client) <nop>	thực ra <nop>	đọc log đi <nop>	khỏi cần <jrand0m>	;) -->	hezekiah (hezekiah@anon.iip) đã tham gia #iip-dev <jrand0m>	điều tôi lăn tăn khi gửi tin nhắn đến một channel ident và   để channel đó phân phối lại cho thành viên là channel nhận được plaintext <nop>	nó nhận plaintext bằng cách nào? <jrand0m>	thay vào đó, tôi đề nghị channel chỉ chứa thông tin kênh   (modes, users, topic, v.v.) <jrand0m>	channel chỉ là một ứng dụng chạy trên một (ờ, 3+)   routers lắng nghe một (ờ, 3+) identities.  khi bạn /msg một kênh, bạn   gửi một tin nhắn tới identity đó (ứng dụng).	rồi nó gửi lại cho N   người dùng trong kênh, mã hóa riêng cho từng người <nop>	chà <nop>	Tôi có một đề xuất cho việc đó <nop>	để kênh không chứa plaintext <nop>	trực tiếp <jrand0m>	ít nhất là, trừ khi thêm một khóa kênh (do ứng dụng kênh   tự quản lý, điều này đi ngược mục tiêu) <nop>	chà <nop>	chúng tôi có khóa kênh <nop>	cho kênh riêng tư <nop>	còn kênh công khai thì công khai rồi <jrand0m>	đúng.	có thể có cách khác.  các bạn rành irc   hơn tôi.  có các cách khác không cần đi theo hướng này đâu <nop>	thấy hay ở kênh tin nhắn là <nop>	bạn mở rộng tốt hơn một chút so với việc cố tìm hết các ident để gửi trực tiếp <--	luckypunk đã thoát (Hết thời gian chờ Ping) -->	dd0c (dd0c@anon.iip) đã tham gia #iip-dev <jrand0m>	Tôi không chắc là bạn mở rộng tốt hơn, nhưng có phân phối lại tải <jrand0m>	(chúng ta có thể tìm idents theo O(log(n))) -->	sahara (~sahara@anon.iip) đã tham gia #iip-dev <jrand0m>	nhưng mà, đó không phải trọng tâm, đây là thiết kế tầng   ứng dụng ;) <nop>	đúng <jrand0m>	tất cả những gì ta cần làm, theo tôi, là tìm vài cách khả dĩ *có thể*   hoạt động trên lớp truyền thông rồi để đó đến khi tới lượt <UserX> jrand0m: tin nhắn gửi đến kênh được mã hóa bằng khóa kênh   khác với identity của kênh. máy chủ kênh không thể giải mã trừ khi nó có khóa   bằng cách khác <sahara>	tôi lỡ cuộc họp rồi à? <jrand0m>	bạn có vài cách có thể hoạt động, nghe có vẻ vậy, đúng không? <jrand0m>	UserX> người dùng khi vào kênh lấy khóa bằng cách nào? <hezekiah>	sahara: Không. Bạn đang ở giữa cuộc họp đấy! :) <nop>	đó là trao đổi khóa <jrand0m>	với ai nop? <jrand0m>	người dùng hoàn toàn mới vào #anonymous, và ứng dụng chứa   danh sách người dùng #anonymous không có khóa (như userx nói) <jrand0m>	(tôi chỉ nói là có cách để có đủ chức năng   mà vẫn tránh dùng khóa kênh) <UserX> jrand0m: với kênh công khai thì nó được suy ra từ tên kênh. với   kênh riêng, người dùng hoặc tự tạo hoặc ai đó đưa họ khóa của   kênh <jrand0m>	'ok, hay đấy <jrand0m>	vậy ứng dụng quản lý kênh công khai có thể đọc plaintext (bằng cách   suy ra từ tên kênh) <jrand0m>	(có lẽ cũng ổn) <nop>	đúng <wilde> jrand0m: nếu ứng dụng mã hóa plaintext cho từng người nhận, nó   có mở rộng tốt không? <jrand0m>	có wilde, có thể tốt hơn (tùy thuật toán dùng để   bầu chọn trình quản lý kênh) <jrand0m>	(dù nó có thể dẫn tới việc giao không tuần tự) <jrand0m>	((dù tôi nghĩ irc bình thường cũng thế)) <--	thecrypto đã thoát (Hết thời gian chờ Ping) <jrand0m>	nhưng, quay lại câu hỏi - <jrand0m>	nop, chúng ta hy vọng quyết định được gì vào cuối phần thảo luận   của #4? <--	Neo đã thoát (Hết thời gian chờ Ping) -->	d (~sahara@anon.iip) đã tham gia #iip-dev <nop>	chà <--	sahara đã thoát (EOF từ client) <hifi>	trang đơn giản , vấn đề là tôi mù công nghệ nhưng muốn cái tốt lol <nop>	Tôi hy vọng ta có thể tái tổ chức, nhưng chuyện này sẽ là thảo luận   sau <hifi>	xin lỗi OOPS <nop>	UserX <--	d đã thoát (Client thoát) <nop>	bạn cần bao lâu để nghĩ về vài khía cạnh, và có thể viết tài liệu thành danh sách quan ngại <UserX> khó nói. có lẽ một tuần <nop>	ý tôi, jrand0m là nhiều việc này cần sắp xếp đã, chứ lao vào luôn, kẻo lại quay về vạch xuất phát <nop>	vậy dồn một tuần vào việc này <nop>	và xem các quan ngại là gì <nop>	vì một lần nữa <nop>	chúng ta muốn một mixnet thích ứng <nop>	bất kỳ ứng dụng nào cũng phải sống được <jrand0m>	chính xác <jrand0m>	đó là điểm của anon comm framework <--	wilde đã thoát () <nop>	ok, vậy gác lại một tuần, và tập trung vài đề xuất thực tế   có thể phù hợp nhu cầu của tất cả chúng ta <jrand0m>	bạn nói "gửi thông điệp M tới vị trí L" và nó một cách kỳ diệu, an toàn,   ẩn danh được chuyển đi <nop>	nhưng phép màu là một chuyện <nop>	khoa học là chuyện khác <nop>	dĩ nhiên bạn biết điều đó :) <jrand0m>	phép màu là từ góc nhìn tầng ứng dụng ;) <nop>	đúng <nop>	hiểu rồi <jrand0m>	khoa học nằm trong cái 15 trang anonCommFramework/2// ;) <nop>	ok <hezekiah>	lol <nop>	UserX, nếu bạn làm được trong một tuần thì tốt <nop>	? <jrand0m>	Tôi sẽ nhắm tới việc chỉnh lại tài liệu &amp; chuẩn bị thiết kế mạng lớp truyền thông   để khi đó ta có thể bắt tay ngay <nop>	chà <nop>	chúng ta chưa đồng ý vài khía cạnh <nop>	tôi nghĩ vẫn cần tranh luận rõ <jrand0m>	trong lớp mạng, có gì ta chưa đồng ý? <nop>	cá nhân tôi đồng ý là có thể bạn đăng anonCommFramework lên iip-dev <nop>	và để mọi người review và bình luận *	jrand0m không ở iip-dev <Rain>	Vậy, họp lại thứ ba tới, cùng giờ, cùng kênh? <nop>	điều chúng ta chưa đồng ý là liệu nó có hỗ trợ mọi ứng dụng không <hezekiah>	jrand0m: Chỉ cần gửi tới iip-dev@invisiblenet.net . <hezekiah>	Rain: Chúng ta đang ở mục #4. Vẫn còn các mục khác. :) <jrand0m>	nó ~800k.  nếu ai có thể đăng URL tới mirror của mids thì tốt <Delly> argh <Delly> re <Delly> về dịch vụ, tôi nghĩ nếu IIP dễ dùng và thân thiện hơn, chúng ta sẽ thấy   nhiều người dùng và nhiều node hơn. đó là lý do tôi đang làm script cho người dùng mIRC, một cái là script Trent, cho phép dùng Trent và Anonymail bằng chuột, cái còn lại là script cho phép truyền file qua iip, vẫn ẩn danh (dùng uuencoding). "giao thức" dùng thì dễ và có thể làm cho nhiều client irc có hỗ trợ   scripting. Và như vậy ai cũng có thể chuyển file nhỏ, thậm chí giữa nh  <jrand0m>	nop> Tôi chắc chắn 100% là nó có thể hỗ trợ mọi ứng dụng. <Rain>	hezekiah: Đúng. Tôi hiểu nhầm. <jrand0m>	lớp này đã được dùng hơn một thập kỷ trong hàng trăm ngành công nghiệp <Delly> là suy nghĩ trong ngày của tôi <nop>	vậy ta chưa đồng ý ở đâu <nop>	nếu Irc là vấn đề, thì nó thích ứng thế nào? <jrand0m>	nó không phải vấn đề <jrand0m>	các bạn chỉ chưa hiểu mức trừu tượng của lớp đó thôi ;) <lonelynerd>	Delly: tôi có một script perl cho phép dùng ssh/telnet/etc   qua irc <jrand0m>	(thực sự, nghĩ nó như một socket) <Delly> lonelynerd, mục tiêu chỉ là nâng cao mirc <Delly> cho mạng iip <lonelynerd>	Delly: vâng, nhưng nếu dùng base64, tôi nghĩ nó tương thích với   cái này <Delly> có thể dùng được đấy <jrand0m>	ok, sẵn sàng cho #5 chưa? <hezekiah>	nop? <--	hezekiah đã thoát (Client thoát) <Delly> ối tôi tưởng đang 5)  ! <ChZEROHag>	có 5 à? -->	hezekiah (hezekiah@anon.iip) đã tham gia #iip-dev <--	hezekiah đã thoát (Client thoát) -->	hezekiah (hezekiah@anon.iip) đã tham gia #iip-dev <nop>	xin lỗi <nop>	delly <nop>	mọi người <nop>	cái này lạc đề <nop>	làm ơn để cuộc trò chuyện đó ngoài kênh này -->	hezekiah_ (~hezekiah@anon.iip) đã tham gia #iip-dev <--	hezekiah đã thoát (EOF từ client) <nop>	chà <nop>	jrand0m ---	hezekiah_ giờ được gọi là hezekiah <nop>	trước khi tôi đồng ý sang mục 5 <nop>	vấn đề tôi thấy là <nop>	UserX cũng có tiếng nói <nop>	nữa ---	Trent@anon.iip cấp quyền điều hành kênh cho hezekiah <jrand0m>	dĩ nhiên <nop>	và nếu anh ấy thấy vấn đề hậu cần <nop>	Tôi tin nên được lắng nghe <nop>	vậy bạn không thể chỉ nói, này nó sẽ hoạt động <nop>	phải được đồng thuận "vững chắc" từ cả hai phía <nop>	tức là anh ấy cần được thuyết phục <jrand0m>	đúng, nhưng tôi sẽ không ngồi không chờ anh ấy   viết tài liệu.  nếu một tuần nữa anh ấy đưa ra vấn đề, tuyệt,   và ta sẽ chỉnh sửa tương ứng <nop>	hoặc anh ấy cần thuyết phục bạn <nop>	nhưng ý là thế này <nop>	những gì tôi đang cố đề xuất <nop>	là tái tổ chức đội dev để lên xe với bạn <nop>	với điều đó <nop>	nó sẽ dồn năng lượng của ta vào làm thiết kế mạng <nop>	đó là ý tưởng <nop>	giúp tất cả chúng ta tiến đến điều cụ thể <nop>	tôi không cố làm chậm <jrand0m>	đúng, tôi không kỳ vọng có bản đặc tả giao thức V1.0 hoàn chỉnh tuần sau.   đêm qua tôi tải khoảng 50 bài mới từ citeseer để nghiên cứu thêm <nop>	ok <nop>	vậy chúng ta có thể đăng đề xuất của bạn lên iip-dev không <nop>	và nhận review <jrand0m>	được chứ <nop>	tôi cũng khuyên bạn tự đề xuất nó trên cryptography@metzdowd.com <nop>	ở đó sẽ có review nghiêm túc <jrand0m>	nghe hay <nop>	ok <nop>	UserX, bạn còn đó chứ <UserX> tôi đây <nop>	ok, vậy jrand0m sẽ làm đặc tả giao thức, và tôi có thể giả định bạn sẽ lập   danh sách quan ngại hoặc vài bổ sung cho giao thức? <UserX> vâng <nop>	ok, ta sẽ tiếp tục cái này sau một tuần <nop>	mục 5 là gì? <nop>	xin lỗi nếu tôi phiền <nop>	chỉ muốn tổ chức lại <nop>	để đảm bảo chúng ta cùng trang <jrand0m>	tuyển mộ dịch vụ...? <hezekiah>	5) Tuyển mộ dịch vụ hỗ trợ IIP <nop>	ok <nop>	đúng <nop>	kể từ khi mids rời đi <nop>	và cohesion trở lại <nop>	chúng ta có thể đang tìm người khác đóng góp cho IIP theo cách nào đó <nop>	điều này không có nghĩa bạn phải là core developer hardcore <nop>	nhưng những bổ sung như có thể một người duy trì web thì tốt, <nop>	một ít PR thì tốt <hezekiah>	luckypunk xung phong quản lý website. <hezekiah>	<luckypunk> Tôi muốn giúp/tiếp quản website IIP. <hezekiah>	<luckypunk> :D <nop>	và nếu nhiều người muốn nhảy vào dự án sắp tới mà   jrand0m đang đề xuất <jrand0m>	tuyệt <nop>	kể cả bạn chỉ muốn review giao thức <nop>	đó đã là giúp đỡ nhiều rồi <nop>	sự thật là <nop>	chúng ta có nhiều dev có công việc full-time <nop>	và đang ngốn thời gian của họ <nop>	và bất kỳ giúp đỡ thêm nào cũng được hoan nghênh <nop>	vì đây là nỗ lực rất lớn <nop>	để đưa IIP đến nơi nó cần <nop>	tức là InvisibleNet vào lúc nào đó <nop>	công việc đời thực ;) <nop>	dù sao <nop>	ý là <nop>	sẽ tuyệt nếu mọi người muốn góp vào dự án bằng cách nào đó <nop>	dùng kỹ năng của mình, và tôi biết có vài lập trình viên ngoài kia <nop>	và vài người có thời gian rảnh <nop>	thời gian <nop>	độ tin cậy của luckypunk sẽ cần được xem xét, không có ý gì, tôi từng   được anh ấy đề nghị giúp duy trì freesite, và không suôn sẻ <hezekiah>	nop: Tôi hiểu điều đó. ;-) <hezekiah>	nop: Anh ấy chỉ nhờ tôi chuyển lời đề nghị vì anh ấy   sẽ không ở đây. <nop>	ok <hezekiah>	nop: Tôi đã làm rồi. Phần của tôi xong. :) <nop>	dù thế nào, ai muốn tham gia <nop>	liên hệ với một trong chúng tôi <nop>	hoặc tại iip@invisiblenet.net <hezekiah>	Một trong ai? <nop>	hoặc cứ theo nick, <nop>	hezekiah, userx, nop, <jrand0m>	Tôi nghe nói ai tình nguyện giúp iip sẽ được gái và đồ chơi <hezekiah>	'hookers and blow' là gì? <hezekiah>	... hay tôi không nên biết? <jrand0m>	heh <nop>	hezekiah: đừng hỏi <hezekiah>	OK. <hezekiah>	Tôi không muốn biết. :) <nop>	hezekiah: hãy tận hưởng cuộc sống trong sáng của bạn ;) <nop>	trong khi còn có thể <nop>	vì đại học sẽ vui lắm đấy :) <hezekiah>	Tôi đang tận hưởng đây! Tôi đang tận hưởng! *	jrand0m tận hưởng hookers and blow ;) <nop>	jrand0m: câu hỏi nhanh *	w ôm luckypunk và nop <jrand0m>	vâng thưa? <nop>	jrand0m: bạn có coi mình là dev của IIP vào lúc nào đó sớm không? <nop>	vì bạn đang đề nghị gộp vào ;) <hifi>   http://www.guerrillanews.com/cgi-bin/wwwthreads/showflat.pl?Cat=&amp;Board=gnn&amp;Number=182767&amp;page=0&amp;view=collapsed&amp;sb=5&amp;o=0&amp;part= <hifi>	xin lỗi , lại nhầm <jrand0m>	nop> dev của invisiblenet, nhưng tôi không thể đóng góp cho iip <nop>	hiểu rồi <nop>	IIP == các dự án tương lai của invisiblenet <hezekiah>	jrand0m: Làm việc tốt! <hezekiah>	jrand0m: Diễn đạt. <nop>	cần dev cho cả hai <nop>	cho rõ ràng <nop>	đặc biệt vì jrand0m có thể dùng một đội tốt <Addic> Tôi có thể xem qua phần code Windows... <jrand0m>	vâng thưa.	khi chúng ta đi vào thiết kế phần mềm, sẽ có   nhiều việc hơn tưởng tượng <jrand0m>	tuyệt Addic <nop>	tuyệt vời <nop>	ok <nop>	Tôi sẽ gửi yêu cầu này lên list iip-dev nữa <nop>	ai quan tâm xin đừng ngại liên hệ <nop>	có mục 6 không? <nop>	Tôi nghĩ có <jrand0m>	6) bình luận gợi ý và những người muốn giúp <jrand0m>	gợi ý: < 1.8 giờ lần sau :) <jrand0m>	(không phải là bất kỳ chủ đề nào có thể cô đọng hơn   được nữa) <nop>	không bình luận? *	nop nghĩ mọi người ngủ hết rồi <nop>	hehe <nop>	chúng tôi làm họ chán <jrand0m>	w3wt <Addic> heh, ai đã làm phần code Windows đến giờ? <nop>	ok <hifi>	zzzzzz... <nop>	UserX đã làm nó portable đến giờ <Rain>	Chúng ta cần những tài năng loại gì? <Addic> ok <nop>	ok, để tôi nhắc lại <nop>	Coders, dân đồ họa, Web devs, người PR, người duy trì Web <Rain>	Ok, tôi bỏ lỡ. Xin lỗi. <nop>	và nếu bạn viết kế hoạch kinh doanh, cũng giúp tôi :) <nop>	bạn không bỏ lỡ đâu <nop>	Tôi chưa nói đủ chi tiết <jrand0m>	heh <--	Ehud đã thoát (EOF từ client) <hifi>	Tôi sinh ra là người PR <Rain>	Bước một: Collect Underpants. <Addic> dịch sang ngôn ngữ khác trên wiki? <nop>	có <nop>	như vậy rất tuyệt <nop>	bản dịch <Addic> ok, tôi có thể làm cái đó nữa <nop>	tài liệu <nop>	v.v. <--	hezekiah đã thoát (Hết thời gian chờ Ping) <nop>	thậm chí tổ chức <nop>	ai muốn tham gia tích cực giúp InvisibelNet/IIP <hifi>	Tôi mời mọi người dùng IIP suốt <nop>	cảm ơn hifi -->	hezekiah (hezekiah@anon.iip) đã tham gia #iip-dev <Rain>	Kỹ năng tổ chức loại gì? <nop>	chà, có thể giúp điều hành cuộc họp, hoặc có thể thúc ép bọn dev chúng tôi viết   nhiều tài liệu hơn về giao thức <nop>	v.v. <nop>	có thể tổ chức phỏng vấn và vài dạng thông cáo báo chí <nop>	vài ý tưởng tương lai để quảng bá việc dùng IIP <nop>	v.v. <nop>	ok, xin liên hệ một trong chúng tôi nếu bạn muốn giúp <Rain>	Ok, câu hỏi tổ chức, mà tôi đã nhắc trước: Khóa ký IIP? (cằn nhằn, cằn nhằn) -->	Ehud (~hezekiah@anon.iip) đã tham gia #iip-dev <hifi>	dịch vụ thông báo IIP :) để mọi người biết tôi/anh ấy online LOL <qriff> hỏi cho tò mò... cái gì xác định holder cho "Trent"... <qriff> còn việc hết hạn channel/nick thì sao... <qriff> đăng ký ấy... <--	ChZEROHag đã thoát (Hết thời gian chờ Ping) <jrand0m>	trent là một dịch vụ, không phải nick, nên trent phải có quyền truy cập   ircd (tôi nghĩ vậy) <nop>	mấy câu hỏi này là câu hỏi dành cho mids về trent, anh ấy là một mảnh trừu tượng <nop>	đúng jrand0m <jrand0m>	thông báo iip thì hay đó.  anonymail làm thế nào? <jrand0m>	khách có thể gửi /notify nick lên server và nhận tin khi   nick đó vào không? <hifi>	IIP SMS notification LOL <nop>	thực ra <nop>	chúng tôi từng có IIP SMS như phiên bản đầu tiên của anonymail <nop>	nhưng nó hay gây flood <hifi>	ồ <nop>	nên giờ ta làm dạng giao hàng qua cơ sở dữ liệu anonymail <hifi>	IIP invitation msg như chữ ký cho email thường ... <hifi>	Kiểu " Do yo Yahoo ? Get MSN free " đó <jrand0m>	ooOOoo textAds <jrand0m>	nhưng iip có cần thêm người dùng không? <hifi>	ồ <jrand0m>	hay có thêm người dùng chỉ là "ồ hay, phục vụ thêm người"? <hifi>	không <hifi>	không biết nữa <hifi>	tôi chỉ nghĩ lung tung <--	Mira đã thoát (Hết thời gian chờ Ping) <hezekiah>	Nhiều người ... nhiều ý tưởng ... nhiều tình nguyện viên hơn <hifi>	IIP trở thành tiêu chuẩn thế giới sẽ rất tuyệt <hezekiah>	Nhiều người ... nhiều vấn đề ... nhiều tải lên mạng ... <hezekiah>	... nhiều flood của #anonymous ... <hezekiah>	Đó là câu hỏi hai mặt. <hifi>	nhiều kênh hơn lol -->	Mira (~Mira@anon.iip) đã tham gia #iip-dev <hifi>	Chương trình ưu sinh IIP LOL Ít dân số Ít vấn đề -->	ChZEROHag (~hag@anon.iip) đã tham gia #iip-dev <Addic> hừm... quay lại câu hỏi thông báo... có phải /notify   nick không hoạt động ở đây? Hay tôi hiểu nhầm câu hỏi... <lonelynerd>	Addic: hoạt động chứ <Addic> vậy vấn đề là gì? <hifi>	? <--	Delly đã thoát (EOF từ client) <lonelynerd>	không theo dõi kỹ cuộc trò chuyện, nhưng họ nói về   có một /notify mà không yêu cầu client phải poll <Addic> ok <--	ChZEROHag đã thoát (Hết thời gian chờ Ping) <--	w đã thoát (Hết thời gian chờ Ping) <--	Rain đã thoát (Tôi Quit) -->	w (~w@anon.iip) đã tham gia #iip-dev <hezekiah>	Hmmm ... <hezekiah>	Tôi nghĩ đã đến lúc chúng ta kết thúc cuộc họp này. <hezekiah>	Anh thấy sao, nop? *	jrand0m nghĩ anh ấy cũng ngủ gật rồi <nop>	ừ <nop>	ok <nop>	gặp sau <--	jrand0m (jrandom@anon.iip) đã rời #iip-dev (jrand0m) <hezekiah>	Cuộc họp kết thúc! :) <hezekiah>	*BAF*! <--	Addic (anon@anon.iip) đã rời #iip-dev (Addic) <--	LeerokLacerta (~leerok@anon.iip) đã rời #iip-dev (Client thoát) <--	hezekiah đã thoát (Client thoát) <--	Ehud đã thoát (Client thoát) </div>
+<div class="irc-log">
+-->	You are now talking on #iip-dev
+---	Topic for #iip-dev is IIP Meeting - logfiles:
+  http://wiki.invisiblenet.net/?Meetings - http://www.invisiblenet.net/research/
+<al-jebr>	it's 21:13
+<--	wilde has quit (Ping timeout)
+---	Trent@anon.iip gives channel operator status to UserX
+<nop>	ok
+<qriff> !time
+<Ambience>	al-jebr: 00:21 here
+<nop>	I believe everyone has settled
+<hezekiah>	Let's go. :)
+<jrand0m>	11:06 here
+<nop>	let's start
+<nop>	anyone get my agenda
+<nop>	so they can play it back
+<nop>	I forgot the order
+<--	leenookx has quit (Ping timeout)
+<Ambience>	my clock is 15 minutes ahead :)
+-->	hifi (~MetroPipe@anon.iip) has joined #iip-dev
+<hezekiah>	<nop> on the agenda
+<hezekiah>	<nop> 1) Welcome
+<hezekiah>	<nop> 2)Our Goodbyes
+<hezekiah>	<nop> 3)IIP development now
+<hezekiah>	<nop> 4) IIP development restructuring proposal
+<qriff> actually its xx:13 everywhere...
+<hezekiah>	<nop> 5) Recruiting for services to aid with IIP
+<hezekiah>	<-- Delly has quit (Ping timeout)
+<hezekiah>	<nop> 6) comments suggestions and people who want to help
+<mids>	23:05:28 <@nop> 1) Welcome
+<mids>	23:05:38 <@nop> 2)Our Goodbyes
+<mids>	23:05:43 <@nop> 3)IIP development now
+<mids>	23:05:56 <@nop> 4) IIP development restructuring proposal
+<mids>	23:06:16 <@nop> 5) Recruiting for services to aid with IIP
+<mids>	23:06:53 <@nop> 6) comments suggestions and people who want to help
+<nop>	wow, flood in here ;)
+<nop>	pl
+<LeerokLacerta> Out goodbyes?
+<hezekiah>	lol
+<hifi>	TROLLS !!!
+<nop>	Ok, welcome all
+<nop>	let's settle down now :)
+<hifi>	.
+<Ambience>	settled
+-->	wilde (~anon@anon.iip) has joined #iip-dev
+<hifi>	settled
+<al-jebr>	anyone logging?
+-->	thecrypto (~thecrypto@anon.iip) has joined #iip-dev
+<hezekiah>	I am (sort of).
+<luckypunk>	mids should be.
+*	jrand0m logs at all times
+<al-jebr>	let's go!
+<nop>	ok
+<hezekiah>	nop: Agenda item number 2?
+<nop>	Our goodbyes
+<LeerokLacerta> Bye!
+<thecrypto>	where is the livelog?
+<nop>	Ok, mids has come to a point where he is moving to other projects
+-->	Phiberoptika (~none@anon.iip) has joined #iip-dev
+<mids>	After having worked for IIP for more than I year now, I have decided to
+  resign as IIP developer.
+<LeerokLacerta> Awww.
+<mids>	It has been fun and an educative experience
+<mids>	but it is time to move on, refresh the spirit and shuffle the cards.
+<Rain>	Will you still be online/around?
+<mids>	I'll keep running Trent as long as needed and possible.
+<mids>	Yes, I do plan to stay around as user
+-->	ntk (~blob@anon.iip) has joined #iip-dev
+*	nop is in the corner sobbing
+<nop>	oh, ah hem
+<jrand0m>	many thanks mids, iip w/out trent would be a pita
+<LeerokLacerta> It's so sad.
+<nop>	yes
+<nop>	thank you mids for all your workup
+<nop>	work
+<mids>	Although I'll be off on vacation soon :)
+<mids>	.
+---	mids removes channel operator status from mids
+<luckypunk>	:D
+<luckypunk>	Seem's like you've done a great job.  :)
+<Rain>	..how symbolic..
+<nop>	we love you mids!!!
+<nop>	you hear that
+<nop>	that was my window opening
+<thecrypto>	we all do!
+<nop>	fan base out there
+-->	w (~w@anon.iip) has joined #iip-dev
+---	nop is now known as we
+<luckypunk>	lol, yep.
+<luckypunk>	:D
+*	we love you mids
+<Rain>	Go mids go!
+<jrand0m>	rofl
+-->	leenookx (~leenookx@anon.iip) has joined #iip-dev
+---	LeerokLacerta has changed the topic to: IIP Meeting - logfiles:
+  http://wiki.invisiblenet.net/?Meetings - http://www.invisiblenet.net/research/
+  | We love you mids!
+<Rain>	weeeeee are the chaaaampins, my frieeeennnndd...
+<Neo>	yes mids, thanks for all your input, collaboration and hard work in code
+  and doing general developer things for IIP.
+---	we is now known as nop
+*	mids bows
+*	Ehud stands up and gives a standing ovation to the commitment, perseverence,
+  effort, and good hard code that mids has given the project.
+<hifi>	yeah mids take your toys and go to tigertown lol
+<nop>	and don't forget the PR and web management
+<nop>	he's been a vital aspect to IIP
+<nop>	getting it this far would have been hard without his work
+-->	ChZEROHag (hag@anon.iip) has joined #iip-dev
+<hifi>	hifi bitches with mids over trolling issue
+<--	hezekiah has quit (Ping timeout)
+<mids>	heh hifi
+-->	hezekiah (~hezekiah@anon.iip) has joined #iip-dev
+---	Trent@anon.iip gives channel operator status to hezekiah
+<hezekiah>	Back. :)
+<luckypunk>	Yay.
+<hezekiah>	(And in case anyone doubted, Hezekiah == Ehud.)
+<hifi>	i never used frucking trent and don't know what mids did . i only troll .
+<nop>	obviously your hezekiah@anon.iip gave it away
+<--	Ehud has quit (Ping timeout)
+<hezekiah>	Ugh
+<hezekiah>	Item number 3?
+<hezekiah>	(If we're all done sobbing yet ...)
+<hifi>	and i never was pingouted in my life . I am the most disciplined user of
+  IIP .
+<mids>	3)IIP development now
+<luckypunk>	heh
+<luckypunk>	Ok everyone!  Shhh.  Back on track!
+<hifi>	BUT I CRY that MIDS GO !!!
+<hifi>	ok
+<hifi>	.
+<luckypunk>	IIP development.  Whats the current status of that code snapshot
+  release?
+<luckypunk>	That was supposed to happen today?
+<hezekiah>	Well, unless UserX has an objection to the tarball I made,
+  it's done.
+<luckypunk>	Ok.  Post it on the wiki?
+<hezekiah>	UserX? Were there any problems with the tarball?
+<UserX> no problems with the tarball
+<luckypunk>	Yes, but are there any windows compilations?
+<hezekiah>	OK1
+<hezekiah>	http://invisiblenet.net/hezekiah
+<hezekiah>	Get your tarballs there!
+<UserX> there hasn't been a windows compilation on the windows version yet
+<luckypunk>	hm
+<LeerokLacerta> "tarballs" sound like some sort of food...
+*	luckypunk will try and make one.
+---	hezekiah has changed the topic to: IIP Meeting - logfiles:
+  http://wiki.invisiblenet.net/?Meetings - http://www.invisiblenet.net/research/
+- tarballs of the 'unstable' development release are at
+  http://invisiblenet.net/hezekiah | We love you mids!
+<luckypunk>	They are.  For GCC.
+<luckypunk>	lol
+<Rain>	Sticky food.
+<hezekiah>	There is one 'documented bug'.
+<nop>	I can compile a win32 version if you'd like
+<Rain>	So, could you give a quick describtion of what is new in this release?
+<hezekiah>	If you run isproxy, and it fails to bind the port, then it will
+  /not/ abort. It will just sit there wasting memory.
+<hezekiah>	Rain: That's too much for me to handle (not to mention I don't
+  even _know_ all the differences).
+<Ambience>	this one I assume: iip-1.2-dev1.tar.bz2    01-Jul-2003 01:45
+  292k  tar archive ?
+<hezekiah>	UserX could give a much better description
+<hezekiah>	UserX?
+<nop>	hezekiah/UserX can we get a changelog of the differences by chance
+<nop>	that may be a day before that gets done
+<hezekiah>	Ambience: Yup! Or the Gziped one. There the same tarball.
+<nop>	because there are a log of changes
+<Rain>	Oh, and has the expired IIP signing-key been replaced?
+<Ambience>	hezekiah: ok
+<hezekiah>	nop: I joined IIP after the development branch was already in
+  progress.
+-->	Ehud (~hezekiah@anon.iip) has joined #iip-dev
+<hezekiah>	Rain: No. I had to use my GPG key.
+<nop>	no one has tested the compile of this dev branch in win32 have they?
+<luckypunk>	Hey, is this src is CVS?
+<hezekiah>	Rain: I couldn't contact anyone who had the IIP release key.
+<hezekiah>	luckypunk: Yes.
+*	luckypunk has, but his system didn't work for it.
+<Rain>	hezekiah: Ok, roger.
+<UserX> changes: multi-threading,  bignum support via openSSL or GMP, numerous
+  inmprovements to the memory management system
+<hezekiah>	luckypunk: Right now that tarball is a copy of what you get when
+  you check out the hezekiah-dev branch from CVS and run 'make dist-bzip2'.
+<luckypunk>	Gah!  I hate windows.
+<Rain>	UserX: niceties ;)
+<hezekiah>	And of course there are other internal changes that only the
+  developers see. :)
+<qriff> just as a question for the qurious... what defines the holder for "Trent"...
+<hezekiah>	One simple thing is that now that BigNum is implemented using
+  either GMP or SSL, login is a LOT faster.
+<Rain>	May i mention a IIP quirk i noticed earlier today?
+*	luckypunk guesses its a yes.
+<hifi>	at wiki search button is absent . only window to type in but nowhere to
+  click lol .
+<luckypunk>	hit enter.
+<qriff> and what about channel/nick expiration...
+---	Ehud is now known as logger
+<qriff> registration that is...
+<Rain>	Ok, it seems to me like you cannot start isproxy from a /path/to/isproxy
+  command, but intead have to do a cd /path/to and then do a ./isproxy
+<hezekiah>	Rain: Let me guess ... you get a configuration screen or a request
+  for entropy, right?
+*	jrand0m has a feeling this will be a very.long.meeting
+<Rain>	Is that intentional, or just some quirk of my local system?
+<Rain>	hezekiah: yes.
+<hezekiah>	Rain: You need to make a .iip subdirectory in your home directory.
+<Rain>	It claims that the conf-file is not found.
+<Rain>	with my .conf file?
+<hezekiah>	Rain: If no such directory exists, isproxy will always look for
+  the config files in the current directory
+-->	AmishOne (amishone@anon.iip) has joined #iip-dev
+<Rain>	Ahh. Of course.
+<hezekiah>	OK ...
+<hezekiah>	nop? Was there anything else for item 3?
+<nop>	have we tested it for win32
+<nop>	compile wise
+<hezekiah>	I haven't.
+<nop>	UserX: ?
+<UserX> no
+<nop>	I will test it this week then
+<hezekiah>	luckypunk, tried doing hezekiah-dev recently and complained for
+  compile errors.
+<nop>	that's key to maintain portability
+<hezekiah>	I suspect there might be problems.
+*	luckypunk tried, it balked.
+<hezekiah>	Yup. There are problems.
+<Ambience>	I'll have to leave for the more dominant one is ordering me to
+  and I have no choice here. So I'll be off to bed, but will be logging #iip-dev
+  for future reference.
+<Ambience>	see ya guys!
+<lonelynerd>	later
+<qriff>	bye
+<hezekiah>	Bye, Ambience. :)
+<luckypunk>	i'll be back.
+<Ambience>	<--gone (log on)
+<nop>	ok
+<nop>	this topic is done
+<nop>	next on agenda
+<nop>	what's 4?
+<hezekiah>	4) IIP development restructuring proposal
+<nop>	ok
+<nop>	we had a meeting about a discussion and proposal brought to us by jrand0m
+  for the future development
+<nop>	and as well
+<nop>	I have had a lot of privmessages directed at me
+<nop>	for requests to focus on an arbitrary framework, instead of IRC specific
+<nop>	aka a framework that supports IRC + a whole lot more
+<nop>	so the want is obviously there
+<nop>	and the developers definitely want to go there as well
+<hezekiah>	Amen!
+<nop>	the question of how to go about doing it
+<nop>	and how to make the most productive use of our developers
+<nop>	is up in the air
+<ChZEROHag>	XML
+<mids>	is his framework site available to everybody?
+<nop>	this isn't specifically about language
+<ChZEROHag>	create a communications protocol
+<nop>	ok, please let me finish
+<ChZEROHag>	I've started on that somewhere...
+<nop>	then we can comment
+<ChZEROHag>	My apologies
+<ChZEROHag>	I'm a bit in and out at the moment
+<nop>	ok,
+<nop>	no prob
+<nop>	We are at a stage where there is discussion of an arbitrary communications
+  protocol
+<nop>	specifically for anonymous and secure communication
+<nop>	at this point jrand0m, any chance we can post the logs of #iip-future
+  meeting
+<jrand0m>	sure
+<jrand0m>	perhaps those zips I sent you so people don't have to struggle
+  through freenet for the other pages too
+<nop>	ok
+<nop>	hold
+<nop>	please
+<jrand0m>	(btw, the logs were unedited, so expect the usual occational banter)
+<hezekiah>	lol. Yup! You'll get to see exactly how much I DON'T know about
+  p2p networks! lol
+<jrand0m>	heh
+<hezekiah>	(And they'll probably have my conspiracy theories about nop
+  too! So be sure to read the logs! ;-) )
+<--	logger has quit (Ping timeout)
+<hezekiah>	Ugh
+<nop>	ok
+<Neo>	the logs will be a lot to read. can someone summarizze for the meeting
+  what was covered and some key points of all this?
+<nop>	http://office.invisiblenet.net/iip_future.zip
+<nop>	and
+<hezekiah>	At this point, the 'stable' release is being more unstable than
+  the 'unstable' one!! Urg.
+<nop>	http://office.invisiblenet.net/meetingPrepnotes.zip
+<nop>	http://office.invisiblenet.net/jrand0mnetwork_protocol.txt
+<jrand0m>	meetingPrepnotes.zip is a small doc that summarizes the meeting,
+  and the meeting was basically "ok, any thoughts?".
+<--	Delly has quit (EOF From client)
+<jrand0m>	essentially, the proposal is to get going on a generic secure
+  anonymous message based system, and run iip on top of that
+<mids>	is there a zip with anonCommFramework too?
+<nop>	I didn't see that
+<nop>	jrand0m can you zip and send I'll post to site
+<jrand0m>	sure, h/o
+<--	Phiberoptika has quit (* ciaito mua mua *)
+<Neo>	what is anonCommFramework?
+<jrand0m>	uber-quick summary of the meeting in iip_future.zip is "ok,
+  here's the proposal, any comments?" and comments were basically "ok, can IIP work
+  as planned on this?
+<jrand0m>	if you're on freenet, anonCommFramework is at
+  SSK@MQNd5lT-X5wHA4vONvtVadi6q1IPAgM/anonCommFramework/2//
+*	jrand0m is sending nop a zip of that momentarily
+<Rain>	Did you discuss support for PGP-based nyms?
+<nop>	ah hem, this is early discussions
+<--	ChZEROHag has quit (Ping timeout)
+<jrand0m>	no, endpoints in the framework are not nym based, they're idents
+<Rain>	Right. So nyms an higher level.
+<Rain>	are
+<jrand0m>	(and for lots of reasons, they shouldn't be long term idents
+  like nyms)
+<jrand0m>	yes
+<Rain>	I was just thinking of something like trent with PGP signarute auth.
+<mids>	trent is central
+<mids>	central=bad
+-->	logger (~hezekiah@anon.iip) has joined #iip-dev
+<jrand0m>	briefly, anonCommFramework is a meta-network.  a generic set
+  of protocols &amp; structures that an anonymous communication network could use to
+  interoperate to provide militant grade anonymity
+<wilde> what's the one sentence explanation of your ideas on network topology?
+-->	ChZEROHag (~hag@anon.iip) has joined #iip-dev
+<ChZEROHag>	that was fun
+-->	Delly (dedede@anon.iip) has joined #iip-dev
+<Rain>	mids: Yea. I meant similar services.
+<lonelynerd>	what about having to pay with hashcash to send data? couldn't
+  that help against flooding?
+<jrand0m>	wilde> heterogeneous.  no one answer solves all problems.
+  interoperate, balancing latency, bandwidth, anonymity, and reliability to provide
+  the user's needs
+<Delly> still in 4) ?
+<hezekiah>	Delly: Yup
+<Delly> thx
+<ChZEROHag>	I think when the ircd is removed from the equation, we'll have
+  far better options than (hash|think|real)cash
+<nop>	jrand0m: any luck sending
+<nop>	;)
+<jrand0m>	uploading to hush now.
+<jrand0m>	ChZEROHag> anonCommFramework has built in support for providing
+  network use authorization credentials
+<Rain>	There has been a lot of talk of IIP-Freenet interoparability. Will that
+  fit into the framework, or are we talking application-level again?
+<ChZEROHag>	come again?
+<jrand0m>	app level
+<jrand0m>	what we're discussing is splitting iip into two parts - the irc
+  part, and the message based secure anonymous network
+<wilde> one solution could be:
+<Rain>	jrand0m: k.
+<wilde> Application <-> SOCKS5 Proxy Interface <-> Onion Wrapper <-> Onion Router
+  1 <-> ... <-> Onion Router N <-> Exit Relay <-> Public Server
+<jrand0m>	building a DHT on top of the message layer should be fairly easy
+<hezekiah>	DHT?
+<jrand0m>	distributed hash table
+<jrand0m>	(ala freenet)
+<nop>	ok, jrand0m let me clarify
+<ChZEROHag>	wilde: I think the plan is to design it such that the 'public
+  server' could be removed from the equation at some point
+<nop>	are we talking about splitting irc, or merging to focus on anonymity
+  framework
+<jrand0m>	well, given unlimited # of developers, splitting and doing both
+  (well, 3 things ;) in parallel.
+<nop>	what I mean is that the irc part is application layer
+<jrand0m>	given reality, there's prolly only enough dev time to get the
+  comm system running first, then iip on top
+<jrand0m>	right exactly
+<nop>	and since we have a somewhat viable network working with IIP
+<jrand0m>	irc is just another app running on it
+<nop>	then the idea should be
+<nop>	is to have developers start focusing on framework aspects
+<wilde> ChZEROHag: ok, what I suggested is an anonymizing layer for regular
+  internet traffic, not a seperate network
+<hezekiah>	(This could get fun.)
+<nop>	wilde there are weaknesses to that
+<nop>	just to let you know
+<nop>	aka the clear text on the outer ends
+<--	AmishOne has quit (EOF From client)
+<wilde> nop: yes, so all connections should be encrypted to the ends
+<nop>	we have an effort as well to have anonymous web browsing possible with
+  this network
+<jrand0m>	yes.  it must be able to operate without ever leaving the mixnet
+<nop>	but it is not as real time direct as your proposal wilde
+<nop>	it uses some time delay tactics
+<nop>	with caching etc
+<nop>	timing attacks are a serious threat to anonymity
+<hifi>	I WANT ANONYMISER BASED on IIP !! I DON"t TRUST OTHER ANONYSERS THEY ARE
+  FBI TRAPs !!
+<mids>	http://mids.student.utwente.nl/~mids/anonCommFramework/
+<nop>	hifi, this isn't changing IIP, this is moving us forward
+<nop>	thanks mids
+<jrand0m>	heh word mids, my moz is hanging
+<nop>	ok
+<wilde> although independant mixnets are cool, the real killer apps will probably
+  be general ip traffic anonymizers
+<nop>	wilde, they are myths
+<wilde> killer apps?
+<nop>	no
+<--	thetower has quit (EOF From client)
+<jrand0m>	wilde> that could be a service built on top of the comm layer
+<nop>	general ip traffic anonymizers
+<wilde> or ip traffic anonymizers?
+<nop>	so far they don't exist
+<nop>	they exist in papers only
+-->	thetower (none@anon.iip) has joined #iip-dev
+<jrand0m>	if you build an anonymizing service on top of the comm layer,
+  however, your outbound routers will get shut down quickly
+<thetower>	Haha, I just noticed I wasn't port forwarding.
+<thetower>	Oop, sorry, wrong chan
+<wilde> nop: what about the ZKS system?
+<nop>	is it still around?
+<nop>	and working
+<wilde> nope, bad business
+<wilde> few people paid
+<wilde> but the framework seemed to work, but all nodes were ZKS:s paid relays
+<nop>	wilde but they were internal and it wasn't complete
+<nop>	it still had certain vulnerabilities
+<nop>	it was a start
+<nop>	I met Ian Goldberg at CodeCon 2k2, and he himself admitted it was incomplete
+  to what he desired
+<wilde> yes, everything has vulnerabilities, we just raise the cost of tracing
+  dramatically
+<jrand0m>	right, after the mixnet is up and running, i'd like to see wilde
+  offer generic outbound proxy services.	that'd be cool
+<jrand0m>	(sincerely)
+<nop>	jrand0m: but again the ultimate would be using that magic mirror concept
+  for optimum protection
+<ChZEROHag>	Probably the hardest option, but wouldn't freenet be a good
+  framework to build from?
+<nop>	wilde, maybe you and I can discuss this in another forum at some point
+<jrand0m>	but in any case, the network must be built first
+<ChZEROHag>	Or is that not what we're discussing?
+<jrand0m>	ChZEROHag> no.
+<jrand0m>	freenet doesn't provide hard anonymity
+<ChZEROHag>	aah
+<ChZEROHag>	I should try paying attention
+<nop>	ok, moving forward
+<nop>	UserX you still here
+<wilde> nop: yes, if you have decided on topology there is no need to discuss
+  this in public
+<UserX> I'm still here
+<nop>	well it's application layer, so that comes after net design etc
+<nop>	ok
+<nop>	where did we leave off at #iip-future meeting
+<--	hezekiah has quit (Ping timeout)
+<nop>	let's start there
+---	logger is now known as Ehud
+*	nop is catching up on the meeting logs
+<jrand0m>	[04:31] <jrand0m> I think we're back to your question.	can /
+  should the irc functionality move forward as its going or move towards this mixnet.
+  there are significant benefits to move towards the mixnet, but some aspects of
+  the irc side seem to require some redesign to operate on it.
+<jrand0m>	[04:31] <jrand0m> the right way for the irc development to go is
+  not for me to say
+<Ehud>	Basically, UserX had some thinking to do about wether IIP could run
+  satisfactorily on the mixnet.
+<mids>	nite all
+<--	mids (mids@anon.iip) has left #iip-dev (mids)
+<ChZEROHag>	Would it not be an idea to create a replacement irc in parallel
+  with a mixnet?
+<ChZEROHag>	After all it's going to be damn hard to use a normal ircd
+<jrand0m>	ChZEROHag> given infinite # devs, yes
+<nop>	ok ChZEROHag silence please :)
+<ChZEROHag>	Assume infinite devs
+<ChZEROHag>	Oh is this not a question bit?
+-->	hezekiah (hezekiah@anon.iip) has joined #iip-dev
+<nop>	not yet
+<UserX> Unfortuantlely I haven't had time to seriously sit down and think about
+  how your proposal would fit in with IIP
+<ChZEROHag>	oh
+<ChZEROHag>	oops
+<nop>	just want to get into the discussion
+<nop>	well
+<jrand0m>	UserX> think of the mixnet as a socket
+<nop>	let me suggest something
+<nop>	do we agree that our goal is not just IRC ?
+<lonelynerd>	well
+<Delly> it's a great idea sure
+<hezekiah>	nop: Beyond all doubts, I agree that the goal is an anonymous
+  network.
+<lonelynerd>	doing something traffic-intensive would have the potential to
+  ruin the whole project
+<hezekiah>	nop: IRC is just a starting point.
+<nop>	ok, well what we should look at is this
+<jrand0m>	NOT doing something traffic intensive has the potential to get
+  us to overlook problems :)
+<nop>	instead of saying IIP doesn't fit
+<nop>	or it does fit
+<nop>	let's look at what modifications need to be made for irc to fit with this
+  mixnet, whether it's a mod to the mixnet itself
+<lonelynerd>	jrand0m: hmm
+<nop>	for instance
+<nop>	UserX has a vision of using channels as endpoints
+<nop>	Jrand0m calls them idents
+<nop>	are they having subtle differences
+<nop>	or are they largely different
+<jrand0m>	there's substance to those differences.
+<nop>	can we review that
+<nop>	on both sides
+<nop>	from jrand0m and UserX
+<--	hezekiah has quit (EOF From client)
+<nop>	actually
+<nop>	read the log
+<nop>	nevermind
+<jrand0m>	;)
+-->	hezekiah (hezekiah@anon.iip) has joined #iip-dev
+<jrand0m>	the hesitancy I have w/ sending messages to a channel ident and
+  having that channel redistribute it to members is that the channel gets plaintext
+<nop>	how does it get plaintext?
+<jrand0m>	instead, I'd suggest having a channel contain just the channel info
+  (modes, users, topic, etc)
+<jrand0m>	the channel is just an application running on one (well, 3+)
+  routers listening to one (well, 3+) identities.  when you /msg a channel, you
+  send a message to that identity (application).	it then resends it out to the N
+  users in the channel, encrypted to each
+<nop>	well
+<nop>	I had a proposal for that
+<nop>	that would have the channel not contain plaintext
+<nop>	directly
+<jrand0m>	at least, without adding a channel key (which would be managed
+  by the channel application itself, which defeats the point)
+<nop>	well
+<nop>	we were having channel keys
+<nop>	for private channels
+<nop>	and pub channels are public anyway
+<jrand0m>	right.	there may be ways around it.  y'all know more about irc
+  than I do.  there are other ways that don't require going this route though
+<nop>	see the neat thing with message channels is this
+<nop>	you scale slightly better than trying to find all idents to send to directly
+<--	luckypunk has quit (Ping timeout)
+-->	dd0c (dd0c@anon.iip) has joined #iip-dev
+<jrand0m>	I'm not sure you scale better, but you do redistribute the load
+<jrand0m>	(we can find idents via O(log(n)))
+-->	sahara (~sahara@anon.iip) has joined #iip-dev
+<jrand0m>	but thats neither here nor there, this is application layer
+  design ;)
+<nop>	right
+<jrand0m>	all we need to do, imho, is find some workable ways that *could*
+  operate on the comm layer and then leave it to the wayside until we get there
+<UserX> jrand0m: messages sent to channels are encrypted with a channel key that
+  is different to the channel's identity. a channel server can't decrypt a message
+  unless it has come across the key by othermeans
+<sahara>	did I miss the meeting?
+<jrand0m>	you've got some ways that could work, it sounds like, right?
+<jrand0m>	UserX> how does a user joining a channel get the key?
+<hezekiah>	sahara: Nope. You're right in the middle of it! :)
+<nop>	it's a key exchange
+<jrand0m>	with whom nop?
+<jrand0m>	brand new user joining #anonymous, and the app containing the
+  list of users on #anonymous doesn't have the key (As userx said)
+<jrand0m>	(all I'm saying is there's a way to get all the functionality
+  and still avoid having a channel key)
+<UserX> jrand0m: with public channels it is derived from the channel name. with
+  private channels the user either creates one or a someone gives them the keys to
+  the channel
+<jrand0m>	'k, cool
+<jrand0m>	so apps managing public channels can read the plaintext (by
+  deriving from the channel name)
+<jrand0m>	(which is prolly fine)
+<nop>	right
+<wilde> jrand0m: if the apps encrypt the plaintext to each recepient, will it
+  scale well?
+<jrand0m>	yes wilde, perhaps better (depending on the algorithm used to
+  nominate channel managers)
+<jrand0m>	(though it will potentially have a nonserialized delivery)
+<jrand0m>	((though i think thats the case with normal irc anyway))
+<--	thecrypto has quit (Ping timeout)
+<jrand0m>	but, getting back on to the question -
+<jrand0m>	nop, what do we hope to have decided by the end of the discussion
+  of #4?
+<--	Neo has quit (Ping timeout)
+-->	d (~sahara@anon.iip) has joined #iip-dev
+<nop>	well
+<--	sahara has quit (EOF From client)
+<hifi>	simple site , problem is i am tech blond but want good things lol
+<nop>	I was hoping that we could re-organize, but this is gonna be a discussion
+  for later
+<hifi>	sorry OOPS
+<nop>	UserX
+<--	d has quit (Client exiting)
+<nop>	how long will you need to think about certain aspects, and maybe doc them
+  up as a concern list
+<UserX> hard to say. maybe a week
+<nop>	what I'm thinking jrand0m is that a lot of this needs sorting out, rather
+  than just plowing into it, or we'll end up at the beginning with nothing to show
+<nop>	so let's push a week into this
+<nop>	and see what concerns are coming into play
+<nop>	because again
+<nop>	we want an adaptable mixnet
+<nop>	any application should be able to survive
+<jrand0m>	absolutely
+<jrand0m>	thats the point of the anon comm framework
+<--	wilde has quit ()
+<nop>	ok, so let's put this off a week, and focus on some realistic proposals
+  that can fit all of our needs
+<jrand0m>	you say "send message M to location L" and it magically, securely,
+  anonymously gets delivered
+<nop>	but magic is one thing
+<nop>	science is another
+<nop>	of course you know that :)
+<jrand0m>	the magic is from the app level's perspective ;)
+<nop>	yes
+<nop>	understood
+<jrand0m>	the science is in that 15 page anonCommFramework/2// ;)
+<nop>	ok
+<hezekiah>	lol
+<nop>	UserX, if you can get that in a week that would be helpful
+<nop>	?
+<jrand0m>	I'll aim at revamping the docs &amp; getting comm layer network design
+  ready for then so we can hit the ground running
+<nop>	well
+<nop>	we haven't agreed on certain aspects
+<nop>	I think that still should be hashed out
+<jrand0m>	what, in the network layer, haven't we agreed on?
+<nop>	personally I agree that maybe you post your anonCommFramework on iip-dev
+<nop>	and have it reviewed and commented
+*	jrand0m isn't on iip-dev
+<Rain>	So, meeting again next tuesday, same bat-time, same bat-channel?
+<nop>	what haven't we agreed on is whether it can support all applications
+<hezekiah>	jrand0m: Just post to iip-dev@invisiblenet.net .
+<hezekiah>	Rain: We are on item #4. There are still other items to go. :)
+<jrand0m>	its ~800k.  if someone could post the URL to mids' mirror that'd
+  be cool
+<Delly> argh
+<Delly> re
+<Delly> about services, i think if IIP become more easier and friendly, we will see
+  more users and more nodes. it's why i'm making script for mIRC user, one is a Trent
+  script, allowing to use Trent and Anonymail with the mouse, the other is a script
+  allowing to transfer file over iip, staying anonymous (using uuencoding). The
+  "protocol" used is easy and could be done for lot's irc clients with scripting
+  support. And so everybody could transfer little files, even between di
+<jrand0m>	nop> I'm 100% certain it can support all applications.
+<Rain>	hezekiah: Right. My missunderstanding.
+<jrand0m>	this layer has been used for over a decade in hundreds of industries
+<Delly> was my thought of the day
+<nop>	well then where do we not agree
+<nop>	if Irc is an issue, then how is it adaptable?
+<jrand0m>	it isn't an issue
+<jrand0m>	y'all just don't understand the layer's abstraction ;)
+<lonelynerd>	Delly: i have a perl script that allows one to use ssh/telnet/etc
+  over irc
+<jrand0m>	(really, think of it as a socket)
+<Delly> lonelynerd, the goal was just to enhance mirc
+<Delly> for iip network
+<lonelynerd>	Delly: yeah, but if you use base64, i think it's compatible with
+  this one
+<Delly> could be possible tu use it
+<jrand0m>	ok, we ready for #5 yet?
+<hezekiah>	nop?
+<--	hezekiah has quit (Client exiting)
+<Delly> oups i thought it was 5)  !
+<ChZEROHag>	There's a 5?
+-->	hezekiah (hezekiah@anon.iip) has joined #iip-dev
+<--	hezekiah has quit (Client exiting)
+-->	hezekiah (hezekiah@anon.iip) has joined #iip-dev
+<nop>	sorry
+<nop>	delly
+<nop>	you guys
+<nop>	this is off topic
+<nop>	please reserve your conversation outside this channel
+-->	hezekiah_ (~hezekiah@anon.iip) has joined #iip-dev
+<--	hezekiah has quit (EOF From client)
+<nop>	well
+<nop>	jrand0m
+---	hezekiah_ is now known as hezekiah
+<nop>	before I agree to go to 5
+<nop>	the problem I'm seeing is
+<nop>	UserX has a voice
+<nop>	as well
+---	Trent@anon.iip gives channel operator status to hezekiah
+<jrand0m>	of course
+<nop>	and if he sees logistical problems
+<nop>	I believe they should be heard
+<nop>	so you can't just say, hey it's gonna work
+<nop>	it has to be "solidly" agreed on both ends
+<nop>	aka he needs convincing
+<jrand0m>	right, but I'm not going to sit on my thumbs waiting for him
+  to doc them up.  if he does come up with some problems in a week, fantastic,
+  and we'll revise accordingly
+<nop>	or he needs to convine you
+<nop>	but the idea is this
+<nop>	what I'm trying to propose with this
+<nop>	is to reorganize our dev team to get on your bandwagon
+<nop>	with that
+<nop>	it would put our energy in working on the network design
+<nop>	that's the idea
+<nop>	thus helping all of us get somewhere specific
+<nop>	I'm not trying to slow down
+<jrand0m>	right, i don't expect to have a V1.0 final protocol spec next week.
+  last night I downloaded about 50 new articles off citeseer to do some more research
+<nop>	ok
+<nop>	so can we post your proposal to iip-dev
+<nop>	and get some review
+<jrand0m>	coo'
+<nop>	also I advise on your own to propose it on cryptography@metzdowd.com
+<nop>	which will get some serious review
+<jrand0m>	sounds good
+<nop>	ok
+<nop>	UserX, you there
+<UserX> i'm here
+<nop>	ok, so jrand0m will work on protocol spec, and can I assume you'll come
+  up with a concerns list or some additives to the protocol?
+<UserX> yes
+<nop>	ok, let's resume this in a week
+<nop>	what was 5?
+<nop>	sorry If I'm being a pain
+<nop>	just want to organize it
+<nop>	to make sure we're all on same page
+<jrand0m>	recruiting for services...?
+<hezekiah>	5) Recruiting for services to aid with IIP
+<nop>	ok
+<nop>	yes
+<nop>	since mids departure
+<nop>	and cohesions return
+<nop>	we are possibly looking for others to contribute to IIP in some aspect
+<nop>	this does not mean you have to be a hardcore core developer
+<nop>	but additives like maybe a web maintainer would be good,
+<nop>	some PR would be good
+<hezekiah>	luckypunk volunteered to manage the website.
+<hezekiah>	<luckypunk> I wanna help/take over the IIP website.
+<hezekiah>	<luckypunk> :D
+<nop>	and if more people would like to hop on with the upcoming project that
+  jrand0m is proposing
+<jrand0m>	wikked
+<nop>	even if you just want to review the protocol
+<nop>	that is more than enough help
+<nop>	the reality is this
+<nop>	we have a lot of developers with real time jobs
+<nop>	and it is consuming them at the moment
+<nop>	and any additional help is wanted
+<nop>	since this is a huge endeavor
+<nop>	to take IIP to where it needs to be
+<nop>	aka InvisibleNet at some point
+<nop>	real life jobs ;)
+<nop>	anyway
+<nop>	the idea is
+<nop>	it would be cool if people would love to add to this project in some ways
+<nop>	using their skills, and I know their are some programmers out there
+<nop>	and a few that have some spare tiem
+<nop>	time
+<nop>	luckypunk's reliability will have to be reviewed, no offense, I've had
+  him offer before with help maintaining a freesite, and no luck there
+<hezekiah>	nop: I can understand that one. ;-)
+<hezekiah>	nop: He just asked me to forward the offer along because he
+  wouldn't be here.
+<nop>	ok
+<hezekiah>	nop: I did. My part's done. :)
+<nop>	well, either way, anyone who wants to join in
+<nop>	contact one of us
+<nop>	either at iip@invisiblenet.net
+<hezekiah>	One of whom?
+<nop>	or just by nick,
+<nop>	hezekiah, userx, nop,
+<jrand0m>	I hear anyone who volutneers to help iip gets free hookers and blow
+<hezekiah>	What are 'hookers and blow'?
+<hezekiah>	... or do I not want to know?
+<jrand0m>	heh
+<nop>	hezekiah: don't ask
+<hezekiah>	OK.
+<hezekiah>	I don't want to know. :)
+<nop>	hezekiah: enjoy your sheltered life ;)
+<nop>	while you can
+<nop>	cuz college is gonna be fun :)
+<hezekiah>	I'm enjoying it! I'm enjoying it!
+*	jrand0m enjoys the hookers and blow ;)
+<nop>	jrand0m: quick question
+*	w hugs luckypunk and nop
+<jrand0m>	si sr?
+<nop>	jrand0m: are you considering yourself a dev of IIP at some time soon?
+<nop>	since you are offering a merge ;)
+<hifi>
+  http://www.guerrillanews.com/cgi-bin/wwwthreads/showflat.pl?Cat=&amp;Board=gnn&amp;Number=182767&amp;page=0&amp;view=collapsed&amp;sb=5&amp;o=0&amp;part=
+<hifi>	sorry , opps again
+<jrand0m>	nop> a dev of invisiblenet, but I can't contribute to iip
+<nop>	understood
+<nop>	IIP == invisiblenet future projects
+<hezekiah>	jrand0m: Good working!
+<hezekiah>	jrand0m: Wording.
+<nop>	devs wanted for either
+<nop>	to make that clear
+<nop>	specifically cuz jrand0m could use a good team set
+<Addic> I could take a look of the Windows code...
+<jrand0m>	si sr.	once we get rolling into software design, there's going
+  to be more truckloads of work than one can imagine
+<jrand0m>	word Addic
+<nop>	awesome
+<nop>	ok
+<nop>	I will send this request on iip-dev line as well
+<nop>	anyone interested please don't hesitate to contact
+<nop>	was there a 6?
+<nop>	I believe so
+<jrand0m>	6) comments suggestions and people who want to help
+<jrand0m>	suggestion: < 1.8 hours next time :)
+<jrand0m>	(not that any of the topics could have been condensed any more
+  than they were)
+<nop>	no comments?
+*	nop thinks everyone's asleep
+<nop>	hehe
+<nop>	we bored them
+<jrand0m>	w3wt
+<Addic> heh, who has been working on the Windows' code this far?
+<nop>	ok
+<hifi>	zzzzzz...
+<nop>	UserX has made it so far portable
+<Rain>	What kind of talents are we looking for?
+<Addic> ok
+<nop>	ok, let me re-iterate
+<nop>	Coders, Graphics dudes, Web devs, PR people, Web maintainers
+<Rain>	Ok, missed that. Sry.
+<nop>	and if you can write biz plans, that helps me too :)
+<nop>	you didn't miss
+<nop>	I didn't go in enough detail
+<jrand0m>	heh
+<--	Ehud has quit (EOF From client)
+<hifi>	I am Born PR people
+<Rain>	Step one: Collect Underpants.
+<Addic> translating to other languages at wiki?
+<nop>	yes
+<nop>	that would be great
+<nop>	translations
+<Addic> ok, i could do that too
+<nop>	documentation
+<nop>	etc
+<--	hezekiah has quit (Ping timeout)
+<nop>	even organization
+<nop>	anyone who wants to be actively involved in helping InvisibelNet/IIP
+<hifi>	I invite ppl to use IIP alll the time
+<nop>	thnx hifi
+-->	hezekiah (hezekiah@anon.iip) has joined #iip-dev
+<Rain>	What kind of org skills?
+<nop>	well, maybe help run the meetings, or maybe forcing us dev guys to get
+  more docs on the protocol
+<nop>	etc
+<nop>	possibly organize interviews and some type of press releases
+<nop>	some ideas for the future of promoting the use of IIP
+<nop>	etc
+<nop>	ok, please contact one of us if you want to help out
+<Rain>	Ok, org question, that I have mentioned before: IIP Signing key? (nag, nag)
+-->	Ehud (~hezekiah@anon.iip) has joined #iip-dev
+<hifi>	IIP notification service :) for ppl to knoe I /him is online LOL
+<qriff> just as a question for the qurious... what defines the holder for "Trent"...
+<qriff> and what about channel/nick expiration...
+<qriff> registration that is...
+<--	ChZEROHag has quit (Ping timeout)
+<jrand0m>	trent is a service, not a nick, so trent must have access to the
+  ircd (i think)
+<nop>	these questions are mids questions for trent, he's an abstract piece
+<nop>	yes jrand0m
+<jrand0m>	iip notification would be cool.  how does anonymail do it?
+<jrand0m>	can clients send a /notify nick to the server and get a msg when
+  the nick joins?
+<hifi>	IIP SMS notification LOL
+<nop>	actually
+<nop>	we did have IIP SMS as the first version of anonymail
+<nop>	but it tended to flood
+<hifi>	oh
+<nop>	so now we do it as anonymail database delivery
+<hifi>	IIP invitation msg as signature to ordinary e-mails ...
+<hifi>	Kinda " Do yo Yahoo ? Get MSN free " stuff
+<jrand0m>	ooOOoo textAds
+<jrand0m>	but does iip need more users?
+<hifi>	oh
+<jrand0m>	or is getting more users just a "oh cool, lets service more people"?
+<hifi>	no
+<hifi>	dunno
+<hifi>	i just brainstorm
+<--	Mira has quit (Ping timeout)
+<hezekiah>	More people ... more ideas ... more volunteers
+<hifi>	IIP as world standart will be cool
+<hezekiah>	More people ... more problems ... more strain on the network ...
+<hezekiah>	... more floods of #anonymous ...
+<hezekiah>	It's a two sided question.
+<hifi>	more channels lol
+-->	Mira (~Mira@anon.iip) has joined #iip-dev
+<hifi>	IIP Eugenics Program LOL Less Population Less Problems
+-->	ChZEROHag (~hag@anon.iip) has joined #iip-dev
+<Addic> hmm... going back to the notification question... is it so the /notify
+  nick does not work here? Or am I not understanding the question...
+<lonelynerd>	Addic: sure it works
+<Addic> well what's the problem then?
+<hifi>	?
+<--	Delly has quit (EOF From client)
+<lonelynerd>	wasn't much following the conversation, but they talked about
+  having a /notify that wouldn't require the client to poll
+<Addic> ok
+<--	ChZEROHag has quit (Ping timeout)
+<--	w has quit (Ping timeout)
+<--	Rain has quit (I Quit)
+-->	w (~w@anon.iip) has joined #iip-dev
+<hezekiah>	Hmmm ...
+<hezekiah>	I think it's about time we adjurne this meeting.
+<hezekiah>	What do you say, nop?
+*	jrand0m thinks he fell asleep too
+<nop>	yeah
+<nop>	ok
+<nop>	later
+<--	jrand0m (jrandom@anon.iip) has left #iip-dev (jrand0m)
+<hezekiah>	Meeting adjurned! :)
+<hezekiah>	*BAF*!
+<--	Addic (anon@anon.iip) has left #iip-dev (Addic)
+<--	LeerokLacerta (~leerok@anon.iip) has left #iip-dev (Client Exiting)
+<--	hezekiah has quit (Client Exiting)
+<--	Ehud has quit (Client Exiting)
+</div>

@@ -2,16 +2,527 @@
 title: "I2P 开发者会议"
 date: 2002-10-16
 author: "nop"
-description: "2002年10月16日的 I2P 开发会议记录。"
+description: "2002年10月16日I2P开发会议记录。"
 categories: ["meeting"]
 ---
 
-（由 Wayback Machine 提供 http://www.archive.org/）
+（由wayback machine提供 http://www.archive.org/）
 
 ## 快速回顾
 
-<p class="attendees-inline"><strong>出席者：</strong> al-jabr, Chocolate, firegod, geully, Grishnav, hobbs, mason, mids, nemesis, nop, philocs, Robert, UserX, youkai</p>
+<p class="attendees-inline"><strong>出席：</strong> al-jabr, Chocolate, firegod, geully, Grishnav, hobbs, mason, mids, nemesis, nop, philocs, Robert, UserX, youkai</p>
 
-## 会议记录
+## 会议日志
 
-<div class="irc-log"> --- 日志开启于 Tue Oct 15 23:31:29 2002 23:31 < logger> 测试 23:32 < mason> 抱歉，那次测试没成功 23:32 < mason> :) 23:32 -!- mode/#iip-dev [+o mids] 由 Trent 设置 23:32 <@mids> Tue Oct 15 21:32:19 UTC 2002 23:32 <@mids> 会议将在1小时30分钟后开始 --- 日期变更 Wed Oct 16 2002 00:44 < geully> 大家好 00:50 <@mids> 公开的 IIP 会议还有10分钟在这里开始 00:50 < Robert> 大家好。 00:51 <@mids> 嘘 00:51 <@mids> 还没开始 00:51 <@mids> 还剩9分钟 00:51 < Grishnav> 哈哈 00:51 < al-jabr> Tue Oct 15 22:51:23 UTC 2002 00:51  * Robert 把嘴巴拉上拉链。 00:51 < al-jabr> 啦啦啦 00:53 -!- geully 现在改名为 Geully 01:00 <@mids> Tue Oct 15 23:00:02 UTC 2002 01:00 <@mids> 欢迎来到第 n 次公开的 IIP 会议 01:00 <@mids> 日志文件在 http://mids.student.utwente.nl/~mids/iip/ 01:00 < nop> 呵呵 01:00 <@mids> 哦，第15次 01:00 < nop> 第15次 01:00 < nop> 是的 01:00 <@mids> 今天的议程： 01:01 <@mids> - 新的 IIP 开发者 01:01 <@mids> - IIP 标志（logo）征集活动 01:01 <@mids> - bug 修复 01:01 <@mids> - 提问环节 01:01 <@mids> , 01:01 <@mids> . 01:01 < nop> 好的 01:02 < nop> 欢迎大家回到 01:02 < nop> 又一轮会议 ;) 01:02 < nop> 对于所有在公司办公室里工作的同学 01:02 < nop> 你们有权利打个盹 01:02 < nop> 好 01:02 < nop> 新的 IIP 开发者 01:02 -!- mode/#iip-dev [+o nop] 由 mids 设置 01:02 <@nop> 并且是一位有天赋、学得很快的 C 程序员 01:02 -!- mode/#iip-dev [+o UserX] 由 mids 设置 01:02 <@nop> 而且已经为代码提交了一些补丁以及一些必要的基础性工作 01:03 <@mids> 好耶！ 01:03 <@nop> 我们很高兴他加入 01:03 <@nop> 我们认为他会成为团队中不可或缺的一员 01:03  * al-jabr 鼓掌 01:03 <@nop> 好 01:03 <@nop> 下一个 01:03 <@nop> IIP 标志（logo）征集活动 01:03 <@nop> 有没有 graphix 设计师之类的 01:03 <@mids> graphix？你是说 graphics 吗？ 01:04 < Grishnav> 不，他就是指 graphix :P 01:04 < hobbs> nop：也许吧。我或者我妈。她很厉害，而且她最近买了块数位板。:) 01:04 <@nop> 谁愿意为 invisiblenet 和 IIP 提出一个很酷的口号和/或标志（是的，我指的是 graphics），用于 T 恤的，可以把作品提交到 iip@invisiblenet.net 01:04 <@nop> 获胜者 01:04 <@nop> 将赢得一件免费 T 恤 01:04 <@nop> 黑色或白色 01:04 <@nop> 自己选择 01:04 <@nop> 或者她选择 01:04 <@mids> 哇哦！ 01:04 <@nop> 以及 10.00 DRAN 01:04 < hobbs> 不错。 01:05 <@nop> 这当然也可以包括口号 01:05 <@nop> 所以可能会有两位获胜者 01:05 <@nop> 如果一个人提供了 logo 01:05 -!- mode/#iip-dev [+o Chocolate] 由 mids 设置 01:05 <@nop> 另一个人提供了一个很棒的口号 01:05 -!- mode/#iip-dev [+o Chocolate] 由 Trent 设置 01:05 <@nop> 但请提交到 iip@invisiblenet.net 01:05 <@nop> 我们会进行评审 01:05 <@nop> 我希望如果你不是搞图形的，可以告诉一个朋友 01:05 <@nop> 然后也许分分奖金 01:05 <@nop> ;) 01:06 <@nop> 因为我们想要有很酷的 T 恤 01:06 <@nop> 给电子商店（e-store）用 01:06 <@nop> 以及总体上 01:06 <@nop> 也好 01:06 <@nop> 还有保险杠贴纸之类 01:06 <@nop> 也许做个吉祥物也不错 01:06 <@mids> :) 01:06 <@nop> 总之 01:06 <@nop> 能做什么就做什么 01:06 <@nop> 提交上来 01:06 <@nop> 我们会在月底决定 01:06 < philocs> 我们唯一的吉祥物是撒旦 01:06 <@nop> 嗯 01:06 <@nop> 那个已经被占了 01:06 <@nop> BSD 01:06 <@nop> ;) 01:07 < philocs> 我们可以做个更恐怖的撒旦 01:07 < hobbs> 那是个 DAEMON！（守护进程） 01:07 <@nop> 呵呵 01:07 <@Chocolate> 黑色 01:07 <@nop> 好 01:07 <@nop> 下一个 01:07 <@nop> bug 修复 01:07 <@Chocolate> T 恤必须是黑的 01:07 <@nop> 好 01:07 <@nop> 对 01:07 <@nop> 所有设计师都必须提供反相版本的图案 01:07 <@nop> 这样才能适配黑色或白色背景 01:07 <@nop> 你也可以使用彩色 :) 01:07 <@nop> 哦 01:07 <@nop> 以及获胜者 01:08 < nemesis> http://www.stk.com/products/50_beta/about50.cfm 01:08 <@nop> 当然会在 T 恤上印上他的 logo 以示完全署名 01:08 < nemesis> 不错 01:08  * al-jabr 担心这件 T 恤可能会无可救药地书呆子气 01:08 <@mids> al-jabr：做个更好的 01:08 <@mids> 好的... 01:08 <@mids> 下一个 poing? 01:09 <@mids> point :) 01:09 <@mids> 是：bug 修复 01:09 <@mids> UserX 修掉的 bug 比报告的还多 01:09 <@mids> 仍然还有一些（可能的）bug 在外面.. 01:09 <@mids> 如果你发现了未提到的 01:09 <@mids> 请告诉我们 01:10 < al-jabr> 我个人没法复现终端的 bug，除非那是在 CVS 里的某些东西 01:10 <@mids> 没有错误报告我们无法修复 01:10 <@nop> 我也不行 01:10 <@mids> al-jabr：我以前遇到过；但没法重现 01:10 <@mids> 我会问 Jeekay 要更多细节 01:10 < philocs> 我在哪里可以找到未解决 bug 的列表？ 01:11 <@nop> 嗯我们鼓励大家使用 SourceForge 的 bug 跟踪器 01:11 <@nop> 但大多数人并没有 01:11 <@nop> ;) 01:11 < philocs> bug 跟踪器不错 01:11 <@nop> 我们可能应该在主站上链接到它 01:11 <@mids> http://www.sourceforge.net/projects/invisibleip/ 01:11 <@nop> 用于提交 bug 01:11 < firegod> 可惜它没有 IRC 前端 (: 01:11 <@mids> 不过大多数 bug 都发到了 iip-dev 邮件列表 01:11 < philocs> 好的我昨天刚订阅 01:11 <@mids> 酷 01:12 < nemesis> 关于 logo，什么分辨率？还有 dpi？ 01:13 <@nop> 懂 graphix 的人对分辨率和 dpi 有建议吗？ 01:13 < firegod> 从大图开始 01:13 < firegod> 可以缩放 01:13 <@nop> 好 01:13 <@nop> 很酷 01:13 < firegod> 需要的话再往下缩 01:13 < nemesis> -e 01:13 < firegod> 往上放大就难多了 (: 01:13 < nemesis> 呵呵 01:13 < nemesis> firegod 01:13 < nemesis> 随便说点 01:14 < hobbs> nop：如果正好做成向量图形格式，你会有兴趣吗？ 01:14 < firegod> 有高分辨率母版总是好事 01:14 < nemesis> 1000 万像素 01:14 <@nop> svg? 01:14 < nemesis> 72dpi 01:14 < hobbs> （我倒没有向量程序，但也许有人会在意） 01:14 < nemesis> 还是 1000 ？ 01:14 < nemesis> ;) 01:14 < nemesis> 非常困难 01:14 < nemesis> +f 01:15 < firegod> 当然，如果他们有创意.. 01:15 < firegod> 不过 SVG 目前还不太广泛使用 01:15 < al-jabr> 问题：我正在给 IIP 打补丁以使用 /dev/random。你们是否有兴趣合入？目前我先用 #ifdef linux，直到我或别人把源码配置化。 01:15 < firegod> al-jabr：完成补丁后发到邮件列表 01:15 <@nop> al-jar 01:15 < al-jabr> 好的 01:15 < hobbs> al-jabr：我建议把它做成 #ifdef SOME_FLAG_THAT_CAN_GO_IN_MAKEFILE 01:15 < al-jabr> 好 01:16 < al-jabr> 会的 01:16 < hobbs> （并在 Makefile 里为 DFLAGS 行加好注释） 01:16 <@nop> yarrow 是一个非常好的 PRNG（伪随机数生成器） 01:16 <@nop> 它被认为是安全的 01:16 <@nop> 我们用卡方（chi-square）方法测试过我们的随机性 01:16 < al-jabr> nop：我认为在有 /dev/urandom 时 yarrow 会显得多余 01:16 <@nop> 得到 25%，这算不错 01:16 <@nop> 是的，但 yarrow 具有可移植性 01:16 <@nop> 而且被认为更强 01:16 <@mids> al-jabr：问题是并非所有操作系统都有良好的 /dev/random 实现 01:16 < firegod> 完全不是 01:17 <@nop> 我宁愿依赖由密码学专家开发的东西 01:17 <@nop> 而不是机器上的 /dev/random 01:17 < hobbs> 确实。加一个 -DUSE_DEV_RANDOM 最终可能有用，也可能只是伤害很多不懂自己在做什么的人。 01:17 <@mids> 另一方面，考虑到 IIP 更模块化的未来，也许提供多种可选方案是个办法 01:17 < hobbs> 而前者的概率并不大。:) 01:17 <@nop> 是的 01:17 <@nop> 而且我们确实计划未来增加更多熵源 01:18 < al-jabr> 嗯，Linux 的 /dev/random 和 /dev/urandom 是经受审视最多的密码部件之一……我主要考虑的是，它在很多跑 IIP 的机器上都能提供一个非常好的熵池 01:18 <@nop> 来增加这一点 01:18 < firegod> 一般性问题：在 iip2 里，我们会从代理获得更多反馈吗？ 01:18 < al-jabr> 你就不必去向用户索取熵。 01:18 <@nop> 会的，firegod 01:18 <@nop> 通常不会 01:18 <@nop> 但这的确是加分项 01:18 <@nop> 如果不够 01:18 <@nop> 它会询问 01:19 <@nop> 我们可能很快会考虑增加一种 /dev/random 的熵 01:19 < hobbs> Linux 的 /dev/random 是否支持 O_NONBLOCK？ 01:19 <@nop> 因为我们打算真正地强化熵池 01:19 <@nop> 我确信支持，hobbs 01:19 <@nop> /dev/random 让你可以选择你的池大小 01:19 < hobbs> nop：对，但内核里有软限制和硬限制，硬限制并不大。 01:19 <@nop> al-jabr 最好先等等 01:19 < al-jabr> nop：就个人而言，我更信任 Linux，它使用 SHA1 并利用各种硬件熵源，而不是一个可能只会输入“aaaaaaaaaa...”的新手。 但无论如何，这只是一个选项 01:20 <@nop> al-jabr 01:20 < al-jabr> 好的 01:20 <@nop> 那不是全部的熵 01:20 <@nop> 还有更多 01:20 <@nop> 还有网络时序，以及 DH 计算的时序 01:20 < al-jabr> 但它只能访问用户态的熵 01:20 <@nop> 我们还计划增加更多 01:20 < al-jabr> 何必重复造轮子。 我建议使用 /dev/random；没有它的系统用 EGD。 01:20 <@mids> nop：让 al-jabr 试试会有害吗？也许把它作为熵插件使用？ 01:20 < al-jabr> 因为 GPG 和 Linux 的人也这么做 01:21 <@mids> nop：alww 01:21 < al-jabr> 我们为什么不专注做自己最擅长的呢？ 01:21 <@nop> 行 01:21 <@mids> nop：有选择总是好事 01:21 <@nop> 如果你愿意提交补丁 01:21 <@nop> 请提交 01:21 <@nop> 我并不反对 01:21 <@nop> 我们当然也想加入更多熵 01:21 < philocs> Darwin 的 /dev/random 好吗？它和 Linux 或 OpenBSD 里的是一样的吗？ 01:21 <@nop> 所以请在你加好了之后提交到 iip-dev 01:21 < firegod> 这就是邮件列表的用处，人们能更好地消化 01:22 < al-jabr> 好的，会的。 01:22 <@nop> 谢了 01:22 <@nop> 就这些？ 01:22 <@nop> 没有更多问题了？ 01:22 <@mids> 呵呵 01:22 <@nop> 或建议 01:22 <@nop> 或抱怨 01:22 < nemesis> 嗯.. 01:22 < philocs> 我有个菜鸟问题... 01:22 <@nop> 当然 01:22 < firegod> 嗯。发布日期呢？ 01:22 < nemesis> 节点中的缓存 01:22 <@mids> sjoet 01:22 <@nop> 哦哦 01:22 <@nop> 这不在清单上 01:22 <@nop> 但是 01:23 <@nop> 我们目前正在制定一个短期的待办事项清单 01:23 <@nop> 会对外发布 01:23 < philocs> 如果有人入侵了某个中继去记录日志，那是否意味着他们可以看到通过它的私人频道的流量？ 01:23 <@nop> 不会 01:23 <@mids> philocs：所有流量都在节点到节点、端到端上加密 01:23 < philocs> 好的，那就只有在服务器上能拿到明文，对吗？ 01:23 < firegod> 但在 IRC 的上下文内不是这样的 01:23 <@nop> 对 01:24 < firegod> 对 01:24 < firegod> 还有客户端 01:24 <@mids> philocs：没错 01:24 <@nop> 是的 01:24 < philocs> 好 01:24 < firegod> 离实现加密频道还有多远？ 01:24 < hobbs> 而客户端——嗯，只能看到实际发给它的东西。 01:24 <@mids> firegod：据我理解，nop 正在做路线图并和开发者们同步 01:24 < nemesis> 为文件传输添加一个 multicast（组播）选项，当一个用户要把同一个文件发给多个客户端时 01:24 < hobbs> nemesis：其实……值得考虑——找 chocolate 聊聊。:) 01:24 < philocs> 在去中心化之前先做“频道密钥加密”有优势吗？ 01:24 <@mids> nemesis：不过文件传输无论如何并未在 IIP 本身中实现 01:24 < nemesis> lol 01:24 < firegod> hobbs：嗯，知道一个频道很容易 01:24 <@mids> nemesis：它可以“多播”，直接发送到一个频道就行 :) 01:24 < hobbs> nemesis：应该可以给 fileserv 加个小 hack，让它用频道，然后想接收的人加入即可。:) 01:24 < hobbs> firegod：哦，是吗？ 01:24 < nemesis> 用什么你能做一个匿名网络 01:25 < nemesis> 当你能共享代码时？ 01:25 < nemesis> 比如一些 C 代码怎么样？ 01:25 < firegod> 由于缺乏广泛支持，多播是个问题.. 01:25 <@mids> philocs：是的，我认为是这样……对服务器的信任需求更少 01:25 < nemesis> 当整个互联网都被禁止开源时怎么办？ 01:25 < hobbs> firegod：不是 IP 层的多播，只是“多播” :) 01:25 < firegod> hobbs：关于 fileserv 的频道：顺便说，这样也会得到加密频道 btw (: 01:25 < nemesis> 你如何共享这些信息？ 01:25 < hobbs> firegod：哦，怎么讲？ 01:26 < nemesis> <hobbs> nemesis：应该可以给 fileserv 加个小 hack，让它用频道，然后想接收的人加入即可。:) 01:26 < firegod> hobbs：当然，如果你加入了 IIP，/list 一下频道就很简单 01:26 < nemesis> 不是 hack 01:26 < philocs> 我在想，可以弄一个 keys/ 目录，然后里面放一个 channel.key，然后对进出那个频道的内容用 blowfish 或其他算法处理，明白吗？ 01:26 < nemesis> 内置 01:26 < nemesis> 以及一个“server node”选项 01:26 < nemesis> 允许那样做 01:26 < nemesis> 或不允许 01:26 <@mids> philocs：你可以在客户端侧实现它... 01:26 < hobbs> nemesis：好吧，我是落伍了。我已经几个月没碰 fileserv 了 01:26 < nemesis> 以及一个它的缓存大小选项 01:26 <@mids> philocs：看看 irssi 和 xchat 的 blowfish.pl 脚本 01:26 < firegod> philocs：还有客户端上的 perl 插件 01:26 <@mids> s/blowfish/blowjob/ 01:27 < philocs> mids：把它实现在 isproxy 的客户端侧有意义吗？ 01:27 <@mids> nemesis：当一切仍通过中心 ircd 时，缓存没什么意义 01:27 < philocs> 这样它能适配所有客户端 01:27 < nemesis> <mids> nemesis：当一切仍通过中心 ircd 时，缓存没什么意义 01:27 <@mids> philocs：也许吧；但那需要 'vircd' 01:27 < nemesis> 我记得计划做成 p2p 网络？ 01:27 < nemesis> 那就没有中心枢纽了 01:27 <@mids> nemesis：对于 IIP 2 01:28 < nemesis> 只有一些节点 01:28 < nemesis> 来缓存数据 01:28 <@mids> nemesis：但那是长期目标；先做 IIP 1.2 01:28 < philocs> nemesis：我想你可能需要的是 Freenet 01:28 < nemesis> 不 01:28 < philocs> 带缓存的 P2P 文件传输 01:28 < nemesis> 只是一个共享一些公开文件 01:28 < nemesis> 或大段文本的选项 01:28 < philocs> 那就是 Freenet 做的事 01:28 < firegod> Freenet 和 IIP 之间的命名空间有可能合并吗？ 01:28 < nemesis> 这样你就不用在频道 /query 里一行一行地复制了 01:28 < hobbs> 搭建在 IIPv2 网络之上的东西可能会非常有趣——但那还需要一段时间。:) 01:28 <@mids> nemesis：首先我们需要去中心化的路由…… 01:29 < nemesis> 好 01:29 < firegod> 每个 isproxy 都是一个 Freenet 节点？ 01:29 < nemesis> 但别忘了 ;) 01:29 < philocs> 我不认为去“吃掉” Freenet 是明智的... 01:29 <@mids> nemesis：等我们有了那个，再来问吧 :) 01:29 < firegod> philocs：它能胜任吗？ 01:29 < nemesis> lol 01:29 <@mids> philocs：考虑到最近 Freenet 的烂事；我会说不，确实不行 01:29 < firegod> philocs：我更喜欢“整合”这个词 01:29 < hobbs> 应该可以在 IIP 之上写一个迷你 Freenet……但最好让 Freenet 做它擅长的事情，并利用 IIP 的高速和“推送性”来做更好的东西。 01:29 < nemesis> 还要多少年？ *fg* 01:30 < firegod> 好吧 (: 01:30 < firegod> 人们确实想通过他们的消息客户端（这里是 IIP）交换二进制数据块 01:30 < firegod> 这将如何解决？ 01:30 < philocs> firegod：嗯，我觉得它做得很好，而且只会越来越好。是的，我同意最好是让 IIP 实现 Freenet 协议来处理 Freenet 类的事情，而不是做出不兼容的东西 01:30 < hobbs> 例如，IIPv2 应该能够支持前所未见的最巧妙的“anonymail”，甚至不需要机器人，除非我在幻觉。:) 01:30 < nemesis> 嗯.. 01:31 < nemesis> 黑客伦理 01:31 < nemesis> 口号 01:31 < nemesis> 给.. 01:31 < nemesis> miiiids!! 01:31 <@mids> hobbs：IIPv2 会聪明到可以帮你做数学作业 01:31 < hobbs> 那很好，因为我不常做作业。 01:31 < philocs> 说到这个 01:32 <@UserX> firegod：我们的打算是用 Freenet 作为文件传输的承载，做一个 DCC 模拟 01:32 < Grishnav> 抱歉如果这已经有人提过了，我进出房间错过了很多对话，不过 IIP 做个模块化 API 怎么样？当 IIP 完全分布式（v2）后，你可以有各种有趣的模块冒出来……一个文件传输模块，也许如果你只想跑一个服务，还可以有个 Freenet 节点模块... 01:32 < firegod> UserX：这可行 (: 01:32 < philocs> UserX：我认为这是最好的解决方案 01:32 < hobbs> Grishnav：据我了解，这或多或少就是计划。如果不是，我们就用大比目鱼抽 nop 直到是为止。 01:32 < Grishnav> lol 01:33 < firegod> UserX：但如果 IIPv2 去中心化了，这个 DCC 模拟还需要 Freenet 吗？你其实已经可以做点对多点传输了，你只需要为那种传输做一个会话握手 01:33 < firegod> 虽然是 DCC 01:33 < nemesis> 哇啊啊啊啊 01:33 < philocs> 再加上如果每个 IIP 用户都运行某种 Freenet 实现，会让 Freenet 好很多 01:33 < nemesis> ardvark 01:33 < nemesis> grrrrrr 01:33 < nemesis> 他在哪里？ 01:33 < nemesis> 谁会说德语？ 01:33 < hobbs> 另外，拥有多个 IIPv2 网络应该会（更）方便，但我觉得这是理所当然的。:) 01:33 < nemesis> 或者只懂一点点德语 01:33 < firegod> philocs：我就是这个意思 (: 01:33 < nemesis> 并且了解英文的黑客伦理？ 01:33 < firegod> 谁在做 IIPv2？ 01:34 < philocs> 我得很快去准备我的德语考试了 01:34 < philocs> firegod：你是左撇子还是在澳洲之类的？ 01:34 <@mids> 嗯，各位；我得走了；继续在这里聊 01:34 <@mids> 稍后回来 01:34 < nemesis> hrhr 01:34 < nemesis> mids!!! 01:34 < firegod> philocs：不是，只是个怪人 01:34 < nemesis> 别喝太多 ;p 01:34 < nemesis> *fg* 01:35 < firegod> 我确信 mids 在做 IIPv2，还有谁？UserX？ 01:35 < nemesis> nop 01:35 <@UserX> firegod：理论上是。但目前我们希望 IIP 保持低带宽。Freenet 更适合传输大量数据（而且更好，因为它没有 IIP 需要的实时路由约束） 01:35 < nemesis> 我想 01:35 <@nop> 是的 01:35 < nemesis> 啊啊啊 01:35 < nemesis> nop 01:35 < philocs> 我想真正需要的是有人写一个 Freenet 的 C 实现…… 01:35 < firegod> UserX：确实如此。 01:36 < firegod> UserX：或者至少让该功能是可选启用的（opt-in） 01:36 <@UserX> firegod：是的我在做 v2 01:36 < hobbs> philocs：几个月前我非常同意那样做，但现在我乐于让 Java 的 fred 自己发展并稳定下来，再有人去克隆。 01:36 < hobbs> （也就是说，现在它已经能正常工作了） 01:36 < firegod> UserX：你们如何解决资源定位的可扩展性问题？例如：你们如何找到发起 #频道 的节点？ 01:36 < philocs> UserX：是的，这是不让人们用“dcc”并鼓励他们使用 Freenet 的一个好理由 01:36 < firegod> philocs：它应该只是可选启用.. 想滥用自己带宽的人尽管去开.. 用猫的不会被拖垮 (: 01:36 < hobbs> UserX：不过要记得，Freenet 擅长拉数据，而 IIP 擅长推数据。:) 01:36 < philocs> hobbs：这想得挺长远的。:) 01:36 < firegod> philocs：想要基于 Freenet 的功能的人，改个设置然后“砰”的一声就能用 01:36 <@UserX> firegod：还没有做出高度可扩展的系统 01:37 < firegod> hobbs：IIP 是把 Freenet 的 keys 分组的绝佳方式 (: 01:37 < hobbs> philocs：我同意这是相当长远的想法。:) 01:37 < firegod> UserX：啊。如果你还没看过 Circle，我推荐你看下 (: 01:37 < firegod> 我知道 mids 说他玩过 01:37 < philocs> hobbs：嗯 Freenet 一直在变得更稳定 01:38 < youkai> 是啊，只要它只有 Java，我就绝不会跑 Freenet 01:38 < firegod> 给你一个口号 d-: 01:38 < firegod> “每天都在变得更稳定” 01:38 < youkai> 太臃肿 01:38 < philocs> youkai：也不算太糟 01:38 < youkai> 再者我觉得让开源软件只能在一家公司的语言上编译很糟糕 01:38 < Grishnav> 我并不比别人更喜欢 Java，但我肯定是 Freenet 的粉。我会用 Java 版本，但一听说有 C 实现就换。:) 01:39 < youkai> 我是说如果你们用的是开源的、非 Sun 的 Java 我就没那么介意了 01:39 < youkai> 啊对 01:39 < youkai> Blackdown 01:39 < hobbs> youkai：Freenet 在几种非 Sun 的 Java 上工作得很好。 01:39 < hobbs> Blackdown 背后也有 Sun。 01:39 < youkai> 那看来用 Java 就怎么都赢不了 :/ 01:39 < firegod> 所以呢？ 01:39 < youkai> 我对 Sun 的信任不比对 Microsoft 多 01:40 < firegod> Java 不是你的朋友 (: 01:40 < Grishnav> 有人有 Blackdown 源码下载的链接吗？（他们的网站一点也不帮忙） 01:40 < firegod> 我鼓励对 Java 不满的人尝试 Python 来满足脚本需求（它不是 Java） 01:40 < youkai> 对，Python 很酷 01:41 < youkai> 但我可不是好不容易不再用 M$ 的操作系统了，就又让另一家公司（Sun）进门 01:41 < hobbs> Grishnav：呃。它在“non-free”里是有原因的，不是吗？ 01:41 < philocs> 你是想让我用 Python 来写 Freenet 吗？IIP 会分发一个 Python 模块吗？ 01:41 < Grishnav> 啊……我原以为它是自由的。是我错了。 01:41 < youkai> 这是我对 Freenet 的唯一问题 01:41 < philocs> Java 不是恶魔，Sun 对待 Java 的方式不同于微软对待 Windows 的方式 01:41 < hobbs> Grishnav：不。如果你问 Sun，创建一个自由的 Java2 实现是不可能的，而且他们确实把这事做到了。 01:41 < youkai> 我是说 Java 更容易写，因为你不用太担心内存泄漏之类的问题 01:41 < Grishnav> rofl 01:41 < youkai> 垃圾回收器让你可以懒 01:41 < philocs> hobbs：为什么不可能？ 01:42 < Grishnav> [16:45] <youkai> 我是说 Java 更容易写，因为你不用太担心内存泄漏之类的问题 —— 是啊，难怪所有 Java 应用都那么吃内存！！ 01:42 < youkai> 是啊那是因为他们需要和软件一起把整个 JRE 载入内存 01:42 < hobbs> philocs：因为如果你写了任何 Java2 的东西，还声称它是“Java”，Sun 就会灭了你。:) 01:42 < philocs> hobbs：是的但你可以做 Java，只是不要称它为“Java” 01:42 < hobbs> 呃……除非先获得适当的许可并签好相应的协议。:) 01:42 < Grishnav> 叫它 coffee 01:42 < philocs> kaffe 01:42 < Grishnav> 呵呵 01:42 < Grishnav> 对 01:43 < Grishnav> 我玩过 Kaffe 01:43 < hobbs> philocs：确实。但没人做到。 01:43 < Grishnav> 还不够成熟，但正在变好 01:43 < philocs> hobbs：呃是的，FSF 做过 01:43 < hobbs> philocs：哦？ 01:43 < philocs> 是的 01:43 < youkai> 但说真的我觉得 Java 和 VB 一个档次 01:43 < philocs> Kaffe 01:43 < hobbs> philocs：Kaffe 不是 Java2。 01:43 < youkai> 给懒程序员用的 01:43 < youkai> 不介意被公司“拥有”的人 01:43 < philocs> hobbs：但没有理由它不能实现 Java2 01:43 < hobbs> philocs：除了它现在并没有做到这一事实。 01:43 < philocs> 还有 gccj 或者叫什么来着 01:44 < hobbs> 呃... 01:44 < youkai> 另一件事是 Java2 太大了，他们一直有庞大的程序员团队在上面干活 01:44 < hobbs> 对。gcj/gij 也不错。 01:44 < firegod> 不想打断，但 Java 之战在合适命名的频道里会更合适 (: 01:44 < philocs> hobbs：这不是法律问题，Java 规范是开放标准，但“Java”这个名字不是 01:44 < youkai> gcj？ 01:44 < philocs> youkai：能编译 Java 代码的 gcc 01:44 < youkai> 嗯？ 01:45 < youkai> 编成二进制还是仍然需要 JRE 01:45 < philocs> 我记得是编成二进制 01:45 < hobbs> philocs：那是个相当严苛的限制。 01:45 < hobbs> 你不能说：这是 Java、它兼容 Java，或者它像 Java。 01:45 < philocs> hobbs：嗯我不这么认为。你可以声称“这个软件不是 Java，但你可能会发现它工作方式相同” 01:46 < philocs> 大多数人都能理解 01:46 < hobbs> 大概吧。 01:46 < youkai> 不管怎样，为什么要重写 Java，而不是直接用 C++ 01:46 < youkai> 反正几乎是同一种语言 01:46 < philocs> 呃，我宁愿用 Java 也不愿用 C++ 01:46 < philocs> 但我不准备展开这个话题 01:46 < philocs> 总之，我忘了这段可怕的长篇大论是怎么开始的了 01:46 < hobbs> youkai：并不是。C++ 不会像 Java 那样在完全不合适时还强迫你用面向对象那一套。:) 01:46 < firegod> 兜来兜去，谁也说不清 01:46 < firegod> philocs：没错 01:46 < philocs> 好吧，那么在 isproxy 里，是不是有客户端侧和节点侧？ 01:47 < firegod> philocs：你知道我见过这种“争论”多少次了吗？(: 01:47 < youkai> hobbs：哈 01:47 < firegod> philocs：有中继、代理和“服务器” 01:47 < firegod> 就我所见 01:47 <@UserX> philocs：你能澄清一下你的问题吗？ 01:47 < philocs> 我是说，把频道密钥加密放在 isproxy 里有意义吗？就是那个在 6667 端口上和 IRC 客户端对话的部分？ 01:47 < hobbs> philocs：有点。既有节点，也有节点。:) 01:47 < firegod> philocs：别忘了，每个 isproxy 可以对应多个客户端 01:48 < hobbs> 而节点会 1) 与客户端通信 2) 与节点通信 3)（其中一个）与服务器通信。 01:48 < philocs> firegod：真的？我从没见过这种行为，也许是我的配置问题 01:48 < firegod> (: 01:48 < philocs> 不过我的问题有道理吗？ 01:48 < youkai> 我来这就是求你们别把下一版 IIP 用 Java 写 :D 01:48 < firegod> 哪个问题 d-: 01:48 < firegod> youkai：我想这是毋庸置疑的 01:48 <@UserX> philocs：目前 IIP 1.x 本质上是一个 tunnel。让客户端实现频道加密需要做大量工作，而且等 v2 完成后会变得多余 01:48 < youkai> 另外如果有 Freenet 的人，一版 C++ 会很不错 01:49 < firegod> UserX：isproxy 作为一个 HTTP tunnel 怎么样？ 01:49 < firegod> UserX：IIPv2 也一样？ 01:49 < nemesis> <youkai> 我来这就是求你们别把下一版 IIP 用 Java 写 :D 01:49 < nemesis> 不~~~~ 01:49 < philocs> 我在想，可以弄一个 keys/ 目录，然后里面放一个 channel.key，然后对进出那个频道的内容用 blowfish 或其他算法处理，明白吗？ 01:49 < nemesis> 原生代码才是最好的 01:49 < philocs> 另外，见鬼的 C++，我任何时候都更愿意用 Java 而不是 C++ 01:49 < philocs> 不过我也觉得 C 很不错 01:49 <@UserX> firegod：1.x 可以用来 tunnel 到一个固定的 HTTP 服务器 01:49 < firegod> 好了，语言之战就到此为止吧？ 01:49 < nemesis> M$ 赞助了他的 .NET 宣传活动，并会把他的 IL 放在前面 01:49 < youkai> k :D 01:49 < firegod> User：呃嗯 01:49 < nemesis> 你可以控制编译器 01:49 < philocs> youkai 一直在提，如果他那么喜欢 C++，他应该和 C++ 结婚 01:49 < nemesis> 这就是不同 01:49 < firegod> 哦天哪 01:49 < youkai> 嘿 philocs：你这么喜欢 Java 就去 Sun 工作吧 01:49 < nemesis> 不行 01:50 < philocs> UserX：这样做有意义吗，还是等下个版本再做更好？ 01:52 < youkai> UserX：这是个好主意 01:52 <@UserX> philocs：要在 1.x 的网络里做到这一点，需要让节点具备读取、解析并重新组装 IRC 客户端消息/命令的能力 01:53 < philocs> 我明白了 01:53 < nemesis> <UserX> philocs：要在 1.x 的网络里做到这一点，需要让节点具备读取、解析并重新组装 IRC 客户端消息/命令的能力 01:53 < nemesis> XML ;) 01:53 <@UserX> 这是可能的，但要花相当多精力，而我想把精力放在 v2 上 01:53 < nemesis> 非常灵活 01:53 < philocs> 我懂了 01:54 < philocs> 回头见 02:11 < logger> 记录结束 --- 日志关闭于 Wed Oct 16 02:11:14 2002 </div>
+<div class="irc-log">
+--- Log opened Tue Oct 15 23:31:29 2002
+23:31 < logger> test
+23:32 < mason> sorry, that test did not work
+23:32 < mason> :)
+23:32 -!- mode/#iip-dev [+o mids] by Trent
+23:32 <@mids> Tue Oct 15 21:32:19 UTC 2002
+23:32 <@mids> meeting starts in 1:30 hours
+--- Day changed Wed Oct 16 2002
+00:44 < geully> hi all
+00:50 <@mids> Public IIP meeting in 10 minutes here
+00:50 < Robert> Hello all.
+00:51 <@mids> shhh
+00:51 <@mids> not yet
+00:51 <@mids> 9 more minutes
+00:51 < Grishnav> lol
+00:51 < al-jabr> Tue Oct 15 22:51:23 UTC 2002
+00:51  * Robert zips his lip.
+00:51 < al-jabr> lalala
+00:53 -!- geully is now known as Geully
+01:00 <@mids> Tue Oct 15 23:00:02 UTC 2002
+01:00 <@mids> welcome to the n-th public IIP meeting
+01:00 <@mids> logfiles are on http://mids.student.utwente.nl/~mids/iip/
+01:00 < nop> hehe
+01:00 <@mids> oh, 15th
+01:00 < nop> 15th
+01:00 < nop> yes
+01:00 <@mids> agenda for today:
+01:01 <@mids> - new IIP developer
+01:01 <@mids> - IIP logo contest
+01:01 <@mids> - bug fixes
+01:01 <@mids> - question rounds
+01:01 <@mids> ,
+01:01 <@mids> .
+01:01 < nop> ok
+01:02 < nop> welcome back all
+01:02 < nop> to another round of meetings ;)
+01:02 < nop> for all that work in a corporate office
+01:02 < nop> you have permission to sleep
+01:02 < nop> ok
+01:02 < nop> new IIP developer
+01:02 -!- mode/#iip-dev [+o nop] by mids
+01:02 <@nop> and is a talented and quick learning C programmer
+01:02 -!- mode/#iip-dev [+o UserX] by mids
+01:02 <@nop> and has already added some patches and some grunt work that was needed to the code
+01:03 <@mids> hurray!
+01:03 <@nop> we are glad to have him
+01:03 <@nop> and we feel that he will be an essential part of the team
+01:03  * al-jabr claps
+01:03 <@nop> ok
+01:03 <@nop> next on list
+01:03 <@nop> IIP logo contest
+01:03 <@nop> any graphix designers etc
+01:03 <@mids> graphix? you mean graphics?
+01:04 < Grishnav> No, he means graphix :P
+01:04 < hobbs> nop: maybe. Me or my mom. She's good, and she got a tablet recently. :)
+01:04 <@nop> who would like to come up with a cool slogan and/or logo for invisiblenet, and IIP (yes I mean graphics) for t-shirts can submit their entries to iip@invisiblenet.net
+01:04 <@nop> the winner
+01:04 <@nop> will win a free t-shirt
+01:04 <@nop> black or white
+01:04 <@nop> of his choice
+01:04 <@nop> or her choice
+01:04 <@mids> woohoo!
+01:04 <@nop> and 10.00 DRAN
+01:04 < hobbs> nice.
+01:05 <@nop> this can definitely include slogans as well
+01:05 <@nop> so there could be two winners
+01:05 <@nop> if one comes up with logo
+01:05 -!- mode/#iip-dev [+o Chocolate] by mids
+01:05 <@nop> and one comes up with an awesome slogan
+01:05 -!- mode/#iip-dev [+o Chocolate] by Trent
+01:05 <@nop> but submit to iip@invisiblenet.net
+01:05 <@nop> and they will be reviewed
+01:05 <@nop> I hope that if you're not a graphics guy, that you can tell a friend
+01:05 <@nop> and maybe split the profits
+01:05 <@nop> ;)
+01:06 <@nop> because we would like to have cool shirts
+01:06 <@nop> for the e-store
+01:06 <@nop> and in general
+01:06 <@nop> as well
+01:06 <@nop> for bumper stickers etc
+01:06 <@nop> maybe a mascot would be good too
+01:06 <@mids> :)
+01:06 <@nop> either way
+01:06 <@nop> do what you can
+01:06 <@nop> submit them
+01:06 <@nop> and we'll decide at the end of the month
+01:06 < philocs> our only mascot is satan
+01:06 <@nop> well
+01:06 <@nop> that's taken
+01:06 <@nop> BSD
+01:06 <@nop> ;)
+01:07 < philocs> we could make a scarier satan
+01:07 < hobbs> that's a DAEMON!
+01:07 <@nop> hehe
+01:07 <@Chocolate> black
+01:07 <@nop> ok
+01:07 <@nop> next
+01:07 <@nop> bugfixes
+01:07 <@Chocolate> tshirt must be black
+01:07 <@nop> ok
+01:07 <@nop> yeah
+01:07 <@nop> all artist must make inversed drawings
+01:07 <@nop> so that it caters to black or white backgrounds
+01:07 <@nop> and you can use color :)
+01:07 <@nop> oh
+01:07 <@nop> and the winner
+01:08 < nemesis> http://www.stk.com/products/50_beta/about50.cfm
+01:08 <@nop> will of course get full credit by having his logo on the t-shirt
+01:08 < nemesis> nice
+01:08  * al-jabr fears that this T-shirt may be hopelessly dorky
+01:08 <@mids> al-jabr: make a better one
+01:08 <@mids> okay...
+01:08 <@mids> next poing?
+01:09 <@mids> point :)
+01:09 <@mids> beeing: bugfixes
+01:09 <@mids> UserX fixed even more bugs then reported
+01:09 <@mids> there are still a few (possible) bugs out there..
+01:09 <@mids> if you found some that aren't mentioned
+01:09 <@mids> please tell us
+01:10 < al-jabr> I personally couldn't replicate the terminal bug, unless that was something in CVS
+01:10 <@mids> without bugreports we cant fix
+01:10 <@nop> neither could i
+01:10 <@mids> al-jabr: I have had it in the past; but couldn't repeat
+01:10 <@mids> I'll ask Jeekay for more details
+01:10 < philocs> where do I find list of outstanding bugs?
+01:11 <@nop> well everyone is encouraged to use the sourceforge bug tracker
+01:11 <@nop> but most people don't
+01:11 <@nop> ;)
+01:11 < philocs> bug tracker is good
+01:11 <@nop> we should probably link to that on our main site
+01:11 <@mids> http://www.sourceforge.net/projects/invisibleip/
+01:11 <@nop> for a bug submital
+01:11 < firegod> too bad it doesnt have an IRC frontend (:
+01:11 <@mids> most bugs are mailed to the iip-dev mailinglist though
+01:11 < philocs> ok I just subscribed yesterday
+01:11 <@mids> cool
+01:12 < nemesis> cause the logo, whate resolution? and dpi ?
+01:13 <@nop> any one knowing graphix have a suggestion for resolution and dpi?
+01:13 < firegod> start big
+01:13 < firegod> it can be resized
+01:13 <@nop> ok
+01:13 <@nop> kewl
+01:13 < firegod> down if needed
+01:13 < nemesis> -e
+01:13 < firegod> it is much more difficult going the other way (:
+01:13 < nemesis> hehe
+01:13 < nemesis> firegod
+01:13 < nemesis> something
+01:14 < hobbs> nop: would you be interested in having it in a vector graphics format, if that just happens to be how it's done?
+01:14 < firegod> always good to have high res masters
+01:14 < nemesis> 10 megapixels
+01:14 <@nop> svg?
+01:14 < nemesis> 72dpi
+01:14 < hobbs> (not that I even own a vector program, but somebody might care)
+01:14 < nemesis> or 1000 ?
+01:14 < nemesis> ;)
+01:14 < nemesis> very dificult
+01:14 < nemesis> +f
+01:15 < firegod> sure, if they are creative..
+01:15 < firegod> but svg isnt widly used just yet
+01:15 < al-jabr> Question:  I'm patching IIP to use /dev/random.  Would you be interested in incorporating this?  I'm doing it #ifdef linux for until I or someone configurifies the source.
+01:15 < firegod> al-jabr: finish the patch and submit it to the mailing list
+01:15 <@nop> al-jar
+01:15 < al-jabr> okay
+01:15 < hobbs> al-jabr: I'd suggest making it #ifdef SOME_FLAG_THAT_CAN_GO_IN_MAKEFILE
+01:15 < al-jabr> yeah
+01:16 < al-jabr> will do
+01:16 < hobbs> (and have a well-commented DFLAGS line in Makefile)
+01:16 <@nop> yarrow is a very good prng
+01:16 <@nop> it's known to be secure
+01:16 <@nop> and we have done a test with our randomness via chi-square
+01:16 < al-jabr> nop: I believe yarrow would be redundard when we have /dev/urandom
+01:16 <@nop> and it got 25% which is good
+01:16 <@nop> yes, but yarrow is portable
+01:16 <@nop> and known to be stronger
+01:16 <@mids> al-jabr: the problem is that not all operating systems have a good implementation for /dev/random
+01:16 < firegod> not at all
+01:17 <@nop> I would rather rely on what a cryptography expert developed
+01:17 <@nop> then the /dev/random on the machines
+01:17 < hobbs> true. A -DUSE_DEV_RANDOM might end up being useful, or it might just hurt a lot of people who don't know what they're doing.
+01:17 <@mids> otoh, giving the more modular future of IIP, maybe several alternatives could be an option
+01:17 < hobbs> and not the best odds on the first. :)
+01:17 <@nop> yes
+01:17 <@nop> and we do plan to add more entropy in the future
+01:18 < al-jabr> Well, linux /dev/random and /dev/urandom are some of the most scrutinized crypto out there... I'm mostly thinking of that because it's a very good entropy pool that's out there on very many machines running IIP
+01:18 <@nop> to increase this
+01:18 < firegod> general question: with iip2 are we going to have more feedback from the proxy?
+01:18 < al-jabr> you wouldn't have to go querying the user for entropy.
+01:18 <@nop> yes firegod
+01:18 <@nop> well you usually don't
+01:18 <@nop> but it's definitely added plus
+01:18 <@nop> if there isn't enough
+01:18 <@nop> it will query
+01:19 <@nop> and we will probably look into adding a form of /dev/random entropy very soon
+01:19 < hobbs> does linux /dev/random support O_NONBLOCK ?
+01:19 <@nop> because we intend on really strengthening the pool
+01:19 <@nop> I'm sure it does hobbs
+01:19 <@nop> /dev/random let's you select your pool size
+01:19 < hobbs> nop: yeah, but there's a softlimit, and a hardlimit in the kernel, and the hardlimit isn't that big.
+01:19 <@nop> al-jabr it would be best to hold off
+01:19 < al-jabr> nop: personally I'd trust linux more, which uses SHA1 and uses all kinds of hardware sources of entropy, than a newbie who might just go entering 'aaaaaaaaaa...'  but anyway it's only an option
+01:20 <@nop> al-jabr
+01:20 < al-jabr> ok
+01:20 <@nop> thats not all the entropy
+01:20 <@nop> there is more
+01:20 <@nop> there are network timings, and dh calculation timings as well
+01:20 < al-jabr> but it only has access to user-mode entropy
+01:20 <@nop> and we plan to add more
+01:20 < al-jabr> why reinvent the wheel.   i recommend using /dev/random and for those who don't have it, EGD.
+01:20 <@mids> nop: would it harm to give al-jabr a try, and maybe use it as plugin for entropy?
+01:20 < al-jabr> since the GPG and linux people are doing it
+01:21 <@mids> nop: alww
+01:21 < al-jabr> why don't we concentrate on doing what we do best?
+01:21 <@nop> that's fine
+01:21 <@mids> nop: always good to have alternatives around
+01:21 <@nop> if you want to submit a patch
+01:21 <@nop> please do
+01:21 <@nop> I'm not against it
+01:21 <@nop> and we definitely want to add more entropy
+01:21 < philocs> is the darwin /dev/random good? is it the same one in linux or openbsd?
+01:21 <@nop> so please submit it to iip-dev when you've added it
+01:21 < firegod> thats what mailing lists are for, people can digest it better
+01:22 < al-jabr> okay, will do.
+01:22 <@nop> thnx
+01:22 <@nop> is that all?
+01:22 <@nop> no more questions?
+01:22 <@mids> hehe
+01:22 <@nop> or suggestions
+01:22 <@nop> or complaints
+01:22 < nemesis> hm..
+01:22 < philocs> I have a dumb newbie question ...
+01:22 <@nop> sure
+01:22 < firegod> well. release dates?
+01:22 < nemesis> cache in the nodes
+01:22 <@mids> sjoet
+01:22 <@nop> oh oh on
+01:22 <@nop> that wasn't on the list
+01:22 <@nop> but
+01:23 <@nop> we are at this time working on a short term todo list
+01:23 <@nop> that will be publicized
+01:23 < philocs> if someone hacks a relay to log, does that mean they can see the trafic for private channels that go through it?
+01:23 <@nop> no
+01:23 <@mids> philocs: all traffic is encrypted node-node and end-end
+01:23 < philocs> ok, so you can only get the cleartext at the server, right?
+01:23 < firegod> but not contextually withing IRC
+01:23 <@nop> right
+01:24 < firegod> right
+01:24 < firegod> and the client
+01:24 <@mids> philocs: correct
+01:24 <@nop> yes
+01:24 < philocs> good
+01:24 < firegod> how far are you from encrypted channels?
+01:24 < hobbs> and the client -- well, can only see stuff that's actually sent to it.
+01:24 <@mids> firegod: nop is working on a roadmap and syncing it with the developers (if I understood well)
+01:24 < nemesis> add an multicast option for filetransfers, when one user, will send the same file to some multiple clients
+01:24 < hobbs> nemesis: actually.... that's worth thinking about -- talk to chocolate. :)
+01:24 < philocs> is there an advantage to having "channel key encryption" before decentralization?
+01:24 <@mids> nemesis: well, filetransfer isnt implemented in IIP itself anyway
+01:24 < nemesis> lol
+01:24 < firegod> hobbs: well, knowing about a channel is easy
+01:24 <@mids> nemesis: it CAN do multicast, just send it to a channel :)
+01:24 < hobbs> nemesis: it should be possible to add a hack to fileserv to have it use a channel, and then anyone who wants to receive just joins. :)
+01:24 < hobbs> firegod: oh, is it?
+01:24 < nemesis> what can you do with an anonymous network
+01:25 < nemesis> when you can share code?
+01:25 < nemesis> whats about some c code?
+01:25 < firegod> multicast is a problem due to not spectacular widespread support..
+01:25 <@mids> philocs: yes, I'd think so... less trust needed on the server
+01:25 < nemesis> when the complet internet are banned for open source?
+01:25 < hobbs> firegod: not multicast IP, just "multicast" :)
+01:25 < firegod> hobbs: re fileserv channel: that gives you encrypted channels btw (:
+01:25 < nemesis> how you can share this information?
+01:25 < hobbs> firegod: oh, how's that?
+01:26 < nemesis> <hobbs> nemesis: it should be possible to add a hack to fileserv to have it use a channel, and then anyone who wants to receive just joins. :)
+01:26 < firegod> hobbs: sure, if you join IIP at all it is simple to /list the channels
+01:26 < nemesis> not a hack
+01:26 < philocs> I might start thinking about some 'channel key encryption'. it doesn't seem like it would be terribly complicated thing to me, just keep private keys in some directory maybe
+01:26 < nemesis> built in
+01:26 < nemesis> and an "server node" option
+01:26 < nemesis> to allow that
+01:26 < nemesis> or not
+01:26 <@mids> philocs: you could implement it client side...
+01:26 < hobbs> nemesis: okay, I'm just behind the times. I haven't worked on fileserv for... months
+01:26 < nemesis> and an option for the cache size for it
+01:26 <@mids> philocs: look at the blowfish.pl scripts for irssi and xchat
+01:26 < firegod> philocs: and perl plugins on clients
+01:26 <@mids> s/blowfish/blowjob/
+01:27 < philocs> mids: would it make sense to implement it in the client side of isproxy?
+01:27 <@mids> nemesis: caching wouldnt make much sense when everything goes still through the central ircd
+01:27 < philocs> that way it would work with all clients
+01:27 < nemesis> <mids> nemesis: caching wouldnt make much sense when everything goes still through the central ircd
+01:27 <@mids> philocs: maybe; but that would require the 'vircd'
+01:27 < nemesis> i think there are planned to be an p2p network?
+01:27 < nemesis> and then theres no central hub
+01:27 <@mids> nemesis: for IIP 2
+01:28 < nemesis> only some nodes
+01:28 < nemesis> where cache the datas
+01:28 <@mids> nemesis: but that is long term; first IIP 1.2
+01:28 < philocs> nemesis: I think you want freenet maybe
+01:28 < nemesis> no
+01:28 < philocs> p2p file transfers with caching
+01:28 < nemesis> only an option to share some public files
+01:28 < nemesis> or larger text
+01:28 < philocs> thats what freenet does
+01:28 < firegod> any merging of namespace possible between freenet and iip?
+01:28 < nemesis> that you don'*t copy it line for line in the channel /query
+01:28 < hobbs> what sits on top of the IIPv2 network could be a lot of interesting things -- but that's a while off. :)
+01:28 <@mids> nemesis: first we would need decentralized routing...
+01:29 < nemesis> k
+01:29 < firegod> every isproxy was a freenet node?
+01:29 < nemesis> but don't forget it ;)
+01:29 < philocs> I don't think it makes sense to cannabalize freenet ...
+01:29 <@mids> nemesis: once we have that; ask again :)
+01:29 < firegod> philocs: does it do the job?
+01:29 < nemesis> lol
+01:29 <@mids> philocs: giving recent freenet-shit; I'd say no, indeed it doesn't
+01:29 < firegod> philocs: and I like 'incorporate' a bit better
+01:29 < hobbs> it should be possible to write a mini-freenet on top of IIP... but it would be better to leave freenet at what it does, and take advantage of the high speed and "pushiness" of IIP to write even better things.
+01:29 < nemesis> in how many years? *fg*
+01:30 < firegod> alright (:
+01:30 < firegod> people do want to exchange chunks of binary data thru their messaging clients, in this case IIP
+01:30 < firegod> how will that be addressed?
+01:30 < philocs> firegod: well, I think it does the job well, and it will only get better. yes I agree that it would be better to have iip implement the freenet protocol for freenet type things rather than make something incompatible
+01:30 < hobbs> for example, IIPv2 should be able to support the niftiest "anonymail" anyone's ever seen (without a bot), unless I'm hallucinating. :)
+01:30 < nemesis> hm..
+01:31 < nemesis> hacker ethic
+01:31 < nemesis> the slogon
+01:31 < nemesis> for..
+01:31 < nemesis> miiiids!!
+01:31 <@mids> hobbs: IIPv2 will be so smart that it could do your math homework
+01:31 < hobbs> that's good, 'cause I don't do mine often enough.
+01:31 < philocs> speaking of which
+01:32 <@UserX> firegod: the intention is to do a DCC emulation using Freenet as the transport for files
+01:32 < Grishnav> Sorry if this has already been suggested, I've missed much of the conversation being in and out of the room, but how about some sort of API for IIP to create modules? After IIP gets completely distributed (with v2) you could have all sorts of interesting modules pop up... a file transfer mod, perhaps a freenet node mod if you only wanted one service running...
+01:32 < firegod> UserX: that'll work (:
+01:32 < philocs> UserX: I think that is the best solution
+01:32 < hobbs> Grishnav: that's more or less the plan, as I understand it. And if it's not, we'll beat nop with halibut until it is.
+01:32 < Grishnav> lol
+01:33 < firegod> UserX: but if IIPv2 is decenteralized, would this dcc emulation need freenet? you already can do point multipoint point transfers, you just need a session handshake for that kind of transfer
+01:33 < firegod> albiet dcc
+01:33 < nemesis> waaaaaaaaaah
+01:33 < philocs> plus if every iip user was running some sort of freenet implementation, that would make freenet much better
+01:33 < nemesis> ardvark
+01:33 < nemesis> grrrrrr
+01:33 < nemesis> where is he?
+01:33 < nemesis> where can speak german?
+01:33 < hobbs> also, it should be (more) convenient to have multiple IIPv2 networks, but I think that's a given. :)
+01:33 < nemesis> or known only a little bit german
+01:33 < firegod> philocs: thats what I'm saying (:
+01:33 < nemesis> and have the english hacker ethic?
+01:33 < firegod> whos working on IIPv2?
+01:34 < philocs> I need to go study for my german test soon
+01:34 < philocs> firegod: are you left handed or in oz or something?
+01:34 <@mids> hm, ppl; I got to go; keep chatting here
+01:34 <@mids> bbl
+01:34 < nemesis> hrhr
+01:34 < nemesis> mids!!!
+01:34 < firegod> philocs: nope, just a freak
+01:34 < nemesis> don't drunk to much ;p
+01:34 < nemesis> *fg*
+01:35 < firegod> mids is working on IIPv2 I'm sure, anyone else? UserX?
+01:35 < nemesis> nop
+01:35 <@UserX> firegod: in theory yes. but currently we want to keep IIP low bandwidth. freenet would me suited transfering large volumes of data (and better because it doesn't have a constraint of realtime routing that IIP needs)
+01:35 < nemesis> i think
+01:35 <@nop> yes
+01:35 < nemesis> aaaaaah
+01:35 < nemesis> nop
+01:35 < philocs> I guess what is really needed is for someone to write a C implementation of freenet ...
+01:35 < firegod> UserX: this is true.
+01:36 < firegod> UserX: or at least an opt-in on that feature
+01:36 <@UserX> firegod: yes i am working v2
+01:36 < hobbs> philocs: I agreed with that pretty heavily a few months ago, but right now I'm happy to let java fred do its thing, and settle down, before anyone clones.
+01:36 < hobbs> (now that it _works_, that is)
+01:36 < firegod> UserX: how have you solved scaling issues for resource location? ie: how do you find nodes originating #channels?
+01:36 < philocs> UserX: yes well thats a good reason to not make it easy for people to do 'dcc' and to encourage them to use freenet
+01:36 < firegod> philocs: it should just be opt-in.. people wanting to abuse their bandwidth, can go right ahead.. those on modems dont get killed (:
+01:36 < hobbs> UserX: would be nice to keep in mind, though, that freenet is good at pulling things, and iip is good at pushing things. :)
+01:36 < philocs> hobbs: well I agree, I think the java version is fine but if we are going to basically package freenet with iip somehow then eventually (and probably when freenet hits 1.0?) we will want a c implementation
+01:36 < firegod> philocs: those wanting freenet backed features, change a setting and BLAM it just works
+01:36 <@UserX> firegod: haven't worked out highly scalable system yet
+01:37 < firegod> hobbs: IIP is a great way of grouping freenet keys (:
+01:37 < hobbs> philocs: that's some pretty long thinking. :)
+01:37 < firegod> UserX: ah. If you havnt peaked at Circle, I encourage you to (:
+01:37 < firegod> I know mids said he'd played with it
+01:37 < philocs> hobbs: well freenet is getting more stable all the time
+01:38 < youkai> yeah, i would never run freenet as long as its only java
+01:38 < firegod> theres a slogan for ya d-:
+01:38 < firegod> "getting more stable every day"
+01:38 < youkai> too bulky
+01:38 < philocs> youkai: its not too bad
+01:38 < youkai> plus i think its shitty to have os software that only compiles on a corp owned language
+01:38 < Grishnav> I don't like Java anymore than the next guy, but I certainly am a freenet fan. I'll use the java one, but only until I hear about a C implementation. :)
+01:39 < youkai> i mean if you guys were using the os non sun java i wouldent mind as much
+01:39 < youkai> ah yes
+01:39 < youkai> blackdown
+01:39 < hobbs> youkai: freenet works fine on a few flavors of non-sun java.
+01:39 < hobbs> blackdown has sun behind it.
+01:39 < youkai> you just cant win with java then :/
+01:39 < firegod> so?
+01:39 < youkai> i dont trust sun any more then i do microsoft
+01:40 < firegod> java is not your friend (:
+01:40 < Grishnav> Does anyone have a link to the souce download for Blackdown? (Their site is less than helpful)
+01:40 < firegod> I encourage those who are disatisfied with java, to try phthon for their scripting needs (it is NOT java)
+01:40 < youkai> yeah python is cool
+01:41 < youkai> but i dident stop running m$ operating systems just so i could let another corp in the door (sun)
+01:41 < hobbs> Grishnav: er. It's in "non-free" for a reason, isn't it?
+01:41 < philocs> you are wanting me to write freenet in python? would a python module be distributed with iip?
+01:41 < Grishnav> Ahh... I was under the impression is was free. my mistake.
+01:41 < youkai> thats the only problem i have with freenet
+01:41 < philocs> java is not evil, sun treats java differently than MS treats windows
+01:41 < hobbs> Grishnav: no. If you ask sun, it's impossible to create a free java2 implementation, and they've done a good job of making it true.
+01:41 < youkai> i mean java is a lot easier to code in because you dont have to worry about memory leaks and stuff as much
+01:41 < Grishnav> rofl
+01:41 < youkai> the garbage collector lets you be lazy
+01:41 < philocs> hobbs: why is it impossible?
+01:42 < Grishnav> [16:45] <youkai> i mean java is a lot easier to code in because you dont have to worry about memory leaks and stuff as much -- yeah, it's no wonder that all java apps are so goddamn memory hoggy!!
+01:42 < youkai> yeah thats because they need the whole jre loaded in memory with the software
+01:42 < hobbs> philocs: because if you write anything that's java2, and claims to be "java", then sun will destroy you. :)
+01:42 < philocs> hobbs: yes but you can make java, just don't call it 'java'
+01:42 < hobbs> er... without obtaining the appropriate license and signing the appropriate agreements first, that is. :)
+01:42 < Grishnav> call it coffee
+01:42 < philocs> kaffe
+01:42 < Grishnav> hehe
+01:42 < Grishnav> yeah
+01:43 < Grishnav> I've played with Kaffe
+01:43 < hobbs> philocs: true. But nobody's done it.
+01:43 < Grishnav> not quite mature enough yet, but getting there
+01:43 < philocs> hobbs: uh yes, the FSF has done it
+01:43 < hobbs> philocs: oh?
+01:43 < philocs> yes
+01:43 < youkai> but seriously i think java is right up there with VB
+01:43 < philocs> Kaffe
+01:43 < hobbs> philocs: Kaffe is not java2.
+01:43 < youkai> its for lazy programmers
+01:43 < youkai> who dont mind being owned by a corp
+01:43 < philocs> hobbs: but there is no reason it could not implement java2
+01:43 < hobbs> philocs: except for the fact that it doesn't.
+01:43 < philocs> plus gccj or whatever its called
+01:44 < hobbs> er...
+01:44 < youkai> the other thing is java2 is huge, and they have a gigantic team of programmers working on it all the time
+01:44 < hobbs> yeah. gcj/gij are also nice.
+01:44 < firegod> not to interupt, but java wars work out better in apropriatly named channels (:
+01:44 < philocs> hobbs: but its not a legal issue, the java spec is an open standard, the java name is not
+01:44 < youkai> gcj?
+01:44 < philocs> youkai: gcc that compiles java code
+01:44 < youkai> huh
+01:45 < youkai> to binary or does it still need a jre
+01:45 < philocs> binary I believe
+01:45 < hobbs> philocs: that's a pretty heavy restriction, though.
+01:45 < hobbs> You can't say: this is java, this is compatible with java, or this smells like java.
+01:45 < philocs> hobbs: well I don't think so. You can make the claim that 'this software is not java, but you will probably find that it works the same'
+01:46 < philocs> which most people would understand
+01:46 < hobbs> probably.
+01:46 < youkai> anyway, why rewrite java when you could just use c++
+01:46 < youkai> its almost the same language
+01:46 < philocs> arg, I would rather use java over c++
+01:46 < philocs> but I'm not getting into that
+01:46 < philocs> anyway, I forgot where this horrible diatribe started
+01:46 < hobbs> youkai: not really. c++ doesn't force you to use OO crap when it's completely inappropriate, like java does. :)
+01:46 < firegod> round and round we go, where we stop nobody knows
+01:46 < firegod> philocs: exactly
+01:46 < philocs> ok, so in isproxy, is there like a client side and a node side?
+01:47 < firegod> philocs: you know how many times I've seen this exact same 'argument' ? (:
+01:47 < youkai> hobbs: hah
+01:47 < firegod> philocs: there are relays, and proxys and 'servers'
+01:47 < firegod> as I see it
+01:47 <@UserX> philocs: can you clarify your question?
+01:47 < philocs> I mean, would it make sense to put channel key encryption in isproxy, the part that actually talks to the irc client on 6667?
+01:47 < hobbs> philocs: sorta. there are nodes, and there are nodes. :)
+01:47 < firegod> philocs: dont forget you have multiple clients for each isproxy
+01:48 < hobbs> and nodes 1) talk to clients 2) talk to nodes 3) (one of them) talks to the server.
+01:48 < philocs> firegod: really? I've never been able to see this behavior, actually maybe its just my configuration
+01:48 < firegod> (:
+01:48 < philocs> but anyway, does my question make sense?
+01:48 < youkai> i just came here to beg you guys not to write the next ver of iip in java :D
+01:48 < firegod> which question d-:
+01:48 < firegod> youkai: i think thats a given
+01:48 <@UserX> philocs: currently IIP 1.x is essentially a tunnel. having the client implement channel encryption would require a lot of work to do. and would become redunant when v2 gets done
+01:48 < youkai> also if theres freenet people around, a c++ ver would be nice
+01:49 < firegod> UserX: how about isproxy functioning as an http tunnel?
+01:49 < firegod> UserX: IIPv2 as well?
+01:49 < nemesis> <youkai> i just came here to beg you guys not to write the next ver of iip in java :D
+01:49 < nemesis> noooooo
+01:49 < philocs> I'm thinking that you could have it so that there ways like a 'keys/' directory and then you could have in that 'channel.key' or something and then just run blowfish or whatever on what goes in and out of that channel, understand?
+01:49 < nemesis> native code are the best thing
+01:49 < philocs> and fuck c++, I'll take java over c++ anyday
+01:49 < philocs> but I also think that c is nice
+01:49 <@UserX> firegod: 1.x could be used to tunnel to a single fixed HTTP server
+01:49 < firegod> okay, enough language wars please?
+01:49 < nemesis> m$ sponsored his .net campain, and will place his IL on the front
+01:49 < youkai> k :D
+01:49 < firegod> User: hrmm
+01:49 < nemesis> you can controll the compiller
+01:49 < philocs> youkai keeps brining it up, if he likes c++ so much, he should marry it
+01:49 < nemesis> thats the different
+01:49 < firegod> oh jebus
+01:49 < youkai> heh philocs: if you like java so much you should go work for sun
+01:49 < nemesis> can't
+01:50 < philocs> UserX: would that make sense or is it better to wait for next version to do that?
+01:52 < youkai> UserX: thats a good idea
+01:52 <@UserX> philocs: to do that with 1.x network would require giving nodes the intelligence to read and parse recompose IRC client messages/commands
+01:53 < philocs> oh I see
+01:53 < nemesis> <UserX> philocs: to do that with 1.x network would require giving nodes the intelligence to read and parse recompose IRC client messages/commands
+01:53 < nemesis> xml ;)
+01:53 <@UserX> it's possible but would take a fair amount of effort which i want to put into v2
+01:53 < nemesis> very flexible
+01:53 < philocs> I understand
+01:54 < philocs> later
+02:11 < logger> logging ended
+--- Log closed Wed Oct 16 02:11:14 2002
+</div>

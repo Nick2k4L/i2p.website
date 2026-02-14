@@ -1,17 +1,170 @@
 ---
-title: "Reunião dos desenvolvedores do I2P, 18 de setembro de 2002"
+title: "Reunião de desenvolvedores I2P, 18 de setembro de 2002"
 date: 2002-09-18
 author: "nop"
-description: "Registro da reunião de desenvolvimento do I2P de 18 de setembro de 2002."
+description: "Log da reunião de desenvolvimento I2P de 18 de setembro de 2002."
 categories: ["meeting"]
 ---
 
-(Cortesia da Wayback Machine http://www.archive.org/)
+(Cortesia do wayback machine http://www.archive.org/)
 
 ## Resumo rápido
 
 <p class="attendees-inline"><strong>Presentes:</strong> _42, Chocolate, codeshark, codeshark2, Lorax, mids, nop, Roto, thecrypto</p>
 
-## Registro da reunião
+## Log da Reunião
 
-<div class="irc-log"> --- Log aberto Ter Set 17 22:59:26 2002 23:01 -!- mode/#iip-dev [+v logger] by mids 23:54  * Roto acena 23:54 <@mids> ssh, a gente nem começou :) 23:55 < Lorax> Heh, já estou logado. 23:56  * Lorax acena para quaisquer SRHers. 23:59 < Lorax> de qualquer forma, se o IIP pudesse passar chaves pseudônimas então SSL pode ser usado, já que é a conexão que é segura, não a conversa.  (A menos que você tenha previamente estabelecido uma troca de identificação socialmente satisfatória.) --- Dia alterado Qua Set 18 2002 00:00 <@mids> psiu 00:01 <@mids> começamos em 1 hora 00:01 < Lorax> mas nós já estamos aqui. 00:01 <@mids> mas os outros não 00:01 <@mids> não é justo começar :) 00:01 -!- mode/#iip-dev [+m] by mids 00:02 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: não iniciado 00:03 <@Chocolate> começando em cerca de 1 hora 00:04 -!- mode/#iip-dev [-m] by Chocolate 00:23 < Lorax> Por que os logs já estão sendo gravados em um site então?  hmm?  ;) 00:23 <+logger> estamos testando a escuta ao vivo da NSA 00:24 < Lorax> ah, isso faz sentido. 00:51 < nop> oi 00:51 < Roto> oláá 00:53 < thecrypto> olá 00:53 < nop> http://www.techtv.com/screensavers/supergeek/story/0,24330,3347481,00.html 00:53 < nop> amigo meu 00:54 -!- mode/#iip-dev [+o codeshark] by Trent 00:54 < nop> acabei de voltar de uma audiência 01:00 <@mids> Ter Set 17 23:00:09 UTC 2002 01:00 <@mids> Bem-vindos, pessoal 01:00 <@mids> esta é a 11ª reunião do IIP 01:00 <@mids> talvez mais, mas aí perdi a conta 01:00 <@mids> :) 01:00 <@mids> Pauta por enquanto: 01:00 <@mids> atualização de status do rc2 01:00 <@mids> site 01:00 <@mids> microfone aberto 01:01 <@mids> . 01:01 < Roto> . 01:01 <@mids> nop está ao telefone, mas pode aparecer 01:01 <@mids> como vocês sabem, o rc2 tem estado 'quase lá' há muito tempo 01:01 <@mids> mas não funcionava 01:01 <@mids> agora está melhor :) 01:01 <@mids> userx corrigiu alguns bugs na cripto ponta a ponta 01:02 <@mids> e no protocolo 1.1 01:02 <@mids> Testei neste fim de semana, e funciona muito bem 01:02 <@mids> você pode até usar criptografia de 2048 bits etc 01:02 <@mids> então, um passo mais perto do lançamento 01:02 <@mids> (heh, nós dissemos isso muitas vezes) 01:02 <@mids> . 01:03 < codeshark2> o que é necessário para o lançamento? exceto a parte do inform? 01:03 -!- codeshark agora é conhecido como nickthief53256 01:03 -!- codeshark2 agora é conhecido como codeshark 01:03 <@mids> só algumas coisas menores: ajustes na ajuda de linha de comando 01:03 <@mids> verificação da manpage 01:04 <@mids> não consigo pensar em mais 01:04 -!- mode/#iip-dev [+o codeshark] by Trent 01:04 <@codeshark> então, o código-fonte está pronto 01:04 <@mids> Eu diria que sim 01:05 <@codeshark> ok, acho que devemos criar um build para testes internos então 01:05 <@codeshark> . 01:05 <@mids> ack (pendente do status do nop) 01:05 <@codeshark> e configurar o inform para o novo protocolo 01:06 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: RC2 01:06 <@mids> mais sobre rc2? 01:06 <@codeshark> outra coisa que devemos discutir é: números de versão 01:06 <@codeshark> por que chamar de rc2 ;) 01:06 <@codeshark> . 01:06 <@mids> release candidate 01:07 <@codeshark> sim claro, mas mudamos muita coisa entre o rc1 e o rc3 01:07 <@codeshark> rc2 01:07 <@mids> sim, mudamos 01:07 <@mids> não é uma nomenclatura adequada assim 01:07 <@mids> com base nas mudanças deveríamos estar em 1.3 agora 01:08 <@codeshark> sim 01:08 <@codeshark> poderíamos chamar de 1.3 RC-2 (e então fazer um 1.3 final em breve) 01:08 <@mids> nah 01:09 <@mids> Eu diria para continuar com a numeração como fazemos agora 01:09 <@mids> e, no futuro, lançar com mais frequência 01:10 <@codeshark> ack 01:10 <@mids> . 01:10 <@codeshark> . 01:10 <@mids> próximo item: site 01:10 <@mids> nop revisou a maior parte do texto, algumas coisas foram reformuladas 01:11 <@mids> ellison (o designer) está agora fazendo um layout para a página de suporte 01:11 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: site 01:11 <@mids> deve estar pronto em uma semana 01:12 <@mids> a versão mais recente do site está em http://mids.student.utwente.nl/~mids/iip/www/ 01:12 <@mids> e no CVS, claro 01:12 <@mids> . 01:12 <@mids> o site deve entrar no ar em breve também 01:12 <@mids> . 01:13  * mids passa o microfone para codeshark 01:13 <@codeshark> nada a acrescentar ;) 01:13 <@codeshark> . 01:13 <@mids> tem sim 01:13 <@codeshark> tenho? 01:13 <@mids> conta pra eles sobre seu trabalho com os nós públicos 01:13 <@codeshark> sobre o site? 01:13 <@codeshark> ok 01:13 <@mids> como você resgatou 2000 01:13 <@codeshark> 23 01:14 <@codeshark> nosso servidor inform faz verificações bem rígidas nos nós de retransmissão: nossa lista foi reduzida para cerca de 6 nós 01:15 <@codeshark> desativei uma dessas verificações para permitir que os nós fiquem fora do ar com mais frequência 01:15 <@codeshark> e o mais importante: 01:15 <@codeshark> resgatei todos os nós que já foram adicionados ao inform e verifiquei se ainda estão no ar 01:16 <@codeshark> agora temos 23 nós na nossa lista 01:16 <@codeshark> . 01:16 < _42> como os nós são adicionados ao inform? 01:16 < nop> sensacional 01:16 < nop> quando você anuncia 01:16 < nop> ele envia uma mensagem ao inform 01:17 <@codeshark> só para o pessoal das estatísticas aqui: adicionei 1125 hosts a partir do log 01:17 < nop> você sabe que isso é um monte de downloads ;) 01:18 <@codeshark> cerca de 300 deles eram válidos (o DNS resolve...) e hosts únicos 01:18 <@codeshark> . 01:18 <@mids> atualmente temos 9 nós na lista... em cerca de 5 dias (após os testes do inform) serão 23 (se continuarem no ar) 01:18 <@mids> . 01:19 <@codeshark> agora 22/23 estão no ar 01:19 <@codeshark> . 01:19 -!- mids changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: vivas ao salvador dos nós públicos 01:20 < Roto> . 01:20 <@mids> ok, esgotei os itens da pauta 01:20 < nop> rc2 01:20 <@mids> talvez o nop tenha algo a acrescentar 01:20 < nop> o rc2 será lançado junto com o lançamento do site 01:20 < nop> vamos passar esta semana testando-o a fundo do ponto de vista de desenvolvedor 01:20 <@codeshark> nop: devemos criar um build interno do rc2 o quanto antes 01:21 < nop> concordo 01:21 < _42> Quais novos recursos serão adicionados ao rc2? 01:21 <@codeshark> para podermos configurar a rede e testar o inform 01:21 < nop> Perfect Forward Security (Sigilo de Encaminhamento Perfeito) 01:21 < nop> criptografia de 160 bits ponta a ponta 01:21 < nop> ID de rede de 1536 bits 01:21 < nop> chaves PFS de 2048 bits 01:21 <@codeshark> . 01:21 < nop> e, no geral, correções de bugs 01:21 < nop> Vou preparar um changelog 01:22 < nop> . 01:23 <@mids> Acho que é hora de microfone aberto 01:24 <@mids> você pode reler os registros de chat desta e das reuniões anteriores em http://mids.student.utwente.nl/~mids/iip/ 01:24 <@mids> perguntas? (Sei que o Lorax tinha algumas... :) 01:25 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: microfone aberto 01:25 <@Chocolate> Lorax caiu por timeout 01:25 <@mids> eu sei :) 01:26  * Roto faz torcida 01:26 <@Chocolate> Eu gostaria de levantar a questão de números de versão mais sensatos 01:27 <@Chocolate> as mudanças de recursos do rc1 para o rc2 foram realmente um incremento de versão menor, não atualizações para um release beta 01:30 <@mids> as atualizações saíram do controle 01:30 <@mids> para o bem comum.. mas isso não é desculpa :) 01:37 <+logger> a parte oficial acabou; se tiverem mais perguntas, perguntem aqui ou em #iip 01:37 <+logger> até a semana que vem --- Log fechado Qua Set 18 01:37:46 2002 </div>
+<div class="irc-log">
+--- Log opened Tue Sep 17 22:59:26 2002
+23:01 -!- mode/#iip-dev [+v logger] by mids
+23:54  * Roto waves
+23:54 <@mids> ssh, we arent started :)
+23:55 < Lorax> Heh, I am already logged.
+23:56  * Lorax waves to any SRHers.
+23:59 < Lorax> anyway, if IIP could pass psudonymous keys then SSL can be used, as it's the connection that is secure, not the conversation.  (Unless you have previously established socially satisfactory identification exchange.)
+--- Day changed Wed Sep 18 2002
+00:00 <@mids> hush
+00:01 <@mids> we start in 1 hour
+00:01 < Lorax> but we are here now.
+00:01 <@mids> but the others aint
+00:01 <@mids> its not fair to start :)
+00:01 -!- mode/#iip-dev [+m] by mids
+00:02 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: not started
+00:03 <@Chocolate> starting in about 1 hour
+00:04 -!- mode/#iip-dev [-m] by Chocolate
+00:23 < Lorax> Why are the logs recording to a website already then?  hrm?  ;)
+00:23 <+logger> we are testing the live nsa wiretap
+00:24 < Lorax> ah, that is senseable.
+00:51 < nop> hi
+00:51 < Roto> hulloz
+00:53 < thecrypto> hello
+00:53 < nop> http://www.techtv.com/screensavers/supergeek/story/0,24330,3347481,00.html
+00:53 < nop> friend of mine
+00:54 -!- mode/#iip-dev [+o codeshark] by Trent
+00:54 < nop> just got back from a deposition
+01:00 <@mids> Tue Sep 17 23:00:09 UTC 2002
+01:00 <@mids> Welcome everybody
+01:00 <@mids> this is the 11th IIP meeting
+01:00 <@mids> maybe more, but then I lost count
+01:00 <@mids> :)
+01:00 <@mids> Agenda for now:
+01:00 <@mids> rc2 status update
+01:00 <@mids> website
+01:00 <@mids> open mic
+01:01 <@mids> .
+01:01 < Roto> .
+01:01 <@mids> nop is on the phone, but he might drop in
+01:01 <@mids> like you all know, rc2 has been 'almost there' for a long time
+01:01 <@mids> but it didnt work
+01:01 <@mids> now it does better :)
+01:01 <@mids> userx fixed some bugs with the end-end crypto
+01:02 <@mids> and with the 1.1 protocol
+01:02 <@mids> I tested it this weekend, and it works great
+01:02 <@mids> you can even do 2048 bit encryption etc
+01:02 <@mids> so, one step closer to the release
+01:02 <@mids> (heh we did say that often)
+01:02 <@mids> .
+01:03 < codeshark2> what is needed for the release? except the inform stuff?
+01:03 -!- codeshark is now known as nickthief53256
+01:03 -!- codeshark2 is now known as codeshark
+01:03 <@mids> only some minor things: fixup of the commandline help
+01:03 <@mids> manpage check
+01:04 <@mids> cant think about more
+01:04 -!- mode/#iip-dev [+o codeshark] by Trent
+01:04 <@codeshark> so, the source is ready
+01:04 <@mids> I'd say so
+01:05 <@codeshark> ok, i think we should create a build for internal testing then
+01:05 <@codeshark> .
+01:05 <@mids> ack (pending nops status)
+01:05 <@codeshark> and set up inform for the new protocol
+01:06 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: RC2
+01:06 <@mids> more rc2?
+01:06 <@codeshark> another thing we should discuss is: version numbers
+01:06 <@codeshark> why call it rc2 ;)
+01:06 <@codeshark> .
+01:06 <@mids> release candidate
+01:07 <@codeshark> yeah sure, but we changed a lot of stuff between rc1 and rc3
+01:07 <@codeshark> rc2
+01:07 <@mids> yes we did
+01:07 <@mids> it aint proper naming this way
+01:07 <@mids> based on the changes we should be at 1.3 now
+01:08 <@codeshark> yes
+01:08 <@codeshark> we could call it 1.3 RC-2 (and then make a final 1.3 soon)
+01:08 <@mids> nah
+01:09 <@mids> I'd say continue with the numbering like we do now
+01:09 <@mids> and in the future, release more often
+01:10 <@codeshark> ack
+01:10 <@mids> .
+01:10 <@codeshark> .
+01:10 <@mids> next thing: website
+01:10 <@mids> nop reviewed most text, some stuff is reworded
+01:11 <@mids> ellison (the designer) is now making a layout for the support page
+01:11 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: website
+01:11 <@mids> should be there in a week
+01:12 <@mids> the latest version of the site is on http://mids.student.utwente.nl/~mids/iip/www/
+01:12 <@mids> and in CVS ofcourse
+01:12 <@mids> .
+01:12 <@mids> site should be up soon too
+01:12 <@mids> .
+01:13  * mids hands the mic over to codeshark
+01:13 <@codeshark> nothing to add ;)
+01:13 <@codeshark> .
+01:13 <@mids> yes you do
+01:13 <@codeshark> i do?
+01:13 <@mids> tell em about your work with the public nodes
+01:13 <@codeshark> about the website?
+01:13 <@codeshark> ok
+01:13 <@mids> how you rescued 2000
+01:13 <@codeshark> 23
+01:14 <@codeshark> our inform server does very strict checking on the relay nodes: our list has been reduced to about 6 nodes
+01:15 <@codeshark> i disabled one of these checks to allow nodes to be down more often
+01:15 <@codeshark> and most important:
+01:15 <@codeshark> i rescued all nodes ever added to inform and checked if they're still up
+01:16 <@codeshark> now, we have 23 nodes in our list
+01:16 <@codeshark> .
+01:16 < _42> how are nodes added to inform?
+01:16 < nop> awesom
+01:16 < nop> when you announce
+01:16 < nop> it sends a message to inform
+01:17 <@codeshark> just for the statist guys here: i added 1125 hosts from the log
+01:17 < nop> you know that's a lot of downloads ;)
+01:18 <@codeshark> about 300 of them were valid (dns resolves...) and unique hosts
+01:18 <@codeshark> .
+01:18 <@mids> currently we have 9 nodes on the list... in about 5 days (after the inform testing) that will be 23 (if they keep up)
+01:18 <@mids> .
+01:19 <@codeshark> right now 22/23 are up
+01:19 <@codeshark> .
+01:19 -!- mids changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: hurray for the saviour of the public nodes
+01:20 < Roto> .
+01:20 <@mids> okay, I am out of agenda items
+01:20 < nop> rc2
+01:20 <@mids> maybe nop has something to add
+01:20 < nop> rc2 will be released with website release
+01:20 < nop> we will be spending this week thoroughly testing it from a developer's standpoint
+01:20 <@codeshark> nop: we should create an internal build of rc2 asap
+01:21 < nop> agreed
+01:21 < _42> What new features will be added to rc2?
+01:21 <@codeshark> so we can set up the network and test inform
+01:21 < nop> Perfect Forward Security
+01:21 < nop> 160 bit encryption end to end
+01:21 < nop> 1536 bit network id
+01:21 < nop> 2048 bit PFS keys
+01:21 <@codeshark> .
+01:21 < nop> and all around just general bug fixes
+01:21 < nop> I will get a changelog
+01:22 < nop> .
+01:23 <@mids> I guess its open microphone time
+01:24 <@mids> you can reread the chatlogs of this and the previous meetings on http://mids.student.utwente.nl/~mids/iip/
+01:24 <@mids> questions? (I know that Lorax had some... :)
+01:25 -!- Chocolate changed the topic of #iip-dev to: IIP meeting | logs: http://mids.student.utwente.nl/~mids/iip/ | Topic: open mic
+01:25 <@Chocolate> Lorax timed out
+01:25 <@mids> I know :)
+01:26  * Roto cheerleads
+01:26 <@Chocolate> I'd like to raise the issue of saner version numbers
+01:27 <@Chocolate> the feature changes from rc1 to rc2 where realy a minor version increment, not updates to a beta release
+01:30 <@mids> the updates got out of hand
+01:30 <@mids> for the common good.. but that is no excuse :)
+01:37 <+logger> official part is over, if you got more questions; ask here or in #iip
+01:37 <+logger> cya next week
+--- Log closed Wed Sep 18 01:37:46 2002
+</div>

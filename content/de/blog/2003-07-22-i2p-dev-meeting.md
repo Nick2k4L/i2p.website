@@ -1,8 +1,8 @@
 ---
-title: "I2P-Entwicklertreffen"
+title: "I2P-Entwicklermeeting"
 date: 2003-07-22
 author: "nop"
-description: "Protokoll der I2P-Entwicklungsbesprechung vom 22. Juli 2003."
+description: "I2P Entwicklungsbesprechungsprotokoll vom 22. Juli 2003."
 categories: ["meeting"]
 ---
 
@@ -12,6 +12,597 @@ categories: ["meeting"]
 
 <p class="attendees-inline"><strong>Anwesend:</strong> cohesion, hezekiah, jeet, jeremiah, jrand0m, mihi, nemesis, nop, thecrypto, wilde, Zwolly</p>
 
-## Sitzungsprotokoll
+## Besprechungsprotokoll
 
-<div class="irc-log"> --- Log geöffnet Tue Jul 22 15:56:06 2003 15:56 <@hezekiah> jrand0m: Alles klar! 15:56 -!- mode/#iip-dev [+o jrand0m] by hezekiah 15:56 <@cohesion> Logging aktiviert 15:56 <@jrand0m> w00t 15:56 <@nop> wir müssen cohesion hinzufügen und mids von der Dev-Liste entfernen 15:56 <@hezekiah> Exzellent. :) 15:56 <@hezekiah> Welche Dev-Liste? 15:56 <@cohesion> nop: ich habe CVS ausprobiert, aber es akzeptiert meinen User/Pass nicht 15:56 <@nop> ok, ich füge dich hinzu 15:56 <@nop> warte 15:56 <@nop> wie lautet deine sf ID 15:56 <@cohesion> cohesion 15:56 <@nop> pmsg mich, wenn du es brauchst 15:56 <@nop> ok 15:57 <@cohesion> glaube ich 15:57 -!- thecrypto [thecrypto@anon.iip] ist #iip-dev beigetreten 15:57 <@hezekiah> BTW, alle: Ich gehe etwa um 22:15. 15:57 <@hezekiah> UTC 15:57 <@cohesion> ja 15:57 <@cohesion> hezekiah: okay 15:58 <@nop> cohesion: du bist drin 15:58 <@nop> wir müssen die Website aktualisieren 15:58 <@cohesion> nop: okay 15:58 <@cohesion> nop: ich probiere es jetzt 15:58 <@nop> und wir müssen anfangen, das IIP mit einem I2P zu modellieren 15:58 < thecrypto> hey 15:58 < thecrypto> ich hab's geschafft 15:58 <@nop> ok 15:58 <@nop> werd 15:58 <@nop> ;) 16:00 <@hezekiah> jrand0m? Ich habe mir gerade deine Überarbeitung des 16:00 <@hezekiah> Entwicklungsplans angesehen. 16:01 <@jrand0m> si sr? 16:01 <@hezekiah> Das Diagramm mit den Balken und Linien wird auf 16:01 <@hezekiah> der rechten Seite abgeschnitten; ich kann den Rest nicht sehen. 16:01 <@jrand0m> ja, GanttProject ist nicht ganz perfekt, aber es ist besser 16:01 <@jrand0m> als es von Hand zu machen. 16:01 <@jrand0m> die Dinge ganz rechts sind die letzten Tasks - 16:01 <@jrand0m> danach kommt nichts mehr 16:01 <@hezekiah> Aber ich kann 16:01 <@jrand0m> die Aufgaben dort sind in Reihenfolge auf der 16:01 <@jrand0m> index-tasks.html aufgelistet 16:01 <@hezekiah> nicht einmal sehen, was die Aufgaben sind. 16:02 <@hezekiah> OK. :) Dann muss ich mich eben mit Text zufriedengeben. 16:02 <@hezekiah> nop: Fangen wir bald an? Ich muss um 22:15 UTC gehen, aber ich 16:02 <@hezekiah> würde gern so viel wie möglich von der Sitzung 16:02 <@hezekiah> mitbekommen. 16:02 <@jrand0m> lass mich sehen, ob ich eine große Aufgabe erstellen kann, um das zu beheben... 16:02 <@hezekiah> jrand0m: Danke. :) 16:03 <@nop> ja 16:03 <@nop> alles klar 16:03 <@nop> Tagesordnung 16:03 <@nop> 1) 16:03 <@nop> willkommen 16:03 <@nop> 2) 16:03 <@nop> Zukunft der Website 16:03 <@nop> 3) 16:03 <@nop> Bugfixes in 1.1 16:03 <@nop> 4) 16:03 <@nop> I2P 16:03 <@nop> 5) 16:03 <@nop> Vorschläge und Kommentare 16:03 <@nop> willkommen allerseits 16:04 <@nop> weiter zu Punkt 2 16:04 <@nop> Website 16:04 <@nop> cohesion, sind deine Website-Wartungs-Skills ausreichend? 16:04 <@cohesion> aye 16:04 <@cohesion> XHTML und CSS sind meine Spezialgebiete 16:04 <@nop> ok, wir gehen davon aus, dass du Website-Kram, Änderungen etc. machen kannst 16:04 <@nop> ok 16:04 <@cohesion> yep 16:05 <@cohesion> vorausgesetzt, ich bekomme CVS dazu, zu kooperieren :) 16:05 <@nop> einfach 16:05 <@nop> export CVS_RSH=ssh 16:05 <@nop> und benutze nicht pserver 16:05 <@nop> verwende d:ext 16:05 <@cohesion> ich benutze Gruntspud für das CVS-Interface 16:05 <@nop> ok 16:05 <@cohesion> das ist Teil meines Texteditors 16:05 <@cohesion> das sollte funktionieren 16:05 <@cohesion> darüber können wir später sprechen 16:05 <@cohesion> ich probiere es jetzt 16:05 -!- thecrypto [thecrypto@anon.iip] hat den Kanal verlassen [Ping timeout] 16:05 <@nop> wenn du Probleme hast, sag mir nach Möglichkeit sofort Bescheid, damit ich 16:05 <@nop> helfen kann, denn ich habe einen Haufen Tasks 16:06 <@nop> außerdem 16:06 <@nop> wir sollten eine I2P-Sektion einrichten 16:06 <@nop> da es das nächste große Projekt wird 16:06 <@nop> Ich spreche mit ellison, ob er ein bisschen seiner 16:06 <@nop> Webdesign-Skills für ein Template beisteuert 16:06 <@hezekiah> Soll I2P ein Abschnitt von invisiblenet.net sein oder 16:06 <@hezekiah> invisiblenet.net/iip? (Ich stimme für Ersteres.) 16:06 <@nop> und dann können wir das ausarbeiten 16:06 <@cohesion> ok 16:06 <@nop> ebenfalls Ersteres 16:06 <@jrand0m> Ersteres 16:06 <@nop> es würde unter Projects stehen 16:07 -!- thecrypto [~thecrypto@anon.iip] ist #iip-dev beigetreten 16:07 <@nop> iip ist ein Projekt 16:07 <@nop> i2p ist ein anderes 16:07 <@hezekiah> Also, invisiblenet.net/i2p 16:07 <@nop> ja 16:07 <@hezekiah> Genau. So sehe ich das auch. :) 16:07 <@nop> ist hier jemand gut im Logo-Design? 16:07 <@nop> Freiwillige sind willkommen 16:07 <@nop> einfach an die iip-dev-Liste schicken 16:07 <@nop> ok, weiter 16:07 <@nop> Bugfixes in 1.1 16:07 <@jrand0m> h/o 16:07 * hezekiah möchte darauf hinweisen, dass seine Fähigkeiten in GIMP 16:07 * hezekiah> zu meiden sind wie Massenvernichtungswaffen. 16:08 <@jrand0m> wäre es möglich, das i2p-Zeug vom Web fernzuhalten, 16:08 <@jrand0m> bis wir für die Beta bereit sind? 16:08 <@cohesion> ich schlage vor, dass wir das Wiki zur Zusammenarbeit an den i2p- 16:08 <@cohesion> Dokumenten verwenden 16:08 <@nop> ja 16:08 <@cohesion> ich kann einen eingeschränkten Bereich einrichten 16:08 <@nop> das ist möglich 16:08 <@hezekiah> jrand0m: Denkst du an eine große Knall-Ankündigung 16:08 <@hezekiah> auf /. oder so, sobald wir es in gutem Zustand haben? 16:08 <@nop> cohesion: Ich stimme zu 16:08 <@jrand0m> ja, hezekiah 16:08 <@jrand0m> word, cohesion 16:09 <@nop> ok 16:09 <@nop> schauen wir uns 1.1 mal kurz an 16:09 <@nop> hezekiah, du hast eine Entdeckung gemacht, die nichts mit 16:09 <@nop> Fokus zu tun hat? 16:09 <@nop> oder wie? 16:10 <@hezekiah> Der Code ist in Ordnung. 16:10 <@hezekiah> Das Problem ist die Kommunikation, nicht der Code. 16:10 <@hezekiah> Der Nutzer muss die Maus _innerhalb_ des 16:10 <@hezekiah> Dialogfensters bewegen. 16:10 < mihi> dem Dialog fehlt eine Fortschrittsanzeige, die Feedback gibt, wenn der 16:10 < mihi> Nutzer es richtig macht 16:10 <@nop> ja, das stimmt 16:10 <@hezekiah> Er kann die Maus _außerhalb_ des Dialogfensters 16:10 <@hezekiah> bewegen, bis er blau anläuft, aber es sammelt keine Entropie. (Genau das 16:10 <@hezekiah> machen diese Nutzer.) 16:10 <@nop> es fehlt tatsächlich ein Dialogfeld 16:11 <@hezekiah> Eine Fortschrittsanzeige wäre ein Plus. 16:11 <@hezekiah> Und sollte einigermaßen leicht zu implementieren sein ... wenn ich 16:11 <@hezekiah> das Wirrwarr, das der UI-Code in IIP ist, verstehen könnte. 16:11 <@cohesion> oder wenigstens etwas Feedback 16:11 <@hezekiah> Wie auch immer, ich habe meine Vorschläge an die Mailingliste geschickt. 16:12 <@nop> es ist in der Win32-API 16:12 <@nop> ;) 16:12 <@hezekiah> Entweder die Maus erfassen (ich konnte M$ nicht 16:12 <@hezekiah> dazu bringen, das mitzumachen), oder die Dialogmeldung so formulieren, dass der 16:12 <@hezekiah> Nutzer versteht, dass er die Maus _innerhalb_ des Dialogfensters bewegen muss. 16:12 <@hezekiah> nop: Ich weiß. 16:12 <@nop> schön, hezekiah, sei halt so :) 16:12 <@hezekiah> Was? 16:12 <@hezekiah> Was habe ich getan? 16:12 * hezekiah ist verwirrt 16:12 < thecrypto> wie wäre es, einfach das Dialogfenster zu maximieren? 16:12 <@nop> hezekiah: ich mache nur Spaß 16:13 <@hezekiah> nop: OK. :) 16:13 <@hezekiah> Wo ist UserX? Er kennt den IIP-UI-Code 16:13 <@hezekiah> besser als ich. 16:14 <@hezekiah> thecrypto: Was das Maximieren angeht, nun, der Nutzer mag 16:14 <@hezekiah> ein tollwütiges Dialogfenster, das den ganzen Bildschirm frisst, vielleicht nicht. 16:14 <@hezekiah> Mauseinfang ist ideal, aber wie gesagt, ich konnte 16:14 <@hezekiah> M$ nicht dazu bringen. 16:14 <@jrand0m> viele andere Apps fangen die Maus nicht ein 16:14 <@jrand0m> eine Statusleiste plus Erklärung scheint typisch 16:15 <@hezekiah> Jedenfalls ist das der 'Bug'. 16:15 <@hezekiah> Wie soll es behoben werden, nop? 16:15 <@nop> nun 16:15 <@nop> Ich denke, wenn möglich, könnten wir eine Anzeige haben, die 16:15 <@nop> das Sammeln von Entropie sichtbar macht 16:16 <@hezekiah> OK. 16:16 <@nop> und auf jeden Fall den Text verbessern. Hast du die 16:16 <@nop> Recherche zum Erfassen der Mausbewegungen ausgeschöpft? 16:16 <@hezekiah> Bis an die Grenze meiner Geduld. 16:16 <@hezekiah> Ernsthaft, was ich gemacht habe, _sollte_ funktionieren. 16:16 <@nop> Ich nehme an, das ist viel? 16:16 <@hezekiah> Nun, ich habe letzte Nacht nicht viel geschlafen. 16:17 <@nop> hmm 16:17 <@nop> versuchen wir, eine Anzeigeleiste und den Text zu fixen 16:17 <@nop> das gibt uns einen Eindruck 16:17 <@hezekiah> Da es nicht funktioniert, gehe ich davon aus, dass die M$-Dokus 16:17 <@hezekiah> mich anlügen (sehr gut möglich) oder im 16:17 <@hezekiah> IIP-UI-Code etwas 'Unbekanntes' passiert. 16:17 <@nop> richtig 16:17 <@hezekiah> Genau. :) 16:17 * hezekiah geht jetzt auf die Knie und betet, dass UserX 16:17 * hezekiah> UI-Code für eine Fortschrittsanzeige geschrieben hat. 16:19 <@nop> haha 16:19 <@nop> wenn nicht, geh zu planet-source-code.com 16:19 <@nop> dort gibt es viele Beispiele 16:19 <@hezekiah> Die Win32-API kriege ich hin (auch wenn ich sie verabscheue.) 16:19 <@nop> Ich hasse sie auch 16:19 <@hezekiah> Aber UserX/wer-auch-immer-das-ursprünglich-geschrieben-hat, hat einen Wrapper 16:19 <@hezekiah> darum gebaut. 16:19 <@hezekiah> Um den Wrapper mache ich mir Sorgen. 16:19 * nop programmiert gerade beruflich damit 16:19 <@hezekiah> Ich schaue mir das jetzt an. 16:20 <@hezekiah> Lass uns zum nächsten Tagesordnungspunkt übergehen. 16:20 -!- jeremiah-gym heißt jetzt jeremiah 16:20 <@nop> ok 16:20 <@nop> nächster Punkt ist i2p 16:20 < jeremiah> hi 16:20 <@nop> hi 16:20 <@nop> jrand0m, du fängst an 16:20 <@hezekiah> jeremiah: Gerade rechtzeitig! 16:20 < jeremiah> hezekiah: nop und ich sind seltsam zeitsynchron, wie du 16:20 < jeremiah> noch lernen wirst 16:20 <@jrand0m> 'k, hatten alle die Gelegenheit, sich die Roadmap anzusehen? 16:21 <@hezekiah> Ja. 16:21 <@jrand0m> sie ist natürlich ein Entwurf, und die Dinge nach dem 1.0-Meilenstein 16:21 <@jrand0m> sind weitgehend offen, aber es ist ein Ausgangspunkt 16:21 <@jrand0m> Ich habe sie über das in der Liste hinaus aktualisiert, um 16:21 <@jrand0m> aufzunehmen, dass hezekiah auf die C-API aufspringt (w00t!) 16:22 -!- jeet [~miteymous@anon.iip] ist #iip-dev beigetreten 16:22 <@jrand0m> im Grunde werden wir nach diesem Freitag die API- 16:22 <@jrand0m> Protokollspezifikation fertig haben, was bedeutet, dass wir vieles parallelisieren können 16:22 < jeet> hallo ;) 16:22 <@jrand0m> 'lo jeet 16:22 < jeet> hey, wenn ich einen Server aufsetze, kann ich anon.iip 16:22 < jeet> in irgendetwas ändern, was ich will 16:22 <@jrand0m> spontane Bauchfrage: Wie wahnsinnig klingt die r2-Roadmap? 16:22 <@jrand0m> Sind die Zeitpläne irre, fehlen Dinge, ist etwas in der 16:22 <@jrand0m> falschen Reihenfolge oder sind Abhängigkeiten nicht dargestellt? 16:22 <@nop> ja 16:22 < jeet> kewl 16:23 <@hezekiah> jrand0m: Ich würde zustimmen, dass das Ganze verrückt ist. 16:23 <@hezekiah> Allerdings denke ich, dass es (bis ich zur Uni gehe) machbar sein sollte. 16:23 <@jrand0m> heh 16:23 < jeet> das ist eine sehr coole Sache, die ihr gemacht habt ;X 16:23 <@hezekiah> Obwohl ich nicht sicher bin, dass nop und UserX dieses IRC- 16:23 <@hezekiah> Protokoll selbst in 21 Tagen designen können. 16:23 <@hezekiah> nop: ;-) 16:23 <@nop> nein 16:23 <@jrand0m> ok, du gehst Ende August zur Uni? Mitte August? Wann 16:23 <@jrand0m> sollen wir dich mit weniger Aktivität einplanen? 16:23 <@hezekiah> So um den 20. August bin ich weg. 16:23 <@hezekiah> weg. 16:24 <@jrand0m> 'k 16:24 <@hezekiah> Bis dahin bin ich ein tollwütiger Nermal! :) 16:24 < jeremiah> Ich bin etwa zur gleichen Zeit weg 16:24 < jeremiah> (an die Uni) 16:25 <@nop> ok 16:25 <@jrand0m> also müssen wir mehr Ressourcen für die Aufgabe 'IRC 16:25 <@jrand0m> implementieren' bekommen oder die Aufgabe einfach aus dem 1.0-Release streichen 16:25 <@hezekiah> Ich würd 16:25 <@hezekiah> würde das 1.0-Release nicht von IRC abhängig machen. 16:25 <@nop> Ich glaube, wir müssen die Aufgabe verschieben 16:25 < jeet> [17:23] -anon.iip- CTCP (außer ACTION) und DCC sind 16:25 < jeet> deaktiviert <- wie kann ich verhindern, dass das alle 3 Minuten aufpoppt? 16:25 <@hezekiah> Macht IRC, aber lasst i2p 1.0 rauskommen, wenn es fertig ist. 16:26 < thecrypto> wow, ich bin halb durchs Studium, während zwei andere gerade 16:26 < thecrypto> anfangen :) 16:26 <@jrand0m> lol 16:27 <@jrand0m> Ich stimme zu, hezekiah 16:27 <@hezekiah> Cool. Ich glaube immer noch, dass i2p seine eigene Killer-App sein wird. 16:27 <@jrand0m> also bedeutet das im Grunde, dass I2P 1.0 nach 16:27 <@jrand0m> August nur noch einen Monat Debugging und Dokumentation braucht, um von Alpha zu 16:27 <@jrand0m> Beta zu 1.0 zu kommen 16:28 <@jrand0m> hezekiah> definitiv. Wir müssen zuerst eine Demo-App 16:28 <@jrand0m> darauf herausbringen – klingt eine Instant-Messenger-App + Dateiübertragung dafür 16:28 <@jrand0m> gut? 16:28 -!- jeet [~miteymous@anon.iip] hat den Kanal verlassen [ircN 7.27 + 7.0 for mIRC 16:28 <@jrand0m> (2002/01/10 00.00)] 16:28 <@hezekiah> Nun, du sagst es am besten: 'Demo'. Aus meiner Sicht 16:28 <@hezekiah> muss sie nichts Besonderes sein. Sie muss nur beweisen, dass das Netzwerk es wert 16:28 <@hezekiah> ist, darauf zu entwickeln. 16:29 <@hezekiah> Also wäre der IM-Client meiner Meinung nach eine gute Demo. 16:29 < Zwolly> Dateiübertragung ist etwas, das ich wirklich gern sehen würde, also 16:29 < Zwolly> gib mir eine Demo 16:29 <@hezekiah> Zwolly: lol 16:29 <@nop> ja 16:29 < Zwolly> und sieh mich als einen "normalen" Nutzer 16:30 <@hezekiah> Zwolly: Du kannst unser Versuchskaninchen sein! ;-) 16:30 * hezekiah beginnt, in seinem Labor giftigen Code zu mixen. ;-) 16:30 < Zwolly> hmmm lecker 16:31 <@jrand0m> ok, eine letzte Sache zu i2p 16:31 <@nop> klar 16:32 <@jrand0m> nop> gibt es eine Chance, dass wir einen nicht-SourceForge, vertrauenswürdigen 16:32 <@jrand0m> CVS-Server bekommen? 16:32 <@jrand0m> SourceForge hat mehr Probleme als die Prüfungen dieser College- 16:32 <@jrand0m> studenten 16:32 <@nop> ja 16:32 <@nop> Ich organisiere das und habe es bis nächste Woche am Laufen 16:32 <@jrand0m> großartig. danke 16:32 <@nop> außerdem 16:32 <@nop> ich kann vielleicht eine Compile-Farm besorgen 16:32 <@nop> die nicht bei sf ist 16:32 <@nop> mit VPN-Zugang dazu 16:32 <@hezekiah> Compile-Farm!? 16:32 <@jrand0m> Compile-Farm? bah, wir können einfach ant laufen lassen :) 16:32 <@hezekiah> jrand0m: Nicht aller Code ist Java. 16:32 <@hezekiah> Ich persönlich liebe Compile-Farms. 16:32 <@hezekiah> :) 16:32 <@jrand0m> ant == make. es kann gcc / etc 16:32 <@nop> hezekiah: schick mir eine Liste brauchbarer Plattformen, auf denen wir 16:32 <@nop> testen müssen 16:32 <@jrand0m> 'k, wenn wir wirklich die CPU-Power einer Compile-Farm 16:32 <@jrand0m> brauchen, ist das großartig 16:33 < wilde> welche Lizenz wollt ihr verwenden? 16:33 <@nop> GPL 16:33 <@jrand0m> Ist GPL für alle okay? 16:33 < wilde> k nice 16:33 <@hezekiah> Ich bin sehr pro GPL. 16:33 <@hezekiah> Aber eine Warnung 16:33 <@hezekiah> Für die APIs werden wir wahrscheinlich LGPL brauchen. Andernfalls 16:33 <@hezekiah> MÜSSEN alle Programme, die für dieses Netzwerk geschrieben werden, GPL sein 16:33 <@jrand0m> wir wollen vielleicht später auf LGPL gehen 16:33 <@jrand0m> ja 16:33 <@jrand0m> wir dürfen NICHT verlangen, dass alle Apps, die I2P nutzen, GPL-lizenziert sind 16:33 <@hezekiah> Also sollte der router GPL sein, aber die APIs werden 16:33 <@hezekiah> irgendwann wahrscheinlich LGPL sein müssen. 16:33 <@hezekiah> jrand0m: Dann brauchen wir eine LGPL-API. 16:33 <@hezekiah> Das einzige Problem dabei ist, ein gutes Crypto- 16:33 <@hezekiah> Kit für C zu bekommen, das mit LGPL kompatibel ist. 16:33 <@hezekiah> Ich glaube nicht, dass Cryptlibs Sleepycat-Lizenz das ist. 16:33 <@hezekiah> Ich könnte dem Autor mailen und um eine Ausnahme o. Ä. 16:33 <@hezekiah> bitten, wenn es soweit ist. 16:33 <@jrand0m> hezekiah> nicht müssen, wollen. Die API-Kommunikationsschicht wird eine 16:33 <@jrand0m> offene Spezifikation sein, sodass jeder seine eigene schreiben kann und nicht gegen unsere 16:33 <@jrand0m> Bibliotheken linken muss 16:33 <@hezekiah> Genau. 16:33 <@nop> richtig 16:33 <@hezekiah> Also können wir vorerst sogar GPL-APIs machen, wenn nötig. 16:34 <@hezekiah> OK, eine Frage an jrand0m: 16:34 < jeremiah> aber wir sollten versuchen, so bald wie möglich nicht-virale zu haben 16:34 <@hezekiah> Ich stimme zu. 16:34 < wilde> http://www.virtualunlimited.com/products/beecrypt/ 16:34 < wilde> Bee Crypt ist LGPL, ich habe es einmal benutzt 16:34 <@hezekiah> wilde: Beecrypt liegt leider weit unter dem, was benötigt wird 16:34 <@hezekiah> leider. 16:34 <@nop> ja 16:34 <@nop> Ich glaube nicht, dass wir eine Crypto-Lib wie Beecrypt verwenden sollten 16:34 <@jrand0m> word, wilde 16:34 <@cohesion> hezekiah: es gibt tonnenweise Kryptocode in 16:34 <@cohesion> GnuPrivacyGuard, der alles GPL ist 16:34 <@cohesion> du könntest prüfen, woher er stammt 16:34 <@hezekiah> cohesion: Das Problem ist, dass wir eine LGPL-C-API brauchen, die 16:34 <@hezekiah> Crypto verwendet. 16:34 <@hezekiah> Ich kläre das, wenn ich soweit bin. 16:34 <@hezekiah> Fürs Erste habe ich zwei Fragen an jrand0m: (Es ist auf 16:34 <@hezekiah> eine mehr gestiegen!) :) 16:34 <@jrand0m> wir haben viele Optionen. Wir kriegen das hin 16:34 <@jrand0m> heh, schieß los 16:34 <@hezekiah> 1.) Wenn die Client-API-Spezifikation am 25. fertig ist, wird 16:34 <@hezekiah> sie die Byte-für-Byte-Struktur der über das 16:34 <@hezekiah> Netzwerk gesendeten Nachrichten detaillieren, und wird sie die Details, wie die Crypto 16:34 <@hezekiah> implementiert ist, beschreiben? 16:35 -!- ion [ion@anon.iip] ist #iip-dev beigetreten 16:35 <@jrand0m> ja 16:35 <@hezekiah> 2.) Werden wir Twofish verwenden? ;-) 16:35 <@jrand0m> nein, wahrscheinlich AES, es sei denn, jemand hat einen wirklich guten Grund 16:35 <@hezekiah> jrand0m: War das ein Ja zu beiden Fragen, oder nur 16:35 <@hezekiah> zu Frage 1? 16:35 -!- nemesis [nemesis@anon.iip] ist #iip-dev beigetreten 16:35 <@hezekiah> OK. 16:35 <@jrand0m> hezekiah> Ja zu beiden 16:35 <@nop> nun 16:35 < nemesis> uuuh, seit wann gibt es hier ops? :) 16:35 <@hezekiah> nemesis: Die englische Struktur dieses Satzes war 16:35 <@hezekiah> zu verstümmelt, als dass ich ihn entziffern könnte. Möchtest du deine 16:35 <@hezekiah> Frage neu formulieren? 16:35 <@jrand0m> was ist an Twofish besonders? Warum nicht den 16:35 <@jrand0m> Advanced Encryption Standard nehmen? 16:35 <@hezekiah> nop: Warte ... :) 16:35 * jrand0m hält inne 16:35 <@nop> Ich wäre dafür, dass wir eine Suite von Verschlüsselungsoptionen haben 16:35 <@nop> nicht nur AES 16:35 <@nop> Es gibt Ansichten zu AES, bei denen sich manche 16:35 <@nop> unwohl fühlen 16:35 <@nop> und lieber Twofish etc. nehmen würden 16:35 <@nop> also vielleicht können wir das auswählbar machen 16:35 < wilde> macht beides :) 16:35 <@nop> ja 16:35 <@nop> wilde: genau 16:35 <@jrand0m> nop> Suiten würden bedeuten, dass nicht jeder 16:35 <@jrand0m> jedem Nachrichten schicken kann 16:35 < jeremiah> müsste dann nicht jeder router beides unterstützen? 16:35 < jeremiah> das scheint schmerzhaft 16:35 <@jrand0m> beides zu unterstützen ist definitiv der Fall für die Transportschicht, 16:35 <@jrand0m> wo Dinge verhandelt werden können 16:35 <@nop> nicht wirklich 16:35 <@nop> Dann wäre ich nicht mit AES einverstanden 16:35 <@nop> wenn du paranoid bist 16:35 <@hezekiah> Richtig. Aber lass uns versuchen, Dinge, die 16:35 <@hezekiah> schwächer werden wie 3DES, nicht mit aufzunehmen. 16:35 <@hezekiah> Eine Kette ist nur so stark wie ihr schwächstes Glied. 16:35 <@nop> dann wirst du verstehen, warum 16:35 <@nop> mit den US-Regierungszulassungen 16:36 <@jrand0m> Ich unterstütze AES nicht, weil es Regierungszulassung hat, ich 16:36 <@jrand0m> unterstütze AES, weil es die Zustimmung von Kryptographen, Wissenschaftlern und 16:36 <@jrand0m> Mathematikern hat. 16:36 <@jrand0m> wenn es etwas Besseres gibt, nehmen wir das. 16:36 <@jrand0m> aber ich will nicht etwas nehmen, nur weil es 16:36 <@jrand0m> anders ist 16:36 <@nop> aber die Zustimmung zu Twofish ist unter 16:36 <@nop> Kryptographen ebenfalls stark 16:36 <@hezekiah> Nun, die letzten drei AES-Kandidaten waren Rijndael, 16:36 <@hezekiah> Twofish und Serpent. 16:36 <@nop> genau 16:36 <@hezekiah> Rijndael war der schnellste. 16:36 <@hezekiah> Persönlich habe ich mehr Vertrauen in Twofish als 16:36 <@hezekiah> in Rijndael. 16:36 <@jrand0m> nop, ich glaube, ich habe dich sagen hören, es gäbe Probleme mit 16:36 <@jrand0m> Serpent? 16:36 < wilde> verwendet mehrere Ebenen von Verschlüsselung, wenn ihr CPU dafür habt 16:36 <@jrand0m> wilde> die wird es geben, aber das betrifft einen anderen Aspekt 16:36 <@jrand0m> der Dinge. 16:36 <@nop> ich sage nur, dass wir beides unterstützen könnten 16:36 <@nop> schadet nicht 16:36 <@jrand0m> tatsächlich schadet es 16:36 <@jrand0m> Segmentierungsangriff 16:36 < wilde> ok, Twofish in AES gewickelt könnte Overkill sein 16:36 <@nop> haha 16:36 <@nop> nicht Twofish in AES gewickelt 16:36 < jeremiah> sollten wir jeden Transport so standardisieren, dass er ein 16:36 < jeremiah> spezifisches Set an Eigenschaften hat (Netzwerk-Setup, Verschlüsselung)? 16:36 <@nop> gut, der Argumentation zuliebe 16:36 <@nop> nehmen wir Rijndael für diesen Teil 16:36 < jeremiah> und dann könnten wir einen TCP-Transport mit 16:36 < jeremiah> AES unterstützen, einen mit Twofish, aber nicht einen, der beides jonglieren muss? 16:36 <@jrand0m> jeremiah> ja, bestimmte Transports werden 16:36 <@jrand0m> bestimmte Eigenschaften haben, aber wir sprechen gerade über die Ende-zu-Ende-Nachrichten- 16:36 <@jrand0m> krypto, die in der API gemacht wird 16:36 <@nop> lass uns Ende-zu-Ende AES machen 16:36 < jeremiah> ah 16:36 <@nop> und dann Knoten-zu-Knoten Twofish als Option 16:37 <@nop> und wenn möglich, nimm den AES-Counter-Mode 16:37 <@jrand0m> 'k, klingt gut. Wir können später 16:37 <@jrand0m> vor dem Release immer noch ändern (während Peer Review, etc) 16:37 < wilde> aber alle Krypto-Algorithmen sind in der Vergangenheit gescheitert; mit 16:37 < wilde> doppelter Verschlüsselung würde man zumindest Zeit gewinnen, falls es einen Krypto- 16:37 < wilde> Durchbruch gibt 16:37 < jeremiah> nicht wirklich 16:37 <@jrand0m> wilde> die wirklich Paranoiden können vor dem Senden 16:37 <@jrand0m> von Nachrichten über das I2P-Netzwerk mit ihrem eigenen System verschlüsseln 16:37 <@hezekiah> wilde: Wenn ein Algorithmus als schwach erkannt wird, werden wir 16:37 <@hezekiah> ihn ersetzen. 16:37 <@jrand0m> I2P wird einfach transparent verschlüsseln 16:37 < wilde> jrand0m: ja, du hast recht, es sollte Grenzen für 16:37 < wilde> Paranoia geben 16:38 <@nop> ja 16:38 <@nop> wir könnten den ganzen Tag 16:38 <@nop> darüber diskutieren 16:38 <@nop> AES Ende-zu-Ende 16:38 <@jrand0m> ok, ich habe nichts Weiteres zu I2P-Themen 16:38 <@nop> Twofish und andere Knoten-zu-Knoten 16:38 <@jrand0m> coo' 16:38 <@jrand0m> noch etwas zu I2P, oder sind wir beim nächsten Tagesordnungspunkt? 16:38 <@hezekiah> Ich bin durch. :) 16:38 < wilde> wie steht's mit A2A, anonymous 2 anonymous? 16:38 <@hezekiah> I 16:38 <@hezekiah> Ich habe das noch nie gehört. Wovon sprichst du, 16:38 <@hezekiah> wilde? 16:38 <@jrand0m> I2P ist 'anonymous to anonymous'-Kommunikation 16:38 <@jrand0m> I2P = "Invisible Internet Project" 16:38 < nemesis> jrand0m: kannst du die Roadmap als Attachment schicken und 16:38 < nemesis> nicht inline? 16:38 <@jrand0m> (lass uns nicht I^2P sagen) 16:38 <@nop> Hushmail hat einen verschlüsselten Messenger 16:38 <@nop> nett 16:38 <@jrand0m> nemesis> hmm, ich habe es versucht - Hushmail meinte, es sei 16:38 <@jrand0m> angehängt :/ 16:38 <@hezekiah> nemesis: Ich habe es als Anhang bekommen. 16:38 <@jrand0m> nemesis> du kannst von 16:38 <@jrand0m> http://article.gmane.org/gmane.comp.security.invisiblenet.iip.devel/290 laden 16:38 < nemesis> sorry, ich kann es nicht copy&amp;paste'n 16:38 <@hezekiah> nemesis: Vielleicht ist dein Mailreader das Problem? (Er 16:38 <@hezekiah> hat es als ZIP-Datei geschickt.) 16:38 < nemesis> es ist inline 16:38 < nemesis> da ist eine ZIP-Datei... 16:38 -!- UserX [~User@anon.iip] ist #iip-dev beigetreten 16:38 <@jrand0m> 'lo userx 16:38 < nemesis> -Hush_boundarfy-31fda3d62329b 16:38 <@nop> hat das jemand geloggt 16:38 < nemesis> Content-Transfer-Encoding: base64 16:38 <@hezekiah> cohesion sollte es. 16:38 <@jrand0m> Ich logge alles IRC 16:38 <@cohesion> ich habe alles 16:38 < thecrypto> ja 16:38 <@jrand0m> word 16:38 < Zwolly> mein ISP loggt auch den ganzen IRC-Chat, was ist neu 16:38 <@jrand0m> lol Zwolly 16:38 < Zwolly> hehe 16:38 <@hezekiah> Zwolly: Dein ISP wird hiervon keine Logs haben. :) 16:38 < Zwolly> ich hoffe nicht; falls doch, macht ihr einen lausigen Job 16:38 <@hezekiah> lol 16:39 <@hezekiah> Also nehme ich an, wir gehen jetzt zum nächsten Tagesordnungspunkt 16:39 <@hezekiah> über, da wir eine Weile nicht mehr über i2p gesprochen haben. 16:39 <@nop> ja 16:39 <@nop> Kommentare 16:39 <@nop> Vorschläge 16:39 <@jrand0m> wir sollten mal, so, Drogen nehmen, Mann 16:39 <@hezekiah> jrand0m: Sorry. Ich weigere mich, einen guten Verstand mit solchen 16:39 <@hezekiah> Substanzen zu ruinieren. 16:39 < wilde> Frage: Ist der Release-Plan nicht etwas optimistisch 16:39 < wilde> ? 16:39 <@hezekiah> wilde: lol. Nun, mein Begriff wäre 'wahnsinnig'. Aber ich 16:39 <@hezekiah> denke, es könnte machbar sein. 16:39 <@jrand0m> wilde> gute Frage. Er sollte plausibel sein, und wenn 16:39 <@jrand0m> Entwickler darauf Aufgaben anpassen wollen, an denen sie arbeiten, tun wir das. 16:39 < thecrypto> wir schaffen das! 16:39 <@jrand0m> go TEAM! 16:39 < wilde> hoch zielen ist gut, aber es sollte realistisch 16:39 < wilde> sein – habt ihr genug Zeit für das eigentliche Programmieren? 16:39 * jrand0m hat seinen Job gekündigt, um daran zu arbeiten, und ein paar Leute haben 16:39 * jrand0m> bald Sommerferien 16:39 < wilde> ich meine September–Oktober, das sind so 60–90 Tage 16:39 < wilde> ok, das klingt gut 16:39 <@jrand0m> aber glaubt uns nicht. Wir veröffentlichen, wenn es fertig ist. 16:39 <@hezekiah> jrand0m: BTW, da du deinen Job gekündigt hast, wie wirst du 16:39 <@hezekiah> essen, während du das hier codest? 16:39 < jeremiah> wilde: wir werden vieles davon in 16:39 < jeremiah> Hochsprachen implementieren und später in C neu codieren 16:39 <@jrand0m> hezekiah> Ich esse Code 16:39 <@hezekiah> Ich hatte Angst, dass du so etwas sagst. 16:39 <@jrand0m> ;) 16:39 <@hezekiah> Ich hoffe nur, du hast ein gutes Polster zum Leben. 16:39 < jeremiah> jrand0m: mein Code isst Zufallszahlen 16:39 < jeremiah> das könnte eine schlechte Schleife ergeben 16:39 <@hezekiah> ROTFL! 16:39 < wilde> Java trinken, Python essen, geröstete ant, geht 16:39 <@jrand0m> aber Bugs haben viel Protein 16:39 * jrand0m !thwaps self 16:39 <@jrand0m> ok, haben wir noch andere Fragen / Kommentare / 16:39 <@jrand0m> Vorschläge? 16:39 <@hezekiah> Nun, ich muss jetzt gehen. 16:39 <@hezekiah> Tschüss zusammen. :) 16:39 <@jrand0m> oder sind wir tatsächlich in weniger als einer Stunde fertig? 16:39 -!- hezekiah [hezekiah@anon.iip] hat den Kanal verlassen [Client exiting] 16:39 <@jrand0m> lol wilde 16:39 <@jrand0m> nop> hast du noch was oder sind wir durch? 16:40 -!- UserX [~User@anon.iip] hat den Kanal verlassen [Ping timeout] 16:40 -!- wilde [anon@anon.iip] hat den Kanal verlassen [] 16:40 <@cohesion> ok, ich beende das Meeting 16:40 < nemesis> STOP! 16:40 <@cohesion> nop: ich melde mich morgen bei dir wegen CVS 16:40 * jrand0m stoppt 16:40 < nemesis> ganttproject-1.9.7.jar 16:40 <@cohesion> LOS! 16:40 < nemesis> wie funktioniert das? 16:40 <@nop> ok 16:40 <@nop> außerdem 16:40 <@nop> aes 16:40 <@jrand0m> nemesis> einfach mit Java 1.4.2 doppelklicken, 16:40 <@jrand0m> wenn installiert 16:40 <@nop> wir sollten 256 bit als Norm verwenden 16:40 < nemesis> ich habe Java 1.4.2... 16:40 <@jrand0m> nemesis> Ich maile das XML mit den Projektinfos herum 16:40 <@jrand0m> word, nop, definitiv 16:40 < nemesis> Could not find the main class. Program will exit! 16:40 < nemesis> hm.. ich glaube, mein Java ist kaputt.... Fenstertitel: 16:40 < nemesis> Java Virtual Machine Launcher... 16:40 <@jrand0m> seltsam, nemesis, bei mir geht's... stell sicher, dass es 16:40 <@jrand0m> mit der 1.4.2-JVM startet und nicht mit der Windows-JVM 16:40 <@jrand0m> ah, versuch es von der cmd.exe-Eingabeaufforderung zu starten 16:40 < nemesis> hä? 16:40 < nemesis> k 16:40 < nemesis> dann schreibe ich eine .bat dafür, wie für Columba :) 16:40 <@cohesion> ok, ich schließe die Logs 16:40 <@jrand0m> (und tippe zuerst java -version, um sicherzustellen, dass es die 16:40 <@jrand0m> richtige verwendet) 16:40 <@jrand0m> heh word 16:40 <@cohesion> alle sagen "cheese" 16:40 <@jrand0m> queso 16:40 < thecrypto> cheese 16:40 < Zwolly> chesse 16:40 < Zwolly> cheese 16:40 < nemesis> E:\Sytemprogramme\server\Projektverwaltung>java 16:40 < nemesis> ganttproject-1.9.7.jar 16:40 < nemesis> Exception in thread "main" 16:40 < nemesis> java.lang.NoClassDefFoundError: ganttproject-1/9/7/ja 16:40 < nemesis> r 16:40 <@jrand0m> java -jar ganttproject-1.9.7.jar 16:40 < nemesis> java version "1.4.2-beta" 16:40 < nemesis> Java(TM) 2 Runtime Environment, Standard Edition (build 16:40 < nemesis> 1.4.2-beta-b19) 16:40 < nemesis> Java HotSpot(TM) Client VM (build 1.4.2-beta-b19, mixed 16:40 < nemesis> mode) 16:40 < nemesis> hm... warum mit -jar? 16:40 < nemesis> jetzt funktioniert's... 16:40 -!- ion [ion@anon.iip] hat den Kanal verlassen [Ping timeout] 16:40 < nemesis> thx jrand0m 16:40 <@jrand0m> ohne -jar weist es an, die Klasse zu laden 16:40 <@jrand0m> ganttproject-1/9/7/jar 16:40 <@jrand0m> np 16:40 < jeremiah> funktioniert cvs? 16:40 < jeremiah> ich habe heute früher ausgecheckt, aber jetzt ist es merkwürdig 16:40 <@jrand0m> SourceForge nervt gerade atm --- Log geschlossen Tue Jul 22 17:18:14 2003 </div>
+<div class="irc-log">
+--- Log opened Tue Jul 22 15:56:06 2003
+15:56 <@hezekiah> jrand0m: Righto!
+15:56 -!- mode/#iip-dev [+o jrand0m] by hezekiah
+15:56 <@cohesion> log enabled
+15:56 <@jrand0m> w00t
+15:56 <@nop> we need to add cohesion and remove mids on dev list
+15:56 <@hezekiah> Excelent. :)
+15:56 <@hezekiah> What dev list?
+15:56 <@cohesion> nop: i tried CVS and it wouldn't accept my user/pass
+15:56 <@nop> ok, I'll add you
+15:56 <@nop> hold
+15:56 <@nop> what is your sf id
+15:56 <@cohesion> cohesion
+15:56 <@nop> pmsg me if you need
+15:56 <@nop> ok
+15:57 <@cohesion> i think
+15:57 -!- thecrypto [thecrypto@anon.iip] has joined #iip-dev
+15:57 <@hezekiah> BTW, everyone I will be leaving around 22:15.
+15:57 <@hezekiah> UTC
+15:57 <@cohesion> yea
+15:57 <@cohesion> hezekiah: okay
+15:58 <@nop> cohesion: you're in
+15:58 <@nop> we need to update website
+15:58 <@cohesion> nop: okay
+15:58 <@cohesion> nop: i'll try it now
+15:58 <@nop> and we need to start modelling the IIP with an I2P
+15:58 < thecrypto> hey
+15:58 < thecrypto> i made it
+15:58 <@nop> ok
+15:58 <@nop> werd
+15:58 <@nop> ;)
+16:00 <@hezekiah> jrand0m? I just looked at your revision to the
+16:00 <@hezekiah> development schedual.
+16:01 <@jrand0m> si sr?
+16:01 <@hezekiah> The graph with the bars and lines gets chopped off at
+16:01 <@hezekiah> the right hand side; I can't see the rest of it.
+16:01 <@jrand0m> yeah, ganttproject isn't quite perfect, but its better
+16:01 <@jrand0m> than doing it by hand.
+16:01 <@jrand0m> the things at the far right are the last tasks -
+16:01 <@jrand0m> nothing is after them
+16:01 <@hezekiah> But I can
+16:01 <@jrand0m> the tasks there are listed, in order, on the
+16:01 <@jrand0m> index-tasks.html
+16:01 <@hezekiah> can't even see what the tasks are.
+16:02 <@hezekiah> OK. :) I'll just have to settle for text.
+16:02 <@hezekiah> nop: Are we going to start soon? I'm going to have to
+16:02 <@hezekiah> leave at 22:15 UTC, but I'd like to catch as much of the meeting as
+16:02 <@hezekiah> possible.
+16:02 <@jrand0m> let me see if I can make a big task to fix that...
+16:02 <@hezekiah> jrand0m: Thanks. :)
+16:03 <@nop> yes
+16:03 <@nop> alright
+16:03 <@nop> agenda
+16:03 <@nop> 1)
+16:03 <@nop> welcome
+16:03 <@nop> 2)
+16:03 <@nop> Website future
+16:03 <@nop> 3)
+16:03 <@nop> bug fixes with 1.1
+16:03 <@nop> 4)
+16:03 <@nop> I2P
+16:03 <@nop> 5)
+16:03 <@nop> Suggestions and comments
+16:03 <@nop> welcome all
+16:04 <@nop> moving to 2
+16:04 <@nop> website
+16:04 <@nop> cohesion, are your maintanance website skills up to par?
+16:04 <@cohesion> aye
+16:04 <@cohesion> XHTML and CSS are my specialties
+16:04 <@nop> ok, we are assuming you can do website stuff, changes etc
+16:04 <@nop> ok
+16:04 <@cohesion> yep
+16:05 <@cohesion> granted that i can get CVS to cooperate :)
+16:05 <@nop> easy
+16:05 <@nop> export CVS_RSH=ssh
+16:05 <@nop> and don't use pserver
+16:05 <@nop> use d:ext
+16:05 <@cohesion> i'm using gruntspud to CVS interfacing
+16:05 <@nop> ok
+16:05 <@cohesion> it's part of my text editor
+16:05 <@cohesion> it should work
+16:05 <@cohesion> we can talk about that later though
+16:05 <@cohesion> i'm trying it now
+16:05 -!- thecrypto [thecrypto@anon.iip] has quit [Ping timeout]
+16:05 <@nop> if you have issues let me know right away if you can, so I
+16:05 <@nop> can assist this because I have a bunch of tasks
+16:06 <@nop> also
+16:06 <@nop> we need to look at making an I2P section
+16:06 <@nop> since it's going to be the next big project
+16:06 <@nop> I'll talk to ellison to see if he's contribute a bit of his
+16:06 <@nop> web design skills to add to that for a template
+16:06 <@hezekiah> Should I2P be a section of invisiblenet.net or
+16:06 <@hezekiah> invisiblenet.net/iip? (I vote for the former.)
+16:06 <@nop> and we can get that hashed out
+16:06 <@cohesion> ok
+16:06 <@nop> former as well
+16:06 <@jrand0m> former
+16:06 <@nop> it would be under projects
+16:07 -!- thecrypto [~thecrypto@anon.iip] has joined #iip-dev
+16:07 <@nop> iip is one project
+16:07 <@nop> i2p is another
+16:07 <@hezekiah> So, invisiblenet.net/i2p
+16:07 <@nop> yes
+16:07 <@hezekiah> Right. That's the way I see it too. :)
+16:07 <@nop> anyone here good at making a logo?
+16:07 <@nop> volunteers are welcome
+16:07 <@nop> just submit to iip-dev list
+16:07 <@nop> ok moving on
+16:07 <@nop> bug fixes in 1.1
+16:07 <@jrand0m> h/o
+16:07 * hezekiah would like to point out that his skills at the GIMP are
+16:07 * hezekiah> to be avoided like WMD.
+16:08 <@jrand0m> would it be possible to keep the i2p stuff off the web
+16:08 <@jrand0m> until we're ready for beta?
+16:08 <@cohesion> i suggest we use the wiki for collaborating on the i2p
+16:08 <@cohesion> documents
+16:08 <@nop> yes
+16:08 <@cohesion> i can set up a restricted area
+16:08 <@nop> that's possible
+16:08 <@hezekiah> jrand0m: Are you thinking of a big smash announcement
+16:08 <@hezekiah> on /. or something once we have it in good order?
+16:08 <@nop> cohesion: I concur
+16:08 <@jrand0m> yes hezekiah
+16:08 <@jrand0m> word cohesion
+16:09 <@nop> ok
+16:09 <@nop> let's look at 1.1 for a sec
+16:09 <@nop> hezekiah you made a discovery, that has not to do with
+16:09 <@nop> focus?
+16:09 <@nop> or what?
+16:10 <@hezekiah> The code is fine.
+16:10 <@hezekiah> The problem is communication, not code.
+16:10 <@hezekiah> The user has to move the mouse aroung _inside_ the
+16:10 <@hezekiah> dialog box.
+16:10 < mihi> the dialog lacks a progress bar to give feedback if the
+16:10 < mihi> user does it correctly
+16:10 <@nop> yes that's true
+16:10 <@hezekiah> He can move the mouse around _outside_ the dialog box
+16:10 <@hezekiah> until he's blue in the face, but it won't gather entropy. (Which is what
+16:10 <@hezekiah> these users are doing.)
+16:10 <@nop> it does lack a dialog box
+16:11 <@hezekiah> A progress bar would be a plus.
+16:11 <@hezekiah> And should be somewhat easy to implement ... if I
+16:11 <@hezekiah> could understand the tangle that UI code in IIP is.
+16:11 <@cohesion> or even some feedback
+16:11 <@hezekiah> Anyway, I posted my suggestions to the mailing list.
+16:12 <@nop> it's in win32 api
+16:12 <@nop> ;)
+16:12 <@hezekiah> Either capture the mouse (I couldn't get M$ to
+16:12 <@hezekiah> cooperate to do that), or make the dialog box message explain to the
+16:12 <@hezekiah> user he needs to move the mouse around _inside_ the dialog box.
+16:12 <@hezekiah> nop: I know.
+16:12 <@nop> fine hezekiah be that way :)
+16:12 <@hezekiah> What?
+16:12 <@hezekiah> What did I do?
+16:12 * hezekiah is confused
+16:12 < thecrypto> how about just maximize the dialog box?
+16:12 <@nop> hezekiah: I'm just messin' with ya
+16:13 <@hezekiah> nop: OK. :)
+16:13 <@hezekiah> Where's UserX? He knows more about the IIP UI code
+16:13 <@hezekiah> than I do.
+16:14 <@hezekiah> thecrypto: As for maximizing, well, the user might not
+16:14 <@hezekiah> like a rabid dialog box consuming his entire screen.
+16:14 <@hezekiah> Mouse capture is ideal, but as I said, I couldn't get
+16:14 <@hezekiah> M$ to do it.
+16:14 <@jrand0m> many other apps don't capture the mouse
+16:14 <@jrand0m> a status bar plus explaination seems typical
+16:15 <@hezekiah> Anyway, that's the 'bug'.
+16:15 <@hezekiah> How do you want it fixed nop?
+16:15 <@nop> well
+16:15 <@nop> I would think if possible we could have a meter that shows
+16:15 <@nop> the entropy gathering for sure
+16:16 <@hezekiah> OK.
+16:16 <@nop> and definitely fixes the language. Have you exhausted the
+16:16 <@nop> research on capturing the mouse movements?
+16:16 <@hezekiah> To the point of my patience.
+16:16 <@hezekiah> Seriously, what I did _should_ work.
+16:16 <@nop> I assume that's a lot?
+16:16 <@hezekiah> Well, I didn't get much sleep last night.
+16:17 <@nop> hmm
+16:17 <@nop> let's try to get a meter bar and the language fixed
+16:17 <@nop> that will give us an idea
+16:17 <@hezekiah> Because it isn't working, I'm assuming the M$ docs are
+16:17 <@hezekiah> lieing to me (very possible) or something 'unknown' is happening in the
+16:17 <@hezekiah> IIP UI code.
+16:17 <@nop> right
+16:17 <@hezekiah> Righto. :)
+16:17 * hezekiah now gets down on his knees and prays that UserX wrote
+16:17 * hezekiah> UI code for a progress bar.
+16:19 <@nop> haha
+16:19 <@nop> if not go to planet-source-code.com
+16:19 <@nop> there's a lot of samples there
+16:19 <@hezekiah> The win32 API I can manage (though I detest it.)
+16:19 <@nop> I hate it as well
+16:19 <@hezekiah> But UserX/whoever-originally-wrote-this made a wrapper
+16:19 <@hezekiah> around it.
+16:19 <@hezekiah> It's the wrapper I'm worried about.
+16:19 * nop is coding in it right now for work
+16:19 <@hezekiah> I'm looking into it now.
+16:20 <@hezekiah> Let's move on to the next agenda item.
+16:20 -!- jeremiah-gym is now known as jeremiah
+16:20 <@nop> ok
+16:20 <@nop> next item is i2p
+16:20 < jeremiah> hi
+16:20 <@nop> hi
+16:20 <@nop> jrand0m you start
+16:20 <@hezekiah> jeremiah: Just in time!
+16:20 < jeremiah> hezekiah: nop and I are oddly time synced, as you'll
+16:20 < jeremiah> learn
+16:20 <@jrand0m> 'k, has everyone had a chance to check out the roadmap?
+16:21 <@hezekiah> Yeah.
+16:21 <@jrand0m> its obviously draft, and things after the 1.0 milestone
+16:21 <@jrand0m> are largely up in the air, but its something to start from
+16:21 <@jrand0m> I've updated it beyond whats on the list to include
+16:21 <@jrand0m> hezekiah jumping on the C api (w00t!)
+16:22 -!- jeet [~miteymous@anon.iip] has joined #iip-dev
+16:22 <@jrand0m> basically, after this coming friday, we'll have the API
+16:22 <@jrand0m> protocol spec'ed out, which will mean we can parallelize a lot
+16:22 < jeet> hello ;)
+16:22 <@jrand0m> 'lo jeet
+16:22 < jeet> hey if i make a server is it possible to change anon.iip
+16:22 < jeet> to whatever i want
+16:22 <@jrand0m> rough gut question: how insane does the r2 roadmap
+16:22 <@jrand0m> sound? are schedules insane, are there things missing, are things in the
+16:22 <@jrand0m> wrong order or dependencies not represented?
+16:22 <@nop> yes
+16:22 < jeet> kewl
+16:23 <@hezekiah> jrand0m: I would concur the entire thing is insane.
+16:23 <@hezekiah> However, I think (until I get to college) it should be doable.
+16:23 <@jrand0m> heh
+16:23 < jeet> this is a very cool thing you guys have done ;X
+16:23 <@hezekiah> Though I'm not sure nop and UserX can design that IRC
+16:23 <@hezekiah> protocol even in 21 days.
+16:23 <@hezekiah> nop: ;-)
+16:23 <@nop> no
+16:23 <@jrand0m> ok, you're off to uni in late august? mid august? when
+16:23 <@jrand0m> should we pencil you in for less activity?
+16:23 <@hezekiah> Around August 20th I'm of.
+16:23 <@hezekiah> off.
+16:24 <@jrand0m> 'k
+16:24 <@hezekiah> Until then I'm a rabid nermal! :)
+16:24 < jeremiah> I'm off about the same time
+16:24 < jeremiah> (to univ)
+16:25 <@nop> ok
+16:25 <@jrand0m> so we'll have to get more resources on the 'implement
+16:25 <@jrand0m> IRC' task or just drop the task from the 1.0 release
+16:25 <@hezekiah> I wouldn
+16:25 <@hezekiah> wouldn't make the 1.0 release dependant on IRC.
+16:25 <@nop> I believe that we will need to delay the task
+16:25 < jeet> [17:23] -anon.iip- CTCP (except ACTION) and DCC are
+16:25 < jeet> disabled <- how can i stop this from poppiing up every 3 minutes?
+16:25 <@hezekiah> Do the IRC, but let i2p 1.0 come out when it's ready.
+16:26 < thecrypto> wow, i'm half way through college as two others just
+16:26 < thecrypto> start :)
+16:26 <@jrand0m> lol
+16:27 <@jrand0m> I concur hezekiah
+16:27 <@hezekiah> Cool. I still think i2p will be it's own killer app.
+16:27 <@jrand0m> so that basically means all I2P 1.0 requires after
+16:27 <@jrand0m> august is a month of debugging and documentation to go from alpha to
+16:27 <@jrand0m> beta to 1.0
+16:28 <@jrand0m> hezekiah> definitely. we need to get a demo app out on
+16:28 <@jrand0m> it first - does the instant messenger app + file transfer sound good to
+16:28 <@jrand0m> people for that?
+16:28 -!- jeet [~miteymous@anon.iip] has quit [ircN 7.27 + 7.0 for mIRC
+16:28 <@jrand0m> (2002/01/10 00.00)]
+16:28 <@hezekiah> Well, you said it best: 'demo'. From my view, it
+16:28 <@hezekiah> doesn't need to be special. It just needs to prove the network is worth
+16:28 <@hezekiah> developing on.
+16:29 <@hezekiah> So the IM client would be a good demo, in my opinion.
+16:29 < Zwolly> file transfer is one thing i really would like to see so
+16:29 < Zwolly> gimme a demo
+16:29 <@hezekiah> Zwolly: lol
+16:29 <@nop> yes
+16:29 < Zwolly> and see me as an "normal" user
+16:30 <@hezekiah> Zwolly: You can be our guniea pig! ;-)
+16:30 * hezekiah starts mixing poisinous code in his lab. ;-)
+16:30 < Zwolly> hmmm yummie
+16:31 <@jrand0m> ok, one last thing on i2p
+16:31 <@nop> sure
+16:32 <@jrand0m> nop> any chance we can get a non sourceforge trusted
+16:32 <@jrand0m> cvs server?
+16:32 <@jrand0m> sourceforge has more problems than these college
+16:32 <@jrand0m> student's exams
+16:32 <@nop> yes
+16:32 <@nop> I will arrange that and have it up by next week
+16:32 <@jrand0m> awesome. thanks
+16:32 <@nop> also
+16:32 <@nop> I may be able to get a compile farm
+16:32 <@nop> that is not sf
+16:32 <@nop> with vpn access to it
+16:32 <@hezekiah> Compile farm!?
+16:32 <@jrand0m> compile farm? bah, we can just run ant :)
+16:32 <@hezekiah> jrand0m: All code is not Java.
+16:32 <@hezekiah> I personally love compile farms.
+16:32 <@hezekiah> :)
+16:32 <@jrand0m> ant == make. it can run gcc / etc
+16:32 <@nop> hezekiah: send me a list of viable platforms we'll need to
+16:32 <@nop> test on
+16:32 <@jrand0m> 'k, if we really need the cpu power of a compile farm,
+16:32 <@jrand0m> thats great
+16:33 < wilde> what license are you planning to use?
+16:33 <@nop> GPL
+16:33 <@jrand0m> GPL cool with everyone for this?
+16:33 < wilde> k nice
+16:33 <@hezekiah> I'm very pro GPL.
+16:33 <@hezekiah> But one warning
+16:33 <@hezekiah> For the API's we will probably need LGPL. Otherwise
+16:33 <@hezekiah> all programs made for this network MUST be GPL
+16:33 <@jrand0m> we may want to go LGPL down the line
+16:33 <@jrand0m> yeah
+16:33 <@jrand0m> we MUST not require all apps using I2P to be GPL'ed
+16:33 <@hezekiah> So the router should be GPL, but the API's will
+16:33 <@hezekiah> probably need to be LGPL at some time.
+16:33 <@hezekiah> jrand0m: Then we'll need an LGPL API.
+16:33 <@hezekiah> The only problem that poses is getting a good crypto
+16:33 <@hezekiah> kit for C that is compatible with LGPL.
+16:33 <@hezekiah> I don't think Cryptlib's Sleepycat license is.
+16:33 <@hezekiah> I could email the author and ask for an exception or
+16:33 <@hezekiah> something if I need to when the time comes.
+16:33 <@jrand0m> hezekiah> not need, want. the API comm layer will be an
+16:33 <@jrand0m> open spec, so anyone can write their own and not link to any of our
+16:33 <@jrand0m> libraries
+16:33 <@hezekiah> Right.
+16:33 <@nop> right
+16:33 <@hezekiah> So for now we can even make GPL API's if we need to.
+16:34 <@hezekiah> OK, one question for jrand0m:
+16:34 < jeremiah> but we should try to have non-viral ones asap
+16:34 <@hezekiah> I agree.
+16:34 < wilde> http://www.virtualunlimited.com/products/beecrypt/
+16:34 < wilde> Bee Crypt is LGPL, i've used once
+16:34 <@hezekiah> wilde: Beecrypt is far beneath what is required
+16:34 <@hezekiah> unfortunately.
+16:34 <@nop> yes
+16:34 <@nop> I don't think we should use a crypto lib like Beecrypt
+16:34 <@jrand0m> word wilde
+16:34 <@cohesion> hezekiah: there's tons of crypto code in
+16:34 <@cohesion> GnuPrivacyGuard that's all GPL'd
+16:34 <@cohesion> you might check and see where it came from
+16:34 <@hezekiah> cohesion: The problem is we'll need an LGPL C API that
+16:34 <@hezekiah> uses Crypto.
+16:34 <@hezekiah> I'll work it out when I get to it.
+16:34 <@hezekiah> For now, I have two questions for jrand0m: (It's gone
+16:34 <@hezekiah> up one!) :)
+16:34 <@jrand0m> we have lots of options. we'll figure it out
+16:34 <@jrand0m> heh fire away
+16:34 <@hezekiah> 1.) When the client API spec is done on the 25th will
+16:34 <@hezekiah> it detail the byte-by-byte structure of the messages sent over the
+16:34 <@hezekiah> network, and will it detail the specifics on how the crypto is
+16:34 <@hezekiah> implemented?
+16:35 -!- ion [ion@anon.iip] has joined #iip-dev
+16:35 <@jrand0m> yes
+16:35 <@hezekiah> 2.) Will be we using Twofish? ;-)
+16:35 <@jrand0m> no, prolly aes, unless someone has a really good reason
+16:35 <@hezekiah> jrand0m: Was that yes to both questions, or just
+16:35 <@hezekiah> question 1?
+16:35 -!- nemesis [nemesis@anon.iip] has joined #iip-dev
+16:35 <@hezekiah> OK.
+16:35 <@jrand0m> hezekiah> yes to both
+16:35 <@nop> well
+16:35 < nemesis> uuuh, since when there are here ops? :)
+16:35 <@hezekiah> nemesis: The English structure of that sentence was
+16:35 <@hezekiah> too garbled for me to decipher? Whould you like to restate your
+16:35 <@hezekiah> question?
+16:35 <@jrand0m> whats special about twofish? why not go with the
+16:35 <@jrand0m> advanced encryption Standard?
+16:35 <@hezekiah> nop: Holding ... :)
+16:35 * jrand0m holds
+16:35 <@nop> I prefer that we have a suite of encryption options
+16:35 <@nop> not just aes
+16:35 <@nop> there are opinions about AES that some people do not feel
+16:35 <@nop> comfortable using
+16:35 <@nop> and would rather go with Twofish etc
+16:35 <@nop> so maybe we can have it be a selection
+16:35 < wilde> do both :)
+16:35 <@nop> yes
+16:35 <@nop> wilde: exactly
+16:35 <@jrand0m> nop> suites would mean not everyone can send messages
+16:35 <@jrand0m> to everyone
+16:35 < jeremiah> but then wouldn't each router have to support both?
+16:35 < jeremiah> that seems painful
+16:35 <@jrand0m> doing both is definitely the case for transport layer,
+16:35 <@jrand0m> where things can be negotiated
+16:35 <@nop> not really
+16:35 <@nop> I would not agree with AES then
+16:35 <@nop> as if you are paranoid
+16:35 <@hezekiah> Right. But let's try to too enclude things that are
+16:35 <@hezekiah> weakening like 3DES.
+16:35 <@hezekiah> A chain is only as strong as its weakest link.
+16:35 <@nop> then you'll realize why
+16:35 <@nop> with the US gov't approvals
+16:36 <@jrand0m> I don't support AES because it has govt approval, I
+16:36 <@jrand0m> support AES because it has cryptographers, scientists, and
+16:36 <@jrand0m> mathematicians approvals.
+16:36 <@jrand0m> if there is a better one, we can go with that.
+16:36 <@jrand0m> but I don't want to go with something because its
+16:36 <@jrand0m> different
+16:36 <@nop> but the approval of twofish is strong as well amongst
+16:36 <@nop> cryptographers
+16:36 <@hezekiah> Well, the last three AES candidates were Rijndael,
+16:36 <@hezekiah> Twofish, and Serpent.
+16:36 <@nop> exactly
+16:36 <@hezekiah> Rijndael was the fastest.
+16:36 <@hezekiah> Personally, I have more faith in Twofish than
+16:36 <@hezekiah> Rijndael.
+16:36 <@jrand0m> nop I think I heard you say there were problems with
+16:36 <@jrand0m> serpent?
+16:36 < wilde> use multiple layers of encryption if you have CPU for it
+16:36 <@jrand0m> wilde> there will be, but thats on a different aspect
+16:36 <@jrand0m> of things.
+16:36 <@nop> all I'm saying is that we could have both supported
+16:36 <@nop> doesn't hurt
+16:36 <@jrand0m> actually it does hurt
+16:36 <@jrand0m> segmentation attack
+16:36 < wilde> ok twofish wrapped in AES could be overkill
+16:36 <@nop> haha
+16:36 <@nop> not twofish wrapped in AES
+16:36 < jeremiah> should we standardize each transport as having one
+16:36 < jeremiah> specific set of characteristics (network setup, encryption)?
+16:36 <@nop> alright for the sake of argument
+16:36 <@nop> let's do rijndael for this part
+16:36 < jeremiah> and then we could have one TCP transport supporting
+16:36 < jeremiah> AES, one with Twofish, but not one that has to juggle both?
+16:36 <@jrand0m> jeremiah> yes, particular transports will have
+16:36 <@jrand0m> particular characteristics, but we're covering the end to end message
+16:36 <@jrand0m> crypto done in the api atm
+16:36 <@nop> let's do end to end AES
+16:36 < jeremiah> jrand0m: ah
+16:36 <@nop> then node to node twofish option
+16:37 <@nop> and if you can, do AES-counter mode
+16:37 <@jrand0m> 'k, sounds good. we can always change later on before
+16:37 <@jrand0m> release (during peer review, etc)
+16:37 < wilde> but all crypto algorithms have failed in the past, using
+16:37 < wilde> double encryption would at least buy time in case of a crypto
+16:37 < wilde> breakthrough
+16:37 < jeremiah> not really
+16:37 <@jrand0m> wilde> the truly paranoid can encrypt with their own
+16:37 <@jrand0m> system prior to sending messages over the I2P network
+16:37 <@hezekiah> wilde: If one algorithm is found to be weak, we'll
+16:37 <@hezekiah> replace it.
+16:37 <@jrand0m> I2P will just transparently encrypt
+16:37 < wilde> jrand0m: yes, you're right, there should be a limit to
+16:37 < wilde> paranoia
+16:38 <@nop> yes
+16:38 <@nop> we could go on all day
+16:38 <@nop> arguing about it
+16:38 <@nop> AES end to end
+16:38 <@jrand0m> ok, I don't have anything else on I2P stuff
+16:38 <@nop> Twofish and others node to node
+16:38 <@jrand0m> coo'
+16:38 <@jrand0m> any other I2P stuff, or are we on the next agenda item?
+16:38 <@hezekiah> I'm done. :)
+16:38 < wilde> what about A2A, anonymous 2 anonymous?
+16:38 <@hezekiah> I
+16:38 <@hezekiah> I've never heard of that. What are you talking about,
+16:38 <@hezekiah> wilde?
+16:38 <@jrand0m> I2P is anonymous to anonymous communication
+16:38 <@jrand0m> I2P = "Invisible Internet Project"
+16:38 < nemesis> jrand0m: can you send the roadmap as an attechment, and
+16:38 < nemesis> not as inline?
+16:38 <@jrand0m> (dont make us say I^2P)
+16:38 <@nop> hushmail has an encrypted messenger
+16:38 <@nop> neat
+16:38 <@jrand0m> nemesis> hmm, I tried to - hushmail said it was
+16:38 <@jrand0m> attached :/
+16:38 <@hezekiah> nemesis: I got it as attached.
+16:38 <@jrand0m> nemesis> you can d/l from
+16:38 <@jrand0m> http://article.gmane.org/gmane.comp.security.invisiblenet.iip.devel/290
+16:38 < nemesis> i'm sorry, i can't copy&amp;paste it
+16:38 <@hezekiah> nemesis: Perhaps your mail reader is the problem? (He
+16:38 <@hezekiah> sent it as a zip file.)
+16:38 < nemesis> its inline
+16:38 < nemesis> theres a zip file...
+16:38 -!- UserX [~User@anon.iip] has joined #iip-dev
+16:38 <@jrand0m> 'lo userx
+16:38 < nemesis> -Hush_boundarfy-31fda3d62329b
+16:38 <@nop> did anyone log this
+16:38 < nemesis> Content-Transfer-Encoding: base64
+16:38 <@hezekiah> cohesion was supposed to.
+16:38 <@jrand0m> I log all IRC
+16:38 <@cohesion> i have it all
+16:38 < thecrypto> yes
+16:38 <@jrand0m> word
+16:38 < Zwolly> my ISP also logs all the IRC chatting so what is new
+16:38 <@jrand0m> lol Zwolly
+16:38 < Zwolly> hehe
+16:38 <@hezekiah> Zwolly: Your ISP won't have logs of this. :)
+16:38 < Zwolly> i hope not if so you guys do a louzy job
+16:38 <@hezekiah> lol
+16:39 <@hezekiah> So, I'm assuming we move on to the next agenda item
+16:39 <@hezekiah> now since we've stopped talking about i2p for a while.
+16:39 <@nop> yes
+16:39 <@nop> comments
+16:39 <@nop> suggestions
+16:39 <@jrand0m> we, should, like, do some drugs, man
+16:39 <@hezekiah> jrand0m: Sorry. I refuse to ruin a good mind with such
+16:39 <@hezekiah> substances.
+16:39 < wilde> question: isn't the release plan a bit optimistic=
+16:39 < wilde> ?
+16:39 <@hezekiah> wilde: lol. Well, my term would be 'insane'. But I
+16:39 <@hezekiah> think it might be feasible.
+16:39 <@jrand0m> wilde> good question. it should be plausible, and if
+16:39 <@jrand0m> any devs on there want to adjust tasks they are working on, we will.
+16:39 < thecrypto> we can do it!
+16:39 <@jrand0m> go TEAM!
+16:39 < wilde> aim high that's good, but it should be realistic
+16:39 < wilde> do you guys have time enough for the actual programming?
+16:39 * jrand0m quit his job to work on this, and a few people have
+16:39 * jrand0m> summer break coming up
+16:39 < wilde> i mean september-october that's like 60-90 days
+16:39 < wilde> ok that's sounds good
+16:39 <@jrand0m> but don't believe us. we'll release when its ready.
+16:39 <@hezekiah> jrand0m: BTW, since you quit your job, how are you
+16:39 <@hezekiah> going to eat while you code this?
+16:39 < jeremiah> wilde: we're going to be implementing lots of it in
+16:39 < jeremiah> high-level languages and then re-coding in C later
+16:39 <@jrand0m> hezekiah> I eat code
+16:39 <@hezekiah> I was afraid you'd say something like that.
+16:39 <@jrand0m> ;)
+16:39 <@hezekiah> I just hope you've got a good nest egg to live on.
+16:39 < jeremiah> jrand0m: my code eats random numbers
+16:39 < jeremiah> that might make a bad loop
+16:39 <@hezekiah> ROTFL!
+16:39 < wilde> drinking java, eating python, roasted ant, could go
+16:39 <@jrand0m> but bugs have lots of protien
+16:39 * jrand0m !thwaps self
+16:39 <@jrand0m> ok, do we have other questions / comments /
+16:39 <@jrand0m> suggestions?
+16:39 <@hezekiah> Well, I've got to go now.
+16:39 <@hezekiah> Bye everyone. :)
+16:39 <@jrand0m> or are we actually finishing up in under an hour?
+16:39 -!- hezekiah [hezekiah@anon.iip] has quit [Client exiting]
+16:39 <@jrand0m> lol wilde
+16:39 <@jrand0m> nop> got anything or we done?
+16:40 -!- UserX [~User@anon.iip] has quit [Ping timeout]
+16:40 -!- wilde [anon@anon.iip] has quit []
+16:40 <@cohesion> ok, i'm ending the meeting
+16:40 < nemesis> STOP!
+16:40 <@cohesion> nop: i'll get with you about CVS tomarrow
+16:40 * jrand0m stops
+16:40 < nemesis> ganttproject-1.9.7.jar
+16:40 <@cohesion> GO!
+16:40 < nemesis> how it works?
+16:40 <@nop> ok
+16:40 <@nop> also
+16:40 <@nop> aes
+16:40 <@jrand0m> nemesis> just double click on it with java 1.4.2
+16:40 <@jrand0m> installed
+16:40 <@nop> we should use 256 bit as a norm
+16:40 < nemesis> i have java 1.4.2...
+16:40 <@jrand0m> nemesis> I'll email out the xml with the project info
+16:40 <@jrand0m> word nop, definitely
+16:40 < nemesis> Could not find the main class. Program will exit!
+16:40 < nemesis> hm.. i think my java are broken.... Title of the
+16:40 < nemesis> Window: Java Virtual Machine Launcher...
+16:40 <@jrand0m> weird nemesis, works for me... make sure its loading it
+16:40 <@jrand0m> with the 1.4.2 jvm and not the windows jvm
+16:40 <@jrand0m> ah, try running from the cmd.exe command line
+16:40 < nemesis> eh?
+16:40 < nemesis> k
+16:40 < nemesis> then i write a .bat for it, like for columba :)
+16:40 <@cohesion> ok, i'm closing the logs
+16:40 <@jrand0m> (and type java -version first to make sure it uses the
+16:40 <@jrand0m> right one)
+16:40 <@jrand0m> heh word
+16:40 <@cohesion> everyone say "cheese"
+16:40 <@jrand0m> queso
+16:40 < thecrypto> cheese
+16:40 < Zwolly> chesse
+16:40 < Zwolly> cheese
+16:40 < nemesis> E:\Sytemprogramme\server\Projektverwaltung>java
+16:40 < nemesis> ganttproject-1.9.7.jar
+16:40 < nemesis> Exception in thread "main"
+16:40 < nemesis> java.lang.NoClassDefFoundError: ganttproject-1/9/7/ja
+16:40 < nemesis> r
+16:40 <@jrand0m> java -jar ganttproject-1.9.7.jar
+16:40 < nemesis> java version "1.4.2-beta"
+16:40 < nemesis> Java(TM) 2 Runtime Environment, Standard Edition (build
+16:40 < nemesis> 1.4.2-beta-b19)
+16:40 < nemesis> Java HotSpot(TM) Client VM (build 1.4.2-beta-b19, mixed
+16:40 < nemesis> mode)
+16:40 < nemesis> hm... why with -jar?
+16:40 < nemesis> now it works...
+16:40 -!- ion [ion@anon.iip] has quit [Ping timeout]
+16:40 < nemesis> thx jrand0m
+16:40 <@jrand0m> without -jar asks it to load the class
+16:40 <@jrand0m> ganttproject-1/9/7/jar
+16:40 <@jrand0m> np
+16:40 < jeremiah> is cvs working?
+16:40 < jeremiah> i checked out earlier today, but it's weird now
+16:40 <@jrand0m> sourceforge is being a pain atm
+--- Log closed Tue Jul 22 17:18:14 2003
+</div>
