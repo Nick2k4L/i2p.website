@@ -474,6 +474,6 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 
 ## Get Involved
 
-Want to contribute to I2P's future? Check out the [Get Involved](/en/get-involved) page to learn how you can help with development, testing, documentation, and more!
+Want to contribute to I2P's future? Check out the [Get Involved](/en/get-involved) page to learn how you can help with development, testing, documentation, and more! 
 
 For the latest news and detailed release information, visit the [I2P Blog](/en/blog).
