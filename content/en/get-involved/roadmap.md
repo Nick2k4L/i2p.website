@@ -465,7 +465,7 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 ## Development Resources
 
 - **Source Code**: [i2pgit.org](https://i2pgit.org)
-- **Issue Tracker**: i2pgit.org issues
+- **Issue Tracker**: i2pgit.org or github issues
 - **Monthly Meetings**: Not currently active
 - **IRC**: #i2p-dev on IRC2P
 - **Release Notes**: [I2P Blog](/blog/)
