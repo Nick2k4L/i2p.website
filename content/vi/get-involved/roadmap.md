@@ -1,302 +1,452 @@
 ---
-title: "Lộ Trình Phát Triển I2P"
-description: "Kế hoạch phát triển hiện tại và cột mốc lịch sử cho mạng I2P"
+title: "Lộ trình Phát triển I2P"
+description: "Các kế hoạch phát triển hiện tại và các mốc lịch sử quan trọng của mạng I2P"
 ---
 
 <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">
 
-**I2P thực hiện theo mô hình phát triển gia tăng** với các bản phát hành khoảng 13 tuần một lần. Lộ trình này bao gồm phát hành Java cho máy tính để bàn và Android trong một đường phát hành ổn định duy nhất.
+**I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Cập nhật lần cuối:** Tháng 8 năm 2025
+**Last Updated:** February 2026
 
 </div>
-
-## 🎯 Các Bản Phát Hành Sắp Tới
+## 🎯 Các Phiên Bản Sắp Tới
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
-### Phiên Bản 2.11.0
+### Version 2.12.0
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-Mục tiêu: Đầu tháng 12 năm 2025
+Target: May 2026
 </div>
 
-- Hybrid PQ MLKEM Ratchet final, kích hoạt theo mặc định (đề xuất 169)
-- Jetty 12, yêu cầu Java 17+
-- Tiếp tục công việc về PQ (giao thông) (đề xuất 169)
-- Hỗ trợ tra cứu I2CP cho các tham số ghi dịch vụ LS (đề xuất 167)
-- Điều chặn từng kênh ngầm
-- Hệ thống thống kê thân thiện với Prometheus
-- Hỗ trợ SAM cho Datagram 2/3
+- NTCP2-PQ transport (prop. 169)
+- Start work on SSU2-PQ transport (prop. 169)
+- I2CP lookup support for LS service record parameters (prop. 167)
+- Per-tunnel throttling
+- Prometheus-friendly stat subsystem
 
 </div>
-
 ---
 
-## 📦 Các Bản Phát Hành Gần Đây
+## 📦 Các Phiên Bản Mới Nhất
 
-### Các Bản Phát Hành 2025
+### Phiên bản 2026
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**Phiên Bản 2.10.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Được Phát Hành Ngày 8 Tháng 9, 2025</span>
+**Version 2.11.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released February 9, 2026</span>
 
-- Hỗ trợ theo dõi UDP của i2psnark (đề xuất 160)
-- Tham số ghi dịch vụ I2CP LS (một phần) (đề xuất 167)
-- API tra cứu không đồng bộ I2CP
-- Hybrid PQ MLKEM Ratchet Beta (đề xuất 169)
-- Tiếp tục công việc về PQ (giao thông) (đề xuất 169)
-- Tham số băng thông xây kênh (đề xuất 168) Phần 2 (xử lý)
-- Tiếp tục công việc về điều chặn từng kênh ngầm
-- Loại bỏ mã ElGamal giao thông không sử dụng
-- Loại bỏ mã bật/tắt "active throttle" cũ của SSU2
-- Loại bỏ hỗ trợ ghi nhật ký thống kê cũ
-- Dọn dẹp hệ thống thống kê/biểu đồ
-- Cải tiến và sửa lỗi chế độ ẩn
+- Sybil mitigations
+- Hybrid PQ MLKEM Ratchet final, enable by default (prop. 169)
+- Jetty 12, require Java 17+
+- Continue work on PQ (transports) (prop. 169)
+- SAM support for Datagram 2/3
 
 </div>
+### Các Phiên Bản 2025
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**Phiên Bản 2.9.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Được Phát Hành Ngày 2 Tháng 6, 2025</span>
+**Version 2.10.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released September 8, 2025</span>
 
-- Bản đồ Netdb
-- Thực hiện Datagram2, Datagram3 (đề xuất 163)
-- Bắt đầu công việc về tham số ghi dịch vụ LS (đề xuất 167)
-- Bắt đầu công việc về PQ (đề xuất 169)
-- Tiếp tục công việc về điều chặn từng kênh ngầm
-- Tham số băng thông xây kênh (đề xuất 168) Phần 1 (gửi)
-- Mặc định sử dụng /dev/random cho PRNG trên Linux
-- Loại bỏ mã kết xuất LS dư thừa
-- Hiển thị nhật ký thay đổi dưới dạng HTML
-- Giảm sử dụng luồng của máy chủ HTTP
-- Sửa lỗi tự động đăng ký floodfill
-- Bản cập nhật Wrapper lên 3.5.60
+- i2psnark UDP tracker support (prop. 160)
+- I2CP LS service record parameters (partial) (prop. 167)
+- I2CP async lookup API
+- Hybrid PQ MLKEM Ratchet Beta (prop. 169)
+- Continue work on PQ (transports) (prop. 169)
+- Tunnel build bandwidth parameters (prop. 168) Part 2 (handling)
+- Continue work on per-tunnel throttling
+- Remove unused transport ElGamal code
+- Remove ancient SSU2 "active throttle" code
+- Remove ancient stat logging support
+- Stat/graph subsystem cleanup
+- Hidden mode improvements and fixes
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**Phiên Bản 2.8.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Được Phát Hành Ngày 29 Tháng 3, 2025</span>
+**Version 2.9.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released June 2, 2025</span>
 
-- Sửa lỗi tham nhũng SHA256
+- Netdb map
+- Implement Datagram2, Datagram3 (prop. 163)
+- Start work on LS service record parameter (prop. 167)
+- Start work on PQ (prop. 169)
+- Continue work on per-tunnel throttling
+- Tunnel build bandwidth parameters (prop. 168) Part 1 (sending)
+- Use /dev/random for PRNG by default on Linux
+- Remove redundant LS render code
+- Display changelog in HTML
+- Reduce HTTP server thread usage
+- Fix auto-floodfill enrollment
+- Wrapper update to 3.5.60
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**Phiên Bản 2.8.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Được Phát Hành Ngày 17 Tháng 3, 2025</span>
+**Version 2.8.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 29, 2025</span>
 
-- Sửa lỗi cài đặt thất bại trên Java 21+
-- Sửa lỗi "loopback"
-- Sửa lỗi kiểm tra kênh ngầm cho kênh ngầm khách hàng ra ngoài
-- Sửa lỗi cài đặt vào đường dẫn có dấu cách
-- Cập nhật container Docker cũ và các thư viện container
-- Bọt thông báo trong điều khiển
-- Sắp xếp SusiDNS theo mới nhất
-- Sử dụng pool SHA256 trong Noise
-- Sửa lỗi và cải tiến giao diện tối của điều khiển
-- Hỗ trợ .i2p.alt
+- Fix SHA256 corruption bug
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**Phiên Bản 2.8.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Được Phát Hành Ngày 3 Tháng 2, 2025</span>
+**Version 2.8.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 17, 2025</span>
 
-- Cải tiến việc công bố RouterInfo
-- Cải thiện hiệu quả ACK của SSU2
-- Cải thiện xử lý thông điệp lặp lại của SSU2
-- Thời gian tra cứu nhanh hơn / thay đổi được
-- Cải tiến hết hạn LS
-- Thay đổi giới hạn NAT đối xứng
-- Thực thi POST trên nhiều mẫu hơn
-- Sửa lỗi giao diện tối của SusiDNS
-- Dọn dẹp kiểm tra băng thông
-- Bản dịch Gan mới
-- Thêm tùy chọn giao diện người dùng Kurish
-- Bản dựng Jammy mới
+- Fix installer failure on Java 21+
+- Fix "loopback" bug
+- Fix tunnel tests for outbound client tunnels
+- Fix installing to paths with spaces
+- Update outdated Docker container and container libraries
+- Console notification bubbles
+- SusiDNS sort-by-latest
+- Use SHA256 pool in Noise
+- Console dark theme fixes and improvements
+- .i2p.alt support
+
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+
+**Version 2.8.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released February 3, 2025</span>
+
+- RouterInfo publishing improvements
+- Improve SSU2 ACK efficiency
+- Improve SSU2 handling of dup relay messages
+- Faster / variable lookup timeouts
+- LS expiration improvements
+- Change symmetric NAT cap
+- Enforce POST in more forms
+- SusiDNS dark theme fixes
+- Bandwidth test cleanups
+- New Gan Chinese translation
+- Add Kurdish UI option
+- New Jammy build
 - Izpack 5.2.3
 - rrd4j 3.10
 
 </div>
-
 <div style="margin: 3rem 0; padding: 1rem 0; border-top: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border);">
-  <h3 style="margin: 0; color: var(--color-primary);">📅 Các Bản Phát Hành 2024</h3>
+  <h3 style="margin: 0; color: var(--color-primary);">📅 2024 Releases</h3>
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**Phiên Bản 2.7.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 8 Tháng 10, 2024</span>
+**Version 2.7.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— October 8, 2024</span>
 
-- Máy chủ HTTP của i2ptunnel giảm sử dụng luồng
-- Tunnels UDP Tổng quát trong I2PTunnel
-- Trình Duyệt Proxy trong I2PTunnel
-- Di Dời Trang Web
-- Sửa kênh ngầm chuyển sang màu vàng
-- Tái cấu trúc điều khiển /netdb
+- i2ptunnel HTTP server reduce thread usage
+- Generic UDP Tunnels in I2PTunnel
+- Browser Proxy in I2PTunnel
+- Website Migration
+- Fix for tunnels going yellow
+- Console /netdb refactoring
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**Phiên Bản 2.6.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 6 Tháng 8, 2024</span>
+**Version 2.6.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— August 6, 2024</span>
 
-- Sửa lỗi kích thước iframe trong điều khiển
-- Chuyển đổi biểu đồ sang SVG
-- Báo cáo trạng thái dịch bao gồm
+- Fix iframe size issues in console
+- Convert graphs to SVG
+- Bundle translation status report
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**Phiên Bản 2.6.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 19 Tháng 7, 2024</span>
+**Version 2.6.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— July 19, 2024</span>
 
-- Giảm sử dụng bộ nhớ netdb
-- Loại bỏ mã SSU1
-- Sửa lỗi rò rỉ và dừng tệp tạm thời của i2psnark
-- PEX hiệu quả hơn trong i2psnark
-- Làm mới các biểu đồ JS của điều khiển
-- Cải tiến kết xuất biểu đồ
-- Tìm kiếm JS Susimail
-- Xử lý thông điệp hiệu quả hơn tại OBEP
-- Tìm kiếm điểm đích nội địa I2CP hiệu quả hơn
-- Sửa lỗi phạm vi biến JS
+- Reduce netdb memory usage
+- Remove SSU1 code
+- Fix i2psnark temp file leaks and stalls
+- More efficient PEX in i2psnark
+- JS refresh of console graphs
+- Graph rendering improvements
+- Susimail JS search
+- More efficient message handling at OBEP
+- More efficient local destination I2CP lookups
+- Fix JS variable scoping issues
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**Phiên Bản 2.5.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 15 Tháng 5, 2024</span>
+**Version 2.5.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 15, 2024</span>
 
-- Sửa lỗi cắt HTTP
-- Công bố khả năng G nếu phát hiện NAT đối xứng
-- Cập nhật lên rrd4j 3.9.1-preview
+- Fix HTTP truncation
+- Publish G capability if symmetric NAT detected
+- Update to rrd4j 3.9.1-preview
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**Phiên Bản 2.5.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 6 Tháng 5, 2024</span>
+**Version 2.5.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 6, 2024</span>
 
-- Giảm thiểu tấn công DDoS của NetDB
-- Danh sách chặn Tor
-- Sửa lỗi và tìm kiếm Susimail
-- Tiếp tục loại bỏ mã SSU1
-- Cập nhật lên Tomcat 9.0.88
+- NetDB DDoS mitigations
+- Tor blocklist
+- Susimail fixes and search
+- Continue removing SSU1 code
+- Update to Tomcat 9.0.88
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**Phiên Bản 2.5.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 8 Tháng 4, 2024</span>
+**Version 2.5.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— April 8, 2024</span>
 
-- Cải tiến giao diện điều khiển iframe
-- Thiết kế lại bộ giới hạn băng thông của i2psnark
-- Kéo và thả Javascript cho i2psnark và susimail
-- Cải tiến xử lý lỗi SSL của i2ptunnel
-- Hỗ trợ kết nối HTTP liên tục của i2ptunnel
-- Bắt đầu loại bỏ mã SSU1
-- Cải tiến yêu cầu thẻ chuyển tiếp SSU2
-- Sửa lỗi kiểm tra đồng đối SSU2
-- Cải thiện Susimail (tải, đánh dấu, hỗ trợ email HTML)
-- Điều chỉnh lựa chọn đồng đối trong kênh ngầm
-- Cập nhật RRD4J lên 3.9
-- Cập nhật gradlew lên 8.5
+- Console iframe improvements
+- Redesign i2psnark bandwidth limiter
+- Javascript drag-and-drop for i2psnark and susimail
+- i2ptunnel SSL error handling improvements
+- i2ptunnel persistent HTTP connection support
+- Start removing SSU1 code
+- SSU2 relay tag request handling improvements
+- SSU2 peer test fixes
+- Susimail improvements (loading, markdown, HTML email support)
+- Tunnel peer selection adjustments
+- Update RRD4J to 3.9
+- Update gradlew to 8.5
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**Phiên Bản 2.4.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 18 Tháng 12, 2023</span>
+**Version 2.4.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— December 18, 2023</span>
 
-- Quản lý ngữ cảnh NetDB / NetDB Phân khúc
-- Xử lý khả năng tắc nghẽn bằng cách hạ ưu tiên router quá tải
-- Khôi phục thư viện hỗ trợ Android
-- Trình chọn tệp torrent cục bộ của i2psnark
-- Sửa lỗi xử lý tra cứu NetDB
-- Vô hiệu hóa SSU1
-- Cấm router công bố trong tương lai
-- Sửa lỗi SAM
-- Sửa lỗi Susimail
-- Sửa lỗi UPnP
+- NetDB context management/Segmented NetDB
+- Handle congestion capabilities by deprioritizing overloaded routers
+- Revive Android helper library
+- i2psnark local torrent file selector
+- NetDB lookup handler fixes
+- Disable SSU1
+- Ban routers publishing in the future
+- SAM fixes
+- susimail fixes
+- UPnP fixes
 
 </div>
+---
+
+### Các phiên bản 2023-2022
+
+<details>
+<summary>Click to expand 2023-2022 releases</summary>
+
+**Version 2.3.0** — Released June 28, 2023
+
+- Tunnel peer selection improvements
+- User-Configurable blocklist expiration
+- Throttle fast bursts of lookup from same source
+- Fix replay detection information leak
+- NetDB fixes for multihomed leaseSets
+- NetDB fixes for leaseSets received as a reply before being received as a store
+
+**Version 2.2.1** — Released April 12, 2023
+
+- Packaging fixes
+
+**Version 2.2.0** — Released March 13, 2023
+
+- Tunnel peer selection improvements
+- Streaming replay fix
+
+**Version 2.1.0** — Released January 10, 2023
+
+- SSU2 fixes
+- Tunnel build congestion fixes
+- SSU peer test and symmetric NAT detection fixes
+- Fix broken LS2 encrypted leasesets
+- Option to disable SSU 1 (preliminary)
+- Compressible padding (proposal 161)
+- New console peers status tab
+- Add torsocks support to SOCKS proxy and other SOCKS improvements and fixes
+
+**Version 2.0.0** — Released November 21, 2022
+
+- SSU2 connection migration
+- SSU2 immediate acks
+- Enable SSU2 by default
+- SHA-256 digest proxy authentication in i2ptunnel
+- Update Android build process to use modern AGP
+- Cross-Platform(Desktop) I2P browser auto-configuration support
+
+**Version 1.9.0** — Released August 22, 2022
+
+- SSU2 peer test and relay implementation
+- SSU2 fixes
+- SSU MTU/PMTU improvements
+- Enable SSU2 for a small portion of routers
+- Add deadlock detector
+- More certificate import fixes
+- Fix i2psnark DHT restart after router restart
+
+**Version 1.8.0** — Released May 23, 2022
+
+- Router family fixes and improvements
+- Soft restart fixes
+- SSU fixes and performance improvements
+- I2PSnark standalone fixes and improvements
+- Avoid Sybil penalty for trusted families
+- Reduce tunnel build reply timeout
+- UPnP fixes
+- Remove BOB source
+- Certificate import fixes
+- Tomcat 9.0.62
+- Refactoring to support SSU2 (proposal 159)
+- Initial implementation of SSU2 base protocol (proposal 159)
+- SAM authorization popup for Android apps
+- Improve support for custom directory installs in i2p.firefox
+
+**Version 1.7.0** — Released February 21, 2022
+
+- Remove BOB
+- New i2psnark torrent editor
+- i2psnark standalone fixes and improvements
+- NetDB reliability improvements
+- Add popup messages in systray
+- NTCP2 performance improvements
+- Remove outbound tunnel when first hop fails
+- Fallback to exploratory for tunnel build reply after repeated client tunnel build failures
+- Restore tunnel same-IP restrictions
+- Refactor i2ptunnel UDP support for I2CP ports
+- Continue work on SSU2, start implementation (proposal 159)
+- Create Debian/Ubuntu Package of I2P Browser Profile
+- Create Plugin of I2P Browser Profile
+- Document I2P for Android applications
+- i2pcontrol improvements
+- Plugin support improvements
+- New local outproxy plugin
+- IRCv3 message tag support
+
+</details>
+---
+
+### Các Phiên Bản 2021
+
+<details>
+<summary>Click to expand 2021 releases</summary>
+
+**Version 1.6.1** — Released November 29, 2021
+
+- Accelerate rekeying routers to ECIES
+- SSU performance improvements
+- Improve SSU peer test security
+- Add theme selection to new-install wizard
+- Continue work on SSU2 (proposal 159)
+- Send new tunnel build messages (proposal 157)
+- Include automatic browser configuration tool in IzPack installer
+- Make Fork-and-Exec Plugins Manageable
+- Document jpackage install processes
+- Complete, document Go/Java Plugin Generation Tools
+- Reseed Plugin for self-signed HTTPS reseed
+
+**Version 1.5.0** — Released August 23, 2021
+
+- Accelerate rekeying routers to ECIES
+- Start work on SSU2
+- Implement new tunnel build messages (proposal 157)
+- Support dmg and exe automatic updates
+- New native OSX installer
+- X-I2P-Location(alt-svc) locations for built-in I2P Site
+- RRD4J 3.8
+- Create C, CGo, SWIG bindings for libi2pd
+
+**Version 0.9.50** — Released May 18, 2021
+
+- Accelerate rekeying routers to ECIES
+- UPnP IPv6 support
+- 4/6 router address caps (proposal 158)
+- IPv6 introducers (proposal 158)
+- NTP year 2036 fixes
+- Continue work on new tunnel build message (proposal 157)
+- Enable DoH for reseeding
+- Docker improvements
+- SSU IPv6 fixes
+- Persist Sybil blocklist
+- Tunnel bandwidth limiter fixes
+
+**Version 0.9.49** — Released February 17, 2021
+
+- SSU send individual fragments
+- SSU Westwood+
+- SSU fast retransmit
+- SSU fix partial acks
+- ECIES router encrypted messages
+- Start rekeying routers to ECIES
+- Start work on new tunnel build message (proposal 157)
+- More SSU performance improvements
+- i2psnark webseed support
+- Start work on i2psnark hybrid v2 support
+- Move web resources to wars
+- Move resources to jars
+- Fix Gradle build
+- Hidden mode fixes
+- Change DoH to RFC 8484
+- Fix "Start on Boot" support on Android
+- Add support for copying b32 addresses on Android
+- Add SAMv3 Support to Android
+- Revise CSS on default I2P Site
+- Document I2P site setup
+- Add icons to router console themes
+- Complete transition to Git
+- Donation page redesign
+- Review and update VCS information
+
+</details>
+---
+
+### Lưu trữ Lịch sử 2020-2016
+
+<details>
+<summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
+
+For the complete historical archive of releases from 2020 back to January 2016, including all versions from 0.9.48 to 0.9.24, see the [full release notes](/blog/) on the I2P blog.
+
+**Major milestones from this era:**
+
+- **0.9.47 (August 2020)**: Required Java 8, ECIES enabled for some tunnels, Sybil analysis enabled by default
+- **0.9.46 (May 2020)**: Replaced jrobin with rrd4j, ECIES testing
+- **0.9.45 (February 2020)**: Full dual IPv4/IPv6 support, hidden mode fixes
+- **0.9.44 (December 2019)**: Docker image, testnet Kubernetes, I2P Browser development
+- **0.9.43 (October 2019)**: Preliminary ECIES support, SSU IPv6 peer testing, Red25519 signature support
+- **0.9.42 (August 2019)**: Browser WebExtensions, Linux distribution ISO
+- **0.9.41 (July 2019)**: Redesigned website navigation, router-side meta LS2 support
+- **0.9.40 (May 2019)**: Decrypting LS2 support, disable NTCP1, Docker image
+- **0.9.39 (March 2019)**: Redesigned website, encrypted LS2 support
+- **0.9.38 (January 2019)**: New setup wizard with bandwidth testing, macOS installer enhancements, signed installers
+- **0.9.37 (October 2018)**: NTCP2 enabled by default
+- **0.9.36 (August 2018)**: NTCP2 implementation (disabled by default)
+- **0.9.35 (June 2018)**: Susimail folders, Jetty 9.2.24
+- **0.9.34 (April 2018)**: UPnP IGD 2 support, IPv6 improvements
+- **0.9.33 (January 2018)**: Reseed proxy support, Jetty 9.2.22, Tomcat 8.5.23
+- **0.9.32 (November 2017)**: Ignore hostnames in router infos (proposal 141)
+- **0.9.31 (August 2017)**: Console redesign phase 1, i2psnark ratings
+- **0.9.30 (May 2017)**: Hidden service server sigtype migration, Tomcat 8 / Jetty 9.2
+- **0.9.29 (February 2017)**: Java 9 fixes, NTP hardening, Docker support
+- **0.9.28 (December 2016)**: IPv6 improvements, blocklist enhancements
+- **0.9.27 (October 2016)**: SSU IPv6 peer testing, hidden mode improvements
+- **0.9.26 (June 2016)**: New subscription protocol, Wrapper 3.5.29, GMP 6.0
+- **0.9.25 (March 2016)**: SAM v3.3, Sybil tool enhancements, QR codes
+- **0.9.24 (January 2016)**: SAM v3.2, Require Java 7, NetDB Family, Ed25519 transition
+
+</details>
+---
+
+## Thông tin Phát hành
+
+**Chu kỳ phát hành:** Khoảng 13 tuần cho mỗi phiên bản chính
+
+**Chính sách hỗ trợ:** - **Phiên bản hiện tại**: Được hỗ trợ đầy đủ với các bản cập nhật và bản vá bảo mật - **Phiên bản trước đó**: Chỉ cập nhật bảo mật - **Phiên bản cũ hơn**: Không còn được hỗ trợ (khuyến nghị nâng cấp)
+
+**Đánh số phiên bản:** - Bắt đầu với dòng 0.9.x (từ 0.9.66) - Chuyển sang dòng 1.x (1.5.0 đến 1.9.0) - Hiện tại ở dòng 2.x (2.0.0+)
 
 ---
 
-### Các Bản Phát Hành 2023-2022
+## Tài Nguyên Phát Triển
 
-<details>
-<summary>Nhấp để mở rộng các bản phát hành 2023-2022</summary>
+- **Mã nguồn**: [i2pgit.org](https://i2pgit.org)
+- **Trình theo dõi vấn đề**: i2pgit.org hoặc github issues
+- **Cuộc họp hàng tháng**: Hiện tại không hoạt động
+- **IRC**: #i2p-dev trên IRC2P
+- **Ghi chú phát hành**: [I2P Blog](/blog/)
 
-**Phiên Bản 2.3.0** — Được Phát Hành Ngày 28 Tháng 6, 2023
+---
 
-- Cải tiến lựa chọn đồng đối cho kênh ngầm
-- Hạn định thời gian hết hạn danh sách đen do người dùng cấu hình
-- Giảm tốc độ tra cứu nhanh từ cùng nguồn
-- Sửa lỗi rò rỉ thông tin phát hiện phát lại
-- Sửa lỗi NetDB cho multihomed leaseSets
-- Sửa lỗi NetDB cho leaseSets nhận được như một phản hồi trước khi được nhận như một lưu trữ
+## Tham Gia Đóng Góp
 
-**Phiên Bản 2.2.1** — Được Phát Hành Ngày 12 Tháng 4, 2023
+Muốn đóng góp cho tương lai của I2P? Hãy xem trang [Tham Gia](/en/get-involved) để tìm hiểu cách bạn có thể giúp đỡ trong phát triển, thử nghiệm, tài liệu và nhiều việc khác!
 
-- Sửa lỗi đóng gói
-
-**Phiên Bản 2.2.0** — Được Phát Hành Ngày 13 Tháng 3, 2023
-
-- Cải tiến lựa chọn đồng đối cho kênh ngầm
-- Sửa lỗi phát lại trong streaming
-
-**Phiên Bản 2.1.0** — Được Phát Hành Ngày 10 Tháng 1, 2023
-
-- Sửa lỗi SSU2
-- Sửa lỗi tắc nghẽn xây dựng kênh ngầm
-- Sửa lỗi kiểm tra đồng đối SSU và phát hiện NAT đối xứng
-- Sửa lỗi leaseSets mã hóa LS2 bị lỗi
-- Tùy chọn vô hiệu hóa SSU 1 (sơ bộ)
-- Đề xuất 161: Đệm nén được
-- Tab trạng thái cân nhắc đồng đối mới trên bảng điều khiển
-- Thêm hỗ trợ torsocks vào proxy SOCKS và các cải tiến và sửa lỗi khác của SOCKS
-
-**Phiên Bản 2.0.0** — Được Phát Hành Ngày 21 Tháng 11, 2022
-
-- Di chuyển kết nối SSU2
-- ACK ngay lập tức của SSU2
-- Kích hoạt mặc định SSU2
-- Xác thực proxy digest SHA-256 trong i2ptunnel
-- Cập nhật quy trình xây dựng Android sử dụng AGP hiện đại
-- Hỗ trợ tự động cấu hình trình duyệt I2P cho Máy tính (Desktop)
-
-**Phiên Bản 1.9.0** — Được Phát Hành Ngày 22 Tháng 8, 2022
-
-- Kiểm tra đồng đối SSU2 và triển khai relay
-- Sửa lỗi SSU2
-- Cải tiến SSU MTU/PMTU
-- Kích hoạt SSU2 cho một phần nhỏ các router
-- Thêm trình dò ra ngõ cụt
-- Sửa lỗi nhập chứng chỉ nhiều hơn
-- Sửa lỗi khởi động lại DHT của i2psnark sau khi khởi động lại router
-
-**Phiên Bản 1.8.0** — Được Phát Hành Ngày 23 Tháng 5, 2022
-
-- Sửa lỗi và cải thiện gia đình router
-- Sửa lỗi khởi động mềm
-- Cải tiến hiệu suất và sửa lỗi SSU
-- Sửa lỗi và cải tiến độc lập của I2PSnark
-- Tránh hình phạt Sybil cho các gia đình đáng tin cậy
-- Giảm thời gian chờ phản hồi xây dựng kênh ngầm
-- Sửa lỗi UPnP
-- Loại bỏ mã nguồn BOB
-- Sửa lỗi nhập chứng chỉ
-- Tomcat 9.0.62
-- Tái cấu trúc để hỗ trợ SSU2 (đề xuất 159)
-- Thực hiện ban đầu của giao thức nền tảng SSU2 (đề xuất 159)
-- SAM thông báo ủy quyền popup cho ứng dụng Android
-- Cải tiến hỗ trợ cho cài đặt thư mục tùy chỉnh trong i2p.firefox
-
-**Phiên Bản 1.7.0** — Được Phát Hành Ngày 21 Tháng 2, 2022
-
-- Loại bỏ BOB
-- Trình chỉnh sửa torrent mới của i2psnark
-- Sửa lỗi và cải tiến độc lập của i2psnark
-- Cải thiện
+Để biết tin tức mới nhất và thông tin chi tiết về bản phát hành, hãy truy cập [I2P Blog](/en/blog).

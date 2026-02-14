@@ -281,6 +281,210 @@
           }
         }
       }
+    },
+    "en/get-involved/roadmap.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "09543537cd649829",
+          "translations": {
+            "zh": "I2P 开发路线图",
+            "tr": "I2P Geliştirme Yol Haritası",
+            "pt": "Roteiro de Desenvolvimento do I2P"
+          }
+        },
+        "fm_description": {
+          "source_hash": "ceb6ed6e89db8b4f",
+          "translations": {
+            "zh": "I2P 网络的当前开发计划和历史里程碑",
+            "tr": "I2P ağı için mevcut geliştirme planları ve tarihsel kilometre taşları",
+            "pt": "Planos de desenvolvimento atuais e marcos históricos para a rede I2P"
+          }
+        },
+        "h2_001": {
+          "source_hash": "1c4fdb9e3ae8ecf8",
+          "translations": {
+            "zh": "🎯 即将发布的版本",
+            "tr": "🎯 Yaklaşan Sürümler",
+            "pt": "🎯 Próximos Lançamentos"
+          }
+        },
+        "p_001": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_002": {
+          "source_hash": "a4dcbc29c28761e8",
+          "translations": {
+            "zh": "📦 最新发布版本",
+            "tr": "📦 Son Sürümler",
+            "pt": "📦 Lançamentos Recentes"
+          }
+        },
+        "h3_001": {
+          "source_hash": "b72c13396959edb9",
+          "translations": {
+            "zh": "2026版本发布",
+            "tr": "2026 Sürümleri",
+            "pt": "Lançamentos de 2026"
+          }
+        },
+        "h3_002": {
+          "source_hash": "ed77c6cad55af846",
+          "translations": {
+            "zh": "2025 年发布版本",
+            "tr": "2025 Sürümleri",
+            "pt": "Lançamentos de 2025"
+          }
+        },
+        "p_002": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h3_003": {
+          "source_hash": "b239506cbc1bfcd9",
+          "translations": {
+            "zh": "2023-2022 版本发布",
+            "tr": "2023-2022 Sürümleri",
+            "pt": "Lançamentos 2023-2022"
+          }
+        },
+        "p_003": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h3_004": {
+          "source_hash": "5150ca074ff78f01",
+          "translations": {
+            "zh": "2021年发布版本",
+            "tr": "2021 Sürümleri",
+            "pt": "Lançamentos de 2021"
+          }
+        },
+        "p_004": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h3_005": {
+          "source_hash": "46642c243d51f367",
+          "translations": {
+            "zh": "2020-2016 历史存档",
+            "tr": "2020-2016 Tarihsel Arşivi",
+            "pt": "Arquivo Histórico 2020-2016"
+          }
+        },
+        "p_005": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_003": {
+          "source_hash": "fa23c16220c16978",
+          "translations": {
+            "zh": "发布信息",
+            "tr": "Sürüm Bilgileri",
+            "pt": "Informações da Versão"
+          }
+        },
+        "p_006": {
+          "source_hash": "e75b5b6ac2112287",
+          "translations": {
+            "zh": "**发布周期：** 主要版本大约每13周发布一次",
+            "tr": "**Yayın Döngüsü:** Ana sürümler için yaklaşık her 13 haftada bir",
+            "pt": "**Ciclo de Lançamento:** Aproximadamente a cada 13 semanas para versões principais"
+          }
+        },
+        "p_007": {
+          "source_hash": "44dd05b3c7ef8fa4",
+          "translations": {
+            "zh": "**支持政策：** - **当前版本**：提供完整支持，包括更新和安全补丁 - **上一版本**：仅提供安全更新 - **更旧版本**：不再支持（建议升级）",
+            "tr": "**Destek Politikası:** - **Mevcut sürüm**: Güncellemeler ve güvenlik yamaları ile tam destek - **Önceki sürüm**: Sadece güvenlik güncellemeleri - **Eski sürümler**: Artık desteklenmiyor (yükseltme önerilir)",
+            "pt": "**Política de Suporte:** - **Versão atual**: Totalmente suportada com atualizações e correções de segurança - **Versão anterior**: Apenas atualizações de segurança - **Versões mais antigas**: Não são mais suportadas (atualização recomendada)"
+          }
+        },
+        "p_008": {
+          "source_hash": "7ad59e6726b3804d",
+          "translations": {
+            "zh": "**版本编号：** - 从 0.9.x 系列开始（到 0.9.66） - 过渡到 1.x 系列（1.5.0 到 1.9.0） - 现在是 2.x 系列（2.0.0+）",
+            "tr": "**Sürüm Numaralandırması:** - 0.9.x serisi ile başladı (0.9.66'ya kadar) - 1.x serisine geçiş yapıldı (1.5.0'dan 1.9.0'a kadar) - Şimdi 2.x serisinde (2.0.0+)",
+            "pt": "**Numeração de Versões:** - Iniciou com a série 0.9.x (até 0.9.66) - Transicionou para a série 1.x (1.5.0 até 1.9.0) - Agora na série 2.x (2.0.0+)"
+          }
+        },
+        "p_009": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_004": {
+          "source_hash": "ce5ae9bfe1dcda00",
+          "translations": {
+            "zh": "开发资源",
+            "tr": "Geliştirme Kaynakları",
+            "pt": "Recursos de Desenvolvimento"
+          }
+        },
+        "list_001": {
+          "source_hash": "051627a993db533d",
+          "translations": {
+            "zh": "- **源代码**: [i2pgit.org](https://i2pgit.org)\n- **问题跟踪**: i2pgit.org 或 github issues\n- **月度会议**: 目前未活跃\n- **IRC**: IRC2P 上的 #i2p-dev\n- **发布说明**: [I2P 博客](/blog/)",
+            "tr": "- **Kaynak Kod**: [i2pgit.org](https://i2pgit.org)\n- **Sorun İzleyici**: i2pgit.org veya github sorunları\n- **Aylık Toplantılar**: Şu anda aktif değil\n- **IRC**: IRC2P üzerinde #i2p-dev\n- **Sürüm Notları**: [I2P Blog](/blog/)",
+            "pt": "- **Código Fonte**: [i2pgit.org](https://i2pgit.org)\n- **Rastreador de Problemas**: i2pgit.org ou issues do github\n- **Reuniões Mensais**: Atualmente não ativas\n- **IRC**: #i2p-dev no IRC2P\n- **Notas de Lançamento**: [Blog do I2P](/blog/)"
+          }
+        },
+        "p_010": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "---",
+            "tr": "---",
+            "pt": "---"
+          }
+        },
+        "h2_005": {
+          "source_hash": "4dd77d3ae0c4dd3f",
+          "translations": {
+            "zh": "参与其中",
+            "tr": "Katılın",
+            "pt": "Participe"
+          }
+        },
+        "p_011": {
+          "source_hash": "f4ffaa6d4e4ff282",
+          "translations": {
+            "zh": "想为I2P的未来做贡献？查看[参与其中](/en/get-involved)页面，了解如何帮助开发、测试、文档编写等工作！",
+            "tr": "I2P'nin geleceğine katkıda bulunmak mı istiyorsunuz? Geliştirme, test etme, dokümantasyon ve daha fazlasında nasıl yardımcı olabileceğinizi öğrenmek için [Katılın](/en/get-involved) sayfasını inceleyin!",
+            "pt": "Quer contribuir para o futuro do I2P? Confira a página [Participe](/en/get-involved) para saber como você pode ajudar com desenvolvimento, testes, documentação e muito mais!"
+          }
+        },
+        "p_012": {
+          "source_hash": "a67886989dddfb03",
+          "translations": {
+            "zh": "获取最新消息和详细发布信息，请访问 [I2P 博客](/en/blog)。",
+            "tr": "En güncel haberler ve detaylı sürüm bilgileri için [I2P Blog](/en/blog)'u ziyaret edin.",
+            "pt": "Para as últimas notícias e informações detalhadas sobre lançamentos, visite o [Blog do I2P](/en/blog)."
+          }
+        }
+      }
     }
   }
 }

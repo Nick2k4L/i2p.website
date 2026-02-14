@@ -1,345 +1,452 @@
 ---
 title: "I2P 개발 로드맵"
-description: "I2P 네트워크의 현재 개발 계획과 역사적 성과"
+description: "I2P 네트워크의 현재 개발 계획 및 역사적 이정표"
 ---
 
 <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">
 
-**I2P는 점진적인 개발 모델**을 따르며 약 13주마다 릴리스를 진행합니다. 이 로드맵은 데스크탑과 안드로이드 Java 릴리스를 단일의 안정적인 릴리스 경로로 다룹니다.
+**I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**마지막 업데이트:** 2025년 8월
+**Last Updated:** February 2026
 
 </div>
-
 ## 🎯 예정된 릴리스
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
-### 버전 2.11.0
+### Version 2.12.0
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-목표: 2025년 12월 초
+Target: May 2026
 </div>
 
-- 혼합 PQ MLKEM Ratchet 최종 완료, 기본 활성화 (제안 169)
-- Jetty 12, Java 17+ 필요
-- PQ 작업 계속 진행 (전송) (제안 169)
-- I2CP 조회를 위한 LS 서비스 기록 매개변수 지원 (제안 167)
-- 터널별 스로틀링
-- 프로메테우스 친화적인 통계 하위 시스템
-- SAM Datagram 2/3 지원
+- NTCP2-PQ transport (prop. 169)
+- Start work on SSU2-PQ transport (prop. 169)
+- I2CP lookup support for LS service record parameters (prop. 167)
+- Per-tunnel throttling
+- Prometheus-friendly stat subsystem
 
 </div>
-
 ---
 
-## 📦 최근 릴리스
+## 📦 최신 릴리스
 
+### 2026 릴리스
+
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+
+**Version 2.11.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released February 9, 2026</span>
+
+- Sybil mitigations
+- Hybrid PQ MLKEM Ratchet final, enable by default (prop. 169)
+- Jetty 12, require Java 17+
+- Continue work on PQ (transports) (prop. 169)
+- SAM support for Datagram 2/3
+
+</div>
 ### 2025 릴리스
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**버전 2.10.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2025년 9월 8일 출시</span>
+**Version 2.10.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released September 8, 2025</span>
 
-- i2psnark UDP 트래커 지원 (제안 160)
-- I2CP LS 서비스 기록 매개변수 (일부) (제안 167)
-- I2CP 비동기 조회 API
-- 혼합 PQ MLKEM Ratchet 베타 (제안 169)
-- PQ 작업 계속 진행 (전송) (제안 169)
-- 터널 생성 대역폭 매개변수 (제안 168) 2부 (처리)
-- 터널별 스로틀링 작업 계속
-- 사용되지 않는 전송 ElGamal 코드 제거
-- 오래된 SSU2 "활성 스로틀" 코드 제거
-- 오래된 통계 로깅 지원 제거
-- 통계/그래프 하위 시스템 정리
-- 숨김 모드 개선 및 수정
-
-</div>
-
-<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
-
-**버전 2.9.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2025년 6월 2일 출시</span>
-
-- Netdb 지도
-- Datagram2, Datagram3 구현 (제안 163)
-- LS 서비스 기록 매개변수 작업 시작 (제안 167)
-- PQ 작업 시작 (제안 169)
-- 터널별 스로틀링 작업 계속
-- 터널 생성 대역폭 매개변수 (제안 168) 1부 (전송)
-- 기본적으로 Linux에서 /dev/random을 PRNG로 사용
-- 중복 LS 렌더 코드 제거
-- HTML로 변경 로그 표시
-- HTTP 서버 스레드 사용량 줄이기
-- 자동 플러드필 등록 수정
-- 래퍼 업데이트 3.5.60
+- i2psnark UDP tracker support (prop. 160)
+- I2CP LS service record parameters (partial) (prop. 167)
+- I2CP async lookup API
+- Hybrid PQ MLKEM Ratchet Beta (prop. 169)
+- Continue work on PQ (transports) (prop. 169)
+- Tunnel build bandwidth parameters (prop. 168) Part 2 (handling)
+- Continue work on per-tunnel throttling
+- Remove unused transport ElGamal code
+- Remove ancient SSU2 "active throttle" code
+- Remove ancient stat logging support
+- Stat/graph subsystem cleanup
+- Hidden mode improvements and fixes
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**버전 2.8.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2025년 3월 29일 출시</span>
+**Version 2.9.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released June 2, 2025</span>
 
-- SHA256 손상 버그 수정
+- Netdb map
+- Implement Datagram2, Datagram3 (prop. 163)
+- Start work on LS service record parameter (prop. 167)
+- Start work on PQ (prop. 169)
+- Continue work on per-tunnel throttling
+- Tunnel build bandwidth parameters (prop. 168) Part 1 (sending)
+- Use /dev/random for PRNG by default on Linux
+- Remove redundant LS render code
+- Display changelog in HTML
+- Reduce HTTP server thread usage
+- Fix auto-floodfill enrollment
+- Wrapper update to 3.5.60
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**버전 2.8.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2025년 3월 17일 출시</span>
+**Version 2.8.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 29, 2025</span>
 
-- Java 21+에서 설치 실패 수정
-- "루프백" 버그 수정
-- 아웃바운드 클라이언트 터널에 대한 터널 테스트 수정
-- 공백이 있는 경로에 설치할 때 오류 수정
-- 오래된 Docker 컨테이너 및 라이브러리 업데이트
-- 콘솔 알림 버블
-- SusiDNS 최신 정렬
-- Noise에서 SHA256 풀 사용
-- 콘솔 다크 테마 수정 및 개선
-- .i2p.alt 지원
+- Fix SHA256 corruption bug
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-**버전 2.8.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2025년 2월 3일 출시</span>
+**Version 2.8.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 17, 2025</span>
 
-- RouterInfo 발행 개선
-- SSU2 ACK 효율성 향상
-- 중복 릴레이 메시지에 대한 SSU2 처리 개선
-- 더 빠른/가변 조회 시간 초과
-- LS 만료 개선
-- 대칭 NAT 캡 변경
-- 더 많은 양식에서 POST 강제
-- SusiDNS 다크 테마 수정
-- 대역폭 테스트 정리
-- 새로운 간 중국어 번역
-- 쿠르드 UI 옵션 추가
-- 새로운 Jammy 빌드
+- Fix installer failure on Java 21+
+- Fix "loopback" bug
+- Fix tunnel tests for outbound client tunnels
+- Fix installing to paths with spaces
+- Update outdated Docker container and container libraries
+- Console notification bubbles
+- SusiDNS sort-by-latest
+- Use SHA256 pool in Noise
+- Console dark theme fixes and improvements
+- .i2p.alt support
+
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+
+**Version 2.8.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released February 3, 2025</span>
+
+- RouterInfo publishing improvements
+- Improve SSU2 ACK efficiency
+- Improve SSU2 handling of dup relay messages
+- Faster / variable lookup timeouts
+- LS expiration improvements
+- Change symmetric NAT cap
+- Enforce POST in more forms
+- SusiDNS dark theme fixes
+- Bandwidth test cleanups
+- New Gan Chinese translation
+- Add Kurdish UI option
+- New Jammy build
 - Izpack 5.2.3
 - rrd4j 3.10
 
 </div>
-
 <div style="margin: 3rem 0; padding: 1rem 0; border-top: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border);">
-  <h3 style="margin: 0; color: var(--color-primary);">📅 2024 릴리스</h3>
+  <h3 style="margin: 0; color: var(--color-primary);">📅 2024 Releases</h3>
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**버전 2.7.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2024년 10월 8일 출시</span>
+**Version 2.7.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— October 8, 2024</span>
 
-- i2ptunnel HTTP 서버 스레드 사용량 감소
-- I2PTunnel의 일반 UDP 터널
-- I2PTunnel의 브라우저 프록시
-- 웹사이트 마이그레이션
-- 노란색으로 변하는 터널 수정
-- 콘솔 /netdb 리팩토링
+- i2ptunnel HTTP server reduce thread usage
+- Generic UDP Tunnels in I2PTunnel
+- Browser Proxy in I2PTunnel
+- Website Migration
+- Fix for tunnels going yellow
+- Console /netdb refactoring
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**버전 2.6.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2024년 8월 6일 출시</span>
+**Version 2.6.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— August 6, 2024</span>
 
-- 콘솔 내 iframe 크기 문제 수정
-- 그래프를 SVG로 변환
-- 번들 번역 상태 보고서
+- Fix iframe size issues in console
+- Convert graphs to SVG
+- Bundle translation status report
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**버전 2.6.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2024년 7월 19일 출시</span>
+**Version 2.6.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— July 19, 2024</span>
 
-- Netdb 메모리 사용량 줄이기
-- SSU1 코드 제거
-- i2psnark 임시 파일 누수 및 정지 수정
-- i2psnark의 더 효율적인 PEX
-- 콘솔 그래프의 JS 새로 고침
-- 그래프 렌더링 개선
-- Susimail JS 검색
-- OBEP에서 더 효율적인 메시지 처리
-- 로컬 목적지 I2CP 조회의 효율성 향상
-- JS 변수 범위 문제 수정
+- Reduce netdb memory usage
+- Remove SSU1 code
+- Fix i2psnark temp file leaks and stalls
+- More efficient PEX in i2psnark
+- JS refresh of console graphs
+- Graph rendering improvements
+- Susimail JS search
+- More efficient message handling at OBEP
+- More efficient local destination I2CP lookups
+- Fix JS variable scoping issues
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**버전 2.5.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2024년 5월 15일 출시</span>
+**Version 2.5.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 15, 2024</span>
 
-- HTTP 잘림 수정
-- 대칭 NAT 감지 시 G 기능 공개
-- rrd4j 3.9.1-preview로 업데이트
+- Fix HTTP truncation
+- Publish G capability if symmetric NAT detected
+- Update to rrd4j 3.9.1-preview
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**버전 2.5.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2024년 5월 6일 출시</span>
+**Version 2.5.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 6, 2024</span>
 
-- NetDB DDoS 완화 조치
-- Tor 차단 목록
-- Susimail 수정 및 검색
-- SSU1 코드 제거 작업 계속
-- Tomcat 9.0.88로 업데이트
+- NetDB DDoS mitigations
+- Tor blocklist
+- Susimail fixes and search
+- Continue removing SSU1 code
+- Update to Tomcat 9.0.88
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**버전 2.5.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2024년 4월 8일 출시</span>
+**Version 2.5.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— April 8, 2024</span>
 
-- 콘솔 iframe 개선
-- i2psnark 대역폭 조절기 재설계
-- i2psnark 및 susimail을 위한 Javascript 드래그 앤 드롭
-- i2ptunnel SSL 오류 처리 개선
-- i2ptunnel 지속적인 HTTP 연결 지원
-- SSU1 코드 제거 시작
-- SSU2 릴레이 태그 요청 처리 개선
-- SSU2 피어 테스트 수정
-- Susimail 개선 (로드, 마크다운, HTML 이메일 지원)
-- 터널 피어 선택 조정
-- RRD4J 3.9로 업데이트
-- gradlew 8.5로 업데이트
+- Console iframe improvements
+- Redesign i2psnark bandwidth limiter
+- Javascript drag-and-drop for i2psnark and susimail
+- i2ptunnel SSL error handling improvements
+- i2ptunnel persistent HTTP connection support
+- Start removing SSU1 code
+- SSU2 relay tag request handling improvements
+- SSU2 peer test fixes
+- Susimail improvements (loading, markdown, HTML email support)
+- Tunnel peer selection adjustments
+- Update RRD4J to 3.9
+- Update gradlew to 8.5
 
 </div>
-
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
-**버전 2.4.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— 2023년 12월 18일 출시</span>
+**Version 2.4.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— December 18, 2023</span>
 
-- NetDB 컨텍스트 관리/세그먼트된 NetDB
-- 과부하된 라우터의 우선 순위 축소로 혼잡 기능 처리
-- Android 헬퍼 라이브러리 부활
-- i2psnark 로컬 토렌트 파일 선택기
-- NetDB 조회 핸들러 수정
-- SSU1 비활성화
-- 미래에 발행하는 라우터 금지
-- SAM 수정
-- susimail 수정
-- UPnP 수정
+- NetDB context management/Segmented NetDB
+- Handle congestion capabilities by deprioritizing overloaded routers
+- Revive Android helper library
+- i2psnark local torrent file selector
+- NetDB lookup handler fixes
+- Disable SSU1
+- Ban routers publishing in the future
+- SAM fixes
+- susimail fixes
+- UPnP fixes
 
 </div>
-
 ---
 
 ### 2023-2022 릴리스
 
 <details>
-<summary>2023-2022 릴리스 확장하려면 클릭</summary>
+<summary>Click to expand 2023-2022 releases</summary>
 
-**버전 2.3.0** — 2023년 6월 28일 출시
+**Version 2.3.0** — Released June 28, 2023
 
-- 터널 피어 선택 개선
-- 사용자 구성 가능한 차단 목록 만료
-- 동일한 출처에서 빠른 조회 폭주 제어
-- 재생 감지 정보 누출 수정
-- 다중 홈 leaseSets를 위한 NetDB 수정
-- 응답으로 수신된 leaseSets를 저장 전에 수신할 때의 NetDB 수정
+- Tunnel peer selection improvements
+- User-Configurable blocklist expiration
+- Throttle fast bursts of lookup from same source
+- Fix replay detection information leak
+- NetDB fixes for multihomed leaseSets
+- NetDB fixes for leaseSets received as a reply before being received as a store
 
-**버전 2.2.1** — 2023년 4월 12일 출시
+**Version 2.2.1** — Released April 12, 2023
 
-- 패키징 수정
+- Packaging fixes
 
-**버전 2.2.0** — 2023년 3월 13일 출시
+**Version 2.2.0** — Released March 13, 2023
 
-- 터널 피어 선택 개선
-- 스트리밍 재생 수정
+- Tunnel peer selection improvements
+- Streaming replay fix
 
-**버전 2.1.0** — 2023년 1월 10일 출시
+**Version 2.1.0** — Released January 10, 2023
 
-- SSU2 수정
-- 터널 생성 혼잡 수정
-- SSU 피어 테스트 및 대칭 NAT 탐지 수정
-- 깨진 LS2 암호화 leaseSets 수정
-- SSU 1 비활성화 옵션 (사전)
-- 압축 가능한 패딩 (제안 161)
-- 새로운 콘솔 피어 상태 탭 추가
-- SOCKS 프록시에 torsocks 지원 추가 및 기타 SOCKS 개선 사항 및 수정
+- SSU2 fixes
+- Tunnel build congestion fixes
+- SSU peer test and symmetric NAT detection fixes
+- Fix broken LS2 encrypted leasesets
+- Option to disable SSU 1 (preliminary)
+- Compressible padding (proposal 161)
+- New console peers status tab
+- Add torsocks support to SOCKS proxy and other SOCKS improvements and fixes
 
-**버전 2.0.0** — 2022년 11월 21일 출시
+**Version 2.0.0** — Released November 21, 2022
 
-- SSU2 연결 마이그레이션
-- SSU2 즉시 acks
-- 기본적으로 SSU2 활성화
-- i2ptunnel의 SHA-256 다이제스트 프록시 인증
-- 최신 AGP를 사용하여 Android 빌드 프로세스 업데이트
-- 크로스 플랫폼(데스크탑) I2P 브라우저 자동 구성 지원
+- SSU2 connection migration
+- SSU2 immediate acks
+- Enable SSU2 by default
+- SHA-256 digest proxy authentication in i2ptunnel
+- Update Android build process to use modern AGP
+- Cross-Platform(Desktop) I2P browser auto-configuration support
 
-**버전 1.9.0** — 2022년 8월 22일 출시
+**Version 1.9.0** — Released August 22, 2022
 
-- SSU2 피어 테스트 및 릴레이 구현
-- SSU2 수정
-- SSU MTU/PMTU 개선
-- 소수의 라우터에 대해 SSU2 활성화
-- 교착 상태 감지기 추가
-- 더 많은 인증서 가져오기 수정
-- 라우터 재시작 후 i2psnark DHT 재시작 수정
+- SSU2 peer test and relay implementation
+- SSU2 fixes
+- SSU MTU/PMTU improvements
+- Enable SSU2 for a small portion of routers
+- Add deadlock detector
+- More certificate import fixes
+- Fix i2psnark DHT restart after router restart
 
-**버전 1.8.0** — 2022년 5월 23일 출시
+**Version 1.8.0** — Released May 23, 2022
 
-- 라우터 패밀리 수정 및 개선
-- 소프트 재시작 수정
-- SSU 수정 및 성능 개선
-- I2PSnark 독립 실행형 수정 및 개선
-- 신뢰할 수 있는 패밀리에 대한 Sybil 페널티 방지
-- 터널 생성 응답 시간 초과 줄이기
-- UPnP 수정
-- BOB 출처 제거
-- 인증서 가져오기 수정
+- Router family fixes and improvements
+- Soft restart fixes
+- SSU fixes and performance improvements
+- I2PSnark standalone fixes and improvements
+- Avoid Sybil penalty for trusted families
+- Reduce tunnel build reply timeout
+- UPnP fixes
+- Remove BOB source
+- Certificate import fixes
 - Tomcat 9.0.62
-- SSU2 지원을 위한 리팩토링 (제안 159)
-- SSU2 기본 프로토콜의 초기 구현 (제안 159)
-- Android 앱용 SAM 승인 팝업
-- i2p.firefox의 사용자 디렉토리 설치 지원 개선
+- Refactoring to support SSU2 (proposal 159)
+- Initial implementation of SSU2 base protocol (proposal 159)
+- SAM authorization popup for Android apps
+- Improve support for custom directory installs in i2p.firefox
 
-**버전 1.7.0** — 2022년 2월 21일 출시
+**Version 1.7.0** — Released February 21, 2022
 
-- BOB 제거
-- 새로운 i2psnark 토렌트 편집기
-- i2psnark 독립 실행형 수정 및 개선
-- NetDB 신뢰성 개선
-- 시스템 트레이에 팝업 메시지 추가
-- NTCP2 성능 개선
-- 첫 번째 홉 실패 시 아웃바운드 터널 제거
-- 반복된 클라이언트 터널 구축 실패 후 응답을 위한 탐색 접근 방식으로 재전환
-- 터널 동일 IP 제한 복원
-- i2ptunnel UDP 지원을 위한 리팩토링 I2CP 포트
-- SSU2 작업 계속 진행, 구현 시작 (제안 159)
-- I2P 브라우저 프로파일의 Debian/Ubuntu 패키지 생성
-- I2P 브라우저 프로파일의 플러그인 생성
-- Android 애플리케이션에 대한 문서화 I2P
-- i2pcontrol 개선
-- 플러그인 지원 개선
-- 새로운 로컬 외부 프록시 플러그인
-- IRCv3 메시지 태그 지원
+- Remove BOB
+- New i2psnark torrent editor
+- i2psnark standalone fixes and improvements
+- NetDB reliability improvements
+- Add popup messages in systray
+- NTCP2 performance improvements
+- Remove outbound tunnel when first hop fails
+- Fallback to exploratory for tunnel build reply after repeated client tunnel build failures
+- Restore tunnel same-IP restrictions
+- Refactor i2ptunnel UDP support for I2CP ports
+- Continue work on SSU2, start implementation (proposal 159)
+- Create Debian/Ubuntu Package of I2P Browser Profile
+- Create Plugin of I2P Browser Profile
+- Document I2P for Android applications
+- i2pcontrol improvements
+- Plugin support improvements
+- New local outproxy plugin
+- IRCv3 message tag support
 
 </details>
-
 ---
 
 ### 2021 릴리스
 
 <details>
-<summary>2021 릴리스 확장하려면 클릭</summary>
+<summary>Click to expand 2021 releases</summary>
 
-**버전 1.6.1** — 2021년 11월 29일 출시
+**Version 1.6.1** — Released November 29, 2021
 
-- ECIES로 라우터 재키 빠르게
-- SSU 성능 개선
-- SSU 피어 테스트 보안 개선
-- 새 설치 마법사에 테마 선택 추가
-- SSU2 작업 계속 진행 (제안 159)
-- 새로운 터널 빌드 메시지 전송 (제안 157)
-- IzPack 설치 프로그램에 자동 브라우저 구성 도구 포함
-- 포크 및 실행 플러그인을 관리 가능하게 만들기
-- jpackage 설치 프로세스를 문서화
-- Go/Java 플러그인 생성 도구 완성 및 문서화
-- 자체 서명 HTTPS 리시드를 위한 Reseed 플러그인
+- Accelerate rekeying routers to ECIES
+- SSU performance improvements
+- Improve SSU peer test security
+- Add theme selection to new-install wizard
+- Continue work on SSU2 (proposal 159)
+- Send new tunnel build messages (proposal 157)
+- Include automatic browser configuration tool in IzPack installer
+- Make Fork-and-Exec Plugins Manageable
+- Document jpackage install processes
+- Complete, document Go/Java Plugin Generation Tools
+- Reseed Plugin for self-signed HTTPS reseed
 
-**버전 1.5.0** — 2021년 8월 23일 출시
+**Version 1.5.0** — Released August 23, 2021
 
-- ECIES로 라우터 재키 빠르게
-- SSU2 작업 시작
-- 새로운 터널 빌드 메시지 구현
+- Accelerate rekeying routers to ECIES
+- Start work on SSU2
+- Implement new tunnel build messages (proposal 157)
+- Support dmg and exe automatic updates
+- New native OSX installer
+- X-I2P-Location(alt-svc) locations for built-in I2P Site
+- RRD4J 3.8
+- Create C, CGo, SWIG bindings for libi2pd
+
+**Version 0.9.50** — Released May 18, 2021
+
+- Accelerate rekeying routers to ECIES
+- UPnP IPv6 support
+- 4/6 router address caps (proposal 158)
+- IPv6 introducers (proposal 158)
+- NTP year 2036 fixes
+- Continue work on new tunnel build message (proposal 157)
+- Enable DoH for reseeding
+- Docker improvements
+- SSU IPv6 fixes
+- Persist Sybil blocklist
+- Tunnel bandwidth limiter fixes
+
+**Version 0.9.49** — Released February 17, 2021
+
+- SSU send individual fragments
+- SSU Westwood+
+- SSU fast retransmit
+- SSU fix partial acks
+- ECIES router encrypted messages
+- Start rekeying routers to ECIES
+- Start work on new tunnel build message (proposal 157)
+- More SSU performance improvements
+- i2psnark webseed support
+- Start work on i2psnark hybrid v2 support
+- Move web resources to wars
+- Move resources to jars
+- Fix Gradle build
+- Hidden mode fixes
+- Change DoH to RFC 8484
+- Fix "Start on Boot" support on Android
+- Add support for copying b32 addresses on Android
+- Add SAMv3 Support to Android
+- Revise CSS on default I2P Site
+- Document I2P site setup
+- Add icons to router console themes
+- Complete transition to Git
+- Donation page redesign
+- Review and update VCS information
+
+</details>
+---
+
+### 2020-2016 과거 아카이브
+
+<details>
+<summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
+
+For the complete historical archive of releases from 2020 back to January 2016, including all versions from 0.9.48 to 0.9.24, see the [full release notes](/blog/) on the I2P blog.
+
+**Major milestones from this era:**
+
+- **0.9.47 (August 2020)**: Required Java 8, ECIES enabled for some tunnels, Sybil analysis enabled by default
+- **0.9.46 (May 2020)**: Replaced jrobin with rrd4j, ECIES testing
+- **0.9.45 (February 2020)**: Full dual IPv4/IPv6 support, hidden mode fixes
+- **0.9.44 (December 2019)**: Docker image, testnet Kubernetes, I2P Browser development
+- **0.9.43 (October 2019)**: Preliminary ECIES support, SSU IPv6 peer testing, Red25519 signature support
+- **0.9.42 (August 2019)**: Browser WebExtensions, Linux distribution ISO
+- **0.9.41 (July 2019)**: Redesigned website navigation, router-side meta LS2 support
+- **0.9.40 (May 2019)**: Decrypting LS2 support, disable NTCP1, Docker image
+- **0.9.39 (March 2019)**: Redesigned website, encrypted LS2 support
+- **0.9.38 (January 2019)**: New setup wizard with bandwidth testing, macOS installer enhancements, signed installers
+- **0.9.37 (October 2018)**: NTCP2 enabled by default
+- **0.9.36 (August 2018)**: NTCP2 implementation (disabled by default)
+- **0.9.35 (June 2018)**: Susimail folders, Jetty 9.2.24
+- **0.9.34 (April 2018)**: UPnP IGD 2 support, IPv6 improvements
+- **0.9.33 (January 2018)**: Reseed proxy support, Jetty 9.2.22, Tomcat 8.5.23
+- **0.9.32 (November 2017)**: Ignore hostnames in router infos (proposal 141)
+- **0.9.31 (August 2017)**: Console redesign phase 1, i2psnark ratings
+- **0.9.30 (May 2017)**: Hidden service server sigtype migration, Tomcat 8 / Jetty 9.2
+- **0.9.29 (February 2017)**: Java 9 fixes, NTP hardening, Docker support
+- **0.9.28 (December 2016)**: IPv6 improvements, blocklist enhancements
+- **0.9.27 (October 2016)**: SSU IPv6 peer testing, hidden mode improvements
+- **0.9.26 (June 2016)**: New subscription protocol, Wrapper 3.5.29, GMP 6.0
+- **0.9.25 (March 2016)**: SAM v3.3, Sybil tool enhancements, QR codes
+- **0.9.24 (January 2016)**: SAM v3.2, Require Java 7, NetDB Family, Ed25519 transition
+
+</details>
+---
+
+## 릴리스 정보
+
+**릴리스 주기:** 주요 릴리스는 약 13주마다
+
+**지원 정책:** - **현재 릴리스**: 업데이트 및 보안 패치로 완전 지원 - **이전 릴리스**: 보안 업데이트만 제공 - **구 릴리스**: 더 이상 지원하지 않음 (업그레이드 권장)
+
+**버전 번호 체계:** - 0.9.x 시리즈로 시작 (0.9.66까지) - 1.x 시리즈로 전환 (1.5.0부터 1.9.0까지) - 현재 2.x 시리즈 (2.0.0+)
+
+---
+
+## 개발 리소스
+
+- **소스 코드**: [i2pgit.org](https://i2pgit.org)
+- **이슈 트래커**: i2pgit.org 또는 github issues
+- **월례 회의**: 현재 활성화되지 않음
+- **IRC**: IRC2P의 #i2p-dev
+- **릴리스 노트**: [I2P Blog](/blog/)
+
+---
+
+## 참여하기
+
+I2P의 미래에 기여하고 싶으신가요? [참여하기](/en/get-involved) 페이지를 확인하여 개발, 테스팅, 문서화 등에 어떻게 도움을 줄 수 있는지 알아보세요!
+
+최신 뉴스와 자세한 릴리스 정보는 [I2P 블로그](/en/blog)를 방문하세요.
