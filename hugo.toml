@@ -30,88 +30,88 @@ defaultContentLanguageInSubdir = true
     title = 'I2P - The Invisible Internet Project'
     weight = 1
 
-  [languages.es]
-    contentDir = 'content/es'
-    languageCode = 'es-ES'
-    languageName = 'Español'
-    title = 'I2P - El Proyecto Internet Invisible'
+  [languages.ar]
+    contentDir = 'content/ar'
+    languageCode = 'ar-SA'
+    languageName = 'العربية'
+    title = 'I2P - مشروع الإنترنت غير المرئي'
     weight = 2
-
-  [languages.ko]
-    contentDir = 'content/ko'
-    languageCode = 'ko-KR'
-    languageName = '한국어'
-    title = 'I2P - 보이지 않는 인터넷 프로젝트'
-    weight = 3
 
   [languages.zh]
     contentDir = 'content/zh'
     languageCode = 'zh-CN'
     languageName = '中文'
     title = 'I2P - 隐形互联网项目'
-    weight = 4
-
-  [languages.ru]
-    contentDir = 'content/ru'
-    languageCode = 'ru-RU'
-    languageName = 'Русский'
-    title = 'I2P - Проект невидимого интернета'
-    weight = 5
+    weight = 3
 
   [languages.cs]
     contentDir = 'content/cs'
     languageCode = 'cs-CZ'
     languageName = 'Čeština'
     title = 'I2P - Projekt neviditelného internetu'
-    weight = 6
-
-  [languages.de]
-    contentDir = 'content/de'
-    languageCode = 'de-DE'
-    languageName = 'Deutsch'
-    title = 'I2P - Das unsichtbare Internet-Projekt'
-    weight = 7
+    weight = 4
 
   [languages.fr]
     contentDir = 'content/fr'
     languageCode = 'fr-FR'
     languageName = 'Français'
     title = 'I2P - Le projet Internet invisible'
-    weight = 8
+    weight = 5
 
-  [languages.tr]
-    contentDir = 'content/tr'
-    languageCode = 'tr-TR'
-    languageName = 'Türkçe'
-    title = 'I2P - Görünmez İnternet Projesi'
-    weight = 9
-
-  [languages.vi]
-    contentDir = 'content/vi'
-    languageCode = 'vi-VN'
-    languageName = 'Tiếng Việt'
-    title = 'I2P - Dự án Internet vô hình'
-    weight = 10
+  [languages.de]
+    contentDir = 'content/de'
+    languageCode = 'de-DE'
+    languageName = 'Deutsch'
+    title = 'I2P - Das unsichtbare Internet-Projekt'
+    weight = 6
 
   [languages.hi]
     contentDir = 'content/hi'
     languageCode = 'hi-IN'
     languageName = 'हिन्दी'
     title = 'I2P - अदृश्य इंटरनेट परियोजना'
-    weight = 11
+    weight = 7
 
-  [languages.ar]
-    contentDir = 'content/ar'
-    languageCode = 'ar-SA'
-    languageName = 'العربية'
-    title = 'I2P - مشروع الإنترنت غير المرئي'
-    weight = 12
+  [languages.ko]
+    contentDir = 'content/ko'
+    languageCode = 'ko-KR'
+    languageName = '한국어'
+    title = 'I2P - 보이지 않는 인터넷 프로젝트'
+    weight = 8
 
   [languages.pt]
     contentDir = 'content/pt'
     languageCode = 'pt-PT'
     languageName = 'Português'
     title = 'I2P - O Projeto de Internet Invisível'
+    weight = 9
+
+  [languages.ru]
+    contentDir = 'content/ru'
+    languageCode = 'ru-RU'
+    languageName = 'Русский'
+    title = 'I2P - Проект невидимого интернета'
+    weight = 10
+
+  [languages.es]
+    contentDir = 'content/es'
+    languageCode = 'es-ES'
+    languageName = 'Español'
+    title = 'I2P - El Proyecto Internet Invisible'
+    weight = 11
+
+  [languages.tr]
+    contentDir = 'content/tr'
+    languageCode = 'tr-TR'
+    languageName = 'Türkçe'
+    title = 'I2P - Görünmez İnternet Projesi'
+    weight = 12
+
+  [languages.vi]
+    contentDir = 'content/vi'
+    languageCode = 'vi-VN'
+    languageName = 'Tiếng Việt'
+    title = 'I2P - Dự án Internet vô hình'
     weight = 13
 
 # Pagination
