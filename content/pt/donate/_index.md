@@ -1,0 +1,4 @@
+---
+title: "Doar"
+type: "donate"
+---

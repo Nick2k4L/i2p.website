@@ -1,4 +1,4 @@
 ---
 title: "I2P - El Proyecto de Internet Invisible"
-description: "Una capa de red anónima, centrada en la privacidad, que protege sus comunicaciones contra la vigilancia y el monitoreo."
+description: "I2P es una capa de red privada totalmente cifrada. Proteja su actividad en línea de la vigilancia y la censura con cifrado de extremo a extremo integrado."
 ---

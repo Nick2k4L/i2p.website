@@ -1,4 +1,4 @@
 ---
 title: "I2P - Projekt neviditelného internetu"
-description: "Anonymní síťová vrstva zaměřená na soukromí, která chrání vaši komunikaci před dohledem a monitorováním."
+description: "I2P je plně šifrovaná soukromá síťová vrstva. Chraňte svou online aktivitu před sledováním a cenzurou díky vestavěnému end-to-end šifrování."
 ---

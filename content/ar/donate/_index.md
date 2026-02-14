@@ -1,0 +1,4 @@
+---
+title: "تبرع"
+type: "donate"
+---

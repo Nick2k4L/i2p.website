@@ -131,7 +131,7 @@ defaultContentLanguageInSubdir = true
 
 # Params
 [params]
-  description = "The Invisible Internet Project - A privacy-focused, anonymous network layer"
+  description = "I2P is a fully encrypted private network layer that protects your activity from surveillance and censorship."
   tagline = "Privacy. Security. Freedom."
   keywords = "i2p, privacy, anonymity, dark net, encryption, security"
 

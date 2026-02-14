@@ -1,4 +1,4 @@
 ---
 title: "I2P - Das Unsichtbare Internet-Projekt"
-description: "Eine datenschutzorientierte, anonyme Netzwerkschicht, die Ihre Kommunikation vor Überwachung und Beobachtung schützt."
+description: "I2P ist eine vollständig verschlüsselte private Netzwerkschicht. Schützen Sie Ihre Online-Aktivitäten vor Überwachung und Zensur mit integrierter Ende-zu-Ende-Verschlüsselung."
 ---

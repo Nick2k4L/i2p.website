@@ -1,4 +1,4 @@
 ---
 title: "I2P - Dự án Internet Vô Hình"
-description: "Một lớp mạng ẩn danh, tập trung vào quyền riêng tư, bảo vệ thông tin liên lạc của bạn khỏi sự giám sát và theo dõi."
+description: "I2P là một lớp mạng riêng tư được mã hóa hoàn toàn. Bảo vệ hoạt động trực tuyến của bạn khỏi sự giám sát và kiểm duyệt với mã hóa đầu cuối tích hợp."
 ---

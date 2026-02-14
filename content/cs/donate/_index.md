@@ -1,0 +1,4 @@
+---
+title: "Darovat"
+type: "donate"
+---

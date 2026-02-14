@@ -1,4 +1,4 @@
 ---
 title: "I2P - Görünmez İnternet Projesi"
-description: "İletişimlerinizi gözetim ve izlemeye karşı koruyan, gizliliğe odaklı, anonim bir ağ katmanı."
+description: "I2P, tamamen şifrelenmiş özel bir ağ katmanıdır. Yerleşik uçtan uca şifreleme ile çevrimiçi etkinliğinizi gözetim ve sansürden koruyun."
 ---
