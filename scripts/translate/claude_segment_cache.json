@@ -240,6 +240,47 @@
           }
         }
       }
+    },
+    "en/_index.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "dbcab99271d71cda",
+          "translations": {
+            "ru": "I2P - Проект невидимого интернета"
+          }
+        },
+        "fm_description": {
+          "source_hash": "c93dcbbf8da73b9f",
+          "translations": {
+            "ru": "I2P — это полностью зашифрованный уровень приватной сети. Защитите свою онлайн-активность от наблюдения и цензуры с помощью встроенного сквозного шифрования."
+          }
+        }
+      }
+    },
+    "en/donate/_index.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "c91ee0f2799df915",
+          "translations": {
+            "zh": "捐赠",
+            "tr": "Bağış Yap",
+            "hi": "दान करें"
+          }
+        }
+      }
+    },
+    "en/financial-support/_index.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "1b84865aa96dbc3f",
+          "translations": {
+            "zh": "支持 I2P",
+            "tr": "I2P'yi Destekle",
+            "vi": "Hỗ trợ I2P",
+            "ar": "دعم I2P"
+          }
+        }
+      }
     }
   }
 }

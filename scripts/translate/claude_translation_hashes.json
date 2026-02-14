@@ -3,11 +3,13 @@
     "content/en/blog/2026-01-06-new-website-launch.md": "b06736b9513ccf8e4ef6ba0ecc2c4cdc96aed48cde9a181216b431f9ae2a063a",
     "content/en/docs/api/streaming.md": "abcea31a1dc7c9ce89d400a2dc63b1517a66ce6bc77a390f93c88b36124c266e",
     "content/en/docs/guides/macos-install.md": "cf47b9c7c300a2b9e971f43bc739e2be4bdce030fd44cadcf725c1a3acb9c5a4",
-    "content/en/financial-support/_index.md": "823640e3167daa89fd3718846528846d5ab19e002e05bfc517a169a91bbd128a",
+    "content/en/financial-support/_index.md": "b700523ea8282c1a411fa1865ff2070b0f18f5f9bf69918f7dc7056b1e455d55",
     "content/en/docs/specs/common-structures.md": "13d340f88eba8cbed4c56f065104babe6ad40fbef467c7facc96e45c525ff117",
     "content/en/blog/2026-02-08-stormy-weather.md": "4f263088a03a5eb9d45d686acd0f889a9122ab31f47dbd71246194e6ec2cb8b5",
     "content/en/blog/2026-03-01-i2p-2-11-0-release.md": "65f6c222edb81faad1eeb6dd16a3f6bbcfabdfb1e5d8af0c22693be9ed884d62",
     "content/en/blog/2026-02-09-i2p-2-11-0-release.md": "a952958c6c46c8bf1ebe2e3dacd791f0bdce56bdbcbd3dfde0bdbed649596692",
-    "content/en/docs/overview/alternative-clients.md": "39d3a7e245b4879a6f59ecc7744b97ec08dd043b916c12b3de5e4b7f2b7a967d"
+    "content/en/docs/overview/alternative-clients.md": "39d3a7e245b4879a6f59ecc7744b97ec08dd043b916c12b3de5e4b7f2b7a967d",
+    "content/en/_index.md": "aaf11413ecb94f22437a67e8e7801171f0397152741c0a04449f799ec09e2f11",
+    "content/en/donate/_index.md": "99c970d02022d45908af96a97d434b5f1781678ee396f1d206312ca6145da91c"
   }
 }

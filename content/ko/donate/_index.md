@@ -1,4 +1,4 @@
 ---
-title: "기부"
+title: "기부하기"
 type: "donate"
 ---

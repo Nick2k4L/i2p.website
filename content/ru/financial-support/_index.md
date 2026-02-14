@@ -1,6 +1,6 @@
 ---
-title: "Поддержать I2P"
+title: "Поддержите I2P"
 slug: "financial-support"
 layout: single
-aliases: 
+aliases: []
 ---
