@@ -2,7 +2,7 @@
 title: "Réunion des développeurs d'I2P"
 date: 2003-02-04
 author: "nop"
-description: "Réunion de développement I2P portant sur les mises à jour du projet et les discussions techniques"
+description: "Journal de la réunion de développement I2P du 4 février 2003."
 categories: ["meeting"]
 ---
 

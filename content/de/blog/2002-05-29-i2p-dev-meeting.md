@@ -2,7 +2,7 @@
 title: "I2P-Entwicklertreffen, 29. Mai 2002"
 date: 2002-05-29
 author: "nop"
-description: "I2P-Entwicklungstreffen mit Projekt-Updates und technischen Diskussionen"
+description: "Protokoll der I2P-Entwicklungsbesprechung vom 29. Mai 2002."
 categories: ["meeting"]
 ---
 

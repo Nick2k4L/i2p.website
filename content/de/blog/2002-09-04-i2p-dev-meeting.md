@@ -2,7 +2,7 @@
 title: "I2P-Entwicklertreffen, 4. September 2002"
 date: 2002-09-04
 author: "nop"
-description: "I2P-Entwicklungstreffen mit Projekt-Updates und technischen Diskussionen"
+description: "Protokoll der I2P-Entwicklungsbesprechung vom 4. September 2002."
 categories: ["meeting"]
 ---
 

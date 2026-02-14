@@ -108,7 +108,7 @@ categories: ["meeting"]
 
 [23:20] <Masterboy> 4-5kb ليست سيئة..
 [23:20] <duck> مع windowsize بقيمة 1 لن تحصل على سرعة أعلى بكثير..
-[23:20] <duck> windowsize>1 مكافأة: http://www.i2p.net/node/view/224
+[23:20] <duck> windowsize>1 مكافأة: `http://www.i2p.net/node/view/224`
 [23:21] <duck> mihi: ربما يمكنك التعليق؟
 [23:21] <hypercubus> لكنها 3 kbps ثابتة بشكل لافت
 [23:21] <mihi> على ماذا؟ windowsize>1 مع ministreaming: ستكون ساحراً إن تمكنت من ذلك ;)

@@ -2,7 +2,7 @@
 title: "I2P डेवलपर बैठक"
 date: 2002-12-10
 author: "nop"
-description: "I2P विकास बैठक जिसमें परियोजना अपडेट और तकनीकी चर्चाएँ शामिल हैं"
+description: "10 दिसंबर 2002 की I2P विकास बैठक का लॉग।"
 categories: ["meeting"]
 ---
 

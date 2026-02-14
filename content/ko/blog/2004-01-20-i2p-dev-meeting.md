@@ -2,7 +2,7 @@
 title: "I2P 개발자 회의 - 2004년 1월 20일"
 date: 2004-01-20
 author: "jrand0m"
-description: "프로젝트 업데이트와 기술적 논의를 다루는 I2P 개발 회의"
+description: "2004년 1월 20일자 I2P 개발 회의록."
 categories: ["meeting"]
 ---
 

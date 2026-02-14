@@ -30,7 +30,7 @@ categories: ["status"]
 
 هناك أشياء مفيدة للقيام بها أكثر بكثير مما يسعني عده، لكنني فقط أود لفت انتباهكم إلى تدوينة على مدونتي تصف خمسة مشاريع صغيرة يمكن لمبرمج إنجازها سريعاً من دون استثمار وقت كبير [1]. إذا كان هناك من يرغب في تولّي أيٍّ منها، فأنا واثق من أننا سنخصص بعض الموارد [2] من الصندوق العام كتعبير عن الشكر، مع أنني أدرك أن معظمكم تحركه روح الاختراق البرمجي لا المال ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002` [2] `http://www.i2p.net/halloffame`
 
 * 4) ???
 

@@ -2,7 +2,7 @@
 title: "I2P-Entwicklertreffen"
 date: 2003-03-18
 author: "nop"
-description: "I2P-Entwicklertreffen mit Projekt-Updates und technischen Diskussionen"
+description: "Protokoll der I2P-Entwicklungsbesprechung vom 18. März 2003."
 categories: ["meeting"]
 ---
 

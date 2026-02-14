@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P - 26. listopadu 2003"
 date: 2003-11-26
 author: "jrand0m"
-description: "Vývojová schůzka I2P zaměřená na aktualizace projektu a technické diskuse"
+description: "Zápis z vývojářské schůzky I2P ze dne 26. listopadu 2003."
 categories: ["meeting"]
 ---
 

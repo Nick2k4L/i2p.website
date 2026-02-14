@@ -14,7 +14,7 @@ categories: ["status"]
 
 ستفي النسخة 0.4 بمعايير الإصدار الأربعة المذكورة (وظيفية، آمنة، مجهولة الهوية، وقابلة للتوسع)، إلا أنه قبل 0.4.2 لن يتمكن سوى عدد قليل من الأشخاص الموجودين خلف NATs (ترجمة عناوين الشبكة) وجدران الحماية من المشاركة، وقبل 0.4.3 سيكون هناك حد أعلى فعّال لحجم الشبكة بسبب العبء الإضافي المترتب على الحفاظ على عدد كبير من اتصالات TCP إلى routers أخرى.
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] ``http://www.i2p.net/redesign/`roadmap` [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -22,7 +22,7 @@ categories: ["status"]
 
 يمكن الاطلاع على مزيد من المعلومات حول هذا التغيير في صفحة اختيار النظراء المُنقَّحة [3]، وعند صدور الإصدار 0.3.3 ستتمكنون جميعًا من رؤية الأثر بأنفسكم مباشرةً (لقد كنتُ أجري بعض التجارب عليه خلال الأيام القليلة الماضية، وأعدّل بعض الإعدادات، إلخ).
 
-[3] http://www.i2p.net/redesign/how_peerselection
+[3] ``http://www.i2p.net/redesign/`how_peerselection`
 
 **3) تحديثات الموقع الإلكتروني**
 
@@ -41,7 +41,7 @@ categories: ["status"]
 
 إلى جانب ذلك، أعتقد أن الموقع بات قريبًا جدًا من الجاهزية للإطلاق المباشر. هل لدى أيٍّ منكم أي اقتراحات أو مخاوف في هذا الصدد؟
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] `http://www.i2p.net/redesign/` [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) الهجمات ووسائل الدفاع**
 

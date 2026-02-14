@@ -2,7 +2,7 @@
 title: "I2P-Entwicklertreffen - 18. November 2003"
 date: 2003-11-18
 author: "jrand0m"
-description: "I2P-Entwicklertreffen mit Projekt-Updates und technischen Diskussionen"
+description: "Protokoll der I2P-Entwicklungsbesprechung vom 18. November 2003."
 categories: ["meeting"]
 ---
 

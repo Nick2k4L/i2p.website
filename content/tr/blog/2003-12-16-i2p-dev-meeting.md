@@ -2,7 +2,7 @@
 title: "I2P Geliştirici Toplantısı - 16 Aralık 2003"
 date: 2003-12-16
 author: "jrand0m"
-description: "Proje güncellemelerini ve teknik tartışmaları kapsayan I2P geliştirme toplantısı"
+description: "16 Aralık 2003 tarihli I2P geliştirme toplantısı tutanağı."
 categories: ["meeting"]
 ---
 

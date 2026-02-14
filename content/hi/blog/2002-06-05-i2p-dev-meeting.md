@@ -2,7 +2,7 @@
 title: "I2P डेवलपर बैठक, 4 जून 2002"
 date: 2002-06-04
 author: "nop"
-description: "I2P विकास बैठक जिसमें परियोजना अद्यतन और तकनीकी चर्चाएँ शामिल हैं"
+description: "4 जून 2002 की I2P विकास बैठक का लॉग।"
 categories: ["meeting"]
 ---
 

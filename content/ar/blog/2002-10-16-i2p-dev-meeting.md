@@ -2,7 +2,7 @@
 title: "اجتماع مطوري I2P"
 date: 2002-10-16
 author: "nop"
-description: "اجتماع تطوير I2P يتناول تحديثات المشروع والمناقشات التقنية"
+description: "سجل اجتماع تطوير I2P ليوم 16 أكتوبر 2002."
 categories: ["meeting"]
 ---
 

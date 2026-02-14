@@ -2,7 +2,7 @@
 title: "اجتماع مطوري I2P - 26 نوفمبر 2003"
 date: 2003-11-26
 author: "jrand0m"
-description: "اجتماع تطوير I2P يغطي تحديثات المشروع والمناقشات التقنية"
+description: "سجل اجتماع تطوير I2P ليوم 26 نوفمبر 2003."
 categories: ["meeting"]
 ---
 

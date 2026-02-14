@@ -16,7 +16,7 @@ categories: ["status"]
 
 قد لا يبدو الأمر كذلك، لكن لقد مرّ أكثر من شهر منذ صدور الإصدار 0.4.2.6 وما زالت الأمور في حالٍ جيدة جدًا. كانت هناك سلسلة من التحديثات المفيدة [1] منذ ذلك الحين، لكن لم تظهر مشكلة قاتلة تستدعي طرح إصدار جديد. ومع ذلك، خلال اليوم أو اليومين الأخيرين تلقّينا إصلاحات أخطاء ممتازة (شكرًا لـ anon وSugadude!)، ولولا أننا على وشك إطلاق الإصدار 0.5، لربما قمتُ بتجهيزها وحزمها وطرحها. يُصلِح تحديث anon حالة حدّية في streaming lib (مكتبة البث) كانت تتسبب في كثير من حالات انتهاء المهلة التي نراها في BT (بت تورنت) وغيرها من عمليات النقل الكبيرة، لذا، إن كنتَ تودّ المغامرة، فاحصل على CVS HEAD (أحدث نسخة في CVS) وجرّبها. أو انتظر الإصدار التالي، بالطبع.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) 0.5
 
@@ -26,13 +26,13 @@ categories: ["status"]
 
 بالنظر إلى خارطة الطريق [6]، فإن الشيء الوحيد المؤجَّل إلى 0.5.1 هو الترتيب الصارم. ستكون هناك أيضًا تحسينات على تقييد المعدل وموازنة الحمل مع مرور الوقت، وأنا واثق من ذلك، لكنني أتوقع أننا سنظل نُجري تعديلات على ذلك عمليًا إلى الأبد. لقد كانت هناك بعض الأمور الأخرى التي نوقشت وكنت آمل إدراجها في 0.5، مثل أداة التنزيل وكود التحديث بنقرة واحدة، لكن يبدو أن تلك ستؤجَّل هي الأخرى.
 
-[2] http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html [3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
+[2] `http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html` [3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD#tunnel.selection.client` [4] `http://en.wikipedia.org/wiki/Bloom_filter` [5] `http://xlattice.sourceforge.net/index.html` [6] `http://www.i2p.net/roadmap`
 
 * 3) i2p-bt 0.1.6
 
 قام duck بتطبيق تصحيحات وإصدار نسخة جديدة من i2p-bt (يا للروعة!)، وهي متاحة في المواقع المعتادة، فاحصل على نسختك وهي لا تزال ساخنة [7].  وبين هذا التحديث وتصحيح مكتبة البث الذي قدّمه anon، لقد أشبعت سعة الرفع لديّ بالكامل أثناء بذري لبعض الملفات، فجرّبه.
 
-[7] http://forum.i2p.net/viewtopic.php?t=300
+[7] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) fortuna
 
@@ -42,4 +42,4 @@ categories: ["status"]
 
 هناك الكثير مما يجري، وكانت هناك مؤخراً أيضاً طفرة في النشاط على المنتدى [8]، لذلك أنا متأكد من أنني فاتتني بعض الأمور. على أي حال، تعال إلى الاجتماع بعد دقائق قليلة وقل ما يدور في بالك (أو اكتفِ بالمراقبة وألقِ تعليقاً ساخراً عشوائياً).
 
-=jr [8] http://forum.i2p.net/
+=jr [8] `http://forum.i2p.net/`

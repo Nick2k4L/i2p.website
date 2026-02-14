@@ -2,7 +2,7 @@
 title: "Reunião de desenvolvimento do I2P, 4 de junho de 2002"
 date: 2002-06-04
 author: "nop"
-description: "Reunião de desenvolvimento do I2P abordando atualizações do projeto e discussões técnicas"
+description: "Registro da reunião de desenvolvimento do I2P de 4 de junho de 2002."
 categories: ["meeting"]
 ---
 

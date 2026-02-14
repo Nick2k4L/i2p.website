@@ -2,7 +2,7 @@
 title: "I2P 开发者会议 - 2003年12月30日"
 date: 2003-12-30
 author: "jrand0m"
-description: "I2P 开发会议，涵盖项目更新与技术讨论"
+description: "2003年12月30日的 I2P 开发会议记录。"
 categories: ["meeting"]
 ---
 

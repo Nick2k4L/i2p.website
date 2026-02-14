@@ -2,7 +2,7 @@
 title: "Android app releases"
 date: 2014-12-01
 author: "str4d"
-description: "I2P Android 0.9.17 and Bote 0.3 have been released on the website, Google Play and F-Droid."
+description: "I2P Android 0.9.17 và Bote 0.3 đã được phát hành trên trang web, Google Play và F-Droid."
 categories: ["press"]
 ---
 

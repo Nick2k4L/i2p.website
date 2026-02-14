@@ -2,7 +2,7 @@
 title: "Cuộc họp nhà phát triển I2P - 16 tháng 12, 2003"
 date: 2003-12-16
 author: "jrand0m"
-description: "I2P development meeting covering project updates and technical discussions"
+description: "Biên bản cuộc họp phát triển của I2P ngày 16 tháng 12 năm 2003."
 categories: ["meeting"]
 ---
 

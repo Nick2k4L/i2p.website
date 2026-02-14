@@ -3,9 +3,16 @@
     <div class="container">
         <div class="banner-content">
             <span class="banner-message">{{ i18n "banner.banner_message" }}</span>
-            {{ with i18n "banner.banner_link_url" }}
-                {{ if ne . "banner.banner_link_url" }}
-                <a href="/{{ $.Site.Language.Lang }}{{ . }}" class="banner-link">{{ i18n "banner.banner_link_text" }}</a>
+            {{ with $.Site.Params.banner.link_page }}
+                {{ $page := $.Site.GetPage . }}
+                {{ with $page }}
+                <a href="{{ .RelPermalink }}" class="banner-link">{{ i18n "banner.banner_link_text" }}</a>
+                {{ end }}
+            {{ else }}
+                {{ with i18n "banner.banner_link_url" }}
+                    {{ if ne . "banner.banner_link_url" }}
+                    <a href="/{{ $.Site.Language.Lang }}{{ . }}" class="banner-link">{{ i18n "banner.banner_link_text" }}</a>
+                    {{ end }}
                 {{ end }}
             {{ end }}
         </div>

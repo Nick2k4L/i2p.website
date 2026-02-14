@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P"
 date: 2003-01-07
 author: "nop"
-description: "Vývojářská schůzka I2P zaměřená na aktualizace projektu a technické diskuse"
+description: "Zápis z vývojářské schůzky I2P ze dne 7. ledna 2003."
 categories: ["meeting"]
 ---
 

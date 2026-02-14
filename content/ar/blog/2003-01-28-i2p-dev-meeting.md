@@ -2,7 +2,7 @@
 title: "اجتماع مطوّري I2P"
 date: 2003-01-28
 author: "nop"
-description: "اجتماع تطوير I2P يتناول تحديثات المشروع والمناقشات التقنية"
+description: "سجل اجتماع تطوير I2P ليوم 28 يناير 2003."
 categories: ["meeting"]
 ---
 

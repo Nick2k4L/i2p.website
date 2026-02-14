@@ -2,7 +2,7 @@
 title: "I2P geliştirici toplantısı"
 date: 2003-01-07
 author: "nop"
-description: "Proje güncellemelerini ve teknik tartışmaları kapsayan I2P geliştirme toplantısı"
+description: "7 Ocak 2003 tarihli I2P geliştirme toplantısı tutanağı."
 categories: ["meeting"]
 ---
 

@@ -20,7 +20,7 @@ categories: ["status"]
 
 على أي حال، كفى الحديث عني.
 
-[1] http://dev.i2p.net/pipermail/i2p/ [2] http://forum.i2p.net/
+[1] `http://dev.i2p.net/pipermail/i2p/` [2] `http://forum.i2p.net/`
 
 * 2) Dev[elopment] status
 
@@ -34,7 +34,7 @@ categories: ["status"]
 
 بما أن clover منتج تجاري (مجاني لمطوري البرمجيات مفتوحة المصدر (OSS) [4])، ففقط من قاموا بتثبيت clover وحصلوا على ترخيص clover سيتمكنون من إنشاء تقارير clover. على أي حال، سننشر تقارير clover على الويب بشكل دوري، بحيث يتمكن الذين لم يثبّتوا clover من الاطلاع على مدى جودة أداء مجموعة اختباراتنا.
 
-[3] http://www.i2p.net/bounties_unittest [4] http://www.cenqua.com/clover/
+[3] `http://www.i2p.net/bounties_unittest` [4] `http://www.cenqua.com/clover/`
 
 * 4) Service outage
 

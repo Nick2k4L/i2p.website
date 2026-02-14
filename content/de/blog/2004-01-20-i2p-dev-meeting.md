@@ -2,7 +2,7 @@
 title: "I2P Entwicklertreffen - 20. Januar 2004"
 date: 2004-01-20
 author: "jrand0m"
-description: "I2P-Entwicklungstreffen mit Projekt-Updates und technischen Diskussionen"
+description: "Protokoll der I2P-Entwicklungsbesprechung vom 20. Januar 2004."
 categories: ["meeting"]
 ---
 

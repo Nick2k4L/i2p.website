@@ -2,7 +2,7 @@
 title: "Cuộc họp phát triển I2P - 20 tháng 1, 2004"
 date: 2004-01-20
 author: "jrand0m"
-description: "Cuộc họp phát triển I2P với nội dung cập nhật dự án và thảo luận kỹ thuật"
+description: "Biên bản cuộc họp phát triển của I2P ngày 20 tháng 1 năm 2004."
 categories: ["meeting"]
 ---
 

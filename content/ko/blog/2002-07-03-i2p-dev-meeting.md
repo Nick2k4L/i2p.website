@@ -2,7 +2,7 @@
 title: "I2P 개발자 회의, 2002년 7월 3일"
 date: 2002-07-03
 author: "nop"
-description: "프로젝트 업데이트 및 기술적 논의를 다루는 I2P 개발 회의"
+description: "2002년 7월 3일자 I2P 개발 회의록."
 categories: ["meeting"]
 ---
 

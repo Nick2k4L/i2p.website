@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P, 11. června 2002"
 date: 2002-06-11
 author: "nop"
-description: "Vývojová schůzka I2P zaměřená na aktualizace projektu a technické diskuse"
+description: "Zápis z vývojářské schůzky I2P ze dne 11. června 2002."
 categories: ["meeting"]
 ---
 

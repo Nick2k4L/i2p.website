@@ -2,7 +2,7 @@
 title: "Réunion des développeurs I2P - 9 décembre 2003"
 date: 2003-12-09
 author: "jrand0m"
-description: "Réunion de développement I2P portant sur les mises à jour du projet et les discussions techniques"
+description: "Journal de la réunion de développement I2P du 9 décembre 2003."
 categories: ["meeting"]
 ---
 

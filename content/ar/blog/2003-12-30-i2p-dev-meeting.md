@@ -2,7 +2,7 @@
 title: "اجتماع مطوري I2P - 30 ديسمبر 2003"
 date: 2003-12-30
 author: "jrand0m"
-description: "اجتماع تطوير I2P يتناول تحديثات المشروع والمناقشات التقنية"
+description: "سجل اجتماع تطوير I2P ليوم 30 ديسمبر 2003."
 categories: ["meeting"]
 ---
 

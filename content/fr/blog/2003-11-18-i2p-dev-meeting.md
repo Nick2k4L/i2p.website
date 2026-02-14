@@ -2,7 +2,7 @@
 title: "Réunion des développeurs I2P - 18 novembre 2003"
 date: 2003-11-18
 author: "jrand0m"
-description: "Réunion de développement d'I2P portant sur les mises à jour du projet et les discussions techniques"
+description: "Journal de la réunion de développement I2P du 18 novembre 2003."
 categories: ["meeting"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P"
 date: 2002-12-10
 author: "nop"
-description: "Vývojářské setkání I2P věnované aktualizacím projektu a technickým diskusím"
+description: "Zápis z vývojářské schůzky I2P ze dne 10. prosince 2002."
 categories: ["meeting"]
 ---
 

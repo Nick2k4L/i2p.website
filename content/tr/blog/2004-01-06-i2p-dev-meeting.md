@@ -2,7 +2,7 @@
 title: "I2P Geliştirici Toplantısı - 6 Ocak 2004"
 date: 2004-01-06
 author: "jrand0m"
-description: "Proje güncellemelerini ve teknik tartışmaları kapsayan I2P geliştirme toplantısı"
+description: "6 Ocak 2004 tarihli I2P geliştirme toplantısı tutanağı."
 categories: ["meeting"]
 ---
 

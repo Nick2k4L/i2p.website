@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P, 3. července 2002"
 date: 2002-07-03
 author: "nop"
-description: "Vývojářské setkání I2P zaměřené na aktuality projektu a technické diskuse"
+description: "Zápis z vývojářské schůzky I2P ze dne 3. července 2002."
 categories: ["meeting"]
 ---
 

@@ -2,7 +2,7 @@
 title: "اجتماع مطوري I2P، 4 يونيو 2002"
 date: 2002-06-04
 author: "nop"
-description: "اجتماع تطوير I2P يغطي تحديثات المشروع والمناقشات التقنية"
+description: "سجل اجتماع تطوير I2P ليوم 4 يونيو 2002."
 categories: ["meeting"]
 ---
 

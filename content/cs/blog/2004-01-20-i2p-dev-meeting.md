@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P - 20. ledna 2004"
 date: 2004-01-20
 author: "jrand0m"
-description: "Vývojové setkání I2P věnované aktualizacím projektu a technickým diskusím"
+description: "Zápis z vývojářské schůzky I2P ze dne 20. ledna 2004."
 categories: ["meeting"]
 ---
 

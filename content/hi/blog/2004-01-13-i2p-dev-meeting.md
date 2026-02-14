@@ -2,7 +2,7 @@
 title: "I2P डेवलपर बैठक - 13 जनवरी 2004"
 date: 2004-01-13
 author: "jrand0m"
-description: "I2P विकास बैठक जिसमें परियोजना अपडेट और तकनीकी चर्चाएँ शामिल हैं"
+description: "13 जनवरी 2004 की I2P विकास बैठक का लॉग।"
 categories: ["meeting"]
 ---
 

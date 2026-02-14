@@ -2,7 +2,7 @@
 title: "I2P dev meeting"
 date: 2002-12-10
 author: "nop"
-description: "I2P development meeting covering project updates and technical discussions"
+description: "I2P development meeting log for December 10, 2002."
 categories: ["meeting"]
 ---
 

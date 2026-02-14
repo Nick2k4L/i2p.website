@@ -2,7 +2,7 @@
 title: "اجتماع مطوري I2P - 13 يناير 2004"
 date: 2004-01-13
 author: "jrand0m"
-description: "اجتماع تطوير I2P يغطي تحديثات المشروع والمناقشات التقنية"
+description: "سجل اجتماع تطوير I2P ليوم 13 يناير 2004."
 categories: ["meeting"]
 ---
 

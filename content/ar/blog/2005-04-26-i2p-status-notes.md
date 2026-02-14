@@ -24,7 +24,7 @@ categories: ["status"]
 
 كما ذكر duck على القائمة [1]، قام zab بإطلاق مكافأة لمساعدة I2P بسلسلة من تحديثات الاختبار - بعض الأموال لأي شخص يمكنه إكمال المهام المدرجة في صفحة المكافأة [2]. لقد تلقينا تبرعات إضافية لتلك المكافأة [3] - وهي تبلغ حالياً 1000 دولار أمريكي. ومع أن هذه المكافآت بالتأكيد لا تقدّم "سعر السوق"، فإنها تمثل رمز تشجيع صغيراً للمطورين الذين يرغبون في المساعدة.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] `http://www.i2p.net/bounty_unittests` [3] `http://www.i2p.net/halloffame`
 
 * 4) ???
 

@@ -2,7 +2,7 @@
 title: "Cuộc họp nhà phát triển I2P"
 date: 2003-03-04
 author: "nop"
-description: "Cuộc họp phát triển I2P bao gồm các cập nhật về dự án và các thảo luận kỹ thuật"
+description: "Biên bản cuộc họp phát triển của I2P ngày 4 tháng 3 năm 2003."
 categories: ["meeting"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Réunion des développeurs I2P - 6 janvier 2004"
 date: 2004-01-06
 author: "jrand0m"
-description: "Réunion de développement d'I2P portant sur les mises à jour du projet et les discussions techniques"
+description: "Journal de la réunion de développement I2P du 6 janvier 2004."
 categories: ["meeting"]
 ---
 

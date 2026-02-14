@@ -2,7 +2,7 @@
 title: "I2P 개발자 회의 - 2003년 12월 16일"
 date: 2003-12-16
 author: "jrand0m"
-description: "프로젝트 업데이트 및 기술 논의를 다루는 I2P 개발 회의"
+description: "2003년 12월 16일자 I2P 개발 회의록."
 categories: ["meeting"]
 ---
 

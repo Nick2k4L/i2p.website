@@ -2,7 +2,7 @@
 title: "I2P Geliştirici Toplantısı - 9 Aralık 2003"
 date: 2003-12-09
 author: "jrand0m"
-description: "I2P development meeting covering project updates and technical discussions"
+description: "9 Aralık 2003 tarihli I2P geliştirme toplantısı tutanağı."
 categories: ["meeting"]
 ---
 

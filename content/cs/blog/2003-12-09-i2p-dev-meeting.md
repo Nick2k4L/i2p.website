@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P - 9. prosince 2003"
 date: 2003-12-09
 author: "jrand0m"
-description: "Vývojářské setkání I2P zahrnující aktualizace projektu a technické diskuse"
+description: "Zápis z vývojářské schůzky I2P ze dne 9. prosince 2003."
 categories: ["meeting"]
 ---
 

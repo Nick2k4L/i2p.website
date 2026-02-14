@@ -2,7 +2,7 @@
 title: "Setkání vývojářů I2P, 29. května 2002"
 date: 2002-05-29
 author: "nop"
-description: "Vývojářské setkání I2P věnované aktualizacím projektu a technickým diskusím"
+description: "Zápis z vývojářské schůzky I2P ze dne 29. května 2002."
 categories: ["meeting"]
 ---
 

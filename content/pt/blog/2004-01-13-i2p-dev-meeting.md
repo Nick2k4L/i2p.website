@@ -2,7 +2,7 @@
 title: "Reunião de Desenvolvedores do I2P - 13 de janeiro de 2004"
 date: 2004-01-13
 author: "jrand0m"
-description: "Reunião de desenvolvimento do I2P abordando atualizações do projeto e discussões técnicas"
+description: "Registro da reunião de desenvolvimento do I2P de 13 de janeiro de 2004."
 categories: ["meeting"]
 ---
 

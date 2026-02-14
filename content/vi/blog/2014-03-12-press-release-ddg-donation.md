@@ -2,7 +2,7 @@
 title: "Search Engine DuckDuckGo Awards Invisible Internet Project $5000"
 date: 2014-03-12
 author: "orion"
-description: "Search engine DuckDuckGo donates $5000 to the Invisible Internet Project (I2P) in their open source donation program."
+description: "Công cụ tìm kiếm DuckDuckGo quyên góp 5.000 đô la cho Dự án Internet Ẩn danh (I2P) trong chương trình quyên góp mã nguồn mở của họ."
 categories: ["press"]
 ---
 

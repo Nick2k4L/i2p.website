@@ -2,7 +2,7 @@
 title: "Cuộc họp của các nhà phát triển I2P"
 date: 2002-09-25
 author: "nop"
-description: "Cuộc họp phát triển I2P bao gồm các cập nhật dự án và thảo luận kỹ thuật"
+description: "Biên bản cuộc họp phát triển của I2P ngày 25 tháng 9 năm 2002."
 categories: ["meeting"]
 ---
 

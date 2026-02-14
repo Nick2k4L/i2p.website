@@ -2,7 +2,7 @@
 title: "I2P Dev Meeting - December 30, 2003"
 date: 2003-12-30
 author: "jrand0m"
-description: "I2P development meeting covering project updates and technical discussions"
+description: "I2P development meeting log for December 30, 2003."
 categories: ["meeting"]
 ---
 

@@ -2,7 +2,7 @@
 title: "I2P-Entwicklertreffen, 3. Juli 2002"
 date: 2002-07-03
 author: "nop"
-description: "I2P-Entwicklungstreffen mit Projekt-Updates und technischen Diskussionen"
+description: "Protokoll der I2P-Entwicklungsbesprechung vom 3. Juli 2002."
 categories: ["meeting"]
 ---
 

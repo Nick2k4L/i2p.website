@@ -2,7 +2,7 @@
 title: "I2P geliştirici toplantısı, 29 Mayıs 2002"
 date: 2002-05-29
 author: "nop"
-description: "Proje güncellemelerini ve teknik tartışmaları kapsayan I2P geliştirme toplantısı"
+description: "29 Mayıs 2002 tarihli I2P geliştirme toplantısı tutanağı."
 categories: ["meeting"]
 ---
 

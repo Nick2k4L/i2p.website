@@ -2,7 +2,7 @@
 title: "Reunión de desarrolladores de I2P"
 date: 2002-11-27
 author: "nop"
-description: "Reunión de desarrollo de I2P sobre actualizaciones del proyecto y discusiones técnicas"
+description: "Registro de la reunión de desarrollo de I2P del 27 de noviembre de 2002."
 categories: ["meeting"]
 ---
 

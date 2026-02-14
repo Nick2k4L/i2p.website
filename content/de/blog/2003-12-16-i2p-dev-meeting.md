@@ -2,7 +2,7 @@
 title: "I2P Entwicklertreffen - 16. Dezember 2003"
 date: 2003-12-16
 author: "jrand0m"
-description: "I2P development meeting covering project updates and technical discussions"
+description: "Protokoll der I2P-Entwicklungsbesprechung vom 16. Dezember 2003."
 categories: ["meeting"]
 ---
 
