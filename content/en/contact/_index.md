@@ -37,7 +37,7 @@ The discussion about I2P's development happens on the I2P user forum. This is us
 
 ## IRC {#irc}
 
-Our primary IRC network is the Irc2P network within I2P; a default tunnel to this network is set up with new router installs. We are also present on multiple standard networks like [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) and [Libera.Chat](https://libera.chat/). All I2P-related channels on all these networks are linked to the main channels on Irc2P via relay bots.
+Our primary IRC network is the Irc2P network within I2P; a default tunnel to this network is set up with new router installs.
 
 **Channel list:**
 
