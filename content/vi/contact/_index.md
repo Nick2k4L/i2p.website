@@ -1,98 +1,96 @@
 ---
-title: "Liên hệ với chúng tôi"
-description: "Liên hệ với dự án I2P - email, diễn đàn, mạng xã hội, các kênh IRC, và gặp gỡ đội ngũ."
-type: "liên hệ"
+title: "Liên Hệ Với Chúng Tôi"
+description: "Liên hệ với dự án I2P - email, diễn đàn, mạng xã hội, kênh IRC, và gặp gỡ nhóm phát triển."
+type: "contact"
 layout: "contact"
 ---
 
-## Thư điện tử {#email}
+## Email {#email}
 
-Vui lòng không sử dụng các địa chỉ email này cho các yêu cầu hỗ trợ. Đối với liên hệ cụ thể về nghiên cứu, hoạt động tiếp cận cộng đồng và bảo mật, vui lòng sử dụng:
+Vui lòng không sử dụng các địa chỉ email này để yêu cầu hỗ trợ. Đối với liên hệ cụ thể về nghiên cứu, tiếp cận và bảo mật, vui lòng sử dụng:
 
-- **admin at i2p.net** - General administration inquiries<br>
-  <a href="/keys/i2p-admin-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `6BEA 3ED4 582D 7A49 C42E  6654 9DCF 89C0 714E EE89`
+- **admin at i2p.net** - Các câu hỏi về quản trị chung<br>
+  <a href="/keys/i2p-admin-public.asc" download class="pgp-key-btn">Tải PGP Key</a>  Vân tay GPG Key: `6BEA 3ED4 582D 7A49 C42E  6654 9DCF 89C0 714E EE89`
 
-- **research at i2p.net** - Research inquiries and collaboration<br>
-  <a href="/keys/i2p-research-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `00A0 613F 95F6 75C1 399D 5B18 4BD2 B898 3DA0 CE15`
+- **research at i2p.net** - Các yêu cầu nghiên cứu và hợp tác<br>
+  <a href="/keys/i2p-research-public.asc" download class="pgp-key-btn">Tải xuống khóa PGP</a>  Dấu vân tay khóa GPG: `00A0 613F 95F6 75C1 399D 5B18 4BD2 B898 3DA0 CE15`
 
-- **press at i2p.net** - Press contact<br>
-  <a href="/keys/i2p-press-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 6F69`
+- **press at i2p.net** - Liên hệ báo chí<br>
+  <a href="/keys/i2p-press-public.asc" download class="pgp-key-btn">Tải xuống khóa PGP</a>  Dấu vân tay khóa GPG: `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 6F69`
 
-- **security at i2p.net** - Vulnerability disclosure<br>
-  <a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
+- **security at i2p.net** - Tiết lộ lỗ hổng bảo mật<br>
+  <a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Tải xuống Khóa PGP</a>  Dấu vân tay khóa GPG: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
-- **abuse at i2p.net** - Abuse reports
+- **abuse at i2p.net** - Báo cáo lạm dụng
 
-## Forums {#forums}
+## Diễn đàn {#forums}
 
-Vui lòng truy cập diễn đàn người dùng I2P của chúng tôi - i2pforum.i2p (có sẵn trên internet không riêng tư tại https://i2pforum.net.
+Vui lòng truy cập diễn đàn người dùng I2P của chúng tôi - i2pforum.i2p (có thể truy cập trên internet công cộng tại https://i2pforum.net.
 
-Thảo luận về việc phát triển I2P diễn ra trên diễn đàn người dùng I2P. Đây thường là nơi tốt nhất để bắt đầu với các câu hỏi của nhà phát triển, nếu kênh IRC dev không hoạt động. Để được hỗ trợ chung, hãy sử dụng diễn đàn người dùng I2P hoặc Subreddit.
+Cuộc thảo luận về việc phát triển I2P diễn ra trên diễn đàn người dùng I2P. Đây thường là nơi tốt nhất để bắt đầu với các câu hỏi dành cho developer, nếu kênh IRC dev không hoạt động. Để được hỗ trợ chung, hãy sử dụng diễn đàn người dùng I2P hoặc Subreddit.
 
 ## Mạng xã hội {#social}
 
 - [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)
 - [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
 - [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
+
 ## IRC {#irc}
 
-Mạng IRC chính của chúng tôi là mạng Irc2P trong I2P; một tunnel mặc định đến mạng này được thiết lập với các cài đặt router mới. Chúng tôi cũng có mặt trên nhiều mạng tiêu chuẩn như [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) và [Libera.Chat](https://libera.chat/). Tất cả các kênh liên quan đến I2P trên tất cả các mạng này đều được liên kết với các kênh chính trên Irc2P thông qua các bot chuyển tiếp.
+Mạng IRC chính của chúng tôi là mạng Irc2P trong I2P; một tunnel mặc định đến mạng này được thiết lập khi cài đặt router mới.
 
 **Danh sách kênh:**
 
 ```
-#i2p       - Kênh thảo luận chung về i2p và trợ giúp
-#i2p-chat  - Nội dung ngoài chủ đề
-#i2p-dev   - Thảo luận về phát triển
+#i2p       - General i2p discussion and help channel
+#i2p-chat  - Offtopic
+#i2p-dev   - Development talk
 ```
-
 <a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Web IRC Client (Beta)</a>
 
-<small>Kết nối với I2P IRC từ clearnet. 100% không có JavaScript, được hỗ trợ bởi <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a> bảo mật.</small>
+<small>Kết nối đến I2P IRC từ clearnet. 100% không có JavaScript, được cung cấp bởi <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a> bảo mật.</small>
 
-## Danh sách thư
+## Danh sách Thư điện tử
 
-Hãy tham gia danh sách gửi thư của chúng tôi bằng cách nhập địa chỉ email của bạn ở phần chân trang của trang web này để nhận các bản cập nhật và thông báo về I2P.
+Tham gia danh sách gửi thư của chúng tôi bằng cách nhập email của bạn vào phần chân trang của trang web này để nhận cập nhật và thông báo về I2P.
 
 ## Đội ngũ
 
-### Admin
+### Quản trị
 
 | Vai trò | Người | Mô tả |
 |------|--------|-------------|
-| **Quản lý phát hành I2P Java** | idk | Xây dựng và ký các bản phát hành |
-| **Quản trị mirrors tải xuống** | StormyCloud | Quản lý các máy chủ mirror cho tệp tải xuống |
-| **Người đóng gói; Linux** | idk | Người đóng gói cho bản phân phối Linux (Debian/Ubuntu) |
-| **Người đóng gói; Windows** | idk | Người đóng gói bộ cài đặt Windows |
-| **Người đóng gói; OSX** | vacant | Người đóng gói bộ cài đặt OSX |
-| **Quản trị CI** | idk | Duy trì hạ tầng Continuous Integration (Tích hợp liên tục) |
-| **Quản trị Reseed** | idk | Giám sát, tư vấn và tuyển dụng các máy chủ reseed |
-| **Quản trị Gitea** | idk | Người phụ trách Gitea của I2P |
-| **Bản địa hóa** | idk, zzz | Quản trị viên trên Transifex |
-| **Dịch giả** | rất rất nhiều người! | Dịch giả trên Transifex |
-| **Người phụ trách trang web** | StormyCloud | Quản lý thiết kế nội dung của trang web công khai của dự án |
-| **Quản trị máy chủ web** | StormyCloud | Quản lý các máy chủ web công khai của dự án |
-| **Quản trị trang web** | idk | Quản lý trang web công khai của dự án |
-| **Quản trị Tin tức** | idk | Quản lý nguồn tin tức trên giao diện điều khiển router |
-| **Quản trị Google Play** | idk | |
-| **Quản trị F-Droid** | idk | |
-| **Quản trị Outproxy** | StormyCloud | |
+| **I2P Java Release Manager** | idk | Xây dựng và ký các bản phát hành |
+| **Download mirrors admin** | StormyCloud | Quản lý các mirror cho các tệp tải xuống |
+| **Packager; Linux** | idk | Người đóng gói phân phối Linux (Debian/Ubuntu) |
+| **Packager; Windows** | idk | Người đóng gói trình cài đặt Windows |
+| **Packager; OSX** | vacant | Người đóng gói trình cài đặt OSX |
+| **CI admin** | idk | Duy trì cơ sở hạ tầng Continuous Integration |
+| **Reseed Admin** | idk | Giám sát, tư vấn và tuyển dụng các reseed host |
+| **Gitea admin** | idk | Người duy trì I2P Gitea |
+| **Localization** | idk, zzz | Quản trị viên trên Transifex |
+| **Translators** | rất nhiều người! | Người dịch thuật trên Transifex |
+| **Website Maintainer** | StormyCloud | Quản lý thiết kế nội dung trang web dự án công khai |
+| **Webserver admin** | StormyCloud | Quản lý máy chủ web dự án công khai |
+| **Website admin** | idk | Quản lý trang web dự án công khai |
+| **News Admin** | idk | Quản lý nguồn cấp tin tức bảng điều khiển router |
+| **Google Play admin** | idk | |
+| **F-Droid admin** | idk | |
+| **Outproxy admin** | StormyCloud | |
+### Người bảo trì Tích hợp I2P Core
 
-### I2P Core Integration Maintainers
-
-| Dự án | Người | Mô tả |
+| Dự án | Người phụ trách | Mô tả |
 |---------|--------|-------------|
-| **Phụ trách I2P mail** | postman | Điều phối và phát triển hệ thống i2p mail |
-| **Phụ trách I2PSnark** | idk | Duy trì trình khách Bittorrent tích hợp |
-| **Phụ trách Susimail** | idk | Phát triển Susimail |
-| **Phụ trách Android** | idk | Phát triển Android |
-| **Console** | idk | Thiết kế HTML/CSS cho Router console |
-| **SAM** | idk | Người duy trì SAM |
+| **Trưởng nhóm I2P mail** | postman | Tổ chức và phát triển hệ thống mail i2p |
+| **Trưởng nhóm I2PSnark** | idk | Bảo trì client Bittorrent tích hợp |
+| **Trưởng nhóm Susimail** | idk | Phát triển Susimail |
+| **Trưởng nhóm Android** | idk | Phát triển Android |
+| **Console** | idk | Thiết kế HTML/CSS cho console của router |
+| **SAM** | idk | Người bảo trì SAM |
+[Danh sách Danh tiếng!](/en/about/hall-of-fame/)
 
-[Đại sảnh Danh vọng!](/en/about/hall-of-fame/)
+## Bao gồm
 
-## Inclusion
+I2P chào đón tất cả mọi người, miễn là họ thân thiện và hỗ trợ lẫn nhau.
 
-I2P hoan nghênh tất cả mọi người, miễn là họ thân thiện và sẵn sàng giúp đỡ lẫn nhau.
-
-Phần mềm router I2P được tạo ra với tinh thần này và nên được sử dụng để giúp những người bị đàn áp giành lại quyền tự do ngôn luận, đồng thời không đàn áp người khác.
+Phần mềm I2P router được tạo ra với tinh thần này và nên được sử dụng để giúp những người bị áp bức lấy lại quyền tự do ngôn luận của họ, mà không đàn áp người khác.

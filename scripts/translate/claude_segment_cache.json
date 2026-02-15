@@ -2305,6 +2305,250 @@
           }
         }
       }
+    },
+    "en/contact/_index.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "98b67063cf8e584d",
+          "translations": {
+            "ru": "Связаться с нами",
+            "fr": "Nous contacter",
+            "ar": "اتصل بنا"
+          }
+        },
+        "fm_description": {
+          "source_hash": "187d00dea8640d1c",
+          "translations": {
+            "ru": "Свяжитесь с проектом I2P - электронная почта, форумы, социальные сети, IRC-каналы и знакомство с командой.",
+            "fr": "Contactez le projet I2P - email, forums, réseaux sociaux, canaux IRC, et rencontrez l'équipe.",
+            "ar": "تواصل مع مشروع I2P - البريد الإلكتروني والمنتديات ووسائل التواصل الاجتماعي وقنوات IRC والتعرف على الفريق."
+          }
+        },
+        "h2_001": {
+          "source_hash": "f3a9cb7f4184d2de",
+          "translations": {
+            "ru": "Электронная почта {#email}",
+            "fr": "Email {#email}",
+            "ar": "البريد الإلكتروني {#email}"
+          }
+        },
+        "p_001": {
+          "source_hash": "1344edbf9c716668",
+          "translations": {
+            "ru": "Пожалуйста, не используйте эти адреса электронной почты для запросов поддержки. Для контактов, связанных с исследованиями, информационно-просветительской деятельностью и безопасностью, используйте:",
+            "fr": "Veuillez ne pas utiliser ces adresses e-mail pour les demandes de support. Pour les contacts spécifiques à la recherche, à la sensibilisation et à la sécurité, veuillez utiliser :",
+            "ar": "يرجى عدم استخدام عناوين البريد الإلكتروني هذه لطلبات الدعم. للتواصل المتعلق تحديداً بالبحث والتوعية والأمان يرجى استخدام:"
+          }
+        },
+        "list_001": {
+          "source_hash": "0ba4bdd0ca5e7cdb",
+          "translations": {
+            "ru": "- **admin at i2p.net** - Общие административные вопросы<br>\n  <a href=\"/keys/i2p-admin-public.asc\" download class=\"pgp-key-btn\">Скачать PGP ключ</a>  GPG отпечаток ключа: `6BEA 3ED4 582D 7A49 C42E  6654 9DCF 89C0 714E EE89`",
+            "fr": "- **admin at i2p.net** - Demandes d'administration générale<br>\n  <a href=\"/keys/i2p-admin-public.asc\" download class=\"pgp-key-btn\">Télécharger la clé PGP</a>  Empreinte de la clé GPG : `6BEA 3ED4 582D 7A49 C42E  6654 9DCF 89C0 714E EE89`",
+            "ar": "- **admin at i2p.net** - استفسارات الإدارة العامة<br>\n  <a href=\"/keys/i2p-admin-public.asc\" download class=\"pgp-key-btn\">تحميل مفتاح PGP</a>  بصمة مفتاح GPG: `6BEA 3ED4 582D 7A49 C42E  6654 9DCF 89C0 714E EE89`"
+          }
+        },
+        "list_002": {
+          "source_hash": "55f11d845a096eea",
+          "translations": {
+            "ru": "- **research at i2p.net** - Запросы исследований и сотрудничество<br>\n  <a href=\"/keys/i2p-research-public.asc\" download class=\"pgp-key-btn\">Скачать PGP-ключ</a>  Отпечаток GPG-ключа: `00A0 613F 95F6 75C1 399D 5B18 4BD2 B898 3DA0 CE15`",
+            "fr": "- **research at i2p.net** - Demandes de recherche et collaboration<br>\n  <a href=\"/keys/i2p-research-public.asc\" download class=\"pgp-key-btn\">Télécharger la clé PGP</a>  Empreinte de la clé GPG : `00A0 613F 95F6 75C1 399D 5B18 4BD2 B898 3DA0 CE15`",
+            "ar": "- **research at i2p.net** - استفسارات البحث والتعاون<br>\n  <a href=\"/keys/i2p-research-public.asc\" download class=\"pgp-key-btn\">تحميل مفتاح PGP</a>  بصمة مفتاح GPG: `00A0 613F 95F6 75C1 399D 5B18 4BD2 B898 3DA0 CE15`"
+          }
+        },
+        "list_003": {
+          "source_hash": "1ce582dd99689325",
+          "translations": {
+            "ru": "- **press at i2p.net** - Контакт для прессы<br>\n  <a href=\"/keys/i2p-press-public.asc\" download class=\"pgp-key-btn\">Скачать PGP ключ</a>  Отпечаток GPG ключа: `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 F69`",
+            "fr": "- **press at i2p.net** - Contact presse<br>\n  <a href=\"/keys/i2p-press-public.asc\" download class=\"pgp-key-btn\">Télécharger la clé PGP</a>  Empreinte de la clé GPG : `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 F69`",
+            "ar": "- **press at i2p.net** - جهة الاتصال الإعلامية<br>\n  <a href=\"/keys/i2p-press-public.asc\" download class=\"pgp-key-btn\">تحميل مفتاح PGP</a>  بصمة مفتاح GPG: `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 F69`"
+          }
+        },
+        "list_004": {
+          "source_hash": "affdfef7e4e4415b",
+          "translations": {
+            "ru": "- **security at i2p.net** - Раскрытие уязвимостей<br>\n  <a href=\"/keys/i2p-security-public.asc\" download class=\"pgp-key-btn\">Скачать PGP ключ</a>  Отпечаток GPG ключа: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`",
+            "fr": "- **security at i2p.net** - Divulgation de vulnérabilités<br>\n  <a href=\"/keys/i2p-security-public.asc\" download class=\"pgp-key-btn\">Télécharger la clé PGP</a>  Empreinte de la clé GPG : `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`",
+            "ar": "- **security at i2p.net** - الكشف عن الثغرات الأمنية<br>\n  <a href=\"/keys/i2p-security-public.asc\" download class=\"pgp-key-btn\">تحميل مفتاح PGP</a>  بصمة مفتاح GPG: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`"
+          }
+        },
+        "list_005": {
+          "source_hash": "292a528be9650569",
+          "translations": {
+            "ru": "- **abuse at i2p.net** - Сообщения о нарушениях",
+            "fr": "- **abuse at i2p.net** - Signalements d'abus",
+            "ar": "- **abuse at i2p.net** - تقارير إساءة الاستخدام"
+          }
+        },
+        "h2_002": {
+          "source_hash": "48e213ea837a2eb6",
+          "translations": {
+            "ru": "Форумы {#forums}",
+            "fr": "Forums {#forums}",
+            "ar": "المنتديات {#forums}"
+          }
+        },
+        "p_002": {
+          "source_hash": "3b42b988939e8816",
+          "translations": {
+            "ru": "Пожалуйста, посетите наш пользовательский форум I2P - i2pforum.i2p (доступен в обычном интернете по адресу https://i2pforum.net).",
+            "fr": "Veuillez visiter notre forum utilisateur I2P - i2pforum.i2p (disponible sur l'internet non-privé à l'adresse https://i2pforum.net.",
+            "ar": "يرجى زيارة منتدى مستخدمي I2P الخاص بنا - i2pforum.i2p (متاح على الإنترنت العادي على https://i2pforum.net."
+          }
+        },
+        "p_003": {
+          "source_hash": "aaf8a69a81009f62",
+          "translations": {
+            "ru": "Обсуждение разработки I2P происходит на пользовательском форуме I2P. Обычно это лучшее место для начала обращений к разработчикам, если IRC-канал разработчиков неактивен. Для общей поддержки используйте либо пользовательский форум I2P, либо Subreddit.",
+            "fr": "La discussion sur le développement d'I2P se déroule sur le forum utilisateur I2P. C'est généralement le meilleur endroit pour commencer avec les demandes de développeurs, si le canal IRC de développement est inactif. Pour le support général, utilisez soit le forum utilisateur I2P soit le Subreddit.",
+            "ar": "تحدث المناقشات حول تطوير I2P في منتدى مستخدمي I2P. هذا عادة أفضل مكان للبدء بالاستفسارات التطويرية، إذا كانت قناة IRC الخاصة بالمطورين غير نشطة. للدعم العام استخدم إما منتدى مستخدمي I2P أو Subreddit."
+          }
+        },
+        "h2_003": {
+          "source_hash": "5c1e9a672d34d087",
+          "translations": {
+            "ru": "Социальные сети {#social}",
+            "fr": "Réseaux Sociaux {#social}",
+            "ar": "وسائل التواصل الاجتماعي {#social}"
+          }
+        },
+        "list_006": {
+          "source_hash": "16d7a440a44170d9",
+          "translations": {
+            "ru": "- [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)\n- [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)\n- [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)",
+            "fr": "- [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)\n- [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)\n- [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)",
+            "ar": "- [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)\n- [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)\n- [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)"
+          }
+        },
+        "h2_004": {
+          "source_hash": "98c10c121d68ab82",
+          "translations": {
+            "ru": "IRC {#irc}",
+            "fr": "IRC {#irc}",
+            "ar": "IRC {#irc}"
+          }
+        },
+        "p_004": {
+          "source_hash": "35f309fd8153bae2",
+          "translations": {
+            "ru": "Наша основная IRC-сеть — это сеть Irc2P внутри I2P; tunnel по умолчанию к этой сети настраивается при установке нового router.",
+            "fr": "Notre réseau IRC principal est le réseau Irc2P au sein d'I2P ; un tunnel par défaut vers ce réseau est configuré lors des nouvelles installations de router.",
+            "ar": "شبكة IRC الأساسية لدينا هي شبكة Irc2P داخل I2P؛ يتم إعداد tunnel افتراضي لهذه الشبكة مع تثبيت router جديد."
+          }
+        },
+        "p_005": {
+          "source_hash": "49d9513588e57ae9",
+          "translations": {
+            "ru": "**Список каналов:**",
+            "fr": "**Liste des canaux :**",
+            "ar": "**قائمة القنوات:**"
+          }
+        },
+        "p_006": {
+          "source_hash": "2c18d84b8c9b0dac",
+          "translations": {
+            "ru": "<a href=\"https://irc.i2p.net\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener\">Веб IRC-клиент (Бета)</a>",
+            "fr": "<a href=\"https://irc.i2p.net\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener\">Client IRC Web (Bêta)</a>",
+            "ar": "<a href=\"https://irc.i2p.net\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener\">عميل IRC على الويب (بيتا)</a>"
+          }
+        },
+        "p_007": {
+          "source_hash": "315de675a0aa4443",
+          "translations": {
+            "ru": "<small>Подключитесь к I2P IRC из clearnet. 100% без JavaScript, работает на основе безопасного <a href=\"https://github.com/go-i2p/go-i2p\" target=\"_blank\" rel=\"noopener\">Go SAMv3 API</a>.</small>",
+            "fr": "<small>Connectez-vous à I2P IRC depuis le clearnet. 100% sans JavaScript, alimenté par l'<a href=\"https://github.com/go-i2p/go-i2p\" target=\"_blank\" rel=\"noopener\">API Go SAMv3</a> sécurisée.</small>",
+            "ar": "<small>اتصل بـ I2P IRC من الإنترنت العادي. خالٍ من JavaScript بنسبة 100%، مدعوم بواسطة <a href=\"https://github.com/go-i2p/go-i2p\" target=\"_blank\" rel=\"noopener\">Go SAMv3 API</a> الآمن.</small>"
+          }
+        },
+        "h2_005": {
+          "source_hash": "357e54049c9431d7",
+          "translations": {
+            "ru": "Списки рассылки",
+            "fr": "Listes de diffusion",
+            "ar": "القوائم البريدية"
+          }
+        },
+        "p_008": {
+          "source_hash": "1843329b85b34daf",
+          "translations": {
+            "ru": "Присоединитесь к нашему списку рассылки, введя свой email в нижней части этого сайта, чтобы получать обновления и объявления об I2P.",
+            "fr": "Rejoignez notre liste de diffusion en saisissant votre email dans le pied de page de ce site web pour recevoir les mises à jour et annonces concernant I2P.",
+            "ar": "انضم إلى قائمتنا البريدية عبر إدخال بريدك الإلكتروني في تذييل هذا الموقع لتلقي التحديثات والإعلانات حول I2P."
+          }
+        },
+        "h2_006": {
+          "source_hash": "5985039f106df054",
+          "translations": {
+            "ru": "Команда",
+            "fr": "Équipe",
+            "ar": "الفريق"
+          }
+        },
+        "h3_001": {
+          "source_hash": "c1c224b03cd9bc7b",
+          "translations": {
+            "ru": "Администратор",
+            "fr": "Admin",
+            "ar": "المدير"
+          }
+        },
+        "table_001": {
+          "source_hash": "6478cb1109d201fc",
+          "translations": {
+            "ru": "| Роль | Человек | Описание |\n|------|--------|-------------|\n| **Менеджер релизов I2P Java** | idk | Собирает и подписывает релизы |\n| **Администратор зеркал загрузок** | StormyCloud | Управляет зеркалами для файлов загрузки |\n| **Пакетировщик; Linux** | idk | Пакетировщик дистрибутивов Linux (Debian/Ubuntu) |\n| **Пакетировщик; Windows** | idk | Пакетировщик установщика Windows |\n| **Пакетировщик; OSX** | вакансия | Пакетировщик установщика OSX |\n| **CI администратор** | idk | Поддерживает инфраструктуру непрерывной интеграции |\n| **Reseed администратор** | idk | Мониторит, консультирует и привлекает reseed хосты |\n| **Gitea администратор** | idk | Сопровождает I2P Gitea |\n| **Локализация** | idk, zzz | Администраторы на Transifex |\n| **Переводчики** | много-много людей! | Переводчики на Transifex |\n| **Сопровождающий веб-сайта** | StormyCloud | Управляет дизайном и содержимым публичного веб-сайта проекта |\n| **Администратор веб-сервера** | StormyCloud | Управляет публичными веб-серверами проекта |\n| **Администратор веб-сайта** | idk | Управляет публичным веб-сайтом проекта |\n| **Администратор новостей** | idk | Управляет лентой новостей в консоли router |\n| **Администратор Google Play** | idk | |\n| **Администратор F-Droid** | idk | |\n| **Администратор Outproxy** | StormyCloud | |",
+            "fr": "| Rôle | Personne | Description |\n|------|--------|-------------|\n| **Gestionnaire de version I2P Java** | idk | Construit et signe les versions |\n| **Admin des miroirs de téléchargement** | StormyCloud | Gère les miroirs pour les fichiers de téléchargement |\n| **Empaqueteur ; Linux** | idk | Empaqueteur de distribution Linux (Debian/Ubuntu) |\n| **Empaqueteur ; Windows** | idk | Empaqueteur d'installeur Windows |\n| **Empaqueteur ; OSX** | vacant | Empaqueteur d'installeur OSX |\n| **Admin CI** | idk | Maintient l'infrastructure d'Intégration Continue |\n| **Admin Reseed** | idk | Surveille, conseille et recrute les hôtes reseed |\n| **Admin Gitea** | idk | Mainteneur Gitea I2P |\n| **Localisation** | idk, zzz | Admins sur Transifex |\n| **Traducteurs** | beaucoup de monde ! | Traducteurs sur Transifex |\n| **Mainteneur du site web** | StormyCloud | Gère la conception du contenu du site web public du projet |\n| **Admin serveur web** | StormyCloud | Gère les serveurs web publics du projet |\n| **Admin site web** | idk | Gère le site web public du projet |\n| **Admin actualités** | idk | Gère le flux d'actualités de la console router |\n| **Admin Google Play** | idk | |\n| **Admin F-Droid** | idk | |\n| **Admin Outproxy** | StormyCloud | |",
+            "ar": "| الدور | الشخص | الوصف |\n|------|--------|-------------|\n| **مدير إصدارات I2P Java** | idk | يقوم ببناء وتوقيع الإصدارات |\n| **مشرف مرايا التحميل** | StormyCloud | إدارة المرايا لملفات التحميل |\n| **معبئ الحزم؛ Linux** | idk | معبئ توزيعة Linux (Debian/Ubuntu) |\n| **معبئ الحزم؛ Windows** | idk | معبئ مثبت Windows |\n| **معبئ الحزم؛ OSX** | شاغر | معبئ مثبت OSX |\n| **مشرف CI** | idk | صيانة البنية التحتية للتكامل المستمر |\n| **مشرف Reseed** | idk | يراقب وينصح ويجند مضيفي reseed |\n| **مشرف Gitea** | idk | مشرف I2P Gitea |\n| **الترجمة** | idk, zzz | المشرفون على Transifex |\n| **المترجمون** | العديد من الأشخاص! | المترجمون على Transifex |\n| **مشرف الموقع الإلكتروني** | StormyCloud | إدارة تصميم محتوى موقع المشروع العام |\n| **مشرف خادم الويب** | StormyCloud | إدارة خوادم الويب العامة للمشروع |\n| **مشرف الموقع الإلكتروني** | idk | إدارة الموقع الإلكتروني العام للمشروع |\n| **مشرف الأخبار** | idk | إدارة تغذية أخبار وحدة تحكم router |\n| **مشرف Google Play** | idk | |\n| **مشرف F-Droid** | idk | |\n| **مشرف Outproxy** | StormyCloud | |"
+          }
+        },
+        "h3_002": {
+          "source_hash": "591149518c121d7b",
+          "translations": {
+            "ru": "Сопровождающие интеграции ядра I2P",
+            "fr": "Mainteneurs de l'intégration du cœur I2P",
+            "ar": "مشرفو تكامل I2P Core"
+          }
+        },
+        "table_002": {
+          "source_hash": "3ab7f98f5d8d2eff",
+          "translations": {
+            "ru": "| Проект | Ответственный | Описание |\n|---------|--------|-------------|\n| **Ведущий разработчик I2P почты** | postman | Организация и разработка почтовой системы i2p |\n| **Ведущий разработчик I2PSnark** | idk | Поддерживает встроенный Bittorrent клиент |\n| **Ведущий разработчик Susimail** | idk | Разработка Susimail |\n| **Ведущий разработчик Android** | idk | Разработка под Android |\n| **Консоль** | idk | Дизайн HTML/CSS консоли router |\n| **SAM** | idk | Сопровождение SAM |",
+            "fr": "| Projet | Personne | Description |\n|---------|--------|-------------|\n| **Responsable I2P mail** | postman | Organiser et développer le système de messagerie i2p |\n| **Responsable I2PSnark** | idk | Maintient le client Bittorrent intégré |\n| **Responsable Susimail** | idk | Développement de Susimail |\n| **Responsable Android** | idk | Développement Android |\n| **Console** | idk | Conception HTML/CSS de la console du router |\n| **SAM** | idk | Mainteneur SAM |",
+            "ar": "| المشروع | الشخص | الوصف |\n|---------|--------|-------------|\n| **قائد بريد I2P** | postman | تنظيم وتطوير نظام بريد i2p |\n| **قائد I2PSnark** | idk | يحافظ على عميل Bittorrent المدمج |\n| **قائد Susimail** | idk | تطوير Susimail |\n| **قائد Android** | idk | تطوير Android |\n| **وحدة التحكم** | idk | تصميم HTML/CSS لوحدة تحكم router |\n| **SAM** | idk | مشرف SAM |"
+          }
+        },
+        "p_009": {
+          "source_hash": "944ad3861b6a8e25",
+          "translations": {
+            "ru": "[Зал славы!](/en/about/hall-of-fame/)",
+            "fr": "[Hall of Fame!](/en/about/hall-of-fame/)",
+            "ar": "[قاعة المشاهير!](/en/about/hall-of-fame/)"
+          }
+        },
+        "h2_007": {
+          "source_hash": "16f5ce6eb12fe5c7",
+          "translations": {
+            "ru": "Включение",
+            "fr": "Inclusion",
+            "ar": "الشمولية"
+          }
+        },
+        "p_010": {
+          "source_hash": "e6bb51fdcc7f9d55",
+          "translations": {
+            "ru": "I2P приветствует людей всех типов, при условии, что они дружелюбны и готовы помогать друг другу.",
+            "fr": "I2P accueille toutes sortes de personnes, tant qu'elles sont amicales et s'entraident.",
+            "ar": "ترحب I2P بجميع أنواع الأشخاص، طالما أنهم ودودون ومفيدون لبعضهم البعض."
+          }
+        },
+        "p_011": {
+          "source_hash": "0ff0794a1c7460c2",
+          "translations": {
+            "ru": "Программное обеспечение I2P router было создано в этом духе и должно использоваться для помощи угнетенным людям в восстановлении их свободы слова, не подавляя при этом других.",
+            "fr": "Le logiciel I2P router a été créé dans cet esprit et devrait être utilisé pour aider les personnes opprimées à retrouver leur liberté d'expression, sans pour autant opprimer les autres.",
+            "ar": "تم إنشاء برنامج I2P router بهذه الروح ويجب استخدامه لمساعدة الأشخاص المقموعين على استعادة حريتهم في التعبير، دون قمع الآخرين."
+          }
+        }
+      }
     }
   }
 }

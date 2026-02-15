@@ -1,31 +1,31 @@
 ---
 title: "Kontaktujte nás"
-description: "Spojte se s projektem I2P - e-mailem, na fórech, na sociálních sítích, v IRC kanálech a seznamte se s týmem."
-type: "kontakt"
+description: "Kontaktujte projekt I2P - email, fóra, sociální sítě, IRC kanály a seznamte se s týmem."
+type: "contact"
 layout: "contact"
 ---
 
-## E-mail {#email}
+## Email {#email}
 
-Nepoužívejte prosím tyto e‑mailové adresy pro žádosti o podporu. Pro kontakt týkající se výzkumu, osvěty a bezpečnosti prosím použijte:
+Nepoužívejte prosím tyto emailové adresy pro žádosti o podporu. Pro kontakt specifický pro výzkum, osvětu a bezpečnost použijte:
 
-- **admin at i2p.net** - General administration inquiries<br>
-  <a href="/keys/i2p-admin-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `6BEA 3ED4 582D 7A49 C42E  6654 9DCF 89C0 714E EE89`
+- **admin at i2p.net** - Obecné administrativní dotazy<br>
+  <a href="/keys/i2p-admin-public.asc" download class="pgp-key-btn">Stáhnout PGP klíč</a>  GPG otisk klíče: `6BEA 3ED4 582D 7A49 C42E  6654 9DCF 89C0 714E EE89`
 
-- **research at i2p.net** - Research inquiries and collaboration<br>
-  <a href="/keys/i2p-research-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `00A0 613F 95F6 75C1 399D 5B18 4BD2 B898 3DA0 CE15`
+- **research at i2p.net** - Výzkumné dotazy a spolupráce<br>
+  <a href="/keys/i2p-research-public.asc" download class="pgp-key-btn">Stáhnout PGP klíč</a>  GPG Key fingerprint: `00A0 613F 95F6 75C1 399D 5B18 4BD2 B898 3DA0 CE15`
 
-- **press at i2p.net** - Press contact<br>
-  <a href="/keys/i2p-press-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 6F69`
+- **press at i2p.net** - Kontakt pro tisk<br>
+  <a href="/keys/i2p-press-public.asc" download class="pgp-key-btn">Stáhnout PGP klíč</a>  GPG klíč otisk: `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 6F69`
 
-- **security at i2p.net** - Vulnerability disclosure<br>
-  <a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
+- **security at i2p.net** - Nahlášení zranitelností<br>
+  <a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Stáhnout PGP klíč</a>  GPG Key fingerprint: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
-- **abuse at i2p.net** - Abuse reports
+- **abuse at i2p.net** - Hlášení zneužití
 
 ## Fóra {#forums}
 
-Prosím, navštivte naše uživatelské fórum I2P - i2pforum.i2p (dostupné na nesoukromém internetu na https://i2pforum.net.
+Navštivte prosím naše I2P uživatelské fórum - i2pforum.i2p (dostupné na veřejném internetu na https://i2pforum.net.
 
 Diskuse o vývoji I2P probíhá na uživatelském fóru I2P. To je obvykle nejlepší místo, kde začít s vývojářskými dotazy, pokud je vývojářský IRC kanál neaktivní. Pro obecnou podporu použijte buď uživatelské fórum I2P nebo Subreddit.
 
@@ -37,63 +37,60 @@ Diskuse o vývoji I2P probíhá na uživatelském fóru I2P. To je obvykle nejle
 
 ## IRC {#irc}
 
-Naší primární IRC sítí je síť Irc2P v rámci I2P; s novými instalacemi routeru je nastaven výchozí tunel do této sítě. Jsme také přítomni na více standardních sítích jako [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) a [Libera.Chat](https://libera.chat/). Všechny kanály související s I2P na všech těchto sítích jsou propojeny s hlavními kanály na Irc2P prostřednictvím relay botů.
+Naše primární IRC síť je síť Irc2P v rámci I2P; výchozí tunnel k této síti je nastaven při nové instalaci routeru.
 
 **Seznam kanálů:**
 
 ```
-#i2p       - Obecná diskuse a kanál nápovědy i2p
-#i2p-chat  - Mimo téma
-#i2p-dev   - Vývojářské rozhovory
+#i2p       - General i2p discussion and help channel
+#i2p-chat  - Offtopic
+#i2p-dev   - Development talk
 ```
-
 <a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Webový IRC klient (Beta)</a>
 
-<small>Připojte se k I2P IRC z clearnetu. 100% bez JavaScriptu, poháněno bezpečným <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>.</small>
+<small>Připojte se k I2P IRC z clearnet. 100% bez JavaScriptu, poháněno bezpečným <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>.</small>
 
-## E-mailové konference
+## Poštovní seznamy
 
-Připojte se k naší poštovní konferenci zadáním své e‑mailové adresy v zápatí tohoto webu, abyste dostávali aktuality a oznámení o I2P.
+Připojte se k našemu mailingovému seznamu zadáním své e-mailové adresy v zápatí této webové stránky a budete dostávat aktualizace a oznámení o I2P.
 
 ## Tým
 
-### Admin
+### Administrace
 
 | Role | Osoba | Popis |
-|------|--------|-------------|
-| **Správce vydání I2P Java** | idk | Sestavuje a podepisuje vydání |
-| **Administrátor zrcadel pro stahování** | StormyCloud | Spravuje zrcadla pro soubory ke stažení |
-| **Balič; Linux** | idk | Balič distribucí Linuxu (Debian/Ubuntu) |
-| **Balič; Windows** | idk | Balič instalačního programu pro Windows |
-| **Balič; OSX** | vacant | Balič instalačního programu pro OSX |
-| **Administrátor CI** | idk | Spravuje infrastrukturu Continuous Integration |
-| **Administrátor reseedu** | idk | Sleduje, radí a získává hostitele reseedu |
-| **Administrátor Gitea** | idk | Správce I2P Gitea |
-| **Lokalizace** | idk, zzz | Administrátoři na Transifex |
-| **Překladatelé** | mnoho, mnoho lidí! | Překladatelé na Transifex |
-| **Správce webu** | StormyCloud | Spravuje obsah a design veřejného webu projektu |
-| **Administrátor webserveru** | StormyCloud | Spravuje veřejné webservery projektu |
-| **Administrátor webu** | idk | Spravuje veřejný web projektu |
-| **Administrátor novinek** | idk | Spravuje kanál novinek konzole routeru |
-| **Administrátor Google Play** | idk | |
-| **Administrátor F-Droid** | idk | |
-| **Administrátor outproxy** | StormyCloud | |
-
-### I2P Core Integration Maintainers
+|------|-------|-------|
+| **I2P Java Release Manager** | idk | Vytváří a podepisuje vydání |
+| **Správce download mirrorů** | StormyCloud | Spravuje mirrory pro soubory ke stažení |
+| **Packager; Linux** | idk | Packager pro Linux (Debian/Ubuntu) distribuce |
+| **Packager; Windows** | idk | Packager Windows instalátoru |
+| **Packager; OSX** | vacant | Packager OSX instalátoru |
+| **CI admin** | idk | Udržuje infrastrukturu Continuous Integration |
+| **Reseed Admin** | idk | Monitoruje, radí a získává reseed hosty |
+| **Gitea admin** | idk | Správce I2P Gitea |
+| **Lokalizace** | idk, zzz | Správci na Transifex |
+| **Překladatelé** | mnoho mnoho lidí! | Překladatelé na Transifex |
+| **Správce webových stránek** | StormyCloud | Spravuje design obsahu veřejných projektových webových stránek |
+| **Správce webserveru** | StormyCloud | Spravuje veřejné projektové webservery |
+| **Website admin** | idk | Spravuje veřejné projektové webové stránky |
+| **News Admin** | idk | Spravuje news feed router konzole |
+| **Google Play admin** | idk | |
+| **F-Droid admin** | idk | |
+| **Outproxy admin** | StormyCloud | |
+### Správci integrace jádra I2P
 
 | Projekt | Osoba | Popis |
-|---------|--------|-------------|
-| **Vedoucí I2P mailu** | postman | Organizovat a rozvíjet systém I2P mailu |
-| **Vedoucí I2PSnark** | idk | Udržuje integrovaného klienta BitTorrent |
-| **Vedoucí Susimail** | idk | Vývoj Susimailu |
-| **Vedoucí Androidu** | idk | Vývoj Androidu |
-| **Konzole** | idk | HTML/CSS návrh konzole routeru |
+|---------|-------|-------|
+| **Vedoucí I2P pošty** | postman | Organizace a vývoj poštovního systému i2p |
+| **Vedoucí I2PSnark** | idk | Udržuje integrovaného Bittorrent klienta |
+| **Vedoucí Susimail** | idk | Vývoj Susimail |
+| **Vedoucí Android** | idk | Vývoj pro Android |
+| **Konzole** | idk | Design HTML/CSS router konzole |
 | **SAM** | idk | Správce SAM |
-
 [Síň slávy!](/en/about/hall-of-fame/)
 
-## Inclusion
+## Začlenění
 
-I2P vítá všechny lidi, pokud jsou k sobě přátelští a ochotní si navzájem pomáhat.
+I2P vítá všechny druhy lidí, pokud jsou přátelští a vzájemně si pomáhají.
 
-Software I2P routeru byl vytvořen v tomto duchu a měl by být používán k tomu, aby pomáhal utlačovaným lidem znovu získat svobodu projevu, aniž by přitom potlačoval ostatní.
+Software I2P router byl vytvořen v tomto duchu a měl by být používán k pomoci utlačovaným lidem znovu získat svobodu projevu, aniž by potlačoval ostatní.
