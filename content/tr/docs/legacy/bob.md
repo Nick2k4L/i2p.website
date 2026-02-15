@@ -2,6 +2,9 @@
 title: "BOB - Temel Açık Köprü"
 description: "Hedef yönetimi için kullanımdan kaldırılmış API"
 slug: "bob"
+aliases:
+  - "/tr/docs/api/bob"
+  - "/tr/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

@@ -2,6 +2,9 @@
 title: "Tunnel Tartışması"
 description: "Tunnel dolgusu, parçalama ve oluşturma stratejilerinin tarihsel incelemesi"
 slug: "tunnel"
+aliases:
+  - "/tr/docs/discussions/tunnel"
+  - "/tr/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

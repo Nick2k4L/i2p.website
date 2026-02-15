@@ -2,6 +2,9 @@
 title: "تطوير التطبيقات"
 description: "لماذا كتابة تطبيقات مخصصة لـ I2P، المفاهيم الأساسية، خيارات التطوير، ودليل البدء"
 slug: "applications"
+aliases:
+  - "/ar/docs/develop/applications"
+  - "/ar/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

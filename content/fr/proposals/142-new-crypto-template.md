@@ -1,5 +1,8 @@
 ---
 title: "Nouveau Modèle de Proposition de Chiffrement"
+aliases:
+  - "/fr/proposals/142-ecies-template"
+  - "/fr/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

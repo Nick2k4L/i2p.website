@@ -1,5 +1,8 @@
 ---
 title: "Protokol Datagram2"
+aliases:
+  - "/cs/proposals/163-datagram2-datagram3"
+  - "/cs/proposals/163-datagram2-datagram3/"
 number: "163"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2023-01-24"

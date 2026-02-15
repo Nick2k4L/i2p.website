@@ -2,6 +2,9 @@
 title: "Phát triển Ứng dụng"
 description: "Tại sao viết ứng dụng chuyên dành cho I2P, các khái niệm chính, tùy chọn phát triển và hướng dẫn bắt đầu"
 slug: "applications"
+aliases:
+  - "/vi/docs/develop/applications"
+  - "/vi/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

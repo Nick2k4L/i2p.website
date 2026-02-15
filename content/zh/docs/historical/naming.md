@@ -2,6 +2,9 @@
 title: "命名讨论"
 description: "关于I2P命名模型的历史性辩论以及全局DNS风格方案被拒绝的原因"
 slug: "naming"
+aliases:
+  - "/zh/docs/legacy/naming"
+  - "/zh/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

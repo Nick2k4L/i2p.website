@@ -2,7 +2,11 @@
 title: "SSU (Secure Semireliable UDP)"
 description: "मूल UDP परिवहन प्रोटोकॉल विनिर्देश (पुराना, SSU2 द्वारा प्रतिस्थापित)"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/hi/docs/transport/ssu"
+  - "/hi/docs/transport/ssu/"
+  - "/hi/docs/transports/ssu"
+  - "/hi/docs/transports/ssu/"
 category: "ट्रांसपोर्ट"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

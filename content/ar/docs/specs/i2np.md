@@ -2,7 +2,9 @@
 title: "مواصفات I2NP"
 description: "تنسيقات رسائل بروتوكول شبكة I2P (I2NP)، والأولويات، والهياكل المشتركة للاتصال بين أجهزة router."
 slug: "i2np"
-aliases: 
+aliases:
+  - "/ar/docs/protocol/i2np"
+  - "/ar/docs/protocol/i2np/"
 category: "البروتوكولات"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

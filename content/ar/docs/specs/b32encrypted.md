@@ -2,6 +2,9 @@
 title: "B32 لـ Encrypted Leasesets"
 description: "تنسيق عنوان Base 32 لـ leasesets من نوع LS2 المشفرة"
 slug: "b32encrypted"
+aliases:
+  - "/ar/docs/specs/b32-for-encrypted-leasesets"
+  - "/ar/docs/specs/b32-for-encrypted-leasesets/"
 category: "التصميم"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

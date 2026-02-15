@@ -32,7 +32,7 @@ Výběr uzlů se provádí poměrně často, protože router může udržovat ve
 
 ### Další informace {#further-info}
 
-Pro více informací si přečtěte článek [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) prezentovaný na [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). Pro poznámky k drobným změnám od publikování článku viz [níže](#notes).
+Pro více informací si přečtěte článek [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) prezentovaný na [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). Pro poznámky k drobným změnám od publikování článku viz [níže](#notes).
 
 ## Profily {#profiles}
 
@@ -123,7 +123,7 @@ Peers jsou uspořádány v tunnelech pro řešení [predecessor attack](http://f
 
 ## Poznámky {#notes}
 
-Pro ty, kteří čtou článek [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf), mějte prosím na paměti následující drobné změny v I2P od publikování tohoto článku:
+Pro ty, kteří čtou článek [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf), mějte prosím na paměti následující drobné změny v I2P od publikování tohoto článku:
 
 - Výpočet integrace stále není používán
 - V článku se "skupiny" nazývají "úrovně"
@@ -132,7 +132,7 @@ Pro ty, kteří čtou článek [Peer Profiling and Selection in the I2P Anonymou
 
 ## Reference {#references}
 
-- [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)
 - [One Cell Enough](http://blog.torproject.org/blog/one-cell-enough)
 - [Tor Entry Guards](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 Paper](http://freehaven.net/anonbib/#murdoch-pet2007)

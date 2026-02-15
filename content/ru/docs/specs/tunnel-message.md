@@ -2,6 +2,9 @@
 title: "Спецификация сообщений tunnel"
 description: "Спецификация формата tunnel сообщений в I2P"
 slug: "tunnel-message"
+aliases:
+  - "/ru/docs/legacy/tunnel-message"
+  - "/ru/docs/legacy/tunnel-message/"
 category: "Дизайн"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

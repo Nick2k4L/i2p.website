@@ -1,5 +1,8 @@
 ---
 title: "Vylepšení přenosu IPv6"
+aliases:
+  - "/cs/spec/proposals/158"
+  - "/cs/spec/proposals/158/"
 number: "158"
 author: "zzz, původní"
 created: "2021-03-19"

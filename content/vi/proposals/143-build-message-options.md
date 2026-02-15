@@ -1,5 +1,8 @@
 ---
 title: "Tùy Chọn Thông Điệp Xây Dựng Đường Hầm"
+aliases:
+  - "/vi/proposals/143"
+  - "/vi/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

@@ -2,6 +2,11 @@
 title: "NTCP (NIO-based TCP)"
 description: "I2P के लिए लेगेसी Java NIO-आधारित TCP ट्रांसपोर्ट, जिसे NTCP2 द्वारा प्रतिस्थापित किया गया"
 slug: "ntcp"
+aliases:
+  - "/hi/docs/transport/ntcp"
+  - "/hi/docs/transport/ntcp/"
+  - "/hi/docs/ntcp"
+  - "/hi/docs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

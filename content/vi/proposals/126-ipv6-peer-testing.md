@@ -1,5 +1,8 @@
 ---
 title: "Kiểm Tra Đồng Đẳng IPv6"
+aliases:
+  - "/vi/spec/proposals/126-ipv6-peer-testing"
+  - "/vi/spec/proposals/126-ipv6-peer-testing/"
 number: "126"
 author: "zzz"
 created: "2016-05-02"

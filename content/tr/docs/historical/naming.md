@@ -2,6 +2,9 @@
 title: "İsimlendirme Tartışması"
 description: "I2P'nin isimlendirme modeli hakkındaki tarihsel tartışma ve küresel DNS tarzı şemaların neden reddedildiği"
 slug: "naming"
+aliases:
+  - "/tr/docs/legacy/naming"
+  - "/tr/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

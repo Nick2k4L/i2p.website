@@ -2,6 +2,9 @@
 title: "Tunnel-Diskussion"
 description: "Historische Erkundung von tunnel-Padding, Fragmentierung und Build-Strategien"
 slug: "tunnel"
+aliases:
+  - "/de/docs/discussions/tunnel"
+  - "/de/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

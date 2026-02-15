@@ -2,6 +2,9 @@
 title: "Đặc tả SAM V2"
 description: "Giao thức Simple Anonymous Messaging phiên bản 2 cũ (đã ngừng sử dụng)"
 slug: "samv2"
+aliases:
+  - "/vi/docs/api/samv2"
+  - "/vi/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

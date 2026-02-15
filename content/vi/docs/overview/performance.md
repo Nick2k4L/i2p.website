@@ -2,6 +2,11 @@
 title: "Hiệu suất"
 description: "Hiệu suất mạng I2P: tốc độ, kết nối và quản lý tài nguyên"
 slug: "performance"
+aliases:
+  - "/vi/about/performance/future"
+  - "/vi/about/performance/future/"
+  - "/vi/about/performance/history"
+  - "/vi/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

@@ -2,6 +2,9 @@
 title: "पुराना Tunnel कार्यान्वयन"
 description: "I2P के मूल tunnel implementation का ऐतिहासिक दस्तावेजीकरण 0.6.1.10 से पहले"
 slug: "old-tunnel-implementation"
+aliases:
+  - "/hi/docs/historical/tunnel-alt"
+  - "/hi/docs/historical/tunnel-alt/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

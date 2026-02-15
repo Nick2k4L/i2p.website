@@ -1,5 +1,8 @@
 ---
 title: "ECIES 목적지에서 데이터베이스 조회"
+aliases:
+  - "/ko/proposals/154-ratchet"
+  - "/ko/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

@@ -2,6 +2,9 @@
 title: "UDP трекеры"
 description: "Спецификация протокола для UDP BitTorrent анонсов в I2P"
 slug: "udp-announces"
+aliases:
+  - "/ru/docs/specs/udp-bittorrent-announces"
+  - "/ru/docs/specs/udp-bittorrent-announces/"
 category: "Протоколы"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

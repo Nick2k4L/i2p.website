@@ -1,5 +1,8 @@
 ---
 title: "टनल बैंडविड्थ पैरामीटर"
+aliases:
+  - "/hi/proposals/168"
+  - "/hi/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

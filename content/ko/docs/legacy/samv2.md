@@ -2,6 +2,9 @@
 title: "SAM V2 사양"
 description: "레거시 Simple Anonymous Messaging 프로토콜 버전 2 (사용 중단됨)"
 slug: "samv2"
+aliases:
+  - "/ko/docs/api/samv2"
+  - "/ko/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

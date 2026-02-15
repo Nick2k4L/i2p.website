@@ -2,6 +2,9 @@
 title: "Usando um git bundle para obter o código-fonte do I2P"
 description: "Clonando repositórios grandes sobre I2P usando git bundles e BitTorrent"
 slug: "git-bundle"
+aliases:
+  - "/pt/docs/applications/git"
+  - "/pt/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

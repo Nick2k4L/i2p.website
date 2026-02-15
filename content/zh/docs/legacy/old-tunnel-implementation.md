@@ -2,6 +2,9 @@
 title: "旧 Tunnel 实现"
 description: "I2P在0.6.1.10版本之前原始tunnel实现的历史文档"
 slug: "old-tunnel-implementation"
+aliases:
+  - "/zh/docs/historical/tunnel-alt"
+  - "/zh/docs/historical/tunnel-alt/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

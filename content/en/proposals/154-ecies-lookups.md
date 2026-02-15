@@ -1,5 +1,8 @@
 ---
 title: "Database Lookups from ECIES Destinations"
+aliases:
+  - "/en/proposals/154-ratchet"
+  - "/en/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

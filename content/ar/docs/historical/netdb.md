@@ -2,6 +2,9 @@
 title: "مناقشة قاعدة بيانات الشبكة"
 description: "ملاحظات تاريخية حول floodfill وتجارب Kademlia والضبط المستقبلي لـ netDb"
 slug: "netdb"
+aliases:
+  - "/ar/docs/legacy/netdb"
+  - "/ar/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

@@ -2,6 +2,11 @@
 title: "Performans"
 description: "I2P ağ performansı: hız, bağlantılar ve kaynak yönetimi"
 slug: "performance"
+aliases:
+  - "/tr/about/performance/future"
+  - "/tr/about/performance/future/"
+  - "/tr/about/performance/history"
+  - "/tr/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

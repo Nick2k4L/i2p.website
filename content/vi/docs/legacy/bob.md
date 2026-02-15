@@ -2,6 +2,9 @@
 title: "BOB - Cầu Nối Mở Cơ Bản"
 description: "API đã lỗi thời để quản lý destination"
 slug: "bob"
+aliases:
+  - "/vi/docs/api/bob"
+  - "/vi/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

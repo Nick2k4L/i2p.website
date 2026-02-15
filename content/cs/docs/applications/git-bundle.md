@@ -2,6 +2,9 @@
 title: "Použití git bundle pro stažení zdrojového kódu I2P"
 description: "Klonování velkých repozitářů přes I2P pomocí git bundlů a BitTorrentu"
 slug: "git-bundle"
+aliases:
+  - "/cs/docs/applications/git"
+  - "/cs/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

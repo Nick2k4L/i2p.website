@@ -2,6 +2,9 @@
 title: "UDP Trackers"
 description: "I2P में UDP BitTorrent announces के लिए प्रोटोकॉल विनिर्देश"
 slug: "udp-announces"
+aliases:
+  - "/hi/docs/specs/udp-bittorrent-announces"
+  - "/hi/docs/specs/udp-bittorrent-announces/"
 category: "प्रोटोकॉल"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

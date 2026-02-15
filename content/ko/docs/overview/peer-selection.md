@@ -32,7 +32,7 @@ accurateFor: "0.9.62"
 
 ### 추가 정보 {#further-info}
 
-자세한 정보는 [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1)에서 발표된 논문 [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)을 참조하십시오. 논문 발표 이후의 사소한 변경사항에 대한 참고사항은 [아래](#notes)를 확인하십시오.
+자세한 정보는 [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1)에서 발표된 논문 [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)을 참조하십시오. 논문 발표 이후의 사소한 변경사항에 대한 참고사항은 [아래](#notes)를 확인하십시오.
 
 ## 프로필 {#profiles}
 
@@ -122,7 +122,7 @@ Peer들은 [predecessor attack](http://forensics.umass.edu/pubs/wright-tissec.pd
 
 ## 참고사항 {#notes}
 
-논문 [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)을 읽고 계신 분들은 논문 발표 이후 I2P에서 다음과 같은 사소한 변경사항들이 있었다는 점을 염두에 두시기 바랍니다:
+논문 [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)을 읽고 계신 분들은 논문 발표 이후 I2P에서 다음과 같은 사소한 변경사항들이 있었다는 점을 염두에 두시기 바랍니다:
 
 - Integration 계산은 여전히 사용되지 않습니다
 - 논문에서 "groups"는 "tiers"라고 불립니다
@@ -131,7 +131,7 @@ Peer들은 [predecessor attack](http://forensics.umass.edu/pubs/wright-tissec.pd
 
 ## 참고 자료 {#references}
 
-- [I2P 익명 네트워크에서의 피어 프로파일링 및 선택](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [I2P 익명 네트워크에서의 피어 프로파일링 및 선택](/pdf/I2P-PET-CON-2009.1.pdf)
 - [하나의 셀로 충분하다](http://blog.torproject.org/blog/one-cell-enough)
 - [Tor Entry Guards](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 논문](http://freehaven.net/anonbib/#murdoch-pet2007)

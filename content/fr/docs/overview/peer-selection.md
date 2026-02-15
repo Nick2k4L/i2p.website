@@ -32,7 +32,7 @@ La sélection des pairs est effectuée très fréquemment, car un router peut ma
 
 ### Informations complémentaires {#further-info}
 
-Pour plus d'informations, voir l'article [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) présenté à [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). Voir [ci-dessous](#notes) pour les notes sur les changements mineurs depuis la publication de l'article.
+Pour plus d'informations, voir l'article [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) présenté à [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). Voir [ci-dessous](#notes) pour les notes sur les changements mineurs depuis la publication de l'article.
 
 ## Profils {#profiles}
 
@@ -125,7 +125,7 @@ Les pairs sont ordonnés dans les tunnels pour faire face à l'[attaque du préd
 
 ## Notes {#notes}
 
-Pour ceux qui lisent l'article [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf), veuillez garder à l'esprit les changements mineurs suivants dans I2P depuis la publication de l'article :
+Pour ceux qui lisent l'article [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf), veuillez garder à l'esprit les changements mineurs suivants dans I2P depuis la publication de l'article :
 
 - Le calcul d'intégration n'est toujours pas utilisé
 - Dans l'article, les "groupes" sont appelés "niveaux"
@@ -134,7 +134,7 @@ Pour ceux qui lisent l'article [Peer Profiling and Selection in the I2P Anonymou
 
 ## Références {#references}
 
-- [Profilage et sélection des pairs dans le réseau anonyme I2P](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [Profilage et sélection des pairs dans le réseau anonyme I2P](/pdf/I2P-PET-CON-2009.1.pdf)
 - [Une cellule suffit](http://blog.torproject.org/blog/one-cell-enough)
 - [Gardes d'entrée Tor](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Article de Murdoch 2007](http://freehaven.net/anonbib/#murdoch-pet2007)

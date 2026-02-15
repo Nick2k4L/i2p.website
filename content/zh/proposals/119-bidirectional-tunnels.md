@@ -1,5 +1,8 @@
 ---
 title: "双向隧道"
+aliases:
+  - "/zh/proposals/119"
+  - "/zh/proposals/119/"
 number: "119"
 author: "orignal"
 created: "2016-01-07"

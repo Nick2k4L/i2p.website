@@ -1,5 +1,10 @@
 ---
 title: "ChaCha Tunnel Layer Encryption"
+aliases:
+  - "/en/proposals/153-chacha20-layer"
+  - "/en/proposals/153-chacha20-layer/"
+  - "/en/proposals/153"
+  - "/en/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

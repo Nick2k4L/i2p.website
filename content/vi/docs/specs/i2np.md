@@ -2,7 +2,9 @@
 title: "Đặc tả I2NP"
 description: "Định dạng thông điệp, mức độ ưu tiên và cấu trúc chung của I2P Network Protocol (I2NP) cho giao tiếp giữa các router."
 slug: "i2np"
-aliases: 
+aliases:
+  - "/vi/docs/protocol/i2np"
+  - "/vi/docs/protocol/i2np/"
 category: "Giao thức"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

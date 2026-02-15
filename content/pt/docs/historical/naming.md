@@ -2,6 +2,9 @@
 title: "Discussão de Nomenclatura"
 description: "Debate histórico sobre o modelo de nomenclatura do I2P e por que esquemas globais estilo DNS foram rejeitados"
 slug: "naming"
+aliases:
+  - "/pt/docs/legacy/naming"
+  - "/pt/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

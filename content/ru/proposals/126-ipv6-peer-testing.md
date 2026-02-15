@@ -1,5 +1,8 @@
 ---
 title: "Тестирование IPv6 Peer"
+aliases:
+  - "/ru/spec/proposals/126-ipv6-peer-testing"
+  - "/ru/spec/proposals/126-ipv6-peer-testing/"
 number: "126"
 author: "zzz"
 created: "2016-05-02"

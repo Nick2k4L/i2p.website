@@ -2,6 +2,11 @@
 title: "Leistung"
 description: "I2P-Netzwerk-Performance: Geschwindigkeit, Verbindungen und Ressourcenverwaltung"
 slug: "performance"
+aliases:
+  - "/de/about/performance/future"
+  - "/de/about/performance/future/"
+  - "/de/about/performance/history"
+  - "/de/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

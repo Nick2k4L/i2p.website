@@ -2,6 +2,9 @@
 title: "SAM V1 Belirtimi"
 description: "Eski Basit Anonim Mesajlaşma protokolü sürüm 1 (kullanımdan kaldırıldı)"
 slug: "sam"
+aliases:
+  - "/tr/docs/api/sam"
+  - "/tr/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

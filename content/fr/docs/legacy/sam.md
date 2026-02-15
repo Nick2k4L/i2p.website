@@ -2,6 +2,9 @@
 title: "Spécification SAM V1"
 description: "Protocole Simple Anonymous Messaging version 1 hérité (obsolète)"
 slug: "sam"
+aliases:
+  - "/fr/docs/api/sam"
+  - "/fr/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

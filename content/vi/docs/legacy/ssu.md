@@ -2,7 +2,11 @@
 title: "SSU (Secure Semireliable UDP)"
 description: "Đặc tả giao thức truyền tải UDP gốc (đã lỗi thời, được thay thế bởi SSU2)"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/vi/docs/transport/ssu"
+  - "/vi/docs/transport/ssu/"
+  - "/vi/docs/transports/ssu"
+  - "/vi/docs/transports/ssu/"
 category: "Giao thức vận chuyển"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

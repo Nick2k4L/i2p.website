@@ -2,6 +2,9 @@
 title: "एप्लिकेशन डेवलपमेंट"
 description: "I2P-विशिष्ट ऐप्स क्यों लिखें, मुख्य अवधारणाएं, विकास विकल्प, और शुरुआती गाइड"
 slug: "applications"
+aliases:
+  - "/hi/docs/develop/applications"
+  - "/hi/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

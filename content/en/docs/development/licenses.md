@@ -6,6 +6,8 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs
 aliases:
+  - "/en/docs/develop/licenses"
+  - "/en/docs/develop/licenses/"
   - "/docs/develop/licenses/"
 ---
 

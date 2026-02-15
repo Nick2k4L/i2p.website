@@ -2,6 +2,11 @@
 title: "NTCP (TCP dựa trên NIO)"
 description: "Giao thức truyền tải TCP dựa trên Java NIO cũ cho I2P, đã được thay thế bằng NTCP2"
 slug: "ntcp"
+aliases:
+  - "/vi/docs/transport/ntcp"
+  - "/vi/docs/transport/ntcp/"
+  - "/vi/docs/ntcp"
+  - "/vi/docs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

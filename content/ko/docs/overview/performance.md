@@ -2,6 +2,11 @@
 title: "성능"
 description: "I2P 네트워크 성능: 속도, 연결, 리소스 관리"
 slug: "performance"
+aliases:
+  - "/ko/about/performance/future"
+  - "/ko/about/performance/future/"
+  - "/ko/about/performance/history"
+  - "/ko/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

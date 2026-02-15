@@ -2,6 +2,9 @@
 title: "SAM V1 명세서"
 description: "레거시 Simple Anonymous Messaging 프로토콜 버전 1 (더 이상 사용되지 않음)"
 slug: "sam"
+aliases:
+  - "/ko/docs/api/sam"
+  - "/ko/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

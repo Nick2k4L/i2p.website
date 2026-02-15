@@ -1,5 +1,8 @@
 ---
 title: "Поиск в базе данных с параметрами ECIES"
+aliases:
+  - "/ru/proposals/154-ratchet"
+  - "/ru/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

@@ -1,5 +1,8 @@
 ---
 title: "ECIES गंतव्यों से डेटाबेस लुकअप्स"
+aliases:
+  - "/hi/proposals/154-ratchet"
+  - "/hi/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

@@ -1,5 +1,8 @@
 ---
 title: "Cải tiến Giao thức Vận chuyển IPv6"
+aliases:
+  - "/vi/spec/proposals/158"
+  - "/vi/spec/proposals/158/"
 number: "158"
 author: "zzz, orignal"
 created: "2021-03-19"

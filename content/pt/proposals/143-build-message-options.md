@@ -1,5 +1,8 @@
 ---
 title: "Opções de Mensagem de Construção de Túnel"
+aliases:
+  - "/pt/proposals/143"
+  - "/pt/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

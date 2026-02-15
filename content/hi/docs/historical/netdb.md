@@ -2,6 +2,9 @@
 title: "नेटवर्क डेटाबेस चर्चा"
 description: "netDb के लिए floodfill, Kademlia प्रयोगों और भविष्य की tuning पर ऐतिहासिक नोट्स"
 slug: "netdb"
+aliases:
+  - "/hi/docs/legacy/netdb"
+  - "/hi/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

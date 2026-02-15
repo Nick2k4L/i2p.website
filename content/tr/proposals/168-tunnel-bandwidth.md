@@ -1,5 +1,8 @@
 ---
 title: "Tünel Bant Genişliği Parametreleri"
+aliases:
+  - "/tr/proposals/168"
+  - "/tr/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

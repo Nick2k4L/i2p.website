@@ -2,6 +2,9 @@
 title: "Diskuze o pojmenování"
 description: "Historická debata o modelu pojmenování I2P a proč byly odmítnuty globální schémata ve stylu DNS"
 slug: "naming"
+aliases:
+  - "/cs/docs/legacy/naming"
+  - "/cs/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

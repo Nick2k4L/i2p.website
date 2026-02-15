@@ -2,7 +2,9 @@
 title: "I2NP-Spezifikation"
 description: "I2NP-Nachrichtenformate, Prioritäten und gemeinsame Strukturen für die Router-zu-Router-Kommunikation."
 slug: "i2np"
-aliases: 
+aliases:
+  - "/de/docs/protocol/i2np"
+  - "/de/docs/protocol/i2np/"
 category: "Protokolle"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

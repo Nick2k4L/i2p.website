@@ -2,7 +2,9 @@
 title: "I2NP 规范"
 description: "I2P网络协议(I2NP)消息格式、优先级以及router间通信的通用结构。"
 slug: "i2np"
-aliases: 
+aliases:
+  - "/zh/docs/protocol/i2np"
+  - "/zh/docs/protocol/i2np/"
 category: "协议"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

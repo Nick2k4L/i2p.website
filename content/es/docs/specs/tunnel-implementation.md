@@ -2,6 +2,9 @@
 title: "Implementación de Tunnel"
 description: "Especificación de la operación, construcción y procesamiento de mensajes de túneles I2P"
 slug: "tunnel-implementation"
+aliases:
+  - "/es/docs/specs/implementation"
+  - "/es/docs/specs/implementation/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

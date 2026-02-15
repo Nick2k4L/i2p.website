@@ -2,6 +2,9 @@
 title: "Thảo luận về Cơ sở Dữ liệu Mạng"
 description: "Ghi chú lịch sử về floodfill, các thí nghiệm Kademlia, và điều chỉnh tương lai cho netDb"
 slug: "netdb"
+aliases:
+  - "/vi/docs/legacy/netdb"
+  - "/vi/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

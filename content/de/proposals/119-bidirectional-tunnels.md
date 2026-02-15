@@ -1,5 +1,8 @@
 ---
 title: "Bidirektionale Tunnel"
+aliases:
+  - "/de/proposals/119"
+  - "/de/proposals/119/"
 number: "119"
 author: "original"
 created: "2016-01-07"

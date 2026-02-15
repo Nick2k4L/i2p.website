@@ -1,5 +1,8 @@
 ---
 title: "Nuevo Propuesta de Plantilla de Cifrado"
+aliases:
+  - "/es/proposals/142-ecies-template"
+  - "/es/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

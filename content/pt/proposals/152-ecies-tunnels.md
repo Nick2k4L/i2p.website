@@ -1,5 +1,10 @@
 ---
 title: "Túneis ECIES"
+aliases:
+  - "/pt/proposals/152-ecies-config"
+  - "/pt/proposals/152-ecies-config/"
+  - "/pt/proposals/152"
+  - "/pt/proposals/152/"
 number: "152"
 author: "chisana, zzz, orignal"
 created: "2019-07-04"

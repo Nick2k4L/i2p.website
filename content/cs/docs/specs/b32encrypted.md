@@ -2,6 +2,9 @@
 title: "B32 pro šifrované LeaseSet"
 description: "Formát Base 32 adres pro šifrované LS2 leaseSet"
 slug: "b32encrypted"
+aliases:
+  - "/cs/docs/specs/b32-for-encrypted-leasesets"
+  - "/cs/docs/specs/b32-for-encrypted-leasesets/"
 category: "Návrh"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

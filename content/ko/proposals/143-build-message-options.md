@@ -1,5 +1,8 @@
 ---
 title: "터널 빌드 메시지 옵션"
+aliases:
+  - "/ko/proposals/143"
+  - "/ko/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

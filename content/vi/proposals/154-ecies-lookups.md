@@ -1,5 +1,8 @@
 ---
 title: "Tra cứu cơ sở dữ liệu từ các đích đến ECIES"
+aliases:
+  - "/vi/proposals/154-ratchet"
+  - "/vi/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

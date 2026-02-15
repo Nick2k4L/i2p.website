@@ -2,7 +2,11 @@
 title: "I2P Client Protocol (I2CP)"
 description: "Uygulamaların I2P router ile oturumları, tunnel'ları ve leaseSet'leri nasıl müzakere ettiği."
 slug: "i2cp"
-aliases: 
+aliases:
+  - "/tr/docs/protocol/i2cp"
+  - "/tr/docs/protocol/i2cp/"
+  - "/tr/docs/api/i2cp"
+  - "/tr/docs/api/i2cp/"
 category: "Protokoller"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

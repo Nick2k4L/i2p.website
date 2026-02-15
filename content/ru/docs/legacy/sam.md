@@ -2,6 +2,9 @@
 title: "Спецификация SAM V1"
 description: "Устаревший протокол Simple Anonymous Messaging версии 1 (не рекомендуется к использованию)"
 slug: "sam"
+aliases:
+  - "/ru/docs/api/sam"
+  - "/ru/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

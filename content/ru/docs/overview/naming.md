@@ -2,6 +2,11 @@
 title: "Именование и адресная книга"
 description: "Как I2P сопоставляет читаемые человеком имена хостов с назначениями"
 slug: "naming"
+aliases:
+  - "/ru/docs/specs/naming"
+  - "/ru/docs/specs/naming/"
+  - "/ru/docs/naming"
+  - "/ru/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

@@ -2,6 +2,9 @@
 title: "Thảo luận về Tunnel"
 description: "Khám phá lịch sử về chiến lược padding tunnel, phân mảnh và xây dựng"
 slug: "tunnel"
+aliases:
+  - "/vi/docs/discussions/tunnel"
+  - "/vi/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

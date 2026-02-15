@@ -1,5 +1,8 @@
 ---
 title: "Roteiro de Desenvolvimento do I2P"
+aliases:
+  - "/pt/get-involved/todo"
+  - "/pt/get-involved/todo/"
 description: "Planos de desenvolvimento atuais e marcos históricos para a rede I2P"
 ---
 

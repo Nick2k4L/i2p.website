@@ -2,6 +2,9 @@
 title: "Vývoj aplikací"
 description: "Proč psát aplikace specifické pro I2P, klíčové koncepty, možnosti vývoje a průvodce pro začátečníky"
 slug: "applications"
+aliases:
+  - "/cs/docs/develop/applications"
+  - "/cs/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

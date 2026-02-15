@@ -1,5 +1,10 @@
 ---
 title: "Chiffrement de Couche de Tunnel ChaCha"
+aliases:
+  - "/fr/proposals/153-chacha20-layer"
+  - "/fr/proposals/153-chacha20-layer/"
+  - "/fr/proposals/153"
+  - "/fr/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

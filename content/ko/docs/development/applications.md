@@ -2,6 +2,9 @@
 title: "애플리케이션 개발"
 description: "I2P 전용 앱을 작성하는 이유, 핵심 개념, 개발 옵션, 그리고 시작 가이드"
 slug: "applications"
+aliases:
+  - "/ko/docs/develop/applications"
+  - "/ko/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

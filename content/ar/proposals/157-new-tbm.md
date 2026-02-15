@@ -1,5 +1,8 @@
 ---
 title: "رسائل بناء الأنفاق الأصغر"
+aliases:
+  - "/ar/proposals/157"
+  - "/ar/proposals/157/"
 number: "157"
 author: "zzz، أوائل"
 created: "2020-10-09"

@@ -2,6 +2,11 @@
 title: "İsimlendirme ve Adres Defteri"
 description: "I2P'nin insan tarafından okunabilir ana bilgisayar adlarını hedeflere nasıl eşlediği"
 slug: "naming"
+aliases:
+  - "/tr/docs/specs/naming"
+  - "/tr/docs/specs/naming/"
+  - "/tr/docs/naming"
+  - "/tr/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

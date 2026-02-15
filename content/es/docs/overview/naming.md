@@ -2,6 +2,11 @@
 title: "Denominación y Libreta de Direcciones"
 description: "Cómo I2P mapea nombres de host legibles por humanos a destinos"
 slug: "naming"
+aliases:
+  - "/es/docs/specs/naming"
+  - "/es/docs/specs/naming/"
+  - "/es/docs/naming"
+  - "/es/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

@@ -1,5 +1,8 @@
 ---
 title: "New Encryption Proposal Template"
+aliases:
+  - "/en/proposals/142-ecies-template"
+  - "/en/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

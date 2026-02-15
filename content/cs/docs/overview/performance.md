@@ -2,6 +2,11 @@
 title: "Výkon"
 description: "Výkon I2P sítě: rychlost, připojení a správa zdrojů"
 slug: "performance"
+aliases:
+  - "/cs/about/performance/future"
+  - "/cs/about/performance/future/"
+  - "/cs/about/performance/history"
+  - "/cs/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

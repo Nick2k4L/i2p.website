@@ -1,5 +1,8 @@
 ---
 title: "ECIES-P256"
+aliases:
+  - "/pt/proposals/145-ecies-ecdh-aes"
+  - "/pt/proposals/145-ecies-ecdh-aes/"
 number: "145"
 author: "orignal"
 created: "2019-01-23"

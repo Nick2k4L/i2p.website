@@ -2,6 +2,9 @@
 title: "Encrypted Leasesets के लिए B32"
 description: "एन्क्रिप्टेड LS2 leasesets के लिए Base 32 address प्रारूप"
 slug: "b32encrypted"
+aliases:
+  - "/hi/docs/specs/b32-for-encrypted-leasesets"
+  - "/hi/docs/specs/b32-for-encrypted-leasesets/"
 category: "डिज़ाइन"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

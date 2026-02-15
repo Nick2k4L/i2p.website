@@ -1,5 +1,8 @@
 ---
 title: "معلمات عرض النفق"
+aliases:
+  - "/ar/proposals/168"
+  - "/ar/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

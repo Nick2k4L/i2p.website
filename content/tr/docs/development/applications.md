@@ -2,6 +2,9 @@
 title: "Uygulama Geliştirme"
 description: "Neden I2P'ye özgü uygulamalar yazılır, temel kavramlar, geliştirme seçenekleri ve başlangıç rehberi"
 slug: "applications"
+aliases:
+  - "/tr/docs/develop/applications"
+  - "/tr/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

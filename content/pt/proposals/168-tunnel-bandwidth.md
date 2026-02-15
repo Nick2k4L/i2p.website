@@ -1,5 +1,8 @@
 ---
 title: "Parâmetros de Largura de Banda do Túnel"
+aliases:
+  - "/pt/proposals/168"
+  - "/pt/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

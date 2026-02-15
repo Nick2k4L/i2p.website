@@ -2,6 +2,9 @@
 title: "Discussão sobre NTCP"
 description: "Discussão histórica sobre protocolos de transporte NTCP vs SSU de março de 2007"
 slug: "ntcp-discussion"
+aliases:
+  - "/pt/docs/discussions/ntcp"
+  - "/pt/docs/discussions/ntcp/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

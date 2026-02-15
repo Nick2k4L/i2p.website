@@ -2,7 +2,11 @@
 title: "SSU (Güvenli Yarı-Güvenilir UDP)"
 description: "Orijinal UDP taşıma protokolü spesifikasyonu (kullanımdan kaldırıldı, SSU2 ile değiştirildi)"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/tr/docs/transport/ssu"
+  - "/tr/docs/transport/ssu/"
+  - "/tr/docs/transports/ssu"
+  - "/tr/docs/transports/ssu/"
 category: "Taşımalar"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

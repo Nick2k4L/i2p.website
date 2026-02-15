@@ -2,6 +2,9 @@
 title: "SAM V1 विनिर्देश"
 description: "लेगेसी सिंपल एनॉनिमस मैसेजिंग प्रोटोकॉल संस्करण 1 (अप्रचलित)"
 slug: "sam"
+aliases:
+  - "/hi/docs/api/sam"
+  - "/hi/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

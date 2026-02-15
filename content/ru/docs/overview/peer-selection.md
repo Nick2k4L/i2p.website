@@ -32,7 +32,7 @@ accurateFor: "0.9.62"
 
 ### Дополнительная информация {#further-info}
 
-For more information see the paper [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) presented at [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). См. [ниже](#notes) примечания о незначительных изменениях, внесенных после публикации статьи.
+For more information see the paper [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) presented at [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). См. [ниже](#notes) примечания о незначительных изменениях, внесенных после публикации статьи.
 
 ## Профили {#profiles}
 
@@ -123,7 +123,7 @@ Peers упорядочены внутри tunnel для противодейст
 
 ## Примечания {#notes}
 
-Для тех, кто читает статью [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf), пожалуйста, имейте в виду следующие незначительные изменения в I2P с момента публикации статьи:
+Для тех, кто читает статью [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf), пожалуйста, имейте в виду следующие незначительные изменения в I2P с момента публикации статьи:
 
 - Расчет интеграции все еще не используется
 - В статье "группы" называются "уровнями"
@@ -132,7 +132,7 @@ Peers упорядочены внутри tunnel для противодейст
 
 ## Ссылки {#references}
 
-- [Профилирование и выбор узлов в анонимной сети I2P](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [Профилирование и выбор узлов в анонимной сети I2P](/pdf/I2P-PET-CON-2009.1.pdf)
 - [Одной ячейки достаточно](http://blog.torproject.org/blog/one-cell-enough)
 - [Входные узлы Tor](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Работа Мердока 2007](http://freehaven.net/anonbib/#murdoch-pet2007)

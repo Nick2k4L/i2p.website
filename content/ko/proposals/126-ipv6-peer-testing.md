@@ -1,5 +1,8 @@
 ---
 title: "IPv6 피어 테스트"
+aliases:
+  - "/ko/spec/proposals/126-ipv6-peer-testing"
+  - "/ko/spec/proposals/126-ipv6-peer-testing/"
 number: "126"
 author: "zzz"
 created: "2016-05-02"

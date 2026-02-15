@@ -2,6 +2,9 @@
 title: "BOB - جسر أساسي مفتوح"
 description: "واجهة برمجة تطبيقات مهجورة لإدارة الوجهات"
 slug: "bob"
+aliases:
+  - "/ar/docs/api/bob"
+  - "/ar/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

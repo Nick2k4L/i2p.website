@@ -1,5 +1,8 @@
 ---
 title: "ECIES 라우터"
+aliases:
+  - "/ko/proposals/156"
+  - "/ko/proposals/156/"
 number: "156"
 author: "zzz, original"
 created: "2020-09-01"

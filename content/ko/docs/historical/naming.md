@@ -2,6 +2,9 @@
 title: "명명 논의"
 description: "I2P의 명명 모델에 대한 역사적 논쟁과 전역 DNS 스타일 체계가 거부된 이유"
 slug: "naming"
+aliases:
+  - "/ko/docs/legacy/naming"
+  - "/ko/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

@@ -2,6 +2,11 @@
 title: "NTCP (NIO 기반 TCP)"
 description: "I2P용 레거시 Java NIO 기반 TCP 전송 방식, NTCP2로 대체됨"
 slug: "ntcp"
+aliases:
+  - "/ko/docs/transport/ntcp"
+  - "/ko/docs/transport/ntcp/"
+  - "/ko/docs/ntcp"
+  - "/ko/docs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

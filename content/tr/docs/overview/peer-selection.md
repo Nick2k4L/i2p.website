@@ -32,7 +32,7 @@ Peer seçimi oldukça sık yapılır, çünkü bir router çok sayıda istemci v
 
 ### Daha Fazla Bilgi {#further-info}
 
-Daha fazla bilgi için [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1)'de sunulan [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) makalesine bakın. Makalenin yayınlanmasından sonra yapılan küçük değişikliklerle ilgili notlar için [aşağıya](#notes) bakın.
+Daha fazla bilgi için [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1)'de sunulan [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) makalesine bakın. Makalenin yayınlanmasından sonra yapılan küçük değişikliklerle ilgili notlar için [aşağıya](#notes) bakın.
 
 ## Profiller {#profiles}
 
@@ -122,7 +122,7 @@ Eşler, [öncül saldırısı](http://forensics.umass.edu/pubs/wright-tissec.pdf
 
 ## Notlar {#notes}
 
-[Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) makalesini okuyanlar için, makalenin yayınlanmasından bu yana I2P'de yapılan aşağıdaki küçük değişiklikleri göz önünde bulundurun:
+[Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) makalesini okuyanlar için, makalenin yayınlanmasından bu yana I2P'de yapılan aşağıdaki küçük değişiklikleri göz önünde bulundurun:
 
 - Entegrasyon hesaplaması hala kullanılmıyor
 - Makalede "gruplar" "katmanlar" olarak adlandırılıyor
@@ -131,7 +131,7 @@ Eşler, [öncül saldırısı](http://forensics.umass.edu/pubs/wright-tissec.pdf
 
 ## Kaynaklar {#references}
 
-- [I2P Anonim Ağında Peer Profiling ve Seçimi](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [I2P Anonim Ağında Peer Profiling ve Seçimi](/pdf/I2P-PET-CON-2009.1.pdf)
 - [Bir Hücre Yeterli](http://blog.torproject.org/blog/one-cell-enough)
 - [Tor Giriş Korumaları](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 Makalesi](http://freehaven.net/anonbib/#murdoch-pet2007)

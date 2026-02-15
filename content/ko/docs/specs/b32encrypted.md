@@ -2,6 +2,9 @@
 title: "Encrypted LeaseSet을 위한 B32"
 description: "암호화된 LS2 leaseSet을 위한 Base 32 주소 형식"
 slug: "b32encrypted"
+aliases:
+  - "/ko/docs/specs/b32-for-encrypted-leasesets"
+  - "/ko/docs/specs/b32-for-encrypted-leasesets/"
 category: "설계"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

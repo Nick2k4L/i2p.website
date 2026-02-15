@@ -2,6 +2,9 @@
 title: "Diskuse o tunelech"
 description: "Historický průzkum strategií odsazování, fragmentace a budování tunelů"
 slug: "tunnel"
+aliases:
+  - "/cs/docs/discussions/tunnel"
+  - "/cs/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

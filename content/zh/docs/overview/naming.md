@@ -2,6 +2,11 @@
 title: "命名和地址簿"
 description: "I2P 如何将人类可读的主机名映射到目标地址"
 slug: "naming"
+aliases:
+  - "/zh/docs/specs/naming"
+  - "/zh/docs/specs/naming/"
+  - "/zh/docs/naming"
+  - "/zh/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

@@ -1,5 +1,8 @@
 ---
 title: "موجهات ECIES"
+aliases:
+  - "/ar/proposals/156"
+  - "/ar/proposals/156/"
 number: "156"
 author: "zzz، الأصلي"
 created: "2020-09-01"

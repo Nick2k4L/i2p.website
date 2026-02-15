@@ -1,5 +1,8 @@
 ---
 title: "خريطة طريق تطوير I2P"
+aliases:
+  - "/ar/get-involved/todo"
+  - "/ar/get-involved/todo/"
 description: "خطط التطوير الحالية والمعالم التاريخية لشبكة I2P"
 ---
 

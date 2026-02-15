@@ -2,6 +2,9 @@
 title: "Старая реализация tunnel"
 description: "Историческая документация оригинальной реализации tunnel в I2P до версии 0.6.1.10"
 slug: "old-tunnel-implementation"
+aliases:
+  - "/ru/docs/historical/tunnel-alt"
+  - "/ru/docs/historical/tunnel-alt/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

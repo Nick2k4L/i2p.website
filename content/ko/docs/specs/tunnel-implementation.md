@@ -2,6 +2,9 @@
 title: "Tunnel 구현"
 description: "I2P tunnel 운영, 구축 및 메시지 처리 명세서"
 slug: "tunnel-implementation"
+aliases:
+  - "/ko/docs/specs/implementation"
+  - "/ko/docs/specs/implementation/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

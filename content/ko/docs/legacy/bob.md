@@ -2,6 +2,9 @@
 title: "BOB - Basic Open Bridge"
 description: "목적지 관리를 위한 더 이상 사용되지 않는 API"
 slug: "bob"
+aliases:
+  - "/ko/docs/api/bob"
+  - "/ko/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

@@ -32,7 +32,7 @@ accurateFor: "0.9.62"
 
 ### مزيد من المعلومات {#further-info}
 
-لمزيد من المعلومات راجع الورقة البحثية [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) المقدمة في [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). راجع [أدناه](#notes) للاطلاع على ملاحظات حول التغييرات الطفيفة منذ نشر الورقة البحثية.
+لمزيد من المعلومات راجع الورقة البحثية [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) المقدمة في [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). راجع [أدناه](#notes) للاطلاع على ملاحظات حول التغييرات الطفيفة منذ نشر الورقة البحثية.
 
 ## الملفات الشخصية {#profiles}
 
@@ -123,7 +123,7 @@ accurateFor: "0.9.62"
 
 ## ملاحظات {#notes}
 
-بالنسبة لأولئك الذين يقرؤون البحث [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)، يرجى وضع التغييرات البسيطة التالية في I2P في الاعتبار منذ نشر البحث:
+بالنسبة لأولئك الذين يقرؤون البحث [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)، يرجى وضع التغييرات البسيطة التالية في I2P في الاعتبار منذ نشر البحث:
 
 - حساب التكامل لا يزال غير مستخدم
 - في البحث، تُسمى "المجموعات" بـ "الطبقات"
@@ -132,7 +132,7 @@ accurateFor: "0.9.62"
 
 ## المراجع {#references}
 
-- [تصنيف واختيار النظراء في شبكة I2P المجهولة](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [تصنيف واختيار النظراء في شبكة I2P المجهولة](/pdf/I2P-PET-CON-2009.1.pdf)
 - [خلية واحدة كافية](http://blog.torproject.org/blog/one-cell-enough)
 - [حراس الدخول في Tor](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [ورقة مردوخ 2007](http://freehaven.net/anonbib/#murdoch-pet2007)

@@ -1,5 +1,8 @@
 ---
 title: "Možnosti Zprávy o Výstavbě Tunelu"
+aliases:
+  - "/cs/proposals/143"
+  - "/cs/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

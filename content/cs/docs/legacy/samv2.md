@@ -2,6 +2,9 @@
 title: "Specifikace SAM V2"
 description: "Legacy Simple Anonymous Messaging protokol verze 2 (zastaralý)"
 slug: "samv2"
+aliases:
+  - "/cs/docs/api/samv2"
+  - "/cs/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

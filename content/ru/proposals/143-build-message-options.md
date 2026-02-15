@@ -1,5 +1,8 @@
 ---
 title: "Опции сообщения о создании туннеля"
+aliases:
+  - "/ru/proposals/143"
+  - "/ru/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

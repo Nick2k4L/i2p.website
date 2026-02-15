@@ -1,5 +1,8 @@
 ---
 title: "IPv6传输增强"
+aliases:
+  - "/zh/spec/proposals/158"
+  - "/zh/spec/proposals/158/"
 number: "158"
 author: "zzz, 原作者"
 created: "2021-03-19"

@@ -2,6 +2,9 @@
 title: "I2P स्रोत कोड प्राप्त करने के लिए git bundle का उपयोग करना"
 description: "git bundles और BitTorrent का उपयोग करके I2P पर बड़े repositories को clone करना"
 slug: "git-bundle"
+aliases:
+  - "/hi/docs/applications/git"
+  - "/hi/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

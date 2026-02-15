@@ -1,5 +1,10 @@
 ---
 title: "Criptografia de Camada de Túnel ChaCha"
+aliases:
+  - "/pt/proposals/153-chacha20-layer"
+  - "/pt/proposals/153-chacha20-layer/"
+  - "/pt/proposals/153"
+  - "/pt/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

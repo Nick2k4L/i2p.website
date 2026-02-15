@@ -5,6 +5,8 @@ slug: "overview"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"
 aliases:
+  - "/es/docs/develop/overview"
+  - "/es/docs/develop/overview/"
   - "/docs/development/overview/"
 ---
 

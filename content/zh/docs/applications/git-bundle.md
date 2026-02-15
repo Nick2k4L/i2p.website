@@ -2,6 +2,9 @@
 title: "使用 git bundle 获取 I2P 源代码"
 description: "使用 git bundles 和 BitTorrent 通过 I2P 克隆大型仓库"
 slug: "git-bundle"
+aliases:
+  - "/zh/docs/applications/git"
+  - "/zh/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

@@ -2,6 +2,11 @@
 title: "Naming and Address Book"
 description: "How I2P maps human-readable hostnames to destinations"
 slug: "naming"
+aliases:
+  - "/en/docs/specs/naming"
+  - "/en/docs/specs/naming/"
+  - "/en/docs/naming"
+  - "/en/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

@@ -2,6 +2,11 @@
 title: "Performance"
 description: "Desempenho da rede I2P: velocidade, conexões e gerenciamento de recursos"
 slug: "performance"
+aliases:
+  - "/pt/about/performance/future"
+  - "/pt/about/performance/future/"
+  - "/pt/about/performance/history"
+  - "/pt/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

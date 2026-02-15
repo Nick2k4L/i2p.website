@@ -6,6 +6,8 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs
 aliases:
+  - "/hi/docs/develop/release-signing-key"
+  - "/hi/docs/develop/release-signing-key/"
   - "/docs/develop/release-signing-key/"
 ---
 

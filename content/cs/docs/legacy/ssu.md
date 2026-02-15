@@ -2,7 +2,11 @@
 title: "SSU (Secure Semireliable UDP)"
 description: "Původní specifikace transportního protokolu UDP (zastaralá, nahrazena SSU2)"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/cs/docs/transport/ssu"
+  - "/cs/docs/transport/ssu/"
+  - "/cs/docs/transports/ssu"
+  - "/cs/docs/transports/ssu/"
 category: "Transporty"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

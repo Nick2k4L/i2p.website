@@ -2,6 +2,9 @@
 title: "I2P kaynak kodunu almak için git bundle kullanımı"
 description: "Git bundle'ları ve BitTorrent kullanarak I2P üzerinden büyük repository'leri klonlama"
 slug: "git-bundle"
+aliases:
+  - "/tr/docs/applications/git"
+  - "/tr/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

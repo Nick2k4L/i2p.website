@@ -2,6 +2,9 @@
 title: "SAM V2 Specification"
 description: "Legacy Simple Anonymous Messaging protocol version 2 (deprecated)"
 slug: "samv2"
+aliases:
+  - "/en/docs/api/samv2"
+  - "/en/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

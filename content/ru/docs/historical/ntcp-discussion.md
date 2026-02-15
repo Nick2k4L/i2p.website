@@ -2,6 +2,9 @@
 title: "Обсуждение NTCP"
 description: "Историческое обсуждение транспортных протоколов NTCP против SSU от марта 2007 года"
 slug: "ntcp-discussion"
+aliases:
+  - "/ru/docs/discussions/ntcp"
+  - "/ru/docs/discussions/ntcp/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

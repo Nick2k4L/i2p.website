@@ -2,7 +2,9 @@
 title: "I2NP Spesifikasyonu"
 description: "Router'dan router'a iletişim için I2P Network Protocol (I2NP) mesaj formatları, öncelikleri ve ortak yapıları."
 slug: "i2np"
-aliases: 
+aliases:
+  - "/tr/docs/protocol/i2np"
+  - "/tr/docs/protocol/i2np/"
 category: "Protokoller"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

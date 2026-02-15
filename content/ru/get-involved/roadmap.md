@@ -1,5 +1,8 @@
 ---
 title: "План развития I2P"
+aliases:
+  - "/ru/get-involved/todo"
+  - "/ru/get-involved/todo/"
 description: "Текущие планы разработки и исторические вехи сети I2P"
 ---
 

@@ -2,6 +2,9 @@
 title: "Спецификация SAM V2"
 description: "Устаревший протокол Simple Anonymous Messaging версии 2 (не рекомендуется к использованию)"
 slug: "samv2"
+aliases:
+  - "/ru/docs/api/samv2"
+  - "/ru/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

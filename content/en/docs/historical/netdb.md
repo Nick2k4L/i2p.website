@@ -2,6 +2,9 @@
 title: "Network Database Discussion"
 description: "Historical notes on floodfill, Kademlia experiments, and future tuning for the netDb"
 slug: "netdb"
+aliases:
+  - "/en/docs/legacy/netdb"
+  - "/en/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

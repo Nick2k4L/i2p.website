@@ -2,6 +2,9 @@
 title: "B32 cho Encrypted Leasesets"
 description: "Định dạng địa chỉ Base 32 cho leaseSet LS2 được mã hóa"
 slug: "b32encrypted"
+aliases:
+  - "/vi/docs/specs/b32-for-encrypted-leasesets"
+  - "/vi/docs/specs/b32-for-encrypted-leasesets/"
 category: "Thiết kế"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

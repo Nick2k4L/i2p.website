@@ -2,6 +2,9 @@
 title: "NTCP 讨论"
 description: "来自2007年3月关于NTCP与SSU传输协议的历史讨论"
 slug: "ntcp-discussion"
+aliases:
+  - "/zh/docs/discussions/ntcp"
+  - "/zh/docs/discussions/ntcp/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

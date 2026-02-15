@@ -2,7 +2,11 @@
 title: "Protocolo Cliente I2P (I2CP)"
 description: "Como as aplicações negociam sessões, tunnels e LeaseSets com o router I2P."
 slug: "i2cp"
-aliases: 
+aliases:
+  - "/pt/docs/protocol/i2cp"
+  - "/pt/docs/protocol/i2cp/"
+  - "/pt/docs/api/i2cp"
+  - "/pt/docs/api/i2cp/"
 category: "Protocolos"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

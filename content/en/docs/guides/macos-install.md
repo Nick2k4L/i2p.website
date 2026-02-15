@@ -1,5 +1,8 @@
 ---
 title: "Installing I2P on macOS"
+aliases:
+  - "/en/docs/guides/installing-i2p-on-macos-the-long-way"
+  - "/en/docs/guides/installing-i2p-on-macos-the-long-way/"
 description: "Step-by-step guide to manually installing I2P and its dependencies on macOS"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

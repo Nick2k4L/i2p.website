@@ -1,5 +1,10 @@
 ---
 title: "ChaCha टनल लेयर एन्क्रिप्शन"
+aliases:
+  - "/hi/proposals/153-chacha20-layer"
+  - "/hi/proposals/153-chacha20-layer/"
+  - "/hi/proposals/153"
+  - "/hi/proposals/153/"
 number: "153"
 author: "चिसाना"
 created: "2019-08-04"

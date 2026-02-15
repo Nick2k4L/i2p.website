@@ -1,5 +1,8 @@
 ---
 title: "IPv6 Transportverbesserungen"
+aliases:
+  - "/de/spec/proposals/158"
+  - "/de/spec/proposals/158/"
 number: "158"
 author: "zzz, orignal"
 created: "2021-03-19"

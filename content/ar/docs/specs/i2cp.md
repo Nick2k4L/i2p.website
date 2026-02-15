@@ -2,7 +2,11 @@
 title: "بروتوكول عميل I2P (I2CP)"
 description: "كيف تتفاوض التطبيقات على الجلسات والأنفاق وmجموعات الإيجار (LeaseSets) مع router الشبكة I2P."
 slug: "i2cp"
-aliases: 
+aliases:
+  - "/ar/docs/protocol/i2cp"
+  - "/ar/docs/protocol/i2cp/"
+  - "/ar/docs/api/i2cp"
+  - "/ar/docs/api/i2cp/"
 category: "البروتوكولات"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

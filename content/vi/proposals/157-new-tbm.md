@@ -1,5 +1,8 @@
 ---
 title: "Thông điệp Xây Dựng Đường Hầm Nhỏ Hơn"
+aliases:
+  - "/vi/proposals/157"
+  - "/vi/proposals/157/"
 number: "157"
 author: "zzz, ban đầu"
 created: "2020-10-09"

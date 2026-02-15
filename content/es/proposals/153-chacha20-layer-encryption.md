@@ -1,5 +1,10 @@
 ---
 title: "Encriptación de Capa de Túnel ChaCha"
+aliases:
+  - "/es/proposals/153-chacha20-layer"
+  - "/es/proposals/153-chacha20-layer/"
+  - "/es/proposals/153"
+  - "/es/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

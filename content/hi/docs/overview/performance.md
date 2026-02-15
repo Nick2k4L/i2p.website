@@ -2,6 +2,11 @@
 title: "प्रदर्शन"
 description: "I2P नेटवर्क प्रदर्शन: गति, कनेक्शन, और संसाधन प्रबंधन"
 slug: "performance"
+aliases:
+  - "/hi/about/performance/future"
+  - "/hi/about/performance/future/"
+  - "/hi/about/performance/history"
+  - "/hi/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

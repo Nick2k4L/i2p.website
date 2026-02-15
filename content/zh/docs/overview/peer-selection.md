@@ -32,7 +32,7 @@ accurateFor: "0.9.62"
 
 ### 更多信息 {#further-info}
 
-更多信息请参见在 [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1) 上发表的论文 [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)。论文发表后的一些小改动请参见[下面](#notes)的注释。
+更多信息请参见在 [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1) 上发表的论文 [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)。论文发表后的一些小改动请参见[下面](#notes)的注释。
 
 ## 配置文件 {#profiles}
 
@@ -121,7 +121,7 @@ Peers 在 tunnel 内部是有序排列的，以应对[前驱攻击](http://foren
 
 ## 注意事项 {#notes}
 
-对于那些正在阅读论文[I2P匿名网络中的节点分析和选择](/static/pdf/I2P-PET-CON-2009.1.pdf)的读者，请注意自该论文发表以来I2P的以下小幅变化：
+对于那些正在阅读论文[I2P匿名网络中的节点分析和选择](/pdf/I2P-PET-CON-2009.1.pdf)的读者，请注意自该论文发表以来I2P的以下小幅变化：
 
 - Integration 计算仍未使用
 - 在论文中，"groups"被称为"tiers"
@@ -130,7 +130,7 @@ Peers 在 tunnel 内部是有序排列的，以应对[前驱攻击](http://foren
 
 ## 参考资料 {#references}
 
-- [I2P 匿名网络中的节点分析和选择](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [I2P 匿名网络中的节点分析和选择](/pdf/I2P-PET-CON-2009.1.pdf)
 - [一个信元就足够](http://blog.torproject.org/blog/one-cell-enough)
 - [Tor 入口守卫](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 论文](http://freehaven.net/anonbib/#murdoch-pet2007)

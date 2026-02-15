@@ -2,6 +2,9 @@
 title: "Naming Discussion"
 description: "Historical debate about I2P's naming model and why global DNS-style schemes were rejected"
 slug: "naming"
+aliases:
+  - "/en/docs/legacy/naming"
+  - "/en/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

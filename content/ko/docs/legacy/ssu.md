@@ -2,7 +2,11 @@
 title: "SSU (Secure Semireliable UDP)"
 description: "원래 UDP 전송 프로토콜 사양 (사용 중단됨, SSU2로 대체됨)"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/ko/docs/transport/ssu"
+  - "/ko/docs/transport/ssu/"
+  - "/ko/docs/transports/ssu"
+  - "/ko/docs/transports/ssu/"
 category: "전송 계층"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

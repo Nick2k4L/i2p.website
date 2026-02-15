@@ -2,6 +2,9 @@
 title: "Ağ Veritabanı Tartışması"
 description: "netDb için floodfill, Kademlia deneyleri ve gelecekteki ayarlamalar hakkında tarihsel notlar"
 slug: "netdb"
+aliases:
+  - "/tr/docs/legacy/netdb"
+  - "/tr/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

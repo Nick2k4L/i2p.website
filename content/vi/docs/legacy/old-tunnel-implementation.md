@@ -2,6 +2,9 @@
 title: "Triển khai Tunnel Cũ"
 description: "Tài liệu lịch sử về triển khai tunnel gốc của I2P trước phiên bản 0.6.1.10"
 slug: "old-tunnel-implementation"
+aliases:
+  - "/vi/docs/historical/tunnel-alt"
+  - "/vi/docs/historical/tunnel-alt/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

@@ -2,6 +2,11 @@
 title: "التسمية ودفتر العناوين"
 description: "كيف يربط I2P أسماء المضيفين القابلة للقراءة البشرية بالوجهات"
 slug: "naming"
+aliases:
+  - "/ar/docs/specs/naming"
+  - "/ar/docs/specs/naming/"
+  - "/ar/docs/naming"
+  - "/ar/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

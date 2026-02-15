@@ -2,6 +2,9 @@
 title: "استخدام حزمة git لجلب كود I2P المصدري"
 description: "استنساخ المستودعات الكبيرة عبر I2P باستخدام حزم git و BitTorrent"
 slug: "git-bundle"
+aliases:
+  - "/ar/docs/applications/git"
+  - "/ar/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

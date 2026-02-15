@@ -1,5 +1,8 @@
 ---
 title: "Neuer Verschlüsselungsvorschlags-Template"
+aliases:
+  - "/de/proposals/142-ecies-template"
+  - "/de/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

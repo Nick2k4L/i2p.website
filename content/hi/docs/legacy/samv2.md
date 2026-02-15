@@ -2,6 +2,9 @@
 title: "SAM V2 विशिष्टता"
 description: "लेगेसी सिंपल एनॉनिमस मैसेजिंग प्रोटोकॉल संस्करण 2 (अप्रचलित)"
 slug: "samv2"
+aliases:
+  - "/hi/docs/api/samv2"
+  - "/hi/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

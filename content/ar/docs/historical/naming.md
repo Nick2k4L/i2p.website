@@ -2,6 +2,9 @@
 title: "مناقشة التسمية"
 description: "النقاش التاريخي حول نموذج التسمية في I2P ولماذا تم رفض أنظمة DNS العالمية"
 slug: "naming"
+aliases:
+  - "/ar/docs/legacy/naming"
+  - "/ar/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

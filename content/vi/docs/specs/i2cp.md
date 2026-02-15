@@ -2,7 +2,11 @@
 title: "Giao thức Client I2P (I2CP)"
 description: "Cách các ứng dụng thương lượng phiên, tunnel và leaseSet với I2P router."
 slug: "i2cp"
-aliases: 
+aliases:
+  - "/vi/docs/protocol/i2cp"
+  - "/vi/docs/protocol/i2cp/"
+  - "/vi/docs/api/i2cp"
+  - "/vi/docs/api/i2cp/"
 category: "Giao thức"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

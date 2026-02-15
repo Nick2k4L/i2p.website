@@ -1,5 +1,8 @@
 ---
 title: "नया एन्क्रिप्शन प्रस्ताव टेम्पलेट"
+aliases:
+  - "/hi/proposals/142-ecies-template"
+  - "/hi/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

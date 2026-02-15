@@ -2,6 +2,9 @@
 title: "应用程序开发"
 description: "为什么要编写I2P专用应用程序、关键概念、开发选项和入门指南"
 slug: "applications"
+aliases:
+  - "/zh/docs/develop/applications"
+  - "/zh/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

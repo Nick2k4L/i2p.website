@@ -1,5 +1,8 @@
 ---
 title: "GOST Sig Type"
+aliases:
+  - "/proposals/134-gost"
+  - "/proposals/134-gost/"
 number: "134"
 author: "orignal"
 created: "2017-02-18"

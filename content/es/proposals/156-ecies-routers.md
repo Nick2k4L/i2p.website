@@ -1,5 +1,8 @@
 ---
 title: "Routers ECIES"
+aliases:
+  - "/es/proposals/156"
+  - "/es/proposals/156/"
 number: "156"
 author: "zzz, original"
 created: "2020-09-01"

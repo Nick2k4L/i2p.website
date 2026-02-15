@@ -2,6 +2,9 @@
 title: "Specifikace zpráv tunnel"
 description: "Specifikace pro formát tunnel zpráv v I2P"
 slug: "tunnel-message"
+aliases:
+  - "/cs/docs/legacy/tunnel-message"
+  - "/cs/docs/legacy/tunnel-message/"
 category: "Návrh"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

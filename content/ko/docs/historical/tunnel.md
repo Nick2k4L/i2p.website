@@ -2,6 +2,9 @@
 title: "Tunnel 논의"
 description: "tunnel 패딩, 단편화 및 구축 전략의 역사적 탐구"
 slug: "tunnel"
+aliases:
+  - "/ko/docs/discussions/tunnel"
+  - "/ko/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

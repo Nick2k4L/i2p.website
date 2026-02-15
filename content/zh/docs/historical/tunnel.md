@@ -2,6 +2,9 @@
 title: "tunnel 讨论"
 description: "tunnel 填充、分片和构建策略的历史探索"
 slug: "tunnel"
+aliases:
+  - "/zh/docs/discussions/tunnel"
+  - "/zh/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

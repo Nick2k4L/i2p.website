@@ -1,5 +1,8 @@
 ---
 title: "ECIES-Router"
+aliases:
+  - "/de/proposals/156"
+  - "/de/proposals/156/"
 nummer: "156"
 autor: "zzz, original"
 erstellt: "2020-09-01"

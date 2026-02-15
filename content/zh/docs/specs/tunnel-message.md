@@ -2,6 +2,9 @@
 title: "Tunnel 消息规范"
 description: "I2P 中 tunnel 消息格式规范"
 slug: "tunnel-message"
+aliases:
+  - "/zh/docs/legacy/tunnel-message"
+  - "/zh/docs/legacy/tunnel-message/"
 category: "设计"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

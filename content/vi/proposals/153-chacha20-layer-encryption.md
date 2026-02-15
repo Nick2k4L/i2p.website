@@ -1,5 +1,10 @@
 ---
 title: "Mã hóa Tầng Đường Hầm ChaCha"
+aliases:
+  - "/vi/proposals/153-chacha20-layer"
+  - "/vi/proposals/153-chacha20-layer/"
+  - "/vi/proposals/153"
+  - "/vi/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

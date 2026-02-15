@@ -1,5 +1,8 @@
 ---
 title: "خيارات رسائل بناء النفق"
+aliases:
+  - "/ar/proposals/143"
+  - "/ar/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

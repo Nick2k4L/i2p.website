@@ -1,5 +1,8 @@
 ---
 title: "I2P Geliştirme Yol Haritası"
+aliases:
+  - "/tr/get-involved/todo"
+  - "/tr/get-involved/todo/"
 description: "I2P ağı için mevcut geliştirme planları ve tarihsel kilometre taşları"
 ---
 

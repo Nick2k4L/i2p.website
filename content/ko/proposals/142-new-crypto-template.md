@@ -1,5 +1,8 @@
 ---
 title: "새로운 암호화 제안 템플릿"
+aliases:
+  - "/ko/proposals/142-ecies-template"
+  - "/ko/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

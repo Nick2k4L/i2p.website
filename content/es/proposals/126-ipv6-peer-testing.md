@@ -1,5 +1,8 @@
 ---
 title: "Prueba de Pares IPv6"
+aliases:
+  - "/es/spec/proposals/126-ipv6-peer-testing"
+  - "/es/spec/proposals/126-ipv6-peer-testing/"
 number: "126"
 author: "zzz"
 created: "2016-05-02"

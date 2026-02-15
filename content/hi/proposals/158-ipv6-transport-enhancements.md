@@ -1,5 +1,8 @@
 ---
 title: "IPv6 परिवहन संवर्धन"
+aliases:
+  - "/hi/spec/proposals/158"
+  - "/hi/spec/proposals/158/"
 number: "158"
 author: "zzz, मूल"
 created: "2021-03-19"

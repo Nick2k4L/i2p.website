@@ -1,5 +1,8 @@
 ---
 title: "Yeni Şifreleme Öneri Şablonu"
+aliases:
+  - "/tr/proposals/142-ecies-template"
+  - "/tr/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

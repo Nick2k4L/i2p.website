@@ -6,6 +6,8 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs
 aliases:
+  - "/es/docs/develop/dev-guidelines"
+  - "/es/docs/develop/dev-guidelines/"
   - "/docs/develop/dev-guidelines/"
 ---
 

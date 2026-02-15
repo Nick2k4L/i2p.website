@@ -2,6 +2,9 @@
 title: "Discusión sobre la Base de Datos de Red"
 description: "Notas históricas sobre floodfill, experimentos con Kademlia, y ajustes futuros para la netDb"
 slug: "netdb"
+aliases:
+  - "/es/docs/legacy/netdb"
+  - "/es/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

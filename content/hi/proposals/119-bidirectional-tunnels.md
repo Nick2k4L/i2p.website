@@ -1,5 +1,8 @@
 ---
 title: "द्विदिशा सुरंगें"
+aliases:
+  - "/hi/proposals/119"
+  - "/hi/proposals/119/"
 number: "119"
 author: "मूल"
 created: "2016-01-07"

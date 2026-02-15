@@ -2,6 +2,9 @@
 title: "NTCP Discussion"
 description: "Historical discussion about NTCP vs SSU transport protocols from March 2007"
 slug: "ntcp-discussion"
+aliases:
+  - "/en/docs/discussions/ntcp"
+  - "/en/docs/discussions/ntcp/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

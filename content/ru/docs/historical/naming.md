@@ -2,6 +2,9 @@
 title: "Обсуждение именования"
 description: "Исторические дебаты о модели именования I2P и почему схемы в стиле глобального DNS были отклонены"
 slug: "naming"
+aliases:
+  - "/ru/docs/legacy/naming"
+  - "/ru/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

@@ -1,5 +1,8 @@
 ---
 title: "Daha Küçük Tünel Yapı Mesajları"
+aliases:
+  - "/tr/proposals/157"
+  - "/tr/proposals/157/"
 number: "157"
 author: "zzz, orjinal"
 created: "2020-10-09"

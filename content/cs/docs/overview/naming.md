@@ -2,6 +2,11 @@
 title: "Pojmenování a Adresář"
 description: "Jak I2P mapuje lidsky čitelná jména hostitelů na destinace"
 slug: "naming"
+aliases:
+  - "/cs/docs/specs/naming"
+  - "/cs/docs/specs/naming/"
+  - "/cs/docs/naming"
+  - "/cs/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

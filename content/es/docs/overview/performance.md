@@ -2,6 +2,11 @@
 title: "Rendimiento"
 description: "Rendimiento de la red I2P: velocidad, conexiones y gestión de recursos"
 slug: "performance"
+aliases:
+  - "/es/about/performance/future"
+  - "/es/about/performance/future/"
+  - "/es/about/performance/history"
+  - "/es/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

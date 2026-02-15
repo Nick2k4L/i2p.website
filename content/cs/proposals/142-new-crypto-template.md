@@ -1,5 +1,8 @@
 ---
 title: "Nová šablona návrhu šifrování"
+aliases:
+  - "/cs/proposals/142-ecies-template"
+  - "/cs/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

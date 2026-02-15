@@ -2,6 +2,9 @@
 title: "Thảo luận về Đặt tên"
 description: "Cuộc tranh luận lịch sử về mô hình đặt tên của I2P và tại sao các sơ đồ kiểu DNS toàn cầu bị từ chối"
 slug: "naming"
+aliases:
+  - "/vi/docs/legacy/naming"
+  - "/vi/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

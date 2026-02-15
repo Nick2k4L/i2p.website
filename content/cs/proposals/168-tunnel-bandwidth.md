@@ -1,5 +1,8 @@
 ---
 title: "Parametry šířky pásma tunelu"
+aliases:
+  - "/cs/proposals/168"
+  - "/cs/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

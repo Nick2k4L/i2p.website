@@ -1,5 +1,8 @@
 --- 
 title: "Túneis Bidirecionais" 
+aliases:
+  - "/pt/proposals/119"
+  - "/pt/proposals/119/"
 number: "119" 
 author: "orignal" 
 created: "2016-01-07" 

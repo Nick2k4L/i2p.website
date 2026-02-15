@@ -48,7 +48,11 @@ ALIAS_PATHS = [
     ("docs/historical/netdb.md", ["docs/legacy/netdb"]),
     # --- docs/specs/* and docs/overview/* old paths ---
     ("docs/specs/tunnel-implementation.md", ["docs/specs/implementation"]),
-    ("docs/overview/naming.md", ["docs/specs/naming"]),
+    ("docs/overview/naming.md", ["docs/specs/naming", "docs/naming"]),
+    # --- docs/specs/* old slug names ---
+    ("docs/specs/red25519.md", ["docs/specs/red25519-signature-scheme"]),
+    ("docs/specs/b32encrypted.md", ["docs/specs/b32-for-encrypted-leasesets"]),
+    ("docs/specs/udp-announces.md", ["docs/specs/udp-bittorrent-announces"]),
     # --- docs/historical/* old paths ---
     ("docs/legacy/old-tunnel-implementation.md", ["docs/historical/tunnel-alt"]),
     ("docs/historical/ntcp-discussion.md", ["docs/discussions/ntcp"]),
@@ -74,6 +78,20 @@ ALIAS_PATHS = [
     # --- spec/proposals/* → proposals/* (wrong parent path) ---
     ("proposals/126-ipv6-peer-testing.md", ["spec/proposals/126-ipv6-peer-testing"]),
     ("proposals/158-ipv6-transport-enhancements.md", ["spec/proposals/158"]),
+]
+
+# Bare-path aliases for URLs without a language prefix (e.g., www.i2p.net/docs/...).
+# These are added to the ENGLISH file only (no /{lang}/ prefix) so Hugo creates
+# a redirect from the bare path to the English version.
+BARE_ALIASES = [
+    ("docs/specs/common-structures.md", ["docs/specs/common-structures"]),
+    ("docs/api/samv3.md", ["docs/api/samv3"]),
+    ("docs/api/streaming.md", ["docs/api/streaming"]),
+    ("docs/specs/ecies.md", ["docs/specs/ecies"]),
+    ("docs/specs/ecies-hybrid.md", ["docs/specs/ecies-hybrid"]),
+    ("docs/specs/ecies-routers.md", ["docs/specs/ecies-routers"]),
+    ("proposals/134-gost.md", ["proposals/134-gost"]),
+    ("proposals/169-pq-crypto.md", ["proposals/169-pq-crypto"]),
 ]
 
 
@@ -204,6 +222,26 @@ def main():
                     print(f"  {rel_path}")
                     for a in added:
                         print(f"    + {a}")
+
+    # Process bare-path aliases (English only, no language prefix)
+    for target_file, alias_paths in BARE_ALIASES:
+        filepath = os.path.join(content_dir, "en", target_file)
+        if not os.path.isfile(filepath):
+            continue
+
+        aliases = []
+        for path in alias_paths:
+            aliases.append(f"/{path}")
+            aliases.append(f"/{path}/")
+
+        added = add_aliases_to_file(filepath, aliases, dry_run)
+        if added:
+            total_modified += 1
+            rel_path = os.path.relpath(filepath, project_root)
+            if dry_run:
+                print(f"  {rel_path}")
+                for a in added:
+                    print(f"    + {a}")
 
     action = "would modify" if dry_run else "modified"
     print(f"\nTotal: {total_modified} files {action}")

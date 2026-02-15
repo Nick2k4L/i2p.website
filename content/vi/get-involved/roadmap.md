@@ -1,5 +1,8 @@
 ---
 title: "Lộ trình Phát triển I2P"
+aliases:
+  - "/vi/get-involved/todo"
+  - "/vi/get-involved/todo/"
 description: "Các kế hoạch phát triển hiện tại và các mốc lịch sử quan trọng của mạng I2P"
 ---
 

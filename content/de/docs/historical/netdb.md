@@ -2,6 +2,9 @@
 title: "Diskussion zur Netzwerkdatenbank"
 description: "Historische Notizen zu floodfill, Kademlia-Experimenten und zukünftiger Optimierung für die netDb"
 slug: "netdb"
+aliases:
+  - "/de/docs/legacy/netdb"
+  - "/de/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

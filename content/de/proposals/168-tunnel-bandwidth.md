@@ -1,5 +1,8 @@
 ---
 title: "Tunnel-Bandbreitenparameter"
+aliases:
+  - "/de/proposals/168"
+  - "/de/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

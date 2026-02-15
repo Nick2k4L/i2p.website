@@ -1,5 +1,8 @@
 ---
 title: "Feuille de route du développement I2P"
+aliases:
+  - "/fr/get-involved/todo"
+  - "/fr/get-involved/todo/"
 description: "Plans de développement actuels et jalons historiques pour le réseau I2P"
 ---
 

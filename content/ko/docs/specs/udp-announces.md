@@ -2,6 +2,9 @@
 title: "UDP Tracker"
 description: "I2P에서 UDP BitTorrent 공지를 위한 프로토콜 사양"
 slug: "udp-announces"
+aliases:
+  - "/ko/docs/specs/udp-bittorrent-announces"
+  - "/ko/docs/specs/udp-bittorrent-announces/"
 category: "프로토콜"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

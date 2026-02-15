@@ -2,6 +2,11 @@
 title: "性能"
 description: "I2P网络性能：速度、连接和资源管理"
 slug: "performance"
+aliases:
+  - "/zh/about/performance/future"
+  - "/zh/about/performance/future/"
+  - "/zh/about/performance/history"
+  - "/zh/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

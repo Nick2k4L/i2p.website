@@ -1,5 +1,8 @@
 ---
 title: "Obousměrné tunely"
+aliases:
+  - "/cs/proposals/119"
+  - "/cs/proposals/119/"
 number: "119"
 author: "orignal"
 created: "2016-01-07"

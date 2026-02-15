@@ -1,5 +1,8 @@
 ---
 title: "Plán vývoje I2P"
+aliases:
+  - "/cs/get-involved/todo"
+  - "/cs/get-involved/todo/"
 description: "Aktuální vývojové plány a historické milníky pro síť I2P"
 ---
 

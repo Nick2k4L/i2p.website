@@ -2,6 +2,9 @@
 title: "Trackers UDP"
 description: "Spécification du protocole pour les annonces UDP BitTorrent dans I2P"
 slug: "udp-announces"
+aliases:
+  - "/fr/docs/specs/udp-bittorrent-announces"
+  - "/fr/docs/specs/udp-bittorrent-announces/"
 category: "Protocoles"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

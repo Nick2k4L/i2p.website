@@ -2,6 +2,9 @@
 title: "नामकरण चर्चा"
 description: "I2P के नामकरण मॉडल के बारे में ऐतिहासिक बहस और क्यों वैश्विक DNS-शैली की योजनाओं को खारिज किया गया"
 slug: "naming"
+aliases:
+  - "/hi/docs/legacy/naming"
+  - "/hi/docs/legacy/naming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

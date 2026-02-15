@@ -2,6 +2,9 @@
 title: "Implementace starého tunelu"
 description: "Historická dokumentace původní implementace tunnelů I2P před verzí 0.6.1.10"
 slug: "old-tunnel-implementation"
+aliases:
+  - "/cs/docs/historical/tunnel-alt"
+  - "/cs/docs/historical/tunnel-alt/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

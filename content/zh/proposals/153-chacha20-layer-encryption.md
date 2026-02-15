@@ -1,5 +1,10 @@
 ---
 title: "ChaCha 隧道层加密"
+aliases:
+  - "/zh/proposals/153-chacha20-layer"
+  - "/zh/proposals/153-chacha20-layer/"
+  - "/zh/proposals/153"
+  - "/zh/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

@@ -2,6 +2,9 @@
 title: "B32 für verschlüsselte LeaseSet"
 description: "Base 32 Adressformat für verschlüsselte LS2 leaseSets"
 slug: "b32encrypted"
+aliases:
+  - "/de/docs/specs/b32-for-encrypted-leasesets"
+  - "/de/docs/specs/b32-for-encrypted-leasesets/"
 category: "Design"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

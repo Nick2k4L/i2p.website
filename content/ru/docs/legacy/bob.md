@@ -2,6 +2,9 @@
 title: "BOB - Basic Open Bridge"
 description: "Устаревший API для управления назначениями"
 slug: "bob"
+aliases:
+  - "/ru/docs/api/bob"
+  - "/ru/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

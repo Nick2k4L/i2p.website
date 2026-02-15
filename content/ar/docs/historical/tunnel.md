@@ -2,6 +2,9 @@
 title: "مناقشة Tunnel"
 description: "استكشاف تاريخي لاستراتيجيات الحشو والتجزئة والبناء في الأنفاق"
 slug: "tunnel"
+aliases:
+  - "/ar/docs/discussions/tunnel"
+  - "/ar/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

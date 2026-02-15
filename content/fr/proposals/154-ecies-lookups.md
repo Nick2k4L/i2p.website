@@ -1,5 +1,8 @@
 ---
 title: "Recherches de base de données à partir de destinations ECIES"
+aliases:
+  - "/fr/proposals/154-ratchet"
+  - "/fr/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

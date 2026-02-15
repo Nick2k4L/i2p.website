@@ -2,6 +2,9 @@
 title: "BOB - Basic Open Bridge"
 description: "Deprecated API for destination management"
 slug: "bob"
+aliases:
+  - "/en/docs/api/bob"
+  - "/en/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

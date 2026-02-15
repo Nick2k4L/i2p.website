@@ -2,6 +2,9 @@
 title: "Tunnel Uygulaması"
 description: "I2P tunnel işleyişi, oluşturulması ve mesaj işleme spesifikasyonu"
 slug: "tunnel-implementation"
+aliases:
+  - "/tr/docs/specs/implementation"
+  - "/tr/docs/specs/implementation/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

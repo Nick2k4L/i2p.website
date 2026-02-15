@@ -2,6 +2,11 @@
 title: "Nomenclatura e Livro de Endereços"
 description: "Como o I2P mapeia nomes de host legíveis para destinos"
 slug: "naming"
+aliases:
+  - "/pt/docs/specs/naming"
+  - "/pt/docs/specs/naming/"
+  - "/pt/docs/naming"
+  - "/pt/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

@@ -2,6 +2,9 @@
 title: "SAM V2 规范"
 description: "传统简单匿名消息协议版本 2（已弃用）"
 slug: "samv2"
+aliases:
+  - "/zh/docs/api/samv2"
+  - "/zh/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

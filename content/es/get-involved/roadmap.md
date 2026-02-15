@@ -1,5 +1,8 @@
 ---
 title: "Hoja de Ruta de Desarrollo de I2P"
+aliases:
+  - "/es/get-involved/todo"
+  - "/es/get-involved/todo/"
 description: "Planes de desarrollo actuales e hitos históricos para la red I2P"
 ---
 

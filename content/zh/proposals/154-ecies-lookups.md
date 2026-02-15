@@ -1,5 +1,8 @@
 ---
 title: "从ECIES目标进行数据库查找"
+aliases:
+  - "/zh/proposals/154-ratchet"
+  - "/zh/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

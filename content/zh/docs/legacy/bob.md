@@ -2,6 +2,9 @@
 title: "BOB - 基本开放桥接"
 description: "已弃用的目标地址管理 API"
 slug: "bob"
+aliases:
+  - "/zh/docs/api/bob"
+  - "/zh/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

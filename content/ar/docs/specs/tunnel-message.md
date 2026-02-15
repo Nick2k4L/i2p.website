@@ -2,6 +2,9 @@
 title: "مواصفات رسائل الأنفاق"
 description: "مواصفات تنسيق رسائل الأنفاق في I2P"
 slug: "tunnel-message"
+aliases:
+  - "/ar/docs/legacy/tunnel-message"
+  - "/ar/docs/legacy/tunnel-message/"
 category: "التصميم"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

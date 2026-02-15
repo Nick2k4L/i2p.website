@@ -2,6 +2,9 @@
 title: "Tunnel संदेश विनिर्देश"
 description: "I2P में tunnel संदेशों के प्रारूप के लिए विनिर्देश"
 slug: "tunnel-message"
+aliases:
+  - "/hi/docs/legacy/tunnel-message"
+  - "/hi/docs/legacy/tunnel-message/"
 category: "डिज़ाइन"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

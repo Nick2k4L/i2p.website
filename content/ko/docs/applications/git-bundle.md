@@ -2,6 +2,9 @@
 title: "git bundle을 사용하여 I2P 소스 코드 가져오기"
 description: "git bundle과 BitTorrent를 사용하여 I2P를 통해 대용량 저장소 복제하기"
 slug: "git-bundle"
+aliases:
+  - "/ko/docs/applications/git"
+  - "/ko/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

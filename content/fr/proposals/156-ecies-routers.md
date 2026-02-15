@@ -1,5 +1,8 @@
 ---
 title: "Routeurs ECIES"
+aliases:
+  - "/fr/proposals/156"
+  - "/fr/proposals/156/"
 number: "156"
 author: "zzz, orignal"
 created: "2020-09-01"

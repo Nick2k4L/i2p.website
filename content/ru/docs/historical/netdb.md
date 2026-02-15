@@ -2,6 +2,9 @@
 title: "Обсуждение сетевой базы данных"
 description: "Исторические заметки о floodfill, экспериментах с Kademlia и будущих настройках для netDb"
 slug: "netdb"
+aliases:
+  - "/ru/docs/legacy/netdb"
+  - "/ru/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

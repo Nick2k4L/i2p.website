@@ -2,6 +2,9 @@
 title: "ECIES-X25519 Router Messages"
 description: "Specification for Garlic message encryption to ECIES routers using X25519"
 slug: "ecies-routers"
+aliases:
+  - "/docs/specs/ecies-routers"
+  - "/docs/specs/ecies-routers/"
 category: "Protocols"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"

@@ -2,6 +2,9 @@
 title: "기존 Tunnel 구현"
 description: "0.6.1.10 이전 I2P의 원래 tunnel 구현에 대한 역사적 문서"
 slug: "old-tunnel-implementation"
+aliases:
+  - "/ko/docs/historical/tunnel-alt"
+  - "/ko/docs/historical/tunnel-alt/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

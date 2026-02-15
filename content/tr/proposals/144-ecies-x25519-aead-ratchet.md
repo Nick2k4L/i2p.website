@@ -1,5 +1,8 @@
 ---
 title: "ECIES-X25519-AEAD-Ratchet"
+aliases:
+  - "/tr/proposals/144-ecies-x25519"
+  - "/tr/proposals/144-ecies-x25519/"
 number: "144"
 author: "zzz, chisana, orignal"
 created: "2018-11-22"

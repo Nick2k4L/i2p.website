@@ -2,7 +2,9 @@
 title: "I2NP विनिर्देश"
 description: "I2P Network Protocol (I2NP) संदेश प्रारूप, प्राथमिकताएं, और router-to-router संचार के लिए सामान्य संरचनाएं।"
 slug: "i2np"
-aliases: 
+aliases:
+  - "/hi/docs/protocol/i2np"
+  - "/hi/docs/protocol/i2np/"
 category: "प्रोटोकॉल"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

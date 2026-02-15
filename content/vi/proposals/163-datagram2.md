@@ -1,5 +1,8 @@
 ---
 title: "Giao thức Datagram2"
+aliases:
+  - "/vi/proposals/163-datagram2-datagram3"
+  - "/vi/proposals/163-datagram2-datagram3/"
 number: "163"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2023-01-24"

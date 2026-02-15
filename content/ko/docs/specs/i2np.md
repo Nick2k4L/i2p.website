@@ -2,7 +2,9 @@
 title: "I2NP 사양"
 description: "router 간 통신을 위한 I2P Network Protocol (I2NP) 메시지 형식, 우선순위 및 공통 구조"
 slug: "i2np"
-aliases: 
+aliases:
+  - "/ko/docs/protocol/i2np"
+  - "/ko/docs/protocol/i2np/"
 category: "프로토콜"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

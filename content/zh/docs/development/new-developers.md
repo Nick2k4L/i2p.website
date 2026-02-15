@@ -7,6 +7,8 @@ accurateFor: "2.10.0"
 type: docs
 notes: 更新翻译部分
 aliases:
+  - "/zh/docs/develop/new-developers"
+  - "/zh/docs/develop/new-developers/"
   - "/docs/develop/new-developers/"
 ---
 

@@ -1,5 +1,8 @@
 ---
 title: "Messages de Construction de Tunnel Plus Petites"
+aliases:
+  - "/fr/proposals/157"
+  - "/fr/proposals/157/"
 number: "157"
 author: "zzz, original"
 created: "2020-10-09"

@@ -32,7 +32,7 @@ A seleção de peers é feita com bastante frequência, pois um router pode mant
 
 ### Informações Adicionais {#further-info}
 
-Para mais informações consulte o artigo [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) apresentado na [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). Veja [abaixo](#notes) as notas sobre pequenas mudanças desde que o artigo foi publicado.
+Para mais informações consulte o artigo [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) apresentado na [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). Veja [abaixo](#notes) as notas sobre pequenas mudanças desde que o artigo foi publicado.
 
 ## Perfis {#profiles}
 
@@ -125,7 +125,7 @@ Os peers são ordenados dentro dos tunnels para lidar com o [ataque do predecess
 
 ## Notas {#notes}
 
-Para aqueles que estão lendo o artigo [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf), por favor tenham em mente as seguintes pequenas mudanças no I2P desde a publicação do artigo:
+Para aqueles que estão lendo o artigo [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf), por favor tenham em mente as seguintes pequenas mudanças no I2P desde a publicação do artigo:
 
 - O cálculo de Integração ainda não é usado
 - No artigo, "grupos" são chamados de "níveis"
@@ -134,7 +134,7 @@ Para aqueles que estão lendo o artigo [Peer Profiling and Selection in the I2P 
 
 ## Referências {#references}
 
-- [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)
 - [One Cell Enough](http://blog.torproject.org/blog/one-cell-enough)
 - [Tor Entry Guards](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 Paper](http://freehaven.net/anonbib/#murdoch-pet2007)

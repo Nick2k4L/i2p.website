@@ -2,6 +2,11 @@
 title: "NTCP (TCP на основе NIO)"
 description: "Устаревший TCP-транспорт для I2P на основе Java NIO, заменённый на NTCP2"
 slug: "ntcp"
+aliases:
+  - "/ru/docs/transport/ntcp"
+  - "/ru/docs/transport/ntcp/"
+  - "/ru/docs/ntcp"
+  - "/ru/docs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

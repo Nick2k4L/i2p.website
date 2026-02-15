@@ -2,6 +2,9 @@
 title: "SAM V1 Specification"
 description: "Legacy Simple Anonymous Messaging protocol version 1 (deprecated)"
 slug: "sam"
+aliases:
+  - "/en/docs/api/sam"
+  - "/en/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

@@ -1,5 +1,8 @@
 ---
 title: "छोटे टनल बिल्ड संदेश"
+aliases:
+  - "/hi/proposals/157"
+  - "/hi/proposals/157/"
 number: "157"
 author: "zzz, मूल"
 created: "2020-10-09"

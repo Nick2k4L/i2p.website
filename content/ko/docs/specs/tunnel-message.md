@@ -2,6 +2,9 @@
 title: "Tunnel 메시지 명세"
 description: "I2P에서 tunnel 메시지 형식에 대한 사양"
 slug: "tunnel-message"
+aliases:
+  - "/ko/docs/legacy/tunnel-message"
+  - "/ko/docs/legacy/tunnel-message/"
 category: "설계"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

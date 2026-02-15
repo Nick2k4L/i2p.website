@@ -1,5 +1,8 @@
 ---
 title: "隧道构建消息选项"
+aliases:
+  - "/zh/proposals/143"
+  - "/zh/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

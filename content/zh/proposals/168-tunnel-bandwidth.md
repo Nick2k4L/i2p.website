@@ -1,5 +1,8 @@
 ---
 title: "隧道带宽参数"
+aliases:
+  - "/zh/proposals/168"
+  - "/zh/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

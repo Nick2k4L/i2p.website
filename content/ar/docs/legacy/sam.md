@@ -2,6 +2,9 @@
 title: "مواصفات SAM V1"
 description: "بروتوكول الرسائل المجهولة البسيطة القديم الإصدار 1 (مُهمل)"
 slug: "sam"
+aliases:
+  - "/ar/docs/api/sam"
+  - "/ar/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

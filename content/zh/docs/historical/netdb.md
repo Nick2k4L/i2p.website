@@ -2,6 +2,9 @@
 title: "网络数据库讨论"
 description: "关于floodfill、Kademlia实验以及netDb未来调优的历史记录"
 slug: "netdb"
+aliases:
+  - "/zh/docs/legacy/netdb"
+  - "/zh/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

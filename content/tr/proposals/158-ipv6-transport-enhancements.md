@@ -1,5 +1,8 @@
 ---
 title: "IPv6 Taşıma İyileştirmeleri"
+aliases:
+  - "/tr/spec/proposals/158"
+  - "/tr/spec/proposals/158/"
 number: "158"
 author: "zzz, orijinal"
 created: "2021-03-19"

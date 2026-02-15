@@ -1,5 +1,8 @@
 ---
 title: "Cài đặt I2P trên macOS"
+aliases:
+  - "/vi/docs/guides/installing-i2p-on-macos-the-long-way"
+  - "/vi/docs/guides/installing-i2p-on-macos-the-long-way/"
 description: "Hướng dẫn từng bước để cài đặt thủ công I2P và các phụ thuộc của nó trên macOS"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

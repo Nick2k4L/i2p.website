@@ -2,6 +2,9 @@
 title: "Application Development"
 description: "Why write I2P-specific apps, key concepts, development options, and a getting-started guide"
 slug: "applications"
+aliases:
+  - "/en/docs/develop/applications"
+  - "/en/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

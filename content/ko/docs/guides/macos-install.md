@@ -1,5 +1,8 @@
 ---
 title: "macOS에 I2P 설치하기"
+aliases:
+  - "/ko/docs/guides/installing-i2p-on-macos-the-long-way"
+  - "/ko/docs/guides/installing-i2p-on-macos-the-long-way/"
 description: "macOS에서 I2P와 종속성을 수동으로 설치하는 단계별 가이드"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

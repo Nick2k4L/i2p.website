@@ -2,6 +2,11 @@
 title: "Namensgebung und Adressbuch"
 description: "Wie I2P menschenlesbare Hostnamen auf Ziele abbildet"
 slug: "naming"
+aliases:
+  - "/de/docs/specs/naming"
+  - "/de/docs/specs/naming/"
+  - "/de/docs/naming"
+  - "/de/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

@@ -2,6 +2,9 @@
 title: "NTCP 논의"
 description: "2007년 3월 NTCP 대 SSU 전송 프로토콜에 대한 역사적 논의"
 slug: "ntcp-discussion"
+aliases:
+  - "/ko/docs/discussions/ntcp"
+  - "/ko/docs/discussions/ntcp/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

@@ -1,5 +1,10 @@
 ---
 title: "ChaCha Tünel Katmanı Şifrelemesi"
+aliases:
+  - "/tr/proposals/153-chacha20-layer"
+  - "/tr/proposals/153-chacha20-layer/"
+  - "/tr/proposals/153"
+  - "/tr/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

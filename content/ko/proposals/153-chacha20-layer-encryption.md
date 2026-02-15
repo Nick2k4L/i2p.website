@@ -1,5 +1,10 @@
 ---
 title: "ChaCha 터널 레이어 암호화"
+aliases:
+  - "/ko/proposals/153-chacha20-layer"
+  - "/ko/proposals/153-chacha20-layer/"
+  - "/ko/proposals/153"
+  - "/ko/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

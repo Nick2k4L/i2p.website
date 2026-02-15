@@ -1,5 +1,8 @@
 ---
 title: "I2P Entwicklungsfahrplan"
+aliases:
+  - "/de/get-involved/todo"
+  - "/de/get-involved/todo/"
 description: "Aktuelle Entwicklungspläne und historische Meilensteine für das I2P-Netzwerk"
 ---
 

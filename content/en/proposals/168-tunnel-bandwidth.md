@@ -1,5 +1,8 @@
 ---
 title: "Tunnel Bandwidth Parameters"
+aliases:
+  - "/en/proposals/168"
+  - "/en/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

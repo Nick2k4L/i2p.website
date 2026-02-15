@@ -1,5 +1,10 @@
 ---
 title: "Шифрование туннельного уровня через ChaCha"
+aliases:
+  - "/ru/proposals/153-chacha20-layer"
+  - "/ru/proposals/153-chacha20-layer/"
+  - "/ru/proposals/153"
+  - "/ru/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

@@ -2,6 +2,11 @@
 title: "الأداء"
 description: "أداء شبكة I2P: السرعة والاتصالات وإدارة الموارد"
 slug: "performance"
+aliases:
+  - "/ar/about/performance/future"
+  - "/ar/about/performance/future/"
+  - "/ar/about/performance/history"
+  - "/ar/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

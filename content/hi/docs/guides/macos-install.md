@@ -1,5 +1,8 @@
 ---
 title: "macOS पर I2P इंस्टॉल करना"
+aliases:
+  - "/hi/docs/guides/installing-i2p-on-macos-the-long-way"
+  - "/hi/docs/guides/installing-i2p-on-macos-the-long-way/"
 description: "macOS पर I2P और इसकी dependencies को manually install करने के लिए step-by-step गाइड"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

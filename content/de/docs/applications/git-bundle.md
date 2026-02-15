@@ -2,6 +2,9 @@
 title: "Verwendung eines Git-Bundles zum Abrufen des I2P-Quellcodes"
 description: "Klonen großer Repositories über I2P mit Git-Bundles und BitTorrent"
 slug: "git-bundle"
+aliases:
+  - "/de/docs/applications/git"
+  - "/de/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

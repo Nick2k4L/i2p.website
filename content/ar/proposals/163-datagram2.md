@@ -1,5 +1,8 @@
 ---
 title: "بروتوكول Datagram2"
+aliases:
+  - "/ar/proposals/163-datagram2-datagram3"
+  - "/ar/proposals/163-datagram2-datagram3/"
 number: "163"
 author: "zzz، orignal، drzed، eyedeekay"
 created: "2023-01-24"

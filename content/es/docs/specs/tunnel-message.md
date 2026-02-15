@@ -2,6 +2,9 @@
 title: "Especificación de Mensajes de Tunnel"
 description: "Especificación para el formato de los mensajes de tunnel en I2P"
 slug: "tunnel-message"
+aliases:
+  - "/es/docs/legacy/tunnel-message"
+  - "/es/docs/legacy/tunnel-message/"
 category: "Diseño"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

@@ -1,5 +1,10 @@
 ---
 title: "ECIES Tunnels"
+aliases:
+  - "/en/proposals/152-ecies-config"
+  - "/en/proposals/152-ecies-config/"
+  - "/en/proposals/152"
+  - "/en/proposals/152/"
 number: "152"
 author: "chisana, zzz, orignal"
 created: "2019-07-04"

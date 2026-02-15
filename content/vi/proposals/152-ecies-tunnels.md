@@ -1,5 +1,10 @@
 ---
 title: "Các tunnel ECIES"
+aliases:
+  - "/vi/proposals/152-ecies-config"
+  - "/vi/proposals/152-ecies-config/"
+  - "/vi/proposals/152"
+  - "/vi/proposals/152/"
 number: "152"
 author: "chisana, zzz, orignal"
 created: "2019-07-04"

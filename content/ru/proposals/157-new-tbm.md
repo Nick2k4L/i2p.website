@@ -1,5 +1,8 @@
 ---
 title: "Меньшие Сообщения Построения Туннеля"
+aliases:
+  - "/ru/proposals/157"
+  - "/ru/proposals/157/"
 number: "157"
 author: "zzz, оригинал"
 created: "2020-10-09"

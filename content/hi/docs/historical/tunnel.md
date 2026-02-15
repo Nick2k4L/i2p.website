@@ -2,6 +2,9 @@
 title: "Tunnel चर्चा"
 description: "tunnel padding, fragmentation, और build strategies की ऐतिहासिक खोज"
 slug: "tunnel"
+aliases:
+  - "/hi/docs/discussions/tunnel"
+  - "/hi/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

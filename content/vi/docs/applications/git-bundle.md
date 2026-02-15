@@ -2,6 +2,9 @@
 title: "Sử dụng git bundle để tải mã nguồn I2P"
 description: "Sao chép các repository lớn qua I2P sử dụng git bundles và BitTorrent"
 slug: "git-bundle"
+aliases:
+  - "/vi/docs/applications/git"
+  - "/vi/docs/applications/git/"
 lastUpdated: "2020-09"
 accurateFor: "0.9.47"
 ---

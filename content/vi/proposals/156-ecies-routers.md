@@ -1,5 +1,8 @@
 ---
 title: "Thiết Bị Định Tuyến ECIES"
+aliases:
+  - "/vi/proposals/156"
+  - "/vi/proposals/156/"
 number: "156"
 author: "zzz, orignal"
 created: "2020-09-01"

@@ -1,5 +1,10 @@
 ---
 title: "Šifrování ChaCha pro vrstvy v tunelech"
+aliases:
+  - "/cs/proposals/153-chacha20-layer"
+  - "/cs/proposals/153-chacha20-layer/"
+  - "/cs/proposals/153"
+  - "/cs/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

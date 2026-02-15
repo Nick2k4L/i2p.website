@@ -1,5 +1,8 @@
 ---
 title: "ECIES Yönlendiricileri"
+aliases:
+  - "/tr/proposals/156"
+  - "/tr/proposals/156/"
 number: "156"
 author: "zzz, orijinal"
 created: "2020-09-01"

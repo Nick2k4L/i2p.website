@@ -2,7 +2,11 @@
 title: "SSU (بروتوكول UDP آمن وشبه موثوق)"
 description: "مواصفات بروتوكول النقل UDP الأصلي (مهجور، تم استبداله بـ SSU2)"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/ar/docs/transport/ssu"
+  - "/ar/docs/transport/ssu/"
+  - "/ar/docs/transports/ssu"
+  - "/ar/docs/transports/ssu/"
 category: "طرق النقل"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

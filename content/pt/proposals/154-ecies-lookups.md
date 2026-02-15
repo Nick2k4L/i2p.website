@@ -1,5 +1,8 @@
 ---
 title: "Consultas ao Banco de Dados de Destinos ECIES"
+aliases:
+  - "/pt/proposals/154-ratchet"
+  - "/pt/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

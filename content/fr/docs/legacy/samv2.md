@@ -2,6 +2,9 @@
 title: "Spécification SAM V2"
 description: "Protocole de messagerie anonyme simple hérité version 2 (obsolète)"
 slug: "samv2"
+aliases:
+  - "/fr/docs/api/samv2"
+  - "/fr/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

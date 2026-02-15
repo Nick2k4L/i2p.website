@@ -1,5 +1,8 @@
 ---  
 title: "Vyhledávání v databázi z cílů ECIES"  
+aliases:
+  - "/cs/proposals/154-ratchet"
+  - "/cs/proposals/154-ratchet/"
 number: "154"  
 author: "zzz"  
 created: "2020-03-23"  

@@ -2,6 +2,11 @@
 title: "NTCP (NIO-tabanlı TCP)"
 description: "I2P için eski Java NIO tabanlı TCP taşıma protokolü, NTCP2 ile değiştirildi"
 slug: "ntcp"
+aliases:
+  - "/tr/docs/transport/ntcp"
+  - "/tr/docs/transport/ntcp/"
+  - "/tr/docs/ntcp"
+  - "/tr/docs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

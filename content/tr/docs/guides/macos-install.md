@@ -1,5 +1,8 @@
 ---
 title: "macOS'ta I2P Kurulumu"
+aliases:
+  - "/tr/docs/guides/installing-i2p-on-macos-the-long-way"
+  - "/tr/docs/guides/installing-i2p-on-macos-the-long-way/"
 description: "macOS'ta I2P ve bağımlılıklarını manuel olarak yükleme rehberi"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

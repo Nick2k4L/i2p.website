@@ -2,6 +2,9 @@
 title: "Especificação SAM V1"
 description: "Protocolo Simple Anonymous Messaging legado versão 1 (descontinuado)"
 slug: "sam"
+aliases:
+  - "/pt/docs/api/sam"
+  - "/pt/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

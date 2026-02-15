@@ -2,6 +2,9 @@
 title: "Implementace tunnel"
 description: "Specifikace provozu I2P tunnel, budování a zpracování zpráv"
 slug: "tunnel-implementation"
+aliases:
+  - "/cs/docs/specs/implementation"
+  - "/cs/docs/specs/implementation/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

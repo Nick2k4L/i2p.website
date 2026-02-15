@@ -1,5 +1,8 @@
 ---
 title: "Datagram2 协议"
+aliases:
+  - "/zh/proposals/163-datagram2-datagram3"
+  - "/zh/proposals/163-datagram2-datagram3/"
 number: "163"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2023-01-24"

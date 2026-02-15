@@ -2,6 +2,9 @@
 title: "UDP Trackers"
 description: "Đặc tả giao thức cho các thông báo UDP BitTorrent trong I2P"
 slug: "udp-announces"
+aliases:
+  - "/vi/docs/specs/udp-bittorrent-announces"
+  - "/vi/docs/specs/udp-bittorrent-announces/"
 category: "Các giao thức"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

@@ -2,6 +2,9 @@
 title: "NTCP चर्चा"
 description: "मार्च 2007 से NTCP बनाम SSU transport protocols के बारे में ऐतिहासिक चर्चा"
 slug: "ntcp-discussion"
+aliases:
+  - "/hi/docs/discussions/ntcp"
+  - "/hi/docs/discussions/ntcp/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

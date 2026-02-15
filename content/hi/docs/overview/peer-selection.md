@@ -32,7 +32,7 @@ accurateFor: "0.9.62"
 
 ### अधिक जानकारी {#further-info}
 
-अधिक जानकारी के लिए [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1) में प्रस्तुत किया गया पेपर [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) देखें। पेपर प्रकाशित होने के बाद से हुए मामूली बदलावों के बारे में नोट्स के लिए [नीचे](#notes) देखें।
+अधिक जानकारी के लिए [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1) में प्रस्तुत किया गया पेपर [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) देखें। पेपर प्रकाशित होने के बाद से हुए मामूली बदलावों के बारे में नोट्स के लिए [नीचे](#notes) देखें।
 
 ## प्रोफाइल {#profiles}
 
@@ -122,7 +122,7 @@ tunnel के भीतर peers को [predecessor attack](http://forensics.um
 
 ## नोट्स {#notes}
 
-जो लोग पेपर [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) पढ़ रहे हैं, कृपया पेपर के प्रकाशन के बाद से I2P में निम्नलिखित छोटे बदलावों को ध्यान में रखें:
+जो लोग पेपर [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf) पढ़ रहे हैं, कृपया पेपर के प्रकाशन के बाद से I2P में निम्नलिखित छोटे बदलावों को ध्यान में रखें:
 
 - Integration गणना का अभी भी उपयोग नहीं किया जा रहा है
 - पेपर में, "groups" को "tiers" कहा जाता है
@@ -131,7 +131,7 @@ tunnel के भीतर peers को [predecessor attack](http://forensics.um
 
 ## संदर्भ {#references}
 
-- [I2P Anonymous Network में Peer Profiling और Selection](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [I2P Anonymous Network में Peer Profiling और Selection](/pdf/I2P-PET-CON-2009.1.pdf)
 - [One Cell Enough](http://blog.torproject.org/blog/one-cell-enough)
 - [Tor Entry Guards](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 Paper](http://freehaven.net/anonbib/#murdoch-pet2007)

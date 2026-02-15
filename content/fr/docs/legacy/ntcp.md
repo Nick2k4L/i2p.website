@@ -2,6 +2,11 @@
 title: "NTCP (TCP basé sur NIO)"
 description: "Transport TCP basé sur Java NIO hérité pour I2P, remplacé par NTCP2"
 slug: "ntcp"
+aliases:
+  - "/fr/docs/transport/ntcp"
+  - "/fr/docs/transport/ntcp/"
+  - "/fr/docs/ntcp"
+  - "/fr/docs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

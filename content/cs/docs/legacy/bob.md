@@ -2,6 +2,9 @@
 title: "BOB - Basic Open Bridge"
 description: "Zastaralé API pro správu destinací"
 slug: "bob"
+aliases:
+  - "/cs/docs/api/bob"
+  - "/cs/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

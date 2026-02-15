@@ -2,6 +2,9 @@
 title: "Đặc tả Thông điệp Tunnel"
 description: "Đặc tả cho định dạng các thông điệp tunnel trong I2P"
 slug: "tunnel-message"
+aliases:
+  - "/vi/docs/legacy/tunnel-message"
+  - "/vi/docs/legacy/tunnel-message/"
 category: "Thiết kế"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

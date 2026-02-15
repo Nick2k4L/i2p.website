@@ -2,6 +2,9 @@
 title: "B32 用于加密 LeaseSet"
 description: "加密 LS2 leaseSet 的 Base 32 地址格式"
 slug: "b32encrypted"
+aliases:
+  - "/zh/docs/specs/b32-for-encrypted-leasesets"
+  - "/zh/docs/specs/b32-for-encrypted-leasesets/"
 category: "设计"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

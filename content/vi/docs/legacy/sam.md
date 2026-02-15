@@ -2,6 +2,9 @@
 title: "Đặc tả SAM V1"
 description: "Giao thức Legacy Simple Anonymous Messaging phiên bản 1 (đã lỗi thời)"
 slug: "sam"
+aliases:
+  - "/vi/docs/api/sam"
+  - "/vi/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

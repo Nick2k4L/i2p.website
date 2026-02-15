@@ -2,6 +2,11 @@
 title: "Nommage et Carnet d'Adresses"
 description: "Comment I2P associe les noms d'hôtes lisibles par l'homme aux destinations"
 slug: "naming"
+aliases:
+  - "/fr/docs/specs/naming"
+  - "/fr/docs/specs/naming/"
+  - "/fr/docs/naming"
+  - "/fr/docs/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

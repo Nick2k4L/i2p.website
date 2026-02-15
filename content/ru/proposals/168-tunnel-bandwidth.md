@@ -1,5 +1,8 @@
 ---
 title: "Параметры пропускной способности туннеля"
+aliases:
+  - "/ru/proposals/168"
+  - "/ru/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

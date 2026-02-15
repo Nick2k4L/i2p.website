@@ -5,6 +5,8 @@ slug: "new-translators"
 lastUpdated: "2025-10"
 type: docs
 aliases:
+  - "/ru/docs/develop/new-translators"
+  - "/ru/docs/develop/new-translators/"
   - "/docs/develop/new-translators/"
 ---
 

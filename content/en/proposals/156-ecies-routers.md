@@ -1,5 +1,8 @@
 ---
 title: "ECIES Routers"
+aliases:
+  - "/en/proposals/156"
+  - "/en/proposals/156/"
 number: "156"
 author: "zzz, orignal"
 created: "2020-09-01"

@@ -7,6 +7,8 @@ accurateFor: "2.10.0"
 type: docs
 notes: update translation part
 aliases:
+  - "/en/docs/develop/new-developers"
+  - "/en/docs/develop/new-developers/"
   - "/docs/develop/new-developers/"
 ---
 

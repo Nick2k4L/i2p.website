@@ -1,5 +1,8 @@
 ---
 title: "Çift Yönlü Tüneller"
+aliases:
+  - "/tr/proposals/119"
+  - "/tr/proposals/119/"
 number: "119"
 author: "orjinal"
 created: "2016-01-07"

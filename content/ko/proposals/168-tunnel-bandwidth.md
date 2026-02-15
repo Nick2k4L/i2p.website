@@ -1,5 +1,8 @@
 ---
 title: "터널 대역폭 매개변수"
+aliases:
+  - "/ko/proposals/168"
+  - "/ko/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

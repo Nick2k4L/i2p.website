@@ -1,5 +1,8 @@
 ---
 title: "Tham Số Băng Thông Tunel"
+aliases:
+  - "/vi/proposals/168"
+  - "/vi/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"

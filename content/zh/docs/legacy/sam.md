@@ -2,6 +2,9 @@
 title: "SAM V1 规范"
 description: "传统简单匿名消息协议版本1（已弃用）"
 slug: "sam"
+aliases:
+  - "/zh/docs/api/sam"
+  - "/zh/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

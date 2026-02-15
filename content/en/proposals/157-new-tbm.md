@@ -1,5 +1,8 @@
 ---
 title: "Smaller Tunnel Build Messages"
+aliases:
+  - "/en/proposals/157"
+  - "/en/proposals/157/"
 number: "157"
 author: "zzz, orignal"
 created: "2020-10-09"

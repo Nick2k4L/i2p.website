@@ -2,6 +2,9 @@
 title: "Şifreli LeaseSet'ler için B32"
 description: "Şifrelenmiş LS2 leaseSet'leri için Base 32 adres formatı"
 slug: "b32encrypted"
+aliases:
+  - "/tr/docs/specs/b32-for-encrypted-leasesets"
+  - "/tr/docs/specs/b32-for-encrypted-leasesets/"
 category: "Tasarım"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

@@ -1,5 +1,8 @@
 ---
 title: "Menší zprávy o stavbě tunelu"
+aliases:
+  - "/cs/proposals/157"
+  - "/cs/proposals/157/"
 number: "157"
 author: "zzz, original"
 created: "2020-10-09"

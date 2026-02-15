@@ -57,7 +57,7 @@ of client and exploratory tunnels, and a tunnel lifetime is only 10 minutes.
 ### Further Information {#further-info}
 
 For more information see the paper
-[Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)
+[Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)
 presented at [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1).
 See [below](#notes) for notes on minor changes since the paper was published.
 
@@ -215,7 +215,7 @@ More information is on the [tunnel page](/docs/specs/tunnel-implementation#order
 ## Notes {#notes}
 
 For those reading the paper
-[Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf),
+[Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf),
 please keep in mind the following minor changes in I2P since the paper's publication:
 
 - The Integration calculation is still not used
@@ -226,7 +226,7 @@ please keep in mind the following minor changes in I2P since the paper's publica
 
 ## References {#references}
 
-- [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)
 - [One Cell Enough](http://blog.torproject.org/blog/one-cell-enough)
 - [Tor Entry Guards](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 Paper](http://freehaven.net/anonbib/#murdoch-pet2007)

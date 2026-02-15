@@ -1,5 +1,8 @@
 ---
 title: "اختبار الأقران لـ IPv6"
+aliases:
+  - "/ar/spec/proposals/126-ipv6-peer-testing"
+  - "/ar/spec/proposals/126-ipv6-peer-testing/"
 number: "126"
 author: "zzz"
 created: "2016-05-02"

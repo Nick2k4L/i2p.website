@@ -1,5 +1,8 @@
 ---
 title: "Kleinere Tunnel-Nachrichten"
+aliases:
+  - "/de/proposals/157"
+  - "/de/proposals/157/"
 number: "157"
 author: "zzz, original"
 created: "2020-10-09"

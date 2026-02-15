@@ -1,5 +1,8 @@
 ---
 title: "新的加密提案模板"
+aliases:
+  - "/zh/proposals/142-ecies-template"
+  - "/zh/proposals/142-ecies-template/"
 number: "142"
 author: "zzz"
 created: "2018-01-11"

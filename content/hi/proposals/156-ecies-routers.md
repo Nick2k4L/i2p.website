@@ -1,5 +1,8 @@
 ---
 title: "ECIES राउटर्स"
+aliases:
+  - "/hi/proposals/156"
+  - "/hi/proposals/156/"
 number: "156"
 author: "zzz, original"
 created: "2020-09-01"

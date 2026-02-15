@@ -1,5 +1,8 @@
 ---
 title: "أنفاق ثنائية الاتجاه"
+aliases:
+  - "/ar/proposals/119"
+  - "/ar/proposals/119/"
 number: "119"
 author: "orignal"
 created: "2016-01-07"

@@ -2,6 +2,9 @@
 title: "Thảo luận về NTCP"
 description: "Thảo luận lịch sử về các giao thức truyền tải NTCP so với SSU từ tháng 3 năm 2007"
 slug: "ntcp-discussion"
+aliases:
+  - "/vi/docs/discussions/ntcp"
+  - "/vi/docs/discussions/ntcp/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

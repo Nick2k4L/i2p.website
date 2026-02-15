@@ -1,5 +1,10 @@
 ---
 title: "تشفير طبقة النفق في ChaCha"
+aliases:
+  - "/ar/proposals/153-chacha20-layer"
+  - "/ar/proposals/153-chacha20-layer/"
+  - "/ar/proposals/153"
+  - "/ar/proposals/153/"
 number: "153"
 author: "chisana"
 created: "2019-08-04"

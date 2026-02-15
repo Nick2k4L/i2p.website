@@ -1,5 +1,8 @@
 ---
 title: "I2P Development Roadmap"
+aliases:
+  - "/en/get-involved/todo"
+  - "/en/get-involved/todo/"
 description: "Current development plans and historical milestones for the I2P network"
 ---
 

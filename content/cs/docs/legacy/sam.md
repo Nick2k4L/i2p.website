@@ -2,6 +2,9 @@
 title: "SAM V1 Specifikace"
 description: "Starší protokol Simple Anonymous Messaging verze 1 (zastaralý)"
 slug: "sam"
+aliases:
+  - "/cs/docs/api/sam"
+  - "/cs/docs/api/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

@@ -1,5 +1,10 @@
 ---
 title: "أنفاق ECIES"
+aliases:
+  - "/ar/proposals/152-ecies-config"
+  - "/ar/proposals/152-ecies-config/"
+  - "/ar/proposals/152"
+  - "/ar/proposals/152/"
 number: "152"
 author: "chisana, zzz, orignal"
 created: "2019-07-04"

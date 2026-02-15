@@ -2,6 +2,9 @@
 title: "SAM V3"
 description: "Simple Anonymous Messaging protocol for non-Java I2P applications"
 slug: "samv3"
+aliases:
+  - "/docs/api/samv3"
+  - "/docs/api/samv3/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

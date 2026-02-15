@@ -1,5 +1,8 @@
 ---
 title: "작은 터널 빌드 메시지"
+aliases:
+  - "/ko/proposals/157"
+  - "/ko/proposals/157/"
 number: "157"
 author: "zzz, 원작"
 created: "2020-10-09"

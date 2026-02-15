@@ -1,5 +1,8 @@
 ---
 title: "Datenbank-Abfragen von ECIES-Zielen"
+aliases:
+  - "/de/proposals/154-ratchet"
+  - "/de/proposals/154-ratchet/"
 number: "154"
 author: "zzz"
 created: "2020-03-23"

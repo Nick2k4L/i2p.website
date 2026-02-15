@@ -2,6 +2,9 @@
 title: "BOB - Basic Open Bridge"
 description: "API obsoleta para gestión de destinos"
 slug: "bob"
+aliases:
+  - "/es/docs/api/bob"
+  - "/es/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

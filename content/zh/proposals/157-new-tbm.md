@@ -1,5 +1,8 @@
 ---
 title: "更小的隧道构建消息"
+aliases:
+  - "/zh/proposals/157"
+  - "/zh/proposals/157/"
 number: "157"
 author: "zzz, 原始"
 created: "2020-10-09"

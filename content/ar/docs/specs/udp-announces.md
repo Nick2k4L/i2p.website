@@ -2,6 +2,9 @@
 title: "متتبعات UDP"
 description: "مواصفات البروتوكول لإعلانات UDP BitTorrent في I2P"
 slug: "udp-announces"
+aliases:
+  - "/ar/docs/specs/udp-bittorrent-announces"
+  - "/ar/docs/specs/udp-bittorrent-announces/"
 category: "البروتوكولات"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

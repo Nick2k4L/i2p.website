@@ -2,7 +2,11 @@
 title: "SSU (UDP Semifiable Seguro)"
 description: "Especificación original del protocolo de transporte UDP (obsoleto, reemplazado por SSU2)"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/es/docs/transport/ssu"
+  - "/es/docs/transport/ssu/"
+  - "/es/docs/transports/ssu"
+  - "/es/docs/transports/ssu/"
 category: "Transportes"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

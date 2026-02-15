@@ -2,6 +2,9 @@
 title: "Discussion sur les tunnels"
 description: "Exploration historique des stratégies de remplissage de tunnel, de fragmentation et de construction"
 slug: "tunnel"
+aliases:
+  - "/fr/docs/discussions/tunnel"
+  - "/fr/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

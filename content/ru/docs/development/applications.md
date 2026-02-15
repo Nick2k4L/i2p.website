@@ -2,6 +2,9 @@
 title: "Разработка приложений"
 description: "Зачем писать приложения для I2P, ключевые концепции, варианты разработки и руководство для начинающих"
 slug: "applications"
+aliases:
+  - "/ru/docs/develop/applications"
+  - "/ru/docs/develop/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

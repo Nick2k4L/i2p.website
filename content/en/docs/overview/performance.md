@@ -2,6 +2,11 @@
 title: "Performance"
 description: "I2P network performance: speed, connections, and resource management"
 slug: "performance"
+aliases:
+  - "/en/about/performance/future"
+  - "/en/about/performance/future/"
+  - "/en/about/performance/history"
+  - "/en/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -42,8 +47,4 @@ Additionally, other I2P nodes need to know an I2P router to test it for reachabi
 
 ---
 
-## Performance Improvements
 
-For possible future performance improvements see [Future Performance Improvements](/about/performance/future).
-
-For past performance improvements see the [Performance History](/about/performance/history).

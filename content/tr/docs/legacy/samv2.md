@@ -2,6 +2,9 @@
 title: "SAM V2 Spesifikasyonu"
 description: "Eski Basit Anonim Mesajlaşma protokolü sürüm 2 (kullanımdan kaldırıldı)"
 slug: "samv2"
+aliases:
+  - "/tr/docs/api/samv2"
+  - "/tr/docs/api/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

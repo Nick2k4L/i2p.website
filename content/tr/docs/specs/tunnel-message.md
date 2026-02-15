@@ -2,6 +2,9 @@
 title: "Tunnel Mesajı Spesifikasyonu"
 description: "I2P'de tunnel mesajlarının formatı için spesifikasyon"
 slug: "tunnel-message"
+aliases:
+  - "/tr/docs/legacy/tunnel-message"
+  - "/tr/docs/legacy/tunnel-message/"
 category: "Tasarım"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

@@ -1,5 +1,8 @@
 ---
 title: "Đường Hầm Hai Chiều"
+aliases:
+  - "/vi/proposals/119"
+  - "/vi/proposals/119/"
 number: "119"
 author: "orignal"
 created: "2016-01-07"

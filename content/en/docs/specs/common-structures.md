@@ -2,6 +2,9 @@
 title: "Common structures Specification"
 description: "Data types common to all I2P protocols"
 slug: "common-structures"
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "Design"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

@@ -2,6 +2,11 @@
 title: "Производительность"
 description: "Производительность сети I2P: скорость, соединения и управление ресурсами"
 slug: "performance"
+aliases:
+  - "/ru/about/performance/future"
+  - "/ru/about/performance/future/"
+  - "/ru/about/performance/history"
+  - "/ru/about/performance/history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

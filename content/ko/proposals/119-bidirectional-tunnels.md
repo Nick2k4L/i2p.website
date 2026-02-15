@@ -1,5 +1,8 @@
 ---
 title: "양방향 터널"
+aliases:
+  - "/ko/proposals/119"
+  - "/ko/proposals/119/"
 number: "119"
 author: "orignal"
 created: "2016-01-07"

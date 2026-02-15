@@ -2,6 +2,11 @@
 title: "NTCP（基于NIO的TCP）"
 description: "基于传统 Java NIO 的 I2P TCP 传输协议，已被 NTCP2 替代"
 slug: "ntcp"
+aliases:
+  - "/zh/docs/transport/ntcp"
+  - "/zh/docs/transport/ntcp/"
+  - "/zh/docs/ntcp"
+  - "/zh/docs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

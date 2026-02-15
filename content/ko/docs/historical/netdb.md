@@ -2,6 +2,9 @@
 title: "네트워크 데이터베이스 토론"
 description: "netDb에 대한 floodfill, Kademlia 실험 및 향후 튜닝에 관한 역사적 기록"
 slug: "netdb"
+aliases:
+  - "/ko/docs/legacy/netdb"
+  - "/ko/docs/legacy/netdb/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

@@ -2,6 +2,9 @@
 title: "BOB - Basic Open Bridge"
 description: "गंतव्य प्रबंधन के लिए अप्रचलित API"
 slug: "bob"
+aliases:
+  - "/hi/docs/api/bob"
+  - "/hi/docs/api/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

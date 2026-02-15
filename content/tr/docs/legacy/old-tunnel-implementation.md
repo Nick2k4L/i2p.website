@@ -2,6 +2,9 @@
 title: "Eski Tunnel Uygulaması"
 description: "0.6.1.10 sürümünden önce I2P'nin orijinal tunnel uygulamasının tarihsel belgelendirmesi"
 slug: "old-tunnel-implementation"
+aliases:
+  - "/tr/docs/historical/tunnel-alt"
+  - "/tr/docs/historical/tunnel-alt/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

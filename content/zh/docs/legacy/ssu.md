@@ -2,7 +2,11 @@
 title: "SSU（安全半可靠UDP）"
 description: "原始UDP传输协议规范（已弃用，被SSU2替代）"
 slug: "ssu"
-aliases: 
+aliases:
+  - "/zh/docs/transport/ssu"
+  - "/zh/docs/transport/ssu/"
+  - "/zh/docs/transports/ssu"
+  - "/zh/docs/transports/ssu/"
 category: "传输协议"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

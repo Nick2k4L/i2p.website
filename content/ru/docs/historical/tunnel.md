@@ -2,6 +2,9 @@
 title: "Обсуждение Tunnel"
 description: "Историческое исследование стратегий заполнения, фрагментации и построения tunnel"
 slug: "tunnel"
+aliases:
+  - "/ru/docs/discussions/tunnel"
+  - "/ru/docs/discussions/tunnel/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

@@ -2,7 +2,9 @@
 title: "Specifikace I2NP"
 description: "Formáty zpráv, priority a běžné struktury I2P Network Protocol (I2NP) pro komunikaci mezi routery."
 slug: "i2np"
-aliases: 
+aliases:
+  - "/cs/docs/protocol/i2np"
+  - "/cs/docs/protocol/i2np/"
 category: "Protokoly"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"

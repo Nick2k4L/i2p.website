@@ -1,5 +1,8 @@
 ---
 title: "टनल निर्माण संदेश विकल्प"
+aliases:
+  - "/hi/proposals/143"
+  - "/hi/proposals/143/"
 number: "143"
 author: "zzz"
 created: "2018-01-14"

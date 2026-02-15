@@ -1,5 +1,8 @@
 ---
 title: "Paramètres de Bande Passante du Tunnel"
+aliases:
+  - "/fr/proposals/168"
+  - "/fr/proposals/168/"
 number: "168"
 author: "zzz"
 created: "2024-07-31"
