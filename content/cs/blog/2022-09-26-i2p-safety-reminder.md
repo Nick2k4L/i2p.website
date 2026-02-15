@@ -40,7 +40,7 @@ Máme oficiální stránky, odkud si lidé mohou bezpečně stáhnout software I
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -56,6 +56,6 @@ Tyto služby provozují třetí strany, někdy i korporace; účastníme se jich
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-Tento příspěvek se snaží poskytnout způsoby, jak prověřit zdroj pro získání balíčku Java I2P, který je reprezentován zdrojovým kódem obsaženým na https://i2pgit.org/i2p-hackers/i2p.i2p a https://github.com/i2p/i2p.i2p a je k dispozici ke stažení z webu https://geti2p.net/. Tímto není zamýšleno hodnotit forky třetích stran, downstream projekty (odvozené projekty), embedders (integrátoři), packagers (balíči), lidi experimentující v laboratořích ani lidi, kteří s námi prostě nesouhlasí. Všichni jste vážení členové naší komunity, kteří se snaží chránit, a nikoli ohrožovat, soukromí ostatních. Vzhledem k tomu, že jsme si vědomi pokusů vydávat se za členy komunity projektu I2P, možná budete chtít zrevidovat postupy stahování, ověřování a instalace, které doporučujete svým uživatelům, abyste zdokumentovali své oficiální zdroje a známá zrcadla.
+Tento příspěvek se snaží poskytnout způsoby, jak prověřit zdroj pro získání balíčku Java I2P, který je reprezentován zdrojovým kódem obsaženým na `https://i2pgit.org/i2p-hackers/i2p.i2p` a `https://github.com/i2p/i2p.i2p` a je k dispozici ke stažení z webu `https://geti2p.net/.` Tímto není zamýšleno hodnotit forky třetích stran, downstream projekty (odvozené projekty), embedders (integrátoři), packagers (balíči), lidi experimentující v laboratořích ani lidi, kteří s námi prostě nesouhlasí. Všichni jste vážení členové naší komunity, kteří se snaží chránit, a nikoli ohrožovat, soukromí ostatních. Vzhledem k tomu, že jsme si vědomi pokusů vydávat se za členy komunity projektu I2P, možná budete chtít zrevidovat postupy stahování, ověřování a instalace, které doporučujete svým uživatelům, abyste zdokumentovali své oficiální zdroje a známá zrcadla.
 
 *Poznámka autora: Dřívější verze tohoto příspěvku na blogu obsahovala TLS otisk každé služby provozované projektem I2P. Tyto byly odstraněny, když obnovení certifikátu způsobilo, že se otisky staly neplatnými.*

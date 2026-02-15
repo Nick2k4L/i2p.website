@@ -26,11 +26,11 @@ JRobin [1], RRDtool [2]'un tamamen Java ile gerçekleştirilen bir portudur; bu 
 
 Postman bazı kullanışlı botlar üzerinde yoğun biçimde çalışıyor ve memnuniyetle bildirebilirim ki sevimli biff geri döndü [3], irc2p'de takılırken (anonim) e-posta aldığında sana haber veriyor.  Buna ek olarak, postman bizim için yepyeni bir bot geliştirdi - toopie - I2P/irc2p için bir bilgi botu olarak hizmet etmesi için.  toopie'yi hâlâ SSS'lerle besliyoruz, ancak kısa süre içinde olağan kanallara katılacak.  Teşekkürler postman!
 
-[3] http://hq.postman.i2p/?page_id=15
+[3] `http://hq.postman.i2p/?page_id=15`
 
 * 4) new key
 
-Dikkat edenler fark etmişsinizdir, GPG anahtarımın süresi birkaç gün içinde doluyor.  http://dev.i2p.net/~jrandom adresindeki yeni anahtarımın parmak izi 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 ve anahtar kimliği 33DC8D49.  Bu gönderi eski anahtarımla imzalanmıştır, ancak önümüzdeki yıl boyunca sonraki gönderilerim (ve sürümlerim) yeni anahtarla imzalanacak.
+Dikkat edenler fark etmişsinizdir, GPG anahtarımın süresi birkaç gün içinde doluyor.  `http://dev.i2p.net/~jrandom` adresindeki yeni anahtarımın parmak izi 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 ve anahtar kimliği 33DC8D49.  Bu gönderi eski anahtarımla imzalanmıştır, ancak önümüzdeki yıl boyunca sonraki gönderilerim (ve sürümlerim) yeni anahtarla imzalanacak.
 
 * 5) ???
 

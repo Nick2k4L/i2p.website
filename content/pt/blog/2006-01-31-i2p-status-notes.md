@@ -20,7 +20,7 @@ Na última semana, tenho testado alguns ajustes diferentes para aumentar a confi
 
 Em vez de lutar indefinidamente com pequenos ajustes, tenho trabalhado na minha rede de testes local para migrar para a nova criptografia e o processo de criação de tunnel [1]. Isso deve resolver grande parte das falhas na criação de tunnel; depois disso, poderemos fazer ajustes adicionais, se necessário.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 Um efeito colateral infeliz é que a 0.6.1.10 não será compatível com versões anteriores.  Faz tempo que não temos um lançamento incompatível com versões anteriores, mas nos primeiros tempos fizemos isso várias vezes, então não deve ser um grande problema.  Basicamente, depois que funcionar muito bem na minha rede de testes local, vamos implantá-lo em paralelo para algumas almas corajosas para testes iniciais, depois, quando estiver pronto para lançamento, vamos apenas trocar as referências de seed para os seeds da nova rede e botar no ar.
 

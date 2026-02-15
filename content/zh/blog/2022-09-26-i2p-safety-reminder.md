@@ -39,7 +39,7 @@ We have official sites where people may obtain the I2P software safely:
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -55,6 +55,6 @@ We have official sites where people may obtain the I2P software safely:
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-这篇文章旨在提供一些方法，用于审核获取 Java I2P 软件包的来源；该软件包由 https://i2pgit.org/i2p-hackers/i2p.i2p 和 https://github.com/i2p/i2p.i2p 所含源代码所代表，并可从网站 https://geti2p.net/ 下载。本文无意对第三方 fork（派生）、下游项目、嵌入方、打包者、在实验室进行试验的人，或仅仅与我们意见不同的人作出评判。你们都是我们社区中被重视的成员，致力于保护而非损害他人的隐私。鉴于我们已经注意到有人试图冒充 I2P 项目的社区成员，你可能希望审查你向用户推荐的下载、验证和安装流程，以便记录你的官方来源和已知镜像。
+这篇文章旨在提供一些方法，用于审核获取 Java I2P 软件包的来源；该软件包由 `https://i2pgit.org/i2p-hackers/i2p.i2p` 和 `https://github.com/i2p/i2p.i2p` 所含源代码所代表，并可从网站 `https://geti2p.net/` 下载。本文无意对第三方 fork（派生）、下游项目、嵌入方、打包者、在实验室进行试验的人，或仅仅与我们意见不同的人作出评判。你们都是我们社区中被重视的成员，致力于保护而非损害他人的隐私。鉴于我们已经注意到有人试图冒充 I2P 项目的社区成员，你可能希望审查你向用户推荐的下载、验证和安装流程，以便记录你的官方来源和已知镜像。
 
 *作者注：这篇博文的早期版本包含由 I2P 项目运营的各项服务的 TLS 指纹。当证书续期导致这些指纹变得不准确时，它们被移除。*

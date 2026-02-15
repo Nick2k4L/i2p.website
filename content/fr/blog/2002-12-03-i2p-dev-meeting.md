@@ -6,7 +6,7 @@ description: "Journal de la réunion de développement I2P du 3 décembre 2002."
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)
+(Avec l'aimable autorisation de la wayback machine `http://www.archive.org/`)
 
 ## Récapitulatif rapide
 

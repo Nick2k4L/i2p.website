@@ -44,19 +44,19 @@ nicht einen globalen Pool von Zielen für einen globalen Dienst.
 
 ### GNS
 
-GNS [GNS](http://zzz.i2p/topcs/1545) schlägt vor, dass jeder seinen eigenen DNS-Server betreibt.
+GNS GNS schlägt vor, dass jeder seinen eigenen DNS-Server betreibt.
 Dieser Vorschlag ist komplementär, da wir Serviceaufzeichnungen verwenden könnten, um anzugeben,
 dass GNS (oder DNS) unterstützt wird, mit einem standardisierten Dienstnamen "domain" auf Port 53.
 
 ### Dot well-known
 
-In [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) wird vorgeschlagen, dass Dienste über eine HTTP-Anfrage
+In DOTWELLKNOWN wird vorgeschlagen, dass Dienste über eine HTTP-Anfrage
 an /.well-known/i2pmail.key nachgeschlagen werden. Dies erfordert, dass jeder Dienst eine zugehörige
 Website haben muss, um den Schlüssel zu hosten. Die meisten Benutzer betreiben keine Websites.
 
 Ein Workaround ist, dass wir voraussetzen könnten, dass ein Dienst für eine b32-Adresse tatsächlich
 auf dieser b32-Adresse ausgeführt wird. So dass das Suchen nach dem Dienst für example.i2p erfordert,
-die HTTP-Abrufung von http://example.i2p/.well-known/i2pmail.key, aber
+die HTTP-Abrufung von `http://example.i2p/.well-known/i2pmail.key,` aber
 ein Dienst für aaa...aaa.b32.i2p erfordert diese Abfrage nicht, er kann einfach direkt verbunden werden.
 
 Aber es gibt dort eine Mehrdeutigkeit, weil example.i2p auch durch seinen b32 angesprochen werden kann.
@@ -319,7 +319,7 @@ TODO wie man dies auf generische Weise macht
 
 ### Erforderliche Änderungen für E-Mails
 
-Nicht im Umfang dieses Vorschlags. Siehe [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) für eine Diskussion.
+Nicht im Umfang dieses Vorschlags. Siehe DOTWELLKNOWN für eine Diskussion.
 
 
 ## Implementierungsnotizen

@@ -22,9 +22,9 @@ categories: ["status"]
 
 最近在 I2Phex 方面也有不少动向，并发布了新的 0.1.1.35 版本 [1]。CVS 中也有进一步的改动（感谢 Legion!），所以如果在本周晚些时候看到 0.1.1.36，我也不会感到惊讶。
 
-在 gwebcache（基于 Web 的节点缓存）方面也取得了一些不错的进展（参见 http://awup.i2p/），不过据我所知，还没有人开始着手修改 I2Phex 以使用支持 I2P 的 gwebcache（有兴趣吗？告诉我一声！）
+在 gwebcache（基于 Web 的节点缓存）方面也取得了一些不错的进展（参见 `http://awup.i2p/），不过据我所知，还没有人开始着手修改` I2Phex 以使用支持 I2P 的 gwebcache（有兴趣吗？告诉我一声！）
 
-[1] http://forum.i2p.net/viewtopic.php?t=1157
+[1] `http://forum.i2p.net/viewtopic.php?t=1157`
 
 * 3) I2P-Rufus
 
@@ -40,7 +40,7 @@ categories: ["status"]
 
 关于 Syndie 的 UI 改版[3]也有一些讨论正在进行中，我预计我们很快就能在这方面看到一些进展。dust 也在埋头推进 Sucker 的开发，为将更多 RSS/Atom 订阅源导入 Syndie 提供更好的支持，同时对 SML 本身也进行了一些改进。
 
-[3] http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true
+[3] `http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true`
 
 * 6) ???
 

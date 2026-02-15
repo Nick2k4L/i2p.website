@@ -86,7 +86,7 @@ categories: ["meeting"]
 13:34 &lt;@smeghead&gt; the more people bend over for their ISPs, the more ISPs will restrict their users, and the harder our task becomes
 13:37 &lt;jrandom&gt; ok, anyone else have anything for 2) UDP?  if not, moving on to 3) Q
 13:37 &lt;jrandom&gt; hmm, looks like aum isn't up yet :)
-13:37 &lt;jrandom&gt; but basically, lots of cool stuff up @ http://aum.i2p/q/
+13:37 &lt;jrandom&gt; but basically, lots of cool stuff up @ `http://aum.i2p/q/`
 13:38 &lt;@smeghead&gt; i think i speak for aum when i say, "zzzzzzzzzzzzzZZZz"
 13:39 &lt;jrandom&gt; ok, i dont know if i have anything to add beyond whats in the email, beyond "neat stuff, talk to aum" :)
 13:40 &lt;jrandom&gt; ok, moving on at a rapid rate to 4) ???

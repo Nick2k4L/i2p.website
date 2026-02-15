@@ -6,7 +6,7 @@ description: "Reunión de desarrollo de I2P que abarca el estado del router, act
 categories: ["meeting"]
 ---
 
-(Cortesía de Wayback Machine http://www.archive.org/)
+(Cortesía de Wayback Machine `http://www.archive.org/`)
 
 ## Resumen rápido
 

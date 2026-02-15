@@ -26,11 +26,11 @@ JRobin [1] là một bản port thuần Java của RRDtool [2], cho phép chúng
 
 Postman đã miệt mài phát triển một số bot hữu ích, và tôi vui mừng báo rằng biff đáng yêu đã trở lại [3], thông báo cho bạn mỗi khi bạn có thư (ẩn danh) khi đang ở trên irc2p. Ngoài ra, postman đã xây dựng một bot hoàn toàn mới cho chúng ta - toopie - để làm bot cung cấp thông tin cho I2P/irc2p. Chúng tôi vẫn đang nạp cho toopie các mục Hỏi-đáp thường gặp, nhưng toopie sẽ sớm xuất hiện trong các kênh quen thuộc. Cảm ơn postman!
 
-[3] http://hq.postman.i2p/?page_id=15
+[3] `http://hq.postman.i2p/?page_id=15`
 
 * 4) new key
 
-Ai để ý sẽ thấy rằng khóa GPG của tôi sẽ hết hạn trong vài ngày nữa. Khóa mới của tôi tại http://dev.i2p.net/~jrandom có vân tay 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 và ID khóa 33DC8D49. Bài viết này được ký bằng khóa cũ của tôi, nhưng các bài viết (và bản phát hành) của tôi trong năm tới sẽ được ký bằng khóa mới.
+Ai để ý sẽ thấy rằng khóa GPG của tôi sẽ hết hạn trong vài ngày nữa. Khóa mới của tôi tại `http://dev.i2p.net/~jrandom` có vân tay 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 và ID khóa 33DC8D49. Bài viết này được ký bằng khóa cũ của tôi, nhưng các bài viết (và bản phát hành) của tôi trong năm tới sẽ được ký bằng khóa mới.
 
 * 5) ???
 

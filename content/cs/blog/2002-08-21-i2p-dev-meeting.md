@@ -6,7 +6,7 @@ description: "Neformální vývojářské setkání I2P, na kterém se probírá
 categories: ["meeting"]
 ---
 
-(S laskavým svolením Wayback Machine http://www.archive.org/)
+(S laskavým svolením Wayback Machine `http://www.archive.org/`)
 
 ## Stručné shrnutí
 

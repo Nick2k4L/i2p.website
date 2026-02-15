@@ -12,7 +12,7 @@ Mạng lưới I2P phát triển mạnh mẽ nhờ cộng đồng của chúng t
 I2P là mã nguồn mở và chúng tôi chào đón những đóng góp vào mã nguồn. Dù bạn muốn sửa lỗi, thêm tính năng, hay cải thiện hiệu suất, phần đóng góp mã của bạn đều quan trọng.
 
 - **Bắt đầu**: Xem hướng dẫn [nhà phát triển mới](/docs/developers/new-developers)
-- **Mã nguồn**: [GitLab](https://i2pgit.org) (cũng có sẵn bên trong I2P tại http://git.idk.i2p)
+- **Mã nguồn**: [GitLab](https://i2pgit.org) (cũng có sẵn bên trong I2P tại `http://git.idk.i2p`)
 - **Cuộc họp hàng tháng**: Tham gia vào thứ Ba đầu tiên của mỗi tháng
 - **Kênh IRC**: #i2p-dev trên IRC2P cho thảo luận phát triển
 

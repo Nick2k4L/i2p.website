@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / http://127.0.0.1:8443/
-    ProxyPassReverse / http://127.0.0.1:8443/
+    ProxyPass / `http://127.0.0.1:8443/`
+    ProxyPassReverse / `http://127.0.0.1:8443/`
 </VirtualHost>
 ```
 ### Registrace a koordinace
@@ -549,7 +549,7 @@ Jakmile bude váš reseed (server pro počáteční připojení k síti I2P) zar
 ### Komunitní zdroje
 
 - **I2P fórum**: https://i2pforum.net/
-- **Repozitář Gitea**: https://i2pgit.org/I2P_Developers/i2p.i2p
+- **Repozitář Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev na IRC2P
 - **Monitorování stavu**: https://checki2p.com/reseed
 

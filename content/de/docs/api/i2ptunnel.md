@@ -8,14 +8,14 @@ accurateFor: "0.9.59"
 
 ## Überblick {#overview}
 
-I2PTunnel ist ein Werkzeug zur Anbindung an I2P und zur Bereitstellung von Diensten im I2P-Netzwerk. Das Ziel eines I2PTunnel kann mittels eines [Hostnamens](/docs/overview/naming), [Base32](/docs/overview/naming#base32) oder eines vollständigen 516-Byte destination keys definiert werden. Ein eingerichteter I2PTunnel wird auf Ihrem Client-Rechner als localhost:port verfügbar sein. Wenn Sie einen Dienst im I2P-Netzwerk bereitstellen möchten, erstellen Sie einfach einen I2PTunnel zur entsprechenden ip_address:port. Ein entsprechender 516-Byte destination key wird für den Dienst generiert und dieser wird im gesamten I2P-Netzwerk verfügbar. Eine Web-Oberfläche zur I2PTunnel-Verwaltung ist unter [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/) verfügbar.
+I2PTunnel ist ein Werkzeug zur Anbindung an I2P und zur Bereitstellung von Diensten im I2P-Netzwerk. Das Ziel eines I2PTunnel kann mittels eines [Hostnamens](/docs/overview/naming), [Base32](/docs/overview/naming#base32) oder eines vollständigen 516-Byte destination keys definiert werden. Ein eingerichteter I2PTunnel wird auf Ihrem Client-Rechner als localhost:port verfügbar sein. Wenn Sie einen Dienst im I2P-Netzwerk bereitstellen möchten, erstellen Sie einfach einen I2PTunnel zur entsprechenden ip_address:port. Ein entsprechender 516-Byte destination key wird für den Dienst generiert und dieser wird im gesamten I2P-Netzwerk verfügbar. Eine Web-Oberfläche zur I2PTunnel-Verwaltung ist unter `http://localhost:7657/i2ptunnel/` verfügbar.
 
 ## Standard-Dienste {#default-services}
 
 ### Server Tunnels {#default-server-tunnels}
 
 - **I2P Webserver** - Ein tunnel, der auf einen Jetty-Webserver zeigt, der auf
-  [localhost:7658](http://localhost:7658) läuft, für bequemes und schnelles Hosting auf I2P.
+  `http://localhost:7658` läuft, für bequemes und schnelles Hosting auf I2P.
   Das Dokumentenverzeichnis ist:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, was sich erweitert zu: `C:\Users\**benutzername**\AppData\Local\I2P\I2P Site\docroot`

@@ -20,7 +20,7 @@ Jedna (velmi) častá otázka se objevila ohledně kódu peer testu-"Proč to uk
 
 (Příčina nadbytku hodnot stavu Unknown je v tom, že ignorujeme peer testy, v nichž je "Charlie" [2] někým, s kým už máme relaci SSU, protože to znamená, že by se dokázal dostat skrz náš NAT, i kdyby byl náš NAT nefunkční)
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000844.html [2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000844.html` [2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting`
 
 * 2) IRC status
 
@@ -32,13 +32,13 @@ susi23 (známá díky susimailu) je zpět s dvojicí nástrojů souvisejících 
 
 SusiBT je webové rozhraní pro i2p-bt. Integruje se do vašeho i2p   routeru a umožňuje automatické nahrávání i stahování, obnovování po   restartu a některé funkce správy, jako je nahrávání a stahování   souborů. Pozdější verze aplikace budou podporovat automatické   vytváření a nahrávání torrentových souborů.
 
-[3] http://susi.i2p/?page_id=31 [4] http://susi.i2p/?p=33
+[3] `http://susi.i2p/?page_id=31` [4] `http://susi.i2p/?p=33`
 
 Můžu slyšet "w00t"?
 
 * 4) Syndie
 
-Jak bylo zmíněno na mailing listu a na kanálu, máme novou klientskou aplikaci pro bezpečné a autentizované blogování / distribuci obsahu. Se Syndie otázka "is your eepsite(I2P Site) up" odpadá, protože si můžete obsah přečíst i tehdy, když je web nedostupný, a zároveň se Syndie vyhýbá všem nepříjemným problémům vlastní povaze sítí pro distribuci obsahu tím, že se soustředí na frontend. Každopádně je to pořád hodně ve vývoji, ale pokud se lidé chtějí zapojit a vyzkoušet si to, je k dispozici veřejný Syndie uzel na http://syndiemedia.i2p/ (dostupný také na webu na http://66.111.51.110:8000/). Klidně tam běžte a založte si blog, nebo pokud máte dobrodružnou náladu, napište na blog nějaké komentáře/návrhy/připomínky! Samozřejmě jsou vítány patche, stejně tak i návrhy na funkce, takže do toho.
+Jak bylo zmíněno na mailing listu a na kanálu, máme novou klientskou aplikaci pro bezpečné a autentizované blogování / distribuci obsahu. Se Syndie otázka "is your eepsite(I2P Site) up" odpadá, protože si můžete obsah přečíst i tehdy, když je web nedostupný, a zároveň se Syndie vyhýbá všem nepříjemným problémům vlastní povaze sítí pro distribuci obsahu tím, že se soustředí na frontend. Každopádně je to pořád hodně ve vývoji, ale pokud se lidé chtějí zapojit a vyzkoušet si to, je k dispozici veřejný Syndie uzel na `http://syndiemedia.i2p/` (dostupný také na webu na http://66.111.51.110:8000/). Klidně tam běžte a založte si blog, nebo pokud máte dobrodružnou náladu, napište na blog nějaké komentáře/návrhy/připomínky! Samozřejmě jsou vítány patche, stejně tak i návrhy na funkce, takže do toho.
 
 * 5) ???
 

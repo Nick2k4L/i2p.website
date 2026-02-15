@@ -27,10 +27,10 @@ To make sure the setup process works, it helps to make a repository to test with
 किसी सर्वर पर पढ़ने-लिखने की पहुँच पाने के लिए, आपको अपने SSH क्लाइंट के लिए एक tunnel सेट अप करना होगा। अगर आपको केवल HTTP/S क्लोनिंग (केवल-पढ़ने की) चाहिए, तो आप यह सब छोड़ सकते हैं और बस http_proxy environment variable का उपयोग करके git को इस तरह कॉन्फ़िगर कर सकते हैं कि वह पहले से कॉन्फ़िगर किए गए I2P HTTP Proxy का उपयोग करे। उदाहरण के लिए:
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-SSH एक्सेस के लिए, http://127.0.0.1:7657/i2ptunnelmgr से "New Tunnel Wizard" लॉन्च करें और Git सेवा के SSH base32 पते की ओर इंगित करने वाला एक client tunnel सेट करें।
+SSH एक्सेस के लिए, `http://127.0.0.1:7657/i2ptunnelmgr` से "New Tunnel Wizard" लॉन्च करें और Git सेवा के SSH base32 पते की ओर इंगित करने वाला एक client tunnel सेट करें।
 
 ## चौथा: क्लोन करने का प्रयास करें
 

@@ -38,7 +38,7 @@ categories: ["meeting"]
 20:03:41 &lt;zzz&gt; 1) 관련해서 더 있을까요?
 20:03:49 &lt;backup&gt; 그러면 더 많은 테스터를 끌 수 있을 텐데요...
 20:04:06 &lt;str4d&gt; 새 웹사이트 메인 페이지가 올라갔어요
-20:04:10 &lt;str4d&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/
+20:04:10 &lt;str4d&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/`
 20:04:23 &lt;zzz&gt; 주제에 집중하자. 1) 관련해 더 있을까?
 20:04:34 &lt;str4d&gt; zzz, 나 *am* 주제 얘기 중이야
 20:04:58 &lt;str4d&gt; 가능하면 릴리스 시기에 맞춰 라이브로 올리고 싶어요

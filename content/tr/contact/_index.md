@@ -25,9 +25,9 @@ Lütfen destek talepleri için bu e-posta adreslerini kullanmayın. Araştırma,
 
 ## Forumlar {#forums}
 
-Lütfen I2P kullanıcı forumumuzu ziyaret edin - [i2pforum.i2p](http://i2pforum.i2p/) (özel olmayan internette https://i2pforum.net adresinde mevcuttur.
+Lütfen I2P kullanıcı forumumuzu ziyaret edin - i2pforum.i2p (özel olmayan internette https://i2pforum.net adresinde mevcuttur.
 
-I2P geliştirmesi hakkındaki tartışmalar [I2P kullanıcı forumu](http://i2pforum.i2p)'nda gerçekleşir. Bu genellikle geliştirici sorularına başlamak için en iyi yerdir, eğer geliştirici IRC kanalı aktif değilse. Genel destek için [I2P kullanıcı forumu](http://i2pforum.i2p) ya da Subreddit'i kullanın.
+I2P geliştirmesi hakkındaki tartışmalar I2P kullanıcı forumu'nda gerçekleşir. Bu genellikle geliştirici sorularına başlamak için en iyi yerdir, eğer geliştirici IRC kanalı aktif değilse. Genel destek için I2P kullanıcı forumu ya da Subreddit'i kullanın.
 
 ## IRC {#irc}
 
@@ -63,8 +63,8 @@ I2P ile ilgili güncellemeler ve duyurular almak için e-postanızı bu web site
 | **CI yöneticisi** | idk | Sürekli Entegrasyon altyapısını sürdürür |
 | **Reseed Yöneticisi** | idk | reseed sunucularını izler, danışmanlık yapar ve yeni reseed sunucuları temin eder |
 | **Gitea yöneticisi** | idk | I2P Gitea bakım sorumlusu |
-| **Yerelleştirme** | idk, zzz | [Transifex](https://www.transifex.com/projects/p/I2P/) üzerinde yöneticiler |
-| **Çevirmenler** | pek çok kişi! | [Transifex](https://www.transifex.com/projects/p/I2P/) üzerinde çevirmenler |
+| **Yerelleştirme** | idk, zzz | Transifex üzerinde yöneticiler |
+| **Çevirmenler** | pek çok kişi! | Transifex üzerinde çevirmenler |
 | **Web sitesi bakım sorumlusu** | StormyCloud | Kamusal proje web sitesinin içerik ve tasarımını yönetir |
 | **Web sunucusu yöneticisi** | StormyCloud | Kamusal proje web sunucularını yönetir |
 | **Web sitesi yöneticisi** | idk | Kamusal proje web sitesini yönetir |

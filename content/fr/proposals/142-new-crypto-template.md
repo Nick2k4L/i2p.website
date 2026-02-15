@@ -33,9 +33,9 @@ Toute personne proposant une nouvelle cryptographie doit d'abord être familièr
 - [Proposition 136 types de signature expérimentale](/fr/proposals/136-experimental-sigtypes/)
 - [Proposition 137 types de signature optionnelle](/fr/proposals/137-optional-sigtypes/)
 - Fils de discussion ici pour chacune des propositions ci-dessus, liés à l'intérieur
-- [priorités des propositions 2018](http://zzz.i2p/topics/2494)
-- [proposition ECIES](http://zzz.i2p/topics/2418)
-- [aperçu de la nouvelle cryptographie asymétrique](http://zzz.i2p/topics/1768)
+- priorités des propositions 2018
+- proposition ECIES
+- aperçu de la nouvelle cryptographie asymétrique
 - [Vue d'ensemble de la cryptographie bas niveau](/fr/docs/specs/common-structures/)
 
 

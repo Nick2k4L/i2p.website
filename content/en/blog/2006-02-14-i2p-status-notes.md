@@ -30,7 +30,7 @@ compatible, and your router will likely create a new router identity
 and require reseeding to get onto the new network.  This should
 happen transparently though.
 
-[1] http://dev.i2p.net/pipermail/i2p/2006-February/001259.html
+[1] `http://dev.i2p.net/pipermail/i2p/2006-February/001259.html`
 
 One word of warning for users of CVS though - after tonight's
 meeting, I'll begin merging back the _PRE branch into the trunk, so
@@ -42,8 +42,8 @@ There's been an increase in traffic on Syndie lately, which is quite
 cool, so swing by your local instance [2] or a public node [3] to
 see whats up.
 
-[2] http://localhost:7657/syndie/blogs.jsp
-[3] http://syndiemedia.i2p.net/blogs.jsp
+[2] `http://localhost:7657/syndie/blogs.jsp`
+[3] `http://syndiemedia.i2p.net/blogs.jsp`
 
 * 4) ???
 

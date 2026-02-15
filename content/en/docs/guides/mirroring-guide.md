@@ -205,7 +205,7 @@ You'll notice both configs explicitly avoid `Strict-Transport-Security` headers.
 Open the I2P Router Console in your browser:
 
 ```
-http://127.0.0.1:7657/i2ptunnel/
+`http://127.0.0.1:7657/i2ptunnel/`
 ```
 
 Click **"Tunnel Wizard"** to start creating a new tunnel.
@@ -311,7 +311,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
 
         proxy_set_header Host $host;
@@ -342,7 +342,7 @@ If your application generates URLs pointing to your clearnet domain, you'll want
 
 ```nginx
 location / {
-    proxy_pass http://127.0.0.1:3000;
+    proxy_pass `http://127.0.0.1:3000;`
 
     sub_filter_once off;
     sub_filter_types text/html text/css application/javascript;
@@ -369,7 +369,7 @@ Configure `/etc/gitea/app.ini`:
 HTTP_ADDR     = 127.0.0.1
 HTTP_PORT     = 3000
 DOMAIN        = yourgit.i2p
-ROOT_URL      = http://yourgit.i2p/
+ROOT_URL      = `http://yourgit.i2p/`
 SSH_DOMAIN    = yourgit.i2p
 PROTOCOL      = http
 OFFLINE_MODE  = true
@@ -399,7 +399,7 @@ If you just need read-only browsing and HTTP cloning, cgit is much lighter:
 ```ini
 # /etc/cgitrc
 virtual-root=/
-clone-url=http://yourgit.i2p/$CGIT_REPO_URL
+clone-url=`http://yourgit.i2p/$CGIT_REPO_URL`
 cache-root=/var/cache/cgit
 cache-size=1000
 scan-path=/srv/git
@@ -414,18 +414,18 @@ Anyone cloning from your I2P Git mirror needs to route Git traffic through the I
 
 ```bash
 # Tell Git to use the I2P proxy for .i2p domains
-git config --global http.http://yourgit.i2p.proxy http://127.0.0.1:4444
+git config --global http.http://yourgit.i2p.proxy `http://127.0.0.1:4444`
 git config --global http.timeout 300
 
 # Clone (allow for I2P latency)
 GIT_HTTP_LOW_SPEED_LIMIT=1000 GIT_HTTP_LOW_SPEED_TIME=60 \
-    git clone http://yourgit.i2p/repo
+    git clone `http://yourgit.i2p/repo`
 ```
 
 For large repos, shallow clones save a lot of time over I2P:
 
 ```bash
-git clone --depth 1 http://yourgit.i2p/project
+git clone --depth 1 `http://yourgit.i2p/project`
 git fetch --unshallow   # grab full history later if needed
 ```
 
@@ -446,7 +446,7 @@ $CONFIG = array(
     'trusted_proxies'   => array('127.0.0.1'),
     'overwritehost'     => 'yoursite.i2p',
     'overwriteprotocol' => 'http',
-    'overwrite.cli.url' => 'http://yoursite.i2p/',
+    'overwrite.cli.url' => '`http://yoursite.i2p/',`
 );
 ```
 
@@ -485,7 +485,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
 
         proxy_set_header Host $host;
         proxy_set_header Content-Type $content_type;
@@ -516,7 +516,7 @@ server {
     listen 127.0.0.1:8080;
 
     location /ws {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
@@ -731,8 +731,8 @@ Also check that port forwarding is configured for your I2NP port (check the Rout
 Visitors need your address in their address book. Make sure you've registered with a public address book, or share your full base32 address directly. They can also add more subscriptions at `http://127.0.0.1:7657/susidns/subscriptions`:
 
 ```
-http://stats.i2p/cgi-bin/newhosts.txt
-http://i2host.i2p/cgi-bin/i2hostetag
+`http://stats.i2p/cgi-bin/newhosts.txt`
+`http://i2host.i2p/cgi-bin/i2hostetag`
 ```
 
 ### Timeouts when testing
@@ -741,10 +741,10 @@ I2P has inherently higher round-trip times. When testing from the command line, 
 
 ```bash
 # curl
-curl --connect-timeout 60 --max-time 300 http://yoursite.i2p/
+curl --connect-timeout 60 --max-time 300 `http://yoursite.i2p/`
 
 # wget
-wget --timeout=300 http://yoursite.i2p/
+wget --timeout=300 `http://yoursite.i2p/`
 ```
 
 ### Reading the logs

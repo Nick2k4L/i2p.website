@@ -23,7 +23,7 @@ sudo ssh-keygen -N "" -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
 
 ### Using Java I2P
 
-Sử dụng giao diện web của java I2P, truy cập [Hidden Services Manager](http://127.0.0.1:7657/i2ptunnelmgr) và bắt đầu trình hướng dẫn tunnel (đường hầm).
+Sử dụng giao diện web của java I2P, truy cập `http://127.0.0.1:7657/i2ptunnelmgr` và bắt đầu trình hướng dẫn tunnel (đường hầm).
 
 #### Tunnel Wizard
 

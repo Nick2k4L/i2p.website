@@ -16,12 +16,12 @@ ya da, ELI5 (5 yaşındaymışım gibi açıklarsak): E-postaya benzer şekilde 
 
 **Birinci Adım: I2P-Bote'yi yükleyin**
 
-I2P-Bote bir I2P eklentisidir ve kurulumu çok kolaydır. Orijinal talimatlar [bote eepSite, bote.i2p](http://bote.i2p/install/) adresinde mevcuttur, ancak bunları clearnet (açık internet) üzerinden okumak isterseniz, bu talimatlar bote.i2p’in katkılarıyla sunulmaktadır:
+I2P-Bote bir I2P eklentisidir ve kurulumu çok kolaydır. Orijinal talimatlar bote eepSite, bote.i2p adresinde mevcuttur, ancak bunları clearnet (açık internet) üzerinden okumak isterseniz, bu talimatlar bote.i2p’in katkılarıyla sunulmaktadır:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Adım İki: I2P-Bote düğümünüzün base64 adresini alın**
 
@@ -62,7 +62,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Yöntem B: Bir sorgu yapın**
 
-Eğer bu biraz fazla iş gibi görünüyorsa, bir base32 address (base32 adresi) bulmaya yönelik mevcut yöntemlerden herhangi birini kullanarak Bote bağlantınızın base32 address'ini sorgulayıp base64 destination'ını (base64 hedef adresi) bulabilirsiniz. Bote düğümünüzün base32 address'i, Bote eklenti uygulaması altındaki "Connection" sayfasında, [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network) adresinde bulunur.
+Eğer bu biraz fazla iş gibi görünüyorsa, bir base32 address (base32 adresi) bulmaya yönelik mevcut yöntemlerden herhangi birini kullanarak Bote bağlantınızın base32 address'ini sorgulayıp base64 destination'ını (base64 hedef adresi) bulabilirsiniz. Bote düğümünüzün base32 address'i, Bote eklenti uygulaması altındaki "Connection" sayfasında, `http://127.0.0.1:7657/i2pbote/network` adresinde bulunur.
 
 **Adım Üç: Bize Ulaşın!**
 

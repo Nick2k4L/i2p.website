@@ -14,7 +14,7 @@ categories: ["meeting"]
 
 <div class="irc-log">20:00:31 &lt;zzz&gt; 0) 안녕하세요
 20:00:31 &lt;zzz&gt; 1) 0.9.26 릴리스 계획 (zzz)
-20:00:31 &lt;zzz&gt; 2) HOPE 계획 업데이트 (zzz) http://zzz.i2p/topics/1968
+20:00:31 &lt;zzz&gt; 2) HOPE 계획 업데이트 (zzz) `http://zzz.i2p/topics/1968`
 20:00:31 &lt;zzz&gt; 3) 0.9.27 계획 (zzz)
 20:00:31 &lt;zzz&gt; 4) Summer of X (sadie)
 20:00:35 &lt;zzz&gt; 0) 안녕하세요
@@ -25,7 +25,7 @@ categories: ["meeting"]
 20:02:27 &lt;zzz&gt; 테스트 부족이 우려되어 네트워크 내 업데이트(in-net updates)에는 새로운 jbigi 파일이 포함되지 않는다는 점을 기억해 주세요
 20:02:40 &lt;zzz&gt; 그래서 deb 사용자와 신규 설치에서 오는 버그 리포트를 주의 깊게 살펴봐 주세요
 20:02:45 &lt;zzz&gt; 1)에 대해 다른 사항 있나요?
-20:03:14 &lt;zzz&gt; 2) HOPE 계획 업데이트 (zzz) http://zzz.i2p/topics/1968
+20:03:14 &lt;zzz&gt; 2) HOPE 계획 업데이트 (zzz) `http://zzz.i2p/topics/1968`
 20:03:39 &lt;str4d&gt; 안녕하세요!
 20:03:45 &lt;zzz&gt; HOPE는 이번 금요일 기준 6주 남았습니다. 150달러짜리 컨퍼런스 티켓은 후불(행사 후)에 지불합니다
 20:04:11 &lt;zzz&gt; 여행 경비는 지원하지 않지만, 정말로 도움이 없이는 올 수 없는 분이 있다면 말씀해 주세요
@@ -48,7 +48,7 @@ categories: ["meeting"]
 20:09:16 &lt;zzz&gt; &lt;zzz&gt; 남은 건 Debian뿐이고 내일 처리할 예정입니다
 20:09:16 &lt;zzz&gt; &lt;zzz&gt; 테스트 부족이 우려되어 네트워크 내 업데이트(in-net updates)에는 새로운 jbigi 파일이 포함되지 않는다는 점을 기억해 주세요
 20:09:16 &lt;zzz&gt; &lt;zzz&gt; 그래서 deb 사용자와 신규 설치에서 오는 버그 리포트를 주의 깊게 살펴봐 주세요
-20:09:31 &lt;zzz&gt; &lt;zzz&gt; 2) HOPE 계획 업데이트 (zzz) http://zzz.i2p/topics/1968
+20:09:31 &lt;zzz&gt; &lt;zzz&gt; 2) HOPE 계획 업데이트 (zzz) `http://zzz.i2p/topics/1968`
 20:09:44 &lt;zzz&gt; &lt;zzz&gt; HOPE는 이번 금요일 기준 6주 남았습니다. 150달러짜리 컨퍼런스 티켓은 후불(행사 후)에 지불합니다
 20:09:44 &lt;zzz&gt; &lt;zzz&gt; 여행 경비는 지원하지 않지만, 정말로 도움이 없이는 올 수 없는 분이 있다면 말씀해 주세요
 20:09:44 &lt;zzz&gt; &lt;zzz&gt; lance의 확약을 받지 못해, 행사 전후로는 개발자 미팅이 없습니다
@@ -93,7 +93,7 @@ categories: ["meeting"]
 20:21:25 &lt;str4d&gt;   - libsam3 (C, 동기/비동기 모두, git.repo.i2p에 있음)
 20:21:49 &lt;zzz&gt; 좋아요. psi도 Go로 하나 가지고 있어요
 20:21:53 &lt;str4d&gt;   -   - i2psam (C++, https://github.com/VirtualDestructor/bitcoin-qt-i2p/tree/master/i2psam)
-20:22:16 &lt;str4d&gt; 다른 것들은 http://i2p-projekt.i2p/docs/api/samv3 를 참고하세요
+20:22:16 &lt;str4d&gt; 다른 것들은 `http://i2p-projekt.i2p/docs/api/samv3` 를 참고하세요
 20:22:33 &lt;zzz&gt; 질문에 답변 대기하는 것 외에는, 저는 주로 앱 작업을 먼저 시작할 생각입니다
 20:22:35 &lt;zzz&gt; 좋습니다
 20:22:45 &lt;str4d&gt; 적어도 Python Twisted와 C++ 라이브러리는 업데이트되길 바랍니다

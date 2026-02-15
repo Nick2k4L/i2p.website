@@ -36,7 +36,7 @@ Zdá se, že Ragnarokova funkce plánované syndikace funguje dobře, a co vyšl
 
 Důsledky kombinace těchto dvou by měly být jasné. Další novinky, až budou.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (brzy to začleníme do CVS)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (brzy to začleníme do CVS)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ To by bylo vážně parádní, protože by to znamenalo mnohem méně kódu k ú
 
 Teď se do toho opravdu nemůžu pustit, ale pokud chceš pomoct, zastav se na fóru.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ Mailing list [6] byla v poslední době poměrně aktivní, a to díky diskusi o
 
 Nejsem si jistý, že mám co dodat, co už není součástí samotných příspěvků, ale někteří lidé zmínili, že jim diskuse pomohla s pochopením I2P a Freenetu, takže by možná stálo za to si ji projít. Nebo taky ne ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

@@ -14,7 +14,7 @@ categories: ["status"]
 
 * 1) 0.6.0.6
 
-مع إصدار 0.6.0.6 يوم السبت الماضي، لدينا مجموعة من المكوّنات الجديدة قيد التشغيل على الشبكة الحيّة، وقد قمتم جميعاً بعمل رائع في الترقية - حتى قبل بضع ساعات، تمت ترقية ما يقرب من 250 routers! يبدو أن الشبكة تعمل بشكل جيد أيضاً، وعمليات التعريف تعمل حتى الآن — يمكنك تتبّع نشاط التعريف الخاص بك عبر http://localhost:7657/oldstats.jsp، وذلك بالاطلاع على udp.receiveHolePunch و udp.receiveIntroRelayResponse (وأيضاً udp.receiveRelayIntro لمن هم خلف NATs).
+مع إصدار 0.6.0.6 يوم السبت الماضي، لدينا مجموعة من المكوّنات الجديدة قيد التشغيل على الشبكة الحيّة، وقد قمتم جميعاً بعمل رائع في الترقية - حتى قبل بضع ساعات، تمت ترقية ما يقرب من 250 routers! يبدو أن الشبكة تعمل بشكل جيد أيضاً، وعمليات التعريف تعمل حتى الآن — يمكنك تتبّع نشاط التعريف الخاص بك عبر `http://localhost:7657/oldstats.jsp،` وذلك بالاطلاع على udp.receiveHolePunch و udp.receiveIntroRelayResponse (وأيضاً udp.receiveRelayIntro لمن هم خلف NATs).
 
 بالمناسبة، "Status: ERR-Reject" لم يعد في الواقع خطأً، فلعلّنا نغيّره إلى "Status: OK (NAT)"؟
 
@@ -38,7 +38,7 @@ cvs -d :pserver:anoncvs-PQcCzt6076/R7s880joybQ@xxxxxxxxxxxxxxxx/cvsroot co i2p  
 
 لستُ بصدد تولّي صيانة I2Phex، لكنني سأضع الإصدارات المستقبلية من I2Phex على الموقع عندما تكون هناك تحديثات لـ cvs. إذا أراد أحدٌ العمل على صفحة ويب يمكننا نشرها لوصفه/تقديمه (sirup، هل أنت هنا؟)، مع روابط إلى sirup.i2p، ومنشورات مفيدة في المنتدى، وقائمة legion للنظراء النشطين، فسيكون ذلك رائعًا.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip و     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (موقعة بمفتاحي)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` و     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (موقعة بمفتاحي)
 
 * 3) migration
 

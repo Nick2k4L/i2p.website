@@ -28,7 +28,7 @@ Como mencionado na lista [3], agora podemos executar o router e a maioria dos cl
 
 Outra característica positiva do suporte ao GCJ é a capacidade de usar a biblioteca de streaming a partir de C/C++/Python/etc. Não sei se alguém está trabalhando nesse tipo de integração, mas provavelmente valeria a pena; então, se você estiver interessado em trabalhar nessa frente, por favor, me avise!
 
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001021.html [4] http://gcc.gnu.org/java/
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001021.html` [4] http://gcc.gnu.org/java/
 
 * 4) i2psnark returns
 
@@ -36,7 +36,7 @@ Embora o i2p-bt tenha sido o primeiro cliente bittorrent portado para o I2P a se
 
 Ragnarok já começou a hackear o código para aprimorar seu algoritmo de seleção de blocos, e esperamos adicionar tanto uma interface web quanto suporte a multi-torrent antes do lançamento da versão 0.6.2. Se você tiver interesse em ajudar, entre em contato! :)
 
-[5] http://klomp.org/snark/ [6] http://dev.i2p.net/~jrandom/snark_diff.txt
+[5] http://klomp.org/snark/ [6] `http://dev.i2p.net/~jrandom/snark_diff.txt`
 
 * 5) More on bootstrapping
 
@@ -46,7 +46,7 @@ Para quem se interessa por um pouco de atrativo visual, Michael também tem algo
 
 (bom trabalho, Michael, obrigado!)
 
-[7] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html     (consulte o tópico "i2p tunnel bootstrap attack") [8] http://dev.i2p.net/~jrandom/fraction-of-attackers.png [9] http://dev.i2p.net/~jrandom/messages-per-tunnel.png
+[7] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html`     (consulte o tópico "i2p tunnel bootstrap attack") [8] `http://dev.i2p.net/~jrandom/fraction-of-attackers.png` [9] `http://dev.i2p.net/~jrandom/messages-per-tunnel.png`
 
 * 6) Virus investigations
 
@@ -54,7 +54,7 @@ Tem havido alguma discussão sobre a possível distribuição de malware junto c
 
 Obrigado, Complication, por toda a sua pesquisa sobre isso!
 
-[10] http://forum.i2p.net/viewtopic.php?t=1122
+[10] `http://forum.i2p.net/viewtopic.php?t=1122`
 
 * 7) ???
 

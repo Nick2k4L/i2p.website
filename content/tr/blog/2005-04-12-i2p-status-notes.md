@@ -31,7 +31,7 @@ bla, tunnel'ları hangi eşler (peer'lar) üzerinden geçireceğimize nasıl kar
 <+bla> İkincisi varsayılan expl. tunnel uzunlukları kullanılarak yapıldı
 <+bla> "ground truth" (doğrulanmış gerçek ölçüm verisi) sahibi olduğum düğümler kümesi ile mevcut ölçümlerdeki düğümler kümesinin kesişimi 117 düğüm
 <+bla> Sonuçlar _o kadar_ kötü değil, ama çok da etkileyici sayılmaz
-<+bla> Bkz. http://theland.i2p/estspeed.png
+<+bla> Bkz. `http://theland.i2p/estspeed.png`
 <+bla> Temel düzeyde çok yavaş/hızlı ayrımı fena değil, ancak daha hızlı eşler arasındaki ince ayrım çok daha iyi olabilir
 <+jrandom2p> hmm, gerçek değerler nasıl hesaplandı - bu tam RTT mi yoksa RTT/uzunluk mu?
 <+bla> Normal expl. tunnels kullanıldığında, yığınlama gecikmelerini önlemek neredeyse imkânsız.
@@ -51,7 +51,7 @@ bla, tunnel'ları hangi eşler (peer'lar) üzerinden geçireceğimize nasıl kar
 <+bla> Yine de... tahmin edilen zamanlamaların %65'i, gerçek düğüm süresinden 0.5 standart sapma içinde kalıyor.
 <+bla> Ancak bu yeniden yapılmalı, çünkü standart sapma >60000 ms başarısızlıklardan ciddi biçimde etkileniyor.
 
-Daha fazla tartışmanın ardından, bla mevcut hız hesaplayıcısıyla bir karşılaştırma sundu, @ http://theland.i2p/oldspeed.png adresinde yayınlandı Bu PNG'lerin aynaları şuralarda: http://dev.i2p.net/~jrandom/estspeed.png ve http://dev.i2p.net/~jrandom/oldspeed.png
+Daha fazla tartışmanın ardından, bla mevcut hız hesaplayıcısıyla bir karşılaştırma sundu, @ `http://theland.i2p/oldspeed.png` adresinde yayınlandı Bu PNG'lerin aynaları şuralarda: `http://dev.i2p.net/~jrandom/estspeed.png` ve `http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (terminoloji açısından, IB=gelen tunnel hop sayısı, OB=giden tunnel hop sayısı, ve bazı netleştirmelerin ardından, "ground truth" (doğru kabul edilen referans) ölçümleri 1 hop giden ve 0 hop gelen kullanılarak elde edildi, tam tersi değil)
 

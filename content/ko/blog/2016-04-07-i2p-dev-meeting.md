@@ -13,14 +13,14 @@ categories: ["meeting"]
 ## 회의록
 
 <div class="irc-log">20:00:05 &lt;zzz&gt; 0) 안녕하세요
-20:00:05 &lt;zzz&gt; 1) 지난 회의에서 남은 안건들 http://zzz.i2p/topics/2093
-20:00:05 &lt;zzz&gt; 2) kytv의 역할과 서비스 대체 http://zzz.i2p/topics/2098
-20:00:05 &lt;zzz&gt; 3) 0.9.26 계획 업데이트 http://i2p-projekt.i2p/en/get-involved/roadmap http://zzz.i2p/topics/1960
-20:00:05 &lt;zzz&gt; 4) HOPE 계획 http://zzz.i2p/topics/1968
+20:00:05 &lt;zzz&gt; 1) 지난 회의에서 남은 안건들 `http://zzz.i2p/topics/2093`
+20:00:05 &lt;zzz&gt; 2) kytv의 역할과 서비스 대체 `http://zzz.i2p/topics/2098`
+20:00:05 &lt;zzz&gt; 3) 0.9.26 계획 업데이트 `http://i2p-projekt.i2p/en/get-involved/roadmap` `http://zzz.i2p/topics/1960`
+20:00:05 &lt;zzz&gt; 4) HOPE 계획 `http://zzz.i2p/topics/1968`
 20:00:05 &lt;zzz&gt; 5) 월례 회의와 프로젝트 관리 3개월 회고
 20:00:10 &lt;zzz&gt; 0) 안녕하세요
 20:00:12 &lt;zzz&gt; 안녕
-20:00:38 &lt;zzz&gt; 1) 지난 회의에서 남은 안건들 http://zzz.i2p/topics/2093
+20:00:38 &lt;zzz&gt; 1) 지난 회의에서 남은 안건들 `http://zzz.i2p/topics/2093`
 20:00:55 &lt;orignal_&gt; hi
 20:01:00 &lt;zzz&gt; - Reseed 캠페인 준비, 1월 말까지:
 20:01:00 &lt;zzz&gt; ** Sadie가 backup에게 연락하여 논의 - OPEN, 새 날짜 4월 5일
@@ -59,8 +59,8 @@ categories: ["meeting"]
 20:12:17 &lt;str4d&gt; 그러니 네, 개선이 필요합니다
 20:12:20 &lt;zzz&gt; 좋아요. 좋은 관점이에요
 20:12:25 &lt;zzz&gt; 1) 관련해 더 있나요?
-20:13:04 &lt;str4d&gt; 다른 분들을 위해, 제안 관련 내용은 http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec/proposals 에 있습니다 - 검토하고 의견 부탁드립니다 :)
-20:13:26 &lt;zzz&gt; 2) kytv의 역할과 서비스 대체 http://zzz.i2p/topics/2098
+20:13:04 &lt;str4d&gt; 다른 분들을 위해, 제안 관련 내용은 `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec/proposals` 에 있습니다 - 검토하고 의견 부탁드립니다 :)
+20:13:26 &lt;zzz&gt; 2) kytv의 역할과 서비스 대체 `http://zzz.i2p/topics/2098`
 20:13:34 &lt;zzz&gt; 그가 하던 일이 약 20가지 목록으로 있습니다
 20:13:44 &lt;str4d&gt; 제 쪽은 더 없습니다
 20:13:47 &lt;str4d&gt; (I2P Android 작업은 했지만, 릴리스까지는 못 갔습니다)
@@ -87,7 +87,7 @@ categories: ["meeting"]
 20:19:02 &lt;zzz&gt; 2) 마지막 콜
 20:19:46 &lt;str4d&gt; 아무도 안 하면, 제가 IRC 봇/릴레이를 맡을 수도 있습니다. 당장은 가능성 낮습니다.
 20:20:34 &lt;zzz&gt; deb 빌드는 상태가 괜찮은 편이지만 jessie용 arm 같은 건 제가 오늘 고쳤을 수도 있고 아닐 수도 있습니다
-20:21:19 &lt;zzz&gt; 3) 0.9.26 계획 업데이트 http://i2p-projekt.i2p/en/get-involved/roadmap http://zzz.i2p/topics/1960
+20:21:19 &lt;zzz&gt; 3) 0.9.26 계획 업데이트 `http://i2p-projekt.i2p/en/get-involved/roadmap` `http://zzz.i2p/topics/1960`
 20:21:33 &lt;zzz&gt; 좋아요, 3a) 일정 그리고 3b) GMP 6로 가겠습니다
 20:21:38 &lt;zzz&gt; 3a) 일정
 20:22:03 &lt;zzz&gt; 로드맵에는 '5월'이라고 되어 있고, 지난 3월 22일 릴리스에서 6-7주면 5월 초중순입니다
@@ -135,7 +135,7 @@ categories: ["meeting"]
 20:35:29 &lt;zzz&gt; 마지막에 tuna가 한 말은 받아들이든 말든, 그는 끝났다는 겁니다
 20:35:54 &lt;zzz&gt; 빌드가 빠르더라도, 테스트는 느립니다
 20:36:25 &lt;str4d&gt; 테스트 프로세스가 어딘가 문서화되어 있나요?
-20:36:54 &lt;zzz&gt; http://zzz.i2p/topics/1960 의 마지막 페이지로 가면 그가 가진 모든 빌드 노트를 제출해 놓았습니다
+20:36:54 &lt;zzz&gt; `http://zzz.i2p/topics/1960` 의 마지막 페이지로 가면 그가 가진 모든 빌드 노트를 제출해 놓았습니다
 20:36:56 &lt;eche|on&gt; (참고로, 우리는 이미 노트 없이 다른 것들도 받아들인 적이 있습니다)
 20:37:07 &lt;str4d&gt; 이건 정확히 CI 서버에 넣어야 할 것처럼 들리네요
 20:37:38 &lt;zzz&gt; 빌드 방법에 대한 readme는 업데이트했습니다. 테스트 방법에 대한 정보도 스레드에 일부 있고, 저도 제 나름의 방법을 개발했습니다
@@ -248,7 +248,7 @@ categories: ["meeting"]
 21:01:51 &lt;hottuna&gt; zzz: 좋습니다
 21:01:54 &lt;str4d&gt; (buildmaster가 항상 온라인이 아닌 buildserver도 처리합니다)
 21:02:12 &lt;zzz&gt; 빌드서버 얘기는 보류하고 4)로 넘어갑시다
-21:02:22 &lt;zzz&gt; 4) HOPE 계획 http://zzz.i2p/topics/1968
+21:02:22 &lt;zzz&gt; 4) HOPE 계획 `http://zzz.i2p/topics/1968`
 21:02:23 &lt;susbarbatus&gt; str4d: 문제 없습니다. 제 ~2012 mac mini를 연결해 둘 수 있어요. 느리긴 하지만 다른 용도는 없습니다.
 21:02:24 &lt;str4d&gt; ACK
 21:02:33 &lt;str4d&gt; ^5 susbarbatus :)

@@ -20,7 +20,7 @@ El otro día publicamos la versión 0.6.1.25, que incluye la avalancha de correc
 
 Las actualizaciones de zzz a I2PSnark incluyeron optimizaciones del protocolo, así como cambios en las interfaces web, tal como se describe en el registro de cambios [1]. También ha habido algunas pequeñas actualizaciones de I2PSnark desde la versión 0.6.1.25, y quizás zzz pueda darnos un panorama de lo que ocurre durante la reunión de esta noche.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

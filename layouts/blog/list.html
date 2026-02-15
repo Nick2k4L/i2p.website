@@ -57,22 +57,21 @@
                     {{ else }}
                     <p class="blog-item-excerpt">{{ .Summary | truncate 150 }}</p>
                     {{ end }}
+                </a>
+                <div class="blog-item-footer">
+                    {{ with .Params.author }}
+                    <span class="blog-item-author">{{ . }}</span>
+                    {{ end }}
 
-                    <div class="blog-item-footer">
-                        {{ with .Params.author }}
-                        <span class="blog-item-author">{{ . }}</span>
-                        {{ end }}
-
-                        {{ with .Params.categories }}
-                        <div class="blog-item-categories">
-                            {{ range . }}
-                            {{ $categoryURL := printf "categories/%s/" (. | urlize) }}
-                            <a href="{{ relLangURL $categoryURL }}" class="category-tag">{{ . }}</a>
-                            {{ end }}
-                        </div>
+                    {{ with .Params.categories }}
+                    <div class="blog-item-categories">
+                        {{ range . }}
+                        {{ $categoryURL := printf "categories/%s/" (. | urlize) }}
+                        <a href="{{ relLangURL $categoryURL }}" class="category-tag">{{ . }}</a>
                         {{ end }}
                     </div>
-                </a>
+                    {{ end }}
+                </div>
             </article>
             {{ end }}
         </div>

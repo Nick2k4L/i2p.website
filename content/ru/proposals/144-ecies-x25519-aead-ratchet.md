@@ -31,9 +31,9 @@ toc: true
 - Спецификация общих структур [Common Structures](/docs/specs/common-structures/)
 - Спецификация [I2NP](/docs/specs/i2np/), включая LS2
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) обзор новой асимметричной криптографии
+- `http://zzz.i2p/topics/1768` обзор новой асимметричной криптографии
 - Низкоуровневый обзор криптографии [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
+- ECIES `http://zzz.i2p/topics/2418`
 - [NTCP2](/docs/specs/ntcp2/) [Предложение 111](/proposals/111-ntcp-2/)
 - 123 Новые записи netDB
 - 142 Новый криптографический шаблон

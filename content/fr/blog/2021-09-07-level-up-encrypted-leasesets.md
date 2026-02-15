@@ -40,13 +40,13 @@ Même si l'explication peut prendre du temps, la configuration d'un LeaseSet chi
 
 ## Sur le "Serveur"
 
-Commencez par ouvrir le Gestionnaire des services cachés à http://127.0.0.1:7657/i2ptunnelmgr et faites défiler jusqu'en bas de la section intitulée "I2P Hidden Services". Créez un nouveau service caché avec l'hôte "127.0.0.1" et le port "7657" avec ces "Tunnel Cryptography Options" et enregistrez le service caché.
+Commencez par ouvrir le Gestionnaire des services cachés à `http://127.0.0.1:7657/i2ptunnelmgr` et faites défiler jusqu'en bas de la section intitulée "I2P Hidden Services". Créez un nouveau service caché avec l'hôte "127.0.0.1" et le port "7657" avec ces "Tunnel Cryptography Options" et enregistrez le service caché.
 
 Ensuite, sélectionnez votre nouveau tunnel depuis la page principale du Gestionnaire des services cachés (Hidden Services Manager). Les options de cryptographie du tunnel doivent désormais inclure votre première clé pré-partagée. Notez-la pour l’étape suivante, ainsi que l’adresse Base32 chiffrée de votre tunnel.
 
 ## Sur le "Client"
 
-Passez maintenant à l’ordinateur client qui se connectera au service caché, et ouvrez Keyring Configuration à l’adresse http://127.0.0.1:7657/configkeyring pour ajouter les clés préparées précédemment. Commencez par coller l’adresse Base32 depuis le serveur dans le champ intitulé : "Full destination, name, Base32, or hash." Ensuite, collez la clé pré‑partagée du serveur dans le champ "Encryption Key". Cliquez sur Enregistrer, et vous êtes prêt à accéder en toute sécurité au service caché en utilisant un LeaseSet chiffré.
+Passez maintenant à l’ordinateur client qui se connectera au service caché, et ouvrez Keyring Configuration à l’adresse `http://127.0.0.1:7657/configkeyring` pour ajouter les clés préparées précédemment. Commencez par coller l’adresse Base32 depuis le serveur dans le champ intitulé : "Full destination, name, Base32, or hash." Ensuite, collez la clé pré‑partagée du serveur dans le champ "Encryption Key". Cliquez sur Enregistrer, et vous êtes prêt à accéder en toute sécurité au service caché en utilisant un LeaseSet chiffré.
 
 ## Vous êtes maintenant prêt à administrer I2P à distance
 

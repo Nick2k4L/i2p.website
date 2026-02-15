@@ -55,7 +55,7 @@ Visit your Local Gitlab instance and set up your admin account. Choose a strong 
 
 ### Gitlab Web(HTTP) Interface
 
-웹 인터페이스에는 "HTTP" server tunnel을 사용하세요. http://127.0.0.1:7657/i2ptunnelmgr 에서 "New Tunnel Wizard"를 실행하고 다음 값을 입력하세요:
+웹 인터페이스에는 "HTTP" server tunnel을 사용하세요. `http://127.0.0.1:7657/i2ptunnelmgr` 에서 "New Tunnel Wizard"를 실행하고 다음 값을 입력하세요:
 
 1. Select "Server Tunnel"
 2. Select "HTTP Server"
@@ -66,7 +66,7 @@ Visit your Local Gitlab instance and set up your admin account. Choose a strong 
 
 ### Gitlab SSH Interface
 
-SSH 인터페이스의 경우 "Standard" 서버 tunnel을 사용하세요. http://127.0.0.1:7657/i2ptunnelmgr 에서 "New Tunnel Wizard"를 실행하고 다음 값을 입력하세요:
+SSH 인터페이스의 경우 "Standard" 서버 tunnel을 사용하세요. `http://127.0.0.1:7657/i2ptunnelmgr` 에서 "New Tunnel Wizard"를 실행하고 다음 값을 입력하세요:
 
 1. Select "Server Tunnel"
 2. Select "Standard Server"

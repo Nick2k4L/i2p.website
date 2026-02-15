@@ -14,7 +14,7 @@ toc: true
 
 虽然对合适的后量子(PQ)密码学的研究和竞争已经进行了十年，但直到最近选择才变得明确。
 
-我们在 2022 年开始研究 PQ 密码学的影响 [zzz.i2p](http://zzz.i2p/topics/3294)。
+我们在 2022 年开始研究 PQ 密码学的影响 zzz.i2p。
 
 在过去两年中，TLS 标准增加了混合加密支持，由于 Chrome 和 Firefox 的支持，现在它已被用于互联网上很大一部分的加密流量 [Cloudflare](https://blog.cloudflare.com/pq-2024/)。
 

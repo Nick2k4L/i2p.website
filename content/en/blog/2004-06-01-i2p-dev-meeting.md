@@ -36,7 +36,7 @@ categories: ["meeting"]
 [23:02] &lt;mihi&gt; ;)
 [23:02] &lt;duck&gt; 1) code progress
 [23:02] &lt;duck&gt; not much code submitted to cvs
-[23:02] &lt;duck&gt; I did win the trophy this week: http://duck.i2p/duck_trophy.jpg
+[23:02] &lt;duck&gt; I did win the trophy this week: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus has no cvs account yet
 [23:03] &lt;Masterboy&gt; and who did submit something?
 [23:03] &lt;duck&gt; anybody doing any secret coding?

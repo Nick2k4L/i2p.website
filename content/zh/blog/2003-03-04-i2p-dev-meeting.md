@@ -6,7 +6,7 @@ description: "2003年3月4日I2P开发会议记录。"
 categories: ["meeting"]
 ---
 
-（由wayback machine http://www.archive.org/ 提供）
+（由wayback machine `http://www.archive.org/` 提供）
 
 ## 快速回顾
 

@@ -6,7 +6,7 @@ description: "Журнал собрания разработчиков I2P от 
 categories: ["meeting"]
 ---
 
-(С любезного разрешения wayback machine http://www.archive.org/)
+(С любезного разрешения wayback machine `http://www.archive.org/`)
 
 ## Краткое резюме
 

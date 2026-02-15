@@ -39,7 +39,7 @@ categories: ["meeting"]
 20:06:54 &lt;zzz&gt; zzz.i2p에 지난 해보다 인상안을 제안해 두었는데, reseeders(리시더; 초기 연결 데이터를 제공하는 운영자)는 500유로, 주요 기여자는 1500유로, 특별한 사정은 2000유로입니다
 20:07:04 &lt;zzz&gt; 의견?
 20:07:21 &lt;eche|on&gt; 저는 괜찮습니다
-20:07:47 &lt;eche|on&gt; 참고로: http://echelon.i2p/donations/index.html 업데이트됨
+20:07:47 &lt;eche|on&gt; 참고로: `http://echelon.i2p/donations/index.html` 업데이트됨
 20:07:55 &lt;i2pr&gt; [Slack/str4d] 저도 그게 합리적으로 보입니다
 20:07:56 &lt;manas&gt; 렉이 있어서 죄송. 괜찮아 보입니다
 20:08:09 &lt;zzz&gt; eche|on, 사람들이 당신에게 요청을 이메일로 보내길 원하나요? 그렇다면 마감일은 언제인가요?

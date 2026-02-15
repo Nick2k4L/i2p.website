@@ -13,14 +13,14 @@ categories: ["meeting"]
 ## Meeting Log
 
 <div class="irc-log">
-20:00:00 &lt;zzz&gt; Agenda http://zzz.i2p/topics/2014
+20:00:00 &lt;zzz&gt; Agenda `http://zzz.i2p/topics/2014`
 20:00:00 &lt;zzz&gt; 0) Hi
-20:00:00 &lt;zzz&gt; 1) Review of assigned tasks from Dec. 30 meeting - http://zzz.i2p/topics/2016 (zzz)
-20:00:00 &lt;zzz&gt; 2) Other CCC followup - http://zzz.i2p/topics/2019 (zzz)
+20:00:00 &lt;zzz&gt; 1) Review of assigned tasks from Dec. 30 meeting - `http://zzz.i2p/topics/2016` (zzz)
+20:00:00 &lt;zzz&gt; 2) Other CCC followup - `http://zzz.i2p/topics/2019` (zzz)
 20:00:00 &lt;zzz&gt; 3) Project meeting plan for 2016 (zzz, Sadie)
-20:00:00 &lt;zzz&gt; 4) GMP 6 readiness for merging  - http://zzz.i2p/topics/1960 (tuna)
-20:00:00 &lt;zzz&gt; 5) http://secure.tinhat.i2p console home page request - http://zzz.i2p/topics/236?page=3#p10884 (david)
-20:00:00 &lt;zzz&gt; 6) Proposal for Code of Conduct - http://zzz.i2p/topics/2015 (Sadie)
+20:00:00 &lt;zzz&gt; 4) GMP 6 readiness for merging  - `http://zzz.i2p/topics/1960` (tuna)
+20:00:00 &lt;zzz&gt; 5) `http://secure.tinhat.i2p` console home page request - `http://zzz.i2p/topics/236?page=3#p10884` (david)
+20:00:00 &lt;zzz&gt; 6) Proposal for Code of Conduct - `http://zzz.i2p/topics/2015` (Sadie)
 20:00:02 &lt;lazygravy&gt; There is a link to it in the ccc blog post
 20:00:05 &lt;zzz&gt; 0) Hi
 20:00:09 &lt;zzz&gt; hi
@@ -29,7 +29,7 @@ categories: ["meeting"]
 20:00:25 &lt;lazygravy&gt; Hello
 20:00:32 &lt;cacapo&gt; hi
 20:00:33 &lt;sadie_i21&gt; hi
-20:00:37 &lt;zzz&gt; 1) Review of assigned tasks from Dec. 30 meeting - http://zzz.i2p/topics/2016 (zzz)
+20:00:37 &lt;zzz&gt; 1) Review of assigned tasks from Dec. 30 meeting - `http://zzz.i2p/topics/2016` (zzz)
 20:00:44 &lt;Irc2PGuest76545&gt; Hey
 20:00:48 &lt;zzz&gt; ok, let's quickly go through the open items only
 20:00:49 &lt;anonimal&gt; Hi
@@ -131,7 +131,7 @@ categories: ["meeting"]
 20:21:34 &lt;str4d&gt; zzz, I'd say March 6, I can draft something up earlier but I expect we will end up doing roadmapping on that along with everything else while I'm over.
 20:21:40 &lt;zzz&gt; ok, march 6
 20:21:44 &lt;zzz&gt; last call for 1)
-20:21:57 &lt;zzz&gt; 2) Other CCC followup - http://zzz.i2p/topics/2019 (zzz)
+20:21:57 &lt;zzz&gt; 2) Other CCC followup - `http://zzz.i2p/topics/2019` (zzz)
 20:22:13 &lt;zzz&gt; I put 2) in here just as a placeholder in case there were other important followups
 20:22:18 &lt;str4d&gt; I'll target Feb 26 for collating all the todo items and possibly drafting a roadmap.
 20:22:26 &lt;zzz&gt; I've been corresponding with Phillip Winter about Sybil
@@ -183,7 +183,7 @@ categories: ["meeting"]
 20:31:05 &lt;comraden1&gt; eche|on: I setup a computer for her so that might not be necessary, but that's her call of course if she wants a new piece of equipment
 20:31:14 &lt;eche|on&gt; zzz: sorry, we talked about a pc system she needs, and she shopuld get in contact with me
 20:31:23 &lt;zzz&gt; ok
-20:31:29 &lt;zzz&gt; 4) GMP 6 readiness for merging  - http://zzz.i2p/topics/1960 (tuna)
+20:31:29 &lt;zzz&gt; 4) GMP 6 readiness for merging  - `http://zzz.i2p/topics/1960` (tuna)
 20:31:35 &lt;zzz&gt; hottuna, what's the latest?
 20:31:38 &lt;eche|on&gt; if thats the point, IMHO it is fine, but the meeting round here can vote yes!
 20:31:56 &lt;hottuna&gt; jcpuid for windows x86isn't working
@@ -217,7 +217,7 @@ categories: ["meeting"]
 20:35:36 &lt;hottuna&gt; links for what?
 20:35:40 &lt;hottuna&gt; for jcpuid?
 20:35:47 &lt;orignal&gt; str4d, 100%
-20:36:18 &lt;zzz&gt; 5) http://secure.tinhat.i2p console home page request - http://zzz.i2p/topics/236?page=3#p10884 
+20:36:18 &lt;zzz&gt; 5) `http://secure.tinhat.i2p` console home page request - `http://zzz.i2p/topics/236?page=3#p10884` 
 20:36:27 &lt;zzz&gt; The_Tin_Hat, please tell us about your site
 20:37:10 &lt;JIa3apb_KaraHoBu4&gt; Justification - for the weak!
 20:37:16 &lt;The_Tin_Hat&gt; The site provides  a number of practical tutorials on privacy and security, aimed at being digestible by intermediate users, including a number of tutorials on i2p and tor
@@ -247,7 +247,7 @@ categories: ["meeting"]
 20:42:32 &lt;zzz&gt; ok last call for 5)
 20:42:37 &lt;z3r0fox&gt; +1
 20:43:06 &lt;zzz&gt; hearing no objections, we'll approve the thinhat request, I'll check it in for .25
-20:43:27 &lt;zzz&gt; 6) Proposal for Code of Conduct - http://zzz.i2p/topics/2015 (Sadie)
+20:43:27 &lt;zzz&gt; 6) Proposal for Code of Conduct - `http://zzz.i2p/topics/2015` (Sadie)
 20:43:27 &lt;zzz&gt; 6a) Proposal and reasoning (Sadie)
 20:43:27 &lt;zzz&gt; 6b) Questions for Sadie
 20:43:27 &lt;zzz&gt; 6c) Brief comments from those who have NOT already commented on zzz.i2p
@@ -379,7 +379,7 @@ categories: ["meeting"]
 21:05:26 &lt;eche|on&gt; what is VRP`
 21:05:26 &lt;eche|on&gt; ?
 21:05:36 &lt;str4d&gt; eche|on, Vulnerability Response Process
-21:05:37 &lt;anonimal&gt; http://trac.i2p2.i2p/ticket/1119
+21:05:37 &lt;anonimal&gt; `http://trac.i2p2.i2p/ticket/1119`
 21:05:37 &lt;zzz&gt; anonimal, you have that ticket?
 21:05:39 &lt;eche|on&gt; ah, ok
 21:05:52 &lt;eche|on&gt; a complicated topic

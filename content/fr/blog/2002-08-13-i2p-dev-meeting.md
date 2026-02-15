@@ -6,7 +6,7 @@ description: "Réunion de développement I2P portant sur le statut de la RC2, l�
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la Wayback Machine `http://www.archive.org/`)
 
 ## Récapitulatif rapide
 

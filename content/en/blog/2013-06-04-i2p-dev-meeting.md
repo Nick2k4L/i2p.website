@@ -23,8 +23,8 @@ categories: ["meeting"]
 20:00:14  &lt;hottuna&gt; * Ticket #729 - properties location on osx
 20:00:14  &lt;hottuna&gt; * Ticket #741 - process renamer on windows
 20:00:14  &lt;hottuna&gt; * Misc?
-20:00:22  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/729 - (assigned enhancement) - on OSX ~/.i2p -&gt; ~/Library/Application Support/i2p
-20:00:33  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/741 - (accepted enhancement) - Make I2P easier to deal with with Windows firewall software
+20:00:22  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/729` - (assigned enhancement) - on OSX ~/.i2p -&gt; ~/Library/Application Support/i2p
+20:00:33  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/741` - (accepted enhancement) - Make I2P easier to deal with with Windows firewall software
 20:00:45  &lt;hottuna&gt; __ The next NetDB backend__
 20:01:16  &lt;hottuna&gt; I've been working on a proposal, the first RFC is ready
 20:01:35  &lt;hottuna&gt; http://trac.i2p2.de/wiki/NetDB/NextBackend
@@ -190,7 +190,7 @@ categories: ["meeting"]
 21:10:50  &lt;zzz&gt; just needs some testing, but probably wont get more unless its merged
 21:10:50  &lt;hottuna&gt; thanks!
 21:11:35  &lt;zzz&gt; I lobbied for merging months ago as you will see in #729 comments
-21:11:42  &lt;topiltzin&gt; http://pastethis.i2p/show/3404/
+21:11:42  &lt;topiltzin&gt; `http://pastethis.i2p/show/3404/`
 21:11:45  &lt;iRelay&gt; Title: Paste #3404 | LodgeIt! (at pastethis.i2p)
 21:12:01  &lt;hottuna&gt; let's go ahead with the merge then
 21:12:17  &lt;topiltzin&gt; ok great.  Meeh, speak now or forever hold your peace
@@ -204,7 +204,7 @@ categories: ["meeting"]
 21:16:57  &lt;sponge&gt; hi
 21:17:24  &lt;sponge&gt; meeting today?
 21:17:27  &lt;topiltzin&gt; which means any security settings that are applied to i2p become valid for any and every java application
-21:17:41  &lt;hottuna&gt; sponge: yes.  http://zzz.i2p/topics/1397?page=1#p6616
+21:17:41  &lt;hottuna&gt; sponge: yes.  `http://zzz.i2p/topics/1397?page=1#p6616`
 21:17:48  &lt;iRelay&gt; Title: zzz.i2p: Meeting [4th June] (at zzz.i2p)
 21:17:48  &lt;sponge&gt; ty
 21:17:59  &lt;sponge&gt; bout time I made one of these...
@@ -236,7 +236,7 @@ categories: ["meeting"]
 21:25:43  &lt;sponge&gt; it also has to be able to not mess with what is out there already
 21:25:57  &lt;sponge&gt; well-- adapt easily
 21:26:56  &lt;hottuna&gt; So the question is what people would use it for?
-21:27:03  &lt;zzz&gt; we already have a thread going at http://zzz.i2p/topics/1393 --- how about putting your proposal there?
+21:27:03  &lt;zzz&gt; we already have a thread going at `http://zzz.i2p/topics/1393` --- how about putting your proposal there?
 21:27:10  &lt;iRelay&gt; Title: zzz.i2p: UDP Trackers (at zzz.i2p)
 21:27:10  &lt;sponge&gt; two ways I am thinking of is either wrap a UDP packet with &lt;&lt;destination&gt;&lt;data&gt;&gt; or &lt;&lt;handle&gt;&lt;data&gt;&gt;
 21:28:13  &lt;dg&gt; hottuna: trackers, voip?
@@ -270,7 +270,7 @@ categories: ["meeting"]
 21:32:12  &lt;hottuna&gt; what concerns are you having sponge?
 21:32:27  &lt;sponge&gt; ipv6 can link to who you are very easily
 21:32:46  &lt;Meeh&gt; damn, overslept the meeting -.-
-21:32:53  &lt;zzz&gt; IPv6 thread: http://zzz.i2p/topics/109
+21:32:53  &lt;zzz&gt; IPv6 thread: `http://zzz.i2p/topics/109`
 21:32:56  &lt;hottuna&gt; since the address space is larger?
 21:32:59  &lt;iRelay&gt; Title: zzz.i2p: IPV6 TODO (at zzz.i2p)
 21:33:03  &lt;sponge&gt; yes
@@ -490,7 +490,7 @@ categories: ["meeting"]
 22:23:01  * hottuna baf's the meeting closing hammer
 22:23:06  * hottuna **baf**
 22:23:17  &lt;sponge&gt; **BARF** :-)
-22:23:35  &lt;hottuna&gt; summary posted at: http://zzz.i2p/topics/1397
+22:23:35  &lt;hottuna&gt; summary posted at: `http://zzz.i2p/topics/1397`
 22:23:42  &lt;iRelay&gt; Title: zzz.i2p: Meeting [4th June] (at zzz.i2p)
 22:23:50  &lt;RN&gt; :)
 22:23:57  &lt;sponge&gt; cool, I can now go run my errands
@@ -500,6 +500,6 @@ categories: ["meeting"]
 22:25:01  &lt;micster&gt; Just wanted to see if I was in the right place.
 22:26:52  &lt;RN&gt; lots of good discussion.  thanks for making the time to particpate y'all
 22:27:07  &lt;hottuna&gt; :)
-22:28:54  &lt;zzz&gt; micster, the correct thread for that is http://zzz.i2p/topics/1388
+22:28:54  &lt;zzz&gt; micster, the correct thread for that is `http://zzz.i2p/topics/1388`
 22:28:58  &lt;iRelay&gt; Title: zzz.i2p: Official I2P group (at zzz.i2p)
 </div>

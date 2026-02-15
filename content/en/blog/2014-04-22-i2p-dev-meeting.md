@@ -15,8 +15,8 @@ categories: ["meeting"]
 <div class="irc-log">
 20:32:31  &lt;str4d&gt; Hi all
 20:34:53  &lt;str4d&gt; 0) Hi
-20:34:53  &lt;str4d&gt; 1) TODO 0.9.13-0.9.16 http://zzz.i2p/topics/1600
-20:34:53  &lt;str4d&gt; 2) New transport for Tor PTs http://zzz.i2p/topics/1551
+20:34:53  &lt;str4d&gt; 1) TODO 0.9.13-0.9.16 `http://zzz.i2p/topics/1600`
+20:34:53  &lt;str4d&gt; 2) New transport for Tor PTs `http://zzz.i2p/topics/1551`
 20:34:53  &lt;str4d&gt; 3) Any items that emerge from 1)
 20:34:53  &lt;str4d&gt; Post-meeting activity: Stress-testing Mumble (voice chat over I2P)
 20:35:07  &lt;iRelay&gt; Title: zzz.i2p: TODO 0.9.13 - 0.9.16 (at zzz.i2p)
@@ -26,17 +26,17 @@ categories: ["meeting"]
 20:37:37  &lt;str4d&gt; Anyone else?
 20:38:01  &lt;str4d&gt; zzz2 orion psi kytv meeh_
 20:41:17  &lt;str4d&gt; Hopefully some of them will turn up.
-20:41:17  &lt;str4d&gt; 1) TODO 0.9.13-0.9.16 http://zzz.i2p/topics/1600
+20:41:17  &lt;str4d&gt; 1) TODO 0.9.13-0.9.16 `http://zzz.i2p/topics/1600`
 20:41:22  &lt;iRelay&gt; Title: zzz.i2p: TODO 0.9.13 - 0.9.16 (at zzz.i2p)
 20:41:26  &lt;zzz2&gt; here
 20:41:58  &lt;str4d&gt; At zzz's request we started a discussion thread to propose ideas for the I2P roadmap moving forward.
 20:42:27  &lt;str4d&gt; There was a lot of chatter, but no actual consensus was reached.
-20:43:14  &lt;str4d&gt; I summarized some of the initial suggestions on the roadmap page http://trac.i2p2.i2p/wiki/Roadmaps/1.0
+20:43:14  &lt;str4d&gt; I summarized some of the initial suggestions on the roadmap page `http://trac.i2p2.i2p/wiki/Roadmaps/1.0`
 20:43:17  &lt;iRelay&gt; Title: Roadmaps/1.0  I2P Bugtracker (at trac.i2p2.i2p)
 20:45:01  &lt;str4d&gt; zzz2: I see you have been getting stuck into susimail (yay)
 20:46:19  &lt;zzz2&gt; yeah, fell down that rathole while we try to decide what's really important
 20:52:07  &lt;str4d&gt; I think that it was useful work, if only because there is a long-standing bug about login problems, and susimail is one of the first apps that users are going to try
-20:52:08  &lt;str4d&gt; http://trac.i2p2.i2p/ticket/747
+20:52:08  &lt;str4d&gt; `http://trac.i2p2.i2p/ticket/747`
 20:52:12  &lt;iRelay&gt; Title: #747 (Login problems with Susimail)  I2P Bugtracker (at trac.i2p2.i2p)
 20:54:45  &lt;psi&gt; str4d: ohai
 20:54:47  * psi is late?
@@ -59,10 +59,10 @@ categories: ["meeting"]
 21:03:05  &lt;str4d&gt; not the fingerprint, but the key itself is
 21:03:47  &lt;zzz2&gt; it needs to be in that sample monotonerc template file. psi maybe you can do that as your first test of mtn skills?
 21:04:23  &lt;jenkins@kyirc&gt; Yippee, build fixed!
-21:04:24  &lt;jenkins@kyirc&gt; Project I2P build #581: FIXED in 3 min 55 sec: http://jenkins.killyourtv.i2p/job/I2P/581/
+21:04:24  &lt;jenkins@kyirc&gt; Project I2P build #581: FIXED in 3 min 55 sec: `http://jenkins.killyourtv.i2p/job/I2P/581/`
 21:04:36  &lt;psi&gt; i can get that
 21:04:40  &lt;psi&gt; i already did that locally
-21:04:53  &lt;str4d&gt; zzz2, psi, I have updated the roadmap Gantt - http://trac.i2p2.i2p/wiki/Roadmaps/1.0
+21:04:53  &lt;str4d&gt; zzz2, psi, I have updated the roadmap Gantt - `http://trac.i2p2.i2p/wiki/Roadmaps/1.0`
 21:04:56  &lt;iRelay&gt; Title: Roadmaps/1.0  I2P Bugtracker (at trac.i2p2.i2p)
 21:05:21  &lt;psi&gt; the monotone key fp for my NOT transport key is "1ceb85b992114bae1bcb156ef238f8f3044a6bfe",     --  ampernand@gmail.com
 21:06:04  &lt;psi&gt; i can get my transport key fp as well
@@ -76,14 +76,14 @@ categories: ["meeting"]
 21:08:15  &lt;str4d&gt; How does the Gantt roadmap look to everyone now? Are there any items that seem unrealistic, or any that are missing
 21:08:16  &lt;str4d&gt; ?
 21:09:37  * psi reviews roadmap
-21:09:43  &lt;jenkins@kyirc&gt; Project I2P UnitTests build #528: SUCCESS in 5 min 6 sec: http://jenkins.killyourtv.i2p/job/UnitTests/528/
+21:09:43  &lt;jenkins@kyirc&gt; Project I2P UnitTests build #528: SUCCESS in 5 min 6 sec: `http://jenkins.killyourtv.i2p/job/UnitTests/528/`
 21:09:57  &lt;jenkins@kyirc&gt; Starting build #82 for job I2P-Android
 21:09:59  &lt;str4d&gt; zzz2: I suggest that you get the new GPG keys item out of the way sooner rather than later ;)
 21:10:19  &lt;zzz2&gt; str4d, please tell us what it's telling you about what's important
 21:10:33  &lt;str4d&gt; psi: are you finding much overlap between your PTs work and NTCP2?
 21:10:34  &lt;zzz2&gt; yes I'll do it before the next release, I promise
 21:11:24  &lt;str4d&gt; IMHO there are three things that are important:
-21:11:32  &lt;jenkins@kyirc&gt; Project I2P-Android build #82: SUCCESS in 1 min 34 sec: http://jenkins.killyourtv.i2p/job/I2P-Android/82/
+21:11:32  &lt;jenkins@kyirc&gt; Project I2P-Android build #82: SUCCESS in 1 min 34 sec: `http://jenkins.killyourtv.i2p/job/I2P-Android/82/`
 21:11:40  &lt;str4d&gt; 1) progress on the crypto upgrade - now finally getting underway
 21:12:01  &lt;psi&gt; str4d: at the moment, i have yet to look at ntcp2
 21:12:13  &lt;str4d&gt; (continuing on from the prep work)
@@ -111,13 +111,13 @@ categories: ["meeting"]
 21:26:04  &lt;str4d&gt; so we need to work out what we need to do before then, so we can organize the meeting with enough time to finish that first.
 21:29:27  &lt;zzz2&gt; I disagree that we first have to choose.
 21:29:59  &lt;zzz2&gt; Or, that we can choose now (P256) and choose again later when more options are available.
-21:30:02  &lt;MTN@kyirc&gt; [ I2P ] compile fix [zzz@mail.i2p] http://killyourtv.i2p/viewmtn/revision/info/12396c3ee88d1194482fc2cc3751db1169cc52e3
+21:30:02  &lt;MTN@kyirc&gt; [ I2P ] compile fix [zzz@mail.i2p] `http://killyourtv.i2p/viewmtn/revision/info/12396c3ee88d1194482fc2cc3751db1169cc52e3`
 21:30:34  &lt;zzz2&gt; We could switch the default for new dests to P256 in 0.9.13 if we want.
 21:30:35  &lt;str4d&gt; zzz2: if we get to the stage where the naming system can cope with dynamic enc choices, then I agree
 21:31:05  &lt;zzz2&gt; P256 is clearly better than DSA
 21:31:34  &lt;str4d&gt; I also agree there.
 21:31:43  &lt;zzz2&gt; I think the P256 haters better take a step back and think about how bad DSA 1024 is.
-21:32:03  &lt;MTN@kyirc&gt; [ WWW ] adding psi's transport key [kytv@mail.i2p] http://killyourtv.i2p/viewmtn/revision/info/029163d2d446f10ab1a129b559802fabac2ef8b7
+21:32:03  &lt;MTN@kyirc&gt; [ WWW ] adding psi's transport key [kytv@mail.i2p] `http://killyourtv.i2p/viewmtn/revision/info/029163d2d446f10ab1a129b559802fabac2ef8b7`
 21:32:52  &lt;str4d&gt; zzz2: I understand your point.
 21:33:39  &lt;zzz2&gt; re: audit and Lance, it's always a good time. you have an audit process update for us from the mailing list?
 21:33:40  &lt;str4d&gt; Part of my reason for wanting to get EdDSA working before the switch is that based on what you have said in threads before, I wouldn't look forward to switching Dest signing algo twice.
@@ -132,7 +132,7 @@ categories: ["meeting"]
 21:36:39  &lt;str4d&gt; zzz2: http://blog.cr.yp.to/20140323-ecdsa.html is reason enough for me to not want to stay on ECDSA
 21:36:43  &lt;iRelay&gt; Title: cr.yp.to: 2014.03.23: How to design an elliptic-curve signature system (at blog.cr.yp.to)
 21:37:56  &lt;str4d&gt; not for any one single point (yet), but if we can get an effective, *correct* implementation of EdDSA, I think it would be very beneficial to switch
-21:38:27  &lt;str4d&gt; nombre_: http://trac.i2p2.i2p/ticket/856
+21:38:27  &lt;str4d&gt; nombre_: `http://trac.i2p2.i2p/ticket/856`
 21:38:30  &lt;iRelay&gt; Title: #856 (Crypto review/migration)  I2P Bugtracker (at trac.i2p2.i2p)
 21:38:30  &lt;str4d&gt; (and links therein)
 21:38:40  &lt;nombre_&gt; thx str4d

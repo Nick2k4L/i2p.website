@@ -194,7 +194,7 @@ Notarás que ambas configuraciones evitan explícitamente los headers `Strict-Tr
 Abre la Consola del Router I2P en tu navegador:
 
 ```
-http://127.0.0.1:7657/i2ptunnel/
+`http://127.0.0.1:7657/i2ptunnel/`
 ```
 Haz clic en **"Tunnel Wizard"** para comenzar a crear un nuevo túnel.
 
@@ -291,7 +291,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
 
         proxy_set_header Host $host;
@@ -321,7 +321,7 @@ Si tu aplicación genera URLs que apuntan a tu dominio clearnet, querrás reescr
 
 ```nginx
 location / {
-    proxy_pass http://127.0.0.1:3000;
+    proxy_pass `http://127.0.0.1:3000;`
 
     sub_filter_once off;
     sub_filter_types text/html text/css application/javascript;
@@ -346,7 +346,7 @@ Configurar `/etc/gitea/app.ini`:
 HTTP_ADDR     = 127.0.0.1
 HTTP_PORT     = 3000
 DOMAIN        = yourgit.i2p
-ROOT_URL      = http://yourgit.i2p/
+ROOT_URL      = `http://yourgit.i2p/`
 SSH_DOMAIN    = yourgit.i2p
 PROTOCOL      = http
 OFFLINE_MODE  = true
@@ -373,7 +373,7 @@ Si solo necesitas navegación de solo lectura y clonado HTTP, cgit es mucho más
 ```ini
 # /etc/cgitrc
 virtual-root=/
-clone-url=http://yourgit.i2p/$CGIT_REPO_URL
+clone-url=`http://yourgit.i2p/$CGIT_REPO_URL`
 cache-root=/var/cache/cgit
 cache-size=1000
 scan-path=/srv/git
@@ -387,17 +387,17 @@ Cualquier persona que clone desde tu mirror Git de I2P necesita enrutar el tráf
 
 ```bash
 # Tell Git to use the I2P proxy for .i2p domains
-git config --global http.http://yourgit.i2p.proxy http://127.0.0.1:4444
+git config --global http.http://yourgit.i2p.proxy `http://127.0.0.1:4444`
 git config --global http.timeout 300
 
 # Clone (allow for I2P latency)
 GIT_HTTP_LOW_SPEED_LIMIT=1000 GIT_HTTP_LOW_SPEED_TIME=60 \
-    git clone http://yourgit.i2p/repo
+    git clone `http://yourgit.i2p/repo`
 ```
 Para repositorios grandes, los clones superficiales ahorran mucho tiempo a través de I2P:
 
 ```bash
-git clone --depth 1 http://yourgit.i2p/project
+git clone --depth 1 `http://yourgit.i2p/project`
 git fetch --unshallow   # grab full history later if needed
 ```
 ## Parte 4: Duplicación de Alojamiento de Archivos
@@ -416,7 +416,7 @@ $CONFIG = array(
     'trusted_proxies'   => array('127.0.0.1'),
     'overwritehost'     => 'yoursite.i2p',
     'overwriteprotocol' => 'http',
-    'overwrite.cli.url' => 'http://yoursite.i2p/',
+    'overwrite.cli.url' => '`http://yoursite.i2p/',`
 );
 ```
 Lo que funciona bien: carga y descarga de archivos, navegación de directorios, autenticación, compartir enlaces públicos y WebDAV. Lo que no: los clientes de sincronización de escritorio necesitan configuración de proxy SOCKS, los backends de almacenamiento externo pueden filtrar direcciones IP, y la federación con instancias de Nextcloud de clearnet puede comprometer la privacidad.
@@ -452,7 +452,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
 
         proxy_set_header Host $host;
         proxy_set_header Content-Type $content_type;
@@ -482,7 +482,7 @@ server {
     listen 127.0.0.1:8080;
 
     location /ws {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
@@ -683,8 +683,8 @@ También verifica que el reenvío de puertos esté configurado para tu puerto I2
 Los visitantes necesitan tu dirección en su libreta de direcciones. Asegúrate de haberte registrado en una libreta de direcciones pública, o comparte tu dirección base32 completa directamente. También pueden agregar más suscripciones en `http://127.0.0.1:7657/susidns/subscriptions`:
 
 ```
-http://stats.i2p/cgi-bin/newhosts.txt
-http://i2host.i2p/cgi-bin/i2hostetag
+`http://stats.i2p/cgi-bin/newhosts.txt`
+`http://i2host.i2p/cgi-bin/i2hostetag`
 ```
 ### Tiempos de espera al realizar pruebas
 
@@ -692,10 +692,10 @@ I2P tiene inherentemente tiempos de ida y vuelta más altos. Al realizar pruebas
 
 ```bash
 # curl
-curl --connect-timeout 60 --max-time 300 http://yoursite.i2p/
+curl --connect-timeout 60 --max-time 300 `http://yoursite.i2p/`
 
 # wget
-wget --timeout=300 http://yoursite.i2p/
+wget --timeout=300 `http://yoursite.i2p/`
 ```
 ### Leyendo los registros
 

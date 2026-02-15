@@ -14,7 +14,7 @@ I2P plugin framework umožňuje rozšířit router bez zásahu do základní ins
 
 1. Zkopírujte URL pro stažení pluginu ze stránky projektu.  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. Otevřete [stránku konfigurace pluginů](http://127.0.0.1:7657/configplugins) v konzoli routeru.  
+2. Otevřete `http://127.0.0.1:7657/configplugins` v konzoli routeru.  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. Vložte URL do pole pro instalaci a klikněte na **Install Plugin**.  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ Router stáhne podepsaný archiv, ověří podpis a plugin aktivuje okamžitě. 
 
 ## 3. Správa nainstalovaných pluginů
 
-Použijte ovládací prvky na stránce [I2P Router Plugin](http://127.0.0.1:7657/configclients.jsp#plugin) k:
+Použijte ovládací prvky na stránce `http://127.0.0.1:7657/configclients.jsp#plugin` k:
 
 - Zkontrolovat aktualizace jednoho pluginu
 - Zkontrolovat všechny pluginy najednou (spouští se automaticky po aktualizaci routeru)

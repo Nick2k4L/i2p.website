@@ -55,7 +55,7 @@ Sau khi bạn đã thiết lập Gitlab cục bộ, hãy truy cập I2P Router c
 
 ### Gitlab Web(HTTP) Interface
 
-Đối với giao diện Web, hãy sử dụng một tunnel máy chủ "HTTP". Từ http://127.0.0.1:7657/i2ptunnelmgr khởi chạy "New Tunnel Wizard" và nhập các giá trị sau:
+Đối với giao diện Web, hãy sử dụng một tunnel máy chủ "HTTP". Từ `http://127.0.0.1:7657/i2ptunnelmgr` khởi chạy "New Tunnel Wizard" và nhập các giá trị sau:
 
 1. Select "Server Tunnel"
 2. Select "HTTP Server"
@@ -66,7 +66,7 @@ Sau khi bạn đã thiết lập Gitlab cục bộ, hãy truy cập I2P Router c
 
 ### Gitlab SSH Interface
 
-Đối với giao diện SSH, hãy sử dụng server tunnel "Standard". Từ http://127.0.0.1:7657/i2ptunnelmgr khởi chạy "New Tunnel Wizard" và nhập các giá trị sau:
+Đối với giao diện SSH, hãy sử dụng server tunnel "Standard". Từ `http://127.0.0.1:7657/i2ptunnelmgr` khởi chạy "New Tunnel Wizard" và nhập các giá trị sau:
 
 1. Select "Server Tunnel"
 2. Select "Standard Server"

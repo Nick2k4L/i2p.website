@@ -20,7 +20,7 @@ Ce dernier point signifie que je ne traînerai pas sur irc autant qu’avant, au
 
 Enfin bref, assez parlé de moi.
 
-[1] http://dev.i2p.net/pipermail/i2p/ [2] http://forum.i2p.net/
+[1] `http://dev.i2p.net/pipermail/i2p/` [2] `http://forum.i2p.net/`
 
 * 2) Dev[elopment] status
 

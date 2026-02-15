@@ -11,7 +11,7 @@ toc: true
 
 ## Přehled
 
-Tento návrh popisuje design protokolu umožňujícího I2P klientovi, službě nebo externímu balancovacímu procesu transparentně spravovat více routerů hostujících jedinou [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
+Tento návrh popisuje design protokolu umožňujícího I2P klientovi, službě nebo externímu balancovacímu procesu transparentně spravovat více routerů hostujících jedinou `http://localhost:63465/docs/specs/common-structures/#destination`.
 
 Návrh momentálně nespecifikuje konkrétní implementaci. Mohl by být implementován jako rozšíření [I2CP](/docs/specs/i2cp/), nebo jako nový protokol.
 

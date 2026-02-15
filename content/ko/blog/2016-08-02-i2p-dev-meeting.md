@@ -13,14 +13,14 @@ categories: ["meeting"]
 ## 회의 기록
 
 <div class="irc-log">21:00:01 &lt;zzz&gt; 0) 안녕
-21:00:01 &lt;zzz&gt; 1) HOPE 보고 (zzz/sadie) http://zzz.i2p/topics/2152
-21:00:01 &lt;zzz&gt; 2) 0.9.27 업데이트 (zzz) http://zzz.i2p/topics/2132
+21:00:01 &lt;zzz&gt; 1) HOPE 보고 (zzz/sadie) `http://zzz.i2p/topics/2152`
+21:00:01 &lt;zzz&gt; 2) 0.9.27 업데이트 (zzz) `http://zzz.i2p/topics/2132`
 21:00:01 &lt;zzz&gt; 3) Summer of X 업데이트 (sadie/str4d)
 21:00:05 &lt;zzz&gt; 0) 안녕
 21:00:07 &lt;zzz&gt; 안녕
 21:00:38 &lt;xmpre&gt; 안녕하세요
 21:00:44 &lt;i2pr&gt; [Slack/str4d] 안녕하세요
-21:00:56 &lt;zzz&gt; 1) HOPE 보고 (zzz/sadie) http://zzz.i2p/topics/2152
+21:00:56 &lt;zzz&gt; 1) HOPE 보고 (zzz/sadie) `http://zzz.i2p/topics/2152`
 21:01:32 &lt;zzz&gt; 그 링크에 간단한 방문 보고를 올렸습니다. sadie, comraden1, gravy, 아니면 영상을 좀 보신 분들, 추가할 내용 있나요?
 21:02:30 &lt;i2pr&gt; [Slack/str4d] 아직 영상은 보지 못했습니다. Tor 관련 영상 말고도 표시해 두면 좋을 것들이 있나요?
 21:03:01 &lt;zzz&gt; 저는 그 외에는 많이 보지 못했습니다. 사람들이 zzz.i2p 쓰레드에 추천을 추가해 주길 바랍니다
@@ -28,7 +28,7 @@ categories: ["meeting"]
 21:03:27 &lt;zzz&gt; 아마 hope.net일 겁니다
 21:03:56 &lt;zzz&gt; 1) 관련해 다른 것 있나요?
 21:03:59 &lt;xmpre&gt; https://hope.net/watch.html
-21:04:54 &lt;zzz&gt; 2) 0.9.27 업데이트 (zzz) http://zzz.i2p/topics/2132
+21:04:54 &lt;zzz&gt; 2) 0.9.27 업데이트 (zzz) `http://zzz.i2p/topics/2132`
 21:05:57 &lt;zzz&gt; 빨라도 9월 중순을 보고 있습니다. mtn 활동이나 큰 기능은 많지 않아요. i2p 여름 활동을 마친 뒤에는 NTCP2로 넘어가고 싶습니다. 그래서 지금은 .27을 서두를 필요는 없고, 꽤 안정적입니다
 21:06:26 &lt;zzz&gt; .27 일정이나 내용에 대해 의견 있나요?
 21:06:39 &lt;i2pr&gt; [Slack/str4d] 저도 비슷한 시기에 NTCP2에 주의를 돌릴 예정입니다
@@ -43,7 +43,7 @@ categories: ["meeting"]
 21:08:40 &lt;i2pr&gt; [Slack/str4d] ACK
 21:08:53 &lt;i2pr&gt; [Slack/str4d] 그동안은 각자 생각해 보면 좋겠습니다
 21:09:21 &lt;i2pr&gt; [Slack/str4d] 예를 들어 Tor의 컨트롤 포트 정책과 비교해 보는 것도 좋겠죠
-21:09:38 &lt;zzz&gt; http://zzz.i2p/topics/2149 에 추가했습니다
+21:09:38 &lt;zzz&gt; `http://zzz.i2p/topics/2149` 에 추가했습니다
 21:10:03 &lt;zzz&gt; 기본으로 켜진다면 인증(auth)이나 SSL도 함께 켜는 게 좋을까요? 잘 모르겠습니다. 생각해 보겠습니다
 21:10:11 &lt;zzz&gt; 2) 관련해 다른 것 있나요?
 21:10:58 &lt;psi&gt; (안녕)

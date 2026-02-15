@@ -333,7 +333,7 @@ Todos los valores son big-endian sin signo.
 
 #### Aplicación
 
-Los contenidos de la aplicación están codificados en UTF-8 [JSON](https://www.json.org/).
+Los contenidos de la aplicación están codificados en UTF-8 [JSON](https://www.json.org/json-en.html).
 Consulte la sección de Capa de Aplicación a continuación.
 
 
@@ -442,7 +442,7 @@ El editor del Meta LS2 NO es necesariamente el Líder de Raft.
 
 ### Contenidos de Datos de Aplicación
 
-Los contenidos de la aplicación están codificados en UTF-8 [JSON](https://www.json.org/),
+Los contenidos de la aplicación están codificados en UTF-8 [JSON](https://www.json.org/json-en.html),
 para simplicidad y extensibilidad.
 La especificación completa está TDB.
 El objetivo es proporcionar suficientes datos para escribir un algoritmo para determinar el "mejor"
@@ -584,7 +584,7 @@ No hay problemas de compatibilidad hacia atrás.
 ## Referencias
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://json.org/)
+* [JSON](https://www.json.org/json-en.html)
 * [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)

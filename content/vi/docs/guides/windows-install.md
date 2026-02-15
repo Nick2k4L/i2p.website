@@ -181,7 +181,7 @@ Menu cũng hiển thị các tùy chọn hữu ích như: - **Network: Firewalle
 Sau khi trình duyệt I2P mở ra, bạn cần kiểm tra các cổng mà I2P đang sử dụng:
 
 1. **Điều hướng đến trang cấu hình mạng**:
-   - Truy cập [I2P Router Network Configuration](http://127.0.0.1:7657/confignet) trong trình duyệt của bạn
+   - Truy cập `http://127.0.0.1:7657/confignet` trong trình duyệt của bạn
    - Hoặc từ thanh bên console của router: **Configuration → Network**
 
 2. **Cuộn xuống** phần cấu hình cổng (port)

@@ -20,7 +20,7 @@ Trong tuần vừa qua, tôi đã thử một vài tinh chỉnh khác nhau để
 
 Thay vì cứ mãi vật lộn với những chỉnh sửa nhỏ lẻ, tôi đã làm việc trên mạng thử nghiệm cục bộ của mình để chuyển sang mật mã và quy trình mới cho việc tạo tunnel (đường hầm mạng) [1]. Điều này sẽ giải quyết một phần lớn tỷ lệ thất bại khi tạo tunnel, sau đó chúng ta có thể tinh chỉnh thêm nếu cần.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 Một hệ quả đáng tiếc là 0.6.1.10 sẽ không tương thích ngược. Đã lâu rồi chúng tôi không có một bản phát hành không tương thích ngược, nhưng thời kỳ đầu thì làm vậy khá nhiều, nên có lẽ sẽ không phải là vấn đề lớn. Về cơ bản, sau khi nó chạy tốt trên mạng thử nghiệm cục bộ của tôi, chúng tôi sẽ triển khai song song cho một vài tình nguyện viên dũng cảm để thử nghiệm sớm, rồi khi nó sẵn sàng phát hành, chúng tôi chỉ việc chuyển các seed references (các tham chiếu reseed) sang các seeds (các máy chủ reseed) của mạng mới và tung nó ra.
 

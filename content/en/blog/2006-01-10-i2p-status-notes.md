@@ -31,7 +31,7 @@ Using 1 minute periods and the throughput of an individual tunnel, however, seem
 * 3) Syndie blogs
 
 Based on some feedback, further improvements have gone on within the blog view to syndie, giving it a distinctly different flavor than the newsgroup/forum-like threaded view. In addition, its got a whole new capability for defining general blog information through the existing Syndie architecture. For an example, check out the default "about Syndie" blog post:
- http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001
+ `http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001`
 
 This only touches on the beginnings of what we can do. The next release will let you define your own blog's logo, your own links (to blogs, posts, attachments, an arbitrary external URLs), and hopefully even more customization. One such customization is per-tag icons - I'd like to ship a set of default icons to use with standard tags, but people will be able to define icons for their own tags for use within their blog, and even override the default icons for the standard tags (again, only when people are viewing their blog, of course). Perhaps even some style configuration to display posts with different tags differently (of course, only very specific style customization would be allowed - no arbitrary CSS exploits with Syndie, thankyouverymuch :)
 
@@ -47,6 +47,6 @@ I have heard reports of progress on getting gwebcache support back into I2Phex, 
 
 * 6) ???
 
-There's lots going on, as you can see, but if there are other things y'all'd like to bring up and discuss, swing on by the meeting in a few minutes and give a shout. As an aside, one neat site I've been watching lately has been http://freedomarchive.i2p/ (for you lazy folks without I2P installed, you can use Tino's inproxy via http://freedomarchive.i2p.tin0.de/). In any case, see y'all in a few minutes.
+There's lots going on, as you can see, but if there are other things y'all'd like to bring up and discuss, swing on by the meeting in a few minutes and give a shout. As an aside, one neat site I've been watching lately has been `http://freedomarchive.i2p/` (for you lazy folks without I2P installed, you can use Tino's inproxy via http://freedomarchive.i2p.tin0.de/). In any case, see y'all in a few minutes.
 
 =jr

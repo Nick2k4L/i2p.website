@@ -23,7 +23,7 @@ categories: ["meeting"]
 15:03 &lt;jrandom&gt; weekly status notes up at http://dev.i2p.net/pipermail/i2p/2007-January/001329.html
 15:05 &lt;jrandom&gt; as y'all dig through that, lets jump on in to 1) Net status
 15:05 &lt;jrandom&gt; not much change at the moment on this front
-15:06 &lt;jrandom&gt; interesting to note the updated domains chart on http://stats.i2p/cgi-bin/serv_domain.cgi listing a good spread of hosts even after pruning 2000 old entries
+15:06 &lt;jrandom&gt; interesting to note the updated domains chart on `http://stats.i2p/cgi-bin/serv_domain.cgi` listing a good spread of hosts even after pruning 2000 old entries
 15:07 &lt;jrandom&gt; zzz: what period is that chart based off?
 15:07 &lt;+zzz&gt; 1 month
 15:07 &lt;jrandom&gt; wow cool

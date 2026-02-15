@@ -1044,7 +1044,7 @@ PSK 클라이언트 인증의 단점
 
 - 우리는 키 기반 BLAKE2b를 사용할 만큼 속도에 신경 쓰지 않습니다. BLAKE2b는 우리가 필요로 하는 가장 큰 n을 수용할 수 있을 만큼 충분히 큰 출력 크기를 가지고 있습니다 (또는 카운터 인수와 함께 원하는 키마다 한 번씩 호출할 수 있습니다). BLAKE2b는 SHA-256보다 훨씬 빠르며, 키 기반 BLAKE2b는 해시 함수 호출의 총 수를 줄일 수 있습니다.
   하지만 제안 148을 참조하세요. 여기서는 다른 이유로 BLAKE2b로 전환할 것을 제안하고 있습니다.
-  [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html)를 참조하세요.
+  Secure key derivation performance를 참조하세요.
 
 ### Meta LS2
 
@@ -1058,7 +1058,7 @@ Meta LS2의 사용 사례는 대규모 멀티호밍이지만, 라우터와 lease
 
 leaf router들, 중간 및 master Meta LS 서명자들 간의 조정을 위한 백엔드 프로토콜은 여기서 명시되지 않습니다. 요구사항은 매우 간단합니다 - 피어가 작동 중인지 확인하고, 몇 시간마다 새로운 LS를 게시하는 것입니다. 유일한 복잡성은 장애 시 최상위 레벨 또는 중간 레벨 Meta LS들을 위한 새로운 게시자를 선택하는 것입니다.
 
-여러 라우터의 lease들을 결합하고 서명하여 단일 leaseset에 게시하는 혼합-매칭 leaseSet은 제안서 140 "invisible multihoming"에 문서화되어 있습니다. 이 제안서는 작성된 대로는 실행 불가능한데, 스트리밍 연결이 단일 라우터에 "sticky"하지 않기 때문입니다. http://zzz.i2p/topics/2335 를 참조하세요.
+여러 라우터의 lease들을 결합하고 서명하여 단일 leaseset에 게시하는 혼합-매칭 leaseSet은 제안서 140 "invisible multihoming"에 문서화되어 있습니다. 이 제안서는 작성된 대로는 실행 불가능한데, 스트리밍 연결이 단일 라우터에 "sticky"하지 않기 때문입니다. `http://zzz.i2p/topics/2335` 를 참조하세요.
 
 백엔드 프로토콜과 router 및 클라이언트 내부와의 상호작용은 보이지 않는 멀티호밍에 대해 상당히 복잡할 것입니다.
 
@@ -1575,7 +1575,7 @@ Meta를 생성하고 지원하는 방법(라우터 간 통신 및 조정 포함)
 
 ## Private Key File Changes Required
 
-개인 키 파일(eepPriv.dat) 형식은 우리 사양의 공식적인 부분은 아니지만 [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)에 문서화되어 있으며 다른 구현체들도 이를 지원합니다. 이를 통해 개인 키를 다른 구현체로 이식할 수 있습니다.
+개인 키 파일(eepPriv.dat) 형식은 우리 사양의 공식적인 부분은 아니지만 Java I2P javadocs에 문서화되어 있으며 다른 구현체들도 이를 지원합니다. 이를 통해 개인 키를 다른 구현체로 이식할 수 있습니다.
 
 일시적 공개 키와 오프라인 서명 정보를 저장하기 위해 변경이 필요합니다.
 

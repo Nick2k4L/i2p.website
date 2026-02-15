@@ -27,7 +27,7 @@ The testing still very early, but it went much better than I expected. Congestio
 
 With the stats gathered from the helpful volunteers, it became clear how important the selective acknowledgement code is to proper operation in highly congested networks. I've spent the last few days implementing and testing that code, and have updated the SSU spec [1] to include a new efficient SACK technique. It won't be backwards compatible with the earlier SSU code, so people who have been helping test should disable the SSU transport until a new build is ready for testing (hopefully in the next day or two).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 3) i2phex
 
@@ -35,7 +35,7 @@ sirup has been churning away on a port of phex to i2p, and while there's a lot o
 
 There's lots more info up on sirup's eepsite(I2P Site) [2], and help testing by people already in the i2p community would be great (though please, until sirup blesses it as a public release, and i2p is at least 0.6 if not 1.0, lets keep it within the i2p community). I believe sirup will be around for this week's meeting, so perhaps we can get some more info then!
 
-[2] http://sirup.i2p/
+[2] `http://sirup.i2p/`
 
 * 4) awol
 
@@ -59,4 +59,4 @@ So, if you're feeling bored and want to help out, but are in need of inspiration
 Ok, thats about all I've got to bring up for the moment. For those who want to help out with the SSU testing over the next week, keep an eye out for info on my blog [3]. For the rest of y'all, I'll see you at the meeting!
 
 =jr
-[3] http://jrandom.dev.i2p/
+[3] `http://jrandom.dev.i2p/`

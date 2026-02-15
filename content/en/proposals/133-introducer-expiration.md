@@ -65,4 +65,4 @@ Backwards compatibility is assured, as older routers will ignore unknown paramet
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)
-* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)
+* TRAC-TICKET

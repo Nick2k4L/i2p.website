@@ -25,7 +25,7 @@ categories: ["status"]
 
 리스트 [1]에서 duck이 언급했듯이, zab이 I2P를 돕기 위해 일련의 테스트 업데이트와 관련된 바운티를 마련했습니다 - 바운티 페이지 [2]에 나열된 작업을 완료할 수 있는 누구에게나 지급될 상금입니다. 그 바운티에는 추가 후원도 있었고 [3] - 현재 총액은 $1000USD입니다. 바운티가 물론 '시장 시세'에 해당하는 보수를 제공하는 것은 아니지만, 도움을 주고자 하는 개발자들에게 작은 격려의 표시입니다.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
 
 * 4) ???
 

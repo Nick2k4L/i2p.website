@@ -16,7 +16,7 @@ Herkese selam, haftanın o zamanı yine geldi.
 
 Dün duyurulduğu gibi [1], yeni bir sürüm yayınladık ve kullanıma sunduk ve raporlar genel olarak olumlu. Sizlerin yaklaşık yarısı şimdiden yükseltmiş (110 @ 0.6.0.2, 89 @ 0.6.0.1 ve 21 @ 0.6 görüyorum), ancak geri kalanlar da en kısa sürede yükseltmeli, çünkü bazı yararlı iyileştirmeler yapıldı.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000834.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000834.html`
 
 * 2) Roadmap update
 

@@ -6,7 +6,7 @@ description: "18 Şubat 2003 tarihli I2P geliştirme toplantısı tutanağı."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in izniyle http://www.archive.org/)
+(Wayback machine'in izniyle `http://www.archive.org/`)
 
 ## Hızlı özet
 

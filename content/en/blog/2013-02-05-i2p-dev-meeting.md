@@ -192,8 +192,8 @@ categories: ["meeting"]
 20:55:04  &lt;dg&gt; I don't know the blanks, maybe someone can fill them in
 20:55:21  &lt;dg&gt; There's a bounty right now for IPv6 support in I2P
 20:55:42  &lt;dg&gt; It's 100 EUR
-20:55:45  &lt;hottuna&gt;  http://zzz.i2p/topics/109
-20:55:48  &lt;dg&gt; http://www.i2p2.i2p/bounty_ipv6
+20:55:45  &lt;hottuna&gt;  `http://zzz.i2p/topics/109`
+20:55:48  &lt;dg&gt; `http://www.i2p2.i2p/bounty_ipv6`
 20:55:55  &lt;iRelay&gt; Title: zzz.i2p: IPV6 TODO (at zzz.i2p)
 20:55:56  &lt;iRelay&gt; Title: Bounty I2P IPv6 native - I2P (at www.i2p2.i2p)
 20:56:04  &lt;dg&gt; I think after/alongside the crypto doup, this is important
@@ -303,7 +303,7 @@ categories: ["meeting"]
 21:48:10  &lt;dg&gt; Heh.
 21:48:10  &lt;dg&gt; Alright,
 21:48:13  * dg bamfs the meeting closed
-21:49:21  &lt;dg&gt; http://zzz.i2p/topics/1343
+21:49:21  &lt;dg&gt; `http://zzz.i2p/topics/1343`
 21:49:28  &lt;iRelay&gt; Title: zzz.i2p: Meeting [6th February] (at zzz.i2p)
 21:50:31  &lt;hottuna&gt; the next meeting is the 12/2 not 6/2
 21:50:42  &lt;hottuna&gt; wut
@@ -314,7 +314,7 @@ categories: ["meeting"]
 21:55:01  &lt;iRelay&gt; &lt;str4d@freenode&gt; ping weltende
 23:39:54  &lt;zzz&gt; um, was it just me, or did the meeting totally skip the final decision that changing our URL was definitely a good idea?
 23:40:30  &lt;zzz&gt; I saw some pros and cons on changing and then 'lets post a vote for which new one to pick'
-23:40:50  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project Syndie HSQLDB2 build #9:SUCCESS in 15 sec: http://eotfca7qexthbireor6ae7g4hbj5hwuhe4gkzxdx3l3g2t5gzn7q.b32.i2p/job/Syndie%20HSQLDB2/9/
+23:40:50  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project Syndie HSQLDB2 build #9:SUCCESS in 15 sec: `http://eotfca7qexthbireor6ae7g4hbj5hwuhe4gkzxdx3l3g2t5gzn7q.b32.i2p/job/Syndie%20HSQLDB2/9/`
 23:41:54  &lt;zzz&gt; nor did I see anybody volunteer to do all the work req'd to implement such a change
 23:45:25  &lt;zzz&gt; or is the (unstated) plan to vote on the best name first, and only then decide whether to do it and how?
 23:45:29  &lt;zzz&gt; ^^ dg
@@ -331,7 +331,7 @@ categories: ["meeting"]
 23:49:42  &lt;dg&gt; We were in agreement that a change would be nice but unable to agree on what *to*
 23:49:52  &lt;zzz&gt; is the decision to change at all a) already made or b) deferred until after the vote?
 23:50:14  &lt;dg&gt; b)
-23:50:54  &lt;zzz&gt; that wasnt clear to me either from the mtg or from http://zzz.i2p/topics/1343
+23:50:54  &lt;zzz&gt; that wasnt clear to me either from the mtg or from `http://zzz.i2p/topics/1343`
 23:51:01  &lt;iRelay&gt; Title: zzz.i2p: Meeting [12th February] (at zzz.i2p)
 23:51:18  &lt;str4d&gt; zzz: What I gathered is that, of the people present at the meeting, the majority were for a change.
 23:51:25  &lt;zzz&gt; and to me, imho "would be nice" is far far short of "it's definitely a good idea AND we have volunteers to do the work"
@@ -385,7 +385,7 @@ categories: ["meeting"]
 00:00:53  &lt;str4d&gt; (Assuming the url is changed)
 00:01:30  &lt;str4d&gt; Yeah, I'll do some checking up of other search engines, but Google seems to use reasonably standard technology (e.g. the sitemap stuff)
 00:02:05  * str4d is currently checking and fixing old/broken URLs.
-00:03:24  &lt;dg&gt; Edited my post. http://zzz.i2p/topics/1343
+00:03:24  &lt;dg&gt; Edited my post. `http://zzz.i2p/topics/1343`
 00:03:31  &lt;iRelay&gt; Title: zzz.i2p: Meeting [12th February] (at zzz.i2p)
 00:05:36  * dg waits for ech to come back
 00:05:43  &lt;dg&gt; That'll be tomorrow, right?

@@ -71,7 +71,7 @@ categories: ["meeting"]
 22:11:56 &lt;@duck&gt; DrWoo and others filed some GUI feature requests
 22:12:23 &lt;@duck&gt; but I never use the GUI myself, wouldnt know wxpython and probably dont care too much :)
 22:12:31 &lt;+Ragnarok&gt; fitting each slice into a single message didn't work as well as expected?
-22:12:57 &lt;clayboy&gt; many seeded torrents on http://brittanyworld.i2p/bittorrent/ if anyone want to try (with i2p 0.4.2.2-7 and i2p-bt 0.1.3)
+22:12:57 &lt;clayboy&gt; many seeded torrents on `http://brittanyworld.i2p/bittorrent/` if anyone want to try (with i2p 0.4.2.2-7 and i2p-bt 0.1.3)
 22:13:10 &lt;@duck&gt; Ragnarok: it is a bit of a guess
 22:13:27 &lt;@duck&gt; it gives much higher throughput values on local transfers
 22:13:51 &lt;+ugha2p&gt; Maybe we should wait for someone to port a full-featured client instead?
@@ -162,7 +162,7 @@ categories: ["meeting"]
 22:36:50 &lt;ant&gt; &lt;mahes&gt; if i set up an eepsite , how can be reached with an address like i.e mahes.i2p
 22:36:59 &lt;+protokol&gt; i have a consern
 22:37:44 &lt;+protokol&gt; (start the battle) i think .i2p is a shitty TLD for many reasons
-22:38:19 &lt;+ugha2p&gt; mahes: What do you mean 'how'? People will configure their browsers to use the eepproxy, and just enter http://mahes.i2p/ onto their address bar.
+22:38:19 &lt;+ugha2p&gt; mahes: What do you mean 'how'? People will configure their browsers to use the eepproxy, and just enter `http://mahes.i2p/` onto their address bar.
 22:38:19 &lt;+protokol&gt; i think we should use one that is a) one syllable b) can be pronounced like a word c) does not include a number'
 22:38:46 &lt;+ugha2p&gt; protokol: Like .eep?
 22:39:07 &lt;@duck&gt; mahes:: to get a 'nice name' to point to your eepsite, it has to be present in your hosts.txt file

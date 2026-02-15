@@ -27,7 +27,7 @@ categories: ["meeting"]
 15:12 &lt;jrandom&gt; The mail gives my general view of whats going on.  how does that line up with what y'all are seeing?
 15:13 &lt;+Complication&gt; Throttling fixes seem to have increased reliability, but really suppressed bandwidth
 15:13 &lt;+Complication&gt; Just a second, digging for the graph
-15:14 &lt;+Complication&gt; http://complication.i2p/files/bw-week.png
+15:14 &lt;+Complication&gt; `http://complication.i2p/files/bw-week.png`
 15:14 &lt;+Complication&gt; High stretches are on non-latest, low stretches on latest
 15:15 &lt;+Complication&gt; Same limiter settings, possibly more lax on stricter (latest) versions
 15:16 &lt;+Complication&gt; But it's not much of a problem, since it does transfer

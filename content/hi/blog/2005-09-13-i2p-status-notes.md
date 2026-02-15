@@ -20,7 +20,7 @@ categories: ["status"]
 
 CVS में नवीनतम बिल्ड्स में लंबे समय से चर्चा में रहे SSU introductions [1] का समर्थन शामिल है, जिससे हम ऐसे उपयोगकर्ताओं के लिए, जो किसी ऐसे NAT (नेटवर्क एड्रेस ट्रांसलेशन) या फ़ायरवॉल के पीछे हैं जिस पर उनका नियंत्रण नहीं है, विकेन्द्रीकृत NAT होल पंचिंग कर सकते हैं। हालांकि यह symmetric NAT को हैंडल नहीं करता, यह अधिकांश मामलों को कवर करता है। फील्ड से मिली रिपोर्ट अच्छी हैं, though only users with the latest builds can contact the NATted users - older builds need to wait for the user to contact them first. इसी कारण, हम इन प्रतिबंधित रूट्स के लागू रहने का समय कम करने के लिए सामान्य से पहले ही कोड को एक रिलीज़ में जारी करेंगे।
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

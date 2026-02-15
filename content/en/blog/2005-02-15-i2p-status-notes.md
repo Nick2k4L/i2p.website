@@ -34,7 +34,7 @@ I2PTunnel config [1], editing the eepProxy, and changing the
 "Outproxies:" line to contain only "squid.i2p".  Hopefully we'll
 get that other one back online soon to increase redundancy.
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -72,7 +72,7 @@ and word on the street says its kickass (perhaps /too/ kickass,
 given the increased network usage ;)  More info up @ the i2p-bt
 forum [2]
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

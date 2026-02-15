@@ -11,7 +11,7 @@ toc: true
 
 ## Descripción general
 
-Esta propuesta describe un diseño para un protocolo que permite a un cliente I2P, servicio o proceso balanceador externo gestionar múltiples routers que alojan de forma transparente un único [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
+Esta propuesta describe un diseño para un protocolo que permite a un cliente I2P, servicio o proceso balanceador externo gestionar múltiples routers que alojan de forma transparente un único `http://localhost:63465/docs/specs/common-structures/#destination`.
 
 La propuesta actualmente no especifica una implementación concreta. Podría implementarse como una extensión de [I2CP](/docs/specs/i2cp/), o como un nuevo protocolo.
 

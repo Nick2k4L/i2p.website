@@ -34,7 +34,7 @@ I2P router 또는 내장된 애플리케이션 개발을 위해서는 소스 코
 
 I2P는 자체 GitLab에서 공식 Git 서비스를 제공하며 Git을 통한 기여를 받습니다:
 
-- I2P 내부: <http://git.idk.i2p>
+- I2P 내부: <`http://git.idk.i2p`>
 - I2P 외부: <https://i2pgit.org>
 
 메인 저장소를 클론하세요:
@@ -44,7 +44,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 ```
 읽기 전용 미러도 GitHub에서 이용 가능합니다:
 
-- GitHub 미러: [github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
+- GitHub 미러: github.com/i2p/i2p.i2p
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -61,7 +61,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 아이디어를 얻으려면 프로젝트 TODO 목록이나 GitLab의 이슈 목록을 참조하세요:
 
-- GitLab 이슈: [i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
+- GitLab 이슈: i2pgit.org/I2P_Developers/i2p.i2p/issues
 
 ## 결과를 공개하기
 

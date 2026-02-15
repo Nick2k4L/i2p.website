@@ -14,7 +14,7 @@ Hi zusammen, es ist wieder Dienstag
 
 * 1) Net status
 
-Das Netzwerk hat mit der Veröffentlichung 0.6.1.10 eine etwas raue Phase durchgemacht, teilweise aufgrund der fehlenden Abwärtskompatibilität, aber auch wegen unerwarteter Fehler.  Weder Zuverlässigkeit noch Betriebszeit (Uptime) unter 0.6.1.10 waren ausreichend, sodass es in den letzten 5 Tagen eine ganze Reihe von Patches gab, die im neuen Release 0.6.1.11 gipfelte - http://dev.i2p.net/pipermail/i2p/2006-February/001263.html
+Das Netzwerk hat mit der Veröffentlichung 0.6.1.10 eine etwas raue Phase durchgemacht, teilweise aufgrund der fehlenden Abwärtskompatibilität, aber auch wegen unerwarteter Fehler.  Weder Zuverlässigkeit noch Betriebszeit (Uptime) unter 0.6.1.10 waren ausreichend, sodass es in den letzten 5 Tagen eine ganze Reihe von Patches gab, die im neuen Release 0.6.1.11 gipfelte - `http://dev.i2p.net/pipermail/i2p/2006-February/001263.html`
 
 Die meisten der in 0.6.1.10 gefundenen Fehler sind bereits seit dem 0.6-Release im vergangenen September vorhanden, waren jedoch nicht ohne Weiteres erkennbar, solange es alternative Transportverfahren (TCP) gab, auf die man ausweichen konnte. Mein lokales Testnetzwerk simuliert Paketverluste, deckte jedoch router churn (Fluktuation) und andere persistente Netzwerkfehler nicht wirklich ab. Auch das _PRE test network umfasste eine selbst ausgewählte Gruppe recht zuverlässiger Peers, sodass wesentliche Szenarien vor dem vollständigen Release nicht vollständig untersucht wurden. Das ist offensichtlich ein Problem, und beim nächsten Mal werden wir darauf achten, eine breitere Auswahl an Szenarien abzudecken.
 

@@ -19,11 +19,11 @@ As many have seen, the 0.6.0.5 release came out last week after a brief 0.6.0.4 
 
 Recebi uma pergunta sobre como a nova netDb (banco de dados de rede do I2P) funciona e publiquei a resposta [1] no meu blog [2]. Como sempre, se alguém tiver alguma dúvida desse tipo, fique à vontade para me enviar, pela lista ou fora dela, no fórum, ou até no seu blog ;)
 
-[1] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1125792000000&expand=true [2] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[1] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1125792000000&expand=true` [2] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=`
 
 * 2) Syndie status
 
-Como podem ver em syndiemedia.i2p (e http://syndiemedia.i2p.net/), tem havido bastante progresso ultimamente, incluindo RSS, pet names (apelidos confiáveis), controles administrativos e os primeiros passos de um uso razoável de CSS. A maioria das sugestões do Isamoor também já foi implementada, assim como as do Adam, então, se alguém tiver algo em mente que gostaria de ver lá, por favor me envie uma mensagem!
+Como podem ver em syndiemedia.i2p (e `http://syndiemedia.i2p.net/),` tem havido bastante progresso ultimamente, incluindo RSS, pet names (apelidos confiáveis), controles administrativos e os primeiros passos de um uso razoável de CSS. A maioria das sugestões do Isamoor também já foi implementada, assim como as do Adam, então, se alguém tiver algo em mente que gostaria de ver lá, por favor me envie uma mensagem!
 
 O Syndie agora está bem próximo da fase beta; quando isso acontecer, será distribuído como um dos aplicativos padrão do I2P e também empacotado como standalone (autônomo), portanto qualquer ajuda será muito bem-vinda. Com as adições mais recentes de hoje (no cvs), fazer skinning (personalização do tema) do Syndie também ficou muito fácil - você pode simplesmente criar um novo arquivo syndie_standard.css no seu diretório i2p/docs/, e os estilos especificados substituirão as configurações padrão do Syndie. Mais informações sobre isso podem ser encontradas no meu blog [2].
 
@@ -31,7 +31,7 @@ O Syndie agora está bem próximo da fase beta; quando isso acontecer, será dis
 
 Susi criou rapidamente mais um aplicativo web para nós - susidns [3]. Ele serve como uma interface simples para gerenciar o aplicativo addressbook - suas entradas, assinaturas, etc. Está com um aspecto muito bom, então, com sorte, poderemos distribuí-lo como um dos aplicativos padrão em breve, mas, por enquanto, é muito fácil obtê-lo do eepsite dela(I2P Site), salvá-lo no seu diretório webapps, reiniciar seu router, e você estará pronto para começar.
 
-[3] http://susi.i2p/?page_id=13
+[3] `http://susi.i2p/?page_id=13`
 
 * 4) ???
 

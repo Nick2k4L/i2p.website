@@ -44,9 +44,9 @@ The following from zzz is a review of several common complaints about I2P's nami
 
   As is usually the case in I2P, there is a fundamental tradeoff here between anonymity and efficiency. Some would say that using the etag and last-modified headers is hazardous because it exposes when you last requested the data. Others have suggested asking for specific keys only (similar to what jump services do, but in a more automated fashion), possibly at a further cost in anonymity.
 
-  Possible improvements would be a replacement or supplement to address book (see i2host.i2p), or something simple like subscribing to http://example.i2p/cgi-bin/recenthosts.cgi rather than http://example.i2p/hosts.txt. If a hypothetical recenthosts.cgi distributed all hosts from the last 24 hours, for example, that could be both more efficient and more anonymous than the current hosts.txt with last-modified and etag.
+  Possible improvements would be a replacement or supplement to address book (see i2host.i2p), or something simple like subscribing to `http://example.i2p/cgi-bin/recenthosts.cgi` rather than `http://example.i2p/hosts.txt.` If a hypothetical recenthosts.cgi distributed all hosts from the last 24 hours, for example, that could be both more efficient and more anonymous than the current hosts.txt with last-modified and etag.
 
-  A sample implementation is on stats.i2p at http://stats.i2p/cgi-bin/newhosts.txt. This script returns an Etag with a timestamp. When a request comes in with the If-None-Match etag, the script ONLY returns new hosts since that timestamp, or 304 Not Modified if there are none. In this way, the script efficiently returns only the hosts the subscriber does not know about, in an address book-compatible manner.
+  A sample implementation is on stats.i2p at `http://stats.i2p/cgi-bin/newhosts.txt.` This script returns an Etag with a timestamp. When a request comes in with the If-None-Match etag, the script ONLY returns new hosts since that timestamp, or 304 Not Modified if there are none. In this way, the script efficiently returns only the hosts the subscriber does not know about, in an address book-compatible manner.
 
   So the inefficiency is not a big issue and there are several ways to improve things without radical change.
 
@@ -54,7 +54,7 @@ The following from zzz is a review of several common complaints about I2P's nami
 
   As far as network traffic see above. But unless you're going to do a slow real-time query over the network for a key, you need to have the whole set of keys stored locally, at a cost of about 500 bytes per key.
 
-- **Requires configuration and "trust":** Out-of-the-box address book is only subscribed to http://www.i2p2.i2p/hosts.txt, which is rarely updated, leading to poor new-user experience.
+- **Requires configuration and "trust":** Out-of-the-box address book is only subscribed to `http://www.i2p2.i2p/hosts.txt,` which is rarely updated, leading to poor new-user experience.
 
   This is very much intentional. jrandom wants a user to "trust" a hosts.txt provider, and as he likes to say, "trust is not a boolean". The configuration step attempts to force users to think about issues of trust in an anonymous network.
 

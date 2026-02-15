@@ -73,8 +73,8 @@ categories: ["meeting"]
 14:12 &lt;jrandom&gt; bogobot right?  duck.i2p/bogo/ iirc?
 14:13 &lt;duckie&gt; something like that
 14:13 &lt;jrandom&gt; (its linked to off duck.i2p, my routers are down atm so i cant check)
-14:13 &lt;duckie&gt; linked to on http://duck.i2p/ uder the stats section
-14:13 &lt;duckie&gt; http://duck.i2p/bogobotlogs/
+14:13 &lt;duckie&gt; linked to on `http://duck.i2p/` uder the stats section
+14:13 &lt;duckie&gt; `http://duck.i2p/bogobotlogs/`
 14:14 &lt;BrianR&gt; it might be useful to extend that thing to act as a general reachability survey tool..
 14:15 &lt;dm&gt; You guys type reaaaaaaaaaaaaaaaally slowly.
 14:15 &lt;deer&gt; &lt;cervantes&gt; hypercubus has some enhancements on the backburner, but he's pretty busy with installer stuff atm
@@ -163,7 +163,7 @@ categories: ["meeting"]
 14:45 &lt;jrandom&gt; (e.g. no one cares what the base64 of a routerIdentity's public key is)
 14:45 &lt;cervantes&gt; although I suggest that info should still be available
 14:46 &lt;jrandom&gt; yeah, i think we may keep the existing console as an option - no need to throw it away
-14:46 &lt;jrandom&gt; (but it'd be something like http://localhost:7655/uglyConsole/)
+14:46 &lt;jrandom&gt; (but it'd be something like `http://localhost:7655/uglyConsole/)`
 14:46 &lt;cervantes&gt; ./forlynxusers/
 14:47 &lt;jrandom&gt; the new admin console should work for lynx users too
 14:47 &lt;dm&gt; Does anyone really use lynx?

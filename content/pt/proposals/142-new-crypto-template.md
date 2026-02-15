@@ -33,9 +33,9 @@ Qualquer pessoa que proponha novas criptografias deve primeiro estar familiariza
 - [Proposta 136 tipos de assinatura experimentais](/pt/proposals/136-experimental-sigtypes/)
 - [Proposta 137 tipos de assinatura opcionais](/pt/proposals/137-optional-sigtypes/)
 - Discussões para cada uma das propostas acima, vinculadas no interior
-- [prioridades de proposta de 2018](http://zzz.i2p/topics/2494)
-- [proposta ECIES](http://zzz.i2p/topics/2418)
-- [visão geral de novas criptografias assimétricas](http://zzz.i2p/topics/1768)
+- prioridades de proposta de 2018
+- proposta ECIES
+- visão geral de novas criptografias assimétricas
 - [Visão geral de criptografias de baixo nível](/pt/docs/specs/common-structures/)
 
 

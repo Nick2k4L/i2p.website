@@ -22,9 +22,9 @@ categories: ["status"]
 
 كان هناك الكثير من النشاط على صعيد I2Phex في الآونة الأخيرة أيضاً، مع إصدار جديد 0.1.1.35 [1]. كما كانت هناك تغييرات إضافية في CVS أيضاً (شكراً لـ Legion!)، لذا لن أفاجأ إن رأيت 0.1.1.36 في وقت لاحق من هذا الأسبوع.
 
-كان هناك بعض التقدّم الجيد على صعيد gwebcache أيضاً (انظر http://awup.i2p/)، إلا أنه، حسب علمي، لم يبدأ أحد بالعمل على تعديل I2Phex لاستخدام gwebcache مهيّأ لـ I2P (مهتم؟ أخبرني!).
+كان هناك بعض التقدّم الجيد على صعيد gwebcache أيضاً (انظر `http://awup.i2p/)،` إلا أنه، حسب علمي، لم يبدأ أحد بالعمل على تعديل I2Phex لاستخدام gwebcache مهيّأ لـ I2P (مهتم؟ أخبرني!).
 
-[1] http://forum.i2p.net/viewtopic.php?t=1157
+[1] `http://forum.i2p.net/viewtopic.php?t=1157`
 
 * 3) I2P-Rufus
 
@@ -40,7 +40,7 @@ categories: ["status"]
 
 كانت هناك أيضًا بعض النقاشات الجارية بشأن إعادة تصميم واجهة مستخدم Syndie [3]، وأتوقع أن نرى بعض التقدم على هذا الصعيد قريبًا إلى حد ما. كما أن dust يعمل بجد على Sucker، مضيفًا دعمًا أفضل لجلب المزيد من خلاصات RSS/Atom إلى Syndie، بالإضافة إلى بعض التحسينات على SML نفسها.
 
-[3] http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true
+[3] `http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true`
 
 * 6) ???
 

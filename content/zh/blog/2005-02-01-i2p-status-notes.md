@@ -18,19 +18,19 @@ categories: ["status"]
 
 如前所述，初始的 0.5 版本将提供基础，使不同的 tunnel 对等节点选择与排序策略可以在其上运行。我们将从为探索性池和客户端池提供的一组基本可配置参数开始，但后续版本可能会为不同的用户类型加入其他选项。
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) nntp
 
 正如在 LazyGuy 的站点 [2] 和我的博客 [3] 中提到的，我们已经在网络上部署并运行了一台新的 NNTP 服务器，可通过 nntp.fr.i2p 访问。虽然 LazyGuy 已经启动了一些使用 suck [4]（一种用于从 NNTP 拉取新闻的工具）的脚本来从 gmane 读取几个列表，但内容基本上都是出自 I2P 用户、服务于 I2P 用户、并面向 I2P 用户的。jdot、LazyGuy 和我研究了哪些新闻阅读器可以安全使用，看来有一些相当简单的解决方案。关于如何运行 slrn [5] 来进行匿名阅读和发帖，请参见我的博客。
 
-[2] http://fr.i2p/ [3] http://jrandom.dev.i2p/ [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
+[2] `http://fr.i2p/` [3] `http://jrandom.dev.i2p/` [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
 
 * 3) tech proposals
 
 Orion 和其他人在 ugha 的 wiki [6] 上发布了一系列针对各种技术问题的 RFC，以帮助更充分地探讨那些更棘手的客户端和应用级问题。请把那里作为讨论命名问题、SAM 的更新、swarming（群下载/群集传输）想法等内容的地方 - 当你在那里发帖时，我们就都可以在各自的地方协作，从而取得更好的结果。
 
-[6] http://ugha.i2p/I2pRfc
+[6] `http://ugha.i2p/I2pRfc`
 
 * 4) ???
 

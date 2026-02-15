@@ -22,7 +22,7 @@ Como siempre, hay correcciones de errores y algunas funciones nuevas, pero habr�
 
 * 2) UDP (SSU)
 
-Como se ha venido comentando de forma intermitente durante los últimos 6-12 meses, vamos a migrar a UDP para nuestra comunicación entre routers una vez que se publique la versión 0.6.  Para avanzar más en ese camino, tenemos un primer borrador del protocolo de transporte disponible en CVS @ http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+Como se ha venido comentando de forma intermitente durante los últimos 6-12 meses, vamos a migrar a UDP para nuestra comunicación entre routers una vez que se publique la versión 0.6.  Para avanzar más en ese camino, tenemos un primer borrador del protocolo de transporte disponible en CVS @ `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 Es un protocolo bastante simple con los objetivos descritos en el documento, y aprovecha las capacidades de I2P para autenticar y proteger los datos, además de exponer la menor información externa posible. Ni siquiera la primera parte de un handshake de conexión (negociación inicial) es identificable para alguien que no esté ejecutando I2P. El comportamiento del protocolo aún no está completamente definido en la especificación, por ejemplo cómo se disparan los temporizadores o cómo se usan los tres indicadores de estado semiconfiables distintos, pero sí cubre los aspectos básicos del cifrado, la paquetización y el NAT hole punching (perforación de NAT). Nada de esto se ha implementado aún, pero lo estará pronto, ¡así que se agradecerán mucho los comentarios!
 
@@ -30,7 +30,7 @@ Es un protocolo bastante simple con los objetivos descritos en el documento, y a
 
 Aum ha estado trabajando sin parar en Q(uartermaster), un sistema de almacenamiento distribuido, y la primera versión de la documentación ya está disponible [1].  Una de las ideas interesantes ahí consiste en alejarse de una DHT (tabla hash distribuida) directa hacia un sistema al estilo memcached [2], en el que cada usuario realiza cualquier búsqueda por completo de forma *local*, y solicita los datos propiamente dichos al servidor de Q "directamente" (bueno, a través de I2P).  En fin, cosas interesantes; quizá, si Aum está despierto [3], podamos arrancarle una actualización.
 
-[1] http://aum.i2p/q/ [2] http://www.danga.com/memcached/ [3] ¡Malditas zonas horarias!
+[1] `http://aum.i2p/q/` [2] http://www.danga.com/memcached/ [3] ¡Malditas zonas horarias!
 
 * 4) ???
 

@@ -20,7 +20,7 @@ Chúng tôi vẫn tiếp tục vận hành với bản phát hành 0.6.0.5 trên
 
 Những bản dựng mới nhất trong CVS bao gồm hỗ trợ cho SSU introductions [1] đã được thảo luận từ lâu, cho phép chúng tôi thực hiện NAT hole punching (kỹ thuật đục lỗ NAT) theo cách phi tập trung cho những người dùng ở phía sau NAT hoặc tường lửa mà họ không kiểm soát. Mặc dù cơ chế này không xử lý NAT đối xứng, nó vẫn bao phủ phần lớn các trường hợp ngoài kia. Phản hồi từ thực tế rất tích cực, tuy nhiên chỉ những người dùng với bản dựng mới nhất mới có thể liên lạc với những người dùng ở phía sau NAT - các bản dựng cũ cần đợi người dùng đó liên lạc trước. Vì vậy, chúng tôi sẽ đưa mã vào một bản phát hành sớm hơn thông thường để giảm khoảng thời gian chúng ta phải duy trì các tuyến bị hạn chế này.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

@@ -14,7 +14,7 @@ Ahoj všichni, zase je tu úterý
 
 * 1) Net status
 
-Síť se s vydáním 0.6.1.10 potýkala s problémy, zčásti kvůli zpětné nekompatibilitě, ale také kvůli neočekávaným chybám. Ani spolehlivost, ani uptime (doba provozu bez výpadků) na 0.6.1.10 nebyly dostačující, takže během posledních 5 dní proběhla smršť záplat, která vyústila v nové vydání 0.6.1.11 - http://dev.i2p.net/pipermail/i2p/2006-February/001263.html
+Síť se s vydáním 0.6.1.10 potýkala s problémy, zčásti kvůli zpětné nekompatibilitě, ale také kvůli neočekávaným chybám. Ani spolehlivost, ani uptime (doba provozu bez výpadků) na 0.6.1.10 nebyly dostačující, takže během posledních 5 dní proběhla smršť záplat, která vyústila v nové vydání 0.6.1.11 - `http://dev.i2p.net/pipermail/i2p/2006-February/001263.html`
 
 Většina chyb nalezených v 0.6.1.10 byla přítomna už od vydání 0.6 loni v září, ale nebyly snadno patrné, dokud bylo možné se uchýlit k alternativním transportům (TCP). Moje lokální testovací síť simuluje selhávání paketů, ale ve skutečnosti nepokrývala fluktuaci routerů a další přetrvávající selhání sítě. Testovací síť _PRE navíc zahrnovala samovýběrovou sadu poměrně spolehlivých peerů, takže existovaly podstatné situace, které nebyly před plným vydáním plně prozkoumány. To je samozřejmě problém a příště zajistíme, že zahrneme širší výběr scénářů.
 

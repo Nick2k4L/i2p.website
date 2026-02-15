@@ -317,8 +317,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / http://127.0.0.1:8443/
-    ProxyPassReverse / http://127.0.0.1:8443/
+    ProxyPass / `http://127.0.0.1:8443/`
+    ProxyPassReverse / `http://127.0.0.1:8443/`
 </VirtualHost>
 ```
 
@@ -625,7 +625,7 @@ Once your reseed is registered with the I2P project, it will automatically appea
 ### Community Resources
 
 - **I2P Forum**: https://i2pforum.net/
-- **Gitea Repository**: https://i2pgit.org/I2P_Developers/i2p.i2p
+- **Gitea Repository**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev on IRC2P
 - **Status Monitoring**: https://checki2p.com/reseed
 

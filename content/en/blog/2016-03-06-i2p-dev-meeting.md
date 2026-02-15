@@ -23,7 +23,7 @@ categories: ["meeting"]
 &lt;zzz&gt; I'll explain 3) when we get there
 &lt;EinMByte&gt; Hi
 &lt;zzz&gt; 1) VRP/H1/1119
-&lt;zzz&gt; http://trac.i2p2.i2p/ticket/1119
+&lt;zzz&gt; `http://trac.i2p2.i2p/ticket/1119`
 &lt;zzz&gt; has everybody had a chance to catch up and review this ticket?
 * str4d is about to post his comments
 &lt;zzz&gt; str4d overall thoughts?

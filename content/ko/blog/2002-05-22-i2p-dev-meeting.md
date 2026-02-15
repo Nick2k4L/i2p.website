@@ -6,7 +6,7 @@ description: "프로젝트 현황, 웹사이트 개발, 릴리스 로드맵 및 
 categories: ["meeting"]
 ---
 
-(웨이백 머신 제공 http://www.archive.org/)
+(웨이백 머신 제공 `http://www.archive.org/`)
 
 ## 간단한 요약
 

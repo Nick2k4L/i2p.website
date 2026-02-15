@@ -296,7 +296,7 @@ HTTP/1.1 101 Switching Protocols
 
 #### التطبيق
 
-محتويات التطبيق تم ترميزها بـ UTF-8 [JSON](https://www.json.org/).
+محتويات التطبيق تم ترميزها بـ UTF-8 [JSON](https://www.json.org/json-en.html).
 راجع قسم الطبقة التطبيقية أدناه.
 
 
@@ -406,7 +406,7 @@ HTTP/1.1 101 Switching Protocols
 
 ### محتويات بيانات التطبيق
 
-محتويات التطبيق مرمزة بـ UTF-8 [JSON](https://www.json.org/),
+محتويات التطبيق مرمزة بـ UTF-8 [JSON](https://www.json.org/json-en.html),
 لأجل البساطة والامتداد.
 المواصفات الكاملة TBD.
 الهدف هو توفير البيانات الكافية لكتابة خوارزمية لتحديد جهاز التوجيه "الأفضل"
@@ -548,7 +548,7 @@ Atomix كبير جدًا ولن يسمح بالتخصيص لنا لتوجيه
 ## المراجع
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://json.org/)
+* [JSON](https://www.json.org/json-en.html)
 * [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)

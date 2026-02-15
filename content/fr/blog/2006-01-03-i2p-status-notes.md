@@ -36,4 +36,4 @@ Dire que 2005 a marqué une avancée majeure est un euphémisme - nous avons am�
 
 Quoi qu'il en soit, notre réunion de suivi hebdomadaire commence dans quelques minutes, donc si vous avez quelque chose que vous souhaitez discuter plus en détail, passez sur #i2p aux endroits habituels [1] et venez dire bonjour !
 
-=jr [1] http://forum.i2p.net/viewtopic.php?t=952
+=jr [1] `http://forum.i2p.net/viewtopic.php?t=952`

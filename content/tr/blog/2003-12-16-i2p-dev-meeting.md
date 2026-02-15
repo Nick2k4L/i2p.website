@@ -6,7 +6,7 @@ description: "16 Aralık 2003 I2P geliştirme toplantısı kaydı."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in izniyle http://www.archive.org/)
+(Wayback machine'in izniyle `http://www.archive.org/`)
 
 ## Hızlı özet
 

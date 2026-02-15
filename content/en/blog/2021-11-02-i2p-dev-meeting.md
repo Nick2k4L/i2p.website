@@ -21,7 +21,7 @@ categories: ["meeting"]
 (04:00:38 PM) zlatinb: hi
 (04:00:55 PM) eyedeekay: Hi zzz, zlatinb
 (04:01:25 PM) eyedeekay: 2) 1.6.0 Development Status / Upcoming Release
-(04:02:25 PM) eyedeekay: Release thread is here: http://zzz.i2p/topics/3170-1-6-0-release-summary and we still haven't picked a date, I should have replied on that thread, do we want to do that here?
+(04:02:25 PM) eyedeekay: Release thread is here: `http://zzz.i2p/topics/3170-1-6-0-release-summary` and we still haven't picked a date, I should have replied on that thread, do we want to do that here?
 (04:02:43 PM) zzz: yes please
 (04:03:18 PM) zzz: 3 weeks from now would be 13 weeks. +/- 1 week ok with me also
 (04:03:19 PM) eyedeekay: OK then in my case I am in favor of the week of the 29th, after US Thanksgiving

@@ -18,7 +18,7 @@ aliases:
 
 **Это самый простой способ перевести I2P.** Transifex предоставляет веб-интерфейс, который делает перевод простым и доступным.
 
-1. Зарегистрируйтесь на [Transifex](https://www.transifex.com/otf/I2P/)
+1. Зарегистрируйтесь на Transifex
 2. Подайте заявку на вступление в команду переводчиков I2P
 3. Начните переводить прямо в браузере
 
@@ -40,7 +40,7 @@ aliases:
 
 ### Использование Transifex (Рекомендуется)
 
-1. Перейдите на [I2P на Transifex](https://www.transifex.com/otf/I2P/)
+1. Перейдите на I2P на Transifex
 2. Выберите проект консоли router
 3. Выберите ваш язык
 4. Начните переводить
@@ -88,7 +88,7 @@ poedit apps/routerconsole/locale/messages_es.po
 ant updaters
 # Install the update and check translations in the console
 ```
-**Отправьте свою работу:** - Создайте merge request на [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p) - Или поделитесь файлами с командой разработчиков в IRC
+**Отправьте свою работу:** - Создайте merge request на GitLab - Или поделитесь файлами с командой разработчиков в IRC
 
 ---
 
@@ -216,7 +216,7 @@ ant updaters
 Готовы начать перевод?
 
 1. **Выберите способ:**
-   - Быстрый старт: [Зарегистрируйтесь на Transifex](https://www.transifex.com/otf/I2P/)
+   - Быстрый старт: Зарегистрируйтесь на Transifex
    - Ручной подход: Присоединяйтесь к [#i2p-dev в IRC](/contact/#irc)
 
 2. **Начните с малого:** Переведите несколько строк, чтобы ознакомиться с процессом

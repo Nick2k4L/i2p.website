@@ -22,11 +22,11 @@ categories: ["general"]
 
 Чтобы узнать больше о StormyCloud, посетите их [веб-сайт](https://www.stormycloud.org/).
 
-Или посетите их в [I2P](http://stormycloud.i2p/).
+Или посетите их в I2P.
 
 **Переключение на StormyCloud Outproxy (выходной прокси) в I2P**
 
-Чтобы переключиться на аутпрокси StormyCloud *сегодня*, вы можете открыть [Менеджер скрытых сервисов](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0). Оказавшись там, измените значения **Outproxies** и **SSL Outproxies** на `exit.stormycloud.i2p`. После этого прокрутите страницу вниз и нажмите кнопку "Сохранить".
+Чтобы переключиться на аутпрокси StormyCloud *сегодня*, вы можете открыть `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0`. Оказавшись там, измените значения **Outproxies** и **SSL Outproxies** на `exit.stormycloud.i2p`. После этого прокрутите страницу вниз и нажмите кнопку "Сохранить".
 
 **Спасибо StormyCloud**
 

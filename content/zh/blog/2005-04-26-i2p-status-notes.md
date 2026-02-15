@@ -24,7 +24,7 @@ categories: ["status"]
 
 正如 duck 在邮件列表 [1] 中提到的，zab 已出资设立了一个悬赏，用于支持 I2P 进行一系列测试更新 - 为任何能够完成悬赏页面 [2] 上所列任务的人提供一定的资金奖励。我们又收到了针对该悬赏的进一步捐款 [3] - 目前总额为 $1000USD。虽然这些悬赏当然不能提供 "市场价"，但它们对希望提供帮助的开发者来说是一种小小的鼓励。
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
 
 * 4) ???
 

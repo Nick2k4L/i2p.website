@@ -33,7 +33,7 @@ categories: ["status"]
 
 해야 할 유용한 일들이 셀 수 없을 만큼 많지만, 일단 제 블로그에 올린 글 하나만 주목해 주세요. 그 글은 코더가 많은 시간을 들이지 않고도 뚝딱 만들어볼 수 있는 작은 프로젝트 다섯 가지를 소개합니다 [1]. 누군가 그 일들에 관심이 있어 바로 뛰어들고 싶다면, 감사의 뜻으로 공동 기금에서 약간의 자원을 [2] 배정할 수 있을 거라고 확신합니다. 물론 여러분 대부분이 돈이 아니라 해킹의 재미로 움직인다는 것도 알고 있어요 ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

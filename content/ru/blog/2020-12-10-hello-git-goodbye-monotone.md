@@ -22,7 +22,7 @@ categories: ["Status"]
 
 ## Подписание GPG
 
-Официальный репозиторий размещён на https://i2pgit.org/i2p-hackers/i2p.i2p и на https://git.idk.i2p/i2p-hackers/i2p.i2p, но на Github доступно «зеркало» по адресу https://github.com/i2p/i2p.i2p.
+Официальный репозиторий размещён на `https://i2pgit.org/i2p-hackers/i2p.i2p` и на `https://git.idk.i2p/i2p-hackers/i2p.i2p`, но на Github доступно «зеркало» по адресу https://github.com/i2p/i2p.i2p.
 
 Теперь, когда мы перешли на git, мы можем синхронизировать репозитории с нашего собственного, самостоятельно развернутого экземпляра Gitlab на Github и обратно. Это означает, что можно создать и отправить merge request (запрос на слияние) в Gitlab, и после его слияния результат будет синхронизирован с Github, а Pull Request (запрос на изменения) в Github, после слияния, появится в Gitlab.
 

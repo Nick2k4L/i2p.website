@@ -15,7 +15,7 @@ I2P desteği SAM API aracılığıyla otomatik olarak sağlanır. Bu aynı zaman
 
 ## I2P Router'ınızı yapılandırma
 
-Bitcoin'e anonim bağlantı sağlamak için bir I2P Router kurarken, SAM API'nin etkinleştirilmesi gerekir. Java I2P'de, http://127.0.0.1:7657/configclients adresine gidip "Start" düğmesine tıklayarak SAM Application Bridge'i başlatmalısınız. Ayrıca, "Run at Startup" kutusunu işaretleyip "Save Client Configuration." düğmesine tıklayarak SAM Application Bridge'i varsayılan olarak etkinleştirmek isteyebilirsiniz.
+Bitcoin'e anonim bağlantı sağlamak için bir I2P Router kurarken, SAM API'nin etkinleştirilmesi gerekir. Java I2P'de, `http://127.0.0.1:7657/configclients` adresine gidip "Start" düğmesine tıklayarak SAM Application Bridge'i başlatmalısınız. Ayrıca, "Run at Startup" kutusunu işaretleyip "Save Client Configuration." düğmesine tıklayarak SAM Application Bridge'i varsayılan olarak etkinleştirmek isteyebilirsiniz.
 
 i2pd'de, SAM API normalde varsayılan olarak etkindir, ancak değilse, şunu ayarlamalısınız:
 

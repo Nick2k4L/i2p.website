@@ -163,7 +163,7 @@ categories: ["meeting"]
 16:58 &lt;jrandom&gt; but getting them back in wouldn't be much trouble
 16:59 &lt;+Ragnarok&gt; well, the torrent maker at least shouldn't be that bad
 16:59 &lt;jrandom&gt; there's a Tracker.java too, and handling in the PeerAcceptor, but I threw out what wasn't necessary, so one would probably want to look back at http://klomp.org/snark/ for those
-17:00 &lt;jrandom&gt; (and review http://dev.i2p/~jrandom/snark_diff.txt for changes)
+17:00 &lt;jrandom&gt; (and review `http://dev.i2p/~jrandom/snark_diff.txt` for changes)
 17:00 &lt;+fox&gt; &lt;Romster&gt; since snarik is back it'll get worked on right :)
 17:00 &lt;+legion&gt; actually when it comes to a tracker, it'd be better to come up with a distributed solution
 17:00 &lt;+fox&gt; &lt;Romster&gt; snark*

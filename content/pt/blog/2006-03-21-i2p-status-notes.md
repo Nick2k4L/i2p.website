@@ -26,11 +26,11 @@ JRobin [1] é um port puro em Java do RRDtool [2], o que nos permite gerar gráf
 
 O postman tem trabalhado intensamente em alguns bots úteis, e fico feliz em informar que o adorável biff está de volta [3], avisando sempre que você tiver correio (anônimo) enquanto estiver no irc2p. Além disso, o postman criou um bot totalmente novo para nós — o toopie — para servir como um bot de informações para I2P/irc2p. Ainda estamos alimentando o toopie com FAQs (perguntas frequentes), mas ele deve entrar nos canais habituais em breve. Obrigado, postman!
 
-[3] http://hq.postman.i2p/?page_id=15
+[3] `http://hq.postman.i2p/?page_id=15`
 
 * 4) new key
 
-Para quem está atento, você deve ter notado que minha chave GPG expira em alguns dias.  Minha nova chave @ http://dev.i2p.net/~jrandom tem a impressão digital 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 e o ID da chave 33DC8D49.  Esta publicação está assinada com minha chave antiga, mas minhas publicações subsequentes (e lançamentos) durante o próximo ano serão assinadas com a nova chave.
+Para quem está atento, você deve ter notado que minha chave GPG expira em alguns dias.  Minha nova chave @ `http://dev.i2p.net/~jrandom` tem a impressão digital 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 e o ID da chave 33DC8D49.  Esta publicação está assinada com minha chave antiga, mas minhas publicações subsequentes (e lançamentos) durante o próximo ano serão assinadas com a nova chave.
 
 * 5) ???
 

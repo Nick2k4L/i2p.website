@@ -37,7 +37,7 @@ La passerelle `i2pmail.org` permet aux utilisateurs réguliers d'Internet d'envo
 **Pour créer un compte mail.i2p :**
 
 1. Assurez-vous que votre routeur I2P est en cours d'exécution
-2. Visitez **[http://hq.postman.i2p](http://hq.postman.i2p)** à l'intérieur d'I2P
+2. Visitez **http://hq.postman.i2p** à l'intérieur d'I2P
 3. Suivez le processus d'inscription
 4. Accédez à votre courriel via **SusiMail** dans la console du routeur
 

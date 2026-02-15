@@ -130,7 +130,7 @@ Có ba thay đổi cần được thực hiện.
 
 Điều này ban đầu được triển khai mà không có đề xuất chính thức, nhưng nó là cần thiết cho
 giới thiệu IPv6, vì vậy chúng tôi bao gồm nó ở đây.
-Xem thêm [CAPS](http://zzz.i2p/topics/3050).
+Xem thêm CAPS.
 
 Hai khả năng mới "4" và "6" được định nghĩa.
 Những khả năng mới này sẽ được thêm vào thuộc tính "caps" trong Địa chỉ Router, không phải trong khả năng Thông tin Router.

@@ -14,7 +14,7 @@ Selam millet, yine salı oldu
 
 * 1) Net status
 
-Ağ, 0.6.1.10 sürümüyle biraz zorlu bir dönem geçiriyor; bunun kısmen nedeni geriye dönük uyumsuzluk, ancak beklenmedik hatalar da etkili oldu.  0.6.1.10 sürümünde gerek güvenilirlik gerekse çalışma süresi yeterli değildi, bu nedenle son 5 gün içinde ardı ardına yamalar yayımlandı ve bunun sonucu yeni 0.6.1.11 sürümü yayımlandı - http://dev.i2p.net/pipermail/i2p/2006-February/001263.html
+Ağ, 0.6.1.10 sürümüyle biraz zorlu bir dönem geçiriyor; bunun kısmen nedeni geriye dönük uyumsuzluk, ancak beklenmedik hatalar da etkili oldu.  0.6.1.10 sürümünde gerek güvenilirlik gerekse çalışma süresi yeterli değildi, bu nedenle son 5 gün içinde ardı ardına yamalar yayımlandı ve bunun sonucu yeni 0.6.1.11 sürümü yayımlandı - `http://dev.i2p.net/pipermail/i2p/2006-February/001263.html`
 
 0.6.1.10’da bulunan hataların çoğu geçen Eylül’deki 0.6 sürümünden beri vardı, ancak geri dönülebilecek alternatif taşıma protokolleri (TCP) mevcutken pek belirgin değildi. Yerel test ağım paket hatalarını simüle ediyor, ancak router churn (ağa katılan/çıkan router’ların sık değişmesi) ve diğer kalıcı ağ arızalarını gerçekten kapsamıyordu. _PRE test ağı ayrıca oldukça güvenilir eşlerden kendiliğinden seçilmiş bir küme de içeriyordu; bu nedenle, tam sürümden önce tam olarak incelenmemiş önemli durumlar vardı. Bu açıkça bir sorun ve gelecek sefer daha geniş bir senaryo yelpazesini dahil ettiğimizden emin olacağız.
 

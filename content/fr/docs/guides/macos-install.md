@@ -221,23 +221,23 @@ Votre router I2P est maintenant configuré et en cours d'exécution ! La console
 
 Maintenant que I2P est installé et configuré, vous pouvez :
 
-1. **Parcourir les sites I2P** : Visitez la [page d'accueil I2P](http://127.0.0.1:7657/home) pour voir les liens vers les services I2P populaires
+1. **Parcourir les sites I2P** : Visitez la `http://127.0.0.1:7657/home` pour voir les liens vers les services I2P populaires
 2. **Configurer votre navigateur** : Créez un [profil de navigateur](/docs/guides/browser-config) pour accéder aux sites `.i2p`
 3. **Explorer les services** : Découvrez la messagerie I2P, les forums, le partage de fichiers, et plus encore
-4. **Surveiller votre router** : La [console](http://127.0.0.1:7657/console) affiche l'état de votre réseau et les statistiques
+4. **Surveiller votre router** : La `http://127.0.0.1:7657/console` affiche l'état de votre réseau et les statistiques
 
 ### Liens utiles
 
-- **Console du router** : [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Configuration** : [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Carnet d'adresses** : [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Paramètres de bande passante** : [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Console du router** : `http://127.0.0.1:7657/`
+- **Configuration** : `http://127.0.0.1:7657/config`
+- **Carnet d'adresses** : `http://127.0.0.1:7657/susidns/addressbook`
+- **Paramètres de bande passante** : `http://127.0.0.1:7657/config`
 
 ## Relancer l'assistant de configuration
 
 Si vous souhaitez modifier vos paramètres de bande passante ou reconfigurer I2P plus tard, vous pouvez relancer l'assistant de bienvenue depuis la Console du router :
 
-1. Allez sur [Assistant de configuration I2P](http://127.0.0.1:7657/welcome)
+1. Allez sur `http://127.0.0.1:7657/welcome`
 2. Suivez à nouveau les étapes de l'assistant
 
 ## Dépannage

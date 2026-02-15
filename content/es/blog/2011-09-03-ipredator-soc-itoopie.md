@@ -14,7 +14,7 @@ itoopie es una interfaz gráfica pensada como complemento de la I2P Router Conso
 
 I2PControl es un complemento de I2P que proporciona una interfaz JSONRPC para el router I2P. La interfaz permite configurar ajustes básicos (ancho de banda, puertos, etc.), leer numerosas estadísticas y se proporciona a través de una conexión HTTP cifrada con SSL.
 
-Puede encontrar más información e instrucciones en [itoopie.i2p](http://itoopie.i2p).
+Puede encontrar más información e instrucciones en itoopie.i2p.
 
 Este proyecto ha sido financiado por los servicios VPN [Relakks](http://relakks.com) & [Ipredator](http://ipredator.se) y fue iniciado por Jan-Erik Fiske y [Peter Sunde](http://twitter.com/brokep).
 

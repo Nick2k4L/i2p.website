@@ -18,7 +18,7 @@ accurateFor: "0.9.47"
 
 ## 通过 Bittorrent 获取 I2P 源代码
 
-需要有人向您提供一个torrent文件或磁力链接，对应于他们已经为您生成的现有`git bundle`。截至2020年3月18日星期三的主线i2p.i2p源代码的最新正确生成bundle可以在I2P内我的pastebin [paste.idk.i2p/f/4hq37i](http://paste.idk.i2p/f/4h137i) 中找到。
+需要有人向您提供一个torrent文件或磁力链接，对应于他们已经为您生成的现有`git bundle`。截至2020年3月18日星期三的主线i2p.i2p源代码的最新正确生成bundle可以在I2P内我的pastebin paste.idk.i2p/f/4hq37i 中找到。
 
 一旦您有了bundle文件，您需要使用git从中创建一个工作仓库。如果您使用的是GNU/Linux和i2psnark，git bundle应该位于$HOME/.i2p/i2psnark，或者如果在Debian上作为服务运行，则位于/var/lib/i2p/i2p-config/i2psnark。如果您在GNU/Linux上使用BiglyBT，它可能位于"$HOME/BiglyBT Downloads/"。这里的示例假设在GNU/Linux上使用I2PSnark，如果您使用其他软件，请将bundle的路径替换为您的客户端和平台首选的下载目录。
 

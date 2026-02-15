@@ -11,7 +11,7 @@ toc: true
 
 ## نظرة عامة
 
-يحدد هذا الاقتراح تصميماً لبروتوكول يمكّن عميل I2P أو خدمة أو عملية موازن خارجي من إدارة عدة routers بشفافية تستضيف [Destination](http://localhost:63465/docs/specs/common-structures/#destination) واحد.
+يحدد هذا الاقتراح تصميماً لبروتوكول يمكّن عميل I2P أو خدمة أو عملية موازن خارجي من إدارة عدة routers بشفافية تستضيف `http://localhost:63465/docs/specs/common-structures/#destination` واحد.
 
 الاقتراح حالياً لا يحدد تنفيذاً محدداً. يمكن تنفيذه كإضافة لـ [I2CP](/docs/specs/i2cp/)، أو كبروتوكول جديد.
 

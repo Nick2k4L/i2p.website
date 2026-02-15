@@ -22,7 +22,7 @@ Giderek daha fazla iyileştirme gelmeye devam ediyor; mevcut alfa sürümü 0.91
 
 Ayrıca, kanalda Syndie GUI’nin tasarımları üzerine bazı tartışmalar yapıldı - meerboop bazı güzel fikirler ortaya koydu ve bunların belgelemesi üzerinde çalışıyor. Syndie GUI, Syndie 2.0 sürümünün ana bileşenidir, bu yüzden onu ne kadar çabuk devreye alırsak, o kadar çabuk dünyayı ele geçir^W^W^W^W Syndie’yi habersiz kitlelere sunabiliriz.
 
-Syndie blogumda, bizzat Syndie kullanılarak hata ve özellik isteği takibine ilişkin yeni bir öneri de var. Erişimi kolaylaştırmak için, o gönderinin düz metin dışa aktarımını web'e koydum - 1. sayfa <http://dev.i2p.net/~jrandom/bugsp1.txt> adresinde ve 2. sayfa <http://dev.i2p.net/~jrandom/bugsp2.txt> adresinde.
+Syndie blogumda, bizzat Syndie kullanılarak hata ve özellik isteği takibine ilişkin yeni bir öneri de var. Erişimi kolaylaştırmak için, o gönderinin düz metin dışa aktarımını web'e koydum - 1. sayfa <`http://dev.i2p.net/~jrandom/bugsp1.txt>` adresinde ve 2. sayfa <`http://dev.i2p.net/~jrandom/bugsp2.txt>` adresinde.
 
 * 3) Distributed version control revisited
 
@@ -32,7 +32,7 @@ Elbette, hangi dvcs (dağıtık sürüm kontrol sistemi) ile yolumuza devam eder
 
 * 4) ???
 
-Gördüğünüz gibi, her zamanki gibi pek çok şey oluyor. Forumdaki "solve world hunger" başlığında da daha fazla tartışma oldu, bu yüzden <http://forum.i2p.net/viewtopic.php?t=1910> adresinden göz atın.
+Gördüğünüz gibi, her zamanki gibi pek çok şey oluyor. Forumdaki "solve world hunger" başlığında da daha fazla tartışma oldu, bu yüzden <`http://forum.i2p.net/viewtopic.php?t=1910>` adresinden göz atın.
 
 Daha konuşmak istediğiniz başka bir şey varsa, lütfen bu akşamki geliştirici toplantımız için #i2p kanalına uğrayın ya da forumda veya posta listesinde yazın!
 

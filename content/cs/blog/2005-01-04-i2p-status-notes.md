@@ -26,11 +26,11 @@ Za poslední týden jsem sledoval statistiky, které zveřejňují trackery i2p-
 
 Od vydání 0.4.2.5 bylo do CVS přidáno několik oprav a nových funkcí, které budeme chtít brzy nasadit, včetně oprav zvyšujících spolehlivost streamingové knihovny, zvýšené odolnosti vůči změně IP adresy a začlenění implementace knihy adres od ragnaroka.
 
-Pokud jste o addressbooku (adresáři) neslyšeli nebo jste jej nepoužívali, stručně řečeno bude automaticky aktualizovat váš soubor hosts.txt pravidelným stahováním a slučováním změn z některých anonymně hostovaných umístění (výchozí jsou http://dev.i2p/i2p/hosts.txt a http://duck.i2p/hosts.txt). Nebudete muset měnit žádné soubory, sahat na žádnou konfiguraci ani spouštět žádné další aplikace - bude nasazen uvnitř I2P routeru jako standardní soubor .war.
+Pokud jste o addressbooku (adresáři) neslyšeli nebo jste jej nepoužívali, stručně řečeno bude automaticky aktualizovat váš soubor hosts.txt pravidelným stahováním a slučováním změn z některých anonymně hostovaných umístění (výchozí jsou `http://dev.i2p/i2p/hosts.txt` a `http://duck.i2p/hosts.txt).` Nebudete muset měnit žádné soubory, sahat na žádnou konfiguraci ani spouštět žádné další aplikace - bude nasazen uvnitř I2P routeru jako standardní soubor .war.
 
 Samozřejmě, pokud se *opravdu* chcete pustit do addressbooku (adresář adres v I2P) pořádně, jste více než vítáni - viz Ragnarokův web [2] pro podrobnosti. Lidé, kteří už mají addressbook nasazený ve svém routeru, budou muset během upgradu na verzi 0.4.2.6 udělat pár drobných kroků navíc, ale bude fungovat se všemi vašimi starými konfiguračními nastaveními.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -40,7 +40,7 @@ Samozřejmě, pokud se *opravdu* chcete pustit do addressbooku (adresář adres 
 
 jdot spustil nový jabber server a zdá se, že funguje docela dobře jak pro konverzace jeden na jednoho, tak pro skupinový chat. podívejte se na informace na fóru [3]. diskusní kanál vývojářů I2P bude nadále irc #i2p, ale je vždy fajn mít alternativy.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

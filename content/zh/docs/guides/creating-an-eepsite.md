@@ -19,8 +19,8 @@ toc: true
 
 隐藏服务管理器（也称为 I2P Tunnel Manager）是用于配置所有 I2P 服务器和客户端 tunnels 的地方，包括 HTTP 服务器（eepsites）。
 
-1. 打开你的 [I2P Router Console](http://127.0.0.1:7657)
-2. 前往 [隐藏服务管理器](http://127.0.0.1:7657/i2ptunnelmgr)
+1. 打开你的 `http://127.0.0.1:7657`
+2. 前往 `http://127.0.0.1:7657/i2ptunnelmgr`
 
 你应该会看到隐藏服务管理器界面显示: - **状态消息** - 当前 tunnel 和客户端状态 - **全局 Tunnel 控制** - 用于一次性管理所有 tunnels 的按钮 - **I2P 隐藏服务** - 已配置的服务器 tunnels 列表
 
@@ -191,7 +191,7 @@ chmod -R 755 ~/.i2p/eepsite/docroot/
 
 ### 启动 Tunnel
 
-1. **返回到 [隐藏服务管理器](http://127.0.0.1:7657/i2ptunnelmgr)**
+1. **返回到 `http://127.0.0.1:7657/i2ptunnelmgr`**
 2. 在列表中找到你的 **I2P Web 服务器** 条目
 3. 在控制列中点击 **启动** 按钮
 
@@ -215,7 +215,7 @@ chmod -R 755 ~/.i2p/eepsite/docroot/
 
 1. **Base32 地址 (.b32.i2p)**: 一个看起来像这样的较长的加密地址：
    ```
-   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
+   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
    ```
    - 这是你的 eepsite（I2P 上的隐藏网站）的永久、基于密码学生成的地址
    - 它无法更改，并且与你的私钥绑定
@@ -314,7 +314,7 @@ testwebsite.i2p=I8WiuSx1TcYAutCrhLveZ6gghdqsIJ1v9noSGPb7ItYjxaK5LHVNxgC60KuEu95n
 
 ### 步骤 2：在 stats.i2p 注册
 
-1. **前往** [stats.i2p 添加密钥](http://stats.i2p/i2p/addkey.html) (在 I2P 内)
+1. **前往** stats.i2p 添加密钥 (在 I2P 内)
 
 ![stats.i2p 域名注册](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ testwebsite.i2p=I8WiuSx1TcYAutCrhLveZ6gghdqsIJ1v9noSGPb7ItYjxaK5LHVNxgC60KuEu95n
 
 为确保最大可用性，你还应当在 reg.i2p 服务上进行注册：
 
-1. **前往** [reg.i2p Add Domain](http://reg.i2p/add)（在 I2P 内）
+1. **前往** reg.i2p Add Domain（在 I2P 内）
 
 ![reg.i2p 域名注册](/images/guides/eepsite/reg-i2p-add.png)
 

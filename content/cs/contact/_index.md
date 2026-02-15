@@ -25,9 +25,9 @@ Nepoužívejte prosím tyto e‑mailové adresy pro žádosti o podporu. Pro kon
 
 ## Fóra {#forums}
 
-Prosím, navštivte naše uživatelské fórum I2P - [i2pforum.i2p](http://i2pforum.i2p/) (dostupné na nesoukromém internetu na https://i2pforum.net.
+Prosím, navštivte naše uživatelské fórum I2P - i2pforum.i2p (dostupné na nesoukromém internetu na https://i2pforum.net.
 
-Diskuse o vývoji I2P probíhá na [uživatelském fóru I2P](http://i2pforum.i2p). To je obvykle nejlepší místo, kde začít s vývojářskými dotazy, pokud je vývojářský IRC kanál neaktivní. Pro obecnou podporu použijte buď [uživatelské fórum I2P](http://i2pforum.i2p) nebo Subreddit.
+Diskuse o vývoji I2P probíhá na uživatelském fóru I2P. To je obvykle nejlepší místo, kde začít s vývojářskými dotazy, pokud je vývojářský IRC kanál neaktivní. Pro obecnou podporu použijte buď uživatelské fórum I2P nebo Subreddit.
 
 ## Sociální média {#social}
 
@@ -69,8 +69,8 @@ Připojte se k naší poštovní konferenci zadáním své e‑mailové adresy v
 | **Administrátor CI** | idk | Spravuje infrastrukturu Continuous Integration |
 | **Administrátor reseedu** | idk | Sleduje, radí a získává hostitele reseedu |
 | **Administrátor Gitea** | idk | Správce I2P Gitea |
-| **Lokalizace** | idk, zzz | Administrátoři na [Transifex](https://www.transifex.com/projects/p/I2P/) |
-| **Překladatelé** | mnoho, mnoho lidí! | Překladatelé na [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Lokalizace** | idk, zzz | Administrátoři na Transifex |
+| **Překladatelé** | mnoho, mnoho lidí! | Překladatelé na Transifex |
 | **Správce webu** | StormyCloud | Spravuje obsah a design veřejného webu projektu |
 | **Administrátor webserveru** | StormyCloud | Spravuje veřejné webservery projektu |
 | **Administrátor webu** | idk | Spravuje veřejný web projektu |

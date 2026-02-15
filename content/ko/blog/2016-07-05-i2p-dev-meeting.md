@@ -13,13 +13,13 @@ categories: ["meeting"]
 ## 회의 기록
 
 <div class="irc-log">21:00:23 &lt;zzz&gt; 0) 안녕
-21:00:23 &lt;zzz&gt; 1) HOPE 업데이트 (zzz) http://zzz.i2p/topics/1968
+21:00:23 &lt;zzz&gt; 1) HOPE 업데이트 (zzz) `http://zzz.i2p/topics/1968`
 21:00:23 &lt;zzz&gt; 2) 0.9.27 업데이트 (zzz)
 21:00:23 &lt;zzz&gt; 3) Summer of X 업데이트 (sadie/str4d)
 21:00:27 &lt;zzz&gt; 0) 안녕
 21:00:29 &lt;zzz&gt; 안녕
 21:00:47 &lt;psi&gt; 안녕
-21:00:48 &lt;zzz&gt; 1) HOPE 업데이트 (zzz) http://zzz.i2p/topics/1968
+21:00:48 &lt;zzz&gt; 1) HOPE 업데이트 (zzz) `http://zzz.i2p/topics/1968`
 21:00:48 &lt;i2pr&gt; [Slack/str4d] 안녕
 21:01:13 &lt;zzz&gt; 좋아요, HOPE까지 2주 반 남았습니다. 금요일에 Lance와의 점심 미팅은 아직 미정(TBD)입니다
 21:01:42 &lt;zzz&gt; 금요일 점심은 비워두세요. 그 주가 되어야 취소인지 진행인지 알 수 있을 것 같아요

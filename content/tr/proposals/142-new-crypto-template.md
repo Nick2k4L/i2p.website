@@ -32,9 +32,9 @@ Yeni kripto öneren birisi, öncelikle aşağıdaki belgeleri tanımalıdır:
 - [Öneri 136 deneysel imza türleri](/tr/proposals/136-experimental-sigtypes/)
 - [Öneri 137 isteğe bağlı imza türleri](/tr/proposals/137-optional-sigtypes/)
 - Yukarıdaki her bir öneri için buradaki tartışma başlıkları, bağlantılar içinde
-- [2018 öneri öncelikleri](http://zzz.i2p/topics/2494)
-- [ECIES önerisi](http://zzz.i2p/topics/2418)
-- [yeni asimetrik kripto genel bakış](http://zzz.i2p/topics/1768)
+- 2018 öneri öncelikleri
+- ECIES önerisi
+- yeni asimetrik kripto genel bakış
 - [Düşük seviyeli kripto genel bakış](/tr/docs/specs/common-structures/)
 
 

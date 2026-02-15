@@ -22,7 +22,7 @@ toc: true
 
 직접 연결의 경우, OBEP가 IBGWs와 연결하는 방식에 유연성을 줌으로써 연결 혼잡을 줄이는 것이 아이디어입니다. 여러 터널을 명시할 수 있는 능력은 또한 메시지를 명시된 모든 터널로 전달하여 OBEP에서 멀티캐스트를 구현할 수 있게 합니다.
 
-이 제안서의 위임 부분에 대한 대안은 [LeaseSet](http://localhost:63465/docs/specs/common-structures/#leaseset) 해시를 통해 메시지를 보내는 것이며, 이는 기존에 타겟 [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) 해시를 지정할 수 있는 능력과 유사합니다. 이것은 더 작은 메시지와 잠재적으로 더 새로운 LeaseSet을 생성하지만:
+이 제안서의 위임 부분에 대한 대안은 `http://localhost:63465/docs/specs/common-structures/#leaseset` 해시를 통해 메시지를 보내는 것이며, 이는 기존에 타겟 `http://localhost:63465/docs/specs/common-structures/#common-structure-specification` 해시를 지정할 수 있는 능력과 유사합니다. 이것은 더 작은 메시지와 잠재적으로 더 새로운 LeaseSet을 생성하지만:
 
 1. OBEP가 조회를 해야 합니다.
 
@@ -46,7 +46,7 @@ OBEP는 그 중 하나를 선택하여 전달합니다. OBEP는 이미 연결되
 
 이 제안서는 OBGW의 타겟 목적지 또는 NetDB에 대한 시각에서 유출되는 정보 양을 변경하지 않습니다:
 
-- OBEP를 제어하고 NetDB에서 LeaseSets를 긁어모으는 적은 [TunnelId](http://localhost:63465/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) 쌍을 검색함으로써 특정 목적지로 메시지가 보내지는지 이미 결정할 수 있습니다. 최악의 경우, TMDI에 여러 개의 리스가 존재하면 적의 데이터베이스에서 일치 항목을 찾는 속도가 더 빨라질 수 있습니다.
+- OBEP를 제어하고 NetDB에서 LeaseSets를 긁어모으는 적은 `http://localhost:63465/docs/specs/common-structures/#tunnelid` / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification` 쌍을 검색함으로써 특정 목적지로 메시지가 보내지는지 이미 결정할 수 있습니다. 최악의 경우, TMDI에 여러 개의 리스가 존재하면 적의 데이터베이스에서 일치 항목을 찾는 속도가 더 빨라질 수 있습니다.
 
 - 악의적인 목적지를 운영하는 적은 서로 다른 인바운드 터널을 서로 다른 플러드필에 포함하는 LeaseSets를 게시하고, OBGW가 고객의 NetDB 시각에 대한 정보를 수집할 수 있습니다. OBEP가 사용할 터널을 선택하는 것은 OBGW가 선택하는 것과 기능적으로 동일합니다.
 

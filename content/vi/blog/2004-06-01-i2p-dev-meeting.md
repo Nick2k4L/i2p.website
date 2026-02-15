@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] <mihi> ;)
 [23:02] <duck> 1) tiến độ mã nguồn
 [23:02] <duck> không có nhiều mã được commit vào cvs
-[23:02] <duck> tuần này tôi có giành được chiếc cúp: http://duck.i2p/duck_trophy.jpg
+[23:02] <duck> tuần này tôi có giành được chiếc cúp: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus chưa có tài khoản cvs
 [23:03] <Masterboy> vậy ai đã gửi gì?
 [23:03] <duck> có ai đang viết mã bí mật không?

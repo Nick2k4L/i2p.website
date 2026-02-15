@@ -8,14 +8,14 @@ accurateFor: "0.9.59"
 
 ## Descripción general {#overview}
 
-I2PTunnel es una herramienta para interactuar con I2P y proporcionar servicios en la red. El destino de un I2PTunnel puede definirse usando un [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), o una clave de destino completa de 516 bytes. Un I2PTunnel establecido estará disponible en tu máquina cliente como localhost:puerto. Si deseas proporcionar un servicio en la red I2P, simplemente creas un I2PTunnel hacia la dirección_ip:puerto apropiada. Se generará una clave de destino correspondiente de 516 bytes para el servicio y estará disponible en toda la red I2P. Una interfaz web para la gestión de I2PTunnel está disponible en [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
+I2PTunnel es una herramienta para interactuar con I2P y proporcionar servicios en la red. El destino de un I2PTunnel puede definirse usando un [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), o una clave de destino completa de 516 bytes. Un I2PTunnel establecido estará disponible en tu máquina cliente como localhost:puerto. Si deseas proporcionar un servicio en la red I2P, simplemente creas un I2PTunnel hacia la dirección_ip:puerto apropiada. Se generará una clave de destino correspondiente de 516 bytes para el servicio y estará disponible en toda la red I2P. Una interfaz web para la gestión de I2PTunnel está disponible en `http://localhost:7657/i2ptunnel/`.
 
 ## Servicios Predeterminados {#default-services}
 
 ### Túneles de Servidor {#default-server-tunnels}
 
 - **I2P Webserver** - Un tunnel apuntado a un servidor web Jetty ejecutado
-  en [localhost:7658](http://localhost:7658) para alojamiento conveniente y rápido en I2P.
+  en `http://localhost:7658` para alojamiento conveniente y rápido en I2P.
   El directorio raíz del documento es:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, que se expande a: `C:\Users\**nombre_de_usuario**\AppData\Local\I2P\I2P Site\docroot`

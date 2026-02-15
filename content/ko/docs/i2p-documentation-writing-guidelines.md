@@ -13,7 +13,7 @@ lastUpdated: "2025-10"
 
 ### 1. 모든 것을 검증하세요
 
-**절대 가정하거나 추측하지 마십시오.** 모든 기술적 내용은 다음과 대조하여 검증해야 합니다: - 최신 I2P 소스 코드 (https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master) - 공식 API 문서 (https://i2p.github.io/i2p.i2p/  - 구성 사양 [/docs/specs/](/docs/) - 최근 릴리스 노트 [/releases/](/categories/release/)
+**절대 가정하거나 추측하지 마십시오.** 모든 기술적 내용은 다음과 대조하여 검증해야 합니다: - 최신 I2P 소스 코드 (`https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)` - 공식 API 문서 (`https://i2p.github.io/i2p.i2p/`  - 구성 사양 [/docs/specs/](/docs/) - 최근 릴리스 노트 [/releases/](/categories/release/)
 
 **올바른 검증의 예:**
 
@@ -106,7 +106,7 @@ Note that client registry and port mapper are separate systems:
 **I2P 내부 URL용 템플릿:**
 
 ```markdown
-> **Note:** The I2P network hosts comprehensive documentation at http://idk.i2p/javadoc-i2p/ 
+> **Note:** The I2P network hosts comprehensive documentation at `http://idk.i2p/javadoc-i2p/` 
 > which requires an I2P router for access. For clearnet access, use the GitHub Pages 
 > mirror at https://eyedeekay.github.io/javadoc-i2p/
 ```
@@ -114,17 +114,17 @@ Note that client registry and port mapper are separate systems:
 
 **공식 명세:** - [구성](/docs/specs/configuration/) - [플러그인](/docs/specs/plugin/) - [문서 색인](/docs/)
 
-**API 문서 (가장 최신 문서를 선택):** - 가장 최신: https://i2p.github.io/i2p.i2p/ (I2P 2.10.0 기준 API 0.9.66) - 클리어넷 미러: https://eyedeekay.github.io/javadoc-i2p/
+**API 문서 (가장 최신 문서를 선택):** - 가장 최신: `https://i2p.github.io/i2p.i2p/` (I2P 2.10.0 기준 API 0.9.66) - 클리어넷 미러: https://eyedeekay.github.io/javadoc-i2p/
 
-**소스 코드:** - GitLab (공식): https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master - GitHub 미러: https://github.com/i2p/i2p.i2p
+**소스 코드:** - GitLab (공식): `https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master` - GitHub 미러: `https://github.com/i2p/i2p.i2p`
 
 ### 링크 형식 표준
 
 ```markdown
-✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
+✅ GOOD: ClientApp Javadoc
 ✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
 
-❌ BAD: See the ClientApp docs at http://idk.i2p/...
+❌ BAD: See the ClientApp docs at `http://idk.i2p/...`
 ❌ BAD: [link](url) with no descriptive text
 ```
 ---
@@ -555,12 +555,12 @@ See [clients.config specification](https://geti2p.net/spec/configuration#clients
 **외부 링크** (다른 리소스로 연결):
 
 ```markdown
-For more details, see [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
+For more details, see ClientApp Javadoc
 ```
 **코드 저장소 링크**:
 
 ```markdown
-View source: [ClientApp.java](https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master/core/java/src/net/i2p/app/ClientApp.java)
+View source: ClientApp.java
 ```
 ### 표 서식
 

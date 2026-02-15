@@ -31,7 +31,7 @@ bla đã miệt mài thực hiện một số sửa đổi về cách chúng ta 
 <+bla> Cái sau được thực hiện với độ dài expl. tunnels mặc định
 <+bla> Giao của tập các nút mà tôi có "giá trị thực (ground truth)", và tập các nút trong các phép đo hiện tại, là 117 nút
 <+bla> Kết quả không _đến nỗi_ tệ, nhưng cũng không quá ấn tượng
-<+bla> Xem http://theland.i2p/estspeed.png
+<+bla> Xem `http://theland.i2p/estspeed.png`
 <+bla> Phân tách cơ bản giữa rất chậm/nhanh thì tạm ổn, nhưng phân tách        chi tiết giữa các nút nhanh hơn còn có thể tốt hơn nhiều
 <+jrandom2p> hmm, các giá trị thực được tính như thế nào - đó là              RTT (thời gian khứ hồi) đầy đủ hay là RTT/chiều dài ?
 <+bla> Dùng expl. tunnels thông thường thì gần như không thể        tránh độ trễ do batching.
@@ -51,7 +51,7 @@ bla đã miệt mài thực hiện một số sửa đổi về cách chúng ta 
 <+bla> Mặc dù.... 65% thời gian ước tính nằm trong 0.5        độ lệch chuẩn so với thời gian thực của nút
 <+bla> Tuy nhiên, điều này cần được làm lại, vì độ lệch chuẩn        bị ảnh hưởng mạnh bởi các lỗi >60000 ms
 
-Sau khi thảo luận thêm, bla đã đưa ra một so sánh đối chiếu với công cụ tính tốc độ hiện có, được đăng @ http://theland.i2p/oldspeed.png Các bản sao (mirror) của những tệp PNG đó có tại http://dev.i2p.net/~jrandom/estspeed.png và http://dev.i2p.net/~jrandom/oldspeed.png
+Sau khi thảo luận thêm, bla đã đưa ra một so sánh đối chiếu với công cụ tính tốc độ hiện có, được đăng @ `http://theland.i2p/oldspeed.png` Các bản sao (mirror) của những tệp PNG đó có tại `http://dev.i2p.net/~jrandom/estspeed.png` và `http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (về thuật ngữ, IB=số hop (chặng) của inbound tunnel, OB=số hop của outbound tunnel, và sau khi làm rõ, các phép đo "ground truth" được thực hiện với 1 hop outbound và 0 hop inbound, chứ không phải ngược lại)
 

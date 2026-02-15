@@ -86,7 +86,7 @@ accurateFor: "2.10.0"
 
 ## Emissary (Rust)
 
-**网站：** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)
+**网站：** [https://eepnet.github.io/emissary/](https://eepnet.github.io/emissary/)
 
 **描述：** Emissary是I2P协议栈的Rust实现，设计为可嵌入的I2P router。它可以集成到其他应用程序中或独立运行。Emissary支持eepsite托管、种子下载、IRC和电子邮件服务。该项目包含详尽的文档，涵盖快速启动设置、开发者嵌入指南和详细配置。作为一个实验性项目，它正在积极开发中，尚不建议用于生产环境。
 

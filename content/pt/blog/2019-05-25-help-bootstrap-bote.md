@@ -16,12 +16,12 @@ ou, ELI5: É usado de forma semelhante ao e-mail, mas não sofre de nenhuma das 
 
 **Passo Um: Instale o I2P-Bote**
 
-I2P-Bote é um plugin do i2p, e instalá-lo é muito fácil. As instruções originais estão disponíveis em [bote eepSite, bote.i2p](http://bote.i2p/install/), mas, se você quiser lê-las na clearnet (internet comum), estas instruções são cortesia de bote.i2p:
+I2P-Bote é um plugin do i2p, e instalá-lo é muito fácil. As instruções originais estão disponíveis em bote eepSite, bote.i2p, mas, se você quiser lê-las na clearnet (internet comum), estas instruções são cortesia de bote.i2p:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Passo Dois: Obtenha o endereço base64 do seu nó I2P-Bote**
 
@@ -63,7 +63,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Método B: Faça uma consulta**
 
-Se isso lhe parecer trabalho demais, é possível obter o destino base64 da sua conexão Bote consultando o seu endereço base32 usando qualquer um dos meios disponíveis para pesquisar um endereço base32. O endereço base32 do seu nó Bote está disponível na página "Connection" do aplicativo do plugin Bote, em [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+Se isso lhe parecer trabalho demais, é possível obter o destino base64 da sua conexão Bote consultando o seu endereço base32 usando qualquer um dos meios disponíveis para pesquisar um endereço base32. O endereço base32 do seu nó Bote está disponível na página "Connection" do aplicativo do plugin Bote, em `http://127.0.0.1:7657/i2pbote/network`
 
 **Passo Três: Fale conosco!**
 

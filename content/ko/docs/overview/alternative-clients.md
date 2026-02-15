@@ -86,7 +86,7 @@ accurateFor: "2.10.0"
 
 ## Emissary (Rust)
 
-**웹사이트:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)
+**웹사이트:** [https://eepnet.github.io/emissary/](https://eepnet.github.io/emissary/)
 
 **설명:** Emissary는 임베디드 I2P router로 작동하도록 설계된 I2P 프로토콜 스택의 Rust 구현체입니다. 다른 애플리케이션에 통합하거나 독립적으로 실행할 수 있습니다. Emissary는 eepsite 호스팅, 토렌트, IRC 및 이메일 서비스를 지원합니다. 이 프로젝트에는 빠른 설정, 개발자를 위한 임베딩, 상세한 구성을 다루는 광범위한 문서가 포함되어 있습니다. 실험적인 프로젝트로서 활발한 개발 중이며 아직 프로덕션 사용에는 권장되지 않습니다.
 

@@ -113,7 +113,7 @@ categories: ["meeting"]
 12:30 &lt;+arcturus&gt; any hashcash genereated must be used within 24 hours or it is invalid
 12:32 &lt;@cervantes&gt; just to reiterate the new server irc.freshcoffee.i2p needs to be added into your i2ptunnel console
 12:32 &lt;jrandom&gt; coo'.  ok, anything else for 2) irc2p?
-12:33 &lt;@cervantes&gt; (http://forum.i2p/viewtopic.php?t=911
+12:33 &lt;@cervantes&gt; (`http://forum.i2p/viewtopic.php?t=911`
 12:33 &lt;@cervantes&gt; )
 12:33 &lt;@cervantes&gt; &lt;-- done
 12:34 &lt;+arcturus&gt; i don't have anything else to bore you all with :)
@@ -141,12 +141,12 @@ categories: ["meeting"]
 12:40 &lt;susi23_&gt; future plans are automatic build of torrents and ui improvement
 12:41 &lt;susi23_&gt; if you want to try it out, I recommend a separate jetty instance
 12:41 &lt;susi23_&gt; so you don't have to fiddle with your router :)
-12:41 &lt;susi23_&gt; download and installation instructions on http://susi.i2p
+12:41 &lt;susi23_&gt; download and installation instructions on `http://susi.i2p`
 12:42 &lt;susi23_&gt; thats all *ping back to jr*
 12:42 &lt;jrandom&gt; w3wt, gracias susi
 12:42 &lt;jrandom&gt; ok, anyone have any questions & comments on that, or shall we jump on over to 4) syndie?
 12:44 &lt;jrandom&gt; ok regarding syndi, i've posted a bunch to the list about it over the last day or two, and there'll be lots more activity
-12:45 &lt;jrandom&gt; the main demo site for syndie is http://syndiemedia.i2p / http://66.111.51.110:8000/, but of course people are encouraged to download it and install it locally
+12:45 &lt;jrandom&gt; the main demo site for syndie is `http://syndiemedia.i2p` / http://66.111.51.110:8000/, but of course people are encouraged to download it and install it locally
 12:45 &lt;jrandom&gt; i dont have too much to add at the moment on that frnt. unless anyone has any questions?
 12:46 &lt;gott&gt; Why is it called syndie ?
 12:46 &lt;gott&gt; is it a reference to 'syndicate' ?

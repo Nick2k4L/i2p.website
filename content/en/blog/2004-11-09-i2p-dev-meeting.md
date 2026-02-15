@@ -154,8 +154,8 @@ categories: ["meeting"]
 13:48  * duck takes the mike
 13:48 &lt;Ragnarok&gt; no, no we don't
 13:48 &lt;@duck&gt; dinoman, Ragnarok and me have been working on the BT client.
-13:48 &lt;@duck&gt; - BT protocol analysed and changes specified on http://duck.i2p/i2p-bt/txt/i2p-bt_protocol.txt
-13:48 &lt;@duck&gt; - dino modified phpbt, info at http://duck.i2p/i2p-bt/txt/tracker.txt
+13:48 &lt;@duck&gt; - BT protocol analysed and changes specified on `http://duck.i2p/i2p-bt/txt/i2p-bt_protocol.txt`
+13:48 &lt;@duck&gt; - dino modified phpbt, info at `http://duck.i2p/i2p-bt/txt/tracker.txt`
 13:48 &lt;@duck&gt; dino got the client to talk with the tracker, R and me have improved it a bit.
 13:48 &lt;@duck&gt; the whole tracker &lt;-&gt; client stuff worked
 13:48 &lt;@duck&gt; but we got stuck at the python sam library...
@@ -199,7 +199,7 @@ categories: ["meeting"]
 13:55 &lt;jrandom&gt; 2.2 support would be nice, but i dont think it'd be that bad if 2.3 were required
 13:55 &lt;cervantes&gt; duck: so the tracker's peer announce list can be made to spew out i2p destinations instead of machine ips?
 13:56 &lt;@duck&gt; ok, we'll try to abstract the logging lib, with 2.2 use stdout
-13:56 &lt;@duck&gt; cervantes: http://duck.i2p/i2p-bt/diffs/phpbt-i2p.diff
+13:56 &lt;@duck&gt; cervantes: `http://duck.i2p/i2p-bt/diffs/phpbt-i2p.diff`
 13:56 &lt;jrandom&gt; keysersoze: you want logging deployed on the clients machines so that if/when bugs arise, the dev can get detailed logs
 13:56 &lt;jrandom&gt; word duck
 13:56 &lt;cervantes&gt; ta
@@ -239,7 +239,7 @@ categories: ["meeting"]
 14:01 &lt;@duck&gt; though btmakemetafile.py and btshowmetainfo.py are not modified
 14:01 &lt;jrandom&gt; "a url" is the tough part :)
 14:02 &lt;@duck&gt; so you can use other tools
-14:02 &lt;@duck&gt; its http://duck.i2p/phpbt/announce.php now
+14:02 &lt;@duck&gt; its `http://duck.i2p/phpbt/announce.php` now
 14:02 &lt;jrandom&gt; ok, cool
 14:02 &lt;@duck&gt; guess you can use http://i2p/bigbase64/announce.php
 14:02 &lt;+protokol&gt; are their plans for other clients to support eepTorrent? i like azureus
@@ -371,7 +371,7 @@ categories: ["meeting"]
 14:25 &lt;Ragnarok&gt; the published address book is just called hosts.txt, because that's what it is on dev.i2p
 14:25 &lt;+polecat&gt; It's possible to call Ragnarok's hosts.txt file something else.  People just have to subscribe to that other filename.
 14:26 &lt;Ragnarok&gt; true, it's a configuration option
-14:26 &lt;+polecat&gt; i.e. like going http://polecat.i2p/addressbook instead of http://polecat.i2p/hosts.txt
+14:26 &lt;+polecat&gt; i.e. like going `http://polecat.i2p/addressbook` instead of `http://polecat.i2p/hosts.txt`
 14:26 &lt;MrEcho&gt; fyi, my dns doesnt touch the hosts file .. just like a real dns
 14:27 &lt;+polecat&gt; Oh yeah, there's that too.&gt;.&lt;
 14:27 &lt;@duck&gt; my dns causes world peace

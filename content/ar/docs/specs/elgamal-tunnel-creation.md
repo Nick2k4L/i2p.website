@@ -133,7 +133,7 @@ byte 527     : Reply value
 
 ## التاريخ والملاحظات {#tunnelcreate-notes}
 
-نشأت هذه الاستراتيجية خلال نقاش في القائمة البريدية لـ I2P بين مايكل روجرز وماثيو توسلاند (toad) وjrandom بخصوص هجوم predecessor. انظر [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)، [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html). تم تقديمها في الإصدار 0.6.1.10 في 2006-02-16، والذي كان آخر مرة تم فيها إجراء تغيير غير متوافق مع الإصدارات السابقة في I2P.
+نشأت هذه الاستراتيجية خلال نقاش في القائمة البريدية لـ I2P بين مايكل روجرز وماثيو توسلاند (toad) وjrandom بخصوص هجوم predecessor. انظر TUNBUILD-SUMMARY، TUNBUILD-REASONING. تم تقديمها في الإصدار 0.6.1.10 في 2006-02-16، والذي كان آخر مرة تم فيها إجراء تغيير غير متوافق مع الإصدارات السابقة في I2P.
 
 ملاحظات:
 
@@ -172,8 +172,8 @@ byte 527     : Reply value
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf) - Predecessor Attack Paper (2008)
 - [TBM](/docs/specs/i2np#msg-tunnelbuild) - Tunnel Build Message
 - [TBRM](/docs/specs/i2np#msg-tunnelbuildreply) - Tunnel Build Reply Message
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html) - Tunnel Build Reasoning
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html) - Tunnel Build Summary
+- TUNBUILD-REASONING - Tunnel Build Reasoning
+- TUNBUILD-SUMMARY - Tunnel Build Summary
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation) - Tunnel Implementation
 - [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation) - Tunnel Operation
 - [VTBM](/docs/specs/i2np#msg-variabletunnelbuild) - Variable Tunnel Build Message

@@ -40,7 +40,7 @@ Bu kampanyaların bir yan etkisi olarak, Twitter’da ve muhtemelen diğer sosya
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -58,6 +58,6 @@ Bizimle etkileşime geçmeden önce bu hizmetlerde zaten bir hesabınız yoksa, 
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-Bu yazı, https://i2pgit.org/i2p-hackers/i2p.i2p ve https://github.com/i2p/i2p.i2p adreslerinde bulunan kaynak koduyla temsil edilen ve https://geti2p.net/ web sitesinden indirilebilen Java I2P paketini temin edeceğiniz kaynağın doğrulanmasına yönelik yöntemler sunmayı amaçlamaktadır. Amacı, üçüncü taraf çatallar, downstream projeler (türetilmiş projeler), ürünlerine entegre edenler (embedders), paketleyiciler, laboratuvar ortamında deney yapanlar ya da sadece bizimle aynı fikirde olmayan kişiler hakkında yargıda bulunmak değildir. Hepiniz, başkalarının gizliliğini tehlikeye atmak değil, korumaya çalışan topluluğumuzun değerli üyelerisiniz. I2P proje topluluğu üyelerinin kimliğine bürünme girişimlerinin farkında olduğumuzdan, resmi kaynaklarınızı ve bilinen aynalarınızı belgelemek amacıyla kullanıcılarınıza önerdiğiniz indirme, doğrulama ve kurulum prosedürlerini gözden geçirmek isteyebilirsiniz.
+Bu yazı, `https://i2pgit.org/i2p-hackers/i2p.i2p` ve `https://github.com/i2p/i2p.i2p` adreslerinde bulunan kaynak koduyla temsil edilen ve `https://geti2p.net/` web sitesinden indirilebilen Java I2P paketini temin edeceğiniz kaynağın doğrulanmasına yönelik yöntemler sunmayı amaçlamaktadır. Amacı, üçüncü taraf çatallar, downstream projeler (türetilmiş projeler), ürünlerine entegre edenler (embedders), paketleyiciler, laboratuvar ortamında deney yapanlar ya da sadece bizimle aynı fikirde olmayan kişiler hakkında yargıda bulunmak değildir. Hepiniz, başkalarının gizliliğini tehlikeye atmak değil, korumaya çalışan topluluğumuzun değerli üyelerisiniz. I2P proje topluluğu üyelerinin kimliğine bürünme girişimlerinin farkında olduğumuzdan, resmi kaynaklarınızı ve bilinen aynalarınızı belgelemek amacıyla kullanıcılarınıza önerdiğiniz indirme, doğrulama ve kurulum prosedürlerini gözden geçirmek isteyebilirsiniz.
 
 *Yazarın Notu: Bu blog yazısının önceki bir sürümü, I2P Projesi tarafından işletilen her bir hizmetin TLS parmak izini içeriyordu. Sertifika yenilemesi nedeniyle bu parmak izleri artık doğru olmadığı için kaldırıldı.*

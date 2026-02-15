@@ -144,7 +144,7 @@ categories: ["meeting"]
 20:31:03 &lt;i2pr&gt; [Slack/str4d] +1
 20:32:01 &lt;zzz&gt; 6) Regular Reseed Operator Meetings (manas)
 20:32:03 &lt;zzz&gt; manas go
-20:32:26 &lt;manas&gt; http://zzz.i2p/topics/2341-meeting-reseed-operators-13-june-8-pm-utc-in-i2p-reseed - planning our first reseed meeting in #i2p-reseed next week, 13 June at 8PM UTC
+20:32:26 &lt;manas&gt; `http://zzz.i2p/topics/2341-meeting-reseed-operators-13-june-8-pm-utc-in-i2p-reseed` - planning our first reseed meeting in #i2p-reseed next week, 13 June at 8PM UTC
 20:32:46 &lt;manas&gt; Those are the general points of discussion, I'll be summarizing the threads referred to
 20:32:59 &lt;manas&gt; See you next week, thanks :)
 20:33:12 &lt;zzz&gt; great, thanks for setting that up, I encourage everyone to attend

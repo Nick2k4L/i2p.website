@@ -26,11 +26,11 @@ In der letzten Woche habe ich die von den i2p-bt-Trackern veröffentlichten Stat
 
 Seit dem 0.4.2.5-Release wurden in CVS einige Fehlerbehebungen und neue Funktionen hinzugefügt, die wir bald bereitstellen möchten, darunter Zuverlässigkeitskorrekturen für die Streaming-Bibliothek, eine verbesserte Widerstandsfähigkeit gegenüber Änderungen der IP-Adresse und die Bündelung von ragnaroks Adressbuch-Implementierung.
 
-Wenn Sie vom Adressbuch noch nichts gehört haben oder es noch nicht benutzt haben, kurz gesagt: Es aktualisiert Ihre hosts.txt-Datei automatisch, indem es in regelmäßigen Abständen Änderungen von einigen anonym gehosteten Quellen abruft und zusammenführt (Standard sind http://dev.i2p/i2p/hosts.txt und http://duck.i2p/hosts.txt). Sie müssen keine Dateien ändern, keine Konfiguration anpassen und keine zusätzlichen Anwendungen ausführen - es wird im I2P router als Standard-.war-Datei bereitgestellt.
+Wenn Sie vom Adressbuch noch nichts gehört haben oder es noch nicht benutzt haben, kurz gesagt: Es aktualisiert Ihre hosts.txt-Datei automatisch, indem es in regelmäßigen Abständen Änderungen von einigen anonym gehosteten Quellen abruft und zusammenführt (Standard sind `http://dev.i2p/i2p/hosts.txt` und `http://duck.i2p/hosts.txt).` Sie müssen keine Dateien ändern, keine Konfiguration anpassen und keine zusätzlichen Anwendungen ausführen - es wird im I2P router als Standard-.war-Datei bereitgestellt.
 
 Natürlich, wenn Sie sich *wirklich* intensiv mit dem Adressbuch beschäftigen möchten, nur zu - Details finden Sie auf Ragnaroks Website [2]. Wenn Sie das Adressbuch bereits in Ihrem router installiert haben, müssen Sie beim Upgrade auf 0.4.2.6 ein wenig basteln, aber es funktioniert mit allen Ihren alten Konfigurationseinstellungen.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -40,7 +40,7 @@ Zahlen, Zahlen, Zahlen! Nun, wie ich bereits sagte, wird das Release 0.5 überar
 
 jdot hat einen neuen Jabber-Server aufgesetzt, und er scheint sowohl für Einzelgespräche als auch für Gruppenchat ziemlich gut zu funktionieren. Schau dir die Infos im Forum [3] an. Der I2P-Dev-Diskussionskanal bleibt weiterhin der IRC #i2p, aber es ist immer schön, Alternativen zu haben.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

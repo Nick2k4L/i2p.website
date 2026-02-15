@@ -26,7 +26,7 @@ Bununla birlikte, 1 dakikalık periyotlar ve tek bir tunnel'ın aktarım hızın
 
 * 3) Syndie blogs
 
-Bazı geri bildirimlere dayanarak, syndie içindeki blog görünümünde daha fazla iyileştirme yapıldı; bu da ona, haber grubu/foruma benzer zincirli (threaded) görünümden belirgin biçimde farklı bir hava kazandırdı. Buna ek olarak, mevcut Syndie mimarisi aracılığıyla genel blog bilgilerini tanımlamak için bütünüyle yeni bir yetenek kazandı. Örnek için, varsayılan "about Syndie" blog yazısına göz atın:  http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001
+Bazı geri bildirimlere dayanarak, syndie içindeki blog görünümünde daha fazla iyileştirme yapıldı; bu da ona, haber grubu/foruma benzer zincirli (threaded) görünümden belirgin biçimde farklı bir hava kazandırdı. Buna ek olarak, mevcut Syndie mimarisi aracılığıyla genel blog bilgilerini tanımlamak için bütünüyle yeni bir yetenek kazandı. Örnek için, varsayılan "about Syndie" blog yazısına göz atın:  `http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001`
 
 Bu, yapabileceklerimizin ancak başlangıcına değiniyor. Bir sonraki sürüm, kendi blogunuzun logosunu, kendi bağlantılarınızı (bloglara, gönderilere, eklere, keyfi harici URL'lere) tanımlamanıza ve umarız daha da fazla özelleştirme yapmanıza olanak tanıyacak. Böyle bir özelleştirme de etiket başına simgeler - standart etiketlerle kullanılmak üzere bir dizi varsayılan simgeyi birlikte sunmak isterim, ancak insanlar, kendi bloglarında kullanmak üzere kendi etiketleri için simgeler tanımlayabilecek ve hatta standart etiketler için varsayılan simgeleri geçersiz kılabilecekler (yine, elbette yalnızca insanlar kendi bloglarını görüntülerken). Belki farklı etiketlere sahip gönderileri farklı şekilde göstermek için bazı stil yapılandırmaları bile olur (elbette yalnızca çok belirli stil özelleştirmelerine izin verilecek - Syndie ile keyfi CSS istismarları yok, çok teşekkürler :)
 
@@ -42,6 +42,6 @@ I2Phex'e gwebcache desteğini geri getirme konusunda ilerleme olduğuna dair rap
 
 * 6) ???
 
-Gördüğünüz gibi, epey şey oluyor, ama gündeme getirip tartışmak istediğiniz başka konular varsa, birkaç dakika içinde toplantıya uğrayın ve ses verin. Bu arada, son zamanlarda takip ettiğim hoş sitelerden biri http://freedomarchive.i2p/ oldu (I2P kurulu olmayan üşengeçler için, Tino'nun inproxy'sini http://freedomarchive.i2p.tin0.de/ üzerinden kullanabilirsiniz). Her neyse, birkaç dakika içinde görüşürüz.
+Gördüğünüz gibi, epey şey oluyor, ama gündeme getirip tartışmak istediğiniz başka konular varsa, birkaç dakika içinde toplantıya uğrayın ve ses verin. Bu arada, son zamanlarda takip ettiğim hoş sitelerden biri `http://freedomarchive.i2p/` oldu (I2P kurulu olmayan üşengeçler için, Tino'nun inproxy'sini http://freedomarchive.i2p.tin0.de/ üzerinden kullanabilirsiniz). Her neyse, birkaç dakika içinde görüşürüz.
 
 =jr

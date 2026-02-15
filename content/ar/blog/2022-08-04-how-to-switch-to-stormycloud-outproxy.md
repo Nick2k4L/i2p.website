@@ -22,11 +22,11 @@ categories: ["general"]
 
 لمعرفة المزيد عن StormyCloud، زر [موقعهم الإلكتروني](https://www.stormycloud.org/).
 
-أو زرهم على [I2P](http://stormycloud.i2p/).
+أو زرهم على I2P.
 
 **التبديل إلى StormyCloud Outproxy (وكيل الخروج) على I2P**
 
-للتبديل إلى outproxy (وكيل خارجي) StormyCloud *اليوم* يمكنك زيارة [مدير الخدمات المخفية](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0). بمجرد وصولك إلى هناك، ينبغي عليك تغيير قيمة **Outproxies** و **SSL Outproxies** إلى `exit.stormycloud.i2p`. بعد أن تقوم بذلك، مرّر إلى أسفل الصفحة وانقر على زر "Save".
+للتبديل إلى outproxy (وكيل خارجي) StormyCloud *اليوم* يمكنك زيارة `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0`. بمجرد وصولك إلى هناك، ينبغي عليك تغيير قيمة **Outproxies** و **SSL Outproxies** إلى `exit.stormycloud.i2p`. بعد أن تقوم بذلك، مرّر إلى أسفل الصفحة وانقر على زر "Save".
 
 **شكرًا لـ StormyCloud**
 

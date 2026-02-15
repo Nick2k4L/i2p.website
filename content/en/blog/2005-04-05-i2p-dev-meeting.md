@@ -39,12 +39,12 @@ categories: ["meeting"]
 14:44 &lt;@jrandom&gt; ok, movin' on to 3) Q
 14:44 &lt;@jrandom&gt; aum: you up?
 14:44 &lt;@jrandom&gt; hmm, doesnt look like it
-14:45 &lt;@jrandom&gt; ok, lots of progress on the Q front, more details for getting involved in alpha testing up @ http://aum.i2p/q/ 
+14:45 &lt;@jrandom&gt; ok, lots of progress on the Q front, more details for getting involved in alpha testing up @ `http://aum.i2p/q/` 
 14:45 &lt;@jrandom&gt; i'm sure we'll hear more on the list when there's an update available
 14:46 &lt;+ant&gt; &lt;Connelly&gt; Q works for me for retrieving content
 14:46 &lt;@jrandom&gt; yeah, its been working great for me as well, a few bumps here and there, but quite promising
 14:47 &lt;+ant&gt; &lt;Connelly&gt; my Q server stored 2 small items, then got stuck at 100% cpu usage until i killed it
-14:47 &lt;zzz&gt; for those who haven't seen it check out my q front end http://flock.i2p/cgi-bin/q
+14:47 &lt;zzz&gt; for those who haven't seen it check out my q front end `http://flock.i2p/cgi-bin/q`
 14:47 &lt;@jrandom&gt; zzz: that is quite kickass
 14:48  * jrandom forgot the url to that when writing up the status notes (d'oh)
 14:50 &lt;@jrandom&gt; ok, anything else on 3) Q?  or shall we move on to 4) ???

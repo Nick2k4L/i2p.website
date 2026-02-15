@@ -103,7 +103,7 @@ categories: ["meeting"]
 20:18:20  &lt;dg&gt; alright :)
 20:18:34  &lt;zzz&gt; there was also the idea of USB stick giveaways, I looked into it, looks like $2 in bulk for small-capacity
 20:18:41  &lt;dg&gt; i'm waiting for schedule so i can plan my day
-20:18:42  &lt;eche|on&gt; http://echelon.i2p/29c3/
+20:18:42  &lt;eche|on&gt; `http://echelon.i2p/29c3/`
 20:18:46  &lt;iRelay&gt; Title: 29C3 I2P contest (at echelon.i2p)
 20:18:51  &lt;dg&gt; know when to duck in/out
 20:19:29  &lt;eche|on&gt; dg: usual we meet in 10-12am and leave after 1am...
@@ -176,7 +176,7 @@ categories: ["meeting"]
 20:31:27  &lt;hottuna2&gt; zzz, so no t-shirt for dg or postman?
 20:31:37  &lt;hottuna2&gt; I don't mind ordering/bringing them.
 20:31:40  &lt;postman&gt; hey, i would take one
-20:31:49  &lt;eche|on&gt; http://echelon.i2p/29c3/user5/poster/final_with_garlic.jpg
+20:31:49  &lt;eche|on&gt; `http://echelon.i2p/29c3/user5/poster/final_with_garlic.jpg`
 20:32:03  &lt;eche|on&gt; zzz: that one?
 20:32:06  &lt;dg&gt; I'd like a yellow one if you've got one but I'll order it myself if not
 20:32:43  &lt;hottuna2&gt; dg, postman what sizes are you?

@@ -6,7 +6,7 @@ description: "Anonimlik, akran incelemesi, SILC entegrasyonu ve yeni web sitesi 
 categories: ["meeting"]
 ---
 
-(Wayback Machine'in katkılarıyla http://www.archive.org/)
+(Wayback Machine'in katkılarıyla `http://www.archive.org/`)
 
 ## Kısa özet
 

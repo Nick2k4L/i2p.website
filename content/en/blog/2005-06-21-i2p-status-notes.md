@@ -23,8 +23,8 @@ That last point means that I won't be hanging out on irc as much as before, at l
 
 Anyway, enough about me.
 
-[1] http://dev.i2p.net/pipermail/i2p/
-[2] http://forum.i2p.net/
+[1] `http://dev.i2p.net/pipermail/i2p/`
+[2] `http://forum.i2p.net/`
 
 * 2) Dev[elopment] status
 

@@ -28,7 +28,7 @@ I2P配置文件按照Java [Properties](http://docs.oracle.com/javase/1.5.0/docs/
 
 文件无需排序，但大多数应用程序在写入文件时会按键排序，以便于阅读和手动编辑。
 
-读取和写入操作在 DataHelper loadProps() 和 storeProps() [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html) 中实现。请注意，文件格式与 [映射](/docs/specs/common-structures/#type-mapping) 中指定的 I2P 协议序列化格式有显著差异。
+读取和写入操作在 DataHelper loadProps() 和 storeProps() [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html) 中实现。请注意，文件格式与 [映射](/docs/specs/common-structures/#type-mapping) 中指定的 I2P 协议序列化格式有显著差异。
 
 ## 核心库和router
 
@@ -226,7 +226,7 @@ tunnel.N.option.i2ptunnel.httpclient.allowInternalSSL=true|false
 tunnel.N.option.i2ptunnel.httpclient.disableAddressHelper=true|false
 
 # HTTP client only. Comma- or space-separated list of jump server URLs.
-tunnel.N.option.i2ptunnel.httpclient.jumpServers=http://example.i2p/jump
+tunnel.N.option.i2ptunnel.httpclient.jumpServers=`http://example.i2p/jump`
 
 # HTTP client only. Whether to pass Accept* headers through. Default false.
 # Note: Does not affect "Accept" and "Accept-Encoding".
@@ -430,7 +430,7 @@ router 控制台使用 router.config 文件。
 
 ## 参考资料
 
-- [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+- [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 - [映射](/docs/specs/common-structures#type-mapping)
 - [插件](/docs/specs/plugin)
 - [属性](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html#load%28java.io.InputStream%29)

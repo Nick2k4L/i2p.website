@@ -131,7 +131,7 @@ e o campo de preenchimento (para Destinos e Identidades de Roteador).
 
 ### Arquivo de Chave Privada
 O formato do arquivo de chave privada (eepPriv.dat) não é uma parte oficial de nossas especificações
-mas está documentado nos [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+mas está documentado nos Java I2P javadocs
 e outras implementações o suportam.
 Isso permite a portabilidade de chaves privadas entre diferentes implementações.
 Adicionar uma nota a esse javadoc de que a chave pública de criptografia pode ser um preenchimento aleatório
@@ -219,7 +219,7 @@ Mensagens de Pesquisa de Banco de Dados criptografadas e respostas.
 Prazo estimado para projeto, desenvolvimento e implantação disso seria ????????
 Mas seria após híbrido ou ratchet ????????????
 
-Para mais discussões, veja [this topic](http://zzz.i2p/topics/3294).
+Para mais discussões, veja this topic.
 
 
 ## Questões
@@ -245,4 +245,4 @@ Sujeito a questões de compatibilidade com versões anteriores, e após desabili
 as implementações podem remover completamente o código ElGamal.
 Aproximadamente 14% dos roteadores na rede são do tipo de criptografia ElGamal, incluindo muitos floodfills.
 
-Uma solicitação de mesclagem preliminar para I2P em Java está em [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+Uma solicitação de mesclagem preliminar para I2P em Java está em git.idk.i2p.

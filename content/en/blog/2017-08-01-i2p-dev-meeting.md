@@ -40,7 +40,7 @@ categories: ["meeting"]
 20:06:54 &lt;zzz&gt; on zzz.i2p I've proposed an increase from last year, to 500 euros for reseeders, 1500 for full contributors, 2000 for special circumstances
 20:07:04 &lt;zzz&gt; comments?
 20:07:21 &lt;eche|on&gt; OK for me
-20:07:47 &lt;eche|on&gt; btw: http://echelon.i2p/donations/index.html updated
+20:07:47 &lt;eche|on&gt; btw: `http://echelon.i2p/donations/index.html` updated
 20:07:55 &lt;i2pr&gt; [Slack/str4d] That seems reasonable to me
 20:07:56 &lt;manas&gt; Lag, sorry. That seems good
 20:08:09 &lt;zzz&gt; eche|on, would you like ppl to email their requests to you, and if so, by what date?

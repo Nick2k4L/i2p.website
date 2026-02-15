@@ -22,12 +22,12 @@ Last week's 0.5.0.5 release has had its ups and downs - the major change to addr
 
 bla has been doing some research into improving our peer profiling by exploiting simple bayesian filtering from the gathered stats [1]. It looks quite promising, though I'm not sure where it stands at the moment - perhaps we can get an update from bla during the meeting?
 
-[1] http://forum.i2p.net/viewtopic.php?t=598
-    http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`
+    `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-There is lots of progress going on with aum's Q app, both in the core functionality and with a few people building various xmlrpc frontends. Rumor has it we might be seeing another Q build out this weekend with a whole slew of goodies described on http://aum.i2p/q/
+There is lots of progress going on with aum's Q app, both in the core functionality and with a few people building various xmlrpc frontends. Rumor has it we might be seeing another Q build out this weekend with a whole slew of goodies described on `http://aum.i2p/q/`
 
 * 4) ???
 

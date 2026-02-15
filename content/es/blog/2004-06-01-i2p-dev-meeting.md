@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] <mihi> ;)
 [23:02] <duck> 1) progreso del código
 [23:02] <duck> no se ha enviado mucho código a cvs
-[23:02] <duck> gané el trofeo esta semana: http://duck.i2p/duck_trophy.jpg
+[23:02] <duck> gané el trofeo esta semana: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus todavía no tiene cuenta de cvs
 [23:03] <Masterboy> ¿y quién envió algo?
 [23:03] <duck> ¿alguien está programando algo en secreto?

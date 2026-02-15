@@ -16,7 +16,7 @@ Olá, pessoal, chegou aquela hora da semana,
 
 Mais uma semana, mais uma mensagem dizendo "Tem havido muito progresso no transporte SSU" ;) Minhas modificações locais estão estáveis e foram enviadas ao CVS (HEAD está em 0.5.0.7-9), mas ainda não há lançamento. Mais novidades nessa frente em breve. Detalhes sobre as alterações não relacionadas ao SSU estão no histórico [1], embora eu esteja mantendo as alterações relacionadas ao SSU fora dessa lista por enquanto, já que SSU ainda não é usado por nenhum não-desenvolvedor ainda (e os desenvolvedores leem i2p-cvs@ :)
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) Tunnel IVs
 
@@ -24,7 +24,7 @@ Nos últimos dias, dvorak tem postado reflexões ocasionais sobre diferentes man
 
 Um dos problemas centrais por trás disso é que não há como verificar uma mensagem de tunnel conforme ela percorre o tunnel sem abrir espaço para uma série de ataques (consulte uma proposta anterior de criptografia de tunnel [2] para um método que chega perto, mas tem probabilidades bastante questionáveis e impõe alguns limites artificiais aos tunnels).
 
-[2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel.html?rev=HEAD
+[2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel.html?rev=HEAD`
 
 Há, no entanto, uma maneira trivial de contornar o ataque específico descrito - basta tratar xor(IV, first data block) como o identificador único passado pelo filtro de Bloom em vez do IV (vetor de inicialização) sozinho. Assim, os pares intermediários verão o duplicado e o descartarão antes que ele alcance o segundo par em conluio. O CVS foi atualizado para incluir essa defesa, embora eu duvide muito, mas muito, que seja uma ameaça prática dado o tamanho atual da rede, então não estou lançando isso como uma versão por si só.
 
@@ -34,7 +34,7 @@ Isto não afeta, no entanto, a viabilidade de outros ataques de temporização o
 
 Conforme descrito na especificação [3], o transporte SSU usa um MAC para cada datagrama transmitido. Isso é, além do hash de verificação enviado com cada mensagem I2NP (assim como os hashes de verificação de ponta a ponta nas mensagens de cliente). No momento, a especificação e o código usam um HMAC-SHA256 truncado - transmitindo e verificando apenas os primeiros 16 bytes do MAC. Isso é *cof* um pouco ineficiente, já que o HMAC usa o hash SHA256 duas vezes em sua operação, cada vez executando com um hash de 32 bytes, e o perfilamento recente do transporte SSU sugere que isso está perto do caminho crítico do uso de CPU. Sendo assim, fiz alguns experimentos substituindo o HMAC-SHA256-128 por um HMAC-MD5(-128) simples - embora o MD5 seja claramente menos robusto que o SHA256, estamos truncando o SHA256 para o mesmo tamanho do MD5 de qualquer forma, então a quantidade de força bruta necessária para causar colisão é a mesma (2^64 tentativas). Estou experimentando com isso no momento e o ganho é substancial (obtendo mais de 3x a vazão de HMAC em pacotes de 2KB do que com SHA256), então talvez possamos colocar isso em produção. Ou, se alguém puder apresentar um ótimo motivo para não fazê-lo (ou uma alternativa melhor), é simples o suficiente substituir (apenas uma linha de código).
 
-[3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 4) ???
 

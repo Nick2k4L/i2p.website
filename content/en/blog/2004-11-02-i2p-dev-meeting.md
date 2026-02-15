@@ -227,7 +227,7 @@ categories: ["meeting"]
 14:38 &lt;deer&gt; &lt;duck&gt; ...
 14:38 &lt;deer&gt; &lt;duck&gt; mo bt?
 14:38 &lt;deer&gt; * dinoman gets back to work on Savane
-14:39 &lt;jrandom&gt; http://ugha.i2p/SwarmingTransfer / http://ugha.ath.cx/SwarmingTransfer
+14:39 &lt;jrandom&gt; `http://ugha.i2p/SwarmingTransfer` / http://ugha.ath.cx/SwarmingTransfer
 14:39 &lt;jrandom&gt; word
 14:39 &lt;jrandom&gt; ok, anything else on 5) BT progress?
 14:39 &lt;jrandom&gt; or shall we hit 6) ???
@@ -335,14 +335,14 @@ categories: ["meeting"]
 14:58 &lt;duck&gt; .
 14:58 &lt;jrandom&gt; the only way any worthwhile anonymity or security system can survive is to be content neutral
 14:59 &lt;deer&gt; &lt;Ragnarok&gt; anonymous communication systems can only protect communication.  They don't interfere with good old police work if someone actually *does* something.
-14:59 &lt;duck&gt; just saying that some links placed on http://127.0.0.1:7657/index.jsp could be bad
+14:59 &lt;duck&gt; just saying that some links placed on `http://127.0.0.1:7657/index.jsp` could be bad
 14:59 &lt;dm&gt; I2P is about technology.
 14:59 &lt;deer&gt; &lt;Natalia&gt; yes
 14:59 &lt;jrandom&gt; true enough duck
 15:00 &lt;duck&gt; and yes, the sitelist.html will turn into a TFE discussion thing all over
 15:00 &lt;jrandom&gt; well, mmhmm
 15:00 &lt;deer&gt; &lt;Natalia&gt; content neutrality is something I write about in the latest eeplog entry
-15:00 &lt;deer&gt; &lt;Natalia&gt; http://gott.i2p/eeplog.html
+15:00 &lt;deer&gt; &lt;Natalia&gt; `http://gott.i2p/eeplog.html`
 15:01 &lt;jrandom&gt; this is, however, the power of interactive eepsites, like wikis
 15:01 &lt;jrandom&gt; (e.g. having people register their site with a sitelist.py or whatever)
 15:01 &lt;deer&gt; &lt;Natalia&gt; jrandom: do you support not support the idea of eepsite crawlers linking to illegal material, being linked from the frontpage ?

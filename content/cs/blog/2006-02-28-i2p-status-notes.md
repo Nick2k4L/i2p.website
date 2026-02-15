@@ -30,7 +30,7 @@ Existují i další zajímavé strategie, které je třeba ještě dořešit, al
 
 Je tu víc užitečných věcí k udělání, než bych dokázal spočítat, ale jen vás chci upozornit na příspěvek na svém blogu, který popisuje pět malých projektů, které by programátor mohl rychle dát dohromady, aniž by do toho investoval příliš času [1]. Pokud by se do nich někdo chtěl pustit, jsem si jistý, že bychom jako poděkování vyčlenili nějaké prostředky [2] z obecného fondu, i když chápu, že většinu z vás žene spíš hack (samotné hackování) než peníze ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

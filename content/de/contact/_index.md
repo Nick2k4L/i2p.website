@@ -25,9 +25,9 @@ Bitte verwenden Sie diese E-Mail-Adressen nicht für Supportanfragen. Für Anlie
 
 ## Foren {#forums}
 
-Bitte besuchen Sie unser I2P-Benutzerforum - [i2pforum.i2p](http://i2pforum.i2p/) (verfügbar im nicht-privaten Internet unter https://i2pforum.net.
+Bitte besuchen Sie unser I2P-Benutzerforum - i2pforum.i2p (verfügbar im nicht-privaten Internet unter https://i2pforum.net.
 
-Die Diskussion über I2Ps Entwicklung findet im [I2P-Benutzerforum](http://i2pforum.i2p) statt. Dies ist normalerweise der beste Ort, um mit Entwickleranfragen zu beginnen, falls der Entwickler-IRC-Kanal inaktiv ist. Für allgemeine Unterstützung verwenden Sie entweder das [I2P-Benutzerforum](http://i2pforum.i2p) oder das Subreddit.
+Die Diskussion über I2Ps Entwicklung findet im I2P-Benutzerforum statt. Dies ist normalerweise der beste Ort, um mit Entwickleranfragen zu beginnen, falls der Entwickler-IRC-Kanal inaktiv ist. Für allgemeine Unterstützung verwenden Sie entweder das I2P-Benutzerforum oder das Subreddit.
 
 ## IRC {#irc}
 
@@ -63,8 +63,8 @@ Abonnieren Sie unsere Mailingliste, indem Sie Ihre E‑Mail‑Adresse in der Fu�
 | **CI-Admin** | idk | Betreut die Continuous-Integration-Infrastruktur |
 | **Reseed-Admin** | idk | Überwacht, berät und rekrutiert Reseed-Hosts |
 | **Gitea-Admin** | idk | I2P-Gitea-Betreuer |
-| **Lokalisierung** | idk, zzz | Admins auf [Transifex](https://www.transifex.com/projects/p/I2P/) |
-| **Übersetzer** | sehr, sehr viele Menschen! | Übersetzer auf [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Lokalisierung** | idk, zzz | Admins auf Transifex |
+| **Übersetzer** | sehr, sehr viele Menschen! | Übersetzer auf Transifex |
 | **Website-Betreuer** | StormyCloud | Verwaltet Inhalte und Design der öffentlichen Projekt-Website |
 | **Webserver-Admin** | StormyCloud | Verwaltet die öffentlichen Projekt-Webserver |
 | **Website-Admin** | idk | Verwaltet die öffentliche Projekt-Website |

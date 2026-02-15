@@ -20,7 +20,7 @@ categories: ["status"]
 
 zzz द्वारा I2PSnark में किए गए अपडेट में प्रोटोकॉल अनुकूलन के साथ-साथ वेब इंटरफेस में बदलाव भी शामिल थे, जैसा कि इतिहास लॉग [1] में वर्णित है। 0.6.1.25 रिलीज़ के बाद से I2PSnark के लिए कुछ छोटे अपडेट भी हुए हैं, और शायद zzz आज रात की बैठक के दौरान हमें यह बताने के लिए एक सिंहावलोकन दे सकते हैं कि क्या चल रहा है।
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

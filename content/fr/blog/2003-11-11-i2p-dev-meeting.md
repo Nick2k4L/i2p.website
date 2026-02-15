@@ -6,7 +6,7 @@ description: "Réunion de développement I2P portant sur le statut du router, le
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la wayback machine http://www.archive.org/)
+(Avec l'aimable autorisation de la wayback machine `http://www.archive.org/`)
 
 ## Récapitulatif rapide
 

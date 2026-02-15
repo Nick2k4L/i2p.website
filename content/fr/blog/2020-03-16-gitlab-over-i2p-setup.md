@@ -55,7 +55,7 @@ Une fois que Gitlab est configuré en local, accédez à la console du I2P Route
 
 ### Gitlab Web(HTTP) Interface
 
-Pour l’interface Web, utilisez un "HTTP" server tunnel. Depuis http://127.0.0.1:7657/i2ptunnelmgr lancez le "New Tunnel Wizard" et saisissez les valeurs suivantes :
+Pour l’interface Web, utilisez un "HTTP" server tunnel. Depuis `http://127.0.0.1:7657/i2ptunnelmgr` lancez le "New Tunnel Wizard" et saisissez les valeurs suivantes :
 
 1. Select "Server Tunnel"
 2. Select "HTTP Server"
@@ -66,7 +66,7 @@ Pour l’interface Web, utilisez un "HTTP" server tunnel. Depuis http://127.0.0.
 
 ### Gitlab SSH Interface
 
-Pour l'interface SSH, utilisez un tunnel serveur "Standard". Depuis http://127.0.0.1:7657/i2ptunnelmgr, lancez le "New Tunnel Wizard" et saisissez les valeurs suivantes :
+Pour l'interface SSH, utilisez un tunnel serveur "Standard". Depuis `http://127.0.0.1:7657/i2ptunnelmgr,` lancez le "New Tunnel Wizard" et saisissez les valeurs suivantes :
 
 1. Select "Server Tunnel"
 2. Select "Standard Server"

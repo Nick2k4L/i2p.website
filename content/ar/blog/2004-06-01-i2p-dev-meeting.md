@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] &lt;mihi&gt; ;)
 [23:02] &lt;duck&gt; 1) تقدّم الكود
 [23:02] &lt;duck&gt; لم يتم إرسال الكثير من الكود إلى cvs
-[23:02] &lt;duck&gt; لقد فزت بالكأس هذا الأسبوع: http://duck.i2p/duck_trophy.jpg
+[23:02] &lt;duck&gt; لقد فزت بالكأس هذا الأسبوع: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus ليس لديه حساب cvs بعد
 [23:03] &lt;Masterboy&gt; ومن الذي قدّم شيئًا؟
 [23:03] &lt;duck&gt; هل يقوم أيّ شخص بأي برمجة سرية؟

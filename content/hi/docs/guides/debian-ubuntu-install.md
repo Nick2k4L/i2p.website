@@ -84,7 +84,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **चरण 3: रिपॉजिटरी साइनिंग की डाउनलोड करें**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
 ```
 **चरण 4: कुंजी फिंगरप्रिंट सत्यापित करें**
 
@@ -182,8 +182,8 @@ sudo dpkg-reconfigure i2p
 
 इष्टतम प्रदर्शन और नेटवर्क भागीदारी के लिए, अपने NAT/firewall के माध्यम से I2P ports को forward करें:
 
-1. [I2P Router Console](http://127.0.0.1:7657/) खोलें
-2. [Network Configuration page](http://127.0.0.1:7657/confignet) पर जाएं
+1. `http://127.0.0.1:7657/` खोलें
+2. `http://127.0.0.1:7657/confignet` पर जाएं
 3. सूचीबद्ध पोर्ट नंबरों को नोट करें (आमतौर पर 9000-31000 के बीच यादृच्छिक पोर्ट)
 4. अपने router/firewall में इन UDP और TCP पोर्ट्स को forward करें
 
@@ -193,7 +193,7 @@ sudo dpkg-reconfigure i2p
 
 डिफ़ॉल्ट बैंडविड्थ सेटिंग्स रूढ़िवादी हैं। अपने इंटरनेट कनेक्शन के आधार पर उन्हें समायोजित करें:
 
-1. [Configuration page](http://127.0.0.1:7657/config.jsp) पर जाएं
+1. `http://127.0.0.1:7657/config.jsp` पर जाएं
 2. bandwidth settings अनुभाग खोजें
 3. डिफ़ॉल्ट सेटिंग्स 96 KB/s download / 40 KB/s upload हैं
 4. यदि आपके पास तेज़ इंटरनेट है तो इन्हें बढ़ाएं (उदाहरण के लिए, सामान्य ब्रॉडबैंड कनेक्शन के लिए 250 KB/s down / 100 KB/s up)
@@ -244,7 +244,7 @@ Firefox, Chrome और अन्य ब्राउज़रों के लि
 अब जब I2P इंस्टॉल और चालू है:
 
 - I2P साइटों तक पहुँचने के लिए [अपने ब्राउज़र को कॉन्फ़िगर करें](/docs/guides/browser-config)
-- अपने router की निगरानी के लिए [I2P router console](http://127.0.0.1:7657/) देखें
+- अपने router की निगरानी के लिए `http://127.0.0.1:7657/` देखें
 - जानें कि आप कौन से [I2P applications](/docs/applications/) उपयोग कर सकते हैं
 - नेटवर्क को समझने के लिए [I2P कैसे काम करता है](/docs/overview/tech-intro) के बारे में पढ़ें
 

@@ -12,7 +12,7 @@ Although it is easy to do, there are a few things you should consider before doi
 
 ### Step One: Open the Tunnel Wizard
 
-Go to the I2P web interface at 127.0.0.1:7657 and open the [Hidden Services Manager](http://127.0.0.1:7657/i2ptunnelmgr) (links to localhost). Click the button that says "Tunnel Wizard" to begin.
+Go to the I2P web interface at 127.0.0.1:7657 and open the `http://127.0.0.1:7657/i2ptunnelmgr` (links to localhost). Click the button that says "Tunnel Wizard" to begin.
 
 ### Step Two: Select a Server Tunnel
 

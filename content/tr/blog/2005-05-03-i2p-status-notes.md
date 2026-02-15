@@ -24,7 +24,7 @@ Test süreci hâlâ çok erken aşamada, ancak beklediğimden çok daha iyi geç
 
 Yardımcı gönüllülerden toplanan istatistikler sayesinde, aşırı tıkanık ağlarda düzgün çalışabilmek için seçmeli onay (SACK) kodunun ne kadar önemli olduğu ortaya çıktı. Son birkaç günü bu kodu uygulayıp test etmekle geçirdim ve SSU belirtimini [1] yeni, verimli bir SACK tekniğini içerecek şekilde güncelledim. Bu, önceki SSU koduyla geriye dönük uyumlu olmayacak; bu yüzden test etmeye yardımcı olanların, yeni bir derleme test için hazır olana kadar (umarım bir iki gün içinde) SSU taşıma katmanını devre dışı bırakması gerekiyor.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 3) i2phex
 
@@ -32,7 +32,7 @@ sirup bir süredir phex'in i2p'ye portu üzerinde harıl harıl çalışıyor ve
 
 sirup'un eepsite(I2P Site) [2] üzerinde çok daha fazla bilgi var ve hâlihazırda i2p topluluğunda bulunan kişilerin test etmeye yardımcı olması harika olurdu (ancak lütfen, sirup bunu herkese açık bir sürüm olarak onaylayana ve i2p en az 0.6, hatta 1.0 olana kadar, bunu i2p topluluğu içinde tutalım). Sanırım sirup bu haftaki toplantıda olacak, belki o zaman daha fazla bilgi edinebiliriz!
 
-[2] http://sirup.i2p/
+[2] `http://sirup.i2p/`
 
 * 4) awol
 
@@ -44,4 +44,4 @@ Yani, canınız sıkılıyor ve yardımcı olmak istiyorsunuz ama ilhama da ihti
 
 Tamam, şimdilik değineceklerim aşağı yukarı bu kadar. Önümüzdeki hafta boyunca SSU testlerine yardımcı olmak isteyenler, blogumda [3] yer alacak bilgiler için gözünüzü açık tutun. Geri kalanınızla toplantıda görüşürüz!
 
-=jr [3] http://jrandom.dev.i2p/
+=jr [3] `http://jrandom.dev.i2p/`

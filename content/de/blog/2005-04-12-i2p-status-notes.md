@@ -31,7 +31,7 @@ bla hat fleißig daran gearbeitet, unsere Entscheidungskriterien dafür zu über
 <+bla> Letzteres wurde unter Verwendung der Standard-Längen der expl. tunnels durchgeführt
 <+bla> Die Schnittmenge zwischen der Menge der Knoten, für die ich        „Ground Truth“ (Referenzwerte) habe, und der Menge der Knoten in den aktuellen        Messungen, beträgt 117 Knoten
 <+bla> Die Ergebnisse sind nicht _so_ schlecht, aber auch nicht besonders beeindruckend
-<+bla> Siehe http://theland.i2p/estspeed.png
+<+bla> Siehe `http://theland.i2p/estspeed.png`
 <+bla> Die grundlegende Trennung sehr langsam/schnell ist ganz okay, aber die        feinere Unterscheidung unter den schnelleren Peers könnte deutlich besser sein
 <+jrandom2p> hmm, wie wurden die tatsächlichen Werte berechnet - ist das              volles RTT oder RTT/Länge ?
 <+bla> Mit den normalen expl. tunnels ist es so gut wie unmöglich,        Batching-Verzögerungen zu verhindern.
@@ -51,7 +51,7 @@ bla hat fleißig daran gearbeitet, unsere Entscheidungskriterien dafür zu über
 <+bla> Trotzdem.... 65% der geschätzten Zeiten liegen innerhalb von 0,5        Standardabweichungen von der tatsächlichen Knotenzeit
 <+bla> Allerdings muss das neu gemacht werden, da die Standardabweichung        stark von den >60000 ms-Ausfällen beeinflusst wird
 
-Nach weiterer Diskussion zeigte bla einen Vergleich gegenüber dem bestehenden Geschwindigkeitsrechner, veröffentlicht @ http://theland.i2p/oldspeed.png Spiegel dieser PNGs sind unter http://dev.i2p.net/~jrandom/estspeed.png und http://dev.i2p.net/~jrandom/oldspeed.png verfügbar
+Nach weiterer Diskussion zeigte bla einen Vergleich gegenüber dem bestehenden Geschwindigkeitsrechner, veröffentlicht @ `http://theland.i2p/oldspeed.png` Spiegel dieser PNGs sind unter `http://dev.i2p.net/~jrandom/estspeed.png` und `http://dev.i2p.net/~jrandom/oldspeed.png` verfügbar
 
 (zur Terminologie, IB=eingehende tunnel-Hops, OB=ausgehende tunnel-Hops, und nach einigen Klarstellungen wurden die "Ground Truth"-Messungen mit 1 Hop ausgehend und 0 Hops eingehend ermittelt, nicht umgekehrt)
 

@@ -20,7 +20,7 @@ categories: ["status"]
 
 0.6.1.10 릴리스를 향해 나아가기 위해 _PRE 네트워크와 관련한 추가 진전이 있었고, 며칠 전 여러분 모두에게 5일 예고[1]를 드렸습니다.  모든 것은 여전히 계획대로 진행되고 있으므로 0.6.1.10은 목요일 늦게쯤 배포될 것으로 예상합니다.  이번 릴리스는 하위 호환되지 않으며, 여러분의 router가 새 router identity를 생성하고 새 네트워크에 접속하려면 reseeding(재시드)을 요구할 가능성이 높습니다.  다만 이러한 과정은 사용자에게는 투명하게 진행될 것입니다.
 
-[1] http://dev.i2p.net/pipermail/i2p/2006-February/001259.html
+[1] `http://dev.i2p.net/pipermail/i2p/2006-February/001259.html`
 
 CVS 사용자에게 한 가지 주의 사항이 있습니다 - 오늘 밤 회의 이후 _PRE 브랜치를 trunk(메인 브랜치)에 다시 병합하기 시작할 것이므로, 0.6.1.10이 릴리스될 때까지는 CVS를 피하세요.
 
@@ -28,7 +28,7 @@ CVS 사용자에게 한 가지 주의 사항이 있습니다 - 오늘 밤 회의
 
 요즘 Syndie에서 트래픽이 증가해 꽤 멋집니다. 그러니 로컬 인스턴스 [2]나 공개 노드 [3]에 들러 무슨 일이 있는지 확인해 보세요.
 
-[2] http://localhost:7657/syndie/blogs.jsp [3] http://syndiemedia.i2p.net/blogs.jsp
+[2] `http://localhost:7657/syndie/blogs.jsp` [3] `http://syndiemedia.i2p.net/blogs.jsp`
 
 * 4) ???
 

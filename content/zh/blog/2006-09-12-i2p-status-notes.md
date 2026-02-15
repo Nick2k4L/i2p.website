@@ -20,7 +20,7 @@ categories: ["status"]
 
 zzz 对 I2PSnark 的更新包括协议优化以及 Web 界面更改，正如历史日志 [1] 中所述。自 0.6.1.25 版本发布以来，I2PSnark 也有一些小更新，也许 zzz 可以在今晚的会议上为我们概述一下最新进展。
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

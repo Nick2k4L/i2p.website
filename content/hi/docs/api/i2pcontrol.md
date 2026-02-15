@@ -102,7 +102,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 ### सफल प्रतिक्रिया
 
@@ -144,7 +144,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Response Fields (result)** आधिकारिक दस्तावेजों (GetI2P) के अनुसार: - `i2p.router.status` (String) — एक human-readable स्थिति - `i2p.router.uptime` (long) — milliseconds (या पुराने i2pd के लिए string) :contentReference[oaicite:0]{index=0} - `i2p.router.version` (String) — version string :contentReference[oaicite:1]{index=1} - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — B/s में inbound bandwidth :contentReference[oaicite:2]{index=2} - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — B/s में outbound bandwidth :contentReference[oaicite:3]{index=3} - `i2p.router.net.status` (long) — numeric स्थिति कोड (नीचे enum देखें) :contentReference[oaicite:4]{index=4} - `i2p.router.net.tunnels.participating` (long) — भाग लेने वाली tunnels की संख्या :contentReference[oaicite:5]{index=5} - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — netDb peer stats :contentReference[oaicite:6]{index=6} - `i2p.router.netdb.isreseeding` (boolean) — क्या reseed सक्रिय है :contentReference[oaicite:7]{index=7} - `i2p.router.netdb.knownpeers` (long) — कुल ज्ञात peers :contentReference[oaicite:8]{index=8}
 
@@ -240,7 +240,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **नमूना प्रतिक्रिया**
 
@@ -274,7 +274,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **सफल प्रतिक्रिया**
 
@@ -309,7 +309,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **नमूना प्रतिक्रिया**
 
@@ -351,7 +351,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **प्रतिक्रिया उदाहरण**
 

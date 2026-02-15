@@ -87,7 +87,7 @@ categories: ["meeting"]
 16:47 &lt;nickless_head&gt; jrandom: is there a _really simple_ way to get to the messages in the syndie database, over http?
 16:47 &lt;jrandom&gt; ah yeah ailouros/nickless_head, I'm thinking of color coding/flagging the first column by date (e.g. things posted today get a bright flag, yesterday a less bright, etc).  
 16:47 &lt;nickless_head&gt; jrandom: preferredly in something nice and importable like xml
-16:48 &lt;jrandom&gt; nickless_head: wget -R http://localhost:7657/syndie/archive/
+16:48 &lt;jrandom&gt; nickless_head: wget -R `http://localhost:7657/syndie/archive/`
 16:48 &lt;nickless_head&gt; if there is, I could write a syndie to nntp exporter
 16:48 &lt;jrandom&gt; oh, if you want to export to nntp, use rss to nntp
 16:48 &lt;nickless_head&gt; jrandom: ok I'll try that :)

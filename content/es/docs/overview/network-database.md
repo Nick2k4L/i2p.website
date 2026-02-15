@@ -71,7 +71,7 @@ Números de NetID válidos:
 | Reservado | 255 |
 ### Opciones Adicionales
 
-Las opciones de texto adicionales incluyen un pequeño número de estadísticas sobre la salud del router, las cuales son agregadas por sitios como [stats.i2p](http://stats.i2p/) para análisis de rendimiento de red y depuración. Estas estadísticas fueron elegidas para proporcionar datos cruciales para los desarrolladores, como las tasas de éxito de construcción de tunnel, mientras se equilibra la necesidad de dichos datos con los efectos secundarios que podrían resultar de revelar esta información. Las estadísticas actuales se limitan a:
+Las opciones de texto adicionales incluyen un pequeño número de estadísticas sobre la salud del router, las cuales son agregadas por sitios como stats.i2p para análisis de rendimiento de red y depuración. Estas estadísticas fueron elegidas para proporcionar datos cruciales para los desarrolladores, como las tasas de éxito de construcción de tunnel, mientras se equilibra la necesidad de dichos datos con los efectos secundarios que podrían resultar de revelar esta información. Las estadísticas actuales se limitan a:
 
 - Tasas de éxito, rechazo y tiempo de espera de construcción de túneles exploratorios
 - Promedio de 1 hora del número de túneles participantes
@@ -136,7 +136,7 @@ Puede ser deseable almacenar persistentemente Meta LeaseSets con expiraciones la
 ### Véase También
 
 - [Especificación de RouterInfo](/docs/specs/common-structures/#struct_RouterInfo)
-- [Javadoc de RouterInfo](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
+- Javadoc de RouterInfo
 
 ---
 
@@ -159,8 +159,8 @@ Además de estos leases, el LeaseSet incluye:
 
 - [Especificación de Lease](/docs/specs/common-structures/#struct_Lease)
 - [Especificación de LeaseSet](/docs/specs/common-structures/#struct_LeaseSet)
-- [Javadoc de Lease](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
-- [Javadoc de LeaseSet](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
+- Javadoc de Lease
+- Javadoc de LeaseSet
 
 A partir de la versión 0.9.38, se definen tres nuevos tipos de LeaseSets: LeaseSet2, MetaLeaseSet y EncryptedLeaseSet. Ver más abajo.
 

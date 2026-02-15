@@ -85,7 +85,7 @@ categories: ["meeting"]
 13:25 &lt;jrandom&gt; safe syndication and publication of content, rather than using eepsites
 13:25 &lt;jrandom&gt; (as eepsites don't allow safe syndication, require more skill for publication, and require high availability of the operating node)
 13:25 &lt;+Ragnarok&gt; how is it syndicated, though?
-13:26 &lt;jrandom&gt; a good intro to syndie's aims is in the post http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000001&images=false&expand=true
+13:26 &lt;jrandom&gt; a good intro to syndie's aims is in the post `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000001&images=false&expand=true`
 13:27 &lt;jrandom&gt; syndication, right now, is done through http with explicitly specified syndication peers (either apache archives, other syndie instances, or freesites with syndie archives)
 13:27  * cervantes just pulled apart the syndie css... it's sufficiently classes to do a varied amount of styling, but the markup itself isn't good for working in new themes
 13:27 &lt;+Ragnarok&gt; oh, nice.  I don't think I've seen that
@@ -128,7 +128,7 @@ categories: ["meeting"]
 13:42 &lt;@cervantes&gt; then it will make style changes more pallatable
 13:42 &lt;jrandom&gt; hmm yeah ,interblog navigation is going to be interesting
 13:43 &lt;jrandom&gt; so you like how it was originally, with that list of blogs on the left hand side, rather than the drop down?
-13:43 &lt;jrandom&gt; http://syndiemedia.i2p/viewattachment.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124769600000&attachment=0
+13:43 &lt;jrandom&gt; `http://syndiemedia.i2p/viewattachment.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124769600000&attachment=0`
 13:44 &lt;@cervantes&gt; &lt;bluesky&gt;well that could be a template preference perhaps?&lt;/bluesky&gt;
 13:44 &lt;jrandom&gt; hmm, i dont know if stylesheets can turn a list into a drop down, can it?
 13:44 &lt;@cervantes&gt; navigation type: dropdown|sidelist|hierarchy  

@@ -25,9 +25,9 @@ Please do not use these email addresses for support requests. For contact specif
 
 ## Forums {#forums}
 
-Please visit our I2P user forum - [i2pforum.i2p](http://i2pforum.i2p/) (available on non-private internet at https://i2pforum.net.
+Please visit our I2P user forum - i2pforum.i2p (available on non-private internet at https://i2pforum.net.
 
-The discussion about I2P's development happens on the [I2P user forum](http://i2pforum.i2p). This is usually the best place to start with developer inquiries, if the dev IRC channel is inactive. For general support use either the [I2P user forum](http://i2pforum.i2p) or the Subreddit.
+The discussion about I2P's development happens on the I2P user forum. This is usually the best place to start with developer inquiries, if the dev IRC channel is inactive. For general support use either the I2P user forum or the Subreddit.
 
 ## Social Media {#social}
 
@@ -69,8 +69,8 @@ Join our mailing list by entering your email in the footer of this website to re
 | **CI admin** | idk | Maintain Continuous Integration infrastructure |
 | **Reseed Admin** | idk | Monitors, advises and recruits reseed hosts |
 | **Gitea admin** | idk | I2P Gitea maintainer |
-| **Localization** | idk, zzz | Admins on [Transifex](https://www.transifex.com/projects/p/I2P/) |
-| **Translators** | many many people! | Translators on [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Localization** | idk, zzz | Admins on Transifex |
+| **Translators** | many many people! | Translators on Transifex |
 | **Website Maintainer** | StormyCloud | Manage the public project website content design |
 | **Webserver admin** | StormyCloud | Manage public project webservers |
 | **Website admin** | idk | Manage the public project website |

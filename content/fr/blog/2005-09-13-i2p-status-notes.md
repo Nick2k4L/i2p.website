@@ -20,7 +20,7 @@ Nous poursuivons notre progression avec la version 0.6.0.5 déployée sur le ré
 
 Les dernières versions dans CVS incluent la prise en charge des introductions SSU longuement discutées [1], nous permettant d’effectuer une perforation de NAT décentralisée pour les utilisateurs derrière un NAT ou un pare-feu qu’ils ne contrôlent pas. Bien qu’il ne prenne pas en charge le NAT symétrique, cela couvre la majorité des cas. Les retours du terrain sont bons, mais seuls les utilisateurs avec les dernières versions peuvent contacter les utilisateurs derrière un NAT — les anciennes versions doivent attendre que ces utilisateurs les contactent en premier. Pour cette raison, nous publierons le code dans une version plus tôt que d’habitude afin de réduire la durée pendant laquelle ces routes restreintes restent en place.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

@@ -25,9 +25,9 @@ Veuillez ne pas utiliser ces adresses e-mail pour des demandes d’assistance. P
 
 ## Forums {#forums}
 
-Veuillez visiter notre forum utilisateur I2P - [i2pforum.i2p](http://i2pforum.i2p/) (disponible sur internet non-privé à https://i2pforum.net.
+Veuillez visiter notre forum utilisateur I2P - i2pforum.i2p (disponible sur internet non-privé à https://i2pforum.net.
 
-La discussion sur le développement d'I2P se déroule sur le [forum utilisateur I2P](http://i2pforum.i2p). C'est généralement le meilleur endroit pour commencer avec les demandes de développeur, si le canal IRC de développement est inactif. Pour le support général, utilisez soit le [forum utilisateur I2P](http://i2pforum.i2p) soit le Subreddit.
+La discussion sur le développement d'I2P se déroule sur le forum utilisateur I2P. C'est généralement le meilleur endroit pour commencer avec les demandes de développeur, si le canal IRC de développement est inactif. Pour le support général, utilisez soit le forum utilisateur I2P soit le Subreddit.
 
 ## Réseaux sociaux {#social}
 
@@ -68,8 +68,8 @@ Inscrivez-vous à notre liste de diffusion en saisissant votre adresse e-mail da
 | **Administrateur CI** | idk | Maintient l'infrastructure d'intégration continue |
 | **Administrateur Reseed (réensemencement)** | idk | Surveille, conseille et recrute des hôtes de reseed |
 | **Administrateur Gitea** | idk | Mainteneur du Gitea I2P |
-| **Localisation** | idk, zzz | Administrateurs sur [Transifex](https://www.transifex.com/projects/p/I2P/) |
-| **Traducteurs** | beaucoup, beaucoup de personnes ! | Traducteurs sur [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Localisation** | idk, zzz | Administrateurs sur Transifex |
+| **Traducteurs** | beaucoup, beaucoup de personnes ! | Traducteurs sur Transifex |
 | **Mainteneur du site Web** | StormyCloud | Gère la conception du contenu du site Web public du projet |
 | **Administrateur des serveurs Web** | StormyCloud | Gère les serveurs Web publics du projet |
 | **Administrateur du site Web** | idk | Gère le site Web public du projet |

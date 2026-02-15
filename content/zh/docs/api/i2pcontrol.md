@@ -102,7 +102,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 ### 成功响应
 
@@ -144,7 +144,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **响应字段 (result)**   根据官方文档 (GetI2P)：   - `i2p.router.status` (String) — 人类可读的状态   - `i2p.router.uptime` (long) — 毫秒数（或旧版 i2pd 的字符串） :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — 版本字符串 :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — 入站带宽，单位 B/s :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — 出站带宽，单位 B/s :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — 数字状态码（见下方枚举） :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — 参与的 tunnel 数量 :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — netDB 节点统计 :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — 是否正在进行重新播种 :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — 已知节点总数 :contentReference[oaicite:8]{index=8}
 
@@ -240,7 +240,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **示例响应**
 
@@ -274,7 +274,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **成功响应**
 
@@ -309,7 +309,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **示例响应**
 
@@ -351,7 +351,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **响应示例**
 

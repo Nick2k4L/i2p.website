@@ -156,7 +156,7 @@ X25519 keys are supported in RouterIdentities as of release 0.9.48.
   </tbody>
 </table>
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html
 
 ### PrivateKey
 
@@ -252,7 +252,7 @@ Keys are big-endian unless otherwise noted.
   </tbody>
 </table>
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html
 
 ### SessionKey
 
@@ -262,7 +262,7 @@ This structure is used for symmetric AES256 encryption and decryption.
 #### Contents
 32 bytes
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html
 
 ### SigningPublicKey
 
@@ -355,7 +355,7 @@ Certificate of a Destination.  The default type is DSA_SHA1.  As of release
 * All types are Big Endian, except for EdDSA and RedDSA, which are stored and transmitted
   in a Little Endian format.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html
 
 ### SigningPrivateKey
 
@@ -447,7 +447,7 @@ As of release 0.9.12, other types may be supported, depending on context.
 * All types are Big Endian, except for EdDSA and RedDSA, which are stored and transmitted
   in a Little Endian format.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html
 
 ### Signature
 
@@ -540,7 +540,7 @@ depending on context.
 * All types are Big Endian, except for EdDSA and RedDSA, which are stored and transmitted
   in a Little Endian format.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Signature.html
 
 ### Hash
 
@@ -550,7 +550,7 @@ Represents the SHA256 of some data.
 #### Contents
 32 bytes
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Hash.html
 
 ### Session Tag
 
@@ -563,7 +563,7 @@ A random number
 #### Contents
 32 bytes
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html
 
 ### TunnelId
 
@@ -575,7 +575,7 @@ cases.
 #### Contents
 4 byte [Integer](#integer)
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html
 
 ### Certificate
 
@@ -1075,7 +1075,7 @@ type indicated:
   </tbody>
 </table>
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Certificate.html
 
 #### Notes
 
@@ -1161,7 +1161,7 @@ val_string | 8 | green  | String (len + data)
 * Total length limit is 65535 bytes, plus the 2 byte size field, or 65537
   total.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html
 
 
 ## Common structure specification
@@ -1284,7 +1284,7 @@ covers the full contents.
 * The Crypto Public Key is aligned at the start and the Signing Public Key is
   aligned at the end. The padding (if any) is in the middle.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html
 
 ### RouterIdentity
 
@@ -1314,7 +1314,7 @@ the padding field.
   are supported as of release 0.9.48.
   Prior to that, all RouterIdentities were ElGamal.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html
 
 ### Destination
 
@@ -1345,7 +1345,7 @@ the public key and padding fields.
 * The Crypto Public Key is aligned at the start and the Signing Public Key is
   aligned at the end. The padding (if any) is in the middle.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Destination.html
 
 ### Lease
 
@@ -1396,7 +1396,7 @@ end_date :: `Date`
 
 </details>
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 ### LeaseSet
 
@@ -1543,7 +1543,7 @@ signature :: `Signature`
   publishes the actual lease expiration for each lease. This is an
   implementation detail and not part of the structures specification.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html
 
 ### Lease2
 
@@ -1597,7 +1597,7 @@ end_date :: 4 byte date
 #### Notes
 * Total size: 40 bytes
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease2.html
 
 
 
@@ -1968,7 +1968,7 @@ In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to its
 * The options mapping, if the size is greater than one, must be sorted by key, so the signature is invariant.
 
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html
 
 
 ### MetaLease
@@ -2041,7 +2041,7 @@ end_date :: 4 byte date
 * **End date**: 4 byte date, seconds since the epoch, rolls over in 2106.
 * Total size: 40 bytes
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html
 
 
 
@@ -2168,7 +2168,7 @@ signature :: `Signature`
 * See note on the 'published' field in [LeaseSet2Header](#leaseset2header)
 
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html
 
 
 
@@ -2276,7 +2276,7 @@ signature          | 8 | purple | Signature, varies
   (same issue, even though we do not use the LeaseSet2Header format here)
 
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html
 
 
 
@@ -2342,7 +2342,7 @@ options         | 8 | purple | Mapping
   present in most router addresses: "host" (an IPv4 or IPv6 address or host
   name) and "port".
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html
 
 ### RouterInfo
 
@@ -2442,7 +2442,7 @@ signature              | 8 | cyan   | Signature, 40+ bytes
   so the signature is invariant.
   This is no longer required, and not worth implementing for backward compatibility.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html
 
 ### Delivery Instructions
 

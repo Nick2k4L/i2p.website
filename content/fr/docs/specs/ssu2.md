@@ -3391,6 +3391,6 @@ Nous spécifions ci-dessus que le token doit être une valeur de 8 octets géné
 - **[SigningPublicKey]** [Type SigningPublicKey](/docs/specs/common-structures#type-signingpublickey)
 - **[SSU]** [Transport SSU](/docs/transport/ssu)
 - **[STS]** [Protocole Station-à-Station](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
-- **[Ticket1112]** [Ticket I2P 1112](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1112)
-- **[Ticket1849]** [Ticket I2P 1849](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1849)
+- **[Ticket1112]** Ticket I2P 1112
+- **[Ticket1849]** Ticket I2P 1849
 - **[WireGuard]** [Protocole WireGuard](https://www.wireguard.com/papers/wireguard.pdf)

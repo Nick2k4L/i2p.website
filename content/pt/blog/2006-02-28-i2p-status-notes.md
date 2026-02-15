@@ -33,7 +33,7 @@ Há outras estratégias interessantes a serem exploradas, mas essas três são a
 
 Há mais coisas úteis para fazer do que consigo contar, mas só quero chamar sua atenção para um post no meu blog descrevendo cinco pequenos projetos que um programador poderia implementar rapidamente sem investir muito tempo [1]. Se alguém se interessar em abraçar esses projetos, tenho certeza de que alocaríamos alguns recursos [2] do fundo geral como forma de agradecimento, embora eu saiba que a maioria de vocês é movida pelo desafio e não pelo dinheiro ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

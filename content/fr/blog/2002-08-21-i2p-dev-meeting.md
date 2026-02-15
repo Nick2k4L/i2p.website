@@ -6,7 +6,7 @@ description: "Réunion informelle de développement d'I2P portant sur l'anonymat
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la Wayback Machine `http://www.archive.org/`)
 
 ## Récapitulatif rapide
 

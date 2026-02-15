@@ -153,7 +153,7 @@ Alice ve Bob, Bob'dan Alice'e SYN ACK'deki ve her iki yönde gönderilen tüm so
 
 ## Gerekçe
 
-Mevcut değerin neden 1730 olduğunu görmek için the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) 'a bakın.
+Mevcut değerin neden 1730 olduğunu görmek için the Java I2P source code 'a bakın.
 ECIES yükünün neden ElGamal'dan 82 bayt daha az olduğunu görmek için the [ECIES specification](/docs/specs/ecies/#overhead) 'e bakın.
 
 

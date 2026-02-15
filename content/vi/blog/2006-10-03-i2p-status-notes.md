@@ -58,7 +58,7 @@ Vậy, đó là điểm nghẽn trong router/mạng theo như tôi thấy hiện
 
 * 3) Syndie rationale continued
 
-Có một bài viết chuyên sâu trên diễn đàn về Syndie và vai trò của nó trong bức tranh chung - hãy xem tại <http://forum.i2p.net/viewtopic.php?t=1910>
+Có một bài viết chuyên sâu trên diễn đàn về Syndie và vai trò của nó trong bức tranh chung - hãy xem tại <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Ngoài ra, tôi chỉ muốn nêu bật hai đoạn trích từ các tài liệu Syndie đang được soạn thảo. Trước hết, từ irc (và phần FAQ chưa được công bố):
 

@@ -19,8 +19,8 @@ Bu kılavuz, I2P'nin yerleşik araçlarını kullanarak ilk eepsite'inizi oluşt
 
 Gizli Servisler Yöneticisi (I2P Tunnel Manager olarak da adlandırılır), HTTP sunucuları (eepsites) dahil olmak üzere tüm I2P sunucu ve istemci tunnel yapılandırmalarını yaptığınız yerdir.
 
-1. [I2P Router Console](http://127.0.0.1:7657)'unuzu açın
-2. [Hidden Services Manager](http://127.0.0.1:7657/i2ptunnelmgr)'e gidin
+1. `http://127.0.0.1:7657`'unuzu açın
+2. `http://127.0.0.1:7657/i2ptunnelmgr`'e gidin
 
 Gizli Servisler Yöneticisi arayüzünde şunları görmelisiniz: - **Durum Mesajları** - Geçerli tunnel ve istemci durumu - **Genel Tunnel Kontrolü** - Tüm tunnel'ları aynı anda yönetmek için düğmeler - **I2P Gizli Servisler** - Yapılandırılmış sunucu tunnel'lerinin listesi
 
@@ -191,7 +191,7 @@ Artık eepsite’iniz (I2P üzerinde barındırılan web sitesi) yapılandırıl
 
 ### Tunnel'i Başlat
 
-1. **[Gizli Servisler Yöneticisi](http://127.0.0.1:7657/i2ptunnelmgr)** sayfasına geri dönün
+1. **`http://127.0.0.1:7657/i2ptunnelmgr`** sayfasına geri dönün
 2. Listede **I2P web sunucusu** girdinizi bulun
 3. Control sütunundaki **Start** düğmesine tıklayın
 
@@ -215,7 +215,7 @@ Eepsite'inizin iki tür adresi vardır:
 
 1. **Base32 adresi (.b32.i2p)**: Şuna benzeyen uzun bir kriptografik adres:
    ```
-   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
+   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
    ```
    - Bu, eepsite'inizin kalıcı, kriptografik olarak türetilmiş adresidir
    - Değiştirilemez ve özel anahtarınıza bağlıdır
@@ -314,7 +314,7 @@ Bu dize şunları içerir: - Alan adınız (`testwebsite.i2p`) - Hedef adresiniz
 
 ### Adım 2: stats.i2p'ye kaydolun
 
-1. **Şuraya gidin** [stats.i2p Anahtar Ekle](http://stats.i2p/i2p/addkey.html) (I2P içinde)
+1. **Şuraya gidin** stats.i2p Anahtar Ekle (I2P içinde)
 
 ![stats.i2p Alan Adı Kaydı](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ Bu dize şunları içerir: - Alan adınız (`testwebsite.i2p`) - Hedef adresiniz
 
 Maksimum kullanılabilirliği sağlamak için, reg.i2p hizmetine de kaydolmalısınız:
 
-1. **Şuraya gidin** [reg.i2p Add Domain](http://reg.i2p/add) (I2P içinde)
+1. **Şuraya gidin** reg.i2p Add Domain (I2P içinde)
 
 ![reg.i2p Alan Adı Kaydı](/images/guides/eepsite/reg-i2p-add.png)
 

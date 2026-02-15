@@ -15,7 +15,7 @@ categories: ["meeting"]
 <div class="irc-log">20:00:00 &lt;zzz&gt; 0) 안녕하세요
 20:00:00 &lt;zzz&gt; 1) 33C3 후속 논의
 20:00:00 &lt;zzz&gt; 2) 0.9.29 업데이트 (zzz)
-20:00:00 &lt;zzz&gt; 3) Tails 유지관리자 (zzz) http://zzz.i2p/topics/2108
+20:00:00 &lt;zzz&gt; 3) Tails 유지관리자 (zzz) `http://zzz.i2p/topics/2108`
 20:00:00 &lt;zzz&gt; 4) NTCP2 초안 (Manas)
 20:00:00 &lt;zzz&gt; 5) Reseed(부트스트랩) 문서 패치 (Manas)
 20:00:04 &lt;zzz&gt; 0) 안녕하세요
@@ -56,7 +56,7 @@ categories: ["meeting"]
 20:06:45 &lt;manas&gt; 힌디어 번역 작업을 계속하고 있어요 :)
 20:07:04 &lt;zzz&gt; 맞아요 str4d, prop하기 전에 확실히 손봐야 할 것들이 있어요, 아니면 사람들이 들고일어날 겁니다
 20:07:14 &lt;zzz&gt; 좋아요, 훌륭해요
-20:07:29 &lt;zzz&gt; 3) Tails 유지관리자 (zzz) http://zzz.i2p/topics/2108
+20:07:29 &lt;zzz&gt; 3) Tails 유지관리자 (zzz) `http://zzz.i2p/topics/2108`
 20:07:40 &lt;i2pr&gt; [Slack/str4d] 푸시하기 전에 정리 중인 로컬 변경 사항이 여러 개 있어요
 20:08:07 &lt;zzz&gt; ccc에서 'yolgie'라는 사람을 만났고, 그가 하겠다고 했어요. 1월 초에 연락했을 때 2월에 시작하겠다고 했고, 며칠 전에 다시 연락했지만 아직 응답이 없습니다
 20:08:26 &lt;zzz&gt; 우리는 곧 Tails에서 퇴출될 지경이라, 도와줄 수 있는 사람 누구든 환영합니다
@@ -87,7 +87,7 @@ categories: ["meeting"]
 20:15:41 &lt;zzz&gt; 5) Reseed 문서 패치 (Manas)
 20:15:46 &lt;zzz&gt; manas, 준비한 게 무엇이 있나요?
 20:16:04 &lt;manas&gt; backup에게서 소식을 들었습니다
-20:16:08 &lt;manas&gt; 그의 코멘트는 여기 있습니다: http://zzz.i2p/topics/2210-reseed-webpage-updates
+20:16:08 &lt;manas&gt; 그의 코멘트는 여기 있습니다: `http://zzz.i2p/topics/2210-reseed-webpage-updates`
 20:16:27 &lt;manas&gt; 그의 제안을 반영한 후에 또 다른 패치를 만들겠습니다
 20:16:46 &lt;eche|off&gt; 좋네요
 20:16:48 &lt;manas&gt; 그가 여러 부분(오래된 Reseed 방법들)을 제거하자고 제안했습니다
@@ -109,7 +109,7 @@ categories: ["meeting"]
 20:20:40 &lt;zzz&gt; 말씀하세요
 20:21:00 &lt;EinMByte&gt; 최신 초안을 검토하겠습니다
 20:21:24 &lt;EinMByte&gt; 어떤 암호 알고리즘을 지원할지에 대해 결정이 내려졌나요?
-20:21:27 &lt;manas&gt; 참고로 여기에 있어요: http://pinkpaste.i2p/show/246/
+20:21:27 &lt;manas&gt; 참고로 여기에 있어요: `http://pinkpaste.i2p/show/246/`
 20:21:39 &lt;psi&gt; 거기 있네요
 20:22:19 &lt;zzz&gt; 기본적으로 1MB 초안 이후로 진전이 없었고, 방금 manas가 그것을 이전 제안과 병합했습니다
 20:22:28 &lt;zzz&gt; 회의에 대해 더 있을까요?

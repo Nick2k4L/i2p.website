@@ -14,7 +14,7 @@ categories: ["status"]
 
 * 1) 0.6.0.6
 
-With last saturday's 0.6.0.6 release, we've got a bunch of new pieces in play on the live net, and y'all have done a great job upgrading - as of a few hours ago, almost 250 routers have upgraded! The network seems to be doing well too, and introductions have so far been working - you can track your own introduction activity with the http://localhost:7657/oldstats.jsp, looking at the udp.receiveHolePunch and udp.receiveIntroRelayResponse (as well as udp.receiveRelayIntro, for those behind NATs).
+With last saturday's 0.6.0.6 release, we've got a bunch of new pieces in play on the live net, and y'all have done a great job upgrading - as of a few hours ago, almost 250 routers have upgraded! The network seems to be doing well too, and introductions have so far been working - you can track your own introduction activity with the `http://localhost:7657/oldstats.jsp,` looking at the udp.receiveHolePunch and udp.receiveIntroRelayResponse (as well as udp.receiveRelayIntro, for those behind NATs).
 
 Кстати, "Status: ERR-Reject" теперь на самом деле не является ошибкой, так что, возможно, нам стоит изменить его на "Status: OK (NAT)"?
 
@@ -38,7 +38,7 @@ cvs -d :pserver:anoncvs-PQcCzt6076/R7s880joybQ@xxxxxxxxxxxxxxxx/cvsroot co i2p  
 
 Я не собираюсь брать на себя сопровождение I2Phex, но буду выкладывать будущие релизы I2Phex на сайте, когда в cvs появятся обновления. Если кто-нибудь хочет поработать над веб-страницей, которую мы сможем выложить, чтобы описать и представить его (sirup, ты на связи?), со ссылками на sirup.i2p, полезные сообщения на форуме, список активных пиров от legion — было бы здорово.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip и     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (подписано моим ключом)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` и     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (подписано моим ключом)
 
 * 3) migration
 

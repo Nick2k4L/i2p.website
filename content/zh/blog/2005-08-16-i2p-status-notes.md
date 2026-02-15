@@ -16,7 +16,7 @@ categories: ["status"]
 
 如前所述，即将发布的 0.6.1 版本将包含一系列测试，以更精细地配置 router 并验证可达性（或指出需要完成的工作），虽然我们已经在 CVS 中放入了一些代码并经过了两次构建，但在其能够如期顺畅运行之前，仍然需要做一些改进。当前，我正在对 [1] 中记录的测试流程做一些小的修改：增加一个用于验证 Charlie 可达性的额外数据包，并将 Bob 对 Alice 的回复延迟到 Charlie 已经响应之后。这样应当减少用户看到的不必要的 "ERR-Reject" 状态值的数量，因为在有一个可参与测试的 Charlie 之前，Bob 不会回复 Alice（而当 Bob 没有回复时，Alice 会看到状态为 "Unknown"）。
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting`
 
 总之，嗯，就这样——明天应该会发布 0.6.0.2-3，等彻底测试完成后会作为正式版本发布。
 
@@ -26,7 +26,7 @@ categories: ["status"]
 
 我要感谢那些负责旧的 i2pirc network 的人（duck、baffled、metropipe 团队、postman），以及负责新的 irc2p network 的人（postman、arcturus）！有趣的服务和内容让 I2P 变得值得使用，而把它们做出来就要靠大家了！
 
-[2] http://forum.i2p.net/viewtopic.php?t=898 [3] http://hq.postman.i2p/
+[2] `http://forum.i2p.net/viewtopic.php?t=898` [3] `http://hq.postman.i2p/`
 
 * 3) Feedspace
 

@@ -60,7 +60,7 @@ categories: ["meeting"]
 20:20:15 &lt;zlatinb&gt; Hi.  Briefly: 1) what youve done since last meeting 2) what you plan to do next month 3) any blockers or help needed.  Say EOT when done
 20:20:46 &lt;zlatinb&gt; me: 1) MW plugin  2) More work on MW plugin, jogger rewrite of SSU 3) no blockers EOT
 20:21:16 &lt;zzz&gt; 1) bug fixes, proposal 144, review jogger patches and proposal; 2) more of the same, plus .45 release; 3) no blockers EOT
-20:21:54 &lt;eche|on&gt; nothing special, server support, http://wiki.i2p-projekt.i2p runs and is being filled, all fine
+20:21:54 &lt;eche|on&gt; nothing special, server support, `http://wiki.i2p-projekt.i2p` runs and is being filled, all fine
 20:23:26 &lt;sadie_&gt; working on post install docs improvements with idk, secured more Usability Testing research , community outreach / PR strategy / testing idk's webextensions/  discovery process - resilient infra, rebranding research - more of the same next month
 20:23:57 &lt;zlatinb&gt; anyone else?  T-1 minute till scrum end
 20:24:01 &lt;eyedeekay&gt; 1) Biggest part of my work was a substantial revision to the default dark theme to improve readability and make it look more modern and consistent. I also added features and fixed bugs in my webextension for Firefox, it now has the ability to talk to i2pcontrol and snark-rpc. I also set up my personal eepSite and a common git resource(a gitlab instance at git.idk.i2p) for the project. 2) I will be working inside 

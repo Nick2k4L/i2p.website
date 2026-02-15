@@ -20,9 +20,9 @@ Trong tuần vừa qua, phần lớn thời gian của tôi đã dành cho việ
 
 * 2) Feedspace
 
-Frosk đã đưa lên một bản sửa đổi nữa của tài liệu i2pcontent/fusenet, nhưng giờ đã ở một địa chỉ mới với một tên mới: http://feedspace.i2p/ - xem orion [1] hoặc blog của tôi [2] để lấy destination (điểm đến trong I2P). Những thứ này trông rất hứa hẹn, cả từ góc độ "này, chức năng cực kỳ ấn tượng" lẫn "này, điều đó sẽ giúp tăng tính ẩn danh của I2P". Frosk và mọi người đang miệt mài làm việc, nhưng họ chắc chắn đang tìm kiếm ý kiến đóng góp (và hỗ trợ). Có lẽ chúng ta có thể mời Frosk cung cấp một bản cập nhật trong cuộc họp?
+Frosk đã đưa lên một bản sửa đổi nữa của tài liệu i2pcontent/fusenet, nhưng giờ đã ở một địa chỉ mới với một tên mới: `http://feedspace.i2p/` - xem orion [1] hoặc blog của tôi [2] để lấy destination (điểm đến trong I2P). Những thứ này trông rất hứa hẹn, cả từ góc độ "này, chức năng cực kỳ ấn tượng" lẫn "này, điều đó sẽ giúp tăng tính ẩn danh của I2P". Frosk và mọi người đang miệt mài làm việc, nhưng họ chắc chắn đang tìm kiếm ý kiến đóng góp (và hỗ trợ). Có lẽ chúng ta có thể mời Frosk cung cấp một bản cập nhật trong cuộc họp?
 
-[1] http://orion.i2p/#feedspace.i2p [2] http://jrandom.dev.i2p/
+[1] `http://orion.i2p/#feedspace.i2p` [2] `http://jrandom.dev.i2p/`
 
 * 3) ???
 

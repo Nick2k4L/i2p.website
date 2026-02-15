@@ -17,10 +17,10 @@ categories: ["meeting"]
 (04:18:08 PM) eyedeekay: 2. 1.9.0 development status
 (04:18:08 PM) eyedeekay: 3. Apple silicon bundle status 
 (04:18:08 PM) eyedeekay: 4. Letter to EFF to clarify what "running" a network means
-(04:18:08 PM) eyedeekay: 5. New Outproxy ref: http://zzz.i2p/topics/3254 
+(04:18:08 PM) eyedeekay: 5. New Outproxy ref: `http://zzz.i2p/topics/3254` 
 (04:18:08 PM) eyedeekay: a) Organizational and infrastructure overview (StormyCloud) 
 (04:18:08 PM) eyedeekay: b) Technical review and test results (zzz and others) 
-(04:18:08 PM) eyedeekay: c) ToS and log policy review http://stormycloud.i2p/outproxy.html (all) 
+(04:18:08 PM) eyedeekay: c) ToS and log policy review `http://stormycloud.i2p/outproxy.html` (all) 
 (04:18:08 PM) eyedeekay: d) Vote to approve (all) 
 (04:18:08 PM) eyedeekay: e) Rollout plan (if approved) (zzz, StormyCloud)
 (04:19:11 PM) eyedeekay: zzz zlatinb you guys here?
@@ -124,10 +124,10 @@ categories: ["meeting"]
 (04:58:18 PM) zlatinb: if they can't help at all that's fine too
 (04:59:15 PM) eyedeekay: Anything else for 4?
 (04:59:23 PM) zlatinb: no, eot
-(04:59:38 PM) eyedeekay: 5. New Outproxy ref: http://zzz.i2p/topics/3254 
+(04:59:38 PM) eyedeekay: 5. New Outproxy ref: `http://zzz.i2p/topics/3254` 
 (04:59:38 PM) eyedeekay: a) Organizational and infrastructure overview (StormyCloud) 
 (04:59:38 PM) eyedeekay: b) Technical review and test results (zzz and others) 
-(04:59:38 PM) eyedeekay: c) ToS and log policy review http://stormycloud.i2p/outproxy.html (all) 
+(04:59:38 PM) eyedeekay: c) ToS and log policy review `http://stormycloud.i2p/outproxy.html` (all) 
 (04:59:38 PM) eyedeekay: d) Vote to approve (all) 
 (04:59:38 PM) eyedeekay: e) Rollout plan (if approved) (zzz, StormyCloud)
 (04:59:51 PM) eyedeekay: a) Organizational and infrastructure overview (StormyCloud)
@@ -148,7 +148,7 @@ categories: ["meeting"]
 (05:06:48 PM) StormyCloud: R4SAS: If there is a need for a SOCKS5 proxy I am sure we can get one deployed.
 (05:07:01 PM) R4SAS: Thanks
 (05:07:45 PM) zzz: any other questions on 5a) ?
-(05:08:02 PM) not_bob: http://notbob.i2p/graphs/stormycloud.i2p.yearly.svg
+(05:08:02 PM) not_bob: `http://notbob.i2p/graphs/stormycloud.i2p.yearly.svg`
 (05:08:14 PM) not_bob: I just want to note that stormycloud has been great for uptime.
 (05:08:56 PM) SilicaRice: the backend supports I2P links uh huh?
 (05:08:57 PM) not_bob: And performance is great.

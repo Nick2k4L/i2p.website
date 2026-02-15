@@ -30,7 +30,7 @@ categories: ["status"]
 
 有太多有用的事情可以做，多得我都数不过来，不过我只是想请大家关注我博客上的一篇文章，里面介绍了五个小项目，程序员不必投入太多时间就能迅速做出来[1]。如果有人有兴趣马上着手这些，我相信我们会从公共基金中拨出一些资源[2]以示感谢，尽管我也明白你们大多数人是被黑客精神驱动而不是被金钱驱动的 ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

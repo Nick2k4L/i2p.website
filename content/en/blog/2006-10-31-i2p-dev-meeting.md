@@ -77,7 +77,7 @@ categories: ["meeting"]
 16:06 &lt;jrandom&gt; http://syndie.i2p.net/manual.html#syndicate_freenetpost
 16:06 &lt;jrandom&gt; and http://syndie.i2p.net/manual.html#syndicate_getindex
 16:07 &lt;+fedo&gt; many 'neurones' to burn but i'll  try :)
-16:07 &lt;burl&gt; fedo: Complication has written a brief and pretty handy startup guide on the forum here: http://forum.i2p/viewtopic.php?p=8860#8860
+16:07 &lt;burl&gt; fedo: Complication has written a brief and pretty handy startup guide on the forum here: `http://forum.i2p/viewtopic.php?p=8860#8860`
 16:08 &lt;jrandom&gt; ah right, thats a good one burl
 16:08 &lt;+fedo&gt; thanks burl : i'll have a look to that note ;)
 16:12 &lt;jrandom&gt; word, ok, if there's nothing else for the meeting...

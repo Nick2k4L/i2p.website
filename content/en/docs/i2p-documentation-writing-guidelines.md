@@ -14,8 +14,8 @@ lastUpdated: "2025-10"
 ### 1. Verify Everything
 
 **Never assume or guess.** All technical statements must be verified against:
-- Current I2P source code (https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)
-- Official API documentation (https://i2p.github.io/i2p.i2p/ 
+- Current I2P source code (`https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)`
+- Official API documentation (`https://i2p.github.io/i2p.i2p/` 
 - Configuration specifications [/docs/specs/](/docs/)
 - Recent release notes [/releases/](/categories/release/)
 
@@ -119,7 +119,7 @@ Note that client registry and port mapper are separate systems:
 
 **Template for I2P-internal URLs:**
 ```markdown
-> **Note:** The I2P network hosts comprehensive documentation at http://idk.i2p/javadoc-i2p/ 
+> **Note:** The I2P network hosts comprehensive documentation at `http://idk.i2p/javadoc-i2p/` 
 > which requires an I2P router for access. For clearnet access, use the GitHub Pages 
 > mirror at https://eyedeekay.github.io/javadoc-i2p/
 ```
@@ -132,20 +132,20 @@ Note that client registry and port mapper are separate systems:
 - [Documentment Index](/docs/)
 
 **API documentation (choose most current):**
-- Most current: https://i2p.github.io/i2p.i2p/ (API 0.9.66 as of I2P 2.10.0)
+- Most current: `https://i2p.github.io/i2p.i2p/` (API 0.9.66 as of I2P 2.10.0)
 - Clearnet mirror: https://eyedeekay.github.io/javadoc-i2p/
 
 **Source code:**
-- GitLab (official): https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master
-- GitHub mirror: https://github.com/i2p/i2p.i2p
+- GitLab (official): `https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master`
+- GitHub mirror: `https://github.com/i2p/i2p.i2p`
 
 ### Link Format Standards
 
 ```markdown
-✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
+✅ GOOD: ClientApp Javadoc
 ✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
 
-❌ BAD: See the ClientApp docs at http://idk.i2p/...
+❌ BAD: See the ClientApp docs at `http://idk.i2p/...`
 ❌ BAD: [link](url) with no descriptive text
 ```
 
@@ -636,12 +636,12 @@ See [clients.config specification](https://geti2p.net/spec/configuration#clients
 
 **External links** (to other resources):
 ```markdown
-For more details, see [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
+For more details, see ClientApp Javadoc
 ```
 
 **Code repository links**:
 ```markdown
-View source: [ClientApp.java](https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master/core/java/src/net/i2p/app/ClientApp.java)
+View source: ClientApp.java
 ```
 
 ### Table Formatting

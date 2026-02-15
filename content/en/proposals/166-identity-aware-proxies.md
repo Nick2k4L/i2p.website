@@ -262,8 +262,8 @@ Addendum: ``example implementation of the attack``
 [An example implementation of the Shared Identity attack on HTTP
 User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
 has existed for several years. An additional example is available in the
-``simple-colluder`` subdirectory of [idk’s prop166
-repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These
+``simple-colluder`` subdirectory of idk’s prop166
+repository These
 examples are deliberately designed to demonstrate that the attack works
 and would require modification(albeit minor) to be turned into a real
 attack.

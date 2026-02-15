@@ -6,7 +6,7 @@ description: "9 दिसंबर, 2003 के लिए I2P विकास �
 categories: ["meeting"]
 ---
 
-(Wayback machine की सौजन्य से http://www.archive.org/)
+(Wayback machine की सौजन्य से `http://www.archive.org/`)
 
 ## त्वरित सारांश
 

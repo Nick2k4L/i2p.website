@@ -14,13 +14,13 @@ categories: ["meeting"]
 
 <div class="irc-log">
 20:00:46 &lt;zzz&gt; 0) Hi
-20:00:46 &lt;zzz&gt; 1) Tails status (pr0ng) http://zzz.i2p/topics/2108
+20:00:46 &lt;zzz&gt; 1) Tails status (pr0ng) `http://zzz.i2p/topics/2108`
 20:00:46 &lt;zzz&gt; 2) 0.9.26 planning update (zzz)
-20:00:46 &lt;zzz&gt; 3) HOPE planning update (zzz) http://zzz.i2p/topics/1968
+20:00:46 &lt;zzz&gt; 3) HOPE planning update (zzz) `http://zzz.i2p/topics/1968`
 20:00:50 &lt;zzz&gt; 0) Hi
 20:00:52 &lt;zzz&gt; hi
 20:01:01 &lt;pr0ng&gt; Hey Eeepers
-20:01:22 &lt;zzz&gt; 1) Tails status (pr0ng) http://zzz.i2p/topics/2108
+20:01:22 &lt;zzz&gt; 1) Tails status (pr0ng) `http://zzz.i2p/topics/2108`
 20:01:32 &lt;zzz&gt; ok, a lot's happened on tails in the last month
 20:01:33 &lt;pr0ng&gt; Hi zzz
 20:01:47 &lt;Irc2PGuest33835&gt; hey
@@ -74,7 +74,7 @@ categories: ["meeting"]
 20:20:10 &lt;zzz&gt; there's also the proposed 'summer of x' that I was hoping for an update from sadie on. If we do move forward with that, it's going to slow releases down a lot
 20:20:47 &lt;zzz&gt; I can tell you there's nobody working ahead on .27 planning or coding at all right now
 20:20:52 &lt;zzz&gt; anything else on 2) ?
-20:21:52 &lt;zzz&gt; 3) HOPE planning update (zzz) http://zzz.i2p/topics/1968
+20:21:52 &lt;zzz&gt; 3) HOPE planning update (zzz) `http://zzz.i2p/topics/1968`
 20:22:32 &lt;zzz&gt; I have continued to fail at getting a commitment for meeting space from Lance for HOPE
 20:22:51 &lt;zzz&gt; so I still can't give anybody guidance if you're making plans to attend
 20:23:15 &lt;zzz&gt; sadie was going to meet with him last week, she hasn't responded to my query as to whether she got an answer from him

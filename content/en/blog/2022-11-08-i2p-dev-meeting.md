@@ -31,7 +31,7 @@ categories: ["meeting"]
 (03:04:38 PM) eyedeekay: zzz and orignal have been hard at work getting ssu2 ready, the plan is still to enable it
 (03:05:08 PM) eyedeekay: I'll be doing an unsigned release of the I2P Easy-Install for Windows
 (03:05:50 PM) eyedeekay: I don't know the Mac release status, though, are Mac users stuck on 1.9.0 until we can find a new Mac maintainer/signer?
-(03:06:25 PM) zzz: yes. There's a pretty good summary of the release at http://zzz.i2p/topics/3377
+(03:06:25 PM) zzz: yes. There's a pretty good summary of the release at `http://zzz.i2p/topics/3377`
 (03:07:02 PM) zzz: the SSU2 testing in the last 3 months with 2% enabled has been a tremendous success
 (03:07:17 PM) zzz: haven't found any major issues, but we've fixed countless minor ones
 (03:08:19 PM) eche|on: go ahead with SSU2

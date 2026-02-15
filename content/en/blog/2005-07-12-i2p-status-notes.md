@@ -20,7 +20,7 @@ After bashing my head on several colo boxes, some of the old services have been 
 
 * 2) SSU testing
 
-As mentioned in that little yellow box on everyone's router console, we've begun the next round of live network testing for SSU. The tests are not for everyone, but if you're adventurous and are comfortable doing some manual configuration, check out the details referenced on your router console (http://localhost:7657/index.jsp). There may be several rounds of testing, but I don't forsee any major changes to SSU prior to the 0.6 release (0.6.1 will add support for those who cannot forward their ports or otherwise receive inbound UDP connections).
+As mentioned in that little yellow box on everyone's router console, we've begun the next round of live network testing for SSU. The tests are not for everyone, but if you're adventurous and are comfortable doing some manual configuration, check out the details referenced on your router console (`http://localhost:7657/index.jsp).` There may be several rounds of testing, but I don't forsee any major changes to SSU prior to the 0.6 release (0.6.1 will add support for those who cannot forward their ports or otherwise receive inbound UDP connections).
 
 * 3) I2CP crypto
 

@@ -20,7 +20,7 @@ categories: ["meeting"]
 15:00:54 &lt;str4d&gt; 안녕
 15:01:02 &lt;xcps_&gt; 안녕!
 15:01:27 &lt;orignal_&gt; 무슨 일 있어?
-15:02:18 &lt;zzz&gt; http://zzz.i2p/topics/2021 의 스레드와 http://i2p-projekt.i2p/en/get-involved/roadmap 의 현재 로드맵을 검토해 주세요
+15:02:18 &lt;zzz&gt; `http://zzz.i2p/topics/2021` 의 스레드와 `http://i2p-projekt.i2p/en/get-involved/roadmap` 의 현재 로드맵을 검토해 주세요
 15:02:27 &lt;zzz&gt; 1) 이 회의의 구조
 15:03:22 &lt;zzz&gt; 바로 로드맵으로 들어갈까요, 아니면 먼저 상위 수준의 우선순위에 대해 이야기할까요?
 15:03:53 &lt;str4d&gt; 후자부터 하죠
@@ -69,7 +69,7 @@ categories: ["meeting"]
 15:14:25 &lt;zzz&gt; 보안 강화
 15:14:25 &lt;zzz&gt; 포함: 암호(crypto) 마이그레이션, 구독(subscription) 프로토콜, 새로운 전송 프로토콜, 플러그형 전송, LS2, NTCP2, 새로운 DH, 키 폐기, 키 저장, 코드 리뷰, Sybil, 버그 수정, 네이밍, SSL, ...
 15:14:46 &lt;zzz&gt; 좋아요, 그럼 2) 로드맵 자체로 넘어가죠
-15:15:10 &lt;zzz&gt; URL은 http://i2p-projekt.i2p/en/get-involved/roadmap
+15:15:10 &lt;zzz&gt; URL은 `http://i2p-projekt.i2p/en/get-involved/roadmap`
 15:15:50 &lt;zzz&gt; .25는 거의 완료됐고 약 10일 내에 릴리스예요, 그래서 올해의 다음 4개 릴리스인 26-29를 봅시다
 15:16:00 &lt;zzz&gt; 그걸로 ccc까지 갈 수 있을 거예요
 15:16:15 &lt;EinMByte&gt; 예를 들어 어떤 항목이 2017 아래에 있으면, 그때부터 검토를 시작한다는 뜻인가요, 아니면 그때부터 구현을 시작한다는 뜻인가요?
@@ -315,10 +315,10 @@ categories: ["meeting"]
 16:16:35 &lt;str4d&gt; EinMByte, 제가 검토받고 싶은 건 i2p.www.str4d에 있어요
 16:16:36 &lt;EinMByte&gt; 모든 제안을 위한 고정된 프로세스가 있으면 좋겠어요
 16:16:57 &lt;zzz&gt; 좋아요. 26 리스트에 넣습니다. 세부사항은 추후에. str4d, 시작하세요. 많은 피드백을 기대하진 않아요. 그냥 새 시스템을 만들어 오면 우리 모두 따를게요
-16:17:02 &lt;str4d&gt; 그리고 http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/ 에도요
+16:17:02 &lt;str4d&gt; 그리고 `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/` 에도요
 16:17:04 &lt;str4d&gt; EinMByte, 그걸 확정하는 데 저와 함께하고 싶다면, 어쩌면 .25 즈음에 끝낼 수 있을 거예요
 16:17:23 &lt;zzz&gt; 26에 또 뭐가 있죠? 이제 마무리해야 해요
-16:17:36 &lt;str4d&gt; ( EinMByte, 구체적으로 http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec )
+16:17:36 &lt;str4d&gt; ( EinMByte, 구체적으로 `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec` )
 16:18:14 &lt;zzz&gt; 이건 아주 단기 과제예요. 월요일에 뭘 해야 할지 알아야 해요
 16:18:27 &lt;zzz&gt; 26에 대한 마지막 호출
 16:18:41 &lt;str4d&gt; 구독 관련 작업은 시간이 좀 걸릴 것 같아요

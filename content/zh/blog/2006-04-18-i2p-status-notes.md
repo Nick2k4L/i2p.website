@@ -26,7 +26,7 @@ categories: ["status"]
 
 * 3) Feedspace
 
-Frosk 一直埋头于 Feedspace 的开发，并在 Trac 站点上更新了几页内容，包括一份新的概览文档、一组待办任务、一些数据库细节等。顺道去 http://feedspace.i2p/ 看看，了解最新的变化，也许还能在你方便的时候尽情向 Frosk 抛出问题 :)
+Frosk 一直埋头于 Feedspace 的开发，并在 Trac 站点上更新了几页内容，包括一份新的概览文档、一组待办任务、一些数据库细节等。顺道去 `http://feedspace.i2p/` 看看，了解最新的变化，也许还能在你方便的时候尽情向 Frosk 抛出问题 :)
 
 * 4) ???
 

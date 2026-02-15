@@ -14,7 +14,7 @@ Chào mọi người, lại là thứ Ba nữa rồi
 
 * 1) Net status
 
-Mạng lưới đã gặp khá nhiều trục trặc với bản phát hành 0.6.1.10, một phần do không tương thích ngược, nhưng cũng do các lỗi không lường trước. Cả độ tin cậy lẫn thời gian hoạt động trên 0.6.1.10 đều không đạt yêu cầu, vì vậy trong 5 ngày qua đã có một loạt bản vá dồn dập, và đỉnh điểm là bản phát hành 0.6.1.11 mới - http://dev.i2p.net/pipermail/i2p/2006-February/001263.html
+Mạng lưới đã gặp khá nhiều trục trặc với bản phát hành 0.6.1.10, một phần do không tương thích ngược, nhưng cũng do các lỗi không lường trước. Cả độ tin cậy lẫn thời gian hoạt động trên 0.6.1.10 đều không đạt yêu cầu, vì vậy trong 5 ngày qua đã có một loạt bản vá dồn dập, và đỉnh điểm là bản phát hành 0.6.1.11 mới - `http://dev.i2p.net/pipermail/i2p/2006-February/001263.html`
 
 Phần lớn các lỗi được phát hiện trong 0.6.1.10 đã tồn tại từ bản phát hành 0.6 vào tháng 9 năm ngoái, nhưng không dễ nhận thấy khi vẫn còn các transport thay thế để dự phòng (TCP). Mạng kiểm thử cục bộ của tôi mô phỏng lỗi gói tin, nhưng thực sự không bao quát được router churn (biến động router) và các dạng sự cố mạng dai dẳng khác. Mạng kiểm thử _PRE cũng bao gồm một tập các peer (nút ngang hàng) khá tin cậy do chúng tôi tự chọn, nên có nhiều tình huống quan trọng chưa được khám phá đầy đủ trước khi phát hành chính thức. Đó rõ ràng là một vấn đề, và lần tới chúng tôi sẽ bảo đảm đưa vào một tập hợp kịch bản rộng hơn.
 

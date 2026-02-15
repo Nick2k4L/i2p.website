@@ -16,7 +16,7 @@ Herkese selam, bugün kısa notlar
 
 Daha önce belirtildiği gibi, yaklaşan 0.6.1 sürümü, router'ı daha dikkatli yapılandırmak ve erişilebilirliği doğrulamak (ya da ne yapılması gerektiğini belirtmek) için bir dizi test içerecek ve son iki derlemeden beri CVS'de bazı kodlarımız olsa da, gereken düzeyde sorunsuz çalışması için hâlâ bazı ince ayarlar gerekiyor. Şu anda, [1]'de belgelenen test akışında, Charlie'nin erişilebilirliğini doğrulamak için ek bir paket ekleyerek ve Charlie yanıt verene kadar Bob'un Alice'e yanıtını geciktirerek bazı küçük değişiklikler yapıyorum. Bu, Bob test için hazır bir Charlie bulana kadar Alice'e yanıt vermeyeceğinden, insanların gördüğü gereksiz "ERR-Reject" durum değerlerinin sayısını azaltmalıdır (ve Bob yanıt vermediğinde, Alice durum olarak "Unknown" görür).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting`
 
 Her neyse, evet, bu kadar - yarın 0.6.0.2-3 çıkmış olmalı, iyice test edildiğinde sürüm olarak yayınlanacak.
 
@@ -26,7 +26,7 @@ Forumda belirtildiği gibi [2], IRC kullanan I2P kullanıcılarının yeni IRC a
 
 Eski i2pirc ağından (duck, baffled, the metropipe crew, postman) sorumlu olanlara ve yeni irc2p ağından (postman, arcturus) sorumlu olanlara teşekkürlerimi sunarım! İlginç hizmetler ve içerik I2P'yi değerli kılıyor ve onları oluşturmak sizlere düşüyor!
 
-[2] http://forum.i2p.net/viewtopic.php?t=898 [3] http://hq.postman.i2p/
+[2] `http://forum.i2p.net/viewtopic.php?t=898` [3] `http://hq.postman.i2p/`
 
 * 3) Feedspace
 

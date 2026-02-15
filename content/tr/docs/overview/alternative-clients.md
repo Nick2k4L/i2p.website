@@ -86,7 +86,7 @@ Ana I2P istemci uygulaması **Java** kullanır. Belirli bir sistemde Java kullan
 
 ## Emissary (Rust)
 
-**Website:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)
+**Website:** [https://eepnet.github.io/emissary/](https://eepnet.github.io/emissary/)
 
 **Açıklama:** Emissary, I2P protokol yığınının Rust uygulamasıdır ve gömülebilir bir I2P router olarak çalışacak şekilde tasarlanmıştır. Diğer uygulamalara entegre edilebilir veya bağımsız olarak çalıştırılabilir. Emissary, eepsite barındırma, torrent, IRC ve e-posta hizmetlerini destekler. Proje, hızlı başlangıç kurulumu, geliştiriciler için gömme ve ayrıntılı yapılandırmayı kapsayan kapsamlı dokümantasyon içerir. Deneysel bir proje olarak, aktif geliştirme aşamasındadır ve henüz üretim kullanımı için önerilmez.
 

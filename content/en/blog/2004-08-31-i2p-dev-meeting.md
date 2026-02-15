@@ -79,7 +79,7 @@ categories: ["meeting"]
 14:22 &lt;deer&gt; &lt;duck&gt; so the world can access alexandria
 14:23 &lt;jrandom&gt; ooh, what would *really* rule is if those gateways could act as vhosts
 14:23 &lt;jrandom&gt; (maybe thats what you're talking about anyway)
-14:23 &lt;deer&gt; &lt;duck&gt; http://anonygateway.com/home.duck.i2p/~alexandria/
+14:23 &lt;deer&gt; &lt;duck&gt; `http://anonygateway.com/home.duck.i2p/~alexandria/`
 14:23 &lt;jrandom&gt; ah ok
 14:23 &lt;jrandom&gt; still cool
 14:23 &lt;deer&gt; &lt;duck&gt; http://anonygateway.com/6sxoyfb3h2nvok2d.onion/

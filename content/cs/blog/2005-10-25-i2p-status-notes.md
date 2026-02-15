@@ -28,7 +28,7 @@ Jak bylo zmíněno na listu [3], nyní můžeme spouštět router a většinu kl
 
 Další pozitivní vlastností podpory GCJ je možnost používat streamingovou knihovnu z C/C++/Pythonu atd. Nevím, zda na takové integraci někdo pracuje, ale pravděpodobně by to stálo za to, takže pokud máte o práci v této oblasti zájem, dejte mi, prosím, vědět!
 
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001021.html [4] http://gcc.gnu.org/java/
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001021.html` [4] http://gcc.gnu.org/java/
 
 * 4) i2psnark returns
 
@@ -36,7 +36,7 @@ Zatímco i2p-bt byl prvním klientem BitTorrentu portovaným do I2P, který se h
 
 Ragnarok už se do toho pustil a začal do něj hackovat, aby vylepšil jeho algoritmus výběru bloků, a doufejme, že na to stihneme přidat jak webové rozhraní, tak i podporu více torrentů (multitorrent) ještě před vydáním verze 0.6.2. Pokud máte zájem pomoci, ozvěte se! :)
 
-[5] http://klomp.org/snark/ [6] http://dev.i2p.net/~jrandom/snark_diff.txt
+[5] http://klomp.org/snark/ [6] `http://dev.i2p.net/~jrandom/snark_diff.txt`
 
 * 5) More on bootstrapping
 
@@ -46,7 +46,7 @@ Pro ty, kdo mají rádi pastvu pro oči, má Michael pro vás také řešení, a
 
 (Dobrá práce, Michaeli, díky!)
 
-[7] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html     (sledujte vlákno "i2p tunnel bootstrap attack") [8] http://dev.i2p.net/~jrandom/fraction-of-attackers.png [9] http://dev.i2p.net/~jrandom/messages-per-tunnel.png
+[7] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html`     (sledujte vlákno "i2p tunnel bootstrap attack") [8] `http://dev.i2p.net/~jrandom/fraction-of-attackers.png` [9] `http://dev.i2p.net/~jrandom/messages-per-tunnel.png`
 
 * 6) Virus investigations
 
@@ -54,7 +54,7 @@ Proběhla určitá diskuse o potenciálních problémech se škodlivým software
 
 Díky, Complication, za veškerý tvůj výzkum v této věci!
 
-[10] http://forum.i2p.net/viewtopic.php?t=1122
+[10] `http://forum.i2p.net/viewtopic.php?t=1122`
 
 * 7) ???
 

@@ -25,10 +25,10 @@ categories: ["development"]
 要获得对服务器的读写访问权限，你需要为你的 SSH 客户端设置一个 tunnel。如果你只需要通过 HTTP/S 进行只读克隆，那么你可以跳过这些，直接使用 http_proxy 环境变量，把 git 配置为使用预先配置好的 I2P HTTP Proxy。例如：
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-要进行 SSH 访问，请从 http://127.0.0.1:7657/i2ptunnelmgr 启动 "New Tunnel Wizard"，并设置一个指向该 Git 服务的 SSH base32 地址的客户端 tunnel。
+要进行 SSH 访问，请从 `http://127.0.0.1:7657/i2ptunnelmgr` 启动 "New Tunnel Wizard"，并设置一个指向该 Git 服务的 SSH base32 地址的客户端 tunnel。
 
 ## 第四步：尝试克隆
 

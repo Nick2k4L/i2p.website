@@ -296,7 +296,7 @@ Všechny hodnoty jsou unsigned big-endian.
 
 #### Aplikace
 
-Aplikační obsah je kódován UTF-8 [JSON](https://www.json.org/). Viz sekce Aplikační vrstva níže.
+Aplikační obsah je kódován UTF-8 [JSON](https://www.json.org/json-en.html). Viz sekce Aplikační vrstva níže.
 
 
 #### Konfigurace
@@ -394,7 +394,7 @@ Každý Server periodicky ukládá Aplikační data do logu v ClientRequest. Apl
 
 ### Obsah aplikačních dat
 
-Aplikační obsah je kódován UTF-8 [JSON](https://www.json.org/), pro jednoduchost a rozšiřitelnost. Plná specifikace je TBD. Cílem je poskytnout dostatek dat k napsání algoritmu k určení "nejlepšího" routeru k publikování Meta LS2, a aby publisher měl dostatečné informace k zvážení Destinací v Meta LS2. Data budou obsahovat jak statistiky routeru, tak Destinace.
+Aplikační obsah je kódován UTF-8 [JSON](https://www.json.org/json-en.html), pro jednoduchost a rozšiřitelnost. Plná specifikace je TBD. Cílem je poskytnout dostatek dat k napsání algoritmu k určení "nejlepšího" routeru k publikování Meta LS2, a aby publisher měl dostatečné informace k zvážení Destinací v Meta LS2. Data budou obsahovat jak statistiky routeru, tak Destinace.
 
 Data mohou volitelně obsahovat vzdálená data o zdraví ostatních serverů, a možnost získání Meta LS. Tato data nebudou podporována v první verzi.
 
@@ -517,7 +517,7 @@ Atomix je příliš velký a neumožňuje přizpůsobení pro nás, abychom mohl
 ## Odkazy
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://json.org/)
+* [JSON](https://www.json.org/json-en.html)
 * [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)

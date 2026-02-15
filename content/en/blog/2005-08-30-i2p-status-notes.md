@@ -24,14 +24,14 @@ Since the release, there have been a few bugfixes for long standing error condit
 
 As discussed [1] in my blog [2], we're trying out a new backwards compatible netDb which will address both the restricted route situation we're seeing (20% of the routers) and simplify things a bit. The floodfill netDb is deployed as part of 0.6.0.3-4 without any further configuration, and basically works by querying within the floodfill db before falling back onto the existing kademlia db. If a few people want to help try it out, swing on up to 0.6.0.3-4 and give 'er a whirl!
 
-[1] http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001
-[2] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[1] `http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001`
+[2] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=`
 
 * 3) Syndie
 
 Syndie development is progressing quite well, with the full remote syndication in operation and optimized for I2P's needs (minimizing the number of HTTP requests, instead bundling results and uploads in multipart HTTP posts). The new remote syndication means you can run your own local Syndie instance, reading and posting offline, and then later on, sync your Syndie with someone else's - pulling down any new posts and pushing up any locally created posts (either in bulk, by blog, or by post).
 
-One public Syndie site is syndiemedia.i2p (also reachable on the web at http://syndiemedia.i2p.net/) with its public archives reachable at http://syndiemedia.i2p/archive/archive.txt (point your Syndie node at that to sync it). The 'front page' on that syndiemedia has been filtered to include only my blog, by default, but you can still access the other blogs through the drop down and adjust your default accordingly. (over time, syndiemedia.i2p's default will change to a set of introductory posts and blogs, giving a good entry point into syndie).
+One public Syndie site is syndiemedia.i2p (also reachable on the web at `http://syndiemedia.i2p.net/)` with its public archives reachable at `http://syndiemedia.i2p/archive/archive.txt` (point your Syndie node at that to sync it). The 'front page' on that syndiemedia has been filtered to include only my blog, by default, but you can still access the other blogs through the drop down and adjust your default accordingly. (over time, syndiemedia.i2p's default will change to a set of introductory posts and blogs, giving a good entry point into syndie).
 
 One effort still underway is the internationalization of the Syndie codebase. I've got my local copy modified to work properly with any content (any character set / locale / etc) on any machine (with potentially differing character sets / locale / etc), serving up the data clean so that the user's browser can interpret it properly. I have run into problems with one Jetty component that Syndie uses though, as their class for dealing with internationalized multipart requests isn't character set conscious. Yet ;)
 
@@ -39,7 +39,7 @@ Anyway, that means that once the internationalization part is sorted, content an
 
 Also, some ideas still on the horizon for SML [3] include a [torrent attachment="1"]my file[/torrent] tag which would offer a one click way to let people fire off the attached torrent in their favorite BT client (susibt, i2p-bt, azneti2p, or even a non-i2p bt client). Is there demand for other sorts of hooks (e.g. an [ed2k] tag?), or do people have entirely different crazy ideas for pushing content in Syndie?
 
-[3] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000
+[3] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000`
 
 * 4) ???
 

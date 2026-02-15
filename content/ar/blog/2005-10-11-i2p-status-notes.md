@@ -36,7 +36,7 @@ categories: ["status"]
 
 ينبغي أن تكون التداعيات المترتبة على اجتماع هذين الأمرين واضحة. سنوافيكم بالمزيد من الأخبار عندما تتوفر أخبار جديدة.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (سنقوم بدمجه في CVS قريبًا)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (سنقوم بدمجه في CVS قريبًا)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ categories: ["status"]
 
 لا أملك فعلاً وقتاً لأباشر هذا الآن، لكن مرّ على المنتدى إن أردت المساعدة.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ categories: ["status"]
 
 لستُ متأكدًا من أن لدي الكثير لأضيفه مما ليس جزءًا من المنشورات نفسها، لكن بعض الأشخاص ذكروا أن النقاش ساعدهم على فهم I2P وFreenet، لذا قد يكون من المفيد التصفح. أو ربما لا ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

@@ -74,7 +74,7 @@ Có nhiều cách để gửi dữ liệu qua I2P, mỗi cách đều có nhữn
 
 ### BOB
 
-BOB là [Basic Open Bridge](/docs/legacy/bob/), cho phép một ứng dụng bằng bất kỳ ngôn ngữ nào tạo các kết nối streaming đến và từ I2P. Tại thời điểm này nó thiếu hỗ trợ UDP, nhưng hỗ trợ UDP được lên kế hoạch trong tương lai gần. BOB cũng chứa một số công cụ, chẳng hạn như tạo khóa đích, và xác minh rằng một địa chỉ tuân thủ các đặc tả I2P. Thông tin cập nhật và các ứng dụng sử dụng BOB có thể được tìm thấy tại [I2P Site](http://bob.i2p/) này.
+BOB là [Basic Open Bridge](/docs/legacy/bob/), cho phép một ứng dụng bằng bất kỳ ngôn ngữ nào tạo các kết nối streaming đến và từ I2P. Tại thời điểm này nó thiếu hỗ trợ UDP, nhưng hỗ trợ UDP được lên kế hoạch trong tương lai gần. BOB cũng chứa một số công cụ, chẳng hạn như tạo khóa đích, và xác minh rằng một địa chỉ tuân thủ các đặc tả I2P. Thông tin cập nhật và các ứng dụng sử dụng BOB có thể được tìm thấy tại I2P Site này.
 
 ### SAM, SAM V2, SAM V3
 
@@ -350,12 +350,12 @@ Chúc mừng, bạn đã giao tiếp thành công qua I2P!
 
 Liên hệ với chúng tôi nếu bạn muốn đóng góp.
 
-- [I2P-Bote](http://i2pbote.i2p/) - liên hệ HungryHobo
+- I2P-Bote - liên hệ HungryHobo
 - [Syndie](http://syndie.i2p2.de/)
-- [IMule](http://www.imule.i2p/)
-- [I2Phex](http://forum.i2p/viewforum.php?f=25)
+- IMule
+- I2Phex
 
-Xem thêm tất cả các plugin trên [plugins.i2p](http://plugins.i2p/), các ứng dụng và mã nguồn được liệt kê trên [echelon.i2p](http://echelon.i2p/), và mã ứng dụng được lưu trữ trên [git.repo.i2p](http://git.repo.i2p/).
+Xem thêm tất cả các plugin trên plugins.i2p, các ứng dụng và mã nguồn được liệt kê trên echelon.i2p, và mã ứng dụng được lưu trữ trên git.repo.i2p.
 
 Xem thêm các ứng dụng đi kèm trong bản phân phối I2P - SusiMail và I2PSnark.
 

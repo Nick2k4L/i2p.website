@@ -22,9 +22,9 @@ La versión 0.6.2 incluirá muchas mejoras importantes para enfrentarse a advers
 
 También ha habido mucha actividad últimamente en el frente de I2Phex, con una nueva versión 0.1.1.35 [1]. También ha habido más cambios en CVS (¡gracias, Legion!), así que no me sorprendería ver una 0.1.1.36 más adelante esta semana.
 
-También ha habido buenos avances en el ámbito de gwebcache (ver http://awup.i2p/), aunque, que yo sepa, nadie ha empezado a trabajar en modificar I2Phex para usar un gwebcache compatible con I2P (¿te interesa? ¡avísame!).
+También ha habido buenos avances en el ámbito de gwebcache (ver `http://awup.i2p/),` aunque, que yo sepa, nadie ha empezado a trabajar en modificar I2Phex para usar un gwebcache compatible con I2P (¿te interesa? ¡avísame!).
 
-[1] http://forum.i2p.net/viewtopic.php?t=1157
+[1] `http://forum.i2p.net/viewtopic.php?t=1157`
 
 * 3) I2P-Rufus
 
@@ -40,7 +40,7 @@ Otro rumor que circula es que Markus ha estado haciendo algo de hacking en una n
 
 También ha habido algo de debate en torno a los rediseños de la interfaz de usuario (UI) de Syndie [3], y espero que veamos algunos avances en ese frente en breve. dust también está trabajando intensamente en Sucker, añadiendo mejor soporte para incorporar más canales RSS/Atom en Syndie, así como algunas mejoras al propio SML.
 
-[3] http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true
+[3] `http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true`
 
 * 6) ???
 

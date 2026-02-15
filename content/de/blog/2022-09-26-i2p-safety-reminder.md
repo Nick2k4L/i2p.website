@@ -40,7 +40,7 @@ Wir haben offizielle Seiten, auf denen man die I2P-Software sicher beziehen kann
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -56,6 +56,6 @@ Diese Dienste werden von Dritten, teils von Unternehmen, gehostet, an denen wir 
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-Dieser Beitrag versucht, Möglichkeiten zur Überprüfung der Bezugsquelle für das Java-I2P-Paket aufzuzeigen, das durch den Quellcode unter https://i2pgit.org/i2p-hackers/i2p.i2p und https://github.com/i2p/i2p.i2p repräsentiert wird und über die Website https://geti2p.net/ zum Download bereitsteht. Es ist nicht dazu gedacht, über Forks von Drittanbietern, Downstream-Projekte, Integratoren, Paketierer, Personen, die in Laboren experimentieren, oder Personen, die einfach anderer Meinung sind, zu urteilen. Ihr alle seid geschätzte Mitglieder unserer Community, die versuchen, die Privatsphäre anderer zu schützen und nicht zu gefährden. Da uns Versuche bekannt sind, sich als Mitglieder der I2P-Projekt-Community auszugeben, möchten Sie möglicherweise die Download-, Verifizierungs- und Installationsverfahren, die Sie Ihren Nutzern empfehlen, überprüfen, um Ihre offiziellen Quellen und bekannten Spiegelserver zu dokumentieren.
+Dieser Beitrag versucht, Möglichkeiten zur Überprüfung der Bezugsquelle für das Java-I2P-Paket aufzuzeigen, das durch den Quellcode unter `https://i2pgit.org/i2p-hackers/i2p.i2p` und `https://github.com/i2p/i2p.i2p` repräsentiert wird und über die Website `https://geti2p.net/` zum Download bereitsteht. Es ist nicht dazu gedacht, über Forks von Drittanbietern, Downstream-Projekte, Integratoren, Paketierer, Personen, die in Laboren experimentieren, oder Personen, die einfach anderer Meinung sind, zu urteilen. Ihr alle seid geschätzte Mitglieder unserer Community, die versuchen, die Privatsphäre anderer zu schützen und nicht zu gefährden. Da uns Versuche bekannt sind, sich als Mitglieder der I2P-Projekt-Community auszugeben, möchten Sie möglicherweise die Download-, Verifizierungs- und Installationsverfahren, die Sie Ihren Nutzern empfehlen, überprüfen, um Ihre offiziellen Quellen und bekannten Spiegelserver zu dokumentieren.
 
 *Anmerkung des Autors: Eine frühere Version dieses Blogbeitrags enthielt den TLS-Fingerabdruck eines jeden der vom I2P Project betriebenen Dienste. Diese wurden entfernt, als eine Zertifikatserneuerung dazu führte, dass die Fingerabdrücke nicht mehr korrekt waren.*

@@ -150,8 +150,8 @@ torsocks --port 7695 $command_to_proxy
 
 Phụ lục: ``example implementation of the attack``
 
-[Một ví dụ triển khai của cuộc tấn công Shared Identity trên HTTP User-Agents](https://github.com/eyedeekay/colluding_sites_attack/) đã tồn tại trong nhiều năm. Một ví dụ bổ sung có sẵn trong thư mục con ``simple-colluder`` của [kho lưu trữ prop166 của idk](https://git.idk.i2p/idk/i2p.host-aware-proxy). Những ví dụ này được thiết kế có chủ ý để chứng minh rằng cuộc tấn công hoạt động và sẽ cần được sửa đổi (mặc dù nhỏ) để biến thành một cuộc tấn công thực sự.
+[Một ví dụ triển khai của cuộc tấn công Shared Identity trên HTTP User-Agents](https://github.com/eyedeekay/colluding_sites_attack/) đã tồn tại trong nhiều năm. Một ví dụ bổ sung có sẵn trong thư mục con ``simple-colluder`` của kho lưu trữ prop166 của idk. Những ví dụ này được thiết kế có chủ ý để chứng minh rằng cuộc tấn công hoạt động và sẽ cần được sửa đổi (mặc dù nhỏ) để biến thành một cuộc tấn công thực sự.
 
 Addendum: ``example implementation of the attack``
 
-[An example implementation of the Shared Identity attack on HTTP User-Agents](https://github.com/eyedeekay/colluding_sites_attack/) has existed for several years. An additional example is available in the ``simple-colluder`` subdirectory of [idk’s prop166 repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These examples are deliberately designed to demonstrate that the attack works and would require modification(albeit minor) to be turned into a real attack.
+[An example implementation of the Shared Identity attack on HTTP User-Agents](https://github.com/eyedeekay/colluding_sites_attack/) has existed for several years. An additional example is available in the ``simple-colluder`` subdirectory of idk’s prop166 repository These examples are deliberately designed to demonstrate that the attack works and would require modification(albeit minor) to be turned into a real attack.

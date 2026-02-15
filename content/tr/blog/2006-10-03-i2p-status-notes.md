@@ -52,7 +52,7 @@ Yani, bugün gördüğüm kadarıyla darboğaz router/ağda. Bununla nasıl baş
 
 * 3) Syndie rationale continued
 
-Forumda Syndie ve onun nereye oturduğuna dair ayrıntılı bir gönderi var - şuradan göz atın <http://forum.i2p.net/viewtopic.php?t=1910>
+Forumda Syndie ve onun nereye oturduğuna dair ayrıntılı bir gönderi var - şuradan göz atın <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Ayrıca, üzerinde çalışılan Syndie dokümantasyonundan iki alıntıyı vurgulamak istiyorum. İlk olarak, irc'den (ve henüz yayımlanmamış SSS'den):
 

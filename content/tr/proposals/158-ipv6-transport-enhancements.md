@@ -128,7 +128,7 @@ Uygulanacak üç değişiklik bulunmaktadır.
 ### 4/6 Yetenek
 
 Bu başlangıçta resmi bir teklif olmadan uygulandı, ancak IPv6 tanıtımları için gerekli olduğu için burada ekliyoruz.
-Ayrıca bkz. [CAPS](http://zzz.i2p/topics/3050).
+Ayrıca bkz. CAPS.
 
 
 İki yeni yetenek "4" ve "6" tanımlanmıştır.

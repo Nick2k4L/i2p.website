@@ -134,5 +134,5 @@ torsocks --port 7695 $command_to_proxy
 
 추가: ``공격의 예시 구현`` 담
 
-`HTTP 사용자 에이전트에서의 공유된 신원 공격의 예제 구현 <https://github.com/eyedeekay/colluding_sites_attack/>` __가 몇 년 전부터 존재했습니다. 추가적 예시는 `idk의 prop166 저장소 <https://git.idk.i2p/idk/i2p.host-aware-proxy>` __의 ``simple-colluder`` 하위 디렉터리에서 사용할 수 있습니다. 이러한 예시는 공격이 작동한다는 것을 입증하도록 설계되었으며, 실제 공격으로 변환하기 위해서는 (비록 사소한) 수정이 필요할 것입니다.
+`HTTP 사용자 에이전트에서의 공유된 신원 공격의 예제 구현 <https://github.com/eyedeekay/colluding_sites_attack/>` __가 몇 년 전부터 존재했습니다. 추가적 예시는 `idk의 prop166 저장소 <`https://git.idk.i2p/idk/i2p.host-aware-proxy>`` __의 ``simple-colluder`` 하위 디렉터리에서 사용할 수 있습니다. 이러한 예시는 공격이 작동한다는 것을 입증하도록 설계되었으며, 실제 공격으로 변환하기 위해서는 (비록 사소한) 수정이 필요할 것입니다.
 

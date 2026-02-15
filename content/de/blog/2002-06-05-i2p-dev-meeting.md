@@ -6,7 +6,7 @@ description: "I2P Entwicklungsbesprechungs-Protokoll vom 4. Juni 2002."
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

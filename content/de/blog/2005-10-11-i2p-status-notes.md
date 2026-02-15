@@ -36,7 +36,7 @@ Ragnaroks zeitgesteuerte Syndizierungsfunktion scheint gut zu laufen, und seit 0
 
 Die Auswirkungen der beiden in Kombination sollten klar sein. Weitere Neuigkeiten, sobald es welche gibt.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (wir werden es in Kürze in CVS integrieren)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (wir werden es in Kürze in CVS integrieren)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ Das wäre richtig genial, denn es würde bedeuten, dass viel weniger Code zu war
 
 Ich habe im Moment nicht wirklich Zeit, mich darum zu kümmern, aber schau im Forum vorbei, wenn du helfen möchtest.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ Die Mailingliste [6] war in letzter Zeit aufgrund der Diskussion über Steganogr
 
 Ich bin mir nicht sicher, ob ich viel hinzufügen kann, was nicht ohnehin schon Teil der Beiträge selbst ist, aber einige Leute haben erwähnt, dass die Diskussion ihnen beim Verständnis von I2P und Freenet geholfen hat, also könnte es sich lohnen, mal reinzuschauen. Oder auch nicht ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

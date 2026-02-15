@@ -31,7 +31,7 @@ Có nhiều quan điểm trái chiều về việc sử dụng số mũ ngắn; 
 
 Một phương án lớn là chuyển sang mã hóa 1024bit (trong đó có lẽ chúng ta có thể dùng một số mũ ngắn 160bit). Điều này có thể phù hợp dù thế nào đi nữa, và nếu mọi thứ quá khó khăn với mã hóa 2048bit trên _PRE net, chúng ta có thể thực hiện bước chuyển ngay trong _PRE net. Nếu không, chúng ta có thể đợi đến bản phát hành 0.6.1.10, khi thuật toán mật mã mới được triển khai rộng rãi hơn để xem liệu điều đó có cần thiết không. Sẽ có thêm nhiều thông tin nếu việc chuyển đổi như vậy có vẻ sắp diễn ra.
 
-[1] "Về thỏa thuận khóa Diffie-Hellman với số mũ ngắn" -     van Oorschot, Weiner tại EuroCrypt 96.  bản sao tại     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "Về thỏa thuận khóa Diffie-Hellman với số mũ ngắn" -     van Oorschot, Weiner tại EuroCrypt 96.  bản sao tại     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 Dù sao thì, đã có rất nhiều tiến triển trên _PRE net, với hầu hết trao đổi về nó diễn ra trong kênh #i2p_pre trên irc2p.
 

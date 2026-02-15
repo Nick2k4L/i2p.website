@@ -91,6 +91,6 @@ Aşağıdaki yönergeler router, web uygulamaları ve tüm eklentiler için geç
 
 ### Hatalar
 
-- Sorunları yönetmek herkesin işidir; lütfen yardım edin. Yardım edebileceğiniz sorunlar için [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)'ı takip edin. Yapabiliyorsanız sorunlara yorum yapın, düzeltin ve kapatın.
+- Sorunları yönetmek herkesin işidir; lütfen yardım edin. Yardım edebileceğiniz sorunlar için GitLab'ı takip edin. Yapabiliyorsanız sorunlara yorum yapın, düzeltin ve kapatın.
 - Yeni geliştiriciler sorunları düzelterek başlamalıdır. Bir düzeltmeniz olduğunda, yamanızı soruna ekleyin ve `review-needed` anahtar kelimesini ekleyin. İncelenip başarıyla onaylanana ve değişikliklerinizi kontrol edene kadar sorunu kapatmayın. Bunu birkaç ticket için sorunsuz bir şekilde yaptıktan sonra, yukarıdaki normal prosedürü izleyebilirsiniz.
 - Düzelttiğinizi düşündüğünüzde bir sorunu kapatın. Ticket'ları doğrulamak ve kapatmak için bir test departmanımız yok. Düzelttiğinizden emin değilseniz, kapatın ve "Düzelttiğimi düşünüyorum, lütfen test edin ve hala bozuksa yeniden açın" diyen bir not ekleyin. Dev build numarası veya revizyon ile bir yorum ekleyin ve milestone'ı bir sonraki sürüme ayarlayın.

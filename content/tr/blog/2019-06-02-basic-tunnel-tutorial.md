@@ -12,7 +12,7 @@ Bunu yapmak kolay olsa da, yapmadan önce göz önünde bulundurmanız gereken b
 
 ### Birinci Adım: Tunnel Sihirbazını Açın
 
-127.0.0.1:7657 adresindeki I2P web arayüzüne gidin ve [Gizli Servisler Yöneticisi](http://127.0.0.1:7657/i2ptunnelmgr) (localhost'a bağlantı) sayfasını açın. Başlamak için "Tunnel Wizard" adlı düğmeye tıklayın.
+127.0.0.1:7657 adresindeki I2P web arayüzüne gidin ve `http://127.0.0.1:7657/i2ptunnelmgr` (localhost'a bağlantı) sayfasını açın. Başlamak için "Tunnel Wizard" adlı düğmeye tıklayın.
 
 ### Adım İki: Sunucu Tunnel seçin
 

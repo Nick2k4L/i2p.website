@@ -29,7 +29,7 @@ categories: ["meeting"]
 (03:10:03 PM) eyedeekay: zzz anything to add to the release status topic from your end? I understand BiglyBT released their plugin today, is that correct?
 (03:10:22 PM) zzz: yes
 (03:10:48 PM) zzz: based on expl. build success stats, we've rapidly recovered from i2pd's regression in the last release
-(03:10:52 PM) zzz: http://stats.i2p/docs/buildsuccess.png
+(03:10:52 PM) zzz: `http://stats.i2p/docs/buildsuccess.png`
 (03:11:11 PM) zzz: and are now at a higher point than any time in the last few years iirc
 (03:12:11 PM) zzz: things should settle out in another week and we'll see where we are
 (03:12:13 PM) zzz: eot

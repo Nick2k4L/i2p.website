@@ -30,7 +30,7 @@ Es gibt noch andere interessante Strategien, die ausgearbeitet werden müssen, a
 
 Es gibt mehr nützliche Dinge zu tun, als ich aufzählen könnte, aber ich möchte eure Aufmerksamkeit auf einen Beitrag auf meinem Blog lenken, der fünf kleine Projekte beschreibt, die ein Coder ohne allzu großen Zeitaufwand umsetzen könnte [1]. Wenn jemand Interesse hat, an denen zu arbeiten, bin ich sicher, dass wir als Dank aus dem allgemeinen Fonds einige Ressourcen [2] bereitstellen würden, auch wenn mir klar ist, dass die meisten von euch eher vom Basteln als vom Geld motiviert sind ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

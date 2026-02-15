@@ -6,7 +6,7 @@ description: "Cuộc họp phát triển I2P không chính thức thảo luận 
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi wayback machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

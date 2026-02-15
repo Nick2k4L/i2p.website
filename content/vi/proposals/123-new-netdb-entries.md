@@ -1066,7 +1066,7 @@ Không có định dạng tệp nào được định nghĩa trong đề xuất 
 
 - ChaCha20 được chọn thay vì AES. Trong khi tốc độ tương tự nhau nếu có hỗ trợ phần cứng AES, ChaCha20 nhanh hơn 2.5-3 lần khi không có hỗ trợ phần cứng AES, chẳng hạn như trên các thiết bị ARM tầm thấp.
 
-- Chúng tôi không quan tâm đủ về tốc độ để sử dụng keyed BLAKE2b. Nó có kích thước đầu ra đủ lớn để chứa n lớn nhất mà chúng tôi yêu cầu (hoặc chúng ta có thể gọi nó một lần cho mỗi khóa mong muốn với một đối số bộ đếm). BLAKE2b nhanh hơn nhiều so với SHA-256, và keyed-BLAKE2b sẽ giảm tổng số lần gọi hàm hash. Tuy nhiên, xem đề xuất 148, nơi đề xuất rằng chúng ta chuyển sang BLAKE2b vì những lý do khác. Xem [Hiệu suất dẫn xuất khóa an toàn](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+- Chúng tôi không quan tâm đủ về tốc độ để sử dụng keyed BLAKE2b. Nó có kích thước đầu ra đủ lớn để chứa n lớn nhất mà chúng tôi yêu cầu (hoặc chúng ta có thể gọi nó một lần cho mỗi khóa mong muốn với một đối số bộ đếm). BLAKE2b nhanh hơn nhiều so với SHA-256, và keyed-BLAKE2b sẽ giảm tổng số lần gọi hàm hash. Tuy nhiên, xem đề xuất 148, nơi đề xuất rằng chúng ta chuyển sang BLAKE2b vì những lý do khác. Xem Hiệu suất dẫn xuất khóa an toàn.
 
 ### Meta LS2
 
@@ -1080,7 +1080,7 @@ Trường hợp sử dụng cho Meta LS2 là multihoming quy mô lớn, nhưng k
 
 Giao thức back-end để phối hợp giữa các leaf router, các intermediate và master Meta LS signer không được chỉ định ở đây. Các yêu cầu cực kỳ đơn giản - chỉ cần xác minh rằng peer đang hoạt động, và xuất bản một LS mới vài giờ một lần. Độ phức tạp duy nhất là việc chọn những publisher mới cho các Meta LS cấp cao nhất hoặc cấp trung gian khi xảy ra lỗi.
 
-Các leaseset mix-and-match trong đó các lease từ nhiều router được kết hợp, ký và xuất bản trong một leaseset duy nhất được tài liệu hóa trong đề xuất 140, "invisible multihoming". Đề xuất này không khả thi như đã viết, bởi vì các kết nối streaming sẽ không "dính" với một router duy nhất, xem http://zzz.i2p/topics/2335 .
+Các leaseset mix-and-match trong đó các lease từ nhiều router được kết hợp, ký và xuất bản trong một leaseset duy nhất được tài liệu hóa trong đề xuất 140, "invisible multihoming". Đề xuất này không khả thi như đã viết, bởi vì các kết nối streaming sẽ không "dính" với một router duy nhất, xem `http://zzz.i2p/topics/2335` .
 
 Giao thức back-end và tương tác với các thành phần nội bộ của router và client sẽ khá phức tạp đối với invisible multihoming.
 
@@ -1607,7 +1607,7 @@ Chữ ký ngoại tuyến không thể được xác minh trong streaming hoặc
 
 ## Private Key File Changes Required
 
-Định dạng tệp khóa riêng tư (eepPriv.dat) không phải là một phần chính thức trong thông số kỹ thuật của chúng tôi nhưng nó được ghi chép trong [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) và các triển khai khác cũng hỗ trợ nó. Điều này cho phép tính di động của các khóa riêng tư sang các triển khai khác nhau.
+Định dạng tệp khóa riêng tư (eepPriv.dat) không phải là một phần chính thức trong thông số kỹ thuật của chúng tôi nhưng nó được ghi chép trong Java I2P javadocs và các triển khai khác cũng hỗ trợ nó. Điều này cho phép tính di động của các khóa riêng tư sang các triển khai khác nhau.
 
 Cần thực hiện các thay đổi để lưu trữ khóa công khai tạm thời và thông tin ký ngoại tuyến.
 

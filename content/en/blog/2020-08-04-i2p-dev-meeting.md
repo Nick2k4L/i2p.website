@@ -28,7 +28,7 @@ categories: ["meeting"]
 (04:05:27 PM) eyedeekay1: It does not look like I'm going to get rekeyOnIdle done in time for 0.9.47 either.
 (04:05:58 PM) eyedeekay1: What will be included are primarily updates to visual elements on my end.
 (04:06:19 PM) eyedeekay1: Anything from zzz or zlatinb on the 0.9.47 release topic?
-(04:06:43 PM) zzz: summary is at http://zzz.i2p/topics/2905
+(04:06:43 PM) zzz: summary is at `http://zzz.i2p/topics/2905`
 (04:06:49 PM) zzz: tag freeze a week from tomorrow
 (04:06:53 PM) zzz: release in about 3 weeks
 (04:07:07 PM) zzz: diff is at about 18,500 lines which is pretty typical
@@ -46,14 +46,14 @@ categories: ["meeting"]
 (04:12:53 PM) eyedeekay1: This is the monthly meeting.
 (04:12:53 PM) eyedeekay1: I did not set up a WebIRC gateway, as I understand it would have been against our IRC rules to do so.
 (04:13:13 PM) eyedeekay1: I now have a copy of the meeting announcement rules and responsibility for those announcements has been clarified to me.
-(04:13:25 PM) eyedeekay1: The announcment for September 1, with the correct date this time, has been posted. No topics yet, please add them as you need them: http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc
+(04:13:25 PM) eyedeekay1: The announcment for September 1, with the correct date this time, has been posted. No topics yet, please add them as you need them: `http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc`
 (04:14:55 PM) eyedeekay1: This will of course come shortly after the 0.9.47 release
 (04:15:45 PM) eyedeekay1: Anything on 2) from anyone else?
 (04:17:57 PM) eyedeekay1: 3) Git transition
 (04:18:34 PM) eyedeekay1: Git transition is finally getting underway, we have a plan and are beginning to execute upon it
 (04:19:08 PM) eyedeekay1: nextloop and I are making progress on getting the next few meaningful mtn branches mirrored over to github
 (04:19:27 PM) eyedeekay1: these are still read-only until the conclusion of their respective phases on the git migration, i.e. no pulls or MRs yet
-(04:20:04 PM) eyedeekay1: For a detailed description of these phases see: http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10
+(04:20:04 PM) eyedeekay1: For a detailed description of these phases see: `http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10`
 (04:20:42 PM) eyedeekay1: It would be helpful to nextloop and I if I gave nextloop permission to create repositories in the i2p namespace on github, and to write to the repositories he creates.
 (04:20:47 PM) zzz: good job on writing up the plan
 (04:21:24 PM) eyedeekay1: Thanks zzz, glad to finally have it in a usable state

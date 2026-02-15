@@ -12,7 +12,7 @@ categories: ["tutorial"]
 
 ### चरण एक: Tunnel विज़ार्ड खोलें
 
-127.0.0.1:7657 पर I2P वेब इंटरफ़ेस पर जाएँ और [Hidden Services Manager](http://127.0.0.1:7657/i2ptunnelmgr) (localhost के लिए लिंक) खोलें। शुरू करने के लिए "Tunnel Wizard" लिखा हुआ बटन पर क्लिक करें।
+127.0.0.1:7657 पर I2P वेब इंटरफ़ेस पर जाएँ और `http://127.0.0.1:7657/i2ptunnelmgr` (localhost के लिए लिंक) खोलें। शुरू करने के लिए "Tunnel Wizard" लिखा हुआ बटन पर क्लिक करें।
 
 ### चरण दो: एक सर्वर Tunnel चुनें
 

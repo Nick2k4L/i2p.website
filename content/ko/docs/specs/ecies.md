@@ -30,9 +30,9 @@ accurateFor: "0.9.67"
 - Common structures spec [Common](/docs/specs/common-structures/)
 - LS2를 포함한 [I2NP](/docs/specs/i2np/) spec
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- <http://zzz.i2p/topics/1768> 새로운 비대칭 암호화 개요
+- <`http://zzz.i2p/topics/1768>` 새로운 비대칭 암호화 개요
 - 저수준 암호화 개요 [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
-- ECIES <http://zzz.i2p/topics/2418>
+- ECIES <`http://zzz.i2p/topics/2418>`
 - [NTCP2](/docs/specs/ntcp2/) [Prop111](/proposals/111-ntcp2/)
 - 123 새로운 netDb 항목들
 - 142 새로운 암호화 템플릿

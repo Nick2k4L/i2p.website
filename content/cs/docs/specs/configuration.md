@@ -28,7 +28,7 @@ Konfigurační soubor I2P je formátován podle specifikace Java [Properties](ht
 
 Soubor nemusí být seřazen, ale většina aplikací při zápisu do souboru řadí podle klíče pro snadnější čtení a ruční úpravy.
 
-Čtení a zápis jsou implementovány v DataHelper loadProps() a storeProps() [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html). Všimněte si, že formát souboru se významně liší od serializovaného formátu pro I2P protokoly specifikovaného v [Mapping](/docs/specs/common-structures/#type-mapping).
+Čtení a zápis jsou implementovány v DataHelper loadProps() a storeProps() [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html). Všimněte si, že formát souboru se významně liší od serializovaného formátu pro I2P protokoly specifikovaného v [Mapping](/docs/specs/common-structures/#type-mapping).
 
 ## Základní knihovna a router
 
@@ -226,7 +226,7 @@ tunnel.N.option.i2ptunnel.httpclient.allowInternalSSL=true|false
 tunnel.N.option.i2ptunnel.httpclient.disableAddressHelper=true|false
 
 # HTTP client only. Comma- or space-separated list of jump server URLs.
-tunnel.N.option.i2ptunnel.httpclient.jumpServers=http://example.i2p/jump
+tunnel.N.option.i2ptunnel.httpclient.jumpServers=`http://example.i2p/jump`
 
 # HTTP client only. Whether to pass Accept* headers through. Default false.
 # Note: Does not affect "Accept" and "Accept-Encoding".
@@ -430,7 +430,7 @@ Viz příspěvek na zzz.i2p.
 
 ## Reference
 
-- [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+- [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 - [Mapování](/docs/specs/common-structures#type-mapping)
 - [PLUGIN](/docs/specs/plugin)
 - [Properties](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html#load%28java.io.InputStream%29)

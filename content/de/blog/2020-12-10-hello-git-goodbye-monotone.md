@@ -22,7 +22,7 @@ Check-ins in die Repositories des I2P-Projekts erfordern, dass Sie die GPG-Signi
 
 ## GPG-Signierung
 
-Das offizielle Repository ist dasjenige, das unter https://i2pgit.org/i2p-hackers/i2p.i2p und unter https://git.idk.i2p/i2p-hackers/i2p.i2p gehostet wird, aber es gibt ein "Mirror" bei Github unter https://github.com/i2p/i2p.i2p.
+Das offizielle Repository ist dasjenige, das unter `https://i2pgit.org/i2p-hackers/i2p.i2p` und unter `https://git.idk.i2p/i2p-hackers/i2p.i2p` gehostet wird, aber es gibt ein "Mirror" bei Github unter https://github.com/i2p/i2p.i2p.
 
 Da wir jetzt Git verwenden, können wir Repositories von unserer eigenen selbstgehosteten Gitlab-Instanz zu Github und wieder zurück synchronisieren. Das bedeutet, dass es möglich ist, auf Gitlab einen Merge Request zu erstellen und einzureichen und dass, wenn er zusammengeführt wird, das Ergebnis mit Github synchronisiert wird, und dass ein Pull Request auf Github, wenn er zusammengeführt wird, auf Gitlab erscheint.
 

@@ -47,7 +47,7 @@ categories: ["meeting"]
 20:07:38 &lt;zzz&gt; ok I guess he's not here
 20:07:51 &lt;zzz&gt; 5) muwire.i2p console home page request (zlatinb)
 20:08:01 &lt;zlatinb&gt; hi
-20:08:07 &lt;zzz&gt; http://zzz.i2p/topics/2722
+20:08:07 &lt;zzz&gt; `http://zzz.i2p/topics/2722`
 20:08:11 &lt;zzz&gt; tell us about your site please
 20:09:30 &lt;zlatinb&gt; MuWire is a general purpose file-sharing application which works on top of i2p.  The site contains download links, screenshots and general information about the application.
 20:10:05 &lt;zlatinb&gt; I believe MW is of general interest and usefulness to the i2p community; it has been growing quickly and drawing lots of interest.

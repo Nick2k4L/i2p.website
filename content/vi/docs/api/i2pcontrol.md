@@ -102,7 +102,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 ### Phản hồi thành công
 
@@ -144,7 +144,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Các Trường Phản Hồi (result)** Theo tài liệu chính thức (GetI2P): - `i2p.router.status` (String) — trạng thái có thể đọc được - `i2p.router.uptime` (long) — mili giây (hoặc chuỗi cho i2pd cũ hơn) :contentReference[oaicite:0]{index=0} - `i2p.router.version` (String) — chuỗi phiên bản :contentReference[oaicite:1]{index=1} - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — băng thông đến theo B/s :contentReference[oaicite:2]{index=2} - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — băng thông đi theo B/s :contentReference[oaicite:3]{index=3} - `i2p.router.net.status` (long) — mã trạng thái số (xem enum bên dưới) :contentReference[oaicite:4]{index=4} - `i2p.router.net.tunnels.participating` (long) — số lượng tunnel tham gia :contentReference[oaicite:5]{index=5} - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — thống kê peer của netDB :contentReference[oaicite:6]{index=6} - `i2p.router.netdb.isreseeding` (boolean) — có đang thực hiện reseed hay không :contentReference[oaicite:7]{index=7} - `i2p.router.netdb.knownpeers` (long) — tổng số peer đã biết :contentReference[oaicite:8]{index=8}
 
@@ -240,7 +240,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Phản hồi mẫu**
 
@@ -274,7 +274,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Phản hồi thành công**
 
@@ -309,7 +309,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Phản Hồi Mẫu**
 
@@ -351,7 +351,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Ví dụ Phản hồi**
 

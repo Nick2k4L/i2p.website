@@ -22,7 +22,7 @@ Zejména by mě zajímala jakákoli zpětná vazba od lidí s vytáčeným modem
 
 Na mailing listu proběhla spousta dalších diskusí o několika nápadech a online je zveřejněn souhrn bootstrap attacks (útoků při bootstrapu) [1]. Udělal jsem určitý pokrok ve specifikaci kryptografie pro variantu 3 a i když zatím nic nebylo zveřejněno, je to poměrně přímočaré.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/001146.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/001146.html`
 
 Proběhly další diskuse o tom, jak zlepšit odolnost vůči silným protivníkům pomocí constant bitrate (CBR) tunnels, a přestože máme možnost se touto cestou vydat, je to v současnosti plánováno až na I2P 3.0, protože jeho správné použití vyžaduje značné prostředky a pravděpodobně by mělo měřitelný dopad na to, kdo by byl ochoten používat I2P s takovou režií, stejně jako na to, které skupiny by toho vůbec byly či nebyly schopny.
 
@@ -32,7 +32,7 @@ Minulou sobotu také vyšla nová verze I2Phexu [2], která opravuje únik soubo
 
 Kromě toho došlo k aktualizaci CVS verze (dosud nevydané), která řeší některé problémy se synchronizací – Phex předpokládá, že některé síťové operace jsou zpracovány okamžitě, zatímco v I2P může jejich provedení nějakou dobu trvat :). To se projevuje tím, že se na chvíli zasekne GUI, stahování nebo odesílání se zastaví, případně jsou odmítána spojení (a možná i dalšími způsoby). Ještě to nebylo moc testováno, ale pravděpodobně to bude tento týden zařazeno do verze 0.1.1.35. Jsem si jistý, že až bude více novinek, na fóru se objeví další informace.
 
-[2] http://forum.i2p.net/viewtopic.php?t=1143
+[2] `http://forum.i2p.net/viewtopic.php?t=1143`
 
 * 4) voi2p app
 

@@ -46,7 +46,7 @@ As discussed off and on for the last 6-12 months, we're going to be
 moving over to UDP for our interrouter communication once the 0.6
 release is out.  To get us further down that path, we've got a first
 draft of the transport protocol up in CVS @
-http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 Its a fairly simple protocol with the goals outlined in the doc, and
 exploits I2P's capabilities to both authenticate and secure data, as
@@ -69,7 +69,7 @@ entirely *locally*, and requesting the actual data from the Q server
 "directly" (well, through I2P).  Anyway, some neat stuff, perhaps
 if Aum is awake [3] we can wressle an update out of him?
 
-[1] http://aum.i2p/q/
+[1] `http://aum.i2p/q/`
 [2] http://www.danga.com/memcached/
 [3] damn those timezones!
 

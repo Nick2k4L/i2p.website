@@ -71,7 +71,7 @@ accurateFor: "0.9.65"
 | محجوز | 255 |
 ### خيارات إضافية
 
-تشمل خيارات النص الإضافية عددًا صغيرًا من الإحصائيات حول صحة router، والتي يتم تجميعها من قبل مواقع مثل [stats.i2p](http://stats.i2p/) لتحليل أداء الشبكة واستكشاف الأخطاء. تم اختيار هذه الإحصائيات لتوفير بيانات حاسمة للمطورين، مثل معدلات نجاح بناء tunnel، مع موازنة الحاجة لهذه البيانات مع الآثار الجانبية التي قد تنتج عن الكشف عن هذه البيانات. الإحصائيات الحالية مقتصرة على:
+تشمل خيارات النص الإضافية عددًا صغيرًا من الإحصائيات حول صحة router، والتي يتم تجميعها من قبل مواقع مثل stats.i2p لتحليل أداء الشبكة واستكشاف الأخطاء. تم اختيار هذه الإحصائيات لتوفير بيانات حاسمة للمطورين، مثل معدلات نجاح بناء tunnel، مع موازنة الحاجة لهذه البيانات مع الآثار الجانبية التي قد تنتج عن الكشف عن هذه البيانات. الإحصائيات الحالية مقتصرة على:
 
 - معدلات نجاح ورفض وانتهاء مهلة بناء الأنفاق الاستكشافية
 - متوسط عدد الأنفاق المشاركة لمدة ساعة واحدة
@@ -136,7 +136,7 @@ RouterInfos ليس لديها وقت انتهاء صلاحية محدد. كل ro
 ### انظر أيضاً
 
 - [مواصفات RouterInfo](/docs/specs/common-structures/#struct_RouterInfo)
-- [وثائق RouterInfo Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
+- وثائق RouterInfo Javadoc
 
 ---
 
@@ -159,8 +159,8 @@ RouterInfos ليس لديها وقت انتهاء صلاحية محدد. كل ro
 
 - [مواصفات Lease](/docs/specs/common-structures/#struct_Lease)
 - [مواصفات LeaseSet](/docs/specs/common-structures/#struct_LeaseSet)
-- [Lease Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
-- [LeaseSet Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
+- Lease Javadoc
+- LeaseSet Javadoc
 
 اعتباراً من الإصدار 0.9.38، تم تعريف ثلاثة أنواع جديدة من LeaseSets؛ LeaseSet2 و MetaLeaseSet و EncryptedLeaseSet. انظر أدناه.
 

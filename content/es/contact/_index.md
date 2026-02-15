@@ -25,9 +25,9 @@ Por favor, no utilice estas direcciones de correo electrónico para solicitudes 
 
 ## Foros {#forums}
 
-Por favor visita nuestro foro de usuarios de I2P - [i2pforum.i2p](http://i2pforum.i2p/) (disponible en internet no privado en https://i2pforum.net.
+Por favor visita nuestro foro de usuarios de I2P - i2pforum.i2p (disponible en internet no privado en https://i2pforum.net.
 
-La discusión sobre el desarrollo de I2P sucede en el [foro de usuarios de I2P](http://i2pforum.i2p). Este suele ser el mejor lugar para comenzar con consultas de desarrollador, si el canal IRC de desarrollo está inactivo. Para soporte general usa el [foro de usuarios de I2P](http://i2pforum.i2p) o el Subreddit.
+La discusión sobre el desarrollo de I2P sucede en el foro de usuarios de I2P. Este suele ser el mejor lugar para comenzar con consultas de desarrollador, si el canal IRC de desarrollo está inactivo. Para soporte general usa el foro de usuarios de I2P o el Subreddit.
 
 ## IRC {#irc}
 
@@ -63,8 +63,8 @@ Suscríbete a nuestra lista de correo introduciendo tu correo electrónico en el
 | **Administrador de CI** | idk | Mantiene la infraestructura de Integración Continua |
 | **Administrador de Reseed** | idk | Supervisa, asesora y recluta servidores de reseed |
 | **Administrador de Gitea** | idk | Encargado de Gitea de I2P |
-| **Localización** | idk, zzz | Administradores en [Transifex](https://www.transifex.com/projects/p/I2P/) |
-| **Traductores** | ¡muchísimas personas! | Traductores en [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Localización** | idk, zzz | Administradores en Transifex |
+| **Traductores** | ¡muchísimas personas! | Traductores en Transifex |
 | **Encargado del sitio web** | StormyCloud | Gestiona el diseño del contenido del sitio web público del proyecto |
 | **Administrador de servidores web** | StormyCloud | Gestiona los servidores web públicos del proyecto |
 | **Administrador del sitio web** | idk | Gestiona el sitio web público del proyecto |

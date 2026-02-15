@@ -21,7 +21,7 @@ Auch wenn keine neuen Fehler im Netzwerk aufgetaucht sind, haben wir letzte Woch
 
 Ein weiteres vorübergehendes Problem war der Ausfall eines der HTTP-Outproxies (www1.squid.i2p), wodurch 50 % der Outproxy-Anfragen fehlschlugen.  Sie können diesen Outproxy vorübergehend entfernen, indem Sie Ihre I2PTunnel config [1] öffnen, den eepProxy bearbeiten und die Zeile "Outproxies:" so ändern, dass sie nur "squid.i2p" enthält.  Hoffentlich bekommen wir den anderen bald wieder online, um die Redundanz zu erhöhen.
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -37,7 +37,7 @@ Ich könnte anfangen zu erklären, was in 0.5 aktualisiert wurde, aber am Ende w
 
 duck hat ein Bugfix-Release für das 0.1.6-Update der letzten Woche zusammengestellt, und wie man hört, ist es der Hammer (vielleicht sogar /zu/ heftig, angesichts der gestiegenen Netzwerkauslastung ;)  Mehr Infos @ dem i2p-bt-Forum [2]
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

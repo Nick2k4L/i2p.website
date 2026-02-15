@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] &lt;mihi&gt; ;)
 [23:02] &lt;duck&gt; 1) kod ilerlemesi
 [23:02] &lt;duck&gt; cvs'ye pek fazla kod gönderilmedi
-[23:02] &lt;duck&gt; Bu hafta kupayı ben kazandım: http://duck.i2p/duck_trophy.jpg
+[23:02] &lt;duck&gt; Bu hafta kupayı ben kazandım: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus'un henüz cvs hesabı yok
 [23:03] &lt;Masterboy&gt; peki kim bir şey gönderdi?
 [23:03] &lt;duck&gt; gizlice kod yazan var mı?

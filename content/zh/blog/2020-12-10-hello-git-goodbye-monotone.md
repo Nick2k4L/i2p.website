@@ -22,7 +22,7 @@ categories: ["Status"]
 
 ## GPG 签名
 
-官方仓库托管在 https://i2pgit.org/i2p-hackers/i2p.i2p 和 https://git.idk.i2p/i2p-hackers/i2p.i2p，但在 Github 上也有一个“镜像”，位于 https://github.com/i2p/i2p.i2p。
+官方仓库托管在 `https://i2pgit.org/i2p-hackers/i2p.i2p` 和 `https://git.idk.i2p/i2p-hackers/i2p.i2p，但在` Github 上也有一个“镜像”，位于 https://github.com/i2p/i2p.i2p。
 
 既然我们现在使用 git，我们就可以将仓库从我们自托管的 Gitlab 实例同步到 Github，并且也可以反向同步。这意味着可以在 Gitlab 上创建并提交一个 merge request（合并请求），当它被合并时，结果会与 Github 同步；而在 Github 上的 Pull Request（拉取请求）在被合并后，也会出现在 Gitlab 上。
 

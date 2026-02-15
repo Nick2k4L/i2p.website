@@ -99,7 +99,7 @@ categories: ["meeting"]
 14:32 &lt;deer&gt; &lt;postman&gt; modulus: i assume there's something in the wild that can be used / adapted - it would be sexy to let it run in an own jetty instance
 14:32 &lt;jrandom&gt; i'm sure there is something out there, we just need an adventurous soul to go find it :)
 14:32 &lt;deer&gt; &lt;postman&gt; jrandom2p: this can be hacked quite easily i think
-14:33 &lt;jrandom&gt; exactly - in an ideal world, someone can just grab a mywebmail.war and save it to the webapps/ directory and jump into http://localhost:7657/mywebmail/
+14:33 &lt;jrandom&gt; exactly - in an ideal world, someone can just grab a mywebmail.war and save it to the webapps/ directory and jump into `http://localhost:7657/mywebmail/`
 14:33 &lt;deer&gt; &lt;postman&gt; well, i leave this issue to you to think about it :)
 14:33 &lt;modulus&gt; even if it's a stand-alone app, it should be fine, with i2ptunel
 14:33 &lt;jrandom&gt; right modulus 
@@ -116,7 +116,7 @@ categories: ["meeting"]
 14:37 &lt;deer&gt; &lt;postman&gt; modules: please look at the webpage - there is a multipage sermon about that
 14:37 &lt;jrandom&gt; :)
 14:37 &lt;modulus&gt; ok
-14:37 &lt;jrandom&gt; http://www.postman.i2p/sec.html to start
+14:37 &lt;jrandom&gt; `http://www.postman.i2p/sec.html` to start
 14:37 &lt;modulus&gt; i read that, i just thought maybe some fields could be filtered.
 14:37 &lt;modulus&gt; maybe i trust postman but not other ppl.
 14:38 &lt;deer&gt; &lt;postman&gt; modulus: They ARE filtred
@@ -146,12 +146,12 @@ categories: ["meeting"]
 14:43 &lt;deer&gt; &lt;postman&gt; :/
 14:43 &lt;deer&gt; &lt;duck&gt; cool
 14:43 &lt;jrandom&gt; i dont know if it has everything though, or how up to date it was
-14:43 &lt;deer&gt; &lt;duck&gt; alexandria is now on http://duck.i2p/alexandria/
+14:43 &lt;deer&gt; &lt;duck&gt; alexandria is now on `http://duck.i2p/alexandria/`
 14:44 &lt;deer&gt; &lt;duck&gt; and I am going back to being ashamed
 14:44 &lt;deer&gt; &lt;duck&gt; .
 14:44 &lt;jrandom&gt; no need to be ashamed, you've provided a kickass free service!
 14:45 &lt;jrandom&gt; perhaps now is the chance for some geocities.i2p site ;)
-14:46 &lt;deer&gt; &lt;duck&gt; oh, I made a yodel webfrontend @ http://duck.i2p/yodel/
+14:46 &lt;deer&gt; &lt;duck&gt; oh, I made a yodel webfrontend @ `http://duck.i2p/yodel/`
 14:46 &lt;jrandom&gt; oh, one thing i didn't have in the agenda is BT related stuff.  i know dinoman is doing some hacking on that - perhaps he wants to mention something?
 14:46 &lt;jrandom&gt; ah nice
 14:48  * jrandom notes that thetower's alexandria mirror link 404s
@@ -162,7 +162,7 @@ categories: ["meeting"]
 14:49 &lt;jrandom&gt; perhaps all three
 14:49 &lt;deer&gt; &lt;gott&gt; This is to (a) keep a list of active eepsites and (b) form an index for i2p similar to FIND / Dolphin
 14:49 &lt;jrandom&gt; yours is nice w/ the links to the eepsites too
-14:49 &lt;deer&gt; &lt;gott&gt; the one located at http://gott.i2p/sites.html is being kept up-to-date 
+14:49 &lt;deer&gt; &lt;gott&gt; the one located at `http://gott.i2p/sites.html` is being kept up-to-date 
 14:49 &lt;deer&gt; &lt;gott&gt; and the script is run every day
 14:49 &lt;deer&gt; &lt;gott&gt; I can add optional descriptions to the links ( thanx to baffled's script )
 14:50 &lt;deer&gt; &lt;gott&gt; which would make it an index
@@ -206,7 +206,7 @@ categories: ["meeting"]
 14:59 &lt;jrandom&gt; oh polecat, whats up?
 14:59 &lt;jrandom&gt; polecat: we have our weekly meting every tuesday at 9p GMT
 14:59 &lt;deer&gt; &lt;gott&gt; I assume he does to have set everything up so well.
-14:59 &lt;jrandom&gt; (logs posted @ http://www.i2p/meetings once they're done ;)
+14:59 &lt;jrandom&gt; (logs posted @ `http://www.i2p/meetings` once they're done ;)
 15:00 &lt;deer&gt; &lt;polecat&gt; Yes.  Well I was thinking a name server might be a good idea.  But not DNS.  c.c  I had an idea for a server that did nothing but translate between Protocol Specific Addresses and human readable names.
 15:00 &lt;jrandom&gt; so a URI--&gt;URL resolver, kinda?
 15:01 &lt;deer&gt; &lt;polecat&gt; That would replace hosts.txt, and eventually replace DNS itself once it supports ipv4 and ipv6.
@@ -251,7 +251,7 @@ categories: ["meeting"]
 15:18 &lt;deer&gt; &lt;polecat&gt; Trouble is this computer I'm on gets reset into Windoze frequently, and so unless I put my eepsite on a vfat partition, I can't share its info between operating systems.
 15:19 &lt;jrandom&gt; 'k, then its prolly best to have the naming stuff on the forum instead of an eepsite :)
 15:20 &lt;deer&gt; &lt;polecat&gt; Where's the forum again...?
-15:20 &lt;jrandom&gt; http://forum.i2p/
+15:20 &lt;jrandom&gt; `http://forum.i2p/`
 15:20 &lt;jrandom&gt; and http://forum.i2p.net/
 15:20 &lt;jrandom&gt; (isnt naming wonderful?  :)
 15:21 &lt;deer&gt; &lt;gott&gt; I have always contributed positively.

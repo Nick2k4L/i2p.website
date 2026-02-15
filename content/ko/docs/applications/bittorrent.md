@@ -154,7 +154,7 @@ I2P의 UDP announce 사양은 2025년 6월에 확정되었습니다. 다양한 I
 
 ## 추가 정보
 
-- I2P bittorrent 표준은 일반적으로 [zzz.i2p](http://zzz.i2p/)에서 논의됩니다.
-- 현재 tracker 소프트웨어 기능에 대한 차트도 [해당 사이트에서 확인할 수 있습니다](http://zzz.i2p/files/trackers.html).
-- [I2P bittorrent FAQ](http://forum.i2p/viewtopic.php?t=2068)
-- [I2P에서의 DHT 논의](http://zzz.i2p/topics/812)
+- I2P bittorrent 표준은 일반적으로 zzz.i2p에서 논의됩니다.
+- 현재 tracker 소프트웨어 기능에 대한 차트도 해당 사이트에서 확인할 수 있습니다.
+- I2P bittorrent FAQ
+- I2P에서의 DHT 논의

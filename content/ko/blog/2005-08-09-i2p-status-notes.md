@@ -16,7 +16,7 @@ categories: ["status"]
 
 어제 발표한 대로 [1], 새 릴리스를 공개하여 이용 가능하며 전반적인 보고는 긍정적입니다. 여러분 중 약 절반은 이미 업그레이드했습니다(0.6.0.2가 110, 0.6.0.1이 89, 0.6이 21로 확인됩니다). 나머지 분들도 유용한 개선 사항이 있으므로 가능한 한 빨리 업그레이드하시기 바랍니다.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000834.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000834.html`
 
 * 2) Roadmap update
 

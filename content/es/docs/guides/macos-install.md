@@ -221,23 +221,23 @@ Haz clic en **Siguiente** para guardar tu configuración.
 
 Ahora que I2P está instalado y configurado, puedes:
 
-1. **Navegar sitios I2P**: Visita la [página principal de I2P](http://127.0.0.1:7657/home) para ver enlaces a servicios populares de I2P
+1. **Navegar sitios I2P**: Visita la `http://127.0.0.1:7657/home` para ver enlaces a servicios populares de I2P
 2. **Configurar tu navegador**: Configura un [perfil de navegador](/docs/guides/browser-config) para acceder a sitios `.i2p`
 3. **Explorar servicios**: Descubre el correo electrónico de I2P, foros, compartir archivos y más
-4. **Monitorear tu router**: La [consola](http://127.0.0.1:7657/console) muestra el estado de tu red y estadísticas
+4. **Monitorear tu router**: La `http://127.0.0.1:7657/console` muestra el estado de tu red y estadísticas
 
 ### Enlaces Útiles
 
-- **Consola del Router**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Configuración**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Libreta de Direcciones**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Configuración de Ancho de Banda**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Consola del Router**: `http://127.0.0.1:7657/`
+- **Configuración**: `http://127.0.0.1:7657/config`
+- **Libreta de Direcciones**: `http://127.0.0.1:7657/susidns/addressbook`
+- **Configuración de Ancho de Banda**: `http://127.0.0.1:7657/config`
 
 ## Volver a ejecutar el Asistente de configuración
 
 Si quieres cambiar la configuración de ancho de banda o reconfigurar I2P más tarde, puedes ejecutar nuevamente el asistente de bienvenida desde la Consola del Router:
 
-1. Ve al [Asistente de Configuración de I2P](http://127.0.0.1:7657/welcome)
+1. Ve al `http://127.0.0.1:7657/welcome`
 2. Sigue los pasos del asistente nuevamente
 
 ## Solución de problemas

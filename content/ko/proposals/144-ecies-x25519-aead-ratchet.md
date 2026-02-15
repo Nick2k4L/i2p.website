@@ -31,9 +31,9 @@ toc: true
 - 공통 구조 명세 [Common Structures](/docs/specs/common-structures/)
 - LS2를 포함한 [I2NP](/docs/specs/i2np/) 명세
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) 새로운 비대칭 암호화 개요
+- `http://zzz.i2p/topics/1768` 새로운 비대칭 암호화 개요
 - 저수준 암호화 개요 [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
+- ECIES `http://zzz.i2p/topics/2418`
 - [NTCP2](/docs/specs/ntcp2/) [제안서 111](/proposals/111-ntcp-2/)
 - 123 새로운 netDB 항목
 - 142 새로운 암호화 템플릿

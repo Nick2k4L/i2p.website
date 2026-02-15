@@ -68,6 +68,6 @@ Tyto obranné mechanismy ztěžují spolehlivé mapování routerů a snižují 
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-Pokud si myslíte, že by měla být země přidána nebo odebrána ze striktního seznamu, otevřete prosím issue: https://i2pgit.org/i2p/i2p.i2p/
+Pokud si myslíte, že by měla být země přidána nebo odebrána ze striktního seznamu, otevřete prosím issue: `https://i2pgit.org/i2p/i2p.i2p/`
 
 Reference: Freedom House – https://freedomhouse.org/

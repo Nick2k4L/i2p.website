@@ -25,10 +25,10 @@ categories: ["development"]
 Чтобы иметь доступ на чтение и запись к серверу, вам нужно настроить tunnel (туннель) для вашего SSH-клиента. Если вам нужно только клонирование по HTTP/S в режиме только для чтения, то вы можете всё это пропустить и просто использовать переменную окружения http_proxy, чтобы настроить git на использование преднастроенного I2P HTTP Proxy. Например:
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-Для доступа по SSH запустите "New Tunnel Wizard" по адресу http://127.0.0.1:7657/i2ptunnelmgr и настройте клиентский tunnel, указывающий на SSH base32-адрес Git-сервиса.
+Для доступа по SSH запустите "New Tunnel Wizard" по адресу `http://127.0.0.1:7657/i2ptunnelmgr` и настройте клиентский tunnel, указывающий на SSH base32-адрес Git-сервиса.
 
 ## В-четвертых: Попробуйте клонировать
 

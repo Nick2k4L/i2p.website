@@ -44,9 +44,9 @@ C'est vrai, mais ce n'est pas beaucoup de trafic dans le contexte d'I2P, qui est
 
 Comme c'est généralement le cas dans I2P, il y a ici un compromis fondamental entre anonymat et efficacité. Certains diraient qu'utiliser les en-têtes etag et last-modified est dangereux car cela expose quand vous avez demandé les données pour la dernière fois. D'autres ont suggéré de demander uniquement des clés spécifiques (similaire à ce que font les services de saut, mais de manière plus automatisée), possiblement au prix d'un coût supplémentaire en anonymat.
 
-Les améliorations possibles seraient un remplacement ou un complément au carnet d'adresses (voir i2host.i2p), ou quelque chose de simple comme s'abonner à http://example.i2p/cgi-bin/recenthosts.cgi plutôt qu'à http://example.i2p/hosts.txt. Si un hypothétique recenthosts.cgi distribuait tous les hôtes des dernières 24 heures, par exemple, cela pourrait être à la fois plus efficace et plus anonyme que le hosts.txt actuel avec last-modified et etag.
+Les améliorations possibles seraient un remplacement ou un complément au carnet d'adresses (voir i2host.i2p), ou quelque chose de simple comme s'abonner à `http://example.i2p/cgi-bin/recenthosts.cgi` plutôt qu'à `http://example.i2p/hosts.txt.` Si un hypothétique recenthosts.cgi distribuait tous les hôtes des dernières 24 heures, par exemple, cela pourrait être à la fois plus efficace et plus anonyme que le hosts.txt actuel avec last-modified et etag.
 
-Une implémentation d'exemple se trouve sur stats.i2p à l'adresse http://stats.i2p/cgi-bin/newhosts.txt. Ce script retourne un Etag avec un horodatage. Quand une requête arrive avec l'etag If-None-Match, le script retourne SEULEMENT les nouveaux hôtes depuis cet horodatage, ou 304 Not Modified s'il n'y en a aucun. De cette façon, le script retourne efficacement seulement les hôtes que l'abonné ne connaît pas, d'une manière compatible avec le carnet d'adresses.
+Une implémentation d'exemple se trouve sur stats.i2p à l'adresse `http://stats.i2p/cgi-bin/newhosts.txt.` Ce script retourne un Etag avec un horodatage. Quand une requête arrive avec l'etag If-None-Match, le script retourne SEULEMENT les nouveaux hôtes depuis cet horodatage, ou 304 Not Modified s'il n'y en a aucun. De cette façon, le script retourne efficacement seulement les hôtes que l'abonné ne connaît pas, d'une manière compatible avec le carnet d'adresses.
 
 Donc l'inefficacité n'est pas un gros problème et il existe plusieurs façons d'améliorer les choses sans changement radical.
 
@@ -54,7 +54,7 @@ Donc l'inefficacité n'est pas un gros problème et il existe plusieurs façons 
 
 En ce qui concerne le trafic réseau, voir ci-dessus. Mais à moins que vous ne prévoyiez d'effectuer une requête lente en temps réel sur le réseau pour une clé, vous devez avoir l'ensemble complet des clés stockées localement, à un coût d'environ 500 octets par clé.
 
-- **Nécessite une configuration et de la « confiance » :** Le carnet d'adresses par défaut n'est abonné qu'à http://www.i2p2.i2p/hosts.txt, qui est rarement mis à jour, ce qui entraîne une mauvaise expérience pour les nouveaux utilisateurs.
+- **Nécessite une configuration et de la « confiance » :** Le carnet d'adresses par défaut n'est abonné qu'à `http://www.i2p2.i2p/hosts.txt,` qui est rarement mis à jour, ce qui entraîne une mauvaise expérience pour les nouveaux utilisateurs.
 
 C'est tout à fait intentionnel. jrandom souhaite qu'un utilisateur "fasse confiance" à un fournisseur de hosts.txt, et comme il aime le dire, "la confiance n'est pas un booléen". L'étape de configuration tente de forcer les utilisateurs à réfléchir aux questions de confiance dans un réseau anonyme.
 

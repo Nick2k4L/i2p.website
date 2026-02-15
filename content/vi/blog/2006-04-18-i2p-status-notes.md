@@ -26,7 +26,7 @@ Có ánh sáng ở cuối tunnel, và tôi trân trọng sự kiên nhẫn tiế
 
 * 3) Feedspace
 
-Frosk đã miệt mài làm việc với Feedspace và đã cập nhật một vài trang trên trang Trac, bao gồm một tài liệu tổng quan mới, một danh sách các tác vụ còn dang dở, một số chi tiết về db (cơ sở dữ liệu), và nhiều hơn nữa. Hãy ghé qua http://feedspace.i2p/ để bắt kịp những thay đổi mới nhất, và có lẽ hỏi dồn Frosk bằng các câu hỏi khi bạn thuận tiện nhất :)
+Frosk đã miệt mài làm việc với Feedspace và đã cập nhật một vài trang trên trang Trac, bao gồm một tài liệu tổng quan mới, một danh sách các tác vụ còn dang dở, một số chi tiết về db (cơ sở dữ liệu), và nhiều hơn nữa. Hãy ghé qua `http://feedspace.i2p/` để bắt kịp những thay đổi mới nhất, và có lẽ hỏi dồn Frosk bằng các câu hỏi khi bạn thuận tiện nhất :)
 
 * 4) ???
 

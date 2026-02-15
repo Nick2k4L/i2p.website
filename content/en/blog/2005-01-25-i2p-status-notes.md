@@ -27,7 +27,7 @@ management and pooling infrastructure.  After thats in place, we'll
 run it through the sim and eventually onto a parallel net to burn it
 in before wrapping a bow on it and calling it 0.5.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) sam.net
 
@@ -53,7 +53,7 @@ set of concerns [3] on the forum asking why we're going with UDP.  If
 you've got similar concerns or have other suggestions on how we can
 address the issues I replied with, please, chime in!
 
-[3] http://forum.i2p.net/viewtopic.php?t=280
+[3] `http://forum.i2p.net/viewtopic.php?t=280`
 
 * 5) ???
 
@@ -64,4 +64,4 @@ something to say.  Oh, as an aside, I've given in and started up a
 blog within i2p [4].
 
 =jr
-[4] http://jrandom.dev.i2p/ (key in http://dev.i2p.net/i2p/hosts.txt)
+[4] `http://jrandom.dev.i2p/` (key in `http://dev.i2p.net/i2p/hosts.txt)`

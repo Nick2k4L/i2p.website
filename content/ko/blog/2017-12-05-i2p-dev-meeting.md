@@ -34,7 +34,7 @@ categories: ["meeting"]
 20:05:17 &lt;zlatinb&gt; 아 맞아요, 다만 postman에 올라오면 노출이 훨씬 커집니다
 20:05:43 &lt;zzz&gt; 좋아요, 그건 bobthebuilder 운영자에게 이야기해 보세요, 좋은 생각이네요
 20:05:54 &lt;zzz&gt; 1)에 대해 다른 내용 있나요?
-20:05:58 &lt;i2pr&gt; [Slack/str4d] 또한 이제 Travis CI에서 지속적 빌드도 하고 있으니, 다른 관점에서 보시려면 https://travis-ci.org/i2p/i2p.i2p 를 주시해 주세요
+20:05:58 &lt;i2pr&gt; [Slack/str4d] 또한 이제 Travis CI에서 지속적 빌드도 하고 있으니, 다른 관점에서 보시려면 `https://travis-ci.org/i2p/i2p.i2p` 를 주시해 주세요
 20:06:44 &lt;zzz&gt; str4d, 그걸 위한 IRC 봇을 설정해 줄 수 있으면 도움이 될 거예요, 웹사이트를 확인하는 걸 기억하기가 어렵거든요
 20:07:17 &lt;zzz&gt; 1)에 대해 다른 내용 있나요?
 20:08:01 &lt;zzz&gt; 2) 34C3 계획 (zzz)

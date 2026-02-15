@@ -52,7 +52,7 @@ Então, esse é o gargalo no router/rede como vejo hoje. Todas e quaisquer suges
 
 * 3) Syndie rationale continued
 
-Há uma postagem substancial no fórum sobre o Syndie e qual é o seu lugar no ecossistema - confira em <http://forum.i2p.net/viewtopic.php?t=1910>
+Há uma postagem substancial no fórum sobre o Syndie e qual é o seu lugar no ecossistema - confira em <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Além disso, gostaria apenas de destacar dois trechos da documentação do Syndie em elaboração. Primeiro, do irc (e da FAQ que ainda não está disponível):
 

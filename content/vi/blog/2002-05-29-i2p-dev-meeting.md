@@ -6,7 +6,7 @@ description: "Nhật ký cuộc họp phát triển I2P ngày 29 tháng 5 năm 2
 categories: ["meeting"]
 ---
 
-(Nhờ có wayback machine http://www.archive.org/)
+(Nhờ có wayback machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

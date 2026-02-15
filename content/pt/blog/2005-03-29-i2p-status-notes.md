@@ -22,7 +22,7 @@ Como sempre, há correções de bugs e alguns novos recursos, mas mais informaç
 
 * 2) UDP (SSU)
 
-Como discutido de forma intermitente nos últimos 6-12 meses, vamos migrar para UDP para nossa comunicação entre routers assim que a versão 0.6 for lançada. Para avançarmos nesse caminho, temos um primeiro rascunho do protocolo de transporte disponível no CVS @ http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+Como discutido de forma intermitente nos últimos 6-12 meses, vamos migrar para UDP para nossa comunicação entre routers assim que a versão 0.6 for lançada. Para avançarmos nesse caminho, temos um primeiro rascunho do protocolo de transporte disponível no CVS @ `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 É um protocolo relativamente simples, com os objetivos descritos no documento, e explora as capacidades do I2P para tanto autenticar quanto proteger dados, bem como expor o mínimo possível de informações externas. Nem mesmo a primeira parte do handshake de conexão é identificável por alguém que não esteja executando o I2P. O comportamento do protocolo ainda não está totalmente definido na especificação, por exemplo, como os temporizadores disparam ou como os três diferentes indicadores de estado semiconfiáveis são usados, mas cobre o básico de criptografia, empacotamento e NAT hole punching (perfuração de NAT). Nada disso foi implementado ainda, mas será em breve, então feedback seria muito bem-vindo!
 
@@ -30,7 +30,7 @@ Como discutido de forma intermitente nos últimos 6-12 meses, vamos migrar para 
 
 Aum tem trabalhado intensamente no Q(uartermaster), um armazenamento distribuído, e o primeiro rascunho da documentação já está no ar [1]. Uma das ideias interessantes ali parece ser se afastar de uma DHT simples (tabela hash distribuída) em direção a um sistema ao estilo memcached [2], com cada usuário realizando quaisquer buscas inteiramente *localmente* e solicitando os dados propriamente ditos ao servidor Q "diretamente" (bem, através do I2P). De qualquer forma, há coisas interessantes; talvez, se o Aum estiver acordado [3], consigamos arrancar dele uma atualização?
 
-[1] http://aum.i2p/q/ [2] http://www.danga.com/memcached/ [3] malditos fusos horários!
+[1] `http://aum.i2p/q/` [2] http://www.danga.com/memcached/ [3] malditos fusos horários!
 
 * 4) ???
 

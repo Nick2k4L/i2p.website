@@ -25,9 +25,9 @@ Please do not use these email addresses for support requests. For contact specif
 
 ## 论坛 {#forums}
 
-请访问我们的I2P用户论坛 - [i2pforum.i2p](http://i2pforum.i2p/)（在非私有互联网上可通过 https://i2pforum.net 访问）。
+请访问我们的I2P用户论坛 - i2pforum.i2p（在非私有互联网上可通过 https://i2pforum.net 访问）。
 
-关于I2P开发的讨论在[I2P用户论坛](http://i2pforum.i2p)进行。如果开发IRC频道不活跃，这里通常是开发者咨询的最佳起点。对于一般支持，请使用[I2P用户论坛](http://i2pforum.i2p)或Subreddit。
+关于I2P开发的讨论在I2P用户论坛或Subreddit。
 
 ## IRC {#irc}
 
@@ -63,8 +63,8 @@ Please do not use these email addresses for support requests. For contact specif
 | **CI 管理员** | idk | 维护持续集成（CI）基础设施 |
 | **Reseed 管理员** | idk | 监控、指导并招募 reseed（引导种子）主机 |
 | **Gitea 管理员** | idk | I2P Gitea 维护者 |
-| **本地化** | idk, zzz | 在 [Transifex](https://www.transifex.com/projects/p/I2P/) 上的管理员 |
-| **译者** | 很多很多人！ | 在 [Transifex](https://www.transifex.com/projects/p/I2P/) 上的译者 |
+| **本地化** | idk, zzz | 在 Transifex 上的管理员 |
+| **译者** | 很多很多人！ | 在 Transifex 上的译者 |
 | **网站维护者** | StormyCloud | 管理公共项目网站的内容与设计 |
 | **Web 服务器管理员** | StormyCloud | 管理公共项目的 Web 服务器 |
 | **网站管理员** | idk | 管理公共项目网站 |

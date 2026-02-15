@@ -18,7 +18,7 @@ Hasta hace unas pocas versiones, este problema era incluso más difícil de abor
 
 ## Ajuste de los límites de ancho de banda
 
-Como I2P es una red peer-to-peer, tienes que compartir parte de tu ancho de banda de red con otros pares. Puedes elegir cuánto en "Configuración de ancho de banda de I2P" (botón "Configurar ancho de banda" en la sección "Aplicaciones y Configuración" de la I2P Router Console, o http://localhost:7657/config).
+Como I2P es una red peer-to-peer, tienes que compartir parte de tu ancho de banda de red con otros pares. Puedes elegir cuánto en "Configuración de ancho de banda de I2P" (botón "Configurar ancho de banda" en la sección "Aplicaciones y Configuración" de la I2P Router Console, o `http://localhost:7657/config).`
 
 ![Configuración de ancho de banda de I2P](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ Si ve un límite de ancho de banda compartido de 48 KBps, que es muy bajo, es po
 
 Sin embargo, dado que muchos usuarios quizá no sepan exactamente qué ajustes de ancho de banda deben modificar, la [versión 0.9.38 de I2P](https://geti2p.net/en/download) introdujo un Asistente de nueva instalación. Incluye una Prueba de ancho de banda, que detecta automáticamente (gracias al [NDT](https://www.measurementlab.net/tests/ndt/) de M-Lab) y ajusta en consecuencia la configuración de ancho de banda de I2P.
 
-Si desea volver a ejecutar el asistente, por ejemplo tras un cambio en su proveedor de servicios o porque instaló I2P antes de la versión 0.9.38, puede volver a iniciarlo desde el enlace 'Setup' en la página 'Help & FAQ', o simplemente acceder al asistente directamente en http://localhost:7657/welcome
+Si desea volver a ejecutar el asistente, por ejemplo tras un cambio en su proveedor de servicios o porque instaló I2P antes de la versión 0.9.38, puede volver a iniciarlo desde el enlace 'Setup' en la página 'Help & FAQ', o simplemente acceder al asistente directamente en `http://localhost:7657/welcome`
 
 ![¿Puedes encontrar "Setup"?](https://geti2p.net/images/blog/sidemenu.png)
 

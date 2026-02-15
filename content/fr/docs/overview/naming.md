@@ -57,7 +57,7 @@ Lors de la création, le service de nommage importe les entrées des trois fichi
 
 ### Autres Services de Nommage
 
-La recherche n'est pas sensible à la casse. La première correspondance est utilisée, et les conflits ne sont pas détectés. Il n'y a pas d'application des règles de nommage dans les recherches. Les recherches sont mises en cache pendant quelques minutes. La résolution Base 32 est [décrite ci-dessous](#base32-names). Pour une description complète de l'API du Service de Nommage, voir la [Javadoc du Service de Nommage](http://idk.i2p/javadoc-i2p/net/i2p/client/naming/package-summary.html). Cette API a été considérablement étendue dans la version 0.8.7 pour fournir des ajouts et suppressions, le stockage de propriétés arbitraires avec le nom d'hôte, et d'autres fonctionnalités.
+La recherche n'est pas sensible à la casse. La première correspondance est utilisée, et les conflits ne sont pas détectés. Il n'y a pas d'application des règles de nommage dans les recherches. Les recherches sont mises en cache pendant quelques minutes. La résolution Base 32 est [décrite ci-dessous](#base32-names). Pour une description complète de l'API du Service de Nommage, voir la Javadoc du Service de Nommage. Cette API a été considérablement étendue dans la version 0.8.7 pour fournir des ajouts et suppressions, le stockage de propriétés arbitraires avec le nom d'hôte, et d'autres fonctionnalités.
 
 ### Services de nommage alternatifs et expérimentaux
 
@@ -89,12 +89,12 @@ L'application de carnet d'adresses récupère périodiquement les fichiers hosts
 
 S'abonner au fichier hosts.txt d'un autre utilisateur implique de lui accorder une certaine confiance. Vous ne voulez pas qu'il « détourne » un nouveau site, par exemple, en saisissant rapidement sa propre clé pour un nouveau site avant de vous transmettre la nouvelle entrée hôte/clé.
 
-Pour cette raison, le seul abonnement configuré par défaut est `http://i2p-projekt.i2p/hosts.txt (http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`, qui contient une copie du fichier hosts.txt inclus dans la version I2P. Les utilisateurs doivent configurer des abonnements supplémentaires dans leur application de carnet d'adresses local (via subscriptions.txt ou [SusiDNS](#susidns)).
+Pour cette raison, le seul abonnement configuré par défaut est `http://i2p-projekt.i2p/hosts.txt (`http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`,` qui contient une copie du fichier hosts.txt inclus dans la version I2P. Les utilisateurs doivent configurer des abonnements supplémentaires dans leur application de carnet d'adresses local (via subscriptions.txt ou [SusiDNS](#susidns)).
 
 Quelques autres liens d'abonnement au carnet d'adresses public :
 
-- http://i2host.i2p/cgi-bin/i2hostetag
-- http://stats.i2p/cgi-bin/newhosts.txt
+- `http://i2host.i2p/cgi-bin/i2hostetag`
+- `http://stats.i2p/cgi-bin/newhosts.txt`
 
 Les opérateurs de ces services peuvent avoir différentes politiques pour lister les hôtes. La présence sur cette liste n'implique pas une approbation.
 

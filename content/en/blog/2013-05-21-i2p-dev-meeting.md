@@ -26,7 +26,7 @@ categories: ["meeting"]
 20:02:21  &lt;hottuna&gt; __New bounty system___
 20:03:25  &lt;hottuna&gt; During this summer I'll have some time over for I2P development, but I also have to pay my rent which is why a new bounty system or at least a new set of bounties and sub-bounties will be suggested
 20:03:51  &lt;dg&gt; \o
-20:04:37  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P build #182:SUCCESS in 4 min 7 sec: http://jenkins.killyourtv.i2p/job/I2P/182/
+20:04:37  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P build #182:SUCCESS in 4 min 7 sec: `http://jenkins.killyourtv.i2p/job/I2P/182/`
 20:05:00  &lt;hottuna&gt; after discussing the idea with eche|on, it seems like the best option for payed work is via the bounty system
 20:05:44  &lt;hottuna&gt; to make it work I'll suggest at least one large bounty and then create sub-bounties for it
 20:06:27  &lt;hottuna&gt; the sub bounties will be created and closed on a bi-weekly schedule
@@ -37,7 +37,7 @@ categories: ["meeting"]
 20:08:51  &lt;hottuna&gt; Does anyone have any questions or feedback at this idea?
 20:09:26  &lt;hottuna&gt; I've talked to zzz, eche|on, postman and Mathiasdm earlier and they have approved
 20:10:07  &lt;hottuna&gt; I've tried to reach welt/welterde/weltende, _sponge, badger and KillYourTV but have not gotten any response from them
-20:10:23  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P UnitTests build #153:SUCCESS in 5 min 36 sec: http://jenkins.killyourtv.i2p/job/UnitTests/153/
+20:10:23  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P UnitTests build #153:SUCCESS in 5 min 36 sec: `http://jenkins.killyourtv.i2p/job/UnitTests/153/`
 20:10:35  &lt;hottuna&gt; But I'd like to know what the rest of the inhabitants of #i2p-dev think about the idea
 20:10:52  &lt;dg&gt; I agree that we should be doing something with the funds
 20:11:08  &lt;dg&gt; An organized method of doing so is useful, I don't disagree at all so I'm remaining mute
@@ -50,7 +50,7 @@ categories: ["meeting"]
 20:14:42  &lt;hottuna&gt; in any case the bounty should be set in euros and then possibly payed out in btc
 20:14:47  &lt;zzz&gt; eche|on, whats our balances?
 20:15:27  &lt;hottuna&gt; and to answer your question, Im proposing using existing funds
-20:15:27  &lt;eche|on&gt; http://echelon.i2p/donations/index.html - still on those sums
+20:15:27  &lt;eche|on&gt; `http://echelon.i2p/donations/index.html` - still on those sums
 20:15:32  &lt;iRelay&gt; Title: Donations (at echelon.i2p)
 20:15:40  &lt;eche|on&gt; so ~28k and 626 BTC
 20:16:47  &lt;dg&gt; hottuna: What work will you be performing?
@@ -125,7 +125,7 @@ categories: ["meeting"]
 20:49:07  &lt;Meeh&gt; Could setup more of them now for testing
 20:49:22  &lt;eche|on&gt; and now gone for a good night time...
 20:49:25  &lt;zzz&gt; here's my list: IPv6 (incl. testing), Crypto (see trac wiki), OpenITP prep (see trac wiki), NTCP and SSU protocol obfuscation (old zzz.i2p post, Lance James might be able to help), other state firewall resistance, Symmetric NATs (ticket #873), ...
-20:49:32  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/873 - (accepted defect) - Port changing .. obscurely
+20:49:32  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/873` - (accepted defect) - Port changing .. obscurely
 20:49:40  &lt;Meeh&gt; zzz: want access to a ipv6 server for testing?
 20:49:51  &lt;dg&gt; hottuna: major thing, yes, but, in case you (or others) are not aware: OpenITP are not long term funders. They fund short, achievable goals to improve projects "quickly".
 20:51:05  &lt;zzz&gt; Meeh yes, in a couple weeks. I'd like to see the minor fix in 0.9.5 to ignore published IPv6 addresses get out there before we start publishing them

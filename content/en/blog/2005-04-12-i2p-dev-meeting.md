@@ -70,7 +70,7 @@ categories: ["meeting"]
 14:20 &lt;jrandom&gt; the general overview of whats up is in the email, and a lot more technical details (and a pretty picture ;) is up on my blog
 14:21 &lt;+ant&gt; &lt;godmode0&gt; udp is safe ?
 14:21 &lt;+ant&gt; &lt;godmode0&gt; how :)
-14:21 &lt;jrandom&gt; http://dev.i2p/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html &lt;-- how
+14:21 &lt;jrandom&gt; `http://dev.i2p/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html` &lt;-- how
 14:22 &lt;+ant&gt; &lt;godmode0&gt; hehe
 14:22 &lt;+ant&gt; &lt;godmode0&gt; i2p not found  right ip my computer
 14:22 &lt;jrandom&gt; sorry, if you don't have i2p installed, change "dev.i2p" to "dev.i2p.net"
@@ -102,7 +102,7 @@ categories: ["meeting"]
 14:35 &lt;+bla&gt; For now, I use information obtained from explicit tunnel tests only, as for those tests, all participating peers are known.
 14:36 &lt;+bla&gt; A naive Bayesian classifier framework will be used to estimate a peer's speed, given the tunnels in which it has participated (in any position), and how fast those tunnels were
 14:36 &lt;+bla&gt; In order to compare things to a "ground truth", I've obtained "actual" peer speeds as listed in the status notes
-14:37 &lt;+bla&gt; Results are very prelim. But http://theland.i2p/estspeed.png shows the correlation between actual speeds, and speeds inferred using the Bayesian framework
+14:37 &lt;+bla&gt; Results are very prelim. But `http://theland.i2p/estspeed.png` shows the correlation between actual speeds, and speeds inferred using the Bayesian framework
 14:37 &lt;+bla&gt; Well. Any questions or comments?
 14:38 &lt;jrandom&gt; comment: looks promising.  
 14:38 &lt;+ant&gt; &lt;BS314159&gt; it seems like the total tunnel speed provides a hard lower bound on the speed of every participating peer
@@ -253,7 +253,7 @@ categories: ["meeting"]
 15:12 &lt;gott&gt; also, last question :
 15:12 &lt;+ant&gt; &lt;Synonymous2&gt; i was going to copy a few things like the chart and some graphics hehe
 15:12 &lt;gott&gt; where are the .jsp for the router located ?
-15:12 &lt;jrandom&gt; gott: http://dev.i2p/cgi-bin/cvsweb.cgi/apps/routerconsole/jsp/
+15:12 &lt;jrandom&gt; gott: `http://dev.i2p/cgi-bin/cvsweb.cgi/apps/routerconsole/jsp/`
 15:13 &lt;gott&gt; ah
 15:13 &lt;gott&gt; so, locally, they are in a .jar ?
 15:13 &lt;jrandom&gt; gott: routerconsole.war

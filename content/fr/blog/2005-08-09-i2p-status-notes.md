@@ -16,7 +16,7 @@ Salut tout le monde, c'est encore ce moment de la semaine
 
 Comme annoncé hier [1], nous avons publié une nouvelle version, désormais disponible, et les retours sont globalement positifs. Environ la moitié d'entre vous ont déjà mis à jour (j'en vois 110 @ 0.6.0.2, 89 @ 0.6.0.1 et 21 @ 0.6), mais le reste devrait mettre à jour dès que possible, car des améliorations utiles ont été apportées.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000834.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000834.html`
 
 * 2) Roadmap update
 

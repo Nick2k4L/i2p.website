@@ -14,7 +14,7 @@ Hola, gente, es martes otra vez
 
 * 1) 0.6.0.6
 
-Con la versión 0.6.0.6 del sábado pasado, tenemos varios componentes nuevos en funcionamiento en la red en producción, y ustedes han hecho un gran trabajo al actualizar: hasta hace unas horas, ¡casi 250 routers se habían actualizado! La red también parece ir bien, y las introducciones han estado funcionando hasta ahora: pueden seguir su propia actividad de introducción en http://localhost:7657/oldstats.jsp, fijándose en udp.receiveHolePunch y udp.receiveIntroRelayResponse (así como udp.receiveRelayIntro, para quienes están detrás de NATs).
+Con la versión 0.6.0.6 del sábado pasado, tenemos varios componentes nuevos en funcionamiento en la red en producción, y ustedes han hecho un gran trabajo al actualizar: hasta hace unas horas, ¡casi 250 routers se habían actualizado! La red también parece ir bien, y las introducciones han estado funcionando hasta ahora: pueden seguir su propia actividad de introducción en `http://localhost:7657/oldstats.jsp,` fijándose en udp.receiveHolePunch y udp.receiveIntroRelayResponse (así como udp.receiveRelayIntro, para quienes están detrás de NATs).
 
 ¿Por cierto, el "Status: ERR-Reject" en realidad ya no es un error, así que quizá deberíamos cambiarlo a "Status: OK (NAT)"?
 
@@ -38,7 +38,7 @@ El i2phex.exe dentro de ese zip se puede usar en Windows simplemente ejecutándo
 
 No voy a hacerme cargo del mantenimiento de I2Phex, pero subiré futuras versiones de I2Phex al sitio web cuando haya actualizaciones en cvs. Si alguien quiere trabajar en una página web que podamos publicar para describir/presentarlo (sirup, ¿estás por ahí?), con enlaces a sirup.i2p, publicaciones útiles del foro, la lista de pares activos de legion, sería estupendo.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip y     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (firmado con mi clave)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` y     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (firmado con mi clave)
 
 * 3) migration
 

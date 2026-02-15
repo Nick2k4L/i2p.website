@@ -74,7 +74,7 @@ oOo dal dohromady opravdu skvělý pomocný nástroj, který lidem umožní proc
 V zásadě stačí vytvořit odkaz na eepsite(I2P Site) s libovolným názvem, jaký chcete, a pak k němu připojit speciální parametr URL určující cílovou adresu:
 
 ```
-http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...
+`http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...`
 ```
 Na pozadí je to docela bezpečné - nemůžete podvrhnout cizí adresu a název není trvale uložen v hosts.txt, ale umožní vám zobrazit obrázky / atd. odkazované z eepsites(I2P Sites), které byste se starým trikem `http://i2p/base64/` nemohli. Pokud chcete mít vždy možnost používat "wowthisiscool.i2p" k přístupu na ten web, budete samozřejmě pořád muset přidat záznam do svého hosts.txt (dokud nebude nasazen adresář MyI2P, tj. ;)
 

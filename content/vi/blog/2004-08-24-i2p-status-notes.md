@@ -74,7 +74,7 @@ oOo đã tạo ra một tiện ích rất hay để cho phép mọi người duy
 Về cơ bản bạn chỉ cần tạo một liên kết tới eepsite(trang I2P) với bất kỳ tên nào bạn muốn, sau đó thêm một tham số url đặc biệt để chỉ định đích đến:
 
 ```
-http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...
+`http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...`
 ```
 Ở phía hậu trường, nó khá an toàn - bạn không thể giả mạo một địa chỉ khác, và tên đó *không* được lưu trong hosts.txt, nhưng nó sẽ cho phép bạn xem các hình ảnh / v.v. được liên kết trên eepsites(I2P Sites) mà bạn sẽ không thể làm được bằng mẹo cũ `http://i2p/base64/`. Nếu bạn muốn luôn có thể dùng "wowthisiscool.i2p" để truy cập trang đó, thì dĩ nhiên bạn vẫn sẽ phải thêm bản ghi đó vào hosts.txt của bạn (cho đến khi MyI2P address book được phát hành, ý là vậy ;)
 

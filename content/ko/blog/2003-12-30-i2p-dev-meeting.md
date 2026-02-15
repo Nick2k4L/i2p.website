@@ -6,7 +6,7 @@ description: "2003년 12월 30일 I2P 개발 미팅 로그."
 categories: ["meeting"]
 ---
 
-(Wayback Machine의 제공: http://www.archive.org/)
+(Wayback Machine의 제공: `http://www.archive.org/`)
 
 ## 빠른 요약
 

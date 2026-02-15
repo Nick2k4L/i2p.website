@@ -22,7 +22,7 @@ Checkins to the I2P Project repositories require you to configure GPG signing fo
 
 ## Official Repositories and Gitlab/Github Syncing
 
-The official repository is the one hosted at https://i2pgit.org/i2p-hackers/i2p.i2p and at https://git.idk.i2p/i2p-hackers/i2p.i2p, but there is a "Mirror" available at Github at https://github.com/i2p/i2p.i2p.
+The official repository is the one hosted at `https://i2pgit.org/i2p-hackers/i2p.i2p` and at `https://git.idk.i2p/i2p-hackers/i2p.i2p`, but there is a "Mirror" available at Github at https://github.com/i2p/i2p.i2p.
 
 Now that we're on git, we can synchronize repositories from our own self-hosted Gitlab instance, to Github, and back again. This means that it is possible to create and submit a merge request on Gitlab and when it is merged, the result will be synced with Github, and a Pull Request on Github, when merged, will appear on Gitlab.
 

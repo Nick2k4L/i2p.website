@@ -172,7 +172,7 @@ Menü ayrıca şu yararlı seçenekleri gösterir: - **Network: Firewalled** - M
 I2P tarayıcısı açıldıktan sonra, I2P'nin hangi portları kullandığını kontrol etmeniz gerekir:
 
 1. **Ağ yapılandırma sayfasına gidin**:
-   - Tarayıcınızda [I2P Router Network Configuration](http://127.0.0.1:7657/confignet) adresine gidin
+   - Tarayıcınızda `http://127.0.0.1:7657/confignet` adresine gidin
    - Veya router konsol kenar çubuğundan: **Configuration → Network**
 
 2. Port yapılandırma bölümüne **aşağı kaydırın**

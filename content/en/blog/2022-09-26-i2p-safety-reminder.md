@@ -44,7 +44,7 @@ We have official sites where people may obtain the I2P software safely:
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -61,7 +61,7 @@ We will never ask you to participate in these unless you already have an account
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-This post attempts to provide ways of vetting the source for obtaining the Java I2P package represented by the source code contained in https://i2pgit.org/i2p-hackers/i2p.i2p and https://github.com/i2p/i2p.i2p, and which is available for download from the web site https://geti2p.net/.
+This post attempts to provide ways of vetting the source for obtaining the Java I2P package represented by the source code contained in `https://i2pgit.org/i2p-hackers/i2p.i2p` and `https://github.com/i2p/i2p.i2p`, and which is available for download from the web site `https://geti2p.net/.`
 It is not intended to pass judgement on third-party forks, downstream projects, embedders, packagers, people experimenting in laboratories, or people who just disagree with us.
 You are all valued members of our community who are trying to protect, and not compromise, the privacy of others.
 Since we are aware of attempts to impersonate I2P project community members, you may wish to review the download, verification, and installation procedures which you recommend to your users in order to document your official sources and known mirrors.

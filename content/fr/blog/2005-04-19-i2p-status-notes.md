@@ -32,7 +32,7 @@ Nous sommes en avril maintenant, donc la feuille de route [1] a été mise à jo
 
 Aum se déchaîne sur Q, en ajoutant encore des nouveautés pour nous, avec les dernières captures d’écran publiées sur son site [2]. Il a également intégré le code dans CVS (youpi), ce qui devrait nous permettre de commencer les tests alpha bientôt. Je suis sûr que nous aurons d’autres nouvelles d’aum avec des détails sur la façon d’aider, ou vous pouvez explorer le contenu dans CVS à i2p/apps/q/
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

@@ -233,7 +233,7 @@ categories: ["meeting"]
 16:27 &lt;jadeSerpent&gt; even though mylar is offically under the aegis of eclipse foundation
 16:27 &lt;+fox&gt; * mk can't find a live site for trac
 16:27 &lt;+fox&gt; &lt;modulus&gt; http://trac.wordpress.org/
-16:27 &lt;jrandom&gt; mk: http://feedspace.i2p/ atm
+16:27 &lt;jrandom&gt; mk: `http://feedspace.i2p/` atm
 16:28 &lt;+void&gt; http://trac.edgewall.com/
 16:29  * jrandom doesn't want to spend a lot of time evaluating lots of different systems, so if someoe wants to champion a specific system, please do so in the syndie dev forum 
 16:29 &lt;jadeSerpent&gt; http://overlays.gentoo.org/proj/alt/wiki

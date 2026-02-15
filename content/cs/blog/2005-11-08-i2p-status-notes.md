@@ -22,9 +22,9 @@ Vydání 0.6.2 přinese spoustu skvělých novinek, abychom mohli čelit ještě
 
 V poslední době se toho hodně děje i kolem I2Phexu, včetně nové verze 0.1.1.35 [1]. V CVS navíc proběhly další změny (díky, Legion!), takže by mě nepřekvapilo, kdyby se později tento týden objevila verze 0.1.1.36.
 
-Také v oblasti gwebcache došlo k dobrému pokroku (viz http://awup.i2p/), ale pokud vím, nikdo zatím nezačal pracovat na úpravě I2Phexu, aby používal gwebcache s podporou I2P (máte zájem? Dejte mi vědět!).
+Také v oblasti gwebcache došlo k dobrému pokroku (viz `http://awup.i2p/),` ale pokud vím, nikdo zatím nezačal pracovat na úpravě I2Phexu, aby používal gwebcache s podporou I2P (máte zájem? Dejte mi vědět!).
 
-[1] http://forum.i2p.net/viewtopic.php?t=1157
+[1] `http://forum.i2p.net/viewtopic.php?t=1157`
 
 * 3) I2P-Rufus
 
@@ -40,7 +40,7 @@ Další kolující zvěst je, že Markus pracuje na novém GUI v C#... Snímky o
 
 Probíhá také diskuse o přepracování uživatelského rozhraní Syndie [3] a očekávám, že v tomto ohledu poměrně brzy uvidíme pokrok. dust také usilovně pracuje na projektu Sucker, přidává lepší podporu pro načítání více RSS/Atom kanálů do Syndie a také některá vylepšení samotného SML.
 
-[3] http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true
+[3] `http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true`
 
 * 6) ???
 

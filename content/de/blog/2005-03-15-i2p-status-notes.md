@@ -20,9 +20,9 @@ Um zu überprüfen, dass dies das Hauptproblem ist, mit dem wir es zu tun haben,
 
 * 2) Feedspace
 
-Frosk hat eine weitere Revision der i2pcontent/fusenet docs veröffentlicht, nur jetzt an neuer Adresse und unter neuem Namen: http://feedspace.i2p/ - siehe entweder orion [1] oder meinen Blog [2] für die Destination (Zieladresse). Das sieht wirklich vielversprechend aus, sowohl aus der Perspektive von "hey, richtig starke Funktionalität" als auch von "hey, das wird I2Ps Anonymität zugutekommen". Frosk und sein Team arbeiten fleißig weiter, aber sie suchen ganz sicher nach Input (und Hilfe). Vielleicht können wir Frosk dazu bringen, uns im Meeting ein Update zu geben?
+Frosk hat eine weitere Revision der i2pcontent/fusenet docs veröffentlicht, nur jetzt an neuer Adresse und unter neuem Namen: `http://feedspace.i2p/` - siehe entweder orion [1] oder meinen Blog [2] für die Destination (Zieladresse). Das sieht wirklich vielversprechend aus, sowohl aus der Perspektive von "hey, richtig starke Funktionalität" als auch von "hey, das wird I2Ps Anonymität zugutekommen". Frosk und sein Team arbeiten fleißig weiter, aber sie suchen ganz sicher nach Input (und Hilfe). Vielleicht können wir Frosk dazu bringen, uns im Meeting ein Update zu geben?
 
-[1] http://orion.i2p/#feedspace.i2p [2] http://jrandom.dev.i2p/
+[1] `http://orion.i2p/#feedspace.i2p` [2] `http://jrandom.dev.i2p/`
 
 * 3) ???
 

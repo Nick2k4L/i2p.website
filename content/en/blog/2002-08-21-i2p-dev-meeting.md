@@ -6,7 +6,7 @@ description: "Informal I2P development meeting discussing anonymity, peer review
 categories: ["meeting"]
 ---
 
-(Courtesy of the wayback machine http://www.archive.org/)
+(Courtesy of the wayback machine `http://www.archive.org/`)
 
 ## Quick recap
 

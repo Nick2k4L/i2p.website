@@ -20,11 +20,11 @@ Last week's 0.5.0.5 release has had its ups and downs - the major change to addr
 
 bla 一直在研究通过对收集到的统计数据进行简单的贝叶斯过滤来改进我们的对等节点画像[1]。看起来很有前景，不过我不太确定目前的进展如何——也许我们可以在会议期间请 bla 提供一个更新？
 
-[1] http://forum.i2p.net/viewtopic.php?t=598     http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`     `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-aum 的 Q 应用在核心功能以及由几位开发者构建的各种 xmlrpc 前端方面都有不少进展。据传，本周末我们可能会看到另一个 Q 构建版，包含在 http://aum.i2p/q/ 上所描述的一大批新功能。
+aum 的 Q 应用在核心功能以及由几位开发者构建的各种 xmlrpc 前端方面都有不少进展。据传，本周末我们可能会看到另一个 Q 构建版，包含在 `http://aum.i2p/q/` 上所描述的一大批新功能。
 
 * 4) ???
 

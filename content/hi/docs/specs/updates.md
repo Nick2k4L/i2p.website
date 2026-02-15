@@ -222,7 +222,7 @@ zip में jar और war फाइलें अब pack200 के साथ 
 ### नोट्स
 
 - रिलीज़ के लिए, SU3 संस्करण "बेस" router संस्करण है, जैसे "0.9.20"।
-- डेवलपमेंट बिल्ड के लिए, जो रिलीज़ 0.9.20 से समर्थित हैं, SU3 संस्करण "पूर्ण" router संस्करण है, जैसे "0.9.20-5" या "0.9.20-5-rc"। [I2P source](https://github.com/i2p/i2p.i2p) में RouterVersion.java देखें।
+- डेवलपमेंट बिल्ड के लिए, जो रिलीज़ 0.9.20 से समर्थित हैं, SU3 संस्करण "पूर्ण" router संस्करण है, जैसे "0.9.20-5" या "0.9.20-5-rc"। I2P source में RouterVersion.java देखें।
 
 ## SU3 Reseed File विनिर्देश
 
@@ -371,7 +371,7 @@ TBD, अनिम्प्लिमेंटेड, प्रस्ताव 130
 ## संदर्भ
 
 - **[CRYPTO-SIG]** [Cryptography - Signatures](/docs/specs/cryptography#sig)
-- **[I2P-SRC]** [I2P Source Code](https://github.com/i2p/i2p.i2p)
+- **[I2P-SRC]** I2P Source Code
 - **[PLUGIN]** [Plugin Specification](/docs/specs/plugin)
 - **[Python]** [Python RSA Raw Signatures](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)
 - **[RFC-3339]** [RFC 3339 - दिनांक और समय](https://tools.ietf.org/html/rfc3339)

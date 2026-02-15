@@ -156,7 +156,7 @@ trong SYN ACK từ Bob đến Alice, và trong tất cả các gói gửi sau đ
 
 ## Biện minh
 
-Xem the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) để biết lý do tại sao giá trị hiện tại là 1730.
+Xem the Java I2P source code để biết lý do tại sao giá trị hiện tại là 1730.
 Xem the [ECIES specification](/docs/specs/ecies/#overhead) để biết tại sao tiêu thụ ECIES thấp hơn ElGamal là 82 byte.
 
 

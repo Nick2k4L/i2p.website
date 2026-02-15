@@ -6,7 +6,7 @@ description: "Vývojářské setkání I2P zaměřené na stav RC2, pokrok v por
 categories: ["meeting"]
 ---
 
-(S laskavým svolením Wayback Machine http://www.archive.org/)
+(S laskavým svolením Wayback Machine `http://www.archive.org/`)
 
 ## Stručné shrnutí
 

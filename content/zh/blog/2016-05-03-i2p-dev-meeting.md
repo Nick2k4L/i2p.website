@@ -13,13 +13,13 @@ categories: ["meeting"]
 ## 会议记录
 
 <div class="irc-log"> 20:00:46 &lt;zzz&gt; 0) 嗨
-20:00:46 &lt;zzz&gt; 1) Tails 状态（pr0ng）http://zzz.i2p/topics/2108
+20:00:46 &lt;zzz&gt; 1) Tails 状态（pr0ng）`http://zzz.i2p/topics/2108`
 20:00:46 &lt;zzz&gt; 2) 0.9.26 规划更新（zzz）
-20:00:46 &lt;zzz&gt; 3) HOPE 筹备更新（zzz）http://zzz.i2p/topics/1968
+20:00:46 &lt;zzz&gt; 3) HOPE 筹备更新（zzz）`http://zzz.i2p/topics/1968`
 20:00:50 &lt;zzz&gt; 0) 嗨
 20:00:52 &lt;zzz&gt; 嗨
 20:01:01 &lt;pr0ng&gt; Hey Eeepers
-20:01:22 &lt;zzz&gt; 1) Tails 状态（pr0ng）http://zzz.i2p/topics/2108
+20:01:22 &lt;zzz&gt; 1) Tails 状态（pr0ng）`http://zzz.i2p/topics/2108`
 20:01:32 &lt;zzz&gt; 好，过去一个月 Tails 上发生了不少事情
 20:01:33 &lt;pr0ng&gt; 嗨 zzz
 20:01:47 &lt;Irc2PGuest33835&gt; hey
@@ -73,7 +73,7 @@ categories: ["meeting"]
 20:20:10 &lt;zzz&gt; 此外还有提议中的 'summer of x'，我本希望能从 sadie 那里得到最新消息。如果我们推进这件事，发布节奏会大幅放慢
 20:20:47 &lt;zzz&gt; 我可以告诉你们，目前完全没有人在提前进行 0.9.27 的规划或编码
 20:20:52 &lt;zzz&gt; 关于 2) 还有别的吗？
-20:21:52 &lt;zzz&gt; 3) HOPE 筹备更新（zzz）http://zzz.i2p/topics/1968
+20:21:52 &lt;zzz&gt; 3) HOPE 筹备更新（zzz）`http://zzz.i2p/topics/1968`
 20:22:32 &lt;zzz&gt; 我一直未能从 Lance 那里拿到 HOPE 的会议场地承诺
 20:22:51 &lt;zzz&gt; 所以如果你们在计划参会，我仍然无法给出任何指引
 20:23:15 &lt;zzz&gt; sadie 原本上周要和他见面，但她还没回复我是否拿到了他的答复

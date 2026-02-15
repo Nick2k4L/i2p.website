@@ -6,7 +6,7 @@ description: "29 मई, 2002 के लिए I2P विकास बैठक 
 categories: ["meeting"]
 ---
 
-(wayback machine http://www.archive.org/ की सौजन्य से)
+(wayback machine `http://www.archive.org/` की सौजन्य से)
 
 ## त्वरित सारांश
 

@@ -32,7 +32,7 @@ Bây giờ là tháng Tư, nên lộ trình [1] đã được cập nhật tươ
 
 Aum đã làm việc rất tích cực trên Q, bổ sung thêm nhiều tính năng hay ho cho chúng ta, với các ảnh chụp màn hình mới nhất đã được đăng trên trang web của anh ấy [2]. Anh ấy cũng đã commit mã nguồn lên CVS (tuyệt!), vì vậy hy vọng chúng ta sẽ sớm có thể bắt đầu thử nghiệm alpha. Tôi chắc rằng chúng ta sẽ còn nghe thêm từ aum với chi tiết về cách hỗ trợ, hoặc bạn có thể tự đào sâu vào những thứ hay ho trong CVS tại i2p/apps/q/
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

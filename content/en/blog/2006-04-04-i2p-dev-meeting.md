@@ -41,7 +41,7 @@ categories: ["meeting"]
 16:30 &lt;+fox&gt; &lt;BrianR___&gt; jrandom: Is there a de-facto "MTU" for i2p packets?
 16:30 &lt;jrandom&gt; ah ok, perhapsas that inches up, the retransmission rate will go down
 16:30 &lt;Complication&gt; I noticed mine start out with smaller MTUs, now it's upped some to 1350
-16:30 &lt;jrandom&gt; BrianR___: yes, either 1350 or 608 (as shown on http://localhost:7657/peers.js)
+16:30 &lt;jrandom&gt; BrianR___: yes, either 1350 or 608 (as shown on `http://localhost:7657/peers.js)`
 16:31 &lt;jrandom&gt; if the failure rate is too high at the larger MTU, it falls back to the smaller MTU (and if its too low at the smaller MTU, it jumps up to the higher MTU)
 16:31 &lt;+fox&gt; &lt;BrianR___&gt; jrandom: Now is that for the inside payload or the visible IP packets?
 16:31 &lt;+fox&gt; &lt;BrianR___&gt; Ie, if I were to send a block of data over an I2P stream, what would be the ideal size for the chunks to minimize overhead?
@@ -75,7 +75,7 @@ categories: ["meeting"]
 16:48 &lt;jrandom&gt; cool
 16:48 &lt;jrandom&gt; did you compare that w/ -O3 -m64 on GMP 4.1.2?
 16:48 &lt;Complication&gt; And I'm a damn fool for going after way wrong compile flags :O
-16:48 &lt;@cervantes&gt; the relevant link was http://forum.i2p/viewtopic.php?t=1523&start=30 btw
+16:48 &lt;@cervantes&gt; the relevant link was `http://forum.i2p/viewtopic.php?t=1523&start=30` btw
 16:48 &lt;jrandom&gt; ah thanks cervantes 
 16:48 &lt;Complication&gt; jrandom: I haven't compared yet, but will
 16:49 &lt;Complication&gt; During next scheduled reboot

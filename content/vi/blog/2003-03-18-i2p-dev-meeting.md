@@ -6,7 +6,7 @@ description: "Nhật ký cuộc họp phát triển I2P ngày 18 tháng 3, 2003.
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi wayback machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

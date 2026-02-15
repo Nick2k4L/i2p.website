@@ -14,15 +14,15 @@ categories: ["meeting"]
 
 <div class="irc-log">
 20:00:02 &lt;zzz&gt; 0) Hi
-20:00:02 &lt;zzz&gt; 1) Review of old assigned tasks still open from Dec. 30 meeting http://zzz.i2p/topics/2014
-20:00:02 &lt;zzz&gt; 2) Review of new assigned tasks from Feb. 2 meeting http://zzz.i2p/topics/2014
-20:00:02 &lt;zzz&gt; 3) Prep and schedule for roadmap meetings http://zzz.i2p/topics/2021
-20:00:02 &lt;zzz&gt; 4) Code of Conduct proposal (Sadie) http://zzz.i2p/topics/2015?page=2
+20:00:02 &lt;zzz&gt; 1) Review of old assigned tasks still open from Dec. 30 meeting `http://zzz.i2p/topics/2014`
+20:00:02 &lt;zzz&gt; 2) Review of new assigned tasks from Feb. 2 meeting `http://zzz.i2p/topics/2014`
+20:00:02 &lt;zzz&gt; 3) Prep and schedule for roadmap meetings `http://zzz.i2p/topics/2021`
+20:00:02 &lt;zzz&gt; 4) Code of Conduct proposal (Sadie) `http://zzz.i2p/topics/2015?page=2`
 20:00:12 &lt;zzz&gt; 0) Hi
 20:00:15 &lt;zzz&gt; hi
 20:00:25 &lt;anonimal&gt; Hi
 20:00:38 &lt;str4d&gt; Hi
-20:01:07 &lt;zzz&gt; 1) Review of old assigned tasks still open from Dec. 30 meeting http://zzz.i2p/topics/2014
+20:01:07 &lt;zzz&gt; 1) Review of old assigned tasks still open from Dec. 30 meeting `http://zzz.i2p/topics/2014`
 20:01:19 &lt;hottuna4&gt; hi
 20:01:37 &lt;zzz&gt; gravy to post one on encrypted leasesets by Jan. 27, or different topic, by Feb. 15
 20:01:51 &lt;zzz&gt; anybody know about gravy's status?
@@ -138,7 +138,7 @@ categories: ["meeting"]
 20:37:11 &lt;zzz&gt; and 2)
 20:37:17 &lt;str4d&gt; (since about Feb 6ish)
 20:37:22 &lt;anonimal&gt; zzz: I'll read your comments more in-depth and rewrite the VRP.
-20:37:28 &lt;zzz&gt; 3) Prep and schedule for roadmap meetings http://zzz.i2p/topics/2021
+20:37:28 &lt;zzz&gt; 3) Prep and schedule for roadmap meetings `http://zzz.i2p/topics/2021`
 20:37:33 &lt;anonimal&gt; Wait!
 20:37:45 &lt;zzz&gt; ok, sorry, anything else on  1 or 2?
 20:37:45 &lt;anonimal&gt; For 1): decision on H1?
@@ -171,7 +171,7 @@ categories: ["meeting"]
 20:44:37 &lt;zzz&gt; so friday will be more informal review or priorities. Sunday we'll start with h1/vrp, then move to really nail down the roadmap for .26-.29
 20:44:47 &lt;zzz&gt; anything else on 3)
 20:45:31 &lt;zzz&gt; moving on to 4)
-20:45:39 &lt;zzz&gt; 4) Code of Conduct proposal (Sadie) http://zzz.i2p/topics/2015?page=2
+20:45:39 &lt;zzz&gt; 4) Code of Conduct proposal (Sadie) `http://zzz.i2p/topics/2015?page=2`
 20:45:56 &lt;zzz&gt; i see she's now proposed doing something similar to debian
 20:46:00 &lt;zzz&gt; ah back just in time
 20:46:12 &lt;zzz&gt; anybody have any thoughts on the debian coc?

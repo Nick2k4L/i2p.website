@@ -6,7 +6,7 @@ description: "الاجتماع الأول لتطوير I2P، ويتناول حا
 categories: ["meeting"]
 ---
 
-(بفضل Wayback Machine http://www.archive.org/)
+(بفضل Wayback Machine `http://www.archive.org/`)
 
 ## موجز سريع
 

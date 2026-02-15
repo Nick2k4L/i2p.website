@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / http://127.0.0.1:8443/
-    ProxyPassReverse / http://127.0.0.1:8443/
+    ProxyPass / `http://127.0.0.1:8443/`
+    ProxyPassReverse / `http://127.0.0.1:8443/`
 </VirtualHost>
 ```
 ### Kayıt ve Koordinasyon
@@ -549,7 +549,7 @@ reseed'iniz (başlangıç sunucusu) I2P projesine kaydedildiğinde, 24 saat içi
 ### Topluluk Kaynakları
 
 - **I2P Forumu**: https://i2pforum.net/
-- **Gitea Deposu**: https://i2pgit.org/I2P_Developers/i2p.i2p
+- **Gitea Deposu**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev IRC2P üzerinde
 - **Durum İzleme**: https://checki2p.com/reseed
 

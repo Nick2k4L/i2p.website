@@ -133,9 +133,9 @@ categories: ["meeting"]
 13:41 &lt;frosk&gt; oh, ok, hi
 13:42 &lt;Myo9&gt; Hi Frosk.
 13:42  * jrandom gets out the high intensity spotlight
-13:42 &lt;frosk&gt; so, everyone should check out http://feedspace.i2p (keys at orion or jrandom's blog)
+13:42 &lt;frosk&gt; so, everyone should check out `http://feedspace.i2p` (keys at orion or jrandom's blog)
 13:42 &lt;frosk&gt; my devbuddy (which i will out now as ku) and i have started writing some code and have had many lively discussions
-13:42 &lt;frosk&gt; also, http://feedspace.i2p/wiki/CallForComments has a fresh rev of the feedspace document :)
+13:42 &lt;frosk&gt; also, `http://feedspace.i2p/wiki/CallForComments` has a fresh rev of the feedspace document :)
 13:43 &lt;frosk&gt; hi Myo9
 13:43 &lt;frosk&gt; oh yeah, feedspace is our new (and final) name for what used to be known as i2pcontent or fusenet :)
 13:43 &lt;jrandom&gt; r0x0r
@@ -293,7 +293,7 @@ categories: ["meeting"]
 14:20 &lt;bla&gt; jrandom: OTOH, if I have little data/belief on Y's properties, transfer stats don't tell me much about X yet; I first have more to learn about Y
 14:20 &lt;cervantes&gt; as they
 14:20 &lt;jrandom&gt; bla: its very hard to tell whether lag or congestion occurs @ X or Y (or earlier hops)
-14:20 &lt;cervantes&gt; http://forum.i2p/index.php?c=4
+14:20 &lt;cervantes&gt; `http://forum.i2p/index.php?c=4`
 14:21 &lt;cervantes&gt; new section: Feedspace
 14:21 &lt;jrandom&gt; w00t
 14:21 &lt;frosk&gt; yay

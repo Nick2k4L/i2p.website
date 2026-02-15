@@ -20,7 +20,7 @@ categories: ["status"]
 
 （之所以会出现过多的“Unknown”状态值，是因为我们会忽略那些对等方测试，其中“Charlie”[2]是我们已经与其建立了SSU会话的节点，因为这意味着即使我们的NAT出现故障，对方也能够穿透我们的NAT）
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000844.html [2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000844.html` [2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting`
 
 * 2) IRC status
 
@@ -32,13 +32,13 @@ susi23（因 susimail 而闻名）回来了，并带来了一对与 bt 相关的
 
 SusiBT 是 i2p-bt 的 Web 前端。它可集成到你的 i2p router 中，支持自动上传和下载、重启后继续，并提供诸如文件上传与下载等管理功能。该应用程序的后续版本将支持自动构建并上传种子文件。
 
-[3] http://susi.i2p/?page_id=31 [4] http://susi.i2p/?p=33
+[3] `http://susi.i2p/?page_id=31` [4] `http://susi.i2p/?p=33`
 
 我能听到一声“w00t”吗？
 
 * 4) Syndie
 
-正如我们在列表和频道中提到的，我们有一个用于安全且带认证的博客/内容分发的新客户端应用。使用 Syndie，“is your eepsite(I2P Site) up”这个问题不复存在，因为即使站点离线你也能阅读内容；同时，Syndie 通过专注于前端，避免了内容分发网络所固有的各种棘手问题。总之，它仍然在积极开发中，但如果大家想进去试一试，这里有一个公共的 Syndie 节点：http://syndiemedia.i2p/（也可在网络上通过 http://66.111.51.110:8000/ 访问）。欢迎进去创建一个博客，或者如果你想尝鲜，写篇博文提出一些评论/建议/担忧！当然，欢迎提交补丁，也同样欢迎功能建议，所以尽管放马过来。
+正如我们在列表和频道中提到的，我们有一个用于安全且带认证的博客/内容分发的新客户端应用。使用 Syndie，“is your eepsite(I2P Site) up”这个问题不复存在，因为即使站点离线你也能阅读内容；同时，Syndie 通过专注于前端，避免了内容分发网络所固有的各种棘手问题。总之，它仍然在积极开发中，但如果大家想进去试一试，这里有一个公共的 Syndie 节点：`http://syndiemedia.i2p/（也可在网络上通过` http://66.111.51.110:8000/ 访问）。欢迎进去创建一个博客，或者如果你想尝鲜，写篇博文提出一些评论/建议/担忧！当然，欢迎提交补丁，也同样欢迎功能建议，所以尽管放马过来。
 
 * 5) ???
 

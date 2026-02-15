@@ -36,4 +36,4 @@ Geçtiğimiz yıl boyunca teknik, sosyal veya finansal olarak katkıda bulunan h
 
 Her neyse, haftalık durum toplantımız birkaç dakika içinde başlayacak, bu yüzden daha fazla konuşmak istediğiniz bir şey varsa, her zamanki yerlerde [1] #i2p'ye uğrayın ve merhaba deyin!
 
-=jr [1] http://forum.i2p.net/viewtopic.php?t=952
+=jr [1] `http://forum.i2p.net/viewtopic.php?t=952`

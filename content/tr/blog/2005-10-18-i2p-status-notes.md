@@ -30,13 +30,13 @@ Michael Rogers, I2P'nin tunnel oluşturma sürecine [2][3][4] yönelik bazı ilg
 
 Michael listeye başka bir saldırı daha gönderdi; şu anda üzerinde çalışıyoruz, dolayısıyla onu da oradan takip edebileceksiniz.
 
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001005.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001008.html [4] http://dev.i2p.net/pipermail/i2p/2005-October/001006.html
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001005.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001008.html` [4] `http://dev.i2p.net/pipermail/i2p/2005-October/001006.html`
 
 * 4) I2Phex
 
 Striker yükleme hatası üzerinde daha fazla ilerleme kaydediyor ve raporlara göre hatayı tam olarak tespit etmiş durumda. Umarız bu gece CVS'e girer ve kısa bir süre sonra 0.1.1.33 olarak yayımlanır. Daha fazla bilgi için forumu [5] takip edin.
 
-[5] http://forum.i2p.net/viewforum.i2p?f=25
+[5] `http://forum.i2p.net/viewforum.i2p?f=25`
 
 Söylentilere göre redzara, Phex ana dalıyla yeniden birleştirme konusunda da oldukça iyi ilerleme kaydediyor; umarız Gregor'un yardımıyla yakında her şeyi güncel hale getireceğiz!
 

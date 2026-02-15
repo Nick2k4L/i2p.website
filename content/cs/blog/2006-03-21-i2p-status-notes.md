@@ -26,11 +26,11 @@ JRobin [1] je čistý port RRDtoolu [2] v Javě, který nám umožňuje generova
 
 Postman už nějakou dobu intenzivně pracuje na několika užitečných botech a s potěšením oznamuji, že roztomilý biff je zpátky [3] a dá vám vědět, kdykoli budete mít (anonymní) poštu, když jste na irc2p.  Kromě toho postman pro nás vytvořil úplně nový bot - toopie - který bude sloužit jako informační bot pro I2P/irc2p.  Stále toopie krmíme často kladenými dotazy (FAQ), ale brzy se objeví v obvyklých kanálech.  Díky, postman!
 
-[3] http://hq.postman.i2p/?page_id=15
+[3] `http://hq.postman.i2p/?page_id=15`
 
 * 4) new key
 
-Pro ty, kteří dávají pozor: pravděpodobně jste si všimli, že můj GPG klíč vyprší za pár dní. Můj nový klíč na http://dev.i2p.net/~jrandom má otisk 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 a ID klíče 33DC8D49. Tento příspěvek je podepsán mým starým klíčem, ale mé následující příspěvky (a vydání) v průběhu příštího roku budou podepsány novým klíčem.
+Pro ty, kteří dávají pozor: pravděpodobně jste si všimli, že můj GPG klíč vyprší za pár dní. Můj nový klíč na `http://dev.i2p.net/~jrandom` má otisk 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 a ID klíče 33DC8D49. Tento příspěvek je podepsán mým starým klíčem, ale mé následující příspěvky (a vydání) v průběhu příštího roku budou podepsány novým klíčem.
 
 * 5) ???
 

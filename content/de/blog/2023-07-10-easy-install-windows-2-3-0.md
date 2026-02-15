@@ -15,6 +15,6 @@ Dies wird das letzte Release des Easy-Install bundle sein, das mit der I2P Deskt
 
 Diese Version wurde mit OpenJDK 20 kompiliert. Sie verwendet i2p.plugins.firefox Version 1.1.0 als Bibliothek zum Starten des Browsers. Sie verwendet i2p.i2p Version 2.3.0 als I2P router und zur Bereitstellung von Anwendungen. Wie immer wird empfohlen, den I2P router so bald wie es Ihnen möglich ist auf die neueste Version zu aktualisieren.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

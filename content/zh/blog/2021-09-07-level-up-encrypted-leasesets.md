@@ -39,13 +39,13 @@ I2P 支持多种加密的 leaseSet 策略。决定采用哪一种时，理解每
 
 ## 在“服务器”上
 
-先在 http://127.0.0.1:7657/i2ptunnelmgr 打开隐藏服务管理器，并滚动到标为"I2P Hidden Services."的部分底部。使用主机"127.0.0.1"和端口"7657"创建一个新的隐藏服务，使用这些"Tunnel 加密选项"，并保存该隐藏服务。
+先在 `http://127.0.0.1:7657/i2ptunnelmgr` 打开隐藏服务管理器，并滚动到标为"I2P Hidden Services."的部分底部。使用主机"127.0.0.1"和端口"7657"创建一个新的隐藏服务，使用这些"Tunnel 加密选项"，并保存该隐藏服务。
 
 然后，在 Hidden Services Manager 的主页中选择你新建的 tunnel。此时，Tunnel Cryptography Options 应已包含你的第一个预共享密钥。将其记下，以备下一步使用，并同时记录下该 tunnel 的 Encrypted Base32 Address。
 
 ## 在 "Client" 上
 
-现在切换到将要连接该隐藏服务的客户端计算机，访问 http://127.0.0.1:7657/configkeyring 的 Keyring 配置页面，添加先前的密钥。首先，将来自服务器的 Base32 粘贴到标有“Full destination, name, Base32, or hash.”的字段中。接着，将来自服务器的预共享密钥粘贴到“Encryption Key”字段中。点击保存，即可使用加密的 LeaseSet 安全地访问该隐藏服务。
+现在切换到将要连接该隐藏服务的客户端计算机，访问 `http://127.0.0.1:7657/configkeyring` 的 Keyring 配置页面，添加先前的密钥。首先，将来自服务器的 Base32 粘贴到标有“Full destination, name, Base32, or hash.”的字段中。接着，将来自服务器的预共享密钥粘贴到“Encryption Key”字段中。点击保存，即可使用加密的 LeaseSet 安全地访问该隐藏服务。
 
 ## 现在你已经准备好远程管理 I2P 了
 

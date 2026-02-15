@@ -14,7 +14,7 @@ I2P'nin eklenti çerçevesi, çekirdek kuruluma dokunmadan router'ı genişletme
 
 1. Eklentinin indirme URL'sini proje sayfasından kopyalayın.  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. Router konsolunun [Eklenti Yapılandırma sayfasını](http://127.0.0.1:7657/configplugins) açın.  
+2. Router konsolunun `http://127.0.0.1:7657/configplugins` açın.  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. URL'yi kurulum alanına yapıştırın ve **Eklentiyi Kur**'a tıklayın.  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ Router imzalı arşivi indirir, imzayı doğrular ve eklentiyi anında etkinleş
 
 ## 3. Yüklü Eklentileri Yönetme
 
-[I2P Router Eklentisi](http://127.0.0.1:7657/configclients.jsp#plugin) üzerindeki kontrolleri kullanarak:
+`http://127.0.0.1:7657/configclients.jsp#plugin` üzerindeki kontrolleri kullanarak:
 
 - Tek bir eklentiyi güncellemeler için kontrol et
 - Tüm eklentileri aynı anda kontrol et (router yükseltmelerinden sonra otomatik olarak tetiklenir)

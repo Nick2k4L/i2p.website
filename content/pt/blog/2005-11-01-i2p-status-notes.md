@@ -22,7 +22,7 @@ Em particular, tenho interesse em ouvir qualquer feedback de pessoas que usam co
 
 Tem havido muito mais discussão na lista a respeito de algumas ideias, com um resumo dos ataques de bootstrap disponível online [1]. Fiz algum progresso especificando a criptografia para a opção 3 e, embora nada tenha sido publicado ainda, é relativamente simples.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/001146.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/001146.html`
 
 Houve discussões adicionais sobre como melhorar a resistência a adversários poderosos com constant bitrate (CBR) tunnels (túneis), e, embora tenhamos a opção de explorar essa abordagem, isso está atualmente previsto para o I2P 3.0, pois seu uso adequado exige recursos significativos e provavelmente teria um impacto mensurável tanto sobre quem estaria disposto a usar o I2P com tal sobrecarga quanto sobre quais grupos sequer conseguiriam ou não usar o I2P.
 
@@ -32,7 +32,7 @@ No último sábado também tivemos uma nova versão do I2Phex [2], corrigindo um
 
 Também houve uma atualização na versão CVS (ainda não lançada) que resolve alguns problemas de sincronização — o Phex pressupõe que algumas operações de rede são processadas imediatamente, enquanto o I2P pode às vezes levar um tempo para fazer as coisas :) Isso se manifesta com a GUI travando por um tempo, downloads ou uploads ficando parados, ou conexões sendo recusadas (e talvez de algumas outras formas). Ainda não foi muito testada, mas provavelmente será incluída na 0.1.1.35 esta semana. Tenho certeza de que mais novidades serão publicadas no fórum quando houver mais novidades.
 
-[2] http://forum.i2p.net/viewtopic.php?t=1143
+[2] `http://forum.i2p.net/viewtopic.php?t=1143`
 
 * 4) voi2p app
 

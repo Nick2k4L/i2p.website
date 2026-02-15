@@ -14,7 +14,7 @@ Da einige Leute sich zu unserem Zeitplan geäußert und sich gefragt haben, ob w
 
 0.4 wird die vier genannten Release-Kriterien erfüllen (funktional, sicher, anonym und skalierbar), allerdings werden vor 0.4.2 nur wenige Personen hinter NATs und Firewalls teilnehmen können, und vor 0.4.3 wird es aufgrund des Overheads durch die Aufrechterhaltung einer großen Anzahl von TCP-Verbindungen zu anderen routers eine effektive Obergrenze für die Größe des Netzwerks geben.
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ Heute hat duck die Website durchgesehen und eine Bestandsaufnahme der fehlenden 
 
 Abgesehen davon denke ich, dass die Website so gut wie bereit ist, live geschaltet zu werden. Hat jemand in dieser Hinsicht Vorschläge oder Bedenken?
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) Angriffe und Abwehrmaßnahmen**
 

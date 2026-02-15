@@ -52,7 +52,7 @@ CPU 사용량을 관리하는 일은 더 어렵다. 티어 A router에서 관찰
 
 * 3) Syndie rationale continued
 
-포럼에 Syndie와 그것이 전반적인 구도에서 어떤 위치를 차지하는지에 관한 알찬 게시물이 올라왔습니다 - <http://forum.i2p.net/viewtopic.php?t=1910>에서 확인해 보세요
+포럼에 Syndie와 그것이 전반적인 구도에서 어떤 위치를 차지하는지에 관한 알찬 게시물이 올라왔습니다 - <`http://forum.i2p.net/viewtopic.php?t=1910>에서` 확인해 보세요
 
 또한, 현재 작업 중인 Syndie 문서에서 두 가지 발췌를 강조해서 소개하고자 합니다. 먼저, irc(그리고 아직 공개되지 않은 FAQ)에서:
 

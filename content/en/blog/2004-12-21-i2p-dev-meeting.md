@@ -211,7 +211,7 @@ categories: ["meeting"]
 14:03 &lt;@jrandom&gt; (for what general features)
 14:04 &lt;@jrandom&gt; i think the hardest thing will be weaning people off globally unique human readable names, but with some good interfaces it should be doable
 14:04 &lt;Ragnarok&gt; implementing the data structures you outlined in xml is one of my next goals
-14:04 &lt;susi23&gt; ok, there is a small writing about attributes at http://susi.i2p/removablekeys.html
+14:04 &lt;susi23&gt; ok, there is a small writing about attributes at `http://susi.i2p/removablekeys.html`
 14:05 &lt;ant&gt; &lt;Jnymo&gt; wow.. pretty crowded in here tonight
 14:05 &lt;bens&gt; ragnarok: have you checked out YAML? Might be easier
 14:05 &lt;+ugha2p&gt; Jnymo: Yeah, we're trying to hold a meeting here.
@@ -295,8 +295,8 @@ categories: ["meeting"]
 14:25 &lt;@jrandom&gt; its looking good, but the release is only a few hours old, so too soon to tell
 14:25 &lt;ant&gt; &lt;Jnymo&gt; oh, heh
 14:25 &lt;ant&gt; &lt;Jnymo&gt; any fusenet news?
-14:26 &lt;@jrandom&gt; (http://piespy.i2p/i2p/i2p-current.png heh)
-14:26 &lt;frosk&gt; my work on i2pcontent has been largely put aside for some weeks, but the latest version of the document can be read at http://frosk.i2p/i2pcontent.html . if anyone is interested, do read, and do comment harshly if needs be (om irc when i'm not /away or mail to frosk@mail.i2p)
+14:26 &lt;@jrandom&gt; (`http://piespy.i2p/i2p/i2p-current.png` heh)
+14:26 &lt;frosk&gt; my work on i2pcontent has been largely put aside for some weeks, but the latest version of the document can be read at `http://frosk.i2p/i2pcontent.html` . if anyone is interested, do read, and do comment harshly if needs be (om irc when i'm not /away or mail to frosk@mail.i2p)
 14:26 &lt;frosk&gt; i2pcontent/fusenet/anything ;)
 14:26 &lt;ant&gt; &lt;Jnymo&gt; wordicus
 14:28 &lt;@jrandom&gt; ok, if there's nothing else...

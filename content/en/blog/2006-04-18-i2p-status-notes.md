@@ -60,7 +60,7 @@ congestion collapse is addressed.
 Frosk has been churning away on Feedspace, and has updated a few
 pages up on the trac site, including a new overview doc, a set of
 outstanding tasks, some db details, and more.  Swing on by
-http://feedspace.i2p/ to catch up on the latest changes, and perhaps
+`http://feedspace.i2p/` to catch up on the latest changes, and perhaps
 pelt Frosk with questions at your earliest convenience :)
 
 * 4) ???

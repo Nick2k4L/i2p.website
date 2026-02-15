@@ -6,7 +6,7 @@ description: "I2P Entwicklungsmeeting-Protokoll vom 25. September 2002."
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

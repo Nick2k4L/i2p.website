@@ -6,7 +6,7 @@ description: "Log da reunião de desenvolvimento I2P para 3 de julho de 2002."
 categories: ["meeting"]
 ---
 
-(Cortesia da wayback machine http://www.archive.org/)
+(Cortesia da wayback machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

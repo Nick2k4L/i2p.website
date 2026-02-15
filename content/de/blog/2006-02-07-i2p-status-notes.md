@@ -26,7 +26,7 @@ Es gibt viele widersprüchliche Ansichten zur Verwendung kurzer Exponenten, und 
 
 Die eine große Alternative besteht darin, auf 1024-Bit-Verschlüsselung umzusteigen (in der wir dann vielleicht einen kurzen 160-Bit-Exponenten verwenden könnten).  Das könnte unabhängig davon sinnvoll sein, und falls die 2048-Bit-Verschlüsselung im _PRE net zu problematisch ist, könnten wir den Wechsel innerhalb des _PRE net vollziehen.  Andernfalls könnten wir bis zum Release 0.6.1.10 warten, wenn die neue Kryptografie breiter ausgerollt ist, um zu sehen, ob es notwendig ist.  Viel mehr Informationen werden folgen, falls ein solcher Wechsel wahrscheinlich erscheint.
 
-[1] "Über die Diffie-Hellman-Schlüsselvereinbarung mit kurzen Exponenten" -     van Oorschot, Weiner bei EuroCrypt 96.  gespiegelt unter     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "Über die Diffie-Hellman-Schlüsselvereinbarung mit kurzen Exponenten" -     van Oorschot, Weiner bei EuroCrypt 96.  gespiegelt unter     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 Jedenfalls gibt es große Fortschritte im _PRE net, wobei der Großteil der Kommunikation darüber im #i2p_pre-Channel auf irc2p stattfindet.
 

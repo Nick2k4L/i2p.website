@@ -6,7 +6,7 @@ description: "Informelles I2P-Entwicklungstreffen mit Themen wie Anonymität, Pe
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

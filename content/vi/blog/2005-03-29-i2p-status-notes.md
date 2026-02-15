@@ -22,7 +22,7 @@ Như thường lệ, có các bản sửa lỗi và một số tính năng mới
 
 * 2) UDP (SSU)
 
-Như đã thảo luận rải rác trong 6–12 tháng qua, chúng tôi sẽ chuyển sang sử dụng UDP cho giao tiếp giữa các router khi phiên bản 0.6 được phát hành. Để tiến xa hơn theo hướng đó, chúng tôi đã có bản dự thảo đầu tiên của giao thức truyền tải trên CVS tại http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+Như đã thảo luận rải rác trong 6–12 tháng qua, chúng tôi sẽ chuyển sang sử dụng UDP cho giao tiếp giữa các router khi phiên bản 0.6 được phát hành. Để tiến xa hơn theo hướng đó, chúng tôi đã có bản dự thảo đầu tiên của giao thức truyền tải trên CVS tại `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 Đây là một giao thức khá đơn giản với các mục tiêu được nêu trong tài liệu, và tận dụng các khả năng của I2P để vừa xác thực vừa bảo mật dữ liệu, đồng thời tiết lộ ít thông tin ra bên ngoài nhất có thể. Ngay cả phần đầu tiên của quá trình bắt tay kết nối cũng không thể nhận diện được đối với người không chạy I2P. Hành vi của giao thức vẫn chưa được đặc tả đầy đủ, chẳng hạn như cách các timer kích hoạt hoặc cách sử dụng ba chỉ báo trạng thái bán đáng tin cậy khác nhau, nhưng đặc tả đã bao quát những điều cơ bản về mã hóa, đóng gói và NAT hole punching (kỹ thuật "đục lỗ" NAT). Hiện chưa có phần nào được triển khai, nhưng sẽ sớm có, vì vậy rất mong nhận được phản hồi!
 
@@ -30,7 +30,7 @@ Như đã thảo luận rải rác trong 6–12 tháng qua, chúng tôi sẽ chu
 
 Aum đã miệt mài làm việc với Q(uartermaster), một kho lưu trữ phân tán, và bản nháp đầu tiên của tài liệu đã được đưa lên [1].  Một trong những ý tưởng thú vị ở đó dường như là chuyển từ một DHT thuần (bảng băm phân tán) sang một hệ thống theo kiểu memcached [2] (hệ thống cache phân tán), trong đó mỗi người dùng tự thực hiện mọi tìm kiếm hoàn toàn *cục bộ*, và yêu cầu dữ liệu thực từ máy chủ Q "trực tiếp" (tất nhiên là thông qua I2P).  Dù sao thì, cũng có vài thứ hay ho, có lẽ nếu Aum đang thức [3] chúng ta có thể moi được một bản cập nhật từ anh ấy?
 
-[1] http://aum.i2p/q/ [2] http://www.danga.com/memcached/ [3] Chết tiệt mấy múi giờ đó!
+[1] `http://aum.i2p/q/` [2] http://www.danga.com/memcached/ [3] Chết tiệt mấy múi giờ đó!
 
 * 4) ???
 

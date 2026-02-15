@@ -14,6 +14,6 @@ Esta será a última versão do pacote Easy-Install incompatível com o I2P Desk
 
 Esta versão foi compilada com o OpenJDK 20. Usa i2p.plugins.firefox versão 1.1.0 como biblioteca para iniciar o navegador. Usa i2p.i2p versão 2.3.0 como um I2P router e para fornecer aplicações. Como sempre, recomenda-se atualizar para a versão mais recente do I2P router na primeira oportunidade conveniente.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

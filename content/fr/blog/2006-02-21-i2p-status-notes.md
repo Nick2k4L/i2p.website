@@ -14,7 +14,7 @@ Salut tout le monde, c'est encore mardi
 
 * 1) Net status
 
-Le réseau traverse une période un peu agitée avec la version 0.6.1.10, due en partie à l’incompatibilité avec les versions antérieures, mais aussi à des bogues inattendus.  Ni la fiabilité ni la disponibilité de la version 0.6.1.10 n’étaient suffisantes, si bien que ces 5 derniers jours ont vu une rafale de correctifs, qui a abouti à la nouvelle version 0.6.1.11 - http://dev.i2p.net/pipermail/i2p/2006-February/001263.html
+Le réseau traverse une période un peu agitée avec la version 0.6.1.10, due en partie à l’incompatibilité avec les versions antérieures, mais aussi à des bogues inattendus.  Ni la fiabilité ni la disponibilité de la version 0.6.1.10 n’étaient suffisantes, si bien que ces 5 derniers jours ont vu une rafale de correctifs, qui a abouti à la nouvelle version 0.6.1.11 - `http://dev.i2p.net/pipermail/i2p/2006-February/001263.html`
 
 La plupart des bogues découverts dans la 0.6.1.10 étaient présents depuis la sortie 0.6 en septembre dernier, mais n’étaient pas facilement apparents tant qu’il existait des transports alternatifs sur lesquels se replier (TCP). Mon réseau de test local simule des pertes de paquets, mais ne couvrait pas vraiment le churn des router (rotation/instabilité) et d’autres défaillances réseau persistantes. Le réseau de test _PRE incluait également un ensemble auto-sélectionné de pairs assez fiables, de sorte que des situations importantes n’ont pas été pleinement explorées avant la publication complète. C’est un problème, évidemment, et la prochaine fois nous veillerons à inclure une sélection plus large de scénarios.
 

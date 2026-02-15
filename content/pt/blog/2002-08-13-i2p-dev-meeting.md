@@ -6,7 +6,7 @@ description: "Reunião de desenvolvimento do I2P abordando o status do RC2, o pr
 categories: ["meeting"]
 ---
 
-(Cortesia da Wayback Machine http://www.archive.org/)
+(Cortesia da Wayback Machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

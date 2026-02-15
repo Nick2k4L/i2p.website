@@ -17,7 +17,7 @@ cryptography have been proceeding for a decade, the choices
 have not become clear until recently.
 
 We started looking at the implications of PQ crypto
-in 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
+in 2022 zzz.i2p.
 
 TLS standards added hybrid encryption support in the last two years and it now
 is used for a significant portion of encrypted traffic on the internet
@@ -2039,7 +2039,7 @@ We should be able to just try one-then-the-other, as we did with X25519, to be p
 * [COMMON](/docs/specs/common-structures/)
 * [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
-* [FORUM](http://zzz.i2p/topics/3294)
+* FORUM
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
 * [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)

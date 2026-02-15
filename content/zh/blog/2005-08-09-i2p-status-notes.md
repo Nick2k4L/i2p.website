@@ -16,7 +16,7 @@ Hi y'all, its that time of the week again
 
 正如昨天宣布的那样 [1]，我们已经发布了一个新版本并已可用，反馈总体积极。你们中大约有一半已经升级（我看到有 110 个在 0.6.0.2，89 个在 0.6.0.1，还有 21 个在 0.6），但其余的应尽快升级，因为这次带来了一些有用的改进。
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000834.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000834.html`
 
 * 2) Roadmap update
 

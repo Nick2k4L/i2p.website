@@ -6,7 +6,7 @@ description: "3 जुलाई, 2002 के लिए I2P विकास ब�
 categories: ["meeting"]
 ---
 
-(wayback machine की सौजन्य से http://www.archive.org/)
+(wayback machine की सौजन्य से `http://www.archive.org/`)
 
 ## त्वरित सारांश
 

@@ -29,7 +29,7 @@ categories: ["meeting"]
 16:07 &lt;+polecat&gt; NTCP causes my router to instantly clock the CPU, and I repeated it twice before manually having to alter the config file to get a working router again.
 16:07 &lt;jrandom&gt; (while still using outbound ntcp connections)
 16:07 &lt;+Complication&gt; (over here it's only a tiny bit up from usual levels, and that's likely because of pumping *way* more data)
-16:08 &lt;+Complication&gt; ( http://forum.i2p/viewtopic.php?t=1815 )
+16:08 &lt;+Complication&gt; ( `http://forum.i2p/viewtopic.php?t=1815` )
 16:08 &lt;jrandom&gt; when you establish an ntcp connection, you do a heavyweight crypto calculation (or three)
 16:08 &lt;jrandom&gt; if you are accepting inbound ntcp connections, you may get lots of inbound attempts at once, since there are hundreds of i2p routers out there
 16:09 &lt;jrandom&gt; polecat: that wasn't ntcp's fault, it was the fault of a bad ntp server in the ntp pool

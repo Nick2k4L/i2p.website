@@ -76,7 +76,7 @@ oOo 已制作了一个非常酷的辅助工具，让人们无需更新他们的 
 基本上，你只需要为 eepsite（I2P 站点）创建一个链接，名称可以随意，然后再附加一个用于指定目标（Destination）的特殊 URL 参数：
 
 ```
-http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...
+`http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...`
 ```
 在幕后，这样做相当安全——你无法伪造其他地址，而且该名称*不会*被写入 hosts.txt；不过，它会让你看到在 eepsites(I2P 站点) 上链接的图片等内容，而使用旧的 `http://i2p/base64/` 小技巧则无法做到。如果你想始终能够使用 "wowthisiscool.i2p" 访问该站点，你当然仍然需要将该条目添加到你的 hosts.txt（直到 MyI2P 地址簿发布为止，也就是 ;)）。
 

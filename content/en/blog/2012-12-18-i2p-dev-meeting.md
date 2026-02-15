@@ -29,7 +29,7 @@ categories: ["meeting"]
 20:22:28  &lt;RN&gt; on trac
 20:22:28  &lt;eche|on&gt; thats the update weather
 20:22:28  &lt;eche|on&gt; hell a lot of updates/traffic currently
-20:22:28  &lt;RN&gt; http://trac.i2p2.i2p/wiki/meeting
+20:22:28  &lt;RN&gt; `http://trac.i2p2.i2p/wiki/meeting`
 20:22:28  &lt;str4d&gt; o/ topiltzin
 20:22:28  &lt;eche|on&gt; far faster than any update before
 20:22:28  &lt;str4d&gt; RN, can you access that?
@@ -71,20 +71,20 @@ categories: ["meeting"]
 20:41:09  &lt;str4d&gt; If version ends in -0 and you pick a number from 0 to 99 that isn't 0, you don't get torrents.
 20:41:12  &lt;str4d&gt; (IIRC)
 20:41:15  &lt;KillYourTV&gt; oh...i misunderstood then.
-20:41:23  &lt;KillYourTV&gt; http://tracker2.postman.i2p/details.php?dllist=1&filelist=1&info_hash=%09k%a6%29%14%7b%15%f6%f89%d7%1b%1c%d9T%fe%60c%ec%7c
+20:41:23  &lt;KillYourTV&gt; `http://tracker2.postman.i2p/details.php?dllist=1&filelist=1&info_hash=%09k%a6%29%14%7b%15%f6%f89%d7%1b%1c%d9T%fe%60c%ec%7c`
 20:41:23  &lt;iRelay&gt; Torrent #19559: i2pupdate-0.9.4.su2, Size: 3.06 MB, Downloads: 6, Added: 2012-12-17 17:52:22, S/L: 10/1
 20:42:01  &lt;str4d&gt; It's enough to show that the update mechanism is working though (and we don't need to worry much about scalability, because that's already been well-tested for torrents ^_^)
 20:43:11  &lt;iRelay&gt; &lt;ReturningNovice@kytv&gt; I missed the torrent option
 20:43:37  &lt;iRelay&gt; &lt;ReturningNovice@kytv&gt; was upgrading from 0.9.3-13
 20:43:48  &lt;str4d&gt; Okay, not much more to say here for now - we can appraise the effects of the update at the next meeting.
 20:43:48  &lt;str4d&gt; (2) Website Revamp
-20:43:48  &lt;str4d&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/ is where I am currently up to (make sure to hard-refresh to get the latest CSS)
+20:43:48  &lt;str4d&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/` is where I am currently up to (make sure to hard-refresh to get the latest CSS)
 20:43:55  &lt;iRelay&gt; Title: The Invisible Internet Project - I2P (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 20:44:27  &lt;str4d&gt; RN, your router probably found the update via HTTP first.
 20:44:30  &lt;eche|on&gt; str4d: scalability is a problem with a non reachable torrent
 20:44:37  &lt;zzz&gt; there is no option
 20:44:40  &lt;eche|on&gt; and currently ONLY dev builds gets a torrent
-20:44:59  &lt;str4d&gt; Check http://localhost:7657/debug - you should see a TORRENT checker there.
+20:44:59  &lt;str4d&gt; Check `http://localhost:7657/debug` - you should see a TORRENT checker there.
 20:45:14  &lt;zzz&gt; and no, 20,000 in one swarm is not well-tested within i2p.
 20:46:14  &lt;eche|on&gt; str4d: and I do not see a torrent on 0.9.3-15
 20:46:21  &lt;str4d&gt; zzz, true, I'd forgotten that *derp*
@@ -105,7 +105,7 @@ categories: ["meeting"]
 20:55:17  &lt;MTN11&gt; git and a few other vcses don't store empty directories....but now these directories
 20:55:17  &lt;MTN11&gt; are no longer empty.
 20:55:32  &lt;jenkins&gt; Starting build #46 for job i2p (previous build: SUCCESS)
-20:59:21  &lt;jenkins&gt; Project i2p build #46:SUCCESS in 2 min 42 sec: http://kzzj7cu24fo6w7jsisgysh65lfyrkjaaaqsdn3hvlop6lp36vs2q.b32.i2p/job/i2p/46/
+20:59:21  &lt;jenkins&gt; Project i2p build #46:SUCCESS in 2 min 42 sec: `http://kzzj7cu24fo6w7jsisgysh65lfyrkjaaaqsdn3hvlop6lp36vs2q.b32.i2p/job/i2p/46/`
 20:59:24  &lt;str4d&gt; How does it feel to people?
 20:59:24  &lt;str4d&gt; I've also made several backend changes that should hopefully make management of the site easier - e.g. incrementing router version only has to be done in two places now zzz
 20:59:24  &lt;str4d&gt; (Well, really only one, but I added another one so I could add Launchpad to the mirrors list)
@@ -115,12 +115,12 @@ categories: ["meeting"]
 21:03:37  &lt;LaughingBuddha&gt; +1 on the design
 21:03:37  &lt;str4d&gt; laaaaag
 21:04:45  &lt;KillYourTV&gt; a few broken links though bu tmaybe those are known
-21:06:05  &lt;KillYourTV&gt; specifically http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/volunteer/develop/developerskeys links to http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/volunteer/develop/monotone which doesn't exist.
+21:06:05  &lt;KillYourTV&gt; specifically `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/volunteer/develop/developerskeys` links to `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/volunteer/develop/monotone` which doesn't exist.
 21:06:55  &lt;str4d&gt; I still plan to open up the design to suggestion from the community (since there are still things about duck's design that bug me) but as a first iteration it works.
 21:06:58  &lt;str4d&gt; KillYourTV, as per ticket #807 the broken links are known (mostly on the earlier pages I migrated, since at the time I didn't know where the other pages were going to be).
 21:06:58  &lt;str4d&gt; Questions:
 21:07:01  &lt;str4d&gt; - Are the Blog and Meetings feeds alright as they are, or should they truncate their content (so readers have to go to the main site to view everything)?
-21:07:05  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
+21:07:05  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/807` - (accepted enhancement) - Revamp of website
 21:07:36  &lt;str4d&gt; - Does the Meetings feed need to be more obvious, or is the &lt;link&gt; on the meetings index enough (it gets picked up by Firefox under Bookmarks -&gt; Subscribe to This Page)?
 21:08:39  &lt;str4d&gt; KillYourTV, oh, that's a different bug - the page exists, but I shifted the monotonerc file it imports, so I need to fix that&gt;&lt;
 21:09:07  &lt;str4d&gt; But again, all links like that will be fixed.
@@ -132,7 +132,7 @@ categories: ["meeting"]
 21:12:30  &lt;topiltzin&gt; what is the current behavior?
 21:13:08  &lt;str4d&gt; zzz, I'm reasonably happy with the urls as I have them now (but suggestions are welcome).
 21:13:18  &lt;str4d&gt; There are a handful of pages I have been unable to place though.
-21:13:21  &lt;str4d&gt; topiltzin, see http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/feed/blog/atom and http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/feed/meetings/atom for the current behaviour
+21:13:21  &lt;str4d&gt; topiltzin, see `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/feed/blog/atom` and `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/feed/meetings/atom` for the current behaviour
 21:13:27  &lt;iRelay&gt; Title: I2P Blog0.9.4 Release (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 21:14:02  &lt;zzz&gt; str4d, I mean with existing site vs. new site
 21:14:32  &lt;str4d&gt; zzz, if you were asking if the pages are at the same urls as the current site: no.
@@ -266,7 +266,7 @@ categories: ["meeting"]
 22:39:34  &lt;str4d&gt; And it was topiltzin who suggested to move docs into the about menu, so there are techincally three levels
 22:39:57  &lt;str4d&gt; zzz, I had the Trac link in the help menu, but topiltzin suggested moving it to voliunteer -&gt; develop
 22:40:11  &lt;zzz&gt; it's like we're trying to make a hierarchical website, but only thru a complicated multi-level menu bar on the home page. What we really need are actual hierarchical pages, like an about page, a volunteer page, and a help page.
-22:40:57  &lt;KillYourTV&gt; Now 8 peers for the sud   http://tracker2.postman.i2p/details.php?dllist=1&filelist=1&info_hash=%f0%d8%27%17W%cfF%83%9em%9e%3f%d8%f8%85%2ac%baRV
+22:40:57  &lt;KillYourTV&gt; Now 8 peers for the sud   `http://tracker2.postman.i2p/details.php?dllist=1&filelist=1&info_hash=%f0%d8%27%17W%cfF%83%9em%9e%3f%d8%f8%85%2ac%baRV`
 22:40:57  &lt;iRelay&gt; Torrent #19558: i2pupdate-0.9.4.sud, Size: 7.09 MB, Downloads: 6, Added: 2012-12-17 17:49:15, S/L: 7/0
 22:41:00  &lt;zzz&gt; trying to create strucrture solely in that black bar is insufficient, and maybe the wrong place to try
 22:41:30  &lt;str4d&gt; zzz, the structure is in the urls. I copied that structure into the nav bar because it seemed to make sense to me.

@@ -26,11 +26,11 @@ Son bir haftada i2p-bt trackerlarının yayınladığı istatistikleri izledim v
 
 0.4.2.5 sürümünden bu yana CVS'e, yakında kullanıma sunmak isteyeceğimiz bazı düzeltmeler ve yeni özellikler eklendi; bunlar arasında streaming lib (akış kütüphanesi) için güvenilirlik düzeltmeleri, IP adresi değişikliklerine karşı geliştirilmiş dayanıklılık ve ragnarok'un addressbook (adres defteri) uygulamasının paketlenmesi bulunuyor.
 
-addressbook (adres defteri) hakkında hiç duymadıysanız veya onu kullanmadıysanız, kısacası, bazı anonim olarak barındırılan konumlardan (varsayılan olarak http://dev.i2p/i2p/hosts.txt ve http://duck.i2p/hosts.txt) belirli aralıklarla değişiklikleri alıp birleştirerek hosts.txt dosyanızı otomatik olarak güncelleyecektir. Herhangi bir dosyayı değiştirmeniz, herhangi bir yapılandırmaya dokunmanız veya ek bir uygulama çalıştırmanız gerekmeyecek - standart bir .war dosyası olarak I2P router içinde dağıtılacaktır.
+addressbook (adres defteri) hakkında hiç duymadıysanız veya onu kullanmadıysanız, kısacası, bazı anonim olarak barındırılan konumlardan (varsayılan olarak `http://dev.i2p/i2p/hosts.txt` ve `http://duck.i2p/hosts.txt)` belirli aralıklarla değişiklikleri alıp birleştirerek hosts.txt dosyanızı otomatik olarak güncelleyecektir. Herhangi bir dosyayı değiştirmeniz, herhangi bir yapılandırmaya dokunmanız veya ek bir uygulama çalıştırmanız gerekmeyecek - standart bir .war dosyası olarak I2P router içinde dağıtılacaktır.
 
 Elbette, addressbook (adres defteri) ile *gerçekten* derinlemesine uğraşmak istiyorsanız bunu kesinlikle yapabilirsiniz - ayrıntılar için Ragnarok'un sitesine [2] bakın. Eğer router'ınızda addressbook zaten kuruluysa, 0.4.2.6 yükseltmesi sırasında biraz uğraşmanız gerekecek, ama tüm eski yapılandırma ayarlarınızla çalışacaktır.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -40,7 +40,7 @@ Sayılar, sayılar, sayılar! Neyse, daha önce de söylediğim gibi, 0.5 sürü
 
 jdot yeni bir jabber sunucusu kurdu ve hem bire bir sohbetler hem de grup sohbetleri için oldukça iyi çalışıyor gibi görünüyor. forum [3] üzerinde yer alan bilgilere göz atın. i2p geliştirici tartışma kanalı yine de irc #i2p olacak, ama alternatiflerin olması her zaman güzeldir.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

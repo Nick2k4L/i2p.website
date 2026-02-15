@@ -36,4 +36,4 @@ An alle, die im vergangenen Jahr mitgewirkt haben, sei es technisch, sozial oder
 
 Jedenfalls steht unser wöchentliches Status-Meeting in wenigen Minuten an, also falls du etwas weiter besprechen möchtest, komm einfach bei #i2p an den üblichen Orten [1] vorbei und sag Hallo!
 
-=jr [1] http://forum.i2p.net/viewtopic.php?t=952
+=jr [1] `http://forum.i2p.net/viewtopic.php?t=952`

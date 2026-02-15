@@ -57,7 +57,7 @@ iEYEARECAAYFAlOB3xkACgkQQVV2uqduC+3+UgCfYZiUtx7FDGdQDhdVP8MyRf0D ANIAn2YHOQh4yv8
 
 Mis claves públicas actuales son las siguientes:
 
-pub   4096R/0EC51FCDA94FB53E 2014-03-11 [caduca: 2019-03-10] uid               [completo] str4d (http://str4d.i2p) <str4d@mail.i2p> uid               [completo] str4d <str4d@i2pmail.org> sub   4096R/1CC61D9B33C3241B 2014-03-11 [caducada: 2015-03-11] sub   4096R/803DEE491A3473E7 2014-03-12 [caducada: 2015-03-12] sub   4096R/A1B84C9B733AAC82 2015-04-05 [caduca: 2016-04-04] sub   4096R/13B5EE58C09FB3E0 2015-04-05 [caduca: 2016-04-04]
+pub   4096R/0EC51FCDA94FB53E 2014-03-11 [caduca: 2019-03-10] uid               [completo] str4d (`http://str4d.i2p`) <str4d@mail.i2p> uid               [completo] str4d <str4d@i2pmail.org> sub   4096R/1CC61D9B33C3241B 2014-03-11 [caducada: 2015-03-11] sub   4096R/803DEE491A3473E7 2014-03-12 [caducada: 2015-03-12] sub   4096R/A1B84C9B733AAC82 2015-04-05 [caduca: 2016-04-04] sub   4096R/13B5EE58C09FB3E0 2015-04-05 [caduca: 2016-04-04]
 
 Actualmente uso las claves de la siguiente manera:
 

@@ -45,7 +45,7 @@ net.
 * 2) Feedspace
 
 Frosk has put up another rev of the i2pcontent/fusenet docs, except
-now at a new home with a new name: http://feedspace.i2p/ - see
+now at a new home with a new name: `http://feedspace.i2p/` - see
 either orion [1] or my blog [2] for the destination.  This stuff
 looks really promising, both from the perspective of "hey, kickass
 functionality" and "hey, that'll help I2P's anonymity".  Frosk and
@@ -53,8 +53,8 @@ gang are working away, but they're most certainly looking for input
 (and help).  Perhaps we can get Frosk to give us an update in the
 meeting?
 
-[1] http://orion.i2p/#feedspace.i2p
-[2] http://jrandom.dev.i2p/
+[1] `http://orion.i2p/#feedspace.i2p`
+[2] `http://jrandom.dev.i2p/`
 
 * 3) ???
 

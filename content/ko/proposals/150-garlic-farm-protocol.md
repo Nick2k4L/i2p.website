@@ -298,7 +298,7 @@ AppendEntriesRequest에서는, 로그 항목 크기가 0일 때,
 
 #### 애플리케이션
 
-애플리케이션 내용은 UTF-8로 인코딩된 [JSON](https://www.json.org/)입니다.
+애플리케이션 내용은 UTF-8로 인코딩된 [JSON](https://www.json.org/json-en.html)입니다.
 애플리케이션 레이어 부분을 참조하세요.
 
 
@@ -405,7 +405,7 @@ Meta LS2의 게시자는 반드시 Raft 리더일 필요는 없습니다.
 
 ### 애플리케이션 데이터 내용
 
-애플리케이션 내용은 간단함과 확장 가능성을 위해 UTF-8로 인코딩된 [JSON](https://json.org/)입니다.
+애플리케이션 내용은 간단함과 확장 가능성을 위해 UTF-8로 인코딩된 [JSON](https://www.json.org/json-en.html)입니다.
 전체 명세서는 TBD입니다.
 목표는 Meta LS2를 게시할 "최고의" 라우터를 결정할 수 있는 데이터를 제공하고,
 게시자가 Meta LS2의 대상에 가중치를 부여할 충분한 정보를 갖도록 하는 것입니다.
@@ -541,7 +541,7 @@ Atomix는 너무 크고 우리가 I2P를 통해 프로토콜을 라우팅할 수
 ## 참고 문헌
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://json.org/)
+* [JSON](https://www.json.org/json-en.html)
 * [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)

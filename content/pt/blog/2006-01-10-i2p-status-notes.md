@@ -26,7 +26,7 @@ Usar períodos de 1 minuto e a taxa de transferência de um tunnel individual, n
 
 * 3) Syndie blogs
 
-Com base em alguns comentários, foram feitas melhorias adicionais na visualização de blog do Syndie, conferindo-lhe um caráter nitidamente distinto da visualização encadeada, semelhante a grupos de notícias/fórum. Além disso, há um recurso totalmente novo para definir informações gerais do blog por meio da arquitetura do Syndie já existente. Como exemplo, confira a postagem padrão do blog "about Syndie":  http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001
+Com base em alguns comentários, foram feitas melhorias adicionais na visualização de blog do Syndie, conferindo-lhe um caráter nitidamente distinto da visualização encadeada, semelhante a grupos de notícias/fórum. Além disso, há um recurso totalmente novo para definir informações gerais do blog por meio da arquitetura do Syndie já existente. Como exemplo, confira a postagem padrão do blog "about Syndie":  `http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001`
 
 Isso apenas arranha a superfície do que podemos fazer. A próxima versão permitirá definir o logotipo do seu próprio blog, seus próprios links (para blogs, posts, anexos e URLs externas arbitrárias) e, com sorte, ainda mais personalização. Uma dessas personalizações é ícones por tag - eu gostaria de distribuir um conjunto de ícones padrão para uso com tags padrão, mas as pessoas poderão definir ícones para suas próprias tags para uso em seus blogs, e até substituir os ícones padrão para as tags padrão (novamente, apenas quando as pessoas estiverem visualizando o blog delas, é claro). Talvez até alguma configuração de estilo para exibir posts com tags diferentes de forma diferente (claro, apenas personalizações de estilo muito específicas seriam permitidas - nada de exploits de CSS arbitrários com o Syndie, muito obrigado :)
 
@@ -42,6 +42,6 @@ Tenho ouvido relatos de progresso em restaurar o suporte a gwebcache no I2Phex, 
 
 * 6) ???
 
-Há muita coisa acontecendo, como vocês podem ver, mas se houver outras coisas que vocês queiram comentar e discutir, passem na reunião daqui a alguns minutos e deem um alô. A propósito, um site bem legal que tenho acompanhado ultimamente é http://freedomarchive.i2p/ (para o pessoal preguiçoso que não tem o I2P instalado, vocês podem usar o inproxy do Tino via http://freedomarchive.i2p.tin0.de/). De qualquer forma, nos vemos daqui a poucos minutos.
+Há muita coisa acontecendo, como vocês podem ver, mas se houver outras coisas que vocês queiram comentar e discutir, passem na reunião daqui a alguns minutos e deem um alô. A propósito, um site bem legal que tenho acompanhado ultimamente é `http://freedomarchive.i2p/` (para o pessoal preguiçoso que não tem o I2P instalado, vocês podem usar o inproxy do Tino via http://freedomarchive.i2p.tin0.de/). De qualquer forma, nos vemos daqui a poucos minutos.
 
 =jr

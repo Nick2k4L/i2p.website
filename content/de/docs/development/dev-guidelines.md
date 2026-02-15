@@ -91,6 +91,6 @@ Die folgenden Richtlinien gelten für den Router, Webapps und alle Plugins.
 
 ### Fehler
 
-- Die Verwaltung von Issues ist die Aufgabe aller; bitte helfen Sie mit. Überwachen Sie [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues) auf Issues, bei denen Sie helfen können. Kommentieren Sie, beheben Sie und schließen Sie Issues, wenn Sie können.
+- Die Verwaltung von Issues ist die Aufgabe aller; bitte helfen Sie mit. Überwachen Sie GitLab auf Issues, bei denen Sie helfen können. Kommentieren Sie, beheben Sie und schließen Sie Issues, wenn Sie können.
 - Neue Entwickler sollten damit beginnen, Issues zu beheben. Wenn Sie eine Lösung haben, fügen Sie Ihren Patch zum Issue hinzu und fügen Sie das Schlüsselwort `review-needed` hinzu. Schließen Sie das Issue nicht, bis es erfolgreich überprüft wurde und Sie Ihre Änderungen eingecheckt haben. Sobald Sie dies für ein paar Tickets reibungslos durchgeführt haben, können Sie dem normalen Verfahren oben folgen.
 - Schließen Sie ein Issue, wenn Sie glauben, es behoben zu haben. Wir haben keine Testabteilung, um Tickets zu überprüfen und zu schließen. Wenn Sie nicht sicher sind, ob Sie es behoben haben, schließen Sie es und fügen Sie eine Notiz hinzu mit dem Text „Ich glaube, ich habe es behoben, bitte testen Sie es und öffnen Sie es erneut, falls es noch defekt ist". Fügen Sie einen Kommentar mit der Dev-Build-Nummer oder Revision hinzu und setzen Sie den Meilenstein auf das nächste Release.

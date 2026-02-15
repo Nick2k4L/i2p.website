@@ -6,7 +6,7 @@ description: "4 जून, 2002 के लिए I2P विकास बैठ�
 categories: ["meeting"]
 ---
 
-(Wayback machine के सौजन्य से http://www.archive.org/)
+(Wayback machine के सौजन्य से `http://www.archive.org/`)
 
 ## त्वरित सारांश
 

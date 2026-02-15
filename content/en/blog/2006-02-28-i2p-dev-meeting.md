@@ -113,7 +113,7 @@ categories: ["meeting"]
 15:55 &lt;+Complication&gt; Then, it should count down minutes to a graceful restart
 15:56 &lt;+Complication&gt; And finally restart
 15:57 &lt;+Complication&gt; Oh, sidenote: does the internal NTP client know of a concept like "clock drift rate"?
-15:58 &lt;jrandom&gt; yeah, the version number on the top left corner of http://localhost:7657/index.jsp should be a giveaway :)
+15:58 &lt;jrandom&gt; yeah, the version number on the top left corner of `http://localhost:7657/index.jsp` should be a giveaway :)
 15:58 &lt;jrandom&gt; Complication: no, it doesn't guarantee sequential clock ticks
 15:59 &lt;jrandom&gt; s/sequential/ordered/
 15:59 &lt;+Complication&gt; Nor develop knowledge like "our system clock is 0.00345 times faster than needed"?

@@ -20,7 +20,7 @@ categories: ["status"]
 
 사소한 미세 조정으로 끝없이 씨름하기보다는, 저는 로컬 테스트 네트워크에서 새로운 tunnel 생성 암호화 방식과 프로세스 [1]로 이전하는 작업을 진행해 왔습니다. 이는 tunnel 생성 실패율의 상당 부분을 해소할 것이며, 이후 필요하다면 추가로 조정할 수 있습니다.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 한 가지 유감스러운 부작용은 0.6.1.10이 하위 호환되지 않는다는 점입니다. 한동안 하위 호환이 깨지는 릴리스를 하지 않았지만, 초창기에는 여러 번 그런 적이 있어서 큰 문제는 아닐 것입니다. 기본적으로, 제 로컬 테스트 네트워크에서 충분히 잘 동작하는 것을 확인한 뒤, 몇몇 용감한 분들께 병행 배포하여 조기 테스트를 진행하고, 릴리스할 준비가 되면 시드 참조를 새 네트워크의 시드로 전환한 뒤 배포할 예정입니다.
 

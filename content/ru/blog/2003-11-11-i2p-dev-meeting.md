@@ -6,7 +6,7 @@ description: "Встреча по разработке I2P, посвященна
 categories: ["meeting"]
 ---
 
-(Любезно предоставлено Wayback Machine http://www.archive.org/)
+(Любезно предоставлено Wayback Machine `http://www.archive.org/`)
 
 ## Краткое резюме
 

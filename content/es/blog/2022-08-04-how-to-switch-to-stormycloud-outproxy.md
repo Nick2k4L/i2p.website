@@ -23,11 +23,11 @@ En sus propias palabras, StormyCloud es:
 
 Para obtener más información sobre StormyCloud, visite su [sitio web](https://www.stormycloud.org/).
 
-Or, visit them on [I2P](http://stormycloud.i2p/).
+Or, visit them on I2P.
 
 **Cambiar al Outproxy (proxy de salida) de StormyCloud en I2P**
 
-Para cambiar al outproxy (proxy de salida) de StormyCloud *hoy mismo* puedes visitar [el Administrador de Servicios Ocultos](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0). Una vez allí, debes cambiar el valor de **Outproxies** y **SSL Outproxies** a `exit.stormycloud.i2p`. Una vez hecho esto, desplázate hasta la parte inferior de la página y haz clic en el botón "Save".
+Para cambiar al outproxy (proxy de salida) de StormyCloud *hoy mismo* puedes visitar `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0`. Una vez allí, debes cambiar el valor de **Outproxies** y **SSL Outproxies** a `exit.stormycloud.i2p`. Una vez hecho esto, desplázate hasta la parte inferior de la página y haz clic en el botón "Save".
 
 **Gracias a StormyCloud**
 

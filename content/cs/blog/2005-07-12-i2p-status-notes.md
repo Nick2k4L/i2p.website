@@ -18,7 +18,7 @@ Po urputném boji s několika kolokačními servery se podařilo obnovit někter
 
 * 2) SSU testing
 
-Jak je zmíněno v tom malém žlutém rámečku na konzoli každého routeru, zahájili jsme další kolo testování SSU v živé síti. Testy nejsou pro každého, ale pokud jste dobrodružné povahy a jste v pohodě s ruční konfigurací, podívejte se na podrobnosti uvedené na konzoli vašeho routeru (http://localhost:7657/index.jsp). Může proběhnout několik kol testování, ale neočekávám žádné zásadní změny SSU před vydáním 0.6 (0.6.1 přidá podporu pro ty, kteří nemohou přesměrovat své porty ani jiným způsobem přijímat příchozí UDP spojení).
+Jak je zmíněno v tom malém žlutém rámečku na konzoli každého routeru, zahájili jsme další kolo testování SSU v živé síti. Testy nejsou pro každého, ale pokud jste dobrodružné povahy a jste v pohodě s ruční konfigurací, podívejte se na podrobnosti uvedené na konzoli vašeho routeru (`http://localhost:7657/index.jsp).` Může proběhnout několik kol testování, ale neočekávám žádné zásadní změny SSU před vydáním 0.6 (0.6.1 přidá podporu pro ty, kteří nemohou přesměrovat své porty ani jiným způsobem přijímat příchozí UDP spojení).
 
 * 3) I2CP crypto
 

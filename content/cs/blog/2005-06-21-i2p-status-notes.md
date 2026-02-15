@@ -20,7 +20,7 @@ To poslední znamená, že nebudu tak často viset na irc jako dřív, alespoň 
 
 Ale dost o mně.
 
-[1] http://dev.i2p.net/pipermail/i2p/ [2] http://forum.i2p.net/
+[1] `http://dev.i2p.net/pipermail/i2p/` [2] `http://forum.i2p.net/`
 
 * 2) Dev[elopment] status
 

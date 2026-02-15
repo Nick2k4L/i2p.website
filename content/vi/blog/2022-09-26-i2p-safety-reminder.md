@@ -39,7 +39,7 @@ Chúng tôi có các trang web chính thức nơi mọi người có thể tải
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -55,6 +55,6 @@ Các dịch vụ này do các bên thứ ba vận hành, đôi khi là các côn
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-Bài viết này nhằm cung cấp các cách thẩm định nguồn để lấy gói Java I2P, được đại diện bởi mã nguồn nằm tại https://i2pgit.org/i2p-hackers/i2p.i2p và https://github.com/i2p/i2p.i2p, và có thể tải xuống từ trang web https://geti2p.net/. Bài viết không nhằm phán xét các forks (nhánh tách) của bên thứ ba, các dự án downstream (hạ nguồn), embedders (bên tích hợp nhúng), packagers (người/nhóm đóng gói), những người đang thử nghiệm trong phòng thí nghiệm, hoặc những người đơn giản là không đồng ý với chúng tôi. Tất cả các bạn đều là những thành viên đáng quý của cộng đồng chúng tôi, những người đang cố gắng bảo vệ, chứ không làm tổn hại, quyền riêng tư của người khác. Vì chúng tôi nhận thấy có những nỗ lực mạo danh các thành viên cộng đồng dự án I2P, bạn có thể muốn rà soát lại các quy trình tải xuống, xác minh và cài đặt mà bạn khuyến nghị cho người dùng của mình, nhằm tài liệu hóa các nguồn chính thức và các mirrors (máy chủ phản chiếu) đã biết của bạn.
+Bài viết này nhằm cung cấp các cách thẩm định nguồn để lấy gói Java I2P, được đại diện bởi mã nguồn nằm tại `https://i2pgit.org/i2p-hackers/i2p.i2p` và `https://github.com/i2p/i2p.i2p`, và có thể tải xuống từ trang web `https://geti2p.net/.` Bài viết không nhằm phán xét các forks (nhánh tách) của bên thứ ba, các dự án downstream (hạ nguồn), embedders (bên tích hợp nhúng), packagers (người/nhóm đóng gói), những người đang thử nghiệm trong phòng thí nghiệm, hoặc những người đơn giản là không đồng ý với chúng tôi. Tất cả các bạn đều là những thành viên đáng quý của cộng đồng chúng tôi, những người đang cố gắng bảo vệ, chứ không làm tổn hại, quyền riêng tư của người khác. Vì chúng tôi nhận thấy có những nỗ lực mạo danh các thành viên cộng đồng dự án I2P, bạn có thể muốn rà soát lại các quy trình tải xuống, xác minh và cài đặt mà bạn khuyến nghị cho người dùng của mình, nhằm tài liệu hóa các nguồn chính thức và các mirrors (máy chủ phản chiếu) đã biết của bạn.
 
 *Lưu ý của tác giả: Một phiên bản trước đó của bài viết trên blog này chứa dấu vân tay TLS của từng dịch vụ do Dự án I2P vận hành. Những dấu vân tay này đã được gỡ bỏ khi việc gia hạn chứng chỉ khiến chúng trở nên không chính xác.*

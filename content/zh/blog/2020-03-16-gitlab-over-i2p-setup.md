@@ -55,7 +55,7 @@ docker run --detach \
 
 ### Gitlab Web(HTTP) Interface
 
-对于 Web 界面，请使用 "HTTP" 服务器 tunnel。通过 http://127.0.0.1:7657/i2ptunnelmgr 启动 "New Tunnel Wizard"，并输入以下值：
+对于 Web 界面，请使用 "HTTP" 服务器 tunnel。通过 `http://127.0.0.1:7657/i2ptunnelmgr` 启动 "New Tunnel Wizard"，并输入以下值：
 
 1. Select "Server Tunnel"
 2. Select "HTTP Server"
@@ -66,7 +66,7 @@ docker run --detach \
 
 ### Gitlab SSH Interface
 
-对于 SSH 接口，使用 "Standard" 服务器 tunnel。从 http://127.0.0.1:7657/i2ptunnelmgr 启动 "New Tunnel Wizard"，并输入以下值:
+对于 SSH 接口，使用 "Standard" 服务器 tunnel。从 `http://127.0.0.1:7657/i2ptunnelmgr` 启动 "New Tunnel Wizard"，并输入以下值:
 
 1. Select "Server Tunnel"
 2. Select "Standard Server"

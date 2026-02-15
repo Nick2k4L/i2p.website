@@ -32,7 +32,7 @@ Ya es abril, así que la hoja de ruta [1] se ha actualizado en consecuencia - de
 
 Aum ha estado trabajando a toda máquina en Q, añadiendo más novedades para nosotros, con las últimas capturas de pantalla publicadas en su sitio [2]. También ha hecho commit del código en CVS (¡genial!), así que esperamos poder comenzar las pruebas alfa pronto. Estoy seguro de que oiremos más de aum con detalles sobre cómo ayudar, o puedes explorar el contenido en CVS en i2p/apps/q/
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

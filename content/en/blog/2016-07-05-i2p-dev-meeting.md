@@ -14,13 +14,13 @@ categories: ["meeting"]
 
 <div class="irc-log">
 21:00:23 &lt;zzz&gt; 0) Hi
-21:00:23 &lt;zzz&gt; 1) HOPE update (zzz) http://zzz.i2p/topics/1968
+21:00:23 &lt;zzz&gt; 1) HOPE update (zzz) `http://zzz.i2p/topics/1968`
 21:00:23 &lt;zzz&gt; 2) 0.9.27 update (zzz)
 21:00:23 &lt;zzz&gt; 3) Summer of X update (sadie/str4d)
 21:00:27 &lt;zzz&gt; 0) Hi
 21:00:29 &lt;zzz&gt; hi
 21:00:47 &lt;psi&gt; hi
-21:00:48 &lt;zzz&gt; 1) HOPE update (zzz) http://zzz.i2p/topics/1968
+21:00:48 &lt;zzz&gt; 1) HOPE update (zzz) `http://zzz.i2p/topics/1968`
 21:00:48 &lt;i2pr&gt; [Slack/str4d] Hi
 21:01:13 &lt;zzz&gt; ok, HOPE is in 2 1/2 weeks. The possible lunch meeting with Lance on Friday is still TBD
 21:01:42 &lt;zzz&gt; please keep friday lunch open, I don't expect we will know if it's off or on until that week

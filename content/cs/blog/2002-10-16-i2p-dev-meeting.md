@@ -6,7 +6,7 @@ description: "Zápis z vývojářského setkání I2P ze 16. října 2002."
 categories: ["meeting"]
 ---
 
-(S laskavým svolením wayback machine http://www.archive.org/)
+(S laskavým svolením wayback machine `http://www.archive.org/`)
 
 ## Rychlé shrnutí
 

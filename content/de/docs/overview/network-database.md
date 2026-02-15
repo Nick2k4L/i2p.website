@@ -71,7 +71,7 @@ Gültige NetID-Nummern:
 | Reserviert | 255 |
 ### Zusätzliche Optionen
 
-Zusätzliche Textoptionen umfassen eine kleine Anzahl von Statistiken über die Gesundheit des routers, die von Websites wie [stats.i2p](http://stats.i2p/) für Netzwerkleistungsanalyse und Fehlersuche aggregiert werden. Diese Statistiken wurden ausgewählt, um für die Entwickler entscheidende Daten bereitzustellen, wie tunnel-Aufbau-Erfolgsraten, während gleichzeitig der Bedarf an solchen Daten mit den Nebenwirkungen abgewogen wird, die durch die Preisgabe dieser Daten entstehen könnten. Aktuelle Statistiken beschränken sich auf:
+Zusätzliche Textoptionen umfassen eine kleine Anzahl von Statistiken über die Gesundheit des routers, die von Websites wie stats.i2p für Netzwerkleistungsanalyse und Fehlersuche aggregiert werden. Diese Statistiken wurden ausgewählt, um für die Entwickler entscheidende Daten bereitzustellen, wie tunnel-Aufbau-Erfolgsraten, während gleichzeitig der Bedarf an solchen Daten mit den Nebenwirkungen abgewogen wird, die durch die Preisgabe dieser Daten entstehen könnten. Aktuelle Statistiken beschränken sich auf:
 
 - Erfolgs-, Ablehnungs- und Timeout-Raten beim Aufbau explorativer tunnel
 - 1-Stunden-Durchschnitt der Anzahl teilnehmender tunnel
@@ -136,7 +136,7 @@ Es kann wünschenswert sein, Meta LeaseSets mit langen Ablaufzeiten dauerhaft zu
 ### Siehe auch
 
 - [RouterInfo-Spezifikation](/docs/specs/common-structures/#struct_RouterInfo)
-- [RouterInfo Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
+- RouterInfo Javadoc
 
 ---
 
@@ -159,8 +159,8 @@ Zusätzlich zu diesen Leases enthält das LeaseSet:
 
 - [Lease-Spezifikation](/docs/specs/common-structures/#struct_Lease)
 - [LeaseSet-Spezifikation](/docs/specs/common-structures/#struct_LeaseSet)
-- [Lease Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
-- [LeaseSet Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
+- Lease Javadoc
+- LeaseSet Javadoc
 
 Ab Version 0.9.38 sind drei neue Arten von LeaseSets definiert: LeaseSet2, MetaLeaseSet und EncryptedLeaseSet. Siehe unten.
 

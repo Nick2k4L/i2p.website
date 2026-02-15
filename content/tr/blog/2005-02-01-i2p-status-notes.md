@@ -18,19 +18,19 @@ Herkese merhaba, haftalık durum zamanı
 
 Daha önce belirtildiği gibi, ilk 0.5 sürümü, farklı tunnel eş seçimi/sıralaması stratejilerinin çalışmasına olanak tanıyacak temeli sağlayacaktır. Öncelikle keşif ve istemci havuzları için temel bir dizi yapılandırılabilir parametreyle başlayacağız, ancak ilerideki sürümler muhtemelen farklı kullanıcı profilleri için başka seçenekler de içerecektir.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) nntp
 
 LazyGuy'un sitesinde [2] ve blogumda [3] belirtildiği gibi, ağda yeni bir NNTP sunucumuz çalışır durumda ve nntp.fr.i2p adresinden erişilebilir. LazyGuy, gmane'den birkaç listeyi almak için bazı suck [4] betiklerini çalıştırmış olsa da, içerik büyük ölçüde I2P kullanıcılarına ait, onlar için ve onlar tarafından. jdot, LazyGuy ve ben hangi haber okuyucularının güvenle kullanılabileceğine dair biraz araştırma yaptık ve oldukça kolay çözümler olduğu görülüyor. Anonim haber okuma ve gönderme için slrn [5] çalıştırma talimatları için bloguma bakın.
 
-[2] http://fr.i2p/ [3] http://jrandom.dev.i2p/ [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
+[2] `http://fr.i2p/` [3] `http://jrandom.dev.i2p/` [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
 
 * 3) tech proposals
 
 Orion ve diğerleri, daha zor istemci ve uygulama düzeyi sorunlarını ayrıntılandırmaya yardımcı olmak için çeşitli teknik konulara ilişkin bir dizi RFC’yi ugha’nın wiki’sinde [6] yayınladılar. Lütfen adlandırma konularını, SAM ile ilgili güncellemeleri, swarming fikirlerini (eşzamanlı çoklu eşten veri paylaşımı) ve benzerlerini tartışmak için orayı bir yer olarak kullanın - oraya yazdığınızda, daha iyi bir sonuç elde etmek için hepimiz kendi alanımızda birlikte çalışabiliriz.
 
-[6] http://ugha.i2p/I2pRfc
+[6] `http://ugha.i2p/I2pRfc`
 
 * 4) ???
 

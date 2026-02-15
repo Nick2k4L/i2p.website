@@ -22,9 +22,9 @@ categories: ["status"]
 
 최근 I2Phex 쪽에서도 활동이 많았고, 새로운 0.1.1.35 릴리스가 나왔습니다 [1]. 또한 CVS에도 추가 변경 사항이 있었으며(고마워요, Legion!), 이번 주 후반에 0.1.1.36이 나와도 놀랍지 않겠습니다.
 
-gwebcache 쪽에서도 상당한 진전이 있었습니다(see http://awup.i2p/), 하지만 제가 아는 한 I2P 지원 gwebcache를 사용하도록 I2Phex를 수정하는 작업을 시작한 사람은 아직 없습니다(관심 있으신가요? 알려 주세요!).
+gwebcache 쪽에서도 상당한 진전이 있었습니다(see `http://awup.i2p/),` 하지만 제가 아는 한 I2P 지원 gwebcache를 사용하도록 I2Phex를 수정하는 작업을 시작한 사람은 아직 없습니다(관심 있으신가요? 알려 주세요!).
 
-[1] http://forum.i2p.net/viewtopic.php?t=1157
+[1] `http://forum.i2p.net/viewtopic.php?t=1157`
 
 * 3) I2P-Rufus
 
@@ -40,7 +40,7 @@ gwebcache 쪽에서도 상당한 진전이 있었습니다(see http://awup.i2p/)
 
 또한 Syndie UI 개편 [3]과 관련한 논의도 진행 중이며, 조만간 그 부분에서 어느 정도 진전을 보게 될 것으로 기대합니다. dust는 Sucker 작업에도 매진하고 있으며, Syndie로 더 많은 RSS/Atom 피드를 가져올 수 있도록 지원을 개선하는 한편, SML 자체에 대한 몇 가지 개선도 추가하고 있습니다.
 
-[3] http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true
+[3] `http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true`
 
 * 6) ???
 

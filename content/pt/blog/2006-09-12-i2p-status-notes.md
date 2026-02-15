@@ -20,7 +20,7 @@ Há poucos dias lançamos a versão 0.6.1.25, incluindo um grande conjunto de co
 
 As atualizações de zzz no I2PSnark incluíram otimizações de protocolo, bem como alterações nas interfaces web, conforme descrito no log de histórico [1]. Também houve algumas pequenas atualizações para o I2PSnark desde a versão 0.6.1.25, e talvez zzz possa nos dar uma visão geral do que há de novo durante a reunião desta noite.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

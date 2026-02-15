@@ -18,7 +18,7 @@ Birkaç colocation sunucusuyla boğuştuktan sonra, eski hizmetlerin bir kısmı
 
 * 2) SSU testing
 
-Herkesin router console’undaki küçük sarı kutuda belirtildiği gibi, SSU için canlı ağ testlerinin bir sonraki turuna başladık. Testler herkes için değil, ancak maceraseverseniz ve manuel yapılandırma yapmaktan çekinmiyorsanız, router console’unuzda belirtilen ayrıntılara göz atın (http://localhost:7657/index.jsp). Birden fazla test turu olabilir, ancak 0.6 sürümünden önce SSU’da büyük değişiklikler öngörmüyorum (0.6.1, portlarını yönlendiremeyen veya başka şekilde gelen UDP bağlantılarını alamayanlar için destek ekleyecek).
+Herkesin router console’undaki küçük sarı kutuda belirtildiği gibi, SSU için canlı ağ testlerinin bir sonraki turuna başladık. Testler herkes için değil, ancak maceraseverseniz ve manuel yapılandırma yapmaktan çekinmiyorsanız, router console’unuzda belirtilen ayrıntılara göz atın (`http://localhost:7657/index.jsp).` Birden fazla test turu olabilir, ancak 0.6 sürümünden önce SSU’da büyük değişiklikler öngörmüyorum (0.6.1, portlarını yönlendiremeyen veya başka şekilde gelen UDP bağlantılarını alamayanlar için destek ekleyecek).
 
 * 3) I2CP crypto
 

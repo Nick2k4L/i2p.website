@@ -26,11 +26,11 @@ categories: ["status"]
 
 自 0.4.2.5 版本发布以来，CVS 中已加入一些修复和新功能，我们计划很快推出，其中包括针对 streaming 库的可靠性修复、提升对 IP 地址变更的适应性，以及捆绑 ragnarok 的地址簿实现。
 
-如果你还没听说过地址簿或尚未使用它，简而言之，它会通过定期从一些匿名托管的站点获取并合并更改，自动更新你的 hosts.txt 文件（默认为 http://dev.i2p/i2p/hosts.txt 和 http://duck.i2p/hosts.txt）。你无需更改任何文件、修改任何配置，或运行任何额外的应用程序 - 它将作为一个标准的 .war 文件部署在 I2P router 内部。
+如果你还没听说过地址簿或尚未使用它，简而言之，它会通过定期从一些匿名托管的站点获取并合并更改，自动更新你的 hosts.txt 文件（默认为 `http://dev.i2p/i2p/hosts.txt` 和 `http://duck.i2p/hosts.txt）。你无需更改任何文件、修改任何配置，或运行任何额外的应用程序` - 它将作为一个标准的 .war 文件部署在 I2P router 内部。
 
 当然，如果你*确实*想要深入折腾地址簿，非常欢迎 - 详情请参见 Ragnarok 的网站 [2]。已经在其 router 上部署了地址簿的用户在 0.4.2.6 升级过程中需要稍微折腾一下，但它会与您之前的所有配置设置正常工作。
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -40,7 +40,7 @@ categories: ["status"]
 
 jdot 搭建了一个新的 Jabber 服务器，看起来无论是一对一交流还是群聊都运行得相当不错。请在论坛 [3] 查看相关信息。I2P 开发讨论频道仍然在 IRC #i2p，不过有备选方案总是好的。
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

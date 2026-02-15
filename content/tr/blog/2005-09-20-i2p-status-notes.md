@@ -14,7 +14,7 @@ Merhaba millet, yine salı.
 
 * 1) 0.6.0.6
 
-Geçen cumartesi yayımlanan 0.6.0.6 sürümüyle birlikte, canlı ağda devrede bir dizi yeni bileşenimiz var ve hepiniz yükseltme konusunda harika iş çıkardınız - birkaç saat önce itibarıyla, neredeyse 250 router yükseltildi! Ağ da iyi gidiyor gibi görünüyor ve introductions (introduction mekanizması) şu ana kadar çalışıyor - http://localhost:7657/oldstats.jsp ile kendi introduction etkinliğinizi, udp.receiveHolePunch ve udp.receiveIntroRelayResponse metriklerine bakarak izleyebilirsiniz (NAT'lerin arkasında olanlar için udp.receiveRelayIntro da).
+Geçen cumartesi yayımlanan 0.6.0.6 sürümüyle birlikte, canlı ağda devrede bir dizi yeni bileşenimiz var ve hepiniz yükseltme konusunda harika iş çıkardınız - birkaç saat önce itibarıyla, neredeyse 250 router yükseltildi! Ağ da iyi gidiyor gibi görünüyor ve introductions (introduction mekanizması) şu ana kadar çalışıyor - `http://localhost:7657/oldstats.jsp` ile kendi introduction etkinliğinizi, udp.receiveHolePunch ve udp.receiveIntroRelayResponse metriklerine bakarak izleyebilirsiniz (NAT'lerin arkasında olanlar için udp.receiveRelayIntro da).
 
 bu arada, "Status: ERR-Reject" artık gerçekten bir hata değil, bu yüzden belki bunu "Status: OK (NAT)" olarak değiştirmeliyiz?
 
@@ -38,7 +38,7 @@ Bu zip'in içindeki i2phex.exe, Windows'ta doğrudan çalıştırılarak, *nix/o
 
 I2Phex’in bakımını üstlenmiyorum, ama cvs’de güncellemeler olduğunda gelecekteki I2Phex sürümlerini web sitesine ekleyeceğim. Eğer biri onu açıklayan/tanıtan ve yayımlayabileceğimiz bir web sayfası üzerinde çalışmak isterse (sirup, orada mısın?), sirup.i2p’ye bağlantılar, yararlı forum gönderileri ve legion’un etkin eşler listesiyle birlikte, harika olurdu.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip ve     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (anahtarımla imzalanmıştır)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` ve     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (anahtarımla imzalanmıştır)
 
 * 3) migration
 
@@ -46,6 +46,6 @@ I2P servisleri için colo (ortak barındırma) sunucularını değiştirdik, anc
 
 * 4) ???
 
-Son zamanlarda i2p listesinde epey ilginç tartışmalar oldu; Adam’ın hoş yeni SMTP proxy/filtre aracı ve syndie’de bazı güzel yazılar da var (http://gloinsblog.i2p adresindeki gloin’in temasını gördünüz mü?). Şu anda uzun süredir devam eden bazı sorunlar için bazı değişiklikler üzerinde çalışıyorum, ancak bunlar yakın zamanda hazır olmayacak. Başka gündeme getirip tartışmak istediği bir şey olan olursa, GMT 20:00’de #i2p’deki toplantıya uğrayın (yaklaşık 10 dakika kadar sonra).
+Son zamanlarda i2p listesinde epey ilginç tartışmalar oldu; Adam’ın hoş yeni SMTP proxy/filtre aracı ve syndie’de bazı güzel yazılar da var (`http://gloinsblog.i2p` adresindeki gloin’in temasını gördünüz mü?). Şu anda uzun süredir devam eden bazı sorunlar için bazı değişiklikler üzerinde çalışıyorum, ancak bunlar yakın zamanda hazır olmayacak. Başka gündeme getirip tartışmak istediği bir şey olan olursa, GMT 20:00’de #i2p’deki toplantıya uğrayın (yaklaşık 10 dakika kadar sonra).
 
 =jr

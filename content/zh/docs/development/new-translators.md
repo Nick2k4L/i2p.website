@@ -18,7 +18,7 @@ aliases:
 
 **这是翻译 I2P 最简单的方法。** Transifex 提供了一个基于网页的界面,使翻译变得简单易用。
 
-1. 在 [Transifex](https://www.transifex.com/otf/I2P/) 注册
+1. 在 Transifex 注册
 2. 申请加入 I2P 翻译团队
 3. 直接在浏览器中开始翻译
 
@@ -40,7 +40,7 @@ aliases:
 
 ### 使用 Transifex（推荐）
 
-1. 访问 [Transifex 上的 I2P](https://www.transifex.com/otf/I2P/)
+1. 访问 Transifex 上的 I2P
 2. 选择 router console 项目
 3. 选择你的语言
 4. 开始翻译
@@ -88,7 +88,7 @@ poedit apps/routerconsole/locale/messages_es.po
 ant updaters
 # Install the update and check translations in the console
 ```
-**提交您的工作：** - 在 [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p) 上创建合并请求 - 或在 IRC 上与开发团队分享文件
+**提交您的工作：** - 在 GitLab 上创建合并请求 - 或在 IRC 上与开发团队分享文件
 
 ---
 
@@ -216,7 +216,7 @@ ant updaters
 准备好开始翻译了吗？
 
 1. **选择你的方式：**
-   - 快速开始：[在 Transifex 上注册](https://www.transifex.com/otf/I2P/)
+   - 快速开始：在 Transifex 上注册
    - 手动方式：加入 [IRC 上的 #i2p-dev 频道](/contact/#irc)
 
 2. **从小做起：** 先翻译几个字符串以熟悉流程

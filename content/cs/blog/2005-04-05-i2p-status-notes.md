@@ -20,11 +20,11 @@ Minulý týden vydaná verze 0.5.0.5 měla své plusy i mínusy - zásadní změ
 
 bla v poslední době provádí výzkum zaměřený na zlepšení našeho profilování peerů využitím jednoduchého bayesovského filtrování z nasbíraných statistik [1]. Vypadá to docela slibně, i když si nejsem jistý, v jaké fázi to v tuto chvíli je - možná bychom mohli během schůzky od bla získat aktualizaci?
 
-[1] http://forum.i2p.net/viewtopic.php?t=598     http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`     `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-U aplikace Q od auma dochází k velkému pokroku, a to jak v oblasti základní funkčnosti, tak i díky práci několika lidí na různých xmlrpc frontendech. Proslýchá se, že bychom už tento víkend mohli vidět další sestavení Q s celou řadou novinek popsaných na http://aum.i2p/q/
+U aplikace Q od auma dochází k velkému pokroku, a to jak v oblasti základní funkčnosti, tak i díky práci několika lidí na různých xmlrpc frontendech. Proslýchá se, že bychom už tento víkend mohli vidět další sestavení Q s celou řadou novinek popsaných na `http://aum.i2p/q/`
 
 * 4) ???
 

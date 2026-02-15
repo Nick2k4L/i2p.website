@@ -18,11 +18,11 @@ categories: ["status"]
 
 我确实收到一个关于新 netDb 的工作原理的提问，并已在我的博客[2]上发布了答案[1]。一如既往，如果有人对这类事情有任何疑问，请随时转给我，无论是在列表上还是私下、在论坛上，甚至在你的博客上 ;)
 
-[1] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1125792000000&expand=true [2] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[1] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1125792000000&expand=true` [2] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=`
 
 * 2) Syndie status
 
-正如你可以从 syndiemedia.i2p（以及 http://syndiemedia.i2p.net/）看到的那样，最近有了不少进展，包括 RSS、pet names（昵称体系）、管理控制，以及开始合理地使用 css。Isamoor 的大部分建议已经部署，Adam 的也一样，所以如果有人有希望在其中看到的内容，请给我发个消息！
+正如你可以从 syndiemedia.i2p（以及 `http://syndiemedia.i2p.net/）看到的那样，最近有了不少进展，包括` RSS、pet names（昵称体系）、管理控制，以及开始合理地使用 css。Isamoor 的大部分建议已经部署，Adam 的也一样，所以如果有人有希望在其中看到的内容，请给我发个消息！
 
 Syndie 现在已经非常接近测试版（beta），届时它将作为默认 I2P 应用之一发布，同时也会打包为独立版本，因此任何帮助都将不胜感激。随着今天最新的新增内容（在 cvs 中），为 Syndie 定制皮肤也变得轻而易举 - 你只需在你的 i2p/docs/ 目录中创建一个新文件 syndie_standard.css，指定的样式就会覆盖 Syndie 的默认设置。关于这方面的更多信息可以在我的博客 [2] 找到。
 
@@ -30,7 +30,7 @@ Syndie 现在已经非常接近测试版（beta），届时它将作为默认 I2
 
 Susi 又为我们迅速做出了一个 Web 应用程序 - susidns [3]。它作为用于管理地址簿应用的简单界面 - 其条目、订阅等。它看起来相当不错，所以希望我们很快就能将它作为默认应用之一发布，但在此之前，你可以很轻松地从她的 eepsite(I2P 站点) 获取它，保存到你的 webapps 目录，重启你的 router，就可以开始使用了。
 
-[3] http://susi.i2p/?page_id=13
+[3] `http://susi.i2p/?page_id=13`
 
 * 4) ???
 

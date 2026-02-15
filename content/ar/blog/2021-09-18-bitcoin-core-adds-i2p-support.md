@@ -14,7 +14,7 @@ categories: ["general"]
 
 ## تهيئة I2P Router الخاص بك
 
-لإعداد I2P Router لتوفير اتصال مجهول ببيتكوين، يجب تمكين SAM API. في Java I2P، ينبغي الانتقال إلى http://127.0.0.1:7657/configclients وبدء تشغيل SAM Application Bridge باستخدام زر "Start". قد ترغب أيضًا في تمكين SAM Application Bridge افتراضيًا عبر تحديد مربع "Run at Startup" والنقر على "Save Client Configuration."
+لإعداد I2P Router لتوفير اتصال مجهول ببيتكوين، يجب تمكين SAM API. في Java I2P، ينبغي الانتقال إلى `http://127.0.0.1:7657/configclients` وبدء تشغيل SAM Application Bridge باستخدام زر "Start". قد ترغب أيضًا في تمكين SAM Application Bridge افتراضيًا عبر تحديد مربع "Run at Startup" والنقر على "Save Client Configuration."
 
 في i2pd، يكون SAM API مُفعّلًا عادةً بشكل افتراضي، ولكن إن لم يكن كذلك، ينبغي عليك تعيين:
 

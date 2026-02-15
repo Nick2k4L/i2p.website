@@ -8,14 +8,14 @@ accurateFor: "0.9.59"
 
 ## Aperçu {#overview}
 
-I2PTunnel est un outil permettant d'interfacer avec et de fournir des services sur I2P. La destination d'un I2PTunnel peut être définie en utilisant un [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), ou une clé de destination complète de 516 octets. Un I2PTunnel établi sera disponible sur votre machine cliente en tant que localhost:port. Si vous souhaitez fournir un service sur le réseau I2P, vous créez simplement un I2PTunnel vers l'adresse_ip:port appropriée. Une clé de destination correspondante de 516 octets sera générée pour le service et celui-ci deviendra disponible dans tout I2P. Une interface web pour la gestion d'I2PTunnel est disponible sur [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
+I2PTunnel est un outil permettant d'interfacer avec et de fournir des services sur I2P. La destination d'un I2PTunnel peut être définie en utilisant un [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), ou une clé de destination complète de 516 octets. Un I2PTunnel établi sera disponible sur votre machine cliente en tant que localhost:port. Si vous souhaitez fournir un service sur le réseau I2P, vous créez simplement un I2PTunnel vers l'adresse_ip:port appropriée. Une clé de destination correspondante de 516 octets sera générée pour le service et celui-ci deviendra disponible dans tout I2P. Une interface web pour la gestion d'I2PTunnel est disponible sur `http://localhost:7657/i2ptunnel/`.
 
 ## Services par défaut {#default-services}
 
 ### Tunnels serveur {#default-server-tunnels}
 
 - **I2P Webserver** - Un tunnel pointé vers un serveur web Jetty fonctionnant
-  sur [localhost:7658](http://localhost:7658) pour un hébergement pratique et rapide sur I2P.
+  sur `http://localhost:7658` pour un hébergement pratique et rapide sur I2P.
   Le répertoire racine des documents est :
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, qui se développe en : `C:\Users\**nom_utilisateur**\AppData\Local\I2P\I2P Site\docroot`

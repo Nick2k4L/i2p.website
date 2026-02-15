@@ -6,7 +6,7 @@ description: "I2P development meeting log for June 4, 2002."
 categories: ["meeting"]
 ---
 
-(Courtesy of the wayback machine http://www.archive.org/)
+(Courtesy of the wayback machine `http://www.archive.org/`)
 
 ## Quick recap
 

@@ -30,7 +30,7 @@ Hay otras estrategias interesantes por abordar, pero esas tres son las más rele
 
 Hay más cosas útiles por hacer de las que puedo contar, pero solo quiero llamar su atención sobre una entrada en mi blog que describe cinco pequeños proyectos que un programador podría armar rápidamente sin invertir demasiado tiempo [1]. Si alguien está interesado en ponerse con alguno de ellos, estoy seguro de que asignaríamos algunos recursos [2] del fondo general a modo de agradecimiento, aunque me doy cuenta de que la mayoría de ustedes lo hace por el hack y no por el dinero ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

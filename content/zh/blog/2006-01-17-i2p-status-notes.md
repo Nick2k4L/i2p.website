@@ -22,13 +22,13 @@ categories: ["status"]
 
 我前几天草拟了一个新的 tunnel（隧道）加密方案的规范草案，并把它发到了我的 Syndie 博客上，在实际实现时出现的一些小改动之后，我们已经在 CVS [4] 中整理出了一份规范。CVS [5] 里也有实现它的基础代码，不过它还没有接入到实际的 tunnel 构建中。如果有人有空，我很希望能得到关于该规范的反馈。与此同时，我会继续开发新的 tunnel 构建代码。
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html 并     查看与引导攻击相关的讨论串 [2] http://dev.i2p.net/pipermail/i2p/2005-October/001064.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001057.html [4] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD [5] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/                        i2p/router/tunnel/BuildMessageTest.java
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` 并     查看与引导攻击相关的讨论串 [2] `http://dev.i2p.net/pipermail/i2p/2005-October/001064.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001057.html` [4] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD [5] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/`                        i2p/router/tunnel/BuildMessageTest.java
 
 * 3) Syndie blogs
 
-如前所述，这个新的 0.6.1.9 版本对 Syndie 博客界面进行了较大改版，其中包括 cervantes 的新样式，以及每个用户可自行选择的博客链接和徽标（例如 [6]）。你可以在个人资料页面点击 "configure your blog" 链接来控制左侧的那些链接，它会将你带到 http://localhost:7657/syndie/configblog.jsp。  一旦你在那里做出更改，下一次你将帖子推送到某个存档站点（archive）时，这些信息就会对他人可见。
+如前所述，这个新的 0.6.1.9 版本对 Syndie 博客界面进行了较大改版，其中包括 cervantes 的新样式，以及每个用户可自行选择的博客链接和徽标（例如 [6]）。你可以在个人资料页面点击 "configure your blog" 链接来控制左侧的那些链接，它会将你带到 `http://localhost:7657/syndie/configblog.jsp。`  一旦你在那里做出更改，下一次你将帖子推送到某个存档站点（archive）时，这些信息就会对他人可见。
 
-[6] http://syndiemedia.i2p.net/     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[6] `http://syndiemedia.i2p.net/`     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
 
 * 4) ???
 

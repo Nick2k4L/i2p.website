@@ -26,7 +26,7 @@ Na používání krátkých exponentů panuje řada protichůdných názorů a v
 
 Tou hlavní alternativou je přejít na 1024bitové šifrování (v jehož rámci bychom pak mohli případně použít 160bitový krátký exponent). To může být vhodné tak jako tak, a pokud bude 2048bitové šifrování na _PRE net příliš náročné, můžeme provést přechod už v rámci _PRE net. V opačném případě můžeme počkat až do vydání 0.6.1.10, kdy bude nová kryptografie nasazena ve větším měřítku, abychom zjistili, zda je to nutné. Pokud se takový přechod bude jevit jako pravděpodobný, bude následovat mnohem více informací.
 
-[1] "O dohodě na klíči Diffie-Hellman s krátkými exponenty" -     van Oorschot, Weiner na EuroCrypt 96.  zrcadleno na     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "O dohodě na klíči Diffie-Hellman s krátkými exponenty" -     van Oorschot, Weiner na EuroCrypt 96.  zrcadleno na     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 Každopádně je na _PRE net spousta pokroku, přičemž většina související komunikace probíhá v kanálu #i2p_pre na irc2p.
 

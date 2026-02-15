@@ -66,7 +66,7 @@ categories: ["meeting"]
 20:15:00  &lt;eche|on&gt; and meeh for alt/btc would be fine, too
 20:15:43  &lt;inscrut_&gt; is it possible to publicise the books?  perhaps as a dual-entry ledger?
 20:15:52  &lt;eche|on&gt; books?
-20:16:01  &lt;eche|on&gt; http://echelon.i2p/donations/index.html
+20:16:01  &lt;eche|on&gt; `http://echelon.i2p/donations/index.html`
 20:16:09  &lt;iRelay&gt; Title: Donations (at echelon.i2p)
 20:16:26  &lt;orion&gt; I want to make two separate proposals. The first one is thus: We should keep the money spread out in multiple currencies (dollar, euro, *coin).
 20:16:39  &lt;orion&gt; And they should be held in different jurisdictions.
@@ -132,7 +132,7 @@ categories: ["meeting"]
 20:38:16  &lt;str4d&gt; Everyone knows it
 20:38:24  &lt;orion&gt; Wait, what is resume?
 20:38:32  &lt;orion&gt; What is the context of this topic?
-20:38:50  &lt;zzz&gt; http://zzz.i2p/topics/1588 &lt;--- context
+20:38:50  &lt;zzz&gt; `http://zzz.i2p/topics/1588` &lt;--- context
 20:38:56  &lt;iRelay&gt; Title: zzz.i2p: Meeting Tues. Mar. 11 8 PM UTC (at zzz.i2p)
 20:38:57  &lt;topiltzin&gt; If the connection breaks during a fetch/clone/pull/push
 20:39:03  &lt;eche|on&gt; orion: on a big clone/pull/... tunnel breaks, does git start over from beginning or in middle of transaction?

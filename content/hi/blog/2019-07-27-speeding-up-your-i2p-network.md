@@ -18,7 +18,7 @@ categories: ["tutorial"]
 
 ## बैंडविड्थ सीमाओं का समायोजन
 
-चूंकि I2P एक peer-to-peer नेटवर्क है, आपको अपने नेटवर्क बैंडविड्थ का कुछ हिस्सा अन्य peers के साथ साझा करना होगा। आप यह चुन सकते हैं कि कितना साझा करना है, "I2P Bandwidth Configuration" में ("Configure Bandwidth" बटन I2P Router Console के "Applications and Configuration" सेक्शन में, या http://localhost:7657/config).
+चूंकि I2P एक peer-to-peer नेटवर्क है, आपको अपने नेटवर्क बैंडविड्थ का कुछ हिस्सा अन्य peers के साथ साझा करना होगा। आप यह चुन सकते हैं कि कितना साझा करना है, "I2P Bandwidth Configuration" में ("Configure Bandwidth" बटन I2P Router Console के "Applications and Configuration" सेक्शन में, या `http://localhost:7657/config).`
 
 ![I2P बैंडविड्थ कॉन्फ़िगरेशन](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ categories: ["tutorial"]
 
 हालाँकि, कई उपयोगकर्ताओं को यह ठीक-ठीक पता नहीं होता कि किन बैंडविड्थ सेटिंग्स को समायोजित करना है, इसलिए [I2P 0.9.38 release](https://geti2p.net/en/download) में एक नया इंस्टॉल विज़ार्ड पेश किया गया। इस विज़ार्ड में एक बैंडविड्थ परीक्षण शामिल है, जो स्वचालित रूप से (M-Lab के [NDT](https://www.measurementlab.net/tests/ndt/) की मदद से) पहचान करता है और उसी के अनुसार I2P की बैंडविड्थ सेटिंग्स समायोजित कर देता है।
 
-यदि आप विज़ार्ड को दोबारा चलाना चाहते हैं, उदाहरण के लिए आपके सेवा प्रदाता में परिवर्तन के बाद या क्योंकि आपने संस्करण 0.9.38 से पहले I2P स्थापित किया था, तो आप 'Setup' लिंक 'Help & FAQ' पृष्ठ पर से इसे पुनः प्रारंभ कर सकते हैं, या सीधे http://localhost:7657/welcome पर विज़ार्ड तक पहुँच सकते हैं।
+यदि आप विज़ार्ड को दोबारा चलाना चाहते हैं, उदाहरण के लिए आपके सेवा प्रदाता में परिवर्तन के बाद या क्योंकि आपने संस्करण 0.9.38 से पहले I2P स्थापित किया था, तो आप 'Setup' लिंक 'Help & FAQ' पृष्ठ पर से इसे पुनः प्रारंभ कर सकते हैं, या सीधे `http://localhost:7657/welcome` पर विज़ार्ड तक पहुँच सकते हैं।
 
 ![क्या आप "Setup" ढूंढ सकते हैं?](https://geti2p.net/images/blog/sidemenu.png)
 

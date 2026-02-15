@@ -30,7 +30,7 @@ categories: ["status"]
 
 Дел полезных — хоть пруд пруди, но я лишь хочу обратить ваше внимание на пост у меня в блоге с описанием пяти небольших проектов, которые разработчик мог бы наскоро собрать, не тратя слишком много времени [1]. Если кто-то захочет за них взяться, уверен, мы выделили бы немного ресурсов [2] из общего фонда в качестве благодарности, хотя я понимаю, что большинство из вас движимы хакерским интересом, а не деньгами ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

@@ -13,17 +13,17 @@ categories: ["meeting"]
 ## Meeting Log
 
 <div class="irc-log">
-20:02:10  &lt;zzz&gt; http://zzz.i2p/topics/1539
+20:02:10  &lt;zzz&gt; `http://zzz.i2p/topics/1539`
 20:02:10  &lt;zzz&gt; 0) hi
-20:02:10  &lt;zzz&gt; 1) jisko.i2p console home page submission http://zzz.i2p/topics/1539
-20:02:10  &lt;zzz&gt; 2) i2pjump.i2p addition http://zzz.i2p/topics/1539
-20:02:10  &lt;zzz&gt; 3) Host release files on i2p.no http://zzz.i2p/topics/1390
-20:02:10  &lt;zzz&gt; 4) OpenITP audit manager http://zzz.i2p/topics/1533 post #4
+20:02:10  &lt;zzz&gt; 1) jisko.i2p console home page submission `http://zzz.i2p/topics/1539`
+20:02:10  &lt;zzz&gt; 2) i2pjump.i2p addition `http://zzz.i2p/topics/1539`
+20:02:10  &lt;zzz&gt; 3) Host release files on i2p.no `http://zzz.i2p/topics/1390`
+20:02:10  &lt;zzz&gt; 4) OpenITP audit manager `http://zzz.i2p/topics/1533` post #4
 20:02:11  &lt;zzz&gt; 5) anything else
 20:02:13  &lt;zzz&gt; 6) baffer
 20:02:19  &lt;zzz&gt; 0) hi
 20:02:24  &lt;zzz&gt; hi
-20:02:40  &lt;zzz&gt; 1) jisko.i2p console home page submission http://zzz.i2p/topics/1539
+20:02:40  &lt;zzz&gt; 1) jisko.i2p console home page submission `http://zzz.i2p/topics/1539`
 20:02:46  &lt;zzz&gt; Is the jisko op here?
 20:03:35  &lt;zzz&gt; any comments on the jisko submission?
 20:03:44  &lt;topiltzin&gt; +1
@@ -36,7 +36,7 @@ categories: ["meeting"]
 20:07:13  &lt;str4d&gt; Hey, the more the merrier
 20:07:13  &lt;zzz&gt; indeed. I'll add it to mtn
 20:07:13  &lt;str4d&gt; Then if I go down, there are alternatives
-20:07:13  &lt;zzz&gt; 2) i2pjump.i2p addition http://zzz.i2p/topics/1539
+20:07:13  &lt;zzz&gt; 2) i2pjump.i2p addition `http://zzz.i2p/topics/1539`
 20:07:33  &lt;zzz&gt; I see tuna is not here but he claims he got all the tests to pass
 20:07:41  &lt;zzz&gt; and he posted his code
 20:07:46  &lt;zzz&gt; any objections?
@@ -44,7 +44,7 @@ categories: ["meeting"]
 20:08:22  &lt;eche|on2&gt; no objections so far
 20:09:17  &lt;zzz&gt; there's this guy emailing grothoff saying he was "inspired" by the jump code
 20:10:25  &lt;zzz&gt; hearing no objections, I'll ask tuna to add it to mtn since he has privs
-20:10:31  &lt;zzz&gt; 3) Host release files on i2p.no http://zzz.i2p/topics/1390
+20:10:31  &lt;zzz&gt; 3) Host release files on i2p.no `http://zzz.i2p/topics/1390`
 20:10:39  &lt;zzz&gt; Meeh, are you here?
 20:11:06  &lt;zzz&gt; we discussed at CCC, he said he almost certainly had the bandwidth
 20:11:22  &lt;zzz&gt; are there any reasonable alternatives?
@@ -89,7 +89,7 @@ categories: ["meeting"]
 20:23:42  &lt;zzz&gt; DarkestMatter, we are in the middle of a meeting if you would please wait about half an hour
 20:23:45  &lt;DarkestMatter&gt; Where would I need to symlink the ACTUAL dir into under JAVA_HOME for the build process to find them?
 20:24:06  &lt;zzz&gt; next on the agenda:
-20:24:06  &lt;zzz&gt; 4) OpenITP audit manager http://zzz.i2p/topics/1533 post #4
+20:24:06  &lt;zzz&gt; 4) OpenITP audit manager `http://zzz.i2p/topics/1533` post #4
 20:24:29  &lt;zzz&gt; background: OpenITP is about to open up their submission process
 20:24:38  &lt;zzz&gt; we need somebody in charge
 20:24:56  &lt;zzz&gt; They said we should apply even if we aren't ready
@@ -114,14 +114,14 @@ categories: ["meeting"]
 20:34:56  &lt;user&gt; and would he help you fix?
 20:34:58  &lt;zzz&gt; If you havent' seen it: http://www.kickstarter.com/projects/brandonwiley/operator-a-news-reader-that-circumvents-internet-c
 20:35:52  &lt;zzz&gt; I asked him to look at our openitp audit page on trac
-20:36:07  &lt;zzz&gt; http://trac.i2p2.i2p/wiki/OpenITPReview/Criteria
+20:36:07  &lt;zzz&gt; `http://trac.i2p2.i2p/wiki/OpenITPReview/Criteria`
 20:36:19  &lt;zzz&gt; and await openitp's announcement and submission process details
 20:36:26  &lt;str4d&gt; I2P has never (to my knowledge) had a proper security expert. I think paying for one to get the groundwork for this right is a good idea (and probably long overdue).
 20:36:27  &lt;user&gt; my opnion as an outsieder / user only, is that a few thousand $ should be ok, as long as it's &lt;10k and not just some makeup, but really thorough
 20:36:42  &lt;zzz&gt; until that's published it's not worth getting into negotiations with him
 20:36:53  &lt;zzz&gt; but Eleanor said any day...
 20:37:51  &lt;zzz&gt; eche|on, what's our balance? ~$500K?
-20:38:00  &lt;wowa&gt; If you want that I change  topic of http://zzz.i2p/topics/1546?
+20:38:00  &lt;wowa&gt; If you want that I change  topic of `http://zzz.i2p/topics/1546?`
 20:38:31  &lt;zzz&gt; wowa, we are in the middle of a meeting, please wait until we are done, thx
 20:38:36  &lt;eche|on2&gt; zzz: roughly 500 BTC and 50k 
 20:39:37  &lt;zzz&gt; sounds like people are positive about the idea. Sadly even if we hire him to be in charge, we need to find somebody to be in charge of him...

@@ -26,7 +26,7 @@ categories: ["status"]
 
 一个主要的替代方案是切换到 1024 位加密（这样我们或许就可以使用 160 位的短指数）。无论如何，这可能都是合适的；如果在 _PRE net（预发布网络）上使用 2048 位加密过于吃力，我们可能会在 _PRE net 内进行切换。否则，我们可能会等到 0.6.1.10 发布版，等新的加密方案更广泛地部署后，再评估是否有必要。如果看起来可能进行这样的切换，我们将提供更多信息。
 
-[1] "关于使用短指数的 Diffie-Hellman 密钥协商" -     van Oorschot、Weiner 于 EuroCrypt 96。  镜像位于     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "关于使用短指数的 Diffie-Hellman 密钥协商" -     van Oorschot、Weiner 于 EuroCrypt 96。  镜像位于     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 无论如何，_PRE net 上已经取得了大量进展，关于它的大部分交流都是在 irc2p 上的 #i2p_pre 频道中进行的。
 

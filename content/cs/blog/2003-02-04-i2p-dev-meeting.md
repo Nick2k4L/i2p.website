@@ -6,7 +6,7 @@ description: "Záznam z vývojářské schůzky I2P ze 4. února 2003."
 categories: ["meeting"]
 ---
 
-(S laskavým svolením wayback machine http://www.archive.org/)
+(S laskavým svolením wayback machine `http://www.archive.org/`)
 
 ## Rychlé shrnutí
 

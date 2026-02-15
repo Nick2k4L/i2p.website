@@ -6,7 +6,7 @@ description: "I2P विकास बैठक, जिसमें RC2 स्थ
 categories: ["meeting"]
 ---
 
-(के सौजन्य से Wayback Machine http://www.archive.org/)
+(के सौजन्य से Wayback Machine `http://www.archive.org/`)
 
 ## संक्षिप्त पुनरावलोकन
 

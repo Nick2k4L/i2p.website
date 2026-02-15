@@ -6,7 +6,7 @@ description: "Registro da reunião de desenvolvimento do I2P de 6 de novembro de
 categories: ["meeting"]
 ---
 
-(Cortesia da wayback machine http://www.archive.org/)
+(Cortesia da wayback machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

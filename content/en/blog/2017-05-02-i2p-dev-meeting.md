@@ -35,7 +35,7 @@ categories: ["meeting"]
 20:04:27 &lt;backup&gt; I thought we were some more people here :)
 20:04:27 &lt;manas&gt; :P
 20:04:33 &lt;zzz&gt; anything else on 2), 3), or 4), or any other topic for the meeting?
-20:04:44 &lt;manas&gt; I wanted to point out this thread: http://trac.i2p2.i2p/ticket/1139
+20:04:44 &lt;manas&gt; I wanted to point out this thread: `http://trac.i2p2.i2p/ticket/1139`
 20:04:46 &lt;manas&gt; *ticket
 20:04:54 &lt;manas&gt; We should try and get this change in the new UI
 20:05:21 &lt;manas&gt; "Semi-shutdown": Temporarily stopping accepting participating tunnels.

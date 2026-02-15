@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / http://127.0.0.1:8443/
-    ProxyPassReverse / http://127.0.0.1:8443/
+    ProxyPass / `http://127.0.0.1:8443/`
+    ProxyPassReverse / `http://127.0.0.1:8443/`
 </VirtualHost>
 ```
 ### पंजीकरण और समन्वय
@@ -554,7 +554,7 @@ https://checki2p.com/reseed पर उपलब्ध सेवा सभी प
 ### सामुदायिक संसाधन
 
 - **I2P फ़ोरम**: https://i2pforum.net/
-- **Gitea रिपॉजिटरी**: https://i2pgit.org/I2P_Developers/i2p.i2p
+- **Gitea रिपॉजिटरी**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev (IRC2P पर)
 - **स्थिति निगरानी**: https://checki2p.com/reseed
 

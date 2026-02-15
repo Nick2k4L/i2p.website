@@ -6,7 +6,7 @@ description: "2003년 12월 9일 I2P 개발 회의 로그."
 categories: ["meeting"]
 ---
 
-(Wayback Machine 제공 http://www.archive.org/)
+(Wayback Machine 제공 `http://www.archive.org/`)
 
 ## 간단 정리
 

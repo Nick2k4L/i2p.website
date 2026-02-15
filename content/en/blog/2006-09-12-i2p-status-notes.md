@@ -23,7 +23,7 @@ The other day we pushed out the 0.6.1.25 release, including the swarm of bugfixe
 
 zzz's updates to I2PSnark included protocol optimizations as well as web interfaces changes, as described in the history log [1]. There have been a few small updates for I2PSnark since the 0.6.1.25 release as well, and perhaps zzz can give us an overview of whats up on during the meeting tonight.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

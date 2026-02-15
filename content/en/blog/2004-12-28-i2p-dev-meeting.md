@@ -58,7 +58,7 @@ categories: ["meeting"]
 13:15 &lt;@jrandom&gt; aye, that is one way to look at it
 13:15 &lt;lektriK&gt; can I close the Start I2P window?
 13:15  * postman is very sorry NOT to restrict his bandwidth
-13:16 &lt;@jrandom&gt; lektriK: unfortunately, not really, unless you start i2p as a service (See http://localhost:7657/configservice.jsp)
+13:16 &lt;@jrandom&gt; lektriK: unfortunately, not really, unless you start i2p as a service (See `http://localhost:7657/configservice.jsp)`
 13:16 &lt;@jrandom&gt; heh postman dont worry, we'll back off your router if/when we reach your router's capacity
 13:17 &lt;lektriK&gt; Ok, it sais service started
 13:17 &lt;lektriK&gt; can I close it now?

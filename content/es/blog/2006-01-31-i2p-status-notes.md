@@ -20,7 +20,7 @@ Durante la última semana, he estado probando unos cuantos ajustes diferentes pa
 
 En lugar de batallar indefinidamente con pequeños ajustes, he estado trabajando en mi red de pruebas local para migrar al nuevo esquema criptográfico y proceso de creación de tunnel (túnel de I2P) [1]. Esto debería reducir en gran medida la tasa de fallos en la creación de tunnel, tras lo cual podremos ajustarlo más, si es necesario.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 Una consecuencia desafortunada es que la versión 0.6.1.10 no será compatible con versiones anteriores.  Hace mucho que no tenemos una versión incompatible con versiones anteriores, pero en los primeros tiempos lo hicimos varias veces, así que no debería ser un gran problema.  Básicamente, después de que funcione de maravilla en mi red de pruebas local, la desplegaremos en paralelo a unos cuantos valientes para pruebas iniciales; luego, cuando esté lista para el lanzamiento, simplemente cambiaremos las referencias de nodos semilla para que apunten a los nodos semilla de la nueva red y la publicaremos.
 

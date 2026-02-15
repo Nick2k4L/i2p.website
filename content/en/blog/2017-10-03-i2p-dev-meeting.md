@@ -101,7 +101,7 @@ categories: ["meeting"]
 18:59:08 &lt;zzz&gt; ok, anything else on 5) ?
 18:59:18 &lt;orignal_&gt; yes, please
 18:59:24 &lt;orignal_&gt; everybody wants to know
-18:59:28 &lt;zzz&gt; this is our standing post on it: http://i2p-projekt.i2p/en/misc/jrandom-awol
+18:59:28 &lt;zzz&gt; this is our standing post on it: `http://i2p-projekt.i2p/en/misc/jrandom-awol`
 18:59:43 &lt;zzz&gt; anything else for the meeting?
 19:00:19 &lt;orignal_&gt; yes, but nothing about you
 19:00:22 &lt;villain&gt; you have 7K budget on CCC trip, all from donation money? what it accomplishes to I2P?

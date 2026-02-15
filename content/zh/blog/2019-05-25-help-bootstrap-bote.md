@@ -16,12 +16,12 @@ I2P-bote 是一个构建在 i2p 之上的私人消息系统，它具备额外的
 
 **第一步：安装 I2P-Bote**
 
-I2P-Bote 是一个 I2P 插件，安装非常容易。原始说明可在 [bote eepSite, bote.i2p](http://bote.i2p/install/) 找到（eepSite 指 I2P 内部网站），但如果你想在明网阅读，以下说明由 bote.i2p 提供：
+I2P-Bote 是一个 I2P 插件，安装非常容易。原始说明可在 bote eepSite, bote.i2p 找到（eepSite 指 I2P 内部网站），但如果你想在明网阅读，以下说明由 bote.i2p 提供：
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **第二步：获取你的 I2P-Bote 节点的 base64 地址**
 
@@ -65,7 +65,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 
 如果这看起来有点繁琐，你也可以使用任意可用的 base32 地址查询方式，查询你的 Bote 连接的 base32 地址，从而找到其 base64 Destination（目标标识）。
 
-你的 Bote 节点的 base32 地址可以在 Bote 插件应用下的 "Connection"（连接）页面查看，位于 [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+你的 Bote 节点的 base32 地址可以在 Bote 插件应用下的 "Connection"（连接）页面查看，位于 `http://127.0.0.1:7657/i2pbote/network`
 
 **第三步：联系我们！**
 

@@ -38,7 +38,7 @@ categories: ["meeting"]
 16:10 &lt;+Complication&gt; So, just in case the recent NTP server sanity check (added with version .26) should inconvenience someone that night...
 16:11 &lt;+Complication&gt; ...I thought it'd be better if I mentioned the configuration key using which it can be disabled (if need should exist)
 16:11 &lt;+Complication&gt; (so folks who read status notes would know)
-16:12 &lt;+Complication&gt; Disabling it can be done by entering the line "router.clockOffsetSanityCheck=false" into http://localhost:7657/configadvanced.jsp
+16:12 &lt;+Complication&gt; Disabling it can be done by entering the line "router.clockOffsetSanityCheck=false" into `http://localhost:7657/configadvanced.jsp`
 16:12 &lt;+Complication&gt; But as mentioned, I do hope nobody needs that
 16:13 &lt;+Complication&gt; It will be interesting to watch and see how the network behaves that night, though, as different time zones start switching
 16:13 &lt;+Complication&gt; I'll certainly observe, in hope that if any anomaly is seen, perhaps it can be fixed by Spring :D

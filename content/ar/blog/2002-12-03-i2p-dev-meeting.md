@@ -6,7 +6,7 @@ description: "سجل اجتماع تطوير I2P ليوم 3 ديسمبر 2002."
 categories: ["meeting"]
 ---
 
-(بإذن من wayback machine http://www.archive.org/)
+(بإذن من wayback machine `http://www.archive.org/`)
 
 ## خلاصة سريعة
 

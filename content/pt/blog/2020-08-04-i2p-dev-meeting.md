@@ -28,7 +28,7 @@ categories: ["meeting"]
 (04:05:27 PM) eyedeekay1: Parece que também não vou conseguir concluir o rekeyOnIdle a tempo para a 0.9.47.
 (04:05:58 PM) eyedeekay1: O que será incluído são principalmente atualizações de elementos visuais do meu lado.
 (04:06:19 PM) eyedeekay1: Algo de zzz ou zlatinb sobre o lançamento 0.9.47?
-(04:06:43 PM) zzz: o resumo está em http://zzz.i2p/topics/2905
+(04:06:43 PM) zzz: o resumo está em `http://zzz.i2p/topics/2905`
 (04:06:49 PM) zzz: congelamento de tag daqui a uma semana a partir de amanhã
 (04:06:53 PM) zzz: lançamento em cerca de 3 semanas
 (04:07:07 PM) zzz: o diff está em cerca de 18.500 linhas, o que é bem típico
@@ -46,14 +46,14 @@ categories: ["meeting"]
 (04:12:53 PM) eyedeekay1: Esta é a reunião mensal.
 (04:12:53 PM) eyedeekay1: Eu não configurei um gateway WebIRC, pois, pelo que entendi, isso teria sido contra nossas regras do IRC.
 (04:13:13 PM) eyedeekay1: Agora eu tenho uma cópia das regras de anúncios de reuniões e a responsabilidade por esses anúncios foi esclarecida para mim.
-(04:13:25 PM) eyedeekay1: O anúncio para 1º de setembro, com a data correta desta vez, foi publicado. Ainda não há tópicos, por favor, adicione-os conforme necessário: http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc
+(04:13:25 PM) eyedeekay1: O anúncio para 1º de setembro, com a data correta desta vez, foi publicado. Ainda não há tópicos, por favor, adicione-os conforme necessário: `http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc`
 (04:14:55 PM) eyedeekay1: Isso, claro, virá pouco depois do lançamento 0.9.47
 (04:15:45 PM) eyedeekay1: Algo sobre o 2) de mais alguém?
 (04:17:57 PM) eyedeekay1: 3) Transição para Git
 (04:18:34 PM) eyedeekay1: A transição para Git está finalmente em andamento; temos um plano e estamos começando a executá-lo
 (04:19:08 PM) eyedeekay1: o nextloop e eu estamos fazendo progressos para espelhar as próximas poucas branches significativas do mtn no github
 (04:19:27 PM) eyedeekay1: estas ainda são somente leitura até a conclusão de suas respectivas fases na migração para git, ou seja, nada de pulls ou MRs ainda
-(04:20:04 PM) eyedeekay1: Para uma descrição detalhada dessas fases, veja: http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10
+(04:20:04 PM) eyedeekay1: Para uma descrição detalhada dessas fases, veja: `http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10`
 (04:20:42 PM) eyedeekay1: Seria útil para o nextloop e para mim se eu desse ao nextloop permissão para criar repositórios no namespace i2p no github e para escrever nos repositórios que ele criar.
 (04:20:47 PM) zzz: bom trabalho ao redigir o plano
 (04:21:24 PM) eyedeekay1: Obrigado, zzz, feliz por finalmente tê-lo em um estado utilizável

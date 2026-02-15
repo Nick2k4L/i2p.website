@@ -58,7 +58,7 @@ categories: ["meeting"]
 21:14:23  &lt;LaughingBuddha&gt; Not that I'm in the position to work on any of the bounties, but they seemed to quite vague last time i looked at them
 21:14:30  &lt;LaughingBuddha&gt; to be*
 21:14:37  &lt;orion&gt; The only thing that will draw attention to I2P is content.
-21:14:45  &lt;dg&gt; eche|on posted his thoughts here - http://zzz.i2p/topics/1359 - if he could not attend.
+21:14:45  &lt;dg&gt; eche|on posted his thoughts here - `http://zzz.i2p/topics/1359` - if he could not attend.
 21:14:48  &lt;nom&gt; imo bounties do not work, because a code base is only as good as its maintenance, and paying someone for 'completion' gives the wrong ideas/incentives about what we need in terms of developers, for code to be worth using on a distributed scale, it has to be continually worked on by motivated people. having one person create a code base, get paid and possibly disappear does nothing to benefit the community
 21:14:51  &lt;iRelay&gt; Title: zzz.i2p: Managing the project (at zzz.i2p)
 21:14:57  &lt;lillith&gt; str4d: instead, as opposed to...?
@@ -258,7 +258,7 @@ categories: ["meeting"]
 21:48:13  &lt;iRelay&gt; * str4d@freenode clones nom's brain
 21:48:14  &lt;dg&gt; nom: perhaps so, yeah. If we can arrange that, then we can come to a consensus on this..
 21:48:44  &lt;orion&gt; For the record, if you guys want to do something that requires giving up anonymity, I will do it.
-21:48:57  &lt;dg&gt; git clone http://git.repo.i2p/repo/nom.git
+21:48:57  &lt;dg&gt; git clone `http://git.repo.i2p/repo/nom.git`
 21:49:00  &lt;LaughingBuddha&gt; I'd consider it
 21:49:03  &lt;iRelay&gt; &lt;str4d@freenode&gt; Going "official" is primarily a financial decision IMHO; it doesn't really contribute to the structure.
 21:49:22  &lt;orion&gt; Even though I am opposed to the idea of going to the government, I will do it if that is what the project decides is best.

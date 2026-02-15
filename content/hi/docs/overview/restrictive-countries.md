@@ -68,6 +68,6 @@ I2P का यह कार्यान्वयन (इस साइट पर 
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-यदि आपको लगता है कि किसी देश को strict list में जोड़ा जाना चाहिए या हटाया जाना चाहिए, तो कृपया एक issue खोलें: https://i2pgit.org/i2p/i2p.i2p/
+यदि आपको लगता है कि किसी देश को strict list में जोड़ा जाना चाहिए या हटाया जाना चाहिए, तो कृपया एक issue खोलें: `https://i2pgit.org/i2p/i2p.i2p/`
 
 संदर्भ: Freedom House – https://freedomhouse.org/

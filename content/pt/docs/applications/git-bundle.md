@@ -18,7 +18,7 @@ Se você pretende gerar um bundle git, você **deve** já possuir uma cópia com
 
 ## Obtendo o Código Fonte do I2P via Bittorrent
 
-Alguém precisará fornecer um arquivo torrent ou um link magnet correspondente a um `git bundle` existente que já foi gerado para você. Um bundle recente e corretamente gerado do código-fonte principal i2p.i2p de quarta-feira, 18 de março de 2020, pode ser encontrado dentro do I2P no meu pastebin [paste.idk.i2p/f/4hq37i](http://paste.idk.i2p/f/4h137i).
+Alguém precisará fornecer um arquivo torrent ou um link magnet correspondente a um `git bundle` existente que já foi gerado para você. Um bundle recente e corretamente gerado do código-fonte principal i2p.i2p de quarta-feira, 18 de março de 2020, pode ser encontrado dentro do I2P no meu pastebin paste.idk.i2p/f/4hq37i.
 
 Uma vez que você tenha um bundle, precisará usar o git para criar um repositório de trabalho a partir dele. Se você estiver usando GNU/Linux e i2psnark, o git bundle deve estar localizado em $HOME/.i2p/i2psnark ou, como um serviço no Debian, em /var/lib/i2p/i2p-config/i2psnark. Se você estiver usando BiglyBT no GNU/Linux, provavelmente estará em "$HOME/BiglyBT Downloads/" em vez disso. Os exemplos aqui assumem I2PSnark no GNU/Linux, se você usar algo diferente, substitua o caminho para o bundle pelo diretório de download preferido pelo seu cliente e plataforma.
 

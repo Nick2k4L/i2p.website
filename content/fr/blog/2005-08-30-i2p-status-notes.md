@@ -22,13 +22,13 @@ Depuis la publication, quelques correctifs pour des erreurs persistantes ont ét
 
 Comme évoqué [1] sur mon blog [2], nous essayons un nouveau netDb (base de données du réseau) rétrocompatible qui traitera à la fois la situation de routes restreintes que nous observons (20 % des routers) et simplifiera un peu les choses. Le floodfill netDb est déployé dans le cadre de 0.6.0.3-4 sans aucune configuration supplémentaire et, en gros, fonctionne en interrogeant la floodfill db avant de revenir à la kademlia db existante. Si quelques personnes veulent aider à le tester, passez à 0.6.0.3-4 et faites un essai !
 
-[1] http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001 [2] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[1] `http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001` [2] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=`
 
 * 3) Syndie
 
 Le développement de Syndie progresse plutôt bien, avec une syndication distante complète opérationnelle et optimisée pour les besoins d'I2P (en minimisant le nombre de requêtes HTTP, en regroupant plutôt les résultats et les téléversements dans des requêtes HTTP POST multipart). La nouvelle syndication distante signifie que vous pouvez exécuter votre propre instance locale de Syndie, lire et publier hors ligne, puis, plus tard, synchroniser votre Syndie avec celle de quelqu'un d'autre - en récupérant tous les nouveaux billets et en téléversant les billets créés localement (soit en lot, par blog ou par billet).
 
-Un site Syndie public est syndiemedia.i2p (également accessible sur le web à l'adresse http://syndiemedia.i2p.net/), dont les archives publiques sont accessibles à l'adresse http://syndiemedia.i2p/archive/archive.txt (pointez votre nœud Syndie vers cette URL pour le synchroniser). La 'front page' sur ce syndiemedia a été filtrée pour n'inclure que mon blog, par défaut, mais vous pouvez toujours accéder aux autres blogs via le menu déroulant et modifier votre paramètre par défaut en conséquence. (avec le temps, le paramètre par défaut de syndiemedia.i2p évoluera vers un ensemble de billets et de blogs d'introduction, offrant un bon point d'entrée dans syndie).
+Un site Syndie public est syndiemedia.i2p (également accessible sur le web à l'adresse `http://syndiemedia.i2p.net/),` dont les archives publiques sont accessibles à l'adresse `http://syndiemedia.i2p/archive/archive.txt` (pointez votre nœud Syndie vers cette URL pour le synchroniser). La 'front page' sur ce syndiemedia a été filtrée pour n'inclure que mon blog, par défaut, mais vous pouvez toujours accéder aux autres blogs via le menu déroulant et modifier votre paramètre par défaut en conséquence. (avec le temps, le paramètre par défaut de syndiemedia.i2p évoluera vers un ensemble de billets et de blogs d'introduction, offrant un bon point d'entrée dans syndie).
 
 Un effort encore en cours est l’internationalisation de la base de code de Syndie. J’ai modifié ma copie locale pour qu’elle fonctionne correctement avec tout contenu (n’importe quel jeu de caractères / paramètres régionaux / etc.) sur n’importe quelle machine (avec des jeux de caractères / paramètres régionaux potentiellement différents / etc.), en fournissant des données propres afin que le navigateur de l’utilisateur puisse les interpréter correctement. Cependant, j’ai rencontré des problèmes avec un composant Jetty utilisé par Syndie, car leur classe chargée de traiter les requêtes multipart (multipart/form-data) internationalisées n’est pas sensible au jeu de caractères. Pas encore ;)
 
@@ -36,7 +36,7 @@ Quoi qu’il en soit, cela signifie qu’une fois la partie internationalisation
 
 De plus, parmi les idées encore à l’horizon pour SML [3] figure une balise [torrent attachment="1"]my file[/torrent] qui offrirait un moyen en un clic de lancer le torrent joint dans le client BT préféré des utilisateurs (susibt, i2p-bt, azneti2p, ou même un client BT non-I2P). Existe-t-il une demande pour d’autres types de hooks (points d’intégration) (par exemple une balise [ed2k] ?), ou bien les gens ont-ils des idées complètement différentes et folles pour diffuser du contenu dans Syndie ?
 
-[3] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000
+[3] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000`
 
 * 4) ???
 

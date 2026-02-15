@@ -58,7 +58,7 @@ categories: ["meeting"]
 13:15 &lt;mule&gt; what type of messages do you want to pad, those a router sees or those an external observer sees?
 13:15 &lt;jrandom&gt; mule: important question
 13:15 &lt;jrandom&gt; if we're just worried about the external observer, we can leave the messages unpadded, doing any chaff generation at the transport layer
-13:16 &lt;Teal`c&gt; http://microsoft.i2p/david_hasselhoff_05_christmas_album__silent_night.mp3
+13:16 &lt;Teal`c&gt; `http://microsoft.i2p/david_hasselhoff_05_christmas_album__silent_night.mp3`
 13:16 &lt;jrandom&gt; otoh, if we're worried about tunnel participants doing flow analysis, we need to worry about padding down the tunnel
 13:16 &lt;@duck&gt; with 5-6 hops, how big is the danger of a router doing traffic analysis?
 13:16 &lt;cervantes&gt; Teal`c: meeting atm... can you use #i2p-chat for mp3 announce ;-)
@@ -200,7 +200,7 @@ categories: ["meeting"]
 14:03 &lt;postman&gt; Ragnarok: after updating to 0.4.2.6 i found entries from my userhosts.txt in the published addressbook in my eepsite folder
 14:03 &lt;ant&gt; &lt;BS314159&gt; hmm
 14:04 &lt;postman&gt; Ragnarok: those have been manually added keys, which haven't been supposed to be published
-14:04 &lt;cervantes&gt; this week we recognise duck for general excellence as a service provider for the community and as an all round great idler: http://forum.i2p/viewtopic.php?t=275
+14:04 &lt;cervantes&gt; this week we recognise duck for general excellence as a service provider for the community and as an all round great idler: `http://forum.i2p/viewtopic.php?t=275`
 14:04 &lt;jrandom&gt; w00t!
 14:04 &lt;jrandom&gt; (go duck go, go duck go)
 14:05 &lt;Teal`c&gt; what about domain name hijacking ?

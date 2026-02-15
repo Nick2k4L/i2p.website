@@ -12,7 +12,7 @@ Mặc dù việc này khá dễ thực hiện, bạn vẫn nên cân nhắc mộ
 
 ### Bước Một: Mở trình hướng dẫn Tunnel
 
-Truy cập giao diện web I2P tại 127.0.0.1:7657 và mở [Trình quản lý Dịch vụ Ẩn](http://127.0.0.1:7657/i2ptunnelmgr) (liên kết tới localhost). Nhấp vào nút có ghi "Tunnel Wizard" để bắt đầu.
+Truy cập giao diện web I2P tại 127.0.0.1:7657 và mở `http://127.0.0.1:7657/i2ptunnelmgr` (liên kết tới localhost). Nhấp vào nút có ghi "Tunnel Wizard" để bắt đầu.
 
 ### Bước Hai: Chọn một Server Tunnel
 

@@ -57,7 +57,7 @@ categories: ["meeting"]
 20:09:03 &lt;zzz&gt; anything else on 2)? anything else the team wants to say about the browser?
 20:09:26 &lt;sadie__&gt; please test, join the mailing list!
 20:09:44 &lt;zzz&gt; want to plug how to subscribe to the mailing list sadie?
-20:10:02 &lt;meeh&gt; available at http://lists.i2p or https://lists.i2p.email
+20:10:02 &lt;meeh&gt; available at `http://lists.i2p` or https://lists.i2p.email
 20:10:17 &lt;zzz&gt; great
 20:10:20 &lt;sadie__&gt; sure - everything you need can be found on the site https://geti2p.net/en/browser/develop
 20:10:25 &lt;zzz&gt; anything else on 2)?

@@ -20,9 +20,9 @@ Karşı karşıya olduğumuz temel sorunun bu olduğunu doğrulamak için, biraz
 
 * 2) Feedspace
 
-Frosk, i2pcontent/fusenet dokümantasyonunun bir başka revizyonunu yayınladı; ancak bu kez yeni bir adla ve yeni bir yerde: http://feedspace.i2p/ - Destination (I2P adresi) için orion [1] ya da bloguma [2] bakın. Bu iş gerçekten umut verici görünüyor; hem "vay canına, müthiş işlevsellik" açısından hem de "bu, I2P'nin anonimliğine yardımcı olacak" açısından. Frosk ve ekip harıl harıl çalışıyor, ama kesinlikle geri bildirim (ve yardım) arıyorlar. Belki toplantıda Frosk'tan bir güncelleme alabiliriz?
+Frosk, i2pcontent/fusenet dokümantasyonunun bir başka revizyonunu yayınladı; ancak bu kez yeni bir adla ve yeni bir yerde: `http://feedspace.i2p/` - Destination (I2P adresi) için orion [1] ya da bloguma [2] bakın. Bu iş gerçekten umut verici görünüyor; hem "vay canına, müthiş işlevsellik" açısından hem de "bu, I2P'nin anonimliğine yardımcı olacak" açısından. Frosk ve ekip harıl harıl çalışıyor, ama kesinlikle geri bildirim (ve yardım) arıyorlar. Belki toplantıda Frosk'tan bir güncelleme alabiliriz?
 
-[1] http://orion.i2p/#feedspace.i2p [2] http://jrandom.dev.i2p/
+[1] `http://orion.i2p/#feedspace.i2p` [2] `http://jrandom.dev.i2p/`
 
 * 3) ???
 

@@ -24,7 +24,7 @@ Testování je stále v rané fázi, ale probíhalo mnohem lépe, než jsem oče
 
 Na základě statistik shromážděných od ochotných dobrovolníků se ukázalo, jak důležitý je kód selektivního potvrzování pro správný provoz ve vysoce přetížených sítích. Posledních pár dní jsem strávil implementací a testováním tohoto kódu a aktualizoval jsem specifikaci SSU [1] tak, aby zahrnovala novou efektivní techniku SACK (selektivního potvrzování). Nebude zpětně kompatibilní se starším kódem SSU, takže lidé, kteří pomáhali s testováním, by měli deaktivovat transport SSU, dokud nebude připraveno nové sestavení k testování (doufejme během příštího dne či dvou).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 3) i2phex
 
@@ -32,7 +32,7 @@ sirup pilně pracuje na portu phexu na i2p a i když je ještě potřeba udělat
 
 Na sirupově eepsite(I2P web) [2] je spousta dalších informací a pomoc s testováním od lidí, kteří už jsou v komunitě I2P, by byla skvělá (ale prosím, dokud to sirup neprohlásí za veřejné vydání a I2P nebude alespoň 0.6, ne-li 1.0, držme to v rámci komunity I2P). Věřím, že sirup bude na schůzce tento týden, takže možná získáme další informace!
 
-[2] http://sirup.i2p/
+[2] `http://sirup.i2p/`
 
 * 4) awol
 
@@ -55,4 +55,4 @@ Takže pokud se nudíte a chcete pomoci, ale chybí vám inspirace, možná vás
 
 OK, to je asi všechno, co pro tuto chvíli chci probrat. Pro ty, kdo chtějí pomoci s testováním SSU během příštího týdne, sledujte informace na mém blogu [3]. A vy ostatní, uvidíme se na schůzce!
 
-=jr [3] http://jrandom.dev.i2p/
+=jr [3] `http://jrandom.dev.i2p/`

@@ -100,7 +100,7 @@ categories: ["meeting"]
 18:59:08 &lt;zzz&gt; 좋아요, 5)에 대해 더 있을까요?
 18:59:18 &lt;orignal_&gt; 네, 부탁드립니다
 18:59:24 &lt;orignal_&gt; 모두가 알고 싶어 해요
-18:59:28 &lt;zzz&gt; 이에 대한 우리의 상시 게시물은 여기 있습니다: http://i2p-projekt.i2p/en/misc/jrandom-awol
+18:59:28 &lt;zzz&gt; 이에 대한 우리의 상시 게시물은 여기 있습니다: `http://i2p-projekt.i2p/en/misc/jrandom-awol`
 18:59:43 &lt;zzz&gt; 회의에서 더 다룰 사항이 있나요?
 19:00:19 &lt;orignal_&gt; 네, 하지만 당신에 관한 건 아니에요
 19:00:22 &lt;villain&gt; CCC 출장 예산이 7천인데, 전부 기부금에서 나오는 건가요? 그것이 I2P에 무엇을 가져다주나요?

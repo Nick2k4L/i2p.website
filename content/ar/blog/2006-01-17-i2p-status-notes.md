@@ -22,13 +22,13 @@ categories: ["status"]
 
 أعددت مسودة مواصفة لتشفير tunnel الجديد ونشرتها في مدونتي على Syndie قبل أيام، وبعد بعض التغييرات الطفيفة التي ظهرت أثناء التنفيذ الفعلي، أصبحت المواصفة متوفرة في CVS [4]. هناك أيضًا شيفرة أساسية تنفّذها في CVS [5]، على الرغم من أنها لم تُدمج بعد في بناء tunnel الفعلي. إذا كان لدى أحدكم وقت فراغ، فسيسرّني الحصول على ملاحظات حول المواصفة. وفي هذه الأثناء، سأواصل العمل على شيفرة بناء tunnel الجديدة.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html و     اطلع على سلاسل النقاش المتعلقة بهجمات التمهيد (bootstrap) [2] http://dev.i2p.net/pipermail/i2p/2005-October/001064.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001057.html [4] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD [5] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/                        i2p/router/tunnel/BuildMessageTest.java
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` و     اطلع على سلاسل النقاش المتعلقة بهجمات التمهيد (bootstrap) [2] `http://dev.i2p.net/pipermail/i2p/2005-October/001064.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001057.html` [4] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD [5] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/`                        i2p/router/tunnel/BuildMessageTest.java
 
 * 3) Syndie blogs
 
-كما ذُكر سابقاً، يتضمن الإصدار الجديد 0.6.1.9 تحسينات جوهرية في واجهة مدونة Syndie، بما في ذلك التصميم الجديد لـ cervantes واختيار كل مستخدم لروابط المدونة وشعارها (مثلاً [6]). يمكنك التحكم بتلك الروابط على اليسار بالنقر على رابط "configure your blog" في صفحة ملفك الشخصي، مما ينقلك إلى http://localhost:7657/syndie/configblog.jsp.  بمجرد إجراء تغييراتك هناك، في المرة التالية التي تقوم فيها برفع منشور إلى أرشيف، ستُتاح تلك المعلومات للآخرين.
+كما ذُكر سابقاً، يتضمن الإصدار الجديد 0.6.1.9 تحسينات جوهرية في واجهة مدونة Syndie، بما في ذلك التصميم الجديد لـ cervantes واختيار كل مستخدم لروابط المدونة وشعارها (مثلاً [6]). يمكنك التحكم بتلك الروابط على اليسار بالنقر على رابط "configure your blog" في صفحة ملفك الشخصي، مما ينقلك إلى `http://localhost:7657/syndie/configblog.jsp.`  بمجرد إجراء تغييراتك هناك، في المرة التالية التي تقوم فيها برفع منشور إلى أرشيف، ستُتاح تلك المعلومات للآخرين.
 
-[6] http://syndiemedia.i2p.net/     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[6] `http://syndiemedia.i2p.net/`     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
 
 * 4) ???
 

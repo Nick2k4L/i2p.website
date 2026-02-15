@@ -26,13 +26,13 @@ Au cours de la dernière semaine, j’ai consulté les statistiques publiées pa
 
 Depuis la publication de la version 0.4.2.5, plusieurs correctifs et nouvelles fonctionnalités ont été ajoutés à CVS, que nous souhaitons déployer prochainement, notamment des correctifs de fiabilité pour la bibliothèque de streaming, une meilleure résilience face aux changements d’adresse IP, et l’intégration de l’implémentation du carnet d’adresses de ragnarok.
 
-Si vous n’avez jamais entendu parler de l’addressbook (carnet d’adresses) ou ne l’avez jamais utilisé, pour faire court, il mettra automatiquement à jour votre fichier hosts.txt en récupérant périodiquement et en fusionnant les modifications depuis certains emplacements hébergés anonymement (par défaut http://dev.i2p/i2p/hosts.txt et http://duck.i2p/hosts.txt).
+Si vous n’avez jamais entendu parler de l’addressbook (carnet d’adresses) ou ne l’avez jamais utilisé, pour faire court, il mettra automatiquement à jour votre fichier hosts.txt en récupérant périodiquement et en fusionnant les modifications depuis certains emplacements hébergés anonymement (par défaut `http://dev.i2p/i2p/hosts.txt` et `http://duck.i2p/hosts.txt).`
 
 Vous n’aurez besoin de changer aucun fichier, de modifier la moindre configuration, ni d’exécuter des applications supplémentaires - il sera déployé dans le router I2P sous la forme d’un fichier .war standard.
 
 Bien sûr, si vous *voulez vraiment* mettre les mains dans le cambouis avec le carnet d’adresses, vous êtes tout à fait libre de le faire - voir le site de Ragnarok [2] pour les détails. Les personnes qui ont déjà le carnet d’adresses déployé dans leur router devront effectuer quelques petites manipulations lors de la mise à niveau 0.4.2.6, mais cela fonctionnera avec tous vos anciens paramètres de configuration.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -42,7 +42,7 @@ Des chiffres, des chiffres, des chiffres ! Eh bien, comme je l’ai déjà dit, 
 
 jdot a mis en place un nouveau serveur Jabber, et il semble plutôt bien fonctionner, aussi bien pour les conversations en tête-à-tête que pour les discussions de groupe. Consultez les informations sur le forum [3]. Le canal de discussion des développeurs i2p restera l'irc #i2p, mais c'est toujours appréciable d'avoir des alternatives.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

@@ -8,13 +8,13 @@ accurateFor: "0.9.59"
 
 ## 개요 {#overview}
 
-I2PTunnel은 I2P에서 인터페이스하고 서비스를 제공하기 위한 도구입니다. I2PTunnel의 목적지는 [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), 또는 전체 516바이트 destination key를 사용하여 정의할 수 있습니다. 설정된 I2PTunnel은 클라이언트 머신에서 localhost:port로 사용할 수 있습니다. I2P 네트워크에서 서비스를 제공하려면, 적절한 ip_address:port로 I2PTunnel을 생성하기만 하면 됩니다. 해당 서비스를 위한 516바이트 destination key가 생성되고 I2P 전체에서 사용할 수 있게 됩니다. I2PTunnel 관리를 위한 웹 인터페이스는 [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/)에서 사용할 수 있습니다.
+I2PTunnel은 I2P에서 인터페이스하고 서비스를 제공하기 위한 도구입니다. I2PTunnel의 목적지는 [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), 또는 전체 516바이트 destination key를 사용하여 정의할 수 있습니다. 설정된 I2PTunnel은 클라이언트 머신에서 localhost:port로 사용할 수 있습니다. I2P 네트워크에서 서비스를 제공하려면, 적절한 ip_address:port로 I2PTunnel을 생성하기만 하면 됩니다. 해당 서비스를 위한 516바이트 destination key가 생성되고 I2P 전체에서 사용할 수 있게 됩니다. I2PTunnel 관리를 위한 웹 인터페이스는 `http://localhost:7657/i2ptunnel/`에서 사용할 수 있습니다.
 
 ## 기본 서비스 {#default-services}
 
 ### 서버 tunnel {#default-server-tunnels}
 
-- **I2P Webserver** - I2P에서 편리하고 빠른 호스팅을 위해 [localhost:7658](http://localhost:7658)에서 실행되는 Jetty 웹서버를 가리키는 tunnel입니다.
+- **I2P Webserver** - I2P에서 편리하고 빠른 호스팅을 위해 `http://localhost:7658`에서 실행되는 Jetty 웹서버를 가리키는 tunnel입니다.
   문서 루트는 다음과 같습니다:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, 전체 경로: `C:\Users\**username**\AppData\Local\I2P\I2P Site\docroot`

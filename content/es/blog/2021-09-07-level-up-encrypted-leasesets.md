@@ -40,13 +40,13 @@ Aunque lleve tiempo explicarlo, configurar un LeaseSet cifrado es sencillo media
 
 ## En el "Servidor"
 
-Comience abriendo el Administrador de Servicios Ocultos en http://127.0.0.1:7657/i2ptunnelmgr y desplácese hasta el final de la sección que dice "I2P Hidden Services." Cree un nuevo servicio oculto con el host "127.0.0.1" y el puerto "7657", con estas "Tunnel Cryptography Options", y guarde el servicio oculto.
+Comience abriendo el Administrador de Servicios Ocultos en `http://127.0.0.1:7657/i2ptunnelmgr` y desplácese hasta el final de la sección que dice "I2P Hidden Services." Cree un nuevo servicio oculto con el host "127.0.0.1" y el puerto "7657", con estas "Tunnel Cryptography Options", y guarde el servicio oculto.
 
 Luego, seleccione su nuevo tunnel desde la página principal del Administrador de Servicios Ocultos. Las opciones de criptografía del tunnel ahora deberían incluir su primera Pre-Shared Key (clave precompartida). Anote esto para el siguiente paso, junto con la dirección Base32 cifrada de su tunnel.
 
 ## En el "Client"
 
-Ahora cambia al equipo cliente que se conectará al servicio oculto y visita la Configuración de Keyring en http://127.0.0.1:7657/configkeyring para agregar las claves anteriores. Comienza pegando el Base32 del Servidor en el campo etiquetado: "Full destination, name, Base32, or hash." Luego, pega la Clave precompartida del Servidor en el campo "Encryption Key". Haz clic en guardar, y ya estás listo para visitar de forma segura el Servicio Oculto usando un Encrypted LeaseSet.
+Ahora cambia al equipo cliente que se conectará al servicio oculto y visita la Configuración de Keyring en `http://127.0.0.1:7657/configkeyring` para agregar las claves anteriores. Comienza pegando el Base32 del Servidor en el campo etiquetado: "Full destination, name, Base32, or hash." Luego, pega la Clave precompartida del Servidor en el campo "Encryption Key". Haz clic en guardar, y ya estás listo para visitar de forma segura el Servicio Oculto usando un Encrypted LeaseSet.
 
 ## Ahora ya está listo para administrar I2P de forma remota
 

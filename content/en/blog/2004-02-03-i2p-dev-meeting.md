@@ -261,7 +261,7 @@ categories: ["meeting"]
 [22:57] &lt;jrand0m&gt; hm, mihi?
 [22:57] &lt;duck&gt; ah wait, xmlrpc/soap would be content type xml
 [22:57] &lt;jrand0m&gt; mihi&gt; wouldn't it still need to do the name translation, at the least?
-[22:58] &lt;mihi&gt; sure, but not as a proxy. http://localhost:12345/duck.i2p/ would work much better.
+[22:58] &lt;mihi&gt; sure, but not as a proxy. `http://localhost:12345/duck.i2p/` would work much better.
 [22:58] &lt;Synonymous&gt; muffin is gpl, u have to be careful in a public domain project to use gpl code, its still copyrighted ;)
 [22:58] &lt;mihi&gt; since you can link to that from the regular web
 [22:58] &lt;jrand0m&gt; hrm mihi.

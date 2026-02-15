@@ -119,7 +119,7 @@ categories: ["meeting"]
 17:08 &lt;jrandom&gt; anything we can do to help?
 17:08 &lt;@frosk&gt; also i've been working a bit on documentation, which has been lacking
 17:09 &lt;spinky&gt; Do you see feedspace being usable for large files?
-17:10 &lt;@frosk&gt; 1) client apps using the (still undocumented) xmlrpc api, 2) http://feedspace.i2p/wiki/Tasks, 3) participate in testing when that time comes
+17:10 &lt;@frosk&gt; 1) client apps using the (still undocumented) xmlrpc api, 2) `http://feedspace.i2p/wiki/Tasks,` 3) participate in testing when that time comes
 17:10 &lt;@frosk&gt; large files support is not a priority for now, but perhaps later
 17:10 &lt;@frosk&gt; focus for "1.0" is smaller messages such as blog and discussion entries, and events of any sort
 17:11 &lt;jrandom&gt; though feeding .torrent files into an rss/feedspace-enabled bt client wouldn't be a problem

@@ -22,7 +22,7 @@ Jako vždy jsou součástí opravy chyb i některé nové funkce, ale další in
 
 * 2) UDP (SSU)
 
-Jak jsme v posledních 6-12 měsících průběžně probírali, přejdeme na UDP pro naši komunikaci mezi routery, jakmile vyjde verze 0.6.  Abychom se na této cestě posunuli dál, máme v CVS k dispozici první návrh transportního protokolu na http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+Jak jsme v posledních 6-12 měsících průběžně probírali, přejdeme na UDP pro naši komunikaci mezi routery, jakmile vyjde verze 0.6.  Abychom se na této cestě posunuli dál, máme v CVS k dispozici první návrh transportního protokolu na `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 Je to poměrně jednoduchý protokol s cíli popsanými v dokumentu a využívá schopností I2P jak k autentizaci, tak k zabezpečení dat, přičemž zároveň odhaluje co nejméně externích informací. Ani první část handshaku při navazování spojení není identifikovatelná pro někoho, komu neběží I2P. Chování protokolu ještě není ve specifikaci plně definováno, například jak se spouštějí časovače nebo jak se používají tři různé polospolehlivé indikátory stavu, ale pokrývá základy šifrování, paketizace a NAT hole punching (prorážení NATu). Nic z toho zatím není implementováno, ale brzy bude, takže jakákoli zpětná vazba bude velmi vítána!
 
@@ -30,7 +30,7 @@ Je to poměrně jednoduchý protokol s cíli popsanými v dokumentu a využívá
 
 Aum usilovně pracuje na Q(uartermaster), distribuovaném úložišti, a první verze dokumentace je k dispozici [1]. Jedním ze zajímavých nápadů se tam zdá být odklon od čisté DHT k systému ve stylu memcached [2], kde každý uživatel provádí veškeré vyhledávání zcela *lokálně* a skutečná data si vyžádá od serveru Q "přímo" (tedy přes I2P). Každopádně, pár pěkných věcí; možná, pokud je Aum vzhůru [3], z něj dokážeme vymámit nějakou aktualizaci?
 
-[1] http://aum.i2p/q/ [2] http://www.danga.com/memcached/ [3] zatracená ta časová pásma!
+[1] `http://aum.i2p/q/` [2] http://www.danga.com/memcached/ [3] zatracená ta časová pásma!
 
 * 4) ???
 

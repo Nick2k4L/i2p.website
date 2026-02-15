@@ -26,7 +26,7 @@ tunnel'ın ucunda ışık var ve ilerlemeye devam ederken bizimle kalıp göster
 
 * 3) Feedspace
 
-Frosk, Feedspace üzerinde var gücüyle çalışıyor ve Trac sitesinde birkaç sayfayı güncelledi; yeni bir genel bakış belgesi, açık görevlerin bir listesi, bazı veritabanı ayrıntıları ve daha fazlası dahil. En son değişiklikleri yakalamak için http://feedspace.i2p/ adresine uğrayın ve fırsatınız olur olmaz Frosk’u soru yağmuruna tutun :)
+Frosk, Feedspace üzerinde var gücüyle çalışıyor ve Trac sitesinde birkaç sayfayı güncelledi; yeni bir genel bakış belgesi, açık görevlerin bir listesi, bazı veritabanı ayrıntıları ve daha fazlası dahil. En son değişiklikleri yakalamak için `http://feedspace.i2p/` adresine uğrayın ve fırsatınız olur olmaz Frosk’u soru yağmuruna tutun :)
 
 * 4) ???
 

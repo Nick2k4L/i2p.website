@@ -14,10 +14,10 @@ categories: ["meeting"]
 
 <div class="irc-log">
 20:00:01 &lt;zzz&gt; 0) Hi
-20:00:01 &lt;zzz&gt; 1) 0.9.27-29 roadmap: http://i2p-projekt.i2p/en/get-involved/roadmap
+20:00:01 &lt;zzz&gt; 1) 0.9.27-29 roadmap: `http://i2p-projekt.i2p/en/get-involved/roadmap`
 20:00:05 &lt;zzz&gt; 0) Hi
 20:00:07 &lt;zzz&gt; hi
-20:00:35 &lt;zzz&gt; 1) 0.9.27-29 roadmap: http://i2p-projekt.i2p/en/get-involved/roadmap
+20:00:35 &lt;zzz&gt; 1) 0.9.27-29 roadmap: `http://i2p-projekt.i2p/en/get-involved/roadmap`
 20:00:57 &lt;str4d&gt; hi
 20:01:17 &lt;z3r0fox&gt; hi
 20:01:17 &lt;zzz&gt; my goal today is to split up the 27-29 roadmap into 27 and 28-29, at a minimum

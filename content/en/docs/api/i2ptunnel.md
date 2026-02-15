@@ -17,7 +17,7 @@ If you wish to provide a service on I2P network, you simply create I2PTunnel to 
 appropriate ip_address:port. A corresponding 516-byte destination key will be generated
 for the service and it will become available throughout I2P.
 A web interface for I2PTunnel management is available on
-[localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
+`http://localhost:7657/i2ptunnel/`.
 
 
 ## Default Services {#default-services}
@@ -25,7 +25,7 @@ A web interface for I2PTunnel management is available on
 ### Server Tunnels {#default-server-tunnels}
 
 - **I2P Webserver** - A tunnel pointed to a Jetty webserver run
-  on [localhost:7658](http://localhost:7658) for convenient and quick hosting on I2P.
+  on `http://localhost:7658` for convenient and quick hosting on I2P.
   The document root is:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, which expands to: `C:\Users\**username**\AppData\Local\I2P\I2P Site\docroot`

@@ -151,7 +151,7 @@ categories: ["meeting"]
 16:44 &lt;jrandom&gt; (though thats probably not as seamless)
 16:44 &lt;DoubtfulSalmon&gt; yeah: say I want to have a link to say: a current radar image, or somthing like that that will be upadated every 10 min. It's ok if the contet doesn't fly all over the net, but if someone else links to my page, the user should see the current image.
 16:45 &lt;jrandom&gt; well, that depends on what they want to do - do they want to link to the image as it was when they referred to it, or do they want to link to the service that renders the image when the reader views it
-16:45 &lt;+Complication&gt; cervantes: oddity of the day :D Last post in: http://forum.i2p/viewtopic.php?t=1199&start=15
+16:45 &lt;+Complication&gt; cervantes: oddity of the day :D Last post in: `http://forum.i2p/viewtopic.php?t=1199&start=15`
 16:46 &lt;+Complication&gt; Felt like it might be another of our robotic overlords :P
 16:46 &lt;jrandom&gt; but its a good idea to support both concepts, and I don't think it'd be much trouble
 16:46 &lt;@cervantes&gt; thnx
@@ -259,10 +259,10 @@ categories: ["meeting"]
 17:29 &lt;jrandom&gt; (e.g. the bytemonsoon modification that you can find on any of the i2p trackers, or in the cvs)
 17:29 &lt;+fox&gt; &lt;lordalbert&gt; now, i'd like to know how use this tunnel. I have made a tunnel yet
 17:29 &lt;jrandom&gt; ok, anyone have anything else for the meeting?
-17:30 &lt;jrandom&gt; lordalbert: http://localhost:7657/i2ptunnel/ should let you create an 'http server tunnel' pointing at your webserver/tracker, but your tracker will not work unless it has been modified for anonymous use
+17:30 &lt;jrandom&gt; lordalbert: `http://localhost:7657/i2ptunnel/` should let you create an 'http server tunnel' pointing at your webserver/tracker, but your tracker will not work unless it has been modified for anonymous use
 17:30 &lt;+fox&gt; &lt;lordalbert&gt; jrandom, what tracker i must use?
 17:31 &lt;+Complication&gt; postman uses a modified version of ByteMonsoon, I think
-17:32 &lt;jrandom&gt; i2p-bytemonsoon has been modified for anonymous use - there's a zip up @ http://i2p-bt.postman.i2p/, and there's the cvs in http://dev.i2p.net/cgi-bin/cvsweb.cgi/bytemonsoon/ but I really don't know much about it
+17:32 &lt;jrandom&gt; i2p-bytemonsoon has been modified for anonymous use - there's a zip up @ `http://i2p-bt.postman.i2p/,` and there's the cvs in http://dev.i2p.net/cgi-bin/cvsweb.cgi/bytemonsoon/ but I really don't know much about it
 17:32 &lt;+fox&gt; &lt;lordalbert&gt; isn't bytemonsoon obsolete?
 17:32 &lt;jrandom&gt; if it works, its not obsolete.  it works
 17:33 &lt;+fox&gt; &lt;lordalbert&gt; ok XD

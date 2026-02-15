@@ -141,7 +141,7 @@ Nachtrag: ``Beispielimplementierung des Angriffs``
 [Eine Beispielimplementierung des Shared Identity-Angriffs auf HTTP
 Benutzeragenten](https://github.com/eyedeekay/colluding_sites_attack/)
 existiert seit mehreren Jahren. Ein weiteres Beispiel ist im
-``simple-colluder`` Unterverzeichnis von [idks prop166
-Repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) verfügbar. Diese
+``simple-colluder`` Unterverzeichnis von idks prop166
+Repository verfügbar. Diese
 Beispiele sind absichtlich so gestaltet, dass sie demonstrieren, dass der Angriff funktioniert, und würden Änderungen (wenn auch kleinere) erfordern, um in einen echten Angriff verwandelt zu werden.
 

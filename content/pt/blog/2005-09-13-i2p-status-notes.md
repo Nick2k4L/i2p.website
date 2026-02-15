@@ -20,7 +20,7 @@ Continuamos avançando com a versão 0.6.0.5 na rede, e quase todos já atualiza
 
 As compilações mais recentes no CVS incluem suporte às há muito discutidas SSU introductions [1], permitindo-nos realizar NAT hole punching descentralizado (perfuração de NAT) para usuários atrás de um NAT ou firewall que eles não controlam. Embora não trate do NAT simétrico, cobre a maioria dos casos em uso. Os relatos do campo são positivos, embora apenas usuários com as compilações mais recentes possam entrar em contato com os usuários atrás de NAT — compilações mais antigas precisam esperar que o usuário entre em contato primeiro. Por isso, vamos disponibilizar o código em um lançamento mais cedo do que o usual, para reduzir o tempo em que temos essas rotas restritas em vigor.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

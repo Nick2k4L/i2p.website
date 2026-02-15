@@ -18,7 +18,7 @@ Mặc dù không có lỗi mới nào xuất hiện trên mạng, tuần trướ
 
 Một sự cố tạm thời khác là việc một trong các HTTP outproxies (proxy chuyển tiếp ra Internet) bị ngừng hoạt động (www1.squid.i2p), khiến 50% yêu cầu tới outproxy thất bại. Bạn có thể tạm thời loại bỏ outproxy đó bằng cách mở cấu hình I2PTunnel [1], chỉnh sửa eepProxy và thay đổi dòng "Outproxies:" để chỉ chứa "squid.i2p". Hy vọng chúng tôi sẽ sớm đưa outproxy còn lại hoạt động trở lại để tăng tính dự phòng.
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -34,7 +34,7 @@ Tôi có thể bắt đầu đi sâu vào những gì đã được cập nhật
 
 duck đã đưa ra một bản phát hành sửa lỗi cho bản cập nhật 0.1.6 của tuần trước, và nghe đồn là nó rất xịn (có lẽ còn /quá/ xịn, do mức sử dụng mạng tăng lên ;)  Thêm thông tin @ diễn đàn i2p-bt [2]
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

@@ -65,7 +65,7 @@ categories: ["meeting"]
 22:19 &lt;@Mathiasdm&gt; sorry :)
 22:21 &lt;@Mathiasdm&gt; we're skipping 2) for now, unless welt comes in
 22:21 &lt;@Mathiasdm&gt; 3) Location for dev discussion
-22:22 &lt;@Mathiasdm&gt; this is related to http://zzz.i2p/topics/719
+22:22 &lt;@Mathiasdm&gt; this is related to `http://zzz.i2p/topics/719`
 22:22 &lt;@Mathiasdm&gt; I quote:
 22:22 &lt;@Mathiasdm&gt; "* Post developer discussions on zzz.i2p. What I mean is: IRC is a highly 'volatile' medium, where not everyone is online all the time, and not everyone logs. It's a great medium for a short discussion, but do consider posting a short write-up on zzz.i2p, so others can join in on the discussion."
 22:22 &lt;eche|on&gt; dev discussion is a hard topic. IRC is nice, but not reliant neither an archive
@@ -256,7 +256,7 @@ categories: ["meeting"]
 23:18 &lt;eche|on&gt; need to look for it, but we had some issues over all. 
 23:18 &lt;@Mathiasdm&gt; have a link, zzz?
 23:19 &lt;@Mathiasdm&gt; okay, we could focus on it a bit after the website specs?
-23:20 &lt;@zzz&gt; http://zzz.i2p/files/petcon-usability-long.pdf
+23:20 &lt;@zzz&gt; `http://zzz.i2p/files/petcon-usability-long.pdf`
 23:20 &lt;@Mathiasdm&gt; thx
 23:20 &lt;eche|on&gt; thats a nice idea
 23:21 &lt;@Mathiasdm&gt; okay then

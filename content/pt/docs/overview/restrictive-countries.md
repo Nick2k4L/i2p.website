@@ -68,6 +68,6 @@ Essas defesas tornam os routers mais difíceis de enumerar de forma confiável e
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-Se você acredita que um país deve ser adicionado ou removido da lista restrita, por favor abra uma issue: https://i2pgit.org/i2p/i2p.i2p/
+Se você acredita que um país deve ser adicionado ou removido da lista restrita, por favor abra uma issue: `https://i2pgit.org/i2p/i2p.i2p/`
 
 Referência: Freedom House – https://freedomhouse.org/

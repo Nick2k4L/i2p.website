@@ -22,7 +22,7 @@ Han ido llegando cada vez más mejoras, y la versión alfa actual va por la 0.91
 
 Además, ha habido algunas discusiones en el canal sobre diseños de la GUI de Syndie - meerboop ha propuesto algunas ideas geniales y está trabajando en documentarlas. La GUI de Syndie es el componente principal de la versión Syndie 2.0, así que cuanto antes pongamos eso en marcha, antes podremos conquistar el mund^W^W^W^W lanzar Syndie entre las masas desprevenidas.
 
-También hay una nueva propuesta en mi blog en Syndie sobre el seguimiento de errores y de solicitudes de nuevas funcionalidades usando el propio Syndie. Para facilitar el acceso, he publicado una exportación en texto plano de esa entrada en la web - la página 1 está en <http://dev.i2p.net/~jrandom/bugsp1.txt> y la página 2 está en <http://dev.i2p.net/~jrandom/bugsp2.txt>
+También hay una nueva propuesta en mi blog en Syndie sobre el seguimiento de errores y de solicitudes de nuevas funcionalidades usando el propio Syndie. Para facilitar el acceso, he publicado una exportación en texto plano de esa entrada en la web - la página 1 está en <`http://dev.i2p.net/~jrandom/bugsp1.txt>` y la página 2 está en <`http://dev.i2p.net/~jrandom/bugsp2.txt>`
 
 * 3) Distributed version control revisited
 
@@ -32,7 +32,7 @@ Por supuesto, independientemente del dvcs (sistema de control de versiones distr
 
 * 4) ???
 
-Como puedes ver, hay muchas cosas en marcha, como siempre. También ha habido más discusión en ese hilo "solve world hunger" del foro, así que consúltalo en <http://forum.i2p.net/viewtopic.php?t=1910>
+Como puedes ver, hay muchas cosas en marcha, como siempre. También ha habido más discusión en ese hilo "solve world hunger" del foro, así que consúltalo en <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Si tienes algo más que discutir, por favor pásate por #i2p para nuestra reunión de desarrollo de esta noche, o publícalo en el foro o en la lista.
 

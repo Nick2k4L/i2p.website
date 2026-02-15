@@ -6,7 +6,7 @@ description: "Záznam vývojářské schůzky I2P ze dne 20. ledna 2004."
 categories: ["meeting"]
 ---
 
-(Se svolením wayback machine http://www.archive.org/)
+(Se svolením wayback machine `http://www.archive.org/`)
 
 ## Rychlé shrnutí
 

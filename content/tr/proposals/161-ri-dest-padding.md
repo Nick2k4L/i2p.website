@@ -124,7 +124,7 @@ Hedef ve Yönlendirici Kimliği için dolgu alanını dolduracak şekilde gerekt
 
 ### Özel Anahtar Dosyası
 Özel anahtar dosyası (eepPriv.dat) formatı, spesifikasyonlarımızın resmi bir parçası değildir
-ancak [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) belgelenmiştir ve diğer uygulamalar bunu destekler.
+ancak Java I2P javadocs belgelenmiştir ve diğer uygulamalar bunu destekler.
 Bu, özel anahtarların farklı uygulamalara taşınabilirliğine olanak sağlar.
 Bu javadocs'da şifreleme açık anahtarının rastgele dolgu olabileceğine ve şifreleme özel anahtarının tüm sıfır veya rastgele
 veri olabileceğine dair bir not ekleyin.
@@ -213,7 +213,7 @@ yanıtlarını etkiler.
 Bu tasarım, geliştirme ve yayılma için öngörülen zaman çerçevesi nedir ????????
 Ancak hibrit veya ratchetten sonra olur ????????????
 
-Daha fazla tartışma için bkz [this topic](http://zzz.i2p/topics/3294).
+Daha fazla tartışma için bkz this topic.
 
 
 ## Sorunlar
@@ -241,4 +241,4 @@ Geriye dönük uyumluluk sorunlarına tabi olarak, ve SSU devre dışı bırakı
 uygulamalar ElGamal kodunu tamamen kaldırabilir.
 Ağdaki yönlendiricilerin yaklaşık %14'ü ElGamal şifreleme türündedir, bunların birçoğu floodfill'dir.
 
-Java I2P için bir taslak birleştirme isteği [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66) adresindedir.
+Java I2P için bir taslak birleştirme isteği git.idk.i2p adresindedir.

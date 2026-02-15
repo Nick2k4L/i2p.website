@@ -40,13 +40,13 @@ I když jejich vysvětlení může chvíli trvat, nastavení Encrypted LeaseSet 
 
 ## Na "Serveru"
 
-Začněte otevřením Správce skrytých služeb na adrese http://127.0.0.1:7657/i2ptunnelmgr a přejděte na konec oddílu s názvem "I2P Hidden Services." Vytvořte novou skrytou službu s hostitelem "127.0.0.1" a portem "7657", s těmito "Tunnel Cryptography Options", a skrytou službu uložte.
+Začněte otevřením Správce skrytých služeb na adrese `http://127.0.0.1:7657/i2ptunnelmgr` a přejděte na konec oddílu s názvem "I2P Hidden Services." Vytvořte novou skrytou službu s hostitelem "127.0.0.1" a portem "7657", s těmito "Tunnel Cryptography Options", a skrytou službu uložte.
 
 Poté vyberte svůj nový tunnel na hlavní stránce Správce skrytých služeb. Možnosti kryptografie tunnelu by nyní měly zahrnovat váš první Pre-Shared Key (předem sdílený klíč). Zkopírujte si jej pro další krok spolu se šifrovanou adresou Base32 vašeho tunnelu.
 
 ## Na straně „klienta“
 
-Teď přepněte na počítač klienta, který se připojí ke skryté službě, a navštivte stránku Konfigurace klíčenky na adrese http://127.0.0.1:7657/configkeyring, abyste přidali dříve získané klíče. Začněte vložením Base32 ze serveru do pole označeného: "Plná destinace, název, Base32 nebo hash." Dále vložte předem sdílený klíč ze serveru do pole "Šifrovací klíč". Klikněte na Uložit a můžete bezpečně navštívit skrytou službu; použije se šifrovaný LeaseSet (záznam dostupnosti v I2P).
+Teď přepněte na počítač klienta, který se připojí ke skryté službě, a navštivte stránku Konfigurace klíčenky na adrese `http://127.0.0.1:7657/configkeyring,` abyste přidali dříve získané klíče. Začněte vložením Base32 ze serveru do pole označeného: "Plná destinace, název, Base32 nebo hash." Dále vložte předem sdílený klíč ze serveru do pole "Šifrovací klíč". Klikněte na Uložit a můžete bezpečně navštívit skrytou službu; použije se šifrovaný LeaseSet (záznam dostupnosti v I2P).
 
 ## Nyní jste připraveni vzdáleně spravovat I2P
 

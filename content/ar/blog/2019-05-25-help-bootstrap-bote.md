@@ -16,12 +16,12 @@ or, ELI5: It's used similarly to e-mail, but it suffers from none of e-mail's pr
 
 **Step One: Install I2P-Bote**
 
-I2P-Bote is an i2p plugin, and installing it is very easy. The original instructions are available at the [bote eepSite, bote.i2p](http://bote.i2p/install/), but if you want to read them on the clearnet, these instructions come courtesy of bote.i2p:
+I2P-Bote is an i2p plugin, and installing it is very easy. The original instructions are available at the bote eepSite, bote.i2p, but if you want to read them on the clearnet, these instructions come courtesy of bote.i2p:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Step Two: Get your I2P-Bote node's base64 address**
 
@@ -62,7 +62,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Method B: Do a lookup**
 
-If that seems like a bit too much work, it's possible for you to look up the base64 destination of your Bote connection by querying it's base32 address using any of the available means for looking up a base32 address. The base32 address of your Bote node is available on the "Connection" page under the bote plugin application, at [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+If that seems like a bit too much work, it's possible for you to look up the base64 destination of your Bote connection by querying it's base32 address using any of the available means for looking up a base32 address. The base32 address of your Bote node is available on the "Connection" page under the bote plugin application, at `http://127.0.0.1:7657/i2pbote/network`
 
 **Step Three: Contact Us!**
 

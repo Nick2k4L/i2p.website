@@ -71,7 +71,7 @@ categories: ["meeting"]
 13:20 &lt;jrandom&gt; the posted strategies are basically aimed at improving anonymity, but there are a few other goals that we can balance in there
 13:21 &lt;jrandom&gt; perhaps we can find a way to integrate some of the AS paths into the selection, as bla suggested
 13:22 &lt;jrandom&gt; that can both improve (jurisdictional) anonymity, or if we try to stay within an AS (or two), that can improve performance
-13:22 &lt;bla&gt; jrandom: This basically is related to a paper by the Tor creators: http://theland.i2p/files/routing-zones.pdf
+13:22 &lt;bla&gt; jrandom: This basically is related to a paper by the Tor creators: `http://theland.i2p/files/routing-zones.pdf`
 13:22 &lt;jrandom&gt; aye
 13:23 &lt;jrandom&gt; there are a whole slew of different strategies people can use, and trying out new ones should be pretty easy
 13:24 &lt;jrandom&gt; we aren't going to spend months implementing everything we can think of, but merely provide the basics for what most people will need.  anyone who wants to add new ones are very much encouraged to help plug 'em in

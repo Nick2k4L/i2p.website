@@ -14,7 +14,7 @@ Como algumas pessoas comentaram sobre o nosso cronograma, perguntando se iríamo
 
 0.4 atenderá aos quatro critérios de lançamento mencionados (funcional, seguro, anônimo e escalável), embora, antes da 0.4.2, poucas pessoas atrás de NATs e firewalls possam participar, e antes da 0.4.3 haverá um limite superior efetivo para o tamanho da rede devido à sobrecarga de manter um grande número de conexões TCP com outros routers.
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ Mais cedo hoje, duck revisou o site e fez um inventário das páginas que estão
 
 Fora isso, acho que o site está quase pronto para entrar em produção. Alguém tem sugestões ou preocupações nesse sentido?
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) ataques e defesas**
 

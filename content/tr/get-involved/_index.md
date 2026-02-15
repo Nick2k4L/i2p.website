@@ -12,7 +12,7 @@ I2P ağı, topluluğumuz sayesinde gelişiyor. İster bir geliştirici, çevirme
 I2P açık kaynaklıdır ve kod tabanına katkıları memnuniyetle karşılıyoruz. Hataları düzeltmek, özellikler eklemek veya performansı artırmak istiyorsanız, kod katkılarınız büyük fark yaratır.
 
 - **Başlamak için**: [Yeni geliştirici kılavuzumuzu](/docs/developers/new-developers) inceleyin
-- **Kaynak kodu**: [GitLab](https://i2pgit.org) (I2P içinde de http://git.idk.i2p adresinde mevcuttur)
+- **Kaynak kodu**: [GitLab](https://i2pgit.org) (I2P içinde de `http://git.idk.i2p` adresinde mevcuttur)
 - **Aylık toplantılar**: Her ayın ilk Salı günü bize katılın
 - **IRC kanalları**: Geliştirme tartışmaları için IRC2P'de #i2p-dev
 

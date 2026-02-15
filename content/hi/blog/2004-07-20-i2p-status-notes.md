@@ -14,7 +14,7 @@ categories: ["status"]
 
 0.4 उल्लेखित चार रिलीज़ मानदंडों (कार्यात्मक, सुरक्षित, गुमनाम, और स्केलेबल) को पूरा करेगा, हालाँकि 0.4.2 से पहले, NAT (Network Address Translation) और फ़ायरवॉल के पीछे रहने वाले बहुत कम लोग भाग ले पाएँगे, और 0.4.3 से पहले अन्य routers के साथ बड़ी संख्या में TCP कनेक्शनों को बनाए रखने के ओवरहेड के कारण नेटवर्क के आकार पर एक व्यावहारिक ऊपरी सीमा रहेगी।
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ categories: ["status"]
 
 इसके अलावा, मेरा मानना है कि साइट लगभग लाइव करने के लिए तैयार है। क्या किसी के पास इस संबंध में कोई सुझाव या चिंताएँ हैं?
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) हमले और रक्षा-उपाय**
 

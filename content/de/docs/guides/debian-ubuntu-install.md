@@ -37,7 +37,7 @@ Die Debian-Pakete sind kompatibel mit:
 
 **Unterstützte Architekturen**: amd64, i386, armhf, arm64, powerpc, ppc64el, s390x
 
-Die I2P-Pakete funktionieren möglicherweise auch auf anderen Debian-basierten Systemen, die oben nicht ausdrücklich aufgeführt sind. Wenn Sie auf Probleme stoßen, [melden Sie diese bitte in unserem GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/).
+Die I2P-Pakete funktionieren möglicherweise auch auf anderen Debian-basierten Systemen, die oben nicht ausdrücklich aufgeführt sind. Wenn Sie auf Probleme stoßen, melden Sie diese bitte in unserem GitLab.
 
 ## Installationsmethoden
 
@@ -186,7 +186,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Schritt 3: Repository-Signaturschlüssel herunterladen**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
 ```
 **Schritt 4: Den Schlüssel-Fingerabdruck überprüfen**
 
@@ -282,8 +282,8 @@ Nachdem I2P zum ersten Mal gestartet wurde, dauert es einige Minuten, bis es sic
 
 Für optimale Leistung und Netzwerkteilnahme leiten Sie die I2P-Ports durch Ihr NAT/Ihre Firewall weiter:
 
-1. Öffnen Sie die [I2P Router Console](http://127.0.0.1:7657/)
-2. Navigieren Sie zur [Netzwerkkonfigurationsseite](http://127.0.0.1:7657/confignet)
+1. Öffnen Sie die `http://127.0.0.1:7657/`
+2. Navigieren Sie zur `http://127.0.0.1:7657/confignet`
 3. Notieren Sie die aufgelisteten Portnummern (normalerweise zufällige Ports zwischen 9000-31000)
 4. Leiten Sie diese UDP- und TCP-Ports in Ihrem Router/Ihrer Firewall weiter
 
@@ -293,7 +293,7 @@ Wenn Sie Hilfe beim Port-Forwarding benötigen, bietet [portforward.com](https:/
 
 Die Standard-Bandbreiteneinstellungen sind konservativ. Passen Sie diese basierend auf Ihrer Internetverbindung an:
 
-1. Besuchen Sie die [Konfigurationsseite](http://127.0.0.1:7657/config.jsp)
+1. Besuchen Sie die `http://127.0.0.1:7657/config.jsp`
 2. Suchen Sie den Abschnitt für Bandbreiteneinstellungen
 3. Die Standardwerte sind 96 KB/s Download / 40 KB/s Upload
 4. Erhöhen Sie diese Werte, wenn Sie eine schnellere Internetverbindung haben (z.B. 250 KB/s Download / 100 KB/s Upload für eine typische Breitbandverbindung)
@@ -347,7 +347,7 @@ Wenn Sie die alten Repositories `deb.i2p2.de` oder `deb.i2p2.no` verwenden:
 Jetzt, da I2P installiert ist und läuft:
 
 - [Konfigurieren Sie Ihren Browser](/docs/guides/browser-config), um auf I2P-Seiten zuzugreifen
-- Erkunden Sie die [I2P-Router-Konsole](http://127.0.0.1:7657/), um Ihren Router zu überwachen
+- Erkunden Sie die `http://127.0.0.1:7657/`, um Ihren Router zu überwachen
 - Erfahren Sie mehr über [I2P-Anwendungen](/docs/applications/), die Sie nutzen können
 - Lesen Sie, [wie I2P funktioniert](/docs/overview/tech-intro), um das Netzwerk zu verstehen
 

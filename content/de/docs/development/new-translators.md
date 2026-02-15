@@ -18,7 +18,7 @@ Es gibt zwei Möglichkeiten, Übersetzungen beizutragen:
 
 **Dies ist der einfachste Weg, I2P zu übersetzen.** Transifex bietet eine webbasierte Oberfläche, die das Übersetzen einfach und zugänglich macht.
 
-1. Registrieren Sie sich bei [Transifex](https://www.transifex.com/otf/I2P/)
+1. Registrieren Sie sich bei Transifex
 2. Beantragen Sie die Aufnahme in das I2P-Übersetzungsteam
 3. Beginnen Sie direkt in Ihrem Browser mit dem Übersetzen
 
@@ -40,7 +40,7 @@ Die Router-Konsole ist die Weboberfläche, die Sie beim Betrieb von I2P sehen. I
 
 ### Transifex verwenden (Empfohlen)
 
-1. Gehe zu [I2P auf Transifex](https://www.transifex.com/otf/I2P/)
+1. Gehe zu I2P auf Transifex
 2. Wähle das router console Projekt aus
 3. Wähle deine Sprache
 4. Beginne mit der Übersetzung
@@ -88,7 +88,7 @@ poedit apps/routerconsole/locale/messages_es.po
 ant updaters
 # Install the update and check translations in the console
 ```
-**Reichen Sie Ihre Arbeit ein:** - Erstellen Sie einen Merge Request auf [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p) - Oder teilen Sie Dateien mit dem Entwicklungsteam im IRC
+**Reichen Sie Ihre Arbeit ein:** - Erstellen Sie einen Merge Request auf GitLab - Oder teilen Sie Dateien mit dem Entwicklungsteam im IRC
 
 ---
 
@@ -212,7 +212,7 @@ Ihre Arbeit hilft Menschen auf der ganzen Welt direkt dabei, I2P sicher und priv
 Bereit zum Übersetzen?
 
 1. **Wählen Sie Ihre Methode:**
-   - Schnellstart: [Auf Transifex registrieren](https://www.transifex.com/otf/I2P/)
+   - Schnellstart: Auf Transifex registrieren
    - Manueller Ansatz: Treten Sie [#i2p-dev auf IRC](/contact/#irc) bei
 
 2. **Klein anfangen:** Übersetzen Sie ein paar Zeichenketten, um sich mit dem Prozess vertraut zu machen

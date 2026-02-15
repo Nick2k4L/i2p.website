@@ -26,6 +26,6 @@ It uses i2p.plugins.firefox version 1.1.0 as a library for launching the browser
 It uses i2p.i2p version 2.3.0 as an I2P router, and to provide applications.
 As always it is recommended that you update to the latest version of the I2P router at your earliest convenient opportunity.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

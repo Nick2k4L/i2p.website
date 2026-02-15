@@ -173,7 +173,7 @@ categories: ["meeting"]
 13:58 &lt;jrandom&gt; yeah jnymo, this is just a random # generator
 13:58 &lt;ant&gt; &lt;jnymo&gt;gt; ah
 13:59 &lt;jrandom&gt; we'll still need to do some research into the quality of various entropy sources in the router, but I think we'll be able to feed it some data.
-14:00 &lt;smeghead&gt; btw if anyone wants to read what this pants thing is about: http://smeghead.i2p/README_pants
+14:00 &lt;smeghead&gt; btw if anyone wants to read what this pants thing is about: `http://smeghead.i2p/README_pants`
 14:00 &lt;jrandom&gt; oh wikked
 14:01 &lt;smeghead&gt; pants is almost done too
 14:01 &lt;brachtus&gt; i know jbigi is kinda hard to get working with OS X/Darwin... will this have the same build problems?
@@ -190,7 +190,7 @@ categories: ["meeting"]
 14:03 &lt;smeghead&gt; no manual mucking would be necessary
 14:03 &lt;ant&gt; * jnymo doesn't have a router up
 14:03 &lt;smeghead&gt; jnymo: read that link i just posted
-14:04 &lt;jrandom&gt; http://bolas.mine.nu:8080/cgi-bin/nph-proxy/000000A/http/smeghead.i2p/README_pants
+14:04 &lt;jrandom&gt; `http://bolas.mine.nu:8080/cgi-bin/nph-proxy/000000A/http/smeghead.i2p/README_pants`
 14:04 &lt;smeghead&gt; pants can build gmp too
 14:04 &lt;jrandom&gt; (public inproxy)
 14:04 &lt;smeghead&gt; ah nice
@@ -240,7 +240,7 @@ categories: ["meeting"]
 14:15 &lt;jrandom&gt; ok, anyone have any questions/thoughts/concerns on fortuna?
 14:15 &lt;jrandom&gt; if not, hopping on over to 5) ???
 14:15 &lt;jrandom&gt; cervantes: p1ng
-14:16 &lt;cervantes&gt; http://forum.i2p/viewtopic.php?t=305
+14:16 &lt;cervantes&gt; `http://forum.i2p/viewtopic.php?t=305`
 14:16 &lt;cervantes&gt; we have a new forum member of the week
 14:16 &lt;cervantes&gt; I present [drumroll] Sugadude!
 14:16  * brachtus applauds Sugadude

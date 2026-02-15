@@ -80,7 +80,7 @@ Java I2P i2ptunnel shared clients का समर्थन करता है,
 
 ### Tunnel की मात्रा सीमित करें
 
-विकल्प `inbound.quantity` और `outbound.quantity` के साथ tunnel की मात्रा को स्पष्ट रूप से निर्दिष्ट करें। Java I2P में डिफ़ॉल्ट 2 है; i2pd में डिफ़ॉल्ट अधिक है। दोनों router के साथ संगत सेटिंग प्राप्त करने के लिए SAM का उपयोग करके SESSION CREATE लाइन में निर्दिष्ट करें। अधिकांश कम-से-मध्यम bandwidth और कम-से-मध्यम fanout applications के लिए प्रत्येक में दो in/out पर्याप्त है। Server और उच्च-fanout P2P applications को अधिक की आवश्यकता हो सकती है। उच्च-ट्रैफिक server और applications के लिए आवश्यकताओं की गणना पर मार्गदर्शन के लिए [इस forum post](http://zzz.i2p/topics/1584) देखें।
+विकल्प `inbound.quantity` और `outbound.quantity` के साथ tunnel की मात्रा को स्पष्ट रूप से निर्दिष्ट करें। Java I2P में डिफ़ॉल्ट 2 है; i2pd में डिफ़ॉल्ट अधिक है। दोनों router के साथ संगत सेटिंग प्राप्त करने के लिए SAM का उपयोग करके SESSION CREATE लाइन में निर्दिष्ट करें। अधिकांश कम-से-मध्यम bandwidth और कम-से-मध्यम fanout applications के लिए प्रत्येक में दो in/out पर्याप्त है। Server और उच्च-fanout P2P applications को अधिक की आवश्यकता हो सकती है। उच्च-ट्रैफिक server और applications के लिए आवश्यकताओं की गणना पर मार्गदर्शन के लिए इस forum post देखें।
 
 ### SAM SIGNATURE_TYPE निर्दिष्ट करें
 
@@ -240,4 +240,4 @@ import net.i2p.router.Router;
 ```
 यह कोड उस स्थिति के लिए है जहाँ आपका एप्लिकेशन router शुरू करता है, जैसा कि हमारे Android ऐप में होता है। आप router को clients.config और i2ptunnel.config फाइलों के माध्यम से एप्लिकेशन को शुरू करवा भी सकते हैं, Jetty webapps के साथ मिलकर, जैसा कि हमारे Java packages में किया जाता है। हमेशा की तरह, state management सबसे कठिन हिस्सा है।
 
-यह भी देखें: [router javadocs](http://idk.i2p/javadoc-i2p/net/i2p/router/Router.html).
+यह भी देखें: router javadocs.

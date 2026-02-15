@@ -30,7 +30,7 @@ Bu düzgün çalıştıktan sonra, buna 0.6.2 diyebilmeden önce hâlâ yapacak 
 
 Yapılacak sayısız faydalı iş var, ama yalnızca blogumda yayınladığım, bir geliştiricinin çok fazla zaman harcamadan hızlıca ortaya koyabileceği beş küçük projeyi anlattığım bir gönderiye dikkatinizi çekmek istiyorum [1]. Bunlara atılmak isteyen olursa, eminim bir teşekkür olarak genel fondan bazı kaynaklar [2] ayırırız; yine de çoğunuzun nakitten ziyade hack hevesiyle motive olduğunun farkındayım ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

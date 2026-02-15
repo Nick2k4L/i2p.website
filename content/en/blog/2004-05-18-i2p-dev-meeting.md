@@ -68,7 +68,7 @@ categories: ["meeting"]
 14:21 &lt;duck&gt; (hi fvw)
 14:21 &lt;_cervantes_&gt; it would be good to have some kind of coalleted stats on tunnel performance... the kind of load the might inflict on a benchmark processor(s)
 14:22 &lt;_cervantes_&gt; btw I took my server offline....it was getting a shed load of tunnels and I haven't yet compiled jbigi ;-)
-14:22 &lt;jrandom&gt; see http://localhost:7655/routerStats.html#Tunnels
+14:22 &lt;jrandom&gt; see `http://localhost:7655/routerStats.html#Tunnels`
 14:23 &lt;jrandom&gt; ah!  yeah, jbigi is something we want to encourage everyone to use 
 14:23 &lt;BrianR&gt; Any thoughts on doing bandwidth budgeting for tunnels? 
 14:24 &lt;jrandom&gt; currently slated for 3.0 (with overall bandwidth limiting for the router as a whole @ 0.4.1)

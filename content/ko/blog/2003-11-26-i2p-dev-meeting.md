@@ -6,7 +6,7 @@ description: "2003년 11월 26일 I2P 개발 회의 기록."
 categories: ["meeting"]
 ---
 
-(웨이백 머신 제공 http://www.archive.org/)
+(웨이백 머신 제공 `http://www.archive.org/`)
 
 ## 빠른 요약
 

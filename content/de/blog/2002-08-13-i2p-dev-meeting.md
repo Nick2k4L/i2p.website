@@ -6,7 +6,7 @@ description: "I2P-Entwicklertreffen zu RC2-Status, Fortschritt der Portierung au
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

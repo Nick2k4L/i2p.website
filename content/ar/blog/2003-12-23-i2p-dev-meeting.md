@@ -6,7 +6,7 @@ description: "سجل اجتماع تطوير I2P لـ 23 ديسمبر 2003."
 categories: ["meeting"]
 ---
 
-(بإذن من آلة الزمن http://www.archive.org/)
+(بإذن من آلة الزمن `http://www.archive.org/`)
 
 ## ملخص سريع
 

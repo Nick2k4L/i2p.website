@@ -14,7 +14,7 @@ categories: ["status"]
 
 0.4 将满足所提到的四项发布标准（功能性、安全性、匿名性和可扩展性），不过在 0.4.2 之前，仅有少数处于 NAT 和防火墙之后的用户能够参与；而在 0.4.3 之前，由于维护大量与其他 routers 的 TCP 连接所带来的开销，网络规模将存在一个有效上限。
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ Earlier today, duck went through the site and made an inventory of pages we're m
 
 除此之外，我认为这个网站已经基本准备就绪，可以上线了。大家在这方面有什么建议或顾虑吗？
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) 攻击与防御**
 

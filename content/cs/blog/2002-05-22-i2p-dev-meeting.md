@@ -6,7 +6,7 @@ description: "První vývojářské setkání I2P zaměřené na stav projektu, 
 categories: ["meeting"]
 ---
 
-(S laskavým svolením služby Wayback Machine http://www.archive.org/)
+(S laskavým svolením služby Wayback Machine `http://www.archive.org/`)
 
 ## Stručné shrnutí
 

@@ -178,12 +178,12 @@ Recursos para periodistas, investigadores y cualquier persona interesada en apre
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">Cebollas y Ajo: los protocolos de I2P</a>
+Cebollas y Ajo: los protocolos de I2P
 </div>
 <div class="content-entry-meta">🎥 Presentación • 17 de febrero de 2016</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ Recursos para periodistas, investigadores y cualquier persona interesada en apre
 <div class="content-entry-title">zzz y Lance James en InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Podcast • 16 de febrero de 2012</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">Torrent de I2P</a>
+Torrent de I2P
 </div>
 </div>
 
@@ -279,7 +279,7 @@ Recursos para periodistas, investigadores y cualquier persona interesada en apre
 <div class="content-entry-title">zzz en InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Podcast • 18 de agosto de 2011</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">Torrent de I2P</a>
+Torrent de I2P
 </div>
 </div>
 
@@ -343,7 +343,7 @@ Recursos para periodistas, investigadores y cualquier persona interesada en apre
 </div>
 <div class="content-entry-meta">🎥 Presentación • HOPE • 17 de julio de 2010</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">YouTube</a>
 </div>
 </div>

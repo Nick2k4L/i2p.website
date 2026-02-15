@@ -22,7 +22,7 @@ Check-ins nos repositórios do Projeto I2P exigem que você configure a assinatu
 
 ## Assinatura GPG
 
-O repositório oficial é o que está hospedado em https://i2pgit.org/i2p-hackers/i2p.i2p e em https://git.idk.i2p/i2p-hackers/i2p.i2p, mas há um "Mirror" disponível no Github em https://github.com/i2p/i2p.i2p.
+O repositório oficial é o que está hospedado em `https://i2pgit.org/i2p-hackers/i2p.i2p` e em `https://git.idk.i2p/i2p-hackers/i2p.i2p`, mas há um "Mirror" disponível no Github em https://github.com/i2p/i2p.i2p.
 
 Agora que estamos no git, podemos sincronizar repositórios da nossa própria instância auto-hospedada do Gitlab com o Github, e vice-versa. Isso significa que é possível criar e enviar um merge request no Gitlab e, quando ele for mesclado, o resultado será sincronizado com o Github, e um Pull Request no Github, quando for mesclado, aparecerá no Gitlab.
 

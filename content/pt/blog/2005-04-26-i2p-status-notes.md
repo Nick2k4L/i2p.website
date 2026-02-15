@@ -24,7 +24,7 @@ Passo a maior parte do meu tempo focado no código UDP da versão 0.6, e não, a
 
 Como duck mencionou na lista [1], zab aportou fundos iniciais para uma recompensa para ajudar o I2P com uma série de atualizações de testes - uma quantia para quem puder completar as tarefas listadas na página da recompensa [2]. Recebemos mais algumas doações para essa recompensa [3] - atualmente está em $1000USD. Embora as recompensas certamente não ofereçam "preço de mercado", elas são um pequeno incentivo para desenvolvedores que queiram ajudar.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
 
 * 4) ???
 

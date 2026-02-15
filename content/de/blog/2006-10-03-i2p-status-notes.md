@@ -52,7 +52,7 @@ Das ist also der Engpass im router/Netzwerk, so wie ich ihn derzeit sehe. Sämtl
 
 * 3) Syndie rationale continued
 
-Im Forum gibt es einen ausführlichen Beitrag zu Syndie und dazu, wie es ins Gesamtbild passt - sehen Sie ihn sich hier an: <http://forum.i2p.net/viewtopic.php?t=1910>
+Im Forum gibt es einen ausführlichen Beitrag zu Syndie und dazu, wie es ins Gesamtbild passt - sehen Sie ihn sich hier an: <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Außerdem möchte ich nur kurz zwei Ausschnitte aus der derzeit in Arbeit befindlichen Syndie-Dokumentation hervorheben. Zunächst aus irc (und der noch nicht veröffentlichten FAQ):
 

@@ -21,7 +21,7 @@ categories: ["meeting"]
 20:09:03  &lt;zzz&gt; present
 20:09:48  &lt;orignal&gt; meeting?
 20:10:11  &lt;str4d&gt; orignal: discussing Java I2P's todo list
-20:10:35  &lt;str4d&gt; While we wait for others to show up: http://trac.i2p2.i2p/wiki/Roadmaps/1.0
+20:10:35  &lt;str4d&gt; While we wait for others to show up: `http://trac.i2p2.i2p/wiki/Roadmaps/1.0`
 20:10:41  &lt;kytv&gt; Present as well, though I'm usually useless when it comes to these things.
 20:11:37  &lt;str4d&gt; I have adjusted the Gantt chart on the page above (that I set up for the 0.9.13-0.9.16 dev cycle) to show what I think we did.
 20:13:30  &lt;zzz&gt; interesting
@@ -48,7 +48,7 @@ categories: ["meeting"]
 20:26:15  &lt;zzz&gt; without getting into what's more important than what, I think almost everything that's shown and unfinished on the gantt chart is still important
 20:27:01  &lt;str4d&gt; I agree.
 20:27:07  &lt;str4d&gt; I still want to see what ideas people came up with over the last week, if any.
-20:27:45  &lt;str4d&gt; Here's mine: http://pastethis.i2p/show/jF2RkHwrIPkCb0yOpI7l/
+20:27:45  &lt;str4d&gt; Here's mine: `http://pastethis.i2p/show/jF2RkHwrIPkCb0yOpI7l/`
 20:27:46  &lt;iRelay&gt; Title: Paste #jF2RkHwrIPkCb0yOpI7l | LodgeIt! (at pastethis.i2p)
 20:28:07  &lt;eche|on&gt; I am out of options, I do see to get I2P out, with the help of bote android, i2p messenger is a option, a XMPP server, and syndie. Sorry, I still see syndie important.
 20:28:27  &lt;str4d&gt; eche|on: great, thanks!
@@ -67,7 +67,7 @@ categories: ["meeting"]
 20:32:58  &lt;str4d&gt; Between these ideas and the not-completed list on the page above, we have a good pool of potential projects.
 20:33:34  &lt;str4d&gt; My goal is to get these projects tidied up, formalized and published on the website's todo page
 20:34:11  &lt;str4d&gt; Having poked around other projects' todo pages, this is the format I am proposing:
-20:34:11  &lt;str4d&gt; http://pastethis.i2p/show/nvexU3ZvSFOI6L5DrrqM/
+20:34:11  &lt;str4d&gt; `http://pastethis.i2p/show/nvexU3ZvSFOI6L5DrrqM/`
 20:34:12  &lt;iRelay&gt; Title: Paste #nvexU3ZvSFOI6L5DrrqM | LodgeIt! (at pastethis.i2p)
 20:34:54  &lt;eche|on&gt; nice idea
 20:35:10  &lt;kytv&gt; Ditto on Orchid
@@ -121,11 +121,11 @@ categories: ["meeting"]
 20:54:08  &lt;psi&gt; potential item: benchmark tunnel throughput and message drop rates
 20:54:26  &lt;str4d&gt; EinMByte: do you have any ideas for our todo list?
 20:55:15  &lt;EinMByte&gt; NTCP2, possibly. Although it would be long term
-20:56:39  &lt;str4d&gt; EinMByte: for reference: http://trac.i2p2.i2p/wiki/Roadmaps/1.0
+20:56:39  &lt;str4d&gt; EinMByte: for reference: `http://trac.i2p2.i2p/wiki/Roadmaps/1.0`
 20:56:53  &lt;EinMByte&gt; thanks
 20:57:04  &lt;EinMByte&gt; (was about to ask)
 21:00:23  &lt;str4d&gt; Here is the list of everyone's ideas:
-21:00:24  &lt;str4d&gt; http://pastethis.i2p/show/K0fGRb2708ADbCTZ9u9K/
+21:00:24  &lt;str4d&gt; `http://pastethis.i2p/show/K0fGRb2708ADbCTZ9u9K/`
 21:00:25  &lt;iRelay&gt; Title: Paste #K0fGRb2708ADbCTZ9u9K | LodgeIt! (at pastethis.i2p)
 21:01:01  &lt;str4d&gt; Nearly all of these can be turned into projects for the website todo page.
 21:01:36  &lt;str4d&gt; Next discussion topic: which of these (and the ones on the Gantt currently) are more important for us to do in the next six months?
@@ -152,7 +152,7 @@ categories: ["meeting"]
 21:09:03  &lt;str4d&gt; k, reload Gantt page
 21:10:34  &lt;EinMByte&gt; str4d: anyway don't count on this too much, it depends on whether I2P users are actually interested in something like this.
 21:11:14  &lt;EinMByte&gt; Also, I'm not sure about the GNS stuff. In any case it shouldn't have a high priority.
-21:11:56  &lt;str4d&gt; Updated new ideas paste: http://pastethis.i2p/show/1qxHbkWjD27N7SdzNJZL/
+21:11:56  &lt;str4d&gt; Updated new ideas paste: `http://pastethis.i2p/show/1qxHbkWjD27N7SdzNJZL/`
 21:11:57  &lt;iRelay&gt; Title: Paste #1qxHbkWjD27N7SdzNJZL | LodgeIt! (at pastethis.i2p)
 21:12:35  &lt;zzz&gt; i'd say 4 broad categories are the highest importance: 1) near-term crypto migration continuing (addressbook, muiltidest, etc) 2) longer-term crypto planning/research (DH, LS2, NTCP2) 3) all things testing 4) all things non-coding
 21:13:48  &lt;EinMByte&gt; zzz: is that in order of importance?
@@ -160,13 +160,13 @@ categories: ["meeting"]
 21:14:21  &lt;zzz&gt; no. roughly equal importance
 21:14:44  &lt;str4d&gt; So the only item not represented in those categories is restricted routes
 21:15:28  &lt;jenkins@kyirc&gt; Starting build #556 for job i2pd (previous build: SUCCESS)
-21:15:30  &lt;jenkins@kyirc&gt; Project i2pd build #556: SUCCESS in 8.2 sec: http://jenkins.killyourtv.i2p/job/i2pd/556/
+21:15:30  &lt;jenkins@kyirc&gt; Project i2pd build #556: SUCCESS in 8.2 sec: `http://jenkins.killyourtv.i2p/job/i2pd/556/`
 21:15:31  &lt;jenkins@kyirc&gt; * orignal: eliminated NTCPServerConnection
 21:15:32  &lt;jenkins@kyirc&gt; * orignal: moved NTCP client code to Transports
 21:16:34  &lt;EinMByte&gt; maybe NTCP2 is not *that* important
 21:16:50  &lt;zzz&gt; and the reason I grouped them like that and say equal priority is that it's probably 4 separate groups of people for those 4 categories that could each make progress
 21:17:08  &lt;EinMByte&gt; or, at least before we can start propertly on the NTCP2 we need to do a lot of research, also answer a few very important questions
-21:17:33  &lt;jenkins@kyirc&gt; Project i2pd (Linux x86) build #33: SUCCESS in 1 min 47 sec: http://jenkins.killyourtv.i2p/job/i2pd%20(Linux%20x86)/33/
+21:17:33  &lt;jenkins@kyirc&gt; Project i2pd (Linux x86) build #33: SUCCESS in 1 min 47 sec: `http://jenkins.killyourtv.i2p/job/i2pd%20(Linux%20x86)/33/`
 21:17:44  &lt;EinMByte&gt; zzz: indeed
 21:17:51  &lt;JekabsR&gt; it is interesting that i2p network tends to bring all fast routers together
 21:17:58  &lt;jenkins@kyirc&gt; Starting build #33 for job i2pd (Linux x64)
@@ -174,7 +174,7 @@ categories: ["meeting"]
 21:18:34  &lt;JekabsR&gt; and they do not prefer slow routers
 21:18:40  &lt;EinMByte&gt; Yes. In any case if we change the transport layers it's extremely important not to make mistakes, as that would probably break I2P entirely.
 21:19:19  &lt;psi&gt; JekabsR: slower routers are still used just not as much
-21:19:43  &lt;jenkins@kyirc&gt; Project i2pd (Linux x64) build #33: SUCCESS in 1 min 52 sec: http://jenkins.killyourtv.i2p/job/i2pd%20(Linux%20x64)/33/
+21:19:43  &lt;jenkins@kyirc&gt; Project i2pd (Linux x64) build #33: SUCCESS in 1 min 52 sec: `http://jenkins.killyourtv.i2p/job/i2pd%20(Linux%20x64)/33/`
 21:20:05  &lt;EinMByte&gt; zzz: if 2 is "research", then you are right though
 21:20:33  &lt;EinMByte&gt; it can be done simultaneously
 21:21:52  * str4d is reworking the Gantt into these four categories (plus an Other category)
@@ -195,7 +195,7 @@ categories: ["meeting"]
 21:26:56  &lt;str4d&gt; Refresh Gantt page now
 21:27:07  &lt;eche|on&gt; JekabsR: https://geti2p.net/_static/pdf/I2P-PET-CON-2009.1.pdf
 21:30:12  &lt;eche|on&gt; JekabsR: tunnels are dropped only on end of tunnel lifetime and if own tunnels need the capacity.
-21:30:29  &lt;str4d&gt; If you refresh http://trac.i2p2.i2p/wiki/Roadmaps/1.0 you will now see the headings, each with a six-month bar. This gives an indication of how much time there is to fit everything in.
+21:30:29  &lt;str4d&gt; If you refresh `http://trac.i2p2.i2p/wiki/Roadmaps/1.0` you will now see the headings, each with a six-month bar. This gives an indication of how much time there is to fit everything in.
 21:32:43  &lt;str4d&gt; Now that we have some ideas for the next six months, we need to start planning times.
 21:33:18  &lt;str4d&gt; And who is going to tackle what.
 21:33:52  &lt;JekabsR&gt; my console frequently reports that it has too many incoming connections and tunnels are partially rejected. How i2p decides which one to reject?
@@ -207,7 +207,7 @@ categories: ["meeting"]
 21:36:14  &lt;JekabsR&gt; limits are hit
 21:37:42  &lt;JekabsR&gt; router is using 80% of CPU power
 21:38:23  &lt;str4d&gt; Anyone?
-21:39:36  &lt;kytv&gt; JekabsR: 1) meeting underway, you may want to wait; 2) look at http://127.0.0.1:7657/peers#help
+21:39:36  &lt;kytv&gt; JekabsR: 1) meeting underway, you may want to wait; 2) look at `http://127.0.0.1:7657/peers#help`
 21:41:16  &lt;JekabsR&gt; kytv: will check it out
 21:41:44  &lt;zzz&gt; str4d, i think you lost everybody after an hour 45. Maybe declare victory for now and we'll make more progress at another time?
 21:41:45  &lt;str4d&gt; Let's try some more specific questions.

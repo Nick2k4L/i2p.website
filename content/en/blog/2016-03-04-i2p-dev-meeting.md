@@ -21,7 +21,7 @@ categories: ["meeting"]
 15:00:54 &lt;str4d&gt; hi
 15:01:02 &lt;xcps_&gt; hi!
 15:01:27 &lt;orignal_&gt; what's up?
-15:02:18 &lt;zzz&gt; please review the thread at http://zzz.i2p/topics/2021 and the current roadmap at http://i2p-projekt.i2p/en/get-involved/roadmap
+15:02:18 &lt;zzz&gt; please review the thread at `http://zzz.i2p/topics/2021` and the current roadmap at `http://i2p-projekt.i2p/en/get-involved/roadmap`
 15:02:27 &lt;zzz&gt; 1) structure for these meetings
 15:03:22 &lt;zzz&gt; should we go straight into the roadmap or should we talk about high-level priorities first?
 15:03:53 &lt;str4d&gt; I'd go with the latter first
@@ -70,7 +70,7 @@ categories: ["meeting"]
 15:14:25 &lt;zzz&gt; Increase security
 15:14:25 &lt;zzz&gt; Includes: Crypto migration, subscription protocol, new transport protocols, pluggable transports, LS2, NTCP2, new DH, key revocation, key storage, code review, sybil, bug fixes, naming, SSL, ...
 15:14:46 &lt;zzz&gt; ok, let's move on to 2) the roadmap itself
-15:15:10 &lt;zzz&gt; url is http://i2p-projekt.i2p/en/get-involved/roadmap
+15:15:10 &lt;zzz&gt; url is `http://i2p-projekt.i2p/en/get-involved/roadmap`
 15:15:50 &lt;zzz&gt; .25 is pretty much done, release in about 10 days, so let's look at the next 4 releases 26-29 for this year
 15:16:00 &lt;zzz&gt; which should carry us thru to ccc
 15:16:15 &lt;EinMByte&gt; If something is under 2017, e.g., does that mean we start looking into it only then, or does that mean we start the implementation at that point?
@@ -316,10 +316,10 @@ categories: ["meeting"]
 16:16:35 &lt;str4d&gt; EinMByte, what I need reviewed is in i2p.www.str4d
 16:16:36 &lt;EinMByte&gt; Maybe a fixed process for all proposals
 16:16:57 &lt;zzz&gt; ok. it's on the list for 26. details to follow. str4d get to work. i wouldn't expect a lot of feedback. Just come up with a new system and we will all fall in line
-16:17:02 &lt;str4d&gt; and on http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/
+16:17:02 &lt;str4d&gt; and on `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/`
 16:17:04 &lt;str4d&gt; EinMByte, if you want to work with me on nailing that down, I could get that finished maybe by .25
 16:17:23 &lt;zzz&gt; what else for 26? we gotta wrap this up
-16:17:36 &lt;str4d&gt; ( EinMByte, http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec specifically)
+16:17:36 &lt;str4d&gt; ( EinMByte, `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec` specifically)
 16:18:14 &lt;zzz&gt; this is very short term stuff. I need to know what to do on monday
 16:18:27 &lt;zzz&gt; last call for 26
 16:18:41 &lt;str4d&gt; I think the subscriptions stuff will take a while

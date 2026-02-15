@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / http://127.0.0.1:8443/
-    ProxyPassReverse / http://127.0.0.1:8443/
+    ProxyPass / `http://127.0.0.1:8443/`
+    ProxyPassReverse / `http://127.0.0.1:8443/`
 </VirtualHost>
 ```
 ### 등록 및 조정
@@ -554,7 +554,7 @@ https://checki2p.com/reseed 에 있는 서비스는 모든 등록된 I2P reseed 
 ### 커뮤니티 리소스
 
 - **I2P 포럼**: https://i2pforum.net/
-- **Gitea 저장소**: https://i2pgit.org/I2P_Developers/i2p.i2p
+- **Gitea 저장소**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: IRC2P의 #i2p-dev
 - **상태 모니터링**: https://checki2p.com/reseed
 

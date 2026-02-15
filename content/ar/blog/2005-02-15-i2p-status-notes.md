@@ -18,7 +18,7 @@ categories: ["status"]
 
 كانت هناك مشكلة مؤقتة أخرى تمثلت في توقّف أحد outproxies (وكلاء الخروج) الخاصة بـ HTTP (www1.squid.i2p)، مما تسبب في فشل 50% من طلبات outproxy. يمكنك إزالة ذلك outproxy مؤقتًا عبر فتح تهيئة I2PTunnel [1]، وتعديل eepProxy، وتغيير السطر "Outproxies:" ليحتوي فقط على "squid.i2p". نأمل أن نعيد الآخر إلى العمل قريبًا لزيادة التكرار.
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -34,7 +34,7 @@ categories: ["status"]
 
 أعدّ duck إصدارًا لإصلاح الأخطاء لتحديث 0.1.6 الأسبوع الماضي، ويُقال إنه رائع جدًا (وربما /رائعًا أكثر من اللازم/ نظرًا لازدياد استخدام الشبكة ;)  مزيد من المعلومات على منتدى i2p-bt [2]
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

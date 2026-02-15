@@ -103,9 +103,9 @@ categories: ["meeting"]
 13:38 &lt;@duck&gt; confusion but it is anonymous both for trackers and for clients (seeders and leechers).
 13:38 &lt;@duck&gt; Updates since last week:
 13:38 &lt;@duck&gt; GUI work (wxPython), included tracker, bugfixes.
-13:39 &lt;@duck&gt; full list at http://dev.i2p/cgi-bin/cvsweb.cgi/~checkout~/i2p-bt/CHANGES.txt?rev=HEAD
+13:39 &lt;@duck&gt; full list at `http://dev.i2p/cgi-bin/cvsweb.cgi/~checkout~/i2p-bt/CHANGES.txt?rev=HEAD`
 13:39 &lt;@duck&gt; also the code is at the CVS on cvs.i2p
-13:39 &lt;@duck&gt; and got a dedicated eepsite: http://duck.i2p/i2p-bt/
+13:39 &lt;@duck&gt; and got a dedicated eepsite: `http://duck.i2p/i2p-bt/`
 13:39 &lt;@duck&gt; The included tracker is very spartanic and you still have to provide the
 13:39 &lt;@duck&gt; torrents themself somewhere; so DrWoo, thetower and me have been looking at 
 13:39 &lt;@duck&gt; several alternatives which offer features like suprnova, until I got nuts.
@@ -113,8 +113,8 @@ categories: ["meeting"]
 13:40 &lt;jrandom&gt; w00t
 13:40 &lt;@duck&gt; Finally bytemonsoon is selected, the original is ugly, but DrWoo has been fixing that,
 13:40 &lt;@duck&gt; The idea is to improve it some more and release it as an I2P ready tracker solution,
-13:40 &lt;@duck&gt; see: http://brittanyworld.i2p/bittorrent/
-13:40 &lt;@duck&gt; meeting the requirements at: http://duck.i2p/i2p-bt/txt/bytemonsoon.txt
+13:40 &lt;@duck&gt; see: `http://brittanyworld.i2p/bittorrent/`
+13:40 &lt;@duck&gt; meeting the requirements at: `http://duck.i2p/i2p-bt/txt/bytemonsoon.txt`
 13:40 &lt;@duck&gt; .
 13:40 &lt;jrandom&gt; kickass
 13:40 &lt;+DrWoo&gt; you can check out a couple of small test files on a the nice tracker duck fixed up
@@ -137,7 +137,7 @@ categories: ["meeting"]
 13:45 &lt;@duck&gt; not many takers on it though
 13:45 &lt;jrandom&gt; duck (& gang): what can we do to help?
 13:45 &lt;@duck&gt; you: get the new streaming lib ready
-13:46 &lt;@duck&gt; gang: look at the todo: http://duck.i2p/i2p-bt/txt/todo.txt
+13:46 &lt;@duck&gt; gang: look at the todo: `http://duck.i2p/i2p-bt/txt/todo.txt`
 13:46 &lt;@duck&gt; lucky is working on a howto
 13:47 &lt;@duck&gt; DrWoo: anything else?
 13:47 &lt;jrandom&gt; nice

@@ -18,7 +18,7 @@ Hi gang, its that time of the week,
 
 Another week, another message saying "There's been a lot of progress on the SSU transport" ;) My local mods are stable and have been pushed to CVS (HEAD sits at 0.5.0.7-9), but no release yet. More news on that front soon. Details on the non-SSU related changes up in the history [1], though I'm keeping SSU related changes out of that list so far, since SSU isn't used by any non-devs yet (and devs read i2p-cvs@ :)
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) Tunnel IVs
 
@@ -26,7 +26,7 @@ For the last few days, dvorak has been posting occational thoughts on different 
 
 One of the core issues behind it is that there are no ways to verify a tunnel message as goes down the tunnel without opening up a whole slew of attacks (see an earlier tunnel crypto proposal [2] for one method that gets close, but has pretty sketchy probabilities and imposes some artificial limits on the tunnels).
 
-[2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel.html?rev=HEAD
+[2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel.html?rev=HEAD`
 
 There is, however, a trivial way around the particular attack outlined - simply treat xor(IV, first data block) as the unique identifier fed through the bloom filter instead of the IV alone. This way, intermediate peers will see the dup and drop it before it reaches the second colluding peer. CVS has been updated to include this defense, though I very, very much doubt its a practical threat given the current network size, so I'm not pushing it out as a release by itself.
 
@@ -36,7 +36,7 @@ This doesn't affect the viability of other timing or shaping attacks however, bu
 
 As described in the spec [3], the SSU transport uses a MAC for each datagram transmitted. This is in addition to the verification hash sent with each I2NP message (as well as the end to end verification hashes on client messages). Right now, the spec and the code uses a truncated HMAC-SHA256 - transmitting and verifying only the first 16 bytes of the MAC. This is *cough* a bit wasteful, as the HMAC uses the SHA256 hash twice in its operation, each time running with a 32 byte hash, and recent profiling of the SSU transport suggests this is near the critical path for CPU load. As such, I've done a little exploring with replacing HMAC-SHA256-128 with a plain HMAC-MD5(-128) - while MD5 is clearly not as strong as SHA256, we're truncating the SHA256 down to the same size as MD5 anyway so the amount of brute force required for collision is the same (2^64 attempts). I'm playing around with it at the moment and the speedup is substantial (getting more than 3x the HMAC throughput on 2KB packets than with SHA256), so perhaps we may go live with that instead. Or if someone can come up with a great reason not to (or a better alternative), its simple enough to switch out (just one line of code).
 
-[3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 4) ???
 

@@ -32,7 +32,7 @@ Agora é abril, então o roadmap [1] foi atualizado de acordo - removendo 0.5.1 
 
 Aum tem trabalhado intensamente no Q, adicionando mais novidades para nós, com as capturas de tela mais recentes no site dele [2]. Ele também fez commit do código no CVS (oba), então, com sorte, poderemos começar os testes alfa em breve. Tenho certeza de que ouviremos mais do aum com detalhes sobre como ajudar, ou você pode mergulhar nas novidades no CVS em i2p/apps/q/
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

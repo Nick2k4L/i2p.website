@@ -32,9 +32,9 @@ Každý, kdo navrhuje nové šifrování, musí nejprve znát následující dok
 - [Návrh 136 experimentální typy podpisů](/cs/proposals/136-experimental-sigtypes/)
 - [Návrh 137 volitelné typy podpisů](/cs/proposals/137-optional-sigtypes/)
 - Diskusní vlákna zde pro každý z výše uvedených návrhů, odkazy uvnitř
-- [priority návrhů pro rok 2018](http://zzz.i2p/topics/2494)
-- [návrh ECIES](http://zzz.i2p/topics/2418)
-- [přehled nového asymetrického šifrování](http://zzz.i2p/topics/1768)
+- priority návrhů pro rok 2018
+- návrh ECIES
+- přehled nového asymetrického šifrování
 - [Přehled nízkoúrovňového šifrování](/cs/docs/specs/common-structures/)
 
 

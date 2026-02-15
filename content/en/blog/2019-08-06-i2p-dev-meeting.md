@@ -74,7 +74,7 @@ categories: ["meeting"]
 20:24:10 &lt;zzz&gt; 2) 42 release, bug fixes, proposals (especially research on new encryption issues), DEFCON
 20:24:16 &lt;zzz&gt; 3) no blockers; EOT
 20:25:18 &lt;mikalv&gt; I've been working mainly on the browser (including i2pbutton which now launches a router if found), I've also done huge improvements in my end for the outproxy, I've also started prototyping a solution for private outproxies which has so good speed I can actually use it for clearnet browsing on daily basis
-20:25:53 &lt;mikalv&gt; and I've also put up mailinglists yes, which over I2P is found at https://lists.i2p/postorius/lists/ but also available from clearnet at https://lists.i2p.email/postorius/lists/
+20:25:53 &lt;mikalv&gt; and I've also put up mailinglists yes, which over I2P is found at `https://lists.i2p/postorius/lists/` but also available from clearnet at https://lists.i2p.email/postorius/lists/
 20:26:20 &lt;mikalv&gt; anyone with constructive ideas, contribution, discussions and such are of course welcome
 20:26:57 &lt;mikalv&gt; beyond that I've done some research into how we can accept creditcard donations, and how we also can sell shirs and such at the same time
 20:27:10 &lt;mikalv&gt; EOT

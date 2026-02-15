@@ -35,7 +35,7 @@ categories: ["meeting"]
 [22:55] <w0rmus> haha
 [22:55] *** mihi (~none@anon.iip) has joined channel #iip-dev
 [22:55] <jrand0m> the specs are out and the sdk 0.2 is out as well.
-[22:56] <jrand0m> currently, they're only available on freenet [http://localhost:8888/CHK@p1VU1U67UgXYJ7v7cS4Xqn~p4ssLAwI,RvdwV4jZyZYcJgYabpVPOQ/I2P_SDK.zip]
+[22:56] <jrand0m> currently, they're only available on freenet [`http://localhost:8888/CHK@p1VU1U67UgXYJ7v7cS4Xqn~p4ssLAwI,RvdwV4jZyZYcJgYabpVPOQ/I2P_SDK.zip]`
 [22:56] <jrand0m> but nop told me he'd have them on the normal web today, as well as an email to a few of the traditional lists to round up some reviewers
 [22:57] <jrand0m> 2) any new questions on the specs or the sdk?
 [22:58] *** nixonite (~nixonite@anon.iip) has joined channel #iip-dev

@@ -1052,7 +1052,7 @@ Bu teklifte birden fazla geçici ve körleştirilmiş anahtarı paketlemek ve bu
 
 - Hızla yeterince ilgilenmediğimiz için anahtarlı BLAKE2b kullanmıyoruz. İhtiyaç duyduğumuz en büyük n değerini karşılayacak kadar büyük bir çıktı boyutuna sahip (veya sayaç argümanı ile istenen anahtar başına bir kez çağırabiliriz). BLAKE2b, SHA-256'dan çok daha hızlıdır ve anahtarlı-BLAKE2b toplam hash fonksiyonu çağrısı sayısını azaltır.
   Ancak, diğer nedenlerle BLAKE2b'ye geçmeyi önerdiğimiz 148 numaralı öneriyi görün.
-  Bkz. [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+  Bkz. Secure key derivation performance.
 
 ### Meta LS2
 
@@ -1066,7 +1066,7 @@ Meta LS2'nin kullanım senaryosu büyük ölçekli multihoming'dir, ancak router
 
 Yaprak router'ları, ara ve ana Meta LS imzalayıcıları arasındaki koordinasyon için arka uç protokolü burada belirtilmemiştir. Gereksinimler son derece basittir - sadece eşin çalışır durumda olduğunu doğrulayın ve birkaç saatte bir yeni bir LS yayınlayın. Tek karmaşıklık, başarısızlık durumunda üst düzey veya ara düzey Meta LS'ler için yeni yayıncıları seçmektir.
 
-Birden fazla router'dan gelen lease'lerin birleştirildiği, imzalandığı ve tek bir leaseset içinde yayınlandığı mix-and-match leaseset'ler, 140 numaralı öneride "invisible multihoming" olarak belgelenmiştir. Bu öneri yazıldığı şekliyle uygulanamaz, çünkü streaming bağlantıları tek bir router'a "yapışkan" olmayacaktır, bakınız http://zzz.i2p/topics/2335 .
+Birden fazla router'dan gelen lease'lerin birleştirildiği, imzalandığı ve tek bir leaseset içinde yayınlandığı mix-and-match leaseset'ler, 140 numaralı öneride "invisible multihoming" olarak belgelenmiştir. Bu öneri yazıldığı şekliyle uygulanamaz, çünkü streaming bağlantıları tek bir router'a "yapışkan" olmayacaktır, bakınız `http://zzz.i2p/topics/2335` .
 
 Arka uç protokolü ve router ile istemci iç yapılarıyla etkileşim, görünmez çoklu bağlantı (invisible multihoming) için oldukça karmaşık olacaktır.
 
@@ -1591,7 +1591,7 @@ Meta'nın nasıl oluşturulacağı ve destekleneceği, router'lar arası iletiş
 
 ## Private Key File Changes Required
 
-Özel anahtar dosyası (eepPriv.dat) formatı spesifikasyonlarımızın resmi bir parçası değildir ancak [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) içinde belgelenmiştir ve diğer uygulamalar da bunu destekler. Bu, özel anahtarların farklı uygulamalara taşınabilirliğini sağlar.
+Özel anahtar dosyası (eepPriv.dat) formatı spesifikasyonlarımızın resmi bir parçası değildir ancak Java I2P javadocs içinde belgelenmiştir ve diğer uygulamalar da bunu destekler. Bu, özel anahtarların farklı uygulamalara taşınabilirliğini sağlar.
 
 Geçici genel anahtar ve çevrimdışı imzalama bilgilerini saklamak için değişiklikler gereklidir.
 

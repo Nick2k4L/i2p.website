@@ -24,7 +24,7 @@ Die meiste Zeit verbringe ich derzeit mit dem 0.6-UDP-Code, und nein, es ist noc
 
 Wie duck auf der Liste erwähnt hat [1], hat zab eine Bounty (Prämie) ausgelobt, um I2P mit einer Reihe von Test-Updates zu unterstützen - etwas Geld für jeden, der die auf der Bounty-Seite [2] aufgeführten Aufgaben erledigen kann. Wir haben einige weitere Spenden für diese Bounty erhalten [3] - sie liegt derzeit bei $1000USD. Auch wenn die Bounties sicherlich keinen "marktüblichen Satz" bieten, sind sie ein kleiner Anreiz für Entwickler, die helfen möchten.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
 
 * 4) ???
 

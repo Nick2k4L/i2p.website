@@ -14,7 +14,7 @@ categories: ["status"]
 
 Версия 0.4 будет соответствовать четырём упомянутым критериям релиза (функциональность, безопасность, анонимность и масштабируемость), однако до 0.4.2 немногие пользователи, находящиеся за NAT и межсетевыми экранами, смогут участвовать, а до 0.4.3 будет фактическое верхнее ограничение размера сети из‑за накладных расходов на поддержание большого числа TCP‑соединений с другими routers.
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ categories: ["status"]
 
 Кроме того, думаю, сайт уже почти готов к запуску в продакшен. Есть ли у кого‑нибудь предложения или замечания по этому поводу?
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) атаки и методы защиты**
 

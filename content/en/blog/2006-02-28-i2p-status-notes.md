@@ -68,7 +68,7 @@ those, I'm sure we'd allocate some resources [2] out of the general
 fund as a thanks, though I realize most of y'all are driven by
 the hack and not the cash ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`
     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&
     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002
 [2] http://www.i2p.net/halloffame

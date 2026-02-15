@@ -16,7 +16,7 @@ categories: ["status"]
 
 ऐसा लगता नहीं है, लेकिन 0.4.2.6 रिलीज़ आए हुए एक महीने से ज़्यादा हो गया है और हालात अभी भी काफ़ी अच्छे हैं।  तब से [1] कई काफ़ी उपयोगी अपडेट आए हैं, लेकिन कोई ऐसी बड़ी रुकावट नहीं आई जो नई रिलीज़ पुश करने की मांग करे।  हालांकि, पिछले एक-दो दिनों में हमें कुछ बहुत अच्छे बग-फिक्स मिले हैं (धन्यवाद anon और Sugadude!), और अगर हम 0.5 रिलीज़ के एकदम कगार पर न होते, तो शायद मैं इसे पैकेज करके बाहर निकाल देता।  anon का अपडेट streaming lib (स्ट्रीमिंग लाइब्रेरी) में एक सीमांत स्थिति को ठीक करता है, जो BT और अन्य बड़े ट्रांसफर में दिखने वाले कई टाइमआउट्स का कारण रही है, तो अगर आप थोड़ा साहसिक महसूस कर रहे हैं, CVS HEAD ले लें और इसे आज़मा लें।  या फिर, बेशक, अगली रिलीज़ का इंतज़ार करें।
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) 0.5
 
@@ -26,13 +26,13 @@ categories: ["status"]
 
 रोडमैप [6] पर पीछे मुड़कर देखें, तो 0.5.1 के लिए स्थगित की जा रही एकमात्र चीज़ सख्त क्रमबद्धता (strict ordering) है।  समय के साथ थ्रॉटलिंग और लोड बैलेंसिंग में भी सुधार होंगे, इसमें मुझे यक़ीन है, लेकिन मेरा अनुमान है कि हम उसे लगभग हमेशा ही थोड़ा-बहुत समायोजित करते रहेंगे।  फिर भी, कुछ और चीज़ों पर चर्चा हुई थी जिन्हें मैं 0.5 में शामिल करने की उम्मीद कर रहा था, जैसे download tool और one-click update code, पर लगता है कि वे भी स्थगित कर दी जाएँगी।
 
-[2] http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html [3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
+[2] `http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html` [3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
 
 * 3) i2p-bt 0.1.6
 
 duck ने नया i2p-bt रिलीज़ पैच करके जारी किया है (वाह!), जो सामान्य स्थानों पर उपलब्ध है, तो देर न करें, अपनी कॉपी अभी ले लें [7]. इस अपडेट और anon के स्ट्रीमिंग लाइब्रेरी पैच के साथ, कुछ फ़ाइलें सीड करते समय मेरी अपलिंक बैंडविड्थ लगभग पूरी तरह भर गई, तो इसे एक बार आज़माएँ।
 
-[7] http://forum.i2p.net/viewtopic.php?t=300
+[7] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) fortuna
 
@@ -42,4 +42,4 @@ duck ने नया i2p-bt रिलीज़ पैच करके जार
 
 कई चीज़ें चल रही हैं, और हाल ही में फ़ोरम [8] पर भी गतिविधि में उछाल आया है, इसलिए मुझे यक़ीन है कि कुछ बातें छूट गई होंगी। किसी भी हालत में, कुछ ही मिनटों में बैठक में जुड़ें और जो आपके मन में है, वह कहें (या बस चुपचाप रहें और कभी‑कभार कोई तंज़ भी कस दें)।
 
-=jr [8] http://forum.i2p.net/
+=jr [8] `http://forum.i2p.net/`

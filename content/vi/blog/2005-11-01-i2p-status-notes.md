@@ -22,7 +22,7 @@ Bản phát hành 0.6.1.4 vào thứ Bảy vừa rồi có vẻ đã diễn ra k
 
 Đã có nhiều thảo luận hơn trên mailing list về một vài ý tưởng, với bản tóm tắt về các cuộc tấn công bootstrap (khởi động) được đăng trực tuyến [1]. Tôi đã đạt được một số tiến triển trong việc xây dựng đặc tả cho phần mật mã của tùy chọn 3, và dù chưa có gì được đăng, nó khá đơn giản.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/001146.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/001146.html`
 
 Đã có thêm nhiều thảo luận về cách cải thiện khả năng chống chịu trước các đối thủ mạnh bằng các tunnels có tốc độ bit cố định (CBR), và mặc dù chúng tôi có thể theo đuổi hướng đi đó, hiện điều này được lên kế hoạch cho I2P 3.0, vì việc sử dụng đúng cách đòi hỏi nguồn lực đáng kể và có thể sẽ có tác động có thể đo lường được đến việc ai sẽ sẵn sàng sử dụng I2P với mức chi phí phụ trội (overhead) như vậy, cũng như những nhóm nào có hoặc thậm chí không thể sử dụng I2P.
 
@@ -32,7 +32,7 @@ Thứ Bảy vừa rồi, chúng tôi cũng phát hành một bản I2Phex mới 
 
 Cũng đã có một bản cập nhật cho phiên bản CVS (chưa phát hành) nhằm khắc phục một số vấn đề đồng bộ — Phex giả định rằng một số hoạt động mạng được xử lý ngay lập tức, trong khi I2P đôi khi mất một lúc để thực hiện :) Điều này biểu hiện ở việc giao diện đồ họa (GUI) bị treo trong một thời gian, tải xuống hoặc tải lên bị đình trệ, hoặc kết nối bị từ chối (và có lẽ còn một vài cách khác). Nó vẫn chưa được kiểm thử nhiều, nhưng có lẽ sẽ được đưa vào bản 0.1.1.35 trong tuần này. Tôi chắc rằng sẽ có thêm thông tin được đăng trên diễn đàn khi có thêm cập nhật.
 
-[2] http://forum.i2p.net/viewtopic.php?t=1143
+[2] `http://forum.i2p.net/viewtopic.php?t=1143`
 
 * 4) voi2p app
 

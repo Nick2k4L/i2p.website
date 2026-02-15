@@ -18,7 +18,7 @@ Il existe deux façons de contribuer aux traductions :
 
 **C'est la façon la plus simple de traduire I2P.** Transifex fournit une interface web qui rend la traduction simple et accessible.
 
-1. Inscrivez-vous sur [Transifex](https://www.transifex.com/otf/I2P/)
+1. Inscrivez-vous sur Transifex
 2. Demandez à rejoindre l'équipe de traduction I2P
 3. Commencez à traduire directement dans votre navigateur
 
@@ -40,7 +40,7 @@ La console du routeur est l'interface web que vous voyez lorsque vous exécutez 
 
 ### Utiliser Transifex (recommandé)
 
-1. Accédez à [I2P sur Transifex](https://www.transifex.com/otf/I2P/)
+1. Accédez à I2P sur Transifex
 2. Sélectionnez le projet de la console du router
 3. Choisissez votre langue
 4. Commencez à traduire
@@ -88,7 +88,7 @@ poedit apps/routerconsole/locale/messages_es.po
 ant updaters
 # Install the update and check translations in the console
 ```
-**Soumettez votre travail :** - Créez une demande de fusion sur [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p) - Ou partagez des fichiers avec l'équipe de développement sur IRC
+**Soumettez votre travail :** - Créez une demande de fusion sur GitLab - Ou partagez des fichiers avec l'équipe de développement sur IRC
 
 ---
 
@@ -212,7 +212,7 @@ Votre travail aide directement des personnes du monde entier à utiliser I2P de 
 Prêt à commencer la traduction ?
 
 1. **Choisissez votre méthode :**
-   - Démarrage rapide : [Inscrivez-vous sur Transifex](https://www.transifex.com/otf/I2P/)
+   - Démarrage rapide : Inscrivez-vous sur Transifex
    - Approche manuelle : Rejoignez [#i2p-dev sur IRC](/contact/#irc)
 
 2. **Commencez petit :** Traduisez quelques chaînes pour vous familiariser avec le processus

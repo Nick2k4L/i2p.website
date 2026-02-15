@@ -26,7 +26,7 @@ Es ist Licht am Ende des tunnel zu sehen, und ich weiß Ihre Geduld zu schätzen
 
 * 3) Feedspace
 
-Frosk hat unermüdlich an Feedspace gearbeitet und ein paar Seiten auf der Trac-Seite aktualisiert, darunter ein neues Übersichts-Dokument, eine Liste offener Aufgaben, einige DB-Details und mehr. Schau doch bei http://feedspace.i2p/ vorbei, um über die neuesten Änderungen auf dem Laufenden zu bleiben, und bombardiere Frosk bei nächster Gelegenheit vielleicht mit Fragen :)
+Frosk hat unermüdlich an Feedspace gearbeitet und ein paar Seiten auf der Trac-Seite aktualisiert, darunter ein neues Übersichts-Dokument, eine Liste offener Aufgaben, einige DB-Details und mehr. Schau doch bei `http://feedspace.i2p/` vorbei, um über die neuesten Änderungen auf dem Laufenden zu bleiben, und bombardiere Frosk bei nächster Gelegenheit vielleicht mit Fragen :)
 
 * 4) ???
 

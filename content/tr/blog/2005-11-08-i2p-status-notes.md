@@ -22,9 +22,9 @@ Selam millet, yine salı
 
 Son zamanlarda I2Phex cephesinde de epey hareketlilik var; yeni bir 0.1.1.35 sürümü yayınlandı [1]. Ayrıca CVS'de de ek değişiklikler yapıldı (teşekkürler Legion!), bu yüzden bu hafta ilerleyen günlerde 0.1.1.36 görürsem şaşırmam.
 
-gwebcache cephesinde de bazı iyi gelişmeler oldu (bkz. http://awup.i2p/), ancak bildiğim kadarıyla I2P özellikli bir gwebcache kullanacak şekilde I2Phex'in değiştirilmesi üzerinde çalışmaya başlayan kimse yok (ilgileniyor musunuz? bana haber verin!).
+gwebcache cephesinde de bazı iyi gelişmeler oldu (bkz. `http://awup.i2p/),` ancak bildiğim kadarıyla I2P özellikli bir gwebcache kullanacak şekilde I2Phex'in değiştirilmesi üzerinde çalışmaya başlayan kimse yok (ilgileniyor musunuz? bana haber verin!).
 
-[1] http://forum.i2p.net/viewtopic.php?t=1157
+[1] `http://forum.i2p.net/viewtopic.php?t=1157`
 
 * 3) I2P-Rufus
 
@@ -40,7 +40,7 @@ Dolaşan bir başka söylenti de Markus'un yeni bir C# grafik kullanıcı arayü
 
 Ayrıca Syndie kullanıcı arayüzü yenilemeleri [3] ile ilgili de bazı tartışmalar sürüyor ve bu alanda oldukça yakında bazı ilerlemeler göreceğimizi bekliyorum. dust ayrıca Sucker üzerinde yoğun şekilde çalışıyor; Syndie'ye daha fazla RSS/Atom beslemeyi çekmek için daha iyi destek ekliyor ve SML'in bizzat kendisine yönelik bazı iyileştirmeler yapıyor.
 
-[3] http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true
+[3] `http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true`
 
 * 6) ???
 

@@ -6,7 +6,7 @@ description: "I2P-Entwicklertreffen zu den Themen router-Status, Roadmap-Updates
 categories: ["meeting"]
 ---
 
-(Courtesy of the wayback machine http://www.archive.org/)
+(Courtesy of the wayback machine `http://www.archive.org/`)
 
 ## Kurzer Überblick
 

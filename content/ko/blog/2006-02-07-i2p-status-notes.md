@@ -26,7 +26,7 @@ There haven't been any substantial changes on the live net over the last week, s
 
 가장 큰 대안은 1024비트 암호화로 전환하는 것입니다(그 경우에는 아마 160비트의 짧은 지수를 사용할 수도 있습니다). 어쨌든 이는 적절할 수 있으며, _PRE net에서 2048비트 암호화가 너무 부담스럽다면 _PRE net 내에서 전환을 단행할 수도 있습니다. 그렇지 않다면, 새 암호화 방식이 더 널리 배포되는 0.6.1.10 릴리스까지 기다려 그것이 필요한지 판단할 수 있습니다. 그러한 전환이 가능해 보이면 더 많은 정보를 제공하겠습니다.
 
-[1] "짧은 지수를 사용하는 디피-헬만 키 합의에 관하여" -     van Oorschot, Weiner가 EuroCrypt 96에서 발표.  다음에서 미러링됨     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "짧은 지수를 사용하는 디피-헬만 키 합의에 관하여" -     van Oorschot, Weiner가 EuroCrypt 96에서 발표.  다음에서 미러링됨     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 어쨌든, _PRE net에서는 많은 진전이 있었고, 이에 관한 대부분의 논의는 irc2p의 #i2p_pre 채널에서 이루어지고 있습니다.
 

@@ -3,3 +3,18 @@ Disallow:
 
 User-agent: Bytespider
 Disallow: /
+
+Sitemap: https://i2p.net/sitemap.xml
+Sitemap: https://i2p.net/en/sitemap.xml
+Sitemap: https://i2p.net/ar/sitemap.xml
+Sitemap: https://i2p.net/cs/sitemap.xml
+Sitemap: https://i2p.net/de/sitemap.xml
+Sitemap: https://i2p.net/es/sitemap.xml
+Sitemap: https://i2p.net/fr/sitemap.xml
+Sitemap: https://i2p.net/hi/sitemap.xml
+Sitemap: https://i2p.net/ko/sitemap.xml
+Sitemap: https://i2p.net/pt/sitemap.xml
+Sitemap: https://i2p.net/ru/sitemap.xml
+Sitemap: https://i2p.net/tr/sitemap.xml
+Sitemap: https://i2p.net/vi/sitemap.xml
+Sitemap: https://i2p.net/zh/sitemap.xml

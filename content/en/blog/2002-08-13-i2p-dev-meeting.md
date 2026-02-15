@@ -6,7 +6,7 @@ description: "I2P development meeting covering RC2 status, Mac OS 9 port progres
 categories: ["meeting"]
 ---
 
-(Courtesy of the wayback machine http://www.archive.org/)
+(Courtesy of the wayback machine `http://www.archive.org/`)
 
 ## Quick recap
 

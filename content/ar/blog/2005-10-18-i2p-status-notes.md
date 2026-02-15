@@ -30,13 +30,13 @@ categories: ["status"]
 
 قام مايكل بنشر هجوم آخر على القائمة ونحن نعمل على معالجته حالياً، لذا ستتمكن من متابعة ذلك هناك أيضاً.
 
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001005.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001008.html [4] http://dev.i2p.net/pipermail/i2p/2005-October/001006.html
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001005.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001008.html` [4] `http://dev.i2p.net/pipermail/i2p/2005-October/001006.html`
 
 * 4) I2Phex
 
 يُحرز Striker مزيدًا من التقدّم بشأن خلل الرفع، وتشير التقارير إلى أنه قد حدّده بدقّة. نأمل أن يُدمَج في CVS الليلة، وسيُصدر كالإصدار 0.1.1.33 بعد ذلك بوقت قصير. تابع المنتدى [5] لمزيد من المعلومات.
 
-[5] http://forum.i2p.net/viewforum.i2p?f=25
+[5] `http://forum.i2p.net/viewforum.i2p?f=25`
 
 يُقال إن redzara يحرز تقدمًا جيدًا في إعادة الدمج مع الفرع الرئيسي لـ Phex أيضًا، لذا نأمل، بمساعدة Gregor، أن نتمكن قريبًا من تحديث كل شيء!
 

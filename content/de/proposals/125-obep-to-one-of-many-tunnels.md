@@ -22,7 +22,7 @@ Dieser Vorschlag umfasst zwei Verbesserungen zur Steigerung der Netzwerkleistung
 
 Im Fall der direkten Verbindung ist die Idee, die Verbindungskongestion zu verringern, indem dem OBEP Flexibilität gewährt wird, wie es sich mit IBGWs verbindet. Die Fähigkeit, mehrere Tunnel anzugeben, ermöglicht es uns auch, Multicast am OBEP zu implementieren (indem die Nachricht an alle angegebenen Tunnel geliefert wird).
 
-Eine Alternative zum Delegationsteil dieses Vorschlags wäre es, durch einen [LeaseSet](http://localhost:63465/docs/specs/common-structures/#leaseset)-Hash zu senden, ähnlich zur bestehenden Möglichkeit, einen Ziel-[RouterIdentity]-Hash anzugeben. Dies würde zu einer kleineren Nachricht und einem potenziell neueren LeaseSet führen. Jedoch:
+Eine Alternative zum Delegationsteil dieses Vorschlags wäre es, durch einen `http://localhost:63465/docs/specs/common-structures/#leaseset`-Hash zu senden, ähnlich zur bestehenden Möglichkeit, einen Ziel-[RouterIdentity]-Hash anzugeben. Dies würde zu einer kleineren Nachricht und einem potenziell neueren LeaseSet führen. Jedoch:
 
 1. Es würde das OBEP zu einer Suche zwingen
 
@@ -35,7 +35,7 @@ Eine Alternative zum Delegationsteil dieses Vorschlags wäre es, durch einen [Le
 
 ## Design
 
-Der Urheber (OBGW) würde einige (alle?) der Ziel [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in die Lieferanweisungen [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) einfügen, anstatt nur einen auszuwählen.
+Der Urheber (OBGW) würde einige (alle?) der Ziel `http://localhost:63465/docs/specs/common-structures/#lease` in die Lieferanweisungen [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) einfügen, anstatt nur einen auszuwählen.
 
 Das OBEP würde einen dieser Tunnel zur Lieferung auswählen. Das OBEP würde, wenn verfügbar, einen auswählen, zu dem es bereits verbunden ist oder den es bereits kennt. Dies würde den OBEP-IBGW-Pfad schneller und zuverlässiger machen und die Gesamtzahl der Netzwerkverbindungen reduzieren.
 
@@ -46,7 +46,7 @@ Wir haben einen unbenutzten Liefertyp (0x03) und zwei verbleibende Bits (0 und 1
 
 Dieser Vorschlag ändert nicht die Menge der Informationen, die über das Zielziel (Destination) des OBGW oder deren Sicht auf das NetDB geleakt werden:
 
-- Ein Angreifer, der das OBEP kontrolliert und LeaseSets aus dem NetDB scrapt, kann bereits bestimmen, ob eine Nachricht an ein bestimmtes Ziel gesendet wird, indem er nach dem [TunnelId](http://localhost:63465/docs/specs/common-structures/#tunnelid)- / [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification)-Paar sucht. Im schlimmsten Fall könnte die Anwesenheit mehrerer Leases im TMDI es schneller machen, einen Abgleich in der Datenbank des Gegners zu finden.
+- Ein Angreifer, der das OBEP kontrolliert und LeaseSets aus dem NetDB scrapt, kann bereits bestimmen, ob eine Nachricht an ein bestimmtes Ziel gesendet wird, indem er nach dem `http://localhost:63465/docs/specs/common-structures/#tunnelid`- / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification`-Paar sucht. Im schlimmsten Fall könnte die Anwesenheit mehrerer Leases im TMDI es schneller machen, einen Abgleich in der Datenbank des Gegners zu finden.
 
 - Ein Angreifer, der ein bösartiges Ziel (Destination) betreibt, kann bereits Informationen über die Sicht eines verbundenden Opfers auf das NetDB gewinnen, indem er LeaseSets mit unterschiedlichen eingehenden Tunneln zu verschiedenen Floodfills veröffentlicht und beobachtet, durch welche Tunnel das OBGW sich verbindet. Aus ihrer Sicht ist die Auswahl des Tunnels durch das OBEP funktionell identisch mit der Auswahl durch das OBGW.
 
@@ -125,7 +125,7 @@ Rest der Lieferanweisungen unverändert
 
 Die einzigen Peers, die die neue Spezifikation verstehen müssen, sind die OBGWs und die OBEPs. Wir können diese Änderung deshalb mit dem bestehenden Netzwerk kompatibel machen, indem wir ihre Verwendung an die Ziel-I2P-Version [VERSIONS](/docs/specs/i2np/#protocol-versions) knüpfen:
 
-* Die OBGWs müssen beim Aufbau ausgehender Tunnel kompatible OBEPs basierend auf der in ihrem [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo) beworbenen I2P-Version auswählen.
+* Die OBGWs müssen beim Aufbau ausgehender Tunnel kompatible OBEPs basierend auf der in ihrem `http://localhost:63465/docs/specs/common-structures/#routerinfo` beworbenen I2P-Version auswählen.
 
 * Peers, die die Zielversion bewerben, müssen das Parsen der neuen Flags unterstützen und dürfen die Anweisungen nicht als ungültig ablehnen.
 

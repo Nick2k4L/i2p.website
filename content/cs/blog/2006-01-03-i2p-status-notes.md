@@ -36,4 +36,4 @@ Rok 2006 pro nás bude velký: 0.6.2 vyjde tuto zimu, vydání 1.0 plánujeme na
 
 Každopádně, naše týdenní statusová schůzka začíná za pár minut, takže pokud je něco, co byste chtěli dál probrat, zastavte se na #i2p na obvyklých místech [1] a pozdravte!
 
-=jr [1] http://forum.i2p.net/viewtopic.php?t=952
+=jr [1] `http://forum.i2p.net/viewtopic.php?t=952`

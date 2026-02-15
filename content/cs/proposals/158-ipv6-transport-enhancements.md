@@ -130,7 +130,7 @@ Budou implementovány tři změny.
 
 To bylo původně implementováno bez formálního návrhu, ale je to vyžadováno pro
 úvody IPv6, takže to zde zahrnujeme.
-Viz také [CAPS](http://zzz.i2p/topics/3050).
+Viz také CAPS.
 
 
 Jsou definovány dvě nové schopnosti "4" a "6".

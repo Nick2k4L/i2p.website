@@ -22,13 +22,13 @@ Od vydání došlo k několika opravám chyb pro dlouho přetrvávající chybov
 
 Jak bylo probíráno [1] na mém blogu [2], testujeme novou zpětně kompatibilní netDb, která řeší jak situaci s omezenými trasami, kterou pozorujeme (20 % routerů), tak i věci trochu zjednodušuje. floodfill netDb je nasazena jako součást 0.6.0.3-4 bez jakékoli další konfigurace a v zásadě funguje tak, že nejprve dotazuje floodfill db, než přejde zpět na existující kademlia db. Pokud to pár lidí chce pomoci vyzkoušet, přejděte na 0.6.0.3-4 a vyzkoušejte to!
 
-[1] http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001 [2] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[1] `http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001` [2] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=`
 
 * 3) Syndie
 
 Vývoj Syndie postupuje velmi dobře, přičemž plná vzdálená syndikace je v provozu a je optimalizována pro potřeby I2P (minimalizuje počet HTTP požadavků, místo toho sdružuje výsledky a nahrávaná data do multipart HTTP POST požadavků). Nová vzdálená syndikace znamená, že si můžete spustit vlastní lokální instanci Syndie, číst a publikovat offline, a pak později synchronizovat svou Syndie s instancí někoho jiného - stáhnout všechny nové příspěvky a nahrát všechny lokálně vytvořené příspěvky (buď hromadně, podle blogu, nebo podle příspěvku).
 
-Jedním veřejným serverem Syndie je syndiemedia.i2p (na webu dostupný také na http://syndiemedia.i2p.net/) s veřejnými archivy na adrese http://syndiemedia.i2p/archive/archive.txt (nasměrujte na ni svůj uzel Syndie, aby se synchronizoval). Na 'front page' tohoto syndiemedia je ve výchozím nastavení filtrován pouze můj blog, ale ostatní blogy můžete stále otevřít přes rozbalovací nabídku a podle toho upravit své výchozí nastavení. (v průběhu času se výchozí nastavení syndiemedia.i2p změní na sadu úvodních příspěvků a blogů, což poskytne dobrý vstupní bod do syndie).
+Jedním veřejným serverem Syndie je syndiemedia.i2p (na webu dostupný také na `http://syndiemedia.i2p.net/)` s veřejnými archivy na adrese `http://syndiemedia.i2p/archive/archive.txt` (nasměrujte na ni svůj uzel Syndie, aby se synchronizoval). Na 'front page' tohoto syndiemedia je ve výchozím nastavení filtrován pouze můj blog, ale ostatní blogy můžete stále otevřít přes rozbalovací nabídku a podle toho upravit své výchozí nastavení. (v průběhu času se výchozí nastavení syndiemedia.i2p změní na sadu úvodních příspěvků a blogů, což poskytne dobrý vstupní bod do syndie).
 
 Jednou z probíhajících prací je internacionalizace kódové základny Syndie. Upravil jsem svou lokální kopii tak, aby správně fungovala s jakýmkoli obsahem (libovolná znaková sada / místní nastavení / atd.) na jakémkoli stroji (s potenciálně odlišnými znakovými sadami / místním nastavením / atd.), přičemž data poskytuje v čisté podobě tak, aby je prohlížeč uživatele dokázal správně interpretovat. Narazil jsem však na problémy s jednou komponentou Jetty, kterou Syndie používá, protože jejich třída pro práci s internacionalizovanými multipart požadavky není citlivá na znakové sady. Zatím ;)
 
@@ -36,7 +36,7 @@ Každopádně to znamená, že jakmile bude část kolem internacionalizace vyř
 
 Také některé nápady, které jsou pro SML [3] stále na obzoru, zahrnují značku [torrent attachment="1"]můj soubor[/torrent], která by nabízela způsob na jedno kliknutí, jak lidem umožnit spustit přiložený torrent v jejich oblíbeném BT klientu (susibt, i2p-bt, azneti2p, nebo dokonce v ne-i2p bt klientu). Je poptávka po jiných druzích hooků (body pro napojení) (např. po značce [ed2k]?), nebo mají lidé úplně jiné bláznivé nápady, jak v Syndii šířit obsah?
 
-[3] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000
+[3] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000`
 
 * 4) ???
 

@@ -31,9 +31,9 @@ Vychází z předchozí práce následovně:
 - Specifikace společných struktur [Common Structures](/docs/specs/common-structures/)
 - Specifikace [I2NP](/docs/specs/i2np/) včetně LS2
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) přehled nové asymetrické kryptografie
+- `http://zzz.i2p/topics/1768` přehled nové asymetrické kryptografie
 - Nízkoúrovňový přehled kryptografie [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
+- ECIES `http://zzz.i2p/topics/2418`
 - [NTCP2](/docs/specs/ntcp2/) [Proposal 111](/proposals/111-ntcp-2/)
 - 123 Nové položky netDB
 - 142 Nová kryptografická šablona

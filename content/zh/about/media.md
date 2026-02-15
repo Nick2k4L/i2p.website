@@ -178,12 +178,12 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">洋葱和大蒜：I2P 的协议</a>
+洋葱和大蒜：I2P 的协议
 </div>
 <div class="content-entry-meta">🎥 演讲 • 2016 年 2 月 17 日</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ layout: "single"
 <div class="content-entry-title">zzz 和 Lance James 在 InfoSec Daily 播客上</div>
 <div class="content-entry-meta">🎙️ 播客 • 2012 年 2 月 16 日</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">I2P 种子</a>
+I2P 种子
 </div>
 </div>
 
@@ -279,7 +279,7 @@ layout: "single"
 <div class="content-entry-title">zzz 在 InfoSec Daily 播客上</div>
 <div class="content-entry-meta">🎙️ 播客 • 2011 年 8 月 18 日</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">I2P 种子</a>
+I2P 种子
 </div>
 </div>
 
@@ -343,7 +343,7 @@ layout: "single"
 </div>
 <div class="content-entry-meta">🎥 演讲 • HOPE • 2010 年 7 月 17 日</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">YouTube</a>
 </div>
 </div>

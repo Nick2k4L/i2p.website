@@ -20,7 +20,7 @@ Stále jedeme s vydáním 0.6.0.5 v síti a téměř všichni už upgradovali; m
 
 Nejnovější sestavení v CVS zahrnují podporu pro dlouho diskutované SSU introductions [1], což nám umožňuje provádět decentralizované NAT hole punching (tj. techniku navázání spojení skrz NAT) pro uživatele za NATem nebo firewallem, který nemají pod kontrolou. Ačkoli si neporadí se symetrickým NATem, pokrývá většinu reálných případů. Zprávy z praxe jsou dobré, i když pouze uživatelé s nejnovějšími sestaveními mohou kontaktovat uživatele za NATem - starší sestavení musí čekat, až je daný uživatel kontaktuje jako první. Z tohoto důvodu vypustíme kód do vydání dříve než obvykle, abychom zkrátili dobu, po kterou budeme mít tyto omezené trasy v provozu.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

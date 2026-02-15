@@ -102,7 +102,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 ### استجابة ناجحة
 
@@ -144,7 +144,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **حقول الاستجابة (result)**   وفقاً للوثائق الرسمية (GetI2P):   - `i2p.router.status` (String) — حالة قابلة للقراءة البشرية   - `i2p.router.uptime` (long) — بالميلي ثانية (أو نص لإصدارات i2pd الأقدم) :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — نص الإصدار :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — عرض النطاق الداخل بوحدة B/s :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — عرض النطاق الخارج بوحدة B/s :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — رمز الحالة الرقمي (انظر التعداد أدناه) :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — عدد الأنفاق المشاركة :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — إحصائيات النظراء في netDB :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — ما إذا كانت إعادة البذر نشطة :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — إجمالي النظراء المعروفين :contentReference[oaicite:8]{index=8}
 
@@ -240,7 +240,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **استجابة نموذجية**
 
@@ -274,7 +274,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **الاستجابة الناجحة**
 
@@ -309,7 +309,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **نموذج الاستجابة**
 
@@ -351,7 +351,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **مثال على الاستجابة**
 

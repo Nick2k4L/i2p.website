@@ -32,7 +32,7 @@ Es ist jetzt April, daher wurde die Roadmap [1] entsprechend aktualisiert - 0.5.
 
 Aum legt bei Q ordentlich los und baut weitere Goodies für uns ein; die neuesten Screenshots sind auf seiner Seite [2] zu sehen. Er hat den Code außerdem auch in CVS eingecheckt (yay), sodass wir hoffentlich bald mit den Alpha-Tests beginnen können. Ich bin sicher, wir werden noch mehr von aum hören, mit Details dazu, wie man helfen kann, oder du kannst dich in die Goodies in CVS unter i2p/apps/q/ vertiefen.
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

@@ -24,7 +24,7 @@ Většinu času se soustředím na kód UDP pro verzi 0.6, a ne, není připrave
 
 Jak duck zmínil na mailing listu [1], zab založil a počátečně financoval bounty (odměnu), aby pomohl I2P se sérií testovacích aktualizací - nějaké prostředky pro kohokoli, kdo dokáže splnit úkoly uvedené na stránce bounty [2]. Obdrželi jsme další příspěvky na tuto bounty [3] - aktuálně je na $1000USD. Ačkoli tyto bounties jistě nenabízejí "tržní sazbu", jsou malým povzbuzením pro vývojáře, kteří chtějí pomoci.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
 
 * 4) ???
 

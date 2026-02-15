@@ -6,7 +6,7 @@ description: "25 मार्च, 2003 के लिए I2P विकास ब�
 categories: ["meeting"]
 ---
 
-(wayback machine http://www.archive.org/ की सौजन्य से)
+(wayback machine `http://www.archive.org/` की सौजन्य से)
 
 ## त्वरित सारांश
 

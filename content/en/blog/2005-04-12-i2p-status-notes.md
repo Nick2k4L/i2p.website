@@ -40,7 +40,7 @@ bla has been churning away at some revisions to how we decide what peers to tunn
        "ground truth", and the set of nodes in the current
        measurements, is 117 nodes
 <+bla> Results are not _that_ bad, but not too impressive either
-<+bla> See http://theland.i2p/estspeed.png
+<+bla> See `http://theland.i2p/estspeed.png`
 <+bla> Basic very-slow/fast separation is ok-ish, but fine-grained
        separation among the faster peers could be much better
 <+jrandom2p> hmm, how'd the actual values get calculated - is that
@@ -73,10 +73,10 @@ bla has been churning away at some revisions to how we decide what peers to tunn
 <+bla> However, this has to be redone, since the standard deviation
        is influenced heavily by the >60000 ms failures
 
-After further discussion, bla pulled up a comparison against the existing speed calculator, posted @ http://theland.i2p/oldspeed.png
+After further discussion, bla pulled up a comparison against the existing speed calculator, posted @ `http://theland.i2p/oldspeed.png`
 Mirrors of those pngs are up at
-http://dev.i2p.net/~jrandom/estspeed.png and
-http://dev.i2p.net/~jrandom/oldspeed.png
+`http://dev.i2p.net/~jrandom/estspeed.png` and
+`http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (for terminology, IB=inbound tunnel hops, OB=outbound tunnel hops, and after some clarification, the "ground truth" measurements were obtained by 1 hop outbound and 0 hop inbound, not the other way around)
 

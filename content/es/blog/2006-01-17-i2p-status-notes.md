@@ -22,13 +22,13 @@ En otoño, hubo mucha discusión sobre cómo construimos nuestros tunnels, junto
 
 Esbocé un borrador de especificación para la nueva criptografía de tunnel y lo publiqué en mi blog en Syndie el otro día, y después de algunos cambios menores que surgieron al implementarla realmente, ya tenemos una especificación en CVS [4]. También hay código básico que la implementa en CVS [5], aunque aún no está integrado para la construcción real de tunnel. Si alguien está aburrido, me encantaría recibir comentarios sobre la especificación. Mientras tanto, seguiré trabajando en el nuevo código de construcción de tunnel.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html y     consulte los hilos relacionados con los ataques de bootstrap (inicialización) [2] http://dev.i2p.net/pipermail/i2p/2005-October/001064.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001057.html [4] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD [5] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/                        i2p/router/tunnel/BuildMessageTest.java
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` y     consulte los hilos relacionados con los ataques de bootstrap (inicialización) [2] `http://dev.i2p.net/pipermail/i2p/2005-October/001064.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001057.html` [4] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD [5] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/`                        i2p/router/tunnel/BuildMessageTest.java
 
 * 3) Syndie blogs
 
-Como se mencionó anteriormente, esta nueva versión 0.6.1.9 incluye renovaciones sustanciales en la interfaz del blog de Syndie, incluyendo el nuevo estilo de cervantes y la selección de enlaces del blog y del logotipo de cada usuario (p. ej., [6]). Puedes controlar esos enlaces a la izquierda haciendo clic en el enlace "configure your blog" en tu página de perfil, lo que te llevará a http://localhost:7657/syndie/configblog.jsp. Una vez que hagas tus cambios allí, la próxima vez que subas una entrada a un archivo, esa información estará disponible para otros.
+Como se mencionó anteriormente, esta nueva versión 0.6.1.9 incluye renovaciones sustanciales en la interfaz del blog de Syndie, incluyendo el nuevo estilo de cervantes y la selección de enlaces del blog y del logotipo de cada usuario (p. ej., [6]). Puedes controlar esos enlaces a la izquierda haciendo clic en el enlace "configure your blog" en tu página de perfil, lo que te llevará a `http://localhost:7657/syndie/configblog.jsp.` Una vez que hagas tus cambios allí, la próxima vez que subas una entrada a un archivo, esa información estará disponible para otros.
 
-[6] http://syndiemedia.i2p.net/     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[6] `http://syndiemedia.i2p.net/`     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
 
 * 4) ???
 

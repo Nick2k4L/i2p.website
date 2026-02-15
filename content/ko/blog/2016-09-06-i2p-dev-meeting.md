@@ -15,7 +15,7 @@ categories: ["meeting"]
 <div class="irc-log">21:00:01 &lt;zzz&gt; 0) 안녕하세요
 21:00:01 &lt;zzz&gt; 1) 0.9.27 업데이트 (zzz)
 21:00:01 &lt;zzz&gt; 2) Summer of X 업데이트 (sadie/str4d)
-21:00:01 &lt;zzz&gt; 3) 33C3 예산 http://zzz.i2p/topics/2150
+21:00:01 &lt;zzz&gt; 3) 33C3 예산 `http://zzz.i2p/topics/2150`
 21:00:01 &lt;zzz&gt; 4) SAM 기본 활성화 (str4d)
 21:00:06 &lt;zzz&gt; 0) 안녕하세요
 21:00:12 &lt;zzz&gt; 안녕
@@ -31,7 +31,7 @@ categories: ["meeting"]
 21:03:25 &lt;zzz&gt; 2) Summer of X 업데이트 (sadie/str4d)
 21:03:30 &lt;zzz&gt; sadie / str4d 진행해주세요
 21:06:07 &lt;zzz&gt; 아무 말씀이 없으면, 다음 달 안건으로 넘기겠습니다
-21:06:15 &lt;zzz&gt; 3) 33C3 예산 http://zzz.i2p/topics/2150
+21:06:15 &lt;zzz&gt; 3) 33C3 예산 `http://zzz.i2p/topics/2150`
 21:06:28 &lt;str4d&gt; 안녕!
 21:06:33 &lt;eche|on&gt; 깨어있음
 21:06:33 &lt;zzz&gt; eche|on, 재정 상황에 대해 간단히 업데이트해 주시겠어요?

@@ -35,7 +35,7 @@ Gateway `i2pmail.org` cho phép người dùng internet thông thường gửi e
 **Để đăng ký tài khoản mail.i2p:**
 
 1. Đảm bảo I2P router của bạn đang chạy
-2. Truy cập **[http://hq.postman.i2p](http://hq.postman.i2p)** bên trong I2P
+2. Truy cập **http://hq.postman.i2p** bên trong I2P
 3. Làm theo quy trình đăng ký
 4. Truy cập email của bạn thông qua **SusiMail** trong router console
 

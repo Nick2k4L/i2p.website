@@ -22,7 +22,7 @@ Olá, pessoal, é hora da atualização semanal
 
 De modo geral, a rede está a comportar-se bem, embora tenhamos tido alguns problemas com um dos servidores IRC estar offline e com o meu outproxy (proxy de saída) a dar problemas. No entanto, o outro servidor IRC estava (e ainda está) disponível (embora, no momento, não tenha o CTCP desativado - ver [1]), então conseguimos saciar a nossa necessidade de IRC :)
 
-[1] http://ugha.i2p/HowTo/IrcAnonymityGuide
+[1] `http://ugha.i2p/HowTo/IrcAnonymityGuide`
 
 * 2) 0.5 progress
 
@@ -58,7 +58,7 @@ Agora que a versão 0.4.2.6 passou a incluir o addressbook (livro de endereços)
 
 Com essa capacidade surge uma nova dimensão — a possibilidade de as pessoas escolherem para quais sites desejam, essencialmente, apontar no seu hosts.txt e para quais não. Embora haja lugar para o vale-tudo público que ocorria no passado, agora que o sistema de nomes não é apenas teórico, mas, na prática, totalmente distribuído, as pessoas precisarão definir suas próprias políticas sobre a publicação dos destinos de outras pessoas.
 
-A parte importante nos bastidores aqui é que isto é uma oportunidade de aprendizado para a comunidade do I2P.  Antes, tanto o gott quanto eu estávamos tentando ajudar a impulsionar a questão de nomenclatura publicando o site do gott como jrandom.i2p (ele pediu esse site primeiro - eu não, e não tenho qualquer controle sobre o conteúdo desse URL).  Agora podemos começar a explorar como vamos lidar com sites que não estão listados em http://dev.i2p.net/i2p/hosts.txt ou em forum.i2p.  Não estar publicado nesses locais não impede de forma alguma que um site funcione - o seu hosts.txt é apenas o seu livro de endereços local.
+A parte importante nos bastidores aqui é que isto é uma oportunidade de aprendizado para a comunidade do I2P.  Antes, tanto o gott quanto eu estávamos tentando ajudar a impulsionar a questão de nomenclatura publicando o site do gott como jrandom.i2p (ele pediu esse site primeiro - eu não, e não tenho qualquer controle sobre o conteúdo desse URL).  Agora podemos começar a explorar como vamos lidar com sites que não estão listados em `http://dev.i2p.net/i2p/hosts.txt` ou em forum.i2p.  Não estar publicado nesses locais não impede de forma alguma que um site funcione - o seu hosts.txt é apenas o seu livro de endereços local.
 
 Enfim, chega de papo, eu só queria deixar as pessoas cientes para que todos possamos ver o que precisa ser feito.
 

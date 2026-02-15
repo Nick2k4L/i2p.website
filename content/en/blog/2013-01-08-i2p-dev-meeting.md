@@ -68,8 +68,8 @@ categories: ["meeting"]
 21:29:49  &lt;str4d&gt; (Since then people can look at the bounty and actually get a feel for what is required)
 21:29:52  &lt;dg&gt; The goals are on the site, I believe. At least the use cases which sort of explained..
 21:30:19  &lt;str4d&gt;     Useful links for reviewing the original goals:
-21:30:22  &lt;str4d&gt;     http://www.i2p2.i2p/status-2006-09-12.html
-21:30:22  &lt;str4d&gt;     http://www.i2p2.i2p/status-2006-10-03.html
+21:30:22  &lt;str4d&gt;     `http://www.i2p2.i2p/status-2006-09-12.html`
+21:30:22  &lt;str4d&gt;     `http://www.i2p2.i2p/status-2006-10-03.html`
 21:30:29  &lt;iRelay&gt; Title: I2P Status Notes for 2006-09-12 - I2P (at www.i2p2.i2p)
 21:30:33  &lt;iRelay&gt; Title: I2P Status Notes for 2006-10-03 - I2P (at www.i2p2.i2p)
 21:31:36  &lt;str4d&gt; dg: then it would be good to review the Syndie site and update it.
@@ -121,7 +121,7 @@ categories: ["meeting"]
 22:10:35  &lt;str4d&gt; Ah yes. That is certainly something worth considering, especially before you get too far along with i2pcpp
 22:10:54  &lt;str4d&gt; Again, probably not hackfest-worthy, but it's something that we should probably dedicate some time to.
 22:11:05  &lt;orion&gt; ok
-22:11:23  &lt;dg&gt; btw http://trac.i2p2.i2p/ticket/840
+22:11:23  &lt;dg&gt; btw `http://trac.i2p2.i2p/ticket/840`
 22:11:27  &lt;iRelay&gt; Title: #840 (Review Syndie site)  I2P (at trac.i2p2.i2p)
 22:11:47  * str4d tables the motion that the next meeting (or maybe the one after) be a crypto review meeting.
 22:12:39  &lt;dg&gt; I agree
@@ -180,7 +180,7 @@ categories: ["meeting"]
 22:41:39  &lt;orion&gt; There is a train that goes directly to Boston though.
 22:42:14  &lt;str4d&gt; One event that would be good to get people to is http://wiki.openitp.org/events:techno-activism_3rd_mondays
 22:42:22  &lt;iRelay&gt; Title: events:techno-activism_3rd_mondays [OpenITP Wiki] (at wiki.openitp.org)
-22:44:58  &lt;str4d&gt; orion: FWIW, as PR manager, the page/subpages on the website (revamp) http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/about/media would basically be under your jurisdiction.
+22:44:58  &lt;str4d&gt; orion: FWIW, as PR manager, the page/subpages on the website (revamp) `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/about/media` would basically be under your jurisdiction.
 22:45:05  &lt;iRelay&gt; Title: Presentations on I2P - I2P (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 22:45:22  &lt;orion&gt; I will accept the PR role, but I am a poor college kid.
 22:45:49  &lt;orion&gt; I can't afford to go to too many events.
@@ -203,7 +203,7 @@ categories: ["meeting"]
 22:55:49  &lt;str4d&gt; As outlined in topic 1) the feeds work won't be ready for 0.9.5.
 22:58:32  &lt;primal&gt; I'm not sure if this is an inappropriate time to ask, but is the Android i2p still in development? Or is that not an 'official' thing?
 22:59:16  &lt;str4d&gt; primal: yes it is. zzz has an old stable version (0.9.1) but sponge has been working on the latest stuff.
-22:59:23  &lt;str4d&gt; Current release: 0.9.1-0_b1-API8 http://zzz.i2p/topics/949 | Current dev build: 0.9.3-5_b2-API8 http://sponge.i2p/ (scan/click QR code)
+22:59:23  &lt;str4d&gt; Current release: 0.9.1-0_b1-API8 `http://zzz.i2p/topics/949` | Current dev build: 0.9.3-5_b2-API8 `http://sponge.i2p/` (scan/click QR code)
 22:59:38  &lt;iRelay&gt; Title: SPONGE (at sponge.i2p)
 22:59:58  &lt;str4d&gt; sponge is also working on getting the normal Oracle JVM working on Android though, so stock I2P could potentially be used.
 23:00:27  &lt;primal&gt; str4d: hmm, I ought to get ahold of him, I'd be interested in working on this.
@@ -212,22 +212,22 @@ categories: ["meeting"]
 23:02:01  &lt;str4d&gt; So, no feedback on 0.9.5 progress?
 23:04:59  &lt;str4d&gt; If not, then on to the last defined topic:
 23:04:59  &lt;str4d&gt; 7) Website revamp
-23:05:03  &lt;str4d&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/
+23:05:03  &lt;str4d&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/`
 23:05:14  &lt;str4d&gt; Ticket #807 outlines my progress.
-23:05:26  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
-23:05:30  &lt;dg&gt; Just slipping this in, we're doing better thanks to the bug fix in 0.9.4 for network capacity. http://stats.i2p/cgi-bin/avg.cgi?a=tunnel.buildSuccess.60m&s=93&u=q
+23:05:26  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/807` - (accepted enhancement) - Revamp of website
+23:05:30  &lt;dg&gt; Just slipping this in, we're doing better thanks to the bug fix in 0.9.4 for network capacity. `http://stats.i2p/cgi-bin/avg.cgi?a=tunnel.buildSuccess.60m&s=93&u=q`
 23:05:38  &lt;dg&gt; The estimated router count has gone up which implies better connectivity to zzz's router?
 23:06:01  &lt;dg&gt; If we look at 6 months though, we're still not doing as good
 23:06:12  &lt;dg&gt; anyway, sorry to hijack. :p
 23:06:19  &lt;str4d&gt; dg: yes, good that you mentioned that
 23:06:26  &lt;primal&gt; The new site is far far superior
 23:07:21  &lt;str4d&gt; First point: I have changed the content of the left column (as per ticket #792 ) - thoughts?
-23:07:24  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/792 - (assigned task) - Replace left column content
+23:07:24  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/792` - (assigned task) - Replace left column content
 23:09:00  &lt;str4d&gt; Second point - at the bottom of #807 I have suggested some URL changes, which I would like feedback on. Another one is /lang/about/media vs /lang/media ?
 23:10:39  &lt;primal&gt; ugh
-23:11:03  &lt;orion&gt; str4d: Is http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/ supposed to show the new design?
+23:11:03  &lt;orion&gt; str4d: Is `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/` supposed to show the new design?
 23:11:10  &lt;iRelay&gt; Title: I2P Anonymous Network (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
-23:11:10  &lt;str4d&gt; Third point: http://trac.i2p2.i2p/ticket/807#comment:12 lists several content-related issues that need resolving, but I'm not that great at writing content. Assistance here would be greatly appreciated.
+23:11:10  &lt;str4d&gt; Third point: `http://trac.i2p2.i2p/ticket/807#comment:12` lists several content-related issues that need resolving, but I'm not that great at writing content. Assistance here would be greatly appreciated.
 23:11:13  &lt;primal&gt; errr nvm.  Had a complaint about links going to clearnet sites and being unmarked, then I realised this is to be the i2p clearnet homepage :P
 23:11:16  &lt;iRelay&gt; Title: #807 (Revamp of website)  I2P (at trac.i2p2.i2p)
 23:11:20  &lt;str4d&gt; orion: it shows one of the new designs.
@@ -276,7 +276,7 @@ categories: ["meeting"]
 23:25:31  &lt;primal&gt; I wouldn't trust software to protect me from getting killed/legal issues/etc without being able to read up on it
 23:25:50  &lt;christoph&gt; so basically probably I was remembering before str4d splitof
 23:25:53  &lt;primal&gt; str4d: I agree.  As said, I'd recommend adding an 'Academic Papers and Peer Review' section under about for them
-23:25:53  &lt;str4d&gt; primal: see http://www.i2p2.i2p/papers for the "old" version.
+23:25:53  &lt;str4d&gt; primal: see `http://www.i2p2.i2p/papers` for the "old" version.
 23:25:57  &lt;iRelay&gt; Title: Papers and Presentations on I2P - I2P (at www.i2p2.i2p)
 23:26:12  &lt;str4d&gt; primal: refresh the page to see my shift for now
 23:26:19  &lt;str4d&gt; But that's a good title.
@@ -424,7 +424,7 @@ categories: ["meeting"]
 00:12:18  &lt;dg&gt; /en/about/comparison/gnunet design even is different to /en/about/docs/overview/comparison#freenet
 00:12:29  &lt;dg&gt; I don't know if I like /just/ the chunk of test either.
 00:12:32  &lt;dg&gt; *text
-00:13:13  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project Cobertura Coverage Reports build #12:UNSTABLE in 11 min: http://eotfca7qexthbireor6ae7g4hbj5hwuhe4gkzxdx3l3g2t5gzn7q.b32.i2p/job/cobertura/12/
+00:13:13  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project Cobertura Coverage Reports build #12:UNSTABLE in 11 min: `http://eotfca7qexthbireor6ae7g4hbj5hwuhe4gkzxdx3l3g2t5gzn7q.b32.i2p/job/cobertura/12/`
 00:13:25  &lt;primal&gt; dg: that was what I meant
 00:15:51  &lt;dg&gt; Btw, where can I find swt.jar?
 00:16:21  &lt;h2ik&gt; str4d: in case nobody has mentioned it before, THANK YOU for taking this on.
@@ -490,13 +490,13 @@ categories: ["meeting"]
 00:38:46  &lt;str4d&gt; And /lang/support/* vs /lang/help/* hasn't been properly decided on yet, so I'll leave it for now.
 00:38:53  &lt;primal&gt; looks good to me
 00:39:23  &lt;str4d&gt; primal: you're still keen to have a look at the writing-related tasks on ticket #807 ?
-00:39:38  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
+00:39:38  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/807` - (accepted enhancement) - Revamp of website
 00:39:41  &lt;str4d&gt; (After another hour of discussion ^_^)
 00:39:55  &lt;RN-Droid&gt; forward slash M e! drops out before baffing...  I'll give more feedback when I redo the meeting later if there's anything else I have to add
 00:40:03  &lt;primal&gt; str4d: sure I am lol
 00:40:17  &lt;str4d&gt; Excellent =)
 00:40:37  &lt;str4d&gt; And I'll close ticket #792 now that we have (mostly) decided on the front page text - if it needs tweaking the ticket can always be re-opened.
-00:40:43  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/792 - (assigned task) - Replace left column content
+00:40:43  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/792` - (assigned task) - Replace left column content
 00:40:51  &lt;str4d&gt; So, any other points of order before the meeting officially ends?
 00:41:34  &lt;orion&gt; I just jizzed my pants.
 00:42:39  &lt;primal&gt; str4d: I wish to propose we get a user advocate type position!

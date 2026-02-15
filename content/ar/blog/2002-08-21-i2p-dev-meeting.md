@@ -6,7 +6,7 @@ description: "اجتماع تطوير غير رسمي لـ I2P يناقش إخف
 categories: ["meeting"]
 ---
 
-(بفضل خدمة Wayback Machine http://www.archive.org/)
+(بفضل خدمة Wayback Machine `http://www.archive.org/`)
 
 ## ملخص سريع
 

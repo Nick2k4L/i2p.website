@@ -31,7 +31,7 @@ bla ha estado trabajando intensamente en algunas revisiones sobre cómo decidimo
 <+bla> Esto último se hizo usando las longitudes por defecto de los expl. tunnels (tunnels exploratorios)
 <+bla> La intersección entre el conjunto de nodos sobre los que tengo "ground truth" (valores de referencia), y el conjunto de nodos de las mediciones actuales, es de 117 nodos
 <+bla> Los resultados no son _tan_ malos, pero tampoco demasiado impresionantes
-<+bla> Ver http://theland.i2p/estspeed.png
+<+bla> Ver `http://theland.i2p/estspeed.png`
 <+bla> La separación básica entre muy lentos y rápidos está más o menos bien, pero la separación de grano fino entre los pares más rápidos podría ser mucho mejor
 <+jrandom2p> hmm, ¿cómo se calcularon los valores reales? ¿es el RTT (tiempo de ida y vuelta) completo o es RTT/longitud?
 <+bla> Usando los expl. tunnels normales, es casi imposible evitar los retardos por agrupación.
@@ -51,7 +51,7 @@ bla ha estado trabajando intensamente en algunas revisiones sobre cómo decidimo
 <+bla> Aunque... el 65% de los tiempos estimados caen dentro de 0.5 desviaciones estándar del tiempo real del nodo
 <+bla> Sin embargo, esto hay que rehacerlo, ya que la desviación estándar está muy influida por los fallos >60000 ms
 
-Tras debatirlo más a fondo, bla presentó una comparación frente a la calculadora de velocidad existente, publicada @ http://theland.i2p/oldspeed.png Los espejos de esos PNG están disponibles en http://dev.i2p.net/~jrandom/estspeed.png y http://dev.i2p.net/~jrandom/oldspeed.png
+Tras debatirlo más a fondo, bla presentó una comparación frente a la calculadora de velocidad existente, publicada @ `http://theland.i2p/oldspeed.png` Los espejos de esos PNG están disponibles en `http://dev.i2p.net/~jrandom/estspeed.png` y `http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (para la terminología, IB=saltos de tunnel entrantes, OB=saltos de tunnel salientes, y, tras algunas aclaraciones, las mediciones de "ground truth" (mediciones de referencia) se obtuvieron con 1 salto de salida y 0 saltos de entrada, no al revés)
 

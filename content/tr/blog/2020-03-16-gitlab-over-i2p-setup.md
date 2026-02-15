@@ -55,7 +55,7 @@ Gitlab'ı yerel olarak kurup yapılandırdıktan sonra I2P Router console'a gidi
 
 ### Gitlab Web(HTTP) Interface
 
-Web arayüzü için bir "HTTP" server tunnel kullanın. http://127.0.0.1:7657/i2ptunnelmgr adresinden "New Tunnel Wizard" sihirbazını başlatın ve aşağıdaki değerleri girin:
+Web arayüzü için bir "HTTP" server tunnel kullanın. `http://127.0.0.1:7657/i2ptunnelmgr` adresinden "New Tunnel Wizard" sihirbazını başlatın ve aşağıdaki değerleri girin:
 
 1. Select "Server Tunnel"
 2. Select "HTTP Server"
@@ -66,7 +66,7 @@ Web arayüzü için bir "HTTP" server tunnel kullanın. http://127.0.0.1:7657/i2
 
 ### Gitlab SSH Interface
 
-SSH arayüzü için, "Standard" server tunnel kullanın. http://127.0.0.1:7657/i2ptunnelmgr adresinden "New Tunnel Wizard" başlatın ve aşağıdaki değerleri girin:
+SSH arayüzü için, "Standard" server tunnel kullanın. `http://127.0.0.1:7657/i2ptunnelmgr` adresinden "New Tunnel Wizard" başlatın ve aşağıdaki değerleri girin:
 
 1. Select "Server Tunnel"
 2. Select "Standard Server"

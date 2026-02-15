@@ -24,7 +24,7 @@ Os testes ainda estão em uma fase muito inicial, mas correram muito melhor do q
 
 Com as estatísticas coletadas pelos voluntários prestativos, ficou claro quão importante é o código de reconhecimento seletivo para o correto funcionamento em redes altamente congestionadas. Passei os últimos dias implementando e testando esse código e atualizei a especificação do SSU [1] para incluir uma nova técnica SACK eficiente. Isso não será retrocompatível com o código SSU anterior, portanto as pessoas que têm ajudado nos testes devem desativar o transporte SSU até que uma nova compilação esteja pronta para testes (com sorte, nos próximos um ou dois dias).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 3) i2phex
 
@@ -32,7 +32,7 @@ sirup tem se dedicado intensamente a um port (adaptação) do phex para i2p, e e
 
 Há muito mais informações no eepsite do sirup (Site I2P) [2], e a ajuda com testes por pessoas que já fazem parte da comunidade i2p seria ótima (mas, por favor, até que o sirup o aprove como um lançamento público, e o i2p esteja pelo menos na versão 0.6, se não 1.0, vamos manter isso dentro da comunidade i2p). Acredito que o sirup estará por perto na reunião desta semana, então talvez possamos obter mais informações na ocasião!
 
-[2] http://sirup.i2p/
+[2] `http://sirup.i2p/`
 
 * 4) awol
 
@@ -44,4 +44,4 @@ Então, se você estiver entediado e quiser ajudar, mas estiver precisando de in
 
 Ok, isso é praticamente tudo o que eu tenho para abordar por enquanto. Para quem quiser ajudar nos testes do SSU durante a próxima semana, fiquem atentos às informações no meu blog [3]. Para o restante de vocês, nos vemos na reunião!
 
-=jr [3] http://jrandom.dev.i2p/
+=jr [3] `http://jrandom.dev.i2p/`

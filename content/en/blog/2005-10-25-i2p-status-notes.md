@@ -34,7 +34,7 @@ As mentioned on the list [3], we can now run the router and most clients seamles
 
 Another positive feature of GCJ support is the ability to use the streaming lib from C/C++/Python/etc. I don't know if anyone is working on that sort of integration, but it'd probably be worthwhile, so if you're interested on hacking on that front, please let me know!
 
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001021.html
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001021.html`
 [4] http://gcc.gnu.org/java/
 
 * 4) i2psnark returns
@@ -44,7 +44,7 @@ While i2p-bt was the first bittorrent client ported to I2P that got a lot of use
 Ragnarok has already started hacking into it to improve upon its block selection algorithm, and we'll hopefully get both a web interface and multitorrent capabilities on it in before the 0.6.2 release. If you're interested in helping, get in touch! :)
 
 [5] http://klomp.org/snark/
-[6] http://dev.i2p.net/~jrandom/snark_diff.txt
+[6] `http://dev.i2p.net/~jrandom/snark_diff.txt`
 
 * 5) More on bootstrapping
 
@@ -54,10 +54,10 @@ For those interested in some eyecandy, Michael has your fix too, with a simulati
 
 (nice work Michael, thanks!)
 
-[7] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html
+[7] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html`
     (follow the "i2p tunnel bootstrap attack" thread)
-[8] http://dev.i2p.net/~jrandom/fraction-of-attackers.png
-[9] http://dev.i2p.net/~jrandom/messages-per-tunnel.png
+[8] `http://dev.i2p.net/~jrandom/fraction-of-attackers.png`
+[9] `http://dev.i2p.net/~jrandom/messages-per-tunnel.png`
 
 * 6) Virus investigations
 
@@ -65,7 +65,7 @@ There has been some discussion about some potential malware issues being distrib
 
 Thanks Complication for all your research into it!
 
-[10] http://forum.i2p.net/viewtopic.php?t=1122
+[10] `http://forum.i2p.net/viewtopic.php?t=1122`
 
 * 7) ???
 

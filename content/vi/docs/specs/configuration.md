@@ -28,7 +28,7 @@ Một tệp cấu hình I2P được định dạng theo đặc tả trong Java 
 
 Tệp không cần thiết phải được sắp xếp, nhưng hầu hết các ứng dụng sẽ sắp xếp theo khóa khi ghi vào tệp, để dễ đọc và chỉnh sửa thủ công.
 
-Các thao tác đọc và ghi được triển khai trong DataHelper loadProps() và storeProps() [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html). Lưu ý rằng định dạng tệp khác biệt đáng kể so với định dạng được tuần tự hóa cho các giao thức I2P được chỉ định trong [Mapping](/docs/specs/common-structures/#type-mapping).
+Các thao tác đọc và ghi được triển khai trong DataHelper loadProps() và storeProps() [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html). Lưu ý rằng định dạng tệp khác biệt đáng kể so với định dạng được tuần tự hóa cho các giao thức I2P được chỉ định trong [Mapping](/docs/specs/common-structures/#type-mapping).
 
 ## Thư viện lõi và router
 
@@ -226,7 +226,7 @@ tunnel.N.option.i2ptunnel.httpclient.allowInternalSSL=true|false
 tunnel.N.option.i2ptunnel.httpclient.disableAddressHelper=true|false
 
 # HTTP client only. Comma- or space-separated list of jump server URLs.
-tunnel.N.option.i2ptunnel.httpclient.jumpServers=http://example.i2p/jump
+tunnel.N.option.i2ptunnel.httpclient.jumpServers=`http://example.i2p/jump`
 
 # HTTP client only. Whether to pass Accept* headers through. Default false.
 # Note: Does not affect "Accept" and "Accept-Encoding".
@@ -430,7 +430,7 @@ Xem bài viết trên zzz.i2p.
 
 ## Tài liệu tham khảo
 
-- [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+- [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 - [Ánh xạ](/docs/specs/common-structures#type-mapping)
 - [PLUGIN](/docs/specs/plugin)
 - [Properties](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html#load%28java.io.InputStream%29)

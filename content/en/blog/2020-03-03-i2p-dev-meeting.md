@@ -48,7 +48,7 @@ categories: ["meeting"]
 20:06:41 &lt;zzz&gt; jogger SSU fixes... maybe... maybe not...
 20:07:23 &lt;zzz&gt; ratchet is in 45, it works, but a lot of the details aren't finished, hopefully will be for 46
 20:07:36 &lt;eche|on&gt; ok, good.
-20:08:15 &lt;zzz&gt; ratchet todo list http://zzz.i2p/topics/2639
+20:08:15 &lt;zzz&gt; ratchet todo list `http://zzz.i2p/topics/2639`
 20:08:49 &lt;eche|on&gt; whats the estimated timeframe for a 0.9.46 release? may?
 20:08:50 &lt;zzz&gt; what's everybody else's plans?
 20:09:15 &lt;eche|on&gt; eyedeekay, sadie, plan for 0.9.46 ?
@@ -124,7 +124,7 @@ categories: ["meeting"]
 20:24:25 &lt;eche|on&gt; any questions, comments, hints on point 3 android?
 20:25:43 &lt;eche|on&gt; ok, going on to topic 4) the forthcoming monotone to Git translation
 20:26:20 &lt;eche|on&gt; we decided to drop monotone and use git instead, a translation plan is still in work to maintain best useability and features which are needed for I2P development
-20:26:40 &lt;eche|on&gt; currently eyedeekay did setup a git server on http://git.idk.i2p and made a howto on https://github.com/eyedeekay/git-over-i2p/blob/master/GIT.md
+20:26:40 &lt;eche|on&gt; currently eyedeekay did setup a git server on `http://git.idk.i2p` and made a howto on https://github.com/eyedeekay/git-over-i2p/blob/master/GIT.md
 20:27:02 &lt;eche|on&gt; we do work on getting trac into the git instance and migrate all the tickets into git
 20:27:26 &lt;eche|on&gt; after that migration is done securly and verified, we decide on a date to switch
 20:27:46 &lt;eche|on&gt; currently we do look out for testers of the guide and the git server inside of I2P 
@@ -198,7 +198,7 @@ categories: ["meeting"]
 20:51:38 &lt;eche|on&gt; zzz: noted and will happen 
 20:52:15 &lt;sadie_&gt; zzz, yes I have announced it on forum last week. PR rollout has been planned
 20:52:26 &lt;eche|on&gt; any more comments, topics under topic 5) misc?
-20:52:51 &lt;eche|on&gt; http://i2pforum.i2p/viewtopic.php?f=27&t=925
+20:52:51 &lt;eche|on&gt; `http://i2pforum.i2p/viewtopic.php?f=27&t=925`
 20:53:00 &lt;eche|on&gt; is the forum entry with news entries
 20:53:10 &lt;fug&gt; zzz: github does detection based on the email specified in commits, said email needs to be registered with a github account, and registration requires sending a confirmation link to the email
 20:53:33 &lt;fug&gt; zzz: so in case of your commits with .i2p mail, you won't be able to confirm them

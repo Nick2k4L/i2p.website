@@ -16,7 +16,7 @@ Hi gang, its tuesday again
 
 * 1) 0.6.0.6
 
-With last saturday's 0.6.0.6 release, we've got a bunch of new pieces in play on the live net, and y'all have done a great job upgrading - as of a few hours ago, almost 250 routers have upgraded! The network seems to be doing well too, and introductions have so far been working - you can track your own introduction activity with the http://localhost:7657/oldstats.jsp, looking at the udp.receiveHolePunch and udp.receiveIntroRelayResponse (as well as udp.receiveRelayIntro, for those behind NATs).
+With last saturday's 0.6.0.6 release, we've got a bunch of new pieces in play on the live net, and y'all have done a great job upgrading - as of a few hours ago, almost 250 routers have upgraded! The network seems to be doing well too, and introductions have so far been working - you can track your own introduction activity with the `http://localhost:7657/oldstats.jsp,` looking at the udp.receiveHolePunch and udp.receiveIntroRelayResponse (as well as udp.receiveRelayIntro, for those behind NATs).
 
 btw, the "Status: ERR-Reject" now really isn't an error, so perhaps we should change it to "Status: OK (NAT)"?
 
@@ -45,8 +45,8 @@ The i2phex.exe inside that zip is usable on windows by simply running it, or on 
 I'm not stepping in to maintain I2Phex, but I will put future I2Phex releases on the website when there are updates to cvs. If someone wants to work on a webpage that we can put up to describe/introduce it (sirup, you out there?), with links to sirup.i2p, useful forum posts, legion's list of active peers, that'd be great.
 
 [1] http://launch4j.sourceforge.net/
-[2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip and
-    http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (signed by my key)
+[2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` and
+    `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (signed by my key)
 
 * 3) migration
 

@@ -16,7 +16,7 @@ Ahoj všichni, máme tu zase ten čas v týdnu
 
 Jak bylo včera oznámeno [1], je k dispozici nové vydání a ohlasy jsou obecně pozitivní. Zhruba polovina z vás už aktualizovala (vidím 110 @ 0.6.0.2, 89 @ 0.6.0.1 a 21 @ 0.6), ale zbytek by měl aktualizovat co nejdříve, protože přináší několik užitečných vylepšení.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000834.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000834.html`
 
 * 2) Roadmap update
 

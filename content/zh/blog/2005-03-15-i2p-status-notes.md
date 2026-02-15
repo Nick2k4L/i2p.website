@@ -20,9 +20,9 @@ categories: ["status"]
 
 * 2) Feedspace
 
-Frosk 已经发布了 i2pcontent/fusenet docs 的又一个修订版，不过现在换了新家、起了新名字：http://feedspace.i2p/ - 请参见 orion [1] 或我的博客 [2] 获取目标地址。  这些东西看起来很有前景，无论是从“嘿，功能强悍”还是“嘿，这将有助于提升 I2P 的匿名性”的角度。  Frosk 和团队正埋头开发，但他们当然也在寻求反馈（和帮助）。  或许我们可以请 Frosk 在会议上给我们做个更新？
+Frosk 已经发布了 i2pcontent/fusenet docs 的又一个修订版，不过现在换了新家、起了新名字：`http://feedspace.i2p/` - 请参见 orion [1] 或我的博客 [2] 获取目标地址。  这些东西看起来很有前景，无论是从“嘿，功能强悍”还是“嘿，这将有助于提升 I2P 的匿名性”的角度。  Frosk 和团队正埋头开发，但他们当然也在寻求反馈（和帮助）。  或许我们可以请 Frosk 在会议上给我们做个更新？
 
-[1] http://orion.i2p/#feedspace.i2p [2] http://jrandom.dev.i2p/
+[1] `http://orion.i2p/#feedspace.i2p` [2] `http://jrandom.dev.i2p/`
 
 * 3) ???
 

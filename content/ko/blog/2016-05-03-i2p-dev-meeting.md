@@ -13,13 +13,13 @@ categories: ["meeting"]
 ## 회의록
 
 <div class="irc-log">20:00:46 &lt;zzz&gt; 0) 안녕하세요
-20:00:46 &lt;zzz&gt; 1) Tails 현황 (pr0ng) http://zzz.i2p/topics/2108
+20:00:46 &lt;zzz&gt; 1) Tails 현황 (pr0ng) `http://zzz.i2p/topics/2108`
 20:00:46 &lt;zzz&gt; 2) 0.9.26 계획 업데이트 (zzz)
-20:00:46 &lt;zzz&gt; 3) HOPE 계획 업데이트 (zzz) http://zzz.i2p/topics/1968
+20:00:46 &lt;zzz&gt; 3) HOPE 계획 업데이트 (zzz) `http://zzz.i2p/topics/1968`
 20:00:50 &lt;zzz&gt; 0) 안녕하세요
 20:00:52 &lt;zzz&gt; 안녕
 20:01:01 &lt;pr0ng&gt; 안녕, Eeepers
-20:01:22 &lt;zzz&gt; 1) Tails 현황 (pr0ng) http://zzz.i2p/topics/2108
+20:01:22 &lt;zzz&gt; 1) Tails 현황 (pr0ng) `http://zzz.i2p/topics/2108`
 20:01:32 &lt;zzz&gt; 좋아요, 지난 한 달 동안 Tails 쪽에 많은 일이 있었습니다
 20:01:33 &lt;pr0ng&gt; 안녕 zzz
 20:01:47 &lt;Irc2PGuest33835&gt; 안녕
@@ -73,7 +73,7 @@ categories: ["meeting"]
 20:20:10 &lt;zzz&gt; sadie에게 업데이트를 기대하고 있던 제안된 'summer of x'도 있습니다. 그걸 진행하게 되면 릴리스가 많이 느려질 겁니다
 20:20:47 &lt;zzz&gt; 지금으로서는 .27의 기획이나 코딩을 미리 진행하는 사람이 전혀 없습니다
 20:20:52 &lt;zzz&gt; 2)와 관련해 더 있을까요?
-20:21:52 &lt;zzz&gt; 3) HOPE 계획 업데이트 (zzz) http://zzz.i2p/topics/1968
+20:21:52 &lt;zzz&gt; 3) HOPE 계획 업데이트 (zzz) `http://zzz.i2p/topics/1968`
 20:22:32 &lt;zzz&gt; HOPE에서 회의 공간을 확보하는 것에 대해 Lance의 확답을 받아내는 데 계속 실패하고 있습니다
 20:22:51 &lt;zzz&gt; 그래서 참석 계획을 세우시는 분들께 아직 아무런 안내도 드릴 수 없습니다
 20:23:15 &lt;zzz&gt; 지난주에 sadie가 그와 만나기로 했는데, 답을 받았는지에 대한 제 문의에 아직 답이 없습니다

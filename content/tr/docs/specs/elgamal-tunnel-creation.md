@@ -133,7 +133,7 @@ Kabul ve reddetmeler, gelecekteki peer tunnel kapasitesi değerlendirmelerinde k
 
 ## Geçmiş ve Notlar {#tunnelcreate-notes}
 
-Bu strateji, Michael Rogers, Matthew Toseland (toad) ve jrandom arasında I2P mail listesinde predecessor saldırısı hakkında yapılan bir tartışma sırasında ortaya çıktı. Bkz. [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html), [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html). Bu strateji 2006-02-16 tarihinde yayınlanan 0.6.1.10 sürümünde tanıtıldı ve bu, I2P'de geriye dönük uyumluluğu olmayan bir değişikliğin yapıldığı son seferydi.
+Bu strateji, Michael Rogers, Matthew Toseland (toad) ve jrandom arasında I2P mail listesinde predecessor saldırısı hakkında yapılan bir tartışma sırasında ortaya çıktı. Bkz. TUNBUILD-SUMMARY, TUNBUILD-REASONING. Bu strateji 2006-02-16 tarihinde yayınlanan 0.6.1.10 sürümünde tanıtıldı ve bu, I2P'de geriye dönük uyumluluğu olmayan bir değişikliğin yapıldığı son seferydi.
 
 Notlar:
 
@@ -177,8 +177,8 @@ Notlar:
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf) - Predecessor Attack Paper (2008)
 - [TBM](/docs/specs/i2np#msg-tunnelbuild) - Tunnel Build Message
 - [TBRM](/docs/specs/i2np#msg-tunnelbuildreply) - Tunnel Build Reply Message
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html) - Tunnel Build Reasoning
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html) - Tunnel Build Summary
+- TUNBUILD-REASONING - Tunnel Build Reasoning
+- TUNBUILD-SUMMARY - Tunnel Build Summary
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation) - Tunnel Implementation
 - [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation) - Tunnel Operation
 - [VTBM](/docs/specs/i2np#msg-variabletunnelbuild) - Variable Tunnel Build Message

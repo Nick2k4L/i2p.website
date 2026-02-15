@@ -6,7 +6,7 @@ description: "12 Mart 2003 I2P geliştirme toplantısı kayıtları."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in izniyle http://www.archive.org/)
+(Wayback machine'in izniyle `http://www.archive.org/`)
 
 ## Hızlı özet
 

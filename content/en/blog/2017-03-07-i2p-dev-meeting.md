@@ -14,14 +14,14 @@ categories: ["meeting"]
 
 <div class="irc-log">
 20:00:25 &lt;zzz&gt; 0) Hi
-20:00:25 &lt;zzz&gt; 1) Tails maintainer (zzz) http://zzz.i2p/topics/2108
+20:00:25 &lt;zzz&gt; 1) Tails maintainer (zzz) `http://zzz.i2p/topics/2108`
 20:00:25 &lt;zzz&gt; 2) 0.9.30 update (zzz)
 20:00:25 &lt;zzz&gt; 3) UI branch status - for .30 or .31? (str4d)
 20:00:25 &lt;zzz&gt; 4) Jetty 9 branch status - for .30 or .31? (zzz)
 20:00:30 &lt;zzz&gt; 0) Hi
 20:00:32 &lt;zzz&gt; hi
 20:00:50 &lt;manas&gt; Hello
-20:00:54 &lt;zzz&gt; 1) Tails maintainer (zzz) http://zzz.i2p/topics/2108
+20:00:54 &lt;zzz&gt; 1) Tails maintainer (zzz) `http://zzz.i2p/topics/2108`
 20:01:16 &lt;zzz&gt; as most of you know, tails and I agreed to remove i2p from tails
 20:01:34 &lt;zzz&gt; this will take effect in tails 2.12, due out in abut 6 weeks
 20:01:43 &lt;eche|on&gt; hi

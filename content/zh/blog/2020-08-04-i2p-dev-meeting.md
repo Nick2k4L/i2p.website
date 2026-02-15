@@ -28,7 +28,7 @@ categories: ["meeting"]
 (04:05:27 PM) eyedeekay1: 看起来我也赶不上在 0.9.47 前完成 rekeyOnIdle。
 (04:05:58 PM) eyedeekay1: 这次我这边主要会包含一些界面元素的更新。
 (04:06:19 PM) eyedeekay1: 关于 0.9.47 发布，zzz 或 zlatinb 有什么要补充的吗？
-(04:06:43 PM) zzz: 摘要在 http://zzz.i2p/topics/2905
+(04:06:43 PM) zzz: 摘要在 `http://zzz.i2p/topics/2905`
 (04:06:49 PM) zzz: 标签冻结时间是从明天算起一周后
 (04:06:53 PM) zzz: 大约 3 周后发布
 (04:07:07 PM) zzz: diff 约 18,500 行，这很常见
@@ -46,14 +46,14 @@ categories: ["meeting"]
 (04:12:53 PM) eyedeekay1: 这是每月例会。
 (04:12:53 PM) eyedeekay1: 我没有设置 WebIRC 网关，因为据我了解那样做会违反我们的 IRC 规则。
 (04:13:13 PM) eyedeekay1: 我现在拿到了会议公告规则的副本，而且这些公告的责任归属也已向我说明清楚。
-(04:13:25 PM) eyedeekay1: 9 月 1 日的公告，这次日期是正确的，已经发布。目前还没有议题，请按需添加：http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc
+(04:13:25 PM) eyedeekay1: 9 月 1 日的公告，这次日期是正确的，已经发布。目前还没有议题，请按需添加：`http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc`
 (04:14:55 PM) eyedeekay1: 当然，这会在 0.9.47 发布后不久进行
 (04:15:45 PM) eyedeekay1: 关于第 2 项，大家还有什么吗？
 (04:17:57 PM) eyedeekay1: 3）Git 迁移
 (04:18:34 PM) eyedeekay1: Git 迁移终于开始推进了，我们有了一个计划，并开始按计划执行
 (04:19:08 PM) eyedeekay1: nextloop 和我正在推进把接下来几个重要的 mtn（Monotone）分支镜像到 github
 (04:19:27 PM) eyedeekay1: 在各自的 Git 迁移阶段完成之前，这些仍然是只读的，也就是说目前不接受 pull 或合并请求（MRs）
-(04:20:04 PM) eyedeekay1: 有关这些阶段的详细描述请见：http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10
+(04:20:04 PM) eyedeekay1: 有关这些阶段的详细描述请见：`http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10`
 (04:20:42 PM) eyedeekay1: 如果我授予 nextloop 在 github 上 i2p 命名空间中创建仓库的权限，并允许他向自己创建的仓库写入，这将对 nextloop 和我都有帮助。
 (04:20:47 PM) zzz: 计划写得不错
 (04:21:24 PM) eyedeekay1: 谢谢 zzz，很高兴它终于达到了可用状态

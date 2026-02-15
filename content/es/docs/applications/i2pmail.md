@@ -244,7 +244,7 @@ El gateway `i2pmail.org` permite a usuarios regulares de internet enviar correos
 **Para registrarse para una cuenta de mail.i2p:**
 
 1. Asegúrate de que tu router I2P esté en funcionamiento
-2. Visita **[http://hq.postman.i2p](http://hq.postman.i2p)** dentro de I2P
+2. Visita **http://hq.postman.i2p** dentro de I2P
 3. Sigue el proceso de registro
 4. Accede a tu correo electrónico a través de **SusiMail** en la consola del router
 

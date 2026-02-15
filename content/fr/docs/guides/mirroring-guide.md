@@ -194,7 +194,7 @@ Vous remarquerez que les deux configurations évitent explicitement les en-tête
 Ouvrez la console I2P Router dans votre navigateur :
 
 ```
-http://127.0.0.1:7657/i2ptunnel/
+`http://127.0.0.1:7657/i2ptunnel/`
 ```
 Cliquez sur **"Tunnel Wizard"** pour commencer à créer un nouveau tunnel.
 
@@ -291,7 +291,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
 
         proxy_set_header Host $host;
@@ -321,7 +321,7 @@ Si votre application génère des URLs pointant vers votre domaine clearnet, vou
 
 ```nginx
 location / {
-    proxy_pass http://127.0.0.1:3000;
+    proxy_pass `http://127.0.0.1:3000;`
 
     sub_filter_once off;
     sub_filter_types text/html text/css application/javascript;
@@ -346,7 +346,7 @@ Configurez `/etc/gitea/app.ini` :
 HTTP_ADDR     = 127.0.0.1
 HTTP_PORT     = 3000
 DOMAIN        = yourgit.i2p
-ROOT_URL      = http://yourgit.i2p/
+ROOT_URL      = `http://yourgit.i2p/`
 SSH_DOMAIN    = yourgit.i2p
 PROTOCOL      = http
 OFFLINE_MODE  = true
@@ -373,7 +373,7 @@ Si vous avez seulement besoin d'une navigation en lecture seule et du clonage HT
 ```ini
 # /etc/cgitrc
 virtual-root=/
-clone-url=http://yourgit.i2p/$CGIT_REPO_URL
+clone-url=`http://yourgit.i2p/$CGIT_REPO_URL`
 cache-root=/var/cache/cgit
 cache-size=1000
 scan-path=/srv/git
@@ -387,17 +387,17 @@ Toute personne clonant depuis votre miroir Git I2P doit router le trafic Git à 
 
 ```bash
 # Tell Git to use the I2P proxy for .i2p domains
-git config --global http.http://yourgit.i2p.proxy http://127.0.0.1:4444
+git config --global http.http://yourgit.i2p.proxy `http://127.0.0.1:4444`
 git config --global http.timeout 300
 
 # Clone (allow for I2P latency)
 GIT_HTTP_LOW_SPEED_LIMIT=1000 GIT_HTTP_LOW_SPEED_TIME=60 \
-    git clone http://yourgit.i2p/repo
+    git clone `http://yourgit.i2p/repo`
 ```
 Pour les gros dépôts, les clones superficiels permettent d'économiser beaucoup de temps sur I2P :
 
 ```bash
-git clone --depth 1 http://yourgit.i2p/project
+git clone --depth 1 `http://yourgit.i2p/project`
 git fetch --unshallow   # grab full history later if needed
 ```
 ## Partie 4 : Hébergement de fichiers en miroir
@@ -416,7 +416,7 @@ $CONFIG = array(
     'trusted_proxies'   => array('127.0.0.1'),
     'overwritehost'     => 'yoursite.i2p',
     'overwriteprotocol' => 'http',
-    'overwrite.cli.url' => 'http://yoursite.i2p/',
+    'overwrite.cli.url' => '`http://yoursite.i2p/',`
 );
 ```
 Ce qui fonctionne bien : téléchargement et téléversement de fichiers, navigation dans les répertoires, authentification, partage de liens publics, et WebDAV. Ce qui ne fonctionne pas : les clients de synchronisation desktop nécessitent une configuration de proxy SOCKS, les backends de stockage externe peuvent divulguer les adresses IP, et la fédération avec les instances Nextcloud du clearnet peut compromettre la confidentialité.
@@ -452,7 +452,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
 
         proxy_set_header Host $host;
         proxy_set_header Content-Type $content_type;
@@ -482,7 +482,7 @@ server {
     listen 127.0.0.1:8080;
 
     location /ws {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
@@ -683,8 +683,8 @@ Vérifiez également que la redirection de port est configurée pour votre port 
 Les visiteurs ont besoin de votre adresse dans leur carnet d'adresses. Assurez-vous de vous être enregistré auprès d'un carnet d'adresses public, ou partagez directement votre adresse base32 complète. Ils peuvent également ajouter plus d'abonnements à l'adresse `http://127.0.0.1:7657/susidns/subscriptions` :
 
 ```
-http://stats.i2p/cgi-bin/newhosts.txt
-http://i2host.i2p/cgi-bin/i2hostetag
+`http://stats.i2p/cgi-bin/newhosts.txt`
+`http://i2host.i2p/cgi-bin/i2hostetag`
 ```
 ### Délais d'expiration lors des tests
 
@@ -692,10 +692,10 @@ I2P a intrinsèquement des temps de réponse plus élevés. Lors de tests en lig
 
 ```bash
 # curl
-curl --connect-timeout 60 --max-time 300 http://yoursite.i2p/
+curl --connect-timeout 60 --max-time 300 `http://yoursite.i2p/`
 
 # wget
-wget --timeout=300 http://yoursite.i2p/
+wget --timeout=300 `http://yoursite.i2p/`
 ```
 ### Lecture des journaux
 

@@ -3391,6 +3391,6 @@ IPv4 मानता है, अतिरिक्त padding शामिल �
 - **[SigningPublicKey]** [SigningPublicKey Type](/docs/specs/common-structures#type-signingpublickey)
 - **[SSU]** [SSU Transport](/docs/transport/ssu)
 - **[STS]** [Station-to-Station Protocol](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
-- **[Ticket1112]** [I2P Ticket 1112](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1112)
-- **[Ticket1849]** [I2P Ticket 1849](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1849)
+- **[Ticket1112]** I2P Ticket 1112
+- **[Ticket1849]** I2P Ticket 1849
 - **[WireGuard]** [WireGuard Protocol](https://www.wireguard.com/papers/wireguard.pdf)

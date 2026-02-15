@@ -36,4 +36,4 @@ A todos los que han participado durante este último año, ya sea técnica, soci
 
 De todos modos, nuestra reunión semanal de estado comienza en unos minutos, así que si hay algo que quieras discutir más a fondo, pásate por #i2p en los lugares habituales [1] y ¡saluda!
 
-=jr [1] http://forum.i2p.net/viewtopic.php?t=952
+=jr [1] `http://forum.i2p.net/viewtopic.php?t=952`

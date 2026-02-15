@@ -24,7 +24,7 @@ Zamanımın çoğunu 0.6 UDP koduna odaklanarak geçiriyorum ve hayır, yayınla
 
 duck'ün listede [1] belirttiği gibi, zab, I2P'ye yardımcı olmak amacıyla bir dizi test güncellemesi için bir ödül havuzuna ilk fonu sağladı - ödül sayfasında [2] listelenen görevleri tamamlayabilen herkes için bir miktar fon. Bu ödül için [3] ek bağışlar aldık - şu anda $1000USD seviyesinde. Ödüller elbette "piyasa rayicinde" değil, ancak yardım etmek isteyen geliştiriciler için küçük bir teşvik niteliği taşıyor.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
 
 * 4) ???
 

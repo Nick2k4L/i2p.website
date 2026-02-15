@@ -47,9 +47,9 @@ Le OU exclusif de ((netid - 2) << 8) est utilisé pour identifier rapidement les
 - Taille MAC : 16 octets
 - Exemples d'implémentations C :
   - hmac.h dans [i2pd](https://github.com/PurpleI2P/i2pd)
-  - I2PHMAC.cpp dans [i2pcpp](http://git.repo.i2p/w/i2pcpp.git)
+  - I2PHMAC.cpp dans i2pcpp
 - Exemple d'implémentation Java :
-  - I2PHMac.java dans [I2P](https://github.com/i2p/i2p.i2p)
+  - I2PHMac.java dans I2P
 
 ### Détails de la clé de session
 
@@ -902,7 +902,7 @@ Un HolePunch est simplement un paquet UDP sans données. Il n'est ni authentifi�
 - [Date](/docs/specs/common-structures/#date)
 - [Chiffrement ElGamal](/docs/specs/cryptography/#elgamal)
 - [Détails HMAC](/docs/specs/cryptography/#udp)
-- [Source I2P](https://github.com/i2p/i2p.i2p)
+- Source I2P
 - [Source i2pd](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)
 - [RouterIdentity](/docs/specs/common-structures/#routeridentity)

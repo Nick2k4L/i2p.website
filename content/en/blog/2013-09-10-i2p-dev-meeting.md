@@ -15,7 +15,7 @@ categories: ["meeting"]
 <div class="irc-log">
 20:00:31  &lt;zzz&gt; 0) hi
 20:00:38  &lt;zzz&gt; 1) website revamp (str4d)
-20:00:55  &lt;zzz&gt; 2) console home page request for http://open4you.i2p/
+20:00:55  &lt;zzz&gt; 2) console home page request for `http://open4you.i2p/`
 20:01:03  &lt;iRelay&gt; Title: open4you.i2p (at open4you.i2p)
 20:01:11  &lt;zzz&gt; 3) disable outproxy (topiltzin / dg)
 20:01:20  &lt;zzz&gt; 4) netdb project update (hottuna)
@@ -23,13 +23,13 @@ categories: ["meeting"]
 20:01:25  &lt;zzz&gt; hi
 20:01:30  &lt;dg&gt; hi
 20:01:35  &lt;topiltzin&gt; hi
-20:01:42  &lt;zzz&gt; more info and links at http://zzz.i2p/topics/1460
+20:01:42  &lt;zzz&gt; more info and links at `http://zzz.i2p/topics/1460`
 20:01:55  &lt;zzz&gt; let's try something new and limit each agenda item to 15 minutes
 20:02:00  &lt;iRelay&gt; Title: zzz.i2p: Meeting Tues. Sept. 10, 8 PM UTC (at zzz.i2p)
 20:02:03  &lt;zzz&gt; 1) website revamp (str4d)
 20:02:07  &lt;zzz&gt; go str4d
 20:04:12  &lt;zzz&gt; skipping 1) for now
-20:04:17  &lt;zzz&gt; 2) console home page request for http://open4you.i2p/
+20:04:17  &lt;zzz&gt; 2) console home page request for `http://open4you.i2p/`
 20:04:21  &lt;iRelay&gt; Title: open4you.i2p (at open4you.i2p)
 20:04:28  &lt;zzz&gt; is the open4you requester here?
 20:05:53  &lt;zzz&gt; skipping 2) for now
@@ -109,10 +109,10 @@ categories: ["meeting"]
 20:25:09  &lt;zzz&gt; 2) open4you.i2p, which we will discuss whether or not the requestor is here.
 20:25:12  &lt;EpicCoffee&gt; ah thank you dg
 20:25:13  &lt;zzz&gt; open4you are you here?
-20:25:15  &lt;topiltzin&gt; EpicCoffee: channel is logged real-time http://killyourtv.i2p/irclogs/%23i2p-dev.2013-09-10.log
-20:25:54  &lt;zzz&gt; the request is at the bottom of http://zzz.i2p/topics/1429
+20:25:15  &lt;topiltzin&gt; EpicCoffee: channel is logged real-time `http://killyourtv.i2p/irclogs/%23i2p-dev.2013-09-10.log`
+20:25:54  &lt;zzz&gt; the request is at the bottom of `http://zzz.i2p/topics/1429`
 20:26:03  &lt;iRelay&gt; Title: zzz.i2p: 0.9.8 Release Summary (at zzz.i2p)
-20:26:44  &lt;zzz&gt; as a refresher, since we haven't done this in a while, my personal guidelines are at http://zzz.i2p/topics/236
+20:26:44  &lt;zzz&gt; as a refresher, since we haven't done this in a while, my personal guidelines are at `http://zzz.i2p/topics/236`
 20:26:49  &lt;iRelay&gt; Title: zzz.i2p: How to get my Eepsite added to the Router Console home page (at zzz.i2p)
 20:27:09  &lt;zzz&gt; has anybody used this site? Does anybody have any thoughts about putting it on the console?
 20:27:30  &lt;dg&gt; If open4you doesn't turn up, can I propose one?
@@ -192,7 +192,7 @@ categories: ["meeting"]
 20:40:18  &lt;zzz&gt; no sign of hottuna or str4d so we're on to 5) dg's request
 20:40:20  &lt;zzz&gt; dg go
 20:40:29  &lt;welterde&gt; although it should work better over i2p (you know.. passive/active mode and so for ftp..)
-20:41:36  &lt;dg&gt; I propose http://salt.i2p/ (not my site, efkt's) for inclusion in the router console. salt.i2p contains; a helpful, large wiki of eepsites and guides; xmpp; an IRC channel which is probably most active one on IRC2p
+20:41:36  &lt;dg&gt; I propose `http://salt.i2p/` (not my site, efkt's) for inclusion in the router console. salt.i2p contains; a helpful, large wiki of eepsites and guides; xmpp; an IRC channel which is probably most active one on IRC2p
 20:41:51  &lt;iRelay&gt; Title: salted (at salt.i2p)
 20:42:00  &lt;dg&gt; It provides a lot of eepsite 'starting points' and is SFW.
 20:42:02  &lt;EpicCoffee&gt; ill say +1 for salt
@@ -200,7 +200,7 @@ categories: ["meeting"]
 20:42:16  &lt;topiltzin&gt; yep, #salt pwnz +1
 20:42:18  &lt;dg&gt; salt has grown to be a great resource for me and others in the community
 20:42:28  &lt;dg&gt; the channel is #salt ftr
-20:42:52  &lt;zzz&gt; we really can only take requests from the eepsite owner. Could you ask him to apply following the guidelines on http://zzz.i2p/topics/236 ? then we can consider it for 0.9.9
+20:42:52  &lt;zzz&gt; we really can only take requests from the eepsite owner. Could you ask him to apply following the guidelines on `http://zzz.i2p/topics/236` ? then we can consider it for 0.9.9
 20:42:54  &lt;welterde&gt; +1.. pretty much what that old wiki used to be now..
 20:43:06  &lt;iRelay&gt; Title: zzz.i2p: How to get my Eepsite added to the Router Console home page (at zzz.i2p)
 20:43:33  &lt;zzz&gt; I'm not familiar with the site
@@ -229,9 +229,9 @@ categories: ["meeting"]
 20:47:12  &lt;zzz&gt; - (Optional) A one or two-word label in English. If not provided we will use example.i2p
 20:47:14  &lt;zzz&gt; - (Optional) a few words or a sentence in English for a popup (tooltip)
 20:48:19  &lt;efkt&gt; efkt@mail.i2p
-20:48:23  &lt;efkt&gt; site: http://salt.i2p
+20:48:23  &lt;efkt&gt; site: `http://salt.i2p`
 20:48:27  &lt;iRelay&gt; Title: salted (at salt.i2p)
-20:48:38  &lt;efkt&gt; site terms of service - Theres a disclaimer on the front page: http://salt.i2p
+20:48:38  &lt;efkt&gt; site terms of service - Theres a disclaimer on the front page: `http://salt.i2p`
 20:48:43  &lt;iRelay&gt; Title: salted (at salt.i2p)
 20:49:15  &lt;efkt&gt; I dont have a 32x32 icon to provide speedily but it would be the same as our favicon, a black star with transparent or white background
 20:49:47  &lt;efkt&gt; label name can be simply "salt"
@@ -240,7 +240,7 @@ categories: ["meeting"]
 20:50:32  &lt;zzz&gt; how long has the site been up?
 20:50:34  &lt;efkt&gt; EpicCoffee: If you like. Its just like the favicon - the black "anarchist star", you see the same kind of shape all over google images. It takes only a moment really
 20:50:40  &lt;efkt&gt; zzz: august 2012, IIRC
-20:51:21  &lt;dg&gt; http://salt.i2p/wiki/index.php/Main_Page#Tutorials
+20:51:21  &lt;dg&gt; `http://salt.i2p/wiki/index.php/Main_Page#Tutorials`
 20:51:21  &lt;efkt&gt; Honestly, I'm very surprised I get so many users unable to reach the site as its not part of the default addressbook (or the XMPP) - Yet we get a lot of newcomers being directed there through IRC. Sorry to step off topic.
 20:51:35  &lt;iRelay&gt; Title: Salted Wiki (at salt.i2p)
 20:51:41  &lt;efkt&gt; zzz: Oh, and the blurb "Cryptomunitions and tutorials'
@@ -256,7 +256,7 @@ categories: ["meeting"]
 20:54:19  &lt;dg&gt; efkt: I believe he's saying the actual rules are unclear. pr0n, etc.
 20:54:41  &lt;efkt&gt; Hrm.
 20:54:53  &lt;zzz&gt; there are no rules stated at all.
-20:54:56  &lt;dbowie&gt; 32X32 blackstar.jpg, base64 encoded: http://pastethis.i2p/show/5437/
+20:54:56  &lt;dbowie&gt; 32X32 blackstar.jpg, base64 encoded: `http://pastethis.i2p/show/5437/`
 20:54:57  &lt;iRelay&gt; Title: Paste #5437 | LodgeIt! (at pastethis.i2p)
 20:55:00  &lt;zzz&gt; wrt allowed content
 20:55:54  &lt;efkt&gt; I can easily add something. It's not a problem, only mulling over what "extra" things to add - Content such as Gore, Rape, Torture, Snuff, or weird sex will never be allowed on the site

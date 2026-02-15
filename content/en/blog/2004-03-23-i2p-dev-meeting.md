@@ -39,7 +39,7 @@ categories: ["meeting"]
 [22:04:21] * ion has joined #i2p
 [22:04:22] * ughabugha is reading the status notes.
 [22:04:27] * mrflibble has quit IRC (r eboot time)
-[22:04:35] &lt;jrand0m&gt; in the email i mention a new network monitoring tool duck put together - http://duck.i2p/dot/dot.png (or a snapshot at http://i2p.net/~jrandom/profiles.png)
+[22:04:35] &lt;jrand0m&gt; in the email i mention a new network monitoring tool duck put together - `http://duck.i2p/dot/dot.png` (or a snapshot at http://i2p.net/~jrandom/profiles.png)
 [22:05:05] &lt;jrand0m&gt; it basically gives us a view into how the network is doing - how many people are out there, and how well they're finding out about reliable and fast resources
 [22:05:22] &lt;jrand0m&gt; (basically it visualizes the result of the 0.3 peer profiling and selection process)
 [22:05:50] &lt;ox&gt; &lt;duck&gt; nice!
@@ -140,7 +140,7 @@ categories: ["meeting"]
 [22:27:45] * jar has quit IRC (EOF From client)
 [22:27:52] &lt;jrand0m&gt; mihi&gt; any thoughts?
 [22:28:26] &lt;jrand0m&gt; ok or anyone else?  :)
-[22:28:47] &lt;duck&gt; http://i2p.i2p/ looks ugly to me
+[22:28:47] &lt;duck&gt; `http://i2p.i2p/` looks ugly to me
 [22:28:55] &lt;duck&gt; but even that could be survived
 [22:28:59] &lt;jrand0m&gt; i2p.i2p?
 [22:29:05] &lt;human&gt; ?

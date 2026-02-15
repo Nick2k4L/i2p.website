@@ -16,7 +16,7 @@ Salut tout le monde, c'est l'heure de la mise à jour hebdomadaire
 
 Dans l’ensemble, le réseau se comporte bien, même si nous avons eu quelques problèmes avec l’un des serveurs IRC hors ligne et mon outproxy qui faisait des siennes. Cependant, l’autre serveur IRC était (et est toujours) là (bien qu’il n’ait pas désactivé le CTCP pour le moment - voir [1]), nous avons donc pu assouvir notre besoin d’IRC :)
 
-[1] http://ugha.i2p/HowTo/IrcAnonymityGuide
+[1] `http://ugha.i2p/HowTo/IrcAnonymityGuide`
 
 * 2) 0.5 progress
 
@@ -52,7 +52,7 @@ Maintenant que la version 0.4.2.6 inclut le carnet d’adresses de Ragnarok, le 
 
 Avec cette capacité s’ouvre une dimension entièrement nouvelle - la possibilité pour les utilisateurs de choisir quels sites ils souhaitent, en substance, référencer dans leurs hosts.txt et lesquels ne pas référencer. Bien qu’il y ait une place pour le libre accès public sans contrôle qui s’est produit par le passé, maintenant que le système de nommage n’est pas seulement théorique mais, en pratique, entièrement distribué, les utilisateurs devront définir leurs propres politiques concernant la publication des destinations d’autrui.
 
-L’élément important en coulisses ici, c’est qu’il s’agit d’une occasion d’apprentissage pour la communauté I2P.  Auparavant, gott et moi essayions d’aider à faire avancer la question du nommage en publiant le site de gott sous jrandom.i2p (c’est lui qui a demandé ce site en premier - pas moi, et je n’ai absolument aucun contrôle sur le contenu de cette URL).  Nous pouvons maintenant commencer à explorer la manière dont nous allons gérer les sites qui ne figurent pas dans http://dev.i2p.net/i2p/hosts.txt ou sur forum.i2p.  Le fait de ne pas être publié à ces emplacements n’empêche en rien un site de fonctionner - votre hosts.txt n’est que votre carnet d’adresses local.
+L’élément important en coulisses ici, c’est qu’il s’agit d’une occasion d’apprentissage pour la communauté I2P.  Auparavant, gott et moi essayions d’aider à faire avancer la question du nommage en publiant le site de gott sous jrandom.i2p (c’est lui qui a demandé ce site en premier - pas moi, et je n’ai absolument aucun contrôle sur le contenu de cette URL).  Nous pouvons maintenant commencer à explorer la manière dont nous allons gérer les sites qui ne figurent pas dans `http://dev.i2p.net/i2p/hosts.txt` ou sur forum.i2p.  Le fait de ne pas être publié à ces emplacements n’empêche en rien un site de fonctionner - votre hosts.txt n’est que votre carnet d’adresses local.
 
 Enfin, trêve de bavardages, je voulais simplement mettre tout le monde au courant pour que nous puissions tous voir ce qu’il y a à faire.
 

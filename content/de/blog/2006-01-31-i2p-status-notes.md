@@ -20,7 +20,7 @@ In der vergangenen Woche habe ich verschiedene Optimierungen ausprobiert, um die
 
 Anstatt mich endlos mit kleineren Anpassungen aufzuhalten, habe ich in meinem lokalen Testnetzwerk daran gearbeitet, auf die neue Kryptographie und den neuen Prozess [1] für die Erstellung von tunnel zu migrieren. Dies sollte einen großen Teil der Fehlerrate bei der Erstellung von tunnel reduzieren, danach können wir es bei Bedarf weiter optimieren.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 Ein unglücklicher Nebeneffekt ist, dass 0.6.1.10 nicht abwärtskompatibel sein wird. Wir hatten seit langem keine nicht abwärtskompatible Veröffentlichung, aber in den frühen Tagen haben wir das mehrfach getan, daher sollte es kein allzu großes Problem sein. Im Grunde werden wir, nachdem es in meinem lokalen Testnetzwerk hervorragend funktioniert, es parallel ein paar Wagemutigen für frühe Tests ausrollen, und wenn es bereit für die Veröffentlichung ist, stellen wir einfach die Seed-Referenzen auf die Seeds des neuen Netzwerks um und bringen es raus.
 

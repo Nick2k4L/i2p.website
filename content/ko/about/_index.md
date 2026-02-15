@@ -35,4 +35,4 @@ I2P 네트워크는 거의 완전히 분산형이며, Reseed 서버라는 예외
 
 ## 비교
 
-익명 통신에 대해 작업하는 다른 수많은 애플리케이션 및 프로젝트가 있으며, I2P는 이러한 노력에서 많은 영감을 받았습니다. 이것은 익명성 리소스의 포괄적인 목록이 아닙니다 - [freehaven의 익명성 목록](http://freehaven.net/anonbib/topic.html)과 [GNUnet의 관련 프로젝트](https://www.gnunet.org/links/)가 이 목적을 잘 수행합니다. 그렇긴 해도, 몇 가지 시스템은 추가적인 비교를 위해 두드러집니다. I2P가 다른 익명성 네트워크와 어떻게 비교되는지에 대해 더 알고 싶다면 우리의 [상세 비교 문서](/docs/overview/comparison/)를 참조하세요.
+익명 통신에 대해 작업하는 다른 수많은 애플리케이션 및 프로젝트가 있으며, I2P는 이러한 노력에서 많은 영감을 받았습니다. 이것은 익명성 리소스의 포괄적인 목록이 아닙니다 - [freehaven의 익명성 목록](http://freehaven.net/anonbib/topic.html)과 [GNUnet의 관련 프로젝트](https://www.gnunet.org/en/)가 이 목적을 잘 수행합니다. 그렇긴 해도, 몇 가지 시스템은 추가적인 비교를 위해 두드러집니다. I2P가 다른 익명성 네트워크와 어떻게 비교되는지에 대해 더 알고 싶다면 우리의 [상세 비교 문서](/docs/overview/comparison/)를 참조하세요.

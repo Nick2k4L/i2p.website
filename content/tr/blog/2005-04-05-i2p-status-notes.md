@@ -20,11 +20,11 @@ Geçen haftaki 0.5.0.5 sürümü inişli çıkışlı geçti - netDb içindeki b
 
 bla, toplanan istatistikler üzerinde basit Bayesyen filtreleme kullanarak eş profillememizi iyileştirmeye yönelik bir süredir bazı araştırmalar yapıyor [1]. Oldukça umut verici görünüyor, ancak şu anda ne durumda olduğundan emin değilim - belki toplantı sırasında bla'dan bir güncelleme alabiliriz?
 
-[1] http://forum.i2p.net/viewtopic.php?t=598     http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`     `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-aum'un Q uygulamasında hem çekirdek işlevlerde hem de çeşitli xmlrpc ön uçlarını geliştiren birkaç kişi sayesinde çok fazla ilerleme kaydediliyor. Söylentilere göre, http://aum.i2p/q/ adresinde anlatılan bir dizi güzellikle birlikte bu hafta sonu başka bir Q sürümü görebiliriz.
+aum'un Q uygulamasında hem çekirdek işlevlerde hem de çeşitli xmlrpc ön uçlarını geliştiren birkaç kişi sayesinde çok fazla ilerleme kaydediliyor. Söylentilere göre, `http://aum.i2p/q/` adresinde anlatılan bir dizi güzellikle birlikte bu hafta sonu başka bir Q sürümü görebiliriz.
 
 * 4) ???
 

@@ -35,7 +35,7 @@ Its april now, so the roadmap [1] has been updated accordingly - dropping 0.5.1 
 
 Aum has been going wild on Q, putting in more goodies for us, with the latest screenshots up on his site [2]. He has also committed the code to CVS too (yay), so we'll hopefully be able to begin alpha testing soon. I'm sure we'll hear more from aum with details on how to help, or you can dig into the goods in CVS at i2p/apps/q/
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

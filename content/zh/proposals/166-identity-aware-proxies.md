@@ -135,5 +135,5 @@ torsocks --port 7695 $command_to_proxy
 附录：``攻击的示例实现``
                                                   
 
-[一个针对 HTTP 用户代理的共享身份攻击的示例实现](https://github.com/eyedeekay/colluding_sites_attack/) 已存在数年。额外的示例如在 [idk 的 prop166 存储库](https://git.idk.i2p/idk/i2p.host-aware-proxy) 的 ``simple-colluder`` 子目录中可用。这些示例是故意设计用于演示攻击有效，并需要修改（虽然很小）才能变成真实攻击。
+[一个针对 HTTP 用户代理的共享身份攻击的示例实现](https://github.com/eyedeekay/colluding_sites_attack/) 已存在数年。额外的示例如在 idk 的 prop166 存储库 的 ``simple-colluder`` 子目录中可用。这些示例是故意设计用于演示攻击有效，并需要修改（虽然很小）才能变成真实攻击。
 

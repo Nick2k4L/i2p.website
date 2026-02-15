@@ -52,8 +52,8 @@ categories: ["meeting"]
 13:17 &lt;gloin&gt; jrandom: I mean the linux ppppoe deamon.
 13:18 &lt;jrandom&gt; ah ok
 13:18 &lt;jrandom&gt; ok, anyone else have anything for 1) net status, or shall we move on to 2) floodfill netdb?
-13:18 &lt;+bla&gt; http://theland.i2p/parttunnels.jpg
-13:19 &lt;+bla&gt; http://theland.i2p/servertunnels.jpg
+13:18 &lt;+bla&gt; `http://theland.i2p/parttunnels.jpg`
+13:19 &lt;+bla&gt; `http://theland.i2p/servertunnels.jpg`
 13:21 &lt;+bar&gt; (umm.. inaccessible?)
 13:21 &lt;jrandom&gt; yeah, i'm having trouble reaching it too
 13:21 &lt;fox&gt; &lt;godmode0&gt; i use pppoe never be at problem i2p
@@ -123,7 +123,7 @@ categories: ["meeting"]
 13:57 &lt;fox&gt; &lt;mihi&gt; try http://www.stilllistener.com/checkpoint1/Java/ (and scroll down)
 13:58  * jrandom sees lots of blank fields ;)
 13:59 &lt;+bla&gt; fox: All one exposes is the relation between an IP and a particular client destination, where the client destination will change at every router restart.
-13:59 &lt;jrandom&gt; bla: unless the user is on some site like e.g. http://i_have_illegal_stuff.i2p/
+13:59 &lt;jrandom&gt; bla: unless the user is on some site like e.g. `http://i_have_illegal_stuff.i2p/`
 14:00 &lt;jrandom&gt; (exposing the clients IP "just once" is fatal enough ;)
 14:00 &lt;+bla&gt; jrandom: Yes. 
 14:00 &lt;+bla&gt; But then again, if you're serious about anonymous browsing, you'll use temporary HTTP proxies, and disable all things java, and plugins, and cookies, entirely

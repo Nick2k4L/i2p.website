@@ -15,7 +15,7 @@ categories: ["meeting"]
 <div class="irc-log">20:00:02 &lt;zzz&gt; 0) 안녕하세요
 20:00:02 &lt;zzz&gt; 1) 33C3 계획
 20:00:02 &lt;zzz&gt; 2) 0.9.28 업데이트 (zzz)
-20:00:02 &lt;zzz&gt; 3) Tails 메인테이너 (zzz) http://zzz.i2p/topics/2108
+20:00:02 &lt;zzz&gt; 3) Tails 메인테이너 (zzz) `http://zzz.i2p/topics/2108`
 20:00:07 &lt;zzz&gt; 0) 안녕하세요
 20:00:09 &lt;zzz&gt; 안녕
 20:00:16 &lt;i2pr&gt; [Slack/manas] 안녕하세요 :slightly_smiling_face:

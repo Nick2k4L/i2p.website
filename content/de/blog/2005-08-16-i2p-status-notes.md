@@ -16,7 +16,7 @@ Hallo zusammen, heute nur kurze Notizen
 
 Wie bereits erwähnt, wird das kommende 0.6.1-Release eine Reihe von Tests enthalten, um den router sorgfältiger zu konfigurieren und die Erreichbarkeit zu verifizieren (oder darauf hinzuweisen, was getan werden muss), und obwohl wir seit zwei Builds bereits Code in CVS haben, sind noch einige Verfeinerungen nötig, bevor das so reibungslos funktioniert, wie erforderlich. Derzeit nehme ich einige kleine Änderungen am dokumentierten [1] Testablauf vor, indem ich ein zusätzliches Paket hinzufüge, um Charlies Erreichbarkeit zu verifizieren, und Bobs Antwort an Alice verzögere, bis Charlie geantwortet hat. Dies sollte die Anzahl unnötiger "ERR-Reject"-Statuswerte verringern, die Leute sehen, da Bob Alice erst antwortet, wenn er einen Charlie hat, der für Tests verfügbar ist (und wenn Bob nicht antwortet, sieht Alice "Unknown" als Status).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting`
 
 Wie auch immer, ja, so viel dazu - morgen sollte die Version 0.6.0.2-3 erscheinen; als Release wird sie freigegeben, sobald sie gründlich getestet ist.
 
@@ -26,7 +26,7 @@ Wie im Forum [2] erwähnt, müssen I2P-Nutzerinnen und -Nutzer, die IRC verwende
 
 Mein Dank gilt den Verantwortlichen für das alte i2pirc-Netzwerk (duck, baffled, die metropipe-Crew, postman) und den Verantwortlichen für das neue irc2p-Netzwerk (postman, arcturus)! Interessante Dienste und Inhalte machen I2P lohnenswert, und es liegt an euch, sie zu schaffen!
 
-[2] http://forum.i2p.net/viewtopic.php?t=898 [3] http://hq.postman.i2p/
+[2] `http://forum.i2p.net/viewtopic.php?t=898` [3] `http://hq.postman.i2p/`
 
 * 3) Feedspace
 

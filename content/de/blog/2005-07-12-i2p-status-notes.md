@@ -18,7 +18,7 @@ Nachdem ich mir an mehreren Colocation-Servern die Zähne ausgebissen habe, wurd
 
 * 2) SSU testing
 
-Wie in dem kleinen gelben Kasten auf jeder Routerkonsole erwähnt, haben wir mit der nächsten Runde von Live-Netzwerktests für SSU begonnen. Die Tests sind nicht für alle geeignet, aber wenn Sie experimentierfreudig sind und Ihnen etwas manuelle Konfiguration nichts ausmacht, sehen Sie sich die auf Ihrer Routerkonsole verlinkten Details an (http://localhost:7657/index.jsp). Es kann mehrere Testrunden geben, aber ich erwarte keine größeren Änderungen an SSU vor dem 0.6-Release (0.6.1 wird Unterstützung für diejenigen hinzufügen, die ihre Ports nicht weiterleiten können oder anderweitig keine eingehenden UDP-Verbindungen empfangen können).
+Wie in dem kleinen gelben Kasten auf jeder Routerkonsole erwähnt, haben wir mit der nächsten Runde von Live-Netzwerktests für SSU begonnen. Die Tests sind nicht für alle geeignet, aber wenn Sie experimentierfreudig sind und Ihnen etwas manuelle Konfiguration nichts ausmacht, sehen Sie sich die auf Ihrer Routerkonsole verlinkten Details an (`http://localhost:7657/index.jsp).` Es kann mehrere Testrunden geben, aber ich erwarte keine größeren Änderungen an SSU vor dem 0.6-Release (0.6.1 wird Unterstützung für diejenigen hinzufügen, die ihre Ports nicht weiterleiten können oder anderweitig keine eingehenden UDP-Verbindungen empfangen können).
 
 * 3) I2CP crypto
 

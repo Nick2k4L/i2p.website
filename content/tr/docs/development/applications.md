@@ -74,7 +74,7 @@ I2P üzerinden veri göndermek için her birinin kendine özgü avantaj ve dezav
 
 ### BOB
 
-BOB, herhangi bir dildeki uygulamanın I2P'ye ve I2P'den akış bağlantıları kurmasını sağlayan [Basic Open Bridge](/docs/legacy/bob/) (Temel Açık Köprü)'dür. Şu anda UDP desteği bulunmamakla birlikte, yakın gelecekte UDP desteği planlanmaktadır. BOB ayrıca hedef anahtar üretimi ve bir adresin I2P spesifikasyonlarına uygun olduğunun doğrulanması gibi çeşitli araçlar içerir. Güncel bilgiler ve BOB kullanan uygulamalar bu [I2P Site](http://bob.i2p/)'da bulunabilir.
+BOB, herhangi bir dildeki uygulamanın I2P'ye ve I2P'den akış bağlantıları kurmasını sağlayan [Basic Open Bridge](/docs/legacy/bob/) (Temel Açık Köprü)'dür. Şu anda UDP desteği bulunmamakla birlikte, yakın gelecekte UDP desteği planlanmaktadır. BOB ayrıca hedef anahtar üretimi ve bir adresin I2P spesifikasyonlarına uygun olduğunun doğrulanması gibi çeşitli araçlar içerir. Güncel bilgiler ve BOB kullanan uygulamalar bu I2P Site'da bulunabilir.
 
 ### SAM, SAM V2, SAM V3
 
@@ -350,12 +350,12 @@ Tebrikler, I2P üzerinden başarıyla iletişim kurdunuz!
 
 Katkıda bulunmak istiyorsanız bizimle iletişime geçin.
 
-- [I2P-Bote](http://i2pbote.i2p/) - HungryHobo ile iletişime geçin
+- I2P-Bote - HungryHobo ile iletişime geçin
 - [Syndie](http://syndie.i2p2.de/)
-- [IMule](http://www.imule.i2p/)
-- [I2Phex](http://forum.i2p/viewforum.php?f=25)
+- IMule
+- I2Phex
 
-Ayrıca [plugins.i2p](http://plugins.i2p/) üzerindeki tüm eklentileri, [echelon.i2p](http://echelon.i2p/) üzerinde listelenen uygulamaları ve kaynak kodları ile [git.repo.i2p](http://git.repo.i2p/) üzerinde barındırılan uygulama kodlarını da inceleyin.
+Ayrıca plugins.i2p üzerindeki tüm eklentileri, echelon.i2p üzerinde listelenen uygulamaları ve kaynak kodları ile git.repo.i2p üzerinde barındırılan uygulama kodlarını da inceleyin.
 
 I2P dağıtımında bulunan paketli uygulamaları da görün - SusiMail ve I2PSnark.
 

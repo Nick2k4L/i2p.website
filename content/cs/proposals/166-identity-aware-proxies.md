@@ -253,8 +253,8 @@ Dodatky: ``příklad implementace útoku``
 
 [Příklad implementace útoku sdílené identity na HTTP
 User-Agents](https://github.com/eyedeekay/colluding_sites_attack/) existuje už několik let. Další příklad je k dispozici ve
-``simple-colluder`` podadresáři [idk's prop166
-repozitáře](https://git.idk.i2p/idk/i2p.host-aware-proxy)
+``simple-colluder`` podadresáři idk's prop166
+repozitáře
 Tyto příklady jsou záměrně navrženy tak, aby demonstrovaly, že útok
 funguje a vyžadovaly by úpravy (i když menší), aby se
 přeměnil na skutečný útok.

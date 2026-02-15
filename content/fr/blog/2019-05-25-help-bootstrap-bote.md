@@ -16,12 +16,12 @@ ou, expliqué comme à un enfant de 5 ans : Il s'utilise de manière similaire �
 
 **Étape 1 : Installer I2P-Bote**
 
-I2P-Bote est un plugin i2p, et son installation est très facile. Les instructions originales sont disponibles sur le [bote eepSite, bote.i2p](http://bote.i2p/install/), mais si vous souhaitez les lire sur le clearnet, ces instructions sont fournies gracieusement par bote.i2p :
+I2P-Bote est un plugin i2p, et son installation est très facile. Les instructions originales sont disponibles sur le bote eepSite, bote.i2p, mais si vous souhaitez les lire sur le clearnet, ces instructions sont fournies gracieusement par bote.i2p :
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Deuxième étape : Obtenez l'adresse en base64 de votre nœud I2P-Bote**
 
@@ -63,7 +63,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Méthode B : Effectuer une recherche**
 
-Si cela vous semble un peu trop de travail, vous pouvez rechercher la destination en base64 de votre connexion Bote en interrogeant son adresse en base32 à l'aide de n'importe lequel des moyens disponibles pour rechercher une adresse en base32. L'adresse en base32 de votre nœud Bote est disponible sur la page "Connexion" dans l'application du plugin Bote, à [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+Si cela vous semble un peu trop de travail, vous pouvez rechercher la destination en base64 de votre connexion Bote en interrogeant son adresse en base32 à l'aide de n'importe lequel des moyens disponibles pour rechercher une adresse en base32. L'adresse en base32 de votre nœud Bote est disponible sur la page "Connexion" dans l'application du plugin Bote, à `http://127.0.0.1:7657/i2pbote/network`
 
 **Troisième étape : Contactez-nous !**
 

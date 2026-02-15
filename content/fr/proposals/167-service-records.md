@@ -43,19 +43,19 @@ et non un pool global de destinations pour un service global.
 
 ### GNS
 
-GNS [GNS](http://zzz.i2p/topcs/1545) propose que chaque utilisateur exécute son propre serveur DNS.
+GNS GNS propose que chaque utilisateur exécute son propre serveur DNS.
 Cette proposition est complémentaire, en ce sens que nous pourrions utiliser des enregistrements de service pour spécifier
 que GNS (ou DNS) est pris en charge, avec un nom de service standard "domain" sur le port 53.
 
 ### Dot well-known
 
-Dans [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) il est proposé que les services soient recherchés via une requête HTTP sur
+Dans DOTWELLKNOWN il est proposé que les services soient recherchés via une requête HTTP sur
 /.well-known/i2pmail.key. Cela nécessite que chaque service ait un site web associé pour
 héberger la clé. La plupart des utilisateurs ne gèrent pas de sites web.
 
 Une solution de contournement est que nous pourrions supposer qu'un service pour une adresse b32 fonctionne en réalité
 sur cette adresse b32. Ainsi, chercher le service pour example.i2p nécessite
-la récupération HTTP depuis http://example.i2p/.well-known/i2pmail.key, mais
+la récupération HTTP depuis `http://example.i2p/.well-known/i2pmail.key,` mais
 un service pour aaa...aaa.b32.i2p ne nécessite pas cette recherche, il peut se connecter directement.
 
 Mais il y a une ambiguïté, car example.i2p peut également être adressée par son b32.

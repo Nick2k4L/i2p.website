@@ -16,7 +16,7 @@ categories: ["status"]
 
 또 한 주가 지나고, 또 "SSU transport에 많은 진전이 있었습니다"라는 메시지입니다 ;) 제 로컬 수정 사항들은 안정적이며 CVS에 올려 두었습니다(HEAD는 0.5.0.7-9), 하지만 아직 릴리스는 없습니다. 그 부분에 대한 소식은 곧 더 전하겠습니다. SSU와 관련 없는 변경 사항의 자세한 내용은 history [1]에 올라가 있지만, SSU는 아직 비개발자는 누구도 사용하지 않기 때문에 지금까지는 SSU 관련 변경 사항은 그 목록에서 제외하고 있습니다(그리고 개발자들은 i2p-cvs@를 읽습니다 :).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) Tunnel IVs
 
@@ -24,7 +24,7 @@ categories: ["status"]
 
 그 배경에 있는 핵심 이슈 중 하나는, 수많은 공격을 유발하지 않고서는 tunnel을 통해 전달되는 동안의 tunnel 메시지를 검증할 방법이 없다는 점입니다 (이에 근접한 하나의 방법으로는 이전의 tunnel 암호화 제안 [2]을 참고할 수 있으나, 확률적 가정이 상당히 불확실하고 tunnel에 인위적인 제한을 가합니다).
 
-[2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel.html?rev=HEAD
+[2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel.html?rev=HEAD`
 
 그러나 위에서 설명한 특정 공격을 우회하는 아주 간단한 방법이 있다 - IV만 사용하는 대신, 블룸 필터를 통과시키는 고유 식별자를 xor(IV, first data block)로 취급하면 된다. 이렇게 하면 중간 피어들이 dup을 보고 두 번째 공모 피어에 도달하기 전에 드롭한다. 현재 네트워크 규모를 고려할 때 이것이 실질적인 위협이라고는 매우, 매우 의심스럽지만, 이 방어를 포함하도록 CVS는 업데이트되었다. 그래서 이를 단독 릴리스로 배포할 생각은 없다.
 
@@ -34,7 +34,7 @@ categories: ["status"]
 
 명세 [3]에 설명된 대로, SSU transport는 전송되는 각 데이터그램마다 MAC을 사용한다. 이는 각 I2NP 메시지와 함께 전송되는 검증 해시(클라이언트 메시지의 종단 간 검증 해시 포함)에 추가되는 것이다. 현재 명세와 코드에서는 잘라낸 HMAC-SHA256을 사용한다 - MAC의 처음 16바이트만 전송하고 검증한다. 이는 *쿨럭* 다소 낭비가 있는데, HMAC이 동작 과정에서 SHA256 해시를 두 번 사용하고 매번 32바이트 해시로 수행되기 때문이며, SSU transport에 대한 최근 프로파일링은 이것이 CPU 부하의 임계 경로에 가깝다는 점을 시사한다. 따라서 HMAC-SHA256-128을 일반적인 HMAC-MD5(-128)로 교체하는 방안을 조금 시험해 보았다 - MD5가 분명 SHA256만큼 강력하지는 않지만, 어차피 SHA256도 MD5와 동일한 크기로 잘라내고 있으므로 충돌을 만들기 위한 무차별 대입 비용은 동일하다(2^64번 시도). 현재 이것을 가지고 실험 중인데 가속 효과가 상당하다(2KB 패킷에서 SHA256 대비 HMAC 처리량이 3배 이상), 그래서 대신 그것으로 운영 환경에 적용할 수도 있겠다. 혹은 그렇게 하지 말아야 할 결정적인 이유(또는 더 나은 대안)를 누가 제시한다면, 교체는 충분히 간단하다(코드 한 줄만 바꾸면 된다).
 
-[3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 4) ???
 

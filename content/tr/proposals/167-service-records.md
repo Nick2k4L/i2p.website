@@ -46,19 +46,19 @@ bazı küresel hizmetler için küresel bir destinasyon havuzu değil.
 
 ### GNS
 
-GNS [GNS](http://zzz.i2p/topcs/1545), herkesin kendi DNS sunucusunu çalıştırması gerektiğini önermektedir.
+GNS GNS, herkesin kendi DNS sunucusunu çalıştırması gerektiğini önermektedir.
 Bu öneri tamamlayıcıdır, çünkü GNS'nin (veya DNS'nin) desteklendiğini belirtmek için
 standart bir servis adı "domain" olarak 53 numaralı portta servis kayıtlarını kullanabiliriz.
 
 ### Dot well-known
 
-[DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) içinde, hizmetlerin bir HTTP isteği ile aranması önerilmektedir
+DOTWELLKNOWN içinde, hizmetlerin bir HTTP isteği ile aranması önerilmektedir
 /.well-known/i2pmail.key. Bu, her hizmetin
 anahtarı barındıracak bir ilişkili web sitesi olması gerektiği anlamına gelir. Çoğu kullanıcı web sitesi çalıştırmaz.
 
 Bir çözüm yolu, b32 adresi için bir hizmetin aslında
 o b32 adresinde çalıştığını varsayabiliriz. Öyle ki, örneğin.example.i2p için hizmet aramak,
-http://example.i2p/.well-known/i2pmail.key adresinden HTTP ile almak gerektirir,
+`http://example.i2p/.well-known/i2pmail.key` adresinden HTTP ile almak gerektirir,
 ancak aaa...aaa.b32.i2p için bir hizmet bu aramayı gerektirmez, doğrudan bağlanabilir.
 
 Ancak burada bir belirsizlik var, çünkü example.i2p de kendi b32 adresi ile adreslenebilir.
@@ -324,7 +324,7 @@ Bunu nasıl genel bir şekilde yapılacağı hakkında TODO
 
 ### E-posta İçin Gerekli Değişiklikler
 
-Bu önerinin kapsamı dışındadır. Daha fazla bilgi için [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) tartışmasına bakınız.
+Bu önerinin kapsamı dışındadır. Daha fazla bilgi için DOTWELLKNOWN tartışmasına bakınız.
 
 
 ## Uygulama Notları

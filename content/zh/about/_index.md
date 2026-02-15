@@ -35,4 +35,4 @@ I2P网络几乎完全去中心化，唯有“重新播种服务器”为解决DH
 
 ## 比较
 
-有很多其他应用程序和项目在致力于匿名通信，I2P受到了它们许多努力的启发。这并不是匿名资源的全面列表——[freehaven的匿名性书目](http://freehaven.net/anonbib/topic.html)和[GNUnet的相关项目](https://www.gnunet.org/links/)很好地承担了这个角色。话虽如此，一些系统在进一步比较中脱颖而出。在我们的[详细比较文档](/docs/overview/comparison/)中了解更多关于I2P如何与其他匿名网络进行比较。
+有很多其他应用程序和项目在致力于匿名通信，I2P受到了它们许多努力的启发。这并不是匿名资源的全面列表——[freehaven的匿名性书目](http://freehaven.net/anonbib/topic.html)和[GNUnet的相关项目](https://www.gnunet.org/en/)很好地承担了这个角色。话虽如此，一些系统在进一步比较中脱颖而出。在我们的[详细比较文档](/docs/overview/comparison/)中了解更多关于I2P如何与其他匿名网络进行比较。

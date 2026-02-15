@@ -6,7 +6,7 @@ description: "I2P 开发会议，涵盖 RC2 状态、Mac OS 9 移植进展、网
 categories: ["meeting"]
 ---
 
-(由 Wayback Machine 提供 http://www.archive.org/)
+(由 Wayback Machine 提供 `http://www.archive.org/`)
 
 ## 快速回顾
 

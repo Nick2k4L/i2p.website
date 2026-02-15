@@ -28,7 +28,7 @@ categories: ["meeting"]
 (04:05:27 PM) eyedeekay1: 0.9.47에 맞춰 rekeyOnIdle을(를) 완료하지 못할 것 같습니다.
 (04:05:58 PM) eyedeekay1: 제가 준비한 부분에서는 주로 시각적 요소 업데이트가 포함될 예정입니다.
 (04:06:19 PM) eyedeekay1: 0.9.47 릴리스와 관련해 zzz나 zlatinb에서 추가할 사항이 있나요?
-(04:06:43 PM) zzz: 요약은 http://zzz.i2p/topics/2905 에 있습니다
+(04:06:43 PM) zzz: 요약은 `http://zzz.i2p/topics/2905` 에 있습니다
 (04:06:49 PM) zzz: tag freeze(태그 프리즈)는 내일로부터 일주일 후입니다
 (04:06:53 PM) zzz: 릴리스는 약 3주 후입니다
 (04:07:07 PM) zzz: diff(변경 내역)는 약 18,500라인으로, 꽤 일반적인 수준입니다
@@ -46,14 +46,14 @@ categories: ["meeting"]
 (04:12:53 PM) eyedeekay1: 여기는 월간 회의입니다.
 (04:12:53 PM) eyedeekay1: IRC 규칙에 어긋난다고 이해했기 때문에 WebIRC 게이트웨이는 설정하지 않았습니다.
 (04:13:13 PM) eyedeekay1: 이제 회의 공지 규정 사본을 받았고, 해당 공지에 대한 책임도 제게 명확히 전달되었습니다.
-(04:13:25 PM) eyedeekay1: 이번에는 올바른 날짜로 9월 1일 회의 공지를 게시했습니다. 아직 주제는 없습니다. 필요하신 주제를 추가해 주세요: http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc
+(04:13:25 PM) eyedeekay1: 이번에는 올바른 날짜로 9월 1일 회의 공지를 게시했습니다. 아직 주제는 없습니다. 필요하신 주제를 추가해 주세요: `http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc`
 (04:14:55 PM) eyedeekay1: 이는 물론 0.9.47 릴리스 직후에 진행될 겁니다
 (04:15:45 PM) eyedeekay1: 2)와 관련해 다른 분들 의견 있나요?
 (04:17:57 PM) eyedeekay1: 3) Git 전환
 (04:18:34 PM) eyedeekay1: Git 전환이 드디어 시작되고 있습니다. 계획을 수립했고 이제 실행에 옮기기 시작했습니다
 (04:19:08 PM) eyedeekay1: nextloop과 저는 의미 있는 몇 개의 mtn 브랜치를 github로 미러링하는 작업을 진행 중입니다
 (04:19:27 PM) eyedeekay1: git 마이그레이션의 각 단계가 완료될 때까지는 여전히 읽기 전용입니다. 즉, 아직 pull이나 MR(머지 리퀘스트)은 없습니다
-(04:20:04 PM) eyedeekay1: 각 단계에 대한 자세한 설명은 다음을 참고하세요: http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10
+(04:20:04 PM) eyedeekay1: 각 단계에 대한 자세한 설명은 다음을 참고하세요: `http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10`
 (04:20:42 PM) eyedeekay1: github의 i2p 네임스페이스에서 nextloop에게 리포지토리를 생성하고, 자신이 생성한 리포지토리에 쓰기 권한을 부여하면 nextloop와 제게 도움이 될 것입니다.
 (04:20:47 PM) zzz: 계획서를 잘 작성했어요
 (04:21:24 PM) eyedeekay1: 고마워요 zzz, 마침내 쓸 만한 상태가 되어 기쁩니다

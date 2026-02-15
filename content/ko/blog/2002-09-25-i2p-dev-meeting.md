@@ -6,7 +6,7 @@ description: "2002년 9월 25일 I2P 개발 회의 로그."
 categories: ["meeting"]
 ---
 
-(웨이백 머신 http://www.archive.org/ 제공)
+(웨이백 머신 `http://www.archive.org/` 제공)
 
 ## 간단 요약
 

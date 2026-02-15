@@ -31,7 +31,7 @@ bla tem trabalhado intensamente em algumas revisões sobre como decidimos por qu
 <+bla> A última foi feita usando os comprimentos padrão de tunnels expl.
 <+bla> A interseção entre o conjunto de nós para os quais tenho "ground truth" (valor de referência), e o conjunto de nós nas medições atuais, é de 117 nós
 <+bla> Os resultados não estão _tão_ ruins, mas também não são muito impressionantes
-<+bla> Veja http://theland.i2p/estspeed.png
+<+bla> Veja `http://theland.i2p/estspeed.png`
 <+bla> A separação básica entre muito lentos/rápidos está mais ou menos ok, mas a separação de maior granularidade entre os pares mais rápidos poderia ser bem melhor
 <+jrandom2p> hmm, como os valores reais foram calculados - isso é RTT total ou é RTT/comprimento ?
 <+bla> Usando os tunnels expl. normais, é praticamente impossível evitar atrasos de batching.
@@ -51,7 +51,7 @@ bla tem trabalhado intensamente em algumas revisões sobre como decidimos por qu
 <+bla> Embora... 65% dos tempos estimados ficam dentro de 0.5 desvios-padrão do tempo real do nó
 <+bla> No entanto, isso precisa ser refeito, já que o desvio-padrão é fortemente influenciado pelas falhas (>60000 ms)
 
-Após discussão adicional, bla apresentou uma comparação com a calculadora de velocidade existente, publicada @ http://theland.i2p/oldspeed.png Espelhos desses pngs estão disponíveis em http://dev.i2p.net/~jrandom/estspeed.png e http://dev.i2p.net/~jrandom/oldspeed.png
+Após discussão adicional, bla apresentou uma comparação com a calculadora de velocidade existente, publicada @ `http://theland.i2p/oldspeed.png` Espelhos desses pngs estão disponíveis em `http://dev.i2p.net/~jrandom/estspeed.png` e `http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (quanto à terminologia, IB = saltos de tunnel de entrada, OB = saltos de tunnel de saída, e, após algum esclarecimento, as medições "ground truth" (de referência) foram obtidas com 1 salto de saída e 0 de entrada, e não o inverso)
 

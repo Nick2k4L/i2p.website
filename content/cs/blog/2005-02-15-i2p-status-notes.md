@@ -18,7 +18,7 @@ Zatímco se v síti neobjevily žádné nové chyby, minulý týden jsme získal
 
 Dalším přechodným problémem byl výpadek jednoho z HTTP outproxy (výstupních proxy) (www1.squid.i2p), což způsobovalo, že 50 % požadavků přes outproxy selhalo. Tuto outproxy můžete dočasně odebrat tak, že otevřete svou konfiguraci I2PTunnel [1], upravíte eepProxy a změníte řádek "Outproxies:" tak, aby obsahoval pouze "squid.i2p". Doufejme, že tu druhou brzy zprovozníme, abychom zvýšili redundanci.
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -34,7 +34,7 @@ Mohl bych začít rozebírat, co bylo aktualizováno v 0.5, ale nakonec bych se 
 
 duck dal dohromady vydání opravující chyby k aktualizaci 0.1.6, vydané minulý týden, a podle všeho je to pecka (možná až /moc/ velká pecka, vzhledem ke zvýšenému využití sítě ;)  Více informací na fóru i2p-bt [2]
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

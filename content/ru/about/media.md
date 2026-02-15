@@ -178,12 +178,12 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">Луковицы и чеснок: протоколы I2P</a>
+Луковицы и чеснок: протоколы I2P
 </div>
 <div class="content-entry-meta">🎥 Презентация • 17 февраля 2016</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ layout: "single"
 <div class="content-entry-title">zzz и Ланс Джеймс на InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Подкаст • 16 февраля 2012</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">I2P Торрент</a>
+I2P Торрент
 </div>
 </div>
 
@@ -279,7 +279,7 @@ layout: "single"
 <div class="content-entry-title">zzz на InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Подкаст • 18 августа 2011</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">I2P Торрент</a>
+I2P Торрент
 </div>
 </div>
 
@@ -343,7 +343,7 @@ layout: "single"
 </div>
 <div class="content-entry-meta">🎥 Презентация • HOPE • 17 июля 2010</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">YouTube</a>
 </div>
 </div>

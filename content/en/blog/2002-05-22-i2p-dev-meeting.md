@@ -6,7 +6,7 @@ description: "First I2P development meeting covering project status, website dev
 categories: ["meeting"]
 ---
 
-(Courtesy of the wayback machine http://www.archive.org/)
+(Courtesy of the wayback machine `http://www.archive.org/`)
 
 ## Quick recap
 

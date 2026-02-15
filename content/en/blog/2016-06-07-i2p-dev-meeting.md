@@ -15,7 +15,7 @@ categories: ["meeting"]
 <div class="irc-log">
 20:00:31 &lt;zzz&gt; 0) Hi
 20:00:31 &lt;zzz&gt; 1) 0.9.26 release plan (zzz)
-20:00:31 &lt;zzz&gt; 2) HOPE planning update (zzz) http://zzz.i2p/topics/1968
+20:00:31 &lt;zzz&gt; 2) HOPE planning update (zzz) `http://zzz.i2p/topics/1968`
 20:00:31 &lt;zzz&gt; 3) 0.9.27 plan (zzz)
 20:00:31 &lt;zzz&gt; 4) Summer of X (sadie)
 20:00:35 &lt;zzz&gt; 0) Hi
@@ -26,7 +26,7 @@ categories: ["meeting"]
 20:02:27 &lt;zzz&gt; remember that in-net updates will not get the new jbigi files, as we were concerned about the lack of testing
 20:02:40 &lt;zzz&gt; so keep an eye out for bug reports from deb users and new installs
 20:02:45 &lt;zzz&gt; anything else on 1) ?
-20:03:14 &lt;zzz&gt; 2) HOPE planning update (zzz) http://zzz.i2p/topics/1968
+20:03:14 &lt;zzz&gt; 2) HOPE planning update (zzz) `http://zzz.i2p/topics/1968`
 20:03:39 &lt;str4d&gt; Hi!
 20:03:45 &lt;zzz&gt; HOPE is 6 weeks from friday. We are paying for the $150 conference tickets in arrears (after the event)
 20:04:11 &lt;zzz&gt; we aren't paying for travel, but if anybody really really couldn't make it without some help, speak up
@@ -49,7 +49,7 @@ categories: ["meeting"]
 20:09:16 &lt;zzz&gt; &lt;zzz&gt; only thing left is debian which I plan to do tomorrow
 20:09:16 &lt;zzz&gt; &lt;zzz&gt; remember that in-net updates will not get the new jbigi files, as we were concerned about the lack of testing
 20:09:16 &lt;zzz&gt; &lt;zzz&gt; so keep an eye out for bug reports from deb users and new installs
-20:09:31 &lt;zzz&gt; &lt;zzz&gt; 2) HOPE planning update (zzz) http://zzz.i2p/topics/1968
+20:09:31 &lt;zzz&gt; &lt;zzz&gt; 2) HOPE planning update (zzz) `http://zzz.i2p/topics/1968`
 20:09:44 &lt;zzz&gt; &lt;zzz&gt; HOPE is 6 weeks from friday. We are paying for the $150 conference tickets in arrears (after the event)
 20:09:44 &lt;zzz&gt; &lt;zzz&gt; we aren't paying for travel, but if anybody really really couldn't make it without some help, speak up
 20:09:44 &lt;zzz&gt; &lt;zzz&gt; there will not be a dev meeting before or after as I was unable to get a commitment from lance
@@ -94,7 +94,7 @@ categories: ["meeting"]
 20:21:25 &lt;str4d&gt;   - libsam3 (C, both sync and async, on git.repo.i2p)
 20:21:49 &lt;zzz&gt; ok. psi also has one in go
 20:21:53 &lt;str4d&gt;   -   - i2psam (C++, https://github.com/VirtualDestructor/bitcoin-qt-i2p/tree/master/i2psam)
-20:22:16 &lt;str4d&gt; See http://i2p-projekt.i2p/docs/api/samv3 for others
+20:22:16 &lt;str4d&gt; See `http://i2p-projekt.i2p/docs/api/samv3` for others
 20:22:33 &lt;zzz&gt; I think I'll mostly just get a head start on apps, other than standing by to answer questions
 20:22:35 &lt;zzz&gt; sounds good
 20:22:45 &lt;str4d&gt; I'd like to see at least the Python Twisted and C++ libraries updated

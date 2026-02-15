@@ -22,7 +22,7 @@ Ngày càng có nhiều cải tiến được đưa vào, với phiên bản alp
 
 Ngoài ra, trên kênh cũng đã có vài cuộc thảo luận về các thiết kế cho Syndie GUI - meerboop đã đưa ra một số ý tưởng rất hay và đang viết tài liệu cho chúng. Syndie GUI là thành phần chính của bản phát hành Syndie 2.0, vì vậy chúng ta khởi động việc đó càng sớm thì càng sớm có thể thống trị thế giớ^W^W^W^W tung Syndie ra cho quần chúng còn chưa hay biết.
 
-Ngoài ra, tôi còn có một đề xuất mới trên blog Syndie của mình về việc theo dõi lỗi và yêu cầu tính năng bằng chính Syndie. Để tiện truy cập, tôi đã tạo một bản xuất dạng văn bản thuần (plain text) của bài viết đó và đưa lên web - trang 1 ở <http://dev.i2p.net/~jrandom/bugsp1.txt> và trang 2 ở <http://dev.i2p.net/~jrandom/bugsp2.txt>
+Ngoài ra, tôi còn có một đề xuất mới trên blog Syndie của mình về việc theo dõi lỗi và yêu cầu tính năng bằng chính Syndie. Để tiện truy cập, tôi đã tạo một bản xuất dạng văn bản thuần (plain text) của bài viết đó và đưa lên web - trang 1 ở <`http://dev.i2p.net/~jrandom/bugsp1.txt>` và trang 2 ở <`http://dev.i2p.net/~jrandom/bugsp2.txt>`
 
 * 3) Distributed version control revisited
 
@@ -32,7 +32,7 @@ Dĩ nhiên, bất kể cuối cùng chúng ta chọn DVCS (hệ thống quản l
 
 * 4) ???
 
-Như bạn có thể thấy, như mọi khi, có rất nhiều thứ đang diễn ra. Cũng đã có thêm thảo luận trong chủ đề "solve world hunger" trên diễn đàn, vì vậy hãy xem tại <http://forum.i2p.net/viewtopic.php?t=1910>
+Như bạn có thể thấy, như mọi khi, có rất nhiều thứ đang diễn ra. Cũng đã có thêm thảo luận trong chủ đề "solve world hunger" trên diễn đàn, vì vậy hãy xem tại <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Nếu bạn còn điều gì muốn thảo luận, hãy ghé qua #i2p để tham dự cuộc họp của các nhà phát triển tối nay, hoặc đăng lên diễn đàn hay danh sách thư (mailing list)!
 

@@ -6,7 +6,7 @@ description: "اجتماع تطوير I2P يتناول حالة RC2، وتقدّ
 categories: ["meeting"]
 ---
 
-(بإذن من Wayback Machine http://www.archive.org/)
+(بإذن من Wayback Machine `http://www.archive.org/`)
 
 ## ملخص سريع
 

@@ -47,9 +47,9 @@ protocolVersion, big endian formatında 2 baytlık işaretsiz bir tamsayıdır v
 - MAC boyutu: 16 bayt
 - Örnek C implementasyonları:
   - [i2pd](https://github.com/PurpleI2P/i2pd) içinde hmac.h
-  - [i2pcpp](http://git.repo.i2p/w/i2pcpp.git) içinde I2PHMAC.cpp
+  - i2pcpp içinde I2PHMAC.cpp
 - Örnek Java implementasyonu:
-  - [I2P](https://github.com/i2p/i2p.i2p) içinde I2PHMac.java
+  - I2P içinde I2PHMac.java
 
 ### Oturum Anahtarı Detayları
 
@@ -860,7 +860,7 @@ HolePunch basitçe veri içermeyen bir UDP paketidir. Kimlik doğrulaması yapı
 - [Tarih](/docs/specs/common-structures/#date)
 - [ElGamal Şifreleme](/docs/specs/cryptography/#elgamal)
 - [HMAC Ayrıntıları](/docs/specs/cryptography/#udp)
-- [I2P Kaynak Kodu](https://github.com/i2p/i2p.i2p)
+- I2P Kaynak Kodu
 - [i2pd Kaynak Kodu](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)
 - [RouterIdentity](/docs/specs/common-structures/#routeridentity)

@@ -6,7 +6,7 @@ description: "2004年1月6日I2P开发会议记录。"
 categories: ["meeting"]
 ---
 
-（由 wayback machine http://www.archive.org/ 提供）
+（由 wayback machine `http://www.archive.org/` 提供）
 
 ## 快速回顾
 

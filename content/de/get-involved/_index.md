@@ -12,7 +12,7 @@ Das I2P-Netzwerk gedeiht dank unserer Gemeinschaft. Egal, ob Sie Entwickler, Üb
 I2P ist Open Source, und wir begrüßen Beiträge zum Code. Ob Sie Bugs beheben, Funktionen hinzufügen oder die Leistung verbessern möchten, Ihre Codebeiträge machen einen Unterschied.
 
 - **Erste Schritte**: Schauen Sie sich unseren [Leitfaden für neue Entwickler](/docs/developers/new-developers) an
-- **Quellcode**: [GitLab](https://i2pgit.org) (auch innerhalb von I2P unter http://git.idk.i2p verfügbar)
+- **Quellcode**: [GitLab](https://i2pgit.org) (auch innerhalb von I2P unter `http://git.idk.i2p` verfügbar)
 - **Monatliche Besprechungen**: Nehmen Sie am ersten Dienstag jedes Monats teil
 - **IRC-Kanäle**: #i2p-dev auf IRC2P für Entwicklungsgespräche
 

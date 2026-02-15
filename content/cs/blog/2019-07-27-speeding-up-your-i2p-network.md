@@ -18,7 +18,7 @@ Ještě před několika verzemi byl tento problém mnohem obtížnější řeši
 
 ## Úprava limitů šířky pásma
 
-Protože I2P je síť peer-to-peer, musíte sdílet část své šířky pásma s ostatními uzly. Množství si můžete zvolit v "I2P Bandwidth Configuration" (tlačítko "Configure Bandwidth" v sekci "Applications and Configuration" v I2P Router Console, nebo http://localhost:7657/config).
+Protože I2P je síť peer-to-peer, musíte sdílet část své šířky pásma s ostatními uzly. Množství si můžete zvolit v "I2P Bandwidth Configuration" (tlačítko "Configure Bandwidth" v sekci "Applications and Configuration" v I2P Router Console, nebo `http://localhost:7657/config).`
 
 ![Konfigurace šířky pásma I2P](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ Pokud vidíte limit sdílené šířky pásma 48 KBps, který je velmi nízký, 
 
 Nicméně, protože mnoho uživatelů nemusí přesně vědět, která nastavení šířky pásma upravit, [vydání I2P 0.9.38](https://geti2p.net/en/download) představilo Průvodce novou instalací. Obsahuje Test šířky pásma, který (díky [NDT](https://www.measurementlab.net/tests/ndt/) od M‑Lab) automaticky zjistí a tomu přizpůsobí nastavení šířky pásma I2P.
 
-Pokud chcete znovu spustit průvodce, například po změně svého poskytovatele internetových služeb nebo proto, že jste nainstalovali I2P před verzí 0.9.38, můžete jej znovu spustit prostřednictvím odkazu 'Setup' na stránce 'Help & FAQ', anebo se k průvodci jednoduše dostat přímo na adrese http://localhost:7657/welcome
+Pokud chcete znovu spustit průvodce, například po změně svého poskytovatele internetových služeb nebo proto, že jste nainstalovali I2P před verzí 0.9.38, můžete jej znovu spustit prostřednictvím odkazu 'Setup' na stránce 'Help & FAQ', anebo se k průvodci jednoduše dostat přímo na adrese `http://localhost:7657/welcome`
 
 ![Najdete „Setup“?](https://geti2p.net/images/blog/sidemenu.png)
 

@@ -27,8 +27,8 @@ více tunelů nám také umožňuje implementovat vícesměrové vysílání na 
 že zprávu doručíme do všech specifikovaných tunelů).
 
 Alternativou k delegační části tohoto návrhu by bylo odeslat přes
-haš [LeaseSet](http://localhost:63465/docs/specs/common-structures/#leaseset), podobně jako stávající schopnost specifikovat haš cílové
-[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification). To by mělo za následek menší zprávu a potenciálně
+haš `http://localhost:63465/docs/specs/common-structures/#leaseset`, podobně jako stávající schopnost specifikovat haš cílové
+`http://localhost:63465/docs/specs/common-structures/#common-structure-specification`. To by mělo za následek menší zprávu a potenciálně
 novější LeaseSet. Nicméně:
 
 1. To by nutilo OSBEP provést vyhledávání
@@ -44,7 +44,7 @@ novější LeaseSet. Nicméně:
 
 ## Návrh
 
-Odesílatel (OBGW) by umístil některé (všechny?) z cílových [Leases](http://localhost:63465/docs/specs/common-structures/#lease)
+Odesílatel (OBGW) by umístil některé (všechny?) z cílových `http://localhost:63465/docs/specs/common-structures/#lease`
 do doručovacích pokynů [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) namísto výběru pouze jednoho.
 
 OSBEP by vybral jeden z těchto tunelů pro doručení. OSBEP by vybral, pokud
@@ -63,7 +63,7 @@ jejich pohledu na NetDB:
 
 - Protivník, který kontroluje OBEP a sbírá LeaseSety z NetDB, již může
   určit, zda je zpráva odesílána na konkrétní destinaci, hledáním páru
-  [TunnelId](http://localhost:63465/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification). V nejhorším případě by přítomnost více
+  `http://localhost:63465/docs/specs/common-structures/#tunnelid` / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification`. V nejhorším případě by přítomnost více
   Lease v TMDI mohla zrychlit hledání shody v databázi protivníka.
 
 - Protivník, který provozuje škodlivou destinaci, již může získat informace
@@ -156,7 +156,7 @@ a OBEPs. Proto můžeme tuto změnu učinit kompatibilní se stávající sítí
 že její použití bude podmíněno cílovou verzí I2P [VERSIONS](/docs/specs/i2np/#protocol-versions):
 
 * OBGWs musí vybrat kompatibilní OBEPs při budování výstupních tunelů,
-  na základě verze I2P inzerované v jejich [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
+  na základě verze I2P inzerované v jejich `http://localhost:63465/docs/specs/common-structures/#routerinfo`.
 
 * Partneři, kteří inzerují cílovou verzi, musí podporovat parsování nových
   vlajek a nesmí odmítat pokyny jako neplatné.

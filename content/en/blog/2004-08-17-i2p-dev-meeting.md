@@ -66,7 +66,7 @@ categories: ["meeting"]
 14:19 &lt;jrandom&gt; ardvark: in i2p/apps/stasher/
 14:19 &lt;aum&gt; ardvark: hi!!!! :) long time!
 14:20 &lt;deer&gt; &lt;ardvark&gt; yes hi aum! good to see you mate!
-14:20 &lt;aum&gt; ardvark: prolly easier via tarball - http://stasher.i2p or http://www.freenet.org.nz/python/stasher
+14:20 &lt;aum&gt; ardvark: prolly easier via tarball - `http://stasher.i2p` or http://www.freenet.org.nz/python/stasher
 14:21 &lt;deer&gt; &lt;ardvark&gt; ok aum, I got the tarball but needs other stuff it says?  I'll not hold back the meeting, maybe I can contact you?
 14:21 &lt;aum&gt; sure thing
 14:22 &lt;hypercubus&gt; so, any update on stasher aum? ;-)
@@ -148,7 +148,7 @@ categories: ["meeting"]
 14:39 &lt;hypercubus&gt; you do all the configuration in the router console
 14:39 &lt;hypercubus&gt; for GUI users, we have something spiffy
 14:39 &lt;jrandom&gt; (w00t)
-14:40 &lt;hypercubus&gt; which you can preview at http://files.hypercubus.i2p/install.jar
+14:40 &lt;hypercubus&gt; which you can preview at `http://files.hypercubus.i2p/install.jar`
 14:40 &lt;jrandom&gt; or from cvs (ant pkg ; java -jar install.jar) right?
 14:40 &lt;aum&gt; hypercubus: how are you going with the winstaller? does it autodetect/autodownload/autoinstall java ?
 14:41 &lt;hypercubus&gt; menu shortcuts are forthcoming, as well as systray integration and a way to install the router as a daemon

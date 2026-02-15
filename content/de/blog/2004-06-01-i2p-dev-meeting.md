@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] <mihi> ;)
 [23:02] <duck> 1) Code-Fortschritt
 [23:02] <duck> nicht viel Code in cvs eingecheckt
-[23:02] <duck> Ich habe diese Woche die Trophäe gewonnen: http://duck.i2p/duck_trophy.jpg
+[23:02] <duck> Ich habe diese Woche die Trophäe gewonnen: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus hat noch keinen cvs account
 [23:03] <Masterboy> und wer hat etwas eingecheckt?
 [23:03] <duck> arbeitet jemand heimlich am Code?

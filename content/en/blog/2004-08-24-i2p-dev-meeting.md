@@ -324,7 +324,7 @@ categories: ["meeting"]
 15:21 &lt;jrandom&gt; lucky has also put together a good doc on the freebsd+java side of things as well
 15:21  * jrandom hasnt tried too many jvms on fbsd, just kaffe, so nag him if you have questions :)
 15:22 &lt;jrandom&gt; hyper has also put together the doc for upgrading to the 0.4 dev code, which he'll likely be updating once we want more people to test it ;)
-15:22 &lt;hypercubus&gt; my post on the forum covers installation of the service wrapper... the howto for the new router console is here --&gt; http://files.hypercubus.i2p/New_I2P_Router_Console_Howto.txt
+15:22 &lt;hypercubus&gt; my post on the forum covers installation of the service wrapper... the howto for the new router console is here --&gt; `http://files.hypercubus.i2p/New_I2P_Router_Console_Howto.txt`
 15:23 &lt;jrandom&gt; wr0d
 15:23 &lt;jrandom&gt; oh, there's also a new pretty picture &amp; some new text @ http://www.i2p.net/how_intro (hopefully making things a bit more clear)
 15:24 &lt;fvw&gt; ooh, that looks pretty. Who did that? Good work.

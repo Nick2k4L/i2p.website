@@ -14,7 +14,7 @@ itoopie, I2P Router Console'u tamamlayıcı nitelikte tasarlanmış bir grafikse
 
 I2PControl, I2P router için bir JSONRPC arayüzü sağlayan bir I2P eklentisidir. Arayüz, temel ayarların (bant genişliği, portlar vb.) yapılandırılmasını, birçok istatistiğin okunmasını destekler ve SSL ile şifrelenmiş bir HTTP bağlantısı üzerinden sunulur.
 
-Daha fazla bilgi ve talimatlar [itoopie.i2p](http://itoopie.i2p) adresinde bulunabilir.
+Daha fazla bilgi ve talimatlar itoopie.i2p adresinde bulunabilir.
 
 Bu proje, VPN hizmetleri [Relakks](http://relakks.com) & [Ipredator](http://ipredator.se) tarafından finanse edilmiştir ve Jan-Erik Fiske ile [Peter Sunde](http://twitter.com/brokep) tarafından başlatılmıştır.
 

@@ -24,7 +24,7 @@ Việc thử nghiệm vẫn đang ở giai đoạn rất sớm, nhưng diễn ra
 
 Với các số liệu thống kê thu thập được từ các tình nguyện viên đã hỗ trợ, đã trở nên rõ ràng tầm quan trọng của phần mã selective acknowledgement (xác nhận chọn lọc - SACK) đối với việc hoạt động đúng cách trong các mạng có mức tắc nghẽn cao. Tôi đã dành vài ngày qua để triển khai và kiểm thử phần mã đó, và đã cập nhật đặc tả SSU [1] để bao gồm một kỹ thuật SACK mới, hiệu quả. Nó sẽ không tương thích ngược với phần mã SSU trước đây, vì vậy những người đã và đang giúp thử nghiệm nên vô hiệu hóa SSU transport cho đến khi có bản dựng mới sẵn sàng để thử nghiệm (hy vọng trong một hoặc hai ngày tới).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 3) i2phex
 
@@ -32,7 +32,7 @@ sirup đã miệt mài làm một bản port (chuyển ứng dụng sang nền t
 
 Có rất nhiều thông tin khác trên eepsite(I2P Site) của sirup [2], và sự hỗ trợ thử nghiệm từ những người đã ở trong cộng đồng i2p sẽ rất tuyệt (nhưng xin vui lòng, cho đến khi sirup phê chuẩn nó như một bản phát hành công khai, và i2p ít nhất là 0.6 nếu không muốn nói là 1.0, hãy giữ nó trong phạm vi cộng đồng i2p). Tôi tin là sirup sẽ có mặt trong buổi họp tuần này, nên có lẽ khi đó chúng ta có thể nhận thêm một số thông tin!
 
-[2] http://sirup.i2p/
+[2] `http://sirup.i2p/`
 
 * 4) awol
 
@@ -44,4 +44,4 @@ Vì vậy, nếu bạn thấy chán và muốn góp sức nhưng đang thiếu c
 
 Được rồi, đại khái vậy là hết những gì tôi muốn nêu ra lúc này. Ai muốn hỗ trợ kiểm thử SSU trong tuần tới thì hãy theo dõi thông tin trên blog của tôi [3]. Còn những người khác, hẹn gặp mọi người tại buổi họp!
 
-=jr [3] http://jrandom.dev.i2p/
+=jr [3] `http://jrandom.dev.i2p/`

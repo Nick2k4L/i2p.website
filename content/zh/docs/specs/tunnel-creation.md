@@ -165,7 +165,7 @@ flags 字段包含以下内容（位顺序：76543210，第 7 位是 MSB）：
 
 ## 历史和说明
 
-这种策略源于I2P邮件列表上Michael Rogers、Matthew Toseland (toad)和jrandom之间关于前驱攻击的讨论。参见[TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)，[TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)。它在2006年2月16日的0.6.1.10版本中引入，这是I2P最后一次进行非向后兼容的更改。
+这种策略源于I2P邮件列表上Michael Rogers、Matthew Toseland (toad)和jrandom之间关于前驱攻击的讨论。参见TUNBUILD-SUMMARY。它在2006年2月16日的0.6.1.10版本中引入，这是I2P最后一次进行非向后兼容的更改。
 
 注意事项：
 
@@ -193,8 +193,8 @@ flags 字段包含以下内容（位顺序：76543210，第 7 位是 MSB）：
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)
 - [TBM](/docs/specs/i2np/#struct-TunnelBuild) - TunnelBuildMessage
 - [TBRM](/docs/specs/i2np/#struct-TunnelBuildReply) - TunnelBuildReplyMessage
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)
+- TUNBUILD-REASONING
+- TUNBUILD-SUMMARY
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation/)
 - [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation)
 - [VTBM](/docs/specs/i2np/#struct-VariableTunnelBuild) - VariableTunnelBuildMessage

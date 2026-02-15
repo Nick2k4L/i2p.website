@@ -19,8 +19,8 @@ Esta guía te llevará a través del proceso de crear y configurar tu primer eep
 
 El Administrador de Servicios Ocultos (también llamado I2P Tunnel Manager) es donde configuras todos los tunnels de servidor y de cliente de I2P, incluidos los servidores HTTP (eepsites).
 
-1. Abre tu [Consola del Router de I2P](http://127.0.0.1:7657)
-2. Ve al [Administrador de Servicios Ocultos](http://127.0.0.1:7657/i2ptunnelmgr)
+1. Abre tu `http://127.0.0.1:7657`
+2. Ve al `http://127.0.0.1:7657/i2ptunnelmgr`
 
 Deberías ver la interfaz del Administrador de Servicios Ocultos mostrando: - **Mensajes de estado** - Estado actual de tunnel y del cliente - **Control global de tunnel** - Botones para administrar todos los tunnels a la vez - **Servicios ocultos de I2P** - Lista de tunnels de servidor configurados
 
@@ -191,7 +191,7 @@ Ahora que tu eepsite está configurado y tiene contenido, es hora de iniciarlo y
 
 ### Iniciar el Tunnel
 
-1. **Vuelve al [Administrador de Servicios Ocultos](http://127.0.0.1:7657/i2ptunnelmgr)**
+1. **Vuelve al `http://127.0.0.1:7657/i2ptunnelmgr`**
 2. Busca la entrada de tu **servidor web I2P** en la lista
 3. Haz clic en el botón **Iniciar** en la columna Control
 
@@ -215,7 +215,7 @@ Tu eepsite tiene dos tipos de direcciones:
 
 1. **Dirección Base32 (.b32.i2p)**: Una dirección criptográfica larga que se ve así:
    ```
-   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
+   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
    ```
    - Esta es la dirección permanente de tu eepsite (sitio web dentro de I2P), derivada criptográficamente
    - No puede cambiarse y está vinculada a tu clave privada
@@ -314,7 +314,7 @@ Esta cadena contiene: - Tu nombre de dominio (`testwebsite.i2p`) - Tu dirección
 
 ### Paso 2: Regístrate en stats.i2p
 
-1. **Ve a** [stats.i2p Add Key](http://stats.i2p/i2p/addkey.html) (dentro de I2P)
+1. **Ve a** stats.i2p Add Key (dentro de I2P)
 
 ![Registro de dominio de stats.i2p](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ Si todo sale bien, verás una confirmación de que tu dominio se ha añadido a l
 
 Para garantizar la máxima disponibilidad, también deberías registrarte en el servicio reg.i2p:
 
-1. **Accede a** [reg.i2p Agregar dominio](http://reg.i2p/add) (dentro de I2P)
+1. **Accede a** reg.i2p Agregar dominio (dentro de I2P)
 
 ![Registro de dominio de reg.i2p](/images/guides/eepsite/reg-i2p-add.png)
 

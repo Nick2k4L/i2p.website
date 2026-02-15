@@ -6,7 +6,7 @@ description: "router durumu, yol haritası güncellemeleri, yerel modPow impleme
 categories: ["meeting"]
 ---
 
-(Wayback Machine'in katkılarıyla http://www.archive.org/)
+(Wayback Machine'in katkılarıyla `http://www.archive.org/`)
 
 ## Kısa bir özet
 

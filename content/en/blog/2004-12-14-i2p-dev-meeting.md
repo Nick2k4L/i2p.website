@@ -174,7 +174,7 @@ categories: ["meeting"]
 13:42 &lt;Pseudonym&gt; or is it the udp that fixes it?
 13:42  * orion votes for no slashdotting ever
 13:43 &lt;jrandom&gt; Pseudonym: udp fixes it (http://www.i2p.net/todo#transport )
-13:43 &lt;cervantes&gt; postman: http://forum.i2p/viewforum.php?f=22
+13:43 &lt;cervantes&gt; postman: `http://forum.i2p/viewforum.php?f=22`
 13:44 &lt;Pseudonym&gt; orion: I disagree. to get real anonymity we're going to need LOTS of nodes eventually
 13:44 &lt;Pseudonym&gt; at some point we have to tell people about it
 13:44 &lt;jrandom&gt; agreed.  when we need 'em, we'll definitely want to do all sorts of PR
@@ -251,7 +251,7 @@ categories: ["meeting"]
 13:59 &lt;+polecat&gt; I want HTML or plain text myself.  -.-  Don't like bitmap ps readers. -.-
 13:59 &lt;jrandom&gt; rather than offering a group for syndication, only trusted/known users can get the group
 13:59 &lt;jrandom&gt; (off trusted/known syndication nodes)
-13:59 &lt;frosk&gt; polecat: http://frosk.i2p/i2pcontent-3.pdf if you can handle pdf's :)
+13:59 &lt;frosk&gt; polecat: `http://frosk.i2p/i2pcontent-3.pdf` if you can handle pdf's :)
 13:59 &lt;jrandom&gt; kind of like usenet's "Distribution:" header
 13:59 &lt;susi23&gt; polecat: ps is not bitmap :P
 13:59 &lt;+polecat&gt; frosk: It's important though, if you want to have things like private mailboxes, or secret groups, or livejournal's ability to block text to all but certain friends.  Also moderated forums will probably be important to have that.
@@ -296,7 +296,7 @@ categories: ["meeting"]
 14:07 &lt;dm&gt; Google seems to be giving it some exposure. It should be presented as "the biggest message board in the world", and have a similar UI to the usual forums.
 14:07 &lt;+polecat&gt; jrandom: Why would you say *no* overhead?  c.c
 14:07 &lt;+polecat&gt; Just because you have to select syndicates and blogs to read, before you will download them?
-14:07 &lt;jrandom&gt; jnymo: a usenet-like itnerface to the i2p mailing list: http://news.gmane.org/gmane.network.i2p
+14:07 &lt;jrandom&gt; jnymo: a usenet-like itnerface to the i2p mailing list: `http://news.gmane.org/gmane.network.i2p`
 14:08 &lt;jrandom&gt; polecat: no, 0 overhead if you don't use it
 14:08 &lt;frosk&gt; polecat: groups have one owner who can add users. as for "secret" message namespaces, i haven't thought about that till now :)
 14:08 &lt;jrandom&gt; (as in, just having it installed doesnt make your machine a public data store, etc)
@@ -415,7 +415,7 @@ categories: ["meeting"]
 14:29 &lt;jrandom&gt; one of the neat things though is that i believe the main remaining i2p-bt bumps we're seeing are actually just i2p/streaming lib/sam problems
 14:30 &lt;+polecat&gt; Someone'd have to write a searching server, maybe by keyword and such.
 14:30 &lt;@duck&gt; or an irc bot
-14:30 &lt;jrandom&gt; jnymo: http://brittneyworld.i2p/bittorrent/
+14:30 &lt;jrandom&gt; jnymo: `http://brittneyworld.i2p/bittorrent/`
 14:30 &lt;jrandom&gt; polecat: files.i2p/
 14:30 &lt;ant&gt; &lt;jnymo&gt; hmm
 14:30 &lt;ant&gt; &lt;jnymo&gt; mmhmm.. yea. mk
@@ -478,11 +478,11 @@ categories: ["meeting"]
 14:45 &lt;Pseudonym&gt; do we have a working addressbook?
 14:45 &lt;+polecat&gt; You subscribe to an addressbook just like you subscribe to a blog... except it overwrites userhosts.txt and such.
 14:45 &lt;jrandom&gt; polecat: distributing addressbooks through i2pcontent makes sense, yeah
-14:45 &lt;jrandom&gt; Pseudonym: http://ragnarok.i2p/
-14:45 &lt;+polecat&gt; Pseudonym: http://polecat.i2p/addressbook.pl.zip
+14:45 &lt;jrandom&gt; Pseudonym: `http://ragnarok.i2p/`
+14:45 &lt;+polecat&gt; Pseudonym: `http://polecat.i2p/addressbook.pl.zip`
 14:45 &lt;jrandom&gt; and http://pole...er, what he said
 14:45 &lt;Pseudonym&gt; thanks
-14:46 &lt;jrandom&gt; i think there's also another one at http://orion.i2p too
+14:46 &lt;jrandom&gt; i think there's also another one at `http://orion.i2p` too
 14:46 &lt;frosk&gt; polecat: "overwrite" sounds dramatic. it "merges" ;)
 14:47 &lt;+polecat&gt; Yeah... I saw orion's too.
 14:47 &lt;jdot_&gt; dang

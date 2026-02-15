@@ -26,11 +26,11 @@ Trong tuần vừa qua, tôi đã theo dõi các thống kê do các tracker i2p
 
 Đã có một số bản sửa lỗi và tính năng mới được thêm vào CVS kể từ bản phát hành 0.4.2.5 mà chúng tôi muốn sớm triển khai, bao gồm các bản sửa lỗi về độ tin cậy cho streaming lib (thư viện streaming), cải thiện khả năng chống chịu khi thay đổi địa chỉ IP, và việc đóng gói triển khai sổ địa chỉ của ragnarok.
 
-Nếu bạn chưa từng nghe nói về addressbook (sổ địa chỉ) hoặc chưa từng dùng nó, thì nói ngắn gọn là nó sẽ tự động cập nhật tệp hosts.txt của bạn bằng cách định kỳ tải về và hợp nhất các thay đổi từ một số địa điểm được lưu trữ ẩn danh (mặc định là http://dev.i2p/i2p/hosts.txt và http://duck.i2p/hosts.txt). Bạn sẽ không cần phải thay đổi bất kỳ tệp nào, đụng đến bất kỳ cấu hình nào, hay chạy thêm ứng dụng nào khác - nó sẽ được triển khai bên trong I2P router dưới dạng một tệp .war chuẩn.
+Nếu bạn chưa từng nghe nói về addressbook (sổ địa chỉ) hoặc chưa từng dùng nó, thì nói ngắn gọn là nó sẽ tự động cập nhật tệp hosts.txt của bạn bằng cách định kỳ tải về và hợp nhất các thay đổi từ một số địa điểm được lưu trữ ẩn danh (mặc định là `http://dev.i2p/i2p/hosts.txt` và `http://duck.i2p/hosts.txt).` Bạn sẽ không cần phải thay đổi bất kỳ tệp nào, đụng đến bất kỳ cấu hình nào, hay chạy thêm ứng dụng nào khác - nó sẽ được triển khai bên trong I2P router dưới dạng một tệp .war chuẩn.
 
 Đương nhiên, nếu bạn *thực sự* muốn đào sâu, vọc vạch với addressbook thì hoàn toàn hoan nghênh - xem trang của Ragnarok [2] để biết chi tiết. Những người đã triển khai addressbook trong router của mình sẽ cần làm một vài thao tác nhỏ trong quá trình nâng cấp lên 0.4.2.6, nhưng nó sẽ hoạt động với tất cả các thiết lập cấu hình cũ của bạn.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -40,7 +40,7 @@ Số liệu, số liệu, số liệu! Vâng, như tôi đã nói trước đây
 
 jdot đã khởi chạy một máy chủ jabber mới, và có vẻ hoạt động khá tốt cho cả các cuộc trò chuyện một-một và trò chuyện nhóm. xem thông tin trên diễn đàn [3]. kênh thảo luận dev i2p vẫn sẽ là irc #i2p, nhưng có thêm lựa chọn thay thế thì luôn tốt.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

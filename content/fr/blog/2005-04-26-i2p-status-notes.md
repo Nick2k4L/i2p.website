@@ -24,7 +24,7 @@ La majeure partie de mon temps est consacrée au code UDP de la version 0.6, et 
 
 Comme duck l’a mentionné sur la liste [1], zab a lancé une prime pour aider I2P avec une série de mises à jour liées aux tests - des fonds pour toute personne capable de réaliser les tâches répertoriées sur la page de la prime [2]. Nous avons reçu d’autres dons pour cette prime [3] - elle s’élève actuellement à $1000USD. Bien que ces primes n’offrent certainement pas le "tarif du marché", elles constituent un petit signe d’encouragement pour les développeurs qui souhaitent aider.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html` [2] http://www.i2p.net/bounty_unittests [3] http://www.i2p.net/halloffame
 
 * 4) ???
 

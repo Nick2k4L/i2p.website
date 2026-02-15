@@ -20,11 +20,11 @@ La version 0.5.0.5 publiée la semaine dernière a connu des hauts et des bas - 
 
 bla a mené des recherches visant à améliorer notre profilage des pairs en exploitant un filtrage bayésien simple à partir des statistiques collectées [1]. Cela paraît très prometteur, bien que je ne sache pas exactement où cela en est pour le moment - peut-être pourrions-nous obtenir une mise à jour de la part de bla pendant la réunion ?
 
-[1] http://forum.i2p.net/viewtopic.php?t=598     http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`     `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-Il y a de nombreuses avancées autour de l'application Q d'aum, tant au niveau des fonctionnalités de base que grâce à quelques personnes qui développent diverses interfaces XML-RPC. La rumeur veut que nous pourrions voir une nouvelle build de Q ce week-end, avec toute une série de nouveautés décrites sur http://aum.i2p/q/
+Il y a de nombreuses avancées autour de l'application Q d'aum, tant au niveau des fonctionnalités de base que grâce à quelques personnes qui développent diverses interfaces XML-RPC. La rumeur veut que nous pourrions voir une nouvelle build de Q ce week-end, avec toute une série de nouveautés décrites sur `http://aum.i2p/q/`
 
 * 4) ???
 

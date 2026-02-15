@@ -26,7 +26,7 @@ Sin embargo, el uso de intervalos de 1 minuto y del rendimiento de un tunnel ind
 
 * 3) Syndie blogs
 
-Basado en algunos comentarios, se han realizado más mejoras en la vista de blog de Syndie, lo que le da un estilo claramente diferente de la vista con hilos similar a los grupos de noticias/foros. Además, ahora cuenta con una capacidad completamente nueva para definir información general del blog a través de la arquitectura existente de Syndie. Como ejemplo, consulta la entrada predeterminada del blog "acerca de Syndie":  http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001
+Basado en algunos comentarios, se han realizado más mejoras en la vista de blog de Syndie, lo que le da un estilo claramente diferente de la vista con hilos similar a los grupos de noticias/foros. Además, ahora cuenta con una capacidad completamente nueva para definir información general del blog a través de la arquitectura existente de Syndie. Como ejemplo, consulta la entrada predeterminada del blog "acerca de Syndie":  `http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001`
 
 Esto apenas roza el inicio de lo que podemos hacer. La próxima versión te permitirá definir el logotipo de tu propio blog, tus propios enlaces (a blogs, entradas, archivos adjuntos y URLs externas arbitrarias), y con suerte aún más personalización. Una de esas personalizaciones son los iconos por etiqueta - me gustaría incluir un conjunto de iconos predeterminados para usar con etiquetas estándar, pero la gente podrá definir iconos para sus propias etiquetas para usarlos dentro de su blog, e incluso sobrescribir los iconos predeterminados para las etiquetas estándar (de nuevo, solo cuando la gente esté viendo su blog, por supuesto). Quizá incluso alguna configuración de estilo para mostrar las entradas con distintas etiquetas de forma diferente (por supuesto, solo se permitirían personalizaciones de estilo muy específicas - nada de exploits arbitrarios de CSS con Syndie, muchas gracias :)
 
@@ -42,6 +42,6 @@ He oído informes de avances para restaurar el soporte de gwebcache en I2Phex, p
 
 * 6) ???
 
-Hay mucho en marcha, como pueden ver, pero si hay otras cosas que les gustaría plantear y discutir, pásense por la reunión en unos minutos y peguen un grito. Por cierto, un sitio interesante que he estado siguiendo últimamente es http://freedomarchive.i2p/ (para los perezosos que no tienen I2P instalado, pueden usar el inproxy de Tino (puerta de enlace de entrada) a través de http://freedomarchive.i2p.tin0.de/). En cualquier caso, nos vemos en unos minutos.
+Hay mucho en marcha, como pueden ver, pero si hay otras cosas que les gustaría plantear y discutir, pásense por la reunión en unos minutos y peguen un grito. Por cierto, un sitio interesante que he estado siguiendo últimamente es `http://freedomarchive.i2p/` (para los perezosos que no tienen I2P instalado, pueden usar el inproxy de Tino (puerta de enlace de entrada) a través de http://freedomarchive.i2p.tin0.de/). En cualquier caso, nos vemos en unos minutos.
 
 =jr

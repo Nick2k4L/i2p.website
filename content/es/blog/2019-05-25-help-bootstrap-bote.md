@@ -18,12 +18,12 @@ o, explicado como si tuviera 5 años: Se usa de forma similar al correo electró
 
 **Paso uno: Instalar I2P-Bote**
 
-I2P-Bote es un complemento de i2p, y instalarlo es muy fácil. Las instrucciones originales están disponibles en el [bote eepSite, bote.i2p](http://bote.i2p/install/), pero si desea leerlas en la clearnet (Internet abierta), estas instrucciones se ofrecen por cortesía de bote.i2p:
+I2P-Bote es un complemento de i2p, y instalarlo es muy fácil. Las instrucciones originales están disponibles en el bote eepSite, bote.i2p, pero si desea leerlas en la clearnet (Internet abierta), estas instrucciones se ofrecen por cortesía de bote.i2p:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Paso dos: Obtén la dirección base64 de tu nodo de I2P-Bote**
 
@@ -64,7 +64,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Método B: Realiza una consulta**
 
-Si eso te parece demasiado trabajo, puedes consultar el destino base64 de tu conexión de Bote consultando su dirección base32 mediante cualquiera de los métodos disponibles para buscar una dirección base32. La dirección base32 de tu nodo de Bote está disponible en la página "Conexión" dentro de la aplicación del complemento Bote, en [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+Si eso te parece demasiado trabajo, puedes consultar el destino base64 de tu conexión de Bote consultando su dirección base32 mediante cualquiera de los métodos disponibles para buscar una dirección base32. La dirección base32 de tu nodo de Bote está disponible en la página "Conexión" dentro de la aplicación del complemento Bote, en `http://127.0.0.1:7657/i2pbote/network`
 
 **Paso tres: ¡Contáctanos!**
 

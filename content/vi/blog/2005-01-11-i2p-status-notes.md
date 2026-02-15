@@ -16,7 +16,7 @@ Chào mọi người, đến giờ cập nhật hàng tuần rồi.
 
 Nhìn chung, mạng đang hoạt động tốt, dù chúng tôi đã gặp một số vấn đề khi một trong các máy chủ IRC bị ngoại tuyến và outproxy (proxy đi ra) của tôi gặp trục trặc. Tuy vậy, máy chủ IRC còn lại vẫn (và hiện vẫn) khả dụng (dù hiện tại chưa vô hiệu hóa CTCP - xem [1]), nên chúng tôi vẫn đáp ứng được nhu cầu IRC :)
 
-[1] http://ugha.i2p/HowTo/IrcAnonymityGuide
+[1] `http://ugha.i2p/HowTo/IrcAnonymityGuide`
 
 * 2) 0.5 progress
 
@@ -52,7 +52,7 @@ Giờ đây khi bản phát hành 0.4.2.6 đã đi kèm addressbook (sổ địa
 
 Với khả năng này xuất hiện một chiều kích hoàn toàn mới - khả năng để mọi người lựa chọn những trang web nào họ sẽ về cơ bản liên kết trong hosts.txt của mình và những trang nào thì không. Trong khi mô hình công khai “ai cũng có thể tham gia” từng tồn tại trước đây vẫn có chỗ đứng, nay khi hệ thống đặt tên không chỉ còn trên lý thuyết mà trên thực tế đã phân tán hoàn toàn, mọi người sẽ cần tự xây dựng các chính sách của riêng mình về việc công bố Destination (điểm đích) của người khác.
 
-Điều quan trọng đằng sau hậu trường ở đây là đây là một cơ hội học hỏi cho cộng đồng I2P. Trước đây, cả gott và tôi đều cố gắng thúc đẩy vấn đề đặt tên bằng cách công bố trang của gott dưới tên jrandom.i2p (anh ấy là người yêu cầu tên trang đó trước - tôi thì không, và tôi hoàn toàn không có quyền kiểm soát đối với nội dung tại URL đó). Giờ đây chúng ta có thể bắt đầu tìm hiểu cách chúng ta sẽ xử lý các trang không được liệt kê trong http://dev.i2p.net/i2p/hosts.txt hoặc trên forum.i2p. Việc không được đăng ở những nơi đó không hề ngăn cản một trang hoạt động - hosts.txt của bạn chỉ là sổ địa chỉ cục bộ của bạn.
+Điều quan trọng đằng sau hậu trường ở đây là đây là một cơ hội học hỏi cho cộng đồng I2P. Trước đây, cả gott và tôi đều cố gắng thúc đẩy vấn đề đặt tên bằng cách công bố trang của gott dưới tên jrandom.i2p (anh ấy là người yêu cầu tên trang đó trước - tôi thì không, và tôi hoàn toàn không có quyền kiểm soát đối với nội dung tại URL đó). Giờ đây chúng ta có thể bắt đầu tìm hiểu cách chúng ta sẽ xử lý các trang không được liệt kê trong `http://dev.i2p.net/i2p/hosts.txt` hoặc trên forum.i2p. Việc không được đăng ở những nơi đó không hề ngăn cản một trang hoạt động - hosts.txt của bạn chỉ là sổ địa chỉ cục bộ của bạn.
 
 Dù sao thì, nói lan man thế là đủ; tôi chỉ muốn lưu ý mọi người để tất cả chúng ta cùng thấy những gì cần phải làm.
 

@@ -14,6 +14,6 @@ categories: ["release"]
 
 此版本使用 OpenJDK 20 进行编译。它使用 i2p.plugins.firefox 1.1.0 版本作为启动浏览器的库。它使用 i2p.i2p 2.3.0 版本作为 I2P router（I2P 路由器），并用于提供应用。与往常一样，建议您在方便时尽快将 I2P router 更新到最新版本。
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

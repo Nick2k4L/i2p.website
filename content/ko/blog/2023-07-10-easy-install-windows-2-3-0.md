@@ -14,6 +14,6 @@ Windows용 I2P Easy-Install 번들 2.3.0 버전이 릴리스되었습니다. 평
 
 이번 릴리스는 OpenJDK 20으로 컴파일되었습니다. 브라우저 실행을 위한 라이브러리로 i2p.plugins.firefox 버전 1.1.0을 사용합니다. I2P router 및 애플리케이션 제공을 위해 i2p.i2p 버전 2.3.0을 사용합니다. 항상 그렇듯 가능한 한 빠른 시일 내에 I2P router를 최신 버전으로 업데이트할 것을 권장합니다.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

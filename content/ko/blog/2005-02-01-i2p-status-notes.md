@@ -18,19 +18,19 @@ categories: ["status"]
 
 앞서 언급했듯이, 초기 0.5 릴리스는 다양한 tunnel 피어 선택/순서 지정 전략이 동작할 수 있는 기반을 제공할 것이다. 우리는 우선 탐색 풀과 클라이언트 풀에 대한 구성 가능한 매개변수의 기본 집합으로 시작하겠지만, 이후 릴리스에서는 다양한 사용자 프로필에 맞춘 다른 옵션들도 포함될 가능성이 높다.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) nntp
 
 LazyGuy의 사이트 [2]와 제 블로그 [3]에서 언급했듯이, 네트워크에 새 NNTP 서버를 구축해 가동 중이며, nntp.fr.i2p에서 접속할 수 있습니다. LazyGuy가 gmane에서 몇몇 목록을 가져오기 위해 suck [4] 스크립트를 가동해 두긴 했지만, 콘텐츠는 대체로 I2P 사용자들의 것이고, I2P 사용자들을 위한 것이며, I2P 사용자들에 의해 작성된 것입니다. jdot, LazyGuy, 그리고 저 자신이 어떤 뉴스리더를 안전하게 사용할 수 있는지 조사했으며, 비교적 간단한 해결책들이 있는 것으로 보입니다. 익명으로 뉴스 읽기와 게시를 하기 위해 slrn [5]을 실행하는 방법은 제 블로그를 참조하세요.
 
-[2] http://fr.i2p/ [3] http://jrandom.dev.i2p/ [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
+[2] `http://fr.i2p/` [3] `http://jrandom.dev.i2p/` [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
 
 * 3) tech proposals
 
 Orion과 다른 사람들이 다양한 기술적 이슈에 대한 일련의 RFC를 ugha의 위키 [6]에 올려, 현존하는 더 어려운 클라이언트/앱 레벨 문제들을 구체화하는 데 도움이 되도록 했습니다. 그곳을 네이밍 이슈, SAM 업데이트, 스워밍(swarming) 아이디어 등과 같은 주제를 논의하는 장소로 사용해 주세요 - 거기에 게시하면, 우리 모두가 각자의 공간에서 협업하여 더 나은 결과를 얻을 수 있습니다.
 
-[6] http://ugha.i2p/I2pRfc
+[6] `http://ugha.i2p/I2pRfc`
 
 * 4) ???
 

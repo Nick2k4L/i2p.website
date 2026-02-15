@@ -121,7 +121,7 @@ categories: ["meeting"]
 21:22:25  &lt;unixfr3ak&gt; i think so but, if many people leech at one time  it will still put a hevy load on the network
 21:22:32  &lt;badger&gt; perhaps this is just a case of being more informative to first time users
 21:22:35  &lt;unixfr3ak&gt; especially if thier ips are dynamic
-21:22:46  &lt;eche|on&gt; http://stats.i2p/cgi-bin/tot.cgi?a=bandwidthReceiveBps.5m&s=365&u=y
+21:22:46  &lt;eche|on&gt; `http://stats.i2p/cgi-bin/tot.cgi?a=bandwidthReceiveBps.5m&s=365&u=y`
 21:22:56  &lt;badger&gt; make it clear that giving back to the network improves your experience
 21:23:07  &lt;unixfr3ak&gt; yes
 21:23:18  &lt;unixfr3ak&gt; and to run it when they are not using thier pc
@@ -311,7 +311,7 @@ categories: ["meeting"]
 22:07:58  &lt;unixfr3ak&gt; Connected to localhost.
 22:07:58  &lt;unixfr3ak&gt; Escape character is '^]'.
 22:08:02  &lt;unixfr3ak&gt; impressive :P
-22:08:02  &lt;welterde&gt; http://paste.i2p2.i2p/show/11/ &lt;- the b64
+22:08:02  &lt;welterde&gt; `http://paste.i2p2.i2p/show/11/` &lt;- the b64
 22:08:08  &lt;l00kns33&gt; one comment about i2p in general:
 22:08:08  &lt;l00kns33&gt; i think it is too much "from geeks for geeks" - you need to know what non-geek users need and want 
 22:08:16  &lt;unixfr3ak&gt; wonder whats on the other side of the tunnel

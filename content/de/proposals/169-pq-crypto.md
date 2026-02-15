@@ -14,7 +14,7 @@ toc: true
 
 Während Forschung und Wettbewerb für geeignete Post-Quantum (PQ) Kryptographie seit einem Jahrzehnt voranschreiten, sind die Wahlmöglichkeiten erst kürzlich klar geworden.
 
-Wir haben 2022 damit begonnen, die Auswirkungen von PQ-Kryptografie zu untersuchen [zzz.i2p](http://zzz.i2p/topics/3294).
+Wir haben 2022 damit begonnen, die Auswirkungen von PQ-Kryptografie zu untersuchen zzz.i2p.
 
 TLS-Standards haben in den letzten zwei Jahren Unterstützung für hybride Verschlüsselung hinzugefügt und diese wird nun für einen erheblichen Anteil des verschlüsselten Traffics im Internet verwendet, da Chrome und Firefox sie unterstützen [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 

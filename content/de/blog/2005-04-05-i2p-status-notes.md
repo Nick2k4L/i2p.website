@@ -20,11 +20,11 @@ Die Veröffentlichung 0.5.0.5 der vergangenen Woche hatte ihre Höhen und Tiefen
 
 bla hat einige Untersuchungen dazu durchgeführt, wie wir unser Peer-Profiling verbessern können, indem wir auf Basis der gesammelten Statistiken [1] eine einfache Bayes-Filterung einsetzen. Das sieht ziemlich vielversprechend aus, allerdings bin ich mir derzeit nicht sicher, wie der aktuelle Stand ist – vielleicht können wir während des Meetings ein Update von bla erhalten?
 
-[1] http://forum.i2p.net/viewtopic.php?t=598     http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`     `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-Bei der Q-App von aum geht viel voran, sowohl bei der Kernfunktionalität als auch bei den von einigen Leuten entwickelten xmlrpc-Frontends. Gerüchten zufolge könnten wir an diesem Wochenende einen weiteren Q-Build sehen, mit einer ganzen Reihe von Neuerungen, die auf http://aum.i2p/q/ beschrieben sind.
+Bei der Q-App von aum geht viel voran, sowohl bei der Kernfunktionalität als auch bei den von einigen Leuten entwickelten xmlrpc-Frontends. Gerüchten zufolge könnten wir an diesem Wochenende einen weiteren Q-Build sehen, mit einer ganzen Reihe von Neuerungen, die auf `http://aum.i2p/q/` beschrieben sind.
 
 * 4) ???
 

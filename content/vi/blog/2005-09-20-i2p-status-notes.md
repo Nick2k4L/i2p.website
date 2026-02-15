@@ -14,7 +14,7 @@ Chào mọi người, lại là thứ Ba rồi
 
 * 1) 0.6.0.6
 
-Với bản phát hành 0.6.0.6 vào thứ bảy vừa rồi, chúng tôi đã đưa một loạt thành phần mới vào mạng đang hoạt động, và mọi người đã làm rất tốt việc nâng cấp - tính đến vài giờ trước, gần 250 routers đã được nâng cấp! Mạng có vẻ cũng hoạt động tốt, và introductions (cơ chế giới thiệu) đến giờ vẫn đang hoạt động - bạn có thể theo dõi hoạt động introduction của riêng mình với http://localhost:7657/oldstats.jsp, bằng cách xem udp.receiveHolePunch và udp.receiveIntroRelayResponse (cũng như udp.receiveRelayIntro, đối với những người ở sau NAT).
+Với bản phát hành 0.6.0.6 vào thứ bảy vừa rồi, chúng tôi đã đưa một loạt thành phần mới vào mạng đang hoạt động, và mọi người đã làm rất tốt việc nâng cấp - tính đến vài giờ trước, gần 250 routers đã được nâng cấp! Mạng có vẻ cũng hoạt động tốt, và introductions (cơ chế giới thiệu) đến giờ vẫn đang hoạt động - bạn có thể theo dõi hoạt động introduction của riêng mình với `http://localhost:7657/oldstats.jsp,` bằng cách xem udp.receiveHolePunch và udp.receiveIntroRelayResponse (cũng như udp.receiveRelayIntro, đối với những người ở sau NAT).
 
 Nhân tiện, "Status: ERR-Reject" giờ thực sự không còn là một lỗi nữa, vì vậy có lẽ chúng ta nên đổi thành "Status: OK (NAT)"?
 
@@ -38,7 +38,7 @@ i2phex.exe bên trong tệp zip đó có thể sử dụng trên Windows chỉ b
 
 Tôi sẽ không đứng ra duy trì I2Phex, nhưng tôi sẽ đưa các bản phát hành I2Phex trong tương lai lên trang web khi cvs được cập nhật. Nếu ai đó muốn làm một trang web để chúng ta có thể đăng lên nhằm mô tả/giới thiệu nó (sirup, bạn có ở đó không?), với các liên kết tới sirup.i2p, các bài viết hữu ích trên diễn đàn, danh sách các peers (nút ngang hàng) đang hoạt động của legion, thì tốt quá.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip và     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (được ký bằng khóa của tôi)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` và     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (được ký bằng khóa của tôi)
 
 * 3) migration
 
@@ -46,6 +46,6 @@ Chúng tôi đã chuyển đổi các colo boxes (máy chủ colocation) cho cá
 
 * 4) ???
 
-Dạo gần đây đã có rất nhiều thảo luận thú vị trên danh sách thư i2p, proxy/filter SMTP mới khá hay của Adam, cũng như một số bài viết hay trên syndie (đã xem giao diện (skin) của gloin tại http://gloinsblog.i2p chưa?). Tôi hiện đang thực hiện một số thay đổi nhằm xử lý các vấn đề tồn tại đã lâu, nhưng chưa thể triển khai ngay. Nếu ai còn điều gì muốn nêu ra và thảo luận, hãy ghé cuộc họp tại #i2p lúc 8 giờ tối GMT (trong khoảng 10 phút nữa).
+Dạo gần đây đã có rất nhiều thảo luận thú vị trên danh sách thư i2p, proxy/filter SMTP mới khá hay của Adam, cũng như một số bài viết hay trên syndie (đã xem giao diện (skin) của gloin tại `http://gloinsblog.i2p` chưa?). Tôi hiện đang thực hiện một số thay đổi nhằm xử lý các vấn đề tồn tại đã lâu, nhưng chưa thể triển khai ngay. Nếu ai còn điều gì muốn nêu ra và thảo luận, hãy ghé cuộc họp tại #i2p lúc 8 giờ tối GMT (trong khoảng 10 phút nữa).
 
 =jr

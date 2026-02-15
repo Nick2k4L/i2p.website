@@ -14,7 +14,7 @@ categories: ["status"]
 
 * 1) 0.6.0.6
 
-지난 토요일의 0.6.0.6 릴리스와 함께 라이브 네트워크에서 여러 새로운 구성 요소가 가동되고 있으며, 여러분이 업그레이드를 정말 훌륭하게 진행해 주셨습니다—몇 시간 전 기준으로 거의 250개의 routers가 업그레이드되었습니다! 네트워크도 잘 동작하는 것으로 보이며, 지금까지 소개(introductions)가 정상적으로 작동하고 있습니다. http://localhost:7657/oldstats.jsp 에서 자신의 소개 활동을 추적할 수 있으며, udp.receiveHolePunch 및 udp.receiveIntroRelayResponse(또한 NAT 뒤에 있는 경우 udp.receiveRelayIntro) 항목을 확인해 보세요.
+지난 토요일의 0.6.0.6 릴리스와 함께 라이브 네트워크에서 여러 새로운 구성 요소가 가동되고 있으며, 여러분이 업그레이드를 정말 훌륭하게 진행해 주셨습니다—몇 시간 전 기준으로 거의 250개의 routers가 업그레이드되었습니다! 네트워크도 잘 동작하는 것으로 보이며, 지금까지 소개(introductions)가 정상적으로 작동하고 있습니다. `http://localhost:7657/oldstats.jsp` 에서 자신의 소개 활동을 추적할 수 있으며, udp.receiveHolePunch 및 udp.receiveIntroRelayResponse(또한 NAT 뒤에 있는 경우 udp.receiveRelayIntro) 항목을 확인해 보세요.
 
 그런데 이제 "Status: ERR-Reject"는 실제로 오류가 아니므로, "Status: OK (NAT)"로 바꾸는 게 어떨까요?
 
@@ -38,7 +38,7 @@ cvs -d :pserver:anoncvs-PQcCzt6076/R7s880joybQ@xxxxxxxxxxxxxxxx/cvsroot co i2p  
 
 저는 I2Phex를 유지보수하겠다고 나서지는 않지만, cvs에 업데이트가 있을 때마다 향후 I2Phex 릴리스를 웹사이트에 올리겠습니다. 우리가 게시할 수 있도록 이를 설명하고 소개하는 웹페이지를 작업해 주실 분이 있다면(sirup, 계신가요?), sirup.i2p, 유용한 포럼 게시물, legion의 활성 피어 목록에 대한 링크를 포함해 주시면 정말 좋겠습니다.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip 및     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (내 키로 서명됨)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` 및     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (내 키로 서명됨)
 
 * 3) migration
 
@@ -46,6 +46,6 @@ I2P 서비스용 콜로케이션 서버를 교체했으며, 이제 새 머신에
 
 * 4) ???
 
-요즘 i2p 리스트에서 흥미로운 논의가 많이 있었습니다. Adam이 만든 멋진 새 SMTP 프록시/필터 얘기도 있었고, syndie에 올라온 좋은 글들도 있었죠( http://gloinsblog.i2p 에서 gloin의 스킨 보셨나요?). 저는 현재 오랫동안 이어져 온 몇 가지 이슈를 해결하기 위한 변경 작업을 진행 중이지만, 당장 적용될 예정은 아닙니다. 다른 안건이나 논의하고 싶은 것이 있으면 GMT 기준 오후 8시에 #i2p에서 열리는 회의에 들러 주세요(약 10분 후쯤).
+요즘 i2p 리스트에서 흥미로운 논의가 많이 있었습니다. Adam이 만든 멋진 새 SMTP 프록시/필터 얘기도 있었고, syndie에 올라온 좋은 글들도 있었죠( `http://gloinsblog.i2p` 에서 gloin의 스킨 보셨나요?). 저는 현재 오랫동안 이어져 온 몇 가지 이슈를 해결하기 위한 변경 작업을 진행 중이지만, 당장 적용될 예정은 아닙니다. 다른 안건이나 논의하고 싶은 것이 있으면 GMT 기준 오후 8시에 #i2p에서 열리는 회의에 들러 주세요(약 10분 후쯤).
 
 =jr

@@ -27,10 +27,10 @@ Cả hai đều có thể được dùng để push hoặc pull, nhưng SSH đư
 Để có quyền truy cập đọc-ghi vào một máy chủ, bạn sẽ cần thiết lập một tunnel (đường hầm) cho client SSH của mình. Nếu bạn chỉ cần nhân bản HTTP/S ở chế độ chỉ đọc, thì bạn có thể bỏ qua tất cả điều này và chỉ cần dùng biến môi trường http_proxy để cấu hình git sử dụng I2P HTTP Proxy đã được cấu hình sẵn. Ví dụ:
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-Để truy cập SSH, khởi chạy "New Tunnel Wizard" từ http://127.0.0.1:7657/i2ptunnelmgr và thiết lập một client tunnel trỏ tới địa chỉ base32 SSH của dịch vụ Git.
+Để truy cập SSH, khởi chạy "New Tunnel Wizard" từ `http://127.0.0.1:7657/i2ptunnelmgr` và thiết lập một client tunnel trỏ tới địa chỉ base32 SSH của dịch vụ Git.
 
 ## Thứ tư: Thử nhân bản
 

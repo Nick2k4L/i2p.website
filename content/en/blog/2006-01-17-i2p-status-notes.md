@@ -46,13 +46,13 @@ though it isn't hooked in for actual tunnel building yet.  If anyone
 is bored, I'd love some feedback on the spec.  In the meantime, I'll
 continue working on the new tunnel building code.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html and
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` and
     see the threads relating to the bootstrap attacks
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001064.html
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001057.html
-[4] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001064.html`
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001057.html`
+[4] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`
                                tunnel-alt-creation.html?rev=HEAD
-[5] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/
+[5] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/`
                        i2p/router/tunnel/BuildMessageTest.java
 
 * 3) Syndie blogs
@@ -62,11 +62,11 @@ revamps to the Syndie blog interface, including cervantes' new
 styling and each user's selection of blog links and logo (e.g. [6]).
 You can control those links on the left by hitting the "configure
 your blog" link on your profile page, bringing you to
-http://localhost:7657/syndie/configblog.jsp.  Once you make your
+`http://localhost:7657/syndie/configblog.jsp.`  Once you make your
 changes there, the next time you push a post up to an archive, that
 information will be made available to others.
 
-[6] http://syndiemedia.i2p.net/
+[6] `http://syndiemedia.i2p.net/`
     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
 
 * 4) ???

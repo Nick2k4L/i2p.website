@@ -18,7 +18,7 @@ Después de romperme la cabeza con varios servidores en colocation, algunos de l
 
 * 2) SSU testing
 
-Como se menciona en ese pequeño recuadro amarillo en la consola del router de cada uno, hemos iniciado la siguiente ronda de pruebas en la red real para SSU. Las pruebas no son para todo el mundo, pero si eres aventurero y te sientes cómodo realizando algo de configuración manual, consulta los detalles indicados en tu consola del router (http://localhost:7657/index.jsp). Puede que haya varias rondas de pruebas, pero no preveo cambios importantes en SSU antes de la versión 0.6 (0.6.1 añadirá compatibilidad para quienes no puedan configurar el reenvío de puertos o, de otro modo, no puedan recibir conexiones UDP entrantes).
+Como se menciona en ese pequeño recuadro amarillo en la consola del router de cada uno, hemos iniciado la siguiente ronda de pruebas en la red real para SSU. Las pruebas no son para todo el mundo, pero si eres aventurero y te sientes cómodo realizando algo de configuración manual, consulta los detalles indicados en tu consola del router (`http://localhost:7657/index.jsp).` Puede que haya varias rondas de pruebas, pero no preveo cambios importantes en SSU antes de la versión 0.6 (0.6.1 añadirá compatibilidad para quienes no puedan configurar el reenvío de puertos o, de otro modo, no puedan recibir conexiones UDP entrantes).
 
 * 3) I2CP crypto
 

@@ -156,7 +156,7 @@ en el SYN ACK de Bob a Alice, y en todos los paquetes subsecuentes enviados en a
 
 ## Justificación
 
-Ver the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) para por qué el valor actual es 1730.
+Ver the Java I2P source code para por qué el valor actual es 1730.
 Ver the [ECIES specification](/docs/specs/ecies/#overhead) para por qué la sobrecarga de ECIES es 82 bytes menos que ElGamal.
 
 

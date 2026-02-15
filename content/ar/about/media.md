@@ -178,12 +178,12 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">البصل والثوم: بروتوكولات I2P</a>
+البصل والثوم: بروتوكولات I2P
 </div>
 <div class="content-entry-meta">🎥 عرض تقديمي • 17 فبراير 2016</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ layout: "single"
 <div class="content-entry-title">zzz و Lance James في بودكاست InfoSec Daily</div>
 <div class="content-entry-meta">🎙️ بودكاست • 16 فبراير 2012</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">تورنت I2P</a>
+تورنت I2P
 </div>
 </div>
 
@@ -279,7 +279,7 @@ layout: "single"
 <div class="content-entry-title">zzz في بودكاست InfoSec Daily</div>
 <div class="content-entry-meta">🎙️ بودكاست • 18 أغسطس 2011</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">تورنت I2P</a>
+تورنت I2P
 </div>
 </div>
 
@@ -343,7 +343,7 @@ layout: "single"
 </div>
 <div class="content-entry-meta">🎥 عرض تقديمي • HOPE • 17 يوليو 2010</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">يوتيوب</a>
 </div>
 </div>

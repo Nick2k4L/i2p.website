@@ -154,7 +154,7 @@ Die Spezifikation für UDP announces in I2P wurde im Juni 2025 finalisiert. Unte
 
 ## Zusätzliche Informationen
 
-- I2P bittorrent Standards werden allgemein auf [zzz.i2p](http://zzz.i2p/) diskutiert.
-- Eine Übersicht der aktuellen Tracker-Software-Funktionen ist [dort ebenfalls verfügbar](http://zzz.i2p/files/trackers.html).
-- Die [I2P bittorrent FAQ](http://forum.i2p/viewtopic.php?t=2068)
-- [DHT auf I2P Diskussion](http://zzz.i2p/topics/812)
+- I2P bittorrent Standards werden allgemein auf zzz.i2p diskutiert.
+- Eine Übersicht der aktuellen Tracker-Software-Funktionen ist dort ebenfalls verfügbar.
+- Die I2P bittorrent FAQ
+- DHT auf I2P Diskussion

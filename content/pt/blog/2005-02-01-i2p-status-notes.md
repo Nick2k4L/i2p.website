@@ -18,19 +18,19 @@ Houve muitos avanços no âmbito da versão 0.5, com um grande lote de commits o
 
 Como mencionado anteriormente, a versão 0.5 inicial fornecerá a base sobre a qual diferentes estratégias de seleção/ordenação de pares de tunnel podem operar. Começaremos com um conjunto básico de parâmetros configuráveis para os pools exploratório e de cliente, mas versões posteriores provavelmente incluirão outras opções para diferentes perfis de usuário.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) nntp
 
 Como mencionado no site do LazyGuy [2] e no meu blog [3], temos um novo servidor NNTP em funcionamento na rede, acessível em nntp.fr.i2p. Enquanto o LazyGuy iniciou alguns scripts do suck [4] para ler algumas listas do gmane, o conteúdo é, em grande parte, de, para e por usuários de I2P.  jdot, LazyGuy e eu pesquisamos quais leitores de notícias poderiam ser usados com segurança, e parece haver soluções bem simples. Veja meu blog para instruções sobre como executar o slrn [5] para fazer leitura e publicação anônimas de notícias.
 
-[2] http://fr.i2p/ [3] http://jrandom.dev.i2p/ [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
+[2] `http://fr.i2p/` [3] `http://jrandom.dev.i2p/` [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
 
 * 3) tech proposals
 
 Orion e outros publicaram uma série de RFCs sobre várias questões técnicas no wiki do ugha [6] para ajudar a detalhar alguns dos problemas mais difíceis no nível de cliente e de aplicação. Por favor, usem esse espaço para discutir questões de nomenclatura, atualizações do SAM, ideias de swarming (enxameamento) e afins — quando publicarem lá, todos nós poderemos colaborar em nosso próprio espaço para obter um resultado melhor.
 
-[6] http://ugha.i2p/I2pRfc
+[6] `http://ugha.i2p/I2pRfc`
 
 * 4) ???
 

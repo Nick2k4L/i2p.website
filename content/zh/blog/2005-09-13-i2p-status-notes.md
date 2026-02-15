@@ -20,7 +20,7 @@ categories: ["status"]
 
 CVS 中的最新构建已包含长期讨论的 SSU introductions [1] 支持，使我们能够为处于他们无法控制的 NAT（网络地址转换）或防火墙之后的用户执行去中心化的 NAT 打洞。虽然它无法处理对称 NAT，但已覆盖大多数情况。来自实测的反馈良好，不过只有使用最新构建的用户才能联系在 NAT 后面的用户——较旧的构建需要等待对方先联系他们。鉴于此，我们将比以往更早把这段代码推送到一个发布版本中，以减少这种受限路由存在的时间。
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

@@ -14,7 +14,7 @@ Olá, pessoal, é terça-feira de novo
 
 * 1) 0.6.0.6
 
-Com a versão 0.6.0.6 lançada no último sábado, temos vários componentes novos em operação na rede ativa, e vocês fizeram um ótimo trabalho ao atualizar - até algumas horas atrás, quase 250 routers já tinham atualizado! A rede também parece estar indo bem, e as introduções têm funcionado até agora - você pode acompanhar sua própria atividade de introdução no http://localhost:7657/oldstats.jsp, observando os udp.receiveHolePunch e udp.receiveIntroRelayResponse (bem como udp.receiveRelayIntro, para quem está atrás de NATs).
+Com a versão 0.6.0.6 lançada no último sábado, temos vários componentes novos em operação na rede ativa, e vocês fizeram um ótimo trabalho ao atualizar - até algumas horas atrás, quase 250 routers já tinham atualizado! A rede também parece estar indo bem, e as introduções têm funcionado até agora - você pode acompanhar sua própria atividade de introdução no `http://localhost:7657/oldstats.jsp,` observando os udp.receiveHolePunch e udp.receiveIntroRelayResponse (bem como udp.receiveRelayIntro, para quem está atrás de NATs).
 
 A propósito, o "Status: ERR-Reject" na verdade já não é um erro, então talvez devêssemos alterá-lo para "Status: OK (NAT)"?
 
@@ -38,7 +38,7 @@ O i2phex.exe dentro desse zip pode ser usado no Windows simplesmente executando-
 
 Não vou assumir a manutenção do I2Phex, mas colocarei futuras versões do I2Phex no site quando houver atualizações no cvs. Se alguém quiser trabalhar numa página na web que possamos colocar no ar para descrevê-lo/apresentá-lo (sirup, você está por aí?), com links para sirup.i2p, posts úteis do fórum, a lista de pares ativos do legion, seria ótimo.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip e     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (assinado pela minha chave)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` e     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (assinado pela minha chave)
 
 * 3) migration
 

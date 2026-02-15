@@ -6,7 +6,7 @@ description: "Erstes I2P-Entwicklungstreffen mit den Themen Projektstatus, Websi
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

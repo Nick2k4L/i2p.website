@@ -90,7 +90,7 @@ Mã hóa ElGamal chứa:
 ```
 Mỗi phần được mã hóa sẽ được thêm các số không vào đầu để có kích thước chính xác là 257 bytes. Tổng chiều dài: 514 bytes. Trong cách sử dụng điển hình, các lớp cao hơn sẽ đệm dữ liệu cleartext đến 222 bytes, tạo ra một khối chưa mã hóa có kích thước 255 bytes. Khối này được mã hóa thành hai phần mã hóa 256-byte, và có một byte đệm số không trước mỗi phần ở lớp này.
 
-Xem mã ElGamal [ElGamalEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalEngine.java).
+Xem mã ElGamal ElGamalEngine.
 
 Số nguyên tố chia sẻ là số nguyên tố Oakley cho khóa 2048 bit [RFC-3526-S3](http://tools.ietf.org/html/rfc3526#section-3):
 
@@ -147,7 +147,7 @@ AES được sử dụng cho mã hóa đối xứng, trong một số trường 
 - Cho mã hóa một số lưu trữ và truy vấn netDb được gửi đến các floodfill router như một phần của ElGamal/AES+SessionTag (destination-to-router hoặc router-to-router).
 - Cho mã hóa các thông điệp kiểm tra tunnel định kỳ được gửi từ router đến chính nó, thông qua các tunnel của nó.
 
-Chúng tôi sử dụng AES với khóa 256 bit và khối 128 bit ở chế độ CBC. Phần đệm được sử dụng được chỉ định trong IETF [RFC-2313](http://tools.ietf.org/html/rfc2313) (PKCS#5 1.5, mục 8.1 (cho loại khối 02)). Trong trường hợp này, phần đệm bao gồm các octet được tạo ngẫu nhiên giả để khớp với các khối 16 byte. Cụ thể, xem mã CBC [CryptixAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixAESEngine.java) và triển khai Cryptix AES [CryptixRijndael_Algorithm](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixRijndael_Algorithm.java), cũng như phần đệm, được tìm thấy trong hàm ElGamalAESEngine.getPadding [ElGamalAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalAESEngine.java).
+Chúng tôi sử dụng AES với khóa 256 bit và khối 128 bit ở chế độ CBC. Phần đệm được sử dụng được chỉ định trong IETF [RFC-2313](http://tools.ietf.org/html/rfc2313) (PKCS#5 1.5, mục 8.1 (cho loại khối 02)). Trong trường hợp này, phần đệm bao gồm các octet được tạo ngẫu nhiên giả để khớp với các khối 16 byte. Cụ thể, xem mã CBC CryptixAESEngine và triển khai Cryptix AES CryptixRijndael_Algorithm, cũng như phần đệm, được tìm thấy trong hàm ElGamalAESEngine.getPadding ElGamalAESEngine.
 
 #### Lỗi thời
 
@@ -161,7 +161,7 @@ EdDSA-SHA512-Ed25519 là thuật toán chữ ký mặc định hiện tại. DSA
 
 ### DSA
 
-Chữ ký được tạo và xác minh bằng [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) 1024 bit (L=1024, N=160), như được triển khai trong [DSAEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/DSAEngine.java). DSA được chọn vì nó nhanh hơn nhiều so với ElGamal khi tạo chữ ký.
+Chữ ký được tạo và xác minh bằng [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) 1024 bit (L=1024, N=160), như được triển khai trong DSAEngine. DSA được chọn vì nó nhanh hơn nhiều so với ElGamal khi tạo chữ ký.
 
 #### SEED
 
@@ -306,15 +306,15 @@ Các kết nối NTCP được thương lượng với một triển khai Diffie
 
 ## Tài liệu tham khảo
 
-- [BENCHMARKS](https://web.archive.org/web/20080423000000*/http://www.eskimo.com/~weidai/benchmarks.html) - Benchmark Crypto++, ban đầu tại http://www.eskimo.com/~weidai/benchmarks.html (hiện đã chết), được cứu từ http://www.archive.org/, có ngày 23 tháng 4 năm 2008.
+- [BENCHMARKS](https://web.archive.org/web/20080423000000*/http://www.eskimo.com/~weidai/benchmarks.html) - Benchmark Crypto++, ban đầu tại http://www.eskimo.com/~weidai/benchmarks.html (hiện đã chết), được cứu từ `http://www.archive.org/`, có ngày 23 tháng 4 năm 2008.
 - [Common](/docs/specs/common-structures) - Đặc tả Cấu trúc Chung
-- [CryptixAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixAESEngine.java)
-- [CryptixRijndael_Algorithm](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixRijndael_Algorithm.java)
+- CryptixAESEngine
+- CryptixRijndael_Algorithm
 - [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm)
-- [DSAEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/DSAEngine.java)
+- DSAEngine
 - [ECIES](/docs/specs/ecies)
-- [ElGamalAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalAESEngine.java)
-- [ElGamalEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalEngine.java)
+- ElGamalAESEngine
+- ElGamalEngine
 - [EncryptedLeaseSet](/docs/specs/encryptedleaseset)
 - [Koshiba2004](http://www.springerlink.com/content/2jry7cftp5bpdghm/) - Koshiba & Kurosawa. Short Exponent Diffie-Hellman Problems. PKC 2004, LNCS 2947, trang 173-186
 - [NIST-800-57](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57-Part1-revised2_Mar08-2007.pdf)

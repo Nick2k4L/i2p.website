@@ -23,7 +23,7 @@ sudo ssh-keygen -N "" -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
 
 ### Using Java I2P
 
-Usando la interfaz web de I2P en Java, navega al [Administrador de Servicios Ocultos](http://127.0.0.1:7657/i2ptunnelmgr) e inicia el asistente de tunnel.
+Usando la interfaz web de I2P en Java, navega al `http://127.0.0.1:7657/i2ptunnelmgr` e inicia el asistente de tunnel.
 
 #### Tunnel Wizard
 

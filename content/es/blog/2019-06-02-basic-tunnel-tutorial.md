@@ -12,7 +12,7 @@ Aunque es fácil de hacer, hay algunas cosas que deberías considerar antes de h
 
 ### Paso uno: Abra el Asistente de Tunnel
 
-Ve a la interfaz web de I2P en 127.0.0.1:7657 y abre el [Hidden Services Manager](http://127.0.0.1:7657/i2ptunnelmgr) (enlace a localhost). Haz clic en el botón que dice "Tunnel Wizard" para comenzar.
+Ve a la interfaz web de I2P en 127.0.0.1:7657 y abre el `http://127.0.0.1:7657/i2ptunnelmgr` (enlace a localhost). Haz clic en el botón que dice "Tunnel Wizard" para comenzar.
 
 ### Paso dos: Seleccione un tunnel de servidor
 

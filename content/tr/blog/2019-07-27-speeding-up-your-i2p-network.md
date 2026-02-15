@@ -18,7 +18,7 @@ Birkaç sürüm öncesine kadar, bu sorunla başa çıkmak daha da zordu; çünk
 
 ## Bant genişliği sınırlarını ayarlama
 
-I2P bir eşler arası ağ olduğundan, ağ bant genişliğinizin bir kısmını diğer eşlerle paylaşmanız gerekir. Ne kadarını paylaşacağınızı "I2P Bandwidth Configuration" içinde seçebilirsiniz ("I2P Router Console" içindeki "Applications and Configuration" bölümündeki "Configure Bandwidth" düğmesi veya http://localhost:7657/config).
+I2P bir eşler arası ağ olduğundan, ağ bant genişliğinizin bir kısmını diğer eşlerle paylaşmanız gerekir. Ne kadarını paylaşacağınızı "I2P Bandwidth Configuration" içinde seçebilirsiniz ("I2P Router Console" içindeki "Applications and Configuration" bölümündeki "Configure Bandwidth" düğmesi veya `http://localhost:7657/config).`
 
 ![I2P Bant Genişliği Yapılandırması](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ I2P bir eşler arası ağ olduğundan, ağ bant genişliğinizin bir kısmını 
 
 Ancak pek çok kullanıcı hangi bant genişliği ayarlarını değiştirmesi gerektiğini tam olarak bilemeyebileceğinden, [I2P 0.9.38 sürümü](https://geti2p.net/en/download) bir Yeni Kurulum Sihirbazı sundu. Bu sihirbaz bir Bant Genişliği Testi içerir, bu test M-Lab'in [NDT](https://www.measurementlab.net/tests/ndt/) testi sayesinde bant genişliğini otomatik olarak tespit eder ve I2P'nin bant genişliği ayarlarını buna göre ayarlar.
 
-Sihirbazı yeniden çalıştırmak isterseniz, örneğin İnternet servis sağlayıcınızda bir değişiklikten sonra veya I2P'yi 0.9.38 sürümünden önce kurduğunuz için, onu 'Setup' bağlantısından 'Help & FAQ' sayfasında yeniden başlatabilir veya sihirbaza doğrudan http://localhost:7657/welcome adresinden erişebilirsiniz.
+Sihirbazı yeniden çalıştırmak isterseniz, örneğin İnternet servis sağlayıcınızda bir değişiklikten sonra veya I2P'yi 0.9.38 sürümünden önce kurduğunuz için, onu 'Setup' bağlantısından 'Help & FAQ' sayfasında yeniden başlatabilir veya sihirbaza doğrudan `http://localhost:7657/welcome` adresinden erişebilirsiniz.
 
 !["Setup"u bulabiliyor musunuz?](https://geti2p.net/images/blog/sidemenu.png)
 

@@ -22,7 +22,7 @@ Her zamanki gibi, hata düzeltmeleri ve bazı yeni özellikler var, ancak daha f
 
 * 2) UDP (SSU)
 
-Son 6-12 aydır ara ara tartıştığımız gibi, 0.6 sürümü yayımlandıktan sonra router'lar arası iletişimimiz için UDP'ye geçeceğiz. Bu yolda daha ileri gitmek için, taşıma protokolünün ilk taslağını CVS'de yayımladık @ http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+Son 6-12 aydır ara ara tartıştığımız gibi, 0.6 sürümü yayımlandıktan sonra router'lar arası iletişimimiz için UDP'ye geçeceğiz. Bu yolda daha ileri gitmek için, taşıma protokolünün ilk taslağını CVS'de yayımladık @ `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 Bu, belgede belirtilen hedeflerle uyumlu, oldukça basit bir protokoldür ve hem kimlik doğrulamak hem de veriyi güvence altına almak için I2P'nin yeteneklerinden yararlanırken, dışarıya mümkün olduğunca az bilgi ifşa eder. I2P çalıştırmayan biri için bağlantı el sıkışmasının ilk kısmı dahi ayırt edilemez. Protokolün davranışı, zamanlayıcıların nasıl tetikleneceği veya üç farklı yarı güvenilir durum göstergesinin nasıl kullanılacağı gibi ayrıntılar bakımından henüz spesifikasyonda tamamen tanımlanmış değildir; ancak şifreleme, paketleştirme ve NAT hole punching (NAT üzerinden iki uç arasında bağlantı kurmak için delik açma tekniği) temellerini kapsar. Bunların hiçbiri henüz uygulanmış değil, ancak yakında uygulanacak; bu nedenle geri bildirimlerinizi memnuniyetle karşılarız!
 
@@ -30,7 +30,7 @@ Bu, belgede belirtilen hedeflerle uyumlu, oldukça basit bir protokoldür ve hem
 
 Aum, dağıtık bir veri deposu olan Q(uartermaster) üzerinde harıl harıl çalışıyor ve belgelerin ilk taslağı yayında [1]. Oradaki ilginç fikirlerden biri, doğrudan bir DHT yaklaşımından memcached [2] tarzı bir sisteme doğru bir yönelim gibi görünüyor; her kullanıcının tüm aramaları tamamen *yerel olarak* yapması ve asıl veriyi Q sunucusundan "doğrudan" (gerçi I2P üzerinden) istemesiyle. Her neyse, hoş şeyler; belki Aum uyanıksa [3] ondan bir güncelleme koparabiliriz?
 
-[1] http://aum.i2p/q/ [2] http://www.danga.com/memcached/ [3] şu saat dilimlerine lanet olsun!
+[1] `http://aum.i2p/q/` [2] http://www.danga.com/memcached/ [3] şu saat dilimlerine lanet olsun!
 
 * 4) ???
 

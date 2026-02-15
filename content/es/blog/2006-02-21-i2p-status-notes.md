@@ -14,7 +14,7 @@ Hola a todos, ya es martes otra vez
 
 * 1) Net status
 
-La red ha pasado por algunos contratiempos con la versión 0.6.1.10, debido en parte a la incompatibilidad con versiones anteriores, pero también a errores inesperados. Ni la fiabilidad ni el tiempo de actividad en 0.6.1.10 fueron suficientes, así que en los últimos 5 días ha habido una avalancha de parches, culminando en la nueva versión 0.6.1.11 - http://dev.i2p.net/pipermail/i2p/2006-February/001263.html
+La red ha pasado por algunos contratiempos con la versión 0.6.1.10, debido en parte a la incompatibilidad con versiones anteriores, pero también a errores inesperados. Ni la fiabilidad ni el tiempo de actividad en 0.6.1.10 fueron suficientes, así que en los últimos 5 días ha habido una avalancha de parches, culminando en la nueva versión 0.6.1.11 - `http://dev.i2p.net/pipermail/i2p/2006-February/001263.html`
 
 La mayoría de los errores encontrados en 0.6.1.10 han estado presentes desde la versión 0.6 publicada en septiembre pasado, pero no eran fácilmente evidentes mientras había transportes alternativos a los que recurrir (TCP). Mi red de pruebas local simula fallos de paquetes, pero realmente no cubría el router churn (rotación de routers) y otros fallos persistentes de la red. La _PRE red de prueba también incluía un conjunto autoseleccionado de pares bastante fiables, así que hubo situaciones importantes que no se exploraron completamente antes del lanzamiento completo. Eso es un problema, obviamente, y la próxima vez nos aseguraremos de incluir una selección más amplia de escenarios.
 

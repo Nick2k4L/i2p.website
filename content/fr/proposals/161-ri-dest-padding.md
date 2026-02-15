@@ -131,7 +131,7 @@ et le champ de remplissage (pour les Destinations et les Identités de Routeur).
 
 ### Fichier de Clé Privée
 Le format du fichier de clé privée (eepPriv.dat) ne fait pas officiellement partie de nos spécifications
-mais il est documenté dans les [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+mais il est documenté dans les Java I2P javadocs
 et d'autres implémentations le supportent.
 Cela permet la portabilité des clés privées vers différentes implémentations.
 Ajoutez une note à ce javadoc que la clé publique de chiffrement peut être un remplissage aléatoire
@@ -219,7 +219,7 @@ les Messages de Recherche de Base de Données chiffrés et leurs réponses.
 Délai estimé pour la conception, le développement, et le déploiement de cela serait ????????
 Mais serait après hybride ou ratchet ????????????
 
-Pour de plus amples discussions, voir [this topic](http://zzz.i2p/topics/3294).
+Pour de plus amples discussions, voir this topic.
 
 
 ## Problèmes
@@ -245,4 +245,4 @@ Sous réserve de questions de rétrocompatibilité, et après avoir désactivé 
 les implémentations peuvent supprimer complètement le code ElGamal.
 Environ 14 % des routeurs du réseau sont de type de chiffrement ElGamal, y compris de nombreux floodfills.
 
-Une demande de fusion brouillon pour Java I2P est disponible à [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+Une demande de fusion brouillon pour Java I2P est disponible à git.idk.i2p.

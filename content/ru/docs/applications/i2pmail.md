@@ -37,7 +37,7 @@ I2P email использует систему двойных адресов:
 **Для регистрации учетной записи mail.i2p:**
 
 1. Убедитесь, что ваш I2P router запущен
-2. Посетите **[http://hq.postman.i2p](http://hq.postman.i2p)** внутри I2P
+2. Посетите **http://hq.postman.i2p** внутри I2P
 3. Следуйте процедуре регистрации
 4. Получите доступ к своей электронной почте через **SusiMail** в консоли router
 
@@ -90,7 +90,7 @@ sudo apt install apt-transport-https curl
 
 3. Добавьте репозиторий I2P:
 ```bash
-curl -o i2p-keyring.gpg https://geti2p.net/_static/i2p-debian-repo.key.gpg
+curl -o i2p-keyring.gpg `https://geti2p.net/_static/i2p-debian-repo.key.gpg`
 sudo cp i2p-keyring.gpg /usr/share/keyrings/
 echo "deb [signed-by=/usr/share/keyrings/i2p-keyring.gpg] https://deb.i2p2.de/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/i2p.list
 ```
@@ -105,7 +105,7 @@ sudo apt install i2p i2p-keyring
 
 Загрузите и установите комплект Easy-Install:
 ```bash
-wget https://geti2p.net/en/download/easyinstall
+wget `https://geti2p.net/en/download/easyinstall`
 chmod +x easyinstall
 ./easyinstall
 ```
@@ -124,7 +124,7 @@ sudo systemctl start i2p
 
 После запуска I2P откройте веб-браузер и перейдите по адресу:
 ```
-http://127.0.0.1:7657
+`http://127.0.0.1:7657`
 ```
 
 ## Оптимизация производительности
@@ -182,7 +182,7 @@ tail -f ~/.i2p/wrapper.log
 ## Дополнительная информация
 
 Для получения более подробной информации посетите:
-- Официальную документацию I2P: https://geti2p.net/docs
+- Официальную документацию I2P: `https://geti2p.net/docs`
 - Форумы I2P: https://i2pforum.net
 
 ## Technical Details

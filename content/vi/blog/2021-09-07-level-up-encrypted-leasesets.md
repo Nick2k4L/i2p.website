@@ -41,13 +41,13 @@ Mặc dù việc giải thích có thể tốn thời gian, việc thiết lập
 
 ## Trên "Server"
 
-Bắt đầu bằng cách mở Hidden Services Manager tại http://127.0.0.1:7657/i2ptunnelmgr và cuộn xuống cuối phần có dòng "I2P Hidden Services." Tạo một dịch vụ ẩn mới với host "127.0.0.1" và port "7657" với các "Tunnel Cryptography Options" này và lưu dịch vụ ẩn.
+Bắt đầu bằng cách mở Hidden Services Manager tại `http://127.0.0.1:7657/i2ptunnelmgr` và cuộn xuống cuối phần có dòng "I2P Hidden Services." Tạo một dịch vụ ẩn mới với host "127.0.0.1" và port "7657" với các "Tunnel Cryptography Options" này và lưu dịch vụ ẩn.
 
 Sau đó, chọn tunnel mới của bạn từ trang chính Hidden Services Manager. Phần Tùy chọn mật mã của tunnel giờ đây sẽ bao gồm Khóa được chia sẻ trước đầu tiên của bạn. Hãy ghi lại điều này cho bước tiếp theo, cùng với Encrypted Base32 Address (Địa chỉ Base32 được mã hóa) của tunnel.
 
 ## Trên "Client"
 
-Bây giờ hãy chuyển sang máy khách sẽ kết nối tới dịch vụ ẩn và truy cập trang Cấu hình Keyring tại http://127.0.0.1:7657/configkeyring để thêm các khóa từ trước đó. Bắt đầu bằng cách dán Base32 từ máy chủ vào trường có nhãn: "Full destination, name, Base32, or hash." Tiếp theo, dán Khóa chia sẻ trước (Pre-Shared Key) từ máy chủ vào trường "Encryption Key". Nhấn Lưu, và bạn đã sẵn sàng truy cập an toàn vào dịch vụ ẩn bằng Encrypted LeaseSet.
+Bây giờ hãy chuyển sang máy khách sẽ kết nối tới dịch vụ ẩn và truy cập trang Cấu hình Keyring tại `http://127.0.0.1:7657/configkeyring` để thêm các khóa từ trước đó. Bắt đầu bằng cách dán Base32 từ máy chủ vào trường có nhãn: "Full destination, name, Base32, or hash." Tiếp theo, dán Khóa chia sẻ trước (Pre-Shared Key) từ máy chủ vào trường "Encryption Key". Nhấn Lưu, và bạn đã sẵn sàng truy cập an toàn vào dịch vụ ẩn bằng Encrypted LeaseSet.
 
 ## Bây giờ bạn đã sẵn sàng để quản trị I2P từ xa
 

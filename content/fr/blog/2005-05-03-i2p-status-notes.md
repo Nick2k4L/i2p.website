@@ -24,7 +24,7 @@ Les tests en sont encore à un stade très précoce, mais cela s’est déroulé
 
 Grâce aux statistiques recueillies auprès des bénévoles, il est apparu clairement à quel point le code d’accusé de réception sélectif est important pour le bon fonctionnement dans des réseaux fortement congestionnés. J’ai passé ces derniers jours à implémenter et tester ce code, et j’ai mis à jour la spécification SSU [1] pour inclure une nouvelle technique SACK efficace. Elle ne sera pas rétrocompatible avec l’ancien code SSU, par conséquent les personnes qui ont participé aux tests devraient désactiver le transport SSU jusqu’à ce qu’une nouvelle version soit prête pour les tests (espérons-le d’ici un jour ou deux).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 3) i2phex
 
@@ -32,7 +32,7 @@ sirup travaille d'arrache-pied sur un portage de phex vers i2p, et même s'il re
 
 Il y a beaucoup plus d’informations sur l’eepsite de sirup (site I2P) [2], et l’aide aux tests par des personnes déjà dans la communauté i2p serait la bienvenue (mais s’il vous plaît, jusqu’à ce que sirup l’avalise comme une version publique, et qu’i2p en soit au moins à la 0.6, sinon 1.0, gardons cela au sein de la communauté i2p). Je pense que sirup sera présent à la réunion de cette semaine, nous pourrons peut-être obtenir plus d’informations à ce moment-là !
 
-[2] http://sirup.i2p/
+[2] `http://sirup.i2p/`
 
 * 4) awol
 
@@ -48,4 +48,4 @@ Donc, si vous vous ennuyez et souhaitez donner un coup de main, mais avez besoin
 
 OK, c'est à peu près tout ce que j'ai à aborder pour le moment. Pour ceux qui souhaitent aider aux tests SSU la semaine prochaine, guettez des infos sur mon blog [3]. Pour le reste d'entre vous, on se voit à la réunion !
 
-=jr [3] http://jrandom.dev.i2p/
+=jr [3] `http://jrandom.dev.i2p/`

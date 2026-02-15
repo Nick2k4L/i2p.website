@@ -130,7 +130,7 @@ Trois changements doivent être mis en œuvre.
 
 Cela a été initialement mis en œuvre sans proposition formelle, mais c'est requis pour
 les introductions IPv6, nous l'incluons donc ici.
-Voir aussi [CAPS](http://zzz.i2p/topics/3050).
+Voir aussi CAPS.
 
 
 Deux nouvelles capacités "4" et "6" sont définies.

@@ -11,7 +11,7 @@ toc: true
 
 ## 概述
 
-本提案概述了一个协议设计，使 I2P 客户端、服务或外部负载均衡器进程能够透明地管理托管单个 [Destination](http://localhost:63465/docs/specs/common-structures/#destination) 的多个 router。
+本提案概述了一个协议设计，使 I2P 客户端、服务或外部负载均衡器进程能够透明地管理托管单个 `http://localhost:63465/docs/specs/common-structures/#destination` 的多个 router。
 
 该提案目前没有指定具体的实现方式。它可以作为 [I2CP](/docs/specs/i2cp/) 的扩展来实现，或者作为一个新协议来实现。
 

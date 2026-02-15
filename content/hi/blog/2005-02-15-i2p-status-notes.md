@@ -18,7 +18,7 @@ categories: ["status"]
 
 एक और अस्थायी समस्या यह रही है कि HTTP outproxies (www1.squid.i2p) में से एक डाउन रहा, जिसकी वजह से outproxy अनुरोधों में से 50% विफल हो रहे हैं। आप उस outproxy (I2P से बाहरी इंटरनेट तक पहुँचाने वाला प्रॉक्सी) को अस्थायी रूप से हटाने के लिए अपनी I2PTunnel कॉन्फ़िग [1] खोलें, eepProxy को संपादित करें, और "Outproxies:" लाइन को बदलकर केवल "squid.i2p" रखें। उम्मीद है, अतिरिक्तता बढ़ाने के लिए दूसरा वाला भी जल्द ही फिर से ऑनलाइन हो जाएगा।
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -34,7 +34,7 @@ categories: ["status"]
 
 duck ने पिछले हफ्ते के 0.1.6 अपडेट के लिए एक bugfix रिलीज़ तैयार की है, और खबर है कि यह धांसू है (शायद /बहुत/ धांसू, बढ़े हुए नेटवर्क उपयोग को देखते हुए ;)  और जानकारी i2p-bt forum [2] पर
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

@@ -72,7 +72,7 @@ categories: ["meeting"]
 20:14:13  &lt;dg&gt; There we go.
 20:14:20  &lt;dg&gt; Let me paste what they missed.
 20:15:42  &lt;dg&gt; this is painful haha
-20:16:09  &lt;dg&gt; ok, netsplit folk: http://pastethis.i2p/show/2297/
+20:16:09  &lt;dg&gt; ok, netsplit folk: `http://pastethis.i2p/show/2297/`
 20:16:12  &lt;iRelay&gt; Title: Paste #2297 | LodgeIt! (at pastethis.i2p)
 20:16:12  &lt;dg&gt; &lt;+dg&gt; I can't comment on progress from the last 2 years since I haven't been here for that long
 20:16:15  &lt;dg&gt; &lt;+dg&gt; If somebody else could, I'd appreciate it
@@ -225,7 +225,7 @@ categories: ["meeting"]
 20:50:25  &lt;zzz&gt; re: gsoc: wrong as in I'm happy to help but I'm not going to be in charge and not going to do it myself.
 20:50:43  &lt;dg&gt; totally different to what i heard
 20:50:53  &lt;dg&gt; key word: heard, I suppose
-20:51:05  &lt;dg&gt; relevant trac page: http://trac.i2p2.i2p/wiki/gsoc
+20:51:05  &lt;dg&gt; relevant trac page: `http://trac.i2p2.i2p/wiki/gsoc`
 20:51:32  &lt;zzz&gt; dg re: fux, you're asking the wrong guy. I have no recent info.
 20:51:39  &lt;nom&gt; imo fork is both exactly what is happening and exactly what is not happening, zzz you 'control' the official i2p.i2p branch in that you give out commit keys, but theres always gonna be people/groups writing their own features/code into i2p, if theres no interest in merging it stays a 'fork' but otherwise its not really
 20:52:01  &lt;dg&gt; zzz: generally asking if you'd be ok with merging some of the themes, etc
@@ -243,7 +243,7 @@ categories: ["meeting"]
 20:54:52  &lt;str4d&gt; Not sure what was done in 2010 for that.
 20:55:19  &lt;dg&gt; zzz: Alright, if I can get them to talk about it etc, I may be able to get you an update.
 20:55:27  &lt;dg&gt; just a note
-20:55:30  &lt;dg&gt; http://trac.i2p2.i2p/wiki/gsoc/ideas
+20:55:30  &lt;dg&gt; `http://trac.i2p2.i2p/wiki/gsoc/ideas`
 20:55:37  &lt;dg&gt; seems quite interesting
 20:55:40  &lt;iRelay&gt; Title: gsoc/ideas  I2P (at trac.i2p2.i2p)
 20:55:44  &lt;zzz&gt; so I repeat, you are asking the wrong guy. If you want to know about status, ask the guys working on it, not me.
@@ -263,7 +263,7 @@ categories: ["meeting"]
 21:00:46  &lt;zzz&gt; the main thing in remember is regressions in legibility and color choices, esp. in snark. But it's been months since I looked at it
 21:00:49  &lt;darrob&gt; nom: you should try to find logs. it would be hard to recall or summarize. (for me, anyway, and i tried to give feedback, too).
 21:00:56  &lt;zzz&gt; I felt it was a big step backwards
-21:01:18  &lt;KillYourTV&gt; http://killyourtv.i2p/irclogs/%23i2p-dev.2012-08-23.log.html
+21:01:18  &lt;KillYourTV&gt; `http://killyourtv.i2p/irclogs/%23i2p-dev.2012-08-23.log.html`
 21:01:21  &lt;iRelay&gt; Title: #i2p-dev logs for Thursday, 2012-08-23 (at killyourtv.i2p)
 21:01:32  &lt;dg&gt; seems too late to enter gsoc this time now
 21:01:43  &lt;psi&gt; regardless... i think we need a "real life" UI testing mechanism that isn't totally subjective
@@ -346,7 +346,7 @@ categories: ["meeting"]
 21:15:48  &lt;str4d&gt; dg, I agree about the changes to non-default themes being mergable, especially since the majority of changes are by the original theme author, but there are other things that need work first.
 21:15:55  &lt;user&gt; again, plugins would be handy, as to not increase the i2p package's size unneededly.
 21:16:30  &lt;KillYourTV&gt; One thing for sure would be the pull the fix for ticket #773. It's fine in fux; it's not fine in the vanilla builds.
-21:16:37  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/773 - (new defect) - Overlapping text in midnight theme
+21:16:37  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/773` - (new defect) - Overlapping text in midnight theme
 21:16:49  &lt;psi&gt; i do like the unified css and inline frames for snark and mail
 21:16:49  &lt;psi&gt; especially the unified css
 21:16:52  &lt;KillYourTV&gt; iirc LaughingBuddah reported that in this channel as well.
@@ -420,10 +420,10 @@ categories: ["meeting"]
 21:29:49  &lt;dg&gt; current site makes me think nerdy
 21:30:11  &lt;dg&gt; and dead, old
 21:30:18  &lt;dg&gt; I didn't know if i2p was even in active dev when I first saw it
-21:30:37  &lt;str4d&gt; thursday, (and those who haven't seen it): http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/ is the revamp
+21:30:37  &lt;str4d&gt; thursday, (and those who haven't seen it): `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/` is the revamp
 21:31:01  &lt;LaughingBuddah&gt; psi: they could be worked on my different people. no need to decide for only one of the two
 21:31:16  &lt;dg&gt; I can do blog posts/write ups for pages.
-21:32:51  &lt;KillYourTV&gt; yes, I read your message str4d. and I call http://killyourtv.i2p/tmp/nffnatr.png "assange run through a filter"
+21:32:51  &lt;KillYourTV&gt; yes, I read your message str4d. and I call `http://killyourtv.i2p/tmp/nffnatr.png` "assange run through a filter"
 21:33:17  &lt;KillYourTV&gt; (hell, back in early september it was still 'assange.png' :P)
 21:34:13  &lt;thursday&gt; That looks fantastic. As someone who wants to help out with the site, is there a list of the major things that need to be done before this revamp can go live?
 21:34:24  &lt;str4d&gt; KillYourTV, that is not current. If you run fux you'll see that replaced with a variant of hat guy.

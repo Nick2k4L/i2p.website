@@ -178,12 +178,12 @@ Ressourcen für Journalisten, Forscher und alle, die sich für I2P interessieren
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">Zwiebeln und Knoblauch: die Protokolle von I2P</a>
+Zwiebeln und Knoblauch: die Protokolle von I2P
 </div>
 <div class="content-entry-meta">🎥 Präsentation • 17. Februar 2016</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ Ressourcen für Journalisten, Forscher und alle, die sich für I2P interessieren
 <div class="content-entry-title">zzz und Lance James im InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Podcast • 16. Februar 2012</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">I2P Torrent</a>
+I2P Torrent
 </div>
 </div>
 
@@ -279,7 +279,7 @@ Ressourcen für Journalisten, Forscher und alle, die sich für I2P interessieren
 <div class="content-entry-title">zzz im InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Podcast • 18. August 2011</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">I2P Torrent</a>
+I2P Torrent
 </div>
 </div>
 
@@ -343,7 +343,7 @@ Ressourcen für Journalisten, Forscher und alle, die sich für I2P interessieren
 </div>
 <div class="content-entry-meta">🎥 Präsentation • HOPE • 17. Juli 2010</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">YouTube</a>
 </div>
 </div>

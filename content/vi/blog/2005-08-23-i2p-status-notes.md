@@ -20,7 +20,7 @@ Có một câu hỏi (rất) thường gặp liên quan đến mã kiểm tra pe
 
 (Nguyên nhân của việc có quá nhiều giá trị trạng thái Unknown là vì chúng tôi đang bỏ qua các kiểm tra peer trong đó "Charlie" [2] là một nút mà chúng tôi đã có sẵn phiên SSU, vì điều đó ngụ ý rằng họ vẫn có thể vượt qua NAT của chúng tôi ngay cả khi NAT của chúng tôi bị lỗi)
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000844.html [2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000844.html` [2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting`
 
 * 2) IRC status
 
@@ -32,13 +32,13 @@ susi23 (nổi tiếng với susimail) đã trở lại với một cặp công c
 
 SusiBT là một web frontend (giao diện web) cho i2p-bt. Nó tích hợp vào i2p router của bạn và cho phép tải lên và tải xuống tự động, tiếp tục sau khi khởi động lại, cùng một số chức năng quản lý như tải lên và tải xuống tệp. Các phiên bản sau của ứng dụng sẽ hỗ trợ tự động tạo và tải lên các tệp torrent.
 
-[3] http://susi.i2p/?page_id=31 [4] http://susi.i2p/?p=33
+[3] `http://susi.i2p/?page_id=31` [4] `http://susi.i2p/?p=33`
 
 Cho tôi nghe một tiếng "w00t" nào?
 
 * 4) Syndie
 
-Như đã đề cập trên danh sách thư và trong kênh, chúng tôi có một ứng dụng khách mới dành cho viết blog/phân phối nội dung an toàn và có xác thực. Với Syndie, câu hỏi "is your eepsite(I2P Site) up" không còn nữa, vì bạn vẫn có thể đọc nội dung ngay cả khi site đó ngừng hoạt động, và Syndie tránh được mọi vấn đề rắc rối vốn có của các mạng phân phối nội dung bằng cách tập trung vào phần giao diện (frontend). Dù sao thì, nó vẫn đang trong quá trình hoàn thiện, nhưng nếu mọi người muốn tham gia và dùng thử, hiện có một nút Syndie công cộng tại http://syndiemedia.i2p/ (cũng có thể truy cập trên web tại http://66.111.51.110:8000/). Cứ thoải mái vào đó và tạo một blog, hoặc nếu bạn cảm thấy mạo hiểm, hãy viết vài bình luận/đề xuất/quan ngại lên blog! Dĩ nhiên, rất hoan nghênh các bản vá, và cả các đề xuất tính năng nữa, nên cứ mạnh dạn.
+Như đã đề cập trên danh sách thư và trong kênh, chúng tôi có một ứng dụng khách mới dành cho viết blog/phân phối nội dung an toàn và có xác thực. Với Syndie, câu hỏi "is your eepsite(I2P Site) up" không còn nữa, vì bạn vẫn có thể đọc nội dung ngay cả khi site đó ngừng hoạt động, và Syndie tránh được mọi vấn đề rắc rối vốn có của các mạng phân phối nội dung bằng cách tập trung vào phần giao diện (frontend). Dù sao thì, nó vẫn đang trong quá trình hoàn thiện, nhưng nếu mọi người muốn tham gia và dùng thử, hiện có một nút Syndie công cộng tại `http://syndiemedia.i2p/` (cũng có thể truy cập trên web tại http://66.111.51.110:8000/). Cứ thoải mái vào đó và tạo một blog, hoặc nếu bạn cảm thấy mạo hiểm, hãy viết vài bình luận/đề xuất/quan ngại lên blog! Dĩ nhiên, rất hoan nghênh các bản vá, và cả các đề xuất tính năng nữa, nên cứ mạnh dạn.
 
 * 5) ???
 

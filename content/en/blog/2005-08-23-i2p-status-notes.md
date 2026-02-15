@@ -23,8 +23,8 @@ One (very) common question has come up regarding the peer test code-"Why does it
 
 (The cause for the excess Unknown status values is because we are ignoring peer tests where "Charlie" [2] is someone we already have an SSU session with, since that implies they'd be able to get through our NAT even if our NAT is broken)
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000844.html
-[2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000844.html`
+[2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting`
 
 * 2) IRC status
 
@@ -40,14 +40,14 @@ susi23 (of susimail fame) is back with a pair of bt related tools - susibt [3] a
   download. Later versions of the application will support automatic
   build and upload of torrent files.
 
-[3] http://susi.i2p/?page_id=31
-[4] http://susi.i2p/?p=33
+[3] `http://susi.i2p/?page_id=31`
+[4] `http://susi.i2p/?p=33`
 
 Can I hear a "w00t"?
 
 * 4) Syndie
 
-As mentioned on the list and in the channel, we've got a new client app for secure and authenticated blogging / content distribution. With Syndie, the "is your eepsite(I2P Site) up" question goes away, as you can read the content even when the site is down, but Syndie avoids all the ugly issues inherent in content distribution networks by focusing on the frontend. Anyway, its very much a work in progress, but if people want to get in and try it out, there's a public Syndie node at http://syndiemedia.i2p/ (also reachable on the web at http://66.111.51.110:8000/). Feel free to go in there and create a blog, or if you're feeling adventurous, blog up some comments/suggestions/concerns! Of course, patches are welcome, but so are feature suggestions, so let 'er rip.
+As mentioned on the list and in the channel, we've got a new client app for secure and authenticated blogging / content distribution. With Syndie, the "is your eepsite(I2P Site) up" question goes away, as you can read the content even when the site is down, but Syndie avoids all the ugly issues inherent in content distribution networks by focusing on the frontend. Anyway, its very much a work in progress, but if people want to get in and try it out, there's a public Syndie node at `http://syndiemedia.i2p/` (also reachable on the web at http://66.111.51.110:8000/). Feel free to go in there and create a blog, or if you're feeling adventurous, blog up some comments/suggestions/concerns! Of course, patches are welcome, but so are feature suggestions, so let 'er rip.
 
 * 5) ???
 

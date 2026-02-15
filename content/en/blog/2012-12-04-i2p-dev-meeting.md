@@ -104,7 +104,7 @@ categories: ["meeting"]
 21:28:06  &lt;dg&gt; --- w8rabbit (w8rabbit@irc2p) has quit (Killed (nickserv (Nick kill enforced)))
 21:28:06  &lt;zzz&gt; &lt;str4d&gt; Ah, thanks zzz - so more of a general get-everyone-up-to-speed-before-the-meeting update.
 21:28:06  &lt;zzz&gt; &lt;zzz&gt; correct
-21:28:09  &lt;dg&gt; &lt;+dg&gt; Next topic: * PR management role (http://zzz.i2p/topics/1299)
+21:28:09  &lt;dg&gt; &lt;+dg&gt; Next topic: * PR management role (`http://zzz.i2p/topics/1299)`
 21:28:09  &lt;dg&gt; &lt;+dg&gt; I don't know if the guy who posted that is here..
 21:28:09  &lt;str4d&gt; dg, repost: And the status updates don't need to necessarily be too "minutes-y", since the meetings section of the revamp is where actual minutes should go (and I'm thinking that the minutes could be put into a feed as well, while the full logs are displayed with the minutes on the site)
 21:28:24  &lt;str4d&gt; Yes he is - orion?
@@ -187,7 +187,7 @@ categories: ["meeting"]
 21:58:11  &lt;dg&gt; matches the name
 21:58:33  &lt;lillith&gt; it's been mentioned on zzz.i2p recently iirc
 21:59:40  &lt;psi&gt; if someone who does know for sure from way back when a "confirmation" would be great
-22:01:31  &lt;lillith&gt; http://zzz.i2p/topics/114
+22:01:31  &lt;lillith&gt; `http://zzz.i2p/topics/114`
 22:04:31  * dg reads
 22:04:31  &lt;lillith&gt; it's not what i meant, but it explains pretty thoroughly
 22:06:02  &lt;Meeh&gt; just wondering, where are we in the meeting?

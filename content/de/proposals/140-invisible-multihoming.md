@@ -11,7 +11,7 @@ toc: true
 
 ## Überblick
 
-Dieser Vorschlag umreißt ein Design für ein Protokoll, das es einem I2P-Client, -Service oder externen Balancer-Prozess ermöglicht, mehrere Router transparent zu verwalten, die eine einzelne [Destination](http://localhost:63465/docs/specs/common-structures/#destination) hosten.
+Dieser Vorschlag umreißt ein Design für ein Protokoll, das es einem I2P-Client, -Service oder externen Balancer-Prozess ermöglicht, mehrere Router transparent zu verwalten, die eine einzelne `http://localhost:63465/docs/specs/common-structures/#destination` hosten.
 
 Der Vorschlag spezifiziert derzeit keine konkrete Implementierung. Er könnte als Erweiterung zu [I2CP](/docs/specs/i2cp/) oder als neues Protokoll implementiert werden.
 

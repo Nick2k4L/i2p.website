@@ -1056,7 +1056,7 @@ PSK client authorization के नुकसान ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   वांछित key के लिए एक बार call कर सकते हैं)। BLAKE2b, SHA-256 से काफी तेज़ है, और
   keyed-BLAKE2b hash function calls की कुल संख्या को कम कर देगा।
   हालांकि, proposal 148 देखें, जहाँ यह प्रस्तावित है कि हम अन्य कारणों से BLAKE2b पर switch करें।
-  देखें [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html)।
+  देखें Secure key derivation performance।
 
 ### Meta LS2
 
@@ -1070,7 +1070,7 @@ Meta LS2 का उपयोग मामला बड़े पैमाने 
 
 leaf routers, intermediate और master Meta LS signers के बीच समन्वय के लिए back-end protocol यहाँ निर्दिष्ट नहीं है। आवश्यकताएं अत्यंत सरल हैं - बस यह सत्यापित करना कि peer चालू है, और हर कुछ घंटों में एक नया LS प्रकाशित करना। एकमात्र जटिलता failure पर top-level या intermediate-level Meta LSes के लिए नए publishers चुनने की है।
 
-मिक्स-और-मैच leasesets जहाँ कई routers से leases को मिलाया, साइन किया, और एक ही leaseset में प्रकाशित किया जाता है, इसे proposal 140, "invisible multihoming" में प्रलेखित किया गया है। यह proposal जैसा लिखा गया है वैसा अव्यावहारिक है, क्योंकि streaming connections एक ही router के साथ "sticky" नहीं रह पाएंगे, देखें http://zzz.i2p/topics/2335 ।
+मिक्स-और-मैच leasesets जहाँ कई routers से leases को मिलाया, साइन किया, और एक ही leaseset में प्रकाशित किया जाता है, इसे proposal 140, "invisible multihoming" में प्रलेखित किया गया है। यह proposal जैसा लिखा गया है वैसा अव्यावहारिक है, क्योंकि streaming connections एक ही router के साथ "sticky" नहीं रह पाएंगे, देखें `http://zzz.i2p/topics/2335` ।
 
 बैक-एंड प्रोटोकॉल, और router तथा client internals के साथ इंटरैक्शन, invisible multihoming के लिए काफी जटिल होगा।
 
@@ -1594,7 +1594,7 @@ Session ID (2 bytes) The value from the Send Message.
 
 ## Private Key File Changes Required
 
-निजी कुंजी फ़ाइल (eepPriv.dat) प्रारूप हमारे विनिर्देशों का एक आधिकारिक हिस्सा नहीं है लेकिन यह [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) में प्रलेखित है और अन्य implementations इसका समर्थन करते हैं। यह विभिन्न implementations में निजी कुंजियों की पोर्टेबिलिटी को सक्षम बनाता है।
+निजी कुंजी फ़ाइल (eepPriv.dat) प्रारूप हमारे विनिर्देशों का एक आधिकारिक हिस्सा नहीं है लेकिन यह Java I2P javadocs में प्रलेखित है और अन्य implementations इसका समर्थन करते हैं। यह विभिन्न implementations में निजी कुंजियों की पोर्टेबिलिटी को सक्षम बनाता है।
 
 अस्थायी सार्वजनिक कुंजी और ऑफ़लाइन हस्ताक्षर जानकारी को संग्रहीत करने के लिए परिवर्तन आवश्यक हैं।
 

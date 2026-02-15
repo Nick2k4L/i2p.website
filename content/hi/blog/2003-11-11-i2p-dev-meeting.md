@@ -6,7 +6,7 @@ description: "I2P विकास बैठक जिसमें router की 
 categories: ["meeting"]
 ---
 
-(वेबैक मशीन http://www.archive.org/ के सौजन्य से)
+(वेबैक मशीन `http://www.archive.org/` के सौजन्य से)
 
 ## त्वरित पुनरावलोकन
 

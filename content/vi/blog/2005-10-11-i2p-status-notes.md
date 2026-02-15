@@ -36,7 +36,7 @@ Tính năng phát hành theo lịch của Ragnarok có vẻ đang hoạt động
 
 Hàm ý của hai điều này khi xét cùng nhau đã rõ ràng. Sẽ có thêm tin tức khi có thêm tin tức.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (chúng tôi sẽ tích hợp nó vào CVS sớm thôi)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (chúng tôi sẽ tích hợp nó vào CVS sớm thôi)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ Nghe nói I2Phex hoạt động khá ổn, nhưng về lâu dài vẫn còn mộ
 
 Hiện tại tôi không thật sự có thời gian để bắt tay vào việc này, nhưng hãy ghé qua diễn đàn nếu bạn muốn giúp.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ Danh sách thư [6] gần đây hoạt động khá sôi nổi với các thảo
 
 Tôi không chắc mình có nhiều điều để bổ sung ngoài những gì đã có trong chính các bài viết, nhưng một số người cho biết phần thảo luận đã giúp họ hiểu về I2P và Freenet rõ hơn, nên có lẽ cũng đáng xem qua. Hoặc cũng có thể không ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

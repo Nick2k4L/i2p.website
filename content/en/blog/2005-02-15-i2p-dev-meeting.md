@@ -56,7 +56,7 @@ categories: ["meeting"]
 13:18 &lt;ant&gt; &lt;BS314159&gt; smeghead: it's three days. I'm sure you can come up with something else to do for three days
 13:19  * jrandom could poke open an inproxy to spaetz's 0.5 ircd :)
 13:20 &lt;jrandom&gt; perhaps a simpler solution would be to suggest bt users take advantage of the capacity to reduce network load by reducing their tunnel length
-13:21 &lt;jrandom&gt; (both on the inbound tunnels, as configured with the bt command line, and on outbound tunnels, as configured on http://localhost:7657/configclients.jsp )
+13:21 &lt;jrandom&gt; (both on the inbound tunnels, as configured with the bt command line, and on outbound tunnels, as configured on `http://localhost:7657/configclients.jsp` )
 13:21 &lt;polecat&gt; Yeah, they don't need so much anonymity as obscurity.  It's us illegal alien ferrets that need the 2 hop thingy.
 13:21 &lt;bla_&gt; jrandom: A possible solution, bt-0.1.8, wiith default tunnels length of 1, was mentioned before here on the channel. Duck, you here?
 13:22 &lt;polecat&gt; Does i2p-bt use SAM, or does it use an i2ptunnel session?
@@ -184,7 +184,7 @@ categories: ["meeting"]
 14:03 &lt;jrandom&gt; ok, moving to 4) ???
 14:03 &lt;jrandom&gt; anyone else have anything else to bring up for the meeting?
 14:03 &lt;ant&gt; &lt;jnymo&gt; threshold crytography rules
-14:04 &lt;cervantes&gt; ??? = http://forum.i2p/viewtopic.php?p=1237
+14:04 &lt;cervantes&gt; ??? = `http://forum.i2p/viewtopic.php?p=1237`
 14:04 &lt;ant&gt; &lt;BS314159&gt; proxies to the web are not cool. What about proxies to new versions of I2P, or other anonymnets?
 14:04 &lt;ant&gt; &lt;BS314159&gt; and by not cool I mean not safe to run
 14:04 &lt;ant&gt; &lt;jnymo&gt; they aren't run by everyone, BS
@@ -231,7 +231,7 @@ categories: ["meeting"]
 14:19 &lt;ant&gt; &lt;jnymo&gt; or call it "upgrade"
 14:19 &lt;ant&gt; &lt;jnymo&gt; and put the restart function in there
 14:19 &lt;ant&gt; &lt;jnymo&gt; though i'm probably stating the obvious
-14:19 &lt;jrandom&gt; right, we need perhaps a dozen lines of code to fetch http://dev.i2p/i2p/i2pupdate.zip, verify it, then restart
+14:19 &lt;jrandom&gt; right, we need perhaps a dozen lines of code to fetch `http://dev.i2p/i2p/i2pupdate.zip,` verify it, then restart
 14:20 &lt;jrandom&gt; ok, anyone else have anything to bring up for the meeting?
 14:20 &lt;ant&gt; &lt;cervantes&gt; well I can already get the toolbar to download an update into the i2p folder AND trigger a graceful restart...but so far I haven't been able to get it verify the download's integrity
 14:21 &lt;jrandom&gt; cervantes: ah, that part should be easy - at a later date, we'll have the update itself be self-verifying

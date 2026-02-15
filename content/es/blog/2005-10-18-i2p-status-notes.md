@@ -35,13 +35,13 @@ Michael Rogers se puso en contacto en relación con algunos ataques nuevos e int
 
 Michael ha publicado otro ataque en la lista que estamos analizando en este momento, así que podrás seguirlo allí también.
 
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001005.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001008.html [4] http://dev.i2p.net/pipermail/i2p/2005-October/001006.html
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001005.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001008.html` [4] `http://dev.i2p.net/pipermail/i2p/2005-October/001006.html`
 
 * 4) I2Phex
 
 Striker está logrando más avances con el error de subida, y los informes indican que ya lo tiene localizado. Con suerte, entrará en CVS esta noche, y poco después se publicará como 0.1.1.33. Estén atentos al foro [5] para más información.
 
-[5] http://forum.i2p.net/viewforum.i2p?f=25
+[5] `http://forum.i2p.net/viewforum.i2p?f=25`
 
 Corre el rumor de que redzara también está avanzando bastante bien para volver a fusionarse con la rama principal de Phex, así que, con suerte, con la ayuda de Gregor, pondremos todo al día pronto.
 

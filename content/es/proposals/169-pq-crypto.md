@@ -14,7 +14,7 @@ toc: true
 
 Aunque la investigación y competencia por criptografía post-cuántica (PQ) adecuada han estado en curso durante una década, las opciones no se han vuelto claras hasta hace poco.
 
-Comenzamos a examinar las implicaciones de la criptografía PQ en 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
+Comenzamos a examinar las implicaciones de la criptografía PQ en 2022 zzz.i2p.
 
 Los estándares TLS añadieron soporte para cifrado híbrido en los últimos dos años y ahora se utiliza para una porción significativa del tráfico cifrado en internet debido al soporte en Chrome y Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 

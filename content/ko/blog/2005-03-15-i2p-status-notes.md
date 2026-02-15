@@ -22,9 +22,9 @@ categories: ["status"]
 
 * 2) Feedspace
 
-Frosk가 i2pcontent/fusenet 문서의 또 다른 리비전을 올렸는데, 이번에는 새 이름과 새 홈에서 공개되었습니다: http://feedspace.i2p/ - destination은 orion [1]이나 내 블로그 [2]를 참고하세요. 이것은 "와, 끝내주는 기능"이라는 관점에서도, "와, I2P의 익명성에 도움이 되겠다"는 관점에서도 정말 유망해 보입니다. Frosk와 팀은 열심히 작업 중이지만, 분명히 의견(그리고 도움)을 찾고 있습니다. 회의에서 Frosk에게 업데이트를 부탁할 수 있을까요?
+Frosk가 i2pcontent/fusenet 문서의 또 다른 리비전을 올렸는데, 이번에는 새 이름과 새 홈에서 공개되었습니다: `http://feedspace.i2p/` - destination은 orion [1]이나 내 블로그 [2]를 참고하세요. 이것은 "와, 끝내주는 기능"이라는 관점에서도, "와, I2P의 익명성에 도움이 되겠다"는 관점에서도 정말 유망해 보입니다. Frosk와 팀은 열심히 작업 중이지만, 분명히 의견(그리고 도움)을 찾고 있습니다. 회의에서 Frosk에게 업데이트를 부탁할 수 있을까요?
 
-[1] http://orion.i2p/#feedspace.i2p [2] http://jrandom.dev.i2p/
+[1] `http://orion.i2p/#feedspace.i2p` [2] `http://jrandom.dev.i2p/`
 
 * 3) ???
 

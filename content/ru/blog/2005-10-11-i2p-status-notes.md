@@ -36,7 +36,7 @@ Using it is quite easy - instead of building a "Client proxy" for IRC as before,
 
 Последствия совместного действия этих двух факторов должны быть очевидны. Больше новостей будет, когда появятся новости.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (we'll get it integrated into CVS soon enough)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (we'll get it integrated into CVS soon enough)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ Using it is quite easy - instead of building a "Client proxy" for IRC as before,
 
 У меня сейчас нет времени браться за это, но загляни на форум, если хочешь помочь.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ Using it is quite easy - instead of building a "Client proxy" for IRC as before,
 
 Я не уверен, что мне есть что добавить сверх того, что уже есть в самих постах, но некоторые люди отмечали, что обсуждение помогло им лучше понять I2P и Freenet, так что, возможно, стоит посмотреть. А может и нет ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

@@ -3391,6 +3391,6 @@ Yukarıda belirttiğimiz gibi, token rastgele üretilmiş 8 baytlık bir değer 
 - **[SigningPublicKey]** [SigningPublicKey Türü](/docs/specs/common-structures#type-signingpublickey)
 - **[SSU]** [SSU Transport](/docs/transport/ssu)
 - **[STS]** [İstasyondan İstasyona Protokolü](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
-- **[Ticket1112]** [I2P Bilet 1112](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1112)
-- **[Ticket1849]** [I2P Bilet 1849](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1849)
+- **[Ticket1112]** I2P Bilet 1112
+- **[Ticket1849]** I2P Bilet 1849
 - **[WireGuard]** [WireGuard Protokolü](https://www.wireguard.com/papers/wireguard.pdf)

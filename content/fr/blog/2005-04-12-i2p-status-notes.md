@@ -31,7 +31,7 @@ bla travaille d'arrache-pied sur des révisions de la manière dont nous décido
 <+bla> Cette dernière a été faite en utilisant les longueurs de tunnels expl. par défaut
 <+bla> L'intersection entre l'ensemble des nœuds pour lesquels je dispose d'une "ground truth" (référence réelle), et l'ensemble des nœuds dans les mesures actuelles, est de 117 nœuds
 <+bla> Les résultats ne sont pas _si_ mauvais, mais ils ne sont pas très impressionnants non plus
-<+bla> Voir http://theland.i2p/estspeed.png
+<+bla> Voir `http://theland.i2p/estspeed.png`
 <+bla> La séparation de base entre très lents et rapides est plutôt correcte, mais la séparation fine entre les pairs plus rapides pourrait être bien meilleure
 <+jrandom2p> hmm, comment les valeurs réelles sont-elles calculées - est-ce le RTT complet ou est-ce RTT/longueur ?
 <+bla> En utilisant les tunnels expl. normaux, il est quasiment impossible d'empêcher les retards de batching (regroupement par lots).
@@ -51,7 +51,7 @@ bla travaille d'arrache-pied sur des révisions de la manière dont nous décido
 <+bla> Cela dit... 65 % des temps estimés se situent à moins de 0,5 écart-type du temps réel du nœud
 <+bla> Cependant, il faut refaire ce calcul, car l'écart-type est fortement influencé par les échecs >60000 ms
 
-Après de plus amples discussions, bla a établi une comparaison avec le calculateur de vitesse existant, publiée à l’adresse http://theland.i2p/oldspeed.png Des miroirs de ces PNG sont disponibles à http://dev.i2p.net/~jrandom/estspeed.png et http://dev.i2p.net/~jrandom/oldspeed.png
+Après de plus amples discussions, bla a établi une comparaison avec le calculateur de vitesse existant, publiée à l’adresse `http://theland.i2p/oldspeed.png` Des miroirs de ces PNG sont disponibles à `http://dev.i2p.net/~jrandom/estspeed.png` et `http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (pour la terminologie, IB=sauts de tunnel entrant, OB=sauts de tunnel sortant, et après quelques clarifications, les mesures "ground truth" (valeur de référence) ont été obtenues avec 1 saut de tunnel sortant et 0 saut de tunnel entrant, et non l'inverse)
 

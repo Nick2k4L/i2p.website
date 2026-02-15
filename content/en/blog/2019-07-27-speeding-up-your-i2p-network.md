@@ -18,7 +18,7 @@ Until a few versions ago, this problem was even harder to deal with because many
 
 ## Adjusting bandwidth limits
 
-Since I2P is a peer-to-peer network, you have to share some of your network bandwidth with other peers. You see choose how much in "I2P Bandwidth Configuration" ("Configure Bandwidth" button in the "Applications and Configuration" section of I2P Router Console, or http://localhost:7657/config).
+Since I2P is a peer-to-peer network, you have to share some of your network bandwidth with other peers. You see choose how much in "I2P Bandwidth Configuration" ("Configure Bandwidth" button in the "Applications and Configuration" section of I2P Router Console, or `http://localhost:7657/config).`
 
 ![I2P Bandwidth Configuration](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ If you see a shared bandwidth limit of 48 KBps, which is very low, then you may 
 
 However, since many users may not know exactly which bandwidth settings to adjust, the [I2P 0.9.38 release](https://geti2p.net/en/download) introduced a New Install Wizard. It contains a Bandwidth Test, which automatically detects (thanks to M-Lab's [NDT](https://www.measurementlab.net/tests/ndt/)) and adjusts I2P's bandwidth settings accordingly.
 
-If you want to re-run the wizard, for instance following a change in your service provider or because you installed I2P before version 0.9.38, you can re-launch it from the 'Setup' link on the 'Help & FAQ' page, or simply access the wizard directly at http://localhost:7657/welcome
+If you want to re-run the wizard, for instance following a change in your service provider or because you installed I2P before version 0.9.38, you can re-launch it from the 'Setup' link on the 'Help & FAQ' page, or simply access the wizard directly at `http://localhost:7657/welcome`
 
 ![Can you find "Setup"?](https://geti2p.net/images/blog/sidemenu.png)
 

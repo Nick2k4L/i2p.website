@@ -15,6 +15,6 @@ Il s’agira de la dernière version du bundle Easy-Install à être incompatibl
 
 Cette version a été compilée avec OpenJDK 20. Elle utilise i2p.plugins.firefox version 1.1.0 comme bibliothèque pour lancer le navigateur. Elle utilise i2p.i2p version 2.3.0 en tant qu'I2P router, et pour fournir des applications. Comme toujours, il est recommandé de mettre à jour vers la dernière version de l'I2P router dès que cela vous est possible.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

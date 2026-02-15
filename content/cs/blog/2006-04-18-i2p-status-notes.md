@@ -26,7 +26,7 @@ Už se blýská na lepší časy a vážím si vaší trpělivosti, že s námi 
 
 * 3) Feedspace
 
-Frosk usilovně pracuje na Feedspace a na webu Trac aktualizoval několik stránek, včetně nového přehledového dokumentu, sady otevřených úkolů, některých podrobností o databázi a dalšího. Zastavte se na http://feedspace.i2p/, abyste se seznámili s nejnovějšími změnami a třeba zasypte Froska otázkami, jakmile budete mít chvilku :)
+Frosk usilovně pracuje na Feedspace a na webu Trac aktualizoval několik stránek, včetně nového přehledového dokumentu, sady otevřených úkolů, některých podrobností o databázi a dalšího. Zastavte se na `http://feedspace.i2p/,` abyste se seznámili s nejnovějšími změnami a třeba zasypte Froska otázkami, jakmile budete mít chvilku :)
 
 * 4) ???
 

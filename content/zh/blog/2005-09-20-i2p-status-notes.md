@@ -14,7 +14,7 @@ categories: ["status"]
 
 * 1) 0.6.0.6
 
-随着上周六发布的 0.6.0.6 版本，我们在正式网络上已经投入了一批新组件，大家升级得很棒——截至几小时前，已有将近 250 台 routers 完成升级！网络运行情况也很不错，introductions（引入）到目前为止工作正常——你可以通过 http://localhost:7657/oldstats.jsp 跟踪你自己的 introduction 活动，查看 udp.receiveHolePunch 和 udp.receiveIntroRelayResponse（还包括 udp.receiveRelayIntro，针对位于 NAT（网络地址转换）之后的用户）。
+随着上周六发布的 0.6.0.6 版本，我们在正式网络上已经投入了一批新组件，大家升级得很棒——截至几小时前，已有将近 250 台 routers 完成升级！网络运行情况也很不错，introductions（引入）到目前为止工作正常——你可以通过 `http://localhost:7657/oldstats.jsp` 跟踪你自己的 introduction 活动，查看 udp.receiveHolePunch 和 udp.receiveIntroRelayResponse（还包括 udp.receiveRelayIntro，针对位于 NAT（网络地址转换）之后的用户）。
 
 顺便说一下，"Status: ERR-Reject" 现在其实并不是一个错误，所以也许我们应该把它改为 "Status: OK (NAT)"？
 
@@ -38,7 +38,7 @@ cvs -d :pserver:anoncvs-PQcCzt6076/R7s880joybQ@xxxxxxxxxxxxxxxx/cvsroot co i2p  
 
 我并不会接手维护 I2Phex，但当 cvs 有更新时，我会把 I2Phex 的后续发行版发布到网站上。如果有人愿意制作一个我们可以发布的网页来描述/介绍它（sirup，你在吗？），并包含指向 sirup.i2p、有用的论坛帖子以及 legion 的活跃对等节点列表的链接，那就太好了。
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip 以及     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (由我的密钥签名)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` 以及     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (由我的密钥签名)
 
 * 3) migration
 
@@ -46,6 +46,6 @@ cvs -d :pserver:anoncvs-PQcCzt6076/R7s880joybQ@xxxxxxxxxxxxxxxx/cvsroot co i2p  
 
 * 4) ???
 
-最近在 i2p 邮件列表上有很多有趣的讨论，比如 Adam 新做的很不错的 SMTP 代理/过滤器，还有 syndie 上的一些好帖子（在 http://gloinsblog.i2p 看过 gloin 的皮肤吗？）。我目前正在针对一些长期存在的问题做一些更改，但这些还不会很快完成。如果有人还有其他想要提出并讨论的内容，欢迎在 GMT 晚上8点来 #i2p 的会议（大约还有10分钟左右）。
+最近在 i2p 邮件列表上有很多有趣的讨论，比如 Adam 新做的很不错的 SMTP 代理/过滤器，还有 syndie 上的一些好帖子（在 `http://gloinsblog.i2p` 看过 gloin 的皮肤吗？）。我目前正在针对一些长期存在的问题做一些更改，但这些还不会很快完成。如果有人还有其他想要提出并讨论的内容，欢迎在 GMT 晚上8点来 #i2p 的会议（大约还有10分钟左右）。
 
 =jr

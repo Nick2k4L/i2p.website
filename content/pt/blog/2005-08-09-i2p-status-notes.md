@@ -16,7 +16,7 @@ Oi pessoal, já chegou aquela hora da semana de novo
 
 As announced yesterday [1], we've got a new release out and available and the reports are generally positive. About half of y'all have upgraded already (I see 110 @ 0.6.0.2, 89 @ 0.6.0.1, and 21 @ 0.6), but the rest should upgrade asap, as there have been some useful improvements.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000834.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000834.html`
 
 * 2) Roadmap update
 

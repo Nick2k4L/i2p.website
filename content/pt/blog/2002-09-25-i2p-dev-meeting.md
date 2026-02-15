@@ -6,7 +6,7 @@ description: "Registro da reunião de desenvolvimento do I2P de 25 de setembro d
 categories: ["meeting"]
 ---
 
-(Cortesia da wayback machine http://www.archive.org/)
+(Cortesia da wayback machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

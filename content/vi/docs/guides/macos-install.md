@@ -221,23 +221,23 @@ Router I2P của bạn hiện đã được cấu hình và đang chạy! Bảng
 
 Bây giờ khi I2P đã được cài đặt và cấu hình, bạn có thể:
 
-1. **Duyệt các trang web I2P**: Truy cập [trang chủ I2P](http://127.0.0.1:7657/home) để xem các liên kết đến các dịch vụ I2P phổ biến
+1. **Duyệt các trang web I2P**: Truy cập `http://127.0.0.1:7657/home` để xem các liên kết đến các dịch vụ I2P phổ biến
 2. **Cấu hình trình duyệt của bạn**: Thiết lập một [hồ sơ trình duyệt](/docs/guides/browser-config) để truy cập các trang web `.i2p`
 3. **Khám phá các dịch vụ**: Tìm hiểu email I2P, diễn đàn, chia sẻ tệp và nhiều hơn nữa
-4. **Giám sát router của bạn**: [Console](http://127.0.0.1:7657/console) hiển thị trạng thái mạng và thống kê của bạn
+4. **Giám sát router của bạn**: `http://127.0.0.1:7657/console` hiển thị trạng thái mạng và thống kê của bạn
 
 ### Liên kết hữu ích
 
-- **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Cấu hình**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Sổ địa chỉ**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Cài đặt băng thông**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Router Console**: `http://127.0.0.1:7657/`
+- **Cấu hình**: `http://127.0.0.1:7657/config`
+- **Sổ địa chỉ**: `http://127.0.0.1:7657/susidns/addressbook`
+- **Cài đặt băng thông**: `http://127.0.0.1:7657/config`
 
 ## Chạy lại Trình hướng dẫn Thiết lập
 
 Nếu bạn muốn thay đổi cài đặt băng thông hoặc cấu hình lại I2P sau này, bạn có thể chạy lại trình hướng dẫn chào mừng từ Router Console:
 
-1. Truy cập [I2P Setup Wizard](http://127.0.0.1:7657/welcome)
+1. Truy cập `http://127.0.0.1:7657/welcome`
 2. Thực hiện lại các bước của wizard
 
 ## Xử lý sự cố

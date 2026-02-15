@@ -14,13 +14,13 @@ categories: ["meeting"]
 
 <div class="irc-log">
 20:00:17  &lt;zzz&gt; 0) Hi
-20:00:17  &lt;zzz&gt; 1) http://dogecoindark.i2p/ console home page request, reconsideration from July 14 meeting http://i2p-projekt.i2p/en/meetings/238 -- orig. request: http://zzz.i2p/topics/236?page=2#p9999 -- result: http://zzz.i2p/topics/236?page=3#p10078 -- possibly replaced by http://doged.i2p/
-20:00:17  &lt;zzz&gt; 2) http://exchanged.i2p/ console home page request: http://zzz.i2p/topics/236?page=3#p10391
-20:00:17  &lt;zzz&gt; 3) http://i2pwiki.i2p/ console home page request: http://zzz.i2p/topics/236?page=3#p10437
-20:00:18  &lt;zzz&gt; 4) http://lenta.i2p/ console home page request: http://zzz.i2p/topics/236?page=3#p10439
-20:00:21  &lt;zzz&gt; 5) CCC preparation update from Oct. 6 meeting: http://i2p-projekt.i2p/en/meetings/239
-20:00:22  &lt;zzz&gt; 6) forum.i2p replacement proposal  (hottuna, dg) - followup from Oct. 6 meeting: http://i2p-projekt.i2p/en/meetings/239
-20:00:25  &lt;zzz&gt; Note that several early comments on items 1-4 are on the agenda page http://zzz.i2p/topics/1970
+20:00:17  &lt;zzz&gt; 1) `http://dogecoindark.i2p/` console home page request, reconsideration from July 14 meeting `http://i2p-projekt.i2p/en/meetings/238` -- orig. request: `http://zzz.i2p/topics/236?page=2#p9999` -- result: `http://zzz.i2p/topics/236?page=3#p10078` -- possibly replaced by `http://doged.i2p/`
+20:00:17  &lt;zzz&gt; 2) `http://exchanged.i2p/` console home page request: `http://zzz.i2p/topics/236?page=3#p10391`
+20:00:17  &lt;zzz&gt; 3) `http://i2pwiki.i2p/` console home page request: `http://zzz.i2p/topics/236?page=3#p10437`
+20:00:18  &lt;zzz&gt; 4) `http://lenta.i2p/` console home page request: `http://zzz.i2p/topics/236?page=3#p10439`
+20:00:21  &lt;zzz&gt; 5) CCC preparation update from Oct. 6 meeting: `http://i2p-projekt.i2p/en/meetings/239`
+20:00:22  &lt;zzz&gt; 6) forum.i2p replacement proposal  (hottuna, dg) - followup from Oct. 6 meeting: `http://i2p-projekt.i2p/en/meetings/239`
+20:00:25  &lt;zzz&gt; Note that several early comments on items 1-4 are on the agenda page `http://zzz.i2p/topics/1970`
 20:00:27  &lt;zzz&gt; 0) Hi
 20:00:42  &lt;zzz&gt; welcome to the 240th meeting of this great project, spanning 13 1/2 years
 20:01:00  &lt;zab@kyirc&gt; hi
@@ -30,7 +30,7 @@ categories: ["meeting"]
 20:01:43  &lt;iRelay&gt; Title: zzz.i2p: How to get my Eepsite added to the Router Console home page (at zzz.i2p)
 20:01:51  &lt;zzz&gt; and as a reminder, anybody else can schedule a meeting here at any time for any reason
 20:01:53  &lt;iRelay&gt; Title: I2PWiki (at i2pwiki.i2p)
-20:02:16  &lt;zzz&gt; 1) http://dogecoindark.i2p/ console home page request, reconsideration from July 14 meeting http://i2p-projekt.i2p/en/meetings/238 -- orig. request: http://zzz.i2p/topics/236?page=2#p9999 -- result: http://zzz.i2p/topics/236?page=3#p10078 -- possibly replaced by http://doged.i2p/
+20:02:16  &lt;zzz&gt; 1) `http://dogecoindark.i2p/` console home page request, reconsideration from July 14 meeting `http://i2p-projekt.i2p/en/meetings/238` -- orig. request: `http://zzz.i2p/topics/236?page=2#p9999` -- result: `http://zzz.i2p/topics/236?page=3#p10078` -- possibly replaced by `http://doged.i2p/`
 20:02:26  &lt;iRelay&gt; Title: zzz.i2p: How to get my Eepsite added to the Router Console home page (at zzz.i2p)
 20:02:35  &lt;iRelay&gt; Title: I2P Development Meeting 239 - I2P (at i2p-projekt.i2p)
 20:02:39  &lt;zzz&gt; is the dogecoindark.i2p operator here?
@@ -50,7 +50,7 @@ categories: ["meeting"]
 20:06:38  &lt;dogedDEV&gt; its just graphics and html now
 20:06:54  &lt;zzz&gt; dogedDEV, please review them quickly, link is above
 20:07:00  &lt;dogedDEV&gt; and ive moved alot of our source code over to the i2p based git repo
-20:07:02  &lt;anonimal&gt; I spoke my peace in http://zzz.i2p/topics/1970-meeting-tues-nov-3-8-pm-utc
+20:07:02  &lt;anonimal&gt; I spoke my peace in `http://zzz.i2p/topics/1970-meeting-tues-nov-3-8-pm-utc`
 20:07:02  &lt;str4d&gt; hi
 20:07:06  &lt;iRelay&gt; Title: zzz.i2p: Meeting Tues. Nov. 3, 8 PM UTC (at zzz.i2p)
 20:07:51  &lt;zzz&gt; dogedDEV, please explain the name change, and respond to the objections about all the images. As of now you don't have any support at all, so you have about 2 minutes to convince us otherwise
@@ -124,14 +124,14 @@ categories: ["meeting"]
 20:18:29  &lt;kytv&gt; no objections to rejecting. It's unbearably slow when it loads.
 20:18:43  &lt;dogedDEV&gt; whens the next meeting?
 20:18:43  &lt;kytv&gt; and now isn't one of those times...
-20:18:47  &lt;kytv&gt; $ http_proxy=http://127.0.0.1:4444 curl --silent http://doged.i2p/
+20:18:47  &lt;kytv&gt; $ http_proxy=`http://127.0.0.1:4444` curl --silent `http://doged.i2p/`
 20:18:50  &lt;kytv&gt; &lt;html&gt;&lt;head&gt;&lt;title&gt;408 Request Timeout&lt;/title&gt;&lt;/head&gt;
 20:18:51  &lt;kytv&gt; &lt;body&gt;&lt;h2&gt;408 Request timeout&lt;/h2&gt;
 20:18:57  &lt;zzz&gt; and it isn't just the site itself - it's also the recent name change (which perhaps should restart the clock completely) and psi's objection to promoting _any_ coin
 20:19:09  &lt;iRelay&gt; Title: DogecoinDark.i2p Official Site (at doged.i2p)
 20:19:13  &lt;zzz&gt; ok, that's it for 1)
 20:19:24  &lt;str4d&gt; dogedDEV, now that a bit more of the site has loaded, it does look very pretty. But I think that nearly everything down to at least the FB/twitter/etc. links could be done via CSS with a few images for the actual images.
-20:19:24  &lt;zzz&gt; 2) http://exchanged.i2p/ console home page request: http://zzz.i2p/topics/236?page=3#p10391
+20:19:24  &lt;zzz&gt; 2) `http://exchanged.i2p/` console home page request: `http://zzz.i2p/topics/236?page=3#p10391`
 20:19:29  &lt;dogedDEV&gt; so since psi's coin promotion affects the judging, is anoncoin being removed?
 20:19:38  &lt;dogedDEV&gt; because that would be silly
 20:19:41  &lt;iRelay&gt; Title: zzz.i2p: How to get my Eepsite added to the Router Console home page (at zzz.i2p)
@@ -257,7 +257,7 @@ categories: ["meeting"]
 20:41:20  &lt;dogedDEV&gt; zzz: when is the next meeting?
 20:41:23  &lt;amknesia&gt; Is it difficult to make it probationary?
 20:41:27  &lt;fox&gt; +1 for abyss's exchange, code is clean
-20:41:32  &lt;zzz&gt; 3) http://i2pwiki.i2p/ console home page request: http://zzz.i2p/topics/236?page=3#p10437
+20:41:32  &lt;zzz&gt; 3) `http://i2pwiki.i2p/` console home page request: `http://zzz.i2p/topics/236?page=3#p10437`
 20:41:34  &lt;amknesia&gt; IE you could always move it after the next session if there are issues?
 20:41:38  &lt;zzz&gt; is the i2pwiki.i2p operator here?
 20:41:50  &lt;iRelay&gt; Title: I2PWiki (at i2pwiki.i2p)
@@ -286,15 +286,15 @@ categories: ["meeting"]
 20:44:45  &lt;zzz&gt; please stay on topic everybody. open4you is NOT the topic.
 20:45:05  &lt;str4d&gt; Also, interesting - ugha.i2p is back up
 20:45:19  &lt;anonimal&gt; Yes, because of some of the content. Other than that, I would +1.
-20:45:30  &lt;abyss&gt;     2015-10 New wiki eepsite: As ugha.i2p was down from may 2015 to 2015-10-30, a new wiki was launched (http://i2pwiki.i2p). It is running on MediaWiki. Please move to this wiki.
+20:45:30  &lt;abyss&gt;     2015-10 New wiki eepsite: As ugha.i2p was down from may 2015 to 2015-10-30, a new wiki was launched (`http://i2pwiki.i2p`). It is running on MediaWiki. Please move to this wiki.
 20:45:30  &lt;kytv&gt; i2pslogans isn't an issue. That was also on ugha.i2p. Users can police that just as they could on ugha
 20:45:31  &lt;dogedDEV&gt; -1 on i2pwiki.i2p
 20:45:44  &lt;abyss&gt; *from  ugha.i2p. front page
 20:45:46  &lt;iRelay&gt; Title: I2PWiki (at i2pwiki.i2p)
 20:45:47  &lt;str4d&gt; I am generally +1 for i2pwiki.i2p, but would really like the redirection issue fixed
-20:45:53  &lt;dogedDEV&gt; Could not find the following destination: http://i2host.i2p/cgi-bin/i2hostjump?i2pwiki.i2p/
+20:45:53  &lt;dogedDEV&gt; Could not find the following destination: `http://i2host.i2p/cgi-bin/i2hostjump?i2pwiki.i2p/`
 20:46:07  &lt;iRelay&gt; Title: I2HOST Jump (at i2host.i2p)
-20:46:07  &lt;str4d&gt; dogedDEV, http://nrbnshsndzb6homcipymkkngngw4s6twediqottzqdfyvrvjw3pq.b32.i2p is the B32 for i2pwiki
+20:46:07  &lt;str4d&gt; dogedDEV, `http://nrbnshsndzb6homcipymkkngngw4s6twediqottzqdfyvrvjw3pq.b32.i2p` is the B32 for i2pwiki
 20:46:11  &lt;zzz&gt; ok we have + from psi and kytv and str4d , - from anonimal and dogedev. Others please vote
 20:46:14  &lt;zzz&gt; me: +1
 20:46:16  &lt;abyss&gt; str4d, could it be a i2prouter issue?
@@ -312,7 +312,7 @@ categories: ["meeting"]
 20:47:56  &lt;zzz&gt; last call for 3)
 20:47:57  &lt;anonimal&gt; Slogans were fixed.
 20:48:06  * anonimal saw cached version.
-20:48:15  &lt;zzz&gt; 4) http://lenta.i2p/ console home page request: http://zzz.i2p/topics/236?page=3#p10439
+20:48:15  &lt;zzz&gt; 4) `http://lenta.i2p/` console home page request: `http://zzz.i2p/topics/236?page=3#p10439`
 20:48:22  &lt;zzz&gt; is the lenta.i2p operator here?
 20:48:35  &lt;iRelay&gt; Title: Lenta.i2p |    (at lenta.i2p)
 20:48:37  &lt;zab@kyirc&gt; +1 from me.  It loads quickly, the news is real and the layout is pleasant
@@ -332,7 +332,7 @@ categories: ["meeting"]
 20:51:16  &lt;str4d&gt; (both so non-russian speakers don't click, and russian speakers do)
 20:51:30  &lt;str4d&gt; amknesia, that's a thought I just had myself :)
 20:51:50  &lt;zzz&gt; we can always tweak the name in the console
-20:51:57  &lt;zzz&gt; 5) CCC preparation update from Oct. 6 meeting: http://i2p-projekt.i2p/en/meetings/239
+20:51:57  &lt;zzz&gt; 5) CCC preparation update from Oct. 6 meeting: `http://i2p-projekt.i2p/en/meetings/239`
 20:52:02  &lt;iRelay&gt; Title: I2P Development Meeting 239 - I2P (at i2p-projekt.i2p)
 20:52:34  &lt;zzz&gt; I just threw this agenda item in there in case there was something to discuss. i believe the banner and the candy and all that is under control.
 20:52:47  &lt;zzz&gt; we finished the budget decisions at last meeting.
@@ -340,7 +340,7 @@ categories: ["meeting"]
 20:53:56  &lt;zzz&gt; last call for 5)
 20:54:31  &lt;str4d&gt; Nothing from me
 20:54:36  &lt;str4d&gt; You kids have fun there
-20:54:46  &lt;zzz&gt; 6) forum.i2p replacement proposal  (hottuna, dg) - followup from Oct. 6 meeting: http://i2p-projekt.i2p/en/meetings/239
+20:54:46  &lt;zzz&gt; 6) forum.i2p replacement proposal  (hottuna, dg) - followup from Oct. 6 meeting: `http://i2p-projekt.i2p/en/meetings/239`
 20:55:13  &lt;zzz&gt; ok the notes from last meeting are up (thx kytv) and at the end you'll see that hottuna and dg were due to come back with a proposal.
 20:55:30  &lt;zzz&gt; hottuna and dg, you are up. However neither appears to be here?
 20:56:05  &lt;zzz&gt; anybody else have anything on forum replacement that extends (not rehashes) the discussion from last meeting?
@@ -352,7 +352,7 @@ categories: ["meeting"]
 20:58:30  &lt;str4d&gt; And I think that having it clearnet-accessible (not just via inproxy) is a good idea
 20:58:30  &lt;obscuratus&gt; str4d: +1
 20:58:30  &lt;zzz&gt; the particular agenda item is whether there should be an 'official' replacement
-20:58:30  &lt;trolly&gt; and we have anew forum..  http://es.i2p
+20:58:30  &lt;trolly&gt; and we have anew forum..  `http://es.i2p`
 20:58:30  &lt;trolly&gt; but is only Spanish, but anyone can create a channel in En, of course
 20:58:39  &lt;zzz&gt; no site, 'official' or not, has requested to be on the console home page
 20:58:42  &lt;trolly&gt; channel/thread *

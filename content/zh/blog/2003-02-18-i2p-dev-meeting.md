@@ -6,7 +6,7 @@ description: "2003年2月18日I2P开发会议记录。"
 categories: ["meeting"]
 ---
 
-（由互联网档案馆 http://www.archive.org/ 提供）
+（由互联网档案馆 `http://www.archive.org/` 提供）
 
 ## 快速回顾
 

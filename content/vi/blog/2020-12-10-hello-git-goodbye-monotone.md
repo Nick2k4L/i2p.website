@@ -22,7 +22,7 @@ Việc đưa thay đổi vào các kho lưu trữ của Dự án I2P yêu cầu 
 
 ## Ký bằng GPG
 
-Kho lưu trữ chính thức được lưu trữ tại https://i2pgit.org/i2p-hackers/i2p.i2p và tại https://git.idk.i2p/i2p-hackers/i2p.i2p, nhưng có một "Mirror" (bản sao phản chiếu) sẵn có trên Github tại https://github.com/i2p/i2p.i2p.
+Kho lưu trữ chính thức được lưu trữ tại `https://i2pgit.org/i2p-hackers/i2p.i2p` và tại `https://git.idk.i2p/i2p-hackers/i2p.i2p`, nhưng có một "Mirror" (bản sao phản chiếu) sẵn có trên Github tại https://github.com/i2p/i2p.i2p.
 
 Giờ đây khi chúng ta đã chuyển sang git, chúng ta có thể đồng bộ các kho lưu trữ từ phiên bản Gitlab tự lưu trữ của chính mình sang Github, và ngược lại. Điều này có nghĩa là có thể tạo và gửi một merge request (yêu cầu hợp nhất) trên Gitlab và khi nó được hợp nhất, kết quả sẽ được đồng bộ với Github, và một Pull Request (yêu cầu kéo) trên Github, khi được hợp nhất, sẽ xuất hiện trên Gitlab.
 

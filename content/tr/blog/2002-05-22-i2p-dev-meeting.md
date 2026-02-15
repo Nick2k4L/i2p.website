@@ -6,7 +6,7 @@ description: "Proje durumu, web sitesi geliştirme, sürüm yol haritası ve dok
 categories: ["meeting"]
 ---
 
-(Wayback Machine sayesinde http://www.archive.org/)
+(Wayback Machine sayesinde `http://www.archive.org/`)
 
 ## Kısa özet
 

@@ -48,11 +48,11 @@ Para restablecer la configuración manteniendo la identidad: Detenga I2P, haga u
 
 El estado firewalled significa que el router no puede recibir conexiones entrantes directas, lo que obliga a depender de introducers (nodos introductores). Aunque el router funciona en este estado, **el rendimiento se degrada significativamente** y la contribución a la red sigue siendo mínima. Alcanzar un estado no firewalled requiere un reenvío de puertos adecuado.
 
-**El router selecciona aleatoriamente un puerto** entre 9000-31000 para comunicaciones. Encuentra tu puerto en http://127.0.0.1:7657/confignet - busca "UDP Port" y "TCP Port" (normalmente el mismo número). Debes reenviar **tanto UDP como TCP** para un rendimiento óptimo, aunque solo UDP permite la funcionalidad básica.
+**El router selecciona aleatoriamente un puerto** entre 9000-31000 para comunicaciones. Encuentra tu puerto en `http://127.0.0.1:7657/confignet` - busca "UDP Port" y "TCP Port" (normalmente el mismo número). Debes reenviar **tanto UDP como TCP** para un rendimiento óptimo, aunque solo UDP permite la funcionalidad básica.
 
 **Habilitar el reenvío automático mediante UPnP** (método más simple):
 
-1. Accede a http://127.0.0.1:7657/confignet
+1. Accede a `http://127.0.0.1:7657/confignet`
 2. Marca "Enable UPnP"
 3. Guarda los cambios y reinicia el router
 4. Espera 5-10 minutos y verifica que el estado cambie de "Network: Firewalled" a "Network: OK"
@@ -61,7 +61,7 @@ UPnP requiere soporte del router (habilitado de forma predeterminada en la mayor
 
 **Reenvío de puertos manual** (requerido cuando UPnP falla):
 
-1. Anota tu puerto de I2P en http://127.0.0.1:7657/confignet (p. ej., 22648)
+1. Anota tu puerto de I2P en `http://127.0.0.1:7657/confignet` (p. ej., 22648)
 2. Encuentra tu dirección IP local: `ipconfig` (Windows), `ip addr` (Linux), Preferencias del Sistema → Red (macOS)
 3. Accede a la interfaz de administración de tu router (normalmente 192.168.1.1 o 192.168.0.1)
 4. Ve a Redirección de puertos (puede estar en Avanzado, NAT o Servidores virtuales)
@@ -72,7 +72,7 @@ UPnP requiere soporte del router (habilitado de forma predeterminada en la mayor
 
 **Verifica el reenvío de puertos** usando comprobadores en línea después de configurarlo. Si la detección falla, revisa la configuración del cortafuegos - tanto el cortafuegos del sistema como el cortafuegos de cualquier antivirus deben permitir el puerto de I2P.
 
-**Alternativa de Hidden mode (modo oculto)** para redes restrictivas donde el reenvío de puertos no es posible: Actívalo en http://127.0.0.1:7657/confignet → marca "Hidden mode". El router permanece detrás de un cortafuegos pero se optimiza para este estado utilizando exclusivamente SSU introducers (nodos introductores). El rendimiento será más lento pero funcional.
+**Alternativa de Hidden mode (modo oculto)** para redes restrictivas donde el reenvío de puertos no es posible: Actívalo en `http://127.0.0.1:7657/confignet` → marca "Hidden mode". El router permanece detrás de un cortafuegos pero se optimiza para este estado utilizando exclusivamente SSU introducers (nodos introductores). El rendimiento será más lento pero funcional.
 
 ## Router atascado en los estados "Starting" o "Testing"
 
@@ -92,7 +92,7 @@ macOS: Preferencias del Sistema → Fecha y hora → Activa "Ajustar la fecha y 
 
 Después de corregir el desfase del reloj, reinicia I2P por completo para una integración adecuada.
 
-**Asignación de ancho de banda insuficiente** impide realizar pruebas con éxito. El router necesita capacidad adecuada para construir tunnels de prueba. Configúrelo en http://127.0.0.1:7657/config:
+**Asignación de ancho de banda insuficiente** impide realizar pruebas con éxito. El router necesita capacidad adecuada para construir tunnels de prueba. Configúrelo en `http://127.0.0.1:7657/config:`
 
 - **Mínimo viable:** Entrante 96 KB/sec, Saliente 64 KB/sec
 - **Estándar recomendado:** Entrante 256 KB/sec, Saliente 128 KB/sec  
@@ -115,7 +115,7 @@ i2prouter start
 ```
 Windows: Elimina el contenido de `%APPDATA%\I2P\netDb\` o `%LOCALAPPDATA%\I2P\netDb\`
 
-**El firewall que bloquea el reseed (obtención inicial de pares)** impide adquirir pares iniciales. Durante el arranque, I2P recupera información del router de servidores de reseed mediante HTTPS. Los firewalls corporativos o de los ISP (proveedores de servicios de Internet) pueden bloquear estas conexiones. Configure el proxy de reseed en http://127.0.0.1:7657/configreseed si opera detrás de redes restrictivas.
+**El firewall que bloquea el reseed (obtención inicial de pares)** impide adquirir pares iniciales. Durante el arranque, I2P recupera información del router de servidores de reseed mediante HTTPS. Los firewalls corporativos o de los ISP (proveedores de servicios de Internet) pueden bloquear estas conexiones. Configure el proxy de reseed en `http://127.0.0.1:7657/configreseed` si opera detrás de redes restrictivas.
 
 ## Velocidades lentas, tiempos de espera agotados y fallos en la construcción de tunnels
 
@@ -128,25 +128,25 @@ El diseño de I2P produce de forma inherente **velocidades 3-10x más lentas que
 - Descargas de archivos grandes: se requiere paciencia - archivos de megabytes pueden tardar minutos, los de gigabytes toman horas
 - La primera conexión es la más lenta: la creación del tunnel tarda 30-90 segundos; las conexiones posteriores usan tunnels existentes
 
-**Tasa de éxito en la construcción de Tunnel** indica la salud de la red. Consulta en http://127.0.0.1:7657/tunnels:
+**Tasa de éxito en la construcción de Tunnel** indica la salud de la red. Consulta en `http://127.0.0.1:7657/tunnels:`
 
 - **Por encima del 60%:** Funcionamiento normal y saludable
 - **40-60%:** Marginal; considere aumentar el ancho de banda o reducir la carga
 - **Por debajo del 40%:** Problemático - indica ancho de banda insuficiente, problemas de red o mala selección de pares
 
-**Aumenta la asignación de ancho de banda** como primera optimización. La mayoría de los problemas de lentitud se deben a una escasez de ancho de banda. En http://127.0.0.1:7657/config, aumenta los límites de forma incremental y supervisa las gráficas en http://127.0.0.1:7657/graphs.
+**Aumenta la asignación de ancho de banda** como primera optimización. La mayoría de los problemas de lentitud se deben a una escasez de ancho de banda. En `http://127.0.0.1:7657/config,` aumenta los límites de forma incremental y supervisa las gráficas en `http://127.0.0.1:7657/graphs.`
 
 **Para DSL/Cable (conexiones de 1-10 Mbps):** - Entrante: 400 KB/sec - Saliente: 200 KB/sec - Compartir: 80% - Memoria: 384 MB (editar wrapper.config)
 
-**Para conexiones de alta velocidad (10-100+ Mbps):** - Entrante: 1500 KB/sec   - Saliente: 1000 KB/sec - Compartir: 80-100% - Memoria: 512-1024 MB - Considere: aumentar los tunnels participantes a 2000-5000 en http://127.0.0.1:7657/configadvanced
+**Para conexiones de alta velocidad (10-100+ Mbps):** - Entrante: 1500 KB/sec   - Saliente: 1000 KB/sec - Compartir: 80-100% - Memoria: 512-1024 MB - Considere: aumentar los tunnels participantes a 2000-5000 en `http://127.0.0.1:7657/configadvanced`
 
-**Optimiza la configuración del tunnel** para mejorar el rendimiento. Accede a la configuración específica del tunnel en http://127.0.0.1:7657/i2ptunnel y edita cada tunnel:
+**Optimiza la configuración del tunnel** para mejorar el rendimiento. Accede a la configuración específica del tunnel en `http://127.0.0.1:7657/i2ptunnel` y edita cada tunnel:
 
 - **Cantidad de tunnel:** Aumentar de 2 a 3-4 (más rutas disponibles)
 - **Cantidad de respaldo:** Establecer en 1-2 (conmutación por error rápida si el tunnel falla)
 - **Longitud del tunnel:** El valor predeterminado de 3 saltos ofrece un buen equilibrio; reducir a 2 mejora la velocidad pero disminuye el anonimato
 
-**Biblioteca criptográfica nativa (jbigi)** ofrece un rendimiento 5-10x mejor que el cifrado en Java puro. Verifica que esté cargada en http://127.0.0.1:7657/logs - busca "jbigi loaded successfully" o "Using native CPUID implementation". Si no aparecen:
+**Biblioteca criptográfica nativa (jbigi)** ofrece un rendimiento 5-10x mejor que el cifrado en Java puro. Verifica que esté cargada en `http://127.0.0.1:7657/logs` - busca "jbigi loaded successfully" o "Using native CPUID implementation". Si no aparecen:
 
 Linux: Por lo general se detecta automáticamente y se carga desde ~/.i2p/jbigi-*.so Windows: Verifica que exista jbigi.dll en el directorio de instalación de I2P Si falta: Instala las herramientas de compilación y compila desde el código fuente, o descarga binarios precompilados de los repositorios oficiales
 
@@ -174,23 +174,23 @@ wrapper.java.maxmemory=512
 ```
 **Crítico:** Después de editar wrapper.config, **debe apagar por completo** (no reiniciar), esperar 11 minutos para una terminación ordenada y luego iniciar desde cero. El botón "Restart" de la consola del router no recarga la configuración de wrapper.
 
-**La optimización de CPU requiere una biblioteca criptográfica nativa.** Las operaciones de BigInteger en Java puro consumen entre 10 y 20 veces más CPU que las implementaciones nativas. Verifique el estado de jbigi en http://127.0.0.1:7657/logs durante el inicio. Sin jbigi, la CPU se disparará al 50-100% durante la construcción de tunnel y las operaciones de cifrado.
+**La optimización de CPU requiere una biblioteca criptográfica nativa.** Las operaciones de BigInteger en Java puro consumen entre 10 y 20 veces más CPU que las implementaciones nativas. Verifique el estado de jbigi en `http://127.0.0.1:7657/logs` durante el inicio. Sin jbigi, la CPU se disparará al 50-100% durante la construcción de tunnel y las operaciones de cifrado.
 
 **Reducir la carga de tunnel participante** si el router está sobrecargado:
 
-1. Accede a http://127.0.0.1:7657/configadvanced
+1. Accede a `http://127.0.0.1:7657/configadvanced`
 2. Establece `router.maxParticipatingTunnels=1000` (predeterminado 8000)
-3. Reduce el porcentaje de compartición en http://127.0.0.1:7657/config del 80% al 50%
+3. Reduce el porcentaje de compartición en `http://127.0.0.1:7657/config` del 80% al 50%
 4. Desactiva el modo floodfill si está habilitado: `router.floodfillParticipant=false`
 
-**Limita el ancho de banda de I2PSnark y los torrents concurrentes.** El uso de torrents consume recursos considerables. En http://127.0.0.1:7657/i2psnark:
+**Limita el ancho de banda de I2PSnark y los torrents concurrentes.** El uso de torrents consume recursos considerables. En `http://127.0.0.1:7657/i2psnark:`
 
 - Limita los torrents activos a 3-5 como máximo
 - Configura "Límite de ancho de banda de subida" y "Límite de ancho de banda de bajada" en valores razonables (50-100 KB/sec cada uno)
 - Detén los torrents cuando no se necesiten activamente
 - Evita sembrar docenas de torrents simultáneamente
 
-**Supervisa el uso de recursos** mediante los gráficos integrados en http://127.0.0.1:7657/graphs. La memoria debería mostrar margen disponible, no un tope plano. Los picos de CPU durante la construcción de tunnel son normales; un uso alto y sostenido de CPU indica problemas de configuración.
+**Supervisa el uso de recursos** mediante los gráficos integrados en `http://127.0.0.1:7657/graphs.` La memoria debería mostrar margen disponible, no un tope plano. Los picos de CPU durante la construcción de tunnel son normales; un uso alto y sostenido de CPU indica problemas de configuración.
 
 **Para sistemas con recursos muy limitados** (Raspberry Pi, hardware antiguo), considera **i2pd** (implementación en C++) como alternativa. i2pd requiere ~130 MB de RAM frente a 350+ MB para Java I2P, y utiliza ~7% de CPU frente a 70% bajo cargas similares. Ten en cuenta que i2pd carece de aplicaciones integradas y requiere herramientas externas.
 
@@ -201,7 +201,7 @@ La integración de I2PSnark con la arquitectura del router de I2P requiere compr
 **Los torrents atascados en 0% suelen indicar:**
 
 1. **Router no completamente integrado:** Espera 10-15 minutos después de iniciar I2P antes de esperar actividad de torrents
-2. **DHT (tabla hash distribuida) deshabilitado:** Actívalo en http://127.0.0.1:7657/i2psnark → Configuración → marca "Enable DHT" (activado por defecto desde la versión 0.9.2)
+2. **DHT (tabla hash distribuida) deshabilitado:** Actívalo en `http://127.0.0.1:7657/i2psnark` → Configuración → marca "Enable DHT" (activado por defecto desde la versión 0.9.2)
 3. **Rastreadores no válidos o caídos:** Los torrents de I2P requieren rastreadores específicos de I2P - los rastreadores de clearnet no funcionarán
 4. **Configuración de tunnel insuficiente:** Aumenta los tunnels en Configuración de I2PSnark → sección Tunnels
 
@@ -216,7 +216,7 @@ La integración de I2PSnark con la arquitectura del router de I2P requiere compr
 
 Elimina todos los trackers de clearnet (non-.i2p) - no aportan ningún valor y generan intentos de conexión que agotan el tiempo de espera.
 
-**errores "Torrent not registered"** ocurren cuando falla la comunicación con el tracker. Haz clic derecho en el torrent → "Start" fuerza un reanuncio. Si persiste, verifica la accesibilidad del tracker visitando http://tracker2.postman.i2p en un navegador configurado para I2P. Los trackers inactivos deben reemplazarse por alternativas funcionales.
+**errores "Torrent not registered"** ocurren cuando falla la comunicación con el tracker. Haz clic derecho en el torrent → "Start" fuerza un reanuncio. Si persiste, verifica la accesibilidad del tracker visitando `http://tracker2.postman.i2p` en un navegador configurado para I2P. Los trackers inactivos deben reemplazarse por alternativas funcionales.
 
 **No se conectan pares** a pesar del éxito del tracker, lo que sugiere: - Router detrás de un firewall (mejora con el reenvío de puertos, pero no es obligatorio) - Ancho de banda insuficiente (aumenta a 256+ KB/s)   - Enjambre demasiado pequeño (algunos torrents tienen 1-2 semillas; se requiere paciencia) - DHT desactivado (actívalo para el descubrimiento de pares sin tracker)
 
@@ -271,7 +271,7 @@ Nota: `socks5h` realiza la resolución de DNS a través del proxy - crucial para
 
 **Crear un I2P tunnel dedicado para Git sobre SSH** (más fiable que SOCKS):
 
-1. Accede a http://127.0.0.1:7657/i2ptunnel
+1. Accede a `http://127.0.0.1:7657/i2ptunnel`
 2. "Nuevo tunnel de cliente" → "Estándar"
 3. Configura:
    - Nombre: Git-SSH  
@@ -287,7 +287,7 @@ Nota: `socks5h` realiza la resolución de DNS a través del proxy - crucial para
 
 - Clave no agregada al ssh-agent: `ssh-add ~/.ssh/id_rsa`
 - Permisos incorrectos del archivo de la clave: `chmod 600 ~/.ssh/id_rsa`
-- Tunnel no se está ejecutando: Verifica en http://127.0.0.1:7657/i2ptunnel que el estado sea verde
+- Tunnel no se está ejecutando: Verifica en `http://127.0.0.1:7657/i2ptunnel` que el estado sea verde
 - El servidor Git requiere un tipo específico de clave: Genera una clave ed25519 si RSA falla
 
 **Operaciones de Git que agotan el tiempo de espera** se relacionan con las características de latencia de I2P:
@@ -306,11 +306,11 @@ Nota: `socks5h` realiza la resolución de DNS a través del proxy - crucial para
 
 **Los errores "Connection refused"** indican una mala configuración del tunnel:
 
-1. Verifica que el I2P router esté en ejecución: Revisa http://127.0.0.1:7657
-2. Confirma que el tunnel esté activo y en verde en http://127.0.0.1:7657/i2ptunnel
+1. Verifica que el I2P router esté en ejecución: Revisa `http://127.0.0.1:7657`
+2. Confirma que el tunnel esté activo y en verde en `http://127.0.0.1:7657/i2ptunnel`
 3. Prueba el tunnel: `nc -zv 127.0.0.1 2222` (debería conectar si el tunnel está funcionando)
 4. Comprueba que el destino sea alcanzable: Navega a la interfaz HTTP del destino si está disponible
-5. Revisa los registros del tunnel en http://127.0.0.1:7657/logs en busca de errores específicos
+5. Revisa los registros del tunnel en `http://127.0.0.1:7657/logs` en busca de errores específicos
 
 **Mejores prácticas de Git sobre I2P:**
 
@@ -354,17 +354,17 @@ Mejor enfoque: Utiliza las extensiones FoxyProxy o Proxy SwitchyOmega para el en
 
 **Método 1: Usar servicios de salto** (lo más sencillo para sitios nuevos):
 
-Visita http://stats.i2p y busca el sitio. Haz clic en el enlace de addresshelper (ayuda de direcciones): `http://example.i2p/?i2paddresshelper=base64destination`. Tu navegador muestra "¿Guardar en la libreta de direcciones?" - confirma para añadirlo.
+Visita `http://stats.i2p` y busca el sitio. Haz clic en el enlace de addresshelper (ayuda de direcciones): `http://example.i2p/?i2paddresshelper=base64destination`. Tu navegador muestra "¿Guardar en la libreta de direcciones?" - confirma para añadirlo.
 
 **Método 2: Actualizar las suscripciones de la libreta de direcciones:**
 
-1. Accede a http://127.0.0.1:7657/dns (SusiDNS)
+1. Accede a `http://127.0.0.1:7657/dns` (SusiDNS)
 2. Haz clic en la pestaña "Subscriptions"  
-3. Verifica las suscripciones activas (predeterminado: http://i2p-projekt.i2p/hosts.txt)
+3. Verifica las suscripciones activas (predeterminado: `http://i2p-projekt.i2p/hosts.txt)`
 4. Añade suscripciones recomendadas:
-   - http://stats.i2p/cgi-bin/newhosts.txt
-   - http://notbob.i2p/hosts.txt
-   - http://reg.i2p/export/hosts.txt
+   - `http://stats.i2p/cgi-bin/newhosts.txt`
+   - `http://notbob.i2p/hosts.txt`
+   - `http://reg.i2p/export/hosts.txt`
 5. Haz clic en "Update Now" para forzar la actualización inmediata de las suscripciones
 6. Espera de 5 a 10 minutos para el procesamiento
 
@@ -382,7 +382,7 @@ Cada sitio .i2p tiene una dirección base32: 52 caracteres aleatorios seguidos d
 
 **Router no completamente integrado** impide el acceso a cualquier sitio. Verifique que la integración sea adecuada:
 
-1. Comprueba que http://127.0.0.1:7657 muestre "Network: OK" o "Network: Firewalled" (no "Network: Testing")
+1. Comprueba que `http://127.0.0.1:7657` muestre "Network: OK" o "Network: Firewalled" (no "Network: Testing")
 2. Los pares activos muestran 10+ como mínimo (50+ óptimo)  
 3. Que no aparezca el mensaje "Rejecting tunnels: starting up"
 4. Espera 10-15 minutos completos después del arranque del router antes de esperar acceso a .i2p
@@ -393,7 +393,7 @@ Cada sitio .i2p tiene una dirección base32: 52 caracteres aleatorios seguidos d
 
 **Correo electrónico (Postman):**  - SMTP: **127.0.0.1:7659** - POP3: **127.0.0.1:7660**   - Sin SSL/TLS (cifrado gestionado por el I2P tunnel) - Credenciales del registro de la cuenta en postman.i2p
 
-Todos estos tunnels deben mostrar el estado "running" (verde) en http://127.0.0.1:7657/i2ptunnel.
+Todos estos tunnels deben mostrar el estado "running" (verde) en `http://127.0.0.1:7657/i2ptunnel.`
 
 ## Errores de instalación y problemas con paquetes
 
@@ -409,7 +409,7 @@ sudo rm /etc/apt/sources.list.d/i2p.list
 echo "deb [signed-by=/usr/share/keyrings/i2p-archive-keyring.gpg] https://deb.i2p.net/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/i2p.list
 
 # Download and install current signing key
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
 sudo cp i2p-archive-keyring.gpg /usr/share/keyrings/
 
 # Update and install
@@ -424,7 +424,7 @@ sudo apt install i2p i2p-keyring
 sudo apt install i2p-keyring
 
 # Manual key import if package unavailable
-wget https://geti2p.net/_static/i2p-debian-repo.key.asc
+wget `https://geti2p.net/_static/i2p-debian-repo.key.asc`
 sudo apt-key add i2p-debian-repo.key.asc
 ```
 **El servicio no se inicia después de la instalación del paquete** suele deberse a problemas con el perfil de AppArmor en Debian/Ubuntu:
@@ -484,12 +484,12 @@ Problemas comunes de wrapper.config:
 
 Las actualizaciones de la consola del router ocasionalmente fallan a mitad de la descarga debido a interrupciones de red. Procedimiento de actualización manual:
 
-1. Descarga i2pupdate_X.X.X.zip desde https://geti2p.net/en/download
+1. Descarga i2pupdate_X.X.X.zip desde `https://geti2p.net/en/download`
 2. Verifica que la suma de verificación SHA256 coincida con el hash publicado
 3. Copia al directorio de instalación de I2P como `i2pupdate.zip`
 4. Reinicia el router - detecta y extrae la actualización automáticamente
 5. Espera 5-10 minutos para la instalación de la actualización
-6. Verifica la nueva versión en http://127.0.0.1:7657
+6. Verifica la nueva versión en `http://127.0.0.1:7657`
 
 **La migración desde versiones muy antiguas** (pre-0.9.47) a las versiones actuales puede fallar debido a claves de firma incompatibles o funciones eliminadas. Se requieren actualizaciones incrementales:
 
@@ -624,9 +624,9 @@ El sistema de registro de I2P proporciona mensajes de error específicos que ide
 
 **"No tunnels available"** aparece cuando el router no ha construido suficientes tunnels para funcionar. Esto es **normal durante los primeros 5-10 minutos** tras el arranque. Si persiste más de 15 minutos:
 
-1. Verifica que los pares activos sean > 10 en http://127.0.0.1:7657
+1. Verifica que los pares activos sean > 10 en `http://127.0.0.1:7657`
 2. Comprueba que la asignación de ancho de banda sea adecuada (mínimo 128+ KB/s)
-3. Examina la tasa de éxito de los tunnel (túnel de I2P) en http://127.0.0.1:7657/tunnels (debería ser >40%)
+3. Examina la tasa de éxito de los tunnel (túnel de I2P) en `http://127.0.0.1:7657/tunnels` (debería ser >40%)
 4. Revisa los registros para conocer los motivos de rechazo en la construcción de tunnel
 
 **"Clock skew detected"** o **"NTCP2 disconnect code 7"** indican que la hora del sistema difiere del consenso de la red en más de 90 segundos. I2P requiere **precisión de ±60 segundos**. Las conexiones con routers con el reloj desfasado se rechazan automáticamente.
@@ -643,7 +643,7 @@ date  # Verify correct time
 # Control Panel → Date and Time → Internet Time → Update now
 
 # Verify after sync
-http://127.0.0.1:7657/logs  # Should no longer show clock skew warnings
+`http://127.0.0.1:7657/logs`  # Should no longer show clock skew warnings
 ```
 **"Build timeout"** o **"Tunnel build timeout exceeded"** significa que la construcción del tunnel a través de la cadena de pares no se completó dentro de la ventana de tiempo de espera (normalmente 60 segundos). Causas:
 
@@ -652,7 +652,7 @@ http://127.0.0.1:7657/logs  # Should no longer show clock skew warnings
 - **Ancho de banda insuficiente:** Tus límites de ancho de banda impiden el establecimiento oportuno de tunnels
 - **Router sobrecargado:** Demasiados tunnels participantes consumen recursos
 
-Soluciones: Aumentar el ancho de banda, reducir los tunnels participantes (`router.maxParticipatingTunnels` en http://127.0.0.1:7657/configadvanced), habilitar el reenvío de puertos para una mejor selección de pares.
+Soluciones: Aumentar el ancho de banda, reducir los tunnels participantes (`router.maxParticipatingTunnels` en `http://127.0.0.1:7657/configadvanced),` habilitar el reenvío de puertos para una mejor selección de pares.
 
 Aparecen **"Router is shutting down"** o **"Graceful shutdown in progress"** durante un apagado normal o la recuperación tras un fallo. El apagado ordenado puede tardar **hasta 10 minutos**, ya que el router cierra tunnels, notifica a los pares y guarda el estado.
 
@@ -671,7 +671,7 @@ taskkill /F /IM javaw.exe
 2. **Se requiere un apagado completo** - un reinicio no aplicará el cambio
 3. Espere 11 minutos para el apagado completo  
 4. Inicie el router desde cero
-5. Verifique la asignación de memoria en http://127.0.0.1:7657/graphs - debería mostrar margen libre
+5. Verifique la asignación de memoria en `http://127.0.0.1:7657/graphs` - debería mostrar margen libre
 
 **Errores de memoria relacionados:**
 
@@ -682,7 +682,7 @@ taskkill /F /IM javaw.exe
 
 **"Tiempo de espera de la conexión agotado"** o **"Error de I2CP - puerto 7654"** cuando las aplicaciones intentan conectarse al router:
 
-1. Verifique que el router esté en ejecución: http://127.0.0.1:7657 debería responder
+1. Verifique que el router esté en ejecución: `http://127.0.0.1:7657` debería responder
 2. Verifique el puerto I2CP: `netstat -an | grep 7654` debería mostrar LISTENING
 3. Asegúrese de que el cortafuegos de localhost permita: `sudo ufw allow from 127.0.0.1`  
 4. Verifique que la aplicación esté usando el puerto correcto (I2CP=7654, SAM=7656)
@@ -817,7 +817,7 @@ Add-MpPreference -ExclusionPath "$env:APPDATA\I2P"
 Add-MpPreference -ExclusionPath "$env:LOCALAPPDATA\I2P"
 Add-MpPreference -ExclusionProcess "javaw.exe"
 ```
-Reemplaza el puerto 22648 por tu puerto real de I2P que aparece en http://127.0.0.1:7657/confignet.
+Reemplaza el puerto 22648 por tu puerto real de I2P que aparece en `http://127.0.0.1:7657/confignet.`
 
 **Problema específico de Kaspersky Antivirus:** "Application Control" de Kaspersky limita el heap de Java a 512MB independientemente de la configuración de wrapper.config. Esto provoca OutOfMemoryError (error por falta de memoria) en routers de alto ancho de banda.
 
@@ -931,15 +931,15 @@ Las instalaciones nuevas de I2P requieren **reseeding** (descarga inicial de inf
 
 **Forzar reseed manual (resembrado inicial de pares):**
 
-1. Accede a http://127.0.0.1:7657/configreseed
+1. Accede a `http://127.0.0.1:7657/configreseed`
 2. Haz clic en "Save changes and reseed now"  
-3. Supervisa http://127.0.0.1:7657/logs en busca de "Reseed got XX router infos"
+3. Supervisa `http://127.0.0.1:7657/logs` en busca de "Reseed got XX router infos"
 4. Espera de 5 a 10 minutos para el procesamiento
-5. Comprueba http://127.0.0.1:7657 - Los pares conocidos deberían aumentar a 50+
+5. Comprueba `http://127.0.0.1:7657` - Los pares conocidos deberían aumentar a 50+
 
 **Configurar proxy de reseed (proceso de arranque para obtener nodos iniciales de la red)** para redes restrictivas:
 
-http://127.0.0.1:7657/configreseed → Configuración del proxy:
+`http://127.0.0.1:7657/configreseed` → Configuración del proxy:
 
 - Proxy HTTP: [proxy-server]:[port]
 - O SOCKS5: [socks-server]:[port]  
@@ -960,12 +960,12 @@ Si Tor Browser o el demonio de Tor están en ejecución:
 
 Cuando falle todo el reseed (proceso de incorporación inicial a la red) automatizado, obtenga el archivo de reseed por un canal fuera de banda:
 
-1. Descarga i2pseeds.su3 desde una fuente de confianza con una conexión sin restricciones (https://reseed.i2p.rocks/i2pseeds.su3, https://reseed-fr.i2pd.xyz/i2pseeds.su3)
+1. Descarga i2pseeds.su3 desde una fuente de confianza con una conexión sin restricciones (`https://reseed.i2p.rocks/i2pseeds.su3,` `https://reseed-fr.i2pd.xyz/i2pseeds.su3)`
 2. Detén I2P por completo
 3. Copia i2pseeds.su3 al directorio ~/.i2p/  
 4. Inicia I2P - extrae y procesa el archivo automáticamente
 5. Elimina i2pseeds.su3 después del procesamiento
-6. Verifica que los pares aumenten en http://127.0.0.1:7657
+6. Verifica que los pares aumenten en `http://127.0.0.1:7657`
 
 **Errores de certificados SSL durante el reseed (proceso de obtención inicial de pares):**
 
@@ -991,17 +991,17 @@ sudo update-ca-certificates
 Indica un fallo completo del reseed (arranque inicial de la red obteniendo nodos iniciales desde servidores de reseed). Secuencia de resolución de problemas:
 
 1. **Verifica que la hora del sistema sea precisa** (problema más común - corrígelo PRIMERO)
-2. **Prueba la conectividad HTTPS:** Intenta acceder a https://reseed.i2p.rocks en el navegador - si falla, es un problema de red
-3. **Revisa los registros de I2P** en http://127.0.0.1:7657/logs para errores específicos de reseed (proceso de arranque inicial de la red)
-4. **Prueba una URL de reseed diferente:** http://127.0.0.1:7657/configreseed → añade una URL de reseed personalizada: https://reseed-fr.i2pd.xyz/
+2. **Prueba la conectividad HTTPS:** Intenta acceder a `https://reseed.i2p.rocks` en el navegador - si falla, es un problema de red
+3. **Revisa los registros de I2P** en `http://127.0.0.1:7657/logs` para errores específicos de reseed (proceso de arranque inicial de la red)
+4. **Prueba una URL de reseed diferente:** `http://127.0.0.1:7657/configreseed` → añade una URL de reseed personalizada: `https://reseed-fr.i2pd.xyz/`
 5. **Usa el método manual con archivo su3** si se han agotado los intentos automáticos
 
 **Servidores de reseed (servidores usados para obtener los pares iniciales de la red) ocasionalmente fuera de línea:** I2P incluye múltiples servidores de reseed predefinidos. Si uno falla, el router prueba otros automáticamente. Un fallo total de todos los servidores de reseed es extremadamente raro, pero posible.
 
 **Servidores reseed (arranque inicial de la red) actualmente activos** (a octubre de 2025):
 
-- https://reseed.i2p.rocks/
-- https://reseed-fr.i2pd.xyz/
+- `https://reseed.i2p.rocks/`
+- `https://reseed-fr.i2pd.xyz/`
 - https://i2p.novg.net/
 - https://i2p-projekt.de/
 
@@ -1026,20 +1026,20 @@ Esta guía aborda la gran mayoría de los problemas de I2P, pero algunos requier
 
 **Antes de solicitar ayuda, recopile información de diagnóstico:**
 
-1. Versión de I2P: http://127.0.0.1:7657 (p. ej., "2.10.0")
+1. Versión de I2P: `http://127.0.0.1:7657` (p. ej., "2.10.0")
 2. Versión de Java: salida de `java -version`
 3. Sistema operativo y versión
 4. Estado del router: Estado de la red, Número de pares activos, Tunnels participantes
 5. Configuración de ancho de banda: Límites de entrada/salida
 6. Estado del reenvío de puertos: Con cortafuegos o OK
-7. Extractos relevantes de los registros: Últimas 50 líneas que muestren errores desde http://127.0.0.1:7657/logs
+7. Extractos relevantes de los registros: Últimas 50 líneas que muestren errores desde `http://127.0.0.1:7657/logs`
 
 **Canales de soporte oficiales:**
 
-- **Foro:** https://i2pforum.net (clearnet) o http://i2pforum.i2p (dentro de I2P)
+- **Foro:** https://i2pforum.net (clearnet) o `http://i2pforum.i2p` (dentro de I2P)
 - **IRC:** #i2p en Irc2P (irc.postman.i2p vía I2P) o irc.freenode.net (clearnet)
 - **Reddit:** https://reddit.com/r/i2p para discusiones de la comunidad
-- **Rastreador de errores:** https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues para errores confirmados
+- **Rastreador de errores:** `https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues` para errores confirmados
 - **Lista de correo:** i2p-dev@lists.i2p-projekt.de para consultas de desarrollo
 
 **Las expectativas realistas importan.** I2P es más lento que clearnet (Internet abierta) por su diseño fundamental - el uso de tunnels cifrados de múltiples saltos crea latencia inherente. Un router de I2P que carga páginas en 30 segundos y alcanza velocidades de torrent de 50 KB/sec está **funcionando correctamente**, no está averiado. Los usuarios que esperen velocidades de clearnet quedarán decepcionados independientemente de la optimización de la configuración.

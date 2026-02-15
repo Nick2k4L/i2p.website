@@ -1062,7 +1062,7 @@ authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 
 - نحن لا نهتم بالسرعة بما يكفي لاستخدام keyed BLAKE2b. لديه حجم إخراج كبير بما يكفي لاستيعاب أكبر n نحتاجه (أو يمكننا استدعاؤه مرة واحدة لكل مفتاح مرغوب مع معامل عداد). BLAKE2b أسرع بكثير من SHA-256، و keyed-BLAKE2b سيقلل من العدد الإجمالي لاستدعاءات دالة التشفير.
   ومع ذلك، انظر الاقتراح 148، حيث يُقترح أن ننتقل إلى BLAKE2b لأسباب أخرى.
-  انظر [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+  انظر Secure key derivation performance.
 
 ### Meta LS2
 
@@ -1076,7 +1076,7 @@ authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 
 البروتوكول الخلفي للتنسيق بين routers الأوراق، والموقعين الوسطيين وموقعي Meta LS الرئيسيين غير محدد هنا. المتطلبات بسيطة للغاية - فقط التحقق من أن النظير متصل، ونشر LS جديد كل بضع ساعات. التعقيد الوحيد هو في اختيار ناشرين جدد لـ Meta LSes على المستوى الأعلى أو المستوى الوسطي عند الفشل.
 
-مجموعات الإيجار المختلطة حيث يتم دمج الإيجارات من عدة routers وتوقيعها ونشرها في leaseset واحد موثقة في الاقتراح 140، "multihoming غير مرئي". هذا الاقتراح غير قابل للتطبيق كما هو مكتوب، لأن اتصالات streaming لن تكون "ثابتة" على router واحد، انظر http://zzz.i2p/topics/2335 .
+مجموعات الإيجار المختلطة حيث يتم دمج الإيجارات من عدة routers وتوقيعها ونشرها في leaseset واحد موثقة في الاقتراح 140، "multihoming غير مرئي". هذا الاقتراح غير قابل للتطبيق كما هو مكتوب، لأن اتصالات streaming لن تكون "ثابتة" على router واحد، انظر `http://zzz.i2p/topics/2335` .
 
 البروتوكول الخلفي، والتفاعل مع العناصر الداخلية للـ router والعميل، سيكون معقداً جداً للـ invisible multihoming.
 
@@ -1596,7 +1596,7 @@ Session ID (2 bytes) The value from the Send Message.
 
 ## Private Key File Changes Required
 
-ملف المفتاح الخاص (eepPriv.dat) ليس جزءاً رسمياً من مواصفاتنا ولكنه موثق في [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) والتطبيقات الأخرى تدعمه. هذا يُمكّن من نقل المفاتيح الخاصة إلى تطبيقات مختلفة.
+ملف المفتاح الخاص (eepPriv.dat) ليس جزءاً رسمياً من مواصفاتنا ولكنه موثق في Java I2P javadocs والتطبيقات الأخرى تدعمه. هذا يُمكّن من نقل المفاتيح الخاصة إلى تطبيقات مختلفة.
 
 يجب إجراء تغييرات لتخزين المفتاح العام المؤقت ومعلومات التوقيع غير المتصل.
 

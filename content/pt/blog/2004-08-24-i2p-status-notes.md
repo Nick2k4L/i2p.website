@@ -74,7 +74,7 @@ oOo preparou um utilitário muito interessante para permitir que as pessoas nave
 Basicamente, basta criar um link para o eepsite(I2P Site) com o nome que quiser e, em seguida, acrescentar um parâmetro especial de URL especificando o destino:
 
 ```
-http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...
+`http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...`
 ```
 Nos bastidores, é bastante seguro - você não pode falsificar outro endereço, e o nome *não* fica gravado em hosts.txt, mas isso permitirá que você veja imagens / etc vinculadas em eepsites(I2P Sites) que você não conseguiria com o antigo truque `http://i2p/base64/`. Se você quiser sempre poder usar "wowthisiscool.i2p" para acessar esse site, ainda vai, claro, ter que adicionar a entrada ao seu hosts.txt (até que o catálogo de endereços do MyI2P seja disponibilizado, isto é ;)
 

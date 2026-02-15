@@ -26,7 +26,7 @@ Hay muchos puntos de vista contradictorios sobre el uso de exponentes cortos y, 
 
 La gran alternativa es pasar a cifrado de 1024 bits (en el que podríamos entonces usar, quizá, un exponente corto de 160 bits).  Esto podría ser apropiado en cualquier caso, y si las cosas resultan demasiado problemáticas con el cifrado de 2048 bits en la red _PRE, podríamos dar el salto dentro de la red _PRE. De lo contrario, podríamos esperar hasta la versión 0.6.1.10, cuando haya un despliegue más amplio del nuevo cifrado para ver si es necesario. Se proporcionará mucha más información si parece probable realizar tal cambio.
 
-[1] "Sobre el acuerdo de claves de Diffie-Hellman con exponentes cortos" -     van Oorschot, Weiner en EuroCrypt 96.  espejado en     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "Sobre el acuerdo de claves de Diffie-Hellman con exponentes cortos" -     van Oorschot, Weiner en EuroCrypt 96.  espejado en     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 En cualquier caso, muchos avances en la _PRE net, con la mayor parte de la comunicación al respecto teniendo lugar dentro del canal #i2p_pre en irc2p.
 

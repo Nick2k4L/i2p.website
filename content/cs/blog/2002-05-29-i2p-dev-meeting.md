@@ -6,7 +6,7 @@ description: "Záznam vývojářského setkání I2P z 29. května 2002."
 categories: ["meeting"]
 ---
 
-(Díky wayback machine http://www.archive.org/)
+(Díky wayback machine `http://www.archive.org/`)
 
 ## Rychlé shrnutí
 

@@ -149,7 +149,7 @@ accurateFor: "0.9.67"
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html
 
 ### المفتاح الخاص
 
@@ -239,7 +239,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html
 
 ### SessionKey
 
@@ -251,7 +251,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html
 
 32 بايت
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html
 
 ### SigningPublicKey
 
@@ -341,7 +341,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html
 
 * جميع الأنواع تستخدم ترتيب Big Endian، باستثناء EdDSA و RedDSA، والتي يتم تخزينها ونقلها بتنسيق Little Endian.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html
 
 ### SigningPrivateKey
 
@@ -431,7 +431,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html
 
 * جميع الأنواع تستخدم ترتيب البايت الكبير (Big Endian)، باستثناء EdDSA و RedDSA، والتي يتم تخزينها ونقلها بتنسيق ترتيب البايت الصغير (Little Endian).
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html
 
 ### التوقيع
 
@@ -521,7 +521,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html
 
 * جميع الأنواع تستخدم ترتيب البايت الكبير (Big Endian)، باستثناء EdDSA و RedDSA، والتي يتم تخزينها ونقلها بتنسيق ترتيب البايت الصغير (Little Endian).
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Signature.html
 
 ### التجميع
 
@@ -533,7 +533,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html
 
 32 بايت
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Hash.html
 
 ### علامة الجلسة
 
@@ -547,7 +547,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html
 
 32 بايت
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html
 
 ### TunnelId
 
@@ -559,7 +559,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html
 
 4 بايت [Integer](#integer)
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html
 
 ### الشهادة
 
@@ -1029,7 +1029,7 @@ payload :: data
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Certificate.html
 
 #### ملاحظات
 
@@ -1098,7 +1098,7 @@ val_string :: `String`
 
 * حد الطول الإجمالي هو 65535 بايت، بالإضافة إلى حقل الحجم المكون من 2 بايت، أو 65537 إجمالي.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html
 
 ## مواصفات الهيكل المشترك
 
@@ -1198,7 +1198,7 @@ total length: 387+ bytes
 
 * يتم محاذاة المفتاح العام للتشفير في البداية ويتم محاذاة المفتاح العام للتوقيع في النهاية. الحشو (إن وجد) يكون في المنتصف.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html
 
 ### RouterIdentity
 
@@ -1226,7 +1226,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html
   مدعومة اعتباراً من الإصدار 0.9.48.
   قبل ذلك، كانت جميع RouterIdentities من نوع ElGamal.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html
 
 ### الوجهة
 
@@ -1250,7 +1250,7 @@ JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.h
 
 * المفتاح العام للتشفير محاذٍ في البداية والمفتاح العام للتوقيع محاذٍ في النهاية. الحشو (إن وُجد) يكون في المنتصف.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Destination.html
 
 ### عقد الإيجار
 
@@ -1299,7 +1299,7 @@ end_date :: `Date`
 ```
 
 </details>
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 ### LeaseSet
 
@@ -1423,7 +1423,7 @@ signature :: `Signature`
 
 * قبل الإصدار 0.9.7، عندما يتم تضمينه في رسالة DatabaseStore المرسلة من router المصدر، كان router يعيّن جميع انتهاء صلاحيات leases المنشورة لنفس القيمة، وهي قيمة أقدم lease. اعتباراً من الإصدار 0.9.7، ينشر router انتهاء الصلاحية الفعلي لكل lease. هذا تفصيل تنفيذي وليس جزءاً من مواصفات الهياكل.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html
 
 ### Lease2
 
@@ -1473,7 +1473,7 @@ end_date :: 4 byte date
 
 * الحجم الإجمالي: 40 بايت
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease2.html
 
 ### التوقيع دون اتصال
 
@@ -1817,7 +1817,7 @@ signature :: `Signature`
 
 * تطبيق الخيارات، إذا كان الحجم أكبر من واحد، يجب أن يكون مرتباً حسب المفتاح، بحيث يكون التوقيع ثابتاً.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html
 
 ### MetaLease
 
@@ -1868,7 +1868,7 @@ end_date :: 4 byte date
 
 * الحجم الإجمالي: 40 بايت
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html
 
 ### MetaLeaseSet
 
@@ -1964,7 +1964,7 @@ signature :: `Signature`
 
 * انظر الملاحظة حول حقل 'published' في [LeaseSet2Header](#leaseset2header)
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html
 
 ### EncryptedLeaseSet
 
@@ -2069,7 +2069,7 @@ signature :: `Signature`
 * انظر الملاحظة حول حقل 'published' في [LeaseSet2Header](#leaseset2header)
   (نفس المشكلة، حتى لو أننا لا نستخدم تنسيق LeaseSet2Header هنا)
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html
 
 ### RouterAddress
 
@@ -2119,7 +2119,7 @@ options :: `Mapping`
 
 * الخيارات التالية، رغم أنها غير مطلوبة، إلا أنها معيارية ومتوقع وجودها في معظم عناوين الـ router: "host" (عنوان IPv4 أو IPv6 أو اسم المضيف) و "port".
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html
 
 ### RouterInfo
 
@@ -2216,7 +2216,7 @@ signature :: `Signature`
   بحيث يكون التوقيع ثابتاً.
   هذا لم يعد مطلوباً، ولا يستحق التنفيذ من أجل التوافق مع الإصدارات السابقة.
 
-JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html
+JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html
 
 ### تعليمات التسليم
 

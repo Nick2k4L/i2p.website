@@ -12,7 +12,7 @@ Although the Java I2P router comes pre-configured with a static web server, jett
 
 ### 第一步：打开 Tunnel 向导
 
-前往 127.0.0.1:7657 的 I2P 网页界面，并打开 [隐藏服务管理器](http://127.0.0.1:7657/i2ptunnelmgr)（链接到 localhost）。点击标有“Tunnel Wizard”的按钮开始。
+前往 127.0.0.1:7657 的 I2P 网页界面，并打开 `http://127.0.0.1:7657/i2ptunnelmgr`（链接到 localhost）。点击标有“Tunnel Wizard”的按钮开始。
 
 ### 步骤二：选择一个服务器 Tunnel
 

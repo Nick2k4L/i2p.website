@@ -1035,7 +1035,7 @@ Der äußere Teil des verschlüsselten leaseSets verwendet Red25519-Schlüssel u
 
 - Uns ist die Geschwindigkeit nicht wichtig genug, um keyed BLAKE2b zu verwenden. Es hat eine Ausgabegröße, die groß genug ist, um das größte n zu unterstützen, das wir benötigen (oder wir können es einmal pro gewünschtem Schlüssel mit einem Zählerargument aufrufen). BLAKE2b ist viel schneller als SHA-256, und keyed-BLAKE2b würde die Gesamtzahl der Hash-Funktionsaufrufe reduzieren.
   Siehe jedoch Proposal 148, wo vorgeschlagen wird, dass wir aus anderen Gründen zu BLAKE2b wechseln.
-  Siehe [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+  Siehe Secure key derivation performance.
 
 ### Meta LS2
 
@@ -1472,7 +1472,7 @@ Session ID
 
 ### Hinweise
 
-Mix-and-match leasesets, bei denen Leases von mehreren Routern kombiniert, signiert und in einem einzigen leaseset veröffentlicht werden, sind in Vorschlag 140, "invisible multihoming", dokumentiert. Dieser Vorschlag ist in seiner jetzigen Form nicht umsetzbar, da Streaming-Verbindungen nicht an einen einzigen Router "gebunden" wären, siehe http://zzz.i2p/topics/2335 .
+Mix-and-match leasesets, bei denen Leases von mehreren Routern kombiniert, signiert und in einem einzigen leaseset veröffentlicht werden, sind in Vorschlag 140, "invisible multihoming", dokumentiert. Dieser Vorschlag ist in seiner jetzigen Form nicht umsetzbar, da Streaming-Verbindungen nicht an einen einzigen Router "gebunden" wären, siehe `http://zzz.i2p/topics/2335` .
 
 ### Dienstliste
 

@@ -36,7 +36,7 @@ categories: ["meeting"]
 19:35:49  &lt;hottuna_&gt; 'lo
 19:35:57  &lt;dg&gt; 1) IRL events then
 19:36:24  &lt;dg&gt; We kind of touched on this last time--, I'm wondering if we can utilize the tickets (and men) we have at CCC to get i2p out there somehow
-19:36:39  &lt;dg&gt; http://zzz.i2p/topics/1273 is relevant
+19:36:39  &lt;dg&gt; `http://zzz.i2p/topics/1273` is relevant
 19:36:56  &lt;iRelay&gt; &lt;weltende@freenode&gt; I'll be @ 29c3
 19:36:59  &lt;hottuna_&gt; I've got stickers and am going to 29c3
 19:37:01  &lt;iRelay&gt; &lt;weltende@freenode&gt; (and bring stickers)
@@ -134,7 +134,7 @@ categories: ["meeting"]
 20:14:57  &lt;dg&gt; The idea is that #i2p-www could be used as a sort of web committee to get revamp up to scratch and report back to -dev (in meetings I assume) when there's updates
 20:15:28  &lt;hottuna&gt; We're updating docs or are we revamping the site?
 20:15:37  &lt;dg&gt; Revamping the site
-20:15:51  &lt;dg&gt; &lt;@dg&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/
+20:15:51  &lt;dg&gt; &lt;@dg&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/`
 20:15:51  &lt;dg&gt; &lt;@dg&gt; i2p.www.revamp is the mtn
 20:15:57  &lt;str4d&gt; dg, I'd recommend that text revamp be done know
 20:16:00  &lt;str4d&gt; argh
@@ -150,9 +150,9 @@ categories: ["meeting"]
 20:18:04  &lt;topiltzin&gt; does it require javascript for anything?
 20:18:11  &lt;christop1&gt; huch can you reaach the eepsite
 20:18:11  &lt;christop1&gt; ?
-20:18:20  &lt;dg&gt; &cs http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/
-20:18:20  &lt;iRelay&gt; Trying to check status of "http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/" for dg. Please wait...
-20:18:26  &lt;iRelay&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/ responded with status 200 within 5 seconds.
+20:18:20  &lt;dg&gt; &cs `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/`
+20:18:20  &lt;iRelay&gt; Trying to check status of "`http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/"` for dg. Please wait...
+20:18:26  &lt;iRelay&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/` responded with status 200 within 5 seconds.
 20:19:09  &lt;topiltzin&gt; and "Ur mom" is still there. :-/
 20:19:12  &lt;hottuna&gt; What work needs to be done before it's a viable alternative?
 20:20:04  * dg is wondering this
@@ -227,7 +227,7 @@ categories: ["meeting"]
 20:45:49  &lt;dg&gt; Trac keywords are delimited by "," right?
 20:46:12  &lt;KillYourTV&gt; afaik, yes
 20:47:11  &lt;topiltzin&gt; we could even remove the heading "Supported Software" and just use that space to list the different things I2P can do
-20:47:26  &lt;dg&gt; http://trac.i2p2.i2p/ticket/792
+20:47:26  &lt;dg&gt; `http://trac.i2p2.i2p/ticket/792`
 20:47:29  &lt;topiltzin&gt; better than list - give a small blurb on each if appropriate or include an icon
 20:47:39  &lt;dg&gt; topiltzin: That'd be sweet, actually.
 20:48:00  &lt;str4d&gt; remember that the navigation, columns and footer are just lists, so the left column could be altered/removed with a different theme as well.
@@ -247,7 +247,7 @@ categories: ["meeting"]
 20:54:51  &lt;topiltzin&gt; it wouldn't be me alright, zero visual skill here :-P
 20:55:43  &lt;RN&gt; breif with a "read more" is a good idea imho
 20:55:57  &lt;dg&gt; &lt;+dg&gt; I'd rather not fill up trac with loads of unnecessary tickets but at the same time, it helps to keep a handle on what needs to be done.
-20:56:00  &lt;dg&gt; &lt;+dg&gt; Oh, and http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/volunteer/bounties - Bounties links are broken.
+20:56:00  &lt;dg&gt; &lt;+dg&gt; Oh, and `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/site/volunteer/bounties` - Bounties links are broken.
 20:56:00  &lt;dg&gt; &lt;+dg&gt; I think I'm going to go ahead and make tickets for these.
 20:56:11  &lt;iRelay&gt; Title: Bounties - I2P (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 20:56:40  &lt;str4d&gt; dg, are they? Must have missed a link migration...
@@ -266,9 +266,9 @@ categories: ["meeting"]
 21:00:13  &lt;topiltzin&gt; I'm not opposed to having something not-so-serious but not all the way to "ur mom"
 21:01:25  &lt;topiltzin&gt; ideally something inviting.. not too formal
 21:01:36  &lt;topiltzin&gt; definitely worth brainstorming
-21:06:05  &lt;MTN_&gt; i2p.trac: #795: Bounties being broken http://trac.i2p2.i2p/ticket/795
-21:06:08  &lt;MTN_&gt; i2p.trac: #793: Mirror links http://trac.i2p2.i2p/ticket/793
-21:06:08  &lt;MTN_&gt; i2p.trac: #792: Replace left column content http://trac.i2p2.i2p/ticket/792
+21:06:05  &lt;MTN_&gt; i2p.trac: #795: Bounties being broken `http://trac.i2p2.i2p/ticket/795`
+21:06:08  &lt;MTN_&gt; i2p.trac: #793: Mirror links `http://trac.i2p2.i2p/ticket/793`
+21:06:08  &lt;MTN_&gt; i2p.trac: #792: Replace left column content `http://trac.i2p2.i2p/ticket/792`
 21:06:43  &lt;dg&gt; &lt;+dg&gt; Tickets #793 - #795 I have created so far.
 21:06:43  &lt;dg&gt; &lt;+topiltzin&gt; ideally something inviting.. not too formal
 21:06:43  &lt;dg&gt; &lt;+topiltzin&gt; definitely worth brainstorming
@@ -287,7 +287,7 @@ categories: ["meeting"]
 21:09:29  &lt;dg&gt; imo we closed the discussion wrt SSL last week
 21:09:40  &lt;RN&gt; a mailing list yes, would be good to start one up again imhho
 21:09:43  &lt;hottuna&gt; Im not so sure about a mailinglist. zzz.i2p seems to fill that void very well.
-21:10:02  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/794 - (assigned defect) - SSL
+21:10:02  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/794` - (assigned defect) - SSL
 21:10:03  &lt;RN&gt; though, the warm fish has a good point
 21:10:39  &lt;iRelay&gt; &lt;weltende@freenode&gt; hottuna: the old ML attracted outsiders though..
 21:10:59  &lt;hottuna&gt; zzz.i2p is also already established and working quite well
@@ -348,7 +348,7 @@ categories: ["meeting"]
 21:26:17  &lt;KillYourTV&gt; ticket #795 is now fixed for the live site.
 21:26:20  &lt;dg&gt; also, sorry for my flaky connection.
 21:26:26  &lt;iRelay&gt; &lt;weltende@freenode&gt; the stickers already say geti2p.net iirc ;)
-21:26:34  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/795 - (new defect) - Bounties being broken
+21:26:34  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/795` - (new defect) - Bounties being broken
 21:26:38  &lt;str4d&gt; Is I2p.net still registered to jrandom?
 21:26:48  &lt;dg&gt; it was paid for many years
 21:26:51  &lt;dg&gt; so yes
@@ -434,7 +434,7 @@ categories: ["meeting"]
 21:47:47  &lt;dg&gt; RN: bam
 21:48:05  &lt;iRelay&gt; &lt;RN@kytv&gt; :)
 21:48:06  * dg highfives RN
-21:48:20  *** KillYourTV changes topic to "Latest dev build: 0.9.3-11 | Dev mtg here 8:00 PM (20:00) UTC Tues. Dec. 4 | Report bugs at http://trac.i2p2.i2p / http://trac.i2p2.de"
+21:48:20  *** KillYourTV changes topic to "Latest dev build: 0.9.3-11 | Dev mtg here 8:00 PM (20:00) UTC Tues. Dec. 4 | Report bugs at `http://trac.i2p2.i2p` / http://trac.i2p2.de"
 21:48:28  &lt;iRelay&gt; * RN@kytv gives dg a beer
 21:48:31  &lt;topiltzin&gt; **smooth**
 21:48:38  &lt;iRelay&gt; &lt;weltende@freenode&gt; dg: actually it used to be *baf*s I think :P

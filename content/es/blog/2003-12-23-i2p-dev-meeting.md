@@ -6,7 +6,7 @@ description: "Registro de reunión de desarrollo de I2P del 23 de diciembre de 2
 categories: ["meeting"]
 ---
 
-(Cortesía de la máquina del tiempo http://www.archive.org/)
+(Cortesía de la máquina del tiempo `http://www.archive.org/`)
 
 ## Resumen rápido
 

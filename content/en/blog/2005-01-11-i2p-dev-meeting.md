@@ -180,7 +180,7 @@ categories: ["meeting"]
 13:47 &lt;jrandom&gt; eco: native compiled sun 1.4
 13:47 &lt;jrandom&gt; (booo hiss)
 13:47 &lt;deer&gt; &lt;eco&gt; ah, illegal!
-13:47 &lt;deer&gt; &lt;polecat&gt; Ragnarok: If you want to critique my bittorrent client design, my current code plan is here: http://polecat.i2p/bittorrent.plan.txt
+13:47 &lt;deer&gt; &lt;polecat&gt; Ragnarok: If you want to critique my bittorrent client design, my current code plan is here: `http://polecat.i2p/bittorrent.plan.txt`
 13:47 &lt;jrandom&gt; ((but kaffe works))
 13:48 &lt;jrandom&gt; eco: is it illegal?  I thought you could agree to the terms and get the source legit on fbsd
 13:48 &lt;deer&gt; &lt;eco&gt; sun withdrew the license afaik
@@ -358,7 +358,7 @@ categories: ["meeting"]
 14:30 &lt;jrandom&gt; cervantes: not an impossible alternative
 14:30 &lt;jrandom&gt; right eco
 14:31 &lt;jrandom&gt; we've done our best to tap dance around the integration of the actual meat (using clients.config and i2ptunnel.config), but the web UI suffers a bit from it
-14:33 &lt;deer&gt; &lt;susi23&gt; any wishes, feature requests, and comments regarding the addressbook interface please add to http://susi.i2p/susidns.html
+14:33 &lt;deer&gt; &lt;susi23&gt; any wishes, feature requests, and comments regarding the addressbook interface please add to `http://susi.i2p/susidns.html`
 14:33  * toad_ respects jrandom's extremist licensing views while disagreeing vehemently with them :)
 14:33 &lt;jrandom&gt; oh cool, shall do susi23
 14:34 &lt;jrandom&gt; heh toad_ :)

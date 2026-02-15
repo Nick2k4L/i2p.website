@@ -106,7 +106,7 @@ categories: ["meeting"]
 14:22 &lt;deer_&gt; &lt;newsbyte&gt; :-)
 14:22 &lt;deer_&gt; &lt;Demokritos&gt; I can't believe Tor is not backwards compatible from 0.0.8 to 0.0.8.1
 14:23 &lt;jrandom&gt; with the tunnel testing, there is a floor to the test period - currently set to 5 seconds by default
-14:23 &lt;jrandom&gt; the previous release had a hard limit of 30 seconds, but you can configure your own tunnel test time by updating http://localhost:7657/configadvanced.jsp and adding "router.tunnelTestMinimum=10000" (or whatever - that value is in milliseconds)
+14:23 &lt;jrandom&gt; the previous release had a hard limit of 30 seconds, but you can configure your own tunnel test time by updating `http://localhost:7657/configadvanced.jsp` and adding "router.tunnelTestMinimum=10000" (or whatever - that value is in milliseconds)
 14:23 &lt;deer_&gt; &lt;newsbyte&gt; those seconds, are they alchimagical?
 14:24 &lt;jrandom&gt; the 5s default should be fine though
 14:24 &lt;deer_&gt; &lt;Demokritos&gt; I actually upgraded Tor the day before yesterday because it stopped working, and now the network is telling me again, I have a non compatible version... what the.. 
@@ -209,7 +209,7 @@ categories: ["meeting"]
 14:47 &lt;jrandom&gt; if you've got an email acct at mail.i2p, you can tell biff to notify you when you get new mail
 14:47 &lt;deer_&gt; &lt;newsbyte&gt; does it has archives?
 14:48 &lt;jrandom&gt; newsbyte: biff is just a notification bot, the mail is stored on the mail server (and accessed with your normal mail reader - kmail, etc)
-14:48 &lt;jrandom&gt; see http://www.postman.i2p/
+14:48 &lt;jrandom&gt; see `http://www.postman.i2p/`
 14:49 &lt;jrandom&gt; ok, so, yeah, go to the eepsite or check out #mail.i2p over there
 14:49 &lt;deer_&gt; &lt;newsbyte&gt; I will, as soon as I get my eepsite on
 14:49  * jrandom doesnt really know much more wrt biff - redirect any questions to postman

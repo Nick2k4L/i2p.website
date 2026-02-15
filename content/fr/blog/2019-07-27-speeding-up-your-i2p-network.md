@@ -18,7 +18,7 @@ Jusqu’à il y a quelques versions, ce problème était encore plus difficile �
 
 ## Ajustement des limites de bande passante
 
-Puisque I2P est un réseau pair à pair, vous devez partager une partie de votre bande passante réseau avec d'autres pairs. Vous pouvez configurer ce montant dans « I2P Bandwidth Configuration » (bouton « Configure Bandwidth » dans la section « Applications and Configuration » de l'I2P Router Console, ou http://localhost:7657/config).
+Puisque I2P est un réseau pair à pair, vous devez partager une partie de votre bande passante réseau avec d'autres pairs. Vous pouvez configurer ce montant dans « I2P Bandwidth Configuration » (bouton « Configure Bandwidth » dans la section « Applications and Configuration » de l'I2P Router Console, ou `http://localhost:7657/config).`
 
 ![Configuration de la bande passante d'I2P](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ Si vous voyez une limite de bande passante partagée de 48 KBps, ce qui est trè
 
 Cependant, comme de nombreux utilisateurs peuvent ne pas savoir exactement quels paramètres de bande passante ajuster, la [version 0.9.38 d’I2P](https://geti2p.net/en/download) a introduit un Assistant de première installation. Il contient un Test de bande passante, qui détecte automatiquement (grâce au [NDT](https://www.measurementlab.net/tests/ndt/) de M-Lab) et ajuste en conséquence les paramètres de bande passante d’I2P.
 
-Si vous souhaitez relancer l’assistant de configuration, par exemple après un changement de fournisseur d’accès ou parce que vous avez installé I2P avant la version 0.9.38, vous pouvez le relancer depuis le lien 'Setup' sur la page 'Help & FAQ', ou simplement accéder directement à l’assistant à l’adresse http://localhost:7657/welcome
+Si vous souhaitez relancer l’assistant de configuration, par exemple après un changement de fournisseur d’accès ou parce que vous avez installé I2P avant la version 0.9.38, vous pouvez le relancer depuis le lien 'Setup' sur la page 'Help & FAQ', ou simplement accéder directement à l’assistant à l’adresse `http://localhost:7657/welcome`
 
 ![Pouvez-vous trouver « Setup » ?](https://geti2p.net/images/blog/sidemenu.png)
 

@@ -194,7 +194,7 @@ sudo systemctl reload apache2
 अपने browser में I2P Router Console खोलें:
 
 ```
-http://127.0.0.1:7657/i2ptunnel/
+`http://127.0.0.1:7657/i2ptunnel/`
 ```
 नई tunnel बनाना शुरू करने के लिए **"Tunnel Wizard"** पर क्लिक करें।
 
@@ -291,7 +291,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
 
         proxy_set_header Host $host;
@@ -321,7 +321,7 @@ server {
 
 ```nginx
 location / {
-    proxy_pass http://127.0.0.1:3000;
+    proxy_pass `http://127.0.0.1:3000;`
 
     sub_filter_once off;
     sub_filter_types text/html text/css application/javascript;
@@ -346,7 +346,7 @@ Gitea, I2P पर Git होस्ट करने के लिए एक ब�
 HTTP_ADDR     = 127.0.0.1
 HTTP_PORT     = 3000
 DOMAIN        = yourgit.i2p
-ROOT_URL      = http://yourgit.i2p/
+ROOT_URL      = `http://yourgit.i2p/`
 SSH_DOMAIN    = yourgit.i2p
 PROTOCOL      = http
 OFFLINE_MODE  = true
@@ -373,7 +373,7 @@ COOKIE_SECURE = false
 ```ini
 # /etc/cgitrc
 virtual-root=/
-clone-url=http://yourgit.i2p/$CGIT_REPO_URL
+clone-url=`http://yourgit.i2p/$CGIT_REPO_URL`
 cache-root=/var/cache/cgit
 cache-size=1000
 scan-path=/srv/git
@@ -387,17 +387,17 @@ cgit की आक्रामक caching इसे I2P की उच्च late
 
 ```bash
 # Tell Git to use the I2P proxy for .i2p domains
-git config --global http.http://yourgit.i2p.proxy http://127.0.0.1:4444
+git config --global http.http://yourgit.i2p.proxy `http://127.0.0.1:4444`
 git config --global http.timeout 300
 
 # Clone (allow for I2P latency)
 GIT_HTTP_LOW_SPEED_LIMIT=1000 GIT_HTTP_LOW_SPEED_TIME=60 \
-    git clone http://yourgit.i2p/repo
+    git clone `http://yourgit.i2p/repo`
 ```
 बड़े repositories के लिए, shallow clones I2P पर काफी समय बचाते हैं:
 
 ```bash
-git clone --depth 1 http://yourgit.i2p/project
+git clone --depth 1 `http://yourgit.i2p/project`
 git fetch --unshallow   # grab full history later if needed
 ```
 ## भाग 4: फ़ाइल होस्टिंग की मिररिंग
@@ -416,7 +416,7 @@ $CONFIG = array(
     'trusted_proxies'   => array('127.0.0.1'),
     'overwritehost'     => 'yoursite.i2p',
     'overwriteprotocol' => 'http',
-    'overwrite.cli.url' => 'http://yoursite.i2p/',
+    'overwrite.cli.url' => '`http://yoursite.i2p/',`
 );
 ```
 क्या अच्छी तरह काम करता है: फ़ाइल अपलोड और डाउनलोड, डायरेक्टरी ब्राउज़िंग, प्रमाणीकरण, सार्वजनिक लिंक साझाकरण, और WebDAV। क्या नहीं करता: डेस्कटॉप sync clients को SOCKS proxy कॉन्फ़िगरेशन की आवश्यकता होती है, external storage backends IP addresses लीक कर सकते हैं, और clearnet Nextcloud instances के साथ federation गोपनीयता से समझौता कर सकता है।
@@ -452,7 +452,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
 
         proxy_set_header Host $host;
         proxy_set_header Content-Type $content_type;
@@ -482,7 +482,7 @@ server {
     listen 127.0.0.1:8080;
 
     location /ws {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass `http://127.0.0.1:3000;`
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
@@ -683,8 +683,8 @@ timedatectl status
 आगंतुकों को अपनी address book में आपके पते की आवश्यकता होती है। सुनिश्चित करें कि आपने किसी सार्वजनिक address book के साथ पंजीकरण कराया है, या अपना पूरा base32 पता सीधे साझा करें। वे `http://127.0.0.1:7657/susidns/subscriptions` पर और भी subscriptions जोड़ सकते हैं:
 
 ```
-http://stats.i2p/cgi-bin/newhosts.txt
-http://i2host.i2p/cgi-bin/i2hostetag
+`http://stats.i2p/cgi-bin/newhosts.txt`
+`http://i2host.i2p/cgi-bin/i2hostetag`
 ```
 ### टेस्टिंग के दौरान टाइमआउट
 
@@ -692,10 +692,10 @@ I2P में स्वाभाविक रूप से अधिक round-tr
 
 ```bash
 # curl
-curl --connect-timeout 60 --max-time 300 http://yoursite.i2p/
+curl --connect-timeout 60 --max-time 300 `http://yoursite.i2p/`
 
 # wget
-wget --timeout=300 http://yoursite.i2p/
+wget --timeout=300 `http://yoursite.i2p/`
 ```
 ### लॉग्स पढ़ना
 

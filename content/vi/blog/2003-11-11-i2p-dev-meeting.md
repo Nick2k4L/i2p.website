@@ -6,7 +6,7 @@ description: "Cuộc họp phát triển I2P bao gồm trạng thái router, c�
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi Wayback Machine http://www.archive.org/)
+(Được cung cấp bởi Wayback Machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

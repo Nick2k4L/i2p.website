@@ -14,7 +14,7 @@ categories: ["meeting"]
 
 <div class="irc-log">
 20:20:09  &lt;str4d&gt; &lt;str4d&gt; Not sure where dg is, so I propose that we get the meeting started anyway, continuing on with the agenda from last week (or restarting it if necessary).
-20:20:09  &lt;str4d&gt; (http://zzz.i2p/posts/5779)
+20:20:09  &lt;str4d&gt; (`http://zzz.i2p/posts/5779)`
 20:20:18  &lt;iRelay&gt; Title: zzz.i2p: IRC Meetings (at zzz.i2p)
 20:40:14  &lt;str4d&gt; No one going to reply?
 20:41:48  &lt;Meeh&gt; I'm in for a meeting
@@ -55,12 +55,12 @@ categories: ["meeting"]
 21:28:17  &lt;str4d&gt; lillith, about to go afk
 21:28:26  &lt;str4d&gt; But website page reorganization is basically done.
 21:33:45  &lt;str4d&gt; I'd like some feedback from people on it (navigation and url structure) - see ticket #807 for the live url
-21:33:48  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
+21:33:48  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/807` - (accepted enhancement) - Revamp of website
 21:33:50  &lt;str4d&gt; And that ticket also lists the next todo items for the revamp.
 21:33:50  &lt;lillith&gt; okay, thanks :)
 21:34:09  &lt;lillith&gt; item 5 ; 0.9.4 release
 21:35:46  &lt;lillith&gt; zzz, are you still aiming for mid-december?
-21:39:52  &lt;zzz&gt; monday. see also /topic and http://zzz.i2p/topics/1252
+21:39:52  &lt;zzz&gt; monday. see also /topic and `http://zzz.i2p/topics/1252`
 21:39:55  &lt;zzz&gt; and re: console link additions, that agenda item can be pushed out 6 weeks for 0.9.5
 21:45:02  &lt;lillith&gt; okay thanks :)
 21:45:09  &lt;lillith&gt; item 6 : any notes from participants

@@ -6,7 +6,7 @@ description: "RC2 durumunu, Mac OS 9 portunun ilerlemesini, web sitesi önizleme
 categories: ["meeting"]
 ---
 
-(Wayback Machine sayesinde http://www.archive.org/)
+(Wayback Machine sayesinde `http://www.archive.org/`)
 
 ## Kısa özet
 

@@ -25,10 +25,10 @@ git 서비스가 어떻게 구성되어 있는지에 따라 모든 서비스를 
 서버에 읽기/쓰기 액세스가 필요하다면 SSH 클라이언트를 위한 tunnel을 설정해야 합니다. 읽기 전용 HTTP/S 복제만 필요하다면, 이 모든 과정을 건너뛰고 http_proxy 환경 변수를 사용하여 git이 사전 구성된 I2P HTTP Proxy를 사용하도록 설정하면 됩니다. 예:
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-SSH 접속을 위해 http://127.0.0.1:7657/i2ptunnelmgr에서 "New Tunnel Wizard"를 실행하고 Git 서비스의 SSH base32 주소를 가리키도록 client tunnel을 설정하십시오.
+SSH 접속을 위해 `http://127.0.0.1:7657/i2ptunnelmgr에서` "New Tunnel Wizard"를 실행하고 Git 서비스의 SSH base32 주소를 가리키도록 client tunnel을 설정하십시오.
 
 ## 네 번째: 복제 시도하기
 

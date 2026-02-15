@@ -22,13 +22,13 @@ categories: ["status"]
 
 며칠 전에 새로운 tunnel 암호 방식의 초안 명세를 대략 작성해 내 syndie 블로그에 올렸고, 실제로 구현하는 과정에서 드러난 사소한 변경을 거친 뒤, CVS [4]에 명세를 정리해 두었습니다. 이를 구현한 기본 코드도 CVS [5]에 있지만, 아직 실제 tunnel 구축에 연결되어 있지는 않습니다. 혹시 시간이 되신다면, 그 명세에 대한 피드백을 주시면 감사하겠습니다. 한편, 저는 새로운 tunnel 구축 코드 작업을 계속하겠습니다.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html 그리고     부트스트랩 공격과 관련된 스레드를 참고하세요 [2] http://dev.i2p.net/pipermail/i2p/2005-October/001064.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001057.html [4] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD [5] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/                        i2p/router/tunnel/BuildMessageTest.java
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` 그리고     부트스트랩 공격과 관련된 스레드를 참고하세요 [2] `http://dev.i2p.net/pipermail/i2p/2005-October/001064.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001057.html` [4] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD [5] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/`                        i2p/router/tunnel/BuildMessageTest.java
 
 * 3) Syndie blogs
 
-앞서 언급했듯이, 이번 새로운 0.6.1.9 릴리스에는 Syndie 블로그 인터페이스에 상당한 개편이 이루어졌으며, cervantes의 새로운 스타일과 각 사용자별 블로그 링크 및 로고 선택 기능이 포함됩니다 (e.g. [6]). 프로필 페이지에서 "configure your blog" 링크를 클릭하면 왼쪽에 있는 링크들을 관리할 수 있으며, http://localhost:7657/syndie/configblog.jsp 로 이동합니다. 거기에서 변경을 완료하면, 다음에 게시물을 아카이브로 푸시할 때 그 정보가 다른 사람들에게 제공됩니다.
+앞서 언급했듯이, 이번 새로운 0.6.1.9 릴리스에는 Syndie 블로그 인터페이스에 상당한 개편이 이루어졌으며, cervantes의 새로운 스타일과 각 사용자별 블로그 링크 및 로고 선택 기능이 포함됩니다 (e.g. [6]). 프로필 페이지에서 "configure your blog" 링크를 클릭하면 왼쪽에 있는 링크들을 관리할 수 있으며, `http://localhost:7657/syndie/configblog.jsp` 로 이동합니다. 거기에서 변경을 완료하면, 다음에 게시물을 아카이브로 푸시할 때 그 정보가 다른 사람들에게 제공됩니다.
 
-[6] http://syndiemedia.i2p.net/     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[6] `http://syndiemedia.i2p.net/`     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
 
 * 4) ???
 

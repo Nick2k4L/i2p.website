@@ -60,7 +60,7 @@ categories: ["meeting"]
 20:19:22  &lt;zzz&gt; str4d set it up but I don't see it linked on the home page any more
 20:19:35  &lt;dg&gt; q: Could someone pull off the RI attack without full keyspace Sybil?
 20:19:45  &lt;dg&gt; I think yes but ???
-20:20:05  &lt;zzz&gt; http://trac.i2p2.i2p/wiki/OpenITPReview/Criteria
+20:20:05  &lt;zzz&gt; `http://trac.i2p2.i2p/wiki/OpenITPReview/Criteria`
 20:20:35  &lt;zzz&gt; Vulnerability Response Process Maturity and Transparency
 20:21:20  &lt;zzz&gt; we aren't ever talking about full keyspace sybil here. You're targeting a particular slice
 20:21:31  &lt;welterde&gt; dg: he only has to capture most LS lookups.. and as many RI lookups as possible; the latter portion only depends on how much time he has for the attack
@@ -104,7 +104,7 @@ categories: ["meeting"]
 20:36:35  &lt;zzz&gt; ok then lets do it. I'll put a thread up on zzz.i2p if you want to propose other stuff to go in, final decision in about 24 hours, and I'll do the build maybe thursday. Can somebody contact echelon?
 20:36:53  &lt;zzz&gt; anything else on this topic?
 20:37:37  &lt;dg&gt; I don't think so.
-20:38:23  &lt;zzz&gt; http://zzz.i2p/topics/1443
+20:38:23  &lt;zzz&gt; `http://zzz.i2p/topics/1443`
 20:38:40  &lt;zzz&gt; please review the 17K line diff from 0.9.7 and history.txt for other pluck candidates
 20:38:47  &lt;zzz&gt; 2) Meeh's topics
 20:38:50  &lt;zzz&gt; take it away Meeh
@@ -116,7 +116,7 @@ categories: ["meeting"]
 20:55:47  &lt;dg&gt; zzz: pm ok?
 20:57:06  &lt;zzz&gt; only if it's of zero interest to anybody else
 20:58:51  &lt;dg&gt; draft for email to zooko
-20:58:55  &lt;dg&gt; http://pastethis.i2p/show/0bZ3iFeE9uABCORkfXV6/
+20:58:55  &lt;dg&gt; `http://pastethis.i2p/show/0bZ3iFeE9uABCORkfXV6/`
 20:58:58  &lt;iRelay&gt; Title: Paste #0bZ3iFeE9uABCORkfXV6 | LodgeIt! (at pastethis.i2p)
 20:59:10  &lt;dg&gt; I didn't include status or anything yet. I may be way off base. Feedback appreciated.
 21:01:00  &lt;zzz&gt; 3) /me *baf*s the meeting closed for Meeh

@@ -49,14 +49,14 @@ categories: ["meeting"]
 20:18:31  &lt;hottuna&gt; alright
 20:18:31  &lt;dg&gt; Let me dig up the topic.
 20:18:31  &lt;hottuna&gt; that makes sense
-20:18:31  &lt;hottuna&gt; dg, http://zzz.i2p/topics/715
+20:18:31  &lt;hottuna&gt; dg, `http://zzz.i2p/topics/715`
 20:18:31  &lt;dg&gt; a-ha
 20:18:42  &lt;dg&gt; ha.. two years ago
 20:19:00  &lt;hottuna&gt; Should we start with "Syndie status" for the time being?
 20:20:11  &lt;dg&gt; Yeah
 20:21:09  &lt;hottuna&gt; Alright, how many items on the todo-list have been added / completed?
 20:21:40  &lt;hottuna&gt; And whats the url for the todo?
-20:25:43  &lt;hottuna&gt; Syndie changelog: http://zzz.i2p/posts/6095
+20:25:43  &lt;hottuna&gt; Syndie changelog: `http://zzz.i2p/posts/6095`
 20:25:43  &lt;hottuna&gt; Are there any syndie users around?
 20:26:06  &lt;dg&gt; I've tested it but I've had issues/found it dead.
 20:26:09  &lt;hottuna&gt; I tried it and started synching, but there are a lot of items to synch
@@ -150,7 +150,7 @@ categories: ["meeting"]
 20:48:55  &lt;hottuna&gt; thats is a good point sponge
 20:48:58  &lt;zzz&gt; well (OT) we need somebody in charge of every meeting, so it has an agenda and can start on time. dg, are you going to start doing that again? if not we need to find somebody else
 20:49:01  &lt;orion&gt; 20:21:47&lt;+str4d&gt; KillYourTV: could you update the /topic for the crypto meeting next week?
-20:49:01  &lt;orion&gt; 20:22:57-!- KillYourTV changed the topic of #i2p-dev to: Syndie hackfest in progress, current Syndie build 1.102b-3 | Current I2P build: 0.9.4-4 | Dev Crypto mtg here 8:00 PM (20:00) UTC Tues. Jan. 15 | Report bugs at http://trac.i2p2.i2p / http://trac.i2p2.de
+20:49:01  &lt;orion&gt; 20:22:57-!- KillYourTV changed the topic of #i2p-dev to: Syndie hackfest in progress, current Syndie build 1.102b-3 | Current I2P build: 0.9.4-4 | Dev Crypto mtg here 8:00 PM (20:00) UTC Tues. Jan. 15 | Report bugs at `http://trac.i2p2.i2p` / http://trac.i2p2.de
 20:49:07  &lt;iRelay&gt; Title: I2P (at trac.i2p2.i2p)
 20:49:27  &lt;dg&gt; Yeah, I'm fine with that. I got out of sync after I died. :)
 20:50:15  &lt;hottuna&gt; Alright, I dont think the crypto bit is leading anywhere. Objections?
@@ -170,7 +170,7 @@ categories: ["meeting"]
 20:54:28  &lt;hottuna&gt; dg, could you start a meeting thread on zzz.i2p or forum.i2p?
 20:54:47  &lt;hottuna&gt; so that some notes for next week can be arranged?
 20:55:35  &lt;hottuna&gt; link to tor paper:  https://gitweb.torproject.org/tor.git?a=blob_plain;hb=HEAD;f=doc/spec/proposals/ideas/xxx-crypto-migration.txt
-20:55:38  &lt;dg&gt; hottuna: http://zzz.i2p/topics/1268 - unless we need a new one?
+20:55:38  &lt;dg&gt; hottuna: `http://zzz.i2p/topics/1268` - unless we need a new one?
 20:56:12  &lt;sponge&gt; one thing we don't need is a I2P flag day
 20:56:36  &lt;dg&gt; for the love of god no
 20:56:39  &lt;zzz&gt; so sponge, in general, "bloat" is not the issue. compatibility is. pls read the read-it-and-weep paper
@@ -251,8 +251,8 @@ categories: ["meeting"]
 21:21:11  &lt;sponge&gt; my thoughts and concerns as to DSA/crypto have been expressed, I have nothing more to say
 21:21:49  &lt;dg&gt; hopefully can get zab on by then?
 21:22:08  &lt;hottuna&gt; that would be optimal
-21:22:23  &lt;dg&gt; hottuna: this ok? http://zzz.i2p/topics/1328
-21:22:26  &lt;hottuna&gt; LaughingBuddha, I've added a requests section to http://ugha.i2p/
+21:22:23  &lt;dg&gt; hottuna: this ok? `http://zzz.i2p/topics/1328`
+21:22:26  &lt;hottuna&gt; LaughingBuddha, I've added a requests section to `http://ugha.i2p/`
 21:22:29  &lt;iRelay&gt; Title: zzz.i2p: Meeting [22nd January] (at zzz.i2p)
 21:22:32  &lt;dg&gt; I'll email zab now.
 21:22:39  &lt;hottuna&gt; Great dg!

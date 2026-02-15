@@ -38,13 +38,13 @@ For as long as it takes to explain them, setting up an Encrypted LeaseSet is str
 
 ## On the "Server"
 
-Start by opening the Hidden Services Manager at http://127.0.0.1:7657/i2ptunnelmgr and scroll to the bottom of the section that says "I2P Hidden Services." Create a new hidden service with the host "127.0.0.1" and the port "7657" with these "Tunnel Cryptography Options" and save the hidden service.
+Start by opening the Hidden Services Manager at `http://127.0.0.1:7657/i2ptunnelmgr` and scroll to the bottom of the section that says "I2P Hidden Services." Create a new hidden service with the host "127.0.0.1" and the port "7657" with these "Tunnel Cryptography Options" and save the hidden service.
 
 Then, select your new tunnel from the Hidden Services Manager main page. The Tunnel Cryptography Options should now include your first Pre-Shared Key. Copy this down for the next step, along with the Encrypted Base32 Address of your tunnel.
 
 ## On the "Client"
 
-Now switch computers to the client which will connect to the hidden service, and visit the Keyring Configuration at http://127.0.0.1:7657/configkeyring to add the keys from earlier. Start by pasting the Base32 from the Server into the field labeled: "Full destination, name, Base32, or hash." Next, paste the Pre-Shared Key from the server into the "Encryption Key" field. Click save, and you're ready to securely visit the Hidden Service using an Encrypted LeaseSet.
+Now switch computers to the client which will connect to the hidden service, and visit the Keyring Configuration at `http://127.0.0.1:7657/configkeyring` to add the keys from earlier. Start by pasting the Base32 from the Server into the field labeled: "Full destination, name, Base32, or hash." Next, paste the Pre-Shared Key from the server into the "Encryption Key" field. Click save, and you're ready to securely visit the Hidden Service using an Encrypted LeaseSet.
 
 ## Now You're Ready to Remotely Administer I2P
 

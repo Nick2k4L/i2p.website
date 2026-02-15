@@ -44,9 +44,9 @@ Dưới đây từ zzz là một đánh giá về một số khiếu nại phổ
 
 Như thường xảy ra trong I2P, ở đây có một sự đánh đổi cơ bản giữa tính ẩn danh và hiệu quả. Một số người cho rằng việc sử dụng các header etag và last-modified là nguy hiểm vì nó tiết lộ thời điểm bạn yêu cầu dữ liệu lần cuối. Những người khác đã đề xuất chỉ yêu cầu các key cụ thể (tương tự như những gì các dịch vụ jump làm, nhưng theo cách tự động hơn), có thể với chi phí ẩn danh cao hơn.
 
-Các cải tiến có thể có sẽ là thay thế hoặc bổ sung cho address book (xem i2host.i2p), hoặc một cái gì đó đơn giản như đăng ký http://example.i2p/cgi-bin/recenthosts.cgi thay vì http://example.i2p/hosts.txt. Nếu một recenthosts.cgi giả định phân phối tất cả các host từ 24 giờ qua, ví dụ, điều đó có thể vừa hiệu quả hơn vừa ẩn danh hơn so với hosts.txt hiện tại với last-modified và etag.
+Các cải tiến có thể có sẽ là thay thế hoặc bổ sung cho address book (xem i2host.i2p), hoặc một cái gì đó đơn giản như đăng ký `http://example.i2p/cgi-bin/recenthosts.cgi` thay vì `http://example.i2p/hosts.txt.` Nếu một recenthosts.cgi giả định phân phối tất cả các host từ 24 giờ qua, ví dụ, điều đó có thể vừa hiệu quả hơn vừa ẩn danh hơn so với hosts.txt hiện tại với last-modified và etag.
 
-Một triển khai mẫu có thể tìm thấy trên stats.i2p tại http://stats.i2p/cgi-bin/newhosts.txt. Script này trả về một Etag với timestamp. Khi có yêu cầu đến với etag If-None-Match, script CHỈ trả về các host mới kể từ timestamp đó, hoặc 304 Not Modified nếu không có host nào. Theo cách này, script hiệu quả trả về chỉ những host mà người đăng ký chưa biết, theo cách tương thích với address book.
+Một triển khai mẫu có thể tìm thấy trên stats.i2p tại `http://stats.i2p/cgi-bin/newhosts.txt.` Script này trả về một Etag với timestamp. Khi có yêu cầu đến với etag If-None-Match, script CHỈ trả về các host mới kể từ timestamp đó, hoặc 304 Not Modified nếu không có host nào. Theo cách này, script hiệu quả trả về chỉ những host mà người đăng ký chưa biết, theo cách tương thích với address book.
 
 Vì vậy, sự kém hiệu quả không phải là vấn đề lớn và có nhiều cách để cải thiện mọi thứ mà không cần thay đổi triệt để.
 
@@ -54,7 +54,7 @@ Vì vậy, sự kém hiệu quả không phải là vấn đề lớn và có nh
 
 Về lưu lượng mạng thì xem phần trên. Nhưng trừ khi bạn định thực hiện một truy vấn thời gian thực chậm qua mạng cho một key, bạn cần phải lưu trữ toàn bộ tập hợp các key ở local, với chi phí khoảng 500 byte mỗi key.
 
-- **Yêu cầu cấu hình và "tin tưởng":** Sổ địa chỉ mặc định chỉ đăng ký http://www.i2p2.i2p/hosts.txt, hiếm khi được cập nhật, dẫn đến trải nghiệm kém cho người dùng mới.
+- **Yêu cầu cấu hình và "tin tưởng":** Sổ địa chỉ mặc định chỉ đăng ký `http://www.i2p2.i2p/hosts.txt,` hiếm khi được cập nhật, dẫn đến trải nghiệm kém cho người dùng mới.
 
 Điều này hoàn toàn có chủ ý. jrandom muốn người dùng "tin tưởng" một nhà cung cấp hosts.txt, và như ông hay nói, "niềm tin không phải là một giá trị boolean". Bước cấu hình cố gắng buộc người dùng phải suy nghĩ về các vấn đề tin tưởng trong một mạng lưới ẩn danh.
 

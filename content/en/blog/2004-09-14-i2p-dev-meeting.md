@@ -300,7 +300,7 @@ categories: ["meeting"]
 15:20 &lt;cat-a-puss&gt; hey, could someone write a gaim plugin? that would be a good way to do it
 15:20 &lt;jrandom&gt; right cervantes 
 15:20 &lt;cervantes&gt; they maybe use 1 for apps...and donate the others
-15:21 &lt;jrandom&gt; mrflibble: http://localhost:7657/i2ptunnel/ to configure the http and irc proxies to listen on "any interface"
+15:21 &lt;jrandom&gt; mrflibble: `http://localhost:7657/i2ptunnel/` to configure the http and irc proxies to listen on "any interface"
 15:21 &lt;fvw&gt; which reminds me: could we do something multicastish for outbound tunnels? ie have one message delivered to multiple inbouds?
 15:21 &lt;nicktastic&gt; cat-a-puss: Certainly possible
 15:21 &lt;fvw&gt; yeah, in essence there's not much difference between irc and im, apart from the user interface.
@@ -409,7 +409,7 @@ categories: ["meeting"]
 15:42 &lt;deer&gt; &lt;duck&gt; nope, the dev did freeze up. will have to find someone else
 15:42 &lt;jrandom&gt; ok, sorry to hear that
 15:42 &lt;deer&gt; &lt;baffled&gt; We told you not to keep putting them in the closet to protect them.
-15:43 &lt;deer&gt; &lt;duck&gt; my initial specs: http://duck.i2p/files/anonyproxy.txt
+15:43 &lt;deer&gt; &lt;duck&gt; my initial specs: `http://duck.i2p/files/anonyproxy.txt`
 15:44 &lt;deer&gt; &lt;baffled&gt; Is getting mail in/out of i2p as easy as some type of interface web/tunnel to one of these mixmaster thingies?
 15:44 &lt;jrandom&gt; perhaps we can work on a revamp of the spec for that and see if it could serve the needs of normal eepsites (with i2p general funds pitching in)
 15:44 &lt;jrandom&gt; oh ok cool duck, i'll check that out

@@ -13,10 +13,10 @@ categories: ["meeting"]
 ## 회의 기록
 
 <div class="irc-log">20:00:01 &lt;zzz&gt; 0) 안녕하세요
-20:00:01 &lt;zzz&gt; 1) 0.9.27-29 로드맵: http://i2p-projekt.i2p/en/get-involved/roadmap
+20:00:01 &lt;zzz&gt; 1) 0.9.27-29 로드맵: `http://i2p-projekt.i2p/en/get-involved/roadmap`
 20:00:05 &lt;zzz&gt; 0) 안녕하세요
 20:00:07 &lt;zzz&gt; 안녕
-20:00:35 &lt;zzz&gt; 1) 0.9.27-29 로드맵: http://i2p-projekt.i2p/en/get-involved/roadmap
+20:00:35 &lt;zzz&gt; 1) 0.9.27-29 로드맵: `http://i2p-projekt.i2p/en/get-involved/roadmap`
 20:00:57 &lt;str4d&gt; 안녕
 20:01:17 &lt;z3r0fox&gt; 안녕
 20:01:17 &lt;zzz&gt; 오늘 목표는 최소한 27-29 로드맵을 27과 28-29로 나누는 것입니다

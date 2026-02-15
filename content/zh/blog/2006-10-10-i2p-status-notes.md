@@ -22,7 +22,7 @@ Hi y'all, brief status notes this week
 
 另外，在频道里也有一些关于 Syndie GUI（图形界面）设计的讨论——meerboop 提出了一些很酷的点子，并且正在把这些想法写成文档。Syndie GUI 是 Syndie 2.0 发布的主要组件，所以我们越早让它运转起来，我们就越早征服世界^W^W^W^W能把 Syndie 推向那些毫无防备的大众。
 
-我在 Syndie 博客中还发布了一份关于使用 Syndie 本身进行缺陷和功能请求跟踪的新提案。为便于访问，我已将该帖子导出为纯文本并发布到网页上 - 第 1 页位于 <http://dev.i2p.net/~jrandom/bugsp1.txt>，第 2 页位于 <http://dev.i2p.net/~jrandom/bugsp2.txt>
+我在 Syndie 博客中还发布了一份关于使用 Syndie 本身进行缺陷和功能请求跟踪的新提案。为便于访问，我已将该帖子导出为纯文本并发布到网页上 - 第 1 页位于 <`http://dev.i2p.net/~jrandom/bugsp1.txt>，第` 2 页位于 <`http://dev.i2p.net/~jrandom/bugsp2.txt>`
 
 * 3) Distributed version control revisited
 
@@ -32,7 +32,7 @@ Hi y'all, brief status notes this week
 
 * 4) ???
 
-如你所见，一如既往地有很多事情在发生。论坛上那个“解决世界饥饿”的主题帖也有了进一步的讨论，欢迎前往 <http://forum.i2p.net/viewtopic.php?t=1910> 查看。
+如你所见，一如既往地有很多事情在发生。论坛上那个“解决世界饥饿”的主题帖也有了进一步的讨论，欢迎前往 <`http://forum.i2p.net/viewtopic.php?t=1910>` 查看。
 
 如果你还有进一步想讨论的内容，欢迎今晚到 #i2p 参加我们的开发者会议，或者在论坛发帖或向邮件列表发信！
 

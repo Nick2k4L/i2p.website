@@ -14,7 +14,7 @@ toc: true
 
 Trong khi nghiên cứu và cạnh tranh để tìm ra mật mã học hậu lượng tử (PQ) phù hợp đã diễn ra trong một thập kỷ, các lựa chọn vẫn chưa trở nên rõ ràng cho đến gần đây.
 
-Chúng tôi bắt đầu xem xét những tác động của mật mã PQ vào năm 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
+Chúng tôi bắt đầu xem xét những tác động của mật mã PQ vào năm 2022 zzz.i2p.
 
 Các tiêu chuẩn TLS đã bổ sung hỗ trợ mã hóa lai trong hai năm qua và hiện tại được sử dụng cho một phần đáng kể lưu lượng mã hóa trên internet nhờ vào sự hỗ trợ trong Chrome và Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 

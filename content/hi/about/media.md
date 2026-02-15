@@ -178,12 +178,12 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">प्याज और लहसुन: I2P की प्रोटोकॉल</a>
+प्याज और लहसुन: I2P की प्रोटोकॉल
 </div>
 <div class="content-entry-meta">🎥 प्रस्तुति • फरवरी 17, 2016</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ layout: "single"
 <div class="content-entry-title">zzz और लांस जेम्स इन्फोसेक डेली पॉडकास्ट पर</div>
 <div class="content-entry-meta">🎙️ पॉडकास्ट • फरवरी 16, 2012</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">I2P टॉरेंट</a>
+I2P टॉरेंट
 </div>
 </div>
 
@@ -279,7 +279,7 @@ layout: "single"
 <div class="content-entry-title">zzz इन्फोसेक डेली पॉडकास्ट पर</div>
 <div class="content-entry-meta">🎙️ पॉडकास्ट • अगस्त 18, 2011</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">I2P टॉरेंट</a>
+I2P टॉरेंट
 </div>
 </div>
 
@@ -343,7 +343,7 @@ layout: "single"
 </div>
 <div class="content-entry-meta">🎥 प्रस्तुति • HOPE • जुलाई 17, 2010</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">YouTube</a>
 </div>
 </div>

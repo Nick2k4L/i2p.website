@@ -22,7 +22,7 @@ Neustále přibývají další a další vylepšení a aktuální alfa verze je 
 
 Také na kanálu proběhly některé diskuse o návrzích GUI pro Syndie - meerboop přišel s pár skvělými nápady a pracuje na jejich zdokumentování. Syndie GUI je hlavní součástí vydání Syndie 2.0, takže čím dřív to rozjedeme, tím dřív ovládneme svě^W^W^W^W budeme moct vypustit Syndie na nic netušící masy.
 
-There's also a new proposal in my Syndie blog regarding bug and feature request tracking using Syndie itself. For ease of access, I've made a plain text export of that post up on the web - page 1 is at <http://dev.i2p.net/~jrandom/bugsp1.txt> and page 2 is at <http://dev.i2p.net/~jrandom/bugsp2.txt>
+There's also a new proposal in my Syndie blog regarding bug and feature request tracking using Syndie itself. For ease of access, I've made a plain text export of that post up on the web - page 1 is at <`http://dev.i2p.net/~jrandom/bugsp1.txt>` and page 2 is at <`http://dev.i2p.net/~jrandom/bugsp2.txt>`
 
 * 3) Distributed version control revisited
 
@@ -32,7 +32,7 @@ Samozřejmě, bez ohledu na to, pro jaký dvcs (distribuovaný systém správy v
 
 * 4) ???
 
-Jak vidíte, jako vždy se toho děje spousta. Na fóru také proběhla další diskuse v tom vlákně "solve world hunger", takže se na to podívejte na <http://forum.i2p.net/viewtopic.php?t=1910>
+Jak vidíte, jako vždy se toho děje spousta. Na fóru také proběhla další diskuse v tom vlákně "solve world hunger", takže se na to podívejte na <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Pokud k tomu máte ještě co dodat, přijďte prosím dnes večer na naši vývojářskou schůzku na #i2p, nebo napište na fórum či mailing list!
 

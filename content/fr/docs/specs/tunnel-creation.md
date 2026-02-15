@@ -165,7 +165,7 @@ Les accords et rejets sont notés dans le profil de chaque pair [PEER-SELECTION]
 
 ## Historique et Notes
 
-Cette stratégie a vu le jour lors d'une discussion sur la liste de diffusion I2P entre Michael Rogers, Matthew Toseland (toad), et jrandom concernant l'attaque du prédécesseur. Voir [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html), [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html). Elle a été introduite dans la version 0.6.1.10 le 16 février 2006, qui était la dernière fois qu'un changement non rétrocompatible a été effectué dans I2P.
+Cette stratégie a vu le jour lors d'une discussion sur la liste de diffusion I2P entre Michael Rogers, Matthew Toseland (toad), et jrandom concernant l'attaque du prédécesseur. Voir TUNBUILD-SUMMARY, TUNBUILD-REASONING. Elle a été introduite dans la version 0.6.1.10 le 16 février 2006, qui était la dernière fois qu'un changement non rétrocompatible a été effectué dans I2P.
 
 Notes :
 
@@ -193,8 +193,8 @@ Notes :
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)
 - [TBM](/docs/specs/i2np/#struct-TunnelBuild) - TunnelBuildMessage
 - [TBRM](/docs/specs/i2np/#struct-TunnelBuildReply) - TunnelBuildReplyMessage
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)
+- TUNBUILD-REASONING
+- TUNBUILD-SUMMARY
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation/)
 - [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation)
 - [VTBM](/docs/specs/i2np/#struct-VariableTunnelBuild) - VariableTunnelBuildMessage

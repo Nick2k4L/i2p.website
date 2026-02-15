@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / http://127.0.0.1:8443/
-    ProxyPassReverse / http://127.0.0.1:8443/
+    ProxyPass / `http://127.0.0.1:8443/`
+    ProxyPassReverse / `http://127.0.0.1:8443/`
 </VirtualHost>
 ```
 ### Enregistrement et coordination
@@ -554,7 +554,7 @@ Une fois que votre reseed (serveur de réamorçage) est enregistré auprès du p
 ### Ressources communautaires
 
 - **Forum I2P**: https://i2pforum.net/
-- **Dépôt Gitea**: https://i2pgit.org/I2P_Developers/i2p.i2p
+- **Dépôt Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev sur IRC2P
 - **Surveillance de l'état**: https://checki2p.com/reseed
 

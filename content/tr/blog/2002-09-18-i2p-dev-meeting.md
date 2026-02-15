@@ -6,7 +6,7 @@ description: "18 Eylül 2002 tarihli I2P geliştirme toplantısı kayıtları."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in nezaketiyle http://www.archive.org/)
+(Wayback machine'in nezaketiyle `http://www.archive.org/`)
 
 ## Hızlı özet
 

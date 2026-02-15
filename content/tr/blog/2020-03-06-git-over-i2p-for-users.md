@@ -25,10 +25,10 @@ Kurulum sürecinin çalıştığından emin olmak için, sunucu üzerinden test 
 Bir sunucuya okuma-yazma erişimi elde etmek için, SSH istemciniz için bir tunnel ayarlamanız gerekir. İhtiyacınız yalnızca salt-okunur HTTP/S klonlama ise, o halde tüm bunları atlayabilir ve git'i önceden yapılandırılmış I2P HTTP Proxy'yi kullanacak şekilde ayarlamak için yalnızca http_proxy ortam değişkenini kullanabilirsiniz. Örneğin:
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-SSH erişimi için, http://127.0.0.1:7657/i2ptunnelmgr adresinden "New Tunnel Wizard"ı başlatın ve Git hizmetinin SSH base32 adresine yönlendiren bir client tunnel (istemci ağ tüneli) oluşturun.
+SSH erişimi için, `http://127.0.0.1:7657/i2ptunnelmgr` adresinden "New Tunnel Wizard"ı başlatın ve Git hizmetinin SSH base32 adresine yönlendiren bir client tunnel (istemci ağ tüneli) oluşturun.
 
 ## Dördüncü: Klonlamayı deneyin
 

@@ -16,7 +16,7 @@ categories: ["status"]
 
 जैसा पहले बताया गया था, आने वाला 0.6.1 रिलीज़ router को अधिक सावधानी से कॉन्फ़िगर करने और reachability (पहुंच-योग्यता) सत्यापित करने (या यह बताने कि क्या करना है) के लिए परीक्षणों की एक श्रृंखला शामिल करेगा, और जबकि हमारे पास पिछले दो बिल्ड से CVS में कुछ कोड मौजूद है, फिर भी इसके उतनी सुचारूता से काम करने से पहले, जितनी आवश्यक है, कुछ परिष्करण अभी बाकी हैं। फिलहाल, मैं दस्तावेजीकृत test flow [1] में कुछ छोटे संशोधन कर रहा हूँ, जिसमें Charlie की reachability सत्यापित करने के लिए एक अतिरिक्त पैकेट जोड़ना और Charlie के जवाब देने तक Bob का Alice को उत्तर विलंबित करना शामिल है। इससे अनावश्यक "ERR-Reject" status मानों की संख्या कम होनी चाहिए, क्योंकि Bob तब तक Alice को उत्तर नहीं देगा जब तक उसके पास परीक्षण के लिए तैयार कोई Charlie न हो (और जब Bob उत्तर नहीं देता, Alice को status के रूप में "Unknown" दिखाई देता है)।
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting`
 
 खैर, हाँ, बस इतना ही - कल 0.6.0.2-3 उपलब्ध होना चाहिए, पूरी तरह परीक्षण हो जाने पर इसे रिलीज़ के रूप में पुश किया जाएगा.
 
@@ -26,7 +26,7 @@ categories: ["status"]
 
 पुराने i2pirc नेटवर्क (duck, baffled, the metropipe crew, postman) के लिए ज़िम्मेदार लोगों को और नए irc2p नेटवर्क (postman, arcturus) के लिए ज़िम्मेदार लोगों को मेरा धन्यवाद! रोचक सेवाएँ और सामग्री I2P को सार्थक बनाती हैं, और इन्हें बनाना आप सब पर निर्भर है!
 
-[2] http://forum.i2p.net/viewtopic.php?t=898 [3] http://hq.postman.i2p/
+[2] `http://forum.i2p.net/viewtopic.php?t=898` [3] `http://hq.postman.i2p/`
 
 * 3) Feedspace
 

@@ -6,7 +6,7 @@ description: "Log da reunião de desenvolvimento do I2P de 13 de janeiro de 2004
 categories: ["meeting"]
 ---
 
-(Cortesia da wayback machine http://www.archive.org/)
+(Cortesia da wayback machine `http://www.archive.org/`)
 
 ## Resumo rápido
 
@@ -93,7 +93,7 @@ categories: ["meeting"]
 [22:21] &lt;jrand0m&gt; (or do they have to run the i2p router?
 [22:21] &lt;duck&gt; neither
 [22:21] &lt;duck&gt; they can put their html files on /home/username/public_html/
-[22:21] &lt;duck&gt; and it will show up on http://home.duck.i2p/~username/
+[22:21] &lt;duck&gt; and it will show up on `http://home.duck.i2p/~username/`
 [22:21] &lt;jrand0m&gt; ah nice
 [22:21] &lt;jrand0m&gt; php support?  cgi / .pl / etc?  or just html?
 [22:22] &lt;jrand0m&gt; (thats kick fucking ass, in any case)

@@ -6,7 +6,7 @@ description: "7 Ocak 2003 tarihli I2P geliştirme toplantısı günlüğü."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in nezaketinden http://www.archive.org/)
+(Wayback machine'in nezaketinden `http://www.archive.org/`)
 
 ## Hızlı özet
 

@@ -16,7 +16,7 @@ categories: ["meeting"]
 20:00:00 &lt;zzz&gt; 0) Hi
 20:00:00 &lt;zzz&gt; 1) 33C3 follow-up
 20:00:00 &lt;zzz&gt; 2) 0.9.29 update (zzz)
-20:00:00 &lt;zzz&gt; 3) Tails maintainer (zzz) http://zzz.i2p/topics/2108
+20:00:00 &lt;zzz&gt; 3) Tails maintainer (zzz) `http://zzz.i2p/topics/2108`
 20:00:00 &lt;zzz&gt; 4) NTCP2 draft (Manas)
 20:00:00 &lt;zzz&gt; 5) Reseed documentation patch (Manas)
 20:00:04 &lt;zzz&gt; 0) Hi
@@ -57,7 +57,7 @@ categories: ["meeting"]
 20:06:45 &lt;manas&gt; I'm continuing to work on the Hindi translations :)
 20:07:04 &lt;zzz&gt; yeah str4d there's definitely some things that need work before you prop or the pitchforks will come out
 20:07:14 &lt;zzz&gt; ok great
-20:07:29 &lt;zzz&gt; 3) Tails maintainer (zzz) http://zzz.i2p/topics/2108
+20:07:29 &lt;zzz&gt; 3) Tails maintainer (zzz) `http://zzz.i2p/topics/2108`
 20:07:40 &lt;i2pr&gt; [Slack/str4d] I've got a bunch of changes locally that I'm tidying up before pushing
 20:08:07 &lt;zzz&gt; we met a guy 'yolgie' at ccc who said he'd do it. pinged him in early jan, he said he'd start in feb. pinged him a few days ago,no response yet
 20:08:26 &lt;zzz&gt; we're about to get evicted from tails, so anybody that can help would be great
@@ -88,7 +88,7 @@ categories: ["meeting"]
 20:15:41 &lt;zzz&gt; 5) Reseed documentation patch (Manas)
 20:15:46 &lt;zzz&gt; manas what do you have for us?
 20:16:04 &lt;manas&gt; Heard from backup
-20:16:08 &lt;manas&gt; His comments are here: http://zzz.i2p/topics/2210-reseed-webpage-updates
+20:16:08 &lt;manas&gt; His comments are here: `http://zzz.i2p/topics/2210-reseed-webpage-updates`
 20:16:27 &lt;manas&gt; Will be making another patch after I include his suggestions
 20:16:46 &lt;eche|off&gt; great
 20:16:48 &lt;manas&gt; He has suggested removing a number of parts (old reseed methods)
@@ -110,7 +110,7 @@ categories: ["meeting"]
 20:20:40 &lt;zzz&gt; go ahead
 20:21:00 &lt;EinMByte&gt; I can read through the latest draft
 20:21:24 &lt;EinMByte&gt; Has a decision been made yet about which ciphers to support?
-20:21:27 &lt;manas&gt; It's over here, by the way: http://pinkpaste.i2p/show/246/
+20:21:27 &lt;manas&gt; It's over here, by the way: `http://pinkpaste.i2p/show/246/`
 20:21:39 &lt;psi&gt; there it is
 20:22:19 &lt;zzz&gt; basically we've made no progress since the 1MB draft, and manas has just now merged it with the previous proposal
 20:22:28 &lt;zzz&gt; anything else for the meeting?

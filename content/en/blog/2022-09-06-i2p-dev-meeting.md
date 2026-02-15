@@ -55,7 +55,7 @@ categories: ["meeting"]
 (04:21:00 PM) eyedeekay: 2 weeks in, I've been working on a number of improvements to the Windows bundle to make it more stable and intuitive to use and to help track down this clock-skew bug
 (04:21:37 PM) eyedeekay: I've also been porting the profile and launcher parts of it(less the jpackaged router) to non-Windows platforms to hopefully provide automatic browser configuration there
 (04:22:06 PM) eyedeekay: zzz has been working on SSU2, fixing bugs with the help of orignal, would you like to update us on that zzz
-(04:22:16 PM) zzz: yes, thanks. early days, but a summary of changes and fixes so far is at http://zzz.i2p/topics/3377
+(04:22:16 PM) zzz: yes, thanks. early days, but a summary of changes and fixes so far is at `http://zzz.i2p/topics/3377`
 (04:22:32 PM) zzz: SSU2 - added the ack-immediate flag and connection migration
 (04:22:47 PM) zzz: which are the last two things we wanted to get in before enabling for all
 (04:24:07 PM) eyedeekay: Cool so you're right on track then?

@@ -17,9 +17,11 @@
             {{ end }}
         </div>
         {{ if .Site.Params.banner.dismissible }}
-        <a href="/api/banner/dismiss?id={{ .Site.Params.banner.id | default "banner-default" }}" class="banner-close" aria-label="{{ i18n "banner.banner_close" | default "Close banner" }}" title="{{ i18n "banner.banner_close" | default "Close banner" }}">
-            <span aria-hidden="true">&times;</span>
-        </a>
+        <form action="/api/banner/dismiss?id={{ .Site.Params.banner.id | default "banner-default" }}" method="POST" style="display:contents">
+            <button type="submit" class="banner-close" aria-label="{{ i18n "banner.banner_close" | default "Close banner" }}" title="{{ i18n "banner.banner_close" | default "Close banner" }}">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </form>
         {{ end }}
     </div>
 </div>

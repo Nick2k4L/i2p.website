@@ -62,7 +62,7 @@ categories: ["meeting"]
 21:25:23  &lt;dg&gt; s/Sundie/Syndie
 21:25:54  &lt;lillith&gt; since it is a wiki i/we would appreciate if everyone could have a look and fix it if needed
 21:26:01  &lt;lillith&gt; yes
-21:26:16  &lt;Meeh&gt; I'm trying to make a map over the syndie archives at http://wiki.meeh.i2p/doku.php?id=syndie:known_archives
+21:26:16  &lt;Meeh&gt; I'm trying to make a map over the syndie archives at `http://wiki.meeh.i2p/doku.php?id=syndie:known_archives`
 21:26:24  &lt;iRelay&gt; Title: syndie:known_archives [wiki.meeh.i2p] (at wiki.meeh.i2p)
 21:26:43  &lt;lillith&gt; so, please do have a play on syndie and report back on f you feel the beginners guide is suitable for a short intro
 21:26:50  &lt;dg&gt; A column for default or not may be useful
@@ -75,11 +75,11 @@ categories: ["meeting"]
 21:31:26  &lt;Meeh&gt; gonna do it
 21:31:53  &lt;dg&gt; thanks for giving Syndie some love lillith
 21:32:01  &lt;lillith&gt; i'l tell you mine later, not here now :)
-21:32:31  &lt;inscrutus&gt; lillith: is this the wiki b32? http://fomjl7cori4juycw55kdlczpgzzhme6nox6zykokuiov6t5lxhvq.b32.i2p/user_guide/
+21:32:31  &lt;inscrutus&gt; lillith: is this the wiki b32? `http://fomjl7cori4juycw55kdlczpgzzhme6nox6zykokuiov6t5lxhvq.b32.i2p/user_guide/`
 21:32:34  &lt;iRelay&gt; Title: Syndie Handbook (at fomjl7cori4juycw55kdlczpgzzhme6nox6zykokuiov6t5lxhvq.b32.i2p)
 21:33:02  &lt;lillith&gt; dg: it's actually pretty good, even if it is buggy.
 21:33:23  &lt;lillith&gt; inscrutus: it is :) thanks
-21:33:54  &lt;KillYourTV&gt; lillith: yes, once finished all documentation will ultimately end up on the 'official' syndie site   (for now http://www.syndie.i2p/wiki/ will redirect to the wiki page)
+21:33:54  &lt;KillYourTV&gt; lillith: yes, once finished all documentation will ultimately end up on the 'official' syndie site   (for now `http://www.syndie.i2p/wiki/` will redirect to the wiki page)
 21:33:57  &lt;iRelay&gt; Title: Syndie Documentation Project (at www.syndie.i2p)
 21:35:14  &lt;inscrutus&gt; Ok, what's next, dg?
 21:35:17  &lt;lillith&gt; so unless anyone else has anything to say on this, i can *baf* this topic :)

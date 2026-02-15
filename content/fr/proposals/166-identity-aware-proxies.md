@@ -133,5 +133,5 @@ torsocks --port 7695 $command_to_proxy
 
 Addendum : ``exemple d'implémentation de l'attaque``
 
-[Un exemple d'implémentation de l'attaque d'Identité Partagée sur les Agents Utilisateurs HTTP](https://github.com/eyedeekay/colluding_sites_attack/) existe depuis plusieurs années. Un exemple supplémentaire est disponible dans le sous-répertoire ``simple-colluder`` du [répertoire prop166 d’idk](https://git.idk.i2p/idk/i2p.host-aware-proxy) Ces exemples sont délibérément conçus pour démontrer que l'attaque fonctionne et nécessiteraient une modification (quoique mineure) pour être transformés en attaque réelle.
+[Un exemple d'implémentation de l'attaque d'Identité Partagée sur les Agents Utilisateurs HTTP](https://github.com/eyedeekay/colluding_sites_attack/) existe depuis plusieurs années. Un exemple supplémentaire est disponible dans le sous-répertoire ``simple-colluder`` du répertoire prop166 d’idk Ces exemples sont délibérément conçus pour démontrer que l'attaque fonctionne et nécessiteraient une modification (quoique mineure) pour être transformés en attaque réelle.
 

@@ -36,4 +36,4 @@ Năm 2006 sẽ là một năm quan trọng đối với chúng tôi, với 0.6.2
 
 Dù sao thì, cuộc họp cập nhật tình hình hàng tuần của chúng tôi sẽ diễn ra trong vài phút nữa, nên nếu bạn còn điều gì muốn thảo luận thêm, hãy ghé qua #i2p ở những địa điểm quen thuộc [1] và chào một tiếng!
 
-=jr [1] http://forum.i2p.net/viewtopic.php?t=952
+=jr [1] `http://forum.i2p.net/viewtopic.php?t=952`

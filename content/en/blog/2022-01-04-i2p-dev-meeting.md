@@ -15,9 +15,9 @@ categories: ["meeting"]
 <div class="irc-log">
 (03:00:39 PM) eyedeekay: Hi everyone and welcome to the January 4, 2022 meeting
 (03:00:39 PM) eyedeekay: 1. Hi
-(03:00:39 PM) eyedeekay: 2. Meeh services/Outproxy requirements http://zzz.i2p/topics/3218-meeh-services-going-down-soon
+(03:00:39 PM) eyedeekay: 2. Meeh services/Outproxy requirements `http://zzz.i2p/topics/3218-meeh-services-going-down-soon`
 (03:00:39 PM) eyedeekay: 3. Promoting Mac DMG JPackage to stable https://geti2p.net/en/download/mac
-(03:00:39 PM) eyedeekay: 4. NetDB research (Sim/Model) http://zzz.i2p/topics/3227-netdb-simulator-proposal
+(03:00:39 PM) eyedeekay: 4. NetDB research (Sim/Model) `http://zzz.i2p/topics/3227-netdb-simulator-proposal`
 (03:01:13 PM) zlatinb: hi
 (03:01:23 PM) zzz: hello
 (03:01:55 PM) eyedeekay: Hi zzz, zlatinb, anybody else here today?
@@ -75,7 +75,7 @@ categories: ["meeting"]
 (03:25:33 PM) zlatinb: yes, step by step incl. the notary process in the README.md
 (03:25:41 PM) zzz: super
 (03:26:16 PM) zzz: 1) does "working" include the update process? have we seen the torrent swarm actually fire off when the news updates?
-(03:26:29 PM) zlatinb: http://git.idk.i2p/i2p-hackers/i2p-jpackage-mac
+(03:26:29 PM) zlatinb: `http://git.idk.i2p/i2p-hackers/i2p-jpackage-mac`
 (03:26:43 PM) zzz: (because I think the windows version hasn't actually been seen to work yet)
 (03:27:26 PM) zlatinb: 1) yes, the swarm picks up, it's quite small but it's there.  I've seen it both at the 1.5.1 and 1.6.1 releases
 (03:27:49 PM) zzz: ok great, thanks for the answers, no objections
@@ -83,7 +83,7 @@ categories: ["meeting"]
 (03:28:26 PM) zlatinb: awesome thanks!
 (03:29:05 PM) eyedeekay: Re: Windows, yes but appears it's an issue in the config file I shipped and not the updater itself
 (03:29:05 PM) eyedeekay: So Windows needs 1 more manual update to work with automatic updates, which I think I might have known ahead of time but forgot
-(03:30:07 PM) eyedeekay: 4. NetDB research (Sim/Model) http://zzz.i2p/topics/3227-netdb-simulator-proposal
+(03:30:07 PM) eyedeekay: 4. NetDB research (Sim/Model) `http://zzz.i2p/topics/3227-netdb-simulator-proposal`
 (03:30:44 PM) eyedeekay: Also zlatinb's topic, let us know what you're thinking
 (03:31:28 PM) zlatinb: So, in the last two weeks or so there has been a noticeable deterioration in the accessibility of sites like zzz.i2p, postman, event major.acetone.i2p... basically sites I know are up
 (03:31:57 PM) zlatinb: I've done some debugging and had situations where the LS of zzz.i2p gets fetched fine, but then the RI of the IBGW must be failing to fetch

@@ -132,7 +132,7 @@ categories: ["meeting"]
 13:45 &lt;bla&gt; detonate: (np)
 13:45 &lt;+detonate&gt; ok
 13:45 &lt;+detonate&gt; the current state of the editor is here:
-13:45 &lt;+detonate&gt; http://detonate.i2p/addressbook-editor/current-state.html
+13:45 &lt;+detonate&gt; `http://detonate.i2p/addressbook-editor/current-state.html`
 13:45 &lt;+detonate&gt; it still doesn't do any actual editing
 13:45 &lt;+detonate&gt; and currently i'm working on the table at the bottom
 13:46 &lt;+detonate&gt; i need to read a couple chapters of my jsp book, but after that, you should be able to use it to add/modify entries in the hosts.txt and subscriptions quite easily
@@ -321,7 +321,7 @@ categories: ["meeting"]
 14:26 &lt;+ugha2p&gt; detonate: There are no theoretical thread limits, it will just consume all available resources until it crashes. :)
 14:26 &lt;jnymo&gt; facade
 14:26 &lt;@jrandom&gt; detonate: some OSes/ulimits may throttle @ 256, but win98 is already past the 100 TCP connections limit anyway
-14:26 &lt;cervantes2p&gt; I can give a quick update on the firefox plugin. The I2P Mail notifier is working now, as is the news reader and basic router controls. I'm busy with tediously building configuration screens now ( http://freshcoffee.i2p/fire2pe_i2pmail_prefs.jpg )
+14:26 &lt;cervantes2p&gt; I can give a quick update on the firefox plugin. The I2P Mail notifier is working now, as is the news reader and basic router controls. I'm busy with tediously building configuration screens now ( `http://freshcoffee.i2p/fire2pe_i2pmail_prefs.jpg` )
 14:27 &lt;jnymo&gt; MichElle, if the source code is sound, then who cares?
 14:27 &lt;+detonate&gt; oh, is the firefox plugin released?
 14:27 &lt;MichElle&gt; jnymo: it ruins the mood a little

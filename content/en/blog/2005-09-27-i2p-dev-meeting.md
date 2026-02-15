@@ -218,7 +218,7 @@ categories: ["meeting"]
 17:06 &lt;+Complication&gt; Unless someone's gone mad meanwhile, and not notified me. :P
 17:06 &lt;wiht&gt; jrandom, that's good, but what about the UI suggestions by Isamoor?
 17:07 &lt;jrandom&gt; mihi: i believe they're done over i2p
-17:08 &lt;jrandom&gt; wiht: the list of what i've been doing is available on http://dev.i2p/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+17:08 &lt;jrandom&gt; wiht: the list of what i've been doing is available on `http://dev.i2p/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 17:09 &lt;jrandom&gt; there's a lot more to be done, and a lot more will be done, but i have only two hands
 17:09 &lt;wiht&gt; Thank you, I will look there.
 17:10 &lt;jrandom&gt; actually, i have something to bring up for the meeting...

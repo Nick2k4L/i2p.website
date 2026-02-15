@@ -281,7 +281,7 @@ Tüm değerler işaretsiz big-endian'dir.
 
 #### Uygulama
 
-Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/) formatındadır. Aşağıdaki Uygulama Katmanı bölümüne bakın.
+Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/json-en.html) formatındadır. Aşağıdaki Uygulama Katmanı bölümüne bakın.
 
 #### Yapılandırma
 
@@ -367,7 +367,7 @@ Her Sunucu, bir İstemci İsteği içinde periyodik olarak Uygulama verilerini g
 
 ### Uygulama Veri İçeriği
 
-Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/) formatındadır. Tam spesifikasyon TBD (Henüz Belirlenmedi). Amaç, Meta LS2'yi yayınlamak için "en iyi" yönlendiriciyi belirlemek üzere bir algoritma yazmak için yeterli veriyi sağlamak ve yayıncının Meta LS2'deki Hedefleri ağırlıklandırması için yeterli bilgiye sahip olmasını sağlamaktır. Veriler hem yönlendirici hem de Hedef istatistiklerini içerecektir.
+Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/json-en.html) formatındadır. Tam spesifikasyon TBD (Henüz Belirlenmedi). Amaç, Meta LS2'yi yayınlamak için "en iyi" yönlendiriciyi belirlemek üzere bir algoritma yazmak için yeterli veriyi sağlamak ve yayıncının Meta LS2'deki Hedefleri ağırlıklandırması için yeterli bilgiye sahip olmasını sağlamaktır. Veriler hem yönlendirici hem de Hedef istatistiklerini içerecektir.
 
 Veriler, diğer sunucuların sağlığı ve Meta LS'nin alınma kabiliyeti hakkında uzaktan algılama verileri içerebilir. Bu veriler ilk sürümde desteklenmeyecektir.
 
@@ -488,7 +488,7 @@ Geriye dönük uyumluluk sorunları yoktur.
 ## Referanslar
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://json.org/)
+* [JSON](https://www.json.org/json-en.html)
 * [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)

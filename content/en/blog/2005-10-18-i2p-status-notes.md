@@ -34,15 +34,15 @@ Michael Rogers got in touch regarding some interesting new attacks on I2P's tunn
 
 Michael has posted another attack on the list which we're working through at the moment, so you'll be able to follow that one up there as well.
 
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001005.html
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001008.html
-[4] http://dev.i2p.net/pipermail/i2p/2005-October/001006.html
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001005.html`
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001008.html`
+[4] `http://dev.i2p.net/pipermail/i2p/2005-October/001006.html`
 
 * 4) I2Phex
 
 Striker is making more progress on the upload bug, and reports are that he has it pinned down. It will hopefully get into CVS tonight, and will be released as 0.1.1.33 soon afterwards. Keep an eye on the forum [5] for more info.
 
-[5] http://forum.i2p.net/viewforum.i2p?f=25
+[5] `http://forum.i2p.net/viewforum.i2p?f=25`
 
 The word on the street is that redzara is making pretty good progress merging back in with the Phex mainline too, so hopefully with Gregor's help we'll get things up to date soon!
 

@@ -6,7 +6,7 @@ description: "Primera reunión de desarrollo de I2P que abarca el estado del pro
 categories: ["meeting"]
 ---
 
-(Cortesía de la Wayback Machine http://www.archive.org/)
+(Cortesía de la Wayback Machine `http://www.archive.org/`)
 
 ## Resumen rápido
 

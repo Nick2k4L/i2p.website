@@ -26,7 +26,7 @@ Die Verwendung von 1-Minuten-Intervallen und des Durchsatzes eines einzelnen tun
 
 * 3) Syndie blogs
 
-Basierend auf einigen Rückmeldungen wurden in der Blogansicht von Syndie weitere Verbesserungen vorgenommen, wodurch sie sich deutlich von der Newsgroup-/Forum-ähnlichen Thread-Ansicht unterscheidet. Darüber hinaus gibt es jetzt eine völlig neue Möglichkeit, allgemeine Bloginformationen über die bestehende Syndie-Architektur zu definieren. Als Beispiel siehe den Standard-Blogbeitrag "about Syndie":  http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001
+Basierend auf einigen Rückmeldungen wurden in der Blogansicht von Syndie weitere Verbesserungen vorgenommen, wodurch sie sich deutlich von der Newsgroup-/Forum-ähnlichen Thread-Ansicht unterscheidet. Darüber hinaus gibt es jetzt eine völlig neue Möglichkeit, allgemeine Bloginformationen über die bestehende Syndie-Architektur zu definieren. Als Beispiel siehe den Standard-Blogbeitrag "about Syndie":  `http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001`
 
 Das ist nur der Anfang dessen, was wir tun können. Die nächste Version wird es dir ermöglichen, das Logo deines Blogs festzulegen, deine eigenen Links (zu Blogs, Beiträgen, Anhängen, beliebigen externen URLs) zu definieren und hoffentlich noch mehr Möglichkeiten zur Anpassung. Eine solche Anpassung ist die Verwendung von Icons pro Tag - ich würde gerne einen Satz Standard-Icons mitliefern, die mit Standard-Tags verwendet werden können, aber Nutzer werden für ihre eigenen Tags Icons definieren können, die in ihrem Blog verwendet werden, und sogar die Standard-Icons für die Standard-Tags überschreiben (wieder nur, wenn jemand ihren Blog betrachtet, versteht sich). Vielleicht sogar eine Stilkonfiguration, um Beiträge mit unterschiedlichen Tags unterschiedlich darzustellen (natürlich wären nur sehr spezifische Stil-Anpassungen erlaubt - keine beliebigen CSS-Exploits mit Syndie, vielen Dank auch :)
 
@@ -42,6 +42,6 @@ Ich habe Berichte über Fortschritte beim Wiedereinbau der gwebcache-Unterstütz
 
 * 6) ???
 
-Es ist eine Menge los, wie ihr seht, aber wenn es noch andere Dinge gibt, die ihr ansprechen und diskutieren möchtet, schaut in ein paar Minuten einfach beim Meeting vorbei und meldet euch. Nebenbei: Eine nette Seite, die ich mir in letzter Zeit ansehe, ist http://freedomarchive.i2p/ (für die Bequemen unter euch, die kein I2P installiert haben: Ihr könnt Tinos inproxy über http://freedomarchive.i2p.tin0.de/ verwenden). Wie auch immer, wir sehen uns in ein paar Minuten.
+Es ist eine Menge los, wie ihr seht, aber wenn es noch andere Dinge gibt, die ihr ansprechen und diskutieren möchtet, schaut in ein paar Minuten einfach beim Meeting vorbei und meldet euch. Nebenbei: Eine nette Seite, die ich mir in letzter Zeit ansehe, ist `http://freedomarchive.i2p/` (für die Bequemen unter euch, die kein I2P installiert haben: Ihr könnt Tinos inproxy über http://freedomarchive.i2p.tin0.de/ verwenden). Wie auch immer, wir sehen uns in ein paar Minuten.
 
 =jr

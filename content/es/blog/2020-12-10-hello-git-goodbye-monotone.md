@@ -22,7 +22,7 @@ Los Checkins (confirmaciones) a los repositorios del Proyecto I2P requieren que 
 
 ## Firma con GPG
 
-El repositorio oficial es el que está alojado en https://i2pgit.org/i2p-hackers/i2p.i2p y en https://git.idk.i2p/i2p-hackers/i2p.i2p, pero hay un "espejo" disponible en Github en https://github.com/i2p/i2p.i2p.
+El repositorio oficial es el que está alojado en `https://i2pgit.org/i2p-hackers/i2p.i2p` y en `https://git.idk.i2p/i2p-hackers/i2p.i2p`, pero hay un "espejo" disponible en Github en https://github.com/i2p/i2p.i2p.
 
 Ahora que usamos Git, podemos sincronizar repositorios desde nuestra propia instancia autoalojada de Gitlab, con Github, y viceversa. Esto significa que es posible crear y enviar una Merge Request en Gitlab y, cuando se fusione, el resultado se sincronizará con Github, y una Pull Request en Github, cuando se fusione, aparecerá en Gitlab.
 

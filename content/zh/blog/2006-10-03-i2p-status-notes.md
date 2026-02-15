@@ -52,7 +52,7 @@ On the whole, the thing holding the router back from 1.0 is in my view its perfo
 
 * 3) Syndie rationale continued
 
-论坛上有一篇关于 Syndie 及其在整体中所处位置的内容详实的帖子 - 请在 <http://forum.i2p.net/viewtopic.php?t=1910> 查看
+论坛上有一篇关于 Syndie 及其在整体中所处位置的内容详实的帖子 - 请在 <`http://forum.i2p.net/viewtopic.php?t=1910>` 查看
 
 此外，我只想强调正在编写中的 Syndie 文档里的两段摘录。首先，来自 irc（以及尚未发布的 FAQ）：
 

@@ -45,18 +45,18 @@ no un grupo global de destinos para algún servicio global.
 
 ### GNS
 
-GNS [GNS](http://zzz.i2p/topcs/1545) propone que todos ejecuten su propio servidor DNS.
+GNS GNS propone que todos ejecuten su propio servidor DNS.
 Esta propuesta es complementaria, en cuanto a que podríamos usar registros de servicio para especificar
 que GNS (o DNS) es compatible, con un nombre de servicio estándar de "domain" en el puerto 53.
 
 ### Dot well-known
 
-En [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) se propone que los servicios se busquen mediante una solicitud HTTP a
+En DOTWELLKNOWN se propone que los servicios se busquen mediante una solicitud HTTP a
 /.well-known/i2pmail.key. Esto requiere que cada servicio tenga un sitio web relacionado para
 alojar la llave. La mayoría de los usuarios no ejecutan sitios web.
 
 Una solución es presuponer que un servicio para una dirección b32 se está ejecutando en esa misma dirección b32. Así que buscar el servicio para example.i2p requiere
-la solicitud HTTP de http://example.i2p/.well-known/i2pmail.key, pero
+la solicitud HTTP de `http://example.i2p/.well-known/i2pmail.key,` pero
 un servicio para aaa...aaa.b32.i2p no requiere esa búsqueda, puede conectarse directamente.
 
 Pero hay una ambigüedad allí, porque example.i2p también puede ser direccionado por su b32.
@@ -322,7 +322,7 @@ TODO cómo hacer esto de una manera genérica
 
 ### Cambios requeridos para el Correo Electrónico
 
-Fuera del alcance de esta propuesta. Ver [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) para una discusión.
+Fuera del alcance de esta propuesta. Ver DOTWELLKNOWN para una discusión.
 
 
 ## Notas de Implementación

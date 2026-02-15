@@ -226,7 +226,7 @@ Accept-Ranges: bytes
   <link rel="shortcut icon" href="favicon.ico">
 </head>
 ...
-<a href="http://sponge.i2p/">--Sponge.</a></pre>
+--Sponge.</pre>
 <img src="/counter.gif" alt="!@^7A76Z!#(*&%"> visitors. </body>
 </html>
 Connection closed by foreign host.

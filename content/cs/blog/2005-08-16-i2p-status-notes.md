@@ -20,7 +20,7 @@ Ahoj všichni, dnes jen stručné poznámky
 
 Jak již bylo zmíněno, chystané vydání 0.6.1 bude obsahovat sérii testů pro pečlivější konfiguraci routeru a pro ověření dosažitelnosti (nebo pro upozornění, co je potřeba udělat), a přestože už je nějaký kód v CVS k dispozici pro dvě sestavení, stále zbývá několik doladění, než to bude fungovat tak hladce, jak je potřeba. V tuto chvíli provádím drobné úpravy testovacího postupu zdokumentovaného [1] tak, že přidávám další paket pro ověření dosažitelnosti Charlieho a oddaluji Bobovu odpověď Alici, dokud Charlie neodpoví. To by mělo snížit počet zbytečných stavů "ERR-Reject", které lidé vídají, protože Bob neodpoví Alici, dokud nebude mít Charlieho, který je k dispozici pro testování (a když Bob neodpoví, Alice jako stav uvidí "Unknown").
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting`
 
 Každopádně, jo, to je vše - verze 0.6.0.2-3 by měla vyjít zítra, jako vydání ji uvolníme až po důkladném otestování.
 
@@ -30,7 +30,7 @@ Jak bylo zmíněno na fóru [2], uživatelé I2P, kteří používají IRC, si m
 
 Moje poděkování patří těm, kdo stáli za starou sítí i2pirc (duck, baffled, tým metropipe, postman) a těm, kdo stojí za novou sítí irc2p (postman, arcturus)! Zajímavé služby a obsah dělají I2P hodnotným a je na vás všech, abyste je vytvářeli!
 
-[2] http://forum.i2p.net/viewtopic.php?t=898 [3] http://hq.postman.i2p/
+[2] `http://forum.i2p.net/viewtopic.php?t=898` [3] `http://hq.postman.i2p/`
 
 * 3) Feedspace
 

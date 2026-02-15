@@ -61,7 +61,7 @@ categories: ["meeting"]
 (04:20:35 PM) eyedeekay: My Mac is also x86_64 unfortunately or I'd offer to do it
 (04:21:17 PM) eyedeekay: Anything else for 3)?
 (04:22:19 PM) eyedeekay: OK then 4) is 1.6.0 Development Status
-(04:25:17 PM) eyedeekay: zzz's been keeping us up to date with his developments and status here: http://zzz.i2p/topics/3170-1-6-0-release-summary           
+(04:25:17 PM) eyedeekay: zzz's been keeping us up to date with his developments and status here: `http://zzz.i2p/topics/3170-1-6-0-release-summary`           
 (04:25:20 PM) eyedeekay: 6 weeks in, approx. 7 weeks to go
 (04:25:40 PM) eyedeekay: One of my two big planned changes for the router console isn't likely to go in, X-I2P-Locations in the HTTP proxy
 (04:26:10 PM) eyedeekay: The other, managing fork-and-forget plugins are going to be ready this week

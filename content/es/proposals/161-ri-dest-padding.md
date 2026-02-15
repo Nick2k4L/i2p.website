@@ -131,7 +131,7 @@ y el campo de padding (para Destinos e Identidades de Router).
 
 ### Archivo de Clave Privada
 El formato del archivo de clave privada (eepPriv.dat) no es una parte oficial de nuestras especificaciones
-pero está documentado en los [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+pero está documentado en los Java I2P javadocs
 y otras implementaciones lo soportan.
 Esto permite la portabilidad de claves privadas a diferentes implementaciones.
 Agregar una nota a ese javadoc que la clave pública de cifrado puede ser padding aleatorio
@@ -220,7 +220,7 @@ mensajes de Búsqueda en Base de Datos cifrados y sus respuestas.
 El marco de tiempo estimado para el diseño, desarrollo y despliegue de eso sería ????????
 Pero sería después de híbrido o ratchet ????????????
 
-Para más discusión ver [this topic](http://zzz.i2p/topics/3294).
+Para más discusión ver this topic.
 
 
 ## Problemas
@@ -246,4 +246,4 @@ Sujeto a problemas de compatibilidad hacia atrás, y después de deshabilitar SS
 las implementaciones pueden eliminar completamente el código ElGamal.
 Aproximadamente el 14% de los routers en la red son del tipo de cifrado ElGamal, incluidos muchos floodfills.
 
-Se encuentra un borrador de solicitud de fusión para Java I2P en [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+Se encuentra un borrador de solicitud de fusión para Java I2P en git.idk.i2p.

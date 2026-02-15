@@ -14,14 +14,14 @@ categories: ["meeting"]
 
 <div class="irc-log">
 21:00:01 &lt;zzz&gt; 0) Hi
-21:00:01 &lt;zzz&gt; 1) HOPE report (zzz/sadie) http://zzz.i2p/topics/2152
-21:00:01 &lt;zzz&gt; 2) 0.9.27 update (zzz) http://zzz.i2p/topics/2132
+21:00:01 &lt;zzz&gt; 1) HOPE report (zzz/sadie) `http://zzz.i2p/topics/2152`
+21:00:01 &lt;zzz&gt; 2) 0.9.27 update (zzz) `http://zzz.i2p/topics/2132`
 21:00:01 &lt;zzz&gt; 3) Summer of X update (sadie/str4d)
 21:00:05 &lt;zzz&gt; 0) Hi
 21:00:07 &lt;zzz&gt; hi
 21:00:38 &lt;xmpre&gt; Hello
 21:00:44 &lt;i2pr&gt; [Slack/str4d] Hi
-21:00:56 &lt;zzz&gt; 1) HOPE report (zzz/sadie) http://zzz.i2p/topics/2152
+21:00:56 &lt;zzz&gt; 1) HOPE report (zzz/sadie) `http://zzz.i2p/topics/2152`
 21:01:32 &lt;zzz&gt; I've posted a brief trip report at that link. sadie, comraden1, gravy, or anybody who watched some of the videos, anything to add?
 21:02:30 &lt;i2pr&gt; [Slack/str4d] I haven't watched the videos yet. Any ones I should earmark besides the Tor ones?
 21:03:01 &lt;zzz&gt; I didn't see much more. Hopefully people will add some recommendations to the zzz.i2p thread
@@ -29,7 +29,7 @@ categories: ["meeting"]
 21:03:27 &lt;zzz&gt; hope.net presumably
 21:03:56 &lt;zzz&gt; anything else on 1) ?
 21:03:59 &lt;xmpre&gt; https://hope.net/watch.html
-21:04:54 &lt;zzz&gt; 2) 0.9.27 update (zzz) http://zzz.i2p/topics/2132
+21:04:54 &lt;zzz&gt; 2) 0.9.27 update (zzz) `http://zzz.i2p/topics/2132`
 21:05:57 &lt;zzz&gt; still looking at mid-sept. at the earliest. Not a lot of activity in mtn or big features. After I finish up the i2p summer stuff, I want to turn to NTCP2. So no rush for .27 atm, things are pretty stable
 21:06:26 &lt;zzz&gt; anybody have any comments on .27 schedule or contents?
 21:06:39 &lt;i2pr&gt; [Slack/str4d] I'll be turning my attention to NTCP2 about the same time
@@ -44,7 +44,7 @@ categories: ["meeting"]
 21:08:40 &lt;i2pr&gt; [Slack/str4d] ACK
 21:08:53 &lt;i2pr&gt; [Slack/str4d] In the meantime, people can think about it
 21:09:21 &lt;i2pr&gt; [Slack/str4d] And e.g. compare it to whatever Tor's policy is on their control port
-21:09:38 &lt;zzz&gt; added to http://zzz.i2p/topics/2149
+21:09:38 &lt;zzz&gt; added to `http://zzz.i2p/topics/2149`
 21:10:03 &lt;zzz&gt; perhaps we would want auth or ssl to be on if it's on by default? not sure. I'll think about it
 21:10:11 &lt;zzz&gt; anything else on 2) ?
 21:10:58 &lt;psi&gt; (hi)

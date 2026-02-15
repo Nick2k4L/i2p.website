@@ -20,7 +20,7 @@ Ağda 0.6.0.5 sürümüyle yol almaya hâlâ devam ediyoruz ve neredeyse herkes 
 
 CVS'teki en son derlemeler, uzun süredir tartışılan SSU introductions [1] desteğini içeriyor; bu da, kullanıcıların kontrol etmedikleri bir NAT veya güvenlik duvarının arkasında bulunduğu durumlarda merkeziyetsiz NAT hole punching (NAT delme) gerçekleştirmemize olanak tanıyor. Simetrik NAT'ı desteklemese de, sahadaki durumların çoğunu kapsıyor. Sahadan gelen raporlar iyi; ancak yalnızca en son derlemelere sahip kullanıcılar NAT arkasındaki kullanıcılarla iletişim kurabiliyor - eski derlemelerin, önce kullanıcının onlara ulaşmasını beklemesi gerekiyor. Bu nedenle, bu kısıtlı rotaların kullanımda olduğu süreyi azaltmak için kodu normalden daha erken bir sürümde yayımlayacağız.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

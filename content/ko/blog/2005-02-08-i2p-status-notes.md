@@ -16,7 +16,7 @@ categories: ["status"]
 
 그렇게 느껴지지는 않겠지만, 0.4.2.6 릴리스가 나온 지 벌써 한 달이 넘었고 전반적으로 꽤 괜찮은 상태를 유지하고 있습니다. 그 이후로 꽤 유용한 업데이트 [1]가 이어졌지만, 새 릴리스를 서둘러 배포해야 할 만큼의 치명적인 문제는 없었습니다. 하지만 지난 하루이틀 사이에 정말 좋은 버그 수정들이 들어왔습니다(anon과 Sugadude에게 감사!), 그리고 지금이 0.5 릴리스가 코앞이 아니었다면 아마 바로 패키징해서 내보냈을 겁니다. anon의 업데이트는 스트리밍 라이브러리의 경계 조건을 수정했는데, 이 문제가 BT(비트토렌트)와 다른 대용량 전송에서 보이던 많은 타임아웃의 원인이었습니다. 모험할 기분이라면 CVS HEAD를 받아서 한번 써 보세요. 물론 다음 릴리스를 기다리셔도 됩니다.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) 0.5
 
@@ -26,13 +26,13 @@ categories: ["status"]
 
 로드맵 [6]을 돌아보면, 0.5.1로 연기되는 것은 엄격한 순서 보장뿐이다. 시간이 지나면서 throttling(전송률 제한)과 load balancing(부하 분산)도 개선될 것이라 확신하지만, 그 부분은 아마 앞으로도 계속 손질하게 될 것으로 예상한다. 또한 0.5에 포함하기를 바랐던 다운로드 도구와 원클릭 업데이트 코드 같은 다른 항목들도 논의되었지만, 그것들 역시 연기될 것으로 보인다.
 
-[2] http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html [3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
+[2] `http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html` [3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
 
 * 3) i2p-bt 0.1.6
 
 duck이 새로운 i2p-bt 릴리스를 패치해 공개했습니다(야호!). 평소와 같은 위치에서 받을 수 있으니, 뜨거울 때 얼른 받아가세요 [7]. 이번 업데이트와 anon의 streaming lib 패치 덕분에, 몇몇 파일을 시딩하는 동안 제 업링크 대역폭이 거의 포화되더군요, 그러니 한번 써보세요.
 
-[7] http://forum.i2p.net/viewtopic.php?t=300
+[7] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) fortuna
 
@@ -42,4 +42,4 @@ duck이 새로운 i2p-bt 릴리스를 패치해 공개했습니다(야호!). 평
 
 Lots of things going on, and there has been a burst of activity on the forum [8] lately as well, so I'm sure I've missed some things. In any case, swing on by the meeting in a few minutes and say whats on your mind (or just lurk and throw in the random snark)
 
-=jr [8] http://forum.i2p.net/
+=jr [8] `http://forum.i2p.net/`

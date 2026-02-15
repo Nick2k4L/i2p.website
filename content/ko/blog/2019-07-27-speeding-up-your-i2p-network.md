@@ -18,7 +18,7 @@ categories: ["tutorial"]
 
 ## 대역폭 제한 조정
 
-I2P는 피어 투 피어 네트워크이므로, 다른 피어들과 네트워크 대역폭의 일부를 공유해야 합니다. 얼마나 공유할지는 "I2P Bandwidth Configuration"(I2P Router Console의 "Applications and Configuration" 섹션에 있는 "Configure Bandwidth" 버튼, 또는 http://localhost:7657/config)에서 선택할 수 있습니다.
+I2P는 피어 투 피어 네트워크이므로, 다른 피어들과 네트워크 대역폭의 일부를 공유해야 합니다. 얼마나 공유할지는 "I2P Bandwidth Configuration"(I2P Router Console의 "Applications and Configuration" 섹션에 있는 "Configure Bandwidth" 버튼, 또는 `http://localhost:7657/config)에서` 선택할 수 있습니다.
 
 ![I2P 대역폭 설정](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ I2P는 피어 투 피어 네트워크이므로, 다른 피어들과 네트워크
 
 그러나 많은 사용자가 어떤 대역폭 설정을 조정해야 하는지 정확히 알지 못할 수 있으므로, [I2P 0.9.38 릴리스](https://geti2p.net/en/download)에서는 New Install Wizard(새 설치 마법사)를 도입했습니다. 여기에는 Bandwidth Test(대역폭 테스트)가 포함되어 있으며, M-Lab의 [NDT](https://www.measurementlab.net/tests/ndt/) 덕분에 대역폭을 자동으로 측정하고 I2P의 대역폭 설정을 이에 맞게 조정합니다.
 
-마법사를 다시 실행하고 싶다면, 예를 들어 서비스 제공업체가 변경되었거나 0.9.38 버전 이전에 I2P를 설치했기 때문이라면, 'Help & FAQ' 페이지의 'Setup' 링크에서 다시 실행하거나, http://localhost:7657/welcome 에서 마법사에 직접 접속하면 됩니다.
+마법사를 다시 실행하고 싶다면, 예를 들어 서비스 제공업체가 변경되었거나 0.9.38 버전 이전에 I2P를 설치했기 때문이라면, 'Help & FAQ' 페이지의 'Setup' 링크에서 다시 실행하거나, `http://localhost:7657/welcome` 에서 마법사에 직접 접속하면 됩니다.
 
 !["Setup"을 찾을 수 있나요?](https://geti2p.net/images/blog/sidemenu.png)
 

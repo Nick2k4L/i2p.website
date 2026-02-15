@@ -124,7 +124,7 @@ Hay tres cambios que se implementarán.
 ### Cap 4/6
 
 Esto se implementó originalmente sin una propuesta formal, pero es necesario para presentaciones IPv6, así que lo incluimos aquí.
-Ver también [CAPS](http://zzz.i2p/topics/3050).
+Ver también CAPS.
 
 
 Se definen dos nuevas capacidades "4" y "6".

@@ -6,7 +6,7 @@ description: "Cuộc họp phát triển I2P bàn về trạng thái RC2, tiến
 categories: ["meeting"]
 ---
 
-(Nhờ Wayback Machine http://www.archive.org/)
+(Nhờ Wayback Machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

@@ -41,7 +41,7 @@ The Debian packages are compatible with:
 
 **Supported architectures**: amd64, i386, armhf, arm64, powerpc, ppc64el, s390x
 
-The I2P packages may work on other Debian-based systems not explicitly listed above. If you encounter issues, please [report them on our GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/).
+The I2P packages may work on other Debian-based systems not explicitly listed above. If you encounter issues, please report them on our GitLab.
 
 ## Installation Methods
 
@@ -198,7 +198,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Step 3: Download the repository signing key**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
 ```
 
 **Step 4: Verify the key fingerprint**
@@ -309,8 +309,8 @@ After starting I2P for the first time, it will take several minutes to integrate
 
 For optimal performance and network participation, forward the I2P ports through your NAT/firewall:
 
-1. Open the [I2P Router Console](http://127.0.0.1:7657/)
-2. Navigate to the [Network Configuration page](http://127.0.0.1:7657/confignet)
+1. Open the `http://127.0.0.1:7657/`
+2. Navigate to the `http://127.0.0.1:7657/confignet`
 3. Note the port numbers listed (usually random ports between 9000-31000)
 4. Forward these UDP and TCP ports in your router/firewall
 
@@ -320,7 +320,7 @@ If you need help with port forwarding, [portforward.com](https://portforward.com
 
 The default bandwidth settings are conservative. Adjust them based on your internet connection:
 
-1. Visit the [Configuration page](http://127.0.0.1:7657/config.jsp)
+1. Visit the `http://127.0.0.1:7657/config.jsp`
 2. Find the bandwidth settings section
 3. The defaults are 96 KB/s download / 40 KB/s upload
 4. Increase these if you have faster internet (e.g., 250 KB/s down / 100 KB/s up for a typical broadband connection)
@@ -373,7 +373,7 @@ If you're using the old `deb.i2p2.de` or `deb.i2p2.no` repositories:
 Now that I2P is installed and running:
 
 - [Configure your browser](/docs/guides/browser-config) to access I2P sites
-- Explore the [I2P router console](http://127.0.0.1:7657/) to monitor your router
+- Explore the `http://127.0.0.1:7657/` to monitor your router
 - Learn about [I2P applications](/docs/applications/) you can use
 - Read about [how I2P works](/docs/overview/tech-intro) to understand the network
 

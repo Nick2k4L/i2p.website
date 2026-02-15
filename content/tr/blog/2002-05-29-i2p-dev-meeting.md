@@ -6,7 +6,7 @@ description: "29 Mayıs 2002 I2P geliştirme toplantısı günlüğü."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in izniyle http://www.archive.org/)
+(Wayback machine'in izniyle `http://www.archive.org/`)
 
 ## Hızlı özet
 

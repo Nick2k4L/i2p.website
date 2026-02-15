@@ -20,7 +20,7 @@ categories: ["status"]
 
 与其在各种小修小改上无休止地纠缠，我一直在我的本地测试网络上推进迁移到新的 tunnel 创建加密机制和流程[1]。这应该能显著降低 tunnel 创建失败率，之后如有必要，我们可以进一步调优。
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 一个不幸的副作用是，0.6.1.10 将不向后兼容。我们已经很久没有发布过不向后兼容的版本了，不过在早期确实这么做过不少次，所以这不应该是什么大问题。基本上，在它在我的本地测试网络上表现良好之后，我们会并行把它部署给几位勇敢的先行者进行早期测试；然后当它准备好发布时，我们只需把 seed references（种子引用）切换到新网络的 seeds（种子节点），然后直接发布出去。
 

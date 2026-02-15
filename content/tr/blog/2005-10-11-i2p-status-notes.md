@@ -36,7 +36,7 @@ Ragnarok'un zamanlanmış yayın dağıtımı özelliği iyi gidiyor gibi görü
 
 Bu ikisinin birlikte doğurduğu sonuçlar açık olmalı. Daha fazla haber olduğunda paylaşacağız.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (onu yakında CVS'e entegre edeceğiz)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (onu yakında CVS'e entegre edeceğiz)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ Bu gerçekten epey sağlam olurdu; çünkü bakımını yapmamız gereken kod ç
 
 Şu an buna hemen atlayacak pek vaktim yok, ama yardım etmek istersen foruma uğrayabilirsin.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ Posta listesi [6], son zamanlarda steganografi ve darknets (gizli ağlar) ile il
 
 Yazıların kendisinin dışında ekleyebileceğim pek bir şey olduğundan emin değilim, ama bazı kişiler tartışmanın I2P ve Freenet’i anlamalarına yardımcı olduğunu söylediler; bu yüzden bir göz atmaya değer olabilir. Ya da olmayabilir ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

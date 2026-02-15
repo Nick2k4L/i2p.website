@@ -52,7 +52,7 @@ Así que ese es el cuello de botella en el router/red tal como lo veo hoy. Se ag
 
 * 3) Syndie rationale continued
 
-Hay una publicación detallada en el foro sobre Syndie y cómo encaja con todo - consúltalo en <http://forum.i2p.net/viewtopic.php?t=1910>
+Hay una publicación detallada en el foro sobre Syndie y cómo encaja con todo - consúltalo en <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Además, solo me gustaría destacar dos fragmentos de la documentación de Syndie en la que se está trabajando. Primero, de irc (y de la FAQ que aún no está publicada):
 

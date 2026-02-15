@@ -19,8 +19,8 @@ Este guia guiará você passo a passo pelo processo de criar e configurar seu pr
 
 O Gerenciador de Serviços Ocultos (também chamado de I2P Tunnel Manager) é onde você configura todos os tunnels de servidor e de cliente do I2P, incluindo servidores HTTP (eepsites).
 
-1. Abra o seu [I2P Router Console](http://127.0.0.1:7657)
-2. Navegue até o [Gerenciador de Serviços Ocultos](http://127.0.0.1:7657/i2ptunnelmgr)
+1. Abra o seu `http://127.0.0.1:7657`
+2. Navegue até o `http://127.0.0.1:7657/i2ptunnelmgr`
 
 Você deve ver a interface do Gerenciador de Serviços Ocultos mostrando: - **Mensagens de status** - Estado atual do tunnel e do cliente - **Controle Global de Tunnel** - Botões para gerenciar todos os tunnels de uma vez - **Serviços Ocultos do I2P** - Lista de tunnels de servidor configurados
 
@@ -191,7 +191,7 @@ Agora que o seu eepsite está configurado e tem conteúdo, é hora de iniciá-lo
 
 ### Iniciar o Tunnel
 
-1. **Volte ao [Gerenciador de Serviços Ocultos](http://127.0.0.1:7657/i2ptunnelmgr)**
+1. **Volte ao `http://127.0.0.1:7657/i2ptunnelmgr`**
 2. Encontre a sua entrada do **servidor web I2P** na lista
 3. Clique no botão **Iniciar** na coluna Controle
 
@@ -215,7 +215,7 @@ Seu eepsite possui dois tipos de endereços:
 
 1. **Endereço Base32 (.b32.i2p)**: Um endereço criptográfico longo que se parece com:
    ```
-   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
+   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
    ```
    - Este é o endereço permanente, derivado criptograficamente, do seu eepsite
    - Não pode ser alterado e está vinculado à sua chave privada
@@ -314,7 +314,7 @@ Esta cadeia de caracteres contém: - O seu nome de domínio (`testwebsite.i2p`) 
 
 ### Etapa 2: Registre-se em stats.i2p
 
-1. **Acesse** [stats.i2p Adicionar chave](http://stats.i2p/i2p/addkey.html) (dentro do I2P)
+1. **Acesse** stats.i2p Adicionar chave (dentro do I2P)
 
 ![Registro de domínio do stats.i2p](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ Se for bem-sucedido, você verá uma confirmação de que seu domínio foi adici
 
 Para garantir a máxima disponibilidade, você também deve se registrar no serviço reg.i2p:
 
-1. **Acesse** [reg.i2p Add Domain](http://reg.i2p/add) (dentro do I2P)
+1. **Acesse** reg.i2p Add Domain (dentro do I2P)
 
 ![Registro de Domínio do reg.i2p](/images/guides/eepsite/reg-i2p-add.png)
 

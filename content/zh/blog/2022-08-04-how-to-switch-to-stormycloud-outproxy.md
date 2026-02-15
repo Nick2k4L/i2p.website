@@ -22,11 +22,11 @@ categories: ["general"]
 
 要了解更多关于 StormyCloud 的信息，请访问其[网站](https://www.stormycloud.org/)。
 
-或者在 [I2P](http://stormycloud.i2p/) 上访问它们。
+或者在 I2P 上访问它们。
 
 **切换到 I2P 上的 StormyCloud Outproxy（出口代理）**
 
-要在*今天*切换到 StormyCloud outproxy（出口代理），您可以访问[Hidden Services Manager](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0)。进入该页面后，您应将 **Outproxies** 和 **SSL Outproxies** 的值更改为 `exit.stormycloud.i2p`。完成后，向下滚动到页面底部并点击“Save”按钮。
+要在*今天*切换到 StormyCloud outproxy（出口代理），您可以访问`http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0`。进入该页面后，您应将 **Outproxies** 和 **SSL Outproxies** 的值更改为 `exit.stormycloud.i2p`。完成后，向下滚动到页面底部并点击“Save”按钮。
 
 **感谢 StormyCloud**
 

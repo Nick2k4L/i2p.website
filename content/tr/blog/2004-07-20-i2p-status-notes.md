@@ -14,7 +14,7 @@ Zaman çizelgemizle ilgili, koyduğumuz tarihleri tutturup tutturamayacağımız
 
 0.4, bahsedilen dört sürüm ölçütünü (işlevsel, güvenli, anonim ve ölçeklenebilir) karşılayacaktır, ancak 0.4.2'den önce NAT'lerin ve güvenlik duvarlarının arkasında bulunan çok az kişi katılabilecektir ve 0.4.3'ten önce, diğer routers ile çok sayıda TCP bağlantısını sürdürmenin ek yükü nedeniyle ağın büyüklüğüne fiili bir üst sınır olacaktır.
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ Bugün erken saatlerde duck siteyi gözden geçirdi ve eksik olan sayfaların en
 
 Bunun dışında, sitenin canlıya alınmaya neredeyse hazır olduğunu düşünüyorum. Bu konuda önerisi ya da endişesi olan var mı?
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) saldırılar ve savunmalar**
 

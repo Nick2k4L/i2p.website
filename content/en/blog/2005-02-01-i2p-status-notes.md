@@ -30,7 +30,7 @@ configurable parameters for the exploratory and client pools, but
 later releases will probably include other options for different
 user profiles.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) nntp
 
@@ -43,8 +43,8 @@ newsreaders could be used safely, and there seem to be some pretty
 easy solutions.  See my blog for instructions on running slrn [5]
 to do anonymous newsreading and posting.
 
-[2] http://fr.i2p/
-[3] http://jrandom.dev.i2p/
+[2] `http://fr.i2p/`
+[3] `http://jrandom.dev.i2p/`
 [4] http://freshmeat.net/projects/suck/
 [5] http://freshmeat.net/projects/slrn/
 
@@ -57,7 +57,7 @@ place to discuss naming issues, updates to SAM, swarming ideas, and
 the like - when you post up there, we can all collaborate at our own
 place to get a better result.
 
-[6] http://ugha.i2p/I2pRfc
+[6] `http://ugha.i2p/I2pRfc`
 
 * 4) ???
 

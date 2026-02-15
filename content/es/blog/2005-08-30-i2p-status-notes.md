@@ -22,13 +22,13 @@ Desde el lanzamiento, ha habido algunas correcciones de errores para condiciones
 
 Como se comentó [1] en mi blog [2], estamos probando una nueva netDb retrocompatible que abordará tanto la situación de rutas restringidas que estamos viendo (20% de los routers) como simplificará un poco las cosas. La floodfill netDb se despliega como parte de 0.6.0.3-4 sin ninguna configuración adicional, y básicamente funciona consultando primero dentro de la floodfill db antes de recurrir a la kademlia db existente. Si algunas personas quieren ayudar a probarla, actualicen a 0.6.0.3-4 y pruébenla.
 
-[1] http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001 [2] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[1] `http://syndiemedia.i2p.net/index.jsp?selector=entry://ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1125100800001` [2] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=`
 
 * 3) Syndie
 
 El desarrollo de Syndie está avanzando bastante bien, con la sindicación remota completa en funcionamiento y optimizada para las necesidades de I2P (minimizando el número de solicitudes HTTP, y en su lugar agrupando los resultados y las subidas en peticiones HTTP POST multiparte). La nueva sindicación remota significa que puedes ejecutar tu propia instancia local de Syndie, leer y publicar sin conexión, y luego, más adelante, sincronizar tu Syndie con el de otra persona - descargando cualquier entrada nueva y subiendo las entradas creadas localmente (ya sea en lote, por blog o por entrada).
 
-Uno de los sitios públicos de Syndie es syndiemedia.i2p (también accesible en la web en http://syndiemedia.i2p.net/), cuyos archivos públicos están disponibles en http://syndiemedia.i2p/archive/archive.txt (apunta tu nodo de Syndie a esa dirección para sincronizarlo). La 'página principal' en ese syndiemedia se ha filtrado para incluir solo mi blog, de forma predeterminada, pero aún puedes acceder a los demás blogs mediante el menú desplegable y ajustar tu configuración predeterminada en consecuencia. (con el tiempo, el valor predeterminado de syndiemedia.i2p cambiará a un conjunto de publicaciones y blogs introductorios, ofreciendo un buen punto de entrada a syndie).
+Uno de los sitios públicos de Syndie es syndiemedia.i2p (también accesible en la web en `http://syndiemedia.i2p.net/),` cuyos archivos públicos están disponibles en `http://syndiemedia.i2p/archive/archive.txt` (apunta tu nodo de Syndie a esa dirección para sincronizarlo). La 'página principal' en ese syndiemedia se ha filtrado para incluir solo mi blog, de forma predeterminada, pero aún puedes acceder a los demás blogs mediante el menú desplegable y ajustar tu configuración predeterminada en consecuencia. (con el tiempo, el valor predeterminado de syndiemedia.i2p cambiará a un conjunto de publicaciones y blogs introductorios, ofreciendo un buen punto de entrada a syndie).
 
 Un esfuerzo que aún está en marcha es la internacionalización de la base de código de Syndie. He modificado mi copia local para que funcione correctamente con cualquier contenido (cualquier conjunto de caracteres / configuración regional / etc) en cualquier máquina (con conjuntos de caracteres / configuración regional / etc potencialmente diferentes), sirviendo los datos de forma limpia para que el navegador del usuario pueda interpretarlos correctamente. Sin embargo, me he topado con problemas con un componente de Jetty que Syndie utiliza, ya que su clase para manejar solicitudes multiparte internacionalizadas no tiene en cuenta el conjunto de caracteres. Aún ;)
 
@@ -36,7 +36,7 @@ De todos modos, eso significa que, una vez que la parte de internacionalización
 
 Además, algunas ideas que aún están en el horizonte para SML [3] incluyen una etiqueta [torrent attachment="1"]my file[/torrent] que ofrecería una forma de un solo clic para permitir que la gente lance el torrent adjunto en su cliente BT favorito (susibt, i2p-bt, azneti2p, o incluso un cliente BT no-I2P). ¿Hay demanda de otros tipos de hooks (ganchos) (p. ej., una etiqueta [ed2k]) o la gente tiene ideas totalmente diferentes y descabelladas para distribuir contenido en Syndie?
 
-[3] http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000
+[3] `http://syndiemedia.i2p.net/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1124496000000`
 
 * 4) ???
 

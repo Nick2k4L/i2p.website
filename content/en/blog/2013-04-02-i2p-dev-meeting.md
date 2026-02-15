@@ -19,9 +19,9 @@ categories: ["meeting"]
 20:54:29  &lt;lillith&gt; 2a. The ssl certs
 20:54:32  &lt;lillith&gt; 3. Making the i2p project official
 20:56:38  &lt;lillith&gt; 4. Procedure regarding decicions for the project (for example making it official)
-20:56:53  &lt;lillith&gt; for scrollback from last week if you were not here, http://sighup.i2p/irclogs/show?search=&user=&from_date=26+Mar+2013&to_date=26+Mar+2013&channels[]=#i2p-dev&per_page=3&page_format=Html
-20:56:53  &lt;lillith&gt; relevant zzz.i2p posts: http://zzz.i2p/topics/1359 for the meeting thread
-20:56:53  &lt;lillith&gt; http://zzz.i2p/topics/1366 for the bounties thread
+20:56:53  &lt;lillith&gt; for scrollback from last week if you were not here, `http://sighup.i2p/irclogs/show?search=&user=&from_date=26+Mar+2013&to_date=26+Mar+2013&channels[]=#i2p-dev&per_page=3&page_format=Html`
+20:56:53  &lt;lillith&gt; relevant zzz.i2p posts: `http://zzz.i2p/topics/1359` for the meeting thread
+20:56:53  &lt;lillith&gt; `http://zzz.i2p/topics/1366` for the bounties thread
 20:57:07  &lt;iRelay&gt; Title: zzz.i2p: Managing the project (at zzz.i2p)
 20:57:09  &lt;iRelay&gt; Title: zzz.i2p: I2P Bounty System - 2013 (at zzz.i2p)
 20:57:55  &lt;trolly&gt; chosen download bin file from zzz.i2p?
@@ -32,7 +32,7 @@ categories: ["meeting"]
 20:59:30  &lt;trolly&gt; haha, no problem
 20:59:41  &lt;lillith&gt; Last week it was decided that while bounties can be a good thing they may well need some looking at
 20:59:48  &lt;trolly&gt; a trojan bug?  just joking..
-20:59:59  &lt;dg&gt; try to nab the output of `http_proxy="http://127.0.0.1:4444/" http://zzz.i2p/whateverurlbrokebefore` and check /logs for anything important
+20:59:59  &lt;dg&gt; try to nab the output of `http_proxy="`http://127.0.0.1:4444/"` `http://zzz.i2p/whateverurlbrokebefore`` and check /logs for anything important
 21:00:05  &lt;dg&gt; it seems to be corruption, we saw this on id3nt.i2p in the past
 21:00:19  &lt;lillith&gt; i suggested some revisions of the 50 BTC syndie bounty to echelon, and he has updated it
 21:01:06  &lt;lillith&gt; which led me to two questions: can/should we employ people, ie give them a small amount of money regularly over an extended period?
@@ -105,14 +105,14 @@ categories: ["meeting"]
 21:29:27  &lt;Shinobiwan&gt; &lt;Shinobiwan&gt; and then dish out something appropriate
 21:29:50  &lt;str4d_&gt; dr|z3d: both options will be there.
 21:29:53  &lt;K1773R&gt; Shinobiwan: they didnt, now they did :)
-21:30:04  &lt;str4d_&gt; Shinobiwan: http://killyourtv.i2p/irclogs/latest.log.html for scrollback.
+21:30:04  &lt;str4d_&gt; Shinobiwan: `http://killyourtv.i2p/irclogs/latest.log.html` for scrollback.
 21:30:07  &lt;iRelay&gt; Title: #i2p-dev logs for Tuesday, 2013-04-02 (at killyourtv.i2p)
 21:30:12  &lt;dr|z3d&gt; "oh we need russian" no we don't. we need commitment. not money chasing rats that disappear as soon as the bounty is awarded.
 21:30:24  &lt;Shinobiwan&gt; thx str4d, K1773R
 21:30:47  &lt;lillith&gt; dr|z3d: a new, private infrastructure may well appear for paying individuals for work - it might as well all be in together
 21:31:27  &lt;str4d_&gt; darrob: the reason most proposals sound like trouble is because we don't have a large enough developer base to properly run/support them. Therefore, a proposal that should result in a larger developer base is a good idea.
 21:31:42  &lt;dr|z3d&gt; money should not be able to dictate the project. period.
-21:32:01  &lt;KillYourTV&gt; and http://killyourtv.i2p/irclogs/%23i2p-dev.2013-04-02.log   for "live" scrollback (the HTMLized logs are processed every 10 minutes or so)
+21:32:01  &lt;KillYourTV&gt; and `http://killyourtv.i2p/irclogs/%23i2p-dev.2013-04-02.log`   for "live" scrollback (the HTMLized logs are processed every 10 minutes or so)
 21:32:16  &lt;dr|z3d&gt; sponsor the project, great, but don't tell us how to spend the money.
 21:32:27  &lt;darrob&gt; dr|z3d: i like it if a money chasing rat fixed certain features in syndie and ran. what's the problem? maybe someday syndie will get a real developer again but that person won't necessarily need payment then. actually, as far as committed maintainers are concerned, it might actually be counterproductive to offer a pay for the job.
 21:33:05  &lt;Shinobiwan&gt; thx KillYourTV
@@ -227,7 +227,7 @@ categories: ["meeting"]
 22:02:32  &lt;Shinobiwan&gt; hehe
 22:02:47  &lt;str4d_&gt; Shinobiwan: can fall under the same vote system proposed above.
 22:03:14  &lt;Shinobiwan&gt; yep
-22:04:16  &lt;iRelay&gt; &lt;weltende@freenode&gt; well the ML interface is accesible via i2p more or less.. http://vmfwbic2brek2ez223j6fc6bl5mmouzqvbsch45msvyyzih3iqua.b32.i2p/  still contains redirects to lists.i2p2.de.. not sure what to do about those
+22:04:16  &lt;iRelay&gt; &lt;weltende@freenode&gt; well the ML interface is accesible via i2p more or less.. `http://vmfwbic2brek2ez223j6fc6bl5mmouzqvbsch45msvyyzih3iqua.b32.i2p/`  still contains redirects to lists.i2p2.de.. not sure what to do about those
 22:04:24  &lt;iRelay&gt; &lt;iRelay@freenode&gt; Title: lists.i2p2.de Mailing Lists (at vmfwbic2brek2ez223j6fc6bl5mmouzqvbsch45msvyyzih3iqua.b32.i2p)
 22:04:32  &lt;Shinobiwan&gt; if there is such a panel, it is not finalized at a fixed number of people... IMO... it should grow, and grow and grow... so, whatever panel currently exists, should have some procedure to bring in new panel members regularly
 22:04:43  &lt;darrob&gt; we need a central party with a politburo and the users' congress. :)
@@ -284,7 +284,7 @@ categories: ["meeting"]
 22:30:28  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Starting build #28 for job I2P-Bote
 22:30:28  &lt;lillith&gt; 4. Procedure for making decisions in i2p
 22:31:27  * KillYourTV votes for taking long discussions about important decisions to a mailing list
-22:31:30  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P-Bote build #28:SUCCESS in 1 min 3 sec: http://jenkins.killyourtv.i2p/job/I2P-Bote/28/
+22:31:30  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P-Bote build #28:SUCCESS in 1 min 3 sec: `http://jenkins.killyourtv.i2p/job/I2P-Bote/28/`
 22:31:34  &lt;lillith&gt; so, mailing list, hierachy, etc
 22:31:37  &lt;KillYourTV&gt; That way anyone can take part when he/she can
 22:31:50  &lt;lillith&gt; i'd like to put in an honourable mention for syndie here
@@ -321,7 +321,7 @@ categories: ["meeting"]
 22:50:11  &lt;lillith&gt; yep :) seems like no-one actually likes meetings anyway haha
 22:50:15  &lt;dg&gt; I think it's mainly due to the timing.
 22:50:18  &lt;dg&gt; And pressure to respond in a fast manner..
-22:50:18  &lt;dg&gt; postman: http://zzz.i2p/topics/1367
+22:50:18  &lt;dg&gt; postman: `http://zzz.i2p/topics/1367`
 22:50:18  &lt;lillith&gt; but there's no chance of getting a time thats good for _everyone_
 22:50:18  &lt;lillith&gt; plus some people have irregular schedules
 22:50:18  &lt;dg&gt; Exactly.
@@ -336,8 +336,8 @@ categories: ["meeting"]
 22:52:41  &lt;KillYourTV&gt; sure, but I'd use a 'real' client like claws or mutt
 22:53:04  &lt;KillYourTV&gt; (just a matter or preference)
 22:54:55  &lt;lillith&gt; ahh, thats okay then :)
-22:56:33  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P build #103:SUCCESS in 4 min 34 sec: http://jenkins.killyourtv.i2p/job/i2p/103/
-23:01:15  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P UnitTests build #74:SUCCESS in 4 min 31 sec: http://jenkins.killyourtv.i2p/job/UnitTests/74/
+22:56:33  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P build #103:SUCCESS in 4 min 34 sec: `http://jenkins.killyourtv.i2p/job/i2p/103/`
+23:01:15  &lt;iRelay&gt; &lt;jenkins@kytv&gt; Project I2P UnitTests build #74:SUCCESS in 4 min 31 sec: `http://jenkins.killyourtv.i2p/job/UnitTests/74/`
 23:04:51  &lt;KillYourTV&gt; and +1 to meetings continuing with the bigger things being taken to mailing lists/forums/syndie.
 23:05:54  &lt;KillYourTV&gt; IRC is good for quick status updates..but a "newsletter" of sorts could work for that purpose too.
 23:06:19  &lt;lillith&gt; it's nice to have a start, with some goals, and an end, with a consensus
@@ -352,7 +352,7 @@ categories: ["meeting"]
 23:10:01  * KillYourTV really likes MLs but they (the ones on the Internet) will probably cause his AFK identity to be leaked...heh
 23:10:12  &lt;KillYourTV&gt; lists.i2p2.de i think
 23:10:39  &lt;KillYourTV&gt; and (/me scrolls up)
-23:10:54  &lt;KillYourTV&gt; http://vmfwbic2brek2ez223j6fc6bl5mmouzqvbsch45msvyyzih3iqua.b32.i2p/
+23:10:54  &lt;KillYourTV&gt; `http://vmfwbic2brek2ez223j6fc6bl5mmouzqvbsch45msvyyzih3iqua.b32.i2p/`
 23:11:08  &lt;iRelay&gt; Title: lists.i2p2.de Mailing Lists (at vmfwbic2brek2ez223j6fc6bl5mmouzqvbsch45msvyyzih3iqua.b32.i2p)
 23:11:24  &lt;dg&gt; it just redirects
 23:11:55  &lt;KillYourTV&gt; there's also nntp.welterde.i2p

@@ -36,7 +36,7 @@ categories: ["meeting"]
 13:08 &lt;@jrandom&gt; woah heya mihi
 13:09 &lt;cervantes&gt; hey mihi
 13:09 &lt;@jrandom&gt; the status notes give a general overview of where things are and the most immediate priorities
-13:10 &lt;@jrandom&gt; the scary thing I'm trying to track down can be seen on http://localhost:7657/oldstats.jsp#router.invalidMessageTime
+13:10 &lt;@jrandom&gt; the scary thing I'm trying to track down can be seen on `http://localhost:7657/oldstats.jsp#router.invalidMessageTime`
 13:10 &lt;bla&gt; As for me, I can say that 0.5.0.2 already improved realiability _vastly_ compared to 0.5.0.1: errors where destinations couldn't be contacted almost don't occur anymore 
 13:10 &lt;@jrandom&gt; those numbers should be very very small, but they're not, unfortunately
 13:10 &lt;@jrandom&gt; wikked bla 
@@ -254,7 +254,7 @@ categories: ["meeting"]
 14:01 &lt;ant&gt; &lt;dm&gt; is he the inventor of BT?
 14:01 &lt;@duck&gt; but according to smeghead it isnt the same as the .exe
 14:01 &lt;@jrandom&gt; dm: yes
-14:01 &lt;legion&gt; There is a developer source you can download from http://legion.i2p/archives/Itorrent_1_x_Developer_Source.zip.bz2
+14:01 &lt;legion&gt; There is a developer source you can download from `http://legion.i2p/archives/Itorrent_1_x_Developer_Source.zip.bz2`
 14:02 &lt;+postman&gt; k, will have a look
 14:02 &lt;ant&gt; &lt;dm&gt; is the exe a direct compile of that source?
 14:03 &lt;legion&gt; though really the 1.0 source is really just 0.1.8 with a patch from smeghead, compiled and nicely packaged.

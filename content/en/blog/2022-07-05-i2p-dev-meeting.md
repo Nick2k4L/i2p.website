@@ -34,7 +34,7 @@ categories: ["meeting"]
 (04:06:03 PM) zzz: other than that, just doing the usual bug fixing
 (04:06:06 PM) zzz: targeting a late august release
 (04:06:08 PM) zzz: EOT
-(04:06:48 PM) eyedeekay: Anyone interested in helping test should visit zzz's forum for instructions and to give feedback: http://zzz.i2p/topics/3314-how-to-enable-ssu2-in-i2p-1-8-0
+(04:06:48 PM) eyedeekay: Anyone interested in helping test should visit zzz's forum for instructions and to give feedback: `http://zzz.i2p/topics/3314-how-to-enable-ssu2-in-i2p-1-8-0`
 (04:07:00 PM) eyedeekay: 3. Support for Apple Silicon in the Mac easy-install bundle
 (04:07:27 PM) eyedeekay: zlatinb this is your topic, take your time
 (04:08:11 PM) zlatinb: hi, the big issue was jbigi but that is now solved via backporting the x18 register patch

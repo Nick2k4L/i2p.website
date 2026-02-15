@@ -20,7 +20,7 @@ Mới đây chúng tôi đã phát hành phiên bản 0.6.1.25, bao gồm hàng 
 
 Các cập nhật của zzz cho I2PSnark bao gồm tối ưu hóa giao thức cũng như các thay đổi đối với giao diện web, như được mô tả trong nhật ký lịch sử [1]. Cũng đã có một vài cập nhật nhỏ cho I2PSnark kể từ bản phát hành 0.6.1.25, và có lẽ zzz có thể cho chúng ta một cái nhìn tổng quan về những gì đang diễn ra trong cuộc họp tối nay.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

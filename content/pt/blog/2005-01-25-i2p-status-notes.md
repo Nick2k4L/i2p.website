@@ -16,7 +16,7 @@ Hi y'all, quick weekly status update
 
 Ao longo da última semana, houve muito progresso no ramo 0.5. Os problemas de que estávamos falando antes foram resolvidos, simplificando drasticamente a criptografia e eliminando o problema de loop de tunnel. A nova técnica [1] foi implementada e os testes de unidade estão prontos. Em seguida, vou reunir mais código para integrar esses tunnels ao router principal, depois construir a infraestrutura de gerenciamento e de pooling (agrupamento) de tunnels. Depois que isso estiver no lugar, vamos passá-lo pelo simulador e, por fim, para uma rede paralela para fazer o burn-in (teste de estresse inicial) antes de dar os retoques finais e chamá-lo de 0.5.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) sam.net
 
@@ -32,10 +32,10 @@ smeghead está definitivamente a todo vapor - na última contagem, com algumas m
 
 Não há muito a dizer aqui, embora Nightblade tenha levantado um conjunto interessante de preocupações [3] no fórum, perguntando por que estamos adotando o UDP. Se você tiver preocupações semelhantes ou outras sugestões sobre como podemos abordar as questões que abordei na minha resposta, por favor, participe!
 
-[3] http://forum.i2p.net/viewtopic.php?t=280
+[3] `http://forum.i2p.net/viewtopic.php?t=280`
 
 * 5) ???
 
 É, ok, estou atrasado com as anotações de novo, pode descontar do meu salário ;)  De qualquer forma, muita coisa acontecendo, então apareça no canal para a reunião, confira os logs publicados depois, ou poste na lista se tiver algo a dizer.  Ah, de passagem, acabei cedendo e comecei um blog dentro do i2p [4].
 
-=jr [4] http://jrandom.dev.i2p/ (chave em http://dev.i2p.net/i2p/hosts.txt)
+=jr [4] `http://jrandom.dev.i2p/` (chave em `http://dev.i2p.net/i2p/hosts.txt)`

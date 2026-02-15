@@ -165,7 +165,7 @@ outbound tunnel 생성의 경우, 요청이 outbound endpoint에 도달하면 ('
 
 ## 역사 및 참고사항
 
-이 전략은 predecessor attack에 관해 I2P 메일링 리스트에서 Michael Rogers, Matthew Toseland (toad), 그리고 jrandom 사이의 논의 중에 나왔습니다. [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html), [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)을 참조하세요. 이는 2006-02-16에 출시된 0.6.1.10 버전에서 도입되었으며, 이는 I2P에서 비역호환적 변경이 이루어진 마지막 시점이었습니다.
+이 전략은 predecessor attack에 관해 I2P 메일링 리스트에서 Michael Rogers, Matthew Toseland (toad), 그리고 jrandom 사이의 논의 중에 나왔습니다. TUNBUILD-SUMMARY, TUNBUILD-REASONING을 참조하세요. 이는 2006-02-16에 출시된 0.6.1.10 버전에서 도입되었으며, 이는 I2P에서 비역호환적 변경이 이루어진 마지막 시점이었습니다.
 
 참고사항:
 
@@ -193,8 +193,8 @@ outbound tunnel 생성의 경우, 요청이 outbound endpoint에 도달하면 ('
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)
 - [TBM](/docs/specs/i2np/#struct-TunnelBuild) - TunnelBuildMessage
 - [TBRM](/docs/specs/i2np/#struct-TunnelBuildReply) - TunnelBuildReplyMessage
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)
+- TUNBUILD-REASONING
+- TUNBUILD-SUMMARY
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation/)
 - [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation)
 - [VTBM](/docs/specs/i2np/#struct-VariableTunnelBuild) - VariableTunnelBuildMessage

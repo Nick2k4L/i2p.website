@@ -33,7 +33,7 @@ categories: ["meeting"]
 16:19 &lt;green&gt; 80%
 16:19 &lt;green&gt; but only about 40% of total bw is used
 16:20 &lt;green&gt; this is just a "do nothing router" :P
-16:20 &lt;jrandom&gt; hmm, how often does your bw spike up to 80%, and do you often reject tunnel requests (http://localhost:7657/oldstats.jsp#tunnel.reject.30 and tunnel.reject.*)
+16:20 &lt;jrandom&gt; hmm, how often does your bw spike up to 80%, and do you often reject tunnel requests (`http://localhost:7657/oldstats.jsp#tunnel.reject.30` and tunnel.reject.*)
 16:21 &lt;jrandom&gt; the periodicity seen in tunnel requests often causes people to detect overload when it isn't really there
 16:21 &lt;jrandom&gt; (because routers have excess capacity at other times, just not when they're being spiked)
 16:22 &lt;green&gt; tunnel.reject.30 is very flat like 1,00 over 14 025,00 events

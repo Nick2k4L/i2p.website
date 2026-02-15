@@ -16,7 +16,7 @@ categories: ["meeting"]
 20:00:02 &lt;zzz&gt; 0) Hi
 20:00:02 &lt;zzz&gt; 1) 33C3 planning
 20:00:02 &lt;zzz&gt; 2) 0.9.28 update (zzz)
-20:00:02 &lt;zzz&gt; 3) Tails maintainer (zzz) http://zzz.i2p/topics/2108
+20:00:02 &lt;zzz&gt; 3) Tails maintainer (zzz) `http://zzz.i2p/topics/2108`
 20:00:07 &lt;zzz&gt; 0) Hi
 20:00:09 &lt;zzz&gt; hi
 20:00:16 &lt;i2pr&gt; [Slack/manas] Hello :slightly_smiling_face:

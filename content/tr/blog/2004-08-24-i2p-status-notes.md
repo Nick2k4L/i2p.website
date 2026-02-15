@@ -74,7 +74,7 @@ oOo, insanların hosts.txt dosyalarını güncellemeden eepsites(I2P Sites) gezm
 Temelde, istediğiniz herhangi bir adla eepsite(I2P Site) için bir bağlantı oluşturursunuz, ardından destination (hedef adres) belirten özel bir url parametresi eklersiniz:
 
 ```
-http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...
+`http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...`
 ```
 Arka planda, oldukça güvenli - başka bir adresi sahteleyemezsiniz ve ad hosts.txt içinde kalıcı olarak yazılmış *değil*, ancak eepsite'lerde (I2P Sites) bağlantısı verilen, eski `http://i2p/base64/` numarasıyla göremeyeceğiniz görselleri / vb. görmenize izin verir. Eğer o siteye ulaşmak için her zaman "wowthisiscool.i2p" kullanmak istiyorsanız, elbette yine de hosts.txt dosyasına girişi eklemeniz gerekecek (MyI2P address book yayınlanana kadar, yani ;)
 

@@ -39,7 +39,7 @@ categories: ["meeting"]
 20:03:41 &lt;zzz&gt; anything else on 1) ?
 20:03:49 &lt;backup&gt; would attract more testers...
 20:04:06 &lt;str4d&gt; New website frontpage is up
-20:04:10 &lt;str4d&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/
+20:04:10 &lt;str4d&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/`
 20:04:23 &lt;zzz&gt; let's stay on topic. anything else on 1) ?
 20:04:34 &lt;str4d&gt; zzz, I *am* on topix
 20:04:58 &lt;str4d&gt; I'd like to have this live around release time ideally

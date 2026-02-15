@@ -19,8 +19,8 @@ toc: true
 
 Менеджер скрытых сервисов (также называемый I2P Tunnel Manager) — это место, где настраиваются все I2P серверные и клиентские tunnels, включая HTTP-серверы (eepsites).
 
-1. Откройте [Консоль I2P Router](http://127.0.0.1:7657)
-2. Перейдите к [Менеджеру скрытых сервисов](http://127.0.0.1:7657/i2ptunnelmgr)
+1. Откройте `http://127.0.0.1:7657`
+2. Перейдите к `http://127.0.0.1:7657/i2ptunnelmgr`
 
 Вы должны увидеть интерфейс Диспетчера скрытых сервисов, отображающий: - **Сообщения о состоянии** - Текущее состояние tunnel и клиента - **Глобальное управление tunnel** - Кнопки для управления всеми tunnels одновременно - **Скрытые сервисы I2P** - Список настроенных серверных tunnels
 
@@ -191,7 +191,7 @@ chmod -R 755 ~/.i2p/eepsite/docroot/
 
 ### Запустите Tunnel
 
-1. **Вернитесь в [Менеджер скрытых сервисов](http://127.0.0.1:7657/i2ptunnelmgr)**
+1. **Вернитесь в `http://127.0.0.1:7657/i2ptunnelmgr`**
 2. Найдите в списке запись **I2P webserver**
 3. Нажмите кнопку **Start** в столбце Control
 
@@ -215,7 +215,7 @@ chmod -R 755 ~/.i2p/eepsite/docroot/
 
 1. **Адрес Base32 (.b32.i2p)**: Длинный криптографический адрес, который выглядит так:
    ```
-   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
+   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
    ```
    - Это постоянный, криптографически производный адрес вашего eepsite
    - Его нельзя изменить; он привязан к вашему закрытому ключу
@@ -314,7 +314,7 @@ testwebsite.i2p=I8WiuSx1TcYAutCrhLveZ6gghdqsIJ1v9noSGPb7ItYjxaK5LHVNxgC60KuEu95n
 
 ### Шаг 2: Зарегистрируйтесь на stats.i2p
 
-1. **Перейдите к** [stats.i2p Add Key](http://stats.i2p/i2p/addkey.html) (внутри I2P)
+1. **Перейдите к** stats.i2p Add Key (внутри I2P)
 
 ![Регистрация домена stats.i2p](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ testwebsite.i2p=I8WiuSx1TcYAutCrhLveZ6gghdqsIJ1v9noSGPb7ItYjxaK5LHVNxgC60KuEu95n
 
 Чтобы обеспечить максимальную доступность, вам также следует зарегистрироваться на сервисе reg.i2p:
 
-1. **Перейдите на** [reg.i2p Add Domain](http://reg.i2p/add) (внутри сети I2P)
+1. **Перейдите на** reg.i2p Add Domain (внутри сети I2P)
 
 ![Регистрация домена на reg.i2p](/images/guides/eepsite/reg-i2p-add.png)
 

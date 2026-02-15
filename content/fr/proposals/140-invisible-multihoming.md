@@ -11,7 +11,7 @@ toc: true
 
 ## Aperçu
 
-Cette proposition décrit la conception d'un protocole permettant à un client I2P, un service ou un processus d'équilibrage externe de gérer de manière transparente plusieurs routers hébergeant une seule [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
+Cette proposition décrit la conception d'un protocole permettant à un client I2P, un service ou un processus d'équilibrage externe de gérer de manière transparente plusieurs routers hébergeant une seule `http://localhost:63465/docs/specs/common-structures/#destination`.
 
 La proposition ne spécifie actuellement pas d'implémentation concrète. Elle pourrait être implémentée comme une extension d'[I2CP](/docs/specs/i2cp/), ou comme un nouveau protocole.
 

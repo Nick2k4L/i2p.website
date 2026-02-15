@@ -14,7 +14,7 @@ Le framework de plugins d'I2P vous permet d'étendre le router sans toucher à l
 
 1. Copiez l'URL de téléchargement du plugin depuis la page du projet.  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. Ouvrez la [page de configuration des plugins](http://127.0.0.1:7657/configplugins) de la console du routeur.  
+2. Ouvrez la `http://127.0.0.1:7657/configplugins` de la console du routeur.  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. Collez l'URL dans le champ d'installation et cliquez sur **Installer le plugin**.  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ Le routeur récupère l'archive signée, vérifie la signature et active le plug
 
 ## 3. Gérer les plugins installés
 
-Utilisez les contrôles sur [I2P Router Plugin's](http://127.0.0.1:7657/configclients.jsp#plugin) pour :
+Utilisez les contrôles sur `http://127.0.0.1:7657/configclients.jsp#plugin` pour :
 
 - Vérifier les mises à jour d'un seul plugin
 - Vérifier tous les plugins en une fois (déclenché automatiquement après les mises à niveau du routeur)

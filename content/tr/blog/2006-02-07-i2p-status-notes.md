@@ -26,7 +26,7 @@ Kısa üslerin kullanımına ilişkin pek çok çelişen görüş var ve genel d
 
 Tek büyük alternatif, 1024 bitlik şifrelemeye geçmek (bu sayede belki 160 bitlik kısa bir üs kullanabiliriz). Bu, her hâlükârda uygun olabilir ve eğer _PRE net üzerinde 2048 bitlik şifreleme ile işler çok zahmetli olursa, geçişi _PRE net içinde gerçekleştirebiliriz. Aksi takdirde, yeni şifrelemenin daha geniş ölçekte yaygınlaştırılmasının olacağı 0.6.1.10 sürümü çıkana kadar bekleyebiliriz; böylece gerekli olup olmadığını görebiliriz. Böyle bir geçiş muhtemel görünürse çok daha fazla bilgi paylaşılacaktır.
 
-[1] "Kısa Üslerle Diffie-Hellman Anahtar Uzlaşması Üzerine" -     van Oorschot, Weiner EuroCrypt 96'da.  yansısı şurada     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "Kısa Üslerle Diffie-Hellman Anahtar Uzlaşması Üzerine" -     van Oorschot, Weiner EuroCrypt 96'da.  yansısı şurada     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 Her durumda, _PRE net üzerinde epey ilerleme var; bununla ilgili iletişimin çoğu irc2p üzerindeki #i2p_pre kanalında yürütülüyor.
 

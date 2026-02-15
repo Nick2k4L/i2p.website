@@ -13,14 +13,14 @@ categories: ["meeting"]
 ## 회의 로그
 
 <div class="irc-log">20:00:25 &lt;zzz&gt; 0) 안녕하세요
-20:00:25 &lt;zzz&gt; 1) Tails 유지관리자 (zzz) http://zzz.i2p/topics/2108
+20:00:25 &lt;zzz&gt; 1) Tails 유지관리자 (zzz) `http://zzz.i2p/topics/2108`
 20:00:25 &lt;zzz&gt; 2) 0.9.30 업데이트 (zzz)
 20:00:25 &lt;zzz&gt; 3) UI 브랜치 상태 - .30에 할지 .31에 할지? (str4d)
 20:00:25 &lt;zzz&gt; 4) Jetty 9 브랜치 상태 - .30에 할지 .31에 할지? (zzz)
 20:00:30 &lt;zzz&gt; 0) 안녕하세요
 20:00:32 &lt;zzz&gt; 안녕하세요
 20:00:50 &lt;manas&gt; 안녕하세요
-20:00:54 &lt;zzz&gt; 1) Tails 유지관리자 (zzz) http://zzz.i2p/topics/2108
+20:00:54 &lt;zzz&gt; 1) Tails 유지관리자 (zzz) `http://zzz.i2p/topics/2108`
 20:01:16 &lt;zzz&gt; 대부분 알고 있듯이, Tails와 제가 Tails에서 i2p를 제거하기로 합의했습니다
 20:01:34 &lt;zzz&gt; 이는 앞으로 약 6주 뒤에 출시될 Tails 2.12부터 적용될 것입니다
 20:01:43 &lt;eche|on&gt; 안녕하세요

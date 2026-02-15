@@ -206,10 +206,10 @@ categories: ["meeting"]
 20:39:31  &lt;str4d&gt; Despite the website revamp, the information we make available there is not well organized or clear.
 20:39:31  &lt;str4d&gt; And with the last year's increased focus on privacy and security, we really need to make the most of the current environment.
 20:39:57  &lt;str4d&gt; We have several locations with information on possible projects, tasks etc. but nothing clear, or up-to-date
-20:41:06  &lt;str4d&gt; http://i2p-projekt.i2p/en/get-involved/todo
-20:41:06  &lt;str4d&gt; http://i2p-projekt.i2p/en/get-involved/roadmap
-20:41:06  &lt;str4d&gt; http://i2p-projekt.i2p/en/docs/overview/performance/future
-20:41:06  &lt;str4d&gt; http://i2p-projekt.i2p/en/get-involved/develop/applications
+20:41:06  &lt;str4d&gt; `http://i2p-projekt.i2p/en/get-involved/todo`
+20:41:06  &lt;str4d&gt; `http://i2p-projekt.i2p/en/get-involved/roadmap`
+20:41:06  &lt;str4d&gt; `http://i2p-projekt.i2p/en/docs/overview/performance/future`
+20:41:06  &lt;str4d&gt; `http://i2p-projekt.i2p/en/get-involved/develop/applications`
 20:41:06  &lt;str4d&gt; The last two links I'll leave for now, but at the very least I want us all now to look at the todo and roadmap pages now.
 20:41:17  &lt;str4d&gt; like, now
 20:41:20  &lt;str4d&gt; ;P

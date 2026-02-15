@@ -16,7 +16,7 @@ Selam millet, haftalık güncelleme zamanı
 
 Genel olarak ağ iyi gidiyor, yine de irc sunucularından birinin çevrimdışı olması ve outproxy'min aksaması nedeniyle bazı sorunlar yaşadık. Ancak diğer irc sunucusu erişilebilir durumdaydı (ve hâlâ öyle) (gerçi şu anda CTCP devre dışı değil - bkz. [1]), bu yüzden irc ihtiyacımızı giderebildik :)
 
-[1] http://ugha.i2p/HowTo/IrcAnonymityGuide
+[1] `http://ugha.i2p/HowTo/IrcAnonymityGuide`
 
 * 2) 0.5 progress
 
@@ -52,7 +52,7 @@ Artık 0.4.2.6 sürümü Ragnarok'un adres defterini paketle birlikte sunduğuna
 
 Bu olanakla birlikte tamamen yeni bir boyut geliyor - insanların kendi hosts.txt dosyalarında hangi sitelere fiilen bağlantı vereceklerini ve hangilerine vermeyeceklerini seçebilme yeteneği. Geçmişte yaşanan herkese açık serbest ortama hâlâ bir yer olsa da, artık adlandırma sistemi sadece teoride değil pratikte de tamamen dağıtık olduğuna göre, insanlar başkalarına ait destinations (hedefler) yayımlama konusunda kendi politikalarını belirlemek zorunda kalacaklar.
 
-Burada perde arkasındaki önemli nokta, bunun I2P topluluğu için bir öğrenme fırsatı olmasıdır. Önceden, hem gott hem de ben, gott'un sitesini jrandom.i2p olarak yayımlayarak adlandırma meselesini ileriye taşımaya çalışıyorduk (o bu siteyi önce kendisi talep etti - ben istemedim ve o URL'nin içeriği üzerinde hiçbir şekilde kontrolüm yok). Şimdi, http://dev.i2p.net/i2p/hosts.txt veya forum.i2p üzerinde listelenmeyen sitelerle nasıl başa çıkacağımızı araştırmaya başlayabiliriz. Bu konumlarda yer almaması bir sitenin çalışmasını hiçbir şekilde engellemez - hosts.txt dosyanız sadece yerel adres defterinizdir.
+Burada perde arkasındaki önemli nokta, bunun I2P topluluğu için bir öğrenme fırsatı olmasıdır. Önceden, hem gott hem de ben, gott'un sitesini jrandom.i2p olarak yayımlayarak adlandırma meselesini ileriye taşımaya çalışıyorduk (o bu siteyi önce kendisi talep etti - ben istemedim ve o URL'nin içeriği üzerinde hiçbir şekilde kontrolüm yok). Şimdi, `http://dev.i2p.net/i2p/hosts.txt` veya forum.i2p üzerinde listelenmeyen sitelerle nasıl başa çıkacağımızı araştırmaya başlayabiliriz. Bu konumlarda yer almaması bir sitenin çalışmasını hiçbir şekilde engellemez - hosts.txt dosyanız sadece yerel adres defterinizdir.
 
 Neyse, yeter bu gevezelik, sadece herkesi haberdar etmek istedim ki hepimiz ne yapılması gerektiğini görebilelim.
 

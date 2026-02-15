@@ -6,7 +6,7 @@ description: "20 Ocak 2004 tarihli I2P geliştirme toplantısı kayıtları."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in izniyle http://www.archive.org/)
+(Wayback machine'in izniyle `http://www.archive.org/`)
 
 ## Hızlı özet
 

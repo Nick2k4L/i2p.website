@@ -26,11 +26,11 @@ JRobin [1] est un portage Java pur de RRDtool [2], qui nous permet de générer 
 
 Postman a travaillé d'arrache-pied sur des bots utiles, et je suis ravi d’annoncer que l’adorable biff est de retour [3] et vous prévient dès que vous avez du courrier (anonyme) pendant que vous êtes sur irc2p. En outre, postman a développé un tout nouveau bot pour nous - toopie - pour servir de bot d’information pour I2P/irc2p. Nous sommes encore en train d’alimenter toopie avec des FAQ, mais il rejoindra bientôt les canaux habituels. Merci postman !
 
-[3] http://hq.postman.i2p/?page_id=15
+[3] `http://hq.postman.i2p/?page_id=15`
 
 * 4) new key
 
-Pour ceux qui suivent de près, vous aurez remarqué que ma clé GPG expire dans quelques jours.  Ma nouvelle clé à l’adresse http://dev.i2p.net/~jrandom a pour empreinte 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 et l’ID de clé 33DC8D49.  Ce billet est signé avec mon ancienne clé, mais mes billets suivants (et versions) pour l’année à venir seront signés avec la nouvelle clé.
+Pour ceux qui suivent de près, vous aurez remarqué que ma clé GPG expire dans quelques jours.  Ma nouvelle clé à l’adresse `http://dev.i2p.net/~jrandom` a pour empreinte 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 et l’ID de clé 33DC8D49.  Ce billet est signé avec mon ancienne clé, mais mes billets suivants (et versions) pour l’année à venir seront signés avec la nouvelle clé.
 
 * 5) ???
 

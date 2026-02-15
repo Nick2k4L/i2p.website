@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] <mihi> ;)
 [23:02] <duck> 1) avancement du code
 [23:02] <duck> pas beaucoup de code soumis à cvs
-[23:02] <duck> j'ai remporté le trophée cette semaine: http://duck.i2p/duck_trophy.jpg
+[23:02] <duck> j'ai remporté le trophée cette semaine: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus n'a pas encore de compte cvs
 [23:03] <Masterboy> et qui a soumis quelque chose ?
 [23:03] <duck> quelqu'un code-t-il secrètement ?

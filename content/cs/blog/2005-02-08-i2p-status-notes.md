@@ -16,7 +16,7 @@ Ahoj všichni, zase je čas na aktualizaci
 
 Nezdá se to, ale od vydání 0.4.2.6 už uplynul více než měsíc a věci jsou pořád v docela dobrém stavu. Od té doby proběhla řada dost užitečných aktualizací [1], ale nic, co by bylo zásadním problémem vyžadujícím vydat novou verzi. Nicméně během posledního dne či dvou nám přišly opravdu dobré opravy chyb (díky, anon a Sugadude!), a kdybychom zrovna nebyli na prahu vydání 0.5, asi bych to zabalil a pustil ven. Aktualizace od anon opravuje okrajovou podmínku ve streaming lib (streamovací knihovna), která způsobovala mnoho timeoutů viděných v BT (BitTorrent) a dalších velkých přenosech, takže pokud jste dobrodružné povahy, stáhněte si CVS HEAD (nejnovější větev) a zkuste to. Nebo samozřejmě počkejte na příští vydání.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) 0.5
 
@@ -26,13 +26,13 @@ Zatímco se snažím do vydání 0.5 zařadit tolik, kolik jen mohu, také si uv
 
 Když se ohlédnu za roadmapou [6], jedinou věcí, která se přesouvá na 0.5.1, je striktní pořadí. Postupem času se jistě zlepší omezování (throttling) i vyvažování zátěže, ale očekávám, že to budeme ladit prakticky donekonečna. Probíraly se i další věci, které jsem doufal zahrnout do 0.5, jako nástroj pro stahování a kód pro aktualizaci jedním kliknutím, ale vypadá to, že i ty budou odloženy.
 
-[2] http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html [3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
+[2] `http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html` [3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
 
 * 3) i2p-bt 0.1.6
 
 duck vydal novou verzi i2p-bt s opravami (hurá!), dostupnou na obvyklých místech, tak si ji pořiďte, dokud je čerstvá [7]. Mezi touto aktualizací a patchem pro streamingovou knihovnu od anona jsem při seedování několika souborů prakticky vytížil svůj uplink na maximum, tak to zkuste.
 
-[7] http://forum.i2p.net/viewtopic.php?t=300
+[7] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) fortuna
 
@@ -42,4 +42,4 @@ Jak bylo zmíněno na minulotýdenní schůzce, smeghead v poslední době usilo
 
 Děje se toho hodně a v poslední době byl nával aktivity i na fóru [8], takže mi nejspíš leccos uniklo. Každopádně zaskočte na schůzku za pár minut a řekněte, co máte na srdci (nebo jen tiše lurkujte a občas přihodíte nějakou jízlivou poznámku).
 
-=jr [8] http://forum.i2p.net/
+=jr [8] `http://forum.i2p.net/`

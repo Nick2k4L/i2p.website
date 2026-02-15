@@ -57,7 +57,7 @@ Na criação, o serviço de nomeação importa entradas dos três arquivos usado
 
 ### Outras Facilidades de Serviço de Nomeação
 
-A busca não diferencia maiúsculas de minúsculas. A primeira correspondência é usada, e conflitos não são detectados. Não há aplicação de regras de nomenclatura nas buscas. As buscas são armazenadas em cache por alguns minutos. A resolução Base 32 é [descrita abaixo](#base32-names). Para uma descrição completa da API do Naming Service, consulte o [Naming Service Javadocs](http://idk.i2p/javadoc-i2p/net/i2p/client/naming/package-summary.html). Esta API foi significativamente expandida na versão 0.8.7 para fornecer adições e remoções, armazenamento de propriedades arbitrárias com o hostname, e outras funcionalidades.
+A busca não diferencia maiúsculas de minúsculas. A primeira correspondência é usada, e conflitos não são detectados. Não há aplicação de regras de nomenclatura nas buscas. As buscas são armazenadas em cache por alguns minutos. A resolução Base 32 é [descrita abaixo](#base32-names). Para uma descrição completa da API do Naming Service, consulte o Naming Service Javadocs. Esta API foi significativamente expandida na versão 0.8.7 para fornecer adições e remoções, armazenamento de propriedades arbitrárias com o hostname, e outras funcionalidades.
 
 ### Serviços de Nomenclatura Alternativos e Experimentais
 
@@ -89,12 +89,12 @@ A aplicação de livro de endereços recupera periodicamente os arquivos hosts.t
 
 Subscrever o arquivo hosts.txt de outro usuário envolve depositar nele uma certa quantidade de confiança. Você não quer que ele, por exemplo, "sequestre" um novo site inserindo rapidamente sua própria chave para um novo site antes de passar a nova entrada host/chave para você.
 
-Por esta razão, a única subscrição configurada por padrão é `http://i2p-projekt.i2p/hosts.txt (http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`, que contém uma cópia do hosts.txt incluído na versão do I2P. Os usuários devem configurar subscrições adicionais na sua aplicação de livro de endereços local (via subscriptions.txt ou [SusiDNS](#susidns)).
+Por esta razão, a única subscrição configurada por padrão é `http://i2p-projekt.i2p/hosts.txt (`http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`,` que contém uma cópia do hosts.txt incluído na versão do I2P. Os usuários devem configurar subscrições adicionais na sua aplicação de livro de endereços local (via subscriptions.txt ou [SusiDNS](#susidns)).
 
 Alguns outros links de subscrição de livro de endereços público:
 
-- http://i2host.i2p/cgi-bin/i2hostetag
-- http://stats.i2p/cgi-bin/newhosts.txt
+- `http://i2host.i2p/cgi-bin/i2hostetag`
+- `http://stats.i2p/cgi-bin/newhosts.txt`
 
 Os operadores destes serviços podem ter várias políticas para listar hosts. A presença nesta lista não implica endosso.
 

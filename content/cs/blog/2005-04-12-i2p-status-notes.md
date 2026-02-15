@@ -31,7 +31,7 @@ bla intenzivně pracuje na některých revizích toho, jak rozhodujeme, přes kt
 <+bla> To druhé bylo provedeno s výchozími délkami expl. tunnels
 <+bla> Průnik množiny uzlů, u nichž mám "skutečná data", a množiny        uzlů v aktuálních měřeních, je 117 uzlů
 <+bla> Výsledky nejsou _tak_ špatné, ale ani nijak zvlášť působivé
-<+bla> Viz http://theland.i2p/estspeed.png
+<+bla> Viz `http://theland.i2p/estspeed.png`
 <+bla> Základní oddělení velmi pomalých/rychlých uzlů je tak nějak OK, ale jemné        rozlišení mezi rychlejšími uzly by mohlo být mnohem lepší
 <+jrandom2p> hmm, jak se vlastně vypočítaly skutečné hodnoty – je to              plné RTT (round-trip time, doba zpáteční cesty) nebo je to RTT/délka ?
 <+bla> Při použití normálních expl. tunnels je téměř nemožné        zabránit dávkovacím prodlevám.
@@ -51,7 +51,7 @@ bla intenzivně pracuje na některých revizích toho, jak rozhodujeme, přes kt
 <+bla> I tak... 65% odhadovaných časů spadá do 0.5        směrodatné odchylky od skutečného času uzlu
 <+bla> Nicméně to je potřeba přepočítat, protože směrodatnou odchylku        silně ovlivňují selhání >60000 ms
 
-Po další diskusi bla předložil srovnání se stávajícím kalkulátorem rychlosti, zveřejněné na http://theland.i2p/oldspeed.png Zrcadla těch PNG jsou k dispozici na http://dev.i2p.net/~jrandom/estspeed.png a http://dev.i2p.net/~jrandom/oldspeed.png
+Po další diskusi bla předložil srovnání se stávajícím kalkulátorem rychlosti, zveřejněné na `http://theland.i2p/oldspeed.png` Zrcadla těch PNG jsou k dispozici na `http://dev.i2p.net/~jrandom/estspeed.png` a `http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (pro terminologii, IB=počet hopů ve vstupním tunnelu, OB=počet hopů ve výstupním tunnelu, a po upřesnění byla "ground truth" (referenční) měření získána s 1 hopem na výstupu a 0 hopem na vstupu, nikoli naopak)
 

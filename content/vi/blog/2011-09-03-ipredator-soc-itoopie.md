@@ -14,7 +14,7 @@ itoopie là một giao diện đồ họa được thiết kế như một phầ
 
 I2PControl là một plugin (phần bổ trợ) của I2P cung cấp giao diện JSONRPC cho I2P router. Giao diện này hỗ trợ cấu hình các thiết lập cơ bản (băng thông, cổng, v.v.), đọc nhiều số liệu thống kê và được cung cấp qua kết nối HTTP được mã hóa SSL.
 
-Bạn có thể tìm thêm thông tin và hướng dẫn tại [itoopie.i2p](http://itoopie.i2p).
+Bạn có thể tìm thêm thông tin và hướng dẫn tại itoopie.i2p.
 
 Dự án này đã được tài trợ bởi các dịch vụ VPN [Relakks](http://relakks.com) & [Ipredator](http://ipredator.se) và được khởi xướng bởi Jan-Erik Fiske và [Peter Sunde](http://twitter.com/brokep).
 

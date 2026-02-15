@@ -18,7 +18,7 @@ Até algumas versões atrás, esse problema era ainda mais difícil de lidar, po
 
 ## Ajustando os limites de largura de banda
 
-Como o I2P é uma rede peer-to-peer, você precisa compartilhar parte da sua largura de banda de rede com outros pares. Você pode escolher quanto em "I2P Bandwidth Configuration" (botão "Configure Bandwidth" na seção "Applications and Configuration" do I2P Router Console, ou em http://localhost:7657/config).
+Como o I2P é uma rede peer-to-peer, você precisa compartilhar parte da sua largura de banda de rede com outros pares. Você pode escolher quanto em "I2P Bandwidth Configuration" (botão "Configure Bandwidth" na seção "Applications and Configuration" do I2P Router Console, ou em `http://localhost:7657/config).`
 
 ![Configuração de Largura de Banda do I2P](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ Se você vir um limite de largura de banda compartilhada de 48 KBps, que é muit
 
 No entanto, como muitos usuários podem não saber exatamente quais configurações de largura de banda ajustar, o [lançamento do I2P 0.9.38](https://geti2p.net/en/download) introduziu um Assistente de Nova Instalação. Ele contém um Teste de Largura de Banda, que detecta automaticamente (graças ao [NDT](https://www.measurementlab.net/tests/ndt/) do M-Lab) e ajusta as configurações de largura de banda do I2P de acordo.
 
-Se você quiser executar novamente o assistente, por exemplo após uma mudança no seu provedor de serviços ou porque instalou o I2P antes da versão 0.9.38, você pode iniciá-lo novamente pelo link 'Setup' na página 'Help & FAQ', ou simplesmente acessar o assistente diretamente em http://localhost:7657/welcome
+Se você quiser executar novamente o assistente, por exemplo após uma mudança no seu provedor de serviços ou porque instalou o I2P antes da versão 0.9.38, você pode iniciá-lo novamente pelo link 'Setup' na página 'Help & FAQ', ou simplesmente acessar o assistente diretamente em `http://localhost:7657/welcome`
 
 ![Você consegue encontrar "Setup"?](https://geti2p.net/images/blog/sidemenu.png)
 

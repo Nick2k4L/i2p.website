@@ -14,7 +14,7 @@ categories: ["status"]
 
 0.4는 언급된 네 가지 릴리스 기준(기능성, 보안성, 익명성, 확장성)을 충족하겠지만, 0.4.2 이전에는 NAT와 방화벽 뒤에 있는 소수만이 참여할 수 있으며, 0.4.3 이전에는 다른 router에 대한 대량의 TCP 연결을 유지하는 데 따른 오버헤드 때문에 네트워크의 크기에 실질적인 상한이 존재하게 된다.
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ categories: ["status"]
 
 그 외에는 사이트를 라이브로 전환할 준비가 거의 다 된 것 같습니다. 그와 관련해 제안이나 우려 사항이 있으신가요?
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) 공격과 방어**
 

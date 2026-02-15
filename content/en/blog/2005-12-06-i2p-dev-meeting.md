@@ -97,7 +97,7 @@ categories: ["meeting"]
 15:59 &lt;ailouros&gt; great :)
 16:00 &lt;jrandom&gt; we've got a new threaded display too, using cervantes' suggested full traversal of just one branch, as opposed to all branches
 16:00 &lt;@cervantes&gt; are those changes pushed to syndiemedia.i2p.net?
-16:00 &lt;+bla&gt; Would it be a good idea to show some default examples for the location in http://localhost:7657/syndie/syndicate.jsp ?
+16:00 &lt;+bla&gt; Would it be a good idea to show some default examples for the location in `http://localhost:7657/syndie/syndicate.jsp` ?
 16:00 &lt;jrandom&gt; syndiemedia.i2p.net is CVS head, yeah
 16:00 &lt;+Complication&gt; When you've opened up a thread, and are currently reading its posts... and then choose to apply a filter to which no posts match (e.g. open thread "Syndie threading", apply filter "i2p.i2phex")...
 16:00 &lt;jrandom&gt; aye, perhaps bla.  new installs will have the three defaults in there, but examples would be good
@@ -125,7 +125,7 @@ categories: ["meeting"]
 16:06 &lt;+Complication&gt; And those who are used to keyboard-navigating can naturally press "End"
 16:06 &lt;jrandom&gt; of course, this stuff is really simple to modify (as you can see from the rapid changes in CVS :), so if anyone has any suggestions (or mockups - html / png / etc), please, post 'em up whenever
 16:07 &lt;jrandom&gt; I expect we'll have a main blog overview page in the next few days in cvs
-16:08 &lt;jrandom&gt; ok, there's lots of other stuff going on w/ syndie, so swing on by http://localhost:7657/syndie/ for more info :)
+16:08 &lt;jrandom&gt; ok, there's lots of other stuff going on w/ syndie, so swing on by `http://localhost:7657/syndie/` for more info :)
 16:08 &lt;jrandom&gt; anyone have anything else to bring up on that, or shall we move on to 5) ???
 16:09 &lt;zzz&gt; hi just walked in. on 2), I'm looking for testers for my patch.  
 16:10 &lt;zzz&gt; My results are improvements in job lag and reliability, and reduction in router hangs. So hoping others will try.

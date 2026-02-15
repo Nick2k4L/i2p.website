@@ -131,7 +131,7 @@ a pole výplně (pro Destinations a Router Identities).
 
 ### Soubor soukromého klíče
 Formát souboru soukromého klíče (eepPriv.dat) není oficiální součástí našich specifikací,
-ale je dokumentován v [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+ale je dokumentován v Java I2P javadocs
 a další implementace jej podporují.
 To umožňuje přenositelnost soukromých klíčů do různých implementací.
 Přidat poznámku k tomu javadoc, že šifrovací veřejný klíč může být náhodná výplň
@@ -221,7 +221,7 @@ zašifrované dotazy na databázi a odpovědi.
 Odhadovaný časový rámec pro návrh, vývoj a nasazení toho by byl ????????
 Ale stalo by se to až po hybridním nebo ratchetu ????????????
 
-Pro další diskusi viz [this topic](http://zzz.i2p/topics/3294).
+Pro další diskusi viz this topic.
 
 
 ## Problémy
@@ -247,4 +247,4 @@ S ohledem na problémy s zpětnou kompatibilitou, a po zakázání SSU,
 implementace mohou zcela odstranit kód ElGamal.
 Přibližně 14 % routerů v síti je typu šifrování ElGamal, včetně mnoha floodfillů.
 
-Návrh na sloučení pro Java I2P je na [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+Návrh na sloučení pro Java I2P je na git.idk.i2p.

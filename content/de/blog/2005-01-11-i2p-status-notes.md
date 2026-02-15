@@ -16,7 +16,7 @@ Hallo zusammen, es ist Zeit für das wöchentliche Update.
 
 Insgesamt läuft das Netz gut, auch wenn wir einige Probleme hatten, weil einer der IRC-Server offline war und mein outproxy (Ausgangsproxy ins offene Internet) herumzickte. Der andere IRC-Server war (und ist) jedoch erreichbar (auch wenn CTCP derzeit nicht deaktiviert ist - siehe [1]), sodass wir unseren Bedarf an IRC stillen konnten :)
 
-[1] http://ugha.i2p/HowTo/IrcAnonymityGuide
+[1] `http://ugha.i2p/HowTo/IrcAnonymityGuide`
 
 * 2) 0.5 progress
 
@@ -52,7 +52,7 @@ Da die Version 0.4.2.6 nun Ragnaroks Adressbuch mitliefert, liegt der Vorgang, I
 
 Mit dieser Möglichkeit geht eine völlig neue Dimension einher – nämlich die Möglichkeit für Nutzer, auszuwählen, welche Seiten sie in ihrer hosts.txt eintragen und welche nicht. Zwar hat auch der offene Wildwuchs, der in der Vergangenheit stattgefunden hat, seinen Platz, doch jetzt, da das Namenssystem nicht nur theoretisch, sondern in der Praxis vollständig verteilt ist, müssen Nutzer eigene Richtlinien dafür festlegen, wie sie fremde Destinations (I2P‑Adressen) veröffentlichen.
 
-Der wichtige Punkt hinter den Kulissen ist hier, dass dies eine Lerngelegenheit für die I2P-Gemeinschaft ist. Zuvor versuchten sowohl gott als auch ich, das Namensproblem voranzubringen, indem wir gotts Site unter jrandom.i2p veröffentlichten (er hat diese Site zuerst beantragt - ich nicht, und ich habe keinerlei Kontrolle über die Inhalte dieser URL). Jetzt können wir damit beginnen zu erkunden, wie wir mit Sites umgehen, die nicht in der http://dev.i2p.net/i2p/hosts.txt oder auf forum.i2p aufgeführt sind. Dass sie an diesen Stellen nicht veröffentlicht sind, hindert eine Site in keiner Weise am Betrieb - Ihre hosts.txt ist lediglich Ihr lokales Adressbuch.
+Der wichtige Punkt hinter den Kulissen ist hier, dass dies eine Lerngelegenheit für die I2P-Gemeinschaft ist. Zuvor versuchten sowohl gott als auch ich, das Namensproblem voranzubringen, indem wir gotts Site unter jrandom.i2p veröffentlichten (er hat diese Site zuerst beantragt - ich nicht, und ich habe keinerlei Kontrolle über die Inhalte dieser URL). Jetzt können wir damit beginnen zu erkunden, wie wir mit Sites umgehen, die nicht in der `http://dev.i2p.net/i2p/hosts.txt` oder auf forum.i2p aufgeführt sind. Dass sie an diesen Stellen nicht veröffentlicht sind, hindert eine Site in keiner Weise am Betrieb - Ihre hosts.txt ist lediglich Ihr lokales Adressbuch.
 
 Wie dem auch sei, genug Gerede, ich wollte die Leute nur in Kenntnis setzen, damit wir alle sehen können, was zu tun ist.
 

@@ -90,7 +90,7 @@ Go-I2P is an I2P client written in the Go programming language. It is an indepen
 
 ## Emissary (Rust)
 
-**Website:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)
+**Website:** [https://eepnet.github.io/emissary/](https://eepnet.github.io/emissary/)
 
 **Description:**
 Emissary is a Rust implementation of the I2P protocol stack, designed to function as an embeddable I2P router. It can be integrated into other applications or run standalone. Emissary supports eepsite hosting, torrents, IRC and email services. The project includes extensive documentation covering quick-start setup, embedding for developers, and detailed configuration. As an experimental project, it is under active development and not yet recommended for production use.

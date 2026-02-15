@@ -18,7 +18,7 @@ Bonjour, sa cette fois de la semaine encore,
 
 또 다른 일시적인 문제로 HTTP outproxy(외부 프록시) 중 하나(www1.squid.i2p)가 중단되어 outproxy 요청의 50%가 실패했습니다. I2PTunnel 구성 [1]을 열어 eepProxy를 편집하고, "Outproxies:" 줄을 "squid.i2p"만 포함하도록 변경하면 해당 outproxy를 일시적으로 제거할 수 있습니다. 이중화를 높이기 위해 해당 outproxy가 곧 다시 온라인으로 복구되길 바랍니다.
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -34,7 +34,7 @@ irc에서 bla가 언급했듯이, eepsite(I2P Site) 호스트는 목요일이나
 
 duck가 지난주 0.1.6 업데이트에 대한 버그 수정 릴리스를 내놓았고, 소문에 따르면 끝내준다고 하네요(네트워크 사용량이 늘어난 걸 보면 아마 /너무/ 끝내주는 걸지도요 ;). 더 자세한 정보는 i2p-bt 포럼 [2]에 올라와 있습니다
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

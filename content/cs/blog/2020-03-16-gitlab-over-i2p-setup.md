@@ -55,7 +55,7 @@ Jakmile máte Gitlab nastavený lokálně, přejděte do I2P Router console. Bud
 
 ### Gitlab Web(HTTP) Interface
 
-Pro webové rozhraní použijte serverový "HTTP" tunnel. Z http://127.0.0.1:7657/i2ptunnelmgr spusťte "New Tunnel Wizard" a zadejte následující hodnoty:
+Pro webové rozhraní použijte serverový "HTTP" tunnel. Z `http://127.0.0.1:7657/i2ptunnelmgr` spusťte "New Tunnel Wizard" a zadejte následující hodnoty:
 
 1. Select "Server Tunnel"
 2. Select "HTTP Server"
@@ -66,7 +66,7 @@ Pro webové rozhraní použijte serverový "HTTP" tunnel. Z http://127.0.0.1:765
 
 ### Gitlab SSH Interface
 
-Pro rozhraní SSH použijte "Standard" serverový tunnel. Z http://127.0.0.1:7657/i2ptunnelmgr spusťte "New Tunnel Wizard" a zadejte následující hodnoty:
+Pro rozhraní SSH použijte "Standard" serverový tunnel. Z `http://127.0.0.1:7657/i2ptunnelmgr` spusťte "New Tunnel Wizard" a zadejte následující hodnoty:
 
 1. Select "Server Tunnel"
 2. Select "Standard Server"

@@ -19,8 +19,8 @@ toc: true
 
 مدير الخدمات المخفية (ويُسمّى أيضاً I2P Tunnel Manager) هو المكان الذي تقوم فيه بتكوين جميع tunnels لخوادم I2P وعملاء I2P، بما في ذلك خوادم HTTP (eepsites).
 
-1. افتح [I2P Router Console](http://127.0.0.1:7657)
-2. انتقل إلى [Hidden Services Manager](http://127.0.0.1:7657/i2ptunnelmgr)
+1. افتح `http://127.0.0.1:7657`
+2. انتقل إلى `http://127.0.0.1:7657/i2ptunnelmgr`
 
 ينبغي أن ترى واجهة مدير الخدمات المخفية تعرض: - **رسائل الحالة** - حالة الـ tunnel والعميل الحالية - **التحكم العام في الـ Tunnel** - أزرار لإدارة جميع الـ tunnels دفعة واحدة - **خدمات I2P المخفية** - قائمة بـ tunnels للخوادم المُكوَّنة
 
@@ -191,7 +191,7 @@ chmod -R 755 ~/.i2p/eepsite/docroot/
 
 ### ابدأ الـ Tunnel (النفق)
 
-1. **عُد إلى [مدير الخدمات المخفية](http://127.0.0.1:7657/i2ptunnelmgr)**
+1. **عُد إلى `http://127.0.0.1:7657/i2ptunnelmgr`**
 2. اعثر على إدخال **خادم الويب I2P** الخاص بك في القائمة
 3. انقر زر **Start** في عمود Control
 
@@ -215,7 +215,7 @@ chmod -R 755 ~/.i2p/eepsite/docroot/
 
 1. **عنوان Base32 (.b32.i2p)**: عنوان تشفيري طويل (مُرَمَّز بترميز Base32) يبدو كالتالي:
    ```
-   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
+   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
    ```
    - هذا هو العنوان الدائم لـ eepsite الخاص بك والمُشتقّ تشفيرياً
    - لا يمكن تغييره وهو مرتبط بمفتاحك الخاص
@@ -318,7 +318,7 @@ testwebsite.i2p=I8WiuSx1TcYAutCrhLveZ6gghdqsIJ1v9noSGPb7ItYjxaK5LHVNxgC60KuEu95n
 
 ### الخطوة 2: سجّل في stats.i2p
 
-1. **انتقل إلى** [stats.i2p Add Key](http://stats.i2p/i2p/addkey.html) (ضمن I2P)
+1. **انتقل إلى** stats.i2p Add Key (ضمن I2P)
 
 ![تسجيل نطاق stats.i2p](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -336,7 +336,7 @@ testwebsite.i2p=I8WiuSx1TcYAutCrhLveZ6gghdqsIJ1v9noSGPb7ItYjxaK5LHVNxgC60KuEu95n
 
 لضمان أقصى قدر من التوفّر، ينبغي عليك أيضًا التسجيل لدى خدمة reg.i2p:
 
-1. **انتقل إلى** [reg.i2p Add Domain](http://reg.i2p/add) (ضمن I2P)
+1. **انتقل إلى** reg.i2p Add Domain (ضمن I2P)
 
 ![تسجيل نطاق reg.i2p](/images/guides/eepsite/reg-i2p-add.png)
 

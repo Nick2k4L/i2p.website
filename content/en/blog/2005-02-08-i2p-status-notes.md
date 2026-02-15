@@ -29,7 +29,7 @@ causing many of the timeouts seen in BT and other large transfers,
 so if you're feeling adventurous, grab CVS HEAD and try 'er out.  Or
 wait around for the next release, of course.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) 0.5
 
@@ -61,8 +61,8 @@ other things discussed that I've hoped to include in 0.5 though,
 like the download tool and the one-click update code, but it looks
 like those will be deferred as well.
 
-[2] http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html
-[3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/
+[2] `http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html`
+[3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`
                     tunnel-alt.html?rev=HEAD#tunnel.selection.client
 [4] http://en.wikipedia.org/wiki/Bloom_filter
 [5] http://xlattice.sourceforge.net/index.html
@@ -75,7 +75,7 @@ usual locations, so get yours while its hot [7].  Between this
 update and anon's streaming lib patch, I pretty much saturated my
 uplink while seeding some files, so give it a shot.
 
-[7] http://forum.i2p.net/viewtopic.php?t=300
+[7] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) fortuna
 
@@ -98,4 +98,4 @@ In any case, swing on by the meeting in a few minutes and say whats
 on your mind (or just lurk and throw in the random snark)
 
 =jr
-[8] http://forum.i2p.net/
+[8] `http://forum.i2p.net/`

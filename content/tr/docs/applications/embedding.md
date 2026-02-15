@@ -80,7 +80,7 @@ Java I2P i2ptunnel paylaşımlı istemcileri destekler; burada istemciler tek bi
 
 ### Tunnel Sayısını Sınırla
 
-Tunnel miktarını `inbound.quantity` ve `outbound.quantity` seçenekleri ile açıkça belirtin. Java I2P'de varsayılan değer 2'dir; i2pd'de varsayılan değer daha yüksektir. Her iki router ile tutarlı ayarlar elde etmek için SAM kullanarak SESSION CREATE satırında belirtin. Gelen/giden için ikişer tunnel, düşük-orta bant genişliği ve düşük-orta fanout uygulamaları için yeterlidir. Sunucular ve yüksek-fanout P2P uygulamaları daha fazlaya ihtiyaç duyabilir. Yüksek trafikli sunucular ve uygulamalar için gereksinimlerin hesaplanması konusunda rehberlik için [bu forum gönderisine](http://zzz.i2p/topics/1584) bakın.
+Tunnel miktarını `inbound.quantity` ve `outbound.quantity` seçenekleri ile açıkça belirtin. Java I2P'de varsayılan değer 2'dir; i2pd'de varsayılan değer daha yüksektir. Her iki router ile tutarlı ayarlar elde etmek için SAM kullanarak SESSION CREATE satırında belirtin. Gelen/giden için ikişer tunnel, düşük-orta bant genişliği ve düşük-orta fanout uygulamaları için yeterlidir. Sunucular ve yüksek-fanout P2P uygulamaları daha fazlaya ihtiyaç duyabilir. Yüksek trafikli sunucular ve uygulamalar için gereksinimlerin hesaplanması konusunda rehberlik için bu forum gönderisine bakın.
 
 ### SAM SIGNATURE_TYPE belirtin
 
@@ -240,4 +240,4 @@ import net.i2p.router.Router;
 ```
 Bu kod, Android uygulamamızda olduğu gibi uygulamanızın router'ı başlattığı durum içindir. Java paketlerimizde yapıldığı gibi, Jetty webapps ile birlikte clients.config ve i2ptunnel.config dosyaları aracılığıyla router'ın uygulamayı başlatmasını da sağlayabilirsiniz. Her zaman olduğu gibi, durum yönetimi zor olan kısımdır.
 
-Ayrıca bakınız: [router javadocs](http://idk.i2p/javadoc-i2p/net/i2p/router/Router.html).
+Ayrıca bakınız: router javadocs.

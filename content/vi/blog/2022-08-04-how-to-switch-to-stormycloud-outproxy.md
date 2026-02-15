@@ -24,11 +24,11 @@ Theo chính lời họ, StormyCloud là:
 
 Để tìm hiểu thêm về StormyCloud, hãy truy cập [trang web](https://www.stormycloud.org/) của họ.
 
-Hoặc, hãy ghé thăm họ trên [I2P](http://stormycloud.i2p/).
+Hoặc, hãy ghé thăm họ trên I2P.
 
 **Chuyển sang StormyCloud Outproxy (máy chủ ủy nhiệm lối ra) trên I2P**
 
-Để chuyển sang outproxy (proxy thoát) StormyCloud *ngay hôm nay* bạn có thể truy cập [Trình quản lý Dịch vụ Ẩn](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0). Khi ở đó, bạn nên đổi giá trị của **Outproxies** và **SSL Outproxies** thành `exit.stormycloud.i2p`. Sau khi hoàn tất, cuộn xuống cuối trang và nhấp vào nút "Save".
+Để chuyển sang outproxy (proxy thoát) StormyCloud *ngay hôm nay* bạn có thể truy cập `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0`. Khi ở đó, bạn nên đổi giá trị của **Outproxies** và **SSL Outproxies** thành `exit.stormycloud.i2p`. Sau khi hoàn tất, cuộn xuống cuối trang và nhấp vào nút "Save".
 
 **Cảm ơn StormyCloud**
 

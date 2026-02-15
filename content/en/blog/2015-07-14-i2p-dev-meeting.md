@@ -350,7 +350,7 @@ categories: ["meeting"]
 20:49:34  &lt;hottuna&gt; psi, would a short talk be ok? we could move it to the crypto party part of this?
 20:49:59  &lt;hottuna&gt; dg, ok. I'm going to have to confirm orignal a second time.
 20:50:07  &lt;hottuna&gt; i will do it OOB from this meeting
-20:50:19  &lt;dg&gt; EinMByte: http://trac.i2p2.i2p/wiki/MeetupToronto2015
+20:50:19  &lt;dg&gt; EinMByte: `http://trac.i2p2.i2p/wiki/MeetupToronto2015`
 20:50:20  &lt;psi&gt; cryptoparty time makesss sense
 20:50:28  &lt;dg&gt; i2p2.de if you're in the clearnet, but why are you? ;)
 20:50:34  &lt;EinMByte&gt; dg: thanks
@@ -385,7 +385,7 @@ categories: ["meeting"]
 20:57:25  &lt;hottuna&gt; zzz, please
 20:57:28  &lt;EinMByte&gt; Also, we already have anoncoin.i2p. Do we really need more cryptocurrency links?
 20:57:43  &lt;zzz&gt; thank you hottuna
-20:57:53  &lt;zzz&gt; the request is here http://zzz.i2p/topics/236?page=2#p9999
+20:57:53  &lt;zzz&gt; the request is here `http://zzz.i2p/topics/236?page=2#p9999`
 20:58:03  &lt;iRelay&gt; Title: zzz.i2p: How to get my Eepsite added to the Router Console home page (at zzz.i2p)
 20:58:06  &lt;zzz&gt; in the form of answers to the questions in the first post of that thread
 20:58:16  &lt;zzz&gt; is the operator of the site here?

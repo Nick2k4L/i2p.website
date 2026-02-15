@@ -36,7 +36,7 @@ La fonctionnalité de syndication planifiée de Ragnarok semble bien fonctionner
 
 Les implications de ces deux éléments réunis devraient être claires. Plus d'informations lorsqu'il y en aura.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (nous l'intégrerons dans CVS sous peu)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (nous l'intégrerons dans CVS sous peu)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ Ce serait vraiment génial, car cela signifierait beaucoup moins de code à main
 
 Je n’ai pas vraiment le temps de m’en occuper tout de suite, mais passez sur le forum si vous voulez aider.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ La liste de diffusion [6] a été assez active dernièrement avec des discussion
 
 Je ne suis pas sûr d’avoir beaucoup à ajouter qui ne fasse pas déjà partie des messages eux-mêmes, mais certaines personnes ont mentionné que la discussion les avait aidées à mieux comprendre I2P et Freenet, donc ça vaut peut-être le coup d’y jeter un œil. Ou peut-être pas ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

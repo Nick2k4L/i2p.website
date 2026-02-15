@@ -18,12 +18,12 @@ I2P-bote एक निजी संदेश प्रणाली है जो
 
 **चरण एक: I2P-Bote स्थापित करें**
 
-I2P-Bote एक i2p प्लगइन है, और इसे इंस्टॉल करना बहुत आसान है। मूल निर्देश [bote eepSite, bote.i2p](http://bote.i2p/install/) पर उपलब्ध हैं, लेकिन यदि आप उन्हें clearnet (सामान्य इंटरनेट) पर पढ़ना चाहते हैं, तो ये निर्देश bote.i2p के सौजन्य से प्रस्तुत हैं:
+I2P-Bote एक i2p प्लगइन है, और इसे इंस्टॉल करना बहुत आसान है। मूल निर्देश bote eepSite, bote.i2p पर उपलब्ध हैं, लेकिन यदि आप उन्हें clearnet (सामान्य इंटरनेट) पर पढ़ना चाहते हैं, तो ये निर्देश bote.i2p के सौजन्य से प्रस्तुत हैं:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **चरण दो: अपने I2P-Bote नोड का base64 पता प्राप्त करें**
 
@@ -64,7 +64,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **विधि B: एक लुकअप करें**
 
-यदि यह आपको कुछ ज़्यादा काम जैसा लगे, तो आप base32 address (पता) को क्वेरी करके, और base32 address ढूंढने के लिए उपलब्ध किसी भी विधि का उपयोग करके, अपनी Bote कनेक्शन का base64 destination (गंतव्य) खोज सकते हैं। आपके Bote नोड का base32 address "Connection" पेज पर, bote प्लगिन एप्लिकेशन के अंतर्गत, [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network) पर उपलब्ध है।
+यदि यह आपको कुछ ज़्यादा काम जैसा लगे, तो आप base32 address (पता) को क्वेरी करके, और base32 address ढूंढने के लिए उपलब्ध किसी भी विधि का उपयोग करके, अपनी Bote कनेक्शन का base64 destination (गंतव्य) खोज सकते हैं। आपके Bote नोड का base32 address "Connection" पेज पर, bote प्लगिन एप्लिकेशन के अंतर्गत, `http://127.0.0.1:7657/i2pbote/network` पर उपलब्ध है।
 
 **चरण तीन: हमसे संपर्क करें!**
 

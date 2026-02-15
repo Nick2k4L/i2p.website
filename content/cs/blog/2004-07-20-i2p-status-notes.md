@@ -14,7 +14,7 @@ Protože se několik lidí vyjádřilo k našemu harmonogramu a zajímalo je, zd
 
 Verze 0.4 splní čtyři zmíněná kritéria vydání (funkční, bezpečná, anonymní a škálovatelná), i když před verzí 0.4.2 se bude moci zapojit jen málo lidí za NATy a firewally, a před verzí 0.4.3 bude existovat praktický horní limit velikosti sítě kvůli režii spojené s udržováním velkého počtu TCP spojení k dalším routerům.
 
-[1] http://www.i2p.net/redesign/roadmap [2] http://dev.i2p.net/pipermail/i2p/2004-June/000286.html
+[1] http://www.i2p.net/redesign/roadmap [2] `http://dev.i2p.net/pipermail/i2p/2004-June/000286.html`
 
 **2) s/reliability/capacity/g**
 
@@ -41,7 +41,7 @@ Dnes dříve duck prošel web a sestavil seznam stránek, které nám chybí, a 
 
 Kromě toho si myslím, že web je už poměrně blízko tomu, aby byl připraven k nasazení do ostrého provozu. Má někdo v tomto ohledu nějaké návrhy nebo obavy?
 
-[4] http://www.i2p.net/redesign/ [5] http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html
+[4] http://www.i2p.net/redesign/ [5] `http://dev.i2p.net/pipermail/i2pwww/2004-July/thread.html`
 
 **4) útoky a obrana**
 

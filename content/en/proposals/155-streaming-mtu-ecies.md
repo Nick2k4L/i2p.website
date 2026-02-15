@@ -162,7 +162,7 @@ in the SYN ACK from Bob to Alice, and in all subsequent packets sent in both dir
 
 ## Justification
 
-See the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) for why the current value is 1730.
+See the Java I2P source code for why the current value is 1730.
 See the [ECIES specification](/docs/specs/ecies/#overhead) for why the ECIES overhead is 82 bytes less than ElGamal.
 
 
@@ -208,7 +208,7 @@ will negotiate downward, as usual.
 
 ## References
 
-* [CALCULATION](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220)
+* CALCULATION
 * [ECIES](/docs/specs/ecies/#overhead)
 * [STREAMING-OPTIONS](/docs/api/streaming/)
 * [STREAMING-SPEC](/docs/specs/streaming/#flags-and-option-data-fields)

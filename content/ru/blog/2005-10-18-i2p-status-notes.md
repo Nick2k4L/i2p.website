@@ -30,13 +30,13 @@ categories: ["status"]
 
 Майкл опубликовал в списке рассылки ещё одну атаку, которую мы сейчас разбираем, так что вы сможете отслеживать и её там.
 
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001005.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001008.html [4] http://dev.i2p.net/pipermail/i2p/2005-October/001006.html
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001005.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001008.html` [4] `http://dev.i2p.net/pipermail/i2p/2005-October/001006.html`
 
 * 4) I2Phex
 
 Striker добился дальнейшего прогресса по ошибке загрузки и сообщает, что ему удалось её точно локализовать. Исправление, надеемся, попадёт в CVS сегодня ночью и вскоре после этого будет выпущен релиз 0.1.1.33. Следите за форумом [5] для получения дополнительной информации.
 
-[5] http://forum.i2p.net/viewforum.i2p?f=25
+[5] `http://forum.i2p.net/viewforum.i2p?f=25`
 
 Ходят слухи, что у redzara тоже неплохо продвигается процесс обратного слияния с основной веткой Phex, так что, надеемся, с помощью Gregor мы скоро всё приведём в актуальное состояние!
 

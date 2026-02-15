@@ -36,7 +36,7 @@ I2P e-posta ikili adres sistemi kullanır:
 **Bir mail.i2p hesabı kaydetmek için:**
 
 1. I2P router'ınızın çalıştığından emin olun
-2. I2P içinde **[http://hq.postman.i2p](http://hq.postman.i2p)** adresini ziyaret edin
+2. I2P içinde **http://hq.postman.i2p** adresini ziyaret edin
 3. Kayıt sürecini takip edin
 4. Router konsolunda **SusiMail** üzerinden e-postanıza erişin
 

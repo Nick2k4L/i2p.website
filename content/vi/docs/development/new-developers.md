@@ -34,7 +34,7 @@ Những tài liệu này sẽ cung cấp cho bạn cái nhìn tổng quan tốt 
 
 I2P có dịch vụ Git chính thức và chấp nhận đóng góp qua Git tại GitLab của chúng tôi:
 
-- Trong I2P: <http://git.idk.i2p>
+- Trong I2P: <`http://git.idk.i2p`>
 - Ngoài I2P: <https://i2pgit.org>
 
 Sao chép repository chính:
@@ -44,7 +44,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 ```
 Một bản sao chỉ đọc cũng có sẵn tại GitHub:
 
-- Mirror trên GitHub: [github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
+- Mirror trên GitHub: github.com/i2p/i2p.i2p
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -61,7 +61,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 Xem danh sách TODO của dự án hoặc danh sách vấn đề trên GitLab để có ý tưởng:
 
-- Vấn đề GitLab: [i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
+- Vấn đề GitLab: i2pgit.org/I2P_Developers/i2p.i2p/issues
 
 ## Công bố Kết quả
 

@@ -14,6 +14,6 @@ categories: ["release"]
 
 Этот релиз был скомпилирован с OpenJDK 20. Он использует i2p.plugins.firefox версии 1.1.0 в качестве библиотеки для запуска браузера. Он использует i2p.i2p версии 2.3.0 в качестве I2P router, а также для предоставления приложений. Как всегда, рекомендуется при первой же удобной возможности обновиться до последней версии I2P router.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

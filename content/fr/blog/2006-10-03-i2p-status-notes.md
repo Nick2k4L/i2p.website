@@ -52,7 +52,7 @@ Donc, c'est le goulot d'étranglement dans le router/réseau tel que je le vois 
 
 * 3) Syndie rationale continued
 
-Il y a un message substantiel sur le forum à propos de Syndie et de la place qu’elle occupe par rapport au reste - allez le consulter à l’adresse <http://forum.i2p.net/viewtopic.php?t=1910>
+Il y a un message substantiel sur le forum à propos de Syndie et de la place qu’elle occupe par rapport au reste - allez le consulter à l’adresse <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Par ailleurs, j'aimerais simplement mettre en avant deux extraits de la documentation de Syndie en cours d'élaboration. Tout d'abord, tiré d'irc (et de la FAQ pas encore publiée):
 

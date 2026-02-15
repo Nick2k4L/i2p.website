@@ -36,7 +36,7 @@ Ngoài ra, smeghead đang làm việc trên một giao diện web để quản l
 
 Legion cũng đã tạo một nhánh (fork) từ rev i2p-bt, gộp thêm một số mã khác, vá lại một số thứ, và có một bản binary cho Windows sẵn trên eepsite(I2P Site) của anh ấy.  Thông báo [2] có vẻ gợi ý rằng mã nguồn có thể sẽ được công bố, mặc dù hiện tại nó chưa được đưa lên eepsite(I2P Site).  Các nhà phát triển i2p chưa kiểm toán (thậm chí còn chưa xem) mã của ứng dụng khách đó, vì vậy những ai cần tính ẩn danh có thể muốn tải về và rà soát một bản sao mã trước.
 
-[2] http://forum.i2p.net/viewtopic.php?t=382
+[2] `http://forum.i2p.net/viewtopic.php?t=382`
 
 Ngoài ra, phiên bản 2 của trình khách BT (BitTorrent) của Legion cũng đang được phát triển, dù tôi không rõ tình trạng của nó. Có lẽ chúng ta có thể xin Legion cập nhật trong cuộc họp?
 

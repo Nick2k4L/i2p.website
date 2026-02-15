@@ -18,7 +18,7 @@ Sau khi vật lộn với vài máy chủ colo, một số dịch vụ cũ đã 
 
 * 2) SSU testing
 
-Như đã đề cập trong ô nhỏ màu vàng trên bảng điều khiển router của mọi người, chúng tôi đã bắt đầu vòng thử nghiệm trực tiếp trên mạng tiếp theo cho SSU. Các thử nghiệm này không dành cho tất cả mọi người, nhưng nếu bạn ưa mạo hiểm và cảm thấy thoải mái khi thực hiện một số cấu hình thủ công, hãy xem các chi tiết được nêu trên bảng điều khiển router của bạn (http://localhost:7657/index.jsp). Có thể sẽ có vài vòng thử nghiệm, nhưng tôi không dự đoán sẽ có bất kỳ thay đổi lớn nào đối với SSU trước bản phát hành 0.6 (0.6.1 sẽ bổ sung hỗ trợ cho những người không thể chuyển tiếp cổng (port forwarding) của họ hoặc theo cách khác không thể nhận kết nối UDP đến).
+Như đã đề cập trong ô nhỏ màu vàng trên bảng điều khiển router của mọi người, chúng tôi đã bắt đầu vòng thử nghiệm trực tiếp trên mạng tiếp theo cho SSU. Các thử nghiệm này không dành cho tất cả mọi người, nhưng nếu bạn ưa mạo hiểm và cảm thấy thoải mái khi thực hiện một số cấu hình thủ công, hãy xem các chi tiết được nêu trên bảng điều khiển router của bạn (`http://localhost:7657/index.jsp).` Có thể sẽ có vài vòng thử nghiệm, nhưng tôi không dự đoán sẽ có bất kỳ thay đổi lớn nào đối với SSU trước bản phát hành 0.6 (0.6.1 sẽ bổ sung hỗ trợ cho những người không thể chuyển tiếp cổng (port forwarding) của họ hoặc theo cách khác không thể nhận kết nối UDP đến).
 
 * 3) I2CP crypto
 

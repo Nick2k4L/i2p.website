@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] &lt;mihi&gt; ;)
 [23:02] &lt;duck&gt; 1) pokrok v kódu
 [23:02] &lt;duck&gt; do cvs nebylo odesláno moc kódu
-[23:02] &lt;duck&gt; tento týden jsem vyhrál trofej: http://duck.i2p/duck_trophy.jpg
+[23:02] &lt;duck&gt; tento týden jsem vyhrál trofej: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus ještě nemá cvs účet
 [23:03] &lt;Masterboy&gt; a kdo něco odeslal?
 [23:03] &lt;duck&gt; dělá někdo nějaké tajné programování?

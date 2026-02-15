@@ -11,7 +11,7 @@ toc: true
 
 ## 개요
 
-이 제안서는 I2P 클라이언트, 서비스 또는 외부 밸런서 프로세스가 단일 [Destination](http://localhost:63465/docs/specs/common-structures/#destination)을 투명하게 호스팅하는 여러 router들을 관리할 수 있도록 하는 프로토콜 설계를 개요합니다.
+이 제안서는 I2P 클라이언트, 서비스 또는 외부 밸런서 프로세스가 단일 `http://localhost:63465/docs/specs/common-structures/#destination`을 투명하게 호스팅하는 여러 router들을 관리할 수 있도록 하는 프로토콜 설계를 개요합니다.
 
 이 제안은 현재 구체적인 구현을 명시하지 않습니다. [I2CP](/docs/specs/i2cp/)의 확장으로 구현되거나 새로운 프로토콜로 구현될 수 있습니다.
 

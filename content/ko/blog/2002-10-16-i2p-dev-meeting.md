@@ -6,7 +6,7 @@ description: "2002년 10월 16일 I2P 개발 회의 로그."
 categories: ["meeting"]
 ---
 
-(Wayback Machine http://www.archive.org/ 제공)
+(Wayback Machine `http://www.archive.org/` 제공)
 
 ## 간단한 요약
 

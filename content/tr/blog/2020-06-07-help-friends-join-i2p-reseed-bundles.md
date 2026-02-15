@@ -12,10 +12,10 @@ Yeni I2P routerların çoğu, bir reseed hizmetinin yardımıyla bootstrap işle
 
 ## Reseed Paketi Oluşturma
 
-- To create a reseed bundle for others to use, go to the [Reseed configuration page](http://127.0.0.1:7657/configreseed). You will see a section that looks like this. Click the button indicated by the red circle to create a reseed zip.
+- To create a reseed bundle for others to use, go to the `http://127.0.0.1:7657/configreseed`. You will see a section that looks like this. Click the button indicated by the red circle to create a reseed zip.
 - Now that you've clicked the button, a zip will be generated containing enough information to bootstrap a new I2P router. Download it and transfer it to the computer with the new, un-bootstrapped I2P router.
 
 ## Dosyadan Reseed (yeniden tohumlama) gerçekleştirme
 
-- Obtain an i2preseed.zip file from a friend with an I2P router that is already running, or from a trusted source somewhere on the internet, and visit the [Reseed Configuration page](http://127.0.0.1:7657/configreseed). Click the button that says "Select zip or su3 file" and navigate to that file.
+- Obtain an i2preseed.zip file from a friend with an I2P router that is already running, or from a trusted source somewhere on the internet, and visit the `http://127.0.0.1:7657/configreseed`. Click the button that says "Select zip or su3 file" and navigate to that file.
 - When you've selected your reseed file, click the "Reseed from File" button. You're done! Your router will now bootstrap using the zip file, and you will be ready to join the I2P network.

@@ -57,7 +57,7 @@ Při vytvoření importuje služba názvů záznamy ze tří souborů používan
 
 ### Ostatní služby pro překlad jmen
 
-Vyhledávání nerozlišuje velká a malá písmena. Použije se první shoda a konflikty nejsou detekovány. Při vyhledávání nejsou vynucována pravidla pojmenování. Vyhledávání jsou ukládána do cache na několik minut. Rozlišování Base 32 je [popsáno níže](#base32-names). Pro úplný popis API služby pojmenování viz [Naming Service Javadocs](http://idk.i2p/javadoc-i2p/net/i2p/client/naming/package-summary.html). Toto API bylo výrazně rozšířeno ve verzi 0.8.7, aby poskytovalo přidávání a odebírání, ukládání libovolných vlastností s názvem hostitele a další funkce.
+Vyhledávání nerozlišuje velká a malá písmena. Použije se první shoda a konflikty nejsou detekovány. Při vyhledávání nejsou vynucována pravidla pojmenování. Vyhledávání jsou ukládána do cache na několik minut. Rozlišování Base 32 je [popsáno níže](#base32-names). Pro úplný popis API služby pojmenování viz Naming Service Javadocs. Toto API bylo výrazně rozšířeno ve verzi 0.8.7, aby poskytovalo přidávání a odebírání, ukládání libovolných vlastností s názvem hostitele a další funkce.
 
 ### Alternativní a experimentální služby pojmenování
 
@@ -89,12 +89,12 @@ Aplikace adresáře pravidelně načítá soubory hosts.txt ostatních uživatel
 
 Odebírání souboru hosts.txt jiného uživatele znamená, že mu udělujete určitou míru důvěry. Nechcete například, aby "unesl" novou stránku tím, že rychle zadá svůj vlastní klíč pro novou stránku dřív, než vám předá nový záznam host/klíč.
 
-Z tohoto důvodu je jediným odběrem nakonfigurovaným ve výchozím nastavení `http://i2p-projekt.i2p/hosts.txt (http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`, který obsahuje kopii souboru hosts.txt zahrnutého v I2P vydání. Uživatelé musí nakonfigurovat další odběry ve své místní aplikaci adresáře (prostřednictvím subscriptions.txt nebo [SusiDNS](#susidns)).
+Z tohoto důvodu je jediným odběrem nakonfigurovaným ve výchozím nastavení `http://i2p-projekt.i2p/hosts.txt (`http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`,` který obsahuje kopii souboru hosts.txt zahrnutého v I2P vydání. Uživatelé musí nakonfigurovat další odběry ve své místní aplikaci adresáře (prostřednictvím subscriptions.txt nebo [SusiDNS](#susidns)).
 
 Některé další odkazy na předplatné veřejného adresáře:
 
-- http://i2host.i2p/cgi-bin/i2hostetag
-- http://stats.i2p/cgi-bin/newhosts.txt
+- `http://i2host.i2p/cgi-bin/i2hostetag`
+- `http://stats.i2p/cgi-bin/newhosts.txt`
 
 Provozovatelé těchto služeb mohou mít různé zásady pro zařazování hostitelů do seznamu. Přítomnost v tomto seznamu neznamená doporučení.
 

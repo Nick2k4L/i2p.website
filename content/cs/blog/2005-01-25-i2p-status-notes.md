@@ -16,7 +16,7 @@ Ahoj všichni, krátká týdenní aktualizace stavu
 
 Za uplynulý týden došlo ohledně 0.5 k velkému pokroku. Dříve probírané problémy se podařilo vyřešit, což výrazně zjednodušilo kryptografii a odstranilo problém se smyčkováním tunnelů.  Nová technika [1] byla implementována a jednotkové testy jsou připraveny.  Dále dávám dohromady další část kódu pro integraci těchto tunnels do hlavního routeru, poté vybuduji infrastrukturu pro správu a pooling tunnelů.  Jakmile to bude hotové, proženeme to simulátorem a následně i na paralelní síť, abychom to důkladně prověřili, než tomu dáme finální podobu a označíme to jako 0.5.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) sam.net
 
@@ -32,10 +32,10 @@ smeghead je rozhodně ve velkém tempu - podle posledního stavu se s několika 
 
 Tady toho není moc co říct, ale Nightblade na fóru vznesl zajímavou sadu obav [3] a ptal se, proč volíme UDP. Pokud máte podobné obavy nebo jiné návrhy, jak můžeme řešit problémy, které jsem zmínil ve své odpovědi, prosím, zapojte se!
 
-[3] http://forum.i2p.net/viewtopic.php?t=280
+[3] `http://forum.i2p.net/viewtopic.php?t=280`
 
 * 5) ???
 
 Jo, dobře, zase mám zpoždění s poznámkami, strhněte mi z platu ;)  Každopádně se toho děje hodně, tak se buď stavte na kanálu na schůzku, potom si přečtěte zveřejněné logy, nebo napište na list, pokud máte co říct.  Jo, a mimochodem, kapituloval jsem a spustil blog v rámci i2p [4].
 
-=jr [4] http://jrandom.dev.i2p/ (klíč v http://dev.i2p.net/i2p/hosts.txt)
+=jr [4] `http://jrandom.dev.i2p/` (klíč v `http://dev.i2p.net/i2p/hosts.txt)`

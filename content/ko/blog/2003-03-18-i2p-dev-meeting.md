@@ -6,7 +6,7 @@ description: "2003년 3월 18일 I2P 개발 회의 로그."
 categories: ["meeting"]
 ---
 
-(wayback machine http://www.archive.org/ 제공)
+(wayback machine `http://www.archive.org/` 제공)
 
 ## 간단한 요약
 

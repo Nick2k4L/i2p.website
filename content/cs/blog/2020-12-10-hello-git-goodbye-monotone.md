@@ -22,7 +22,7 @@ Zasílání změn do repozitářů projektu I2P vyžaduje, abyste nastavili pode
 
 ## Podepisování GPG
 
-Oficiálním repozitářem je ten hostovaný na https://i2pgit.org/i2p-hackers/i2p.i2p a na https://git.idk.i2p/i2p-hackers/i2p.i2p, ale na Githubu je k dispozici "Mirror" na https://github.com/i2p/i2p.i2p.
+Oficiálním repozitářem je ten hostovaný na `https://i2pgit.org/i2p-hackers/i2p.i2p` a na `https://git.idk.i2p/i2p-hackers/i2p.i2p`, ale na Githubu je k dispozici "Mirror" na https://github.com/i2p/i2p.i2p.
 
 Teď, když používáme git, můžeme synchronizovat repozitáře z naší samohostované (self-hosted) instance Gitlabu na Github a zpět. To znamená, že je možné na Gitlabu vytvořit a odeslat merge request (žádost o sloučení) a když je sloučen, výsledek se synchronizuje s Githubem, a Pull Request (žádost o sloučení) na Githubu se po sloučení objeví na Gitlabu.
 

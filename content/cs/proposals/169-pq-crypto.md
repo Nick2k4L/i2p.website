@@ -14,7 +14,7 @@ toc: true
 
 Zatímco výzkum a soutěž o vhodnou post-kvantovou (PQ) kryptografii probíhají již celou dekádu, možnosti se staly jasné teprve nedávno.
 
-Začali jsme zkoumat důsledky PQ kryptografie v roce 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
+Začali jsme zkoumat důsledky PQ kryptografie v roce 2022 zzz.i2p.
 
 Standardy TLS přidaly podporu hybridního šifrování v posledních dvou letech a nyní se používá pro významnou část šifrovaného provozu na internetu díky podpoře v Chrome a Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 

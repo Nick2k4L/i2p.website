@@ -6,7 +6,7 @@ description: "I2P Entwicklungstreffen-Protokoll für den 23. Dezember 2003."
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

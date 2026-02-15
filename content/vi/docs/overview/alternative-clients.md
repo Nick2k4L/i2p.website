@@ -86,7 +86,7 @@ Phiên bản I2P client chính sử dụng **Java**. Nếu bạn không thể ho
 
 ## Emissary (Rust)
 
-**Trang web:** [https://altonen.github.io/emissary/](https://altonen.github.io/emissary/)
+**Trang web:** [https://eepnet.github.io/emissary/](https://eepnet.github.io/emissary/)
 
 **Mô tả:** Emissary là một triển khai bằng Rust của ngăn xếp giao thức I2P, được thiết kế để hoạt động như một I2P router có thể nhúng. Nó có thể được tích hợp vào các ứng dụng khác hoặc chạy độc lập. Emissary hỗ trợ lưu trữ eepsite, torrent, IRC và dịch vụ email. Dự án bao gồm tài liệu mở rộng bao quát thiết lập khởi động nhanh, nhúng cho nhà phát triển, và cấu hình chi tiết. Là một dự án thực nghiệm, nó đang trong quá trình phát triển tích cực và chưa được khuyến nghị để sử dụng trong sản xuất.
 

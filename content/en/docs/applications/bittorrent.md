@@ -154,7 +154,7 @@ The specification for UDP announces in I2P was finalized 2025-06. Support in var
 
 ## Additional Information
 
-- I2P bittorrent standards are generally discussed on [zzz.i2p](http://zzz.i2p/).
-- A chart of current tracker software capabilities is [also available there](http://zzz.i2p/files/trackers.html).
-- The [I2P bittorrent FAQ](http://forum.i2p/viewtopic.php?t=2068)
-- [DHT on I2P discussion](http://zzz.i2p/topics/812)
+- I2P bittorrent standards are generally discussed on zzz.i2p.
+- A chart of current tracker software capabilities is also available there.
+- The I2P bittorrent FAQ
+- DHT on I2P discussion

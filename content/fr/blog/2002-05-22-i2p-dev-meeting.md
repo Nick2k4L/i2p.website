@@ -6,7 +6,7 @@ description: "Première réunion de développement d'I2P portant sur l’état d
 categories: ["meeting"]
 ---
 
-(Avec l'aimable autorisation de la Wayback Machine http://www.archive.org/)
+(Avec l'aimable autorisation de la Wayback Machine `http://www.archive.org/`)
 
 ## Récapitulatif rapide
 

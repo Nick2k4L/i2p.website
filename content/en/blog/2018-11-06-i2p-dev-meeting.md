@@ -57,7 +57,7 @@ categories: ["meeting"]
 &lt;str4d&gt; ERR_OUT_OF_BOUNDS_WRITE
 &lt;zlatinb&gt; lol
 &lt;eche|on&gt; right, please test the Firefox I2P profile, zlatinb please hand out the link
-&lt;zlatinb&gt; https://github.com/eyedeekay/firefox.profile.i2p/releases
+&lt;zlatinb&gt; `https://github.com/eyedeekay/firefox.profile.i2p/releases`
 &lt;eche|on&gt; thank you
 &lt;meeh&gt; nice, thanks
 &lt;eche|on&gt; about 35c3: the core team will meet in Leipzig

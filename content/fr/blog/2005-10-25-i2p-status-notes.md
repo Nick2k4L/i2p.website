@@ -28,7 +28,7 @@ Comme mentionné sur la liste [3], nous pouvons désormais exécuter le router e
 
 Une autre caractéristique positive de la prise en charge de GCJ est la possibilité d'utiliser la bibliothèque de streaming depuis C/C++/Python/etc. Je ne sais pas si quelqu'un travaille sur ce type d'intégration, mais cela vaudrait probablement la peine, donc si cela vous intéresse de travailler dans ce domaine, merci de me le faire savoir !
 
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001021.html [4] http://gcc.gnu.org/java/
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001021.html` [4] http://gcc.gnu.org/java/
 
 * 4) i2psnark returns
 
@@ -36,7 +36,7 @@ Bien que i2p-bt ait été le premier client BitTorrent porté sur I2P à être l
 
 Ragnarok a déjà commencé à y travailler pour améliorer son algorithme de sélection des blocs, et nous espérons y intégrer à la fois une interface web et des fonctionnalités multi-torrent avant la sortie 0.6.2. Si vous souhaitez aider, contactez-nous ! :)
 
-[5] http://klomp.org/snark/ [6] http://dev.i2p.net/~jrandom/snark_diff.txt
+[5] http://klomp.org/snark/ [6] `http://dev.i2p.net/~jrandom/snark_diff.txt`
 
 * 5) More on bootstrapping
 
@@ -46,7 +46,7 @@ Pour ceux qui aiment un peu de joli rendu visuel, Michael a aussi ce qu'il vous 
 
 (beau travail, Michael, merci !)
 
-[7] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html     (suivez le fil de discussion "i2p tunnel bootstrap attack") [8] http://dev.i2p.net/~jrandom/fraction-of-attackers.png [9] http://dev.i2p.net/~jrandom/messages-per-tunnel.png
+[7] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html`     (suivez le fil de discussion "i2p tunnel bootstrap attack") [8] `http://dev.i2p.net/~jrandom/fraction-of-attackers.png` [9] `http://dev.i2p.net/~jrandom/messages-per-tunnel.png`
 
 * 6) Virus investigations
 
@@ -54,7 +54,7 @@ Il y a eu des discussions au sujet de problèmes potentiels de logiciels malveil
 
 Merci Complication pour toutes vos recherches à ce sujet !
 
-[10] http://forum.i2p.net/viewtopic.php?t=1122
+[10] `http://forum.i2p.net/viewtopic.php?t=1122`
 
 * 7) ???
 

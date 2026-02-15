@@ -28,7 +28,7 @@ categories: ["status"]
 
 Еще одним положительным аспектом поддержки GCJ является возможность использовать библиотеку потоковой передачи из C/C++/Python/и т. д. Я не знаю, работает ли кто-нибудь над такой интеграцией, но это, вероятно, того стоит, так что, если вам интересно поработать в этом направлении, пожалуйста, дайте мне знать!
 
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001021.html [4] http://gcc.gnu.org/java/
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001021.html` [4] http://gcc.gnu.org/java/
 
 * 4) i2psnark returns
 
@@ -36,7 +36,7 @@ categories: ["status"]
 
 Ragnarok уже принялся дорабатывать его, чтобы улучшить алгоритм выбора блоков, и мы надеемся успеть добавить и веб‑интерфейс, и поддержку нескольких торрентов ещё до релиза 0.6.2. Если хотите помочь, свяжитесь с нами! :)
 
-[5] http://klomp.org/snark/ [6] http://dev.i2p.net/~jrandom/snark_diff.txt
+[5] http://klomp.org/snark/ [6] `http://dev.i2p.net/~jrandom/snark_diff.txt`
 
 * 5) More on bootstrapping
 
@@ -46,7 +46,7 @@ For those interested in some eyecandy, Michael has your fix too, with a simulati
 
 (Отличная работа, Майкл, спасибо!)
 
-[7] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html     (см. тему «i2p tunnel bootstrap attack») [8] http://dev.i2p.net/~jrandom/fraction-of-attackers.png [9] http://dev.i2p.net/~jrandom/messages-per-tunnel.png
+[7] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html`     (см. тему «i2p tunnel bootstrap attack») [8] `http://dev.i2p.net/~jrandom/fraction-of-attackers.png` [9] `http://dev.i2p.net/~jrandom/messages-per-tunnel.png`
 
 * 6) Virus investigations
 
@@ -54,7 +54,7 @@ For those interested in some eyecandy, Michael has your fix too, with a simulati
 
 Спасибо, Complication, за все ваши исследования по этому поводу!
 
-[10] http://forum.i2p.net/viewtopic.php?t=1122
+[10] `http://forum.i2p.net/viewtopic.php?t=1122`
 
 * 7) ???
 

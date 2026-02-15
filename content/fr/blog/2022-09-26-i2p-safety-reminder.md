@@ -40,7 +40,7 @@ Nous disposons de sites officiels où les utilisateurs peuvent obtenir le logici
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -56,6 +56,6 @@ Ces services sont hébergés par des tiers, parfois des entreprises, auxquels no
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-Cet article a pour but de proposer des moyens de vérifier la provenance du paquet Java I2P correspondant au code source contenu dans https://i2pgit.org/i2p-hackers/i2p.i2p et https://github.com/i2p/i2p.i2p, et disponible au téléchargement depuis le site https://geti2p.net/. Il n’a pas pour objectif de porter un jugement sur les forks tiers, les projets en aval, les intégrateurs, les mainteneurs de paquets, les personnes menant des expérimentations en laboratoire, ou celles et ceux qui ne sont simplement pas d’accord avec nous. Vous êtes toutes et tous des membres précieux de notre communauté qui s’efforcent de protéger, et non de compromettre, la vie privée d’autrui. Étant donné que nous sommes conscients de tentatives d’usurpation d’identité visant des membres de la communauté du projet I2P, vous pourriez souhaiter revoir les procédures de téléchargement, de vérification et d’installation que vous recommandez à vos utilisateurs, afin de documenter vos sources officielles et vos miroirs connus.
+Cet article a pour but de proposer des moyens de vérifier la provenance du paquet Java I2P correspondant au code source contenu dans `https://i2pgit.org/i2p-hackers/i2p.i2p` et `https://github.com/i2p/i2p.i2p`, et disponible au téléchargement depuis le site `https://geti2p.net/.` Il n’a pas pour objectif de porter un jugement sur les forks tiers, les projets en aval, les intégrateurs, les mainteneurs de paquets, les personnes menant des expérimentations en laboratoire, ou celles et ceux qui ne sont simplement pas d’accord avec nous. Vous êtes toutes et tous des membres précieux de notre communauté qui s’efforcent de protéger, et non de compromettre, la vie privée d’autrui. Étant donné que nous sommes conscients de tentatives d’usurpation d’identité visant des membres de la communauté du projet I2P, vous pourriez souhaiter revoir les procédures de téléchargement, de vérification et d’installation que vous recommandez à vos utilisateurs, afin de documenter vos sources officielles et vos miroirs connus.
 
 *Note de l'auteur : Une version antérieure de ce billet de blog contenait l'empreinte TLS de chaque service exploité par l'I2P Project. Elles ont été retirées lorsqu'un renouvellement de certificat a rendu les empreintes inexactes.*

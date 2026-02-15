@@ -26,7 +26,7 @@ Há luz no fim do tunnel, e agradeço a sua paciência em continuar connosco enq
 
 * 3) Feedspace
 
-Frosk tem trabalhado intensamente no Feedspace e atualizou algumas páginas no site do Trac, incluindo um novo documento de visão geral, um conjunto de tarefas em aberto, alguns detalhes do banco de dados e mais. Dê uma passada em http://feedspace.i2p/ para ficar por dentro das mudanças mais recentes e, quem sabe, bombardear o Frosk com perguntas assim que for conveniente :)
+Frosk tem trabalhado intensamente no Feedspace e atualizou algumas páginas no site do Trac, incluindo um novo documento de visão geral, um conjunto de tarefas em aberto, alguns detalhes do banco de dados e mais. Dê uma passada em `http://feedspace.i2p/` para ficar por dentro das mudanças mais recentes e, quem sabe, bombardear o Frosk com perguntas assim que for conveniente :)
 
 * 4) ???
 

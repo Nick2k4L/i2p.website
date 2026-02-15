@@ -26,7 +26,7 @@ En utilisant des périodes d'une minute et le débit d'un tunnel individuel, cep
 
 * 3) Syndie blogs
 
-Suite à certains retours, d'autres améliorations ont été apportées à la vue de blog de Syndie, lui donnant un caractère nettement différent de la vue en fils de discussion de type newsgroup/forum. En outre, une toute nouvelle fonctionnalité permet de définir des informations générales du blog via l'architecture Syndie existante. À titre d'exemple, consultez l'article de blog par défaut "about Syndie" :  http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001
+Suite à certains retours, d'autres améliorations ont été apportées à la vue de blog de Syndie, lui donnant un caractère nettement différent de la vue en fils de discussion de type newsgroup/forum. En outre, une toute nouvelle fonctionnalité permet de définir des informations générales du blog via l'architecture Syndie existante. À titre d'exemple, consultez l'article de blog par défaut "about Syndie" :  `http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001`
 
 Ce n’est qu’un aperçu de ce que nous pouvons faire. La prochaine version vous permettra de définir le logo de votre propre blog, vos propres liens (vers des blogs, des articles, des pièces jointes, et n’importe quelles URL externes), et, espérons-le, encore plus d’options de personnalisation. L’une de ces personnalisations consiste à associer des icônes par étiquette — j’aimerais fournir un jeu d’icônes par défaut à utiliser avec les étiquettes standard, mais les gens pourront définir des icônes pour leurs propres étiquettes à utiliser au sein de leur blog, et même remplacer les icônes par défaut pour les étiquettes standard (là encore, uniquement lorsque les gens consultent leur blog, bien entendu). Peut-être même une configuration de style pour afficher différemment les articles selon les étiquettes (bien sûr, seules des personnalisations de style très spécifiques seraient autorisées - pas d’exploits CSS arbitraires avec Syndie, merci bien :)
 
@@ -42,6 +42,6 @@ J’ai entendu dire qu’il y avait des progrès pour réintégrer la prise en c
 
 * 6) ???
 
-Comme vous pouvez le voir, il se passe beaucoup de choses, mais s’il y a d’autres sujets que vous aimeriez aborder et discuter, passez à la réunion dans quelques minutes et faites signe. Au passage, un site sympa que je surveille ces derniers temps est http://freedomarchive.i2p/ (pour les paresseux qui n’ont pas installé I2P, vous pouvez utiliser l’inproxy de Tino via http://freedomarchive.i2p.tin0.de/). Dans tous les cas, on se retrouve dans quelques minutes.
+Comme vous pouvez le voir, il se passe beaucoup de choses, mais s’il y a d’autres sujets que vous aimeriez aborder et discuter, passez à la réunion dans quelques minutes et faites signe. Au passage, un site sympa que je surveille ces derniers temps est `http://freedomarchive.i2p/` (pour les paresseux qui n’ont pas installé I2P, vous pouvez utiliser l’inproxy de Tino via http://freedomarchive.i2p.tin0.de/). Dans tous les cas, on se retrouve dans quelques minutes.
 
 =jr

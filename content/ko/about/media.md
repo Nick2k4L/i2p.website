@@ -178,12 +178,12 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">양파와 마늘: I2P의 프로토콜</a>
+양파와 마늘: I2P의 프로토콜
 </div>
 <div class="content-entry-meta">🎥 발표 • 2016년 2월 17일</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ layout: "single"
 <div class="content-entry-title">zzz와 Lance James가 InfoSec Daily Podcast에 출연</div>
 <div class="content-entry-meta">🎙️ 팟캐스트 • 2012년 2월 16일</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">I2P Torrent</a>
+I2P Torrent
 </div>
 </div>
 
@@ -279,7 +279,7 @@ layout: "single"
 <div class="content-entry-title">zzz가 InfoSec Daily Podcast에 출연</div>
 <div class="content-entry-meta">🎙️ 팟캐스트 • 2011년 8월 18일</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">I2P Torrent</a>
+I2P Torrent
 </div>
 </div>
 
@@ -343,7 +343,7 @@ layout: "single"
 </div>
 <div class="content-entry-meta">🎥 발표 • HOPE • 2010년 7월 17일</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">YouTube</a>
 </div>
 </div>

@@ -74,7 +74,7 @@ La [biblioteca de streaming completa](/docs/api/streaming/) es ahora la interfaz
 
 ### BOB
 
-BOB es el [Basic Open Bridge](/docs/legacy/bob/), que permite a una aplicación en cualquier lenguaje establecer conexiones de streaming hacia y desde I2P. En este momento carece de soporte UDP, pero el soporte UDP está planeado en el futuro cercano. BOB también contiene varias herramientas, como la generación de claves de destino y la verificación de que una dirección cumple con las especificaciones de I2P. Información actualizada y aplicaciones que usan BOB se pueden encontrar en este [Sitio I2P](http://bob.i2p/).
+BOB es el [Basic Open Bridge](/docs/legacy/bob/), que permite a una aplicación en cualquier lenguaje establecer conexiones de streaming hacia y desde I2P. En este momento carece de soporte UDP, pero el soporte UDP está planeado en el futuro cercano. BOB también contiene varias herramientas, como la generación de claves de destino y la verificación de que una dirección cumple con las especificaciones de I2P. Información actualizada y aplicaciones que usan BOB se pueden encontrar en este Sitio I2P.
 
 ### SAM, SAM V2, SAM V3
 
@@ -350,12 +350,12 @@ Finalmente, puedes ejecutar tanto la aplicación servidor como la cliente. Prime
 
 Contáctanos si te gustaría contribuir.
 
-- [I2P-Bote](http://i2pbote.i2p/) - contacta con HungryHobo
+- I2P-Bote - contacta con HungryHobo
 - [Syndie](http://syndie.i2p2.de/)
-- [IMule](http://www.imule.i2p/)
-- [I2Phex](http://forum.i2p/viewforum.php?f=25)
+- IMule
+- I2Phex
 
-Consulta también todos los plugins en [plugins.i2p](http://plugins.i2p/), las aplicaciones y código fuente listados en [echelon.i2p](http://echelon.i2p/), y el código de aplicaciones alojado en [git.repo.i2p](http://git.repo.i2p/).
+Consulta también todos los plugins en plugins.i2p, las aplicaciones y código fuente listados en echelon.i2p, y el código de aplicaciones alojado en git.repo.i2p.
 
 Consulta también las aplicaciones incluidas en la distribución de I2P: SusiMail e I2PSnark.
 

@@ -26,11 +26,11 @@ Na última semana, acompanhei as estatísticas divulgadas pelos trackers i2p-bt 
 
 Desde a versão 0.4.2.5, foram adicionadas algumas correções e novos recursos ao CVS que pretendemos disponibilizar em breve, incluindo correções de confiabilidade para a biblioteca de streaming, maior resiliência a mudanças de endereço IP e a inclusão da implementação do addressbook (livro de endereços) do ragnarok.
 
-Se você não ouviu falar do addressbook (livro de endereços) ou não o utilizou, resumindo: ele atualizará automaticamente seu arquivo hosts.txt, buscando periodicamente e mesclando alterações a partir de alguns locais hospedados anonimamente (por padrão, http://dev.i2p/i2p/hosts.txt e http://duck.i2p/hosts.txt). Você não precisará alterar nenhum arquivo, mexer em nenhuma configuração ou executar nenhum aplicativo extra - ele será implantado dentro do I2P router como um arquivo .war padrão.
+Se você não ouviu falar do addressbook (livro de endereços) ou não o utilizou, resumindo: ele atualizará automaticamente seu arquivo hosts.txt, buscando periodicamente e mesclando alterações a partir de alguns locais hospedados anonimamente (por padrão, `http://dev.i2p/i2p/hosts.txt` e `http://duck.i2p/hosts.txt).` Você não precisará alterar nenhum arquivo, mexer em nenhuma configuração ou executar nenhum aplicativo extra - ele será implantado dentro do I2P router como um arquivo .war padrão.
 
 Claro, se você *realmente* quiser colocar a mão na massa com o addressbook (livro de endereços), fique à vontade - veja o site do Ragnarok [2] para os detalhes. As pessoas que já têm o addressbook implantado no router vão precisar fazer um pequeno malabarismo durante a atualização para a 0.4.2.6, mas ele vai funcionar com todas as suas configurações antigas.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -40,7 +40,7 @@ Números, números, números! Bem, como eu já disse antes, a versão 0.5 vai re
 
 jdot colocou no ar um novo servidor jabber, e ele parece funcionar muito bem tanto para conversas individuais quanto para bate-papo em grupo. Confira as informações no fórum [3]. O canal de discussão dos desenvolvedores do i2p continuará sendo o irc #i2p, mas é sempre bom ter alternativas.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

@@ -6,7 +6,7 @@ description: "Primeira reunião de desenvolvimento do I2P abrangendo o status do
 categories: ["meeting"]
 ---
 
-(Cortesia da Wayback Machine http://www.archive.org/)
+(Cortesia da Wayback Machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

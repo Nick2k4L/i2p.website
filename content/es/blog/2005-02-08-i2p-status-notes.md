@@ -16,7 +16,7 @@ Hola a todos, nuevamente es hora de una actualización
 
 No lo parece, pero ha pasado más de un mes desde que salió la versión 0.4.2.6 y las cosas siguen en bastante buen estado.  Ha habido una serie de actualizaciones bastante útiles [1] desde entonces, pero nada realmente bloqueante que obligue a sacar una nueva versión.  Sin embargo, en el último día o dos hemos recibido correcciones de errores muy buenas (¡gracias anon y Sugadude!), y si no estuviéramos a punto de la versión 0.5, probablemente la empaquetaría y la publicaría.  La actualización de anon corrige un caso límite en la biblioteca de streaming que ha estado provocando muchas de las expiraciones de tiempo de espera vistas en BT y otras transferencias grandes, así que, si te sientes aventurero, hazte con CVS HEAD y pruébala.  O espera a la próxima versión, por supuesto.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) 0.5
 
@@ -26,13 +26,13 @@ Aunque estoy intentando incluir todo lo que pueda en la versión 0.5, también m
 
 Al revisar la hoja de ruta [6], lo único que se pospone para la 0.5.1 es el ordenamiento estricto. También habrá mejoras en la limitación de tasa y el balanceo de carga con el tiempo, estoy seguro, pero espero que estemos ajustando eso prácticamente para siempre. Sin embargo, se han debatido otras cosas que esperaba incluir en la 0.5, como la herramienta de descarga y el código de actualización con un clic, pero parece que esas también se aplazarán.
 
-[2] http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html [3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
+[2] `http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html` [3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
 
 * 3) i2p-bt 0.1.6
 
 duck ha parcheado una nueva versión de i2p-bt (¡bien!), disponible en los lugares habituales, así que consigue la tuya mientras está caliente [7]. Entre esta actualización y el parche de anon para la biblioteca de streaming, prácticamente saturé mi enlace de subida mientras sembraba algunos archivos, así que pruébalo.
 
-[7] http://forum.i2p.net/viewtopic.php?t=300
+[7] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) fortuna
 
@@ -42,4 +42,4 @@ Como se mencionó en la reunión de la semana pasada, smeghead ha estado trabaja
 
 Muchas cosas están pasando, y últimamente también ha habido un repunte de actividad en el foro [8], así que seguro que se me han pasado algunas cosas. En cualquier caso, pásate por la reunión en unos minutos y di lo que tengas en mente (o simplemente lee sin participar y suelta algún comentario mordaz al azar)
 
-=jr [8] http://forum.i2p.net/
+=jr [8] `http://forum.i2p.net/`

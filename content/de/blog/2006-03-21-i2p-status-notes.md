@@ -26,11 +26,11 @@ JRobin [1] ist eine reine Java-Portierung von RRDtool [2], die es uns ermöglich
 
 Postman hat fleißig an ein paar nützlichen Bots gearbeitet, und ich freue mich berichten zu können, dass der liebenswerte biff zurück ist [3], der dich benachrichtigt, sobald (anonyme) Mail eingeht, während du auf irc2p bist. Außerdem hat postman einen ganz neuen Bot für uns entwickelt - toopie - der als Info-Bot für I2P/irc2p dient. Wir füttern toopie noch mit FAQs, aber er wird bald in den üblichen Kanälen auftauchen. Danke, postman!
 
-[3] http://hq.postman.i2p/?page_id=15
+[3] `http://hq.postman.i2p/?page_id=15`
 
 * 4) new key
 
-Den Aufmerksamen unter euch wird aufgefallen sein, dass mein GPG-Schlüssel in ein paar Tagen abläuft. Mein neuer Schlüssel unter http://dev.i2p.net/~jrandom hat den Fingerabdruck 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 und die Schlüssel-ID 33DC8D49. Dieser Beitrag ist mit meinem alten Schlüssel signiert, aber meine folgenden Beiträge (und Veröffentlichungen) im nächsten Jahr werden mit dem neuen Schlüssel signiert sein.
+Den Aufmerksamen unter euch wird aufgefallen sein, dass mein GPG-Schlüssel in ein paar Tagen abläuft. Mein neuer Schlüssel unter `http://dev.i2p.net/~jrandom` hat den Fingerabdruck 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49 und die Schlüssel-ID 33DC8D49. Dieser Beitrag ist mit meinem alten Schlüssel signiert, aber meine folgenden Beiträge (und Veröffentlichungen) im nächsten Jahr werden mit dem neuen Schlüssel signiert sein.
 
 * 5) ???
 

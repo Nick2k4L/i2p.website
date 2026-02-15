@@ -22,7 +22,7 @@ categories: ["status"]
 
 * 2) UDP (SSU)
 
-正如在过去的 6–12 个月里断断续续讨论的那样，一旦 0.6 版发布，我们将把 router 之间的通信转向使用 UDP。为了在这条道路上更进一步，我们已经在 CVS 上提供了传输协议的第一版草案：http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+正如在过去的 6–12 个月里断断续续讨论的那样，一旦 0.6 版发布，我们将把 router 之间的通信转向使用 UDP。为了在这条道路上更进一步，我们已经在 CVS 上提供了传输协议的第一版草案：`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 这是一种相当简单的协议，其目标如文档所述，利用 I2P 的能力同时进行身份验证并保障数据安全，同时尽可能少地暴露外部信息。对于未运行 I2P 的人而言，即使是连接握手的最初部分也无法被识别。该协议的行为在规范中尚未完全定义，例如定时器如何触发、以及三种不同的半可靠状态指示器如何使用，但它已经涵盖了加密、packetization（分组封装）以及 NAT 打洞的基础内容。这些内容尚未实现，但很快就会实现，因此非常感谢各位的反馈！
 
@@ -30,7 +30,7 @@ categories: ["status"]
 
 Aum 一直在埋头开发 Q(uartermaster) 这个分布式存储，第一版文档已经上线[1]。其中一个有趣的想法似乎是从纯粹的 DHT（分布式哈希表）转向一种类似 memcached（分布式内存缓存）[2] 的系统，每个用户把所有搜索完全在*本地*完成，然后从 Q 服务器“直接”请求实际数据（嗯，是通过 I2P）。总之，有些挺妙的点子，也许等 Aum 醒了[3]，我们能不能从他那里“撬”出一个更新？
 
-[1] http://aum.i2p/q/ [2] http://www.danga.com/memcached/ [3] 这些该死的时区！
+[1] `http://aum.i2p/q/` [2] http://www.danga.com/memcached/ [3] 这些该死的时区！
 
 * 4) ???
 

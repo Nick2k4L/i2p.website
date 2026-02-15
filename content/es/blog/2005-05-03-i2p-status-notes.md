@@ -24,7 +24,7 @@ Las pruebas aún están en una etapa muy temprana, pero han ido mucho mejor de l
 
 Con las estadísticas recopiladas gracias a los voluntarios que prestaron su ayuda, quedó claro lo importante que es el código de acuse de recibo selectivo (SACK) para el funcionamiento correcto en redes altamente congestionadas. He pasado los últimos días implementando y probando ese código, y he actualizado la especificación de SSU [1] para incluir una nueva técnica SACK eficiente. No será retrocompatible con el código SSU anterior, por lo que las personas que han estado ayudando con las pruebas deberían desactivar el transporte SSU hasta que haya una nueva versión lista para probar (con suerte en uno o dos días).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD`
 
 * 3) i2phex
 
@@ -32,7 +32,7 @@ sirup ha estado trabajando sin parar en un port (adaptación) de phex a i2p, y a
 
 Hay mucha más información disponible en el eepsite(I2P Site) de sirup [2], y la ayuda con las pruebas por parte de personas que ya están en la comunidad de i2p sería estupenda (aunque, por favor, hasta que sirup lo apruebe como una versión pública, y i2p haya llegado al menos a la 0.6, si no a la 1.0, mantengámoslo dentro de la comunidad de i2p). Creo que sirup estará presente en la reunión de esta semana, ¡así que quizá entonces podamos obtener más información!
 
-[2] http://sirup.i2p/
+[2] `http://sirup.i2p/`
 
 * 4) awol
 
@@ -44,4 +44,4 @@ Así que, si te sientes aburrido y quieres ayudar, pero necesitas inspiración, 
 
 De acuerdo, eso es todo lo que tengo para comentar por el momento. Para quienes quieran ayudar con las pruebas de SSU durante la próxima semana, estén atentos a la información en mi blog [3]. ¡Para el resto de ustedes, nos vemos en la reunión!
 
-=jr [3] http://jrandom.dev.i2p/
+=jr [3] `http://jrandom.dev.i2p/`

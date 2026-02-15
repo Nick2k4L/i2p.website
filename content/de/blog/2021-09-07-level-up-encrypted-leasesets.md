@@ -40,13 +40,13 @@ Auch wenn die Erklärung länger dauert, lässt sich ein verschlüsseltes LeaseS
 
 ## Auf dem "Server"
 
-Beginnen Sie, indem Sie den Hidden Services Manager unter http://127.0.0.1:7657/i2ptunnelmgr öffnen, und scrollen Sie bis zum Ende des Abschnitts mit der Bezeichnung "I2P Hidden Services." Erstellen Sie einen neuen versteckten Dienst mit dem Host "127.0.0.1" und dem Port "7657" mit diesen "Tunnel Cryptography Options" und speichern Sie den versteckten Dienst.
+Beginnen Sie, indem Sie den Hidden Services Manager unter `http://127.0.0.1:7657/i2ptunnelmgr` öffnen, und scrollen Sie bis zum Ende des Abschnitts mit der Bezeichnung "I2P Hidden Services." Erstellen Sie einen neuen versteckten Dienst mit dem Host "127.0.0.1" und dem Port "7657" mit diesen "Tunnel Cryptography Options" und speichern Sie den versteckten Dienst.
 
 Wählen Sie dann auf der Hauptseite von Hidden Services Manager Ihren neuen tunnel aus. Die Tunnel Cryptography Options sollten jetzt Ihren ersten Pre-Shared Key enthalten. Notieren Sie sich diesen für den nächsten Schritt, zusammen mit der Encrypted Base32 Address für Ihren tunnel.
 
 ## Auf dem "Client"
 
-Wechseln Sie nun zum Computer des Clients, der sich mit dem versteckten Dienst verbinden wird, und rufen Sie die Keyring Configuration unter http://127.0.0.1:7657/configkeyring auf, um die Schlüssel von zuvor hinzuzufügen. Fügen Sie zunächst die Base32 vom Server in das Feld mit der Beschriftung: "Full destination, name, Base32, or hash." ein. Als Nächstes fügen Sie den Pre-Shared Key (vorab geteilter Schlüssel) vom Server in das Feld "Encryption Key" ein. Klicken Sie auf Speichern, und Sie sind bereit, den versteckten Dienst sicher mit einem verschlüsselten LeaseSet zu besuchen.
+Wechseln Sie nun zum Computer des Clients, der sich mit dem versteckten Dienst verbinden wird, und rufen Sie die Keyring Configuration unter `http://127.0.0.1:7657/configkeyring` auf, um die Schlüssel von zuvor hinzuzufügen. Fügen Sie zunächst die Base32 vom Server in das Feld mit der Beschriftung: "Full destination, name, Base32, or hash." ein. Als Nächstes fügen Sie den Pre-Shared Key (vorab geteilter Schlüssel) vom Server in das Feld "Encryption Key" ein. Klicken Sie auf Speichern, und Sie sind bereit, den versteckten Dienst sicher mit einem verschlüsselten LeaseSet zu besuchen.
 
 ## Jetzt sind Sie bereit, I2P per Fernzugriff zu administrieren
 

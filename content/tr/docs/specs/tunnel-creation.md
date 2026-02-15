@@ -165,7 +165,7 @@ Anlaşmalar ve reddedilmeler, gelecekteki peer tunnel kapasitesi değerlendirmel
 
 ## Geçmiş ve Notlar
 
-Bu strateji, I2P posta listesinde Michael Rogers, Matthew Toseland (toad) ve jrandom arasında predecessor saldırısı hakkında yapılan bir tartışma sırasında ortaya çıkmıştır. Bkz. [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html), [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html). 2006-02-16 tarihinde 0.6.1.10 sürümünde tanıtılmıştır ve bu, I2P'de geriye dönük uyumluluğu olmayan bir değişikliğin yapıldığı son zamandır.
+Bu strateji, I2P posta listesinde Michael Rogers, Matthew Toseland (toad) ve jrandom arasında predecessor saldırısı hakkında yapılan bir tartışma sırasında ortaya çıkmıştır. Bkz. TUNBUILD-SUMMARY, TUNBUILD-REASONING. 2006-02-16 tarihinde 0.6.1.10 sürümünde tanıtılmıştır ve bu, I2P'de geriye dönük uyumluluğu olmayan bir değişikliğin yapıldığı son zamandır.
 
 Notlar:
 
@@ -193,8 +193,8 @@ Notlar:
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)
 - [TBM](/docs/specs/i2np/#struct-TunnelBuild) - TunnelBuildMessage
 - [TBRM](/docs/specs/i2np/#struct-TunnelBuildReply) - TunnelBuildReplyMessage
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)
+- TUNBUILD-REASONING
+- TUNBUILD-SUMMARY
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation/)
 - [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation)
 - [VTBM](/docs/specs/i2np/#struct-VariableTunnelBuild) - VariableTunnelBuildMessage

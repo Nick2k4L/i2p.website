@@ -6,7 +6,7 @@ description: "Первая встреча разработчиков I2P, пос
 categories: ["meeting"]
 ---
 
-(Предоставлено Wayback Machine http://www.archive.org/)
+(Предоставлено Wayback Machine `http://www.archive.org/`)
 
 ## Краткий обзор
 

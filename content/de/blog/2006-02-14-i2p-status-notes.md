@@ -20,7 +20,7 @@ Wie ich letzte Woche sagte, "Es hat in der letzten Woche im Live-Netz keine wese
 
 Es gab weitere Fortschritte mit dem _PRE network, um uns zum 0.6.1.10-Release zu bringen, und neulich habe ich euch die 5-Tage-Warnung gegeben [1].  Wir liegen weiterhin im Plan, daher erwarte ich, dass 0.6.1.10 irgendwann spät am Donnerstag erscheint.  Das Release wird nicht abwärtskompatibel sein, und euer router wird voraussichtlich eine neue router-Identität erzeugen und ein Reseeding (Neu-Initialisierung) erforderlich machen, um auf das neue Netzwerk zu gelangen.  Das sollte allerdings transparent geschehen.
 
-[1] http://dev.i2p.net/pipermail/i2p/2006-February/001259.html
+[1] `http://dev.i2p.net/pipermail/i2p/2006-February/001259.html`
 
 Ein Wort der Warnung an CVS-Benutzer – nach der heutigen Sitzung werde ich damit beginnen, den _PRE_-Branch wieder in den Trunk (Hauptzweig) zusammenzuführen, also halten Sie sich von CVS fern, bis 0.6.1.10 veröffentlicht ist.
 
@@ -28,7 +28,7 @@ Ein Wort der Warnung an CVS-Benutzer – nach der heutigen Sitzung werde ich dam
 
 In letzter Zeit ist der Traffic auf Syndie gestiegen, was ziemlich cool ist, also schau doch mal bei deiner lokalen Instanz [2] oder einem öffentlichen Knoten [3] vorbei, um zu sehen, was los ist.
 
-[2] http://localhost:7657/syndie/blogs.jsp [3] http://syndiemedia.i2p.net/blogs.jsp
+[2] `http://localhost:7657/syndie/blogs.jsp` [3] `http://syndiemedia.i2p.net/blogs.jsp`
 
 * 4) ???
 

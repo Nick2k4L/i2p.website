@@ -31,9 +31,9 @@ toc: true
 - 通用结构规范 [Common Structures](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) 规范包含 LS2
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) 新的非对称加密概述
+- `http://zzz.i2p/topics/1768` 新的非对称加密概述
 - 底层加密概述 [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
+- ECIES `http://zzz.i2p/topics/2418`
 - [NTCP2](/docs/specs/ntcp2/) [提案 111](/proposals/111-ntcp-2/)
 - 123 新的 netDB 条目
 - 142 新加密模板

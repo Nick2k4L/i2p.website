@@ -12,14 +12,14 @@ categories: ["meeting"]
 
 ## 회의 기록
 
-<div class="irc-log">20:00:00 &lt;zzz&gt; 안건 http://zzz.i2p/topics/2014
+<div class="irc-log">20:00:00 &lt;zzz&gt; 안건 `http://zzz.i2p/topics/2014`
 20:00:00 &lt;zzz&gt; 0) 안녕
-20:00:00 &lt;zzz&gt; 1) 12월 30일 회의에서 할당된 작업 검토 - http://zzz.i2p/topics/2016 (zzz)
-20:00:00 &lt;zzz&gt; 2) 기타 CCC 후속 조치 - http://zzz.i2p/topics/2019 (zzz)
+20:00:00 &lt;zzz&gt; 1) 12월 30일 회의에서 할당된 작업 검토 - `http://zzz.i2p/topics/2016` (zzz)
+20:00:00 &lt;zzz&gt; 2) 기타 CCC 후속 조치 - `http://zzz.i2p/topics/2019` (zzz)
 20:00:00 &lt;zzz&gt; 3) 2016 프로젝트 회의 계획 (zzz, Sadie)
-20:00:00 &lt;zzz&gt; 4) GMP 6 병합 준비 상태  - http://zzz.i2p/topics/1960 (tuna)
-20:00:00 &lt;zzz&gt; 5) http://secure.tinhat.i2p 콘솔 홈 페이지 요청 - http://zzz.i2p/topics/236?page=3#p10884 (david)
-20:00:00 &lt;zzz&gt; 6) 행동 강령(Code of Conduct) 제안 - http://zzz.i2p/topics/2015 (Sadie)
+20:00:00 &lt;zzz&gt; 4) GMP 6 병합 준비 상태  - `http://zzz.i2p/topics/1960` (tuna)
+20:00:00 &lt;zzz&gt; 5) `http://secure.tinhat.i2p` 콘솔 홈 페이지 요청 - `http://zzz.i2p/topics/236?page=3#p10884` (david)
+20:00:00 &lt;zzz&gt; 6) 행동 강령(Code of Conduct) 제안 - `http://zzz.i2p/topics/2015` (Sadie)
 20:00:02 &lt;lazygravy&gt; ccc 블로그 글에 그에 대한 링크가 있어요
 20:00:05 &lt;zzz&gt; 0) 안녕
 20:00:09 &lt;zzz&gt; 안녕
@@ -28,7 +28,7 @@ categories: ["meeting"]
 20:00:25 &lt;lazygravy&gt; 안녕하세요
 20:00:32 &lt;cacapo&gt; 안녕
 20:00:33 &lt;sadie_i21&gt; 안녕
-20:00:37 &lt;zzz&gt; 1) 12월 30일 회의에서 할당된 작업 검토 - http://zzz.i2p/topics/2016 (zzz)
+20:00:37 &lt;zzz&gt; 1) 12월 30일 회의에서 할당된 작업 검토 - `http://zzz.i2p/topics/2016` (zzz)
 20:00:44 &lt;Irc2PGuest76545&gt; 안녕
 20:00:48 &lt;zzz&gt; 좋아요, 열린 항목들만 빨리 훑어봅시다
 20:00:49 &lt;anonimal&gt; 안녕
@@ -130,7 +130,7 @@ categories: ["meeting"]
 20:21:34 &lt;str4d&gt; zzz, 3월 6일로 하죠. 더 일찍 초안을 만들 수 있겠지만, 제가 거기 있는 동안 다른 것들과 함께 로드맵 작업을 하게 될 것 같습니다.
 20:21:40 &lt;zzz&gt; 좋아요, 3월 6일
 20:21:44 &lt;zzz&gt; 1) 마지막 호출
-20:21:57 &lt;zzz&gt; 2) 기타 CCC 후속 조치 - http://zzz.i2p/topics/2019 (zzz)
+20:21:57 &lt;zzz&gt; 2) 기타 CCC 후속 조치 - `http://zzz.i2p/topics/2019` (zzz)
 20:22:13 &lt;zzz&gt; 2)는 다른 중요한 후속 사항이 있을 경우를 대비한 자리표시자로 넣었습니다
 20:22:18 &lt;str4d&gt; RWC에서 후속 연락해야 할 분들이 몇 있습니다
 20:22:13 &lt;str4d&gt; (2)에 끼워넣기)
@@ -183,7 +183,7 @@ categories: ["meeting"]
 20:31:05 &lt;comraden1&gt; eche|on: 제가 컴퓨터를 하나 설정해줬어서 필요 없을 수도 있지만, 새 장비를 원한다면 그건 그녀의 선택이죠
 20:31:14 &lt;eche|on&gt; zzz: 미안, 우리가 그녀가 필요한 PC 시스템에 대해 얘기했고, 내게 연락을 주면 좋겠다고 했어요
 20:31:23 &lt;zzz&gt; 좋아요
-20:31:29 &lt;zzz&gt; 4) GMP 6 병합 준비 상태  - http://zzz.i2p/topics/1960 (tuna)
+20:31:29 &lt;zzz&gt; 4) GMP 6 병합 준비 상태  - `http://zzz.i2p/topics/1960` (tuna)
 20:31:35 &lt;zzz&gt; hottuna, 최신 상황은?
 20:31:38 &lt;eche|on&gt; 그게 쟁점이라면, 내 생각엔 괜찮습니다만, 여기 회의에서 찬성 투표할 수 있어요!
 20:31:56 &lt;hottuna&gt; Windows x86에서 jcpuid가 작동하지 않아요
@@ -217,7 +217,7 @@ categories: ["meeting"]
 20:35:36 &lt;hottuna&gt; 어떤 링크요?
 20:35:40 &lt;hottuna&gt; jcpuid요?
 20:35:47 &lt;orignal&gt; str4d, 100%
-20:36:18 &lt;zzz&gt; 5) http://secure.tinhat.i2p 콘솔 홈 페이지 요청 - http://zzz.i2p/topics/236?page=3#p10884 
+20:36:18 &lt;zzz&gt; 5) `http://secure.tinhat.i2p` 콘솔 홈 페이지 요청 - `http://zzz.i2p/topics/236?page=3#p10884` 
 20:36:27 &lt;zzz&gt; The_Tin_Hat, 사이트에 대해 말씀해 주세요
 20:37:10 &lt;JIa3apb_KaraHoBu4&gt; 정당화는 약자들을 위한 것!
 20:37:16 &lt;The_Tin_Hat&gt; 이 사이트는 프라이버시와 보안에 대한 여러 실용적인 튜토리얼을 제공하며, 중급 사용자가 소화할 수 있도록 작성되어 있습니다. I2P와 Tor에 관한 튜토리얼도 몇 가지 포함되어 있습니다
@@ -247,7 +247,7 @@ categories: ["meeting"]
 20:42:32 &lt;zzz&gt; 좋아요 5) 마지막 호출
 20:42:37 &lt;z3r0fox&gt; +1
 20:43:06 &lt;zzz&gt; 이의가 없으므로 thinhat 요청을 승인하겠습니다. .25에 반영하겠습니다
-20:43:27 &lt;zzz&gt; 6) 행동 강령(Code of Conduct) 제안 - http://zzz.i2p/topics/2015 (Sadie)
+20:43:27 &lt;zzz&gt; 6) 행동 강령(Code of Conduct) 제안 - `http://zzz.i2p/topics/2015` (Sadie)
 20:43:27 &lt;zzz&gt; 6a) 제안과 그 이유 (Sadie)
 20:43:27 &lt;zzz&gt; 6b) Sadie에게 질문
 20:43:27 &lt;zzz&gt; 6c) zzz.i2p에 아직 댓글을 달지 않은 분들의 간단한 코멘트
@@ -378,7 +378,7 @@ categories: ["meeting"]
 21:05:26 &lt;eche|on&gt; what is VRP`
 21:05:26 &lt;eche|on&gt; ?
 21:05:36 &lt;str4d&gt; eche|on, Vulnerability Response Process
-21:05:37 &lt;anonimal&gt; http://trac.i2p2.i2p/ticket/1119
+21:05:37 &lt;anonimal&gt; `http://trac.i2p2.i2p/ticket/1119`
 21:05:37 &lt;zzz&gt; anonimal, 그 티켓이 당신 건가요?
 21:05:39 &lt;eche|on&gt; 아, 좋아요
 21:05:52 &lt;eche|on&gt; 복잡한 주제죠

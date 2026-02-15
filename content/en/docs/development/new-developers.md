@@ -34,7 +34,7 @@ For development on the I2P router or the embedded applications, you need to get 
 
 I2P has official Git services and accepts contributions via Git at our own GitLab:
 
-- Inside I2P: <http://git.idk.i2p>
+- Inside I2P: <`http://git.idk.i2p`>
 - Outside I2P: <https://i2pgit.org>
 
 Clone the main repository:
@@ -45,7 +45,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 
 A read‑only mirror is also available at GitHub:
 
-- GitHub mirror: [github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
+- GitHub mirror: github.com/i2p/i2p.i2p
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -63,7 +63,7 @@ For development on new applications, see the [application development guide](/do
 
 See the project TODO list or the issue list on GitLab for ideas:
 
-- GitLab issues: [i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
+- GitLab issues: i2pgit.org/I2P_Developers/i2p.i2p/issues
 
 ## Making the Results Available
 

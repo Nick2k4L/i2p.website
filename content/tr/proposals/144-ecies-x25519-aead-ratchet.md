@@ -31,9 +31,9 @@ Aşağıdaki önceki çalışmalara dayanır:
 - Ortak yapılar spec [Common Structures](/docs/specs/common-structures/)
 - LS2 dahil [I2NP](/docs/specs/i2np/) spec
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) yeni asimetrik kripto genel bakış
+- `http://zzz.i2p/topics/1768` yeni asimetrik kripto genel bakış
 - Düşük seviye kripto genel bakış [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
+- ECIES `http://zzz.i2p/topics/2418`
 - [NTCP2](/docs/specs/ntcp2/) [Proposal 111](/proposals/111-ntcp-2/)
 - 123 Yeni netDb Girişleri
 - 142 Yeni Kripto Şablonu

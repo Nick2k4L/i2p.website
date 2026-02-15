@@ -26,7 +26,7 @@ Použití jednominutových intervalů a propustnosti pro jednotlivý tunnel vša
 
 * 3) Syndie blogs
 
-Na základě zpětné vazby proběhla v rámci zobrazení blogu v Syndie další vylepšení, která mu dodávají výrazně odlišný charakter než vláknové zobrazení připomínající diskusní skupiny/fóra. Kromě toho získalo zcela novou možnost definovat obecné informace o blogu prostřednictvím stávající architektury Syndie. Jako příklad se podívejte na výchozí příspěvek na blogu „about Syndie“:  http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001
+Na základě zpětné vazby proběhla v rámci zobrazení blogu v Syndie další vylepšení, která mu dodávají výrazně odlišný charakter než vláknové zobrazení připomínající diskusní skupiny/fóra. Kromě toho získalo zcela novou možnost definovat obecné informace o blogu prostřednictvím stávající architektury Syndie. Jako příklad se podívejte na výchozí příspěvek na blogu „about Syndie“:  `http://syndiemedia.i2p.net/blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1132012800001`
 
 Tohle je jen drobný náznak toho, co všechno můžeme udělat. Další vydání vám umožní definovat vlastní logo vašeho blogu, vlastní odkazy (na blogy, příspěvky, přílohy, libovolné externí URL), a doufejme i ještě více možností přizpůsobení. Jednou z takových úprav jsou ikony pro jednotlivé tagy (štítky) - rád bych přibalil sadu výchozích ikon pro standardní tagy, ale lidé si budou moci definovat ikony pro své vlastní tagy pro použití ve svém blogu a dokonce nahradit výchozí ikony pro standardní tagy (opět, pouze když si lidé prohlížejí jejich blog, samozřejmě). Možná dokonce i nějaké nastavení stylu, aby se příspěvky s různými tagy zobrazovaly odlišně (samozřejmě by bylo povoleno jen velmi specifické přizpůsobení stylu - žádné libovolné CSS exploity v Syndie, děkujeme pěkně :).
 
@@ -42,6 +42,6 @@ Dostaly se ke mně zprávy o pokroku při znovuzavedení podpory gwebcache do I2
 
 * 6) ???
 
-Jak vidíte, děje se toho hodně, ale jestli máte ještě něco, co byste chtěli nastolit a probrat, zaskočte za pár minut na schůzku a dejte vědět. Mimochodem, jeden fajn web, který v poslední době sleduju, je http://freedomarchive.i2p/ (pro lenochy bez nainstalovaného I2P můžete použít Tinoovo inproxy (vstupní proxy) přes http://freedomarchive.i2p.tin0.de/). Každopádně, uvidíme se za pár minut.
+Jak vidíte, děje se toho hodně, ale jestli máte ještě něco, co byste chtěli nastolit a probrat, zaskočte za pár minut na schůzku a dejte vědět. Mimochodem, jeden fajn web, který v poslední době sleduju, je `http://freedomarchive.i2p/` (pro lenochy bez nainstalovaného I2P můžete použít Tinoovo inproxy (vstupní proxy) přes http://freedomarchive.i2p.tin0.de/). Každopádně, uvidíme se za pár minut.
 
 =jr

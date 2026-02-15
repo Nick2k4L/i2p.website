@@ -77,13 +77,13 @@ categories: ["meeting"]
 14:26 &lt;jrandomi2p&gt; 20:19 &lt;jrandom&gt; (in the classpath, set it to: lib/i2p.jar:lib/router.jar:lib/mstreaming.jar:lib/heartbeat.jar:lib/i2ptunnel.jar:lib/netmonitor.jar:lib/sam.jar:lib/timestamper.jar:lib/ant.jar:lib/jasper-compiler.jar:lib/jasper-runtime.jar:\
 14:26 &lt;jrandomi2p&gt; 20:19 &lt;jrandom&gt; lib/jnet.jar:lib/org.mortbay.jetty.jar:lib/routerconsole.jar:lib/xercesImpl.jar:lib/xml-apis.jar:lib/javax.servlet.jar
 14:26 &lt;protok0l&gt; ok screw it
-14:27 &lt;jrandomi2p&gt; in addition to that, there's a new i2ptunnel.war - take that and drop it into $instDir/webapps/ and go to http://localhost:7657/i2ptunnel/
+14:27 &lt;jrandomi2p&gt; in addition to that, there's a new i2ptunnel.war - take that and drop it into $instDir/webapps/ and go to `http://localhost:7657/i2ptunnel/`
 14:27 &lt;jrandomi2p&gt; yeah, as i said, its a pain
 14:27 &lt;jrandomi2p&gt; *but* its functional, and I dont really have either the time or the expertise to make it much better
 14:27 &lt;oOo&gt; That's all it needs to be done ?
 14:28 &lt;jrandomi2p&gt; yup
 14:28 &lt;oOo&gt; Ok, thanks
-14:28 &lt;jrandomi2p&gt; (you'll get something looking like http://dev.i2p.net/~jrandom/config.png when you go to http://localhost:7657/config.jsp
+14:28 &lt;jrandomi2p&gt; (you'll get something looking like http://dev.i2p.net/~jrandom/config.png when you go to `http://localhost:7657/config.jsp`
 14:29 &lt;jrandomi2p&gt; anyway, thats that
 14:29 &lt;jrandomi2p&gt; i'd appreciate if/when people can kick it around, and hopefully come up with ways to improve it :)
 14:30 &lt;jrandomi2p&gt; mihi: any thoughts on the whole web interface idea?

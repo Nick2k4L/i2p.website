@@ -42,10 +42,10 @@ categories: ["meeting"]
 20:20:38  &lt;str4d&gt; Every other page should be fine.
 20:20:45  &lt;str4d&gt; It's ticket #807
 20:20:52  &lt;dg&gt; saved me some time :)
-20:20:59  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
+20:20:59  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/807` - (accepted enhancement) - Revamp of website
 20:20:59  &lt;dg&gt; want to revisit this next week then?
 20:23:38  &lt;dg&gt; Found one.
-20:23:46  &lt;dg&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/how/networkcomparisons from http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/how/garlic-routing
+20:23:46  &lt;dg&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/how/networkcomparisons` from `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/how/garlic-routing`
 20:23:49  &lt;str4d&gt; Oh, and /lang/misc/* hasn't been looked at either.
 20:23:56  &lt;iRelay&gt; Title: Garlic Routing - I2P (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 20:24:06  &lt;dg&gt; Should be /en/comparison
@@ -57,8 +57,8 @@ categories: ["meeting"]
 20:25:16  &lt;dg&gt; i'll put them all into the ticket later
 20:25:23  &lt;dg&gt; &lt;+dg&gt; want to revisit this next week then?
 20:26:01  &lt;str4d&gt; I'm happy to. Anyone else want to comment? ^_^
-20:27:18  &lt;Meeh&gt; http://meeh.i2p/viewmtn/viewmtn.py/
-20:27:49  &lt;dg&gt; internal server error on http://meeh.i2p/viewmtn/viewmtn.py/branch/changes/i2p.i2p
+20:27:18  &lt;Meeh&gt; `http://meeh.i2p/viewmtn/viewmtn.py/`
+20:27:49  &lt;dg&gt; internal server error on `http://meeh.i2p/viewmtn/viewmtn.py/branch/changes/i2p.i2p`
 20:28:45  &lt;Meeh&gt; yepp
 20:28:48  &lt;Meeh&gt; working on it
 20:28:55  &lt;dg&gt; I'll take it as a no, anyway

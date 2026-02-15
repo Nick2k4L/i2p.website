@@ -77,7 +77,7 @@ oOo has put together a really cool helper to let people browse eepsites(I2P Site
 Basically you just make a link to the eepsite(I2P Site) with whatever name you want, then tack on a special url parameter specifying the destination:
 
 ```
-http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...
+`http://wowthisiscool.i2p/?i2paddresshelper=FpCkYW5pw...`
 ```
 
 Behind the scenes, its pretty safe - you can't spoof some other address, and the name is *not* persisted in hosts.txt, but it will let you see images / etc linked to on eepsites(I2P Sites) that you wouldn't be able to with the old `http://i2p/base64/` trick. If you want to always be able to use "wowthisiscool.i2p" to reach that site, you will still of course have to add the entry to your hosts.txt (until the MyI2P address book is pushed out, that is ;)

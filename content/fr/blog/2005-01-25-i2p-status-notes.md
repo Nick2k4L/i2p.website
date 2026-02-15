@@ -16,7 +16,7 @@ Salut à tous, bref point d’avancement hebdomadaire
 
 Au cours de la semaine écoulée, il y a eu beaucoup de progrès du côté de la 0.5. Les problèmes dont nous parlions auparavant ont été résolus, simplifiant considérablement la cryptographie et éliminant le problème de bouclage des tunnels. La nouvelle technique [1] a été implémentée et les tests unitaires sont en place. Ensuite, je vais assembler davantage de code pour intégrer ces tunnels dans le router principal, puis mettre en place l’infrastructure de gestion et de pooling (mise en pool) des tunnels. Une fois que cela sera en place, nous le ferons passer dans le simulateur puis sur un réseau parallèle pour l’éprouver, avant de finaliser et de l’appeler 0.5.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) sam.net
 
@@ -32,10 +32,10 @@ smeghead est clairement sur sa lancée - au dernier décompte, avec quelques mod
 
 Pas grand-chose à dire ici, même si Nightblade a soulevé sur le forum une série de préoccupations intéressantes [3] en demandant pourquoi nous optons pour l'UDP. Si vous avez des préoccupations similaires ou d'autres suggestions sur la manière dont nous pouvons traiter les problèmes que j'ai évoqués dans ma réponse, n'hésitez pas à intervenir !
 
-[3] http://forum.i2p.net/viewtopic.php?t=280
+[3] `http://forum.i2p.net/viewtopic.php?t=280`
 
 * 5) ???
 
 Ouais, ok, je suis encore en retard avec les notes, retirez-le de mon salaire ;) Bref, il se passe plein de choses, donc soit vous passez sur le canal pour la réunion, soit vous consultez ensuite les logs publiés, soit vous écrivez sur la liste si vous avez quelque chose à dire. Ah, au passage, j’ai fini par céder et ouvrir un blog dans i2p [4].
 
-=jr [4] http://jrandom.dev.i2p/ (clé dans http://dev.i2p.net/i2p/hosts.txt)
+=jr [4] `http://jrandom.dev.i2p/` (clé dans `http://dev.i2p.net/i2p/hosts.txt)`

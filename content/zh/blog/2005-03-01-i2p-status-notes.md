@@ -36,7 +36,7 @@ i2p-bt 方面已有一些进展，发布了新的 0.1.8 版本，解决了上周
 
 Legion 还从 i2p-bt rev 派生创建了一个 fork（派生版本），合并了一些其他代码，修补了一些内容，并在他的 eepsite(I2P 站点)上提供了一个 Windows 二进制文件。公告 [2] 似乎暗示可能会公开源代码，不过目前尚未在该 eepsite(I2P 站点)上发布。I2P 开发者尚未审计（甚至没有看过）该客户端的代码，因此需要匿名性的用户可能希望先获取并审查一份代码。
 
-[2] http://forum.i2p.net/viewtopic.php?t=382
+[2] `http://forum.i2p.net/viewtopic.php?t=382`
 
 此外，Legion 的 BT 客户端第 2 版也在开发中，不过我不清楚目前的状态。也许我们可以在会议期间请 Legion 提供一下最新进展？
 

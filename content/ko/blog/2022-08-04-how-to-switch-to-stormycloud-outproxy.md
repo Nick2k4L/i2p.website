@@ -22,11 +22,11 @@ categories: ["general"]
 
 StormyCloud에 대해 더 알아보려면 그들의 [웹사이트](https://www.stormycloud.org/)를 방문하십시오.
 
-또는 [I2P](http://stormycloud.i2p/)에서 방문하세요.
+또는 I2P에서 방문하세요.
 
 **Switching to the StormyCloud Outproxy on I2P**
 
-StormyCloud outproxy(아웃프록시)로 *오늘* 전환하려면 [the Hidden Services Manager](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0)를 방문하십시오. 해당 페이지에서 **Outproxies** 및 **SSL Outproxies** 값을 `exit.stormycloud.i2p`로 변경하십시오. 이 작업을 완료한 후, 페이지 하단으로 스크롤하여 "Save" 버튼을 클릭하십시오.
+StormyCloud outproxy(아웃프록시)로 *오늘* 전환하려면 `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0`를 방문하십시오. 해당 페이지에서 **Outproxies** 및 **SSL Outproxies** 값을 `exit.stormycloud.i2p`로 변경하십시오. 이 작업을 완료한 후, 페이지 하단으로 스크롤하여 "Save" 버튼을 클릭하십시오.
 
 **StormyCloud에게 감사드립니다**
 

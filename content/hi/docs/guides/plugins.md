@@ -14,7 +14,7 @@ I2P का प्लगइन फ्रेमवर्क आपको कोर
 
 1. प्रोजेक्ट पेज से plugin का download URL कॉपी करें।  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. router console का [Plugin Configuration page](http://127.0.0.1:7657/configplugins) खोलें।  
+2. router console का `http://127.0.0.1:7657/configplugins` खोलें।  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. URL को install फील्ड में पेस्ट करें और **Install Plugin** पर क्लिक करें।  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ I2P का प्लगइन फ्रेमवर्क आपको कोर
 
 ## 3. इंस्टॉल किए गए प्लगइन्स को प्रबंधित करें
 
-[I2P Router Plugin's](http://127.0.0.1:7657/configclients.jsp#plugin) पर नियंत्रणों का उपयोग करके:
+`http://127.0.0.1:7657/configclients.jsp#plugin` पर नियंत्रणों का उपयोग करके:
 
 - एक प्लगइन को अपडेट के लिए जांचें
 - सभी प्लगइन को एक साथ जांचें (router अपग्रेड के बाद स्वचालित रूप से सक्रिय होता है)

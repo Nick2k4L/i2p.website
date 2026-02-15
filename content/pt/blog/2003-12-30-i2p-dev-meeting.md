@@ -6,7 +6,7 @@ description: "Log da reunião de desenvolvimento do I2P de 30 de dezembro de 200
 categories: ["meeting"]
 ---
 
-(Cortesia do wayback machine http://www.archive.org/)
+(Cortesia do wayback machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

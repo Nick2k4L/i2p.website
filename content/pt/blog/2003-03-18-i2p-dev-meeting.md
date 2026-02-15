@@ -6,7 +6,7 @@ description: "Registro da reunião de desenvolvimento I2P de 18 de março de 200
 categories: ["meeting"]
 ---
 
-(Cortesia da wayback machine http://www.archive.org/)
+(Cortesia da wayback machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

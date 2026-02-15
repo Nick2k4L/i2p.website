@@ -12,7 +12,7 @@ Síť I2P vzkvétá díky naší komunitě. Ať už jste vývojář, překladate
 I2P je open source a vítáme příspěvky do kódu. Ať už chcete opravovat chyby, přidávat funkce nebo zlepšovat výkon, vaše kódové příspěvky mají význam.
 
 - **Začněte**: Podívejte se na náš [průvodce nového vývojáře](/docs/developers/new-developers)
-- **Zdrojový kód**: [GitLab](https://i2pgit.org) (dostupné také uvnitř I2P na http://git.idk.i2p)
+- **Zdrojový kód**: [GitLab](https://i2pgit.org) (dostupné také uvnitř I2P na `http://git.idk.i2p`)
 - **Měsíční schůzky**: Připojte se k nám první úterý každého měsíce
 - **IRC kanály**: #i2p-dev na IRC2P pro diskuse o vývoji
 

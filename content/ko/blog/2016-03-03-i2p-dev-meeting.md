@@ -13,15 +13,15 @@ categories: ["meeting"]
 ## 회의 기록
 
 <div class="irc-log">20:00:02 &lt;zzz&gt; 0) 안녕하세요
-20:00:02 &lt;zzz&gt; 1) 12월 30일 회의에서 할당되었지만 아직 열린 작업 검토 http://zzz.i2p/topics/2014
-20:00:02 &lt;zzz&gt; 2) 2월 2일 회의에서 새로 할당된 작업 검토 http://zzz.i2p/topics/2014
-20:00:02 &lt;zzz&gt; 3) 로드맵 미팅 준비 및 일정 http://zzz.i2p/topics/2021
-20:00:02 &lt;zzz&gt; 4) 행동 강령(Code of Conduct) 제안 (Sadie) http://zzz.i2p/topics/2015?page=2
+20:00:02 &lt;zzz&gt; 1) 12월 30일 회의에서 할당되었지만 아직 열린 작업 검토 `http://zzz.i2p/topics/2014`
+20:00:02 &lt;zzz&gt; 2) 2월 2일 회의에서 새로 할당된 작업 검토 `http://zzz.i2p/topics/2014`
+20:00:02 &lt;zzz&gt; 3) 로드맵 미팅 준비 및 일정 `http://zzz.i2p/topics/2021`
+20:00:02 &lt;zzz&gt; 4) 행동 강령(Code of Conduct) 제안 (Sadie) `http://zzz.i2p/topics/2015?page=2`
 20:00:12 &lt;zzz&gt; 0) 안녕하세요
 20:00:15 &lt;zzz&gt; 안녕
 20:00:25 &lt;anonimal&gt; 안녕
 20:00:38 &lt;str4d&gt; 안녕
-20:01:07 &lt;zzz&gt; 1) 12월 30일 회의에서 할당되었지만 아직 열린 작업 검토 http://zzz.i2p/topics/2014
+20:01:07 &lt;zzz&gt; 1) 12월 30일 회의에서 할당되었지만 아직 열린 작업 검토 `http://zzz.i2p/topics/2014`
 20:01:19 &lt;hottuna4&gt; 안녕
 20:01:37 &lt;zzz&gt; gravy가 1월 27일까지 encrypted leasesets에 관한 글을 하나 올리거나, 다른 주제라면 2월 15일까지 올리기로 함
 20:01:51 &lt;zzz&gt; gravy의 근황 아는 사람?
@@ -137,7 +137,7 @@ categories: ["meeting"]
 20:37:11 &lt;zzz&gt; 그리고 2)도
 20:37:17 &lt;str4d&gt; (대략 2월 6일쯤부터)
 20:37:22 &lt;anonimal&gt; zzz: 당신의 댓글을 더 깊이 읽고 VRP를 다시 쓰겠습니다.
-20:37:28 &lt;zzz&gt; 3) 로드맵 미팅 준비 및 일정 http://zzz.i2p/topics/2021
+20:37:28 &lt;zzz&gt; 3) 로드맵 미팅 준비 및 일정 `http://zzz.i2p/topics/2021`
 20:37:33 &lt;anonimal&gt; 잠깐!
 20:37:45 &lt;zzz&gt; 알았어요, 미안. 1이나 2에 대해 더 있을까요?
 20:37:45 &lt;anonimal&gt; 1) 관련: H1 결정?
@@ -170,7 +170,7 @@ categories: ["meeting"]
 20:44:37 &lt;zzz&gt; 그래서 금요일은 우선순위에 대한 좀 더 비공식적인 검토가 될 겁니다. 일요일에는 h1/vrp로 시작하고, 그 다음 .26~.29에 대한 로드맵을 확실히 정하겠습니다
 20:44:47 &lt;zzz&gt; 3)에 관해 더 있을까요
 20:45:31 &lt;zzz&gt; 4)로 넘어가죠
-20:45:39 &lt;zzz&gt; 4) 행동 강령(Code of Conduct) 제안 (Sadie) http://zzz.i2p/topics/2015?page=2
+20:45:39 &lt;zzz&gt; 4) 행동 강령(Code of Conduct) 제안 (Sadie) `http://zzz.i2p/topics/2015?page=2`
 20:45:56 &lt;zzz&gt; 지금 보니 debian과 비슷한 것을 하자고 제안했네요
 20:46:00 &lt;zzz&gt; 아, 딱 맞게 돌아왔네요
 20:46:12 &lt;zzz&gt; debian CoC에 대한 의견 있나요?

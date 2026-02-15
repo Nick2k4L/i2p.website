@@ -444,7 +444,7 @@ categories: ["meeting"]
 21:22:28  &lt;dg&gt; yes, geti2p.net
 21:22:35  &lt;dg&gt; that is the majority
 21:23:46  &lt;iRelay&gt; &lt;weltende@freenode&gt; Meeh: hmm? fix what?
-21:24:25  &lt;str4d&gt; Last point about the website revamp - http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/ has the latest, suggestions welcome.
+21:24:25  &lt;str4d&gt; Last point about the website revamp - `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/` has the latest, suggestions welcome.
 21:24:36  &lt;iRelay&gt; Title: I2P Anonymous Network (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 21:24:36  &lt;Meeh&gt; tunnel, lists.i2p2.i2p or whatever
 21:24:36  &lt;Meeh&gt; since it's not inside i2p yet
@@ -456,15 +456,15 @@ categories: ["meeting"]
 21:27:26  &lt;iRelay&gt; &lt;weltende@freenode&gt; Meeh: ah.. good point
 21:27:26  &lt;dg&gt; o/
 21:27:29  &lt;dg&gt; So, IPv6?
-21:27:32  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
+21:27:32  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/807` - (accepted enhancement) - Revamp of website
 21:27:35  &lt;SkinSyste&gt; thats awesome, should make the i22p.de homepage
 21:28:06  &lt;asdfsdafsdafsd&gt; I like the color scheme str4d...
 21:28:35  &lt;asdfsdafsdafsd&gt; are we doing away with the light or dark color scheme?
 21:28:53  &lt;inscrutus&gt; dg: Is there an IPv6 + i2p summary I could read up on?
 21:29:15  &lt;dg&gt; inscrutus: Yeah, hang on.
 21:29:22  &lt;Meeh&gt; there is a IPv6 topic or two on zzz.i2p
-21:29:37  &lt;dg&gt; http://zzz.i2p/topics/109 http://zzz.i2p/topics/594
-21:29:37  &lt;hottuna&gt; inscrutus, http://zzz.i2p/topics/109
+21:29:37  &lt;dg&gt; `http://zzz.i2p/topics/109` `http://zzz.i2p/topics/594`
+21:29:37  &lt;hottuna&gt; inscrutus, `http://zzz.i2p/topics/109`
 21:29:52  &lt;iRelay&gt; Title: zzz.i2p: I2P vs. IPv6: A bad joke (at zzz.i2p)
 21:29:56  &lt;iRelay&gt; Title: zzz.i2p: IPV6 TODO (at zzz.i2p)
 21:31:30  &lt;suhr&gt; How to get to "How does I2P work" page on that site?

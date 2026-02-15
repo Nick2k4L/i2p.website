@@ -35,13 +35,13 @@ Michael Rogers a pris contact au sujet de nouvelles attaques intéressantes cont
 
 Michael a publié une autre attaque sur la liste, que nous examinons en ce moment ; vous pourrez donc la suivre là-bas aussi.
 
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001005.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001008.html [4] http://dev.i2p.net/pipermail/i2p/2005-October/001006.html
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001005.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001008.html` [4] `http://dev.i2p.net/pipermail/i2p/2005-October/001006.html`
 
 * 4) I2Phex
 
 Striker fait encore des progrès sur le bogue de téléversement, et les rapports indiquent qu’il l’a isolé. Avec un peu de chance, cela sera intégré dans CVS ce soir, et sera publié en version 0.1.1.33 peu après. Gardez un œil sur le forum [5] pour plus d’informations.
 
-[5] http://forum.i2p.net/viewforum.i2p?f=25
+[5] `http://forum.i2p.net/viewforum.i2p?f=25`
 
 La rumeur dit que redzara fait de bons progrès pour fusionner à nouveau avec la branche principale de Phex ; espérons qu'avec l'aide de Gregor, nous pourrons tout remettre à jour bientôt !
 

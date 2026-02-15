@@ -124,7 +124,7 @@ Há três mudanças a serem implementadas.
 
 Isso foi originalmente implementado sem uma proposta formal, mas é necessário para
 introduções IPv6, por isso incluímos aqui.
-Veja também [CAPS](http://zzz.i2p/topics/3050).
+Veja também CAPS.
 
 Duas novas capacidades "4" e "6" são definidas.
 Essas novas capacidades serão adicionadas à propriedade "caps" no Endereço do Roteador, não nas capacidades do Router Info.

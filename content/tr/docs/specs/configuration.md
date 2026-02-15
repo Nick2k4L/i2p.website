@@ -28,7 +28,7 @@ Bir I2P yapılandırma dosyası, aşağıdaki istisnalar dışında Java [Proper
 
 Dosyanın sıralanmış olması gerekmez, ancak çoğu uygulama dosyaya yazarken okunabilirlik ve manuel düzenleme kolaylığı için anahtara göre sıralama yapar.
 
-Okuma ve yazma işlemleri DataHelper loadProps() ve storeProps() [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html) fonksiyonlarında uygulanmıştır. Dosya formatının, [Mapping](/docs/specs/common-structures/#type-mapping) bölümünde belirtilen I2P protokolleri için serileştirilmiş formattan önemli ölçüde farklı olduğunu unutmayın.
+Okuma ve yazma işlemleri DataHelper loadProps() ve storeProps() [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html) fonksiyonlarında uygulanmıştır. Dosya formatının, [Mapping](/docs/specs/common-structures/#type-mapping) bölümünde belirtilen I2P protokolleri için serileştirilmiş formattan önemli ölçüde farklı olduğunu unutmayın.
 
 ## Çekirdek kütüphane ve router
 
@@ -226,7 +226,7 @@ tunnel.N.option.i2ptunnel.httpclient.allowInternalSSL=true|false
 tunnel.N.option.i2ptunnel.httpclient.disableAddressHelper=true|false
 
 # HTTP client only. Comma- or space-separated list of jump server URLs.
-tunnel.N.option.i2ptunnel.httpclient.jumpServers=http://example.i2p/jump
+tunnel.N.option.i2ptunnel.httpclient.jumpServers=`http://example.i2p/jump`
 
 # HTTP client only. Whether to pass Accept* headers through. Default false.
 # Note: Does not affect "Accept" and "Accept-Encoding".
@@ -430,7 +430,7 @@ zzz.i2p'deki yazıya bakın.
 
 ## Referanslar
 
-- [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+- [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 - [Eşleme](/docs/specs/common-structures#type-mapping)
 - [PLUGIN](/docs/specs/plugin)
 - [Properties](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html#load%28java.io.InputStream%29)

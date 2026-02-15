@@ -8,13 +8,13 @@ accurateFor: "0.9.59"
 
 ## 概述 {#overview}
 
-I2PTunnel 是一个在 I2P 上提供接口和服务的工具。I2PTunnel 的目标可以使用 [hostname](/docs/overview/naming)、[Base32](/docs/overview/naming#base32) 或完整的 516 字节 destination key 来定义。建立的 I2PTunnel 将在您的客户端机器上以 localhost:port 的形式可用。如果您希望在 I2P 网络上提供服务，只需创建指向相应 ip_address:port 的 I2PTunnel。系统将为该服务生成相应的 516 字节 destination key，并使其在整个 I2P 网络中可用。I2PTunnel 管理的网页界面可在 [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/) 访问。
+I2PTunnel 是一个在 I2P 上提供接口和服务的工具。I2PTunnel 的目标可以使用 [hostname](/docs/overview/naming)、[Base32](/docs/overview/naming#base32) 或完整的 516 字节 destination key 来定义。建立的 I2PTunnel 将在您的客户端机器上以 localhost:port 的形式可用。如果您希望在 I2P 网络上提供服务，只需创建指向相应 ip_address:port 的 I2PTunnel。系统将为该服务生成相应的 516 字节 destination key，并使其在整个 I2P 网络中可用。I2PTunnel 管理的网页界面可在 `http://localhost:7657/i2ptunnel/` 访问。
 
 ## 默认服务 {#default-services}
 
 ### 服务器 Tunnel {#default-server-tunnels}
 
-- **I2P Webserver** - 一个指向运行在 [localhost:7658](http://localhost:7658) 上的 Jetty webserver 的 tunnel，用于在 I2P 上方便快速地托管网站。
+- **I2P Webserver** - 一个指向运行在 `http://localhost:7658` 上的 Jetty webserver 的 tunnel，用于在 I2P 上方便快速地托管网站。
   文档根目录为：
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`，展开为：`C:\Users\**username**\AppData\Local\I2P\I2P Site\docroot`

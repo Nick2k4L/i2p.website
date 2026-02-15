@@ -14,7 +14,7 @@ toc: true
 
 Uygun kuantum sonrası (PQ) kriptografi için araştırma ve rekabet on yıldır sürmekte olmasına rağmen, seçimler yakın zamana kadar net hale gelmemişti.
 
-2022 yılında PQ kriptografisinin etkilerini incelemeye başladık [zzz.i2p](http://zzz.i2p/topics/3294).
+2022 yılında PQ kriptografisinin etkilerini incelemeye başladık zzz.i2p.
 
 TLS standartları son iki yılda hibrit şifreleme desteği ekledi ve Chrome ve Firefox'taki destek sayesinde artık internetteki şifreli trafiğin önemli bir bölümü için kullanılıyor [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 

@@ -25,10 +25,10 @@ Abyste se ujistili, že proces nastavení funguje, je užitečné vytvořit si p
 Abyste měli přístup pro čtení i zápis k serveru, budete muset nastavit tunnel pro svého SSH klienta. Pokud vám stačí klonování přes HTTP/S jen pro čtení, můžete toto celé přeskočit a jednoduše použít proměnnou prostředí `http_proxy` k tomu, abyste nakonfigurovali git tak, aby používal předem nakonfigurovaný I2P HTTP Proxy. Například:
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-Pro přístup přes SSH spusťte "New Tunnel Wizard" z http://127.0.0.1:7657/i2ptunnelmgr a nastavte klientský tunnel směřující na SSH adresu služby Git v base32.
+Pro přístup přes SSH spusťte "New Tunnel Wizard" z `http://127.0.0.1:7657/i2ptunnelmgr` a nastavte klientský tunnel směřující na SSH adresu služby Git v base32.
 
 ## Za čtvrté: Zkuste klonování
 

@@ -165,7 +165,7 @@ accurateFor: "0.9.66"
 
 ## التاريخ والملاحظات
 
-نشأت هذه الاستراتيجية خلال نقاش على قائمة I2P البريدية بين مايكل روجرز وماثيو توسلاند (toad) وjrandom بخصوص هجوم predecessor. انظر [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)، [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html). تم تقديمها في الإصدار 0.6.1.10 في 16-02-2006، والذي كان آخر مرة تم إجراء تغيير غير متوافق مع الإصدارات السابقة في I2P.
+نشأت هذه الاستراتيجية خلال نقاش على قائمة I2P البريدية بين مايكل روجرز وماثيو توسلاند (toad) وjrandom بخصوص هجوم predecessor. انظر TUNBUILD-SUMMARY، TUNBUILD-REASONING. تم تقديمها في الإصدار 0.6.1.10 في 16-02-2006، والذي كان آخر مرة تم إجراء تغيير غير متوافق مع الإصدارات السابقة في I2P.
 
 ملاحظات:
 
@@ -193,8 +193,8 @@ accurateFor: "0.9.66"
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)
 - [TBM](/docs/specs/i2np/#struct-TunnelBuild) - TunnelBuildMessage
 - [TBRM](/docs/specs/i2np/#struct-TunnelBuildReply) - TunnelBuildReplyMessage
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)
+- TUNBUILD-REASONING
+- TUNBUILD-SUMMARY
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation/)
 - [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation)
 - [VTBM](/docs/specs/i2np/#struct-VariableTunnelBuild) - VariableTunnelBuildMessage

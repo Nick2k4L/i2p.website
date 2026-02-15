@@ -60,7 +60,7 @@ Much more info will be forthcoming if such a switch looks likely.
 
 [1] "On Diffie-Hellman Key Agreement with Short Exponents" -
     van Oorschot, Weiner at EuroCrypt 96.  mirrored at
-    http://dev.i2p.net/~jrandom/Euro96-DH.ps
+    `http://dev.i2p.net/~jrandom/Euro96-DH.ps`
 [2] http://www.ietf.org/rfc/rfc3526.txt
 
 In any case, lots of progress on the _PRE net, with most

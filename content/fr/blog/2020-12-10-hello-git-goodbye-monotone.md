@@ -22,7 +22,7 @@ Les contributions aux dépôts du projet I2P exigent que vous configuriez la sig
 
 ## Signature GPG
 
-Le dépôt officiel est celui hébergé sur https://i2pgit.org/i2p-hackers/i2p.i2p et sur https://git.idk.i2p/i2p-hackers/i2p.i2p, mais il existe un "miroir" disponible sur Github à l'adresse https://github.com/i2p/i2p.i2p.
+Le dépôt officiel est celui hébergé sur `https://i2pgit.org/i2p-hackers/i2p.i2p` et sur `https://git.idk.i2p/i2p-hackers/i2p.i2p`, mais il existe un "miroir" disponible sur Github à l'adresse https://github.com/i2p/i2p.i2p.
 
 Maintenant que nous utilisons Git, nous pouvons synchroniser des dépôts depuis notre propre instance GitLab auto-hébergée, vers GitHub, et inversement. Cela signifie qu’il est possible de créer et de soumettre une demande de fusion sur GitLab et, lorsqu’elle est fusionnée, le résultat sera synchronisé avec GitHub, et une Pull Request (demande de fusion) sur GitHub, une fois fusionnée, apparaîtra sur GitLab.
 

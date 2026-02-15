@@ -1186,7 +1186,7 @@ encrypted leasesets with offline keys.
   desired key with a counter argument). BLAKE2b is much faster than SHA-256, and
   keyed-BLAKE2b would reduce the total number of hash function calls.
   However, see proposal 148, where it is proposed that we switch to BLAKE2b for other reasons.
-  See [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+  See Secure key derivation performance.
 
 
 ### Meta LS2
@@ -1222,7 +1222,7 @@ publishers for the top-level or intermediate-level Meta LSes on failure.
 Mix-and-match leasesets where leases from multiple routers are combined, signed, and published
 in a single leaseset is documented in proposal 140, "invisible multihoming".
 This proposal is untenable as written, because streaming connections would not be
-"sticky" to a single router, see http://zzz.i2p/topics/2335 .
+"sticky" to a single router, see `http://zzz.i2p/topics/2335` .
 
 The back-end protocol, and interaction with router and client internals, would be
 quite complex for invisible multihoming.
@@ -1872,7 +1872,7 @@ See sections below.
 ## Private Key File Changes Required
 
 The private key file (eepPriv.dat) format is not an official part of our specifications
-but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+but it is documented in the Java I2P javadocs
 and other implementations do support it.
 This enables portability of private keys to different implementations.
 
@@ -2092,5 +2092,5 @@ which had similar design goals.
 * [RFC-5869](https://tools.ietf.org/html/rfc5869)
 * [RFC-7539-S2.4](https://tools.ietf.org/html/rfc7539#section-2.4)
 * [TOR-REND-SPEC-V3](https://spec.torproject.org/rend-spec-v3)
-* [UNSCIENTIFIC-KDF-SPEEDS](https://www.lvh.io/posts/secure-key-derivation-performance.html)
+* UNSCIENTIFIC-KDF-SPEEDS
 * [ZCASH](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)

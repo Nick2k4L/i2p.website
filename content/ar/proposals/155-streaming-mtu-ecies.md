@@ -156,7 +156,7 @@ negotiated_mtu، وهو الحد الأدنى من الـ MTU لدى Alice وBob
 
 ## التبرير
 
-انظر إلى the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) لمعرفة لماذا القيمة الحالية هي 1730.
+انظر إلى the Java I2P source code لمعرفة لماذا القيمة الحالية هي 1730.
 انظر إلى the [ECIES specification](/docs/specs/ecies/#overhead) لمعرفة لماذا الحمل الزائد لـ ECIES أقل بـ 82 بايت من ElGamal.
 
 

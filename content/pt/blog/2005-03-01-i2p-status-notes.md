@@ -36,7 +36,7 @@ Houve algum progresso no i2p-bt, com uma nova versão 0.1.8 abordando os problem
 
 Legion também criou um fork a partir do i2p-bt rev, mesclou algum outro código, corrigiu algumas coisas e tem um binário para Windows disponível em seu eepsite(I2P Site). O anúncio [2] parece sugerir que o código-fonte pode ser disponibilizado, embora ele não esteja no eepsite(I2P Site) no momento. Os desenvolvedores do I2P não auditaram (nem sequer viram) o código desse cliente, portanto, quem precisar de anonimato talvez queira obter e revisar uma cópia do código antes.
 
-[2] http://forum.i2p.net/viewtopic.php?t=382
+[2] `http://forum.i2p.net/viewtopic.php?t=382`
 
 Também há trabalho em uma versão 2 do cliente BT do Legion, embora eu não saiba qual é o status disso. Talvez possamos obter uma atualização do Legion durante a reunião?
 

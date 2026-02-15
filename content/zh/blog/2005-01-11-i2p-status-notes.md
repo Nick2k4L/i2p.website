@@ -16,7 +16,7 @@ categories: ["status"]
 
 总体而言，网络运行良好，不过我们遇到了一些问题：其中一台 irc 服务器离线了，而我的 outproxy(出口代理)也出现了异常。不过，另一台 irc 服务器仍然在线(而且现在仍是如此)(不过目前尚未禁用 CTCP - 参见 [1])，所以我们还是能够满足我们对 irc 的需求 :)
 
-[1] http://ugha.i2p/HowTo/IrcAnonymityGuide
+[1] `http://ugha.i2p/HowTo/IrcAnonymityGuide`
 
 * 2) 0.5 progress
 
@@ -52,7 +52,7 @@ Mule 已经开始研究 UDP 传输，我们也一直向 zab 请教他在 LimeWir
 
 随着这种能力的到来，也带来了一个全新的维度——人们可以选择在自己的 hosts.txt 中收录哪些站点，以及不收录哪些。尽管过去那种对公众完全开放、放任自由的做法自有其用武之地，但如今命名系统不仅在理论上，而且在实践中都已实现完全分布式，人们将需要为发布他人的目的地制定各自的策略。
 
-这里幕后重要的一点是：这是 I2P 社区的一个学习机会。此前，gott 和我都试图通过把 gott 的站点发布为 jrandom.i2p 来推动命名问题（该站点是他先提出申请的——我没有提出申请，而且我对该 URL 的内容没有任何控制权）。现在我们可以开始探索如何处理那些没有列在 http://dev.i2p.net/i2p/hosts.txt 或 forum.i2p 上的站点。未在这些位置发布并不会以任何方式阻止站点运行——你的 hosts.txt 只是你的本地地址簿。
+这里幕后重要的一点是：这是 I2P 社区的一个学习机会。此前，gott 和我都试图通过把 gott 的站点发布为 jrandom.i2p 来推动命名问题（该站点是他先提出申请的——我没有提出申请，而且我对该 URL 的内容没有任何控制权）。现在我们可以开始探索如何处理那些没有列在 `http://dev.i2p.net/i2p/hosts.txt` 或 forum.i2p 上的站点。未在这些位置发布并不会以任何方式阻止站点运行——你的 hosts.txt 只是你的本地地址簿。
 
 Anyway, enough babbling, I just wanted to put people on notice so we can all see what is to be done.
 

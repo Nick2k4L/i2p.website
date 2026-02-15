@@ -6,7 +6,7 @@ description: "Bản ghi cuộc họp phát triển I2P ngày 9 tháng 12 năm 20
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi wayback machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

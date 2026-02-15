@@ -6,7 +6,7 @@ description: "Nhật ký cuộc họp phát triển I2P ngày 4 tháng 6 năm 20
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi wayback machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

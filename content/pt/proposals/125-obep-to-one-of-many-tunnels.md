@@ -27,8 +27,8 @@ múltiplos túneis também nos permite implementar multicast no OBEP (entregando
 mensagem para todos os túneis especificados).
 
 Uma alternativa à parte de delegação desta proposta seria enviar através de um
-hash [LeaseSet](http://localhost:63465/docs/specs/common-structures/#leaseset), semelhante à habilidade existente de especificar um hash
-[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) de destino. Isso resultaria em uma mensagem menor e em
+hash `http://localhost:63465/docs/specs/common-structures/#leaseset`, semelhante à habilidade existente de especificar um hash
+`http://localhost:63465/docs/specs/common-structures/#common-structure-specification` de destino. Isso resultaria em uma mensagem menor e em
 potencialmente um LeaseSet mais recente. No entanto:
 
 1. Isso forçaria o OBEP a fazer uma busca
@@ -45,7 +45,7 @@ potencialmente um LeaseSet mais recente. No entanto:
 
 ## Design
 
-O originador (OBGW) colocaria alguns (todos?) dos [Leases](http://localhost:63465/docs/specs/common-structures/#lease) de destino nas
+O originador (OBGW) colocaria alguns (todos?) dos `http://localhost:63465/docs/specs/common-structures/#lease` de destino nas
 instruções de entrega [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) em vez de escolher apenas um.
 
 O OBEP selecionaria um desses para entregar. O OBEP selecionaria, se
@@ -65,7 +65,7 @@ alvo do OBGW ou sua visão do NetDB:
 
 - Um adversário que controla o OBEP e está coletando LeaseSets do NetDB já pode
   determinar se uma mensagem está sendo enviada para um Destino específico,
-  buscando o par [TunnelId](http://localhost:63465/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification). Na pior das hipóteses, a
+  buscando o par `http://localhost:63465/docs/specs/common-structures/#tunnelid` / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification`. Na pior das hipóteses, a
   presença de vários Leases no TMDI pode tornar mais rápido encontrar uma
   correspondência no banco de dados do adversário.
 
@@ -162,7 +162,7 @@ OBEPs. Portanto, podemos tornar esta mudança compatível com a rede existente
 tornando seu uso condicional na versão I2P alvo [VERSIONS](/docs/specs/i2np/#protocol-versions):
 
 * Os OBGWs devem selecionar OBEPs compatíveis ao construir túneis de saída,
-  com base na versão I2P anunciada em seu [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
+  com base na versão I2P anunciada em seu `http://localhost:63465/docs/specs/common-structures/#routerinfo`.
 
 * Pares que anunciam a versão alvo devem suportar a análise dos novos flags,
   e não devem rejeitar as instruções como inválidas.

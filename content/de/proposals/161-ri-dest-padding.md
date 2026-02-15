@@ -131,7 +131,7 @@ und das Padding-Feld (für Ziele und Router-Identitäten) zu füllen.
 
 ### Private Key Datei
 Das Format der Private Key Datei (eepPriv.dat) ist kein offizieller Bestandteil unserer Spezifikationen,
-aber es ist in den [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) dokumentiert
+aber es ist in den Java I2P javadocs dokumentiert
 und wird auch von anderen Implementierungen unterstützt.
 Dies ermöglicht die Portabilität von privaten Schlüsseln zu verschiedenen Implementierungen.
 Fügen Sie eine Anmerkung zu diesem Javadoc hinzu, dass der öffentliche Verschlüsselungsschlüssel zufälliges Padding sein kann
@@ -219,7 +219,7 @@ verschlüsselte Datenbankabfragen und -antworten betreffen.
 Geschätzter Zeitrahmen für Design, Entwicklung und Einführung dessen wäre ???????????
 Aber wäre nach hybriden oder Ratsch ?????????
 
-Für weitere Diskussion siehe [this topic](http://zzz.i2p/topics/3294).
+Für weitere Diskussion siehe this topic.
 
 
 ## Probleme
@@ -245,4 +245,4 @@ Vorbehaltlich von Kompatibilitätsproblemen und nach der Deaktivierung von SSU,
 können Implementierungen den ElGamal-Code vollständig entfernen.
 Etwa 14% der Router im Netzwerk sind ElGamal-Verschlüsselungstyp, einschließlich vieler Floodfills.
 
-Ein Entwurf für eine Merge-Anfrage für Java I2P befindet sich unter [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+Ein Entwurf für eine Merge-Anfrage für Java I2P befindet sich unter git.idk.i2p.

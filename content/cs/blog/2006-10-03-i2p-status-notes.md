@@ -52,7 +52,7 @@ Takže to je to úzké hrdlo v routeru/síti, jak to dnes vidím. Jakékoli a ve
 
 * 3) Syndie rationale continued
 
-Na fóru je obsáhlý příspěvek o Syndie a o tom, jak do toho zapadá - podívejte se na něj na <http://forum.i2p.net/viewtopic.php?t=1910>
+Na fóru je obsáhlý příspěvek o Syndie a o tom, jak do toho zapadá - podívejte se na něj na <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Také bych rád vyzdvihl dva úryvky z dokumentace k Syndie, na které se pracuje. Nejprve z irc (a z dosud nezveřejněného FAQ):
 

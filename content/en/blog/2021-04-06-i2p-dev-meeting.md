@@ -19,7 +19,7 @@ categories: ["meeting"]
 (04:02:12 PM) eyedeekay: 2) Mac Launcher Report, jpackage/dmg
 (04:02:12 PM) eyedeekay: 3) Mac user interest survey results
 (04:02:12 PM) eyedeekay: 4) Windows all-in-one installer
-(04:02:12 PM) eyedeekay: 5) Update channels - http://git.idk.i2p/i2p-hackers/i2p.i2p/-/wikis/...
+(04:02:12 PM) eyedeekay: 5) Update channels - `http://git.idk.i2p/i2p-hackers/i2p.i2p/-/wikis/...`
 (04:02:12 PM) eyedeekay: 6) Trac Migration Report/Evaluation
 (04:02:12 PM) eyedeekay: 7) 0.9.50 release
 (04:02:39 PM) eyedeekay: 1) Hi is everybody here?
@@ -108,7 +108,7 @@ categories: ["meeting"]
 (04:43:58 PM) zlatinb: We're working with users on r/i2p who have helped us greatly and continue to help us
 (04:44:15 PM) zlatinb: but ofc atm this is a PoC
 (04:44:15 PM) zlatinb: eot
-(04:45:38 PM) zzz: there seems to be no wikis listed on the index page at http://git.idk.i2p/i2p-hackers/i2p.i2p/-/wikis/home so ppl need the full url?
+(04:45:38 PM) zzz: there seems to be no wikis listed on the index page at `http://git.idk.i2p/i2p-hackers/i2p.i2p/-/wikis/home` so ppl need the full url?
 (04:45:41 PM) eyedeekay: Yes despite being an early POC, most of the feedback I've received has been positive. One unfortunate thing is that apparently NSIS goes crazy if the user has a different character set than the administrator, the hardest part has been avoiding this pitfall so far
 (04:46:01 PM) eyedeekay: Right-hand side for me, I'll get you the full URL
 (04:46:29 PM) eyedeekay: https://i2pgit.org/i2p-hackers/i2p.firefox/-/wikis/All-in-One-I2P-Installer-for-Windows
@@ -195,7 +195,7 @@ categories: ["meeting"]
 (05:05:46 PM) zlatinb: to summarize what's on the wiki page:
 (05:06:09 PM) zlatinb: we introduce the notion of an update channel which is platform X readiness tuple
 (05:06:29 PM) psi: i2p has been effectively rolling release for a decade right?
-(05:06:57 PM) zlatinb: to do it in backwards-compatible way with least amount of work the update url will be constructed http://...b32.i2p/&lt;platform&gt;/&lt;readiness&gt;/news.su3
+(05:06:57 PM) zlatinb: to do it in backwards-compatible way with least amount of work the update url will be constructed `http://...b32.i2p/&lt;platform&gt;/&lt;readiness&gt;/news.su3`
 (05:07:25 PM) zlatinb: no changes to news.xml format
 (05:08:08 PM) zlatinb: So very little modifications to the workflow of the su3 generators
 (05:08:33 PM) zlatinb: small changes to the backend of the router, and small-to-medium changes to the console ui

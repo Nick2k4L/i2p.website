@@ -14,6 +14,6 @@ I2P Easy-Install bundle cho Windows phiên bản 2.3.0 hiện đã được phá
 
 Bản phát hành này được biên dịch bằng OpenJDK 20. Bản này sử dụng i2p.plugins.firefox phiên bản 1.1.0 làm thư viện để khởi chạy trình duyệt. Nó sử dụng i2p.i2p phiên bản 2.3.0 như một I2P router (trình định tuyến I2P), đồng thời cung cấp các ứng dụng. Như thường lệ, khuyến nghị bạn cập nhật lên phiên bản mới nhất của I2P router vào thời điểm thuận tiện sớm nhất.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

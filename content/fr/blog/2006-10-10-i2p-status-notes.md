@@ -22,7 +22,7 @@ De plus en plus d’améliorations arrivent, la version alpha actuelle en est à
 
 De plus, il y a eu quelques discussions sur le canal à propos de la conception de la Syndie GUI (interface graphique) - meerboop a proposé quelques idées sympas et travaille à les documenter. La Syndie GUI est le composant principal de la version Syndie 2.0, donc plus vite nous mettrons cela en route, plus vite nous dominerons le monde^W^W^W^W pourrons diffuser Syndie auprès des masses qui ne se doutent de rien.
 
-Il y a aussi une nouvelle proposition sur mon blog Syndie concernant le suivi des bogues et des demandes de fonctionnalités en utilisant Syndie lui-même. Pour faciliter l'accès, j'ai mis en ligne une exportation en texte brut de cet article sur le Web - la page 1 se trouve à <http://dev.i2p.net/~jrandom/bugsp1.txt> et la page 2 se trouve à <http://dev.i2p.net/~jrandom/bugsp2.txt>
+Il y a aussi une nouvelle proposition sur mon blog Syndie concernant le suivi des bogues et des demandes de fonctionnalités en utilisant Syndie lui-même. Pour faciliter l'accès, j'ai mis en ligne une exportation en texte brut de cet article sur le Web - la page 1 se trouve à <`http://dev.i2p.net/~jrandom/bugsp1.txt>` et la page 2 se trouve à <`http://dev.i2p.net/~jrandom/bugsp2.txt>`
 
 * 3) Distributed version control revisited
 
@@ -32,7 +32,7 @@ Bien sûr, quel que soit le DVCS (système de contrôle de versions distribué) 
 
 * 4) ???
 
-Comme vous pouvez le voir, il se passe beaucoup de choses, comme toujours. La discussion s'est également poursuivie dans le fil "solve world hunger" sur le forum, alors allez-y jeter un œil à <http://forum.i2p.net/viewtopic.php?t=1910>
+Comme vous pouvez le voir, il se passe beaucoup de choses, comme toujours. La discussion s'est également poursuivie dans le fil "solve world hunger" sur le forum, alors allez-y jeter un œil à <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 Si vous avez autre chose à discuter, passez faire un tour sur #i2p pour notre réunion des développeurs ce soir, ou publiez sur le forum ou la liste de diffusion !
 

@@ -180,7 +180,7 @@ Le menu affiche également des options utiles telles que : - **Network: Firewall
 Une fois que le navigateur I2P s'ouvre, vous devez vérifier quels ports I2P utilise :
 
 1. **Accédez à la page de configuration réseau** :
-   - Rendez-vous sur [I2P Router Network Configuration](http://127.0.0.1:7657/confignet) dans votre navigateur
+   - Rendez-vous sur `http://127.0.0.1:7657/confignet` dans votre navigateur
    - Ou depuis la barre latérale de la console du router : **Configuration → Réseau**
 
 2. **Faites défiler vers le bas** jusqu'à la section de configuration des ports

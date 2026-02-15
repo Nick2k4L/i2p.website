@@ -71,7 +71,7 @@ categories: ["meeting"]
 22:11:56 &lt;@duck&gt; DrWoo और दूसरों ने कुछ GUI फीचर अनुरोध दायर किए हैं
 22:12:23 &lt;@duck&gt; पर मैं खुद GUI इस्तेमाल नहीं करता, wxpython नहीं जानता और शायद बहुत परवाह भी नहीं करता :)
 22:12:31 &lt;+Ragnarok&gt; हर slice को एक single message में फिट करना उम्मीद के मुताबिक अच्छा काम नहीं किया?
-22:12:57 &lt;clayboy&gt; http://brittanyworld.i2p/bittorrent/ पर कई seeded torrents हैं, अगर कोई आज़माना चाहे (i2p 0.4.2.2-7 और i2p-bt 0.1.3 के साथ)
+22:12:57 &lt;clayboy&gt; `http://brittanyworld.i2p/bittorrent/` पर कई seeded torrents हैं, अगर कोई आज़माना चाहे (i2p 0.4.2.2-7 और i2p-bt 0.1.3 के साथ)
 22:13:10 &lt;@duck&gt; Ragnarok: यह थोड़ा अनुमान ही था
 22:13:27 &lt;@duck&gt; यह local transfers पर काफ़ी अधिक throughput देता है
 22:13:51 &lt;+ugha2p&gt; शायद हमें इंतज़ार करना चाहिए कि कोई एक full-featured client पोर्ट कर दे?
@@ -161,7 +161,7 @@ categories: ["meeting"]
 22:36:50 &lt;ant&gt; &lt;mahes&gt; यदि मैं eepsite सेट करूँ, तो उसे mahes.i2p जैसे पते से कैसे पहुँचा जा सकता है
 22:36:59 &lt;+protokol&gt; मेरी एक चिंता है
 22:37:44 &lt;+protokol&gt; (लड़ाई शुरू) मुझे लगता है .i2p कई कारणों से घटिया TLD है
-22:38:19 &lt;+ugha2p&gt; mahes: "कैसे" से आपका क्या मतलब? लोग अपने ब्राउज़र को eepproxy इस्तेमाल करने के लिए कॉन्फ़िगर करेंगे, और अपने address bar में बस http://mahes.i2p/ लिख देंगे।
+22:38:19 &lt;+ugha2p&gt; mahes: "कैसे" से आपका क्या मतलब? लोग अपने ब्राउज़र को eepproxy इस्तेमाल करने के लिए कॉन्फ़िगर करेंगे, और अपने address bar में बस `http://mahes.i2p/` लिख देंगे।
 22:38:19 &lt;+protokol&gt; मेरा मानना है हमें ऐसा लेना चाहिए जो a) एक syllable हो b) एक शब्द की तरह बोला जा सके c) जिसमें कोई number न हो'
 22:38:46 &lt;+ugha2p&gt; जैसे .eep?
 22:39:07 &lt;@duck&gt; mahes:: अपनी eepsite की ओर इशारा करने वाला कोई 'nice name' पाने के लिए, उसे आपके hosts.txt फ़ाइल में होना चाहिए

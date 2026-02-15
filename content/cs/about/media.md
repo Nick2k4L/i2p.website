@@ -178,12 +178,12 @@ Zdroje pro novináře, výzkumníky a každého, kdo se zajímá o I2P. Všechny
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">Cibule a česnek: Protokoly I2P</a>
+Cibule a česnek: Protokoly I2P
 </div>
 <div class="content-entry-meta">🎥 Prezentace • 17. února 2016</div>
 <div class="content-entry-actions">
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
-<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+PDF
+ODP
 </div>
 </div>
 
@@ -249,7 +249,7 @@ Zdroje pro novináře, výzkumníky a každého, kdo se zajímá o I2P. Všechny
 <div class="content-entry-title">zzz a Lance James na InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Podcast • 16. února 2012</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">I2P Torrent</a>
+I2P Torrent
 </div>
 </div>
 
@@ -279,7 +279,7 @@ Zdroje pro novináře, výzkumníky a každého, kdo se zajímá o I2P. Všechny
 <div class="content-entry-title">zzz na InfoSec Daily Podcast</div>
 <div class="content-entry-meta">🎙️ Podcast • 18. srpna 2011</div>
 <div class="content-entry-actions">
-<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">I2P Torrent</a>
+I2P Torrent
 </div>
 </div>
 
@@ -343,7 +343,7 @@ Zdroje pro novináře, výzkumníky a každého, kdo se zajímá o I2P. Všechny
 </div>
 <div class="content-entry-meta">🎥 Prezentace • HOPE • 17. července 2010</div>
 <div class="content-entry-actions">
-<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3</a>
+MP3
 <a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">YouTube</a>
 </div>
 </div>

@@ -26,7 +26,7 @@ Il existe de nombreux avis divergents sur l’utilisation d’exposants courts e
 
 La principale alternative consiste à passer à un chiffrement 1024 bits (auquel cas nous pourrions alors utiliser un exposant court de 160 bits, peut-être). Cela peut être approprié quoi qu’il en soit et, si cela s’avère trop pénible avec le chiffrement 2048 bits sur le _PRE net, nous pourrions effectuer la transition au sein du _PRE net. Sinon, nous pourrions attendre la version 0.6.1.10, lorsqu’un déploiement plus large du nouveau chiffrement permettra de déterminer si c’est nécessaire. Beaucoup plus d’informations suivront si un tel changement semble probable.
 
-[1] "On Diffie-Hellman Key Agreement with Short Exponents" -     van Oorschot, Weiner à EuroCrypt 96.  copie miroir à l'adresse     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "On Diffie-Hellman Key Agreement with Short Exponents" -     van Oorschot, Weiner à EuroCrypt 96.  copie miroir à l'adresse     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 Quoi qu’il en soit, beaucoup de progrès sur le _PRE net, la plupart des communications à ce sujet se font au sein du canal #i2p_pre sur irc2p.
 

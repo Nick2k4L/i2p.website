@@ -164,7 +164,7 @@ Ek: ``saldırının örnek uygulaması``
 [HTTP Kullanıcı-Ajanlarına yönelik Paylaşılan Kimlik saldırısının
 bir örnek uygulaması](https://github.com/eyedeekay/colluding_sites_attack/)
 birkaç yıl önce oluşturulmuştur. Ek bir örnek ``simple-colluder`` alt dizininde mevcuttur
-[idk’nın prop166 deposunda](https://git.idk.i2p/idk/i2p.host-aware-proxy) Bu
+idk’nın prop166 deposunda Bu
 örnekler, saldırının çalıştığını göstermek üzere kasıtlı olarak tasarlanmıştır ve
 gerçek bir saldırıya dönüştürülmesi için modifikasyon(albeit minor) gereklidir.
 

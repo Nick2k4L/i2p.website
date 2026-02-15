@@ -20,7 +20,7 @@ categories: ["status"]
 
 아무튼, 제 얘기는 이쯤 하죠.
 
-[1] http://dev.i2p.net/pipermail/i2p/ [2] http://forum.i2p.net/
+[1] `http://dev.i2p.net/pipermail/i2p/` [2] `http://forum.i2p.net/`
 
 * 2) Dev[elopment] status
 

@@ -30,7 +30,7 @@ categories: ["status"]
 
 करने के लिए उपयोगी काम इतने हैं कि गिने नहीं जा सकते, लेकिन मैं बस आपका ध्यान अपने ब्लॉग पर एक पोस्ट की ओर दिलाना चाहता हूँ जो पाँच छोटे प्रोजेक्ट्स का वर्णन करती है जिन्हें कोई कोडर बिना ज़्यादा समय लगाए जल्दी से तैयार कर सकता है [1].  यदि कोई उन पर तुरंत काम शुरू करने में रुचि रखता है, तो मुझे यकीन है कि हम धन्यवाद स्वरूप जनरल फंड से कुछ संसाधन [2] आवंटित करेंगे, हालाँकि मैं समझता हूँ कि आपमें से अधिकांश को 'हैक' (रचनात्मक चुनौती) प्रेरित करती है, 'कैश' नहीं ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

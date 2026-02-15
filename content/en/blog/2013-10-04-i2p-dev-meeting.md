@@ -20,7 +20,7 @@ categories: ["meeting"]
 20:11:51  &lt;str4d&gt; hottuna, zzz, welterde, kytv: ping
 20:12:17  * orion is here
 20:13:01  * str4d loads meeting agenda
-20:14:01  &lt;str4d&gt; I can't reach zzz.i2p. Can anyone else get to http://zzz.i2p/topics/1480 ?
+20:14:01  &lt;str4d&gt; I can't reach zzz.i2p. Can anyone else get to `http://zzz.i2p/topics/1480` ?
 20:14:35  &lt;str4d&gt; Got it.
 20:14:43  &lt;str4d&gt; 1) Threat model
 20:14:44  &lt;str4d&gt; 1a) Discuss merits of DREAD classification scheme (and choose another if necessary).
@@ -66,7 +66,7 @@ categories: ["meeting"]
 20:29:50  &lt;str4d&gt; If no-one else has comments yet, then we will move on to the next topic while you think.
 20:30:05  &lt;psi&gt; no comments
 20:31:03  &lt;str4d&gt; 1b) Discuss threat model (and update if needed).
-20:31:17  &lt;str4d&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/overview/threat-model/
+20:31:17  &lt;str4d&gt; `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/overview/threat-model/`
 20:31:18  * psi starts skimming threat model
 20:31:39  &lt;iRelay&gt; Title: I2P's Threat Model - I2P (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 20:31:47  &lt;dg&gt; I notice a rating?

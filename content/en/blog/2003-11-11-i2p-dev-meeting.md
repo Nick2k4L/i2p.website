@@ -6,7 +6,7 @@ description: "I2P development meeting covering router status, roadmap updates, n
 categories: ["meeting"]
 ---
 
-(Courtesy of the wayback machine http://www.archive.org/)
+(Courtesy of the wayback machine `http://www.archive.org/`)
 
 ## Quick recap
 

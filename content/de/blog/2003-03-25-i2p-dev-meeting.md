@@ -6,7 +6,7 @@ description: "I2P-Entwicklungsbesprechungsprotokoll vom 25. März 2003."
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

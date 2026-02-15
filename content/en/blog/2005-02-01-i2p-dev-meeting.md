@@ -36,7 +36,7 @@ categories: ["meeting"]
 13:12 &lt;+protokol&gt; are you throwing in any other cool compatibility-breaking stuff?
 13:13 &lt;+protokol&gt; the tunnel pool has to do with treads, right?
 13:13 &lt;jrandom&gt; polecat: we don't verify at every hop, but we have a fixed message size to prevent useful tagging (and everything is encrypted at each hop)
-13:14 &lt;jrandom&gt; protokol: i'm considering http://www.i2p/todo#sessionTag
+13:14 &lt;jrandom&gt; protokol: i'm considering `http://www.i2p/todo#sessionTag`
 13:14 &lt;+polecat&gt; So how to prevent multiple hops passing around bogus messages, and causing a DoS?
 13:15 &lt;jrandom&gt; but no, the pools aren't the threading issue, the pools just let us safely manage the tunnels so that we don't get those "Lease expired" messages and can configure the length on a per-client basis
 13:15 &lt;jrandom&gt; polecat: they'll fail at the endpoint, and the creator will detect the failure and move off it
@@ -59,7 +59,7 @@ categories: ["meeting"]
 13:25 &lt;jrandom&gt; ok, thats all i have to bring up wrt 0.5 status - anyone have anything else on it?
 13:27 &lt;jrandom&gt; if not, moving on to 2) nntp
 13:27 &lt;jrandom&gt; nntp.fr.i2p is up, check it out :)
-13:28 &lt;jrandom&gt; it doesnt seem like LonelyGuy is around, but he can be reached at http://fr.i2p/.  there are also configuration instructions for slrn on my blog, and jdot found that thunderbird can be fairly safe (though i dont know what config jdot used)
+13:28 &lt;jrandom&gt; it doesnt seem like LonelyGuy is around, but he can be reached at `http://fr.i2p/.`  there are also configuration instructions for slrn on my blog, and jdot found that thunderbird can be fairly safe (though i dont know what config jdot used)
 13:30 &lt;smeghead&gt; LonelyGuy? :)
 13:30 &lt;cervantes&gt; did someone also test Pan?
 13:30 &lt;jrandom&gt; hes been on here occationally
@@ -81,8 +81,8 @@ categories: ["meeting"]
 13:36 &lt;jrandom&gt; 3) tech proposals
 13:36 &lt;jrandom&gt; erg
 13:36 &lt;jrandom&gt; damn ^C^V
-13:36 &lt;jrandom&gt; up at http://ugha.i2p/I2pRfc that is
-13:37 &lt;jrandom&gt; so next time you want to discuss how you've got a killer naming idea, go to http://ugha.i2p/I2pRfc/I2pRfc0001ResourceNameMetadata
+13:36 &lt;jrandom&gt; up at `http://ugha.i2p/I2pRfc` that is
+13:37 &lt;jrandom&gt; so next time you want to discuss how you've got a killer naming idea, go to `http://ugha.i2p/I2pRfc/I2pRfc0001ResourceNameMetadata`
 13:39 &lt;jrandom&gt; i dont really have much more to add beyond that. its a wiki, get wikiing :)
 13:39 &lt;+polecat&gt; Yay.
 13:39 &lt;+postman&gt; jrandom: ohh, cool i think i need to add a few ...
@@ -107,7 +107,7 @@ categories: ["meeting"]
 13:46 &lt;jrandom&gt; oh cool smeghead 
 13:46 &lt;+polecat&gt; smeghead: Hee, the $150 is as good as yours.
 13:47 &lt;smeghead&gt; i can whip up a gnu-crypto.jar that contains only the classes needed for Fortuna
-13:47 &lt;+polecat&gt; My working notes so far are at http://polecat.i2p/bittorrent.plan.doc
+13:47 &lt;+polecat&gt; My working notes so far are at `http://polecat.i2p/bittorrent.plan.doc`
 13:47 &lt;smeghead&gt; if we shipped the whole gnu-crypto.jar it's about 500 KB, too big really
 13:47 &lt;+polecat&gt; Don't let the .doc scare you, it's in text/plain.
 13:48 &lt;+polecat&gt; Fortuna doesn't use SecureRandom to do random things?

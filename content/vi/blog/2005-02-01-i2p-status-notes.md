@@ -18,19 +18,19 @@ Chào mọi người, đến giờ cập nhật tình hình hàng tuần rồi.
 
 Như đã đề cập trước đó, bản phát hành 0.5 ban đầu sẽ cung cấp nền tảng để các chiến lược lựa chọn/sắp xếp thứ tự peer (nút ngang hàng) cho tunnel khác nhau có thể hoạt động. Chúng tôi sẽ bắt đầu với một bộ tham số có thể cấu hình cơ bản cho các pool exploratory và client, nhưng các bản phát hành sau này nhiều khả năng sẽ bao gồm các tùy chọn khác cho các hồ sơ người dùng khác nhau.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD`
 
 * 2) nntp
 
 Như đã đề cập trên trang của LazyGuy [2] và blog của tôi [3], chúng tôi có một máy chủ NNTP mới đã hoạt động trên mạng, truy cập được tại nntp.fr.i2p. Trong khi LazyGuy đã chạy một vài tập lệnh suck [4] để nạp một vài danh sách từ gmane, nội dung nhìn chung là về, dành cho và bởi người dùng I2P.  jdot, LazyGuy và tôi đã tìm hiểu xem những trình đọc tin nào có thể dùng một cách an toàn, và dường như có vài giải pháp khá đơn giản. Xem blog của tôi để biết hướng dẫn chạy slrn [5] để đọc và đăng tin ẩn danh.
 
-[2] http://fr.i2p/ [3] http://jrandom.dev.i2p/ [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
+[2] `http://fr.i2p/` [3] `http://jrandom.dev.i2p/` [4] http://freshmeat.net/projects/suck/ [5] http://freshmeat.net/projects/slrn/
 
 * 3) tech proposals
 
 Orion và những người khác đã đăng một loạt RFC về các vấn đề kỹ thuật khác nhau lên wiki của ugha [6] để giúp làm rõ một số vấn đề khó hơn ở cấp độ client và app. Vui lòng dùng đó làm nơi để thảo luận về các vấn đề đặt tên, các cập nhật cho SAM, các ý tưởng về swarming (mô hình swarm trong P2P), và các chủ đề tương tự - khi bạn đăng ở đó, tất cả chúng ta có thể cùng cộng tác tại nơi của chính chúng ta để đạt kết quả tốt hơn.
 
-[6] http://ugha.i2p/I2pRfc
+[6] `http://ugha.i2p/I2pRfc`
 
 * 4) ???
 

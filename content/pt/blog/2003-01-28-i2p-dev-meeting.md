@@ -6,7 +6,7 @@ description: "Registro da reunião de desenvolvimento I2P de 28 de janeiro de 20
 categories: ["meeting"]
 ---
 
-(Cortesia da wayback machine http://www.archive.org/)
+(Cortesia da wayback machine `http://www.archive.org/`)
 
 ## Resumo rápido
 

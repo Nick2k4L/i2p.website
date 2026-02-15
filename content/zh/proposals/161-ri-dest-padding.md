@@ -94,7 +94,7 @@ NTCP2 不压缩路由器信息。
 使用强大的密码学伪随机数生成器 (PRNG) 生成 32 字节的随机数据，并根据需要重复这 32 字节以填充公共钥(field 字段（对于目标））和填充字段（对于目标和路由器身份）。
 
 ### 私钥文件
-私钥文件（eepPriv.dat）格式不是我们规范的正式部分，但它在 [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) 中已文档化，其他实现也支持它。这使私钥能在不同实现之间便携。添加一个注解到该 javadoc，说明加密公钥可能是随机填充，而加密私钥可能全是零或随机数据。
+私钥文件（eepPriv.dat）格式不是我们规范的正式部分，但它在 Java I2P javadocs 中已文档化，其他实现也支持它。这使私钥能在不同实现之间便携。添加一个注解到该 javadoc，说明加密公钥可能是随机填充，而加密私钥可能全是零或随机数据。
 
 ### SAM
 在 SAM 规范中指出加密私钥未使用，且可能被忽略。客户端可能会返回任意随机数据。SAM Bridge 在创建时（通过 DEST GENERATE 或 SESSION CREATE DESTINATION=TRANSIENT）可能发送随机数据，而不是全零，这样 Base 64 表示就不会显示一串 AAAA 字符，看起来是损坏的。
@@ -158,7 +158,7 @@ ratchet 的静态密钥在租赁集中，而不在目标中。
 设计、开发和推出的预计时限是？？？？？？？？？？
 但会是在混合体或 ratchet 之后？？？？？？？
 
-有关进一步讨论，请参见 [this topic](http://zzz.i2p/topics/3294)。
+有关进一步讨论，请参见 this topic。
 
 ## 问题
 
@@ -178,4 +178,4 @@ ratchet 的静态密钥在租赁集中，而不在目标中。
 受限于向后兼容性问题，以及在禁用 SSU 之后，实现可能会完全移除 ElGamal 代码。
 网络中约 14% 的路由器是 ElGamal 加密类型，包括许多 floodfills。
 
-Java I2P 的草稿合并请求在 [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66)。
+Java I2P 的草稿合并请求在 git.idk.i2p。

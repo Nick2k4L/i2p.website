@@ -20,7 +20,7 @@ Son söylediğim, en azından sonbahara kadar irc'de eskisi kadar takılmayacağ
 
 Neyse, benim hakkımda bu kadar.
 
-[1] http://dev.i2p.net/pipermail/i2p/ [2] http://forum.i2p.net/
+[1] `http://dev.i2p.net/pipermail/i2p/` [2] `http://forum.i2p.net/`
 
 * 2) Dev[elopment] status
 

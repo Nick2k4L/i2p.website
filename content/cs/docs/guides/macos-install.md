@@ -221,23 +221,23 @@ Váš I2P router je nyní nakonfigurován a spuštěn! Konzole routeru zobrazí 
 
 Nyní, když je I2P nainstalováno a nakonfigurováno, můžete:
 
-1. **Procházejte I2P stránky**: Navštivte [I2P domovskou stránku](http://127.0.0.1:7657/home) a podívejte se na odkazy na oblíbené I2P služby
+1. **Procházejte I2P stránky**: Navštivte `http://127.0.0.1:7657/home` a podívejte se na odkazy na oblíbené I2P služby
 2. **Nakonfigurujte svůj prohlížeč**: Nastavte [profil prohlížeče](/docs/guides/browser-config) pro přístup k `.i2p` stránkám
 3. **Prozkoumejte služby**: Vyzkoušejte I2P email, fóra, sdílení souborů a další
-4. **Monitorujte svůj router**: [Konzole](http://127.0.0.1:7657/console) zobrazuje stav vaší sítě a statistiky
+4. **Monitorujte svůj router**: `http://127.0.0.1:7657/console` zobrazuje stav vaší sítě a statistiky
 
 ### Užitečné odkazy
 
-- **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Konfigurace**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Adresář**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Nastavení šířky pásma**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Router Console**: `http://127.0.0.1:7657/`
+- **Konfigurace**: `http://127.0.0.1:7657/config`
+- **Adresář**: `http://127.0.0.1:7657/susidns/addressbook`
+- **Nastavení šířky pásma**: `http://127.0.0.1:7657/config`
 
 ## Opětovné spuštění Průvodce nastavením
 
 Pokud chcete později změnit nastavení šířky pásma nebo znovu nakonfigurovat I2P, můžete znovu spustit uvítací průvodce z Router Console:
 
-1. Přejděte na [I2P Setup Wizard](http://127.0.0.1:7657/welcome)
+1. Přejděte na `http://127.0.0.1:7657/welcome`
 2. Znovu postupujte podle kroků průvodce
 
 ## Řešení problémů

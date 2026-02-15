@@ -36,7 +36,7 @@ La función de sindicación programada de Ragnarok parece ir bien y, desde que s
 
 Las implicaciones de ambos en conjunto deberían ser claras. Más noticias cuando haya más noticias.
 
-[2] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true [3] http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true [4] http://dust.i2p/Sucker.java     (lo integraremos en CVS en breve)
+[2] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000000&expand=true` [3] `http://syndiemedia.i2p/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1128816000001&expand=true` [4] `http://dust.i2p/Sucker.java`     (lo integraremos en CVS en breve)
 
 * 4) I2Phex
 
@@ -46,7 +46,7 @@ Esto sería realmente genial, ya que significaría mucho menos código que mante
 
 No tengo tiempo para ponerme con esto ahora mismo, pero pásate por el foro si quieres ayudar.
 
-[5] http://forum.i2p.net/viewforum.php?f=25
+[5] `http://forum.i2p.net/viewforum.php?f=25`
 
 * 5) Stego and darknets (re: flamewar)
 
@@ -54,7 +54,7 @@ La lista de correo [6] ha estado bastante activa últimamente con la discusión 
 
 No estoy seguro de que tenga mucho que añadir que no esté ya en las propias publicaciones, pero algunas personas han mencionado que la discusión les ha ayudado a entender mejor I2P y Freenet, así que quizá valga la pena echarle un vistazo. O quizá no ;)
 
-[6] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html [7] nttp://news.gmane.org/gmane.network.freenet.technical
+[6] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` [7] nttp://news.gmane.org/gmane.network.freenet.technical
 
 * 6) ???
 

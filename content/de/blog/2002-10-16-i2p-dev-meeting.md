@@ -6,7 +6,7 @@ description: "I2P-Entwicklungsbesprechungsprotokoll vom 16. Oktober 2002."
 categories: ["meeting"]
 ---
 
-(Mit freundlicher Genehmigung der Wayback Machine http://www.archive.org/)
+(Mit freundlicher Genehmigung der Wayback Machine `http://www.archive.org/`)
 
 ## Kurze Zusammenfassung
 

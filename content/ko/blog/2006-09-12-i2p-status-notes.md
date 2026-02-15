@@ -20,7 +20,7 @@ categories: ["status"]
 
 히스토리 로그 [1]에 설명된 대로, zzz의 I2PSnark 업데이트에는 프로토콜 최적화뿐 아니라 웹 인터페이스 변경도 포함되었습니다. 또한 0.6.1.25 릴리스 이후에도 I2PSnark에는 몇 가지 작은 업데이트가 있었고, 아마 zzz가 오늘 밤 회의에서 최근 상황에 대한 개요를 제공해 줄 수 있을 것입니다.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

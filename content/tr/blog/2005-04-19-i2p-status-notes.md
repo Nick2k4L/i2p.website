@@ -32,7 +32,7 @@ Artık Nisan ayındayız, bu yüzden yol haritası [1] buna göre güncellendi -
 
 Aum bir süredir Q üzerinde harıl harıl çalışıyor, bizim için daha fazla güzellik ekliyor; en son ekran görüntüleri de sitesinde [2] yayında. Ayrıca kodu CVS'e de commit etti (yaşasın), bu yüzden umarız yakında alfa testine başlayabileceğiz. Eminim nasıl yardımcı olunacağına dair ayrıntılarla aum'dan daha çok haber alacağız, ya da CVS'de i2p/apps/q/ dizinindeki güzelliklere dalabilirsiniz
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

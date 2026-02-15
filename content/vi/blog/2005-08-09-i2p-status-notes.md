@@ -16,7 +16,7 @@ Chào mọi người, lại đến hẹn hàng tuần rồi
 
 Như đã thông báo hôm qua [1], chúng tôi đã phát hành một phiên bản mới và phản hồi nhìn chung là tích cực. Khoảng một nửa mọi người đã nâng cấp rồi (tôi thấy 110 @ 0.6.0.2, 89 @ 0.6.0.1, và 21 @ 0.6), nhưng những người còn lại nên nâng cấp càng sớm càng tốt, vì đã có một số cải tiến hữu ích.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000834.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000834.html`
 
 * 2) Roadmap update
 

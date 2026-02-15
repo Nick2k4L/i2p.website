@@ -35,7 +35,7 @@ categories: ["meeting"]
 20:05:17 &lt;zlatinb&gt; oh yes, its just that the presence on postman brings in a lot of visibility
 20:05:43 &lt;zzz&gt; ok, talk to the bobthebuilder op about that, good idea
 20:05:54 &lt;zzz&gt; anything else on 1) ?
-20:05:58 &lt;i2pr&gt; [Slack/str4d] Also, we now have continuous builds on Travis CI as well, so keep an eye on https://travis-ci.org/i2p/i2p.i2p  for another perspective
+20:05:58 &lt;i2pr&gt; [Slack/str4d] Also, we now have continuous builds on Travis CI as well, so keep an eye on `https://travis-ci.org/i2p/i2p.i2p`  for another perspective
 20:06:44 &lt;zzz&gt; str4d, if you can set up a irc bot for that, that might help, hard to remember to check a website
 20:07:17 &lt;zzz&gt; anything else on 1) ?
 20:08:01 &lt;zzz&gt; 2) 34C3 planning (zzz)

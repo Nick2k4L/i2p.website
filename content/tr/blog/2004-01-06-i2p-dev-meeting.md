@@ -6,7 +6,7 @@ description: "6 Ocak 2004 I2P geliştirme toplantısı günlüğü."
 categories: ["meeting"]
 ---
 
-(Wayback machine'in izniyle http://www.archive.org/)
+(Wayback machine'in izniyle `http://www.archive.org/`)
 
 ## Hızlı özet
 

@@ -31,9 +31,9 @@ toc: true
 - Common structures spec [Common Structures](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) spec जिसमें LS2 शामिल है
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) नया asymmetric crypto अवलोकन
+- `http://zzz.i2p/topics/1768` नया asymmetric crypto अवलोकन
 - निम्न-स्तरीय crypto अवलोकन [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
+- ECIES `http://zzz.i2p/topics/2418`
 - [NTCP2](/docs/specs/ntcp2/) [Proposal 111](/proposals/111-ntcp-2/)
 - 123 New netDB Entries
 - 142 New Crypto Template

@@ -20,7 +20,7 @@ Před pár dny jsme vydali verzi 0.6.1.25, která zahrnuje spoustu oprav chyb na
 
 Aktualizace zzz pro I2PSnark zahrnovaly optimalizace protokolu i změny webového rozhraní, jak je popsáno v záznamu historie [1]. Od vydání 0.6.1.25 došlo také k několika menším aktualizacím I2PSnarku a možná nám zzz může během dnešní večerní schůzky poskytnout přehled aktuálního stavu.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

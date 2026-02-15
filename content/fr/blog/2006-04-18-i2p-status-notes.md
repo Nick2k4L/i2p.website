@@ -26,7 +26,7 @@ On voit la lumière au bout du tunnel, et je vous remercie de votre patience et 
 
 * 3) Feedspace
 
-Frosk travaille d’arrache-pied sur Feedspace et a mis à jour quelques pages sur le site Trac, dont un nouveau document de présentation, une série de tâches en suspens, quelques détails de base de données, et plus encore. Passez faire un tour sur http://feedspace.i2p/ pour vous mettre au courant des dernières modifications, et peut-être bombarder Frosk de questions dès que vous en aurez l’occasion :)
+Frosk travaille d’arrache-pied sur Feedspace et a mis à jour quelques pages sur le site Trac, dont un nouveau document de présentation, une série de tâches en suspens, quelques détails de base de données, et plus encore. Passez faire un tour sur `http://feedspace.i2p/` pour vous mettre au courant des dernières modifications, et peut-être bombarder Frosk de questions dès que vous en aurez l’occasion :)
 
 * 4) ???
 

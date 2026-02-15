@@ -19,7 +19,7 @@ release, due in part to the backwards incompatibility, but also due
 to unexpected bugs.  Neither reliability nor uptime on 0.6.1.10
 was sufficient, so over the last 5 days there was been a flurry of
 patches, culminating in the new 0.6.1.11 release -
-http://dev.i2p.net/pipermail/i2p/2006-February/001263.html
+`http://dev.i2p.net/pipermail/i2p/2006-February/001263.html`
 
 Most of the bugs found in 0.6.1.10 have been present since the 0.6
 release last September, but weren't readily apparent while there

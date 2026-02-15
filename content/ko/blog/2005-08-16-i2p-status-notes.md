@@ -16,7 +16,7 @@ categories: ["status"]
 
 앞서 언급했듯이, 곧 출시될 0.6.1 릴리스에는 router를 보다 세심하게 구성하고 도달 가능성을 확인(또는 필요한 조치를 지적)하기 위한 일련의 테스트가 포함될 것이다. 이미 두 번의 빌드 동안 CVS에 일부 코드가 있었지만, 필요한 만큼 매끄럽게 동작하기까지는 아직 다듬어야 할 부분이 남아 있다. 현재로서는, Charlie의 도달 가능성을 확인하기 위한 추가 패킷을 넣고 Charlie가 응답할 때까지 Bob이 Alice에게 보내는 응답을 지연시키는 방식으로, 문서화된 [1] 테스트 흐름에 약간의 수정을 가하고 있다. 이는 테스트할 준비가 된 Charlie가 확보될 때까지 Bob이 Alice에게 응답하지 않게 되므로 사람들이 보게 되는 불필요한 "ERR-Reject" 상태 값의 수를 줄여줄 것이다(그리고 Bob이 응답하지 않을 때, Alice는 상태로 "Unknown"을 보게 된다).
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html#peerTesting`
 
 어쨌든, 네, 그렇습니다 - 내일 0.6.0.2-3이 나올 예정이며, 철저히 테스트되면 정식 릴리스로 배포할 겁니다.
 
@@ -26,7 +26,7 @@ categories: ["status"]
 
 옛 i2pirc 네트워크를 맡아 주셨던 분들(duck, baffled, the metropipe crew, postman)과 새 irc2p 네트워크를 운영하시는 분들(postman, arcturus)께 감사드립니다! 흥미로운 서비스와 콘텐츠가 I2P를 사용할 가치 있게 만들며, 그런 것들을 만들어 내는 일은 여러분 모두에게 달려 있습니다!
 
-[2] http://forum.i2p.net/viewtopic.php?t=898 [3] http://hq.postman.i2p/
+[2] `http://forum.i2p.net/viewtopic.php?t=898` [3] `http://hq.postman.i2p/`
 
 * 3) Feedspace
 

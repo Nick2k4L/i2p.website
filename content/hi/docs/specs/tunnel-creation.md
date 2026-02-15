@@ -165,7 +165,7 @@ reply records को प्रोसेस करने के लिए, creato
 
 ## इतिहास और टिप्पणियाँ
 
-यह रणनीति I2P मेलिंग सूची पर Michael Rogers, Matthew Toseland (toad), और jrandom के बीच predecessor attack के संबंध में हुई चर्चा के दौरान विकसित हुई। देखें [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html), [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)। यह रिलीज़ 0.6.1.10 में 2006-02-16 को पेश की गई थी, जो I2P में अंतिम बार कोई non-backward-compatible बदलाव किया गया था।
+यह रणनीति I2P मेलिंग सूची पर Michael Rogers, Matthew Toseland (toad), और jrandom के बीच predecessor attack के संबंध में हुई चर्चा के दौरान विकसित हुई। देखें TUNBUILD-SUMMARY, TUNBUILD-REASONING। यह रिलीज़ 0.6.1.10 में 2006-02-16 को पेश की गई थी, जो I2P में अंतिम बार कोई non-backward-compatible बदलाव किया गया था।
 
 नोट्स:
 
@@ -193,8 +193,8 @@ reply records को प्रोसेस करने के लिए, creato
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)
 - [TBM](/docs/specs/i2np/#struct-TunnelBuild) - TunnelBuildMessage
 - [TBRM](/docs/specs/i2np/#struct-TunnelBuildReply) - TunnelBuildReplyMessage
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)
+- TUNBUILD-REASONING
+- TUNBUILD-SUMMARY
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation/)
 - [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation)
 - [VTBM](/docs/specs/i2np/#struct-VariableTunnelBuild) - VariableTunnelBuildMessage

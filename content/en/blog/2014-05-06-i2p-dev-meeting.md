@@ -13,7 +13,7 @@ categories: ["meeting"]
 ## Meeting Log
 
 <div class="irc-log">
-20:00:37  &lt;zzz&gt; http://zzz.i2p/topics/1618
+20:00:37  &lt;zzz&gt; `http://zzz.i2p/topics/1618`
 20:00:43  &lt;bgwcb&gt; well, start it?
 20:00:46  &lt;iRelay&gt; Title: zzz.i2p: Meeting Tues. May 6 - 8 PM UTC (at zzz.i2p)
 20:00:57  &lt;zzz&gt; 0. Hi
@@ -39,7 +39,7 @@ categories: ["meeting"]
 20:04:06  &lt;EinMByte&gt; Hi
 20:04:47  &lt;EinMByte&gt; hghoster: so... can we say it's a kind of help-site
 20:05:03  &lt;hghoster&gt; so.. we already published first version of paper. also few guys continues fill wiki with new techinal articles
-20:05:04  &lt;kytv&gt; for convenience, the ToS in EN:  http://hiddengate.i2p/wiki/ToS#Terms_of_Service
+20:05:04  &lt;kytv&gt; for convenience, the ToS in EN:  `http://hiddengate.i2p/wiki/ToS#Terms_of_Service`
 20:05:04  &lt;zzz&gt; ok, thanks. Anybody have questions or comments? I especially would like comments from Russian speakers
 20:05:08  &lt;iRelay&gt; Title: HiddenGate Wiki:  HiddenGate Wiki (at hiddengate.i2p)
 20:05:27  &lt;bgwcb&gt; hghoster: censored imageboard, but it's probably good because we, good russian anonymous, don't love cp
@@ -51,7 +51,7 @@ categories: ["meeting"]
 20:07:08  &lt;EinMByte&gt; So, maybe an english introduction would be nice?
 20:07:08  &lt;EinMByte&gt; (even if the rest of the site is in russian)
 20:07:08  &lt;EinMByte&gt; That sounds good
-20:07:14  &lt;zzz&gt; hghoster has posted a English and Russian ToS as required: http://hiddengate.i2p/wiki/ToS
+20:07:14  &lt;zzz&gt; hghoster has posted a English and Russian ToS as required: `http://hiddengate.i2p/wiki/ToS`
 20:07:18  &lt;iRelay&gt; Title: HiddenGate Wiki:  HiddenGate Wiki (at hiddengate.i2p)
 20:07:20  &lt;EinMByte&gt; zzz: considering the amount of russian users, I think this would be a good addition
 20:07:22  &lt;hghoster&gt; zzz thank you
@@ -75,7 +75,7 @@ categories: ["meeting"]
 20:11:53  &lt;bgwcb&gt; and it's good idea because they heaven't cp. new arrivals may be affraid darkness networks because it's shelter for pedofiles and terrorists
 20:11:59  &lt;hghoster&gt; certainly plans are good :) there is another guy "Glavred", he is idea-creator of this project. i am workiing on it like admin. also there is few guys who continuing fill wiki
 20:12:37  &lt;hghoster&gt; offcourse it fills not so fast as we want. but we continue our work anyway. until someone like mr. P will not close internets
-20:12:48  &lt;bgwcb&gt; but, then i will be want to get on start page http://rus.i2p with comment it's have a some shock-content
+20:12:48  &lt;bgwcb&gt; but, then i will be want to get on start page `http://rus.i2p` with comment it's have a some shock-content
 20:12:50  &lt;hghoster&gt; sorry for my poor english
 20:13:00  &lt;iRelay&gt; Title:  I2P Wiki (at rus.i2p)
 20:13:13  &lt;zzz&gt; no need for sorry, you are doing fine :)(
@@ -177,7 +177,7 @@ categories: ["meeting"]
 20:33:26  &lt;EinMByte&gt; so I think they need some advice
 20:33:30  &lt;EinMByte&gt; zzz: could you paste
 20:33:38  &lt;EinMByte&gt; I'm interested
-20:34:04  &lt;EinMByte&gt; as I wrote on http://zzz.i2p/topics/1614, I doubt about their ideas
+20:34:04  &lt;EinMByte&gt; as I wrote on `http://zzz.i2p/topics/1614,` I doubt about their ideas
 20:34:10  &lt;iRelay&gt; Title: zzz.i2p: Just Mail Kickstarter (at zzz.i2p)
 20:34:28  &lt;EinMByte&gt; * the feasability of their ideas
 20:35:09  &lt;zzz&gt; I'll paste it onto that thread after the meeting.. It's just marketing b.s., doesn't really explain anything.
@@ -191,7 +191,7 @@ categories: ["meeting"]
 20:37:00  &lt;EinMByte&gt; again, I wanted to know the status on that
 20:37:07  &lt;EinMByte&gt; okay, any talks yet?
 20:37:20  &lt;psi&gt; i was hoping you two could give one
-20:37:29  &lt;zzz&gt; http://zzz.i2p/topics/1579
+20:37:29  &lt;zzz&gt; `http://zzz.i2p/topics/1579`
 20:37:33  &lt;iRelay&gt; Title: zzz.i2p: Derbycon Louisville Sept. 24-28 (at zzz.i2p)
 20:37:44  &lt;EinMByte&gt; zzz: no chance of you giving a talk?
 20:38:20  &lt;zzz&gt; A chance, but I vote for our PR guy orion
@@ -202,9 +202,9 @@ categories: ["meeting"]
 20:39:46  &lt;zzz&gt; This is mainly an InfoSec conf, much different from DEFCON/HOPE/CCC etc
 20:40:39  &lt;EinMByte&gt; It is important that we have a talk, because that will definitely spread the word
 20:40:54  &lt;EinMByte&gt; (also more chance of academic research)
-20:41:13  &lt;zzz&gt; speaking of HOPE: http://zzz.i2p/topics/1507
+20:41:13  &lt;zzz&gt; speaking of HOPE: `http://zzz.i2p/topics/1507`
 20:41:19  &lt;iRelay&gt; Title: zzz.i2p: HOPE X (at zzz.i2p)
-20:41:36  &lt;zzz&gt; and DEFCON: http://zzz.i2p/topics/1556
+20:41:36  &lt;zzz&gt; and DEFCON: `http://zzz.i2p/topics/1556`
 20:41:42  &lt;iRelay&gt; Title: zzz.i2p: DEFCON 2014 (at zzz.i2p)
 20:42:07  &lt;zzz&gt; anyway, psi and orion, if you guys go to DerbyCon there's a chance I'll go too.
 20:42:18  &lt;zzz&gt; eche|on, Louisville BBQ?
@@ -217,7 +217,7 @@ categories: ["meeting"]
 20:44:10  * zzz warms up the baffer
 20:44:14  &lt;user@kyirc&gt; it's not a topic on the agenda, but I think, we should start thinking about our official in-network homepage. www.i2p2.i2p is ugly. it was chosen in order to match the public internet domain of i2p2.de. since this one is not our main address anymore, we should also think about a nicer in-network domain. i2p.i2p for instance. dunno if geti2p.i2p makes sense, as you don't need to _get_ i2p anymore.
 20:44:23  &lt;eche|on&gt; zzz: louiesville, time, place?
-20:44:39  &lt;zzz&gt; http://zzz.i2p/topics/1579
+20:44:39  &lt;zzz&gt; `http://zzz.i2p/topics/1579`
 20:44:44  &lt;iRelay&gt; Title: zzz.i2p: Derbycon Louisville Sept. 24-28 (at zzz.i2p)
 20:44:53  &lt;user@kyirc&gt; not urgent, but maybe something to think about, and easy to "fix"
 20:45:22  &lt;EinMByte&gt; yes, new homepage would be nice
@@ -233,7 +233,7 @@ categories: ["meeting"]
 20:47:17  &lt;EinMByte&gt; zzz: alright
 20:47:23  &lt;user@kyirc&gt; what's wrong with i2p-project.i2p ? already registered by someone else?
 20:47:47  &lt;eche|on&gt; but louisville is nice to reach and central
-20:47:50  &lt;zzz&gt; EinMByte, http://zzz.i2p/topics/1491
+20:47:50  &lt;zzz&gt; EinMByte, `http://zzz.i2p/topics/1491`
 20:47:55  &lt;iRelay&gt; Title: zzz.i2p: Project Meetings (at zzz.i2p)
 20:48:37  &lt;EinMByte&gt; I'm thinking about an i2pcpp meeting
 20:48:42  &lt;EinMByte&gt; but I need to discuss with orion

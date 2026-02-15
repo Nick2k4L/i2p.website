@@ -22,13 +22,13 @@ Sonbaharda, tunnel'lerimizi nasıl kurduğumuz ve Tor tarzı teleskopik tunnel o
 
 Geçen gün yeni tunnel kriptografisi için bir taslak şartname hazırlayıp syndie bloguma gönderdim ve bunu gerçekten uygularken ortaya çıkan birkaç küçük değişikliğin ardından, CVS’de [4] bir şartname oluşturduk. Bunu uygulayan temel bir kod da CVS’de [5] mevcut, ancak henüz gerçek tunnel oluşturma için entegre edilmiş değil. Canı sıkılan varsa, şartname hakkında geri bildirim almaktan memnun olurum. Bu arada, yeni tunnel oluşturma kodu üzerinde çalışmaya devam edeceğim.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html ve     önyükleme saldırılarıyla ilgili başlıklara bakın [2] http://dev.i2p.net/pipermail/i2p/2005-October/001064.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001057.html [4] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD [5] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/                        i2p/router/tunnel/BuildMessageTest.java
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html` ve     önyükleme saldırılarıyla ilgili başlıklara bakın [2] `http://dev.i2p.net/pipermail/i2p/2005-October/001064.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001057.html` [4] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD [5] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/java/src/net/`                        i2p/router/tunnel/BuildMessageTest.java
 
 * 3) Syndie blogs
 
-Daha önce belirtildiği gibi, bu yeni 0.6.1.9 sürümü, Syndie blog arayüzünde cervantes’in yeni stil düzeni ve her kullanıcının blog bağlantılarını ve logosunu seçebilmesi (örn. [6]) dahil olmak üzere köklü yenilemeler içeriyor. Profil sayfanızdaki "configure your blog" bağlantısına tıklayarak soldaki bu bağlantıları yönetebilirsiniz; bu sizi http://localhost:7657/syndie/configblog.jsp adresine götürür. Orada değişikliklerinizi yaptıktan sonra, bir sonraki sefer bir gönderiyi bir arşive yüklediğinizde, bu bilgiler başkalarının erişimine sunulacaktır.
+Daha önce belirtildiği gibi, bu yeni 0.6.1.9 sürümü, Syndie blog arayüzünde cervantes’in yeni stil düzeni ve her kullanıcının blog bağlantılarını ve logosunu seçebilmesi (örn. [6]) dahil olmak üzere köklü yenilemeler içeriyor. Profil sayfanızdaki "configure your blog" bağlantısına tıklayarak soldaki bu bağlantıları yönetebilirsiniz; bu sizi `http://localhost:7657/syndie/configblog.jsp` adresine götürür. Orada değişikliklerinizi yaptıktan sonra, bir sonraki sefer bir gönderiyi bir arşive yüklediğinizde, bu bilgiler başkalarının erişimine sunulacaktır.
 
-[6] http://syndiemedia.i2p.net/     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
+[6] `http://syndiemedia.i2p.net/`     blog.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=
 
 * 4) ???
 

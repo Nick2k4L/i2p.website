@@ -28,7 +28,7 @@ categories: ["status"]
 
 对 GCJ 的支持的另一个优点是可以从 C/C++/Python 等语言使用 streaming lib（流式库）。我不清楚是否有人在做这类集成，但这应该很值得做，所以如果你有兴趣在这方面开展开发，请告诉我！
 
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001021.html [4] http://gcc.gnu.org/java/
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001021.html` [4] http://gcc.gnu.org/java/
 
 * 4) i2psnark returns
 
@@ -36,7 +36,7 @@ categories: ["status"]
 
 Ragnarok 已经开始动手改进其块选择算法，我们也希望能在 0.6.2 发布之前为它加入 Web 界面和 multitorrent（多种子）功能。如果你有兴趣帮忙，请与我们联系！ :)
 
-[5] http://klomp.org/snark/ [6] http://dev.i2p.net/~jrandom/snark_diff.txt
+[5] http://klomp.org/snark/ [6] `http://dev.i2p.net/~jrandom/snark_diff.txt`
 
 * 5) More on bootstrapping
 
@@ -46,7 +46,7 @@ The mailing list has been pretty active lately, with Michael's new simulations a
 
 (干得好，Michael，谢谢！)
 
-[7] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html     (参见 "i2p tunnel bootstrap attack" 讨论串) [8] http://dev.i2p.net/~jrandom/fraction-of-attackers.png [9] http://dev.i2p.net/~jrandom/messages-per-tunnel.png
+[7] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html`     (参见 "i2p tunnel bootstrap attack" 讨论串) [8] `http://dev.i2p.net/~jrandom/fraction-of-attackers.png` [9] `http://dev.i2p.net/~jrandom/messages-per-tunnel.png`
 
 * 6) Virus investigations
 
@@ -54,7 +54,7 @@ The mailing list has been pretty active lately, with Michael's new simulations a
 
 感谢 Complication 对此所做的所有研究！
 
-[10] http://forum.i2p.net/viewtopic.php?t=1122
+[10] `http://forum.i2p.net/viewtopic.php?t=1122`
 
 * 7) ???
 

@@ -14,7 +14,7 @@ Ahoj všichni, je zase úterý
 
 * 1) 0.6.0.6
 
-S vydáním verze 0.6.0.6 minulou sobotu máme na živé síti v provozu spoustu nových komponent a vy všichni jste odvedli skvělou práci s aktualizací - před pár hodinami už téměř 250 routers přešlo na novou verzi! Síť se zdá být ve slušné kondici a introductions zatím fungují - svou vlastní aktivitu introductions můžete sledovat na http://localhost:7657/oldstats.jsp, kde se dívejte na udp.receiveHolePunch a udp.receiveIntroRelayResponse (stejně tak i udp.receiveRelayIntro, pro ty, kdo jsou za NATem).
+S vydáním verze 0.6.0.6 minulou sobotu máme na živé síti v provozu spoustu nových komponent a vy všichni jste odvedli skvělou práci s aktualizací - před pár hodinami už téměř 250 routers přešlo na novou verzi! Síť se zdá být ve slušné kondici a introductions zatím fungují - svou vlastní aktivitu introductions můžete sledovat na `http://localhost:7657/oldstats.jsp,` kde se dívejte na udp.receiveHolePunch a udp.receiveIntroRelayResponse (stejně tak i udp.receiveRelayIntro, pro ty, kdo jsou za NATem).
 
 Mimochodem, "Status: ERR-Reject" už vlastně není chyba, takže bychom to možná měli změnit na "Status: OK (NAT)"?
 
@@ -38,7 +38,7 @@ Soubor i2phex.exe uvnitř tohoto ZIP archivu je ve Windows použitelný prostým
 
 Nechystám se ujmout údržby I2Phexu, ale budu na web dávat budoucí vydání I2Phexu, kdykoli budou v cvs aktualizace. Pokud by někdo chtěl pracovat na webové stránce, kterou bychom mohli zveřejnit a která by jej popsala a představila (sirup, jsi tam?), s odkazy na sirup.i2p, užitečné příspěvky na fóru a legionův seznam aktivních peerů, bylo by to skvělé.
 
-[1] http://launch4j.sourceforge.net/ [2] http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip a     http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig (podepsáno mým klíčem)
+[1] http://launch4j.sourceforge.net/ [2] `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip` a     `http://dev.i2p.net/i2p/i2phex-0.1.1.27.zip.sig` (podepsáno mým klíčem)
 
 * 3) migration
 

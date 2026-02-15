@@ -20,7 +20,7 @@ Son bir haftadır, canlı ağda tunnel oluşturmanın güvenilirliğini artırma
 
 Küçük ince ayarlarla uzun süre uğraşmak yerine, yeni tunnel oluşturma kriptografisine ve sürecine [1] geçiş yapmak için yerel test ağım üzerinde çalışıyorum. Bu, tunnel oluşturma başarısızlık oranının büyük bir kısmını azaltmalı; ardından gerekirse daha da ince ayar yapabiliriz.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 Ne yazık ki bunun bir yan etkisi, 0.6.1.10’un geriye dönük uyumlu olmayacak olması. Uzun zamandır geriye dönük uyumsuz bir sürüm çıkarmadık, ama ilk zamanlarda bunu epey yapıyorduk, bu yüzden çok büyük bir sorun olmamalı. Özetle, yerel test ağımda gayet iyi çalıştıktan sonra, erken test için birkaç cesur kişiye paralel olarak sunacağız; ardından yayıma hazır olduğunda, yalnızca seed referanslarını (başlangıç sunucusu referansları) yeni ağın seeds’leriyle değiştirip yayına alacağız.
 

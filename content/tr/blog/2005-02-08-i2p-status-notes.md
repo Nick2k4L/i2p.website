@@ -16,7 +16,7 @@ Selam millet, yine güncelleme zamanı
 
 Öyle görünmese de, 0.4.2.6 sürümü çıktığından beri bir aydan fazla oldu ve işler hâlâ oldukça iyi durumda.  O zamandan beri bir dizi epey faydalı güncelleme [1] geldi, ancak yeni bir sürümün yayımlanmasını gerektirecek gerçek bir show stopper (kritik engelleyici sorun) olmadı.  Bununla birlikte, son bir iki gün içinde bize gerçekten iyi hata düzeltmeleri gönderildi (teşekkürler anon ve Sugadude!) ve 0.5 sürümünün eşiğinde olmasaydık muhtemelen paketleyip yayımlardım.  anon'un güncellemesi, streaming lib (akış kitaplığı) içinde BT ve diğer büyük aktarımlarda görülen zaman aşımı sorunlarının çoğuna neden olan bir sınır koşulunu düzeltiyor, bu yüzden kendinizi biraz maceracı hissediyorsanız CVS HEAD'i alın ve deneyin.  Ya da elbette bir sonraki sürümü bekleyin.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD`
 
 * 2) 0.5
 
@@ -26,13 +26,13 @@ Selam millet, yine güncelleme zamanı
 
 Yol haritasına [6] geri baktığımızda, 0.5.1’e ertelenen tek şey katı sıralama. Zamanla hız sınırlama ve yük dengelemede de iyileştirmeler olacak, eminim, ama bunun üzerinde muhtemelen sonsuza dek ince ayar yapmayı sürdüreceğimizi tahmin ediyorum. 0.5’e dahil etmeyi umduğum, indirme aracı ve tek tıkla güncelleme kodu gibi başka konular da konuşulmuştu, ancak bunların da erteleneceği anlaşılıyor.
 
-[2] http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html [3] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
+[2] `http://dev.i2p.net/pipermail/i2p-cvs/2005-February/thread.html` [3] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                     tunnel-alt.html?rev=HEAD#tunnel.selection.client [4] http://en.wikipedia.org/wiki/Bloom_filter [5] http://xlattice.sourceforge.net/index.html [6] http://www.i2p.net/roadmap
 
 * 3) i2p-bt 0.1.6
 
 duck yeni bir i2p-bt sürümünü yamalayıp yayınladı (yaşasın!); her zamanki yerlerde mevcut, sıcakken kapın [7]. Bu güncelleme ve anon'un streaming lib yaması sayesinde, birkaç dosyayı seed ederken uplink (yükleme bağlantısı) kapasitemi neredeyse tamamen doldurdum, o yüzden bir deneyin.
 
-[7] http://forum.i2p.net/viewtopic.php?t=300
+[7] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) fortuna
 
@@ -42,4 +42,4 @@ Geçen haftaki toplantıda da belirtildiği gibi, smeghead son zamanlarda bir di
 
 Bir sürü şey oluyor ve son zamanlarda forum [8] de epey hareketlendi, bu yüzden eminim bazı şeyleri gözden kaçırmışımdır. Her neyse, birkaç dakika içinde toplantıya uğrayın ve aklınızdakileri söyleyin (ya da sadece sessizce takılıp arada bir alaycı yorum atın).
 
-=jr [8] http://forum.i2p.net/
+=jr [8] `http://forum.i2p.net/`

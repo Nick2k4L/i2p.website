@@ -28,7 +28,7 @@ I2P 구성 파일은 Java [Properties](http://docs.oracle.com/javase/1.5.0/docs/
 
 파일을 정렬할 필요는 없지만, 대부분의 애플리케이션은 읽기 쉽고 수동 편집을 용이하게 하기 위해 파일에 쓸 때 키별로 정렬합니다.
 
-읽기와 쓰기는 DataHelper loadProps()와 storeProps() [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)에서 구현됩니다. 파일 형식은 [Mapping](/docs/specs/common-structures/#type-mapping)에서 명시된 I2P 프로토콜의 직렬화 형식과 상당히 다르다는 점에 유의하세요.
+읽기와 쓰기는 DataHelper loadProps()와 storeProps() [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)에서 구현됩니다. 파일 형식은 [Mapping](/docs/specs/common-structures/#type-mapping)에서 명시된 I2P 프로토콜의 직렬화 형식과 상당히 다르다는 점에 유의하세요.
 
 ## 핵심 라이브러리 및 router
 
@@ -226,7 +226,7 @@ tunnel.N.option.i2ptunnel.httpclient.allowInternalSSL=true|false
 tunnel.N.option.i2ptunnel.httpclient.disableAddressHelper=true|false
 
 # HTTP client only. Comma- or space-separated list of jump server URLs.
-tunnel.N.option.i2ptunnel.httpclient.jumpServers=http://example.i2p/jump
+tunnel.N.option.i2ptunnel.httpclient.jumpServers=`http://example.i2p/jump`
 
 # HTTP client only. Whether to pass Accept* headers through. Default false.
 # Note: Does not affect "Accept" and "Accept-Encoding".
@@ -430,7 +430,7 @@ zzz.i2p의 게시물을 참조하세요.
 
 ## 참고자료
 
-- [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+- [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 - [매핑](/docs/specs/common-structures#type-mapping)
 - [플러그인](/docs/specs/plugin)
 - [Properties](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html#load%28java.io.InputStream%29)

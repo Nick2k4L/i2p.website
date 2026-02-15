@@ -133,7 +133,7 @@ inbound tunnel 생성의 경우, 요청이 inbound 엔드포인트(tunnel 생성
 
 ## 역사 및 참고사항 {#tunnelcreate-notes}
 
-이 전략은 predecessor attack에 관해 I2P 메일링 리스트에서 Michael Rogers, Matthew Toseland (toad), 그리고 jrandom 간의 토론 중에 나왔습니다. [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html), [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)를 참조하세요. 이는 2006-02-16에 릴리스 0.6.1.10에서 도입되었으며, 이는 I2P에서 비호환 변경이 이루어진 마지막 시점이었습니다.
+이 전략은 predecessor attack에 관해 I2P 메일링 리스트에서 Michael Rogers, Matthew Toseland (toad), 그리고 jrandom 간의 토론 중에 나왔습니다. TUNBUILD-SUMMARY, TUNBUILD-REASONING를 참조하세요. 이는 2006-02-16에 릴리스 0.6.1.10에서 도입되었으며, 이는 I2P에서 비호환 변경이 이루어진 마지막 시점이었습니다.
 
 참고 사항:
 
@@ -172,8 +172,8 @@ inbound tunnel 생성의 경우, 요청이 inbound 엔드포인트(tunnel 생성
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf) - Predecessor Attack Paper (2008)
 - [TBM](/docs/specs/i2np#msg-tunnelbuild) - Tunnel Build Message
 - [TBRM](/docs/specs/i2np#msg-tunnelbuildreply) - Tunnel Build Reply Message
-- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html) - Tunnel Build Reasoning
-- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html) - Tunnel Build Summary
+- TUNBUILD-REASONING - Tunnel Build Reasoning
+- TUNBUILD-SUMMARY - Tunnel Build Summary
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation) - Tunnel Implementation
 - [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation) - Tunnel Operation
 - [VTBM](/docs/specs/i2np#msg-variabletunnelbuild) - Variable Tunnel Build Message

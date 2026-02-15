@@ -143,7 +143,7 @@ categories: ["meeting"]
 20:31:03 &lt;i2pr&gt; [Slack/str4d] +1
 20:32:01 &lt;zzz&gt; 6) 정기 Reseed 운영자 회의 (manas)
 20:32:03 &lt;zzz&gt; manas 진행
-20:32:26 &lt;manas&gt; http://zzz.i2p/topics/2341-meeting-reseed-operators-13-june-8-pm-utc-in-i2p-reseed - 다음 주 6월 13일 8PM UTC에 #i2p-reseed에서 첫 리시드 회의를 계획 중
+20:32:26 &lt;manas&gt; `http://zzz.i2p/topics/2341-meeting-reseed-operators-13-june-8-pm-utc-in-i2p-reseed` - 다음 주 6월 13일 8PM UTC에 #i2p-reseed에서 첫 리시드 회의를 계획 중
 20:32:46 &lt;manas&gt; 저게 일반적인 논의 포인트고, 언급한 스레드를 제가 요약할게요
 20:32:59 &lt;manas&gt; 다음 주에 봬요, 감사합니다 :)
 20:33:12 &lt;zzz&gt; 좋습니다, 준비해 줘서 고마워요, 모두 참석하길 권합니다

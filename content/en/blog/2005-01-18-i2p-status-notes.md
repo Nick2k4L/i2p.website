@@ -22,8 +22,8 @@ week, size of the net is still pretty similar, perhaps a little
 larger.  Some neat new sites are popping up - see the forum [1]
 and orion [2] for details.
 
-[1] http://forum.i2p.net/viewforum.php?f=16
-[2] http://orion.i2p/
+[1] `http://forum.i2p.net/viewforum.php?f=16`
+[2] `http://orion.i2p/`
 
 * 2) 0.5
 
@@ -42,8 +42,8 @@ bandwidth wasted.  Yeah, I know, we're not going to do that.
 Perhaps y'all can come up with something better by digging through
 that raw data.
 
-[3] http://dev.i2p.net/~jrandom/messageSizes/
-[4] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/
+[3] `http://dev.i2p.net/~jrandom/messageSizes/`
+[4] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`
                                  tunnel.html?rev=HEAD#tunnel.padding
 
 Actually, that [4] link leads us into the state of the 0.5 plans for
@@ -65,12 +65,12 @@ based on a suggestion [8] Taral made last year regarding the session
 tags used on ElGamal/AES, we can minimize the damage done by using
 a series of synchronized pseudorandom number generators [9].
 
-[5] http://dev.i2p.net/pipermail/i2p/2005-January/000557.html
-[6] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/
+[5] `http://dev.i2p.net/pipermail/i2p/2005-January/000557.html`
+[6] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`
                                             tunnel-alt.html?rev=HEAD
 [7] guess which statement is false?
 [8] http://www.i2p.net/todo#sessionTag
-[9] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/
+[9] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`
                                 tunnel-alt.html?rev=HEAD#tunnel.prng
 
 Don't worry if the above sounds confusing - you're seeing the
@@ -87,7 +87,7 @@ other parts of 0.5 [11], such as adjusting the pooling strategy as
 described in the proposals, pushing that as 0.5.1.  I'm hoping we
 can still hit 0.5.0 by the end of the month, but we'll see.
 
-[10] http://dev.i2p.net/pipermail/i2p/2005-January/000558.html
+[10] `http://dev.i2p.net/pipermail/i2p/2005-January/000558.html`
 [11] http://www.i2p.net/roadmap#0.5
 
 * 3) i2pmail.v2
@@ -99,8 +99,8 @@ up, but its got a pretty nice architecture in many ways.  Check out
 what's been doc'ed up so far [13], and get in touch with the postman
 with your thoughts!
 
-[12] http://forum.i2p.net/viewtopic.php?t=259
-[13] http://www.postman.i2p/mailv2.html
+[12] `http://forum.i2p.net/viewtopic.php?t=259`
+[13] `http://www.postman.i2p/mailv2.html`
 
 * 4) azneti2p_0.2
 
@@ -120,7 +120,7 @@ know the azureus devs would appreciate more feedback and bug reports
 with the plugin.  We'll of course keep people informed if we find
 out about any other issues.
 
-[14] http://dev.i2p.net/pipermail/i2p/2005-January/000553.html
+[14] `http://dev.i2p.net/pipermail/i2p/2005-January/000553.html`
 
 * 5) ???
 

@@ -20,7 +20,7 @@ Během posledního týdne jsem zkoušel několik různých úprav, abych zvýši
 
 Namísto toho, abych se donekonečna pral s drobnými úpravami, pracuji na své lokální testovací síti na migraci na novou kryptografii a nový proces vytváření tunnel [1]. To by mělo odstranit velkou část příčin selhání při vytváření tunnel, po čemž to můžeme v případě potřeby dále doladit.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/                                tunnel-alt-creation.html?rev=HEAD
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`                                tunnel-alt-creation.html?rev=HEAD
 
 Jedním nešťastným vedlejším efektem je, že 0.6.1.10 nebude zpětně kompatibilní. Už dlouho jsme nevydali verzi, která by nebyla zpětně kompatibilní, ale v začátcích jsme to dělali docela často, takže by to neměl být příliš velký problém. V zásadě, až to bude skvěle fungovat na mé místní testovací síti, nasadíme to paralelně několika odvážlivcům pro rané testování, pak, až to bude připravené k vydání, prostě přepneme seed references na seeds (reseed servery) pro novou síť a pošleme to ven.
 

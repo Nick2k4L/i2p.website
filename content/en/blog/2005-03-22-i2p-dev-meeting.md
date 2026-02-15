@@ -57,7 +57,7 @@ categories: ["meeting"]
 13:20 &lt;+Ragnarok&gt; how much overhead does it save?
 13:21 &lt;@jrandom&gt; substantial ;)
 13:21 &lt;+Ragnarok&gt; substantial is good, if vague :P
-13:21 &lt;@jrandom&gt; look on your http://localhost:7657/oldstats.jsp#tunnel.smallFragments
+13:21 &lt;@jrandom&gt; look on your `http://localhost:7657/oldstats.jsp#tunnel.smallFragments`
 13:21 &lt;@jrandom&gt; compare that to #tunnel.fullFragments
 13:22 &lt;bla&gt; jrandom: Does this concern endpoint-&gt;IB-gateway communication only? 
 13:22 &lt;@jrandom&gt; with batching, the ratio of full to small will go up, and the # of pad bytes in the small will go down

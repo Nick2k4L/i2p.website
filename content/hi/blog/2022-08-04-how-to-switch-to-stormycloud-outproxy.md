@@ -22,11 +22,11 @@ categories: ["general"]
 
 StormyCloud के बारे में अधिक जानने के लिए उनकी [वेबसाइट](https://www.stormycloud.org/) पर जाएँ।
 
-या, उन्हें [I2P](http://stormycloud.i2p/) पर देखें।
+या, उन्हें I2P पर देखें।
 
 **I2P के भीतर StormyCloud Outproxy पर स्विच करना**
 
-StormyCloud outproxy पर *आज ही* स्विच करने के लिए आप [हिडन सर्विसेज मैनेजर](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0) पर जा सकते हैं। वहां पहुंचने के बाद, आपको **Outproxies** और **SSL Outproxies** का मान `exit.stormycloud.i2p` पर सेट कर देना चाहिए। यह करने के बाद, पेज के सबसे नीचे तक स्क्रॉल करें और "Save" बटन पर क्लिक करें।
+StormyCloud outproxy पर *आज ही* स्विच करने के लिए आप `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0` पर जा सकते हैं। वहां पहुंचने के बाद, आपको **Outproxies** और **SSL Outproxies** का मान `exit.stormycloud.i2p` पर सेट कर देना चाहिए। यह करने के बाद, पेज के सबसे नीचे तक स्क्रॉल करें और "Save" बटन पर क्लिक करें।
 
 **StormyCloud को धन्यवाद**
 

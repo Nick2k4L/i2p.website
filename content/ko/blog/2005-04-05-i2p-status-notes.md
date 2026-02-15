@@ -20,11 +20,11 @@ categories: ["status"]
 
 bla has been doing some research into improving our peer profiling by exploiting simple bayesian filtering from the gathered stats [1]. It looks quite promising, though I'm not sure where it stands at the moment - perhaps we can get an update from bla during the meeting?
 
-[1] http://forum.i2p.net/viewtopic.php?t=598     http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`     `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-aum의 Q 앱에는 핵심 기능은 물론, 몇몇 사람들이 다양한 xmlrpc 프런트엔드를 구축하면서 많은 진전이 이루어지고 있습니다. 소문에 따르면 이번 주말에 http://aum.i2p/q/ 에 설명된 여러 가지 멋진 기능이 담긴 또 다른 Q 빌드를 보게 될지도 모릅니다.
+aum의 Q 앱에는 핵심 기능은 물론, 몇몇 사람들이 다양한 xmlrpc 프런트엔드를 구축하면서 많은 진전이 이루어지고 있습니다. 소문에 따르면 이번 주말에 `http://aum.i2p/q/` 에 설명된 여러 가지 멋진 기능이 담긴 또 다른 Q 빌드를 보게 될지도 모릅니다.
 
 * 4) ???
 

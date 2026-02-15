@@ -222,7 +222,7 @@ Router затем удалит файл deletelist.txt.
 ### Примечания
 
 - Для релизов версия SU3 является "базовой" версией router, например "0.9.20".
-- Для сборок разработки, которые поддерживаются начиная с релиза 0.9.20, версия SU3 является "полной" версией router, например "0.9.20-5" или "0.9.20-5-rc". См. RouterVersion.java в [исходном коде I2P](https://github.com/i2p/i2p.i2p).
+- Для сборок разработки, которые поддерживаются начиная с релиза 0.9.20, версия SU3 является "полной" версией router, например "0.9.20-5" или "0.9.20-5-rc". См. RouterVersion.java в исходном коде I2P.
 
 ## Спецификация файла SU3 Reseed
 
@@ -371,7 +371,7 @@ TBD, не реализовано, см. предложение 130. Обновл
 ## Ссылки
 
 - **[CRYPTO-SIG]** [Криптография - Подписи](/docs/specs/cryptography#sig)
-- **[I2P-SRC]** [Исходный код I2P](https://github.com/i2p/i2p.i2p)
+- **[I2P-SRC]** Исходный код I2P
 - **[PLUGIN]** [Спецификация плагинов](/docs/specs/plugin)
 - **[Python]** [Сырые подписи Python RSA](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)
 - **[RFC-3339]** [RFC 3339 - Дата и время](https://tools.ietf.org/html/rfc3339)

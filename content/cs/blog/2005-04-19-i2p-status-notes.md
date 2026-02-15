@@ -32,7 +32,7 @@ Je teď duben, takže roadmapa [1] byla příslušně aktualizována - vypuště
 
 Aum se na Q pořádně rozjel a přidává pro nás další vylepšení, přičemž na svých stránkách [2] už jsou nejnovější snímky obrazovky. Kód už také provedl commit do CVS (hurá), takže bychom snad brzy mohli začít s alfa testováním. Jsem si jistý, že se od auma dozvíme více podrobností o tom, jak pomoci, anebo se můžete rovnou ponořit do materiálu v CVS na i2p/apps/q/
 
-[2] http://aum.i2p/q/
+[2] `http://aum.i2p/q/`
 
 * 5) ???
 

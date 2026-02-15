@@ -18,7 +18,7 @@ Bis vor einigen Versionen war dieses Problem noch schwieriger zu bewältigen, da
 
 ## Anpassen der Bandbreitenbegrenzungen
 
-Da I2P ein Peer-to-Peer-Netzwerk ist, müssen Sie einen Teil Ihrer Netzwerkbandbreite mit anderen Peers teilen. Sie können festlegen, wie viel, in "I2P Bandwidth Configuration" ("Configure Bandwidth"-Schaltfläche im Abschnitt "Applications and Configuration" der I2P Router Console, oder http://localhost:7657/config).
+Da I2P ein Peer-to-Peer-Netzwerk ist, müssen Sie einen Teil Ihrer Netzwerkbandbreite mit anderen Peers teilen. Sie können festlegen, wie viel, in "I2P Bandwidth Configuration" ("Configure Bandwidth"-Schaltfläche im Abschnitt "Applications and Configuration" der I2P Router Console, oder `http://localhost:7657/config).`
 
 ![I2P-Bandbreitenkonfiguration](https://geti2p.net/images/blog/bandwidthmenu.png)
 
@@ -26,7 +26,7 @@ Wenn Sie ein Limit für die freigegebene Bandbreite von 48 KBps sehen, was sehr 
 
 Da jedoch viele Nutzer möglicherweise nicht genau wissen, welche Bandbreiteneinstellungen sie anpassen sollten, führte die [I2P 0.9.38 release](https://geti2p.net/en/download) einen Assistenten für die Erstinstallation ein. Er enthält einen Bandbreitentest, der automatisch (dank M-Labs [NDT](https://www.measurementlab.net/tests/ndt/)) die Bandbreite ermittelt und die Bandbreiteneinstellungen von I2P entsprechend anpasst.
 
-Wenn Sie den Assistenten erneut ausführen möchten, zum Beispiel nach einem Wechsel Ihres Internetdienstanbieters oder weil Sie I2P vor Version 0.9.38 installiert haben, können Sie ihn über den Link 'Setup' auf der Seite 'Help & FAQ' erneut starten oder den Assistenten einfach direkt unter http://localhost:7657/welcome aufrufen.
+Wenn Sie den Assistenten erneut ausführen möchten, zum Beispiel nach einem Wechsel Ihres Internetdienstanbieters oder weil Sie I2P vor Version 0.9.38 installiert haben, können Sie ihn über den Link 'Setup' auf der Seite 'Help & FAQ' erneut starten oder den Assistenten einfach direkt unter `http://localhost:7657/welcome` aufrufen.
 
 ![Kannst du „Setup“ finden?](https://geti2p.net/images/blog/sidemenu.png)
 

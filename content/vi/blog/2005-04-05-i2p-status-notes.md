@@ -20,11 +20,11 @@ Bản phát hành 0.5.0.5 của tuần trước có cả mặt tích cực lẫn
 
 bla đã và đang nghiên cứu cách cải thiện việc lập hồ sơ các peer (nút ngang hàng) của chúng ta bằng cách tận dụng lọc Bayesian đơn giản từ các số liệu thống kê đã thu thập [1]. Nó có vẻ khá hứa hẹn, dù tôi không chắc hiện tại nó đang ở giai đoạn nào - có lẽ chúng ta có thể nhận được bản cập nhật từ bla trong cuộc họp?
 
-[1] http://forum.i2p.net/viewtopic.php?t=598     http://theland.i2p/nodemon.html
+[1] `http://forum.i2p.net/viewtopic.php?t=598`     `http://theland.i2p/nodemon.html`
 
 * 3) Q
 
-Đang có rất nhiều tiến triển với ứng dụng Q của aum, cả ở chức năng cốt lõi lẫn việc một vài người đang xây dựng các frontend (lớp giao diện) XML-RPC khác nhau. Có tin đồn rằng chúng ta có thể sẽ thấy một bản build Q khác vào cuối tuần này, kèm theo một loạt tính năng và tiện ích được mô tả trên http://aum.i2p/q/
+Đang có rất nhiều tiến triển với ứng dụng Q của aum, cả ở chức năng cốt lõi lẫn việc một vài người đang xây dựng các frontend (lớp giao diện) XML-RPC khác nhau. Có tin đồn rằng chúng ta có thể sẽ thấy một bản build Q khác vào cuối tuần này, kèm theo một loạt tính năng và tiện ích được mô tả trên `http://aum.i2p/q/`
 
 * 4) ???
 

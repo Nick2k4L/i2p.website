@@ -22,7 +22,7 @@ Geçen cumartesi günkü 0.6.1.4 sürümü oldukça sorunsuz geçti gibi görün
 
 Listede birkaç fikirle ilgili çok daha fazla tartışma oldu ve başlatma (bootstrap) saldırılarının bir özeti çevrimiçi [1] yayımlandı. 3. seçenek için kriptografi gereksinimlerini belirleme konusunda biraz ilerleme kaydettim ve henüz hiçbir şey yayımlanmamış olsa da, oldukça basit.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/001146.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/001146.html`
 
 Sabit bit hızı (CBR) tunnel kullanımıyla güçlü saldırganlara karşı direnci nasıl artırabileceğimiz konusunda daha fazla tartışma yapıldı ve bu yaklaşımı araştırma seçeneğimiz olsa da, doğru kullanımının ciddi ölçüde kaynak gerektirmesi nedeniyle şu anda I2P 3.0 için planlanmış durumda; ayrıca böyle bir ek yükle I2P’yi kullanmaya kimin istekli olacağı ve hangi grupların bunu yapabilecekleri ya da hiç yapamayacakları üzerinde muhtemelen ölçülebilir bir etkisi olacaktır.
 
@@ -32,7 +32,7 @@ Geçen cumartesi günü ayrıca yeni bir I2Phex sürümü yayınlandı [2], I2Ph
 
 Ayrıca, CVS sürümüne (henüz yayımlanmadı) bazı eşzamanlama sorunlarını gideren bir güncelleme de yapıldı - Phex bazı ağ işlemlerinin anında gerçekleştirileceğini varsayıyor, oysa I2P bazen bir şeyleri yapmak için biraz zamana ihtiyaç duyabiliyor :) Bu durum, grafik kullanıcı arayüzünün (GUI) bir süre takılı kalması, indirme veya yüklemelerin duraksaması ya da bağlantıların reddedilmesi (ve belki birkaç başka şekilde) olarak kendini gösterebiliyor. Henüz fazla test edilmedi, ancak muhtemelen bu hafta 0.1.1.35 sürümüyle yayımlanacak. Daha fazla haber olduğunda, eminim forumda daha fazlası paylaşılacaktır.
 
-[2] http://forum.i2p.net/viewtopic.php?t=1143
+[2] `http://forum.i2p.net/viewtopic.php?t=1143`
 
 * 4) voi2p app
 

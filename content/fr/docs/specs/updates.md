@@ -222,7 +222,7 @@ Les fichiers jar et war dans le zip ne sont plus compressés avec pack200 comme 
 ### Notes
 
 - Pour les versions de release, la version SU3 est la version "de base" du router, par exemple "0.9.20".
-- Pour les builds de développement, qui sont supportés depuis la release 0.9.20, la version SU3 est la version "complète" du router, par exemple "0.9.20-5" ou "0.9.20-5-rc". Voir RouterVersion.java dans le [code source I2P](https://github.com/i2p/i2p.i2p).
+- Pour les builds de développement, qui sont supportés depuis la release 0.9.20, la version SU3 est la version "complète" du router, par exemple "0.9.20-5" ou "0.9.20-5-rc". Voir RouterVersion.java dans le code source I2P.
 
 ## Spécification du fichier de reseed SU3
 
@@ -371,7 +371,7 @@ TBD, non implémenté, voir la proposition 130. Les mises à jour de la liste de
 ## Références
 
 - **[CRYPTO-SIG]** [Cryptographie - Signatures](/docs/specs/cryptography#sig)
-- **[I2P-SRC]** [Code source I2P](https://github.com/i2p/i2p.i2p)
+- **[I2P-SRC]** Code source I2P
 - **[PLUGIN]** [Spécification des plugins](/docs/specs/plugin)
 - **[Python]** [Signatures RSA brutes en Python](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)
 - **[RFC-3339]** [RFC 3339 - Date et heure](https://tools.ietf.org/html/rfc3339)

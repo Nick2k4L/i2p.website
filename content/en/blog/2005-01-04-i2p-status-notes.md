@@ -29,11 +29,11 @@ In the last week, I've watched the stats put out by the i2p-bt trackers and ther
 
 There have been some fixes and new features added to CVS since the 0.4.2.5 release that we're going to want to roll out soon, including reliability fixes for the streaming lib, improved resiliance to IP address change, and the bundling of ragnarok's addressbook implementation.
 
-If you haven't heard of the addressbook or haven't used it, the short story is that it will magically update your hosts.txt file by periodically fetching and merging changes from some anonymously hosted locations (default being http://dev.i2p/i2p/hosts.txt and http://duck.i2p/hosts.txt). You won't need to change any files, touch any configuration, or run any extra applications - it'll be deployed inside the I2P router as a standard .war file.
+If you haven't heard of the addressbook or haven't used it, the short story is that it will magically update your hosts.txt file by periodically fetching and merging changes from some anonymously hosted locations (default being `http://dev.i2p/i2p/hosts.txt` and `http://duck.i2p/hosts.txt).` You won't need to change any files, touch any configuration, or run any extra applications - it'll be deployed inside the I2P router as a standard .war file.
 
 Of course, if you *do* want to get down and dirty with the addressbook, you are more than welcome to - see Ragnarok's site [2] for the details. People who already have the addressbook deployed in their router will need to do a little tap dancing during the 0.4.2.6 upgrade, but it'll work with all your old config settings.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -43,7 +43,7 @@ Numbers, numbers, numbers! Well, as I've said before, the 0.5 release will be re
 
 jdot has started up a new jabber server, and it seems to work pretty well for both one on one conversations and group chat. check out the info on the forum [3]. the i2p dev discussion channel will still be the irc #i2p, but its always nice to have alternatives.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

@@ -45,19 +45,19 @@ ne globální pool destinací pro nějakou globální službu.
 
 ### GNS
 
-GNS [GNS](http://zzz.i2p/topcs/1545) navrhuje, aby každý provozoval svůj vlastní DNS server.
+GNS GNS navrhuje, aby každý provozoval svůj vlastní DNS server.
 Tento návrh je komplementární, protože bychom mohli použít záznamy služeb ke specifikaci,
 že GNS (nebo DNS) je podporováno, se standardním názvem služby "domain" na portu 53.
 
 ### Dot well-known
 
-V [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) je navrhováno, že služby by měly být vyhledány prostřednictvím HTTP požadavku na
+V DOTWELLKNOWN je navrhováno, že služby by měly být vyhledány prostřednictvím HTTP požadavku na
 /.well-known/i2pmail.key. To vyžaduje, aby každá služba měla spojenou
 webovou stránku pro hostování klíče. Většina uživatelů neprovozuje webové stránky.
 
 Jedním z řešení je, že bychom mohli předpokládat, že služba pro b32 adresu je ve skutečnosti
 provozována na té b32 adrese. Takže při hledání služby pro example.i2p se vyžaduje
-HTTP dotaz na http://example.i2p/.well-known/i2pmail.key, ale
+HTTP dotaz na `http://example.i2p/.well-known/i2pmail.key,` ale
 služba pro aaa...aaa.b32.i2p tento dotaz nevyžaduje, může se připojit přímo.
 
 Ale je zde dvojznačnost, protože example.i2p může být také adresována jeho b32.
@@ -324,7 +324,7 @@ TODO jak to udělat obecně
 
 ### Změny nutné pro Email
 
-Mimo rozsah tohoto návrhu. Viz [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) pro diskusi.
+Mimo rozsah tohoto návrhu. Viz DOTWELLKNOWN pro diskusi.
 
 
 ## Poznámky k implementaci

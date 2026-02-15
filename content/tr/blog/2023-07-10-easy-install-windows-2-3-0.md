@@ -15,6 +15,6 @@ Bu, I2P Desktop GUI ile uyumsuz olacak Easy-Install paketinin son sürümü olac
 
 Bu sürüm OpenJDK 20 ile derlenmiştir. Tarayıcıyı başlatmak için bir kitaplık olarak i2p.plugins.firefox sürüm 1.1.0'ı kullanır. Bir I2P router olarak ve uygulamaları sağlamak için i2p.i2p sürüm 2.3.0'ı kullanır. Her zaman olduğu gibi, en uygun ilk fırsatta I2P router'ın en son sürümüne güncellemeniz önerilir.
 
-- [Easy-Install Bundle Source](http://git.idk.i2p/i2p-hackers/i2p.firefox/-/tree/i2p-firefox-2.3.0)
-- [Router Source](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/tree/i2p-2.3.0)
-- [Profile Manager Source](http://git.idk.i2p/i2p-hackers/i2p.plugins.firefox/-/tree/1.1.0)
+- Easy-Install Bundle Source
+- Router Source
+- Profile Manager Source

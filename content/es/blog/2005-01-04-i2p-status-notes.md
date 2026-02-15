@@ -26,11 +26,11 @@ En la última semana, he estado observando las estadísticas que publican los tr
 
 Se han realizado algunas correcciones y se han añadido nuevas funciones a CVS desde la versión 0.4.2.5 que queremos desplegar pronto, incluyendo correcciones de fiabilidad para la biblioteca de streaming, una mayor resiliencia ante cambios de dirección IP y la inclusión de la implementación de la libreta de direcciones de ragnarok.
 
-Si no has oído hablar del addressbook (libreta de direcciones) o no lo has usado, la versión corta es que actualizará mágicamente tu archivo hosts.txt al obtener periódicamente e integrar los cambios de algunas ubicaciones alojadas de forma anónima (siendo las predeterminadas http://dev.i2p/i2p/hosts.txt y http://duck.i2p/hosts.txt). No necesitarás cambiar ningún archivo, modificar ninguna configuración ni ejecutar aplicaciones adicionales - se implementará dentro del I2P router como un archivo .war estándar.
+Si no has oído hablar del addressbook (libreta de direcciones) o no lo has usado, la versión corta es que actualizará mágicamente tu archivo hosts.txt al obtener periódicamente e integrar los cambios de algunas ubicaciones alojadas de forma anónima (siendo las predeterminadas `http://dev.i2p/i2p/hosts.txt` y `http://duck.i2p/hosts.txt).` No necesitarás cambiar ningún archivo, modificar ninguna configuración ni ejecutar aplicaciones adicionales - se implementará dentro del I2P router como un archivo .war estándar.
 
 Por supuesto, si *de verdad* desea meterse de lleno con la libreta de direcciones (addressbook), es más que bienvenido - consulte el sitio de Ragnarok [2] para los detalles. Las personas que ya tengan la libreta de direcciones implementada en su router tendrán que hacer algunos ajustes durante la actualización a la 0.4.2.6, pero funcionará con todos sus parámetros de configuración anteriores.
 
-[2] http://ragnarok.i2p/
+[2] `http://ragnarok.i2p/`
 
 * 3) 0.5
 
@@ -40,7 +40,7 @@ Por supuesto, si *de verdad* desea meterse de lleno con la libreta de direccione
 
 jdot ha puesto en marcha un nuevo servidor Jabber, y parece funcionar bastante bien tanto para conversaciones uno a uno como para chat de grupo. Consulta la información en el foro [3]. El canal de discusión de desarrollo de i2p seguirá siendo el irc #i2p, pero siempre es bueno tener alternativas.
 
-[3] http://forum.i2p.net/viewtopic.php?t=229
+[3] `http://forum.i2p.net/viewtopic.php?t=229`
 
 * 5) ???
 

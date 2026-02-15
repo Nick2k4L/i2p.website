@@ -169,7 +169,7 @@ categories: ["meeting"]
 20:50:08  &lt;str4d&gt; That one I can't do much about =P I've migrated one page as a test, but I can't verify the accuracy of the old translations (especially as there was nothing to keep things in sync between the static pages)
 20:50:12  &lt;str4d&gt; i2p.www.revamp
 20:51:02  * str4d starts up the test site again
-20:52:33  &lt;str4d&gt; Okay, http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/ is back up.
+20:52:33  &lt;str4d&gt; Okay, `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/` is back up.
 20:52:44  &lt;iRelay&gt; Title: I2P Anonymous Network (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 20:52:59  &lt;str4d&gt; Something else I've done is added mobile support to the website - you can see it by narrowing your browser window below 768px
 20:53:34  &lt;dg&gt; What are we doing about blog/
@@ -182,7 +182,7 @@ categories: ["meeting"]
 20:55:50  &lt;str4d&gt; That's a later issue though -  we need to actually get the site finished first!
 20:56:09  &lt;hottuna_&gt; agreed
 20:56:20  &lt;str4d&gt; Ticket #807 does have a few things in it which would be good to get done, but are not blockers
-20:56:32  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
+20:56:32  &lt;iRelay&gt; `http://trac.i2p2.i2p/ticket/807` - (accepted enhancement) - Revamp of website
 20:56:44  &lt;str4d&gt; They are somewhat spread out through the ticket, but some are:
 20:57:02  &lt;str4d&gt; - fill out /about/glossary
 20:57:21  &lt;str4d&gt; - improve blog/meetings layout and styling
@@ -219,7 +219,7 @@ categories: ["meeting"]
 21:09:41  &lt;dg&gt; Crypto time :-D
 21:10:16  &lt;dg&gt; Let me dig up the relevant topics
 21:10:16  &lt;dg&gt; One moment
-21:11:28  &lt;dg&gt; http://zzz.i2p/topics/1328 + http://zzz.i2p/topics/715
+21:11:28  &lt;dg&gt; `http://zzz.i2p/topics/1328` + `http://zzz.i2p/topics/715`
 21:11:38  &lt;iRelay&gt; Title: zzz.i2p: Meeting [22nd January] (at zzz.i2p)
 21:12:10  &lt;dg&gt; TL;DR: We need to be discussing which components of the i2p router need to be changed in order of priority (or as zzz put it, "to talk generally about which uses are more vulnerable than others"
 21:12:10  &lt;dg&gt; )
@@ -253,7 +253,7 @@ categories: ["meeting"]
 21:25:16  &lt;zzz&gt; DSA is a nice place to start analysis because it's easy to understand, and it's on the surface the weakest
 21:26:15  &lt;hottuna_&gt; yes
 21:27:01  &lt;hottuna_&gt; as for what is used where and what time periods which keys are used for I dont know much
-21:28:56  &lt;zzz&gt; the OP on http://zzz.i2p/topics/715 has a list
+21:28:56  &lt;zzz&gt; the OP on `http://zzz.i2p/topics/715` has a list
 21:29:03  &lt;zzz&gt; ~8 places we use DSA
 21:29:05  &lt;iRelay&gt; Title: zzz.i2p: DSA 1024/160 Replacement (at zzz.i2p)
 21:29:40  &lt;hottuna_&gt; the one with the longest validity is routerinfo?
@@ -268,7 +268,7 @@ categories: ["meeting"]
 21:33:22  &lt;hottuna_&gt; throwing out hosts is a huge issue. but it is also the most vulnerable key in my mind
 21:34:37  &lt;zzz&gt; for each case we have to go farther though. not just how easy to break but what's the threat model / consequence.
 21:35:08  &lt;hottuna_&gt; yes. maybe link to a separate page for each case?
-21:35:26  &lt;str4d&gt; http://trac.i2p2.i2p/wiki/Crypto/CurrentSpecs now exists and has some basic content
+21:35:26  &lt;str4d&gt; `http://trac.i2p2.i2p/wiki/Crypto/CurrentSpecs` now exists and has some basic content
 21:35:33  &lt;iRelay&gt; Title: Crypto/CurrentSpecs  I2P (at trac.i2p2.i2p)
 21:36:09  &lt;zzz&gt; and put that in perspective gven the size of the net, etc. e.g., we currently have a guy that claims he can shutdown an eepsite for 23 1/2 hours a day.
 21:37:13  &lt;hottuna_&gt; christoph1, ?
@@ -288,7 +288,7 @@ categories: ["meeting"]
 21:40:22  &lt;christoph1&gt; still it seems around rotation it is somewhat unstable
 21:40:49  &lt;str4d&gt; Anyway, this is somewhat off-track for this topic (sorry christoph1)
 21:41:05  &lt;christoph1&gt; ack
-21:43:08  &lt;str4d&gt; Okay, does anyone want to work on getting http://trac.i2p2.i2p/wiki/Crypto/CurrentSpecs filled out?
+21:43:08  &lt;str4d&gt; Okay, does anyone want to work on getting `http://trac.i2p2.i2p/wiki/Crypto/CurrentSpecs` filled out?
 21:43:14  &lt;iRelay&gt; Title: Crypto/CurrentSpecs  I2P (at trac.i2p2.i2p)
 21:43:26  &lt;zzz&gt; dg, please keep us on track, not drag us off it :)
 21:43:42  &lt;hottuna_&gt; str4d, yeah. I just managed to log in :P
@@ -329,7 +329,7 @@ categories: ["meeting"]
 22:01:53  &lt;zzz&gt; other complication is there used to be two layers of end-to-end crypto, one in the router and one in the client, and some keys are now unused
 22:02:32  &lt;zzz&gt; ditto w/ signing keys... one was for LS revocation and is unused
 22:02:46  &lt;zzz&gt; so that's another opportunity, maybe
-22:03:29  &lt;str4d&gt; http://www.i2p2.i2p/how_intro seems to indicate that the ElGamal/AES+SessionTags is used for end-to-end router encryption.
+22:03:29  &lt;str4d&gt; `http://www.i2p2.i2p/how_intro` seems to indicate that the ElGamal/AES+SessionTags is used for end-to-end router encryption.
 22:04:37  &lt;zzz&gt; crypto is much harder to discuss than signing. theres the ElG wrapping the AES and the Tags, together with the DH exchange.
 22:05:35  &lt;str4d&gt; Yes. But as far as e.g. LeaseSets go, we probably need to discuss both in tandem, no?
 22:05:46  &lt;zzz&gt; I'd suggest not even trying to get into the crypto side today.

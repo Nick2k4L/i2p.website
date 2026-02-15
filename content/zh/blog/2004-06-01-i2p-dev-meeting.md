@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] &lt;mihi&gt; ;)
 [23:02] &lt;duck&gt; 1) 代码进展
 [23:02] &lt;duck&gt; 提交到 cvs 的代码不多
-[23:02] &lt;duck&gt; 我这周确实赢得了奖杯：http://duck.i2p/duck_trophy.jpg
+[23:02] &lt;duck&gt; 我这周确实赢得了奖杯：`http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus 还没有 cvs 账号
 [23:03] &lt;Masterboy&gt; 那谁提交了点什么？
 [23:03] &lt;duck&gt; 有人在偷偷写代码吗？

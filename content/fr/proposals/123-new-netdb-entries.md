@@ -1065,7 +1065,7 @@ Il n'y a pas de format de fichier défini dans cette proposition pour empaqueter
 
 - Nous ne nous préoccupons pas suffisamment de la vitesse pour utiliser BLAKE2b avec clé. Il a une taille de sortie suffisamment grande pour accommoder le plus grand n dont nous avons besoin (ou nous pouvons l'appeler une fois par clé désirée avec un argument de compteur). BLAKE2b est beaucoup plus rapide que SHA-256, et keyed-BLAKE2b réduirait le nombre total d'appels de fonction de hachage.
   Cependant, voir la proposition 148, où il est proposé que nous passions à BLAKE2b pour d'autres raisons.
-  Voir [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+  Voir Secure key derivation performance.
 
 ### Meta LS2
 
@@ -1079,7 +1079,7 @@ L'utilisation prévue pour Meta LS2 est le multihoming massif, mais sans plus de
 
 Le protocole back-end pour la coordination entre les routeurs feuilles, les signataires Meta LS intermédiaires et maîtres n'est pas spécifié ici. Les exigences sont extrêmement simples - il suffit de vérifier que le pair est actif, et publier un nouveau LS toutes les quelques heures. La seule complexité consiste à choisir de nouveaux éditeurs pour les Meta LSes de niveau supérieur ou intermédiaire en cas de défaillance.
 
-Mix-and-match leasesets où les leases de plusieurs routers sont combinés, signés et publiés dans un seul leaseset est documenté dans la proposition 140, "invisible multihoming". Cette proposition est intenable telle qu'écrite, car les connexions streaming ne seraient pas "collantes" à un seul router, voir http://zzz.i2p/topics/2335 .
+Mix-and-match leasesets où les leases de plusieurs routers sont combinés, signés et publiés dans un seul leaseset est documenté dans la proposition 140, "invisible multihoming". Cette proposition est intenable telle qu'écrite, car les connexions streaming ne seraient pas "collantes" à un seul router, voir `http://zzz.i2p/topics/2335` .
 
 Le protocole back-end, et l'interaction avec les composants internes du router et du client, seraient assez complexes pour le multihoming invisible.
 
@@ -1606,7 +1606,7 @@ Les signatures hors ligne ne peuvent pas être vérifiées dans les datagrammes 
 
 ## Private Key File Changes Required
 
-Le format du fichier de clé privée (eepPriv.dat) ne fait pas partie officielle de nos spécifications mais il est documenté dans la [javadoc Java I2P](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) et d'autres implémentations le prennent en charge. Ceci permet la portabilité des clés privées vers différentes implémentations.
+Le format du fichier de clé privée (eepPriv.dat) ne fait pas partie officielle de nos spécifications mais il est documenté dans la javadoc Java I2P et d'autres implémentations le prennent en charge. Ceci permet la portabilité des clés privées vers différentes implémentations.
 
 Des modifications sont nécessaires pour stocker la clé publique temporaire et les informations de signature hors ligne.
 

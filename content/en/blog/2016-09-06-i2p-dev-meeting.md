@@ -16,7 +16,7 @@ categories: ["meeting"]
 21:00:01 &lt;zzz&gt; 0) Hi
 21:00:01 &lt;zzz&gt; 1) 0.9.27 update (zzz)
 21:00:01 &lt;zzz&gt; 2) Summer of X update (sadie/str4d)
-21:00:01 &lt;zzz&gt; 3) 33C3 Budget http://zzz.i2p/topics/2150
+21:00:01 &lt;zzz&gt; 3) 33C3 Budget `http://zzz.i2p/topics/2150`
 21:00:01 &lt;zzz&gt; 4) SAM on by default (str4d)
 21:00:06 &lt;zzz&gt; 0) Hi
 21:00:12 &lt;zzz&gt; hi
@@ -32,7 +32,7 @@ categories: ["meeting"]
 21:03:25 &lt;zzz&gt; 2) Summer of X update (sadie/str4d)
 21:03:30 &lt;zzz&gt; sadie / str4d go
 21:06:07 &lt;zzz&gt; hearing nothing, I'll put it on the agenda for next month
-21:06:15 &lt;zzz&gt; 3) 33C3 Budget http://zzz.i2p/topics/2150
+21:06:15 &lt;zzz&gt; 3) 33C3 Budget `http://zzz.i2p/topics/2150`
 21:06:28 &lt;str4d&gt; IHi!
 21:06:33 &lt;eche|on&gt; Awake
 21:06:33 &lt;zzz&gt; eche|on, could you please give us a brief update on our finances?

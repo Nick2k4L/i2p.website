@@ -40,13 +40,13 @@ Anlatması ne kadar uzun sürerse sürsün, Şifrelenmiş LeaseSet'i Hidden Serv
 
 ## "Sunucu"da
 
-Önce http://127.0.0.1:7657/i2ptunnelmgr adresindeki Hidden Services Manager (Gizli Hizmetler Yöneticisi) sayfasını açın ve "I2P Hidden Services." yazan bölümün en altına kadar inin. Ana makine "127.0.0.1" ve bağlantı noktası "7657" olacak şekilde, bu "Tunnel Cryptography Options" ile yeni bir gizli hizmet oluşturun ve gizli hizmeti kaydedin.
+Önce `http://127.0.0.1:7657/i2ptunnelmgr` adresindeki Hidden Services Manager (Gizli Hizmetler Yöneticisi) sayfasını açın ve "I2P Hidden Services." yazan bölümün en altına kadar inin. Ana makine "127.0.0.1" ve bağlantı noktası "7657" olacak şekilde, bu "Tunnel Cryptography Options" ile yeni bir gizli hizmet oluşturun ve gizli hizmeti kaydedin.
 
 Then, select your new tunnel from the Hidden Services Manager main page. The Tunnel Cryptography Options should now include your first Pre-Shared Key. Copy this down for the next step, along with the Encrypted Base32 Address of your tunnel.
 
 ## "Client" üzerinde
 
-Şimdi, gizli servise bağlanacak olan istemci bilgisayara geçin ve önceki anahtarları eklemek için http://127.0.0.1:7657/configkeyring adresindeki Keyring Configuration sayfasını ziyaret edin. Başlangıç olarak, Sunucu’dan Base32’yi şu etiketli alana yapıştırın: "Full destination, name, Base32, or hash." Ardından, sunucudaki Pre-Shared Key (önceden paylaşılan anahtar) değerini "Encryption Key" alanına yapıştırın. Kaydet’e tıklayın ve Encrypted LeaseSet kullanarak gizli servisi güvenli bir şekilde ziyaret etmeye hazırsınız.
+Şimdi, gizli servise bağlanacak olan istemci bilgisayara geçin ve önceki anahtarları eklemek için `http://127.0.0.1:7657/configkeyring` adresindeki Keyring Configuration sayfasını ziyaret edin. Başlangıç olarak, Sunucu’dan Base32’yi şu etiketli alana yapıştırın: "Full destination, name, Base32, or hash." Ardından, sunucudaki Pre-Shared Key (önceden paylaşılan anahtar) değerini "Encryption Key" alanına yapıştırın. Kaydet’e tıklayın ve Encrypted LeaseSet kullanarak gizli servisi güvenli bir şekilde ziyaret etmeye hazırsınız.
 
 ## Artık I2P'yi uzaktan yönetmeye hazırsınız
 

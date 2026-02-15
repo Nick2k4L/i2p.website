@@ -73,7 +73,7 @@ at the moment.  The i2p devs haven't audited (or even seen) the code
 to that client, so those who need anonymity may want to get and
 review a copy of the code first.
 
-[2] http://forum.i2p.net/viewtopic.php?t=382
+[2] `http://forum.i2p.net/viewtopic.php?t=382`
 
 There's also work on a version 2 of Legion's BT client, though I
 don't know the status of that.  Perhaps we can get an update from

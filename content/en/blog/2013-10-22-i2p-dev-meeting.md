@@ -13,21 +13,21 @@ categories: ["meeting"]
 ## Meeting Log
 
 <div class="irc-log">
-20:00:54  &lt;zzz&gt; http://zzz.i2p/topics/1490 - 15 minutes max per item, 5 minutes for brief items
+20:00:54  &lt;zzz&gt; `http://zzz.i2p/topics/1490` - 15 minutes max per item, 5 minutes for brief items
 20:00:54  &lt;zzz&gt; 0) hi
-20:00:54  &lt;zzz&gt; 1) http://salt.i2p console home page request (carried over from Sept. 10 meeting)
-20:00:55  &lt;zzz&gt; 2) http://no.i2p services request (Meeh)
+20:00:54  &lt;zzz&gt; 1) `http://salt.i2p` console home page request (carried over from Sept. 10 meeting)
+20:00:55  &lt;zzz&gt; 2) `http://no.i2p` services request (Meeh)
 20:00:55  &lt;zzz&gt;   2a) Add to default i2ptunnel jump list
 20:00:55  &lt;zzz&gt;   2b) Add to recommended addressbook subscriptions on FAQ
 20:00:57  &lt;zzz&gt;   2c) Add to registration help text on eepsite help
 20:00:59  &lt;zzz&gt; 3) Additional backup release signer - Need new su3 keys, HH hasn't added his yet, do we need another person?
-20:01:02  &lt;zzz&gt; 4) Console home page icons needed http://zzz.i2p/topics/1492 (brief)
+20:01:02  &lt;zzz&gt; 4) Console home page icons needed `http://zzz.i2p/topics/1492` (brief)
 20:01:04  &lt;zzz&gt; 5) Website revamp (str4d) (brief)
 20:01:08  &lt;zzz&gt; 6) Trac update - thanks to Meeh and kytv (brief)
 20:01:09  &lt;iRelay&gt; Title: zzz.i2p: Meeting Tues. Oct. 22 8 PM UTC (at zzz.i2p)
 20:01:10  &lt;zzz&gt; 7) Allow marketplaces on eepsite registration services? (zab)
 20:01:13  &lt;zzz&gt; 0) hi
-20:01:14  &lt;zzz&gt; 1) http://salt.i2p console home page request (carried over from Sept. 10 meeting)
+20:01:14  &lt;zzz&gt; 1) `http://salt.i2p` console home page request (carried over from Sept. 10 meeting)
 20:01:18  &lt;dg&gt; hi
 20:01:18  &lt;iRelay&gt; Title: salted (at salt.i2p)
 20:01:20  &lt;dg&gt; efkt_:
@@ -69,7 +69,7 @@ categories: ["meeting"]
 20:21:22  &lt;dg&gt; If str4d is more appropriate, that's fine.
 20:21:50  &lt;zzz&gt; other acks/nacks on str4d ?
 20:29:18  &lt;kytv@kytv&gt; ffs, I'll relay:
-20:30:12  &lt;kytv@kytv&gt; http://pastethis.i2p/show/5965
+20:30:12  &lt;kytv@kytv&gt; `http://pastethis.i2p/show/5965`
 20:30:13  &lt;iRelay@kytv&gt; Title: Paste #5965 | LodgeIt! (at pastethis.i2p)
 20:30:14  &lt;kytv@kytv&gt; bah
 20:30:32  &lt;dg&gt; welcome back
@@ -78,7 +78,7 @@ categories: ["meeting"]
 20:30:50  &lt;zzz&gt; hearing no objection let's welcome str4d as our newest backup release signer
 20:30:55  &lt;zzz&gt; str4d, kytv or I can help you generate your keys and check them in
 20:31:03  &lt;zzz&gt; excellent. I'm always worried about the bus.
-20:31:06  &lt;zzz&gt; 4) Console home page icons needed http://zzz.i2p/topics/1492 (brief)
+20:31:06  &lt;zzz&gt; 4) Console home page icons needed `http://zzz.i2p/topics/1492` (brief)
 20:31:12  &lt;zzz&gt; just wanted to mention the icons thing here, to highlight postman badger sponge eche|on kytv et al
 20:31:20  &lt;iRelay&gt; Title: zzz.i2p: Console Home Page Icons (at zzz.i2p)
 20:31:41  &lt;zzz&gt; pick or design an icon or we will pick one for you
@@ -113,7 +113,7 @@ categories: ["meeting"]
 20:40:07  &lt;str4d&gt; zzz: fair enough. But that ^ is it.
 20:40:30  &lt;str4d&gt; tl;dr - as soon as the .py problem is fixed, it is safe for live.
 20:40:31  &lt;zzz&gt; ok, I'll copypasta it, might lose it, might not.
-20:41:01  &lt;kytv&gt; (mine's updating/restarting FWIW   (http://geti2pj2fl72u4m2.onion/ / http://kfri3jwfsi2uy7j3pbzykbbaoqoj4siyhf3hozln3wxcrkvvityq.b32.i2p/))
+20:41:01  &lt;kytv&gt; (mine's updating/restarting FWIW   (http://geti2pj2fl72u4m2.onion/ / `http://kfri3jwfsi2uy7j3pbzykbbaoqoj4siyhf3hozln3wxcrkvvityq.b32.i2p/))`
 20:41:04  &lt;iRelay&gt; Title: I2P Anonymous Network (at geti2pj2fl72u4m2.onion)
 20:41:16  &lt;zzz&gt; ok then let's ask welterde_ to help out here
 20:41:49  &lt;zzz&gt; ok thx for the update str4d. anything else on 5) ?
@@ -185,10 +185,10 @@ categories: ["meeting"]
 20:56:12  &lt;zzz&gt; thanks guys for your thoughts. this is more my problem than a project issue and I needed some advice.
 20:57:07  &lt;dg&gt; if you feel uneasy about it, you are within your rights not to allow them zzz
 20:57:24  &lt;dg&gt; but i think it's ok as long as it's not crossing any moral lines
-20:57:54  &lt;zzz&gt; it's all on http://stats.i2p/i2p/addkey.html - I guess I would just add 'markets' to the line about forums, trackers, file + image hosts...
+20:57:54  &lt;zzz&gt; it's all on `http://stats.i2p/i2p/addkey.html` - I guess I would just add 'markets' to the line about forums, trackers, file + image hosts...
 20:57:54  &lt;zzz&gt; ok enough on 7)
 20:57:54  &lt;zzz&gt; back around to:
-20:57:54  &lt;zzz&gt; 2) http://no.i2p services request (Meeh)
+20:57:54  &lt;zzz&gt; 2) `http://no.i2p` services request (Meeh)
 20:57:54  &lt;zzz&gt;   2a) Add to default i2ptunnel jump list
 20:57:54  &lt;zzz&gt;   2b) Add to recommended addressbook subscriptions on FAQ
 20:57:56  &lt;zzz&gt;   2c) Add to registration help text on eepsite help
@@ -238,7 +238,7 @@ categories: ["meeting"]
 21:10:56  &lt;Meeh&gt; ok. Then we say add to trunk? (no.i2p)
 21:10:56  &lt;Meeh&gt; seems like we're on a new topic already :P
 21:10:56  &lt;kytv&gt; +1 for no.i2p  (yes, add to trunk)
-21:11:05  &lt;zzz&gt; oh, I'll note that I wrote down some rather obvious meeting policies on http://zzz.i2p/topics/1491 to make it clear anybody can schedule a meeting for anything at any time
+21:11:05  &lt;zzz&gt; oh, I'll note that I wrote down some rather obvious meeting policies on `http://zzz.i2p/topics/1491` to make it clear anybody can schedule a meeting for anything at any time
 21:11:20  &lt;iRelay&gt; Title: zzz.i2p: Project Meetings (at zzz.i2p)
 21:11:25  &lt;dg&gt; efkt_: No problem. You're great!
 21:11:38  &lt;zzz&gt; yeah, downloads and roadmap may be good for a future meeting

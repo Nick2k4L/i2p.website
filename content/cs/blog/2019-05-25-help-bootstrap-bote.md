@@ -16,12 +16,12 @@ nebo, zjednodušeně řečeno: Používá se podobně jako e‑mail, ale netrpí
 
 **Krok 1: Nainstalujte I2P-Bote**
 
-I2P-Bote je zásuvný modul i2p a jeho instalace je velmi snadná. Původní pokyny jsou k dispozici na [bote eepSite, bote.i2p](http://bote.i2p/install/), ale pokud si je chcete přečíst na clearnetu (běžném internetu), tyto pokyny jsou zde se svolením bote.i2p:
+I2P-Bote je zásuvný modul i2p a jeho instalace je velmi snadná. Původní pokyny jsou k dispozici na bote eepSite, bote.i2p, ale pokud si je chcete přečíst na clearnetu (běžném internetu), tyto pokyny jsou zde se svolením bote.i2p:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Krok dva: Získejte base64 adresu svého uzlu I2P-Bote**
 
@@ -63,7 +63,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Metoda B: Proveďte vyhledání**
 
-Pokud se vám to zdá jako příliš práce, můžete zjistit destinaci ve formátu base64 svého připojení Bote tak, že vyhledáte jeho adresu base32 pomocí libovolného z dostupných způsobů pro vyhledávání adres base32. Adresa base32 vašeho uzlu Bote je k dispozici na stránce "Connection" v rámci pluginu Bote na [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+Pokud se vám to zdá jako příliš práce, můžete zjistit destinaci ve formátu base64 svého připojení Bote tak, že vyhledáte jeho adresu base32 pomocí libovolného z dostupných způsobů pro vyhledávání adres base32. Adresa base32 vašeho uzlu Bote je k dispozici na stránce "Connection" v rámci pluginu Bote na `http://127.0.0.1:7657/i2pbote/network`
 
 **Krok tři: Kontaktujte nás!**
 

@@ -33,9 +33,9 @@ Bất kỳ ai đề xuất mã hóa mới phải nắm rõ các tài liệu sau:
 - [Đề xuất 136 các loại chữ ký thử nghiệm](/vi/proposals/136-experimental-sigtypes/)
 - [Đề xuất 137 các loại chữ ký tùy chọn](/vi/proposals/137-optional-sigtypes/)
 - Các luồng thảo luận ở đây cho từng đề xuất trên, được liên kết trong đó
-- [các ưu tiên đề xuất năm 2018](http://zzz.i2p/topics/2494)
-- [đề xuất ECIES](http://zzz.i2p/topics/2418)
-- [tổng quan mã hóa bất đối xứng mới](http://zzz.i2p/topics/1768)
+- các ưu tiên đề xuất năm 2018
+- đề xuất ECIES
+- tổng quan mã hóa bất đối xứng mới
 - [Tổng quan mã hóa cấp thấp](/vi/docs/specs/common-structures/)
 
 

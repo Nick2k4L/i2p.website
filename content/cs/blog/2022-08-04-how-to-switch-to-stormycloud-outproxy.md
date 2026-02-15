@@ -22,11 +22,11 @@ Podle jejich vlastních slov je StormyCloud:
 
 Chcete-li se o StormyCloud dozvědět více, navštivte jejich [webové stránky](https://www.stormycloud.org/).
 
-Nebo je navštivte na [I2P](http://stormycloud.i2p/).
+Nebo je navštivte na I2P.
 
 **Přepnutí na StormyCloud Outproxy v I2P**
 
-Chcete-li přepnout na StormyCloud outproxy (výstupní proxy) *dnes*, můžete navštívit [Správce skrytých služeb](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0). Až tam budete, změňte hodnoty **Outproxies** a **SSL Outproxies** na `exit.stormycloud.i2p`. Jakmile to provedete, posuňte se na konec stránky a klikněte na tlačítko "Save".
+Chcete-li přepnout na StormyCloud outproxy (výstupní proxy) *dnes*, můžete navštívit `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0`. Až tam budete, změňte hodnoty **Outproxies** a **SSL Outproxies** na `exit.stormycloud.i2p`. Jakmile to provedete, posuňte se na konec stránky a klikněte na tlačítko "Save".
 
 **Děkujeme StormyCloud**
 

@@ -97,7 +97,7 @@ categories: ["meeting"]
 15:42 &lt;jrandom&gt; (there are much smaller downloads for upgrading syndie than the full 4-5+MB ones - see syndie.i2p.net/downloads/)
 15:42 &lt;+fox&gt; &lt;hottuna&gt; whats is the i2p syndie archives url on the i2p network ?
 15:43 &lt;jrandom&gt; gloin: could you priv msg me the jar tvf output?
-15:43 &lt;jrandom&gt; hottuna: http://archive.syndie.i2p/
+15:43 &lt;jrandom&gt; hottuna: `http://archive.syndie.i2p/`
 15:43 &lt;+fox&gt; &lt;hottuna&gt; thank you
 15:45 &lt;jrandom&gt; (note that archive.syndie.i2p / syndie.i2p.net:8080 are just instances of syndie with the built-in HTTP server running)
 15:45 &lt;+fox&gt; &lt;hottuna&gt; oh :) wicked :)
@@ -135,7 +135,7 @@ categories: ["meeting"]
 16:04 &lt;bar&gt; 2. could we have an i2p gateway, syndie.i2p, to syndie.i2p.net, or would that perhaps collide with the old syndie infrastructure?
 16:05 &lt;Complication2&gt; On 2, I think it currently would collide
 16:06 &lt;jrandom&gt; hmm, i actually haven't thought about that much.  i'm tempted to say "nuke it, move everyone to the new syndie now now now" :)
-16:07 &lt;Complication2&gt; ...going to "http://archive.syndie.i2p" through "localhost:4444"
+16:07 &lt;Complication2&gt; ...going to "`http://archive.syndie.i2p`" through "localhost:4444"
 16:07 &lt;bar&gt; the reason i'm asking is, it's sometimes a bit of a pain having to use squid.i2p to access the syndie web pages
 16:07 &lt;jrandom&gt; ah, understood.  ok, i can redirect syndie.i2p to point to syndie.i2p.net, and old-syndie users can still use syndiemedia.i2p
 16:09 &lt;bar&gt; loverly :)

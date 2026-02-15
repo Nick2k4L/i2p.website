@@ -303,8 +303,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / http://127.0.0.1:8443/
-    ProxyPassReverse / http://127.0.0.1:8443/
+    ProxyPass / `http://127.0.0.1:8443/`
+    ProxyPassReverse / `http://127.0.0.1:8443/`
 </VirtualHost>
 ```
 ### التسجيل والتنسيق
@@ -553,7 +553,7 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 ### موارد المجتمع
 
 - **منتدى I2P**: https://i2pforum.net/
-- **مستودع Gitea**: https://i2pgit.org/I2P_Developers/i2p.i2p
+- **مستودع Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev على IRC2P
 - **مراقبة الحالة**: https://checki2p.com/reseed
 

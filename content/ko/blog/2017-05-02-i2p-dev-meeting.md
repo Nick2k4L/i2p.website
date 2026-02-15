@@ -34,7 +34,7 @@ categories: ["meeting"]
 20:04:27 &lt;backup&gt; 여기에 사람이 좀 더 있을 줄 알았는데요 :)
 20:04:27 &lt;manas&gt; :P
 20:04:33 &lt;zzz&gt; 2), 3), 4)와 관련해, 또는 회의에서 다룰 다른 주제 있나요?
-20:04:44 &lt;manas&gt; 이 글을 지적하고 싶었어요: http://trac.i2p2.i2p/ticket/1139
+20:04:44 &lt;manas&gt; 이 글을 지적하고 싶었어요: `http://trac.i2p2.i2p/ticket/1139`
 20:04:46 &lt;manas&gt; *티켓
 20:04:54 &lt;manas&gt; 이 변경을 새 UI에 넣도록 노력해야 해요
 20:05:21 &lt;manas&gt; "Semi-shutdown": 참여하는 tunnel 수락을 일시적으로 중지.

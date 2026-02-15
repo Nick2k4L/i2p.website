@@ -18,7 +18,7 @@ categories: ["status"]
 
 另一个暂时性问题是其中一个 HTTP outproxy（出口代理）(www1.squid.i2p) 出现故障，导致 50% 的 outproxy 请求失败。您可以暂时通过打开 I2PTunnel 配置[1]，编辑 eepProxy，并将 "Outproxies:" 这一行改为只包含 "squid.i2p"，来移除该 outproxy。希望我们能尽快让另一个重新上线，以提高冗余。
 
-[1] http://localhost:7657/i2ptunnel/index.jsp
+[1] `http://localhost:7657/i2ptunnel/index.jsp`
 
 * 2) 0.5 status
 
@@ -34,7 +34,7 @@ categories: ["status"]
 
 duck 已经整理出了一个针对上周 0.1.6 更新的错误修复版本，坊间传闻它相当给力（考虑到网络使用量的增加，也许 /太/ 给力了 ;) 更多信息见 i2p-bt 论坛 [2]
 
-[2] http://forum.i2p.net/viewtopic.php?t=300
+[2] `http://forum.i2p.net/viewtopic.php?t=300`
 
 * 4) ???
 

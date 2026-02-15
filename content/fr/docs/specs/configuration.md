@@ -28,7 +28,7 @@ Un fichier de configuration I2P est formaté selon les spécifications des [Prop
 
 Le fichier n'a pas besoin d'être trié, mais la plupart des applications trient par clé lors de l'écriture dans le fichier, pour faciliter la lecture et l'édition manuelle.
 
-Les opérations de lecture et d'écriture sont implémentées dans DataHelper loadProps() et storeProps() [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html). Notez que le format de fichier est significativement différent du format sérialisé pour les protocoles I2P spécifié dans [Mapping](/docs/specs/common-structures/#type-mapping).
+Les opérations de lecture et d'écriture sont implémentées dans DataHelper loadProps() et storeProps() [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html). Notez que le format de fichier est significativement différent du format sérialisé pour les protocoles I2P spécifié dans [Mapping](/docs/specs/common-structures/#type-mapping).
 
 ## Bibliothèque centrale et router
 
@@ -226,7 +226,7 @@ tunnel.N.option.i2ptunnel.httpclient.allowInternalSSL=true|false
 tunnel.N.option.i2ptunnel.httpclient.disableAddressHelper=true|false
 
 # HTTP client only. Comma- or space-separated list of jump server URLs.
-tunnel.N.option.i2ptunnel.httpclient.jumpServers=http://example.i2p/jump
+tunnel.N.option.i2ptunnel.httpclient.jumpServers=`http://example.i2p/jump`
 
 # HTTP client only. Whether to pass Accept* headers through. Default false.
 # Note: Does not affect "Accept" and "Accept-Encoding".
@@ -430,7 +430,7 @@ Voir le message sur zzz.i2p.
 
 ## Références
 
-- [DATAHELPER](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+- [DATAHELPER](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 - [Correspondance](/docs/specs/common-structures#type-mapping)
 - [PLUGIN](/docs/specs/plugin)
 - [Properties](http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Properties.html#load%28java.io.InputStream%29)

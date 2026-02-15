@@ -36,4 +36,4 @@ Unfortunately, asking people to manually select their peers has serious problems
 
 어쨌든 몇 분 후에 우리 주간 진행 상황 회의가 시작되니, 더 논의하고 싶은 게 있으면 평소 장소 [1]의 #i2p에 들러 인사해 주세요!
 
-=jr [1] http://forum.i2p.net/viewtopic.php?t=952
+=jr [1] `http://forum.i2p.net/viewtopic.php?t=952`

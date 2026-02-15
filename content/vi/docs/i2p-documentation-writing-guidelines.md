@@ -13,7 +13,7 @@ lastUpdated: "2025-10"
 
 ### 1. Xác minh mọi thứ
 
-**Không bao giờ giả định hay đoán mò.** Mọi phát biểu kỹ thuật phải được xác minh đối chiếu với: - Mã nguồn I2P hiện tại (https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master) - Tài liệu API chính thức (https://i2p.github.io/i2p.i2p/  - Đặc tả cấu hình [/docs/specs/](/docs/) - Ghi chú phát hành gần đây [/releases/](/categories/release/)
+**Không bao giờ giả định hay đoán mò.** Mọi phát biểu kỹ thuật phải được xác minh đối chiếu với: - Mã nguồn I2P hiện tại (`https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)` - Tài liệu API chính thức (`https://i2p.github.io/i2p.i2p/`  - Đặc tả cấu hình [/docs/specs/](/docs/) - Ghi chú phát hành gần đây [/releases/](/categories/release/)
 
 **Ví dụ về việc xác minh đúng cách:**
 
@@ -106,7 +106,7 @@ Note that client registry and port mapper are separate systems:
 **Mẫu cho các URL nội bộ của I2P:**
 
 ```markdown
-> **Note:** The I2P network hosts comprehensive documentation at http://idk.i2p/javadoc-i2p/ 
+> **Note:** The I2P network hosts comprehensive documentation at `http://idk.i2p/javadoc-i2p/` 
 > which requires an I2P router for access. For clearnet access, use the GitHub Pages 
 > mirror at https://eyedeekay.github.io/javadoc-i2p/
 ```
@@ -114,17 +114,17 @@ Note that client registry and port mapper are separate systems:
 
 **Đặc tả chính thức:** - [Cấu hình](/docs/specs/configuration/) - [Plugin](/docs/specs/plugin/) - [Mục lục tài liệu](/docs/)
 
-**Tài liệu API (chọn phiên bản mới nhất):** - Mới nhất: https://i2p.github.io/i2p.i2p/ (API 0.9.66 tính đến I2P 2.10.0) - Bản sao trên Clearnet (mạng Internet công khai): https://eyedeekay.github.io/javadoc-i2p/
+**Tài liệu API (chọn phiên bản mới nhất):** - Mới nhất: `https://i2p.github.io/i2p.i2p/` (API 0.9.66 tính đến I2P 2.10.0) - Bản sao trên Clearnet (mạng Internet công khai): https://eyedeekay.github.io/javadoc-i2p/
 
-**Mã nguồn:** - GitLab (chính thức): https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master - GitHub mirror (bản sao): https://github.com/i2p/i2p.i2p
+**Mã nguồn:** - GitLab (chính thức): `https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master` - GitHub mirror (bản sao): `https://github.com/i2p/i2p.i2p`
 
 ### Tiêu chuẩn định dạng liên kết
 
 ```markdown
-✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
+✅ GOOD: ClientApp Javadoc
 ✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
 
-❌ BAD: See the ClientApp docs at http://idk.i2p/...
+❌ BAD: See the ClientApp docs at `http://idk.i2p/...`
 ❌ BAD: [link](url) with no descriptive text
 ```
 ---
@@ -552,12 +552,12 @@ See [clients.config specification](https://geti2p.net/spec/configuration#clients
 **Liên kết ngoài** (đến các tài nguyên khác):
 
 ```markdown
-For more details, see [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
+For more details, see ClientApp Javadoc
 ```
 **Liên kết kho mã nguồn**:
 
 ```markdown
-View source: [ClientApp.java](https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master/core/java/src/net/i2p/app/ClientApp.java)
+View source: ClientApp.java
 ```
 ### Định dạng bảng
 

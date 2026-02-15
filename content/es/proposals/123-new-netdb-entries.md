@@ -1067,7 +1067,7 @@ No se define ningún formato de archivo en esta propuesta para empaquetar múlti
   clave deseada con un argumento contador). BLAKE2b es mucho más rápido que SHA-256, y
   BLAKE2b con clave reduciría el número total de llamadas a funciones hash.
   Sin embargo, ver propuesta 148, donde se propone que cambiemos a BLAKE2b por otras razones.
-  Ver [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+  Ver Secure key derivation performance.
 
 ### Meta LS2
 
@@ -1081,7 +1081,7 @@ El caso de uso para Meta LS2 es multihoming masivo, pero sin más protección pa
 
 El protocolo de back-end para la coordinación entre los routers hoja, los firmantes Meta LS intermedios y maestros no se especifica aquí. Los requisitos son extremadamente simples: solo verificar que el peer esté activo y publicar un nuevo LS cada pocas horas. La única complejidad es elegir nuevos publicadores para los Meta LSes de nivel superior o intermedio en caso de falla.
 
-Los leasesets de mezcla y combinación donde las leases de múltiples routers se combinan, firman y publican en un solo leaseset está documentado en la propuesta 140, "multihoming invisible". Esta propuesta es insostenible tal como está escrita, porque las conexiones de streaming no serían "pegajosas" a un solo router, ver http://zzz.i2p/topics/2335 .
+Los leasesets de mezcla y combinación donde las leases de múltiples routers se combinan, firman y publican en un solo leaseset está documentado en la propuesta 140, "multihoming invisible". Esta propuesta es insostenible tal como está escrita, porque las conexiones de streaming no serían "pegajosas" a un solo router, ver `http://zzz.i2p/topics/2335` .
 
 El protocolo de back-end, y la interacción con los componentes internos del router y cliente, sería bastante compleja para el multihoming invisible.
 
@@ -1619,7 +1619,7 @@ Las firmas offline no pueden ser verificadas en streaming o datagramas respondib
 
 ## Private Key File Changes Required
 
-El formato del archivo de clave privada (eepPriv.dat) no es una parte oficial de nuestras especificaciones, pero está documentado en los [javadocs de Java I2P](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) y otras implementaciones sí lo admiten. Esto permite la portabilidad de claves privadas a diferentes implementaciones.
+El formato del archivo de clave privada (eepPriv.dat) no es una parte oficial de nuestras especificaciones, pero está documentado en los javadocs de Java I2P y otras implementaciones sí lo admiten. Esto permite la portabilidad de claves privadas a diferentes implementaciones.
 
 Los cambios son necesarios para almacenar la clave pública transitoria y la información de firma fuera de línea.
 

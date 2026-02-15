@@ -30,7 +30,7 @@ categories: ["meeting"]
 [23:02] &lt;mihi&gt; ;)
 [23:02] &lt;duck&gt; 1) 코드 진행 상황
 [23:02] &lt;duck&gt; cvs에 제출된 코드가 별로 없네요
-[23:02] &lt;duck&gt; 이번 주엔 제가 트로피를 받았어요: http://duck.i2p/duck_trophy.jpg
+[23:02] &lt;duck&gt; 이번 주엔 제가 트로피를 받았어요: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus 아직 cvs 계정이 없음
 [23:03] &lt;Masterboy&gt; 그리고 누가 뭔가 제출했나요?
 [23:03] &lt;duck&gt; 비밀리에 코딩하는 사람 있나요?

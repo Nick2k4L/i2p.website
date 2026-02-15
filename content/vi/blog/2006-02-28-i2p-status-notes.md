@@ -33,7 +33,7 @@ Còn có những chiến lược thú vị khác cần được xử lý, nhưng
 
 Có nhiều việc hữu ích để làm đến mức tôi đếm không xuể, nhưng tôi chỉ muốn giới thiệu với bạn một bài viết trên blog của tôi mô tả năm dự án nhỏ mà một lập trình viên có thể làm nhanh mà không cần đầu tư quá nhiều thời gian [1]. Nếu ai đó hứng thú bắt tay vào những việc đó, tôi chắc rằng chúng tôi sẽ phân bổ một ít nguồn lực [2] từ quỹ chung như lời cảm ơn, dù tôi hiểu rằng đa số các bạn được thúc đẩy bởi niềm đam mê hack chứ không phải vì tiền ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

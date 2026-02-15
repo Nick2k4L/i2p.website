@@ -74,7 +74,7 @@ I2P पर डेटा भेजने के कई तरीके हैं,
 
 ### BOB
 
-BOB एक [Basic Open Bridge](/docs/legacy/bob/) है, जो किसी भी भाषा में एप्लिकेशन को I2P से और I2P तक streaming connections बनाने की अनुमति देता है। इस समय इसमें UDP समर्थन नहीं है, लेकिन निकट भविष्य में UDP समर्थन की योजना है। BOB में कई उपकरण भी शामिल हैं, जैसे destination key generation, और यह सत्यापन कि कोई पता I2P specifications के अनुसार है। अद्यतन जानकारी और BOB का उपयोग करने वाले एप्लिकेशन इस [I2P Site](http://bob.i2p/) पर मिल सकते हैं।
+BOB एक [Basic Open Bridge](/docs/legacy/bob/) है, जो किसी भी भाषा में एप्लिकेशन को I2P से और I2P तक streaming connections बनाने की अनुमति देता है। इस समय इसमें UDP समर्थन नहीं है, लेकिन निकट भविष्य में UDP समर्थन की योजना है। BOB में कई उपकरण भी शामिल हैं, जैसे destination key generation, और यह सत्यापन कि कोई पता I2P specifications के अनुसार है। अद्यतन जानकारी और BOB का उपयोग करने वाले एप्लिकेशन इस I2P Site पर मिल सकते हैं।
 
 ### SAM, SAM V2, SAM V3
 
@@ -350,12 +350,12 @@ public class Main {
 
 यदि आप योगदान देना चाहते हैं तो हमसे संपर्क करें।
 
-- [I2P-Bote](http://i2pbote.i2p/) - HungryHobo से संपर्क करें
+- I2P-Bote - HungryHobo से संपर्क करें
 - [Syndie](http://syndie.i2p2.de/)
-- [IMule](http://www.imule.i2p/)
-- [I2Phex](http://forum.i2p/viewforum.php?f=25)
+- IMule
+- I2Phex
 
-[plugins.i2p](http://plugins.i2p/) पर सभी plugins, [echelon.i2p](http://echelon.i2p/) पर सूचीबद्ध applications और source code, और [git.repo.i2p](http://git.repo.i2p/) पर होस्ट किए गए application code भी देखें।
+plugins.i2p पर सभी plugins, echelon.i2p पर सूचीबद्ध applications और source code, और git.repo.i2p पर होस्ट किए गए application code भी देखें।
 
 I2P वितरण में बंडल किए गए एप्लिकेशन भी देखें - SusiMail और I2PSnark।
 

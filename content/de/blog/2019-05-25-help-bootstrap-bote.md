@@ -16,12 +16,12 @@ oder, ganz einfach erklärt: Es wird ähnlich wie E-Mail verwendet, weist jedoch
 
 **Schritt Eins: I2P-Bote installieren**
 
-I2P-Bote ist ein I2P-Plugin, und die Installation ist sehr einfach. Die ursprünglichen Anleitungen sind auf der [bote eepSite, bote.i2p](http://bote.i2p/install/) verfügbar, aber wenn Sie sie im Clearnet lesen möchten, stammen diese Anleitungen mit freundlicher Genehmigung von bote.i2p:
+I2P-Bote ist ein I2P-Plugin, und die Installation ist sehr einfach. Die ursprünglichen Anleitungen sind auf der bote eepSite, bote.i2p verfügbar, aber wenn Sie sie im Clearnet lesen möchten, stammen diese Anleitungen mit freundlicher Genehmigung von bote.i2p:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Schritt zwei: Ermitteln Sie die Base64-Adresse Ihres I2P-Bote-Knotens**
 
@@ -63,7 +63,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Methode B: Eine Abfrage durchführen**
 
-Falls Ihnen das zu viel Aufwand erscheint, können Sie die Base64-Destination (Zieladresse) Ihrer Bote-Verbindung ermitteln, indem Sie deren Base32-Adresse mit einer der verfügbaren Methoden zum Nachschlagen einer Base32-Adresse abfragen. Die Base32-Adresse Ihres Bote-Knotens finden Sie auf der Seite "Connection" der Bote-Plugin-Anwendung unter [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+Falls Ihnen das zu viel Aufwand erscheint, können Sie die Base64-Destination (Zieladresse) Ihrer Bote-Verbindung ermitteln, indem Sie deren Base32-Adresse mit einer der verfügbaren Methoden zum Nachschlagen einer Base32-Adresse abfragen. Die Base32-Adresse Ihres Bote-Knotens finden Sie auf der Seite "Connection" der Bote-Plugin-Anwendung unter `http://127.0.0.1:7657/i2pbote/network`
 
 **Schritt drei: Kontaktieren Sie uns!**
 

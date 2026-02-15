@@ -49,7 +49,7 @@ categories: ["meeting"]
 (04:09:06 PM) eyedeekay: Timeout 1m
 (04:10:16 PM) eyedeekay: OK on to 4)
 (04:11:20 PM) eyedeekay: The design firm hired by the OTF created a revised style guide. The new guide is somewhat more "flexible" than the old one, while also encouraging us toward a level of internal consistency.
-(04:11:20 PM) eyedeekay: It is located here: https://uracreative.github.io/i2p-styleguide/. A post requesting comments from the community on the style recommendations, and which ones to implement, and how, is here: http://i2pforum.i2p/viewtopic.php?f=21&t=986&sid=bbca7a971055b8449737ba038ebbfa49
+(04:11:20 PM) eyedeekay: It is located here: https://uracreative.github.io/i2p-styleguide/. A post requesting comments from the community on the style recommendations, and which ones to implement, and how, is here: `http://i2pforum.i2p/viewtopic.php?f=21&t=986&sid=bbca7a971055b8449737ba038ebbfa49`
 (04:11:20 PM) eyedeekay: The difficulty of implementing the design recommendations results from the fact that changes implemented partially tend to be visually unappealing, for example see the recent icon issue in I2PSnark.
 (04:12:26 PM) eyedeekay: However, this only comprises 1/2 of the advice we recieved
 (04:13:01 PM) eyedeekay: The most significant improvement we could make identified by the programs paid for by the OTF entailing the work of Ura Design and Simsec was an overall problem with onboarding new participants of all types.

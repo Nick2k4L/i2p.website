@@ -36,7 +36,7 @@ Il existe d’autres stratégies intéressantes à approfondir, mais ces trois-l
 
 Il y a plus de choses utiles à faire que je ne saurais en compter, mais je veux simplement attirer votre attention sur un billet publié sur mon blog décrivant cinq petits projets qu’un développeur pourrait monter rapidement sans y consacrer trop de temps [1]. Si quelqu’un souhaite s’y lancer, je suis sûr que nous allouerions quelques ressources [2] provenant du fonds général en guise de remerciement, même si je me doute que la plupart d’entre vous sont motivés par le hack et non par le cash ;)
 
-[1] http://syndiemedia.i2p.net:8000/blog.jsp?     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
+[1] `http://syndiemedia.i2p.net:8000/blog.jsp?`     blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&     entry=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=/1140652800002 [2] http://www.i2p.net/halloffame
 
 * 4) ???
 

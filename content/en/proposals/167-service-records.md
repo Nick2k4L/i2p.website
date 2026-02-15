@@ -51,13 +51,13 @@ that GNS (or DNS) is supported, with a standard service name of "domain" on port
 
 ### Dot well-known
 
-It has been [proposed](http://i2pforum.i2p/viewtopic.php?p=3102) that services be looked up via an HTTP request to
+It has been proposed that services be looked up via an HTTP request to
 /.well-known/i2pmail.key. This requires that every service must have a related
 website to host the key. Most users do not run websites.
 
 One workaround is that we could presume that a service for a b32 address is actually
 running on that b32 address. So that looking for the service for example.i2p requires
-the HTTP fetch from http://example.i2p/.well-known/i2pmail.key, but
+the HTTP fetch from `http://example.i2p/.well-known/i2pmail.key,` but
 a service for aaa...aaa.b32.i2p does not require that lookup, it can just connect directly.
 
 But there's an ambiguity there, because example.i2p can also be addressed by its b32.
@@ -323,7 +323,7 @@ TODO how to do this in a generic way
 
 ### Changes required for Email
 
-Out of the scope of this proposal. See the [discussion on i2pforum](http://i2pforum.i2p/viewtopic.php?p=3102) for more details.
+Out of the scope of this proposal. See the discussion on i2pforum for more details.
 
 
 ## Implementation Notes
@@ -379,11 +379,11 @@ SAM compatibility versions for each implementation will be documented in the SAM
 
 ## References
 
-* [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
+* DOTWELLKNOWN
 * [I2CP](/docs/specs/i2cp/)
 * [I2CP-OPTIONS](/docs/specs/i2cp/)
 * [LS2](/docs/specs/common-structures/)
-* [GNS](http://zzz.i2p/topcs/1545)
+* GNS
 * [NAMING](/docs/overview/naming/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop168](/proposals/168-tunnel-bandwidth/)

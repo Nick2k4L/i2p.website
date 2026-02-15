@@ -221,23 +221,23 @@ Your I2P router is now configured and running! The router console will show your
 
 Now that I2P is installed and configured, you can:
 
-1. **Browse I2P sites**: Visit the [I2P homepage](http://127.0.0.1:7657/home) to see links to popular I2P services
+1. **Browse I2P sites**: Visit the `http://127.0.0.1:7657/home` to see links to popular I2P services
 2. **Configure your browser**: Set up a [browser profile](/docs/guides/browser-config) to access `.i2p` sites
 3. **Explore services**: Check out I2P email, forums, file sharing, and more
-4. **Monitor your router**: The [console](http://127.0.0.1:7657/console) shows your network status and statistics
+4. **Monitor your router**: The `http://127.0.0.1:7657/console` shows your network status and statistics
 
 ### Useful Links
 
-- **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
-- **Configuration**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
-- **Address Book**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
-- **Bandwidth Settings**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Router Console**: `http://127.0.0.1:7657/`
+- **Configuration**: `http://127.0.0.1:7657/config`
+- **Address Book**: `http://127.0.0.1:7657/susidns/addressbook`
+- **Bandwidth Settings**: `http://127.0.0.1:7657/config`
 
 ## Re-running the Setup Wizard
 
 If you want to change your bandwidth settings or re-configure I2P later, you can re-run the welcome wizard from the Router Console:
 
-1. Go to [I2P Setup Wizard](http://127.0.0.1:7657/welcome)
+1. Go to `http://127.0.0.1:7657/welcome`
 2. Follow the wizard steps again
 
 ## Troubleshooting

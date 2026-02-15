@@ -26,7 +26,7 @@ In particular, I'd be interested in hearing any feedback from people on dialup m
 
 There's been lots more discussion on the list regarding a few ideas, with a summary of the bootstrap attacks up online [1]. I've made some progress specing out the crypto for option 3, and while nothing has been posted yet, its fairly straightforward.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-October/001146.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-October/001146.html`
 
 There have been further discussions about how to improve resistance to powerful adversaries with constant bitrate (CBR) tunnels, and while we have the option to explore that avenue, its currently slated for I2P 3.0, as its proper use requires substantial resources, and would likely have a measureable impact on who would be willing to use I2P with such overhead as well as what groups would or would not even be able to.
 
@@ -36,7 +36,7 @@ Last saturday we also had a new I2Phex release [2], fixing a file descriptor lea
 
 There's also been an update to the CVS version (not yet released) which clears up some synchronization issues - Phex assumes some network operations are processed immediately, while I2P can sometime take a while to do things :) This manifests itself with the GUI hanging for a while, downloads or uploads stalling, or connections being refused (and perhaps a few other ways). It hasn't had much testing yet, but will probably be pushed out into 0.1.1.35 this week. I'm sure more news will be posted on the forum when there's more news.
 
-[2] http://forum.i2p.net/viewtopic.php?t=1143
+[2] `http://forum.i2p.net/viewtopic.php?t=1143`
 
 * 4) voi2p app
 

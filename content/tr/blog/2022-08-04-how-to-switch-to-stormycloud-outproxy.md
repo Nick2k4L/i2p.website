@@ -23,11 +23,11 @@ Kendi sözleriyle, StormyCloud şöyle:
 
 StormyCloud hakkında daha fazla bilgi edinmek için [web sitesini](https://www.stormycloud.org/) ziyaret edin.
 
-Veya, onları [I2P](http://stormycloud.i2p/) üzerinde ziyaret edin.
+Veya, onları I2P üzerinde ziyaret edin.
 
 **I2P'de StormyCloud Outproxy'ye (dış vekil sunucusu) geçiş**
 
-StormyCloud outproxy'ye *bugün* geçmek için [the Hidden Services Manager](http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0) (Gizli Servisler Yöneticisi) sayfasını ziyaret edebilirsiniz. Oraya ulaştığınızda, **Outproxies** ve **SSL Outproxies** değerlerini `exit.stormycloud.i2p` olarak değiştirmelisiniz. Bunu yaptıktan sonra, sayfanın en altına kadar kaydırın ve "Save" düğmesine tıklayın.
+StormyCloud outproxy'ye *bugün* geçmek için `http://127.0.0.1:7657/i2ptunnel/edit?tunnel=0` (Gizli Servisler Yöneticisi) sayfasını ziyaret edebilirsiniz. Oraya ulaştığınızda, **Outproxies** ve **SSL Outproxies** değerlerini `exit.stormycloud.i2p` olarak değiştirmelisiniz. Bunu yaptıktan sonra, sayfanın en altına kadar kaydırın ve "Save" düğmesine tıklayın.
 
 **StormyCloud'a teşekkürler**
 

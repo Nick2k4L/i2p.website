@@ -30,13 +30,13 @@ Michael Rogers entrou em contato a respeito de alguns novos ataques interessante
 
 Michael publicou outro ataque na lista, que estamos analisando no momento, então você poderá acompanhá-lo por lá também.
 
-[2] http://dev.i2p.net/pipermail/i2p/2005-October/001005.html [3] http://dev.i2p.net/pipermail/i2p/2005-October/001008.html [4] http://dev.i2p.net/pipermail/i2p/2005-October/001006.html
+[2] `http://dev.i2p.net/pipermail/i2p/2005-October/001005.html` [3] `http://dev.i2p.net/pipermail/i2p/2005-October/001008.html` [4] `http://dev.i2p.net/pipermail/i2p/2005-October/001006.html`
 
 * 4) I2Phex
 
 Striker está fazendo mais progresso no bug de upload, e há relatos de que ele já o isolou. Com sorte, entrará no CVS esta noite e será lançado como 0.1.1.33 logo depois. Fique de olho no fórum [5] para mais informações.
 
-[5] http://forum.i2p.net/viewforum.i2p?f=25
+[5] `http://forum.i2p.net/viewforum.i2p?f=25`
 
 Dizem por aí que o redzara está fazendo um ótimo progresso ao se reintegrar ao ramo principal do Phex, então, com sorte e com a ajuda do Gregor, vamos deixar tudo atualizado em breve!
 

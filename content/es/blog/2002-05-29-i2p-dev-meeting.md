@@ -6,7 +6,7 @@ description: "Registro de reunión de desarrollo de I2P del 29 de mayo de 2002."
 categories: ["meeting"]
 ---
 
-(Cortesía de la wayback machine http://www.archive.org/)
+(Cortesía de la wayback machine `http://www.archive.org/`)
 
 ## Resumen rápido
 

@@ -14,14 +14,14 @@ categories: ["meeting"]
 
 <div class="irc-log">
 20:00:05 &lt;zzz&gt; 0) Hi
-20:00:05 &lt;zzz&gt; 1) Items open from previous meetings http://zzz.i2p/topics/2093
-20:00:05 &lt;zzz&gt; 2) Replacement of kytv roles and services http://zzz.i2p/topics/2098
-20:00:05 &lt;zzz&gt; 3) 0.9.26 planning update http://i2p-projekt.i2p/en/get-involved/roadmap http://zzz.i2p/topics/1960
-20:00:05 &lt;zzz&gt; 4) HOPE planning http://zzz.i2p/topics/1968
+20:00:05 &lt;zzz&gt; 1) Items open from previous meetings `http://zzz.i2p/topics/2093`
+20:00:05 &lt;zzz&gt; 2) Replacement of kytv roles and services `http://zzz.i2p/topics/2098`
+20:00:05 &lt;zzz&gt; 3) 0.9.26 planning update `http://i2p-projekt.i2p/en/get-involved/roadmap` `http://zzz.i2p/topics/1960`
+20:00:05 &lt;zzz&gt; 4) HOPE planning `http://zzz.i2p/topics/1968`
 20:00:05 &lt;zzz&gt; 5) Brief review of monthly meetings and project management after 3 months
 20:00:10 &lt;zzz&gt; 0) Hi
 20:00:12 &lt;zzz&gt; hi
-20:00:38 &lt;zzz&gt; 1) Items open from previous meetings http://zzz.i2p/topics/2093
+20:00:38 &lt;zzz&gt; 1) Items open from previous meetings `http://zzz.i2p/topics/2093`
 20:00:55 &lt;orignal_&gt; hi
 20:01:00 &lt;zzz&gt; - Reseed campaign prep, by end of January:
 20:01:00 &lt;zzz&gt; ** Sadie to contact backup to discuss OPEN, new date April 5
@@ -60,8 +60,8 @@ categories: ["meeting"]
 20:12:17 &lt;str4d&gt; So yes, we need to refine
 20:12:20 &lt;zzz&gt; ok. good perspective
 20:12:25 &lt;zzz&gt; anything else on 1) ?
-20:13:04 &lt;str4d&gt; For everyone else here, the proposal stuff is at http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec/proposals - please review and comment :)
-20:13:26 &lt;zzz&gt; 2) Replacement of kytv roles and services http://zzz.i2p/topics/2098
+20:13:04 &lt;str4d&gt; For everyone else here, the proposal stuff is at `http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/spec/proposals` - please review and comment :)
+20:13:26 &lt;zzz&gt; 2) Replacement of kytv roles and services `http://zzz.i2p/topics/2098`
 20:13:34 &lt;zzz&gt; there's a list of about 20 things he did
 20:13:44 &lt;str4d&gt; Nothing else for me
 20:13:47 &lt;str4d&gt; (I did do I2P Android work, just didn't quite get to release)
@@ -88,7 +88,7 @@ categories: ["meeting"]
 20:19:02 &lt;zzz&gt; last call for 2)
 20:19:46 &lt;str4d&gt; If no one else does it, I *may* pick up the IRC bot/relay. Unlikely for now.
 20:20:34 &lt;zzz&gt; i think the deb builds are in decent shape but there's still some stuff like arm for jessie that I may have fixed today, or may not have
-20:21:19 &lt;zzz&gt; 3) 0.9.26 planning update http://i2p-projekt.i2p/en/get-involved/roadmap http://zzz.i2p/topics/1960
+20:21:19 &lt;zzz&gt; 3) 0.9.26 planning update `http://i2p-projekt.i2p/en/get-involved/roadmap` `http://zzz.i2p/topics/1960`
 20:21:33 &lt;zzz&gt; ok I want to do 3a) schedule and then 3b) GMP 6
 20:21:38 &lt;zzz&gt; 3a) schedule
 20:22:03 &lt;zzz&gt; the roadmap says 'may' and 6-7 weeks from the last release march 22 would be early-mid may
@@ -136,7 +136,7 @@ categories: ["meeting"]
 20:35:29 &lt;zzz&gt; last tuna told me was take it or leave it, he's done
 20:35:54 &lt;zzz&gt; even if the builds are fast, the testing is slow
 20:36:25 &lt;str4d&gt; Do we have the test process written up somewhere?
-20:36:54 &lt;zzz&gt; if you go to the last page of http://zzz.i2p/topics/1960 he's submitted all the build notes he has
+20:36:54 &lt;zzz&gt; if you go to the last page of `http://zzz.i2p/topics/1960` he's submitted all the build notes he has
 20:36:56 &lt;eche|on&gt; (just to note, we did accept some other stuff without notes already)
 20:37:07 &lt;str4d&gt; because this sounds exactly like what we should be putting into a CI server
 20:37:38 &lt;zzz&gt; he's updated the readme's on how to build. there's some info in the thread on how to test, and I've developed my own methods also
@@ -249,7 +249,7 @@ categories: ["meeting"]
 21:01:51 &lt;hottuna&gt; zzz: splendid
 21:01:54 &lt;str4d&gt; (the buildmaster will handle buildservers that aren't always online)
 21:02:12 &lt;zzz&gt; let's table the buildserver talk and move on to 4)
-21:02:22 &lt;zzz&gt; 4) HOPE planning http://zzz.i2p/topics/1968
+21:02:22 &lt;zzz&gt; 4) HOPE planning `http://zzz.i2p/topics/1968`
 21:02:23 &lt;susbarbatus&gt; str4d: thats no problem. I can hook up my ~2012 mac mini for that. Its slow but it wont be doing anything else.
 21:02:24 &lt;str4d&gt; ACK
 21:02:33 &lt;str4d&gt; ^5 susbarbatus :)

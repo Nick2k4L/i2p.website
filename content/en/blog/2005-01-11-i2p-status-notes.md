@@ -25,7 +25,7 @@ However, the other irc server was (and still is) around (though at
 the moment doesn't have CTCP disabled - see [1]), so we were able to
 satiate our need for irc :)
 
-[1] http://ugha.i2p/HowTo/IrcAnonymityGuide
+[1] `http://ugha.i2p/HowTo/IrcAnonymityGuide`
 
 * 2) 0.5 progress
 
@@ -110,7 +110,7 @@ trying to help push the naming issue by publishing gott's site as
 jrandom.i2p (he asked for that site first - I did not, and have no
 control whatsoever as to the contents of that URL).  Now we may
 begin to explore how we are going to deal with sites not listed in the
-http://dev.i2p.net/i2p/hosts.txt or on forum.i2p.  Not being
+`http://dev.i2p.net/i2p/hosts.txt` or on forum.i2p.  Not being
 posted on those locations doesn't prevent in any way a site from
 operating - your hosts.txt is just your local address book.
 

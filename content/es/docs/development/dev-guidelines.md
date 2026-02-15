@@ -91,6 +91,6 @@ Las siguientes directrices se aplican al router, las aplicaciones web y todos lo
 
 ### Errores
 
-- Gestionar incidencias es trabajo de todos; por favor ayuda. Monitorea [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues) para ver incidencias en las que puedas ayudar. Comenta, corrige y cierra incidencias si puedes.
+- Gestionar incidencias es trabajo de todos; por favor ayuda. Monitorea GitLab para ver incidencias en las que puedas ayudar. Comenta, corrige y cierra incidencias si puedes.
 - Los nuevos desarrolladores deben comenzar corrigiendo incidencias. Cuando tengas una corrección, adjunta tu parche a la incidencia y añade la palabra clave `review-needed`. No cierres la incidencia hasta que haya sido revisada exitosamente y hayas verificado tus cambios. Una vez que hayas hecho esto sin problemas para un par de tickets, puedes seguir el procedimiento normal descrito arriba.
 - Cierra una incidencia cuando creas que la has corregido. No tenemos un departamento de pruebas para verificar y cerrar tickets. Si no estás seguro de haberla corregido, ciérrala y añade una nota diciendo "Creo que lo corregí, por favor prueba y reabre si sigue sin funcionar". Añade un comentario con el número de compilación de desarrollo o revisión y establece el milestone a la próxima versión.

@@ -29,7 +29,7 @@ Há muitas opiniões conflitantes sobre o uso de expoentes curtos e, no caso ger
 
 A grande alternativa é mudar para criptografia de 1024 bits (na qual poderíamos então usar um expoente curto de 160 bits, talvez). Isso pode ser apropriado de qualquer forma e, se as coisas forem difíceis demais com criptografia de 2048 bits na rede _PRE, podemos fazer a mudança dentro da rede _PRE. Caso contrário, podemos aguardar até a versão 0.6.1.10, quando houver uma implantação mais ampla da nova criptografia, para ver se é necessário. Muito mais informações serão fornecidas se tal mudança parecer provável.
 
-[1] "Sobre o acordo de chaves Diffie-Hellman com expoentes curtos" -     van Oorschot, Weiner no EuroCrypt 96.  espelhado em     http://dev.i2p.net/~jrandom/Euro96-DH.ps [2] http://www.ietf.org/rfc/rfc3526.txt
+[1] "Sobre o acordo de chaves Diffie-Hellman com expoentes curtos" -     van Oorschot, Weiner no EuroCrypt 96.  espelhado em     `http://dev.i2p.net/~jrandom/Euro96-DH.ps` [2] http://www.ietf.org/rfc/rfc3526.txt
 
 De qualquer forma, há muito progresso na rede _PRE, com a maior parte da comunicação sobre isso ocorrendo no canal #i2p_pre no irc2p.
 

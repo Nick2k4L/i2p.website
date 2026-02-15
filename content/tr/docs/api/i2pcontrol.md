@@ -102,7 +102,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 ### Başarılı Yanıt
 
@@ -144,7 +144,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Yanıt Alanları (result)** Resmi dokümanlara göre (GetI2P): - `i2p.router.status` (String) — insan tarafından okunabilir durum - `i2p.router.uptime` (long) — milisaniye (veya eski i2pd için string) :contentReference[oaicite:0]{index=0} - `i2p.router.version` (String) — sürüm dizesi :contentReference[oaicite:1]{index=1} - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — gelen bant genişliği B/s cinsinden :contentReference[oaicite:2]{index=2} - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — giden bant genişliği B/s cinsinden :contentReference[oaicite:3]{index=3} - `i2p.router.net.status` (long) — sayısal durum kodu (aşağıdaki enum'a bakın) :contentReference[oaicite:4]{index=4} - `i2p.router.net.tunnels.participating` (long) — katılan tunnel sayısı :contentReference[oaicite:5]{index=5} - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — netDB peer istatistikleri :contentReference[oaicite:6]{index=6} - `i2p.router.netdb.isreseeding` (boolean) — reseed'in aktif olup olmadığı :contentReference[oaicite:7]{index=7} - `i2p.router.netdb.knownpeers` (long) — toplam bilinen peer'lar :contentReference[oaicite:8]{index=8}
 
@@ -240,7 +240,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Örnek Yanıt**
 
@@ -274,7 +274,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Başarılı Yanıt**
 
@@ -309,7 +309,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Örnek Yanıt**
 
@@ -351,7 +351,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  http://127.0.0.1:7657/jsonrpc/
+  `http://127.0.0.1:7657/jsonrpc/`
 ```
 **Yanıt Örneği**
 

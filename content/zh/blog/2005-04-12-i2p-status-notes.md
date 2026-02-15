@@ -31,7 +31,7 @@ bla 一直在埋头推进一些关于我们如何决定 tunnel（隧道）要经
 <+bla> 后者使用默认的 expl. tunnel 长度完成
 <+bla> 我拥有“ground truth”的节点集合与当前        测量中的节点集合的        交集为 117 个节点
 <+bla> 结果也不算_太_差，但也谈不上多出色
-<+bla> 参见 http://theland.i2p/estspeed.png
+<+bla> 参见 `http://theland.i2p/estspeed.png`
 <+bla> 对非常慢/快速的基础区分还算可以，但在更快节点之间的        细粒度区分还有很大提升空间
 <+jrandom2p> 嗯，实际值是怎么计算的——那是              完整的 RTT，还是 RTT/length？
 <+bla> 使用普通的 expl. tunnels 时，几乎不可能        避免批处理延迟。
@@ -51,7 +51,7 @@ bla 一直在埋头推进一些关于我们如何决定 tunnel（隧道）要经
 <+bla> 不过.... 65% 的估计计时落在距离实际节点时间        0.5 个标准差以内
 <+bla> 不过，这需要重做，因为标准差        受到 >60000 毫秒失败的强烈影响
 
-在进一步讨论之后，bla 调出了一个与现有速度计算器的对比，发布在 http://theland.i2p/oldspeed.png。那些 png 的镜像位于 http://dev.i2p.net/~jrandom/estspeed.png 和 http://dev.i2p.net/~jrandom/oldspeed.png
+在进一步讨论之后，bla 调出了一个与现有速度计算器的对比，发布在 `http://theland.i2p/oldspeed.png。那些` png 的镜像位于 `http://dev.i2p.net/~jrandom/estspeed.png` 和 `http://dev.i2p.net/~jrandom/oldspeed.png`
 
 (for terminology, IB=入站 tunnel 跳数，OB=出站 tunnel 跳数，并且经过一些澄清后，“ground truth”（真值）测量结果是通过出站 1 跳和入站 0 跳获得的，而不是相反)
 

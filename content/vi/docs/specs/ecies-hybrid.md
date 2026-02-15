@@ -730,7 +730,7 @@ MLKEM sẽ tăng đáng kể kích thước của New Session Message, như đã
 - [ECIES](/docs/specs/ecies/)
 - [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 - [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- [FORUM](http://zzz.i2p/topics/3294)
+- FORUM
 - [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
 - [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
 - [Noise](https://noiseprotocol.org/noise.html)

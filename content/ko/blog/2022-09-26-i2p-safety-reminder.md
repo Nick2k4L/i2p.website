@@ -39,7 +39,7 @@ categories: ["general"]
 
 ### Hosted by the project
 
-- [I2P Forums](https://i2pforum.net) - I2P Mirror: https://i2pforum.i2p
+- [I2P Forums](https://i2pforum.net) - I2P Mirror: `https://i2pforum.i2p`
 - IRC: `#i2p-dev` on Irc2P(`127.0.0.1:6668` in a standard I2P installation)
 
 ### Hosted by Others
@@ -55,6 +55,6 @@ categories: ["general"]
 
 ## Forks, Apps, and Third-Party Implementations are Not Evil
 
-이 글은 https://i2pgit.org/i2p-hackers/i2p.i2p 및 https://github.com/i2p/i2p.i2p 에 포함된 소스 코드로 대표되는 Java I2P 패키지를 https://geti2p.net/ 웹사이트에서 내려받을 때, 그 출처를 검증하는 방법을 제시합니다. 이는 서드파티 포크, 다운스트림 프로젝트, 임베딩하는 사람들, 패키저, 연구실에서 실험하는 사람들, 또는 우리와 의견이 다른 사람들을 평가하거나 판단하려는 의도가 아닙니다. 여러분 모두는 타인의 프라이버시를 훼손하지 않고 보호하려 노력하는 우리 커뮤니티의 소중한 구성원들입니다. I2P 프로젝트 커뮤니티 구성원을 사칭하려는 시도가 있다는 것을 알고 있으므로, 공식 출처와 알려진 미러를 문서화하기 위해 사용자에게 권장하는 다운로드, 검증, 설치 절차를 재검토해 보시길 권합니다.
+이 글은 `https://i2pgit.org/i2p-hackers/i2p.i2p` 및 `https://github.com/i2p/i2p.i2p` 에 포함된 소스 코드로 대표되는 Java I2P 패키지를 `https://geti2p.net/` 웹사이트에서 내려받을 때, 그 출처를 검증하는 방법을 제시합니다. 이는 서드파티 포크, 다운스트림 프로젝트, 임베딩하는 사람들, 패키저, 연구실에서 실험하는 사람들, 또는 우리와 의견이 다른 사람들을 평가하거나 판단하려는 의도가 아닙니다. 여러분 모두는 타인의 프라이버시를 훼손하지 않고 보호하려 노력하는 우리 커뮤니티의 소중한 구성원들입니다. I2P 프로젝트 커뮤니티 구성원을 사칭하려는 시도가 있다는 것을 알고 있으므로, 공식 출처와 알려진 미러를 문서화하기 위해 사용자에게 권장하는 다운로드, 검증, 설치 절차를 재검토해 보시길 권합니다.
 
 *저자 주: 이 블로그 게시물의 이전 버전에는 I2P Project가 운영하는 각 서비스의 TLS 지문이 포함되어 있었습니다. 인증서 갱신으로 인해 지문이 부정확해지자 이를 제거했습니다.*

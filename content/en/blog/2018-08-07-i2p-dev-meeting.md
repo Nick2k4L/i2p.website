@@ -16,7 +16,7 @@ categories: ["meeting"]
 20:00:05 &lt;zzz&gt; 0) Hi
 20:00:05 &lt;zzz&gt; 1) 0.9.36 status (zzz)
 20:00:05 &lt;zzz&gt; 2) LS2 status (zzz)
-20:00:05 &lt;zzz&gt; 3) Applications for bobthebuilder.i2p and paste.crypthost.i2p at http://zzz.i2p/posts/13897
+20:00:05 &lt;zzz&gt; 3) Applications for bobthebuilder.i2p and paste.crypthost.i2p at `http://zzz.i2p/posts/13897`
 20:00:05 &lt;zzz&gt; 4) Status scrum (zlatinb)
 20:00:05 &lt;zzz&gt; 5) Reschedule Sept. 4 meeting (zzz)
 20:00:10 &lt;zzz&gt; 0) Hi
@@ -36,7 +36,7 @@ categories: ["meeting"]
 20:03:41 &lt;zzz&gt; we haven't even agreed on goals and priorities yet, so it's going to be a while, but I'm happy with the process
 20:03:58 &lt;zzz&gt; all are welcome, next meeting is next monday, 6 PM UTC in #ls2
 20:04:27 &lt;zzz&gt; anything else on 2) ?
-20:05:13 &lt;zzz&gt; 3) Applications for bobthebuilder.i2p and paste.crypthost.i2p at http://zzz.i2p/posts/13897
+20:05:13 &lt;zzz&gt; 3) Applications for bobthebuilder.i2p and paste.crypthost.i2p at `http://zzz.i2p/posts/13897`
 20:05:25 &lt;zzz&gt; these are console home page requests
 20:05:33 &lt;zzz&gt; is the applicant sl here?
 20:06:07 &lt;zlatinb&gt; usually not as its late in $HOME

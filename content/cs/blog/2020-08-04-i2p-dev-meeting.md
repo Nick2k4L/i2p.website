@@ -28,7 +28,7 @@ categories: ["meeting"]
 (04:05:27 PM) eyedeekay1: Nevypadá to, že stihnu dokončit rekeyOnIdle včas pro 0.9.47.
 (04:05:58 PM) eyedeekay1: Co bude zahrnuto, jsou především aktualizace vizuálních prvků z mé strany.
 (04:06:19 PM) eyedeekay1: Má k tématu vydání 0.9.47 něco zzz nebo zlatinb?
-(04:06:43 PM) zzz: souhrn je na http://zzz.i2p/topics/2905
+(04:06:43 PM) zzz: souhrn je na `http://zzz.i2p/topics/2905`
 (04:06:49 PM) zzz: zmrazení tagu za týden od zítřka
 (04:06:53 PM) zzz: vydání zhruba za 3 týdny
 (04:07:07 PM) zzz: diff má asi 18 500 řádků, což je docela typické
@@ -46,14 +46,14 @@ categories: ["meeting"]
 (04:12:53 PM) eyedeekay1: Toto je měsíční schůzka.
 (04:12:53 PM) eyedeekay1: Nenastavil jsem WebIRC gateway (WebIRC bránu), protože jak tomu rozumím, bylo by to v rozporu s našimi IRC pravidly.
 (04:13:13 PM) eyedeekay1: Nyní mám kopii pravidel pro oznamování schůzek a bylo mi vyjasněno, kdo za tato oznámení odpovídá.
-(04:13:25 PM) eyedeekay1: Oznámení na 1. září, tentokrát se správným datem, bylo zveřejněno. Zatím bez témat, prosím přidávejte je podle potřeby: http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc
+(04:13:25 PM) eyedeekay1: Oznámení na 1. září, tentokrát se správným datem, bylo zveřejněno. Zatím bez témat, prosím přidávejte je podle potřeby: `http://zzz.i2p/topics/2931-meeting-tues-september-1-8pm-utc`
 (04:14:55 PM) eyedeekay1: To samozřejmě přijde krátce po vydání 0.9.47
 (04:15:45 PM) eyedeekay1: Má k bodu 2) ještě někdo něco?
 (04:17:57 PM) eyedeekay1: 3) přechod na Git
 (04:18:34 PM) eyedeekay1: Přechod na Git se konečně rozjíždí, máme plán a začínáme ho realizovat
 (04:19:08 PM) eyedeekay1: nextloop a já děláme pokrok v tom, abychom několik dalších významných mtn větví zazrcadlili na github
 (04:19:27 PM) eyedeekay1: tyto jsou zatím pouze pro čtení až do dokončení příslušných fází migrace na Git, tj. zatím žádné pull requesty ani MRs
-(04:20:04 PM) eyedeekay1: Podrobný popis těchto fází viz: http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10
+(04:20:04 PM) eyedeekay1: Podrobný popis těchto fází viz: `http://zzz.i2p/topics/2920-flipping-the-switch-on-git#10`
 (04:20:42 PM) eyedeekay1: Pro nextloopa i pro mě by bylo užitečné, kdybych dal nextloopovi oprávnění vytvářet repozitáře v jmenném prostoru i2p na githubu a zapisovat do repozitářů, které vytvoří.
 (04:20:47 PM) zzz: dobrá práce při sepsání plánu
 (04:21:24 PM) eyedeekay1: Díky, zzz, jsem rád, že je to konečně v použitelné podobě

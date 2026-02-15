@@ -31,7 +31,7 @@ crypto and process [1].  This should address a large portion of the
 tunnel creation failure rate, after which we can tune it further, if
 necessary.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/`
                                tunnel-alt-creation.html?rev=HEAD
 
 One unfortunate side effect is that 0.6.1.10 will not be backwards

@@ -20,7 +20,7 @@ categories: ["status"]
 
 CVS의 최신 빌드에는 오랫동안 논의되어 온 SSU introductions(소개 메커니즘) [1]에 대한 지원이 포함되어, 사용자가 제어하지 못하는 NAT 또는 방화벽 뒤에 있는 사용자에 대해 분산형 NAT 홀 펀칭(중계자를 통해 NAT를 통과해 직접 연결을 성사시키는 기법)을 수행할 수 있게 해 줍니다. 대칭형 NAT는 처리하지 못하지만, 실제로 존재하는 대부분의 경우를 포괄합니다. 현장 보고는 양호하지만, 최신 빌드를 사용하는 사용자만 NAT 뒤에 있는 사용자에게 먼저 연락할 수 있으며, 이전 빌드는 상대방이 먼저 연락해 오기를 기다려야 합니다. 이에 따라 이러한 제한된 경로가 유지되는 시간을 줄이기 위해, 평소보다 이른 릴리스에 코드를 포함해 배포할 예정입니다.
 
-[1] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction
+[1] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#introduction`
 
 * 3) Bounties
 

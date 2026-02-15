@@ -39,13 +39,13 @@ Por mais tempo que leve para explicá-los, configurar um LeaseSet Criptografado 
 
 ## Em "Server"
 
-Comece abrindo o Hidden Services Manager em http://127.0.0.1:7657/i2ptunnelmgr e role até o final da seção que diz "I2P Hidden Services." Crie um novo serviço oculto com o host "127.0.0.1" e a porta "7657" com estas "Tunnel Cryptography Options" e salve o serviço oculto.
+Comece abrindo o Hidden Services Manager em `http://127.0.0.1:7657/i2ptunnelmgr` e role até o final da seção que diz "I2P Hidden Services." Crie um novo serviço oculto com o host "127.0.0.1" e a porta "7657" com estas "Tunnel Cryptography Options" e salve o serviço oculto.
 
 Em seguida, selecione seu novo tunnel na página principal do Gerenciador de Serviços Ocultos. As Opções de Criptografia do tunnel agora devem incluir sua primeira chave pré-compartilhada. Anote isso para a próxima etapa, junto com o endereço Base32 criptografado do seu tunnel.
 
 ## No "Cliente"
 
-Agora, mude para o computador cliente que se conectará ao serviço oculto e acesse a Keyring Configuration em http://127.0.0.1:7657/configkeyring para adicionar as chaves obtidas anteriormente. Comece colando a Base32 do Servidor no campo denominado: "Full destination, name, Base32, or hash." Em seguida, cole a chave pré-compartilhada (Pre-Shared Key) do Servidor no campo "Encryption Key". Clique em save, e você já pode acessar com segurança o Serviço Oculto usando um LeaseSet criptografado.
+Agora, mude para o computador cliente que se conectará ao serviço oculto e acesse a Keyring Configuration em `http://127.0.0.1:7657/configkeyring` para adicionar as chaves obtidas anteriormente. Comece colando a Base32 do Servidor no campo denominado: "Full destination, name, Base32, or hash." Em seguida, cole a chave pré-compartilhada (Pre-Shared Key) do Servidor no campo "Encryption Key". Clique em save, e você já pode acessar com segurança o Serviço Oculto usando um LeaseSet criptografado.
 
 ## Agora você está pronto para administrar o I2P remotamente.
 

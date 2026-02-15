@@ -23,7 +23,7 @@ I2P Project 저장소에 변경 사항을 반영하려면 Merge Requests와 Pull
 
 ## GPG 서명
 
-공식 저장소는 https://i2pgit.org/i2p-hackers/i2p.i2p 및 https://git.idk.i2p/i2p-hackers/i2p.i2p 에 호스팅되어 있지만, Github의 https://github.com/i2p/i2p.i2p 에서는 "Mirror"(미러)도 제공됩니다.
+공식 저장소는 `https://i2pgit.org/i2p-hackers/i2p.i2p` 및 `https://git.idk.i2p/i2p-hackers/i2p.i2p` 에 호스팅되어 있지만, Github의 `https://github.com/i2p/i2p.i2p` 에서는 "Mirror"(미러)도 제공됩니다.
 
 이제 우리가 Git을 사용하므로, 자가 호스팅된 Gitlab 인스턴스와 Github 간에 저장소를 양방향으로 동기화할 수 있습니다. 즉, Gitlab에서 Merge Request(병합 요청)를 생성하여 제출하면 병합 시 그 결과가 Github와 동기화되고, Github의 Pull Request(풀 리퀘스트)도 병합되면 Gitlab에 반영됩니다.
 

@@ -6,7 +6,7 @@ description: "Nhật ký cuộc họp phát triển I2P ngày 22 tháng 7 năm 2
 categories: ["meeting"]
 ---
 
-(Được cung cấp bởi wayback machine http://www.archive.org/)
+(Được cung cấp bởi wayback machine `http://www.archive.org/`)
 
 ## Tóm tắt nhanh
 

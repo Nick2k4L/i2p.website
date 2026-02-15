@@ -20,7 +20,7 @@ Uma pergunta (muito) comum tem surgido sobre o código de teste de pares-"Por qu
 
 (A causa do excesso de valores de status Unknown é que estamos ignorando testes de pares em que "Charlie" [2] é alguém com quem já temos uma sessão SSU, pois isso implica que eles conseguiriam atravessar o nosso NAT mesmo que o nosso NAT esteja com falha)
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-August/000844.html [2] http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting
+[1] `http://dev.i2p.net/pipermail/i2p/2005-August/000844.html` [2] `http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/udp.html?rev=HEAD#peerTesting`
 
 * 2) IRC status
 
@@ -32,13 +32,13 @@ susi23 (famosa pelo susimail) está de volta com um par de ferramentas relaciona
 
 SusiBT é uma interface web para o i2p-bt. Ela se integra ao seu router i2p e permite uploads e downloads automáticos, retoma após a reinicialização e oferece algumas funcionalidades de gerenciamento, como upload e download de arquivos. Versões posteriores do aplicativo terão suporte à criação e ao envio automáticos de arquivos .torrent.
 
-[3] http://susi.i2p/?page_id=31 [4] http://susi.i2p/?p=33
+[3] `http://susi.i2p/?page_id=31` [4] `http://susi.i2p/?p=33`
 
 Posso ouvir um "w00t"?
 
 * 4) Syndie
 
-Como mencionado na lista e no canal, temos um novo aplicativo cliente para blogging / distribuição de conteúdo com segurança e autenticação. Com o Syndie, a pergunta "o seu eepsite(I2P Site) está no ar?" deixa de existir, pois você pode ler o conteúdo mesmo quando o site está fora do ar, mas o Syndie evita todas as questões espinhosas inerentes às redes de distribuição de conteúdo ao focar no frontend. De qualquer forma, ainda está em pleno desenvolvimento, mas, se as pessoas quiserem entrar e experimentar, há um nó público do Syndie em http://syndiemedia.i2p/ (também acessível na web em http://66.111.51.110:8000/). Sinta-se à vontade para entrar lá e criar um blog ou, se estiver se sentindo aventureiro(a), publicar alguns comentários/sugestões/preocupações! Claro, patches são bem-vindos, mas sugestões de funcionalidades também, então manda ver.
+Como mencionado na lista e no canal, temos um novo aplicativo cliente para blogging / distribuição de conteúdo com segurança e autenticação. Com o Syndie, a pergunta "o seu eepsite(I2P Site) está no ar?" deixa de existir, pois você pode ler o conteúdo mesmo quando o site está fora do ar, mas o Syndie evita todas as questões espinhosas inerentes às redes de distribuição de conteúdo ao focar no frontend. De qualquer forma, ainda está em pleno desenvolvimento, mas, se as pessoas quiserem entrar e experimentar, há um nó público do Syndie em `http://syndiemedia.i2p/` (também acessível na web em http://66.111.51.110:8000/). Sinta-se à vontade para entrar lá e criar um blog ou, se estiver se sentindo aventureiro(a), publicar alguns comentários/sugestões/preocupações! Claro, patches são bem-vindos, mas sugestões de funcionalidades também, então manda ver.
 
 * 5) ???
 

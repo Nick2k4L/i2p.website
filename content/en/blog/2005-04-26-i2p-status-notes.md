@@ -26,7 +26,7 @@ Most of my time is spent focused on the 0.6 UDP code, and no, its not ready for 
 
 As duck mentioned on the list [1], zab has seeded a bounty to help out I2P with a series of testing updates - some funds for anyone who can complete the tasks listed on the bounty page [2]. We've had some further donations to that bounty [3] - it currently stands at $1000USD. While the bounties certainly don't offer "market rate", they are a small token of encouragement for developers who want to help out.
 
-[1] http://dev.i2p.net/pipermail/i2p/2005-April/000721.html
+[1] `http://dev.i2p.net/pipermail/i2p/2005-April/000721.html`
 [2] http://www.i2p.net/bounty_unittests
 [3] http://www.i2p.net/halloffame
 

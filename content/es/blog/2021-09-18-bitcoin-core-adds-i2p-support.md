@@ -15,7 +15,7 @@ El soporte de I2P es automático, mediante la SAM API. Esto también es una noti
 
 ## Configuración de su Router I2P
 
-Para configurar un I2P Router para proporcionar conectividad anónima a bitcoin, es necesario habilitar la SAM API. En Java I2P, debes ir a http://127.0.0.1:7657/configclients e iniciar el SAM Application Bridge con el botón "Start". También puedes habilitar el SAM Application Bridge de forma predeterminada marcando la casilla "Run at Startup" y haciendo clic en "Save Client Configuration".
+Para configurar un I2P Router para proporcionar conectividad anónima a bitcoin, es necesario habilitar la SAM API. En Java I2P, debes ir a `http://127.0.0.1:7657/configclients` e iniciar el SAM Application Bridge con el botón "Start". También puedes habilitar el SAM Application Bridge de forma predeterminada marcando la casilla "Run at Startup" y haciendo clic en "Save Client Configuration".
 
 En i2pd, la API SAM normalmente está habilitada por defecto, pero si no lo está, debes configurar:
 

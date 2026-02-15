@@ -16,12 +16,12 @@ hoặc, ELI5 (giải thích như cho bé 5 tuổi): Nó được dùng tương t
 
 **Bước 1: Cài đặt I2P-Bote**
 
-I2P-Bote là một plugin i2p và việc cài đặt nó rất dễ dàng. Hướng dẫn gốc có tại [bote eepSite, bote.i2p](http://bote.i2p/install/), nhưng nếu bạn muốn đọc chúng trên clearnet (Internet công khai), các hướng dẫn sau đây được cung cấp bởi bote.i2p:
+I2P-Bote là một plugin i2p và việc cài đặt nó rất dễ dàng. Hướng dẫn gốc có tại bote eepSite, bote.i2p, nhưng nếu bạn muốn đọc chúng trên clearnet (Internet công khai), các hướng dẫn sau đây được cung cấp bởi bote.i2p:
 
-1. Go to the plugin install form in your routerconsole: http://127.0.0.1:7657/configclients#plugin
-2. Paste in the URL http://bote.i2p/i2pbote.su3
+1. Go to the plugin install form in your routerconsole: `http://127.0.0.1:7657/configclients#plugin`
+2. Paste in the URL `http://bote.i2p/i2pbote.su3`
 3. Click Install Plugin.
-4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to http://127.0.0.1:7657/i2pbote/
+4. Once installed, click SecureMail in the routerconsole sidebar or homepage, or go to `http://127.0.0.1:7657/i2pbote/`
 
 **Bước Hai: Lấy địa chỉ base64 của nút (node) I2P-Bote của bạn**
 
@@ -62,7 +62,7 @@ head -c 516 ~/.i2p/i2pbote/local_dest.key
 ```
 **Phương pháp B: Thực hiện tra cứu**
 
-Nếu điều đó có vẻ hơi quá nhiều việc, bạn có thể tra cứu điểm đến base64 của kết nối Bote của mình bằng cách truy vấn địa chỉ base32 của nó bằng bất kỳ phương thức nào hiện có để tra cứu một địa chỉ base32. Địa chỉ base32 của nút Bote của bạn có sẵn trên trang "Connection" trong ứng dụng plugin Bote, tại [127.0.0.1:7657/i2pbote/network](http://127.0.0.1:7657/i2pbote/network)
+Nếu điều đó có vẻ hơi quá nhiều việc, bạn có thể tra cứu điểm đến base64 của kết nối Bote của mình bằng cách truy vấn địa chỉ base32 của nó bằng bất kỳ phương thức nào hiện có để tra cứu một địa chỉ base32. Địa chỉ base32 của nút Bote của bạn có sẵn trên trang "Connection" trong ứng dụng plugin Bote, tại `http://127.0.0.1:7657/i2pbote/network`
 
 **Step Three: Contact Us!**
 

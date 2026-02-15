@@ -38,4 +38,4 @@ To all who have been involved in this past year, either technically, socially, o
 Anyway, our weekly status meeting is coming up in a few minutes, so if there's something you want to discuss further, swing on by #i2p in the usual locations [1] and say hey!
 
 =jr
-[1] http://forum.i2p.net/viewtopic.php?t=952
+[1] `http://forum.i2p.net/viewtopic.php?t=952`

@@ -6,7 +6,7 @@ description: "Záznam vývojářské schůzky I2P ze 12. března 2003."
 categories: ["meeting"]
 ---
 
-(Díky wayback machine http://www.archive.org/)
+(Díky wayback machine `http://www.archive.org/`)
 
 ## Rychlé shrnutí
 

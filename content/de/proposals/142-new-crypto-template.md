@@ -28,9 +28,9 @@ Jeder, der neue Kryptographie vorschlägt, muss zuerst mit den folgenden Dokumen
 - [Vorschlag 136 experimentelle Sig-Typen](/de/proposals/136-experimental-sigtypes/)
 - [Vorschlag 137 optionale Sig-Typen](/de/proposals/137-optional-sigtypes/)
 - Diskussionsfäden hier für jeden der obigen Vorschläge, innerhalb verlinkt
-- [Prioritäten für Vorschläge 2018](http://zzz.i2p/topics/2494)
-- [ECIES-Vorschlag](http://zzz.i2p/topics/2418)
-- [Übersicht über neue asymmetrische Kryptographie](http://zzz.i2p/topics/1768)
+- Prioritäten für Vorschläge 2018
+- ECIES-Vorschlag
+- Übersicht über neue asymmetrische Kryptographie
 - [Niedrig-Level-Krypto-Übersicht](/de/docs/specs/common-structures/)
 
 ## Verwendung der asymmetrischen Kryptographie

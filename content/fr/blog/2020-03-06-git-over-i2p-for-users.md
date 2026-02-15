@@ -25,10 +25,10 @@ Pour s’assurer que le processus de configuration fonctionne, il est utile de c
 Pour disposer d’un accès en lecture-écriture à un serveur, vous devrez configurer un tunnel pour votre client SSH. Si vous n’avez besoin que du clonage HTTP/S en lecture seule, vous pouvez alors ignorer tout cela et simplement utiliser la variable d’environnement http_proxy pour configurer git afin d’utiliser le proxy HTTP I2P préconfiguré. Par exemple :
 
 ```
-http_proxy=http://localhost:4444 git clone --depth=1 http://git.idk.i2p/youruser/i2p.i2p
+http_proxy=`http://localhost:4444` git clone --depth=1 `http://git.idk.i2p/youruser/i2p.i2p`
 git fetch --unshallow
 ```
-Pour l'accès SSH, lancez le "New Tunnel Wizard" depuis http://127.0.0.1:7657/i2ptunnelmgr et configurez un tunnel client pointant vers l'adresse base32 SSH du service Git.
+Pour l'accès SSH, lancez le "New Tunnel Wizard" depuis `http://127.0.0.1:7657/i2ptunnelmgr` et configurez un tunnel client pointant vers l'adresse base32 SSH du service Git.
 
 ## Quatrième : tentez un clonage
 

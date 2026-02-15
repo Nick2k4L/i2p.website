@@ -90,7 +90,7 @@ categories: ["meeting"]
 14:24 &lt;hypercubus&gt; i don't know if i2p:// is necessary, but i do believe it's possbile to get the major browsers at least to work with it
 14:24 &lt;deer&gt; &lt;ugha2p&gt; jrandom: I think he just referred to the 'https://' prefix.
 14:24 &lt;jrandom&gt; ah, sorry.
-14:24 &lt;deer&gt; &lt;duck&gt; we need an anonymizing filter plus http://127.0.0.1:7657/www.duck.i2p/ anyway
+14:24 &lt;deer&gt; &lt;duck&gt; we need an anonymizing filter plus `http://127.0.0.1:7657/www.duck.i2p/` anyway
 14:25 &lt;deer&gt; &lt;duck&gt; with those you dont need to tweak browser settings
 14:25 &lt;jrandom&gt; but yeah, I agree with fvw, this sounds like excessive overloading of the url protocol
 14:25 &lt;demonic_1&gt; not here&gt;&gt; as a lame use i feel i2p:// links would rule &lt;&lt;not here
@@ -221,7 +221,7 @@ categories: ["meeting"]
 14:53 &lt;cervantes&gt; ah ya plausable deniability huh
 14:54 &lt;jrandom&gt; hmm fvw.  perhaps, but I think we can monitor them statistically and compensate
 14:54 &lt;deer&gt; &lt;kaji&gt; constant bitrate sounds like Waste
-14:54 &lt;jrandom&gt; for instance, http://localhost:7657/oldstats.jsp#tunnel.bytesAllocatedAtAccept
+14:54 &lt;jrandom&gt; for instance, `http://localhost:7657/oldstats.jsp#tunnel.bytesAllocatedAtAccept`
 14:54 &lt;hypercubus&gt; hence its name ;-)
 14:55 &lt;jrandom&gt; that stat monitors how much bandwidth we have agreed to pass on for other people's tunnels
 14:55 &lt;jrandom&gt; (using the last 10 minutes as a guideline)
@@ -272,7 +272,7 @@ categories: ["meeting"]
 15:04 &lt;jrandom&gt; they're not long lived fvw, unlike TOR
 15:04 &lt;fvw&gt; and that had most tunnels failing, even with keepalives?
 15:04 &lt;hypercubus&gt; dm: periodically yes... i think the solution would be to limit your upstream to about 8KB/s
-15:04 &lt;jrandom&gt; kaji: http://localhost:7657/
+15:04 &lt;jrandom&gt; kaji: `http://localhost:7657/`
 15:05 &lt;hypercubus&gt; since it seems you're saturated
 15:05 &lt;jrandom&gt; er, /config.jsp
 15:05 &lt;fvw&gt; ok, but you don't want them dissapearing in flurries of packet loss.
@@ -394,7 +394,7 @@ categories: ["meeting"]
 15:37 &lt;jrandom&gt; w00t!
 15:38 &lt;cat-a-puss&gt; and have grand plans for a distributed search engine
 15:38 &lt;jrandom&gt; oh, kickass
-15:38 &lt;jrandom&gt; would that be something http://files.i2p/ could tie into?
+15:38 &lt;jrandom&gt; would that be something `http://files.i2p/` could tie into?
 15:38 &lt;jrandom&gt; or, well, let me just say, oh, kickass :)
 15:38 &lt;cat-a-puss&gt; er: I can't get there (hostile enviroment)
 15:39 &lt;jrandom&gt; ah 'k
@@ -417,7 +417,7 @@ categories: ["meeting"]
 15:45 &lt;hypercubus&gt; Knoppix, a livecd distro of linux
 15:45 &lt;hypercubus&gt; very user friendly
 15:45 &lt;deer&gt; &lt;Curiosity&gt; k
-15:45 &lt;jrandom&gt; though once we have the Really Simple Update functionality that is a one click download from http://dev.i2p/i2p/i2pupdate.tar.bz2, it might not be too bad
+15:45 &lt;jrandom&gt; though once we have the Really Simple Update functionality that is a one click download from `http://dev.i2p/i2p/i2pupdate.tar.bz2,` it might not be too bad
 15:46 &lt;jrandom&gt; Curiosity: do you have anything else you want to discuss about that?
 15:46 &lt;fvw&gt; ...and as soon as it becomes widely used, anyone controlling dev.i2p can compromise the network.
 15:47 &lt;jrandom&gt; as long as people use that Really Simple Update functionality

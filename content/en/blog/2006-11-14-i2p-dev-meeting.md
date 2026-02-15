@@ -61,7 +61,7 @@ categories: ["meeting"]
 15:34 &lt;jrandom&gt; (and if you need images/etc, just reference them as img src="attachment1" etc)
 15:34 &lt;jrandom&gt; (and then we can shove 'em into a syndie post with no problem)
 15:35 &lt;jrandom&gt; currently the message editor has "add text page" and "add html page" features... eventually we can toss in an "add page from the web..." that prompts you for a URL to fetch
-15:37 &lt;badger&gt; http://forum.i2p/rss_news.php
+15:37 &lt;badger&gt; `http://forum.i2p/rss_news.php`
 15:38 &lt;badger&gt; translating that to syndie markup would probably be straightforward
 15:39 &lt;jrandom&gt; aye (though remember, syndie markup /is html/.  the uris are just... long and hard to read :)
 15:41 &lt;jrandom&gt; ok, anyone have anything else on 2) syndie dev?

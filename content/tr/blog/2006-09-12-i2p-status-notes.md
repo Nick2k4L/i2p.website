@@ -20,7 +20,7 @@ Geçen gün 0.6.1.25 sürümünü yayımladık; bu sürüm, son ay boyunca birik
 
 zzz'nin I2PSnark için yaptığı güncellemeler, geçmiş günlüğünde [1] açıklandığı gibi, protokol optimizasyonlarının yanı sıra web arayüzlerindeki değişiklikleri de içeriyordu. Ayrıca 0.6.1.25 sürümünden bu yana I2PSnark için birkaç küçük güncelleme daha yapıldı ve belki zzz bu akşamki toplantıda bize son duruma genel bir bakış sunabilir.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

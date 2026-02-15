@@ -41,7 +41,7 @@ categories: ["meeting"]
 16:16 &lt;jrandom&gt; user-land: to the first question, no (other than "patience")
 16:16 &lt;jrandom&gt; to the second question, see the first question
 16:16 &lt;NickyB&gt; first, sorry for my poor english. My ircProxy is set to be reachable on my lan, like all others proxy (eeproxy too) but my 6668 is reachable on the Net....
-16:17 &lt;jrandom&gt; NickyB: when you say on your lan, what is the *interface* it is bound to (on http://localhost:7657/i2ptunnel/index.jsp)
+16:17 &lt;jrandom&gt; NickyB: when you say on your lan, what is the *interface* it is bound to (on `http://localhost:7657/i2ptunnel/index.jsp)`
 16:18 &lt;jrandom&gt; NickyB: if the interface is "0.0.0.0", yes, it will accept connections from anywhere.  if its "127.0.0.1" it will only accept connections from the localhost.  if its "10.0.0.123" or "192.168.1.42", then it will accept connections from your LAN
 16:19 &lt;NickyB&gt; err, for my console, i did a change in client.config
 16:19 &lt;NickyB&gt; clientApp.0.args=7657 192.168.0.1 ./webapps/

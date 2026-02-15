@@ -6,7 +6,7 @@ description: "سجل اجتماع تطوير I2P في 15 يوليو 2003."
 categories: ["meeting"]
 ---
 
-(بإذن من wayback machine http://www.archive.org/)
+(بإذن من wayback machine `http://www.archive.org/`)
 
 ## ملخص سريع
 

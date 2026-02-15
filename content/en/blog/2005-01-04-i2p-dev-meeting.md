@@ -99,7 +99,7 @@ categories: ["meeting"]
 13:29 &lt;@jrandom&gt; ok, anyone have anything else wrt 2) 0.4.2.6, or shall we move on to 3) 0.5?
 13:29 &lt;Hybrid&gt; is it a problem for i2p to shutdown, new version install, and restart... would other applications irc need restarting??.. any other complications in  a 'click n update' feature
 13:30 &lt;Hybrid&gt; (sorry interrupting dev meeting lol)
-13:30 &lt;@jrandom&gt; Hybrid: not a problem at all - thats what the "graceful restart" button on http://localhost:7657/configservice.jsp does
+13:30 &lt;@jrandom&gt; Hybrid: not a problem at all - thats what the "graceful restart" button on `http://localhost:7657/configservice.jsp` does
 13:30 &lt;Hybrid&gt; k
 13:31 &lt;ant&gt; &lt;cervantes&gt; jrandom: does the wrapper re-read the wrapper.config on a restart?
 13:31 &lt;@jrandom&gt; cervantes: no :(

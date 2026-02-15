@@ -163,8 +163,8 @@ categories: ["meeting"]
 13:40 &lt;bla&gt; clayboy: Yes, on the HTML side, but not on the HTTP side
 13:40 &lt;jrandom&gt; but if there's one thing i've learned with the router console, its that no one follows more than two steps into the instructions ;)
 13:40 &lt;clayboy&gt; bla: good point
-13:40 &lt;jrandom&gt; clayboy: http://brittanyworld.i2p/browsing/
-13:41 &lt;bla&gt; I've done some experiments here: http://forum.i2p/viewtopic.php?t=182
+13:40 &lt;jrandom&gt; clayboy: `http://brittanyworld.i2p/browsing/`
+13:41 &lt;bla&gt; I've done some experiments here: `http://forum.i2p/viewtopic.php?t=182`
 13:41 &lt;bla&gt; Doesn't look good as it is
 13:42 &lt;@duck&gt; who has the evil applets?
 13:42 &lt;ant&gt; &lt;Nightblade&gt; there was a security exploit found in java
@@ -313,7 +313,7 @@ categories: ["meeting"]
 14:24 &lt;ant&gt; &lt;cat-a-puss&gt; jrandom: yeah, but that sort of thing requres an exploit right, not just say forwarding them to some page that uses a different protocall that is not proxied. We probably be reasonable safe from those with a scanner on incomming content and automatic updates.
 14:25 &lt;jrandom&gt; cat-a-puss: erm, perhaps i misunderstood - are you suggesting that it may be safe to have javascript enabled in the browser, as long as the connections that that javascript code makes are proxied also?
 14:26 &lt;ant&gt; &lt;cat-a-puss&gt; jrandom: yeah, as long as there is no buffer overflows etc.
-14:26 &lt;jrandom&gt; if so, thats still vulnerable to plain old javascript that reads the javascrip environment and sends it "anonymously" to http://cia.i2p/data.  
+14:26 &lt;jrandom&gt; if so, thats still vulnerable to plain old javascript that reads the javascrip environment and sends it "anonymously" to `http://cia.i2p/data.`  
 14:27 &lt;jrandom&gt; the data available to javascript includes your IP address, as well as your bookmarks and all sorts of other things
 14:27 &lt;jrandom&gt; so even though the connection to cia.i2p was anonymous, the content exposes you
 14:31 &lt;jrandom&gt; ok, anyone else have something to bring up for the meeting?

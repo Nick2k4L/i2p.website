@@ -20,7 +20,7 @@ Sau 4 thành phố ở 4 quốc gia, cuối cùng tôi cũng ổn định chỗ 
 
 Dù sao đi nữa, nói về tôi thế là đủ rồi.
 
-[1] http://dev.i2p.net/pipermail/i2p/ [2] http://forum.i2p.net/
+[1] `http://dev.i2p.net/pipermail/i2p/` [2] `http://forum.i2p.net/`
 
 * 2) Dev[elopment] status
 

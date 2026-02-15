@@ -22,9 +22,9 @@ Das Release 0.6.2 wird viele großartige Dinge enthalten, um noch stärkeren Geg
 
 In letzter Zeit hat sich auch an der I2Phex-Front viel getan, mit einer neuen Version 0.1.1.35 [1]. Es gab außerdem weitere Änderungen in CVS (danke, Legion!), daher würde es mich nicht überraschen, wenn im Laufe dieser Woche die Version 0.1.1.36 erscheint.
 
-Auch bei gwebcache gab es einige gute Fortschritte (siehe http://awup.i2p/), allerdings hat meines Wissens noch niemand damit begonnen, I2Phex so zu modifizieren, dass es einen I2P-fähigen gwebcache verwendet (Interessiert? Sag mir Bescheid!).
+Auch bei gwebcache gab es einige gute Fortschritte (siehe `http://awup.i2p/),` allerdings hat meines Wissens noch niemand damit begonnen, I2Phex so zu modifizieren, dass es einen I2P-fähigen gwebcache verwendet (Interessiert? Sag mir Bescheid!).
 
-[1] http://forum.i2p.net/viewtopic.php?t=1157
+[1] `http://forum.i2p.net/viewtopic.php?t=1157`
 
 * 3) I2P-Rufus
 
@@ -40,7 +40,7 @@ Ein weiteres Gerücht, das die Runde macht, ist, dass Markus an einer neuen C#-G
 
 Es gab außerdem einige Diskussionen zu Überarbeitungen der Syndie-UI [3], und ich erwarte, dass wir an dieser Front recht bald einige Fortschritte sehen werden. dust arbeitet außerdem intensiv an Sucker und fügt eine bessere Unterstützung für das Importieren weiterer RSS/Atom-Feeds in Syndie hinzu sowie einige Verbesserungen an SML selbst.
 
-[3] http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true
+[3] `http://syndiemedia.i2p.net:8000/index.jsp?blog=ovpBy2mpO1CQ7deYhQ1cDGAwI6pQzLbWOm1Sdd0W06c=&entry=1131235200000&expand=true`
 
 * 6) ???
 

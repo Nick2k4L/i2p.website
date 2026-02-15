@@ -6,7 +6,7 @@ description: "Reunión informal de desarrollo de I2P para discutir el anonimato,
 categories: ["meeting"]
 ---
 
-(Cortesía de la Wayback Machine http://www.archive.org/)
+(Cortesía de la Wayback Machine `http://www.archive.org/`)
 
 ## Resumen rápido
 

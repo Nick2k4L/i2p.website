@@ -24,7 +24,7 @@ More and more improvements have been coming down the line, with the current alph
 
 Also, there have been some discussions on the channel for designs of the Syndie GUI - meerboop has come up with some cool ideas, and is working on docing them up. The Syndie GUI is the main component of the Syndie 2.0 release, so the sooner we get that rolling, the sooner we take over the worl^W^W^W^W can push Syndie out on the unsuspecting masses.
 
-There's also a new proposal in my Syndie blog regarding bug and feature request tracking using Syndie itself. For ease of access, I've made a plain text export of that post up on the web - page 1 is at <http://dev.i2p.net/~jrandom/bugsp1.txt> and page 2 is at <http://dev.i2p.net/~jrandom/bugsp2.txt>
+There's also a new proposal in my Syndie blog regarding bug and feature request tracking using Syndie itself. For ease of access, I've made a plain text export of that post up on the web - page 1 is at <`http://dev.i2p.net/~jrandom/bugsp1.txt>` and page 2 is at <`http://dev.i2p.net/~jrandom/bugsp2.txt>`
 
 * 3) Distributed version control revisited
 
@@ -34,7 +34,7 @@ Of course, no matter what dvcs we end up going with, all releases will be made a
 
 * 4) ???
 
-As you can see, lots going on, as always. There's been further discussion on that "solve world hunger" thread on the forum, too, so check it out at <http://forum.i2p.net/viewtopic.php?t=1910>
+As you can see, lots going on, as always. There's been further discussion on that "solve world hunger" thread on the forum, too, so check it out at <`http://forum.i2p.net/viewtopic.php?t=1910>`
 
 If you've got something further to discuss, please swing on by #i2p for our dev meeting tonight, or post up to the forum or list!
 

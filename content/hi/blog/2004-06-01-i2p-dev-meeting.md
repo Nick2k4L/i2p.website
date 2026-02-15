@@ -31,7 +31,7 @@ categories: ["meeting"]
 [23:02] &lt;mihi&gt; ;)
 [23:02] &lt;duck&gt; 1) कोड में प्रगति
 [23:02] &lt;duck&gt; cvs में ज़्यादा कोड सबमिट नहीं किया गया
-[23:02] &lt;duck&gt; मैंने इस हफ्ते ट्रॉफी जीती: http://duck.i2p/duck_trophy.jpg
+[23:02] &lt;duck&gt; मैंने इस हफ्ते ट्रॉफी जीती: `http://duck.i2p/duck_trophy.jpg`
 [23:03] * hypercubus के पास अभी cvs खाता नहीं है
 [23:03] &lt;Masterboy&gt; और किसने कुछ सबमिट किया?
 [23:03] &lt;duck&gt; क्या कोई गुप्त कोडिंग कर रहा है?

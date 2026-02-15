@@ -28,7 +28,7 @@ Listede [3] belirtildiği gibi, artık router'ı ve çoğu istemciyi GCJ [4] ile
 
 GCJ desteğinin bir diğer olumlu özelliği, C/C++/Python vb. dillerden akış kütüphanesini kullanabilme olanağıdır. Böyle bir entegrasyon üzerinde birinin çalışıp çalışmadığını bilmiyorum, ancak muhtemelen buna değer; bu alanda geliştirme yapmaya ilgi duyuyorsanız, lütfen bana bildirin!
 
-[3] http://dev.i2p.net/pipermail/i2p/2005-October/001021.html [4] http://gcc.gnu.org/java/
+[3] `http://dev.i2p.net/pipermail/i2p/2005-October/001021.html` [4] http://gcc.gnu.org/java/
 
 * 4) i2psnark returns
 
@@ -36,7 +36,7 @@ i2p-bt, I2P’ye port edilen ve çok kullanılan ilk BitTorrent istemcisi olsa d
 
 Ragnarok, blok seçim algoritmasını geliştirmek için üzerinde çalışmaya çoktan başladı ve umarız 0.6.2 sürümünden önce ona hem bir web arayüzü hem de çoklu torrent desteği kazandıracağız. Yardım etmekle ilgileniyorsanız, bizimle iletişime geçin! :)
 
-[5] http://klomp.org/snark/ [6] http://dev.i2p.net/~jrandom/snark_diff.txt
+[5] http://klomp.org/snark/ [6] `http://dev.i2p.net/~jrandom/snark_diff.txt`
 
 * 5) More on bootstrapping
 
@@ -46,7 +46,7 @@ Biraz göze hoş gelen şeylerle ilgilenenler için, Michael’ın sizin için b
 
 (Güzel iş, Michael, teşekkürler!)
 
-[7] http://dev.i2p.net/pipermail/i2p/2005-October/thread.html     ("i2p tunnel bootstrap attack" ileti dizisini takip edin) [8] http://dev.i2p.net/~jrandom/fraction-of-attackers.png [9] http://dev.i2p.net/~jrandom/messages-per-tunnel.png
+[7] `http://dev.i2p.net/pipermail/i2p/2005-October/thread.html`     ("i2p tunnel bootstrap attack" ileti dizisini takip edin) [8] `http://dev.i2p.net/~jrandom/fraction-of-attackers.png` [9] `http://dev.i2p.net/~jrandom/messages-per-tunnel.png`
 
 * 6) Virus investigations
 
@@ -54,7 +54,7 @@ Belirli bir I2P destekli uygulamayla birlikte dağıtıldığı iddia edilen ola
 
 Bu konudaki tüm araştırmaların için teşekkürler, Complication!
 
-[10] http://forum.i2p.net/viewtopic.php?t=1122
+[10] `http://forum.i2p.net/viewtopic.php?t=1122`
 
 * 7) ???
 

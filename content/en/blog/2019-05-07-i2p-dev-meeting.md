@@ -37,7 +37,7 @@ categories: ["meeting"]
 20:03:52 &lt;meeh&gt; no, but when I pair with str4d I learn how I can fix that
 20:03:59 &lt;meeh&gt; so then both 39 and 40 should be fixed 
 20:03:59 &lt;zzz&gt; we're talking .39 items from 7 weeks ago that were not complete at the last meeting 5 weeks ago
-20:04:17 &lt;meeh&gt; https://search.maven.org/search?q=g:net.i2p
+20:04:17 &lt;meeh&gt; `https://search.maven.org/search?q=g:net.i2p`
 20:04:19 &lt;meeh&gt; maven is latest bt
 20:04:24 &lt;meeh&gt; w
 20:04:24 &lt;meeh&gt; .39

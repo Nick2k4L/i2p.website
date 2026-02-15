@@ -20,7 +20,7 @@ categories: ["status"]
 
 شملت تحديثات zzz على I2PSnark تحسينات على البروتوكول وكذلك تغييرات في واجهات الويب، كما هو موصوف في سجلّ التاريخ [1]. كانت هناك أيضاً بعض التحديثات الصغيرة لـ I2PSnark منذ إصدار 0.6.1.25، وربما يستطيع zzz أن يزوّدنا بنظرة عامة عمّا يجري خلال الاجتماع الليلة.
 
-[1] <http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>
+[1] <`http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/history.txt?rev=HEAD>`
 
 * 3) Syndie
 

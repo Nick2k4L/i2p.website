@@ -45,12 +45,12 @@ postman has built up a whole new bot for us - toopie - to serve as an
 info bot for I2P/irc2p.  We're still feeding toopie FAQs, but he'll
 be coming into the usual channels shortly.  Thanks postman!
 
-[3] http://hq.postman.i2p/?page_id=15
+[3] `http://hq.postman.i2p/?page_id=15`
 
 * 4) new key
 
 For those paying attention, you'll have noticed that my gpg key is
-expiring in a few days.  My new key @ http://dev.i2p.net/~jrandom has
+expiring in a few days.  My new key @ `http://dev.i2p.net/~jrandom` has
 the fingerprint 0209 9706 442E C4A9 91FA  B765 CE08 BC25 33DC 8D49
 and key id 33DC8D49.  This post is signed by my old key, but my
 subsequent posts (and releases) for the next year will be signed by
