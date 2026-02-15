@@ -1471,7 +1471,7 @@ def main() -> int:
 
     # Filter by hash if requested
     if args.check_hashes and not args.dry_run:
-        base_dir = files[0].parent.parent.parent if files else Path.cwd()
+        base_dir = Path(args.output_root).resolve() if args.output_root else Path.cwd()
 
         original_count = len(files)
         files = get_files_to_translate(files, base_dir=base_dir)
