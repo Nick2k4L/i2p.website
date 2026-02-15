@@ -6,7 +6,7 @@ description: "Nhật ký cuộc họp phát triển I2P ngày 29 tháng 5 năm 2
 categories: ["meeting"]
 ---
 
-(Nhờ có wayback machine `http://www.archive.org/`)
+(Nhờ có wayback machine `[Internet Archive](http://www.archive.org/)`)
 
 ## Tóm tắt nhanh
 
@@ -17,9 +17,9 @@ categories: ["meeting"]
 <div class="irc-log">
 --- Log opened Tue May 28 22:39:11 2002
 22:39 <+logger> logging started
-22:40 -!- mids changed the topic of #iip-dev to: IIP Development Channel (moderated) | Weekly development meetings happen here at 0000 UTC wed. (tue if you are in a minus tz) | (during meetings) live logfile http://mids.student.utwente.nl/~mids/meeting2/livelog.txt
+22:40 -!- mids changed the topic of #iip-dev to: IIP Development Channel (moderated) | Weekly development meetings happen here at 0000 UTC wed. (tue if you are in a minus tz) | (during meetings) live logfile [live meeting log](http://mids.student.utwente.nl/~mids/meeting2/livelog.txt)
 22:52 -!- mode/#iip-dev [-v logger] by mids
-23:42 -!- mids changed the topic of #iip-dev to: IIP Development Channel (moderated) | Weekly development meetings happen here at 0000 UTC wed. (tue if you are in a minus tz) | http://mids.student.utwente.nl/~mids/iip/
+23:42 -!- mids changed the topic of #iip-dev to: IIP Development Channel (moderated) | Weekly development meetings happen here at 0000 UTC wed. (tue if you are in a minus tz) | [IIP project page](http://mids.student.utwente.nl/~mids/iip/)
 --- Day changed Wed May 29 2002
 00:16 [Users #iip-dev]
 00:16 [@mids] [ athena] [ logger] [ MiB] [ SubLiminaL]
@@ -55,18 +55,18 @@ categories: ["meeting"]
 01:55 < athena> codeshark: where are you at 2am that doesn't have a power outlet?? :)
 01:57 <@codeshark> i have, but i'm too lazy
 01:59 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog including live logs in case you are late):
-01:59 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/
+01:59 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): [IIP project page](http://mids.student.utwente.nl/~mids/iip/)
 02:00 <@nop> ok
 02:00 <@nop> welcome
 02:00 <@nop> to our 2nd meeting
 02:00 -!- mode/#iip-dev [+m] by mids
 02:00 <@nop> at IIP
 02:00 <@mids> This is the first public IIP meeting, we plan to have such a meeting each week at the same time and place.
-02:00 <@mids> Previous meeting ( http://mids.student.utwente.nl/~mids/iip/meeting1/ ) was non public, this one is.
+02:00 <@mids> Previous meeting ( [IIP project page](http://mids.student.utwente.nl/~mids/iip/)meeting1/ ) was non public, this one is.
 02:00 <@mids> We will moderate the meetings to prevent chaos. After the subject is stated, the channel will be unmoderated
 02:00 <@mids> so you can talk. If this becomes too chaotic, it will be kept moderated and then if you have a question or
 02:00 <@mids> want to contribute something, message someone with ops (@) or voice (+)
-02:00 <@mids> Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/
+02:00 <@mids> Meeting info, agenda, livelog (in case you are late): [IIP project page](http://mids.student.utwente.nl/~mids/iip/)
 02:00 <@mids> .
 02:00 <@nop> ok
 02:01 <@nop> let's get started, I've been so busy today
@@ -154,7 +154,7 @@ categories: ["meeting"]
 02:09 <@mids> I have one thing to ad:
 02:09 <@nop> ok
 02:09 <@nop> please
-02:09 <@mids> network graph: http://mids.student.utwente.nl/~mids/iipstats/network.html
+02:09 <@mids> network graph: [IIP project page](http://mids.student.utwente.nl/~mids/iip)stats/network.html
 02:09 <@mids> as you see (especially at weekly)
 02:09 <@mids> after a long network downtime
 02:09 <@mids> we loose a big time of users
@@ -239,7 +239,7 @@ categories: ["meeting"]
 02:16 <@mids> yes Neo ?
 02:17 < Neo> Mr Project.
 02:17 <@nop> an agent?
-02:17 < Neo> Here is our release schedule: http://citystateinc.com/dc/dc_project_5-28-2002.gif
+02:17 < Neo> Here is our release schedule: [release schedule chart](http://citystateinc.com/dc/dc_project_5-28-2002.gif)
 02:17 < Neo> Its a task sheduler thing, take a look at the gif it explains it pretty much.
 02:17 < Neo> Its just a helper tool.
 02:18 <@nop> sounds good
@@ -302,7 +302,7 @@ categories: ["meeting"]
 02:24 <@mids> I think that is under project management too
 02:24 <@nop> umm, link
 02:24 <@codeshark> (... release early)
-02:24 <@mids> http://www.tuxedo.org/~esr/writings/cathedral-bazaar/
+02:24 <@mids> [The Cathedral and the Bazaar](http://www.tuxedo.org/~esr/writings/cathedral-bazaar/)
 02:25 <@codeshark> i think that's what we doing. or do you want to release more often?
 02:25 <@codeshark> .
 02:25 <@mids> Banks?
@@ -330,7 +330,7 @@ categories: ["meeting"]
 02:28 < Aster> im soo lost
 02:28 < Aster> whats going onn? aaahhhh
 02:28 <@mids> [notice(Aster)] welcome, the channel is moderated if you have something to say, message me or somebody else with ops or voice
-02:28 <@mids> [notice(Aster)] Information, agenda and logs: http://mids.student.utwente.nl/~mids/iip/
+02:28 <@mids> [notice(Aster)] Information, agenda and logs: [IIP project page](http://mids.student.utwente.nl/~mids/iip/)
 02:29 < Banks> codeshark: A handful of things. Related quotes at the beginning of each chapter, a small FAQ ...
 02:29 < Banks> How to contribute
 02:29 < Banks> Why Anonymity?
@@ -340,7 +340,7 @@ categories: ["meeting"]
 02:29 < Banks> How to configure a WinXP firewall to allow IIP
 02:30 <@mids> ptsc: what do you mean?
 02:30 < ptsc> perhaps by chaning http to some other string such as wysiwyg or url or something unlikely to be anonymity compromising, like the anonymity tripwire in freenet
-02:30 <@mids> you mean, that if I say http://www.google.com/ that it will be censored?
+02:30 <@mids> you mean, that if I say [Google](http://www.google.com/) that it will be censored?
 02:31 < ptsc> since the easiest means of compromising anonymity is to post a honeypot url to a crowded channel
 02:31 < SkyRat> no just not clickable
 02:31 <@mids> anybody want to respond on that one?
@@ -374,7 +374,7 @@ categories: ["meeting"]
 02:35 < ptsc> i actually have written a sort of 'guide for the clueless'
 02:35 < ptsc> including some of these
 02:36 < Banks> I saw that at deja, ptsc. Nice.
-02:36 < ptsc> http://groups.google.com/groups?selm=ss9rdugclv39cemnk4ue9t8jv6n8se8a3h%404ax.com&output=gplain
+02:36 < ptsc> [Google Groups thread](http://groups.google.com/groups?selm=ss9rdugclv39cemnk4ue9t8jv6n8se8a3h%404ax.com&output=gplain)
 02:36 < ptsc> it is written to a specialized audience concerning an iip channel that is as yet relatively uninhabited
 02:36 < ptsc> thx
 02:36 < Banks> It's a good idea for a chan
@@ -484,9 +484,9 @@ categories: ["meeting"]
 02:47 <@mids> and appologied for the delay
 02:47 <@nop> is that it will take him forever to update any changes
 02:47 <@mids> he has made a new updayed design:
-02:47 <@mids> http://buttsnot.com/invisible2.html
+02:47 <@mids> [Invisible IRC write-up](http://buttsnot.com/invisible2.html)
 02:48 <@nop> or press releases
-02:48 <@mids> the first one was http://mids.student.utwente.nl/~mids/iip/meeting1/draft2.jpg
+02:48 <@mids> the first one was [IIP project page](http://mids.student.utwente.nl/~mids/iip/)meeting1/draft2.jpg
 02:48 <@nop> so dunno
 02:48 <@mids> any comments on the looks?
 02:48 <@nop> and we need a plan b
@@ -682,7 +682,7 @@ categories: ["meeting"]
 03:07 <@mids> LaTeX or Docbook
 03:07 <@mids> we agreed on using LaTeX now
 03:07 <@mids> and moving to docbook in a later state
-03:08 <@mids> current latex is available on http://mids.student.utwente.nl/~mids/docdemo/
+03:08 <@mids> current latex is available on [LaTeX documentation demo](http://mids.student.utwente.nl/~mids/docdemo/)
 03:08 < Banks> I was using HTML to PDF with HTMLDOC.
 03:08 <@mids> but it needs review
 03:08 <@mids> and also misses some items
@@ -820,7 +820,7 @@ categories: ["meeting"]
 03:25 <@mids> lets do 1 more public thing
 03:25 <@mids> about the meeting time
 03:25 <@mids> Quick jump to topic 9 Next meeting:
-03:25 -!- Chocolate changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/ | current topic: meeting time
+03:25 -!- Chocolate changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): [IIP project page](http://mids.student.utwente.nl/~mids/iip/) | current topic: meeting time
 03:25 <@mids> statement: current time too late for Europeans, better time?
 03:25 <@mids> codeshark and me would prefer 2 hours earlier
 03:26 <@mids> (its 3:30 am here now)
@@ -839,7 +839,7 @@ categories: ["meeting"]
 03:29 < Aster> uh, whats thaht eastern?
 03:29 < Chocolate> no, UTC
 03:29 < Aster> what would be eastern then? ( i dont know how this time stuff works :)
-03:29 <@mids>  http://www.timeanddate.com/worldclock/
+03:29 <@mids>  [world clock](http://www.timeanddate.com/worldclock/)
 03:29 < Chocolate> EDT is -5
 03:29 < Aster> k
 03:29 < ellison> oooh, an ISO compliant meeting!
@@ -868,7 +868,7 @@ categories: ["meeting"]
 03:33 <@mids> then we will try that
 03:34 <@nop> ok
 03:34 <@mids> okay... questions!
-03:34 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): http://mids.student.utwente.nl/~mids/iip/ | current topic: Questions
+03:34 -!- mids changed the topic of #iip-dev to: Meeting info, agenda, livelog (in case you are late): [IIP project page](http://mids.student.utwente.nl/~mids/iip/) | current topic: Questions
 03:34 < Kronos-X> mids: Where are the .debs?
 03:34 < Kronos-X> ;)
 03:34 <@nop> teach us old wise one
@@ -881,7 +881,7 @@ categories: ["meeting"]
 03:35 <@nop> hehe
 03:35 <@mids> ptsc: any Q about the protocol?
 03:35 < Banks> ptsc has been idle 53mins 56secs :)
-03:36 <@mids> okay, banks' PDF is online on http://mids.student.utwente.nl/~mids/iip/meeting2/
+03:36 <@mids> okay, banks' PDF is online on [IIP project page](http://mids.student.utwente.nl/~mids/iip/)meeting2/
 03:36 <@nop> did we discuss roadmaps
 03:36 <@nop> etdd
 03:36 <@mids> it looks cool already
@@ -1029,7 +1029,7 @@ categories: ["meeting"]
 04:24 < Mole> Kind of been into my research and simulations to much so I am currently taking a long break to check what other projects there are out there.
 04:24 < ellison> it's basically a distributed databases structure where many entities can have read/write access, but the system is protected from attempts at corruption by any of those entities
 04:24 < ellison> really useful for certain types of data structures/purposes
-04:25 < ellison> http://citeseer.nj.nec.com/malkhi97byzantine.html
+04:25 < ellison> [Byzantine quorum systems paper](http://citeseer.nj.nec.com/malkhi97byzantine.html)
 04:25 < Chocolate> Mole: I recomened you here :)
 04:25 < Chocolate> got a spybot going in #freenet here
 04:26 < Mole> Ok, Ill check quorum out to.
@@ -1039,7 +1039,7 @@ categories: ["meeting"]
 04:28 <@nop> banks
 04:28 <@nop> where's that link
 04:28 < Banks> Wait one
-04:28 < Banks> http://mids.student.utwente.nl/~mids/iip/meeting2/iipdoc.pdf
+04:28 < Banks> [IIP project page](http://mids.student.utwente.nl/~mids/iip/)meeting2/iipdoc.pdf
 04:29 < Banks> Mole: You'll probably want to read mainly chapter 1 and chapter 9.
 04:29 < Mole> Ok, downloading it.
 04:32 <@nop> I have to run
@@ -1110,7 +1110,7 @@ categories: ["meeting"]
 07:25 < Mole> Ahh, me to.
 07:25 < Mole> Yep, the meeting was hours ago.
 07:25 < Mole> I am thinking on joining the development team.
-07:25 < Zwolly> http://mids.student.utwente.nl/~mids/iip     there is some info there
+07:25 < Zwolly> [IIP project page](http://mids.student.utwente.nl/~mids/iip)     there is some info there
 07:25 < Zwolly> great
 07:25 < Zwolly> if you got the skills and they can use some one
 07:26 < Mole> Yep, I got the skills. Researched decentralised p2p systmes since 1997...

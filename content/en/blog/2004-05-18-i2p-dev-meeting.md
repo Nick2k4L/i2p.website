@@ -155,7 +155,7 @@ categories: ["meeting"]
 14:43 &lt;Nightblade&gt; (ok continue meeting) heh
 14:43 &lt;jrandom&gt; :)
 14:43 &lt;jrandom&gt; ok, jumping to 3) roadmap updates
-14:44  * jrandom has been negligent updating http://www.i2p.net/roadmap over the last month
+14:44  * jrandom has been negligent updating the [I2P Roadmap](/en/get-involved/roadmap/) over the last month
 14:44 &lt;jrandom&gt; but now its back up to current
 14:44 &lt;jrandom&gt; unfortunately we're obviously not getting 0.4 in next week
 14:44 &lt;duck&gt; (are 1.1, 2.0, 3.0 also up2date?)

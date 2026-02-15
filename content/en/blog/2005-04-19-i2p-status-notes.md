@@ -29,7 +29,7 @@ For those not following my (oh so exciting) blog, there's been a lot of progress
 
 Its april now, so the roadmap [1] has been updated accordingly - dropping 0.5.1 and shifting some dates. The big change there is moving 0.6 from April to June, though that really isn't as big of a change as it looks like. As I mentioned last week, my own schedule has moved around a bit, and rather than moving to $somewhere in June, I'm moving to $somewhere in May. While we could have whats necessary for 0.6 ready this month, there is no way I'm going to shove out a major update like that and then dissapear for a month, since the reality of software is that there'll be bugs not caught in testing.
 
-[1] http://www.i2p.net/roadmap
+[1] [I2P Roadmap](/en/get-involved/roadmap/)
 
 * 4) Q status
 

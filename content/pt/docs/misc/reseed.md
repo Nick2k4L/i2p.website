@@ -139,7 +139,7 @@ Operar um serviço de reseed (processo de bootstrap para novos routers) exige at
 - **Servidor Web**: nginx ou Apache com suporte a proxy reverso (Lighttpd não é mais suportado devido a limitações do cabeçalho X-Forwarded-For)
 - **TLS/SSL**: Certificado TLS válido (Let's Encrypt, autoassinado ou autoridade certificadora comercial)
 - **Proteção contra DDoS**: fail2ban ou equivalente (obrigatório, não opcional)
-- **Ferramentas de Reseed (processo de bootstrap da rede)**: reseed-tools oficiais de https://i2pgit.org/idk/reseed-tools
+- **Ferramentas de Reseed (processo de bootstrap da rede)**: reseed-tools oficiais de [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 ### Requisitos de Segurança
 
@@ -173,7 +173,7 @@ Servidores Reseed (servidores de provisionamento inicial) enfrentam ataques peri
 
 #### Método 1: reseed-tools oficial (Recomendado)
 
-A implementação canônica mantida pelo projeto I2P. Repositório: https://i2pgit.org/idk/reseed-tools
+A implementação canônica mantida pelo projeto I2P. Repositório: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 **Instalação**:
 
@@ -229,7 +229,7 @@ systemctl start i2p-reseed
 ```
 #### Método 2: Implementação em Python (pyseeder)
 
-Implementação alternativa do projeto PurpleI2P: https://github.com/PurpleI2P/pyseeder
+Implementação alternativa do projeto PurpleI2P: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
 
 ```bash
 pip install pyseeder
@@ -253,7 +253,7 @@ pyseeder serve \
 
 Para ambientes em contêineres, existem várias implementações prontas para Docker:
 
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
 - **RTradeLtd/i2p-tools-1**: Adiciona serviço onion do Tor e suporte a IPFS
 
 ### Configuração de proxy reverso
@@ -364,7 +364,7 @@ Encaminhar o tráfego de reseed (processo de inicialização da rede) pela CDN d
 
 **Considerações importantes**: - As restrições de portas da Cloudflare se aplicam (é necessário usar portas suportadas) - Same-client bundle consistency (consistência do agrupamento para o mesmo cliente) exige suporte a X-Forwarded-For - Configuração de SSL/TLS gerenciada pela Cloudflare
 
-**Documentação**: https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/
+**Documentação**: [Notes on I2P reseed over Cloudflare](https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/)
 
 ### Estratégias resistentes à censura
 
@@ -388,7 +388,7 @@ A pesquisa de Nguyen Phong Hoang (USENIX FOCI 2019) identifica métodos adiciona
 - Resistente ao bloqueio baseado em IP
 - Requer cliente Tor no sistema do usuário
 
-**Documentação de pesquisa**: https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/
+**Documentação de pesquisa**: [Censorship-resistant reseeding notes](https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/)
 
 #### Países com bloqueio conhecido do I2P
 
@@ -507,7 +507,7 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 ```
 #### Método 3: monitoramento do checki2p
 
-O serviço em https://checki2p.com/reseed realiza verificações automatizadas a cada 4 horas em todos os servidores de reseed do I2P (processo de inicialização da rede para obter pares inicialmente). Isso fornece:
+O serviço em [checki2p.com/reseed](https://checki2p.com/reseed) realiza verificações automatizadas a cada 4 horas em todos os servidores de reseed do I2P (processo de inicialização da rede para obter pares inicialmente). Isso fornece:
 
 - Monitoramento de disponibilidade
 - Métricas de tempo de resposta
@@ -536,22 +536,22 @@ Assim que o seu reseed (servidor de inicialização) for registrado junto ao pro
 - **Guia de Contribuidores do Reseed (inicialização do netDb do I2P)**: /guides/creating-and-running-an-i2p-reseed-server/
 - **Requisitos da Política de Reseed**: /guides/reseed-policy/
 - **Especificação SU3**: /docs/specs/updates/
-- **Repositório das Ferramentas de Reseed**: https://i2pgit.org/idk/reseed-tools
-- **Documentação das Ferramentas de Reseed**: https://eyedeekay.github.io/reseed-tools/
+- **Repositório das Ferramentas de Reseed**: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
+- **Documentação das Ferramentas de Reseed**: [eyedeekay.github.io/reseed-tools](https://eyedeekay.github.io/reseed-tools/)
 
 ### Implementações alternativas
 
-- **PurpleI2P pyseeder**: https://github.com/PurpleI2P/pyseeder
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
-- **RTradeLtd i2p-tools-1**: https://github.com/RTradeLtd/i2p-tools-1
-- **Reseeder WSGI em Python (servidor de distribuição inicial de pares)**: https://github.com/torbjo/i2p-reseeder
+- **PurpleI2P pyseeder**: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
+- **RTradeLtd i2p-tools-1**: [RTradeLtd/i2p-tools-1](https://github.com/RTradeLtd/i2p-tools-1)
+- **Reseeder WSGI em Python (servidor de distribuição inicial de pares)**: [torbjo/i2p-reseeder](https://github.com/torbjo/i2p-reseeder)
 
 ### Recursos da Comunidade
 
-- **Fórum I2P**: https://i2pforum.net/
+- **Fórum I2P**: [i2pforum.net](https://i2pforum.net/)
 - **Repositório Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev no IRC2P
-- **Monitoramento de Status**: https://checki2p.com/reseed
+- **Monitoramento de Status**: [checki2p.com/reseed](https://checki2p.com/reseed)
 
 ### Histórico de versões
 

@@ -23,7 +23,7 @@ I think I remember Connelly mentioning that he was seeing 300+ different routers
 
 In the last week, I've watched the stats put out by the i2p-bt trackers and there have been gigs of large files transferred, with some reports of 80-120KBps. IRC has had more bumps than usual since those comments were posted on that website, but its still on the order of hours between disconnect. (from what I can tell, the router that irc.duck.i2p is on has been running pretty close to its bandwidth limit, which would explain things)
 
-[1] http://www.i2p.net/roadmap#0.6
+[1] [I2P Roadmap milestone 0.6](/en/get-involved/roadmap/#0.6)
 
 * 2) 0.4.2.6
 

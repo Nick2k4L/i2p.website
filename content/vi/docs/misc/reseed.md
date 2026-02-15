@@ -139,7 +139,7 @@ Vận hành một dịch vụ reseed (dịch vụ cấp dữ liệu khởi độ
 - **Máy chủ web**: nginx hoặc Apache với hỗ trợ reverse proxy (proxy ngược) (Lighttpd không còn được hỗ trợ do hạn chế của header X-Forwarded-For)
 - **TLS/SSL**: Chứng chỉ TLS hợp lệ (Let's Encrypt, tự ký, hoặc CA thương mại (tổ chức cấp chứng chỉ))
 - **Bảo vệ DDoS**: fail2ban hoặc tương đương (bắt buộc, không tùy chọn)
-- **Công cụ Reseed**: reseed-tools chính thức từ https://i2pgit.org/idk/reseed-tools
+- **Công cụ Reseed**: reseed-tools chính thức từ [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 ### Yêu cầu bảo mật
 
@@ -173,7 +173,7 @@ Máy chủ Reseed (máy chủ cung cấp dữ liệu netDb ban đầu cho router
 
 #### Phương pháp 1: reseed-tools chính thức (Khuyến nghị)
 
-Bản hiện thực chính tắc do dự án I2P bảo trì. Kho lưu trữ: https://i2pgit.org/idk/reseed-tools
+Bản hiện thực chính tắc do dự án I2P bảo trì. Kho lưu trữ: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 **Cài đặt**:
 
@@ -229,7 +229,7 @@ systemctl start i2p-reseed
 ```
 #### Phương pháp 2: Hiện thực bằng Python (pyseeder)
 
-Một triển khai thay thế do dự án PurpleI2P thực hiện: https://github.com/PurpleI2P/pyseeder
+Một triển khai thay thế do dự án PurpleI2P thực hiện: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
 
 ```bash
 pip install pyseeder
@@ -253,7 +253,7 @@ pyseeder serve \
 
 Đối với các môi trường được container hóa, có một số triển khai sẵn sàng cho Docker:
 
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
 - **RTradeLtd/i2p-tools-1**: Thêm dịch vụ onion của Tor và hỗ trợ IPFS
 
 ### Cấu hình proxy ngược
@@ -364,7 +364,7 @@ Việc định tuyến lưu lượng reseed (lưu lượng khởi tạo mạng I
 
 **Các lưu ý quan trọng**: - Các hạn chế cổng của Cloudflare được áp dụng (phải sử dụng các cổng được hỗ trợ) - Để đảm bảo tính nhất quán bundle (gói) theo từng máy khách, cần hỗ trợ X-Forwarded-For - Cấu hình SSL/TLS do Cloudflare quản lý
 
-**Tài liệu**: https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/
+**Tài liệu**: [Notes on I2P reseed over Cloudflare](https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/)
 
 ### Các chiến lược kháng kiểm duyệt
 
@@ -388,7 +388,7 @@ Nghiên cứu của Nguyen Phong Hoang (USENIX FOCI 2019) xác định các phư
 - Khó bị chặn dựa trên IP
 - Yêu cầu trình khách Tor trên hệ thống của người dùng
 
-**Tài liệu nghiên cứu**: https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/
+**Tài liệu nghiên cứu**: [Censorship-resistant reseeding notes](https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/)
 
 #### Các quốc gia được biết là chặn I2P
 
@@ -507,7 +507,7 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 ```
 #### Phương pháp 3: checki2p Monitoring (dịch vụ giám sát checki2p)
 
-Dịch vụ tại https://checki2p.com/reseed thực hiện các kiểm tra tự động cứ mỗi 4 giờ đối với tất cả các máy chủ reseed (máy chủ khởi tạo ban đầu) I2P đã đăng ký. Điều này cung cấp:
+Dịch vụ tại [checki2p.com/reseed](https://checki2p.com/reseed) thực hiện các kiểm tra tự động cứ mỗi 4 giờ đối với tất cả các máy chủ reseed (máy chủ khởi tạo ban đầu) I2P đã đăng ký. Điều này cung cấp:
 
 - Giám sát tính sẵn sàng
 - Chỉ số thời gian phản hồi
@@ -536,22 +536,22 @@ Khi reseed (máy chủ khởi tạo mạng ban đầu) của bạn được đă
 - **Hướng dẫn cho người đóng góp Reseed (khởi tạo mạng I2P)**: /guides/creating-and-running-an-i2p-reseed-server/
 - **Các yêu cầu về chính sách Reseed**: /guides/reseed-policy/
 - **Đặc tả SU3**: /docs/specs/updates/
-- **Kho công cụ Reseed**: https://i2pgit.org/idk/reseed-tools
-- **Tài liệu công cụ Reseed**: https://eyedeekay.github.io/reseed-tools/
+- **Kho công cụ Reseed**: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
+- **Tài liệu công cụ Reseed**: [eyedeekay.github.io/reseed-tools](https://eyedeekay.github.io/reseed-tools/)
 
 ### Các triển khai thay thế
 
-- **PurpleI2P pyseeder**: https://github.com/PurpleI2P/pyseeder
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
-- **RTradeLtd i2p-tools-1**: https://github.com/RTradeLtd/i2p-tools-1
-- **Python WSGI reseeder**: https://github.com/torbjo/i2p-reseeder
+- **PurpleI2P pyseeder**: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
+- **RTradeLtd i2p-tools-1**: [RTradeLtd/i2p-tools-1](https://github.com/RTradeLtd/i2p-tools-1)
+- **Python WSGI reseeder**: [torbjo/i2p-reseeder](https://github.com/torbjo/i2p-reseeder)
 
 ### Tài nguyên cộng đồng
 
-- **Diễn đàn I2P**: https://i2pforum.net/
+- **Diễn đàn I2P**: [i2pforum.net](https://i2pforum.net/)
 - **Kho lưu trữ Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev trên IRC2P
-- **Giám sát trạng thái**: https://checki2p.com/reseed
+- **Giám sát trạng thái**: [checki2p.com/reseed](https://checki2p.com/reseed)
 
 ### Lịch sử phiên bản
 

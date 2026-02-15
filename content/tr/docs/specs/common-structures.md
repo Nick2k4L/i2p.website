@@ -149,7 +149,7 @@ X25519 anahtarları, 0.9.44 sürümünden itibaren Destination'larda ve LeaseSet
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html
+JavaDoc: [net.i2p.data.PublicKey](http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html)
 
 ### PrivateKey
 
@@ -239,7 +239,7 @@ Anahtar tipi ve uzunluğu bağlamdan çıkarılır veya bir veri yapısında ya 
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html
+JavaDoc: [net.i2p.data.PrivateKey](http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html)
 
 ### SessionKey
 
@@ -251,7 +251,7 @@ Bu yapı simetrik AES256 şifreleme ve şifre çözme için kullanılır.
 
 32 bayt
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html
+JavaDoc: [net.i2p.data.SessionKey](http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html)
 
 ### SigningPublicKey
 
@@ -341,7 +341,7 @@ Anahtar türü ve uzunluğu bağlamdan çıkarılır veya bir Destination'ın Ke
 
 * EdDSA ve RedDSA hariç tüm türler Big Endian formatındadır; EdDSA ve RedDSA Little Endian formatında saklanır ve iletilir.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html
+JavaDoc: [net.i2p.data.SigningPublicKey](http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html)
 
 ### SigningPrivateKey
 
@@ -431,7 +431,7 @@ Anahtar türü ve uzunluğu oluşturulurken belirtilir. Varsayılan tür DSA_SHA
 
 * Tüm türler Big Endian formatındadır, EdDSA ve RedDSA hariç - bunlar Little Endian formatında saklanır ve iletilir.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html
+JavaDoc: [net.i2p.data.SigningPrivateKey](http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html)
 
 ### İmza
 
@@ -521,7 +521,7 @@ Bu yapı, bazı verilerin imzasını temsil eder.
 
 * Tüm türler Big Endian formatındadır, EdDSA ve RedDSA hariç; bunlar Little Endian formatında saklanır ve iletilir.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Signature.html
+JavaDoc: [net.i2p.data.Signature](http://docs.i2p-projekt.de/net/i2p/data/Signature.html)
 
 ### Hash
 
@@ -533,7 +533,7 @@ Bazı verilerin SHA256 değerini temsil eder.
 
 32 bayt
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Hash.html
+JavaDoc: [net.i2p.data.Hash](http://docs.i2p-projekt.de/net/i2p/data/Hash.html)
 
 ### Oturum Etiketi
 
@@ -547,7 +547,7 @@ Rastgele bir sayı
 
 32 bayt
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html
+JavaDoc: [net.i2p.data.SessionTag](http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html)
 
 ### TunnelId
 
@@ -559,7 +559,7 @@ Bir tunnel içindeki her router için benzersiz olan bir tanımlayıcı belirler
 
 4 bayt [Integer](#integer)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html
+JavaDoc: [net.i2p.data.TunnelId](http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html)
 
 ### Sertifika
 
@@ -1029,7 +1029,7 @@ Belirtilen ElGamal Crypto Public Key ve Signing Public Key türünü kullanan ö
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Certificate.html
+JavaDoc: [net.i2p.data.Certificate](http://docs.i2p-projekt.de/net/i2p/data/Certificate.html)
 
 #### Notlar
 
@@ -1097,7 +1097,7 @@ val_string :: `String`
 
 * Toplam uzunluk sınırı 65535 bayt artı 2 baytlık boyut alanı, yani toplamda 65537'dir.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html
+JavaDoc: [net.i2p.data.DataHelper](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 
 ## Ortak yapı spesifikasyonu
 
@@ -1195,7 +1195,7 @@ Uygulamalar, elbette, tam 387+ bayt yapısını saklamalıdır çünkü yapını
 
 * Crypto Public Key başlangıçta hizalanır ve Signing Public Key sonunda hizalanır. Dolgu (varsa) ortadadır.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html
+JavaDoc: [net.i2p.data.KeysAndCert](http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html)
 
 ### RouterIdentity
 
@@ -1222,7 +1222,7 @@ Padding alanı için rastgele veri üretme konusunda yönergeler için [KeysAndC
 * Key certificate (anahtar sertifikası) ve ECIES_X25519 public key içeren RouterIdentity'ler 0.9.48 sürümünden itibaren desteklenmektedir.
   Bundan önce, tüm RouterIdentity'ler ElGamal idi.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html
+JavaDoc: [net.i2p.data.router.RouterIdentity](http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html)
 
 ### Hedef
 
@@ -1246,7 +1246,7 @@ Public key ve padding alanları için rastgele veri üretme yönergeleri için [
 
 * Crypto Public Key başlangıçta hizalanır ve Signing Public Key sonunda hizalanır. Dolgu (varsa) ortadadır.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Destination.html
+JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Destination.html)
 
 ### Lease
 
@@ -1295,7 +1295,7 @@ end_date :: `Date`
 ```
 
 </details>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease.html
+JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)
 
 ### LeaseSet
 
@@ -1420,7 +1420,7 @@ signature :: `Signature`
 
 * 0.9.7 sürümünden önce, kaynak router tarafından gönderilen bir DatabaseStore Mesajına dahil edildiğinde, router tüm yayınlanan lease'lerin sona erme sürelerini aynı değere, yani en erken lease'in süresine ayarlıyordu. 0.9.7 sürümünden itibaren, router her lease için gerçek lease sona erme süresini yayınlar. Bu bir uygulama detayıdır ve yapı spesifikasyonunun bir parçası değildir.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html
+JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
 
 ### Lease2
 
@@ -1470,7 +1470,7 @@ end_date :: 4 byte date
 
 * Toplam boyut: 40 bayt
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease2.html
+JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.html)
 
 ### OfflineSignature
 
@@ -1807,7 +1807,7 @@ LS2'de bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p için, kendisini bir
 
 * Seçenekler eşlemesi, boyut birden büyükse, anahtar tarafından sıralanmalıdır, böylece imza değişmez olur.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html
+JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
 
 ### MetaLease
 
@@ -1858,7 +1858,7 @@ end_date :: 4 byte date
 
 * Toplam boyut: 40 bayt
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html
+JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
 
 ### MetaLeaseSet
 
@@ -1954,7 +1954,7 @@ signature :: `Signature`
 
 * [LeaseSet2Header](#leaseset2header) içindeki 'published' alanına ilişkin nota bakın
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html
+JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html)
 
 ### EncryptedLeaseSet
 
@@ -2059,7 +2059,7 @@ signature :: `Signature`
 * [LeaseSet2Header](#leaseset2header) içindeki 'published' alanı hakkındaki nota bakın
   (aynı sorun, burada LeaseSet2Header formatını kullanmasak bile)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html
+JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html)
 
 ### RouterAddress
 
@@ -2109,7 +2109,7 @@ options :: `Mapping`
 
 * Aşağıdaki seçenekler zorunlu olmamakla birlikte standart kabul edilir ve çoğu router adresinde bulunması beklenir: "host" (bir IPv4 veya IPv6 adresi ya da host adı) ve "port".
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html
+JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
 
 ### RouterInfo
 
@@ -2204,7 +2204,7 @@ signature :: `Signature`
 * Çok eski router'lar, imzanın değişmez olması için adreslerin verilerinin SHA256'sına göre sıralanmasını gerektiriyordu.
   Bu artık gerekli değil ve geriye dönük uyumluluk için uygulanmaya değmez.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html
+JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
 
 ### Teslimat Talimatları
 

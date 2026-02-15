@@ -108,7 +108,7 @@ categories: ["meeting"]
 14:29 &lt;kaji&gt; what about access behind a firewall?
 14:29 &lt;deer&gt; &lt;jon2&gt; yes, firewall access :)
 14:29 &lt;jrandom&gt; we need something rock solid, usable, *and* secure, that provides functionality that people want (and hopefully, that we can use to encourage community)
-14:30 &lt;deer&gt; * duck points at 0.4.2 @ http://www.i2p.net/roadmap
+14:30 &lt;deer&gt; * duck points at 0.4.2 @ [I2P Roadmap](/en/get-involved/roadmap/)
 14:30 &lt;jrandom&gt; believe me, i want access behind firewalls / uncontrollable NATs / etc just as much as the rest of you.
 14:30 &lt;deer&gt; &lt;jon2&gt; I can do the secure part, I know cryptophagy.
 14:30 &lt;jrandom&gt; (someone has to add that as a quote ;)

@@ -44,7 +44,7 @@ adjusted.  You'll notice the substantial break between 0.6 and
 0.6.1, and while this does reflect lots of work, it also reflects
 the fact that I'll be moving (its that time of the year again).
 
-[1] http://www.i2p.net/roadmap
+[1] [I2P Roadmap](/en/get-involved/roadmap/)
 
 * 3) addressbook editor and config
 

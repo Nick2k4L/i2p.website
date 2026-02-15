@@ -149,7 +149,7 @@ X25519-Schlüssel werden in Destinations und LeaseSet2 ab Version 0.9.44 unterst
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html
+JavaDoc: [net.i2p.data.PublicKey](http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html)
 
 ### PrivateKey
 
@@ -239,7 +239,7 @@ Schlüsseltyp und -länge werden aus dem Kontext abgeleitet oder separat in eine
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html
+JavaDoc: [net.i2p.data.PrivateKey](http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html)
 
 ### SessionKey
 
@@ -251,7 +251,7 @@ Diese Struktur wird für symmetrische AES256-Verschlüsselung und -Entschlüssel
 
 32 Bytes
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html
+JavaDoc: [net.i2p.data.SessionKey](http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html)
 
 ### SigningPublicKey
 
@@ -341,7 +341,7 @@ Schlüsseltyp und -länge werden aus dem Kontext abgeleitet oder sind im Key Cer
 
 * Alle Typen sind Big Endian, außer EdDSA und RedDSA, die in einem Little Endian Format gespeichert und übertragen werden.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html
+JavaDoc: [net.i2p.data.SigningPublicKey](http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html)
 
 ### SigningPrivateKey
 
@@ -431,7 +431,7 @@ Schlüsseltyp und -länge werden bei der Erstellung festgelegt. Der Standardtyp 
 
 * Alle Typen sind Big Endian, außer EdDSA und RedDSA, die in einem Little Endian Format gespeichert und übertragen werden.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html
+JavaDoc: [net.i2p.data.SigningPrivateKey](http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html)
 
 ### Signatur
 
@@ -521,7 +521,7 @@ Signaturtyp und -länge werden vom verwendeten Schlüsseltyp abgeleitet. Der Sta
 
 * Alle Typen sind Big Endian, außer EdDSA und RedDSA, die in einem Little Endian Format gespeichert und übertragen werden.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Signature.html
+JavaDoc: [net.i2p.data.Signature](http://docs.i2p-projekt.de/net/i2p/data/Signature.html)
 
 ### Hash
 
@@ -533,7 +533,7 @@ Repräsentiert den SHA256-Hashwert von bestimmten Daten.
 
 32 Bytes
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Hash.html
+JavaDoc: [net.i2p.data.Hash](http://docs.i2p-projekt.de/net/i2p/data/Hash.html)
 
 ### Session Tag
 
@@ -547,7 +547,7 @@ Eine Zufallszahl
 
 32 Bytes
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html
+JavaDoc: [net.i2p.data.SessionTag](http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html)
 
 ### TunnelId
 
@@ -559,7 +559,7 @@ Definiert eine Kennung, die für jeden Router in einem Tunnel eindeutig ist. Ein
 
 4 Byte [Integer](#integer)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html
+JavaDoc: [net.i2p.data.TunnelId](http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html)
 
 ### Zertifikat
 
@@ -1033,7 +1033,7 @@ Beispiel-Layouts mit einem ElGamal Crypto Public Key und dem angegebenen Signing
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Certificate.html
+JavaDoc: [net.i2p.data.Certificate](http://docs.i2p-projekt.de/net/i2p/data/Certificate.html)
 
 #### Notizen
 
@@ -1101,7 +1101,7 @@ val_string :: `String`
 
 * Die Gesamtlängenbegrenzung beträgt 65535 Bytes, plus das 2-Byte-Größenfeld, oder insgesamt 65537.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html
+JavaDoc: [net.i2p.data.DataHelper](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 
 ## Spezifikation der gemeinsamen Struktur
 
@@ -1201,7 +1201,7 @@ Implementierungen müssen natürlich die vollständige 387+ Byte-Struktur speich
 
 * Der Crypto Public Key ist am Anfang ausgerichtet und der Signing Public Key ist am Ende ausgerichtet. Das Padding (falls vorhanden) befindet sich in der Mitte.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html
+JavaDoc: [net.i2p.data.KeysAndCert](http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html)
 
 ### RouterIdentity
 
@@ -1229,7 +1229,7 @@ Siehe [KeysAndCert](#keysandcert) für Richtlinien zur Generierung der Zufallsda
   werden ab Release 0.9.48 unterstützt.
   Davor waren alle RouterIdentities ElGamal.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html
+JavaDoc: [net.i2p.data.router.RouterIdentity](http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html)
 
 ### Ziel
 
@@ -1253,7 +1253,7 @@ Siehe [KeysAndCert](#keysandcert) für Richtlinien zur Generierung der Zufallsda
 
 * Der Crypto Public Key ist am Anfang ausgerichtet und der Signing Public Key ist am Ende ausgerichtet. Das Padding (falls vorhanden) befindet sich in der Mitte.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Destination.html
+JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Destination.html)
 
 ### Lease
 
@@ -1302,7 +1302,7 @@ end_date :: `Date`
 ```
 
 </details>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease.html
+JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)
 
 ### LeaseSet
 
@@ -1427,7 +1427,7 @@ signature :: `Signature`
 
 * Vor Version 0.9.7 setzte der router, wenn er in einer DatabaseStore Message vom ursprünglichen router enthalten war, alle Ablaufzeiten der veröffentlichten leases auf denselben Wert, nämlich den des frühesten lease. Ab Version 0.9.7 veröffentlicht der router die tatsächliche lease-Ablaufzeit für jeden lease. Dies ist ein Implementierungsdetail und nicht Teil der Strukturspezifikation.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html
+JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
 
 ### Lease2
 
@@ -1477,7 +1477,7 @@ end_date :: 4 byte date
 
 * Gesamtgröße: 40 bytes
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease2.html
+JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.html)
 
 ### OfflineSignature
 
@@ -1821,7 +1821,7 @@ In LS2 für bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, zeigend auf si
 
 * Das Options-Mapping muss, wenn die Größe größer als eins ist, nach Schlüssel sortiert werden, damit die Signatur unveränderlich ist.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html
+JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
 
 ### MetaLease
 
@@ -1872,7 +1872,7 @@ end_date :: 4 byte date
 
 * Gesamtgröße: 40 Bytes
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html
+JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
 
 ### MetaLeaseSet
 
@@ -1968,7 +1968,7 @@ signature :: `Signature`
 
 * Siehe Hinweis zum 'published'-Feld in [LeaseSet2Header](#leaseset2header)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html
+JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html)
 
 ### EncryptedLeaseSet
 
@@ -2074,7 +2074,7 @@ signature :: `Signature`
 * Siehe Hinweis zum 'published'-Feld in [LeaseSet2Header](#leaseset2header)
   (gleiches Problem, obwohl wir das LeaseSet2Header-Format hier nicht verwenden)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html
+JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html)
 
 ### RouterAddress
 
@@ -2124,7 +2124,7 @@ options :: `Mapping`
 
 * Die folgenden Optionen sind zwar nicht erforderlich, aber standardmäßig vorhanden und werden in den meisten router-Adressen erwartet: "host" (eine IPv4- oder IPv6-Adresse oder ein Hostname) und "port".
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html
+JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
 
 ### RouterInfo
 
@@ -2223,7 +2223,7 @@ signature :: `Signature`
   damit die Signatur unveränderlich ist.
   Dies ist nicht mehr erforderlich und nicht wert, für Rückwärtskompatibilität implementiert zu werden.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html
+JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
 
 ### Zustellungsanweisungen
 

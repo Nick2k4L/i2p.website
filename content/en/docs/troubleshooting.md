@@ -1099,9 +1099,9 @@ This guide covers the vast majority of I2P issues, but some problems require dev
 
 **Official support channels:**
 
-- **Forum:** https://i2pforum.net (clearnet) or `http://i2pforum.i2p` (within I2P)
+- **Forum:** [i2pforum.net](https://i2pforum.net) (clearnet) or `http://i2pforum.i2p` (within I2P)
 - **IRC:** #i2p on Irc2P (irc.postman.i2p via I2P) or irc.freenode.net (clearnet)
-- **Reddit:** https://reddit.com/r/i2p for community discussion
+- **Reddit:** [r/i2p on Reddit](https://www.reddit.com/r/i2p) for community discussion
 - **Bug tracker:** `https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues` for confirmed bugs
 - **Mailing list:** i2p-dev@lists.i2p-projekt.de for development questions
 

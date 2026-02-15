@@ -139,7 +139,7 @@ Provozování reseed služby (služby, která poskytuje novým routerům počát
 - **Webový server**: nginx nebo Apache s podporou reverzní proxy (Lighttpd již není podporován kvůli omezením hlavičky X-Forwarded-For)
 - **TLS/SSL**: Platný certifikát TLS (Let's Encrypt, samopodepsaný nebo od komerční certifikační autority (CA))
 - **Ochrana proti DDoS**: fail2ban nebo ekvivalent (povinné, nikoli volitelné)
-- **Nástroje pro reseed**: Oficiální reseed-tools z https://i2pgit.org/idk/reseed-tools
+- **Nástroje pro reseed**: Oficiální reseed-tools z [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 ### Bezpečnostní požadavky
 
@@ -173,7 +173,7 @@ Reseed servery čelí periodickým útokům ze strany chybných implementací, b
 
 #### Metoda 1: Oficiální reseed-tools (doporučeno)
 
-Kanonická implementace udržovaná projektem I2P. Repozitář: https://i2pgit.org/idk/reseed-tools
+Kanonická implementace udržovaná projektem I2P. Repozitář: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 **Instalace**:
 
@@ -229,7 +229,7 @@ systemctl start i2p-reseed
 ```
 #### Metoda 2: Implementace v Pythonu (pyseeder)
 
-Alternativní implementace od projektu PurpleI2P: https://github.com/PurpleI2P/pyseeder
+Alternativní implementace od projektu PurpleI2P: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
 
 ```bash
 pip install pyseeder
@@ -253,7 +253,7 @@ pyseeder serve \
 
 Pro kontejnerová prostředí existuje několik implementací připravených pro Docker:
 
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
 - **RTradeLtd/i2p-tools-1**: Přidává Tor onion službu a podporu pro IPFS
 
 ### Konfigurace reverzní proxy
@@ -364,7 +364,7 @@ Směrování provozu reseed (stažení počátečních informací o uzlech) pře
 
 **Důležité poznámky**: - Platí omezení portů Cloudflare (je nutné použít podporované porty) - Konzistence balíčku pro stejného klienta vyžaduje podporu X-Forwarded-For - Konfiguraci SSL/TLS spravuje Cloudflare
 
-**Dokumentace**: https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/
+**Dokumentace**: [Notes on I2P reseed over Cloudflare](https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/)
 
 ### Strategie odolné vůči cenzuře
 
@@ -388,7 +388,7 @@ Výzkum Nguyen Phong Hoanga (USENIX FOCI 2019) identifikuje další inicializač
 - Odolné vůči blokování na základě IP adresy
 - Vyžaduje klienta Tor v systému uživatele
 
-**Výzkumná dokumentace**: https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/
+**Výzkumná dokumentace**: [Censorship-resistant reseeding notes](https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/)
 
 #### Země se známým blokováním I2P
 
@@ -507,7 +507,7 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 ```
 #### Metoda 3: checki2p Monitoring
 
-Služba na adrese https://checki2p.com/reseed provádí automatizované kontroly každé 4 hodiny u všech registrovaných I2P reseed serverů (reseed: počáteční stažení seznamu peerů pro připojení k síti). To poskytuje:
+Služba na adrese [checki2p.com/reseed](https://checki2p.com/reseed) provádí automatizované kontroly každé 4 hodiny u všech registrovaných I2P reseed serverů (reseed: počáteční stažení seznamu peerů pro připojení k síti). To poskytuje:
 
 - Monitorování dostupnosti
 - Metriky doby odezvy
@@ -536,22 +536,22 @@ Jakmile bude váš reseed (server pro počáteční připojení k síti I2P) zar
 - **Příručka pro přispěvatele k Reseed (počáteční zavedení klienta I2P stažením výchozích uzlů)**: /guides/creating-and-running-an-i2p-reseed-server/
 - **Požadavky na zásady Reseed**: /guides/reseed-policy/
 - **Specifikace SU3**: /docs/specs/updates/
-- **Repozitář nástrojů pro Reseed**: https://i2pgit.org/idk/reseed-tools
-- **Dokumentace k nástrojům pro Reseed**: https://eyedeekay.github.io/reseed-tools/
+- **Repozitář nástrojů pro Reseed**: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
+- **Dokumentace k nástrojům pro Reseed**: [eyedeekay.github.io/reseed-tools](https://eyedeekay.github.io/reseed-tools/)
 
 ### Alternativní implementace
 
-- **PurpleI2P pyseeder**: https://github.com/PurpleI2P/pyseeder
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
-- **RTradeLtd i2p-tools-1**: https://github.com/RTradeLtd/i2p-tools-1
-- **Python WSGI reseeder**: https://github.com/torbjo/i2p-reseeder
+- **PurpleI2P pyseeder**: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
+- **RTradeLtd i2p-tools-1**: [RTradeLtd/i2p-tools-1](https://github.com/RTradeLtd/i2p-tools-1)
+- **Python WSGI reseeder**: [torbjo/i2p-reseeder](https://github.com/torbjo/i2p-reseeder)
 
 ### Komunitní zdroje
 
-- **I2P fórum**: https://i2pforum.net/
+- **I2P fórum**: [i2pforum.net](https://i2pforum.net/)
 - **Repozitář Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev na IRC2P
-- **Monitorování stavu**: https://checki2p.com/reseed
+- **Monitorování stavu**: [checki2p.com/reseed](https://checki2p.com/reseed)
 
 ### Historie verzí
 

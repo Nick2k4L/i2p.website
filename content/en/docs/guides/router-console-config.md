@@ -512,7 +512,7 @@ The Help page provides comprehensive documentation and resources to help you und
 If you're experiencing issues with I2P:
 1. Check the FAQ for common questions and answers
 2. Review the troubleshooting section for your specific problem
-3. Visit the I2P forum at i2pforum.i2p or [i2pforum.net](https://i2pforum.net)
+3. Visit the I2P forum at `i2pforum.i2p` or [i2pforum.net](https://i2pforum.net)
 4. Join the IRC channel #i2p for real-time community support
 5. Search the documentation for detailed technical information
 
@@ -574,4 +574,3 @@ Click **[Select Stats]** to choose which statistics to graph:
 - Diagnose tunnel building problems by correlating graphs
 
 **Tip:** Click "Save settings and redraw graphs" after making changes to apply your configuration. The graphs will refresh automatically based on your refresh delay setting.
-

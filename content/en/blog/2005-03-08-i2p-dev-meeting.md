@@ -103,13 +103,13 @@ categories: ["meeting"]
 13:28 &lt;@jrandom&gt; Gatak: not yet.  some people will be able to at 0.6, others at 2.0
 13:29 &lt;@jrandom&gt; legion: patches welcome
 13:29 &lt;ant&gt; &lt;Gatak&gt; 2.0 heck, that is far on the future =)
-13:29 &lt;@jrandom&gt; (http://www.i2p.net/roadmap#2.0 ;)
+13:29 &lt;@jrandom&gt; ([I2P Roadmap milestone 2.0](/en/get-involved/roadmap/#2.0) ;)
 13:29 &lt;+postman&gt; erm, shall i start now?
 13:29 &lt;aum&gt; morning all
 13:30 &lt;@jrandom&gt; mic is all yours postman (sorry ;)
 13:30 &lt;@jrandom&gt; 'lo aum, made it for the meeting
 13:30 &lt;@jrandom&gt; (d'oh!  /me shuts up again)
-13:30 &lt;cervantes&gt; Gatek: http://www.i2p.net/roadmap
+13:30 &lt;cervantes&gt; Gatek: [I2P Roadmap](/en/get-involved/roadmap/)
 13:30 &lt;+postman&gt; first, i wanted to say, that we reached 300 accounts registered at postman.i2p already
 13:30 &lt;@jrandom&gt; w00t
 13:30 &lt;+postman&gt; the number of mails from/to internet is growing steadily and once more proves that we need to move further

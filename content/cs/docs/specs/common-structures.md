@@ -149,7 +149,7 @@ Klíče X25519 jsou podporovány v Destinations a LeaseSet2 od vydání 0.9.44. 
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html
+JavaDoc: [net.i2p.data.PublicKey](http://docs.i2p-projekt.de/net/i2p/data/PublicKey.html)
 
 ### PrivateKey
 
@@ -239,7 +239,7 @@ Typ a délka klíče jsou odvozeny z kontextu nebo jsou uloženy samostatně v d
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html
+JavaDoc: [net.i2p.data.PrivateKey](http://docs.i2p-projekt.de/net/i2p/data/PrivateKey.html)
 
 ### SessionKey
 
@@ -251,7 +251,7 @@ Tato struktura se používá pro symetrické šifrování a dešifrování AES25
 
 32 bajtů
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html
+JavaDoc: [net.i2p.data.SessionKey](http://docs.i2p-projekt.de/net/i2p/data/SessionKey.html)
 
 ### SigningPublicKey
 
@@ -342,7 +342,7 @@ Typ a délka klíče jsou odvozeny z kontextu nebo jsou specifikovány v Key Cer
 * Všechny typy jsou Big Endian, kromě EdDSA a RedDSA, které jsou ukládány a přenášeny
   ve formátu Little Endian.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html
+JavaDoc: [net.i2p.data.SigningPublicKey](http://docs.i2p-projekt.de/net/i2p/data/SigningPublicKey.html)
 
 ### SigningPrivateKey
 
@@ -433,7 +433,7 @@ Typ a délka klíče jsou specifikovány při vytvoření. Výchozí typ je DSA_
 * Všechny typy jsou Big Endian, kromě EdDSA a RedDSA, které jsou uloženy a přenášeny
   ve formátu Little Endian.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html
+JavaDoc: [net.i2p.data.SigningPrivateKey](http://docs.i2p-projekt.de/net/i2p/data/SigningPrivateKey.html)
 
 ### Podpis
 
@@ -524,7 +524,7 @@ Typ a délka podpisu se odvozují z typu použitého klíče. Výchozím typem j
 * Všechny typy jsou Big Endian, kromě EdDSA a RedDSA, které jsou uloženy a přenášeny
   ve formátu Little Endian.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Signature.html
+JavaDoc: [net.i2p.data.Signature](http://docs.i2p-projekt.de/net/i2p/data/Signature.html)
 
 ### Hash
 
@@ -536,7 +536,7 @@ Představuje SHA256 hash některých dat.
 
 32 bajtů
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Hash.html
+JavaDoc: [net.i2p.data.Hash](http://docs.i2p-projekt.de/net/i2p/data/Hash.html)
 
 ### Značka relace
 
@@ -550,7 +550,7 @@ Náhodné číslo
 
 32 bajtů
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html
+JavaDoc: [net.i2p.data.SessionTag](http://docs.i2p-projekt.de/net/i2p/data/SessionTag.html)
 
 ### TunnelId
 
@@ -562,7 +562,7 @@ Definuje identifikátor, který je jedinečný pro každý router v tunnelu. Tun
 
 4 bajtové [Integer](#integer)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html
+JavaDoc: [net.i2p.data.TunnelId](http://docs.i2p-projekt.de/net/i2p/data/TunnelId.html)
 
 ### Certifikát
 
@@ -1035,7 +1035,7 @@ Příklady rozložení používající ElGamal Crypto Public Key a uvedený typ 
     </tr>
   </tbody>
 </table>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Certificate.html
+JavaDoc: [net.i2p.data.Certificate](http://docs.i2p-projekt.de/net/i2p/data/Certificate.html)
 
 #### Poznámky
 
@@ -1105,7 +1105,7 @@ val_string :: `String`
 
 * Celkový limit délky je 65535 bajtů, plus 2bajtové pole velikosti, nebo celkem 65537.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html
+JavaDoc: [net.i2p.data.DataHelper](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 
 ## Specifikace společné struktury
 
@@ -1205,7 +1205,7 @@ Implementace musí samozřejmě ukládat celou strukturu o velikosti 387+ bytů,
 
 * Kryptografický veřejný klíč je zarovnán na začátku a podepisující veřejný klíč je zarovnán na konci. Výplň (pokud existuje) je uprostřed.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html
+JavaDoc: [net.i2p.data.KeysAndCert](http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html)
 
 ### RouterIdentity
 
@@ -1233,7 +1233,7 @@ Viz [KeysAndCert](#keysandcert) pro pokyny k generování náhodných dat pro po
   jsou podporovány od verze 0.9.48.
   Před tím byly všechny RouterIdentity typu ElGamal.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html
+JavaDoc: [net.i2p.data.router.RouterIdentity](http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html)
 
 ### Cíl
 
@@ -1257,7 +1257,7 @@ Viz [KeysAndCert](#keysandcert) pro pokyny k generování náhodných dat pro po
 
 * Crypto Public Key je zarovnán na začátku a Signing Public Key je zarovnán na konci. Výplň (pokud existuje) je uprostřed.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Destination.html
+JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Destination.html)
 
 ### Lease
 
@@ -1306,7 +1306,7 @@ end_date :: `Date`
 ```
 
 </details>
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease.html
+JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)
 
 ### LeaseSet
 
@@ -1434,7 +1434,7 @@ signature :: `Signature`
 
 * Před verzí 0.9.7, když byl zahrnut ve zprávě DatabaseStore odeslané původním routerem, router nastavil všechna vypršení publikovaných leaseů na stejnou hodnotu, tu nejčasnějšího lease. Od verze 0.9.7 router publikuje skutečné vypršení lease pro každý lease. Toto je implementační detail a není součástí specifikace struktur.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html
+JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
 
 ### Lease2
 
@@ -1484,7 +1484,7 @@ end_date :: 4 byte date
 
 * Celková velikost: 40 bajtů
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/Lease2.html
+JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.html)
 
 ### OfflineSignature
 
@@ -1829,7 +1829,7 @@ V LS2 pro bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, odkazující sá
 
 * Mapování možností, pokud je velikost větší než jedna, musí být seřazeno podle klíče, aby byl podpis neměnný.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html
+JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
 
 ### MetaLease
 
@@ -1880,7 +1880,7 @@ end_date :: 4 byte date
 
 * Celková velikost: 40 bytů
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html
+JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
 
 ### MetaLeaseSet
 
@@ -1977,7 +1977,7 @@ signature :: `Signature`
 
 * Viz poznámka k poli 'published' v [LeaseSet2Header](#leaseset2header)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html
+JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html)
 
 ### EncryptedLeaseSet
 
@@ -2085,7 +2085,7 @@ signature :: `Signature`
 * Viz poznámka k poli 'published' v [LeaseSet2Header](#leaseset2header)
   (stejný problém, i když zde nepoužíváme formát LeaseSet2Header)
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html
+JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html)
 
 ### RouterAddress
 
@@ -2135,7 +2135,7 @@ options :: `Mapping`
 
 * Následující možnosti, ačkoli nejsou vyžadovány, jsou standardní a očekává se, že budou přítomny ve většině router adres: "host" (IPv4 nebo IPv6 adresa nebo název hostitele) a "port".
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html
+JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
 
 ### RouterInfo
 
@@ -2233,7 +2233,7 @@ signature :: `Signature`
   takže podpis je invariantní.
   To už není vyžadováno a nestojí za implementaci kvůli zpětné kompatibilitě.
 
-JavaDoc: http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html
+JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
 
 ### Instrukce pro doručení
 

@@ -25,7 +25,7 @@ Please do not use these email addresses for support requests. For contact specif
 
 ## Forums {#forums}
 
-Please visit our I2P user forum - i2pforum.i2p (available on non-private internet at https://i2pforum.net.
+Please visit our I2P user forum - i2pforum.i2p (available on the clearnet at [i2pforum.net](https://i2pforum.net)).
 
 The discussion about I2P's development happens on the I2P user forum. This is usually the best place to start with developer inquiries, if the dev IRC channel is inactive. For general support use either the I2P user forum or the Subreddit.
 

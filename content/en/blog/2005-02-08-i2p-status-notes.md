@@ -66,7 +66,7 @@ like those will be deferred as well.
                     tunnel-alt.html?rev=HEAD#tunnel.selection.client
 [4] http://en.wikipedia.org/wiki/Bloom_filter
 [5] http://xlattice.sourceforge.net/index.html
-[6] http://www.i2p.net/roadmap
+[6] [I2P Roadmap](/en/get-involved/roadmap/)
 
 * 3) i2p-bt 0.1.6
 

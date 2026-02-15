@@ -33,7 +33,7 @@ I was checking the i2p-cvs mailing list earlier and noticed a bunch of commits f
 
 As an aside, thanks to the suggestion of an anonymous person, I've updated the hall of fame [3] a bit, including the contribution dates, bundling multiple donations from a single person together, and converting to a single currency. Thanks again to everyone who has contributed, and if there is incorrect information posted or if something is missing, please get in touch and it will be updated.
 
-[3] http://www.i2p.net/halloffame
+[3] [Hall of Fame](/en/about/hall-of-fame/)
 
 * 4) Client app directions
 
@@ -61,8 +61,8 @@ My point in bringing this up (beyond mentioning it for i2phex users) is to ask w
 
 Plus, beyond all of that, there's the rest of the stuff on the roadmap [4] and todo list [5]. I know what we need technically, but I don't know what *you* need from a user perspective. Talk to me, whatcha want?
 
-[4] http://www.i2p.net/roadmap
-[5] http://www.i2p.net/todo
+[4] [I2P Roadmap](/en/get-involved/roadmap/)
+[5] [Development todo list](/en/get-involved/roadmap/)
 
 * 5) ???
 

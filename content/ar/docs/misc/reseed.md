@@ -139,7 +139,7 @@ accurateFor: "2.10.0"
 - **خادم ويب**: nginx أو Apache مع دعم الوكيل العكسي (Lighttpd لم يعد مدعوماً بسبب قيود ترويسة X-Forwarded-For)
 - **TLS/SSL**: شهادة TLS صالحة (Let's Encrypt، موقعة ذاتياً، أو سلطة شهادات تجارية (CA))
 - **حماية DDoS**: fail2ban أو ما يعادله (إلزامي، ليس اختيارياً)
-- **أدوات إعادة البذر**: reseed-tools الرسمية من https://i2pgit.org/idk/reseed-tools
+- **أدوات إعادة البذر**: reseed-tools الرسمية من [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 ### متطلبات الأمان
 
@@ -173,7 +173,7 @@ accurateFor: "2.10.0"
 
 #### الطريقة 1: reseed-tools الرسمية (موصى بها)
 
-التنفيذ المرجعي الذي يُصانه مشروع I2P. المستودع: https://i2pgit.org/idk/reseed-tools
+التنفيذ المرجعي الذي يُصانه مشروع I2P. المستودع: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 **التثبيت**:
 
@@ -233,7 +233,7 @@ systemctl start i2p-reseed
 ```
 #### الطريقة الثانية: تنفيذ بلغة بايثون (pyseeder)
 
-تنفيذ بديل من مشروع PurpleI2P: https://github.com/PurpleI2P/pyseeder
+تنفيذ بديل من مشروع PurpleI2P: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
 
 ```bash
 pip install pyseeder
@@ -257,7 +257,7 @@ pyseeder serve \
 
 بالنسبة إلى البيئات المعتمدة على الحاويات، توجد عدة تنفيذات جاهزة لـ Docker:
 
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
 - **RTradeLtd/i2p-tools-1**: يضيف خدمة أونيون الخاصة بـ Tor ودعم IPFS (نظام الملفات بين الكواكب)
 
 ### تهيئة الوكيل العكسي
@@ -368,7 +368,7 @@ iptables -A PREROUTING -t nat -p tcp --dport 443 -j REDIRECT --to-port 8443
 
 **اعتبارات مهمة**: - تنطبق قيود منافذ Cloudflare (يجب استخدام المنافذ المدعومة) - يتطلب اتساق حزمة العميل نفسه دعم X-Forwarded-For - تتم إدارة تهيئة SSL/TLS بواسطة Cloudflare
 
-**التوثيق**: https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/
+**التوثيق**: [Notes on I2P reseed over Cloudflare](https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/)
 
 ### استراتيجيات مقاومة للرقابة
 
@@ -392,7 +392,7 @@ iptables -A PREROUTING -t nat -p tcp --dport 443 -j REDIRECT --to-port 8443
 - مقاومة للحجب المعتمد على عناوين IP
 - يتطلب وجود عميل Tor على نظام المستخدم
 
-**وثائق البحث**: https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/
+**وثائق البحث**: [Censorship-resistant reseeding notes](https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/)
 
 #### الدول المعروفة بحجب I2P
 
@@ -511,7 +511,7 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 ```
 #### الطريقة 3: مراقبة checki2p
 
-تقوم الخدمة على https://checki2p.com/reseed بإجراء فحوصات آلية كل 4 ساعات على جميع خوادم reseed الخاصة بـ I2P (خوادم التمهيد الأولي) المسجّلة. يوفّر ذلك:
+تقوم الخدمة على [checki2p.com/reseed](https://checki2p.com/reseed) بإجراء فحوصات آلية كل 4 ساعات على جميع خوادم reseed الخاصة بـ I2P (خوادم التمهيد الأولي) المسجّلة. يوفّر ذلك:
 
 - مراقبة التوفر
 - مقاييس زمن الاستجابة
@@ -540,22 +540,22 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 - **دليل المساهمين في Reseed (خدمة تمهيد الشبكة)**: /guides/creating-and-running-an-i2p-reseed-server/
 - **متطلبات سياسة Reseed**: /guides/reseed-policy/
 - **مواصفة SU3**: /docs/specs/updates/
-- **مستودع أدوات Reseed**: https://i2pgit.org/idk/reseed-tools
-- **وثائق أدوات Reseed**: https://eyedeekay.github.io/reseed-tools/
+- **مستودع أدوات Reseed**: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
+- **وثائق أدوات Reseed**: [eyedeekay.github.io/reseed-tools](https://eyedeekay.github.io/reseed-tools/)
 
 ### تنفيذات بديلة
 
-- **PurpleI2P pyseeder**: https://github.com/PurpleI2P/pyseeder
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
-- **RTradeLtd i2p-tools-1**: https://github.com/RTradeLtd/i2p-tools-1
-- **Python WSGI reseeder (خادم لإعادة البذر)**: https://github.com/torbjo/i2p-reseeder
+- **PurpleI2P pyseeder**: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
+- **RTradeLtd i2p-tools-1**: [RTradeLtd/i2p-tools-1](https://github.com/RTradeLtd/i2p-tools-1)
+- **Python WSGI reseeder (خادم لإعادة البذر)**: [torbjo/i2p-reseeder](https://github.com/torbjo/i2p-reseeder)
 
 ### موارد المجتمع
 
-- **منتدى I2P**: https://i2pforum.net/
+- **منتدى I2P**: [i2pforum.net](https://i2pforum.net/)
 - **مستودع Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev على IRC2P
-- **مراقبة الحالة**: https://checki2p.com/reseed
+- **مراقبة الحالة**: [checki2p.com/reseed](https://checki2p.com/reseed)
 
 ### سجل الإصدارات
 

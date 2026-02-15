@@ -88,7 +88,7 @@ described in the proposals, pushing that as 0.5.1.  I'm hoping we
 can still hit 0.5.0 by the end of the month, but we'll see.
 
 [10] `http://dev.i2p.net/pipermail/i2p/2005-January/000558.html`
-[11] http://www.i2p.net/roadmap#0.5
+[11] [I2P Roadmap milestone 0.5](/en/get-involved/roadmap/#0.5)
 
 * 3) i2pmail.v2
 

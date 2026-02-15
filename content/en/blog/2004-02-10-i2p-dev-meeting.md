@@ -37,10 +37,10 @@ categories: ["meeting"]
 [22:01] * ion has joined #i2p
 [22:01] &lt;jrand0m&gt; i2p.net/ has links to the wiki, you'll probably want to use the tunnelManager
 [22:01] &lt;FireRabbit&gt; ok
-[22:01] &lt;jrand0m&gt; (people should review http://i2p.dnsalias.net/pipermail/i2p/2004-February/000142.html for this weeks status update)
+[22:01] &lt;jrand0m&gt; (people should review [status update 000142](http://i2p.dnsalias.net/pipermail/i2p/2004-February/000142.html) for this weeks status update)
 [22:01] &lt;FireRabbit&gt; and that works good in the latest release?
 [22:02] &lt;jrand0m&gt; yup, aum uses it (and i just fixed a bug he was running into a few hours ago)
-[22:02] &lt;jrand0m&gt; (specs @ http://wiki.invisiblenet.net/iip-wiki?I2PTunnelManager)
+[22:02] &lt;jrand0m&gt; (specs @ [I2PTunnelManager specs](http://wiki.invisiblenet.net/iip-wiki?I2PTunnelManager))
 [22:02] &lt;jrand0m&gt; ok, movin' on
 [22:02] &lt;jrand0m&gt; 1) testnet status
 [22:02] &lt;FireRabbit&gt; okc ool yes,
@@ -116,7 +116,7 @@ categories: ["meeting"]
 [22:19] &lt;jrand0m&gt; (more graceful recovery will be with multiple leases per destination, increased peer profiling, replay prevention, and retries on alternate lease targets)
 [22:20] &lt;jrand0m&gt; ok, moving towards 2) naming in i2p
 [22:21] &lt;jrand0m&gt; wiht brings up the core of the issue - global names are really useful, and people like them
-[22:21] &lt;jrand0m&gt; (people who arent familiar with this discussion should review http://i2p.dnsalias.net/pipermail/i2p/2004-February/000135.html and the subsequent replies)
+[22:21] &lt;jrand0m&gt; (people who arent familiar with this discussion should review [status discussion 000135](http://i2p.dnsalias.net/pipermail/i2p/2004-February/000135.html) and the subsequent replies)
 [22:22] &lt;wiht&gt; People are used to them, perhaps more than to local names (such as your ICQ analogy).
 [22:22] &lt;jrand0m&gt; i'm not sure.
 [22:22] &lt;jrand0m&gt; lets say for instance that my name is John.
@@ -146,7 +146,7 @@ categories: ["meeting"]
 [22:26] &lt;jrand0m&gt; yes they will wilde
 [22:26] &lt;jrand0m&gt; names to be shared and used by others should be fully qualified - self certified - names
 [22:26] &lt;wiht&gt; jrand0m: Could you give an example of a self-certified name?
-[22:27] &lt;jrand0m&gt; from my email -   http://i2pref/[base64 of the NameReference]
+[22:27] &lt;jrand0m&gt; from my email -   `http://i2pref/[base64 of the NameReference]`
 [22:27] &lt;wilde&gt; so when I link to your site, and there are three jrandoms out there...which one will be used?
 [22:28] * human thinks that a decentralized NS without global naming is Good(TM), because it makes people understand the risks of delegating hostname verification and certification
 [22:28] &lt;jrand0m&gt; you link with the fully qualified name - which includes the actual Destination *in it*.
@@ -157,7 +157,7 @@ categories: ["meeting"]
 [22:28] * madman2003 has quit IRC (EOF From client)
 [22:29] &lt;jrand0m&gt; no one types base64 names
 [22:29] &lt;jrand0m&gt; (well, maybe mihi does)
-[22:29] &lt;jrand0m&gt; &lt;a href="http://i2pref/[base64 of the NameReference]"&gt;jrandom's page&lt;/a&gt;
+[22:29] &lt;jrand0m&gt; `&lt;a href="http://i2pref/[base64 of the NameReference]"&gt;jrandom's page&lt;/a&gt;`
 [22:29] &lt;wiht&gt; Oh. That makes sense.
 [22:30] * mihi does not *type* anything he can copy&amp;paste
 [22:30] &lt;jrand0m&gt; :)
@@ -244,7 +244,7 @@ categories: ["meeting"]
 [22:52] &lt;wiht&gt; I had trouble getting back on IIP network. I will read logs later.
 [22:53] &lt;jrand0m&gt; cool wiht, and we can continue later on the list, etc
 [22:54] &lt;jrand0m&gt; ok the other day I finally wrote up why I think i2cp is worth looking into using directly, and sketched up a minimal web system for use in i2p (and for proxying outside web pages through i2p)
-[22:54] &lt;jrand0m&gt; (reference the wiki at http://wiki.invisiblenet.net/iip-wiki?MinWWW )
+[22:54] &lt;jrand0m&gt; (reference the wiki at [MinWWW wiki](http://wiki.invisiblenet.net/iip-wiki?MinWWW) )
 [22:56] &lt;jrand0m&gt; for HTTP, the cost of establishing and tearing down TCP/IP connections is small, but over I2P, the difference is between 10 destination to destination messages vs 2
 [22:56] * sheer has joined #i2p
 [22:56] &lt;duck&gt; did the meeting already start?
@@ -310,19 +310,19 @@ categories: ["meeting"]
 [23:16] &lt;duck&gt; I prefer Ian's home-baked solution
 [23:16] &lt;duck&gt; :)
 [23:16] &lt;jrand0m&gt; what does it use for a backend?  mysql/bdb/txt/?
-[23:16] &lt;wilde&gt; it's used by http://kerneltrap.org/ http://www.debianplanet.org/ http://www.linuxgazette.com/
+[23:16] &lt;wilde&gt; it's used by [kerneltrap.org](http://kerneltrap.org/) [debianplanet.org](http://www.debianplanet.org/) [linuxgazette.com](http://www.linuxgazette.com/)
 [23:16] &lt;wilde&gt; for example
 [23:17] &lt;wilde&gt; it can take heavy loads
 [23:17] &lt;wilde&gt; their designs sucks though
 [23:17] &lt;wilde&gt; but a nice CSS stylesheet fixes that
 [23:17] &lt;wilde&gt; here some other somewhat better looking ones:
 [23:17] &lt;duck&gt; The Drupal core platform, additional plug-in modules, and many theme templates are freely available for download under the GNU GPL. Drupal, written in PHP and using either MySQL, PostgreSQL or mSQL as the database backend, can run on many platforms, including Apache or Microsoft IIS web servers.
-[23:17] &lt;wilde&gt; http://www.sudden-thoughts.com/
+[23:17] &lt;wilde&gt; [sudden-thoughts.com](http://www.sudden-thoughts.com/)
 [23:17] &lt;jrand0m&gt; thats an important point - we need to make sure the underlying software can support the design (and the design can be workable on the underlying software)
-[23:18] &lt;wilde&gt; http://www.codemonkeyx.net/
-[23:18] &lt;wilde&gt; http://www.disguast.org/index.php
-[23:18] &lt;wilde&gt; http://trip.ee/
-[23:18] &lt;wilde&gt; http://www.blainepeterson.com/image
+[23:18] &lt;wilde&gt; [codemonkeyx.net](http://www.codemonkeyx.net/)
+[23:18] &lt;wilde&gt; [disguast.org](http://www.disguast.org/index.php)
+[23:18] &lt;wilde&gt; [trip.ee](http://trip.ee/)
+[23:18] &lt;wilde&gt; [blainepeterson.com/image](http://www.blainepeterson.com/image)
 [23:18] &lt;wilde&gt; .
 [23:19] * jrand0m gets the feeling wilde is a raving drupal fan :)
 [23:19] &lt;wilde&gt; I'm starting to become that yes, as I like the information management ideas behind it
@@ -365,7 +365,7 @@ categories: ["meeting"]
 [23:26] &lt;wilde&gt; no
 [23:26] &lt;jrand0m&gt; (s/some/some specific/)
 [23:27] &lt;duck&gt; jrand0m did already make an overview of the requires features didnt he
-[23:27] &lt;jrand0m&gt; http://i2p.dnsalias.net/pipermail/i2p/2004-February/000133.html
+[23:27] &lt;jrand0m&gt; [status update 000133](http://i2p.dnsalias.net/pipermail/i2p/2004-February/000133.html)
 [23:27] &lt;duck&gt; so now all parties should come with proposals and the price
 [23:28] &lt;duck&gt; ofcourse the winning solution will be paid in i2p stocks
 [23:28] &lt;jrand0m&gt; which, let me tell you, is quite valuable
@@ -376,23 +376,23 @@ categories: ["meeting"]
 [23:30] &lt;wilde&gt; we had some CMS options
 [23:30] &lt;wilde&gt; we should go for some CMS
 [23:30] &lt;wilde&gt; and wiki isn't really a long term solution
-[23:30] &lt;jrand0m&gt; yeah some listed in point 4 @ http://i2p.dnsalias.net/pipermail/i2p/2004-February/000142.html
+[23:30] &lt;jrand0m&gt; yeah some listed in point 4 @ [status update 000142](http://i2p.dnsalias.net/pipermail/i2p/2004-February/000142.html)
 [23:30] &lt;jrand0m&gt; agreed, for the website itself
 [23:31] &lt;jrand0m&gt; a wiki based section of the site might be good though, perhaps for the user guide / hackers guides
 [23:31] &lt;jrand0m&gt; (but not for everything)
 [23:32] &lt;wilde&gt; what about the hosting?
-[23:32] &lt;jrand0m&gt; there's always the 53 entries at http://dmoz.org/Computers/Software/Internet/Site_Management/Content_Management/Open_Source/
+[23:32] &lt;jrand0m&gt; there's always the 53 entries at [DMOZ CMS listing](http://dmoz.org/Computers/Software/Internet/Site_Management/Content_Management/Open_Source/)
 [23:32] &lt;wilde&gt; it should survive a slashdot
 [23:32] &lt;jrand0m&gt; hosting?  
 [23:32] &lt;jrand0m&gt; ah, right.
 [23:33] &lt;jrand0m&gt; thats actually a really huge draw of plain HTML in and of itself
 [23:33] &lt;jrand0m&gt; (dirt easy to mirror)
 [23:33] &lt;wilde&gt; and on
-[23:33] &lt;wilde&gt; http://www.oscom.org/
+[23:33] &lt;wilde&gt; [oscom.org](http://www.oscom.org/)
 [23:33] &lt;jrand0m&gt; i2p.net is at a colo that is used by several large sites
 [23:34] &lt;jrand0m&gt; ah right
 [23:34] * jrand0m would love if people would keep at it and find the Right solution
-[23:35] &lt;wilde&gt; http://www.opencms.org/ is interesting
+[23:35] &lt;wilde&gt; [opencms.org](http://www.opencms.org/) is interesting
 [23:35] &lt;wilde&gt; but's maybe too corporate
 [23:35] &lt;wilde&gt; with workflows, projects, etc
 [23:35] &lt;wilde&gt; I really liked, used it for one project
@@ -442,7 +442,7 @@ categories: ["meeting"]
 [23:47] &lt;duck&gt; no, I left
 [23:47] * jrand0m stares at the lurkers
 [23:47] &lt;wilde&gt; so what should the site communicate?
-[23:47] &lt;duck&gt; http://i2p.dnsalias.net/pipermail/i2p/2004-February/000133.html
+[23:47] &lt;duck&gt; [status update 000133](http://i2p.dnsalias.net/pipermail/i2p/2004-February/000133.html)
 [23:47] &lt;wilde&gt; this is a bit broader, we have marketing and donations to think of
 [23:48] &lt;jrand0m&gt; (what duck said)
 [23:48] &lt;wilde&gt; yeah i've read that, but we are more people here :)
@@ -474,7 +474,7 @@ categories: ["meeting"]
 [23:54] &lt;wilde&gt; ok maybe we should leave it there
 [23:54] &lt;jrand0m&gt; there's no rush, lots to digest and churn through
 [23:54] &lt;wilde&gt; but please it you find this new kickass CMS, scream out
-[23:54] &lt;duck&gt; can we have this as background: http://www.artchive.com/artchive/B/bruegel/death.jpg
+[23:54] &lt;duck&gt; can we have this as background: [The Triumph of Death artwork](http://www.artchive.com/artchive/B/bruegel/death.jpg)
 [23:55] &lt;jrand0m&gt; but I agree with duck, nice work setting up a drupal to work off
 [23:55] &lt;jrand0m&gt; that is so going straight to my desktop
 [23:55] &lt;jrand0m&gt; wow I wonder what text over that would look like

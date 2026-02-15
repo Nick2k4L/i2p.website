@@ -51,7 +51,7 @@ several months out on the roadmap [2]).  Got some inspiration or
 suggestions?  Get involved and help focus it towards what needs to
 be done!
 
-[2] http://www.i2p.net/roadmap#0.6
+[2] [I2P Roadmap milestone 0.6](/en/get-involved/roadmap/#0.6)
 
 * 4) azneti2p
 

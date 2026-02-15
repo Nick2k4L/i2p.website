@@ -139,7 +139,7 @@ Bir reseed hizmeti (ağa katılım için başlangıç ağ verisini sağlayan hiz
 - **Web Sunucusu**: Ters proxy desteğine sahip nginx veya Apache (X-Forwarded-For başlığı kısıtlamaları nedeniyle Lighttpd artık desteklenmiyor)
 - **TLS/SSL**: Geçerli TLS sertifikası (Let's Encrypt, kendinden imzalı veya ticari Sertifika Otoritesi (CA))
 - **DDoS Koruması**: fail2ban veya eşdeğeri (zorunlu, isteğe bağlı değil)
-- **Reseed Tools** (I2P ağına ilk katılım için başlangıç verilerini sağlayan araçlar): https://i2pgit.org/idk/reseed-tools adresindeki resmi reseed-tools
+- **Reseed Tools** (I2P ağına ilk katılım için başlangıç verilerini sağlayan araçlar): [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools) adresindeki resmi reseed-tools
 
 ### Güvenlik Gereksinimleri
 
@@ -173,7 +173,7 @@ Reseed sunucuları, hatalı uygulamalar, botnetler ve ağ veritabanını kazıma
 
 #### Yöntem 1: Resmi reseed-tools (Önerilir)
 
-I2P projesi tarafından sürdürülen kanonik uygulama. Depo: https://i2pgit.org/idk/reseed-tools
+I2P projesi tarafından sürdürülen kanonik uygulama. Depo: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
 
 **Kurulum**:
 
@@ -229,7 +229,7 @@ systemctl start i2p-reseed
 ```
 #### Yöntem 2: Python Uygulaması (pyseeder)
 
-PurpleI2P projesi tarafından geliştirilen alternatif bir gerçekleme: https://github.com/PurpleI2P/pyseeder
+PurpleI2P projesi tarafından geliştirilen alternatif bir gerçekleme: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
 
 ```bash
 pip install pyseeder
@@ -253,7 +253,7 @@ pyseeder serve \
 
 Konteynerleştirilmiş ortamlar için, Docker'a hazır birkaç gerçekleştirim mevcuttur:
 
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
 - **RTradeLtd/i2p-tools-1**: Tor onion service (Tor onion servisi) ve IPFS desteği ekler
 
 ### Ters Proxy Yapılandırması
@@ -364,7 +364,7 @@ Reseed (ağa ilk katılım için başlangıç verilerinin alınması) trafiğini
 
 **Önemli Hususlar**: - Cloudflare bağlantı noktası (port) kısıtlamaları geçerlidir (desteklenen bağlantı noktaları kullanılmalıdır) - Aynı istemci bundle (demet) tutarlılığı X-Forwarded-For desteği gerektirir - SSL/TLS yapılandırması Cloudflare tarafından yönetilir
 
-**Dokümantasyon**: https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/
+**Dokümantasyon**: [Notes on I2P reseed over Cloudflare](https://homepage.np-tokumei.net/post/notes-i2p-reseed-over-cloudflare/)
 
 ### Sansüre Dayanıklı Stratejiler
 
@@ -388,7 +388,7 @@ Nguyen Phong Hoang’ın (USENIX FOCI 2019) çalışması, sansürlü ağlar iç
 - IP tabanlı engellemeye dayanıklı
 - Kullanıcının sisteminde Tor istemcisi gerektirir
 
-**Araştırma Dokümantasyonu**: https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/
+**Araştırma Dokümantasyonu**: [Censorship-resistant reseeding notes](https://homepage.np-tokumei.net/post/notes-censorship-resistant-i2p-reseeding/)
 
 #### I2P'nin Engellendiği Bilinen Ülkeler
 
@@ -507,7 +507,7 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 ```
 #### Yöntem 3: checki2p İzleme
 
-https://checki2p.com/reseed adresindeki hizmet, kayıtlı tüm I2P reseed sunucularında her 4 saatte bir otomatik kontroller gerçekleştirir. Bu şunları sağlar:
+[checki2p.com/reseed](https://checki2p.com/reseed) adresindeki hizmet, kayıtlı tüm I2P reseed sunucularında her 4 saatte bir otomatik kontroller gerçekleştirir. Bu şunları sağlar:
 
 - Kullanılabilirlik izleme
 - Yanıt süresi metrikleri
@@ -536,22 +536,22 @@ reseed'iniz (başlangıç sunucusu) I2P projesine kaydedildiğinde, 24 saat içi
 - **Reseed (yeniden tohumlama) Katkıda Bulunanlar Kılavuzu**: /guides/creating-and-running-an-i2p-reseed-server/
 - **Reseed Politika Gereksinimleri**: /guides/reseed-policy/
 - **SU3 Teknik Şartnamesi**: /docs/specs/updates/
-- **Reseed Araçları Deposu**: https://i2pgit.org/idk/reseed-tools
-- **Reseed Araçları Belgeleri**: https://eyedeekay.github.io/reseed-tools/
+- **Reseed Araçları Deposu**: [i2pgit.org/idk/reseed-tools](https://i2pgit.org/idk/reseed-tools)
+- **Reseed Araçları Belgeleri**: [eyedeekay.github.io/reseed-tools](https://eyedeekay.github.io/reseed-tools/)
 
 ### Alternatif Gerçeklemeler
 
-- **PurpleI2P pyseeder**: https://github.com/PurpleI2P/pyseeder
-- **DivaExchange i2p-reseed**: https://github.com/diva-exchange/i2p-reseed
-- **RTradeLtd i2p-tools-1**: https://github.com/RTradeLtd/i2p-tools-1
-- **Python WSGI reseeder (ilk kurulum için netDb verilerini sağlayan hizmet)**: https://github.com/torbjo/i2p-reseeder
+- **PurpleI2P pyseeder**: [PurpleI2P/pyseeder](https://github.com/PurpleI2P/pyseeder)
+- **DivaExchange i2p-reseed**: [diva-exchange/i2p-reseed](https://github.com/diva-exchange/i2p-reseed)
+- **RTradeLtd i2p-tools-1**: [RTradeLtd/i2p-tools-1](https://github.com/RTradeLtd/i2p-tools-1)
+- **Python WSGI reseeder (ilk kurulum için netDb verilerini sağlayan hizmet)**: [torbjo/i2p-reseeder](https://github.com/torbjo/i2p-reseeder)
 
 ### Topluluk Kaynakları
 
-- **I2P Forumu**: https://i2pforum.net/
+- **I2P Forumu**: [i2pforum.net](https://i2pforum.net/)
 - **Gitea Deposu**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
 - **IRC**: #i2p-dev IRC2P üzerinde
-- **Durum İzleme**: https://checki2p.com/reseed
+- **Durum İzleme**: [checki2p.com/reseed](https://checki2p.com/reseed)
 
 ### Sürüm Geçmişi
 

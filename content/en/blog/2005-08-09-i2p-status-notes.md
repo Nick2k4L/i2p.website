@@ -21,7 +21,7 @@ As announced yesterday [1], we've got a new release out and available and the re
 
 * 2) Roadmap update
 
-Earlier this afternoon I thought it'd make sense to transcribe a summary of the roadmap from my notebook to the web, so those of you wondering whats up and where we're going can now swing on over to http://www.i2p.net/roadmap and see whats been changed. Its nothing revolutionary, but should help clarify things for people.
+Earlier this afternoon I thought it'd make sense to transcribe a summary of the roadmap from my notebook to the web, so those of you wondering whats up and where we're going can now swing on over to the [I2P Roadmap](/en/get-involved/roadmap/) and see whats been changed. Its nothing revolutionary, but should help clarify things for people.
 
 One thing that may be worth noting (beyond the lack of dates) is that after 0.6.1 stabalizes, we'll probably want to focus on some heavier tests and improving the end user experience - both with i2p and with i2p enabled applications. 0.6.2 and beyond will bring great stuff too, but they'll primarily improve the ability for more people to get on I2P rather than change the fundamentals.
 
