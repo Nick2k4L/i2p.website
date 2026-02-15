@@ -39,7 +39,7 @@ toc: true
 - 参与者加密和后处理
 - 出站和入站端点加密和后处理
 
-有关当前隧道消息处理的概述，请参见 [Tunnel Implementation](/docs/specs/implementation/) 规范。
+有关当前隧道消息处理的概述，请参见 [Tunnel Implementation](/docs/specs/tunnel-implementation/) 规范。
 
 仅讨论支持ChaCha20层加密的路由器的更改。
 
@@ -286,4 +286,4 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 
 ## 参考
 
-* [Tunnel-Implementation](/docs/specs/implementation/)
+* [Tunnel-Implementation](/docs/specs/tunnel-implementation/)

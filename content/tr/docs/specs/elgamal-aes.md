@@ -247,7 +247,7 @@ Session Key Manager'ın algoritmalarını ayarlayabileceğiniz birçok alan vard
   bunun gibi bazı hileler yapıyor.
 
 - Session Tags'den 
-  [senkronize bir PRNG](/about/performance/future#prng)'ye geçiş.
+  [senkronize bir PRNG](/docs/overview/performance#future#prng)'ye geçiş.
 
 - Bu fikirlerin birkaçı yeni bir I2NP mesaj türü gerektirebilir veya
   [Teslimat Talimatları](/docs/specs/tunnel-message#struct_TunnelMessageDeliveryInstructions)'nda

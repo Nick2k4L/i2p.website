@@ -259,8 +259,8 @@ torsocks --port 7695 $comando_a_proxi
 Adenda: ``implementación de ejemplo del ataque``
                                                   
 
-[Un ejemplo de implementación del ataque de Identidad Compartida en Agentes de
-Usuario HTTP](https://github.com/eyedeekay/colluding_sites_attack/)
+Un ejemplo de implementación del ataque de Identidad Compartida en Agentes de
+Usuario HTTP
 ha existido por varios años. Un ejemplo adicional está disponible en el
 subdirectorio ``simple-colluder`` del repositorio de idk para prop166
  Estos ejemplos están

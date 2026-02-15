@@ -267,11 +267,11 @@ I2P Torrent
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">Moderne Cipherspace-Ökosysteme</a>
+Moderne Cipherspace-Ökosysteme
 </div>
 <div class="content-entry-meta">🎥 Präsentation • 4. November 2011</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">Details</a>
+Details
 </div>
 </div>
 

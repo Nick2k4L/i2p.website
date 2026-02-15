@@ -33,9 +33,9 @@ Odak noktası, I2P, çevrimiçi gizlilik ve anonimliğe ilişkin konulara bir gi
 
 Kripto parti, gizlilik/anonimlik yazılımlarının demolarının yapılacağı çeşitli standlar barındıracak. Amaç, insanların güvenli bir şekilde iletişim kurmaları için ihtiyaç duydukları araçları sağlamaktır.
 
-- [Vuze/I2P](http://wiki.vuze.com/w/I2PHelper_HowTo) - Downloading torrents anonymously
-- [Veracrypt](https://veracrypt.codeplex.com/) - Encrypt your data
-- [I2PBote](http://i2pbote.i2p.us/) - Anonymous decentralized email
+- Vuze/I2P - Downloading torrents anonymously
+- Veracrypt - Encrypt your data
+- I2PBote - Anonymous decentralized email
 - Your station idea here
 
 Şu anda istasyonları görevlendirmek için yardıma ihtiyacımız var. Yardım etmek isterseniz, edebilirsiniz! Bir monitör/dizüstü bilgisayar getirin ve bir istasyon çalıştırın. İstasyon, yukarıda listelenenlerden herhangi biri olabilir ya da çalıştırmak istediğiniz gizlilik/anonimlik ile ilgili başka herhangi biri olabilir. İlgileniyorsanız lütfen [@geti2p](https://twitter.com/geti2p) üzerinden bizimle iletişime geçin.

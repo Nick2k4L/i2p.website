@@ -14,7 +14,7 @@ toc: true
 Esta é a especificação para o protocolo de rede da Fazenda de Alho,
 baseado no JRaft, seu código "exts" para implementação sobre TCP,
 e seu aplicativo de exemplo "dmprinter" [JRAFT](https://github.com/datatechnology/jraft).
-JRaft é uma implementação do protocolo Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+JRaft é uma implementação do protocolo Raft [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 Não conseguimos encontrar nenhuma implementação com um protocolo de rede documentado.
 No entanto, a implementação do JRaft é simples o suficiente para que pudéssemos
@@ -584,7 +584,7 @@ Sem problemas de compatibilidade retroativa.
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

@@ -6,38 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Title }}{{ else -}}
-      {{- $sec := "" -}}{{- with .Section }}{{ $sec = . | humanize | title }}{{ end -}}
-      {{- if and $sec (ne $sec .Title) -}}
-        {{- $full := printf "%s | %s | %s" .Title $sec .Site.Title -}}
-        {{- if le (strings.RuneCount $full) 60 }}{{ $full }}{{ else -}}
-          {{- $med := printf "%s | %s | %s" .Title $sec (upper .Site.Language.Lang) -}}
-          {{- if le (strings.RuneCount $med) 60 }}{{ $med }}{{ else }}{{ printf "%s | %s" .Title $sec }}{{ end -}}
-        {{- end -}}
-      {{- else -}}
-        {{- $full := printf "%s | %s" .Title .Site.Title -}}
-        {{- if le (strings.RuneCount $full) 60 }}{{ $full }}{{ else }}{{ printf "%s | %s" .Title (upper .Site.Language.Lang) }}{{ end -}}
-      {{- end -}}
-    {{- end }}{{ end }}</title>
+    <title>{{ block "title" . }}{{ partial "seo-title.html" . }}{{ end }}</title>
 
-    <meta name="description" content="{{ with .Description }}{{ $desc := . }}{{ if ne $.Site.Language.Lang "en" }}{{ range $.Translations }}{{ if and (eq .Lang "en") (eq .Description $desc) }}{{ $desc = printf "%s (%s)" $desc $.Site.Language.LanguageName }}{{ end }}{{ end }}{{ end }}{{ $desc }}{{ else }}{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ printf "%s | %s" .Title .Site.Title }}{{ end }}{{ end }}">
+    <meta name="description" content="{{ with .Description }}{{ $desc := . }}{{ if ne $.Site.Language.Lang "en" }}{{ range $.Translations }}{{ if and (eq .Lang "en") (eq .Description $desc) }}{{ $desc = printf "%s (%s)" $desc $.Site.Language.LanguageName }}{{ end }}{{ end }}{{ end }}{{ $desc }}{{ else }}{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ printf "%s | %s" (or .Params.meta_title .Title) .Site.Title }}{{ end }}{{ end }}">
     <meta name="keywords" content="{{ .Keywords | default .Site.Params.keywords }}">
 
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else -}}
-      {{- $sec := "" -}}{{- with .Section }}{{ $sec = . | humanize | title }}{{ end -}}
-      {{- if and $sec (ne $sec .Title) -}}
-        {{- $full := printf "%s | %s | %s" .Title $sec .Site.Title -}}
-        {{- if le (strings.RuneCount $full) 60 }}{{ $full }}{{ else -}}
-          {{- $med := printf "%s | %s | %s" .Title $sec (upper .Site.Language.Lang) -}}
-          {{- if le (strings.RuneCount $med) 60 }}{{ $med }}{{ else }}{{ printf "%s | %s" .Title $sec }}{{ end -}}
-        {{- end -}}
-      {{- else -}}
-        {{- $full := printf "%s | %s" .Title .Site.Title -}}
-        {{- if le (strings.RuneCount $full) 60 }}{{ $full }}{{ else }}{{ printf "%s | %s" .Title (upper .Site.Language.Lang) }}{{ end -}}
-      {{- end -}}
-    {{- end }}">
-    <meta property="og:description" content="{{ with .Description }}{{ $desc := . }}{{ if ne $.Site.Language.Lang "en" }}{{ range $.Translations }}{{ if and (eq .Lang "en") (eq .Description $desc) }}{{ $desc = printf "%s (%s)" $desc $.Site.Language.LanguageName }}{{ end }}{{ end }}{{ end }}{{ $desc }}{{ else }}{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ printf "%s | %s" .Title .Site.Title }}{{ end }}{{ end }}">
+    <meta property="og:title" content="{{ partial "seo-title.html" . }}">
+    <meta property="og:description" content="{{ with .Description }}{{ $desc := . }}{{ if ne $.Site.Language.Lang "en" }}{{ range $.Translations }}{{ if and (eq .Lang "en") (eq .Description $desc) }}{{ $desc = printf "%s (%s)" $desc $.Site.Language.LanguageName }}{{ end }}{{ end }}{{ end }}{{ $desc }}{{ else }}{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ printf "%s | %s" (or .Params.meta_title .Title) .Site.Title }}{{ end }}{{ end }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ .Permalink }}">
 

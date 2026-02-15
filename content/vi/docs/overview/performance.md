@@ -3,10 +3,10 @@ title: "Hiệu suất"
 description: "Hiệu suất mạng I2P: tốc độ, kết nối và quản lý tài nguyên"
 slug: "performance"
 aliases:
-  - "/vi/about/performance/future"
-  - "/vi/about/performance/future/"
-  - "/vi/about/performance/history"
-  - "/vi/about/performance/history/"
+  - "/vi/docs/overview/performance#future"
+  - "/vi/docs/overview/performance#future/"
+  - "/vi/docs/overview/performance#history"
+  - "/vi/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ Ngoài ra, các node I2P khác cần biết về một I2P router để kiểm t
 
 ## Cải thiện Hiệu suất
 
-Để biết về các cải tiến hiệu suất có thể có trong tương lai, xem [Cải Tiến Hiệu Suất Tương Lai](/about/performance/future).
+Để biết về các cải tiến hiệu suất có thể có trong tương lai, xem [Cải Tiến Hiệu Suất Tương Lai](/docs/overview/performance#future).
 
-Để xem các cải tiến hiệu suất trước đây, hãy xem [Lịch sử Hiệu suất](/about/performance/history).
+Để xem các cải tiến hiệu suất trước đây, hãy xem [Lịch sử Hiệu suất](/docs/overview/performance#history).

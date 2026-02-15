@@ -138,7 +138,7 @@ categories: ["meeting"]
 [23:31] <Nightblade> Airhook는 간헐적이거나 신뢰할 수 없거나 지연되는 네트워크를 우아하게 처리합니다  <-- ㅋㅋ I2P에 대해 그다지 낙관적인 설명은 아니네!
 [23:31] <duck> 어떻게 돌아가고 있어?
 [23:32] <duck> datagram over i2p 얘기는 맨 끝으로 미루자
-[23:32] <tessier> 공개 위키들 돌아다니면서 이걸 링크 다는 거 좋아함: http://www.fissure.org/humour/pics/squirre   l.jpg
+[23:32] <tessier> 공개 위키들 돌아다니면서 이걸 링크 다는 거 좋아함: `http://www.fissure.org/humour/pics/squirre`   l.jpg
 [23:32] <tessier> airhook 끝내줘
 [23:32] <tessier> 나도 P2P 네트워크를 만들 때 쓰려고 살펴보고 있었어.
 [23:32] <Nightblade> 내겐 안정적인 것 같아 (#3)
@@ -210,7 +210,7 @@ categories: ["meeting"]
 [23:47] <wilde> http://en.wikipedia.org/wiki/I2p
 [23:47] <Masterboy> 하지만 0.4가 끝날 때까지는 홍보하지 않는 데 동의해
 [23:47] <Masterboy> 뭐???????
-[23:47] <wilde> http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] <wilde> `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] <Masterboy> protol0l은 훌륭한 일을 하고 있어;P
 [23:48] <Masterboy> ;))))))
 [23:48] <hypercubus> 오타 멋지네 ;-)
@@ -241,9 +241,9 @@ categories: ["meeting"]
 [23:54] <duck> 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] <duck> tessier: 실제로 써본 경험 있어
-[23:55] <duck> (http://www.airhook.org/)
+[23:55] <duck> (`http://www.airhook.org/)`
 [23:55] * Masterboy 이거 한번 써볼게:P
-[23:56] <duck> 자바 구현(작동이나 하는지 모르겠음) http://cvs.ofb.net/airhook-j/
+[23:56] <duck> 자바 구현(작동이나 하는지 모르겠음) `http://cvs.ofb.net/airhook-j/`
 [23:56] <duck> 파이썬 구현(엉망, 예전에는 작동함) http://cvs.sourceforge.net/viewcvs.py/khashmir   /khashmir/airhook.py
 [23:58] * duck 불평 밸브를 연다
 [23:58] <Nightblade> j 것도 GPL

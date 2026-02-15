@@ -56,7 +56,7 @@ accurateFor: "0.9.12"
 
 في I2P، تكون الـ tunnels أحادية الاتجاه. كل طرف ينشئ نفقين، واحد للحركة الصادرة وآخر للحركة الواردة. لذلك، مطلوب أربعة أنفاق لرسالة واحدة ذهاب وإياب مع الرد.
 
-يتم بناء الأنفاق (tunnels) واستخدامها مع التشفير متعدد الطبقات. هذا موصوف في [صفحة تنفيذ الأنفاق](/docs/specs/implementation/). نحن نستخدم [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) للتشفير.
+يتم بناء الأنفاق (tunnels) واستخدامها مع التشفير متعدد الطبقات. هذا موصوف في [صفحة تنفيذ الأنفاق](/docs/specs/tunnel-implementation/). نحن نستخدم [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) للتشفير.
 
 tunnels هي آلية عامة الغرض لنقل جميع [رسائل I2NP](/docs/specs/i2np/)، ولا تُستخدم رسائل Garlic لبناء tunnels. نحن لا نجمع رسائل I2NP متعددة في رسالة Garlic واحدة لفكها في نقطة نهاية tunnel الصادرة؛ تشفير tunnel كافٍ.
 

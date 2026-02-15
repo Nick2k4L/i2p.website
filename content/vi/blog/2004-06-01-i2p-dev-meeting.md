@@ -164,7 +164,7 @@ categories: ["meeting"]
 [23:31] <Nightblade> Airhook xử lý tốt các mạng ngắt quãng, không đáng tin cậy, hoặc bị trễ  <-- hehe không phải là    mô tả lạc quan về I2P đâu!
 [23:31] <duck> tình hình thế nào rồi?
 [23:32] <duck> hãy để phần thảo luận datagram over i2p xuống cuối
-[23:32] <tessier> tôi thích chạy vòng quanh các wiki mở và link tới cái này: http://www.fissure.org/humour/pics/squirre   l.jpg
+[23:32] <tessier> tôi thích chạy vòng quanh các wiki mở và link tới cái này: `http://www.fissure.org/humour/pics/squirre`   l.jpg
 [23:32] <tessier> airhook tuyệt vời
 [23:32] <tessier> tôi cũng đã xem nó để xây dựng một mạng p2p.
 [23:32] <Nightblade> đối với tôi có vẻ ổn định (#3)
@@ -236,7 +236,7 @@ categories: ["meeting"]
 [23:47] &lt;wilde&gt; http://en.wikipedia.org/wiki/I2p
 [23:47] &lt;Masterboy&gt; nhưng tôi đồng ý là không quảng bá cho đến khi 0.4 xong
 [23:47] &lt;Masterboy&gt; cái gì???????
-[23:47] &lt;wilde&gt; http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] &lt;wilde&gt; `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] &lt;Masterboy&gt; protol0l làm rất tốt;P
 [23:48] &lt;Masterboy&gt; ;))))))
 [23:48] &lt;hypercubus&gt; lỗi gõ dễ thương ;-)
@@ -267,9 +267,9 @@ categories: ["meeting"]
 [23:54] &lt;duck&gt; 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] &lt;duck&gt; tessier: có kinh nghiệm thực tế với nó không
-[23:55] &lt;duck&gt; (http://www.airhook.org/)
+[23:55] &lt;duck&gt; (`http://www.airhook.org/)`
 [23:55] * Masterboy sẽ thử cái này:P
-[23:56] &lt;duck&gt; bản cài đặt java (không biết nó có chạy không nữa) http://cvs.ofb.net/airhook-j/
+[23:56] &lt;duck&gt; bản cài đặt java (không biết nó có chạy không nữa) `http://cvs.ofb.net/airhook-j/`
 [23:56] &lt;duck&gt; bản cài đặt python (lộn xộn, từng chạy trước đây) http://cvs.sourceforge.net/viewcvs.py/khashmir   /khashmir/airhook.py
 [23:58] * duck mở van xả càm ràm
 [23:58] &lt;Nightblade&gt; bản j cũng gpl

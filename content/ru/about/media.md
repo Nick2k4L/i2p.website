@@ -267,11 +267,11 @@ I2P Торрент
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">Современные экосистемы кодирующих пространств</a>
+Современные экосистемы кодирующих пространств
 </div>
 <div class="content-entry-meta">🎥 Презентация • 4 ноября 2011</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">Детали</a>
+Детали
 </div>
 </div>
 

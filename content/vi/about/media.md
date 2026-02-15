@@ -267,11 +267,11 @@ Torrent I2P
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">Hệ sinh thái nền mật mã hiện đại</a>
+Hệ sinh thái nền mật mã hiện đại
 </div>
 <div class="content-entry-meta">🎥 Bài thuyết trình • Ngày 4 tháng 11, 2011</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">Chi Tiết</a>
+Chi Tiết
 </div>
 </div>
 

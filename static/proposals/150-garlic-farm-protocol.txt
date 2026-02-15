@@ -701,7 +701,7 @@ References
     https://json.org/
 
 .. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
+    /docs/research/ongaro2014-raft.pdf
 
 .. [RFC-2616]
     https://tools.ietf.org/html/rfc2616

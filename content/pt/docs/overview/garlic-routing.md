@@ -56,7 +56,7 @@ Também existem maneiras significativas pelas quais esta técnica pode ser usada
 
 No I2P, os tunnels são unidirecionais. Cada parte constrói dois tunnels, um para tráfego de saída e um para tráfego de entrada. Portanto, quatro tunnels são necessários para uma única mensagem de ida e volta e resposta.
 
-Tunnels são construídos e depois utilizados com criptografia em camadas. Isso é descrito na [página de implementação de tunnel](/docs/specs/implementation/). Usamos [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) para a criptografia.
+Tunnels são construídos e depois utilizados com criptografia em camadas. Isso é descrito na [página de implementação de tunnel](/docs/specs/tunnel-implementation/). Usamos [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) para a criptografia.
 
 Tunnels são um mecanismo de propósito geral para transportar todas as [mensagens I2NP](/docs/specs/i2np/), e as Garlic Messages não são usadas para construir tunnels. Não agrupamos múltiplas mensagens I2NP em uma única Garlic Message para desempacotamento no endpoint do tunnel de saída; a criptografia do tunnel é suficiente.
 

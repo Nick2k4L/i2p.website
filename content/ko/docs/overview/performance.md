@@ -3,10 +3,10 @@ title: "성능"
 description: "I2P 네트워크 성능: 속도, 연결, 리소스 관리"
 slug: "performance"
 aliases:
-  - "/ko/about/performance/future"
-  - "/ko/about/performance/future/"
-  - "/ko/about/performance/history"
-  - "/ko/about/performance/history/"
+  - "/ko/docs/overview/performance#future"
+  - "/ko/docs/overview/performance#future/"
+  - "/ko/docs/overview/performance#history"
+  - "/ko/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ server - hopb1 - hopb2 - hopb3 - hopc1 - hopc2 - hopc3 - client
 
 ## 성능 개선
 
-향후 성능 개선 가능성에 대해서는 [Future Performance Improvements](/about/performance/future)를 참조하세요.
+향후 성능 개선 가능성에 대해서는 [Future Performance Improvements](/docs/overview/performance#future)를 참조하세요.
 
-과거 성능 개선 사항에 대해서는 [성능 기록](/about/performance/history)을 참조하세요.
+과거 성능 개선 사항에 대해서는 [성능 기록](/docs/overview/performance#history)을 참조하세요.

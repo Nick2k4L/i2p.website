@@ -19,7 +19,7 @@ Revizyona tabidir.
 Durum:
 
 - ECIES Yönlendiricileri 0.9.48 itibarıyla uygulanmıştır, bkz. [Ortak](/docs/specs/common-structures/).
-- Tünel oluşturma 0.9.48 itibarıyla uygulanmıştır, bkz. [Tünel-Oluşumu-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+- Tünel oluşturma 0.9.48 itibarıyla uygulanmıştır, bkz. [Tünel-Oluşumu-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 - ECIES yönlendiricilerine şifrelenmiş mesajlar 0.9.49 itibarıyla uygulanmıştır, bkz. [ECIES-YÖNLENDİRİCİLER](/docs/specs/ecies/).
 - Yeni tünel oluşturma mesajları 0.9.51 itibarıyla uygulanmıştır.
 
@@ -76,7 +76,7 @@ Bu, öneri 145'teki (Öneri145) kripto türleri 1-3 için önerilen ECIES-P256 y
 
 ### Tünel Oluşturma Mesajı
 
-ECIES yerine ElGamal kullanmak için tünel oluşturma spesifikasyonunda [Tünel-Oluşumu](/docs/specs/implementation/#tunnel-creation-ecies) çeşitli değişiklikler gereklidir. Ayrıca, tünel oluşturma mesajlarının güvenliğini artırmak için geliştirmeler yapacağız.
+ECIES yerine ElGamal kullanmak için tünel oluşturma spesifikasyonunda [Tünel-Oluşumu](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) çeşitli değişiklikler gereklidir. Ayrıca, tünel oluşturma mesajlarının güvenliğini artırmak için geliştirmeler yapacağız.
 
 Birinci aşamada, ECIES geçişleri için Oluşturma İstek Kaydı ve Oluşturma Yanıt Kaydı'nın formatını ve şifrelemesini değiştireceğiz. Bu değişiklikler mevcut ElGamal yönlendiricilerle uyumlu olacak. Bu değişiklikler öneri 152'de tanımlanmıştır [Öneri152](/proposals/152-ecies-tunnels/).
 
@@ -171,7 +171,7 @@ Yeni Tünel Oluşturma Mesajı: [Öneri157](/proposals/157-new-tbm/) 'ye bakın.
 
 ### İstek Şifreleme
 
-İstek şifrelemesi, Noise "N" deseni kullanarak [Tünel-Oluşumu-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) ve [Öneri152](/proposals/152-ecies-tunnels/) 'de belirtilen aynıdır.
+İstek şifrelemesi, Noise "N" deseni kullanarak [Tünel-Oluşumu-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) ve [Öneri152](/proposals/152-ecies-tunnels/) 'de belirtilen aynıdır.
 
 Aramalara yanıtlar, aramada istenirse bir ratchet etiketi ile şifrelenecektir.
 Veritabanı Arama istek mesajları, [I2NP](/docs/specs/i2np/) ve [Öneri154](/proposals/154-ecies-lookups/) 'de belirtildiği gibi 32 baytlık yanıt anahtarı ve 8 baytlık yanıt etiketi içerir. Anahtar ve etiket yanıtı şifrelemek için kullanılır.
@@ -186,7 +186,7 @@ Genellikle, bunlar Yeni Oturum mesajları olacak ve sıfır statik anahtar ile (
 #### Başlangıç ck ve h için KDF
 
 Bu, standart [NOISE](https://noiseprotocol.org/noise.html) "N" deseni için standart bir protokol adı ile.
-Bu, tünel oluşturma mesajları için [Tünel-Oluşumu-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) ve [Öneri152](/proposals/152-ecies-tunnels/) 'de belirtilen ile aynıdır.
+Bu, tünel oluşturma mesajları için [Tünel-Oluşumu-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) ve [Öneri152](/proposals/152-ecies-tunnels/) 'de belirtilen ile aynıdır.
 
 
   ```text
@@ -217,7 +217,7 @@ Bu, "e" mesaj deseni:
 
 Mesaj yaratıcıları her mesaj için geçici bir X25519 anahtar çifti oluştururlar.
 Geçici anahtarlar mesaj başına benzersiz olmalıdır.
-Bu, tünel oluşturma mesajları için [Tünel-Oluşumu-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) ve [Öneri152](/proposals/152-ecies-tunnels/) 'de belirtilen ile aynıdır.
+Bu, tünel oluşturma mesajları için [Tünel-Oluşumu-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) ve [Öneri152](/proposals/152-ecies-tunnels/) 'de belirtilen ile aynıdır.
 
 
   ```dataspec

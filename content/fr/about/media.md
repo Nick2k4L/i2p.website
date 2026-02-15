@@ -267,11 +267,11 @@ Torrent I2P
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">Écosystèmes modernes de l'espace des chiffres</a>
+Écosystèmes modernes de l'espace des chiffres
 </div>
 <div class="content-entry-meta">🎥 Présentation • 4 novembre 2011</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">Détails</a>
+Détails
 </div>
 </div>
 

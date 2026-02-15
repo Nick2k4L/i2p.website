@@ -11,7 +11,7 @@ toc: true
 
 ## Přehled
 
-Toto je specifikace pro wire protokol Garlic Farm, založeného na JRaft, jeho kódu "exts" pro implementaci přes TCP a jeho aplikaci "dmprinter" [JRAFT](https://github.com/datatechnology/jraft). JRaft je implementace Raft protokolu [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+Toto je specifikace pro wire protokol Garlic Farm, založeného na JRaft, jeho kódu "exts" pro implementaci přes TCP a jeho aplikaci "dmprinter" [JRAFT](https://github.com/datatechnology/jraft). JRaft je implementace Raft protokolu [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 Nepodařilo se nám najít žádnou implementaci s dokumentovaným wire protokolem. Nicméně, implementace JRaft je dost jednoduchá na to, abychom mohli prozkoumat kód a následně dokumentovat jeho protokol. Tento návrh je výsledkem tohoto úsilí.
 
@@ -518,7 +518,7 @@ Atomix je příliš velký a neumožňuje přizpůsobení pro nás, abychom mohl
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

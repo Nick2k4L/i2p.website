@@ -247,7 +247,7 @@ Il existe de nombreux domaines possibles pour ajuster les algorithmes du Session
   de messages de test de tunnel vers lui-même.
 
 - Passage des Session Tags à
-  [un PRNG synchronisé](/about/performance/future#prng).
+  [un PRNG synchronisé](/docs/overview/performance#future#prng).
 
 - Plusieurs de ces idées peuvent nécessiter un nouveau type de message I2NP, ou
   définir un flag dans les

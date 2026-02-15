@@ -33,9 +33,9 @@ El enfoque será una introducción a temas en torno a I2P, la privacidad y el an
 
 La CryptoParty contará con varios puestos donde se harán demostraciones de software de privacidad/anonimato. El objetivo es proporcionar a las personas las herramientas que necesitan para comunicarse de forma segura.
 
-- [Vuze/I2P](http://wiki.vuze.com/w/I2PHelper_HowTo) - Downloading torrents anonymously
-- [Veracrypt](https://veracrypt.codeplex.com/) - Encrypt your data
-- [I2PBote](http://i2pbote.i2p.us/) - Anonymous decentralized email
+- Vuze/I2P - Downloading torrents anonymously
+- Veracrypt - Encrypt your data
+- I2PBote - Anonymous decentralized email
 - Your station idea here
 
 Actualmente estamos buscando ayuda para atender las estaciones. ¡Si quieres ayudar, puedes hacerlo! Trae un monitor/portátil y gestiona una estación. La estación puede ser cualquiera de las listadas arriba, o cualquier otra relacionada con la privacidad/el anonimato que te gustaría gestionar. Por favor, contáctanos en [@geti2p](https://twitter.com/geti2p) si te interesa.

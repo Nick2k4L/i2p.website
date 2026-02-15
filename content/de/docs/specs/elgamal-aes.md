@@ -247,7 +247,7 @@ Es gibt viele mögliche Bereiche, um die Algorithmen des Session Key Managers zu
   tunnel Test-Nachrichten an sich selbst sendet.
 
 - Wechsel von Session Tags zu
-  [einem synchronisierten PRNG](/about/performance/future#prng).
+  [einem synchronisierten PRNG](/docs/overview/performance#future#prng).
 
 - Mehrere dieser Ideen könnten einen neuen I2NP-Nachrichtentyp erfordern, oder
   ein Flag in den

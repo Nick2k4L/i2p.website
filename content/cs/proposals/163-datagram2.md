@@ -305,7 +305,7 @@ nebo routerem na vrstvě katrice.
 
 ## Poznámky
 
-- Praktická délka je omezena nižšími vrstvami protokolů - specifikace zprávy tunelu [TUNMSG](/docs/specs/implementation/#notes)
+- Praktická délka je omezena nižšími vrstvami protokolů - specifikace zprávy tunelu [TUNMSG](/docs/specs/tunnel-implementation/#notes)
   omezuje zprávy na přibližně 61,2 KB a aktuální transporty
   [TRANSPORT](/docs/overview/transport/) omezují zprávy na přibližně 64 KB, takže délka dat zde
   je omezena na přibližně 61 KB.
@@ -352,4 +352,4 @@ SAM UDP aplikace: Žádné známé
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
 * [TRANSPORT](/docs/overview/transport/)
-* [TUNMSG](/docs/specs/implementation/#notes)
+* [TUNMSG](/docs/specs/tunnel-implementation/#notes)

@@ -164,7 +164,7 @@ categories: ["meeting"]
 [23:31] &lt;Nightblade&gt; Airhook يتعامل بسلاسة مع الشبكات المتقطعة أو غير الموثوقة أو المتأخرة  &lt;-- ههه ليس وصفًا متفائلًا لـ I2P!
 [23:31] &lt;duck&gt; كيف تسير الأمور؟
 [23:32] &lt;duck&gt; دعونا نؤجل نقاش datagram عبر i2p إلى النهاية
-[23:32] &lt;tessier&gt; أحب التجوال في الويكيات المفتوحة والربط إلى هذا: http://www.fissure.org/humour/pics/squirre   l.jpg
+[23:32] &lt;tessier&gt; أحب التجوال في الويكيات المفتوحة والربط إلى هذا: `http://www.fissure.org/humour/pics/squirre`   l.jpg
 [23:32] &lt;tessier&gt; Airhook رائع
 [23:32] &lt;tessier&gt; كنت أنظر إليه لبناء شبكة P2P (نظير إلى نظير) أيضًا.
 [23:32] &lt;Nightblade&gt; يبدو لي أنها مستقرة (#3)
@@ -236,7 +236,7 @@ categories: ["meeting"]
 [23:47] <wilde> http://en.wikipedia.org/wiki/I2p
 [23:47] <Masterboy> ولكنني أتفق على عدم القيام بأي دعاية حتى ننتهي من 0.4
 [23:47] <Masterboy> ماذا؟؟؟؟؟؟؟
-[23:47] <wilde> http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] <wilde> `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] <Masterboy> protol0l يقوم بعمل رائع;P
 [23:48] <Masterboy> ;))))))
 [23:48] <hypercubus> خطأ مطبعي لطيف ;-)
@@ -267,9 +267,9 @@ categories: ["meeting"]
 [23:54] <duck> 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] <duck> tessier: هل لديك أي خبرة عملية معه
-[23:55] <duck> (http://www.airhook.org/)
+[23:55] <duck> (`http://www.airhook.org/)`
 [23:55] * Masterboy سيحاول هذا:P
-[23:56] <duck> تنفيذ بـ Java (لا أدري إن كان يعمل أصلًا) http://cvs.ofb.net/airhook-j/
+[23:56] <duck> تنفيذ بـ Java (لا أدري إن كان يعمل أصلًا) `http://cvs.ofb.net/airhook-j/`
 [23:56] <duck> تنفيذ بـ Python (فوضى، كان يعمل في السابق) http://cvs.sourceforge.net/viewcvs.py/khashmir   /khashmir/airhook.py
 [23:58] * duck يفتح صمام التذمّر
 [23:58] <Nightblade> النسخة j أيضًا برخصة GPL

@@ -31,7 +31,7 @@ categories: ["meeting"]
 20:01:37 <zzz> nextloop, meeh, bu maddeler için ETAlarınız var mı?
 20:03:06 <zzz> 1) hakkında başka bir şey?
 20:04:02 <zzz> 2) I2P Browser "labs" proje durumu (sadie, meeh)
-20:04:25 <zzz> sadie, meeh, durum nedir ve bir sonraki kilometre taşı nedir?          <sadie> Beta 5 Cuma günü çıkacaktı, ancak bazı sorunlar oldu. Bazıları hazır görünüyor https://i2bbparts.meeh.no/i2p-browser/ ama bunun için bir sonraki son tarih konusunda meeh'ten gerçekten haber almam gerekiyordu          <sadie> Lab Sayfası bu haftanın sonuna kadar yayında olacak. Bir sonraki Browser kilometre taşı, beta 6 sürümü için konsol gereksinimlerinin tartışılması olacak
+20:04:25 <zzz> sadie, meeh, durum nedir ve bir sonraki kilometre taşı nedir?          <sadie> Beta 5 Cuma günü çıkacaktı, ancak bazı sorunlar oldu. Bazıları hazır görünüyor `https://i2bbparts.meeh.no/i2p-browser/` ama bunun için bir sonraki son tarih konusunda meeh'ten gerçekten haber almam gerekiyordu          <sadie> Lab Sayfası bu haftanın sonuna kadar yayında olacak. Bir sonraki Browser kilometre taşı, beta 6 sürümü için konsol gereksinimlerinin tartışılması olacak
 20:05:51 <zzz> 2) hakkında başka bir şey?
 20:06:43 <zzz> 3) Outproxy kullanım senaryoları / durum (sadie)
 20:06:57 <zzz> sadie, durum nedir ve bir sonraki kilometre taşı nedir?          <sadie> Toplantı notlarımızı 2472 numaralı bilette herkes takip edebilir. Kullanım durumu statülerine karar verdik ve gereksinimler listemiz var. Bir sonraki kilometre taşı, Friends and Family kullanım durumu için kullanıcı gereksinimleri ile Friends and Familiy ve Genel kullanım durumu için geliştirme gereksinimlerini, nerede örtüşebileceklerini görmek üzere belirlemek olacak

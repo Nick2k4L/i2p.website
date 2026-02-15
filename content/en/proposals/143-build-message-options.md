@@ -16,7 +16,7 @@ toc: true
 This proposal was not implemented as specified,
 however, the ECIES long and short build messages (proposals 152 and 157)
 were designed with extensible options fields.
-See the [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) for the official specification.
+See the [Tunnel Creation ECIES specification](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) for the official specification.
 
 
 ## Overview
@@ -99,4 +99,4 @@ In the build reply message, the presence of options is indicated by a multi-byte
 
 ## References
 
-* [SPEC](/docs/specs/implementation/#tunnel-creation-ecies)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)

@@ -11,7 +11,7 @@ toc: true
 
 ## Genel Bakış
 
-Bu, JRaft'a dayalı Sarımsak Çiftliği kablo protokolü için spesifikasyondur, TCP üzerinden uygulama için "exts" kodu ve "dmprinter" örnek uygulaması [JRAFT](https://github.com/datatechnology/jraft). JRaft, Raft protokolünün bir uygulamasıdır [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+Bu, JRaft'a dayalı Sarımsak Çiftliği kablo protokolü için spesifikasyondur, TCP üzerinden uygulama için "exts" kodu ve "dmprinter" örnek uygulaması [JRAFT](https://github.com/datatechnology/jraft). JRaft, Raft protokolünün bir uygulamasıdır [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 Belgelenmiş bir kablo protokolü olan bir uygulama bulamadık. Ancak, JRaft uygulaması, kodun incelenebileceği ve ardından protokolün belgelenebileceği kadar basittir. Bu öneri bu çabanın sonucudur.
 
@@ -489,7 +489,7 @@ Geriye dönük uyumluluk sorunları yoktur.
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

@@ -19,7 +19,7 @@ toc: true
 ## Note
 Network deployment and testing in progress.
 Subject to minor revisions.
-See [SPEC](/docs/specs/implementation/) for the official specification.
+See [SPEC](/docs/specs/tunnel-implementation/) for the official specification.
 
 
 ## Overview
@@ -346,7 +346,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes   x-463: random padding
 ```
 
-The flags field is the same as defined in [Tunnel Creation](/docs/specs/implementation/) and contains the following::
+The flags field is the same as defined in [Tunnel Creation](/docs/specs/tunnel-implementation/) and contains the following::
 
  Bit order: 76543210 (bit 7 is MSB)
  bit 7: if set, allow messages from anyone
@@ -432,7 +432,7 @@ The maximum size of the Mapping (including the length field) is 511 bytes,
 and the maximum value of the Mapping length field is 509.
 
 The reply byte is one of the following values
-as defined in [Tunnel Creation](/docs/specs/implementation/) to avoid fingerprinting:
+as defined in [Tunnel Creation](/docs/specs/tunnel-implementation/) to avoid fingerprinting:
 
 - 0x00 (accept)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -583,7 +583,7 @@ ECIES hop in the tunnel, and use scheme above for encrypting their BuildRequestR
 ElGamal tunnel creators will use the scheme prior to this spec for encrypting to ElGamal hops.
 
 ECIES tunnel creators will need to encrypt to each of the ElGamal hop's public key using the
-scheme defined in [Tunnel Creation](/docs/specs/implementation/). ECIES tunnel creators will use the above scheme for encrypting
+scheme defined in [Tunnel Creation](/docs/specs/tunnel-implementation/). ECIES tunnel creators will use the above scheme for encrypting
 to ECIES hops.
 
 This means that tunnel hops will only see encrypted records from their same encryption type.
@@ -652,7 +652,7 @@ and can be generated randomly.
 
 ### Request Record Encryption (ElGamal)
 
-As defined in [Tunnel Creation](/docs/specs/implementation/).
+As defined in [Tunnel Creation](/docs/specs/tunnel-implementation/).
 There are no changes to encryption for ElGamal hops.
 
 
@@ -676,7 +676,7 @@ The reply record is ChaCha20/Poly1305 encrypted.
 
 ### Reply Record Encryption (ElGamal)
 
-As defined in [Tunnel Creation](/docs/specs/implementation/).
+As defined in [Tunnel Creation](/docs/specs/tunnel-implementation/).
 There are no changes to encryption for ElGamal hops.
 
 
@@ -737,8 +737,8 @@ See [Proposal 156](/proposals/156-ecies-routers).
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop156](/proposals/156-ecies-routers/)
 * [Prop157](/proposals/157-new-tbm/)
-* [SPEC](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 * [Multiple-Encryption](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

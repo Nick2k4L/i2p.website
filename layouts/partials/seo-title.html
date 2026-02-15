@@ -1,0 +1,36 @@
+{{- $page := . -}}
+{{- $site := $page.Site -}}
+{{- $base := or $page.Params.meta_title $page.Title -}}
+{{- $sectionName := "" -}}
+{{- with $page.Section }}{{ $sectionName = . | humanize | title }}{{ end -}}
+{{- $sectionKey := lower (default "" $page.Section) -}}
+{{- $isBlog := eq $sectionKey "blog" -}}
+{{- $dateFormat := default "January 2, 2006" $site.Params.seo.blogTitleDateFormat -}}
+{{- if and $isBlog (ne (time.Format "2006" $page.Date) "0001") -}}
+  {{- $dateStr := time.Format $dateFormat $page.Date -}}
+  {{- $base = printf "%s (%s)" $base $dateStr -}}
+{{- end -}}
+{{- $pageNumber := 0 -}}
+{{- if and (eq $sectionKey "blog") (ne $page.Kind "page") -}}
+  {{- with $page.Paginator }}
+    {{- if gt .TotalPages 1 }}
+      {{- $pageNumber = .PageNumber -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if gt $pageNumber 1 -}}
+  {{- $base = printf "%s – Page %d" $base $pageNumber -}}
+{{- end -}}
+{{- $parts := slice $base -}}
+{{- if $sectionName -}}
+  {{- $parts = $parts | append $sectionName -}}
+{{- end -}}
+{{- $body := delimit $parts " | " -}}
+{{- $siteTitle := $site.Title -}}
+{{- $langCode := upper ($site.Language.Lang | default "en") -}}
+{{- $withSite := cond (gt (len $siteTitle) 0) (printf "%s | %s" $body $siteTitle) $body -}}
+{{- $withLang := printf "%s | %s" $body $langCode -}}
+{{- if gt (strings.RuneCount $withSite) 60 -}}
+  {{- $withSite = $withLang -}}
+{{- end -}}
+{{- $withSite -}}

@@ -259,8 +259,8 @@ torsocks --port 7695 $command_to_proxy
 Addendum: ``example implementation of the attack``
                                                   
 
-[An example implementation of the Shared Identity attack on HTTP
-User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
+An example implementation of the Shared Identity attack on HTTP
+User-Agents
 has existed for several years. An additional example is available in the
 ``simple-colluder`` subdirectory of idk’s prop166
 repository These

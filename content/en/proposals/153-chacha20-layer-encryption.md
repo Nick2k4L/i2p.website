@@ -41,7 +41,7 @@ This section describes changes to:
 - Participant encryption + postprocessing
 - Outbound and Inbound Endpoint encryption + postprocessing
 
-For an overview of current tunnel message processing, see the [Tunnel Implementation](/docs/specs/implementation/) spec.
+For an overview of current tunnel message processing, see the [Tunnel Implementation](/docs/specs/tunnel-implementation/) spec.
 
 Only changes for routers supporting ChaCha20 layer encryption are discussed.
 
@@ -322,6 +322,6 @@ Both attacks are also blocked by disallowing multiple oracle calls using the sam
 
 ## References
 
-* [Tunnel-Implementation](/docs/specs/implementation/)
+* [Tunnel-Implementation](/docs/specs/tunnel-implementation/)
 
 

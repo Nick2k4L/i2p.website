@@ -68,7 +68,7 @@ Shrnutí: pokud je útočník současně na obou koncích vašeho tunelu, může
 
 Částečné obranné mechanismy implementované v I2P:
 
-- [Přísné řazení](/docs/specs/implementation/#ordering) peerů
+- [Přísné řazení](/docs/specs/tunnel-implementation/#ordering) peerů
 - Profilování peerů a výběr z malé skupiny, která se mění pomalu
 - Omezení počtu tunnelů směrovaných přes jediný peer
 - Zabránění peerům ze stejného /16 IP rozsahu v tom, aby byli členy jediného tunnelu
@@ -119,7 +119,7 @@ Také diskutováno na [stránce síťové databáze](/docs/specs/common-structur
 
 Predecessor attack spočívá v pasivním shromažďování statistik ve snaze zjistit, kteří peerové jsou 'blízko' k cíli tím, že se účastní jejich tunnelů a sledují předchozí nebo následující hop (pro odchozí nebo příchozí tunnely). Postupem času, pomocí dokonale náhodného vzorku peerů a náhodného uspořádání, by útočník mohl vidět, který peer se statisticky objevuje jako 'bližší' více než ostatní, a tento peer by zároveň byl místem, kde se nachází cíl.
 
-I2P se tomuto vyhýbá čtyřmi způsoby: zaprvé, peeři vybraní k účasti v tunelech nejsou náhodně vzorkováni napříč sítí — jsou odvozeni z algoritmu pro výběr peerů, který je rozděluje do úrovní. Zadruhé, se [striktním uspořádáním](/docs/specs/implementation/#ordering) peerů v tunelu skutečnost, že se peer objevuje častěji, neznamená, že je zdrojem. Zatřetí, s permutovanou délkou tunelu (ve výchozím nastavení není povoleno) dokonce i 0 hop tunely mohou poskytovat věrohodné popírání, protože občasná variace gateway bude vypadat jako normální tunely. Začtvrté, s omezenými trasami (neimplementováno), pouze peer s omezeným spojením k cíli bude kdy kontaktovat cíl, zatímco útočníci narazí pouze na tuto gateway.
+I2P se tomuto vyhýbá čtyřmi způsoby: zaprvé, peeři vybraní k účasti v tunelech nejsou náhodně vzorkováni napříč sítí — jsou odvozeni z algoritmu pro výběr peerů, který je rozděluje do úrovní. Zadruhé, se [striktním uspořádáním](/docs/specs/tunnel-implementation/#ordering) peerů v tunelu skutečnost, že se peer objevuje častěji, neznamená, že je zdrojem. Zatřetí, s permutovanou délkou tunelu (ve výchozím nastavení není povoleno) dokonce i 0 hop tunely mohou poskytovat věrohodné popírání, protože občasná variace gateway bude vypadat jako normální tunely. Začtvrté, s omezenými trasami (neimplementováno), pouze peer s omezeným spojením k cíli bude kdy kontaktovat cíl, zatímco útočníci narazí pouze na tuto gateway.
 
 Současná metoda budování tunnelů byla speciálně navržena pro boj proti útoku předchůdce. Viz také [průsečíkový útok](#intersection-attacks).
 

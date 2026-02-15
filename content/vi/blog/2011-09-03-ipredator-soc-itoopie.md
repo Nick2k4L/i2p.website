@@ -16,7 +16,7 @@ I2PControl là một plugin (phần bổ trợ) của I2P cung cấp giao diện
 
 Bạn có thể tìm thêm thông tin và hướng dẫn tại itoopie.i2p.
 
-Dự án này đã được tài trợ bởi các dịch vụ VPN [Relakks](http://relakks.com) & [Ipredator](http://ipredator.se) và được khởi xướng bởi Jan-Erik Fiske và [Peter Sunde](http://twitter.com/brokep).
+Dự án này đã được tài trợ bởi các dịch vụ VPN Relakks & Ipredator và được khởi xướng bởi Jan-Erik Fiske và [Peter Sunde](http://twitter.com/brokep).
 
 Cảm ơn Jan-Erik và Peter,
 

@@ -245,7 +245,7 @@ AES Encrypted Block:
   router 目前在向自身发送 tunnel 测试消息时就使用了一些类似的技巧。
 
 - 从会话标签改为
-  [同步PRNG](/about/performance/future#prng)。
+  [同步PRNG](/docs/overview/performance#future#prng)。
 
 - 这些想法中的一些可能需要新的 I2NP 消息类型，或者
   在 [传递指令](/docs/specs/tunnel-message#struct_TunnelMessageDeliveryInstructions) 中设置标志，

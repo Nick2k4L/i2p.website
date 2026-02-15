@@ -45,7 +45,7 @@ SI podemos encontrar un algoritmo que sea pequeño y rápido.
 El truco es encontrar una encriptación asimétrica que sea pequeña y rápida. ElGamal con 514
 bytes es un poco doloroso aquí. Podemos hacerlo mejor.
 
-Ver por ejemplo http://security.stackexchange.com/questions/824...
+Ver por ejemplo `http://security.stackexchange.com/questions/824...`
 
 Esto funciona para números pequeños de destinatarios (o en realidad, claves; aún puedes
 distribuir claves a varias personas si lo deseas).

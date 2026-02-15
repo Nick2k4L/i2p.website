@@ -136,6 +136,9 @@ defaultContentLanguageInSubdir = true
   tagline = "Privacy. Security. Freedom."
   keywords = "i2p, privacy, anonymity, dark net, encryption, security"
 
+  [params.seo]
+    blogTitleDateFormat = "January 2, 2006"
+
   # GitLab repository configuration for "Edit this page" links
   gitlabRepo = "i2pgit.org/I2P_Developers/i2p.website"
   gitlabBranch = "main"
@@ -269,4 +272,3 @@ defaultContentLanguageInSubdir = true
 [security]
   [security.exec]
     allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$', '^rst2html$']
-

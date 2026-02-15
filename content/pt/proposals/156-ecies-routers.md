@@ -19,7 +19,7 @@ Sujeito a revisões.
 Status:
 
 - Implementação de Roteadores ECIES a partir da versão 0.9.48, veja [Common](/docs/specs/common-structures/).
-- Implementação de criação de túneis a partir da versão 0.9.48, veja [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+- Implementação de criação de túneis a partir da versão 0.9.48, veja [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 - Implementação de mensagens criptografadas para roteadores ECIES a partir da versão 0.9.49, veja [ECIES-ROUTERS](/docs/specs/ecies/).
 - Implementação de novas mensagens de construção de túneis a partir da versão 0.9.51.
 
@@ -92,7 +92,7 @@ locais na base de código. A maior parte deste trabalho foi feita em meados de 2
 
 ### Mensagem de Construção de Túnel
 
-Várias mudanças na especificação de criação de túneis [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
+Várias mudanças na especificação de criação de túneis [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 são necessárias para usar ECIES em vez de ElGamal.
 Além disso, faremos melhorias na mensagem de construção de túneis
 para aumentar a segurança.
@@ -217,7 +217,7 @@ Nova Mensagem de Construção de Túnel: Veja [Prop157](/proposals/157-new-tbm/)
 
 ### Criptografia de Solicitação
 
-A criptografia de solicitação é a mesma daquela especificada em [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) e [Prop152](/proposals/152-ecies-tunnels/),
+A criptografia de solicitação é a mesma daquela especificada em [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) e [Prop152](/proposals/152-ecies-tunnels/),
 usando o padrão Noise "N".
 
 Respostas a consultas serão criptografadas com uma tag de ratchet se solicitadas na consulta.
@@ -236,7 +236,7 @@ Geralmente, estas serão mensagens de Nova Sessão e serão enviadas com uma cha
 #### KDF para ck e h Inicial
 
 Isso é padrão [NOISE](https://noiseprotocol.org/noise.html) para o padrão "N" com um nome de protocolo padrão.
-Isso é o mesmo que especificado em [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) e [Prop152](/proposals/152-ecies-tunnels/) para mensagens de construção de túnel.
+Isso é o mesmo que especificado em [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) e [Prop152](/proposals/152-ecies-tunnels/) para mensagens de construção de túnel.
 
 
   ```text
@@ -267,7 +267,7 @@ Este é o padrão de mensagem "e":
 
 Criadores de mensagens geram um par de chaves efêmeros X25519 para cada mensagem.
 Chaves efêmeras devem ser únicas por mensagem.
-Isso é o mesmo que especificado em [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) e [Prop152](/proposals/152-ecies-tunnels/) para mensagens de construção de túnel.
+Isso é o mesmo que especificado em [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) e [Prop152](/proposals/152-ecies-tunnels/) para mensagens de construção de túnel.
 
 
   ```dataspec

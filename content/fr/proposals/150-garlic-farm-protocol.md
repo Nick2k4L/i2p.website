@@ -14,7 +14,7 @@ toc: true
 Ceci est la spécification pour le protocole de la ferme à l'ail,
 basé sur JRaft, son code "exts" pour l'implémentation sur TCP,
 et son application exemple "dmprinter" [JRAFT](https://github.com/datatechnology/jraft).
-JRaft est une implémentation du protocole Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+JRaft est une implémentation du protocole Raft [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 Nous n'avons pas été en mesure de trouver une implémentation avec un protocole documenté.
 Cependant, l'implémentation JRaft est suffisamment simple pour que nous puissions
@@ -585,7 +585,7 @@ Aucun problème de compatibilité rétroactive.
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

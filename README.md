@@ -131,6 +131,16 @@ Features:
 - Validates proposal number uniqueness
 - Supports all proposal statuses (Open, Closed, Rejected, Draft, etc.)
 
+#### SEO Checks
+
+After running `hugo --minify`, verify that every generated blog page has a unique `<title>` tag:
+
+```bash
+python3 scripts/seo/check_titles.py --root public
+```
+
+Pass `--path-contains docs` to scan another section, `--all` to scan the entire site, or `--csv path/to/report.csv` to export duplicates for sharing with the broader team.
+
 ### Translation Scripts
 
 Located in `scripts/translate/`:
@@ -252,5 +262,3 @@ Contains all download links, versions, and checksums for I2P releases.
 - The pipeline will translate new content and commit it to the repository automatically
 - Use frontmatter for metadata (title, description, date)
 - Images go in `static/images/`
-
-

@@ -16,7 +16,7 @@ I2PControl je zásuvný modul pro I2P, který poskytuje rozhraní JSONRPC pro I2
 
 Další informace a pokyny naleznete na itoopie.i2p.
 
-Tento projekt byl financován službami VPN [Relakks](http://relakks.com) a [Ipredator](http://ipredator.se) a iniciovali jej Jan-Erik Fiske a [Peter Sunde](http://twitter.com/brokep).
+Tento projekt byl financován službami VPN Relakks a Ipredator a iniciovali jej Jan-Erik Fiske a [Peter Sunde](http://twitter.com/brokep).
 
 Děkuji, Jan-Eriku a Petere,
 

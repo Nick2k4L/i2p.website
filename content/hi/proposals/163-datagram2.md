@@ -299,7 +299,7 @@ SAMv3 विनिर्देश में STYLE=DATAGRAM2 और STYLE=DATAGRA
 ## नोट्स
 
 - व्यवहारिक लंबाई प्रोटोकॉल की निचली परतों द्वारा सीमित है - सुरंग
-  संदेश विनिर्देश [TUNMSG](/docs/specs/implementation/#notes) संदेशों को लगभग 61.2 KB तक सीमित करता है और परिवहन
+  संदेश विनिर्देश [TUNMSG](/docs/specs/tunnel-implementation/#notes) संदेशों को लगभग 61.2 KB तक सीमित करता है और परिवहन
   [TRANSPORT](/docs/overview/transport/) वर्तमान में संदेशों को लगभग 64 KB तक सीमित करता है, इसलिए यहां डेटा लंबाई
   लगभग 61 KB तक सीमित है।
 - बड़े डाटाग्राम्स की विश्वसनीयता के बारे में महत्वपूर्ण नोट्स देखें [API](/docs/api/datagrams/)।
@@ -344,4 +344,4 @@ SAM UDP एप्स: कोई ज्ञात नहीं
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
 * [TRANSPORT](/docs/overview/transport/)
-* [TUNMSG](/docs/specs/implementation/#notes)
+* [TUNMSG](/docs/specs/tunnel-implementation/#notes)

@@ -56,7 +56,7 @@ Freedman द्वारा वर्णित विधि से एक और
 
 I2P में, tunnel एकदिशीय होते हैं। प्रत्येक पार्टी दो tunnel बनाती है, एक आउटबाउंड के लिए और एक इनबाउंड ट्रैफिक के लिए। इसलिए, एक single round-trip message और reply के लिए चार tunnel की आवश्यकता होती है।
 
-Tunnels का निर्माण और उपयोग layered encryption के साथ किया जाता है। इसका वर्णन [tunnel implementation page](/docs/specs/implementation/) पर दिया गया है। हम encryption के लिए [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) का उपयोग करते हैं।
+Tunnels का निर्माण और उपयोग layered encryption के साथ किया जाता है। इसका वर्णन [tunnel implementation page](/docs/specs/tunnel-implementation/) पर दिया गया है। हम encryption के लिए [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) का उपयोग करते हैं।
 
 Tunnels सभी [I2NP messages](/docs/specs/i2np/) को ट्रांसपोर्ट करने के लिए एक सामान्य-उद्देश्य तंत्र हैं, और Garlic Messages का उपयोग tunnels बनाने के लिए नहीं किया जाता है। हम outbound tunnel endpoint पर unwrapping के लिए कई I2NP messages को एक single Garlic Message में bundle नहीं करते हैं; tunnel encryption पर्याप्त है।
 

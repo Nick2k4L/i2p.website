@@ -19,7 +19,7 @@ Netzwerkbereitstellung und -test in Arbeit.
 Status:
 
 - ECIES-Router implementiert ab 0.9.48, siehe [Common](/docs/specs/common-structures/).
-- Tunnelaufbau implementiert ab 0.9.48, siehe [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+- Tunnelaufbau implementiert ab 0.9.48, siehe [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 - Verschlüsselte Nachrichten an ECIES-Router implementiert ab 0.9.49, siehe [ECIES-ROUTERS](/docs/specs/ecies/).
 - Neue Tunnel-Build-Nachrichten implementiert ab 0.9.51.
 
@@ -91,7 +91,7 @@ indem sie an mehreren Stellen in der Codebasis Prüfungen hinzufügten. Die meis
 
 ### Tunnelaufbau-Nachricht
 
-Um ECIES anstelle von ElGamal zu verwenden, sind mehrere Änderungen an der Tunnel-Erstellungsspezifikation [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
+Um ECIES anstelle von ElGamal zu verwenden, sind mehrere Änderungen an der Tunnel-Erstellungsspezifikation [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 erforderlich. Darüber hinaus werden wir Verbesserungen an den Tunnelaufbau-Nachrichten vornehmen,
 um die Sicherheit zu erhöhen.
 
@@ -215,7 +215,7 @@ Neue Tunnelaufbau-Nachrichten: Siehe [Prop157](/proposals/157-new-tbm/).
 
 ### Anfragenverschlüsselung
 
-Die Anfragenverschlüsselung ist die gleiche wie die, die in [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) und [Prop152](/proposals/152-ecies-tunnels/) spezifiziert ist,
+Die Anfragenverschlüsselung ist die gleiche wie die, die in [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) und [Prop152](/proposals/152-ecies-tunnels/) spezifiziert ist,
 unter Verwendung des Noise-"N"-Musters.
 
 Antworten auf Abfragen werden mit einem Ratchet-Tag verschlüsselt, falls in der Abfrage angefordert.
@@ -234,7 +234,7 @@ Im Allgemeinen werden dies Neue Sitzungsnachrichten sein und mit einem Nullstati
 #### KDF für Initiale ck und h
 
 Dies ist Standard [NOISE](https://noiseprotocol.org/noise.html) für Muster "N" mit einem Standardprotokollnamen.
-Dies ist dasselbe wie in [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) und [Prop152](/proposals/152-ecies-tunnels/) für Tunnelaufbau-Nachrichten spezifiziert.
+Dies ist dasselbe wie in [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) und [Prop152](/proposals/152-ecies-tunnels/) für Tunnelaufbau-Nachrichten spezifiziert.
 
 
   ```text
@@ -265,7 +265,7 @@ Dies ist das "e"-Nachrichtenmuster:
 
 Nachrichtenersteller generieren für jede Nachricht ein ephemeres X25519-Schlüsselpaar.
 Ephemerschlüssel müssen pro Nachricht einzigartig sein.
-Dies ist dasselbe wie in [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) und [Prop152](/proposals/152-ecies-tunnels/) für Tunnelaufbau-Nachrichten spezifiziert.
+Dies ist dasselbe wie in [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) und [Prop152](/proposals/152-ecies-tunnels/) für Tunnelaufbau-Nachrichten spezifiziert.
 
 
   ```dataspec

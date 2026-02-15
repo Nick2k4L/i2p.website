@@ -3,10 +3,10 @@ title: "Performance"
 description: "Desempenho da rede I2P: velocidade, conexões e gerenciamento de recursos"
 slug: "performance"
 aliases:
-  - "/pt/about/performance/future"
-  - "/pt/about/performance/future/"
-  - "/pt/about/performance/history"
-  - "/pt/about/performance/history/"
+  - "/pt/docs/overview/performance#future"
+  - "/pt/docs/overview/performance#future/"
+  - "/pt/docs/overview/performance#history"
+  - "/pt/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ Além disso, outros nós I2P precisam conhecer um I2P router para testá-lo quan
 
 ## Melhorias de Performance
 
-Para possíveis melhorias futuras de desempenho, consulte [Melhorias Futuras de Desempenho](/about/performance/future).
+Para possíveis melhorias futuras de desempenho, consulte [Melhorias Futuras de Desempenho](/docs/overview/performance#future).
 
-Para melhorias de desempenho anteriores, consulte o [Histórico de Desempenho](/about/performance/history).
+Para melhorias de desempenho anteriores, consulte o [Histórico de Desempenho](/docs/overview/performance#history).

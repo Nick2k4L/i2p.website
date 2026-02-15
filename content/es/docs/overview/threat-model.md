@@ -68,7 +68,7 @@ En resumen, si un atacante está en ambos extremos de tu tunnel al mismo tiempo,
 
 Defensas parciales implementadas en I2P:
 
-- [Ordenamiento estricto](/docs/specs/implementation/#ordering) de peers
+- [Ordenamiento estricto](/docs/specs/tunnel-implementation/#ordering) de peers
 - Perfilado y selección de peers de un grupo pequeño que cambia lentamente
 - Límites en el número de tunnels enrutados a través de un solo peer
 - Prevención de que peers del mismo rango IP /16 sean miembros de un solo tunnel
@@ -119,7 +119,7 @@ También se discute en la [página de base de datos de red](/docs/specs/common-s
 
 El ataque predecessor consiste en recopilar estadísticas de forma pasiva en un intento de ver qué peers están 'cerca' del destino participando en sus tunnels y llevando un registro del salto anterior o siguiente (para tunnels de salida o entrada, respectivamente). Con el tiempo, utilizando una muestra perfectamente aleatoria de peers y un ordenamiento aleatorio, un atacante podría ver qué peer aparece como 'más cercano' estadísticamente más que el resto, y ese peer sería a su vez donde se encuentra ubicado el objetivo.
 
-I2P evita esto de cuatro maneras: primero, los peers seleccionados para participar en tunnels no se muestrean aleatoriamente a través de la red — se derivan del algoritmo de selección de peers que los divide en niveles. Segundo, con [ordenamiento estricto](/docs/specs/implementation/#ordering) de peers en un tunnel, el hecho de que un peer aparezca con más frecuencia no significa que sea la fuente. Tercero, con longitud de tunnel permutada (no habilitada por defecto) incluso los tunnels de 0 saltos pueden proporcionar negación plausible ya que la variación ocasional del gateway se verá como tunnels normales. Cuarto, con rutas restringidas (no implementadas), solo el peer con una conexión restringida al objetivo contactará alguna vez al objetivo, mientras que los atacantes simplemente se encontrarán con ese gateway.
+I2P evita esto de cuatro maneras: primero, los peers seleccionados para participar en tunnels no se muestrean aleatoriamente a través de la red — se derivan del algoritmo de selección de peers que los divide en niveles. Segundo, con [ordenamiento estricto](/docs/specs/tunnel-implementation/#ordering) de peers en un tunnel, el hecho de que un peer aparezca con más frecuencia no significa que sea la fuente. Tercero, con longitud de tunnel permutada (no habilitada por defecto) incluso los tunnels de 0 saltos pueden proporcionar negación plausible ya que la variación ocasional del gateway se verá como tunnels normales. Cuarto, con rutas restringidas (no implementadas), solo el peer con una conexión restringida al objetivo contactará alguna vez al objetivo, mientras que los atacantes simplemente se encontrarán con ese gateway.
 
 El método actual de construcción de tunnel fue específicamente diseñado para combatir el ataque predecesor. Consulta también [el ataque de intersección](#intersection-attacks).
 

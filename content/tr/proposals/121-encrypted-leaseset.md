@@ -42,7 +42,7 @@ Eğer küçük ve hızlı bir algoritma bulabilirsek.
 
 Küçük ve hızlı olan bir asimetrik şifreleme bulmak zor. ElGamal 514 bayt'ta bu durumda biraz sıkıntılı. Daha iyisini yapabiliriz.
 
-Bkz. örneğin http://security.stackexchange.com/questions/824...
+Bkz. örneğin `http://security.stackexchange.com/questions/824...`
 
 Bu, az sayıda alıcı (veya aslında, anahtarlar) için çalışır; yine de anahtarları isterseniz birden fazla kişiye dağıtabilirsiniz.
 

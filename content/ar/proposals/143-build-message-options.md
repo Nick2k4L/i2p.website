@@ -15,7 +15,7 @@ toc: true
 ## ملاحظة
 لم يتم تنفيذ هذا الاقتراح كما هو محدد، 
 ومع ذلك، تم تصميم رسائل البناء الطويلة والقصيرة ل ECIES (الاقتراحات 152 و 157) بحقول خيارات قابلة للتمديد.
-انظر [مواصفة Tunnel Creation ECIES](/docs/specs/implementation/#tunnel-creation-ecies) للمواصفة الرسمية.
+انظر [مواصفة Tunnel Creation ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) للمواصفة الرسمية.
 
 
 ## نظرة عامة

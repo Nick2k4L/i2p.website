@@ -16,7 +16,7 @@ I2PControl, I2P router için bir JSONRPC arayüzü sağlayan bir I2P eklentisidi
 
 Daha fazla bilgi ve talimatlar itoopie.i2p adresinde bulunabilir.
 
-Bu proje, VPN hizmetleri [Relakks](http://relakks.com) & [Ipredator](http://ipredator.se) tarafından finanse edilmiştir ve Jan-Erik Fiske ile [Peter Sunde](http://twitter.com/brokep) tarafından başlatılmıştır.
+Bu proje, VPN hizmetleri Relakks & Ipredator tarafından finanse edilmiştir ve Jan-Erik Fiske ile [Peter Sunde](http://twitter.com/brokep) tarafından başlatılmıştır.
 
 Teşekkür ederim Jan-Erik ve Peter,
 

@@ -68,7 +68,7 @@ Zusammenfassend lässt sich sagen, dass ein Angreifer erfolgreich sein könnte, 
 
 Teilweise implementierte Schutzmaßnahmen in I2P:
 
-- [Strikte Reihenfolge](/docs/specs/implementation/#ordering) von Peers
+- [Strikte Reihenfolge](/docs/specs/tunnel-implementation/#ordering) von Peers
 - Peer-Profilerstellung und -auswahl aus einer kleinen Gruppe, die sich langsam ändert
 - Begrenzungen der Anzahl von tunnels, die durch einen einzelnen Peer geleitet werden
 - Verhinderung, dass Peers aus demselben /16 IP-Bereich Mitglieder eines einzelnen tunnels werden
@@ -119,7 +119,7 @@ Wird auch auf der [netDb-Seite](/docs/specs/common-structures/) diskutiert (Boot
 
 Der Predecessor-Angriff sammelt passiv Statistiken in dem Versuch zu sehen, welche Peers "nah" am Ziel sind, indem er an ihren tunnels teilnimmt und den vorherigen oder nächsten Hop verfolgt (für ausgehende bzw. eingehende tunnels). Im Laufe der Zeit könnte ein Angreifer unter Verwendung einer perfekt zufälligen Stichprobe von Peers und zufälliger Anordnung sehen, welcher Peer statistisch häufiger als "näher" erscheint als die anderen, und dieser Peer wiederum wäre dort, wo sich das Ziel befindet.
 
-I2P vermeidet dies auf vier Arten: Erstens werden die peers, die zur Teilnahme an tunnels ausgewählt werden, nicht zufällig im gesamten Netzwerk gesampelt — sie werden vom peer-Auswahlalgorithmus abgeleitet, der sie in Stufen unterteilt. Zweitens bedeutet bei [strikter Reihenfolge](/docs/specs/implementation/#ordering) von peers in einem tunnel die Tatsache, dass ein peer häufiger auftaucht, nicht, dass er die Quelle ist. Drittens können selbst 0-Hop-tunnel mit permutierter tunnel-Länge (standardmäßig nicht aktiviert) plausible Abstreitbarkeit bieten, da die gelegentliche Variation des Gateways wie normale tunnel aussieht. Viertens wird bei eingeschränkten Routen (nicht implementiert) nur der peer mit einer eingeschränkten Verbindung zum Ziel jemals das Ziel kontaktieren, während Angreifer lediglich auf dieses Gateway treffen.
+I2P vermeidet dies auf vier Arten: Erstens werden die peers, die zur Teilnahme an tunnels ausgewählt werden, nicht zufällig im gesamten Netzwerk gesampelt — sie werden vom peer-Auswahlalgorithmus abgeleitet, der sie in Stufen unterteilt. Zweitens bedeutet bei [strikter Reihenfolge](/docs/specs/tunnel-implementation/#ordering) von peers in einem tunnel die Tatsache, dass ein peer häufiger auftaucht, nicht, dass er die Quelle ist. Drittens können selbst 0-Hop-tunnel mit permutierter tunnel-Länge (standardmäßig nicht aktiviert) plausible Abstreitbarkeit bieten, da die gelegentliche Variation des Gateways wie normale tunnel aussieht. Viertens wird bei eingeschränkten Routen (nicht implementiert) nur der peer mit einer eingeschränkten Verbindung zum Ziel jemals das Ziel kontaktieren, während Angreifer lediglich auf dieses Gateway treffen.
 
 Die aktuelle Tunnel-Aufbaumethode wurde speziell entwickelt, um den Vorgänger-Angriff zu bekämpfen. Siehe auch [den Schnittmengen-Angriff](#intersection-attacks).
 

@@ -322,7 +322,7 @@ ou par le routeur au niveau de la gestion des clés.
 ## Notes
 
 - La longueur pratique est limitée par les couches inférieures de protocoles - la spécification des
-  messages de tunnel [TUNMSG](/docs/specs/implementation/#notes) limite les messages à environ 61,2 Ko et les transports
+  messages de tunnel [TUNMSG](/docs/specs/tunnel-implementation/#notes) limite les messages à environ 61,2 Ko et les transports
   [TRANSPORT](/docs/overview/transport/) limitent actuellement les messages à environ 64 Ko, donc la longueur des données ici
   est limitée à environ 61 Ko.
 - Voir les notes importantes sur la fiabilité des grands datagrammes [API](/docs/api/datagrams/). Pour
@@ -371,4 +371,4 @@ Applications SAM UDP : Aucune connue
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
 * [TRANSPORT](/docs/overview/transport/)
-* [TUNMSG](/docs/specs/implementation/#notes)
+* [TUNMSG](/docs/specs/tunnel-implementation/#notes)

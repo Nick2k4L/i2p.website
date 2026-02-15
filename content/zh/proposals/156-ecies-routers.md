@@ -19,7 +19,7 @@ toc: true
 状态：
 
 - ECIES 路由器已在 0.9.48 中实现，详情见 [Common](/docs/specs/common-structures/)。
-- 隧道构建已在 0.9.48 中实现，详情见 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)。
+- 隧道构建已在 0.9.48 中实现，详情见 [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)。
 - 到 ECIES 路由器的加密消息已在 0.9.49 中实现，详情见 [ECIES-ROUTERS](/docs/specs/ecies/)。
 - 新的隧道构建消息已在 0.9.51 中实现。
 
@@ -85,7 +85,7 @@ ElGamal 速度较慢，需要在其使用的所有地方进行替换。
 
 ### 隧道构建消息
 
-为了使用 ECIES 而不是 ElGamal，需要对隧道创建规范 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 进行几项更改。
+为了使用 ECIES 而不是 ElGamal，需要对隧道创建规范 [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) 进行几项更改。
 此外，我们将改进隧道构建消息以提高安全性。
 
 在第一阶段，我们将更改 ECIES 跳的构建请求记录和构建响应记录的格式和加密。
@@ -192,7 +192,7 @@ X25519：详见 [ECIES](/docs/specs/ecies/)。
 
 ### 请求加密
 
-请求加密与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中指定的一致，
+请求加密与 [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中指定的一致，
 使用 Noise “N” 模式。
 
 查找的回复将使用请求中的 Ratchet 标记加密。
@@ -209,7 +209,7 @@ X25519：详见 [ECIES](/docs/specs/ecies/)。
 #### 初始 ck 和 h 的 KDF
 
 这是标准的 [NOISE](https://noiseprotocol.org/noise.html)，用于模式 "N" 和标准协议名称。
-这与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的一样。
+这与 [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的一样。
 
 
   ```text
@@ -240,7 +240,7 @@ X25519：详见 [ECIES](/docs/specs/ecies/)。
 
 消息创建者为每个消息生成一个临时 X25519 密钥对。
 每个消息都必须有唯一的临时密钥。
-这与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的相同。
+这与 [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的相同。
 
 
   ```dataspec

@@ -14,7 +14,7 @@ toc: true
 Esta es la especificación del protocolo de la Granja de Ajo,
 basado en JRaft, su código "exts" para la implementación sobre TCP,
 y su aplicación de ejemplo "dmprinter" [JRAFT](https://github.com/datatechnology/jraft).
-JRaft es una implementación del protocolo Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+JRaft es una implementación del protocolo Raft [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 No pudimos encontrar ninguna implementación con un protocolo documentado de cableado.
 Sin embargo, la implementación de JRaft es lo suficientemente simple como para que pudiéramos
@@ -585,7 +585,7 @@ No hay problemas de compatibilidad hacia atrás.
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

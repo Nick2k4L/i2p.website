@@ -45,7 +45,7 @@ IF we can find an algo that's small and fast.
 Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
 bytes is a little painful here. We can do better.
 
-See e.g. http://security.stackexchange.com/questions/824...
+See e.g. `http://security.stackexchange.com/questions/824...`
 
 This works for small numbers of recipients (or actually, keys; you can still
 distribute keys to multiple people if you like).

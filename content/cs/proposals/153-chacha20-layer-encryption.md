@@ -39,7 +39,7 @@ Tato sekce popisuje změny pro:
 - Šifrování účastníků a postprocessing
 - Šifrování a postprocessing výstupního a vstupního koncového bodu
 
-Pro přehled současného zpracování tunelových zpráv viz specifikace [Tunnel Implementation](/docs/specs/implementation/).
+Pro přehled současného zpracování tunelových zpráv viz specifikace [Tunnel Implementation](/docs/specs/tunnel-implementation/).
 
 Jsou diskutovány pouze změny pro směrovače podporující ChaCha20 šifrování vrstev.
 
@@ -288,4 +288,4 @@ Oba útoky jsou také blokovány tím, že se nepovolují opakované orákulové
 
 ## Reference
 
-* [Tunnel-Implementation](/docs/specs/implementation/)
+* [Tunnel-Implementation](/docs/specs/tunnel-implementation/)

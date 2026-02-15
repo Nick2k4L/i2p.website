@@ -41,7 +41,7 @@ GPG/OpenPGP가 하는 것처럼 하십시오. 각 수신자를 위해 대칭 키
 
 작고 빠른 비대칭 암호화를 찾는 것이 핵심입니다. ElGamal은 514 바이트로 여기서 약간 부담스럽습니다. 우리는 더 잘할 수 있습니다.
 
-예를 들어 http://security.stackexchange.com/questions/824... 을 참조하십시오.
+예를 들어 `http://security.stackexchange.com/questions/824...` 을 참조하십시오.
 
 이것은 수신자 수가 적을 때 (또는 실제로는 키가 적을 때) 작동합니다; 원하시면 여전히 여러 사람에게 키를 배포할 수 있습니다.
 

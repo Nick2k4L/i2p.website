@@ -39,7 +39,7 @@ toc: true
 - التشفير + معالجة المشاركين
 - التشفير + معالجة النقاط النهائية الخارج والداخل
 
-للحصول على نظرة عامة على معالجة رسائل النفق الحالية، راجع المواصفات في [Tunnel Implementation](/docs/specs/implementation/).
+للحصول على نظرة عامة على معالجة رسائل النفق الحالية، راجع المواصفات في [Tunnel Implementation](/docs/specs/tunnel-implementation/).
 
 فقط التغييرات للراوترات التي تدعم تشفير طبقة ChaCha20 تتم مناقشتها.
 
@@ -283,4 +283,4 @@ toc: true
 
 ## المراجع
 
-* [Tunnel-Implementation](/docs/specs/implementation/)
+* [Tunnel-Implementation](/docs/specs/tunnel-implementation/)

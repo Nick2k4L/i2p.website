@@ -16,7 +16,7 @@ toc: true
 ## POZNÁMKA
 
 Tento návrh byl schválen a je nyní součástí
-[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) od API 0.9.65.
+[Tunnel Creation ECIES specification](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) od API 0.9.65.
 Zatím nejsou známy žádné implementace; data implementace / verze API jsou TBD.
 
 
@@ -44,7 +44,7 @@ požadavků a odpovědí na vytvoření tunelu.
 
 ## Návrh
 
-Přidat parametry šířky pásma do záznamů v ECIES zprávách o vytvoření tunelu (viz [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies))
+Přidat parametry šířky pásma do záznamů v ECIES zprávách o vytvoření tunelu (viz [Tunnel Creation ECIES specification](/docs/specs/tunnel-implementation/#tunnel-creation-ecies))
 v poli mapování možností vytvoření tunelu. Použít krátké názvy parametrů, protože prostor
 pro pole možností je omezený.
 Zprávy o vytvoření tunelu mají pevnou velikost, takže toto nezvětšuje
@@ -53,7 +53,7 @@ velikost zpráv.
 
 ## Specifikace
 
-Aktualizujte [specifikaci zprávy o vytvoření tunelu ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+Aktualizujte [specifikaci zprávy o vytvoření tunelu ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 takto:
 
 Pro dlouhé i krátké záznamy vytvoření ECIES:

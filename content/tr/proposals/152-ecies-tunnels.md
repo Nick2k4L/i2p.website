@@ -18,7 +18,7 @@ toc: true
 
 ## Not
 
-Ağ dağıtımı ve testler sürüyor. Küçük düzeltmeler yapılabilir. Resmî belirtim için [SPEC](/docs/specs/implementation/)'e bakın.
+Ağ dağıtımı ve testler sürüyor. Küçük düzeltmeler yapılabilir. Resmî belirtim için [SPEC](/docs/specs/tunnel-implementation/)'e bakın.
 
 ## Genel Bakış
 
@@ -250,7 +250,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-Bayraklar alanı, [Tunnel Creation](/docs/specs/implementation/) bölümünde tanımlananla aynıdır ve aşağıdakileri içerir::
+Bayraklar alanı, [Tunnel Creation](/docs/specs/tunnel-implementation/) bölümünde tanımlananla aynıdır ve aşağıdakileri içerir::
 
 Bit sırası: 76543210 (bit 7 MSB'dir (en anlamlı bit))  bit 7: ayarlıysa, herhangi birinden gelen mesajlara izin ver  bit 6: ayarlıysa, herkese mesaj gönderimine izin ver ve yanıtı şuna gönder
 
@@ -315,7 +315,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 tunnel oluşturma yanıtı seçenekleri, [Ortak Yapılar](/docs/specs/common-structures/) bölümünde tanımlandığı gibi bir Mapping (eşleme) yapısıdır. Bu, gelecekte kullanım içindir. Şu anda herhangi bir seçenek tanımlı değildir. Mapping yapısı boşsa, bu iki bayttır: 0x00 0x00. Mapping'in (uzunluk alanı dahil) azami boyutu 511 bayttır ve Mapping uzunluk alanının alabileceği azami değer 509'dur.
 
-Yanıt baytı, parmak izi çıkarımını önlemek için [Tunnel Creation](/docs/specs/implementation/)'da tanımlandığı üzere aşağıdaki değerlerden biridir:
+Yanıt baytı, parmak izi çıkarımını önlemek için [Tunnel Creation](/docs/specs/tunnel-implementation/)'da tanımlandığı üzere aşağıdaki değerlerden biridir:
 
 - 0x00 (kabul)
 - 30 (TUNNEL_REJECT_BANDWIDTH - bant genişliği nedeniyle reddedildi)
@@ -450,7 +450,7 @@ This is the "e" message pattern:
 
 ElGamal tunnel oluşturucuları, tunnel içindeki her ECIES hop (geçiş noktası) için geçici bir X25519 anahtar çifti oluşturur ve BuildRequestRecord verilerini şifrelemek için yukarıdaki yöntemi kullanır. ElGamal tunnel oluşturucuları, ElGamal hoplara şifreleme yaparken bu spesifikasyondan önceki yöntemi kullanacaktır.
 
-ECIES tunnel oluşturucularının, [Tunnel Creation](/docs/specs/implementation/) bölümünde tanımlanan şemayı kullanarak her bir ElGamal hop (atlama) genel anahtarına şifreleme yapmaları gerekecektir. ECIES tunnel oluşturucuları, ECIES hop'lara şifreleme yapmak için yukarıdaki şemayı kullanacaktır.
+ECIES tunnel oluşturucularının, [Tunnel Creation](/docs/specs/tunnel-implementation/) bölümünde tanımlanan şemayı kullanarak her bir ElGamal hop (atlama) genel anahtarına şifreleme yapmaları gerekecektir. ECIES tunnel oluşturucuları, ECIES hop'lara şifreleme yapmak için yukarıdaki şemayı kullanacaktır.
 
 Bu, tunnel üzerindeki ara düğümlerin yalnızca kendi şifreleme türleriyle şifrelenmiş kayıtları göreceği anlamına gelir.
 
@@ -511,7 +511,7 @@ ElGamal ve ECIES tunnel oluşturucuları, ECIES atlamalarına şifreli olarak il
 
 ### İstek Kaydı Şifrelemesi (ElGamal; açık anahtarlı şifreleme algoritması)
 
-[Tunnel Oluşturma](/docs/specs/implementation/) içinde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
+[Tunnel Oluşturma](/docs/specs/tunnel-implementation/) içinde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
 
 ### Yanıt Kaydı Şifrelemesi (ECIES - Eliptik Eğri Entegre Şifreleme Şeması)
 
@@ -528,7 +528,7 @@ Yanıt kaydı ChaCha20/Poly1305 ile şifrelenir.
 ```
 ### Yanıt Kaydı Şifrelemesi (ElGamal, açık anahtarlı şifreleme yöntemi)
 
-[Tunnel Oluşturma](/docs/specs/implementation/) bölümünde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
+[Tunnel Oluşturma](/docs/specs/tunnel-implementation/) bölümünde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
 
 ### Güvenlik Analizi
 
@@ -576,8 +576,8 @@ Bkz. [Öneri 156](/proposals/156-ecies-routers).
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop156](/proposals/156-ecies-routers/)
 * [Prop157](/proposals/157-new-tbm/)
-* [SPEC](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel-Creation](/docs/specs/implementation/)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation](/docs/specs/tunnel-implementation/)
 * [Çoklu Şifreleme](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

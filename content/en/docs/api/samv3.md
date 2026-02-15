@@ -138,7 +138,7 @@ Warning: Some of these may be very old or unsupported. None are tested, reviewed
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://notabug.org/villain/mooni2p">notabug.org/villain/mooni2p</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;">notabug.org/villain/mooni2p</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">haskell-network-anonymous-i2p</td>
@@ -174,7 +174,7 @@ Warning: Some of these may be very old or unsupported. None are tested, reviewed
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">no</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">no</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://github.com/eyedeekay/Jsam">github.com/eyedeekay/Jsam</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;">github.com/eyedeekay/Jsam</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">I2PSharp</td>
@@ -219,7 +219,7 @@ Warning: Some of these may be very old or unsupported. None are tested, reviewed
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">no</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">no</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://notabug.org/acetone/samty">notabug.org/acetone/samty</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;">notabug.org/acetone/samty</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">bitcoin</td>

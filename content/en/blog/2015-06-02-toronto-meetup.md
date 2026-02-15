@@ -32,9 +32,9 @@ The focus will be on an introduction to topics surrounding I2P, privacy and anon
 
 The crypto party will contain a number of stations where privacy/anonymity software will be demoed. The goal is to provide people with the tools they need to communicate securely.
 
-- [Vuze/I2P](http://wiki.vuze.com/w/I2PHelper_HowTo) - Downloading torrents anonymously
-- [Veracrypt](https://veracrypt.codeplex.com/) - Encrypt your data
-- [I2PBote](http://i2pbote.i2p.us/) - Anonymous decentralized email
+- Vuze/I2P - Downloading torrents anonymously
+- Veracrypt - Encrypt your data
+- I2PBote - Anonymous decentralized email
 - Your station idea here
 
 We're currently looking for help staffing the stations. If you want to help out, you can! Bring a monitor/laptop and run a station. The station could be any of the ones listed above, or any other privacy/anonymity related one you would like to run. Please contact us at [@geti2p](https://twitter.com/geti2p) if you're interested.

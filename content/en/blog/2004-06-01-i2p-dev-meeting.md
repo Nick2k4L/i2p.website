@@ -179,7 +179,7 @@ categories: ["meeting"]
   optimistic description of I2P!
 [23:31] &lt;duck&gt; how has it been going?
 [23:32] &lt;duck&gt; lets put the datagram over i2p discussion to the end
-[23:32] &lt;tessier&gt; I love to run around to open wiki's and link to this: http://www.fissure.org/humour/pics/squirre
+[23:32] &lt;tessier&gt; I love to run around to open wiki's and link to this: `http://www.fissure.org/humour/pics/squirre`
   l.jpg
 [23:32] &lt;tessier&gt; airhook rocks
 [23:32] &lt;tessier&gt; I've been looking at it for building a p2p network also.
@@ -260,7 +260,7 @@ categories: ["meeting"]
 [23:47] &lt;wilde&gt; http://en.wikipedia.org/wiki/I2p
 [23:47] &lt;Masterboy&gt; but i agree that no advertising till 0.4 is done
 [23:47] &lt;Masterboy&gt; wha???????
-[23:47] &lt;wilde&gt; http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] &lt;wilde&gt; `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] &lt;Masterboy&gt; protol0l does a great job;P
 [23:48] &lt;Masterboy&gt; ;))))))
 [23:48] &lt;hypercubus&gt; nice typo ;-)
@@ -292,9 +292,9 @@ categories: ["meeting"]
 [23:54] &lt;duck&gt; 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] &lt;duck&gt; tessier: got any real-world experience with it
-[23:55] &lt;duck&gt; (http://www.airhook.org/)
+[23:55] &lt;duck&gt; (`http://www.airhook.org/)`
 [23:55] * Masterboy will try dis out:P
-[23:56] &lt;duck&gt; java implementation (dunno if it even works) http://cvs.ofb.net/airhook-j/
+[23:56] &lt;duck&gt; java implementation (dunno if it even works) `http://cvs.ofb.net/airhook-j/`
 [23:56] &lt;duck&gt; python implementation (a mess, did work in the past) http://cvs.sourceforge.net/viewcvs.py/khashmir
   /khashmir/airhook.py
 [23:58] * duck opens the rant-valve

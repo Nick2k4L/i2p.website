@@ -33,7 +33,7 @@ categories: ["meeting"]
 20:03:06 &lt;zzz&gt; anything else on 1) ?
 20:04:02 &lt;zzz&gt; 2) I2P Browser "labs" project status (sadie, meeh)
 20:04:25 &lt;zzz&gt; sadie, meeh, what's the status, and what's the next milestone?
-         &lt;sadie&gt; Beta 5 was supposed to be out on Friday, but there were some issues. It looks like some are ready https://i2bbparts.meeh.no/i2p-browser/ but I really needed to hear from meeh about the next deadline for this
+         &lt;sadie&gt; Beta 5 was supposed to be out on Friday, but there were some issues. It looks like some are ready `https://i2bbparts.meeh.no/i2p-browser/` but I really needed to hear from meeh about the next deadline for this
          &lt;sadie&gt; The Lab Page will be live by the end of this week. The next Browser milestone will be discussing the beta 6 release console requirements
 20:05:51 &lt;zzz&gt; anything else on 2) ?
 20:06:43 &lt;zzz&gt; 3) Outproxy use cases / status (sadie)

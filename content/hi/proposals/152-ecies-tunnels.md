@@ -18,7 +18,7 @@ toc: true
 
 ## नोट
 
-नेटवर्क deployment और testing प्रगति में है। मामूली संशोधनों के अधीन। आधिकारिक specification के लिए [SPEC](/docs/specs/implementation/) देखें।
+नेटवर्क deployment और testing प्रगति में है। मामूली संशोधनों के अधीन। आधिकारिक specification के लिए [SPEC](/docs/specs/tunnel-implementation/) देखें।
 
 ## अवलोकन
 
@@ -270,7 +270,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-flags फील्ड वही है जो [Tunnel Creation](/docs/specs/implementation/) में परिभाषित है और इसमें निम्नलिखित शामिल है::
+flags फील्ड वही है जो [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित है और इसमें निम्नलिखित शामिल है::
 
 Bit order: 76543210 (bit 7 MSB है)  bit 7: यदि सेट है, तो किसी से भी संदेश की अनुमति दें  bit 6: यदि सेट है, तो किसी को भी संदेश की अनुमति दें, और उत्तर को भेजें
 
@@ -335,7 +335,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 tunnel build reply options एक Mapping structure है जैसा कि [Common Structures](/docs/specs/common-structures/) में परिभाषित है। यह भविष्य के उपयोग के लिए है। वर्तमान में कोई options परिभाषित नहीं हैं। यदि Mapping structure खाली है, तो यह दो bytes 0x00 0x00 है। Mapping का अधिकतम आकार (length field सहित) 511 bytes है, और Mapping length field का अधिकतम मान 509 है।
 
-Reply byte निम्नलिखित values में से एक है जो [Tunnel Creation](/docs/specs/implementation/) में defined है fingerprinting से बचने के लिए:
+Reply byte निम्नलिखित values में से एक है जो [Tunnel Creation](/docs/specs/tunnel-implementation/) में defined है fingerprinting से बचने के लिए:
 
 - 0x00 (स्वीकार करें)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -470,7 +470,7 @@ This is the "e" message pattern:
 
 ElGamal tunnel creators प्रत्येक ECIES hop के लिए tunnel में एक ephemeral X25519 keypair generate करते हैं, और अपने BuildRequestRecord को encrypt करने के लिए उपरोक्त scheme का उपयोग करते हैं। ElGamal tunnel creators ElGamal hops को encrypt करने के लिए इस spec से पूर्व की scheme का उपयोग करेंगे।
 
-ECIES tunnel creators को प्रत्येक ElGamal hop की public key के लिए [Tunnel Creation](/docs/specs/implementation/) में परिभाषित scheme का उपयोग करके encrypt करना होगा। ECIES tunnel creators ECIES hops के लिए encrypt करने हेतु उपरोक्त scheme का उपयोग करेंगे।
+ECIES tunnel creators को प्रत्येक ElGamal hop की public key के लिए [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित scheme का उपयोग करके encrypt करना होगा। ECIES tunnel creators ECIES hops के लिए encrypt करने हेतु उपरोक्त scheme का उपयोग करेंगे।
 
 इसका मतलब यह है कि tunnel hops केवल अपने समान encryption प्रकार के encrypted records को ही देख पाएंगे।
 
@@ -531,7 +531,7 @@ ElGamal और ECIES tunnel creators के लिए, वे ECIES hops को 
 
 ### औचित्य
 
-जैसा कि [Tunnel Creation](/docs/specs/implementation/) में परिभाषित है। ElGamal hops के लिए encryption में कोई बदलाव नहीं है।
+जैसा कि [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित है। ElGamal hops के लिए encryption में कोई बदलाव नहीं है।
 
 ### Reply Record Encryption (ECIES)
 
@@ -548,7 +548,7 @@ reply record ChaCha20/Poly1305 encrypted है।
 ```
 ### Build Request Records का निर्माण
 
-जैसा कि [Tunnel Creation](/docs/specs/implementation/) में परिभाषित किया गया है। ElGamal hops के लिए एन्क्रिप्शन में कोई बदलाव नहीं हैं।
+जैसा कि [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित किया गया है। ElGamal hops के लिए एन्क्रिप्शन में कोई बदलाव नहीं हैं।
 
 ### Security Analysis
 

@@ -165,7 +165,7 @@ categories: ["meeting"]
 [23:31] <Nightblade> Airhook बीच-बीच में टूटने वाली, अविश्वसनीय, या विलंबित नेटवर्क्स को अच्छे से संभालता है  <-- हेहे I2P का    बहुत आशावादी वर्णन नहीं है!
 [23:31] <duck> यह कैसा चल रहा है?
 [23:32] <duck> datagram over i2p वाली चर्चा को अंत में रखते हैं
-[23:32] <tessier> मुझे ओपन wiki's पर घूमना और इस पर लिंक करना पसंद है: http://www.fissure.org/humour/pics/squirre   l.jpg
+[23:32] <tessier> मुझे ओपन wiki's पर घूमना और इस पर लिंक करना पसंद है: `http://www.fissure.org/humour/pics/squirre`   l.jpg
 [23:32] <tessier> Airhook जबरदस्त है
 [23:32] <tessier> मैं इसे p2p नेटवर्क बनाने के लिए भी देख रहा था।
 [23:32] <Nightblade> मुझे यह भरोसेमंद लग रहा है (#3)
@@ -237,7 +237,7 @@ categories: ["meeting"]
 [23:47] <wilde> http://en.wikipedia.org/wiki/I2p
 [23:47] <Masterboy> लेकिन मैं सहमत हूँ कि 0.4 पूरा होने तक कोई विज्ञापन नहीं
 [23:47] <Masterboy> क्या???????
-[23:47] <wilde> http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] <wilde> `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] <Masterboy> protol0l बहुत बढ़िया काम करता है;P
 [23:48] <Masterboy> ;))))))
 [23:48] <hypercubus> अच्छी टाइपो ;-)
@@ -268,9 +268,9 @@ categories: ["meeting"]
 [23:54] <duck> 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] <duck> tessier: इसके साथ कोई वास्तविक दुनिया का अनुभव है?
-[23:55] <duck> (http://www.airhook.org/)
+[23:55] <duck> (`http://www.airhook.org/)`
 [23:55] * Masterboy इसे ट्राय करेगा :P
-[23:56] <duck> जावा इम्प्लीमेंटेशन (पता नहीं यह चलता भी है या नहीं) http://cvs.ofb.net/airhook-j/
+[23:56] <duck> जावा इम्प्लीमेंटेशन (पता नहीं यह चलता भी है या नहीं) `http://cvs.ofb.net/airhook-j/`
 [23:56] <duck> पाइथन इम्प्लीमेंटेशन (बेहद गड़बड़, पहले चलता था) http://cvs.sourceforge.net/viewcvs.py/khashmir   /khashmir/airhook.py
 [23:58] * duck भड़ास का वाल्व खोलता है
 [23:58] <Nightblade> j वाला भी GPL है

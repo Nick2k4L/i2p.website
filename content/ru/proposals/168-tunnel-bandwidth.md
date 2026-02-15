@@ -16,7 +16,7 @@ toc: true
 ## ПРИМЕЧАНИЕ
 
 Это предложение было одобрено и теперь входит в
-[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) с API 0.9.65.
+[Tunnel Creation ECIES specification](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) с API 0.9.65.
 Пока что известные реализации отсутствуют; даты внедрения / версии API TBD.
 
 
@@ -44,7 +44,7 @@ toc: true
 
 ## Дизайн
 
-Добавьте параметры пропускной способности к записям в сообщениях создания туннеля ECIES (см. [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies))
+Добавьте параметры пропускной способности к записям в сообщениях создания туннеля ECIES (см. [Tunnel Creation ECIES specification](/docs/specs/tunnel-implementation/#tunnel-creation-ecies))
 в поле отображения параметров создания туннеля. Используйте короткие названия параметров, так как доступное пространство
 для поля параметров ограничено.
 Сообщения создания туннеля имеют фиксированный размер, поэтому увеличение
@@ -53,7 +53,7 @@ toc: true
 
 ## Спецификация
 
-Обновите [спецификацию сообщений создания туннеля ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+Обновите [спецификацию сообщений создания туннеля ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 следующим образом:
 
 Для длинных и коротких записей создания ECIES:

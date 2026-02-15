@@ -56,7 +56,7 @@ Bu tekniğin ağın performansını iyileştirmek, taşıma gecikmesi/verim deng
 
 I2P'de, tunnel'lar tek yönlüdür. Her taraf iki tunnel inşa eder, biri giden ve biri gelen trafik için. Bu nedenle, tek bir gidiş-dönüş mesaj ve yanıt için dört tunnel gereklidir.
 
-Tunnel'lar katmanlı şifreleme ile inşa edilir ve kullanılır. Bu, [tunnel uygulama sayfasında](/docs/specs/implementation/) açıklanmıştır. Şifreleme için [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) kullanıyoruz.
+Tunnel'lar katmanlı şifreleme ile inşa edilir ve kullanılır. Bu, [tunnel uygulama sayfasında](/docs/specs/tunnel-implementation/) açıklanmıştır. Şifreleme için [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) kullanıyoruz.
 
 Tunnel'lar tüm [I2NP mesajlarını](/docs/specs/i2np/) taşımak için genel amaçlı bir mekanizmadır ve Garlic Messages tunnel'ları oluşturmak için kullanılmaz. Outbound tunnel uç noktasında açılmak üzere birden fazla I2NP mesajını tek bir Garlic Message içinde paketlemeyiz; tunnel şifrelemesi yeterlidir.
 

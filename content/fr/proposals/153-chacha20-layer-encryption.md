@@ -39,7 +39,7 @@ Cette section décrit les modifications concernant :
 - Chiffrement et post-traitement des participants
 - Chiffrement et post-traitement des points de terminaison sortants et entrants
 
-Pour un aperçu du traitement actuel des messages de tunnel, voir la spécification [Tunnel Implementation](/docs/specs/implementation/).
+Pour un aperçu du traitement actuel des messages de tunnel, voir la spécification [Tunnel Implementation](/docs/specs/tunnel-implementation/).
 
 Seules les modifications pour les routeurs supportant le chiffrement de couche ChaCha20 sont discutées.
 
@@ -285,4 +285,4 @@ Les deux attaques sont également bloquées en interdisant les multiples appels 
 
 ## Références
 
-* [Tunnel-Implementation](/docs/specs/implementation/)
+* [Tunnel-Implementation](/docs/specs/tunnel-implementation/)

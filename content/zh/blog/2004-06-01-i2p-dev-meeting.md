@@ -124,7 +124,7 @@ categories: ["meeting"]
 [23:31] <Nightblade> “Airhook 能优雅地处理间歇性、不可靠或延迟的网络”  <-- 呵呵，对 I2P 的描述不太乐观！
 [23:31] <duck> 最近情况如何？
 [23:32] <duck> 把关于把数据报跑在 i2p 之上的讨论放到最后
-[23:32] <tessier> 我喜欢跑到开放的 wiki 上贴这个链接：http://www.fissure.org/humour/pics/squirre   l.jpg
+[23:32] <tessier> 我喜欢跑到开放的 wiki 上贴这个链接：`http://www.fissure.org/humour/pics/squirre`   l.jpg
 [23:32] <tessier> airhook 很赞
 [23:32] <tessier> 我也在考虑用它来构建一个 P2P 网络
 [23:32] <Nightblade> 在我看来很可靠（#3）
@@ -196,7 +196,7 @@ categories: ["meeting"]
 [23:47] &lt;wilde&gt; http://en.wikipedia.org/wiki/I2p
 [23:47] &lt;Masterboy&gt; 但我同意在 0.4 完成之前不要做宣传
 [23:47] &lt;Masterboy&gt; 啥？？？？？
-[23:47] &lt;wilde&gt; http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] &lt;wilde&gt; `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] &lt;Masterboy&gt; protol0l 做得很棒；P
 [23:48] &lt;Masterboy&gt; ;))))))
 [23:48] &lt;hypercubus&gt; 好个笔误 ;-)
@@ -227,9 +227,9 @@ categories: ["meeting"]
 [23:54] &lt;duck&gt; 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] &lt;duck&gt; tessier：对它有任何实战经验吗
-[23:55] &lt;duck&gt; (http://www.airhook.org/)
+[23:55] &lt;duck&gt; (`http://www.airhook.org/)`
 [23:55] * Masterboy 打算试试这玩意:P
-[23:56] &lt;duck&gt; Java 实现（不确定它现在还能不能用） http://cvs.ofb.net/airhook-j/
+[23:56] &lt;duck&gt; Java 实现（不确定它现在还能不能用） `http://cvs.ofb.net/airhook-j/`
 [23:56] &lt;duck&gt; Python 实现（很乱，过去是能用的） http://cvs.sourceforge.net/viewcvs.py/khashmir   /khashmir/airhook.py
 [23:58] * duck 打开了吐槽阀门
 [23:58] &lt;Nightblade&gt; j 的那个也是 GPL

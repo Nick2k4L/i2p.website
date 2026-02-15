@@ -18,7 +18,7 @@ toc: true
 
 ## Lưu ý
 
-Việc triển khai và kiểm thử mạng đang được tiến hành. Có thể sẽ có các điều chỉnh nhỏ. Xem [SPEC](/docs/specs/implementation/) để biết đặc tả chính thức.
+Việc triển khai và kiểm thử mạng đang được tiến hành. Có thể sẽ có các điều chỉnh nhỏ. Xem [SPEC](/docs/specs/tunnel-implementation/) để biết đặc tả chính thức.
 
 ## Tổng quan
 
@@ -250,7 +250,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-Trường flags giống như được định nghĩa trong [Tạo Tunnel](/docs/specs/implementation/) và chứa các nội dung sau đây::
+Trường flags giống như được định nghĩa trong [Tạo Tunnel](/docs/specs/tunnel-implementation/) và chứa các nội dung sau đây::
 
 Thứ tự bit: 76543210 (bit 7 là MSB (bit có ý nghĩa lớn nhất))  bit 7: nếu được đặt, cho phép nhận thông điệp từ bất kỳ ai  bit 6: nếu được đặt, cho phép gửi thông điệp tới bất kỳ ai, và gửi phản hồi tới
 
@@ -315,7 +315,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 Các tùy chọn phản hồi xây dựng tunnel là một cấu trúc Mapping (ánh xạ) như được định nghĩa trong [Common Structures](/docs/specs/common-structures/). Đây là để sử dụng trong tương lai. Hiện chưa có tùy chọn nào được định nghĩa. Nếu cấu trúc Mapping trống, thì nó là hai byte 0x00 0x00. Kích thước tối đa của Mapping (bao gồm cả trường độ dài) là 511 byte, và giá trị tối đa của trường độ dài của Mapping là 509.
 
-Byte phản hồi là một trong các giá trị sau đây, như được định nghĩa trong [Tunnel Creation](/docs/specs/implementation/) để tránh bị nhận dạng qua dấu vân tay:
+Byte phản hồi là một trong các giá trị sau đây, như được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/) để tránh bị nhận dạng qua dấu vân tay:
 
 - 0x00 (chấp nhận)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -450,7 +450,7 @@ This is the "e" message pattern:
 
 Các bên tạo tunnel dùng ElGamal (thuật toán mật mã ElGamal) tạo ra một cặp khóa X25519 (thuật toán trao đổi khóa dựa trên đường cong elliptic) tạm thời cho mỗi chặng ECIES (hệ mã dựa trên đường cong elliptic) trong tunnel, và dùng lược đồ ở trên để mã hóa BuildRequestRecord của họ. Các bên tạo tunnel dùng ElGamal sẽ dùng lược đồ trước đặc tả này để mã hóa tới các chặng ElGamal.
 
-Các bên tạo tunnel ECIES sẽ cần mã hóa bằng khóa công khai của từng hop (nút trung gian) ElGamal theo sơ đồ được định nghĩa trong [Tunnel Creation](/docs/specs/implementation/). Các bên tạo tunnel ECIES sẽ sử dụng sơ đồ trên để mã hóa cho các hop ECIES.
+Các bên tạo tunnel ECIES sẽ cần mã hóa bằng khóa công khai của từng hop (nút trung gian) ElGamal theo sơ đồ được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/). Các bên tạo tunnel ECIES sẽ sử dụng sơ đồ trên để mã hóa cho các hop ECIES.
 
 Điều này có nghĩa là các hop (chặng trung gian) của tunnel sẽ chỉ nhìn thấy các bản ghi được mã hóa bằng cùng kiểu mã hóa như của chúng.
 
@@ -511,7 +511,7 @@ Các bên tạo tunnel ECIES sẽ cần mã hóa bằng khóa công khai của t
 
 ### Mã hóa bản ghi yêu cầu (ElGamal, thuật toán mật mã khóa công khai)
 
-Như được định nghĩa trong [Tunnel Creation](/docs/specs/implementation/). Không có thay đổi nào đối với mã hóa cho các hop ElGamal.
+Như được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/). Không có thay đổi nào đối với mã hóa cho các hop ElGamal.
 
 ### Mã hóa bản ghi phản hồi (ECIES - lược đồ mã hóa tích hợp dùng đường cong elliptic)
 
@@ -528,7 +528,7 @@ Bản ghi phản hồi được mã hóa bằng ChaCha20/Poly1305.
 ```
 ### Mã hóa bản ghi phản hồi (ElGamal)
 
-Như được định nghĩa trong [Tạo Tunnel](/docs/specs/implementation/). Không có thay đổi nào đối với việc mã hóa cho các chặng ElGamal.
+Như được định nghĩa trong [Tạo Tunnel](/docs/specs/tunnel-implementation/). Không có thay đổi nào đối với việc mã hóa cho các chặng ElGamal.
 
 ### Phân tích bảo mật
 
@@ -576,8 +576,8 @@ Xem [Đề xuất 156](/proposals/156-ecies-routers).
 * [Đề xuất 153](/proposals/153-chacha20-layer-encryption/)
 * [Đề xuất 156](/proposals/156-ecies-routers/)
 * [Đề xuất 157](/proposals/157-new-tbm/)
-* [Đặc tả](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tạo tunnel](/docs/specs/implementation/)
+* [Đặc tả](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tạo tunnel](/docs/specs/tunnel-implementation/)
 * [Mã hóa nhiều lần](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

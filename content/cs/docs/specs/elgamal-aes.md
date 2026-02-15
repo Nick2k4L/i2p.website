@@ -250,7 +250,7 @@ Existuje mnoho možných oblastí pro optimalizaci algoritmů Session Key Manage
   testovací zprávy tunelu sám sobě.
 
 - Změna ze Session Tags na
-  [synchronizovaný PRNG](/about/performance/future#prng).
+  [synchronizovaný PRNG](/docs/overview/performance#future#prng).
 
 - Několik z těchto nápadů může vyžadovat nový typ I2NP zprávy, nebo
   nastavit příznak v

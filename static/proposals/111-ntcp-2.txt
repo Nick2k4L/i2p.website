@@ -2542,7 +2542,7 @@ References
 .. [Ticket1849]
     https://{{ i2pconv('trac.i2p2.i2p') }}/ticket/1849
 
-.. [1] http://www.chesworkshop.org/ches2009/presentations/01_Session_1/CHES2009_ekasper.pdf
+.. [1] /docs/research/kasper2009-fast-aesgcm.pdf
 
 .. [2] https://www.blackhat.com/docs/us-16/materials/us-16-Devlin-Nonce-Disrespecting-Adversaries-Practical-Forgery-Attacks-On-GCM-In-TLS.pdf
 

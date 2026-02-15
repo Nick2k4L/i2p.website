@@ -267,11 +267,11 @@ I2P Torrent
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">Moderní ekosystémy šifrovacího prostoru</a>
+Moderní ekosystémy šifrovacího prostoru
 </div>
 <div class="content-entry-meta">🎥 Prezentace • 4. listopadu 2011</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">Podrobnosti</a>
+Podrobnosti
 </div>
 </div>
 

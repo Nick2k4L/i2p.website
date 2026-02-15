@@ -247,7 +247,7 @@ Session Key Manager의 알고리즘을 조정할 수 있는 많은 영역이 있
   이런 방식의 트릭을 사용합니다.
 
 - Session Tags에서 
-  [동기화된 PRNG](/about/performance/future#prng)로 변경.
+  [동기화된 PRNG](/docs/overview/performance#future#prng)로 변경.
 
 - 이러한 아이디어들 중 일부는 새로운 I2NP 메시지 유형이 필요하거나,
   [Delivery Instructions](/docs/specs/tunnel-message#struct_TunnelMessageDeliveryInstructions)에서

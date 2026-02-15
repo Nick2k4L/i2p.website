@@ -56,7 +56,7 @@ Ngoài ra còn có những cách thức quan trọng mà kỹ thuật này có t
 
 Trong I2P, các tunnel là đơn hướng. Mỗi bên xây dựng hai tunnel, một cho lưu lượng đi ra và một cho lưu lượng đi vào. Do đó, cần có bốn tunnel cho một tin nhắn khứ hồi và phản hồi duy nhất.
 
-Tunnel được xây dựng và sử dụng với mã hóa nhiều lớp. Điều này được mô tả trên [trang triển khai tunnel](/docs/specs/implementation/). Chúng tôi sử dụng [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) cho việc mã hóa.
+Tunnel được xây dựng và sử dụng với mã hóa nhiều lớp. Điều này được mô tả trên [trang triển khai tunnel](/docs/specs/tunnel-implementation/). Chúng tôi sử dụng [ElGamal/AES+SessionTag](/docs/specs/elgamal-aes/) cho việc mã hóa.
 
 Tunnel là cơ chế đa năng để vận chuyển tất cả [I2NP messages](/docs/specs/i2np/), và Garlic Messages không được sử dụng để xây dựng tunnel. Chúng tôi không gộp nhiều I2NP messages vào một Garlic Message duy nhất để giải nén tại điểm cuối tunnel đi ra; mã hóa tunnel là đủ.
 

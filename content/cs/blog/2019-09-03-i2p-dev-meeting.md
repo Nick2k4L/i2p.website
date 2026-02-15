@@ -23,7 +23,7 @@ categories: ["meeting"]
 20:03:06 <zzz> ještě něco k 1) ?
 20:04:02 <zzz> 2) Stav projektu I2P Browser "labs" (sadie, meeh)
 20:04:25 <zzz> sadie, meeh, jaký je stav a jaký je další milník?
-          <sadie> Beta 5 měla vyjít v pátek, ale objevily se nějaké problémy. Vypadá to, že některé jsou připravené https://i2bbparts.meeh.no/i2p-browser/ ale opravdu jsem potřebovala slyšet od meeh další termín pro tohle
+          <sadie> Beta 5 měla vyjít v pátek, ale objevily se nějaké problémy. Vypadá to, že některé jsou připravené `https://i2bbparts.meeh.no/i2p-browser/` ale opravdu jsem potřebovala slyšet od meeh další termín pro tohle
           <sadie> Stránka Lab bude do konce tohoto týdne živá. Další milník pro Browser bude diskuse o požadavcích konzole pro vydání beta 6
 20:05:51 <zzz> ještě něco k 2) ?
 20:06:43 <zzz> 3) případy použití Outproxy / stav (sadie)

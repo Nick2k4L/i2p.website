@@ -19,7 +19,7 @@ Có thể sửa đổi.
 Trạng thái:
 
 - Thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.48, xem [Common](/docs/specs/common-structures/).
-- Tạo đường hầm đã được triển khai từ phiên bản 0.9.48, xem [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+- Tạo đường hầm đã được triển khai từ phiên bản 0.9.48, xem [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 - Tin nhắn mã hóa đến các thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.49, xem [ECIES-ROUTERS](/docs/specs/ecies/).
 - Các tin nhắn xây dựng đường hầm mới đã được triển khai từ phiên bản 0.9.51.
 
@@ -92,7 +92,7 @@ vị trí trong cơ sở mã. Hầu hết công việc này được hoàn thàn
 
 ### Tin Nhắn Xây Dựng Đường Hầm
 
-Một số thay đổi đối với đặc tả tạo đường hầm [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
+Một số thay đổi đối với đặc tả tạo đường hầm [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 được yêu cầu để sử dụng ECIES thay vì ElGamal.
 Ngoài ra, chúng tôi sẽ cải thiện các tin nhắn xây dựng đường hầm
 để tăng cường bảo mật.
@@ -216,7 +216,7 @@ Tin Nhắn Xây Dựng Đường Hầm Mới: Xem [Prop157](/proposals/157-new-t
 
 ### Mã Hóa Yêu Cầu
 
-Mã hóa yêu cầu giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/),
+Mã hóa yêu cầu giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/),
 sử dụng mẫu "N" của Noise.
 
 Phản hồi các tìm kiếm sẽ được mã hóa với thẻ ratchet nếu được yêu cầu trong tìm kiếm.
@@ -235,7 +235,7 @@ Thông thường, đây sẽ là tin nhắn Phiên Mới và sẽ được gửi
 #### KDF cho ck ban đầu và h
 
 Đây là [NOISE](https://noiseprotocol.org/noise.html) tiêu chuẩn cho mẫu "N" với một tên giao thức chuẩn.
-Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
+Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
 
 
   ```text
@@ -266,7 +266,7 @@ Thông thường, đây sẽ là tin nhắn Phiên Mới và sẽ được gửi
 
 Người tạo ra tin nhắn tạo ra một cặp khóa X25519 tạm thời cho mỗi tin nhắn.
 Khóa tạm thời phải là duy nhất cho mỗi tin nhắn.
-Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
+Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
 
 
   ```dataspec
@@ -504,5 +504,5 @@ Phiên bản mục tiêu: 0.9.53, đầu 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)

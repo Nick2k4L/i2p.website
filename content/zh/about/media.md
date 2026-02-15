@@ -267,11 +267,11 @@ I2P 种子
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">现代密文空间生态系统</a>
+现代密文空间生态系统
 </div>
 <div class="content-entry-meta">🎥 演讲 • 2011 年 11 月 4 日</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">详情</a>
+详情
 </div>
 </div>
 

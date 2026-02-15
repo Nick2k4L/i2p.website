@@ -18,7 +18,7 @@ toc: true
 
 ## Nota
 
-Despliegue de red y pruebas en progreso. Sujeto a revisiones menores. Ver [SPEC](/docs/specs/implementation/) para la especificación oficial.
+Despliegue de red y pruebas en progreso. Sujeto a revisiones menores. Ver [SPEC](/docs/specs/tunnel-implementation/) para la especificación oficial.
 
 ## Descripción general
 
@@ -272,7 +272,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-El campo flags es el mismo que se define en [Tunnel Creation](/docs/specs/implementation/) y contiene lo siguiente::
+El campo flags es el mismo que se define en [Tunnel Creation](/docs/specs/tunnel-implementation/) y contiene lo siguiente::
 
 Orden de bits: 76543210 (el bit 7 es MSB)  bit 7: si está establecido, permitir mensajes de cualquiera  bit 6: si está establecido, permitir mensajes a cualquiera, y enviar la respuesta al
 
@@ -337,7 +337,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 Las opciones de respuesta de construcción de túnel es una estructura Mapping como se define en [Estructuras Comunes](/docs/specs/common-structures/). Esto es para uso futuro. Actualmente no se definen opciones. Si la estructura Mapping está vacía, esto son dos bytes 0x00 0x00. El tamaño máximo del Mapping (incluyendo el campo de longitud) es 511 bytes, y el valor máximo del campo de longitud del Mapping es 509.
 
-El byte de respuesta es uno de los siguientes valores según se define en [Tunnel Creation](/docs/specs/implementation/) para evitar el fingerprinting:
+El byte de respuesta es uno de los siguientes valores según se define en [Tunnel Creation](/docs/specs/tunnel-implementation/) para evitar el fingerprinting:
 
 - 0x00 (aceptar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -472,7 +472,7 @@ This is the "e" message pattern:
 
 Los creadores de tunnel ElGamal generan un par de claves X25519 efímero para cada salto ECIES en el tunnel, y usan el esquema anterior para cifrar su BuildRequestRecord. Los creadores de tunnel ElGamal usarán el esquema anterior a esta especificación para cifrar hacia saltos ElGamal.
 
-Los creadores de túneles ECIES necesitarán encriptar a la clave pública de cada salto ElGamal usando el esquema definido en [Tunnel Creation](/docs/specs/implementation/). Los creadores de túneles ECIES usarán el esquema anterior para encriptar a los saltos ECIES.
+Los creadores de túneles ECIES necesitarán encriptar a la clave pública de cada salto ElGamal usando el esquema definido en [Tunnel Creation](/docs/specs/tunnel-implementation/). Los creadores de túneles ECIES usarán el esquema anterior para encriptar a los saltos ECIES.
 
 Esto significa que los saltos de túnel solo verán registros cifrados de su mismo tipo de cifrado.
 
@@ -533,7 +533,7 @@ Para creadores de túneles ElGamal y ECIES, generarán pares de claves efímeras
 
 ### Justificación
 
-Como se define en [Tunnel Creation](/docs/specs/implementation/). No hay cambios en el cifrado para los saltos ElGamal.
+Como se define en [Tunnel Creation](/docs/specs/tunnel-implementation/). No hay cambios en el cifrado para los saltos ElGamal.
 
 ### Reply Record Encryption (ECIES)
 
@@ -550,7 +550,7 @@ El registro de respuesta está cifrado con ChaCha20/Poly1305.
 ```
 ### Registros de Solicitud de Construcción
 
-Como se define en [Tunnel Creation](/docs/specs/implementation/). No hay cambios en el cifrado para los saltos ElGamal.
+Como se define en [Tunnel Creation](/docs/specs/tunnel-implementation/). No hay cambios en el cifrado para los saltos ElGamal.
 
 ### Security Analysis
 

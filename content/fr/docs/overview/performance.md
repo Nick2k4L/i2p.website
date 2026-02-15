@@ -3,10 +3,10 @@ title: "Performance"
 description: "Performance du réseau I2P : vitesse, connexions et gestion des ressources"
 slug: "performance"
 aliases:
-  - "/fr/about/performance/future"
-  - "/fr/about/performance/future/"
-  - "/fr/about/performance/history"
-  - "/fr/about/performance/history/"
+  - "/fr/docs/overview/performance#future"
+  - "/fr/docs/overview/performance#future/"
+  - "/fr/docs/overview/performance#history"
+  - "/fr/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ De plus, les autres nœuds I2P doivent connaître un router I2P pour tester sa c
 
 ## Améliorations des performances
 
-Pour de possibles améliorations de performance futures, voir [Améliorations de Performance Futures](/about/performance/future).
+Pour de possibles améliorations de performance futures, voir [Améliorations de Performance Futures](/docs/overview/performance#future).
 
-Pour les améliorations de performances passées, voir l'[Historique des performances](/about/performance/history).
+Pour les améliorations de performances passées, voir l'[Historique des performances](/docs/overview/performance#history).

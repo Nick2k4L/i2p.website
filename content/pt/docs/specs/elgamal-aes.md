@@ -248,7 +248,7 @@ Há muitas áreas possíveis para ajustar os algoritmos do Gerenciador de Chaves
   mensagens de teste de tunnel para si mesmo.
 
 - Mudança de Session Tags para
-  [um PRNG sincronizado](/about/performance/future#prng).
+  [um PRNG sincronizado](/docs/overview/performance#future#prng).
 
 - Várias dessas ideias podem exigir um novo tipo de mensagem I2NP, ou
   definir uma flag nas

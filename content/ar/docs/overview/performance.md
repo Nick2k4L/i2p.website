@@ -3,10 +3,10 @@ title: "الأداء"
 description: "أداء شبكة I2P: السرعة والاتصالات وإدارة الموارد"
 slug: "performance"
 aliases:
-  - "/ar/about/performance/future"
-  - "/ar/about/performance/future/"
-  - "/ar/about/performance/history"
-  - "/ar/about/performance/history/"
+  - "/ar/docs/overview/performance#future"
+  - "/ar/docs/overview/performance#future/"
+  - "/ar/docs/overview/performance#history"
+  - "/ar/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ server - hopb1 - hopb2 - hopb3 - hopc1 - hopc2 - hopc3 - client
 
 ## تحسينات الأداء
 
-للاطلاع على التحسينات المحتملة للأداء في المستقبل، راجع [تحسينات الأداء المستقبلية](/about/performance/future).
+للاطلاع على التحسينات المحتملة للأداء في المستقبل، راجع [تحسينات الأداء المستقبلية](/docs/overview/performance#future).
 
-لمعرفة تحسينات الأداء السابقة انظر [تاريخ الأداء](/about/performance/history).
+لمعرفة تحسينات الأداء السابقة انظر [تاريخ الأداء](/docs/overview/performance#history).

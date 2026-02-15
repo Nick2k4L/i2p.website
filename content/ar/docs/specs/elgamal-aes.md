@@ -247,7 +247,7 @@ AES Encrypted Block:
   رسائل اختبار tunnel إلى نفسه.
 
 - التغيير من Session Tags إلى
-  [PRNG متزامن](/about/performance/future#prng).
+  [PRNG متزامن](/docs/overview/performance#future#prng).
 
 - قد تتطلب عدة من هذه الأفكار نوع رسالة I2NP جديد، أو
   تعيين علامة في

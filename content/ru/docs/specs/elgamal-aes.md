@@ -247,7 +247,7 @@ AES Encrypted Block:
   тестовых сообщений tunnel самому себе.
 
 - Изменение от Session Tags к
-  [синхронизированному PRNG](/about/performance/future#prng).
+  [синхронизированному PRNG](/docs/overview/performance#future#prng).
 
 - Несколько из этих идей могут потребовать нового типа сообщения I2NP, или
   установки флага в

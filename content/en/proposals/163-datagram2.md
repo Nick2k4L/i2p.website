@@ -328,7 +328,7 @@ or by the router at the ratchet layer.
 ## Notes
 
 - The practical length is limited by lower layers of protocols - the tunnel
-  message spec [TUNMSG](/docs/specs/implementation/) limits messages to about 61.2 KB and the transports
+  message spec [TUNMSG](/docs/specs/tunnel-implementation/) limits messages to about 61.2 KB and the transports
   currently limit messages to about 64 KB, so the data length here
   is limited to about 61 KB.
 - See important notes about the reliability of large datagrams [API](/docs/). For
@@ -380,7 +380,7 @@ SAM UDP apps: None known
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
 * [TRANSPORT](/docs/overview/transport/)
-* [TUNMSG](/docs/specs/implementation/#notes)
+* [TUNMSG](/docs/specs/tunnel-implementation/#notes)
 
 
 

@@ -16,7 +16,7 @@ I2PControl é um plugin do I2P que fornece uma interface JSONRPC para o router d
 
 Mais informações e instruções podem ser encontradas em itoopie.i2p.
 
-Este projeto foi financiado pelos serviços de VPN [Relakks](http://relakks.com) e [Ipredator](http://ipredator.se) e foi iniciado por Jan-Erik Fiske e [Peter Sunde](http://twitter.com/brokep).
+Este projeto foi financiado pelos serviços de VPN Relakks e Ipredator e foi iniciado por Jan-Erik Fiske e [Peter Sunde](http://twitter.com/brokep).
 
 Obrigado, Jan-Erik e Peter,
 

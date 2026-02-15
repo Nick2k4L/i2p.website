@@ -19,7 +19,7 @@ Podléhá revizi.
 Stav:
 
 - ECIES Routery implementovány od verze 0.9.48, viz [Common](/docs/specs/common-structures/).
-- Vytváření tunelů implementováno od verze 0.9.48, viz [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+- Vytváření tunelů implementováno od verze 0.9.48, viz [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 - Šifrované zprávy pro ECIES routery implementovány od verze 0.9.49, viz [ECIES-ROUTERS](/docs/specs/ecies/).
 - Nové zprávy pro stavbu tunelů implementovány od verze 0.9.51.
 
@@ -92,7 +92,7 @@ na několika místech ve zdrojovém kódu. Většina této práce byla dokončen
 
 ### Zpráva pro stavbu tunelu
 
-Pro použití ECIES namísto ElGamal je potřeba několik změn ve specifikaci vytváření tunelu [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies).
+Pro použití ECIES namísto ElGamal je potřeba několik změn ve specifikaci vytváření tunelu [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 Kromě toho provedeme zlepšení v zabezpečení zpráv pro stavbu tunelů.
 
 Ve fázi 1 změníme formát a šifrování
@@ -216,7 +216,7 @@ Nová zpráva o stavbě tunelů: Viz [Prop157](/proposals/157-new-tbm/).
 
 ### Šifrování žádostí
 
-Šifrování žádostí je stejné jako specifikováno v [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) a [Prop152](/proposals/152-ecies-tunnels/),
+Šifrování žádostí je stejné jako specifikováno v [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) a [Prop152](/proposals/152-ecies-tunnels/),
 používající Noise "N" vzor.
 
 Odpovědi na dotazy budou šifrovány ratchet tagem, pokud budou vyžádány v dotazu.
@@ -235,7 +235,7 @@ Obecně se bude jednat o Nové zprávy relace a budou posílány s nulovým stat
 #### KDF pro počáteční ck a h
 
 Toto je standard [NOISE](https://noiseprotocol.org/noise.html) pro vzor "N" s běžně používaným názvem protokolu.
-Toto je stejné jako specifikováno v [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) a [Prop152](/proposals/152-ecies-tunnels/) pro zprávy o stavbě tunelů.
+Toto je stejné jako specifikováno v [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) a [Prop152](/proposals/152-ecies-tunnels/) pro zprávy o stavbě tunelů.
 
 
   ```text
@@ -266,7 +266,7 @@ Toto je "e" vzor zprávy:
 
 Tvořitelé zprávy generují efemérní X25519 klíčový pár pro každou zprávu.
 Efemérní klíče musí být unikátní pro každou zprávu.
-Toto je stejné jako specifikováno v [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) a [Prop152](/proposals/152-ecies-tunnels/) pro zprávy o stavbě tunelů.
+Toto je stejné jako specifikováno v [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) a [Prop152](/proposals/152-ecies-tunnels/) pro zprávy o stavbě tunelů.
 
 
   ```dataspec
@@ -507,5 +507,5 @@ Cílové vydání: 0.9.53, začátek 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)

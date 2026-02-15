@@ -267,11 +267,11 @@ I2P टॉरेंट
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">आधुनिक सिफरस्पेस इकोसिस्टम्स</a>
+आधुनिक सिफरस्पेस इकोसिस्टम्स
 </div>
 <div class="content-entry-meta">🎥 प्रस्तुति • नवम्बर 4, 2011</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">विवरण</a>
+विवरण
 </div>
 </div>
 

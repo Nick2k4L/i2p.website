@@ -3,10 +3,10 @@ title: "Rendimiento"
 description: "Rendimiento de la red I2P: velocidad, conexiones y gestión de recursos"
 slug: "performance"
 aliases:
-  - "/es/about/performance/future"
-  - "/es/about/performance/future/"
-  - "/es/about/performance/history"
-  - "/es/about/performance/history/"
+  - "/es/docs/overview/performance#future"
+  - "/es/docs/overview/performance#future/"
+  - "/es/docs/overview/performance#history"
+  - "/es/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ Además, otros nodos I2P necesitan conocer un router I2P para probar su alcance 
 
 ## Mejoras de Rendimiento
 
-Para posibles mejoras de rendimiento futuras, consulta [Mejoras de Rendimiento Futuras](/about/performance/future).
+Para posibles mejoras de rendimiento futuras, consulta [Mejoras de Rendimiento Futuras](/docs/overview/performance#future).
 
-Para ver mejoras de rendimiento anteriores, consulta el [Historial de Rendimiento](/about/performance/history).
+Para ver mejoras de rendimiento anteriores, consulta el [Historial de Rendimiento](/docs/overview/performance#history).

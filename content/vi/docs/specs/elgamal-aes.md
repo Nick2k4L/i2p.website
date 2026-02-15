@@ -247,7 +247,7 @@ Có nhiều lĩnh vực có thể điều chỉnh các thuật toán của Sessi
   các thông điệp kiểm tra tunnel đến chính nó.
 
 - Thay đổi từ Session Tags sang
-  [một PRNG đồng bộ](/about/performance/future#prng).
+  [một PRNG đồng bộ](/docs/overview/performance#future#prng).
 
 - Một số ý tưởng này có thể yêu cầu loại thông điệp I2NP mới, hoặc
   đặt cờ trong

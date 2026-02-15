@@ -18,7 +18,7 @@ toc: true
 
 ## Poznámka
 
-Nasazení sítě a testování probíhá. Podléhá drobným revizím. Viz [SPEC](/docs/specs/implementation/) pro oficiální specifikaci.
+Nasazení sítě a testování probíhá. Podléhá drobným revizím. Viz [SPEC](/docs/specs/tunnel-implementation/) pro oficiální specifikaci.
 
 ## Přehled
 
@@ -272,7 +272,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-Pole flags je stejné jako definované v [Tunnel Creation](/docs/specs/implementation/) a obsahuje následující::
+Pole flags je stejné jako definované v [Tunnel Creation](/docs/specs/tunnel-implementation/) a obsahuje následující::
 
 Pořadí bitů: 76543210 (bit 7 je MSB)  bit 7: pokud je nastaven, povolit zprávy od kohokoliv  bit 6: pokud je nastaven, povolit zprávy komukoliv a odeslat odpověď na
 
@@ -337,7 +337,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 Možnosti odpovědi na tunnel build je struktura Mapping jak je definována v [Common Structures](/docs/specs/common-structures/). Toto je pro budoucí použití. Aktuálně nejsou definovány žádné možnosti. Pokud je struktura Mapping prázdná, jedná se o dva bajty 0x00 0x00. Maximální velikost Mapping (včetně pole délky) je 511 bajtů a maximální hodnota pole délky Mapping je 509.
 
-Odpověď byte je jedna z následujících hodnot definovaných v [Tunnel Creation](/docs/specs/implementation/) k zamezení fingerprintingu:
+Odpověď byte je jedna z následujících hodnot definovaných v [Tunnel Creation](/docs/specs/tunnel-implementation/) k zamezení fingerprintingu:
 
 - 0x00 (přijmout)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -472,7 +472,7 @@ This is the "e" message pattern:
 
 ElGamal tvůrci tunelů generují dočasný X25519 klíčový pár pro každý ECIES hop v tunelu a používají výše uvedené schéma pro šifrování svého BuildRequestRecord. ElGamal tvůrci tunelů budou používat schéma předcházející této specifikaci pro šifrování do ElGamal hopů.
 
-ECIES tvůrci tunelů budou muset šifrovat k veřejnému klíči každého ElGamal hopu pomocí schématu definovaného v [Tunnel Creation](/docs/specs/implementation/). ECIES tvůrci tunelů budou používat výše uvedené schéma pro šifrování k ECIES hopům.
+ECIES tvůrci tunelů budou muset šifrovat k veřejnému klíči každého ElGamal hopu pomocí schématu definovaného v [Tunnel Creation](/docs/specs/tunnel-implementation/). ECIES tvůrci tunelů budou používat výše uvedené schéma pro šifrování k ECIES hopům.
 
 To znamená, že hopové uzly tunelů uvidí pouze šifrované záznamy ze stejného typu šifrování.
 
@@ -533,7 +533,7 @@ Pro tvůrce tunnelů ElGamal a ECIES budou generovat jedinečné dočasné X2551
 
 ### Odůvodnění
 
-Jak je definováno v [Tunnel Creation](/docs/specs/implementation/). Neexistují žádné změny v šifrování pro ElGamal hopy.
+Jak je definováno v [Tunnel Creation](/docs/specs/tunnel-implementation/). Neexistují žádné změny v šifrování pro ElGamal hopy.
 
 ### Reply Record Encryption (ECIES)
 
@@ -550,7 +550,7 @@ Odpověď record je šifrovaná pomocí ChaCha20/Poly1305.
 ```
 ### Záznamy požadavků na sestavení
 
-Jak je definováno v [Tunnel Creation](/docs/specs/implementation/). Nejsou žádné změny v šifrování pro ElGamal hopy.
+Jak je definováno v [Tunnel Creation](/docs/specs/tunnel-implementation/). Nejsou žádné změny v šifrování pro ElGamal hopy.
 
 ### Security Analysis
 

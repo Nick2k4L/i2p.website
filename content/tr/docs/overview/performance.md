@@ -3,10 +3,10 @@ title: "Performans"
 description: "I2P ağ performansı: hız, bağlantılar ve kaynak yönetimi"
 slug: "performance"
 aliases:
-  - "/tr/about/performance/future"
-  - "/tr/about/performance/future/"
-  - "/tr/about/performance/history"
-  - "/tr/about/performance/history/"
+  - "/tr/docs/overview/performance#future"
+  - "/tr/docs/overview/performance#future/"
+  - "/tr/docs/overview/performance#history"
+  - "/tr/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ Ek olarak, diğer I2P düğümlerinin bir I2P router'ını erişilebilirlik ve k
 
 ## Performans İyileştirmeleri
 
-Gelecekte olası performans iyileştirmeleri için [Gelecekteki Performans İyileştirmeleri](/about/performance/future) bölümüne bakın.
+Gelecekte olası performans iyileştirmeleri için [Gelecekteki Performans İyileştirmeleri](/docs/overview/performance#future) bölümüne bakın.
 
-Geçmiş performans iyileştirmeleri için [Performans Geçmişi](/about/performance/history) bölümüne bakın.
+Geçmiş performans iyileştirmeleri için [Performans Geçmişi](/docs/overview/performance#history) bölümüne bakın.

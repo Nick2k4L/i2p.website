@@ -19,7 +19,7 @@ Sujet à révision.
 Statut :
 
 - Routeurs ECIES implémentés depuis la version 0.9.48, voir [Common](/docs/specs/common-structures/).
-- Construction de tunnels implémentée depuis la version 0.9.48, voir [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+- Construction de tunnels implémentée depuis la version 0.9.48, voir [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 - Messages cryptés aux routeurs ECIES implémentés depuis la version 0.9.49, voir [ECIES-ROUTERS](/docs/specs/ecies/).
 - Nouveaux messages de construction de tunnels implémentés depuis la version 0.9.51.
 
@@ -92,7 +92,7 @@ endroits dans la base de code. La plupart de ce travail a été effectué à la 
 
 ### Message de construction de tunnel
 
-Plusieurs changements à la spécification de création de tunnel [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
+Plusieurs changements à la spécification de création de tunnel [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 sont nécessaires pour utiliser ECIES au lieu d'ElGamal.
 De plus, nous apporterons des améliorations aux messages de construction de tunnel
 pour accroître la sécurité.
@@ -219,7 +219,7 @@ Nouveau message de construction de tunnels : Voir [Prop157](/proposals/157-new-t
 
 ### Chiffrement des requêtes
 
-Le chiffrement des demandes est le même que celui spécifié dans [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) et [Prop152](/proposals/152-ecies-tunnels/),
+Le chiffrement des demandes est le même que celui spécifié dans [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) et [Prop152](/proposals/152-ecies-tunnels/),
 utilisant le modèle Noise "N".
 
 Les réponses aux recherches seront chiffrées avec un tag à cliquet si demandé dans la recherche.
@@ -238,7 +238,7 @@ En général, ce seront des messages de nouvelle session et seront envoyés avec
 #### KDF pour ck et h initiaux
 
 Cela fait partie du standard [NOISE](https://noiseprotocol.org/noise.html) pour le modèle "N" avec un nom de protocole standard.
-C'est le même que spécifié dans [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) et [Prop152](/proposals/152-ecies-tunnels/) pour les messages de construction de tunnel.
+C'est le même que spécifié dans [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) et [Prop152](/proposals/152-ecies-tunnels/) pour les messages de construction de tunnel.
 
 
   ```text
@@ -269,7 +269,7 @@ C'est le modèle de message "e" :
 
 Les créateurs de message génèrent une paire de clés éphémères X25519 pour chaque message.
 Les clés éphémères doivent être uniques par message.
-C'est le même que spécifié dans [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) et [Prop152](/proposals/152-ecies-tunnels/) pour les messages de construction de tunnel.
+C'est le même que spécifié dans [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) et [Prop152](/proposals/152-ecies-tunnels/) pour les messages de construction de tunnel.
 
 
   ```dataspec
@@ -511,5 +511,5 @@ Version cible : 0.9.53, début 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)

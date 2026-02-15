@@ -138,8 +138,8 @@ torsocks --port 7695 $command_to_proxy
 Nachtrag: ``Beispielimplementierung des Angriffs``
                                                   
 
-[Eine Beispielimplementierung des Shared Identity-Angriffs auf HTTP
-Benutzeragenten](https://github.com/eyedeekay/colluding_sites_attack/)
+Eine Beispielimplementierung des Shared Identity-Angriffs auf HTTP
+Benutzeragenten
 existiert seit mehreren Jahren. Ein weiteres Beispiel ist im
 ``simple-colluder`` Unterverzeichnis von idks prop166
 Repository verfügbar. Diese

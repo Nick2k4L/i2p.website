@@ -246,7 +246,7 @@ Session Key Manager के algorithms को tune करने के लिए 
   खुद को tunnel test messages भेजता है।
 
 - Session Tags से बदलकर
-  [एक synchronized PRNG](/about/performance/future#prng) में।
+  [एक synchronized PRNG](/docs/overview/performance#future#prng) में।
 
 - इनमें से कई विचारों के लिए एक नया I2NP message type की आवश्यकता हो सकती है, या
   [Delivery Instructions](/docs/specs/tunnel-message#struct_TunnelMessageDeliveryInstructions) में

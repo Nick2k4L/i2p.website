@@ -18,7 +18,7 @@ toc: true
 
 ## ملاحظة
 
-نشر الشبكة والاختبار قيد التقدم. قابل للمراجعات الطفيفة. راجع [SPEC](/docs/specs/implementation/) للمواصفات الرسمية.
+نشر الشبكة والاختبار قيد التقدم. قابل للمراجعات الطفيفة. راجع [SPEC](/docs/specs/tunnel-implementation/) للمواصفات الرسمية.
 
 ## نظرة عامة
 
@@ -270,7 +270,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-حقل الأعلام هو نفسه كما هو معرّف في [إنشاء الأنفاق](/docs/specs/implementation/) ويحتوي على ما يلي::
+حقل الأعلام هو نفسه كما هو معرّف في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/) ويحتوي على ما يلي::
 
 ترتيب البت: 76543210 (البت 7 هو MSB)  البت 7: إذا تم تعيينه، السماح بالرسائل من أي شخص  البت 6: إذا تم تعيينه، السماح بالرسائل إلى أي شخص، وإرسال الرد إلى
 
@@ -335,7 +335,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 خيارات رد بناء tunnel هي هيكل Mapping كما هو محدد في [الهياكل المشتركة](/docs/specs/common-structures/). هذا للاستخدام المستقبلي. لا توجد خيارات محددة حالياً. إذا كان هيكل Mapping فارغاً، فهذا يكون بايتين 0x00 0x00. الحد الأقصى لحجم Mapping (بما في ذلك حقل الطول) هو 511 بايت، والقيمة القصوى لحقل طول Mapping هي 509.
 
-بايت الرد هو إحدى القيم التالية كما هو محدد في [إنشاء الأنفاق](/docs/specs/implementation/) لتجنب بصمة الهوية:
+بايت الرد هو إحدى القيم التالية كما هو محدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/) لتجنب بصمة الهوية:
 
 - 0x00 (قبول)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -470,7 +470,7 @@ This is the "e" message pattern:
 
 منشئو أنفاق ElGamal يولدون زوج مفاتيح X25519 مؤقت لكل قفزة ECIES في النفق، ويستخدمون المخطط أعلاه لتشفير BuildRequestRecord الخاص بهم. سيستخدم منشئو أنفاق ElGamal المخطط السابق لهذه المواصفة للتشفير إلى قفزات ElGamal.
 
-منشئو أنفاق ECIES سيحتاجون إلى التشفير لكل مفتاح عام لقفزة ElGamal باستخدام المخطط المحدد في [إنشاء الأنفاق](/docs/specs/implementation/). سيستخدم منشئو أنفاق ECIES المخطط أعلاه للتشفير إلى قفزات ECIES.
+منشئو أنفاق ECIES سيحتاجون إلى التشفير لكل مفتاح عام لقفزة ElGamal باستخدام المخطط المحدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/). سيستخدم منشئو أنفاق ECIES المخطط أعلاه للتشفير إلى قفزات ECIES.
 
 هذا يعني أن قفزات tunnel ستشاهد فقط السجلات المشفرة من نفس نوع التشفير الخاص بها.
 
@@ -531,7 +531,7 @@ This is the "e" message pattern:
 
 ### المبرر
 
-كما هو محدد في [إنشاء الأنفاق](/docs/specs/implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
+كما هو محدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
 
 ### Reply Record Encryption (ECIES)
 
@@ -548,7 +548,7 @@ This is the "e" message pattern:
 ```
 ### سجلات طلب البناء
 
-كما هو محدد في [Tunnel Creation](/docs/specs/implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
+كما هو محدد في [Tunnel Creation](/docs/specs/tunnel-implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
 
 ### Security Analysis
 

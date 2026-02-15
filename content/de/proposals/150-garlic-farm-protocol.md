@@ -11,7 +11,7 @@ toc: true
 
 ## Überblick
 
-Dies ist die Spezifikation für das Garlic Farm-Wire-Protokoll, basierend auf JRaft, seinem "exts"-Code zur Implementierung über TCP und seiner "dmprinter"-Beispielanwendung [JRAFT](https://github.com/datatechnology/jraft). JRaft ist eine Implementierung des Raft-Protokolls [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+Dies ist die Spezifikation für das Garlic Farm-Wire-Protokoll, basierend auf JRaft, seinem "exts"-Code zur Implementierung über TCP und seiner "dmprinter"-Beispielanwendung [JRAFT](https://github.com/datatechnology/jraft). JRaft ist eine Implementierung des Raft-Protokolls [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 Wir konnten keine Implementierung mit einem dokumentierten Wire-Protokoll finden. Allerdings ist die JRaft-Implementierung einfach genug, dass wir den Code überprüfen und dann sein Protokoll dokumentieren konnten. Dieser Vorschlag ist das Ergebnis dieser Bemühung.
 
@@ -507,7 +507,7 @@ Keine Abwärtskompatibilitätsprobleme.
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

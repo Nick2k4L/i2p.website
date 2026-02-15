@@ -3,10 +3,10 @@ title: "Производительность"
 description: "Производительность сети I2P: скорость, соединения и управление ресурсами"
 slug: "performance"
 aliases:
-  - "/ru/about/performance/future"
-  - "/ru/about/performance/future/"
-  - "/ru/about/performance/history"
-  - "/ru/about/performance/history/"
+  - "/ru/docs/overview/performance#future"
+  - "/ru/docs/overview/performance#future/"
+  - "/ru/docs/overview/performance#history"
+  - "/ru/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ server - hopb1 - hopb2 - hopb3 - hopc1 - hopc2 - hopc3 - client
 
 ## Улучшения производительности
 
-Для возможных будущих улучшений производительности см. [Будущие улучшения производительности](/about/performance/future).
+Для возможных будущих улучшений производительности см. [Будущие улучшения производительности](/docs/overview/performance#future).
 
-Для просмотра улучшений производительности в прошлом см. [Историю производительности](/about/performance/history).
+Для просмотра улучшений производительности в прошлом см. [Историю производительности](/docs/overview/performance#history).

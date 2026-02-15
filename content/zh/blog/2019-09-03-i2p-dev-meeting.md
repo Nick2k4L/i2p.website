@@ -31,7 +31,7 @@ categories: ["meeting"]
 20:01:37 &lt;zzz&gt; nextloop、meeh，这些事项有预计完成时间吗？
 20:03:06 &lt;zzz&gt; 关于 1) 还有别的吗？
 20:04:02 &lt;zzz&gt; 2) I2P 浏览器“labs”项目状态 (sadie, meeh)
-20:04:25 &lt;zzz&gt; sadie、meeh，现在的状态如何，下一步的里程碑是什么？          &lt;sadie&gt; 原计划周五发布 Beta 5，但出现了一些问题。看起来有些已经准备好了 https://i2bbparts.meeh.no/i2p-browser/ 但我确实需要听 meeh 确认下一次的截止日期。          &lt;sadie&gt; Lab 页面将在本周末上线。下一个浏览器里程碑将讨论 Beta 6 发布的控制台需求
+20:04:25 &lt;zzz&gt; sadie、meeh，现在的状态如何，下一步的里程碑是什么？          &lt;sadie&gt; 原计划周五发布 Beta 5，但出现了一些问题。看起来有些已经准备好了 `https://i2bbparts.meeh.no/i2p-browser/` 但我确实需要听 meeh 确认下一次的截止日期。          &lt;sadie&gt; Lab 页面将在本周末上线。下一个浏览器里程碑将讨论 Beta 6 发布的控制台需求
 20:05:51 &lt;zzz&gt; 关于 2) 还有别的吗？
 20:06:43 &lt;zzz&gt; 3) Outproxy（出口代理）用例/状态 (sadie)
 20:06:57 &lt;zzz&gt; sadie，现在的状态如何，下一步的里程碑是什么？          &lt;sadie&gt; 任何人都可以在工单 2472 上查看我们的会议记录。我们已经确定了用例状态，并整理了一份需求清单。下一步里程碑将是“朋友和家人”用例的用户需求，以及“朋友和家人”和“通用途例”的开发需求，以便看出它们可能在哪些方面重叠

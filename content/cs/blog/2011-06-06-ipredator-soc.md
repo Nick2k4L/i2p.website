@@ -6,7 +6,7 @@ description: "Byl jsem pověřen přispět kódem do I2P během léta 2011, a to
 categories: ["community"]
 ---
 
-Byl jsem pověřen přispět do I2P kódem během léta 2011, a to implementací řídicího protokolu a klienta pro tento protokol (podobně jako [Vidalia](https://www.torproject.org/projects/vidalia.html) pro Tor). Tato práce vzešla z nápadu Jan-Erika Fiskeho z [ViaEuropa](http://viaeuropa.se) a Petera Sundeho, známého díky [flattr](https://flattr.com) a [The Pirate Bay](http://thepiratebay.org/), a její financování štědře zajistí [Relakks](https://www.relakks.com/?cid=gb) a [Ipredator](https://www.ipredator.se/?lang=en).
+Byl jsem pověřen přispět do I2P kódem během léta 2011, a to implementací řídicího protokolu a klienta pro tento protokol (podobně jako [Vidalia](https://www.torproject.org/projects/vidalia.html) pro Tor). Tato práce vzešla z nápadu Jan-Erika Fiskeho z [ViaEuropa](http://viaeuropa.se) a Petera Sundeho, známého díky [flattr](https://flattr.com) a [The Pirate Bay](http://thepiratebay.org/), a její financování štědře zajistí [Relakks](https://www.relakks.com/?cid=gb) a Ipredator.
 
 Aktuální informace najdete na fóru zzz a v kanálu #i2p-dev na chat.freenode.net
 

@@ -39,7 +39,7 @@ toc: true
 
 关键是找到一个小而快的非对称加密。ElGamal 在 514 字节处有点痛苦。我们可以做得更好。
 
-参见例如 http://security.stackexchange.com/questions/824...
+参见例如 `http://security.stackexchange.com/questions/824...`
 
 这适用于少量接收者（或实际上是密钥；如果你愿意，你仍然可以将密钥分发给多个人）。
 

@@ -31,7 +31,7 @@ categories: ["meeting"]
 20:01:37 <zzz> nextloop, meeh, habt ihr ETAs für diese Punkte?
 20:03:06 <zzz> Sonst noch etwas zu 1) ?
 20:04:02 <zzz> 2) I2P Browser "labs" Projektstatus (sadie, meeh)
-20:04:25 <zzz> sadie, meeh, wie ist der Status, und was ist der nächste Meilenstein?          <sadie> Beta 5 sollte am Freitag erscheinen, aber es gab einige Probleme. Es sieht so aus, als wären einige bereit https://i2bbparts.meeh.no/i2p-browser/ aber ich musste wirklich von meeh den nächsten Termin dafür hören          <sadie> Die Lab-Seite wird bis Ende dieser Woche live sein. Der nächste Browser-Meilenstein wird die Besprechung der Konsolenanforderungen für das Beta 6-Release sein
+20:04:25 <zzz> sadie, meeh, wie ist der Status, und was ist der nächste Meilenstein?          <sadie> Beta 5 sollte am Freitag erscheinen, aber es gab einige Probleme. Es sieht so aus, als wären einige bereit `https://i2bbparts.meeh.no/i2p-browser/` aber ich musste wirklich von meeh den nächsten Termin dafür hören          <sadie> Die Lab-Seite wird bis Ende dieser Woche live sein. Der nächste Browser-Meilenstein wird die Besprechung der Konsolenanforderungen für das Beta 6-Release sein
 20:05:51 <zzz> Sonst noch etwas zu 2) ?
 20:06:43 <zzz> 3) Outproxy Anwendungsfälle / Status (sadie)
 20:06:57 <zzz> sadie, wie ist der Status, und was ist der nächste Meilenstein?          <sadie> Jeder kann unseren Sitzungsnotizen in Ticket 2472 folgen. Wir haben über den Status der Anwendungsfälle entschieden und eine Liste von Anforderungen erstellt. Der nächste Meilenstein werden Nutzeranforderungen für einen Friends-and-Family-Anwendungsfall sowie Entwicklungsanforderungen für Friends and Family und den allgemeinen Anwendungsfall sein, um zu sehen, wo sie sich überschneiden

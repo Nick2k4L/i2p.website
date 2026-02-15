@@ -3,10 +3,10 @@ title: "Výkon"
 description: "Výkon I2P sítě: rychlost, připojení a správa zdrojů"
 slug: "performance"
 aliases:
-  - "/cs/about/performance/future"
-  - "/cs/about/performance/future/"
-  - "/cs/about/performance/history"
-  - "/cs/about/performance/history/"
+  - "/cs/docs/overview/performance#future"
+  - "/cs/docs/overview/performance#future/"
+  - "/cs/docs/overview/performance#history"
+  - "/cs/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ Navíc ostatní I2P uzly potřebují znát I2P router, aby ho mohly testovat z h
 
 ## Zlepšení výkonu
 
-Pro možná budoucí vylepšení výkonu viz [Budoucí vylepšení výkonu](/about/performance/future).
+Pro možná budoucí vylepšení výkonu viz [Budoucí vylepšení výkonu](/docs/overview/performance#future).
 
-Pro minulá vylepšení výkonu viz [Historie výkonu](/about/performance/history).
+Pro minulá vylepšení výkonu viz [Historie výkonu](/docs/overview/performance#history).

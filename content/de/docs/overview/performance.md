@@ -3,10 +3,10 @@ title: "Leistung"
 description: "I2P-Netzwerk-Performance: Geschwindigkeit, Verbindungen und Ressourcenverwaltung"
 slug: "performance"
 aliases:
-  - "/de/about/performance/future"
-  - "/de/about/performance/future/"
-  - "/de/about/performance/history"
-  - "/de/about/performance/history/"
+  - "/de/docs/overview/performance#future"
+  - "/de/docs/overview/performance#future/"
+  - "/de/docs/overview/performance#history"
+  - "/de/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ Zusätzlich müssen andere I2P-Knoten einen I2P router kennen, um ihn auf Erreic
 
 ## Leistungsverbesserungen
 
-Für mögliche zukünftige Leistungsverbesserungen siehe [Zukünftige Leistungsverbesserungen](/about/performance/future).
+Für mögliche zukünftige Leistungsverbesserungen siehe [Zukünftige Leistungsverbesserungen](/docs/overview/performance#future).
 
-Für vergangene Leistungsverbesserungen siehe die [Leistungshistorie](/about/performance/history).
+Für vergangene Leistungsverbesserungen siehe die [Leistungshistorie](/docs/overview/performance#history).

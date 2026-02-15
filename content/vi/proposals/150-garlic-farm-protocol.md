@@ -14,7 +14,7 @@ toc: true
 Đây là đặc tả cho giao thức dây Garlic Farm,
 dựa trên JRaft, mã "exts" của nó để triển khai qua TCP,
 và ứng dụng mẫu "dmprinter" của nó [JRAFT](https://github.com/datatechnology/jraft).
-JRaft là một triển khai của giao thức Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+JRaft là một triển khai của giao thức Raft [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 Chúng tôi không thể tìm thấy bất kỳ triển khai nào có tài liệu về giao thức dây.
 Tuy nhiên, triển khai JRaft đủ đơn giản để chúng tôi có thể
@@ -584,7 +584,7 @@ Không có vấn đề tương thích ngược.
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

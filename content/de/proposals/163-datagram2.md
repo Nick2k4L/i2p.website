@@ -322,7 +322,7 @@ oder durch den Router auf der Ratchet-Ebene.
 ## Anmerkungen
 
 - Die praktische Länge ist durch niedrigere Protokollschichten begrenzt - die Tunnel-
-  Nachrichtenspezifikation [TUNMSG](/docs/specs/implementation/#notes) begrenzt Nachrichten auf etwa 61,2 KB und die Transporte
+  Nachrichtenspezifikation [TUNMSG](/docs/specs/tunnel-implementation/#notes) begrenzt Nachrichten auf etwa 61,2 KB und die Transporte
   [TRANSPORT](/docs/overview/transport/) beschränken Nachrichten derzeit auf etwa 64 KB, sodass die Datenlänge hier
   auf etwa 61 KB begrenzt ist.
 - Siehe wichtige Anmerkungen zur Zuverlässigkeit großer Datagramme [API](/docs/api/datagrams/). Für
@@ -371,4 +371,4 @@ SAM-UDP-Anwendungen: Keine bekannt
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
 * [TRANSPORT](/docs/overview/transport/)
-* [TUNMSG](/docs/specs/implementation/#notes)
+* [TUNMSG](/docs/specs/tunnel-implementation/#notes)

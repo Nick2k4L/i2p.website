@@ -18,7 +18,7 @@ toc: true
 
 ## Remarque
 
-Déploiement et tests du réseau en cours. Sous réserve de légères révisions. Voir [SPEC](/docs/specs/implementation/) pour la spécification officielle.
+Déploiement et tests du réseau en cours. Sous réserve de légères révisions. Voir [SPEC](/docs/specs/tunnel-implementation/) pour la spécification officielle.
 
 ## Aperçu
 
@@ -272,7 +272,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-Le champ flags est identique à celui défini dans [Tunnel Creation](/docs/specs/implementation/) et contient ce qui suit::
+Le champ flags est identique à celui défini dans [Tunnel Creation](/docs/specs/tunnel-implementation/) et contient ce qui suit::
 
 Ordre des bits: 76543210 (le bit 7 est le MSB)  bit 7: si positionné, autoriser les messages de n'importe qui  bit 6: si positionné, autoriser l'envoi de messages à n'importe qui, et envoyer la réponse à
 
@@ -337,7 +337,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 Les options de réponse de construction de tunnel constituent une structure Mapping (structure de correspondance) telle que définie dans [Common Structures](/docs/specs/common-structures/). Ceci est prévu pour un usage futur. Aucune option n’est actuellement définie. Si la structure Mapping est vide, cela correspond à deux octets 0x00 0x00. La taille maximale du Mapping (champ de longueur inclus) est de 511 octets, et la valeur maximale du champ de longueur du Mapping est de 509.
 
-L'octet de réponse est l'une des valeurs suivantes, telles que définies dans [Tunnel Creation](/docs/specs/implementation/) pour éviter le fingerprinting :
+L'octet de réponse est l'une des valeurs suivantes, telles que définies dans [Tunnel Creation](/docs/specs/tunnel-implementation/) pour éviter le fingerprinting :
 
 - 0x00 (accepter)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -472,7 +472,7 @@ This is the "e" message pattern:
 
 Les créateurs de tunnel ElGamal génèrent une paire de clés X25519 éphémère pour chaque saut ECIES dans le tunnel, et utilisent le schéma ci-dessus pour chiffrer leur BuildRequestRecord (enregistrement de requête de construction). Les créateurs de tunnel ElGamal utiliseront le schéma antérieur à cette spécification pour chiffrer à destination des sauts ElGamal.
 
-Les créateurs de tunnel ECIES devront chiffrer avec la clé publique de chaque saut ElGamal en utilisant le schéma défini dans [Tunnel Creation](/docs/specs/implementation/). Les créateurs de tunnel ECIES utiliseront le schéma ci-dessus pour chiffrer à destination des sauts ECIES.
+Les créateurs de tunnel ECIES devront chiffrer avec la clé publique de chaque saut ElGamal en utilisant le schéma défini dans [Tunnel Creation](/docs/specs/tunnel-implementation/). Les créateurs de tunnel ECIES utiliseront le schéma ci-dessus pour chiffrer à destination des sauts ECIES.
 
 Cela signifie que les sauts de tunnel ne voient que des enregistrements chiffrés correspondant à leur propre type de chiffrement.
 
@@ -533,7 +533,7 @@ Les créateurs de tunnel ElGamal et ECIES généreront des paires de clés X2551
 
 ### Chiffrement de l'enregistrement de requête (ElGamal)
 
-Tel que défini dans [Création de tunnels](/docs/specs/implementation/). Aucune modification du chiffrement pour les sauts ElGamal.
+Tel que défini dans [Création de tunnels](/docs/specs/tunnel-implementation/). Aucune modification du chiffrement pour les sauts ElGamal.
 
 ### Chiffrement de l’enregistrement de réponse (ECIES)
 
@@ -550,7 +550,7 @@ L’enregistrement de réponse est chiffré avec ChaCha20/Poly1305.
 ```
 ### Chiffrement de l’enregistrement de réponse (ElGamal)
 
-Comme défini dans [Création de tunnel](/docs/specs/implementation/). Il n’y a aucun changement concernant le chiffrement des sauts ElGamal.
+Comme défini dans [Création de tunnel](/docs/specs/tunnel-implementation/). Il n’y a aucun changement concernant le chiffrement des sauts ElGamal.
 
 ### Analyse de sécurité
 
@@ -598,8 +598,8 @@ Voir [Proposition 156](/proposals/156-ecies-routers).
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop156](/proposals/156-ecies-routers/)
 * [Prop157](/proposals/157-new-tbm/)
-* [SPEC](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Création de tunnel](/docs/specs/implementation/)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Création de tunnel](/docs/specs/tunnel-implementation/)
 * [Chiffrement multiple](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

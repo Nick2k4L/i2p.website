@@ -45,7 +45,7 @@ SE conseguirmos encontrar um algoritmo que seja pequeno e rápido.
 O truque é encontrar uma criptografia assimétrica que seja pequena e rápida. ElGamal com 514
 bytes é um pouco doloroso aqui. Podemos fazer melhor.
 
-Veja por exemplo http://security.stackexchange.com/questions/824...
+Veja por exemplo `http://security.stackexchange.com/questions/824...`
 
 Isso funciona para números pequenos de destinatários (ou, na verdade, chaves; você ainda pode
 distribuir chaves para várias pessoas, se quiser).

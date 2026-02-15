@@ -164,7 +164,7 @@ categories: ["meeting"]
 [23:31] <Nightblade> Airhook kesintili, güvenilmez veya gecikmeli ağları zarifçe idare eder  <-- hehe I2P için pek iyimser bir tanım değil!
 [23:31] <duck> nasıl gidiyor?
 [23:32] <duck> datagram over i2p tartışmasını sona bırakalım
-[23:32] <tessier> Açık wikilerde dolaşıp şuna link vermeyi seviyorum: http://www.fissure.org/humour/pics/squirre   l.jpg
+[23:32] <tessier> Açık wikilerde dolaşıp şuna link vermeyi seviyorum: `http://www.fissure.org/humour/pics/squirre`   l.jpg
 [23:32] <tessier> airhook harika
 [23:32] <tessier> onu bir p2p ağ kurmak için de inceliyordum.
 [23:32] <Nightblade> bana güvenilir görünüyor (#3)
@@ -236,7 +236,7 @@ categories: ["meeting"]
 [23:47] <wilde> http://en.wikipedia.org/wiki/I2p
 [23:47] <Masterboy> ama 0.4 bitene kadar reklam yok konusunda hemfikirim
 [23:47] <Masterboy> neee???????
-[23:47] <wilde> http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] <wilde> `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] <Masterboy> protol0l harika iş çıkarıyor ;P
 [23:48] <Masterboy> ;))))))
 [23:48] <hypercubus> güzel yazım hatası ;-)
@@ -267,9 +267,9 @@ categories: ["meeting"]
 [23:54] <duck> 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] <duck> tessier: bununla ilgili gerçek dünya deneyimin var mı
-[23:55] <duck> (http://www.airhook.org/)
+[23:55] <duck> (`http://www.airhook.org/)`
 [23:55] * Masterboy bunu deneyecek :P
-[23:56] <duck> java implementasyonu (çalışıp çalışmadığını bilmiyorum) http://cvs.ofb.net/airhook-j/
+[23:56] <duck> java implementasyonu (çalışıp çalışmadığını bilmiyorum) `http://cvs.ofb.net/airhook-j/`
 [23:56] <duck> python implementasyonu (dağınık, geçmişte çalışıyordu) http://cvs.sourceforge.net/viewcvs.py/khashmir   /khashmir/airhook.py
 [23:58] * duck söylenme-vanasını açar
 [23:58] <Nightblade> j olanı da gpl

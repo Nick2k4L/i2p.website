@@ -11,7 +11,7 @@ toc: true
 
 ## نظرة عامة
 
-هذه هي المواصفات لبروتوكول مزرعة الثوم للسلك، بناءً على JRaft، كود "exts" الخاص به للتنفيذ عبر الـTCP، وتطبيق العينة "dmprinter" [JRAFT](https://github.com/datatechnology/jraft). JRaft هو تنفيذ لبروتوكول Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+هذه هي المواصفات لبروتوكول مزرعة الثوم للسلك، بناءً على JRaft، كود "exts" الخاص به للتنفيذ عبر الـTCP، وتطبيق العينة "dmprinter" [JRAFT](https://github.com/datatechnology/jraft). JRaft هو تنفيذ لبروتوكول Raft [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 لم نتمكن من العثور على أي تنفيذ يحتوي على بروتوكول سلك موثق. ومع ذلك، فإن تنفيذ JRaft بسيط بما فيه الكفاية لدرجة يمكننا من خلالها فحص الكود ثم توثيق بروتوكوله. هذا الاقتراح هو نتيجة لهذا الجهد.
 
@@ -549,7 +549,7 @@ Atomix كبير جدًا ولن يسمح بالتخصيص لنا لتوجيه
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

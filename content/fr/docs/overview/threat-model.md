@@ -68,7 +68,7 @@ En résumé, si un attaquant se trouve aux deux extrémités de votre tunnel en 
 
 Défenses partielles implémentées dans I2P :
 
-- [Ordre strict](/docs/specs/implementation/#ordering) des pairs
+- [Ordre strict](/docs/specs/tunnel-implementation/#ordering) des pairs
 - Profilage et sélection des pairs à partir d'un petit groupe qui change lentement
 - Limites sur le nombre de tunnels routés à travers un seul pair
 - Prévention des pairs provenant de la même plage IP /16 d'être membres d'un seul tunnel
@@ -119,7 +119,7 @@ Le partitionnement analytique du réseau en recherchant les différences dans le
 
 L'attaque du prédécesseur consiste à collecter passivement des statistiques dans le but de voir quels pairs sont « proches » de la destination en participant à leurs tunnels et en suivant le saut précédent ou suivant (pour les tunnels sortants ou entrants, respectivement). Au fil du temps, en utilisant un échantillon parfaitement aléatoire de pairs et un ordre aléatoire, un attaquant pourrait voir quel pair apparaît comme « plus proche » statistiquement plus que les autres, et ce pair serait à son tour l'endroit où se trouve la cible.
 
-I2P évite cela de quatre façons : premièrement, les pairs sélectionnés pour participer aux tunnels ne sont pas échantillonnés de manière aléatoire dans tout le réseau — ils sont dérivés de l'algorithme de sélection des pairs qui les divise en niveaux. Deuxièmement, avec l'[ordre strict](/docs/specs/implementation/#ordering) des pairs dans un tunnel, le fait qu'un pair apparaisse plus fréquemment ne signifie pas qu'il soit la source. Troisièmement, avec la longueur de tunnel permutée (non activée par défaut), même les tunnels à 0 saut peuvent fournir un déni plausible car la variation occasionnelle de la passerelle ressemblera à des tunnels normaux. Quatrièmement, avec les routes restreintes (non implémentées), seul le pair avec une connexion restreinte vers la cible contactera jamais la cible, tandis que les attaquants ne feront que se heurter à cette passerelle.
+I2P évite cela de quatre façons : premièrement, les pairs sélectionnés pour participer aux tunnels ne sont pas échantillonnés de manière aléatoire dans tout le réseau — ils sont dérivés de l'algorithme de sélection des pairs qui les divise en niveaux. Deuxièmement, avec l'[ordre strict](/docs/specs/tunnel-implementation/#ordering) des pairs dans un tunnel, le fait qu'un pair apparaisse plus fréquemment ne signifie pas qu'il soit la source. Troisièmement, avec la longueur de tunnel permutée (non activée par défaut), même les tunnels à 0 saut peuvent fournir un déni plausible car la variation occasionnelle de la passerelle ressemblera à des tunnels normaux. Quatrièmement, avec les routes restreintes (non implémentées), seul le pair avec une connexion restreinte vers la cible contactera jamais la cible, tandis que les attaquants ne feront que se heurter à cette passerelle.
 
 La méthode actuelle de construction de tunnel a été spécifiquement conçue pour contrer l'attaque du prédécesseur. Voir aussi [l'attaque par intersection](#intersection-attacks).
 

@@ -25,7 +25,7 @@ categories: ["meeting"]
 20:01:37 &lt;zzz&gt; nextloop, meeh, các bạn có ETAs (thời hạn ước tính) cho những hạng mục đó không?
 20:03:06 &lt;zzz&gt; còn gì nữa cho mục 1) không?
 20:04:02 &lt;zzz&gt; 2) Tình trạng dự án I2P Browser "labs" (sadie, meeh)
-20:04:25 &lt;zzz&gt; sadie, meeh, tình trạng ra sao, và mốc tiếp theo là gì?          &lt;sadie&gt; Beta 5 dự kiến ra mắt vào thứ Sáu, nhưng đã có một số vấn đề. Có vẻ một vài bản đã sẵn sàng https://i2bbparts.meeh.no/i2p-browser/ nhưng tôi thực sự cần nghe từ meeh về hạn chót tiếp theo cho việc này          &lt;sadie&gt; Trang Lab sẽ hoạt động trước cuối tuần này. Mốc tiếp theo của Browser sẽ là thảo luận các yêu cầu của bảng điều khiển cho phát hành beta 6
+20:04:25 &lt;zzz&gt; sadie, meeh, tình trạng ra sao, và mốc tiếp theo là gì?          &lt;sadie&gt; Beta 5 dự kiến ra mắt vào thứ Sáu, nhưng đã có một số vấn đề. Có vẻ một vài bản đã sẵn sàng `https://i2bbparts.meeh.no/i2p-browser/` nhưng tôi thực sự cần nghe từ meeh về hạn chót tiếp theo cho việc này          &lt;sadie&gt; Trang Lab sẽ hoạt động trước cuối tuần này. Mốc tiếp theo của Browser sẽ là thảo luận các yêu cầu của bảng điều khiển cho phát hành beta 6
 20:05:51 &lt;zzz&gt; còn gì nữa cho mục 2) không?
 20:06:43 &lt;zzz&gt; 3) Các trường hợp sử dụng Outproxy / tình trạng (sadie)
 20:06:57 &lt;zzz&gt; sadie, tình trạng ra sao, và mốc tiếp theo là gì?          &lt;sadie&gt; Ai cũng có thể theo dõi biên bản họp của chúng tôi trên ticket 2472. Chúng tôi đã quyết định các trạng thái của các trường hợp sử dụng và có một danh sách yêu cầu. Mốc tiếp theo sẽ là yêu cầu người dùng cho một trường hợp sử dụng Friends and Family, cũng như các yêu cầu phát triển cho Friends and Familiy và trường hợp sử dụng General để xem chúng có chồng lấn ở đâu

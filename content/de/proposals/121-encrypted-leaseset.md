@@ -42,7 +42,7 @@ WENN wir einen Algorithmus finden, der klein und schnell ist.
 
 Der Trick besteht darin, eine asymmetrische Verschlüsselung zu finden, die klein und schnell ist. ElGamal mit 514 Bytes ist hier etwas schmerzhaft. Wir können es besser machen.
 
-Siehe z.B. http://security.stackexchange.com/questions/824...
+Siehe z.B. `http://security.stackexchange.com/questions/824...`
 
 Dies funktioniert für kleine Anzahlen von Empfängern (oder eigentlich, Schlüssel; Sie können Schlüssel immer noch an mehrere Personen verteilen, wenn Sie möchten).
 

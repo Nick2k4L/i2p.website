@@ -124,7 +124,7 @@ categories: ["meeting"]
 [23:31] <Nightblade> Airhook geht elegant mit intermittierenden, unzuverlässigen oder verzögerten Netzwerken um  <-- hehe, keine optimistische Beschreibung von I2P!
 [23:31] <duck> wie läuft es?
 [23:32] <duck> lasst uns die Diskussion über Datagramme über i2p ans Ende setzen
-[23:32] <tessier> ich laufe gern in offene Wikis und verlinke das hier: http://www.fissure.org/humour/pics/squirre   l.jpg
+[23:32] <tessier> ich laufe gern in offene Wikis und verlinke das hier: `http://www.fissure.org/humour/pics/squirre`   l.jpg
 [23:32] <tessier> airhook rockt
 [23:32] <tessier> ich habe es mir auch für den Aufbau eines p2p‑Netzwerks angesehen.
 [23:32] <Nightblade> wirkt auf mich zuverlässig (#3)
@@ -196,7 +196,7 @@ categories: ["meeting"]
 [23:47] &lt;wilde&gt; http://en.wikipedia.org/wiki/I2p
 [23:47] &lt;Masterboy&gt; aber ich stimme zu, dass es keine Werbung gibt, bis 0.4 fertig ist
 [23:47] &lt;Masterboy&gt; waaaas???????
-[23:47] &lt;wilde&gt; http://www.ovmj.org/GNUnet/links.php3?xlang=English
+[23:47] &lt;wilde&gt; `http://www.ovmj.org/GNUnet/links.php3?xlang=English`
 [23:48] &lt;Masterboy&gt; protol0l macht einen großartigen Job ;P
 [23:48] &lt;Masterboy&gt; ;)))))) 
 [23:48] &lt;hypercubus&gt; schöner Tippfehler ;-)
@@ -227,9 +227,9 @@ categories: ["meeting"]
 [23:54] &lt;duck&gt; 100 * 10 = 1000
 [23:55] * duck pops("5 airhook")
 [23:55] &lt;duck&gt; tessier: hast du damit irgendwelche Praxiserfahrung
-[23:55] &lt;duck&gt; (http://www.airhook.org/)
+[23:55] &lt;duck&gt; (`http://www.airhook.org/)`
 [23:55] * Masterboy wird das mal ausprobieren:P
-[23:56] &lt;duck&gt; Java-Implementierung (keine Ahnung, ob sie überhaupt funktioniert) http://cvs.ofb.net/airhook-j/
+[23:56] &lt;duck&gt; Java-Implementierung (keine Ahnung, ob sie überhaupt funktioniert) `http://cvs.ofb.net/airhook-j/`
 [23:56] &lt;duck&gt; Python-Implementierung (ein Chaos, hat früher funktioniert) http://cvs.sourceforge.net/viewcvs.py/khashmir   /khashmir/airhook.py
 [23:58] * duck öffnet das Rant-Ventil
 [23:58] &lt;Nightblade&gt; die j ist auch GPL

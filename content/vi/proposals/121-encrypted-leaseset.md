@@ -39,7 +39,7 @@ NẾU chúng ta có thể tìm thấy một thuật toán nhỏ và nhanh.
 
 Thủ thuật là tìm một mã hóa bất đối xứng nhỏ và nhanh. ElGamal với 514 byte có chút khó khăn ở đây. Chúng ta có thể làm tốt hơn.
 
-Xem ví dụ: http://security.stackexchange.com/questions/824...
+Xem ví dụ: `http://security.stackexchange.com/questions/824...`
 
 Điều này hoạt động với số lượng nhỏ người nhận (hoặc thực tế là khóa; bạn vẫn có thể phân phối khóa cho nhiều người nếu muốn).
 

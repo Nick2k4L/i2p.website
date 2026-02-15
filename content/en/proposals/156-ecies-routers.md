@@ -19,7 +19,7 @@ Subject to revision.
 Status:
 
 - ECIES Routers implemented as of 0.9.48, see [Common Structures](/docs/specs/common-structures/).
-- Tunnel building implemented as of 0.9.48, see [Tunnel Creation ECIES](/docs/specs/implementation/).
+- Tunnel building implemented as of 0.9.48, see [Tunnel Creation ECIES](/docs/specs/tunnel-implementation/).
 - Encrypted messages to ECIES routers implemented as of 0.9.49, see [ECIES](/docs/specs/ecies/).
 - New tunnel build messages implemented as of 0.9.51.
 
@@ -94,7 +94,7 @@ places in the code base. Most of this work was done in mid-2019.
 
 ### Tunnel Build Message
 
-Several changes to the tunnel creation specification [Tunnel Creation](/docs/specs/implementation/)
+Several changes to the tunnel creation specification [Tunnel Creation](/docs/specs/tunnel-implementation/)
 are required to use ECIES instead of ElGamal.
 In addition, we will make improvements to the tunnel build messages
 to increase security.
@@ -223,7 +223,7 @@ New Tunnel Build Message: See [Proposal 157](/proposals/157-new-tbm).
 
 ### Request Encryption
 
-The request encryption is the same as that specified in [Tunnel Creation ECIES](/docs/specs/implementation/) and [Proposal 152](/proposals/152-ecies-tunnels),
+The request encryption is the same as that specified in [Tunnel Creation ECIES](/docs/specs/tunnel-implementation/) and [Proposal 152](/proposals/152-ecies-tunnels),
 using the Noise "N" pattern.
 
 Replies to lookups will be encrypted with a ratchet tag if requested in the lookup.
@@ -242,7 +242,7 @@ Generally, these will be New Session messages and will be sent with a zero stati
 #### KDF for Initial ck and h
 
 This is standard [Noise](https://noiseprotocol.org/noise.html) for pattern "N" with a standard protocol name.
-This is the same as specified in [Tunnel Creation ECIES](/docs/specs/implementation/) and [Proposal 152](/proposals/152-ecies-tunnels) for tunnel build messages.
+This is the same as specified in [Tunnel Creation ECIES](/docs/specs/tunnel-implementation/) and [Proposal 152](/proposals/152-ecies-tunnels) for tunnel build messages.
 
 
 ```text
@@ -270,7 +270,7 @@ This is the "e" message pattern:
 
 Message creators generate an ephemeral X25519 keypair for each message.
 Ephemeral keys must be unique per message.
-This is the same as specified in [Tunnel Creation ECIES](/docs/specs/implementation/) and [Proposal 152](/proposals/152-ecies-tunnels) for tunnel build messages.
+This is the same as specified in [Tunnel Creation ECIES](/docs/specs/tunnel-implementation/) and [Proposal 152](/proposals/152-ecies-tunnels) for tunnel build messages.
 
 
 ```text
@@ -516,8 +516,8 @@ Target release: 0.9.53, early 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 
 
 

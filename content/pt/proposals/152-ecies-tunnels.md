@@ -18,7 +18,7 @@ toc: true
 
 ## Nota
 
-Implantação e testes da rede em andamento. Sujeito a revisões menores. Consulte [SPEC](/docs/specs/implementation/) para a especificação oficial.
+Implantação e testes da rede em andamento. Sujeito a revisões menores. Consulte [SPEC](/docs/specs/tunnel-implementation/) para a especificação oficial.
 
 ## Visão Geral
 
@@ -272,7 +272,7 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
   bytes     x-x: other data as implied by flags or options
   bytes   x-463: random padding
 ```
-O campo flags é o mesmo definido em [Tunnel Creation](/docs/specs/implementation/) e contém o seguinte::
+O campo flags é o mesmo definido em [Tunnel Creation](/docs/specs/tunnel-implementation/) e contém o seguinte::
 
 Ordem dos bits: 76543210 (bit 7 é MSB)  bit 7: se definido, permite mensagens de qualquer um  bit 6: se definido, permite mensagens para qualquer um, e envia a resposta para o
 
@@ -337,7 +337,7 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
 ```
 As opções de resposta de construção de tunnel são uma estrutura Mapping conforme definida em [Common Structures](/docs/specs/common-structures/). Isto é para uso futuro. Nenhuma opção está atualmente definida. Se a estrutura Mapping estiver vazia, são dois bytes 0x00 0x00. O tamanho máximo do Mapping (incluindo o campo de comprimento) é de 511 bytes, e o valor máximo do campo de comprimento do Mapping é 509.
 
-O byte de resposta é um dos seguintes valores conforme definido em [Tunnel Creation](/docs/specs/implementation/) para evitar fingerprinting:
+O byte de resposta é um dos seguintes valores conforme definido em [Tunnel Creation](/docs/specs/tunnel-implementation/) para evitar fingerprinting:
 
 - 0x00 (aceitar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -472,7 +472,7 @@ This is the "e" message pattern:
 
 Os criadores de tunnel ElGamal geram um par de chaves X25519 efêmero para cada hop ECIES no tunnel, e usam o esquema acima para criptografar seu BuildRequestRecord. Os criadores de tunnel ElGamal usarão o esquema anterior a esta especificação para criptografar para hops ElGamal.
 
-Os criadores de túneis ECIES precisarão criptografar para cada chave pública do hop ElGamal usando o esquema definido em [Tunnel Creation](/docs/specs/implementation/). Os criadores de túneis ECIES usarão o esquema acima para criptografar para hops ECIES.
+Os criadores de túneis ECIES precisarão criptografar para cada chave pública do hop ElGamal usando o esquema definido em [Tunnel Creation](/docs/specs/tunnel-implementation/). Os criadores de túneis ECIES usarão o esquema acima para criptografar para hops ECIES.
 
 Isso significa que os saltos do tunnel só verão registros criptografados do mesmo tipo de criptografia.
 
@@ -533,7 +533,7 @@ Para criadores de túneis ElGamal e ECIES, eles irão gerar pares de chaves X255
 
 ### Justificação
 
-Conforme definido em [Tunnel Creation](/docs/specs/implementation/). Não há alterações na criptografia para hops ElGamal.
+Conforme definido em [Tunnel Creation](/docs/specs/tunnel-implementation/). Não há alterações na criptografia para hops ElGamal.
 
 ### Reply Record Encryption (ECIES)
 
@@ -550,7 +550,7 @@ O registro de resposta é criptografado com ChaCha20/Poly1305.
 ```
 ### Registros de Solicitação de Build
 
-Como definido em [Tunnel Creation](/docs/specs/implementation/). Não há mudanças na criptografia para hops ElGamal.
+Como definido em [Tunnel Creation](/docs/specs/tunnel-implementation/). Não há mudanças na criptografia para hops ElGamal.
 
 ### Security Analysis
 

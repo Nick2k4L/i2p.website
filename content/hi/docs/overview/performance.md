@@ -3,10 +3,10 @@ title: "प्रदर्शन"
 description: "I2P नेटवर्क प्रदर्शन: गति, कनेक्शन, और संसाधन प्रबंधन"
 slug: "performance"
 aliases:
-  - "/hi/about/performance/future"
-  - "/hi/about/performance/future/"
-  - "/hi/about/performance/history"
-  - "/hi/about/performance/history/"
+  - "/hi/docs/overview/performance#future"
+  - "/hi/docs/overview/performance#future/"
+  - "/hi/docs/overview/performance#history"
+  - "/hi/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ Encryption, latency, और tunnel कैसे बनाया जाता ह
 
 ## प्रदर्शन सुधार
 
-संभावित भविष्य के प्रदर्शन सुधारों के लिए [भविष्य के प्रदर्शन सुधार](/about/performance/future) देखें।
+संभावित भविष्य के प्रदर्शन सुधारों के लिए [भविष्य के प्रदर्शन सुधार](/docs/overview/performance#future) देखें।
 
-पिछले प्रदर्शन सुधारों के लिए [Performance History](/about/performance/history) देखें।
+पिछले प्रदर्शन सुधारों के लिए [Performance History](/docs/overview/performance#history) देखें।

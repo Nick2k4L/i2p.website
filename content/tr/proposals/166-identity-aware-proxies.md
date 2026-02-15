@@ -161,8 +161,8 @@ torsocks --port 7695 $proxy_yapılacak_komut
 Ek: ``saldırının örnek uygulaması``
                                                   
 
-[HTTP Kullanıcı-Ajanlarına yönelik Paylaşılan Kimlik saldırısının
-bir örnek uygulaması](https://github.com/eyedeekay/colluding_sites_attack/)
+HTTP Kullanıcı-Ajanlarına yönelik Paylaşılan Kimlik saldırısının
+bir örnek uygulaması
 birkaç yıl önce oluşturulmuştur. Ek bir örnek ``simple-colluder`` alt dizininde mevcuttur
 idk’nın prop166 deposunda Bu
 örnekler, saldırının çalıştığını göstermek üzere kasıtlı olarak tasarlanmıştır ve

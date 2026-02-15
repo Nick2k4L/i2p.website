@@ -11,7 +11,7 @@ toc: true
 
 ## 개요
 
-이 문서는 JRaft 및 TCP 위의 "exts" 코드, "dmprinter" 샘플 애플리케이션 [JRAFT](https://github.com/datatechnology/jraft)를 기반으로 하는 Garlic Farm 와이어 프로토콜의 명세서입니다. JRaft는 Raft 프로토콜의 구현체입니다 [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
+이 문서는 JRaft 및 TCP 위의 "exts" 코드, "dmprinter" 샘플 애플리케이션 [JRAFT](https://github.com/datatechnology/jraft)를 기반으로 하는 Garlic Farm 와이어 프로토콜의 명세서입니다. JRaft는 Raft 프로토콜의 구현체입니다 [RAFT](/docs/research/ongaro2014-raft.pdf).
 
 문서화된 와이어 프로토콜을 가진 구현체를 찾을 수 없었습니다. 그러나 JRaft 구현체는 코드 검토를 통해 그 프로토콜을 문서화할 수 있을 정도로 충분히 단순합니다. 이 제안서는 그 노력의 결과입니다.
 
@@ -542,7 +542,7 @@ Atomix는 너무 크고 우리가 I2P를 통해 프로토콜을 라우팅할 수
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://www.json.org/json-en.html)
-* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

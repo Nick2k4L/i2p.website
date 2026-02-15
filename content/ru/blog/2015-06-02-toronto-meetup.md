@@ -34,9 +34,9 @@ categories: ["community"]
 
 Криптопати будет включать несколько стендов, где будут демонстрироваться программы для обеспечения конфиденциальности и анонимности. Цель — предоставить людям инструменты, необходимые для безопасного общения.
 
-- [Vuze/I2P](http://wiki.vuze.com/w/I2PHelper_HowTo) - Downloading torrents anonymously
-- [Veracrypt](https://veracrypt.codeplex.com/) - Encrypt your data
-- [I2PBote](http://i2pbote.i2p.us/) - Anonymous decentralized email
+- Vuze/I2P - Downloading torrents anonymously
+- Veracrypt - Encrypt your data
+- I2PBote - Anonymous decentralized email
 - Your station idea here
 
 Сейчас мы ищем помощников для укомплектования станций. Если вы хотите помочь, вы можете! Возьмите с собой монитор/ноутбук и возьмитесь за одну из станций. Станция может быть любой из перечисленных выше или любой другой, связанной с приватностью/анонимностью, которую вы хотели бы вести. Пожалуйста, свяжитесь с нами по адресу [@geti2p](https://twitter.com/geti2p), если вы заинтересованы.

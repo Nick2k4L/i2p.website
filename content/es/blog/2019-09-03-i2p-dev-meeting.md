@@ -31,7 +31,7 @@ categories: ["meeting"]
 20:01:37 <zzz> nextloop, meeh, ¿tienen fechas estimadas para esos elementos?
 20:03:06 <zzz> ¿algo más en 1) ?
 20:04:02 <zzz> 2) estado del proyecto I2P Browser "labs" (sadie, meeh)
-20:04:25 <zzz> sadie, meeh, ¿cuál es el estado y cuál es el próximo hito?          <sadie> La Beta 5 se suponía que saldría el viernes, pero hubo algunos problemas. Parece que algunas están listas https://i2bbparts.meeh.no/i2p-browser/ pero realmente necesitaba saber de meeh cuál es el próximo plazo para esto          <sadie> La Página del Laboratorio estará en línea antes de que termine esta semana. El próximo hito del Browser será discutir los requisitos de la consola para la versión beta 6
+20:04:25 <zzz> sadie, meeh, ¿cuál es el estado y cuál es el próximo hito?          <sadie> La Beta 5 se suponía que saldría el viernes, pero hubo algunos problemas. Parece que algunas están listas `https://i2bbparts.meeh.no/i2p-browser/` pero realmente necesitaba saber de meeh cuál es el próximo plazo para esto          <sadie> La Página del Laboratorio estará en línea antes de que termine esta semana. El próximo hito del Browser será discutir los requisitos de la consola para la versión beta 6
 20:05:51 <zzz> ¿algo más en 2) ?
 20:06:43 <zzz> 3) casos de uso de outproxy / estado (sadie)
 20:06:57 <zzz> sadie, ¿cuál es el estado y cuál es el próximo hito?          <sadie> Cualquiera puede seguir nuestras notas de reunión en el ticket 2472. Hemos decidido los estados de los casos de uso y tenemos una lista de requisitos. El siguiente hito serán los requisitos de usuario para un caso de uso de Amigos y Familia, así como los requisitos de desarrollo para Amigos y Familia y para el caso de uso General, para ver dónde pueden superponerse

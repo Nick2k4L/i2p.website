@@ -42,7 +42,7 @@ SI nous pouvons trouver un algo qui soit petit et rapide.
 Le défi est de trouver un chiffrement asymétrique qui soit petit et rapide. ElGamal à 514
 octets est un peu douloureux ici. Nous pouvons faire mieux.
 
-Voir par exemple http://security.stackexchange.com/questions/824...
+Voir par exemple `http://security.stackexchange.com/questions/824...`
 
 Cela fonctionne pour de petits nombres de destinataires (ou en fait, de clés ; vous pouvez toujours
 distribuer des clés à plusieurs personnes si vous le souhaitez).

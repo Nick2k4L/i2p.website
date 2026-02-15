@@ -16,7 +16,7 @@ toc: true
 Это предложение не было реализовано в указанном виде,
 однако длинные и короткие сообщения о создании ECIES (предложения 152 и 157)
 были разработаны с полями расширяемых опций.
-См. [спецификацию Tunnel Creation ECIES](/docs/specs/implementation/#tunnel-creation-ecies) для официальной спецификации.
+См. [спецификацию Tunnel Creation ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) для официальной спецификации.
 
 
 ## Обзор

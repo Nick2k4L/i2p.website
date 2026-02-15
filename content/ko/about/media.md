@@ -267,11 +267,11 @@ I2P Torrent
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="http://0x375.org/" target="_blank">현대 암호화 생태계</a>
+현대 암호화 생태계
 </div>
 <div class="content-entry-meta">🎥 발표 • 2011년 11월 4일</div>
 <div class="content-entry-actions">
-<a href="http://0x375.org/" target="_blank" class="content-btn">자세히 보기</a>
+자세히 보기
 </div>
 </div>
 

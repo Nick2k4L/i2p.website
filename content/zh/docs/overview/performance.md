@@ -3,10 +3,10 @@ title: "性能"
 description: "I2P网络性能：速度、连接和资源管理"
 slug: "performance"
 aliases:
-  - "/zh/about/performance/future"
-  - "/zh/about/performance/future/"
-  - "/zh/about/performance/history"
-  - "/zh/about/performance/history/"
+  - "/zh/docs/overview/performance#future"
+  - "/zh/docs/overview/performance#future/"
+  - "/zh/docs/overview/performance#history"
+  - "/zh/docs/overview/performance#history/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
@@ -47,6 +47,6 @@ server - hopb1 - hopb2 - hopb3 - hopc1 - hopc2 - hopc3 - client
 
 ## 性能改进
 
-关于可能的未来性能改进，请参见[未来性能改进](/about/performance/future)。
+关于可能的未来性能改进，请参见[未来性能改进](/docs/overview/performance#future)。
 
-有关过去的性能改进，请参阅[性能历史](/about/performance/history)。
+有关过去的性能改进，请参阅[性能历史](/docs/overview/performance#history)。

@@ -331,7 +331,7 @@ impact on overall performance.
   tunnel test messages to itself.
 
 - Change from Session Tags to
-  [a synchronized PRNG](/about/performance/future#prng).
+  [a synchronized PRNG](/docs/overview/performance#future#prng).
 
 - Several of these ideas may require a new I2NP message type, or
   set a flag in the

@@ -249,7 +249,7 @@ Hay muchas áreas posibles para ajustar los algoritmos del Gestor de Claves de S
   mensajes de prueba de túnel a sí mismo.
 
 - Cambio de Session Tags a
-  [un PRNG sincronizado](/about/performance/future#prng).
+  [un PRNG sincronizado](/docs/overview/performance#future#prng).
 
 - Varias de estas ideas pueden requerir un nuevo tipo de mensaje I2NP, o
   establecer una bandera en las

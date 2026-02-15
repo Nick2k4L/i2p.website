@@ -17,7 +17,7 @@ toc: true
 Implementado desde la versión API 0.9.51.
 Despliegue y prueba de red en progreso.
 Sujeto a revisiones menores.
-Ver [I2NP](/docs/specs/i2np/) y [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) para la especificación final.
+Ver [I2NP](/docs/specs/i2np/) y [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) para la especificación final.
 
 
 ## Visión General
@@ -29,7 +29,7 @@ El tamaño actual de los registros de Solicitud y Respuesta de Construcción de 
 Para los mensajes típicos de Construcción de Túneles Variables y Respuesta de Construcción de Túneles Variables,
 el tamaño total es de 2113 bytes. Este mensaje se fragmenta en tres mensajes de túnel de 1KB para el camino inverso.
 
-Los cambios al formato de registro de 528 bytes para los enrutadores ECIES-X25519 se especifican en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+Los cambios al formato de registro de 528 bytes para los enrutadores ECIES-X25519 se especifican en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 Para una mezcla de enrutadores ElGamal y ECIES-X25519 en un túnel, el tamaño del registro debe permanecer
 en 528 bytes. Sin embargo, si todos los enrutadores en un túnel son ECIES-X25519, es posible un nuevo registro de construcción más pequeño, ya que el cifrado ECIES-X25519 tiene mucho menos sobrecarga que ElGamal.
 
@@ -48,10 +48,10 @@ Se espera que esto suceda para finales de 2021.
 Ver [Prop152](/proposals/152-ecies-tunnels/) y [Prop156](/proposals/156-ecies-routers/) para objetivos adicionales.
 
 - Registros y mensajes más pequeños
-- Mantener suficiente espacio para futuras opciones, como en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+- Mantener suficiente espacio para futuras opciones, como en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 - Ajustarse en un solo mensaje de túnel para el camino inverso
 - Soportar solo saltos ECIES
-- Mantener mejoras implementadas en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
+- Mantener mejoras implementadas en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 - Maximizar la compatibilidad con la red actual
 - Ocultar mensajes de construcción entrantes del OBEP
 - Ocultar mensajes de respuesta de construcción salientes del IBGW
@@ -81,11 +81,11 @@ Los registros de solicitud y respuesta cifrados serán de 218 bytes, comparados 
 
 Los registros de solicitud en texto claro serán de 154 bytes,
 comparados con 222 bytes para registros ElGamal,
-y 464 bytes para registros ECIES como se define en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+y 464 bytes para registros ECIES como se define en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 
 Los registros de respuesta en texto claro serán de 202 bytes,
 comparados con 496 bytes para registros ElGamal,
-y 512 bytes para registros ECIES como se define en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+y 512 bytes para registros ECIES como se define en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 
 El cifrado de respuesta será ChaCha20 (NO ChaCha20/Poly1305),
 por lo que los registros de texto claro no necesitan ser múltiplos de 16 bytes.
@@ -180,7 +180,7 @@ STBM: Mensaje de construcción de túnel corto (tipo 25)
 
 ### Cifrado de Registro
 
-Cifrado de registro de solicitud y respuesta: como se define en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+Cifrado de registro de solicitud y respuesta: como se define en [Prop152](/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies).
 
 Cifrado de registro de respuesta para otras ranuras: ChaCha20.
 
@@ -213,7 +213,7 @@ Esto es un tema para más investigación.
 #### Registro de Solicitud Corto Sin Cifrar
 
 Esta es la especificación propuesta del registro de solicitud de construcción de túneles para los enrutadores ECIES-X25519.
-Resumen de cambios de [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies):
+Resumen de cambios de [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies):
 
 - Cambiar longitud sin cifrar de 464 a 154 bytes
 - Cambiar longitud cifrada de 528 a 218 bytes
@@ -244,7 +244,7 @@ bytes     0-3: ID del túnel para recibir mensajes, no cero
 ```
 
 
-El campo de banderas es el mismo que se define en [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) y contiene lo siguiente::
+El campo de banderas es el mismo que se define en [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) y contiene lo siguiente::
 
  Orden de bits: 76543210 (el bit 7 es el MSB)
  bit 7: si está establecido, permitir mensajes de cualquiera
@@ -294,7 +294,7 @@ bytes    0-15: hash truncado de identidad del salto
 
 #### Registro de Respuesta Corto Sin Cifrar
 Esta es la especificación propuesta del registro de ShortBuildReply para los enrutadores ECIES-X25519.
-Resumen de cambios de [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies):
+Resumen de cambios de [Tunnel-Creation-ECIES](/docs/specs/tunnel-implementation/#tunnel-creation-ecies):
 
 - Cambiar longitud sin cifrar de 512 a 202 bytes
 - Cambiar longitud cifrada de 528 a 218 bytes
@@ -321,7 +321,7 @@ El tamaño máximo del Mapping (incluyendo el campo de longitud) es 201 bytes,
 y el valor máximo del campo de longitud de Mapping es 199.
 
 El byte de respuesta es uno de los siguientes valores
-como se define en [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) para evitar la identificación:
+como se define en [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies) para evitar la identificación:
 
 - 0x00 (aceptar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

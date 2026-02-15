@@ -68,7 +68,7 @@ In summary, if an attacker is at both ends of your tunnel at the same time, he m
 
 Partial defenses implemented in I2P:
 
-- [Strict ordering](/docs/specs/implementation/#ordering) of peers
+- [Strict ordering](/docs/specs/tunnel-implementation/#ordering) of peers
 - Peer profiling and selection from a small group that changes slowly
 - Limits on the number of tunnels routed through a single peer
 - Prevention of peers from the same /16 IP range from being members of a single tunnel
@@ -119,7 +119,7 @@ Also discussed on the [network database page](/docs/specs/common-structures/) (b
 
 The predecessor attack is passively gathering statistics in an attempt to see what peers are 'close' to the destination by participating in their tunnels and keeping track of the previous or next hop (for outbound or inbound tunnels, respectively). Over time, using a perfectly random sample of peers and random ordering, an attacker would be able to see which peer shows up as 'closer' statistically more than the rest, and that peer would in turn be where the target is located.
 
-I2P avoids this in four ways: first, the peers selected to participate in tunnels are not randomly sampled throughout the network — they are derived from the peer selection algorithm which breaks them into tiers. Second, with [strict ordering](/docs/specs/implementation/#ordering) of peers in a tunnel, the fact that a peer shows up more frequently does not mean they're the source. Third, with permuted tunnel length (not enabled by default) even 0 hop tunnels can provide plausible deniability as the occasional variation of the gateway will look like normal tunnels. Fourth, with restricted routes (unimplemented), only the peer with a restricted connection to the target will ever contact the target, while attackers will merely run into that gateway.
+I2P avoids this in four ways: first, the peers selected to participate in tunnels are not randomly sampled throughout the network — they are derived from the peer selection algorithm which breaks them into tiers. Second, with [strict ordering](/docs/specs/tunnel-implementation/#ordering) of peers in a tunnel, the fact that a peer shows up more frequently does not mean they're the source. Third, with permuted tunnel length (not enabled by default) even 0 hop tunnels can provide plausible deniability as the occasional variation of the gateway will look like normal tunnels. Fourth, with restricted routes (unimplemented), only the peer with a restricted connection to the target will ever contact the target, while attackers will merely run into that gateway.
 
 The current tunnel build method was specifically designed to combat the predecessor attack. See also [the intersection attack](#intersection-attacks).
 

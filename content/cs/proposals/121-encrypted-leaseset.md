@@ -42,7 +42,7 @@ POKUD najdeme algoritmus, který je malý a rychlý.
 
 Trik je najít asymetrické šifrování, které je malé a rychlé. ElGamal o velikosti 514 bajtů je zde trochu bolestivé. Můžeme si vést lépe.
 
-Viz např. http://security.stackexchange.com/questions/824...
+Viz např. `http://security.stackexchange.com/questions/824...`
 
 Toto funguje pro malý počet příjemců (nebo spíše klíčů; stále můžete distribuovat klíče více lidem, pokud chcete).
 
