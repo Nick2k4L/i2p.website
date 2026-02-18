@@ -843,6 +843,7 @@ main {
 /* Social links and newsletter side by side */
 .footer-social-newsletter {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--spacing-2xl);
     margin-top: var(--spacing-md);
     align-items: flex-start;
