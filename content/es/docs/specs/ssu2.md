@@ -214,41 +214,57 @@ Los siguientes mensajes están definidos:
 La secuencia de establecimiento estándar, cuando Alice tiene un token válido previamente recibido de Bob, es la siguiente:
 
 ```
-Alice Bob
+Alice                           Bob
 
-SessionRequest -------------------> <------------------- SessionCreated SessionConfirmed ----------------->
+SessionRequest ------------------->
+<------------------- SessionCreated
+SessionConfirmed ----------------->
 ```
 Cuando Alice no tiene un token válido, la secuencia de establecimiento es la siguiente:
 
 ```
-Alice Bob
+Alice                           Bob
 
-TokenRequest ---------------------> <--------------------------- Retry SessionRequest -------------------> <------------------- SessionCreated SessionConfirmed ----------------->
+TokenRequest --------------------->
+<---------------------------  Retry
+SessionRequest ------------------->
+<------------------- SessionCreated
+SessionConfirmed ----------------->
 ```
 Cuando Alice piensa que tiene un token válido, pero Bob lo rechaza (tal vez porque Bob se reinició), la secuencia de establecimiento es la siguiente:
 
 ```
-Alice Bob
+Alice                           Bob
 
-SessionRequest -------------------> <--------------------------- Retry SessionRequest -------------------> <------------------- SessionCreated SessionConfirmed ----------------->
+SessionRequest ------------------->
+<---------------------------  Retry
+SessionRequest ------------------->
+<------------------- SessionCreated
+SessionConfirmed ----------------->
 ```
 Bob puede rechazar una Sesión o Solicitud de Token respondiendo con un mensaje Retry que contenga un bloque Termination con un código de razón. Basándose en el código de razón, Alice no debería intentar otra solicitud durante cierto período de tiempo:
 
 ```
-Alice Bob
+Alice                           Bob
 
-SessionRequest -------------------> <--------------------------- Retry containing a Termination block
+SessionRequest ------------------->
+<---------------------------  Retry containing a Termination block
 
 or
 
-TokenRequest ---------------------> <--------------------------- Retry containing a Termination block
+TokenRequest --------------------->
+<---------------------------  Retry containing a Termination block
 ```
 Usando la terminología Noise, la secuencia de establecimiento y datos es la siguiente: (Propiedades de Seguridad del Payload)
 
 ```
-XK(s, rs): Authentication Confidentiality
-
-<- s \... -> e, es 0 2 <- e, ee 2 1 -> s, se 2 5 <- 2 5
+XK(s, rs):           Authentication   Confidentiality
+  <- s
+  ...
+  -> e, es                  0                2
+  <- e, ee                  2                1
+  -> s, se                  2                5
+  <-                        2                5
 ```
 Una vez que se ha establecido una sesión, Alice y Bob pueden intercambiar mensajes de datos.
 
@@ -264,32 +280,30 @@ Antes del cifrado de cabecera:
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type| ver| id |flag|
++----+----+----+----+----+----+----+----+
+|        Source Connection ID           |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
+Destination Connection ID :: 8 bytes, unsigned big endian integer
 
-    +-------------------------------------------+----------+----------+----------+----------+
-    | > Packet Number                           | type     | ver      | id       | flag     |
-    +-------------------------------------------+----------+----------+----------+----------+
-    | > Source Connection ID                                                                |
-    +---------------------------------------------------------------------------------------+
-    | > Token                                                                               |
-    +---------------------------------------------------------------------------------------+
+Packet Number :: 4 bytes, unsigned big endian integer
 
-    Destination Connection ID :: 8 bytes, unsigned big endian integer
+type :: The message type = 0, 1, 7, 9, 10, or 11
 
-    Packet Number :: 4 bytes, unsigned big endian integer
+ver :: The protocol version, equal to 2
 
-    type :: The message type = 0, 1, 7, 9, 10, or 11
+id :: 1 byte, the network ID (currently 2, except for test networks)
 
-    ver :: The protocol version, equal to 2
+flag :: 1 byte, unused, set to 0 for future compatibility
 
-    id :: 1 byte, the network ID (currently 2, except for test networks)
+Source Connection ID :: 8 bytes, unsigned big endian integer
 
-    flag :: 1 byte, unused, set to 0 for future compatibility
-
-    Source Connection ID :: 8 bytes, unsigned big endian integer
-
-    Token :: 8 bytes, unsigned big endian integer
+Token :: 8 bytes, unsigned big endian integer
 ```
 #### Encabezado Corto
 
@@ -301,24 +315,23 @@ Para Session Confirmed, antes del cifrado de cabecera:
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type|frag|  flags  |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
+Destination Connection ID :: 8 bytes, unsigned big endian integer
 
-    +-----------------------------------+------+------+-------------+
-    | > Packet Number                   | type | frag | > flags     |
-    +-----------------------------------+------+------+-------------+
+Packet Number :: 4 bytes, all zeros
 
-    Destination Connection ID :: 8 bytes, unsigned big endian integer
+type :: The message type = 2
 
-    Packet Number :: 4 bytes, all zeros
+frag :: 1 byte fragment info:
+       bit order: 76543210 (bit 7 is MSB)
+       bits 7-4: fragment number 0-14, big endian
+       bits 3-0: total fragments 1-15, big endian
 
-    type :: The message type = 2
-
-    frag :: 1 byte fragment info:
-
-    :   bit order: 76543210 (bit 7 is MSB) bits 7-4: fragment number 0-14, big endian bits 3-0: total fragments 1-15, big endian
-
-    flags :: 2 bytes, unused, set to 0 for future compatibility
+flags :: 2 bytes, unused, set to 0 for future compatibility
 ```
 Consulta la sección Fragmentación de Sesión Confirmada más abajo para obtener más información sobre el campo frag.
 
@@ -326,24 +339,23 @@ Para mensajes de datos, antes del cifrado del encabezado:
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type|flag|moreflags|
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
+Destination Connection ID :: 8 bytes, unsigned big endian integer
 
-    +-----------------------------------+------+------+---------------+
-    | > Packet Number                   | type | flag | moreflags     |
-    +-----------------------------------+------+------+---------------+
+Packet Number :: 4 bytes, unsigned big endian integer
 
-    Destination Connection ID :: 8 bytes, unsigned big endian integer
+type :: The message type = 6
 
-    Packet Number :: 4 bytes, unsigned big endian integer
+flag :: 1 byte flags:
+       bit order: 76543210 (bit 7 is MSB)
+       bits 7-1: unused, set to 0 for future compatibility
+       bits 0: when set to 1, immediate ack requested
 
-    type :: The message type = 6
-
-    flag :: 1 byte flags:
-
-    :   bit order: 76543210 (bit 7 is MSB) bits 7-1: unused, set to 0 for future compatibility bits 0: when set to 1, immediate ack requested
-
-    moreflags :: 2 bytes, unused, set to 0 for future compatibility
+moreflags :: 2 bytes, unused, set to 0 for future compatibility
 ```
 #### Numeración de ID de Conexión
 
@@ -391,11 +403,22 @@ Los siguientes paquetes contienen un número de paquete aleatorio que se ignora:
 Para Alice, la numeración de paquetes salientes comienza en 0 con Session Confirmed. Para Bob, la numeración de paquetes salientes comienza en 0 con el primer paquete Data, que debería ser un ACK del Session Confirmed. Los números de paquete en un ejemplo de handshake estándar serán:
 
 ```
-Alice Bob
+Alice                           Bob
 
-SessionRequest (r) ------------> <------------- SessionCreated (r) SessionConfirmed (0) ------------> <------------- Data (0) (Ack-only) Data (1) ------------> (May be sent before Ack is received) <------------- Data (1) Data (2) ------------> Data (3) ------------> Data (4) ------------> <------------- Data (2)
+SessionRequest (r)    ------------>
+<-------------   SessionCreated (r)
+SessionConfirmed (0)  ------------>
+<-------------             Data (0) (Ack-only)
+Data (1)              ------------> (May be sent before Ack is received)
+<-------------             Data (1)
+Data (2)              ------------>
+Data (3)              ------------>
+Data (4)              ------------>
+<-------------             Data (2)
 
-r = random packet number (ignored) Token Request, Retry, and Peer Test also have random packet numbers.
+r = random packet number (ignored)
+Token Request, Retry, and Peer Test
+also have random packet numbers.
 ```
 Cualquier retransmisión de mensajes de handshake (SessionRequest, SessionCreated, o SessionConfirmed) debe ser reenviada sin cambios, con el mismo número de paquete. No uses claves efímeras diferentes ni cambies la carga útil al retransmitir estos mensajes.
 
@@ -485,24 +508,40 @@ Consulta las secciones individuales de KDF a continuación para la derivación d
 
 ```
 // incoming encrypted packet
+packet = incoming encrypted packet
+len = packet.length
 
-packet = incoming encrypted packet len = packet.length
+// take the next-to-last 12 bytes of the packet
+iv = packet[len-24:len-13]
+k_header_1 = header encryption key 1
+data = {0, 0, 0, 0, 0, 0, 0, 0}
+mask = ChaCha20.encrypt(k_header_1, iv, data)
 
-    // take the next-to-last 12 bytes of the packet iv = packet[len-24:len-13] k_header_1 = header encryption key 1 data = {0, 0, 0, 0, 0, 0, 0, 0} mask = ChaCha20.encrypt(k_header_1, iv, data)
+// encrypt the first part of the header by XORing with the mask
+packet[0:7] ^= mask[0:7]
 
-    // encrypt the first part of the header by XORing with the mask packet[0:7] \^= mask[0:7]
+// take the last 12 bytes of the packet
+iv = packet[len-12:len-1]
+k_header_2 = header encryption key 2
+data = {0, 0, 0, 0, 0, 0, 0, 0}
+mask = ChaCha20.encrypt(k_header_2, iv, data)
 
-    // take the last 12 bytes of the packet iv = packet[len-12:len-1] k_header_2 = header encryption key 2 data = {0, 0, 0, 0, 0, 0, 0, 0} mask = ChaCha20.encrypt(k_header_2, iv, data)
+// encrypt the second part of the header by XORing with the mask
+packet[8:15] ^= mask[0:7]
 
-    // encrypt the second part of the header by XORing with the mask packet[8:15] \^= mask[0:7]
 
-    // For Session Request and Session Created only: iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+// For Session Request and Session Created only:
+iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
-    // encrypt the third part of the header and the ephemeral key packet[16:63] = ChaCha20.encrypt(k_header_2, iv, packet[16:63])
+// encrypt the third part of the header and the ephemeral key
+packet[16:63] = ChaCha20.encrypt(k_header_2, iv, packet[16:63])
 
-    // For Retry, Token Request, Peer Test, and Hole Punch only: iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
-    // encrypt the third part of the header packet[16:31] = ChaCha20.encrypt(k_header_2, iv, packet[16:31])
+// For Retry, Token Request, Peer Test, and Hole Punch only:
+iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+// encrypt the third part of the header
+packet[16:31] = ChaCha20.encrypt(k_header_2, iv, packet[16:31])
 ```
 Esta KDF utiliza los últimos 24 bytes del paquete como el IV para las dos operaciones ChaCha20. Como todos los paquetes terminan con un MAC de 16 bytes, esto requiere que todas las cargas útiles de paquetes tengan un mínimo de 8 bytes. Este requisito está documentado adicionalmente en las secciones de mensajes a continuación.
 
@@ -537,10 +576,12 @@ Los datos cifrados/autenticados se representarán como
 
 ```
 +----+----+----+----+----+----+----+----+
-
-|                                       |
-
-    + + | Encrypted and authenticated data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   Encrypted and authenticated data    |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 #### ChaCha20/Poly1305
 
@@ -551,14 +592,20 @@ Entradas a las funciones de cifrado/descifrado:
 ```
 k :: 32 byte cipher key, as generated from KDF
 
-
 nonce :: Counter-based nonce, 12 bytes.
-
-Starts at 0 and incremented for each message. First four bytes are always zero. Last eight bytes are the counter, little-endian encoded. Maximum value is 2**64 - 2. Connection must be dropped and restarted after it reaches that value. The value 2**64 - 1 must never be sent.
+         Starts at 0 and incremented for each message.
+         First four bytes are always zero.
+         Last eight bytes are the counter, little-endian encoded.
+         Maximum value is 2**64 - 2.
+         Connection must be dropped and restarted after
+         it reaches that value.
+         The value 2**64 - 1 must never be sent.
 
 ad :: In handshake phase:
-
-Associated data, 32 bytes. The SHA256 hash of all preceding data. In data phase: The packet header, 16 bytes.
+      Associated data, 32 bytes.
+      The SHA256 hash of all preceding data.
+      In data phase:
+      The packet header, 16 bytes.
 
 data :: Plaintext data, 0 or more bytes
 ```
@@ -566,14 +613,20 @@ Salida de la función de cifrado, entrada a la función de descifrado:
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|       ChaCha20 encrypted data         |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++              (MAC)                    +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+encrypted data :: Same size as plaintext data, 0 - 65519 bytes
 
-    + + | ChaCha20 encrypted data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | Poly1305 Message Authentication Code | + (MAC) + | 16 bytes | +----+----+----+----+----+----+----+----+
-
-    encrypted data :: Same size as plaintext data, 0 - 65519 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 Para ChaCha20, lo que se describe aquí corresponde a [RFC-7539](https://tools.ietf.org/html/rfc7539), que también se utiliza de manera similar en TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
 
@@ -595,62 +648,92 @@ La Función de Derivación de Claves (KDF) genera una clave de cifrado k de la f
 
 ```
 // Define protocol_name.
+Set protocol_name = "Noise_XKchaobfse+hs1+hs2+hs3_25519_ChaChaPoly_SHA256"
+ (52 bytes, US-ASCII encoded, no NULL termination).
 
+// Define Hash h = 32 bytes
+h = SHA256(protocol_name);
 
-    Set protocol_name = "Noise_XKchaobfse+hs1+hs2+hs3_25519_ChaChaPoly_SHA256"
+Define ck = 32 byte chaining key. Copy the h data to ck.
+Set ck = h
 
-    :   (52 bytes, US-ASCII encoded, no NULL termination).
+// MixHash(null prologue)
+h = SHA256(h);
 
-    // Define Hash h = 32 bytes h = SHA256(protocol_name);
+// up until here, can all be precalculated by Alice for all outgoing connections
 
-    Define ck = 32 byte chaining key. Copy the h data to ck. Set ck = h
+// Bob's X25519 static keys
+// bpk is published in routerinfo
+bsk = GENERATE_PRIVATE()
+bpk = DERIVE_PUBLIC(bsk)
 
-    // MixHash(null prologue) h = SHA256(h);
+// Bob static key
+// MixHash(bpk)
+// || below means append
+h = SHA256(h || bpk);
 
-    // up until here, can all be precalculated by Alice for all outgoing connections
+// Bob introduction key
+// bik is published in routerinfo
+bik = RANDOM(32)
 
-    // Bob's X25519 static keys // bpk is published in routerinfo bsk = GENERATE_PRIVATE() bpk = DERIVE_PUBLIC(bsk)
-
-    // Bob static key // MixHash(bpk) // || below means append h = SHA256(h || bpk);
-
-    // Bob introduction key // bik is published in routerinfo bik = RANDOM(32)
-
-    // up until here, can all be precalculated by Bob for all incoming connections
+// up until here, can all be precalculated by Bob for all incoming connections
 ```
 #### KDF para Solicitud de Sesión
 
 ```
 // MixHash(header)
-
 h = SHA256(h || header)
 
-    This is the "e" message pattern:
+This is the "e" message pattern:
 
-    // Alice's X25519 ephemeral keys aesk = GENERATE_PRIVATE() aepk = DERIVE_PUBLIC(aesk)
+// Alice's X25519 ephemeral keys
+aesk = GENERATE_PRIVATE()
+aepk = DERIVE_PUBLIC(aesk)
 
-    // Alice ephemeral key X // MixHash(aepk) h = SHA256(h || aepk);
+// Alice ephemeral key X
+// MixHash(aepk)
+h = SHA256(h || aepk);
 
-    // h is used as the associated data for the AEAD in Session Request // Retain the Hash h for the Session Created KDF
+// h is used as the associated data for the AEAD in Session Request
+// Retain the Hash h for the Session Created KDF
 
-    End of "e" message pattern.
 
-    This is the "es" message pattern:
+End of "e" message pattern.
 
-    // DH(e, rs) == DH(s, re) sharedSecret = DH(aesk, bpk) = DH(bsk, aepk)
+This is the "es" message pattern:
 
-    // MixKey(DH()) //[chainKey, k] = MixKey(sharedSecret) // ChaChaPoly parameters to encrypt/decrypt keydata = HKDF(chainKey, sharedSecret, "", 64) chainKey = keydata[0:31]
+// DH(e, rs) == DH(s, re)
+sharedSecret = DH(aesk, bpk) = DH(bsk, aepk)
 
-    // AEAD parameters k = keydata[32:63] n = 0 ad = h ciphertext = ENCRYPT(k, n, payload, ad)
+// MixKey(DH())
+//[chainKey, k] = MixKey(sharedSecret)
+// ChaChaPoly parameters to encrypt/decrypt
+keydata = HKDF(chainKey, sharedSecret, "", 64)
+chainKey = keydata[0:31]
 
-    // retain the chainKey for Session Created KDF
+// AEAD parameters
+k = keydata[32:63]
+n = 0
+ad = h
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-    End of "es" message pattern.
+// retain the chainKey for Session Created KDF
 
-    // Header encryption keys for this message // bik = Bob's intro key k_header_1 = bik k_header_2 = bik
 
-    // Header encryption keys for next message (Session Created) k_header_1 = bik k_header_2 = HKDF(chainKey, ZEROLEN, "SessCreateHeader", 32)
+End of "es" message pattern.
 
-    // Header encryption keys for next message (Retry) k_header_1 = bik k_header_2 = bik
+// Header encryption keys for this message
+// bik = Bob's intro key
+k_header_1 = bik
+k_header_2 = bik
+
+// Header encryption keys for next message (Session Created)
+k_header_1 = bik
+k_header_2 = HKDF(chainKey, ZEROLEN, "SessCreateHeader", 32)
+
+// Header encryption keys for next message (Retry)
+k_header_1 = bik
+k_header_2 = bik
 ```
 ### SessionRequest (Tipo 0)
 
@@ -663,21 +746,28 @@ Encabezado largo. Contenido Noise: clave efímera X de Alice Carga útil Noise: 
 Propiedades de Seguridad de la Carga Útil:
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  -> e, es                  0                2
 
--> e, es 0 2
+  Authentication: None (0).
+  This payload may have been sent by any party, including an active attacker.
 
-    Authentication: None (0). This payload may have been sent by any party, including an active attacker.
+  Confidentiality: 2.
+  Encryption to a known recipient, forward secrecy for sender compromise
+  only, vulnerable to replay.  This payload is encrypted based only on DHs
+  involving the recipient's static key pair.  If the recipient's static
+  private key is compromised, even at a later date, this payload can be
+  decrypted.  This message can also be replayed, since there's no ephemeral
+  contribution from the recipient.
 
-    Confidentiality: 2. Encryption to a known recipient, forward secrecy for sender compromise only, vulnerable to replay. This payload is encrypted based only on DHs involving the recipient's static key pair. If the recipient's static private key is compromised, even at a later date, this payload can be decrypted. This message can also be replayed, since there's no ephemeral contribution from the recipient.
+  "e": Alice generates a new ephemeral key pair and stores it in the e
+       variable, writes the ephemeral public key as cleartext into the
+       message buffer, and hashes the public key along with the old h to
+       derive a new h.
 
-    "e": Alice generates a new ephemeral key pair and stores it in the e
-
-    :   variable, writes the ephemeral public key as cleartext into the message buffer, and hashes the public key along with the old h to derive a new h.
-
-    "es": A DH is performed between the Alice's ephemeral key pair and the
-
-    :   Bob's static key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+  "es": A DH is performed between the Alice's ephemeral key pair and the
+        Bob's static key pair.  The result is hashed along with the old ck to
+        derive a new ck and k, and n is set to zero.
 ```
 El valor X se cifra para garantizar la indistinguibilidad y unicidad de la carga útil, que son contramedidas DPI necesarias. Utilizamos cifrado ChaCha20 para lograr esto, en lugar de alternativas más complejas y lentas como elligator2. El cifrado asimétrico a la clave pública del router de Bob sería demasiado lento. El cifrado ChaCha20 utiliza la clave de introducción de Bob tal como se publica en el netDb.
 
@@ -687,67 +777,84 @@ Contenidos sin procesar:
 
 ```
 +----+----+----+----+----+----+----+----+
+|  Long Header bytes 0-15, ChaCha20     |
++  encrypted with Bob intro key         +
+|    See Header Encryption KDF          |
++----+----+----+----+----+----+----+----+
+|  Long Header bytes 16-31, ChaCha20    |
++  encrypted with Bob intro key n=0     +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++       X, ChaCha20 encrypted           +
+|       with Bob intro key n=0          |
++              (32 bytes)               +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   ChaCha20 encrypted data             |
++          (length varies)              +
+|  k defined in KDF for Session Request |
++  n = 0                                +
+|  see KDF for associated data          |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|  Long Header bytes 0-15, ChaCha20 |
-
-    + encrypted with Bob intro key + | See Header Encryption KDF | +----+----+----+----+----+----+----+----+ | Long Header bytes 16-31, ChaCha20 | + encrypted with Bob intro key n=0 + | | +----+----+----+----+----+----+----+----+ | | + X, ChaCha20 encrypted + | with Bob intro key n=0 | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | | + + | ChaCha20 encrypted data | + (length varies) + | k defined in KDF for Session Request | + n = 0 + | see KDF for associated data | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
-
-    X :: 32 bytes, ChaCha20 encrypted X25519 ephemeral key, little endian
-
-    :   key: Bob's intro key n: 1 data: 48 bytes (bytes 16-31 of the header, followed by encrypted X)
+X :: 32 bytes, ChaCha20 encrypted X25519 ephemeral key, little endian
+        key: Bob's intro key
+        n: 1
+        data: 48 bytes (bytes 16-31 of the header, followed by encrypted X)
 ```
 Datos sin cifrar (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type| ver| id |flag|
++----+----+----+----+----+----+----+----+
+|        Source Connection ID           |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|                   X                   |
++              (32 bytes)               +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|     Noise payload (block data)        |
++          (length varies)              +
+|     see below for allowed blocks      |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
 
-    +-----------------------------------------------+-----------+-----------+-----------+-----------+
-    | > Packet Number                               | type      | ver       | id        | flag      |
-    +-----------------------------------------------+-----------+-----------+-----------+-----------+
-    | > Source Connection ID                                                                        |
-    +-----------------------------------------------------------------------------------------------+
-    | > Token                                                                                       |
-    +-----------------------------------------------------------------------------------------------+
-    | > X (32 bytes)                                                                                |
-    |                                                                                               |
-    |                                                                                               |
-    |                                                                                               |
-    |                                                                                               |
-    |                                                                                               |
-    |                                                                                               |
-    +-----------------------------------------------------------------------------------------------+
-    | >                                                                                             |
-    | >                                                                                             |
-    | > Noise payload (block data)                                                                  |
-    | >                                                                                             |
-    | > :   (length varies)                                                                         |
-    | >                                                                                             |
-    | > see below for allowed blocks                                                                |
-    |                                                                                               |
-    |                                                                                               |
-    +-----------------------------------------------------------------------------------------------+
+Destination Connection ID :: Randomly generated by Alice
 
-    Destination Connection ID :: Randomly generated by Alice
+id :: 1 byte, the network ID (currently 2, except for test networks)
 
-    id :: 1 byte, the network ID (currently 2, except for test networks)
+ver :: 2
 
-    ver :: 2
+type :: 0
 
-    type :: 0
+flag :: 1 byte, unused, set to 0 for future compatibility
 
-    flag :: 1 byte, unused, set to 0 for future compatibility
+Packet Number :: Random 4 byte number generated by Alice, ignored
 
-    Packet Number :: Random 4 byte number generated by Alice, ignored
+Source Connection ID :: Randomly generated by Alice,
+                        must not be equal to Destination Connection ID
 
-    Source Connection ID :: Randomly generated by Alice,
+Token :: 0 if not previously received from Bob
 
-    :   must not be equal to Destination Connection ID
-
-    Token :: 0 if not previously received from Bob
-
-    X :: 32 bytes, X25519 ephemeral key, little endian
+X :: 32 bytes, X25519 ephemeral key, little endian
 ```
 #### Carga útil
 
@@ -778,34 +885,54 @@ El tamaño mínimo de la carga útil es de 8 bytes. Dado que el bloque DateTime 
 
 ```
 // take h saved from Session Request KDF
+// MixHash(ciphertext)
+h = SHA256(h || encrypted Noise payload from Session Request)
 
-// MixHash(ciphertext) h = SHA256(h || encrypted Noise payload from Session Request)
+// MixHash(header)
+h = SHA256(h || header)
 
-    // MixHash(header) h = SHA256(h || header)
+This is the "e" message pattern:
 
-    This is the "e" message pattern:
+// Bob's X25519 ephemeral keys
+besk = GENERATE_PRIVATE()
+bepk = DERIVE_PUBLIC(besk)
 
-    // Bob's X25519 ephemeral keys besk = GENERATE_PRIVATE() bepk = DERIVE_PUBLIC(besk)
+// h is from KDF for Session Request
+// Bob ephemeral key Y
+// MixHash(bepk)
+h = SHA256(h || bepk);
 
-    // h is from KDF for Session Request // Bob ephemeral key Y // MixHash(bepk) h = SHA256(h || bepk);
+// h is used as the associated data for the AEAD in Session Created
+// Retain the Hash h for the Session Confirmed KDF
 
-    // h is used as the associated data for the AEAD in Session Created // Retain the Hash h for the Session Confirmed KDF
+End of "e" message pattern.
 
-    End of "e" message pattern.
+This is the "ee" message pattern:
 
-    This is the "ee" message pattern:
+// MixKey(DH())
+//[chainKey, k] = MixKey(sharedSecret)
+sharedSecret = DH(aesk, bepk) = DH(besk, aepk)
+keydata = HKDF(chainKey, sharedSecret, "", 64)
+chainKey = keydata[0:31]
 
-    // MixKey(DH()) //[chainKey, k] = MixKey(sharedSecret) sharedSecret = DH(aesk, bepk) = DH(besk, aepk) keydata = HKDF(chainKey, sharedSecret, "", 64) chainKey = keydata[0:31]
+// AEAD parameters
+k = keydata[32:63]
+n = 0
+ad = h
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-    // AEAD parameters k = keydata[32:63] n = 0 ad = h ciphertext = ENCRYPT(k, n, payload, ad)
+// retain the chaining key ck for Session Confirmed KDF
 
-    // retain the chaining key ck for Session Confirmed KDF
+End of "ee" message pattern.
 
-    End of "ee" message pattern.
+// Header encryption keys for this message
+// bik = Bob's intro key
+k_header_1 = bik
+k_header_2: See Session Request KDF above
 
-    // Header encryption keys for this message // bik = Bob's intro key k_header_1 = bik k_header_2: See Session Request KDF above
-
-    // Header protection keys for next message (Session Confirmed) k_header_1 = bik k_header_2 = HKDF(chainKey, ZEROLEN, "SessionConfirmed", 32)
+// Header protection keys for next message (Session Confirmed)
+k_header_1 = bik
+k_header_2 = HKDF(chainKey, ZEROLEN, "SessionConfirmed", 32)
 ```
 ### SessionCreated (Tipo 1)
 
@@ -816,17 +943,28 @@ Contenido Noise: clave efímera Y de Bob Carga útil Noise: DateTime, Address y 
 Propiedades de Seguridad del Payload:
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  <- e, ee                  2                1
 
-<- e, ee 2 1
+  Authentication: 2.
+  Sender authentication resistant to key-compromise impersonation (KCI).
+  The sender authentication is based on an ephemeral-static DH ("es" or "se")
+  between the sender's static key pair and the recipient's ephemeral key pair.
+  Assuming the corresponding private keys are secure, this authentication cannot be forged.
 
-    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
+  Confidentiality: 1.
+  Encryption to an ephemeral recipient.
+  This payload has forward secrecy, since encryption involves an ephemeral-ephemeral DH ("ee").
+  However, the sender has not authenticated the recipient,
+  so this payload might be sent to any party, including an active attacker.
 
-    Confidentiality: 1. Encryption to an ephemeral recipient. This payload has forward secrecy, since encryption involves an ephemeral-ephemeral DH ("ee"). However, the sender has not authenticated the recipient, so this payload might be sent to any party, including an active attacker.
 
-    "e": Bob generates a new ephemeral key pair and stores it in the e variable, writes the ephemeral public key as cleartext into the message buffer, and hashes the public key along with the old h to derive a new h.
+  "e": Bob generates a new ephemeral key pair and stores it in the e variable,
+  writes the ephemeral public key as cleartext into the message buffer,
+  and hashes the public key along with the old h to derive a new h.
 
-    "ee": A DH is performed between the Bob's ephemeral key pair and the Alice's ephemeral key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+  "ee": A DH is performed between the Bob's ephemeral key pair and the Alice's ephemeral key pair.
+  The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
 ```
 El valor Y se cifra para garantizar la indistinguibilidad y unicidad de la carga útil, que son contramedidas DPI necesarias. Utilizamos el cifrado ChaCha20 para lograr esto, en lugar de alternativas más complejas y lentas como elligator2. El cifrado asimétrico a la clave pública del router de Alice sería demasiado lento. El cifrado ChaCha20 utiliza la clave de introducción de Bob, tal como se publica en la base de datos de red.
 
@@ -836,67 +974,84 @@ Contenidos sin procesar:
 
 ```
 +----+----+----+----+----+----+----+----+
+|  Long Header bytes 0-15, ChaCha20     |
++  encrypted with Bob intro key and     +
+| derived key, see Header Encryption KDF|
++----+----+----+----+----+----+----+----+
+|  Long Header bytes 16-31, ChaCha20    |
++  encrypted with derived key n=0       +
+|  See Header Encryption KDF            |
++----+----+----+----+----+----+----+----+
+|                                       |
++       Y, ChaCha20 encrypted           +
+|       with derived key n=0            |
++              (32 bytes)               +
+|       See Header Encryption KDF       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|   ChaCha20 data                       |
++   Encrypted and authenticated data    +
+|  length varies                        |
++  k defined in KDF for Session Created +
+|  n = 0; see KDF for associated data   |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|  Long Header bytes 0-15, ChaCha20 |
-
-    + encrypted with Bob intro key and + | derived key, see Header Encryption KDF| +----+----+----+----+----+----+----+----+ | Long Header bytes 16-31, ChaCha20 | + encrypted with derived key n=0 + | See Header Encryption KDF | +----+----+----+----+----+----+----+----+ | | + Y, ChaCha20 encrypted + | with derived key n=0 | + (32 bytes) + | See Header Encryption KDF | + + | | +----+----+----+----+----+----+----+----+ | ChaCha20 data | + Encrypted and authenticated data + | length varies | + k defined in KDF for Session Created + | n = 0; see KDF for associated data | + + | | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
-
-    Y :: 32 bytes, ChaCha20 encrypted X25519 ephemeral key, little endian
-
-    :   key: Bob's intro key n: 1 data: 48 bytes (bytes 16-31 of the header, followed by encrypted Y)
+Y :: 32 bytes, ChaCha20 encrypted X25519 ephemeral key, little endian
+        key: Bob's intro key
+        n: 1
+        data: 48 bytes (bytes 16-31 of the header, followed by encrypted Y)
 ```
 Datos sin cifrar (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type| ver| id |flag|
++----+----+----+----+----+----+----+----+
+|        Source Connection ID           |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|                  Y                    |
++              (32 bytes)               +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|     Noise payload (block data)        |
++          (length varies)              +
+|      see below for allowed blocks     |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
+Destination Connection ID :: The Source Connection ID
+                             received from Alice in Session Request
 
-    +-------------------------------------------+----------+----------+----------+----------+
-    | > Packet Number                           | type     | ver      | id       | flag     |
-    +-------------------------------------------+----------+----------+----------+----------+
-    | > Source Connection ID                                                                |
-    +---------------------------------------------------------------------------------------+
-    | > Token                                                                               |
-    +---------------------------------------------------------------------------------------+
-    | > Y (32 bytes)                                                                        |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    +---------------------------------------------------------------------------------------+
-    | >                                                                                     |
-    | >                                                                                     |
-    | > Noise payload (block data)                                                          |
-    | >                                                                                     |
-    | > :   (length varies) see below for allowed blocks                                    |
-    |                                                                                       |
-    |                                                                                       |
-    +---------------------------------------------------------------------------------------+
+id :: 1 byte, the network ID (currently 2, except for test networks)
 
-    Destination Connection ID :: The Source Connection ID
+ver :: 2
 
-    :   received from Alice in Session Request
+type :: 0
 
-    id :: 1 byte, the network ID (currently 2, except for test networks)
+flag :: 1 byte, unused, set to 0 for future compatibility
 
-    ver :: 2
+Packet Number :: Random 4 byte number generated by Bob, ignored
 
-    type :: 0
+Source Connection ID :: The Destination Connection ID
+                        received from Alice in Session Request
 
-    flag :: 1 byte, unused, set to 0 for future compatibility
+Token :: 0 (unused)
 
-    Packet Number :: Random 4 byte number generated by Bob, ignored
-
-    Source Connection ID :: The Destination Connection ID
-
-    :   received from Alice in Session Request
-
-    Token :: 0 (unused)
-
-    Y :: 32 bytes, X25519 ephemeral key, little endian
+Y :: 32 bytes, X25519 ephemeral key, little endian
 ```
 #### Carga útil
 
@@ -930,45 +1085,70 @@ El tamaño mínimo del payload es de 8 bytes. Dado que los bloques DateTime y Ad
 
 ```
 // take h saved from Session Created KDF
+// MixHash(ciphertext)
+h = SHA256(h || encrypted Noise payload from Session Created)
 
-// MixHash(ciphertext) h = SHA256(h || encrypted Noise payload from Session Created)
+// MixHash(header)
+h = SHA256(h || header)
+// h is used as the associated data for the AEAD in Session Confirmed part 1, below
 
-    // MixHash(header) h = SHA256(h || header) // h is used as the associated data for the AEAD in Session Confirmed part 1, below
+This is the "s" message pattern:
 
-    This is the "s" message pattern:
+// Alice's X25519 static keys
+ask = GENERATE_PRIVATE()
+apk = DERIVE_PUBLIC(ask)
 
-    // Alice's X25519 static keys ask = GENERATE_PRIVATE() apk = DERIVE_PUBLIC(ask)
+// AEAD parameters
+// k is from Session Request
+n = 1
+ad = h
+ciphertext = ENCRYPT(k, n++, apk, ad)
 
-    // AEAD parameters // k is from Session Request n = 1 ad = h ciphertext = ENCRYPT(k, n++, apk, ad)
+// MixHash(ciphertext)
+h = SHA256(h || ciphertext);
 
-    // MixHash(ciphertext) h = SHA256(h || ciphertext);
+// h is used as the associated data for the AEAD in Session Confirmed part 2
 
-    // h is used as the associated data for the AEAD in Session Confirmed part 2
+End of "s" message pattern.
 
-    End of "s" message pattern.
-
-    // Header encryption keys for this message See Session Confirmed part 2 below
+// Header encryption keys for this message
+See Session Confirmed part 2 below
 ```
 ### KDF para la parte 2 de Session Confirmed
 
 ```
 This is the "se" message pattern:
 
-// DH(ask, bepk) == DH(besk, apk) sharedSecret = DH(ask, bepk) = DH(besk, apk)
+// DH(ask, bepk) == DH(besk, apk)
+sharedSecret = DH(ask, bepk) = DH(besk, apk)
 
-// MixKey(DH()) //[chainKey, k] = MixKey(sharedSecret) keydata = HKDF(chainKey, sharedSecret, "", 64) chainKey = keydata[0:31]
+// MixKey(DH())
+//[chainKey, k] = MixKey(sharedSecret)
+keydata = HKDF(chainKey, sharedSecret, "", 64)
+chainKey = keydata[0:31]
 
-// AEAD parameters k = keydata[32:63] n = 0 ad = h ciphertext = ENCRYPT(k, n, payload, ad)
+// AEAD parameters
+k = keydata[32:63]
+n = 0
+ad = h
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-// h from Session Confirmed part 1 is used as the associated data for the AEAD in Session Confirmed part 2 // MixHash(ciphertext) h = SHA256(h || ciphertext);
+// h from Session Confirmed part 1 is used as the associated data for the AEAD in Session Confirmed part 2
+// MixHash(ciphertext)
+h = SHA256(h || ciphertext);
 
-// retain the chaining key ck for the data phase KDF // retain the hash h for the data phase KDF
+// retain the chaining key ck for the data phase KDF
+// retain the hash h for the data phase KDF
 
 End of "se" message pattern.
 
-// Header encryption keys for this message // bik = Bob's intro key k_header_1 = bik k_header_2: See Session Created KDF above
+// Header encryption keys for this message
+// bik = Bob's intro key
+k_header_1 = bik
+k_header_2: See Session Created KDF above
 
-// Header protection keys for data phase See data phase KDF below
+// Header protection keys for data phase
+See data phase KDF below
 ```
 ### SessionConfirmed (Tipo 2)
 
@@ -979,17 +1159,31 @@ Contenido Noise: clave estática de Alice Parte 1 del payload Noise: Ninguna Par
 Propiedades de Seguridad del Payload:
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  -> s, se                  2                5
 
--> s, se 2 5
+  Authentication: 2.
+  Sender authentication resistant to key-compromise impersonation (KCI).  The
+  sender authentication is based on an ephemeral-static DH ("es" or "se")
+  between the sender's static key pair and the recipient's ephemeral key
+  pair.  Assuming the corresponding private keys are secure, this
+  authentication cannot be forged.
 
-    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
+  Confidentiality: 5.
+  Encryption to a known recipient, strong forward secrecy.  This payload is
+  encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static
+  DH with the recipient's static key pair.  Assuming the ephemeral private
+  keys are secure, and the recipient is not being actively impersonated by an
+  attacker that has stolen its static private key, this payload cannot be
+  decrypted.
 
-    Confidentiality: 5. Encryption to a known recipient, strong forward secrecy. This payload is encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static DH with the recipient's static key pair. Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated by an attacker that has stolen its static private key, this payload cannot be decrypted.
+  "s": Alice writes her static public key from the s variable into the
+  message buffer, encrypting it, and hashes the output along with the old h
+  to derive a new h.
 
-    "s": Alice writes her static public key from the s variable into the message buffer, encrypting it, and hashes the output along with the old h to derive a new h.
-
-    "se": A DH is performed between the Alice's static key pair and the Bob's ephemeral key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+  "se": A DH is performed between the Alice's static key pair and the Bob's
+  ephemeral key pair.  The result is hashed along with the old ck to derive a
+  new ck and k, and n is set to zero.
 ```
 Esto contiene dos marcos ChaChaPoly. El primero es la clave pública estática cifrada de Alice. El segundo es la carga útil de Noise: el RouterInfo cifrado de Alice, opciones opcionales y relleno opcional. Utilizan claves diferentes, porque la función MixKey() se llama entre ellos.
 
@@ -997,53 +1191,84 @@ Contenidos sin procesar:
 
 ```
 +----+----+----+----+----+----+----+----+
+|  Short Header 16 bytes, ChaCha20      |
++  encrypted with Bob intro key and     +
+| derived key, see Header Encryption KDF|
++----+----+----+----+----+----+----+----+
+|   ChaCha20 frame (32 bytes)           |
++   Encrypted and authenticated data    +
++   Alice static key S                  +
+| k defined in KDF for Session Created  |
++     n = 1                             +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++ Length varies (remainder of packet)   +
+|                                       |
++   ChaChaPoly frame                    +
+|   Encrypted and authenticated         |
++   see below for allowed blocks        +
+|                                       |
++     k defined in KDF for              +
+|     Session Confirmed part 2          |
++     n = 0                             +
+|     see KDF for associated data       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|  Short Header 16 bytes, ChaCha20 |
-
-    + encrypted with Bob intro key and + | derived key, see Header Encryption KDF| +----+----+----+----+----+----+----+----+ | ChaCha20 frame (32 bytes) | + Encrypted and authenticated data + + Alice static key S + | k defined in KDF for Session Created | + n = 1 + | | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+ | | + Length varies (remainder of packet) + | | + ChaChaPoly frame + | Encrypted and authenticated | + see below for allowed blocks + | | + k defined in KDF for + | Session Confirmed part 2 | + n = 0 + | see KDF for associated data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
-
-    S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
-
-    :   inside 48 byte ChaChaPoly frame
+S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+     inside 48 byte ChaChaPoly frame
 ```
 Datos no cifrados (etiquetas de autenticación Poly1305 no mostradas):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type|frag|  flags  |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|              S                        |
++       Alice static key                +
+|          (32 bytes)                   |
++                                       +
+|                                       |
++                                       +
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|        Noise Payload                  |
++        (length varies)                +
+|        see below for allowed blocks   |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
+Destination Connection ID :: As sent in Session Request,
+                             or one received in Session Confirmed?
 
-    +---------------------------------------------------+------------+------------+-------------------------+
-    | > Packet Number                                   | type       | frag       | > flags                 |
-    +---------------------------------------------------+------------+------------+-------------------------+
-    | > S Alice static key (32 bytes)                                                                       |
-    |                                                                                                       |
-    |                                                                                                       |
-    |                                                                                                       |
-    |                                                                                                       |
-    |                                                                                                       |
-    |                                                                                                       |
-    |                                                                                                       |
-    |                                                                                                       |
-    +-------------------------------------------------------------------------------------------------------+
+Packet Number :: 0 always, for all fragments, even if retransmitted
 
-    ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+type :: 2
 
-    Destination Connection ID :: As sent in Session Request,
+frag :: 1 byte fragment info:
+       bit order: 76543210 (bit 7 is MSB)
+       bits 7-4: fragment number 0-14, big endian
+       bits 3-0: total fragments 1-15, big endian
 
-    :   or one received in Session Confirmed?
+flags :: 2 bytes, unused, set to 0 for future compatibility
 
-    Packet Number :: 0 always, for all fragments, even if retransmitted
-
-    type :: 2
-
-    frag :: 1 byte fragment info:
-
-    :   bit order: 76543210 (bit 7 is MSB) bits 7-4: fragment number 0-14, big endian bits 3-0: total fragments 1-15, big endian
-
-    flags :: 2 bytes, unused, set to 0 for future compatibility
-
-    S :: 32 bytes, Alice's X25519 static key, little endian
+S :: 32 bytes, Alice's X25519 static key, little endian
 ```
 #### Carga útil
 
@@ -1145,16 +1370,30 @@ El KDF genera dos claves de cifrado k_ab y k_ba a partir de la clave de encadena
 
 ```
 // split()
+// chainKey = from handshake phase
+keydata = HKDF(chainKey, ZEROLEN, "", 64)
+k_ab = keydata[0:31]
+k_ba = keydata[32:63]
 
-// chainKey = from handshake phase keydata = HKDF(chainKey, ZEROLEN, "", 64) k_ab = keydata[0:31] k_ba = keydata[32:63]
+// key is k_ab for Alice to Bob
+// key is k_ba for Bob to Alice
 
-    // key is k_ab for Alice to Bob // key is k_ba for Bob to Alice
+keydata = HKDF(key, ZEROLEN, "HKDFSSU2DataKeys", 64)
+k_data = keydata[0:31]
+k_header_2 = keydata[32:63]
 
-    keydata = HKDF(key, ZEROLEN, "HKDFSSU2DataKeys", 64) k_data = keydata[0:31] k_header_2 = keydata[32:63]
 
-    // AEAD parameters k = k_data n = 4 byte packet number from header ad = 16 byte header, before header encryption ciphertext = ENCRYPT(k, n, payload, ad)
+// AEAD parameters
+k = k_data
+n = 4 byte packet number from header
+ad = 16 byte header, before header encryption
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-    // Header encryption keys for data phase // aik = Alice's intro key // bik = Bob's intro key k_header_1 = Receiver's intro key (aik or bik) k_header_2: from above
+// Header encryption keys for data phase
+// aik = Alice's intro key
+// bik = Bob's intro key
+k_header_1 = Receiver's intro key (aik or bik)
+k_header_2: from above
 ```
 ### Mensaje de Datos (Tipo 6)
 
@@ -1167,13 +1406,22 @@ Nota: Bob puede, pero no está obligado, a enviar su RouterInfo a Alice como su 
 Propiedades de Seguridad de la Carga Útil:
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  <-                        2                5
+  ->                        2                5
 
-<- 2 5 -> 2 5
+  Authentication: 2.
+  Sender authentication resistant to key-compromise impersonation (KCI).
+  The sender authentication is based on an ephemeral-static DH ("es" or "se")
+  between the sender's static key pair and the recipient's ephemeral key pair.
+  Assuming the corresponding private keys are secure, this authentication cannot be forged.
 
-    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
-
-    Confidentiality: 5. Encryption to a known recipient, strong forward secrecy. This payload is encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static DH with the recipient's static key pair. Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated by an attacker that has stolen its static private key, this payload cannot be decrypted.
+  Confidentiality: 5.
+  Encryption to a known recipient, strong forward secrecy.
+  This payload is encrypted based on an ephemeral-ephemeral DH as well as
+  an ephemeral-static DH with the recipient's static key pair.
+  Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated
+  by an attacker that has stolen its static private key, this payload cannot be decrypted.
 ```
 #### Notas
 
@@ -1181,37 +1429,56 @@ XK(s, rs): Authentication Confidentiality
 
 ```
 +----+----+----+----+----+----+----+----+
-
-|  Short Header 16 bytes, ChaCha20 |
-
-    + encrypted with intro key and + | derived key, see Data Phase KDF | +----+----+----+----+----+----+----+----+ | ChaCha20 data | + Encrypted and authenticated data + | length varies | + k defined in Data Phase KDF + | n = packet number from header | + + | | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
+|  Short Header 16 bytes, ChaCha20      |
++  encrypted with intro key and         +
+|  derived key, see Data Phase KDF      |
++----+----+----+----+----+----+----+----+
+|   ChaCha20 data                       |
++   Encrypted and authenticated data    +
+|  length varies                        |
++  k defined in Data Phase KDF          +
+|  n = packet number from header        |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 Datos no cifrados (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type| ver| id |flag|
++----+----+----+----+----+----+----+----+
+|        Source Connection ID           |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
+|    ChaCha20 payload (block data)      |
++          (length varies)              +
+|    see below for allowed blocks       |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
 
-    +-------------------------------------------+----------+--------------------------------+
-    | > Packet Number                           | type     | > flags                        |
-    +-------------------------------------------+----------+--------------------------------+
-    | >                                                                                     |
-    | >                                                                                     |
-    | > Noise payload (block data)                                                          |
-    | >                                                                                     |
-    | > :   (length varies)                                                                 |
-    |                                                                                       |
-    |                                                                                       |
-    +---------------------------------------------------------------------------------------+
+Destination Connection ID :: See below
 
-    Destination Connection ID :: As specified in session setup
+Packet Number :: Random number generated by Charlie
 
-    Packet Number :: 4 byte big endian integer
+type :: 11
 
-    type :: 6
+ver :: 2
 
-    flags :: 3 bytes, unused, set to 0 for future compatibility
+id :: 1 byte, the network ID (currently 2, except for test networks)
+
+flag :: 1 byte, unused, set to 0 for future compatibility
+
+Source Connection ID :: See below
+
+Token :: 8 byte unsigned integer, randomly generated by Charlie, nonzero.
 ```
 #### Notas
 
@@ -1222,10 +1489,15 @@ Datos no cifrados (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 // AEAD parameters
+// aik = Alice's intro key
+k = aik
+n = 4 byte packet number from header
+ad = 32 byte header, before header encryption
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-// bik = Bob's intro key k = bik n = 4 byte packet number from header ad = 32 byte header, before header encryption ciphertext = ENCRYPT(k, n, payload, ad)
-
-    // Header encryption keys for this message k_header_1 = bik k_header_2 = bik
+// Header encryption keys for this message
+k_header_1 = aik
+k_header_2 = aik
 ```
 ### Prueba de Par (Tipo 7)
 
@@ -1239,51 +1511,61 @@ Contenido sin procesar:
 
 ```
 +----+----+----+----+----+----+----+----+
-
-|  Long Header bytes 0-15, ChaCha20 |
-
-    + encrypted with Alice or Charlie + | intro key | +----+----+----+----+----+----+----+----+ | Long Header bytes 16-31, ChaCha20 | + encrypted with Alice or Charlie + | intro key | +----+----+----+----+----+----+----+----+ | | + + | ChaCha20 encrypted data | + (length varies) + | | + see KDF for key and n + | see KDF for associated data | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
+|  Long Header bytes 0-15, ChaCha20     |
++  encrypted with Alice intro key       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Long Header bytes 16-31, ChaCha20    |
++  encrypted with Alice intro key       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   ChaCha20 encrypted data             |
++          (length varies)              +
+|                                       |
++  see KDF for key and n                +
+|  see KDF for associated data          |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 Datos no cifrados (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type| ver| id |flag|
++----+----+----+----+----+----+----+----+
+|        Source Connection ID           |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
+|    ChaCha20 payload (block data)      |
++          (length varies)              +
+|    see below for allowed blocks       |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
 
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Packet Number                                   | type       | ver        | id         | flag       |
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Source Connection ID                                                                                |
-    +-------------------------------------------------------------------------------------------------------+
-    | > Token                                                                                               |
-    +-------------------------------------------------------------------------------------------------------+
-    | >                                                                                                     |
-    | >                                                                                                     |
-    | > ChaCha20 payload (block data)                                                                       |
-    | >                                                                                                     |
-    | > :   (length varies)                                                                                 |
-    | >                                                                                                     |
-    | > see below for allowed blocks                                                                        |
-    |                                                                                                       |
-    |                                                                                                       |
-    +-------------------------------------------------------------------------------------------------------+
+Destination Connection ID :: Randomly generated by Alice
 
-    Destination Connection ID :: See below
+Packet Number :: Random number generated by Alice
 
-    type :: 7
+type :: 10
 
-    ver :: 2
+ver :: 2
 
-    id :: 1 byte, the network ID (currently 2, except for test networks)
+id :: 1 byte, the network ID (currently 2, except for test networks)
 
-    flag :: 1 byte, unused, set to 0 for future compatibility
+flag :: 1 byte, unused, set to 0 for future compatibility
 
-    Packet Number :: Random number generated by Alice or Charlie
+Source Connection ID :: Randomly generated by Alice,
+                        must not be equal to Destination Connection ID
 
-    Source Connection ID :: See below
-
-    Token :: Randomly generated by Alice or Charlie, ignored
+Token :: zero
 ```
 #### Carga útil
 
@@ -1312,10 +1594,15 @@ El requisito para el mensaje Retry es que Bob no está obligado a descifrar el m
 
 ```
 // AEAD parameters
+// bik = Bob's intro key
+k = bik
+n = 4 byte packet number from header
+ad = 32 byte header, before header encryption
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-// bik = Bob's intro key k = bik n = 4 byte packet number from header ad = 32 byte header, before header encryption ciphertext = ENCRYPT(k, n, payload, ad)
-
-    // Header encryption keys for this message k_header_1 = bik k_header_2 = bik
+// Header encryption keys for this message
+k_header_1 = bik
+k_header_2 = bik
 ```
 ### Reintentar (Tipo 9)
 
@@ -1329,57 +1616,65 @@ Contenidos sin procesar:
 
 ```
 +----+----+----+----+----+----+----+----+
-
-|  Long Header bytes 0-15, ChaCha20 |
-
-    + encrypted with Bob intro key + | | +----+----+----+----+----+----+----+----+ | Long Header bytes 16-31, ChaCha20 | + encrypted with Bob intro key + | | +----+----+----+----+----+----+----+----+ | | + + | ChaCha20 encrypted data | + (length varies) + | | + see KDF for key and n + | see KDF for associated data | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
+|  Long Header bytes 0-15, ChaCha20     |
++  encrypted with Bob intro key         +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Long Header bytes 16-31, ChaCha20    |
++  encrypted with Bob intro key         +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   ChaCha20 encrypted data             |
++          (length varies)              +
+|                                       |
++  see KDF for key and n                +
+|  see KDF for associated data          |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 Datos no cifrados (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type| ver| id |flag|
++----+----+----+----+----+----+----+----+
+|        Source Connection ID           |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
+|    ChaCha20 payload (block data)      |
++          (length varies)              +
+|    see below for allowed blocks       |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
 
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Packet Number                                   | type       | ver        | id         | flag       |
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Source Connection ID                                                                                |
-    +-------------------------------------------------------------------------------------------------------+
-    | > Token                                                                                               |
-    +-------------------------------------------------------------------------------------------------------+
-    | >                                                                                                     |
-    | >                                                                                                     |
-    | > ChaCha20 payload (block data)                                                                       |
-    | >                                                                                                     |
-    | > :   (length varies)                                                                                 |
-    | >                                                                                                     |
-    | > see below for allowed blocks                                                                        |
-    |                                                                                                       |
-    |                                                                                                       |
-    +-------------------------------------------------------------------------------------------------------+
+Destination Connection ID :: The Source Connection ID
+                             received from Alice in Token Request
+                             or Session Request
 
-    Destination Connection ID :: The Source Connection ID
+Packet Number :: Random number generated by Bob
 
-    :   received from Alice in Token Request or Session Request
+type :: 9
 
-    Packet Number :: Random number generated by Bob
+ver :: 2
 
-    type :: 9
+id :: 1 byte, the network ID (currently 2, except for test networks)
 
-    ver :: 2
+flag :: 1 byte, unused, set to 0 for future compatibility
 
-    id :: 1 byte, the network ID (currently 2, except for test networks)
+Source Connection ID :: The Destination Connection ID
+                        received from Alice in Token Request
+                        or Session Request
 
-    flag :: 1 byte, unused, set to 0 for future compatibility
-
-    Source Connection ID :: The Destination Connection ID
-
-    :   received from Alice in Token Request or Session Request
-
-    Token :: 8 byte unsigned integer, randomly generated by Bob, nonzero,
-
-    :   or zero if session is rejected and a termination block is included
+Token :: 8 byte unsigned integer, randomly generated by Bob, nonzero,
+         or zero if session is rejected and a termination block is included
 ```
 #### Carga útil
 
@@ -1402,10 +1697,15 @@ Este mensaje debe ser rápido de generar, usando únicamente cifrado simétrico.
 
 ```
 // AEAD parameters
+// bik = Bob's intro key
+k = bik
+n = 4 byte packet number from header
+ad = 32 byte header, before header encryption
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-// bik = Bob's intro key k = bik n = 4 byte packet number from header ad = 32 byte header, before header encryption ciphertext = ENCRYPT(k, n, payload, ad)
-
-    // Header encryption keys for this message k_header_1 = bik k_header_2 = bik
+// Header encryption keys for this message
+k_header_1 = bik
+k_header_2 = bik
 ```
 ### Solicitud de Token (Tipo 10)
 
@@ -1419,53 +1719,47 @@ Contenido sin procesar:
 
 ```
 +----+----+----+----+----+----+----+----+
-
-|  Long Header bytes 0-15, ChaCha20 |
-
-    + encrypted with Bob intro key + | | +----+----+----+----+----+----+----+----+ | Long Header bytes 16-31, ChaCha20 | + encrypted with Bob intro key + | | +----+----+----+----+----+----+----+----+ | | + + | ChaCha20 encrypted data | + (length varies) + | | + see KDF for key and n + | see KDF for associated data | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
+|  Long Header bytes 0-15, ChaCha20     |
++  encrypted with Bob intro key         +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Long Header bytes 16-31, ChaCha20    |
++  encrypted with Bob intro key         +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   ChaCha20 encrypted data             |
++          (length varies)              +
+|                                       |
++  see KDF for key and n                +
+|  see KDF for associated data          |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 Datos no encriptados (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type|    flags     |
++----+----+----+----+----+----+----+----+
+|     Noise payload (block data)        |
++          (length varies)              +
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
+Destination Connection ID :: As specified in session setup
 
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Packet Number                                   | type       | ver        | id         | flag       |
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Source Connection ID                                                                                |
-    +-------------------------------------------------------------------------------------------------------+
-    | > Token                                                                                               |
-    +-------------------------------------------------------------------------------------------------------+
-    | >                                                                                                     |
-    | >                                                                                                     |
-    | > ChaCha20 payload (block data)                                                                       |
-    | >                                                                                                     |
-    | > :   (length varies)                                                                                 |
-    | >                                                                                                     |
-    | > see below for allowed blocks                                                                        |
-    |                                                                                                       |
-    |                                                                                                       |
-    +-------------------------------------------------------------------------------------------------------+
+Packet Number :: 4 byte big endian integer
 
-    Destination Connection ID :: Randomly generated by Alice
+type :: 6
 
-    Packet Number :: Random number generated by Alice
-
-    type :: 10
-
-    ver :: 2
-
-    id :: 1 byte, the network ID (currently 2, except for test networks)
-
-    flag :: 1 byte, unused, set to 0 for future compatibility
-
-    Source Connection ID :: Randomly generated by Alice,
-
-    :   must not be equal to Destination Connection ID
-
-    Token :: zero
+flags :: 3 bytes, unused, set to 0 for future compatibility
 ```
 #### Carga útil
 
@@ -1489,10 +1783,15 @@ Este mensaje debe ser rápido de generar, usando solo cifrado simétrico.
 
 ```
 // AEAD parameters
+// bik = Bob's intro key
+k = bik
+n = 4 byte packet number from header
+ad = 32 byte header, before header encryption
+ciphertext = ENCRYPT(k, n, payload, ad)
 
-// aik = Alice's intro key k = aik n = 4 byte packet number from header ad = 32 byte header, before header encryption ciphertext = ENCRYPT(k, n, payload, ad)
-
-    // Header encryption keys for this message k_header_1 = aik k_header_2 = aik
+// Header encryption keys for this message
+k_header_1 = bik
+k_header_2 = bik
 ```
 ### Hole Punch (Tipo 11)
 
@@ -1504,51 +1803,60 @@ Contenidos sin procesar:
 
 ```
 +----+----+----+----+----+----+----+----+
-
-|  Long Header bytes 0-15, ChaCha20 |
-
-    + encrypted with Alice intro key + | | +----+----+----+----+----+----+----+----+ | Long Header bytes 16-31, ChaCha20 | + encrypted with Alice intro key + | | +----+----+----+----+----+----+----+----+ | | + + | ChaCha20 encrypted data | + (length varies) + | | + see KDF for key and n + | see KDF for associated data | +----+----+----+----+----+----+----+----+ | | + Poly1305 MAC (16 bytes) + | | +----+----+----+----+----+----+----+----+
+|  Long Header bytes 0-15, ChaCha20     |
++  encrypted with Alice or Charlie      +
+|  intro key                            |
++----+----+----+----+----+----+----+----+
+|  Long Header bytes 16-31, ChaCha20    |
++  encrypted with Alice or Charlie      +
+|  intro key                            |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   ChaCha20 encrypted data             |
++          (length varies)              +
+|                                       |
++  see KDF for key and n                +
+|  see KDF for associated data          |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 Datos no cifrados (etiqueta de autenticación Poly1305 no mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|      Destination Connection ID        |
++----+----+----+----+----+----+----+----+
+|   Packet Number   |type| ver| id |flag|
++----+----+----+----+----+----+----+----+
+|        Source Connection ID           |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
+|    ChaCha20 payload (block data)      |
++          (length varies)              +
+|    see below for allowed blocks       |
++----+----+----+----+----+----+----+----+
 
-|      Destination Connection ID |
 
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Packet Number                                   | type       | ver        | id         | flag       |
-    +---------------------------------------------------+------------+------------+------------+------------+
-    | > Source Connection ID                                                                                |
-    +-------------------------------------------------------------------------------------------------------+
-    | > Token                                                                                               |
-    +-------------------------------------------------------------------------------------------------------+
-    | >                                                                                                     |
-    | >                                                                                                     |
-    | > ChaCha20 payload (block data)                                                                       |
-    | >                                                                                                     |
-    | > :   (length varies)                                                                                 |
-    | >                                                                                                     |
-    | > see below for allowed blocks                                                                        |
-    |                                                                                                       |
-    |                                                                                                       |
-    +-------------------------------------------------------------------------------------------------------+
+Destination Connection ID :: See below
 
-    Destination Connection ID :: See below
+type :: 7
 
-    Packet Number :: Random number generated by Charlie
+ver :: 2
 
-    type :: 11
+id :: 1 byte, the network ID (currently 2, except for test networks)
 
-    ver :: 2
+flag :: 1 byte, unused, set to 0 for future compatibility
 
-    id :: 1 byte, the network ID (currently 2, except for test networks)
+Packet Number :: Random number generated by Alice or Charlie
 
-    flag :: 1 byte, unused, set to 0 for future compatibility
+Source Connection ID :: See below
 
-    Source Connection ID :: See below
-
-    Token :: 8 byte unsigned integer, randomly generated by Charlie, nonzero.
+Token :: Randomly generated by Alice or Charlie, ignored
 ```
 #### Carga útil
 
@@ -1581,10 +1889,23 @@ Para la extensibilidad, los receptores deben ignorar los bloques con identificad
 
 ```
 +----+----+----+----+----+----+----+----+
+|blk |  size   |       data             |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|blk |  size   |       data             |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+~               .   .   .               ~
 
-[|blk |](##SUBST##|blk |) size | data | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ [|blk |](##SUBST##|blk |) size | data | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ ~ . . . ~
-
-    blk :: 1 byte, see below size :: 2 bytes, big endian, size of data to follow, 0 - TBD data :: the data
+blk :: 1 byte, see below
+size :: 2 bytes, big endian, size of data to follow, 0 - TBD
+data :: the data
 ```
 El cifrado del encabezado utiliza los últimos 24 bytes del paquete como IV para las dos operaciones ChaCha20. Como todos los paquetes terminan con un MAC de 16 bytes, esto requiere que todas las cargas útiles de los paquetes tengan un mínimo de 8 bytes. Si una carga útil no cumpliera de otra manera con este requisito, debe incluirse un bloque de Padding.
 
@@ -1647,12 +1968,13 @@ Para la sincronización de tiempo:
 
 ```
 +----+----+----+----+----+----+----+
+| 0  |    4    |     timestamp     |
++----+----+----+----+----+----+----+
 
-| 0 | 4 | timestamp |
-
-    +----+----+----+----+----+----+----+
-
-    blk :: 0 size :: 2 bytes, big endian, value = 4 timestamp :: Unix timestamp, unsigned seconds. Wraps around in 2106
+blk :: 0
+size :: 2 bytes, big endian, value = 4
+timestamp :: Unix timestamp, unsigned seconds.
+             Wraps around in 2106
 ```
 Notas:
 
@@ -1668,22 +1990,44 @@ El bloque de opciones tendrá longitud variable.
 
 ```
 +----+----+----+----+----+----+----+----+
+| 1  |  size   |tmin|tmax|rmin|rmax|tdmy|
++----+----+----+----+----+----+----+----+
+|tdmy|  rdmy   |  tdelay |  rdelay |    |
+~----+----+----+----+----+----+----+    ~
+|              more_options             |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 1 | size [|tmin|](##SUBST##|tmin|)tmax[|rmin|](##SUBST##|rmin|)rmax[|tdmy|](##SUBST##|tdmy|)
+blk :: 1
+size :: 2 bytes, big endian, size of options to follow, 12 bytes minimum
 
-    +----+----+----+----+----+----+----+----+ [|tdmy|](##SUBST##|tdmy|) rdmy | tdelay | rdelay | | ~----+----+----+----+----+----+----+ ~ | more_options | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+tmin, tmax, rmin, rmax :: requested padding limits
+    tmin and rmin are for desired resistance to traffic analysis.
+    tmax and rmax are for bandwidth limits.
+    tmin and tmax are the transmit limits for the router sending this options block.
+    rmin and rmax are the receive limits for the router sending this options block.
+    Each is a 4.4 fixed-point float representing 0 to 15.9375
+    (or think of it as an unsigned 8-bit integer divided by 16.0).
+    This is the ratio of padding to data. Examples:
+    Value of 0x00 means no padding
+    Value of 0x01 means add 6 percent padding
+    Value of 0x10 means add 100 percent padding
+    Value of 0x80 means add 800 percent (8x) padding
+    Alice and Bob will negotiate the minimum and maximum in each direction.
+    These are guidelines, there is no enforcement.
+    Sender should honor receiver's maximum.
+    Sender may or may not honor receiver's minimum, within bandwidth constraints.
 
-    blk :: 1 size :: 2 bytes, big endian, size of options to follow, 12 bytes minimum
+tdmy: Max dummy traffic willing to send, 2 bytes big endian, bytes/sec average
+rdmy: Requested dummy traffic, 2 bytes big endian, bytes/sec average
+tdelay: Max intra-message delay willing to insert, 2 bytes big endian, msec average
+rdelay: Requested intra-message delay, 2 bytes big endian, msec average
 
-    tmin, tmax, rmin, rmax :: requested padding limits
+Padding distribution specified as additional parameters?
+Random delay specified as additional parameters?
 
-    :   tmin and rmin are for desired resistance to traffic analysis. tmax and rmax are for bandwidth limits. tmin and tmax are the transmit limits for the router sending this options block. rmin and rmax are the receive limits for the router sending this options block. Each is a 4.4 fixed-point float representing 0 to 15.9375 (or think of it as an unsigned 8-bit integer divided by 16.0). This is the ratio of padding to data. Examples: Value of 0x00 means no padding Value of 0x01 means add 6 percent padding Value of 0x10 means add 100 percent padding Value of 0x80 means add 800 percent (8x) padding Alice and Bob will negotiate the minimum and maximum in each direction. These are guidelines, there is no enforcement. Sender should honor receiver's maximum. Sender may or may not honor receiver's minimum, within bandwidth constraints.
-
-    tdmy: Max dummy traffic willing to send, 2 bytes big endian, bytes/sec average rdmy: Requested dummy traffic, 2 bytes big endian, bytes/sec average tdelay: Max intra-message delay willing to insert, 2 bytes big endian, msec average rdelay: Requested intra-message delay, 2 bytes big endian, msec average
-
-    Padding distribution specified as additional parameters? Random delay specified as additional parameters?
-
-    more_options :: Format TBD
+more_options :: Format TBD
 ```
 Problemas de Opciones:
 
@@ -1699,14 +2043,30 @@ NOTA: El bloque Router Info nunca se fragmenta. El campo frag siempre es 0/1. Co
 
 ```
 +----+----+----+----+----+----+----+----+
+| 2  |  size   |flag|frag|              |
++----+----+----+----+----+              +
+|                                       |
++       Router Info fragment            +
+| (Alice RI in Session Confirmed)       |
++ (Alice, Bob, or third-party           +
+|  RI in data phase)                    |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 2 | size [|flag|](##SUBST##|flag|)frag| |
+blk :: 2
+size :: 2 bytes, big endian, 2 + fragment size
+flag :: 1 byte flags
+       bit order: 76543210 (bit 7 is MSB)
+       bit 0: 0 for local store, 1 for flood request
+       bit 1: 0 for uncompressed, 1 for gzip compressed
+       bits 7-2: Unused, set to 0 for future compatibility
+frag :: 1 byte fragment info:
+       bit order: 76543210 (bit 7 is MSB)
+       bits 7-4: fragment number, always 0
+       bits 3-0: total fragments, always 1, big endian
 
-    +----+----+----+----+----+ + | | + Router Info fragment + | (Alice RI in Session Confirmed) | + (Alice, Bob, or third-party + | RI in data phase) | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 2 size :: 2 bytes, big endian, 2 + fragment size flag :: 1 byte flags bit order: 76543210 (bit 7 is MSB) bit 0: 0 for local store, 1 for flood request bit 1: 0 for uncompressed, 1 for gzip compressed bits 7-2: Unused, set to 0 for future compatibility frag :: 1 byte fragment info: bit order: 76543210 (bit 7 is MSB) bits 7-4: fragment number, always 0 bits 3-0: total fragments, always 1, big endian
-
-    routerinfo :: Alice's or Bob's RouterInfo
+routerinfo :: Alice's or Bob's RouterInfo
 ```
 Notas:
 
@@ -1724,16 +2084,23 @@ Esto utiliza los mismos 9 bytes para el encabezado I2NP como en [NTCP2](/docs/sp
 
 ```
 +----+----+----+----+----+----+----+----+
+| 3  |  size   |type|    msg id         |
++----+----+----+----+----+----+----+----+
+|   short exp       |     message       |
++----+----+----+----+                   +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 3 | size [|type|](##SUBST##|type|) msg id |
-
-    +-------------------------------+
-    | > short exp                   |
-    +-------------------------------+
-
-    ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 3 size :: 2 bytes, big endian, size of type + msg id + exp + message to follow I2NP message body size is (size - 9). type :: 1 byte, I2NP msg type, see I2NP spec msg id :: 4 bytes, big endian, I2NP message ID short exp :: 4 bytes, big endian, I2NP message expiration, Unix timestamp, unsigned seconds. Wraps around in 2106 message :: I2NP message body
+blk :: 3
+size :: 2 bytes, big endian, size of type + msg id + exp + message to follow
+        I2NP message body size is (size - 9).
+type :: 1 byte, I2NP msg type, see I2NP spec
+msg id :: 4 bytes, big endian, I2NP message ID
+short exp :: 4 bytes, big endian, I2NP message expiration, Unix timestamp, unsigned seconds.
+             Wraps around in 2106
+message :: I2NP message body
 ```
 Notas:
 
@@ -1751,16 +2118,23 @@ El número total de fragmentos no está especificado.
 
 ```
 +----+----+----+----+----+----+----+----+
+| 4  |  size   |type|    msg id         |
++----+----+----+----+----+----+----+----+
+|   short exp       |                   |
++----+----+----+----+                   +
+|          partial message              |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 4 | size [|type|](##SUBST##|type|) msg id |
-
-    +-------------------------------+
-    | > short exp                   |
-    +-------------------------------+
-
-    ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 4 size :: 2 bytes, big endian, size of data to follow Fragment size is (size - 9). type :: 1 byte, I2NP msg type, see I2NP spec msg id :: 4 bytes, big endian, I2NP message ID short exp :: 4 bytes, big endian, I2NP message expiration, Unix timestamp, unsigned seconds. Wraps around in 2106 message :: Partial I2NP message body, bytes 0 - (size - 10)
+blk :: 4
+size :: 2 bytes, big endian, size of data to follow
+        Fragment size is (size - 9).
+type :: 1 byte, I2NP msg type, see I2NP spec
+msg id :: 4 bytes, big endian, I2NP message ID
+short exp :: 4 bytes, big endian, I2NP message expiration, Unix timestamp, unsigned seconds.
+             Wraps around in 2106
+message :: Partial I2NP message body, bytes 0 - (size - 10)
 ```
 Notas:
 
@@ -1776,12 +2150,24 @@ Un fragmento adicional (número de fragmento mayor que cero) de un mensaje I2NP.
 
 ```
 +----+----+----+----+----+----+----+----+
+| 5  |  size   |frag|    msg id         |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|          partial message              |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 5 | size [|frag|](##SUBST##|frag|) msg id |
-
-    +----+----+----+----+----+----+----+----+ | | + + | partial message | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 5 size :: 2 bytes, big endian, size of data to follow Fragment size is (size - 5). frag :: Fragment info: Bit order: 76543210 (bit 7 is MSB) bits 7-1: fragment number 1 - 127 (0 not allowed) bit 0: isLast (1 = true) msg id :: 4 bytes, big endian, I2NP message ID message :: Partial I2NP message body
+blk :: 5
+size :: 2 bytes, big endian, size of data to follow
+        Fragment size is (size - 5).
+frag :: Fragment info:
+        Bit order: 76543210 (bit 7 is MSB)
+        bits 7-1: fragment number 1 - 127 (0 not allowed)
+        bit 0: isLast (1 = true)
+msg id :: 4 bytes, big endian, I2NP message ID
+message :: Partial I2NP message body
 ```
 Notas:
 
@@ -1796,16 +2182,46 @@ Desconectar la conexión. Este debe ser el último bloque sin relleno en la carg
 
 ```
 +----+----+----+----+----+----+----+----+
+| 6  |  size   |    valid data packets  |
++----+----+----+----+----+----+----+----+
+    received   | rsn|     addl data     |
++----+----+----+----+                   +
+~               .   .   .               ~
++----+----+----+----+----+----+----+----+
 
-| 6 | size | valid data packets |
-
-    +----+----+----+----+----+----+----+----+
-
-    :   received | rsn| addl data |
-
-    +----+----+----+----+ + ~ . . . ~ +----+----+----+----+----+----+----+----+
-
-    blk :: 6 size :: 2 bytes, big endian, value = 9 or more valid data packets received :: The number of valid packets received (current receive nonce value) 0 if error occurs in handshake phase 8 bytes, big endian rsn :: reason, 1 byte: 0: normal close or unspecified 1: termination received 2: idle timeout 3: router shutdown 4: data phase AEAD failure 5: incompatible options 6: incompatible signature type 7: clock skew 8: padding violation 9: AEAD framing error 10: payload format error 11: Session Request error 12: Session Created error 13: Session Confirmed error 14: Timeout 15: RI signature verification fail 16: s parameter missing, invalid, or mismatched in RouterInfo 17: banned 18: bad token 19: connection limits 20: incompatible version 21: wrong net ID 22: replaced by new session addl data :: optional, 0 or more bytes, for future expansion, debugging, or reason text. Format unspecified and may vary based on reason code.
+blk :: 6
+size :: 2 bytes, big endian, value = 9 or more
+valid data packets received :: The number of valid packets received
+                              (current receive nonce value)
+                              0 if error occurs in handshake phase
+                              8 bytes, big endian
+rsn :: reason, 1 byte:
+       0: normal close or unspecified
+       1: termination received
+       2: idle timeout
+       3: router shutdown
+       4: data phase AEAD failure
+       5: incompatible options
+       6: incompatible signature type
+       7: clock skew
+       8: padding violation
+       9: AEAD framing error
+       10: payload format error
+       11: Session Request error
+       12: Session Created error
+       13: Session Confirmed error
+       14: Timeout
+       15: RI signature verification fail
+       16: s parameter missing, invalid, or mismatched in RouterInfo
+       17: banned
+       18: bad token
+       19: connection limits
+       20: incompatible version
+       21: wrong net ID
+       22: replaced by new session
+addl data :: optional, 0 or more bytes, for future expansion, debugging,
+             or reason text.
+             Format unspecified and may vary based on reason code.
 ```
 Notas:
 
@@ -1819,22 +2235,41 @@ Enviado en un mensaje de datos dentro de la sesión, de Alice a Bob. Ver la secc
 
 ```
 +----+----+----+----+----+----+----+----+
+|  7 |  size   |flag|       nonce       |
++----+----+----+----+----+----+----+----+
+|     relay tag     |     timestamp     |
++----+----+----+----+----+----+----+----+
+| ver| asz|AlicePort|  Alice IP address |
++----+----+----+----+----+----+----+----+
+|              signature                |
++            length varies              +
+|         64 bytes for Ed25519          |
+~                                       ~
+|                 . . .                 |
++----+----+----+----+----+----+----+----+
 
-|  7 | size [|flag|](##SUBST##|flag|) nonce |
+blk :: 7
+size :: 2 bytes, big endian, size of data to follow
+flag :: 1 byte flags, Unused, set to 0 for future compatibility
 
-    +-------+-------+---------------+-----------------------------------+
-    | > relay tag                   | > timestamp                       |
-    +-------+-------+---------------+-----------------------------------+
-    | ver   | asz   | AlicePort     | > Alice IP address                |
-    +-------+-------+---------------+-----------------------------------+
+The data below here is covered
+by the signature, and Bob forwards it unmodified.
 
-    ~ ~ | . . . | +----+----+----+----+----+----+----+----+
-
-    blk :: 7 size :: 2 bytes, big endian, size of data to follow flag :: 1 byte flags, Unused, set to 0 for future compatibility
-
-    The data below here is covered by the signature, and Bob forwards it unmodified.
-
-    nonce :: 4 bytes, randomly generated by Alice relay tag :: 4 bytes, the itag from Charlie's RI timestamp :: Unix timestamp, unsigned seconds. Wraps around in 2106 ver :: 1 byte SSU version to be used for the introduction: 1: SSU 1 2: SSU 2 asz :: 1 byte endpoint (port + IP) size (6 or 18) AlicePort :: 2 byte Alice's port number, big endian Alice IP :: (asz - 2) byte representation of Alice's IP address, network byte order signature :: length varies, 64 bytes for Ed25519. Signature of prologue, Bob's hash, and signed data above, as signed by Alice.
+nonce :: 4 bytes, randomly generated by Alice
+relay tag :: 4 bytes, the itag from Charlie's RI
+timestamp :: Unix timestamp, unsigned seconds.
+             Wraps around in 2106
+ver ::  1 byte SSU version to be used for the introduction:
+       1: SSU 1
+       2: SSU 2
+asz :: 1 byte endpoint (port + IP) size (6 or 18)
+AlicePort :: 2 byte Alice's port number, big endian
+Alice IP :: (asz - 2) byte representation of Alice's IP address,
+            network byte order
+signature :: length varies, 64 bytes for Ed25519.
+             Signature of prologue, Bob's hash,
+             and signed data above, as signed by
+             Alice.
 ```
 Notas:
 
@@ -1861,54 +2296,71 @@ Enviado en un mensaje de Datos dentro de la sesión, de Charlie a Bob o de Bob a
 
 ```
 +----+----+----+----+----+----+----+----+
+|  8 |  size   |flag|code|    nonce
++----+----+----+----+----+----+----+----+
+     |     timestamp     | ver| csz|Char
++----+----+----+----+----+----+----+----+
+ Port|   Charlie IP addr |              |
++----+----+----+----+----+              +
+|              signature                |
++            length varies              +
+|         64 bytes for Ed25519          |
+~                                       ~
+|                 . . .                 |
++----+----+----+----+----+----+----+----+
+|                 Token                 |
++----+----+----+----+----+----+----+----+
 
-|  8 | size [|flag|](##SUBST##|flag|)code| nonce
+blk :: 8
+size :: 2 bytes, 6
+flag :: 1 byte flags, Unused, set to 0 for future compatibility
+code :: 1 byte status code:
+       0: accept
+       1: rejected by Bob, reason unspecified
+       2: rejected by Bob, Charlie is banned
+       3: rejected by Bob, limit exceeded
+       4: rejected by Bob, signature failure
+       5: rejected by Bob, relay tag not found
+       6: rejected by Bob, Alice RI not found
+       7-63: other rejected by Bob codes TBD
+       64: rejected by Charlie, reason unspecified
+       65: rejected by Charlie, unsupported address
+       66: rejected by Charlie, limit exceeded
+       67: rejected by Charlie, signature failure
+       68: rejected by Charlie, Alice is already connected
+       69: rejected by Charlie, Alice is banned
+       70: rejected by Charlie, Alice is unknown
+       71-127: other rejected by Charlie codes TBD
+       128: reject, source and reason unspecified
+       129-255: other reject codes TBD
 
-    +----+----+----+----+----+----+----+----+
+The data below is covered by the signature if the code is 0 (accept).
+Bob forwards it unmodified.
 
-    :   |     timestamp | ver| csz|Char
+nonce :: 4 bytes, as received from Bob or Alice
 
-    +----+----+----+----+----+----+----+----+
+The data below is present only if the code is 0 (accept).
 
-    :   Port| Charlie IP addr | |
-
-    +----+----+----+----+----+ + | signature | + length varies + | 64 bytes for Ed25519 | ~ ~ | . . . | +----+----+----+----+----+----+----+----+ | Token | +----+----+----+----+----+----+----+----+
-
-    blk :: 8 size :: 2 bytes, 6 flag :: 1 byte flags, Unused, set to 0 for future compatibility code :: 1 byte status code: 0: accept 1: rejected by Bob, reason unspecified 2: rejected by Bob, Charlie is banned 3: rejected by Bob, limit exceeded 4: rejected by Bob, signature failure 5: rejected by Bob, relay tag not found 6: rejected by Bob, Alice RI not found 7-63: other rejected by Bob codes TBD 64: rejected by Charlie, reason unspecified 65: rejected by Charlie, unsupported address 66: rejected by Charlie, limit exceeded 67: rejected by Charlie, signature failure 68: rejected by Charlie, Alice is already connected 69: rejected by Charlie, Alice is banned 70: rejected by Charlie, Alice is unknown 71-127: other rejected by Charlie codes TBD 128: reject, source and reason unspecified 129-255: other reject codes TBD
-
-    The data below is covered by the signature if the code is 0 (accept). Bob forwards it unmodified.
-
-    nonce :: 4 bytes, as received from Bob or Alice
-
-    The data below is present only if the code is 0 (accept).
-
-    timestamp :: Unix timestamp, unsigned seconds.
-
-    :   Wraps around in 2106
-
-    ver :: 1 byte SSU version to be used for the introduction:
-
-    :   1: SSU 1 2: SSU 2
-
-    csz :: 1 byte endpoint (port + IP) size (0 or 6 or 18)
-
-    :   may be 0 for some rejection codes
-
-    CharliePort :: 2 byte Charlie's port number, big endian
-
-    :   not present if csz is 0
-
-    Charlie IP :: (csz - 2) byte representation of Charlie's IP address,
-
-    :   network byte order not present if csz is 0
-
-    signature :: length varies, 64 bytes for Ed25519.
-
-    :   Signature of prologue, Bob's hash, and signed data above, as signed by Charlie. Not present if rejected by Bob.
-
-    token :: Token generated by Charlie for Alice to use
-
-    :   in the Session Request. Only present if code is 0 (accept)
+timestamp :: Unix timestamp, unsigned seconds.
+             Wraps around in 2106
+ver ::  1 byte SSU version to be used for the introduction:
+       1: SSU 1
+       2: SSU 2
+csz :: 1 byte endpoint (port + IP) size (0 or 6 or 18)
+       may be 0 for some rejection codes
+CharliePort :: 2 byte Charlie's port number, big endian
+               not present if csz is 0
+Charlie IP :: (csz - 2) byte representation of Charlie's IP address,
+              network byte order
+              not present if csz is 0
+signature :: length varies, 64 bytes for Ed25519.
+             Signature of prologue, Bob's hash,
+             and signed data above, as signed by
+             Charlie.
+             Not present if rejected by Bob.
+token :: Token generated by Charlie for Alice to use
+         in the Session Request.
+         Only present if code is 0 (accept)
 ```
 Notas:
 
@@ -1944,16 +2396,51 @@ Debe estar precedido por un bloque RouterInfo, o un bloque de mensaje I2NP Datab
 
 ```
 +----+----+----+----+----+----+----+----+
+|  9 |  size   |flag|                   |
++----+----+----+----+                   +
+|                                       |
++                                       +
+|         Alice Router Hash             |
++             32 bytes                  +
+|                                       |
++                   +----+----+----+----+
+|                   |      nonce        |
++----+----+----+----+----+----+----+----+
+|     relay tag     |     timestamp     |
++----+----+----+----+----+----+----+----+
+| ver| asz|AlicePort|  Alice IP address |
++----+----+----+----+----+----+----+----+
+|              signature                |
++            length varies              +
+|         64 bytes for Ed25519          |
+~                                       ~
+|                 . . .                 |
++----+----+----+----+----+----+----+----+
 
-|  9 | size [|flag|](##SUBST##|flag|) |
+blk :: 9
+size :: 2 bytes, big endian, size of data to follow
+flag :: 1 byte flags, Unused, set to 0 for future compatibility
+hash :: Alice's 32-byte router hash,
 
-    +----+----+----+----+ + | | + + | Alice Router Hash | + 32 bytes + | | + +----+----+----+----+ | | nonce | +----+----+----+----+----+----+----+----+ | relay tag | timestamp | +----+----+----+----+----+----+----+----+ | ver| asz[|AlicePort|](##SUBST##|AlicePort|) Alice IP address | +----+----+----+----+----+----+----+----+ | signature | + length varies + | 64 bytes for Ed25519 | ~ ~ | . . . | +----+----+----+----+----+----+----+----+
+The data below here is covered
+by the signature, as received from Alice in the Relay Request,
+and Bob forwards it unmodified.
 
-    blk :: 9 size :: 2 bytes, big endian, size of data to follow flag :: 1 byte flags, Unused, set to 0 for future compatibility hash :: Alice's 32-byte router hash,
-
-    The data below here is covered by the signature, as received from Alice in the Relay Request, and Bob forwards it unmodified.
-
-    nonce :: 4 bytes, as received from Alice relay tag :: 4 bytes, the itag from Charlie's RI timestamp :: Unix timestamp, unsigned seconds. Wraps around in 2106 ver :: 1 byte SSU version to be used for the introduction: 1: SSU 1 2: SSU 2 asz :: 1 byte endpoint (port + IP) size (6 or 18) AlicePort :: 2 byte Alice's port number, big endian Alice IP :: (asz - 2) byte representation of Alice's IP address, network byte order signature :: length varies, 64 bytes for Ed25519. Signature of prologue, Bob's hash, and signed data above, as signed by Alice.
+nonce :: 4 bytes, as received from Alice
+relay tag :: 4 bytes, the itag from Charlie's RI
+timestamp :: Unix timestamp, unsigned seconds.
+             Wraps around in 2106
+ver ::  1 byte SSU version to be used for the introduction:
+       1: SSU 1
+       2: SSU 2
+asz :: 1 byte endpoint (port + IP) size (6 or 18)
+AlicePort :: 2 byte Alice's port number, big endian
+Alice IP :: (asz - 2) byte representation of Alice's IP address,
+            network byte order
+signature :: length varies, 64 bytes for Ed25519.
+             Signature of prologue, Bob's hash,
+             and signed data above, as signed by
+             Alice.
 ```
 Notas:
 
@@ -1986,20 +2473,73 @@ Para el mensaje 4, si el relay es aceptado (código de razón 0), debe ir preced
 
 ```
 +----+----+----+----+----+----+----+----+
+| 10 |  size   | msg|code|flag|         |
++----+----+----+----+----+----+         +
+| Alice router hash (message 2 only)    |
++             or                        +
+| Charlie router hash (message 4 only)  |
++ or all zeros if rejected by Bob       +
+| Not present in messages 1,3,5,6,7     |
++                             +----+----+
+|                             | ver|
++----+----+----+----+----+----+----+----+
+   nonce       |     timestamp     | asz|
++----+----+----+----+----+----+----+----+
+|AlicePort|  Alice IP address |         |
++----+----+----+----+----+----+         +
+|              signature                |
++            length varies              +
+|         64 bytes for Ed25519          |
+~                                       ~
+|                 . . .                 |
++----+----+----+----+----+----+----+----+
 
-| 10 | size | msg[|code|](##SUBST##|code|)flag| |
+blk :: 10
+size :: 2 bytes, big endian, size of data to follow
+msg :: 1 byte message number 1-7
+code :: 1 byte status code:
+       0: accept
+       1: rejected by Bob, reason unspecified
+       2: rejected by Bob, no Charlie available
+       3: rejected by Bob, limit exceeded
+       4: rejected by Bob, signature failure
+       5: rejected by Bob, address unsupported
+       6-63: other rejected by Bob codes TBD
+       64: rejected by Charlie, reason unspecified
+       65: rejected by Charlie, unsupported address
+       66: rejected by Charlie, limit exceeded
+       67: rejected by Charlie, signature failure
+       68: rejected by Charlie, Alice is already connected
+       69: rejected by Charlie, Alice is banned
+       70: rejected by Charlie, Alice is unknown
+       70-127: other rejected by Charlie codes TBD
+       128: reject, source and reason unspecified
+       129-255: other reject codes TBD
+       reject codes only allowed in messages 3 and 4
+flag :: 1 byte flags, Unused, set to 0 for future compatibility
+hash :: Alice's or Charlie's 32-byte router hash,
+        only present in messages 2 and 4.
+        All zeros (fake hash) in message 4 if rejected by Bob.
 
-    +----+----+----+----+----+----+ + | Alice router hash (message 2 only) | + or + | Charlie router hash (message 4 only) | + or all zeros if rejected by Bob + | Not present in messages 1,3,5,6,7 | + +----+----+ | | ver| +----+----+----+----+----+----+----+----+ nonce | timestamp | asz| +----+----+----+----+----+----+----+----+ [|AlicePort|](##SUBST##|AlicePort|) Alice IP address | | +----+----+----+----+----+----+ + | signature | + length varies + | 64 bytes for Ed25519 | ~ ~ | . . . | +----+----+----+----+----+----+----+----+
+For messages 1-4, the data below here is covered
+by the signature, if present, and Bob forwards it unmodified.
 
-    blk :: 10 size :: 2 bytes, big endian, size of data to follow msg :: 1 byte message number 1-7 code :: 1 byte status code: 0: accept 1: rejected by Bob, reason unspecified 2: rejected by Bob, no Charlie available 3: rejected by Bob, limit exceeded 4: rejected by Bob, signature failure 5: rejected by Bob, address unsupported 6-63: other rejected by Bob codes TBD 64: rejected by Charlie, reason unspecified 65: rejected by Charlie, unsupported address 66: rejected by Charlie, limit exceeded 67: rejected by Charlie, signature failure 68: rejected by Charlie, Alice is already connected 69: rejected by Charlie, Alice is banned 70: rejected by Charlie, Alice is unknown 70-127: other rejected by Charlie codes TBD 128: reject, source and reason unspecified 129-255: other reject codes TBD reject codes only allowed in messages 3 and 4 flag :: 1 byte flags, Unused, set to 0 for future compatibility hash :: Alice's or Charlie's 32-byte router hash, only present in messages 2 and 4. All zeros (fake hash) in message 4 if rejected by Bob.
-
-    For messages 1-4, the data below here is covered by the signature, if present, and Bob forwards it unmodified.
-
-    ver :: 1 byte SSU version:
-
-    :   1: SSU 1 (not supported) 2: SSU 2 (required)
-
-    nonce :: 4 byte test nonce, big endian timestamp :: Unix timestamp, unsigned seconds. Wraps around in 2106 asz :: 1 byte endpoint (port + IP) size (6 or 18) AlicePort :: 2 byte Alice's port number, big endian Alice IP :: (asz - 2) byte representation of Alice's IP address, network byte order signature :: length varies, 64 bytes for Ed25519. Signature of prologue, Bob's hash, and signed data above, as signed by Alice or Charlie. Only present for messages 1-4. Optional in message 5-7.
+ver :: 1 byte SSU version:
+       1: SSU 1 (not supported)
+       2: SSU 2 (required)
+nonce :: 4 byte test nonce, big endian
+timestamp :: Unix timestamp, unsigned seconds.
+             Wraps around in 2106
+asz :: 1 byte endpoint (port + IP) size (6 or 18)
+AlicePort :: 2 byte Alice's port number, big endian
+Alice IP :: (asz - 2) byte representation of Alice's IP address,
+            network byte order
+signature :: length varies, 64 bytes for Ed25519.
+             Signature of prologue, Bob's hash,
+             and signed data above, as signed by
+             Alice or Charlie.
+             Only present for messages 1-4.
+             Optional in message 5-7.
 ```
 Notas:
 
@@ -2041,12 +2581,15 @@ TODO solo si rotamos las claves
 
 ```
 +----+----+----+----+----+----+----+----+
+| 11 |  size   |      TBD               |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 11 | size | TBD |
-
-    +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 11 size :: 2 bytes, big endian, size of data to follow
+blk :: 11
+size :: 2 bytes, big endian, size of data to follow
 ```
 #### Confirmación
 
@@ -2063,16 +2606,23 @@ La codificación especificada a continuación logra estos objetivos de diseño, 
 
 ```
 +----+----+----+----+----+----+----+----+
+| 12 |  size   |    Ack Through    |acnt|
++----+----+----+----+----+----+----+----+
+|  range  |  range  |     .   .   .     |
++----+----+----+----+                   +
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 12 | size | Ack Through [|acnt|](##SUBST##|acnt|)
-
-    +-------------+-------------+
-    | > range     | > range     |
-    +-------------+-------------+
-
-    ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 12 size :: 2 bytes, big endian, size of data to follow, 5 minimum ack through :: highest packet number acked acnt :: number of acks lower than ack through also acked, 0-255 range :: If present, 1 byte nack count followed by 1 byte ack count, 0-255 each
+blk :: 12
+size :: 2 bytes, big endian, size of data to follow,
+        5 minimum
+ack through :: highest packet number acked
+acnt :: number of acks lower than ack through also acked,
+        0-255
+range :: If present,
+         1 byte nack count followed by 1 byte ack count,
+         0-255 each
 ```
 Ejemplos:
 
@@ -2112,16 +2662,16 @@ Puerto de 2 bytes y dirección IP de 4 o 16 bytes. La dirección de Alice, envia
 
 ```
 +----+----+----+----+----+----+----+----+
+| 13 | 6 or 18 |   Port  | IP Address    
++----+----+----+----+----+----+----+----+
+     |
++----+
 
-| 13 | 6 or 18 | Port | IP Address
-
-    +----+----+----+----+----+----+----+----+
-
-    :   | 
-
-    +----+
-
-    blk :: 13 size :: 2 bytes, big endian, 6 or 18 port :: 2 bytes, big endian ip :: 4 byte IPv4 or 16 byte IPv6 address, big endian (network byte order)
+blk :: 13
+size :: 2 bytes, big endian, 6 or 18
+port :: 2 bytes, big endian
+ip :: 4 byte IPv4 or 16 byte IPv6 address,
+      big endian (network byte order)
 ```
 #### Solicitud de Etiqueta de Retransmisión
 
@@ -2131,12 +2681,11 @@ Cuando se envía en la Solicitud de Sesión, Bob puede responder con una Etiquet
 
 ```
 +----+----+----+
+| 15 |    0    |
++----+----+----+
 
-| 15 | 0 |
-
-    +----+----+----+
-
-    blk :: 15 size :: 2 bytes, big endian, value = 0
+blk :: 15
+size :: 2 bytes, big endian, value = 0
 ```
 #### Relay Tag
 
@@ -2146,12 +2695,12 @@ Cuando se envía la Solicitud de Etiqueta de Retransmisión en la Solicitud de S
 
 ```
 +----+----+----+----+----+----+----+
+| 16 |    4    |    relay tag      |
++----+----+----+----+----+----+----+
 
-| 16 | 4 | relay tag |
-
-    +----+----+----+----+----+----+----+
-
-    blk :: 16 size :: 2 bytes, big endian, value = 4 relay tag :: 4 bytes, big endian, nonzero
+blk :: 16
+size :: 2 bytes, big endian, value = 4
+relay tag :: 4 bytes, big endian, nonzero
 ```
 #### Nuevo Token
 
@@ -2159,16 +2708,16 @@ Para una conexión posterior. Generalmente incluido en los mensajes Session Crea
 
 ```
 +----+----+----+----+----+----+----+----+
+| 17 |   12    |     expires       |
++----+----+----+----+----+----+----+----+
+                token              |
++----+----+----+----+----+----+----+
 
-| 17 | 12 | expires |
-
-    +----+----+----+----+----+----+----+----+
-
-    :   token |
-
-    +----+----+----+----+----+----+----+
-
-    blk :: 17 size :: 2 bytes, big endian, value = 12 expires :: Unix timestamp, unsigned seconds. Wraps around in 2106 token :: 8 bytes, big endian
+blk :: 17
+size :: 2 bytes, big endian, value = 12
+expires :: Unix timestamp, unsigned seconds.
+           Wraps around in 2106
+token :: 8 bytes, big endian
 ```
 #### Desafío de Ruta
 
@@ -2176,12 +2725,17 @@ Un Ping con datos arbitrarios que se devuelven en una Respuesta de Ruta, utiliza
 
 ```
 +----+----+----+----+----+----+----+----+
+| 18 |  size   |    Arbitrary Data      |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 18 | size | Arbitrary Data |
-
-    +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 18 size :: 2 bytes, big endian, size of data to follow data :: Arbitrary data to be returned in a Path Response length as selected by sender
+blk :: 18
+size :: 2 bytes, big endian, size of data to follow
+data :: Arbitrary data to be returned in a Path Response
+        length as selected by sender
 ```
 Notas:
 
@@ -2195,12 +2749,16 @@ Un Pong con los datos recibidos en el Path Challenge, como respuesta al Path Cha
 
 ```
 +----+----+----+----+----+----+----+----+
+| 19 |  size   |                        |
++----+----+----+                        +
+|    Data received in Path Challenge    |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 19 | size | |
-
-    +----+----+----+ + | Data received in Path Challenge | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 19 size :: 2 bytes, big endian, size of data to follow data :: As received in a Path Challenge
+blk :: 19
+size :: 2 bytes, big endian, size of data to follow
+data :: As received in a Path Challenge
 ```
 #### Número del Primer Paquete
 
@@ -2210,12 +2768,12 @@ No completamente especificado, no soportado actualmente.
 
 ```
 +----+----+----+----+----+----+----+
+| 20 |  size   |  First pkt number |
++----+----+----+----+----+----+----+
 
-| 20 | size | First pkt number |
-
-    +----+----+----+----+----+----+----+
-
-    blk :: 20 size :: 4 pkt num :: The first packet number to be sent in the data phase
+blk :: 20
+size :: 4
+pkt num :: The first packet number to be sent in the data phase
 ```
 #### Congestión
 
@@ -2231,12 +2789,16 @@ Este bloque probablemente debería ser el último bloque sin relleno en la carga
 
 ```
 +----+----+----+----+
+| 21 |  size   |flag|
++----+----+----+----+
 
-| 21 | size [|flag|](##SUBST##|flag|)
-
-    +----+----+----+----+
-
-    blk :: 21 size :: 1 (or more if extended) flag :: 1 byte flags bit order: 76543210 (bit 7 is MSB) bit 0: 1 to request immediate ack bit 1: 1 for explicit congestion notification (ECN) bits 7-2: Unused, set to 0 for future compatibility
+blk :: 21
+size :: 1 (or more if extended)
+flag :: 1 byte flags
+       bit order: 76543210 (bit 7 is MSB)
+       bit 0: 1 to request immediate ack
+       bit 1: 1 for explicit congestion notification (ECN)
+       bits 7-2: Unused, set to 0 for future compatibility
 ```
 #### Relleno
 
@@ -2248,10 +2810,16 @@ Si está presente, este debe ser el último bloque en la carga útil.
 
 ```
 +----+----+----+----+----+----+----+----+
+|254 |  size   |      padding           |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-[|254 |](##SUBST##|254 |) size | padding | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 254 size :: 2 bytes, big endian, size of padding to follow padding :: random data
+blk :: 254
+size :: 2 bytes, big endian, size of padding to follow
+padding :: random data
 ```
 Notas:
 
@@ -2770,51 +3338,35 @@ Debido a la fragmentación en túneles y la fragmentación en SSU 2, la probabil
 Consulta Seguridad de Peer Test arriba para un análisis del Peer Test de SSU1 y los objetivos del Peer Test de SSU2.
 
 ```
-Alice Bob Charlie
+Alice                     Bob                  Charlie
+1. PeerTest ------------------->
+                            Alice RI ------------------->
+2.                          PeerTest ------------------->
+3.                             <------------------ PeerTest
+        <---------------- Charlie RI
+4.      <------------------ PeerTest
 
-1.  
-
-        PeerTest ------------------->
-
-        :   Alice RI ------------------->
-
-    2.  PeerTest ------------------->
-
-    3\. <------------------ PeerTest
-
-    :   <---------------- Charlie RI
-
-    4.  <------------------ PeerTest
-    5.  <----------------------------------------- PeerTest
-    6.  PeerTest ----------------------------------------->
-    7.  <----------------------------------------- PeerTest
+5.      <----------------------------------------- PeerTest
+6. PeerTest ----------------------------------------->
+7.      <----------------------------------------- PeerTest
 ```
 Cuando es rechazado por Bob:
 
 ```
-Alice Bob Charlie
-
-1.  PeerTest ------------------->
-    2.  <------------------ PeerTest (reject)
+Alice                     Bob                  Charlie
+1. PeerTest ------------------->
+4.      <------------------ PeerTest (reject)
 ```
 Cuando es rechazado por Charlie:
 
 ```
-Alice Bob Charlie
-
-1.  
-
-        PeerTest ------------------->
-
-        :   Alice RI ------------------->
-
-    2.  PeerTest ------------------->
-
-    3\. <------------------ PeerTest (reject)
-
-    :   (optional: Bob could try another Charlie here)
-
-    4.  <------------------ PeerTest (reject)
+Alice                     Bob                  Charlie
+1. PeerTest ------------------->
+                            Alice RI ------------------->
+2.                          PeerTest ------------------->
+3.                             <------------------ PeerTest (reject)
+                      (optional: Bob could try another Charlie here)
+4.      <------------------ PeerTest (reject)
 ```
 NOTA: RI puede ser enviada como mensajes I2NP Database Store en bloques I2NP, o como bloques RI (si es lo suficientemente pequeña). Estos pueden estar contenidos en los mismos paquetes que los bloques de prueba de pares, si son lo suficientemente pequeños.
 
@@ -2897,9 +3449,16 @@ Por lo tanto, en contraste con SSU, recomendamos esperar varios segundos despué
 Un resumen de la máquina de estados, basado en si los mensajes 4, 5 y 7 son recibidos (sí o no), es el siguiente:
 
 ```
-4 5 7 Result Notes
-
------ ------ -----n n n UNKNOWN y n n FIREWALLED (unless currently SYMNAT) n y n OK (unless currently SYMNAT, which is unlikely) y y n OK (unless currently SYMNAT, which is unlikely) n n y n/a (can't send msg 6) y n y FIREWALLED or SYMNAT (requires sending msg 6 w/o rcv msg 5) n y y n/a (can't send msg 6) y y y OK
+4 5 7  Result             Notes
+-----  ------             -----
+n n n  UNKNOWN
+y n n  FIREWALLED           (unless currently SYMNAT)
+n y n  OK                   (unless currently SYMNAT, which is unlikely)
+y y n  OK                   (unless currently SYMNAT, which is unlikely)
+n n y  n/a                  (can't send msg 6)
+y n y  FIREWALLED or SYMNAT (requires sending msg 6 w/o rcv msg 5)
+n y y  n/a                  (can't send msg 6)
+y y y  OK
 ```
 Una máquina de estados más detallada, con verificaciones de la IP/puerto recibida en el bloque de dirección del mensaje 7, se muestra a continuación. Un desafío es determinar si tú (Alice) eres quien tiene NAT simétrico, o si es Charlie.
 
@@ -2909,86 +3468,79 @@ Se recomienda también la validación y confirmación de IP/puerto recibida por 
 
 ```
 If Alice does not get msg 5:
+   If Alice does not get msg 4: -> UNKNOWN
+   If Alice does not get msg 7: -> UNKNOWN
+   If Alice gets msgs 4/7 and IP/port match: -> FIREWALLED
+   If Alice gets msgs 4/7 and IP matches, port does not match:
+      -> SYMNAT, but needs confirmation with 2nd test
+   If Alice gets msgs 4/7 and IP does not match, port matches:
+      -> FIREWALLED, address change?
+   If Alice gets msgs 4/7 and both IP and port do not match:
+      -> SYMNAT, address change?
 
-If Alice does not get msg 4: -> UNKNOWN If Alice does not get msg 7: -> UNKNOWN If Alice gets msgs 4/7 and IP/port match: -> FIREWALLED If Alice gets msgs 4/7 and IP matches, port does not match: -> SYMNAT, but needs confirmation with 2nd test If Alice gets msgs 4/7 and IP does not match, port matches: -> FIREWALLED, address change? If Alice gets msgs 4/7 and both IP and port do not match: -> SYMNAT, address change?
-
-    If Alice gets msg 5: If Alice does not get msg 4: -> OK unless currently SYMNAT, else UNKNOWN (in SSU2 have to stop here) If Alice does not get msg 7: -> OK unless currently SYMNAT, else UNKNOWN If Alice gets msgs 4/5/7 and IP/port match: -> OK If Alice gets msgs 4/5/7 and IP matches, port does not match: -> OK, charlie is probably sym. natted If Alice gets msgs 4/5/7 and IP does not match, port matches: -> OK, address change? If Alice gets msgs 4/5/7 and both IP and port do not match: -> OK, address change?
+If Alice gets msg 5:
+   If Alice does not get msg 4: -> OK unless currently SYMNAT, else UNKNOWN
+                                   (in SSU2 have to stop here)
+   If Alice does not get msg 7: -> OK unless currently SYMNAT, else UNKNOWN
+   If Alice gets msgs 4/5/7 and IP/port match: -> OK
+   If Alice gets msgs 4/5/7 and IP matches, port does not match:
+      -> OK, charlie is probably sym. natted
+   If Alice gets msgs 4/5/7 and IP does not match, port matches:
+      -> OK, address change?
+   If Alice gets msgs 4/5/7 and both IP and port do not match:
+      -> OK, address change?
 ```
 ## Proceso de Retransmisión
 
 Ver Seguridad de Relay arriba para un análisis de SSU1 Relay y los objetivos para SSU2 Relay.
 
 ```
-Alice Bob Charlie
+Alice                         Bob                  Charlie
+   lookup Bob RI
 
-lookup Bob RI
+   SessionRequest -------------------->
+        <------------  SessionCreated
+   SessionConfirmed  ----------------->
 
-    SessionRequest -------------------->
+1. RelayRequest ---------------------->
+                                         Alice RI  ------------>
+2.                                       RelayIntro ----------->
+3.                                  <-------------- RelayResponse
+4.      <-------------- RelayResponse
 
-    :   <------------ SessionCreated
-
-    SessionConfirmed ----------------->
-
-    1.  
-
-        RelayRequest ---------------------->
-
-        :   Alice RI ------------>
-
-    2.  RelayIntro ----------->
-
-    3.  <-------------- RelayResponse
-
-    4.  <-------------- RelayResponse
-
-    5.  <-------------------------------------------- HolePunch
-
-    6.  SessionRequest -------------------------------------------->
-
-    7.  <-------------------------------------------- SessionCreated
-
-    8.  SessionConfirmed ------------------------------------------>
+5.      <-------------------------------------------- HolePunch
+6. SessionRequest -------------------------------------------->
+7.      <-------------------------------------------- SessionCreated
+8. SessionConfirmed ------------------------------------------>
 ```
 Cuando es rechazado por Bob:
 
 ```
-Alice Bob Charlie
+Alice                         Bob                  Charlie
+   lookup Bob RI
 
-lookup Bob RI
+   SessionRequest -------------------->
+        <------------  SessionCreated
+   SessionConfirmed  ----------------->
 
-    SessionRequest -------------------->
-
-    :   <------------ SessionCreated
-
-    SessionConfirmed ----------------->
-
-    1.  RelayRequest ---------------------->
-    2.  <-------------- RelayResponse
+1. RelayRequest ---------------------->
+4.      <-------------- RelayResponse
 ```
 Cuando es rechazado por Charlie:
 
 ```
-Alice Bob Charlie
+Alice                         Bob                  Charlie
+   lookup Bob RI
 
-lookup Bob RI
+   SessionRequest -------------------->
+        <------------  SessionCreated
+   SessionConfirmed  ----------------->
 
-    SessionRequest -------------------->
-
-    :   <------------ SessionCreated
-
-    SessionConfirmed ----------------->
-
-    1.  
-
-        RelayRequest ---------------------->
-
-        :   Alice RI ------------>
-
-    2.  RelayIntro ----------->
-
-    3.  <-------------- RelayResponse
-
-    4.  <-------------- RelayResponse
+1. RelayRequest ---------------------->
+                                         Alice RI  ------------>
+2.                                       RelayIntro ----------->
+3.                                  <-------------- RelayResponse
+4.      <-------------- RelayResponse
 ```
 NOTA: Los RI pueden enviarse ya sea como mensajes I2NP Database Store en bloques I2NP, o como bloques RI (si son lo suficientemente pequeños). Estos pueden contenerse en los mismos paquetes que los bloques de retransmisión, si son lo suficientemente pequeños.
 
