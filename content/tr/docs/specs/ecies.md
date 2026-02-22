@@ -113,27 +113,31 @@ Tek kullanımlık ve Unbound oturumlar Noise N desenine benzer.
 
 ```
 <- s
-
-... e es p ->
-
+...
+e es p ->
 ```
 Bağlı oturumlar Noise IK desenine benzer.
 
 ```
 <- s
-
-... e es s ss p -> <- tag e ee se <- p p ->
-
+...
+e es s ss p ->
+<- tag e ee se
+<- p
+p ->
 ```
 #### Güvenlik Özellikleri
 
 Noise terminolojisini kullanarak, kurulum ve veri dizisi şu şekildedir: (Payload Güvenlik Özellikleri [Noise](https://noiseprotocol.org/noise.html)'dan )
 
 ```
-IK(s, rs): Authentication Confidentiality
-
-<- s ... -> e, es, s, ss 1 2 <- e, ee, se 2 4 -> 2 5 <- 2 5
-
+IK(s, rs):           Authentication   Confidentiality
+  <- s
+  ...
+  -> e, es, s, ss           1                2
+  <- e, ee, se              2                4
+  ->                        2                5
+  <-                        2                5
 ```
 #### XK'den Farkları
 
@@ -346,15 +350,17 @@ Ayrıntılar ve tam spesifikasyon için [I2NP](/docs/specs/i2np/) bölümüne ba
 
 ```
 +----+----+----+----+----+----+----+----+
-
-[|type|](##SUBST##|type|) msg_id | expiration
-    +----+----+----+----+----+----+----+----+ |
-    size [|chks|](##SUBST##|chks|)
-    +----+----+----+----+----+----+----+----+ |
-    length | | +----+----+----+----+ + | encrypted data
-    | ~ ~ ~ ~ | |
-    +----+----+----+----+----+----+----+----+
-
+|type|      msg_id       |  expiration
++----+----+----+----+----+----+----+----+
+                         |  size   |chks|
++----+----+----+----+----+----+----+----+
+|      length       |                   |
++----+----+----+----+                   +
+|          encrypted data               |
+~                                       ~
+~                                       ~
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 #### Şifreli Veri Formatı İncelemesi
 
@@ -404,33 +410,46 @@ Uzunluk 96 + yük uzunluğudur. Şifreli format:
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   New Session Ephemeral Public Key    |
++             32 bytes                  +
+|     Encoded with Elligator2           |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++         Static Key                    +
+|       ChaCha20 encrypted data         |
++            32 bytes                   +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++    (MAC) for Static Key Section       +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
+|                                       |
++            Payload Section            +
+|       ChaCha20 encrypted data         |
+~                                       ~
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++         (MAC) for Payload Section     +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+Public Key :: 32 bytes, little endian, Elligator2, cleartext
 
-    \+ + | New Session Ephemeral Public Key | + 32 bytes + | Encoded
-    with Elligator2 | + + | |
-    +----+----+----+----+----+----+----+----+ |
-    | + Static Key + | ChaCha20 encrypted data | + 32 bytes + |
-    | + + | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) for Static Key
-    Section + | 16 bytes |
-    +----+----+----+----+----+----+----+----+ |
-    | + Payload Section + | ChaCha20 encrypted data | ~ ~ | | + +
-    | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) for Payload
-    Section + | 16 bytes |
-    +----+----+----+----+----+----+----+----+
+Static Key encrypted data :: 32 bytes
 
-    Public Key :: 32 bytes, little endian, Elligator2, cleartext
+Payload Section encrypted data :: remaining data minus 16 bytes
 
-    Static Key encrypted data :: 32 bytes
-
-    Payload Section encrypted data :: remaining data minus 16 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
-
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 #### Yeni Oturum Geçici Anahtarı
 
@@ -452,33 +471,46 @@ Uzunluk 96 + yük uzunluğudur. Şifrelenmiş format:
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   New Session Ephemeral Public Key    |
++             32 bytes                  +
+|     Encoded with Elligator2           |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++           Flags Section               +
+|       ChaCha20 encrypted data         |
++            32 bytes                   +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++         (MAC) for above section       +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
+|                                       |
++            Payload Section            +
+|       ChaCha20 encrypted data         |
+~                                       ~
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++         (MAC) for Payload Section     +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+Public Key :: 32 bytes, little endian, Elligator2, cleartext
 
-    \+ + | New Session Ephemeral Public Key | + 32 bytes + | Encoded
-    with Elligator2 | + + | |
-    +----+----+----+----+----+----+----+----+ |
-    | + Flags Section + | ChaCha20 encrypted data | + 32 bytes + |
-    | + + | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) for above section +
-    | 16 bytes |
-    +----+----+----+----+----+----+----+----+ |
-    | + Payload Section + | ChaCha20 encrypted data | ~ ~ | | + +
-    | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) for Payload
-    Section + | 16 bytes |
-    +----+----+----+----+----+----+----+----+
+Flags Section encrypted data :: 32 bytes
 
-    Public Key :: 32 bytes, little endian, Elligator2, cleartext
+Payload Section encrypted data :: remaining data minus 16 bytes
 
-    Flags Section encrypted data :: 32 bytes
-
-    Payload Section encrypted data :: remaining data minus 16 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
-
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 #### Yeni Oturum Geçici Anahtarı
 
@@ -502,33 +534,46 @@ Uzunluk 96 + payload uzunluğudur. Şifreli format:
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|       Ephemeral Public Key            |
++             32 bytes                  +
+|     Encoded with Elligator2           |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++           Flags Section               +
+|       ChaCha20 encrypted data         |
++            32 bytes                   +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++         (MAC) for above section       +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
+|                                       |
++            Payload Section            +
+|       ChaCha20 encrypted data         |
+~                                       ~
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++         (MAC) for Payload Section     +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+Public Key :: 32 bytes, little endian, Elligator2, cleartext
 
-    \+ + | Ephemeral Public Key | + 32 bytes + | Encoded with
-    Elligator2 | + + | |
-    +----+----+----+----+----+----+----+----+ |
-    | + Flags Section + | ChaCha20 encrypted data | + 32 bytes + |
-    | + + | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) for above section +
-    | 16 bytes |
-    +----+----+----+----+----+----+----+----+ |
-    | + Payload Section + | ChaCha20 encrypted data | ~ ~ | | + +
-    | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) for Payload
-    Section + | 16 bytes |
-    +----+----+----+----+----+----+----+----+
+Flags Section encrypted data :: 32 bytes
 
-    Public Key :: 32 bytes, little endian, Elligator2, cleartext
+Payload Section encrypted data :: remaining data minus 16 bytes
 
-    Flags Section encrypted data :: 32 bytes
-
-    Payload Section encrypted data :: remaining data minus 16 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
-
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 #### Yeni Oturum Tek Kullanımlık Anahtarı
 
@@ -542,14 +587,16 @@ TODO burada herhangi bir bayrak gerekli mi?
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|                                       |
++             All zeros                 +
+|              32 bytes                 |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|                                       |
-
-    \+ + | | + All zeros + | 32 bytes | + + | |
-    +----+----+----+----+----+----+----+----+
-
-    zeros:: All zeros, 32 bytes.
-
+zeros:: All zeros, 32 bytes.
 ```
 #### Yük Verisi
 
@@ -566,93 +613,115 @@ Protokol adı iki nedenden dolayı değiştirilmiştir. İlk olarak, geçici ana
 ```
 This is the "e" message pattern:
 
-// Define protocol_name. Set protocol_name =
-"Noise_IKelg2+hs2_25519_ChaChaPoly_SHA256" (40 bytes, US-ASCII
-encoded, no NULL termination).
+// Define protocol_name.
+Set protocol_name = "Noise_IKelg2+hs2_25519_ChaChaPoly_SHA256"
+ (40 bytes, US-ASCII encoded, no NULL termination).
 
-// Define Hash h = 32 bytes h = SHA256(protocol_name);
+// Define Hash h = 32 bytes
+h = SHA256(protocol_name);
 
-Define ck = 32 byte chaining key. Copy the h data to ck. Set chainKey
-= h
+Define ck = 32 byte chaining key. Copy the h data to ck.
+Set chainKey = h
 
-// MixHash(null prologue) h = SHA256(h);
+// MixHash(null prologue)
+h = SHA256(h);
 
-// up until here, can all be precalculated by Alice for all outgoing
-connections
-
+// up until here, can all be precalculated by Alice for all outgoing connections
 ```
 #### Bayraklar/Statik Anahtar Bölümü Şifrelenmiş İçerikleri için KDF
 
 ```
 This is the "e" message pattern:
 
-// Bob's X25519 static keys // bpk is published in leaseset bsk =
-GENERATE_PRIVATE() bpk = DERIVE_PUBLIC(bsk)
+// Bob's X25519 static keys
+// bpk is published in leaseset
+bsk = GENERATE_PRIVATE()
+bpk = DERIVE_PUBLIC(bsk)
 
-// Bob static public key // MixHash(bpk) // || below means append h
-= SHA256(h || bpk);
+// Bob static public key
+// MixHash(bpk)
+// || below means append
+h = SHA256(h || bpk);
 
-// up until here, can all be precalculated by Bob for all incoming
-connections
+// up until here, can all be precalculated by Bob for all incoming connections
 
-// Alice's X25519 ephemeral keys aesk = GENERATE_PRIVATE_ELG2() aepk
-= DERIVE_PUBLIC(aesk)
+// Alice's X25519 ephemeral keys
+aesk = GENERATE_PRIVATE_ELG2()
+aepk = DERIVE_PUBLIC(aesk)
 
-// Alice ephemeral public key // MixHash(aepk) // || below means
-append h = SHA256(h || aepk);
+// Alice ephemeral public key
+// MixHash(aepk)
+// || below means append
+h = SHA256(h || aepk);
 
-// h is used as the associated data for the AEAD in the New Session
-Message // Retain the Hash h for the New Session Reply KDF // eapk is
-sent in cleartext in the // beginning of the New Session message
-elg2_aepk = ENCODE_ELG2(aepk) // As decoded by Bob aepk =
-DECODE_ELG2(elg2_aepk)
+// h is used as the associated data for the AEAD in the New Session Message
+// Retain the Hash h for the New Session Reply KDF
+// eapk is sent in cleartext in the
+// beginning of the New Session message
+elg2_aepk = ENCODE_ELG2(aepk)
+// As decoded by Bob
+aepk = DECODE_ELG2(elg2_aepk)
 
 End of "e" message pattern.
 
 This is the "es" message pattern:
 
-// Noise es sharedSecret = DH(aesk, bpk) = DH(bsk, aepk)
+// Noise es
+sharedSecret = DH(aesk, bpk) = DH(bsk, aepk)
 
-// MixKey(DH()) //[chainKey, k] = MixKey(sharedSecret) // ChaChaPoly
-parameters to encrypt/decrypt keydata = HKDF(chainKey, sharedSecret,
-"", 64) chainKey = keydata[0:31]
+// MixKey(DH())
+//[chainKey, k] = MixKey(sharedSecret)
+// ChaChaPoly parameters to encrypt/decrypt
+keydata = HKDF(chainKey, sharedSecret, "", 64)
+chainKey = keydata[0:31]
 
-// AEAD parameters k = keydata[32:63] n = 0 ad = h ciphertext =
-ENCRYPT(k, n, flags/static key section, ad)
+// AEAD parameters
+k = keydata[32:63]
+n = 0
+ad = h
+ciphertext = ENCRYPT(k, n, flags/static key section, ad)
 
 End of "es" message pattern.
 
 This is the "s" message pattern:
 
-// MixHash(ciphertext) // Save for Payload section KDF h = SHA256(h
-|| ciphertext)
+// MixHash(ciphertext)
+// Save for Payload section KDF
+h = SHA256(h || ciphertext)
 
-// Alice's X25519 static keys ask = GENERATE_PRIVATE() apk =
-DERIVE_PUBLIC(ask)
+// Alice's X25519 static keys
+ask = GENERATE_PRIVATE()
+apk = DERIVE_PUBLIC(ask)
 
 End of "s" message pattern.
-
 ```
 #### Payload Bölümü için KDF (Alice statik anahtarı ile)
 
 ```
 This is the "ss" message pattern:
 
-// Noise ss sharedSecret = DH(ask, bpk) = DH(bsk, apk)
+// Noise ss
+sharedSecret = DH(ask, bpk) = DH(bsk, apk)
 
-// MixKey(DH()) //[chainKey, k] = MixKey(sharedSecret) // ChaChaPoly
-parameters to encrypt/decrypt // chainKey from Static Key Section Set
-sharedSecret = X25519 DH result keydata = HKDF(chainKey, sharedSecret,
-"", 64) chainKey = keydata[0:31]
+// MixKey(DH())
+//[chainKey, k] = MixKey(sharedSecret)
+// ChaChaPoly parameters to encrypt/decrypt
+// chainKey from Static Key Section
+Set sharedSecret = X25519 DH result
+keydata = HKDF(chainKey, sharedSecret, "", 64)
+chainKey = keydata[0:31]
 
-// AEAD parameters k = keydata[32:63] n = 0 ad = h ciphertext =
-ENCRYPT(k, n, payload, ad)
+// AEAD parameters
+k = keydata[32:63]
+n = 0
+ad = h
+ciphertext = ENCRYPT(k, n, payload, ad)
 
 End of "ss" message pattern.
 
-// MixHash(ciphertext) // Save for New Session Reply KDF h = SHA256(h
-|| ciphertext)
-
+// MixHash(ciphertext)
+// Save for New Session Reply KDF
+h = SHA256(h || ciphertext)
 ```
 #### Payload Bölümü için KDF (Alice statik anahtarı olmadan)
 
@@ -662,10 +731,10 @@ Yeni Oturum mesajları, statik anahtar şifresi çözülüp incelenene ve tamam�
 
 ```
 chainKey = from Flags/Static key section
-
-k = from Flags/Static key section n = 1 ad = h from Flags/Static key
-    section ciphertext = ENCRYPT(k, n, payload, ad)
-
+k = from Flags/Static key section
+n = 1
+ad = h from Flags/Static key section
+ciphertext = ENCRYPT(k, n, payload, ad)
 ```
 ### 1g) Yeni Oturum Yanıt formatı
 
@@ -677,43 +746,43 @@ Toplam uzunluk 72 + payload uzunluğu. Şifreli format:
 
 ```
 +----+----+----+----+----+----+----+----+
+|       Session Tag   8 bytes           |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Ephemeral Public Key           +
+|                                       |
++            32 bytes                   +
+|     Encoded with Elligator2           |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++  (MAC) for Key Section (no data)      +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
+|                                       |
++            Payload Section            +
+|       ChaCha20 encrypted data         |
+~                                       ~
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++         (MAC) for Payload Section     +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-|       Session Tag 8 bytes |
+Tag :: 8 bytes, cleartext
 
-    +---------------------------------------------------------------------------------------+
-    | Ephemeral Public Key                                                                  |
-    |                                                                                       |
-    | > 32 bytes Encoded with Elligator2                                                    |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    |                                                                                       |
-    +---------------------------------------------------------------------------------------+
-    | > Poly1305 Message Authentication Code (MAC) for Key Section (no data) 16 bytes       |
-    |                                                                                       |
-    |                                                                                       |
-    +---------------------------------------------------------------------------------------+
+Public Key :: 32 bytes, little endian, Elligator2, cleartext
 
-    ~ ~ | | + + | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) for Payload
-    Section + | 16 bytes |
-    +----+----+----+----+----+----+----+----+
+MAC :: Poly1305 message authentication code, 16 bytes
+       Note: The ChaCha20 plaintext data is empty (ZEROLEN)
 
-    Tag :: 8 bytes, cleartext
+Payload Section encrypted data :: remaining data minus 16 bytes
 
-    Public Key :: 32 bytes, little endian, Elligator2, cleartext
-
-    MAC :: Poly1305 message authentication code, 16 bytes
-
-    :   Note: The ChaCha20 plaintext data is empty (ZEROLEN)
-
-    Payload Section encrypted data :: remaining data minus 16 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
-
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 #### Oturum Etiketi
 
@@ -863,22 +932,26 @@ Oturum etiketi (8 bayt) Şifrelenmiş veri ve MAC (aşağıdaki bölüm 3'e bak�
 
 ```
 +----+----+----+----+----+----+----+----+
+|       Session Tag                     |
++----+----+----+----+----+----+----+----+
+|                                       |
++            Payload Section            +
+|       ChaCha20 encrypted data         |
+~                                       ~
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++              (MAC)                    +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-|       Session Tag |
+Session Tag :: 8 bytes, cleartext
 
-    +----+----+----+----+----+----+----+----+ |
-    | + Payload Section + | ChaCha20 encrypted data | ~ ~ | | + +
-    | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) + | 16 bytes |
-    +----+----+----+----+----+----+----+----+
+Payload Section encrypted data :: remaining data minus 16 bytes
 
-    Session Tag :: 8 bytes, cleartext
-
-    Payload Section encrypted data :: remaining data minus 16 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
-
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 #### Yük Verisi
 
@@ -889,11 +962,11 @@ Oturum etiketi (8 bayt) Şifrelenmiş veri ve MAC (aşağıdaki bölüm 3'e bak�
 ```
 See AEAD section below.
 
-// AEAD parameters for Existing Session payload k = The 32-byte
-session key associated with this session tag n = The message number N
-in the current chain, as retrieved from the associated Session Tag. ad
-= The session tag, 8 bytes ciphertext = ENCRYPT(k, n, payload, ad)
-
+// AEAD parameters for Existing Session payload
+k = The 32-byte session key associated with this session tag
+n = The message number N in the current chain, as retrieved from the associated Session Tag.
+ad = The session tag, 8 bytes
+ciphertext = ENCRYPT(k, n, payload, ad)
 ```
 ### 2) ECIES-X25519
 
@@ -916,19 +989,21 @@ Kodlama:
 ```
 ENCODE_ELG2() Definition
 
-// Encode as defined in Elligator2 specification encodedKey =
-encode(pubkey) // OR in 2 random bits to MSB randomByte = CSRNG(1)
+// Encode as defined in Elligator2 specification
+encodedKey = encode(pubkey)
+// OR in 2 random bits to MSB
+randomByte = CSRNG(1)
 encodedKey[31] |= (randomByte & 0xc0)
-
 ```
 Kod Çözme:
 
 ```
 DECODE_ELG2() Definition
 
-// Mask out 2 random bits from MSB encodedKey[31] &= 0x3f // Decode
-as defined in Elligator2 specification pubkey = decode(encodedKey)
-
+// Mask out 2 random bits from MSB
+encodedKey[31] &= 0x3f
+// Decode as defined in Elligator2 specification
+pubkey = decode(encodedKey)
 ```
 #### Notlar
 
@@ -950,17 +1025,15 @@ Yeni Oturum mesajındaki bir AEAD bloğu için şifreleme/şifre çözme fonksiy
 
 ```
 k :: 32 byte cipher key
+     See New Session and New Session Reply KDFs above.
 
-See New Session and New Session Reply KDFs above.
+n :: Counter-based nonce, 12 bytes.
+     n = 0
 
-    n :: Counter-based nonce, 12 bytes. n = 0
+ad :: Associated data, 32 bytes.
+      The SHA256 hash of the preceding data, as output from mixHash()
 
-    ad :: Associated data, 32 bytes.
-
-    :   The SHA256 hash of the preceding data, as output from mixHash()
-
-    data :: Plaintext data, 0 or more bytes
-
+data :: Plaintext data, 0 or more bytes
 ```
 #### Mevcut Oturum Girdileri
 
@@ -968,23 +1041,22 @@ Mevcut Oturum mesajındaki bir AEAD bloğu için şifreleme/şifre çözme fonks
 
 ```
 k :: 32 byte session key
+     As looked up from the accompanying session tag.
 
-As looked up from the accompanying session tag.
+n :: Counter-based nonce, 12 bytes.
+     Starts at 0 and incremented for each message when transmitting.
+     For the receiver, the value
+     as looked up from the accompanying session tag.
+     First four bytes are always zero.
+     Last eight bytes are the message number (n), little-endian encoded.
+     Maximum value is 65535.
+     Session must be ratcheted when N reaches that value.
+     Higher values must never be used.
 
-    n :: Counter-based nonce, 12 bytes. Starts at 0 and incremented for
-    each message when transmitting. For the receiver, the value as
-    looked up from the accompanying session tag. First four bytes are
-    always zero. Last eight bytes are the message number (n),
-    little-endian encoded. Maximum value is 65535. Session must be
-    ratcheted when N reaches that value. Higher values must never be
-    used.
+ad :: Associated data
+      The session tag
 
-    ad :: Associated data
-
-    :   The session tag
-
-    data :: Plaintext data, 0 or more bytes
-
+data :: Plaintext data, 0 or more bytes
 ```
 #### Şifrelenmiş Format
 
@@ -992,18 +1064,20 @@ As looked up from the accompanying session tag.
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|       ChaCha20 encrypted data         |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++              (MAC)                    +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+encrypted data :: Same size as plaintext data, 0 - 65519 bytes
 
-    \+ + | ChaCha20 encrypted data | ~ . . . ~ | |
-    +----+----+----+----+----+----+----+----+ |
-    Poly1305 Message Authentication Code | + (MAC) + | 16 bytes |
-    +----+----+----+----+----+----+----+----+
-
-    encrypted data :: Same size as plaintext data, 0 - 65519 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
-
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 #### Notlar
 
@@ -1318,6 +1392,58 @@ DH başlatmayı üç yerde kullanırız. İlk olarak, Yeni Oturum Yanıtları i�
 
 ```
 Inputs:
+1) rootKey = chainKey from Payload Section
+2) k from the New Session KDF or split()
+
+// KDF_RK(rk, dh_out)
+keydata = HKDF(rootKey, k, "KDFDHRatchetStep", 64)
+
+// Output 1: The next Root Key (KDF input for the next DH ratchet)
+nextRootKey = keydata[0:31]
+// Output 2: The chain key to initialize the new
+// session tag and symmetric key ratchets
+// for the tag set
+ck = keydata[32:63]
+
+// session tag and symmetric key chain keys
+keydata = HKDF(ck, ZEROLEN, "TagAndKeyGenKeys", 64)
+sessTag_ck = keydata[0:31]
+symmKey_ck = keydata[32:63]
+```
+##### DH RATCHET KDF
+
+Bu, bir tagset tükenmeden önce, NextKey bloklarında yeni DH anahtarları değiştirildikten sonra kullanılır.
+
+```
+// Tag sender generates new X25519 ephemeral keys
+// and sends rapk to tag receiver in a NextKey block
+rask = GENERATE_PRIVATE()
+rapk = DERIVE_PUBLIC(rask)
+
+// Tag receiver generates new X25519 ephemeral keys
+// and sends rbpk to Tag sender in a NextKey block
+rbsk = GENERATE_PRIVATE()
+rbpk = DERIVE_PUBLIC(rbsk)
+
+sharedSecret = DH(rask, rbpk) = DH(rbsk, rapk)
+tagsetKey = HKDF(sharedSecret, ZEROLEN, "XDHRatchetTagSet", 32)
+rootKey = nextRootKey // from previous tagset in this direction
+newTagSet = DH_INITIALIZE(rootKey, tagsetKey)
+```
+#### 4b) Oturum Etiketi Ratchet
+
+Signal'de olduğu gibi her mesaj için ratchet'ler. Oturum etiketi ratchet'i simetrik anahtar ratchet'i ile senkronize edilir, ancak alıcı anahtar ratchet'i bellek tasarrufu için "geride kalabilir".
+
+Transmitter, iletilen her mesaj için bir kez ratchet yapar. Ek etiketlerin saklanmasına gerek yoktur. Transmitter ayrıca mevcut zincirdeki mesajın mesaj numarası olan 'N' için bir sayaç tutmalıdır. 'N' değeri gönderilen mesaja dahil edilir. Mesaj Numarası blok tanımına bakın.
+
+Alıcı, maksimum pencere boyutu kadar ileri ratchet yapmalı ve etiketleri oturumla ilişkili bir "etiket seti"nde saklamalıdır. Alındıktan sonra, saklanan etiket atılabilir ve önceki alınmamış etiketler yoksa, pencere ilerletilebilir. Alıcı, her oturum etiketiyle ilişkili 'N' değerini tutmalı ve gönderilen mesajdaki sayının bu değerle eşleştiğini kontrol etmelidir. Mesaj Numarası blok tanımına bakın.
+
+##### KDF
+
+Bu RATCHET_TAG() tanımıdır.
+
+```
+Inputs:
 1) Session Tag Chain key sessTag_ck
    First time: output from DH ratchet
    Subsequent times: output from previous session tag ratchet
@@ -1356,37 +1482,19 @@ sessTag_chainKey_n = keydata_n[0:31]
 // or more if tag is longer than 8 bytes
 tag_n = keydata_n[32:39]
 ```
-##### DH RATCHET KDF
+#### 4c) Simetrik Anahtar Ratchet
 
-Bu, bir tagset tükenmeden önce, NextKey bloklarında yeni DH anahtarları değiştirildikten sonra kullanılır.
+Signal'de olduğu gibi her mesaj için ratchet'ler. Her simetrik anahtar ilişkili bir mesaj numarası ve oturum etiketine sahiptir. Oturum anahtarı ratchet'i simetrik etiket ratchet'i ile senkronize edilir, ancak alıcı anahtar ratchet'i bellek tasarrufu için "geride kalabilir".
 
-```
-// Tag sender generates new X25519 ephemeral keys
-// and sends rapk to tag receiver in a NextKey block
-rask = GENERATE_PRIVATE()
-rapk = DERIVE_PUBLIC(rask)
+Verici, gönderilen her mesaj için bir kez ratchet yapar. Ek anahtarların saklanması gerekmez.
 
-// Tag receiver generates new X25519 ephemeral keys
-// and sends rbpk to Tag sender in a NextKey block
-rbsk = GENERATE_PRIVATE()
-rbpk = DERIVE_PUBLIC(rbsk)
+Alıcı bir session tag aldığında, simetrik anahtar ratchet'ını ilişkili anahtara kadar ilerletmemişse, ilişkili anahtara "yetişmek" zorundadır. Alıcı muhtemelen henüz alınmamış olan önceki tag'ler için anahtarları önbelleğe alacaktır. Alındıktan sonra, saklanan anahtar atılabilir ve eğer önceki alınmamış tag'ler yoksa, pencere ilerletilebilir.
 
-sharedSecret = DH(rask, rbpk) = DH(rbsk, rapk)
-tagsetKey = HKDF(sharedSecret, ZEROLEN, "XDHRatchetTagSet", 32)
-rootKey = nextRootKey // from previous tagset in this direction
-newTagSet = DH_INITIALIZE(rootKey, tagsetKey)
-```
-#### 4b) Oturum Etiketi Ratchet
-
-Signal'de olduğu gibi her mesaj için ratchet'ler. Oturum etiketi ratchet'i simetrik anahtar ratchet'i ile senkronize edilir, ancak alıcı anahtar ratchet'i bellek tasarrufu için "geride kalabilir".
-
-Transmitter, iletilen her mesaj için bir kez ratchet yapar. Ek etiketlerin saklanmasına gerek yoktur. Transmitter ayrıca mevcut zincirdeki mesajın mesaj numarası olan 'N' için bir sayaç tutmalıdır. 'N' değeri gönderilen mesaja dahil edilir. Mesaj Numarası blok tanımına bakın.
-
-Alıcı, maksimum pencere boyutu kadar ileri ratchet yapmalı ve etiketleri oturumla ilişkili bir "etiket seti"nde saklamalıdır. Alındıktan sonra, saklanan etiket atılabilir ve önceki alınmamış etiketler yoksa, pencere ilerletilebilir. Alıcı, her oturum etiketiyle ilişkili 'N' değerini tutmalı ve gönderilen mesajdaki sayının bu değerle eşleştiğini kontrol etmelidir. Mesaj Numarası blok tanımına bakın.
+Verimlilik için, session tag ve simetrik anahtar ratchet'ları ayrıdır, böylece session tag ratchet'ı simetrik anahtar ratchet'ından önde çalışabilir. Bu aynı zamanda ek güvenlik sağlar, çünkü session tag'ları hat üzerinden gönderilir.
 
 ##### KDF
 
-Bu RATCHET_TAG() tanımıdır.
+Bu RATCHET_KEY() fonksiyonunun tanımıdır.
 
 ```
 Inputs:
@@ -1418,47 +1526,6 @@ keydata_n = HKDF(symmKey_chainKey_(n-1), SYMMKEY_CONSTANT, "SymmetricRatchet", 6
 symmKey_chainKey_n = keydata_n[0:31]
 // Output 2: The symmetric key
 k_n = keydata_n[32:63]
-```
-#### 4c) Simetrik Anahtar Ratchet
-
-Signal'de olduğu gibi her mesaj için ratchet'ler. Her simetrik anahtar ilişkili bir mesaj numarası ve oturum etiketine sahiptir. Oturum anahtarı ratchet'i simetrik etiket ratchet'i ile senkronize edilir, ancak alıcı anahtar ratchet'i bellek tasarrufu için "geride kalabilir".
-
-Verici, gönderilen her mesaj için bir kez ratchet yapar. Ek anahtarların saklanması gerekmez.
-
-Alıcı bir session tag aldığında, simetrik anahtar ratchet'ını ilişkili anahtara kadar ilerletmemişse, ilişkili anahtara "yetişmek" zorundadır. Alıcı muhtemelen henüz alınmamış olan önceki tag'ler için anahtarları önbelleğe alacaktır. Alındıktan sonra, saklanan anahtar atılabilir ve eğer önceki alınmamış tag'ler yoksa, pencere ilerletilebilir.
-
-Verimlilik için, session tag ve simetrik anahtar ratchet'ları ayrıdır, böylece session tag ratchet'ı simetrik anahtar ratchet'ından önde çalışabilir. Bu aynı zamanda ek güvenlik sağlar, çünkü session tag'ları hat üzerinden gönderilir.
-
-##### KDF
-
-Bu RATCHET_KEY() fonksiyonunun tanımıdır.
-
-```
-Inputs:
-
-1)  Symmetric Key Chain key symmKey_ck First time: output from DH
-        ratchet Subsequent times: output from previous symmetric key
-        ratchet
-
-    Generated: 2) input_key_material = SYMMKEY_CONSTANT = ZEROLEN No
-    need for uniqueness. Symmetric keys never go out on the wire. TODO:
-    Set a constant anyway?
-
-    Outputs: 1) N (the current session key number) 2) the session key 3)
-    the next Symmetric Key Chain Key (KDF input for the next symmetric
-    key ratchet)
-
-    // KDF_CK(ck, constant) SYMMKEY_CONSTANT = ZEROLEN // Output 1: Next
-    chain key keydata_0 = HKDF(symmKey_ck, SYMMKEY_CONSTANT,
-    "SymmetricRatchet", 64) symmKey_chainKey_0 = keydata_0[0:31] //
-    Output 2: The symmetric key k_0 = keydata_0[32:63]
-
-    // repeat as necessary to get to k[n] keydata_n =
-    HKDF([symmKey_chainKey]()(n-1), SYMMKEY_CONSTANT,
-    "SymmetricRatchet", 64) // Output 1: Next chain key
-    symmKey_chainKey_n = keydata_n[0:31] // Output 2: The symmetric
-    key k_n = keydata_n[32:63]
-
 ```
 ### 5) Yük
 
@@ -1536,30 +1603,44 @@ Genişletilebilirlik için, alıcılar bilinmeyen tip numaralarına sahip blokla
 
 ```
 +----+----+----+----+----+----+----+----+
+|blk |  size   |       data             |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|blk |  size   |       data             |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+~               .   .   .               ~
 
-[|blk |](##SUBST##|blk |) size | data |
-    +----+----+----+ + | | ~ . . . ~ | |
-    +----+----+----+----+----+----+----+----+
-    [|blk |](##SUBST##|blk |) size | data |
-    +----+----+----+ + | | ~ . . . ~ | |
-    +----+----+----+----+----+----+----+----+ ~
-    . . . ~
+blk :: 1 byte
+       0 datetime
+       1-3 reserved
+       4 termination
+       5 options
+       6 previous message number
+       7 next session key
+       8 ack
+       9 ack request
+       10 reserved
+       11 Garlic Clove
+       224-253 reserved for experimental features
+       254 for padding
+       255 reserved for future extension
+size :: 2 bytes, big endian, size of data to follow, 0 - 65516
+data :: the data
 
-    blk :: 1 byte
-
-    :   0 datetime 1-3 reserved 4 termination 5 options 6 previous
-        message number 7 next session key 8 ack 9 ack request 10
-        reserved 11 Garlic Clove 224-253 reserved for experimental
-        features 254 for padding 255 reserved for future extension
-
-    size :: 2 bytes, big endian, size of data to follow, 0 - 65516 data
-    :: the data
-
-    Maximum ChaChaPoly frame is 65535 bytes. Poly1305 tag is 16 bytes
-    Maximum total block size is 65519 bytes Maximum single block size is
-    65519 bytes Block type is 1 byte Block length is 2 bytes Maximum
-    single block data size is 65516 bytes.
-
+Maximum ChaChaPoly frame is 65535 bytes.
+Poly1305 tag is 16 bytes
+Maximum total block size is 65519 bytes
+Maximum single block size is 65519 bytes
+Block type is 1 byte
+Block length is 2 bytes
+Maximum single block data size is 65516 bytes.
 ```
 #### Blok Sıralama Kuralları
 
@@ -1593,14 +1674,13 @@ Bir son kullanma tarihi. Tekrar saldırılarının önlenmesine yardımcı olur.
 
 ```
 +----+----+----+----+----+----+----+
+| 0  |    4    |     timestamp     |
++----+----+----+----+----+----+----+
 
-| 0 | 4 | timestamp |
-
-    +----+----+----+----+----+----+----+
-
-    blk :: 0 size :: 2 bytes, big endian, value = 4 timestamp :: Unix
-    timestamp, unsigned seconds. Wraps around in 2106
-
+blk :: 0
+size :: 2 bytes, big endian, value = 4
+timestamp :: Unix timestamp, unsigned seconds.
+             Wraps around in 2106
 ```
 #### Garlic Clove
 
@@ -1608,30 +1688,33 @@ Bir son kullanma tarihi. Tekrar saldırılarının önlenmesine yardımcı olur.
 
 ```
 +----+----+----+----+----+----+----+----+
+| 11 |  size   |                        |
++----+----+----+                        +
+|      Delivery Instructions            |
+~                                       ~
+~                                       ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|type|  Message_ID       | Expiration   
++----+----+----+----+----+----+----+----+
+     |      I2NP Message body           |
++----+                                  +
+~                                       ~
+~                                       ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 11 | size | |
+size :: size of all data to follow
 
-    +----+----+----+ + | Delivery Instructions | ~ ~ ~ ~
-    | |
-    +----+----+----+----+----+----+----+----+
-    [|type|](##SUBST##|type|) Message_ID | Expiration
-    +----+----+----+----+----+----+----+----+ |
-    I2NP Message body | +----+ + ~ ~ ~ ~ | |
-    +----+----+----+----+----+----+----+----+
+Delivery Instructions :: As specified in
+       the Garlic Clove section of [I2NP]_.
+       Length varies but is typically 1, 33, or 37 bytes
 
-    size :: size of all data to follow
+type :: I2NP message type
 
-    Delivery Instructions :: As specified in
+Message_ID :: 4 byte `Integer` I2NP message ID
 
-    :   the Garlic Clove section of [I2NP](/docs/specs/i2np/). Length
-        varies but is typically 1, 33, or 37 bytes
-
-    type :: I2NP message type
-
-    Message_ID :: 4 byte [Integer]{.title-ref} I2NP message ID
-
-    Expiration :: 4 bytes, seconds since the epoch
-
+Expiration :: 4 bytes, seconds since the epoch
 ```
 Notlar:
 
@@ -1649,18 +1732,20 @@ NS veya NSR'de izin verilmez. Yalnızca Mevcut Oturum mesajlarında dahil edilir
 
 ```
 +----+----+----+----+----+----+----+----+
+| 4  |  size   | rsn|     addl data     |
++----+----+----+----+                   +
+~               .   .   .               ~
++----+----+----+----+----+----+----+----+
 
-| 4 | size | rsn| addl data |
-
-    +----+----+----+----+ + ~ . . . ~
-    +----+----+----+----+----+----+----+----+
-
-    blk :: 4 size :: 2 bytes, big endian, value = 1 or more rsn ::
-    reason, 1 byte: 0: normal close or unspecified 1: termination
-    received others: optional, impementation-specific addl data ::
-    optional, 0 or more bytes, for future expansion, debugging, or
-    reason text. Format unspecified and may vary based on reason code.
-
+blk :: 4
+size :: 2 bytes, big endian, value = 1 or more
+rsn :: reason, 1 byte:
+       0: normal close or unspecified
+       1: termination received
+       others: optional, impementation-specific
+addl data :: optional, 0 or more bytes, for future expansion, debugging,
+             or reason text.
+             Format unspecified and may vary based on reason code.
 ```
 #### Seçenekler
 
@@ -1670,52 +1755,50 @@ Seçenekler bloğu değişken uzunlukta olabilir, çünkü more_options mevcut o
 
 ```
 +----+----+----+----+----+----+----+----+
+| 5  |  size   |ver |flg |STL |STimeout |
++----+----+----+----+----+----+----+----+
+|  SOTW   |  RITW   |tmin|tmax|rmin|rmax|
++----+----+----+----+----+----+----+----+
+|  tdmy   |  rdmy   |  tdelay |  rdelay |
++----+----+----+----+----+----+----+----+
+|              more_options             |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 5 | size [|ver |](##SUBST##|ver |)flg [|STL
-      |](##SUBST##|STL |)STimeout |
+blk :: 5
+size :: 2 bytes, big endian, size of options to follow, 21 bytes minimum
+ver :: Protocol version, must be 0
+flg :: 1 byte flags
+       bits 7-0: Unused, set to 0 for future compatibility
+STL :: Session tag length (must be 8), other values unimplemented
+STimeout :: Session idle timeout (seconds), big endian
+SOTW :: Sender Outbound Tag Window, 2 bytes big endian
+RITW :: Receiver Inbound Tag Window 2 bytes big endian
 
-    +-------------+-------------+------+------+------+------+
-    | > SOTW      | > RITW      | tmin | tmax | rmin | rmax |
-    +-------------+-------------+------+------+------+------+
-    | > tdmy      | > rdmy      | > tdelay    | > rdelay    |
-    +-------------+-------------+-------------+-------------+
+tmin, tmax, rmin, rmax :: requested padding limits
+    tmin and rmin are for desired resistance to traffic analysis.
+    tmax and rmax are for bandwidth limits.
+    tmin and tmax are the transmit limits for the router sending this options block.
+    rmin and rmax are the receive limits for the router sending this options block.
+    Each is a 4.4 fixed-point float representing 0 to 15.9375
+    (or think of it as an unsigned 8-bit integer divided by 16.0).
+    This is the ratio of padding to data. Examples:
+    Value of 0x00 means no padding
+    Value of 0x01 means add 6 percent padding
+    Value of 0x10 means add 100 percent padding
+    Value of 0x80 means add 800 percent (8x) padding
+    Alice and Bob will negotiate the minimum and maximum in each direction.
+    These are guidelines, there is no enforcement.
+    Sender should honor receiver's maximum.
+    Sender may or may not honor receiver's minimum, within bandwidth constraints.
 
-    ~ . . . ~ | |
-    +----+----+----+----+----+----+----+----+
+tdmy: Max dummy traffic willing to send, 2 bytes big endian, bytes/sec average
+rdmy: Requested dummy traffic, 2 bytes big endian, bytes/sec average
+tdelay: Max intra-message delay willing to insert, 2 bytes big endian, msec average
+rdelay: Requested intra-message delay, 2 bytes big endian, msec average
 
-    blk :: 5 size :: 2 bytes, big endian, size of options to follow, 21
-    bytes minimum ver :: Protocol version, must be 0 flg :: 1 byte flags
-    bits 7-0: Unused, set to 0 for future compatibility STL :: Session
-    tag length (must be 8), other values unimplemented STimeout ::
-    Session idle timeout (seconds), big endian SOTW :: Sender Outbound
-    Tag Window, 2 bytes big endian RITW :: Receiver Inbound Tag Window 2
-    bytes big endian
-
-    tmin, tmax, rmin, rmax :: requested padding limits
-
-    :   tmin and rmin are for desired resistance to traffic analysis.
-        tmax and rmax are for bandwidth limits. tmin and tmax are the
-        transmit limits for the router sending this options block. rmin
-        and rmax are the receive limits for the router sending this
-        options block. Each is a 4.4 fixed-point float representing 0 to
-        15.9375 (or think of it as an unsigned 8-bit integer divided by
-        16.0). This is the ratio of padding to data. Examples: Value of
-        0x00 means no padding Value of 0x01 means add 6 percent padding
-        Value of 0x10 means add 100 percent padding Value of 0x80 means
-        add 800 percent (8x) padding Alice and Bob will negotiate the
-        minimum and maximum in each direction. These are guidelines,
-        there is no enforcement. Sender should honor receiver's
-        maximum. Sender may or may not honor receiver's minimum, within
-        bandwidth constraints.
-
-    tdmy: Max dummy traffic willing to send, 2 bytes big endian,
-    bytes/sec average rdmy: Requested dummy traffic, 2 bytes big endian,
-    bytes/sec average tdelay: Max intra-message delay willing to insert,
-    2 bytes big endian, msec average rdelay: Requested intra-message
-    delay, 2 bytes big endian, msec average
-
-    more_options :: Format undefined, for future use
-
+more_options :: Format undefined, for future use
 ```
 SOTW, gönderenin alıcıya yönelik gelen etiket penceresi (maksimum öngörü) önerisidir. RITW ise gönderenin kullanmayı planladığı gelen etiket penceresi (maksimum öngörü) beyanıdır. Her taraf daha sonra öngörüyü minimum, maksimum veya başka bir hesaplamaya dayalı olarak ayarlar veya düzenler.
 
@@ -1736,14 +1819,12 @@ Uygulama isteğe bağlıdır. Önceki etiket kümesindeki uzunluk (gönderilen m
 
 ```
 +----+----+----+----+----+
+| 6  |  size   |  PN    |
++----+----+----+----+----+
 
-| 6 | size | PN |
-
-    +----+----+----+----+----+
-
-    blk :: 6 size :: 2 PN :: 2 bytes big endian. The index of the last
-    tag sent in the previous tag set.
-
+blk :: 6
+size :: 2
+PN :: 2 bytes big endian. The index of the last tag sent in the previous tag set.
 ```
 Notlar:
 
@@ -1762,21 +1843,30 @@ NS veya NSR'de izin verilmez. Yalnızca Mevcut Oturum mesajlarında dahil edilir
 
 ```
 +----+----+----+----+----+----+----+----+
+| 7  |  size   |flag|  key ID |         |
++----+----+----+----+----+----+         +
+|                                       |
++                                       +
+|     Next DH Ratchet Public Key        |
++                                       +
+|                                       |
++                             +----+----+
+|                             |
++----+----+----+----+----+----+
 
-| 7 | size [|flag|](##SUBST##|flag|) key ID | |
-
-    +----+----+----+----+----+----+ + | | + + |
-    Next DH Ratchet Public Key | + + | | + +----+----+ | |
-    +----+----+----+----+----+----+
-
-    blk :: 7 size :: 3 or 35 flag :: 1 byte flags bit order: 76543210
-    bit 0: 1 for key present, 0 for no key present bit 1: 1 for reverse
-    key, 0 for forward key bit 2: 1 to request reverse key, 0 for no
-    request only set if bit 1 is 0 bits 7-2: Unused, set to 0 for future
-    compatibility key ID :: The key ID of this key. 2 bytes, big endian
-    0 - 32767 Public Key :: The next X25519 public key, 32 bytes, little
-    endian Only if bit 0 is 1
-
+blk :: 7
+size :: 3 or 35
+flag :: 1 byte flags
+        bit order: 76543210
+        bit 0: 1 for key present, 0 for no key present
+        bit 1: 1 for reverse key, 0 for forward key
+        bit 2: 1 to request reverse key, 0 for no request
+               only set if bit 1 is 0
+        bits 7-2: Unused, set to 0 for future compatibility
+key ID :: The key ID of this key. 2 bytes, big endian
+          0 - 32767
+Public Key :: The next X25519 public key, 32 bytes, little endian
+              Only if bit 0 is 1
 ```
 Notlar:
 
@@ -1797,17 +1887,18 @@ NS veya NSR'de izin verilmez. Yalnızca Mevcut Oturum mesajlarında bulunur.
 
 ```
 +----+----+----+----+----+----+----+----+
+| 8  |  size   |tagsetid |   N     |    |
++----+----+----+----+----+----+----+    +
+|             more acks                 |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 8 | size [|tagsetid |](##SUBST##|tagsetid |) N | |
-
-    +----+----+----+----+----+----+----+ + | more
-    acks | ~ . . . ~ | |
-    +----+----+----+----+----+----+----+----+
-
-    blk :: 8 size :: 4 * number of acks to follow, minimum 1 ack for
-    each ack: tagsetid :: 2 bytes, big endian, from the message being
-    acked N :: 2 bytes, big endian, from the message being acked
-
+blk :: 8
+size :: 4 * number of acks to follow, minimum 1 ack
+for each ack:
+tagsetid :: 2 bytes, big endian, from the message being acked
+N :: 2 bytes, big endian, from the message being acked
 ```
 Notlar:
 
@@ -1826,14 +1917,13 @@ NS veya NSR'de izin verilmez. Yalnızca Mevcut Oturum mesajlarında dahil edilir
 
 ```
 +----+----+----+----+
+|  9 |  size   |flg |
++----+----+----+----+
 
-|  9 | size [|flg |](##SUBST##|flg |)
-
-    +----+----+----+----+
-
-    blk :: 9 size :: 1 flg :: 1 byte flags bits 7-0: Unused, set to 0
-    for future compatibility
-
+blk :: 9
+size :: 1
+flg :: 1 byte flags
+       bits 7-0: Unused, set to 0 for future compatibility
 ```
 #### Doldurma
 
@@ -1843,14 +1933,16 @@ Eğer mevcutsa, bu çerçevedeki son blok olmalıdır.
 
 ```
 +----+----+----+----+----+----+----+----+
+|254 |  size   |      padding           |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-[|254 |](##SUBST##|254 |) size | padding |
-    +----+----+----+ + | | ~ . . . ~ | |
-    +----+----+----+----+----+----+----+----+
-
-    blk :: 254 size :: 2 bytes, big endian, 0-65516 padding :: zeros or
-    random data
-
+blk :: 254
+size :: 2 bytes, big endian, 0-65516
+padding :: zeros or random data
 ```
 Notlar:
 
