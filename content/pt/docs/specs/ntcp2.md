@@ -41,16 +41,22 @@ Todas as mensagens NTCP2 têm 65537 bytes ou menos de comprimento. O formato da 
 A sequência de estabelecimento é a seguinte:
 
 ```
-Alice Bob
+Alice                           Bob
 
-SessionRequest -------------------> <------------------- SessionCreated SessionConfirmed ----------------->
+SessionRequest ------------------->
+<------------------- SessionCreated
+SessionConfirmed ----------------->
 ```
 Usando a terminologia Noise, a sequência de estabelecimento e dados é a seguinte: (Propriedades de Segurança de Payload de [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
-XK(s, rs): Authentication Confidentiality
-
-<- s \... -> e, es 0 2 <- e, ee 2 1 -> s, se 2 5 <- 2 5
+XK(s, rs):           Authentication   Confidentiality
+  <- s
+  ...
+  -> e, es                  0                2
+  <- e, ee                  2                1
+  -> s, se                  2                5
+  <-                        2                5
 ```
 Uma vez que uma sessão tenha sido estabelecida, Alice e Bob podem trocar mensagens de dados.
 
@@ -69,10 +75,12 @@ Dados criptografados/autenticados serão representados como
 
 ```
 +----+----+----+----+----+----+----+----+
-
-|                                       |
-
-    + + | Encrypted and authenticated data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   Encrypted and authenticated data    |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 ```
 #### ChaCha20/Poly1305
 
@@ -83,15 +91,20 @@ Entradas para as funções de criptografia/descriptografia:
 ```
 k :: 32 byte cipher key, as generated from KDF
 
-
-
 nonce :: Counter-based nonce, 12 bytes.
-
-Starts at 0 and incremented for each message. First four bytes are always zero. Last eight bytes are the counter, little-endian encoded. Maximum value is 2**64 - 2. Connection must be dropped and restarted after it reaches that value. The value 2**64 - 1 must never be sent.
+         Starts at 0 and incremented for each message.
+         First four bytes are always zero.
+         Last eight bytes are the counter, little-endian encoded.
+         Maximum value is 2**64 - 2.
+         Connection must be dropped and restarted after
+         it reaches that value.
+         The value 2**64 - 1 must never be sent.
 
 ad :: In handshake phase:
-
-Associated data, 32 bytes. The SHA256 hash of all preceding data. In data phase: Zero bytes
+      Associated data, 32 bytes.
+      The SHA256 hash of all preceding data.
+      In data phase:
+      Zero bytes
 
 data :: Plaintext data, 0 or more bytes
 ```
@@ -99,16 +112,25 @@ Saída da função de criptografia, entrada da função de descriptografia:
 
 ```
 +----+----+----+----+----+----+----+----+
+|Obfs Len |                             |
++----+----+                             +
+|       ChaCha20 encrypted data         |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|  Poly1305 Message Authentication Code |
++              (MAC)                    +
+|             16 bytes                  |
++----+----+----+----+----+----+----+----+
 
-[|Obfs Len |](##SUBST##|Obfs Len |) | +----+----+ + | ChaCha20 encrypted data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | Poly1305 Message Authentication Code | + (MAC) + | 16 bytes | +----+----+----+----+----+----+----+----+
+Obfs Len :: Length of (encrypted data + MAC) to follow, 16 - 65535
+            Obfuscation using SipHash (see below)
+            Not used in message 1 or 2, or message 3 part 1, where the length is fixed
+            Not used in message 3 part 1, as the length is specified in message 1
 
-    Obfs Len :: Length of (encrypted data + MAC) to follow, 16 - 65535
+encrypted data :: Same size as plaintext data, 0 - 65519 bytes
 
-    :   Obfuscation using SipHash (see below) Not used in message 1 or 2, or message 3 part 1, where the length is fixed Not used in message 3 part 1, as the length is specified in message 1
-
-    encrypted data :: Same size as plaintext data, 0 - 65519 bytes
-
-    MAC :: Poly1305 message authentication code, 16 bytes
+MAC :: Poly1305 message authentication code, 16 bytes
 ```
 Para ChaCha20, o que é descrito aqui corresponde ao [RFC-7539](https://tools.ietf.org/html/rfc7539), que também é usado de forma similar no TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
 
@@ -133,21 +155,29 @@ O KDF gera uma chave de cifra da fase de handshake k a partir do resultado DH, u
 ```
 This is the "e" message pattern:
 
-// Define protocol_name. Set protocol_name = "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256" (48 bytes, US-ASCII encoded, no NULL termination).
+// Define protocol_name.
+Set protocol_name = "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256"
+ (48 bytes, US-ASCII encoded, no NULL termination).
 
-// Define Hash h = 32 bytes h = SHA256(protocol_name);
+// Define Hash h = 32 bytes
+h = SHA256(protocol_name);
 
-Define ck = 32 byte chaining key. Copy the h data to ck. Set ck = h
+Define ck = 32 byte chaining key. Copy the h data to ck.
+Set ck = h
 
 Define rs = Bob's 32-byte static key as published in the RouterInfo
 
-// MixHash(null prologue) h = SHA256(h);
+// MixHash(null prologue)
+h = SHA256(h);
 
 // up until here, can all be precalculated by Alice for all outgoing connections
 
 // Alice must validate that Bob's static key is a valid point on the curve here.
 
-// Bob static key // MixHash(rs) // || below means append h = SHA256(h || rs);
+// Bob static key
+// MixHash(rs)
+// || below means append
+h = SHA256(h || rs);
 
 // up until here, can all be precalculated by Bob for all incoming connections
 
@@ -155,25 +185,49 @@ This is the "e" message pattern:
 
 Alice generates her ephemeral DH key pair e.
 
-// Alice ephemeral key X // MixHash(e.pubkey) // || below means append h = SHA256(h || e.pubkey);
+// Alice ephemeral key X
+// MixHash(e.pubkey)
+// || below means append
+h = SHA256(h || e.pubkey);
 
-// h is used as the associated data for the AEAD in message 1 // Retain the Hash h for the message 2 KDF
+// h is used as the associated data for the AEAD in message 1
+// Retain the Hash h for the message 2 KDF
+
 
 End of "e" message pattern.
 
 This is the "es" message pattern:
 
-// DH(e, rs) == DH(s, re) Define input_key_material = 32 byte DH result of Alice's ephemeral key and Bob's static key Set input_key_material = X25519 DH result
+// DH(e, rs) == DH(s, re)
+Define input_key_material = 32 byte DH result of Alice's ephemeral key and Bob's static key
+Set input_key_material = X25519 DH result
 
 // MixKey(DH())
 
-Define temp_key = 32 bytes Define HMAC-SHA256(key, data) as in [RFC-2104](https://tools.ietf.org/html/rfc2104) // Generate a temp key from the chaining key and DH result // ck is the chaining key, defined above temp_key = HMAC-SHA256(ck, input_key_material) // overwrite the DH result in memory, no longer needed input_key_material = (all zeros)
+Define temp_key = 32 bytes
+Define HMAC-SHA256(key, data) as in [RFC-2104]_
+// Generate a temp key from the chaining key and DH result
+// ck is the chaining key, defined above
+temp_key = HMAC-SHA256(ck, input_key_material)
+// overwrite the DH result in memory, no longer needed
+input_key_material = (all zeros)
 
-// Output 1 // Set a new chaining key from the temp key // byte() below means a single byte ck = HMAC-SHA256(temp_key, byte(0x01)).
+// Output 1
+// Set a new chaining key from the temp key
+// byte() below means a single byte
+ck =       HMAC-SHA256(temp_key, byte(0x01)).
 
-// Output 2 // Generate the cipher key k Define k = 32 bytes // || below means append // byte() below means a single byte k = HMAC-SHA256(temp_key, ck || byte(0x02)). // overwrite the temp_key in memory, no longer needed temp_key = (all zeros)
+// Output 2
+// Generate the cipher key k
+Define k = 32 bytes
+// || below means append
+// byte() below means a single byte
+k =        HMAC-SHA256(temp_key, ck || byte(0x02)).
+// overwrite the temp_key in memory, no longer needed
+temp_key = (all zeros)
 
 // retain the chaining key ck for message 2 KDF
+
 
 End of "es" message pattern.
 ```
@@ -186,21 +240,28 @@ Conteúdo do ruído: Chave efêmera X da Alice Carga útil do ruído: Bloco de o
 (Propriedades de Segurança da Carga Útil do [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  -> e, es                  0                2
 
--> e, es 0 2
+  Authentication: None (0).
+  This payload may have been sent by any party, including an active attacker.
 
-    Authentication: None (0). This payload may have been sent by any party, including an active attacker.
+  Confidentiality: 2.
+  Encryption to a known recipient, forward secrecy for sender compromise
+  only, vulnerable to replay.  This payload is encrypted based only on DHs
+  involving the recipient's static key pair.  If the recipient's static
+  private key is compromised, even at a later date, this payload can be
+  decrypted.  This message can also be replayed, since there's no ephemeral
+  contribution from the recipient.
 
-    Confidentiality: 2. Encryption to a known recipient, forward secrecy for sender compromise only, vulnerable to replay. This payload is encrypted based only on DHs involving the recipient's static key pair. If the recipient's static private key is compromised, even at a later date, this payload can be decrypted. This message can also be replayed, since there's no ephemeral contribution from the recipient.
+  "e": Alice generates a new ephemeral key pair and stores it in the e
+       variable, writes the ephemeral public key as cleartext into the
+       message buffer, and hashes the public key along with the old h to
+       derive a new h.
 
-    "e": Alice generates a new ephemeral key pair and stores it in the e
-
-    :   variable, writes the ephemeral public key as cleartext into the message buffer, and hashes the public key along with the old h to derive a new h.
-
-    "es": A DH is performed between the Alice's ephemeral key pair and the
-
-    :   Bob's static key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+  "es": A DH is performed between the Alice's ephemeral key pair and the
+        Bob's static key pair.  The result is hashed along with the old ck to
+        derive a new ck and k, and n is set to zero.
 ```
 O valor X é criptografado para garantir indistinguibilidade e unicidade da carga útil, que são contramedidas DPI necessárias. Usamos criptografia AES para conseguir isso, ao invés de alternativas mais complexas e lentas como elligator2. Criptografia assimétrica para a chave pública do router do Bob seria muito lenta. A criptografia AES usa o hash do router do Bob como chave e o IV do Bob conforme publicado no netDb.
 
@@ -212,68 +273,103 @@ Conteúdo bruto:
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++        obfuscated with RH_B           +
+|       AES-CBC-256 encrypted X         |
++             (32 bytes)                +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|   ChaChaPoly frame                    |
++             (32 bytes)                +
+|   k defined in KDF for message 1      |
++   n = 0                               +
+|   see KDF for associated data         |
++----+----+----+----+----+----+----+----+
+|     unencrypted authenticated         |
+~         padding (optional)            ~
+|     length defined in options block   |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+X :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
+        key: RH_B
+        iv: As published in Bobs network database entry
 
-    + obfuscated with RH_B + | AES-CBC-256 encrypted X | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | | + + | ChaChaPoly frame | + (32 bytes) + | k defined in KDF for message 1 | + n = 0 + | see KDF for associated data | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | ~ padding (optional) ~ | length defined in options block | +----+----+----+----+----+----+----+----+
-
-    X :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
-
-    :   key: RH_B iv: As published in Bobs network database entry
-
-    padding :: Random data, 0 or more bytes.
-
-    :   Total message length must be 65535 bytes or less. Total message length must be 287 bytes or less if Bob is publishing his address as NTCP (see Version Detection section below). Alice and Bob will use the padding data in the KDF for message 2. It is authenticated so that any tampering will cause the next message to fail.
+padding :: Random data, 0 or more bytes.
+           Total message length must be 65535 bytes or less.
+           Total message length must be 287 bytes or less if
+           Bob is publishing his address as NTCP
+           (see Version Detection section below).
+           Alice and Bob will use the padding data in the KDF for message 2.
+           It is authenticated so that any tampering will cause the
+           next message to fail.
 ```
 Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|                   X                   |
++              (32 bytes)               +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|               options                 |
++              (16 bytes)               +
+|                                       |
++----+----+----+----+----+----+----+----+
+|     unencrypted authenticated         |
++         padding (optional)            +
+|     length defined in options block   |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+X :: 32 bytes, X25519 ephemeral key, little endian
 
-    + + | X | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | options | + (16 bytes) + | | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | + padding (optional) + | length defined in options block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+options :: options block, 16 bytes, see below
 
-    X :: 32 bytes, X25519 ephemeral key, little endian
-
-    options :: options block, 16 bytes, see below
-
-    padding :: Random data, 0 or more bytes.
-
-    :   Total message length must be 65535 bytes or less. Total message length must be 287 bytes or less if Bob is publishing his address as "NTCP" (see Version Detection section below) Alice and Bob will use the padding data in the KDF for message 2. It is authenticated so that any tampering will cause the next message to fail.
+padding :: Random data, 0 or more bytes.
+           Total message length must be 65535 bytes or less.
+           Total message length must be 287 bytes or less if
+           Bob is publishing his address as "NTCP"
+           (see Version Detection section below)
+           Alice and Bob will use the padding data in the KDF for message 2.
+           It is authenticated so that any tampering will cause the
+           next message to fail.
 ```
 Bloco de opções: Nota: Todos os campos são big-endian.
 
 ```
 +----+----+----+----+----+----+----+----+
+| id | ver|  padLen | m3p2len | Rsvd(0) |
++----+----+----+----+----+----+----+----+
+|        tsA        |   Reserved (0)    |
++----+----+----+----+----+----+----+----+
 
-| id | ver| padLen | m3p2len | Rsvd(0) |
+id :: 1 byte, the network ID (currently 2, except for test networks)
+      As of 0.9.42. See proposal 147.
 
-    +-------------------------------+-------------------------------+
-    | > tsA                         | > Reserved (0)                |
-    +-------------------------------+-------------------------------+
+ver :: 1 byte, protocol version (currently 2)
 
-    id :: 1 byte, the network ID (currently 2, except for test networks)
+padLen :: 2 bytes, length of the padding, 0 or more
+          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          (Distribution is implementation-dependent)
 
-    :   As of 0.9.42. See proposal 147.
+m3p2Len :: 2 bytes, length of the the second AEAD frame in SessionConfirmed
+           (message 3 part 2) See notes below
 
-    ver :: 1 byte, protocol version (currently 2)
+Rsvd :: 2 bytes, set to 0 for compatibility with future options
 
-    padLen :: 2 bytes, length of the padding, 0 or more
+tsA :: 4 bytes, Unix timestamp, unsigned seconds.
+       Wraps around in 2106
 
-    :   Min/max guidelines TBD. Random size from 0 to 31 bytes minimum? (Distribution is implementation-dependent)
-
-    m3p2Len :: 2 bytes, length of the the second AEAD frame in SessionConfirmed
-
-    :   (message 3 part 2) See notes below
-
-    Rsvd :: 2 bytes, set to 0 for compatibility with future options
-
-    tsA :: 4 bytes, Unix timestamp, unsigned seconds.
-
-    :   Wraps around in 2106
-
-    Reserved :: 4 bytes, set to 0 for compatibility with future options
+Reserved :: 4 bytes, set to 0 for compatibility with future options
 ```
 #### Notas
 
@@ -385,17 +481,28 @@ Conteúdo Noise: chave efêmera Y do Bob Payload Noise: bloco de opção de 16 b
 (Propriedades de Segurança do Payload do [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  <- e, ee                  2                1
 
-<- e, ee 2 1
+  Authentication: 2.
+  Sender authentication resistant to key-compromise impersonation (KCI).
+  The sender authentication is based on an ephemeral-static DH ("es" or "se")
+  between the sender's static key pair and the recipient's ephemeral key pair.
+  Assuming the corresponding private keys are secure, this authentication cannot be forged.
 
-    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
+  Confidentiality: 1.
+  Encryption to an ephemeral recipient.
+  This payload has forward secrecy, since encryption involves an ephemeral-ephemeral DH ("ee").
+  However, the sender has not authenticated the recipient,
+  so this payload might be sent to any party, including an active attacker.
 
-    Confidentiality: 1. Encryption to an ephemeral recipient. This payload has forward secrecy, since encryption involves an ephemeral-ephemeral DH ("ee"). However, the sender has not authenticated the recipient, so this payload might be sent to any party, including an active attacker.
 
-    "e": Bob generates a new ephemeral key pair and stores it in the e variable, writes the ephemeral public key as cleartext into the message buffer, and hashes the public key along with the old h to derive a new h.
+  "e": Bob generates a new ephemeral key pair and stores it in the e variable,
+  writes the ephemeral public key as cleartext into the message buffer,
+  and hashes the public key along with the old h to derive a new h.
 
-    "ee": A DH is performed between the Bob's ephemeral key pair and the Alice's ephemeral key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+  "ee": A DH is performed between the Bob's ephemeral key pair and the Alice's ephemeral key pair.
+  The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
 ```
 O valor Y é criptografado para garantir a indistinguibilidade e unicidade da carga útil, que são contramedidas DPI necessárias. Usamos criptografia AES para conseguir isso, em vez de alternativas mais complexas e lentas como elligator2. Criptografia assimétrica para a chave pública do router de Alice seria muito lenta. A criptografia AES usa o hash do router de Bob como chave e o estado AES da mensagem 1 (que foi inicializado com o IV de Bob conforme publicado no banco de dados da rede).
 
@@ -405,31 +512,65 @@ Conteúdo bruto:
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++        obfuscated with RH_B           +
+|       AES-CBC-256 encrypted Y         |
++              (32 bytes)               +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|   ChaChaPoly frame                    |
++   Encrypted and authenticated data    +
+|   32 bytes                            |
++   k defined in KDF for message 2      +
+|   n = 0; see KDF for associated data  |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|     unencrypted authenticated         |
++         padding (optional)            +
+|     length defined in options block   |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|                                       |
-
-    + obfuscated with RH_B + | AES-CBC-256 encrypted Y | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | ChaChaPoly frame | + Encrypted and authenticated data + | 32 bytes | + k defined in KDF for message 2 + | n = 0; see KDF for associated data | + + | | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | + padding (optional) + | length defined in options block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    Y :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
-
-    :   key: RH_B iv: Using AES state from message 1
+Y :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
+        key: RH_B
+        iv: Using AES state from message 1
 ```
 Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|                  Y                    |
++              (32 bytes)               +
+|                                       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|               options                 |
++              (16 bytes)               +
+|                                       |
++----+----+----+----+----+----+----+----+
+|     unencrypted authenticated         |
++         padding (optional)            +
+|     length defined in options block   |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|                                       |
+Y :: 32 bytes, X25519 ephemeral key, little endian
 
-    + + | Y | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | options | + (16 bytes) + | | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | + padding (optional) + | length defined in options block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+options :: options block, 16 bytes, see below
 
-    Y :: 32 bytes, X25519 ephemeral key, little endian
-
-    options :: options block, 16 bytes, see below
-
-    padding :: Random data, 0 or more bytes.
-
-    :   Total message length must be 65535 bytes or less. Alice and Bob will use the padding data in the KDF for message 3 part 1. It is authenticated so that any tampering will cause the next message to fail.
+padding :: Random data, 0 or more bytes.
+           Total message length must be 65535 bytes or less.
+           Alice and Bob will use the padding data in the KDF for message 3 part 1.
+           It is authenticated so that any tampering will cause the
+           next message to fail.
 ```
 #### Notas
 
@@ -443,22 +584,19 @@ Bloco de opções: Nota: Todos os campos são big-endian.
 
 ```
 +----+----+----+----+----+----+----+----+
+| Rsvd(0) | padLen  |   Reserved (0)    |
++----+----+----+----+----+----+----+----+
+|        tsB        |   Reserved (0)    |
++----+----+----+----+----+----+----+----+
 
-| Rsvd(0) | padLen | Reserved (0) |
+Reserved :: 10 bytes total, set to 0 for compatibility with future options
 
-    +-------------------------------+-------------------------------+
-    | > tsB                         | > Reserved (0)                |
-    +-------------------------------+-------------------------------+
+padLen :: 2 bytes, big endian, length of the padding, 0 or more
+          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          (Distribution is implementation-dependent)
 
-    Reserved :: 10 bytes total, set to 0 for compatibility with future options
-
-    padLen :: 2 bytes, big endian, length of the padding, 0 or more
-
-    :   Min/max guidelines TBD. Random size from 0 to 31 bytes minimum? (Distribution is implementation-dependent)
-
-    tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
-
-    :   Wraps around in 2106
+tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
+       Wraps around in 2106
 ```
 #### Notas
 
@@ -503,25 +641,55 @@ End of "s" message pattern.
 ```
 This is the "se" message pattern:
 
-// DH(s, re) == DH(e, rs) Define input_key_material = 32 byte DH result of Alice's static key and Bob's ephemeral key Set input_key_material = X25519 DH result // overwrite Bob's ephemeral key in memory, no longer needed // Alice: re = (all zeros) // Bob: e(public and private) = (all zeros)
+// DH(s, re) == DH(e, rs)
+Define input_key_material = 32 byte DH result of Alice's static key and Bob's ephemeral key
+Set input_key_material = X25519 DH result
+// overwrite Bob's ephemeral key in memory, no longer needed
+// Alice:
+re = (all zeros)
+// Bob:
+e(public and private) = (all zeros)
 
 // MixKey(DH())
 
-Define temp_key = 32 bytes Define HMAC-SHA256(key, data) as in [RFC-2104](https://tools.ietf.org/html/rfc2104) // Generate a temp key from the chaining key and DH result // ck is the chaining key, from the KDF for handshake message 1 temp_key = HMAC-SHA256(ck, input_key_material) // overwrite the DH result in memory, no longer needed input_key_material = (all zeros)
+Define temp_key = 32 bytes
+Define HMAC-SHA256(key, data) as in [RFC-2104]_
+// Generate a temp key from the chaining key and DH result
+// ck is the chaining key, from the KDF for handshake message 1
+temp_key = HMAC-SHA256(ck, input_key_material)
+// overwrite the DH result in memory, no longer needed
+input_key_material = (all zeros)
 
-// Output 1 // Set a new chaining key from the temp key // byte() below means a single byte ck = HMAC-SHA256(temp_key, byte(0x01)).
+// Output 1
+// Set a new chaining key from the temp key
+// byte() below means a single byte
+ck =       HMAC-SHA256(temp_key, byte(0x01)).
 
-// Output 2 // Generate the cipher key k Define k = 32 bytes // || below means append // byte() below means a single byte k = HMAC-SHA256(temp_key, ck || byte(0x02)).
+// Output 2
+// Generate the cipher key k
+Define k = 32 bytes
+// || below means append
+// byte() below means a single byte
+k =        HMAC-SHA256(temp_key, ck || byte(0x02)).
 
 // h from message 3 part 1 is used as the associated data for the AEAD in message 3 part 2
 
-// EncryptAndHash(payload) // EncryptWithAd(h, payload) // AEAD_ChaCha20_Poly1305(key, nonce, associatedData, data) // n is 0 ciphertext = AEAD_ChaCha20_Poly1305(k, n++, h, payload) // MixHash(ciphertext) // || below means append h = SHA256(h || ciphertext);
+// EncryptAndHash(payload)
+// EncryptWithAd(h, payload)
+// AEAD_ChaCha20_Poly1305(key, nonce, associatedData, data)
+// n is 0
+ciphertext = AEAD_ChaCha20_Poly1305(k, n++, h, payload)
+// MixHash(ciphertext)
+// || below means append
+h = SHA256(h || ciphertext);
 
-// retain the chaining key ck for the data phase KDF // retain the hash h for the data phase Additional Symmetric Key (SipHash) KDF
+// retain the chaining key ck for the data phase KDF
+// retain the hash h for the data phase Additional Symmetric Key (SipHash) KDF
 
 End of "se" message pattern.
 
-// overwrite the temp_key in memory, no longer needed temp_key = (all zeros)
+// overwrite the temp_key in memory, no longer needed
+temp_key = (all zeros)
 ```
 ### 3) SessionConfirmed
 
@@ -532,17 +700,31 @@ Conteúdo Noise: chave estática da Alice Payload Noise: RouterInfo da Alice e p
 (Propriedades de Segurança do Payload de [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  -> s, se                  2                5
 
--> s, se 2 5
+  Authentication: 2.
+  Sender authentication resistant to key-compromise impersonation (KCI).  The
+  sender authentication is based on an ephemeral-static DH ("es" or "se")
+  between the sender's static key pair and the recipient's ephemeral key
+  pair.  Assuming the corresponding private keys are secure, this
+  authentication cannot be forged.
 
-    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
+  Confidentiality: 5.
+  Encryption to a known recipient, strong forward secrecy.  This payload is
+  encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static
+  DH with the recipient's static key pair.  Assuming the ephemeral private
+  keys are secure, and the recipient is not being actively impersonated by an
+  attacker that has stolen its static private key, this payload cannot be
+  decrypted.
 
-    Confidentiality: 5. Encryption to a known recipient, strong forward secrecy. This payload is encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static DH with the recipient's static key pair. Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated by an attacker that has stolen its static private key, this payload cannot be decrypted.
+  "s": Alice writes her static public key from the s variable into the
+  message buffer, encrypting it, and hashes the output along with the old h
+  to derive a new h.
 
-    "s": Alice writes her static public key from the s variable into the message buffer, encrypting it, and hashes the output along with the old h to derive a new h.
-
-    "se": A DH is performed between the Alice's static key pair and the Bob's ephemeral key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+  "se": A DH is performed between the Alice's static key pair and the Bob's
+  ephemeral key pair.  The result is hashed along with the old ck to derive a
+  new ck and k, and n is set to zero.
 ```
 Isto contém dois frames ChaChaPoly. O primeiro é a chave pública estática criptografada de Alice. O segundo é a carga útil Noise: o RouterInfo criptografado de Alice, opções opcionais e preenchimento opcional. Eles usam chaves diferentes, porque a função MixKey() é chamada entre eles.
 
@@ -550,25 +732,77 @@ Conteúdo bruto:
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++   ChaChaPoly frame (48 bytes)         +
+|   Encrypted and authenticated         |
++   Alice static key S                  +
+|      (32 bytes)                       |
++                                       +
+|     k defined in KDF for message 2    |
++     n = 1                             +
+|     see KDF for associated data       |
++                                       +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++     Length specified in message 1     +
+|                                       |
++   ChaChaPoly frame                    +
+|   Encrypted and authenticated         |
++                                       +
+|       Alice RouterInfo                |
++       using block format 2            +
+|       Alice Options (optional)        |
++       using block format 1            +
+|       Arbitrary padding               |
++       using block format 254          +
+|                                       |
++                                       +
+| k defined in KDF for message 3 part 2 |
++     n = 0                             +
+|     see KDF for associated data       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|                                       |
-
-    + ChaChaPoly frame (48 bytes) + | Encrypted and authenticated | + Alice static key S + | (32 bytes) | + + | k defined in KDF for message 2 | + n = 1 + | see KDF for associated data | + + | | +----+----+----+----+----+----+----+----+ | | + Length specified in message 1 + | | + ChaChaPoly frame + | Encrypted and authenticated | + + | Alice RouterInfo | + using block format 2 + | Alice Options (optional) | + using block format 1 + | Arbitrary padding | + using block format 254 + | | + + | k defined in KDF for message 3 part 2 | + n = 0 + | see KDF for associated data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
-
-    :   inside 48 byte ChaChaPoly frame
+S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+     inside 48 byte ChaChaPoly frame
 ```
 Dados não criptografados (tags de autenticação Poly1305 não mostradas):
 
 ```
 +----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|              S                        |
++       Alice static key                +
+|          (32 bytes)                   |
++                                       +
+|                                       |
++                                       +
++----+----+----+----+----+----+----+----+
+|                                       |
++                                       +
+|                                       |
++                                       +
+|       Alice RouterInfo block          |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++       Optional Options block          +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++       Optional Padding block          +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-|                                       |
-
-    + + | S | + Alice static key + | (32 bytes) | + + | | + + +----+----+----+----+----+----+----+----+ | | + + | | + + | Alice RouterInfo block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | | + Optional Options block + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | | + Optional Padding block + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    S :: 32 bytes, Alice's X25519 static key, little endian
+S :: 32 bytes, Alice's X25519 static key, little endian
 ```
 #### Notas
 
@@ -607,27 +841,59 @@ O KDF gera duas chaves de cifra k_ab e k_ba a partir da chaining key ck, usando 
 ```
 ck = from handshake phase
 
-// k_ab, k_ba = HKDF(ck, zerolen) // ask_master = HKDF(ck, zerolen, info="ask")
+// k_ab, k_ba = HKDF(ck, zerolen)
+// ask_master = HKDF(ck, zerolen, info="ask")
 
-// zerolen is a zero-length byte array temp_key = HMAC-SHA256(ck, zerolen) // overwrite the chaining key in memory, no longer needed ck = (all zeros)
+// zerolen is a zero-length byte array
+temp_key = HMAC-SHA256(ck, zerolen)
+// overwrite the chaining key in memory, no longer needed
+ck = (all zeros)
 
-// Output 1 // cipher key, for Alice transmits to Bob (Noise doesn't make clear which is which, but Java code does) k_ab = HMAC-SHA256(temp_key, byte(0x01)).
+// Output 1
+// cipher key, for Alice transmits to Bob (Noise doesn't make clear which is which, but Java code does)
+k_ab =   HMAC-SHA256(temp_key, byte(0x01)).
 
-// Output 2 // cipher key, for Bob transmits to Alice (Noise doesn't make clear which is which, but Java code does) k_ba = HMAC-SHA256(temp_key, k_ab || byte(0x02)).
+// Output 2
+// cipher key, for Bob transmits to Alice (Noise doesn't make clear which is which, but Java code does)
+k_ba =   HMAC-SHA256(temp_key, k_ab || byte(0x02)).
 
-KDF for SipHash for length field: Generate an Additional Symmetric Key (ask) for SipHash SipHash uses two 8-byte keys (big endian) and 8 byte IV for first data.
 
-// "ask" is 3 bytes, US-ASCII, no null termination ask_master = HMAC-SHA256(temp_key, "ask" || byte(0x01)) // sip_master = HKDF(ask_master, h || "siphash") // "siphash" is 7 bytes, US-ASCII, no null termination // overwrite previous temp_key in memory // h is from KDF for message 3 part 2 temp_key = HMAC-SHA256(ask_master, h || "siphash") // overwrite ask_master in memory, no longer needed ask_master = (all zeros) sip_master = HMAC-SHA256(temp_key, byte(0x01))
+KDF for SipHash for length field:
+Generate an Additional Symmetric Key (ask) for SipHash
+SipHash uses two 8-byte keys (big endian) and 8 byte IV for first data.
 
-Alice to Bob SipHash k1, k2, IV: // sipkeys_ab, sipkeys_ba = HKDF(sip_master, zerolen) // overwrite previous temp_key in memory temp_key = HMAC-SHA256(sip_master, zerolen) // overwrite sip_master in memory, no longer needed sip_master = (all zeros)
+// "ask" is 3 bytes, US-ASCII, no null termination
+ask_master = HMAC-SHA256(temp_key, "ask" || byte(0x01))
+// sip_master = HKDF(ask_master, h || "siphash")
+// "siphash" is 7 bytes, US-ASCII, no null termination
+// overwrite previous temp_key in memory
+// h is from KDF for message 3 part 2
+temp_key = HMAC-SHA256(ask_master, h || "siphash")
+// overwrite ask_master in memory, no longer needed
+ask_master = (all zeros)
+sip_master = HMAC-SHA256(temp_key, byte(0x01))
 
-sipkeys_ab = HMAC-SHA256(temp_key, byte(0x01)). sipk1_ab = sipkeys_ab[0:7], little endian sipk2_ab = sipkeys_ab[8:15], little endian sipiv_ab = sipkeys_ab[16:23]
+Alice to Bob SipHash k1, k2, IV:
+// sipkeys_ab, sipkeys_ba = HKDF(sip_master, zerolen)
+// overwrite previous temp_key in memory
+temp_key = HMAC-SHA256(sip_master, zerolen)
+// overwrite sip_master in memory, no longer needed
+sip_master = (all zeros)
+
+sipkeys_ab = HMAC-SHA256(temp_key, byte(0x01)).
+sipk1_ab = sipkeys_ab[0:7], little endian
+sipk2_ab = sipkeys_ab[8:15], little endian
+sipiv_ab = sipkeys_ab[16:23]
 
 Bob to Alice SipHash k1, k2, IV:
 
-sipkeys_ba = HMAC-SHA256(temp_key, sipkeys_ab || byte(0x02)). sipk1_ba = sipkeys_ba[0:7], little endian sipk2_ba = sipkeys_ba[8:15], little endian sipiv_ba = sipkeys_ba[16:23]
+sipkeys_ba = HMAC-SHA256(temp_key, sipkeys_ab || byte(0x02)).
+sipk1_ba = sipkeys_ba[0:7], little endian
+sipk2_ba = sipkeys_ba[8:15], little endian
+sipiv_ba = sipkeys_ba[16:23]
 
-// overwrite the temp_key in memory, no longer needed temp_key = (all zeros)
+// overwrite the temp_key in memory, no longer needed
+temp_key = (all zeros)
 ```
 ### 4) Fase de Dados
 
@@ -640,13 +906,22 @@ Nota: Bob pode, mas não é obrigatório, enviar seu RouterInfo para Alice como 
 (Propriedades de Segurança do Payload de [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
-XK(s, rs): Authentication Confidentiality
+XK(s, rs):           Authentication   Confidentiality
+  <-                        2                5
+  ->                        2                5
 
-<- 2 5 -> 2 5
+  Authentication: 2.
+  Sender authentication resistant to key-compromise impersonation (KCI).
+  The sender authentication is based on an ephemeral-static DH ("es" or "se")
+  between the sender's static key pair and the recipient's ephemeral key pair.
+  Assuming the corresponding private keys are secure, this authentication cannot be forged.
 
-    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
-
-    Confidentiality: 5. Encryption to a known recipient, strong forward secrecy. This payload is encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static DH with the recipient's static key pair. Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated by an attacker that has stolen its static private key, this payload cannot be decrypted.
+  Confidentiality: 5.
+  Encryption to a known recipient, strong forward secrecy.
+  This payload is encrypted based on an ephemeral-ephemeral DH as well as
+  an ephemeral-static DH with the recipient's static key pair.
+  Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated
+  by an attacker that has stolen its static private key, this payload cannot be decrypted.
 ```
 #### Notas
 
@@ -662,7 +937,7 @@ Uma vez que ambos os lados tenham completado o handshake, eles transferem payloa
 Cada frame é precedido por um comprimento de dois bytes, big endian. Este comprimento especifica o número de bytes de frame criptografados a seguir, incluindo o MAC. Para evitar a transmissão de campos de comprimento identificáveis no stream, o comprimento do frame é ofuscado através de XOR com uma máscara derivada do SipHash, conforme inicializado a partir do KDF da fase de dados. Note que as duas direções têm chaves SipHash e IVs únicos do KDF.
 
 ```
-sipk1, sipk2 = The SipHash keys from the KDF.  (two 8-byte long integers)
+    sipk1, sipk2 = The SipHash keys from the KDF.  (two 8-byte long integers)
     IV[0] = sipiv = The SipHash IV from the KDF. (8 bytes)
     length is big endian.
     For each frame:
@@ -682,14 +957,30 @@ O receptor possui as mesmas chaves SipHash e IV. A decodificação do compriment
 
 ```
 +----+----+----+----+----+----+----+----+
+|obf size |                             |
++----+----+                             +
+|                                       |
++   ChaChaPoly frame                    +
+|   Encrypted and authenticated         |
++   key is k_ab for Alice to Bob        +
+|   key is k_ba for Bob to Alice        |
++   as defined in KDF for data phase    +
+|   n starts at 0 and increments        |
++   for each frame in that direction    +
+|   no associated data                  |
++   16 bytes minimum                    +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-[|obf size |](##SUBST##|obf size |) | +----+----+ + | | + ChaChaPoly frame + | Encrypted and authenticated | + key is k_ab for Alice to Bob + | key is k_ba for Bob to Alice | + as defined in KDF for data phase + | n starts at 0 and increments | + for each frame in that direction + | no associated data | + 16 bytes minimum + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+obf size :: 2 bytes length obfuscated with SipHash
+            when de-obfuscated: 16 - 65535
 
-    obf size :: 2 bytes length obfuscated with SipHash
-
-    :   when de-obfuscated: 16 - 65535
-
-    Minimum size including length field is 18 bytes. Maximum size including length field is 65537 bytes. Obfuscated length is 2 bytes. Maximum ChaChaPoly frame is 65535 bytes.
+Minimum size including length field is 18 bytes.
+Maximum size including length field is 65537 bytes.
+Obfuscated length is 2 bytes.
+Maximum ChaChaPoly frame is 65535 bytes.
 ```
 #### Notas
 
@@ -707,16 +998,39 @@ Os dados criptografados têm no máximo 65535 bytes, incluindo um cabeçalho de 
 
 ```
 +----+----+----+----+----+----+----+----+
+|blk |  size   |       data             |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|blk |  size   |       data             |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+~               .   .   .               ~
 
-[|blk |](##SUBST##|blk |) size | data | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ [|blk |](##SUBST##|blk |) size | data | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ ~ . . . ~
+blk :: 1 byte
+       0 for datetime
+       1 for options
+       2 for RouterInfo
+       3 for I2NP message
+       4 for termination
+       224-253 reserved for experimental features
+       254 for padding
+       255 reserved for future extension
+size :: 2 bytes, big endian, size of data to follow, 0 - 65516
+data :: the data
 
-    blk :: 1 byte
-
-    :   0 for datetime 1 for options 2 for RouterInfo 3 for I2NP message 4 for termination 224-253 reserved for experimental features 254 for padding 255 reserved for future extension
-
-    size :: 2 bytes, big endian, size of data to follow, 0 - 65516 data :: the data
-
-    Maximum ChaChaPoly frame is 65535 bytes. Poly1305 tag is 16 bytes Maximum total block size is 65519 bytes Maximum single block size is 65519 bytes Block type is 1 byte Block length is 2 bytes Maximum single block data size is 65516 bytes.
+Maximum ChaChaPoly frame is 65535 bytes.
+Poly1305 tag is 16 bytes
+Maximum total block size is 65519 bytes
+Maximum single block size is 65519 bytes
+Block type is 1 byte
+Block length is 2 bytes
+Maximum single block data size is 65516 bytes.
 ```
 #### Regras de Ordenação de Blocos
 
@@ -732,12 +1046,13 @@ Caso especial para sincronização de tempo:
 
 ```
 +----+----+----+----+----+----+----+
+| 0  |    4    |     timestamp     |
++----+----+----+----+----+----+----+
 
-| 0 | 4 | timestamp |
-
-    +----+----+----+----+----+----+----+
-
-    blk :: 0 size :: 2 bytes, big endian, value = 4 timestamp :: Unix timestamp, unsigned seconds. Wraps around in 2106
+blk :: 0
+size :: 2 bytes, big endian, value = 4
+timestamp :: Unix timestamp, unsigned seconds.
+             Wraps around in 2106
 ```
 NOTA: As implementações devem arredondar para o segundo mais próximo para prevenir desvio de relógio na rede.
 
@@ -749,22 +1064,44 @@ O bloco de opções terá comprimento variável.
 
 ```
 +----+----+----+----+----+----+----+----+
+| 1  |  size   |tmin|tmax|rmin|rmax|tdmy|
++----+----+----+----+----+----+----+----+
+|tdmy|  rdmy   |  tdelay |  rdelay |    |
+~----+----+----+----+----+----+----+    ~
+|              more_options             |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 1 | size [|tmin|](##SUBST##|tmin|)tmax[|rmin|](##SUBST##|rmin|)rmax[|tdmy|](##SUBST##|tdmy|)
+blk :: 1
+size :: 2 bytes, big endian, size of options to follow, 12 bytes minimum
 
-    +----+----+----+----+----+----+----+----+ [|tdmy|](##SUBST##|tdmy|) rdmy | tdelay | rdelay | | ~----+----+----+----+----+----+----+ ~ | more_options | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+tmin, tmax, rmin, rmax :: requested padding limits
+    tmin and rmin are for desired resistance to traffic analysis.
+    tmax and rmax are for bandwidth limits.
+    tmin and tmax are the transmit limits for the router sending this options block.
+    rmin and rmax are the receive limits for the router sending this options block.
+    Each is a 4.4 fixed-point float representing 0 to 15.9375
+    (or think of it as an unsigned 8-bit integer divided by 16.0).
+    This is the ratio of padding to data. Examples:
+    Value of 0x00 means no padding
+    Value of 0x01 means add 6 percent padding
+    Value of 0x10 means add 100 percent padding
+    Value of 0x80 means add 800 percent (8x) padding
+    Alice and Bob will negotiate the minimum and maximum in each direction.
+    These are guidelines, there is no enforcement.
+    Sender should honor receiver's maximum.
+    Sender may or may not honor receiver's minimum, within bandwidth constraints.
 
-    blk :: 1 size :: 2 bytes, big endian, size of options to follow, 12 bytes minimum
+tdmy: Max dummy traffic willing to send, 2 bytes big endian, bytes/sec average
+rdmy: Requested dummy traffic, 2 bytes big endian, bytes/sec average
+tdelay: Max intra-message delay willing to insert, 2 bytes big endian, msec average
+rdelay: Requested intra-message delay, 2 bytes big endian, msec average
 
-    tmin, tmax, rmin, rmax :: requested padding limits
+Padding distribution specified as additional parameters?
+Random delay specified as additional parameters?
 
-    :   tmin and rmin are for desired resistance to traffic analysis. tmax and rmax are for bandwidth limits. tmin and tmax are the transmit limits for the router sending this options block. rmin and rmax are the receive limits for the router sending this options block. Each is a 4.4 fixed-point float representing 0 to 15.9375 (or think of it as an unsigned 8-bit integer divided by 16.0). This is the ratio of padding to data. Examples: Value of 0x00 means no padding Value of 0x01 means add 6 percent padding Value of 0x10 means add 100 percent padding Value of 0x80 means add 800 percent (8x) padding Alice and Bob will negotiate the minimum and maximum in each direction. These are guidelines, there is no enforcement. Sender should honor receiver's maximum. Sender may or may not honor receiver's minimum, within bandwidth constraints.
-
-    tdmy: Max dummy traffic willing to send, 2 bytes big endian, bytes/sec average rdmy: Requested dummy traffic, 2 bytes big endian, bytes/sec average tdelay: Max intra-message delay willing to insert, 2 bytes big endian, msec average rdelay: Requested intra-message delay, 2 bytes big endian, msec average
-
-    Padding distribution specified as additional parameters? Random delay specified as additional parameters?
-
-    more_options :: Format TBD
+more_options :: Format TBD
 ```
 #### Problemas de Opções
 
@@ -777,12 +1114,22 @@ Passar o RouterInfo da Alice para o Bob. Usado na mensagem de handshake 3 parte 
 
 ```
 +----+----+----+----+----+----+----+----+
+| 2  |  size   |flg |    RouterInfo     |
++----+----+----+----+                   +
+| (Alice RI in handshake msg 3 part 2)  |
+~ (Alice, Bob, or third-party           ~
+|  RI in data phase)                    |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 2 | size [|flg |](##SUBST##|flg |) RouterInfo |
-
-    +----+----+----+----+ + | (Alice RI in handshake msg 3 part 2) | ~ (Alice, Bob, or third-party ~ | RI in data phase) | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 2 size :: 2 bytes, big endian, size of flag + router info to follow flg :: 1 byte flags bit order: 76543210 bit 0: 0 for local store, 1 for flood request bits 7-1: Unused, set to 0 for future compatibility routerinfo :: Alice's or Bob's RouterInfo
+blk :: 2
+size :: 2 bytes, big endian, size of flag + router info to follow
+flg :: 1 byte flags
+       bit order: 76543210
+       bit 0: 0 for local store, 1 for flood request
+       bits 7-1: Unused, set to 0 for future compatibility
+routerinfo :: Alice's or Bob's RouterInfo
 ```
 #### Notas
 
@@ -805,16 +1152,23 @@ Isso usa os primeiros 9 bytes do cabeçalho I2NP NTCP padrão e remove os últim
 
 ```
 +----+----+----+----+----+----+----+----+
+| 3  |  size   |type|    msg id         |
++----+----+----+----+----+----+----+----+
+|   short exp       |     message       |
++----+----+----+----+                   +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-| 3 | size [|type|](##SUBST##|type|) msg id |
-
-    +-------------------------------+
-    | > short exp                   |
-    +-------------------------------+
-
-    ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 3 size :: 2 bytes, big endian, size of type + msg id + exp + message to follow I2NP message body size is (size - 9). type :: 1 byte, I2NP msg type, see I2NP spec msg id :: 4 bytes, big endian, I2NP message ID short exp :: 4 bytes, big endian, I2NP message expiration, Unix timestamp, unsigned seconds. Wraps around in 2106 message :: I2NP message body
+blk :: 3
+size :: 2 bytes, big endian, size of type + msg id + exp + message to follow
+        I2NP message body size is (size - 9).
+type :: 1 byte, I2NP msg type, see I2NP spec
+msg id :: 4 bytes, big endian, I2NP message ID
+short exp :: 4 bytes, big endian, I2NP message expiration, Unix timestamp, unsigned seconds.
+             Wraps around in 2106
+message :: I2NP message body
 ```
 #### Notas
 
@@ -826,16 +1180,41 @@ O Noise recomenda uma mensagem de terminação explícita. O NTCP original não 
 
 ```
 +----+----+----+----+----+----+----+----+
+| 4  |  size   |    valid data frames   |
++----+----+----+----+----+----+----+----+
+    received   | rsn|     addl data     |
++----+----+----+----+                   +
+~               .   .   .               ~
++----+----+----+----+----+----+----+----+
 
-| 4 | size | valid data frames |
-
-    +----+----+----+----+----+----+----+----+
-
-    :   received | rsn| addl data |
-
-    +----+----+----+----+ + ~ . . . ~ +----+----+----+----+----+----+----+----+
-
-    blk :: 4 size :: 2 bytes, big endian, value = 9 or more valid data frames received :: The number of valid AEAD data phase frames received (current receive nonce value) 0 if error occurs in handshake phase 8 bytes, big endian rsn :: reason, 1 byte: 0: normal close or unspecified 1: termination received 2: idle timeout 3: router shutdown 4: data phase AEAD failure 5: incompatible options 6: incompatible signature type 7: clock skew 8: padding violation 9: AEAD framing error 10: payload format error 11: message 1 error 12: message 2 error 13: message 3 error 14: intra-frame read timeout 15: RI signature verification fail 16: s parameter missing, invalid, or mismatched in RouterInfo 17: banned addl data :: optional, 0 or more bytes, for future expansion, debugging, or reason text. Format unspecified and may vary based on reason code.
+blk :: 4
+size :: 2 bytes, big endian, value = 9 or more
+valid data frames received :: The number of valid AEAD data phase frames received
+                              (current receive nonce value)
+                              0 if error occurs in handshake phase
+                              8 bytes, big endian
+rsn :: reason, 1 byte:
+       0: normal close or unspecified
+       1: termination received
+       2: idle timeout
+       3: router shutdown
+       4: data phase AEAD failure
+       5: incompatible options
+       6: incompatible signature type
+       7: clock skew
+       8: padding violation
+       9: AEAD framing error
+       10: payload format error
+       11: message 1 error
+       12: message 2 error
+       13: message 3 error
+       14: intra-frame read timeout
+       15: RI signature verification fail
+       16: s parameter missing, invalid, or mismatched in RouterInfo
+       17: banned
+addl data :: optional, 0 or more bytes, for future expansion, debugging,
+             or reason text.
+             Format unspecified and may vary based on reason code.
 ```
 #### Notas
 
@@ -851,10 +1230,16 @@ Se presente, este deve ser o último bloco no quadro.
 
 ```
 +----+----+----+----+----+----+----+----+
+|254 |  size   |      padding           |
++----+----+----+                        +
+|                                       |
+~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
 
-[|254 |](##SUBST##|254 |) size | padding | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
-
-    blk :: 254 size :: 2 bytes, big endian, size of padding to follow padding :: random data
+blk :: 254
+size :: 2 bytes, big endian, size of padding to follow
+padding :: random data
 ```
 #### Notas
 
