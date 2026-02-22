@@ -71,7 +71,7 @@ Geçerli NetID numaraları:
 | Ayrılmış | 255 |
 ### Ek Seçenekler
 
-Ek metin seçenekleri, router'ın sağlığı hakkında az sayıda istatistik içerir ve bu istatistikler ağ performans analizi ve hata ayıklama için stats.i2p gibi siteler tarafından toplanır. Bu istatistikler, tunnel oluşturma başarı oranları gibi geliştiriciler için kritik olan verileri sağlarken, aynı zamanda bu verilerin açıklanmasından kaynaklanabilecek yan etkilerle bu tür verilere duyulan ihtiyacı dengeleyecek şekilde seçilmiştir. Mevcut istatistikler şunlarla sınırlıdır:
+Ek metin seçenekleri, router'ın sağlığı hakkında az sayıda istatistik içerir ve bu istatistikler ağ performans analizi ve hata ayıklama için [stats.i2p](http://stats.i2p/) gibi siteler tarafından toplanır. Bu istatistikler, tunnel oluşturma başarı oranları gibi geliştiriciler için kritik olan verileri sağlarken, aynı zamanda bu verilerin açıklanmasından kaynaklanabilecek yan etkilerle bu tür verilere duyulan ihtiyacı dengeleyecek şekilde seçilmiştir. Mevcut istatistikler şunlarla sınırlıdır:
 
 - Keşif tunnel'ı oluşturma başarı, reddetme ve zaman aşımı oranları
 - 1 saatlik ortalama katılımcı tunnel sayısı
@@ -136,7 +136,7 @@ Uzun süre sona erme sürelerine sahip Meta LeaseSet'lerin kalıcı olarak sakla
 ### Ayrıca Bakınız
 
 - [RouterInfo spesifikasyonu](/docs/specs/common-structures/#struct_RouterInfo)
-- RouterInfo Javadoc
+- [RouterInfo Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
 
 ---
 
@@ -159,8 +159,8 @@ Bu lease'lere ek olarak, LeaseSet şunları içerir:
 
 - [Lease spesifikasyonu](/docs/specs/common-structures/#struct_Lease)
 - [LeaseSet spesifikasyonu](/docs/specs/common-structures/#struct_LeaseSet)
-- Lease Javadoc
-- LeaseSet Javadoc
+- [Lease Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
+- [LeaseSet Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
 
 0.9.38 sürümü itibariyle, üç yeni leaseSet türü tanımlanmıştır; LeaseSet2, MetaLeaseSet ve EncryptedLeaseSet. Aşağıya bakınız.
 

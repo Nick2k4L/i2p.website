@@ -10,120 +10,244 @@ target: "0.9.65"
 toc: true
 ---
 
-### 主机感知的 HTTP 代理隧道类型提案
+### Proposal for a Host-Aware HTTP Proxy Tunnel Type
 
-这是一个通过引入新的 HTTP 代理隧道类型来解决常规 HTTP-over-I2P 使用中的“共享身份问题”的提案。此隧道类型具有补充行为，旨在防止或限制可能的敌对隐藏服务运营商通过针对特定用户代理（浏览器）和 I2P 客户端应用程序进行跟踪的效用。
+This is a proposal to resolve the “Shared Identity Problem” in
+conventional HTTP-over-I2P usage by introducing a new HTTP proxy tunnel
+type. This tunnel type has supplemental behavior which is intended to
+prevent or limit the utility of tracking conducted by potential hostile
+hidden service operators, against targeted user-agents(browsers) and the
+I2P Client Application itself.
 
-#### 什么是“共享身份”问题？
+#### What is the “Shared Identity” problem?
 
-当加密地址覆盖网络上的用户代理与另一个用户代理共享加密身份时，就会发生“共享身份”问题。这种情况发生在，例如，Firefox 和 GNU Wget 都被配置为使用相同的 HTTP 代理。
+The “Shared Identity” problem occurs when a user-agent on a
+cryptographically addressed overlay network shares a cryptographic
+identity with another user-agent. This occurs, for instance, when a
+Firefox and GNU Wget are both configured to use the same HTTP Proxy.
 
-在这种情况下，服务器有可能收集和存储用于回复活动的加密地址（目的地）。它可以将此视为一个“指纹”，因为它源自加密，因此始终 100% 唯一。这意味着通过共享身份问题观察到的可链性是完美的。
+In this scenario, it is possible for the server to collect and store the
+cryptographic address(Destination) used to reply to the activity. It can
+treat this as a “Fingerprint” which is always 100% unique, because it is
+cryptographic in origin. This means that the linkability observed by the
+Shared Identity problem is perfect.
 
-但这是个问题吗？
+But is it a problem?
 ^^^^^^^^^^^^^^^^^^^^
 
-当说相同协议的用户代理希望断开链接时，共享身份问题就是个问题。在这个 Reddit 线程的上下文中，它首次被提及，已删除的评论可通过 pullpush.io 访问。 *当时* 我是最活跃的回应者之一，*当时* 我认为这个问题很小。在过去的 8 年里，情况和我对它的看法发生了变化，我现在认为，随着更多网站有能力“识别”特定用户，恶意目的地关联带来的威胁大大增加。
+The shared identity problem is a problem when user-agents that speak the
+same protocol desire unlinkability. [It was first mentioned in the
+context of HTTP in this Reddit
+Thread](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/),
+with the deleted comments accessible courtesy of
+[pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi).
+*At the time* I was one of the most active respondents, and *at the
+time* I believed the issue was small. In the past 8 years, the situation
+and my opinion of it have changed, I now believe the threat posed by
+malicious destination correlation grows considerably as more sites are
+in a position to “profile” specific users.
 
-这种攻击的进入门槛非常低。它只需要一个隐藏服务运营商操作多个服务。对于同时访问多个站点的攻击，这是唯一的要求。对于非同时链接，这些服务之一必须是托管“账户”的服务，这些账户属于被跟踪的单个用户。
+This attack has a very low barrier to entry. It only requires that a
+hidden service operator operate multiple services. For attacks on
+contemporary visits(visiting multiple sites at the same time), this is
+the only requirement. For non-contemporary linking, one of those
+services must be a service which hosts “accounts” which belong to a
+single user who is targeted for tracking.
 
-目前，任何托管用户帐户的服务运营商都可以通过利用共享身份问题将它们与他们控制的任何站点的活动关联起来。只要他们操作不止一个服务并且有兴趣为用户创建配置文件，Mastodon、Gitlab 甚至简单的论坛都可能是伪装的攻击者。这种监视可能是为了跟踪、经济利益或与情报相关的原因。目前有数十个大运营商可以进行这种攻击并从中获得有意义的数据。我们目前主要信任他们不会这样做，但可能不在乎我们意见的参与者很容易出现。
+Currently, any service operator who hosts user accounts will be able to
+correlate them with activity across any sites they control by exploiting
+the Shared Identity problem. Mastodon, Gitlab, or even simple forums
+could be attackers in disguise as long as they operate more than one
+service and have an interest in creating a profile for a user. This
+surveillance could be conducted for stalking, financial gain, or
+intelligence-related reasons. Right now there are dozens of major
+operators, who could carry out this attack and gain meaningful data from
+it. We mostly trust them not to for now, but players who don’t care
+about our opinions could easily emerge.
 
-这直接涉及到一个相当基本的清晰网页上的配置文件构建形式，组织可以将他们网站上的互动与他们控制的网络上的互动关联起来。在 I2P 上，由于加密目的地是唯一的，因此即使没有地理定位的附加功能，这种技术有时也可以更加可靠。
+This is directly related to a fairly basic form of profile-building on
+the clear web where organizations can correlate interactions on their
+site with interations on networks they control. On I2P, because the
+cryptographic destination is unique, this technique can sometimes be
+even more reliable, albeit without the additional power of geolocation.
 
-共享身份对于仅使用 I2P 来混淆地理位置的用户没有用处。它也不能用于破坏 I2P 的路由。这只是一个上下文身份管理的问题。
+The Shared Identity is not useful against a user who is using I2P solely
+to obfuscate geolocation. It also cannot be used to break I2P’s routing.
+It is only a problem of contextual identity management.
 
-- 不可能使用共享身份问题来定位 I2P 用户。
-- 不可能使用共享身份问题来链接非同时发生的 I2P 会话。
+-  It is impossible to use the Shared Identity problem to geolocate an
+   I2P user.
+-  It is impossible to use the Shared Identity problem to link I2P
+   sessions if they are not contemporary.
 
-但是，在可能非常常见的情况下，可以利用它来降低 I2P 用户的匿名性。这些情况之所以常见，一个原因是我们鼓励使用支持“标签”操作的网页浏览器 Firefox。
+However, it is possible to use it to degrade the anonymity of an I2P
+user in circumstances which are probably very common. One reason they
+are common is becase we encourage the use of Firefox, a web browser
+which supports “Tabbed” operation.
 
-- 在支持请求第三方资源的任何网页浏览器中，总是可以从共享身份问题中产生指纹。
-- 停用 JavaScript 对共享身份问题**无**帮助。
-- 如果能够通过“传统”浏览器指纹识别来建立非同时会话之间的链接，则可以通过共同身份转移应用，潜在地启用一种非同时的链接策略。
-- 如果能够在清网活动和 I2P 身份之间建立链接，例如，如果目标在同时具有 I2P 和清网存在的网站上登录，则可以通过共享身份转移应用，潜在地实现完全去匿名化。
+-  It is *always* possible to produce a fingerprint from the Shared
+   Identity problem in *any* web browser which supports requesting
+   third-party resources.
+-  Disabling Javascript accomplishes **nothing** against the Shared
+   Identity problem.
+-  If a link can be established between non-contemporary sessions such
+   as by “traditional” browser fingerprinting, then the Shared Identity
+   can be applied transitively, potentially enabling a non-contemporary
+   linking strategy.
+-  If a link can be established between a clearnet activity and an I2P
+   identity, for instance, if the target is logged into a site with both
+   an I2P and a clearnet presence on both sides, the Shared Identity can
+   be applied transitively, potentially enabling complete
+   de-anonymization.
 
-您如何看待共享身份问题的严重性，取决于您（或者更确切地说，具有潜在不知情期望的“用户”）认为应用的“上下文身份”在何处。有几种可能：
+How you view the severity of the Shared Identity problem as it applies
+to the I2P HTTP proxy depends on where you(or more to the point, a
+“user” with potentially uninformed expectationss) think the “contextual
+identity” for the application lies. There are several possibilities:
 
-1. HTTP 既是应用又是上下文身份 - 这就是现在的工作方式。所有 HTTP 应用共享一个身份。
-2. 进程是应用和上下文身份 - 当应用使用像 SAMv3 或 I2CP 这样的 API 时，它如何工作，其中应用创建其身份并控制其生命周期。
-3. HTTP 是应用，但主机是上下文身份 - 这是本提案的目标，将每个主机视为一个潜在的“网络应用”，并将威胁面视为此类。
+1. HTTP is both the Application and the Contextual Identity - This is
+   how it works now. All HTTP Applications share an identity.
+2. The Process is the Application and the Contextual Identity - This is
+   how it works when an application uses an API like SAMv3 or I2CP,
+   where an application creates it’s identity and controls it’s
+   lifetime.
+3. HTTP is the Application, but the Host is the Contextual Identity
+   -This is the object of this proposal, which treats each Host as a
+   potential “Web Application” and treats the threat surface as such.
 
-是否可解决？
+Is it Solvable?
 ^^^^^^^^^^^^^^^
 
-可能无法制作一个能够智能响应可能情况下的代理，其操作可能会削弱应用的匿名性。然而，可以构建一个能够智能响应行为可预测的特定应用的代理。例如，在现代网页浏览器中，用户预计会开多个标签页，他们会浏览多个通过主机名区分的网站。
+It is probably not possible to make a proxy which intelligently responds
+to every possible case in which it’s operation could weaken the
+anonymity of an application. However, it is possible to build a proxy
+which intelligently responds to a specific application which behaves in
+a predictable way. For instance, in modern Web Browsers, it is expected
+that users will have multiple tabs open, where they will be interacting
+with multiple web sites, which will be distinguished by hostname.
 
-这使我们能够通过为与 HTTP 代理一起使用的每个主机提供自己的目的地来改进此类型的 HTTP 用户代理的 HTTP 代理行为。这项更改使得无法使用共享身份问题来推导一个可用来关联客户端活动和两个主机的指纹，因为这两个主机将不再共享返回身份。
+This allows us to improve upon the behavior of the HTTP Proxy for this
+type of HTTP user-agent by making the behavior of the proxy match the
+behavior of the user-agent by giving each host it’s own Destination when
+used with the HTTP Proxy. This change makes it impossible to use the
+Shared Identity problem to derive a fingerprint which can be used to
+correlate client activity with 2 hosts, because the 2 hosts will simply
+no longer share a return identity.
 
-描述：
+Description:
 ^^^^^^^^^^^^
 
-将创建一个新的 HTTP 代理并将其添加到隐藏服务管理器（I2PTunnel）中。新的 HTTP 代理将作为 I2PSocketManagers 的“多路复用器”运行。多路复用器本身没有目的地。成为多路复用的一部分的每个 I2PSocketManager 都有其自己的本地目的地和自己的隧道池。I2PSocketManagers 是由多路复用器按需创建的，其中“需求”是首次访问新主机。可以通过提前创建一个或多个 I2PSocketManager 并在多路复用器之外存储它们来优化 I2PSocketManagers 的创建。这可能会提高性能。
+A new HTTP Proxy will be created and added to Hidden Services
+Manager(I2PTunnel). The new HTTP Proxy will operate as a “multiplexer”
+of I2PSocketManagers. The multiplexer itself has no destination. Each
+individual I2PSocketManager which becomes part of the multiplex has it’s own
+local destination, and it’s own tunnel pool. I2PSocketManagerss are created
+on-demand by the multiplexer, where the “demand” is the first visit to the
+new host. It is possible to optimize the creation of the I2PSocketManagers
+before inserting them into the multiplexer by creating one or more in advance
+and storing them outside the multiplexer. This may improve performance.
 
-还有一个拥有自身目的地的附加 I2PSocketManager 被设置为任何*没有* I2P 目的地的网站（例如任何清网网站）的“外代理”载体。这实际上使所有外代理使用成为单一的上下文身份，但注意为隧道配置的多个外代理将导致正常的“黏性”外代理旋转，其中每个外部代理只会收到一个网站的请求。这*几乎*相当于在清网中通过目的地隔离 HTTP-over-I2P 代理的行为。
+An additional I2PSocketManager, with it’s own destination, is set up as the
+carrier of an “Outproxy” for any site which does *not* have an I2P
+Destination, for example any Clearnet site. This effectively makes all
+Outproxy usage a single Contextual Identity, with the caveat that
+configuring multiple Outproxies for the tunnel will cause the normal
+“Sticky” outproxy rotation, where each outproxy only gets requests for a
+single site. This is *almost* the equivalent behavior as isolating
+HTTP-over-I2P proxies by destination, on the clear internet.
 
-资源考虑：
+Resource Considerations:
 ''''''''''''''''''''''''
 
-新 HTTP 代理比现有的 HTTP 代理需要更多的资源。它将：
+The new HTTP proxy requires additional resources compared to the
+existing HTTP proxy. It will:
 
-- 潜在地构建更多的隧道和 I2PSocketManagers
-- 构建隧道更频繁
+-  Potentially build more tunnels and I2PSocketManagers
+-  Build tunnels more often
 
-每一个都需要以下内容：
+Each of these requires:
 
-- 本地计算资源
-- 来自对等端的网络资源
+-  Local computing resources
+-  Network resources from peers
 
-设置：
+Settings:
 '''''''''
 
-为了尽量减少增加的资源使用的影响，代理应配置为尽可能减少使用。不属于父代理的多路复用代理应配置为：
+In order to minimize the impact of the increased resource usage, the
+proxy should be configured to use as little as possible. Proxies which
+are part of the multiplexer(not the parent proxy) should be configured
+to:
 
-- 多路复用的 I2PSocketManager 在其隧道池中构建 1 个入隧道和 1 个出隧道
-- 多路复用的 I2PSocketManager 默认采用 3 跳。
-- 在不活动 10 分钟后关闭套接字
-- 由多路复用器启动的 I2PSocketManagers 共享多路复用器的生命周期。多路复用的隧道在父多路复用器“消亡”之前不会“销毁”。
+-  Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
+   tunnel pools
+-  Multiplexed I2PSocketManagers take 3 hops by default.
+-  Close sockets after 10 minutes of inactivity
+-  I2PSocketManagers started by the Multiplexer share the lifespan of the
+   Multiplexer. Multiplexed tunnels are not “Destructed” until the
+   parent Multiplexer is.
 
-图示：
+Diagrams:
 ^^^^^^^^^
 
-下图显示了与“是个问题吗”部分中的“可能性1”相对应的 HTTP 代理的当前操作。可以看到，HTTP 代理直接与 I2P 网站交互，仅使用一个目的地。在这种情况下，HTTP 是应用，同时也是上下文身份。
+The diagram below represents the current operation of the HTTP proxy,
+which corresponds to “Possibility 1.” under the “Is it a problem”
+section. As you can see, the HTTP proxy interacts with I2P sites
+directly using only one destination. In this scenario, HTTP is both the
+application and the contextual identity.
 
 ```text
-**当前情况：HTTP 是应用，HTTP 是上下文身份**
-                                                          __-> 外代理 <-> i2pgit.org
-                                                         /
-   浏览器 <-> HTTP 代理（一个目的地）<-> I2PSocketManager <---> idk.i2p
-                                                         \__-> translate.idk.i2p
-                                                          \__-> git.idk.i2p
+**Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
+                                                      __-> Outproxy <-> i2pgit.org
+                                                     /
+Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
+                                                     \__-> translate.idk.i2p
+                                                      \__-> git.idk.i2p
 ```
 
-下图显示了与"是个问题吗"部分中的"可能性3"相对应的主机感知的 HTTP 代理的操作。在这种情况下，HTTP 是应用，但主机定义了上下文身份，其中每个 I2P 网站与不同的 HTTP 代理交互，每个主机都有唯一的目的地。这防止了多个站点的运营者能够区分同一人在访问他们运营的多个站点时的情况。
+The diagram below represents the operation of a host-aware HTTP proxy,
+which corresponds to “Possibility 3.” under the “Is it a problem”
+section. In this secenario, HTTP is the application, but the Host
+defines the contextual identity, wherein each I2P site interacts with a
+different HTTP proxy with a unique destination per-host. This prevents
+operators of multiple sites from being able to distinguish when the same
+person is visiting multiple sites which they operate.
 
 ```text
-**更改后：HTTP 是应用，主机是上下文身份**
-                                                        __-> I2PSocketManager（目的地 A - 仅外代理） <--> i2pgit.org
-                                                       /
-   浏览器 <-> HTTP 代理多路复用器（无目的地） <---> I2PSocketManager（目的地 B）<--> idk.i2p
-                                                       \__-> I2PSocketManager（目的地 C）<--> translate.idk.i2p
-                                                        \__-> I2PSocketManager（目的地 C）<--> git.idk.i2p
+**After the Change: HTTP is the Application, Host is the Contextual Identity**
+                                                    __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+                                                   /
+Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
+                                                   \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
+                                                    \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
 ```
 
-状态：
+Status:
 ^^^^^^^
 
-一个符合本提案较旧版本的主机感知代理的 Java 实现已在 idk 的分支下提供：i2p.i2p.2.6.0-browser-proxy-post-keepalive 连接在引用中。该版本正在进行大量修订，以便将更改分解为较小部分。
+A working Java implementation of the host-aware proxy which conforms to
+an older version of this proposal is available at idk's fork under the
+branch: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link in citations. It
+is under heavy revision, in order to break down the changes into smaller
+sections.
 
-具有不同功能的实现已使用 SAMv3 库在 Go 中编写，它们可能对嵌入其他 Go 应用程序或 go-i2p 有用，但不适合 Java I2P。此外，它们缺乏交互式工作的良好支持与加密的 leaseSets。
+Implementations with varying capabilities have been written in Go using
+the SAMv3 library, they may be useful for embedding in other Go
+applications or for go-i2p but are unsuitable for Java I2P.
+Additionally, they lack good support for working interactively with
+encrypted leaseSets.
 
-附录：``i2psocks``
+Addendum: ``i2psocks``
                       
 
-不需要实施新的隧道类型或更改现有的 I2P 代码，就可以通过结合 I2PTunnel 现有的工具（这些工具在隐私社区中已经广泛可用并经过测试）来实现其他类型客户端的简单应用感知隔离。然而，这种方法做出了一个困难的假设，这对于 HTTP 和许多其他类型的潜在 I2P 客户而言都不是真的。
+A simple application-oriented approach to isolating other types of
+clients is possible without implementing a new tunnel type or changing
+the existing I2P code by combining I2PTunnel existing tools which are
+already widely available and tested in the privacy community. However,
+this approach makes a difficult assumption which is not true for HTTP
+and also not true for many other kinds of potentsial I2P clients.
 
-大致来说，下面的脚本将生成一个应用感知的 SOCKS5 代理并将基础命令 SOCKSI 化：
+Roughly, the following script will produce an application-aware SOCKS5
+proxy and socksify the underlying command:
 
 ```sh
 #! /bin/sh
@@ -132,8 +256,15 @@ java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
 torsocks --port 7695 $command_to_proxy
 ```
 
-附录：``攻击的示例实现``
+Addendum: ``example implementation of the attack``
                                                   
 
-一个针对 HTTP 用户代理的共享身份攻击的示例实现 已存在数年。额外的示例如在 idk 的 prop166 存储库 的 ``simple-colluder`` 子目录中可用。这些示例是故意设计用于演示攻击有效，并需要修改（虽然很小）才能变成真实攻击。
+[An example implementation of the Shared Identity attack on HTTP
+User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
+has existed for several years. An additional example is available in the
+``simple-colluder`` subdirectory of [idk’s prop166
+repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These
+examples are deliberately designed to demonstrate that the attack works
+and would require modification(albeit minor) to be turned into a real
+attack.
 

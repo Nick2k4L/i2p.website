@@ -21,7 +21,7 @@ Pokud máte v úmyslu vygenerovat git bundle, **musíte** již vlastnit úplnou 
 
 ## Stahování zdrojového kódu I2P přes Bittorrent
 
-Někdo vám bude muset poskytnout torrent soubor nebo magnet odkaz odpovídající existujícímu `git bundle`, který už pro vás vygeneroval. Nedávný, správně vygenerovaný bundle hlavní větve zdrojového kódu i2p.i2p ke středě 18. března 2020 můžete najít uvnitř I2P na mém pastebinu paste.idk.i2p/f/4hq37i.
+Někdo vám bude muset poskytnout torrent soubor nebo magnet odkaz odpovídající existujícímu `git bundle`, který už pro vás vygeneroval. Nedávný, správně vygenerovaný bundle hlavní větve zdrojového kódu i2p.i2p ke středě 18. března 2020 můžete najít uvnitř I2P na mém pastebinu [paste.idk.i2p/f/4hq37i](http://paste.idk.i2p/f/4h137i).
 
 Jakmile máte bundle, budete muset použít git k vytvoření pracovního repozitáře z něj. Pokud používáte GNU/Linux a i2psnark, git bundle by měl být umístěn v $HOME/.i2p/i2psnark nebo, jako služba na Debianu, v /var/lib/i2p/i2p-config/i2psnark. Pokud používáte BiglyBT na GNU/Linux, je pravděpodobně v "$HOME/BiglyBT Downloads/" místo toho. Příklady zde předpokládají I2PSnark na GNU/Linux, pokud používáte něco jiného, nahraďte cestu k bundle adresářem pro stahování, který preferuje váš klient a platforma.
 

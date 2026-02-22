@@ -68,6 +68,6 @@ Diese Schutzmaßnahmen erschweren es, Router zuverlässig zu erfassen, und verri
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-Wenn Sie der Meinung sind, dass ein Land zur strikten Liste hinzugefügt oder daraus entfernt werden sollte, eröffnen Sie bitte ein Issue: `https://i2pgit.org/i2p/i2p.i2p/`
+Wenn Sie der Meinung sind, dass ein Land zur strikten Liste hinzugefügt oder daraus entfernt werden sollte, eröffnen Sie bitte ein Issue: https://i2pgit.org/i2p/i2p.i2p/
 
 Referenz: Freedom House – https://freedomhouse.org/

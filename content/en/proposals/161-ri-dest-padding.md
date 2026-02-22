@@ -135,7 +135,7 @@ and the padding field (for Destinations and Router Identities).
 
 ### Private Key File
 The private key file (eepPriv.dat) format is not an official part of our specifications
-but it is documented in the Java I2P javadocs
+but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
 and other implementations do support it.
 This enables portability of private keys to different implementations.
 Add a note to that javadoc that the encryption public key may be random padding
@@ -227,7 +227,7 @@ encrypted Database Lookup Messages and replies.
 Estimated time frame for design, development, and rollout of that would be ????????
 But would be after hybrid or ratchet ????????????
 
-For further discussion see this topic.
+For further discussion see [this topic](http://zzz.i2p/topics/3294).
 
 
 
@@ -258,7 +258,7 @@ Subject to backward compatibility issues, and after disabling SSU,
 implementations may remove ElGamal code completely.
 Approximately 14% of routers in the network are ElGamal encryption type, including many floodfills.
 
-A draft merge request for Java I2P is at git.idk.i2p.
+A draft merge request for Java I2P is at [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
 
 
 ## References
@@ -267,10 +267,10 @@ A draft merge request for Java I2P is at git.idk.i2p.
 * [Datagram](/docs/api/datagrams/)
 * [I2CP](/docs/specs/i2cp/)
 * [I2NP](/docs/specs/i2np/)
-* MR
+* [MR](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66)
 * [NTCP2](/docs/specs/ntcp2/)
-* PKF
-* PQ
+* [PKF](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+* [PQ](http://zzz.i2p/topics/3294)
 * [SAM](/docs/api/samv3/)
 * [SSU2](/docs/specs/ssu2/)
 * [Streaming](/docs/specs/streaming/)

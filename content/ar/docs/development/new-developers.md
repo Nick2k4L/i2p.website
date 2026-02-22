@@ -36,7 +36,7 @@ aliases:
 
 يمتلك I2P خدمات Git رسمية ويقبل المساهمات عبر Git في GitLab الخاص بنا:
 
-- داخل I2P: <`http://git.idk.i2p`>
+- داخل I2P: <http://git.idk.i2p>
 - خارج I2P: <https://i2pgit.org>
 
 استنسخ المستودع الرئيسي:
@@ -46,7 +46,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 ```
 نسخة للقراءة فقط متاحة أيضًا على GitHub:
 
-- مرآة GitHub: github.com/i2p/i2p.i2p
+- مرآة GitHub: [github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -63,7 +63,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 راجع قائمة المهام TODO الخاصة بالمشروع أو قائمة المشكلات على GitLab للحصول على أفكار:
 
-- مشاكل GitLab: i2pgit.org/I2P_Developers/i2p.i2p/issues
+- مشاكل GitLab: [i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
 
 ## جعل النتائج متاحة
 

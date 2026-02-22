@@ -68,6 +68,6 @@ reviewStatus: "needs-review"
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-إذا كنت تعتقد أن دولة ما يجب إضافتها أو إزالتها من القائمة الصارمة، يرجى فتح تذكرة على: `https://i2pgit.org/i2p/i2p.i2p/`
+إذا كنت تعتقد أن دولة ما يجب إضافتها أو إزالتها من القائمة الصارمة، يرجى فتح تذكرة على: https://i2pgit.org/i2p/i2p.i2p/
 
 المرجع: Freedom House – https://freedomhouse.org/

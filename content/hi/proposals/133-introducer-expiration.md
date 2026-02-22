@@ -11,46 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## अवलोकन
+## Overview
 
-यह प्रस्ताव परिचयों की सफलता दर में सुधार लाने के बारे में है।
+This proposal is about improving the success rate for introductions.
 
-## प्रेरणा
 
-परिचायक एक निश्चित समय के बाद समाप्त हो जाते हैं, लेकिन उस जानकारी को
-RouterInfo में प्रकाशित नहीं किया गया है। राउटर को वर्तमान में अनुमान लगाने के लिए
-सिद्धांतों का उपयोग करना होता है जब एक परिचायक अब मान्य नहीं होता।
+## Motivation
 
-## डिज़ाइन
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
-यदि SSU RouterAddress में परिचायक शामिल हैं, तो प्रकाशक प्रत्येक परिचायक के
-लिए समाप्ति समय वैकल्पिक रूप से शामिल कर सकता है।
 
-## विशिष्टता
+## Design
+
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
+
+
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: परिचायक संख्या (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: युग से सेकंड्स (मिलीसेकंड्स नहीं) का समय।
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
-### नोट्स
-* प्रत्येक समाप्ति को RouterInfo के प्रकाशन तिथि से अधिक और
-  RouterInfo की प्रकाशन तिथि के 6 घंटे बाद से कम होना चाहिए।
+### Notes
 
-* प्रकाशित राउटर और परिचायक की कोशिश करना चाहिए कि परिचायक को समाप्ति
-  तक मान्य रखा जाए, हालांकि वे इसकी गारंटी नहीं दे सकते।
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* समाप्ति के बाद राउटर प्रकाशित परिचायक का उपयोग नहीं करना चाहिए।
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* परिचायक समाप्तियां RouterAddress मैपिंग में हैं।
-  वे RouterAddress में (वर्तमान में अप्रयुक्त) 8-बाइट समाप्ति क्षेत्र नहीं हैं।
+* Routers should not use a published introducer after its expiration.
 
-**उदाहरण:** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
 
-## माइग्रेशन
+**Example:** `iexp0=1486309470`
 
-कोई समस्या नहीं। कार्यान्वयन वैकल्पिक है।
-पिछड़ा संगतता सुनिश्चित है, क्योंकि पुराने राउटर अज्ञात पैरामीटरों को अनदेखा करेंगे।
+
+## Migration
+
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

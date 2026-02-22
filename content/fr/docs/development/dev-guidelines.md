@@ -93,6 +93,6 @@ Les directives suivantes s'appliquent au router, aux applications web et à tous
 
 ### Bugs
 
-- La gestion des problèmes est l'affaire de tous ; merci d'aider. Surveillez GitLab pour les problèmes sur lesquels vous pouvez aider. Commentez, corrigez et fermez les problèmes si vous le pouvez.
+- La gestion des problèmes est l'affaire de tous ; merci d'aider. Surveillez [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues) pour les problèmes sur lesquels vous pouvez aider. Commentez, corrigez et fermez les problèmes si vous le pouvez.
 - Les nouveaux développeurs devraient commencer par corriger des problèmes. Lorsque vous avez un correctif, joignez votre patch au problème et ajoutez le mot-clé `review-needed`. Ne fermez pas le problème tant qu'il n'a pas été examiné avec succès et que vous n'avez pas vérifié vos modifications. Une fois que vous avez fait cela sans accroc pour quelques tickets, vous pouvez suivre la procédure normale ci-dessus.
 - Fermez un problème lorsque vous pensez l'avoir corrigé. Nous n'avons pas de département de test pour vérifier et fermer les tickets. Si vous n'êtes pas sûr de l'avoir corrigé, fermez-le et ajoutez une note disant "Je pense l'avoir corrigé, veuillez tester et rouvrir si c'est toujours cassé". Ajoutez un commentaire avec le numéro de build de développement ou la révision et définissez le jalon pour la prochaine version.

@@ -19,8 +19,8 @@ Tento průvodce vás provede procesem vytvoření a konfigurace vašeho prvního
 
 Správce skrytých služeb (také nazývaný I2P Tunnel Manager) je místo, kde konfigurujete všechny I2P tunnels pro servery i klienty, včetně HTTP serverů (eepsites).
 
-1. Otevřete svou `http://127.0.0.1:7657`
-2. Přejděte na `http://127.0.0.1:7657/i2ptunnelmgr`
+1. Otevřete svou [I2P Router Console](http://127.0.0.1:7657)
+2. Přejděte na [Správce skrytých služeb](http://127.0.0.1:7657/i2ptunnelmgr)
 
 Měli byste vidět rozhraní Správce skrytých služeb, které zobrazuje: - **Stavové zprávy** - Aktuální stav tunnel a klienta - **Globální ovládání tunnel** - Tlačítka pro správu všech tunnels najednou - **I2P Skryté služby** - Seznam nakonfigurovaných serverových tunnels
 
@@ -191,7 +191,7 @@ Nyní, když je váš eepsite nakonfigurován a má obsah, je čas jej spustit a
 
 ### Spustit Tunnel
 
-1. **Vraťte se do `http://127.0.0.1:7657/i2ptunnelmgr`**
+1. **Vraťte se do [Správce skrytých služeb](http://127.0.0.1:7657/i2ptunnelmgr)**
 2. Najděte v seznamu položku svého **I2P webového serveru**
 3. Klikněte na tlačítko **Start** ve sloupci Ovládání
 
@@ -215,7 +215,7 @@ Vaše eepsite má dva typy adres:
 
 1. **Base32 adresa (.b32.i2p)**: Dlouhá kryptografická adresa, která vypadá takto:
    ```
-   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
+   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
    ```
    - Toto je trvalá, kryptograficky odvozená adresa vaší eepsite (web na I2P)
    - Nelze ji změnit a je svázána s vaším soukromým klíčem
@@ -314,7 +314,7 @@ Tento řetězec obsahuje: - Vaše doménové jméno (`testwebsite.i2p`) - Vaše 
 
 ### Krok 2: Zaregistrujte se na stats.i2p
 
-1. **Přejděte na** stats.i2p Přidat klíč (v rámci I2P)
+1. **Přejděte na** [stats.i2p Přidat klíč](http://stats.i2p/i2p/addkey.html) (v rámci I2P)
 
 ![stats.i2p registrace domény](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ V případě úspěchu uvidíte potvrzení, že vaše doména byla přidána do 
 
 Abyste zajistili maximální dostupnost, měli byste se také zaregistrovat u služby reg.i2p:
 
-1. **Přejděte na** reg.i2p Add Domain (v rámci I2P)
+1. **Přejděte na** [reg.i2p Add Domain](http://reg.i2p/add) (v rámci I2P)
 
 ![Registrace domény na reg.i2p](/images/guides/eepsite/reg-i2p-add.png)
 

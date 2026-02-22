@@ -36,7 +36,7 @@ I2P router及其嵌入式应用程序使用Java作为主要开发语言。如果
 
 I2P 拥有官方的 Git 服务，并通过我们自己的 GitLab 接受贡献：
 
-- I2P 内部：<`http://git.idk.i2p`>
+- I2P 内部：<http://git.idk.i2p>
 - I2P 外部：<https://i2pgit.org>
 
 克隆主仓库：
@@ -46,7 +46,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 ```
 GitHub 上也提供只读镜像：
 
-- GitHub 镜像：github.com/i2p/i2p.i2p
+- GitHub 镜像：[github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -63,7 +63,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 查看项目 TODO 列表或 GitLab 上的问题列表以获取想法：
 
-- GitLab 问题：i2pgit.org/I2P_Developers/i2p.i2p/issues
+- GitLab 问题：[i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
 
 ## 提供结果
 

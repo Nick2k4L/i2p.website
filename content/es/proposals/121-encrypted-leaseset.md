@@ -10,61 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## Vista general
+## Overview
 
-Esta propuesta trata sobre el rediseño del mecanismo para encriptar LeaseSets.
-
-
-## Motivación
-
-El LS encriptado actual es horrendo e inseguro. Puedo decirlo, lo diseñé e
-implementé.
-
-Razones:
-
-- Encriptado con AES CBC
-- Una sola clave AES para todos
-- Las expiraciones de arrendamiento siguen expuestas
-- La clave pública de encriptación sigue expuesta
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
 
-## Diseño
+## Motivation
 
-### Objetivos
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-- Hacer que todo sea opaco
-- Claves para cada destinatario
+Reasons:
 
-
-### Estrategia
-
-Hacerlo como lo hace GPG/OpenPGP. Encriptar asimétricamente una clave simétrica para cada
-destinatario. Los datos se deseencriptan con esa clave asimétrica. Ver por ejemplo [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-SI podemos encontrar un algoritmo que sea pequeño y rápido.
-
-El truco es encontrar una encriptación asimétrica que sea pequeña y rápida. ElGamal con 514
-bytes es un poco doloroso aquí. Podemos hacerlo mejor.
-
-Ver por ejemplo `http://security.stackexchange.com/questions/824...`
-
-Esto funciona para números pequeños de destinatarios (o en realidad, claves; aún puedes
-distribuir claves a varias personas si lo deseas).
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
 
-## Especificación
+## Design
 
-- Destino
-- Marca de tiempo publicada
-- Expiración
-- Banderas
-- Longitud de los datos
-- Datos encriptados
-- Firma
+### Goals
 
-Los datos encriptados podrían estar precedidos por algún especificador de tipo de encriptación, o no.
+- Make entire thing opaque
+- Keys for each recipient
 
 
-## Referencias
+### Strategy
 
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
+
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
+
+See e.g. http://security.stackexchange.com/questions/824...
+
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
+
+
+## Specification
+
+- Destination
+- Published timestamp
+- Expiration
+- Flags
+- Length of data
+- Encrypted data
+- Signature
+
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

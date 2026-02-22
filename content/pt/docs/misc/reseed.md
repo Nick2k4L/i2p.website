@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / `http://127.0.0.1:8443/`
-    ProxyPassReverse / `http://127.0.0.1:8443/`
+    ProxyPass / http://127.0.0.1:8443/
+    ProxyPassReverse / http://127.0.0.1:8443/
 </VirtualHost>
 ```
 ### Registro e Coordenação
@@ -548,8 +548,8 @@ Assim que o seu reseed (servidor de inicialização) for registrado junto ao pro
 
 ### Recursos da Comunidade
 
-- **Fórum I2P**: [i2pforum.net](https://i2pforum.net/)
-- **Repositório Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
+- **Fórum I2P**: https://i2pforum.net/
+- **Repositório Gitea**: https://i2pgit.org/I2P_Developers/i2p.i2p
 - **IRC**: #i2p-dev no IRC2P
 - **Monitoramento de Status**: [checki2p.com/reseed](https://checki2p.com/reseed)
 

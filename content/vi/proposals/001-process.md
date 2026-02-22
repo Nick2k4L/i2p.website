@@ -9,51 +9,51 @@ thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
 
-## Tổng quan
+## Overview
 
-Tài liệu này mô tả cách thay đổi các đặc tả I2P, cách hoạt động của các đề xuất I2P và mối quan hệ giữa các đề xuất I2P và các đặc tả.
+This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
 
-Tài liệu này được điều chỉnh từ quy trình đề xuất Tor, và phần lớn nội dung bên dưới ban đầu được viết bởi Nick Mathewson.
+This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
 
-Đây là một tài liệu thông tin.
+This is an informational document.
 
-## Động cơ
+## Motivation
 
-Trước đây, quy trình của chúng tôi để cập nhật các đặc tả I2P khá không chính thức: chúng tôi sẽ đưa ra một đề xuất trên diễn đàn phát triển và thảo luận các thay đổi, sau đó chúng tôi sẽ đạt sự đồng thuận và vá sửa đặc tả với các thay đổi dự thảo (không nhất thiết theo thứ tự đó), và cuối cùng chúng tôi sẽ triển khai các thay đổi.
+Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
 
-Điều này đã gặp một số vấn đề.
+This had a few problems.
 
-Đầu tiên, ngay cả khi hiệu quả nhất, quy trình cũ sẽ thường xuyên khiến đặc tả không đồng bộ với mã. Các trường hợp tồi tệ nhất là nơi triển khai bị hoãn lại: đặc tả và mã có thể không đồng bộ trong nhiều phiên bản cùng một lúc.
+First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
 
-Thứ hai, rất khó để tham gia vào thảo luận, vì không phải lúc nào cũng rõ phần nào của chuỗi thảo luận là một phần của đề xuất, hoặc những thay đổi nào đối với đặc tả đã được thực hiện. Các diễn đàn phát triển cũng chỉ truy cập được trong I2P, có nghĩa là các đề xuất chỉ có thể xem được bởi những người sử dụng I2P.
+Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
 
-Thứ ba, rất dễ để quên một số đề xuất vì chúng sẽ bị chôn sâu vài trang trong danh sách chuỗi diễn đàn.
+Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
 
-## Cách thay đổi các đặc tả bây giờ
+## How to change the specs now
 
-Trước tiên, ai đó viết một tài liệu đề xuất. Nó nên mô tả thay đổi cần thực hiện một cách chi tiết, và đưa ra một số ý tưởng về cách triển khai nó. Khi nó được phát triển đủ, nó trở thành một đề xuất.
+First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
 
-Giống như một RFC, mỗi đề xuất đều nhận được một số. Không giống như RFCs, các đề xuất có thể thay đổi theo thời gian và giữ nguyên số, cho đến khi chúng được chấp nhận hoặc từ chối. Lịch sử cho mỗi đề xuất sẽ được lưu trữ trong kho lưu trữ trang web I2P.
+Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
 
-Khi một đề xuất đã có trong kho lưu trữ, chúng tôi nên thảo luận nó trên chuỗi tương ứng và cải thiện nó cho đến khi chúng tôi đạt được sự đồng thuận rằng đó là một ý tưởng tốt và nó đủ chi tiết để triển khai. Khi điều này xảy ra, chúng tôi triển khai đề xuất và đưa nó vào đặc tả. Do đó, đặc tả vẫn là tài liệu chính thức cho giao thức I2P: không có đề xuất nào từng là tài liệu chính thức cho một tính năng đã được triển khai.
+Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
 
-(Quy trình này khá giống với Quy trình Nâng cao Python, với ngoại lệ chính là các đề xuất I2P được tích hợp lại vào các đặc tả sau khi triển khai, trong khi các PEP *trở thành* đặc tả mới.)
+(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
 
-### Thay đổi nhỏ
+### Small changes
 
-Vẫn ổn khi thực hiện các thay đổi nhỏ trực tiếp vào đặc tả nếu mã có thể được viết ngay lập tức, hoặc những thay đổi thẩm mỹ nếu không cần thay đổi mã. Tài liệu này phản ánh *dự định* của các nhà phát triển hiện tại, không phải là một cam kết vĩnh viễn luôn sử dụng quy trình này trong tương lai: chúng tôi có quyền thực sự phấn khích và lao vào triển khai một cái gì đó trong một buổi hacking cả đêm với caffeine hoặc M&M.
+It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
 
-## Cách thêm các đề xuất mới
+## How new proposals get added
 
-Để gửi một đề xuất, đăng nó trên diễn đàn phát triển hoặc nhập một vé có kèm đề xuất.
+To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
 
-Khi một ý tưởng đã được đề xuất, một bản dự thảo định dạng đúng (xem bên dưới) tồn tại, và sự đồng thuận sơ bộ trong cộng đồng phát triển hoạt động tồn tại cho rằng ý tưởng này đáng được xem xét, các biên tập viên đề xuất sẽ chính thức thêm đề xuất.
+Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
 
-Các biên tập viên đề xuất hiện tại là zzz và str4d.
+The current proposal editors are zzz and str4d.
 
-## Những gì nên có trong một đề xuất
+## What should go in a proposal
 
-Mỗi đề xuất nên có một tiêu đề chứa các trường sau:
+Every proposal should have a header containing these fields:
 
 ```
 :author:
@@ -63,11 +63,11 @@ Mỗi đề xuất nên có một tiêu đề chứa các trường sau:
 :status:
 ```
 
-- Trường `author` nên chứa tên của các tác giả của đề xuất này.
-- Trường `thread` nên là liên kết đến chuỗi diễn đàn phát triển nơi đề xuất này ban đầu được đăng, hoặc đến một chuỗi mới được tạo để thảo luận về đề xuất này.
-- Trường `lastupdated` ban đầu nên bằng với trường `created`, và cần được cập nhật mỗi khi đề xuất được thay đổi.
+- The `author` field should contain the names of the authors of this proposal.
+- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
+- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
 
-Các trường này nên được thiết lập khi cần:
+These fields should be set when necessary:
 
 ```
 :supercedes:
@@ -75,91 +75,93 @@ Các trường này nên được thiết lập khi cần:
 :editor:
 ```
 
-- Trường `supercedes` là danh sách các đề xuất mà đề xuất này thay thế. Những đề xuất đó sẽ bị từ chối và phải có trường `supercededby` của chúng được thiết lập bằng số của đề xuất này.
-- Trường `editor` nên được thiết lập nếu những thay đổi đáng kể được thực hiện đối với đề xuất này mà không làm thay đổi nội dung của nó một cách đáng kể. Nếu nội dung đang bị thay đổi một cách đáng kể, một tác giả bổ sung nên được thêm vào, hoặc một đề xuất mới được tạo thay thế đề xuất này.
+- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
+- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
 
-Các trường này là tùy chọn nhưng được khuyến nghị:
+These fields are optional but recommended:
 
 ```
 :target:
 :implementedin:
 ```
 
-- Trường `target` nên mô tả phiên bản nào mà đề xuất này hy vọng sẽ được triển khai (nếu nó là `Open` hoặc `Accepted`).
-- Trường `implementedin` nên mô tả phiên bản nào mà đề xuất này đã được triển khai (nếu nó là `Finished` hoặc `Closed`).
+- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
+- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
 
-Nội dung của đề xuất nên bắt đầu với phần Tổng quan giải thích về cái gì mà đề xuất này làm, nó làm gì, và tình trạng của nó là gì.
+The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
 
-Sau phần Tổng quan, đề xuất trở nên linh hoạt hơn. Tùy thuộc vào độ dài và độ phức tạp của nó, đề xuất có thể được chia thành các phần như thích hợp, hoặc theo một định dạng ngắn gọn. Mỗi đề xuất nên chứa ít nhất các thông tin sau trước khi được Chấp nhận, mặc dù thông tin không cần phải nằm trong các phần với những tên gọi này.
+After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
 
-**Động cơ**
-: Vấn đề mà đề xuất đang cố gắng giải quyết là gì? Tại sao vấn đề này quan trọng? Nếu có nhiều cách tiếp cận khả dĩ, tại sao chọn cách này?
+**Motivation**
+: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
 
-**Thiết kế**
-: Một cái nhìn ở mức cao về những tính năng mới hoặc đã được sửa đổi là gì, cách mà những tính năng mới hoặc đã được sửa đổi hoạt động, cách chúng tương tác với nhau, và cách chúng tương tác với phần còn lại của I2P. Đây là phần chính của đề xuất. Một số đề xuất sẽ bắt đầu chỉ với một Động cơ và một Thiết kế, và chờ đợi một đặc tả cho đến khi Thiết kế có vẻ đúng.
+**Design**
+: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
 
-**Hệ quả bảo mật**
-: Những ảnh hưởng mà các thay đổi được đề xuất có thể có đối với tính ẩn danh, mức độ hiểu biết về những ảnh hưởng này như thế nào, v.v.
+**Security implications**
+: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
 
-**Đặc tả**
-: Một mô tả chi tiết về những gì cần được thêm vào các đặc tả của I2P để triển khai đề xuất. Điều này nên chi tiết gần như đặc tả cuối cùng: các lập trình viên độc lập nên có khả toán để viết các triển khai tương thích của đề xuất dựa trên đặc tả của nó.
+**Specification**
+: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
 
-**Tương thích**
-: Phiên bản I2P theo đề xuất sẽ tương thích với phiên bản không theo đề xuất không? Nếu có, cách nào để đạt được sự tương thích? Nói chung, chúng tôi cố gắng không làm mất sự tương thích nếu có thể; chúng tôi chưa thực hiện một thay đổi "ngày cờ" nào kể từ tháng 3 năm 2008, và chúng tôi không muốn thực hiện một thay đổi khác.
+**Compatibility**
+: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
 
-**Triển khai**
-: Nếu đề xuất sẽ khó thực hiện trong kiến trúc hiện tại của I2P, tài liệu có thể chứa một số thảo luận về cách thực hiện. Các bản vá thực tế nên được đưa vào các nhánh công khai monotone, hoặc được tải lên Trac.
+**Implementation**
+: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
 
-**Ghi chú về hiệu suất và khả năng mở rộng**
-: Nếu tính năng sẽ có ảnh hưởng đến hiệu suất (trong RAM, CPU, băng thông) hoặc khả năng mở rộng, nên có một số phân tích về tác động này để chúng tôi có thể tránh các suy giảm hiệu suất tốn kém, và để chúng tôi có thể tránh lãng phí thời gian vào những cải tiến không đáng kể.
+**Performance and scalability notes**
+: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
 
-**Tham chiếu**
-: Nếu đề xuất đề cập đến các tài liệu bên ngoài, chúng nên được liệt kê.
+**References**
+: If the proposal refers to outside documents, these should be listed.
 
-## Trạng thái của đề xuất
+## Proposal status
 
 **Open**
-: Một đề xuất đang được thảo luận.
+: A proposal under discussion.
 
 **Accepted**
-: Đề xuất đã hoàn thiện, và chúng tôi định triển khai nó. Sau thời điểm này, những thay đổi quan trọng đối với đề xuất nên được tránh, và được coi là dấu hiệu cho thấy quy trình đã thất bại ở đâu đó.
+: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
 
 **Finished**
-: Đề xuất đã được chấp nhận và triển khai. Sau thời điểm này, đề xuất không nên thay đổi.
+: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
 
 **Closed**
-: Đề xuất đã được chấp nhận, triển khai và tích hợp vào các tài liệu đặc tả chính. Đề xuất không nên thay đổi sau thời điểm này.
+: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
 
 **Rejected**
-: Chúng tôi sẽ không triển khai tính năng như mô tả trong đây, mặc dù chúng tôi có thể thực hiện một phiên bản khác. Xem các nhận xét trong tài liệu để biết chi tiết. Đề xuất không nên thay đổi sau thời điểm này; để đưa ra một phiên bản khác của ý tưởng, hãy viết một đề xuất mới.
+: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
 
 **Draft**
-: Đây chưa phải là một đề xuất hoàn chỉnh; còn thiếu những phần rõ ràng. Xin đừng thêm bất kỳ đề xuất mới nào với trạng thái này; đưa chúng vào thư mục "ideas".
+: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
 
 **Needs-Revision**
-: Ý tưởng cho đề xuất là tốt, nhưng đề xuất hiện tại có những vấn đề nghiêm trọng khiến nó không thể được chấp nhận. Xem nhận xét trong tài liệu để biết chi tiết.
+: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
 
 **Dead**
-: Đề xuất đã không được cập nhật trong một thời gian dài, và không có vẻ ai đó sẽ hoàn thành nó sớm. Nó có thể trở lại trạng thái "Open" nếu có một người đề xướng mới.
+: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
 
 **Needs-Research**
-: Có những vấn đề nghiên cứu cần được giải quyết trước khi rõ ràng liệu đề xuất có phải là một ý tưởng tốt không.
+: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
 
 **Meta**
-: Đây không phải là một đề xuất, mà là một tài liệu về các đề xuất.
+: This is not a proposal, but a document about proposals.
 
 **Reserve**
-: Đề xuất này không phải là thứ mà chúng tôi đang có kế hoạch triển khai, nhưng chúng tôi có thể muốn phục hồi nó một ngày nào đó nếu chúng tôi quyết định thực hiện một cái gì đó như những gì nó đề xuất.
+: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
 
 **Informational**
-: Đề xuất này là từ cuối cùng về những gì nó đang làm. Nó sẽ không trở thành một đặc tả trừ khi ai đó sao chép và dán nó vào một đặc tả mới cho một hệ thống con mới.
+: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
 
-Các biên tập viên duy trì trạng thái đúng của các đề xuất, dựa trên sự đồng thuận sơ bộ và sự quyết định của họ.
+The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
 
-## Đánh số đề xuất
+## Proposal numbering
 
-Số 000-099 được dành riêng cho các đề xuất đặc biệt và meta. Từ 100 trở lên được sử dụng cho các đề xuất thực tế. Số không được tái sử dụng.
+Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
 
-## Tham chiếu
+## References
 
-- [Quy trình Đề xuất Tor](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)
+* [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
+* [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)
+* [TRAC-PROPOSAL](http://trac.i2p2.i2p/newticket?summary=New%20proposal:%20&type=enhancement&milestone=n/a&component=www/i2p&keywords=review-needed)

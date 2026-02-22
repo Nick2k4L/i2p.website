@@ -62,7 +62,7 @@ Khi được tạo, dịch vụ đặt tên sẽ nhập các mục từ ba tệp
 
 ### Các Tiện Ích Dịch Vụ Đặt Tên Khác
 
-Việc tra cứu không phân biệt chữ hoa chữ thường. Kết quả khớp đầu tiên sẽ được sử dụng, và các xung đột không được phát hiện. Không có việc thực thi các quy tắc đặt tên trong quá trình tra cứu. Các tra cứu được lưu cache trong vài phút. Việc phân giải Base 32 được [mô tả bên dưới](#base32-names). Để có mô tả đầy đủ về API của Naming Service, hãy xem Naming Service Javadocs. API này đã được mở rộng đáng kể trong phiên bản 0.8.7 để cung cấp tính năng thêm và xóa, lưu trữ các thuộc tính tùy ý với hostname, và các tính năng khác.
+Việc tra cứu không phân biệt chữ hoa chữ thường. Kết quả khớp đầu tiên sẽ được sử dụng, và các xung đột không được phát hiện. Không có việc thực thi các quy tắc đặt tên trong quá trình tra cứu. Các tra cứu được lưu cache trong vài phút. Việc phân giải Base 32 được [mô tả bên dưới](#base32-names). Để có mô tả đầy đủ về API của Naming Service, hãy xem [Naming Service Javadocs](http://idk.i2p/javadoc-i2p/net/i2p/client/naming/package-summary.html). API này đã được mở rộng đáng kể trong phiên bản 0.8.7 để cung cấp tính năng thêm và xóa, lưu trữ các thuộc tính tùy ý với hostname, và các tính năng khác.
 
 ### Các Dịch vụ Đặt tên Thay thế và Thử nghiệm
 
@@ -94,12 +94,12 @@ Hiện tại, chưa có kế hoạch nào để biến .i2p.alt thành dạng ư
 
 Việc đăng ký file hosts.txt của người dùng khác đòi hỏi bạn phải tin tưởng họ ở một mức độ nhất định. Bạn không muốn họ, chẳng hạn, 'chiếm đoạt' một trang web mới bằng cách nhanh chóng nhập khóa của riêng họ cho trang web mới đó trước khi chuyển mục host/key mới cho bạn.
 
-Vì lý do này, subscription duy nhất được cấu hình mặc định là `http://i2p-projekt.i2p/hosts.txt (`http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`,` chứa một bản sao của hosts.txt được đi kèm trong bản phát hành I2P. Người dùng phải cấu hình thêm các subscription trong ứng dụng address book cục bộ của họ (thông qua subscriptions.txt hoặc [SusiDNS](#susidns)).
+Vì lý do này, subscription duy nhất được cấu hình mặc định là `http://i2p-projekt.i2p/hosts.txt (http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`, chứa một bản sao của hosts.txt được đi kèm trong bản phát hành I2P. Người dùng phải cấu hình thêm các subscription trong ứng dụng address book cục bộ của họ (thông qua subscriptions.txt hoặc [SusiDNS](#susidns)).
 
 Một số liên kết đăng ký address book công khai khác:
 
-- `http://i2host.i2p/cgi-bin/i2hostetag`
-- `http://stats.i2p/cgi-bin/newhosts.txt`
+- http://i2host.i2p/cgi-bin/i2hostetag
+- http://stats.i2p/cgi-bin/newhosts.txt
 
 Các nhà điều hành của những dịch vụ này có thể có các chính sách khác nhau để liệt kê các máy chủ. Việc có mặt trong danh sách này không có nghĩa là được xác nhận hoặc tán thành.
 

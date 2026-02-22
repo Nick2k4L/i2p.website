@@ -35,7 +35,7 @@ Brána `i2pmail.org` umožňuje běžným uživatelům internetu posílat e-mail
 **Pro registraci účtu mail.i2p:**
 
 1. Ujistěte se, že váš I2P router běží
-2. Navštivte **http://hq.postman.i2p** uvnitř I2P
+2. Navštivte **[http://hq.postman.i2p](http://hq.postman.i2p)** uvnitř I2P
 3. Postupujte podle registračního procesu
 4. Přistupujte k vaší e-mailové schránce prostřednictvím **SusiMail** v konzoli routeru
 

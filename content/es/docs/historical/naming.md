@@ -47,9 +47,9 @@ Cierto, pero esto no es mucho tráfico en el contexto de I2P, que en sí mismo e
 
 Como suele ser el caso en I2P, aquí existe un compromiso fundamental entre anonimato y eficiencia. Algunos dirían que usar las cabeceras etag y last-modified es peligroso porque expone cuándo solicitaste los datos por última vez. Otros han sugerido solicitar solo claves específicas (similar a lo que hacen los servicios jump, pero de manera más automatizada), posiblemente a un costo adicional en el anonimato.
 
-Las posibles mejoras serían un reemplazo o complemento para el address book (ver i2host.i2p), o algo simple como suscribirse a `http://example.i2p/cgi-bin/recenthosts.cgi` en lugar de `http://example.i2p/hosts.txt.` Si un hipotético recenthosts.cgi distribuyera todos los hosts de las últimas 24 horas, por ejemplo, eso podría ser tanto más eficiente como más anónimo que el actual hosts.txt con last-modified y etag.
+Las posibles mejoras serían un reemplazo o complemento para el address book (ver i2host.i2p), o algo simple como suscribirse a http://example.i2p/cgi-bin/recenthosts.cgi en lugar de http://example.i2p/hosts.txt. Si un hipotético recenthosts.cgi distribuyera todos los hosts de las últimas 24 horas, por ejemplo, eso podría ser tanto más eficiente como más anónimo que el actual hosts.txt con last-modified y etag.
 
-Una implementación de ejemplo está en stats.i2p en `http://stats.i2p/cgi-bin/newhosts.txt.` Este script devuelve un Etag con una marca de tiempo. Cuando llega una solicitud con el etag If-None-Match, el script SOLO devuelve hosts nuevos desde esa marca de tiempo, o 304 Not Modified si no los hay. De esta manera, el script devuelve eficientemente solo los hosts que el suscriptor no conoce, de una manera compatible con la libreta de direcciones.
+Una implementación de ejemplo está en stats.i2p en http://stats.i2p/cgi-bin/newhosts.txt. Este script devuelve un Etag con una marca de tiempo. Cuando llega una solicitud con el etag If-None-Match, el script SOLO devuelve hosts nuevos desde esa marca de tiempo, o 304 Not Modified si no los hay. De esta manera, el script devuelve eficientemente solo los hosts que el suscriptor no conoce, de una manera compatible con la libreta de direcciones.
 
 Por lo tanto, la ineficiencia no es un problema grave y hay varias formas de mejorar las cosas sin cambios radicales.
 
@@ -57,7 +57,7 @@ Por lo tanto, la ineficiencia no es un problema grave y hay varias formas de mej
 
 En cuanto al tráfico de red, ver arriba. Pero a menos que vayas a hacer una consulta lenta en tiempo real a través de la red para una clave, necesitas tener todo el conjunto de claves almacenado localmente, a un costo de aproximadamente 500 bytes por clave.
 
-- **Requiere configuración y "confianza":** La libreta de direcciones predeterminada solo está suscrita a `http://www.i2p2.i2p/hosts.txt,` que rara vez se actualiza, lo que lleva a una experiencia deficiente para nuevos usuarios.
+- **Requiere configuración y "confianza":** La libreta de direcciones predeterminada solo está suscrita a http://www.i2p2.i2p/hosts.txt, que rara vez se actualiza, lo que lleva a una experiencia deficiente para nuevos usuarios.
 
 Esto es muy intencional. jrandom quiere que un usuario "confíe" en un proveedor de hosts.txt, y como le gusta decir, "la confianza no es un booleano". El paso de configuración intenta obligar a los usuarios a pensar sobre las cuestiones de confianza en una red anónima.
 

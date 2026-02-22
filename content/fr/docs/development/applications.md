@@ -77,7 +77,7 @@ La [bibliothèque de streaming complète](/docs/api/streaming/) est maintenant l
 
 ### BOB
 
-BOB est le [Basic Open Bridge](/docs/legacy/bob/), permettant à une application dans n'importe quel langage d'établir des connexions streaming vers et depuis I2P. À l'heure actuelle, il ne prend pas en charge UDP, mais la prise en charge UDP est prévue dans un proche avenir. BOB contient également plusieurs outils, tels que la génération de clés de destination et la vérification qu'une adresse est conforme aux spécifications I2P. Les informations à jour et les applications qui utilisent BOB peuvent être trouvées sur ce site I2P.
+BOB est le [Basic Open Bridge](/docs/legacy/bob/), permettant à une application dans n'importe quel langage d'établir des connexions streaming vers et depuis I2P. À l'heure actuelle, il ne prend pas en charge UDP, mais la prise en charge UDP est prévue dans un proche avenir. BOB contient également plusieurs outils, tels que la génération de clés de destination et la vérification qu'une adresse est conforme aux spécifications I2P. Les informations à jour et les applications qui utilisent BOB peuvent être trouvées sur ce [site I2P](http://bob.i2p/).
 
 ### SAM, SAM V2, SAM V3
 
@@ -353,12 +353,12 @@ Félicitations, vous avez communiqué avec succès via I2P !
 
 Contactez-nous si vous souhaitez contribuer.
 
-- I2P-Bote - contacter HungryHobo
+- [I2P-Bote](http://i2pbote.i2p/) - contacter HungryHobo
 - [Syndie](http://syndie.i2p2.de/)
-- IMule
-- I2Phex
+- [IMule](http://www.imule.i2p/)
+- [I2Phex](http://forum.i2p/viewforum.php?f=25)
 
-Voir aussi tous les plugins sur plugins.i2p, les applications et le code source listés sur echelon.i2p, et le code d'application hébergé sur git.repo.i2p.
+Voir aussi tous les plugins sur [plugins.i2p](http://plugins.i2p/), les applications et le code source listés sur [echelon.i2p](http://echelon.i2p/), et le code d'application hébergé sur [git.repo.i2p](http://git.repo.i2p/).
 
 Voir également les applications intégrées dans la distribution I2P - SusiMail et I2PSnark.
 

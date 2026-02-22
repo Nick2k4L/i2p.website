@@ -184,7 +184,7 @@ Menu také zobrazuje užitečné možnosti jako: - **Network: Firewalled** - Zob
 Jakmile se otevře I2P prohlížeč, je potřeba zkontrolovat, které porty I2P používá:
 
 1. **Přejděte na stránku konfigurace sítě**:
-   - V prohlížeči otevřete `http://127.0.0.1:7657/confignet`
+   - V prohlížeči otevřete [I2P Router Network Configuration](http://127.0.0.1:7657/confignet)
    - Nebo z postranního panelu konzole routeru: **Konfigurace → Síť**
 
 2. **Posuňte se dolů** do sekce konfigurace portů

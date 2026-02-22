@@ -62,7 +62,7 @@ Bei der Erstellung importiert der Naming Service Einträge aus den drei Dateien,
 
 ### Andere Naming Service-Einrichtungen
 
-Die Suche ist nicht zwischen Groß- und Kleinschreibung unterscheidend. Der erste Treffer wird verwendet, und Konflikte werden nicht erkannt. Es gibt keine Durchsetzung von Benennungsregeln bei Suchanfragen. Suchanfragen werden für einige Minuten zwischengespeichert. Base 32-Auflösung wird [unten beschrieben](#base32-names). Für eine vollständige Beschreibung der Naming Service API siehe die Naming Service Javadocs. Diese API wurde in Version 0.8.7 erheblich erweitert, um Hinzufügungen und Entfernungen, Speicherung beliebiger Eigenschaften mit dem Hostnamen und andere Funktionen bereitzustellen.
+Die Suche ist nicht zwischen Groß- und Kleinschreibung unterscheidend. Der erste Treffer wird verwendet, und Konflikte werden nicht erkannt. Es gibt keine Durchsetzung von Benennungsregeln bei Suchanfragen. Suchanfragen werden für einige Minuten zwischengespeichert. Base 32-Auflösung wird [unten beschrieben](#base32-names). Für eine vollständige Beschreibung der Naming Service API siehe die [Naming Service Javadocs](http://idk.i2p/javadoc-i2p/net/i2p/client/naming/package-summary.html). Diese API wurde in Version 0.8.7 erheblich erweitert, um Hinzufügungen und Entfernungen, Speicherung beliebiger Eigenschaften mit dem Hostnamen und andere Funktionen bereitzustellen.
 
 ### Alternative und experimentelle Namensdienste
 
@@ -94,12 +94,12 @@ Die Adressbuch-Anwendung ruft regelmäßig die hosts.txt-Dateien anderer Benutze
 
 Das Abonnieren der hosts.txt-Datei eines anderen Benutzers bedeutet, ihm ein gewisses Maß an Vertrauen entgegenzubringen. Sie möchten nicht, dass er beispielsweise eine neue Site "kapert", indem er schnell seinen eigenen Schlüssel für eine neue Site einträgt, bevor er den neuen Host-/Schlüsseleintrag an Sie weitergibt.
 
-Aus diesem Grund ist standardmäßig nur die Subscription `http://i2p-projekt.i2p/hosts.txt (`http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`` konfiguriert, die eine Kopie der hosts.txt enthält, die in der I2P-Version enthalten ist. Benutzer müssen zusätzliche Subscriptions in ihrer lokalen Adressbuch-Anwendung konfigurieren (über subscriptions.txt oder [SusiDNS](#susidns)).
+Aus diesem Grund ist standardmäßig nur die Subscription `http://i2p-projekt.i2p/hosts.txt (http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)` konfiguriert, die eine Kopie der hosts.txt enthält, die in der I2P-Version enthalten ist. Benutzer müssen zusätzliche Subscriptions in ihrer lokalen Adressbuch-Anwendung konfigurieren (über subscriptions.txt oder [SusiDNS](#susidns)).
 
 Einige andere öffentliche Adressbuch-Abonnement-Links:
 
-- `http://i2host.i2p/cgi-bin/i2hostetag`
-- `http://stats.i2p/cgi-bin/newhosts.txt`
+- http://i2host.i2p/cgi-bin/i2hostetag
+- http://stats.i2p/cgi-bin/newhosts.txt
 
 Die Betreiber dieser Dienste können verschiedene Richtlinien für die Auflistung von Hosts haben. Die Aufnahme in diese Liste stellt keine Befürwortung dar.
 

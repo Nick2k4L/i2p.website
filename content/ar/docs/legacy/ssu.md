@@ -51,9 +51,9 @@ HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2)
 - حجم MAC: 16 بايت
 - أمثلة تنفيذ C:
   - hmac.h في [i2pd](https://github.com/PurpleI2P/i2pd)
-  - I2PHMAC.cpp في i2pcpp
+  - I2PHMAC.cpp في [i2pcpp](http://git.repo.i2p/w/i2pcpp.git)
 - مثال تنفيذ Java:
-  - I2PHMac.java في I2P
+  - I2PHMac.java في [I2P](https://github.com/i2p/i2p.i2p)
 
 ### تفاصيل مفتاح الجلسة
 
@@ -858,7 +858,7 @@ HolePunch هو ببساطة حزمة UDP بدون بيانات. إنه غير م
 - [التاريخ](/docs/specs/common-structures/#date)
 - [تشفير ElGamal](/docs/specs/cryptography/#elgamal)
 - [تفاصيل HMAC](/docs/specs/cryptography/#udp)
-- مصدر I2P
+- [مصدر I2P](https://github.com/i2p/i2p.i2p)
 - [مصدر i2pd](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)
 - [RouterIdentity](/docs/specs/common-structures/#routeridentity)

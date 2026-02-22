@@ -3943,6 +3943,6 @@ Alice                         Bob                  Charlie
 - **[SigningPublicKey]** [نوع SigningPublicKey](/docs/specs/common-structures#type-signingpublickey)
 - **[SSU]** [نقل SSU](/docs/transport/ssu)
 - **[STS]** [بروتوكول المحطة إلى المحطة](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
-- **[Ticket1112]** تذكرة I2P 1112
-- **[Ticket1849]** تذكرة I2P 1849
+- **[Ticket1112]** [تذكرة I2P 1112](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1112)
+- **[Ticket1849]** [تذكرة I2P 1849](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1849)
 - **[WireGuard]** [بروتوكول WireGuard](https://www.wireguard.com/papers/wireguard.pdf)

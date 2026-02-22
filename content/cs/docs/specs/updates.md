@@ -222,7 +222,7 @@ Soubory jar a war v zip archivu již nejsou komprimovány pomocí pack200, jak j
 ### Poznámky
 
 - Pro vydání je verze SU3 "základní" verze routeru, např. "0.9.20".
-- Pro vývojářské sestavení, která jsou podporována od vydání 0.9.20, je verze SU3 "úplná" verze routeru, např. "0.9.20-5" nebo "0.9.20-5-rc". Viz RouterVersion.java ve zdrojovém kódu I2P.
+- Pro vývojářské sestavení, která jsou podporována od vydání 0.9.20, je verze SU3 "úplná" verze routeru, např. "0.9.20-5" nebo "0.9.20-5-rc". Viz RouterVersion.java ve [zdrojovém kódu I2P](https://github.com/i2p/i2p.i2p).
 
 ## Specifikace SU3 Reseed souboru
 
@@ -371,7 +371,7 @@ TBD, neimplementováno, viz návrh 130. Aktualizace seznamu blokovaných jsou do
 ## Reference
 
 - **[CRYPTO-SIG]** [Kryptografie - Podpisy](/docs/specs/cryptography#sig)
-- **[I2P-SRC]** I2P Zdrojový kód
+- **[I2P-SRC]** [I2P Zdrojový kód](https://github.com/i2p/i2p.i2p)
 - **[PLUGIN]** [Specifikace pluginu](/docs/specs/plugin)
 - **[Python]** [Python RSA Raw Podpisy](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)
 - **[RFC-3339]** [RFC 3339 - Datum a čas](https://tools.ietf.org/html/rfc3339)

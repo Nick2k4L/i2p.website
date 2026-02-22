@@ -68,6 +68,6 @@ Các biện pháp phòng vệ này làm cho việc liệt kê các router một 
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-Nếu bạn cho rằng một quốc gia nên được thêm vào hoặc loại bỏ khỏi danh sách nghiêm ngặt, vui lòng mở một issue tại: `https://i2pgit.org/i2p/i2p.i2p/`
+Nếu bạn cho rằng một quốc gia nên được thêm vào hoặc loại bỏ khỏi danh sách nghiêm ngặt, vui lòng mở một issue tại: https://i2pgit.org/i2p/i2p.i2p/
 
 Tham khảo: Freedom House – https://freedomhouse.org/

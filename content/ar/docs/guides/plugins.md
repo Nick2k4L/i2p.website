@@ -14,7 +14,7 @@ accurateFor: "2.10.0"
 
 1. انسخ رابط تحميل الإضافة من صفحة المشروع.  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. افتح `http://127.0.0.1:7657/configplugins` في وحدة التحكم الخاصة بالـ router.  
+2. افتح [صفحة إعدادات الإضافات](http://127.0.0.1:7657/configplugins) في وحدة التحكم الخاصة بالـ router.  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. الصق الرابط في حقل التثبيت وانقر على **Install Plugin**.  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ accurateFor: "2.10.0"
 
 ## 3. إدارة الإضافات المثبتة
 
-استخدم عناصر التحكم في `http://127.0.0.1:7657/configclients.jsp#plugin` من أجل:
+استخدم عناصر التحكم في [I2P Router Plugin's](http://127.0.0.1:7657/configclients.jsp#plugin) من أجل:
 
 - التحقق من تحديثات إضافة واحدة
 - التحقق من تحديثات جميع الإضافات دفعة واحدة (يتم تشغيله تلقائياً بعد ترقيات الموجه)

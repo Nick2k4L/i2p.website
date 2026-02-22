@@ -11,41 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## 概述
+## Overview
 
-该提案旨在提高引导成功率。
+This proposal is about improving the success rate for introductions.
 
-## 动机
 
-引导者在一定时间后会过期，但该信息未发布在 RouterInfo 中。目前路由器必须使用启发式方法来估计引导者何时不再有效。
+## Motivation
 
-## 设计
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
-在包含引导者的SSU RouterAddress 中，发布者可以选择为每个引导者包含到期时间。
 
-## 规格
+## Design
+
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
+
+
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: 引导者编号 (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: 自纪元起始的时间，以秒为单位（不是毫秒）。
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
-### 备注
-* 每个到期时间必须大于 RouterInfo 的发布日期，并且小于发布日期后的6小时。
+### Notes
 
-* 发布路由器和引导者应尝试保持引导者有效直到到期，但无法保证这一点。
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* 路由器不应在引导者到期后使用已发布的引导者。
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* 引导者到期信息位于 RouterAddress 映射中。
-  它们不是 RouterAddress 中当前未使用的8字节到期字段。
+* Routers should not use a published introducer after its expiration.
 
-**示例：** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
 
-## 迁移
+**Example:** `iexp0=1486309470`
 
-没有问题。实现是可选的。
-向后兼容性有保障，因为旧路由器会忽略未知参数。
+
+## Migration
+
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

@@ -9,51 +9,51 @@ thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
 
-## Genel Bakış
+## Overview
 
-Bu belge, I2P spesifikasyonlarını nasıl değiştireceğinizi, I2P önerilerinin nasıl çalıştığını ve I2P önerileri ile spesifikasyonlar arasındaki ilişkiyi açıklar.
+This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
 
-Bu belge Tor öneri sürecinden adapte edilmiştir ve aşağıdaki içeriğin çoğu orijinal olarak Nick Mathewson tarafından yazılmıştır.
+This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
 
-Bu bir bilgilendirici belgedir.
+This is an informational document.
 
-## Motivasyon
+## Motivation
 
-Önceden, I2P spesifikasyonlarını güncelleme sürecimiz nispeten resmi değildi: geliştirme forumunda bir öneri sunar ve değişiklikleri tartışırdık, sonra fikir birliğine varır ve taslak değişikliklerle spesifikasyonu yamalardık (bu sırayı takip etmek zorunda değildik) ve son olarak değişiklikleri uygulardık.
+Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
 
-Bu süreç birkaç soruna yol açmıştır.
+This had a few problems.
 
-İlk olarak, süreç en verimli haliyle bile, eski süreç spesifikasyonun kodla uyumlu olmamasına neden olabiliyordu. En kötü durumlar ise uygulamanın ertelendiği durumlardı: spesifikasyon ve kod, sürümler boyunca uyumsuz kalabiliyordu.
+First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
 
-İkinci olarak, tartışmaya katılmak zordu, çünkü tartışma dizisinin hangi bölümlerinin önerinin bir parçası olduğu veya spesifikasyona hangi değişikliklerin uygulandığı her zaman net değildi. Geliştirme forumları, ayrıca sadece I2P içinde erişilebilir, bu da önerilerin yalnızca I2P kullanan kişiler tarafından görüntülenebileceği anlamına gelir.
+Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
 
-Üçüncü olarak, bazı önerileri unutmak çok kolaydı, çünkü forum dizisi listesinde birkaç sayfa geriye gömülebilirlerdi.
+Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
 
-## Spesifikasyonları şimdi nasıl değiştiririz
+## How to change the specs now
 
-Öncelikle, birisi bir öneri belgesi yazar. Bu, yapılması gereken değişikliği ayrıntılı olarak açıklamalı ve nasıl uygulanacağına dair bir fikir vermelidir. Yeterince ayrıntılı hale geldiğinde, bir öneri olur.
+First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
 
-Bir RFC gibi, her öneriye bir numara verilir. RFC'lerin aksine, öneriler zamanla değişebilir ve nihayet kabul edilene veya reddedilene kadar aynı numarayı saklayabilir. Her önerinin geçmişi I2P web sitesi deposunda saklanacaktır.
+Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
 
-Öneri depoya girer girmez, ilgili dizide tartışmalı ve fikir birliğine vardığımızda iyi bir fikir olduğu ve uygulanabilir kadar ayrıntılı olduğu kabul edilene kadar geliştirilmelidir. Bu gerçekleştiğinde, öneriyi uygular ve spesifikasyonlara ekleriz. Bu nedenle, spesifikasyonlar I2P protokolü için kanonik belgeler olarak kalır: hiçbir öneri, uygulanan bir özellik için hiçbir zaman kanonik belge olamaz.
+Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
 
-(Bu süreç, I2P önerilerinin uygulamadan sonra spesifikasyonlara yeniden entegre edildiği ana istisna dışında, Python Geliştirme Süreci'ne oldukça benzer, oysa PEP'ler *yeni* spesifikasyon haline gelir.)
+(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
 
-### Küçük değişiklikler
+### Small changes
 
-Kod hemen hemen hemen yazılabiliyorsa spesifikasyona doğrudan küçük değişiklikler yapmak veya bir kod değişikliği gerekmiyorsa, kozmetik değişiklikler yapmak hala kabul edilebilir. Bu belge, mevcut geliştiricilerin *niyetini* yansıtır, gelecekte her zaman bu süreci kullanacağımıza dair kalıcı bir vaat değil: gerçekten heyecanlanma ve kafein ya da M&M destekli tüm gece süren bir hack oturumunda bir şeyler uygulama hakkımızı saklı tutarız.
+It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
 
-## Yeni öneriler nasıl eklenir
+## How new proposals get added
 
-Bir öneri sunmak için, geliştirme forumunda paylaşın veya öneriyi ekli bir bilet girin.
+To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
 
-Bir fikir önerildiğinde, düzgün formatlanmış (aşağıya bakın) bir taslak mevcut olduğunda ve aktif geliştirme topluluğunda bu fikrin değerlendirilmesi gerektiğine dair kabaca bir fikir birliği bulunduğunda, öneri editörleri resmi olarak öneriyi ekleyecektir.
+Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
 
-Mevcut öneri editörleri zzz ve str4d'dir.
+The current proposal editors are zzz and str4d.
 
-## Bir öneride neler olmalı
+## What should go in a proposal
 
-Her önerinin başlık kısmında şu alanlar bulunmalıdır:
+Every proposal should have a header containing these fields:
 
 ```
 :author:
@@ -63,11 +63,11 @@ Her önerinin başlık kısmında şu alanlar bulunmalıdır:
 :status:
 ```
 
-- `author` alanı bu önerinin yazarlarının isimlerini içermelidir.
-- `thread` alanı, bu önerinin ilk olarak yayınlandığı geliştirici forum başlığına veya bu önerinin tartışılması için oluşturulmuş yeni bir başlığa bir bağlantı olmalıdır.
-- `lastupdated` alanı başlangıçta `created` alanına eşit olmalı ve öneri değiştirildiğinde güncellenmelidir.
+- The `author` field should contain the names of the authors of this proposal.
+- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
+- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
 
-Gerektiğinde ayarlanması gereken alanlar:
+These fields should be set when necessary:
 
 ```
 :supercedes:
@@ -75,91 +75,93 @@ Gerektiğinde ayarlanması gereken alanlar:
 :editor:
 ```
 
-- `supercedes` alanı, bu önerinin yerini alacağı tüm önerilerin virgülle ayrılmış bir listesidir. Bu öneriler Reddedilmiş olarak işaretlenmeli ve `supercededby` alanı bu önerinin numarasına ayarlanmalıdır.
-- `editor` alanı, önerinin içeriğini önemli ölçüde değiştirmeyen önemli değişiklikler yapıldığında ayarlanmalıdır. İçerik önemli ölçüde değiştiriliyorsa, ya ek bir `author` eklenmelidir ya da bu öneri yerine geçen yeni bir öneri oluşturulmalıdır.
+- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
+- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
 
-Bu alanlar isteğe bağlı ancak önerilir:
+These fields are optional but recommended:
 
 ```
 :target:
 :implementedin:
 ```
 
-- `target` alanı, önerinin uygulanmasının umulduğu sürümü (eğer Açık veya Kabul Edilmişse) tanımlamalıdır.
-- `implementedin` alanı, önerinin uygulandığı sürümü (eğer Tamamlanmış veya Kapatılmışsa) tanımlamalıdır.
+- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
+- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
 
-Önerinin gövdesi, önerinin ne hakkında olduğunu, ne yaptığını ve hangi durumda olduğunu açıklayan bir Genel Bakış bölümü ile başlamalıdır.
+The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
 
-Genel Bakış'tan sonra, öneri daha serbest biçimli hale gelir. Uzunluğuna ve karmaşıklığına bağlı olarak, öneri gerektiği şekilde bölümlere ayrılabilir veya kısa bir söylev formatını takip edebilir. Her öneri, Kabul Edilmeden önce en azından aşağıdaki bilgileri içermelidir, ancak bilgiler bu isimlerdeki bölümlerde olmak zorunda değildir.
+After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
 
-**Motivasyon**
-: Önerinin çözmeye çalıştığı sorun nedir? Bu sorun neden önemlidir? Birkaç yaklaşım mümkünse, neden bu yolu seçelim?
+**Motivation**
+: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
 
-**Tasarım**
-: Yeni veya değiştirilen özelliklerin yüksek düzeyde bir görünümü, yeni veya değiştirilen özelliklerin nasıl çalıştığı, birbirleriyle nasıl çalıştığı ve I2P'nin geri kalanı ile nasıl etkileşimde bulundukları. Bu, önerinin ana gövdesidir. Bazı öneriler yalnızca bir Motivasyon ve Tasarımla başlayacaktır ve Tasarım yaklaşık olarak doğru görünene kadar bir spesifikasyona bekleyecektir.
+**Design**
+: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
 
-**Güvenlik etkileri**
-: Önerilen değişikliklerin anonimlik üzerindeki etkileri, bu etkilerin ne kadar iyi anlaşıldığı ve benzeri konular.
+**Security implications**
+: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
 
-**Spesifikasyon**
-: Önerinin uygulanması için I2P spesifikasyonlarına eklenmesi gerekenlerin ayrıntılı bir tanımı. Bu, sonunda spesifikasyonların içereceği kadar ayrıntılı olmalıdır: bağımsız programcıların, spesifikasyonları temel alarak önerinin birbirleriyle uyumlu uygulamalarını yazabilmeleri mümkün olmalıdır.
+**Specification**
+: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
 
-**Uyumluluk**
-: Öneriyi takip eden I2P sürümleri, öneriyi takip etmeyen sürümlerle uyumlu olacak mı? Eğer öyleyse, uyumluluk nasıl sağlanacak? Genel olarak, uyumluluğu mümkün olduğunca düşürmemeye çalışırız; Mart 2008'den beri bir "bayrak günü" değişikliği yapmadık ve bir başkasını yapmak istemiyoruz.
+**Compatibility**
+: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
 
-**Uygulama**
-: Öneri, I2P'nin mevcut mimarisi içinde uygulanması zor olacaksa, belge, çalışmasını sağlama konusunda bazı tartışmalar içerebilir. Gerçek yamalar, genel kopya dallarına gitmeli veya Trac'a yüklenmelidir.
+**Implementation**
+: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
 
-**Performans ve ölçeklenebilirlik notları**
-: Özellik, performans (RAM, CPU, bant genişliği) veya ölçeklenebilirlik üzerinde bir etkiye sahip olacaksa, bu etkinin ne kadar önemli olacağı konusunda bazı analizler yapılmalıdır, böylece gerçekten pahalı performans gerilemelerinden kaçınabiliriz ve önemsiz kazançlar hakkında zaman kaybetmekten kaçınabiliriz.
+**Performance and scalability notes**
+: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
 
-**Referanslar**
-: Öneri dış belgelerden bahsediyorsa, bunlar listelenmelidir.
+**References**
+: If the proposal refers to outside documents, these should be listed.
 
-## Öneri durumu
+## Proposal status
 
-**Açık**
-: Tartışma altında bir öneri.
+**Open**
+: A proposal under discussion.
 
-**Kabul Edildi**
-: Öneri tamamlanmıştır ve uygulamayı amaçlıyoruz. Bu noktadan sonra, önerideki esaslı değişikliklerden kaçınılmalı ve sürecin bir yerde başarısız olduğunun bir belirtisi olarak görülmelidir.
+**Accepted**
+: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
 
-**Tamamlanmış**
-: Öneri kabul edilmiş ve uygulanmıştır. Bu noktadan sonra öneri değiştirilmemelidir.
+**Finished**
+: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
 
-**Kapatılmış**
-: Öneri kabul edilmiş, uygulanmış ve ana spesifikasyon belgelerine entegre edilmiştir. Öneri bu noktadan sonra değiştirilmemelidir.
+**Closed**
+: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
 
-**Reddedildi**
-: Açıklanan biçimde özelliği uygulamayacağız, ancak başka bir versiyon yapabiliriz. Ayrıntılar için belgede belirtilen yorumlara bakın. Öneri bu noktadan sonra değiştirilmemelidir; fikrin başka bir versiyonunu gündeme getirmek için yeni bir öneri yazın.
+**Rejected**
+: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
 
-**Taslak**
-: Bu henüz tamamlanmış bir öneri değil; belirgin eksik parçalar var. Lütfen bu durumda yeni bir öneri eklemeyin; bunları "fikirler" alt dizinine koyun.
+**Draft**
+: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
 
-**Revizyon Gerekiyor**
-: Öneri fikri iyi, ancak öneri mevcut haliyle kabul edilmesini engelleyen ciddi sorunlara sahip. Ayrıntılar için belgede belirtilen yorumlara bakın.
+**Needs-Revision**
+: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
 
-**Ölü**
-: Öneriye uzun süredir dokunulmadı ve yakında kimsenin tamamlayacak gibi görünmüyor. Yeni bir öneren bulursa tekrar "Açık" olabilir.
+**Dead**
+: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
 
-**Araştırma Gerekiyor**
-: Önerinin iyi bir fikir olup olmadığını netleştirmek için çözülmesi gereken araştırma sorunları var.
+**Needs-Research**
+: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
 
 **Meta**
-: Bu bir öneri değil, öneriler hakkında bir belgede.
+: This is not a proposal, but a document about proposals.
 
-**Rezerv**
-: Bu öneri şu anda uygulamayı planladığımız bir şey değil, ancak bir gün sunduğu gibi bir şey yapmaya karar verirsek onu canlandırmak isteyebiliriz.
+**Reserve**
+: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
 
-**Bilgilendirici**
-: Bu öneri, yaptığı şeyin son sözü. Biri bir alt sistem için yeni bir spesifikasyona kopyalayıp yapıştırana kadar bir spesifikasyon haline gelmeyecek.
+**Informational**
+: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
 
-Editörler, önerilerin doğru durumunu, kabaca fikir birliğine dayalı ve kendi takdirlerine bağlı olarak korurlar.
+The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
 
-## Öneri numaralandırma
+## Proposal numbering
 
-000-099 numaraları, özel ve meta-öneriler için ayrılmıştır. 100 ve üzeri sayılar gerçek öneriler için kullanılır. Numaralar geri dönüştürülmez.
+Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
 
-## Referanslar
+## References
 
-- [Tor Öneri Süreci](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)
+* [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
+* [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)
+* [TRAC-PROPOSAL](http://trac.i2p2.i2p/newticket?summary=New%20proposal:%20&type=enhancement&milestone=n/a&component=www/i2p&keywords=review-needed)

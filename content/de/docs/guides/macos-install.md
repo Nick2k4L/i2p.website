@@ -224,23 +224,23 @@ Ihr I2P router ist jetzt konfiguriert und läuft! Die router-Konsole zeigt Ihren
 
 Nachdem I2P installiert und konfiguriert ist, können Sie:
 
-1. **I2P-Seiten durchsuchen**: Besuchen Sie die `http://127.0.0.1:7657/home`, um Links zu beliebten I2P-Diensten zu sehen
+1. **I2P-Seiten durchsuchen**: Besuchen Sie die [I2P-Startseite](http://127.0.0.1:7657/home), um Links zu beliebten I2P-Diensten zu sehen
 2. **Browser konfigurieren**: Richten Sie ein [Browser-Profil](/docs/guides/browser-config) ein, um auf `.i2p`-Seiten zuzugreifen
 3. **Dienste erkunden**: Entdecken Sie I2P-E-Mail, Foren, Filesharing und mehr
-4. **Router überwachen**: Die `http://127.0.0.1:7657/console` zeigt Ihren Netzwerkstatus und Statistiken an
+4. **Router überwachen**: Die [Konsole](http://127.0.0.1:7657/console) zeigt Ihren Netzwerkstatus und Statistiken an
 
 ### Nützliche Links
 
-- **Router Console**: `http://127.0.0.1:7657/`
-- **Konfiguration**: `http://127.0.0.1:7657/config`
-- **Adressbuch**: `http://127.0.0.1:7657/susidns/addressbook`
-- **Bandbreiten-Einstellungen**: `http://127.0.0.1:7657/config`
+- **Router Console**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
+- **Konfiguration**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Adressbuch**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
+- **Bandbreiten-Einstellungen**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
 ## Setup-Assistenten erneut ausführen
 
 Wenn Sie Ihre Bandbreiten-Einstellungen ändern oder I2P später neu konfigurieren möchten, können Sie den Begrüßungsassistenten über die Router Console erneut ausführen:
 
-1. Gehen Sie zum `http://127.0.0.1:7657/welcome`
+1. Gehen Sie zum [I2P Setup-Assistenten](http://127.0.0.1:7657/welcome)
 2. Folgen Sie den Schritten des Assistenten erneut
 
 ## Fehlerbehebung

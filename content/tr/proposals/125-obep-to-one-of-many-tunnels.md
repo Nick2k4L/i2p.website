@@ -9,122 +9,168 @@ thread: "http://zzz.i2p/topics/2099"
 toc: true
 ---
 
-## Genel Bakış
+## Overview
 
-Bu öneri, ağ performansını artırmak için iki iyileştirmeyi kapsar:
+This proposal covers two improvements for improving network performance:
 
-- OBEP'ye tek bir seçenek yerine alternatif listesi sunarak IBGW seçimini devretmek.
+- Delegating IBGW selection to the OBEP by providing it with a list of
+  alternatives instead of a single option.
 
-- OBEP'de çoklu yayın paket yönlendirmeyi etkinleştirmek.
-
-
-## Motivasyon
-
-Doğrudan bağlantı durumunda, OBEP'ye IBGW'lere nasıl bağlanacağı konusunda esneklik vererek, bağlantı sıkışıklığını azaltmayı amaçlıyoruz. Birden fazla tünel belirtebilme yeteneği, mesajı belirtilen tüm tünellere ileterek OBEP'de çoklu yayını da uygulamamıza olanak tanır.
-
-Bu önerinin delege etme kısmına alternatif olarak, mevcut hedef `http://localhost:63465/docs/specs/common-structures/#common-structure-specification` karmasını belirtme yeteneğine benzer şekilde, bir `http://localhost:63465/docs/specs/common-structures/#leaseset` karması gönderilebilir. Bu, daha küçük bir mesaj ve potansiyel olarak daha yeni bir LeaseSet ile sonuçlanacaktır. Ancak:
-
-1. OBEP'yi bir arama yapmaya zorlar.
-
-2. LeaseSet bir floodfill'e yayımlanmamış olabilir, bu yüzden arama başarısız olur.
-
-3. LeaseSet şifrelenmiş olabilir, bu yüzden OBEP kiraları alamaz.
-
-4. Bir LeaseSet belirtmek, mesajın hedef [Destination]'ını OBEP'ye ifşa eder ki bu, ancak ağdaki tüm LeaseSet'leri tarayarak ve bir Lease eşleşmesi arayarak keşfedebilirler.
+- Enabling multicast packet routing at the OBEP.
 
 
-## Tasarım
+## Motivation
 
-Başlatıcı (OBGW), hedef `http://localhost:63465/docs/specs/common-structures/#lease`'lerden bazılarını (tümünü?) teslimat talimatlarına [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) yerleştirir, sadece bir tane seçmek yerine.
+In the direct connection case, the idea is to reduce connection congestion, by
+giving the OBEP flexibility in how it connects to IBGWs. The ability to specify
+multiple tunnels also enables us to implement multicast at the OBEP (by
+delivering the message to all specified tunnels).
 
-OBEP bunlardan birine teslim etmek için seçecektir. OBEP mevcutsa, zaten bağlı olduğu veya bildiği birini seçecektir. Bu, OBEP-IBGW yolunu daha hızlı ve güvenilir hale getirecek ve toplam ağ bağlantılarını azaltacaktır.
+An alternative to the delegation part of this proposal would be to send through
+a LeaseSet hash, similar to the existing ability to specify a target
+[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
+newer LeaseSet. However:
 
-Kullanılmayan bir teslimat türümüz (0x03) ve [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) bayraklarında iki kalan bitimiz (0 ve 1) var, bu özellikleri uygulamak için bunları kullanabiliriz.
+1. It would force the OBEP to do a lookup
+
+2. The LeaseSet may not be published to a floodfill, so the lookup would fail.
+
+3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
+
+4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
+   which they could otherwise only discover by scraping all the LeaseSets in the
+   network and looking for a Lease match.
 
 
-## Güvenlik Etkileri
+## Design
 
-Bu öneri, OBGW'nin hedef Destination'ı veya NetDB'ye bakış açısı hakkındaki bilgi miktarını değiştirmez:
+The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
+delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
 
-- OBEP'yi kontrol eden ve NetDB'den LeaseSet'leri kazıyan bir saldırgan, bir mesajın belirli bir Destination'a gönderilip gönderilmediğini, `http://localhost:63465/docs/specs/common-structures/#tunnelid` / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification` çiftini arayarak zaten belirleyebilir. En kötü ihtimalle, TMDI'deki birden fazla Lease varlığı, saldırganın veritabanında bir eşleşme bulma hızını artırabilir.
+The OBEP would select one of those to deliver to. The OBEP would select, if
+available, one that it is already connected to, or already knows about. This
+would make the OBEP-IBGW path faster and more reliable, and reduce overall
+network connections.
 
-- Kötü niyetli bir Destination işleten bir saldırgan, zaten farklı floodfill'lere farklı gelen tüneller içeren LeaseSet'ler yayımlayarak ve OBGW'nin hangi tüneller aracılığıyla bağlandığını gözlemleyerek, bağlanan bir kurbanın NetDB'ye bakış açısı hakkında bilgi edinebilir. Onların bakış açısından, OBEP hangi tüneli kullanacağını seçmesi, OBGW'nin seçimi yapmasına işlevsel olarak identiktir.
+We have one unused delivery type (0x03) and two remaining bits (0 and 1) in the
+flags for TUNNEL-DELIVERY, which we can leverage to implement these features.
 
-Çoklu yayın bayrağı, OBGW'nin OBEP'lere çoklu yayın yaptığını ifşa eder. Bu, daha yüksek seviyeli protokolleri uygularken göz önünde bulundurulması gereken bir performans ve gizlilik değiş tokuşu yaratır. Opsiyonel bir bayrak olduğundan, kullanıcılar uygulamaları için uygun kararı verebilirler. Ancak, uyumlu uygulamalar için bu davranışın varsayılan olması geniş bir kullanım yelpazesi sağlar çünkü bu belirli bir mesajın hangi uygulamadan kaynaklandığı hakkında bilgi sızmasını azaltır.
+
+## Security Implications
+
+This proposal does not change the amount of information leaked about the OBGW's
+target Destination or their view of the NetDB:
+
+- An adversary that controls the OBEP and is scraping LeaseSets from the NetDB
+  can already determine whether a message is being sent to a particular
+  Destination, by searching for the TunnelId / RouterIdentity pair. At
+  worst, the presence of multiple Leases in the TMDI might make it faster to
+  find a match in the adversary's database.
+
+- An adversary that is operating a malicious Destination can already gain
+  information about a connecting victim's view of the NetDB, by publishing
+  LeaseSets containing different inbound tunnels to different floodfills, and
+  observing which tunnels the OBGW connects through. From their point of view,
+  the OBEP selecting which tunnel to use is functionally identical to the OBGW
+  making the selection.
+
+The multicast flag leaks the fact that the OBGW is multicasting to the OBEPs.
+This creates a performance vs. privacy trade-off that should be considered when
+implementing higher-level protocols. Being an optional flag, users can make
+the appropriate decision for their application. There may be benefits to this
+being the default behaviour for compatible applications, however, as wide-spread
+usage by a variety of applications would reduce the information leakage about
+which particular application a message is from.
 
 
-## Spesifikasyon
+## Specification
 
-İlk Parça Teslimat Talimatları [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) şu şekilde değiştirilecektir:
+The First Fragment Delivery Instructions would be modified as follows:
 
 ```
 +----+----+----+----+----+----+----+----+
-|flag|  Tunnel ID (opt)  |              |
-+----+----+----+----+----+              +
-|                                       |
-+                                       +
-|         To Hash (optional)            |
-+                                       +
-|                                       |
-+                        +----+----+----+
-|                        |dly | Mesaj  
-+----+----+----+----+----+----+----+----+
- ID (opt) |genişletilmiş seçenekler(opt)|cnt | (o)
-+----+----+----+----+----+----+----+----+
- Tünel ID N   |                        |
-+----+----+----+                        +
-|                                       |
-+                                       +
-|         To Hash N (optional)          |
-+                                       +
-|                                       |
-+              +----+----+----+----+----+
-|              | Tünel ID N+1 (o) |    |
-+----+----+----+----+----+----+----+    +
-|                                       |
-+                                       +
-|         To Hash N+1 (optional)        |
-+                                       +
-|                                       |
-+                                  +----+
-|                                  | sz
-+----+----+----+----+----+----+----+----+
-     |
-+----+
+  |flag|  Tunnel ID (opt)  |              |
+  +----+----+----+----+----+              +
+  |                                       |
+  +                                       +
+  |         To Hash (optional)            |
+  +                                       +
+  |                                       |
+  +                        +----+----+----+
+  |                        |dly | Message
+  +----+----+----+----+----+----+----+----+
+   ID (opt) |extended opts (opt)|cnt | (o)
+  +----+----+----+----+----+----+----+----+
+   Tunnel ID N   |                        |
+  +----+----+----+                        +
+  |                                       |
+  +                                       +
+  |         To Hash N (optional)          |
+  +                                       +
+  |                                       |
+  +              +----+----+----+----+----+
+  |              | Tunnel ID N+1 (o) |    |
+  +----+----+----+----+----+----+----+    +
+  |                                       |
+  +                                       +
+  |         To Hash N+1 (optional)        |
+  +                                       +
+  |                                       |
+  +                                  +----+
+  |                                  | sz
+  +----+----+----+----+----+----+----+----+
+       |
+  +----+
 
 flag ::
-       1 bayt
-       Bit sırası: 76543210
-       bitler 6-5: teslimat türü
-                 0x03 = TÜNELLER
-       bit 0: çoklu yayın? Eğer 0 ise, tünellerden birine teslim et
-                         Eğer 1 ise, tüm tünellere teslim et
-                         Teslimat türü TÜNELLER değilse gelecekteki kullanımlar ile uyumluluk için 0'a ayarla
+       1 byte
+       Bit order: 76543210
+       bits 6-5: delivery type
+                 0x03 = TUNNELS
+       bit 0: multicast? If 0, deliver to one of the tunnels
+                         If 1, deliver to all of the tunnels
+                         Set to 0 for compatibility with future uses if
+                         delivery type is not TUNNELS
 
 Count ::
-       1 bayt
-       Opsiyonel, teslimat türü TÜNELLER ise mevcut
-       2-255 - Takip edilecek id/hash çiftlerinin sayısı
+       1 byte
+       Optional, present if delivery type is TUNNELS
+       2-255 - Number of id/hash pairs to follow
 
-Tunnel ID :: `TunnelId`
+Tunnel ID :: TunnelId
 To Hash ::
-       36 bayt her biri
-       Opsiyonel, teslimat türü TÜNELLER ise mevcut
-       id/hash çiftleri
+       36 bytes each
+       Optional, present if delivery type is TUNNELS
+       id/hash pairs
 
-Toplam uzunluk: Tipik uzunluk:
-       75 bayt sayı 2 TÜNELLER teslimatı için (parçalanmamış tünel mesajı);
-       79 bayt sayı 2 TÜNELLER teslimatı için (ilk parça)
+Total length: Typical length is:
+       75 bytes for count 2 TUNNELS delivery (unfragmented tunnel message);
+       79 bytes for count 2 TUNNELS delivery (first fragment)
 
-Teslimat talimatlarının geri kalanı değiştirilmemiştir
+Rest of delivery instructions unchanged
 ```
 
 
-## Uyumluluk
+## Compatibility
 
-Yeni spesifikasyonu anlaması gereken tek eşler OBGW'ler ve OBEP'lerdir. Dolayısıyla, bu değişikliği hedef I2P sürümü [VERSIONS](/docs/specs/i2np/#protocol-versions) üzerinden mevcut ağ ile uyumlu hale getirebiliriz:
+The only peers that need to be understand the new specification are the OBGWs
+and the OBEPs. We can therefore make this change compatible with the existing
+network by making its use conditional on the target I2P version:
 
-* OBGW'ler, outbound tünelleri oluştururken advertised I2P sürümüne göre uyumlu OBEP'leri seçmeli.
+* The OBGWs must select compatible OBEPs when building outbound tunnels, based
+  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
 
-* Hedef sürümü ilan eden eşler, yeni bayrakları çözmeyi desteklemeli ve talimatları geçersiz olarak reddetmemelidir.
+* Peers that advertise the target version must support parsing the new flags,
+  and must not reject the instructions as invalid.
 
+
+## References
+
+* [Destination](/docs/specs/common-structures/#destination)
+* [Leases](/docs/specs/common-structures/#lease)
+* [LeaseSet](/docs/specs/common-structures/#leaseset)
+* [RouterIdentity](/docs/specs/common-structures/#routeridentity)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TUNNEL-DELIVERY](/docs/specs/common-structures/#tunnelmessagedeliveryinstructions)
+* [TunnelId](/docs/specs/common-structures/#tunnelid)
+* [VERSIONS](/docs/specs/i2np/#protocol-versions)

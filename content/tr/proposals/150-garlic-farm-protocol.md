@@ -9,487 +9,628 @@ thread: "http://zzz.i2p/topics/2234"
 toc: true
 ---
 
-## Genel Bakış
+## Overview
 
-Bu, JRaft'a dayalı Sarımsak Çiftliği kablo protokolü için spesifikasyondur, TCP üzerinden uygulama için "exts" kodu ve "dmprinter" örnek uygulaması [JRAFT](https://github.com/datatechnology/jraft). JRaft, Raft protokolünün bir uygulamasıdır [RAFT](/docs/research/ongaro2014-raft.pdf).
+This is the spec for the Garlic Farm wire protocol,
+based on JRaft, its "exts" code for implementation over TCP,
+and its "dmprinter" sample application [JRAFT](https://github.com/datatechnology/jraft).
 
-Belgelenmiş bir kablo protokolü olan bir uygulama bulamadık. Ancak, JRaft uygulaması, kodun incelenebileceği ve ardından protokolün belgelenebileceği kadar basittir. Bu öneri bu çabanın sonucudur.
 
-Bu, Meta LeaseSet içindeki girdilerin yayınlanmasında yönlendiricilerin eşgüdümü için arka plan olacak. Teklif 123'e bakın.
+We were unable to find any implementation with a documented wire protocol.
+However, the JRaft implementation is simple enough that we could
+inspect the code and then document its protocol.
+This proposal is the result of that effort.
 
-## Hedefler
+This will be the backend for coordination of routers publishing
+entries in a Meta LeaseSet. See proposal 123.
 
-- Küçük kod boyutu
-- Mevcut uygulama tabanlı
-- Seri hale getirilmiş Java nesneleri veya herhangi bir Java'ya özgü özellikler veya kodlama yok
-- Herhangi bir bootstrapping bu protokolün kapsamı dışındadır. En az bir diğer sunucunun sabit kodlanmış veya bu protokolün dışında yapılandırılmış olduğu varsayılır.
-- Band dışı ve I2P kullanım durumlarını destekleyin.
 
-## Tasarım
+## Goals
 
-Raft protokolü somut bir protokol değildir; yalnızca bir durum makinesi tanımlar. Bu nedenle, JRaft'ın somut protokolünü belgeleriz ve protokolümüzü buna dayandırırız. Bir kimlik doğrulama el sıkışmasının eklenmesi dışında JRaft protokolünde hiçbir değişiklik yoktur.
+- Small code size
+- Based on existing implementation
+- No serialized Java objects or any Java-specific features or encoding
+- Any bootstrapping is out-of-scope. At least one other server is assumed
+  to be hardcoded, or configured out-of-band of this protocol.
+- Support both out-of-band and in-I2P use cases.
 
-Raft bir günlük yayınlamakla görevli bir Lider seçer. Bu günlük, Raft Yapılandırma verilerini ve Uygulama verilerini içerir. Uygulama verileri her Sunucunun Yönlendiricisinin durumunu ve Meta LS2 kümesi için Hedefi içerir. Sunucular, Meta LS2'nin yayınlayıcısını ve içeriğini belirlemek için ortak bir algoritma kullanır. Meta LS2'nin yayıncısı mutlaka Raft Lideri değildir.
 
-## Teknik Şartname
+## Design
 
-Kablo protokolü SSL soketler veya SSL olmayan I2P soketleri üzerinden çalışır. I2P soketleri HTTP Proxy üzerinden yönlendirilir. Temiz ağ SSL olmayan soketlere destek yoktur.
+The Raft protocol is not a concrete protocol; it defines only a state machine.
+Therefore we document the concrete protocol of JRaft and base our protocol on it.
+There are no changes to the JRaft protocol other than the addition of
+an authentication handshake.
 
-### El Sıkışma ve Kimlik Doğrulama
+Raft elects a Leader whose job is to publish a log.
+The log contains Raft Configuration data and Application data.
+Application data contains the status of each Server's Router and the Destination
+for the Meta LS2 cluster.
+The servers use a common algorithm to determine the publisher and contents
+of the Meta LS2.
+The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
 
-JRaft tarafından tanımlanmamıştır.
 
-Hedefler:
 
-- Kullanıcı/parola kimlik doğrulama yöntemi
-- Sürüm tanımlayıcısı
-- Küme tanımlayıcısı
-- Genişletilebilir
-- I2P soketleri için kullanıldığında proxying kolaylığı
-- Sunucuyu gereksiz yere bir Sarımsak Çiftliği sunucusu olarak ifşa etmeyin
-- Tam bir web sunucusu uygulamasının gerekli olmadığı basit protokol
-- Yaygın standartlarla uyumlu, böylece istenirse standart kütüphaneler kullanılabilir
+## Specification
 
-Bir WebSocket benzeri el sıkışması [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) ve HTTP Özeti kimlik doğrulaması [RFC-2617](https://tools.ietf.org/html/rfc2617) kullanacağız. RFC 2617 Temel kimlik doğrulaması desteklenmemektedir. HTTP proxy üzerinden yönlendirilirken, [RFC-2616](https://tools.ietf.org/html/rfc2616)'da belirtildiği gibi proxy ile iletişim kurun.
+The wire protocol is over SSL sockets or non-SSL I2P sockets.
+I2P sockets are proxied through the HTTP Proxy.
+There is no support for clearnet non-SSL sockets.
 
-#### Kimlik Bilgileri
+### Handshake and authentication
 
-Kullanıcı adları ve parolalar küme başına mı yoksa sunucu başına mı olduğuna uygulamaya bağlıdır.
+Not defined by JRaft.
 
-#### HTTP İsteği 1
+Goals:
 
-Başlatan taraf aşağıdaki gibi gönderir.
+- User/password authentication method
+- Version identifier
+- Cluster identifier
+- Extensible
+- Ease of proxying when used for I2P sockets
+- Do not unnecessarily expose server as a Garlic Farm server
+- Simple protocol so a full web server implementation is not required
+- Compatible with common standards, so implementations may use
+  standard libraries if desired
 
-Tüm satırlar HTTP tarafından gerekli görüldüğü gibi CRLF ile sonlandırılır.
+We will use an websocket-like handshake and
+HTTP Digest authentication [RFC 2617](https://tools.ietf.org/html/rfc2617).
+RFC 2617 Basic authentication is NOT supported.
+When proxying through the HTTP proxy, communicate with
+the proxy as specified in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+
+#### Credentials
+
+Whether usernames and passwords are per-cluster, or
+per-server, is implementation-dependent.
+
+
+#### HTTP Request 1
+
+The originator will send the following.
+
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
   Connection: close
-  (diğer başlıklar yok sayılır)
-  (boş satır)
+  (any other headers ignored)
+  (blank line)
 
-  CLUSTER kümenin adıdır (varsayılan "farm")
-  VERSION ise Sarımsak Çiftliği sürümüdür (şimdi "1")
+  CLUSTER is the name of the cluster (default "farm")
+  VERSION is the Garlic Farm version (currently "1")
+
 ```
 
 
-#### HTTP Yanıtı 1
+#### HTTP Response 1
 
-Eğer yol doğru değilse, alıcı [RFC-2616](https://tools.ietf.org/html/rfc2616)'da belirtildiği gibi standart bir "HTTP/1.1 404 Not Found" yanıtı gönderir.
+If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
+as in [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-Eğer yol doğruysa, alıcı [RFC-2617](https://tools.ietf.org/html/rfc2617)'da belirtildiği gibi standart bir "HTTP/1.1 401 Unauthorized" yanıtı gönderir ve WWW-Authenticate HTTP özeti kimlik doğrulama başlığını içerir.
+If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
+including the WWW-Authenticate HTTP digest authentication header,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Her iki taraf da daha sonra soketi kapatır.
+Both parties will then close the socket.
 
 
-#### HTTP İsteği 2
+#### HTTP Request 2
 
-Başlatan taraf aşağıdaki gibi gönderir,
-[RFC-2617](https://tools.ietf.org/html/rfc2617) ve [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) gibi.
+The originator will send the following,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Tüm satırlar HTTP tarafından gerekli görüldüğü gibi CRLF ile sonlandırılır.
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
   Connection: keep-alive, Upgrade
   Upgrade: websocket
-  (Daha proxyli ise Sec-Websocket-* başlıkları)
-  Authorization: (RFC 2617'de olduğu gibi HTTP özeti yetkilendirme başlığı)
-  (diğer başlıklar yok sayılır)
-  (boş satır)
+  (Sec-Websocket-* headers if proxied)
+  Authorization: (HTTP digest authorization header as in RFC 2617)
+  (any other headers ignored)
+  (blank line)
 
-  CLUSTER kümenin adıdır (varsayılan "farm")
-  VERSION ise Sarımsak Çiftliği sürümüdür (şimdi "1")
+  CLUSTER is the name of the cluster (default "farm")
+  VERSION is the Garlic Farm version (currently "1")
+
 ```
 
-#### HTTP Yanıtı 2
 
-Eğer kimlik doğrulama doğru değilse, alıcı [RFC-2617](https://tools.ietf.org/html/rfc2617)'da belirtildiği gibi başka bir standart "HTTP/1.1 401 Unauthorized" yanıtı gönderir.
+#### HTTP Response 2
 
-Eğer kimlik doğrulama doğruysa, alıcı [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)'da olduğu gibi aşağıdaki yanıtı gönderir.
+If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Tüm satırlar HTTP tarafından gerekli görüldüğü gibi CRLF ile sonlandırılır.
+If the authentication is correct, the recipient will send the following response,
+as in the WebSocket protocol.
+
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
-  (Sec-Websocket-* başlıkları)
-  (diğer başlıklar yok sayılır)
-  (boş satır)
+  (Sec-Websocket-* headers)
+  (any other headers ignored)
+  (blank line)
+
 ```
 
-Bu alındıktan sonra, soket açık kalır. Aşağıda tanımlandığı gibi Raft protokolü aynı sokette başlar.
+After this is received, the socket remains open.
+The Raft protocol as defined below commences, on the same socket.
 
-#### Önbellekleme
 
-Kimlik bilgilerinin en az bir saat boyunca önbelleğe alınması gerekir, böylece
-ilerleyen bağlantılar doğrudan yukarıdaki
-"HTTP İsteği 2"e atlanabilir.
+#### Caching
 
-### Mesaj Türleri
+Credentials shall be cached for at least one hour, so that
+subsequent connections may jump directly to
+"HTTP Request 2" above.
 
-İki tür mesaj vardır: istekler ve yanıtlar.
-İstekler, Günlük Girdileri içerebilir ve değişken boyutludur;
-yanıtlar, Günlük Girdileri içermez ve sabit boyutludur.
 
-Mesaj tipleri 1-4, Raft tarafından tanımlanan standart RPC mesajlarıdır.
-Bu, çekirdek Raft protokolüdür.
 
-Mesaj tipleri 5-15, JRaft tarafından tanımlanan, istemcileri, dinamik sunucu değişikliklerini ve
-verimli günlük senkronizasyonunu desteklemek için genişletilmiş RPC mesajlarıdır.
+### Message Types
 
-Mesaj tipleri 16-17, Raft bölüm 7'de tanımlanan Günlük Sıkıştırma RPC mesajlarıdır.
+There are two types of messages, requests and responses.
+Requests may contain Log Entries, and are variable-sized;
+responses do not contain Log Entries, and are fixed-size.
 
-| Mesaj | Numarası | Gönderen | Gönderilen Taraf | Notlar |
+Message types 1-4 are the standard RPC messages defined by Raft.
+This is the core Raft protocol.
+
+Message types 5-15 are the extended RPC messages defined by
+JRaft, to support clients, dynamic server changes, and
+efficient log synchronization.
+
+Message types 16-17 are the Log Compaction RPC messages defined
+in Raft section 7.
+
+
+| Message | Number | Sent By | Sent To | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| RequestVoteRequest | 1 | Aday | Takipçi | Standart Raft RPC; Günlük girdileri içermemelidir |
-| RequestVoteResponse | 2 | Takipçi | Aday | Standart Raft RPC |
-| AppendEntriesRequest | 3 | Lider | Takipçi | Standart Raft RPC |
-| AppendEntriesResponse | 4 | Takipçi | Lider / İstemci | Standart Raft RPC |
-| ClientRequest | 5 | İstemci | Lider / Takipçi | Yanıt AppendEntriesResponse'dir; Sadece Uygulama günlük girdilerini içermelidir |
-| AddServerRequest | 6 | İstemci | Lider | Yalnızca tek bir ClusterServer günlük girdisi içermelidir |
-| AddServerResponse | 7 | Lider | İstemci | Lider ayrıca JoinClusterRequest gönderir |
-| RemoveServerRequest | 8 | Takipçi | Lider | Yalnızca tek bir ClusterServer günlük girdisi içermelidir |
-| RemoveServerResponse | 9 | Lider | Takipçi | |
-| SyncLogRequest | 10 | Lider | Takipçi | Uygulamaya sadece bir LogPack günlük girdisi içermelidir |
-| SyncLogResponse | 11 | Takipçi | Lider | |
-| JoinClusterRequest | 12 | Lider | Yeni Sunucu | Katılma daveti; yalnızca bir Yapılandırma günlük girdisi içermelidir |
-| JoinClusterResponse | 13 | Yeni Sunucu | Lider | |
-| LeaveClusterRequest | 14 | Lider | Takipçi | Ayrılma komutu |
-| LeaveClusterResponse | 15 | Takipçi | Lider | |
-| InstallSnapshotRequest | 16 | Lider | Takipçi | Raft Bölümü 7; Sadece bir SnapshotSyncRequest günlük girdisi içermelidir |
-| InstallSnapshotResponse | 17 | Takipçi | Lider | Raft Bölümü 7 |
-
-### Kurulum
-
-HTTP el sıkışmasının ardından, kurulum sırası şu şekildedir:
-
-```text
-Yeni Sunucu Alice              Rastgele Takipçi Bob
-
-  İstemci İsteği   ------->
-          <---------   AppendEntries Yanıtı
-
-  Bob lider olduğunu söylerse, aşağıdaki şekilde devam edin.
-  Aksi takdirde, Alice Bob'dan bağlantıyı kesmelidir ve lider ile bağlantı kurmalıdır.
+| RequestVoteRequest | 1 | Candidate | Follower | Standard Raft RPC; must not contain log entries |
+| RequestVoteResponse | 2 | Follower | Candidate | Standard Raft RPC |
+| AppendEntriesRequest | 3 | Leader | Follower | Standard Raft RPC |
+| AppendEntriesResponse | 4 | Follower | Leader / Client | Standard Raft RPC |
+| ClientRequest | 5 | Client | Leader / Follower | Response is AppendEntriesResponse; must contain Application log entries only |
+| AddServerRequest | 6 | Client | Leader | Must contain a single ClusterServer log entry only |
+| AddServerResponse | 7 | Leader | Client | Leader will also send a JoinClusterRequest |
+| RemoveServerRequest | 8 | Follower | Leader | Must contain a single ClusterServer log entry only |
+| RemoveServerResponse | 9 | Leader | Follower | |
+| SyncLogRequest | 10 | Leader | Follower | Must contain a single LogPack log entry only |
+| SyncLogResponse | 11 | Follower | Leader | |
+| JoinClusterRequest | 12 | Leader | New Server | Invitation to join; must contain a single Configuration log entry only |
+| JoinClusterResponse | 13 | New Server | Leader | |
+| LeaveClusterRequest | 14 | Leader | Follower | Command to leave |
+| LeaveClusterResponse | 15 | Follower | Leader | |
+| InstallSnapshotRequest | 16 | Leader | Follower | Raft Section 7; Must contain a single SnapshotSyncRequest log entry only |
+| InstallSnapshotResponse | 17 | Follower | Leader | Raft Section 7 |
 
 
-  Yeni Sunucu Alice              Lider Charlie
+### Establishment
 
-  İstemci İsteği   ------->
-          <---------   AppendEntries Yanıtı
-  AddServer İsteği   ------->
-          <---------   AddServer Yanıtı
-          <---------   JoinCluster İsteği
-  JoinCluster Yanıtı  ------->
-          <---------   SyncLog İsteği
-                       VEYA InstallSnapshot İsteği
-  SyncLog Yanıtı  ------->
-  VEYA InstallSnapshot Yanıtı
-```
-
-Bağlantıyı Kesme Sırası:
+After the HTTP handshake, the establishment sequence is as follows:
 
 ```text
-Takipçi Alice              Lider Charlie
 
-  RemoveServer İsteği   ------->
-          <---------   RemoveServer Yanıtı
-          <---------   LeaveCluster İsteği
-  LeaveCluster Yanıtı  ------->
+New Server Alice              Random Follower Bob
+
+  ClientRequest   ------->
+          <---------   AppendEntriesResponse
+
+  If Bob says he is the leader, continue as below.
+  Else, Alice must disconnect from Bob and connect to the leader.
+
+
+  New Server Alice              Leader Charlie
+
+  ClientRequest   ------->
+          <---------   AppendEntriesResponse
+  AddServerRequest   ------->
+          <---------   AddServerResponse
+          <---------   JoinClusterRequest
+  JoinClusterResponse  ------->
+          <---------   SyncLogRequest
+                       OR InstallSnapshotRequest
+  SyncLogResponse  ------->
+  OR InstallSnapshotResponse
+
 ```
 
-Seçim Sırası:
+Disconnect Sequence:
 
 ```text
-Aday Alice               Takipçi Bob
 
-  RequestVote İsteği   ------->
-          <---------   RequestVote Yanıtı
+Follower Alice              Leader Charlie
 
-  Alice seçim kazandıysa:
+  RemoveServerRequest   ------->
+          <---------   RemoveServerResponse
+          <---------   LeaveClusterRequest
+  LeaveClusterResponse  ------->
 
-  Lider Alice                Takipçi Bob
+```
 
-  AppendEntries İsteği   ------->
-  (kalp atışı)
-          <---------   AppendEntries Yanıtı
+Election Sequence:
+
+```text
+
+Candidate Alice               Follower Bob
+
+  RequestVoteRequest   ------->
+          <---------   RequestVoteResponse
+
+  if Alice wins election:
+
+  Leader Alice                Follower Bob
+
+  AppendEntriesRequest   ------->
+  (heartbeat)
+          <---------   AppendEntriesResponse
+
 ```
 
 
-### Tanımlar
+### Definitions
 
-- Kaynak: Mesajın kökenini tanımlar
-- Hedef: Mesajın alıcısını tanımlar
-- Dönemler: Raft'a bakın. 0 ile başlatılır, monoton artar
-- İndeksler: Raft'a bakın. 0 ile başlatılır, monoton artar
+- Source: Identifies the originator of the message
+- Destination: Identifies the recipient of the message
+- Terms: See Raft. Initialized to 0, increases monotonically
+- Indexes: See Raft. Initialized to 0, increases monotonically
 
-### İstekler
 
-İstekler bir başlık ve sıfır veya daha fazla günlük girdisi içerir. İstekler sabit boyutlu bir başlık ve değişken boyutlu isteğe bağlı Günlük Girdileri içerir.
 
-#### İstek Başlığı
+### Requests
 
-İstek başlığı 45 bayttır, aşağıdaki gibi. Tüm değerler işaretsiz big-endian'dir.
+Requests contain a header and zero or more log entries.
+Requests contain a fixed-size header and optional Log Entries of variable size.
 
-```dataspec
-Mesaj tipi:      1 bayt
-  Kaynak:          Kimlik, 4 bayt tamsayı
-  Hedef:           Kimlik, 4 bayt tamsayı
-  Dönem:           Mevcut dönem (notlara bakın), 8 bayt tamsayı
-  Son Günlük Dönemi:  8 bayt tamsayı
-  Son Günlük İndeksi:  8 bayt tamsayı
-  Onaylı İndeks:   8 bayt tamsayı
-  Günlük girdileri boyutu:  Toplam bayt cinsinden boyut, 4 bayt tamsayı
-  Günlük girdileri:       aşağıda belirtildiği gibi, belirtilen toplam uzunluk
+
+#### Request Header
+
+The request header is 45 bytes, as follows.
+All values are unsigned big-endian.
+
+```text
+
+Message type:      1 byte
+  Source:            ID, 4 byte integer
+  Destination:       ID, 4 byte integer
+  Term:              Current term (see notes), 8 byte integer
+  Last Log Term:     8 byte integer
+  Last Log Index:    8 byte integer
+  Commit Index:      8 byte integer
+  Log entries size:  Total size in bytes, 4 byte integer
+  Log entries:       see below, total length as specified
+
 ```
 
 
-#### Notlar
+#### Notes
 
-RequestVote İsteğinde, Dönem adayın dönemidir. Diğerlerinde, liderin mevcut dönemidir.
+In the RequestVoteRequest, Term is the candidate's term.
+Otherwise, it is the leader's current term.
 
-AppendEntries İsteğinde, günlük girdileri boyutu sıfır olduğunda, bu mesaj bir kalp atışı (canlı tutma) mesajıdır.
+In the AppendEntriesRequest, when the log entries size is zero,
+this message is a heartbeat (keepalive) message.
 
-#### Günlük Girdileri
 
-Günlük sıfır veya daha fazla günlük girdisi içerir. Her günlük girdisi aşağıdaki gibidir. Tüm değerler işaretsiz big-endian'dir.
 
-```dataspec
-Dönem:           8 bayt tamsayı
-  Değer türü:     1 bayt
-  Girdi boyutu:   Bayt olarak, 4 bayt tamsayı
-  Girdi:          belirlenen uzunlukta
+#### Log Entries
+
+The log contains zero or more log entries.
+Each log entry is as follows.
+All values are unsigned big-endian.
+
+```text
+
+Term:           8 byte integer
+  Value type:     1 byte
+  Entry size:     In bytes, 4 byte integer
+  Entry:          length as specified
+
 ```
 
-#### Günlük İçeriği
 
-Tüm değerler işaretsiz big-endian'dir.
+#### Log Contents
 
-| Günlük Değer Türü | Sayı |
+All values are unsigned big-endian.
+
+| Log Value Type | Number |
 | :--- | :--- |
-| Uygulama | 1 |
-| Yapılandırma | 2 |
-| Küme Sunucusu | 3 |
-| Günlük Paketi | 4 |
-| Anlık Görüntü Eşitleme İsteği | 5 |
+| Application | 1 |
+| Configuration | 2 |
+| ClusterServer | 3 |
+| LogPack | 4 |
+| SnapshotSyncRequest | 5 |
 
-#### Uygulama
 
-Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/json-en.html) formatındadır. Aşağıdaki Uygulama Katmanı bölümüne bakın.
+#### Application
 
-#### Yapılandırma
+Application contents are UTF-8 encoded [JSON](https://www.json.org/).
+See the Application Layer section below.
 
-Bu, liderin yeni bir küme yapılandırmasını seri hale getirmesi ve eşlere çoğaltması için kullanılır. Sıfır veya daha fazla ClusterServer yapılandırması içerir.
 
-```dataspec
-Günlük İndeksi:  8 bayt tamsayı
-  Son Günlük İndeksi:  8 bayt tamsayı
-  Her sunucu için ClusterServer Verileri:
-    Kimlik:                4 bayt tamsayı
-    Uç nokta veri boyutu:  Bayt olarak, 4 bayt tamsayı
-    Uç nokta verisi:       "tcp://localhost:9001" şeklinde ASCII dizesi, belirtilen uzunlukta
+#### Configuration
+
+This is used for the leader to serialize a new cluster configuration and replicate to peers.
+It contains zero or more ClusterServer configurations.
+
+
+```text
+
+Log Index:  8 byte integer
+  Last Log Index:  8 byte integer
+  ClusterServer Data for each server:
+    ID:                4 byte integer
+    Endpoint data len: In bytes, 4 byte integer
+    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+
 ```
 
-#### Küme Sunucusu
 
-Bir kümedeki bir sunucu için yapılandırma bilgileri. Bu yalnızca bir AddServerRequest veya RemoveServerRequest mesajında dahil edilir.
+#### ClusterServer
 
-AddServerRequest Mesajında kullanıldığında:
+The configuration information for a server in a cluster.
+This is included only in a AddServerRequest or RemoveServerRequest message.
 
-```dataspec
-Kimlik:                4 bayt tamsayı
-  Uç nokta veri boyutu:  Bayt olarak, 4 bayt tamsayı
-  Uç nokta verisi:       "tcp://localhost:9001" şeklinde ASCII dizesi, belirtilen uzunlukta
+When used in a AddServerRequest Message:
+
+```text
+
+ID:                4 byte integer
+  Endpoint data len: In bytes, 4 byte integer
+  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+
 ```
 
-RemoveServerRequest Mesajında kullanıldığında:
 
-```dataspec
-Kimlik:                4 bayt tamsayı
+When used in a RemoveServerRequest Message:
+
+```text
+
+ID:                4 byte integer
+
 ```
 
-#### Günlük Paketi
 
-Bu yalnızca bir SyncLogRequest mesajında dahil edilir.
+#### LogPack
 
-Aşağıdaki veriler sıkıştırılmış (gzipped) olarak iletilir:
+This is included only in a SyncLogRequest message.
 
-```dataspec
-İndeks veri boyutu: Bayt olarak, 4 bayt tamsayı
-  Günlük veri boyutu: Bayt olarak, 4 bayt tamsayı
-  İndeks verisi:     Her indeks için 8 bayt, belirtilen uzunlukta
-  Günlük veri:       belirtilen uzunlukta
+The following is gzipped before transmission:
+
+
+```text
+
+Index data len: In bytes, 4 byte integer
+  Log data len:   In bytes, 4 byte integer
+  Index data:     8 bytes for each index, length as specified
+  Log data:       length as specified
+
 ```
 
-#### Anlık Görüntü Eşitleme İsteği
 
-Bu yalnızca bir InstallSnapshotRequest mesajında dahil edilir.
 
-```dataspec
-Son Günlük İndeksi:  8 bayt tamsayı
-  Son Günlük Dönemi:   8 bayt tamsayı
-  Yapılandırma veri boyutu: Bayt olarak, 4 bayt tamsayı
-  Yapılandırma verisi:     belirtilen uzunlukta
-  Ofset:          Verinin veritabanındaki ofseti, bayt olarak, 8 bayt tamsayı
-  Veri boyutu:        Bayt olarak, 4 bayt tamsayı
-  Veri:            belirtilen uzunlukta
-  Tamamlandı Mı:         eğer tamamlandıysa 1, değilse 0 (1 bayt)
+#### SnapshotSyncRequest
+
+This is included only in a InstallSnapshotRequest message.
+
+```text
+
+Last Log Index:  8 byte integer
+  Last Log Term:   8 byte integer
+  Config data len: In bytes, 4 byte integer
+  Config data:     length as specified
+  Offset:          The offset of the data in the database, in bytes, 8 byte integer
+  Data len:        In bytes, 4 byte integer
+  Data:            length as specified
+  Is Done:         1 if done, 0 if not done (1 byte)
+
 ```
 
-### Yanıtlar
 
-Tüm yanıtlar 26 bayttır, aşağıdaki gibi. Tüm değerler işaretsiz big-endian'dir.
 
-```dataspec
-Mesaj tipi:   1 bayt
-  Kaynak:         Kimlik, 4 bayt tamsayı
-  Hedef:          Genellikle gerçek hedef kimliği (notlara bakın), 4 bayt tamsayı
-  Dönem:          Mevcut dönem, 8 bayt tamsayı
-  Sonraki İndeks: Liderin son günlük indeksi + 1'ye başlanır, 8 bayt tamsayı
-  Kabul Edildi Mi: Eğer kabul edildiyse 1, değilse 0 (notları inceleyin), 1 bayt
+
+### Responses
+
+All responses are 26 bytes, as follows.
+All values are unsigned big-endian.
+
+```text
+
+Message type:   1 byte
+  Source:         ID, 4 byte integer
+  Destination:    Usually the actual destination ID (see notes), 4 byte integer
+  Term:           Current term, 8 byte integer
+  Next Index:     Initialized to leader last log index + 1, 8 byte integer
+  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+
 ```
 
-#### Notlar
 
-Hedef Kimliği genellikle bu mesajın gerçek hedefidir. Ancak, AppendEntriesResponse, AddServerResponse ve RemoveServerResponse için, mevcut liderin kimliğidir.
+#### Notes
 
-RequestVoteResponse'ta, Kabul Edildi Mi 1 ise aday için bir oy (istek sahibi), ve 0 ise oy yoktur.
+The Destination ID is usually the actual destination for this message.
+However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
+it is the ID of the current leader.
 
-## Uygulama Katmanı
+In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
+and 0 for no vote.
 
-Her Sunucu, bir İstemci İsteği içinde periyodik olarak Uygulama verilerini güncel olarak gönderir. Uygulama verileri her Sunucunun Router'ının durumunu ve Meta LS2 kümesi için Hedefi içerir. Sunucular, Meta LS2'nin yayıncısını ve içeriğini belirlemek için ortak bir algoritma kullanırlar. Günlükteki "en iyi" son duruma sahip sunucu Meta LS2 yayıncısıdır. Meta LS2'nin yayıncısı mutlaka Raft Lideri değildir.
 
-### Uygulama Veri İçeriği
+## Application Layer
 
-Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/json-en.html) formatındadır. Tam spesifikasyon TBD (Henüz Belirlenmedi). Amaç, Meta LS2'yi yayınlamak için "en iyi" yönlendiriciyi belirlemek üzere bir algoritma yazmak için yeterli veriyi sağlamak ve yayıncının Meta LS2'deki Hedefleri ağırlıklandırması için yeterli bilgiye sahip olmasını sağlamaktır. Veriler hem yönlendirici hem de Hedef istatistiklerini içerecektir.
+Each Server periodically posts Application data to the log in a ClientRequest.
+Application data contains the status of each Server's Router and the Destination
+for the Meta LS2 cluster.
+The servers use a common algorithm to determine the publisher and contents
+of the Meta LS2.
+The server with the "best" recent status in the log is the Meta LS2 publisher.
+The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
 
-Veriler, diğer sunucuların sağlığı ve Meta LS'nin alınma kabiliyeti hakkında uzaktan algılama verileri içerebilir. Bu veriler ilk sürümde desteklenmeyecektir.
 
-Veriler, bir yönetici istemcisi tarafından yayınlanan yapılandırma bilgilerini içerebilir. Bu veriler ilk sürümde desteklenmeyecektir.
+### Application Data Contents
 
-"Eşleme: değer" belirtilmişse, bu JSON eşleme anahtarını ve değerini belirtir. Aksi takdirde, belirleme TBD.
+Application contents are UTF-8 encoded [JSON](https://json.org/),
+for simplicity and extensibility.
+The full specification is TBD.
+The goal is to provide enough data to write an algorithm to determine the "best"
+router to publish the Meta LS2, and for the publisher to have sufficient information
+to weight the Destinations in the Meta LS2.
+The data will contain both router and Destination statistics.
 
-Küme verileri (en üst düzey):
+The data may optionally contain remote sensing data on the health of the
+other servers, and the ability to fetch the Meta LS.
+These data would not be supported in the first release.
 
-- küme: Küme ismi
-- tarih: Bu verilerin tarihi (uzun, epoch'tan itibaren milisaniye cinsinden)
-- kimlik: Raft Kimliği (tamsayı)
+The data may optionally contain configuration information posted
+by an administrator client.
+These data would not be supported in the first release.
 
-Yapılandırma verileri (config):
+If "name: value" is listed, that specifies the JSON map key and value.
+Otherwise, specification is TBD.
 
-- Herhangi bir yapılandırma parametreleri
 
-MetaLS yayınlama durumu (meta):
+Cluster data (top level):
 
-- hedef: metals hedefi, base64
-- sonYayınlananLS: mevcutsa, son yayımlanan metals'in base64 kodlaması
-- sonYayınlanmaZamanı: milisaniye olarak veya hiç olmazsa 0
-- yayınlamaYapılandırması: Yayıncı yapılandırma durumu kapalı/açık/otomatik
-- yayınlıyor: metals yayıncı durumu boolean doğru/yanlış
+- cluster: Cluster name
+- date: Date of this data (long, ms since the epoch)
+- id: Raft ID (integer)
 
-Yönlendirici verileri (router):
+Configuration data (config):
 
-- sonYayınlananRI: mevcutsa, son yayımlanan yönlendirici bilgisinin base64 kodlaması
-- çalışma süresi: Milisaniye cinsinden çalışma süresi
-- İş gecikmesi
-- Keşif tünelleri
-- Katılımcı tüneller
-- Yapılandırılmış bant genişliği
-- Mevcut bant genişliği
+- Any configuration parameters
 
-Hedefler (destinasyonlar):
-Liste
+MetaLS publishing status (meta):
 
-Hedef verileri:
+- destination: the metals destination, base64
+- lastPublishedLS: if present, base64 encoding of the last published metals
+- lastPublishedTime: in ms, or 0 if never
+- publishConfig: Publisher config status off/on/auto
+- publishing: metals publisher status boolean true/false
 
-- hedef: hedef, base64
-- çalışma süresi: Milisaniye cinsinden çalışma süresi
-- Yapılandırılmış tüneller
-- Mevcut tüneller
-- Yapılandırılmış bant genişliği
-- Mevcut bant genişliği
-- Yapılandırılmış bağlantılar
-- Mevcut bağlantılar
-- Kara liste verileri
+Router data (router):
 
-Uzak yönlendirici algılama verileri:
+- lastPublishedRI: if present, base64 encoding of the last published router info
+- uptime: Uptime in ms
+- Job lag
+- Exploratory tunnels
+- Participating tunnels
+- Configured bandwidth
+- Current bandwidth
 
-- Görülen Son RI sürümü
-- LS Alma zamanı
-- Bağlantı testi verileri
-- En yakın floodfills profil verileri
-  dünkü, bugünkü ve yarınki zaman aralıkları için
+Destinations (destinations):
+List
 
-Uzak hedef algılama verileri:
+Destination data:
 
-- Görülen Son LS sürümü
-- LS Alma zamanı
-- Bağlantı testi verileri
-- En yakın floodfills profil verileri
-  dünkü, bugünkü ve yarınki zaman aralıkları için
+- destination: the destination, base64
+- uptime: Uptime in ms
+- Configured tunnels
+- Current tunnels
+- Configured bandwidth
+- Current bandwidth
+- Configured connections
+- Current connections
+- Blacklist data
 
-Meta LS algılama verileri:
+Remote router sensing data:
 
-- Görülen son sürüm
-- Alma zamanı
-- En yakın floodfills profil verileri
-  dünkü, bugünkü ve yarınki zaman aralıkları için
+- Last RI version seen
+- LS Fetch time
+- Connection test data
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
 
-## Yönetim Arayüzü
+Remote destination sensing data:
 
-TBD, muhtemelen ayrı bir teklif.
-İlk sürüm için gerekli değildir.
+- Last LS version seen
+- LS Fetch time
+- Connection test data
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
 
-Bir yönetim arayüzünün gereksinimleri:
+Meta LS sensing data:
 
-- Birden fazla ana hedefi destekleme, yani birden fazla sanal küme (çiftlik)
-- Paylaşılan küme durumunun kapsamlı görünümünü sağlama - üyeler tarafından yayınlanan tüm istatistikler, mevcut lider kim vb.
-- Kümedeki bir katılımcıyı veya lideri zorla çıkarma yeteneği
-- MetaLS'yi zorla yayınlama yeteneği (mevcut düğüm yayıncı ise)
-- Exclude karmaşıklarını metaLS'den çıkarma yeteneği (mevcut düğüm yayıncı ise)
-- Toplu dağıtımlar için yapılandırma içe/dışa aktarma işlevselliği
+- Last version seen
+- Fetch time
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
 
-## Yönlendirici Arayüzü
 
-TBD, muhtemelen ayrı bir teklif.
-i2pcontrol ilk sürüm için gerekli değildir ve detaylı değişiklikler ayrı bir teklifte bulunacaktır.
+## Administration Interface
 
-Sarımsak Çiftliği için yönlendirici API gereksinimleri (JVM içi Java veya i2pcontrol)
+TBD, possibly a separate proposal.
+Not required for the first release.
+
+Requirements of an admin interface:
+
+- Support for multiple master destinations, i.e. multiple virtual clusters (farms)
+- Provide comprehensive view of shared cluster state - all stats published by members, who is the current leader, etc.
+- Ability to force removal of a participant or leader from the cluster
+- Ability to force publish metaLS (if current node is publisher)
+- Ability to exclude hashes from metaLS (if current node is publisher)
+- Configuration import/export functionality for bulk deployments
+
+
+
+## Router Interface
+
+TBD, possibly a separate proposal.
+i2pcontrol is not required for the first release and detailed changes will be included in a separate proposal.
+
+Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
 
 - getLocalRouterStatus()
 - getLocalLeafHash(Hash masterHash)
 - getLocalLeafStatus(Hash leaf)
-- getRemoteMeasuredStatus(Hash masterOrLeaf) // muhtemelen MVP'de yok
-- publishMetaLS(Hash masterHash, List<MetaLease> contents) // veya imzalı MetaLeaseSet? Kim imzalıyor?
+- getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
+- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
 - stopPublishingMetaLS(Hash masterHash)
-- kimlik doğrulama TBD?
+- authentication TBD?
 
-## Gerekçe
 
-Atomix çok büyük ve protokolü I2P üzerinden yönlendirme özelleştirmesine izin vermiyor. Ayrıca, kablo formatı belgelenmemiştir ve Java serileştirmesine bağlıdır.
+## Justification
 
-## Notlar
+Atomix is too large and won't allow customization for us to route
+the protocol over I2P. Also, its wire format is undocumented, and depends
+on Java serialization.
 
-## Sorunlar
 
-- Bir müşterinin bilinmeyen bir lidere nasıl ulaşabileceği ve onunla bağlantı kurabileceği bir yol yok.
-  Bir Takipçi'nin AppendEntries Yanıtında Konfigürasyonu bir Günlük Girdisi olarak göndermesi için bir değişiklik küçük olurdu.
+## Notes
 
-## Geçiş
 
-Geriye dönük uyumluluk sorunları yoktur.
 
-## Referanslar
+## Issues
+
+- There's no way for a client to find out about and connect to an unknown leader.
+  It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
+
+
+
+## Migration
+
+No backward compatibility issues.
+
+
+## References
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://www.json.org/json-en.html)
+* [JSON](https://json.org/)
 * [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
+
+
+
+
+

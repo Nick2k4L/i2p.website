@@ -36,7 +36,7 @@ I2P router veya gömülü uygulamalar üzerinde geliştirme yapmak için kaynak 
 
 I2P'nin resmi Git hizmetleri vardır ve kendi GitLab sunucumuzdan Git üzerinden katkı kabul eder:
 
-- I2P İçinde: <`http://git.idk.i2p`>
+- I2P İçinde: <http://git.idk.i2p>
 - I2P Dışında: <https://i2pgit.org>
 
 Ana depoyu klonlayın:
@@ -46,7 +46,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 ```
 GitHub'da salt okunur bir yansı da mevcuttur:
 
-- GitHub yansıması: github.com/i2p/i2p.i2p
+- GitHub yansıması: [github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -63,7 +63,7 @@ Yeni uygulamalar üzerinde geliştirme yapmak için [uygulama geliştirme kılav
 
 Fikirler için proje TODO listesine veya GitLab'daki sorun listesine bakın:
 
-- GitLab sorunları: i2pgit.org/I2P_Developers/i2p.i2p/issues
+- GitLab sorunları: [i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
 
 ## Sonuçları Erişilebilir Hale Getirme
 

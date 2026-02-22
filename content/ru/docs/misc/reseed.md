@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / `http://127.0.0.1:8443/`
-    ProxyPassReverse / `http://127.0.0.1:8443/`
+    ProxyPass / http://127.0.0.1:8443/
+    ProxyPassReverse / http://127.0.0.1:8443/
 </VirtualHost>
 ```
 ### Регистрация и координация
@@ -548,8 +548,8 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 
 ### Ресурсы сообщества
 
-- **Форум I2P**: [i2pforum.net](https://i2pforum.net/)
-- **Репозиторий Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
+- **Форум I2P**: https://i2pforum.net/
+- **Репозиторий Gitea**: https://i2pgit.org/I2P_Developers/i2p.i2p
 - **IRC**: #i2p-dev на IRC2P
 - **Мониторинг статуса**: [checki2p.com/reseed](https://checki2p.com/reseed)
 

@@ -71,7 +71,7 @@ Numéros NetID valides :
 | Réservé | 255 |
 ### Options supplémentaires
 
-Les options de texte supplémentaires incluent un petit nombre de statistiques sur la santé du router, qui sont agrégées par des sites tels que stats.i2p pour l'analyse des performances réseau et le débogage. Ces statistiques ont été choisies pour fournir des données cruciales aux développeurs, telles que les taux de succès de construction de tunnel, tout en équilibrant le besoin de ces données avec les effets secondaires qui pourraient résulter de la révélation de ces données. Les statistiques actuelles se limitent à :
+Les options de texte supplémentaires incluent un petit nombre de statistiques sur la santé du router, qui sont agrégées par des sites tels que [stats.i2p](http://stats.i2p/) pour l'analyse des performances réseau et le débogage. Ces statistiques ont été choisies pour fournir des données cruciales aux développeurs, telles que les taux de succès de construction de tunnel, tout en équilibrant le besoin de ces données avec les effets secondaires qui pourraient résulter de la révélation de ces données. Les statistiques actuelles se limitent à :
 
 - Taux de succès, de rejet et de timeout de construction de tunnel exploratoire
 - Nombre moyen sur 1 heure de tunnels participants
@@ -136,7 +136,7 @@ Il peut être souhaitable de stocker de manière persistante les Meta LeaseSets 
 ### Voir Aussi
 
 - [Spécification RouterInfo](/docs/specs/common-structures/#struct_RouterInfo)
-- Javadoc RouterInfo
+- [Javadoc RouterInfo](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
 
 ---
 
@@ -159,8 +159,8 @@ En plus de ces baux, le LeaseSet inclut :
 
 - [Spécification Lease](/docs/specs/common-structures/#struct_Lease)
 - [Spécification LeaseSet](/docs/specs/common-structures/#struct_LeaseSet)
-- Javadoc Lease
-- Javadoc LeaseSet
+- [Javadoc Lease](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
+- [Javadoc LeaseSet](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
 
 À partir de la version 0.9.38, trois nouveaux types de LeaseSets sont définis ; LeaseSet2, MetaLeaseSet, et EncryptedLeaseSet. Voir ci-dessous.
 

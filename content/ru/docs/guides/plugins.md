@@ -14,7 +14,7 @@ accurateFor: "2.10.0"
 
 1. Скопируйте URL для загрузки плагина со страницы проекта.  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. Откройте `http://127.0.0.1:7657/configplugins` в консоли router.  
+2. Откройте [страницу конфигурации плагинов](http://127.0.0.1:7657/configplugins) в консоли router.  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. Вставьте URL в поле установки и нажмите **Install Plugin**.  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ accurateFor: "2.10.0"
 
 ## 3. Управление установленными плагинами
 
-Используйте элементы управления на странице `http://127.0.0.1:7657/configclients.jsp#plugin`, чтобы:
+Используйте элементы управления на странице [плагинов маршрутизатора I2P](http://127.0.0.1:7657/configclients.jsp#plugin), чтобы:
 
 - Проверка обновлений для отдельного плагина
 - Проверка всех плагинов одновременно (запускается автоматически после обновления роутера)

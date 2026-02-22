@@ -13,274 +13,287 @@ target: "0.9.50"
 toc: true
 ---
 
-## Not
-Ağ dağıtımı ve test süreci devam ediyor.
-Küçük revizyonlara tabi olabilir.
+## Note
+Network deployment and testing in progress.
+Subject to minor revisions.
 
 
-## Genel Bakış
+## Overview
 
-Bu öneri, IPv6 için SSU ve NTCP2 taşımalarında iyileştirmeler uygulamayı amaçlamaktadır.
-
-
-## Motivasyon
-
-IPv6 dünyada büyüdükçe ve IPv6 destekli yapılandırmalar (özellikle mobilde) daha yaygın hale geldikçe,
-IPv6 desteğimizi geliştirmemiz ve tüm yönlendiricilerin IPv4 destekli olduğu varsayımını ortadan kaldırmamız gerekiyor.
+This proposal is to implement enhancements to the SSU and NTCP2 transports for IPv6.
 
 
-### Bağlantı Kontrolü
+## Motivation
 
-Eşler seçilirken, tüneller veya mesajları yönlendirmek için OBEP/IBGW yolları seçilirken,
-yönlendirici A'nın yönlendirici B'ye bağlanıp bağlanamayacağını hesaplamak yararlıdır.
-Genel olarak, bu, A'nın B'nin ilan ettiği gelen adreslerden birine uyan bir taşıma ve adres türü (IPv4/v6)
-için giden kapasitesine sahip olup olmadığını belirlemek anlamına gelir.
-
-Ancak, çoğu durumda A'nın yeteneklerini bilmiyoruz ve varsayımlar yapmamız gerekiyor.
-Eğer A gizli veya güvenlik duvarı arkasındaysa, adresler yayınlanmaz ve doğrudan bilgimiz yoktur -
-bu yüzden IPv4 destekli ve IPv6 destekli olmadığını varsayıyoruz.
-Çözüm, IPv4 ve IPv6 için giden kapasite belirtmek amacıyla Yönlendirici Bilgilerine iki yeni "cap" veya yetenek eklenmesidir.
+As IPv6 grows around the world and IPv6-only setups (especially on mobile) becomes more common,
+we need to improve our support for IPv6 and remove the assumptions that
+all routers are IPv4-capable.
 
 
-### IPv6 Tanıtıcıları
 
-Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/legacy/ssu/),
-IPv6 tanıtıcılarının IPv4 tanıtımları için desteklenip desteklenmediği konusunda hatalar ve tutarsızlıklar içermektedir.
-Her durumda, bu ne Java I2P'de ne de i2pd'de uygulanmamıştır.
-Bu düzeltilmelidir.
+### Connectivity Checking
 
+When selecting peers for tunnels, or selecting OBEP/IBGW paths for routing messages,
+it helps to calculate whether router A can connect to router B.
+In general, this means determining if A has outbound capability for a transport and address type (IPv4/v6)
+that matches one of B's advertised inbound addresses.
 
-### IPv6 Tanıtımları
-
-Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/legacy/ssu/), 
-IPv6 tanıtımlarının desteklenmediğini açıkça belirtmektedir.
-Bu varsayım altında, IPv6'nın asla güvenlik duvarı arkasında olmayacağı düşünüldü.
-Bu açıkça doğru değil ve güvenlik duvarı arkasındaki IPv6 yönlendiricileri için desteğimizi geliştirmemiz gerekiyor.
+However, in many cases we don't know A's capabilites and have to make assumptions.
+If A is hidden or firewalled, the addresses are not published, and we don't have direct knowledge -
+so we assume it's IPv4 capable, and not IPv6 capable.
+The solution is adding two new "caps" or capabilities to the Router Info to indicate outbound capability for IPv4 and IPv6.
 
 
-### Tanıtım Diyagramları
+### IPv6 Introducers
 
-Efsane: ----- IPv4, ====== IPv6'dır
-
-Mevcut ipv4 yalnızca:
-
-```
-      Alice                         Bob                  Charlie
-  RelayRequest ---------------------->
-       <-------------- RelayResponse    RelayIntro ----------->
-       <-------------------------------------------- HolePunch
-  SessionRequest -------------------------------------------->
-       <-------------------------------------------- SessionCreated
-  SessionConfirmed ------------------------------------------>
-  Data <--------------------------------------------------> Data
-```
+Our specifications for SSU contain errors and inconsistencies about whether
+IPv6 introducers are supported for IPv4 introductions.
+In any case, this has never been implemented in either Java I2P or i2pd.
+This needs to be corrected.
 
 
-IPv4 tanıtımı, IPv6 tanıtıcı
+### IPv6 Introdutions
+
+Our specifications for SSU make clear that
+IPv6 introductions are not supported.
+This was under the assumption that IPv6 is never firewalled.
+This is clearly not true, and we need to improve support for firewalled IPv6 routers.
+
+
+### Introduction Diagrams
+
+Legend: ----- is IPv4, ====== is IPv6
+
+**Current IPv4-only:**
 
 ```
-Alice                         Bob                  Charlie
-  RelayRequest ======================>
-       <============== RelayResponse    RelayIntro ----------->
-       <-------------------------------------------- HolePunch
-  SessionRequest -------------------------------------------->
-       <-------------------------------------------- SessionCreated
-  SessionConfirmed ------------------------------------------>
-  Data <--------------------------------------------------> Data
+        Alice                         Bob                  Charlie
+    RelayRequest ---------------------->
+         <-------------- RelayResponse    RelayIntro ----------->
+         <-------------------------------------------- HolePunch
+    SessionRequest -------------------------------------------->
+         <-------------------------------------------- SessionCreated
+    SessionConfirmed ------------------------------------------>
+    Data <--------------------------------------------------> Data
 ```
 
-IPv6 tanıtımı, IPv6 tanıtıcı
-
+**IPv4 introduction, IPv6 introducer:**
 
 ```
 Alice                         Bob                  Charlie
-  RelayRequest ======================>
-       <============== RelayResponse    RelayIntro ===========>
-       <============================================ HolePunch
-  SessionRequest ============================================>
-       <============================================ SessionCreated
-  SessionConfirmed ==========================================>
-  Data <==================================================> Data
+    RelayRequest ======================>
+         <============== RelayResponse    RelayIntro ----------->
+         <-------------------------------------------- HolePunch
+    SessionRequest -------------------------------------------->
+         <-------------------------------------------- SessionCreated
+    SessionConfirmed ------------------------------------------>
+    Data <--------------------------------------------------> Data
 ```
 
-IPv6 tanıtımı, IPv4 tanıtıcı
+**IPv6 introduction, IPv6 introducer:**
 
 ```
 Alice                         Bob                  Charlie
-  RelayRequest ---------------------->
-       <-------------- RelayResponse    RelayIntro ===========>
-       <============================================ HolePunch
-  SessionRequest ============================================>
-       <============================================ SessionCreated
-  SessionConfirmed ==========================================>
-  Data <==================================================> Data
+    RelayRequest ======================>
+         <============== RelayResponse    RelayIntro ===========>
+         <============================================ HolePunch
+    SessionRequest ============================================>
+         <============================================ SessionCreated
+    SessionConfirmed ==========================================>
+    Data <==================================================> Data
+```
+
+**IPv6 introduction, IPv4 introducer:**
+
+```
+Alice                         Bob                  Charlie
+    RelayRequest ---------------------->
+         <-------------- RelayResponse    RelayIntro ===========>
+         <============================================ HolePunch
+    SessionRequest ============================================>
+         <============================================ SessionCreated
+    SessionConfirmed ==========================================>
+    Data <==================================================> Data
 ```
 
 
-## Tasarım
+## Design
 
-Uygulanacak üç değişiklik bulunmaktadır.
+There are three changes to be implemented.
 
-- Yönlendirici Adres yeteneklerine giden IPv4 ve IPv6 desteğini belirtmek için "4" ve "6" yeteneklerini ekle
-- IPv6 tanıtıcıları üzerinden IPv4 tanıtımlarını destekle
-- IPv4 ve IPv6 tanıtıcıları üzerinden IPv6 tanıtımlarını destekle
-
-
-## Şartname
-
-### 4/6 Yetenek
-
-Bu başlangıçta resmi bir teklif olmadan uygulandı, ancak IPv6 tanıtımları için gerekli olduğu için burada ekliyoruz.
-Ayrıca bkz. CAPS.
+- Add "4" and "6" capabilities to Router Address capabilities to indicate outbound IPv4 and IPv6 support
+- Add support for IPv4 introductions via IPv6 introducers
+- Add support for IPv6 introductions via IPv4 and IPv6 introducers
 
 
-İki yeni yetenek "4" ve "6" tanımlanmıştır.
-Bu yeni yetenekler, Yönlendirici Bilgilerindeki değil, Yönlendirici Adresindeki "caps" özelliğine eklenecektir.
-NTCP2 için tanımlanmış bir "caps" özelliğimiz şu anda yok.
-Tanıtıcıları olan bir SSU adresi, tanım gereği şu anda ipv4'tür. ipv6 tanıtımı hiç desteklemiyoruz.
-Ancak, bu teklif IPv6 tanıtımları ile uyumludur. Aşağıya bakın.
 
-Ek olarak, bir yönlendirici I2P-over-Yggdrasil gibi bir kaplama ağı üzerinden bağlantı desteğine sahip olabilir,
-ancak bir adres yayınlamak istemiyor veya bu adres standart bir IPv4 veya IPv6 formatına sahip değil.
-Bu yeni yetenek sistemi, bu ağları destekleyecek kadar esnek olmalıdır.
+## Specification
 
-Aşağıdaki değişiklikleri tanımlıyoruz:
+### 4/6 Caps
 
-NTCP2: "caps" özelliği eklenmesi
-
-SSU: Yönlendirici Adresinde bir ana veya tanıtıcı olmadan, IPv4, IPv6, veya her ikisi için giden desteği belirtmek için destek ekleyin.
-
-Her iki taşıma: Aşağıdaki caps değerlerini tanımlayın:
-
-- "4": IPv4 desteği
-- "6": IPv6 desteği
-
-Tek bir adreste birden fazla değer desteklenebilir. Aşağıya bakın.
-Yönlendirici Adresinde "ana" değeri yoksa en az bir bu yetenekler zorunludur.
-Yönlendirici Adresinde bir "ana" değeri varsa en fazla bir bu yetenekler isteğe bağlıdır.
-Kaplama ağları veya diğer bağlantılar için destek göstermek üzere gelecekte ek taşıma yetenekleri tanımlanabilir.
+This was originally implemented without a formal proposal, but it is required for
+IPv6 introductions, so we include it here.
 
 
-#### Kullanım durumları ve örnekler
+Two new capabilities "4" and "6" are defined.
+These new capabilities will be added to the "caps" property in the Router Address, not in the Router Info caps.
+We currently don't have a "caps" property defined for NTCP2.
+An SSU address with introducers is, by definition, ipv4 right now. We don't support ipv6 introduction at all.
+However, this proposal is compatible with a IPv6 introductions. See below.
+
+Additionally, a router may support connectivity via an overlay network such as I2P-over-Yggdrasil,
+but does not wish to publish an address, or that address does not have a standard IPv4 or IPv6 format.
+This new capability system should be flexible enough to support these networks as well.
+
+We define the following changes:
+
+NTCP2: Add "caps" property
+
+SSU: Add support for a Router Address without a host or introducers, to indicate outbound support
+for IPv4, IPv6, or both.
+
+Both transports: Define the following caps values:
+
+- "4": IPv4 support
+- "6": IPv6 support
+
+Multiple values may be supported in a single address. See below.
+At least one of these caps are mandatory if no "host" value is included in the Router Address.
+At most one of these caps is optional if a "host" value is included in the Router Address.
+Additional transport caps may be defined in the future to indicate support for overlay networks or other connectivity.
+
+
+#### Use cases and examples
 
 SSU:
 
-Ana bilgisayarlı SSU: 4/6 isteğe bağlı, birden fazla değil.
-Örnek: SSU caps="4" host="1.2.3.4" anahtar=... port="1234"
+SSU with host: 4/6 optional, never more than one.
+Example: SSU caps="4" host="1.2.3.4" key=... port="1234"
 
-Sadece bir için giden SSU, diğeri yayınlanır: Sadece yetenekler, 4/6.
-Örnek: SSU caps="6"
+SSU outbound only for one, other is published: Caps only, 4/6.
+Example: SSU caps="6"
 
-Tanıtıcılarlı SSU: asla birleştirilmez. 4 veya 6 gereklidir.
-Örnek: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... anahtar=...
+SSU with introducers: never combined. 4 or 6 is required.
+Example: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
 
-Gizli SSU: Sadece yetenekler, 4, 6 veya 46. Birden fazla izin verilir.
-İki adres, biri 4 ve biri 6 gereksizdir.
-Örnek: SSU caps="46"
+SSU hidden: Caps only, 4, 6, or 46. Multiple is allowed.
+No need for two addresses one with 4 and one with 6.
+Example: SSU caps="46"
 
 NTCP2:
 
-Ana bilgisayarlı NTCP2: 4/6 isteğe bağlı, birden fazla değil.
-Örnek: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
+NTCP2 with host: 4/6 optional, never more than one.
+Example: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
 
-Sadece bir için giden NTCP2, diğeri yayınlanır: Yetenekler, s, v sadece, 4/6/y, birden fazla izin verilir.
-Örnek: NTCP2 caps="6" i=... s=... v="2"
+NTCP2 outbound only for one, other is published: Caps, s, v only, 4/6/y, multiple is allowed.
+Example: NTCP2 caps="6" i=... s=... v="2"
 
-Gizli NTCP2: Yetenekler, s, v sadece 4/6, birden fazla izin verilir. İki adres, biri 4 ve biri 6 gerekli değil.
-Örnek: NTCP2 caps="46" i=... s=... v="2"
-
-
-### IPv4 için IPv6 Tanıtıcıları
-
-Hataları ve tutarsızlıkları düzeltmek için aşağıdaki değişiklikler gereklidir.
-Bunu ayrıca önerinin "birinci kısmı" olarak da tanımladık.
-
-#### Spesifikasyon Değişiklikleri
-
-[SSU](/docs/specs/ssu2/) şu anda (IPv6 notları) diyor ki:
-
-IPv6, sürüm 0.9.8 itibariyle desteklenmektedir. Yayınlanan aktarıcı adresleri IPv4 veya IPv6 olabilir ve Alice-Bob iletişimi IPv4 veya IPv6 üzerinden olabilir.
-
-Aşağıdaki ekleyin:
-
-Her ne kadar spesifikasyon 0.9.8 sürümü itibariyle değiştirilmiş olsa da, Alice-Bob iletişimi IPv6 üzerinden gerçekte 0.9.50 sürümüne kadar desteklenmemiştir.
-Erken sürüm Java yönlendiriciler hataen IPv6 adresleri için 'C' yeteneğini yayınladı,
-ancak bunlar gerçekte IPv6 üzerinden tanıtıcı olarak hareket etmiyorlardı.
-Bu nedenle, yönlendiriciler bir IPv6 adresinde 'C' yeteneğine yalnızca yönlendirici sürümü 0.9.50 veya üstü ise güvenmelidir.
+NTCP2 hidden: Caps, s, v only 4/6, multiple is allowed No need for two addresses one with 4 and one with 6.
+Example: NTCP2 caps="46" i=... s=... v="2"
 
 
-[SSU-SPEC](/docs/legacy/ssu/) şu anda (Aktarım İsteği) diyor ki:
 
-IP adresi yalnızca paket kaynağı adresi ve portundan farklı gelmesi durumunda dahil edilir.
-Mevcut uygulamada, IP uzunluğu her zaman 0 ve port her zaman 0'dır,
-ve alıcı, paket kaynağı adresi ve portunu kullanmalıdır.
-Bu mesaj IPv4 veya IPv6 aracılığıyla gönderilebilir. Eğer IPv6 ise, Alice IPv4 adresini ve portunu dahil etmelidir.
+### IPv6 Introducers for IPv4
 
-Aşağıdaki ekleyin:
+The following changes are required to correct errors and inconsistencies in the specs.
+We have also described this as "part 1" of the proposal.
 
-Bu mesajı IPv6 üzerinden gönderirken bir IPv4 adresini tanıtmak için IP ve port eklenmelidir.
-Bu, 0.9.50 sürümünden itibaren desteklenmektedir.
+#### Spec Changes
 
+The SSU specification currently says (IPv6 notes):
 
-### IPv6 Tanıtımları
+IPv6 is supported as of version 0.9.8. Published relay addresses may be IPv4 or IPv6, and Alice-Bob communication may be via IPv4 or IPv6.
 
-SSU aktarıcı mesajlarının üçü de (RelayRequest, RelayResponse ve RelayIntro) 
-(Alis, Bob veya Charlie) IP adresinin uzunluğunu belirtmek için IP uzunluğu alanları içerir.
+Add the following:
 
-Bu nedenle, mesajların formatında bir değişiklik gerekmez.
-Yalnızca sözlük değişiklikleri yapılarak, 16 baytlık IP adreslerine izin verildiği belirtilmelidir.
-
-Spesifikasyonlarda aşağıdaki değişiklikler gereklidir.
-Bunu ayrıca önerinin "ikinci kısmı" olarak da tanımladık.
+While the specification was changed as of version 0.9.8, Alice-Bob communication via IPv6 was not actually supported until version 0.9.50.
+Earlier versions of Java routers erroneously published the 'C' capability for IPv6 addresses,
+even though they did not actually act as an introducer via IPv6.
+Therefore, routers should only trust the 'C' capability on an IPv6 address if the router version is 0.9.50 or higher.
 
 
-#### Spesifikasyon Değişiklikleri
 
-[SSU](/docs/specs/ssu2/) şu anda (IPv6 notları) diyor ki:
+The SSU specification currently says (Relay Request):
 
-Bob-Charlie ve Alice-Charlie iletişimi yalnızca IPv4 üzerinden yapılır.
+The IP address is only included if it is be different than the packet's source address and port.
+In the current implementation, the IP length is always 0 and the port is always 0,
+and the receiver should use the packet's source address and port.
+This message may be sent via IPv4 or IPv6. If IPv6, Alice must include her IPv4 address and port.
 
-[SSU-SPEC](/docs/legacy/ssu/) şu anda (Aktarım İsteği) diyor ki:
+Add the following:
 
-IPv6 için aktarıcı uygulama planları yoktur.
-
-Şu şekilde değiştirin:
-
-IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
-
-[SSU-SPEC](/docs/legacy/ssu/) şu anda (Relay Response) diyor ki:
-
-Charlie's IP adresi IPv4 olmalıdır, çünkü bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
-IPv6 için aktarıcı planları yoktur.
-
-Şu şekilde değiştirin:
-
-Charlie's IP adresi IPv4 olabilir ya da 0.9.xx sürümünden itibaren IPv6 olabilir.
-Bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
-IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
-
-[SSU-SPEC](/docs/legacy/ssu/) şu anda (Relay Intro) diyor ki:
-
-Alice'in IP adresi her zaman 4 bayt uzunluğundadır çünkü Alice, Charlie'ye IPv4 üzerinden bağlanmaya çalışmaktadır.
-Bu mesaj, Bob'un Alice'e RelayResponse içinde dönecek Charlie'nin IPv4 adresini bilmesinin tek yolu olan 
-bir kurulu IPv4 bağlantısı üzerinden gönderilmelidir.
-
-Şu şekilde değiştirin:
-
-IPv4 için, Alice'in IP adresi her zaman 4 bayttır çünkü Alice, Charlie'ye IPv4 üzerinden bağlanmaya çalışmaktadır.
-0.9.xx sürümünden itibaren, IPv6 desteklenmektedir ve Alice'in IP adresi 16 bayt olabilir.
-
-IPv4 için, bu mesaj, Bob'un Alice'e RelayResponse içinde dönecek Charlie'nin IPv4 adresini bilmesinin tek yolu olan 
-bir kurulu IPv4 bağlantısı üzerinden gönderilmelidir.
-0.9.xx sürümünden itibaren, IPv6 desteklenmektedir ve bu mesaj, bir kurulu IPv6 bağlantısı üzerinden gönderilebilir.
-
-Ayrıca ekleyin:
-
-0.9.xx sürümünden itibaren, tanıtıcılarla yayınlanan herhangi bir SSU adresi "caps" seçeneğinde "4" veya "6" içermelidir.
+The IP and port must be included to introduce an IPv4 address when sending this message over IPv6.
+This is supported as of release 0.9.50.
 
 
-## Taşımacılık
 
-Tüm eski yönlendiriciler, NTCP2'de caps özelliğini ve SSU caps özelliğindeki bilinmeyen yetenek karakterlerini görmezden gelmelidir.
+### IPv6 Introductions
 
-Tanıtıcılarla bir SSU adresi içeren ve "4" veya "6" capa sahip olmayan herhangi bir adresin, IPv4 tanıtımı için olduğu varsayılır.
+All three of the SSU relay messages (RelayRequest, RelayResponse, and RelayIntro) contain IP length fields
+to indicate the length of the (Alice, Bob, or Charlie) IP address to follow.
+
+Therefore, no change to the format of the messages is required.
+Only textual changes to the specifications, indicating that 16-byte IP addresses are allowed.
+
+The following changes are required to the specs.
+We have also described this as "part 2" of the proposal.
+
+
+#### Spec Changes
+
+The SSU specification currently says (IPv6 notes):
+
+Bob-Charlie and Alice-Charlie communication is via IPv4 only.
+
+The SSU specification currently says (Relay Request):
+
+There are no plans to implement relaying for IPv6.
+
+Change to say:
+
+Relaying for IPv6 is supported as of release 0.9.xx
+
+The SSU specification currently says (Relay Response):
+
+Charlie's IP address must be IPv4, as that is the address that Alice will send the SessionRequest to after the Hole Punch.
+There are no plans to implement relaying for IPv6.
+
+Change to say:
+
+Charlie's IP address may be IPv4 or, as of release 0.9.xx, IPv6.
+That is the address that Alice will send the SessionRequest to after the Hole Punch.
+Relaying for IPv6 is supported as of release 0.9.xx
+
+The SSU specification currently says (Relay Intro):
+
+Alice's IP address is always 4 bytes in the current implementation, because Alice is trying to connect to Charlie via IPv4.
+This message must be sent via an established IPv4 connection,
+as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
+
+Change to say:
+
+For IPv4, Alice's IP address is always 4 bytes, because Alice is trying to connect to Charlie via IPv4.
+As of release 0.9.xx, IPv6 is supported, and Alice's IP address may be 16 bytes.
+
+For IPv4, this message must be sent via an established IPv4 connection,
+as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
+As of release 0.9.xx, IPv6 is supported, and this message may be sent via an established IPv6 connection.
+
+Also add:
+
+As of release 0.9.xx, any SSU address published with introducers must contain "4" or "6" in the "caps" option.
+
+
+## Migration
+
+All old routers should ignore the caps property in NTCP2, and unknown capability characters in the SSU caps property.
+
+Any SSU address with introducers that does not contain a "4" or "6" cap is assumed to be for IPv4 introduction.
+
+
+## References
+
+* [CAPS](http://zzz.i2p/topics/3050)
+* [NTCP2](/docs/specs/ntcp2/)
+* [SSU](/docs/specs/ssu2/)
+* [SSU-SPEC](/docs/legacy/ssu/)

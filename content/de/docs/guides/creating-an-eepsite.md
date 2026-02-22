@@ -19,8 +19,8 @@ Diese Anleitung führt Sie durch den Prozess der Erstellung und Konfiguration Ih
 
 Der Hidden Services Manager (auch I2P Tunnel Manager genannt) ist der Ort, an dem Sie alle I2P-Server- und Client-tunnels konfigurieren, einschließlich HTTP-Servern (eepsites).
 
-1. Öffnen Sie Ihre `http://127.0.0.1:7657`
-2. Navigieren Sie zum `http://127.0.0.1:7657/i2ptunnelmgr`
+1. Öffnen Sie Ihre [I2P Router-Konsole](http://127.0.0.1:7657)
+2. Navigieren Sie zum [Manager für versteckte Dienste](http://127.0.0.1:7657/i2ptunnelmgr)
 
 Sie sollten die Oberfläche des Hidden Services Manager sehen, die Folgendes anzeigt: - **Statusmeldungen** - Aktueller Status von tunnel und Client - **Globale Steuerung für tunnel** - Schaltflächen zum gleichzeitigen Verwalten aller tunnels - **I2P-Verborgene Dienste** - Liste der konfigurierten Server-tunnels
 
@@ -191,7 +191,7 @@ Jetzt, da Ihre eepsite konfiguriert ist und Inhalte enthält, ist es Zeit, sie z
 
 ### Tunnel starten
 
-1. **Kehren Sie zum `http://127.0.0.1:7657/i2ptunnelmgr` zurück**
+1. **Kehren Sie zum [Manager für versteckte Dienste](http://127.0.0.1:7657/i2ptunnelmgr) zurück**
 2. Suchen Sie den Eintrag Ihres **I2P-Webservers** in der Liste
 3. Klicken Sie in der Spalte Control auf die Schaltfläche **Start**
 
@@ -215,7 +215,7 @@ Ihre eepsite hat zwei Arten von Adressen:
 
 1. **Base32-Adresse (.b32.i2p)**: Eine lange kryptografische Adresse, die so aussieht:
    ```
-   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
+   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
    ```
    - Dies ist die permanente, kryptografisch abgeleitete Adresse Ihrer eepsite
    - Sie kann nicht geändert werden und ist an Ihren privaten Schlüssel gebunden
@@ -314,7 +314,7 @@ Diese Zeichenkette enthält: - Ihren Domainnamen (`testwebsite.i2p`) - Ihre Ziel
 
 ### Schritt 2: Bei stats.i2p registrieren
 
-1. **Navigieren Sie zu** stats.i2p Add Key (innerhalb von I2P)
+1. **Navigieren Sie zu** [stats.i2p Add Key](http://stats.i2p/i2p/addkey.html) (innerhalb von I2P)
 
 ![stats.i2p-Domainregistrierung](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ Wenn dies erfolgreich ist, sehen Sie eine Bestätigung, dass Ihre Domain dem sta
 
 Um maximale Verfügbarkeit sicherzustellen, sollten Sie sich außerdem beim Dienst reg.i2p registrieren:
 
-1. **Navigieren Sie zu** reg.i2p Domain hinzufügen (innerhalb von I2P)
+1. **Navigieren Sie zu** [reg.i2p Domain hinzufügen](http://reg.i2p/add) (innerhalb von I2P)
 
 ![reg.i2p Domain-Registrierung](/images/guides/eepsite/reg-i2p-add.png)
 

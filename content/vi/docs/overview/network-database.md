@@ -71,7 +71,7 @@ Số NetID hợp lệ:
 | Dành riêng | 255 |
 ### Tùy chọn bổ sung
 
-Các tùy chọn văn bản bổ sung bao gồm một số lượng nhỏ thống kê về tình trạng router, được tổng hợp bởi các trang web như stats.i2p để phân tích hiệu suất mạng và gỡ lỗi. Những thống kê này được lựa chọn để cung cấp dữ liệu quan trọng cho các nhà phát triển, chẳng hạn như tỷ lệ thành công xây dựng tunnel, đồng thời cân bằng nhu cầu về dữ liệu này với các tác động phụ có thể xảy ra từ việc tiết lộ dữ liệu. Thống kê hiện tại được giới hạn trong:
+Các tùy chọn văn bản bổ sung bao gồm một số lượng nhỏ thống kê về tình trạng router, được tổng hợp bởi các trang web như [stats.i2p](http://stats.i2p/) để phân tích hiệu suất mạng và gỡ lỗi. Những thống kê này được lựa chọn để cung cấp dữ liệu quan trọng cho các nhà phát triển, chẳng hạn như tỷ lệ thành công xây dựng tunnel, đồng thời cân bằng nhu cầu về dữ liệu này với các tác động phụ có thể xảy ra từ việc tiết lộ dữ liệu. Thống kê hiện tại được giới hạn trong:
 
 - Tỷ lệ xây dựng tunnel thám sát thành công, bị từ chối và hết thời gian
 - Số lượng tunnel tham gia trung bình trong 1 giờ
@@ -136,7 +136,7 @@ Có thể mong muốn lưu trữ lâu dài các Meta LeaseSet có thời hạn h
 ### Xem Thêm
 
 - [Đặc tả RouterInfo](/docs/specs/common-structures/#struct_RouterInfo)
-- RouterInfo Javadoc
+- [RouterInfo Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
 
 ---
 
@@ -159,8 +159,8 @@ Ngoài các lease này, LeaseSet còn bao gồm:
 
 - [Thông số kỹ thuật Lease](/docs/specs/common-structures/#struct_Lease)
 - [Thông số kỹ thuật LeaseSet](/docs/specs/common-structures/#struct_LeaseSet)
-- Javadoc của Lease
-- Javadoc của LeaseSet
+- [Javadoc của Lease](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
+- [Javadoc của LeaseSet](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
 
 Kể từ phiên bản 0.9.38, ba loại leaseSet mới được định nghĩa; LeaseSet2, MetaLeaseSet, và EncryptedLeaseSet. Xem bên dưới.
 

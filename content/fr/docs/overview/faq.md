@@ -35,8 +35,8 @@ Sur la page Pairs de votre console routeur, vous pouvez voir deux nombres - Acti
 
 Oui, cela peut être normal, surtout lorsque le routeur vient d'être démarré. Les nouveaux routeurs ont besoin de temps pour démarrer et se connecter au reste du réseau. Pour améliorer l'intégration au réseau, la disponibilité et les performances, vérifiez ces paramètres :
 
-- **Partager la bande passante** - Si un router est configuré pour partager la bande passante, il acheminera davantage de trafic pour d'autres routers, ce qui contribue à l'intégrer au reste du réseau et améliore également les performances de sa connexion locale. Cela peut être configuré sur la page `http://localhost:7657/config`.
-- **Interface réseau** - Assurez-vous qu'aucune interface n'est spécifiée sur la page `http://localhost:7657/confignet`. Cela peut réduire les performances, sauf si votre ordinateur est multi-hébergé avec plusieurs adresses IP externes.
+- **Partager la bande passante** - Si un router est configuré pour partager la bande passante, il acheminera davantage de trafic pour d'autres routers, ce qui contribue à l'intégrer au reste du réseau et améliore également les performances de sa connexion locale. Cela peut être configuré sur la page [http://localhost:7657/config](http://localhost:7657/config).
+- **Interface réseau** - Assurez-vous qu'aucune interface n'est spécifiée sur la page [http://localhost:7657/confignet](http://localhost:7657/confignet). Cela peut réduire les performances, sauf si votre ordinateur est multi-hébergé avec plusieurs adresses IP externes.
 - **Protocole I2NP** - Assurez-vous que le router est configuré pour attendre des connexions sur un protocole valide pour le système d'exploitation de l'hôte et des paramètres réseau (Avancés) vides. N'entrez pas d'adresse IP dans le champ 'Nom d'hôte' de la page de configuration réseau. Le protocole I2NP que vous sélectionnez ici ne sera utilisé que si vous n'avez pas déjà une adresse accessible. La plupart des connexions sans fil Verizon 4G et 5G aux États-Unis, par exemple, bloquent UDP et ne peuvent pas être jointes via ce protocole. D'autres utiliseraient UDP de force même s'il leur est disponible. Choisissez un paramètre raisonnable parmi les protocoles I2NP listés.
 
 ### Je suis opposé à certains types de contenu. Comment puis-je éviter de les distribuer, de les stocker ou d'y accéder ? {#badcontent}
@@ -69,7 +69,7 @@ Une autre option serait de supprimer le `::1` de `~/.i2p/clients.config`
 
 ### La plupart des sites I2P dans I2P sont inaccessibles ? {#down}
 
-Si vous considérez tous les sites I2P qui ont jamais été créés, oui, la plupart sont hors ligne. Les personnes et les sites I2P vont et viennent. Un bon moyen de débuter sur I2P est de consulter une liste de sites I2P actuellement en ligne. identiguy.i2p répertorie les sites I2P actifs.
+Si vous considérez tous les sites I2P qui ont jamais été créés, oui, la plupart sont hors ligne. Les personnes et les sites I2P vont et viennent. Un bon moyen de débuter sur I2P est de consulter une liste de sites I2P actuellement en ligne. [identiguy.i2p](http://identiguy.i2p) répertorie les sites I2P actifs.
 
 ### Pourquoi I2P écoute-t-il sur le port 32000 ? {#port32000}
 
@@ -83,14 +83,14 @@ La configuration du proxy pour différents navigateurs se trouve sur une page s�
 
 ### Comment puis-je me connecter à IRC au sein d'I2P ? {#irc}
 
-Un tunnel vers le serveur IRC principal au sein d'I2P, Irc2P, est créé lors de l'installation d'I2P (voir la `http://localhost:7657/i2ptunnel/index.jsp`), et est automatiquement démarré lorsque le router I2P démarre. Pour vous y connecter, configurez votre client IRC pour se connecter à `localhost 6668`. Les utilisateurs de clients de type HexChat peuvent créer un nouveau réseau avec le serveur `localhost/6668` (n'oubliez pas de cocher "Contourner le serveur proxy" si vous avez un serveur proxy configuré). Les utilisateurs de Weechat peuvent utiliser la commande suivante pour ajouter un nouveau réseau :
+Un tunnel vers le serveur IRC principal au sein d'I2P, Irc2P, est créé lors de l'installation d'I2P (voir la [page de configuration I2PTunnel](http://localhost:7657/i2ptunnel/index.jsp)), et est automatiquement démarré lorsque le router I2P démarre. Pour vous y connecter, configurez votre client IRC pour se connecter à `localhost 6668`. Les utilisateurs de clients de type HexChat peuvent créer un nouveau réseau avec le serveur `localhost/6668` (n'oubliez pas de cocher "Contourner le serveur proxy" si vous avez un serveur proxy configuré). Les utilisateurs de Weechat peuvent utiliser la commande suivante pour ajouter un nouveau réseau :
 
 ```
 /server add irc2p localhost/6668
 ```
 ### Comment configurer mon propre site I2P ? {#myI2P-Site}
 
-La méthode la plus simple consiste à cliquer sur le lien `http://127.0.0.1:7657/i2ptunnel/` dans la console du routeur et à créer un nouveau 'Tunnel Serveur'. Vous pouvez servir du contenu dynamique en définissant la destination du tunnel vers le port d'un serveur web existant, tel que Tomcat ou Jetty. Vous pouvez également servir du contenu statique. Pour cela, définissez la destination du tunnel sur : `0.0.0.0 port 7659` et placez le contenu dans le répertoire `~/.i2p/eepsite/docroot/`. (Sur les systèmes non-Linux, cela peut se trouver à un emplacement différent. Vérifiez la console du routeur.) Le logiciel 'eepsite' est fourni dans le paquet d'installation I2P et est configuré pour démarrer automatiquement au lancement d'I2P. Le site par défaut ainsi créé est accessible à l'adresse `http://127.0.0.1:7658.` Cependant, votre 'eepsite' est également accessible aux autres via votre fichier de clés eepsite, situé à : `~/.i2p/eepsite/i2p/eepsite.keys`. Pour en savoir plus, lisez le fichier readme à l'adresse : `~/.i2p/eepsite/README.txt`.
+La méthode la plus simple consiste à cliquer sur le lien [i2ptunnel](http://127.0.0.1:7657/i2ptunnel/) dans la console du routeur et à créer un nouveau 'Tunnel Serveur'. Vous pouvez servir du contenu dynamique en définissant la destination du tunnel vers le port d'un serveur web existant, tel que Tomcat ou Jetty. Vous pouvez également servir du contenu statique. Pour cela, définissez la destination du tunnel sur : `0.0.0.0 port 7659` et placez le contenu dans le répertoire `~/.i2p/eepsite/docroot/`. (Sur les systèmes non-Linux, cela peut se trouver à un emplacement différent. Vérifiez la console du routeur.) Le logiciel 'eepsite' est fourni dans le paquet d'installation I2P et est configuré pour démarrer automatiquement au lancement d'I2P. Le site par défaut ainsi créé est accessible à l'adresse http://127.0.0.1:7658. Cependant, votre 'eepsite' est également accessible aux autres via votre fichier de clés eepsite, situé à : `~/.i2p/eepsite/i2p/eepsite.keys`. Pour en savoir plus, lisez le fichier readme à l'adresse : `~/.i2p/eepsite/README.txt`.
 
 ### Si j'héberge un site web sur I2P à la maison, contenant uniquement du HTML et du CSS, est-ce dangereux ? {#hosting}
 
@@ -106,7 +106,7 @@ L'application Carnet d'adresses I2P associe des noms lisibles par l'homme à des
 
 Vous ne pouvez pas ajouter une adresse sans connaître au moins le base32 ou le base64 du site que vous souhaitez visiter. Le "nom d'hôte" qui est lisible par l'humain n'est qu'un alias pour l'adresse cryptographique, qui correspond au base32 ou au base64. Sans l'adresse cryptographique, il n'y a aucun moyen d'accéder à un site I2P, c'est voulu par conception. La distribution de l'adresse aux personnes qui ne la connaissent pas encore relève généralement de la responsabilité du fournisseur de service Jump. Visiter un site I2P inconnu déclenchera l'utilisation d'un service Jump. stats.i2p est le service Jump le plus fiable.
 
-Si vous hébergez un site via i2ptunnel, il n'aura pas encore d'enregistrement auprès d'un service de saut. Pour lui attribuer une URL localement, visitez la page de configuration et cliquez sur le bouton « Add to Local Address Book ». Ensuite, rendez-vous sur `http://127.0.0.1:7657/dns` pour rechercher l'URL addresshelper et la partager.
+Si vous hébergez un site via i2ptunnel, il n'aura pas encore d'enregistrement auprès d'un service de saut. Pour lui attribuer une URL localement, visitez la page de configuration et cliquez sur le bouton « Add to Local Address Book ». Ensuite, rendez-vous sur http://127.0.0.1:7657/dns pour rechercher l'URL addresshelper et la partager.
 
 ### Quels ports I2P utilise-t-il ? {#ports}
 
@@ -119,19 +119,19 @@ Ceux-ci sont décrits en détail ci-dessous.
 
 #### 1. Ports exposés à Internet
 
-Remarque : Depuis la version 0.7.8, les nouvelles installations n'utilisent plus le port 8887 ; un port aléatoire entre 9000 et 31000 est sélectionné lors de la première exécution du programme. Le port sélectionné est affiché sur la `http://127.0.0.1:7657/confignet` du routeur.
+Remarque : Depuis la version 0.7.8, les nouvelles installations n'utilisent plus le port 8887 ; un port aléatoire entre 9000 et 31000 est sélectionné lors de la première exécution du programme. Le port sélectionné est affiché sur la [page de configuration](http://127.0.0.1:7657/confignet) du routeur.
 
 **SORTANT**
 
-- UDP depuis le port aléatoire listé sur la `http://127.0.0.1:7657/confignet` vers des ports UDP distants arbitraires, permettant les réponses
+- UDP depuis le port aléatoire listé sur la [page de configuration](http://127.0.0.1:7657/confignet) vers des ports UDP distants arbitraires, permettant les réponses
 - TCP depuis des ports hauts aléatoires vers des ports TCP distants arbitraires
 - UDP sortant sur le port 123, permettant les réponses. Ceci est nécessaire pour la synchronisation horaire interne d'I2P (via SNTP - interrogeant un hôte SNTP aléatoire dans pool.ntp.org ou un autre serveur que vous spécifiez)
 
 **ENTRANT**
 
-- (Optionnel, recommandé) UDP vers le port indiqué sur la `http://127.0.0.1:7657/confignet` depuis des emplacements arbitraires
-- (Optionnel, recommandé) TCP vers le port indiqué sur la `http://127.0.0.1:7657/confignet` depuis des emplacements arbitraires
-- Le TCP entrant peut être désactivé sur la `http://127.0.0.1:7657/confignet`
+- (Optionnel, recommandé) UDP vers le port indiqué sur la [page de configuration](http://127.0.0.1:7657/confignet) depuis des emplacements arbitraires
+- (Optionnel, recommandé) TCP vers le port indiqué sur la [page de configuration](http://127.0.0.1:7657/confignet) depuis des emplacements arbitraires
+- Le TCP entrant peut être désactivé sur la [page de configuration](http://127.0.0.1:7657/confignet)
 
 #### 2. Ports I2P locaux
 
@@ -149,27 +149,27 @@ Les ports I2P locaux n'écoutent que les connexions locales par défaut, sauf in
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">1900</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">UPnP SSDP UDP multicast listener</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Cannot be changed. Binds to all interfaces. May be disabled on <code>http://127.0.0.1:7657/confignet</code>.</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Cannot be changed. Binds to all interfaces. May be disabled on <a href="http://127.0.0.1:7657/confignet">confignet</a>.</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">2827</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">BOB bridge</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">A higher level socket API for clients. Disabled by default. May be enabled/disabled on <code>http://127.0.0.1:7657/configclients</code>. May be changed in the bob.config file.</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">A higher level socket API for clients. Disabled by default. May be enabled/disabled on <a href="http://127.0.0.1:7657/configclients">configclients</a>. May be changed in the bob.config file.</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">4444</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP proxy</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Configured on <code>http://127.0.0.1:7657/configclients</code>, go to the page <code>http://127.0.0.1:7657/i2ptunnel/</code> to start/stop it and on the page <code>http://127.0.0.1:7657/i2ptunnel/web/0</code> to configure it. Include in your browser's proxy configuration for HTTP</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Configured on <a href="http://127.0.0.1:7657/configclients">configclients</a>, go to the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a> to start/stop it and on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/0">I2P HTTP Proxy</a> to configure it. Include in your browser's proxy configuration for HTTP</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">4445</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTPS proxy</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Configured on <code>http://127.0.0.1:7657/configclients</code>, go to the page <code>http://127.0.0.1:7657/i2ptunnel/</code> to start/stop it and on the page <code>http://127.0.0.1:7657/i2ptunnel/web/1</code> to configure it. Include in your browser's proxy configuration for HTTPS</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Configured on <a href="http://127.0.0.1:7657/configclients">configclients</a>, go to the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a> to start/stop it and on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/1">I2P HTTPS Proxy</a> to configure it. Include in your browser's proxy configuration for HTTPS</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">6668</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">IRC proxy</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">A tunnel to the inside-the-I2P IRC network. Disabled by default. Configured on the page <code>http://127.0.0.1:7657/i2ptunnel/web/2</code> and may be enabled/disabled on the page <code>http://127.0.0.1:7657/i2ptunnel/</code></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">A tunnel to the inside-the-I2P IRC network. Disabled by default. Configured on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/2">irc.postman.i2p (IRC proxy)</a> and may be enabled/disabled on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">7654</td>
@@ -179,7 +179,7 @@ Les ports I2P locaux n'écoutent que les connexions locales par défaut, sauf in
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">7656</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">SAM bridge</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">A socket API for clients. Disabled by default. May be enabled/disabled on <code>http://127.0.0.1:7657/configclients</code> and configured on <code>http://127.0.0.1:7657/sam</code>.</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">A socket API for clients. Disabled by default. May be enabled/disabled on <a href="http://127.0.0.1:7657/configclients">configclients</a> and configured on <a href="http://127.0.0.1:7657/sam">sam</a>.</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">7657 (or 7658 via SSL)</td>
@@ -189,30 +189,30 @@ Les ports I2P locaux n'écoutent que les connexions locales par défaut, sauf in
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">7659</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">'eepsite' - an example webserver (Jetty)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Included in the <code>i2pinstall</code> and <code>i2pupdate</code> packages - may be disabled if another webserver is available. May be configured on the page <code>http://127.0.0.1:7657/i2ptunnel/web/3</code> and disabled on the page <code>http://127.0.0.1:7657/i2ptunnel/</code></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Included in the <code>i2pinstall</code> and <code>i2pupdate</code> packages - may be disabled if another webserver is available. May be configured on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/3">eepsite</a> and disabled on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">7660</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">I2PTunnel UDP port for SSH</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Required for Grizzled's/novg's UDP support. Instances disabled by default. May be enabled/disabled and configured to use a different port on the page <code>http://127.0.0.1:7657/i2ptunnel/</code>.</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Required for Grizzled's/novg's UDP support. Instances disabled by default. May be enabled/disabled and configured to use a different port on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a>.</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">123</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">NTP Port</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Used by <code>http://127.0.0.1:7657/confignet</code>. May be disabled/changed.</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Used by <a href="http://127.0.0.1:7657/confignet">NTP Time Sync</a>. May be disabled/changed.</td>
     </tr>
   </tbody>
 </table>
 ### Il me manque beaucoup d'hôtes dans mon carnet d'adresses. Quels sont les bons liens d'abonnement ? {#subscriptions}
 
-Le carnet d'adresses se trouve à l'adresse `http://localhost:7657/dns` où vous trouverez plus d'informations.
+Le carnet d'adresses se trouve à l'adresse [http://localhost:7657/dns](http://localhost:7657/dns) où vous trouverez plus d'informations.
 
 **Quels sont les bons liens d'abonnement aux carnets d'adresses ?**
 
 Vous pouvez essayer ce qui suit :
 
-- `http://stats.i2p/cgi-bin/newhosts.txt`
-- `http://identiguy.i2p/hosts.txt`
+- [http://stats.i2p/cgi-bin/newhosts.txt](http://stats.i2p/cgi-bin/newhosts.txt)
+- [http://identiguy.i2p/hosts.txt](http://identiguy.i2p/hosts.txt)
 
 ### Comment puis-je accéder à la console web depuis mes autres machines ou la protéger par mot de passe ? {#remote_webconsole}
 
@@ -234,7 +234,7 @@ Une fois que vous avez configuré l'accès SSH à votre système, le drapeau '-L
 ```
 ssh -L 7657:localhost:7657 (System_IP)
 ```
-où '(System_IP)' est remplacé par l'adresse IP de votre système. Cette commande transfère le port 7657 (le numéro avant le premier deux-points) vers le port 7657 du système distant (tel que spécifié par la chaîne 'localhost' entre le premier et le second deux-points) (le numéro après le second deux-points). Votre console I2P distante sera désormais accessible sur votre système local à l'adresse '`http://localhost:7657'` et restera disponible tant que votre session SSH est active.
+où '(System_IP)' est remplacé par l'adresse IP de votre système. Cette commande transfère le port 7657 (le numéro avant le premier deux-points) vers le port 7657 du système distant (tel que spécifié par la chaîne 'localhost' entre le premier et le second deux-points) (le numéro après le second deux-points). Votre console I2P distante sera désormais accessible sur votre système local à l'adresse 'http://localhost:7657' et restera disponible tant que votre session SSH est active.
 
 Si vous souhaitez démarrer une session SSH sans lancer de shell sur le système distant, vous pouvez ajouter l'option '-N' :
 
@@ -253,9 +253,9 @@ ssh -NL 7657:localhost:7657 (System_IP)
    ```
    où vous remplacez (System_IP) par l'adresse IP publique de votre système
 
-2. Allez sur `http://localhost:7657/configui` et ajoutez un nom d'utilisateur et un mot de passe pour la console si vous le souhaitez - L'ajout d'un nom d'utilisateur et d'un mot de passe est fortement recommandé pour sécuriser votre console I2P contre les manipulations, qui pourraient conduire à une désanonymisation.
+2. Allez sur [http://localhost:7657/configui](http://localhost:7657/configui) et ajoutez un nom d'utilisateur et un mot de passe pour la console si vous le souhaitez - L'ajout d'un nom d'utilisateur et d'un mot de passe est fortement recommandé pour sécuriser votre console I2P contre les manipulations, qui pourraient conduire à une désanonymisation.
 
-3. Accédez à `http://localhost:7657/index` et cliquez sur "Graceful restart", ce qui redémarre la JVM et recharge les applications clientes
+3. Accédez à [http://localhost:7657/index](http://localhost:7657/index) et cliquez sur "Graceful restart", ce qui redémarre la JVM et recharge les applications clientes
 
 Une fois démarré, vous devriez maintenant pouvoir accéder à votre console à distance. Chargez la console du router à l'adresse `http://(System_IP):7657` et vous serez invité à saisir le nom d'utilisateur et le mot de passe que vous avez spécifiés à l'étape 2 ci-dessus si votre navigateur prend en charge la fenêtre d'authentification.
 
@@ -263,13 +263,13 @@ NOTE : Vous pouvez spécifier 0.0.0.0 dans la configuration ci-dessus. Cela spé
 
 ### Comment puis-je utiliser des applications depuis mes autres machines ? {#remote_i2cp}
 
-Veuillez consulter la réponse précédente pour les instructions sur l'utilisation du transfert de port SSH, et consultez également cette page dans votre console : `http://localhost:7657/configi2cp`
+Veuillez consulter la réponse précédente pour les instructions sur l'utilisation du transfert de port SSH, et consultez également cette page dans votre console : [http://localhost:7657/configi2cp](http://localhost:7657/configi2cp)
 
 ### Est-il possible d'utiliser I2P comme proxy SOCKS ? {#socks}
 
 Le proxy SOCKS est fonctionnel depuis la version 0.7.1. SOCKS 4/4a/5 sont pris en charge. I2P n'a pas d'outproxy SOCKS, son utilisation est donc limitée à I2P uniquement.
 
-De nombreuses applications divulguent des informations sensibles qui pourraient vous identifier sur Internet et c'est un risque dont il faut être conscient lors de l'utilisation du proxy SOCKS I2P. I2P filtre uniquement les données de connexion, mais si le programme que vous avez l'intention d'utiliser envoie ces informations en tant que contenu, I2P n'a aucun moyen de protéger votre anonymat. Par exemple, certaines applications de messagerie enverront l'adresse IP de la machine sur laquelle elles s'exécutent à un serveur de messagerie. Nous recommandons des outils ou applications spécifiques à I2P (comme `http://localhost:7657/i2psnark/` pour les torrents), ou des applications dont il est connu qu'elles sont sûres à utiliser avec I2P, qui incluent des plugins populaires disponibles sur [Firefox](https://www.mozilla.org/).
+De nombreuses applications divulguent des informations sensibles qui pourraient vous identifier sur Internet et c'est un risque dont il faut être conscient lors de l'utilisation du proxy SOCKS I2P. I2P filtre uniquement les données de connexion, mais si le programme que vous avez l'intention d'utiliser envoie ces informations en tant que contenu, I2P n'a aucun moyen de protéger votre anonymat. Par exemple, certaines applications de messagerie enverront l'adresse IP de la machine sur laquelle elles s'exécutent à un serveur de messagerie. Nous recommandons des outils ou applications spécifiques à I2P (comme [I2PSnark](http://localhost:7657/i2psnark/) pour les torrents), ou des applications dont il est connu qu'elles sont sûres à utiliser avec I2P, qui incluent des plugins populaires disponibles sur [Firefox](https://www.mozilla.org/).
 
 ### Comment accéder à IRC, BitTorrent ou d'autres services sur Internet classique ? {#proxy_other}
 
@@ -281,11 +281,11 @@ Il existe des services appelés Outproxies qui font le pont entre I2P et Interne
 
 ### Mon routeur fonctionne depuis plusieurs minutes et n'a aucune connexion ou très peu de connexions {#reseed}
 
-Vérifiez d'abord la page `http://127.0.0.1:7657/netdb` dans la Console du Routeur – votre base de données réseau. Si vous ne voyez aucun routeur listé depuis I2P mais que la console indique que vous devriez être derrière un pare-feu, alors vous ne pouvez probablement pas vous connecter aux serveurs reseed. Si vous voyez d'autres routeurs I2P listés, essayez de réduire le nombre de connexions maximum `http://127.0.0.1:7657/config` peut-être que votre routeur ne peut pas gérer autant de connexions.
+Vérifiez d'abord la page [http://127.0.0.1:7657/netdb](http://127.0.0.1:7657/netdb) dans la Console du Routeur – votre base de données réseau. Si vous ne voyez aucun routeur listé depuis I2P mais que la console indique que vous devriez être derrière un pare-feu, alors vous ne pouvez probablement pas vous connecter aux serveurs reseed. Si vous voyez d'autres routeurs I2P listés, essayez de réduire le nombre de connexions maximum [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config) peut-être que votre routeur ne peut pas gérer autant de connexions.
 
 ### Comment réamorcer manuellement ? {#manual_reseed}
 
-Dans des circonstances normales, I2P vous connectera automatiquement au réseau en utilisant nos liens de démarrage. Si une perturbation d'Internet empêche le démarrage depuis les serveurs reseed, un moyen facile de démarrer est d'utiliser le navigateur Tor (par défaut, il s'ouvre sur localhost), qui fonctionne très bien avec `http://127.0.0.1:7657/configreseed`. Il est également possible de réamorcer (reseed) un routeur I2P manuellement.
+Dans des circonstances normales, I2P vous connectera automatiquement au réseau en utilisant nos liens de démarrage. Si une perturbation d'Internet empêche le démarrage depuis les serveurs reseed, un moyen facile de démarrer est d'utiliser le navigateur Tor (par défaut, il s'ouvre sur localhost), qui fonctionne très bien avec [http://127.0.0.1:7657/configreseed](http://127.0.0.1:7657/configreseed). Il est également possible de réamorcer (reseed) un routeur I2P manuellement.
 
 Lors de l'utilisation du navigateur Tor pour réamorcer (reseed), vous pouvez sélectionner plusieurs URL à la fois et continuer. Bien que la valeur par défaut qui est de 2 (parmi les multiples URL) fonctionne également, elle sera lente.
 
@@ -363,7 +363,7 @@ Le temps d'aller-retour total dans notre exemple s'élève à 740 ms - certainem
 
 Deuxièmement, nous pouvons considérer la bande passante disponible. Celle-ci est déterminée par le lien le plus lent entre les sauts du client au serveur ainsi que lorsque le trafic est transmis par le serveur vers le client. Pour le trafic allant du client vers le serveur, nous voyons que la bande passante disponible dans notre exemple entre les sauts 'R' & 'X' ainsi qu'entre les sauts 'X' & 'Y' est de 32 KB/s. Malgré une bande passante disponible plus élevée entre les autres sauts, ces sauts agiront comme un goulot d'étranglement et limiteront la bande passante maximale disponible pour le trafic de 'A' à 'B' à 32 KB/s. De même, en traçant le chemin du serveur vers le client, on constate qu'il y a une bande passante maximale de 64 KB/s - entre les sauts 'Z_1' & 'Y_1', 'Y_1' & 'X_1' et 'Q_1' & 'P_1'.
 
-Nous recommandons d'augmenter vos limites de bande passante. Cela aide le réseau en augmentant la quantité de bande passante disponible, ce qui améliorera en retour votre expérience I2P. Les paramètres de bande passante se trouvent sur la page `http://localhost:7657/config`. Veuillez tenir compte des limites de votre connexion internet déterminées par votre FAI, et ajustez vos paramètres en conséquence.
+Nous recommandons d'augmenter vos limites de bande passante. Cela aide le réseau en augmentant la quantité de bande passante disponible, ce qui améliorera en retour votre expérience I2P. Les paramètres de bande passante se trouvent sur la page [http://localhost:7657/config](http://localhost:7657/config). Veuillez tenir compte des limites de votre connexion internet déterminées par votre FAI, et ajustez vos paramètres en conséquence.
 
 Nous recommandons également de définir une quantité suffisante de bande passante partagée - cela permet aux tunnels participants d'être routés via votre routeur I2P. Autoriser le trafic participant maintient votre routeur bien intégré dans le réseau et améliore vos vitesses de transfert.
 
@@ -374,13 +374,13 @@ I2P est un projet en cours de développement. De nombreuses améliorations et co
 Vous pouvez signaler tout bug ou problème que vous rencontrez sur notre système de suivi des bugs, qui est accessible à la fois sur Internet classique et sur I2P. Nous avons un forum de discussion, également disponible sur I2P et sur Internet classique. Vous pouvez également rejoindre notre canal IRC : soit via notre réseau IRC, IRC2P, soit sur Freenode.
 
 - **Notre Bugtracker :**
-  - Internet non privé : `https://i2pgit.org/I2P_Developers/i2p.i2p/issues`
-  - Sur I2P : `http://git.idk.i2p/I2P_Developers/i2p.i2p/issues`
-- **Nos forums :** i2pforum.i2p
-- **Coller les logs :** Vous pouvez coller tous les logs intéressants sur un service de partage tel que les services internet non privés listés sur le [Wiki PrivateBin](https://github.com/PrivateBin/PrivateBin/wiki/PrivateBin-Directory), ou un service de partage I2P tel que cette instance PrivateBin ou ce service de partage sans Javascript et faire un suivi sur IRC dans #i2p
+  - Internet non privé : [https://i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
+  - Sur I2P : [http://git.idk.i2p/I2P_Developers/i2p.i2p/issues](http://git.idk.i2p/I2P_Developers/i2p.i2p/issues)
+- **Nos forums :** [i2pforum.i2p](http://i2pforum.i2p/)
+- **Coller les logs :** Vous pouvez coller tous les logs intéressants sur un service de partage tel que les services internet non privés listés sur le [Wiki PrivateBin](https://github.com/PrivateBin/PrivateBin/wiki/PrivateBin-Directory), ou un service de partage I2P tel que cette [instance PrivateBin](http://paste.crypthost.i2p) ou ce [service de partage sans Javascript](http://pasta-nojs.i2p) et faire un suivi sur IRC dans #i2p
 - **IRC :** Rejoignez #i2p-dev Discutez avec les développeurs sur IRC
 
-Veuillez inclure les informations pertinentes de la page des journaux du router disponible à : `http://127.0.0.1:7657/logs`. Nous vous demandons de partager tout le texte de la section « I2P Version and Running Environment » ainsi que toutes les erreurs ou avertissements affichés dans les différents journaux présents sur la page.
+Veuillez inclure les informations pertinentes de la page des journaux du router disponible à : [http://127.0.0.1:7657/logs](http://127.0.0.1:7657/logs). Nous vous demandons de partager tout le texte de la section « I2P Version and Running Environment » ainsi que toutes les erreurs ou avertissements affichés dans les différents journaux présents sur la page.
 
 ---
 
@@ -391,4 +391,4 @@ Génial ! Retrouvez-nous sur IRC :
 - sur `irc.freenode.net` canal `#i2p`
 - sur `IRC2P` canal `#i2p`
 
-ou postez sur le forum et nous le publierons ici (avec la réponse, espérons-le).
+ou postez sur [le forum](http://i2pforum.i2p/) et nous le publierons ici (avec la réponse, espérons-le).

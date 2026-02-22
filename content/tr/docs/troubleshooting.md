@@ -48,11 +48,11 @@ Kimliği koruyarak yapılandırmayı sıfırlamak için: I2P'yi durdurun, router
 
 Firewalled durumu, router'ın doğrudan gelen bağlantıları kabul edemediği ve introducers (aracı düğümler) üzerine bağımlı kalmak zorunda olduğu anlamına gelir. Router bu durumda çalışsa da, **performans önemli ölçüde düşer** ve ağa katkısı asgari düzeyde kalır. Firewalled olmayan duruma ulaşmak için doğru port yönlendirmesi gereklidir.
 
-**router rastgele bir bağlantı noktası seçer**; iletişim için 9000-31000 aralığında. Bağlantı noktanızı `http://127.0.0.1:7657/confignet` adresinde bulun - "UDP Port" ve "TCP Port" ifadelerini arayın (genellikle aynı numara). En iyi performans için **hem UDP hem de TCP**'yi yönlendirmeniz gerekir; ancak yalnızca UDP temel işlevselliği sağlar.
+**router rastgele bir bağlantı noktası seçer**; iletişim için 9000-31000 aralığında. Bağlantı noktanızı http://127.0.0.1:7657/confignet adresinde bulun - "UDP Port" ve "TCP Port" ifadelerini arayın (genellikle aynı numara). En iyi performans için **hem UDP hem de TCP**'yi yönlendirmeniz gerekir; ancak yalnızca UDP temel işlevselliği sağlar.
 
 **UPnP otomatik port yönlendirmeyi etkinleştirin** (en basit yöntem):
 
-1. `http://127.0.0.1:7657/confignet` adresine gidin
+1. http://127.0.0.1:7657/confignet adresine gidin
 2. "Enable UPnP" seçeneğini işaretleyin
 3. Değişiklikleri kaydedin ve router'ı yeniden başlatın
 4. 5-10 dakika bekleyin ve durumun "Network: Firewalled"dan "Network: OK"ye değiştiğini doğrulayın
@@ -61,7 +61,7 @@ UPnP, router desteği (2010'dan sonra üretilen tüketici router'larının çoğ
 
 **Manuel port yönlendirme** (UPnP başarısız olduğunda gereklidir):
 
-1. `http://127.0.0.1:7657/confignet` adresinden I2P bağlantı noktanızı not alın (örn. 22648)
+1. http://127.0.0.1:7657/confignet adresinden I2P bağlantı noktanızı not alın (örn. 22648)
 2. Yerel IP adresinizi bulun: `ipconfig` (Windows), `ip addr` (Linux), Sistem Tercihleri → Ağ (macOS)
 3. router'ın yönetim arayüzüne erişin (genellikle 192.168.1.1 veya 192.168.0.1)
 4. Port Yönlendirme'ye gidin (Gelişmiş, NAT veya Sanal Sunucular altında olabilir)
@@ -72,7 +72,7 @@ UPnP, router desteği (2010'dan sonra üretilen tüketici router'larının çoğ
 
 **Port yönlendirmesini doğrulayın** yapılandırmadan sonra çevrimiçi kontrol araçlarını kullanarak. Algılama başarısız olursa, güvenlik duvarı ayarlarını kontrol edin - hem sistem güvenlik duvarı hem de varsa antivirüsün güvenlik duvarı I2P bağlantı noktasına izin vermelidir.
 
-**Hidden mode alternatifi** port yönlendirme yapılamayan kısıtlayıcı ağlar için: `http://127.0.0.1:7657/confignet` adresinden etkinleştirin → "Hidden mode" seçeneğini işaretleyin. router güvenlik duvarı arkasında kalır, ancak bu duruma göre optimize olmak için yalnızca SSU tanıtıcılarını kullanır. Performans daha yavaş olur, ancak işlevsel kalır.
+**Hidden mode alternatifi** port yönlendirme yapılamayan kısıtlayıcı ağlar için: http://127.0.0.1:7657/confignet adresinden etkinleştirin → "Hidden mode" seçeneğini işaretleyin. router güvenlik duvarı arkasında kalır, ancak bu duruma göre optimize olmak için yalnızca SSU tanıtıcılarını kullanır. Performans daha yavaş olur, ancak işlevsel kalır.
 
 ## Router "Starting" veya "Testing" durumlarında takılı kalıyor
 
@@ -92,7 +92,7 @@ macOS: Sistem Tercihleri → Tarih ve Saat → "Tarihi ve saati otomatik olarak 
 
 Saat kaymasını düzelttikten sonra, düzgün bir entegrasyon için I2P’yi tamamen yeniden başlatın.
 
-**Yetersiz bant genişliği tahsisi** başarılı test yapılmasını engeller. router'ın test tunnels oluşturabilmesi için yeterli kapasiteye ihtiyacı vardır. Şurada yapılandırın: `http://127.0.0.1:7657/config:`
+**Yetersiz bant genişliği tahsisi** başarılı test yapılmasını engeller. router'ın test tunnels oluşturabilmesi için yeterli kapasiteye ihtiyacı vardır. Şurada yapılandırın: http://127.0.0.1:7657/config:
 
 - **Asgari yeterli:** Gelen 96 KB/sn, Giden 64 KB/sn
 - **Önerilen standart:** Gelen 256 KB/sn, Giden 128 KB/sn  
@@ -115,7 +115,7 @@ i2prouter start
 ```
 Windows: `%APPDATA%\I2P\netDb\` veya `%LOCALAPPDATA%\I2P\netDb\` klasörünün içeriğini silin
 
-**Güvenlik duvarının reseed (ilk eş temini) işlemini engellemesi**, ilk eşleri edinmeyi önler. Başlangıç sürecinde, I2P HTTPS reseed sunucularından router bilgilerini alır. Kurumsal/İSS güvenlik duvarları bu bağlantıları engelleyebilir. Kısıtlayıcı ağların arkasında çalışıyorsanız, `http://127.0.0.1:7657/configreseed` adresinde reseed proxy'yi yapılandırın.
+**Güvenlik duvarının reseed (ilk eş temini) işlemini engellemesi**, ilk eşleri edinmeyi önler. Başlangıç sürecinde, I2P HTTPS reseed sunucularından router bilgilerini alır. Kurumsal/İSS güvenlik duvarları bu bağlantıları engelleyebilir. Kısıtlayıcı ağların arkasında çalışıyorsanız, http://127.0.0.1:7657/configreseed adresinde reseed proxy'yi yapılandırın.
 
 ## Yavaş hızlar, zaman aşımları ve tunnel oluşturma başarısızlıkları
 
@@ -128,25 +128,25 @@ I2P'nin tasarımı, çok sıçramalı şifreleme, paket ek yükü ve rota öngö
 - Büyük dosya indirmeleri: Sabır gerekir - megabaytlık dosyalar dakikalar, gigabaytlar saatler sürebilir
 - İlk bağlantı en yavaştır: Tunnel oluşturma 30-90 saniye sürer; sonraki bağlantılar mevcut tunnel'leri kullanır
 
-**Tunnel oluşturma başarı oranı** ağ sağlığını gösterir. `http://127.0.0.1:7657/tunnels` adresinden kontrol edin:
+**Tunnel oluşturma başarı oranı** ağ sağlığını gösterir. http://127.0.0.1:7657/tunnels adresinden kontrol edin:
 
 - **60%'ın üzerinde:** Normal, sağlıklı çalışma
 - **40-60%:** Sınırda, bant genişliğini artırmayı veya yükü azaltmayı düşünün
 - **40%'ın altında:** Sorunlu - yetersiz bant genişliğine, ağ sorunlarına veya kötü peer (eş) seçimine işaret eder
 
-**Bant genişliği tahsisini artırın** ilk optimizasyon olarak. Yavaşlamaların çoğu bant genişliği yetersizliğinden kaynaklanır. `http://127.0.0.1:7657/config` adresinde limitleri kademeli olarak artırın ve `http://127.0.0.1:7657/graphs` adresindeki grafikleri izleyin.
+**Bant genişliği tahsisini artırın** ilk optimizasyon olarak. Yavaşlamaların çoğu bant genişliği yetersizliğinden kaynaklanır. http://127.0.0.1:7657/config adresinde limitleri kademeli olarak artırın ve http://127.0.0.1:7657/graphs adresindeki grafikleri izleyin.
 
 **DSL/Kablo (1-10 Mbps bağlantı hızları) için:** - Gelen: 400 KB/sn - Giden: 200 KB/sn - Paylaşım: %80 - Bellek: 384 MB (wrapper.config'i düzenleyin)
 
-**Yüksek hızlı (10-100+ Mbps) bağlantılar için:** - Gelen: 1500 KB/sec   - Giden: 1000 KB/sec - Paylaşım: 80-100% - Bellek: 512-1024 MB - Göz önünde bulundurun: `http://127.0.0.1:7657/configadvanced` adresinde katılımcı tunnels (tüneller) sayısını 2000-5000'e artırmayı
+**Yüksek hızlı (10-100+ Mbps) bağlantılar için:** - Gelen: 1500 KB/sec   - Giden: 1000 KB/sec - Paylaşım: 80-100% - Bellek: 512-1024 MB - Göz önünde bulundurun: http://127.0.0.1:7657/configadvanced adresinde katılımcı tunnels (tüneller) sayısını 2000-5000'e artırmayı
 
-**Tunnel yapılandırmasını optimize edin** daha iyi performans için. Belirli tunnel ayarlarına `http://127.0.0.1:7657/i2ptunnel` adresinden erişin ve her bir tunnel'ı düzenleyin:
+**Tunnel yapılandırmasını optimize edin** daha iyi performans için. Belirli tunnel ayarlarına http://127.0.0.1:7657/i2ptunnel adresinden erişin ve her bir tunnel'ı düzenleyin:
 
 - **Tunnel sayısı:** 2'den 3-4'e çıkarın (daha fazla rota mevcut)
 - **Yedek sayısı:** 1-2 olarak ayarlayın (tunnel başarısız olursa hızlı yedek geçiş)
 - **Tunnel uzunluğu:** Varsayılan 3 atlama iyi bir denge sağlar; 2'ye düşürmek hızı artırır ancak anonimliği azaltır
 
-**Yerel kripto kütüphanesi (jbigi)** salt Java şifrelemeye kıyasla 5-10 kat daha iyi performans sağlar. Yüklendiğini `http://127.0.0.1:7657/logs` adresinde doğrulayın - "jbigi loaded successfully" veya "Using native CPUID implementation" ifadelerini arayın. Yoksa:
+**Yerel kripto kütüphanesi (jbigi)** salt Java şifrelemeye kıyasla 5-10 kat daha iyi performans sağlar. Yüklendiğini http://127.0.0.1:7657/logs adresinde doğrulayın - "jbigi loaded successfully" veya "Using native CPUID implementation" ifadelerini arayın. Yoksa:
 
 Linux: Genellikle otomatik olarak algılanır ve ~/.i2p/jbigi-*.so konumundan yüklenir Windows: I2P kurulum dizininde jbigi.dll dosyasını kontrol edin Eksikse: Derleme araçlarını kurup kaynaktan derleyin veya resmi depolardan önceden derlenmiş ikili dosyaları indirin
 
@@ -174,23 +174,23 @@ wrapper.java.maxmemory=512
 ```
 **Kritik:** wrapper.config dosyasını düzenledikten sonra, **tamamen kapatmalısınız** (yeniden başlatmayın), düzgün bir sonlanma için 11 dakika bekleyin ve ardından yeniden çalıştırın. Router konsolundaki "Restart" düğmesi wrapper ayarlarını yeniden yüklemez.
 
-**CPU optimizasyonu yerel kripto kütüphanesi gerektirir.** Saf Java BigInteger işlemleri, yerel gerçekleştirmelere kıyasla 10–20 kat daha fazla CPU tüketir. Başlatma sırasında `http://127.0.0.1:7657/logs` adresinde jbigi durumunu doğrulayın. jbigi olmadan, tunnel oluşturma ve şifreleme işlemleri sırasında CPU kullanımı %50–100 seviyesine sıçrar.
+**CPU optimizasyonu yerel kripto kütüphanesi gerektirir.** Saf Java BigInteger işlemleri, yerel gerçekleştirmelere kıyasla 10–20 kat daha fazla CPU tüketir. Başlatma sırasında http://127.0.0.1:7657/logs adresinde jbigi durumunu doğrulayın. jbigi olmadan, tunnel oluşturma ve şifreleme işlemleri sırasında CPU kullanımı %50–100 seviyesine sıçrar.
 
 **Katılımcı tunnel yükünü azaltın** router aşırı yük altındaysa:
 
-1. `http://127.0.0.1:7657/configadvanced` adresine erişin
+1. http://127.0.0.1:7657/configadvanced adresine erişin
 2. `router.maxParticipatingTunnels=1000` olarak ayarlayın (varsayılan 8000)
-3. `http://127.0.0.1:7657/config` adresindeki paylaşım yüzdesini %80'den %50'ye düşürün
+3. http://127.0.0.1:7657/config adresindeki paylaşım yüzdesini %80'den %50'ye düşürün
 4. Etkinse floodfill modunu devre dışı bırakın: `router.floodfillParticipant=false`
 
-**I2PSnark'ın bant genişliğini ve eşzamanlı torrent sayısını sınırlandırın.** Torrent kullanımı önemli ölçüde kaynak tüketir. `http://127.0.0.1:7657/i2psnark` adresinde:
+**I2PSnark'ın bant genişliğini ve eşzamanlı torrent sayısını sınırlandırın.** Torrent kullanımı önemli ölçüde kaynak tüketir. http://127.0.0.1:7657/i2psnark adresinde:
 
 - Aktif torrent sayısını en fazla 3-5 olacak şekilde sınırlandırın
 - "Up BW Limit" ve "Down BW Limit" ayarlarını makul değerlere ayarlayın (her biri için 50-100 KB/sn)
 - Aktif olarak gerekmediğinde torrentleri durdurun
 - Aynı anda düzinelerce torrent için seeding (kaynak olarak paylaşma) yapmaktan kaçının
 
-**Kaynak kullanımını izleyin** `http://127.0.0.1:7657/graphs` adresindeki yerleşik grafikler aracılığıyla. Bellek, flat-top (tepede düzleşme) değil, bir boşluk payı göstermelidir. tunnel oluşturma sırasında CPU sıçramaları normaldir; kalıcı yüksek CPU, yapılandırma sorunlarına işaret eder.
+**Kaynak kullanımını izleyin** http://127.0.0.1:7657/graphs adresindeki yerleşik grafikler aracılığıyla. Bellek, flat-top (tepede düzleşme) değil, bir boşluk payı göstermelidir. tunnel oluşturma sırasında CPU sıçramaları normaldir; kalıcı yüksek CPU, yapılandırma sorunlarına işaret eder.
 
 **Ağır kaynak kısıtlamalı sistemler** (Raspberry Pi, eski donanım) için alternatif olarak **i2pd**'yi (C++ gerçeklemesi) değerlendirin. i2pd, Java I2P için 350+ MB'a kıyasla ~130 MB RAM gerektirir ve benzer yükler altında %70'e kıyasla ~%7 CPU (işlemci) kullanır. i2pd'nin yerleşik uygulamalarının olmadığını ve harici araçlar gerektirdiğini unutmayın.
 
@@ -201,7 +201,7 @@ I2PSnark'ın I2P router mimarisiyle entegrasyonu, **torrent işlemlerinin tamame
 **Torrentlerin %0'da takılı kalması genellikle şunlara işaret eder:**
 
 1. **Router tam olarak entegre değil:** I2P'yi başlattıktan sonra torrent etkinliği beklemeye başlamadan önce 10-15 dakika bekleyin
-2. **DHT devre dışı:** `http://127.0.0.1:7657/i2psnark` → Configuration → "Enable DHT"i işaretleyin (0.9.2 sürümünden beri varsayılan olarak etkin)
+2. **DHT devre dışı:** http://127.0.0.1:7657/i2psnark → Configuration → "Enable DHT"i işaretleyin (0.9.2 sürümünden beri varsayılan olarak etkin)
 3. **Geçersiz veya ölü tracker'lar:** I2P torrentleri I2P'ye özgü tracker'lar gerektirir - clearnet (açık internet) tracker'ları çalışmaz
 4. **Yetersiz tunnel yapılandırması:** I2PSnark Configuration → Tunnels bölümünden tunnel sayısını artırın
 
@@ -216,7 +216,7 @@ I2PSnark'ın I2P router mimarisiyle entegrasyonu, **torrent işlemlerinin tamame
 
 Herhangi bir clearnet (.i2p olmayan; anonim olmayan açık internet) tracker'larını kaldırın - hiçbir değer sağlamazlar ve zaman aşımına uğrayan bağlantı denemeleri oluştururlar.
 
-**"Torrent not registered" hataları**, izleyici (tracker) ile iletişim başarısız olduğunda oluşur. torrent'e sağ tıklayıp → "Start" seçeneğini kullanmak yeniden duyuruyu zorlar. Sorun sürüyorsa, I2P için yapılandırılmış bir tarayıcıda `http://tracker2.postman.i2p` adresine giderek izleyicinin erişilebilirliğini doğrulayın. Çalışmayan izleyiciler, çalışan alternatiflerle değiştirilmelidir.
+**"Torrent not registered" hataları**, izleyici (tracker) ile iletişim başarısız olduğunda oluşur. torrent'e sağ tıklayıp → "Start" seçeneğini kullanmak yeniden duyuruyu zorlar. Sorun sürüyorsa, I2P için yapılandırılmış bir tarayıcıda http://tracker2.postman.i2p adresine giderek izleyicinin erişilebilirliğini doğrulayın. Çalışmayan izleyiciler, çalışan alternatiflerle değiştirilmelidir.
 
 **Eşler bağlanmıyor**; tracker başarılı olsa da şunları düşündürür: - Router güvenlik duvarı arkasında (port yönlendirme ile iyileşir ama zorunlu değildir) - Yetersiz bant genişliği (256+ KB/sec'e artırın)   - Sürü çok küçük (bazı torrentlerde 1-2 seed (gönderici) bulunur; sabır gerekir) - DHT kapalı (izleyicisiz eş keşfi için etkinleştirin)
 
@@ -271,7 +271,7 @@ Not: `socks5h` DNS çözümlemesini proxy üzerinden gerçekleştirir - .i2p ala
 
 **Git SSH için özel bir I2P tunnel oluşturun** (SOCKS'tan daha güvenilir):
 
-1. `http://127.0.0.1:7657/i2ptunnel` adresine erişin
+1. http://127.0.0.1:7657/i2ptunnel adresine erişin
 2. "New client tunnel" → "Standard"
 3. Yapılandırın:
    - Ad: Git-SSH  
@@ -287,7 +287,7 @@ Not: `socks5h` DNS çözümlemesini proxy üzerinden gerçekleştirir - .i2p ala
 
 - Anahtar ssh-agent'e eklenmedi: `ssh-add ~/.ssh/id_rsa`
 - Anahtar dosya izinleri hatalı: `chmod 600 ~/.ssh/id_rsa`
-- Tunnel çalışmıyor: `http://127.0.0.1:7657/i2ptunnel` adresinde yeşil durumda göründüğünü doğrulayın
+- Tunnel çalışmıyor: http://127.0.0.1:7657/i2ptunnel adresinde yeşil durumda göründüğünü doğrulayın
 - Git sunucusu belirli bir anahtar türü gerektiriyor: RSA başarısız olursa ed25519 anahtarı oluşturun
 
 **Git işlemlerinin zaman aşımına uğraması** I2P'nin gecikme özellikleriyle ilişkilidir:
@@ -306,11 +306,11 @@ Not: `socks5h` DNS çözümlemesini proxy üzerinden gerçekleştirir - .i2p ala
 
 **"Bağlantı reddedildi" hataları** tunnel yanlış yapılandırmasına işaret eder:
 
-1. I2P router çalıştığını doğrulayın: `http://127.0.0.1:7657` adresini kontrol edin
-2. `http://127.0.0.1:7657/i2ptunnel` adresinde tunnel’in aktif ve yeşil olduğunu doğrulayın
+1. I2P router çalıştığını doğrulayın: http://127.0.0.1:7657 adresini kontrol edin
+2. http://127.0.0.1:7657/i2ptunnel adresinde tunnel’in aktif ve yeşil olduğunu doğrulayın
 3. Tunnel’i test edin: `nc -zv 127.0.0.1 2222` (tunnel çalışıyorsa bağlanmalıdır)
 4. Hedefin erişilebilir olduğunu kontrol edin: Mümkünse hedefin HTTP arayüzünü tarayıcıda açın
-5. Belirli hatalar için `http://127.0.0.1:7657/logs` adresindeki tunnel günlüklerini inceleyin
+5. Belirli hatalar için http://127.0.0.1:7657/logs adresindeki tunnel günlüklerini inceleyin
 
 **I2P üzerinden Git için en iyi uygulamalar:**
 
@@ -354,17 +354,17 @@ Daha iyi bir yaklaşım: Seçici .i2p yönlendirmesi için FoxyProxy veya Proxy 
 
 **Yöntem 1: Atlama hizmetlerini kullanın** (yeni siteler için en kolay yöntem):
 
-`http://stats.i2p` adresine gidin ve siteyi arayın. addresshelper (adres yardımcısı) bağlantısına tıklayın: `http://example.i2p/?i2paddresshelper=base64destination`. Tarayıcınız "Adres defterine kaydet?" mesajını gösterir - eklemek için onaylayın.
+http://stats.i2p adresine gidin ve siteyi arayın. addresshelper (adres yardımcısı) bağlantısına tıklayın: `http://example.i2p/?i2paddresshelper=base64destination`. Tarayıcınız "Adres defterine kaydet?" mesajını gösterir - eklemek için onaylayın.
 
 **Yöntem 2: Adres defteri aboneliklerini güncelleyin:**
 
-1. `http://127.0.0.1:7657/dns` adresine gidin (SusiDNS)
+1. http://127.0.0.1:7657/dns adresine gidin (SusiDNS)
 2. "Subscriptions" sekmesine tıklayın  
-3. Etkin abonelikleri doğrulayın (varsayılan: `http://i2p-projekt.i2p/hosts.txt)`
+3. Etkin abonelikleri doğrulayın (varsayılan: http://i2p-projekt.i2p/hosts.txt)
 4. Önerilen abonelikleri ekleyin:
-   - `http://stats.i2p/cgi-bin/newhosts.txt`
-   - `http://notbob.i2p/hosts.txt`
-   - `http://reg.i2p/export/hosts.txt`
+   - http://stats.i2p/cgi-bin/newhosts.txt
+   - http://notbob.i2p/hosts.txt
+   - http://reg.i2p/export/hosts.txt
 5. Abonelikleri hemen güncellemeye zorlamak için "Update Now" düğmesine tıklayın
 6. İşlenmesi için 5-10 dakika bekleyin
 
@@ -382,7 +382,7 @@ Her .i2p sitesinin bir base32 adresi vardır: .b32.i2p ile biten 52 rastgele kar
 
 **Router tam olarak entegre edilmemiş** herhangi bir siteye erişimi engeller. Yeterli entegrasyonu doğrulayın:
 
-1. `http://127.0.0.1:7657` sayfasının "Network: OK" veya "Network: Firewalled" gösterdiğini kontrol edin ("Network: Testing" değil)
+1. http://127.0.0.1:7657 sayfasının "Network: OK" veya "Network: Firewalled" gösterdiğini kontrol edin ("Network: Testing" değil)
 2. Aktif eşler en az 10+ (tercihen 50+) göstermeli  
 3. "Rejecting tunnels: starting up" mesajı olmamalı
 4. .i2p erişimini beklemeden önce router başlatıldıktan sonra tam 10-15 dakika bekleyin
@@ -393,7 +393,7 @@ Her .i2p sitesinin bir base32 adresi vardır: .b32.i2p ile biten 52 rastgele kar
 
 **E-posta (Postman):**  - SMTP: **127.0.0.1:7659** - POP3: **127.0.0.1:7660**   - SSL/TLS yok (şifreleme I2P tunnel tarafından sağlanır) - Kimlik bilgileri postman.i2p hesap kaydından
 
-Tüm bu tunnel'ların `http://127.0.0.1:7657/i2ptunnel` adresinde "running" (yeşil) durumunda olması gerekir.
+Tüm bu tunnel'ların http://127.0.0.1:7657/i2ptunnel adresinde "running" (yeşil) durumunda olması gerekir.
 
 ## Kurulum hataları ve paket sorunları
 
@@ -409,7 +409,7 @@ sudo rm /etc/apt/sources.list.d/i2p.list
 echo "deb [signed-by=/usr/share/keyrings/i2p-archive-keyring.gpg] https://deb.i2p.net/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/i2p.list
 
 # Download and install current signing key
-curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
+curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
 sudo cp i2p-archive-keyring.gpg /usr/share/keyrings/
 
 # Update and install
@@ -424,7 +424,7 @@ sudo apt install i2p i2p-keyring
 sudo apt install i2p-keyring
 
 # Manual key import if package unavailable
-wget `https://geti2p.net/_static/i2p-debian-repo.key.asc`
+wget https://geti2p.net/_static/i2p-debian-repo.key.asc
 sudo apt-key add i2p-debian-repo.key.asc
 ```
 **Paket kurulumu sonrasında servis başlamıyor** çoğunlukla Debian/Ubuntu'daki AppArmor profil sorunlarından kaynaklanır:
@@ -484,12 +484,12 @@ Yaygın wrapper.config sorunları:
 
 Router konsolu güncellemeleri, ağ kesintileri nedeniyle indirme ortasında ara sıra başarısız olabilir. Elle güncelleme prosedürü:
 
-1. `https://geti2p.net/en/download` adresinden i2pupdate_X.X.X.zip dosyasını indirin
+1. https://geti2p.net/en/download adresinden i2pupdate_X.X.X.zip dosyasını indirin
 2. SHA256 sağlama toplamının yayımlanan karmayla eşleştiğini doğrulayın
 3. I2P kurulum dizinine `i2pupdate.zip` adıyla kopyalayın
 4. Router'ı yeniden başlatın - güncellemeyi otomatik olarak algılar ve çıkarır
 5. Güncellemenin kurulması için 5-10 dakika bekleyin
-6. Yeni sürümü `http://127.0.0.1:7657` adresinde doğrulayın
+6. Yeni sürümü http://127.0.0.1:7657 adresinde doğrulayın
 
 **Çok eski sürümlerden geçiş** (0.9.47 öncesi) güncel sürümlere, uyumsuz imza anahtarları veya kaldırılmış özellikler nedeniyle başarısız olabilir. Kademeli güncellemeler gereklidir:
 
@@ -624,9 +624,9 @@ I2P'nin günlükleme sistemi, sorunları tam olarak saptayan belirli hata mesajl
 
 **"No tunnels available"** ifadesi, router'ın çalışabilmesi için yeterli sayıda tunnel oluşturmadığında görünür. Bu, başlatıldıktan sonra **ilk 5-10 dakika boyunca normaldir**. 15 dakikadan uzun süre devam ederse:
 
-1. `http://127.0.0.1:7657` adresinde Aktif Eşler > 10 olduğunu doğrulayın
+1. http://127.0.0.1:7657 adresinde Aktif Eşler > 10 olduğunu doğrulayın
 2. Bant genişliği tahsisinin yeterli olduğunu kontrol edin (en az 128+ KB/sn)
-3. `http://127.0.0.1:7657/tunnels` adresinde tunnel başarı oranını inceleyin (>%40 olmalı)
+3. http://127.0.0.1:7657/tunnels adresinde tunnel başarı oranını inceleyin (>%40 olmalı)
 4. Günlükleri, tunnel oluşturmanın reddedilme nedenleri için gözden geçirin
 
 **"Clock skew detected"** veya **"NTCP2 disconnect code 7"**, sistem saatinin ağ konsensüsünden 90 saniyeden fazla saptığını gösterir. I2P **±60 saniyelik doğruluk** gerektirir. Saatinde sapma olan routers ile bağlantılar otomatik olarak reddedilir.
@@ -643,7 +643,7 @@ date  # Verify correct time
 # Control Panel → Date and Time → Internet Time → Update now
 
 # Verify after sync
-`http://127.0.0.1:7657/logs`  # Should no longer show clock skew warnings
+http://127.0.0.1:7657/logs  # Should no longer show clock skew warnings
 ```
 **"Build timeout"** veya **"Tunnel build timeout exceeded"**, eş zinciri boyunca tunnel inşasının zaman aşımı penceresi (genellikle 60 saniye) içinde tamamlanmadığı anlamına gelir. Nedenleri:
 
@@ -652,7 +652,7 @@ date  # Verify correct time
 - **Yetersiz bant genişliği:** Bant genişliği sınırlarınız, tunnel kurulumunun zamanında yapılmasını engelliyor
 - **Aşırı yüklenmiş router:** Çok fazla katılımcı tunnel, kaynakları tüketiyor
 
-Çözümler: Bant genişliğini artırın, katılımcı tunnel sayısını azaltın (`router.maxParticipatingTunnels` `http://127.0.0.1:7657/configadvanced` adresinde), daha iyi eş (peer) seçimi için port yönlendirmeyi etkinleştirin.
+Çözümler: Bant genişliğini artırın, katılımcı tunnel sayısını azaltın (`router.maxParticipatingTunnels` http://127.0.0.1:7657/configadvanced adresinde), daha iyi eş (peer) seçimi için port yönlendirmeyi etkinleştirin.
 
 **"Router is shutting down"** veya **"Graceful shutdown in progress"** normal kapatma veya çökme sonrası kurtarma sırasında görünür. Düzgün kapatma (graceful shutdown), router tunnel'leri kapatıp eşleri bilgilendirirken ve durum bilgisini kalıcılaştırırken **10 dakikaya kadar** sürebilir.
 
@@ -671,7 +671,7 @@ taskkill /F /IM javaw.exe
 2. **Tam kapanma gerekli** - yeniden başlatma değişikliği uygulamaz
 3. Tam kapanma için 11 dakika bekleyin  
 4. router'ı temiz başlatın
-5. `http://127.0.0.1:7657/graphs` adresinde ayrılan belleği doğrulayın - boş alan göstermeli
+5. http://127.0.0.1:7657/graphs adresinde ayrılan belleği doğrulayın - boş alan göstermeli
 
 **İlgili bellek hataları:**
 
@@ -682,7 +682,7 @@ taskkill /F /IM javaw.exe
 
 **"Connection timeout"** veya **"I2CP Error - port 7654"** uygulamalar router'a bağlanmaya çalıştıklarında:
 
-1. router'ın çalıştığını doğrulayın: `http://127.0.0.1:7657` yanıt vermeli
+1. router'ın çalıştığını doğrulayın: http://127.0.0.1:7657 yanıt vermeli
 2. I2CP bağlantı noktasını kontrol edin: `netstat -an | grep 7654` LISTENING göstermeli
 3. localhost güvenlik duvarının izin verdiğinden emin olun: `sudo ufw allow from 127.0.0.1`  
 4. Uygulamanın doğru bağlantı noktasını kullandığını doğrulayın (I2CP=7654, SAM=7656)
@@ -817,7 +817,7 @@ Add-MpPreference -ExclusionPath "$env:APPDATA\I2P"
 Add-MpPreference -ExclusionPath "$env:LOCALAPPDATA\I2P"
 Add-MpPreference -ExclusionProcess "javaw.exe"
 ```
-Port 22648'i `http://127.0.0.1:7657/confignet` adresindeki gerçek I2P bağlantı noktanızla değiştirin.
+Port 22648'i http://127.0.0.1:7657/confignet adresindeki gerçek I2P bağlantı noktanızla değiştirin.
 
 **Kaspersky Antivirus'a özgü sorun:** Kaspersky'nin "Application Control" özelliği, wrapper.config ayarlarından bağımsız olarak Java heap (Java yığını) değerini 512MB ile sınırlar. Bu, yüksek bant genişliğine sahip router'larda OutOfMemoryError oluşmasına neden olur.
 
@@ -931,15 +931,15 @@ Yeni I2P kurulumları, ağa katılmak için genel HTTPS sunucularından başlang
 
 **Elle reseed (yeniden tohumlama) işlemini zorla:**
 
-1. `http://127.0.0.1:7657/configreseed` adresine gidin
+1. http://127.0.0.1:7657/configreseed adresine gidin
 2. "Save changes and reseed now" düğmesine tıklayın  
-3. "Reseed got XX router infos" iletisini görmek için `http://127.0.0.1:7657/logs` sayfasını izleyin
+3. "Reseed got XX router infos" iletisini görmek için http://127.0.0.1:7657/logs sayfasını izleyin
 4. İşleme için 5-10 dakika bekleyin
-5. `http://127.0.0.1:7657` adresini kontrol edin - Known peers 50+'ya yükselmiş olmalı
+5. http://127.0.0.1:7657 adresini kontrol edin - Known peers 50+'ya yükselmiş olmalı
 
 **reseed proxy'yi yapılandırın** (ilk başlatmada gerekli başlangıç verilerini almak için kullanılan vekil sunucu) kısıtlayıcı ağlar için:
 
-`http://127.0.0.1:7657/configreseed` → Proxy Yapılandırması:
+http://127.0.0.1:7657/configreseed → Proxy Yapılandırması:
 
 - HTTP Proxy: [proxy-server]:[port]
 - Veya SOCKS5: [socks-server]:[port]  
@@ -960,12 +960,12 @@ Tor Browser veya Tor daemon (arka plan süreci) çalışıyorsa:
 
 Tüm otomatik reseed (başlangıç düğümü bilgilerinin yeniden alınması) başarısız olduğunda, reseed dosyasını bant dışı olarak edinin:
 
-1. Kısıtlamasız bir bağlantı üzerinden güvenilir bir kaynaktan i2pseeds.su3 dosyasını indirin (`https://reseed.i2p.rocks/i2pseeds.su3,` `https://reseed-fr.i2pd.xyz/i2pseeds.su3)`
+1. Kısıtlamasız bir bağlantı üzerinden güvenilir bir kaynaktan i2pseeds.su3 dosyasını indirin (https://reseed.i2p.rocks/i2pseeds.su3, https://reseed-fr.i2pd.xyz/i2pseeds.su3)
 2. I2P'yi tamamen durdurun
 3. i2pseeds.su3 dosyasını ~/.i2p/ dizinine kopyalayın  
 4. I2P'yi başlatın - dosyayı otomatik olarak çıkarır ve işler
 5. İşleme tamamlandıktan sonra i2pseeds.su3 dosyasını silin
-6. `http://127.0.0.1:7657` adresinde eş sayısının arttığını doğrulayın
+6. http://127.0.0.1:7657 adresinde eş sayısının arttığını doğrulayın
 
 **reseed (yeniden tohumlama) sırasında SSL sertifika hataları:**
 
@@ -991,17 +991,17 @@ sudo update-ca-certificates
 Tam bir reseed (yeniden tohumlama işlemi) başarısızlığını belirtir. Sorun giderme sırası:
 
 1. **Sistem saatinin doğru olduğunu doğrulayın** (en yaygın sorun - İLK ÖNCE düzeltin)
-2. **HTTPS bağlantısını test edin:** Tarayıcıda `https://reseed.i2p.rocks` adresine erişmeyi deneyin - başarısız olursa ağ sorunudur
-3. **I2P günlüklerini** `http://127.0.0.1:7657/logs` adresinde belirli reseed (ağı başlatmak için başlangıç verilerini alma işlemi) hataları için kontrol edin
-4. **Farklı bir reseed URL'si deneyin:** `http://127.0.0.1:7657/configreseed` → özel reseed URL'si ekleyin: `https://reseed-fr.i2pd.xyz/`
+2. **HTTPS bağlantısını test edin:** Tarayıcıda https://reseed.i2p.rocks adresine erişmeyi deneyin - başarısız olursa ağ sorunudur
+3. **I2P günlüklerini** http://127.0.0.1:7657/logs adresinde belirli reseed (ağı başlatmak için başlangıç verilerini alma işlemi) hataları için kontrol edin
+4. **Farklı bir reseed URL'si deneyin:** http://127.0.0.1:7657/configreseed → özel reseed URL'si ekleyin: https://reseed-fr.i2pd.xyz/
 5. **Manuel su3 dosyası yöntemini kullanın** otomatik denemeler tükendiyse
 
 **Reseed (yeniden tohumlama) sunucuları zaman zaman çevrimdışı:** I2P, birden fazla sabit kodlanmış reseed sunucusu içerir. Biri başarısız olursa, router otomatik olarak diğerlerini dener. Tüm reseed sunucularının tamamen devre dışı kalması son derece nadirdir, ancak mümkündür.
 
 **Şu anda aktif reseed sunucuları (ağ başlangıç sunucuları)** (Ekim 2025 itibarıyla):
 
-- `https://reseed.i2p.rocks/`
-- `https://reseed-fr.i2pd.xyz/`
+- https://reseed.i2p.rocks/
+- https://reseed-fr.i2pd.xyz/
 - https://i2p.novg.net/
 - https://i2p-projekt.de/
 
@@ -1026,20 +1026,20 @@ Bu kılavuz, I2P ile ilgili sorunların çok büyük çoğunluğunu kapsar, anca
 
 **Yardım istemeden önce, tanılama bilgilerini toplayın:**
 
-1. I2P sürümü: `http://127.0.0.1:7657` (örn., "2.10.0")
+1. I2P sürümü: http://127.0.0.1:7657 (örn., "2.10.0")
 2. Java sürümü: `java -version` çıktısı
 3. İşletim sistemi ve sürümü
 4. Router durumu: Ağ durumu, Aktif eş sayısı, Katılınan tunnels
 5. Bant genişliği yapılandırması: Gelen/Giden sınırları
 6. Port yönlendirme durumu: Firewalled (güvenlik duvarı arkasında) veya OK
-7. İlgili günlük alıntıları: `http://127.0.0.1:7657/logs` adresinden hataları gösteren son 50 satır
+7. İlgili günlük alıntıları: http://127.0.0.1:7657/logs adresinden hataları gösteren son 50 satır
 
 **Resmi destek kanalları:**
 
-- **Forum:** https://i2pforum.net (açık internet) veya `http://i2pforum.i2p` (I2P içinde)
+- **Forum:** https://i2pforum.net (açık internet) veya http://i2pforum.i2p (I2P içinde)
 - **IRC:** #i2p Irc2P üzerinde (irc.postman.i2p I2P üzerinden) veya irc.freenode.net (açık internet)
 - **Reddit:** https://reddit.com/r/i2p topluluk tartışmaları için
-- **Bug tracker:** `https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues` doğrulanmış hatalar için
+- **Bug tracker:** https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues doğrulanmış hatalar için
 - **Mailing list:** i2p-dev@lists.i2p-projekt.de geliştirme soruları için
 
 **Gerçekçi beklentiler önemlidir.** I2P, temel tasarımı gereği clearnet (açık internet)'ten daha yavaştır - çok atlamalı şifreli tunnel kullanımı içkin bir gecikme yaratır. Sayfaların 30 saniyede yüklenmesi ve 50 KB/sn torrent hızlarıyla çalışan bir I2P router **doğru şekilde çalışıyor**, bozuk değildir. Yapılandırma optimizasyonundan bağımsız olarak clearnet hızlarını bekleyen kullanıcılar hayal kırıklığına uğrayacaktır.

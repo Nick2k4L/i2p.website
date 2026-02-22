@@ -80,7 +80,7 @@ Java I2P i2ptunnel prend en charge les clients partagés, où les clients peuven
 
 ### Limiter la quantité de tunnels
 
-Spécifiez la quantité de tunnels explicitement avec les options `inbound.quantity` et `outbound.quantity`. La valeur par défaut dans Java I2P est 2 ; la valeur par défaut dans i2pd est plus élevée. Spécifiez dans la ligne SESSION CREATE en utilisant SAM pour obtenir des paramètres cohérents avec les deux routeurs. Deux tunnels entrants et sortants suffisent pour la plupart des applications à bande passante faible à moyenne et à distribution faible à moyenne. Les serveurs et les applications P2P à haute distribution peuvent nécessiter davantage. Voir ce message du forum pour des conseils sur le calcul des exigences pour les serveurs et applications à fort trafic.
+Spécifiez la quantité de tunnels explicitement avec les options `inbound.quantity` et `outbound.quantity`. La valeur par défaut dans Java I2P est 2 ; la valeur par défaut dans i2pd est plus élevée. Spécifiez dans la ligne SESSION CREATE en utilisant SAM pour obtenir des paramètres cohérents avec les deux routeurs. Deux tunnels entrants et sortants suffisent pour la plupart des applications à bande passante faible à moyenne et à distribution faible à moyenne. Les serveurs et les applications P2P à haute distribution peuvent nécessiter davantage. Voir [ce message du forum](http://zzz.i2p/topics/1584) pour des conseils sur le calcul des exigences pour les serveurs et applications à fort trafic.
 
 ### Spécifier le SAM SIGNATURE_TYPE
 
@@ -240,4 +240,4 @@ import net.i2p.router.Router;
 ```
 Ce code est pour le cas où votre application démarre le router, comme dans notre application Android. Vous pourriez également faire démarrer l'application par le router via les fichiers clients.config et i2ptunnel.config, conjointement avec les webapps Jetty, comme c'est fait dans nos paquets Java. Comme toujours, la gestion d'état est la partie difficile.
 
-Voir aussi : la javadoc du Router.
+Voir aussi : [la javadoc du Router](http://idk.i2p/javadoc-i2p/net/i2p/router/Router.html).

@@ -47,9 +47,9 @@ accurateFor: "historical"
 
 与I2P中通常的情况一样，这里在匿名性和效率之间存在基本权衡。一些人认为使用etag和last-modified头是危险的，因为它暴露了你上次请求数据的时间。其他人建议只请求特定的键（类似于jump服务的做法，但以更自动化的方式），这可能会进一步牺牲匿名性。
 
-可能的改进方案包括替换或补充地址簿（参见 i2host.i2p），或者采用简单的方式，比如订阅 `http://example.i2p/cgi-bin/recenthosts.cgi` 而不是 `http://example.i2p/hosts.txt。例如，如果假设的` recenthosts.cgi 分发过去 24 小时内的所有主机信息，这可能比当前使用 last-modified 和 etag 的 hosts.txt 更高效、更匿名。
+可能的改进方案包括替换或补充地址簿（参见 i2host.i2p），或者采用简单的方式，比如订阅 http://example.i2p/cgi-bin/recenthosts.cgi 而不是 http://example.i2p/hosts.txt。例如，如果假设的 recenthosts.cgi 分发过去 24 小时内的所有主机信息，这可能比当前使用 last-modified 和 etag 的 hosts.txt 更高效、更匿名。
 
-一个示例实现位于 stats.i2p 的 `http://stats.i2p/cgi-bin/newhosts.txt。此脚本返回带有时间戳的` Etag。当收到带有 If-None-Match etag 的请求时，脚本仅返回该时间戳之后的新主机，如果没有新主机则返回 304 Not Modified。通过这种方式，脚本以与地址簿兼容的方式高效地只返回订阅者不知道的主机。
+一个示例实现位于 stats.i2p 的 http://stats.i2p/cgi-bin/newhosts.txt。此脚本返回带有时间戳的 Etag。当收到带有 If-None-Match etag 的请求时，脚本仅返回该时间戳之后的新主机，如果没有新主机则返回 304 Not Modified。通过这种方式，脚本以与地址簿兼容的方式高效地只返回订阅者不知道的主机。
 
 因此效率低下并不是一个大问题，而且有几种方法可以在不进行根本性改变的情况下改进情况。
 
@@ -57,7 +57,7 @@ accurateFor: "historical"
 
 就网络流量而言，请参见上文。但除非你打算通过网络进行缓慢的实时密钥查询，否则你需要在本地存储整套密钥，每个密钥大约需要500字节的存储成本。
 
-- **需要配置和"信任"：** 开箱即用的地址簿仅订阅了 `http://www.i2p2.i2p/hosts.txt，这个文件很少更新，导致新用户体验不佳。`
+- **需要配置和"信任"：** 开箱即用的地址簿仅订阅了 http://www.i2p2.i2p/hosts.txt，这个文件很少更新，导致新用户体验不佳。
 
 这是非常有意图的设计。jrandom希望用户能够"信任"hosts.txt提供者，正如他喜欢说的那样，"信任不是布尔值"。配置步骤试图强迫用户思考匿名网络中的信任问题。
 

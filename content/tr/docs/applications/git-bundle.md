@@ -21,7 +21,7 @@ Eğer bir git bundle oluşturmayı planlıyorsanız, **mtn repository değil**, 
 
 ## I2P Kaynak Kodunu Bittorrent ile İndirme
 
-Birinin size zaten oluşturduğu mevcut bir `git bundle`'a karşılık gelen bir torrent dosyası veya magnet bağlantısı sağlaması gerekecek. 18 Mart 2020 Çarşamba tarihi itibariyle ana hat i2p.i2p kaynak kodunun güncel, doğru şekilde oluşturulmuş bir bundle'ı I2P içindeki pastebin'imde paste.idk.i2p/f/4hq37i adresinde bulunabilir.
+Birinin size zaten oluşturduğu mevcut bir `git bundle`'a karşılık gelen bir torrent dosyası veya magnet bağlantısı sağlaması gerekecek. 18 Mart 2020 Çarşamba tarihi itibariyle ana hat i2p.i2p kaynak kodunun güncel, doğru şekilde oluşturulmuş bir bundle'ı I2P içindeki pastebin'imde [paste.idk.i2p/f/4hq37i](http://paste.idk.i2p/f/4h137i) adresinde bulunabilir.
 
 Bir bundle'ınız olduğunda, ondan çalışan bir repository oluşturmak için git kullanmanız gerekecek. GNU/Linux ve i2psnark kullanıyorsanız, git bundle $HOME/.i2p/i2psnark konumunda veya Debian'da servis olarak /var/lib/i2p/i2p-config/i2psnark konumunda bulunmalıdır. GNU/Linux'ta BiglyBT kullanıyorsanız, muhtemelen "$HOME/BiglyBT Downloads/" konumundadır. Buradaki örnekler GNU/Linux'ta I2PSnark'ı varsayar, başka bir şey kullanıyorsanız bundle'ın yolunu istemciniz ve platformunuz tarafından tercih edilen indirme dizini ile değiştirin.
 

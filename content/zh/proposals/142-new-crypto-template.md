@@ -12,77 +12,88 @@ thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
 
-## 概述
+## Overview
 
-本文档描述了在提议替换或添加我们的ElGamal非对称加密时需要考虑的重要问题。
+This document describes important issues to consider when proposing
+a replacement or addition to our ElGamal asymmetric encryption.
 
-这是一份信息性文件。
-
-
-## 动机
-
-ElGamal算法已经过时且运行缓慢，现在有更好的替代方案。然而，在我们添加或更改为任何新算法之前，必须解决几个问题。本文档重点介绍了这些未解决的问题。
+This is an informational document.
 
 
-## 背景研究
+## Motivation
 
-任何提议新加密方案的人首先必须熟悉以下文件：
-
-- [提案 111 NTCP2](/zh/proposals/111-ntcp-2/)
-- [提案 123 LS2](/zh/proposals/123-new-netdb-entries/)
-- [提案 136 实验性签名类型](/zh/proposals/136-experimental-sigtypes/)
-- [提案 137 可选签名类型](/zh/proposals/137-optional-sigtypes/)
-- 以上每个提案的讨论线程，链接包含于其中
-- 2018年的提案优先级
-- ECIES提案
-- 新非对称加密概述
-- [低级别加密概述](/zh/docs/specs/common-structures/)
+ElGamal is old and slow, and there are better alternatives.
+However, there are several issues that must be addressed before we can add or change to any new algorithm.
+This document highlights these unresolved issues.
 
 
-## 非对称加密的用途
 
-回顾一下，我们使用ElGamal的场合有：
+## Background Research
 
-1) 隧道构建消息（密钥在RouterIdentity中）
+Anybody proposing new crypto must first be familiar with the following documents:
 
-2) 路由器到路由器的netdb和其他I2NP消息加密（密钥在RouterIdentity中）
-
-3) 客户端端到端的ElGamal+AES/SessionTag（密钥在LeaseSet中，目标密钥未使用）
-
-4) NTCP和SSU的临时DH
-
-
-## 设计
-
-任何旨在用其他方案替代ElGamal的提案必须提供以下细节。
+- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
+- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
+- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
+- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
+- Discussion threads here for each of the above proposals, linked within
+- [2018 proposal priorities](http://zzz.i2p/topics/2494)
+- [ECIES proposal](http://zzz.i2p/topics/2418)
+- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
+- [Low-level crypto overview](/docs/specs/common-structures/)
 
 
-## 规格
+## Asymmetric Crypto Uses
 
-任何新的非对称加密提案必须完全指定以下内容。
+As a review, we use ElGamal for:
 
+1) Tunnel Build messages (key is in RouterIdentity)
 
-### 1. 一般要求
+2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
 
-在您的提案中回答以下问题。请注意，这可能需要与下面第2节中的具体内容分开提议，因为它可能与现有提案111, 123, 136, 137或其他提案冲突。
+3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
 
-- 您建议在哪些上述1-4情况下使用新加密？
-- 如果是用于1)或2)（路由器），公钥放在哪里，在RouterIdentity中还是在RouterInfo属性中？您打算使用密钥证书中的加密类型吗？完全指定并说明您选择的理由。
-- 如果是用于3)（客户端），您打算将公钥存储在目标地并在密钥证书中使用加密类型（如ECIES提案中），还是存储在LS2中（如提案123中），或其他方式？完全指定并说明您选择的理由。
-- 对于所有用途，如何宣传支持？如果是3)，它是在LS2中，还是其他地方？如果是1)和2)，是否类似于提案136和/或137？完全指定并说明您选择的理由。可能需要单独提案。
-- 完全说明如何以及为何向后兼容，并完整说明迁移计划。
-- 您的提案有哪些未实现的前提条件？
+4) Ephemeral DH for NTCP and SSU
 
 
-### 2. 具体加密类型
+## Design
 
-在您的提案中回答以下问题：
-
-- 一般加密信息、具体曲线/参数，完全说明您选择的理由。提供规范及其他信息的链接。
-- 速度测试结果与ElG以及其他可选方案的对比，若适用。包括加密、解密和密钥生成。
-- C++和Java（包括OpenJDK、BouncyCastle和第三方）的库可用性
-  对于第三方或非Java，提供链接和许可证
-- 拟议加密类型编号（实验范围或非实验范围）
+Any proposal to replace ElGamal with something else must provide the following details.
 
 
-## 注释
+
+## Specification
+
+Any proposal for new asymmetric crypto must fully specify the following things.
+
+
+
+### 1. General
+
+Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
+
+- Which of the above cases 1-4 do you propose to use the new crypto for?
+- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
+- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
+- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
+- Completely specify how and why this is backward compatible, and fully specify a migration plan.
+- Which unimplemented proposals are prerequisites for your proposal?
+
+
+### 2. Specific crypto type
+
+Answer the following questions in your proposal:
+
+- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
+- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
+- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
+  For 3rd party or non-Java, provide links and licenses
+- Proposed crypto type number(s) (experimental range or not)
+
+
+
+
+## Notes
+
+
+

@@ -93,6 +93,6 @@ Následující pravidla platí pro router, webové aplikace a všechny pluginy.
 
 ### Chyby
 
-- Správa problémů je úkolem každého; prosím pomozte. Sledujte GitLab pro problémy, se kterými můžete pomoci. Komentujte, opravujte a zavírejte problémy, pokud můžete.
+- Správa problémů je úkolem každého; prosím pomozte. Sledujte [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues) pro problémy, se kterými můžete pomoci. Komentujte, opravujte a zavírejte problémy, pokud můžete.
 - Noví vývojáři by měli začít opravováním problémů. Když máte opravu, připojte svůj patch k problému a přidejte klíčové slovo `review-needed`. Nezavírejte problém, dokud nebyl úspěšně zkontrolován a neověřili jste své změny. Jakmile to provedete hladce pro pár tiketů, můžete následovat běžný postup výše.
 - Zavřete problém, když si myslíte, že jste ho opravili. Nemáme testovací oddělení, které by ověřovalo a zavíralo tikety. Pokud si nejste jisti, že jste ho opravili, zavřete ho a přidejte poznámku "Myslím, že jsem to opravil, prosím otestujte a znovu otevřete, pokud je to stále nefunkční". Přidejte komentář s číslem dev buildu nebo revizí a nastavte milník na další vydání.

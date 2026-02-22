@@ -68,6 +68,6 @@ reviewStatus: "needs-review"
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-Если вы считаете, что страну следует добавить в строгий список или удалить из него, пожалуйста, создайте issue: `https://i2pgit.org/i2p/i2p.i2p/`
+Если вы считаете, что страну следует добавить в строгий список или удалить из него, пожалуйста, создайте issue: https://i2pgit.org/i2p/i2p.i2p/
 
 Справочная информация: Freedom House – https://freedomhouse.org/

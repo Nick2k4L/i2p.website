@@ -11,50 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## Обзор
+## Overview
 
-Это предложение направлено на улучшение успешности введений.
-
-
-## Мотивация
-
-Интродюсеры истекают через определенное время, но эта информация не публикуется в
-RouterInfo. В настоящее время маршрутизаторы используют эвристики, чтобы оценить, когда
-интродюсер больше не является действительным.
+This proposal is about improving the success rate for introductions.
 
 
-## Проектирование
+## Motivation
 
-В SSU RouterAddress, содержащем интродюсеров, издатель может опционально
-включать сроки истечения для каждого интродюсера.
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
 
-## Спецификация
+## Design
+
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
+
+
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: Номер интродюсера (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: Время в секундах (не мс) с начала эпохи.
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
-### Примечания
-* Каждое истечение должно быть больше даты публикации RouterInfo,
-  и меньше чем 6 часов после даты публикации RouterInfo.
+### Notes
 
-* Маршрутизаторы-издатели и интродюсеры должны пытаться сохранять интродюсера действительным
-  до истечения срока, однако они не могут гарантировать это.
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* Маршрутизаторы не должны использовать опубликованных интродюсеров после их истечения срока.
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* Истечения интродюсеров находятся в отображении RouterAddress.
-  Они не являются (в настоящий момент неиспользуемым) 8-байтным полем истечения в RouterAddress.
+* Routers should not use a published introducer after its expiration.
 
-**Пример:** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
+
+**Example:** `iexp0=1486309470`
 
 
-## Миграция
+## Migration
 
-Нет проблем. Реализация является опциональной.
-Обратная совместимость обеспечена, так как старые маршрутизаторы будут игнорировать неизвестные параметры.
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

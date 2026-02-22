@@ -10,56 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## अवलोकन
+## Overview
 
-यह प्रस्ताव लीज़सेट्स के एन्क्रिप्शन के तंत्र को पुनः डिज़ाइन करने के बारे में है।
-
-
-## प्रेरणा
-
-वर्तमान एन्क्रिप्टेड LS भयानक और असुरक्षित हैं। मैं यह कह सकता हूँ, क्योंकि मैंने इसे डिज़ाइन और कार्यान्वित किया है।
-
-कारण:
-
-- AES CBC एन्क्रिप्शन
-- सभी के लिए एक ही AES कुंजी
-- लीज़ समाप्ति की जानकारी अब भी प्रकट होती है
-- एन्क्रिप्शन पब्लिक की अब भी प्रकट होती है
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
 
-## डिज़ाइन
+## Motivation
 
-### लक्ष्य
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-- पूरे तंत्र को अपारदर्शी बनाना
-- प्रत्येक प्राप्तकर्ता के लिए कुंजियाँ
+Reasons:
 
-
-### रणनीति
-
-जैसे GPG/OpenPGP करता है, वैसे ही करें। प्रत्येक प्राप्तकर्ता के लिए एक सममित कुंजी को असममित रूप से एन्क्रिप्ट करें। डेटा को उस असममित कुंजी से डिक्रिप्ट किया जाता है। देखें जैसे [RFC-4880-S5.1] IF यदि हमें कोई ऐसा अल्गोरिथ्म मिल सकता है जो छोटा और तेज़ हो।
-
-चाल यह है कि हमें एक असममित एन्क्रिप्शन चाहिए जो छोटा और तेज़ हो। ElGamal 514 बाइट्स पर यहाँ थोड़ी कष्टप्रद है। हम इससे बेहतर कर सकते हैं।
-
-देखें जैसे `http://security.stackexchange.com/questions/824...`
-
-यह छोटी संख्या के प्राप्तकर्ताओं (या वास्तव में, कुंजियों) के लिए काम करता है; आप चाहें तो कुंजियों को कई लोगों में वितरित कर सकते हैं।
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
 
-## विशिष्टीकरण
+## Design
 
-- गंतव्य
-- प्रकाशित टाइमस्टैम्प
-- समाप्ति
-- फ्लैग्स
-- डेटा की लंबाई
-- एन्क्रिप्टेड डेटा
-- हस्ताक्षर
+### Goals
 
-एन्क्रिप्टेड डेटा को कुछ एन्कटाइप निर्दिष्टकर्ता के साथ पूर्वगामी किया जा सकता है, या नहीं।
+- Make entire thing opaque
+- Keys for each recipient
 
 
-## संदर्भ
+### Strategy
 
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
+
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
+
+See e.g. http://security.stackexchange.com/questions/824...
+
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
+
+
+## Specification
+
+- Destination
+- Published timestamp
+- Expiration
+- Flags
+- Length of data
+- Encrypted data
+- Signature
+
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

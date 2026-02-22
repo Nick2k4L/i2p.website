@@ -3943,6 +3943,6 @@ Chúng tôi chỉ định ở trên rằng token phải là một giá trị 8 b
 - **[SigningPublicKey]** [Kiểu SigningPublicKey](/docs/specs/common-structures#type-signingpublickey)
 - **[SSU]** [Giao thức Vận chuyển SSU](/docs/transport/ssu)
 - **[STS]** [Giao thức Station-to-Station](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
-- **[Ticket1112]** I2P Ticket 1112
-- **[Ticket1849]** I2P Ticket 1849
+- **[Ticket1112]** [I2P Ticket 1112](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1112)
+- **[Ticket1849]** [I2P Ticket 1849](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1849)
 - **[WireGuard]** [Giao thức WireGuard](https://www.wireguard.com/papers/wireguard.pdf)

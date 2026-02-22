@@ -12,70 +12,88 @@ thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
 
-## Übersicht
+## Overview
 
-Dieses Dokument beschreibt wichtige Fragen, die bei der Vorlage eines Ersatzes oder einer Ergänzung zu unserer elGamal-asymmetrischen Verschlüsselung berücksichtigt werden müssen.
+This document describes important issues to consider when proposing
+a replacement or addition to our ElGamal asymmetric encryption.
 
-Dies ist ein Informationsdokument.
+This is an informational document.
+
 
 ## Motivation
 
-ElGamal ist alt und langsam, und es gibt bessere Alternativen. Es gibt jedoch mehrere Probleme, die gelöst werden müssen, bevor wir einen neuen Algorithmus hinzufügen oder wechseln können. Dieses Dokument hebt diese ungelösten Probleme hervor.
+ElGamal is old and slow, and there are better alternatives.
+However, there are several issues that must be addressed before we can add or change to any new algorithm.
+This document highlights these unresolved issues.
 
-## Hintergrundforschung
 
-Jeder, der neue Kryptographie vorschlägt, muss zuerst mit den folgenden Dokumenten vertraut sein:
 
-- [Vorschlag 111 NTCP2](/de/proposals/111-ntcp-2/)
-- [Vorschlag 123 LS2](/de/proposals/123-new-netdb-entries/)
-- [Vorschlag 136 experimentelle Sig-Typen](/de/proposals/136-experimental-sigtypes/)
-- [Vorschlag 137 optionale Sig-Typen](/de/proposals/137-optional-sigtypes/)
-- Diskussionsfäden hier für jeden der obigen Vorschläge, innerhalb verlinkt
-- Prioritäten für Vorschläge 2018
-- ECIES-Vorschlag
-- Übersicht über neue asymmetrische Kryptographie
-- [Niedrig-Level-Krypto-Übersicht](/de/docs/specs/common-structures/)
+## Background Research
 
-## Verwendung der asymmetrischen Kryptographie
+Anybody proposing new crypto must first be familiar with the following documents:
 
-Zur Überprüfung verwenden wir ElGamal für:
+- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
+- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
+- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
+- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
+- Discussion threads here for each of the above proposals, linked within
+- [2018 proposal priorities](http://zzz.i2p/topics/2494)
+- [ECIES proposal](http://zzz.i2p/topics/2418)
+- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
+- [Low-level crypto overview](/docs/specs/common-structures/)
 
-1) Tunnelaufbaunachrichten (Schlüssel befindet sich in RouterIdentity)
 
-2) Router-zu-Router-Verschlüsselung von netdb und anderen I2NP-Nachrichten (Schlüssel befindet sich in RouterIdentity)
+## Asymmetric Crypto Uses
 
-3) Client End-to-End ElGamal+AES/SessionTag (Schlüssel befindet sich im LeaseSet, der Zielschlüssel wird nicht verwendet)
+As a review, we use ElGamal for:
 
-4) Vergängliches DH für NTCP und SSU
+1) Tunnel Build messages (key is in RouterIdentity)
+
+2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
+
+3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
+
+4) Ephemeral DH for NTCP and SSU
+
 
 ## Design
 
-Jeder Vorschlag zum Ersetzen von ElGamal durch etwas anderes muss die folgenden Details angeben.
+Any proposal to replace ElGamal with something else must provide the following details.
 
-## Spezifikation
 
-Jeder Vorschlag für neue asymmetrische Kryptographie muss die folgenden Dinge vollständig spezifizieren.
 
-### 1. Allgemein
+## Specification
 
-Beantworten Sie die folgenden Fragen in Ihrem Vorschlag. Beachten Sie, dass dies ein separater Vorschlag zu den Details in 2) unten sein kann, da es mit bestehenden Vorschlägen 111, 123, 136, 137 oder anderen konfligieren könnte.
+Any proposal for new asymmetric crypto must fully specify the following things.
 
-- Für welche der oben genannten Fälle 1-4 schlagen Sie vor, die neue Kryptographie zu verwenden?
-- Wenn für 1) oder 2) (Router), Wo soll der öffentliche Schlüssel platziert werden, in den RouterIdentity oder den RouterInfo-Props? Beabsichtigen Sie, den Kryptotyp im Schlüsselzertifikat zu verwenden? Komplett spezifizieren. Begründen Sie Ihre Entscheidung in beiden Fällen.
-- Wenn für 3) (Client), beabsichtigen Sie, den öffentlichen Schlüssel im Ziel zu speichern und den Kryptotyp im Schlüsselzertifikat zu verwenden (wie im ECIES-Vorschlag), oder ihn in LS2 zu speichern (wie im Vorschlag 123), oder etwas anderes? Komplett spezifizieren und Ihre Entscheidung begründen.
-- Für alle Anwendungen, wie wird die Unterstützung angekündigt? Wenn für 3), geht es in die LS2, oder irgendwo anders? Wenn für 1) und 2), ist es ähnlich zu den Vorschlägen 136 und/oder 137? Komplett spezifizieren und Ihre Entscheidungen begründen. Wahrscheinlich wird ein separater Vorschlag dafür benötigt.
-- Komplett spezifizieren, wie und warum dies rückwärtskompatibel ist, und komplett einen Migrationsplan spezifizieren.
-- Welche nicht implementierten Vorschläge sind Voraussetzungen für Ihren Vorschlag?
 
-### 2. Spezifischer Kryptotyp
 
-Beantworten Sie die folgenden Fragen in Ihrem Vorschlag:
+### 1. General
 
-- Allgemeine Kryptoinformationen, spezifische Kurven/Parameter, komplett Ihre Wahl begründen. Links zu Spezifikationen und anderen Informationen bereitstellen.
-- Geschwindigkeitstestergebnisse im Vergleich zu ElG und anderen Alternativen, falls zutreffend. Verschlüsselung, Entschlüsselung und Schlüsselerzeugung einbeziehen.
-- Verfügbarkeit von Bibliotheken in C++ und Java (sowohl OpenJDK, BouncyCastle als auch Drittanbieter)
-  Für Drittanbieter oder nicht-Java, Links und Lizenzen bereitstellen
-- Vorgeschlagene Krypto-Typnummer(n) (experimenteller Bereich oder nicht)
+Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
 
-## Anmerkungen
+- Which of the above cases 1-4 do you propose to use the new crypto for?
+- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
+- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
+- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
+- Completely specify how and why this is backward compatible, and fully specify a migration plan.
+- Which unimplemented proposals are prerequisites for your proposal?
+
+
+### 2. Specific crypto type
+
+Answer the following questions in your proposal:
+
+- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
+- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
+- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
+  For 3rd party or non-Java, provide links and licenses
+- Proposed crypto type number(s) (experimental range or not)
+
+
+
+
+## Notes
+
+
 

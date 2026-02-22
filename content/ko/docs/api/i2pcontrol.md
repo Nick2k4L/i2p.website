@@ -102,7 +102,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 ### 성공적인 응답
 
@@ -144,7 +144,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **응답 필드 (result)**   공식 문서(GetI2P)에 따르면:   - `i2p.router.status` (String) — 사람이 읽을 수 있는 상태   - `i2p.router.uptime` (long) — 밀리초 (또는 이전 i2pd의 경우 문자열) :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — 버전 문자열 :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — B/s 단위의 인바운드 대역폭 :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — B/s 단위의 아웃바운드 대역폭 :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — 숫자 상태 코드 (아래 enum 참조) :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — 참여 중인 tunnel 수 :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — netDB 피어 통계 :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — reseed가 활성화되어 있는지 여부 :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — 알려진 총 피어 수 :contentReference[oaicite:8]{index=8}
 
@@ -240,7 +240,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **샘플 응답**
 
@@ -274,7 +274,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **성공적인 응답**
 
@@ -309,7 +309,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **샘플 응답**
 
@@ -351,7 +351,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **응답 예제**
 

@@ -10,235 +10,267 @@ target: "0.9.57"
 toc: true
 ---
 
-## Durum
+## Status
 
-0.9.57'de uygulandı.
-Bu öneriyi "Gelecek Planlama" bölümündeki fikirleri geliştirmek ve tartışmak için açık bırakıyoruz.
-
-
-## Genel Bakış
+Implemented in 0.9.57.
+Leaving this proposal open so we may enhance and discuss the ideas in the "Future Planning" section.
 
 
-### Özet
-
-ElGamal açık anahtarı, 0.6 sürümünden (2005) beri Hedeflerde kullanılmamaktadır.
-Spesifikasyonlarımız bunun kullanılmadığını belirtse de, uygulamaların
-bir ElGamal anahtar çifti oluşturmaktan kaçınıp alanı rastgele veriyle doldurabileceğini söylemezler.
-
-Spesifikasyonları değiştirerek
-alanın göz ardı edildiğini ve uygulamaların alanı rastgele verilerle doldurabileceğini önermekteyiz.
-Bu değişiklik geriye dönük uyumlu. ElGamal açık anahtarını doğrulayan bilinen bir uygulama yoktur.
-
-Ayrıca, bu öneri uygulayıcılar için Hedef VE Yönlendirici Kimliği dolgusu için rastgele verilerin nasıl oluşturulacağı konusunda
-güvenli kalırken ve Base 64 gösterimlerinin bozuk veya güvensiz görünmesini önlerken sıkıştırılabilir olmasını sağlamak
-için rehberlik sunar. Bu, herhangi bir kesintiye neden olan protokol değişiklikleri olmadan doldurma alanlarını kaldırmanın
-çoğu faydasını sağlar. Sıkıştırılabilir Hedefler, akış SYN ve yanıtlanabilir datagram boyutunu azaltır;
-sıkıştırılabilir Yönlendirici Kimlikleri, Veritabanı Depolama Mesajlarını, SSU2 Oturum Onaylanmış
-mesajlarını ve yeniden tohumlanan su3 dosyalarını azaltır.
-
-Son olarak, öneri tüm doldurmayı tamamen ortadan kaldıracak yeni Hedef ve Yönlendirici Kimlik formatları için
-olası seçenekleri tartışır. Gelecek planlamasını etkileyebilecek post-kuantum kriptografisi hakkında kısa bir tartışma da bulunmaktadır.
+## Overview
 
 
-### Hedefler
+### Summary
 
-- Hedefler için ElGamal anahtar çifti üretme gereksinimini ortadan kaldırma
-- Hedeflerin ve Yönlendirici Kimliklerinin oldukça sıkıştırılabilir olmasını 
-  sağlamak için en iyi uygulamaları önermek,
-  ancak Base 64 gösterimlerinde belirgin desenler göstermemesi
-- Bütün uygulamaların en iyi uygulamaları benimsemesini teşvik etmek
-  böylece alanlar ayırt edilemez
-- Akış SYN boyutunu azaltma
-- Yanıtlanabilir datagram boyutunu azaltma
-- SSU2 RI blok boyutunu azaltma
-- SSU2 Oturum Onaylanmış boyutu ve parçalanma sıklığını azaltma
-- Veritabanı Depolama Mesajı (RI ile) boyutunu azaltma
-- Yeniden tohumlanan dosya boyutunu azaltma
-- Tüm protokoller ve API'lerle uyumu sürdürme
-- Spesifikasyonları güncelleme
-- Yeni Hedef ve Yönlendirici Kimlik formatları için alternatifleri tartışma
+The ElGamal public key in Destinations has been unused since release 0.6 (2005).
+While our specifications do say that it is unused, they do NOT say that implementations can avoid
+generating an ElGamal key pair and simply fill the field with random data.
 
-ElGamal anahtarlarının üretim gereksinimini ortadan kaldırarak, uygulamalar 
-diğer protokollerde geriye dönük uyumluluk dikkate alınarak ElGamal kodunu tamamen kaldırabilirler.
+We propose changing the specifications to say that
+the field is ignored and that implementations MAY fill the field with random data.
+This change is backward-compatible. There is no known implementation that validates
+the ElGamal public key.
 
+Additionally, this proposal offers guidance to implementers on how to generate the
+random data for Destination AND Router Identity padding so that it is compressible while
+still being secure, and without having Base 64 representations appear to be corrupt or insecure.
+This provides most of the benefits of removing the padding fields without any
+disruptive protocol changes.
+Compressible Destinations reduces streaming SYN and repliable datagram size;
+compressible Router Identities reduce Database Store Messages, SSU2 Session Confirmed messages,
+and reseed su3 files.
 
-## Tasarım
-
-Teknik olarak, yalnızca 32 baytlık imzalama açık anahtarı (hem Hedeflerde hem de Yönlendirici Kimliklerinde)
-ve 32 baytlık şifreleme açık anahtarı (sadece Yönlendirici Kimliklerinde) bir tür rastgele sayı 
-ve bu yapıların SHA-256 hash'lerinin kriptografik olarak güçlü ve ağ veritabanı DHT'sinde rastgele
-dağıtılmış olmasını sağlar.
-
-Ancak, ihtiyatlı bir tedbir olarak, ElG açık anahtar alanında ve dolgumda en az 32 bayt rastgele 
-veri kullanılmasını öneriyoruz. Ayrıca, alanların tüm sıfırlar olması durumunda,
-Base 64 hedefler AAAA karakterlerinin uzun dizilerini içerecek ve bu kullanıcılar için alarm 
-veya karışıklığa neden olabilir.
-
-Ed25519 imza türü ve X25519 şifreleme türü için:
-Hedefler rastgele verilerin 11 kopyasını (352 bayt) içerir.
-Yönlendirici Kimlikleri rastgele verilerin 10 kopyasını (320 bayt) içerir.
+Finally, the proposal discusses possibilities for new Destination and Router Identity formats
+that would eliminate the padding altogether. There is also a brief discussion of post-quantum
+crypto and how that may affect future planning.
 
 
-### Tahmini Tasarruflar
 
-Hedefler her akış SYN ve yanıtlanabilir datagram içinde
-bulunur. Yönlendirici Bilgileri (Yönlendirici Kimlikleri içerir) Veritabanı Depolama Mesajlarında
-ve NTCP2 ve SSU2 içindeki Oturum Onaylanmış mesajlarında bulunur.
+### Goals
 
-NTCP2 Yönlendirici Bilgisini sıkıştırmaz.
-Veritabanı Depolama Mesajlarındaki RI'lar ve SSU2 Oturum Onaylanmış mesajlar sıkıştırılır.
-Yönlendirici Bilgileri yeniden tohumlanan SU3 dosyalarında sıkıştırılır.
+- Eliminate requirement to generate ElGamal keypair for Destinations
+- Recommend best practices so Destinations and Router Identities are highly compressible,
+  yet do not display obvious patterns in Base 64 representations.
+- Encourage adoption of best practices by all implementations so
+  the fields are not distinguishable
+- Reduce streaming SYN size
+- Reduce repliable datagram size
+- Reduce SSU2 RI block size
+- Reduce SSU2 Session Confirmed size and fragmentation frequency
+- Reduce Database Store Message (with RI) size
+- Reduce reseed file size
+- Maintain compatibility in all protocols and APIs
+- Update specifications
+- Discuss alternatives for new Destination and Router Identity formats
 
-Veritabanı Depolama Mesajlarındaki Hedefler sıkıştırılmaz.
-Akış SYN mesajları I2CP katmanında sıkıştırılır.
-
-Ed25519 imza türü ve X25519 şifreleme türü için,
-tahmini tasarruflar:
-
-| Veri Türü | Toplam Boyut | Anahtarlar ve Sertifika | Sıkıştırılmamış Dolgu | Sıkıştırılmış Dolgu | Boyut | Tasarruflar |
-|-----------|--------------|------------------------|----------------------|---------------------|-------|-------------|
-| Hedef | 391 | 39 | 352 | 32 | 71 | 320 bayt (82%) |
-| Yönlendirici Kimlik | 391 | 71 | 320 | 32 | 103 | 288 bayt (74%) |
-| Yönlendirici Bilgisi | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bayt (29%) |
-
-Notlar: 7 baytlık sertifikanın sıkıştırılamadığını varsayar, sıfır ek sıkıştırma üst
-   limiti. Bunların hiçbiri doğru değil, ancak etkiler küçük olacaktır.
-Yönlendirici Bilgisinin diğer sıkıştırılabilir bölümlerini göz ardı eder.
+By eliminating the requirement to generate ElGamal keys, implementations may
+be able to completely remove ElGamal code, subject to backward-compatibility considerations
+in other protocols.
 
 
-## Spesifikasyon
 
-Mevcut spesifikasyonlarımızda önerilen değişiklikler aşağıda belgelenmiştir.
+## Design
+
+Strictly speaking, the 32-byte signing public key alone (in both Destinations and Router Identities)
+and the 32-byte encryption public key (in Router Identities only) is a random number
+that provides all the entropy necessary for the SHA-256 hashes of these structures
+to be cryptographically strong and randomly distributed in the network database DHT.
+
+However, out of an abundance of caution, we recommend a minimum of 32 bytes of random data
+be used in the ElG public key field and padding. Additionally, if the fields were all zeros,
+Base 64 destinations would contain long runs of AAAA characters, which may cause alarm
+or confusion to users.
+
+For Ed25519 signature type and X25519 encryption type:
+Destinations will contain 11 copies (352 bytes) of the random data.
+Router Identities will contain 10 copies (320 bytes) of the random data.
 
 
-### Ortak Yapılar
-Ortak yapılar spesifikasyonunu değiştirme
-Hedef açık anahtar alanının göz ardı edildiğini ve rastgele veriler içerebileceğini belirtin.
 
-Ortak yapılar spesifikasyonuna Hedef açık anahtar alanı ve
-Hedef ve Yönlendirici Kimliği'ndeki dolgu alanları için en iyi uygulamayı öneren bir bölüm ekleyin:
+### Estimated Savings
 
-32 bayt rastgele veri oluşturmak için güçlü bir kriptografik sözde rastgele sayı üreteci (PRNG) kullanın
-ve bu 32 baytı Hedef için açık anahtar alanını ve
-Hedef ve Yönlendirici Kimliği için dolgu alanını dolduracak şekilde gerektiği kadar tekrarlayın.
+Destinations are included in every streaming SYN
+and repliable datagram.
+Router Infos (containing Router Identities) are included in Database Store Messages
+and in the Session Confirmed messages in NTCP2 and SSU2.
 
-### Özel Anahtar Dosyası
-Özel anahtar dosyası (eepPriv.dat) formatı, spesifikasyonlarımızın resmi bir parçası değildir
-ancak Java I2P javadocs belgelenmiştir ve diğer uygulamalar bunu destekler.
-Bu, özel anahtarların farklı uygulamalara taşınabilirliğine olanak sağlar.
-Bu javadocs'da şifreleme açık anahtarının rastgele dolgu olabileceğine ve şifreleme özel anahtarının tüm sıfır veya rastgele
-veri olabileceğine dair bir not ekleyin.
+NTCP2 does not compress the Router Info.
+RIs in Database Store Messages and SSU2 Session Confirmed messages are gzipped.
+Router Infos are zipped in reseed SU3 files.
+
+Destinations in Database Store Messages are not compressed.
+Streaming SYN messages are gzipped at the I2CP layer.
+
+For Ed25519 signature type and X25519 encryption type,
+estimated savings:
+
+| Data Type | Total Size | Keys and Cert | Uncompressed Padding | Compressed Padding | Size | Savings |
+|-----------|------------|---------------|----------------------|--------------------|------|---------|
+| Destination | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
+| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
+| Router Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytes (29%) |
+
+Notes: Assumes 7-byte certificate is not compressible, zero additional gzip overhead.
+Neither is true, but effects will be small.
+Ignores other compressible parts of the Router Info.
+
+
+
+## Specification
+
+Proposed changes to our current specifications are documented below.
+
+
+### Common Structures
+Change the common structures specification
+to specify that the 256-byte Destination public key field is ignored and may
+contain random data.
+
+Add a section to the common structures specification
+recommending best practice for the Destination public key field and the
+padding fields in the Destination and Router Identity, as follows:
+
+Generate 32 bytes of random data using a strong cryptographic pseudo-random number generator (PRNG)
+and repeat those 32 bytes as necessary to fill the public key field (for Destinations)
+and the padding field (for Destinations and Router Identities).
+
+### Private Key File
+The private key file (eepPriv.dat) format is not an official part of our specifications
+but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+and other implementations do support it.
+This enables portability of private keys to different implementations.
+Add a note to that javadoc that the encryption public key may be random padding
+and the encryption private key may be all zeros or random data.
 
 ### SAM
-SAM spesifikasyonunda şifreleme özel anahtarının kullanılmadığını ve göz ardı edilebileceğini
-belirtin. Herhangi bir rastgele veri istemci tarafından döndürülebilir.
-SAM Köprüsü, Base 64 gösterimi bir dizi AAAA karakter içermemesi ve bozuk görünmemesi
-için tüm sıfırlar yerine rastgele veriler gönderebilir (DEST GENERATE veya SESSION CREATE DESTINATION=TRANSIENT
-ile oluşturma sırasında).
+Note in the SAM specification that the encryption private key is unused and may be ignored.
+Any random data may be returned by the client.
+The SAM Bridge may send random data on creation (with DEST GENERATE or SESSION CREATE DESTINATION=TRANSIENT)
+rather than all zeros, so the Base 64 representation does not have a string of AAAA characters
+and look broken.
 
 
 ### I2CP
-I2CP için değişiklik gerekmez. Hedefteki şifreleme açık anahtarı
-ile ilişkili özel anahtar yönlendiriciye gönderilmez.
+No changes required to I2CP. The private key for the encryption public key in the Destination
+is not sent to the router.
 
 
-## Gelecek Planlama
+## Future Planning
 
 
-### Protokol Değişiklikleri
+### Protocol Changes
 
-Protokol değişiklikleri ve geriye dönük uyumluluk eksikliği maliyetine karşın,
-Hedefteki, Yönlendirici Kimliğindeki veya her ikisinde dolgu alanını
-ortadan kaldırmak için protokollerimizi ve spesifikasyonlarımızı değiştirebiliriz.
+At a cost of protocol changes and a lack of backward compatibility, we could
+change our protocols and specifications to eliminate the padding field in
+the Destination, Router Identity, or both.
 
-Bu öneri, sadece bir anahtar ve bir tür alanı içeren "b33" şifreli kiralama seti
-formatına benzerdir.
+This proposal bears some similarity to the "b33" encrypted leaseset format,
+containing only a key and a type field.
 
-Bazı protokol katmanları arasında biraz uyum korumak için dolgu alanı 
-tüm sıfırlarla "genişletilebilir" ve diğer protokol katmanlarına
-sunulabilir.
+To maintain some compatibility, certain protocol layers could "expand" the padding field
+with all zeros to present to other protocol layers.
 
-Hedefler için, anahtar sertifikasındaki şifreleme türü alanını iki bayt tasarruf sağlamak amacıyla 
-kaldırabiliriz. Alternatif olarak, Hedefler anahtar sertifikasında bir sıfır
-açık anahtar (ve dolgu) belirten yeni bir şifreleme türü 
-alabilir.
+For Destinations, we could also remove the encryption type field in the key certificate,
+at a savings of two bytes.
+Alternatively, Destinations could get a new encryption type in the key certificate,
+indicating a zero public key (and padding).
 
-Eğer geriye dönük uyumlu bir dönüştürme belirtilmez ise, aşağıdaki spesifikasyonlar, API'ler,
-protokoller ve uygulamalar etkilenir:
+If compatibility conversion between old and new formats is not included at some protocol layer,
+the following specifications, APIs, protocols, and applications would be affected:
 
-- Ortak yapılar spesifikasyonu
+- Common structures spec
 - I2NP
 - I2CP
 - NTCP2
 - SSU2
 - Ratchet
-- Akış
+- Streaming
 - SAM
 - Bittorrent
-- Yeniden tohumlama
-- Özel Anahtar Dosyası
-- Java çekirdeği ve yönlendirici API'si
-- i2pd API'si
-- Üçüncü taraf SAM kütüphaneleri
-- Paketlenmiş ve üçüncü taraf araçlar
-- Birkaç Java eklentisi
-- Kullanıcı arayüzleri
-- P2P uygulamaları örneğin MuWire, bitcoin, monero
-- hosts.txt, adres defteri ve abonelikler
+- Reseeding
+- Private Key File
+- Java core and router API
+- i2pd API
+- Third-party SAM libraries
+- Bundled and third-party tools
+- Several Java plugins
+- User interfaces
+- P2P applications e.g. MuWire, bitcoin, monero
+- hosts.txt, addressbook, and subscriptions
 
-Eğer dönüşüm belirli bir katta belirtilirse, liste azaltılacaktır.
+If conversion is specified at some layer, the list would be reduced.
 
-Bu değişikliklerin maliyetleri ve faydaları açık değildir.
+The costs and benefits of these changes are not clear.
 
-Spesifik öneriler TBD:
-
-
-### PQ Anahtarları
-
-Post-Kuantum (PQ) şifreleme açık anahtarları, öngörülen herhangi bir algoritma
-için, 256 bayttan büyüktür. Bu Yönlendirici Kimlikleri için tüm dolguyu ortadan kaldırır ve
-yukarıda önerilen değişikliklerden elde edilen herhangi bir tasarrufu ortadan kaldırır.
-
-"Hybrid" PQ yaklaşımında, SSL'nin yaptığı gibi, PQ anahtarları sadece efemerik olacaktır
-ve Yönlendirici Kimliğinde görünmeyecektir.
-
-PQ imza anahtarları uygulanabilir değildir ve Hedefler şifreleme açık anahtarlarını içermezler.
-Ratchet için statik anahtarlar Kiralama Setindedir, Hedefte değil.
-bu nedenle Hedefleri aşağıdaki tartışmadan eleme şansımız var.
-
-Böylece PQ yalnızca Yönlendirici Bilgilerini etkiler ve sadece PQ statik (efemerik değil)
-anahtarlar için, PQ hibrit için değil.
-Bu, yeni bir şifreleme türü olur ve NTCP2, SSU2 ve şifrelenmiş Veri Tabanı Arama Mesajları ile
-yanıtlarını etkiler.
-Bu tasarım, geliştirme ve yayılma için öngörülen zaman çerçevesi nedir ????????
-Ancak hibrit veya ratchetten sonra olur ????????????
-
-Daha fazla tartışma için bkz this topic.
+Specific proposals TBD:
 
 
-## Sorunlar
-
-Ağ için kaplama sağlamak amacıyla yavaş bir hızda yeniden anahtarlama yapmak
-arzu edilebilir. "Yeniden anahtarlama" yalnızca dolguyu değiştirmek anlamına gelebilir, 
-anahtarları gerçekten değiştirmek değil.
-
-Mevcut hedeflerde yeniden anahtarlama mümkün değildir.
-
-Açık anahtar alanında dolgu olan Yönlendirici Kimlikleri anahtar sertifikasında farklı 
-bir şifreleme türü ile tanımlanmalı mı? Bu, uyumluluk sorunlarına neden olacaktır.
 
 
-## Geçiş
 
-Dolgu ile ElGamal anahtarını değiştirmek için geriye dönük uyumluluk sorunu yok.
+### PQ Keys
 
-Eğer uygulanırsa, yeniden anahtarlama
-üç önceki yönlendirici kimlik geçişinde yapıldığı gibi olur:
-DSA-SHA1 imzalarından ECDSA imzalarına, ardından
-EdDSA imzalarına, ardından X25519 şifreleme.
+Post-Quantum (PQ) encryption public keys, for any anticipated algorithm,
+are larger than 256 bytes. This would eliminate any padding and any savings from proposed
+changes above, for Router Identities.
 
-Geriye dönük uyumluluk sorunlarına tabi olarak, ve SSU devre dışı bırakıldıktan sonra,
-uygulamalar ElGamal kodunu tamamen kaldırabilir.
-Ağdaki yönlendiricilerin yaklaşık %14'ü ElGamal şifreleme türündedir, bunların birçoğu floodfill'dir.
+In a "hybrid" PQ approach, like what SSL is doing, the PQ keys would be ephemeral only,
+and would not appear in the Router Identity.
 
-Java I2P için bir taslak birleştirme isteği git.idk.i2p adresindedir.
+PQ signing keys are not viable,
+and Destinations do not contain encryption public keys.
+Static keys for ratchet are in the Lease Set, not the Destination.
+so we may eliminate Destinations from the following discussion.
+
+So PQ only affects Router Infos, and only for PQ static (not ephemeral) keys, not for PQ hybrid.
+This would be for a new encryption type and would affect NTCP2, SSU2, and
+encrypted Database Lookup Messages and replies.
+Estimated time frame for design, development, and rollout of that would be ????????
+But would be after hybrid or ratchet ????????????
+
+For further discussion see [this topic](http://zzz.i2p/topics/3294).
+
+
+
+
+## Issues
+
+It may be desirable to rekey the network at a slow rate, to provide cover for new routers.
+"Rekeying" could mean simply changing the padding, not really changing the keys.
+
+It is not possible to rekey existing Destinations.
+
+Should Router Identities with padding in the public key field be identified with a different
+encryption type in the key certificate? This would cause compatibility issues.
+
+
+
+
+## Migration
+
+No backward compatibility issues for replacing the ElGamal key with padding.
+
+Rekeying, if implemented, would be similar to that done
+in three previous router identity transitions:
+From DSA-SHA1 to ECDSA signatures, then to
+EdDSA signatures, then to X25519 encryption.
+
+Subject to backward compatibility issues, and after disabling SSU,
+implementations may remove ElGamal code completely.
+Approximately 14% of routers in the network are ElGamal encryption type, including many floodfills.
+
+A draft merge request for Java I2P is at [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+
+
+## References
+
+* [Common](/docs/specs/common-structures/)
+* [Datagram](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
+* [I2NP](/docs/specs/i2np/)
+* [MR](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66)
+* [NTCP2](/docs/specs/ntcp2/)
+* [PKF](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+* [PQ](http://zzz.i2p/topics/3294)
+* [SAM](/docs/api/samv3/)
+* [SSU2](/docs/specs/ssu2/)
+* [Streaming](/docs/specs/streaming/)

@@ -194,7 +194,7 @@ Bạn sẽ nhận thấy cả hai cấu hình đều tránh rõ ràng các heade
 Mở I2P Router Console trong trình duyệt của bạn:
 
 ```
-`http://127.0.0.1:7657/i2ptunnel/`
+http://127.0.0.1:7657/i2ptunnel/
 ```
 Nhấp vào **"Tunnel Wizard"** để bắt đầu tạo một tunnel mới.
 
@@ -291,7 +291,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass `http://127.0.0.1:3000;`
+        proxy_pass http://127.0.0.1:3000;
         proxy_http_version 1.1;
 
         proxy_set_header Host $host;
@@ -321,7 +321,7 @@ Nếu ứng dụng của bạn tạo ra các URL trỏ đến tên miền clearn
 
 ```nginx
 location / {
-    proxy_pass `http://127.0.0.1:3000;`
+    proxy_pass http://127.0.0.1:3000;
 
     sub_filter_once off;
     sub_filter_types text/html text/css application/javascript;
@@ -346,7 +346,7 @@ Cấu hình `/etc/gitea/app.ini`:
 HTTP_ADDR     = 127.0.0.1
 HTTP_PORT     = 3000
 DOMAIN        = yourgit.i2p
-ROOT_URL      = `http://yourgit.i2p/`
+ROOT_URL      = http://yourgit.i2p/
 SSH_DOMAIN    = yourgit.i2p
 PROTOCOL      = http
 OFFLINE_MODE  = true
@@ -373,7 +373,7 @@ Nếu bạn chỉ cần duyệt chỉ đọc và sao chép HTTP, cgit nhẹ hơn
 ```ini
 # /etc/cgitrc
 virtual-root=/
-clone-url=`http://yourgit.i2p/$CGIT_REPO_URL`
+clone-url=http://yourgit.i2p/$CGIT_REPO_URL
 cache-root=/var/cache/cgit
 cache-size=1000
 scan-path=/srv/git
@@ -387,17 +387,17 @@ Bất kỳ ai clone từ Git mirror I2P của bạn cần định tuyến lưu l
 
 ```bash
 # Tell Git to use the I2P proxy for .i2p domains
-git config --global http.http://yourgit.i2p.proxy `http://127.0.0.1:4444`
+git config --global http.http://yourgit.i2p.proxy http://127.0.0.1:4444
 git config --global http.timeout 300
 
 # Clone (allow for I2P latency)
 GIT_HTTP_LOW_SPEED_LIMIT=1000 GIT_HTTP_LOW_SPEED_TIME=60 \
-    git clone `http://yourgit.i2p/repo`
+    git clone http://yourgit.i2p/repo
 ```
 Đối với các repo lớn, shallow clone tiết kiệm rất nhiều thời gian qua I2P:
 
 ```bash
-git clone --depth 1 `http://yourgit.i2p/project`
+git clone --depth 1 http://yourgit.i2p/project
 git fetch --unshallow   # grab full history later if needed
 ```
 ## Phần 4: Nhân Bản Dịch Vụ Lưu Trữ Tệp
@@ -416,7 +416,7 @@ $CONFIG = array(
     'trusted_proxies'   => array('127.0.0.1'),
     'overwritehost'     => 'yoursite.i2p',
     'overwriteprotocol' => 'http',
-    'overwrite.cli.url' => '`http://yoursite.i2p/',`
+    'overwrite.cli.url' => 'http://yoursite.i2p/',
 );
 ```
 Những tính năng hoạt động tốt: tải file lên và xuống, duyệt thư mục, xác thực, chia sẻ liên kết công khai, và WebDAV. Những gì không hoạt động tốt: các ứng dụng đồng bộ trên máy tính cần cấu hình SOCKS proxy, các backend lưu trữ bên ngoài có thể làm rò rỉ địa chỉ IP, và việc kết nối với các máy chủ Nextcloud trên clearnet có thể làm tổn hại đến quyền riêng tư.
@@ -452,7 +452,7 @@ server {
     server_tokens off;
 
     location / {
-        proxy_pass `http://127.0.0.1:3000;`
+        proxy_pass http://127.0.0.1:3000;
 
         proxy_set_header Host $host;
         proxy_set_header Content-Type $content_type;
@@ -482,7 +482,7 @@ server {
     listen 127.0.0.1:8080;
 
     location /ws {
-        proxy_pass `http://127.0.0.1:3000;`
+        proxy_pass http://127.0.0.1:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
@@ -683,8 +683,8 @@ Cũng hãy kiểm tra xem chuyển tiếp cổng đã được cấu hình cho c
 Khách truy cập cần có địa chỉ của bạn trong sổ địa chỉ của họ. Hãy đảm bảo bạn đã đăng ký với một sổ địa chỉ công khai, hoặc chia sẻ trực tiếp địa chỉ base32 đầy đủ của bạn. Họ cũng có thể thêm nhiều đăng ký hơn tại `http://127.0.0.1:7657/susidns/subscriptions`:
 
 ```
-`http://stats.i2p/cgi-bin/newhosts.txt`
-`http://i2host.i2p/cgi-bin/i2hostetag`
+http://stats.i2p/cgi-bin/newhosts.txt
+http://i2host.i2p/cgi-bin/i2hostetag
 ```
 ### Hết thời gian chờ khi kiểm tra
 
@@ -692,10 +692,10 @@ I2P có thời gian round-trip cao hơn do bản chất của nó. Khi kiểm tr
 
 ```bash
 # curl
-curl --connect-timeout 60 --max-time 300 `http://yoursite.i2p/`
+curl --connect-timeout 60 --max-time 300 http://yoursite.i2p/
 
 # wget
-wget --timeout=300 `http://yoursite.i2p/`
+wget --timeout=300 http://yoursite.i2p/
 ```
 ### Đọc các log
 

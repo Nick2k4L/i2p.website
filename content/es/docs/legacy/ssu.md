@@ -51,9 +51,9 @@ Se utiliza el OR exclusivo de ((netid - 2) << 8) para identificar rápidamente c
 - Tamaño MAC: 16 bytes
 - Implementaciones de ejemplo en C:
   - hmac.h en [i2pd](https://github.com/PurpleI2P/i2pd)
-  - I2PHMAC.cpp en i2pcpp
+  - I2PHMAC.cpp en [i2pcpp](http://git.repo.i2p/w/i2pcpp.git)
 - Implementación de ejemplo en Java:
-  - I2PHMac.java en I2P
+  - I2PHMac.java en [I2P](https://github.com/i2p/i2p.i2p)
 
 ### Detalles de la Clave de Sesión
 
@@ -907,7 +907,7 @@ Un HolePunch es simplemente un paquete UDP sin datos. No está autenticado ni ci
 - [Fecha](/docs/specs/common-structures/#date)
 - [Cifrado ElGamal](/docs/specs/cryptography/#elgamal)
 - [Detalles HMAC](/docs/specs/cryptography/#udp)
-- Código Fuente I2P
+- [Código Fuente I2P](https://github.com/i2p/i2p.i2p)
 - [Código Fuente i2pd](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)
 - [RouterIdentity](/docs/specs/common-structures/#routeridentity)

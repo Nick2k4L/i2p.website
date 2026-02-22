@@ -30,9 +30,9 @@ accurateFor: "0.9.67"
 - Common structures spec [Common](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) spec including LS2
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- <`http://zzz.i2p/topics/1768>` नई असममित क्रिप्टो अवलोकन
+- <http://zzz.i2p/topics/1768> नई असममित क्रिप्टो अवलोकन
 - निम्न-स्तरीय क्रिप्टो अवलोकन [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
-- ECIES <`http://zzz.i2p/topics/2418>`
+- ECIES <http://zzz.i2p/topics/2418>
 - [NTCP2](/docs/specs/ntcp2/) [Prop111](/proposals/111-ntcp2/)
 - 123 New netDB Entries
 - 142 New Crypto Template

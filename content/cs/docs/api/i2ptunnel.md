@@ -8,13 +8,13 @@ accurateFor: "0.9.59"
 
 ## Přehled {#overview}
 
-I2PTunnel je nástroj pro propojení se službami na I2P a jejich poskytování. Cíl I2PTunnel může být definován pomocí [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), nebo plného 516-bajtového destination klíče. Vytvořený I2PTunnel bude dostupný na vašem klientském počítači jako localhost:port. Pokud chcete poskytovat službu na síti I2P, jednoduše vytvoříte I2PTunnel na příslušnou ip_address:port. Pro službu bude vygenerován odpovídající 516-bajtový destination klíč a stane se dostupnou v celém I2P. Webové rozhraní pro správu I2PTunnel je dostupné na `http://localhost:7657/i2ptunnel/`.
+I2PTunnel je nástroj pro propojení se službami na I2P a jejich poskytování. Cíl I2PTunnel může být definován pomocí [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), nebo plného 516-bajtového destination klíče. Vytvořený I2PTunnel bude dostupný na vašem klientském počítači jako localhost:port. Pokud chcete poskytovat službu na síti I2P, jednoduše vytvoříte I2PTunnel na příslušnou ip_address:port. Pro službu bude vygenerován odpovídající 516-bajtový destination klíč a stane se dostupnou v celém I2P. Webové rozhraní pro správu I2PTunnel je dostupné na [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
 
 ## Výchozí služby {#default-services}
 
 ### Server Tunnely {#default-server-tunnels}
 
-- **I2P Webserver** - Tunnel směřující na Jetty webserver běžící na `http://localhost:7658` pro pohodlný a rychlý hosting na I2P.
+- **I2P Webserver** - Tunnel směřující na Jetty webserver běžící na [localhost:7658](http://localhost:7658) pro pohodlný a rychlý hosting na I2P.
   Kořenový adresář dokumentů je:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, což se rozbalí na: `C:\Users\**uživatelské_jméno**\AppData\Local\I2P\I2P Site\docroot`

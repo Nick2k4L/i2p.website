@@ -93,6 +93,6 @@ Các hướng dẫn sau đây áp dụng cho router, ứng dụng web và tất 
 
 ### Lỗi
 
-- Quản lý các vấn đề là công việc của tất cả mọi người; vui lòng giúp đỡ. Theo dõi GitLab để tìm các vấn đề mà bạn có thể hỗ trợ. Bình luận, sửa chữa và đóng các vấn đề nếu bạn có thể.
+- Quản lý các vấn đề là công việc của tất cả mọi người; vui lòng giúp đỡ. Theo dõi [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues) để tìm các vấn đề mà bạn có thể hỗ trợ. Bình luận, sửa chữa và đóng các vấn đề nếu bạn có thể.
 - Các nhà phát triển mới nên bắt đầu bằng việc sửa các vấn đề. Khi bạn có bản sửa lỗi, đính kèm bản vá của bạn vào vấn đề và thêm từ khóa `review-needed`. Không đóng vấn đề cho đến khi nó đã được xem xét thành công và bạn đã kiểm tra các thay đổi của mình. Sau khi bạn đã thực hiện điều này suôn sẻ cho một vài ticket, bạn có thể tuân theo quy trình thông thường ở trên.
 - Đóng một vấn đề khi bạn nghĩ rằng bạn đã sửa nó. Chúng tôi không có bộ phận kiểm thử để xác minh và đóng các ticket. Nếu bạn không chắc chắn rằng mình đã sửa nó, hãy đóng nó và thêm ghi chú "Tôi nghĩ rằng tôi đã sửa nó, vui lòng kiểm tra và mở lại nếu nó vẫn bị lỗi". Thêm bình luận với số phiên bản dev build hoặc revision và đặt milestone cho bản phát hành tiếp theo.

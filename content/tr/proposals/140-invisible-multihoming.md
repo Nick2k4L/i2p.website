@@ -9,23 +9,43 @@ thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
 
-## Genel Bakış
+## Overview
 
-Bu öneri, bir I2P istemcisi, hizmeti veya harici dengeleyici sürecinin tek bir `http://localhost:63465/docs/specs/common-structures/#destination`'ı şeffaf bir şekilde barındıran birden fazla router'ı yönetmesini sağlayan bir protokol için tasarımı özetlemektedir.
+This proposal outlines a design for a protocol enabling an I2P client, service
+or external balancer process to manage multiple routers transparently hosting a
+single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
 
-Bu öneri şu anda somut bir uygulama belirtmiyor. [I2CP](/docs/specs/i2cp/) için bir uzantı olarak veya yeni bir protokol olarak uygulanabilir.
+The proposal currently does not specify a concrete implementation. It could be
+implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
 
-## Motivasyon
 
-Multihoming, aynı Destination'ı barındırmak için birden fazla router'ın kullanıldığı durumdur. I2P ile multihoming yapmanın mevcut yolu, aynı Destination'ı her router üzerinde bağımsız olarak çalıştırmaktır; herhangi bir zamanda istemciler tarafından kullanılan router, LeaseSet yayınlayan son router'dır.
+## Motivation
 
-Bu bir hack ve muhtemelen büyük ölçekli web siteleri için çalışmayacaktır. Diyelim ki her biri 16 tunnel'a sahip 100 multihoming router'ımız var. Bu, her 10 dakikada 1600 LeaseSet yayını veya neredeyse saniyede 3 tane demektir. floodfill'ler bunalmış olurdu ve kısıtlamalar devreye girerdi. Bu, arama trafiğinden bahsetmeden önceki durum.
+Multihoming is where multiple routers are used to host the same Destination.
+The current way to multihome with I2P is to run the same Destination on each
+router independently; the router that gets used by clients at any particular
+time is the last one to publish a LeaseSet.
 
-Öneri 123 bu sorunu 100 gerçek LeaseSet hash'ini listeleyen bir meta-LeaseSet ile çözüyor. Arama iki aşamalı bir süreç haline geliyor: önce meta-LeaseSet'i arama, sonra da adlandırılmış LeaseSet'lerden birini arama. Bu, arama trafiği sorununa iyi bir çözüm, ancak kendi başına önemli bir gizlilik sızıntısı yaratıyor: Yayınlanan meta-LeaseSet'i izleyerek hangi multihoming router'ların çevrimiçi olduğunu belirlemek mümkün, çünkü her gerçek LeaseSet tek bir router'a karşılık geliyor.
+This is a hack and presumably won't work for large websites at scale. Say we had
+100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
+every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
+and throttles would kick in. And that's before we even mention the lookup
+traffic.
 
-Bir I2P istemcisinin veya servisinin tek bir Destination'ı birden fazla router arasında dağıtabilmesi için bir yönteme ihtiyacımız var, bu şekilde tek bir router kullanmaktan ayırt edilemez olmalı (LeaseSet'in kendisi açısından).
+Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
+LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
+meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
+the lookup traffic issue, but on its own it creates a significant privacy leak:
+It is possible to determine which multihoming routers are online by monitoring
+the published meta-LeaseSet, because each real LeaseSet has corresponds to a
+single router.
 
-## Tasarım
+We need a way for an I2P client or service to spread a single Destination across
+multiple routers, in a way that is indistinguishable to using a single router
+(from the perspective of the LeaseSet itself).
+
+
+## Design
 
 ### Definitions
 
@@ -62,11 +82,11 @@ Bir I2P istemcisinin veya servisinin tek bir Destination'ı birden fazla router 
 
 ### High-level overview
 
-Aşağıdaki istenen konfigürasyonu hayal edin:
+Imagine the following desired configuration:
 
-- Tek Destination'a sahip bir istemci uygulaması.
-- Her biri üç gelen tunnel'ı yöneten dört router.
-- Tüm on iki tunnel tek bir LeaseSet'te yayınlanmalıdır.
+- A client application with one Destination.
+- Four routers, each managing three inbound tunnels.
+- All twelve tunnels should be published in a single LeaseSet.
 
 ### Single-client
 
@@ -87,7 +107,8 @@ Aşağıdaki istenen konfigürasyonu hayal edin:
                  |-{ [Tunnel 11]===[Router 4]-----
                   -{ [Tunnel 12]==/
 ```
-### Tanımlar
+
+### Multi-client
 
 ```
                 -{ [Tunnel 1]===\
@@ -106,38 +127,44 @@ Aşağıdaki istenen konfigürasyonu hayal edin:
                  |-{ [Tunnel 11]===[Router 4]---------[Frontend 4]
                   -{ [Tunnel 12]==/
 ```
-### Üst düzey genel bakış
 
-- Bir Destination yükle veya oluştur.
+### General client process
 
-- Her router ile Destination'a bağlı bir oturum açın.
+- Load or generate a Destination.
 
-- Düzenli olarak (yaklaşık her on dakikada bir, ancak tunnel canlılığına bağlı olarak az ya da çok):
+- Open up a session with each router, tied to the Destination.
 
-- Her router'dan hızlı katmanı elde edin.
+- Periodically (around every ten minutes, but more or less based on tunnel
+  liveness):
 
-- Her router'dan/router'a tünel oluşturmak için peer'ların üst kümesini kullanın.
+  - Obtain the fast tier from each router.
+
+  - Use the superset of peers to build tunnels to/from each router.
 
     - By default, tunnels to/from a particular router will use peers from
       that router's fast tier, but this is not enforced by the protocol.
 
-- Tüm aktif router'lardan aktif gelen tunnel'ların setini topla ve bir LeaseSet oluştur.
+  - Collect the set of active inbound tunnels from all active routers, and create a
+    LeaseSet.
 
-- LeaseSet'i router'lardan bir veya birkaçı aracılığıyla yayınla.
+  - Publish the LeaseSet through one or more of the routers.
 
-### Tek istemci
+### Differences to I2CP
 
-Bu konfigürasyonu oluşturmak ve yönetmek için, client'ın şu anda [I2CP](/docs/specs/i2cp/) tarafından sağlanandan daha fazla yeni işlevselliğe ihtiyacı vardır:
+To create and manage this configuration, the client needs the following new
+functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
 
-- Bir router'a, onlar için LeaseSet oluşturmadan tüneller inşa etmesini söyler.
-- Gelen havuzundaki mevcut tünellerin listesini alır.
+- Tell a router to build tunnels, without creating a LeaseSet for them.
+- Get a list of the current tunnels in the inbound pool.
 
-Ek olarak, aşağıdaki işlevsellik, istemcinin tunnel'larını nasıl yönettiği konusunda önemli esneklik sağlayacaktır:
+Additionally, the following functionality would enable significant flexibility
+in how the client manages its tunnels:
 
-- Bir router'ın hızlı katmanının içeriğini al.
-- Bir router'a verilen eş listesini kullanarak gelen veya giden tunnel oluşturmasını söyle.
+- Get the contents of a router's fast tier.
+- Tell a router to build an inbound or outbound tunnel using a given list of
+  peers.
 
-### Çoklu istemci
+### Protocol outline
 
 ```
          Client                           Router
@@ -155,41 +182,62 @@ Ek olarak, aşağıdaki işlevsellik, istemcinin tunnel'larını nasıl yönetti
       Send Status  <---------------------
   Packet Received  <---------------------
 ```
-### Genel istemci süreci
 
-**Oturum Oluştur** - Belirtilen Destination için bir oturum oluştur.
+### Messages
 
-**Oturum Durumu** - Oturumun kurulduğunun onayı ve istemcinin artık tunnel'ları oluşturmaya başlayabileceği.
+**Create Session**
+- Create a session for the given Destination.
 
-**Get Fast Tier** - Router'ın şu anda tunnel'lar oluşturmayı düşüneceği eşlerin listesini talep et.
+**Session Status**
+- Confirmation that the session has been set up, and the client can now start building tunnels.
 
-**Peer Listesi** - Router tarafından bilinen peer'ların listesi.
+**Get Fast Tier**
+- Request a list of the peers that the router currently would consider building tunnels through.
 
-**Tunnel Oluştur** - Router'ın belirtilen eşler üzerinden yeni bir tunnel oluşturmasını talep eder.
+**Peer List**
+- A list of peers known to the router.
 
-**Tunnel Durumu** - Belirli bir tunnel oluşturma işleminin sonucu, mevcut olduğunda.
+**Create Tunnel**
+- Request that the router build a new tunnel through the specified peers.
 
-**Tunnel Pool Al** - Hedef için gelen veya giden havuzdaki mevcut tunnelların listesini talep et.
+**Tunnel Status**
+- The result of a particular tunnel build, once it is available.
 
-**Tunnel Listesi** - İstenen havuz için tunnel'ların listesi.
+**Get Tunnel Pool**
+- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
 
-**LeaseSet Yayınla** - Router'ın sağlanan LeaseSet'i Destination için giden tunnel'lardan biri aracılığıyla yayınlamasını talep eder. Yanıt durumu gerekmez; router LeaseSet'in yayınlandığından emin olana kadar yeniden denemeye devam etmelidir.
+**Tunnel List**
+- A list of tunnels for the requested pool.
 
-**Paket Gönder** - İstemciden giden bir paket. İsteğe bağlı olarak, paketin gönderilmesi gereken (gönderilmesi gerekir mi?) bir giden tunnel belirtir.
+**Publish LeaseSet**
+- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
 
-**Gönderim Durumu** - İstemciyi bir paketin gönderilmesinin başarılı veya başarısız olduğu konusunda bilgilendirir.
+**Send Packet**
+- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
 
-**Paket Alındı** - İstemci için gelen bir paket. İsteğe bağlı olarak paketin alındığı gelen tunnel'ı belirtir(?)
+**Send Status**
+- Informs the client of the success or failure of sending a packet.
+
+**Packet Received**
+- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
+
 
 ## Security implications
 
-Router'ların perspektifinden bakıldığında, bu tasarım işlevsel olarak mevcut durumla eşdeğerdir. Router hala tüm tunnel'ları inşa eder, kendi peer profillerini tutar ve router ile istemci operasyonları arasında ayrımı zorlar. Varsayılan yapılandırmada tamamen aynıdır, çünkü o router için tunnel'lar kendi hızlı katmanından inşa edilir.
+From the perspective of the routers, this design is functionally equivalent to
+the status quo. The router still builds all tunnels, maintains its own peer
+profiles, and enforces separation between router and client operations. In the
+default configuration is completely identical, because tunnels for that router
+are built from its own fast tier.
 
-netDB perspektifinden bakıldığında, bu protokol aracılığıyla oluşturulan tek bir LeaseSet, mevcut işlevsellikten yararlandığı için mevcut durumla aynıdır. Ancak, 16 Lease'e yaklaşan daha büyük LeaseSet'ler için, bir gözlemcinin LeaseSet'in çok konumlu (multihomed) olduğunu belirlemesi mümkün olabilir:
+From the perspective of the netDB, a single LeaseSet created via this protocol
+is identical to the status quo, because it leverages pre-existing functionality.
+However, for larger LeaseSets approaching 16 Leases, it may be possible for an
+observer to determine that the LeaseSet is multihomed:
 
-- Hızlı katmanın mevcut maksimum boyutu 75 eştir. Inbound Gateway
-  (IBGW, bir Lease'de yayınlanan düğüm) katmanın bir kesiminden seçilir
-  (hash ile tunnel pool başına rastgele bölümlendirilir, sayıya göre değil):
+- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
+  (IBGW, the node published in a Lease) is selected from a fraction of the tier
+  (partitioned randomly per-tunnel pool by hash, not count):
 
       1 hop
           The whole fast tier
@@ -202,30 +250,61 @@ netDB perspektifinden bakıldığında, bu protokol aracılığıyla oluşturula
           A quarter of the fast tier
           (3 being the current default)
 
-Bu, ortalama olarak IBGW'lerin 20-30 eşten oluşan bir kümeden olacağı anlamına gelir.
+  That means on average the IBGWs will be from a set of 20-30 peers.
 
-- Tek bağlantılı bir kurulumda, tam 16-tünelli bir LeaseSet, (diyelim) 20 peer'e kadar olan bir setten rastgele seçilen 16 IBGW'ye sahip olacaktır.
+- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
+  randomly selected from a set of up to (say) 20 peers.
 
-- Varsayılan yapılandırmayı kullanan 4 router'lı multihomed kurulumda, tam bir 16-tunnel LeaseSet, en fazla 80 peer'dan oluşan bir setten rastgele seçilmiş 16 IBGW'ye sahip olacaktır, ancak router'lar arasında ortak peer'ların bir kısmının bulunması muhtemeldir.
+- In a 4-router multihomed setup using the default configuration, a full
+  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
+  80 peers, though there are likely to be a fraction of common peers between
+  routers.
 
-Bu nedenle varsayılan yapılandırma ile, istatistiksel analiz yoluyla bir LeaseSet'in bu protokol tarafından üretildiğini anlamanın mümkün olabileceği söylenebilir. Ayrıca kaç router olduğunu da anlamak mümkün olabilir, ancak hızlı katmanlardaki değişimin bu analizin etkinliğini azaltacağı da söylenebilir.
+Thus with the default configuration, it may be possible through statistical
+analysis to figure out that a LeaseSet is being generated by this protocol. It
+might also be possible to figure out how many routers there are, although the
+effect of churn on the fast tiers would reduce the effectiveness of this
+analysis.
 
-İstemci hangi eşleri seçeceği konusunda tam kontrole sahip olduğundan, bu bilgi sızıntısı azaltılmış bir eş kümesinden IBGW'ler seçilerek azaltılabilir veya ortadan kaldırılabilir.
+As the client has full control over which peers it selects, this information
+leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
+peers.
+
 
 ## Compatibility
 
-Bu tasarım, LeaseSet formatında hiçbir değişiklik olmadığı için ağ ile tamamen geriye dönük uyumludur. Tüm router'ların yeni protokolden haberdar olması gerekir, ancak hepsi aynı varlık tarafından kontrol edileceği için bu bir endişe kaynağı değildir.
+This design is completely backwards-compatible with the network, because there
+are no changes to the LeaseSet format. All routers would need to be aware of
+the new protocol, but this is not a concern as they would all be controlled by
+the same entity.
+
 
 ## Performance and scalability notes
 
-Bu öneriye göre LeaseSet başına 16 Lease üst sınırı değiştirilmemiştir. Bundan daha fazla tünele ihtiyaç duyan Destination'lar için iki olası ağ modifikasyonu bulunmaktadır:
+The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
+Destinations that require more tunnels than this, there are two possible network
+modifications:
 
-- LeaseSet'lerin boyut üst sınırını artırın. Bu uygulaması en basit olan yöntem olacaktır (yine de yaygın olarak kullanılabilmesi için kapsamlı ağ desteği gerektirecek olsa da), ancak daha büyük paket boyutları nedeniyle daha yavaş aramalar ile sonuçlanabilir. Maksimum uygulanabilir LeaseSet boyutu, alttaki aktarım katmanlarının MTU'su tarafından tanımlanır ve bu nedenle yaklaşık 16kB civarındadır.
+- Increase the upper limit on the size of LeaseSets. This would be the simplest
+  to implement (though it would still require pervasive network support before
+  it could be widely used), but could result in slower lookups due to the larger
+  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
+  underlying transports, and is therefore around 16kB.
 
-- Tiered LeaseSet'ler için Proposal 123'ü uygulayın. Bu önerinin kombinasyonunda,
-  alt-LeaseSet'ler için Destination'lar birden fazla router'a yayılabilir,
-  etkin bir şekilde clearnet servisler için birden fazla IP adresi gibi davranır.
+- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
+  the Destinations for the sub-LeaseSets could be spread across multiple
+  routers, effectively acting like multiple IP addresses for a clearnet service.
+
 
 ## Acknowledgements
 
-Bu öneriye yol açan tartışma için psi'ye teşekkürler.
+Thanks to psi for the discussion that led to this proposal.
+
+
+## References
+
+* [Destination](/docs/specs/common-structures/#destination)
+* [I2CP](/docs/specs/i2cp/)
+* [Leases](/docs/specs/common-structures/#lease)
+* [LeaseSet](/docs/specs/common-structures/#leaseset)
+* [Prop123](/proposals/123-new-netdb-entries/)

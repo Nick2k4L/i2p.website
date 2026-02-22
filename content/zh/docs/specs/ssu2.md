@@ -3943,6 +3943,6 @@ SSU 2 设计旨在最小化入站数据包分类工作，同时保持 DPI 抗性
 - **[SigningPublicKey]** [SigningPublicKey 类型](/docs/specs/common-structures#type-signingpublickey)
 - **[SSU]** [SSU 传输](/docs/transport/ssu)
 - **[STS]** [站对站协议](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
-- **[Ticket1112]** I2P 工单 1112
-- **[Ticket1849]** I2P 工单 1849
+- **[Ticket1112]** [I2P 工单 1112](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1112)
+- **[Ticket1849]** [I2P 工单 1849](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1849)
 - **[WireGuard]** [WireGuard 协议](https://www.wireguard.com/papers/wireguard.pdf)

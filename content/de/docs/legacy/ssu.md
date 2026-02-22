@@ -51,9 +51,9 @@ Das exklusive ODER von ((netid - 2) << 8) wird verwendet, um netzwerkübergreife
 - MAC size: 16 Bytes
 - Beispiel C-Implementierungen:
   - hmac.h in [i2pd](https://github.com/PurpleI2P/i2pd)
-  - I2PHMAC.cpp in i2pcpp
+  - I2PHMAC.cpp in [i2pcpp](http://git.repo.i2p/w/i2pcpp.git)
 - Beispiel Java-Implementierung:
-  - I2PHMac.java in I2P
+  - I2PHMac.java in [I2P](https://github.com/i2p/i2p.i2p)
 
 ### Session-Schlüssel-Details
 
@@ -881,7 +881,7 @@ Ein HolePunch ist einfach ein UDP-Paket ohne Daten. Es ist weder authentifiziert
 - [Datum](/docs/specs/common-structures/#date)
 - [ElGamal-Verschlüsselung](/docs/specs/cryptography/#elgamal)
 - [HMAC-Details](/docs/specs/cryptography/#udp)
-- I2P-Quellcode
+- [I2P-Quellcode](https://github.com/i2p/i2p.i2p)
 - [i2pd-Quellcode](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)
 - [RouterIdentity](/docs/specs/common-structures/#routeridentity)

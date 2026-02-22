@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / `http://127.0.0.1:8443/`
-    ProxyPassReverse / `http://127.0.0.1:8443/`
+    ProxyPass / http://127.0.0.1:8443/
+    ProxyPassReverse / http://127.0.0.1:8443/
 </VirtualHost>
 ```
 ### 등록 및 조정
@@ -553,8 +553,8 @@ java -cp /path/to/i2p.jar net.i2p.crypto.SU3File verify test.su3 your-cert.crt
 
 ### 커뮤니티 리소스
 
-- **I2P 포럼**: [i2pforum.net](https://i2pforum.net/)
-- **Gitea 저장소**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
+- **I2P 포럼**: https://i2pforum.net/
+- **Gitea 저장소**: https://i2pgit.org/I2P_Developers/i2p.i2p
 - **IRC**: IRC2P의 #i2p-dev
 - **상태 모니터링**: [checki2p.com/reseed](https://checki2p.com/reseed)
 

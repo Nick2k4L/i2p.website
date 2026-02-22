@@ -11,46 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## Přehled
+## Overview
 
-Tento návrh se týká zlepšení úspěšnosti zavádění.
+This proposal is about improving the success rate for introductions.
 
-## Motivace
 
-Zaváděče vyprší po určité době, ale tato informace není zveřejněna v
-RouterInfo. Směrovače nyní musí používat heuristiku k odhadnutí, kdy
-zaváděč už není platný.
+## Motivation
 
-## Návrh
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
-V SSU RouterAddress obsahující zaváděče může vydavatel volitelně
-zahrnout časy vypršení platnosti pro každý zaváděč.
 
-## Specifikace
+## Design
+
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
+
+
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: Číslo zaváděče (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: Čas v sekundách (ne ms) od počátku epochy.
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
-### Poznámky
-* Každé vypršení musí být větší než datum zveřejnění RouterInfo,
-  a menší než 6 hodin po datu zveřejnění RouterInfo.
+### Notes
 
-* Směrovače a zaváděče by se měly snažit udržet zaváděč platný
-  až do vypršení, avšak není možné toto zaručit.
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* Směrovače by neměly používat zveřejněný zaváděč po jeho vypršení.
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* Platnosti zaváděčů jsou v mapování RouterAddress.
-  Nejsou to (aktuálně nepoužívaná) 8-bajtová pole vypršení v RouterAddress.
+* Routers should not use a published introducer after its expiration.
 
-**Příklad:** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
 
-## Migrace
+**Example:** `iexp0=1486309470`
 
-Žádné problémy. Implementace je volitelná.
-Zpětná kompatibilita je zajištěna, protože starší směrovače budou neznámé parametry ignorovat.
+
+## Migration
+
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

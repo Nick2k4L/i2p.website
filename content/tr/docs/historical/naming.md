@@ -47,9 +47,9 @@ Doğru, ancak bu I2P bağlamında çok fazla trafik değil, zaten I2P'nin kendis
 
 I2P'de genellikle olduğu gibi, burada da anonimlik ve verimlilik arasında temel bir ödünleşim vardır. Bazıları etag ve last-modified başlıklarını kullanmanın tehlikeli olduğunu söyler çünkü verileri en son ne zaman talep ettiğinizi açığa çıkarır. Diğerleri ise yalnızca belirli anahtarları talep etmeyi önermiştir (jump servislerinin yaptığına benzer, ancak daha otomatik bir şekilde), muhtemelen anonimlikte daha fazla kayıp pahasına.
 
-Olası iyileştirmeler address book'un (adres defterinin) değiştirilmesi veya tamamlanması (i2host.i2p'ye bakın), ya da `http://example.i2p/hosts.txt` yerine `http://example.i2p/cgi-bin/recenthosts.cgi'ye` abone olmak gibi basit bir şey olabilir. Varsayımsal bir recenthosts.cgi'nin örneğin son 24 saatteki tüm host'ları dağıttığını düşünürsek, bu mevcut last-modified ve etag ile hosts.txt'den hem daha verimli hem de daha anonim olabilir.
+Olası iyileştirmeler address book'un (adres defterinin) değiştirilmesi veya tamamlanması (i2host.i2p'ye bakın), ya da http://example.i2p/hosts.txt yerine http://example.i2p/cgi-bin/recenthosts.cgi'ye abone olmak gibi basit bir şey olabilir. Varsayımsal bir recenthosts.cgi'nin örneğin son 24 saatteki tüm host'ları dağıttığını düşünürsek, bu mevcut last-modified ve etag ile hosts.txt'den hem daha verimli hem de daha anonim olabilir.
 
-Örnek bir uygulama stats.i2p adresinde `http://stats.i2p/cgi-bin/newhosts.txt` konumunda bulunmaktadır. Bu betik, zaman damgası içeren bir Etag döndürür. If-None-Match etag ile bir istek geldiğinde, betik YALNIZCA o zaman damgasından sonraki yeni host'ları döndürür, eğer hiçbiri yoksa 304 Not Modified yanıtı verir. Bu şekilde betik, abonenin bilmediği host'ları adres defteri ile uyumlu bir şekilde verimli olarak döndürür.
+Örnek bir uygulama stats.i2p adresinde http://stats.i2p/cgi-bin/newhosts.txt konumunda bulunmaktadır. Bu betik, zaman damgası içeren bir Etag döndürür. If-None-Match etag ile bir istek geldiğinde, betik YALNIZCA o zaman damgasından sonraki yeni host'ları döndürür, eğer hiçbiri yoksa 304 Not Modified yanıtı verir. Bu şekilde betik, abonenin bilmediği host'ları adres defteri ile uyumlu bir şekilde verimli olarak döndürür.
 
 Bu nedenle verimsizlik büyük bir sorun değildir ve köklü değişiklik yapmadan durumu iyileştirmenin birkaç yolu vardır.
 
@@ -57,7 +57,7 @@ Bu nedenle verimsizlik büyük bir sorun değildir ve köklü değişiklik yapma
 
 Ağ trafiği açısından yukarıdaki açıklamaya bakın. Ancak bir anahtar için ağ üzerinden yavaş gerçek zamanlı sorgu yapmayacaksanız, tüm anahtar setini yerel olarak saklamanız gerekir ve bu anahtar başına yaklaşık 500 byte maliyetle gelir.
 
-- **Yapılandırma ve "güven" gerektirir:** Hazır adres defteri yalnızca nadiren güncellenen `http://www.i2p2.i2p/hosts.txt` adresine abone olduğundan, yeni kullanıcılar için kötü bir deneyim yaratır.
+- **Yapılandırma ve "güven" gerektirir:** Hazır adres defteri yalnızca nadiren güncellenen http://www.i2p2.i2p/hosts.txt adresine abone olduğundan, yeni kullanıcılar için kötü bir deneyim yaratır.
 
 Bu çok kasıtlı bir durumdur. jrandom, kullanıcının bir hosts.txt sağlayıcısına "güvenmesini" istiyor ve sevdiği bir deyişle "güven bir boolean değildir". Yapılandırma adımı, kullanıcıları anonim bir ağda güven konularını düşünmeye zorlamaya çalışır.
 

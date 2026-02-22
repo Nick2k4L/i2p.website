@@ -77,9 +77,9 @@ test networks should have a different ID and will fail the HMAC.
 - MAC size: 16 bytes
 - Example C implementations:
   - hmac.h in [i2pd](https://github.com/PurpleI2P/i2pd)
-  - I2PHMAC.cpp in i2pcpp
+  - I2PHMAC.cpp in [i2pcpp](http://git.repo.i2p/w/i2pcpp.git)
 - Example Java implementation:
-  - I2PHMac.java in I2P
+  - I2PHMac.java in [I2P](https://github.com/i2p/i2p.i2p)
 
 ### Session Key Details
 
@@ -1069,7 +1069,7 @@ sequence.
 - [Date](/docs/specs/common-structures/#date)
 - [ElGamal Encryption](/docs/specs/cryptography/#elgamal)
 - [HMAC Details](/docs/specs/cryptography/#udp)
-- I2P Source
+- [I2P Source](https://github.com/i2p/i2p.i2p)
 - [i2pd Source](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)
 - [RouterIdentity](/docs/specs/common-structures/#routeridentity)

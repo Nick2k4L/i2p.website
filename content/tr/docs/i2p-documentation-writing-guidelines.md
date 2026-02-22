@@ -13,7 +13,7 @@ lastUpdated: "2025-10"
 
 ### 1. Her Şeyi Doğrulayın
 
-**Asla varsaymayın veya tahmin etmeyin.** Tüm teknik ifadeler şu kaynaklara göre doğrulanmalıdır: - Güncel I2P kaynak kodu (`https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)` - Resmi API belgeleri (`https://i2p.github.io/i2p.i2p/`  - Yapılandırma teknik özellikleri [/docs/specs/](/docs/) - Son sürüm notları [/releases/](/categories/release/)
+**Asla varsaymayın veya tahmin etmeyin.** Tüm teknik ifadeler şu kaynaklara göre doğrulanmalıdır: - Güncel I2P kaynak kodu (https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master) - Resmi API belgeleri (https://i2p.github.io/i2p.i2p/  - Yapılandırma teknik özellikleri [/docs/specs/](/docs/) - Son sürüm notları [/releases/](/categories/release/)
 
 **Uygun doğrulama örneği:**
 
@@ -106,7 +106,7 @@ Note that client registry and port mapper are separate systems:
 **I2P dahili URL'ler için şablon:**
 
 ```markdown
-> **Note:** The I2P network hosts comprehensive documentation at `http://idk.i2p/javadoc-i2p/` 
+> **Note:** The I2P network hosts comprehensive documentation at http://idk.i2p/javadoc-i2p/ 
 > which requires an I2P router for access. For clearnet access, use the GitHub Pages 
 > mirror at https://eyedeekay.github.io/javadoc-i2p/
 ```
@@ -114,17 +114,17 @@ Note that client registry and port mapper are separate systems:
 
 **Resmi spesifikasyonlar:** - [Yapılandırma](/docs/specs/configuration/) - [Eklenti](/docs/specs/plugin/) - [Belge Dizini](/docs/)
 
-**API dokümantasyonu (en güncel olanı seçin):** - En güncel: `https://i2p.github.io/i2p.i2p/` (I2P 2.10.0 itibarıyla API 0.9.66) - Clearnet (açık internet) yansısı: https://eyedeekay.github.io/javadoc-i2p/
+**API dokümantasyonu (en güncel olanı seçin):** - En güncel: https://i2p.github.io/i2p.i2p/ (I2P 2.10.0 itibarıyla API 0.9.66) - Clearnet (açık internet) yansısı: https://eyedeekay.github.io/javadoc-i2p/
 
-**Kaynak kodu:** - GitLab (resmi): `https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master` - GitHub aynası: `https://github.com/i2p/i2p.i2p`
+**Kaynak kodu:** - GitLab (resmi): https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master - GitHub aynası: https://github.com/i2p/i2p.i2p
 
 ### Bağlantı Biçimi Standartları
 
 ```markdown
-✅ GOOD: ClientApp Javadoc
+✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
 
-❌ BAD: See the ClientApp docs at `http://idk.i2p/...`
+❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
 ```
 ---
@@ -552,12 +552,12 @@ See [clients.config specification](https://geti2p.net/spec/configuration#clients
 **Dış bağlantılar** (diğer kaynaklara):
 
 ```markdown
-For more details, see ClientApp Javadoc
+For more details, see [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ```
 **Kod deposu bağlantıları**:
 
 ```markdown
-View source: ClientApp.java
+View source: [ClientApp.java](https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master/core/java/src/net/i2p/app/ClientApp.java)
 ```
 ### Tablo Biçimlendirme
 

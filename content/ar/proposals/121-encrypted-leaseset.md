@@ -10,55 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## نظرة عامة
+## Overview
 
-هذا الاقتراح يتعلق بإعادة تصميم آلية تشفير مجموعات التأجير.
-
-
-## الدافع
-
-مجموعة التأجير المشفرة الحالية بائسة وغير آمنة. يمكنني أن أقول ذلك، لقد قمت بتصميمها
-وتنفيذها.
-
-الأسباب:
-
-- تشفير AES CBC
-- مفتاح AES واحد للجميع
-- لا تزال تواريخ انتهاء التأجير مكشوفة
-- لا يزال المفتاح العام للتشفير مكشوفاً
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
 
-## التصميم
+## Motivation
 
-### الأهداف
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-- جعل الشيء بأكمله غير شفاف
-- مفاتيح لكل مستلم
+Reasons:
 
-
-### الإستراتيجية
-
-القيام كما يفعل GPG/OpenPGP. تشفير متماثل لمفتاح متماثل لكل
-مستلم. يتم فك تشفير البيانات مع ذلك المفتاح المتماثل. انظر على سبيل المثال [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-إذا استطعنا العثور على خوارزمية صغيرة وسريعة.
-
-الحيلة هي العثور على تشفير متماثل صغير وسريع. ElGamal عند 514
-بايت يعتبر قليلاً هنا. يمكننا القيام بأفضل من ذلك.
-
-انظر على سبيل المثال `http://security.stackexchange.com/questions/824...`
-
-هذا يعمل لأعداد صغيرة من المستلمين (أو في الواقع، المفاتيح؛ يمكنك توزيع
-المفاتيح على عدة أشخاص إن شئت).
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
 
-## المواصفات
+## Design
 
-- الوجهة
-- تاريخ النشر
-- انتهاء الصلاحية
-- الأعلام
-- طول البيانات
-- البيانات المشفرة
-- التوقيع
+### Goals
 
-يمكن أن تكون البيانات المشفرة مرفقة بمواصفة تشفير، أو لا.
+- Make entire thing opaque
+- Keys for each recipient
+
+
+### Strategy
+
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
+
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
+
+See e.g. http://security.stackexchange.com/questions/824...
+
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
+
+
+## Specification
+
+- Destination
+- Published timestamp
+- Expiration
+- Flags
+- Length of data
+- Encrypted data
+- Signature
+
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

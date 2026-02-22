@@ -14,7 +14,7 @@ Framework plugin của I2P cho phép bạn mở rộng router mà không cần c
 
 1. Sao chép URL tải xuống của plugin từ trang dự án.  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. Mở `http://127.0.0.1:7657/configplugins` của router console.  
+2. Mở [trang Cấu hình Plugin](http://127.0.0.1:7657/configplugins) của router console.  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. Dán URL vào trường cài đặt và nhấp **Install Plugin**.  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ Router tải xuống file nén đã ký, xác minh chữ ký, và kích hoạt p
 
 ## 3. Quản lý các Plugin đã cài đặt
 
-Sử dụng các điều khiển trên `http://127.0.0.1:7657/configclients.jsp#plugin` để:
+Sử dụng các điều khiển trên [I2P Router Plugin](http://127.0.0.1:7657/configclients.jsp#plugin) để:
 
 - Kiểm tra cập nhật cho một plugin đơn lẻ
 - Kiểm tra tất cả plugin cùng lúc (tự động kích hoạt sau khi nâng cấp router)

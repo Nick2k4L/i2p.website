@@ -10,61 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## Visão Geral
+## Overview
 
-Esta proposta é sobre redesenhar o mecanismo para criptografar LeaseSets.
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
 
-## Motivação
+## Motivation
 
-O LS criptografado atual é horrível e inseguro. Posso dizer isso, eu projetei e
-implementei.
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-Razões:
+Reasons:
 
-- Criptografia AES CBC
-- Chave AES única para todos
-- Expirações de Lease ainda expostas
-- Chave pública de criptografia ainda exposta
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
 
 ## Design
 
-### Objetivos
+### Goals
 
-- Tornar tudo opaco
-- Chaves para cada destinatário
-
-
-### Estratégia
-
-Fazer como o GPG/OpenPGP faz. Criptografe assimetricamente uma chave simétrica para cada
-destinatário. Os dados são descriptografados com essa chave assimétrica. Veja por exemplo [RFC-4880-S5.1]
-SE conseguirmos encontrar um algoritmo que seja pequeno e rápido.
-
-O truque é encontrar uma criptografia assimétrica que seja pequena e rápida. ElGamal com 514
-bytes é um pouco doloroso aqui. Podemos fazer melhor.
-
-Veja por exemplo `http://security.stackexchange.com/questions/824...`
-
-Isso funciona para números pequenos de destinatários (ou, na verdade, chaves; você ainda pode
-distribuir chaves para várias pessoas, se quiser).
+- Make entire thing opaque
+- Keys for each recipient
 
 
-## Especificação
+### Strategy
 
-- Destino
-- Marca temporal publicada
-- Expiração
-- Bandeiras
-- Comprimento dos dados
-- Dados criptografados
-- Assinatura
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
 
-Os dados criptografados poderiam ser prefixados com algum especificador de tipo de criptografia, ou não.
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
+
+See e.g. http://security.stackexchange.com/questions/824...
+
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
 
 
-## Referências
+## Specification
 
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1
+- Destination
+- Published timestamp
+- Expiration
+- Flags
+- Length of data
+- Encrypted data
+- Signature
+
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

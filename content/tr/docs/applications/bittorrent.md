@@ -154,7 +154,7 @@ I2P'de UDP duyurularının spesifikasyonu 2025-06'da tamamlandı. Çeşitli I2P 
 
 ## Ek Bilgiler
 
-- I2P bittorrent standartları genellikle zzz.i2p üzerinde tartışılır.
-- Mevcut tracker yazılımı yeteneklerinin bir tablosu orada da mevcuttur.
-- I2P bittorrent SSS
-- I2P üzerinde DHT tartışması
+- I2P bittorrent standartları genellikle [zzz.i2p](http://zzz.i2p/) üzerinde tartışılır.
+- Mevcut tracker yazılımı yeteneklerinin bir tablosu [orada da mevcuttur](http://zzz.i2p/files/trackers.html).
+- [I2P bittorrent SSS](http://forum.i2p/viewtopic.php?t=2068)
+- [I2P üzerinde DHT tartışması](http://zzz.i2p/topics/812)

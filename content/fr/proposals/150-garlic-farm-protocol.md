@@ -9,219 +9,228 @@ thread: "http://zzz.i2p/topics/2234"
 toc: true
 ---
 
-## Vue d'ensemble
+## Overview
 
-Ceci est la spécification pour le protocole de la ferme à l'ail,
-basé sur JRaft, son code "exts" pour l'implémentation sur TCP,
-et son application exemple "dmprinter" [JRAFT](https://github.com/datatechnology/jraft).
-JRaft est une implémentation du protocole Raft [RAFT](/docs/research/ongaro2014-raft.pdf).
-
-Nous n'avons pas été en mesure de trouver une implémentation avec un protocole documenté.
-Cependant, l'implémentation JRaft est suffisamment simple pour que nous puissions
-inspecter le code et puis documenter son protocole.
-Cette proposition est le résultat de cet effort.
-
-Cela servira de backend pour la coordination des routeurs publiant
-des entrées dans un Meta LeaseSet. Voir la proposition 123.
+This is the spec for the Garlic Farm wire protocol,
+based on JRaft, its "exts" code for implementation over TCP,
+and its "dmprinter" sample application [JRAFT](https://github.com/datatechnology/jraft).
 
 
-## Objectifs
+We were unable to find any implementation with a documented wire protocol.
+However, the JRaft implementation is simple enough that we could
+inspect the code and then document its protocol.
+This proposal is the result of that effort.
 
-- Taille réduite du code
-- Basé sur une implémentation existante
-- Pas d'objets Java sérialisés ni de fonctionnalités ou d'encodages spécifiques à Java
-- Tout amorçage est hors-scope. Au moins un autre serveur est supposé
-  être codé en dur, ou configuré hors bande de ce protocole.
-- Support des cas d'utilisation hors bande et dans I2P.
-
-
-## Conception
-
-Le protocole Raft n'est pas un protocole concret ; il définit seulement une machine à états.
-Par conséquent, nous documentons le protocole concret de JRaft et basons notre protocole dessus.
-Il n'y a pas de changements au protocole JRaft autre que l'ajout d'une
-authentification par poignée de main.
-
-Raft élit un Leader dont le travail est de publier un journal.
-Le journal contient des données de configuration Raft et les données d'application.
-Les données d'application contiennent le statut de chaque routeur du serveur et la destination
-pour le cluster Meta LS2.
-Les serveurs utilisent un algorithme commun pour déterminer l'éditeur et le contenu
-du Meta LS2.
-L'éditeur du Meta LS2 n'est PAS nécessairement le Leader Raft.
+This will be the backend for coordination of routers publishing
+entries in a Meta LeaseSet. See proposal 123.
 
 
-## Spécification
+## Goals
 
-Le protocole filaire utilise des sockets SSL ou des sockets I2P non SSL.
-Les sockets I2P sont proxifiés via le proxy HTTP.
-Il n'y a pas de support pour les sockets non-SSL en clair.
+- Small code size
+- Based on existing implementation
+- No serialized Java objects or any Java-specific features or encoding
+- Any bootstrapping is out-of-scope. At least one other server is assumed
+  to be hardcoded, or configured out-of-band of this protocol.
+- Support both out-of-band and in-I2P use cases.
 
-### Poignée de main et authentification
 
-Non défini par JRaft.
+## Design
 
-Objectifs :
+The Raft protocol is not a concrete protocol; it defines only a state machine.
+Therefore we document the concrete protocol of JRaft and base our protocol on it.
+There are no changes to the JRaft protocol other than the addition of
+an authentication handshake.
 
-- Méthode d'authentification par utilisateur/mot de passe
-- Identifiant de version
-- Identifiant de cluster
+Raft elects a Leader whose job is to publish a log.
+The log contains Raft Configuration data and Application data.
+Application data contains the status of each Server's Router and the Destination
+for the Meta LS2 cluster.
+The servers use a common algorithm to determine the publisher and contents
+of the Meta LS2.
+The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+
+
+
+## Specification
+
+The wire protocol is over SSL sockets or non-SSL I2P sockets.
+I2P sockets are proxied through the HTTP Proxy.
+There is no support for clearnet non-SSL sockets.
+
+### Handshake and authentication
+
+Not defined by JRaft.
+
+Goals:
+
+- User/password authentication method
+- Version identifier
+- Cluster identifier
 - Extensible
-- Facilité de proxy lorsqu'il est utilisé pour les sockets I2P
-- Ne pas exposer inutilement le serveur en tant que serveur de la ferme à l'ail
-- Protocole simple pour éviter la nécessité d'une implémentation complète de serveur web
-- Compatible avec les standards courants, pour que les implémentations puissent utiliser
-  des bibliothèques standard si désiré
+- Ease of proxying when used for I2P sockets
+- Do not unnecessarily expose server as a Garlic Farm server
+- Simple protocol so a full web server implementation is not required
+- Compatible with common standards, so implementations may use
+  standard libraries if desired
 
-Nous utiliserons une poignée de main similaire à websocket [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
-et une authentification HTTP Digest [RFC-2617](https://tools.ietf.org/html/rfc2617).
-L'authentification de base RFC 2617 n'est PAS supportée.
-Quand on passe par le proxy HTTP, communiquer avec
-le proxy comme spécifié dans [RFC-2616](https://tools.ietf.org/html/rfc2616).
+We will use an websocket-like handshake and
+HTTP Digest authentication [RFC 2617](https://tools.ietf.org/html/rfc2617).
+RFC 2617 Basic authentication is NOT supported.
+When proxying through the HTTP proxy, communicate with
+the proxy as specified in [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-#### Identifiants
+#### Credentials
 
-Que les noms d'utilisateur et les mots de passe soient par cluster, ou
-par serveur, dépend de l'implémentation.
+Whether usernames and passwords are per-cluster, or
+per-server, is implementation-dependent.
 
 
-#### Requête HTTP 1
+#### HTTP Request 1
 
-L'initiateur enverra ce qui suit.
+The originator will send the following.
 
-Toutes les lignes se terminent par CRLF comme requis par HTTP.
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
-GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
-  Hôte : (ip):(port)
-  Cache-Control: no-cache
-  Connexion: close
-  (tous les autres en-têtes ignorés)
-  (ligne vide)
 
-  CLUSTER est le nom du cluster (par défaut "farm")
-  VERSION est la version de la ferme à l'ail (actuellement "1")
+GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
+  Host: (ip):(port)
+  Cache-Control: no-cache
+  Connection: close
+  (any other headers ignored)
+  (blank line)
+
+  CLUSTER is the name of the cluster (default "farm")
+  VERSION is the Garlic Farm version (currently "1")
+
 ```
 
 
-#### Réponse HTTP 1
+#### HTTP Response 1
 
-Si le chemin n'est pas correct, le destinataire enverra une réponse standard "HTTP/1.1 404 Not Found",
-comme dans [RFC-2616](https://tools.ietf.org/html/rfc2616).
+If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
+as in [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-Si le chemin est correct, le destinataire enverra une réponse standard "HTTP/1.1 401 Unauthorized",
-incluant l'en-tête d'authentification HTTP digest WWW-Authenticate,
-comme dans [RFC-2617](https://tools.ietf.org/html/rfc2617).
+If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
+including the WWW-Authenticate HTTP digest authentication header,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Les deux parties fermeront alors le socket.
+Both parties will then close the socket.
 
 
-#### Requête HTTP 2
+#### HTTP Request 2
 
-L'initiateur enverra ce qui suit,
-comme dans [RFC-2617](https://tools.ietf.org/html/rfc2617) et [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
+The originator will send the following,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Toutes les lignes se terminent par CRLF comme requis par HTTP.
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
-  Hôte : (ip):(port)
+  Host: (ip):(port)
   Cache-Control: no-cache
-  Connexion: keep-alive, Upgrade
+  Connection: keep-alive, Upgrade
   Upgrade: websocket
-  (en-têtes Sec-Websocket-* si proxifié)
-  Authorization: (en-tête d'autorisation HTTP digest comme dans RFC 2617)
-  (tous les autres en-têtes ignorés)
-  (ligne vide)
+  (Sec-Websocket-* headers if proxied)
+  Authorization: (HTTP digest authorization header as in RFC 2617)
+  (any other headers ignored)
+  (blank line)
 
-  CLUSTER est le nom du cluster (par défaut "farm")
-  VERSION est la version de la ferme à l'ail (actuellement "1")
+  CLUSTER is the name of the cluster (default "farm")
+  VERSION is the Garlic Farm version (currently "1")
+
 ```
 
 
-#### Réponse HTTP 2
+#### HTTP Response 2
 
-Si l'authentification n'est pas correcte, le destinataire enverra une autre réponse standard "HTTP/1.1 401 Unauthorized",
-comme dans [RFC-2617](https://tools.ietf.org/html/rfc2617).
+If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Si l'authentification est correcte, le destinataire enverra la réponse suivante,
-comme dans [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
+If the authentication is correct, the recipient will send the following response,
+as in the WebSocket protocol.
 
-Toutes les lignes se terminent par CRLF comme requis par HTTP.
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 HTTP/1.1 101 Switching Protocols
-  Connexion: Upgrade
+  Connection: Upgrade
   Upgrade: websocket
-  (en-têtes Sec-Websocket-*)
-  (tous les autres en-têtes ignorés)
-  (ligne vide)
+  (Sec-Websocket-* headers)
+  (any other headers ignored)
+  (blank line)
+
 ```
 
-Après réception, le socket reste ouvert.
-Le protocole Raft tel que défini ci-dessous commence, sur le même socket.
+After this is received, the socket remains open.
+The Raft protocol as defined below commences, on the same socket.
 
 
-#### Mise en cache
+#### Caching
 
-Les identifiants doivent être mis en cache pendant au moins une heure, pour que
-les connexions ultérieures puissent passer directement à
-"Requête HTTP 2" ci-dessus.
-
-
-### Types de messages
-
-Il existe deux types de messages, les requêtes et les réponses.
-Les requêtes peuvent contenir des entrées de journal, et sont de taille variable ;
-les réponses ne contiennent pas d'entrées de journal, et sont de taille fixe.
-
-Les types de messages 1-4 sont les messages RPC standards définis par Raft.
-Ceci est le protocole Raft de base.
-
-Les types de messages 5-15 sont les messages RPC étendus définis par
-JRaft, pour prendre en charge les clients, les modifications dynamiques du serveur et
-la synchronisation efficace des journaux.
-
-Les types de messages 16-17 sont les messages RPC de compactage de journal définis
-dans la section 7 de Raft.
+Credentials shall be cached for at least one hour, so that
+subsequent connections may jump directly to
+"HTTP Request 2" above.
 
 
-| Message | Numéro | Envoyé par | Envoyé à | Remarques |
+
+### Message Types
+
+There are two types of messages, requests and responses.
+Requests may contain Log Entries, and are variable-sized;
+responses do not contain Log Entries, and are fixed-size.
+
+Message types 1-4 are the standard RPC messages defined by Raft.
+This is the core Raft protocol.
+
+Message types 5-15 are the extended RPC messages defined by
+JRaft, to support clients, dynamic server changes, and
+efficient log synchronization.
+
+Message types 16-17 are the Log Compaction RPC messages defined
+in Raft section 7.
+
+
+| Message | Number | Sent By | Sent To | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| RequestVoteRequest | 1 | Candidat | Suiveur | RPC standard Raft; ne doit pas contenir d'entrées de journal |
-| RequestVoteResponse | 2 | Suiveur | Candidat | RPC standard Raft |
-| AppendEntriesRequest | 3 | Leader | Suiveur | RPC standard Raft |
-| AppendEntriesResponse | 4 | Suiveur | Leader / Client | RPC standard Raft |
-| ClientRequest | 5 | Client | Leader / Suiveur | La réponse est AppendEntriesResponse; doit contenir uniquement des entrées de journal d'application |
-| AddServerRequest | 6 | Client | Leader | Doit contenir une seule entrée de journal ClusterServer uniquement |
-| AddServerResponse | 7 | Leader | Client | Le leader enverra également une demande JoinClusterRequest |
-| RemoveServerRequest | 8 | Suiveur | Leader | Doit contenir une seule entrée de journal ClusterServer uniquement |
-| RemoveServerResponse | 9 | Leader | Suiveur | |
-| SyncLogRequest | 10 | Leader | Suiveur | Doit contenir une seule entrée de journal LogPack uniquement |
-| SyncLogResponse | 11 | Suiveur | Leader | |
-| JoinClusterRequest | 12 | Leader | Nouveau Serveur | Invitation à rejoindre; doit contenir une seule entrée de journal de configuration uniquement |
-| JoinClusterResponse | 13 | Nouveau Serveur | Leader | |
-| LeaveClusterRequest | 14 | Leader | Suiveur | Commande de quitter |
-| LeaveClusterResponse | 15 | Suiveur | Leader | |
-| InstallSnapshotRequest | 16 | Leader | Suiveur | Section 7 de Raft; doit contenir une seule entrée de journal SnapshotSyncRequest uniquement |
-| InstallSnapshotResponse | 17 | Suiveur | Leader | Section 7 de Raft |
+| RequestVoteRequest | 1 | Candidate | Follower | Standard Raft RPC; must not contain log entries |
+| RequestVoteResponse | 2 | Follower | Candidate | Standard Raft RPC |
+| AppendEntriesRequest | 3 | Leader | Follower | Standard Raft RPC |
+| AppendEntriesResponse | 4 | Follower | Leader / Client | Standard Raft RPC |
+| ClientRequest | 5 | Client | Leader / Follower | Response is AppendEntriesResponse; must contain Application log entries only |
+| AddServerRequest | 6 | Client | Leader | Must contain a single ClusterServer log entry only |
+| AddServerResponse | 7 | Leader | Client | Leader will also send a JoinClusterRequest |
+| RemoveServerRequest | 8 | Follower | Leader | Must contain a single ClusterServer log entry only |
+| RemoveServerResponse | 9 | Leader | Follower | |
+| SyncLogRequest | 10 | Leader | Follower | Must contain a single LogPack log entry only |
+| SyncLogResponse | 11 | Follower | Leader | |
+| JoinClusterRequest | 12 | Leader | New Server | Invitation to join; must contain a single Configuration log entry only |
+| JoinClusterResponse | 13 | New Server | Leader | |
+| LeaveClusterRequest | 14 | Leader | Follower | Command to leave |
+| LeaveClusterResponse | 15 | Follower | Leader | |
+| InstallSnapshotRequest | 16 | Leader | Follower | Raft Section 7; Must contain a single SnapshotSyncRequest log entry only |
+| InstallSnapshotResponse | 17 | Follower | Leader | Raft Section 7 |
 
 
-### Établissement
+### Establishment
 
-Après la poignée de main HTTP, la séquence d'établissement est la suivante :
+After the HTTP handshake, the establishment sequence is as follows:
 
 ```text
-Nouveau Serveur Alice              Suiveur Aléatoire Bob
+
+New Server Alice              Random Follower Bob
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
 
-  Si Bob dit qu'il est le leader, continuez comme ci-dessous.
-  Sinon, Alice doit se déconnecter de Bob et se connecter au leader.
+  If Bob says he is the leader, continue as below.
+  Else, Alice must disconnect from Bob and connect to the leader.
 
 
-  Nouveau Serveur Alice              Leader Charlie
+  New Server Alice              Leader Charlie
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
@@ -230,100 +239,111 @@ Nouveau Serveur Alice              Suiveur Aléatoire Bob
           <---------   JoinClusterRequest
   JoinClusterResponse  ------->
           <---------   SyncLogRequest
-                       OU InstallSnapshotRequest
+                       OR InstallSnapshotRequest
   SyncLogResponse  ------->
-  OU InstallSnapshotResponse
+  OR InstallSnapshotResponse
+
 ```
 
-Séquence de déconnexion :
+Disconnect Sequence:
 
 ```text
-Suiveur Alice              Leader Charlie
+
+Follower Alice              Leader Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
+
 ```
 
-Séquence d'élection :
+Election Sequence:
 
 ```text
-Candidat Alice               Suiveur Bob
+
+Candidate Alice               Follower Bob
 
   RequestVoteRequest   ------->
           <---------   RequestVoteResponse
 
-  si Alice remporte l'élection :
+  if Alice wins election:
 
-  Leader Alice                Suiveur Bob
+  Leader Alice                Follower Bob
 
   AppendEntriesRequest   ------->
-  (coup de cœur)
+  (heartbeat)
           <---------   AppendEntriesResponse
+
 ```
 
 
-### Définitions
+### Definitions
 
-- Source : Identifie l'origine du message
-- Destination : Identifie le destinataire du message
-- Termes : Voir Raft. Initialisé à 0, augmente de façon monotone
-- Indexes : Voir Raft. Initialisé à 0, augmente de façon monotone
-
-
-### Requêtes
-
-Les requêtes contiennent un en-tête et zéro ou plusieurs entrées de journal.
-Les requêtes contiennent un en-tête de taille fixe et des entrées de journal optionnelles de taille variable.
+- Source: Identifies the originator of the message
+- Destination: Identifies the recipient of the message
+- Terms: See Raft. Initialized to 0, increases monotonically
+- Indexes: See Raft. Initialized to 0, increases monotonically
 
 
-#### En-tête de requête
 
-L'en-tête de requête fait 45 octets, comme suit.
-Toutes les valeurs sont en big-endian non signé.
+### Requests
 
-```dataspec
-Type de message :      1 octet
-  Source :           ID, entier 4 octets
-  Destination :      ID, entier 4 octets
-  Terme :            Terme actuel (voir notes), entier 8 octets
-  Dernier Terme de Journal :   entier 8 octets
-  Dernier Index de Journal :   entier 8 octets
-  Index de Validation :   entier 8 octets
-  Taille des entrées de journal :  Taille totale en octets, entier 4 octets
-  Entrées de journal :       voir ci-dessous, longueur totale comme spécifié
+Requests contain a header and zero or more log entries.
+Requests contain a fixed-size header and optional Log Entries of variable size.
+
+
+#### Request Header
+
+The request header is 45 bytes, as follows.
+All values are unsigned big-endian.
+
+```text
+
+Message type:      1 byte
+  Source:            ID, 4 byte integer
+  Destination:       ID, 4 byte integer
+  Term:              Current term (see notes), 8 byte integer
+  Last Log Term:     8 byte integer
+  Last Log Index:    8 byte integer
+  Commit Index:      8 byte integer
+  Log entries size:  Total size in bytes, 4 byte integer
+  Log entries:       see below, total length as specified
+
 ```
 
 
-#### Remarques
+#### Notes
 
-Dans le RequestVoteRequest, le terme est le terme du candidat.
-Sinon, c'est le terme actuel du leader.
+In the RequestVoteRequest, Term is the candidate's term.
+Otherwise, it is the leader's current term.
 
-Dans le AppendEntriesRequest, lorsque la taille des entrées de journal est zéro,
-ce message est un message de maintien (keepalive).
+In the AppendEntriesRequest, when the log entries size is zero,
+this message is a heartbeat (keepalive) message.
 
 
-#### Entrées de journal
 
-Le journal contient zéro ou plusieurs entrées de journal.
-Chaque entrée de journal est comme suit.
-Toutes les valeurs sont en big-endian non signé.
+#### Log Entries
 
-```dataspec
-Terme :           entier 8 octets
-  Type de valeur :   1 octet
-  Taille de l'entrée :  En octets, entier 4 octets
-  Entrée :          longueur comme spécifié
+The log contains zero or more log entries.
+Each log entry is as follows.
+All values are unsigned big-endian.
+
+```text
+
+Term:           8 byte integer
+  Value type:     1 byte
+  Entry size:     In bytes, 4 byte integer
+  Entry:          length as specified
+
 ```
 
 
-#### Contenu du journal
+#### Log Contents
 
-Toutes les valeurs sont en big-endian non signé.
+All values are unsigned big-endian.
 
-| Type de valeur du journal | Numéro |
+| Log Value Type | Number |
 | :--- | :--- |
 | Application | 1 |
 | Configuration | 2 |
@@ -334,258 +354,283 @@ Toutes les valeurs sont en big-endian non signé.
 
 #### Application
 
-Les contenus d'application sont encodés en UTF-8 [JSON](https://www.json.org/json-en.html).
-Voir la section Couche d'application ci-dessous.
+Application contents are UTF-8 encoded [JSON](https://www.json.org/).
+See the Application Layer section below.
 
 
 #### Configuration
 
-Ceci est utilisé pour que le leader série un nouvelle configuration de cluster et réplique aux pairs.
-Cela contient zéro ou plusieurs configurations de ClusterServer.
+This is used for the leader to serialize a new cluster configuration and replicate to peers.
+It contains zero or more ClusterServer configurations.
 
-```dataspec
-Index du Journal :  entier 8 octets
-  Dernier Index du Journal :  entier 8 octets
-  Données de Clusterserver pour chaque serveur :
-    ID :                entier 4 octets
-    Taille des données de point de terminaison : En octets, entier 4 octets
-    Données de point de terminaison :     chaîne ASCII sous la forme "tcp://localhost:9001", longueur comme spécifié
+
+```text
+
+Log Index:  8 byte integer
+  Last Log Index:  8 byte integer
+  ClusterServer Data for each server:
+    ID:                4 byte integer
+    Endpoint data len: In bytes, 4 byte integer
+    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+
 ```
 
 
 #### ClusterServer
 
-Les informations de configuration pour un serveur dans un cluster.
-Ceci est inclus uniquement dans un message AddServerRequest ou RemoveServerRequest.
+The configuration information for a server in a cluster.
+This is included only in a AddServerRequest or RemoveServerRequest message.
 
-Lorsqu'il est utilisé dans un message AddServerRequest :
+When used in a AddServerRequest Message:
 
-```dataspec
-ID :                entier 4 octets
-  Taille des données de point de terminaison : En octets, entier 4 octets
-  Données de point de terminaison :     chaîne ASCII sous la forme "tcp://localhost:9001", longueur comme spécifié
+```text
+
+ID:                4 byte integer
+  Endpoint data len: In bytes, 4 byte integer
+  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+
 ```
 
 
-Lorsqu'il est utilisé dans un message RemoveServerRequest :
+When used in a RemoveServerRequest Message:
 
-```dataspec
-ID :                entier 4 octets
+```text
+
+ID:                4 byte integer
+
 ```
 
 
 #### LogPack
 
-Cela est inclus uniquement dans un message SyncLogRequest.
+This is included only in a SyncLogRequest message.
 
-Ce qui suit est comprimé en gzip avant la transmission :
+The following is gzipped before transmission:
 
-```dataspec
-Taille des données d'index : En octets, entier 4 octets
-  Taille des données de journal :   En octets, entier 4 octets
-  Données d'index :     8 octets pour chaque index, longueur comme spécifié
-  Données de journal :       longueur comme spécifié
+
+```text
+
+Index data len: In bytes, 4 byte integer
+  Log data len:   In bytes, 4 byte integer
+  Index data:     8 bytes for each index, length as specified
+  Log data:       length as specified
+
 ```
+
 
 
 #### SnapshotSyncRequest
 
-Cela est inclus uniquement dans un message InstallSnapshotRequest.
+This is included only in a InstallSnapshotRequest message.
 
-```dataspec
-Dernier Index de Journal :  entier 8 octets
-  Dernier Terme de Journal :   entier 8 octets
-  Taille des données de configuration : En octets, entier 4 octets
-  Données de configuration :     longueur comme spécifié
-  Décalage :          Le décalage des données dans la base de données, en octets, entier 8 octets
-  Taille des données :        En octets, entier 4 octets
-  Données :            longueur comme spécifié
-  Est Fait :         1 si terminé, 0 sinon (1 octet)
+```text
+
+Last Log Index:  8 byte integer
+  Last Log Term:   8 byte integer
+  Config data len: In bytes, 4 byte integer
+  Config data:     length as specified
+  Offset:          The offset of the data in the database, in bytes, 8 byte integer
+  Data len:        In bytes, 4 byte integer
+  Data:            length as specified
+  Is Done:         1 if done, 0 if not done (1 byte)
+
 ```
 
 
-### Réponses
 
-Toutes les réponses font 26 octets, comme suit.
-Toutes les valeurs sont en big-endian non signé.
 
-```dataspec
-Type de message :   1 octet
-  Source :         ID, entier 4 octets
-  Destination :    Habituellement l'ID de destination réel (voir remarques), entier 4 octets
-  Terme :           Terme actuel, entier 8 octets
-  Index suivant :     Initialisé à l'index du dernier journal du leader + 1, entier 8 octets
-  Est Accepté :    1 si accepté, 0 si non accepté (voir remarques), 1 octet
+### Responses
+
+All responses are 26 bytes, as follows.
+All values are unsigned big-endian.
+
+```text
+
+Message type:   1 byte
+  Source:         ID, 4 byte integer
+  Destination:    Usually the actual destination ID (see notes), 4 byte integer
+  Term:           Current term, 8 byte integer
+  Next Index:     Initialized to leader last log index + 1, 8 byte integer
+  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+
 ```
 
 
-#### Remarques
+#### Notes
 
-L'ID de destination est habituellement l'ID de destination réel pour ce message.
-Cependant, pour AppendEntriesResponse, AddServerResponse, et RemoveServerResponse,
-c'est l'ID du leader actuel.
+The Destination ID is usually the actual destination for this message.
+However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
+it is the ID of the current leader.
 
-Dans le RequestVoteResponse, Est Accepté est 1 pour un vote pour le candidat (demandeur),
-et 0 pour aucun vote.
-
-
-## Couche d'application
-
-Chaque serveur publie périodiquement des données d'application dans le journal lors d'une ClientRequest.
-Les données d'application contiennent le statut de chaque routeur du serveur et la destination
-pour le cluster Meta LS2.
-Les serveurs utilisent un algorithme commun pour déterminer l'éditeur et le contenu
-du Meta LS2.
-Le serveur avec le "meilleur" état récent dans le journal est l'éditeur du Meta LS2.
-L'éditeur du Meta LS2 n'est PAS nécessairement le Leader Raft.
+In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
+and 0 for no vote.
 
 
-### Contenu des données d'application
+## Application Layer
 
-Les contenus d'application sont encodés en UTF-8 [JSON](https://www.json.org/json-en.html),
-pour la simplicité et l'extensibilité.
-La spécification complète est à déterminer (TBD).
-L'objectif est de fournir suffisamment de données pour écrire un algorithme déterminant quel est le "meilleur"
-routeur pour publier le Meta LS2, et pour que l'éditeur ait suffisamment d'informations
-pour pondérer les destinations dans le Meta LS2.
-Les données contiendront à la fois les statistiques de routeur et de destination.
-
-Les données peuvent optionnellement contenir des données de télédétection sur la santé des
-autres serveurs, et la capacité à récupérer le Meta LS.
-Ces données ne seraient pas supportées dans la première version.
-
-Les données peuvent optionnellement contenir des informations de configuration publiées
-par un client administrateur.
-Ces données ne seraient pas supportées dans la première version.
-
-Si "name: value" est listé, cela spécifie la clé et la valeur dans la carte JSON.
-Sinon, la spécification est à déterminer.
+Each Server periodically posts Application data to the log in a ClientRequest.
+Application data contains the status of each Server's Router and the Destination
+for the Meta LS2 cluster.
+The servers use a common algorithm to determine the publisher and contents
+of the Meta LS2.
+The server with the "best" recent status in the log is the Meta LS2 publisher.
+The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
 
 
-Données de cluster (niveau supérieur) :
+### Application Data Contents
 
-- cluster: Nom du cluster
-- date: Date de ces données (long, ms depuis l'époque)
-- id: ID Raft (entier)
+Application contents are UTF-8 encoded [JSON](https://json.org/),
+for simplicity and extensibility.
+The full specification is TBD.
+The goal is to provide enough data to write an algorithm to determine the "best"
+router to publish the Meta LS2, and for the publisher to have sufficient information
+to weight the Destinations in the Meta LS2.
+The data will contain both router and Destination statistics.
 
-Données de configuration (config) :
+The data may optionally contain remote sensing data on the health of the
+other servers, and the ability to fetch the Meta LS.
+These data would not be supported in the first release.
 
-- Tout paramètre de configuration
+The data may optionally contain configuration information posted
+by an administrator client.
+These data would not be supported in the first release.
 
-Statut de publication MetaLS (meta) :
-
-- destination: la destination Meta LS2, base64
-- lastPublishedLS: si présent, encodage base64 du dernier Meta LS publié
-- lastPublishedTime: en ms, ou 0 si jamais
-- publishConfig: Statut de configuration de publication éteint/allumé/auto
-- publishing: Statut de publication Meta LS2 boolean vrai/faux
-
-Données de routeur (router) :
-
-- lastPublishedRI: si présent, encodage base64 des dernières informations de routeur publiées
-- uptime: Temps de fonctionnement en ms
-- Retard de travail
-- Tunnels exploratoires
-- Tunnels participants
-- Bande passante configurée
-- Bande passante actuelle
-
-Destinations (destinations) :
-Liste
-
-Données de destination :
-
-- destination: la destination, base64
-- uptime: Temps de fonctionnement en ms
-- Tunnels configurés
-- Tunnels actuels
-- Bande passante configurée
-- Bande passante actuelle
-- Connexions configurées
-- Connexions actuelles
-- Données de liste noire
-
-Données de télédétection à distance de routeur :
-
-- Dernière version RI vue
-- Temps de récupération LS
-- Données de test de connexion
-- Données de profil des closest floodfills
-  pour les périodes hier, aujourd'hui, et demain
-
-Données de télédétection à distance de destination :
-
-- Dernière version LS vue
-- Temps de récupération LS
-- Données de test de connexion
-- Données de profil des closest floodfills
-  pour les périodes hier, aujourd'hui, et demain
-
-Données de télédétection Meta LS :
-
-- Dernière version vue
-- Temps de récupération
-- Données de profil des closest floodfills
-  pour les périodes hier, aujourd'hui, et demain
+If "name: value" is listed, that specifies the JSON map key and value.
+Otherwise, specification is TBD.
 
 
-## Interface d'administration
+Cluster data (top level):
 
-TBD, peut-être une proposition séparée.
-Non requis pour la première version.
+- cluster: Cluster name
+- date: Date of this data (long, ms since the epoch)
+- id: Raft ID (integer)
 
-Exigences d'une interface d'administration :
+Configuration data (config):
 
-- Support pour plusieurs destinations maîtres, c'est-à-dire plusieurs clusters (fermes) virtuels
-- Fournir une vue globale de l'état partagé du cluster - toutes les statistiques publiées par les membres, qui est le leader actuel, etc.
-- Capacité à forcer la suppression d'un participant ou d'un leader du cluster
-- Capacité à forcer la publication de metaLS (si le nœud actuel est l'éditeur)
-- Capacité à exclure des hachages de metaLS (si le nœud actuel est l'éditeur)
-- Fonctionnalité d'import/export de configuration pour les déploiements en masse
+- Any configuration parameters
+
+MetaLS publishing status (meta):
+
+- destination: the metals destination, base64
+- lastPublishedLS: if present, base64 encoding of the last published metals
+- lastPublishedTime: in ms, or 0 if never
+- publishConfig: Publisher config status off/on/auto
+- publishing: metals publisher status boolean true/false
+
+Router data (router):
+
+- lastPublishedRI: if present, base64 encoding of the last published router info
+- uptime: Uptime in ms
+- Job lag
+- Exploratory tunnels
+- Participating tunnels
+- Configured bandwidth
+- Current bandwidth
+
+Destinations (destinations):
+List
+
+Destination data:
+
+- destination: the destination, base64
+- uptime: Uptime in ms
+- Configured tunnels
+- Current tunnels
+- Configured bandwidth
+- Current bandwidth
+- Configured connections
+- Current connections
+- Blacklist data
+
+Remote router sensing data:
+
+- Last RI version seen
+- LS Fetch time
+- Connection test data
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
+
+Remote destination sensing data:
+
+- Last LS version seen
+- LS Fetch time
+- Connection test data
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
+
+Meta LS sensing data:
+
+- Last version seen
+- Fetch time
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
 
 
-## Interface des routeurs
+## Administration Interface
 
-TBD, peut-être une proposition séparée.
-i2pcontrol n'est pas requis pour la première version et les changements détaillés seront inclus dans une proposition séparée.
+TBD, possibly a separate proposal.
+Not required for the first release.
 
-Exigences pour Garlic Farm à API de routeur (en-JVM java ou i2pcontrol)
+Requirements of an admin interface:
 
-- Obtenez le statut de routeur local ()
-- Obtenez le hachage de feuille local (Hash masterHash)
-- Obtenez le statut de feuille local (Hash leaf)
-- Obtenez le statut mesuré à distance (Hash masterOrLeaf) // probablement pas dans le MVP
-- Publier la metaLS (Hash masterHash, List<MetaLease> contents) // ou MetaLeaseSet signé? Qui signe ?
-- Arrêter la publication de la metaLS (Hash masterHash)
-- authentification TBD?
+- Support for multiple master destinations, i.e. multiple virtual clusters (farms)
+- Provide comprehensive view of shared cluster state - all stats published by members, who is the current leader, etc.
+- Ability to force removal of a participant or leader from the cluster
+- Ability to force publish metaLS (if current node is publisher)
+- Ability to exclude hashes from metaLS (if current node is publisher)
+- Configuration import/export functionality for bulk deployments
+
+
+
+## Router Interface
+
+TBD, possibly a separate proposal.
+i2pcontrol is not required for the first release and detailed changes will be included in a separate proposal.
+
+Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
+
+- getLocalRouterStatus()
+- getLocalLeafHash(Hash masterHash)
+- getLocalLeafStatus(Hash leaf)
+- getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
+- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
+- stopPublishingMetaLS(Hash masterHash)
+- authentication TBD?
 
 
 ## Justification
 
-Atomix est trop volumineux et ne permettra pas de personnalisation pour que nous puissions acheminer
-le protocole sur I2P. De plus, son format filaire n'est pas documenté et
-dépend de la sérialisation en Java.
+Atomix is too large and won't allow customization for us to route
+the protocol over I2P. Also, its wire format is undocumented, and depends
+on Java serialization.
 
 
-## Remarques
+## Notes
 
 
-## Problèmes
 
-- Il n'y a pas de moyen pour un client de découvrir et de se connecter à un leader inconnu.
-  Ce serait un changement mineur pour un Suiveur d'envoyer la configuration comme une entrée de journal dans la réponse AppendEntriesResponse.
+## Issues
+
+- There's no way for a client to find out about and connect to an unknown leader.
+  It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
+
 
 
 ## Migration
 
-Aucun problème de compatibilité rétroactive.
+No backward compatibility issues.
 
 
-## Références
+## References
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://www.json.org/json-en.html)
+* [JSON](https://json.org/)
 * [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
+
+
+
+
+

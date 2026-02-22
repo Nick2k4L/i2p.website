@@ -11,7 +11,7 @@ Este guia fornece uma visão geral do Console do Router I2P e suas páginas de c
 
 ## Acessando o Console do Router
 
-O Console do Router I2P é o centro de controle para gerenciar e monitorar o seu router I2P. Por padrão, pode ser acessado através do `http://127.0.0.1:7657/home` assim que o seu router I2P estiver em execução.
+O Console do Router I2P é o centro de controle para gerenciar e monitorar o seu router I2P. Por padrão, pode ser acessado através do [Console do Router I2P](http://127.0.0.1:7657/home) assim que o seu router I2P estiver em execução.
 
 ![Página Inicial do Console do Router](/images/router-console-home.png)
 
@@ -24,7 +24,7 @@ A página inicial exibe várias seções principais:
 
 ## Livro de Endereços
 
-**URL:** `http://127.0.0.1:7657/dns`
+**URL:** [Catálogo de Endereços](http://127.0.0.1:7657/dns)
 
 ![Router Console Address Book](/images/router-console-address-book.png)
 
@@ -46,7 +46,7 @@ O address book realiza consultas regulares às suas subscrições e mescla o con
 
 ## Configuração
 
-**URL:** `http://127.0.0.1:7657/configadvanced`
+**URL:** [Configuração Avançada](http://127.0.0.1:7657/configadvanced)
 
 A seção de Configuração fornece acesso a todas as definições do router através de múltiplos separadores especializados.
 
@@ -72,7 +72,7 @@ A maioria das opções avançadas de configuração não são expostas na interf
 
 ### Bandwidth
 
-**URL:** `http://127.0.0.1:7657/config`
+**URL:** [Configuração de Largura de Banda](http://127.0.0.1:7657/config)
 
 ![Configuração de Largura de Banda do Console do Router](/images/router-console-config-bandwidth.png)
 
@@ -96,7 +96,7 @@ A página de configuração mostra a transferência de dados mensal estimada com
 
 ### Client Configuration
 
-**URL:** `http://127.0.0.1:7657/configclients`
+**URL:** [Configuração do Cliente](http://127.0.0.1:7657/configclients)
 
 ![Router Console Client Configuration](/images/router-console-config-clients.png)
 
@@ -118,7 +118,7 @@ Alterações na configuração "Executar na Inicialização?" requerem uma reini
 
 ### Avançado
 
-**URL:** `http://127.0.0.1:7657/configi2cp`
+**URL:** [Configuração I2CP](http://127.0.0.1:7657/configi2cp)
 
 ![Router Console I2CP Configuration](/images/router-console-config-i2cp.png)
 
@@ -145,7 +145,7 @@ A página de configuração do I2CP (I2P Client Protocol) permite que você conf
 
 ### Largura de Banda
 
-**URL:** `http://127.0.0.1:7657/confignet`
+**URL:** [Configuração de Rede](http://127.0.0.1:7657/confignet)
 
 ![Router Console Network Configuration](/images/router-console-config-network.png)
 
@@ -196,7 +196,7 @@ A página de Configuração de Rede permite configurar como o seu router I2P se 
 
 ### Configuração do Cliente
 
-**URL:** `http://127.0.0.1:7657/configpeer`
+**URL:** [Configuração de Pares](http://127.0.0.1:7657/configpeer)
 
 ![Router Console Peer Configuration](/images/router-console-config-peer.png)
 
@@ -222,7 +222,7 @@ Os bônus de perfil afetam como os peers são selecionados para participação e
 
 ### Configuração I2CP
 
-**URL:** `http://127.0.0.1:7657/configreseed`
+**URL:** [Configuração de Reseed](http://127.0.0.1:7657/configreseed)
 
 ![Configuração de Reseed do Console do Router](/images/router-console-config-reseed.png)
 
@@ -270,7 +270,7 @@ As configurações padrão funcionarão para a maioria das pessoas. Altere-as ap
 
 ### Configuração de Rede
 
-**URL:** `http://127.0.0.1:7657/configfamily`
+**URL:** [Configuração de Família de Routers](http://127.0.0.1:7657/configfamily)
 
 ![Console do Router Configuração de Família de Routers](/images/router-console-config-family.png)
 
@@ -311,7 +311,7 @@ A página exibe o nome da família atual do seu router. Se você não faz parte 
 
 ### Configuração de Peers
 
-**URL:** `http://127.0.0.1:7657/configtunnels`
+**URL:** [Configuração de Túneis](http://127.0.0.1:7657/configtunnels)
 
 ![Console do Router - Configuração de Túneis](/images/router-console-config-tunnels.png)
 
@@ -360,7 +360,7 @@ Opções de configuração para Inbound e Outbound: - **Length** - Comprimento d
 
 ### Configuração de Reseed
 
-**URL:** `http://127.0.0.1:7657/configui`
+**URL:** [Configuração da Interface](http://127.0.0.1:7657/configui)
 
 ![Interface de Configuração do Console do Router](/images/router-console-config-ui.png)
 
@@ -396,11 +396,11 @@ Adicione autenticação de nome de usuário e senha para proteger o acesso ao se
 - Recomendado se o seu console do router está acessível na sua rede local
 - Protege a sua configuração I2P e definições de privacidade contra adulteração
 
-**Nota de Segurança:** A proteção por senha afeta apenas o acesso à interface web do console do router em `http://127.0.0.1:7657`. Ela não criptografa o tráfego I2P nem impede que aplicações utilizem o I2P. Se você é o único usuário do seu computador e o console do router escuta apenas em localhost (padrão), uma senha pode não ser necessária.
+**Nota de Segurança:** A proteção por senha afeta apenas o acesso à interface web do console do router em [I2P Router Console](http://127.0.0.1:7657). Ela não criptografa o tráfego I2P nem impede que aplicações utilizem o I2P. Se você é o único usuário do seu computador e o console do router escuta apenas em localhost (padrão), uma senha pode não ser necessária.
 
 ### Configuração de Família de Routers
 
-**URL:** `http://127.0.0.1:7657/configwebapps`
+**URL:** [Configuração de WebApp](http://127.0.0.1:7657/configwebapps)
 
 ![Configuração da WebApp do Console do Router](/images/router-console-config-webapps.png)
 
@@ -448,7 +448,7 @@ Para cada webapp: - **Executar na Inicialização?** - Caixa de seleção para a
 
 ## Help
 
-**URL:** `http://127.0.0.1:7657/help`
+**URL:** [Ajuda](http://127.0.0.1:7657/help)
 
 A página de Ajuda fornece documentação abrangente e recursos para ajudá-lo a entender e usar o I2P de forma eficaz. Ela serve como um centro central para solução de problemas, aprendizado e obtenção de suporte.
 
@@ -464,13 +464,13 @@ A página de Ajuda fornece documentação abrangente e recursos para ajudá-lo a
 
 **Obtendo Ajuda:**
 
-Se você está enfrentando problemas com o I2P: 1. Consulte o FAQ para perguntas e respostas comuns 2. Revise a seção de solução de problemas para seu problema específico 3. Visite o fórum I2P em i2pforum.i2p ou [i2pforum.net](https://i2pforum.net) 4. Entre no canal IRC #i2p para suporte da comunidade em tempo real 5. Pesquise a documentação para informações técnicas detalhadas
+Se você está enfrentando problemas com o I2P: 1. Consulte o FAQ para perguntas e respostas comuns 2. Revise a seção de solução de problemas para seu problema específico 3. Visite o fórum I2P em [i2pforum.i2p](http://i2pforum.i2p) ou [i2pforum.net](https://i2pforum.net) 4. Entre no canal IRC #i2p para suporte da comunidade em tempo real 5. Pesquise a documentação para informações técnicas detalhadas
 
 **Dica:** A página de ajuda está sempre acessível pela barra lateral do console do router, facilitando encontrar assistência sempre que precisar.
 
 ## Performance Graphs
 
-**URL:** `http://127.0.0.1:7657/graphs`
+**URL:** [Gráficos de Desempenho](http://127.0.0.1:7657/graphs)
 
 ![Gráficos de Desempenho do Console do Router](/images/router-console-graphs.png)
 

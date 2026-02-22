@@ -9,161 +9,168 @@ thread: "http://zzz.i2p/topics/2099"
 toc: true
 ---
 
-## Обзор
+## Overview
 
-Это предложение описывает два улучшения для повышения производительности сети:
+This proposal covers two improvements for improving network performance:
 
-- Делегирование выбора IBGW к OBEP, предоставляя ему список
-  альтернатив вместо одного варианта.
+- Delegating IBGW selection to the OBEP by providing it with a list of
+  alternatives instead of a single option.
 
-- Включение маршрутизации мультиадресных пакетов на OBEP.
-
-
-## Мотивация
-
-В случае прямого соединения идея заключается в уменьшении перегрузки соединения,
-предоставляя OBEP гибкость в подключении к IBGW. Возможность указывать
-несколько туннелей также позволяет реализовать мультиадресную передачу на OBEP
-(путем доставки сообщения во все указанные туннели).
-
-Альтернативой части предложения о делегировании было бы отправка через
-хэш `http://localhost:63465/docs/specs/common-structures/#leaseset`, подобно существующей возможности указать цельный хэш
-`http://localhost:63465/docs/specs/common-structures/#common-structure-specification`. Это привело бы к меньшему сообщению и потенциально
-новому LeaseSet. Однако:
-
-1. Это заставит OBEP выполнять поиск.
-
-2. LeaseSet может не публиковаться в floodfill, поэтому поиск потерпит
-   неудачу.
-
-3. LeaseSet может быть зашифрован, поэтому OBEP не сможет получить аренды.
-
-4. Указание LeaseSet раскрывает OBEP местоположение [Destination](/docs/specs/common-structures/#destination) сообщения,
-   которое они в ином случае могли бы обнаружить только, просматривая все
-   LeaseSet в сети и ища совпадение аренды.
+- Enabling multicast packet routing at the OBEP.
 
 
-## Дизайн
+## Motivation
 
-Инициатор (OBGW) будет помещать какие-то (все?) целевые `http://localhost:63465/docs/specs/common-structures/#lease` в
-инструкции доставки [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) вместо выбора только одного.
+In the direct connection case, the idea is to reduce connection congestion, by
+giving the OBEP flexibility in how it connects to IBGWs. The ability to specify
+multiple tunnels also enables us to implement multicast at the OBEP (by
+delivering the message to all specified tunnels).
 
-OBEP выберет один из них для доставки. OBEP выберет, если возможно, тот, с
-которым он уже соединен или о котором уже знает. Это сделает путь OBEP-IBGW
-быстрее и надежнее, а также уменьшит общее количество сетевых соединений.
+An alternative to the delegation part of this proposal would be to send through
+a LeaseSet hash, similar to the existing ability to specify a target
+[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
+newer LeaseSet. However:
 
-У нас есть один неиспользуемый тип доставки (0x03) и два оставшихся бита (0 и 1)
-в флагах для [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions), которые мы можем использовать для реализации
-этих функций.
+1. It would force the OBEP to do a lookup
 
+2. The LeaseSet may not be published to a floodfill, so the lookup would fail.
 
-## Последствия для безопасности
+3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
 
-Это предложение не изменяет объем утечек информации о целевом местоположении
-OBGW или их представлении NetDB:
-
-- Злоумышленник, контролирующий OBEP и извлекающий LeaseSet из NetDB, уже может
-  определить, отправляется ли сообщение в конкретное местоположение, путем
-  поиска пары `http://localhost:63465/docs/specs/common-structures/#tunnelid` / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification`. В худшем случае, наличие
-  нескольких арен в TMDI может ускорить нахождение совпадения в базе данных
-  злоумышленника.
-
-- Злоумышленник, управляющий злонамеренным местоположением, уже может получить
-  информацию о взгляде жертвы на NetDB, публикуя LeaseSets, содержащие разные
-  входящие туннели в разных floodfill, и наблюдая, через какие туннели
-  подключается OBGW. С их точки зрения, выбор OBEP, какой туннель использовать,
-  функционально идентичен выбору OBGW.
-
-Флаг мультиадресности раскрывает факт того, что OBGW выполняет мультиадресную
-передачу к OBEP. Это создает компромисс между производительностью и
-конфиденциальностью, который следует учитывать при реализации более
-высокоуровневых протоколов. Будучи опциональным флагом, пользователи могут
-принять соответствующее решение для своего приложения. Возможно, это будет
-полезно как поведение по умолчанию для совместимых приложений, так как
-широкое использование различными приложениями снизит утечку информации о том,
-от какого именно приложения отправлено сообщение.
+4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
+   which they could otherwise only discover by scraping all the LeaseSets in the
+   network and looking for a Lease match.
 
 
-## Спецификация
+## Design
 
-Инструкции по доставке первого фрагмента [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) будут изменены
-следующим образом:
+The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
+delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
+
+The OBEP would select one of those to deliver to. The OBEP would select, if
+available, one that it is already connected to, or already knows about. This
+would make the OBEP-IBGW path faster and more reliable, and reduce overall
+network connections.
+
+We have one unused delivery type (0x03) and two remaining bits (0 and 1) in the
+flags for TUNNEL-DELIVERY, which we can leverage to implement these features.
+
+
+## Security Implications
+
+This proposal does not change the amount of information leaked about the OBGW's
+target Destination or their view of the NetDB:
+
+- An adversary that controls the OBEP and is scraping LeaseSets from the NetDB
+  can already determine whether a message is being sent to a particular
+  Destination, by searching for the TunnelId / RouterIdentity pair. At
+  worst, the presence of multiple Leases in the TMDI might make it faster to
+  find a match in the adversary's database.
+
+- An adversary that is operating a malicious Destination can already gain
+  information about a connecting victim's view of the NetDB, by publishing
+  LeaseSets containing different inbound tunnels to different floodfills, and
+  observing which tunnels the OBGW connects through. From their point of view,
+  the OBEP selecting which tunnel to use is functionally identical to the OBGW
+  making the selection.
+
+The multicast flag leaks the fact that the OBGW is multicasting to the OBEPs.
+This creates a performance vs. privacy trade-off that should be considered when
+implementing higher-level protocols. Being an optional flag, users can make
+the appropriate decision for their application. There may be benefits to this
+being the default behaviour for compatible applications, however, as wide-spread
+usage by a variety of applications would reduce the information leakage about
+which particular application a message is from.
+
+
+## Specification
+
+The First Fragment Delivery Instructions would be modified as follows:
 
 ```
 +----+----+----+----+----+----+----+----+
-|флаг|  Идентификатор туннеля (опционально)  |    |
-+----+----+----+----+----+              +
-|                                       |
-+                                       +
-|         К хэшу (опционально)          |
-+                                       +
-|                                       |
-+                        +----+----+----+
-|                        |зад | Сообщение  
-+----+----+----+----+----+----+----+----+
- Идентификатор (опционально) |расширенные опции (опционально)|счетчик | (о)
-+----+----+----+----+----+----+----+----+
- Идентификатор туннеля N   |            |
-+----+----+----+            +
-|                           |
-+                           +
-|         К хэшу N (опционально)        |
-+                           +
-|                           |
-+              +----+----+----+----+----+
-|              | Идентификатор туннеля N+1 (о) |    |
-+----+----+----+----+----+----+----+    +
-|                                       |
-+                                       +
-|         К хэшу N+1 (опционально)      |
-+                                       +
-|                                       |
-+                                  +----+
-|                                  | размер
-+----+----+----+----+----+----+----+----+
-     |
-+----+
+  |flag|  Tunnel ID (opt)  |              |
+  +----+----+----+----+----+              +
+  |                                       |
+  +                                       +
+  |         To Hash (optional)            |
+  +                                       +
+  |                                       |
+  +                        +----+----+----+
+  |                        |dly | Message
+  +----+----+----+----+----+----+----+----+
+   ID (opt) |extended opts (opt)|cnt | (o)
+  +----+----+----+----+----+----+----+----+
+   Tunnel ID N   |                        |
+  +----+----+----+                        +
+  |                                       |
+  +                                       +
+  |         To Hash N (optional)          |
+  +                                       +
+  |                                       |
+  +              +----+----+----+----+----+
+  |              | Tunnel ID N+1 (o) |    |
+  +----+----+----+----+----+----+----+    +
+  |                                       |
+  +                                       +
+  |         To Hash N+1 (optional)        |
+  +                                       +
+  |                                       |
+  +                                  +----+
+  |                                  | sz
+  +----+----+----+----+----+----+----+----+
+       |
+  +----+
 
-флаг ::
-       1 байт
-       Порядок бит: 76543210
-       биты 6-5: тип доставки
-                 0x03 = ТУННЕЛИ
-       бит 0: мультиадресный? Если 0, доставить в один из туннелей
-                                  Если 1, доставить во все туннели
-                                  Установить в 0 для совместимости с будущими
-                                  использованиями, если тип доставки не
-                                  ТУННЕЛИ
+flag ::
+       1 byte
+       Bit order: 76543210
+       bits 6-5: delivery type
+                 0x03 = TUNNELS
+       bit 0: multicast? If 0, deliver to one of the tunnels
+                         If 1, deliver to all of the tunnels
+                         Set to 0 for compatibility with future uses if
+                         delivery type is not TUNNELS
 
-Счетчик ::
-       1 байт
-       Опционально, присутствует, если тип доставки - ТУННЕЛИ
-       2-255 - Количество идущих после пар идентификатор/хэш
+Count ::
+       1 byte
+       Optional, present if delivery type is TUNNELS
+       2-255 - Number of id/hash pairs to follow
 
-Идентификатор туннеля :: `TunnelId`
-К хэшу ::
-       36 байт каждый
-       Опционально, присутствует, если тип доставки - ТУННЕЛИ
-       пары ид/хэш
+Tunnel ID :: TunnelId
+To Hash ::
+       36 bytes each
+       Optional, present if delivery type is TUNNELS
+       id/hash pairs
 
-Общая длина: Типичная длина:
-       75 байт для доставки TUNNELS счетчик 2 (нефрагментированное туннельное
-       сообщение);
-       79 байт для доставки TUNNELS счетчик 2 (первый фрагмент)
+Total length: Typical length is:
+       75 bytes for count 2 TUNNELS delivery (unfragmented tunnel message);
+       79 bytes for count 2 TUNNELS delivery (first fragment)
 
-Остальные инструкции по доставке не изменены
+Rest of delivery instructions unchanged
 ```
 
 
-## Совместимость
+## Compatibility
 
-Единственные узлы, которые должны понимать новую спецификацию, - это OBGW и
-OBEP. Поэтому мы можем сделать это изменение совместимым с существующей
-сетью, сделав его использование условным от целевой версии I2P [VERSIONS](/docs/specs/i2np/#protocol-versions):
+The only peers that need to be understand the new specification are the OBGWs
+and the OBEPs. We can therefore make this change compatible with the existing
+network by making its use conditional on the target I2P version:
 
-* OBGW должны выбирать совместимые OBEP при построении исходящих туннелей на
-  основе версии I2P, указанной в их `http://localhost:63465/docs/specs/common-structures/#routerinfo`.
+* The OBGWs must select compatible OBEPs when building outbound tunnels, based
+  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
 
-* Узлы, которые рекламируют целевую версию, должны поддерживать разбор новых
-  флагов и не должны отвергать инструкции как недействительные.
+* Peers that advertise the target version must support parsing the new flags,
+  and must not reject the instructions as invalid.
 
+
+## References
+
+* [Destination](/docs/specs/common-structures/#destination)
+* [Leases](/docs/specs/common-structures/#lease)
+* [LeaseSet](/docs/specs/common-structures/#leaseset)
+* [RouterIdentity](/docs/specs/common-structures/#routeridentity)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TUNNEL-DELIVERY](/docs/specs/common-structures/#tunnelmessagedeliveryinstructions)
+* [TunnelId](/docs/specs/common-structures/#tunnelid)
+* [VERSIONS](/docs/specs/i2np/#protocol-versions)

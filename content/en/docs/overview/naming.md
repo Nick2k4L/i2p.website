@@ -62,7 +62,7 @@ On creation, the naming service imports entries from the three files used by the
 
 ### Other Naming Service Facilities
 
-The lookup is case-insensitive. The first match is used, and conflicts are not detected. There is no enforcement of naming rules in lookups. Lookups are cached for a few minutes. Base 32 resolution is [described below](#base32-names). For a full description of the Naming Service API see the Naming Service Javadocs. This API was significantly expanded in release 0.8.7 to provide adds and removes, storage of arbitrary properties with the hostname, and other features.
+The lookup is case-insensitive. The first match is used, and conflicts are not detected. There is no enforcement of naming rules in lookups. Lookups are cached for a few minutes. Base 32 resolution is [described below](#base32-names). For a full description of the Naming Service API see the [Naming Service Javadocs](http://idk.i2p/javadoc-i2p/net/i2p/client/naming/package-summary.html). This API was significantly expanded in release 0.8.7 to provide adds and removes, storage of arbitrary properties with the hostname, and other features.
 
 ### Alternatives and Experimental Naming Services
 
@@ -94,12 +94,12 @@ The address book application periodically retrieves other users' hosts.txt files
 
 Subscribing to another user's hosts.txt file involves giving them a certain amount of trust. You do not want them, for example, 'hijacking' a new site by quickly entering in their own key for a new site before passing the new host/key entry to you.
 
-For this reason, the only subscription configured by default is `http://i2p-projekt.i2p/hosts.txt (`http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`,` which contains a copy of the hosts.txt included in the I2P release. Users must configure additional subscriptions in their local address book application (via subscriptions.txt or [SusiDNS](#susidns)).
+For this reason, the only subscription configured by default is `http://i2p-projekt.i2p/hosts.txt (http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`, which contains a copy of the hosts.txt included in the I2P release. Users must configure additional subscriptions in their local address book application (via subscriptions.txt or [SusiDNS](#susidns)).
 
 Some other public address book subscription links:
 
-- `http://i2host.i2p/cgi-bin/i2hostetag`
-- `http://stats.i2p/cgi-bin/newhosts.txt`
+- http://i2host.i2p/cgi-bin/i2hostetag
+- http://stats.i2p/cgi-bin/newhosts.txt
 
 The operators of these services may have various policies for listing hosts. Presence on this list does not imply endorsement.
 

@@ -10,123 +10,244 @@ target: "0.9.65"
 toc: true
 ---
 
-### Vorschlag für einen Host-bewussten HTTP-Proxy-Tunneltyp
+### Proposal for a Host-Aware HTTP Proxy Tunnel Type
 
-Dies ist ein Vorschlag zur Behebung des „Shared Identity Problems“ bei der konventionellen Nutzung von HTTP-über-I2P durch die Einführung eines neuen HTTP-Proxy-Tunneltyps. Dieser Tunneltyp hat zusätzliches Verhalten, das dazu gedacht ist, das Tracking durch potenziell feindliche versteckte Dienstbetreiber gegen gezielte Benutzeragenten (Browser) und die I2P-Client-Anwendung selbst zu verhindern oder einzuschränken.
+This is a proposal to resolve the “Shared Identity Problem” in
+conventional HTTP-over-I2P usage by introducing a new HTTP proxy tunnel
+type. This tunnel type has supplemental behavior which is intended to
+prevent or limit the utility of tracking conducted by potential hostile
+hidden service operators, against targeted user-agents(browsers) and the
+I2P Client Application itself.
 
-#### Was ist das „Shared Identity“-Problem?
+#### What is the “Shared Identity” problem?
 
-Das „Shared Identity“-Problem tritt auf, wenn ein Benutzeragent in einem kryptografisch adressierten Overlay-Netzwerk eine kryptografische Identität mit einem anderen Benutzeragenten teilt. Dies geschieht beispielsweise, wenn ein Firefox und GNU Wget beide so konfiguriert sind, dass sie denselben HTTP-Proxy verwenden.
+The “Shared Identity” problem occurs when a user-agent on a
+cryptographically addressed overlay network shares a cryptographic
+identity with another user-agent. This occurs, for instance, when a
+Firefox and GNU Wget are both configured to use the same HTTP Proxy.
 
-In diesem Szenario ist es dem Server möglich, die kryptografische Adresse (Destination), die zur Beantwortung der Aktivität verwendet wird, zu sammeln und zu speichern. Er kann dies als einen „Fingerprint“ behandeln, der aufgrund seines kryptografischen Ursprungs immer zu 100 % einzigartig ist. Das bedeutet, dass die Verlinkbarkeit, die durch das Shared Identity Problem beobachtet wird, perfekt ist.
+In this scenario, it is possible for the server to collect and store the
+cryptographic address(Destination) used to reply to the activity. It can
+treat this as a “Fingerprint” which is always 100% unique, because it is
+cryptographic in origin. This means that the linkability observed by the
+Shared Identity problem is perfect.
 
-Aber ist es ein Problem?
+But is it a problem?
 ^^^^^^^^^^^^^^^^^^^^
 
-Das Shared Identity-Problem ist ein Problem, wenn Benutzeragenten, die dasselbe Protokoll sprechen, Unverlinkbarkeit wünschen. [Es wurde erstmals im Kontext von HTTP in diesem Reddit
-Thread](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/) erwähnt, wobei die gelöschten Kommentare dank
-[pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi) zugänglich sind.
-*Zu der Zeit* war ich einer der aktivsten Antworter, und *zu der Zeit* hielt ich das Problem für klein. In den letzten 8 Jahren hat sich die Situation und meine Meinung dazu geändert, und ich glaube jetzt, dass die Bedrohung durch bösartige Zielkorrelation erheblich wächst, da immer mehr Websites in der Lage sind, spezifische Benutzer zu „profilieren“.
+The shared identity problem is a problem when user-agents that speak the
+same protocol desire unlinkability. [It was first mentioned in the
+context of HTTP in this Reddit
+Thread](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/),
+with the deleted comments accessible courtesy of
+[pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi).
+*At the time* I was one of the most active respondents, and *at the
+time* I believed the issue was small. In the past 8 years, the situation
+and my opinion of it have changed, I now believe the threat posed by
+malicious destination correlation grows considerably as more sites are
+in a position to “profile” specific users.
 
-Dieser Angriff hat eine sehr niedrige Einstiegshürde. Er erfordert nur, dass ein verborgener Dienstbetreiber mehrere Dienste betreibt. Für Angriffe auf zeitgleiche Besuche (Besuch mehrerer Websites gleichzeitig) ist dies die einzige Voraussetzung. Für nicht-zeitgleiche Verlinkungen muss einer dieser Dienste ein Dienst sein, der „Konten“ hostet, die zu einem einzelnen Benutzer gehören, der getrackt werden soll.
+This attack has a very low barrier to entry. It only requires that a
+hidden service operator operate multiple services. For attacks on
+contemporary visits(visiting multiple sites at the same time), this is
+the only requirement. For non-contemporary linking, one of those
+services must be a service which hosts “accounts” which belong to a
+single user who is targeted for tracking.
 
-Derzeit kann jeder Dienstbetreiber, der Benutzerkonten hostet, diese mit Aktivitäten auf allen von ihm kontrollierten Websites korrelieren, indem er das Shared Identity-Problem ausnutzt. Mastodon, Gitlab oder sogar einfache Foren könnten getarnte Angreifer sein, solange sie mehr als einen Dienst betreiben und ein Interesse daran haben, ein Profil für einen Benutzer zu erstellen. Diese Überwachung könnte aus Verfolgungsgründen, finanziellem Gewinn oder aus nachrichtendienstlichen Gründen durchgeführt werden. Im Moment gibt es Dutzende von großen Betreibern, die diesen Angriff durchführen und bedeutsame Daten daraus gewinnen könnten. Wir vertrauen ihnen vorerst, dies nicht zu tun, aber Akteure, denen unsere Meinung egal ist, könnten leicht auftauchen.
+Currently, any service operator who hosts user accounts will be able to
+correlate them with activity across any sites they control by exploiting
+the Shared Identity problem. Mastodon, Gitlab, or even simple forums
+could be attackers in disguise as long as they operate more than one
+service and have an interest in creating a profile for a user. This
+surveillance could be conducted for stalking, financial gain, or
+intelligence-related reasons. Right now there are dozens of major
+operators, who could carry out this attack and gain meaningful data from
+it. We mostly trust them not to for now, but players who don’t care
+about our opinions could easily emerge.
 
-Dies steht in direktem Zusammenhang mit einer ziemlich grundlegenden Form der Profilbildung im klaren Netz, bei der Organisationen Interaktionen auf ihrer Website mit Interaktionen in von ihnen kontrollierten Netzwerken korrelieren können. Auf I2P kann diese Technik aufgrund der einzigartigen kryptografischen Destination manchmal noch zuverlässiger sein, wenn auch ohne die zusätzliche Macht der Geolokalisierung.
+This is directly related to a fairly basic form of profile-building on
+the clear web where organizations can correlate interactions on their
+site with interations on networks they control. On I2P, because the
+cryptographic destination is unique, this technique can sometimes be
+even more reliable, albeit without the additional power of geolocation.
 
-Das Shared Identity-Problem ist nicht nützlich gegen einen Benutzer, der I2P ausschließlich zur Verschleierung der Geolokalisierung verwendet. Es kann auch nicht dazu verwendet werden, das Routing von I2P zu brechen. Es ist nur ein Problem des kontextuellen Identitätsmanagements.
+The Shared Identity is not useful against a user who is using I2P solely
+to obfuscate geolocation. It also cannot be used to break I2P’s routing.
+It is only a problem of contextual identity management.
 
--  Es ist unmöglich, das Shared Identity-Problem zu verwenden, um einen I2P-Benutzer zu geolokalisieren.
--  Es ist unmöglich, das Shared Identity-Problem zu verwenden, um I2P-Sitzungen zu verlinken, wenn sie nicht zeitgleich sind.
+-  It is impossible to use the Shared Identity problem to geolocate an
+   I2P user.
+-  It is impossible to use the Shared Identity problem to link I2P
+   sessions if they are not contemporary.
 
-Es ist jedoch möglich, die Anonymität eines I2P-Benutzers in Umständen zu verschlechtern, die wahrscheinlich sehr häufig auftreten. Ein Grund, warum sie häufig sind, ist, dass wir die Verwendung von Firefox empfehlen, einem Webbrowser, der den „Tabbed“-Betrieb unterstützt.
+However, it is possible to use it to degrade the anonymity of an I2P
+user in circumstances which are probably very common. One reason they
+are common is becase we encourage the use of Firefox, a web browser
+which supports “Tabbed” operation.
 
--  Es ist *immer* möglich, einen Fingerabdruck aus dem Shared Identity-Problem in *jedem* Webbrowser zu erzeugen, der das Anfordern von Drittanbieter-Ressourcen unterstützt.
--  Das Deaktivieren von Javascript erreicht **nichts** gegen das Shared Identity-Problem.
--  Wenn ein Link zwischen nicht-zeitgleichen Sitzungen wie durch „traditionelles“ Browser-Fingerprinting hergestellt werden kann, kann die Shared Identity transitiv angewendet werden, was möglicherweise eine nicht-zeitgleiche Verlinkungsstrategie ermöglicht.
--  Wenn ein Link zwischen einer Aktivität im Klartext und einer I2P-Identität hergestellt werden kann, beispielsweise wenn das Ziel auf einer Seite sowohl mit einer I2P- als auch einer Klartext-Präsenz auf beiden Seiten eingeloggt ist, kann die Shared Identity transitiv angewendet werden, was möglicherweise eine vollständige Deanonymisierung ermöglicht.
+-  It is *always* possible to produce a fingerprint from the Shared
+   Identity problem in *any* web browser which supports requesting
+   third-party resources.
+-  Disabling Javascript accomplishes **nothing** against the Shared
+   Identity problem.
+-  If a link can be established between non-contemporary sessions such
+   as by “traditional” browser fingerprinting, then the Shared Identity
+   can be applied transitively, potentially enabling a non-contemporary
+   linking strategy.
+-  If a link can be established between a clearnet activity and an I2P
+   identity, for instance, if the target is logged into a site with both
+   an I2P and a clearnet presence on both sides, the Shared Identity can
+   be applied transitively, potentially enabling complete
+   de-anonymization.
 
-Wie Sie die Schwere des Shared Identity-Problems bewerten, hängt davon ab, wo Sie (oder genauer gesagt, ein „Benutzer“ mit möglicherweise uninformierten Erwartungen) denken, dass die „kontextuelle Identität“ für die Anwendung liegt. Es gibt mehrere Möglichkeiten:
+How you view the severity of the Shared Identity problem as it applies
+to the I2P HTTP proxy depends on where you(or more to the point, a
+“user” with potentially uninformed expectationss) think the “contextual
+identity” for the application lies. There are several possibilities:
 
-1. HTTP ist sowohl die Anwendung als auch die kontextuelle Identität - So funktioniert es jetzt. Alle HTTP-Anwendungen teilen eine Identität.
-2. Der Prozess ist die Anwendung und die kontextuelle Identität - So funktioniert es, wenn eine Anwendung eine API wie SAMv3 oder I2CP verwendet, bei der eine Anwendung ihre Identität erstellt und ihre Lebensdauer steuert.
-3. HTTP ist die Anwendung, aber der Host ist die kontextuelle Identität - Dies ist das Ziel dieses Vorschlags, bei dem jeder Host als potenzielle „Webanwendung“ behandelt wird und die Bedrohungsoberfläche entsprechend behandelt wird.
+1. HTTP is both the Application and the Contextual Identity - This is
+   how it works now. All HTTP Applications share an identity.
+2. The Process is the Application and the Contextual Identity - This is
+   how it works when an application uses an API like SAMv3 or I2CP,
+   where an application creates it’s identity and controls it’s
+   lifetime.
+3. HTTP is the Application, but the Host is the Contextual Identity
+   -This is the object of this proposal, which treats each Host as a
+   potential “Web Application” and treats the threat surface as such.
 
-Ist es lösbar?
+Is it Solvable?
 ^^^^^^^^^^^^^^^
 
-Es ist wahrscheinlich nicht möglich, einen Proxy zu erstellen, der intelligent auf jeden möglichen Fall reagiert, in dem sein Betrieb die Anonymität einer Anwendung schwächen könnte. Es ist jedoch möglich, einen Proxy zu erstellen, der intelligent auf eine spezifische Anwendung reagiert, die sich auf vorhersehbare Weise verhält. Beispielsweise wird in modernen Webbrowsern erwartet, dass Benutzer mehrere Tabs geöffnet haben, in denen sie mit mehreren Websites interagieren, die durch Hostnamen unterschieden werden.
+It is probably not possible to make a proxy which intelligently responds
+to every possible case in which it’s operation could weaken the
+anonymity of an application. However, it is possible to build a proxy
+which intelligently responds to a specific application which behaves in
+a predictable way. For instance, in modern Web Browsers, it is expected
+that users will have multiple tabs open, where they will be interacting
+with multiple web sites, which will be distinguished by hostname.
 
-Dies ermöglicht es uns, das Verhalten des HTTP-Proxys für diesen Typ von HTTP-Benutzeragenten zu verbessern, indem das Verhalten des Proxys dem Verhalten des Benutzeragenten entspricht, indem jeder Host bei Verwendung mit dem HTTP-Proxy seine eigene Destination erhält. Diese Änderung macht es unmöglich, das Shared Identity-Problem zur Ableitung eines Fingerprints zu verwenden, der zur Korrelation der Client-Aktivität mit 2 Hosts verwendet werden kann, da die 2 Hosts einfach keine Rückkehridentität mehr teilen.
+This allows us to improve upon the behavior of the HTTP Proxy for this
+type of HTTP user-agent by making the behavior of the proxy match the
+behavior of the user-agent by giving each host it’s own Destination when
+used with the HTTP Proxy. This change makes it impossible to use the
+Shared Identity problem to derive a fingerprint which can be used to
+correlate client activity with 2 hosts, because the 2 hosts will simply
+no longer share a return identity.
 
-Beschreibung:
+Description:
 ^^^^^^^^^^^^
 
-Ein neuer HTTP-Proxy wird erstellt und dem Hidden Services Manager (I2PTunnel) hinzugefügt. Der neue HTTP-Proxy wird als „Multiplexer“ von I2PSocketManagern fungieren. Der Multiplexer selbst hat keine Destination. Jeder einzelne I2PSocketManager, der Teil des Multiplex wird, hat seine eigene lokale Destination und seinen eigenen Tunnelpool. I2PSocketManager werden bei Bedarf vom Multiplexer erstellt, wobei die „Nachfrage“ der erste Besuch des neuen Hosts ist. Es ist möglich, die Erstellung der I2PSocketManagers vor dem Einfügen in den Multiplexer zu optimieren, indem man einen oder mehrere im Voraus erstellt und sie außerhalb des Multiplexers speichert. Dies kann die Leistung verbessern.
+A new HTTP Proxy will be created and added to Hidden Services
+Manager(I2PTunnel). The new HTTP Proxy will operate as a “multiplexer”
+of I2PSocketManagers. The multiplexer itself has no destination. Each
+individual I2PSocketManager which becomes part of the multiplex has it’s own
+local destination, and it’s own tunnel pool. I2PSocketManagerss are created
+on-demand by the multiplexer, where the “demand” is the first visit to the
+new host. It is possible to optimize the creation of the I2PSocketManagers
+before inserting them into the multiplexer by creating one or more in advance
+and storing them outside the multiplexer. This may improve performance.
 
-Ein zusätzlicher I2PSocketManager mit eigener Destination wird als Träger eines „Outproxy“ für jede Site eingerichtet, die keine I2P-Destination hat, beispielsweise jede Clearnet-Site. Dies macht effektiv die gesamte Nutzung von Outproxy zu einer einzigen kontextuellen Identität, mit dem Vorbehalt, dass die Konfiguration mehrerer Outproxies für den Tunnel die normale „Sticky“ Outproxy-Rotation verursacht, bei der jeder Outproxy nur Anforderungen für eine einzelne Site erhält. Dies ist *fast* das äquivalente Verhalten wie die Isolierung von HTTP-über-I2P-Proxys nach Destination im klaren Internet.
+An additional I2PSocketManager, with it’s own destination, is set up as the
+carrier of an “Outproxy” for any site which does *not* have an I2P
+Destination, for example any Clearnet site. This effectively makes all
+Outproxy usage a single Contextual Identity, with the caveat that
+configuring multiple Outproxies for the tunnel will cause the normal
+“Sticky” outproxy rotation, where each outproxy only gets requests for a
+single site. This is *almost* the equivalent behavior as isolating
+HTTP-over-I2P proxies by destination, on the clear internet.
 
-Ressourcenanforderungen:
+Resource Considerations:
 ''''''''''''''''''''''''
 
-Der neue HTTP-Proxy erfordert zusätzliche Ressourcen im Vergleich zum bestehenden HTTP-Proxy. Er wird:
+The new HTTP proxy requires additional resources compared to the
+existing HTTP proxy. It will:
 
--  Potenziell mehr Tunnel und I2PSocketManager erstellen
--  Tunnel häufiger erstellen
+-  Potentially build more tunnels and I2PSocketManagers
+-  Build tunnels more often
 
-Jeder dieser Punkte erfordert:
+Each of these requires:
 
--  Lokale Rechenressourcen
--  Netzwerkressourcen von Peers
+-  Local computing resources
+-  Network resources from peers
 
-Einstellungen:
+Settings:
 '''''''''
 
-Um die Auswirkungen der erhöhten Ressourcennutzung zu minimieren, sollte der Proxy so konfiguriert werden, dass er möglichst wenig benötigt. Proxies, die Teil des Multiplexers sind (nicht der Hauptproxy), sollten so konfiguriert werden:
+In order to minimize the impact of the increased resource usage, the
+proxy should be configured to use as little as possible. Proxies which
+are part of the multiplexer(not the parent proxy) should be configured
+to:
 
--  Multiplexed I2PSocketManager bauen 1 Tunnel ein, 1 Tunnel aus in ihren Tunnelpools
--  Multiplexed I2PSocketManager nehmen standardmäßig 3 Hops
--  Schließen von Sockets nach 10 Minuten Inaktivität
--  I2PSocketManager, die vom Multiplexer gestartet werden, teilen die Lebensdauer des Multiplexers. Multiplexed Tunnels werden nicht „zerstört“, bis der übergeordnete Multiplexer dies tut.
+-  Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
+   tunnel pools
+-  Multiplexed I2PSocketManagers take 3 hops by default.
+-  Close sockets after 10 minutes of inactivity
+-  I2PSocketManagers started by the Multiplexer share the lifespan of the
+   Multiplexer. Multiplexed tunnels are not “Destructed” until the
+   parent Multiplexer is.
 
-Diagramme:
+Diagrams:
 ^^^^^^^^^
 
-Das untenstehende Diagramm stellt den aktuellen Betrieb des HTTP-Proxys dar, was der „Möglichkeit 1.“ unter dem Abschnitt „Ist es ein Problem“ entspricht. Wie Sie sehen können, interagiert der HTTP-Proxy direkt mit I2P-Sites, indem er nur eine Destination verwendet. In diesem Szenario ist HTTP sowohl die Anwendung als auch die kontextuelle Identität.
+The diagram below represents the current operation of the HTTP proxy,
+which corresponds to “Possibility 1.” under the “Is it a problem”
+section. As you can see, the HTTP proxy interacts with I2P sites
+directly using only one destination. In this scenario, HTTP is both the
+application and the contextual identity.
 
 ```text
-**Aktuelle Situation: HTTP ist die Anwendung, HTTP ist die Kontextuelle Identität**
-                                                          __-> Outproxy <-> i2pgit.org
-                                                         /
-   Browser <-> HTTP Proxy(eine Destination)<->I2PSocketManager <---> idk.i2p
-                                                         \__-> translate.idk.i2p
-                                                          \__-> git.idk.i2p
+**Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
+                                                      __-> Outproxy <-> i2pgit.org
+                                                     /
+Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
+                                                     \__-> translate.idk.i2p
+                                                      \__-> git.idk.i2p
 ```
 
-Das untenstehende Diagramm stellt den Betrieb eines host-bewussten HTTP-Proxys dar, was der „Möglichkeit 3.“ unter dem Abschnitt „Ist es ein Problem“ entspricht. In diesem Szenario ist HTTP die Anwendung, aber der Host definiert die kontextuelle Identität, wobei jede I2P-Site mit einem anderen HTTP-Proxy mit einer einzigartigen Destination pro Host interagiert. Dies verhindert, dass Betreiber mehrerer Sites feststellen können, wann dieselbe Person mehrere von ihnen betriebene Sites besucht.
+The diagram below represents the operation of a host-aware HTTP proxy,
+which corresponds to “Possibility 3.” under the “Is it a problem”
+section. In this secenario, HTTP is the application, but the Host
+defines the contextual identity, wherein each I2P site interacts with a
+different HTTP proxy with a unique destination per-host. This prevents
+operators of multiple sites from being able to distinguish when the same
+person is visiting multiple sites which they operate.
 
 ```text
-**Nach der Änderung: HTTP ist die Anwendung, Host ist die Kontextuelle Identität**
-                                                        __-> I2PSocketManager(Destination A - Nur Outproxies) <--> i2pgit.org
-                                                       /
-   Browser <-> HTTP Proxy Multiplexer(Keine Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
-                                                       \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
-                                                        \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+**After the Change: HTTP is the Application, Host is the Contextual Identity**
+                                                    __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+                                                   /
+Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
+                                                   \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
+                                                    \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
 ```
 
 Status:
 ^^^^^^^
 
-Eine funktionierende Java-Implementierung des host-bewussten Proxys, die mit einer älteren Version dieses Vorschlags übereinstimmt, ist unter idks Fork auf dem Branch verfügbar: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link in Zitationen. Sie befindet sich in intensiver Überarbeitung, um die Änderungen in kleinere Abschnitte zu unterteilen.
+A working Java implementation of the host-aware proxy which conforms to
+an older version of this proposal is available at idk's fork under the
+branch: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link in citations. It
+is under heavy revision, in order to break down the changes into smaller
+sections.
 
-Implementierungen mit unterschiedlichen Fähigkeiten wurden in Go unter Verwendung der SAMv3-Bibliothek geschrieben, sie könnten nützlich zum Einbetten in andere Go-Anwendungen oder für go-i2p sein, sind aber für Java I2P ungeeignet. Darüber hinaus fehlt ihnen eine gute Unterstützung für die interaktive Arbeit mit verschlüsselten LeaseSets.
+Implementations with varying capabilities have been written in Go using
+the SAMv3 library, they may be useful for embedding in other Go
+applications or for go-i2p but are unsuitable for Java I2P.
+Additionally, they lack good support for working interactively with
+encrypted leaseSets.
 
-Nachtrag: ``i2psocks``
+Addendum: ``i2psocks``
                       
 
-Einfaches Anwendungsorientiertes Isolieren anderer Arten von Clients ist möglich, ohne einen neuen Tunneltyp zu implementieren oder den vorhandenen I2P-Code zu ändern, indem bestehende I2PTunnel-Tools kombiniert werden, die bereits in der Datenschutzgemeinschaft weit verbreitet und getestet sind. Diese Methode setzt jedoch eine Annahme voraus, die weder für HTTP noch für viele andere potenzielle I2P-Clients zutrifft.
+A simple application-oriented approach to isolating other types of
+clients is possible without implementing a new tunnel type or changing
+the existing I2P code by combining I2PTunnel existing tools which are
+already widely available and tested in the privacy community. However,
+this approach makes a difficult assumption which is not true for HTTP
+and also not true for many other kinds of potentsial I2P clients.
 
-Vereinfacht erzeugt das folgende Skript einen anwendungsbewussten SOCKS5-Proxy und "socksified" den darunterliegenden Befehl:
+Roughly, the following script will produce an application-aware SOCKS5
+proxy and socksify the underlying command:
 
 ```sh
 #! /bin/sh
@@ -135,13 +256,15 @@ java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
 torsocks --port 7695 $command_to_proxy
 ```
 
-Nachtrag: ``Beispielimplementierung des Angriffs``
+Addendum: ``example implementation of the attack``
                                                   
 
-Eine Beispielimplementierung des Shared Identity-Angriffs auf HTTP
-Benutzeragenten
-existiert seit mehreren Jahren. Ein weiteres Beispiel ist im
-``simple-colluder`` Unterverzeichnis von idks prop166
-Repository verfügbar. Diese
-Beispiele sind absichtlich so gestaltet, dass sie demonstrieren, dass der Angriff funktioniert, und würden Änderungen (wenn auch kleinere) erfordern, um in einen echten Angriff verwandelt zu werden.
+[An example implementation of the Shared Identity attack on HTTP
+User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
+has existed for several years. An additional example is available in the
+``simple-colluder`` subdirectory of [idk’s prop166
+repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These
+examples are deliberately designed to demonstrate that the attack works
+and would require modification(albeit minor) to be turned into a real
+attack.
 

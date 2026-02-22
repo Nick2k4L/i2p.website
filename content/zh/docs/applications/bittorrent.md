@@ -154,7 +154,7 @@ I2P 中 UDP announce 的规范已于 2025 年 6 月最终确定。各种 I2P 客
 
 ## 附加信息
 
-- I2P bittorrent 标准通常在 zzz.i2p 上讨论。
-- 当前 tracker 软件功能对比图表也可在那里找到。
-- I2P bittorrent 常见问题解答
-- I2P 上的 DHT 讨论
+- I2P bittorrent 标准通常在 [zzz.i2p](http://zzz.i2p/) 上讨论。
+- 当前 tracker 软件功能对比图表[也可在那里找到](http://zzz.i2p/files/trackers.html)。
+- [I2P bittorrent 常见问题解答](http://forum.i2p/viewtopic.php?t=2068)
+- [I2P 上的 DHT 讨论](http://zzz.i2p/topics/812)

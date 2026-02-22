@@ -12,80 +12,88 @@ thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
 
-## Обзор
+## Overview
 
-Этот документ описывает важные вопросы, которые необходимо учитывать при предложении
-замены или дополнения к нашему асимметричному шифрованию ElGamal.
+This document describes important issues to consider when proposing
+a replacement or addition to our ElGamal asymmetric encryption.
 
-Это информационный документ.
-
-
-## Мотивация
-
-ElGamal устарел и медлителен, и существуют лучшие альтернативы.
-Однако есть несколько вопросов, которые необходимо решить, прежде чем мы сможем добавить или изменить любой новый алгоритм.
-Этот документ выделяет эти нерешенные вопросы.
+This is an informational document.
 
 
-## Исследование
+## Motivation
 
-Любой, кто предлагает новую криптографию, должен сначала ознакомиться со следующими документами:
-
-- [Предложение 111 NTCP2](/ru/proposals/111-ntcp-2/)
-- [Предложение 123 LS2](/ru/proposals/123-new-netdb-entries/)
-- [Предложение 136 экспериментальные типы сигнатур](/ru/proposals/136-experimental-sigtypes/)
-- [Предложение 137 опциональные типы сигнатур](/ru/proposals/137-optional-sigtypes/)
-- Темы обсуждения здесь для каждого из вышеуказанных предложений, ссылки внутри
-- приоритеты предложений 2018 года
-- предложение ECIES
-- обзор нового асимметричного шифрования
-- [Обзор криптографии низкого уровня](/ru/docs/specs/common-structures/)
+ElGamal is old and slow, and there are better alternatives.
+However, there are several issues that must be addressed before we can add or change to any new algorithm.
+This document highlights these unresolved issues.
 
 
-## Использование асимметричной криптографии
 
-В качестве обзора, мы используем ElGamal для:
+## Background Research
 
-1) Сообщения построения туннелей (ключ в RouterIdentity)
+Anybody proposing new crypto must first be familiar with the following documents:
 
-2) Шифрование между роутерами netdb и других I2NP сообщений (ключ в RouterIdentity)
-
-3) Клиент от конца до конца ElGamal+AES/SessionTag (ключ в LeaseSet, ключ назначения не используется)
-
-4) Эфемерный DH для NTCP и SSU
-
-
-## Дизайн
-
-Любое предложение о замене ElGamal чем-либо другим должно предоставить следующие детали.
+- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
+- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
+- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
+- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
+- Discussion threads here for each of the above proposals, linked within
+- [2018 proposal priorities](http://zzz.i2p/topics/2494)
+- [ECIES proposal](http://zzz.i2p/topics/2418)
+- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
+- [Low-level crypto overview](/docs/specs/common-structures/)
 
 
-## Спецификация
+## Asymmetric Crypto Uses
 
-Любое предложение по новой асимметричной криптографии должно полностью указать следующие вещи.
+As a review, we use ElGamal for:
 
+1) Tunnel Build messages (key is in RouterIdentity)
 
-### 1. Общие вопросы
+2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
 
-Ответьте на следующие вопросы в вашем предложении. Обратите внимание, что это может потребовать отдельного предложения от конкретики в 2) ниже, поскольку это может конфликтовать с существующими предложениями 111, 123, 136, 137 или другими.
+3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
 
-- В каком из вышеуказанных случаев 1-4 вы предлагаете использовать новое шифрование?
-- Если для 1) или 2) (роутер), куда помещается открытый ключ, в RouterIdentity или в свойства RouterInfo? Планируете ли вы использовать тип шифрования в сертификате ключа? Полностью специфицируйте. Обоснуйте ваше решение в любом случае.
-- Если для 3) (клиент), вы собираетесь хранить открытый ключ в назначении и использовать тип шифрования в сертификате ключа (как в предложении ECIES), или хранить его в LS2 (как в предложении 123), или иным образом? Полностью специфицируйте и обоснуйте ваше решение.
-- Для всех используемых способов как будет рекламироваться поддержка? Если для 3), это идет в LS2 или где-то в другом месте? Если для 1) и 2), это похоже на предложения 136 и/или 137? Полностью специфицируйте и обоснуйте ваши решения. Вероятно, понадобится отдельное предложение для этого.
-- Полностью специфицируйте, как и почему это совместимо с прошлой версией, и полностью определите план миграции.
-- Какие нереализованные предложения являются предпосылками для вашего предложения?
+4) Ephemeral DH for NTCP and SSU
 
 
-### 2. Конкретный тип криптографии
+## Design
 
-Ответьте на следующие вопросы в вашем предложении:
-
-- Общая информация о криптографии, конкретные кривые/параметры, полностью обоснуйте свой выбор. Предоставьте ссылки на спецификации и другую информацию.
-- Результаты тестов скорости по сравнению с ElG и другими альтернативами, если применимо. Включите шифрование, дешифрование и генерацию ключей.
-- Доступность библиотек в C++ и Java (как OpenJDK, так и BouncyCastle, и сторонние)
-  Для сторонних или не-Java, предоставьте ссылки и лицензии
-- Предложенные номера криптотипов (экспериментального диапазона или нет)
+Any proposal to replace ElGamal with something else must provide the following details.
 
 
-## Примечания
+
+## Specification
+
+Any proposal for new asymmetric crypto must fully specify the following things.
+
+
+
+### 1. General
+
+Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
+
+- Which of the above cases 1-4 do you propose to use the new crypto for?
+- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
+- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
+- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
+- Completely specify how and why this is backward compatible, and fully specify a migration plan.
+- Which unimplemented proposals are prerequisites for your proposal?
+
+
+### 2. Specific crypto type
+
+Answer the following questions in your proposal:
+
+- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
+- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
+- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
+  For 3rd party or non-Java, provide links and licenses
+- Proposed crypto type number(s) (experimental range or not)
+
+
+
+
+## Notes
+
+
+

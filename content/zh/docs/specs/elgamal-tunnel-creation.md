@@ -133,7 +133,7 @@ byte 527     : Reply value
 
 ## 历史和注释 {#tunnelcreate-notes}
 
-这个策略是在I2P邮件列表上Michael Rogers、Matthew Toseland (toad)和jrandom之间关于前驱攻击的讨论中提出的。请参见TUNBUILD-SUMMARY。它在2006年2月16日的0.6.1.10版本中引入，这是I2P最后一次进行非向后兼容的更改。
+这个策略是在I2P邮件列表上Michael Rogers、Matthew Toseland (toad)和jrandom之间关于前驱攻击的讨论中提出的。请参见[TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)、[TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)。它在2006年2月16日的0.6.1.10版本中引入，这是I2P最后一次进行非向后兼容的更改。
 
 注意事项：
 
@@ -172,8 +172,8 @@ byte 527     : Reply value
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf) - Predecessor Attack Paper (2008)
 - [TBM](/docs/specs/i2np#msg-tunnelbuild) - Tunnel Build Message
 - [TBRM](/docs/specs/i2np#msg-tunnelbuildreply) - Tunnel Build Reply Message
-- TUNBUILD-REASONING - Tunnel Build Reasoning
-- TUNBUILD-SUMMARY - Tunnel Build Summary
+- [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html) - Tunnel Build Reasoning
+- [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html) - Tunnel Build Summary
 - [TUNNEL-IMPL](/docs/specs/tunnel-implementation) - Tunnel Implementation
 - [TUNNEL-OP](/docs/specs/tunnel-implementation#tunnel.operation) - Tunnel Operation
 - [VTBM](/docs/specs/i2np#msg-variabletunnelbuild) - Variable Tunnel Build Message

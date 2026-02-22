@@ -80,7 +80,7 @@ Java I2P i2ptunnel admite clientes compartidos, donde los clientes pueden config
 
 ### Limitar Cantidad de Túneles
 
-Especifica la cantidad de túneles explícitamente con las opciones `inbound.quantity` y `outbound.quantity`. El valor por defecto en Java I2P es 2; el valor por defecto en i2pd es mayor. Especifícalo en la línea SESSION CREATE usando SAM para obtener configuraciones consistentes con ambos routers. Dos de cada uno (entrada/salida) es suficiente para la mayoría de aplicaciones de ancho de banda bajo a medio y distribución baja a media. Los servidores y aplicaciones P2P de alta distribución pueden necesitar más. Consulta esta publicación del foro para obtener orientación sobre cómo calcular los requisitos para servidores y aplicaciones de alto tráfico.
+Especifica la cantidad de túneles explícitamente con las opciones `inbound.quantity` y `outbound.quantity`. El valor por defecto en Java I2P es 2; el valor por defecto en i2pd es mayor. Especifícalo en la línea SESSION CREATE usando SAM para obtener configuraciones consistentes con ambos routers. Dos de cada uno (entrada/salida) es suficiente para la mayoría de aplicaciones de ancho de banda bajo a medio y distribución baja a media. Los servidores y aplicaciones P2P de alta distribución pueden necesitar más. Consulta [esta publicación del foro](http://zzz.i2p/topics/1584) para obtener orientación sobre cómo calcular los requisitos para servidores y aplicaciones de alto tráfico.
 
 ### Especificar SAM SIGNATURE_TYPE
 
@@ -240,4 +240,4 @@ import net.i2p.router.Router;
 ```
 Este código es para el caso donde tu aplicación inicia el router, como en nuestra aplicación Android. También podrías hacer que el router inicie la aplicación a través de los archivos clients.config e i2ptunnel.config, junto con las webapps de Jetty, como se hace en nuestros paquetes Java. Como siempre, la gestión del estado es la parte difícil.
 
-Véase también: los javadocs del Router.
+Véase también: [los javadocs del Router](http://idk.i2p/javadoc-i2p/net/i2p/router/Router.html).

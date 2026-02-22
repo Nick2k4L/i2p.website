@@ -10,52 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## 概述
+## Overview
 
-本提案旨在重新设计加密 LeaseSet 的机制。
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
-## 动机
 
-当前的加密 LS 既糟糕又不安全。作为设计和实现者，我可以这么说。
+## Motivation
 
-原因：
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-- AES CBC 加密
-- 所有人共享一个 AES 密钥
-- 租约到期信息仍然暴露
-- 加密公钥仍然暴露
+Reasons:
 
-## 设计
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
-### 目标
 
-- 使整个过程不透明
-- 为每个接收者提供密钥
+## Design
 
-### 策略
+### Goals
 
-仿效 GPG/OpenPGP 的方式。用非对称加密为每个接收者加密一个对称密钥。数据用该非对称密钥解密。参见例如 [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-如果我们能找到一个小而快的算法。
+- Make entire thing opaque
+- Keys for each recipient
 
-关键是找到一个小而快的非对称加密。ElGamal 在 514 字节处有点痛苦。我们可以做得更好。
 
-参见例如 `http://security.stackexchange.com/questions/824...`
+### Strategy
 
-这适用于少量接收者（或实际上是密钥；如果你愿意，你仍然可以将密钥分发给多个人）。
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
 
-## 规格
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
 
-- 目的地
-- 发布时间戳
-- 到期
-- 标记
-- 数据长度
-- 加密数据
-- 签名
+See e.g. http://security.stackexchange.com/questions/824...
 
-加密数据可以加上某种 enctype 指示符，也可以没有。
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
 
-## 参考资料
 
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1
+## Specification
+
+- Destination
+- Published timestamp
+- Expiration
+- Flags
+- Length of data
+- Encrypted data
+- Signature
+
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

@@ -37,7 +37,7 @@ I2P 电子邮件使用双地址系统:
 **注册 mail.i2p 账户:**
 
 1. 确保你的 I2P router 正在运行
-2. 在 I2P 内访问 **http://hq.postman.i2p**
+2. 在 I2P 内访问 **[http://hq.postman.i2p](http://hq.postman.i2p)**
 3. 按照注册流程操作
 4. 通过 router 控制台中的 **SusiMail** 访问你的邮箱
 

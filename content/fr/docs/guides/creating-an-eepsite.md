@@ -19,8 +19,8 @@ Ce guide vous expliquera pas à pas comment créer et configurer votre premier e
 
 Le Gestionnaire des services cachés (également appelé I2P Tunnel Manager) est l'endroit où vous configurez tous les tunnels serveur et client I2P, y compris les serveurs HTTP (eepsites).
 
-1. Ouvrez votre `http://127.0.0.1:7657`
-2. Accédez au `http://127.0.0.1:7657/i2ptunnelmgr`
+1. Ouvrez votre [Console du router I2P](http://127.0.0.1:7657)
+2. Accédez au [Gestionnaire des services cachés](http://127.0.0.1:7657/i2ptunnelmgr)
 
 Vous devriez voir l’interface du Gestionnaire des services cachés affichant : - **Messages d’état** - État actuel du tunnel et du client - **Contrôle global des tunnels** - Boutons pour gérer tous les tunnels en même temps - **Services cachés I2P** - Liste des tunnels serveur configurés
 
@@ -191,7 +191,7 @@ Maintenant que votre eepsite est configuré et comporte du contenu, il est temps
 
 ### Démarrer le Tunnel
 
-1. **Retournez au `http://127.0.0.1:7657/i2ptunnelmgr`**
+1. **Retournez au [Gestionnaire des services cachés](http://127.0.0.1:7657/i2ptunnelmgr)**
 2. Trouvez l’entrée de votre **serveur web I2P** dans la liste
 3. Cliquez sur le bouton **Démarrer** dans la colonne Contrôle
 
@@ -215,7 +215,7 @@ Votre eepsite a deux types d'adresses :
 
 1. **Adresse Base32 (.b32.i2p)**: Une longue adresse cryptographique qui ressemble à :
    ```
-   `http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p`
+   http://fcyianvr325tdgiiueyg4rsq4r5iuibzovl26msox5ryoselykpq.b32.i2p
    ```
    - Il s’agit de l’adresse permanente de votre eepsite, dérivée cryptographiquement
    - Elle ne peut pas être modifiée et est liée à votre clé privée
@@ -314,7 +314,7 @@ Cette chaîne contient : - Votre nom de domaine (`testwebsite.i2p`) - Votre adre
 
 ### Étape 2 : S'inscrire sur stats.i2p
 
-1. **Accédez à** stats.i2p Ajouter une clé (au sein d'I2P)
+1. **Accédez à** [stats.i2p Ajouter une clé](http://stats.i2p/i2p/addkey.html) (au sein d'I2P)
 
 ![Enregistrement du domaine stats.i2p](/images/guides/eepsite/stats-i2p-add.png)
 
@@ -332,7 +332,7 @@ Si tout s’est bien passé, vous verrez un message de confirmation indiquant qu
 
 Pour garantir une disponibilité maximale, vous devriez également vous inscrire auprès du service reg.i2p :
 
-1. **Accédez à** reg.i2p Ajouter un domaine (dans I2P)
+1. **Accédez à** [reg.i2p Ajouter un domaine](http://reg.i2p/add) (dans I2P)
 
 ![Enregistrement de domaine reg.i2p](/images/guides/eepsite/reg-i2p-add.png)
 

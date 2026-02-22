@@ -10,252 +10,261 @@ target: "0.9.65"
 toc: true
 ---
 
-### Návrh na Host-Aware HTTP Proxy Tunnel Type
+### Proposal for a Host-Aware HTTP Proxy Tunnel Type
 
-Toto je návrh na řešení „Shared Identity Problem“ v
-konvenčním používání HTTP přes I2P zavedením nového typu HTTP proxy tunelu.
-Tento typ tunelu má doplňkové chování, které má zabránit nebo omezit
-užitečnost sledování prováděného potenciálními nepřátelskými operátory skrytých služeb proti cíleným uživatelským agentům (prohlížečům) a samotné I2P klientské aplikaci.
+This is a proposal to resolve the “Shared Identity Problem” in
+conventional HTTP-over-I2P usage by introducing a new HTTP proxy tunnel
+type. This tunnel type has supplemental behavior which is intended to
+prevent or limit the utility of tracking conducted by potential hostile
+hidden service operators, against targeted user-agents(browsers) and the
+I2P Client Application itself.
 
-#### Co je to problém „Shared Identity“?
+#### What is the “Shared Identity” problem?
 
-Problém „Shared Identity“ nastává, když uživatelský agent na
-kryptograficky adresované překryvné síti sdílí kryptografickou
-identitu s jiným uživatelským agentem. To nastává například, když
-Firefox a GNU Wget jsou oba nakonfigurovány k použití stejného HTTP Proxy.
+The “Shared Identity” problem occurs when a user-agent on a
+cryptographically addressed overlay network shares a cryptographic
+identity with another user-agent. This occurs, for instance, when a
+Firefox and GNU Wget are both configured to use the same HTTP Proxy.
 
-V tomto scénáři je možné, aby server sbíral a uložit
-kryptografickou adresu (Destination) použitou k odpovědi na aktivitu. Může
-ji považovat za „Fingerprint“, který je vždy 100% jedinečný, protože je
-původem kryptografický. To znamená, že dohledatelnost pozorovaná
-problémem sdílené identity je dokonalá.
+In this scenario, it is possible for the server to collect and store the
+cryptographic address(Destination) used to reply to the activity. It can
+treat this as a “Fingerprint” which is always 100% unique, because it is
+cryptographic in origin. This means that the linkability observed by the
+Shared Identity problem is perfect.
 
-Je to ale problém?
+But is it a problem?
 ^^^^^^^^^^^^^^^^^^^^
 
-Problém sdílené identity je problém, když uživatelské agenty, které mluví stejným protokolem, chtějí neodkazovatelnou identitu. [Bylo to poprvé uvedeno v
-kontextu HTTP v tomto vláknu na Redditu](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/),
-s odstraněnými komentáři přístupnými díky
+The shared identity problem is a problem when user-agents that speak the
+same protocol desire unlinkability. [It was first mentioned in the
+context of HTTP in this Reddit
+Thread](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/),
+with the deleted comments accessible courtesy of
 [pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi).
-*V té době* jsem byl jedním z nejaktivnějších respondentů a *v té době*
-jsem věřil, že problém je malý. Za posledních 8 let se situace a můj
-názor na ni změnil, nyní věřím, že hrozba představovaná
-svázáním škodlivých cílů roste výrazně, jak více míst je
-ve stavu „profilovat“ konkrétní uživatele.
+*At the time* I was one of the most active respondents, and *at the
+time* I believed the issue was small. In the past 8 years, the situation
+and my opinion of it have changed, I now believe the threat posed by
+malicious destination correlation grows considerably as more sites are
+in a position to “profile” specific users.
 
-Tento útok má velmi nízkou vstupní bariéru. Vyžaduje pouze, aby
-operátor skryté služby provozoval více služeb. Pro útoky na
-současné návštěvy (návštěva více webů současně), toto je
-jediný požadavek. Pro nesoučasné spojování, jedna z těchto
-služeb musí být služba, která hostí „účty“, které patří jedinému uživateli,
-který je cílen sledováním.
+This attack has a very low barrier to entry. It only requires that a
+hidden service operator operate multiple services. For attacks on
+contemporary visits(visiting multiple sites at the same time), this is
+the only requirement. For non-contemporary linking, one of those
+services must be a service which hosts “accounts” which belong to a
+single user who is targeted for tracking.
 
-V současné době bude každý operátor služby, který hostí
-uživatelské účty, schopen korolovat je s aktivitou napříč jakýmikoli
-stránkami, které ovládají, využitím problému sdílené identity. Mastodon,
-Gitlab nebo dokonce jednoduchá fóra by mohla být útočníky v převleku, pokud
-provozují více než jednu službu a mají zájem vytvořit profil pro
-uživatele. Tento dohled by mohl být prováděn z pohnutek sledování,
-finančního zisku nebo zpravodajských důvodů. V současné době existují
-desítky hlavních operátorů, kteří by mohli provést tento útok a získat
-z něj smysluplná data. V tuto chvíli jim většinou věříme, že
-to neudělají, ale hráči, kteří se o naše názory nestarají, by se mohli
-snadno objevit.
+Currently, any service operator who hosts user accounts will be able to
+correlate them with activity across any sites they control by exploiting
+the Shared Identity problem. Mastodon, Gitlab, or even simple forums
+could be attackers in disguise as long as they operate more than one
+service and have an interest in creating a profile for a user. This
+surveillance could be conducted for stalking, financial gain, or
+intelligence-related reasons. Right now there are dozens of major
+operators, who could carry out this attack and gain meaningful data from
+it. We mostly trust them not to for now, but players who don’t care
+about our opinions could easily emerge.
 
-Toto je přímo spojeno s poměrně základní formou budování profilu na
-čistém webu, kde organizace mohou korolovat interakce na jejich stránkách s
-interakcemi na sítích, které ovládají. Na I2P, protože
-kryptografická destinace je jedinečná, může tato technika někdy
-být ještě spolehlivější, i když bez další síly geolokace.
+This is directly related to a fairly basic form of profile-building on
+the clear web where organizations can correlate interactions on their
+site with interations on networks they control. On I2P, because the
+cryptographic destination is unique, this technique can sometimes be
+even more reliable, albeit without the additional power of geolocation.
 
-Sdílená identita není užitečná proti uživateli, který používá I2P pouze
-k maskování geolokace. Také ji nelze použít k rozlomení směrování I2P.
-Je to jen problém kontextového řízení identity.
+The Shared Identity is not useful against a user who is using I2P solely
+to obfuscate geolocation. It also cannot be used to break I2P’s routing.
+It is only a problem of contextual identity management.
 
-- Nelze pomocí problému sdílené identity geolokovat uživatele I2P.
-- Nelze pomocí problému sdílené identity propojit sezení I2P, pokud nejsou současná.
+-  It is impossible to use the Shared Identity problem to geolocate an
+   I2P user.
+-  It is impossible to use the Shared Identity problem to link I2P
+   sessions if they are not contemporary.
 
-Nicméně, je možné jej použít k degradaci anonymity uživatele
-I2P za okolností, které jsou pravděpodobně velmi běžné. Jedním z
-důvodů jejich častosti je, že povzbuzujeme používání Firefoxu, což je
-webový prohlížeč, který podporuje „příchodové“ operace.
+However, it is possible to use it to degrade the anonymity of an I2P
+user in circumstances which are probably very common. One reason they
+are common is becase we encourage the use of Firefox, a web browser
+which supports “Tabbed” operation.
 
-- Je *vždy* možné vytvořit otisk prstu z problému sdílené identity
-  v *jakémkoli* webovém prohlížeči, který podporuje žádosti o
-  prostředky třetích stran.
-- Zakázání Javascriptu **nic** neřeší proti problému sdílené identity.
-- Pokud lze navázat spojení mezi nesoučasnými sezeními jako
-  „tradičním“ otiskem prohlížeče, pak může být sdílená
-  identita aplikována přechodně, potenciálně umožňující
-  nesoučasnou strategii propojení.
-- Pokud je možné navázat spojení mezi činností na clearnetu a
-  identitou I2P, například pokud je cíl přihlášen k webu s I2P a
-  clearnet přítomností na obou stranách, může být sdílená identita
-  aplikována přechodně, potenciálně umožňující úplnou
-  deanonymizaci.
+-  It is *always* possible to produce a fingerprint from the Shared
+   Identity problem in *any* web browser which supports requesting
+   third-party resources.
+-  Disabling Javascript accomplishes **nothing** against the Shared
+   Identity problem.
+-  If a link can be established between non-contemporary sessions such
+   as by “traditional” browser fingerprinting, then the Shared Identity
+   can be applied transitively, potentially enabling a non-contemporary
+   linking strategy.
+-  If a link can be established between a clearnet activity and an I2P
+   identity, for instance, if the target is logged into a site with both
+   an I2P and a clearnet presence on both sides, the Shared Identity can
+   be applied transitively, potentially enabling complete
+   de-anonymization.
 
-Jak vidíte vážnost problému sdílené identity v kontextu
-I2P HTTP proxy závisí na tom, kde si myslíte (nebo spíše, jak si myslí
-„uživatel“ s potenciálně neinformovanými očekáváními), že „kontextová identita“
-pro aplikaci leží. Existuje několik možností:
+How you view the severity of the Shared Identity problem as it applies
+to the I2P HTTP proxy depends on where you(or more to the point, a
+“user” with potentially uninformed expectationss) think the “contextual
+identity” for the application lies. There are several possibilities:
 
-1. HTTP je jak aplikace, tak i kontextová identita - Takto to funguje nyní.
-   Všechny HTTP aplikace sdílejí identitu.
-2. Proces je aplikace a kontextová identita - Takto to funguje, když aplikace
-   používá API jako SAMv3 nebo I2CP, kde aplikace vytváří svou
-   identitu a řídí její životnost.
-3. HTTP je aplikace, ale host je kontextovou identitou - To je
-   předmět tohoto návrhu, který zachází s každým Hostem jako potenciální
-   „webovou aplikací“ a takto zachází s povrchem ohrožení.
+1. HTTP is both the Application and the Contextual Identity - This is
+   how it works now. All HTTP Applications share an identity.
+2. The Process is the Application and the Contextual Identity - This is
+   how it works when an application uses an API like SAMv3 or I2CP,
+   where an application creates it’s identity and controls it’s
+   lifetime.
+3. HTTP is the Application, but the Host is the Contextual Identity
+   -This is the object of this proposal, which treats each Host as a
+   potential “Web Application” and treats the threat surface as such.
 
-Je to řešitelný?
-^^^^^^^^^^^^^^^^^
+Is it Solvable?
+^^^^^^^^^^^^^^^
 
-Pravděpodobně není možné vytvořit proxy, která inteligentně
-reaguje na každý možný případ, kdy by její provoz mohl oslabit
-anonymitu aplikace. Nicméně, je možné sestavit proxy, která
-inteligentně reaguje na konkrétní aplikaci, která se chová
-předvídatelným způsobem. Například v moderních webových prohlížečích je
-očekáváno, že uživatelé budou mít otevřeno více karet, kde budou
-interagovat s více weby, které budou odlišeny podle názvu hostitele.
+It is probably not possible to make a proxy which intelligently responds
+to every possible case in which it’s operation could weaken the
+anonymity of an application. However, it is possible to build a proxy
+which intelligently responds to a specific application which behaves in
+a predictable way. For instance, in modern Web Browsers, it is expected
+that users will have multiple tabs open, where they will be interacting
+with multiple web sites, which will be distinguished by hostname.
 
-To nám umožňuje zlepšit chování HTTP Proxy pro tento typ
-uživatelského agenta HTTP tím, že chování proxy odpovídá chování
-uživatelského agenta přiřazením každého hosta ke svému vlastnímu
-Destination při použití s HTTP Proxy. Tato změna znemožňuje použít
-problém sdílené identity k získání otisku prstu, který by mohl být
-použit k propojení aktivity klienta se 2 hostiteli, protože 2 hostitelé
-již nebudou sdílet návratovou identitu.
+This allows us to improve upon the behavior of the HTTP Proxy for this
+type of HTTP user-agent by making the behavior of the proxy match the
+behavior of the user-agent by giving each host it’s own Destination when
+used with the HTTP Proxy. This change makes it impossible to use the
+Shared Identity problem to derive a fingerprint which can be used to
+correlate client activity with 2 hosts, because the 2 hosts will simply
+no longer share a return identity.
 
-Popis:
+Description:
 ^^^^^^^^^^^^
 
-Bude vytvořena nová HTTP Proxy a přidána do Správce skrytých služeb
-(I2PTunnel). Nová HTTP Proxy bude fungovat jako „multiplexer“
-I2PSocketManager. Sám multiplexer nemá žádný cílový bod. Každý
-jednotlivý I2PSocketManager, který se stane součástí multiplexu, má svůj
-vlastní místní cíl, a svůj vlastní tunelový pool. I2PSocketManagery jsou
-vytvářeny na vyžádání multiplexerem, kde „požadavek“ je první
-návštěva nového hostitele. Je možné optimalizovat vytváření
-I2PSocketManagerů před jejich vložením do multiplexu vytvořením jednoho
-nebo více dopředu a uložením je mimo multiplexer. To může zlepšit
-výkon.
+A new HTTP Proxy will be created and added to Hidden Services
+Manager(I2PTunnel). The new HTTP Proxy will operate as a “multiplexer”
+of I2PSocketManagers. The multiplexer itself has no destination. Each
+individual I2PSocketManager which becomes part of the multiplex has it’s own
+local destination, and it’s own tunnel pool. I2PSocketManagerss are created
+on-demand by the multiplexer, where the “demand” is the first visit to the
+new host. It is possible to optimize the creation of the I2PSocketManagers
+before inserting them into the multiplexer by creating one or more in advance
+and storing them outside the multiplexer. This may improve performance.
 
-Další I2PSocketManager s vlastním cílem je nastaven jako nositel
-„Outproxy“ pro libovolné stránky, které nemají I2P
-Destination, například jakoukoli stránku na clearnetu. Toto účinně činí
-veškeré používání Outproxy jednou Kontextovou identitou, s tou výhradou,
-že konfigurace více Outproxy pro tunel způsobí normální
-„Sticky“ rotaci outproxy, kde každé outproxy obdrží požadavky na
-jedinou stránku. To je *téměř* ekvivalentní chování jako izolace
-HTTP přes I2P proxy podle destinace, na čistém internetu.
+An additional I2PSocketManager, with it’s own destination, is set up as the
+carrier of an “Outproxy” for any site which does *not* have an I2P
+Destination, for example any Clearnet site. This effectively makes all
+Outproxy usage a single Contextual Identity, with the caveat that
+configuring multiple Outproxies for the tunnel will cause the normal
+“Sticky” outproxy rotation, where each outproxy only gets requests for a
+single site. This is *almost* the equivalent behavior as isolating
+HTTP-over-I2P proxies by destination, on the clear internet.
 
-Úvahy o zdrojích:
+Resource Considerations:
 ''''''''''''''''''''''''
 
-Nová HTTP proxy vyžaduje více zdrojů ve srovnání se
-stávající HTTP proxy. Bude:
+The new HTTP proxy requires additional resources compared to the
+existing HTTP proxy. It will:
 
-- Potenciálně vytvářet více tunelů a I2PSocketManagerů
-- Častěji vytvářet tunely
+-  Potentially build more tunnels and I2PSocketManagers
+-  Build tunnels more often
 
-Každé z těchto úkolů vyžaduje:
+Each of these requires:
 
-- Místní výpočetní zdroje
-- Síťové zdroje od vrstevníků
+-  Local computing resources
+-  Network resources from peers
 
-Nastavení:
+Settings:
 '''''''''
 
-Aby bylo minimalizováno dopad zvýšeného využití zdrojů, proxy by měla být
-nastavena tak, aby používala co nejméně. Proxy, které jsou součástí
-multiplexu (nikoliv rodičovská proxy) by měly být nastaveny na:
+In order to minimize the impact of the increased resource usage, the
+proxy should be configured to use as little as possible. Proxies which
+are part of the multiplexer(not the parent proxy) should be configured
+to:
 
-- Multiplexované I2PSocketManagery vytvářejí 1 tunel dovnitř, 1 tunel ven ve
-  svých tunelových poolech
-- Multiplexované I2PSocketManagery mají výchozí tři skoky.
-- Zavřít sokety po 10 minutách neaktivity.
-- I2PSocketManagery spuštěné Multiplexerem sdílejí životnost Multiplexeru.
-  Multiplexované tunely nejsou „destruktovány“ dokud není rodičovský
-  Multiplexer.
+-  Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
+   tunnel pools
+-  Multiplexed I2PSocketManagers take 3 hops by default.
+-  Close sockets after 10 minutes of inactivity
+-  I2PSocketManagers started by the Multiplexer share the lifespan of the
+   Multiplexer. Multiplexed tunnels are not “Destructed” until the
+   parent Multiplexer is.
 
-Diagramy:
+Diagrams:
 ^^^^^^^^^
 
-Níže uvedený diagram představuje aktuální provoz HTTP proxy,
-který odpovídá „Možnosti 1.“ v sekci „Je to problém“. Jak vidíte,
-HTTP proxy interaguje s I2P stránkami přímo pouze s jedním cílem. V tomto
-scénáři je HTTP jak aplikací, tak i kontextovou identitou.
+The diagram below represents the current operation of the HTTP proxy,
+which corresponds to “Possibility 1.” under the “Is it a problem”
+section. As you can see, the HTTP proxy interacts with I2P sites
+directly using only one destination. In this scenario, HTTP is both the
+application and the contextual identity.
 
 ```text
-**Aktuální Situace: HTTP je Aplikace, HTTP je Kontextová Identita**
-                                                          __-> Outproxy <-> i2pgit.org
-                                                         /
-   Prohlížeč <-> HTTP Proxy(jeden cíl)<->I2PSocketManager <---> idk.i2p
-                                                         \__-> translate.idk.i2p
-                                                          \__-> git.idk.i2p
+**Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
+                                                      __-> Outproxy <-> i2pgit.org
+                                                     /
+Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
+                                                     \__-> translate.idk.i2p
+                                                      \__-> git.idk.i2p
 ```
 
-Níže uvedený diagram představuje provoz hostitelově vědomé HTTP proxy,
-který odpovídá „Možnosti 3.“ v sekci „Je to problém“. V tomto
-scénáři je HTTP aplikace, ale Host definuje kontextovou identitu,
-kde se každá I2P stránka propojuje s jinou HTTP proxy s jedinečným
-cílem na hostitele. To brání operátorům více stránek být schopen
-rozeznat, když stejná osoba navštíví více stránek, které provozují.
+The diagram below represents the operation of a host-aware HTTP proxy,
+which corresponds to “Possibility 3.” under the “Is it a problem”
+section. In this secenario, HTTP is the application, but the Host
+defines the contextual identity, wherein each I2P site interacts with a
+different HTTP proxy with a unique destination per-host. This prevents
+operators of multiple sites from being able to distinguish when the same
+person is visiting multiple sites which they operate.
 
 ```text
-**Po Změně: HTTP je Aplikace, Host je Kontextová Identita**
-                                                        __-> I2PSocketManager(Destination A - pouze Outproxy) <--> i2pgit.org
-                                                       /
-   Prohlížeč <-> HTTP Proxy Multiplexer(Bez destinace) <---> I2PSocketManager(Destination B) <--> idk.i2p
-                                                       \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
-                                                        \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+**After the Change: HTTP is the Application, Host is the Contextual Identity**
+                                                    __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+                                                   /
+Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
+                                                   \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
+                                                    \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
 ```
 
-Stav:
+Status:
 ^^^^^^^
 
-Funkční implementace hostitelově vědomé proxy v Javě, která
-odpovídá starší verzi tohoto návrhu, je dostupná v fork od idk pod
-větví: i2p.i2p.2.6.0-browser-proxy-post-keepalive Odkaz v citacích. Je
-pod těžkou revizí, s cílem rozdělit změny do menších
-sekcí.
+A working Java implementation of the host-aware proxy which conforms to
+an older version of this proposal is available at idk's fork under the
+branch: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link in citations. It
+is under heavy revision, in order to break down the changes into smaller
+sections.
 
-Implementace s různými schopnostmi byly napsány v Go za
-použití knihovny SAMv3, mohou být užitečné pro začlenění do dalších
-aplikací v Go nebo pro go-i2p, ale nejsou vhodné pro Java I2P.
-Navíc chybí dobrá podpora pro interaktivní práci s
-šifrovanými leaseSets.
+Implementations with varying capabilities have been written in Go using
+the SAMv3 library, they may be useful for embedding in other Go
+applications or for go-i2p but are unsuitable for Java I2P.
+Additionally, they lack good support for working interactively with
+encrypted leaseSets.
 
-Dodatky: ``i2psocks``
+Addendum: ``i2psocks``
                       
 
-Jednoduchý přístup ke izolaci jiných typů
-klientů je možný bez implementace nového typu tunelu nebo
-změny stávajícího kódu I2P kombinací stávajících nástrojů
-I2PTunnel, které jsou již široce dostupné a testovány v
-komunitě zaměřené na soukromí. Nicméně, tento přístup činí
-obtížný předpoklad, který není pravdivý pro HTTP a také není pravdivý
-pro mnoho jiných druhů potenciálních klientů I2P.
+A simple application-oriented approach to isolating other types of
+clients is possible without implementing a new tunnel type or changing
+the existing I2P code by combining I2PTunnel existing tools which are
+already widely available and tested in the privacy community. However,
+this approach makes a difficult assumption which is not true for HTTP
+and also not true for many other kinds of potentsial I2P clients.
 
-Přibližně následující skript vytvoří aplikaci orientovanou na SOCKS5
-proxy a socksifikuje podkladový příkaz:
+Roughly, the following script will produce an application-aware SOCKS5
+proxy and socksify the underlying command:
 
 ```sh
 #! /bin/sh
-prikaz_k_proxy="$@"
+command_to_proxy="$@"
 java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-torsocks --port 7695 $prikaz_k_proxy
+torsocks --port 7695 $command_to_proxy
 ```
 
-Dodatky: ``příklad implementace útoku``
+Addendum: ``example implementation of the attack``
                                                   
 
-Příklad implementace útoku sdílené identity na HTTP
-User-Agents existuje už několik let. Další příklad je k dispozici ve
-``simple-colluder`` podadresáři idk's prop166
-repozitáře
-Tyto příklady jsou záměrně navrženy tak, aby demonstrovaly, že útok
-funguje a vyžadovaly by úpravy (i když menší), aby se
-přeměnil na skutečný útok.
+[An example implementation of the Shared Identity attack on HTTP
+User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
+has existed for several years. An additional example is available in the
+``simple-colluder`` subdirectory of [idk’s prop166
+repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These
+examples are deliberately designed to demonstrate that the attack works
+and would require modification(albeit minor) to be turned into a real
+attack.
 

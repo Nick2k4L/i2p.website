@@ -165,7 +165,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Adım 3: Depo imzalama anahtarını indirin**
 
 ```bash
-curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
+curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
 ```
 **Adım 4: Anahtar parmak izini doğrulayın**
 
@@ -261,8 +261,8 @@ I2P'yi ilk kez başlattıktan sonra, ağa entegre olması birkaç dakika sürece
 
 Optimum performans ve ağ katılımı için, I2P portlarını NAT/güvenlik duvarınızdan yönlendirin:
 
-1. `http://127.0.0.1:7657/` sayfasını açın
-2. `http://127.0.0.1:7657/confignet` gidin
+1. [I2P Router Console](http://127.0.0.1:7657/) sayfasını açın
+2. [Ağ Yapılandırması sayfasına](http://127.0.0.1:7657/confignet) gidin
 3. Listelenen port numaralarını not edin (genellikle 9000-31000 arası rastgele portlar)
 4. Bu UDP ve TCP portlarını router/firewall'unuzda yönlendirin
 
@@ -272,7 +272,7 @@ Port yönlendirme konusunda yardıma ihtiyacınız varsa, [portforward.com](http
 
 Varsayılan bant genişliği ayarları muhafazakârdır. İnternet bağlantınıza göre bunları ayarlayın:
 
-1. `http://127.0.0.1:7657/config.jsp` ziyaret edin
+1. [Yapılandırma sayfasını](http://127.0.0.1:7657/config.jsp) ziyaret edin
 2. Bant genişliği ayarları bölümünü bulun
 3. Varsayılan değerler 96 KB/s indirme / 40 KB/s yükleme'dir
 4. Daha hızlı bir internet bağlantınız varsa bu değerleri artırın (örneğin, tipik bir geniş bant bağlantısı için 250 KB/s indirme / 100 KB/s yükleme)
@@ -326,7 +326,7 @@ Tabii, çeviri için metni bekliyorum. Lütfen çevrilecek metni paylaşın.
 I2P kuruldu ve çalışıyor, şimdi:
 
 - I2P sitelerine erişmek için [tarayıcınızı yapılandırın](/docs/guides/browser-config)
-- Router'ınızı izlemek için `http://127.0.0.1:7657/` keşfedin
+- Router'ınızı izlemek için [I2P router konsolunu](http://127.0.0.1:7657/) keşfedin
 - Kullanabileceğiniz [I2P uygulamalarını](/docs/applications/) öğrenin
 - Ağı anlamak için [I2P'nin nasıl çalıştığını](/docs/overview/tech-intro) okuyun
 

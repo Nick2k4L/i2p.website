@@ -47,9 +47,9 @@ Das stimmt, aber das ist nicht viel Datenverkehr im Kontext von I2P, das selbst 
 
 Wie es in I2P üblich ist, gibt es hier einen grundlegenden Kompromiss zwischen Anonymität und Effizienz. Einige würden sagen, dass die Verwendung der etag- und last-modified-Header gefährlich ist, weil sie preisgeben, wann Sie die Daten zuletzt angefordert haben. Andere haben vorgeschlagen, nur spezifische Schlüssel anzufordern (ähnlich wie es Jump-Services tun, aber auf automatisierte Weise), möglicherweise auf weitere Kosten der Anonymität.
 
-Mögliche Verbesserungen wären ein Ersatz oder eine Ergänzung zum address book (siehe i2host.i2p), oder etwas Einfaches wie das Abonnieren von `http://example.i2p/cgi-bin/recenthosts.cgi` anstatt `http://example.i2p/hosts.txt.` Wenn ein hypothetisches recenthosts.cgi beispielsweise alle Hosts der letzten 24 Stunden verteilen würde, könnte das sowohl effizienter als auch anonymer sein als die aktuelle hosts.txt mit last-modified und etag.
+Mögliche Verbesserungen wären ein Ersatz oder eine Ergänzung zum address book (siehe i2host.i2p), oder etwas Einfaches wie das Abonnieren von http://example.i2p/cgi-bin/recenthosts.cgi anstatt http://example.i2p/hosts.txt. Wenn ein hypothetisches recenthosts.cgi beispielsweise alle Hosts der letzten 24 Stunden verteilen würde, könnte das sowohl effizienter als auch anonymer sein als die aktuelle hosts.txt mit last-modified und etag.
 
-Eine Beispielimplementierung ist auf stats.i2p unter `http://stats.i2p/cgi-bin/newhosts.txt` verfügbar. Dieses Skript gibt ein Etag mit einem Zeitstempel zurück. Wenn eine Anfrage mit dem If-None-Match etag eingeht, gibt das Skript NUR neue Hosts seit diesem Zeitstempel zurück, oder 304 Not Modified falls es keine gibt. Auf diese Weise gibt das Skript effizient nur die Hosts zurück, die dem Abonnenten nicht bekannt sind, in einer mit dem Adressbuch kompatiblen Weise.
+Eine Beispielimplementierung ist auf stats.i2p unter http://stats.i2p/cgi-bin/newhosts.txt verfügbar. Dieses Skript gibt ein Etag mit einem Zeitstempel zurück. Wenn eine Anfrage mit dem If-None-Match etag eingeht, gibt das Skript NUR neue Hosts seit diesem Zeitstempel zurück, oder 304 Not Modified falls es keine gibt. Auf diese Weise gibt das Skript effizient nur die Hosts zurück, die dem Abonnenten nicht bekannt sind, in einer mit dem Adressbuch kompatiblen Weise.
 
 Die Ineffizienz ist also kein großes Problem und es gibt mehrere Möglichkeiten, die Dinge ohne radikale Änderungen zu verbessern.
 
@@ -57,7 +57,7 @@ Die Ineffizienz ist also kein großes Problem und es gibt mehrere Möglichkeiten
 
 Was den Netzwerkverkehr betrifft, siehe oben. Aber solange Sie nicht eine langsame Echtzeitabfrage über das Netzwerk für einen Schlüssel durchführen werden, müssen Sie den gesamten Schlüsselsatz lokal gespeichert haben, zu Kosten von etwa 500 Bytes pro Schlüssel.
 
-- **Erfordert Konfiguration und "Vertrauen":** Das standardmäßige Adressbuch ist nur auf `http://www.i2p2.i2p/hosts.txt` abonniert, welches selten aktualisiert wird, was zu einer schlechten Erfahrung für neue Benutzer führt.
+- **Erfordert Konfiguration und "Vertrauen":** Das standardmäßige Adressbuch ist nur auf http://www.i2p2.i2p/hosts.txt abonniert, welches selten aktualisiert wird, was zu einer schlechten Erfahrung für neue Benutzer führt.
 
 Das ist durchaus beabsichtigt. jrandom möchte, dass ein Benutzer einem hosts.txt-Anbieter "vertraut", und wie er gerne sagt: "Vertrauen ist kein boolescher Wert". Der Konfigurationsschritt versucht, Benutzer dazu zu bringen, über Vertrauensfragen in einem anonymen Netzwerk nachzudenken.
 

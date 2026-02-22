@@ -47,9 +47,9 @@ Pravda, ale to není mnoho provozu v kontextu I2P, které je samo o sobě velmi 
 
 Jak je obvykle v I2P zvykem, existuje zde zásadní kompromis mezi anonymitou a efektivitou. Někteří by řekli, že používání etag a last-modified hlaviček je riskantní, protože odhaluje, kdy jste naposledy požadovali data. Jiní navrhli požadovat pouze specifické klíče (podobně jako to dělají jump služby, ale automatizovaněji), možná za další cenu v anonymitě.
 
-Možná vylepšení by zahrnovala náhradu nebo doplněk k address book (viz i2host.i2p), nebo něco jednoduchého jako přihlášení k odběru `http://example.i2p/cgi-bin/recenthosts.cgi` místo `http://example.i2p/hosts.txt.` Pokud by hypotetický recenthosts.cgi distribuoval všechny hostitele z posledních 24 hodin, například, mohlo by to být jak efektivnější, tak anonymnější než současný hosts.txt s last-modified a etag.
+Možná vylepšení by zahrnovala náhradu nebo doplněk k address book (viz i2host.i2p), nebo něco jednoduchého jako přihlášení k odběru http://example.i2p/cgi-bin/recenthosts.cgi místo http://example.i2p/hosts.txt. Pokud by hypotetický recenthosts.cgi distribuoval všechny hostitele z posledních 24 hodin, například, mohlo by to být jak efektivnější, tak anonymnější než současný hosts.txt s last-modified a etag.
 
-Vzorová implementace je na stats.i2p na adrese `http://stats.i2p/cgi-bin/newhosts.txt.` Tento skript vrací Etag s časovým razítkem. Když přijde požadavek s If-None-Match etag, skript vrací POUZE nové hosty od tohoto časového razítka, nebo 304 Not Modified, pokud žádné nejsou. Tímto způsobem skript efektivně vrací pouze hosty, které odběratel nezná, způsobem kompatibilním s adresářem.
+Vzorová implementace je na stats.i2p na adrese http://stats.i2p/cgi-bin/newhosts.txt. Tento skript vrací Etag s časovým razítkem. Když přijde požadavek s If-None-Match etag, skript vrací POUZE nové hosty od tohoto časového razítka, nebo 304 Not Modified, pokud žádné nejsou. Tímto způsobem skript efektivně vrací pouze hosty, které odběratel nezná, způsobem kompatibilním s adresářem.
 
 Takže neefektivita není velkým problémem a existuje několik způsobů, jak věci zlepšit bez radikálních změn.
 
@@ -57,7 +57,7 @@ Takže neefektivita není velkým problémem a existuje několik způsobů, jak 
 
 Co se týče síťového provozu, viz výše. Ale pokud nehodláte provádět pomalý dotaz v reálném čase přes síť pro klíč, musíte mít celou sadu klíčů uloženou lokálně, za cenu přibližně 500 bajtů na klíč.
 
-- **Vyžaduje konfiguraci a "důvěru":** Výchozí adresář je předplacen pouze na `http://www.i2p2.i2p/hosts.txt,` který se zřídka aktualizuje, což vede ke špatné uživatelské zkušenosti nových uživatelů.
+- **Vyžaduje konfiguraci a "důvěru":** Výchozí adresář je předplacen pouze na http://www.i2p2.i2p/hosts.txt, který se zřídka aktualizuje, což vede ke špatné uživatelské zkušenosti nových uživatelů.
 
 Toto je zcela záměrné. jrandom chce, aby uživatel "důvěřoval" poskytovateli hosts.txt, a jak rád říká, "důvěra není boolean". Krok konfigurace se snaží přinutit uživatele, aby přemýšleli o otázkách důvěry v anonymní síti.
 

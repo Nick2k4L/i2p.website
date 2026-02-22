@@ -222,7 +222,7 @@ Zip dosyalarındaki jar ve war dosyaları, yukarıda "su2" dosyaları için belg
 ### Notlar
 
 - Sürümler için, SU3 versiyonu "temel" router versiyonudur, örneğin "0.9.20".
-- 0.9.20 sürümünden itibaren desteklenen geliştirme yapıları için, SU3 versiyonu "tam" router versiyonudur, örneğin "0.9.20-5" veya "0.9.20-5-rc". I2P kaynak kodunda RouterVersion.java dosyasına bakın.
+- 0.9.20 sürümünden itibaren desteklenen geliştirme yapıları için, SU3 versiyonu "tam" router versiyonudur, örneğin "0.9.20-5" veya "0.9.20-5-rc". [I2P kaynak kodunda](https://github.com/i2p/i2p.i2p) RouterVersion.java dosyasına bakın.
 
 ## SU3 Reseed Dosya Spesifikasyonu
 
@@ -371,7 +371,7 @@ TBD, uygulanmadı, öneri 130'a bakın. Engelleme listesi güncellemeleri haber 
 ## Referanslar
 
 - **[CRYPTO-SIG]** [Kriptografi - İmzalar](/docs/specs/cryptography#sig)
-- **[I2P-SRC]** I2P Kaynak Kodu
+- **[I2P-SRC]** [I2P Kaynak Kodu](https://github.com/i2p/i2p.i2p)
 - **[PLUGIN]** [Plugin Spesifikasyonu](/docs/specs/plugin)
 - **[Python]** [Python RSA Ham İmzalar](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)
 - **[RFC-3339]** [RFC 3339 - Tarih ve Zaman](https://tools.ietf.org/html/rfc3339)

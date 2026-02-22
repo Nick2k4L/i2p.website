@@ -10,29 +10,36 @@ supercedes: "110, 120, 121, 122"
 toc: true
 ---
 
-## الحالة
+## Status
 
-أجزاء من هذا الاقتراح مكتملة، ومُنفذة في الإصدارين 0.9.38 و 0.9.39. مواصفات Common Structures و I2CP و I2NP والمواصفات الأخرى محدثة الآن لتعكس التغييرات المدعومة حالياً.
+Portions of this proposal are complete, and implemented in 0.9.38 and 0.9.39.
+The Common Structures, I2CP, I2NP, and other specifications
+are now updated to reflect the changes that are supported now.
 
-الأجزاء المكتملة لا تزال عرضة لمراجعات طفيفة. الأجزاء الأخرى من هذا الاقتراح لا تزال قيد التطوير وعرضة لمراجعات جوهرية.
+The completed portions are still subject to minor revision.
+Other portions of this proposal are still in development
+and subject to substantial revision.
 
-البحث عن الخدمة (الأنواع 9 و 11) هي منخفضة الأولوية وغير مجدولة، وقد يتم فصلها إلى اقتراح منفصل.
+Service Lookup (types 9 and 11) are low-priority and
+unscheduled, and may be split off to a separate proposal.
 
-## نظرة عامة
 
-هذا تحديث وتجميع للاقتراحات الأربعة التالية:
+## Overview
+
+This is an update and aggregation of the following 4 proposals:
 
 - 110 LS2
-- 120 Meta LS2 للاستضافة المتعددة الضخمة
-- 121 LS2 مشفر
-- 122 البحث عن الخدمة غير المصادق عليه (anycasting)
+- 120 Meta LS2 for massive multihoming
+- 121 Encrypted LS2
+- 122 Unauthenticated service lookup (anycasting)
 
-هذه المقترحات مستقلة في الغالب، ولكن من أجل الوضوح نقوم بتعريف واستخدام تنسيق موحد لعدة منها.
+These proposals are mostly independent, but for sanity we define and use a
+common format for several of them.
 
-الاقتراحات التالية مترابطة إلى حد ما:
+The following proposals are somewhat related:
 
-- 140 Invisible Multihoming (غير متوافق مع هذا الاقتراح)
-- 142 New Crypto Template (لتشفير متماثل جديد)
+- 140 Invisible Multihoming (incompatible with this proposal)
+- 142 New Crypto Template (for new symmetric crypto)
 - 144 ECIES-X25519-AEAD-Ratchet
 - 145 ECIES-P256
 - 146 Red25519
@@ -41,72 +48,82 @@ toc: true
 - 150 Garlic Farm Protocol
 - 151 ECDSA Blinding
 
-## اقتراح
 
-هذا الاقتراح يحدد 5 أنواع جديدة من DatabaseEntry والعملية لتخزينها في واسترجاعها من قاعدة بيانات الشبكة، بالإضافة إلى طريقة توقيعها والتحقق من تلك التوقيعات.
+## Proposal
+
+This proposal defines 5 new DatabaseEntry types and the process for
+storing them to and retrieving them from the network database,
+as well as the method for signing them and verifying those signatures.
 
 ### Goals
 
-- متوافق مع الإصدارات السابقة
-- LS2 قابل للاستخدام مع الاستضافة المتعددة القديمة
-- لا تتطلب تشفير أو أساسيات جديدة للدعم
-- الحفاظ على فصل التشفير والتوقيع؛ دعم جميع الإصدارات الحالية والمستقبلية
-- تمكين مفاتيح التوقيع غير المتصلة الاختيارية
-- تقليل دقة الطوابع الزمنية لتقليل بصمات الأصابع
-- تمكين التشفير الجديد للوجهات
-- تمكين الاستضافة المتعددة الضخمة
-- إصلاح مشاكل متعددة مع LS المشفر الموجود
-- إخفاء اختياري لتقليل الرؤية بواسطة floodfills
-- المشفر يدعم كلاً من المفتاح الواحد والمفاتيح المتعددة القابلة للإلغاء
-- البحث عن الخدمة لتسهيل البحث عن outproxies، وتشغيل تطبيق DHT،
-  والاستخدامات الأخرى
-- عدم كسر أي شيء يعتمد على hashes الوجهة الثنائية 32-byte، مثل bittorrent
-- إضافة مرونة إلى leasesets عبر الخصائص، كما لدينا في routerinfos
-- وضع الطابع الزمني المنشور والانتهاء المتغير في الرأس، حتى يعمل حتى
-  إذا كان المحتوى مشفراً (لا تستمد الطابع الزمني من أقرب lease)
-- جميع الأنواع الجديدة تعيش في نفس مساحة DHT ونفس المواقع مثل leasesets الموجودة،
-  بحيث يمكن للمستخدمين الانتقال من LS القديم إلى LS2،
-  أو التغيير بين LS2 وMeta وEncrypted،
-  دون تغيير الوجهة أو hash
-- يمكن تحويل وجهة موجودة لاستخدام المفاتيح غير المتصلة،
-  أو العودة إلى المفاتيح المتصلة، دون تغيير الوجهة أو hash
+- Backwards compatible
+- LS2 Usable with old-style mulithoming
+- No new crypto or primitives required for support
+- Maintain decoupling of crypto and signing; support all current and future versions
+- Enable optional offline signing keys
+- Reduce accuracy of timestamps to reduce fingerprinting
+- Enable new crypto for destinations
+- Enable massive multihoming
+- Fix multiple issues with existing encrypted LS
+- Optional blinding to reduce visibility by floodfills
+- Encrypted supports both single-key and multiple revocable keys
+- Service lookup for easier lookup of outproxies, application DHT bootstrap,
+  and other uses
+- Don't break anything that relies on 32-byte binary destination hashes, e.g. bittorrent
+- Add flexibility to leasesets via properties, like we have in routerinfos.
+- Put published timestamp and variable expiration in header, so it works even
+  if contents are encrypted (don't derive timestamp from earliest lease)
+- All new types live in the same DHT space and same locations as existing leasesets,
+  so that users may migrate from the old LS to LS2,
+  or change among LS2, Meta, and Encrypted,
+  without changing the Destination or hash.
+- An existing Destination may be converted to use offline keys,
+  or back to online keys, without changing the Destination or hash.
+
 
 ### Non-Goals / Out-of-scope
 
-- خوارزمية تدوير DHT جديدة أو توليد عشوائي مشترك
-- نوع التشفير الجديد المحدد ونظام التشفير من النهاية إلى النهاية
-  لاستخدام هذا النوع الجديد سيكون في اقتراح منفصل.
-  لا يتم تحديد أو مناقشة أي تشفير جديد هنا.
-- تشفير جديد لـ RIs أو بناء الأنفاق.
-  سيكون ذلك في اقتراح منفصل.
-- طرق تشفير ونقل واستقبال رسائل I2NP DLM / DSM / DSRM.
-  لا يتم التغيير.
-- كيفية توليد ودعم Meta، بما في ذلك التواصل بين الـ router في الخلفية، والإدارة، والتعافي من الأعطال، والتنسيق.
-  قد يتم إضافة الدعم إلى I2CP، أو i2pcontrol، أو بروتوكول جديد.
-  قد يتم توحيد هذا أو لا.
-- كيفية تنفيذ وإدارة الأنفاق طويلة الانتهاء فعلياً، أو إلغاء الأنفاق الموجودة.
-  هذا صعب للغاية، وبدونه، لا يمكن الحصول على إغلاق سلس معقول.
-- تغييرات نموذج التهديد
-- تنسيق التخزين غير المتصل، أو طرق تخزين/استرجاع/مشاركة البيانات.
-- تفاصيل التنفيذ لا تُناقش هنا وتُترك لكل مشروع.
+- New DHT rotation algorithm or shared random generation
+- The specific new encryption type and end-to-end encryption scheme
+  to use that new type would be in a separate proposal.
+  No new crypto is specified or discussed here.
+- New encryption for RIs or tunnel building.
+  That would be in a separate proposal.
+- Methods of encryption, transmission, and reception of I2NP DLM / DSM / DSRM messages.
+  Not changing.
+- How to generate and support Meta, including backend inter-router communication, management, failover, and coordination.
+  Support may be added to I2CP, or i2pcontrol, or a new protocol.
+  This may or may not be standardized.
+- How to actually implement and manage longer-expiring tunnels, or cancel existing tunnels.
+  That's extremely difficult, and without it, you can't have a reasonable graceful shutdown.
+- Threat model changes
+- Offline storage format, or methods to store/retrieve/share the data.
+- Implementation details are not discussed here and are left to each project.
+
+
 
 ### Justification
 
-LS2 يضيف حقول لتغيير نوع التشفير وللتغييرات المستقبلية في البروتوكول.
+LS2 adds fields for changing encryption type and for future protocol changes.
 
-يعمل LS2 المشفر على إصلاح عدة مشاكل أمنية موجودة في LS المشفر الحالي من خلال استخدام التشفير غير المتماثل لمجموعة leases بأكملها.
+Encrypted LS2 fixes several security issues with the existing encrypted LS by
+using asymmetric encryption of the entire set of leases.
 
-يوفر Meta LS2 تعدد الاستضافة المرن والفعال والمؤثر واسع النطاق.
+Meta LS2 provides flexible, efficient, effective, and large-scale multihoming.
 
-سجل الخدمة وقائمة الخدمة توفر خدمات anycast مثل البحث عن الأسماء وتهيئة DHT الأولية.
+Service Record and Service List provide anycast services such as naming lookup
+and DHT bootstrapping.
 
-### الأهداف
 
-أرقام الأنواع تُستخدم في رسائل I2NP Database Lookup/Store Messages.
+### NetDB Data Types
 
-يشير عمود الطرف إلى الطرف إلى ما إذا كانت الاستعلامات/الاستجابات يتم إرسالها إلى Destination في Garlic Message.
+The type numbers are used in the I2NP Database Lookup/Store Messages.
 
-الأنواع الموجودة:
+The end-to-end column refers to whether queries/responses are sent to a Destination in a Garlic Message.
+
+
+Existing types:
 
 | NetDB Data | Lookup Type | Store Type |
 |------------|-------------|------------|
@@ -114,7 +131,8 @@ LS2 يضيف حقول لتغيير نوع التشفير وللتغييرات ا
 | LS         | 1           | 1          |
 | RI         | 2           | 0          |
 | exploratory| 3           | DSRM       |
-أنواع جديدة:
+
+New types:
 
 | NetDB Data     | Lookup Type | Store Type | Std. LS2 Header? | Sent end-to-end? |
 |----------------|-------------|------------|------------------|------------------|
@@ -123,46 +141,64 @@ LS2 يضيف حقول لتغيير نوع التشفير وللتغييرات ا
 | Meta LS2       | 1           | 7          | yes              | no               |
 | Service Record | n/a         | 9          | yes              | no               |
 | Service List   | 4           | 11         | no               | no               |
-### الأهداف غير المطلوبة / خارج النطاق
 
-- أنواع البحث حالياً هي البتات 3-2 في رسالة البحث في قاعدة البيانات.
-  أي أنواع إضافية ستتطلب استخدام البت 4.
 
-- جميع أنواع المتاجر فردية لأن البتات العلوية في حقل نوع رسالة Database Store Message
-  يتم تجاهلها بواسطة الموجهات القديمة.
-  نفضل أن يفشل التحليل كـ LS بدلاً من RI مضغوط.
 
-- هل يجب أن يكون النوع صريحًا أم ضمنيًا أم لا هذا ولا ذاك في البيانات المشمولة بالتوقيع؟
+### Notes
 
-### مبرر
+- Lookup types are currently bits 3-2 in the Database Lookup Message.
+  Any additional types would require use of bit 4.
 
-الأنواع 3 و 5 و 7 قد يتم إرجاعها استجابة لبحث leaseset قياسي (النوع 1). النوع 9 لا يتم إرجاعه أبداً استجابة للبحث. النوع 11 يتم إرجاعه استجابة لنوع بحث خدمة جديد (النوع 11).
+- All store types are odd since upper bits in the Database Store Message
+  type field are ignored by old routers.
+  We would rather have the parse fail as an LS than as a compressed RI.
 
-يمكن إرسال النوع 3 فقط في رسالة Garlic من عميل إلى عميل.
+- Should type be explicit or implicit or neither in the data covered by the signature?
 
-### أنواع بيانات NetDB
 
-الأنواع 3 و 7 و 9 جميعها لها تنسيق مشترك::
 
-رأس LS2 المعياري - كما هو محدد أدناه
+### Lookup/Store process
 
-الجزء الخاص بالنوع - كما هو محدد أدناه في كل جزء
+Types 3, 5, and 7 may be returned in response to a standard leaseset lookup (type 1).
+Type 9 is never returned in response to a lookup.
+Types 11 is returned in response to a new service lookup type (type 11).
 
-التوقيع القياسي LS2:   - الطول كما هو مضمن في نوع التوقيع لمفتاح التوقيع
+Only type 3 may be sent in a client-to-client Garlic message.
 
-النوع 5 (المُشفر) لا يبدأ بـ Destination وله تنسيق مختلف. انظر أدناه.
 
-النوع 11 (قائمة الخدمات) هو تجميع لعدة Service Records وله تنسيق مختلف. انظر أدناه.
 
-### ملاحظات
+### Format
 
-سيتم تحديدها لاحقاً
+Types 3, 7, and 9 all have a common format::
+
+  Standard LS2 Header
+  - as defined below
+
+  Type-Specific Part
+  - as defined below in each part
+
+  Standard LS2 Signature:
+  - Length as implied by sig type of signing key
+
+Type 5 (Encrypted) does not start with a Destination and has a
+different format. See below.
+
+Type 11 (Service List) is an aggregation of several Service Records and has a
+different format. See below.
+
+
+### Privacy/Security Considerations
+
+TBD
+
+
 
 ## Standard LS2 Header
 
-الأنواع 3 و 7 و 9 تستخدم رأس LS2 المعياري، المحدد أدناه:
+Types 3, 7, and 9 use the standard LS2 header, specified below:
 
-### عملية البحث/التخزين
+
+### Format
 
 ```
 Standard LS2 Header:
@@ -194,68 +230,76 @@ Standard LS2 Header:
     length as implied by destination public key sig type.
     This section can, and should, be generated offline.
 ```
-### تنسيق
 
-- غير منشور/منشور: للاستخدام عند إرسال database store من نقطة إلى نقطة،
-  قد يرغب الـ router المرسل في الإشارة إلى أن هذا الـ leaseset يجب ألا يُرسل
-  إلى آخرين. نحن نستخدم حالياً heuristics للحفاظ على هذه الحالة.
+### Justification
 
-- منشور: يستبدل المنطق المعقد المطلوب لتحديد 'الإصدار' الخاص بـ
-  leaseset. حالياً، الإصدار هو انتهاء صلاحية آخر lease منتهي الصلاحية،
-  ويجب على router النشر زيادة انتهاء الصلاحية هذا بما لا يقل عن 1ms عند
-  نشر leaseset يزيل فقط lease أقدم.
+- Unpublished/published: For use when sending a database store end-to-end,
+  the sending router may wish to indicate that this leaseset should not be
+  sent to others. We currently use heuristics to maintain this state.
 
-- Expires: يسمح بانتهاء صلاحية إدخال netDb قبل انتهاء صلاحية آخر leaseset منتهي الصلاحية الخاص به. قد لا يكون مفيداً لـ LS2، حيث من المتوقع أن تبقى leasesets بحد أقصى 11 دقيقة لانتهاء الصلاحية، ولكن للأنواع الجديدة الأخرى، فهو ضروري (انظر Meta LS وService Record أدناه).
+- Published: Replaces the complex logic required to determine the 'version' of the
+  leaseset. Currently, the version is the expiration of the last-expiring lease,
+  and a publishing router must increment that expiration by at least 1ms when
+  publishing a leaseset that only removes an older lease.
 
-- المفاتيح غير المتصلة اختيارية، لتقليل تعقيد التنفيذ الأولي/المطلوب.
+- Expires: Allows for an expiration of a netdb entry to be earlier than that of
+  its last-expiring leaseset. May not be useful for LS2, where leasesets
+  are expected to remain with a 11-minute maximum expiration, but
+  for other new types, it is necessary (see Meta LS and Service Record below).
 
-### اعتبارات الخصوصية/الأمان
+- Offline keys are optional, to reduce initial/required implementation complexity.
 
-- يمكن تقليل دقة الطوابع الزمنية أكثر (10 دقائق؟) ولكن سيتعين إضافة رقم الإصدار. قد يؤدي هذا إلى كسر multihoming، ما لم يكن لدينا تشفير يحافظ على الترتيب؟ ربما لا يمكننا الاستغناء عن الطوابع الزمنية تماماً.
 
-- البديل: طابع زمني 3 بايت (epoch / 10 دقائق)، إصدار 1-بايت، انتهاء الصلاحية 2-بايت
+### Issues
 
-- هل النوع صريح أم ضمني في البيانات / التوقيع؟ ثوابت "Domain" للتوقيع؟
+- Could reduce timestamp accuracy even more (10 minutes?) but would have to add
+  version number. This could break multihoming, unless we have order preserving encryption?
+  Probably can't do without timestamps at all.
+
+- Alternative: 3 byte timestamp (epoch / 10 minutes), 1-byte version, 2-byte expires
+
+- Is type explicit or implicit in data / signature? "Domain" constants for signature?
+
 
 ### Notes
 
-- يجب على الـ routers عدم نشر LS أكثر من مرة واحدة في الثانية.
-  إذا فعلوا ذلك، يجب عليهم زيادة الطابع الزمني المنشور بشكل اصطناعي بمقدار 1
-  عن الـ LS المنشور سابقاً.
+- Routers should not publish a LS more than once a second.
+  If they do, they must artificially increment the published timestamp by 1
+  over the previously published LS.
 
-- يمكن لتنفيذات الـ router تخزين المفاتيح المؤقتة والتوقيع في الذاكرة المؤقتة لتجنب التحقق في كل مرة. على وجه الخصوص، يمكن أن تستفيد الـ floodfills والـ routers في كلا طرفي الاتصالات طويلة المدى من هذا.
+- Router implementations could cache the transient keys and signature to
+  avoid verification every time. In particular, floodfills, and routers at
+  both ends of long-lived connections, could benefit from this.
 
-- المفاتيح غير المتصلة والتوقيع مناسبان فقط للوجهات طويلة المدى،
-  أي الخوادم وليس العملاء.
+- Offline keys and signature are only appropriate for long-lived destinations,
+  i.e. servers, not clients.
+
+
 
 ## New DatabaseEntry types
 
-### تنسيق
 
-التغييرات من LeaseSet الموجود:
+### LeaseSet 2
 
-- إضافة الطابع الزمني للنشر، الطابع الزمني لانتهاء الصلاحية، العلامات، والخصائص
-- إضافة نوع التشفير
-- إزالة مفتاح الإلغاء
+Changes from existing LeaseSet:
 
-البحث باستخدام
+- Add published timestamp, expires timestamp, flags, and properties
+- Add encryption type
+- Remove revocation key
 
+Lookup with
     Standard LS flag (1)
-متجر مع
-
+Store with
     Standard LS2 type (3)
-احفظ في
-
+Store at
     Hash of destination
     This hash is then used to generate the daily "routing key", as in LS1
-انتهاء الصلاحية النموذجي
-
+Typical expiration
     10 minutes, as in a regular LS.
-نُشر بواسطة
-
+Published by
     Destination
 
-### التبرير
+### Format
 
 ```
 Standard LS2 Header as specified above
@@ -280,115 +324,126 @@ Standard LS2 Header as specified above
     Length as implied by sig type of signing key
     The signature is of everything above.
 ```
-### المشاكل
 
-- الخصائص: التوسع المستقبلي والمرونة.
-  يتم وضعها أولاً في حالة الحاجة إليها لتحليل البيانات المتبقية.
 
-- أزواج متعددة من نوع التشفير/المفتاح العام
-  لتسهيل الانتقال إلى أنواع تشفير جديدة. الطريقة الأخرى للقيام بذلك
-  هي نشر عدة leasesets، ربما باستخدام نفس الأنفاق،
-  كما نفعل الآن لوجهات DSA و EdDSA.
-  يمكن التعرف على نوع التشفير الواردة في النفق
-  باستخدام آلية session tag الموجودة،
-  و/أو فك التشفير التجريبي باستخدام كل مفتاح. أطوال الرسائل الواردة
-  قد توفر أيضاً دليلاً.
+### Justification
 
-### ملاحظات
+- Properties: Future expansion and flexibility.
+  Placed first in case necessary for parsing of the remaining data.
 
-تستمر هذه المقترحة في استخدام المفتاح العام في الـ leaseset لمفتاح التشفير من النهاية إلى النهاية، وتترك حقل المفتاح العام في الـ Destination غير مستخدم، كما هو الحال الآن. نوع التشفير غير محدد في شهادة مفتاح الـ Destination، وسيبقى 0.
+- Multiple encryption type/public key pairs are
+  to ease transition to new encryption types. The other way to do it
+  is to publish multiple leasesets, possibly using the same tunnels,
+  as we do now for DSA and EdDSA destinations.
+  Identification of the incoming encryption type on a tunnel
+  may be done with the existing session tag mechanism,
+  and/or trial decryption using each key. Lengths of the incoming
+  messages may also provide a clue.
 
-البديل المرفوض هو تحديد نوع التشفير في شهادة مفتاح الوجهة، واستخدام المفتاح العام في الوجهة، وعدم استخدام المفتاح العام في leaseSet. لا نخطط للقيام بذلك.
+### Discussion
 
-فوائد LS2:
+This proposal continues to use the public key in the leaseset for the
+end-to-end encryption key, and leaves the public key field in the
+Destination unused, as it is now. The encryption type is not specified
+in the Destination key certificate, it will remain 0.
 
-- موقع المفتاح العام الفعلي لا يتغير.
-- نوع التشفير، أو المفتاح العام، قد يتغير دون تغيير الوجهة.
-- يزيل حقل الإلغاء غير المستخدم
-- توافق أساسي مع أنواع DatabaseEntry الأخرى في هذا الاقتراح
-- يسمح بأنواع تشفير متعددة
+A rejected alternative is to specify the encryption type in the Destination key certificate,
+use the public key in the Destination, and not use the public key
+in the leaseset. We do not plan to do this.
 
-عيوب LS2:
+Benefits of LS2:
 
-- موقع المفتاح العام ونوع التشفير يختلف عن RouterInfo
-- يحتفظ بمفتاح عام غير مستخدم في leaseset
-- يتطلب تطبيقاً عبر الشبكة؛ كبديل، يمكن استخدام أنواع التشفير التجريبية،
-  إذا سمحت بذلك floodfills
-  (لكن انظر الاقتراحات ذات الصلة 136 و 137 حول دعم أنواع sig التجريبية).
-  الاقتراح البديل قد يكون أسهل للتطبيق والاختبار لأنواع التشفير التجريبية.
+- Location of actual public key doesn't change.
+- Encryption type, or public key, may change without changing the Destination.
+- Removes unused revocation field
+- Basic compatibility with other DatabaseEntry types in this proposal
+- Allow multiple encryption types
+
+Drawbacks of LS2:
+
+- Location of public key and encryption type differs from RouterInfo
+- Maintains unused public key in leaseset
+- Requires implementation across the network; in the alternative, experimental
+  encryption types may be used, if allowed by floodfills
+  (but see related proposals 136 and 137 about support for experimental sig types).
+  The alternative proposal could be easier to implement and test for experimental encryption types.
+
 
 ### New Encryption Issues
 
-بعض هذا خارج نطاق هذا الاقتراح، لكن نضع الملاحظات هنا الآن حيث لا يوجد لدينا اقتراح تشفير منفصل بعد. انظر أيضاً اقتراحات ECIES 144 و 145.
+Some of this is out-of-scope for this proposal,
+but putting notes here for now as we don't have
+a separate encryption proposal yet.
+See also the ECIES proposals 144 and 145.
 
-- يمثل نوع التشفير المزيج
-  من المنحنى وطول المفتاح ونظام التشفير من طرف إلى طرف،
-  بما في ذلك KDF و MAC، إن وجد.
+- The encryption type represents the combination
+  of curve, key length, and end-to-end scheme,
+  including KDF and MAC, if any.
 
-- لقد قمنا بتضمين حقل طول المفتاح، بحيث يكون LS2 قابلاً للتحليل والتحقق بواسطة floodfill حتى لأنواع التشفير غير المعروفة.
+- We have included a key length field, so that the LS2 is
+  parsable and verifiable by the floodfill even for unknown encryption types.
 
-- نوع التشفير الجديد الأول المقترح سيكون على الأرجح
-  ECIES/X25519. كيفية استخدامه من النهاية إلى النهاية
-  (إما نسخة معدلة قليلاً من ElGamal/AES+SessionTag
-  أو شيء جديد تماماً، مثل ChaCha/Poly) سيتم تحديده
-  في اقتراح واحد أو أكثر منفصل.
-  انظر أيضاً اقتراحي ECIES رقم 144 و145.
+- The first new encryption type to be proposed will
+  probably be ECIES/X25519. How it's used end-to-end
+  (either a slightly modified version of ElGamal/AES+SessionTag
+  or something completely new, e.g. ChaCha/Poly) will be specified
+  in one or more separate proposals.
+  See also the ECIES proposals 144 and 145.
 
-### LeaseSet 2
 
-- انتهاء الصلاحية 8-byte في leases تم تغييره إلى 4 bytes.
+### Notes
 
-- إذا قمنا بتنفيذ الإلغاء في أي وقت، يمكننا القيام بذلك باستخدام حقل انتهاء صلاحية بقيمة صفر،
-  أو صفر leases، أو كليهما. لا حاجة لمفتاح إلغاء منفصل.
+- 8-byte expiration in leases changed to 4 bytes.
 
-- مفاتيح التشفير مرتبة حسب تفضيل الخادم، الأكثر تفضيلاً أولاً.
-  السلوك الافتراضي للعميل هو اختيار المفتاح الأول الذي يحتوي على
-  نوع تشفير مدعوم. قد تستخدم العملاء خوارزميات اختيار أخرى
-  بناءً على دعم التشفير والأداء النسبي وعوامل أخرى.
+- If we ever implement revocation, we can do it with an expires field of zero,
+  or zero leases, or both. No need for a separate revocation key.
 
-### تنسيق
+- Encryption keys are in order of server preference, most-preferred first.
+  Default client behavior is to select the first key with
+  a supported encryption type. Clients may use other selection algorithms
+  based on encryption support, relative performance, and other factors.
 
-الأهداف:
 
-- إضافة التعمية (blinding)
-- السماح بأنواع متعددة من التوقيعات
-- عدم الحاجة إلى أي عمليات تشفير أساسية جديدة
-- تشفير اختياري لكل مستقبل، قابل للإلغاء
-- دعم تشفير Standard LS2 و Meta LS2 فقط
+### Encrypted LS2
 
-الـ LS2 المشفر لا يتم إرساله أبداً في رسالة garlic من نقطة إلى أخرى. استخدم الـ LS2 القياسي كما هو موضح أعلاه.
+Goals:
 
-التغييرات من LeaseSet المشفر الموجود:
+- Add blinding
+- Allow multiple sig types
+- Don't require any new crypto primitives
+- Optionally encrypt to each recipient, revokable
+- Support encryption of Standard LS2 and Meta LS2 only
 
-- تشفير كامل الرسالة للأمان
-- التشفير الآمن، وليس باستخدام AES فقط.
-- التشفير لكل مستقبِل
+Encrypted LS2 is never sent in an end-to-end garlic message.
+Use the standard LS2 as above.
 
-البحث باستخدام
 
+Changes from existing encrypted LeaseSet:
+
+- Encrypt the whole thing for security
+- Securely encrypt, not with AES only.
+- Encrypt to each recipient
+
+Lookup with
     Standard LS flag (1)
-احفظ مع
-
+Store with
     Encrypted LS2 type (5)
-احفظ في
-
+Store at
     Hash of blinded sig type and blinded public key
     Two byte sig type (big endian, e.g. 0x000b) || blinded public key
     This hash is then used to generate the daily "routing key", as in LS1
-انتهاء الصلاحية المعتاد
-
+Typical expiration
     10 minutes, as in a regular LS, or hours, as in a meta LS.
-نُشر بواسطة
-
+Published by
     Destination
 
 
-### المبرر
+### Definitions
 
-نحدد الوظائف التالية المقابلة للكتل البنائية التشفيرية المستخدمة لـ LS2 المشفرة:
+We define the following functions corresponding to the cryptographic building blocks used
+for encrypted LS2:
 
 CSRNG(n)
-
     n-byte output from a cryptographically-secure random number generator.
 
     In addition to the requirement of CSRNG being cryptographically-secure (and thus
@@ -399,7 +454,6 @@ CSRNG(n)
     any output that is to be exposed on the network. See [PRNG references](http://projectbullrun.org/dual-ec/ext-rand.html) and [Tor dev discussion](https://lists.torproject.org/pipermail/tor-dev/2015-November/009954.html).
 
 H(p, d)
-
     SHA-256 hash function that takes a personalization string p and data d, and
     produces an output of length 32 bytes.
 
@@ -408,7 +462,6 @@ H(p, d)
         H(p, d) := SHA-256(p || d)
 
 STREAM
-
     The ChaCha20 stream cipher as specified in [RFC 7539 Section 2.4](https://tools.ietf.org/html/rfc7539#section-2.4), with the initial counter
     set to 1. S_KEY_LEN = 32 and S_IV_LEN = 12.
 
@@ -423,7 +476,6 @@ STREAM
 
 
 SIG
-
     The RedDSA signature scheme (corresponding to SigType 11) with key blinding.
     It has the following functions:
 
@@ -454,7 +506,6 @@ SIG
             DERIVE_PUBLIC(BLIND_PRIVKEY(privkey, alpha))
 
 DH
-
     X25519 public key agreement system. Private keys of 32 bytes, public keys of 32
     bytes, produces outputs of 32 bytes. It has the following
     functions:
@@ -469,7 +520,6 @@ DH
         Generates a shared secret from the given private and public keys.
 
 HKDF(salt, ikm, info, n)
-
     A cryptographic key derivation function which takes some input key material ikm (which
     should have good entropy but is not required to be a uniformly random string), a salt
     of length 32 bytes, and a context-specific 'info' value, and produces an output
@@ -479,54 +529,48 @@ HKDF(salt, ikm, info, n)
     as specified in [RFC 2104](https://tools.ietf.org/html/rfc2104). This means that SALT_LEN is 32 bytes max.
 
 
-### المناقشة
+### Format
 
-يتكون تنسيق LS2 المشفر من ثلاث طبقات متداخلة:
+The encrypted LS2 format consists of three nested layers:
 
-- طبقة خارجية تحتوي على المعلومات النصية العادية اللازمة للتخزين والاسترجاع.
-- طبقة وسطى تتعامل مع مصادقة العميل.
-- طبقة داخلية تحتوي على بيانات LS2 الفعلية.
+- An outer layer containing the necessary plaintext information for storage and retrieval.
+- A middle layer that handles client authentication.
+- An inner layer that contains the actual LS2 data.
 
-التنسيق الإجمالي يبدو كما يلي::
+The overall format looks like::
 
     Layer 0 data + Enc(layer 1 data + Enc(layer 2 data)) + Signature
 
-ملاحظة أن LS2 المشفر مخفي. الوجهة ليست في الرأس. موقع تخزين DHT هو SHA-256(نوع التوقيع || المفتاح العام المخفي)، ويتم تدويره يومياً.
+Note that encrypted LS2 is blinded. The Destination is not in the header.
+DHT storage location is SHA-256(sig type || blinded public key), and rotated daily.
 
-لا يستخدم رأس LS2 القياسي المحدد أعلاه.
+Does NOT use the standard LS2 header specified above.
 
 #### Layer 0 (outer)
-
-النوع
-
+Type
     1 byte
 
     Not actually in header, but part of data covered by signature.
     Take from field in Database Store Message.
 
-نوع توقيع المفتاح العام المُعمى
-
+Blinded Public Key Sig Type
     2 bytes, big endian
     This will always be type 11, identifying a Red25519 blinded key.
 
-مفتاح عام مُعمّى
-
+Blinded Public Key
     Length as implied by sig type
 
-الطابع الزمني للنشر
-
+Published timestamp
     4 bytes, big endian
 
     Seconds since epoch, rolls over in 2106
 
-ينتهي في
-
+Expires
     2 bytes, big endian
 
     Offset from published timestamp in seconds, 18.2 hours max
 
-الأعلام
-
+Flags
     2 bytes
 
     Bit order: 15 14 ... 3 2 1 0
@@ -535,8 +579,7 @@ HKDF(salt, ikm, info, n)
 
     Other bits: set to 0 for compatibility with future uses
 
-بيانات المفاتيح المؤقتة
-
+Transient key data
     Present if flag indicates offline keys
 
     Expires timestamp
@@ -558,17 +601,14 @@ HKDF(salt, ikm, info, n)
         Verified with the blinded public key.
 
 lenOuterCiphertext
-
     2 bytes, big endian
 
 outerCiphertext
-
     lenOuterCiphertext bytes
 
     Encrypted layer 1 data. See below for key derivation and encryption algorithms.
 
-التوقيع
-
+Signature
     Length as implied by sig type of the signing key used
 
     The signature is of everything above.
@@ -578,9 +618,7 @@ outerCiphertext
 
 
 #### Layer 1 (middle)
-
-الأعلام
-
+Flags
     1 byte
     
     Bit order: 76543210
@@ -593,8 +631,7 @@ outerCiphertext
 
     Bits 7-4: Unused, set to 0 for future compatibility
 
-بيانات مصادقة عميل DH
-
+DH client auth data
     Present if flag bit 0 is set to 1 and flag bits 3-1 are set to 000.
 
     ephemeralPublicKey
@@ -615,8 +652,7 @@ outerCiphertext
         clientCookie_i
             32 bytes
 
-بيانات مصادقة عميل PSK
-
+PSK client auth data
     Present if flag bit 0 is set to 1 and flag bits 3-1 are set to 001.
 
     authSalt
@@ -639,109 +675,112 @@ outerCiphertext
 
 
 innerCiphertext
-
     Length implied by lenOuterCiphertext (whatever data remains)
 
     Encrypted layer 2 data. See below for key derivation and encryption algorithms.
 
 
 #### Layer 2 (inner)
-
-النوع
-
+Type
     1 byte
 
     Either 3 (LS2) or 7 (Meta LS2)
 
-البيانات
-
+Data
     LeaseSet2 data for the given type.
 
     Includes the header and signature.
 
 
-### مشاكل التشفير الجديدة
+### Blinding Key Derivation
 
-نستخدم المخطط التالي لإخفاء المفاتيح، بناءً على Ed25519 و[ZCash RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf). توقيعات Re25519 تتم عبر منحنى Ed25519، باستخدام SHA-512 للهاش.
+We use the following scheme for key blinding,
+based on Ed25519 and [ZCash RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf).
+The Re25519 signatures are over the Ed25519 curve, using SHA-512 for the hash.
 
-نحن لا نستخدم [Tor's rend-spec-v3.txt appendix A.2](https://spec.torproject.org/rend-spec-v3)، والذي له أهداف تصميم مماثلة، لأن المفاتيح العامة المعماة الخاصة به قد تكون خارج المجموعة الفرعية ذات الترتيب الأولي، مما يحمل آثارًا أمنية غير معروفة.
+We do not use [Tor's rend-spec-v3.txt appendix A.2](https://spec.torproject.org/rend-spec-v3),
+which has similar design goals, because its blinded public keys
+may be off the prime-order subgroup, with unknown security implications.
+
 
 #### Goals
 
-- مفتاح التوقيع العام في الوجهة غير المُعمّاة يجب أن يكون
-  Ed25519 (نوع التوقيع 7) أو Red25519 (نوع التوقيع 11)؛
-  لا يتم دعم أنواع توقيعات أخرى
-- إذا كان مفتاح التوقيع العام غير متصل، فإن مفتاح التوقيع العام المؤقت يجب أن يكون Ed25519 أيضاً
-- التعمية حاسوبياً بسيطة
-- استخدام العمليات التشفيرية الموجودة
-- المفاتيح العامة المُعمّاة لا يمكن إلغاء تعميتها
-- المفاتيح العامة المُعمّاة يجب أن تكون على منحنى Ed25519 والمجموعة الفرعية ذات الترتيب الأولي
-- يجب معرفة مفتاح التوقيع العام للوجهة
-  (الوجهة الكاملة غير مطلوبة) لاشتقاق المفتاح العام المُعمّى
-- اختيارياً توفير سر إضافي مطلوب لاشتقاق المفتاح العام المُعمّى
+- Signing public key in unblinded destination must be
+  Ed25519 (sig type 7) or Red25519 (sig type 11);
+  no other sig types are supported
+- If the signing public key is offline, the transient signing public key must also be Ed25519
+- Blinding is computationally simple
+- Use existing cryptographic primitives
+- Blinded public keys cannot be unblinded
+- Blinded public keys must be on the Ed25519 curve and prime-order subgroup
+- Must know the destination's signing public key
+  (full destination not required) to derive the blinded public key
+- Optionally provide for an additional secret required to derive the blinded public key
+
 
 #### Security
 
-أمان مخطط التعمية (blinding scheme) يتطلب أن يكون توزيع alpha نفس توزيع المفاتيح الخاصة غير المعماة. ومع ذلك، عندما نقوم بتعمية مفتاح Ed25519 خاص (sig type 7) إلى مفتاح Red25519 خاص (sig type 11)، يكون التوزيع مختلفاً. لتلبية متطلبات [zcash section 4.1.6.1](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)، يجب استخدام Red25519 (sig type 11) للمفاتيح غير المعماة أيضاً، بحيث "لا يكشف الجمع بين مفتاح عام معاد العشوائية والتوقيع(ات) تحت ذلك المفتاح عن المفتاح الذي تمت إعادة عشوائيته منه." نحن نسمح بالنوع 7 للوجهات الموجودة، لكننا نوصي بالنوع 11 للوجهات الجديدة التي ستكون مشفرة.
+The security of a blinding scheme requires that the
+distribution of alpha is the same as the unblinded private keys.
+However, when we blind an Ed25519 private key (sig type 7)
+to a Red25519 private key (sig type 11), the distribution is different.
+To meet the requirements of [zcash section 4.1.6.1](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf),
+Red25519 (sig type 11) should be used for the unblinded keys as well, so that
+"the combination of a re-randomized public key and signature(s)
+under that key do not reveal the key from which it was re-randomized."
+We allow type 7 for existing destinations, but recommend
+type 11 for new destinations that will be encrypted.
+
+
 
 #### Definitions
 
-ب
-
+B
     The Ed25519 base point (generator) 2^255 - 19 as in [Ed25519](http://cr.yp.to/papers.html#ed25519)
 
 L
-
     The Ed25519 order 2^252 + 27742317777372353535851937790883648493
     as in [Ed25519](http://cr.yp.to/papers.html#ed25519)
 
 DERIVE_PUBLIC(a)
-
     Convert a private key to public, as in Ed25519 (mulitply by G)
 
 alpha
-
     A 32-byte random number known to those who know the destination.
 
 GENERATE_ALPHA(destination, date, secret)
-
     Generate alpha for the current date, for those who know the destination and the secret.
     The result must be identically distributed as Ed25519 private keys.
 
 a
-
     The unblinded 32-byte EdDSA or RedDSA signing private key used to sign the destination
 
-أ
-
+A
     The unblinded 32-byte EdDSA or RedDSA signing public key in the destination,
     = DERIVE_PUBLIC(a), as in Ed25519
 
-أ'
-
+a'
     The blinded 32-byte EdDSA signing private key used to sign the encrypted leaseset
     This is a valid EdDSA private key.
 
 A'
-
     The blinded 32-byte EdDSA signing public key in the Destination,
     may be generated with DERIVE_PUBLIC(a'), or from A and alpha.
     This is a valid EdDSA public key, on the curve and on the prime-order subgroup.
 
 LEOS2IP(x)
-
     Flip the order of the input bytes to little-endian
 
 H*(x)
-
     32 bytes = (LEOS2IP(SHA512(x))) mod B, same as in Ed25519 hash-and-reduce
 
 
 #### Blinding Calculations
 
-يجب إنشاء secret alpha وblinded keys جديدة كل يوم (UTC). يتم حساب الـ secret alpha والـ blinded keys كما يلي.
+A new secret alpha and blinded keys must be generated each day (UTC).
+The secret alpha and the blinded keys are calculated as follows.
 
-GENERATE_ALPHA(destination, date, secret)، لجميع الأطراف:
+GENERATE_ALPHA(destination, date, secret), for all parties:
 
 ```text
 // GENERATE_ALPHA(destination, date, secret)
@@ -757,7 +796,8 @@ GENERATE_ALPHA(destination, date, secret)، لجميع الأطراف:
   // treat seed as a 64 byte little-endian value
   alpha = seed mod L
 ```
-BLIND_PRIVKEY()، لمالك النشر الخاص بـ leaseset:
+
+BLIND_PRIVKEY(), for the owner publishing the leaseset:
 
 ```text
 // BLIND_PRIVKEY()
@@ -772,7 +812,8 @@ BLIND_PRIVKEY()، لمالك النشر الخاص بـ leaseset:
   blinded signing private key = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   blinded signing public key = A' = DERIVE_PUBLIC(a')
 ```
-BLIND_PUBKEY()، للعملاء الذين يسترجعون الـ leaseset:
+
+BLIND_PUBKEY(), for the clients retrieving the leaseset:
 
 ```text
 // BLIND_PUBKEY()
@@ -782,45 +823,68 @@ BLIND_PUBKEY()، للعملاء الذين يسترجعون الـ leaseset:
   // Addition using group elements (points on the curve)
   blinded public key = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
 ```
-كلا الطريقتين لحساب A' تعطيان نفس النتيجة، كما هو مطلوب.
+
+Both methods of calculating A' yield the same result, as required.
+
+
 
 #### Signing
 
-يتم توقيع الـ leaseset غير المُعمّى بواسطة المفتاح الخاص للتوقيع Ed25519 أو Red25519 غير المُعمّى ويتم التحقق منه باستخدام المفتاح العام للتوقيع Ed25519 أو Red25519 غير المُعمّى (أنواع التوقيع 7 أو 11) كالمعتاد.
+The unblinded leaseset is signed by the unblinded Ed25519 or Red25519 signing private key
+and verified with the unblinded Ed25519 or Red25519 signing public key (sig types 7 or 11) as usual.
 
-إذا كان المفتاح العام للتوقيع غير متصل، يتم توقيع الـ leaseset غير المخفي بواسطة المفتاح الخاص المؤقت للتوقيع Ed25519 أو Red25519 غير المخفي والتحقق منه باستخدام المفتاح العام المؤقت للتوقيع Ed25519 أو Red25519 غير المخفي (أنواع التوقيع 7 أو 11) كالمعتاد. انظر أدناه للحصول على ملاحظات إضافية حول المفاتيح غير المتصلة للـ leaseset المشفرة.
+If the signing public key is offline,
+the unblinded leaseset is signed by the unblinded transient Ed25519 or Red25519 signing private key
+and verified with the unblinded Ed25519 or Red25519 transient signing public key (sig types 7 or 11) as usual.
+See below for additional notes on offline keys for encrytped leasesets.
 
-لتوقيع مجموعة الإيجار المشفرة (encrypted leaseset)، نستخدم Red25519، المبني على [RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf) للتوقيع والتحقق باستخدام مفاتيح معماة (blinded keys). توقيعات Red25519 تتم عبر منحنى Ed25519، باستخدام SHA-512 للتشفير التجميعي (hash).
+For signing of the encrypted leaseset, we use Red25519, based on [RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)
+to sign and verify with blinded keys.
+The Red25519 signatures are over the Ed25519 curve, using SHA-512 for the hash.
 
-Red25519 مطابق تماماً لمعيار Ed25519 باستثناء ما هو محدد أدناه.
+Red25519 is identical to standard Ed25519 except as specified below.
+
 
 #### Sign/Verify Calculations
 
-يستخدم الجزء الخارجي من leaseset المشفر مفاتيح وتوقيعات Red25519.
+The outer portion of the encrypted leaseset uses Red25519 keys and signatures.
 
-Red25519 مطابق تقريباً لـ Ed25519. هناك اختلافان:
+Red25519 is almost identical to Ed25519. There are two differences:
 
-مفاتيح Red25519 الخاصة يتم توليدها من أرقام عشوائية ثم يجب تقليلها mod L، حيث L معرّف أعلاه. مفاتيح Ed25519 الخاصة يتم توليدها من أرقام عشوائية ثم يتم "تثبيتها" باستخدام القناع البتي للبايتات 0 و 31. هذا لا يتم فعله لـ Red25519. الدالتان `GENERATE_ALPHA()` و `BLIND_PRIVKEY()` المعرّفتان أعلاه تولّدان مفاتيح Red25519 خاصة صحيحة باستخدام mod L.
+Red25519 private keys are generated from random numbers and then must be reduced mod L, where L is defined above.
+Ed25519 private keys are generated from random numbers and then "clamped" using
+bitwise masking to bytes 0 and 31. This is not done for Red25519.
+The functions GENERATE_ALPHA() and BLIND_PRIVKEY() defined above generate proper
+Red25519 private keys using mod L.
 
-في Red25519، حساب r للتوقيع يستخدم بيانات عشوائية إضافية، ويستخدم قيمة المفتاح العام بدلاً من hash المفتاح الخاص. بسبب البيانات العشوائية، كل توقيع Red25519 مختلف، حتى عند توقيع نفس البيانات بنفس المفتاح.
+In Red25519, the calculation of r for signing uses additional random data,
+and uses the public key value rather than the hash of the private key.
+Because of the random data, every Red25519 signature is different, even
+when signing the same data with the same key.
 
-التوقيع:
+Signing:
 
 ```text
 T = 80 random bytes
   r = H*(T || publickey || message)
   // rest is the same as in Ed25519
 ```
-التحقق:
+
+Verification:
 
 ```text
 // same as in Ed25519
 ```
-### ملاحظات
+
+
+
+### Encryption and processing
 
 #### Derivation of subcredentials
-
-كجزء من عملية الإخفاء، نحتاج للتأكد من أن LS2 المشفر يمكن فك تشفيره فقط من قبل شخص يعرف مفتاح التوقيع العام المقابل لـ Destination. لا يتطلب الأمر Destination كاملاً. لتحقيق هذا، نشتق credential من مفتاح التوقيع العام:
+As part of the blinding process, we need to ensure that an encrypted LS2 can only be
+decrypted by someone who knows the corresponding Destination's signing public key.
+The full Destination is not required.
+To achieve this, we derive a credential from the signing public key:
 
 ```text
 A = destination's signing public key
@@ -829,47 +893,54 @@ A = destination's signing public key
   keydata = A || stA || stA'
   credential = H("credential", keydata)
 ```
-سلسلة التخصيص تضمن أن الاعتماد لا يتصادم مع أي hash مستخدم كمفتاح بحث DHT، مثل hash الوجهة العادي.
 
-بالنسبة لمفتاح أعمى معين، يمكننا حينها اشتقاق subcredential:
+The personalization string ensures that the credential does not collide with any hash used
+as a DHT lookup key, such as the plain Destination hash.
+
+For a given blinded key, we can then derive a subcredential:
 
 ```text
 subcredential = H("subcredential", credential || blindedPublicKey)
 ```
-يتم تضمين الـ subcredential في عمليات اشتقاق المفاتيح أدناه، مما يربط تلك المفاتيح بمعرفة مفتاح التوقيع العام الخاص بالـ Destination.
+
+The subcredential is included in the key derivation processes below, which binds those
+keys to knowledge of the Destination's signing public key.
 
 #### Layer 1 encryption
-
-أولاً، يتم إعداد المدخل لعملية اشتقاق المفتاح:
+First, the input to the key derivation process is prepared:
 
 ```text
 outerInput = subcredential || publishedTimestamp
 ```
-بعد ذلك، يتم إنشاء salt عشوائي:
+
+Next, a random salt is generated:
 
 ```text
 outerSalt = CSRNG(32)
 ```
-ثم يتم اشتقاق المفتاح المستخدم لتشفير الطبقة 1:
+
+Then the key used to encrypt layer 1 is derived:
 
 ```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
 ```
-أخيراً، يتم تشفير وتسلسل النص الخام للطبقة 1:
+
+Finally, the layer 1 plaintext is encrypted and serialized:
 
 ```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
 ```
-#### Layer 1 decryption
 
-يتم تحليل الملح (salt) من النص المشفر للطبقة الأولى:
+#### Layer 1 decryption
+The salt is parsed from the layer 1 ciphertext:
 
 ```text
 outerSalt = outerCiphertext[0:31]
 ```
-ثم يتم اشتقاق المفتاح المستخدم لتشفير الطبقة 1:
+
+Then the key used to encrypt layer 1 is derived:
 
 ```text
 outerInput = subcredential || publishedTimestamp
@@ -877,16 +948,18 @@ outerInput = subcredential || publishedTimestamp
   outerKey = keys[0:31]
   outerIV = keys[32:43]
 ```
-أخيراً، يتم فك تشفير النص المشفر للطبقة 1:
+
+Finally, the layer 1 ciphertext is decrypted:
 
 ```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
 ```
+
 #### Layer 2 encryption
+When client authorization is enabled, ``authCookie`` is calculated as described below.
+When client authorization is disabled, ``authCookie`` is the zero-length byte array.
 
-عندما يتم تفعيل تفويض العميل، يتم حساب ``authCookie`` كما هو موضح أدناه. عندما يتم تعطيل تفويض العميل، فإن ``authCookie`` هو مصفوفة البايت بطول صفر.
-
-يتم التشفير بطريقة مشابهة للطبقة 1:
+Encryption proceeds in a similar fashion to layer 1:
 
 ```text
 innerInput = authCookie || subcredential || publishedTimestamp
@@ -896,11 +969,12 @@ innerInput = authCookie || subcredential || publishedTimestamp
   innerIV = keys[32:43]
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
 ```
+
 #### Layer 2 decryption
+When client authorization is enabled, ``authCookie`` is calculated as described below.
+When client authorization is disabled, ``authCookie`` is the zero-length byte array.
 
-عندما يتم تمكين تفويض العميل، يتم حساب ``authCookie`` كما هو موضح أدناه. عندما يتم تعطيل تفويض العميل، فإن ``authCookie`` هو مصفوفة البايتات ذات الطول الصفري.
-
-فك التشفير يتم بطريقة مشابهة للطبقة 1:
+Decryption proceeds in a similar fashion to layer 1:
 
 ```text
 innerInput = authCookie || subcredential || publishedTimestamp
@@ -910,27 +984,32 @@ innerInput = authCookie || subcredential || publishedTimestamp
   innerIV = keys[32:43]
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
 ```
-### LS2 مشفرة
 
-عندما يتم تمكين تخويل العميل لوجهة معينة، يحتفظ الخادم بقائمة من العملاء المخولين لفك تشفير بيانات LS2 المشفرة. تعتمد البيانات المخزنة لكل عميل على آلية التخويل، وتتضمن شكلاً من أشكال المواد المفتاحية التي ينشئها كل عميل ويرسلها إلى الخادم عبر آلية آمنة خارج النطاق.
 
-هناك بديلان لتنفيذ التصريح لكل عميل:
+### Per-client authorization
+
+When client authorization is enabled for a Destination, the server maintains a list of
+clients they are authorizing to decrypt the encrypted LS2 data. The data stored per-client
+depends on the authorization mechanism, and includes some form of key material that each
+client generates and sends to the server via a secure out-of-band mechanism.
+
+There are two alternatives for implementing per-client authorization:
 
 #### DH client authorization
+Each client generates a DH keypair ``[csk_i, cpk_i]``, and sends the public key ``cpk_i``
+to the server.
 
-كل عميل ينشئ زوج مفاتيح DH ``[csk_i, cpk_i]``، ويرسل المفتاح العام ``cpk_i`` إلى الخادم.
-
-معالجة الخادم
+Server processing
 ^^^^^^^^^^^^^^^^^
-
-ينشئ الخادم ``authCookie`` جديد وزوج مفاتيح DH مؤقت:
+The server generates a new ``authCookie`` and an ephemeral DH keypair:
 
 ```text
 authCookie = CSRNG(32)
   esk = GENERATE_PRIVATE()
   epk = DERIVE_PUBLIC(esk)
 ```
-ثم لكل عميل مُخوَّل، يقوم الخادم بتشفير ``authCookie`` إلى مفتاحه العام:
+
+Then for each authorized client, the server encrypts ``authCookie`` to its public key:
 
 ```text
 sharedSecret = DH(esk, cpk_i)
@@ -941,12 +1020,14 @@ sharedSecret = DH(esk, cpk_i)
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
 ```
-يضع الخادم كل مجموعة ``[clientID_i, clientCookie_i]`` في الطبقة 1 من ال LS2 المشفر، بالإضافة إلى ``epk``.
 
-معالجة العميل
+The server places each ``[clientID_i, clientCookie_i]`` tuple into layer 1 of the
+encrypted LS2, along with ``epk``.
+
+Client processing
 ^^^^^^^^^^^^^^^^^
-
-يستخدم العميل مفتاحه الخاص لاشتقاق معرف العميل المتوقع ``clientID_i`` ومفتاح التشفير ``clientKey_i`` ومتجه التهيئة للتشفير ``clientIV_i``:
+The client uses its private key to derive its expected client identifier ``clientID_i``,
+encryption key ``clientKey_i``, and encryption IV ``clientIV_i``:
 
 ```text
 sharedSecret = DH(csk_i, epk)
@@ -956,25 +1037,30 @@ sharedSecret = DH(csk_i, epk)
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
 ```
-ثم يبحث العميل في بيانات التفويض للطبقة 1 عن إدخال يحتوي على ``clientID_i``. إذا وُجد إدخال مطابق، يقوم العميل بفك تشفيره للحصول على ``authCookie``:
+
+Then the client searches the layer 1 authorization data for an entry that contains
+``clientID_i``. If a matching entry exists, the client decrypts it to obtain
+``authCookie``:
 
 ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 ```
+
 #### Pre-shared key client authorization
+Each client generates a secret 32-byte key ``psk_i``, and sends it to the server.
+Alternatively, the server can generate the secret key, and send it to one or more clients.
 
-كل عميل ينشئ مفتاحًا سريًا بحجم 32 بايت ``psk_i``، ويرسله إلى الخادم. بدلاً من ذلك، يمكن للخادم أن ينشئ المفتاح السري، ويرسله إلى عميل واحد أو أكثر.
 
-معالجة الخادم
+Server processing
 ^^^^^^^^^^^^^^^^^
-
-يولد الخادم ``authCookie`` وملح جديدين:
+The server generates a new ``authCookie`` and salt:
 
 ```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
 ```
-ثم لكل عميل مُصرح له، يقوم الخادم بتشفير ``authCookie`` باستخدام مفتاحه المُشارك مسبقاً:
+
+Then for each authorized client, the server encrypts ``authCookie`` to its pre-shared key:
 
 ```text
 authInput = psk_i || subcredential || publishedTimestamp
@@ -984,12 +1070,14 @@ authInput = psk_i || subcredential || publishedTimestamp
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
 ```
-يضع الخادم كل tuple من ``[clientID_i, clientCookie_i]`` في الطبقة 1 من LS2 المشفر، مع ``authSalt``.
 
-معالجة العميل
+The server places each ``[clientID_i, clientCookie_i]`` tuple into layer 1 of the
+encrypted LS2, along with ``authSalt``.
+
+Client processing
 ^^^^^^^^^^^^^^^^^
-
-يستخدم العميل مفتاحه المشترك مسبقاً لاشتقاق معرف العميل المتوقع ``clientID_i`` ومفتاح التشفير ``clientKey_i`` ومتجه التهيئة للتشفير ``clientIV_i``:
+The client uses its pre-shared key to derive its expected client identifier ``clientID_i``,
+encryption key ``clientKey_i``, and encryption IV ``clientIV_i``:
 
 ```text
 authInput = psk_i || subcredential || publishedTimestamp
@@ -998,107 +1086,169 @@ authInput = psk_i || subcredential || publishedTimestamp
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
 ```
-ثم يبحث العميل في بيانات التفويض للطبقة الأولى عن إدخال يحتوي على ``clientID_i``. إذا كان هناك إدخال مطابق، يقوم العميل بفك تشفيره للحصول على ``authCookie``:
+
+Then the client searches the layer 1 authorization data for an entry that contains
+``clientID_i``. If a matching entry exists, the client decrypts it to obtain
+``authCookie``:
 
 ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 ```
+
 #### Security considerations
+Both of the client authorization mechanisms above provide privacy for client membership.
+An entity that only knows the Destination can see how many clients are subscribed at any
+time, but cannot track which clients are being added or revoked.
 
-كلا آليتي تفويض العميل المذكورتين أعلاه توفران الخصوصية لعضوية العميل. الكيان الذي يعرف فقط الـ Destination يمكنه رؤية عدد العملاء المشتركين في أي وقت، لكن لا يمكنه تتبع العملاء الذين يتم إضافتهم أو إلغاؤهم.
+Servers SHOULD randomize the order of clients each time they generate an encrypted LS2, to
+prevent clients learning their position in the list and inferring when other clients have
+been added or revoked.
 
-يجب على الخوادم أن تقوم بعشوائية ترتيب العملاء في كل مرة تقوم فيها بإنشاء LS2 مشفر، لمنع العملاء من معرفة موقعهم في القائمة واستنتاج متى تمت إضافة أو إلغاء عملاء آخرين.
+A server MAY choose to hide the number of clients that are subscribed by inserting random
+entries into the list of authorization data.
 
-قد يختار الخادم إخفاء عدد العملاء المشتركين من خلال إدراج إدخالات عشوائية في قائمة بيانات التفويض.
+Advantages of DH client authorization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Security of the scheme is not solely dependent on the out-of-band exchange of client key
+  material. The client's private key never needs to leave their device, and so an
+  adversary that is able to intercept the out-of-band exchange, but cannot break the DH
+  algorithm, cannot decrypt the encrypted LS2, or determine how long the client is given
+  access.
 
-مزايا تفويض العميل DH
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Downsides of DH client authorization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Requires N + 1 DH operations on the server side for N clients.
+- Requires one DH operation on the client side.
+- Requires the client to generate the secret key.
 
-- أمان المخطط لا يعتمد بشكل كامل على التبادل خارج النطاق لمواد مفتاح العميل. المفتاح الخاص للعميل لا يحتاج أبداً لمغادرة جهازه، وبالتالي فإن المهاجم الذي يستطيع اعتراض التبادل خارج النطاق، ولكن لا يستطيع كسر خوارزمية DH، لا يمكنه فك تشفير LS2 المشفر، أو تحديد المدة التي يُمنح فيها العميل الوصول.
-
-عيوب تفويض العميل DH
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- يتطلب N + 1 من عمليات DH على جانب الخادم لـ N من العملاء.
-- يتطلب عملية DH واحدة على جانب العميل.
-- يتطلب من العميل توليد المفتاح السري.
-
-مزايا تخويل العميل PSK
+Advantages of PSK client authorization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Requires no DH operations.
+- Allows the server to generate the secret key.
+- Allows the server to share the same key with multiple clients, if desired.
 
-- لا يتطلب عمليات DH.
-- يسمح للخادم بتوليد المفتاح السري.
-- يسمح للخادم بمشاركة نفس المفتاح مع عدة عملاء، إذا رغب في ذلك.
+Downsides of PSK client authorization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Security of the scheme is critically dependent on the out-of-band exchange of client key
+  material. An adversary that intercepts the exchange for a particular client can decrypt
+  any subsequent encrypted LS2 for which that client is authorized, as well as determine
+  when the client's access is revoked.
 
-عيوب تخويل العميل PSK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- أمان المخطط يعتمد بشكل حرج على التبادل خارج النطاق لمواد مفتاح العميل. خصم يعترض التبادل لعميل معين يمكنه فك تشفير أي LS2 مشفر لاحق مخول لذلك العميل، بالإضافة إلى تحديد متى يتم إلغاء وصول العميل.
+### Encrypted LS with Base 32 Addresses
 
-### تعريفات
+See proposal 149.
 
-راجع الاقتراح 149.
+You can't use an encrypted LS2 for bittorrent, because of compact announce replies which are 32 bytes.
+The 32 bytes contain only the hash. There is no room for an indication that the
+leaseset is encrypted, or the signature types.
 
-لا يمكنك استخدام LS2 مشفر للـ bittorrent، بسبب الردود المضغوطة للإعلان التي تبلغ 32 بايت. الـ 32 بايت تحتوي فقط على الـ hash. لا توجد مساحة لإشارة تدل على أن الـ leaseset مشفر، أو أنواع التوقيع.
 
-### تنسيق
 
-بالنسبة لـ leaseSets المشفرة مع المفاتيح غير المتصلة، يجب أيضاً إنشاء المفاتيح الخاصة المُعماة (blinded private keys) في وضع عدم الاتصال، مفتاح واحد لكل يوم.
+### Encrypted LS with Offline Keys
 
-نظرًا لأن كتلة التوقيع الاختيارية غير المتصلة بالإنترنت موجودة في الجزء النصي الواضح من leaseset المشفر، يمكن لأي شخص يقوم بكشط floodfills استخدام هذا لتتبع leaseset (لكن ليس فك تشفيره) على مدار عدة أيام. لمنع هذا، يجب على مالك المفاتيح أيضًا إنشاء مفاتيح عابرة جديدة لكل يوم. يمكن إنشاء كل من المفاتيح العابرة والمفاتيح المعماة مسبقًا، وتسليمها إلى router في دفعة واحدة.
+For encrypted leasesets with offline keys, the blinded private keys must also be generated offline,
+one for each day.
 
-لا يوجد تنسيق ملف محدد في هذا الاقتراح لتجميع مفاتيح متعددة مؤقتة ومُعمّاة وتوفيرها للعميل أو router. لا يوجد تحسين محدد لبروتوكول I2CP في هذا الاقتراح لدعم leasesets المشفرة مع المفاتيح غير المتصلة.
+As the optional offline signature block is in the cleartext part of the encryted leaseset,
+anybody scraping the floodfills could use this to track the leaseset (but not decrypt it)
+over several days.
+To prevent this, the owner of the keys should generate new transient keys
+for each day as well.
+Both the transient and blinded keys can be generated in advance, and delivered to the router
+in a batch.
+
+There is no file format defined in this proposal for packaging multiple transient and
+blinded keys and providing them to the client or router.
+There is no I2CP protocol enhancement defined in this proposal to support
+encrypted leasesets with offline keys.
+
+
 
 ### Notes
 
-- خدمة تستخدم leasesets مشفرة ستنشر النسخة المشفرة إلى floodfills. ومع ذلك، من أجل الكفاءة، ستقوم بإرسال leasesets غير مشفرة إلى العملاء في رسالة garlic المُغلفة، بمجرد التوثق (عبر القائمة البيضاء، على سبيل المثال).
+- A service using encrypted leasesets would publish the encrypted version to the
+  floodfills. However, for efficiency, it would send unencrypted leasesets to
+  clients in the wrapped garlic message, once authenticated (via whitelist, for
+  example).
 
-- قد تقوم عقد Floodfill بتحديد الحد الأقصى للحجم إلى قيمة معقولة لمنع إساءة الاستخدام.
+- Floodfills may limit the max size to a reasonable value to prevent abuse.
 
-- بعد فك التشفير، يجب إجراء عدة فحوصات، بما في ذلك التأكد من أن
-  الطابع الزمني الداخلي وتاريخ انتهاء الصلاحية يتطابقان مع تلك الموجودة في المستوى الأعلى.
+- After decryption, several checks should be made, including that
+  the inner timestamp and expiration match those at the top level.
 
-- تم اختيار ChaCha20 بدلاً من AES. بينما تكون السرعات متشابهة إذا كان دعم الأجهزة لـ AES متاحاً، فإن ChaCha20 أسرع بـ 2.5-3 مرات عندما لا يكون دعم الأجهزة لـ AES متاحاً، كما هو الحال في أجهزة ARM منخفضة الأداء.
+- ChaCha20 was selected over AES. While the speeds are similar if AES
+  hardware support is available, ChaCha20 is 2.5-3x faster when
+  AES hardware support is not available, such as on lower-end ARM devices.
 
-- نحن لا نهتم بالسرعة بما يكفي لاستخدام keyed BLAKE2b. لديه حجم إخراج كبير بما يكفي لاستيعاب أكبر n نحتاجه (أو يمكننا استدعاؤه مرة واحدة لكل مفتاح مرغوب مع معامل عداد). BLAKE2b أسرع بكثير من SHA-256، و keyed-BLAKE2b سيقلل من العدد الإجمالي لاستدعاءات دالة التشفير.
-  ومع ذلك، انظر الاقتراح 148، حيث يُقترح أن ننتقل إلى BLAKE2b لأسباب أخرى.
-  انظر Secure key derivation performance.
+- We do not care enough about speed to use keyed BLAKE2b. It has an output
+  size large enough to accommodate the largest n we require (or we can call it once per
+  desired key with a counter argument). BLAKE2b is much faster than SHA-256, and
+  keyed-BLAKE2b would reduce the total number of hash function calls.
+  However, see proposal 148, where it is proposed that we switch to BLAKE2b for other reasons.
+  See [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
+
 
 ### Meta LS2
 
-يُستخدم هذا لاستبدال multihoming. مثل أي leaseset، يتم توقيع هذا من قبل المُنشئ. هذه قائمة مُصادق عليها من hashes الوجهة.
+This is used to replace multihoming. Like any leaseset, this is signed by the
+creator. This is an authenticated list of destination hashes.
 
-الـ Meta LS2 هو قمة، وربما العقد الوسطية، لهيكل شجري. يحتوي على عدد من الإدخالات، كل منها يشير إلى LS أو LS2 أو Meta LS2 آخر لدعم التعدد الضخم للشبكات المنزلية. قد يحتوي الـ Meta LS2 على مزيج من إدخالات LS وLS2 وMeta LS2. أوراق الشجرة هي دائماً LS أو LS2. الشجرة عبارة عن DAG؛ الحلقات محظورة؛ يجب على العملاء الذين يقومون بعمليات البحث اكتشاف ورفض اتباع الحلقات.
+The Meta LS2 is the top of, and possibly intermediate nodes of,
+a tree structure.
+It contains a number of entries, each pointing to a LS, LS2, or another Meta LS2
+to support massive multihoming.
+A Meta LS2 may contain a mix of LS, LS2, and Meta LS2 entries.
+The leaves of the tree are always a LS or LS2.
+The tree is a DAG; loops are prohibited; clients doing lookups must detect and
+refuse to follow loops.
 
-قد يكون لـ Meta LS2 انتهاء صلاحية أطول بكثير من LS أو LS2 العادي. قد يكون للمستوى العلوي انتهاء صلاحية بعد عدة ساعات من تاريخ النشر. سيتم فرض الحد الأقصى لوقت انتهاء الصلاحية بواسطة floodfills والعملاء، وهو قيد التحديد.
+A Meta LS2 may have a much longer expiration than a standard LS or LS2.
+The top level may have an expiration several hours after the publication date.
+Maximum expiration time will be enforced by floodfills and clients, and is TBD.
 
-حالة الاستخدام لـ Meta LS2 هي التعدد الضخم للاتصال المنزلي (massive multihoming)، ولكن بدون حماية إضافية لربط أجهزة router بـ leasesets (في وقت إعادة تشغيل router) أكثر مما هو متوفر حالياً مع LS أو LS2. هذا مكافئ لحالة استخدام "facebook"، والتي على الأرجح لا تحتاج لحماية الربط. حالة الاستخدام هذه تحتاج على الأرجح لمفاتيح غير متصلة (offline keys)، والتي يتم توفيرها في الرأسية القياسية (standard header) في كل عقدة من عقد الشجرة.
+The use case for Meta LS2 is massive multihoming, but with no more
+protection for correlation of routers to leasesets (at router restart time) than
+is provided now with LS or LS2.
+This is equivalent to the "facebook" use case, which probably doesn't need
+correlation protection. This use case probably needs offline keys,
+which are provided in the standard header at each node of the tree.
 
-البروتوكول الخلفي للتنسيق بين routers الأوراق، والموقعين الوسطيين وموقعي Meta LS الرئيسيين غير محدد هنا. المتطلبات بسيطة للغاية - فقط التحقق من أن النظير متصل، ونشر LS جديد كل بضع ساعات. التعقيد الوحيد هو في اختيار ناشرين جدد لـ Meta LSes على المستوى الأعلى أو المستوى الوسطي عند الفشل.
+The back-end protocol for coordination between the leaf routers, intermediate and master Meta LS signers
+is not specified here. The requirements are extremely simple - just verify that the peer is up,
+and publish a new LS every few hours. The only complexity is for picking new
+publishers for the top-level or intermediate-level Meta LSes on failure.
 
-مجموعات الإيجار المختلطة حيث يتم دمج الإيجارات من عدة routers وتوقيعها ونشرها في leaseset واحد موثقة في الاقتراح 140، "multihoming غير مرئي". هذا الاقتراح غير قابل للتطبيق كما هو مكتوب، لأن اتصالات streaming لن تكون "ثابتة" على router واحد، انظر `http://zzz.i2p/topics/2335` .
+Mix-and-match leasesets where leases from multiple routers are combined, signed, and published
+in a single leaseset is documented in proposal 140, "invisible multihoming".
+This proposal is untenable as written, because streaming connections would not be
+"sticky" to a single router, see http://zzz.i2p/topics/2335 .
 
-البروتوكول الخلفي، والتفاعل مع العناصر الداخلية للـ router والعميل، سيكون معقداً جداً للـ invisible multihoming.
+The back-end protocol, and interaction with router and client internals, would be
+quite complex for invisible multihoming.
 
-لتجنب إرهاق floodfill للمستوى العلوي Meta LS، يجب أن تكون مدة انتهاء الصلاحية عدة ساعات على الأقل. يجب على العملاء تخزين Meta LS للمستوى العلوي مؤقتاً، والاحتفاظ به عبر عمليات إعادة التشغيل إذا لم تنته صلاحيته.
+To avoid overloading the floodfill for the top-level Meta LS, the expiration should
+be several hours at least. Clients must cache the top-level Meta LS, and persist
+it across restarts if unexpired.
 
-نحتاج إلى تعريف خوارزمية للعملاء لاجتياز الشجرة، بما في ذلك البدائل الاحتياطية، بحيث يكون الاستخدام موزعًا. دالة تعتمد على مسافة التجمع، والتكلفة، والعشوائية. إذا كان لدى عقدة كل من LS أو LS2 و Meta LS، فنحتاج إلى معرفة متى يُسمح باستخدام تلك الـ leasesets، ومتى نواصل اجتياز الشجرة.
+We need to define some algorithm for clients to traverse the tree, including fallbacks,
+so that the usage is dispersed. Some function of hash distance, cost, and randomness.
+If a node has both LS or LS2 and Meta LS, we need to know when it's allowed
+to use those leasesets, and when to keep traversing the tree.
 
-البحث باستخدام
 
+
+
+Lookup with
     Standard LS flag (1)
-تخزين مع
-
+Store with
     Meta LS2 type (7)
-احفظ في
-
+Store at
     Hash of destination
     This hash is then used to generate the daily "routing key", as in LS1
-انتهاء الصلاحية النموذجي
-
+Typical expiration
     Hours. Max 18.2 hours (65535 seconds)
-نُشر بواسطة
-
+Published by
     "master" Destination or coordinator, or intermediate coordinators
 
 ### Format
@@ -1125,37 +1275,45 @@ Standard LS2 Header as specified above
   - Signature (40+ bytes)
     The signature is of everything above.
 ```
-الأعلام والخصائص: للاستخدام المستقبلي
 
-### اشتقاق مفتاح الإخفاء
+Flags and properties: for future use
 
-- خدمة موزعة تستخدم هذا النهج ستحتوي على "سيد" واحد أو أكثر يمتلك المفتاح الخاص لوجهة الخدمة. سيقومون (خارج النطاق) بتحديد القائمة الحالية للوجهات النشطة وسينشرون Meta LS2. لضمان التكرار، يمكن لعدة أسياد استخدام multihome (أي النشر المتزامن) لـ Meta LS2.
 
-- يمكن لخدمة موزعة أن تبدأ بوجهة واحدة أو تستخدم multihoming بالطريقة القديمة، ثم تنتقل إلى Meta LS2. يمكن لعملية البحث القياسية LS أن ترجع أي واحد من LS أو LS2 أو Meta LS2.
+### Notes
 
-- عندما تستخدم خدمة Meta LS2، فإنها لا تحتوي على أنفاق (leases).
+- A distributed service using this would have one or more "masters" with the
+  private key of the service destination. They would (out of band) determine the
+  current list of active destinations and would publish the Meta LS2. For
+  redundancy, multiple masters could multihome (i.e. concurrently publish) the
+  Meta LS2.
+
+- A distributed service could start with a single destination or use old-style
+  multihoming, then transition to a Meta LS2. A standard LS lookup could return
+  any one of a LS, LS2, or Meta LS2.
+
+- When a service uses a Meta LS2, it has no tunnels (leases).
+
 
 ### Service Record
 
-هذا سجل فردي يشير إلى أن وجهة معينة تشارك في خدمة. يتم إرساله من المشارك إلى الـ floodfill. لا يتم إرساله بشكل منفرد من قبل الـ floodfill أبداً، بل فقط كجزء من قائمة الخدمات. يُستخدم سجل الخدمة أيضاً لإلغاء المشاركة في خدمة، وذلك بتعيين انتهاء الصلاحية إلى الصفر.
+This is an individual record saying that a destination is participating in a
+service. It is sent from the participant to the floodfill. It is not ever sent
+individually by a floodfill, but only as a part of a Service List. The Service
+Record is also used to revoke participation in a service, by setting the
+expiration to zero.
 
-هذا ليس LS2 ولكنه يستخدم ترويسة LS2 المعيارية وتنسيق التوقيع.
+This is not a LS2 but it uses the standard LS2 header and signature format.
 
-البحث باستخدام
-
+Lookup with
     n/a, see Service List
-تخزين مع
-
+Store with
     Service Record type (9)
-احفظ في
-
+Store at
     Hash of service name
     This hash is then used to generate the daily "routing key", as in LS1
-انتهاء الصلاحية النموذجي
-
+Typical expiration
     Hours. Max 18.2 hours (65535 seconds)
-نُشر بواسطة
-
+Published by
     Destination
 
 ### Format
@@ -1171,47 +1329,59 @@ Standard LS2 Header as specified above
   - Signature (40+ bytes)
     The signature is of everything above.
 ```
+
 ### Notes
 
-- إذا كانت قيمة expires تساوي أصفارًا فقط، يجب على الـ floodfill إلغاء السجل وعدم تضمينه في قائمة الخدمات.
+- If expires is all zeros, the floodfill should revoke the record and no longer
+  include it in the service list.
 
-- التخزين: قد يقوم الـ floodfill بتقييد تخزين هذه السجلات بصرامة وتحديد عدد السجلات المخزنة لكل hash وانتهاء صلاحيتها. كما يمكن استخدام قائمة بيضاء من الـ hashes.
+- Storage: The floodfill may strictly throttle storage of these records and
+  limit the number of records stored per hash and their expiration. A whilelist
+  of hashes may also be used.
 
-- أي نوع آخر من netdb في نفس الـ hash له أولوية، لذلك سجل الخدمة لا يمكنه أبداً
-  الكتابة فوق LS/RI، لكن LS/RI سوف يكتب فوق جميع سجلات الخدمة في ذلك الـ hash.
+- Any other netdb type at the same hash has priority, so a service record can never
+  overwrite a LS/RI, but a LS/RI will overwrite all service records at that hash.
+
+
 
 ### Service List
 
-هذا لا يشبه LS2 على الإطلاق ويستخدم تنسيقاً مختلفاً.
+This is nothing like a LS2 and uses a different format.
 
-يتم إنشاء قائمة الخدمات وتوقيعها بواسطة floodfill. وهي غير مصادق عليها بمعنى أن أي شخص يمكنه الانضمام إلى خدمة عن طريق نشر Service Record إلى floodfill.
+The service list is created and signed by the floodfill. It is unauthenticated
+in that anybody can join a service by publishing a Service Record to a
+floodfill.
 
-قائمة الخدمات تحتوي على سجلات خدمات مختصرة، وليس سجلات خدمات كاملة. هذه تحتوي على توقيعات ولكن فقط hashes، وليس destinations كاملة، لذلك لا يمكن التحقق منها بدون الـ destination الكامل.
+A Service List contains Short Service Records, not full Service Records. These
+contain signatures but only hashes, not full destinations, so they cannot be
+verified without the full destination.
 
-الأمان، إن وُجد، ومرغوبية قوائم الخدمات لا تزال قيد التحديد. يمكن لعقد floodfill أن تحد من النشر، والاستعلامات، إلى قائمة بيضاء من الخدمات، لكن تلك القائمة البيضاء قد تختلف بناءً على التنفيذ، أو تفضيل المشغل. قد لا يكون من الممكن تحقيق إجماع على قائمة بيضاء أساسية مشتركة عبر التنفيذات المختلفة.
+The security, if any, and desirability of service lists is TBD.
+Floodfills could limit publication, and lookups, to a whitelist of services,
+but that whitelist may vary based on implementation, or operator preference.
+It may not be possible to achieve consensus on a common, base whitelist
+across implementations.
 
-إذا كان اسم الخدمة مُدرجاً في سجل الخدمة أعلاه، فقد يعترض مشغلو floodfill؛ وإذا كان الـ hash فقط مُدرجاً، فلا يوجد تحقق، ويمكن لسجل الخدمة أن "يدخل" قبل أي نوع آخر من netDb ويتم تخزينه في floodfill.
+If the service name is included in the service record above,
+then floodfill operators may object; if only the hash is included,
+there's no verification, and a service record could "get in" ahead of
+any other netdb type and get stored in the floodfill.
 
-البحث باستخدام
-
+Lookup with
     Service List lookup type (11)
-تخزين مع
-
+Store with
     Service List type (11)
-احفظ في
-
+Store at
     Hash of service name
     This hash is then used to generate the daily "routing key", as in LS1
-انتهاء الصلاحية النموذجي
-
+Typical expiration
     Hours, not specified in the list itself, up to local policy
-نُشر بواسطة
-
+Published by
     Nobody, never sent to floodfill, never flooded.
 
 ### Format
 
-لا تستخدم ترويسة LS2 المعيارية المحددة أعلاه.
+Does NOT use the standard LS2 header specified above.
 
 ```
 - Type (1 byte)
@@ -1245,60 +1415,86 @@ Standard LS2 Header as specified above
   - Signature of floodfill (40+ bytes)
     The signature is of everything above.
 ```
-للتحقق من توقيع قائمة الخدمة:
 
-- إضافة هاش اسم الخدمة في المقدمة
-- إزالة هاش المنشئ
-- التحقق من توقيع المحتويات المعدلة
+To verify signature of the Service List:
 
-للتحقق من توقيع كل Short Service Record:
+- prepend the hash of the service name
+- remove the hash of the creator
+- Check signature of the modified contents
 
-- جلب الوجهة
-- التحقق من التوقيع لـ (الطابع الزمني المنشور + انتهاء الصلاحية + العلامات + المنفذ + Hash لاسم الخدمة)
+To verify signature of each Short Service Record:
 
-للتحقق من توقيع كل سجل إلغاء (Revocation Record):
+- Fetch destination
+- Check signature of (published timestamp + expires + flags + port + Hash of
+  service name)
 
-- جلب الوجهة
-- التحقق من توقيع (الطابع الزمني المنشور + 4 بايتات صفرية + العلامات + المنفذ + Hash
-  لاسم الخدمة)
+To verify signature of each Revocation Record:
+
+- Fetch destination
+- Check signature of (published timestamp + 4 zero bytes + flags + port + Hash
+  of service name)
 
 ### Notes
 
-- نحن نستخدم طول التوقيع بدلاً من نوع التوقيع حتى نتمكن من دعم أنواع التوقيع غير المعروفة.
+- We use signature length instead of sig type so we can support unknown signature
+  types.
 
-- لا يوجد انتهاء صلاحية لقائمة الخدمة، يمكن للمستقبلين اتخاذ قرارهم الخاص بناءً على السياسة أو انتهاء صلاحية السجلات الفردية.
+- There is no expiration of a service list, recipients may make their own
+  decision based on policy or the expiration of the individual records.
 
-- قوائم الخدمات لا يتم إغراقها، فقط سجلات الخدمة الفردية يتم إغراقها. كل floodfill ينشئ ويوقع ويخزن مؤقتاً قائمة خدمات. يستخدم الـ floodfill سياسته الخاصة لوقت التخزين المؤقت والعدد الأقصى لسجلات الخدمة والإلغاء.
+- Service Lists are not flooded, only individual Service Records are. Each
+  floodfill creates, signs, and caches a Service List. The floodfill uses its
+  own policy for cache time and the maximum number of service and revocation
+  records.
+
+
 
 ## Common Structures Spec Changes Required
 
-### التشفير والمعالجة
 
-خارج نطاق هذا الاقتراح. أضف إلى مقترحات ECIES 144 و 145.
+### Key Certificates
+
+Out of scope for this proposal.
+Add to the ECIES proposals 144 and 145.
+
 
 ### New Intermediate Structures
 
-أضف هياكل جديدة لـ Lease2 و MetaLease و LeaseSet2Header و OfflineSignature. فعال اعتباراً من الإصدار 0.9.38.
+Add new structures for Lease2, MetaLease, LeaseSet2Header, and OfflineSignature.
+Effective as of release 0.9.38.
+
 
 ### New NetDB Types
 
-أضف هياكل لكل نوع جديد من leaseSet، مدمجة من أعلاه. بالنسبة لـ LeaseSet2 وEncryptedLeaseSet وMetaLeaseSet، سارية اعتباراً من الإصدار 0.9.38. بالنسبة لـ Service Record وService List، أولية وغير مجدولة.
+Add structures for each new leaseset type, incorporated from above.
+For LeaseSet2, EncryptedLeaseSet, and MetaLeaseSet,
+effective as of release 0.9.38.
+For Service Record and Service List,
+preliminary and unscheduled.
+
 
 ### New Signature Type
 
-أضف RedDSA_SHA512_Ed25519 النوع 11. المفتاح العام 32 بايت؛ المفتاح الخاص 32 بايت؛ الهاش 64 بايت؛ التوقيع 64 بايت.
+Add RedDSA_SHA512_Ed25519 Type 11.
+Public key is 32 bytes; private key is 32 bytes; hash is 64 bytes; signature is 64 bytes.
+
+
 
 ## Encryption Spec Changes Required
 
-خارج نطاق هذا الاقتراح. راجع الاقتراحات 144 و 145.
+Out of scope for this proposal.
+See proposals 144 and 145.
+
+
 
 ## I2NP Changes Required
 
-أضف ملاحظة: لا يمكن نشر LS2 إلا إلى floodfills بحد أدنى من الإصدار.
+Add note: LS2 can only be published to floodfills with a minimum version.
+
 
 ### Database Lookup Message
 
-أضف نوع البحث في قائمة الخدمات.
+Add the service list lookup type.
 
 ### Changes
 
@@ -1309,9 +1505,10 @@ Flags byte: Lookup type field, currently bits 3-2, expands to bits 4-2.
   Add note: Service list loookup may only be sent to floodfills with a minimum version.
   Minimum version is 0.9.38.
 ```
-### ترخيص لكل عميل
 
-أضف جميع أنواع المتاجر الجديدة.
+### Database Store Message
+
+Add all the new store types.
 
 ### Changes
 
@@ -1327,11 +1524,15 @@ Type byte: Type field, currently bit 0, expands to bits 3-0.
   Add note: All new types may only be published to floodfills with a minimum version.
   Minimum version is 0.9.38.
 ```
+
+
+
 ## I2CP Changes Required
+
 
 ### I2CP Options
 
-الخيارات الجديدة المُفسرة من جانب الـ router، المُرسلة في SessionConfig Mapping:
+New options interpreted router-side, sent in SessionConfig Mapping:
 
 ```
 
@@ -1369,7 +1570,8 @@ Type byte: Type field, currently bit 0, expands to bits 3-0.
                               decrypt the encrypted LS2,
                               only if per-client authentication is enabled
 ```
-الخيارات الجديدة المُفسَّرة من جانب العميل:
+
+New options interpreted client-side:
 
 ```
 
@@ -1402,41 +1604,63 @@ Type byte: Type field, currently bit 0, expands to bits 3-0.
                                                    followed by a ':', followed by the base 64 of the private
                                                    key to use for PSK per-client auth. nnn starts with 0
 ```
+
 ### Session Config
 
-لاحظ أنه للتوقيعات غير المتصلة، الخيارات i2cp.leaseSetOfflineExpiration و i2cp.leaseSetTransientPublicKey و i2cp.leaseSetOfflineSignature مطلوبة، والتوقيع يتم بواسطة المفتاح الخاص للتوقيع المؤقت.
+Note that for offline signatures, the options
+i2cp.leaseSetOfflineExpiration,
+i2cp.leaseSetTransientPublicKey, and
+i2cp.leaseSetOfflineSignature are required,
+and the signature is by the transient signing private key.
 
-### عناوين LS مشفرة مع Base 32
 
-الموجه إلى العميل. لا توجد تغييرات. يتم إرسال الـ leases مع طوابع زمنية بحجم 8 بايت، حتى لو كان الـ leaseset المُرجع سيكون LS2 بطوابع زمنية بحجم 4 بايت. لاحظ أن الاستجابة قد تكون رسالة Create Leaseset أو Create Leaseset2 Message.
 
-### مجموعة الإيجار المشفرة (Encrypted LS) مع المفاتيح غير المتصلة
+### Request Leaseset Message
 
-من الـ router إلى العميل. لا توجد تغييرات. يتم إرسال الـ leases مع طوابع زمنية بحجم 8 بايت، حتى لو كان الـ leaseset المُعاد سيكون LS2 مع طوابع زمنية بحجم 4 بايت. لاحظ أن الاستجابة قد تكون رسالة Create Leaseset أو Create Leaseset2.
+Router to client.
+No changes.
+The leases are sent with 8-byte timestamps, even if the
+returned leaseset will be a LS2 with 4-byte timestamps.
+Note that the response may be a Create Leaseset or Create Leaseset2 Message.
 
-### ملاحظات
 
-العميل إلى الموجه. رسالة جديدة، لاستخدامها بدلاً من رسالة Create Leaseset.
 
-### Meta LS2
+### Request Variable Leaseset Message
 
-- لكي يتمكن الـ router من تحليل نوع المتجر، يجب أن يكون النوع موجوداً في الرسالة،
-  إلا إذا تم تمريره إلى الـ router مسبقاً في إعدادات الجلسة.
-  لتبسيط كود التحليل المشترك، من الأسهل وجوده في الرسالة نفسها.
+Router to client.
+No changes.
+The leases are sent with 8-byte timestamps, even if the
+returned leaseset will be a LS2 with 4-byte timestamps.
+Note that the response may be a Create Leaseset or Create Leaseset2 Message.
 
-- لكي يعرف الراوتر نوع وطول المفتاح الخاص،
-  يجب أن يكون بعد الـ lease set، إلا إذا كان المحلل يعرف النوع مسبقاً
-  في إعداد الجلسة.
-  بالنسبة لكود التحليل الشائع، من الأسهل معرفة ذلك من الرسالة نفسها.
 
-- مفتاح التوقيع الخاص، المُعرَّف مسبقاً للإلغاء وغير المستخدم،
-  غير موجود في LS2.
 
-### التنسيق
+### Create Leaseset2 Message
 
-نوع الرسالة لرسالة Create Leaseset2 هو 41.
+Client to router.
+New message, to use in place of Create Leaseset Message.
 
-### ملاحظات
+
+### Justification
+
+- For the router to parse the store type, the type must be in the message,
+  unless it is passed to the router before hand in the session config.
+  For for common parsing code, it's easier to have it in the message itself.
+
+- For the router to know the type and length of the private key,
+  it must be after the lease set, unless the parser knows the type before hand
+  in the session config.
+  For for common parsing code, it's easier to know it from the message itself.
+
+- The signing private key, previously defined for revocation and unused,
+  is not present in LS2.
+
+### Message Type
+
+The message type for the Create Leaseset2 Message is 41.
+
+
+### Format
 
 ```
 Session ID
@@ -1454,44 +1678,58 @@ Session ID
                            - Encryption key length (2 bytes, big endian)
                            - Encryption key (number of bytes specified)
 ```
-### سجل الخدمة
 
-- الحد الأدنى لإصدار router هو 0.9.39.
-- الإصدار الأولي مع نوع الرسالة 40 كان في 0.9.38 لكن تم تغيير التنسيق.
-  النوع 40 مهجور وغير مدعوم.
+### Notes
 
-### تنسيق
+- Minimum router version is 0.9.39.
+- Preliminary version with message type 40 was in 0.9.38 but the format was changed.
+  Type 40 is abandoned and is unsupported.
 
-- هناك حاجة لمزيد من التغييرات لدعم LS المشفر والوصفي.
 
-### ملاحظات
+### Issues
 
-من العميل إلى الموجه. رسالة جديدة.
+- More changes are needed to support encrypted and meta LS.
 
-### قائمة الخدمات
 
-- يحتاج الـ router إلى معرفة ما إذا كان الوجهة مُعمى.
-  إذا كان مُعمى ويستخدم مصادقة سرية أو لكل عميل،
-  فإنه يحتاج إلى الحصول على تلك المعلومات أيضاً.
 
-- البحث عن المضيف (Host Lookup) لعنوان b32 بتنسيق جديد ("b33")
-  يخبر الموجه (router) أن العنوان مخفي، لكن لا توجد آلية لتمرير
-  المفتاح السري أو المفتاح الخاص إلى الموجه في رسالة البحث عن المضيف.
-  بينما يمكننا توسيع رسالة البحث عن المضيف لإضافة تلك المعلومات،
-  من الأنظف تعريف رسالة جديدة.
 
-- نحتاج إلى طريقة برمجية للعميل لإخبار الـ router.
-  وإلا، سيتوجب على المستخدم تكوين كل وجهة يدوياً.
 
-### تنسيق
+### Blinding Info Message
 
-قبل أن يرسل العميل رسالة إلى وجهة مُعماة، يجب عليه إما البحث عن "b33" في رسالة البحث عن المضيف (Host Lookup message)، أو إرسال رسالة معلومات التعمية (Blinding Info message). إذا كانت الوجهة المُعماة تتطلب سرًا أو مصادقة خاصة بكل عميل، فيجب على العميل إرسال رسالة معلومات التعمية (Blinding Info message).
+Client to router.
+New message.
 
-الراوتر لا يرسل ردًا على هذه الرسالة.
 
-### ملاحظات
+### Justification
 
-نوع الرسالة لرسالة معلومات الإخفاء (Blinding Info Message) هو 42.
+- The router needs to know if a destination is blinded.
+  If it is blinded and uses a secret or per-client authentication,
+  it needs to have that information as well.
+
+- A Host Lookup of a new-format b32 address ("b33")
+  tells the router that the address is blinded, but there's no mechanism to
+  pass the secret or private key to the router in the Host Lookup message.
+  While we could extend the Host Lookup message to add that information,
+  it's cleaner to define a new message.
+
+- We need a programmatic way for the client to tell the router.
+  Otherwise, the user would have to manually configure each destination.
+
+
+### Usage
+
+Before a client sends a message to a blinded destination, it must either
+lookup the "b33" in a Host Lookup message, or send a Blinding Info message.
+If the blinded destination requires a secret or per-client authentication,
+the client must send a Blinding Info message.
+
+The router does not send a reply to this message.
+
+
+### Message Type
+
+The message type for the Blinding Info Message is 42.
+
 
 ### Format
 
@@ -1523,15 +1761,20 @@ Session ID
   Secret:      Only if flag bit 4 is set to 1
                A secret String
 ```
-### شهادات المفاتيح
 
-- الحد الأدنى لإصدار الـ router هو 0.9.43
 
-### هياكل وسيطة جديدة
+### Notes
 
-### أنواع NetDB الجديدة
+- Minimum router version is 0.9.43
 
-لدعم البحث عن أسماء المضيفين "b33" وإرجاع إشارة في حالة عدم امتلاك الـ router للمعلومات المطلوبة، نحدد رموز نتائج إضافية لرسالة Host Reply Message، كما يلي:
+
+### Issues
+
+### Host Reply Message (enc)
+
+To support lookups of "b33" hostnames and return an indication
+if the router does not have the required information, we define
+additional result codes for the Host Reply Message, as follows:
 
 ```
 2: Lookup password required
@@ -1539,31 +1782,55 @@ Session ID
    4: Lookup password and private key required
    5: Leaseset decryption failure
 ```
-القيم من 1-255 معرّفة بالفعل كأخطاء، لذلك لا توجد مشكلة في التوافق مع الإصدارات السابقة.
 
-### نوع التوقيع الجديد
+Values 1-255 are already defined as errors, so there is no
+backwards-compatibility issue.
 
-جهاز التوجيه إلى العميل. رسالة جديدة.
+
+
+
+### Meta Redirect Message
+
+Router to client.
+New message.
 
 ### Justification
 
-العميل لا يعرف مسبقاً أن Hash معين سيتم حله إلى Meta LS.
+A client doesn't know a priori that a given Hash will resolve
+to a Meta LS.
 
-إذا أرجع البحث عن leaseset لوجهة معينة Meta LS، فإن الـ router سيقوم بالحل التكراري. بالنسبة للـ datagrams، لا يحتاج الجانب العميل إلى المعرفة؛ ومع ذلك، بالنسبة للـ streaming، حيث يتحقق البروتوكول من الوجهة في SYN ACK، يجب أن يعرف ما هي الوجهة "الحقيقية". لذلك، نحتاج إلى رسالة جديدة.
+If a leaseset lookup for a Destination returns a Meta LS,
+the router will do the recursive resolution.
+For datagrams, the client side does not need to know;
+however, for streaming, where the protocol checks the destination in
+the SYN ACK, it must know what the "real" destination is.
+Therefore, we need a new message.
+
 
 ### Usage
 
-يحتفظ الـ router بذاكرة تخزين مؤقت للوجهة الفعلية المستخدمة من meta LS. عندما يرسل العميل رسالة إلى وجهة تُحل إلى meta LS، يتحقق الـ router من ذاكرة التخزين المؤقت للوجهة الفعلية المستخدمة مؤخراً. إذا كانت ذاكرة التخزين المؤقت فارغة، يختار الـ router وجهة من الـ meta LS، ويبحث عن الـ leaseset. إذا نجح البحث عن الـ leaseset، يضيف الـ router تلك الوجهة إلى ذاكرة التخزين المؤقت، ويرسل للعميل رسالة Meta Redirect Message. هذا يتم مرة واحدة فقط، إلا إذا انتهت صلاحية الوجهة ويجب تغييرها. يجب على العميل أيضاً تخزين المعلومات مؤقتاً إذا لزم الأمر. رسالة Meta Redirect Message لا يتم إرسالها رداً على كل SendMessage.
+The router maintains a cache for the actual destination is used from a meta LS.
+When the client sends a message to a destination which resolves to a meta LS,
+the router checks the cache for the actual destination last used.
+If the cache is empty, the router selects a destination from the meta LS,
+and looks up the leaseset.
+If the leaseset lookup is successful, the router adds that destination
+to the cache, and sends the client a Meta Redirect Message.
+This is only done once, unless the destination expires and must be changed.
+The client must also cache the information if needed.
+The Meta Redirect Message is NOT sent in reply to every SendMessage.
 
-يرسل الموجه هذه الرسالة فقط للعملاء الذين يستخدمون الإصدار 0.9.47 أو أحدث.
+The router only sends this message to clients with version 0.9.47 or higher.
 
-العميل لا يرسل رداً على هذه الرسالة.
+The client does not send a reply to this message.
 
-### رسالة البحث في قاعدة البيانات
 
-نوع الرسالة لرسالة Meta Redirect Message هو 43.
+### Message Type
 
-### التغييرات
+The message type for the Meta Redirect Message is 43.
+
+
+### Format
 
 ```
 Session ID (2 bytes) The value from the Send Message.
@@ -1586,19 +1853,31 @@ Session ID (2 bytes) The value from the Send Message.
                From the Meta Lease for the actual Destination
   Actual (real) Destination (387+ bytes)
 ```
-### رسالة تخزين قاعدة البيانات
 
-كيفية إنشاء ودعم Meta، بما في ذلك التواصل والتنسيق بين أجهزة router، خارج نطاق هذا الاقتراح. راجع الاقتراح ذي الصلة 150.
 
-### التغييرات
 
-التوقيعات غير المتصلة (offline signatures) لا يمكن التحقق منها في streaming أو repliable datagrams. انظر الأقسام أدناه.
+### Changes to support Meta
+
+How to generate and support Meta, including inter-router communication and coordination,
+is out of scope for this proposal.
+See related proposal 150.
+
+
+### Changes to support Offline Keys
+
+Offline signatures cannot be verified in streaming or repliable datagrams.
+See sections below.
+
 
 ## Private Key File Changes Required
 
-ملف المفتاح الخاص (eepPriv.dat) ليس جزءاً رسمياً من مواصفاتنا ولكنه موثق في Java I2P javadocs والتطبيقات الأخرى تدعمه. هذا يُمكّن من نقل المفاتيح الخاصة إلى تطبيقات مختلفة.
+The private key file (eepPriv.dat) format is not an official part of our specifications
+but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+and other implementations do support it.
+This enables portability of private keys to different implementations.
 
-يجب إجراء تغييرات لتخزين المفتاح العام المؤقت ومعلومات التوقيع غير المتصل.
+Changes are necessary to store the transient public key and
+offline signing information.
 
 ### Changes
 
@@ -1615,9 +1894,10 @@ If the signing private key is all zeros, the offline information section follows
   - Transient Signing Private key
     (length as specified by transient sig type)
 ```
-### خيارات I2CP
 
-أضف الدعم للخيارات التالية:
+### Private Key File CLI Changes Required
+
+Add support for the following options:
 
 ```
 -d days              (specify expiration in days of offline sig, default 365)
@@ -1625,11 +1905,16 @@ If the signing private key is all zeros, the offline information section follows
                             using the offline key file specified)
       -r sigtype           (specify sig type of transient key, default Ed25519)
 ```
+
+
+
 ## Streaming Changes Required
 
-التوقيعات غير المتصلة لا يمكن التحقق منها حالياً في streaming. التغيير أدناه يضيف كتلة التوقيع غير المتصل إلى الخيارات. هذا يتجنب الحاجة لاسترداد هذه المعلومات عبر I2CP.
+Offline signatures cannot currently be verified in streaming.
+The change below adds the offline signing block to the options.
+This avoids having to retrieve this information via I2CP.
 
-### إعداد الجلسة
+### Changes
 
 ```
 Add new option:
@@ -1658,16 +1943,22 @@ Add new option:
   a SYN packet containing the option was previously acked.
   More info TODO
 ```
-### رسالة طلب Leaseset
 
-- البديل هو إضافة علم فقط، واسترداد المفتاح العام المؤقت عبر I2CP
-  (انظر أقسام البحث عن المضيف / رسالة رد المضيف أعلاه)
+### Notes
 
-## عنوان LS2 القياسي
+- Alternative is to just add a flag, and retrieve the transient public key via I2CP
+  (See Host Lookup / Host Reply Message sections above)
 
-التوقيعات غير المتصلة لا يمكن التحقق منها في معالجة الرسائل القابلة للرد. تحتاج إلى علامة للإشارة إلى التوقيع غير المتصل ولكن لا يوجد مكان لوضع العلامة. سيتطلب رقم بروتوكول وتنسيق جديد تماماً.
 
-### رسالة طلب LeaseSet متغير
+
+## Repliable Datagram Changes Required
+
+Offline signatures cannot be verified in the repliable datagram processing.
+Needs a flag to indicate offline signed but there's no place to put a flag.
+Will require a completely new protocol number and format.
+
+
+### Changes
 
 ```
 Define new protocol 19 - Repliable datagram with options?
@@ -1687,17 +1978,20 @@ Define new protocol 19 - Repliable datagram with options?
     This section can, and should, be generated offline.
   - Data
 ```
-### إنشاء رسالة Leaseset2
 
-- البديل هو مجرد إضافة علامة، واسترجاع المفتاح العام المؤقت عبر I2CP
-  (انظر أقسام رسالة البحث عن المضيف / رد المضيف أعلاه)
-- أي خيارات أخرى يجب أن نضيفها الآن بعد أن أصبح لدينا بايتات العلامات؟
+### Notes
+
+- Alternative is to just add a flag, and retrieve the transient public key via I2CP
+  (See Host Lookup / Host Reply Message sections above)
+- Any other options we should add now that we have flag bytes?
+
 
 ## SAM V3 Changes Required
 
-يجب تحسين SAM لدعم التوقيعات غير المتصلة في DESTINATION base 64.
+SAM must be enhanced to support offline signatures in the DESTINATION base 64.
 
-### التبرير
+
+### Changes
 
 ```
 Note that in the SESSION CREATE DESTINATION=$privkey,
@@ -1716,42 +2010,87 @@ Note that in the SESSION CREATE DESTINATION=$privkey,
     (length as specified by destination sig type)
   - Transient Signing Private key (length as specified by transient sig type)
 ```
-لاحظ أن التواقيع غير المتصلة مدعومة فقط لـ STREAM وَ RAW، وليس لـ DATAGRAM (حتى نقوم بتعريف بروتوكول DATAGRAM جديد).
 
-لاحظ أن SESSION STATUS ستُرجع Signing Private Key من جميع الأصفار وبيانات Offline Signature تماماً كما تم توفيرها في SESSION CREATE.
+Note that offline signatures are only supported for STREAM and RAW,
+not for DATAGRAM (until we define a new DATAGRAM protocol).
 
-لاحظ أنه لا يمكن استخدام DEST GENERATE و SESSION CREATE DESTINATION=TRANSIENT لإنشاء وجهة موقعة غير متصلة (offline signed destination).
+Note that the SESSION STATUS will return a Signing Private Key of all zeros and
+the Offline Signature data exactly as supplied in the SESSION CREATE.
 
-### نوع الرسالة
+Note that DEST GENERATE and SESSION CREATE DESTINATION=TRANSIENT
+may not be used to create an offline signed destination.
 
-ارفع الإصدار إلى 3.4، أم اتركه عند 3.1/3.2/3.3 حتى يمكن إضافته دون الحاجة لكل أشياء 3.2/3.3؟
 
-التغييرات الأخرى لم يتم تحديدها بعد. راجع قسم رسالة رد المضيف I2CP أعلاه.
+### Issues
+
+Bump version to 3.4, or leave it at 3.1/3.2/3.3 so it can be added
+without requiring all the 3.2/3.3 stuff?
+
+Other changes TBD. See I2CP Host Reply Message section above.
+
+
 
 ## BOB Changes Required
 
-BOB سيحتاج إلى تحسينات لدعم التوقيعات غير المتصلة و/أو Meta LS. هذا أولوية منخفضة وربما لن يتم تحديده أو تنفيذه أبداً. SAM V3 هي الواجهة المفضلة.
+BOB would have to be enhanced to support offline signatures and/or Meta LS.
+This is low priority and probably won't ever be specified or implemented.
+SAM V3 is the preferred interface.
+
+
+
 
 ## Publishing, Migration, Compatibility
 
-LS2 (بخلاف LS2 المشفر) يتم نشره في نفس موقع DHT كما هو الحال مع LS1. لا توجد طريقة لنشر كل من LS1 و LS2، إلا إذا كان LS2 في موقع مختلف.
+LS2 (other than encrypted LS2) is published at the same DHT location as LS1.
+There is no way to publish both a LS1 and LS2, unless LS2 were at a different location.
 
-يتم نشر LS2 المشفر في hash المفتاح المقنع (blinded key) ونوعه وبياناته. يُستخدم هذا الـ hash بعد ذلك لتوليد "مفتاح التوجيه" اليومي، كما هو الحال في LS1.
+Encrypted LS2 is published at the hash of the blinded key type and key data.
+This hash is then used to generate the daily "routing key", as in LS1.
 
-LS2 ستستخدم فقط عندما تكون الميزات الجديدة مطلوبة (التشفير الجديد، LS المشفر، البيانات الوصفية، إلخ). يمكن نشر LS2 فقط إلى floodfills من إصدار محدد أو أعلى.
+LS2 would only be used when new features are required
+(new crypto, encrypted LS, meta, etc.).
+LS2 can only be published to floodfills of a specified version or higher.
 
-الخوادم التي تنشر LS2 ستعلم أن أي عملاء متصلين يدعمون LS2. يمكنها إرسال LS2 في garlic encryption.
+Servers publishing LS2 would know that any connecting clients support LS2.
+They could send LS2 in the garlic.
 
-العملاء سيرسلون LS2 في garlics فقط إذا كانوا يستخدمون التشفير الجديد. العملاء المشتركون سيستخدمون LS1 إلى أجل غير مسمى؟ TODO: كيف يمكن الحصول على عملاء مشتركين يدعمون كلاً من التشفير القديم والجديد؟
+Clients would send LS2 in garlics only if using new crypto.
+Shared clients would use LS1 indefinitely?
+TODO: How to have a shared clients that supports both old and new crypto?
+
 
 ## Rollout
 
-0.9.38 يحتوي على دعم floodfill لمعيار LS2، بما في ذلك المفاتيح غير المتصلة.
+0.9.38 contains floodfill support for standard LS2, including offline keys.
 
-0.9.39 يحتوي على دعم I2CP لـ LS2 و Encrypted LS2، وتوقيع/التحقق من sig type 11، ودعم floodfill لـ Encrypted LS2 (أنواع التوقيع 7 و 11، بدون مفاتيح غير متصلة)، وتشفير/فك تشفير LS2 (بدون تفويض لكل عميل).
+0.9.39 contains I2CP support for LS2 and Encrypted LS2,
+sig type 11 signing/verification,
+floodfill support for Encrypted LS2 (sig types 7 and 11, without offline keys),
+and encrypting/decrypting LS2 (without per-client authorization).
 
-0.9.40 مجدول لأن يحتوي على دعم لتشفير/فك تشفير LS2 مع التخويل لكل عميل، ودعم floodfill و I2CP لـ Meta LS2، ودعم LS2 المشفر بمفاتيح غير متصلة، ودعم b32 لـ LS2 المشفر.
+0.9.40 is scheduled to contain support for
+encrypting/decrypting LS2 with per-client authorization,
+floodfill and I2CP support for Meta LS2,
+support for encrypted LS2 with offline keys,
+and b32 support for encrypted LS2.
 
-## أنواع DatabaseEntry الجديدة
 
-التصميم المشفر لـ LS2 متأثر بشدة بـ [واصفات الخدمة المخفية v3 الخاصة بـ Tor](https://spec.torproject.org/rend-spec-v3)، والتي كانت لها أهداف تصميم مشابهة.
+## Acknowledgements
+
+The encrypted LS2 design is heavily influenced by [Tor's v3 hidden service descriptors](https://spec.torproject.org/rend-spec-v3),
+which had similar design goals.
+
+
+## References
+
+* ["High-speed high-security signatures" by Daniel J. Bernstein, Niels Duif, Tanja Lange, Peter Schwabe, and Bo-Yin Yang](https://ed25519.cr.yp.to/)
+* [KEYBLIND-PROOF](https://lists.torproject.org/pipermail/tor-dev/2013-December/005943.html)
+* [KEYBLIND-REFS](https://gitlab.torproject.org/tpo/core/tor/-/issues/8106)
+* [PRNG-REFS](http://projectbullrun.org/dual-ec/ext-rand.html)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)
+* [RFC-7539-S2.4](https://tools.ietf.org/html/rfc7539#section-2.4)
+* [TOR-REND-SPEC-V3](https://spec.torproject.org/rend-spec-v3)
+* [UNSCIENTIFIC-KDF-SPEEDS](https://www.lvh.io/posts/secure-key-derivation-performance.html)
+* [ZCASH](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)

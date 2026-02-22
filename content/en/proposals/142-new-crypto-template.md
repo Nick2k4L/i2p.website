@@ -37,9 +37,9 @@ Anybody proposing new crypto must first be familiar with the following documents
 - [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
 - [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
 - Discussion threads here for each of the above proposals, linked within
-- 2018 proposal priorities
-- ECIES proposal
-- New asymmetric crypto overview
+- [2018 proposal priorities](http://zzz.i2p/topics/2494)
+- [ECIES proposal](http://zzz.i2p/topics/2418)
+- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
 - [Low-level crypto overview](/docs/specs/common-structures/)
 
 

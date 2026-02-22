@@ -224,23 +224,23 @@ I2P router'ınız artık yapılandırılmış ve çalışıyor! Router konsolu b
 
 I2P kurulup yapılandırıldığına göre, artık şunları yapabilirsiniz:
 
-1. **I2P sitelerini gezin**: Popüler I2P hizmetlerinin bağlantılarını görmek için `http://127.0.0.1:7657/home` ziyaret edin
+1. **I2P sitelerini gezin**: Popüler I2P hizmetlerinin bağlantılarını görmek için [I2P ana sayfasını](http://127.0.0.1:7657/home) ziyaret edin
 2. **Tarayıcınızı yapılandırın**: `.i2p` sitelerine erişmek için bir [tarayıcı profili](/docs/guides/browser-config) oluşturun
 3. **Hizmetleri keşfedin**: I2P e-posta, forum, dosya paylaşımı ve daha fazlasını inceleyin
-4. **Router'ınızı izleyin**: `http://127.0.0.1:7657/console` ağ durumunuzu ve istatistiklerinizi gösterir
+4. **Router'ınızı izleyin**: [Konsol](http://127.0.0.1:7657/console) ağ durumunuzu ve istatistiklerinizi gösterir
 
 ### Faydalı Bağlantılar
 
-- **Router Konsolu**: `http://127.0.0.1:7657/`
-- **Yapılandırma**: `http://127.0.0.1:7657/config`
-- **Adres Defteri**: `http://127.0.0.1:7657/susidns/addressbook`
-- **Bant Genişliği Ayarları**: `http://127.0.0.1:7657/config`
+- **Router Konsolu**: [http://127.0.0.1:7657/](http://127.0.0.1:7657/)
+- **Yapılandırma**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
+- **Adres Defteri**: [http://127.0.0.1:7657/susidns/addressbook](http://127.0.0.1:7657/susidns/addressbook)
+- **Bant Genişliği Ayarları**: [http://127.0.0.1:7657/config](http://127.0.0.1:7657/config)
 
 ## Kurulum Sihirbazını Yeniden Çalıştırma
 
 Bant genişliği ayarlarınızı değiştirmek veya I2P'yi daha sonra yeniden yapılandırmak istiyorsanız, Router Console'dan hoş geldin sihirbazını yeniden çalıştırabilirsiniz:
 
-1. `http://127.0.0.1:7657/welcome`'na gidin
+1. [I2P Kurulum Sihirbazı](http://127.0.0.1:7657/welcome)'na gidin
 2. Sihirbaz adımlarını tekrar takip edin
 
 ## Sorun Giderme

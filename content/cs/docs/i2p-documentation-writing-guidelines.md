@@ -13,7 +13,7 @@ lastUpdated: "2025-10"
 
 ### 1. Ověřte vše
 
-**Nikdy nepředpokládejte ani nehádejte.** Všechna technická tvrzení musí být ověřena podle: - Aktuální zdrojový kód I2P (`https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)` - Oficiální dokumentace API (`https://i2p.github.io/i2p.i2p/`  - Specifikace konfigurace [/docs/specs/](/docs/) - Poznámky k nejnovějším verzím [/releases/](/categories/release/)
+**Nikdy nepředpokládejte ani nehádejte.** Všechna technická tvrzení musí být ověřena podle: - Aktuální zdrojový kód I2P (https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master) - Oficiální dokumentace API (https://i2p.github.io/i2p.i2p/  - Specifikace konfigurace [/docs/specs/](/docs/) - Poznámky k nejnovějším verzím [/releases/](/categories/release/)
 
 **Příklad správného ověření:**
 
@@ -106,7 +106,7 @@ Note that client registry and port mapper are separate systems:
 **Šablona pro interní adresy URL v I2P:**
 
 ```markdown
-> **Note:** The I2P network hosts comprehensive documentation at `http://idk.i2p/javadoc-i2p/` 
+> **Note:** The I2P network hosts comprehensive documentation at http://idk.i2p/javadoc-i2p/ 
 > which requires an I2P router for access. For clearnet access, use the GitHub Pages 
 > mirror at https://eyedeekay.github.io/javadoc-i2p/
 ```
@@ -114,17 +114,17 @@ Note that client registry and port mapper are separate systems:
 
 **Oficiální specifikace:** - [Konfigurace](/docs/specs/configuration/) - [Zásuvný modul](/docs/specs/plugin/) - [Index dokumentace](/docs/)
 
-**Dokumentace k API (vyberte nejaktuálnější):** - Nejaktuálnější: `https://i2p.github.io/i2p.i2p/` (API 0.9.66 k verzi I2P 2.10.0) - Zrcadlo na clearnetu: https://eyedeekay.github.io/javadoc-i2p/
+**Dokumentace k API (vyberte nejaktuálnější):** - Nejaktuálnější: https://i2p.github.io/i2p.i2p/ (API 0.9.66 k verzi I2P 2.10.0) - Zrcadlo na clearnetu: https://eyedeekay.github.io/javadoc-i2p/
 
-**Zdrojový kód:** - GitLab (oficiální): `https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master` - Zrcadlo na GitHubu: `https://github.com/i2p/i2p.i2p`
+**Zdrojový kód:** - GitLab (oficiální): https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master - Zrcadlo na GitHubu: https://github.com/i2p/i2p.i2p
 
 ### Standardy formátu odkazů
 
 ```markdown
-✅ GOOD: ClientApp Javadoc
+✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
 
-❌ BAD: See the ClientApp docs at `http://idk.i2p/...`
+❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
 ```
 ---
@@ -552,12 +552,12 @@ See [clients.config specification](https://geti2p.net/spec/configuration#clients
 **Externí odkazy** (na další zdroje):
 
 ```markdown
-For more details, see ClientApp Javadoc
+For more details, see [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ```
 **Odkazy na repozitáře kódu**:
 
 ```markdown
-View source: ClientApp.java
+View source: [ClientApp.java](https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master/core/java/src/net/i2p/app/ClientApp.java)
 ```
 ### Formátování tabulek
 

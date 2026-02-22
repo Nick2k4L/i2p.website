@@ -354,7 +354,7 @@ All values are unsigned big-endian.
 
 #### Application
 
-Application contents are UTF-8 encoded [JSON](https://www.json.org/json-en.html).
+Application contents are UTF-8 encoded [JSON](https://www.json.org/).
 See the Application Layer section below.
 
 
@@ -479,7 +479,7 @@ The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
 
 ### Application Data Contents
 
-Application contents are UTF-8 encoded [JSON](https://www.json.org/json-en.html),
+Application contents are UTF-8 encoded [JSON](https://json.org/),
 for simplicity and extensibility.
 The full specification is TBD.
 The goal is to provide enough data to write an algorithm to determine the "best"
@@ -624,7 +624,7 @@ No backward compatibility issues.
 ## References
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://www.json.org/json-en.html)
+* [JSON](https://json.org/)
 * [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)

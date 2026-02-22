@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / `http://127.0.0.1:8443/`
-    ProxyPassReverse / `http://127.0.0.1:8443/`
+    ProxyPass / http://127.0.0.1:8443/
+    ProxyPassReverse / http://127.0.0.1:8443/
 </VirtualHost>
 ```
 ### Registro y coordinación
@@ -548,8 +548,8 @@ Una vez que su reseed (servidor de arranque) esté registrado en el proyecto I2P
 
 ### Recursos de la comunidad
 
-- **Foro de I2P**: [i2pforum.net](https://i2pforum.net/)
-- **Repositorio de Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
+- **Foro de I2P**: https://i2pforum.net/
+- **Repositorio de Gitea**: https://i2pgit.org/I2P_Developers/i2p.i2p
 - **IRC**: #i2p-dev en IRC2P
 - **Supervisión del estado**: [checki2p.com/reseed](https://checki2p.com/reseed)
 

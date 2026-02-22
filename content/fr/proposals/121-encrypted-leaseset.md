@@ -10,51 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## Vue d'ensemble
+## Overview
 
-Cette proposition concerne la refonte du mécanisme de chiffrement des LeaseSets.
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
+
 
 ## Motivation
 
-L'LS chiffré actuel est horrible et non sécurisé. Je peux dire cela, car je l'ai conçu et
-implémenté.
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-Raisons :
+Reasons:
 
-- Chiffrement AES CBC
-- Une seule clé AES pour tout le monde
-- Les expirations de bail toujours exposées
-- La clé publique de chiffrement toujours exposée
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
-## Conception
 
-### Objectifs
+## Design
 
-- Rendre l'ensemble entièrement opaque
-- Clés pour chaque destinataire
+### Goals
 
-### Stratégie
+- Make entire thing opaque
+- Keys for each recipient
 
-Faire comme le fait GPG/OpenPGP. Chiffrer asymétriquement une clé symétrique pour chaque
-destinataire. Les données sont déchiffrées avec cette clé asymétrique. Voir par exemple [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-SI nous pouvons trouver un algo qui soit petit et rapide.
 
-Le défi est de trouver un chiffrement asymétrique qui soit petit et rapide. ElGamal à 514
-octets est un peu douloureux ici. Nous pouvons faire mieux.
+### Strategy
 
-Voir par exemple `http://security.stackexchange.com/questions/824...`
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
 
-Cela fonctionne pour de petits nombres de destinataires (ou en fait, de clés ; vous pouvez toujours
-distribuer des clés à plusieurs personnes si vous le souhaitez).
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
 
-## Spécification
+See e.g. http://security.stackexchange.com/questions/824...
+
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
+
+
+## Specification
 
 - Destination
-- Timestamp publié
+- Published timestamp
 - Expiration
-- Drapeaux
-- Longueur des données
-- Données chiffrées
+- Flags
+- Length of data
+- Encrypted data
 - Signature
 
-Les données chiffrées pourraient être précédées d'un spécificateur enctype, ou non.
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

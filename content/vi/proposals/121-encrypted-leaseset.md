@@ -10,52 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## Tổng quan
+## Overview
 
-Đề xuất này là về việc thiết kế lại cơ chế mã hóa LeaseSets.
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
-## Động lực
 
-LeaseSet mã hóa hiện tại rất tệ và không an toàn. Tôi có thể nói vậy, vì tôi đã thiết kế và triển khai nó.
+## Motivation
 
-Lý do:
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-- Mã hóa AES CBC
-- Một khóa AES duy nhất cho tất cả mọi người
-- Ngày hết hạn Lease vẫn bị lộ
-- Khóa công khai mã hóa vẫn bị lộ
+Reasons:
 
-## Thiết kế
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
-### Mục tiêu
 
-- Làm cho toàn bộ trở nên không thể nhìn thấy
-- Khóa cho từng người nhận
+## Design
 
-### Chiến lược
+### Goals
 
-Làm như GPG/OpenPGP đã làm. Mã hóa đối xứng một khóa bất đối xứng cho mỗi người nhận. Dữ liệu được giải mã bằng khóa bất đối xứng đó. Xem ví dụ [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-NẾU chúng ta có thể tìm thấy một thuật toán nhỏ và nhanh.
+- Make entire thing opaque
+- Keys for each recipient
 
-Thủ thuật là tìm một mã hóa bất đối xứng nhỏ và nhanh. ElGamal với 514 byte có chút khó khăn ở đây. Chúng ta có thể làm tốt hơn.
 
-Xem ví dụ: `http://security.stackexchange.com/questions/824...`
+### Strategy
 
-Điều này hoạt động với số lượng nhỏ người nhận (hoặc thực tế là khóa; bạn vẫn có thể phân phối khóa cho nhiều người nếu muốn).
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
 
-## Chi tiết kỹ thuật
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
 
-- Đích đến
-- Dấu thời gian công bố
-- Thời hạn
-- Cờ
-- Độ dài dữ liệu
-- Dữ liệu mã hóa
-- Chữ ký
+See e.g. http://security.stackexchange.com/questions/824...
 
-Dữ liệu mã hóa có thể được đặt trước bởi một trình chỉ định enctype, hoặc không.
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
 
-## Tham khảo
 
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1
+## Specification
+
+- Destination
+- Published timestamp
+- Expiration
+- Flags
+- Length of data
+- Encrypted data
+- Signature
+
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

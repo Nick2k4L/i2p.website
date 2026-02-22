@@ -8,13 +8,13 @@ accurateFor: "0.9.59"
 
 ## نظرة عامة {#overview}
 
-I2PTunnel هو أداة للتفاعل مع شبكة I2P وتوفير الخدمات عليها. يمكن تعريف وجهة I2PTunnel باستخدام [اسم المضيف](/docs/overview/naming)، أو [Base32](/docs/overview/naming#base32)، أو مفتاح وجهة كامل بحجم 516 بايت. سيكون I2PTunnel المُنشأ متاحاً على جهاز العميل الخاص بك كـ localhost:port. إذا كنت ترغب في توفير خدمة على شبكة I2P، فما عليك سوى إنشاء I2PTunnel إلى ip_address:port المناسب. سيتم إنتاج مفتاح وجهة مقابل بحجم 516 بايت للخدمة وستصبح متاحة عبر I2P بأكملها. واجهة ويب لإدارة I2PTunnel متاحة على `http://localhost:7657/i2ptunnel/`.
+I2PTunnel هو أداة للتفاعل مع شبكة I2P وتوفير الخدمات عليها. يمكن تعريف وجهة I2PTunnel باستخدام [اسم المضيف](/docs/overview/naming)، أو [Base32](/docs/overview/naming#base32)، أو مفتاح وجهة كامل بحجم 516 بايت. سيكون I2PTunnel المُنشأ متاحاً على جهاز العميل الخاص بك كـ localhost:port. إذا كنت ترغب في توفير خدمة على شبكة I2P، فما عليك سوى إنشاء I2PTunnel إلى ip_address:port المناسب. سيتم إنتاج مفتاح وجهة مقابل بحجم 516 بايت للخدمة وستصبح متاحة عبر I2P بأكملها. واجهة ويب لإدارة I2PTunnel متاحة على [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
 
 ## الخدمات الافتراضية {#default-services}
 
 ### أنفاق الخادم {#default-server-tunnels}
 
-- **I2P Webserver** - tunnel يشير إلى خادم ويب Jetty يعمل على `http://localhost:7658` لاستضافة مريحة وسريعة على I2P.
+- **I2P Webserver** - tunnel يشير إلى خادم ويب Jetty يعمل على [localhost:7658](http://localhost:7658) لاستضافة مريحة وسريعة على I2P.
   الجذر الوثائقي هو:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`، والذي يتوسع إلى: `C:\Users\**username**\AppData\Local\I2P\I2P Site\docroot`

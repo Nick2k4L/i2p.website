@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / `http://127.0.0.1:8443/`
-    ProxyPassReverse / `http://127.0.0.1:8443/`
+    ProxyPass / http://127.0.0.1:8443/
+    ProxyPassReverse / http://127.0.0.1:8443/
 </VirtualHost>
 ```
 ### Registrierung und Koordination
@@ -548,8 +548,8 @@ Sobald Ihr Reseed-Server (Server zum Initialisieren der netDb) beim I2P-Projekt 
 
 ### Community-Ressourcen
 
-- **I2P-Forum**: [i2pforum.net](https://i2pforum.net/)
-- **Gitea-Repository**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
+- **I2P-Forum**: https://i2pforum.net/
+- **Gitea-Repository**: https://i2pgit.org/I2P_Developers/i2p.i2p
 - **IRC**: #i2p-dev auf IRC2P
 - **Statusüberwachung**: [checki2p.com/reseed](https://checki2p.com/reseed)
 

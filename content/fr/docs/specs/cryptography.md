@@ -90,7 +90,7 @@ Le ElGamal chiffré contient :
 ```
 Chaque partie chiffrée est préfixée avec des zéros pour atteindre une taille de exactement 257 octets. Longueur totale : 514 octets. Dans l'usage typique, les couches supérieures complètent les données en clair à 222 octets, résultant en un bloc non chiffré de 255 octets. Ceci est encodé en deux parties chiffrées de 256 octets, et il y a un seul octet de bourrage zéro avant chaque partie à cette couche.
 
-Voir le code ElGamal ElGamalEngine.
+Voir le code ElGamal [ElGamalEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalEngine.java).
 
 Le nombre premier partagé est le nombre premier Oakley pour les clés de 2048 bits [RFC-3526-S3](http://tools.ietf.org/html/rfc3526#section-3) :
 
@@ -147,7 +147,7 @@ AES est utilisé pour le chiffrement symétrique, dans plusieurs cas :
 - Pour le chiffrement de certains stockages et requêtes netDb envoyés aux routeurs floodfill dans le cadre d'ElGamal/AES+SessionTag (destination vers routeur ou routeur vers routeur).
 - Pour le chiffrement des messages de test périodiques des tunnels envoyés du routeur vers lui-même, à travers ses propres tunnels.
 
-Nous utilisons AES avec des clés de 256 bits et des blocs de 128 bits en mode CBC. Le remplissage utilisé est spécifié dans l'IETF [RFC-2313](http://tools.ietf.org/html/rfc2313) (PKCS#5 1.5, section 8.1 (pour le type de bloc 02)). Dans ce cas, le remplissage consiste en octets générés de manière pseudo-aléatoire pour correspondre aux blocs de 16 octets. Spécifiquement, voir le code CBC CryptixAESEngine et l'implémentation AES Cryptix CryptixRijndael_Algorithm, ainsi que le remplissage, trouvé dans la fonction ElGamalAESEngine.getPadding ElGamalAESEngine.
+Nous utilisons AES avec des clés de 256 bits et des blocs de 128 bits en mode CBC. Le remplissage utilisé est spécifié dans l'IETF [RFC-2313](http://tools.ietf.org/html/rfc2313) (PKCS#5 1.5, section 8.1 (pour le type de bloc 02)). Dans ce cas, le remplissage consiste en octets générés de manière pseudo-aléatoire pour correspondre aux blocs de 16 octets. Spécifiquement, voir le code CBC [CryptixAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixAESEngine.java) et l'implémentation AES Cryptix [CryptixRijndael_Algorithm](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixRijndael_Algorithm.java), ainsi que le remplissage, trouvé dans la fonction ElGamalAESEngine.getPadding [ElGamalAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalAESEngine.java).
 
 #### Obsolescence
 
@@ -161,7 +161,7 @@ EdDSA-SHA512-Ed25519 est l'algorithme de signature par défaut actuel. DSA, qui 
 
 ### DSA
 
-Les signatures sont générées et vérifiées avec [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) 1024 bits (L=1024, N=160), tel qu'implémenté dans DSAEngine. DSA a été choisi car il est beaucoup plus rapide pour les signatures qu'ElGamal.
+Les signatures sont générées et vérifiées avec [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) 1024 bits (L=1024, N=160), tel qu'implémenté dans [DSAEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/DSAEngine.java). DSA a été choisi car il est beaucoup plus rapide pour les signatures qu'ElGamal.
 
 #### SEED
 
@@ -306,15 +306,15 @@ Les connexions NTCP étaient négociées avec une implémentation Diffie-Hellman
 
 ## Références
 
-- [BENCHMARKS](https://web.archive.org/web/20080423000000*/http://www.eskimo.com/~weidai/benchmarks.html) - Benchmarks Crypto++, originalement sur http://www.eskimo.com/~weidai/benchmarks.html (maintenant mort), récupéré depuis `http://www.archive.org/`, daté du 23 avril 2008.
+- [BENCHMARKS](https://web.archive.org/web/20080423000000*/http://www.eskimo.com/~weidai/benchmarks.html) - Benchmarks Crypto++, originalement sur http://www.eskimo.com/~weidai/benchmarks.html (maintenant mort), récupéré depuis http://www.archive.org/, daté du 23 avril 2008.
 - [Common](/docs/specs/common-structures) - Spécification des Structures Communes
-- CryptixAESEngine
-- CryptixRijndael_Algorithm
+- [CryptixAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixAESEngine.java)
+- [CryptixRijndael_Algorithm](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixRijndael_Algorithm.java)
 - [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm)
-- DSAEngine
+- [DSAEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/DSAEngine.java)
 - [ECIES](/docs/specs/ecies)
-- ElGamalAESEngine
-- ElGamalEngine
+- [ElGamalAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalAESEngine.java)
+- [ElGamalEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalEngine.java)
 - [EncryptedLeaseSet](/docs/specs/encryptedleaseset)
 - [Koshiba2004](http://www.springerlink.com/content/2jry7cftp5bpdghm/) - Koshiba & Kurosawa. Short Exponent Diffie-Hellman Problems. PKC 2004, LNCS 2947, pp. 173-186
 - [NIST-800-57](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57-Part1-revised2_Mar08-2007.pdf)

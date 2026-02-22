@@ -10,120 +10,244 @@ target: "0.9.65"
 toc: true
 ---
 
-### 호스트 인식 HTTP 프록시 터널 유형 제안
+### Proposal for a Host-Aware HTTP Proxy Tunnel Type
 
-이는 기존 I2P를 통한 HTTP 사용에서 “공유된 신원 문제”를 해결하기 위해 새로운 HTTP 프록시 터널 유형을 도입하기 위한 제안입니다. 이 터널 유형은 잠재적인 적대적인 숨겨진 서비스 운영자가 타겟팅된 사용자 에이전트(브라우저) 및 I2P 클라이언트 애플리케이션 자체에 의해 수행되는 추적의 유용성을 방지하거나 제한하기 위해 보완적인 동작을 가지게 됩니다.
+This is a proposal to resolve the “Shared Identity Problem” in
+conventional HTTP-over-I2P usage by introducing a new HTTP proxy tunnel
+type. This tunnel type has supplemental behavior which is intended to
+prevent or limit the utility of tracking conducted by potential hostile
+hidden service operators, against targeted user-agents(browsers) and the
+I2P Client Application itself.
 
-#### “공유된 신원” 문제란 무엇일까요?
+#### What is the “Shared Identity” problem?
 
-“공유된 신원” 문제는 암호화된 주소의 오버레이 네트워크 상에서 사용자 에이전트가 다른 사용자 에이전트와 암호화된 신원을 공유할 때 발생합니다. 예를 들어 Firefox와 GNU Wget이 동일한 HTTP 프록시를 사용하도록 구성된 경우에 발생합니다.
+The “Shared Identity” problem occurs when a user-agent on a
+cryptographically addressed overlay network shares a cryptographic
+identity with another user-agent. This occurs, for instance, when a
+Firefox and GNU Wget are both configured to use the same HTTP Proxy.
 
-이 시나리오에서는 서버가 활동에 응답하기 위해 사용된 암호화된 주소(Destination)를 수집하고 저장할 수 있습니다. 이는 항상 100% 고유한 “지문”으로 처리될 수 있으며, 이는 암호화에서 기인하기 때문입니다. 즉, 공유된 신원 문제로 관찰되는 연결 가능성은 완벽합니다.
+In this scenario, it is possible for the server to collect and store the
+cryptographic address(Destination) used to reply to the activity. It can
+treat this as a “Fingerprint” which is always 100% unique, because it is
+cryptographic in origin. This means that the linkability observed by the
+Shared Identity problem is perfect.
 
-하지만 이것이 문제가 될까요?
+But is it a problem?
 ^^^^^^^^^^^^^^^^^^^^
 
-동일한 프로토콜을 사용하는 사용자 에이전트가 비연결성을 원하는 경우, 공유된 신원 문제는 문제가 됩니다. `이는 이 Reddit 스레드 <https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/>` __에서 처음 언급되었으며, pullpush.io의 코트를 통해 삭제된 댓글을 접할 수 있습니다. ` 애 당시 * 저는 가장 활동적인 응답자 중 하나였으며, * 당시 * 이 문제가 작다고 믿었습니다. 지난 8년 동안 상황과 이에 대한 제 의견이 바뀌었고, 이제는 의도적으로 프로파일링할 수 있는 사이트가 늘어날수록 악의적인 목적의 목적지 상관관계 위협이 상당히 커진다고 믿습니다.
+The shared identity problem is a problem when user-agents that speak the
+same protocol desire unlinkability. [It was first mentioned in the
+context of HTTP in this Reddit
+Thread](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/),
+with the deleted comments accessible courtesy of
+[pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi).
+*At the time* I was one of the most active respondents, and *at the
+time* I believed the issue was small. In the past 8 years, the situation
+and my opinion of it have changed, I now believe the threat posed by
+malicious destination correlation grows considerably as more sites are
+in a position to “profile” specific users.
 
-이 공격은 실행하기 위한 장벽이 매우 낮습니다. 숨어있는 서비스 운영자가 여러 서비스를 운영하기만 하면 됩니다. 동시 방문(visiting multiple sites at the same time)을 기준으로 한 공격에서는 이것이 유일한 요구사항입니다. 비동시적 연결에서 이러한 서비스 중 하나는 추적 목적으로 타겟팅된 단일 사용자의 “계정”을 호스팅하는 서비스여야 합니다.
+This attack has a very low barrier to entry. It only requires that a
+hidden service operator operate multiple services. For attacks on
+contemporary visits(visiting multiple sites at the same time), this is
+the only requirement. For non-contemporary linking, one of those
+services must be a service which hosts “accounts” which belong to a
+single user who is targeted for tracking.
 
-현재, 사용자 계정을 호스팅하는 모든 서비스 운영자는 공유된 신원 문제를 악용하여 그들이 관리하는 사이트 전체의 활동과 이를 연결시킬 수 있습니다. Mastodon, Gitlab, 또는 간단한 포럼 등은 여러 서비스를 운영하고 특정 사용자에 대한 프로필을 생성하는 데 관심이 있는 한, 공격자일 수 있습니다. 이 감시는 스토킹, 재정적 이익 또는 정보 관련 이유로 수행될 수 있습니다. 현재 이러한 공격을 수행할 수 있는 주요 운영자가 수십 명 있으며, 이를 통해 유의미한 데이터를 얻을 수 있습니다. 우리는 그들이 지금은 그렇게 하지 않기를 대체로 신뢰하지만, 우리의 의견을 개의치 않는 플레이어가 쉽게 나타날 수 있습니다.
+Currently, any service operator who hosts user accounts will be able to
+correlate them with activity across any sites they control by exploiting
+the Shared Identity problem. Mastodon, Gitlab, or even simple forums
+could be attackers in disguise as long as they operate more than one
+service and have an interest in creating a profile for a user. This
+surveillance could be conducted for stalking, financial gain, or
+intelligence-related reasons. Right now there are dozens of major
+operators, who could carry out this attack and gain meaningful data from
+it. We mostly trust them not to for now, but players who don’t care
+about our opinions could easily emerge.
 
-이것은 조직이 그들의 사이트에서의 상호작용을 그들이 제어하는 네트워크 상에서의 상호작용과 상호 연관시킬 수 있는 명확한 웹에서의 프로필 구축의 비교적 기본적인 형태와 직접 관련이 있습니다. I2P에서 암호화 목적지는 고유하기 때문에 이 기술은 때때로 심지어 더 신뢰할 수 있지만, 지리적 위치를 식별하는 추가적인 힘 없이도 가능합니다.
+This is directly related to a fairly basic form of profile-building on
+the clear web where organizations can correlate interactions on their
+site with interations on networks they control. On I2P, because the
+cryptographic destination is unique, this technique can sometimes be
+even more reliable, albeit without the additional power of geolocation.
 
-공유된 신원 문제는 단지 지리적 위치를 숨기기 위해 I2P를 사용하는 사용자에게 유용하지 않습니다. 또한 I2P의 라우팅을 깨뜨리는 데 사용될 수 없습니다. 이는 단지 맥락적 신원 관리에 관한 문제일 뿐입니다.
+The Shared Identity is not useful against a user who is using I2P solely
+to obfuscate geolocation. It also cannot be used to break I2P’s routing.
+It is only a problem of contextual identity management.
 
--  공유된 신원 문제를 사용하여 I2P 사용자의 위치를 추적하는 것은 불가능합니다.
--  두 세션이 동시적이 아닌 경우 공유된 신원 문제를 사용하여 I2P 세션을 연결하는 것은 불가능합니다.
+-  It is impossible to use the Shared Identity problem to geolocate an
+   I2P user.
+-  It is impossible to use the Shared Identity problem to link I2P
+   sessions if they are not contemporary.
 
-그러나 이는 아마도 매우 일반적인 상황에서 I2P 사용자의 익명성을 약화시키기 위해 사용될 수 있습니다. 그들이 흔한 이유 중 하나는 Firefox의 탭 기능을 사용하는 웹 브라우저를 권장하기 때문입니다.
+However, it is possible to use it to degrade the anonymity of an I2P
+user in circumstances which are probably very common. One reason they
+are common is becase we encourage the use of Firefox, a web browser
+which supports “Tabbed” operation.
 
--  이는 * 항상 * 모든 웹 브라우저에서 공유된 신원 문제로 지문을 생성할 수 있으며, * 이는 * 타사 자원을 요청하는 방식으로도 항상 가능합니다.
--  Javascript를 비활성화해도 공유된 신원 문제를 해결하는 데 ** 아무런 ** 도움이 되지 않습니다.
--  비동시적 세션 간 연결이 "전통적인" 브라우저 지문 인식을 통해 확립될 수 있다면, 공유된 신원은 전이적으로 적용되어 비동시적 연결 전략을 활성화할 가능성이 있습니다.
--  만일 대상이 I2P와 명확한 네트워크 양쪽에서 모두 로그인한 사이트에서의 활동이 연결될 수 있다면, 공유된 신원이 전이적으로 적용되어 완전한 익명성 해제를 활성화할 가능성이 있습니다.
+-  It is *always* possible to produce a fingerprint from the Shared
+   Identity problem in *any* web browser which supports requesting
+   third-party resources.
+-  Disabling Javascript accomplishes **nothing** against the Shared
+   Identity problem.
+-  If a link can be established between non-contemporary sessions such
+   as by “traditional” browser fingerprinting, then the Shared Identity
+   can be applied transitively, potentially enabling a non-contemporary
+   linking strategy.
+-  If a link can be established between a clearnet activity and an I2P
+   identity, for instance, if the target is logged into a site with both
+   an I2P and a clearnet presence on both sides, the Shared Identity can
+   be applied transitively, potentially enabling complete
+   de-anonymization.
 
-I2P HTTP 프록시에 관한 공유된 신원 문제가 얼마나 심각한지에 대한 의견은 응용 프로그램의 "맥락적 신원"이 어디에 있다고 생각하느냐 (더욱 분명히 해 말씀하시자면, 잠재적으로 정보 부족한 기대치를 가지고 있을 수 있는 "사용자")에 따라 달라집니다. 몇 가지 가능성이 있습니다:
+How you view the severity of the Shared Identity problem as it applies
+to the I2P HTTP proxy depends on where you(or more to the point, a
+“user” with potentially uninformed expectationss) think the “contextual
+identity” for the application lies. There are several possibilities:
 
-1. HTTP는 응용 프로그램이자 맥락적 신원 - 현재 작동하는 방법입니다. 모든 HTTP 응용 프로그램이 신원을 공유합니다.
-2. 프로세스가 응용 프로그램과 맥락적 신원이 됨 - SAMv3 또는 I2CP와 같은 API를 사용할 때 응용 프로그램이 신원을 생성하고 수명을 제어하는 방식입니다.
-3. HTTP는 응용 프로그램이지만 호스트가 맥락적 신원이다 - 이 제안의 대상이며, 각 호스트를 잠재적인 "웹 애플리케이션"으로 취급하고 위협 표면을 이와 같이 취급하는 것입니다.
+1. HTTP is both the Application and the Contextual Identity - This is
+   how it works now. All HTTP Applications share an identity.
+2. The Process is the Application and the Contextual Identity - This is
+   how it works when an application uses an API like SAMv3 or I2CP,
+   where an application creates it’s identity and controls it’s
+   lifetime.
+3. HTTP is the Application, but the Host is the Contextual Identity
+   -This is the object of this proposal, which treats each Host as a
+   potential “Web Application” and treats the threat surface as such.
 
-해결할 수 있을까요?
+Is it Solvable?
 ^^^^^^^^^^^^^^^
 
-프록시의 작동이 응용 프로그램의 익명성을 약화시킬 수 있는 모든 가능한 경우에 대해 지능적으로 대응할 수 있는 프록시를 만드는 것은 아마도 불가능할 것입니다. 그러나 예측 가능한 방식으로 작동하는 특정 응용 프로그램에 대해 지능적으로 대응하는 프록시를 구축하는 것은 가능합니다. 예를 들어 최신 웹 브라우저에서는 사용자가 여러 탭을 열어 두고 여러 웹 사이트와 상호작용할 가능성이 있다고 예상됩니다. 이러한 웹 사이트는 호스트 이름에 의해 구별됩니다.
+It is probably not possible to make a proxy which intelligently responds
+to every possible case in which it’s operation could weaken the
+anonymity of an application. However, it is possible to build a proxy
+which intelligently responds to a specific application which behaves in
+a predictable way. For instance, in modern Web Browsers, it is expected
+that users will have multiple tabs open, where they will be interacting
+with multiple web sites, which will be distinguished by hostname.
 
-이를 통해 이러한 유형의 HTTP 사용자 에이전트에 대해 HTTP 프록시의 동작을 개선할 수 있습니다. 프록시의 동작을 사용자 에이전트의 동작과 일치시킴으로써 각 호스트가 프록시 사용 시 자신의 목적지를 가지도록 합니다. 이 변경은 더 이상 두 호스트가 동일한 반환 신원을 공유하지 않기 때문에 공유된 신원 문제를 사용하여 클라이언트 활동을 두 개의 호스트와 연결할 수 있는 지문을 유도할 수 없게 만듭니다.
+This allows us to improve upon the behavior of the HTTP Proxy for this
+type of HTTP user-agent by making the behavior of the proxy match the
+behavior of the user-agent by giving each host it’s own Destination when
+used with the HTTP Proxy. This change makes it impossible to use the
+Shared Identity problem to derive a fingerprint which can be used to
+correlate client activity with 2 hosts, because the 2 hosts will simply
+no longer share a return identity.
 
-설명:
+Description:
 ^^^^^^^^^^^^
 
-새로운 HTTP 프록시가 보안 서버 관리자(I2PTunnel)에 생성되고 추가될 것입니다. 새로운 HTTP 프록시는 I2PSocketManagers의 "멀티플렉서"로 작동할 것입니다. 멀티플렉서 자체는 목적지가 없습니다. 멀티플렉스의 일부가 되는 각 개별 I2PSocketManager는 고유한 로컬 목적지를 가지고 있으며 자체 터널 풀을 가집니다. I2PSocketManagers는 멀티플렉서에서 수요에 따라 생성되며, 여기서의 "수요"는 새 호스트로의 첫 번째 방문입니다. I2PSocketManagers를 멀티플렉서에 삽입하기 전에 하나 또는 그 이상의 I2PSocketManagers를 미리 생성하고 멀티플렉서 외부에 저장하여 생성과정을 최적화할 수 있습니다. 이는 성능을 향상시킬 수 있습니다.
+A new HTTP Proxy will be created and added to Hidden Services
+Manager(I2PTunnel). The new HTTP Proxy will operate as a “multiplexer”
+of I2PSocketManagers. The multiplexer itself has no destination. Each
+individual I2PSocketManager which becomes part of the multiplex has it’s own
+local destination, and it’s own tunnel pool. I2PSocketManagerss are created
+on-demand by the multiplexer, where the “demand” is the first visit to the
+new host. It is possible to optimize the creation of the I2PSocketManagers
+before inserting them into the multiplexer by creating one or more in advance
+and storing them outside the multiplexer. This may improve performance.
 
-자체의 목적지를 가진 추가적인 I2PSocketManager는 I2P 목적지가 *없는* 모든 사이트에 대한 "Outproxy"의 운반자로 설정됩니다, 예를 들어 일반 클리어넷 사이트입니다. 이는 모든 Outproxy 사용을 단일 맥락적 신원으로 효과적으로 만듭니다. 그러나 터널에 여러 Outproxy를 구성하면 일반적인 “고정된” outproxy 회전이 발생하여 각 outproxy는 단일 사이트에 대한 요청만을 받게 됩니다. 이는 명확한 인터넷 상의 목적지별로 HTTP-~을 통해 I2P 프록시를 분리하는 것과 거의 동일한 동작입니다.
+An additional I2PSocketManager, with it’s own destination, is set up as the
+carrier of an “Outproxy” for any site which does *not* have an I2P
+Destination, for example any Clearnet site. This effectively makes all
+Outproxy usage a single Contextual Identity, with the caveat that
+configuring multiple Outproxies for the tunnel will cause the normal
+“Sticky” outproxy rotation, where each outproxy only gets requests for a
+single site. This is *almost* the equivalent behavior as isolating
+HTTP-over-I2P proxies by destination, on the clear internet.
 
-리소스 고려 사항:
+Resource Considerations:
 ''''''''''''''''''''''''
 
-새로운 HTTP 프록시는 기존 HTTP 프록시에 비해 추가 리소스가 필요합니다. 이는 다음을 요구합니다:
+The new HTTP proxy requires additional resources compared to the
+existing HTTP proxy. It will:
 
--   I2PSocketManagers 및 추가 터널을 잠재적으로 구축합니다.
--   더 자주 터널을 구축합니다.
+-  Potentially build more tunnels and I2PSocketManagers
+-  Build tunnels more often
 
-각각 필요합니다:
+Each of these requires:
 
--   로컬 컴퓨팅 자원
--   피어의 네트워크 자원
+-  Local computing resources
+-  Network resources from peers
 
-설정:
+Settings:
 '''''''''
 
-리소스 사용량의 증가에 미치는 영향을 최소화하기 위해 프록시는 가능한 적게 사용하도록 구성되어야 합니다. 멀티플렉서의 일부인 프록시(부모 프록시가 아닌)는 다음으로 설정되어야 합니다:
+In order to minimize the impact of the increased resource usage, the
+proxy should be configured to use as little as possible. Proxies which
+are part of the multiplexer(not the parent proxy) should be configured
+to:
 
--   멀티플렉스된 I2PSocketManagers는 터널 풀에서 1개의 터널 안으로, 1개의 터널 밖으로 빌드합니다.
--   기본적으로 멀티플렉스된 I2PSocketManagers는 3홉을 사용합니다.
--   10분간 비활성 상태일 때 소켓 닫기
--   멀티플렉서에 의해 시작된 I2PSocketManagers는 멀티플렉서의 수명을 공유합니다. 멀티플렉트된 터널은 부모 멀티플렉서가 될 때까지 "파괴"되지 않습니다.
+-  Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
+   tunnel pools
+-  Multiplexed I2PSocketManagers take 3 hops by default.
+-  Close sockets after 10 minutes of inactivity
+-  I2PSocketManagers started by the Multiplexer share the lifespan of the
+   Multiplexer. Multiplexed tunnels are not “Destructed” until the
+   parent Multiplexer is.
 
-다이어그램:
+Diagrams:
 ^^^^^^^^^
 
-아래 그림은 "문제로 보는지" 섹션의 "가능성 1."에 해당하는 HTTP 프록시의 현재 작동을 나타냅니다. 보시다시피, HTTP 프록시는 단일 목적지를 사용하여 I2P 사이트와 직접 상호작용합니다. 이 시나리오에서 HTTP는 응용 프로그램이자 맥락적 신원입니다.
+The diagram below represents the current operation of the HTTP proxy,
+which corresponds to “Possibility 1.” under the “Is it a problem”
+section. As you can see, the HTTP proxy interacts with I2P sites
+directly using only one destination. In this scenario, HTTP is both the
+application and the contextual identity.
 
 ```text
-**현재 상황: HTTP가 응용 프로그램, HTTP가 맥락적 신원**
-                                                        __-> Outproxy <-> i2pgit.org
-                                                       /
-   Browser <-> HTTP 프록시(1개의 목적지)<->I2PSocketManager <---> idk.i2p
-                                                       \__-> translate.idk.i2p
-                                                        \__-> git.idk.i2p
+**Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
+                                                      __-> Outproxy <-> i2pgit.org
+                                                     /
+Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
+                                                     \__-> translate.idk.i2p
+                                                      \__-> git.idk.i2p
 ```
 
-아래 그림은 "문제인지" 섹션의 "가능성 3."에 해당하는 호스트 인식 HTTP 프록시의 작동을 나타냅니다. 이 시나리오에서 HTTP는 응용 프로그램이지만 호스트는 맥락적 신원을 정의합니다. 여기서 각 I2P 사이트는 호스트당 고유한 목적지를 가진 서로 다른 HTTP 프록시와 상호작용합니다. 이는 여러 사이트를 운영하는 운영자가 동일한 사용자가 그들이 운영하는 여러 사이트를 방문할 때를 구별할 수 없도록 합니다.
+The diagram below represents the operation of a host-aware HTTP proxy,
+which corresponds to “Possibility 3.” under the “Is it a problem”
+section. In this secenario, HTTP is the application, but the Host
+defines the contextual identity, wherein each I2P site interacts with a
+different HTTP proxy with a unique destination per-host. This prevents
+operators of multiple sites from being able to distinguish when the same
+person is visiting multiple sites which they operate.
 
 ```text
-**변경 후: HTTP가 응용 프로그램, 호스트가 맥락적 신원**
-                                                     __-> I2PSocketManager(목적지 A - Outproxies 전용) <--> i2pgit.org
-                                                    /
-   Browser <-> HTTP 프록시 멀티플렉서(목적지 없음) <---> I2PSocketManager(목적지 B) <--> idk.i2p
-                                                    \__-> I2PSocketManager(목적지 C) <--> translate.idk.i2p
-                                                     \__-> I2PSocketManager(목적지 C) <--> git.idk.i2p
+**After the Change: HTTP is the Application, Host is the Contextual Identity**
+                                                    __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+                                                   /
+Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
+                                                   \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
+                                                    \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
 ```
 
-상태:
+Status:
 ^^^^^^^
 
-이 제안의 이전 버전과 일치하는 호스트 인식 프록시를 위한 작동 가능한 자바 구현이 idk의 포크에 브랜치로서 이 프록시에서 사용 가능한 링크에 있는 i2p.i2p.2.6.0-browser-proxy-post-keepalive에서 사용할 수 있습니다. 이는 더 작은 섹션으로 변화를 소분해하기 위해 심각한 수정 단계에 있습니다.
+A working Java implementation of the host-aware proxy which conforms to
+an older version of this proposal is available at idk's fork under the
+branch: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link in citations. It
+is under heavy revision, in order to break down the changes into smaller
+sections.
 
-다양한 기능을 가진 여러 구현이 SAMv3 라이브러리를 사용하여 Go로 작성되었습니다. 이는 다른 Go 응용 프로그램에 포함시키거나 go-i2p에 사용할 수 있지만 자바 I2P에는 적합하지 않습니다. 추가로, 암호화된 leaseSets와 상호작용하며 작동하는 좋은 지원이 부족합니다.
+Implementations with varying capabilities have been written in Go using
+the SAMv3 library, they may be useful for embedding in other Go
+applications or for go-i2p but are unsuitable for Java I2P.
+Additionally, they lack good support for working interactively with
+encrypted leaseSets.
 
-추가: ``i2psocks``
+Addendum: ``i2psocks``
                       
 
-다른 유형의 클라이언트를 격리시키기 위한 간단한 응용 프로그램 지향 접근 방식은 새로운 터널 유형을 구현하지 않고 또한 기존의 I2P 코드를 변경하지 않고도 I2PTunnel 기존 도구를 결합하여 가능합니다. 그러나 이 접근 방식은 HTTP 또는 많은 다른 유형의 잠재적인 I2P 클라이언트에서도 참이지 않은 어려운 가정을 합니다.
+A simple application-oriented approach to isolating other types of
+clients is possible without implementing a new tunnel type or changing
+the existing I2P code by combining I2PTunnel existing tools which are
+already widely available and tested in the privacy community. However,
+this approach makes a difficult assumption which is not true for HTTP
+and also not true for many other kinds of potentsial I2P clients.
 
-대략적으로, 다음 스크립트는 응용 프로그램 인식 SOCKS5 프록시를 생성하고 기본 명령을 소켓화할 것입니다:
+Roughly, the following script will produce an application-aware SOCKS5
+proxy and socksify the underlying command:
 
 ```sh
 #! /bin/sh
@@ -132,7 +256,15 @@ java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
 torsocks --port 7695 $command_to_proxy
 ```
 
-추가: ``공격의 예시 구현`` 담
+Addendum: ``example implementation of the attack``
+                                                  
 
-`HTTP 사용자 에이전트에서의 공유된 신원 공격의 예제 구현 <https://github.com/eyedeekay/colluding_sites_attack/>` __가 몇 년 전부터 존재했습니다. 추가적 예시는 `idk의 prop166 저장소 <`https://git.idk.i2p/idk/i2p.host-aware-proxy>`` __의 ``simple-colluder`` 하위 디렉터리에서 사용할 수 있습니다. 이러한 예시는 공격이 작동한다는 것을 입증하도록 설계되었으며, 실제 공격으로 변환하기 위해서는 (비록 사소한) 수정이 필요할 것입니다.
+[An example implementation of the Shared Identity attack on HTTP
+User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
+has existed for several years. An additional example is available in the
+``simple-colluder`` subdirectory of [idk’s prop166
+repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These
+examples are deliberately designed to demonstrate that the attack works
+and would require modification(albeit minor) to be turned into a real
+attack.
 

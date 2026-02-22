@@ -11,45 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## نظرة عامة
+## Overview
 
-تتعلق هذه الاقتراحية بتحسين معدل النجاح للعروض.
+This proposal is about improving the success rate for introductions.
 
-## الدافع
 
-تنتهي صلاحية المعرفات بعد فترة زمنية معينة، ولكن لا يتم نشر تلك المعلومات في
-RouterInfo. يجب على الموجهات حاليًا استخدام الاستراتيجيات لتقدير متى يكون المعرف غير صالح بعد الآن.
+## Motivation
 
-## التصميم
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
-في عنوان موجه SSU RouterAddress يحتوي على مُعرفات، قد يُدرج الناشر اختيارياً
-أوقات انتهاء صلاحية لكل مُعرف.
 
-## المواصفات
+## Design
+
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
+
+
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: رقم المُعرف (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: الزمن بالثواني (وليس المللي ثانية) منذ العصر الزمني.
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
-### ملاحظات
-* يجب أن يكون كل انتهاء صلاحية أكبر من تاريخ نشر RouterInfo,
-  وأقل من 6 ساعات بعد تاريخ نشر RouterInfo.
+### Notes
 
-* يجب على الموجهات الناشرة والمعرفات أن يحاولوا إبقاء المُعرف صالحًا
-  حتى انتهاء صلاحيته، ومع ذلك لا توجد طريقة تضمن لهم ذلك.
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* يجب عدم استخدام الموجهات لمعرف منشور بعد انتهاء صلاحيته.
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* تواجد صلاحيات انتهاء المُعرفات في خريطة RouterAddress.
-  إنها ليست مجال انتهاء غير المستخدم حاليًا والمكون من 8 بايتات في RouterAddress.
+* Routers should not use a published introducer after its expiration.
 
-**مثال:** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
 
-## الهجرة
+**Example:** `iexp0=1486309470`
 
-لا توجد مشاكل. التطبيق اختياري.
-توافق الخلفية مضمون، حيث ستتجاهل الموجهات الأقدم المعلمات غير المعروفة.
+
+## Migration
+
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

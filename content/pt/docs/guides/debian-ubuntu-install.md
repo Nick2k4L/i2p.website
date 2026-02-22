@@ -40,7 +40,7 @@ Os pacotes Debian são compatíveis com:
 
 **Arquiteturas suportadas**: amd64, i386, armhf, arm64, powerpc, ppc64el, s390x
 
-Os pacotes I2P podem funcionar em outros sistemas baseados em Debian não explicitamente listados acima. Se você encontrar problemas, por favor reporte-os em nosso GitLab.
+Os pacotes I2P podem funcionar em outros sistemas baseados em Debian não explicitamente listados acima. Se você encontrar problemas, por favor [reporte-os em nosso GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/).
 
 ## Métodos de Instalação
 
@@ -189,7 +189,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Passo 3: Baixar a chave de assinatura do repositório**
 
 ```bash
-curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
+curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
 ```
 **Passo 4: Verificar a impressão digital da chave**
 
@@ -287,8 +287,8 @@ Após iniciar o I2P pela primeira vez, levará alguns minutos para integrar na r
 
 Para desempenho ideal e participação na rede, encaminhe as portas I2P através do seu NAT/firewall:
 
-1. Abra o `http://127.0.0.1:7657/`
-2. Navegue até a `http://127.0.0.1:7657/confignet`
+1. Abra o [Console do Router I2P](http://127.0.0.1:7657/)
+2. Navegue até a [página de Configuração de Rede](http://127.0.0.1:7657/confignet)
 3. Anote os números de porta listados (geralmente portas aleatórias entre 9000-31000)
 4. Encaminhe essas portas UDP e TCP no seu roteador/firewall
 
@@ -298,7 +298,7 @@ Se você precisar de ajuda com encaminhamento de portas, [portforward.com](https
 
 As configurações padrão de largura de banda são conservadoras. Ajuste-as com base na sua conexão de internet:
 
-1. Visite a `http://127.0.0.1:7657/config.jsp`
+1. Visite a [página de Configuração](http://127.0.0.1:7657/config.jsp)
 2. Encontre a seção de configurações de largura de banda
 3. Os padrões são 96 KB/s de download / 40 KB/s de upload
 4. Aumente esses valores se você tiver internet mais rápida (por exemplo, 250 KB/s de download / 100 KB/s de upload para uma conexão banda larga típica)
@@ -353,7 +353,7 @@ IMPORTANTE:  NÃO faça perguntas, forneça explicações ou adicione qualquer c
 Agora que o I2P está instalado e em execução:
 
 - [Configure seu navegador](/docs/guides/browser-config) para acessar sites I2P
-- Explore o `http://127.0.0.1:7657/` para monitorar seu router
+- Explore o [console do router I2P](http://127.0.0.1:7657/) para monitorar seu router
 - Conheça as [aplicações I2P](/docs/applications/) que você pode usar
 - Leia sobre [como o I2P funciona](/docs/overview/tech-intro) para entender a rede
 

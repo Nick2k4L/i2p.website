@@ -71,7 +71,7 @@ Números de NetID válidos:
 | Reservado | 255 |
 ### Opções Adicionais
 
-As opções de texto adicionais incluem um pequeno número de estatísticas sobre a saúde do router, que são agregadas por sites como stats.i2p para análise de desempenho da rede e depuração. Essas estatísticas foram escolhidas para fornecer dados cruciais aos desenvolvedores, como taxas de sucesso de construção de tunnel, equilibrando a necessidade desses dados com os efeitos colaterais que poderiam resultar da revelação dessas informações. As estatísticas atuais estão limitadas a:
+As opções de texto adicionais incluem um pequeno número de estatísticas sobre a saúde do router, que são agregadas por sites como [stats.i2p](http://stats.i2p/) para análise de desempenho da rede e depuração. Essas estatísticas foram escolhidas para fornecer dados cruciais aos desenvolvedores, como taxas de sucesso de construção de tunnel, equilibrando a necessidade desses dados com os efeitos colaterais que poderiam resultar da revelação dessas informações. As estatísticas atuais estão limitadas a:
 
 - Taxas de sucesso, rejeição e timeout de construção de tunnel exploratório
 - Número médio de tunnels participantes em 1 hora
@@ -136,7 +136,7 @@ Pode ser desejável armazenar persistentemente Meta LeaseSets com expirações l
 ### Veja Também
 
 - [Especificação RouterInfo](/docs/specs/common-structures/#struct_RouterInfo)
-- RouterInfo Javadoc
+- [RouterInfo Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
 
 ---
 
@@ -159,8 +159,8 @@ Além desses leases, o LeaseSet inclui:
 
 - [Especificação de Lease](/docs/specs/common-structures/#struct_Lease)
 - [Especificação de LeaseSet](/docs/specs/common-structures/#struct_LeaseSet)
-- Javadoc de Lease
-- Javadoc de LeaseSet
+- [Javadoc de Lease](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
+- [Javadoc de LeaseSet](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
 
 A partir da versão 0.9.38, três novos tipos de LeaseSets são definidos; LeaseSet2, MetaLeaseSet e EncryptedLeaseSet. Veja abaixo.
 

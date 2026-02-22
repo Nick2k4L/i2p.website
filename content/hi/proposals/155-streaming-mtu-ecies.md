@@ -11,182 +11,204 @@ implementedin: "0.9.47"
 toc: true
 ---
 
-## नोट
-नेटवर्क परिनियोजन और परीक्षण प्रगति पर है।
-छोटे संशोधनों के अधीन।
+## Note
+Network deployment and testing in progress.
+Subject to minor revisions.
 
 
-## अवलोकन
+## Overview
 
 
-### सारांश
+### Summary
 
-ECIES मौजूदा सत्र (ES) संदेश ओवरहेड को लगभग 90 बाइट्स से कम करता है।
-इसलिए हम ECIES कनेक्शनों के लिए MTU को लगभग 90 बाइट्स तक बढ़ा सकते हैं।
-देखें the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/)।
+ECIES reduces exisiting session (ES) message overhead by about 90 bytes.
+Therefore we can increase the MTU by about 90 bytes for ECIES connections.
+See the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
 
-MTU बढ़ाए बिना, कई मामलों में ओवरहेड बचत वास्तव में 'बचत' नहीं होती है,
-क्योंकि संदेश फिर भी दो पूर्ण टनल संदेशों का उपयोग करने के लिए पैड किए जाएंगे।
+Without increasing the MTU, in many cases the overhead savings aren't really 'saved',
+as the messages will be padded out to use two full tunnel messages anyway.
 
-इस प्रस्ताव के लिए विनिर्देशों में किसी भी परिवर्तन की आवश्यकता नहीं है।
-यह प्रस्ताव केवल सिफारिश किए गए मूल्य और कार्यान्वयन विवरण के चर्चा और आम सहमति बनाने की सुविधा के लिए पोस्ट किया गया है।
-
-
-### लक्ष्य
-
-- समुच्चयित MTU बढाएं
-- 1 केबी टनल संदेशों का अधिकतम उपयोग
-- स्ट्रीमिंग प्रोटोकॉल को न बदलें
+This proposal does not require any change to the specifications.
+It is posted as a proposal solely to facilitate discussion and consensus-building
+of the recommended value and of the implementation details.
 
 
-## डिजाइन
+### Goals
 
-मौजूदा MAX_PACKET_SIZE_INCLUDED विकल्प और MTU समुच्चयन का उपयोग करें।
-स्ट्रीमिंग भेजे गए और प्राप्त MTU के न्यूनतम का उपयोग जारी रखती है।
-सभी कनेक्शनों के लिए डिफ़ॉल्ट 1730 बना रहता है, चाहे कौन सी कुंजियाँ उपयोग की जाएं।
-
-कार्यान्वयन को सभी SYN पैकेटों में MAX_PACKET_SIZE_INCLUDED विकल्प शामिल करने के लिए प्रोत्साहित किया जाता है, दोनों दिशाओं में,
-हालांकि यह कोई आवश्यकता नहीं है।
-
-यदि कोई गंतव्य केवल ECIES है, तो उच्च मूल्य का प्रयोग करें (या तो एलिस या बॉब के रूप में)।
-यदि कोई गंतव्य द्वय-कुंजी है, तो व्यवहार भिन्न हो सकता है:
-
-यदि द्वय-कुंजी ग्राहक राउटर के बाहर है (एक बाहरी एप्लिकेशन में),
-तो उसे दूरसामी अंत में उपयोग की जा रही कुंजी के बारे में 'पता नहीं' हो सकता है, और एलिस SYN में उच्च मूल्य का अनुरोध कर सकती है, जबकि SYN में अधिकतम डेटा 1730 ही रहता है।
-
-यदि द्वय-कुंजी ग्राहक राउटर के अंदर है, तो क्या कुंजी उपयोग की जा रही है की जानकारी उपयोगकर्ता को ज्ञात हो सकती है या नहीं।
-लीज़सेट अभी तक प्राप्त नहीं किया जा सकता है, या आंतरिक API इंटरफेसों द्वारा वह जानकारी उपयोगकर्ता को आसानी से उपलब्ध नहीं कराई जा सकती है।
-यदि जानकारी उपलब्ध है, तो एलिस उच्च मूल्य का उपयोग कर सकती है;
-अन्यथा, एलिस को 1730 के मानक मूल्य का उपयोग करना होगा जब तक कि समुच्चयन नहीं होता।
-
-बॉब के रूप में द्वय-कुंजी ग्राहक उत्तर में उच्च मूल्य भेज सकता है,
-यहां तक कि अगर एलिस से कोई मूल्य या 1730 का मूल्य प्राप्त नहीं किया गया है;
-हालांकि, स्ट्रीमिंग में ऊपर की ओर समुच्चयन के प्रावधान नहीं हैं,
-इसलिए MTU को 1730 पर रहना चाहिए।
+- Increase negotiated MTU
+- Maximize usage of 1 KB tunnel messages
+- Do not change streaming protocol
 
 
-जैसा कि the [Streaming API documentation](/docs/api/streaming/) में उल्लेख किया गया है,
-एलीस से बॉब को भेजे गए SYN पैकेटों में बॉब के MTU से अधिक डेटा हो सकता है।
-यह स्ट्रीमिंग प्रोटोकॉल में एक कमजोरी है।
-इसलिए, द्वय-कुंजी ग्राहकों को SYN पैकेटों में भेजे गए डेटा को 1730 बाइट्स तक सीमित करना होगा, जबकि एक उच्च MTU विकल्प भेजना होगा।
-एक बार जब बॉब से उच्च MTU प्राप्त हो जाता है, तब एलिस अधिकतम भेजे गए पेलोड को बढ़ा सकती है।
+## Design
+
+Use the existing MAX_PACKET_SIZE_INCLUDED option and MTU negotiation.
+Streaming continues to use the minimum of the sent and received MTU.
+The default remains 1730 for all connections, no matter what keys are used.
+
+Implementations are encouraged to include the MAX_PACKET_SIZE_INCLUDED option in all SYN packets, in both directions,
+although this is not a requirement.
+
+If a destination is ECIES-only, use the higher value (either as Alice or Bob).
+If a destination is dual-key, behavior may vary:
+
+If dual-key client is outside the router (in an external application),
+it may not "know" the key being used at the far-end, and Alice may request
+a higher value in the SYN, while the max data in the SYN remains 1730.
+
+If dual-key client is inside the router, the information of what key
+is being used may or may not be known to the client.
+The leaseset may not have been fetched yet, or the internal API interfaces
+may not easily make that information available to the client.
+If the information is available, Alice may use the higher value;
+otherwise, Alice must use the standard value of 1730 until negotiated.
+
+A dual-key client as Bob may send the higher value in response,
+even if no value or a value of 1730 was received from Alice;
+however, there is no provision for negotiating upwards in streaming,
+so the MTU should remain at 1730.
 
 
-### विश्लेषण
-
-जैसा कि the [ECIES specification](/docs/specs/ecies/#overhead) में वर्णित है, मौजूदा सत्र संदेशों के लिए ElGamal ओवरहेड
-151 बाइट्स है, और रैचेट ओवरहेड 69 बाइट्स है।
-इसलिए, हम रैचेट कनेक्शनों के लिए MTU को (151 - 69) = 82 बाइट्स तक बढ़ा सकते हैं,
-1730 से 1812 तक।
-
-
-## विनिर्देश
-
-MTU चयन और समुच्चयन अनुभाग में निम्नलिखित परिवर्तन और स्पष्टीकरण जोड़ें the [Streaming API documentation](/docs/api/streaming/)।
-the [Streaming specification](/docs/specs/streaming/) में कोई परिवर्तन नहीं।
+As noted in the [Streaming API documentation](/docs/api/streaming/),
+the data in the SYN packets sent from Alice to Bob may exceed Bob's MTU.
+This is a weakness in the streaming protocol.
+Therefore, dual-key clients must limit the data in the sent SYN packets
+to 1730 bytes, while sending a higher MTU option.
+Once the higher MTU is received from Bob, Alice may increase the actual maximum
+payload sent.
 
 
-विकल्प i2p.streaming.maxMessageSize का डिफ़ॉल्ट मूल्य सभी कनेक्शनों के लिए 1730 बना रहता है, चाहे कौन सी कुंजियाँ उपयोग की जाती हैं।
-ग्राहकों को हमेशा की तरह भेजे और प्राप्त MTU के न्यूनतम का उपयोग करना होगा।
+### Analysis
 
-चार संबंधित MTU साधार और वेरियेबल्स हैं:
-
-- DEFAULT_MTU: 1730, अ
-
-परिवर्तित, सभी कनेक्शनों के लिए
-- i2cp.streaming.maxMessageSize: डिफ़ॉल्ट 1730 या 1812, कॉन्फ़िगरेशन द्वारा बदला जा सकता है
-- ALICE_SYN_MAX_DATA: वह अधिकतम डेटा जो एलिस SYN पैकेट में शामिल कर सकती है
-- negotiated_mtu: एलीस और बॉब के MTU का न्यूनतम, ताकि SYN ACK से बॉब से एलिस तक, और सभी बाद के पैकेट्स में दोनों दिशाओं में अधिकतम डेटा आकार के रूप में उपयोग किया जा सके
+As described in the [ECIES specification](/docs/specs/ecies/#overhead), the ElGamal overhead for existing session messages is
+151 bytes, and the Ratchet overhead is 69 bytes.
+Therefore, we may increase the MTU for ratchet connections by (151 - 69) = 82 bytes,
+from 1730 to 1812.
 
 
-पाँच मामलों पर विचार किया जाना चाहिए:
+
+## Specification
+
+Add the following changes and clarifications to the MTU Selection and Negotiation section of the [Streaming API documentation](/docs/api/streaming/).
+No changes to the [Streaming specification](/docs/specs/streaming/).
 
 
-### 1) एलिस केवल ElGamal
-कोई परिवर्तन नहीं, सभी पैकेटों में 1730 MTU।
+The default value of the option i2p.streaming.maxMessageSize remains 1730 for all connections, no matter what keys are used.
+Clients must use the minimum of the sent and received MTU, as usual.
+
+There are four related MTU contants and variables:
+
+- DEFAULT_MTU: 1730, unchanged, for all connections
+- i2cp.streaming.maxMessageSize: default 1730 or 1812, may be changed by configuration
+- ALICE_SYN_MAX_DATA: The maximum data that Alice may include in a SYN packet
+- negotiated_mtu: The minimum of Alice's and Bob's MTU, to be used as the max data size
+  in the SYN ACK from Bob to Alice, and in all subsequent packets sent in both directions
+
+
+There are five cases to consider:
+
+
+### 1) Alice ElGamal-only
+No change, 1730 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1730
-- i2cp.streaming.maxMessageSize डिफ़ॉल्ट: 1730
-- एलिस SYN में MAX_PACKET_SIZE_INCLUDED भेज सकती है, आवश्यक नहीं जब तक != 1730
+- i2cp.streaming.maxMessageSize default: 1730
+- Alice may send MAX_PACKET_SIZE_INCLUDED in SYN, not required unless != 1730
 
 
-### 2) एलिस केवल ECIES
-सभी पैकेटों में 1812 MTU।
+### 2) Alice ECIES-only
+1812 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1812
-- i2cp.streaming.maxMessageSize डिफ़ॉल्ट: 1812
-- एलिस को SYN में MAX_PACKET_SIZE_INCLUDED भेजना होगा
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice must send MAX_PACKET_SIZE_INCLUDED in SYN
 
 
-### 3) एलिस द्वय-कुंजी और जानती है बॉब ElGamal है
-सभी पैकेटों में 1730 MTU।
+
+### 3) Alice Dual-Key and knows Bob is ElGamal
+1730 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1730
-- i2cp.streaming.maxMessageSize डिफ़ॉल्ट: 1812
-- एलिस SYN में MAX_PACKET_SIZE_INCLUDED भेज सकती है, आवश्यक नहीं जब तक != 1730
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice may send MAX_PACKET_SIZE_INCLUDED in SYN, not required unless != 1730
 
 
-### 4) एलिस द्वय-कुंजी और जानती है बॉब ECIES है
-सभी पैकेटों में 1812 MTU।
+
+### 4) Alice Dual-Key and knows Bob is ECIES
+1812 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1812
-- i2cp.streaming.maxMessageSize डिफ़ॉल्ट: 1812
-- एलिस को SYN में MAX_PACKET_SIZE_INCLUDED भेजना होगा
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice must send MAX_PACKET_SIZE_INCLUDED in SYN
 
 
-### 5) एलिस द्वय-कुंजी और बॉब की कुंजी अज्ञात
-SYN पैकेट में MAX_PACKET_SIZE_INCLUDED के रूप में 1812 भेजें लेकिन SYN पैकेट डेटा को 1730 तक सीमित करें।
+
+### 5) Alice Dual-Key and Bob key is unknown
+Send 1812 as MAX_PACKET_SIZE_INCLUDED in SYN packet but limit SYN packet data to 1730.
 
 - ALICE_SYN_MAX_DATA = 1730
-- i2cp.streaming.maxMessageSize डिफ़ॉल्ट: 1812
-- एलिस को SYN में MAX_PACKET_SIZE_INCLUDED भेजना होगा
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice must send MAX_PACKET_SIZE_INCLUDED in SYN
 
 
-### सभी मामलों के लिए
+### For all cases
 
-एलिस और बॉब
-negotiated_mtu की गणना करते हैं, एलीस और बॉब के MTU का न्यूनतम, ताकि अधिकतम डेटा आकार के रूप में SYN ACK से बॉब से एलिस तक, और सभी बाद के पैकेट्स में दोनों दिशाओं में उपयोग किया जा सके।
-
-
-## न्यायसंगतकरण
-
-देखें the Java I2P source code वर्तमान मूल्य क्यों 1730 है।
-देखें the [ECIES specification](/docs/specs/ecies/#overhead) ECIES ओवरहेड क्यों ElGamal से 82 बाइट्स कम है।
+Alice and Bob calculate
+negotiated_mtu, the minimum of Alice's and Bob's MTU, to be used as the max data size
+in the SYN ACK from Bob to Alice, and in all subsequent packets sent in both directions.
 
 
-## कार्यान्वयन नोट्स
-
-यदि स्ट्रीमिंग आदर्श आकार के संदेश बना रही है, तो यह बहुत महत्वपूर्ण है कि
-ECIES-Ratchet लेयर उस आकार से परे पैड न करे।
-
-दो टनल संदेशों में फिट होने के लिए आदर्श गार्लिक संदेश आकार,
-16 बाइट गार्लिक संदेश I2NP हेडर, 4 बाइट गार्लिक संदेश लंबाई,
-8 बाइट ES टैग, और 16 बाइट MAC सहित, 1956 बाइट्स है।
-
-ECIES में अनुशंसित पैडिंग एल्गोरिदम निम्नानुसार है:
-
-- यदि गार्लिक संदेश की कुल लंबाई 1954-1956 बाइट्स होगी,
-  तो कोई पैडिंग ब्लॉक न जोड़ें (कोई स्थान नहीं)
-- यदि गार्लिक संदेश की कुल लंबाई 1938-1953 बाइट्स होगी,
-  तो ठीक 1956 बाइट्स के लिए पैड के लिए एक पैडिंग ब्लॉक जोड़ें।
-- अन्यथा, सामान्य रूप से पैड करें, उदाहरण के लिए 0-15 बाइट्स की यादृच्छिक मात्रा से।
-
-इसी तरह की रणनीतियाँ आदर्श एक-टनल-संदेश आकार (964)
-और तीन-टनल-संदेश आकार (2952) पर उपयोग की जा सकती हैं, यद्यपि ये आकार व्यवहार में दुर्लभ होनी चाहिए।
 
 
-## मुद्दे
+## Justification
 
-1812 मूल्य प्रारंभिक है। पुष्टि और संभवतः समायोजित किया जाना है।
-
-
-## प्रवास
-
-कोई पिछड़ा संगतता मुद्दा नहीं।
-यह एक मौजूदा विकल्प है और MTU समुच्चयन पहले से ही विनिर्देश का हिस्सा है।
-
-पुराने ECIES गंतव्य 1730 को समर्थन देंगे।
-कोई भी ग्राहक जो उच्च मूल्य प्राप्त करता है वह 1730 के साथ उत्तर देगा, और दूर का अंत
-नीचे की ओर समुच्चयन करेगा, जैसा कि हमेशा होता है।
+See the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) for why the current value is 1730.
+See the [ECIES specification](/docs/specs/ecies/#overhead) for why the ECIES overhead is 82 bytes less than ElGamal.
 
 
+
+## Implementation Notes
+
+If streaming is creating messages of optimal size, it's very important that
+the ECIES-Ratchet layer does not pad beyond that size.
+
+The optimal Garlic Message size to fit into two tunnel messages,
+including the 16 byte Garlic Message I2NP header, 4 byte Garlic Message Length,
+8 byte ES tag, and 16 byte MAC, is 1956 bytes.
+
+A recommended padding algorithm in ECIES is as follows:
+
+- If the total length of the Garlic Message would be 1954-1956 bytes,
+  do not add a padding block (no room)
+- If the total length of the Garlic Message would be 1938-1953 bytes,
+  add a padding block to pad to exactly 1956 bytes.
+- Otherwise, pad as usual, for example with a random amount 0-15 bytes.
+
+Similar strategies could be used at the optimal one-tunnel-message size (964)
+and three-tunnel-message size (2952), although these sizes should be rare in practice.
+
+
+
+## Issues
+
+The 1812 value is preliminary. To be confirmed and possibly adjusted.
+
+
+
+
+## Migration
+
+No backward compatibility issues.
+This is an existing option and MTU negotiation is already part of the specification.
+
+Older ECIES destinations will support 1730.
+Any client receiving a higher value will respond with 1730, and the far-end
+will negotiate downward, as usual.
+
+
+## References
+
+* [CALCULATION](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220)
+* [ECIES](/docs/specs/ecies/#overhead)
+* [STREAMING-OPTIONS](/docs/api/streaming/)
+* [STREAMING-SPEC](/docs/specs/streaming/#flags-and-option-data-fields)

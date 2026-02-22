@@ -10,323 +10,384 @@ target: "0.9.66"
 toc: true
 ---
 
-## 상태
-2025-04-01에 2차 검토에서 승인됨; 사양은 업데이트되었으나 아직 구현되지 않음.
+## Status
+Approved on 2nd review 2025-04-01; specs are updated; not yet implemented.
 
-## 개요
 
-I2P는 중앙 DNS 시스템이 없습니다.
-그러나 주소록과 b32 호스트명 시스템을 통해 라우터는 전체 목적지를 조회하고 리스셋을 가져올 수 있으며, 이를 통해 클라이언트가 해당 목적지에 연결할 수 있는 게이트웨이 및 키 목록을 포함합니다.
+## Overview
 
-따라서 리스셋은 DNS 기록과 유사합니다. 그러나 현재로서는 해당 호스트가 DNS SRV 기록 [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)과 유사하게 서비스를 지원하는지 여부를 확인할 수 있는 시설이 없습니다.
+I2P lacks a centralized DNS system.
+However, the address book, together with the b32 hostname system, allows
+the router to look up full destinations and fetch lease sets, which contain
+a list of gateways and keys so that clients may connect to that destination.
 
-첫 번째 애플리케이션은 피어 투 피어 이메일이 될 수 있습니다.
-다른 가능한 애플리케이션으로는 DNS, GNS, 키 서버, 인증 기관, 시간 서버, 비트토렌트, 암호화폐 및 기타 피어 투 피어 애플리케이션이 있습니다.
+So, leasesets are somewhat like a DNS record. But there is currently no facility to
+find out if that host supports any services, either on that destination or a different one,
+in a manner similar to DNS [SRV records](https://en.wikipedia.org/wiki/SRV_record) as defined in [RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
-## 관련 제안 및 대안
+The first application for this may be peer-to-peer email.
+Other possible applications: DNS, GNS, key servers, certificate authorities, time servers,
+bittorrent, cryptocurrencies, other peer-to-peer applications.
 
-### 서비스 목록
 
-LS2 제안서 123 [Prop123](/proposals/123-new-netdb-entries/)는 글로벌 서비스에 참여하는 목적지를 나타내는 '서비스 기록'을 정의했습니다. 플러드필은 이러한 기록을 글로벌 '서비스 목록'으로 집계할 것입니다.
-인증, 보안, 스팸 문제로 인해 구현되지 않았습니다.
+## Related Proposals and Alternatives
 
-이 제안은 특정 목적지에 대한 서비스 조회를 제공한다는 점에서 다르며, 글로벌 서비스에 대한 글로벌 풀 목적지와는 다릅니다.
+### Service Lists
+
+The LS2 [Proposal 123](/proposals/123-new-netdb-entries/) defined 'service records' that indicated a destination
+was participating in a global service. The floodfills would aggregate these records
+into global 'service lists'.
+This was never implemented due to complexity, lack of authentication,
+security, and spamming concerns.
+
+This proposal is different in that it provides lookup for a service for a specific destination,
+not a global pool of destinations for some global service.
 
 ### GNS
 
-GNS GNS는 모두가 자체 DNS 서버를 운영하도록 제안합니다.
-이 제안은 표준 서비스 이름 "도메인"을 포트 53에서 지정하여 GNS(또는 DNS)가 지원된다는 것을 서비스 기록을 통해 지정할 수 있기 때문에 보완적입니다.
+GNS proposes that everybody runs their own DNS server.
+This proposal is complementary, in that we could use service records to specify
+that GNS (or DNS) is supported, with a standard service name of "domain" on port 53.
 
 ### Dot well-known
 
-DOTWELLKNOWN에 따르면 서비스를 /.well-known/i2pmail.key로 HTTP 요청을 통해 조회할 것을 제안합니다. 이는 모든 서비스가 키를 호스팅할 관련 웹사이트를 가져야 한다는 것을 의미합니다. 대다수의 사용자는 웹사이트를 운영하지 않습니다.
+It has been [proposed](http://i2pforum.i2p/viewtopic.php?p=3102) that services be looked up via an HTTP request to
+/.well-known/i2pmail.key. This requires that every service must have a related
+website to host the key. Most users do not run websites.
 
-한 가지 해결책은 b32 주소에 대한 서비스가 실제로 해당 b32 주소에서 실행된다고 가정하는 것입니다. 따라서 예를 들어.i2p의 서비스를 찾으려면 `http://example.i2p/.well-known/i2pmail.key에서` HTTP 가져오기를 요구하지만,
-aaa...aaa.b32.i2p에 대한 서비스는 조회가 필요하지 않으며 직접 연결할 수 있습니다.
+One workaround is that we could presume that a service for a b32 address is actually
+running on that b32 address. So that looking for the service for example.i2p requires
+the HTTP fetch from http://example.i2p/.well-known/i2pmail.key, but
+a service for aaa...aaa.b32.i2p does not require that lookup, it can just connect directly.
 
-그러나 example.i2p도 b32로 주소화할 수 있기 때문에 이는 애매한 점이 있습니다.
+But there's an ambiguity there, because example.i2p can also be addressed by its b32.
 
-### MX 기록
+### MX Records
 
-SRV 기록은 모든 서비스에 대한 MX 기록의 일반적인 버전입니다.
-"_smtp._tcp"는 "MX" 기록입니다.
-MX 기록이 있으면 SRV 기록이 필요하지 않으며, MX 기록만으로는 모든 서비스에 대해 일반적인 기록을 제공하지 않습니다.
+SRV records are simply a generic version of MX records for any service.
+"_smtp._tcp" is the "MX" record.
+There is no need for MX records if we have SRV records, and MX records
+alone do not provide a generic record for any service.
 
-## 설계
 
-서비스 기록은 LS2의 옵션 섹션에 배치됩니다 [LS2](/docs/specs/common-structures/).
-현재 LS2의 옵션 섹션은 사용되지 않고 있습니다.
-LS1에 대해서는 지원되지 않습니다.
-이는 터널 대역폭 제안 [Prop168](/proposals/168-tunnel-bandwidth/)과 유사하며, 터널 빌드 기록에 대한 옵션을 정의합니다.
+## Design
 
-특정 호스트명 또는 b32에 대한 서비스 주소를 조회하려면 라우터가 리스셋을 가져와 속성에서 서비스 기록을 조회합니다.
+Service records are placed in the options section in [LS2](/docs/specs/common-structures/).
+The LS2 options section is currently unused.
+Not supported for LS1.
+This is similar to the [tunnel bandwidth proposal](/proposals/168-tunnel-bandwidth/),
+which defines options for tunnel build records.
 
-서비스는 LS 자체와 동일한 목적지에서 호스팅되거나 다른 호스트명/b32를 참조할 수 있습니다.
+To lookup a service address for a specific hostname or b32, the router fetches the
+leaseset and looks up the service record in the properties.
 
-서비스에 대한 대상 목적지가 다른 경우 대상 LS에는 서비스 지원을 나타내는 서비스 기록이 포함되어 있어야 합니다.
+The service may be hosted on the same destination as the LS itself, or may reference
+a different hostname/b32.
 
-설계는 플러드필에서 특별한 지원, 캐싱 또는 변경을 요구하지 않습니다.
-리스셋 게시자와 서비스 기록을 조회하는 클라이언트만 이러한 변경을 지원해야 합니다.
+If the target destination for the service is different, the target LS must also
+include a service record, pointing to itself, indicating that it supports the service.
 
-I2CP 및 SAM 확장을 통해 클라이언트가 서비스 기록을 검색하는 데 필요한 세부 사항이 제안됩니다.
+The design does not require special support or caching or any changes in the floodfills.
+Only the leaseset publisher, and the client looking up a service record,
+must support these changes.
 
-## 사양
+Minor I2CP and SAM extensions are proposed to facilitate retrieval of
+service records by clients.
 
-### LS2 옵션 사양
 
-LS2 옵션은 키별로 정렬되어 서명이 변하지 않도록 해야 합니다.
 
-다음과 같이 정의됩니다:
+## Specification
+
+### LS2 Option Specification
+
+LS2 options MUST be sorted by key, so the signature is invariant.
+
+Defined as follows:
 
 - serviceoption := optionkey optionvalue
 - optionkey := _service._proto
-- service := 원하는 서비스의 상징적인 이름. 소문자여야 합니다. 예: "smtp".
-  허용되는 문자는 [a-z0-9-]이며 '-'로 시작하거나 끝날 수 없습니다.
-  [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) 또는 Linux /etc/services에 정의된 표준 식별자를 사용해야 합니다.
-- proto := 원하는 서비스의 전송 프로토콜. 소문자 여야 하며, "tcp"나 "udp" 중 하나여야 합니다.
-  "tcp"는 스트리밍, "udp"는 응답이 가능한 데이터그램을 의미합니다.
-  원시 데이터그램과 datagram2에 대한 프로토콜 표시자는 나중에 정의될 수 있습니다.
-  허용되는 문자는 [a-z0-9-]이며 '-'로 시작하거나 끝날 수 없습니다.
+- service := The symbolic name of the desired service. Must be lower case. Example: "smtp".
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+  Standard identifiers from the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services must be used if defined there.
+- proto := The transport protocol of the desired service. Must be lower case, either "tcp" or "udp".
+  "tcp" means streaming and "udp" means repliable datagrams.
+  Protocol indicators for raw datagrams and datagram2 may be defined later.
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
 - optionvalue := self | srvrecord[,srvrecord]*
 - self := "0" ttl port [appoptions]
 - srvrecord := "1" ttl priority weight port target [appoptions]
-- ttl := 생존 시간, 정수 초. 양의 정수. 예: "86400".
-  최소 86400(하루)의 TTL을 지정하는 것이 좋습니다. 자세한 내용은 권장사항 섹션을 참조하세요.
-- priority := 대상 호스트의 우선순위, 낮을수록 더 선호됨. 음수가 아닌 정수. 예: "0"
-  하나 이상의 기록이 있는 경우에만 유용하지만, 하나의 기록이 있는 경우에도 필요합니다.
-- weight := 동일한 우선순위를 가진 기록들 중 무작위 선택 확률을 결정하는 상대적인 가중치. 음수가 아닌 정수. 예: "0"
-  하나 이상의 기록이 있는 경우에만 유용하지만, 하나의 기록이 있는 경우에도 필요합니다.
-- port := 서비스가 찾을 수 있는 I2CP 포트. 음수가 아닌 정수. 예: "25"
-  포트 0은 지원되지만 권장되지 않습니다.
-- target := 서비스를 제공하는 목적지의 호스트명 또는 b32. [NAMING](/docs/overview/naming/)의 유효한 호스트명. 소문자여야 합니다.
-  예: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" 또는 "example.i2p".
-  호스트명이 "잘 알려진" 경우가 아니라면 b32가 권장됩니다.
-- appoptions := 애플리케이션에 특정한 임의의 텍스트, " " 또는 ","를 포함할 수 없음. UTF-8로 인코딩됩니다.
+- ttl := time to live, integer seconds. Positive integer. Example: "86400".
+  A minimum of 86400 (one day) is recommended, see Recommendations section below for details.
+- priority := The priority of the target host, lower value means more preferred. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- weight := A relative weight for records with the same priority. Higher value means more chance of getting picked. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
+  Port 0 is supported but not recommended.
+- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/overview/naming/). Must be lower case.
+  Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
+  b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
+- appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
 
-### 예시
+### Examples
 
-
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p의 LS2에서 하나의 SMTP 서버를 가리키는 경우:
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to one SMTP server:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p의 LS2에서 두 개의 SMTP 서버를 가리키는 경우:
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to two SMTP servers:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p의 LS2에서 자신을 SMTP 서버로 가리키는 경우:
+In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to itself as a SMTP server:
 
     "_smtp._tcp" "0 999999 25"
 
-이메일 리디렉션에 대한 가능한 형식 (아래 참조):
+Possible format for redirecting email (see below):
 
-    "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p" 
-
-
-### 제한사항
+    "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-LS2 옵션에 사용된 매핑 데이터 구조 형식은 키와 값을 최대 255바이트(문자가 아님)로 제한합니다.
-b32 대상의 경우 optionvalue는 약 67바이트이므로 3개의 기록만 넣을 수 있습니다.
-appoptions 필드가 길면 하나 또는 두 개, 호스트명이 짧으면 최대 네 개 또는 다섯 개가 들어갈 수 있습니다.
-충분하다고 예상됩니다; 여러 기록은 드물 것입니다.
+### Limits
+
+The Mapping data structure format used for LS2 options limits keys and values to 255 bytes (not chars) max.
+With a b32 target, the optionvalue is about 67 bytes, so only 3 records would fit.
+Maybe only one or two with a long appoptions field, or up to four or five with a short hostname.
+This should be sufficient; multiple records should be rare.
 
 
-### [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)와의 차이점
+### Differences from RFC 2782
+
+- No trailing dots
+- No name after the proto
+- Lower case required
+- In text format with comma-separated records, not binary DNS format
+- Different record type indicators
+- Additional appoptions field
 
 
-- 점 없음
-- 프로토콜 뒤에 이름 없음
-- 소문자 필수
-- 쉼표로 구분된 기록으로 된 텍스트 형식, 이진 DNS 형식 아님
-- 다른 기록 유형 지표
-- 추가적인 appoptions 필드
+### Notes
+
+No wildcarding such as (asterisk), (asterisk)._tcp, or _tcp is allowed.
+Each supported service must have its own record.
 
 
-### 노트
+
+### Service Name Registry
+
+Non-standard identifiers that are not listed in the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services
+may be requested and added to the [common structures specification](/docs/specs/common-structures/).
+
+Service-specific appoptions formats may also be added there.
 
 
-'*', '*._tcp', '_tcp'와 같은 와일드카드는 허용되지 않습니다.
-각 지원 서비스는 자체 기록을 가져야 합니다.
+### I2CP Specification
 
+The [I2CP protocol](/docs/specs/i2cp/) must be extended to support service lookups.
+Additional MessageStatusMessage and/or HostReplyMessage error codes related to service lookup
+are required.
+To make the lookup facility general, not just service record-specific,
+the design is to support retrieval of all LS2 options.
 
-### 서비스 이름 등록소
+Implementation: Extend HostLookupMessage to add request for
+LS2 options for hash, hostname, and destination (request types 2-4).
+Extend HostReplyMessage to add the options mapping if requested.
+Extend HostReplyMessage with additional error codes.
 
-[REGISTRY](http://www.dns-sd.org/ServiceTypes.html) 또는 Linux /etc/services에 나열되지 않은 비표준 식별자는 요청하여 일반 구조 사양 [LS2](/docs/specs/common-structures/)에 추가할 수 있습니다.
+Options mappings may be cached or negative cached for a short time on either the client or router side,
+implementation-dependent. Recommended maximum time is one hour, unless the service record TTL is shorter.
+Service records may be cached up to the TTL specified by the application, client, or router.
 
-서비스별 appoptions 형식도 추가될 수 있습니다.
+Extend the specification as follows:
 
+#### Configuration options
 
-### I2CP 사양
-
-[I2CP](/docs/specs/i2cp/) 프로토콜은 서비스 조회를 지원하기 위해 확장되어야 합니다.
-서비스 조회와 관련된 추가 MessageStatusMessage 및/또는 HostReplyMessage 오류 코드가 필요합니다.
-조회 시설을 일반화하여 서비스 기록 특정에만 제한되지 않도록 하려면
-모든 LS2 옵션의 검색을 지원하는 설계가 필요합니다.
-
-구현: HostLookupMessage를 확장하여
-해시, 호스트명 및 목적지(request types 2-4)에 대한
-LS2 옵션 요청을 추가해야 합니다.
-HostReplyMessage를 확장하여 요청된 경우 옵션 매핑을 추가해야 합니다.
-추가 오류 코드가 있는 HostReplyMessage를 확장해야 합니다.
-
-옵션 매핑은 클라이언트 또는 라우터 측에서 구현에 따라 짧은 시간 동안 캐시되거나 부정적으로 캐시될 수 있습니다. 권장 최대 시간은 서비스 기록 TTL이 더 짧은 경우를 제외하고는 1시간입니다.
-서비스 기록은 애플리케이션, 클라이언트, 라우터에 의해 지정된 TTL까지 캐시될 수 있습니다.
-
-다음과 같이 사양을 확장합니다:
-
-### 구성 옵션
-
-[I2CP-OPTIONS](/docs/specs/i2cp/)에 다음을 추가합니다:
+Add the following to the [I2CP configuration options](/docs/specs/i2cp/)
 
 i2cp.leaseSetOption.nnn
 
-리스셋에 넣을 옵션. LS2에서만 사용 가능.
-nnn은 0부터 시작합니다. 옵션 값은 "key=value"를 포함합니다.
-(따옴표 제외)
+Options to be put in the leaseset. Only available for LS2.
+nnn starts with 0. Option value contains "key=value".
+(do not include quotes)
 
-예시:
-
-    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
-
-
-### 호스트 탐색 메시지
+Example:
+i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-- 탐색 유형 2: 해시 탐색, 옵션 매핑 요청
-- 탐색 유형 3: 호스트명 탐색, 옵션 매핑 요청
-- 탐색 유형 4: 목적지 탐색, 옵션 매핑 요청
+#### HostLookup Message
 
-탐색 유형 4의 경우, 아이템 5는 목적지입니다.
+- Lookup type 2: Hash lookup, request options mapping
+- Lookup type 3: Hostname lookup, request options mapping
+- Lookup type 4: Destination lookup, request options mapping
 
-
-### 호스트 응답 메시지
-
-
-탐색 유형 2-4의 경우, 라우터는 리스셋을 가져와야 하며, 탐색 키가 주소 북에 있는 경우에도 마찬가지입니다.
-
-성공적인 경우, HostReply에는 리스셋에서 옵션 매핑이 포함되며, 이를 목적지 뒤의 항목 5로 포함합니다.
-매핑에 옵션이 없거나 리스셋이 버전 1인 경우에도 빈 매핑(두 바이트: 0 0)으로 포함됩니다.
-서비스 기록 옵션뿐만 아니라 리스셋의 모든 옵션이 포함될 것입니다.
-예를 들어, 미래에 정의될 수 있는 매개변수의 옵션이 있을 수도 있습니다.
-
-리스셋 조회 실패 시, 응답에는 새로운 오류 코드 6(리스셋 조회 실패)이 포함되며 매핑은 포함되지 않습니다.
-오류 코드 6이 반환될 경우, 목적지 필드는 포함되거나 포함되지 않을 수 있습니다.
-주소 북에서 호스트명 탐색이 성공했을 경우, 이전 탐색이 성공적으로 캐시되었고 결과가 있었을 경우,
-또는 탐색 메시지(탐색 유형 4)에 목적지가 포함되어 있을 경우에는 포함됩니다.
-
-탐색 유형이 지원되지 않으면, 응답에는 새로운 오류 코드 7(탐색 유형 지원되지 않음)이 포함됩니다.
+For lookup type 4, item 5 is a Destination.
 
 
-### SAM 사양
 
-[SAMv3](/docs/api/samv3/) 프로토콜은 서비스 조회를 지원하기 위해 확장되어야 합니다.
+#### HostReply Message
 
-다음과 같이 NAMING LOOKUP을 확장합니다:
+For lookup types 2-4, the router must fetch the leaseset,
+even if the lookup key is in the address book.
 
-NAMING LOOKUP NAME=example.i2p OPTIONS=true 옵션 매핑을 응답에 포함하도록 요청합니다.
+If successful, the HostReply will contain the options Mapping
+from the leaseset, and includes it as item 5 after the destination.
+If there are no options in the Mapping, or the leaseset was version 1,
+it will still be included as an empty Mapping (two bytes: 0 0).
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.
 
-NAME은 OPTIONS=true일 때 전체 base64 목적지일 수 있습니다.
+On leaseset lookup failure, the reply will contain a new error code 6 (Leaseset lookup failure)
+and will not include a mapping.
+When error code 6 is returned, the Destination field may or may not be present.
+It will be present if a hostname lookup in the address book was successful,
+or if a previous lookup was successful and the result was cached,
+or if the Destination was present in the lookup message (lookup type 4).
 
-주소의 조회가 성공적이고 리스셋에 옵션이 있는 경우,
-응답에서 목적지 다음에
-옵션:key=value 형태로 하나 이상의 옵션이 포함됩니다.
-각 옵션은 다른 OPTION: 접두어를 가집니다.
-서비스 기록 옵션뿐만 아니라 리스셋의 모든 옵션이 포함될 것입니다.
-예를 들어, 미래에 정의될 수 있는 매개변수의 옵션이 있을 수도 있습니다.
-예시:
-
-    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
-
-'='를 포함하는 키, 줄바꿈을 포함하는 키 또는 값은
-잘못된 것으로 간주되며, 응답에서 제거됩니다.
-
-리스셋에서 옵션이 발견되지 않거나, 리스셋이 버전 1인 경우
-응답에는 옵션이 포함되지 않습니다.
-
-OPTIONS=true가 조회에 포함되었고 리스셋이 발견되지 않은 경우, 새로운 결과 값 LEASESET_NOT_FOUND가 반환됩니다.
-
-## 네이밍 조회 대안
-
-전체 호스트명으로 서비스 조회를 지원하기 위해
-_smtp._tcp.example.i2p와 같은 형태로
-[NAMING](/docs/overview/naming/)을 업데이트하는 대안 설계가 고려되었습니다.
-이는 두 가지 이유로 거절되었습니다:
-
-- I2CP와 SAM 변경이 여전히 필요합니다. 클라이언트에 TTL과 포트 정보를 전달하기 위해서입니다.
-- 미래에 정의될 수 있는 다른 LS2 옵션을 검색하기 위한 일반적인 설비가 아닙니다.
+If a lookup type is not supported,
+the reply will contain a new error code 7 (lookup type unsupported).
 
 
-## 권장사항
 
-서버는 TTL을 최소 86400으로 지정해야 하며, 애플리케이션의 표준 포트를 지정해야 합니다.
+### SAM Specification
+
+The [SAMv3 protocol](/docs/api/samv3/) must be extended to support service lookups.
+
+Extend NAMING LOOKUP as follows:
+
+NAMING LOOKUP NAME=example.i2p OPTIONS=true requests the options mapping in the reply.
+
+NAME may be a full base64 destination when OPTIONS=true.
+
+If the destination lookup was successful and options were present in the leaseset,
+then in the reply, following the destination,
+will be one or more options in the form of OPTION:key=value.
+Each option will have a separate OPTION: prefix.
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.
+Example:
+
+NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+
+Keys containing '=', and keys or values containing a newline,
+are considered invalid and the key/value pair will be removed from the reply.
+
+If there are no options found in the leaseset, or if the leaseset was version 1,
+then the response will not include any options.
+
+If OPTIONS=true was in the lookup, and the leaseset is not found, a new result value LEASESET_NOT_FOUND will be returned.
 
 
-## 고급 기능
+## Naming Lookup Alternative
 
-### 재귀적 조회
+An alternative design was considered, to support lookups of services
+as a full hostname, for example _smtp._tcp.example.i2p,
+by updating the [naming specification](/docs/overview/naming/) to specify handling of hostnames starting with '_'.
+This was rejected for two reasons:
 
-각 연속적인 리스셋이 다른 리스셋을 가리키는 서비스 기록을 확인하는 것이 바람직할 수도 있습니다. 예를 들어 DNS 스타일로.
-이는 초기 구현에서는 필요하지 않을 수도 있습니다.
+- I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.
+- It would not be a general facility that could be used to retrieve other LS2
+  options that could be defined in the future.
+
+
+## Recommendations
+
+Servers should specify a TTL of at least 86400, and the standard port for the application.
+
+
+
+## Advanced Features
+
+### Recursive Lookups
+
+It may be desirable to support recursive lookups, where each successive leaseset
+is checked for a service record pointing to another leaseset, DNS-style.
+This is probably not necessary, at least in an initial implementation.
 
 TODO
 
 
-### 애플리케이션 별 필드
 
-서비스 기록에 애플리케이션 별 데이터가 포함되는 것이 바람직할 수 있습니다.
-예를 들어 example.i2p의 운영자는 이메일이 example@mail.i2p로 포워딩되기를 원할 수 있습니다. "example@" 부분은 서비스 기록의 별도 필드에 있어야 하며
-또는 대상에서 제거되어야 합니다.
+### Application-specific fields
 
-운영자가 자체 이메일 서비스를 운영하더라도 이메일은 example@example.i2p로 보내져야 함을 표시할 수 있습니다. 대부분의 I2P 서비스는 한 사람이 운영합니다.
-따라서 별도 필드가 있는 것이 여기에 도움이 될 수 있습니다.
+It may be desirable to have application-specific data in the service record.
+For example, the operator of example.i2p may wish to indicate that email should
+be forwarded to example@mail.i2p. The "example@" part would need to be in a separate field
+of the service record, or stripped from the target.
 
-TODO 일반적인 방법으로 이를 수행하는 방법
+Even if the operator runs his own email service, he may wish to indicate that
+email should be sent to example@example.i2p. Most I2P services are run by a single person.
+So a separate field may be helpful here as well.
 
-
-### 이메일에 필요한 변경
-
-이 제안서의 범위를 벗어납니다. 설명은 DOTWELLKNOWN을 참조하세요.
+TODO how to do this in a generic way
 
 
-## 구현 노트
+### Changes required for Email
 
-TTL까지 서비스 기록의 캐싱은 라우터나 애플리케이션에 의해 구현할 수 있으며, 이는 구현에 따라 다릅니다. 캐시를 지속할 것인지 여부도 구현에 따라 결정됩니다.
-
-조회는 대상 리스셋을 조회하고 "self" 기록이 포함되어 있는지 확인한 후
-클라이언트에 대상 목적지를 반환해야 합니다.
+Out of the scope of this proposal. See the [discussion on i2pforum](http://i2pforum.i2p/viewtopic.php?p=3102) for more details.
 
 
-## 보안 분석
+## Implementation Notes
 
-리스셋은 서명되어 있기 때문에 그 안의 모든 서비스 기록은 목적지의 서명 키에 의해 인증됩니다.
+Caching of service records up to the TTL may be done by the router or the application,
+implementation-dependent. Whether to cache persistently is also implementation-dependent.
 
-서비스 기록은 공개되어 있으며 플러드필에 보이며, 리스셋이 암호화되지 않는 한 그렇습니다.
-리스셋을 요청하는 모든 라우터는 서비스 기록을 볼 수 있습니다.
-
-"self"가 아닌 SRV 기록(즉, 다른 호스트명/b32 대상에 가리키는 경우)은
-대상 호스트명/b32의 동의를 필요로 하지 않습니다.
-서비스를 임의의 대상에 리디렉션하는 것이 어떤 유형의 공격을 촉진할 수 있는지, 또는 그 공격의 목적이 무엇인지는
-명확하지 않습니다.
-그러나 이 제안은 대상이
-자신의 "self" SRV 기록을 게시하도록 요구하여 그러한 공격을 완화합니다. 구현자는 대상의 리스셋에서 "self" 기록을 확인해야 합니다.
+Lookups must also lookup the target leaseset and verify it contains a "self" record
+before returning the target destination to the client.
 
 
-## 호환성
+## Security Analysis
 
-LS2: 문제 없음. 모든 알려진 구현은 현재 LS2의 옵션 필드를 무시하며,
-비어 있지 않은 옵션 필드를 올바르게 건너뜁니다.
-이는 LS2 개발 중 Java I2P 및 i2pd에 의한 테스트에서 확인되었습니다.
-LS2는 0.9.38에서 2016년에 구현되어 모든 라우터 구현에서 잘 지원되고 있습니다.
-설계는 특별한 지원이나 캐싱 또는 플러드필의 변경을 요구하지 않습니다.
+As the leaseset is signed, any service records within it are authenticated by the signing key of the destination.
 
-네이밍: '_'는 i2p 호스트명에서 허용되는 문자가 아닙니다.
+The service records are public and visible to floodfills, unless the leaseset is encrypted.
+Any router requesting the leaseset will be able to see the service records.
 
-I2CP: 탐색 유형 2-4는 지원을 받는 최소 API 버전(미정) 이하의 라우터로 전송되지 않아야 합니다.
-
-SAM: Java SAM 서버는 OPTIONS=true와 같은 추가 키/값을 무시합니다.
-i2pd도 마찬가지여야 하며, 검증이 필요합니다.
-SAM 클라이언트는 OPTIONS=true 요청 없이 응답에서 추가 값을 받지 않습니다.
-버전 증가는 필요하지 않을 것입니다.
+A SRV record other than "self" (i.e., one that points to a different hostname/b32 target)
+does not require the consent of the targeted hostname/b32.
+It's not clear if a redirection of a service to an arbitrary destination could facilitate some
+sort of attack, or what the purpose of such an attack would be.
+However, this proposal mitigates such an attack by requiring that the target
+also publish a "self" SRV record. Implementers must check for a "self" record
+in the leaseset of the target.
 
 
+## Compatibility
+
+LS2: No issues. All known implementations currently ignore the options field in LS2,
+and correctly skip over a non-empty options field.
+This was verified in testing by both Java I2P and i2pd during the development of LS2.
+LS2 was implemented in 0.9.38 in 2016 and is well-supported by all router implementations.
+The design does not require special support or caching or any changes in the floodfills.
+
+Naming: '_' is not a valid character in i2p hostnames.
+
+I2CP: Lookup types 2-4 should not be sent to routers below the minimum API version
+at which it is supported (TBD).
+
+SAM: Java SAM server ignores additional keys/values such as OPTIONS=true.
+i2pd should as well, to be verified.
+SAM clients will not get the additional values in the reply unless requested with OPTIONS=true.
+No version bump should be necessary.
+
+
+## Migration
+
+Implementations may add support at any time, no coordination is needed,
+except for an agreement on the effective API version for the I2CP changes.
+SAM compatibility versions for each implementation will be documented in the SAM spec.
+
+
+## References
+
+* [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
+* [I2CP](/docs/specs/i2cp/)
+* [I2CP-OPTIONS](/docs/specs/i2cp/)
+* [LS2](/docs/specs/common-structures/)
+* [GNS](http://zzz.i2p/topcs/1545)
+* [NAMING](/docs/overview/naming/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop168](/proposals/168-tunnel-bandwidth/)
+* [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)
+* [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+* [SAMv3](/docs/api/samv3/)
+* [SRV](https://en.wikipedia.org/wiki/SRV_record)

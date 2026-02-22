@@ -178,7 +178,7 @@ toc: true
 当 I2P 浏览器打开后，你需要检查 I2P 正在使用哪些端口：
 
 1. **进入网络配置页面**:
-   - 在浏览器中访问 `http://127.0.0.1:7657/confignet`
+   - 在浏览器中访问 [I2P Router 网络配置](http://127.0.0.1:7657/confignet)
    - 或从 router 控制台侧边栏进入: **Configuration → Network**
 
 2. **向下滚动** 到端口配置部分

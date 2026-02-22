@@ -102,7 +102,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 ### Erfolgreiche Antwort
 
@@ -144,7 +144,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **Antwortfelder (result)**   Laut der offiziellen Dokumentation (GetI2P):   - `i2p.router.status` (String) — ein für Menschen lesbarer Status   - `i2p.router.uptime` (long) — Millisekunden (oder String für ältere i2pd-Versionen) :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — Versionszeichenkette :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — eingehende Bandbreite in B/s :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — ausgehende Bandbreite in B/s :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — numerischer Statuscode (siehe Enum unten) :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — Anzahl der teilnehmenden tunnel :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — netDB Peer-Statistiken :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — ob Reseed aktiv ist :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — insgesamt bekannte Peers :contentReference[oaicite:8]{index=8}
 
@@ -240,7 +240,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **Beispielantwort**
 
@@ -274,7 +274,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **Erfolgreiche Antwort**
 
@@ -309,7 +309,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **Beispielantwort**
 
@@ -351,7 +351,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 **Antwort-Beispiel**
 

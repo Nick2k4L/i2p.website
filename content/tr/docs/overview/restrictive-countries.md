@@ -68,6 +68,6 @@ Bu savunmalar, yönlendiricilerin güvenilir bir şekilde listelenmesini zorlaş
 /* Western Sahara */ "EH",
 /* Yemen */ "YE"
 ```
-Bir ülkenin katı listeye eklenmesi veya listeden çıkarılması gerektiğini düşünüyorsanız, lütfen bir issue açın: `https://i2pgit.org/i2p/i2p.i2p/`
+Bir ülkenin katı listeye eklenmesi veya listeden çıkarılması gerektiğini düşünüyorsanız, lütfen bir issue açın: https://i2pgit.org/i2p/i2p.i2p/
 
 Referans: Freedom House – https://freedomhouse.org/

@@ -30,9 +30,9 @@ Il s'appuie sur les travaux précédents comme suit :
 - Spécification des structures communes [Common](/docs/specs/common-structures/)
 - Spécification [I2NP](/docs/specs/i2np/) incluant LS2
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- <`http://zzz.i2p/topics/1768>` aperçu de la nouvelle cryptographie asymétrique
+- <http://zzz.i2p/topics/1768> aperçu de la nouvelle cryptographie asymétrique
 - Aperçu de la cryptographie bas niveau [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
-- ECIES <`http://zzz.i2p/topics/2418>`
+- ECIES <http://zzz.i2p/topics/2418>
 - [NTCP2](/docs/specs/ntcp2/) [Prop111](/proposals/111-ntcp2/)
 - 123 Nouvelles entrées netDB
 - 142 Nouveau modèle cryptographique

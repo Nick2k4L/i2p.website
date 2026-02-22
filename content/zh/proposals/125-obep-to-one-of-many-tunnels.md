@@ -9,116 +9,168 @@ thread: "http://zzz.i2p/topics/2099"
 toc: true
 ---
 
-## 概述
+## Overview
 
-本提案涵盖了改善网络性能的两个改进：
+This proposal covers two improvements for improving network performance:
 
-- 通过向OBEP提供一个替代列表而不是单一选项，将IBGW选择委托给OBEP。
+- Delegating IBGW selection to the OBEP by providing it with a list of
+  alternatives instead of a single option.
 
-- 启用OBEP的多播数据包路由。
+- Enabling multicast packet routing at the OBEP.
 
-## 动机
 
-在直接连接的情况下，该想法是通过赋予OBEP连接IBGWs的灵活性来减少连接拥塞。能够指定多个隧道还使我们能够在OBEP实现多播（通过向所有指定隧道传递消息）。
+## Motivation
 
-此提案的委托部分的一个替代方案是通过发送一个`http://localhost:63465/docs/specs/common-structures/#leaseset`哈希，该哈希类似于现有的指定目标`http://localhost:63465/docs/specs/common-structures/#common-structure-specification`哈希的能力。这将导致消息更小并且可能出现更新的LeaseSet。然而：
+In the direct connection case, the idea is to reduce connection congestion, by
+giving the OBEP flexibility in how it connects to IBGWs. The ability to specify
+multiple tunnels also enables us to implement multicast at the OBEP (by
+delivering the message to all specified tunnels).
 
-1. 这将强迫OBEP进行查找
+An alternative to the delegation part of this proposal would be to send through
+a LeaseSet hash, similar to the existing ability to specify a target
+[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
+newer LeaseSet. However:
 
-2. LeaseSet可能未发布到洪泛，所以查找会失败。
+1. It would force the OBEP to do a lookup
 
-3. LeaseSet可能被加密，因此OBEP无法获取租约。
+2. The LeaseSet may not be published to a floodfill, so the lookup would fail.
 
-4. 指定LeaseSet会向OBEP透露消息的[Destination](/docs/specs/common-structures/#destination)，否则他们只能通过在网络中抓取所有LeaseSet并寻找匹配的Lease来发现。
+3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
 
-## 设计
+4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
+   which they could otherwise only discover by scraping all the LeaseSets in the
+   network and looking for a Lease match.
 
-发起者（OBGW）将在传递指令[TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions)放置一些（全部？）目标`http://localhost:63465/docs/specs/common-structures/#lease`，而不是只选择一个。
 
-OBEP将选择其中一个进行传递。OBEP如果可用，将选择一个它已经连接或已知的。这将使OBEP-IBGW路径更快更可靠，并减少整体网络连接。
+## Design
 
-我们有一个未使用的传递类型（0x03）和两个剩余位（0和1）在[TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions)的标志中，我们可以利用这些来实现这些功能。
+The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
+delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
 
-## 安全影响
+The OBEP would select one of those to deliver to. The OBEP would select, if
+available, one that it is already connected to, or already knows about. This
+would make the OBEP-IBGW path faster and more reliable, and reduce overall
+network connections.
 
-此提案不会改变有关OBGW的目标Destination或他们对NetDB的视图所泄露的信息量：
+We have one unused delivery type (0x03) and two remaining bits (0 and 1) in the
+flags for TUNNEL-DELIVERY, which we can leverage to implement these features.
 
-- 控制OBEP并从NetDB抓取LeaseSet的对手已经可以通过搜索`http://localhost:63465/docs/specs/common-structures/#tunnelid` / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification`对来确定消息是否发送到某个特定Destination。最坏情况下，TMDI中多个Leases的存在可能会使其在对手数据库中更快找到匹配项。
 
-- 操作恶意Destination的对手已经可以通过发布包含不同入站隧道的LeaseSets给不同洪泛点，并观察OBGW连接通过哪些隧道，来获取有关连接受害者的NetDB视图的信息。从他们的角度来看，OBEP选择使用哪条隧道在功能上与OBGW进行选择完全相同。
+## Security Implications
 
-多播标志泄露了OBGW正在向OBEPs进行多播的事实。这在实现更高级别协议时应考虑性能与隐私的权衡。作为可选标志，用户可以为其应用做出适当的决定。然而，作为兼容应用的默认行为可能有好处，因为各种应用的广泛使用可以减少哪个特定应用发出消息的信息泄漏。
+This proposal does not change the amount of information leaked about the OBGW's
+target Destination or their view of the NetDB:
 
-## 规范
+- An adversary that controls the OBEP and is scraping LeaseSets from the NetDB
+  can already determine whether a message is being sent to a particular
+  Destination, by searching for the TunnelId / RouterIdentity pair. At
+  worst, the presence of multiple Leases in the TMDI might make it faster to
+  find a match in the adversary's database.
 
-第一片段传递指令[TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions)将修改如下：
+- An adversary that is operating a malicious Destination can already gain
+  information about a connecting victim's view of the NetDB, by publishing
+  LeaseSets containing different inbound tunnels to different floodfills, and
+  observing which tunnels the OBGW connects through. From their point of view,
+  the OBEP selecting which tunnel to use is functionally identical to the OBGW
+  making the selection.
+
+The multicast flag leaks the fact that the OBGW is multicasting to the OBEPs.
+This creates a performance vs. privacy trade-off that should be considered when
+implementing higher-level protocols. Being an optional flag, users can make
+the appropriate decision for their application. There may be benefits to this
+being the default behaviour for compatible applications, however, as wide-spread
+usage by a variety of applications would reduce the information leakage about
+which particular application a message is from.
+
+
+## Specification
+
+The First Fragment Delivery Instructions would be modified as follows:
 
 ```
 +----+----+----+----+----+----+----+----+
-|flag|  隧道 ID (opt)  |              |
-+----+----+----+----+----+              +
-|                                       |
-+                                       +
-|         到哈希 (optional)            |
-+                                       +
-|                                       |
-+                        +----+----+----+
-|                        |dly |  消息  
-+----+----+----+----+----+----+----+----+
- ID (opt) |扩展选项 (opt)|cnt | (o)
-+----+----+----+----+----+----+----+----+
- 隧道 ID N   |                        |
-+----+----+----+                        +
-|                                       |
-+                                       +
-|         到哈希 N (optional)          |
-+                                       +
-|                                       |
-+              +----+----+----+----+----+
-|              | 隧道 ID N+1 (o) |    |
-+----+----+----+----+----+----+    +
-|                                       |
-+                                       +
-|         到哈希 N+1 (optional)        |
-+                                       +
-|                                       |
-+                                  +----+
-|                                  | sz
-+----+----+----+----+----+----+----+----+
-     |
-+----+
+  |flag|  Tunnel ID (opt)  |              |
+  +----+----+----+----+----+              +
+  |                                       |
+  +                                       +
+  |         To Hash (optional)            |
+  +                                       +
+  |                                       |
+  +                        +----+----+----+
+  |                        |dly | Message
+  +----+----+----+----+----+----+----+----+
+   ID (opt) |extended opts (opt)|cnt | (o)
+  +----+----+----+----+----+----+----+----+
+   Tunnel ID N   |                        |
+  +----+----+----+                        +
+  |                                       |
+  +                                       +
+  |         To Hash N (optional)          |
+  +                                       +
+  |                                       |
+  +              +----+----+----+----+----+
+  |              | Tunnel ID N+1 (o) |    |
+  +----+----+----+----+----+----+----+    +
+  |                                       |
+  +                                       +
+  |         To Hash N+1 (optional)        |
+  +                                       +
+  |                                       |
+  +                                  +----+
+  |                                  | sz
+  +----+----+----+----+----+----+----+----+
+       |
+  +----+
 
-标志 ::
-       1 字节
-       比特顺序：76543210
-       比特6-5：传递类型
-                 0x03 = 隧道
-       比特0：多播？如果0，传递到一个隧道
-                         如果1，传递到所有隧道
-                         如果传递类型不是隧道，则设为0以兼容未来使用
+flag ::
+       1 byte
+       Bit order: 76543210
+       bits 6-5: delivery type
+                 0x03 = TUNNELS
+       bit 0: multicast? If 0, deliver to one of the tunnels
+                         If 1, deliver to all of the tunnels
+                         Set to 0 for compatibility with future uses if
+                         delivery type is not TUNNELS
 
-计数 ::
-       1 字节
-       可选，当传递类型是隧道时存在
-       2-255 - 后跟的id/hash对的数量
+Count ::
+       1 byte
+       Optional, present if delivery type is TUNNELS
+       2-255 - Number of id/hash pairs to follow
 
-隧道ID :: `TunnelId`
-到哈希 ::
-       每个36字节
-       可选，当传递类型是隧道时存在
-       id/hash对
+Tunnel ID :: TunnelId
+To Hash ::
+       36 bytes each
+       Optional, present if delivery type is TUNNELS
+       id/hash pairs
 
-总长度：典型长度是：
-       75字节用于计数2隧道传递（未分段隧道消息）；
-       79字节用于计数2隧道传递（第一片段）
+Total length: Typical length is:
+       75 bytes for count 2 TUNNELS delivery (unfragmented tunnel message);
+       79 bytes for count 2 TUNNELS delivery (first fragment)
 
-其余传递指令不变
+Rest of delivery instructions unchanged
 ```
 
-## 兼容性
 
-唯一需要理解新规范的节点是OBGWs和OBEPs。因此，我们可以通过使其使用取决于目标I2P版本[VERSIONS](/docs/specs/i2np/#protocol-versions)，将这次改变与现有网络兼容：
+## Compatibility
 
-* OBGWs在建立出站隧道时，须基于其`http://localhost:63465/docs/specs/common-structures/#routerinfo`中广告的I2P版本选择兼容OBEPs。
+The only peers that need to be understand the new specification are the OBGWs
+and the OBEPs. We can therefore make this change compatible with the existing
+network by making its use conditional on the target I2P version:
 
-* 广告目标版本的节点必须支持解析新标志，并且不得将指令作为无效指令拒绝。
+* The OBGWs must select compatible OBEPs when building outbound tunnels, based
+  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
+
+* Peers that advertise the target version must support parsing the new flags,
+  and must not reject the instructions as invalid.
+
+
+## References
+
+* [Destination](/docs/specs/common-structures/#destination)
+* [Leases](/docs/specs/common-structures/#lease)
+* [LeaseSet](/docs/specs/common-structures/#leaseset)
+* [RouterIdentity](/docs/specs/common-structures/#routeridentity)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TUNNEL-DELIVERY](/docs/specs/common-structures/#tunnelmessagedeliveryinstructions)
+* [TunnelId](/docs/specs/common-structures/#tunnelid)
+* [VERSIONS](/docs/specs/i2np/#protocol-versions)

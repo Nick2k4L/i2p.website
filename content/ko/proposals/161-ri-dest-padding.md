@@ -10,192 +10,267 @@ target: "0.9.57"
 toc: true
 ---
 
-## 상태
+## Status
 
-0.9.57에서 구현되었습니다.
-이 제안을 "미래 계획" 섹션에서 아이디어를 논의하고 강화하기 위해 열린 상태로 남겨둡니다.
-
-
-## 개요
+Implemented in 0.9.57.
+Leaving this proposal open so we may enhance and discuss the ideas in the "Future Planning" section.
 
 
-### 요약
-
-목적지의 ElGamal 공개 키는 0.6 릴리스(2005) 이후로 사용되지 않았습니다.
-우리의 명세서에 이 키가 사용되지 않는다고 명시되어 있지만, 구현에서 ElGamal 키 쌍을 생성하지 않고 단순히 임의의 데이터로 필드를 채워도 된다고는 명시되어 있지 않습니다.
-
-우리는 이 필드가 무시된다는 것을 명시하고 구현이 필드를 임의의 데이터로 채울 수 있다고 명세서를 변경할 것을 제안합니다.
-이 변경은 하위 호환됩니다. ElGamal 공개 키를 검증하는 구현은 알려진 바 없습니다.
-
-또한, 이 제안은 목적지 및 라우터 ID 패딩을 위한 임의 데이터 생성을 구현자에게 권고합니다. 이는 여전히 안전하면서도 압축이 가능하며, Base 64 표현이 손상되거나 안전하지 않은 것처럼 보이지 않도록 합니다.
-이는 중단적인 프로토콜 변경 없이 패딩 필드를 제거하는 대부분의 이점을 제공합니다.
-압축할 수 있는 목적지는 스트리밍 SYN 및 응답 가능한 데이터그램의 크기를 줄이며, 압축할 수 있는 라우터 ID는 데이터베이스 저장 메시지, SSU2 세션 확인된 메시지, 새싹 su3 파일의 크기를 줄입니다.
-
-마지막으로 이 제안은 패딩을 완전히 제거할 수 있는 새로운 목적지 및 라우터 ID 형식의 가능성을 논의합니다. 또한, 양자 이후 암호와 그에 대한 미래 계획에 미칠 수 있는 영향에 대한 간단한 논의가 포함되어 있습니다.
+## Overview
 
 
-### 목표
+### Summary
 
-- 목적지에 대한 ElGamal 키 쌍 생성 요구 사항 제거
-- 목적지 및 라우터 ID가 매우 압축 가능하도록 최선의 실천 방안을 권장하되, Base 64 표현에서 명백한 패턴을 표시하지 않도록 함
-- 모든 구현에서 최선의 실천 방안을 채택하도록 해서 필드가 구분되지 않도록 함
-- 스트리밍 SYN 크기 감소
-- 응답 가능한 데이터그램 크기 감소
-- SSU2 RI 블록 크기 감소
-- SSU2 세션 확인 크기 및 단편화 빈도 감소
-- 데이터베이스 저장 메시지 (RI 포함) 크기 감소
-- 새싹 파일 크기 감소
-- 모든 프로토콜 및 API의 호환성 유지
-- 명세서 업데이트
-- 새로운 목적지 및 라우터 ID 형식에 대한 대안 논의
+The ElGamal public key in Destinations has been unused since release 0.6 (2005).
+While our specifications do say that it is unused, they do NOT say that implementations can avoid
+generating an ElGamal key pair and simply fill the field with random data.
 
-ElGamal 키 생성을 제거함으로써, 구현은 다른 프로토콜의 하위 호환성 고려 사항에 따라 ElGamal 코드를 완전히 제거할 수 있을 것입니다.
+We propose changing the specifications to say that
+the field is ignored and that implementations MAY fill the field with random data.
+This change is backward-compatible. There is no known implementation that validates
+the ElGamal public key.
 
+Additionally, this proposal offers guidance to implementers on how to generate the
+random data for Destination AND Router Identity padding so that it is compressible while
+still being secure, and without having Base 64 representations appear to be corrupt or insecure.
+This provides most of the benefits of removing the padding fields without any
+disruptive protocol changes.
+Compressible Destinations reduces streaming SYN and repliable datagram size;
+compressible Router Identities reduce Database Store Messages, SSU2 Session Confirmed messages,
+and reseed su3 files.
 
-## 설계
-
-엄밀히 말하면, 목적지 및 라우터 ID 모두에서 32바이트 서명 공개 키 및 라우터 ID에서만 32바이트 암호화 공개 키는 랜덤 넘버로서, 이러한 구조체의 SHA-256 해시가 암호적으로 강력하고 네트워크 데이터베이스 DHT에서 랜덤하게 배포되도록 하기 위한 모든 엔트로피를 제공합니다.
-
-그러나 주의 차원에서 ElG 공개 키 필드와 패딩에 최소 32바이트의 임의 데이터를 사용하는 것이 좋습니다. 또한, 필드가 모두 0일 경우, Base 64 목적지는 AAAA 문자의 긴 연속을 포함하게 되어 사용자에게 경고나 혼란을 줄 수 있습니다.
-
-Ed25519 서명 유형 및 X25519 암호화 유형의 경우:
-목적지는 11개의 복사본(352바이트)의 임의 데이터를 포함합니다.
-라우터 ID는 10개의 복사본(320바이트)의 임의 데이터를 포함합니다.
+Finally, the proposal discusses possibilities for new Destination and Router Identity formats
+that would eliminate the padding altogether. There is also a brief discussion of post-quantum
+crypto and how that may affect future planning.
 
 
-### 예상 절감효과
 
-목적지는 모든 스트리밍 SYN
-및 응답 가능한 데이터그램에 포함됩니다.
-라우터 인포(라우터 ID 포함)는 데이터베이스 저장 메시지와 NTCP2 및 SSU2의 세션 확인된 메시지에 포함됩니다.
+### Goals
 
-NTCP2는 라우터 인포를 압축하지 않습니다.
-데이터베이스 저장 메시지와 SSU2 세션 확인된 메시지에서 RI가 gzip으로 압축됩니다.
-라우터 인포는 새싹 SU3 파일에서 압축됩니다.
+- Eliminate requirement to generate ElGamal keypair for Destinations
+- Recommend best practices so Destinations and Router Identities are highly compressible,
+  yet do not display obvious patterns in Base 64 representations.
+- Encourage adoption of best practices by all implementations so
+  the fields are not distinguishable
+- Reduce streaming SYN size
+- Reduce repliable datagram size
+- Reduce SSU2 RI block size
+- Reduce SSU2 Session Confirmed size and fragmentation frequency
+- Reduce Database Store Message (with RI) size
+- Reduce reseed file size
+- Maintain compatibility in all protocols and APIs
+- Update specifications
+- Discuss alternatives for new Destination and Router Identity formats
 
-데이터베이스 저장 메시지에서 목적지는 압축되지 않습니다.
-스트리밍 SYN 메시지는 I2CP 계층에서 gzip으로 압축됩니다.
-
-Ed25519 서명 유형 및 X25519 암호화 유형의 경우,
-예상 절감:
-
-| 데이터 유형 | 총 크기 | 키 및 인증서 | 압축되지 않은 패딩 | 압축된 패딩 | 크기 | 절감한 바이트 (비율) |
-|------------|--------|-------------|------------------|------------|-----|-------------------|
-| 목적지 | 391 | 39 | 352 | 32 | 71 | 320바이트 (82%) |
-| 라우터 ID | 391 | 71 | 320 | 32 | 103 | 288바이트 (74%) |
-| 라우터 인포 | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288바이트 (29%) |
-
-참고: 7바이트 인증서는 압축할 수 없으며, gzip 오버헤드는 거의 없다고 가정합니다.
-모두 사실이 아니지만, 효과는 작을 것입니다.
-라우터 인포의 다른 압축 가능 부분은 무시합니다.
+By eliminating the requirement to generate ElGamal keys, implementations may
+be able to completely remove ElGamal code, subject to backward-compatibility considerations
+in other protocols.
 
 
-## 명세서
 
-현재 명세서에 대한 제안된 변경사항이 아래에 문서화되어 있습니다.
+## Design
+
+Strictly speaking, the 32-byte signing public key alone (in both Destinations and Router Identities)
+and the 32-byte encryption public key (in Router Identities only) is a random number
+that provides all the entropy necessary for the SHA-256 hashes of these structures
+to be cryptographically strong and randomly distributed in the network database DHT.
+
+However, out of an abundance of caution, we recommend a minimum of 32 bytes of random data
+be used in the ElG public key field and padding. Additionally, if the fields were all zeros,
+Base 64 destinations would contain long runs of AAAA characters, which may cause alarm
+or confusion to users.
+
+For Ed25519 signature type and X25519 encryption type:
+Destinations will contain 11 copies (352 bytes) of the random data.
+Router Identities will contain 10 copies (320 bytes) of the random data.
 
 
-### 공통 구조
-공통 구조 명세서를 변경하여 256바이트 목적지 공개 키 필드가 무시되고 임의의 데이터를 포함할 수 있음을 지정합니다.
 
-공통 구조 명세서에 다음과 같이 목적지 공개 키 필드 및 목적지와 라우터 ID의 패딩 필드에 대한 최선의 실천 방안을 권고하는 섹션을 추가합니다:
+### Estimated Savings
 
-강력한 암호학적 의사 난수 생성기(PRNG)를 사용하여 32바이트의 임의 데이터를 생성하고 필요에 따라 공개 키 필드(목적지의 경우) 및 패딩 필드(목적지 및 라우터 ID의 경우)를 채우기 위해 해당 32바이트를 반복합니다.
+Destinations are included in every streaming SYN
+and repliable datagram.
+Router Infos (containing Router Identities) are included in Database Store Messages
+and in the Session Confirmed messages in NTCP2 and SSU2.
 
-### 개인 키 파일
-개인 키 파일(eepPriv.dat) 형식은 우리의 공식 명세서의 일부가 아니지만, Java I2P javadocs에 문서화되어 있으며 다른 구현에서도 이것을 지원합니다.
-이는 다른 구현으로 개인 키를 이동할 수 있게 합니다.
-javadoc에 암호화 공개 키는 임의 패딩일 수 있으며, 암호화 개인 키는 모두 0이거나 임의의 데이터일 수 있음을 참고로 추가합니다.
+NTCP2 does not compress the Router Info.
+RIs in Database Store Messages and SSU2 Session Confirmed messages are gzipped.
+Router Infos are zipped in reseed SU3 files.
+
+Destinations in Database Store Messages are not compressed.
+Streaming SYN messages are gzipped at the I2CP layer.
+
+For Ed25519 signature type and X25519 encryption type,
+estimated savings:
+
+| Data Type | Total Size | Keys and Cert | Uncompressed Padding | Compressed Padding | Size | Savings |
+|-----------|------------|---------------|----------------------|--------------------|------|---------|
+| Destination | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
+| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
+| Router Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytes (29%) |
+
+Notes: Assumes 7-byte certificate is not compressible, zero additional gzip overhead.
+Neither is true, but effects will be small.
+Ignores other compressible parts of the Router Info.
+
+
+
+## Specification
+
+Proposed changes to our current specifications are documented below.
+
+
+### Common Structures
+Change the common structures specification
+to specify that the 256-byte Destination public key field is ignored and may
+contain random data.
+
+Add a section to the common structures specification
+recommending best practice for the Destination public key field and the
+padding fields in the Destination and Router Identity, as follows:
+
+Generate 32 bytes of random data using a strong cryptographic pseudo-random number generator (PRNG)
+and repeat those 32 bytes as necessary to fill the public key field (for Destinations)
+and the padding field (for Destinations and Router Identities).
+
+### Private Key File
+The private key file (eepPriv.dat) format is not an official part of our specifications
+but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+and other implementations do support it.
+This enables portability of private keys to different implementations.
+Add a note to that javadoc that the encryption public key may be random padding
+and the encryption private key may be all zeros or random data.
 
 ### SAM
-SAM 명세서에서 암호화 개인 키가 사용되지 않으며 무시될 수 있음을 참고로 추가합니다.
-클라이언트는 임의의 데이터를 반환할 수 있습니다.
-SAM 브리지는 (DEST GENERATE 또는 SESSION CREATE DESTINATION=TRANSIENT로 심볼 생성 시) 모두 0이 아닌 임의의 데이터를 전송하여 Base 64 표현이 AAAA의 문자열을 갖지 않도록 하고 손상된 것처럼 보이지 않도록 할 수 있습니다.
+Note in the SAM specification that the encryption private key is unused and may be ignored.
+Any random data may be returned by the client.
+The SAM Bridge may send random data on creation (with DEST GENERATE or SESSION CREATE DESTINATION=TRANSIENT)
+rather than all zeros, so the Base 64 representation does not have a string of AAAA characters
+and look broken.
 
 
 ### I2CP
-I2CP에 대한 변경 사항은 필요하지 않습니다. 목적지의 암호화 공개 키에 대한 개인 키는 라우터에 전송되지 않습니다.
+No changes required to I2CP. The private key for the encryption public key in the Destination
+is not sent to the router.
 
 
-## 미래 계획
+## Future Planning
 
 
-### 프로토콜 변경
+### Protocol Changes
 
-프로토콜 변경 및 하위 호환성의 부족의 대가로, 목적지, 라우터 ID 또는 둘 다의 패딩 필드를 제거하도록 프로토콜과 명세서를 변경할 수 있습니다.
+At a cost of protocol changes and a lack of backward compatibility, we could
+change our protocols and specifications to eliminate the padding field in
+the Destination, Router Identity, or both.
 
-이 제안은 "b33" 암호화된 리스셋 형식과 어느 정도 유사합니다, 이는 단지 키와 유형 필드만을 포함합니다.
+This proposal bears some similarity to the "b33" encrypted leaseset format,
+containing only a key and a type field.
 
-어떤 호환성을 유지하기 위해, 특정 프로토콜 계층은 다른 프로토콜 계층에 제시할 때 패딩 필드를 모두 0으로 "확장"할 수 있습니다.
+To maintain some compatibility, certain protocol layers could "expand" the padding field
+with all zeros to present to other protocol layers.
 
-목적지의 경우, 우리는 키 인증서에서 암호화 유형 필드를 제거할 수도 있으며, 이는 두 바이트를 절약합니다.
-또는, 목적지는 키 인증서에서 새로운 암호화 유형을 받아들일 수 있으며, 이는 0 공개 키 (및 패딩)을 나타냅니다.
+For Destinations, we could also remove the encryption type field in the key certificate,
+at a savings of two bytes.
+Alternatively, Destinations could get a new encryption type in the key certificate,
+indicating a zero public key (and padding).
 
-호환성 변환이 일부 프로토콜 계층에서 포함되지 않을 경우,
-다음과 같은 명세, API, 프로토콜 및 애플리케이션에 영향이 있을 것입니다:
+If compatibility conversion between old and new formats is not included at some protocol layer,
+the following specifications, APIs, protocols, and applications would be affected:
 
-- 공통 구조 명세
+- Common structures spec
 - I2NP
 - I2CP
 - NTCP2
 - SSU2
 - Ratchet
-- 스트리밍
+- Streaming
 - SAM
 - Bittorrent
-- 리시딩
-- 개인 키 파일
-- Java 코어 및 라우터 API
+- Reseeding
+- Private Key File
+- Java core and router API
 - i2pd API
-- 제3자 SAM 라이브러리
-- 번들 및 제3자 도구
-- 여러 Java 플러그인
-- 사용자 인터페이스
-- P2P 애플리케이션 예: MuWire, 비트코인, 모네로
-- hosts.txt, 주소책, 및 구독
+- Third-party SAM libraries
+- Bundled and third-party tools
+- Several Java plugins
+- User interfaces
+- P2P applications e.g. MuWire, bitcoin, monero
+- hosts.txt, addressbook, and subscriptions
 
-변환이 어떤 계층에서 명시되면, 리스트는 줄어들 것입니다.
+If conversion is specified at some layer, the list would be reduced.
 
-이 변경의 비용과 이점은 명확하지 않습니다.
+The costs and benefits of these changes are not clear.
 
-구체적인 제안 TBD:
-
-
-### PQ 키
-
-양자 이후(Post-Quantum, PQ) 암호화 공개 키는 예상되는 알고리즘에 따라 256바이트보다 큽니다. 이는 라우터 ID에 대한 제안된 변경으로 인한 모든 패딩 및 절약 효과를 제거합니다.
-
-"하이브리드" PQ 접근 방식에서는, SSL이 하고 있는 것처럼, PQ 키는 임시적인 것일 뿐이며, 라우터 ID에 나타나지 않게 될 것입니다.
-
-PQ 서명 키는 실행 가능하지 않으며, 목적지는 암호화 공개 키를 포함하지 않습니다.
-라쳇을 위한 정적 키는 리스셋에 있으며 목적지에 있지 않기 때문에, 우리는 다음 논의에서 목적지를 제외할 수 있습니다.
-
-따라서 PQ는 라우터 인포에만 영향을 미치며, PQ 하이브리드에는 영향을 미치지 않습니다.
-이는 새로운 암호화 유형에 대한 것이며, NTCP2, SSU2 및 암호화된 데이터베이스 조회 메시지 및 응답에 영향을 미칩니다.
-설계, 개발 및 롤아웃의 예상 시간은 ?????????
-하지만 하이브리드 또는 라쳇 이후에 ????????
-
-자세한 논의를 위해 this topic를 참조하십시오.
+Specific proposals TBD:
 
 
-## 이슈
-
-신규 라우터에게 커버를 제공하기 위해 네트워크를 천천히 재키(key)의 가능성이 바람직할 수 있습니다.
-"재키"란 단순히 패딩을 변경하는 것을 의미하며 실제로 키를 변경하는 것은 아닙니다.
-
-기존 목적지를 재키링하는 것은 불가능합니다.
-
-공개 키 필드의 패딩이 있는 라우터 ID는 키 인증서에서 다른 암호화 유형으로 식별되어야 할까요? 이는 호환성 문제를 초래할 것입니다.
 
 
-## 마이그레이션
 
-ElGamal 키를 패딩으로 교체하는 것에 대한 하위 호환성 문제는 없습니다.
+### PQ Keys
 
-재키링이 구현될 경우, 이는 세 가지 이전 라우터 ID 전환에서 수행된 것과 유사할 것입니다:
-DSA-SHA1에서 ECDSA 서명, EdDSA 서명, X25519 암호화로의 전환.
+Post-Quantum (PQ) encryption public keys, for any anticipated algorithm,
+are larger than 256 bytes. This would eliminate any padding and any savings from proposed
+changes above, for Router Identities.
 
-하위 호환성 문제에 따라, SSU가 비활성화된 후, 구현은 ElGamal 코드를 완전히 제거할 수 있습니다.
-네트워크에서 약 14%의 라우터가 ElGamal 암호화 유형이며, 여기에는 많은 플러드필이 포함됩니다.
+In a "hybrid" PQ approach, like what SSL is doing, the PQ keys would be ephemeral only,
+and would not appear in the Router Identity.
 
-Java I2P를 위한 초안 병합 요청은 git.idk.i2p에 있습니다.
+PQ signing keys are not viable,
+and Destinations do not contain encryption public keys.
+Static keys for ratchet are in the Lease Set, not the Destination.
+so we may eliminate Destinations from the following discussion.
+
+So PQ only affects Router Infos, and only for PQ static (not ephemeral) keys, not for PQ hybrid.
+This would be for a new encryption type and would affect NTCP2, SSU2, and
+encrypted Database Lookup Messages and replies.
+Estimated time frame for design, development, and rollout of that would be ????????
+But would be after hybrid or ratchet ????????????
+
+For further discussion see [this topic](http://zzz.i2p/topics/3294).
+
+
+
+
+## Issues
+
+It may be desirable to rekey the network at a slow rate, to provide cover for new routers.
+"Rekeying" could mean simply changing the padding, not really changing the keys.
+
+It is not possible to rekey existing Destinations.
+
+Should Router Identities with padding in the public key field be identified with a different
+encryption type in the key certificate? This would cause compatibility issues.
+
+
+
+
+## Migration
+
+No backward compatibility issues for replacing the ElGamal key with padding.
+
+Rekeying, if implemented, would be similar to that done
+in three previous router identity transitions:
+From DSA-SHA1 to ECDSA signatures, then to
+EdDSA signatures, then to X25519 encryption.
+
+Subject to backward compatibility issues, and after disabling SSU,
+implementations may remove ElGamal code completely.
+Approximately 14% of routers in the network are ElGamal encryption type, including many floodfills.
+
+A draft merge request for Java I2P is at [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+
+
+## References
+
+* [Common](/docs/specs/common-structures/)
+* [Datagram](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
+* [I2NP](/docs/specs/i2np/)
+* [MR](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66)
+* [NTCP2](/docs/specs/ntcp2/)
+* [PKF](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+* [PQ](http://zzz.i2p/topics/3294)
+* [SAM](/docs/api/samv3/)
+* [SSU2](/docs/specs/ssu2/)
+* [Streaming](/docs/specs/streaming/)

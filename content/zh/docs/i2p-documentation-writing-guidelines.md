@@ -13,7 +13,7 @@ lastUpdated: "2025-10"
 
 ### 1. 验证一切
 
-**切勿臆测或猜测。** 所有技术陈述都必须依据以下内容进行核验： - 当前的 I2P 源代码 (`https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)` - 官方 API 文档 (`https://i2p.github.io/i2p.i2p/`  - 配置规范 [/docs/specs/](/docs/) - 最新发行说明 [/releases/](/categories/release/)
+**切勿臆测或猜测。** 所有技术陈述都必须依据以下内容进行核验： - 当前的 I2P 源代码 (https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master) - 官方 API 文档 (https://i2p.github.io/i2p.i2p/  - 配置规范 [/docs/specs/](/docs/) - 最新发行说明 [/releases/](/categories/release/)
 
 **正确验证的示例：**
 
@@ -111,7 +111,7 @@ Note that client registry and port mapper are separate systems:
 **I2P 内部 URL 模板:**
 
 ```markdown
-> **Note:** The I2P network hosts comprehensive documentation at `http://idk.i2p/javadoc-i2p/` 
+> **Note:** The I2P network hosts comprehensive documentation at http://idk.i2p/javadoc-i2p/ 
 > which requires an I2P router for access. For clearnet access, use the GitHub Pages 
 > mirror at https://eyedeekay.github.io/javadoc-i2p/
 ```
@@ -119,17 +119,17 @@ Note that client registry and port mapper are separate systems:
 
 **官方规范：** - [配置](/docs/specs/configuration/) - [插件](/docs/specs/plugin/) - [文档索引](/docs/)
 
-**API 文档（选择最新的）：** - 最新: `https://i2p.github.io/i2p.i2p/` (在 I2P 2.10.0 中为 API 0.9.66) - 明网镜像: https://eyedeekay.github.io/javadoc-i2p/
+**API 文档（选择最新的）：** - 最新: https://i2p.github.io/i2p.i2p/ (在 I2P 2.10.0 中为 API 0.9.66) - 明网镜像: https://eyedeekay.github.io/javadoc-i2p/
 
-**源代码:** - GitLab (官方): `https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master` - GitHub 镜像: `https://github.com/i2p/i2p.i2p`
+**源代码:** - GitLab (官方): https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master - GitHub 镜像: https://github.com/i2p/i2p.i2p
 
 ### 链接格式标准
 
 ```markdown
-✅ GOOD: ClientApp Javadoc
+✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
 
-❌ BAD: See the ClientApp docs at `http://idk.i2p/...`
+❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
 ```
 ---
@@ -557,12 +557,12 @@ See [clients.config specification](https://geti2p.net/spec/configuration#clients
 **外部链接**（指向其他资源）：
 
 ```markdown
-For more details, see ClientApp Javadoc
+For more details, see [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ```
 **代码仓库链接**:
 
 ```markdown
-View source: ClientApp.java
+View source: [ClientApp.java](https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master/core/java/src/net/i2p/app/ClientApp.java)
 ```
 ### 表格格式设置
 

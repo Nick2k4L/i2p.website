@@ -8,13 +8,13 @@ accurateFor: "0.9.59"
 
 ## Visão Geral {#overview}
 
-I2PTunnel é uma ferramenta para interfacear com e fornecer serviços no I2P. O destino de um I2PTunnel pode ser definido usando um [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), ou uma chave de destino completa de 516 bytes. Um I2PTunnel estabelecido estará disponível na sua máquina cliente como localhost:port. Se você deseja fornecer um serviço na rede I2P, você simplesmente cria um I2PTunnel para o ip_address:port apropriado. Uma chave de destino correspondente de 516 bytes será gerada para o serviço e ele se tornará disponível em todo o I2P. Uma interface web para gerenciamento do I2PTunnel está disponível em `http://localhost:7657/i2ptunnel/`.
+I2PTunnel é uma ferramenta para interfacear com e fornecer serviços no I2P. O destino de um I2PTunnel pode ser definido usando um [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), ou uma chave de destino completa de 516 bytes. Um I2PTunnel estabelecido estará disponível na sua máquina cliente como localhost:port. Se você deseja fornecer um serviço na rede I2P, você simplesmente cria um I2PTunnel para o ip_address:port apropriado. Uma chave de destino correspondente de 516 bytes será gerada para o serviço e ele se tornará disponível em todo o I2P. Uma interface web para gerenciamento do I2PTunnel está disponível em [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
 
 ## Serviços Padrão {#default-services}
 
 ### Túneis de Servidor {#default-server-tunnels}
 
-- **I2P Webserver** - Um tunnel apontado para um webserver Jetty executado em `http://localhost:7658` para hospedagem conveniente e rápida no I2P.
+- **I2P Webserver** - Um tunnel apontado para um webserver Jetty executado em [localhost:7658](http://localhost:7658) para hospedagem conveniente e rápida no I2P.
   A raiz do documento é:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, que se expande para: `C:\Users\**nome_do_usuário**\AppData\Local\I2P\I2P Site\docroot`

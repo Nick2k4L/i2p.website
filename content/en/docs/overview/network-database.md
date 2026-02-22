@@ -74,7 +74,7 @@ Valid NetID numbers:
 
 ### Additional Options
 
-Additional text options include a small number of statistics about the router's health, which are aggregated by sites such as stats.i2p for network performance analysis and debugging. These statistics were chosen to provide data crucial to the developers, such as tunnel build success rates, while balancing the need for such data with the side-effects that could result from revealing this data. Current statistics are limited to:
+Additional text options include a small number of statistics about the router's health, which are aggregated by sites such as [stats.i2p](http://stats.i2p/) for network performance analysis and debugging. These statistics were chosen to provide data crucial to the developers, such as tunnel build success rates, while balancing the need for such data with the side-effects that could result from revealing this data. Current statistics are limited to:
 
 - Exploratory tunnel build success, reject, and timeout rates
 - 1 hour average number of participating tunnels
@@ -139,7 +139,7 @@ It may be desirable to persistently store Meta LeaseSets with long expirations. 
 ### See Also
 
 - [RouterInfo specification](/docs/specs/common-structures/#struct_RouterInfo)
-- RouterInfo Javadoc
+- [RouterInfo Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
 
 ---
 
@@ -162,8 +162,8 @@ In addition to these leases, the LeaseSet includes:
 
 - [Lease specification](/docs/specs/common-structures/#struct_Lease)
 - [LeaseSet specification](/docs/specs/common-structures/#struct_LeaseSet)
-- Lease Javadoc
-- LeaseSet Javadoc
+- [Lease Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
+- [LeaseSet Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
 
 As of release 0.9.38, three new types of LeaseSets are defined; LeaseSet2, MetaLeaseSet, and EncryptedLeaseSet. See below.
 

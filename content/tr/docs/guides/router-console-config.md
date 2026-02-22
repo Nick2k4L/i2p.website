@@ -11,7 +11,7 @@ Bu kılavuz, I2P Router Console'una ve yapılandırma sayfalarına genel bir bak
 
 ## Yönlendirici Konsolu'na Erişim
 
-I2P Router Console, I2P router'ınızı yönetmek ve izlemek için merkezi merkezdir. Varsayılan olarak, I2P router'ınız çalışırken `http://127.0.0.1:7657/home` adresinden erişilebilir.
+I2P Router Console, I2P router'ınızı yönetmek ve izlemek için merkezi merkezdir. Varsayılan olarak, I2P router'ınız çalışırken [I2P Router Console](http://127.0.0.1:7657/home) adresinden erişilebilir.
 
 ![Router Console Ana Sayfa](/images/router-console-home.png)
 
@@ -24,7 +24,7 @@ Ana sayfa birkaç önemli bölüm görüntüler:
 
 ## Adres Defteri
 
-**URL:** `http://127.0.0.1:7657/dns`
+**URL:** [Adres Defteri](http://127.0.0.1:7657/dns)
 
 ![Router Console Address Book](/images/router-console-address-book.png)
 
@@ -46,7 +46,7 @@ Adres defteri, aboneliklerinizi düzenli olarak kontrol eder ve içeriği yönle
 
 ## Yapılandırma
 
-**URL:** `http://127.0.0.1:7657/configadvanced`
+**URL:** [Gelişmiş Yapılandırma](http://127.0.0.1:7657/configadvanced)
 
 Yapılandırma bölümü, birden fazla özelleşmiş sekme aracılığıyla tüm router ayarlarına erişim sağlar.
 
@@ -72,7 +72,7 @@ En gelişmiş yapılandırma seçenekleri kullanıcı arayüzünde gösterilmez 
 
 ### Bandwidth
 
-**URL:** `http://127.0.0.1:7657/config`
+**URL:** [Bant Genişliği Yapılandırması](http://127.0.0.1:7657/config)
 
 ![Router Console Bant Genişliği Yapılandırması](/images/router-console-config-bandwidth.png)
 
@@ -96,7 +96,7 @@ Yapılandırma sayfası, ayarlarınıza göre tahmini aylık veri aktarımını 
 
 ### Client Configuration
 
-**URL:** `http://127.0.0.1:7657/configclients`
+**URL:** [İstemci Yapılandırması](http://127.0.0.1:7657/configclients)
 
 ![Router Console Client Yapılandırması](/images/router-console-config-clients.png)
 
@@ -118,7 +118,7 @@ Her istemci şunları gösterir: - **Başlangıçta Çalıştır?** - Otomatik b
 
 ### İleri Düzey
 
-**URL:** `http://127.0.0.1:7657/configi2cp`
+**URL:** [I2CP Yapılandırması](http://127.0.0.1:7657/configi2cp)
 
 ![Router Console I2CP Yapılandırması](/images/router-console-config-i2cp.png)
 
@@ -145,7 +145,7 @@ I2CP (I2P Client Protocol) yapılandırma sayfası, harici uygulamaların I2P ro
 
 ### Bant Genişliği
 
-**URL:** `http://127.0.0.1:7657/confignet`
+**URL:** [Ağ Yapılandırması](http://127.0.0.1:7657/confignet)
 
 ![Router Console Network Yapılandırması](/images/router-console-config-network.png)
 
@@ -196,7 +196,7 @@ Ağ Yapılandırması sayfası, I2P router'ınızın internete nasıl bağlanaca
 
 ### İstemci Yapılandırması
 
-**URL:** `http://127.0.0.1:7657/configpeer`
+**URL:** [Eş Yapılandırması](http://127.0.0.1:7657/configpeer)
 
 ![Router Console Peer Configuration](/images/router-console-config-peer.png)
 
@@ -222,7 +222,7 @@ Profil bonusları, tünele katılım için eşlerin nasıl seçildiğini etkiler
 
 ### I2CP Yapılandırması
 
-**URL:** `http://127.0.0.1:7657/configreseed`
+**URL:** [Reseed Yapılandırması](http://127.0.0.1:7657/configreseed)
 
 ![Router Console Reseed Yapılandırması](/images/router-console-config-reseed.png)
 
@@ -270,7 +270,7 @@ Varsayılan ayarlar çoğu kullanıcı için çalışacaktır. Bunları yalnızc
 
 ### Ağ Yapılandırması
 
-**URL:** `http://127.0.0.1:7657/configfamily`
+**URL:** [Router Family Yapılandırması](http://127.0.0.1:7657/configfamily)
 
 ![Router Console Router Family Configuration](/images/router-console-config-family.png)
 
@@ -311,7 +311,7 @@ Bu sayfa mevcut router ailenizin adını gösterir. Bir ailenin parçası değil
 
 ### Eş Yapılandırması
 
-**URL:** `http://127.0.0.1:7657/configtunnels`
+**URL:** [Tünel Yapılandırması](http://127.0.0.1:7657/configtunnels)
 
 ![Router Console Tunnel Yapılandırması](/images/router-console-config-tunnels.png)
 
@@ -360,7 +360,7 @@ Hem Gelen hem de Giden bağlantılar için yapılandırma seçenekleri: - **Uzun
 
 ### Reseed Yapılandırması
 
-**URL:** `http://127.0.0.1:7657/configui`
+**URL:** [Arayüz Yapılandırması](http://127.0.0.1:7657/configui)
 
 ![Router Console UI Yapılandırması](/images/router-console-config-ui.png)
 
@@ -394,11 +394,11 @@ Router konsolunuza erişimi korumak için kullanıcı adı ve parola kimlik doğ
 - Yönlendirici konsolunuz yerel ağınızda erişilebilir durumdaysa önerilir
 - I2P yapılandırmanızı ve gizlilik ayarlarınızı değiştirilmeye karşı korur
 
-**Güvenlik Notu:** Şifre koruması yalnızca `http://127.0.0.1:7657` adresindeki router console web arayüzüne erişimi etkiler. I2P trafiğini şifrelemez veya uygulamaların I2P kullanmasını engellemez. Bilgisayarınızın tek kullanıcısıysanız ve router console yalnızca localhost'ta dinliyorsa (varsayılan), bir şifre gerekli olmayabilir.
+**Güvenlik Notu:** Şifre koruması yalnızca [I2P Router Console](http://127.0.0.1:7657) adresindeki router console web arayüzüne erişimi etkiler. I2P trafiğini şifrelemez veya uygulamaların I2P kullanmasını engellemez. Bilgisayarınızın tek kullanıcısıysanız ve router console yalnızca localhost'ta dinliyorsa (varsayılan), bir şifre gerekli olmayabilir.
 
 ### Yönlendirici Ailesi Yapılandırması
 
-**URL:** `http://127.0.0.1:7657/configwebapps`
+**URL:** [WebApp Yapılandırması](http://127.0.0.1:7657/configwebapps)
 
 ![Router Console WebApp Yapılandırması](/images/router-console-config-webapps.png)
 
@@ -446,7 +446,7 @@ Her bir webapp için: - **Başlangıçta Çalıştır?** - Otomatik başlatmayı
 
 ## Help
 
-**URL:** `http://127.0.0.1:7657/help`
+**URL:** [Yardım](http://127.0.0.1:7657/help)
 
 Yardım sayfası, I2P'yi etkili bir şekilde anlamanıza ve kullanmanıza yardımcı olacak kapsamlı dokümantasyon ve kaynaklar sağlar. Sorun giderme, öğrenme ve destek alma için merkezi bir merkez görevi görür.
 
@@ -462,13 +462,13 @@ Yardım sayfası, I2P'yi etkili bir şekilde anlamanıza ve kullanmanıza yardı
 
 **Yardım Alma:**
 
-I2P ile ilgili sorun yaşıyorsanız: 1. Sık sorulan sorular ve cevaplar için SSS'ye bakın 2. Özel probleminiz için sorun giderme bölümünü inceleyin 3. i2pforum.i2p veya [i2pforum.net](https://i2pforum.net) adresindeki I2P forumunu ziyaret edin 4. Gerçek zamanlı topluluk desteği için #i2p IRC kanalına katılın 5. Detaylı teknik bilgi için dokümantasyonda arama yapın
+I2P ile ilgili sorun yaşıyorsanız: 1. Sık sorulan sorular ve cevaplar için SSS'ye bakın 2. Özel probleminiz için sorun giderme bölümünü inceleyin 3. [i2pforum.i2p](http://i2pforum.i2p) veya [i2pforum.net](https://i2pforum.net) adresindeki I2P forumunu ziyaret edin 4. Gerçek zamanlı topluluk desteği için #i2p IRC kanalına katılın 5. Detaylı teknik bilgi için dokümantasyonda arama yapın
 
 **İpucu:** Yardım sayfasına router konsolunun kenar çubuğundan her zaman erişilebilir, bu sayede ihtiyacınız olduğunda yardım bulmak kolaydır.
 
 ## Performance Graphs
 
-**URL:** `http://127.0.0.1:7657/graphs`
+**URL:** [Performans Grafikleri](http://127.0.0.1:7657/graphs)
 
 ![Router Console Performans Grafikleri](/images/router-console-graphs.png)
 

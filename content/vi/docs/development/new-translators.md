@@ -20,7 +20,7 @@ Có hai cách để đóng góp bản dịch:
 
 **Đây là cách dễ nhất để dịch I2P.** Transifex cung cấp giao diện web giúp việc dịch thuật trở nên đơn giản và dễ tiếp cận.
 
-1. Đăng ký tại Transifex
+1. Đăng ký tại [Transifex](https://www.transifex.com/otf/I2P/)
 2. Yêu cầu tham gia nhóm dịch thuật I2P
 3. Bắt đầu dịch trực tiếp trên trình duyệt của bạn
 
@@ -42,7 +42,7 @@ Router console là giao diện web mà bạn thấy khi chạy I2P. Việc dịc
 
 ### Sử dụng Transifex (Khuyên dùng)
 
-1. Truy cập I2P trên Transifex
+1. Truy cập [I2P trên Transifex](https://www.transifex.com/otf/I2P/)
 2. Chọn dự án router console
 3. Chọn ngôn ngữ của bạn
 4. Bắt đầu dịch
@@ -90,7 +90,7 @@ poedit apps/routerconsole/locale/messages_es.po
 ant updaters
 # Install the update and check translations in the console
 ```
-**Gửi công việc của bạn:** - Tạo merge request trên GitLab - Hoặc chia sẻ tệp với nhóm phát triển trên IRC
+**Gửi công việc của bạn:** - Tạo merge request trên [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p) - Hoặc chia sẻ tệp với nhóm phát triển trên IRC
 
 ---
 
@@ -214,7 +214,7 @@ Công việc của bạn trực tiếp giúp mọi người trên khắp thế g
 Sẵn sàng bắt đầu dịch?
 
 1. **Chọn phương pháp của bạn:**
-   - Bắt đầu nhanh: Đăng ký trên Transifex
+   - Bắt đầu nhanh: [Đăng ký trên Transifex](https://www.transifex.com/otf/I2P/)
    - Phương pháp thủ công: Tham gia [#i2p-dev trên IRC](/contact/#irc)
 
 2. **Bắt đầu từ nhỏ:** Dịch một vài chuỗi để làm quen với quy trình

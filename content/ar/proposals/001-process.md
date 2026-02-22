@@ -9,51 +9,51 @@ thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
 
-## نظرة عامة
+## Overview
 
-يوضح هذا المستند كيفية تغيير مواصفات I2P، وكيف تعمل اقتراحات I2P، والعلاقة بين اقتراحات I2P والمواصفات.
+This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
 
-هذا المستند مقتبس من عملية اقتراح Tor، وتم تأليف معظم المحتوى أدناه من قبل نيك ماثيوسون.
+This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
 
-هذا وثيقة معلوماتية.
+This is an informational document.
 
-## الدافع
+## Motivation
 
-في السابق، كانت عمليتنا لتحديث مواصفات I2P غير رسمية نسبياً: كنا نقدم اقتراحًا في منتدى التطوير ونناقش التغييرات، ثم نتوصل إلى توافق ونعدل المواصفات بالتغييرات المقترحة (ليس بالضرورة بهذا الترتيب)، وأخيراً نقوم بتنفيذ التغييرات.
+Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
 
-كان لهذا بعض المشاكل.
+This had a few problems.
 
-أولاً، حتى في أكثر حالاته فعالية، كان النظام القديم غالبًا ما يجعل المواصفات غير متزامنة مع الكود. وكانت أسوأ الحالات هي تلك التي يتم فيها تأجيل التنفيذ: يمكن أن تبقى المواصفات والكود غير متزامنين لفترات طويلة.
+First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
 
-ثانياً، كان من الصعب المشاركة في النقاش، حيث لم يكن من الواضح دائماً أي أجزاء من سلسلة النقاش كانت جزءًا من الاقتراح، أو أي تغييرات على المواصفات تم تنفيذها. كما أن منتديات التطوير يمكن الوصول إليها فقط داخل I2P، مما يعني أن الاقتراحات يمكن فقط أن تُعرض لأولئك الذين يستخدمون I2P.
+Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
 
-ثالثاً، كان من السهل جداً نسيان بعض الاقتراحات لأنها كانت تُدفن عميقاً في قائمة مواضيع المنتدى.
+Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
 
-## كيفية تغيير المواصفات الآن
+## How to change the specs now
 
-أولاً، يقوم أحدهم بكتابة مستند اقتراح. يجب أن يصف التغيير الذي يجب إجراؤه بالتفصيل، ويعطي فكرة عن كيفية تنفيذه. بمجرد أن يصبح متكَوناً بشكل كافٍ، يصبح اقتراحًا.
+First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
 
-مثل RFC، يحصل كل اقتراح على رقم. على عكس RFCs، يمكن للاقتراحات تغيير مع مرور الوقت والحفاظ على نفس الرقم، حتى يتم قبولها نهائيًا أو رفضها. سيتم تخزين التاريخ لكل اقتراح في مستودع موقع I2P.
+Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
 
-بمجرد أن يكون الاقتراح في المستودع، يجب علينا مناقشته في السلسلة المقابلة وتحسينه حتى نصل إلى توافق أنه فكرة جيدة، وأنه مفصل بما يكفي للتنفيذ. عندما يحدث ذلك، نقوم بتنفيذ الاقتراح وتضمينه في المواصفات. وبالتالي، تظل المواصفات الوثيقة المرجعية لـ I2P: لا يمكن أن يكون الاقتراح أبدًا الوثيقة المرجعية لميزة تم تنفيذها.
+Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
 
-(تشبه هذه العملية عملية تحسين Python، مع الاختلاف الرئيسي في أن اقتراحات I2P يتم إعادة إدماجها في المواصفات بعد التنفيذ، في حين أن PEPs *تصبح* المواصفات الجديدة.)
+(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
 
-### التغييرات الصغيرة
+### Small changes
 
-لا يزال من المقبول إجراء تغييرات صغيرة مباشرة على المواصفات إذا كان من الممكن كتابة الكود أكثر أو أقل بشكل فوري، أو تغييرات تجميلية إذا لم تكن هناك حاجة لتغيير الكود. يعكس هذا المستند نية المطورين الحاليين، وليس وعداً دائماً باستخدام هذه العملية في المستقبل: نحن نحتفظ بالحق في أن نتحمس كثيرا وننفذ شيئًا ما في جلسة اختراق طوال الليل ممولة بالكافيين أو M&M.
+It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
 
-## كيفية إضافة الاقتراحات الجديدة
+## How new proposals get added
 
-لتقديم اقتراح، انشره في منتدى التطوير أو أدخل تذكرة مرفقة بالاقتراح.
+To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
 
-بمجرد أن يتم اقتراح فكرة، ويوجد مسودة مهيأة بشكل صحيح (راجع أدناه)، ويوجد توافق عام في المجتمع النشط للتطوير بأن هذه الفكرة تستحق النظر، سيتم إضافة الاقتراح رسميًا من قبل محرري الاقتراحات.
+Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
 
-محررو الاقتراحات الحاليين هم zzz و str4d.
+The current proposal editors are zzz and str4d.
 
-## ما يجب أن يتضمنه الاقتراح
+## What should go in a proposal
 
-يجب أن يحتوي كل اقتراح على ترويسة تحتوي على هذه الحقول:
+Every proposal should have a header containing these fields:
 
 ```
 :author:
@@ -63,11 +63,11 @@ toc: true
 :status:
 ```
 
-- يجب أن يحتوي حقل `author` على أسماء مؤلفي هذا الاقتراح.
-- يجب أن يكون حقل `thread` رابطًا إلى سلسلة منتدى التطوير حيث تم نشر هذا الاقتراح أصلاً، أو إلى سلسلة جديدة تم إنشاؤها لمناقشته.
-- يجب أن يكون حقل `lastupdated` في البداية مساويًا لحقل `created`، ويجب تحديثه كلما تم تغيير الاقتراح.
+- The `author` field should contain the names of the authors of this proposal.
+- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
+- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
 
-يجب إعداد هذه الحقول عند الضرورة:
+These fields should be set when necessary:
 
 ```
 :supercedes:
@@ -75,91 +75,93 @@ toc: true
 :editor:
 ```
 
-- حقل `supercedes` هو قائمة مفصولة بفواصل تحتوي على جميع الاقتراحات التي يُستبدلها هذا الاقتراح. يجب أن تكون تلك الاقتراحات مرفوضة وأن يكون لها حقل `supercededby` محدد برقم هذا الاقتراح.
-- يجب تعيين حقل `editor` إذا تم إجراء تغييرات كبيرة على هذا الاقتراح لا تغير محتواه بشكل كبير. إذا تم تغيير المحتوى بشكل كبير، فيجب إضافة مؤلف إضافي، أو إنشاء اقتراح جديد يخلف هذا.
+- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
+- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
 
-هذه الحقول اختيارية ولكنها موصى بها:
+These fields are optional but recommended:
 
 ```
 :target:
 :implementedin:
 ```
 
-- يجب أن يصف حقل `target` الإصدار الذي يُأمل أن يتم تنفيذ الاقتراح فيه (إذا كان مفتوحًا أو مقبولًا).
-- يجب أن يصف حقل `implementedin` الإصدار الذي تم تنفيذ الاقتراح فيه (إذا كان مكتملًا أو مغلقًا).
+- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
+- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
 
-يجب أن يبدأ جسم الاقتراح بقسم نظرة عامة يوضح ما يتحدث عنه الاقتراح، وما يفعله، وحول حالته.
+The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
 
-بعد النظرة العامة، يصبح الاقتراح أكثر مرونة. بناءً على طوله وتعقيده، يمكن أن ينقسم إلى أقسام حسب الاقتضاء، أو اتباع تنسيق سردي قصير. يجب أن يتضمن كل اقتراح على الأقل المعلومات التالية قبل قبوله، على الرغم من أن المعلومات لا تحتاج إلى أن تكون في أقسام بهذه الأسماء.
+After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
 
-**الدافع**
-: ما المشكلة التي يحاول الاقتراح حلها؟ لماذا تلك المشكلة مهمة؟ إذا كانت هناك عدة طرق ممكنة، لماذا اختيار هذه الطريقة؟
+**Motivation**
+: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
 
-**التصميم**
-: نظرة عامة على الميزات الجديدة أو المعدلة، وكيف تعمل، وكيف تتفاعل مع بعضها البعض، وكيف تتفاعل مع البقية من I2P. هذا هو الجسم الرئيسي للاقتراح. ستبدأ بعض الاقتراحات فقط بدافع وتصميم، وتنتظر المواصفات حتى يبدو التصميم مناسبًا.
+**Design**
+: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
 
-**الآثار الأمنية**
-: ما الآثار التي قد تحدثها التغييرات المقترحة على الخصوصية، ومدى فهم هذه الآثار، وما إلى ذلك.
+**Security implications**
+: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
 
-**المواصفات**
-: وصف تفصيلي لما يجب إضافته إلى مواصفات I2P لتنفيذ الاقتراح. يجب أن يكون هذا بالتفصيل كما ستحتوي المواصفات في النهاية: يجب أن يكون من الممكن للمبرمجين المستقلين كتابة تنفيذات متوافقة للاقتراح على أساس مواصفاته.
+**Specification**
+: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
 
-**التوافق**
-: هل ستتوافق إصدارات I2P التي تتبع الاقتراح مع الإصدارات التي لا تتبعها؟ إذا كان الأمر كذلك، كيف سيتحقق التوافق؟ بشكل عام، نحاول عدم إسقاط التوافق إذا كان بالإمكان؛ لم نجرِ تغييرًا "يوم العلم" منذ مارس 2008، ولا نريد فعل ذلك مرة أخرى.
+**Compatibility**
+: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
 
-**التنفيذ**
-: إذا كان الاقتراح سيكون صعب التنفيذ في البنية الحالية لـ I2P، يمكن أن يحتوي المستند على بعض المناقشات حول كيفية جعلها تعمل. يجب أن تُرفق التصحيحات الفعلية بفروع المونوتون العامة، أو يتم تحميلها على Trac.
+**Implementation**
+: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
 
-**ملاحظات الأداء وقابلية التوسع**
-: إذا كانت الميزة ستؤثر على الأداء (في الذاكرة، المعالج، عرض النطاق الترددي) أو قابلية التوسع، فيجب أن يكون هناك بعض التحليل عن مقدار هذا الأثر، حتى نتمكن من تجنب الانحدارات ذات التكلفة العالية في الأداء، وتوفير الوقت في المكاسب الضئيلة.
+**Performance and scalability notes**
+: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
 
-**المراجع**
-: إذا كان الاقتراح يشير إلى مستندات خارجية، يجب أن تُدرج هنا.
+**References**
+: If the proposal refers to outside documents, these should be listed.
 
-## حالة الاقتراح
+## Proposal status
 
-**مفتوح**
-: اقتراح قيد المناقشة.
+**Open**
+: A proposal under discussion.
 
-**مقبول**
-: الاقتراح مكتمل، ونعتزم تنفيذه. بعد هذه النقطة، يجب تجنب التغييرات الكبيرة على الاقتراح، والنظر إليها كعلامة على فشل العملية في مكان ما.
+**Accepted**
+: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
 
-**مكتمل**
-: تم قبول الاقتراح وتنفيذه. بعد هذه النقطة، يجب عدم تغيير الاقتراح.
+**Finished**
+: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
 
-**مغلق**
-: تم قبول الاقتراح وتنفيذه ودمجه في المستندات الرئيسية للمواصفات. يجب عدم تغيير الاقتراح بعد هذه النقطة.
+**Closed**
+: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
 
-**مرفوض**
-: لن نقوم بتنفيذ الميزة كما هو موصوف هنا، على الرغم من أننا قد نفعل إصدارًا آخر. انظر التعليقات في المستند للحصول على التفاصيل. يجب عدم تغيير الاقتراح بعد هذه النقطة؛ لإثارة إصدار آخر من الفكرة، اكتب اقتراحًا جديدًا.
+**Rejected**
+: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
 
-**مسودة**
-: هذا ليس اقتراحًا كاملاً بعد؛ هناك قطع مفقودة معينة. يرجى عدم إضافة أي اقتراحات جديدة بهذه الحالة؛ ضعها في دليل "الأفكار" بدلاً من ذلك.
+**Draft**
+: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
 
-**بحاجة إلى مراجعة**
-: الفكرة وراء الاقتراح جيدة، لكن الاقتراح كما هو لديه مشاكل جدية تمنعه من القبول. انظر التعليقات في المستند للحصول على التفاصيل.
+**Needs-Revision**
+: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
 
-**ميت**
-: لم يُلمس الاقتراح لفترة طويلة، ولا يبدو أن أحدًا سيكمله قريبًا. يمكن أن يصبح "مفتوحًا" مرة أخرى إذا حصل على مؤيد جديد.
+**Dead**
+: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
 
-**بحاجة إلى البحث**
-: هناك مشاكل بحثية تحتاج إلى حل قبل أن يكون واضحًا ما إذا كان الاقتراح فكرة جيدة.
+**Needs-Research**
+: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
 
-**ميتا**
-: هذا ليس اقتراحًا، بل وثيقة حول الاقتراحات.
+**Meta**
+: This is not a proposal, but a document about proposals.
 
-**احتياطي**
-: هذا الاقتراح ليس شيئًا نخطط حاليًا لتنفيذه، لكن قد نريد إحياؤه في يوم ما إذا قررنا القيام بشيء مثل ما يقترحه.
+**Reserve**
+: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
 
-**معلوماتي**
-: هذا الاقتراح هو الكلمة الأخيرة حول ما يفعله. لن يتحول إلى مواصفة ما لم يقم شخص ما بنسخه ولصقه إلى مواصفة جديدة لنظام فرعي جديد.
+**Informational**
+: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
 
-يحافظ المحررون على حالة الاقتراحات الصحيحة، بناءً على التوافق العام وتقديرهم الخاص.
+The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
 
-## ترقيم الاقتراحات
+## Proposal numbering
 
-الأرقام من 000-099 محجوزة للاقتراحات الخاصة والميتا. 100 وما فوق تستخدم للاقتراحات الفعلية. لا تُعاد تدوير الأرقام.
+Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
 
-## المراجع
+## References
 
-- [عملية اقتراح Tor](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)
+* [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
+* [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)
+* [TRAC-PROPOSAL](http://trac.i2p2.i2p/newticket?summary=New%20proposal:%20&type=enhancement&milestone=n/a&component=www/i2p&keywords=review-needed)

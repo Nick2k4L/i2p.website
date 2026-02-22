@@ -71,7 +71,7 @@ Platná čísla NetID:
 | Rezervováno | 255 |
 ### Další možnosti
 
-Další textové možnosti zahrnují malý počet statistik o stavu routeru, které jsou agregovány weby jako stats.i2p pro analýzu výkonu sítě a ladění. Tyto statistiky byly vybrány tak, aby poskytly data klíčová pro vývojáře, jako jsou míry úspěšnosti budování tunelů, přičemž vyvažují potřebu takových dat s vedlejšími efekty, které by mohly vyplynout z odhalení těchto dat. Současné statistiky jsou omezeny na:
+Další textové možnosti zahrnují malý počet statistik o stavu routeru, které jsou agregovány weby jako [stats.i2p](http://stats.i2p/) pro analýzu výkonu sítě a ladění. Tyto statistiky byly vybrány tak, aby poskytly data klíčová pro vývojáře, jako jsou míry úspěšnosti budování tunelů, přičemž vyvažují potřebu takových dat s vedlejšími efekty, které by mohly vyplynout z odhalení těchto dat. Současné statistiky jsou omezeny na:
 
 - Úspěšnost, odmítnutí a časové limity při budování průzkumných tunelů
 - Hodinový průměr počtu zúčastněných tunelů
@@ -136,7 +136,7 @@ Může být žádoucí trvale ukládat Meta LeaseSets s dlouhými dobami expirac
 ### Viz také
 
 - [Specifikace RouterInfo](/docs/specs/common-structures/#struct_RouterInfo)
-- RouterInfo Javadoc
+- [RouterInfo Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/router/RouterInfo.html)
 
 ---
 
@@ -159,8 +159,8 @@ Kromě těchto leasů leaseSet zahrnuje:
 
 - [Specifikace Lease](/docs/specs/common-structures/#struct_Lease)
 - [Specifikace LeaseSet](/docs/specs/common-structures/#struct_LeaseSet)
-- Lease Javadoc
-- LeaseSet Javadoc
+- [Lease Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/Lease.html)
+- [LeaseSet Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/data/LeaseSet.html)
 
 Od verze 0.9.38 jsou definovány tři nové typy LeaseSets; LeaseSet2, MetaLeaseSet a EncryptedLeaseSet. Viz níže.
 

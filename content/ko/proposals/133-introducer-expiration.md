@@ -11,41 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## 개요
+## Overview
 
-이 제안서는 소개의 성공률을 높이기 위한 것입니다.
+This proposal is about improving the success rate for introductions.
 
-## 동기
 
-소개자는 일정 시간이 지나면 만료되지만, 그 정보는 RouterInfo에 공개되지 않습니다. 현재 라우터는 소개자가 더 이상 유효하지 않은 시점을 추정하기 위해 발견법(휴리스틱)을 사용해야 합니다.
+## Motivation
 
-## 디자인
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
-소개자를 포함한 SSU RouterAddress에서 퍼블리셔는 선택적으로 각 소개자의 만료 시간을 포함할 수 있습니다.
 
-## 사양
+## Design
+
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
+
+
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: 소개자 번호 (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: 에포크 이후 초 단위 시간.
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
 ### Notes
-* 각 만료는 RouterInfo의 발행 날짜보다 커야 하며, RouterInfo 발행 날짜로부터 6시간 이내여야 합니다.
 
-* 발행 라우터와 소개자는 만료 시점까지 소개자를 유효하게 유지하기 위해 노력해야 하지만, 이를 보장할 방법은 없습니다.
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* 라우터는 만료 후 공개된 소개자를 사용해서는 안 됩니다.
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* 소개자 만료는 RouterAddress 매핑에 있습니다.
-  현재 사용되지 않는 RouterAddress의 8바이트 만료 필드가 아닙니다.
+* Routers should not use a published introducer after its expiration.
 
-**예시:** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
 
-## 마이그레이션
+**Example:** `iexp0=1486309470`
 
-문제가 없습니다. 구현은 선택 사항입니다.
-이전 라우터는 알 수 없는 매개변수를 무시하므로, 하위 호환성이 보장됩니다.
+
+## Migration
+
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

@@ -10,364 +10,384 @@ target: "0.9.66"
 toc: true
 ---
 
-## Trạng Thái
-Được chấp thuận ở lần xem xét thứ 2 ngày 2025-04-01; đặc tả đã được cập nhật; chưa được triển khai.
+## Status
+Approved on 2nd review 2025-04-01; specs are updated; not yet implemented.
 
 
-## Tổng Quan
+## Overview
 
-I2P không có hệ thống DNS tập trung.
-Tuy nhiên, sổ địa chỉ, cùng với hệ thống tên miền b32, cho phép
-router tra cứu các đích đến đầy đủ và lấy bộ cho thuê, chứa
-danh sách các cổng và khóa để khách hàng có thể kết nối đến đích đó.
+I2P lacks a centralized DNS system.
+However, the address book, together with the b32 hostname system, allows
+the router to look up full destinations and fetch lease sets, which contain
+a list of gateways and keys so that clients may connect to that destination.
 
-Vậy nên, các bộ cho thuê tương tự như một bản ghi DNS. Nhưng hiện tại không có cách nào
-để biết nếu máy chủ đó hỗ trợ bất kỳ dịch vụ nào, dù ở đích đó hay ở một đích khác,
-theo kiểu tương tự như bản ghi DNS SRV [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782).
+So, leasesets are somewhat like a DNS record. But there is currently no facility to
+find out if that host supports any services, either on that destination or a different one,
+in a manner similar to DNS [SRV records](https://en.wikipedia.org/wiki/SRV_record) as defined in [RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
-Ứng dụng đầu tiên có thể là email ngang hàng.
-Các ứng dụng khả thi khác: DNS, GNS, máy chủ khóa, cơ quan chứng nhận, máy chủ thời gian,
-bittorrent, tiền điện tử, các ứng dụng ngang hàng khác.
+The first application for this may be peer-to-peer email.
+Other possible applications: DNS, GNS, key servers, certificate authorities, time servers,
+bittorrent, cryptocurrencies, other peer-to-peer applications.
 
 
-## Đề Xuất Liên Quan và Các Thay Thế
+## Related Proposals and Alternatives
 
-### Danh Sách Dịch Vụ
+### Service Lists
 
-Đề xuất LS2 123 [Prop123](/proposals/123-new-netdb-entries/) đã định nghĩa 'hồ sơ dịch vụ' mà biểu thị một đích đến
-đang tham gia vào một dịch vụ toàn cầu. Các floodfill sẽ tổng hợp các hồ sơ này
-thành các 'danh sách dịch vụ' toàn cầu.
-Điều này chưa từng được triển khai vì độ phức tạp, thiếu xác thực,
-và các lo ngại về bảo mật và spam.
+The LS2 [Proposal 123](/proposals/123-new-netdb-entries/) defined 'service records' that indicated a destination
+was participating in a global service. The floodfills would aggregate these records
+into global 'service lists'.
+This was never implemented due to complexity, lack of authentication,
+security, and spamming concerns.
 
-Đề xuất này khác biệt ở chỗ cung cấp tra cứu cho một dịch vụ cho một đích đến cụ thể,
-không phải một nhóm các đích toàn cầu cho một dịch vụ toàn cầu.
+This proposal is different in that it provides lookup for a service for a specific destination,
+not a global pool of destinations for some global service.
 
 ### GNS
 
-GNS GNS đề xuất rằng mọi người điều hành máy chủ DNS của riêng họ.
-Đề xuất này mang tính bổ sung, với khả năng sử dụng hồ sơ dịch vụ để chỉ rõ
-rằng GNS (hoặc DNS) được hỗ trợ, với tên dịch vụ chuẩn là "domain" trên cổng 53.
+GNS proposes that everybody runs their own DNS server.
+This proposal is complementary, in that we could use service records to specify
+that GNS (or DNS) is supported, with a standard service name of "domain" on port 53.
 
 ### Dot well-known
 
-Trong DOTWELLKNOWN có đề xuất rằng dịch vụ được tra cứu qua một yêu cầu HTTP tới
-/.well-known/i2pmail.key. Điều này yêu cầu rằng mỗi dịch vụ phải có một trang web liên quan
-để lưu trữ khóa. Hầu hết người dùng không chạy các trang web.
+It has been [proposed](http://i2pforum.i2p/viewtopic.php?p=3102) that services be looked up via an HTTP request to
+/.well-known/i2pmail.key. This requires that every service must have a related
+website to host the key. Most users do not run websites.
 
-Một cách giải quyết là giả định rằng một dịch vụ cho một địa chỉ b32 thực sự
-đang chạy trên địa chỉ b32 đó. Như vậy việc tìm kiếm dịch vụ cho example.i2p yêu cầu
-lấy dữ liệu HTTP từ `http://example.i2p/.well-known/i2pmail.key,` nhưng
-một dịch vụ cho aaa...aaa.b32.i2p không cần tra cứu đó, nó có thể chỉ cần kết nối trực tiếp.
+One workaround is that we could presume that a service for a b32 address is actually
+running on that b32 address. So that looking for the service for example.i2p requires
+the HTTP fetch from http://example.i2p/.well-known/i2pmail.key, but
+a service for aaa...aaa.b32.i2p does not require that lookup, it can just connect directly.
 
-Nhưng có sự mơ hồ ở đó, bởi vì example.i2p cũng có thể được địa chỉ bởi b32 của nó.
+But there's an ambiguity there, because example.i2p can also be addressed by its b32.
 
-### Bản Ghi MX
+### MX Records
 
-Bản ghi SRV chỉ đơn giản là một phiên bản tổng quát của bản ghi MX cho bất kỳ dịch vụ nào.
-"_smtp._tcp" là bản ghi "MX".
-Không cần có bản ghi MX nếu chúng ta có bản ghi SRV, và các bản ghi MX
-không đơn độc cung cấp một bản ghi tổng quát cho bất kỳ dịch vụ nào.
-
-
-## Thiết Kế
-
-Hồ sơ dịch vụ được đặt trong phần tùy chọn trong LS2 [LS2](/docs/specs/common-structures/).
-Phần tùy chọn LS2 hiện đang không được sử dụng.
-Không được hỗ trợ cho LS1.
-Điều này tương tự như đề xuất băng thông đường hầm [Prop168](/proposals/168-tunnel-bandwidth/),
-định nghĩa các tùy chọn cho các bản ghi dịch xây dựng đường hầm.
-
-Để tra cứu địa chỉ dịch vụ cho một hostname cụ thể hoặc b32, router lấy
-bộ cho thuê và tra cứu hồ sơ dịch vụ trong các thuộc tính.
-
-Dịch vụ có thể được lưu trữ trên cùng đích với bản thân LS, hoặc có thể tham chiếu
-đến một hostname/b32 khác.
-
-Nếu đích đến mục tiêu cho dịch vụ là khác nhau, thì LS mục tiêu cũng phải
-bao gồm một hồ sơ dịch vụ, chỉ về chính nó, chỉ ra rằng nó hỗ trợ dịch vụ.
-
-Thiết kế không yêu cầu hỗ trợ đặc biệt hoặc bộ nhớ đệm hay bất kỳ sự thay đổi nào trong floodfills.
-Chỉ người xuất bản bộ cho thuê, và khách hàng tra cứu hồ sơ dịch vụ,
-phải hỗ trợ những thay đổi này.
-
-Các mở rộng nhỏ I2CP và SAM được đề xuất để hỗ trợ truy xuất
-hồ sơ dịch vụ bởi khách hàng.
+SRV records are simply a generic version of MX records for any service.
+"_smtp._tcp" is the "MX" record.
+There is no need for MX records if we have SRV records, and MX records
+alone do not provide a generic record for any service.
 
 
-## Đặc Tả
+## Design
 
-### Đặc Tả Tùy Chọn LS2
+Service records are placed in the options section in [LS2](/docs/specs/common-structures/).
+The LS2 options section is currently unused.
+Not supported for LS1.
+This is similar to the [tunnel bandwidth proposal](/proposals/168-tunnel-bandwidth/),
+which defines options for tunnel build records.
 
-Các tùy chọn của LS2 PHẢI được sắp xếp theo khóa, để chữ ký không thay đổi.
+To lookup a service address for a specific hostname or b32, the router fetches the
+leaseset and looks up the service record in the properties.
 
-Định nghĩa như sau:
+The service may be hosted on the same destination as the LS itself, or may reference
+a different hostname/b32.
 
-- tùy chọnDịchVụ := khóaTùyChọn giáTrịTùyChọn
-- khóaTùyChọn := _service._proto
-- dịch vụ := Tên tượng trưng của dịch vụ mong muốn. Phải viết bằng chữ thường. Ví dụ: "smtp".
-  Các ký tự được phép là [a-z0-9-] và không được bắt đầu hoặc kết thúc bằng '-'.
-  Các nhận dạng chuẩn từ [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) hoặc Linux /etc/services phải được sử dụng nếu có định nghĩa trong đó.
-- proto := Giao thức truyền của dịch vụ mong muốn. Phải viết bằng chữ thường, hoặc "tcp" hoặc "udp".
-  "tcp" có nghĩa là truyền tải dòng và "udp" có nghĩa là gói dữ liệu có thể đối đáp.
-  Các chỉ thị giao thức cho gói dữ liệu thô và datagram2 có thể được định nghĩa sau.
-  Các ký tự được phép là [a-z0-9-] và không được bắt đầu hoặc kết thúc bằng '-'.
-- giáTrịTùyChọn := self | srvrecord[,srvrecord]*
+If the target destination for the service is different, the target LS must also
+include a service record, pointing to itself, indicating that it supports the service.
+
+The design does not require special support or caching or any changes in the floodfills.
+Only the leaseset publisher, and the client looking up a service record,
+must support these changes.
+
+Minor I2CP and SAM extensions are proposed to facilitate retrieval of
+service records by clients.
+
+
+
+## Specification
+
+### LS2 Option Specification
+
+LS2 options MUST be sorted by key, so the signature is invariant.
+
+Defined as follows:
+
+- serviceoption := optionkey optionvalue
+- optionkey := _service._proto
+- service := The symbolic name of the desired service. Must be lower case. Example: "smtp".
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+  Standard identifiers from the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services must be used if defined there.
+- proto := The transport protocol of the desired service. Must be lower case, either "tcp" or "udp".
+  "tcp" means streaming and "udp" means repliable datagrams.
+  Protocol indicators for raw datagrams and datagram2 may be defined later.
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+- optionvalue := self | srvrecord[,srvrecord]*
 - self := "0" ttl port [appoptions]
 - srvrecord := "1" ttl priority weight port target [appoptions]
-- ttl := thời gian sống, số nguyên giây. Số nguyên dương. Ví dụ: "86400".
-  Tối thiểu là 86400 (một ngày) được khuyên dùng, xem Phần Khuyến Nghị bên dưới để biết chi tiết.
-- priority := Ưu tiên của máy chủ mục tiêu, giá trị thấp hơn có nghĩa là ưu tiên hơn. Số nguyên không âm. Ví dụ: "0"
-  Chỉ hữu ích nếu có nhiều hơn một bản ghi, nhưng vẫn cần ngay cả khi chỉ có một bản ghi.
-- weight := Trọng số tương đối cho các bản ghi cùng một ưu tiên. Giá trị cao hơn có nghĩa là khả năng được chọn cao hơn. Số nguyên không âm. Ví dụ: "0"
-  Chỉ hữu ích nếu có nhiều hơn một bản ghi, nhưng vẫn cần ngay cả khi chỉ có một bản ghi.
-- port := Cổng I2CP mà dịch vụ được tìm thấy. Số nguyên không âm. Ví dụ: "25"
-  Cổng 0 được hỗ trợ nhưng không được khuyến nghị.
-- target := Hostname hoặc b32 của đích cung cấp dịch vụ. Một hostname hợp lệ như trong [NAMING](/docs/overview/naming/). Phải viết bằng chữ thường.
-  Ví dụ: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" hoặc "example.i2p".
-  b32 được khuyến khích trừ khi hostname là "rất quen thuộc", ví dụ trong sổ địa chỉ chính thức hoặc mặc định.
-- appoptions := văn bản tùy ý cụ thể cho ứng dụng, không được chứa " " hoặc ",". Mã hóa là UTF-8.
+- ttl := time to live, integer seconds. Positive integer. Example: "86400".
+  A minimum of 86400 (one day) is recommended, see Recommendations section below for details.
+- priority := The priority of the target host, lower value means more preferred. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- weight := A relative weight for records with the same priority. Higher value means more chance of getting picked. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
+  Port 0 is supported but not recommended.
+- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/overview/naming/). Must be lower case.
+  Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
+  b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
+- appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
 
-### Ví dụ
+### Examples
 
-
-Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, chỉ về một máy chủ SMTP:
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to one SMTP server:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, chỉ về hai máy chủ SMTP:
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to two SMTP servers:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-Trong LS2 cho bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, chỉ về chính nó như một máy chủ SMTP:
+In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to itself as a SMTP server:
 
     "_smtp._tcp" "0 999999 25"
 
-Định dạng khả thi cho chuyển tiếp email (xem bên dưới):
+Possible format for redirecting email (see below):
 
     "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-### Giới Hạn
+### Limits
+
+The Mapping data structure format used for LS2 options limits keys and values to 255 bytes (not chars) max.
+With a b32 target, the optionvalue is about 67 bytes, so only 3 records would fit.
+Maybe only one or two with a long appoptions field, or up to four or five with a short hostname.
+This should be sufficient; multiple records should be rare.
 
 
-Định dạng cấu trúc dữ liệu Mapping được sử dụng cho các tùy chọn LS2 giới hạn các khóa và giá trị ở mức tối đa 255 byte (không phải ký tự).
-Với một mục tiêu b32, giá trịTùyChọn khoảng 67 byte, nên chỉ có 3 bản ghi sẽ phù hợp.
-Có thể chỉ một hoặc hai bản ghi với một trường appoptions dài, hoặc tối đa bốn hoặc năm bản ghi với một hostname ngắn.
-Điều này nên đủ; nhiều bản ghi nên hiếm.
+### Differences from RFC 2782
+
+- No trailing dots
+- No name after the proto
+- Lower case required
+- In text format with comma-separated records, not binary DNS format
+- Different record type indicators
+- Additional appoptions field
 
 
-### Khác biệt so với [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+### Notes
+
+No wildcarding such as (asterisk), (asterisk)._tcp, or _tcp is allowed.
+Each supported service must have its own record.
 
 
-- Không có dấu chấm ở cuối
-- Không có tên sau proto
-- Yêu cầu chữ thường
-- Ở định dạng văn bản với các bản ghi phân tách bằng dấu phẩy, không phải định dạng nhị phân DNS
-- Các chỉ báo loại bản ghi khác nhau
-- Thêm trường appoptions
+
+### Service Name Registry
+
+Non-standard identifiers that are not listed in the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services
+may be requested and added to the [common structures specification](/docs/specs/common-structures/).
+
+Service-specific appoptions formats may also be added there.
 
 
-### Ghi chú
+### I2CP Specification
 
+The [I2CP protocol](/docs/specs/i2cp/) must be extended to support service lookups.
+Additional MessageStatusMessage and/or HostReplyMessage error codes related to service lookup
+are required.
+To make the lookup facility general, not just service record-specific,
+the design is to support retrieval of all LS2 options.
 
-Không cho phép wildcard như (dấu sao), (dấu sao)._tcp, hay _tcp.
-Mỗi dịch vụ được hỗ trợ phải có bản ghi riêng của mình.
+Implementation: Extend HostLookupMessage to add request for
+LS2 options for hash, hostname, and destination (request types 2-4).
+Extend HostReplyMessage to add the options mapping if requested.
+Extend HostReplyMessage with additional error codes.
 
+Options mappings may be cached or negative cached for a short time on either the client or router side,
+implementation-dependent. Recommended maximum time is one hour, unless the service record TTL is shorter.
+Service records may be cached up to the TTL specified by the application, client, or router.
 
-### Đăng Ký Tên Dịch Vụ
+Extend the specification as follows:
 
-Các định danh không chuẩn mà không được liệt kê trong [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) hoặc Linux /etc/services
-có thể được yêu cầu và thêm vào đặc tả cấu trúc chung [LS2](/docs/specs/common-structures/).
+#### Configuration options
 
-Các định dạng appoptions cụ thể cho dịch vụ cũng có thể được thêm vào đó.
-
-
-### Đặc Tả I2CP
-
-Giao thức [I2CP](/docs/specs/i2cp/) phải được mở rộng để hỗ trợ tra cứu dịch vụ.
-Các mã lỗi MessageStatusMessage và/hoặc HostReplyMessage liên quan đến tra cứu dịch vụ
-cần thiết.
-Để làm cho cơ sở tra cứu trở nên tổng quát, không chỉ hồ sơ dịch vụ cụ thể,
-thiết kế là để hỗ trợ việc lấy tất cả các tùy chọn LS2.
-
-Triển khai: Mở rộng HostLookupMessage để thêm yêu cầu cho
-các tùy chọn LS2 cho hash, hostname, và đích đến (loại yêu cầu 2-4).
-Mở rộng HostReplyMessage để thêm ánh xạ tùy chọn nếu được yêu cầu.
-Mở rộng HostReplyMessage với các mã lỗi bổ sung.
-
-Ánh xạ tùy chọn có thể được lưu đệm hoặc lưu đệm tiêu cực trong một thời gian ngắn ở cả phía khách hàng hoặc router,
-tùy thuộc vào việc triển khai. Thời gian tối đa khuyến nghị là một giờ, trừ khi TTL hồ sơ dịch vụ ngắn hơn.
-Các hồ sơ dịch vụ có thể được lưu đệm tối đa TTL được chỉ định bởi ứng dụng, khách hàng hoặc router.
-
-Mở rộng đặc tả như sau:
-
-### Tùy chọn cấu hình
-
-Thêm những mục sau vào [I2CP-OPTIONS]
+Add the following to the [I2CP configuration options](/docs/specs/i2cp/)
 
 i2cp.leaseSetOption.nnn
 
-Tùy chọn để đưa vào bộ cho thuê. Chỉ có sẵn cho LS2.
-nnn bắt đầu với 0. Giá trị tùy chọn chứa "key=value".
-(không bao gồm ngoặc kép)
+Options to be put in the leaseset. Only available for LS2.
+nnn starts with 0. Option value contains "key=value".
+(do not include quotes)
 
-Ví dụ:
-
-    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
-
-
-### Bản Tin HostLookup
+Example:
+i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-- Loại tra cứu 2: Tra cứu Hash, yêu cầu ánh xạ tùy chọn
-- Loại tra cứu 3: Tra cứu Hostname, yêu cầu ánh xạ tùy chọn
-- Loại tra cứu 4: Tra cứu Đích, yêu cầu ánh xạ tùy chọn
+#### HostLookup Message
 
-Đối với loại tra cứu 4, mục 5 là một Đích.
+- Lookup type 2: Hash lookup, request options mapping
+- Lookup type 3: Hostname lookup, request options mapping
+- Lookup type 4: Destination lookup, request options mapping
 
-
-### Bản Tin HostReply
-
-
-Đối với các loại tra cứu 2-4, router phải lấy bộ cho thuê,
-ngay cả khi khóa tra cứu có trong sổ địa chỉ.
-
-Nếu thành công, HostReply sẽ chứa ánh xạ tùy chọn
-từ bộ cho thuê và bao gồm nó là mục 5 sau đích đến.
-Nếu không có tùy chọn nào trong ánh xạ, hoặc bộ cho thuê là phiên bản 1,
-nó sẽ vẫn được bao gồm dưới dạng một ánh xạ rỗng (hai byte: 0 0).
-Tất cả các tùy chọn từ bộ cho thuê sẽ được bao gồm, không chỉ các tùy chọn hồ sơ dịch vụ.
-Ví dụ, các tùy chọn cho các tham số được định nghĩa trong tương lai có thể có mặt.
-
-Trên lỗi tra cứu bộ cho thuê, câu trả lời sẽ chứa một mã lỗi mới 6 (Leaseset lookup failure)
-và sẽ không bao gồm một ánh xạ.
-Khi mã lỗi 6 được trả về, trường Đích có thể có hoặc không có mặt.
-Nó sẽ có mặt nếu một tra cứu hostname trong sổ địa chỉ đã thành công,
-hoặc nếu một tra cứu trước đó đã thành công và kết quả đã được lưu đệm,
-hoặc nếu Đích có mặt trong tin nhắn tra cứu (loại tra cứu 4).
-
-Nếu một loại tra cứu không được hỗ trợ,
-câu trả lời sẽ chứa một mã lỗi mới 7 (lookup type unsupported).
+For lookup type 4, item 5 is a Destination.
 
 
-### Đặc Tả SAM
 
-Giao thức [SAMv3](/docs/api/samv3/) phải được mở rộng để hỗ trợ tra cứu dịch vụ.
+#### HostReply Message
 
-Mở rộng NAMING LOOKUP như sau:
+For lookup types 2-4, the router must fetch the leaseset,
+even if the lookup key is in the address book.
 
-NAMING LOOKUP NAME=example.i2p OPTIONS=true yêu cầu ánh xạ tùy chọn trong câu trả lời.
+If successful, the HostReply will contain the options Mapping
+from the leaseset, and includes it as item 5 after the destination.
+If there are no options in the Mapping, or the leaseset was version 1,
+it will still be included as an empty Mapping (two bytes: 0 0).
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.
 
-NAME có thể là một đích đầy đủ base64 khi OPTIONS=true.
+On leaseset lookup failure, the reply will contain a new error code 6 (Leaseset lookup failure)
+and will not include a mapping.
+When error code 6 is returned, the Destination field may or may not be present.
+It will be present if a hostname lookup in the address book was successful,
+or if a previous lookup was successful and the result was cached,
+or if the Destination was present in the lookup message (lookup type 4).
 
-Nếu việc tra cứu đích thành công và tùy chọn có mặt trong bộ cho thuê,
-thì trong câu trả lời, sau đích đến,
-sẽ là một hoặc nhiều tùy chọn dưới dạng OPTION:key=value.
-Mỗi tùy chọn sẽ có một tiền tố OPTION: riêng biệt.
-Tất cả các tùy chọn từ bộ cho thuê sẽ được bao gồm, không chỉ các tùy chọn hồ sơ dịch vụ.
-Ví dụ, các tùy chọn cho các tham số được định nghĩa trong tương lai có thể có mặt.
-Ví dụ:
-
-    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
-
-Các khóa chứa '=' và các khóa hoặc giá trị chứa một dòng mới,
-được coi là không hợp lệ và cặp khóa/giá trị sẽ bị loại bỏ khỏi câu trả lời.
-
-Nếu không có tùy chọn nào được tìm thấy trong bộ cho thuê, hoặc nếu bộ cho thuê là phiên bản 1,
-thì câu trả lời sẽ không bao gồm bất kỳ tùy chọn nào.
-
-Nếu OPTIONS=true có trong tra cứu, và bộ cho thuê không được tìm thấy, một giá trị kết quả mới LEASESET_NOT_FOUND sẽ được trả về.
+If a lookup type is not supported,
+the reply will contain a new error code 7 (lookup type unsupported).
 
 
-## Thay Thế Tra Cứu Tên
 
-Một thiết kế thay thế đã được xem xét, để hỗ trợ tra cứu các dịch vụ
-như một hostname đầy đủ, ví dụ: _smtp._tcp.example.i2p,
-bằng cách cập nhật [NAMING](/docs/overview/naming/) để chỉ định cách xử lý các hostname bắt đầu với '_'.
-Điều này đã bị từ chối vì hai lý do:
+### SAM Specification
 
-- Các thay đổi I2CP và SAM vẫn cần thiết để truyền qua thông tin TTL và cổng cho khách hàng.
-- Nó sẽ không phải là một công cụ tổng quát có thể dùng để lấy các tùy chọn LS2 khác
-  có thể được định nghĩa trong tương lai.
+The [SAMv3 protocol](/docs/api/samv3/) must be extended to support service lookups.
+
+Extend NAMING LOOKUP as follows:
+
+NAMING LOOKUP NAME=example.i2p OPTIONS=true requests the options mapping in the reply.
+
+NAME may be a full base64 destination when OPTIONS=true.
+
+If the destination lookup was successful and options were present in the leaseset,
+then in the reply, following the destination,
+will be one or more options in the form of OPTION:key=value.
+Each option will have a separate OPTION: prefix.
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.
+Example:
+
+NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+
+Keys containing '=', and keys or values containing a newline,
+are considered invalid and the key/value pair will be removed from the reply.
+
+If there are no options found in the leaseset, or if the leaseset was version 1,
+then the response will not include any options.
+
+If OPTIONS=true was in the lookup, and the leaseset is not found, a new result value LEASESET_NOT_FOUND will be returned.
 
 
-## Khuyến Nghị
+## Naming Lookup Alternative
 
-Máy chủ nên chỉ định TTL ít nhất là 86400, và cổng chuẩn cho ứng dụng.
+An alternative design was considered, to support lookups of services
+as a full hostname, for example _smtp._tcp.example.i2p,
+by updating the [naming specification](/docs/overview/naming/) to specify handling of hostnames starting with '_'.
+This was rejected for two reasons:
+
+- I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.
+- It would not be a general facility that could be used to retrieve other LS2
+  options that could be defined in the future.
 
 
-## Các Tính Năng Nâng Cao
+## Recommendations
 
-### Tra Cứu Đệ Quy
+Servers should specify a TTL of at least 86400, and the standard port for the application.
 
-Có thể mong muốn hỗ trợ các tra cứu đệ quy, nơi mà mỗi bộ cho thuê liên tiếp
-được kiểm tra cho hồ sơ dịch vụ chỉ đến một bộ cho thuê khác, theo kiểu DNS.
-Điều này có lẽ không cần thiết, ít nhất trong một lần triển khai ban đầu.
+
+
+## Advanced Features
+
+### Recursive Lookups
+
+It may be desirable to support recursive lookups, where each successive leaseset
+is checked for a service record pointing to another leaseset, DNS-style.
+This is probably not necessary, at least in an initial implementation.
 
 TODO
 
 
-### Các trường cụ thể theo ứng dụng
 
-Có thể mong muốn có dữ liệu ứng dụng cụ thể trong hồ sơ dịch vụ.
-Ví dụ, người điều hành example.i2p có thể muốn chỉ định rằng email nên
-được chuyển tiếp đến example@mail.i2p. Phần "example@" cần nằm trong một trường riêng
-của hồ sơ dịch vụ, hoặc được loại bỏ khỏi mục tiêu.
+### Application-specific fields
 
-Ngay cả khi người điều hành chạy dịch vụ email của riêng mình, anh ta có thể muốn chỉ định rằng
-email nên được gửi đến example@example.i2p. Hầu hết các dịch vụ I2P do một người điều hành.
-Vì vậy, có thể hữu ích có một trường riêng ở đây.
+It may be desirable to have application-specific data in the service record.
+For example, the operator of example.i2p may wish to indicate that email should
+be forwarded to example@mail.i2p. The "example@" part would need to be in a separate field
+of the service record, or stripped from the target.
 
-TODO làm thế nào để làm điều này theo cách tổng quát
+Even if the operator runs his own email service, he may wish to indicate that
+email should be sent to example@example.i2p. Most I2P services are run by a single person.
+So a separate field may be helpful here as well.
 
-
-### Các thay đổi cần thiết cho Email
-
-Ngoài phạm vi của đề xuất này. Xem DOTWELLKNOWN để có thảo luận.
+TODO how to do this in a generic way
 
 
-## Ghi Chú Triển Khai
+### Changes required for Email
 
-Lưu đệm hồ sơ dịch vụ lên đến TTL có thể được thực hiện bởi router hoặc ứng dụng,
-tùy thuộc vào việc triển khai. Có lưu đệm lâu dài hay không cũng tùy thuộc vào việc triển khai.
-
-Các tra cứu cũng phải tra cứu bộ cho thuê mục tiêu và xác minh rằng nó chứa một hồ sơ "self"
-trước khi trả về đích đến mục tiêu cho khách hàng.
+Out of the scope of this proposal. See the [discussion on i2pforum](http://i2pforum.i2p/viewtopic.php?p=3102) for more details.
 
 
-## Phân Tích Bảo Mật
+## Implementation Notes
 
-Vì bộ cho thuê được ký, bất kỳ hồ sơ dịch vụ nào trong đó đều được xác thực bởi khóa ký của đích đến.
+Caching of service records up to the TTL may be done by the router or the application,
+implementation-dependent. Whether to cache persistently is also implementation-dependent.
 
-Các hồ sơ dịch vụ là công khai và nhìn thấy được bởi floodfills, trừ khi bộ cho thuê được mã hóa.
-Bất kỳ router nào yêu cầu bộ cho thuê sẽ có thể thấy các hồ sơ dịch vụ.
-
-Một hồ sơ SRV khác "self" (tức là, một hồ sơ chỉ đến một mục tiêu hostname/b32 khác)
-không yêu cầu sự đồng ý của hostname/b32 được chỉ định.
-Không rõ nếu việc chuyển hướng một dịch vụ đến một đích tùy ý có thể tạo điều kiện cho một
-cuộc tấn công nào đó, hay mục đích của một cuộc tấn công như vậy sẽ là gì.
-Tuy nhiên, đề xuất này giảm thiểu một cuộc tấn công như vậy bằng cách yêu cầu rằng
-mục tiêu cũng phải công bố một hồ sơ SRV "self". Những người triển khai phải kiểm tra cho một hồ sơ "self"
-trong bộ cho thuê của mục tiêu.
+Lookups must also lookup the target leaseset and verify it contains a "self" record
+before returning the target destination to the client.
 
 
-## Khả Năng Tương Thích
+## Security Analysis
 
-LS2: Không có vấn đề. Tất cả các triển khai đã biết hiện tại đều bỏ qua trường tùy chọn trong LS2,
-và bỏ qua chính xác một trường tùy chọn không rỗng.
-Điều này đã được xác minh trong thử nghiệm bởi cả Java I2P và i2pd trong quá trình phát triển LS2.
-LS2 đã được triển khai trong 0.9.38 vào năm 2016 và được hỗ trợ tốt bởi tất cả các triển khai router.
-Thiết kế không yêu cầu hỗ trợ đặc biệt hoặc lưu đệm hay bất kỳ sự thay đổi nào trong floodfills.
+As the leaseset is signed, any service records within it are authenticated by the signing key of the destination.
 
-Naming: '_' không phải là một ký tự hợp lệ trong các hostname của i2p.
+The service records are public and visible to floodfills, unless the leaseset is encrypted.
+Any router requesting the leaseset will be able to see the service records.
 
-I2CP: Các loại tra cứu 2-4 không nên được gửi đến các router dưới phiên bản API tối thiểu
-mà nó được hỗ trợ (TBD).
-
-SAM: Máy chủ Java SAM bỏ qua các khóa/giá trị bổ sung như OPTIONS=true.
-i2pd cũng nên vậy, cần được xác minh.
-Khách hàng SAM sẽ không nhận được các giá trị bổ sung trong câu trả lời trừ khi được yêu cầu với OPTIONS=true.
-Không cần tăng phiên bản.
+A SRV record other than "self" (i.e., one that points to a different hostname/b32 target)
+does not require the consent of the targeted hostname/b32.
+It's not clear if a redirection of a service to an arbitrary destination could facilitate some
+sort of attack, or what the purpose of such an attack would be.
+However, this proposal mitigates such an attack by requiring that the target
+also publish a "self" SRV record. Implementers must check for a "self" record
+in the leaseset of the target.
 
 
+## Compatibility
+
+LS2: No issues. All known implementations currently ignore the options field in LS2,
+and correctly skip over a non-empty options field.
+This was verified in testing by both Java I2P and i2pd during the development of LS2.
+LS2 was implemented in 0.9.38 in 2016 and is well-supported by all router implementations.
+The design does not require special support or caching or any changes in the floodfills.
+
+Naming: '_' is not a valid character in i2p hostnames.
+
+I2CP: Lookup types 2-4 should not be sent to routers below the minimum API version
+at which it is supported (TBD).
+
+SAM: Java SAM server ignores additional keys/values such as OPTIONS=true.
+i2pd should as well, to be verified.
+SAM clients will not get the additional values in the reply unless requested with OPTIONS=true.
+No version bump should be necessary.
+
+
+## Migration
+
+Implementations may add support at any time, no coordination is needed,
+except for an agreement on the effective API version for the I2CP changes.
+SAM compatibility versions for each implementation will be documented in the SAM spec.
+
+
+## References
+
+* [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
+* [I2CP](/docs/specs/i2cp/)
+* [I2CP-OPTIONS](/docs/specs/i2cp/)
+* [LS2](/docs/specs/common-structures/)
+* [GNS](http://zzz.i2p/topcs/1545)
+* [NAMING](/docs/overview/naming/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop168](/proposals/168-tunnel-bandwidth/)
+* [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)
+* [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+* [SAMv3](/docs/api/samv3/)
+* [SRV](https://en.wikipedia.org/wiki/SRV_record)

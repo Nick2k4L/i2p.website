@@ -105,7 +105,7 @@ curl -s -H "Content-Type: application/json" \
           "Password": "itoopie"
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 
 ### Successful Response
@@ -149,7 +149,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.bw.outbound.1s": ""
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 
 **Response Fields (result)**  
@@ -258,7 +258,7 @@ curl -s -H "Content-Type: application/json" \
           "Period": 60000
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 
 **Sample Response**
@@ -297,7 +297,7 @@ curl -s -H "Content-Type: application/json" \
           "Restart": true
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 
 **Successful Response**
@@ -334,7 +334,7 @@ curl -s -H "Content-Type: application/json" \
           "i2p.router.net.upnp": null
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 
 **Sample Response**
@@ -378,7 +378,7 @@ curl -s -H "Content-Type: application/json" \
           }
         }
       }' \
-  `http://127.0.0.1:7657/jsonrpc/`
+  http://127.0.0.1:7657/jsonrpc/
 ```
 
 **Response Example**

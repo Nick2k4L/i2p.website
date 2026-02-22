@@ -93,6 +93,6 @@ As seguintes diretrizes aplicam-se ao router, webapps e todos os plugins.
 
 ### Bugs
 
-- Gerenciar issues é trabalho de todos; por favor, ajude. Monitore o GitLab para encontrar issues com as quais você pode ajudar. Comente, corrija e feche issues se puder.
+- Gerenciar issues é trabalho de todos; por favor, ajude. Monitore o [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues) para encontrar issues com as quais você pode ajudar. Comente, corrija e feche issues se puder.
 - Novos desenvolvedores devem começar corrigindo issues. Quando tiver uma correção, anexe seu patch à issue e adicione a palavra-chave `review-needed`. Não feche a issue até que ela tenha sido revisada com sucesso e você tenha verificado suas alterações. Depois de fazer isso sem problemas para alguns tickets, você pode seguir o procedimento normal acima.
 - Feche uma issue quando achar que a corrigiu. Não temos um departamento de testes para verificar e fechar tickets. Se não tiver certeza de que corrigiu, feche-a e adicione uma nota dizendo "Acho que corrigi, por favor teste e reabra se ainda estiver quebrado". Adicione um comentário com o número da dev build ou revisão e defina o milestone para o próximo lançamento.

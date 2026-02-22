@@ -8,13 +8,13 @@ accurateFor: "0.9.59"
 
 ## Genel Bakış {#overview}
 
-I2PTunnel, I2P üzerinde arayüz oluşturmak ve hizmet sağlamak için kullanılan bir araçtır. Bir I2PTunnel'ın hedefi [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32) veya tam 516-bayt destination anahtarı kullanılarak tanımlanabilir. Kurulmuş bir I2PTunnel, istemci makinenizde localhost:port olarak erişilebilir olacaktır. I2P ağında bir hizmet sağlamak istiyorsanız, uygun ip_address:port adresine bir I2PTunnel oluşturmanız yeterlidir. Hizmet için karşılık gelen 516-bayt destination anahtarı oluşturulacak ve I2P genelinde erişilebilir hale gelecektir. I2PTunnel yönetimi için web arayüzü `http://localhost:7657/i2ptunnel/` adresinde mevcuttur.
+I2PTunnel, I2P üzerinde arayüz oluşturmak ve hizmet sağlamak için kullanılan bir araçtır. Bir I2PTunnel'ın hedefi [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32) veya tam 516-bayt destination anahtarı kullanılarak tanımlanabilir. Kurulmuş bir I2PTunnel, istemci makinenizde localhost:port olarak erişilebilir olacaktır. I2P ağında bir hizmet sağlamak istiyorsanız, uygun ip_address:port adresine bir I2PTunnel oluşturmanız yeterlidir. Hizmet için karşılık gelen 516-bayt destination anahtarı oluşturulacak ve I2P genelinde erişilebilir hale gelecektir. I2PTunnel yönetimi için web arayüzü [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/) adresinde mevcuttur.
 
 ## Varsayılan Hizmetler {#default-services}
 
 ### Sunucu Tunnel'ları {#default-server-tunnels}
 
-- **I2P Webserver** - I2P üzerinde kolay ve hızlı hosting için `http://localhost:7658` adresinde çalışan bir Jetty webserver'a yönlendirilen tunnel.
+- **I2P Webserver** - I2P üzerinde kolay ve hızlı hosting için [localhost:7658](http://localhost:7658) adresinde çalışan bir Jetty webserver'a yönlendirilen tunnel.
   Belge kök dizini:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, şu şekilde genişler: `C:\Users\**username**\AppData\Local\I2P\I2P Site\docroot`

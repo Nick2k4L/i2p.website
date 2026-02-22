@@ -11,50 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## Übersicht
+## Overview
 
-Dieser Vorschlag bezieht sich auf die Verbesserung der Erfolgsrate bei Einführungen.
+This proposal is about improving the success rate for introductions.
 
 
 ## Motivation
 
-Einführer verfallen nach einer bestimmten Zeit, aber diese Info wird nicht in der
-RouterInfo veröffentlicht. Router müssen derzeit Heuristiken verwenden, um zu schätzen, wann ein
-Einführer nicht mehr gültig ist.
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
 
 ## Design
 
-In einer SSU RouterAddress, die Einführer enthält, kann der Herausgeber optional
-Ablaufzeiten für jeden Einführer angeben.
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
 
 
-## Spezifikation
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: Die Einführer-Nummer (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: Die Zeit in Sekunden (nicht ms) seit der Epoche.
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
-### Hinweise
-* Jeder Ablauf muss größer sein als das Veröffentlichungsdatum der RouterInfo
-  und weniger als 6 Stunden nach dem Veröffentlichungsdatum der RouterInfo.
+### Notes
 
-* Herausgeber von Routern und Einführern sollten versuchen, den Einführer bis zum Ablauf gültig zu halten,
-  können dies jedoch nicht garantieren.
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* Router sollten einen veröffentlichten Einführer nach dessen Ablauf nicht mehr verwenden.
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* Die Einführerabläufe befinden sich in der RouterAddress Zuordnung.
-  Sie sind nicht das (derzeit ungenutzte) 8-Byte-Ablauf-Feld in der RouterAddress.
+* Routers should not use a published introducer after its expiration.
 
-**Beispiel:** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
+
+**Example:** `iexp0=1486309470`
 
 
 ## Migration
 
-Keine Probleme. Die Implementierung ist optional.
-Abwärtskompatibilität ist sichergestellt, da ältere Router unbekannte Parameter ignorieren.
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

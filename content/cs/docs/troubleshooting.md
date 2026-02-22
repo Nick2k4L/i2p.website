@@ -48,11 +48,11 @@ Pro resetování konfigurace při zachování identity: Zastavte I2P, zálohujte
 
 Stav blokovaný firewallem znamená, že router nemůže přijímat přímá příchozí spojení, což nutí spoléhat se na introducers (uzly zprostředkovávající navázání příchozího spojení). I když router v tomto stavu funguje, **výkon se výrazně zhoršuje** a přínos pro síť zůstává minimální. Dosažení stavu bez blokování firewallem vyžaduje správné přesměrování portů.
 
-**Router náhodně vybere port** v rozmezí 9000-31000 pro komunikaci. Svůj port najdete na `http://127.0.0.1:7657/confignet` - hledejte "UDP Port" a "TCP Port" (obvykle stejné číslo). Pro optimální výkon musíte přesměrovat porty pro **jak UDP, tak TCP**, i když samotné UDP umožňuje základní funkčnost.
+**Router náhodně vybere port** v rozmezí 9000-31000 pro komunikaci. Svůj port najdete na http://127.0.0.1:7657/confignet - hledejte "UDP Port" a "TCP Port" (obvykle stejné číslo). Pro optimální výkon musíte přesměrovat porty pro **jak UDP, tak TCP**, i když samotné UDP umožňuje základní funkčnost.
 
 **Povolit automatické přesměrování portů přes UPnP** (nejjednodušší metoda):
 
-1. Přejděte na `http://127.0.0.1:7657/confignet`
+1. Přejděte na http://127.0.0.1:7657/confignet
 2. Zaškrtněte "Enable UPnP"
 3. Uložte změny a restartujte router
 4. Počkejte 5-10 minut a ověřte, že se stav změní z "Network: Firewalled" na "Network: OK"
@@ -61,7 +61,7 @@ UPnP vyžaduje podporu ze strany routeru (která je ve výchozím nastavení pov
 
 **Ruční přesměrování portů** (vyžaduje se, pokud selže UPnP):
 
-1. Poznamenejte si svůj port I2P z `http://127.0.0.1:7657/confignet` (např. 22648)
+1. Poznamenejte si svůj port I2P z http://127.0.0.1:7657/confignet (např. 22648)
 2. Zjistěte svou místní IP adresu: `ipconfig` (Windows), `ip addr` (Linux), Předvolby systému → Síť (macOS)
 3. Otevřete administrační rozhraní routeru (obvykle 192.168.1.1 nebo 192.168.0.1)
 4. Přejděte do Port Forwarding (může být v části Advanced, NAT nebo Virtual Servers)
@@ -72,7 +72,7 @@ UPnP vyžaduje podporu ze strany routeru (která je ve výchozím nastavení pov
 
 **Ověřte přesměrování portů** pomocí online testovacích nástrojů po konfiguraci. Pokud zjišťování selže, zkontrolujte nastavení firewallu – jak systémový firewall, tak případný firewall antiviru musí povolit port I2P.
 
-**Alternativa Hidden mode** pro restriktivní sítě, kde není možné přesměrování portů: Povolte na `http://127.0.0.1:7657/confignet` → zaškrtněte "Hidden mode". Router zůstane za firewallem, ale optimalizuje se pro tento stav tím, že bude výhradně používat SSU introducers (zprostředkovatele SSU). Výkon bude pomalejší, ale funkční.
+**Alternativa Hidden mode** pro restriktivní sítě, kde není možné přesměrování portů: Povolte na http://127.0.0.1:7657/confignet → zaškrtněte "Hidden mode". Router zůstane za firewallem, ale optimalizuje se pro tento stav tím, že bude výhradně používat SSU introducers (zprostředkovatele SSU). Výkon bude pomalejší, ale funkční.
 
 ## Router uvízl ve stavu "Spouštění" nebo "Testování"
 
@@ -92,7 +92,7 @@ macOS: Předvolby systému → Datum a čas → Povolte "Nastavit datum a čas a
 
 Po opravě odchylky systémového času úplně restartujte I2P pro správnou integraci.
 
-**Nedostatečné přidělení šířky pásma** brání úspěšnému testování. Router potřebuje dostatečnou kapacitu pro sestavení testovacích tunnels. Nastavte na `http://127.0.0.1:7657/config:`
+**Nedostatečné přidělení šířky pásma** brání úspěšnému testování. Router potřebuje dostatečnou kapacitu pro sestavení testovacích tunnels. Nastavte na http://127.0.0.1:7657/config:
 
 - **Minimální použitelné:** Příchozí 96 KB/sec, Odchozí 64 KB/sec
 - **Doporučený standard:** Příchozí 256 KB/sec, Odchozí 128 KB/sec  
@@ -115,7 +115,7 @@ i2prouter start
 ```
 Windows: Odstraňte obsah `%APPDATA%\I2P\netDb\` nebo `%LOCALAPPDATA%\I2P\netDb\`
 
-**Firewall blokující reseed (počáteční získávání peerů)** znemožňuje získání počátečních peerů. Během bootstrapu I2P načítá informace o routeru z HTTPS reseed serverů. Firewally v korporátních sítích nebo u ISP mohou tato spojení blokovat. Nastavte reseed proxy na adrese `http://127.0.0.1:7657/configreseed,` pokud se nacházíte v restriktivní síti.
+**Firewall blokující reseed (počáteční získávání peerů)** znemožňuje získání počátečních peerů. Během bootstrapu I2P načítá informace o routeru z HTTPS reseed serverů. Firewally v korporátních sítích nebo u ISP mohou tato spojení blokovat. Nastavte reseed proxy na adrese http://127.0.0.1:7657/configreseed, pokud se nacházíte v restriktivní síti.
 
 ## Nízké rychlosti, vypršení časových limitů a selhání při vytváření tunnelů
 
@@ -128,25 +128,25 @@ Architektura I2P přirozeně vede k **3-10x pomalejším rychlostem než clearne
 - Stahování velkých souborů: vyžaduje trpělivost - soubory v řádu megabajtů mohou trvat minuty, v řádu gigabajtů hodiny
 - První připojení je nejpomalejší: budování tunnel trvá 30-90 sekund; následující připojení používají existující tunnels
 
-**Míra úspěšnosti sestavování tunnelů** naznačuje zdraví sítě. Zkontrolujte na `http://127.0.0.1:7657/tunnels:`
+**Míra úspěšnosti sestavování tunnelů** naznačuje zdraví sítě. Zkontrolujte na http://127.0.0.1:7657/tunnels:
 
 - **Nad 60%:** Normální, zdravý provoz
 - **40-60%:** Hraniční, zvažte navýšení šířky pásma nebo snížení zátěže
 - **Pod 40%:** Problematické - naznačuje nedostatečnou šířku pásma, síťové problémy nebo špatný výběr peerů
 
-**Zvyšte přidělení šířky pásma** jako první krok optimalizace. Většina problémů s pomalým výkonem pramení z nedostatku šířky pásma. Na adrese `http://127.0.0.1:7657/config` limity navyšujte postupně a sledujte grafy na `http://127.0.0.1:7657/graphs.`
+**Zvyšte přidělení šířky pásma** jako první krok optimalizace. Většina problémů s pomalým výkonem pramení z nedostatku šířky pásma. Na adrese http://127.0.0.1:7657/config limity navyšujte postupně a sledujte grafy na http://127.0.0.1:7657/graphs.
 
 **Pro DSL/Kabel (1-10 Mbps připojení):** - Příchozí: 400 KB/sec - Odchozí: 200 KB/sec - Sdílení: 80% - Paměť: 384 MB (upravte wrapper.config)
 
-**Pro vysokorychlostní (10-100+ Mbps připojení):** - Příchozí: 1500 KB/sec   - Odchozí: 1000 KB/sec - Sdílení: 80-100% - Paměť: 512-1024 MB - Zvažte: Zvyšte počet participating tunnels (účastnické tunely) na 2000-5000 na adrese `http://127.0.0.1:7657/configadvanced`
+**Pro vysokorychlostní (10-100+ Mbps připojení):** - Příchozí: 1500 KB/sec   - Odchozí: 1000 KB/sec - Sdílení: 80-100% - Paměť: 512-1024 MB - Zvažte: Zvyšte počet participating tunnels (účastnické tunely) na 2000-5000 na adrese http://127.0.0.1:7657/configadvanced
 
-**Optimalizujte konfiguraci tunnel** pro lepší výkon. Otevřete konkrétní nastavení tunnel na `http://127.0.0.1:7657/i2ptunnel` a upravte každý tunnel:
+**Optimalizujte konfiguraci tunnel** pro lepší výkon. Otevřete konkrétní nastavení tunnel na http://127.0.0.1:7657/i2ptunnel a upravte každý tunnel:
 
 - **Počet Tunnel:** Zvyšte z 2 na 3-4 (více dostupných cest)
 - **Počet záloh:** Nastavte na 1-2 (rychlé přepnutí při selhání tunnel)
 - **Délka Tunnel:** Výchozí 3 skoky poskytují dobrou rovnováhu; snížení na 2 zlepší rychlost, ale sníží anonymitu
 
-**Nativní kryptografická knihovna (jbigi)** poskytuje 5-10x lepší výkon než šifrování implementované čistě v Javě. Ověřte, že je načtená, na `http://127.0.0.1:7657/logs` - hledejte "jbigi loaded successfully" nebo "Using native CPUID implementation". Pokud chybí:
+**Nativní kryptografická knihovna (jbigi)** poskytuje 5-10x lepší výkon než šifrování implementované čistě v Javě. Ověřte, že je načtená, na http://127.0.0.1:7657/logs - hledejte "jbigi loaded successfully" nebo "Using native CPUID implementation". Pokud chybí:
 
 Linux: Obvykle automaticky detekováno a načteno z ~/.i2p/jbigi-*.so Windows: Zkontrolujte jbigi.dll v instalačním adresáři I2P Pokud chybí: Nainstalujte nástroje pro sestavení a zkompilujte ze zdrojového kódu, nebo stáhněte předkompilované binární soubory z oficiálních repozitářů
 
@@ -174,23 +174,23 @@ wrapper.java.maxmemory=512
 ```
 **Kritické:** Po úpravě wrapper.config musíte **zcela vypnout** (ne restartovat), počkejte 11 minut na korektní ukončení a poté spusťte načisto. Tlačítko "Restart" v Router console nenačte znovu nastavení wrapperu.
 
-**Optimalizace CPU vyžaduje nativní kryptografickou knihovnu.** Operace s BigInteger v čisté Javě spotřebují 10–20× více CPU než nativní implementace. Ověřte stav jbigi na `http://127.0.0.1:7657/logs` během spouštění. Bez jbigi CPU vyskočí na 50–100 % během budování tunnel a šifrovacích operací.
+**Optimalizace CPU vyžaduje nativní kryptografickou knihovnu.** Operace s BigInteger v čisté Javě spotřebují 10–20× více CPU než nativní implementace. Ověřte stav jbigi na http://127.0.0.1:7657/logs během spouštění. Bez jbigi CPU vyskočí na 50–100 % během budování tunnel a šifrovacích operací.
 
 **Snižte zátěž participujících tunnel** pokud je router přetížen:
 
-1. Přejděte na `http://127.0.0.1:7657/configadvanced`
+1. Přejděte na http://127.0.0.1:7657/configadvanced
 2. Nastavte `router.maxParticipatingTunnels=1000` (výchozí 8000)
-3. Snižte procento sdílení na `http://127.0.0.1:7657/config` z 80% na 50%
+3. Snižte procento sdílení na http://127.0.0.1:7657/config z 80% na 50%
 4. Vypněte režim floodfill, pokud je povolen: `router.floodfillParticipant=false`
 
-**Omezte šířku pásma I2PSnark a počet současně běžících torrentů.** Torrentování spotřebovává značné prostředky. Na adrese `http://127.0.0.1:7657/i2psnark:`
+**Omezte šířku pásma I2PSnark a počet současně běžících torrentů.** Torrentování spotřebovává značné prostředky. Na adrese http://127.0.0.1:7657/i2psnark:
 
 - Omezte počet aktivních torrentů na maximálně 3–5
 - Nastavte "Up BW Limit" a "Down BW Limit" na rozumné hodnoty (každý 50–100 KB/sec)
 - Zastavte torrenty, když je zrovna nepotřebujete
 - Vyhněte se seedování desítek torrentů najednou
 
-**Sledujte využití prostředků** pomocí vestavěných grafů na `http://127.0.0.1:7657/graphs.` Paměť by měla vykazovat rezervu, ne plochý strop. Špičky CPU během vytváření tunnel jsou normální; dlouhodobě vysoké využití CPU naznačuje problémy s konfigurací.
+**Sledujte využití prostředků** pomocí vestavěných grafů na http://127.0.0.1:7657/graphs. Paměť by měla vykazovat rezervu, ne plochý strop. Špičky CPU během vytváření tunnel jsou normální; dlouhodobě vysoké využití CPU naznačuje problémy s konfigurací.
 
 **Pro systémy s výrazně omezenými prostředky** (Raspberry Pi, starší hardware) zvažte **i2pd** (implementace v C++) jako alternativu. i2pd vyžaduje ~130 MB RAM oproti 350+ MB u Java I2P a při podobné zátěži používá ~7% CPU oproti 70%. Mějte na paměti, že i2pd nemá vestavěné aplikace a vyžaduje externí nástroje.
 
@@ -201,7 +201,7 @@ Integrace I2PSnark s architekturou I2P router vyžaduje pochopení, že **torren
 **Torrenty zaseknuté na 0 % obvykle naznačují:**
 
 1. **Router není plně integrován:** Po spuštění I2P počkejte 10-15 minut, než se objeví aktivita torrentů
-2. **DHT je vypnuté:** Povolte na `http://127.0.0.1:7657/i2psnark` → Configuration → zaškrtněte "Enable DHT" (ve výchozím nastavení povoleno od verze 0.9.2)
+2. **DHT je vypnuté:** Povolte na http://127.0.0.1:7657/i2psnark → Configuration → zaškrtněte "Enable DHT" (ve výchozím nastavení povoleno od verze 0.9.2)
 3. **Neplatné nebo nefunkční trackery:** Torrenty v I2P vyžadují trackery specifické pro I2P - trackery z clearnet (veřejný internet) nebudou fungovat
 4. **Nedostatečná konfigurace tunnel:** Zvyšte počet tunnel v I2PSnark Configuration → sekci Tunnels
 
@@ -216,7 +216,7 @@ Integrace I2PSnark s architekturou I2P router vyžaduje pochopení, že **torren
 
 Odstraňte všechny clearnet trackery (non-.i2p; veřejný internet) - nepřinášejí žádný užitek a vedou k pokusům o připojení, které končí vypršením časového limitu.
 
-**Chyby "Torrent not registered"** nastávají, když selže komunikace s trackerem. Klikněte pravým tlačítkem na torrent → "Start" vynutí opětovné ohlášení u trackeru. Pokud to přetrvává, ověřte dostupnost trackeru návštěvou `http://tracker2.postman.i2p` v prohlížeči nakonfigurovaném pro I2P. Mrtvé trackery nahraďte funkčními alternativami.
+**Chyby "Torrent not registered"** nastávají, když selže komunikace s trackerem. Klikněte pravým tlačítkem na torrent → "Start" vynutí opětovné ohlášení u trackeru. Pokud to přetrvává, ověřte dostupnost trackeru návštěvou http://tracker2.postman.i2p v prohlížeči nakonfigurovaném pro I2P. Mrtvé trackery nahraďte funkčními alternativami.
 
 **Žádní vrstevníci (peers) se nepřipojují** přestože tracker funguje, naznačuje, že: - Router za firewallem (zlepší se s přesměrováním portů, ale není vyžadováno) - Nedostatečná šířka pásma (zvyšte na 256+ KB/sec)   - Roj je příliš malý (některé torrenty mají 1-2 seedeři; je třeba trpělivost) - DHT je vypnuté (povolte pro vyhledávání vrstevníků bez trackeru)
 
@@ -271,7 +271,7 @@ Poznámka: `socks5h` provádí rozlišení DNS přes proxy - zásadní pro domé
 
 **Vytvořte vyhrazený I2P tunnel pro Git SSH (spolehlivější než SOCKS):**
 
-1. Přejděte na `http://127.0.0.1:7657/i2ptunnel`
+1. Přejděte na http://127.0.0.1:7657/i2ptunnel
 2. "Nový klientský tunnel" → "Standard"
 3. Nakonfigurujte:
    - Název: Git-SSH  
@@ -287,7 +287,7 @@ Poznámka: `socks5h` provádí rozlišení DNS přes proxy - zásadní pro domé
 
 - Klíč není přidán do ssh-agentu: `ssh-add ~/.ssh/id_rsa`
 - Nesprávná oprávnění souboru s klíčem: `chmod 600 ~/.ssh/id_rsa`
-- Tunnel neběží: Ověřte na `http://127.0.0.1:7657/i2ptunnel,` že je stav zelený
+- Tunnel neběží: Ověřte na http://127.0.0.1:7657/i2ptunnel, že je stav zelený
 - Git server vyžaduje konkrétní typ klíče: Vygenerujte klíč ed25519, pokud RSA selže
 
 **Vypršení časového limitu u operací Git** souvisí s charakteristikami latence I2P:
@@ -306,11 +306,11 @@ Poznámka: `socks5h` provádí rozlišení DNS přes proxy - zásadní pro domé
 
 **Chyby "Connection refused"** naznačují nesprávné nastavení tunnelu:
 
-1. Ověřte, že I2P router běží: Zkontrolujte `http://127.0.0.1:7657`
-2. Potvrďte, že tunnel je aktivní a zelený na `http://127.0.0.1:7657/i2ptunnel`
+1. Ověřte, že I2P router běží: Zkontrolujte http://127.0.0.1:7657
+2. Potvrďte, že tunnel je aktivní a zelený na http://127.0.0.1:7657/i2ptunnel
 3. Otestujte tunnel: `nc -zv 127.0.0.1 2222` (mělo by se připojit, pokud tunnel funguje)
 4. Zkontrolujte, zda je cíl dostupný: Otevřete v prohlížeči HTTP rozhraní cíle, pokud je k dispozici
-5. Zkontrolujte logy tunnelu na `http://127.0.0.1:7657/logs` kvůli konkrétním chybám
+5. Zkontrolujte logy tunnelu na http://127.0.0.1:7657/logs kvůli konkrétním chybám
 
 **Osvědčené postupy pro Git přes I2P:**
 
@@ -354,17 +354,17 @@ Lepší postup: Použijte rozšíření FoxyProxy nebo Proxy SwitchyOmega pro se
 
 **Metoda 1: Použijte jump služby** (nejjednodušší pro nové stránky):
 
-Přejděte na `http://stats.i2p` a vyhledejte daný web. Klikněte na odkaz addresshelper: `http://example.i2p/?i2paddresshelper=base64destination`. Váš prohlížeč zobrazí „Save to addressbook?“ – potvrďte pro přidání.
+Přejděte na http://stats.i2p a vyhledejte daný web. Klikněte na odkaz addresshelper: `http://example.i2p/?i2paddresshelper=base64destination`. Váš prohlížeč zobrazí „Save to addressbook?“ – potvrďte pro přidání.
 
 **Metoda 2: Aktualizujte odběry adresáře:**
 
-1. Přejděte na `http://127.0.0.1:7657/dns` (SusiDNS)
+1. Přejděte na http://127.0.0.1:7657/dns (SusiDNS)
 2. Klikněte na záložku "Subscriptions"  
-3. Ověřte aktivní odběry (výchozí: `http://i2p-projekt.i2p/hosts.txt)`
+3. Ověřte aktivní odběry (výchozí: http://i2p-projekt.i2p/hosts.txt)
 4. Přidejte doporučené odběry:
-   - `http://stats.i2p/cgi-bin/newhosts.txt`
-   - `http://notbob.i2p/hosts.txt`
-   - `http://reg.i2p/export/hosts.txt`
+   - http://stats.i2p/cgi-bin/newhosts.txt
+   - http://notbob.i2p/hosts.txt
+   - http://reg.i2p/export/hosts.txt
 5. Klikněte na "Update Now" pro vynucení okamžité aktualizace odběrů
 6. Počkejte 5-10 minut na zpracování
 
@@ -382,7 +382,7 @@ Každý .i2p web má adresu Base32: 52 náhodných znaků následovaných .b32.i
 
 **Router není plně integrován** znemožňuje přístup na jakékoli weby. Ověřte, že je integrace dostatečná:
 
-1. Zkontrolujte, že `http://127.0.0.1:7657` zobrazuje "Network: OK" nebo "Network: Firewalled" (ne "Network: Testing")
+1. Zkontrolujte, že http://127.0.0.1:7657 zobrazuje "Network: OK" nebo "Network: Firewalled" (ne "Network: Testing")
 2. Active peers zobrazuje minimálně 10 (optimálně 50+)  
 3. Žádná zpráva "Rejecting tunnels: starting up"
 4. Počkejte plných 10-15 minut po spuštění routeru, než budete očekávat přístup k .i2p
@@ -393,7 +393,7 @@ Každý .i2p web má adresu Base32: 52 náhodných znaků následovaných .b32.i
 
 **E-mail (Postman):**  - SMTP: **127.0.0.1:7659** - POP3: **127.0.0.1:7660**   - Bez SSL/TLS (šifrování zajišťuje I2P tunnel) - Přihlašovací údaje z registrace účtu na postman.i2p
 
-Všechny tyto tunnels musí na `http://127.0.0.1:7657/i2ptunnel` zobrazovat stav "running" (zelený).
+Všechny tyto tunnels musí na http://127.0.0.1:7657/i2ptunnel zobrazovat stav "running" (zelený).
 
 ## Selhání instalace a problémy s balíčky
 
@@ -409,7 +409,7 @@ sudo rm /etc/apt/sources.list.d/i2p.list
 echo "deb [signed-by=/usr/share/keyrings/i2p-archive-keyring.gpg] https://deb.i2p.net/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/i2p.list
 
 # Download and install current signing key
-curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
+curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
 sudo cp i2p-archive-keyring.gpg /usr/share/keyrings/
 
 # Update and install
@@ -424,7 +424,7 @@ sudo apt install i2p i2p-keyring
 sudo apt install i2p-keyring
 
 # Manual key import if package unavailable
-wget `https://geti2p.net/_static/i2p-debian-repo.key.asc`
+wget https://geti2p.net/_static/i2p-debian-repo.key.asc
 sudo apt-key add i2p-debian-repo.key.asc
 ```
 **Služba se po instalaci balíčku nespustí** – nejčastěji je to způsobeno problémy s profilem AppArmor na Debianu/Ubuntu:
@@ -484,12 +484,12 @@ Umístění Wrapper.config se liší podle metody instalace: - Uživatelská ins
 
 Aktualizace konzole routeru mohou občas uprostřed stahování selhat kvůli výpadkům sítě. Postup ruční aktualizace:
 
-1. Stáhněte si i2pupdate_X.X.X.zip z `https://geti2p.net/en/download`
+1. Stáhněte si i2pupdate_X.X.X.zip z https://geti2p.net/en/download
 2. Ověřte, že kontrolní součet SHA256 odpovídá zveřejněné hodnotě hash
 3. Zkopírujte do instalačního adresáře I2P jako `i2pupdate.zip`
 4. Restartujte router - automaticky detekuje a rozbalí aktualizaci
 5. Počkejte 5-10 minut na instalaci aktualizace
-6. Ověřte novou verzi na `http://127.0.0.1:7657`
+6. Ověřte novou verzi na http://127.0.0.1:7657
 
 **Migrace z velmi starých verzí** (před 0.9.47) na aktuální verze může selhat kvůli nekompatibilním podpisovým klíčům nebo odebraným funkcím. Jsou nutné postupné aktualizace:
 
@@ -624,9 +624,9 @@ Logování v I2P poskytuje konkrétní chybová hlášení, která přesně iden
 
 **"No tunnels available"** se zobrazí, když router nesestavil dostatek tunnels pro provoz. To je **normální během prvních 5-10 minut** po spuštění. Pokud přetrvává déle než 15 minut:
 
-1. Ověřte, že Active Peers > 10 na `http://127.0.0.1:7657`
+1. Ověřte, že Active Peers > 10 na http://127.0.0.1:7657
 2. Zkontrolujte, že přidělení šířky pásma je dostatečné (128+ KB/sec minimum)
-3. Prozkoumejte míru úspěšnosti tunnelů na `http://127.0.0.1:7657/tunnels` (měla by být >40%)
+3. Prozkoumejte míru úspěšnosti tunnelů na http://127.0.0.1:7657/tunnels (měla by být >40%)
 4. Zkontrolujte protokoly kvůli důvodům odmítnutí při sestavování tunnelů
 
 **"Clock skew detected"** nebo **"NTCP2 disconnect code 7"** znamená, že systémový čas se liší od síťového konsenzu o více než 90 sekund. I2P vyžaduje přesnost ±60 sekund. Připojení k routerům s odchýleným časem jsou automaticky odmítána.
@@ -643,7 +643,7 @@ date  # Verify correct time
 # Control Panel → Date and Time → Internet Time → Update now
 
 # Verify after sync
-`http://127.0.0.1:7657/logs`  # Should no longer show clock skew warnings
+http://127.0.0.1:7657/logs  # Should no longer show clock skew warnings
 ```
 **"Build timeout"** nebo **"Tunnel build timeout exceeded"** znamená, že budování tunnelu skrze řetězec peerů nebylo dokončeno v rámci časového okna pro timeout (obvykle 60 sekund). Příčiny:
 
@@ -652,7 +652,7 @@ date  # Verify correct time
 - **Nedostatečná šířka pásma:** Vaše limity šířky pásma brání včasnému sestavení tunnel
 - **Přetížený router:** Příliš mnoho zapojených tunnel spotřebovává prostředky
 
-Řešení: Zvyšte šířku pásma, snižte počet participujících tunnels (`router.maxParticipatingTunnels` na `http://127.0.0.1:7657/configadvanced),` povolte přesměrování portů pro lepší výběr peerů.
+Řešení: Zvyšte šířku pásma, snižte počet participujících tunnels (`router.maxParticipatingTunnels` na http://127.0.0.1:7657/configadvanced), povolte přesměrování portů pro lepší výběr peerů.
 
 **"Router is shutting down"** nebo **"Graceful shutdown in progress"** se může zobrazit během běžného ukončení nebo obnovy po pádu. Řízené ukončení (graceful shutdown) může trvat až 10 minut, protože router uzavírá tunnels, informuje protějšky a trvale ukládá stav.
 
@@ -671,7 +671,7 @@ taskkill /F /IM javaw.exe
 2. **Je vyžadováno úplné vypnutí** - restart změnu neuplatní
 3. Počkejte 11 minut na úplné vypnutí  
 4. Spusťte router načisto
-5. Ověřte přidělení paměti na `http://127.0.0.1:7657/graphs` - měla by být vidět rezerva
+5. Ověřte přidělení paměti na http://127.0.0.1:7657/graphs - měla by být vidět rezerva
 
 **Související chyby paměti:**
 
@@ -682,7 +682,7 @@ taskkill /F /IM javaw.exe
 
 **"Connection timeout"** nebo **"I2CP Error - port 7654"**, když se aplikace pokoušejí připojit k routeru:
 
-1. Ověřte, že router běží: `http://127.0.0.1:7657` by měl být dostupný
+1. Ověřte, že router běží: http://127.0.0.1:7657 by měl být dostupný
 2. Zkontrolujte port I2CP: `netstat -an | grep 7654` by měl zobrazit LISTENING
 3. Ujistěte se, že firewall na localhostu povoluje: `sudo ufw allow from 127.0.0.1`  
 4. Ověřte, že aplikace používá správný port (I2CP=7654, SAM=7656)
@@ -817,7 +817,7 @@ Add-MpPreference -ExclusionPath "$env:APPDATA\I2P"
 Add-MpPreference -ExclusionPath "$env:LOCALAPPDATA\I2P"
 Add-MpPreference -ExclusionProcess "javaw.exe"
 ```
-Nahraďte port 22648 svým skutečným I2P portem z `http://127.0.0.1:7657/confignet.`
+Nahraďte port 22648 svým skutečným I2P portem z http://127.0.0.1:7657/confignet.
 
 **Specifický problém s Kaspersky Antivirus:** „Application Control“ od Kaspersky omezuje haldu paměti Javy na 512 MB bez ohledu na nastavení v wrapper.config. To způsobuje OutOfMemoryError na routers s vysokou propustností.
 
@@ -931,15 +931,15 @@ Nové instalace I2P vyžadují **reseeding** (počáteční načtení informací
 
 **Vynutit ruční reseed (opětovné stažení počátečních uzlů):**
 
-1. Otevřete `http://127.0.0.1:7657/configreseed`
+1. Otevřete http://127.0.0.1:7657/configreseed
 2. Klikněte na "Save changes and reseed now"  
-3. Sledujte `http://127.0.0.1:7657/logs` a hledejte "Reseed got XX router infos"
+3. Sledujte http://127.0.0.1:7657/logs a hledejte "Reseed got XX router infos"
 4. Počkejte 5-10 minut na zpracování
-5. Zkontrolujte `http://127.0.0.1:7657` - počet známých peerů by se měl zvýšit na 50+
+5. Zkontrolujte http://127.0.0.1:7657 - počet známých peerů by se měl zvýšit na 50+
 
 **Nakonfigurujte reseed proxy** pro restriktivní sítě:
 
-`http://127.0.0.1:7657/configreseed` → Konfigurace proxy:
+http://127.0.0.1:7657/configreseed → Konfigurace proxy:
 
 - HTTP proxy: [proxy-server]:[port]
 - Nebo SOCKS5: [socks-server]:[port]  
@@ -960,12 +960,12 @@ Pokud běží Tor Browser nebo démon Toru:
 
 Když selže veškerý automatický reseed (počáteční načtení netDb), získejte reseed soubor mimo běžné kanály:
 
-1. Stáhněte i2pseeds.su3 z důvěryhodného zdroje při neomezeném připojení k internetu (`https://reseed.i2p.rocks/i2pseeds.su3,` `https://reseed-fr.i2pd.xyz/i2pseeds.su3)`
+1. Stáhněte i2pseeds.su3 z důvěryhodného zdroje při neomezeném připojení k internetu (https://reseed.i2p.rocks/i2pseeds.su3, https://reseed-fr.i2pd.xyz/i2pseeds.su3)
 2. Zcela ukončete I2P
 3. Zkopírujte i2pseeds.su3 do adresáře ~/.i2p/  
 4. Spusťte I2P - soubor se automaticky rozbalí a zpracuje
 5. Smažte i2pseeds.su3 po zpracování
-6. Ověřte, že počet peerů na `http://127.0.0.1:7657` roste
+6. Ověřte, že počet peerů na http://127.0.0.1:7657 roste
 
 **Chyby certifikátu SSL během reseed (počátečního zavedení do sítě):**
 
@@ -991,17 +991,17 @@ sudo update-ca-certificates
 Označuje úplné selhání reseedu (počáteční stažení informací o uzlech). Postup odstraňování problémů:
 
 1. **Ověřte, že systémový čas je přesný** (nejčastější problém - opravte jako PRVNÍ)
-2. **Otestujte připojení přes HTTPS:** Zkuste v prohlížeči otevřít `https://reseed.i2p.rocks` - pokud selže, jde o problém se sítí
-3. **Zkontrolujte logy I2P** na `http://127.0.0.1:7657/logs` kvůli konkrétním chybám reseed (stažení počátečních dat sítě)
-4. **Vyzkoušejte jinou reseed URL:** `http://127.0.0.1:7657/configreseed` → přidejte vlastní reseed URL: `https://reseed-fr.i2pd.xyz/`
+2. **Otestujte připojení přes HTTPS:** Zkuste v prohlížeči otevřít https://reseed.i2p.rocks - pokud selže, jde o problém se sítí
+3. **Zkontrolujte logy I2P** na http://127.0.0.1:7657/logs kvůli konkrétním chybám reseed (stažení počátečních dat sítě)
+4. **Vyzkoušejte jinou reseed URL:** http://127.0.0.1:7657/configreseed → přidejte vlastní reseed URL: https://reseed-fr.i2pd.xyz/
 5. **Použijte ruční metodu se souborem su3** pokud selhaly všechny automatizované pokusy
 
 **Reseed servery jsou občas nedostupné:** I2P obsahuje několik natvrdo definovaných reseed serverů. Pokud jeden selže, router automaticky zkusí ostatní. Úplné selhání všech reseed serverů je velmi vzácné, ale možné.
 
 **Aktuálně aktivní reseed servery** (stav k říjnu 2025):
 
-- `https://reseed.i2p.rocks/`
-- `https://reseed-fr.i2pd.xyz/`
+- https://reseed.i2p.rocks/
+- https://reseed-fr.i2pd.xyz/
 - https://i2p.novg.net/
 - https://i2p-projekt.de/
 
@@ -1026,20 +1026,20 @@ Tento průvodce pokrývá drtivou většinu problémů souvisejících s I2P, al
 
 **Než požádáte o pomoc, shromážděte diagnostické informace:**
 
-1. Verze I2P: `http://127.0.0.1:7657` (např. "2.10.0")
+1. Verze I2P: http://127.0.0.1:7657 (např. "2.10.0")
 2. Verze Javy: výstup `java -version`
 3. Operační systém a verze
 4. Stav routeru: Stav sítě, Počet aktivních peerů, Participující tunnels
 5. Konfigurace šířky pásma: příchozí/odchozí limity
 6. Stav přesměrování portů: za firewallem nebo OK
-7. Relevantní výpisy z logu: posledních 50 řádků zobrazujících chyby z `http://127.0.0.1:7657/logs`
+7. Relevantní výpisy z logu: posledních 50 řádků zobrazujících chyby z http://127.0.0.1:7657/logs
 
 **Oficiální kanály podpory:**
 
-- **Fórum:** https://i2pforum.net (clearnet) nebo `http://i2pforum.i2p` (v rámci I2P)
+- **Fórum:** https://i2pforum.net (clearnet) nebo http://i2pforum.i2p (v rámci I2P)
 - **IRC:** #i2p na Irc2P (irc.postman.i2p přes I2P) nebo irc.freenode.net (clearnet)
 - **Reddit:** https://reddit.com/r/i2p pro komunitní diskusi
-- **Sledovač chyb:** `https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues` pro potvrzené chyby
+- **Sledovač chyb:** https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues pro potvrzené chyby
 - **E-mailová konference:** i2p-dev@lists.i2p-projekt.de pro dotazy k vývoji
 
 **Realistická očekávání jsou důležitá.** I2P je z podstaty svého návrhu pomalejší než clearnet (běžný internet mimo I2P) - víceskokové šifrované 'tunnel' propojení vytváří inherentní latenci. Funkční I2P router s načítáním stránek trvajícím 30 sekund a rychlostí torrentu 50 KB/sec **funguje správně**, není rozbitý. Uživatelé očekávající rychlosti clearnetu budou zklamaní bez ohledu na optimalizaci konfigurace.

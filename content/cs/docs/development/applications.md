@@ -77,7 +77,7 @@ Existuje několik způsobů odesílání dat přes I2P, každý má své výhody
 
 ### BOB
 
-BOB je [Basic Open Bridge](/docs/legacy/bob/), který umožňuje aplikaci v jakémkoliv jazyce vytvářet streaming připojení do a z I2P. V tuto chvíli mu chybí podpora UDP, ale podpora UDP je plánována v blízké budoucnosti. BOB také obsahuje několik nástrojů, jako je generování klíčů destinace a ověření, že adresa odpovídá specifikacím I2P. Aktuální informace a aplikace, které používají BOB, lze najít na této I2P stránce.
+BOB je [Basic Open Bridge](/docs/legacy/bob/), který umožňuje aplikaci v jakémkoliv jazyce vytvářet streaming připojení do a z I2P. V tuto chvíli mu chybí podpora UDP, ale podpora UDP je plánována v blízké budoucnosti. BOB také obsahuje několik nástrojů, jako je generování klíčů destinace a ověření, že adresa odpovídá specifikacím I2P. Aktuální informace a aplikace, které používají BOB, lze najít na této [I2P stránce](http://bob.i2p/).
 
 ### SAM, SAM V2, SAM V3
 
@@ -353,12 +353,12 @@ Gratulujeme, úspěšně jste komunikovali přes I2P!
 
 Kontaktujte nás, pokud byste chtěli přispět.
 
-- I2P-Bote - kontaktujte HungryHobo
+- [I2P-Bote](http://i2pbote.i2p/) - kontaktujte HungryHobo
 - [Syndie](http://syndie.i2p2.de/)
-- IMule
-- I2Phex
+- [IMule](http://www.imule.i2p/)
+- [I2Phex](http://forum.i2p/viewforum.php?f=25)
 
-Viz také všechny pluginy na plugins.i2p, aplikace a zdrojový kód uvedený na echelon.i2p a kód aplikací hostovaný na git.repo.i2p.
+Viz také všechny pluginy na [plugins.i2p](http://plugins.i2p/), aplikace a zdrojový kód uvedený na [echelon.i2p](http://echelon.i2p/) a kód aplikací hostovaný na [git.repo.i2p](http://git.repo.i2p/).
 
 Viz také dodávané aplikace v distribuci I2P - SusiMail a I2PSnark.
 

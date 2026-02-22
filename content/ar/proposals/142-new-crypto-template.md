@@ -12,71 +12,88 @@ thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
 
-## نظرة عامة
+## Overview
 
-تصف هذه الوثيقة القضايا المهمة التي يجب مراعاتها عند اقتراح استبدال أو إضافة إلى تشفير ElGamal غير المتماثل.
+This document describes important issues to consider when proposing
+a replacement or addition to our ElGamal asymmetric encryption.
 
-هذه وثيقة معلوماتية.
+This is an informational document.
 
-## الدافع
 
-يعتبر ElGamal قديماً وبطيئاً، وهناك بدائل أفضل.
-ومع ذلك، هناك العديد من القضايا التي يجب معالجتها قبل أن نتمكن من إضافة أو تغيير إلى أي خوارزمية جديدة.
-تسلط هذه الوثيقة الضوء على هذه القضايا غير المحلولة.
+## Motivation
 
-## البحث الخارجي
+ElGamal is old and slow, and there are better alternatives.
+However, there are several issues that must be addressed before we can add or change to any new algorithm.
+This document highlights these unresolved issues.
 
-يجب على أي شخص يقترح تشفيراً جديداً أن يكون على دراية بالوثائق التالية أولاً:
 
-- [اقتراح 111 NTCP2](/ar/proposals/111-ntcp-2/)
-- [اقتراح 123 LS2](/ar/proposals/123-new-netdb-entries/)
-- [اقتراح 136 أنواع التوقيع التجريبية](/ar/proposals/136-experimental-sigtypes/)
-- [اقتراح 137 أنواع التوقيع الاختيارية](/ar/proposals/137-optional-sigtypes/)
-- ثريدات النقاش هنا لكل من الاقتراحات المذكورة أعلاه، المرتبطة بداخل
-- أولويات الاقتراحات لعام 2018
-- اقتراح ECIES
-- نظرة عامة على تشفير غير متماثل جديد
-- [نظرة عامة على التشفير ذو المستوى المنخفض](/ar/docs/specs/common-structures/)
 
-## استخدامات التشفير غير المتماثل
+## Background Research
 
-كمراجعة، نستخدم ElGamal لـ:
+Anybody proposing new crypto must first be familiar with the following documents:
 
-1) رسائل بناء النفق (المفتاح في RouterIdentity)
+- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
+- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
+- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
+- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
+- Discussion threads here for each of the above proposals, linked within
+- [2018 proposal priorities](http://zzz.i2p/topics/2494)
+- [ECIES proposal](http://zzz.i2p/topics/2418)
+- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
+- [Low-level crypto overview](/docs/specs/common-structures/)
 
-2) تشفير جهاز التوجيه لجهاز التوجيه لـ netdb والرسائل الأخرى لـ I2NP (المفتاح في RouterIdentity)
 
-3) تشفير العميل من النهاية إلى النهاية ElGamal+AES/SessionTag (المفتاح في LeaseSet، لم يتم استخدام مفتاح الوجهة)
+## Asymmetric Crypto Uses
 
-4) DH الموقت لـ NTCP وSSU
+As a review, we use ElGamal for:
 
-## التصميم
+1) Tunnel Build messages (key is in RouterIdentity)
 
-يجب أن يوفر أي اقتراح لاستبدال ElGamal بشيء آخر التفاصيل التالية.
+2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
 
-## المواصفات
+3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
 
-يجب على أي اقتراح لتشفير غير متماثل جديد تحديد الأشياء التالية بالكامل.
+4) Ephemeral DH for NTCP and SSU
 
-### 1. عام
 
-أجب عن الأسئلة التالية في اقتراحك. لاحظ أن هذا قد يحتاج إلى أن يكون اقتراحاً منفصلاً عن التفاصيل في 2) أدناه، حيث قد يتعارض مع الاقتراحات الحالية 111، 123، 136، 137، أو غيرها.
+## Design
 
-- أي من الحالات 1-4 أعلاه تقترح استخدام التشفير الجديد لها؟
-- إذا كان للحالة 1) أو 2) (جهاز التوجيه)، أين يذهب المفتاح العام، في RouterIdentity أو خصائص RouterInfo؟ هل تنوي استخدام نوع التشفير في شهادة المفتاح؟ حدد بالكامل. برر قرارك في كلتا الحالتين.
-- إذا كان للحالة 3) (العميل)، هل تنوي تخزين المفتاح العام في الوجهة واستخدام نوع التشفير في شهادة المفتاح (كما في اقتراح ECIES)، أو تخزينه في LS2 (كما في اقتراح 123)، أو شيئاً آخر؟ حدد بالكامل، وبرر قرارك.
-- لجميع الاستخدامات، كيف سيتم الإعلان عن الدعم؟ إذا كان للحالة 3)، هل يذهب إلى LS2، أم في مكان آخر؟ إذا كان للحالة 1) و2)، هل يشبه الاقتراحات 136 و/أو 137؟ حدد بالكامل، وبرر قراراتك. ربما سيحتاج إلى اقتراح منفصل لهذا.
-- حدد بالكامل كيف ولماذا هذا متوافق مع الإصدارات السابقة، وحدد بالكامل خطة الانتقال.
-- ما هي الاقتراحات غير المنفذة التي تعتبر متطلبات مسبقة لاقتراحك؟
+Any proposal to replace ElGamal with something else must provide the following details.
 
-### 2. نوع التشفير المحدد
 
-أجب عن الأسئلة التالية في اقتراحك:
 
-- معلومات التشفير العامة، المنحنيات/المعلمات المحددة، برر تماماً اختيارك. قدم روابط للمواصفات وغيرها من المعلومات.
-- نتائج اختبار السرعة مقارنة بـ ElG والبدائل الأخرى إذا كانت متاحة. تشمل التشفير، وفك التشفير، وتوليد المفتاح.
-- توفر المكتبة في C++ وJava (OpenJDK، BouncyCastle، وأطراف ثالثة)
-  بالنسبة للطرف الثالث أو غير Java، قدم روابط وتراخيص
-- أرقام نوع التشفير المقترحة (نطاق تجريبي أم لا)
+## Specification
 
-## ملاحظات
+Any proposal for new asymmetric crypto must fully specify the following things.
+
+
+
+### 1. General
+
+Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
+
+- Which of the above cases 1-4 do you propose to use the new crypto for?
+- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
+- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
+- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
+- Completely specify how and why this is backward compatible, and fully specify a migration plan.
+- Which unimplemented proposals are prerequisites for your proposal?
+
+
+### 2. Specific crypto type
+
+Answer the following questions in your proposal:
+
+- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
+- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
+- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
+  For 3rd party or non-Java, provide links and licenses
+- Proposed crypto type number(s) (experimental range or not)
+
+
+
+
+## Notes
+
+
+

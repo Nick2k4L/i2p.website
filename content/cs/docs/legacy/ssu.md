@@ -51,9 +51,9 @@ Exkluzivní OR z ((netid - 2) << 8) se používá k rychlé identifikaci připoj
 - Velikost MAC: 16 bytů
 - Příklady implementací v C:
   - hmac.h v [i2pd](https://github.com/PurpleI2P/i2pd)
-  - I2PHMAC.cpp v i2pcpp
+  - I2PHMAC.cpp v [i2pcpp](http://git.repo.i2p/w/i2pcpp.git)
 - Příklad implementace v Javě:
-  - I2PHMac.java v I2P
+  - I2PHMac.java v [I2P](https://github.com/i2p/i2p.i2p)
 
 ### Podrobnosti klíče relace
 
@@ -917,7 +917,7 @@ HolePunch je jednoduše UDP paket bez dat. Je neautentizovaný a nešifrovaný. 
 - [Datum](/docs/specs/common-structures/#date)
 - [ElGamal šifrování](/docs/specs/cryptography/#elgamal)
 - [Podrobnosti HMAC](/docs/specs/cryptography/#udp)
-- I2P zdrojový kód
+- [I2P zdrojový kód](https://github.com/i2p/i2p.i2p)
 - [i2pd zdrojový kód](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)
 - [RouterIdentity](/docs/specs/common-structures/#routeridentity)

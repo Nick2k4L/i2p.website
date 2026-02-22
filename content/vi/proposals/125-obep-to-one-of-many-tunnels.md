@@ -9,149 +9,168 @@ thread: "http://zzz.i2p/topics/2099"
 toc: true
 ---
 
-## Tổng quan
+## Overview
 
-Đề xuất này bao gồm hai cải tiến nhằm cải thiện hiệu suất mạng:
+This proposal covers two improvements for improving network performance:
 
-- Ủy quyền việc chọn IBGW cho OBEP bằng cách cung cấp cho nó một danh sách các
-  lựa chọn thay vì một lựa chọn đơn lẻ.
+- Delegating IBGW selection to the OBEP by providing it with a list of
+  alternatives instead of a single option.
 
-- Cho phép định tuyến gói tin multicast tại OBEP.
-
-
-## Động lực
-
-Trong trường hợp kết nối trực tiếp, ý tưởng là giảm tắc nghẽn kết nối, bằng
-cách cho phép OBEP có sự linh hoạt trong cách nó kết nối với các IBGW. Khả năng chỉ định
-nhiều kênh cũng cho phép chúng ta thực hiện multicast tại OBEP (bằng cách
-giao nhận thông điệp tới tất cả các kênh được chỉ định).
-
-Một giải pháp thay thế cho phần ủy quyền của đề xuất này là gửi thông qua
-một hash `http://localhost:63465/docs/specs/common-structures/#leaseset`, tương tự như khả năng hiện tại để chỉ định một hash
-`http://localhost:63465/docs/specs/common-structures/#common-structure-specification`. Điều này sẽ dẫn đến một thông điệp nhỏ hơn và một LeaseSet có thể mới hơn. Tuy nhiên:
-
-1. Nó sẽ buộc OBEP phải thực hiện tra cứu
-
-2. LeaseSet có thể không được công bố cho floodfill, vì vậy việc tra cứu sẽ thất bại.
-
-3. LeaseSet có thể bị mã hóa, vì vậy OBEP không thể lấy được các lease.
-
-4. Chỉ định một LeaseSet tiết lộ cho OBEP [Destination](/docs/specs/common-structures/#destination) của thông điệp,
-   điều mà họ có thể chỉ phát hiện bằng cách quét tất cả các LeaseSets trong
-   mạng và tìm kiếm một Lease khớp.
+- Enabling multicast packet routing at the OBEP.
 
 
-## Thiết kế
+## Motivation
 
-Người khởi tạo (OBGW) sẽ đặt một số (toàn bộ?) các `http://localhost:63465/docs/specs/common-structures/#lease` mục tiêu vào
-các chỉ dẫn giao nhận [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) thay vì chỉ chọn một.
+In the direct connection case, the idea is to reduce connection congestion, by
+giving the OBEP flexibility in how it connects to IBGWs. The ability to specify
+multiple tunnels also enables us to implement multicast at the OBEP (by
+delivering the message to all specified tunnels).
 
-OBEP sẽ chọn một trong số đó để giao nhận tới. OBEP sẽ chọn, nếu có thể, một cái mà nó đã được kết nối
-hoặc đã biết. Điều này sẽ làm đường OBEP-IBGW nhanh hơn và đáng tin cậy hơn, và giảm số lượng
-kết nối mạng tổng thể.
+An alternative to the delegation part of this proposal would be to send through
+a LeaseSet hash, similar to the existing ability to specify a target
+[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
+newer LeaseSet. However:
 
-Chúng ta có một loại phân phối chưa sử dụng (0x03) và hai bit còn lại (0 và 1) trong
-các cờ cho [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions), mà chúng ta có thể tận dụng để thực hiện những tính năng này.
+1. It would force the OBEP to do a lookup
 
+2. The LeaseSet may not be published to a floodfill, so the lookup would fail.
 
-## Tác động bảo mật
+3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
 
-Đề xuất này không thay đổi lượng thông tin bị lộ về Mục tiêu của OBGW hay quan điểm của họ về NetDB:
-
-- Một kẻ tấn công kiểm soát OBEP và đang quét LeaseSets từ NetDB đã có thể xác định liệu
-  một thông điệp có được gửi tới một Mục tiêu cụ thể hay không, bằng cách tìm kiếm cặp
-  `http://localhost:63465/docs/specs/common-structures/#tunnelid` / `http://localhost:63465/docs/specs/common-structures/#common-structure-specification`. Tại tệ nhất, sự hiện diện của nhiều Lease trong TMDI
-  có thể làm nhanh hơn việc tìm một khớp trong cơ sở dữ liệu của kẻ tấn công.
-
-- Một kẻ tấn công đang điều hành một Mục tiêu độc hại đã có thể thu thập thông tin về quan điểm
-  của một nạn nhân đang kết nối về NetDB, bằng cách công bố LeaseSets chứa các kênh vào khác nhau tới
-  các floodfill khác nhau, và quan sát xem qua kênh nào OBGW kết nối. Từ quan điểm của họ,
-  việc OBEP chọn kênh để sử dụng là tương tự chức năng với việc OBGW thực hiện lựa chọn.
-
-Cờ multicast rò rỉ sự thật rằng OBGW đang multicast tới các OBEPs.
-Điều này tạo ra một sự đánh đổi giữa hiệu suất và quyền riêng tư cần được cân nhắc khi
-thực hiện các giao thức cấp cao hơn. Là một cờ tùy chọn, người dùng có thể đưa ra quyết định phù hợp cho ứng dụng của họ.
-Tuy nhiên, có thể có lợi ích nếu đây là hành vi mặc định cho các ứng dụng tương thích,
-vì việc sử dụng rộng rãi bởi một loạt ứng dụng sẽ giảm thiểu sự rò rỉ thông tin về
-ứng dụng cụ thể từ thông điệp.
+4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
+   which they could otherwise only discover by scraping all the LeaseSets in the
+   network and looking for a Lease match.
 
 
-## Đặc tả kỹ thuật
+## Design
 
-Các Chỉ dẫn Giao nhận Phân đoạn Đầu Tiên [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) sẽ được chỉnh sửa như sau:
+The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
+delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
+
+The OBEP would select one of those to deliver to. The OBEP would select, if
+available, one that it is already connected to, or already knows about. This
+would make the OBEP-IBGW path faster and more reliable, and reduce overall
+network connections.
+
+We have one unused delivery type (0x03) and two remaining bits (0 and 1) in the
+flags for TUNNEL-DELIVERY, which we can leverage to implement these features.
+
+
+## Security Implications
+
+This proposal does not change the amount of information leaked about the OBGW's
+target Destination or their view of the NetDB:
+
+- An adversary that controls the OBEP and is scraping LeaseSets from the NetDB
+  can already determine whether a message is being sent to a particular
+  Destination, by searching for the TunnelId / RouterIdentity pair. At
+  worst, the presence of multiple Leases in the TMDI might make it faster to
+  find a match in the adversary's database.
+
+- An adversary that is operating a malicious Destination can already gain
+  information about a connecting victim's view of the NetDB, by publishing
+  LeaseSets containing different inbound tunnels to different floodfills, and
+  observing which tunnels the OBGW connects through. From their point of view,
+  the OBEP selecting which tunnel to use is functionally identical to the OBGW
+  making the selection.
+
+The multicast flag leaks the fact that the OBGW is multicasting to the OBEPs.
+This creates a performance vs. privacy trade-off that should be considered when
+implementing higher-level protocols. Being an optional flag, users can make
+the appropriate decision for their application. There may be benefits to this
+being the default behaviour for compatible applications, however, as wide-spread
+usage by a variety of applications would reduce the information leakage about
+which particular application a message is from.
+
+
+## Specification
+
+The First Fragment Delivery Instructions would be modified as follows:
 
 ```
 +----+----+----+----+----+----+----+----+
-|flag|  Tunnel ID (opt)  |              |
-+----+----+----+----+----+              +
-|                                       |
-+                                       +
-|         To Hash (optional)            |
-+                                       +
-|                                       |
-+                        +----+----+----+
-|                        |dly | Message  
-+----+----+----+----+----+----+----+----+
- ID (opt) |extended opts (opt)|cnt | (o)
-+----+----+----+----+----+----+----+----+
- Tunnel ID N   |                        |
-+----+----+----+                        +
-|                                       |
-+                                       +
-|         To Hash N (optional)          |
-+                                       +
-|                                       |
-+              +----+----+----+----+----+
-|              | Tunnel ID N+1 (o) |    |
-+----+----+----+----+----+----+----+    +
-|                                       |
-+                                       +
-|         To Hash N+1 (optional)        |
-+                                       +
-|                                       |
-+                                  +----+
-|                                  | sz
-+----+----+----+----+----+----+----+----+
-     |
-+----+
+  |flag|  Tunnel ID (opt)  |              |
+  +----+----+----+----+----+              +
+  |                                       |
+  +                                       +
+  |         To Hash (optional)            |
+  +                                       +
+  |                                       |
+  +                        +----+----+----+
+  |                        |dly | Message
+  +----+----+----+----+----+----+----+----+
+   ID (opt) |extended opts (opt)|cnt | (o)
+  +----+----+----+----+----+----+----+----+
+   Tunnel ID N   |                        |
+  +----+----+----+                        +
+  |                                       |
+  +                                       +
+  |         To Hash N (optional)          |
+  +                                       +
+  |                                       |
+  +              +----+----+----+----+----+
+  |              | Tunnel ID N+1 (o) |    |
+  +----+----+----+----+----+----+----+    +
+  |                                       |
+  +                                       +
+  |         To Hash N+1 (optional)        |
+  +                                       +
+  |                                       |
+  +                                  +----+
+  |                                  | sz
+  +----+----+----+----+----+----+----+----+
+       |
+  +----+
 
 flag ::
        1 byte
-       Thứ tự bit: 76543210
-       bit 6-5: loại giao nhận
+       Bit order: 76543210
+       bits 6-5: delivery type
                  0x03 = TUNNELS
-       bit 0: multicast? Nếu 0, giao nhận tới một trong những kênh
-                          Nếu 1, giao nhận tới tất cả các kênh
-                          Đặt giá trị 0 để tương thích với các lần sử dụng trong tương lai nếu
-                          loại giao nhận không phải là TUNNELS
+       bit 0: multicast? If 0, deliver to one of the tunnels
+                         If 1, deliver to all of the tunnels
+                         Set to 0 for compatibility with future uses if
+                         delivery type is not TUNNELS
 
 Count ::
        1 byte
-       Tùy chọn, có mặt nếu loại giao nhận là TUNNELS
-       2-255 - Số lượng cặp id/hash theo sau
+       Optional, present if delivery type is TUNNELS
+       2-255 - Number of id/hash pairs to follow
 
-Tunnel ID :: `TunnelId`
+Tunnel ID :: TunnelId
 To Hash ::
-       36 bytes mỗi cái
-       Tùy chọn, có mặt nếu loại giao nhận là TUNNELS
-       cặp id/hash
+       36 bytes each
+       Optional, present if delivery type is TUNNELS
+       id/hash pairs
 
-Tổng độ dài: Độ dài thông thường là:
-       75 bytes cho giao nhận TUNNELS đếm 2 (tin nhắn không phân mảnh);
-       79 bytes cho giao nhận TUNNELS đếm 2 (phân đoạn đầu tiên)
+Total length: Typical length is:
+       75 bytes for count 2 TUNNELS delivery (unfragmented tunnel message);
+       79 bytes for count 2 TUNNELS delivery (first fragment)
 
-Phần còn lại của chỉ dẫn giao nhận không thay đổi
+Rest of delivery instructions unchanged
 ```
 
 
-## Tương thích
+## Compatibility
 
-Các đồng nghiệp duy nhất cần phải hiểu đặc tả mới là OBGWs và OBEPs. Chúng ta có thể
-làm thay đổi này tương thích với mạng hiện tại bằng cách khiến việc sử dụng nó có điều kiện
-trên phiên bản I2P mục tiêu [VERSIONS](/docs/specs/i2np/#protocol-versions):
+The only peers that need to be understand the new specification are the OBGWs
+and the OBEPs. We can therefore make this change compatible with the existing
+network by making its use conditional on the target I2P version:
 
-* OBGWs phải chọn các OBEP tương thích khi xây dựng các kênh outbound, dựa trên
-  phiên bản I2P được quảng cáo trong `http://localhost:63465/docs/specs/common-structures/#routerinfo` của họ.
+* The OBGWs must select compatible OBEPs when building outbound tunnels, based
+  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
 
-* Các đồng nghiệp quảng cáo phiên bản mục tiêu phải hỗ trợ phân tích các cờ mới,
-  và không được từ chối các chỉ dẫn dưới dạng không hợp lệ.
+* Peers that advertise the target version must support parsing the new flags,
+  and must not reject the instructions as invalid.
+
+
+## References
+
+* [Destination](/docs/specs/common-structures/#destination)
+* [Leases](/docs/specs/common-structures/#lease)
+* [LeaseSet](/docs/specs/common-structures/#leaseset)
+* [RouterIdentity](/docs/specs/common-structures/#routeridentity)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TUNNEL-DELIVERY](/docs/specs/common-structures/#tunnelmessagedeliveryinstructions)
+* [TunnelId](/docs/specs/common-structures/#tunnelid)
+* [VERSIONS](/docs/specs/i2np/#protocol-versions)

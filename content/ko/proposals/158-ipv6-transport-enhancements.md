@@ -13,269 +13,287 @@ target: "0.9.50"
 toc: true
 ---
 
-## 주의
-네트워크 배포 및 테스트 진행 중.  
-경미한 수정 가능함.
+## Note
+Network deployment and testing in progress.
+Subject to minor revisions.
 
 
-## 개요
+## Overview
 
-이 제안서는 IPv6를 위한 SSU 및 NTCP2 전송의 개선을 구현하는 것입니다.
-
-
-## 동기
-
-전 세계적으로 IPv6가 성장하고 IPv6 전용 설정(특히 모바일에서)이 더 보편화됨에 따라,  
-IPv6 지원을 개선하고 모든 라우터가 IPv4를 지원할 것이라는 가정을 제거해야 합니다.
+This proposal is to implement enhancements to the SSU and NTCP2 transports for IPv6.
 
 
-### 연결성 확인
+## Motivation
 
-터널을 위해 피어를 선택하거나, 메시지를 라우팅하기 위해 OBEP/IBGW 경로를 선택할 때,  
-라우터 A가 라우터 B에 연결할 수 있는지를 계산하는 데 도움이 됩니다.  
-일반적으로 이는 B의 광고된 인바운드 주소 중 하나와 일치하는 전송 및 주소 유형(IPv4/v6)에 대해 A가 아웃바운드 기능을 갖추고 있는지를 결정하는 것을 의미합니다.
-
-그러나 많은 경우 우리는 A의 기능을 알지 못하고 가정을 해야 합니다.  
-A가 숨겨져 있거나 방화벽에 의해 보호되고 있는 경우, 주소가 게시되지 않으며 직접적인 지식을 가지고 있지 않습니다 - 그래서 IPv4를 지원하고 IPv6는 지원하지 않는다고 가정합니다.  
-해결책은 아웃바운드 기능을 IPv4 및 IPv6로 표시하는 두 개의 새로운 "캡" 또는 기능을 라우터 정보에 추가하는 것입니다.
+As IPv6 grows around the world and IPv6-only setups (especially on mobile) becomes more common,
+we need to improve our support for IPv6 and remove the assumptions that
+all routers are IPv4-capable.
 
 
-### IPv6 인트로듀서
 
-우리의 사양 [SSU] 및 [SSU-SPEC]에 IPv4 도입에 대해 IPv6 인트로듀서가 지원되는지에 대한 오류 및 불일치가 있습니다.  
-어쨌든, 이는 Java I2P나 i2pd 모두에서 구현된 적이 없습니다.  
-이를 수정해야 합니다.
+### Connectivity Checking
 
+When selecting peers for tunnels, or selecting OBEP/IBGW paths for routing messages,
+it helps to calculate whether router A can connect to router B.
+In general, this means determining if A has outbound capability for a transport and address type (IPv4/v6)
+that matches one of B's advertised inbound addresses.
 
-### IPv6 도입
-
-우리의 사양 [SSU] 및 [SSU-SPEC]은 IPv6 도입이 지원되지 않는다는 것을 명확히 하고 있습니다.  
-이는 IPv6가 절대 방화벽에 보호되지 않는다는 가정 하에 있었습니다.  
-이것은 명백히 사실이 아니며 방화벽에 보호된 IPv6 라우터에 대한 지원을 개선해야 합니다.
-
-
-### 도입 다이어그램
-
-범례: ----- 는 IPv4, ====== 는 IPv6입니다.
-
-현재 IPv4 전용:
-
-```
-      앨리스                         밥                  찰리
-  RelayRequest ---------------------->
-       <-------------- RelayResponse    RelayIntro ----------->
-       <-------------------------------------------- HolePunch
-  SessionRequest -------------------------------------------->
-       <-------------------------------------------- SessionCreated
-  SessionConfirmed ------------------------------------------>
-  Data <--------------------------------------------------> Data
-```
+However, in many cases we don't know A's capabilites and have to make assumptions.
+If A is hidden or firewalled, the addresses are not published, and we don't have direct knowledge -
+so we assume it's IPv4 capable, and not IPv6 capable.
+The solution is adding two new "caps" or capabilities to the Router Info to indicate outbound capability for IPv4 and IPv6.
 
 
-IPv4 도입, IPv6 인트로듀서
+### IPv6 Introducers
+
+Our specifications for SSU contain errors and inconsistencies about whether
+IPv6 introducers are supported for IPv4 introductions.
+In any case, this has never been implemented in either Java I2P or i2pd.
+This needs to be corrected.
+
+
+### IPv6 Introdutions
+
+Our specifications for SSU make clear that
+IPv6 introductions are not supported.
+This was under the assumption that IPv6 is never firewalled.
+This is clearly not true, and we need to improve support for firewalled IPv6 routers.
+
+
+### Introduction Diagrams
+
+Legend: ----- is IPv4, ====== is IPv6
+
+**Current IPv4-only:**
 
 ```
-앨리스                         밥                  찰리
-  RelayRequest ======================>
-       <============== RelayResponse    RelayIntro ----------->
-       <-------------------------------------------- HolePunch
-  SessionRequest -------------------------------------------->
-       <-------------------------------------------- SessionCreated
-  SessionConfirmed ------------------------------------------>
-  Data <--------------------------------------------------> Data
+        Alice                         Bob                  Charlie
+    RelayRequest ---------------------->
+         <-------------- RelayResponse    RelayIntro ----------->
+         <-------------------------------------------- HolePunch
+    SessionRequest -------------------------------------------->
+         <-------------------------------------------- SessionCreated
+    SessionConfirmed ------------------------------------------>
+    Data <--------------------------------------------------> Data
 ```
 
-IPv6 도입, IPv6 인트로듀서
+**IPv4 introduction, IPv6 introducer:**
 
 ```
-앨리스                         밥                  찰리
-  RelayRequest ======================>
-       <============== RelayResponse    RelayIntro ===========>
-       <============================================ HolePunch
-  SessionRequest ============================================>
-       <============================================ SessionCreated
-  SessionConfirmed ==========================================>
-  Data <==================================================> Data
+Alice                         Bob                  Charlie
+    RelayRequest ======================>
+         <============== RelayResponse    RelayIntro ----------->
+         <-------------------------------------------- HolePunch
+    SessionRequest -------------------------------------------->
+         <-------------------------------------------- SessionCreated
+    SessionConfirmed ------------------------------------------>
+    Data <--------------------------------------------------> Data
 ```
 
-IPv6 도입, IPv4 인트로듀서
+**IPv6 introduction, IPv6 introducer:**
 
 ```
-앨리스                         밥                  찰리
-  RelayRequest ---------------------->
-       <-------------- RelayResponse    RelayIntro ===========>
-       <============================================ HolePunch
-  SessionRequest ============================================>
-       <============================================ SessionCreated
-  SessionConfirmed ==========================================>
-  Data <==================================================> Data
+Alice                         Bob                  Charlie
+    RelayRequest ======================>
+         <============== RelayResponse    RelayIntro ===========>
+         <============================================ HolePunch
+    SessionRequest ============================================>
+         <============================================ SessionCreated
+    SessionConfirmed ==========================================>
+    Data <==================================================> Data
+```
+
+**IPv6 introduction, IPv4 introducer:**
+
+```
+Alice                         Bob                  Charlie
+    RelayRequest ---------------------->
+         <-------------- RelayResponse    RelayIntro ===========>
+         <============================================ HolePunch
+    SessionRequest ============================================>
+         <============================================ SessionCreated
+    SessionConfirmed ==========================================>
+    Data <==================================================> Data
 ```
 
 
-## 설계
+## Design
 
-세 가지 변경 사항이 구현됩니다.
+There are three changes to be implemented.
 
-- 라우터 주소 기능에 아웃바운드 IPv4 및 IPv6 지원을 표시하기 위해 "4" 및 "6" 기능 추가
-- IPv6 인트로듀서를 통한 IPv4 도입 지원 추가
-- IPv4 및 IPv6 인트로듀서를 통한 IPv6 도입 지원 추가
+- Add "4" and "6" capabilities to Router Address capabilities to indicate outbound IPv4 and IPv6 support
+- Add support for IPv4 introductions via IPv6 introducers
+- Add support for IPv6 introductions via IPv4 and IPv6 introducers
 
 
-## 사양
+
+## Specification
 
 ### 4/6 Caps
 
-이는 원래 공식적인 제안 없이 구현되었지만 IPv6 도입에 필요하므로 여기 포함합니다.  
-또한 [CAPS]를 참조하십시오.
+This was originally implemented without a formal proposal, but it is required for
+IPv6 introductions, so we include it here.
 
 
-두 가지 새 기능 "4" 및 "6"이 정의됩니다.  
-이 새로운 기능은 라우터 주소의 "caps" 속성에 추가되며, 라우터 정보 caps에 추가되지 않습니다.  
-현재 NTCP2에 대해 정의된 "caps" 속성이 없습니다.  
-인트로듀서를 가진 SSU 주소는 현재 정의상 IPv4입니다. 우리는 IPv6 도입을 전혀 지원하지 않습니다.  
-그러나 이 제안은 IPv6 도입과 호환됩니다. 아래를 참조하십시오.
+Two new capabilities "4" and "6" are defined.
+These new capabilities will be added to the "caps" property in the Router Address, not in the Router Info caps.
+We currently don't have a "caps" property defined for NTCP2.
+An SSU address with introducers is, by definition, ipv4 right now. We don't support ipv6 introduction at all.
+However, this proposal is compatible with a IPv6 introductions. See below.
 
-또한, 라우터는 I2P-over-Yggdrasil과 같은 오버레이 네트워크를 통해 연결을 지원할 수 있지만 주소를 공개하고 싶지 않거나 해당 주소가 표준 IPv4 또는 IPv6 형식이 아닐 수 있습니다.  
-이 새로운 기능 시스템은 이러한 네트워크도 지원할 수 있도록 유연해야 합니다.
+Additionally, a router may support connectivity via an overlay network such as I2P-over-Yggdrasil,
+but does not wish to publish an address, or that address does not have a standard IPv4 or IPv6 format.
+This new capability system should be flexible enough to support these networks as well.
 
-다음 변경 사항을 정의합니다:
+We define the following changes:
 
-NTCP2: "caps" 속성 추가
+NTCP2: Add "caps" property
 
-SSU: 아웃바운드 지원을 나타내기 위해 호스트 또는 인트로듀서 없이 라우터 주소 지원 추가  
-IPv4, IPv6 또는 둘 다.
+SSU: Add support for a Router Address without a host or introducers, to indicate outbound support
+for IPv4, IPv6, or both.
 
-두 전송 모두: 다음 기능 값 정의:
+Both transports: Define the following caps values:
 
-- "4": IPv4 지원
-- "6": IPv6 지원
+- "4": IPv4 support
+- "6": IPv6 support
 
-하나의 주소에서 여러 값을 지원할 수 있습니다. 아래를 참조하십시오.  
-라우터 주소에 "host" 값이 포함되어 있지 않으면 최소 하나 이상의 캡스가 필수입니다.  
-"host" 값이 라우터 주소에 포함되어 있는 경우 최대 하나의 캡스만 선택할 수 있습니다.  
-추가 전송 캡스는 오버레이 네트워크 또는 기타 연결성을 나타내기 위해 미래에 정의될 수 있습니다.
+Multiple values may be supported in a single address. See below.
+At least one of these caps are mandatory if no "host" value is included in the Router Address.
+At most one of these caps is optional if a "host" value is included in the Router Address.
+Additional transport caps may be defined in the future to indicate support for overlay networks or other connectivity.
 
 
-#### 사용 사례 및 예시
+#### Use cases and examples
 
 SSU:
 
-호스트가 있는 SSU: 4/6 선택 사항, 하나 이상은 절대 사용하지 않음.  
-예시: SSU caps="4" host="1.2.3.4" key=... port="1234"
+SSU with host: 4/6 optional, never more than one.
+Example: SSU caps="4" host="1.2.3.4" key=... port="1234"
 
-하나는 아웃바운드 전용, 다른 하나는 게시된 SSU: 캡스만, 4/6.  
-예시: SSU caps="6"
+SSU outbound only for one, other is published: Caps only, 4/6.
+Example: SSU caps="6"
 
-인트로듀서가 있는 SSU: 결코 결합되지 않음. 4 또는 6 필요.  
-예시: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
+SSU with introducers: never combined. 4 or 6 is required.
+Example: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
 
-숨겨진 SSU: 캡스만, 4, 6 또는 46. 여러 개 허용.  
-4와 6이 있는 두 주소가 필요 없습니다.  
-예시: SSU caps="46"
+SSU hidden: Caps only, 4, 6, or 46. Multiple is allowed.
+No need for two addresses one with 4 and one with 6.
+Example: SSU caps="46"
 
 NTCP2:
 
-호스트가 있는 NTCP2: 4/6 선택 사항, 하나 이상은 절대 사용하지 않음.  
-예시: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
+NTCP2 with host: 4/6 optional, never more than one.
+Example: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
 
-하나는 아웃바운드 전용, 다른 하나는 게시된 NTCP2: 캡스, s, v만, 4/6/y, 여러 개 허용.  
-예시: NTCP2 caps="6" i=... s=... v="2"
+NTCP2 outbound only for one, other is published: Caps, s, v only, 4/6/y, multiple is allowed.
+Example: NTCP2 caps="6" i=... s=... v="2"
 
-숨겨진 NTCP2: 캡스, s, v만 4/6, 여러 개 허용  
-4와 6이 있는 두 주소가 필요 없습니다.  
-예시: NTCP2 caps="46" i=... s=... v="2"
-
-
-### IPv4를 위한 IPv6 인트로듀서
-
-명세의 오류와 불일치를 수정하기 위해 다음 변경 사항이 필요합니다.  
-또한 이를 제안서의 "파트 1"로 설명했습니다.
-
-#### 명세 변경
-
-[SSU](/docs/specs/ssu2/) 는 현재 이렇게 말합니다 (IPv6 노트):
-
-IPv6는 버전 0.9.8부터 지원됩니다. 게시된 릴레이 주소는 IPv4 또는 IPv6일 수 있으며, 앨리스-밥 통신은 IPv4 또는 IPv6를 통해 이루어질 수 있습니다.
-
-다음 추가:
-
-사양의 변경은 버전 0.9.8부터 이루어졌지만, IPv6를 통한 앨리스-밥 통신은 실제로 버전 0.9.50까지 지원되지 않았습니다.
-이전 버전의 Java 라우터는 IPv6 주소에 대해 'C' 기능을 잘못 게시했습니다,
-비록 실제로 IPv6를 통한 인트로듀서로 작용하지 않았음에도 불구하고.
-따라서 라우터는 버전 0.9.50 이상인 경우에만 IPv6 주소의 'C' 기능을 신뢰해야 합니다.
+NTCP2 hidden: Caps, s, v only 4/6, multiple is allowed No need for two addresses one with 4 and one with 6.
+Example: NTCP2 caps="46" i=... s=... v="2"
 
 
-[SSU-SPEC](/docs/legacy/ssu/) 는 현재 이렇게 말합니다 (릴레이 요청):
 
-IP 주소는 패킷의 소스 주소 및 포트와 다를 경우에만 포함됩니다.
-현재 구현에서는 IP 길이가 항상 0이고 포트도 항상 0이며,
-수신자는 패킷의 소스 주소와 포트를 사용해야 합니다.
-이 메시지는 IPv4 또는 IPv6를 통해 전송될 수 있습니다. IPv6인 경우, 앨리스는 자신의 IPv4 주소와 포트를 포함해야 합니다.
+### IPv6 Introducers for IPv4
 
-다음 추가:
+The following changes are required to correct errors and inconsistencies in the specs.
+We have also described this as "part 1" of the proposal.
 
-IP 및 포트는 IPv6를 통해 이 메시지를 전송할 때 IPv4 주소를 도입하기 위해 포함되어야 합니다.
-이는 릴리스 0.9.50부터 지원됩니다.
+#### Spec Changes
 
+The SSU specification currently says (IPv6 notes):
 
-### IPv6 도입
+IPv6 is supported as of version 0.9.8. Published relay addresses may be IPv4 or IPv6, and Alice-Bob communication may be via IPv4 or IPv6.
 
-세 개의 SSU 릴레이 메시지 (RelayRequest, RelayResponse 및 RelayIntro)는 (앨리스, 밥 또는 찰리) IP 주소가 따라올 것임을 나타내기 위해 IP 길이 필드를 포함합니다.
+Add the following:
 
-따라서 메시지의 형식 변경은 필요하지 않습니다.
-텍스트 사양에 대한 변경 사항만 필요하며, 16바이트 IP 주소가 허용된다는 것을 지시합니다.
-
-명세에 필요한 변경 사항은 다음과 같습니다.  
-또한 이를 제안서의 "파트 2"로 설명했습니다.
+While the specification was changed as of version 0.9.8, Alice-Bob communication via IPv6 was not actually supported until version 0.9.50.
+Earlier versions of Java routers erroneously published the 'C' capability for IPv6 addresses,
+even though they did not actually act as an introducer via IPv6.
+Therefore, routers should only trust the 'C' capability on an IPv6 address if the router version is 0.9.50 or higher.
 
 
-#### 명세 변경
 
-[SSU](/docs/specs/ssu2/) 는 현재 이렇게 말합니다 (IPv6 노트):
+The SSU specification currently says (Relay Request):
 
-밥-찰리 및 앨리스-찰리 통신은 IPv4를 통해서만 이루어집니다.
+The IP address is only included if it is be different than the packet's source address and port.
+In the current implementation, the IP length is always 0 and the port is always 0,
+and the receiver should use the packet's source address and port.
+This message may be sent via IPv4 or IPv6. If IPv6, Alice must include her IPv4 address and port.
 
-[SSU-SPEC](/docs/legacy/ssu/) 는 현재 이렇게 말합니다 (릴레이 요청):
+Add the following:
 
-IPv6를 위한 릴레이를 구현할 계획이 없습니다.
-
-변경하여 다음을 말합니다:
-
-IPv6를 위한 릴레이는 릴리스 0.9.xx부터 지원됩니다
-
-[SSU-SPEC](/docs/legacy/ssu/) 는 현재 이렇게 말합니다 (릴레이 응답):
-
-찰리의 IP 주소는 항상 IPv4여야 하며, 이는 Hole Punch 이후에 앨리스가 SessionRequest를 보낼 주소입니다.
-IPv6를 위한 릴레이를 구현할 계획이 없습니다.
-
-변경하여 다음을 말합니다:
-
-찰리의 IP 주소는 IPv4일 수도 있고, 릴리스 0.9.xx부터는 IPv6일 수도 있습니다.
-이는 Hole Punch 이후에 앨리스가 SessionRequest를 보낼 주소입니다.
-IPv6를 위한 릴레이는 릴리스 0.9.xx부터 지원됩니다
-
-[SSU-SPEC](/docs/legacy/ssu/) 는 현재 이렇게 말합니다 (릴레이 인트로):
-
-현재 구현에서 앨리스의 IP 주소는 항상 4바이트입니다, 왜냐하면 앨리스가 IPv4를 통해 찰리에게 연결을 시도하고 있기 때문입니다.
-이 메시지는 반드시 확립된 IPv4 연결을 통해 전송되어야 합니다,
-이것이 밥이 RelayResponse에서 앨리스에게 반환할 찰리의 IPv4 주소를 알고 있는 유일한 방법입니다.
-
-변경하여 다음을 말합니다:
-
-IPv4의 경우, 앨리스의 IP 주소는 항상 4바이트입니다, 왜냐하면 앨리스가 IPv4를 통해 찰리에게 연결을 시도하고 있기 때문입니다.
-릴리스 0.9.xx부터는 IPv6가 지원되며, 앨리스의 IP 주소는 16바이트일 수 있습니다.
-
-IPv4의 경우, 이 메시지는 반드시 확립된 IPv4 연결을 통해 전송되어야 합니다,
-이는 밥이 RelayResponse에서 앨리스에게 반환할 찰리의 IPv4 주소를 알고 있는 유일한 방법입니다.
-릴리스 0.9.xx부터는 IPv6가 지원되며, 이 메시지는 확립된 IPv6 연결을 통해 전송될 수 있습니다.
-
-또한 추가:
-
-릴리스 0.9.xx부터 인트로듀서를 포함하여 게시된 모든 SSU 주소는 "캡스" 옵션에 "4" 또는 "6"을 포함해야 합니다.
+The IP and port must be included to introduce an IPv4 address when sending this message over IPv6.
+This is supported as of release 0.9.50.
 
 
-## 마이그레이션
 
-모든 오래된 라우터는 NTCP2의 캡스 속성을 무시해야 하며, SSU 캡스 속성의 알 수 없는 기능 문자를 무시해야 합니다.
+### IPv6 Introductions
 
-인트로듀서를 포함하는 "4" 또는 "6" 캡이 없는 모든 SSU 주소는 IPv4 도입을 위한 것으로 간주합니다.
+All three of the SSU relay messages (RelayRequest, RelayResponse, and RelayIntro) contain IP length fields
+to indicate the length of the (Alice, Bob, or Charlie) IP address to follow.
+
+Therefore, no change to the format of the messages is required.
+Only textual changes to the specifications, indicating that 16-byte IP addresses are allowed.
+
+The following changes are required to the specs.
+We have also described this as "part 2" of the proposal.
+
+
+#### Spec Changes
+
+The SSU specification currently says (IPv6 notes):
+
+Bob-Charlie and Alice-Charlie communication is via IPv4 only.
+
+The SSU specification currently says (Relay Request):
+
+There are no plans to implement relaying for IPv6.
+
+Change to say:
+
+Relaying for IPv6 is supported as of release 0.9.xx
+
+The SSU specification currently says (Relay Response):
+
+Charlie's IP address must be IPv4, as that is the address that Alice will send the SessionRequest to after the Hole Punch.
+There are no plans to implement relaying for IPv6.
+
+Change to say:
+
+Charlie's IP address may be IPv4 or, as of release 0.9.xx, IPv6.
+That is the address that Alice will send the SessionRequest to after the Hole Punch.
+Relaying for IPv6 is supported as of release 0.9.xx
+
+The SSU specification currently says (Relay Intro):
+
+Alice's IP address is always 4 bytes in the current implementation, because Alice is trying to connect to Charlie via IPv4.
+This message must be sent via an established IPv4 connection,
+as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
+
+Change to say:
+
+For IPv4, Alice's IP address is always 4 bytes, because Alice is trying to connect to Charlie via IPv4.
+As of release 0.9.xx, IPv6 is supported, and Alice's IP address may be 16 bytes.
+
+For IPv4, this message must be sent via an established IPv4 connection,
+as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
+As of release 0.9.xx, IPv6 is supported, and this message may be sent via an established IPv6 connection.
+
+Also add:
+
+As of release 0.9.xx, any SSU address published with introducers must contain "4" or "6" in the "caps" option.
+
+
+## Migration
+
+All old routers should ignore the caps property in NTCP2, and unknown capability characters in the SSU caps property.
+
+Any SSU address with introducers that does not contain a "4" or "6" cap is assumed to be for IPv4 introduction.
+
+
+## References
+
+* [CAPS](http://zzz.i2p/topics/3050)
+* [NTCP2](/docs/specs/ntcp2/)
+* [SSU](/docs/specs/ssu2/)
+* [SSU-SPEC](/docs/legacy/ssu/)

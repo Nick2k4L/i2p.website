@@ -69,7 +69,7 @@ These defenses make routers more difficult to enumerate reliably, and reduce the
 /* Yemen */ "YE"
 ```
 
-If you believe a country should be added or removed from the strict list, please open an issue: `https://i2pgit.org/i2p/i2p.i2p/`
+If you believe a country should be added or removed from the strict list, please open an issue: https://i2pgit.org/i2p/i2p.i2p/
 
 Reference: Freedom House – https://freedomhouse.org/
 

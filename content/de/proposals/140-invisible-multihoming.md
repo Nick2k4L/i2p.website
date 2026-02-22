@@ -9,21 +9,41 @@ thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
 
-## Überblick
+## Overview
 
-Dieser Vorschlag umreißt ein Design für ein Protokoll, das es einem I2P-Client, -Service oder externen Balancer-Prozess ermöglicht, mehrere Router transparent zu verwalten, die eine einzelne `http://localhost:63465/docs/specs/common-structures/#destination` hosten.
+This proposal outlines a design for a protocol enabling an I2P client, service
+or external balancer process to manage multiple routers transparently hosting a
+single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
 
-Der Vorschlag spezifiziert derzeit keine konkrete Implementierung. Er könnte als Erweiterung zu [I2CP](/docs/specs/i2cp/) oder als neues Protokoll implementiert werden.
+The proposal currently does not specify a concrete implementation. It could be
+implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
+
 
 ## Motivation
 
-Multihoming bezeichnet die Verwendung mehrerer router zur Bereitstellung derselben Destination. Die aktuelle Methode für Multihoming mit I2P besteht darin, dieselbe Destination unabhängig auf jedem router zu betreiben; der router, der von Clients zu einem bestimmten Zeitpunkt verwendet wird, ist derjenige, der zuletzt ein leaseSet veröffentlicht hat.
+Multihoming is where multiple routers are used to host the same Destination.
+The current way to multihome with I2P is to run the same Destination on each
+router independently; the router that gets used by clients at any particular
+time is the last one to publish a LeaseSet.
 
-Das ist ein Hack und wird vermutlich nicht für große Websites im großen Maßstab funktionieren. Angenommen, wir hätten 100 Multihoming-Router mit jeweils 16 Tunnels. Das wären 1600 LeaseSet-Veröffentlichungen alle 10 Minuten oder fast 3 pro Sekunde. Die Floodfills würden überlastet werden und Drosselungen würden einsetzen. Und das ist, bevor wir überhaupt den Lookup-Traffic erwähnen.
+This is a hack and presumably won't work for large websites at scale. Say we had
+100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
+every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
+and throttles would kick in. And that's before we even mention the lookup
+traffic.
 
-Proposal 123 löst dieses Problem mit einem meta-LeaseSet, das die 100 echten LeaseSet-Hashes auflistet. Eine Suche wird zu einem zweistufigen Prozess: zuerst die Suche nach dem meta-LeaseSet und dann nach einem der benannten LeaseSets. Dies ist eine gute Lösung für das Problem des Lookup-Traffics, aber allein betrachtet entsteht dadurch ein erhebliches Datenschutzleck: Es ist möglich zu bestimmen, welche Multihoming-Router online sind, indem man das veröffentlichte meta-LeaseSet überwacht, da jedes echte LeaseSet einem einzelnen Router entspricht.
+Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
+LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
+meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
+the lookup traffic issue, but on its own it creates a significant privacy leak:
+It is possible to determine which multihoming routers are online by monitoring
+the published meta-LeaseSet, because each real LeaseSet has corresponds to a
+single router.
 
-Wir benötigen eine Möglichkeit für einen I2P-Client oder -Service, eine einzelne Destination über mehrere router zu verteilen, auf eine Art und Weise, die von der Verwendung eines einzelnen routers nicht zu unterscheiden ist (aus der Perspektive des LeaseSet selbst).
+We need a way for an I2P client or service to spread a single Destination across
+multiple routers, in a way that is indistinguishable to using a single router
+(from the perspective of the LeaseSet itself).
+
 
 ## Design
 
@@ -62,11 +82,11 @@ Wir benötigen eine Möglichkeit für einen I2P-Client oder -Service, eine einze
 
 ### High-level overview
 
-Stellen Sie sich die folgende gewünschte Konfiguration vor:
+Imagine the following desired configuration:
 
-- Eine Client-Anwendung mit einem Destination.
-- Vier Router, die jeweils drei eingehende Tunnel verwalten.
-- Alle zwölf Tunnel sollten in einem einzigen LeaseSet veröffentlicht werden.
+- A client application with one Destination.
+- Four routers, each managing three inbound tunnels.
+- All twelve tunnels should be published in a single LeaseSet.
 
 ### Single-client
 
@@ -87,7 +107,8 @@ Stellen Sie sich die folgende gewünschte Konfiguration vor:
                  |-{ [Tunnel 11]===[Router 4]-----
                   -{ [Tunnel 12]==/
 ```
-### Definitionen
+
+### Multi-client
 
 ```
                 -{ [Tunnel 1]===\
@@ -106,40 +127,44 @@ Stellen Sie sich die folgende gewünschte Konfiguration vor:
                  |-{ [Tunnel 11]===[Router 4]---------[Frontend 4]
                   -{ [Tunnel 12]==/
 ```
-### Überblick auf hoher Ebene
 
-- Lade oder generiere ein Destination.
+### General client process
 
-- Öffne eine Sitzung mit jedem Router, die an die Destination gebunden ist.
+- Load or generate a Destination.
 
-- Regelmäßig (etwa alle zehn Minuten, aber mehr oder weniger basierend auf der
-  Tunnel-Verfügbarkeit):
+- Open up a session with each router, tied to the Destination.
 
-- Erhalten Sie die schnelle Stufe von jedem Router.
+- Periodically (around every ten minutes, but more or less based on tunnel
+  liveness):
 
-- Nutze die Obermenge von Peers, um Tunnel zu/von jedem Router zu erstellen.
+  - Obtain the fast tier from each router.
+
+  - Use the superset of peers to build tunnels to/from each router.
 
     - By default, tunnels to/from a particular router will use peers from
       that router's fast tier, but this is not enforced by the protocol.
 
-- Sammle die Menge der aktiven eingehenden Tunnel von allen aktiven Routern und erstelle ein LeaseSet.
+  - Collect the set of active inbound tunnels from all active routers, and create a
+    LeaseSet.
 
-- Veröffentliche das LeaseSet über einen oder mehrere der Router.
+  - Publish the LeaseSet through one or more of the routers.
 
-### Einzelner Client
+### Differences to I2CP
 
-Um diese Konfiguration zu erstellen und zu verwalten, benötigt der Client die folgende neue Funktionalität zusätzlich zu dem, was derzeit von [I2CP](/docs/specs/i2cp/) bereitgestellt wird:
+To create and manage this configuration, the client needs the following new
+functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
 
-- Einem Router mitteilen, Tunnel zu erstellen, ohne ein LeaseSet für sie zu erstellen.
-- Eine Liste der aktuellen Tunnel im Inbound-Pool abrufen.
+- Tell a router to build tunnels, without creating a LeaseSet for them.
+- Get a list of the current tunnels in the inbound pool.
 
-Zusätzlich würde die folgende Funktionalität erhebliche Flexibilität ermöglichen, wie der Client seine Tunnel verwaltet:
+Additionally, the following functionality would enable significant flexibility
+in how the client manages its tunnels:
 
-- Den Inhalt der Fast-Tier eines routers abrufen.
-- Einem router mitteilen, einen eingehenden oder ausgehenden tunnel mit einer gegebenen Liste von
-  Peers zu erstellen.
+- Get the contents of a router's fast tier.
+- Tell a router to build an inbound or outbound tunnel using a given list of
+  peers.
 
-### Multi-Client
+### Protocol outline
 
 ```
          Client                           Router
@@ -157,41 +182,62 @@ Zusätzlich würde die folgende Funktionalität erhebliche Flexibilität ermögl
       Send Status  <---------------------
   Packet Received  <---------------------
 ```
-### Allgemeiner Client-Prozess
 
-**Session erstellen** - Erstellt eine Session für die angegebene Destination.
+### Messages
 
-**Session Status** - Bestätigung, dass die Session eingerichtet wurde und der Client nun mit dem Aufbau von Tunneln beginnen kann.
+**Create Session**
+- Create a session for the given Destination.
 
-**Get Fast Tier** - Fordere eine Liste der Peers an, durch die der Router derzeit Tunnel aufbauen würde.
+**Session Status**
+- Confirmation that the session has been set up, and the client can now start building tunnels.
 
-**Peer List** - Eine Liste von Peers, die dem Router bekannt sind.
+**Get Fast Tier**
+- Request a list of the peers that the router currently would consider building tunnels through.
 
-**Tunnel Erstellen** - Anfordern, dass der Router einen neuen Tunnel durch die angegebenen Peers aufbaut.
+**Peer List**
+- A list of peers known to the router.
 
-**Tunnel Status** - Das Ergebnis eines bestimmten Tunnel-Aufbaus, sobald es verfügbar ist.
+**Create Tunnel**
+- Request that the router build a new tunnel through the specified peers.
 
-**Get Tunnel Pool** - Anfrage einer Liste der aktuellen Tunnel im eingehenden oder ausgehenden Pool für die Destination.
+**Tunnel Status**
+- The result of a particular tunnel build, once it is available.
 
-**Tunnel-Liste** - Eine Liste der Tunnel für den angeforderten Pool.
+**Get Tunnel Pool**
+- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
 
-**LeaseSet veröffentlichen** - Anfrage, dass der Router das bereitgestellte LeaseSet durch einen der ausgehenden Tunnel für das Ziel veröffentlicht. Kein Antwortstatus ist erforderlich; der Router sollte weiterhin Wiederholungsversuche unternehmen, bis er zufrieden ist, dass das LeaseSet veröffentlicht wurde.
+**Tunnel List**
+- A list of tunnels for the requested pool.
 
-**Send Packet** - Ein ausgehendes Paket vom Client. Gibt optional einen outbound tunnel an, durch den das Paket gesendet werden muss (sollte?).
+**Publish LeaseSet**
+- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
 
-**Send Status** - Informiert den Client über den Erfolg oder Misserfolg beim Senden eines Pakets.
+**Send Packet**
+- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
 
-**Paket Empfangen** - Ein eingehendes Paket für den Client. Optional wird der eingehende Tunnel angegeben, über den das Paket empfangen wurde(?)
+**Send Status**
+- Informs the client of the success or failure of sending a packet.
+
+**Packet Received**
+- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
+
 
 ## Security implications
 
-Aus Sicht der Router ist dieses Design funktional äquivalent zum Status quo. Der Router baut weiterhin alle Tunnel auf, pflegt seine eigenen Peer-Profile und setzt die Trennung zwischen Router- und Client-Operationen durch. In der Standardkonfiguration ist es völlig identisch, da Tunnel für diesen Router aus seiner eigenen Fast Tier aufgebaut werden.
+From the perspective of the routers, this design is functionally equivalent to
+the status quo. The router still builds all tunnels, maintains its own peer
+profiles, and enforces separation between router and client operations. In the
+default configuration is completely identical, because tunnels for that router
+are built from its own fast tier.
 
-Aus der Perspektive der netDB ist ein einzelnes LeaseSet, das über dieses Protokoll erstellt wurde, identisch zum Status quo, da es bereits vorhandene Funktionalität nutzt. Bei größeren LeaseSets mit bis zu 16 Leases könnte es jedoch für einen Beobachter möglich sein zu bestimmen, dass das LeaseSet multihomed ist:
+From the perspective of the netDB, a single LeaseSet created via this protocol
+is identical to the status quo, because it leverages pre-existing functionality.
+However, for larger LeaseSets approaching 16 Leases, it may be possible for an
+observer to determine that the LeaseSet is multihomed:
 
-- Die aktuelle maximale Größe des Fast-Tiers beträgt 75 Peers. Das Inbound Gateway
-  (IBGW, der im Lease veröffentlichte Knoten) wird aus einem Bruchteil des Tiers
-  ausgewählt (zufällig pro tunnel pool nach Hash partitioniert, nicht nach Anzahl):
+- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
+  (IBGW, the node published in a Lease) is selected from a fraction of the tier
+  (partitioned randomly per-tunnel pool by hash, not count):
 
       1 hop
           The whole fast tier
@@ -204,33 +250,61 @@ Aus der Perspektive der netDB ist ein einzelnes LeaseSet, das über dieses Proto
           A quarter of the fast tier
           (3 being the current default)
 
-Das bedeutet, dass die IBGWs im Durchschnitt aus einer Gruppe von 20-30 Peers stammen werden.
+  That means on average the IBGWs will be from a set of 20-30 peers.
 
-- In einer single-homed Konfiguration würde ein vollständiges 16-tunnel leaseSet 16 IBGWs haben,
-  die zufällig aus einer Gruppe von bis zu (sagen wir) 20 Peers ausgewählt werden.
+- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
+  randomly selected from a set of up to (say) 20 peers.
 
-- In einem 4-Router-Multihomed-Setup mit der Standardkonfiguration würde ein vollständiges 16-tunnel LeaseSet 16 IBGWs haben, die zufällig aus einem Set von höchstens 80 Peers ausgewählt werden, wobei es wahrscheinlich einen Anteil gemeinsamer Peers zwischen den Routern gibt.
+- In a 4-router multihomed setup using the default configuration, a full
+  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
+  80 peers, though there are likely to be a fraction of common peers between
+  routers.
 
-Daher könnte es mit der Standardkonfiguration durch statistische Analyse möglich sein herauszufinden, dass ein LeaseSet von diesem Protokoll generiert wird. Es könnte auch möglich sein herauszufinden, wie viele Router es gibt, obwohl die Auswirkungen der Fluktuation in den schnellen Stufen die Wirksamkeit dieser Analyse reduzieren würden.
+Thus with the default configuration, it may be possible through statistical
+analysis to figure out that a LeaseSet is being generated by this protocol. It
+might also be possible to figure out how many routers there are, although the
+effect of churn on the fast tiers would reduce the effectiveness of this
+analysis.
 
-Da der Client die volle Kontrolle darüber hat, welche Peers er auswählt, könnte diese Informationsleckage durch die Auswahl von IBGWs aus einer reduzierten Menge von Peers reduziert oder eliminiert werden.
+As the client has full control over which peers it selects, this information
+leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
+peers.
+
 
 ## Compatibility
 
-Dieses Design ist vollständig rückwärtskompatibel mit dem Netzwerk, da es keine Änderungen am LeaseSet-Format gibt. Alle Router müssten über das neue Protokoll Bescheid wissen, aber das ist kein Problem, da sie alle von derselben Entität kontrolliert würden.
+This design is completely backwards-compatible with the network, because there
+are no changes to the LeaseSet format. All routers would need to be aware of
+the new protocol, but this is not a concern as they would all be controlled by
+the same entity.
+
 
 ## Performance and scalability notes
 
-Die obere Grenze von 16 Leases pro LeaseSet wird durch diesen Vorschlag nicht verändert. Für Destinations, die mehr Tunnel als diese benötigen, gibt es zwei mögliche Netzwerkmodifikationen:
+The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
+Destinations that require more tunnels than this, there are two possible network
+modifications:
 
-- Erhöhung der oberen Grenze für die Größe von LeaseSets. Dies wäre am einfachsten
-  zu implementieren (obwohl es immer noch eine umfassende Netzwerkunterstützung erfordern würde, bevor
-  es weit verbreitet eingesetzt werden könnte), könnte aber aufgrund der größeren
-  Paketgrößen zu langsameren Lookups führen. Die maximal mögliche LeaseSet-Größe wird durch die MTU der
-  zugrunde liegenden Transports definiert und liegt daher bei etwa 16kB.
+- Increase the upper limit on the size of LeaseSets. This would be the simplest
+  to implement (though it would still require pervasive network support before
+  it could be widely used), but could result in slower lookups due to the larger
+  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
+  underlying transports, and is therefore around 16kB.
 
-- Implementiere Proposal 123 für abgestufte LeaseSets. In Kombination mit diesem Vorschlag könnten die Destinations für die Sub-LeaseSets über mehrere Router verteilt werden, wodurch sie effektiv wie mehrere IP-Adressen für einen Clearnet-Dienst fungieren.
+- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
+  the Destinations for the sub-LeaseSets could be spread across multiple
+  routers, effectively acting like multiple IP addresses for a clearnet service.
+
 
 ## Acknowledgements
 
-Dank an psi für die Diskussion, die zu diesem Vorschlag geführt hat.
+Thanks to psi for the discussion that led to this proposal.
+
+
+## References
+
+* [Destination](/docs/specs/common-structures/#destination)
+* [I2CP](/docs/specs/i2cp/)
+* [Leases](/docs/specs/common-structures/#lease)
+* [LeaseSet](/docs/specs/common-structures/#leaseset)
+* [Prop123](/proposals/123-new-netdb-entries/)

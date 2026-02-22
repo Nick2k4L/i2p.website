@@ -13,255 +13,287 @@ target: "0.9.50"
 toc: true
 ---
 
-## 注意
-网络部署和测试正在进行中。
-可能会有轻微修订。
-
-## 概述
-
-此提案旨在对SSU和NTCP2传输进行IPv6增强。
-
-## 动机
-
-随着全球IPv6的增长和IPv6-only设置（尤其是在移动设备上）的变得越来越普遍，
-我们需要改进我们对IPv6的支持，并消除所有路由器具备IPv4能力的假设。
-
-### 连接性检查
-
-在选择隧道对等体或选择用于路由消息的OBEP/IBGW路径时，
-计算路由器A是否可以连接到路由器B是有帮助的。
-一般来说，这意味着要确定A是否具备匹配B所宣传的入站地址之一的传输和地址类型（IPv4/IPv6）的出站能力。
-
-然而，在很多情况下，我们不知道A的能力，只能做出假设。
-如果A是隐藏的或防火墙后面的，地址未被公布，我们没有直接的了解，
-所以我们假设它具有IPv4能力，而不具有IPv6能力。
-解决方案是为路由器信息增加两个新的“能力”来指示IPv4和IPv6的出站能力。
-
-### IPv6介绍器
-
-我们的[SSU](/docs/specs/ssu2/) 和 [SSU-SPEC](/docs/legacy/ssu/) 规范在IPv4引介的IPv6介绍器支持方面存在错误和不一致。
-无论如何，这在Java I2P或i2pd中从未实现过。
-这需要得到纠正。
-
-### IPv6引介
-
-我们的[SSU](/docs/specs/ssu2/) 和 [SSU-SPEC](/docs/legacy/ssu/) 规范清楚地表明不支持IPv6引介。
-这是假设IPv6从不被防火墙保护。
-这显然是不正确的，我们需要改进对防火墙后的IPv6路由器的支持。
-
-### 引介图
-
-图例：----- 是IPv4，====== 是IPv6
-
-当前仅IPv4：
-
-```
-        Alice                 Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-```
+## Note
+Network deployment and testing in progress.
+Subject to minor revisions.
 
 
-IPv4引介，IPv6介绍器
+## Overview
+
+This proposal is to implement enhancements to the SSU and NTCP2 transports for IPv6.
+
+
+## Motivation
+
+As IPv6 grows around the world and IPv6-only setups (especially on mobile) becomes more common,
+we need to improve our support for IPv6 and remove the assumptions that
+all routers are IPv4-capable.
+
+
+
+### Connectivity Checking
+
+When selecting peers for tunnels, or selecting OBEP/IBGW paths for routing messages,
+it helps to calculate whether router A can connect to router B.
+In general, this means determining if A has outbound capability for a transport and address type (IPv4/v6)
+that matches one of B's advertised inbound addresses.
+
+However, in many cases we don't know A's capabilites and have to make assumptions.
+If A is hidden or firewalled, the addresses are not published, and we don't have direct knowledge -
+so we assume it's IPv4 capable, and not IPv6 capable.
+The solution is adding two new "caps" or capabilities to the Router Info to indicate outbound capability for IPv4 and IPv6.
+
+
+### IPv6 Introducers
+
+Our specifications for SSU contain errors and inconsistencies about whether
+IPv6 introducers are supported for IPv4 introductions.
+In any case, this has never been implemented in either Java I2P or i2pd.
+This needs to be corrected.
+
+
+### IPv6 Introdutions
+
+Our specifications for SSU make clear that
+IPv6 introductions are not supported.
+This was under the assumption that IPv6 is never firewalled.
+This is clearly not true, and we need to improve support for firewalled IPv6 routers.
+
+
+### Introduction Diagrams
+
+Legend: ----- is IPv4, ====== is IPv6
+
+**Current IPv4-only:**
 
 ```
-Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
+        Alice                         Bob                  Charlie
+    RelayRequest ---------------------->
+         <-------------- RelayResponse    RelayIntro ----------->
+         <-------------------------------------------- HolePunch
+    SessionRequest -------------------------------------------->
+         <-------------------------------------------- SessionCreated
+    SessionConfirmed ------------------------------------------>
+    Data <--------------------------------------------------> Data
 ```
 
-IPv6引介，IPv6介绍器
+**IPv4 introduction, IPv6 introducer:**
 
 ```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
+    RelayRequest ======================>
+         <============== RelayResponse    RelayIntro ----------->
+         <-------------------------------------------- HolePunch
+    SessionRequest -------------------------------------------->
+         <-------------------------------------------- SessionCreated
+    SessionConfirmed ------------------------------------------>
+    Data <--------------------------------------------------> Data
 ```
 
-IPv6引介，IPv4介绍器
+**IPv6 introduction, IPv6 introducer:**
 
 ```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
+    RelayRequest ======================>
+         <============== RelayResponse    RelayIntro ===========>
+         <============================================ HolePunch
+    SessionRequest ============================================>
+         <============================================ SessionCreated
+    SessionConfirmed ==========================================>
+    Data <==================================================> Data
 ```
 
-## 设计
+**IPv6 introduction, IPv4 introducer:**
 
-将实施三个变化。
+```
+Alice                         Bob                  Charlie
+    RelayRequest ---------------------->
+         <-------------- RelayResponse    RelayIntro ===========>
+         <============================================ HolePunch
+    SessionRequest ============================================>
+         <============================================ SessionCreated
+    SessionConfirmed ==========================================>
+    Data <==================================================> Data
+```
 
-- 在路由器地址能力中添加“4”和“6”能力，以指示出站IPv4和IPv6支持
-- 添加通过IPv6介绍器进行IPv4引介的支持
-- 添加通过IPv4和IPv6介绍器进行IPv6引介的支持
 
-## 规范
+## Design
 
-### 4/6能力
+There are three changes to be implemented.
 
-这最初是在没有正式提案的情况下实施的，但对IPv6引介是必需的，因此我们在这里包括它。
-另见CAPS。
+- Add "4" and "6" capabilities to Router Address capabilities to indicate outbound IPv4 and IPv6 support
+- Add support for IPv4 introductions via IPv6 introducers
+- Add support for IPv6 introductions via IPv4 and IPv6 introducers
 
-定义两个新能力“4”和“6”。
-这些新能力将被添加到路由器地址的“caps”属性中，而不是路由器信息能力中。
-目前我们没为NTCP2定义“caps”属性。
-带有介绍器的SSU地址目前，按定义，是ipv4。我们完全不支持ipv6引介。
-但是，该提案与IPv6引介兼容。见下文。
 
-另外，路由器可能支持通过覆盖网络（如I2P-over-Yggdrasil）的连接，
-但不希望公开一个地址，或者该地址没有标准的IPv4或IPv6格式。
-这个新能力系统应该足够灵活，以支持这些网络。
 
-我们定义以下更改：
+## Specification
 
-NTCP2: 添加“caps”属性
+### 4/6 Caps
 
-SSU: 添加支持没有主机或介绍器的路由器地址，以指示对IPv4、IPv6或两者的出站支持。
+This was originally implemented without a formal proposal, but it is required for
+IPv6 introductions, so we include it here.
 
-两个传输: 定义以下能力值：
 
-- "4": IPv4支持
-- "6": IPv6支持
+Two new capabilities "4" and "6" are defined.
+These new capabilities will be added to the "caps" property in the Router Address, not in the Router Info caps.
+We currently don't have a "caps" property defined for NTCP2.
+An SSU address with introducers is, by definition, ipv4 right now. We don't support ipv6 introduction at all.
+However, this proposal is compatible with a IPv6 introductions. See below.
 
-在单个地址中可以支持多个值。见下文。
-如果路由器地址中未包含“host”值，则至少需要包含其中一个能力。
-如果在路由器地址中包含“host”值，则至多一个能力是可选的。
-将来可能会定义额外的传输能力，以指示对覆盖网络或其他连接方式的支持。
+Additionally, a router may support connectivity via an overlay network such as I2P-over-Yggdrasil,
+but does not wish to publish an address, or that address does not have a standard IPv4 or IPv6 format.
+This new capability system should be flexible enough to support these networks as well.
 
-#### 使用案例和例子
+We define the following changes:
+
+NTCP2: Add "caps" property
+
+SSU: Add support for a Router Address without a host or introducers, to indicate outbound support
+for IPv4, IPv6, or both.
+
+Both transports: Define the following caps values:
+
+- "4": IPv4 support
+- "6": IPv6 support
+
+Multiple values may be supported in a single address. See below.
+At least one of these caps are mandatory if no "host" value is included in the Router Address.
+At most one of these caps is optional if a "host" value is included in the Router Address.
+Additional transport caps may be defined in the future to indicate support for overlay networks or other connectivity.
+
+
+#### Use cases and examples
 
 SSU:
 
-SSU含host: 4/6可选，最大不超过一个。
-例子: SSU caps="4" host="1.2.3.4" key=... port="1234"
+SSU with host: 4/6 optional, never more than one.
+Example: SSU caps="4" host="1.2.3.4" key=... port="1234"
 
-仅出站支持一，另一已发布: 仅需能力，4/6。
-例子: SSU caps="6"
+SSU outbound only for one, other is published: Caps only, 4/6.
+Example: SSU caps="6"
 
-SSU带有介绍器: 从不结合。需要4或6。
-例子: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
+SSU with introducers: never combined. 4 or 6 is required.
+Example: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
 
-SSU隐藏: 仅需能力，4、6或46。允许多个。
-无需两个地址，一个4一个6。
-例子: SSU caps="46"
+SSU hidden: Caps only, 4, 6, or 46. Multiple is allowed.
+No need for two addresses one with 4 and one with 6.
+Example: SSU caps="46"
 
 NTCP2:
 
-NTCP2含host: 4/6可选，最大不超过一个。
-例子: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
+NTCP2 with host: 4/6 optional, never more than one.
+Example: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
 
-仅出站支持一，另一已发布: 能力、s、v 仅需，4/6/y，允许多个。
-例子: NTCP2 caps="6" i=... s=... v="2"
+NTCP2 outbound only for one, other is published: Caps, s, v only, 4/6/y, multiple is allowed.
+Example: NTCP2 caps="6" i=... s=... v="2"
 
-NTCP2隐藏: 能力、s、v 仅需4/6，允许多个 无需两个地址，一个4一个6。
-例子: NTCP2 caps="46" i=... s=... v="2"
+NTCP2 hidden: Caps, s, v only 4/6, multiple is allowed No need for two addresses one with 4 and one with 6.
+Example: NTCP2 caps="46" i=... s=... v="2"
 
-### IPv4的IPv6介绍器
 
-为纠正规规范中的错误和不一致，所需进行的更改如下。
-我们也将其描述为提案的“第一部分”。
 
-#### 规范更改
+### IPv6 Introducers for IPv4
 
-[SSU](/docs/specs/ssu2/) 目前表示（IPv6备注）：
+The following changes are required to correct errors and inconsistencies in the specs.
+We have also described this as "part 1" of the proposal.
 
-IPv6自版本0.9.8支持。发布的中继地址可以是IPv4或IPv6，Alice-Bob通信可以通过IPv4或IPv6进行。
+#### Spec Changes
 
-添加如下内容：
+The SSU specification currently says (IPv6 notes):
 
-虽然规范从版本0.9.8起已更改，但Alice-Bob通过IPv6的通信实际上直到版本0.9.50才得到支持。
-旧版本的Java路由器错误地为IPv6地址发布了“C”能力，
-即使它们实际上没有通过IPv6充当介绍器。
-因此，路由器应仅信任0.9.50或更高版本的路由器的IPv6地址上的“C”能力。
+IPv6 is supported as of version 0.9.8. Published relay addresses may be IPv4 or IPv6, and Alice-Bob communication may be via IPv4 or IPv6.
 
-[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继请求）：
+Add the following:
 
-仅当IP地址可能不同于数据包的源地址和端口时才会包含IP地址。
-在当前实现中，IP长度始终为0，端口始终为0，
-接收方应使用数据包的源地址和端口。
-此消息可以通过IPv4或IPv6发送。如果为IPv6，Alice必须包含她的IPv4地址和端口。
+While the specification was changed as of version 0.9.8, Alice-Bob communication via IPv6 was not actually supported until version 0.9.50.
+Earlier versions of Java routers erroneously published the 'C' capability for IPv6 addresses,
+even though they did not actually act as an introducer via IPv6.
+Therefore, routers should only trust the 'C' capability on an IPv6 address if the router version is 0.9.50 or higher.
 
-添加如下内容：
 
-要通过IPv6发送此消息时引介IPv4地址，必须包含IP和端口。
-此功能在版本0.9.50中支持。
 
-### IPv6引介
+The SSU specification currently says (Relay Request):
 
-所有三个SSU中继消息（中继请求、中继响应和中继引介）都包含IP长度字段
-以指示要跟随的（Alice、Bob或Charlie）IP地址的长度。
+The IP address is only included if it is be different than the packet's source address and port.
+In the current implementation, the IP length is always 0 and the port is always 0,
+and the receiver should use the packet's source address and port.
+This message may be sent via IPv4 or IPv6. If IPv6, Alice must include her IPv4 address and port.
 
-因此，不需要更改消息格式。
-仅对规范进行文本更改，指示允许使用16字节的IP地址。
+Add the following:
 
-以下更改需要进行。
-我们也将其描述为提案的“第二部分”。
+The IP and port must be included to introduce an IPv4 address when sending this message over IPv6.
+This is supported as of release 0.9.50.
 
-#### 规范更改
 
-[SSU](/docs/specs/ssu2/) 目前表示（IPv6备注）：
 
-Bob-Charlie和Alice-Charlie通信仅通过IPv4进行。
+### IPv6 Introductions
 
-[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继请求）：
+All three of the SSU relay messages (RelayRequest, RelayResponse, and RelayIntro) contain IP length fields
+to indicate the length of the (Alice, Bob, or Charlie) IP address to follow.
 
-没有计划实施IPv6的中继。
+Therefore, no change to the format of the messages is required.
+Only textual changes to the specifications, indicating that 16-byte IP addresses are allowed.
 
-更改为：
+The following changes are required to the specs.
+We have also described this as "part 2" of the proposal.
 
-自版本0.9.xx起，支持IPv6的中继。
 
-[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继响应）：
+#### Spec Changes
 
-Charlie的IP地址必须是IPv4，因为Alice将通过该地址在洞穿后发送SessionRequest。
-没有计划实施IPv6的中继。
+The SSU specification currently says (IPv6 notes):
 
-更改为：
+Bob-Charlie and Alice-Charlie communication is via IPv4 only.
 
-Charlie的IP地址可能是IPv4，或者自版本0.9.xx起为IPv6。
-Alice将在洞穿后通过该地址发送SessionRequest。
-自版本0.9.xx起，支持IPv6的中继。
+The SSU specification currently says (Relay Request):
 
-[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继引介）：
+There are no plans to implement relaying for IPv6.
 
-Alice的IP地址在当前实现中始终为4字节，因为Alice试图通过IPv4连接到Charlie。
-此消息必须通过建立的IPv4连接发送，
-因为那是Bob知道要在中继响应中返回给Alice的Charlie的IPv4地址的唯一方法。
+Change to say:
 
-更改为：
+Relaying for IPv6 is supported as of release 0.9.xx
 
-对于IPv4，Alice的IP地址始终为4字节，因为Alice试图通过IPv4连接到Charlie。
-自版本0.9.xx起，支持IPv6，Alice的IP地址可能为16字节。
+The SSU specification currently says (Relay Response):
 
-对于IPv4，此消息必须通过建立的IPv4连接发送，
-因为那是Bob知道要在中继响应中返回给Alice的Charlie的IPv4地址的唯一方法。
-自版本0.9.xx起，支持IPv6，此消息可以通过建立的IPv6连接发送。
+Charlie's IP address must be IPv4, as that is the address that Alice will send the SessionRequest to after the Hole Punch.
+There are no plans to implement relaying for IPv6.
 
-另外添加：
+Change to say:
 
-自版本0.9.xx起，所有带有介绍器且发布的SSU地址必须在“caps”选项中包含“4”或“6”。
+Charlie's IP address may be IPv4 or, as of release 0.9.xx, IPv6.
+That is the address that Alice will send the SessionRequest to after the Hole Punch.
+Relaying for IPv6 is supported as of release 0.9.xx
 
-## 迁移
+The SSU specification currently says (Relay Intro):
 
-所有旧路由器应忽略NTCP2中的caps属性，以及SSU caps属性中的未知能力字符。
+Alice's IP address is always 4 bytes in the current implementation, because Alice is trying to connect to Charlie via IPv4.
+This message must be sent via an established IPv4 connection,
+as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
 
-任何不包含“4”或“6”cap的介绍器SSU地址被认为是用于IPv4引介。
+Change to say:
+
+For IPv4, Alice's IP address is always 4 bytes, because Alice is trying to connect to Charlie via IPv4.
+As of release 0.9.xx, IPv6 is supported, and Alice's IP address may be 16 bytes.
+
+For IPv4, this message must be sent via an established IPv4 connection,
+as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
+As of release 0.9.xx, IPv6 is supported, and this message may be sent via an established IPv6 connection.
+
+Also add:
+
+As of release 0.9.xx, any SSU address published with introducers must contain "4" or "6" in the "caps" option.
+
+
+## Migration
+
+All old routers should ignore the caps property in NTCP2, and unknown capability characters in the SSU caps property.
+
+Any SSU address with introducers that does not contain a "4" or "6" cap is assumed to be for IPv4 introduction.
+
+
+## References
+
+* [CAPS](http://zzz.i2p/topics/3050)
+* [NTCP2](/docs/specs/ntcp2/)
+* [SSU](/docs/specs/ssu2/)
+* [SSU-SPEC](/docs/legacy/ssu/)

@@ -39,7 +39,7 @@ Les paquets Debian sont compatibles avec :
 
 **Architectures supportées** : amd64, i386, armhf, arm64, powerpc, ppc64el, s390x
 
-Les paquets I2P peuvent fonctionner sur d'autres systèmes basés sur Debian qui ne sont pas explicitement listés ci-dessus. Si vous rencontrez des problèmes, veuillez les signaler sur notre GitLab.
+Les paquets I2P peuvent fonctionner sur d'autres systèmes basés sur Debian qui ne sont pas explicitement listés ci-dessus. Si vous rencontrez des problèmes, veuillez [les signaler sur notre GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/).
 
 ## Méthodes d'installation
 
@@ -190,7 +190,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Étape 3 : Télécharger la clé de signature du dépôt**
 
 ```bash
-curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
+curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
 ```
 **Étape 4 : Vérifier l'empreinte de la clé**
 
@@ -287,8 +287,8 @@ Après avoir démarré I2P pour la première fois, l'intégration au réseau pre
 
 Pour des performances optimales et une participation au réseau, transférez les ports I2P à travers votre NAT/pare-feu :
 
-1. Ouvrez la `http://127.0.0.1:7657/`
-2. Accédez à la `http://127.0.0.1:7657/confignet`
+1. Ouvrez la [Console du routeur I2P](http://127.0.0.1:7657/)
+2. Accédez à la [page de configuration réseau](http://127.0.0.1:7657/confignet)
 3. Notez les numéros de port listés (généralement des ports aléatoires entre 9000 et 31000)
 4. Redirigez ces ports UDP et TCP dans votre routeur/pare-feu
 
@@ -298,7 +298,7 @@ Si vous avez besoin d'aide pour la redirection de ports, [portforward.com](https
 
 Les paramètres de bande passante par défaut sont conservateurs. Ajustez-les en fonction de votre connexion internet :
 
-1. Visitez la `http://127.0.0.1:7657/config.jsp`
+1. Visitez la [page de configuration](http://127.0.0.1:7657/config.jsp)
 2. Trouvez la section des paramètres de bande passante
 3. Les valeurs par défaut sont 96 Ko/s en téléchargement / 40 Ko/s en envoi
 4. Augmentez ces valeurs si vous avez une connexion internet plus rapide (par exemple, 250 Ko/s en téléchargement / 100 Ko/s en envoi pour une connexion haut débit classique)
@@ -351,7 +351,7 @@ Si vous utilisez les anciens dépôts `deb.i2p2.de` ou `deb.i2p2.no` :
 Maintenant qu'I2P est installé et en cours d'exécution :
 
 - [Configurez votre navigateur](/docs/guides/browser-config) pour accéder aux sites I2P
-- Explorez la `http://127.0.0.1:7657/` pour surveiller votre router
+- Explorez la [console du router I2P](http://127.0.0.1:7657/) pour surveiller votre router
 - Découvrez les [applications I2P](/docs/applications/) que vous pouvez utiliser
 - Lisez comment [I2P fonctionne](/docs/overview/tech-intro) pour comprendre le réseau
 

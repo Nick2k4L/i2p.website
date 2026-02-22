@@ -62,7 +62,7 @@ Oluşturulduğunda, adlandırma servisi hosts.txt Adlandırma Servisi tarafında
 
 ### Diğer Adlandırma Servisi Olanakları
 
-Arama büyük/küçük harf duyarsızdır. İlk eşleşme kullanılır ve çakışmalar tespit edilmez. Aramalarda isimlendirme kurallarının zorlanması yoktur. Aramalar birkaç dakika önbelleğe alınır. Base 32 çözümlemesi [aşağıda açıklanmıştır](#base32-names). Naming Service API'sinin tam açıklaması için Naming Service Javadocs bölümüne bakın. Bu API, 0.8.7 sürümünde ekleme ve çıkarma işlemleri, hostname ile birlikte rastgele özelliklerin saklanması ve diğer özellikler sağlamak için önemli ölçüde genişletilmiştir.
+Arama büyük/küçük harf duyarsızdır. İlk eşleşme kullanılır ve çakışmalar tespit edilmez. Aramalarda isimlendirme kurallarının zorlanması yoktur. Aramalar birkaç dakika önbelleğe alınır. Base 32 çözümlemesi [aşağıda açıklanmıştır](#base32-names). Naming Service API'sinin tam açıklaması için [Naming Service Javadocs](http://idk.i2p/javadoc-i2p/net/i2p/client/naming/package-summary.html) bölümüne bakın. Bu API, 0.8.7 sürümünde ekleme ve çıkarma işlemleri, hostname ile birlikte rastgele özelliklerin saklanması ve diğer özellikler sağlamak için önemli ölçüde genişletilmiştir.
 
 ### Alternatif ve Deneysel Adlandırma Hizmetleri
 
@@ -94,12 +94,12 @@ Adres defteri uygulaması periyodik olarak diğer kullanıcıların hosts.txt do
 
 Başka bir kullanıcının hosts.txt dosyasına abone olmak, onlara belirli bir miktar güven vermeyi içerir. Örneğin, yeni bir site için kendi anahtarlarını hızlıca girerek ve ardından yeni host/anahtar girdisini size iletmeden önce yeni bir siteyi 'ele geçirmelerini' istemezsiniz.
 
-Bu nedenle, varsayılan olarak yapılandırılan tek abonelik `http://i2p-projekt.i2p/hosts.txt (`http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)`` olup, I2P sürümünde bulunan hosts.txt dosyasının bir kopyasını içerir. Kullanıcılar yerel adres defteri uygulamalarında ek abonelikleri (subscriptions.txt veya [SusiDNS](#susidns) aracılığıyla) yapılandırmalıdır.
+Bu nedenle, varsayılan olarak yapılandırılan tek abonelik `http://i2p-projekt.i2p/hosts.txt (http://udhdrtrcetjm5sxzskjyr5ztpeszydbh4dpl3pl4utgqqw2v4jna.b32.i2p/hosts.txt)` olup, I2P sürümünde bulunan hosts.txt dosyasının bir kopyasını içerir. Kullanıcılar yerel adres defteri uygulamalarında ek abonelikleri (subscriptions.txt veya [SusiDNS](#susidns) aracılığıyla) yapılandırmalıdır.
 
 Diğer bazı genel adres defteri abonelik bağlantıları:
 
-- `http://i2host.i2p/cgi-bin/i2hostetag`
-- `http://stats.i2p/cgi-bin/newhosts.txt`
+- http://i2host.i2p/cgi-bin/i2hostetag
+- http://stats.i2p/cgi-bin/newhosts.txt
 
 Bu hizmetlerin operatörleri, host'ları listelemek için çeşitli politikalara sahip olabilir. Bu listede yer almak onay anlamına gelmez.
 

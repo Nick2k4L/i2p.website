@@ -20,7 +20,7 @@ Existují dva způsoby, jak přispět k překladům:
 
 **Toto je nejjednodušší způsob, jak přeložit I2P.** Transifex poskytuje webové rozhraní, které činí překlad jednoduchým a přístupným.
 
-1. Zaregistrujte se na Transifex
+1. Zaregistrujte se na [Transifex](https://www.transifex.com/otf/I2P/)
 2. Požádejte o připojení k překladatelskému týmu I2P
 3. Začněte překládat přímo ve vašem prohlížeči
 
@@ -42,7 +42,7 @@ Konzole routeru je webové rozhraní, které vidíte při spuštění I2P. Přek
 
 ### Použití Transifexu (doporučeno)
 
-1. Přejděte na I2P na Transifex
+1. Přejděte na [I2P na Transifex](https://www.transifex.com/otf/I2P/)
 2. Vyberte projekt router console
 3. Zvolte svůj jazyk
 4. Začněte překládat
@@ -90,7 +90,7 @@ poedit apps/routerconsole/locale/messages_es.po
 ant updaters
 # Install the update and check translations in the console
 ```
-**Odešlete svou práci:** - Vytvořte merge request na GitLabu - Nebo sdílejte soubory s vývojovým týmem na IRC
+**Odešlete svou práci:** - Vytvořte merge request na [GitLabu](https://i2pgit.org/I2P_Developers/i2p.i2p) - Nebo sdílejte soubory s vývojovým týmem na IRC
 
 ---
 
@@ -214,7 +214,7 @@ Vaše práce přímo pomáhá lidem po celém světě používat I2P bezpečně 
 Připraveni začít překládat?
 
 1. **Vyberte si svou metodu:**
-   - Rychlý start: Zaregistrujte se na Transifexu
+   - Rychlý start: [Zaregistrujte se na Transifexu](https://www.transifex.com/otf/I2P/)
    - Manuální přístup: Připojte se na [#i2p-dev na IRC](/contact/#irc)
 
 2. **Začněte pomalu:** Přeložte několik řetězců, abyste se seznámili s procesem

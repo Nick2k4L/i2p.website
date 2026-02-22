@@ -214,7 +214,7 @@ Hash: SHA512
 My current public keys are as follows:
 
 pub   4096R/0EC51FCDA94FB53E 2014-03-11 [expires: 2019-03-10]
-uid               [  full  ] str4d (`http://str4d.i2p`) <str4d@mail.i2p>
+uid               [  full  ] str4d (http://str4d.i2p) <str4d@mail.i2p>
 uid               [  full  ] str4d <str4d@i2pmail.org>
 sub   4096R/1CC61D9B33C3241B 2014-03-11 [expired: 2015-03-11]
 sub   4096R/803DEE491A3473E7 2014-03-12 [expired: 2015-03-12]

@@ -299,8 +299,8 @@ server {
         Allow from all
     </Proxy>
     
-    ProxyPass / `http://127.0.0.1:8443/`
-    ProxyPassReverse / `http://127.0.0.1:8443/`
+    ProxyPass / http://127.0.0.1:8443/
+    ProxyPassReverse / http://127.0.0.1:8443/
 </VirtualHost>
 ```
 ### Đăng ký và Điều phối
@@ -548,8 +548,8 @@ Khi reseed (máy chủ khởi tạo mạng ban đầu) của bạn được đă
 
 ### Tài nguyên cộng đồng
 
-- **Diễn đàn I2P**: [i2pforum.net](https://i2pforum.net/)
-- **Kho lưu trữ Gitea**: `https://i2pgit.org/I2P_Developers/i2p.i2p`
+- **Diễn đàn I2P**: https://i2pforum.net/
+- **Kho lưu trữ Gitea**: https://i2pgit.org/I2P_Developers/i2p.i2p
 - **IRC**: #i2p-dev trên IRC2P
 - **Giám sát trạng thái**: [checki2p.com/reseed](https://checki2p.com/reseed)
 

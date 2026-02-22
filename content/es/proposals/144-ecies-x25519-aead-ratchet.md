@@ -14,241 +14,331 @@ implementedin: "0.9.46"
 toc: true
 ---
 
-## Nota
+## Note
+Network deployment and testing in progress.
+Subject to minor revisions.
+See [SPEC](/docs/specs/ecies/) for the official specification.
 
-Implementación y pruebas de red en progreso. Sujeto a revisiones menores. Consulte [SPEC](/docs/specs/ecies/) para la especificación oficial.
+The following features are not implemented as of 0.9.46:
 
-Las siguientes características no están implementadas a partir de la versión 0.9.46:
+- MessageNumbers, Options, and Termination blocks
+- Protocol-layer responses
+- Zero static key
+- Multicast
 
-- Bloques MessageNumbers, Options y Termination
-- Respuestas a nivel de protocolo
-- Clave estática cero
-- Multidifusión
 
-## Descripción general
+## Overview
 
-Esta es una propuesta para el primer nuevo tipo de cifrado de extremo a extremo desde el comienzo de I2P, para reemplazar ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
+This is a proposal for the first new end-to-end encryption type
+since the beginning of I2P, to replace ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
-Se basa en trabajos previos de la siguiente manera:
+It relies on previous work as follows:
 
-- Especificación de estructuras comunes [Common Structures](/docs/specs/common-structures/)
-- Especificación de [I2NP](/docs/specs/i2np/) incluyendo LS2
+- Common structures spec [Common Structures](/docs/specs/common-structures/)
+- [I2NP](/docs/specs/i2np/) spec including LS2
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- `http://zzz.i2p/topics/1768` descripción general de criptografía asimétrica nueva
-- Descripción general de criptografía de bajo nivel [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES `http://zzz.i2p/topics/2418`
-- [NTCP2](/docs/specs/ntcp2/) [Propuesta 111](/proposals/111-ntcp-2/)
-- 123 Nuevas entradas netDB
-- 142 Nueva plantilla de criptografía
-- Protocolo [Noise](https://noiseprotocol.org/noise.html)
-- Algoritmo double ratchet de [Signal](https://signal.org/docs/)
+- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) new asymmetric crypto overview
+- Low-level crypto overview [CRYPTO-ELG](/docs/specs/cryptography/)
+- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
+- [NTCP2](/docs/specs/ntcp2/) [Proposal 111](/proposals/111-ntcp-2/)
+- 123 New netDB Entries
+- 142 New Crypto Template
+- [Noise](https://noiseprotocol.org/noise.html) protocol
+- [Signal](https://signal.org/docs/) double ratchet algorithm
 
-El objetivo es admitir cifrado nuevo para la comunicación extremo a extremo, de destino a destino.
+The goal is to support new encryption for end-to-end,
+destination-to-destination communication.
 
-El diseño utilizará un handshake de Noise y una fase de datos que incorpora el double ratchet de Signal.
+The design will use a Noise handshake and data phase incorporating Signal's double ratchet.
 
-Todas las referencias a Signal y Noise en esta propuesta son únicamente para información de contexto. No se requiere conocimiento de los protocolos Signal y Noise para entender o implementar esta propuesta.
+All references to Signal and Noise in this proposal are for background information only.
+Knowledge of Signal and Noise protocols is not required to understand
+or implement this proposal.
+
 
 ### Current ElGamal Uses
 
-Como repaso, las claves públicas ElGamal de 256 bytes pueden encontrarse en las siguientes estructuras de datos. Consulte la especificación de estructuras comunes.
+As a review,
+ElGamal 256-byte public keys may be found in the following data structures.
+Reference the common structures specification.
 
-- En una Router Identity
-  Esta es la clave de cifrado del router.
+- In a Router Identity
+  This is the router's encryption key.
 
-- En un Destination
-  La clave pública del destination se usaba para el cifrado i2cp-a-i2cp anterior
-  que fue deshabilitado en la versión 0.6, actualmente no se usa excepto para
-  el IV para el cifrado de LeaseSet, que está obsoleto.
-  En su lugar se usa la clave pública en el LeaseSet.
+- In a Destination
+  The public key of the destination was used for the old i2cp-to-i2cp encryption
+  which was disabled in version 0.6, it is currently unused except for
+  the IV for LeaseSet encryption, which is deprecated.
+  The public key in the LeaseSet is used instead.
 
-- En un LeaseSet
-  Esta es la clave de cifrado del destino.
+- In a LeaseSet
+  This is the destination's encryption key.
 
-- En un LS2
-  Esta es la clave de cifrado del destino.
+- In a LS2
+  This is the destination's encryption key.
+
+
 
 ### EncTypes in Key Certs
 
-Como repaso, agregamos soporte para tipos de cifrado cuando agregamos soporte para tipos de firma. El campo de tipo de cifrado siempre es cero, tanto en Destinations como en RouterIdentities. Si alguna vez cambiar eso está por determinar. Consulta la especificación de estructuras comunes [Common Structures](/docs/specs/common-structures/).
+As a review,
+we added support for encryption types when we added support for signature types.
+The encryption type field is always zero, both in Destinations and RouterIdentities.
+Whether to ever change that is TBD.
+Reference the common structures specification [Common Structures](/docs/specs/common-structures/).
 
-### Usos Actuales de ElGamal
 
-Como repaso, usamos ElGamal para:
 
-1) Mensajes de construcción de tunnel (la clave está en RouterIdentity)    El reemplazo no está cubierto en esta propuesta.    Ver propuesta 152 [Proposal 152](/proposals/152-ecies-tunnels).
 
-2) Cifrado router-a-router de netdb y otros mensajes I2NP (La clave está en RouterIdentity)    Depende de esta propuesta.    Requiere una propuesta para 1) también, o poner la clave en las opciones del RI.
+### Asymmetric Crypto Uses
 
-3) Cliente Extremo a extremo ElGamal+AES/SessionTag (la clave está en leaseSet, la clave de Destination no se usa)    El reemplazo SÍ está cubierto en esta propuesta.
+As a review, we use ElGamal for:
 
-4) DH efímero para NTCP1 y SSU    El reemplazo no está cubierto en esta propuesta.    Ver propuesta 111 para NTCP2.    No hay propuesta actual para SSU2.
+1) Tunnel Build messages (key is in RouterIdentity)
+   Replacement is not covered in this proposal.
+   See proposal 152 [Proposal 152](/proposals/152-ecies-tunnels).
 
-### EncTypes en Key Certs
+2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
+   Depends on this proposal.
+   Requires a proposal for 1) also, or putting the key in the RI options.
 
-- Compatible hacia atrás
-- Requiere y se basa en LS2 (propuesta 123)
-- Aprovechar nueva criptografía o primitivas añadidas para NTCP2 (propuesta 111)
-- No requiere nueva criptografía o primitivas para el soporte
-- Mantener el desacoplamiento de criptografía y firmado; soportar todas las versiones actuales y futuras
-- Habilitar nueva criptografía para destinos
-- Habilitar nueva criptografía para routers, pero solo para mensajes garlic - la construcción de túneles sería una propuesta separada
-- No romper nada que dependa de hashes de destino binarios de 32 bytes, ej. bittorrent
-- Mantener entrega de mensajes 0-RTT usando DH efímero-estático
-- No requiere almacenamiento en buffer / cola de mensajes en esta capa de protocolo; continuar soportando entrega ilimitada de mensajes en ambas direcciones sin esperar una respuesta
-- Actualizar a DH efímero-efímero después de 1 RTT
-- Mantener manejo de mensajes fuera de orden
-- Mantener seguridad de 256 bits
-- Añadir forward secrecy
-- Añadir autenticación (AEAD)
-- Mucho más eficiente en CPU que ElGamal
-- No depender de Java jbigi para hacer DH eficiente
-- Minimizar operaciones DH
-- Mucho más eficiente en ancho de banda que ElGamal (bloque ElGamal de 514 bytes)
-- Soportar criptografía nueva y antigua en el mismo túnel si se desea
-- El destinatario puede distinguir eficientemente nueva de antigua criptografía llegando por el mismo túnel
-- Otros no pueden distinguir criptografía nueva de antigua o futura
-- Eliminar clasificación de longitud de sesión nueva vs. existente (soportar padding)
-- No requiere nuevos mensajes I2NP
-- Reemplazar checksum SHA-256 en payload AES con AEAD
-- Soportar vinculación de sesiones de transmisión y recepción para que los acknowledgements puedan ocurrir dentro del protocolo, en lugar de únicamente fuera de banda. Esto también permitirá que las respuestas tengan forward secrecy inmediatamente.
-- Habilitar cifrado extremo a extremo de ciertos mensajes (almacenes RouterInfo) que actualmente no ciframos debido a la sobrecarga de CPU.
-- No cambiar el formato del Mensaje I2NP Garlic o las Instrucciones de Entrega de Mensaje Garlic.
-- Eliminar campos no utilizados o redundantes en los formatos Garlic Clove Set y Clove.
+3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
+   Replacement IS covered in this proposal.
 
-Elimina varios problemas con las etiquetas de sesión, incluyendo:
+4) Ephemeral DH for NTCP1 and SSU
+   Replacement is not covered in this proposal.
+   See proposal 111 for NTCP2.
+   No current proposal for SSU2.
 
-- Incapacidad de usar AES hasta la primera respuesta
-- Falta de confiabilidad y bloqueos si se asume la entrega de etiquetas
-- Ineficiente en ancho de banda, especialmente en la primera entrega
-- Gran ineficiencia de espacio para almacenar etiquetas
-- Enorme sobrecarga de ancho de banda para entregar etiquetas
-- Altamente complejo, difícil de implementar
-- Difícil de ajustar para varios casos de uso
-  (streaming vs. datagramas, servidor vs. cliente, ancho de banda alto vs. bajo)
-- Vulnerabilidades de agotamiento de memoria debido a la entrega de etiquetas
 
-### Usos de Criptografía Asimétrica
+### Goals
 
-- Cambios en el formato LS2 (la propuesta 123 está completada)
-- Nuevo algoritmo de rotación DHT o generación aleatoria compartida
-- Nuevo cifrado para la construcción de túneles.
-  Ver propuesta 152 [Proposal 152](/proposals/152-ecies-tunnels).
-- Nuevo cifrado para el cifrado de capa de túnel.
-  Ver propuesta 153 [Proposal 153](/proposals/153-chacha20-layer-encryption).
-- Métodos de cifrado, transmisión y recepción de mensajes I2NP DLM / DSM / DSRM.
-  Sin cambios.
-- No se admite comunicación de LS1-a-LS2 o ElGamal/AES-a-esta-propuesta.
-  Esta propuesta es un protocolo bidireccional.
-  Los destinos pueden manejar la compatibilidad hacia atrás publicando dos leasesets
-  usando los mismos túneles, o poniendo ambos tipos de cifrado en el LS2.
-- Cambios en el modelo de amenazas
-- Los detalles de implementación no se discuten aquí y se dejan a cada proyecto.
-- (Optimista) Agregar extensiones o ganchos para soportar multicast
+- Backwards compatible
+- Requires and builds on LS2 (proposal 123)
+- Leverage new crypto or primitives added for NTCP2 (proposal 111)
+- No new crypto or primitives required for support
+- Maintain decoupling of crypto and signing; support all current and future versions
+- Enable new crypto for destinations
+- Enable new crypto for routers, but only for garlic messages - tunnel building would
+  be a separate proposal
+- Don't break anything that relies on 32-byte binary destination hashes, e.g. bittorrent
+- Maintain 0-RTT message delivery using ephemeral-static DH
+- Do not require buffering / queueing of messages at this protocol layer;
+  continue to support unlimited message delivery in both directions without waiting for a response
+- Upgrade to ephemeral-ephemeral DH after 1 RTT
+- Maintain handling of out-of-order messages
+- Maintain 256-bit security
+- Add forward secrecy
+- Add authentication (AEAD)
+- Much more CPU-efficient than ElGamal
+- Don't rely on Java jbigi to make DH efficient
+- Minimize DH operations
+- Much more bandwidth-efficient than ElGamal (514 byte ElGamal block)
+- Support new and old crypto on same tunnel if desired
+- Recipient is able to efficiently distinguish new from old crypto coming down
+  same tunnel
+- Others cannot distinguish new from old or future crypto
+- Eliminate new vs. Existing Session length classification (support padding)
+- No new I2NP messages required
+- Replace SHA-256 checksum in AES payload with AEAD
+- Support binding of transmit and receive sessions so that
+  acknowledgements may happen within the protocol, rather than solely out-of-band.
+  This will also allow replies to have forward secrecy immediately.
+- Enable end-to-end encryption of certain messages (RouterInfo stores)
+  that we currently don't due to CPU overhead.
+- Do not change the I2NP Garlic Message
+  or Garlic Message Delivery Instructions format.
+- Eliminate unused or redundant fields in the Garlic Clove Set and Clove formats.
 
-### Objetivos
+Eliminate several problems with session tags, including:
 
-ElGamal/AES+SessionTag ha sido nuestro único protocolo extremo a extremo durante aproximadamente 15 años, esencialmente sin modificaciones al protocolo. Ahora existen primitivos criptográficos que son más rápidos. Necesitamos mejorar la seguridad del protocolo. También hemos desarrollado estrategias heurísticas y soluciones alternativas para minimizar la sobrecarga de memoria y ancho de banda del protocolo, pero esas estrategias son frágiles, difíciles de ajustar y hacen que el protocolo sea aún más propenso a fallar, causando que la sesión se desconecte.
+- Inability to use AES until the first reply
+- Unreliability and stalls if tag delivery assumed
+- Bandwidth inefficient, especially on first delivery
+- Huge space inefficiency to store tags
+- Huge bandwidth overhead to deliver tags
+- Highly complex, difficult to implement
+- Difficult to tune for various use cases
+  (streaming vs. datagrams, server vs. client, high vs. low bandwidth)
+- Memory exhaustion vulnerabilities due to tag delivery
 
-Durante aproximadamente el mismo período de tiempo, la especificación ElGamal/AES+SessionTag y la documentación relacionada han descrito cuán costoso es en términos de ancho de banda entregar session tags, y han propuesto reemplazar la entrega de session tags con un "PRNG sincronizado". Un PRNG sincronizado genera determinísticamente los mismos tags en ambos extremos, derivados de una semilla común. Un PRNG sincronizado también puede denominarse un "ratchet". Esta propuesta (finalmente) especifica ese mecanismo ratchet, y elimina la entrega de tags.
 
-Al usar un ratchet (un PRNG sincronizado) para generar las etiquetas de sesión, eliminamos la sobrecarga de enviar etiquetas de sesión en el mensaje New Session y en mensajes posteriores cuando sea necesario. Para un conjunto típico de 32 etiquetas, esto representa 1KB. Esto también elimina el almacenamiento de etiquetas de sesión en el lado del remitente, reduciendo así los requisitos de almacenamiento a la mitad.
+### Non-Goals / Out-of-scope
 
-Se necesita un handshake bidireccional completo, similar al patrón Noise IK, para evitar ataques de Key Compromise Impersonation (KCI). Ver la tabla "Payload Security Properties" de Noise en [NOISE](https://noiseprotocol.org/noise.html). Para más información sobre KCI, consultar el artículo https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
+- LS2 format changes (proposal 123 is done)
+- New DHT rotation algorithm or shared random generation
+- New encryption for tunnel building.
+  See proposal 152 [Proposal 152](/proposals/152-ecies-tunnels).
+- New encryption for tunnel layer encryption.
+  See proposal 153 [Proposal 153](/proposals/153-chacha20-layer-encryption).
+- Methods of encryption, transmission, and reception of I2NP DLM / DSM / DSRM messages.
+  Not changing.
+- No LS1-to-LS2 or ElGamal/AES-to-this-proposal communication is supported.
+  This proposal is a bidirectional protocol.
+  Destinations may handle backward compatibility by publishing two leasesets
+  using the same tunnels, or put both encryption types in the LS2.
+- Threat model changes
+- Implementation details are not discussed here and are left to each project.
+- (Optimistic) Add extensions or hooks to support multicast
 
-### No objetivos / Fuera del alcance
 
-El modelo de amenazas es algo diferente al de NTCP2 (propuesta 111). Los nodos MitM son el OBEP e IBGW y se asume que tienen una visión completa del NetDB global actual o histórico, mediante colusión con floodfills.
 
-El objetivo es evitar que estos MitMs clasifiquen el tráfico como mensajes de Sesión Nueva y Existente, o como criptografía nueva vs. criptografía antigua.
+### Justification
+
+ElGamal/AES+SessionTag has been our sole end-to-end protocol for about 15 years,
+essentially without modifications to the protocol.
+There are now cryptographic primitives that are faster.
+We need to enhance the security of the protocol.
+We have also developed heuristic strategies and workarounds to minimize the
+memory and bandwidth overhead of the protocol, but those strategies
+are fragile, difficult to tune, and render the protocol even more prone
+to break, causing the session to drop.
+
+For about the same time period, the ElGamal/AES+SessionTag specification and related
+documentation have described how bandwidth-expensive it is to deliver session tags,
+and have proposed replacing session tag delivery with a "synchronized PRNG".
+A synchronized PRNG deterministically generates the same tags at both ends,
+derived from a common seed.
+A synchronized PRNG can also be termed a "ratchet".
+This proposal (finally) specifies that ratchet mechanism, and eliminates tag delivery.
+
+By using a ratchet (a synchronized PRNG) to generate the
+session tags, we eliminate the overhead of sending session tags
+in the New Session message and subsequent messages when needed.
+For a typical tag set of 32 tags, this is 1KB.
+This also eliminates the storage of session tags on the sending side,
+thus cutting the storage requirements in half.
+
+A full two-way handshake, similar to Noise IK pattern, is needed to avoid Key Compromise Impersonation (KCI) attacks.
+See the Noise "Payload Security Properties" table in [NOISE](https://noiseprotocol.org/noise.html).
+For more information on KCI, see the paper https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
+
+
+
+### Threat Model
+
+The threat model is somewhat different than for NTCP2 (proposal 111).
+The MitM nodes are the OBEP and IBGW and are assumed to have full view of
+the current or historical global NetDB, by colluding with floodfills.
+
+The goal is to prevent these MitMs from classifying traffic as
+new and Existing Session messages, or as new crypto vs. old crypto.
+
+
 
 ## Detailed Proposal
 
-Esta propuesta define un nuevo protocolo de extremo a extremo para reemplazar ElGamal/AES+SessionTags. El diseño utilizará un handshake Noise y una fase de datos que incorpora el double ratchet de Signal.
+This proposal defines a new end-to-end protocol to replace ElGamal/AES+SessionTags.
+The design will use a Noise handshake and data phase incorporating Signal's double ratchet.
 
-### Justificación
 
-Hay cinco partes del protocolo que deben ser rediseñadas:
+### Summary of Cryptographic Design
 
-- 1) Los formatos de contenedor de Sesión nueva y Existente
-  son reemplazados con nuevos formatos.
-- 2) ElGamal (claves públicas de 256 bytes, claves privadas de 128 bytes) es reemplazado
-  con ECIES-X25519 (claves públicas y privadas de 32 bytes)
-- 3) AES es reemplazado con
-  AEAD_ChaCha20_Poly1305 (abreviado como ChaChaPoly a continuación)
-- 4) Los SessionTags serán reemplazados con ratchets,
-  que es esencialmente un PRNG criptográfico y sincronizado.
-- 5) La carga útil AES, como se define en la especificación ElGamal/AES+SessionTags,
-  es reemplazada con un formato de bloque similar al de NTCP2.
+There are five portions of the protocol to be redesigned:
 
-Cada uno de los cinco cambios tiene su propia sección a continuación.
 
-### Modelo de Amenazas
+- 1) The new and Existing Session container formats
+  are replaced with new formats.
+- 2) ElGamal (256 byte public keys, 128 byte private keys) is be replaced
+  with ECIES-X25519 (32 byte public and private keys)
+- 3) AES is be replaced with
+  AEAD_ChaCha20_Poly1305 (abbreviated as ChaChaPoly below)
+- 4) SessionTags will be replaced with ratchets,
+  which is essentially a cryptographic, synchronized PRNG.
+- 5) The AES payload, as defined in the ElGamal/AES+SessionTags specification,
+  is replaced with a block format similar to that in NTCP2.
 
-Las implementaciones existentes de router I2P requerirán implementaciones para las siguientes primitivas criptográficas estándar, que no son requeridas para los protocolos I2P actuales:
+Each of the five changes has its own section below.
 
-- ECIES (pero esto es esencialmente X25519)
+
+### New Cryptographic Primitives for I2P
+
+Existing I2P router implementations will require implementations for
+the following standard cryptographic primitives,
+which are not required for current I2P protocols:
+
+- ECIES (but this is essentially X25519)
 - Elligator2
 
-Las implementaciones existentes de router I2P que aún no han implementado [NTCP2](/docs/specs/ntcp2/) ([Propuesta 111](/proposals/111-ntcp-2/)) también requerirán implementaciones para:
+Existing I2P router implementations that have not yet implemented [NTCP2](/docs/specs/ntcp2/) ([Proposal 111](/proposals/111-ntcp-2/))
+will also require implementations for:
 
-- Generación de claves X25519 y DH
-- AEAD_ChaCha20_Poly1305 (abreviado como ChaChaPoly a continuación)
+- X25519 key generation and DH
+- AEAD_ChaCha20_Poly1305 (abbreviated as ChaChaPoly below)
 - HKDF
+
 
 ### Crypto Type
 
-El tipo de criptografía (usado en el LS2) es 4. Esto indica una clave pública X25519 de 32 bytes en little-endian, y el protocolo extremo a extremo especificado aquí.
+The crypto type (used in the LS2) is 4.
+This indicates a little-endian 32-byte X25519 public key,
+and the end-to-end protocol specified here.
 
-El tipo de cifrado 0 es ElGamal. Los tipos de cifrado 1-3 están reservados para ECIES-ECDH-AES-SessionTag, ver propuesta 145 [Proposal 145](/proposals/145-ecies).
+Crypto type 0 is ElGamal.
+Crypto types 1-3 are reserved for ECIES-ECDH-AES-SessionTag, see proposal 145 [Proposal 145](/proposals/145-ecies).
 
-### Resumen del Diseño Criptográfico
 
-Esta propuesta proporciona los requisitos basados en el Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revisión 34, 2018-07-11). Noise tiene propiedades similares al protocolo Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), que es la base del protocolo [SSU](/docs/legacy/ssu/). En el lenguaje de Noise, Alice es el iniciador, y Bob es el respondedor.
+### Noise Protocol Framework
 
-Esta propuesta se basa en el protocolo Noise Noise_IK_25519_ChaChaPoly_SHA256. (El identificador real para la función de derivación de clave inicial es "Noise_IKelg2_25519_ChaChaPoly_SHA256" para indicar extensiones I2P - ver sección KDF 1 más abajo) Este protocolo Noise utiliza las siguientes primitivas:
+This proposal provides the requirements based on the Noise Protocol Framework
+[NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11).
+Noise has similar properties to the Station-To-Station protocol
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), which is the basis for the [SSU](/docs/legacy/ssu/) protocol.  In Noise parlance, Alice
+is the initiator, and Bob is the responder.
 
-- Patrón de Handshake Interactivo: IK
-  Alice transmite inmediatamente su clave estática a Bob (I)
-  Alice ya conoce la clave estática de Bob (K)
+This proposal is based on the Noise protocol Noise_IK_25519_ChaChaPoly_SHA256.
+(The actual identifier for the initial key derivation function
+is "Noise_IKelg2_25519_ChaChaPoly_SHA256"
+to indicate I2P extensions - see KDF 1 section below)
+This Noise protocol uses the following primitives:
 
-- Patrón de Handshake Unidireccional: N
-  Alice no transmite su clave estática a Bob (N)
+- Interactive Handshake Pattern: IK
+  Alice immediately transmits her static key to Bob (I)
+  Alice knows Bob's static key already (K)
+
+- One-Way Handshake Pattern: N
+  Alice does not transmit her static key to Bob (N)
 
 - DH Function: X25519
-  X25519 DH con una longitud de clave de 32 bytes según se especifica en [RFC-7748](https://tools.ietf.org/html/rfc7748).
+  X25519 DH with a key length of 32 bytes as specified in [RFC-7748](https://tools.ietf.org/html/rfc7748).
 
-- Función de Cifrado: ChaChaPoly
-  AEAD_CHACHA20_POLY1305 como se especifica en [RFC-7539](https://tools.ietf.org/html/rfc7539) sección 2.8.
-  Nonce de 12 bytes, con los primeros 4 bytes establecidos en cero.
-  Idéntico al de [NTCP2](/docs/specs/ntcp2/).
+- Cipher Function: ChaChaPoly
+  AEAD_CHACHA20_POLY1305 as specified in [RFC-7539](https://tools.ietf.org/html/rfc7539) section 2.8.
+  12 byte nonce, with the first 4 bytes set to zero.
+  Identical to that in [NTCP2](/docs/specs/ntcp2/).
 
-- Función Hash: SHA256
-  Hash estándar de 32 bytes, ya utilizado extensivamente en I2P.
+- Hash Function: SHA256
+  Standard 32-byte hash, already used extensively in I2P.
 
-### Nuevas Primitivas Criptográficas para I2P
 
-Esta propuesta define las siguientes mejoras a Noise_IK_25519_ChaChaPoly_SHA256. Estas generalmente siguen las pautas en [NOISE](https://noiseprotocol.org/noise.html) sección 13.
+### Additions to the Framework
 
-1) Las claves efímeras en texto claro se codifican con [Elligator2](https://elligator.cr.yp.to/).
+This proposal defines the following enhancements to
+Noise_IK_25519_ChaChaPoly_SHA256.  These generally follow the guidelines in
+[NOISE](https://noiseprotocol.org/noise.html) section 13.
 
-2) La respuesta se prefija con una etiqueta en texto plano.
+1) Cleartext ephemeral keys are encoded with [Elligator2](https://elligator.cr.yp.to/).
 
-3) El formato de payload se define para los mensajes 1, 2 y la fase de datos. Por supuesto, esto no está definido en Noise.
+2) The reply is prefixed with a cleartext tag.
 
-Todos los mensajes incluyen un encabezado de mensaje garlic [I2NP](/docs/specs/i2np/). La fase de datos utiliza cifrado similar a, pero no compatible con, la fase de datos de Noise.
+3) The payload format is defined for messages 1, 2, and the data phase.
+   Of course, this is not defined in Noise.
 
-### Tipo de Criptografía
+All messages include an [I2NP](/docs/specs/i2np/) Garlic Message header.
+The data phase uses encryption similar to, but not compatible with, the Noise data phase.
 
-Los handshakes utilizan patrones de handshake [Noise](https://noiseprotocol.org/noise.html).
 
-Se utiliza el siguiente mapeo de letras:
+### Handshake Patterns
 
-- e = clave efímera de un solo uso
-- s = clave estática
-- p = carga útil del mensaje
+Handshakes use [Noise](https://noiseprotocol.org/noise.html) handshake patterns.
 
-Las sesiones One-time y Unbound son similares al patrón Noise N.
+The following letter mapping is used:
+
+- e = one-time ephemeral key
+- s = static key
+- p = message payload
+
+One-time and Unbound sessions are similar to the Noise N pattern.
 
 ```
 
@@ -257,7 +347,8 @@ Las sesiones One-time y Unbound son similares al patrón Noise N.
   e es p ->
 
 ```
-Las sesiones vinculadas son similares al patrón Noise IK.
+
+Bound sessions are similar to the Noise IK pattern.
 
 ```
 
@@ -269,91 +360,159 @@ Las sesiones vinculadas son similares al patrón Noise IK.
   p ->
 
 ```
-### Marco de Protocolo Noise
 
-El protocolo actual ElGamal/AES+SessionTag es unidireccional. En esta capa, el receptor no sabe de dónde proviene un mensaje. Las sesiones de salida y entrada no están asociadas. Los acuses de recibo se realizan fuera de banda usando un DeliveryStatusMessage (envuelto en un GarlicMessage) en el clove.
 
-Existe una ineficiencia sustancial en un protocolo unidireccional. Cualquier respuesta también debe usar un costoso mensaje 'New Session'. Esto causa un mayor uso de ancho de banda, CPU y memoria.
+### Sessions
 
-También hay debilidades de seguridad en un protocolo unidireccional. Todas las sesiones se basan en DH efímero-estático. Sin una ruta de retorno, no hay forma de que Bob "ratchet" su clave estática a una clave efímera. Sin saber de dónde proviene un mensaje, no hay manera de usar la clave efímera recibida para mensajes salientes, por lo que la respuesta inicial también usa DH efímero-estático.
+The current ElGamal/AES+SessionTag protocol is unidirectional.
+At this layer, the receiver doesn't know where a message is from.
+Outbound and inbound sessions are not associated.
+Acknowledgements are out-of-band using a DeliveryStatusMessage
+(wrapped in a GarlicMessage) in the clove.
 
-Para esta propuesta, definimos dos mecanismos para crear un protocolo bidireccional - "pairing" y "binding". Estos mecanismos proporcionan mayor eficiencia y seguridad.
+There is substantial inefficiency in a unidirectional protocol.
+Any reply must also use an expensive 'New Session' message.
+This causes higher bandwidth, CPU, and memory usage.
 
-### Adiciones al Framework
+There are also security weaknesses in a unidirectional protocol.
+All sessions are based on ephemeral-static DH.
+Without a return path, there is no way for Bob to "ratchet" his static key
+to an ephemeral key.
+Without knowing where a message is from, there's no way to use
+the received ephemeral key for outbound messages,
+so the initial reply also uses ephemeral-static DH.
 
-Al igual que con ElGamal/AES+SessionTags, todas las sesiones entrantes y salientes deben estar en un contexto dado, ya sea el contexto del router o el contexto para un destino local particular. En Java I2P, este contexto se llama Session Key Manager.
+For this proposal, we define two mechanisms to create a bidirectional protocol -
+"pairing" and "binding".
+These mechanisms provide increased efficiency and security.
 
-Las sesiones no deben compartirse entre contextos, ya que eso permitiría la correlación entre los diversos destinos locales, o entre un destino local y un router.
 
-Cuando un destino dado soporta tanto ElGamal/AES+SessionTags como esta propuesta, ambos tipos de sesiones pueden compartir un contexto. Ver sección 1c) a continuación.
+### Session Context
 
-### Patrones de Handshake
+As with ElGamal/AES+SessionTags, all inbound and outbound sessions
+must be in a given context, either the router's context or
+the context for a particular local destination.
+In Java I2P, this context is called the Session Key Manager.
 
-Cuando se crea una sesión de salida en el originador (Alice), se crea una nueva sesión de entrada y se empareja con la sesión de salida, a menos que no se espere respuesta (p. ej. datagramas en bruto).
+Sessions must not be shared among contexts, as that would
+allow correlation among the various local destinations,
+or between a local destination and a router.
 
-Una nueva sesión entrante siempre se empareja con una nueva sesión saliente, a menos que no se solicite respuesta (por ejemplo, datagramas sin procesar).
+When a given destination supports both ElGamal/AES+SessionTags
+and this proposal, both types of sessions may share a context.
+See section 1c) below.
 
-Si se solicita una respuesta y está vinculada a un destino o router del extremo lejano, esa nueva sesión saliente se vincula a ese destino o router, y reemplaza cualquier sesión saliente previa a ese destino o router.
 
-El emparejamiento de sesiones entrantes y salientes proporciona un protocolo bidireccional con la capacidad de rotar las claves DH.
 
-### Sesiones
+### Pairing Inbound and Outbound Sessions
 
-Solo hay una sesión saliente hacia un destino o router determinado. Puede haber varias sesiones entrantes actuales desde un destino o router determinado. Generalmente, cuando se crea una nueva sesión entrante y se recibe tráfico en esa sesión (lo cual sirve como ACK), cualquier otra será marcada para expirar relativamente rápido, en un minuto aproximadamente. Se verifica el valor de mensajes previos enviados (PN), y si no hay mensajes no recibidos (dentro del tamaño de ventana) en la sesión entrante anterior, la sesión anterior puede eliminarse inmediatamente.
+When an outbound session is created at the originator (Alice),
+a new inbound session is created and paired with the outbound session,
+unless no reply is expected (e.g. raw datagrams).
 
-Cuando se crea una sesión saliente en el originador (Alice), se vincula al Destination del extremo remoto (Bob), y cualquier sesión entrante emparejada también se vinculará al Destination del extremo remoto. A medida que las sesiones avanzan, continúan estando vinculadas al Destination del extremo remoto.
+A new inbound session is always paired with a new outbound session,
+unless no reply is requested (e.g. raw datagrams).
 
-Cuando se crea una sesión entrante en el receptor (Bob), puede vincularse al Destination del extremo remoto (Alice), a opción de Alice. Si Alice incluye información de vinculación (su clave estática) en el mensaje New Session, la sesión se vinculará a ese destination, y se creará una sesión saliente que se vinculará al mismo Destination. A medida que las sesiones hacen ratchet, continúan estando vinculadas al Destination del extremo remoto.
+If a reply is requested and bound to a far-end destination or router,
+that new outbound session is bound to that destination or router,
+and replaces any previous outbound session to that destination or router.
 
-### Contexto de Sesión
+Pairing inbound and outbound sessions provides a bidirectional protocol
+with the capability of ratcheting the DH keys.
 
-Para el caso común de streaming, esperamos que Alice y Bob usen el protocolo de la siguiente manera:
 
-- Alice empareja su nueva sesión saliente con una nueva sesión entrante, ambas vinculadas al destino del extremo remoto (Bob).
-- Alice incluye la información de vinculación y la firma, y una solicitud de respuesta, en el
-  mensaje New Session enviado a Bob.
-- Bob empareja su nueva sesión entrante con una nueva sesión saliente, ambas vinculadas al destino del extremo remoto (Alice).
-- Bob envía una respuesta (ack) a Alice en la sesión emparejada, con un ratchet a una nueva clave DH.
-- Alice hace ratchet a una nueva sesión saliente con la nueva clave de Bob, emparejada con la sesión entrante existente.
 
-Al vincular una sesión entrante a un Destination del extremo remoto, y emparejar la sesión entrante con una sesión saliente vinculada al mismo Destination, logramos dos beneficios principales:
+### Binding Sessions and Destinations
 
-1) La respuesta inicial de Bob a Alice utiliza DH efímero-efímero
+There is only one outbound session to a given destination or router.
+There may be several current inbound sessions from a given destination or router.
+Generally, when a new inbound session is created, and traffic is received
+on that session (which serves as an ACK), any others will be marked
+to expire relatively quickly, within a minute or so.
+The previous messages sent (PN) value is checked, and if there are no
+unreceived messages (within the window size) in the previous inbound session,
+the previous session may be deleted immediately.
 
-2) Después de que Alice recibe la respuesta de Bob y avanza el ratchet, todos los mensajes subsecuentes de Alice a Bob usan DH efímero-efímero.
 
-### Emparejamiento de Sesiones Entrantes y Salientes
+When an outbound session is created at the originator (Alice),
+it is bound to the far-end Destination (Bob),
+and any paired inbound session will also be bound to the far-end Destination.
+As the sessions ratchet, they continue to be bound to the far-end Destination.
 
-En ElGamal/AES+SessionTags, cuando un LeaseSet se agrupa como un diente de garlic, o se entregan etiquetas, el router emisor solicita un ACK. Este es un diente de garlic separado que contiene un Mensaje DeliveryStatus. Para seguridad adicional, el Mensaje DeliveryStatus se envuelve en un Mensaje Garlic. Este mecanismo está fuera de banda desde la perspectiva del protocolo.
+When an inbound session is created at the receiver (Bob),
+it may be bound to the far-end Destination (Alice), at Alice's option.
+If Alice includes binding information (her static key) in the New Session message,
+the session will be bound to that destination,
+and a outbound session will be created and bound to same Destination.
+As the sessions ratchet, they continue to be bound to the far-end Destination.
 
-En el nuevo protocolo, dado que las sesiones entrantes y salientes están emparejadas, podemos tener ACKs en banda. No se requiere un clove separado.
 
-Un ACK explícito es simplemente un mensaje de Sesión Existente sin bloque I2NP. Sin embargo, en la mayoría de los casos, se puede evitar un ACK explícito, ya que hay tráfico inverso. Puede ser deseable que las implementaciones esperen un tiempo corto (quizás cien ms) antes de enviar un ACK explícito, para dar tiempo a la capa de streaming o aplicación para responder.
+### Benefits of Binding and Pairing
 
-Las implementaciones también necesitarán diferir el envío de cualquier ACK hasta después de que se procese el bloque I2NP, ya que el Garlic Message puede contener un Database Store Message con un lease set. Un lease set reciente será necesario para enrutar el ACK, y el destino del extremo lejano (contenido en el lease set) será necesario para verificar la clave estática de enlace.
+For the common, streaming case, we expect Alice and Bob to use the protocol as follows:
 
-### Vinculación de Sesiones y Destinos
+- Alice pairs her new outbound session to a new inbound session, both bound to the far-end destination (Bob).
+- Alice includes the binding information and signature, and a reply request, in the
+  New Session message sent to Bob.
+- Bob pairs his new inbound session to a new outbound session, both bound to the far-end destination (Alice).
+- Bob sends a reply (ack) to Alice in the paired session, with a ratchet to a new DH key.
+- Alice ratchets to a new outbound session with Bob's new key, paired to the existing inbound session.
 
-Las sesiones de salida siempre deben expirar antes que las sesiones de entrada. Una vez que una sesión de salida expira y se crea una nueva, también se creará una nueva sesión de entrada emparejada. Si había una sesión de entrada antigua, se le permitirá expirar.
+By binding an inbound session to a far-end Destination, and pairing the inbound session
+to an outbound session bound to the same Destination, we achieve two major benefits:
 
-### Beneficios del Binding y Pairing
+1) The initial reply from Bob to Alice uses ephemeral-ephemeral DH
 
-Por determinar
+2) After Alice receives Bob's reply and ratchets, all subsequent messages from Alice to Bob
+use ephemeral-ephemeral DH.
 
-### ACKs de Mensaje
 
-Definimos las siguientes funciones correspondientes a los bloques de construcción criptográficos utilizados.
+### Message ACKs
+
+In ElGamal/AES+SessionTags, when a LeaseSet is bundled as a garlic clove,
+or tags are delivered, the sending router requests an ACK.
+This is a separate garlic clove containing a DeliveryStatus Message.
+For additional security, the DeliveryStatus Message is wrapped in a Garlic Message.
+This mechanism is out-of-band from the perspective of the protocol.
+
+In the new protocol, since the inbound and outbound sessions are paired,
+we can have ACKs in-band. No separate clove is required.
+
+An explicit ACK is simply an Existing Session message with no I2NP block.
+However, in most cases, an explict ACK can be avoided, as there is reverse traffic.
+It may be desirable for implementations to wait a short time (perhaps a hundred ms)
+before sending an explicit ACK, to give the streaming or application layer time to respond.
+
+Implementations will also need to defer any ACK sending until after the
+I2NP block is processed, as the Garlic Message may contain a Database Store Message
+with a lease set. A recent lease set will be necessary to route the ACK,
+and the far-end destination (contained in the lease set) will be necessary to
+verify the binding static key.
+
+
+### Session Timeouts
+
+Outbound sessions should always expire before inbound sessions.
+One an outbound session expires, and a new one is created, a new paired inbound
+session will be created as well. If there was an old inbound session,
+it will be allowed to expire.
+
+
+### Multicast
+
+TBD
+
+
+### Definitions
+We define the following functions corresponding to the cryptographic building blocks used.
 
 ZEROLEN
-
     zero-length byte array
 
 CSRNG(n)
-
     n-byte output from a cryptographically-secure random number generator.
 
 H(p, d)
-
     SHA-256 hash function that takes a personalization string p and data d, and
     produces an output of length 32 bytes.
     As defined in [NOISE](https://noiseprotocol.org/noise.html).
@@ -364,7 +523,6 @@ H(p, d)
         H(p, d) := SHA-256(p || d)
 
 MixHash(d)
-
     SHA-256 hash function that takes a previous hash h and new data d,
     and produces an output of length 32 bytes.
     || below means append.
@@ -374,7 +532,6 @@ MixHash(d)
         MixHash(d) := h = SHA-256(h || d)
 
 STREAM
-
     The ChaCha20/Poly1305 AEAD as specified in [RFC-7539](https://tools.ietf.org/html/rfc7539).
     S_KEY_LEN = 32 and S_IV_LEN = 12.
 
@@ -392,7 +549,6 @@ STREAM
         Returns the plaintext.
 
 DH
-
     X25519 public key agreement system. Private keys of 32 bytes, public keys of 32
     bytes, produces outputs of 32 bytes. It has the following
     functions:
@@ -421,7 +577,6 @@ DH
         Generates a shared secret from the given private and public keys.
 
 HKDF(salt, ikm, info, n)
-
     A cryptographic key derivation function which takes some input key material ikm (which
     should have good entropy but is not required to be a uniformly random string), a salt
     of length 32 bytes, and a context-specific 'info' value, and produces an output
@@ -431,7 +586,6 @@ HKDF(salt, ikm, info, n)
     as specified in [RFC-2104](https://tools.ietf.org/html/rfc2104). This means that SALT_LEN is 32 bytes max.
 
 MixKey(d)
-
     Use HKDF() with a previous chainKey and new data d, and
     sets the new chainKey and k.
     As defined in [NOISE](https://noiseprotocol.org/noise.html).
@@ -443,15 +597,23 @@ MixKey(d)
                      k = output[32:63]
 
 
-### Tiempos de Espera de Sesión
 
-### Multidifusión
+### 1) Message format
 
-El Garlic Message según se especifica en [I2NP](/docs/specs/i2np/) es el siguiente. Como objetivo de diseño es que los saltos intermedios no puedan distinguir el cifrado nuevo del antiguo, este formato no puede cambiar, aunque el campo de longitud sea redundante. El formato se muestra con el encabezado completo de 16 bytes, aunque el encabezado real puede estar en un formato diferente, dependiendo del transporte utilizado.
 
-Cuando se descifran, los datos contienen una serie de Garlic Cloves y datos adicionales, también conocidos como un Clove Set.
+### Review of Current Message Format
 
-Ver [I2NP](/docs/specs/i2np/) para detalles y una especificación completa.
+The Garlic Message as specified in [I2NP](/docs/specs/i2np/) is as follows.
+As a design goal is that intermediate hops cannot distinguish new from old crypto,
+this format cannot change, even though the length field is redundant.
+The format is shown with the full 16-byte header, although the
+actual header may be in a different format, depending on the transport used.
+
+When decrypted the data contains a series of Garlic Cloves and additional
+data, also known as a Clove Set.
+
+See [I2NP](/docs/specs/i2np/) for details and a full specification.
+
 
 ```
 
@@ -469,55 +631,98 @@ Ver [I2NP](/docs/specs/i2np/) para detalles y una especificación completa.
   +----+----+----+----+----+----+----+----+
 
 ```
-### Definiciones
 
-El formato de mensaje actual, utilizado durante más de 15 años, es ElGamal/AES+SessionTags. En ElGamal/AES+SessionTags, hay dos formatos de mensaje:
 
-1) Nueva sesión: - bloque ElGamal de 514 bytes - bloque AES (128 bytes mínimo, múltiplo de 16)
+### Review of Encrypted Data Format
 
-2) Sesión existente: - 32 bytes Session Tag - Bloque AES (128 bytes mínimo, múltiplo de 16)
+The current message format, used for over 15 years,
+is ElGamal/AES+SessionTags.
+In ElGamal/AES+SessionTags, there are two message formats:
 
-El padding mínimo a 128 está implementado como en Java I2P pero no se hace cumplir en la recepción.
+1) New session:
+- 514 byte ElGamal block
+- AES block (128 bytes minimum, multiple of 16)
 
-Estos mensajes están encapsulados en un mensaje I2NP garlic, que contiene un campo de longitud, por lo que la longitud es conocida.
+2) Existing session:
+- 32 byte Session Tag
+- AES block (128 bytes minimum, multiple of 16)
 
-Nota que no hay padding definido para una longitud no-mod-16, por lo que la New Session siempre es (mod 16 == 2), y una Existing Session siempre es (mod 16 == 0). Necesitamos arreglar esto.
+The minimum padding to 128 is as implemented in Java I2P but is not enforced on reception.
 
-El receptor primero intenta buscar los primeros 32 bytes como una Session Tag. Si la encuentra, descifra el bloque AES. Si no la encuentra, y los datos tienen al menos (514+16) de longitud, intenta descifrar el bloque ElGamal, y si tiene éxito, descifra el bloque AES.
+These messages are encapsulated in a I2NP garlic message, which contains
+a length field, so the length is known.
 
-### 1) Formato de mensaje
+Note that there is no padding defined to a non-mod-16 length,
+so the New Session is always (mod 16 == 2),
+and an Existing Session is always (mod 16 == 0).
+We need to fix this.
 
-En Signal Double Ratchet, el header contiene:
+The receiver first attempts to look up the first 32 bytes as a Session Tag.
+If found, he decrypts the AES block.
+If not found, and the data is at least (514+16) long, he attempts to decrypt the ElGamal block,
+and if successful, decrypts the AES block.
 
-- DH: Clave pública actual del ratchet
-- PN: Longitud del mensaje de la cadena anterior
-- N: Número de mensaje
 
-Las "cadenas de envío" de Signal son aproximadamente equivalentes a nuestros conjuntos de etiquetas. Al usar una etiqueta de sesión, podemos eliminar la mayor parte de eso.
+### New Session Tags and Comparison to Signal
 
-En Nueva Sesión, ponemos solo la clave pública en el encabezado no cifrado.
+In Signal Double Ratchet, the header contains:
 
-En Existing Session, utilizamos una etiqueta de sesión para el encabezado. La etiqueta de sesión está asociada con la clave pública del ratchet actual y el número de mensaje.
+- DH: Current ratchet public key
+- PN: Previous chain message length
+- N: Message Number
 
-En tanto Sesión Nueva como Existente, PN y N están en el cuerpo encriptado.
+Signal's "sending chains" are roughly equivalent to our tag sets.
+By using a session tag, we can eliminate most of that.
 
-En Signal, las cosas están constantemente avanzando mediante ratcheting. Una nueva clave pública DH requiere que el receptor haga ratcheting y envíe una nueva clave pública de vuelta, lo cual también sirve como el ack para la clave pública recibida. Esto sería demasiadas operaciones DH para nosotros. Así que separamos el ack de la clave recibida y la transmisión de una nueva clave pública. Cualquier mensaje que use una etiqueta de sesión generada desde la nueva clave pública DH constituye un ACK. Solo transmitimos una nueva clave pública cuando deseamos hacer rekey.
+In New Session, we put only the public key in the unencrytped header.
 
-El número máximo de mensajes antes de que el DH deba rotar es 65535.
+In Existing Session, we use a session tag for the header.
+The session tag is associated with the current ratchet public key,
+and the message number.
 
-Cuando se entrega una clave de sesión, derivamos el "Tag Set" de ella, en lugar de tener que entregar también las etiquetas de sesión. Un Tag Set puede tener hasta 65536 etiquetas. Sin embargo, los receptores deberían implementar una estrategia de "look-ahead", en lugar de generar todas las etiquetas posibles de una vez. Solo generar como máximo N etiquetas después de la última etiqueta válida recibida. N podría ser como máximo 128, pero 32 o incluso menos puede ser una mejor opción.
+In both new and Existing Session, PN and N are in the encrypted body.
 
-### Revisión del Formato Actual de Mensajes
+In Signal, things are constantly ratcheting. A new DH public key requires the
+receiver to ratchet and send a new public key back, which also serves
+as the ack for the received public key.
+This would be far too many DH operations for us.
+So we separate the ack of the received key and the transmission of a new public key.
+Any message using a session tag generated from the new DH public key constitutes an ACK.
+We only transmit a new public key when we wish to rekey.
 
-Clave Pública de Una Sola Vez de Nueva Sesión (32 bytes) Datos cifrados y MAC (bytes restantes)
+The maximum number of messages before the DH must ratchet is 65535.
 
-El mensaje New Session puede o no contener la clave pública estática del remitente. Si se incluye, la sesión inversa se vincula a esa clave. La clave estática debe incluirse si se esperan respuestas, es decir, para streaming y datagramas que pueden ser respondidos. No debe incluirse para datagramas sin procesar.
+When delivering a session key, we derive the "Tag Set" from it,
+rather than having to deliver session tags as well.
+A Tag Set can be up to 65536 tags.
+However, receivers should implement a "look-ahead" strategy, rather
+than generating all possible tags at once.
+Only generate at most N tags past the last good tag received.
+N might be at most 128, but 32 or even less may be a better choice.
 
-El mensaje New Session es similar al patrón Noise [NOISE](https://noiseprotocol.org/noise.html) unidireccional "N" (si no se envía la clave estática), o al patrón bidireccional "IK" (si se envía la clave estática).
 
-### Revisión del Formato de Datos Cifrados
 
-La longitud es 96 + longitud del payload. Formato encriptado:
+### 1a) New session format
+
+New Session One Time Public key (32 bytes)
+Encrypted data and MAC (remaining bytes)
+
+The New Session message may or may not contain the sender's static public key.
+If it is included, the reverse session is bound to that key.
+The static key should be included if replies are expected,
+i.e. for streaming and repliable datagrams.
+It should not be included for raw datagrams.
+
+The New Session message is similar to the one-way Noise [NOISE](https://noiseprotocol.org/noise.html) pattern
+"N" (if the static key is not sent),
+or the two-way pattern "IK" (if the static key is sent).
+
+
+
+### 1b) New session format (with binding)
+
+Length is 96 + payload length.
+Encrypted format:
 
 ```
 
@@ -564,23 +769,35 @@ La longitud es 96 + longitud del payload. Formato encriptado:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Nuevas Etiquetas de Sesión y Comparación con Signal
 
-La clave efímera es de 32 bytes, codificada con Elligator2. Esta clave nunca se reutiliza; se genera una nueva clave con cada mensaje, incluyendo las retransmisiones.
 
-### 1a) Nuevo formato de sesión
+### New Session Ephemeral Key
 
-Cuando se descifra, la clave estática X25519 de Alice, 32 bytes.
+The ephemeral key is 32 bytes, encoded with Elligator2.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
 
-### 1b) Nuevo formato de sesión (con vinculación)
+### Static Key
 
-La longitud cifrada es el resto de los datos. La longitud descifrada es 16 menos que la longitud cifrada. El payload debe contener un bloque DateTime y normalmente contendrá uno o más bloques Garlic Clove. Consulta la sección de payload a continuación para el formato y requisitos adicionales.
+When decryptied, Alice's X25519 static key, 32 bytes.
 
-### Clave Efímera de Nueva Sesión
 
-Si no se requiere respuesta, no se envía clave estática.
+### Payload
 
-La longitud es 96 + longitud del payload. Formato encriptado:
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload must contain a DateTime block and will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
+
+
+
+### 1c) New session format (without binding)
+
+If no reply is required, no static key is sent.
+
+
+Length is 96 + payload length.
+Encrypted format:
 
 ```
 
@@ -627,25 +844,43 @@ La longitud es 96 + longitud del payload. Formato encriptado:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Clave Estática
 
-Clave efímera de Alice. La clave efímera tiene 32 bytes, codificada con Elligator2, little endian. Esta clave nunca se reutiliza; se genera una nueva clave con cada mensaje, incluidas las retransmisiones.
+### New Session Ephemeral Key
 
-### Carga útil
+Alice's ephemeral key.
+The ephemeral key is 32 bytes, encoded with Elligator2, little endian.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
 
-La sección de Flags no contiene nada. Siempre tiene 32 bytes, porque debe tener la misma longitud que la clave estática para mensajes de Nueva Sesión con vinculación. Bob determina si son una clave estática o una sección de flags probando si los 32 bytes son todos ceros.
 
-TODO ¿se necesitan flags aquí?
+### Flags Section Decrypted data
 
-### 1c) Nuevo formato de sesión (sin vinculación)
+The Flags section contains nothing.
+It is always 32 bytes, because it must be the same length
+as the static key for New Session messages with binding.
+Bob determines whether it's a static key or a flags section
+by testing if the 32 bytes are all zeros.
 
-La longitud cifrada es el resto de los datos. La longitud descifrada es 16 menos que la longitud cifrada. La carga útil debe contener un bloque DateTime y generalmente contendrá uno o más bloques Garlic Clove. Consulte la sección de carga útil a continuación para el formato y requisitos adicionales.
+TODO any flags needed here?
 
-### Clave Efímera de Nueva Sesión
+### Payload
 
-Si solo se espera enviar un único mensaje, no se requiere configuración de sesión ni clave estática.
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload must contain a DateTime block and will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
 
-La longitud es 96 + longitud del payload. Formato encriptado:
+
+
+
+### 1d) One-time format (no binding or session)
+
+If only a single message is expected to be sent,
+no session setup or static key is required.
+
+
+Length is 96 + payload length.
+Encrypted format:
 
 ```
 
@@ -692,15 +927,24 @@ La longitud es 96 + longitud del payload. Formato encriptado:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Sección de Flags Datos descifrados
 
-La clave de un solo uso es de 32 bytes, codificada con Elligator2, little endian. Esta clave nunca se reutiliza; se genera una nueva clave con cada mensaje, incluyendo las retransmisiones.
 
-### Carga útil
+### New Session One Time Key
 
-La sección Flags no contiene nada. Siempre son 32 bytes, porque debe tener la misma longitud que la clave estática para los mensajes New Session con binding. Bob determina si es una clave estática o una sección de flags probando si los 32 bytes son todos ceros.
+The one time key is 32 bytes, encoded with Elligator2, little endian.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
 
-TODO ¿se necesitan flags aquí?
+
+### Flags Section Decrypted data
+
+The Flags section contains nothing.
+It is always 32 bytes, because it must be the same length
+as the static key for New Session messages with binding.
+Bob determines whether it's a static key or a flags section
+by testing if the 32 bytes are all zeros.
+
+TODO any flags needed here?
 
 ```
 
@@ -717,17 +961,29 @@ TODO ¿se necesitan flags aquí?
   zeros:: All zeros, 32 bytes.
 
 ```
-### 1d) Formato de una sola vez (sin vinculación o sesión)
 
-La longitud encriptada es el resto de los datos. La longitud desencriptada es 16 menos que la longitud encriptada. La carga útil debe contener un bloque DateTime y usualmente contendrá uno o más bloques Garlic Clove. Ver la sección de carga útil a continuación para el formato y requisitos adicionales.
 
-### Clave de Una Sola Vez de Nueva Sesión
+### Payload
 
-### Sección de Flags Datos descifrados
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload must contain a DateTime block and will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
 
-Esto es [NOISE](https://noiseprotocol.org/noise.html) estándar para IK con un nombre de protocolo modificado. Ten en cuenta que usamos el mismo inicializador tanto para el patrón IK (sesiones vinculadas) como para el patrón N (sesiones no vinculadas).
 
-El nombre del protocolo se modifica por dos razones. Primero, para indicar que las claves efímeras están codificadas con Elligator2, y segundo, para indicar que MixHash() se llama antes del segundo mensaje para mezclar el valor de la etiqueta.
+
+### 1f) KDFs for New Session Message
+
+### KDF for Initial ChainKey
+
+This is standard [NOISE](https://noiseprotocol.org/noise.html) for IK with a modified protocol name.
+Note that we use the same initializer for both the IK pattern (bound sessions)
+and for N pattern (unbound sessions).
+
+The protocol name is modified for two reasons.
+First, to indicate that the ephemeral keys are encoded with Elligator2,
+and second, to indicate that MixHash() is called before the second message
+to mix in the tag value.
 
 ```
 
@@ -749,7 +1005,9 @@ This is the "e" message pattern:
   // up until here, can all be precalculated by Alice for all outgoing connections
 
 ```
-### Carga útil
+
+
+### KDF for Flags/Static Key Section Encrypted Contents
 
 ```
 
@@ -819,7 +1077,10 @@ This is the "e" message pattern:
 
 
 ```
-### 1f) KDFs para Mensaje de Nueva Sesión
+
+
+
+### KDF for Payload Section (with Alice static key)
 
 ```
 
@@ -849,11 +1110,20 @@ This is the "ss" message pattern:
   h = SHA256(h || ciphertext)
 
 ```
-### KDF para ChainKey Inicial
 
-Ten en cuenta que esto es un patrón Noise "N", pero usamos el mismo inicializador "IK" que para las sesiones vinculadas.
 
-Los mensajes de Nueva Sesión no pueden ser identificados como conteniendo la clave estática de Alice o no hasta que la clave estática sea descifrada e inspeccionada para determinar si contiene todos ceros. Por lo tanto, el receptor debe usar la máquina de estados "IK" para todos los mensajes de Nueva Sesión. Si la clave estática contiene todos ceros, el patrón de mensaje "ss" debe ser omitido.
+### KDF for Payload Section (without Alice static key)
+
+Note that this is a Noise "N" pattern, but we use the same "IK" initializer
+as for bound sessions.
+
+New Session messages can not be identified as containing Alice's static key or not
+until the static key is decrypted and inspected to determine if it contains all zeros.
+Therefore, the receiver must use the "IK" state machine for all
+New Session messages.
+If the static key is all zeros, the "ss" message pattern must be skipped.
+
+
 
 ```
 
@@ -864,13 +1134,22 @@ chainKey = from Flags/Static key section
   ciphertext = ENCRYPT(k, n, payload, ad)
 
 ```
-### KDF para el Contenido Cifrado de la Sección de Flags/Clave Estática
 
-Una o más New Session Replies pueden enviarse en respuesta a un único mensaje New Session. Cada respuesta va precedida por una etiqueta, que se genera a partir de un TagSet para la sesión.
 
-La New Session Reply está en dos partes. La primera parte es la finalización del handshake Noise IK con una etiqueta antepuesta. La longitud de la primera parte es de 56 bytes. La segunda parte es la carga útil de la fase de datos. La longitud de la segunda parte es 16 + longitud de la carga útil.
 
-La longitud total es 72 + longitud del payload. Formato cifrado:
+### 1g) New Session Reply format
+
+One or more New Session Replies may be sent in response to a single New Session message.
+Each reply is prepended by a tag, which is generated from a TagSet for the session.
+
+The New Session Reply is in two parts.
+The first part is the completion of the Noise IK handshake with a prepended tag.
+The length of the first part is 56 bytes.
+The second part is the data phase payload.
+The length of the second part is 16 + payload length.
+
+Total length is 72 + payload length.
+Encrypted format:
 
 ```
 
@@ -914,21 +1193,33 @@ La longitud total es 72 + longitud del payload. Formato cifrado:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### KDF para Sección de Payload (con clave estática de Alice)
 
-La etiqueta se genera en el KDF de Etiquetas de Sesión, como se inicializa en el KDF de Inicialización DH a continuación. Esto correlaciona la respuesta con la sesión. La Clave de Sesión de la Inicialización DH no se utiliza.
+### Session Tag
+The tag is generated in the Session Tags KDF, as initialized
+in the DH Initialization KDF below.
+This correlates the reply to the session.
+The Session Key from the DH Initialization is not used.
 
-### KDF para la Sección de Carga Útil (sin clave estática de Alice)
 
-Clave efímera de Bob. La clave efímera son 32 bytes, codificada con Elligator2, little endian. Esta clave nunca se reutiliza; se genera una nueva clave con cada mensaje, incluyendo retransmisiones.
+### New Session Reply Ephemeral Key
 
-### 1g) Formato de respuesta de nueva sesión
+Bob's ephemeral key.
+The ephemeral key is 32 bytes, encoded with Elligator2, little endian.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
 
-La longitud cifrada es el resto de los datos. La longitud descifrada es 16 menos que la longitud cifrada. La carga útil generalmente contendrá uno o más bloques Garlic Clove. Consulte la sección de carga útil a continuación para el formato y requisitos adicionales.
 
-### Etiqueta de Sesión
+### Payload
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
 
-Se crean una o más etiquetas a partir del TagSet, el cual se inicializa usando el KDF que se muestra a continuación, utilizando la chainKey del mensaje New Session.
+
+### KDF for Reply TagSet
+
+One or more tags are created from the TagSet, which is initialized using
+the KDF below, using the chainKey from the New Session message.
 
 ```
 
@@ -937,7 +1228,9 @@ Se crean una o más etiquetas a partir del TagSet, el cual se inicializa usando 
   tagset_nsr = DH_INITIALIZE(chainKey, tagsetKey)
 
 ```
-### Clave Efímera de Respuesta de Nueva Sesión
+
+
+### KDF for Reply Key Section Encrypted Contents
 
 ```
 
@@ -1012,9 +1305,15 @@ Se crean una o más etiquetas a partir del TagSet, el cual se inicializa usando 
   chainKey is used in the ratchet below.
 
 ```
-### Carga útil
 
-Esto es como el primer mensaje de Sesión Existente, post-división, pero sin una etiqueta separada. Además, usamos el hash de arriba para vincular la carga útil al mensaje NSR.
+
+### KDF for Payload Section Encrypted Contents
+
+This is like the first Existing Session message,
+post-split, but without a separate tag.
+Additionally, we use the hash from above to bind the
+payload to the NSR message.
+
 
 ```
 
@@ -1031,25 +1330,34 @@ Esto es como el primer mensaje de Sesión Existente, post-división, pero sin un
   ad = h
   ciphertext = ENCRYPT(k, n, payload, ad)
 ```
-### KDF para Reply TagSet
 
-Se pueden enviar múltiples mensajes NSR en respuesta, cada uno con claves efímeras únicas, dependiendo del tamaño de la respuesta.
 
-Alice y Bob deben usar nuevas claves efímeras para cada mensaje NS y NSR.
+### Notes
 
-Alice debe recibir uno de los mensajes NSR de Bob antes de enviar mensajes de Sesión Existente (ES), y Bob debe recibir un mensaje ES de Alice antes de enviar mensajes ES.
+Multiple NSR messages may be sent in reply, each with unique ephemeral keys, depending on the size of the response.
 
-El ``chainKey`` y ``k`` de la Sección de Payload NSR de Bob se utilizan como entradas para los DH Ratchets ES iniciales (ambas direcciones, ver DH Ratchet KDF).
+Alice and Bob are required to use new ephemeral keys for every NS and NSR message.
 
-Bob debe retener únicamente las Sesiones Existentes para los mensajes ES recibidos de Alice. Cualquier otra sesión entrante y saliente creada (para múltiples NSRs) debe ser destruida inmediatamente después de recibir el primer mensaje ES de Alice para una sesión dada.
+Alice must receive one of Bob's NSR messages before sending Existing Session (ES) messages,
+and Bob must receive an ES message from Alice before sending ES messages.
 
-### KDF para Contenidos Cifrados de la Sección de Clave de Respuesta
+The ``chainKey`` and ``k`` from Bob's NSR Payload Section are used
+as inputs for the initial ES DH Ratchets (both directions, see DH Ratchet KDF).
 
-Session tag (8 bytes) Datos cifrados y MAC (ver sección 3 a continuación)
+Bob must only retain Existing Sessions for the ES messages received from Alice.
+Any other created inbound and outbound sessions (for multiple NSRs) should be
+destroyed immediately after receiving Alice's first ES message for a given session.
 
-### KDF para el Contenido Cifrado de la Sección de Carga Útil
 
-Cifrado:
+
+### 1h) Existing session format
+
+Session tag (8 bytes)
+Encrypted data and MAC (see section 3 below)
+
+
+### Format
+Encrypted:
 
 ```
 
@@ -1076,9 +1384,13 @@ Cifrado:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Notas
 
-La longitud encriptada es el resto de los datos. La longitud desencriptada es 16 menos que la longitud encriptada. Ver la sección de payload a continuación para el formato y requisitos.
+
+### Payload
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+See the payload section below for format and requirements.
+
 
 KDF
 
@@ -1091,25 +1403,44 @@ See AEAD section below.
   ad = The session tag, 8 bytes
   ciphertext = ENCRYPT(k, n, payload, ad)
 ```
-### 1h) Formato de sesión existente
 
-Formato: Claves públicas y privadas de 32 bytes, little-endian.
 
-Justificación: Utilizado en [NTCP2](/docs/specs/ntcp2/).
 
-### Formato
+### 2) ECIES-X25519
 
-En los handshakes estándar de Noise, los mensajes iniciales del handshake en cada dirección comienzan con claves efímeras que se transmiten en texto plano. Como las claves X25519 válidas son distinguibles de datos aleatorios, un man-in-the-middle puede distinguir estos mensajes de los mensajes de Sesión Existente que comienzan con etiquetas de sesión aleatorias. En [NTCP2](/docs/specs/ntcp2/) ([Propuesta 111](/proposals/111-ntcp-2/)), usamos una función XOR de bajo overhead utilizando la clave estática fuera de banda para ofuscar la clave. Sin embargo, el modelo de amenaza aquí es diferente; no queremos permitir que ningún MitM use cualquier medio para confirmar el destino del tráfico, o para distinguir los mensajes iniciales del handshake de los mensajes de Sesión Existente.
 
-Por lo tanto, se utiliza [Elligator2](https://elligator.cr.yp.to/) para transformar las claves efímeras en los mensajes New Session y New Session Reply de modo que sean indistinguibles de cadenas aleatorias uniformes.
+Format: 32-byte public and private keys, little-endian.
 
-### Carga útil
+Justification: Used in [NTCP2](/docs/specs/ntcp2/).
 
-Claves públicas y privadas de 32 bytes. Las claves codificadas están en little endian.
 
-Como se define en [Elligator2](https://elligator.cr.yp.to/), las claves codificadas son indistinguibles de 254 bits aleatorios. Necesitamos 256 bits aleatorios (32 bytes). Por lo tanto, la codificación y decodificación se definen de la siguiente manera:
 
-Codificación:
+### 2a) Elligator2
+
+In standard Noise handshakes, the initial handshake messages in each direction start with
+ephemeral keys that are transmitted in cleartext.
+As valid X25519 keys are distinguishable from random, a man-in-the-middle may distinguish
+these messages from Existing Session messages that start with random session tags.
+In [NTCP2](/docs/specs/ntcp2/) ([Proposal 111](/proposals/111-ntcp-2/)), we used a low-overhead XOR function using the out-of-band static key to obfuscate
+the key. However, the threat model here is different; we do not want to allow any MitM to
+use any means to confirm the destination of the traffic, or to distinguish
+the initial handshake messages from Existing Session messages.
+
+Therefore, [Elligator2](https://elligator.cr.yp.to/) is used to transform the ephemeral keys in the New Session and New Session Reply messages
+so that they are indistinguishable from uniform random strings.
+
+
+
+### Format
+
+32-byte public and private keys.
+Encoded keys are little endian.
+
+As defined in [Elligator2](https://elligator.cr.yp.to/), the encoded keys are indistinguishable from 254 random bits.
+We require 256 random bits (32 bytes). Therefore, the encoding and decoding are
+defined as follows:
+
+Encoding:
 
 ```
 
@@ -1121,7 +1452,9 @@ ENCODE_ELG2() Definition
   randomByte = CSRNG(1)
   encodedKey[31] |= (randomByte & 0xc0)
 ```
-Decodificación:
+
+
+Decoding:
 
 ```
 
@@ -1132,27 +1465,48 @@ DECODE_ELG2() Definition
   // Decode as defined in Elligator2 specification
   pubkey = decode(encodedKey)
 ```
-### 2) ECIES-X25519
 
-Requerido para evitar que el OBEP e IBGW clasifiquen el tráfico.
 
-### 2a) Elligator2
 
-Elligator2 duplica en promedio el tiempo de generación de claves, ya que la mitad de las claves privadas resultan en claves públicas que no son adecuadas para codificar con Elligator2. Además, el tiempo de generación de claves no tiene límite superior con una distribución exponencial, ya que el generador debe seguir reintentando hasta que se encuentra un par de claves adecuado.
 
-Esta sobrecarga puede gestionarse realizando la generación de claves por adelantado, en un hilo separado, para mantener un pool de claves adecuadas.
+### Justification
 
-El generador ejecuta la función ENCODE_ELG2() para determinar la idoneidad. Por lo tanto, el generador debería almacenar el resultado de ENCODE_ELG2() para que no tenga que calcularse nuevamente.
+Required to prevent the OBEP and IBGW from classifying traffic.
 
-Además, las claves inadecuadas pueden agregarse al conjunto de claves utilizadas para [NTCP2](/docs/specs/ntcp2/), donde Elligator2 no se utiliza. Los problemas de seguridad de hacerlo están por determinarse.
 
-### Formato
+### Notes
 
-AEAD usando ChaCha20 y Poly1305, igual que en [NTCP2](/docs/specs/ntcp2/). Esto corresponde a [RFC-7539](https://tools.ietf.org/html/rfc7539), que también se usa de manera similar en TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
+Elligator2 doubles average the key generation time, as half the private keys
+result in public keys that are unsuitable for encoding with Elligator2.
+Also, the key generation time is unbounded with an exponential distribution,
+as the generator must keep retrying utnil a suitable key pair is found.
 
-### Justificación
+This overhead may be managed by doing key generation in advance,
+in a separate thread, to keep a pool of suitable keys.
 
-Entradas para las funciones de cifrado/descifrado para un bloque AEAD en un mensaje New Session:
+The generator does the ENCODE_ELG2() function to determine suitability.
+Therefore, the generator should store the result of ENCODE_ELG2()
+so it does not have to be calculated again.
+
+Additionally, the unsuitable keys may be added to the pool of keys
+used for [NTCP2](/docs/specs/ntcp2/), where Elligator2 is not used.
+The security issues of doing so is TBD.
+
+
+
+
+### 3) AEAD (ChaChaPoly)
+
+AEAD using ChaCha20 and Poly1305, same as in [NTCP2](/docs/specs/ntcp2/).
+This corresponds to [RFC-7539](https://tools.ietf.org/html/rfc7539), which is also
+used similarly in TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
+
+
+
+### New Session and New Session Reply Inputs
+
+Inputs to the encryption/decryption functions
+for an AEAD block in a New Session message:
 
 ```
 
@@ -1168,9 +1522,12 @@ k :: 32 byte cipher key
   data :: Plaintext data, 0 or more bytes
 
 ```
-### Notas
 
-Entradas a las funciones de cifrado/descifrado para un bloque AEAD en un mensaje de Sesión Existente:
+
+### Existing Session Inputs
+
+Inputs to the encryption/decryption functions
+for an AEAD block in an Existing Session message:
 
 ```
 
@@ -1193,9 +1550,11 @@ k :: 32 byte session key
   data :: Plaintext data, 0 or more bytes
 
 ```
-### 3) AEAD (ChaChaPoly)
 
-Salida de la función de cifrado, entrada de la función de descifrado:
+
+### Encrypted Format
+
+Output of the encryption function, input to the decryption function:
 
 ```
 
@@ -1216,52 +1575,73 @@ Salida de la función de cifrado, entrada de la función de descifrado:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Entradas de Nueva Sesión y Respuesta de Nueva Sesión
 
-- Dado que ChaCha20 es un cifrado de flujo, los textos planos no necesitan ser rellenados.
-  Los bytes adicionales del flujo de claves se descartan.
+### Notes
+- Since ChaCha20 is a stream cipher, plaintexts need not be padded.
+  Additional keystream bytes are discarded.
 
-- La clave para el cifrado (256 bits) se acuerda mediante el SHA256 KDF.
-  Los detalles del KDF para cada mensaje están en secciones separadas a continuación.
+- The key for the cipher (256 bits) is agreed upon by means of the SHA256 KDF.
+  The details of the KDF for each message are in separate sections below.
 
-- Los frames ChaChaPoly son de tamaño conocido ya que están encapsulados en el mensaje de datos I2NP.
+- ChaChaPoly frames are of known size as they are encapsulated in the I2NP data message.
 
-- Para todos los mensajes,
-  el relleno está dentro del marco
-  de datos autenticados.
+- For all messages,
+  padding is inside the authenticated
+  data frame.
 
-### Entradas de Sesión Existentes
 
-Todos los datos recibidos que fallen la verificación AEAD deben ser descartados. No se devuelve respuesta alguna.
+### AEAD Error Handling
 
-### Formato Cifrado
+All received data that fails the AEAD verification must be discarded.
+No response is returned.
 
-Usado en [NTCP2](/docs/specs/ntcp2/).
 
-### Notas
+### Justification
 
-Seguimos usando session tags, como antes, pero usamos ratchets para generarlas. Los session tags también tenían una opción de rekey que nunca implementamos. Así que es como un double ratchet pero nunca hicimos el segundo.
+Used in [NTCP2](/docs/specs/ntcp2/).
 
-Aquí definimos algo similar al Double Ratchet de Signal. Las etiquetas de sesión se generan de forma determinística e idéntica en los lados del receptor y del emisor.
 
-Al utilizar un mecanismo de trinquete de clave/etiqueta simétrico, eliminamos el uso de memoria para almacenar etiquetas de sesión en el lado del remitente. También eliminamos el consumo de ancho de banda al enviar conjuntos de etiquetas. El uso en el lado del receptor sigue siendo significativo, pero podemos reducirlo aún más ya que reduciremos la etiqueta de sesión de 32 bytes a 8 bytes.
 
-No utilizamos el cifrado de encabezados como se especifica (y es opcional) en Signal, en su lugar utilizamos etiquetas de sesión.
+### 4) Ratchets
 
-Al usar un ratchet DH, logramos secreto hacia adelante, lo cual nunca fue implementado en ElGamal/AES+SessionTags.
+We still use session tags, as before, but we use ratchets to generate them.
+Session tags also had a rekey option that we never implemented.
+So it's like a double ratchet but we never did the second one.
 
-Nota: La clave pública de un solo uso de Nueva Sesión no es parte del ratchet, su única función es cifrar la clave inicial de ratchet DH de Alice.
+Here we define something similar to Signal's Double Ratchet.
+The session tags are generated deterministically and identically on
+the receiver and sender sides.
 
-### Manejo de Errores AEAD
+By using a symmetric key/tag ratchet, we eliminate memory usage to store session tags on the sender side.
+We also eliminate the bandwidth consumption of sending tag sets.
+Receiver side usage is still significant, but we can reduce it further
+as we will shrink the session tag from 32 bytes to 8 bytes.
 
-El Double Ratchet maneja los mensajes perdidos o fuera de orden incluyendo una etiqueta en cada cabecera de mensaje. El receptor busca el índice de la etiqueta, este es el número de mensaje N. Si el mensaje contiene un bloque de Número de Mensaje con un valor PN, el destinatario puede eliminar cualquier etiqueta superior a ese valor en el conjunto de etiquetas anterior, mientras retiene las etiquetas omitidas del conjunto de etiquetas anterior en caso de que los mensajes omitidos lleguen más tarde.
+We do not use header encryption as specified (and optional) in Signal,
+we use session tags instead.
 
-### Justificación
+By using a DH ratchet, we acheive forward secrecy, which was never implemented
+in ElGamal/AES+SessionTags.
 
-Definimos las siguientes estructuras de datos y funciones para implementar estos ratchets.
+Note: The New Session one-time public key is not part of the ratchet, its sole function
+is to encrypt Alice's initial DH ratchet key.
 
-ENTRADA_TAGSET
 
+### Message Numbers
+
+The Double Ratchet handles lost or out-of-order messages by including in each message header
+a tag. The receiver looks up the index of the tag, this is the message number N.
+If the message contains a Message Number block with a PN value,
+the recipient can delete any tags higher than that value in the previous tag set,
+while retaining skipped tags
+from the previous tag set in case the skipped messages arrive later.
+
+
+### Sample Implementation
+
+We define the following data structures and functions to implement these ratchets.
+
+TAGSET_ENTRY
     A single entry in a TAGSET.
 
     INDEX
@@ -1273,8 +1653,7 @@ ENTRADA_TAGSET
     SESSION_KEY
         A symmetric key, never goes on the wire, 32 bytes
 
-CONJUNTO DE ETIQUETAS
-
+TAGSET
     A collection of TAGSET_ENTRIES.
 
     CREATE(key, n)
@@ -1332,65 +1711,119 @@ CONJUNTO DE ETIQUETAS
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-### 4) Ratchets
 
-Ratchets pero no tan rápido como lo hace Signal. Separamos el reconocimiento de la clave recibida de la generación de la nueva clave. En el uso típico, Alice y Bob harán cada uno un ratchet (dos veces) inmediatamente en una Nueva Sesión, pero no harán ratchet de nuevo.
 
-Ten en cuenta que un ratchet es para una sola dirección, y genera una cadena de ratchet de etiqueta de Nueva Sesión / clave de mensaje para esa dirección. Para generar claves para ambas direcciones, tienes que hacer ratchet dos veces.
+### 4a) DH Ratchet
 
-Haces ratchet cada vez que generas y envías una nueva clave. Haces ratchet cada vez que recibes una nueva clave.
+Ratchets but not nearly as fast as Signal does.
+We separate the ack of the received key from generating the new key.
+In typical usage, Alice and Bob will each ratchet (twice) immediately in a New Session,
+but will not ratchet again.
 
-Alice hace un ratchet una vez al crear una sesión saliente no vinculada, no crea una sesión entrante (no vinculada significa que no se puede responder).
+Note that a ratchet is for a single direction, and generates a New Session tag / message key ratchet chain for that direction.
+To generate keys for both directions, you have to ratchet twice.
 
-Bob realiza un ratchet una vez al crear una sesión entrante no vinculada, y no crea una sesión saliente correspondiente (no vinculada es no respondible).
+You ratchet every time you generate and send a new key.
+You ratchet every time you receive a new key.
 
-Alice continúa enviando mensajes New Session (NS) a Bob hasta recibir uno de los mensajes New Session Reply (NSR) de Bob. Luego utiliza los resultados del KDF de la Sección de Payload del NSR como entradas para los session ratchets (ver DH Ratchet KDF), y comienza a enviar mensajes Existing Session (ES).
+Alice ratchets once when creating an unbound outbound session, she does not create an inbound session
+(unbound is non-repliable).
 
-Para cada mensaje NS recibido, Bob crea una nueva sesión entrante, usando los resultados del KDF de la Sección de Carga Útil de respuesta como entradas para el nuevo DH Ratchet ES entrante y saliente.
+Bob ratchets once when creating an unbound inbound session, and does not create a corresponding outbound session
+(unbound is non-repliable).
 
-Para cada respuesta requerida, Bob envía a Alice un mensaje NSR con la respuesta en la carga útil. Es obligatorio que Bob use nuevas claves efímeras para cada NSR.
+Alice continues sending New Session (NS) messages to Bob until receiving one of Bob's New Session Reply (NSR) messages.
+She then uses the NSR's Payload Section KDF results as inputs for the session ratchets (see DH Ratchet KDF),
+and begins sending Existing Session (ES) messages.
 
-Bob debe recibir un mensaje ES de Alice en una de las sesiones entrantes, antes de crear y enviar mensajes ES en la sesión saliente correspondiente.
+For each NS message received, Bob creates a new inbound session, using the KDF results
+of the reply Payload Section for inputs to the new inbound and outbound ES DH Ratchet.
 
-Alice debería usar un temporizador para recibir un mensaje NSR de Bob. Si el temporizador expira, la sesión debería eliminarse.
+For each reply required, Bob sends Alice a NSR message with the reply in the payload.
+It is required Bob use new ephemeral keys for every NSR.
 
-Para evitar un ataque KCI y/o de agotamiento de recursos, donde un atacante descarta las respuestas NSR de Bob para mantener a Alice enviando mensajes NS, Alice debería evitar iniciar New Sessions hacia Bob después de un cierto número de reintentos debido a la expiración del temporizador.
+Bob must receive an ES message from Alice on one of the inbound sessions, before creating and sending
+ES messages on the corresponding outbound session.
 
-Alice y Bob realizan cada uno un ratchet DH por cada bloque NextKey recibido.
+Alice should use a timer for receiving a NSR message from Bob. If the timer expires,
+the session should be removed.
 
-Alice y Bob generan cada uno nuevos ratchets de conjuntos de etiquetas y dos ratchets de claves simétricas después de cada ratchet DH. Para cada nuevo mensaje ES en una dirección dada, Alice y Bob avanzan los ratchets de etiquetas de sesión y claves simétricas.
+To avoid a KCI and/or resource exhaustion attack, where an attacker drops Bob's NSR replies to keep Alice sending NS messages,
+Alice should avoid starting New Sessions to Bob after a certain number of retries due to timer expiration.
 
-La frecuencia de los ratchets DH después del handshake inicial depende de la implementación. Aunque el protocolo establece un límite de 65535 mensajes antes de que se requiera un ratchet, el uso más frecuente de ratcheting (basado en el conteo de mensajes, tiempo transcurrido, o ambos) puede proporcionar seguridad adicional.
+Alice and Bob each
+do a DH ratchet for every NextKey block received.
 
-Después del KDF de handshake final en sesiones vinculadas, Bob y Alice deben ejecutar la función Noise Split() en el CipherState resultante para crear claves simétricas y de cadena de etiquetas independientes para sesiones entrantes y salientes.
+Alice and Bob each generate new tag setstchets and two symmetric keys ratchets after each
+DH ratchet. For each new ES message in a given direction, Alice and Bob advance the session
+tag and symmtric key ratchets.
+
+The frequency of DH ratchets after the initial handshake is implementation-dependent.
+While the protocol places a limit of 65535 messages before a ratchet is required,
+more frequent ratcheting (based on message count, elapsed time, or both)
+may provide additional security.
+
+After the final handshake KDF on bound sessions, Bob and Alice must run the Noise Split() function on the
+resulting CipherState to create independent symmetric and tag chain keys for inbound and outbound sessions.
+
 
 #### KEY AND TAG SET IDS
 
-Los números de ID de claves y conjuntos de etiquetas se utilizan para identificar claves y conjuntos de etiquetas. Los IDs de claves se usan en bloques NextKey para identificar la clave enviada o utilizada. Los IDs de conjuntos de etiquetas se usan (con el número de mensaje) en bloques ACK para identificar el mensaje que está siendo confirmado. Tanto los IDs de claves como los de conjuntos de etiquetas se aplican a los conjuntos de etiquetas para una sola dirección. Los números de ID de claves y conjuntos de etiquetas deben ser secuenciales.
+Key and tag set ID numbers are used to identify keys and tag sets.
+Key IDs are used in NextKey blocks to identify the key sent or used.
+Tag set IDs are used (with the message number) in ACK blocks to identify the message being acked.
+Both key and tag set IDs apply to the tag sets for a single direction.
+Key and tag set ID numbers must be sequential.
 
-En los primeros conjuntos de etiquetas utilizados para una sesión en cada dirección, el ID del conjunto de etiquetas es 0. No se han enviado bloques NextKey, por lo que no hay IDs de clave.
+In the first tag sets used for a session in each direction, the tag set ID is 0.
+No NextKey blocks have been sent, so there are no key IDs.
 
-Para comenzar un ratchet DH, el remitente transmite un nuevo bloque NextKey con un ID de clave de 0. El receptor responde con un nuevo bloque NextKey con un ID de clave de 0. El remitente luego comienza a usar un nuevo conjunto de etiquetas con un ID de conjunto de etiquetas de 1.
+To begin a DH ratchet, the sender transmits a new NextKey block with a key ID of 0.
+The receiver replies with a new NextKey block with a key ID of 0.
+The sender then starts using a new tag set with a tag set ID of 1.
 
-Los conjuntos de etiquetas subsiguientes se generan de manera similar. Para todos los conjuntos de etiquetas utilizados después de los intercambios NextKey, el número del conjunto de etiquetas es (1 + ID de clave de Alice + ID de clave de Bob).
+Subsequent tag sets are generated similarly.
+For all tag sets used after NextKey exchanges, the tag set number is (1 + Alice's key ID + Bob's key ID).
 
-Los IDs de claves y conjuntos de etiquetas comienzan en 0 e incrementan secuencialmente. El ID máximo de conjunto de etiquetas es 65535. El ID máximo de clave es 32767. Cuando un conjunto de etiquetas está casi agotado, el remitente del conjunto de etiquetas debe iniciar un intercambio NextKey. Cuando el conjunto de etiquetas 65535 está casi agotado, el remitente del conjunto de etiquetas debe iniciar una nueva sesión enviando un mensaje New Session.
+Key and tag set IDs start at 0 and increment sequentially.
+The maximum tag set ID is 65535.
+The maximum key ID is 32767.
+When a tag set is almost exhausted, the tag set sender must initiate a NextKey exchange.
+When tag set 65535 is almost exhausted, the tag set sender must initiate a new session
+by sending a New Session message.
 
-Con un tamaño máximo de mensaje de streaming de 1730, y asumiendo que no hay retransmisiones, la transferencia máxima teórica de datos usando un solo conjunto de etiquetas es 1730 * 65536 ~= 108 MB. El máximo real será menor debido a las retransmisiones.
+With a streaming maximum message size of 1730, and assuming no retransmissions,
+the theoretical maximum data transfer using a single tag set is 1730 * 65536 ~= 108 MB.
+The actual maximum will be lower due to retransmissions.
 
-El máximo teórico de transferencia de datos con los 65536 conjuntos de etiquetas disponibles, antes de que la sesión tenga que ser descartada y reemplazada, es 64K * 108 MB ~= 6.9 TB.
+The theoretical maximum data transfer with all 65536 available tag sets, before
+the session would have to be discarded and replaced,
+is 64K * 108 MB ~= 6.9 TB.
+
+
 
 #### DH RATCHET MESSAGE FLOW
 
-El siguiente intercambio de claves para un conjunto de etiquetas debe ser iniciado por el remitente de esas etiquetas (el propietario del conjunto de etiquetas salientes). El receptor (propietario del conjunto de etiquetas entrantes) responderá. Para un tráfico HTTP GET típico en la capa de aplicación, Bob enviará más mensajes y hará ratchet primero al iniciar el intercambio de claves; el diagrama a continuación muestra eso. Cuando Alice hace ratchet, sucede lo mismo pero en reversa.
+The next key exchange for a tag set must be initiated by the
+sender of those tags (the owner of the outbound tag set).
+The receiver (owner of the inbound tag set) will respond.
+For a typical HTTP GET traffic at the application layer, Bob will send more messages and will ratchet first
+by initiating the key exchange; the diagram below shows that.
+When Alice ratchets, the same thing happens in reverse.
 
-El primer conjunto de etiquetas utilizado después del handshake NS/NSR es el conjunto de etiquetas 0. Cuando el conjunto de etiquetas 0 está casi agotado, se deben intercambiar nuevas claves en ambas direcciones para crear el conjunto de etiquetas 1. Después de eso, una nueva clave solo se envía en una dirección.
+The first tag set used after the NS/NSR handshake is tag set 0.
+When tag set 0 is almost exhausted, new keys must be exchanged in both directions to create tag set 1.
+After that, a new key is only sent in one direction.
 
-Para crear el conjunto de etiquetas 2, el emisor de etiquetas envía una nueva clave y el receptor de etiquetas envía el ID de su clave anterior como confirmación. Ambos lados realizan un DH.
+To create tag set 2, the tag sender sends a new key and the tag receiver sends the ID of his old key as an acknowledgement.
+Both sides do a DH.
 
-Para crear el conjunto de etiquetas 3, el emisor de etiquetas envía el ID de su clave antigua y solicita una nueva clave del receptor de etiquetas. Ambas partes realizan un DH.
+To create tag set 3, the tag sender sends the ID of his old key and requests a new key from the tag receiver.
+Both sides do a DH.
 
-Los conjuntos de etiquetas posteriores se generan como para los conjuntos de etiquetas 2 y 3. El número del conjunto de etiquetas es (1 + ID de clave del remitente + ID de clave del receptor).
+Subsequent tag sets are generated as for tag sets 2 and 3.
+The tag set number is (1 + sender key id + receiver key id).
+
 
 ```
 
@@ -1447,7 +1880,9 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
+
                    ... use tag set #3 ...
+
 
 
        After tag set 3, repeat the above
@@ -1461,11 +1896,18 @@ Tag Sender                    Tag Receiver
        to the receiver. The receiver sends a new reverse key to the sender.
 
 ```
-Después de que el trinquete DH esté completo para un tagset saliente, y se cree un nuevo tagset saliente, debe usarse inmediatamente, y el tagset saliente antiguo puede eliminarse.
 
-Después de que el ratchet DH se completa para un tagset entrante, y se crea un nuevo tagset entrante, el receptor debería escuchar etiquetas en ambos tagsets, y eliminar el tagset antiguo después de un tiempo corto, aproximadamente 3 minutos.
+After the DH ratchet is complete for an outbound tagset, and a new outbound tagset is created,
+it should be used immediately, and the old outbound tagset may be deleted.
 
-El resumen de la progresión del conjunto de etiquetas y el ID de clave se encuentra en la tabla siguiente. * indica que se genera una nueva clave.
+After the DH ratchet is complete for an inbound tagset, and a new inbound tagset is created,
+the receiver should listen for tags in both tagsets, and delete the old tagset
+after a short time, about 3 minutes.
+
+
+Summary of tag set and key ID progression is in the table below.
+* indicates that a new key is generated.
+
 
 | New Tag Set ID | Sender key ID | Rcvr key ID |
 |----------------|---------------|-------------|
@@ -1478,13 +1920,24 @@ El resumen de la progresión del conjunto de etiquetas y el ID de clave se encue
 | ...            | ...           | ...         |
 | 65534          | 32767 *       | 32766       |
 | 65535          | 32767         | 32767 *     |
-Los números de ID del conjunto de claves y etiquetas deben ser secuenciales.
+
+
+Key and tag set ID numbers must be sequential.
+
 
 #### DH INITIALIZATION KDF
 
-Esta es la definición de DH_INITIALIZE(rootKey, k) para una sola dirección. Crea un tagset y una "clave raíz siguiente" para ser utilizada en un ratchet DH posterior si es necesario.
+This is the definition of DH_INITIALIZE(rootKey, k)
+for a single direction. It creates a tagset, and a
+"next root key" to be used for a subsequent DH ratchet if necessary.
 
-Utilizamos la inicialización DH en tres lugares. Primero, la usamos para generar un conjunto de etiquetas para las New Session Replies. Segundo, la usamos para generar dos conjuntos de etiquetas, uno para cada dirección, para usar en los mensajes Existing Session. Por último, la usamos después de un DH Ratchet para generar un nuevo conjunto de etiquetas en una sola dirección para mensajes Existing Session adicionales.
+We use DH initialization in three places. First, we use it
+to generate a tag set for the New Session Replies.
+Second, we use it to generate two tag sets, one for each direction,
+for use in Existing Session messages.
+Lastly, we use it after a DH Ratchet to generate a new tag set
+in a single direction for additional Existing Session messages.
+
 
 ```
 
@@ -1508,9 +1961,12 @@ Inputs:
   symmKey_ck = keydata[32:63]
 
 ```
+
+
 #### DH RATCHET KDF
 
-Esto se usa después de que se intercambian nuevas claves DH en bloques NextKey, antes de que se agote un tagset.
+This is used after new DH keys are exchanged in NextKey blocks,
+before a tagset is exhausted.
 
 ```
 
@@ -1531,17 +1987,34 @@ Esto se usa después de que se intercambian nuevas claves DH en bloques NextKey,
   newTagSet = DH_INITIALIZE(rootKey, tagsetKey)
 
 ```
-### Números de Mensaje
 
-Ratchets para cada mensaje, como en Signal. El ratchet de etiqueta de sesión está sincronizado with el ratchet de clave simétrica, pero el ratchet de clave del receptor puede "quedarse atrás" para ahorrar memoria.
 
-El transmisor avanza el ratchet una vez por cada mensaje transmitido. No se deben almacenar etiquetas adicionales. El transmisor también debe mantener un contador para 'N', el número de mensaje del mensaje en la cadena actual. El valor 'N' se incluye en el mensaje enviado. Consulte la definición del bloque Message Number.
 
-El receptor debe avanzar el ratchet por el tamaño máximo de la ventana y almacenar las etiquetas en un "conjunto de etiquetas", que está asociado con la sesión. Una vez recibida, la etiqueta almacenada puede ser descartada, y si no hay etiquetas anteriores no recibidas, la ventana puede ser avanzada. El receptor debe mantener el valor 'N' asociado con cada etiqueta de sesión, y verificar que el número en el mensaje enviado coincida con este valor. Ver la definición del bloque Message Number.
+### 4b) Session Tag Ratchet
+
+Ratchets for every message, as in Signal.
+The session tag ratchet is synchronized with the symmetric key ratchet,
+but the receiver key ratchet may "lag behind" to save memory.
+
+Transmitter ratchets once for each message transmitted.
+No additional tags must be stored.
+The transmitter must also keep a counter for 'N', the message number
+of the message in the current chain. The 'N' value is included
+in the sent message.
+See the Message Number block definition.
+
+Receiver must ratchet ahead by the max window size and store the tags in a "tag set",
+which is associated with the session.
+Once received, the stored tag may be discarded, and if there are no previous
+unreceived tags, the window may be advanced.
+The receiver should keep the 'N' value associated with each session tag,
+and check that the number in the sent message matches this value.
+See the Message Number block definition.
+
 
 #### KDF
 
-Esta es la definición de RATCHET_TAG().
+This is the definition of RATCHET_TAG().
 
 ```
 
@@ -1585,19 +2058,33 @@ Inputs:
   tag_n = keydata_n[32:39]
 
 ```
-### Implementación de Ejemplo
 
-Ratchets para cada mensaje, como en Signal. Cada clave simétrica tiene un número de mensaje y una etiqueta de sesión asociados. El ratchet de clave de sesión está sincronizado with el ratchet de etiquetas simétricas, pero el ratchet de clave del receptor puede "quedarse atrás" para ahorrar memoria.
 
-El transmisor hace ratchet una vez por cada mensaje transmitido. No se deben almacenar claves adicionales.
+### 4c) Symmetric Key Ratchet
 
-Cuando el receptor obtiene un session tag, si aún no ha avanzado el ratchet de clave simétrica hasta la clave asociada, debe "ponerse al día" con la clave asociada. El receptor probablemente almacenará en caché las claves para cualquier tag previo que aún no haya sido recibido. Una vez recibido, la clave almacenada puede descartarse, y si no hay tags previos no recibidos, la ventana puede avanzarse.
+Ratchets for every message, as in Signal.
+Each symmetric key has an associated message number and session tag.
+The session key ratchet is synchronized with the symmetric tag ratchet,
+but the receiver key ratchet may "lag behind" to save memory.
 
-Para mayor eficiencia, los ratchets de etiqueta de sesión y clave simétrica están separados para que el ratchet de etiqueta de sesión pueda adelantarse al ratchet de clave simétrica. Esto también proporciona seguridad adicional, ya que las etiquetas de sesión se transmiten por el cable.
+Transmitter ratchets once for each message transmitted.
+No additional keys must be stored.
+
+When receiver gets a session tag, if it has not already ratcheted the
+symmetric key ratchet ahead to the associated key, it must "catch up" to the associated key.
+The receiver will probably cache the keys for any previous tags
+that have not yet been received.
+Once received, the stored key may be discarded, and if there are no previous
+unreceived tags, the window may be advanced.
+
+For efficiency, the session tag and symmetric key ratchets are separate so
+the session tag ratchet can run ahead of the symmetric key ratchet.
+This also provides some additional security, since the session tags go out on the wire.
+
 
 #### KDF
 
-Esta es la definición de RATCHET_KEY().
+This is the definition of RATCHET_KEY().
 
 ```
 
@@ -1633,17 +2120,30 @@ Inputs:
 
 
 ```
-### 4a) DH Ratchet
 
-Esto reemplaza el formato de sección AES definido en la especificación ElGamal/AES+SessionTags.
 
-Esto utiliza el mismo formato de bloque definido en la especificación [NTCP2](/docs/specs/ntcp2/). Los tipos de bloques individuales se definen de manera diferente.
 
-Existen preocupaciones de que alentar a los implementadores a compartir código pueda llevar a problemas de análisis sintáctico. Los implementadores deben considerar cuidadosamente los beneficios y riesgos de compartir código, y asegurar que las reglas de ordenamiento y bloques válidos sean diferentes para los dos contextos.
+### 5) Payload
+
+This replaces the AES section format defined in the ElGamal/AES+SessionTags specification.
+
+This uses the same block format as defined in the [NTCP2](/docs/specs/ntcp2/) specification.
+Individual block types are defined differently.
+
+There are concerns that encouraging implementers to share code
+may lead to parsing issues. Implementers should carefully consider
+the benefits and risks of sharing code, and ensure that the
+ordering and valid block rules are different for the two contexts.
+
+
+
 
 ### Payload Section Decrypted data
 
-La longitud cifrada es el resto de los datos. La longitud descifrada es 16 menos que la longitud cifrada. Se admiten todos los tipos de bloque. El contenido típico incluye los siguientes bloques:
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+All block types are supported.
+Typical contents include the following blocks:
 
 | Payload Block Type | Type Number | Block Length |
 |--------------------|-------------|--------------|
@@ -1656,15 +2156,23 @@ La longitud cifrada es el resto de los datos. La longitud descifrada es 16 menos
 | ACK Request        | 9           | 3            |
 | Garlic Clove       | 11          | varies       |
 | Padding            | 254         | varies       |
+
+
+
+
+
 ### Unencrypted data
+There are zero or more blocks in the encrypted frame.
+Each block contains a one-byte identifier, a two-byte length,
+and zero or more bytes of data.
 
-Hay cero o más bloques en la trama encriptada. Cada bloque contiene un identificador de un byte, una longitud de dos bytes y cero o más bytes de datos.
+For extensibility, receivers MUST ignore blocks with unknown type nunmbers,
+and treat them as padding.
 
-Para extensibilidad, los receptores DEBEN ignorar los bloques con números de tipo desconocidos, y tratarlos como relleno.
+Encrypted data is 65535 bytes max, including a 16-byte authentication header,
+so the max unencrypted data is 65519 bytes.
 
-Los datos cifrados tienen un máximo de 65535 bytes, incluyendo un encabezado de autenticación de 16 bytes, por lo que el máximo de datos sin cifrar es de 65519 bytes.
-
-(Etiqueta de autenticación Poly1305 no mostrada):
+(Poly1305 auth tag not shown):
 
 ```
 
@@ -1709,35 +2217,50 @@ Los datos cifrados tienen un máximo de 65535 bytes, incluyendo un encabezado de
   Maximum single block data size is 65516 bytes.
 
 ```
+
+
 ### Block Ordering Rules
+In the New Session message,
+the DateTime block is required, and must be the first block.
 
-En el mensaje New Session, el bloque DateTime es obligatorio y debe ser el primer bloque.
+Other allowed blocks:
 
-Otros bloques permitidos:
+- Garlic Clove (type 11)
+- Options (type 5)
+- Padding (type 254)
 
-- Garlic Clove (tipo 11)
-- Opciones (tipo 5)
-- Relleno (tipo 254)
+In the New Session Reply message,
+no blocks are required.
 
-En el mensaje New Session Reply, no se requieren bloques.
+Other allowed blocks:
 
-Otros bloques permitidos:
+- Garlic Clove (type 11)
+- Options (type 5)
+- Padding (type 254)
 
-- Garlic Clove (tipo 11)
-- Opciones (tipo 5)
-- Relleno (tipo 254)
+No other blocks are allowed.
+Padding, if present, must be the last block.
 
-No se permiten otros bloques. El relleno, si está presente, debe ser el último bloque.
+In the Existing Session message, no blocks are required, and order is unspecified, except for the
+following requirements:
 
-En el mensaje de Sesión Existente, no se requieren bloques, y el orden no está especificado, excepto por los siguientes requisitos:
+Termination, if present, must be the last block except for Padding.
+Padding, if present, must be the last block.
 
-La terminación, si está presente, debe ser el último bloque excepto por el relleno. El relleno, si está presente, debe ser el último bloque.
+There may be multiple Garlic Clove blocks in a single frame.
+There may be up to two Next Key blocks in a single frame.
+Multiple Padding blocks are not allowed in a single frame.
+Other block types probably won't have multiple blocks in
+a single frame, but it is not prohibited.
 
-Puede haber múltiples bloques Garlic Clove en una sola trama. Puede haber hasta dos bloques Next Key en una sola trama. No se permiten múltiples bloques Padding en una sola trama. Otros tipos de bloques probablemente no tendrán múltiples bloques en una sola trama, pero no está prohibido.
 
 ### DateTime
-
-Una expiración. Ayuda en la prevención de respuestas. Bob debe validar que el mensaje es reciente, usando esta marca de tiempo. Bob debe implementar un filtro Bloom u otro mecanismo para prevenir ataques de repetición, si el tiempo es válido. Generalmente incluido solo en mensajes New Session.
+An expiration.
+Assists in reply prevention.
+Bob must validate that the message is recent, using this timestamp.
+Bob must implement a Bloom filter or other mechanism to prevent replay attacks,
+if the time is valid.
+Generally included in New Session messages only.
 
 ```
 
@@ -1751,9 +2274,17 @@ Una expiración. Ayuda en la prevención de respuestas. Bob debe validar que el 
                Wraps around in 2106
 
 ```
-### 4b) Trinquete de Etiqueta de Sesión
 
-Un único Garlic Clove descifrado según se especifica en [I2NP](/docs/specs/i2np/), con modificaciones para eliminar campos que no se utilizan o son redundantes. Advertencia: Este formato es significativamente diferente al de ElGamal/AES. Cada clove es un bloque de carga útil separado. Los Garlic Cloves no pueden ser fragmentados entre bloques o entre marcos ChaChaPoly.
+
+### Garlic Clove
+
+A single decrypted Garlic Clove as specified in [I2NP](/docs/specs/i2np/),
+with modifications to remove fields that are unused
+or redundant.
+Warning: This format is significantly different than
+the one for ElGamal/AES. Each clove is a separate payload block.
+Garlic Cloves may not be fragmented across blocks or
+across ChaChaPoly frames.
 
 ```
 
@@ -1787,40 +2318,45 @@ Un único Garlic Clove descifrado según se especifica en [I2NP](/docs/specs/i2n
   Expiration :: 4 bytes, seconds since the epoch
 
 ```
-Notas:
 
-- Los implementadores deben asegurar que al leer un bloque,
-  los datos malformados o maliciosos no provoquen que las lecturas
-  se desborden hacia el siguiente bloque.
+Notes:
 
-- El formato Clove Set especificado en [I2NP](/docs/specs/i2np/) no se utiliza.
-  Cada clove está contenido en su propio bloque.
+- Implementers must ensure that when reading a block,
+  malformed or malicious data will not cause reads to
+  overrun into the next block.
 
-- El encabezado del mensaje I2NP tiene 9 bytes, con un formato idéntico
-  al utilizado en [NTCP2](/docs/specs/ntcp2/).
+- The Clove Set format specified in [I2NP](/docs/specs/i2np/) is not used.
+  Each clove is contained in its own block.
 
-- El Certificate, Message ID y Expiration de la
-  definición de Garlic Message en [I2NP](/docs/specs/i2np/) no están incluidos.
+- The I2NP message header is 9 bytes, with an identical format
+  to that used in [NTCP2](/docs/specs/ntcp2/).
 
-- El Certificate, Clove ID, y Expiration de la
-  definición de Garlic Clove en [I2NP](/docs/specs/i2np/) no están incluidos.
+- The Certificate, Message ID, and Expiration from the
+  Garlic Message definition in [I2NP](/docs/specs/i2np/) are not included.
 
-Justificación:
+- The Certificate, Clove ID, and Expiration from the
+  Garlic Clove definition in [I2NP](/docs/specs/i2np/) are not included.
 
-- Los certificados nunca se utilizaron.
-- Los ID de mensaje separados y los ID de clove nunca se utilizaron.
-- Las expiraciones separadas nunca se utilizaron.
-- El ahorro general comparado con los formatos antiguos Clove Set y Clove
-  es de aproximadamente 35 bytes para 1 clove, 54 bytes para 2 cloves,
-  y 73 bytes para 3 cloves.
-- El formato de bloque es extensible y cualquier campo nuevo puede agregarse
-  como nuevos tipos de bloque.
+Justification:
+
+- The certificates were never used.
+- The separate message ID and clove IDs were never used.
+- The separate expirations were never used.
+- The overall savings compared to the old Clove Set and Clove formats
+  is approximately 35 bytes for 1 clove, 54 bytes for 2 cloves,
+  and 73 bytes for 3 cloves.
+- The block format is extensible and any new fields may be added
+  as new block types.
+
 
 ### Termination
+Implementation is optional.
+Drop the session.
+This must be the last non-padding block in the frame.
+No more messages will be sent in this session.
 
-La implementación es opcional. Descartar la sesión. Este debe ser el último bloque sin relleno en el frame. No se enviarán más mensajes en esta sesión.
+Not allowed in NS or NSR. Only included in Existing Session messages.
 
-No permitido en NS o NSR. Solo incluido en mensajes de Sesión Existente.
 
 ```
 
@@ -1841,11 +2377,18 @@ No permitido en NS o NSR. Solo incluido en mensajes de Sesión Existente.
                Format unspecified and may vary based on reason code.
 
 ```
-### 4c) Trinquete de Clave Simétrica
 
-NO IMPLEMENTADO, para estudio posterior. Pasar opciones actualizadas. Las opciones incluyen varios parámetros para la sesión. Consulte la sección Análisis de Longitud de Etiquetas de Sesión a continuación para más información.
 
-El bloque de opciones puede tener longitud variable, ya que more_options puede estar presente.
+
+### Options
+UNIMPLEMENTED, for further study.
+Pass updated options.
+Options include various parameters for the session.
+See the Session Tag Length Analysis section below for more information.
+
+The options block may be variable length,
+as more_options may be present.
+
 
 ```
 
@@ -1896,24 +2439,36 @@ El bloque de opciones puede tener longitud variable, ya que more_options puede e
   more_options :: Format undefined, for future use
 
 ```
-SOTW es la recomendación del remitente al receptor para la ventana de etiquetas entrantes del receptor (el máximo lookahead). RITW es la declaración del remitente de la ventana de etiquetas entrantes (máximo lookahead) que planea usar. Cada lado entonces establece o ajusta el lookahead basándose en algún mínimo o máximo u otro cálculo.
 
-Notas:
+SOTW is the sender's recommendation to the receiver for the
+receiver's inbound tag window (the maximum lookahead).
+RITW is the sender's declaration of the inbound tag window
+(maximum lookahead) that he plans to use.
+Each side then sets or adjusts the lookahead based
+on some minimum or maximum or other calculation.
 
-- El soporte para longitud de etiqueta de sesión no predeterminada esperamos
-  que nunca sea necesario.
-- La ventana de etiquetas es MAX_SKIP en la documentación de Signal.
 
-Problemas:
+Notes:
 
-- La negociación de opciones está por determinar (TBD).
-- Los valores por defecto están por determinar (TBD).
-- Las opciones de relleno y retraso se copian de NTCP2,
-  pero esas opciones no han sido completamente implementadas o estudiadas allí.
+- Support for non-default session tag length will hopefully
+  never be required.
+- The tag window is MAX_SKIP in the Signal documentation.
+
+Issues:
+
+- Options negotiation is TBD.
+- Defaults TBD.
+- Padding and delay options are copied from NTCP2,
+  but those options have not been fully implemented or studied there.
+
 
 ### Message Numbers
+Implementation is optional.
+The length (number of messages sent) in the previous tag set (PN).
+Receiver may immediately delete tags higher than PN from the previous tag set.
+Receiver may expire tags less than or equal to PN from the previous tag set
+after a short time (e.g. 2 minutes).
 
-La implementación es opcional. La longitud (número de mensajes enviados) en el conjunto de etiquetas anterior (PN). El receptor puede eliminar inmediatamente las etiquetas superiores a PN del conjunto de etiquetas anterior. El receptor puede hacer expirar las etiquetas menores o iguales a PN del conjunto de etiquetas anterior después de un tiempo breve (por ejemplo, 2 minutos).
 
 ```
 
@@ -1926,21 +2481,26 @@ La implementación es opcional. La longitud (número de mensajes enviados) en el
   PN :: 2 bytes big endian. The index of the last tag sent in the previous tag set.
 
 ```
-Notas:
 
-- El PN máximo es 65535.
-- Las definiciones de PN son iguales a la definición de Signal, menos uno.
-  Esto es similar a lo que hace Signal, pero en Signal, PN y N están en el encabezado.
-  Aquí, están en el cuerpo del mensaje cifrado.
-- No envíes este bloque en el conjunto de etiquetas 0, porque no había un conjunto de etiquetas anterior.
 
-### 5) Carga útil
+Notes:
 
-La siguiente clave de ratchet DH está en la carga útil, y es opcional. No hacemos ratchet cada vez. (Esto es diferente a Signal, donde está en el encabezado y se envía cada vez)
+- Maximum PN is 65535.
+- The definitions of PN is equal to the definition Signal, minus one.
+  This is similar to what Signal does, but in Signal, PN and N are in the header.
+  Here, they're in the encrypted message body.
+- Do not send this block in tag set 0, because there was no previous tag set.
 
-Para el primer ratchet, Key ID = 0.
 
-No permitido en NS o NSR. Solo se incluye en mensajes de Sesión Existente.
+### Next DH Ratchet Public Key
+The next DH ratchet key is in the payload,
+and it is optional. We don't ratchet every time.
+(This is different than in signal, where it is in the header, and sent every time)
+
+For the first ratchet,
+Key ID = 0.
+
+Not allowed in NS or NSR. Only included in Existing Session messages.
 
 ```
 
@@ -1972,24 +2532,28 @@ No permitido en NS o NSR. Solo se incluye en mensajes de Sesión Existente.
 
 
 ```
-Notas:
 
-- El Key ID es un contador incremental para la clave local utilizada para ese conjunto de etiquetas, comenzando en 0.
-- El ID no debe cambiar a menos que la clave cambie.
-- Puede que no sea estrictamente necesario, pero es útil para depuración.
-  Signal no utiliza un key ID.
-- El Key ID máximo es 32767.
-- En el caso raro de que los conjuntos de etiquetas en ambas direcciones estén ratcheting al
-  mismo tiempo, un frame contendrá dos bloques Next Key, uno para
-  la clave forward y uno para la clave reverse.
-- Los números de ID de conjuntos de claves y etiquetas deben ser secuenciales.
-- Ver la sección DH Ratchet arriba para detalles.
+Notes:
 
-### Sección de Carga Útil Datos descifrados
+- Key ID is an incrementing counter for the local key used for that tag set, starting at 0.
+- The ID must not change unless the key changes.
+- It may not be strictly necessary, but it's useful for debugging.
+  Signal does not use a key ID.
+- The maximum Key ID is 32767.
+- In the rare case that the tag sets in both directions are ratcheting at
+  the same time, a frame will contain two Next Key blocks, one for
+  the forward key and one for the reverse key.
+- Key and tag set ID numbers must be sequential.
+- See the DH Ratchet section above for details.
 
-Esto solo se envía si se recibió un bloque de solicitud de ack. Pueden estar presentes múltiples acks para confirmar múltiples mensajes.
 
-No permitido en NS o NSR. Solo incluido en mensajes de Sesión Existente.
+### Ack
+
+This is only sent if an ack request block was received.
+Multiple acks may be present to ack multiple messages.
+
+Not allowed in NS or NSR. Only included in Existing Session messages.
+
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2008,20 +2572,26 @@ No permitido en NS o NSR. Solo incluido en mensajes de Sesión Existente.
 
 
 ```
-Notas:
 
-- El ID del conjunto de etiquetas y N identifican de forma única el mensaje que se está confirmando.
-- En los primeros conjuntos de etiquetas utilizados para una sesión en cada dirección, el ID del conjunto de etiquetas es 0.
-- No se han enviado bloques NextKey, por lo que no hay IDs de clave.
-- Para todos los conjuntos de etiquetas utilizados después de los intercambios NextKey, el número del conjunto de etiquetas es (1 + ID de clave de Alice + ID de clave de Bob).
 
-### Datos sin cifrar
+Notes:
 
-Solicitar un ack in-band. Para reemplazar el Mensaje DeliveryStatus out-of-band en el Garlic Clove.
+- The tag set ID and N uniquely identify the message being acked.
+- In the first tag sets used for a session in each direction, the tag set ID is 0.
+- No NextKey blocks have been sent, so there are no key IDs.
+- For all tag sets used after NextKey exchanges, The tag set number is (1 + Alice's key ID + Bob's key ID).
 
-Si se solicita un ack explícito, el ID del tagset actual y el número de mensaje (N) se devuelven en un bloque ack.
 
-No permitido en NS o NSR. Solo se incluye en mensajes de Sesión Existente.
+
+### Ack Request
+Request an in-band ack.
+To replace the out-of-band DeliveryStatus Message in the Garlic Clove.
+
+If an explicit ack is requested, the current tagset ID and message number (N)
+are returned in an ack block.
+
+Not allowed in NS or NSR. Only included in Existing Session messages.
+
 
 ```
 
@@ -2035,11 +2605,20 @@ No permitido en NS o NSR. Solo se incluye en mensajes de Sesión Existente.
          bits 7-0: Unused, set to 0 for future compatibility
 
 ```
-### Reglas de Ordenamiento de Bloques
 
-Todo el padding está dentro de las tramas AEAD. TODO El padding dentro de AEAD debería adherirse aproximadamente a los parámetros negociados. TODO Alice envió sus parámetros mín/máx de tx/rx solicitados en el mensaje NS. TODO Bob envió sus parámetros mín/máx de tx/rx solicitados en el mensaje NSR. Las opciones actualizadas pueden enviarse durante la fase de datos. Consulte la información del bloque de opciones arriba.
 
-Si está presente, este debe ser el último bloque en el frame.
+
+### Padding
+All padding is inside AEAD frames.
+TODO Padding inside AEAD should roughly adhere to the negotiated parameters.
+TODO Alice sent her requested tx/rx min/max parameters in the NS message.
+TODO Bob sent his requested tx/rx min/max parameters in the NSR message.
+Updated options may be sent during the data phase.
+See options block information above.
+
+If present, this must be the last block in the frame.
+
+
 
 ```
 
@@ -2056,42 +2635,53 @@ Si está presente, este debe ser el último bloque en el frame.
   padding :: zeros or random data
 
 ```
-Notas:
 
-- El relleno de solo ceros está bien, ya que será encriptado.
-- Las estrategias de relleno están por definirse.
-- Se permiten frames que contengan solo relleno.
-- El relleno por defecto es de 0-15 bytes.
-- Ver bloque de opciones para la negociación de parámetros de relleno
-- Ver bloque de opciones para los parámetros mínimos/máximos de relleno
-- La respuesta del router ante la violación del relleno negociado depende de la implementación.
+Notes:
 
-### DateTime
+- All-zero padding is fine, as it will be encrypted.
+- Padding strategies TBD.
+- Padding-only frames are allowed.
+- Padding default is 0-15 bytes.
+- See options block for padding parameter negotiation
+- See options block for min/max padding parameters
+- Router response on violation of negotiated padding is implementation-dependent.
 
-Las implementaciones deben ignorar los tipos de bloques desconocidos para mantener compatibilidad hacia adelante.
 
-### Diente de Ajo Garlic
+### Other block types
+Implementations should ignore unknown block types for
+forward compatibility.
 
-- La longitud del padding debe decidirse caso por caso según el mensaje y
-  estimaciones de la distribución de longitudes, o se deben agregar retrasos
-  aleatorios. Estas contramedidas deben incluirse para resistir DPI, ya que
-  los tamaños de mensaje revelarían que el tráfico I2P está siendo transportado
-  por el protocolo de transporte. El esquema exacto de padding es un área de
-  trabajo futuro, el Apéndice A proporciona más información sobre el tema.
+
+### Future work
+- The padding length is either to be decided on a per-message basis and
+  estimates of the length distribution, or random delays should be added.
+  These countermeasures are to be included to resist DPI, as message sizes
+  would otherwise reveal that I2P traffic is being carried by the transport
+  protocol. The exact padding scheme is an area of future work, Appendix A
+  provides more information on the topic.
+
+
 
 ## Typical Usage Patterns
 
-### Terminación
 
-Este es el caso de uso más típico, y la mayoría de casos de uso de streaming no-HTTP serán idénticos a este caso de uso también. Se envía un mensaje inicial pequeño, sigue una respuesta, y se envían mensajes adicionales en ambas direcciones.
+### HTTP GET
 
-Un HTTP GET generalmente cabe en un solo mensaje I2NP. Alice envía una solicitud pequeña con un solo mensaje Session nuevo, empaquetando un leaseset de respuesta. Alice incluye ratchet inmediato a nueva clave. Incluye sig para vincular al destino. No se solicita ack.
+This is the most typical use case, and most non-HTTP streaming use cases
+will be identical to this use case as well.
+A small initial message is sent, a reply follows,
+and additional messages are sent in both directions.
 
-Bob hace ratchet inmediatamente.
+An HTTP GET generally fits in a single I2NP message.
+Alice sends a small request with a single new Session message, bundling a reply leaseset.
+Alice includes immediate ratchet to new key.
+Includes sig to bind to destination. No ack requested.
 
-Alice hace ratchet inmediatamente.
+Bob ratchets immediately.
 
-Continúa con esas sesiones.
+Alice ratchets immediately.
+
+Continues on with those sessions.
 
 ```
 
@@ -2150,17 +2740,31 @@ Alice                           Bob
                       with bundled HTTP reply part 5
 
 ```
-### Opciones
 
-Alice tiene tres opciones:
 
-1) Enviar solo el primer mensaje (tamaño de ventana = 1), como en HTTP GET. No recomendado.
 
-2) Enviar hasta la ventana de streaming, pero usando la misma clave pública en texto claro codificada con Elligator2. Todos los mensajes contienen la misma clave pública siguiente (ratchet). Esto será visible para OBGW/IBEP porque todos comienzan con el mismo texto claro. Las cosas proceden como en 1). No recomendado.
+### HTTP POST
 
-3) Implementación recomendada. Enviar hasta la ventana de streaming, pero usando una clave pública en texto claro codificada con Elligator2 diferente (sesión) para cada una. Todos los mensajes contienen la misma clave pública siguiente (ratchet). Esto no será visible para OBGW/IBEP porque todos comienzan con texto claro diferente. Bob debe reconocer que todos contienen la misma clave pública siguiente, y responder a todos con el mismo ratchet. Alice usa esa clave pública siguiente y continúa.
+Alice has three options:
 
-Flujo de mensajes de la Opción 3:
+1) Send the first message only (window size = 1), as in HTTP GET.
+   Not recommended.
+
+2) Send up to streaming window, but using same Elligator2-encoded cleartext public key.
+   All messages contain same next public key (ratchet).
+   This will be visible to OBGW/IBEP because they all start with the same cleartext.
+   Things proceed as in 1).
+   Not recommended.
+
+3) Recommended implementation.
+   Send up to streaming window, but using a different Elligator2-encoded cleartext public key (session) for each.
+   All messages contain same next public key (ratchet).
+   This will not be visible to OBGW/IBEP because they all start with different cleartext.
+   Bob must recognize that they all contain the same next public key,
+   and respond to all with the same ratchet.
+   Alice uses that next public key and continues.
+
+Option 3 message flow:
 
 ```
 
@@ -2243,11 +2847,16 @@ Alice                           Bob
                       with bundled streaming ack
 
 ```
-### Números de Mensaje
 
-Un solo mensaje, con una sola respuesta esperada. Se pueden enviar mensajes o respuestas adicionales.
 
-Similar a HTTP GET, pero con opciones más pequeñas para el tamaño de ventana de etiqueta de sesión y tiempo de vida. Tal vez no solicitar un ratchet.
+
+### Repliable Datagram
+
+A single message, with a single reply expected.
+Additional messages or replies may be sent.
+
+Similar to HTTP GET, but with smaller options for session tag window size and lifetime.
+Maybe don't request a ratchet.
 
 ```
 
@@ -2302,11 +2911,20 @@ Alice                           Bob
                       with bundled message
 
 ```
-### Siguiente Clave Pública del DH Ratchet
 
-Múltiples mensajes anónimos, sin esperar respuestas.
 
-En este escenario, Alice solicita una sesión, pero sin vinculación. Se envía un mensaje de nueva sesión. No se incluye un LS de respuesta. Se incluye un DSM de respuesta (este es el único caso de uso que requiere DSMs incluidos). No se incluye una clave siguiente. No se solicita respuesta o ratchet. No se envía ratchet. Las opciones establecen la ventana de etiquetas de sesión en cero.
+
+### Multiple Raw Datagrams
+
+Multiple anonymous messages, with no replies expected.
+
+In this scenario, Alice requests a session, but without binding.
+New session message is sent.
+No reply LS is bundled.
+A reply DSM is bundled (this is the only use case that requires bundled DSMs).
+No next key is included. No reply or ratchet is requested.
+No ratchet is sent.
+Options set session tags window to zero.
 
 ```
 
@@ -2345,11 +2963,17 @@ Alice                           Bob
   Existing Session     ------------------->
 
 ```
-### Reconocimiento
 
-Un solo mensaje anónimo, sin esperar respuesta.
 
-Se envía un mensaje de una sola vez. No se incluyen LS de respuesta o DSM. No se incluye la siguiente clave. No se solicita respuesta o ratchet. No se envía ratchet. Las opciones establecen la ventana de etiquetas de sesión en cero.
+
+### Single Raw Datagram
+
+A single anonymous messages, with no reply expected.
+
+One-time message is sent.
+No reply LS or DSM are bundled. No next key is included. No reply or ratchet is requested.
+No ratchet is sent.
+Options set session tags window to zero.
 
 ```
 
@@ -2361,95 +2985,149 @@ Alice                           Bob
   without bundled Delivery Status Message
 
 ```
-### Solicitud de Confirmación
 
-Las sesiones de larga duración pueden realizar ratchet, o solicitar un ratchet, en cualquier momento, para mantener el secreto hacia adelante desde ese punto en el tiempo. Las sesiones deben realizar ratchet cuando se aproximan al límite de mensajes enviados por sesión (65535).
+
+
+### Long-Lived Sessions
+
+Long-lived sessions may ratchet, or request a ratchet, at any time,
+to maintain forward secrecy from that point in time.
+Sessions must ratchet as they approach the limit of sent messages per-session (65535).
+
+
 
 ## Implementation Considerations
 
-### Relleno
+### Defense
 
-Como con el protocolo ElGamal/AES+SessionTag existente, las implementaciones deben limitar el almacenamiento de session tag y protegerse contra ataques de agotamiento de memoria.
+As with the existing ElGamal/AES+SessionTag protocol, implementations must
+limit session tag storage and protect against memory exhaustion attacks.
 
-Algunas estrategias recomendadas incluyen:
+Some recommended strategies include:
 
-- Límite estricto en el número de etiquetas de sesión almacenadas
-- Expiración agresiva de sesiones entrantes inactivas cuando hay presión de memoria
-- Límite en el número de sesiones entrantes vinculadas a un único destino remoto
-- Reducción adaptativa de la ventana de etiquetas de sesión y eliminación de etiquetas antiguas no utilizadas
-  cuando hay presión de memoria
-- Rechazo a realizar ratchet cuando se solicita, si hay presión de memoria
+- Hard limit on number of session tags stored
+- Aggressive expiration of idle inbound sessions when under memory pressure
+- Limit on number of inbound sessions bound to a single far-end destination
+- Adaptive reduction of session tag window and deletion of old unused tags
+  when under memory pressure
+- Refusal to ratchet when requested, if under memory pressure
 
-### Otros tipos de bloques
 
-Parámetros y tiempos de espera recomendados:
+### Parameters
 
-- Tamaño de tagset NSR: 12 tsmin y tsmax
-- Tamaño de tagset ES 0: tsmin 24, tsmax 160
-- Tamaño de tagset ES (1+): 160 tsmin y tsmax
-- Tiempo de espera de tagset NSR: 3 minutos para receptor
-- Tiempo de espera de tagset ES: 8 minutos para emisor, 10 minutos para receptor
-- Eliminar tagset ES anterior después de: 3 minutos
-- Anticipación de tagset de tag N: min(tsmax, tsmin + N/4)
-- Recorte posterior de tagset de tag N: min(tsmax, tsmin + N/4) / 2
-- Enviar siguiente clave en tag: TBD
-- Enviar siguiente clave después del tiempo de vida del tagset: TBD
-- Reemplazar sesión si NS recibido después de: 3 minutos
-- Desfase máximo de reloj: -5 minutos a +2 minutos
-- Duración del filtro de repetición NS: 5 minutos
-- Tamaño de relleno: 0-15 bytes (otras estrategias TBD)
+Recommended parameters and timeouts:
 
-### Trabajo futuro
+- NSR tagset size: 12 tsmin and tsmax
+- ES tagset 0 size: tsmin 24, tsmax 160
+- ES tagset (1+) size: 160 tsmin and tsmax
+- NSR tagset timeout: 3 minutes for receiver
+- ES tagset timeout: 8 minutes for sender, 10 minutes for receiver
+- Remove previous ES tagset after: 3 minutes
+- Tagset look ahead of tag N: min(tsmax, tsmin + N/4)
+- Tagset trim behind tag N: min(tsmax, tsmin + N/4) / 2
+- Send next key at tag: TBD
+- Send next key after tagset lifetime: TBD
+- Replace session if NS received after: 3 minutes
+- Max clock skew: -5 minutes to +2 minutes
+- NS replay filter duration: 5 minutes
+- Padding size: 0-15 bytes (other strategies TBD)
 
-A continuación se presentan recomendaciones para clasificar mensajes entrantes.
+
+### Classification
+
+Following are recommendations for classifying incoming messages.
+
 
 ### X25519 Only
 
-En un túnel que se usa exclusivamente con este protocolo, realizar la identificación como se hace actualmente con ElGamal/AES+SessionTags:
+On a tunnel that is solely used with this protocol, do identification
+as is done currently with ElGamal/AES+SessionTags:
 
-Primero, trata los datos iniciales como una etiqueta de sesión, y busca la etiqueta de sesión. Si se encuentra, descifra usando los datos almacenados asociados con esa etiqueta de sesión.
+First, treat the initial data as a session tag, and look up the session tag.
+If found, decrypt using the stored data associated with that session tag.
 
-Si no se encuentra, trate los datos iniciales como una clave pública DH y nonce. Realice una operación DH y el KDF especificado, e intente descifrar los datos restantes.
+If not found, treat the initial data as a DH public key and nonce.
+Perform a DH operation and the specified KDF, and attempt to decrypt the remaining data.
 
-### HTTP GET
 
-En un túnel que admite tanto este protocolo como ElGamal/AES+SessionTags, clasifica los mensajes entrantes de la siguiente manera:
+### X25519 Shared with ElGamal/AES+SessionTags
 
-Debido a un fallo en la especificación ElGamal/AES+SessionTags, el bloque AES no se rellena hasta una longitud aleatoria no-mod-16. Por lo tanto, la longitud de los mensajes Existing Session módulo 16 siempre es 0, y la longitud de los mensajes New Session módulo 16 siempre es 2 (ya que el bloque ElGamal tiene 514 bytes de longitud).
+On a tunnel that supports both this protocol and
+ElGamal/AES+SessionTags, classify incoming messages as follows:
 
-Si la longitud mod 16 no es 0 o 2, trate los datos iniciales como una etiqueta de sesión, y busque la etiqueta de sesión. Si se encuentra, descifre usando los datos almacenados asociados con esa etiqueta de sesión.
+Due to a flaw in the ElGamal/AES+SessionTags specification,
+the AES block is not padded to a random non-mod-16 length.
+Therefore, the length of Existing Session messages mod 16 is always 0,
+and the length of New Session messages mod 16 is always 2 (since the
+ElGamal block is 514 bytes long).
 
-Si no se encuentra, y la longitud mod 16 no es 0 o 2, tratar los datos iniciales como una clave pública DH y nonce. Realizar una operación DH y el KDF especificado, e intentar descifrar los datos restantes. (basado en la mezcla de tráfico relativa, y los costos relativos de las operaciones DH X25519 y ElGamal, este paso puede realizarse al final en su lugar)
+If the length mod 16 is not 0 or 2,
+treat the initial data as a session tag, and look up the session tag.
+If found, decrypt using the stored data associated with that session tag.
 
-De lo contrario, si la longitud mod 16 es 0, trata los datos iniciales como un session tag ElGamal/AES, y busca el session tag. Si se encuentra, descifra usando los datos almacenados asociados con ese session tag.
+If not found, and the length mod 16 is not 0 or 2,
+treat the initial data as a DH public key and nonce.
+Perform a DH operation and the specified KDF, and attempt to decrypt the remaining data.
+(based on the relative traffic mix, and the relative costs of X25519 and ElGamal DH operations,
+ths step may be done last instead)
 
-Si no se encuentra, y los datos tienen al menos 642 (514 + 128) bytes de longitud, y la longitud mod 16 es 2, trata los datos iniciales como un bloque ElGamal. Intenta descifrar los datos restantes.
+Otherwise, if the length mod 16 is 0,
+treat the initial data as a ElGamal/AES session tag, and look up the session tag.
+If found, decrypt using the stored data associated with that session tag.
 
-Nota que si la especificación ElGamal/AES+SessionTag se actualiza para permitir relleno no-mod-16, las cosas tendrán que hacerse de manera diferente.
+If not found, and the data is at least 642 (514 + 128) bytes long,
+and the length mod 16 is 2,
+treat the initial data as a ElGamal block.
+Attempt to decrypt the remaining data.
 
-### HTTP POST
+Note that if the ElGamal/AES+SessionTag spec is updated to allow
+non-mod-16 padding, things will need to be done differently.
 
-Las implementaciones iniciales dependen del tráfico bidireccional en las capas superiores. Es decir, las implementaciones asumen que pronto se transmitirá tráfico en la dirección opuesta, lo que forzará cualquier respuesta requerida en la capa ECIES.
 
-Sin embargo, cierto tráfico puede ser unidireccional o de muy bajo ancho de banda, de tal manera que no hay tráfico de capas superiores para generar una respuesta oportuna.
 
-La recepción de mensajes NS y NSR requiere una respuesta; la recepción de bloques ACK Request y Next Key también requiere una respuesta.
+### Protocol-layer Responses
 
-Una implementación sofisticada puede iniciar un temporizador cuando se recibe uno de estos mensajes que requiere una respuesta, y generar una respuesta "vacía" (sin bloque Garlic Clove) en la capa ECIES si no se envía tráfico de retorno en un período corto de tiempo (por ejemplo, 1 segundo).
+Initial implementations rely on bidirectional traffic at the higher layers.
+That is, the implementations assume that traffic in the opposite direction
+will soon be transmitted, which will force any required response at the ECIES layer.
 
-También puede ser apropiado un timeout aún más corto para las respuestas a mensajes NS y NSR, para cambiar el tráfico a los mensajes ES eficientes tan pronto como sea posible.
+However, certain traffic may be unidirectional or very low bandwidth,
+such that there is no higher-layer traffic to generate a timely response.
+
+Receipt of NS and NSR messages require a response;
+receipt of ACK Request and Next Key blocks also require a response.
+
+A sophisticated implementation may start a timer when one of these
+messages is received which requires a response,
+and generate an "empty" (no Garlic Clove block) response
+at the ECIES layer
+if no reverse traffic is sent in a short period of time (e.g. 1 second).
+
+It may also be appropriate for an even shorter timeout for
+responses to NS and NSR messages, to shift the traffic to
+the efficient ES messages as soon as possible.
+
+
 
 ## Analysis
 
-### Datagrama Replicable
 
-La sobrecarga de mensajes para los dos primeros mensajes en cada dirección es la siguiente. Esto asume solo un mensaje en cada dirección antes del ACK, o que cualquier mensaje adicional se envíe especulativamente como mensajes de Sesión Existente. Si no hay confirmaciones especulativas de las etiquetas de sesión entregadas, la sobrecarga del protocolo antiguo es mucho mayor.
+### Overhead
 
-No se asume relleno para el análisis del nuevo protocolo. No se asume leaseSet agrupado.
+Message overhead for the first two messages in each direction are as follows.
+This assumes only one message in each direction before the ACK,
+or that any additional messages are sent speculatively as Existing Session messages.
+If there is no speculative acks of delivered session tags, the
+overhead or the old protocol is much higher.
 
-### Múltiples Datagramas Raw
+No padding is assumed for analysis of the new protocol.
+No bundled leaseset is assumed.
 
-Mensaje de nueva sesión, igual en cada dirección:
+
+### ElGamal/AES+SessionTags
+
+New session message, same each direction:
+
 
 ```
 
@@ -2473,7 +3151,8 @@ ElGamal block:
   Total:
   1657 bytes
 ```
-Mensajes de sesión existentes, iguales en cada dirección:
+
+Existing session messages, same each direction:
 
 ```
 
@@ -2491,13 +3170,17 @@ AES block:
   - 0 byte padding assuming 1936 byte message
   151 total
 ```
+
+
 ```
 Four message total (two each direction)
   3616 bytes overhead
 ```
-### Datagrama Crudo Único
 
-Mensaje de Nueva Sesión de Alice-a-Bob:
+
+### ECIES-X25519-AEAD-Ratchet
+
+Alice-to-Bob New Session message:
 
 ```
 
@@ -2513,7 +3196,8 @@ Mensaje de Nueva Sesión de Alice-a-Bob:
   Total:
   148 bytes overhead
 ```
-Mensaje de respuesta de nueva sesión de Bob a Alice:
+
+Bob-to-Alice New Session Reply message:
 
 ```
 
@@ -2528,7 +3212,8 @@ Mensaje de respuesta de nueva sesión de Bob a Alice:
   Total:
   117 bytes overhead
 ```
-Mensajes de sesión existentes, los mismos en cada dirección:
+
+Existing session messages, same each direction:
 
 ```
 
@@ -2541,16 +3226,19 @@ Mensajes de sesión existentes, los mismos en cada dirección:
   Total:
   69 bytes
 ```
-### Sesiones de Larga Duración
 
-Cuatro mensajes en total (dos en cada dirección):
+
+### Comparison
+
+Four message total (two each direction):
 
 ```
 
 372 bytes
   90% (approx. 10x) reduction compared to ElGamal/AES+SessionTags
 ```
-Solo handshake:
+
+Handshake only:
 
 ```
 
@@ -2558,99 +3246,181 @@ ElGamal: 1657 + 1657 = 3314 bytes
   Ratchet: 148 _ 117 = 265 bytes
   92% (approx. 12x) reduction compared to ElGamal/AES+SessionTags
 ```
-Total a largo plazo (ignorando handshakes):
+
+Long-term total (ignoring handshakes):
+
 
 ```
 ElGamal: 151 + 32 byte tag sent previously = 183 bytes
   Ratchet: 69 bytes
   64% (approx. 3x) reduction compared to ElGamal/AES+SessionTags
 ```
+
+
 ### CPU
 
-TODO actualizar esta sección después de que la propuesta sea estable.
+TODO update this section after proposal is stable.
 
-Las siguientes operaciones criptográficas son requeridas por cada parte para intercambiar mensajes New Session y New Session Reply:
+The following cryptographic operations are required by each party to exchange
+New Session and New Session Reply messages:
 
-- HMAC-SHA256: 3 por HKDF, total por determinar
-- ChaChaPoly: 2 cada uno
-- Generación de claves X25519: 2 Alice, 1 Bob
-- X25519 DH: 3 cada uno
-- Verificación de firma: 1 (Bob)
+- HMAC-SHA256: 3 per HKDF, total TBD
+- ChaChaPoly: 2 each
+- X25519 key generation: 2 Alice, 1 Bob
+- X25519 DH: 3 each
+- Signature verification: 1 (Bob)
 
-Alice calcula 5 ECDHs por sesión enlazada (mínimo), 2 para cada mensaje NS a Bob, y 3 para cada uno de los mensajes NSR de Bob.
+Alice calculates 5 ECDHs per-bound-session (minimum), 2 for each NS message to Bob,
+and 3 for each of Bob's NSR messages.
 
-Bob también calcula 6 ECDHs por sesión enlazada, 3 para cada uno de los mensajes NS de Alice, y 3 para cada uno de sus mensajes NSR.
+Bob also calculates 6 ECDHs per-bound-session, 3 for each of Alice's NS messages, and 3 for each of his NSR messages.
 
-Las siguientes operaciones criptográficas son requeridas por cada parte para cada mensaje de Existing Session:
+The following cryptographic operations are required by each party for each Existing Session message:
 
 - HKDF: 2
 - ChaChaPoly: 1
 
-### Defensa
 
-La longitud actual del tag de sesión es de 32 bytes. Aún no hemos encontrado ninguna justificación para esa longitud, pero continuamos investigando en los archivos. La propuesta anterior define la nueva longitud del tag como 8 bytes. El análisis que justifica un tag de 8 bytes es el siguiente:
 
-El ratchet de etiquetas de sesión se asume que genera etiquetas aleatorias y uniformemente distribuidas. No hay razón criptográfica para una longitud particular de etiqueta de sesión. El ratchet de etiquetas de sesión está sincronizado con, pero genera una salida independiente del, ratchet de claves simétricas. Las salidas de los dos ratchets pueden tener longitudes diferentes.
+### Tag Length
 
-Por lo tanto, la única preocupación es la colisión de etiquetas de sesión. Se asume que las implementaciones no intentarán manejar colisiones tratando de descifrar con ambas sesiones; las implementaciones simplemente asociarán la etiqueta con la sesión anterior o nueva, y cualquier mensaje recibido con esa etiqueta en la otra sesión será descartado después de que falle el descifrado.
+Current session tag length is 32 bytes.
+We have not yet found any justification for that length, but we are continuing to research the archives.
+The proposal above defines the new tag length as 8 bytes.
+The analysis justifying an 8 byte tag is as follows:
 
-El objetivo es seleccionar una longitud de etiqueta de sesión que sea lo suficientemente grande como para minimizar el riesgo de colisiones, pero lo suficientemente pequeña como para minimizar el uso de memoria.
+The session tag ratchet is assumed to generate random, uniformly distributed tags.
+There is no cryptographic reason for a particular session tag length.
+The session tag ratchet is synchronized to, but generates an independent output from,
+the symmetric key ratchet. The outputs of the two ratchets may be different lengths.
 
-Esto asume que las implementaciones limitan el almacenamiento de etiquetas de sesión para prevenir ataques de agotamiento de memoria. Esto también reducirá significativamente las posibilidades de que un atacante pueda crear colisiones. Consulta la sección Consideraciones de Implementación a continuación.
+Therefore, the only concern is session tag collision.
+It is assumed that implementations will not attempt to handle collisions
+by trying to decrypt with both sessions;
+implementations will simply associate the tag with either the previous or new
+session, and any message received with that tag on the other session
+will be dropped after the decryption fails.
 
-Para un caso en el peor escenario, asume un servidor ocupado con 64 nuevas sesiones entrantes por segundo. Asume un tiempo de vida de etiquetas de sesión entrante de 15 minutos (igual que ahora, probablemente debería reducirse). Asume una ventana de etiquetas de sesión entrante de 32. 64 * 15 * 60 * 32 = 1,843,200 etiquetas. El máximo actual de etiquetas entrantes en Java I2P es 750,000 y nunca se ha alcanzado hasta donde sabemos.
+The goal is to select a session tag length that is large enough
+to minimize the risk of collisions, while small enough
+to minimize memory usage.
 
-Un objetivo de 1 en un millón (1e-6) de colisiones de etiquetas de sesión es probablemente suficiente. La probabilidad de que se descarte un mensaje en el camino debido a la congestión es mucho mayor que esa.
+This assumes that implementations limit session tag storage to
+prevent memory exhaustion attacks. This also will greatly reduce the chances that an attacker
+can create collisions. See the Implementation Considerations section below.
 
-Ref: https://en.wikipedia.org/wiki/Birthday_paradox Sección de tabla de probabilidades.
+For a worst case, assume a busy server with 64 new inbound sessions per second.
+Assume 15 minute inbound session tag lifetime (same as now, probably should be reduced).
+Assume inbound session tag window of 32.
+64 * 15 * 60 * 32 =  1,843,200 tags
+Current Java I2P max inbound tags is 750,000 and has never been hit as far as we know.
 
-Con session tags de 32 bytes (256 bits) el espacio de session tag es 1.2e77. La probabilidad de una colisión con probabilidad 1e-18 requiere 4.8e29 entradas. La probabilidad de una colisión con probabilidad 1e-6 requiere 4.8e35 entradas. 1.8 millones de tags de 32 bytes cada uno son aproximadamente 59 MB en total.
+A target of 1 in a million (1e-6) session tag collisions is probably sufficient.
+The probability of dropping a message along the way due to congestion is far higher than that.
 
-Con session tags de 16 bytes (128 bits) el espacio de session tag es de 3.4e38. La probabilidad de una colisión con probabilidad 1e-18 requiere 2.6e10 entradas. La probabilidad de una colisión con probabilidad 1e-6 requiere 2.6e16 entradas. 1.8 millones de tags de 16 bytes cada uno son aproximadamente 30 MB en total.
+Ref: https://en.wikipedia.org/wiki/Birthday_paradox
+Probability table section.
 
-Con session tags de 8 bytes (64 bits) el espacio de session tag es 1.8e19. La probabilidad de una colisión con probabilidad 1e-18 requiere 6.1 entradas. La probabilidad de una colisión con probabilidad 1e-6 requiere 6.1e6 (6,100,000) entradas. 1.8 millones de tags de 8 bytes cada uno suman aproximadamente 15 MB en total.
+With 32 byte session tags (256 bits) the session tag space is 1.2e77.
+The probability of a collision with probability 1e-18 requires 4.8e29 entries.
+The probability of a collision with probability 1e-6 requires 4.8e35 entries.
+1.8 million tags of 32 bytes each is about 59 MB total.
 
-6.1 millones de etiquetas activas es más de 3 veces nuestro estimado del peor caso de 1.8 millones de etiquetas. Así que la probabilidad de colisión sería menos de una en un millón. Por lo tanto, concluimos que las etiquetas de sesión de 8 bytes son suficientes. Esto resulta en una reducción de 4x del espacio de almacenamiento, además de la reducción de 2x porque las etiquetas de transmisión no se almacenan. Así que tendremos una reducción de 8x en el uso de memoria de etiquetas de sesión comparado con ElGamal/AES+SessionTags.
+With 16 byte session tags (128 bits) the session tag space is 3.4e38.
+The probability of a collision with probability 1e-18 requires 2.6e10 entries.
+The probability of a collision with probability 1e-6 requires 2.6e16 entries.
+1.8 million tags of 16 bytes each is about 30 MB total.
 
-Para mantener flexibilidad en caso de que estas suposiciones sean incorrectas, incluiremos un campo de longitud de etiqueta de sesión en las opciones, de modo que la longitud predeterminada pueda anularse por sesión. No esperamos implementar negociación dinámica de longitud de etiquetas a menos que sea absolutamente necesario.
+With 8 byte session tags (64 bits) the session tag space is 1.8e19.
+The probability of a collision with probability 1e-18 requires 6.1 entries.
+The probability of a collision with probability 1e-6 requires 6.1e6 (6,100,000) entries.
+1.8 million tags of 8 bytes each is about 15 MB total.
 
-Las implementaciones deberían, como mínimo, reconocer las colisiones de etiquetas de sesión, manejarlas de manera elegante, y registrar o contar el número de colisiones. Aunque siguen siendo extremadamente improbables, serán mucho más probables de lo que eran para ElGamal/AES+SessionTags, y realmente podrían ocurrir.
+6.1 million active tags is over 3x more than our worst-case estimate of 1.8 million tags.
+So the probability of collision would be less than one in a million.
+We therefore conclude that 8 byte session tags are sufficient.
+This results in a 4x reduction of storage space,
+in addition to the 2x reduction because transmit tags are not stored.
+So we will have a 8x reduction in session tag memory usage compared to ElGamal/AES+SessionTags.
 
-### Parámetros
+To maintain flexibility should these assumptions be wrong,
+we will include a session tag length field in the options,
+so that the default length may be overridden on a per-session basis.
+We do not expect to implement dynamic tag length negotiation
+unless absolutely necessary.
 
-Usando el doble de sesiones por segundo (128) y el doble de la ventana de tags (64), tenemos 4 veces los tags (7.4 millones). El máximo para una probabilidad de colisión de uno en un millón es 6.1 millones de tags. Tags de 12 bytes (o incluso de 10 bytes) añadirían un margen enorme.
+Implementations should, at a minimum, recognize session tag collisions,
+handle them gracefully, and log or count the number of collisions.
+While still extremely unlikely, they will be much more likely than
+they were for ElGamal/AES+SessionTags, and could actually happen.
 
-Sin embargo, ¿es una probabilidad de colisión de uno en un millón un objetivo adecuado? Mucho mayor que la probabilidad de ser descartado en el camino no es de mucha utilidad. El objetivo de falsos positivos para el DecayingBloomFilter de Java es aproximadamente de 1 en 10,000, pero incluso 1 en 1000 no es motivo de gran preocupación. Al reducir el objetivo a 1 en 10,000, hay un margen amplio con etiquetas de 8 bytes.
 
-### Clasificación
+### Alternate
 
-El remitente genera etiquetas y claves sobre la marcha, por lo que no hay almacenamiento. Esto reduce los requisitos generales de almacenamiento a la mitad en comparación con ElGamal/AES. Las etiquetas ECIES son de 8 bytes en lugar de 32 para ElGamal/AES. Esto reduce los requisitos generales de almacenamiento por otro factor de 4. Las claves de sesión por etiqueta no se almacenan en el receptor excepto para "huecos", que son mínimos para tasas de pérdida razonables.
+Using twice the sessions per second (128) and twice the tag window (64),
+we have 4 times the tags (7.4 million). Max for one in a million
+chance of collision is 6.1 million tags.
+12 byte (or even 10 byte) tags would add a huge margin.
 
-La reducción del 33% en el tiempo de expiración de etiquetas crea otro 33% de ahorro, asumiendo tiempos de sesión cortos.
+However, is the one in a million chance of collision a good target?
+Much larger than the chance of being dropped along the way is not much use.
+The false-positive target for Java's DecayingBloomFilter is roughly
+1 in 10,000, but even 1 in 1000 isn't of grave concern.
+By reducing the target to 1 in 10,000, there's plenty of margin
+with 8 byte tags.
 
-Por lo tanto, el ahorro total de espacio vs. ElGamal/AES es un factor de 10.7, o 92%.
+
+### Storage
+
+The sender generates tags and keys on the fly, so there is no storage.
+This cuts overall storage requirements in half compared to ElGamal/AES.
+ECIES tags are 8 bytes instead of 32 for ElGamal/AES.
+This cuts overall storage requirements by another factor of 4.
+Per-tag session keys are not stored at the receiver except for "gaps",
+which are minimal for reasonable loss rates.
+
+The 33% reduction in tag expiration time creates another 33% savings,
+assuming short session times.
+
+Therefore, the total space savings vs. ElGamal/AES is a factor of 10.7, or 92%.
+
+
 
 ## Related Changes
 
-### Solo X25519
 
-Búsquedas de base de datos desde destinos ECIES: Ver [Propuesta 154](/proposals/154-ecies-lookups), ahora incorporada en [I2NP](/docs/specs/i2np/) para la versión 0.9.46.
 
-Esta propuesta requiere soporte de LS2 para publicar la clave pública X25519 con el leaseset. No se requieren cambios a las especificaciones de LS2 en [I2NP](/docs/specs/i2np/). Todo el soporte fue diseñado, especificado e implementado en la [Propuesta 123](/proposals/123-new-netdb-entries) implementada en 0.9.38.
+### I2NP Changes Required
 
-### X25519 Compartido con ElGamal/AES+SessionTags
+Database Lookups from ECIES Destinations: See [Proposal 154](/proposals/154-ecies-lookups),
+now incorporated in [I2NP](/docs/specs/i2np/) for release 0.9.46.
 
-Ninguno. Esta propuesta requiere soporte de LS2, y que se establezca una propiedad en las opciones I2CP para habilitarla. No se requieren cambios en las especificaciones de [I2CP](/docs/specs/i2cp/). Todo el soporte fue diseñado, especificado e implementado en la [Propuesta 123](/proposals/123-new-netdb-entries) implementada en la versión 0.9.38.
+This proposal requires LS2 support to publish the X25519 public key with the leaseset.
+No changes are required to the LS2 specifications in [I2NP](/docs/specs/i2np/).
+All support was designed, specified, and implemented in [Proposal 123](/proposals/123-new-netdb-entries) implemented in 0.9.38.
 
-La opción requerida para habilitar ECIES es una sola propiedad I2CP para I2CP, BOB, SAM, o i2ptunnel.
 
-Los valores típicos son i2cp.leaseSetEncType=4 para ECIES únicamente, o i2cp.leaseSetEncType=4,0 para claves duales ECIES y ElGamal.
 
-### Respuestas de Capa de Protocolo
+### I2CP Changes Required
 
-Esta sección está copiada de [Propuesta 123](/proposals/123-new-netdb-entries).
+None.
+This proposal requires LS2 support, and a property to be set in the I2CP options to be enabled.
+No changes are required to the [I2CP](/docs/specs/i2cp/) specifications.
+All support was designed, specified, and implemented in [Proposal 123](/proposals/123-new-netdb-entries) implemented in 0.9.38.
 
-Opción en el Mapeo de SessionConfig:
+The option required to enable ECIES is a single I2CP property
+for I2CP, BOB, SAM, or i2ptunnel.
+
+Typical values are i2cp.leaseSetEncType=4 for ECIES only,
+or i2cp.leaseSetEncType=4,0 for ECIES and ElGamal dual keys.
+
+
+
+### I2CP Options
+
+This section is copied from [Proposal 123](/proposals/123-new-netdb-entries).
+
+Option in SessionConfig Mapping:
 
 ```
   i2cp.leaseSetEncType=nnn[,nnn]  The encryption types to be used.
@@ -2658,14 +3428,54 @@ Opción en el Mapeo de SessionConfig:
                                   1-3: See proposal 145
                                   4: This proposal.
 ```
+
+
 ### Create Leaseset2 Message
 
-Esta propuesta requiere LS2 que es compatible desde la versión 0.9.38. No se requieren cambios en las especificaciones de [I2CP](/docs/specs/i2cp/). Todo el soporte fue diseñado, especificado e implementado en la [Propuesta 123](/proposals/123-new-netdb-entries) implementada en la 0.9.38.
+This proposal requires LS2 which is supported as of release 0.9.38.
+No changes are required to the [I2CP](/docs/specs/i2cp/) specifications.
+All support was designed, specified, and implemented in [Proposal 123](/proposals/123-new-netdb-entries) implemented in 0.9.38.
 
-### Sobrecarga
 
-Cualquier router que soporte LS2 con claves duales (0.9.38 o superior) debería soportar conexión a destinos con claves duales.
 
-Los destinos exclusivos de ECIES requerirán que una mayoría de los floodfills se actualicen a 0.9.46 para obtener respuestas de búsqueda encriptadas. Consulte [Propuesta 154](/proposals/154-ecies-lookups).
 
-Los destinos ECIES-only solo pueden conectarse con otros destinos que sean ECIES-only o de clave dual.
+### Compatibility
+
+Any router supporting LS2 with dual keys (0.9.38 or higher) should support
+connection to destinations with dual keys.
+
+ECIES-only destinations will require a majority of the floodfills to be updated
+to 0.9.46 to get encrypted lookup replies. See [Proposal 154](/proposals/154-ecies-lookups).
+
+ECIES-only destinations can only connect with other destinations that are
+either ECIES-only, or dual-key.
+
+
+## References
+
+* [Common](/docs/specs/common-structures/)
+* [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
+* [ElG-AES](/docs/specs/elgamal-aes/)
+* [Elligator2](https://elligator.cr.yp.to/elligator-20130828.pdf)
+* [GARLICSPEC](/docs/overview/garlic-routing/)
+* [I2CP](/docs/specs/i2cp/)
+* [I2NP](/docs/specs/i2np/)
+* [NTCP2](/docs/specs/ntcp2/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [Prop111](/proposals/111-ntcp-2/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop142](/proposals/142-new-crypto-template/)
+* [Prop145](/proposals/145-ecies/)
+* [Prop152](/proposals/152-ecies-tunnels/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop154](/proposals/154-ecies-lookups/)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)
+* [RFC-7905](https://tools.ietf.org/html/rfc7905)
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+* [Signal](https://signal.org/docs/specifications/doubleratchet/)
+* [SPEC](/docs/specs/ecies/)
+* [SSU](/docs/specs/ssu2/)
+* [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)

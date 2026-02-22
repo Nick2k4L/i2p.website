@@ -90,7 +90,7 @@ H(data), ElGamal bloğunda şifrelenen verinin SHA256'sıdır ve önünde rastge
 ```
 Her şifrelenmiş bölüm, tam olarak 257 bayt boyutuna ulaşması için başına sıfırlar eklenir. Toplam uzunluk: 514 bayt. Tipik kullanımda, üst katmanlar açık metin verilerini 222 bayta doldurur ve bu da 255 baytlık şifrelenmemiş bir blok oluşturur. Bu, iki adet 256 baytlık şifrelenmiş bölüm olarak kodlanır ve bu katmanda her bölümden önce tek baytlık sıfır dolgusu bulunur.
 
-ElGamal kodunu görmek için ElGamalEngine.
+ElGamal kodunu görmek için [ElGamalEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalEngine.java).
 
 Paylaşılan asal sayı, 2048 bit anahtarlar için Oakley asal sayısıdır [RFC-3526-S3](http://tools.ietf.org/html/rfc3526#section-3):
 
@@ -147,7 +147,7 @@ AES simetrik şifreleme için çeşitli durumlarda kullanılır:
 - ElGamal/AES+SessionTag'in bir parçası olarak floodfill router'lara gönderilen bazı netDb store ve sorgu işlemlerinin şifrelemesi için (destination-to-router veya router-to-router).
 - Router'ın kendi tunnel'ları üzerinden kendisine gönderdiği periyodik tunnel test mesajlarının şifrelemesi için.
 
-CBC modunda 256 bit anahtarlar ve 128 bit bloklar ile AES kullanıyoruz. Kullanılan dolgu IETF [RFC-2313](http://tools.ietf.org/html/rfc2313) (PKCS#5 1.5, bölüm 8.1 (blok tipi 02 için)) standardında belirtilmiştir. Bu durumda, dolgu 16 baytlık blokları eşleştirmek için sözde rastgele üretilen oktetlerden oluşur. Özellikle CBC kodu CryptixAESEngine ve Cryptix AES uygulaması CryptixRijndael_Algorithm ile ElGamalAESEngine.getPadding fonksiyonunda bulunan dolgu ElGamalAESEngine kodlarını inceleyin.
+CBC modunda 256 bit anahtarlar ve 128 bit bloklar ile AES kullanıyoruz. Kullanılan dolgu IETF [RFC-2313](http://tools.ietf.org/html/rfc2313) (PKCS#5 1.5, bölüm 8.1 (blok tipi 02 için)) standardında belirtilmiştir. Bu durumda, dolgu 16 baytlık blokları eşleştirmek için sözde rastgele üretilen oktetlerden oluşur. Özellikle CBC kodu [CryptixAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixAESEngine.java) ve Cryptix AES uygulaması [CryptixRijndael_Algorithm](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixRijndael_Algorithm.java) ile ElGamalAESEngine.getPadding fonksiyonunda bulunan dolgu [ElGamalAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalAESEngine.java) kodlarını inceleyin.
 
 #### Eskime
 
@@ -161,7 +161,7 @@ EdDSA-SHA512-Ed25519 mevcut varsayılan imza algoritmasıdır. İmza türleri de
 
 ### DSA
 
-İmzalar, DSAEngine içinde uygulandığı şekliyle 1024 bit [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) (L=1024, N=160) ile oluşturulur ve doğrulanır. DSA, imzalar için ElGamal'dan çok daha hızlı olduğu için tercih edilmiştir.
+İmzalar, [DSAEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/DSAEngine.java) içinde uygulandığı şekliyle 1024 bit [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm) (L=1024, N=160) ile oluşturulur ve doğrulanır. DSA, imzalar için ElGamal'dan çok daha hızlı olduğu için tercih edilmiştir.
 
 #### SEED
 
@@ -306,15 +306,15 @@ NTCP bağlantıları, router'ın kimliğini kullanarak istasyondan istasyona anl
 
 ## Kaynaklar
 
-- [BENCHMARKS](https://web.archive.org/web/20080423000000*/http://www.eskimo.com/~weidai/benchmarks.html) - Crypto++ kıyaslamaları, aslen http://www.eskimo.com/~weidai/benchmarks.html adresindeydi (artık ölü), `http://www.archive.org/` adresinden kurtarıldı, 23 Nisan 2008 tarihli.
+- [BENCHMARKS](https://web.archive.org/web/20080423000000*/http://www.eskimo.com/~weidai/benchmarks.html) - Crypto++ kıyaslamaları, aslen http://www.eskimo.com/~weidai/benchmarks.html adresindeydi (artık ölü), http://www.archive.org/ adresinden kurtarıldı, 23 Nisan 2008 tarihli.
 - [Common](/docs/specs/common-structures) - Ortak Yapılar Spesifikasyonu
-- CryptixAESEngine
-- CryptixRijndael_Algorithm
+- [CryptixAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixAESEngine.java)
+- [CryptixRijndael_Algorithm](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/CryptixRijndael_Algorithm.java)
 - [DSA](http://en.wikipedia.org/wiki/Digital_Signature_Algorithm)
-- DSAEngine
+- [DSAEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/DSAEngine.java)
 - [ECIES](/docs/specs/ecies)
-- ElGamalAESEngine
-- ElGamalEngine
+- [ElGamalAESEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalAESEngine.java)
+- [ElGamalEngine](https://github.com/i2p/i2p.i2p/tree/master/core/java/src/net/i2p/crypto/ElGamalEngine.java)
 - [EncryptedLeaseSet](/docs/specs/encryptedleaseset)
 - [Koshiba2004](http://www.springerlink.com/content/2jry7cftp5bpdghm/) - Koshiba & Kurosawa. Short Exponent Diffie-Hellman Problems. PKC 2004, LNCS 2947, pp. 173-186
 - [NIST-800-57](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57-Part1-revised2_Mar08-2007.pdf)

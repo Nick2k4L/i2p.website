@@ -8,14 +8,14 @@ accurateFor: "0.9.59"
 
 ## Tổng quan {#overview}
 
-I2PTunnel là một công cụ để giao tiếp và cung cấp dịch vụ trên I2P. Điểm đến của một I2PTunnel có thể được định nghĩa bằng cách sử dụng [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), hoặc một khóa đích đầy đủ 516-byte. Một I2PTunnel đã được thiết lập sẽ có sẵn trên máy client của bạn dưới dạng localhost:port. Nếu bạn muốn cung cấp một dịch vụ trên mạng I2P, bạn chỉ cần tạo I2PTunnel đến ip_address:port thích hợp. Một khóa đích 516-byte tương ứng sẽ được tạo ra cho dịch vụ và nó sẽ trở nên khả dụng trên toàn bộ I2P. Giao diện web để quản lý I2PTunnel có sẵn tại `http://localhost:7657/i2ptunnel/`.
+I2PTunnel là một công cụ để giao tiếp và cung cấp dịch vụ trên I2P. Điểm đến của một I2PTunnel có thể được định nghĩa bằng cách sử dụng [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), hoặc một khóa đích đầy đủ 516-byte. Một I2PTunnel đã được thiết lập sẽ có sẵn trên máy client của bạn dưới dạng localhost:port. Nếu bạn muốn cung cấp một dịch vụ trên mạng I2P, bạn chỉ cần tạo I2PTunnel đến ip_address:port thích hợp. Một khóa đích 516-byte tương ứng sẽ được tạo ra cho dịch vụ và nó sẽ trở nên khả dụng trên toàn bộ I2P. Giao diện web để quản lý I2PTunnel có sẵn tại [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
 
 ## Dịch vụ Mặc định {#default-services}
 
 ### Server Tunnels {#default-server-tunnels}
 
 - **I2P Webserver** - Một tunnel trỏ đến máy chủ web Jetty chạy
-  trên `http://localhost:7658` để host thuận tiện và nhanh chóng trên I2P.
+  trên [localhost:7658](http://localhost:7658) để host thuận tiện và nhanh chóng trên I2P.
   Thư mục gốc tài liệu là:
   - **Unix** - `$HOME/.i2p/eepsite/docroot`
   - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, mở rộng thành: `C:\Users\**username**\AppData\Local\I2P\I2P Site\docroot`

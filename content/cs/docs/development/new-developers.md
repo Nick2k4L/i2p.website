@@ -36,7 +36,7 @@ Pro vývoj I2P routeru nebo vestavěných aplikací potřebujete získat zdrojov
 
 I2P má oficiální Git služby a přijímá příspěvky přes Git na našem vlastním GitLabu:
 
-- Uvnitř I2P: <`http://git.idk.i2p`>
+- Uvnitř I2P: <http://git.idk.i2p>
 - Mimo I2P: <https://i2pgit.org>
 
 Naklonujte hlavní repozitář:
@@ -46,7 +46,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 ```
 Zrcadlo pouze pro čtení je také dostupné na GitHubu:
 
-- GitHub mirror: github.com/i2p/i2p.i2p
+- GitHub mirror: [github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -63,7 +63,7 @@ Pro vývoj nových aplikací se podívejte do [průvodce vývojem aplikací](/do
 
 Podívejte se na seznam TODO projektu nebo na seznam problémů na GitLabu pro nápady:
 
-- GitLab issues: i2pgit.org/I2P_Developers/i2p.i2p/issues
+- GitLab issues: [i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
 
 ## Zpřístupnění výsledků
 

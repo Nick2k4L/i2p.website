@@ -14,7 +14,7 @@ O framework de plugins do I2P permite que você estenda o router sem tocar na in
 
 1. Copie o URL de download do plugin da página do projeto.  
    ![Copy plugin URL](/images/plugins/plugin-step-0.png)
-2. Abra a `http://127.0.0.1:7657/configplugins` do console do router.  
+2. Abra a [página de Configuração de Plugins](http://127.0.0.1:7657/configplugins) do console do router.  
    ![Open plugin configuration](/images/plugins/plugin-step-1.png)
 3. Cole o URL no campo de instalação e clique em **Install Plugin**.  
    ![Install plugin](/images/plugins/plugin-step-2.png)
@@ -33,7 +33,7 @@ O router obtém o arquivo assinado, verifica a assinatura e ativa o plugin imedi
 
 ## 3. Gerenciar Plugins Instalados
 
-Use os controles no `http://127.0.0.1:7657/configclients.jsp#plugin` para:
+Use os controles no [Plugin do Roteador I2P](http://127.0.0.1:7657/configclients.jsp#plugin) para:
 
 - Verificar atualizações de um único plugin
 - Verificar todos os plugins de uma vez (acionado automaticamente após atualizações do router)

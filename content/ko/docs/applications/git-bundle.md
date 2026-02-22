@@ -21,7 +21,7 @@ git bundle을 생성하려는 경우, mtn repository가 아닌 **git** repositor
 
 ## Bittorrent를 통한 I2P 소스 코드 가져오기
 
-누군가가 이미 당신을 위해 생성한 기존 `git bundle`에 해당하는 torrent 파일이나 magnet 링크를 제공해야 합니다. 2020년 3월 18일 수요일 기준으로 mainline i2p.i2p 소스 코드의 최근에 올바르게 생성된 bundle은 제 pastebin paste.idk.i2p/f/4hq37i에서 I2P 내에서 찾을 수 있습니다.
+누군가가 이미 당신을 위해 생성한 기존 `git bundle`에 해당하는 torrent 파일이나 magnet 링크를 제공해야 합니다. 2020년 3월 18일 수요일 기준으로 mainline i2p.i2p 소스 코드의 최근에 올바르게 생성된 bundle은 제 pastebin [paste.idk.i2p/f/4hq37i](http://paste.idk.i2p/f/4h137i)에서 I2P 내에서 찾을 수 있습니다.
 
 bundle을 받으면 git을 사용하여 작업 저장소를 생성해야 합니다. GNU/Linux에서 i2psnark를 사용하는 경우, git bundle은 $HOME/.i2p/i2psnark에 있거나 Debian에서 서비스로 실행 중인 경우 /var/lib/i2p/i2p-config/i2psnark에 있을 것입니다. GNU/Linux에서 BiglyBT를 사용하는 경우에는 "$HOME/BiglyBT Downloads/" 경로에 있을 것입니다. 여기의 예시들은 GNU/Linux에서 I2PSnark를 사용한다고 가정합니다. 다른 것을 사용한다면 bundle 경로를 사용하는 클라이언트와 플랫폼에서 선호하는 다운로드 디렉터리로 바꾸세요.
 

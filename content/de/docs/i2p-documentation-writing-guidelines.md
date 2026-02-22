@@ -13,7 +13,7 @@ lastUpdated: "2025-10"
 
 ### 1. Alles überprüfen
 
-**Niemals etwas annehmen oder raten.** Alle technischen Aussagen müssen anhand folgender Quellen verifiziert werden: - Aktueller I2P-Quellcode (`https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master)` - Offizielle API-Dokumentation (`https://i2p.github.io/i2p.i2p/`  - Konfigurationsspezifikationen [/docs/specs/](/docs/) - Aktuelle Versionshinweise [/releases/](/categories/release/)
+**Niemals etwas annehmen oder raten.** Alle technischen Aussagen müssen anhand folgender Quellen verifiziert werden: - Aktueller I2P-Quellcode (https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master) - Offizielle API-Dokumentation (https://i2p.github.io/i2p.i2p/  - Konfigurationsspezifikationen [/docs/specs/](/docs/) - Aktuelle Versionshinweise [/releases/](/categories/release/)
 
 **Beispiel für eine korrekte Verifizierung:**
 
@@ -106,7 +106,7 @@ Note that client registry and port mapper are separate systems:
 **Vorlage für I2P-interne URLs:**
 
 ```markdown
-> **Note:** The I2P network hosts comprehensive documentation at `http://idk.i2p/javadoc-i2p/` 
+> **Note:** The I2P network hosts comprehensive documentation at http://idk.i2p/javadoc-i2p/ 
 > which requires an I2P router for access. For clearnet access, use the GitHub Pages 
 > mirror at https://eyedeekay.github.io/javadoc-i2p/
 ```
@@ -114,17 +114,17 @@ Note that client registry and port mapper are separate systems:
 
 **Offizielle Spezifikationen:** - [Konfiguration](/docs/specs/configuration/) - [Plugin](/docs/specs/plugin/) - [Dokumentenindex](/docs/)
 
-**API-Dokumentation (jeweils die aktuellste wählen):** - Aktuellste: `https://i2p.github.io/i2p.i2p/` (API 0.9.66 mit Stand I2P 2.10.0) - Clearnet-Spiegel: https://eyedeekay.github.io/javadoc-i2p/
+**API-Dokumentation (jeweils die aktuellste wählen):** - Aktuellste: https://i2p.github.io/i2p.i2p/ (API 0.9.66 mit Stand I2P 2.10.0) - Clearnet-Spiegel: https://eyedeekay.github.io/javadoc-i2p/
 
-**Quellcode:** - GitLab (offiziell): `https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master` - GitHub-Spiegel: `https://github.com/i2p/i2p.i2p`
+**Quellcode:** - GitLab (offiziell): https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master - GitHub-Spiegel: https://github.com/i2p/i2p.i2p
 
 ### Standards für Linkformate
 
 ```markdown
-✅ GOOD: ClientApp Javadoc
+✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
 
-❌ BAD: See the ClientApp docs at `http://idk.i2p/...`
+❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
 ```
 ---
@@ -552,12 +552,12 @@ See [clients.config specification](https://geti2p.net/spec/configuration#clients
 **Externe Links** (zu anderen Ressourcen):
 
 ```markdown
-For more details, see ClientApp Javadoc
+For more details, see [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
 ```
 **Links zu Code-Repositories**:
 
 ```markdown
-View source: ClientApp.java
+View source: [ClientApp.java](https://i2pgit.org/I2P_Developers/i2p.i2p/src/branch/master/core/java/src/net/i2p/app/ClientApp.java)
 ```
 ### Tabellenformatierung
 

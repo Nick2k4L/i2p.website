@@ -154,7 +154,7 @@ I2P PEX يعتمد على ut_pex. حيث أنه لا يبدو أن هناك مو
 
 ## معلومات إضافية
 
-- معايير I2P bittorrent تُناقش عمومًا على zzz.i2p.
-- مخطط بإمكانيات برمجيات المتتبع الحالية متاح أيضًا هناك.
-- الأسئلة الشائعة حول I2P bittorrent
-- نقاش DHT على I2P
+- معايير I2P bittorrent تُناقش عمومًا على [zzz.i2p](http://zzz.i2p/).
+- مخطط بإمكانيات برمجيات المتتبع الحالية [متاح أيضًا هناك](http://zzz.i2p/files/trackers.html).
+- [الأسئلة الشائعة حول I2P bittorrent](http://forum.i2p/viewtopic.php?t=2068)
+- [نقاش DHT على I2P](http://zzz.i2p/topics/812)

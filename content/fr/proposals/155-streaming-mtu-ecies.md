@@ -12,187 +12,203 @@ toc: true
 ---
 
 ## Note
-Déploiement et test du réseau en cours.
-Sujet à des révisions mineures.
+Network deployment and testing in progress.
+Subject to minor revisions.
 
 
-## Vue d'ensemble
+## Overview
 
 
-### Résumé
+### Summary
 
-ECIES réduit la surcharge des messages de session existants (ES) d'environ 90 octets.
-Par conséquent, nous pouvons augmenter le MTU d'environ 90 octets pour les connexions ECIES.
-Voir the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
+ECIES reduces exisiting session (ES) message overhead by about 90 bytes.
+Therefore we can increase the MTU by about 90 bytes for ECIES connections.
+See the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
 
-Sans augmenter le MTU, dans de nombreux cas, les économies de surcharge ne sont pas vraiment 'sauvées',
-car les messages seront remplis pour utiliser deux messages de tunnel complets de toute façon.
+Without increasing the MTU, in many cases the overhead savings aren't really 'saved',
+as the messages will be padded out to use two full tunnel messages anyway.
 
-Cette proposition ne nécessite aucun changement aux spécifications.
-Elle est postée en tant que proposition uniquement pour faciliter la discussion et la construction d'un consensus
-sur la valeur recommandée et les détails de l'implémentation.
-
-
-### Objectifs
-
-- Augmenter le MTU négocié
-- Maximiser l'utilisation des messages de tunnel de 1 Ko
-- Ne pas changer le protocole de streaming
+This proposal does not require any change to the specifications.
+It is posted as a proposal solely to facilitate discussion and consensus-building
+of the recommended value and of the implementation details.
 
 
-## Conception
+### Goals
 
-Utiliser l'option existante MAX_PACKET_SIZE_INCLUDED et la négociation MTU.
-Le streaming continue d'utiliser le minimum du MTU envoyé et reçu.
-La valeur par défaut reste 1730 pour toutes les connexions, peu importe les clés utilisées.
-
-Les implémentations sont encouragées à inclure l'option MAX_PACKET_SIZE_INCLUDED dans tous les paquets SYN, dans les deux sens,
-bien que cela ne soit pas une exigence.
-
-Si une destination est uniquement ECIES, utilisez la valeur plus élevée (en tant qu'Alice ou Bob).
-Si une destination est à double clé, le comportement peut varier :
-
-Si le client à double clé est à l'extérieur du routeur (dans une application externe),
-il peut ne pas "savoir" la clé utilisée à l'extrémité opposée, et Alice peut demander
-une valeur plus élevée dans le SYN, tandis que les données max dans le SYN restent 1730.
-
-Si le client à double clé est à l'intérieur du routeur, l'information sur la clé
-utilisée peut ou non être connue du client.
-Le leaseset peut ne pas avoir encore été récupéré, ou les interfaces API internes
-peuvent ne pas facilement rendre cette information disponible pour le client.
-Si l'information est disponible, Alice peut utiliser la valeur plus élevée ;
-sinon, Alice doit utiliser la valeur standard de 1730 jusqu'à négociation.
-
-Un client à double clé en tant que Bob peut envoyer la valeur plus élevée en réponse,
-même si aucune valeur ou une valeur de 1730 n'a été reçue d'Alice ;
-cependant, il n'y a pas de disposition pour négocier vers le haut dans le streaming,
-donc le MTU devrait rester à 1730.
+- Increase negotiated MTU
+- Maximize usage of 1 KB tunnel messages
+- Do not change streaming protocol
 
 
-Comme noté dans the [Streaming API documentation](/docs/api/streaming/),
-les données dans les paquets SYN envoyés d'Alice à Bob peuvent dépasser le MTU de Bob.
-C'est une faiblesse dans le protocole de streaming.
-Par conséquent, les clients à double clé doivent limiter les données dans les paquets SYN envoyés
-à 1730 octets, tout en envoyant une option MTU plus élevée.
-Une fois que le MTU plus élevé est reçu de Bob, Alice peut augmenter la charge utile maximum
-réellement envoyée.
+## Design
+
+Use the existing MAX_PACKET_SIZE_INCLUDED option and MTU negotiation.
+Streaming continues to use the minimum of the sent and received MTU.
+The default remains 1730 for all connections, no matter what keys are used.
+
+Implementations are encouraged to include the MAX_PACKET_SIZE_INCLUDED option in all SYN packets, in both directions,
+although this is not a requirement.
+
+If a destination is ECIES-only, use the higher value (either as Alice or Bob).
+If a destination is dual-key, behavior may vary:
+
+If dual-key client is outside the router (in an external application),
+it may not "know" the key being used at the far-end, and Alice may request
+a higher value in the SYN, while the max data in the SYN remains 1730.
+
+If dual-key client is inside the router, the information of what key
+is being used may or may not be known to the client.
+The leaseset may not have been fetched yet, or the internal API interfaces
+may not easily make that information available to the client.
+If the information is available, Alice may use the higher value;
+otherwise, Alice must use the standard value of 1730 until negotiated.
+
+A dual-key client as Bob may send the higher value in response,
+even if no value or a value of 1730 was received from Alice;
+however, there is no provision for negotiating upwards in streaming,
+so the MTU should remain at 1730.
 
 
-### Analyse
-
-Comme décrit dans the [ECIES specification](/docs/specs/ecies/#overhead), la surcharge ElGamal pour les messages de session existants est
-de 151 octets, et la surcharge Ratchet est de 69 octets.
-Par conséquent, nous pouvons augmenter le MTU pour les connexions ratchet de (151 - 69) = 82 octets,
-passant de 1730 à 1812.
-
-
-## Spécification
-
-Ajoutez les modifications et clarifications suivantes à la section Sélection et Négociation du MTU de the [Streaming API documentation](/docs/api/streaming/).
-Aucun changement à the [Streaming specification](/docs/specs/streaming/).
+As noted in the [Streaming API documentation](/docs/api/streaming/),
+the data in the SYN packets sent from Alice to Bob may exceed Bob's MTU.
+This is a weakness in the streaming protocol.
+Therefore, dual-key clients must limit the data in the sent SYN packets
+to 1730 bytes, while sending a higher MTU option.
+Once the higher MTU is received from Bob, Alice may increase the actual maximum
+payload sent.
 
 
-La valeur par défaut de l'option i2p.streaming.maxMessageSize reste 1730 pour toutes les connexions, peu importe les clés utilisées.
-Les clients doivent utiliser le minimum du MTU envoyé et reçu, comme d'habitude.
+### Analysis
 
-Il y a quatre constantes et variables MTU liées :
-
-- DEFAULT_MTU: 1730, inchangé, pour toutes les connexions
-- i2cp.streaming.maxMessageSize: par défaut 1730 ou 1812, peut être modifié par configuration
-- ALICE_SYN_MAX_DATA: Les données maximum qu'Alice peut inclure dans un paquet SYN
-- negotiated_mtu: Le minimum du MTU d'Alice et de Bob, à utiliser comme taille max de données
-  dans le SYN ACK de Bob à Alice, et dans tous les paquets suivants envoyés dans les deux sens
+As described in the [ECIES specification](/docs/specs/ecies/#overhead), the ElGamal overhead for existing session messages is
+151 bytes, and the Ratchet overhead is 69 bytes.
+Therefore, we may increase the MTU for ratchet connections by (151 - 69) = 82 bytes,
+from 1730 to 1812.
 
 
-Il y a cinq cas à considérer :
+
+## Specification
+
+Add the following changes and clarifications to the MTU Selection and Negotiation section of the [Streaming API documentation](/docs/api/streaming/).
+No changes to the [Streaming specification](/docs/specs/streaming/).
 
 
-### 1) Alice uniquement ElGamal
-Aucun changement, MTU de 1730 dans tous les paquets.
+The default value of the option i2p.streaming.maxMessageSize remains 1730 for all connections, no matter what keys are used.
+Clients must use the minimum of the sent and received MTU, as usual.
+
+There are four related MTU contants and variables:
+
+- DEFAULT_MTU: 1730, unchanged, for all connections
+- i2cp.streaming.maxMessageSize: default 1730 or 1812, may be changed by configuration
+- ALICE_SYN_MAX_DATA: The maximum data that Alice may include in a SYN packet
+- negotiated_mtu: The minimum of Alice's and Bob's MTU, to be used as the max data size
+  in the SYN ACK from Bob to Alice, and in all subsequent packets sent in both directions
+
+
+There are five cases to consider:
+
+
+### 1) Alice ElGamal-only
+No change, 1730 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1730
-- i2cp.streaming.maxMessageSize par défaut : 1730
-- Alice peut envoyer MAX_PACKET_SIZE_INCLUDED dans SYN, non requis sauf si != 1730
+- i2cp.streaming.maxMessageSize default: 1730
+- Alice may send MAX_PACKET_SIZE_INCLUDED in SYN, not required unless != 1730
 
 
-### 2) Alice uniquement ECIES
-MTU de 1812 dans tous les paquets.
+### 2) Alice ECIES-only
+1812 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1812
-- i2cp.streaming.maxMessageSize par défaut : 1812
-- Alice doit envoyer MAX_PACKET_SIZE_INCLUDED dans SYN
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice must send MAX_PACKET_SIZE_INCLUDED in SYN
 
 
-### 3) Alice Double Clé et sait que Bob est ElGamal
-MTU de 1730 dans tous les paquets.
+
+### 3) Alice Dual-Key and knows Bob is ElGamal
+1730 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1730
-- i2cp.streaming.maxMessageSize par défaut : 1812
-- Alice peut envoyer MAX_PACKET_SIZE_INCLUDED dans SYN, non requis sauf si != 1730
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice may send MAX_PACKET_SIZE_INCLUDED in SYN, not required unless != 1730
 
 
-### 4) Alice Double Clé et sait que Bob est ECIES
-MTU de 1812 dans tous les paquets.
+
+### 4) Alice Dual-Key and knows Bob is ECIES
+1812 MTU in all packets.
 
 - ALICE_SYN_MAX_DATA = 1812
-- i2cp.streaming.maxMessageSize par défaut : 1812
-- Alice doit envoyer MAX_PACKET_SIZE_INCLUDED dans SYN
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice must send MAX_PACKET_SIZE_INCLUDED in SYN
 
 
-### 5) Alice Double Clé et Bob clé inconnue
-Envoyez 1812 comme MAX_PACKET_SIZE_INCLUDED dans le paquet SYN mais limitez les données du paquet SYN à 1730.
+
+### 5) Alice Dual-Key and Bob key is unknown
+Send 1812 as MAX_PACKET_SIZE_INCLUDED in SYN packet but limit SYN packet data to 1730.
 
 - ALICE_SYN_MAX_DATA = 1730
-- i2cp.streaming.maxMessageSize par défaut : 1812
-- Alice doit envoyer MAX_PACKET_SIZE_INCLUDED dans SYN
+- i2cp.streaming.maxMessageSize default: 1812
+- Alice must send MAX_PACKET_SIZE_INCLUDED in SYN
 
 
-### Pour tous les cas
+### For all cases
 
-Alice et Bob calculent
-negotiated_mtu, le minimum du MTU d'Alice et de Bob, à utiliser comme taille max de données
-dans le SYN ACK de Bob à Alice, et dans tous les paquets suivants envoyés dans les deux sens.
+Alice and Bob calculate
+negotiated_mtu, the minimum of Alice's and Bob's MTU, to be used as the max data size
+in the SYN ACK from Bob to Alice, and in all subsequent packets sent in both directions.
+
+
 
 
 ## Justification
 
-Voir the Java I2P source code pour savoir pourquoi la valeur actuelle est 1730.
-Voir the [ECIES specification](/docs/specs/ecies/#overhead) pour savoir pourquoi la surcharge ECIES est de 82 octets de moins que ElGamal.
+See the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) for why the current value is 1730.
+See the [ECIES specification](/docs/specs/ecies/#overhead) for why the ECIES overhead is 82 bytes less than ElGamal.
 
 
-## Notes d'implémentation
 
-Si le streaming crée des messages de taille optimale, il est très important que
-la couche ECIES-Ratchet ne remplisse pas au-delà de cette taille.
+## Implementation Notes
 
-La taille optimale du message Garlic à intégrer dans deux messages de tunnel,
-y compris l'en-tête I2NP du message Garlic de 16 octets, la longueur du message Garlic de 4 octets,
-le tag ES de 8 octets, et le MAC de 16 octets, est de 1956 octets.
+If streaming is creating messages of optimal size, it's very important that
+the ECIES-Ratchet layer does not pad beyond that size.
 
-Un algorithme de remplissage recommandé dans ECIES est le suivant :
+The optimal Garlic Message size to fit into two tunnel messages,
+including the 16 byte Garlic Message I2NP header, 4 byte Garlic Message Length,
+8 byte ES tag, and 16 byte MAC, is 1956 bytes.
 
-- Si la longueur totale du message Garlic serait de 1954 à 1956 octets,
-  ne pas ajouter de bloc de remplissage (pas de place)
-- Si la longueur totale du message Garlic serait de 1938 à 1953 octets,
-  ajouter un bloc de remplissage pour remplir exactement à 1956 octets.
-- Sinon, remplir comme d'habitude, par exemple avec une quantité aléatoire de 0 à 15 octets.
+A recommended padding algorithm in ECIES is as follows:
 
-Des stratégies similaires pourraient être utilisées à la taille optimale pour un message de tunnel (964)
-et la taille pour trois messages de tunnel (2952), bien que ces tailles devraient être rares en pratique.
+- If the total length of the Garlic Message would be 1954-1956 bytes,
+  do not add a padding block (no room)
+- If the total length of the Garlic Message would be 1938-1953 bytes,
+  add a padding block to pad to exactly 1956 bytes.
+- Otherwise, pad as usual, for example with a random amount 0-15 bytes.
+
+Similar strategies could be used at the optimal one-tunnel-message size (964)
+and three-tunnel-message size (2952), although these sizes should be rare in practice.
 
 
-## Problèmes
 
-La valeur de 1812 est préliminaire. À confirmer et éventuellement ajuster.
+## Issues
+
+The 1812 value is preliminary. To be confirmed and possibly adjusted.
+
+
 
 
 ## Migration
 
-Aucun problème de compatibilité rétroactive.
-C'est une option existante et la négociation MTU fait déjà partie de la spécification.
+No backward compatibility issues.
+This is an existing option and MTU negotiation is already part of the specification.
 
-Les destinations ECIES plus anciennes prendront en charge 1730.
-Tout client recevant une valeur plus élevée répondra avec 1730, et l'extrémité opposée
-négociera à la baisse, comme d'habitude.
+Older ECIES destinations will support 1730.
+Any client receiving a higher value will respond with 1730, and the far-end
+will negotiate downward, as usual.
 
 
+## References
+
+* [CALCULATION](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220)
+* [ECIES](/docs/specs/ecies/#overhead)
+* [STREAMING-OPTIONS](/docs/api/streaming/)
+* [STREAMING-SPEC](/docs/specs/streaming/#flags-and-option-data-fields)

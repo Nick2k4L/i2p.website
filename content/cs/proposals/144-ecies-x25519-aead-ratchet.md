@@ -14,248 +14,331 @@ implementedin: "0.9.46"
 toc: true
 ---
 
-## Poznámka
+## Note
+Network deployment and testing in progress.
+Subject to minor revisions.
+See [SPEC](/docs/specs/ecies/) for the official specification.
 
-Nasazení sítě a testování probíhá. Může podléhat menším revizím. Viz [SPEC](/docs/specs/ecies/) pro oficiální specifikaci.
+The following features are not implemented as of 0.9.46:
 
-Následující funkce nejsou implementovány od verze 0.9.46:
-
-- Bloky MessageNumbers, Options a Termination
-- Odpovědi na protokolové vrstvě
-- Nulový statický klíč
+- MessageNumbers, Options, and Termination blocks
+- Protocol-layer responses
+- Zero static key
 - Multicast
 
-## Přehled
 
-Toto je návrh prvního nového typu end-to-end šifrování od začátků I2P, který má nahradit ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
+## Overview
 
-Vychází z předchozí práce následovně:
+This is a proposal for the first new end-to-end encryption type
+since the beginning of I2P, to replace ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
-- Specifikace společných struktur [Common Structures](/docs/specs/common-structures/)
-- Specifikace [I2NP](/docs/specs/i2np/) včetně LS2
+It relies on previous work as follows:
+
+- Common structures spec [Common Structures](/docs/specs/common-structures/)
+- [I2NP](/docs/specs/i2np/) spec including LS2
 - ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
-- `http://zzz.i2p/topics/1768` přehled nové asymetrické kryptografie
-- Nízkoúrovňový přehled kryptografie [CRYPTO-ELG](/docs/specs/cryptography/)
-- ECIES `http://zzz.i2p/topics/2418`
+- [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) new asymmetric crypto overview
+- Low-level crypto overview [CRYPTO-ELG](/docs/specs/cryptography/)
+- ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
 - [NTCP2](/docs/specs/ntcp2/) [Proposal 111](/proposals/111-ntcp-2/)
-- 123 Nové položky netDB
-- 142 Nová kryptografická šablona
-- Protokol [Noise](https://noiseprotocol.org/noise.html)
-- Algoritmus [Signal](https://signal.org/docs/) double ratchet
+- 123 New netDB Entries
+- 142 New Crypto Template
+- [Noise](https://noiseprotocol.org/noise.html) protocol
+- [Signal](https://signal.org/docs/) double ratchet algorithm
 
-Cílem je podpořit nové šifrování pro end-to-end komunikaci mezi destinacemi.
+The goal is to support new encryption for end-to-end,
+destination-to-destination communication.
 
-Design bude používat Noise handshake a datovou fázi zahrnující Signal double ratchet.
+The design will use a Noise handshake and data phase incorporating Signal's double ratchet.
 
-Všechny odkazy na Signal a Noise v tomto návrhu slouží pouze pro základní informace. Znalost protokolů Signal a Noise není vyžadována pro pochopení nebo implementaci tohoto návrhu.
+All references to Signal and Noise in this proposal are for background information only.
+Knowledge of Signal and Noise protocols is not required to understand
+or implement this proposal.
+
 
 ### Current ElGamal Uses
 
-Jako přehled, ElGamal 256-bajtové veřejné klíče mohou být nalezeny v následujících datových strukturách. Viz specifikace běžných struktur.
+As a review,
+ElGamal 256-byte public keys may be found in the following data structures.
+Reference the common structures specification.
 
-- V Router Identity
-  Toto je šifrovací klíč routeru.
+- In a Router Identity
+  This is the router's encryption key.
 
-- V Destination
-  Veřejný klíč destinace byl používán pro staré i2cp-to-i2cp šifrování,
-  které bylo zakázáno ve verzi 0.6, aktuálně se nepoužívá kromě
-  IV pro LeaseSet šifrování, které je zastaralé.
-  Místo toho se používá veřejný klíč v LeaseSet.
+- In a Destination
+  The public key of the destination was used for the old i2cp-to-i2cp encryption
+  which was disabled in version 0.6, it is currently unused except for
+  the IV for LeaseSet encryption, which is deprecated.
+  The public key in the LeaseSet is used instead.
 
-- V LeaseSet
-  Toto je šifrovací klíč cíle.
+- In a LeaseSet
+  This is the destination's encryption key.
 
-- V LS2
-  Toto je šifrovací klíč cíle.
+- In a LS2
+  This is the destination's encryption key.
+
+
 
 ### EncTypes in Key Certs
 
-Jako shrnutí, přidali jsme podporu pro typy šifrování, když jsme přidali podporu pro typy podpisů. Pole typu šifrování je vždy nula, jak v Destinations, tak v RouterIdentities. Zda to někdy změnit, je TBD. Viz specifikace běžných struktur [Common Structures](/docs/specs/common-structures/).
+As a review,
+we added support for encryption types when we added support for signature types.
+The encryption type field is always zero, both in Destinations and RouterIdentities.
+Whether to ever change that is TBD.
+Reference the common structures specification [Common Structures](/docs/specs/common-structures/).
 
-### Současné použití ElGamal
 
-Jako shrnutí, používáme ElGamal pro:
 
-1) Zprávy Tunnel Build (klíč je v RouterIdentity)    Náhrada není pokryta v tomto návrhu.    Viz návrh 152 [Proposal 152](/proposals/152-ecies-tunnels).
 
-2) Router-to-router šifrování netDb a dalších I2NP zpráv (Klíč je v RouterIdentity)    Závisí na tomto návrhu.    Vyžaduje návrh také pro 1), nebo umístění klíče do RI možností.
+### Asymmetric Crypto Uses
 
-3) Klientské End-to-end ElGamal+AES/SessionTag (klíč je v LeaseSet, klíč Destination se nepoužívá)    Náhrada JE pokryta v tomto návrhu.
+As a review, we use ElGamal for:
 
-4) Dočasný DH pro NTCP1 a SSU    Náhrada není pokryta v tomto návrhu.    Viz návrh 111 pro NTCP2.    Žádný současný návrh pro SSU2.
+1) Tunnel Build messages (key is in RouterIdentity)
+   Replacement is not covered in this proposal.
+   See proposal 152 [Proposal 152](/proposals/152-ecies-tunnels).
 
-### EncTypes v Key Certs
+2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
+   Depends on this proposal.
+   Requires a proposal for 1) also, or putting the key in the RI options.
 
-- Zpětně kompatibilní
-- Vyžaduje a staví na LS2 (návrh 123)
-- Využívá novou kryptografii nebo primitiva přidaná pro NTCP2 (návrh 111)
-- Žádná nová kryptografie nebo primitiva nejsou vyžadována pro podporu
-- Zachovává oddělení kryptografie a podepisování; podporuje všechny současné i budoucí verze
-- Umožňuje novou kryptografii pro destinace
-- Umožňuje novou kryptografii pro routery, ale pouze pro garlic zprávy - budování tunelů
-  by bylo samostatným návrhem
-- Nerozbíjí nic, co spoléhá na 32-bajtové binární hashe destinací, např. bittorrent
-- Zachovává 0-RTT doručování zpráv pomocí ephemeral-static DH
-- Nevyžaduje ukládání do vyrovnávací paměti / řazení zpráv do fronty na této protokolové vrstvě;
-  pokračuje v podpoře neomezeného doručování zpráv v obou směrech bez čekání na odpověď
-- Upgraduje na ephemeral-ephemeral DH po 1 RTT
-- Zachovává zpracování zpráv mimo pořadí
-- Zachovává 256-bitové zabezpečení
-- Přidává forward secrecy
-- Přidává autentifikaci (AEAD)
-- Mnohem více CPU-efektivní než ElGamal
-- Nespoléhá na Java jbigi pro efektivní DH
-- Minimalizuje DH operace
-- Mnohem více šířka-pásmově efektivní než ElGamal (514 bajtový ElGamal blok)
-- Podporuje novou i starou kryptografii na stejném tunelu podle potřeby
-- Příjemce je schopen efektivně rozlišit novou od staré kryptografie přicházející
-  stejným tunelem
-- Ostatní nemohou rozlišit novou od staré nebo budoucí kryptografie
-- Eliminuje klasifikaci délky Nové vs. Existující Session (podporuje padding)
-- Žádné nové I2NP zprávy nejsou vyžadovány
-- Nahrazuje SHA-256 kontrolní součet v AES payload pomocí AEAD
-- Podporuje svázání transmitujících a přijímajících sessions tak, aby
-  potvrzování mohlo probíhat v rámci protokolu, spíše než pouze out-of-band.
-  To také umožní odpovědím mít forward secrecy okamžitě.
-- Umožňuje end-to-end šifrování určitých zpráv (RouterInfo stores),
-  které v současnosti neděláme kvůli CPU zátěži.
-- Nemění I2NP Garlic Message
-  nebo formát Garlic Message Delivery Instructions.
-- Eliminuje nepoužívaná nebo redundantní pole ve formátech Garlic Clove Set a Clove.
+3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
+   Replacement IS covered in this proposal.
 
-Eliminuje několik problémů se session tagy, včetně:
+4) Ephemeral DH for NTCP1 and SSU
+   Replacement is not covered in this proposal.
+   See proposal 111 for NTCP2.
+   No current proposal for SSU2.
 
-- Nemožnost použít AES až do první odpovědi
-- Nespolehlivost a zasekávání při předpokládané dodávce tagů
-- Neefektivní využití šířky pásma, zejména při první dodávce
-- Obrovská neefektivnost prostoru pro ukládání tagů
-- Obrovská režie šířky pásma pro dodávání tagů
-- Vysoce složité, obtížné implementovat
-- Obtížné vyladit pro různé případy použití
-  (streaming vs. datagramy, server vs. klient, vysoká vs. nízká šířka pásma)
-- Zranitelnosti vyčerpání paměti kvůli dodávání tagů
 
-### Použití asymetrické kryptografie
+### Goals
 
-- Změny formátu LS2 (návrh 123 je dokončen)
-- Nový algoritmus rotace DHT nebo generování sdíleného náhodného čísla
-- Nové šifrování pro budování tunelů.
-  Viz návrh 152 [Proposal 152](/proposals/152-ecies-tunnels).
-- Nové šifrování pro šifrování vrstvy tunelu.
-  Viz návrh 153 [Proposal 153](/proposals/153-chacha20-layer-encryption).
-- Metody šifrování, přenosu a příjmu I2NP DLM / DSM / DSRM zpráv.
-  Bez změn.
-- Komunikace LS1-na-LS2 nebo ElGamal/AES-na-tento-návrh není podporována.
-  Tento návrh je obousměrný protokol.
-  Destinace mohou zvládat zpětnou kompatibilitu publikováním dvou leasesetů
-  používajících stejné tunely, nebo vložením obou typů šifrování do LS2.
-- Změny modelu hrozeb
-- Detaily implementace zde nejsou diskutovány a jsou ponechány každému projektu.
-- (Optimisticky) Přidat rozšíření nebo háčky pro podporu multicastu
+- Backwards compatible
+- Requires and builds on LS2 (proposal 123)
+- Leverage new crypto or primitives added for NTCP2 (proposal 111)
+- No new crypto or primitives required for support
+- Maintain decoupling of crypto and signing; support all current and future versions
+- Enable new crypto for destinations
+- Enable new crypto for routers, but only for garlic messages - tunnel building would
+  be a separate proposal
+- Don't break anything that relies on 32-byte binary destination hashes, e.g. bittorrent
+- Maintain 0-RTT message delivery using ephemeral-static DH
+- Do not require buffering / queueing of messages at this protocol layer;
+  continue to support unlimited message delivery in both directions without waiting for a response
+- Upgrade to ephemeral-ephemeral DH after 1 RTT
+- Maintain handling of out-of-order messages
+- Maintain 256-bit security
+- Add forward secrecy
+- Add authentication (AEAD)
+- Much more CPU-efficient than ElGamal
+- Don't rely on Java jbigi to make DH efficient
+- Minimize DH operations
+- Much more bandwidth-efficient than ElGamal (514 byte ElGamal block)
+- Support new and old crypto on same tunnel if desired
+- Recipient is able to efficiently distinguish new from old crypto coming down
+  same tunnel
+- Others cannot distinguish new from old or future crypto
+- Eliminate new vs. Existing Session length classification (support padding)
+- No new I2NP messages required
+- Replace SHA-256 checksum in AES payload with AEAD
+- Support binding of transmit and receive sessions so that
+  acknowledgements may happen within the protocol, rather than solely out-of-band.
+  This will also allow replies to have forward secrecy immediately.
+- Enable end-to-end encryption of certain messages (RouterInfo stores)
+  that we currently don't due to CPU overhead.
+- Do not change the I2NP Garlic Message
+  or Garlic Message Delivery Instructions format.
+- Eliminate unused or redundant fields in the Garlic Clove Set and Clove formats.
 
-### Cíle
+Eliminate several problems with session tags, including:
 
-ElGamal/AES+SessionTag byl naším jediným end-to-end protokolem přibližně 15 let, v podstatě bez úprav protokolu. Nyní existují kryptografické primitivy, které jsou rychlejší. Potřebujeme zvýšit bezpečnost protokolu. Také jsme vyvinuli heuristické strategie a náhradní řešení pro minimalizaci paměťové a šířkové režie protokolu, ale tyto strategie jsou křehké, obtížně nastavitelné a činí protokol ještě náchylnějším k poruchám, což způsobuje ukončení relace.
+- Inability to use AES until the first reply
+- Unreliability and stalls if tag delivery assumed
+- Bandwidth inefficient, especially on first delivery
+- Huge space inefficiency to store tags
+- Huge bandwidth overhead to deliver tags
+- Highly complex, difficult to implement
+- Difficult to tune for various use cases
+  (streaming vs. datagrams, server vs. client, high vs. low bandwidth)
+- Memory exhaustion vulnerabilities due to tag delivery
 
-Po přibližně stejné časové období specifikace ElGamal/AES+SessionTag a související dokumentace popisovaly, jak nákladné z hlediska šířky pásma je doručování session tagů, a navrhly nahradit doručování session tagů "synchronizovaným PRNG". Synchronizovaný PRNG deterministicky generuje stejné tagy na obou koncích, odvozené ze společného seedu. Synchronizovaný PRNG lze také nazvat "ratchet". Tento návrh (konečně) specifikuje daný ratchet mechanismus a eliminuje doručování tagů.
 
-Použitím ratchet mechanismu (synchronizovaný PRNG) pro generování session tagů eliminujeme režii odesílání session tagů ve zprávě New Session a následujících zprávách, když jsou potřeba. Pro typickou sadu tagů o 32 tazích to představuje 1KB. Toto také eliminuje ukládání session tagů na straně odesílatele, čímž se požadavky na úložiště snižují na polovinu.
+### Non-Goals / Out-of-scope
 
-K zabránění útokům typu Key Compromise Impersonation (KCI) je potřeba úplný obousměrný handshake, podobný vzoru Noise IK. Viz tabulka "Payload Security Properties" v [NOISE](https://noiseprotocol.org/noise.html). Pro více informací o KCI viz článek https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
+- LS2 format changes (proposal 123 is done)
+- New DHT rotation algorithm or shared random generation
+- New encryption for tunnel building.
+  See proposal 152 [Proposal 152](/proposals/152-ecies-tunnels).
+- New encryption for tunnel layer encryption.
+  See proposal 153 [Proposal 153](/proposals/153-chacha20-layer-encryption).
+- Methods of encryption, transmission, and reception of I2NP DLM / DSM / DSRM messages.
+  Not changing.
+- No LS1-to-LS2 or ElGamal/AES-to-this-proposal communication is supported.
+  This proposal is a bidirectional protocol.
+  Destinations may handle backward compatibility by publishing two leasesets
+  using the same tunnels, or put both encryption types in the LS2.
+- Threat model changes
+- Implementation details are not discussed here and are left to each project.
+- (Optimistic) Add extensions or hooks to support multicast
 
-### Necíle / Mimo rozsah
 
-Model hrozeb se poněkud liší od modelu pro NTCP2 (návrh 111). MitM uzly jsou OBEP a IBGW a předpokládá se, že mají úplný přehled o současné nebo historické globální NetDB prostřednictvím spolupráce s floodfill uzly.
 
-Cílem je zabránit těmto MitM útočníkům v klasifikaci provozu jako zprávy nové a existující relace, nebo jako nové krypto vs. staré krypto.
+### Justification
+
+ElGamal/AES+SessionTag has been our sole end-to-end protocol for about 15 years,
+essentially without modifications to the protocol.
+There are now cryptographic primitives that are faster.
+We need to enhance the security of the protocol.
+We have also developed heuristic strategies and workarounds to minimize the
+memory and bandwidth overhead of the protocol, but those strategies
+are fragile, difficult to tune, and render the protocol even more prone
+to break, causing the session to drop.
+
+For about the same time period, the ElGamal/AES+SessionTag specification and related
+documentation have described how bandwidth-expensive it is to deliver session tags,
+and have proposed replacing session tag delivery with a "synchronized PRNG".
+A synchronized PRNG deterministically generates the same tags at both ends,
+derived from a common seed.
+A synchronized PRNG can also be termed a "ratchet".
+This proposal (finally) specifies that ratchet mechanism, and eliminates tag delivery.
+
+By using a ratchet (a synchronized PRNG) to generate the
+session tags, we eliminate the overhead of sending session tags
+in the New Session message and subsequent messages when needed.
+For a typical tag set of 32 tags, this is 1KB.
+This also eliminates the storage of session tags on the sending side,
+thus cutting the storage requirements in half.
+
+A full two-way handshake, similar to Noise IK pattern, is needed to avoid Key Compromise Impersonation (KCI) attacks.
+See the Noise "Payload Security Properties" table in [NOISE](https://noiseprotocol.org/noise.html).
+For more information on KCI, see the paper https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
+
+
+
+### Threat Model
+
+The threat model is somewhat different than for NTCP2 (proposal 111).
+The MitM nodes are the OBEP and IBGW and are assumed to have full view of
+the current or historical global NetDB, by colluding with floodfills.
+
+The goal is to prevent these MitMs from classifying traffic as
+new and Existing Session messages, or as new crypto vs. old crypto.
+
+
 
 ## Detailed Proposal
 
-Tento návrh definuje nový end-to-end protokol pro nahrazení ElGamal/AES+SessionTags. Design bude používat Noise handshake a datovou fázi zahrnující Signal's double ratchet.
+This proposal defines a new end-to-end protocol to replace ElGamal/AES+SessionTags.
+The design will use a Noise handshake and data phase incorporating Signal's double ratchet.
 
-### Odůvodnění
 
-Existuje pět částí protokolu, které je třeba přepracovat:
+### Summary of Cryptographic Design
 
-- 1) Nové a stávající formáty kontejnerů Session
-  jsou nahrazeny novými formáty.
-- 2) ElGamal (256 bajtové veřejné klíče, 128 bajtové soukromé klíče) je nahrazen
-  ECIES-X25519 (32 bajtové veřejné a soukromé klíče)
-- 3) AES je nahrazen
-  AEAD_ChaCha20_Poly1305 (zkráceně ChaChaPoly níže)
-- 4) SessionTags budou nahrazeny ratchets,
-  což je v podstatě kryptografický, synchronizovaný PRNG.
-- 5) AES payload, jak je definován ve specifikaci ElGamal/AES+SessionTags,
-  je nahrazen blokovým formátem podobným tomu v NTCP2.
+There are five portions of the protocol to be redesigned:
 
-Každá z pěti změn má níže svou vlastní sekci.
 
-### Model hrozeb
+- 1) The new and Existing Session container formats
+  are replaced with new formats.
+- 2) ElGamal (256 byte public keys, 128 byte private keys) is be replaced
+  with ECIES-X25519 (32 byte public and private keys)
+- 3) AES is be replaced with
+  AEAD_ChaCha20_Poly1305 (abbreviated as ChaChaPoly below)
+- 4) SessionTags will be replaced with ratchets,
+  which is essentially a cryptographic, synchronized PRNG.
+- 5) The AES payload, as defined in the ElGamal/AES+SessionTags specification,
+  is replaced with a block format similar to that in NTCP2.
 
-Stávající implementace I2P routeru budou vyžadovat implementace následujících standardních kryptografických primitiv, které nejsou vyžadovány pro současné I2P protokoly:
+Each of the five changes has its own section below.
 
-- ECIES (ale toto je v podstatě X25519)
+
+### New Cryptographic Primitives for I2P
+
+Existing I2P router implementations will require implementations for
+the following standard cryptographic primitives,
+which are not required for current I2P protocols:
+
+- ECIES (but this is essentially X25519)
 - Elligator2
 
-Stávající implementace I2P routeru, které ještě neimplementovaly [NTCP2](/docs/specs/ntcp2/) ([Proposal 111](/proposals/111-ntcp-2/)), budou také vyžadovat implementace pro:
+Existing I2P router implementations that have not yet implemented [NTCP2](/docs/specs/ntcp2/) ([Proposal 111](/proposals/111-ntcp-2/))
+will also require implementations for:
 
-- Generování klíčů X25519 a DH
-- AEAD_ChaCha20_Poly1305 (zkráceno jako ChaChaPoly níže)
+- X25519 key generation and DH
+- AEAD_ChaCha20_Poly1305 (abbreviated as ChaChaPoly below)
 - HKDF
+
 
 ### Crypto Type
 
-Typ kryptografie (použitý v LS2) je 4. To označuje little-endian 32-bajtový X25519 veřejný klíč a end-to-end protokol specifikovaný zde.
+The crypto type (used in the LS2) is 4.
+This indicates a little-endian 32-byte X25519 public key,
+and the end-to-end protocol specified here.
 
-Crypto type 0 je ElGamal. Crypto types 1-3 jsou vyhrazeny pro ECIES-ECDH-AES-SessionTag, viz návrh 145 [Proposal 145](/proposals/145-ecies).
+Crypto type 0 is ElGamal.
+Crypto types 1-3 are reserved for ECIES-ECDH-AES-SessionTag, see proposal 145 [Proposal 145](/proposals/145-ecies).
 
-### Shrnutí kryptografického návrhu
 
-Tento návrh poskytuje požadavky založené na Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revize 34, 2018-07-11). Noise má podobné vlastnosti jako protokol Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), který je základem pro protokol [SSU](/docs/legacy/ssu/). V terminologii Noise je Alice iniciátor a Bob je respondent.
+### Noise Protocol Framework
 
-Tento návrh je založen na protokolu Noise Noise_IK_25519_ChaChaPoly_SHA256. (Skutečný identifikátor pro počáteční funkci odvození klíčů je "Noise_IKelg2_25519_ChaChaPoly_SHA256" pro označení rozšíření I2P - viz sekce KDF 1 níže) Tento protokol Noise používá následující primitiva:
+This proposal provides the requirements based on the Noise Protocol Framework
+[NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11).
+Noise has similar properties to the Station-To-Station protocol
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), which is the basis for the [SSU](/docs/legacy/ssu/) protocol.  In Noise parlance, Alice
+is the initiator, and Bob is the responder.
+
+This proposal is based on the Noise protocol Noise_IK_25519_ChaChaPoly_SHA256.
+(The actual identifier for the initial key derivation function
+is "Noise_IKelg2_25519_ChaChaPoly_SHA256"
+to indicate I2P extensions - see KDF 1 section below)
+This Noise protocol uses the following primitives:
 
 - Interactive Handshake Pattern: IK
-  Alice okamžitě přenáší svůj statický klíč Bobovi (I)
-  Alice už zná Bobův statický klíč (K)
+  Alice immediately transmits her static key to Bob (I)
+  Alice knows Bob's static key already (K)
 
 - One-Way Handshake Pattern: N
-  Alice nepřenáší svůj statický klíč Bobovi (N)
+  Alice does not transmit her static key to Bob (N)
 
 - DH Function: X25519
-  X25519 DH s délkou klíče 32 bajtů jak je specifikováno v [RFC-7748](https://tools.ietf.org/html/rfc7748).
+  X25519 DH with a key length of 32 bytes as specified in [RFC-7748](https://tools.ietf.org/html/rfc7748).
 
 - Cipher Function: ChaChaPoly
-  AEAD_CHACHA20_POLY1305 jak je specifikováno v [RFC-7539](https://tools.ietf.org/html/rfc7539) sekce 2.8.
-  12bytový nonce, s prvními 4 byty nastavenými na nulu.
-  Identické s tím v [NTCP2](/docs/specs/ntcp2/).
+  AEAD_CHACHA20_POLY1305 as specified in [RFC-7539](https://tools.ietf.org/html/rfc7539) section 2.8.
+  12 byte nonce, with the first 4 bytes set to zero.
+  Identical to that in [NTCP2](/docs/specs/ntcp2/).
 
 - Hash Function: SHA256
-  Standardní 32-bajtový hash, již extensively používaný v I2P.
+  Standard 32-byte hash, already used extensively in I2P.
 
-### Nové kryptografické primitiva pro I2P
 
-Tento návrh definuje následující vylepšení pro Noise_IK_25519_ChaChaPoly_SHA256. Obecně se řídí pokyny v [NOISE](https://noiseprotocol.org/noise.html) sekci 13.
+### Additions to the Framework
 
-1) Klíče cleartext ephemeral jsou kódovány pomocí [Elligator2](https://elligator.cr.yp.to/).
+This proposal defines the following enhancements to
+Noise_IK_25519_ChaChaPoly_SHA256.  These generally follow the guidelines in
+[NOISE](https://noiseprotocol.org/noise.html) section 13.
 
-2) Odpověď je opatřena prefixem v podobě cleartext tagu.
+1) Cleartext ephemeral keys are encoded with [Elligator2](https://elligator.cr.yp.to/).
 
-3) Formát payload je definován pro zprávy 1, 2 a datovou fázi. To samozřejmě není definováno v Noise.
+2) The reply is prefixed with a cleartext tag.
 
-Všechny zprávy obsahují hlavičku [I2NP](/docs/specs/i2np/) Garlic Message. Datová fáze používá šifrování podobné, ale nekompatibilní s datovou fází Noise.
+3) The payload format is defined for messages 1, 2, and the data phase.
+   Of course, this is not defined in Noise.
 
-### Typ šifrování
+All messages include an [I2NP](/docs/specs/i2np/) Garlic Message header.
+The data phase uses encryption similar to, but not compatible with, the Noise data phase.
 
-Handshaky používají [Noise](https://noiseprotocol.org/noise.html) handshake vzory.
 
-Používá se následující mapování písmen:
+### Handshake Patterns
 
-- e = jednorázový dočasný klíč
-- s = statický klíč
-- p = obsah zprávy
+Handshakes use [Noise](https://noiseprotocol.org/noise.html) handshake patterns.
 
-Jednorázové a Unbound relace jsou podobné Noise N vzoru.
+The following letter mapping is used:
+
+- e = one-time ephemeral key
+- s = static key
+- p = message payload
+
+One-time and Unbound sessions are similar to the Noise N pattern.
 
 ```
 
@@ -264,7 +347,8 @@ Jednorázové a Unbound relace jsou podobné Noise N vzoru.
   e es p ->
 
 ```
-Bound sessions jsou podobné Noise IK patternu.
+
+Bound sessions are similar to the Noise IK pattern.
 
 ```
 
@@ -276,91 +360,159 @@ Bound sessions jsou podobné Noise IK patternu.
   p ->
 
 ```
-### Noise Protocol Framework
 
-Současný protokol ElGamal/AES+SessionTag je jednosměrný. Na této vrstvě příjemce neví, odkud zpráva pochází. Odchozí a příchozí relace nejsou spojené. Potvrzení probíhají mimo hlavní pásmo pomocí DeliveryStatusMessage (zabaleného v GarlicMessage) v segmentu clove.
 
-Jednosměrný protokol přináší značnou neefektivnost. Jakákoliv odpověď musí také použít nákladnou zprávu 'New Session'. To způsobuje vyšší spotřebu šířky pásma, CPU a paměti.
+### Sessions
 
-Existují také bezpečnostní slabiny v jednosměrném protokolu. Všechny relace jsou založeny na ephemeral-static DH. Bez návratové cesty neexistuje způsob, jak by Bob mohl "přepnout" svůj statický klíč na ephemeral klíč. Aniž by věděl, odkud zpráva pochází, neexistuje způsob, jak použít přijatý ephemeral klíč pro odchozí zprávy, takže i počáteční odpověď používá ephemeral-static DH.
+The current ElGamal/AES+SessionTag protocol is unidirectional.
+At this layer, the receiver doesn't know where a message is from.
+Outbound and inbound sessions are not associated.
+Acknowledgements are out-of-band using a DeliveryStatusMessage
+(wrapped in a GarlicMessage) in the clove.
 
-Pro tento návrh definujeme dva mechanismy pro vytvoření obousměrného protokolu - "párování" a "vazbu". Tyto mechanismy poskytují zvýšenou efektivitu a bezpečnost.
+There is substantial inefficiency in a unidirectional protocol.
+Any reply must also use an expensive 'New Session' message.
+This causes higher bandwidth, CPU, and memory usage.
 
-### Doplňky k frameworku
+There are also security weaknesses in a unidirectional protocol.
+All sessions are based on ephemeral-static DH.
+Without a return path, there is no way for Bob to "ratchet" his static key
+to an ephemeral key.
+Without knowing where a message is from, there's no way to use
+the received ephemeral key for outbound messages,
+so the initial reply also uses ephemeral-static DH.
 
-Stejně jako u ElGamal/AES+SessionTags, všechny příchozí a odchozí relace musí být v daném kontextu, buď v kontextu routeru nebo v kontextu pro konkrétní místní cíl. V Java I2P se tento kontext nazývá Session Key Manager.
+For this proposal, we define two mechanisms to create a bidirectional protocol -
+"pairing" and "binding".
+These mechanisms provide increased efficiency and security.
 
-Relace nesmí být sdíleny mezi kontexty, protože by to umožnilo korelaci mezi různými místními cíli nebo mezi místním cílem a routerem.
 
-Když daná destinace podporuje jak ElGamal/AES+SessionTags, tak i tento návrh, oba typy relací mohou sdílet kontext. Viz sekce 1c) níže.
+### Session Context
 
-### Vzory handshaku
+As with ElGamal/AES+SessionTags, all inbound and outbound sessions
+must be in a given context, either the router's context or
+the context for a particular local destination.
+In Java I2P, this context is called the Session Key Manager.
 
-Když je u původce (Alice) vytvořena odchozí relace, je vytvořena nová příchozí relace a spárována s odchozí relací, pokud se neočekává odpověď (např. surové datagramy).
+Sessions must not be shared among contexts, as that would
+allow correlation among the various local destinations,
+or between a local destination and a router.
 
-Nová příchozí relace je vždy spárována s novou odchozí relací, pokud není požadována žádná odpověď (např. raw datagramy).
+When a given destination supports both ElGamal/AES+SessionTags
+and this proposal, both types of sessions may share a context.
+See section 1c) below.
 
-Pokud je požadována odpověď a je vázána na vzdálený cíl nebo router, tato nová odchozí relace je vázána na tento cíl nebo router a nahrazuje jakoukoli předchozí odchozí relaci k tomuto cíli nebo routeru.
 
-Párování příchozích a odchozích relací poskytuje obousměrný protokol se schopností ratchetingu DH klíčů.
 
-### Relace
+### Pairing Inbound and Outbound Sessions
 
-K dané destinaci nebo routeru existuje pouze jedna odchozí relace. Může existovat několik aktuálních příchozích relací od dané destinace nebo routeru. Obecně platí, že když je vytvořena nová příchozí relace a na této relaci je přijat provoz (což slouží jako ACK), ostatní budou označeny k vypršení relativně rychle, během minuty nebo tak nějak. Je zkontrolována hodnota předchozích odeslaných zpráv (PN), a pokud v předchozí příchozí relaci nejsou žádné nepřijaté zprávy (v rámci velikosti okna), předchozí relace může být okamžitě smazána.
+When an outbound session is created at the originator (Alice),
+a new inbound session is created and paired with the outbound session,
+unless no reply is expected (e.g. raw datagrams).
 
-Když je u odesílatele (Alice) vytvořena odchozí relace, je svázána se vzdáleným Destination (Bob) a jakákoli spárovaná příchozí relace bude také svázána se vzdáleným Destination. Jak se relace přepínají, zůstávají nadále svázané se vzdáleným Destination.
+A new inbound session is always paired with a new outbound session,
+unless no reply is requested (e.g. raw datagrams).
 
-Když je na příjemci (Bob) vytvořena inbound session, může být navázána na vzdálený Destination (Alice), dle volby Alice. Pokud Alice zahrne informace o navázání (svůj statický klíč) do zprávy New Session, session bude navázána na tento destination a bude vytvořena outbound session navázaná na stejný Destination. Jak se sessions ratchet, zůstávají navázány na vzdálený Destination.
+If a reply is requested and bound to a far-end destination or router,
+that new outbound session is bound to that destination or router,
+and replaces any previous outbound session to that destination or router.
 
-### Kontext relace
+Pairing inbound and outbound sessions provides a bidirectional protocol
+with the capability of ratcheting the DH keys.
 
-Pro běžný případ streamování očekáváme, že Alice a Bob budou protokol používat následovně:
 
-- Alice páruje svou novou odchozí relaci s novou příchozí relací, obě vázané k cílové destinaci na druhém konci (Bob).
-- Alice zahrnuje informace o párování a podpis, a požadavek na odpověď, do
-  zprávy New Session odeslané Bobovi.
-- Bob páruje svou novou příchozí relaci s novou odchozí relací, obě vázané k cílové destinaci na druhém konci (Alice).
-- Bob pošle odpověď (ack) Alici ve spárované relaci, s ratchet na nový DH klíč.
-- Alice provede ratchet na novou odchozí relaci s Bobovým novým klíčem, spárovanou se stávající příchozí relací.
 
-Vázáním příchozí relace na vzdálený Destination a spárováním příchozí relace s odchozí relací vázanou na stejný Destination dosahujeme dvou hlavních výhod:
+### Binding Sessions and Destinations
 
-1) Počáteční odpověď od Boba k Alici používá ephemeral-ephemeral DH
+There is only one outbound session to a given destination or router.
+There may be several current inbound sessions from a given destination or router.
+Generally, when a new inbound session is created, and traffic is received
+on that session (which serves as an ACK), any others will be marked
+to expire relatively quickly, within a minute or so.
+The previous messages sent (PN) value is checked, and if there are no
+unreceived messages (within the window size) in the previous inbound session,
+the previous session may be deleted immediately.
 
-2) Poté, co Alice obdrží Bobovu odpověď a provede ratchet, všechny následující zprávy od Alice k Bobovi používají efemérní-efemérní DH.
 
-### Párování příchozích a odchozích relací
+When an outbound session is created at the originator (Alice),
+it is bound to the far-end Destination (Bob),
+and any paired inbound session will also be bound to the far-end Destination.
+As the sessions ratchet, they continue to be bound to the far-end Destination.
 
-V ElGamal/AES+SessionTags, když je LeaseSet zabalen jako garlic clove, nebo jsou doručeny tagy, odesílající router požaduje ACK. Toto je samostatná garlic clove obsahující DeliveryStatus Message. Pro dodatečnou bezpečnost je DeliveryStatus Message zabalena v Garlic Message. Tento mechanismus je z pohledu protokolu out-of-band.
+When an inbound session is created at the receiver (Bob),
+it may be bound to the far-end Destination (Alice), at Alice's option.
+If Alice includes binding information (her static key) in the New Session message,
+the session will be bound to that destination,
+and a outbound session will be created and bound to same Destination.
+As the sessions ratchet, they continue to be bound to the far-end Destination.
 
-V novém protokolu, jelikož jsou příchozí a odchozí relace spárovány, můžeme mít ACK přímo v pásmu. Není potřeba samostatný clove.
 
-Explicitní ACK je jednoduše zpráva Existing Session bez I2NP bloku. Ve většině případů se však explicitnímu ACK lze vyhnout, protože existuje zpětný provoz. Pro implementace může být žádoucí chvíli počkat (možná sto ms) před odesláním explicitního ACK, aby měla streaming nebo aplikační vrstva čas odpovědět.
+### Benefits of Binding and Pairing
 
-Implementace budou také muset odložit jakékoliv odesílání ACK až po zpracování I2NP bloku, protože Garlic Message může obsahovat Database Store Message s lease setem. Aktuální lease set bude nezbytný pro směrování ACK a cílová destinace na vzdáleném konci (obsažená v lease setu) bude nezbytná pro ověření vazebného statického klíče.
+For the common, streaming case, we expect Alice and Bob to use the protocol as follows:
 
-### Vazba relací a destinací
+- Alice pairs her new outbound session to a new inbound session, both bound to the far-end destination (Bob).
+- Alice includes the binding information and signature, and a reply request, in the
+  New Session message sent to Bob.
+- Bob pairs his new inbound session to a new outbound session, both bound to the far-end destination (Alice).
+- Bob sends a reply (ack) to Alice in the paired session, with a ratchet to a new DH key.
+- Alice ratchets to a new outbound session with Bob's new key, paired to the existing inbound session.
 
-Odchozí relace by měly vždy vypršet před příchozími relacemi. Jakmile odchozí relace vyprší a vytvoří se nová, vytvoří se také nová spárovaná příchozí relace. Pokud existovala stará příchozí relace, bude jí umožněno vypršet.
+By binding an inbound session to a far-end Destination, and pairing the inbound session
+to an outbound session bound to the same Destination, we achieve two major benefits:
 
-### Výhody Bindingu a Párování
+1) The initial reply from Bob to Alice uses ephemeral-ephemeral DH
+
+2) After Alice receives Bob's reply and ratchets, all subsequent messages from Alice to Bob
+use ephemeral-ephemeral DH.
+
+
+### Message ACKs
+
+In ElGamal/AES+SessionTags, when a LeaseSet is bundled as a garlic clove,
+or tags are delivered, the sending router requests an ACK.
+This is a separate garlic clove containing a DeliveryStatus Message.
+For additional security, the DeliveryStatus Message is wrapped in a Garlic Message.
+This mechanism is out-of-band from the perspective of the protocol.
+
+In the new protocol, since the inbound and outbound sessions are paired,
+we can have ACKs in-band. No separate clove is required.
+
+An explicit ACK is simply an Existing Session message with no I2NP block.
+However, in most cases, an explict ACK can be avoided, as there is reverse traffic.
+It may be desirable for implementations to wait a short time (perhaps a hundred ms)
+before sending an explicit ACK, to give the streaming or application layer time to respond.
+
+Implementations will also need to defer any ACK sending until after the
+I2NP block is processed, as the Garlic Message may contain a Database Store Message
+with a lease set. A recent lease set will be necessary to route the ACK,
+and the far-end destination (contained in the lease set) will be necessary to
+verify the binding static key.
+
+
+### Session Timeouts
+
+Outbound sessions should always expire before inbound sessions.
+One an outbound session expires, and a new one is created, a new paired inbound
+session will be created as well. If there was an old inbound session,
+it will be allowed to expire.
+
+
+### Multicast
 
 TBD
 
-### Potvrzení zpráv
 
-Definujeme následující funkce odpovídající použitým kryptografickým stavebním blokům.
+### Definitions
+We define the following functions corresponding to the cryptographic building blocks used.
 
 ZEROLEN
-
     zero-length byte array
 
 CSRNG(n)
-
     n-byte output from a cryptographically-secure random number generator.
 
 H(p, d)
-
     SHA-256 hash function that takes a personalization string p and data d, and
     produces an output of length 32 bytes.
     As defined in [NOISE](https://noiseprotocol.org/noise.html).
@@ -371,7 +523,6 @@ H(p, d)
         H(p, d) := SHA-256(p || d)
 
 MixHash(d)
-
     SHA-256 hash function that takes a previous hash h and new data d,
     and produces an output of length 32 bytes.
     || below means append.
@@ -381,7 +532,6 @@ MixHash(d)
         MixHash(d) := h = SHA-256(h || d)
 
 STREAM
-
     The ChaCha20/Poly1305 AEAD as specified in [RFC-7539](https://tools.ietf.org/html/rfc7539).
     S_KEY_LEN = 32 and S_IV_LEN = 12.
 
@@ -399,7 +549,6 @@ STREAM
         Returns the plaintext.
 
 DH
-
     X25519 public key agreement system. Private keys of 32 bytes, public keys of 32
     bytes, produces outputs of 32 bytes. It has the following
     functions:
@@ -428,7 +577,6 @@ DH
         Generates a shared secret from the given private and public keys.
 
 HKDF(salt, ikm, info, n)
-
     A cryptographic key derivation function which takes some input key material ikm (which
     should have good entropy but is not required to be a uniformly random string), a salt
     of length 32 bytes, and a context-specific 'info' value, and produces an output
@@ -438,7 +586,6 @@ HKDF(salt, ikm, info, n)
     as specified in [RFC-2104](https://tools.ietf.org/html/rfc2104). This means that SALT_LEN is 32 bytes max.
 
 MixKey(d)
-
     Use HKDF() with a previous chainKey and new data d, and
     sets the new chainKey and k.
     As defined in [NOISE](https://noiseprotocol.org/noise.html).
@@ -450,15 +597,23 @@ MixKey(d)
                      k = output[32:63]
 
 
-### Časové limity relace
 
-### Multicast
+### 1) Message format
 
-Garlic Message jak je specifikována v [I2NP](/docs/specs/i2np/) je následující. Jelikož cílem designu je, že zprostředkující uzly nemohou rozlišit novou od staré kryptografie, tento formát se nemůže změnit, i když pole délky je nadbytečné. Formát je zobrazen s úplnou 16-bytovou hlavičkou, ačkoli skutečná hlavička může být v jiném formátu v závislosti na použitém transportu.
 
-Když jsou data dešifrována, obsahují sérii Garlic Cloves a dodatečná data, také známá jako Clove Set.
+### Review of Current Message Format
 
-Podrobnosti a úplnou specifikaci najdete v [I2NP](/docs/specs/i2np/).
+The Garlic Message as specified in [I2NP](/docs/specs/i2np/) is as follows.
+As a design goal is that intermediate hops cannot distinguish new from old crypto,
+this format cannot change, even though the length field is redundant.
+The format is shown with the full 16-byte header, although the
+actual header may be in a different format, depending on the transport used.
+
+When decrypted the data contains a series of Garlic Cloves and additional
+data, also known as a Clove Set.
+
+See [I2NP](/docs/specs/i2np/) for details and a full specification.
+
 
 ```
 
@@ -476,55 +631,98 @@ Podrobnosti a úplnou specifikaci najdete v [I2NP](/docs/specs/i2np/).
   +----+----+----+----+----+----+----+----+
 
 ```
-### Definice
 
-Současný formát zpráv, používaný více než 15 let, je ElGamal/AES+SessionTags. V ElGamal/AES+SessionTags existují dva formáty zpráv:
 
-1) Nová relace: - 514 bajtový ElGamal blok - AES blok (minimálně 128 bajtů, násobek 16)
+### Review of Encrypted Data Format
 
-2) Existující relace: - 32 bajtový Session Tag - AES blok (minimálně 128 bajtů, násobek 16)
+The current message format, used for over 15 years,
+is ElGamal/AES+SessionTags.
+In ElGamal/AES+SessionTags, there are two message formats:
 
-Minimální padding na 128 je implementován v Java I2P, ale není vynucován při příjmu.
+1) New session:
+- 514 byte ElGamal block
+- AES block (128 bytes minimum, multiple of 16)
 
-Tyto zprávy jsou zapouzdřeny v I2NP garlic zprávě, která obsahuje pole délky, takže délka je známa.
+2) Existing session:
+- 32 byte Session Tag
+- AES block (128 bytes minimum, multiple of 16)
 
-Poznamenejte, že není definováno žádné vyplnění na délku, která není násobkem 16, takže New Session je vždy (mod 16 == 2) a Existing Session je vždy (mod 16 == 0). Toto je třeba opravit.
+The minimum padding to 128 is as implemented in Java I2P but is not enforced on reception.
 
-Příjemce se nejprve pokusí vyhledat prvních 32 bajtů jako Session Tag. Pokud je nalezen, dešifruje AES blok. Pokud není nalezen a data jsou dlouhá alespoň (514+16), pokusí se dešifrovat ElGamal blok, a pokud je úspěšný, dešifruje AES blok.
+These messages are encapsulated in a I2NP garlic message, which contains
+a length field, so the length is known.
 
-### 1) Formát zprávy
+Note that there is no padding defined to a non-mod-16 length,
+so the New Session is always (mod 16 == 2),
+and an Existing Session is always (mod 16 == 0).
+We need to fix this.
 
-V Signal Double Ratchet hlavička obsahuje:
+The receiver first attempts to look up the first 32 bytes as a Session Tag.
+If found, he decrypts the AES block.
+If not found, and the data is at least (514+16) long, he attempts to decrypt the ElGamal block,
+and if successful, decrypts the AES block.
 
-- DH: Aktuální veřejný klíč ratchetu
-- PN: Délka zprávy předchozího řetězce
-- N: Číslo zprávy
 
-Signal-ovy "sending chains" jsou zhruba ekvivalentní našim tag setům. Použitím session tagu můžeme většinu z toho eliminovat.
+### New Session Tags and Comparison to Signal
 
-V New Session vkládáme pouze veřejný klíč do nešifrované hlavičky.
+In Signal Double Ratchet, the header contains:
 
-V Existing Session používáme session tag pro záhlaví. Session tag je asociován s aktuálním ratchet veřejným klíčem a číslem zprávy.
+- DH: Current ratchet public key
+- PN: Previous chain message length
+- N: Message Number
 
-V obou případech nové i existující relace jsou PN a N v zašifrovaném těle.
+Signal's "sending chains" are roughly equivalent to our tag sets.
+By using a session tag, we can eliminate most of that.
 
-V Signalu se věci neustále ratchetují. Nový DH veřejný klíč vyžaduje, aby příjemce provedl ratchet a poslal zpět nový veřejný klíč, což také slouží jako potvrzení pro přijatý veřejný klíč. To by pro nás bylo příliš mnoho DH operací. Proto oddělujeme potvrzení přijatého klíče a přenos nového veřejného klíče. Jakákoli zpráva používající session tag vygenerovaný z nového DH veřejného klíče představuje ACK. Nový veřejný klíč přenášíme pouze tehdy, když si přejeme provést rekey.
+In New Session, we put only the public key in the unencrytped header.
 
-Maximální počet zpráv před tím, než se musí DH přepnout, je 65535.
+In Existing Session, we use a session tag for the header.
+The session tag is associated with the current ratchet public key,
+and the message number.
 
-Při doručování session key z něj odvozujeme „Tag Set", místo abychom museli doručovat také session tags. Tag Set může obsahovat až 65536 tagů. Příjemci by však měli implementovat strategii „look-ahead", místo generování všech možných tagů najednou. Generujte maximálně N tagů za posledním správně přijatým tagem. N může být nejvýše 128, ale 32 nebo dokonce méně může být lepší volbou.
+In both new and Existing Session, PN and N are in the encrypted body.
 
-### Přehled současného formátu zpráv
+In Signal, things are constantly ratcheting. A new DH public key requires the
+receiver to ratchet and send a new public key back, which also serves
+as the ack for the received public key.
+This would be far too many DH operations for us.
+So we separate the ack of the received key and the transmission of a new public key.
+Any message using a session tag generated from the new DH public key constitutes an ACK.
+We only transmit a new public key when we wish to rekey.
 
-Nová relace jednorázový veřejný klíč (32 bytů) Šifrovaná data a MAC (zbývající byty)
+The maximum number of messages before the DH must ratchet is 65535.
 
-Zpráva New Session může nebo nemusí obsahovat statický veřejný klíč odesílatele. Pokud je zahrnut, reverzní relace je vázána na tento klíč. Statický klíč by měl být zahrnut, pokud se očekávají odpovědi, tj. pro streaming a odpovídatelné datagramy. Neměl by být zahrnut pro surové datagramy.
+When delivering a session key, we derive the "Tag Set" from it,
+rather than having to deliver session tags as well.
+A Tag Set can be up to 65536 tags.
+However, receivers should implement a "look-ahead" strategy, rather
+than generating all possible tags at once.
+Only generate at most N tags past the last good tag received.
+N might be at most 128, but 32 or even less may be a better choice.
 
-Zpráva New Session je podobná jednosměrnému Noise [NOISE](https://noiseprotocol.org/noise.html) vzoru "N" (pokud se statický klíč neposílá), nebo obousměrnému vzoru "IK" (pokud se statický klíč posílá).
 
-### Přehled formátu šifrovaných dat
 
-Délka je 96 + délka payload. Šifrovaný formát:
+### 1a) New session format
+
+New Session One Time Public key (32 bytes)
+Encrypted data and MAC (remaining bytes)
+
+The New Session message may or may not contain the sender's static public key.
+If it is included, the reverse session is bound to that key.
+The static key should be included if replies are expected,
+i.e. for streaming and repliable datagrams.
+It should not be included for raw datagrams.
+
+The New Session message is similar to the one-way Noise [NOISE](https://noiseprotocol.org/noise.html) pattern
+"N" (if the static key is not sent),
+or the two-way pattern "IK" (if the static key is sent).
+
+
+
+### 1b) New session format (with binding)
+
+Length is 96 + payload length.
+Encrypted format:
 
 ```
 
@@ -571,23 +769,35 @@ Délka je 96 + délka payload. Šifrovaný formát:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Nové Session Tags a porovnání se Signal
 
-Efemérní klíč má 32 bajtů a je kódován pomocí Elligator2. Tento klíč se nikdy znovu nepoužívá; nový klíč se generuje pro každou zprávu, včetně opakovaných přenosů.
 
-### 1a) Nový formát relace
+### New Session Ephemeral Key
 
-Po dešifrování, statický X25519 klíč Alice, 32 bajtů.
+The ephemeral key is 32 bytes, encoded with Elligator2.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
 
-### 1b) Nový formát relace (s vazbou)
+### Static Key
 
-Délka šifrovaných dat je zbytek dat. Délka dešifrovaných dat je o 16 menší než délka šifrovaných dat. Payload musí obsahovat blok DateTime a obvykle bude obsahovat jeden nebo více bloků Garlic Clove. Formát a další požadavky najdete v sekci payload níže.
+When decryptied, Alice's X25519 static key, 32 bytes.
 
-### Nový dočasný klíč relace
 
-Pokud není vyžadována odpověď, žádný statický klíč se neposílá.
+### Payload
 
-Délka je 96 + délka payload. Šifrovaný formát:
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload must contain a DateTime block and will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
+
+
+
+### 1c) New session format (without binding)
+
+If no reply is required, no static key is sent.
+
+
+Length is 96 + payload length.
+Encrypted format:
 
 ```
 
@@ -634,25 +844,43 @@ Délka je 96 + délka payload. Šifrovaný formát:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Statický klíč
 
-Alicin dočasný klíč. Dočasný klíč má 32 bajtů, kódovaný pomocí Elligator2, little endian. Tento klíč se nikdy znovu nepoužije; nový klíč se generuje s každou zprávou, včetně opakovaných přenosů.
+### New Session Ephemeral Key
 
-### Datová část
+Alice's ephemeral key.
+The ephemeral key is 32 bytes, encoded with Elligator2, little endian.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
 
-Sekce Flags neobsahuje nic. Má vždy 32 bajtů, protože musí mít stejnou délku jako statický klíč pro zprávy New Session s vazbou. Bob určuje, zda se jedná o statický klíč nebo sekci flags tím, že testuje, zda jsou všechny 32 bajty nulové.
 
-TODO nějaké flagy potřebné zde?
+### Flags Section Decrypted data
 
-### 1c) Nový formát relace (bez vazby)
+The Flags section contains nothing.
+It is always 32 bytes, because it must be the same length
+as the static key for New Session messages with binding.
+Bob determines whether it's a static key or a flags section
+by testing if the 32 bytes are all zeros.
 
-Délka šifrovaných dat je zbytek dat. Délka dešifrovaných dat je o 16 menší než délka šifrovaných dat. Payload musí obsahovat blok DateTime a obvykle bude obsahovat jeden nebo více bloků Garlic Clove. Formát a další požadavky najdete v sekci payload níže.
+TODO any flags needed here?
 
-### Nový dočasný klíč relace
+### Payload
 
-Pokud se očekává odeslání pouze jedné zprávy, není nutné nastavení relace ani statický klíč.
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload must contain a DateTime block and will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
 
-Délka je 96 + délka payload. Šifrovaný formát:
+
+
+
+### 1d) One-time format (no binding or session)
+
+If only a single message is expected to be sent,
+no session setup or static key is required.
+
+
+Length is 96 + payload length.
+Encrypted format:
 
 ```
 
@@ -699,15 +927,24 @@ Délka je 96 + délka payload. Šifrovaný formát:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Sekce příznaků Dešifrovaná data
 
-Jednorázový klíč má 32 bytů, kódovaný pomocí Elligator2, little endian. Tento klíč se nikdy znovu nepoužívá; nový klíč se generuje s každou zprávou, včetně opětovných přenosů.
 
-### Datová část
+### New Session One Time Key
 
-Sekce Flags neobsahuje nic. Má vždy 32 bajtů, protože musí mít stejnou délku jako statický klíč pro zprávy New Session s vazbou. Bob určí, zda se jedná o statický klíč nebo sekci flags testováním, zda jsou všechny 32 bajty nulové.
+The one time key is 32 bytes, encoded with Elligator2, little endian.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
 
-TODO jsou zde potřeba nějaké příznaky?
+
+### Flags Section Decrypted data
+
+The Flags section contains nothing.
+It is always 32 bytes, because it must be the same length
+as the static key for New Session messages with binding.
+Bob determines whether it's a static key or a flags section
+by testing if the 32 bytes are all zeros.
+
+TODO any flags needed here?
 
 ```
 
@@ -724,17 +961,29 @@ TODO jsou zde potřeba nějaké příznaky?
   zeros:: All zeros, 32 bytes.
 
 ```
-### 1d) Jednorázový formát (bez vazby nebo relace)
 
-Šifrovaná délka je zbytek dat. Dešifrovaná délka je o 16 menší než šifrovaná délka. Payload musí obsahovat blok DateTime a obvykle bude obsahovat jeden nebo více bloků Garlic Clove. Viz sekci payload níže pro formát a další požadavky.
 
-### Nový jednorázový klíč relace
+### Payload
 
-### Sekce příznaků Dešifrovaná data
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload must contain a DateTime block and will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
 
-Toto je standardní [NOISE](https://noiseprotocol.org/noise.html) pro IK s upraveným názvem protokolu. Všimněte si, že používáme stejný inicializátor jak pro vzor IK (vázané relace), tak pro vzor N (nevázané relace).
 
-Název protokolu je modifikován ze dvou důvodů. Za prvé, k označení, že efemerní klíče jsou kódovány pomocí Elligator2, a za druhé, k označení, že MixHash() je volána před druhou zprávou pro zamíchání hodnoty tag.
+
+### 1f) KDFs for New Session Message
+
+### KDF for Initial ChainKey
+
+This is standard [NOISE](https://noiseprotocol.org/noise.html) for IK with a modified protocol name.
+Note that we use the same initializer for both the IK pattern (bound sessions)
+and for N pattern (unbound sessions).
+
+The protocol name is modified for two reasons.
+First, to indicate that the ephemeral keys are encoded with Elligator2,
+and second, to indicate that MixHash() is called before the second message
+to mix in the tag value.
 
 ```
 
@@ -756,7 +1005,9 @@ This is the "e" message pattern:
   // up until here, can all be precalculated by Alice for all outgoing connections
 
 ```
-### Datová část
+
+
+### KDF for Flags/Static Key Section Encrypted Contents
 
 ```
 
@@ -826,7 +1077,10 @@ This is the "e" message pattern:
 
 
 ```
-### 1f) KDF pro New Session Message
+
+
+
+### KDF for Payload Section (with Alice static key)
 
 ```
 
@@ -856,11 +1110,20 @@ This is the "ss" message pattern:
   h = SHA256(h || ciphertext)
 
 ```
-### KDF pro počáteční ChainKey
 
-Všimněte si, že se jedná o Noise "N" vzor, ale používáme stejný "IK" inicializátor jako u vázaných relací.
 
-Zprávy New Session nelze identifikovat jako obsahující nebo neobsahující Alicin statický klíč, dokud není statický klíč dešifrován a zkontrolován, zda neobsahuje samé nuly. Proto musí příjemce použít stavový automat "IK" pro všechny zprávy New Session. Pokud statický klíč obsahuje samé nuly, vzor zprávy "ss" musí být přeskočen.
+### KDF for Payload Section (without Alice static key)
+
+Note that this is a Noise "N" pattern, but we use the same "IK" initializer
+as for bound sessions.
+
+New Session messages can not be identified as containing Alice's static key or not
+until the static key is decrypted and inspected to determine if it contains all zeros.
+Therefore, the receiver must use the "IK" state machine for all
+New Session messages.
+If the static key is all zeros, the "ss" message pattern must be skipped.
+
+
 
 ```
 
@@ -871,13 +1134,22 @@ chainKey = from Flags/Static key section
   ciphertext = ENCRYPT(k, n, payload, ad)
 
 ```
-### KDF pro šifrovaný obsah sekce Flags/Static Key
 
-Jedna nebo více New Session Replies může být odesláno v odpovědi na jedinou New Session zprávu. Každá odpověď je doplněna tagem, který je generován z TagSet pro danou relaci.
 
-Odpověď New Session je ve dvou částech. První část je dokončení Noise IK handshake s předřazeným tagem. Délka první části je 56 bajtů. Druhá část je payload datové fáze. Délka druhé části je 16 + délka payload.
 
-Celková délka je 72 + délka payload. Šifrovaný formát:
+### 1g) New Session Reply format
+
+One or more New Session Replies may be sent in response to a single New Session message.
+Each reply is prepended by a tag, which is generated from a TagSet for the session.
+
+The New Session Reply is in two parts.
+The first part is the completion of the Noise IK handshake with a prepended tag.
+The length of the first part is 56 bytes.
+The second part is the data phase payload.
+The length of the second part is 16 + payload length.
+
+Total length is 72 + payload length.
+Encrypted format:
 
 ```
 
@@ -921,21 +1193,33 @@ Celková délka je 72 + délka payload. Šifrovaný formát:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### KDF pro sekci Payload (se statickým klíčem Alice)
-
-Značka je generována v Session Tags KDF, jak je inicializováno v DH Initialization KDF níže. Toto koreluje odpověď se session. Session Key z DH Initialization se nepoužívá.
-
-### KDF pro sekci Payload (bez statického klíče Alice)
-
-Bobův dočasný klíč. Dočasný klíč má 32 bajtů, kódovaný pomocí Elligator2, little endian. Tento klíč se nikdy nepoužívá opakovaně; nový klíč se generuje s každou zprávou, včetně opětovných přenosů.
-
-### 1g) Formát New Session Reply
-
-Šifrovaná délka je zbývající část dat. Dešifrovaná délka je o 16 menší než šifrovaná délka. Payload obvykle obsahuje jeden nebo více bloků Garlic Clove. Formát a další požadavky viz sekce payload níže.
 
 ### Session Tag
+The tag is generated in the Session Tags KDF, as initialized
+in the DH Initialization KDF below.
+This correlates the reply to the session.
+The Session Key from the DH Initialization is not used.
 
-Jeden nebo více tagů je vytvořeno z TagSet, který je inicializován pomocí níže uvedeného KDF, s použitím chainKey ze zprávy New Session.
+
+### New Session Reply Ephemeral Key
+
+Bob's ephemeral key.
+The ephemeral key is 32 bytes, encoded with Elligator2, little endian.
+This key is never reused; a new key is generated with
+each message, including retransmissions.
+
+
+### Payload
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+Payload will usually contain one or more Garlic Clove blocks.
+See the payload section below for format and additional requirements.
+
+
+### KDF for Reply TagSet
+
+One or more tags are created from the TagSet, which is initialized using
+the KDF below, using the chainKey from the New Session message.
 
 ```
 
@@ -944,7 +1228,9 @@ Jeden nebo více tagů je vytvořeno z TagSet, který je inicializován pomocí 
   tagset_nsr = DH_INITIALIZE(chainKey, tagsetKey)
 
 ```
-### Odpověď na novou relaci - efemérní klíč
+
+
+### KDF for Reply Key Section Encrypted Contents
 
 ```
 
@@ -1019,9 +1305,15 @@ Jeden nebo více tagů je vytvořeno z TagSet, který je inicializován pomocí 
   chainKey is used in the ratchet below.
 
 ```
-### Datová část
 
-Toto je podobné první zprávě Existing Session po rozdělení, ale bez samostatného tagu. Navíc používáme hash z výše uvedeného k navázání payloadu na zprávu NSR.
+
+### KDF for Payload Section Encrypted Contents
+
+This is like the first Existing Session message,
+post-split, but without a separate tag.
+Additionally, we use the hash from above to bind the
+payload to the NSR message.
+
 
 ```
 
@@ -1038,25 +1330,34 @@ Toto je podobné první zprávě Existing Session po rozdělení, ale bez samost
   ad = h
   ciphertext = ENCRYPT(k, n, payload, ad)
 ```
-### KDF pro Reply TagSet
 
-V odpovědi může být odesláno více NSR zpráv, každá s jedinečnými dočasnými klíči, v závislosti na velikosti odpovědi.
 
-Alice a Bob jsou povinni používat nové dočasné klíče pro každou NS a NSR zprávu.
+### Notes
 
-Alice musí obdržet jednu z Bobových NSR zpráv před odesláním zpráv Existing Session (ES), a Bob musí obdržet ES zprávu od Alice před odesláním ES zpráv.
+Multiple NSR messages may be sent in reply, each with unique ephemeral keys, depending on the size of the response.
 
-``chainKey`` a ``k`` z Bob's NSR Payload Section se používají jako vstupy pro počáteční ES DH Ratchets (oba směry, viz DH Ratchet KDF).
+Alice and Bob are required to use new ephemeral keys for every NS and NSR message.
 
-Bob musí zachovat pouze Existující relace pro ES zprávy přijaté od Alice. Všechny ostatní vytvořené příchozí a odchozí relace (pro více NSR) by měly být zničeny okamžitě po přijetí první ES zprávy od Alice pro danou relaci.
+Alice must receive one of Bob's NSR messages before sending Existing Session (ES) messages,
+and Bob must receive an ES message from Alice before sending ES messages.
 
-### KDF pro šifrovaný obsah sekce Reply Key
+The ``chainKey`` and ``k`` from Bob's NSR Payload Section are used
+as inputs for the initial ES DH Ratchets (both directions, see DH Ratchet KDF).
 
-Session tag (8 bajtů) Šifrovaná data a MAC (viz sekce 3 níže)
+Bob must only retain Existing Sessions for the ES messages received from Alice.
+Any other created inbound and outbound sessions (for multiple NSRs) should be
+destroyed immediately after receiving Alice's first ES message for a given session.
 
-### KDF pro šifrovaný obsah sekce Payload
 
-Šifrované:
+
+### 1h) Existing session format
+
+Session tag (8 bytes)
+Encrypted data and MAC (see section 3 below)
+
+
+### Format
+Encrypted:
 
 ```
 
@@ -1083,9 +1384,13 @@ Session tag (8 bajtů) Šifrovaná data a MAC (viz sekce 3 níže)
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Poznámky
 
-Šifrovaná délka je zbývající část dat. Dešifrovaná délka je o 16 menší než šifrovaná délka. Viz sekce payload níže pro formát a požadavky.
+
+### Payload
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+See the payload section below for format and requirements.
+
 
 KDF
 
@@ -1098,25 +1403,44 @@ See AEAD section below.
   ad = The session tag, 8 bytes
   ciphertext = ENCRYPT(k, n, payload, ad)
 ```
-### 1h) Formát existující relace
 
-Formát: 32-bajtové veřejné a soukromé klíče, little-endian.
 
-Zdůvodnění: Používá se v [NTCP2](/docs/specs/ntcp2/).
 
-### Formát
+### 2) ECIES-X25519
 
-Ve standardních Noise handshake postupech začínají počáteční handshake zprávy v každém směru s efemérními klíči, které jsou přenášeny v otevřeném textu. Jelikož platné X25519 klíče jsou rozlišitelné od náhodných dat, může útočník typu man-in-the-middle rozlišit tyto zprávy od zpráv Existing Session, které začínají náhodnými session tagy. V [NTCP2](/docs/specs/ntcp2/) ([Proposal 111](/proposals/111-ntcp-2/)) jsme použili nízkonákladovou XOR funkci využívající out-of-band statický klíč k zamaskování klíče. Avšak model hrozeb je zde odlišný; nechceme umožnit žádnému MitM používat jakékoli prostředky k potvrzení cíle provozu nebo k rozlišení počátečních handshake zpráv od zpráv Existing Session.
 
-Proto se používá [Elligator2](https://elligator.cr.yp.to/) k transformaci dočasných klíčů ve zprávách New Session a New Session Reply tak, aby byly nerozeznatelné od uniformních náhodných řetězců.
+Format: 32-byte public and private keys, little-endian.
 
-### Datová část
+Justification: Used in [NTCP2](/docs/specs/ntcp2/).
 
-32bajtové veřejné a soukromé klíče. Kódované klíče jsou ve formátu little endian.
 
-Jak je definováno v [Elligator2](https://elligator.cr.yp.to/), zakódované klíče jsou nerozeznatelné od 254 náhodných bitů. Potřebujeme 256 náhodných bitů (32 bajtů). Kódování a dekódování jsou proto definovány následovně:
 
-Kódování:
+### 2a) Elligator2
+
+In standard Noise handshakes, the initial handshake messages in each direction start with
+ephemeral keys that are transmitted in cleartext.
+As valid X25519 keys are distinguishable from random, a man-in-the-middle may distinguish
+these messages from Existing Session messages that start with random session tags.
+In [NTCP2](/docs/specs/ntcp2/) ([Proposal 111](/proposals/111-ntcp-2/)), we used a low-overhead XOR function using the out-of-band static key to obfuscate
+the key. However, the threat model here is different; we do not want to allow any MitM to
+use any means to confirm the destination of the traffic, or to distinguish
+the initial handshake messages from Existing Session messages.
+
+Therefore, [Elligator2](https://elligator.cr.yp.to/) is used to transform the ephemeral keys in the New Session and New Session Reply messages
+so that they are indistinguishable from uniform random strings.
+
+
+
+### Format
+
+32-byte public and private keys.
+Encoded keys are little endian.
+
+As defined in [Elligator2](https://elligator.cr.yp.to/), the encoded keys are indistinguishable from 254 random bits.
+We require 256 random bits (32 bytes). Therefore, the encoding and decoding are
+defined as follows:
+
+Encoding:
 
 ```
 
@@ -1128,7 +1452,9 @@ ENCODE_ELG2() Definition
   randomByte = CSRNG(1)
   encodedKey[31] |= (randomByte & 0xc0)
 ```
-Dekódování:
+
+
+Decoding:
 
 ```
 
@@ -1139,27 +1465,48 @@ DECODE_ELG2() Definition
   // Decode as defined in Elligator2 specification
   pubkey = decode(encodedKey)
 ```
-### 2) ECIES-X25519
 
-Vyžadováno k zabránění klasifikaci provozu ze strany OBEP a IBGW.
 
-### 2a) Elligator2
 
-Elligator2 zdvojnásobuje průměrný čas generování klíčů, protože polovina soukromých klíčů má za následek veřejné klíče, které nejsou vhodné pro kódování pomocí Elligator2. Také čas generování klíčů je neomezený s exponenciálním rozdělením, protože generátor musí pokračovat v opakování, dokud není nalezen vhodný pár klíčů.
 
-Tato režie může být řízena předem prováděným generováním klíčů v samostatném vláknu, aby se udržel fond vhodných klíčů.
+### Justification
 
-Generátor provádí funkci ENCODE_ELG2() k určení vhodnosti. Proto by měl generátor uložit výsledek ENCODE_ELG2(), aby nemusel být znovu vypočítáván.
+Required to prevent the OBEP and IBGW from classifying traffic.
 
-Navíc mohou být nevhodné klíče přidány do fondu klíčů používaných pro [NTCP2](/docs/specs/ntcp2/), kde se Elligator2 nepoužívá. Bezpečnostní problémy tohoto postupu jsou zatím neurčené.
 
-### Formát
+### Notes
 
-AEAD používající ChaCha20 a Poly1305, stejně jako v [NTCP2](/docs/specs/ntcp2/). To odpovídá [RFC-7539](https://tools.ietf.org/html/rfc7539), které se také podobně používá v TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
+Elligator2 doubles average the key generation time, as half the private keys
+result in public keys that are unsuitable for encoding with Elligator2.
+Also, the key generation time is unbounded with an exponential distribution,
+as the generator must keep retrying utnil a suitable key pair is found.
 
-### Odůvodnění
+This overhead may be managed by doing key generation in advance,
+in a separate thread, to keep a pool of suitable keys.
 
-Vstupy do funkcí šifrování/dešifrování pro AEAD blok ve zprávě New Session:
+The generator does the ENCODE_ELG2() function to determine suitability.
+Therefore, the generator should store the result of ENCODE_ELG2()
+so it does not have to be calculated again.
+
+Additionally, the unsuitable keys may be added to the pool of keys
+used for [NTCP2](/docs/specs/ntcp2/), where Elligator2 is not used.
+The security issues of doing so is TBD.
+
+
+
+
+### 3) AEAD (ChaChaPoly)
+
+AEAD using ChaCha20 and Poly1305, same as in [NTCP2](/docs/specs/ntcp2/).
+This corresponds to [RFC-7539](https://tools.ietf.org/html/rfc7539), which is also
+used similarly in TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
+
+
+
+### New Session and New Session Reply Inputs
+
+Inputs to the encryption/decryption functions
+for an AEAD block in a New Session message:
 
 ```
 
@@ -1175,9 +1522,12 @@ k :: 32 byte cipher key
   data :: Plaintext data, 0 or more bytes
 
 ```
-### Poznámky
 
-Vstupy do funkcí šifrování/dešifrování pro AEAD blok ve zprávě Existing Session:
+
+### Existing Session Inputs
+
+Inputs to the encryption/decryption functions
+for an AEAD block in an Existing Session message:
 
 ```
 
@@ -1200,9 +1550,11 @@ k :: 32 byte session key
   data :: Plaintext data, 0 or more bytes
 
 ```
-### 3) AEAD (ChaChaPoly)
 
-Výstup šifrovací funkce, vstup dešifrovací funkce:
+
+### Encrypted Format
+
+Output of the encryption function, input to the decryption function:
 
 ```
 
@@ -1223,52 +1575,73 @@ Výstup šifrovací funkce, vstup dešifrovací funkce:
   MAC :: Poly1305 message authentication code, 16 bytes
 
 ```
-### Vstupy New Session a New Session Reply
 
-- Jelikož ChaCha20 je proudová šifra, plaintexty nemusí být doplňovány.
-  Dodatečné bajty keystreamu jsou zahozeny.
+### Notes
+- Since ChaCha20 is a stream cipher, plaintexts need not be padded.
+  Additional keystream bytes are discarded.
 
-- Klíč pro šifru (256 bitů) je dohodnut prostřednictvím SHA256 KDF.
-  Podrobnosti KDF pro každou zprávu jsou v oddílech níže.
+- The key for the cipher (256 bits) is agreed upon by means of the SHA256 KDF.
+  The details of the KDF for each message are in separate sections below.
 
-- ChaChaPoly rámce mají známou velikost, protože jsou zapouzdřeny v I2NP datové zprávě.
+- ChaChaPoly frames are of known size as they are encapsulated in the I2NP data message.
 
-- Pro všechny zprávy
-  se padding nachází uvnitř autentifikovaného
-  datového rámce.
+- For all messages,
+  padding is inside the authenticated
+  data frame.
 
-### Vstupy existující relace
 
-Všechna přijatá data, která neprošla AEAD ověřením, musí být zahozena. Žádná odpověď není vrácena.
+### AEAD Error Handling
 
-### Šifrovaný formát
+All received data that fails the AEAD verification must be discarded.
+No response is returned.
 
-Používá se v [NTCP2](/docs/specs/ntcp2/).
 
-### Poznámky
+### Justification
 
-Stále používáme session tags, jako předtím, ale používáme ratchets k jejich generování. Session tags také měly možnost rekey, kterou jsme nikdy neimplementovali. Takže je to jako double ratchet, ale ten druhý jsme nikdy neudělali.
+Used in [NTCP2](/docs/specs/ntcp2/).
 
-Zde definujeme něco podobného jako Signal's Double Ratchet. Značky relace jsou generovány deterministicky a identicky na straně příjemce i odesílatele.
 
-Použitím symetrického klíče/tag ratchet eliminujeme využití paměti pro ukládání session tagů na straně odesílatele. Také eliminujeme spotřebu šířky pásma při odesílání sad tagů. Využití na straně příjemce je stále významné, ale můžeme ho dále snížit, protože zmenšíme session tag z 32 bajtů na 8 bajtů.
 
-Nepoužíváme šifrování hlaviček jak je specifikováno (a volitelné) v Signal, místo toho používáme session tags.
+### 4) Ratchets
 
-Použitím DH ratchet dosahujeme forward secrecy, která nikdy nebyla implementována v ElGamal/AES+SessionTags.
+We still use session tags, as before, but we use ratchets to generate them.
+Session tags also had a rekey option that we never implemented.
+So it's like a double ratchet but we never did the second one.
 
-Poznámka: Jednorázový veřejný klíč nové relace není součástí ratchetu, jeho jedinou funkcí je zašifrovat Alicein počáteční DH ratchet klíč.
+Here we define something similar to Signal's Double Ratchet.
+The session tags are generated deterministically and identically on
+the receiver and sender sides.
 
-### Zpracování chyb AEAD
+By using a symmetric key/tag ratchet, we eliminate memory usage to store session tags on the sender side.
+We also eliminate the bandwidth consumption of sending tag sets.
+Receiver side usage is still significant, but we can reduce it further
+as we will shrink the session tag from 32 bytes to 8 bytes.
 
-Double Ratchet zpracovává ztracené nebo neuspořádané zprávy tak, že do hlavičky každé zprávy zahrnuje značku. Příjemce vyhledá index značky, což je číslo zprávy N. Pokud zpráva obsahuje blok Message Number s hodnotou PN, příjemce může smazat všechny značky vyšší než tato hodnota v předchozí sadě značek, přičemž si ponechá přeskočené značky z předchozí sady značek pro případ, že přeskočené zprávy dorazí později.
+We do not use header encryption as specified (and optional) in Signal,
+we use session tags instead.
 
-### Odůvodnění
+By using a DH ratchet, we acheive forward secrecy, which was never implemented
+in ElGamal/AES+SessionTags.
 
-Definujeme následující datové struktury a funkce pro implementaci těchto ratchetů.
+Note: The New Session one-time public key is not part of the ratchet, its sole function
+is to encrypt Alice's initial DH ratchet key.
+
+
+### Message Numbers
+
+The Double Ratchet handles lost or out-of-order messages by including in each message header
+a tag. The receiver looks up the index of the tag, this is the message number N.
+If the message contains a Message Number block with a PN value,
+the recipient can delete any tags higher than that value in the previous tag set,
+while retaining skipped tags
+from the previous tag set in case the skipped messages arrive later.
+
+
+### Sample Implementation
+
+We define the following data structures and functions to implement these ratchets.
 
 TAGSET_ENTRY
-
     A single entry in a TAGSET.
 
     INDEX
@@ -1281,7 +1654,6 @@ TAGSET_ENTRY
         A symmetric key, never goes on the wire, 32 bytes
 
 TAGSET
-
     A collection of TAGSET_ENTRIES.
 
     CREATE(key, n)
@@ -1339,65 +1711,119 @@ TAGSET
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-### 4) Západky
 
-Ratchets, ale ne zdaleka tak rychle jako Signal. Oddělujeme potvrzení přijatého klíče od generování nového klíče. V typickém použití Alice a Bob každý provede ratchet (dvakrát) okamžitě v nové relaci, ale poté již ratchet neprovedou znovu.
 
-Poznámka: ratchet je pro jeden směr a generuje řetězec ratchet pro New Session tag / klíč zprávy pro daný směr. Pro generování klíčů pro oba směry musíte provést ratchet dvakrát.
+### 4a) DH Ratchet
 
-Ratchet se provádí pokaždé, když vygenerujete a odešlete nový klíč. Ratchet se provádí pokaždé, když obdržíte nový klíč.
+Ratchets but not nearly as fast as Signal does.
+We separate the ack of the received key from generating the new key.
+In typical usage, Alice and Bob will each ratchet (twice) immediately in a New Session,
+but will not ratchet again.
 
-Alice provede jeden ratchet při vytváření nevázané odchozí relace, nevytváří příchozí relaci (nevázaná je bez možnosti odpovědi).
+Note that a ratchet is for a single direction, and generates a New Session tag / message key ratchet chain for that direction.
+To generate keys for both directions, you have to ratchet twice.
 
-Bob provede jednu rotaci ratchet při vytváření nevázané příchozí relace a nevytváří odpovídající odchozí relaci (nevázaná je neoddpověditelná).
+You ratchet every time you generate and send a new key.
+You ratchet every time you receive a new key.
 
-Alice pokračuje v odesílání zpráv New Session (NS) Bobovi, dokud neobdrží jednu z Bobových zpráv New Session Reply (NSR). Poté použije výsledky KDF z Payload Section NSR jako vstupy pro session ratchets (viz DH Ratchet KDF) a začne odesílat zprávy Existing Session (ES).
+Alice ratchets once when creating an unbound outbound session, she does not create an inbound session
+(unbound is non-repliable).
 
-Pro každou přijatou NS zprávu vytvoří Bob novou příchozí relaci, přičemž použije výsledky KDF z části Payload odpovědi jako vstupy pro nový příchozí a odchozí ES DH Ratchet.
+Bob ratchets once when creating an unbound inbound session, and does not create a corresponding outbound session
+(unbound is non-repliable).
 
-Pro každou vyžadovanou odpověď pošle Bob Alici NSR zprávu s odpovědí v datové části. Je vyžadováno, aby Bob použil nové efemérní klíče pro každou NSR.
+Alice continues sending New Session (NS) messages to Bob until receiving one of Bob's New Session Reply (NSR) messages.
+She then uses the NSR's Payload Section KDF results as inputs for the session ratchets (see DH Ratchet KDF),
+and begins sending Existing Session (ES) messages.
 
-Bob musí obdržet ES zprávu od Alice na jedné z příchozích relací, před vytvořením a odesláním ES zpráv na odpovídající odchozí relaci.
+For each NS message received, Bob creates a new inbound session, using the KDF results
+of the reply Payload Section for inputs to the new inbound and outbound ES DH Ratchet.
 
-Alice by měla použít časovač pro příjem NSR zprávy od Boba. Pokud časovač vyprší, relace by měla být odstraněna.
+For each reply required, Bob sends Alice a NSR message with the reply in the payload.
+It is required Bob use new ephemeral keys for every NSR.
 
-Aby se předešlo KCI a/nebo útoku vyčerpáním zdrojů, kde útočník zahazuje Bobovy NSR odpovědi, aby Alice nadále posílala NS zprávy, Alice by se měla vyhnout zahajování nových relací s Bobem po určitém počtu opakování kvůli vypršení časovače.
+Bob must receive an ES message from Alice on one of the inbound sessions, before creating and sending
+ES messages on the corresponding outbound session.
 
-Alice a Bob každý provádí DH ratchet pro každý přijatý blok NextKey.
+Alice should use a timer for receiving a NSR message from Bob. If the timer expires,
+the session should be removed.
 
-Alice a Bob vygenerují nové tag sety a dva symetrické klíče po každém DH ratchet. Pro každou novou ES zprávu v daném směru Alice a Bob posunou session tag a symetrické klíčové ratchety.
+To avoid a KCI and/or resource exhaustion attack, where an attacker drops Bob's NSR replies to keep Alice sending NS messages,
+Alice should avoid starting New Sessions to Bob after a certain number of retries due to timer expiration.
 
-Frekvence DH ratchetů po počátečním handshaku závisí na implementaci. Zatímco protokol stanovuje limit 65535 zpráv před tím, než je vyžadován ratchet, častější ratcheting (založený na počtu zpráv, uběhlém čase nebo obojím) může poskytovat dodatečnou bezpečnost.
+Alice and Bob each
+do a DH ratchet for every NextKey block received.
 
-Po finálním handshake KDF na vázaných relacích musí Bob a Alice spustit funkci Noise Split() na výsledném CipherState, aby vytvořili nezávislé symetrické klíče a klíče řetězce tagů pro příchozí a odchozí relace.
+Alice and Bob each generate new tag setstchets and two symmetric keys ratchets after each
+DH ratchet. For each new ES message in a given direction, Alice and Bob advance the session
+tag and symmtric key ratchets.
+
+The frequency of DH ratchets after the initial handshake is implementation-dependent.
+While the protocol places a limit of 65535 messages before a ratchet is required,
+more frequent ratcheting (based on message count, elapsed time, or both)
+may provide additional security.
+
+After the final handshake KDF on bound sessions, Bob and Alice must run the Noise Split() function on the
+resulting CipherState to create independent symmetric and tag chain keys for inbound and outbound sessions.
+
 
 #### KEY AND TAG SET IDS
 
-Čísla ID klíčů a tag setů se používají k identifikaci klíčů a tag setů. ID klíčů se používají v blocích NextKey k identifikaci odeslaného nebo použitého klíče. ID tag setů se používají (společně s číslem zprávy) v blocích ACK k identifikaci potvrzované zprávy. ID klíčů i tag setů se vztahují k tag setům pro jeden směr. Čísla ID klíčů a tag setů musí být sekvenční.
+Key and tag set ID numbers are used to identify keys and tag sets.
+Key IDs are used in NextKey blocks to identify the key sent or used.
+Tag set IDs are used (with the message number) in ACK blocks to identify the message being acked.
+Both key and tag set IDs apply to the tag sets for a single direction.
+Key and tag set ID numbers must be sequential.
 
-V prvních sadách tagů použitých pro relaci v každém směru je ID sady tagů 0. Nebyly odeslány žádné bloky NextKey, takže neexistují žádné ID klíčů.
+In the first tag sets used for a session in each direction, the tag set ID is 0.
+No NextKey blocks have been sent, so there are no key IDs.
 
-Pro začátek DH ratchet odešle odesílatel nový NextKey blok s key ID 0. Příjemce odpoví novým NextKey blokem s key ID 0. Odesílatel pak začne používat novou sadu tagů s tag set ID 1.
+To begin a DH ratchet, the sender transmits a new NextKey block with a key ID of 0.
+The receiver replies with a new NextKey block with a key ID of 0.
+The sender then starts using a new tag set with a tag set ID of 1.
 
-Následující sady tagů jsou generovány podobně. Pro všechny sady tagů použité po výměnách NextKey je číslo sady tagů (1 + Alice's key ID + Bob's key ID).
+Subsequent tag sets are generated similarly.
+For all tag sets used after NextKey exchanges, the tag set number is (1 + Alice's key ID + Bob's key ID).
 
-ID klíčů a tag setů začínají na 0 a postupně se zvyšují. Maximální ID tag setu je 65535. Maximální ID klíče je 32767. Když je tag set téměř vyčerpán, odesílatel tag setu musí iniciovat výměnu NextKey. Když je tag set 65535 téměř vyčerpán, odesílatel tag setu musí iniciovat novou relaci odesláním zprávy New Session.
+Key and tag set IDs start at 0 and increment sequentially.
+The maximum tag set ID is 65535.
+The maximum key ID is 32767.
+When a tag set is almost exhausted, the tag set sender must initiate a NextKey exchange.
+When tag set 65535 is almost exhausted, the tag set sender must initiate a new session
+by sending a New Session message.
 
-S maximální velikostí zprávy pro streaming 1730 a za předpokladu žádných opětovných přenosů je teoretické maximum přenosu dat pomocí jediné sady tagů 1730 * 65536 ~= 108 MB. Skutečné maximum bude nižší kvůli opětovným přenosům.
+With a streaming maximum message size of 1730, and assuming no retransmissions,
+the theoretical maximum data transfer using a single tag set is 1730 * 65536 ~= 108 MB.
+The actual maximum will be lower due to retransmissions.
 
-Teoretické maximum přenosu dat se všemi 65536 dostupnými sadami tagů, předtím než by musela být relace zahozena a nahrazena, je 64K * 108 MB ~= 6,9 TB.
+The theoretical maximum data transfer with all 65536 available tag sets, before
+the session would have to be discarded and replaced,
+is 64K * 108 MB ~= 6.9 TB.
+
+
 
 #### DH RATCHET MESSAGE FLOW
 
-Další výměna klíčů pro sadu tagů musí být iniciována odesílatelem těchto tagů (vlastníkem odchozí sady tagů). Příjemce (vlastník příchozí sady tagů) odpoví. Pro typický HTTP GET provoz na aplikační vrstvě bude Bob posílat více zpráv a bude ratchet jako první tím, že iniciuje výměnu klíčů; diagram níže to ukazuje. Když Alice provede ratchet, stejná věc se stane obráceně.
+The next key exchange for a tag set must be initiated by the
+sender of those tags (the owner of the outbound tag set).
+The receiver (owner of the inbound tag set) will respond.
+For a typical HTTP GET traffic at the application layer, Bob will send more messages and will ratchet first
+by initiating the key exchange; the diagram below shows that.
+When Alice ratchets, the same thing happens in reverse.
 
-První sada tagů použitá po NS/NSR handshake je sada tagů 0. Když je sada tagů 0 téměř vyčerpána, musí být v obou směrech vyměněny nové klíče pro vytvoření sady tagů 1. Poté je nový klíč odesílán pouze v jednom směru.
+The first tag set used after the NS/NSR handshake is tag set 0.
+When tag set 0 is almost exhausted, new keys must be exchanged in both directions to create tag set 1.
+After that, a new key is only sent in one direction.
 
-Pro vytvoření sady tagů 2 odesílá odesílatel tagů nový klíč a příjemce tagů odesílá ID svého starého klíče jako potvrzení. Obě strany provedou DH.
+To create tag set 2, the tag sender sends a new key and the tag receiver sends the ID of his old key as an acknowledgement.
+Both sides do a DH.
 
-Pro vytvoření sady tagů 3 odešle odesílatel tagu ID svého starého klíče a požádá příjemce tagu o nový klíč. Obě strany provádějí DH.
+To create tag set 3, the tag sender sends the ID of his old key and requests a new key from the tag receiver.
+Both sides do a DH.
 
-Následující sady tagů jsou generovány stejně jako sady tagů 2 a 3. Číslo sady tagů je (1 + ID klíče odesílatele + ID klíče příjemce).
+Subsequent tag sets are generated as for tag sets 2 and 3.
+The tag set number is (1 + sender key id + receiver key id).
+
 
 ```
 
@@ -1454,7 +1880,9 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
+
                    ... use tag set #3 ...
+
 
 
        After tag set 3, repeat the above
@@ -1468,11 +1896,18 @@ Tag Sender                    Tag Receiver
        to the receiver. The receiver sends a new reverse key to the sender.
 
 ```
-Po dokončení DH ratchet pro odchozí tagset a vytvoření nového odchozího tagsetu by měl být okamžitě použit a starý odchozí tagset může být smazán.
 
-Po dokončení DH ratchet pro příchozí tagset a vytvoření nového příchozího tagset by měl příjemce naslouchat tagům v obou tagsetech a smazat starý tagset po krátké době, přibližně 3 minuty.
+After the DH ratchet is complete for an outbound tagset, and a new outbound tagset is created,
+it should be used immediately, and the old outbound tagset may be deleted.
 
-Přehled postupu sady tagů a ID klíčů je v tabulce níže. * označuje, že je vygenerován nový klíč.
+After the DH ratchet is complete for an inbound tagset, and a new inbound tagset is created,
+the receiver should listen for tags in both tagsets, and delete the old tagset
+after a short time, about 3 minutes.
+
+
+Summary of tag set and key ID progression is in the table below.
+* indicates that a new key is generated.
+
 
 | New Tag Set ID | Sender key ID | Rcvr key ID |
 |----------------|---------------|-------------|
@@ -1485,13 +1920,24 @@ Přehled postupu sady tagů a ID klíčů je v tabulce níže. * označuje, že 
 | ...            | ...           | ...         |
 | 65534          | 32767 *       | 32766       |
 | 65535          | 32767         | 32767 *     |
-Čísla ID klíčů a sad tagů musí být sekvenční.
+
+
+Key and tag set ID numbers must be sequential.
+
 
 #### DH INITIALIZATION KDF
 
-Toto je definice DH_INITIALIZE(rootKey, k) pro jeden směr. Vytváří tagset a "další root key", který se použije pro následný DH ratchet v případě potřeby.
+This is the definition of DH_INITIALIZE(rootKey, k)
+for a single direction. It creates a tagset, and a
+"next root key" to be used for a subsequent DH ratchet if necessary.
 
-Používáme DH inicializaci na třech místech. Zaprvé ji používáme k vygenerování sady tagů pro New Session Replies. Zadruhé ji používáme k vygenerování dvou sad tagů, jedné pro každý směr, pro použití ve zprávách Existing Session. Nakonec ji používáme po DH Ratchet k vygenerování nové sady tagů v jednom směru pro další zprávy Existing Session.
+We use DH initialization in three places. First, we use it
+to generate a tag set for the New Session Replies.
+Second, we use it to generate two tag sets, one for each direction,
+for use in Existing Session messages.
+Lastly, we use it after a DH Ratchet to generate a new tag set
+in a single direction for additional Existing Session messages.
+
 
 ```
 
@@ -1515,9 +1961,12 @@ Inputs:
   symmKey_ck = keydata[32:63]
 
 ```
+
+
 #### DH RATCHET KDF
 
-Toto se používá po výměně nových DH klíčů v NextKey blocích, před vyčerpáním tagset.
+This is used after new DH keys are exchanged in NextKey blocks,
+before a tagset is exhausted.
 
 ```
 
@@ -1538,17 +1987,34 @@ Toto se používá po výměně nových DH klíčů v NextKey blocích, před vy
   newTagSet = DH_INITIALIZE(rootKey, tagsetKey)
 
 ```
-### Čísla zpráv
 
-Ratchets pro každou zprávu, stejně jako v Signal. Ratchet session tagu je synchronizován s ratchetem symetrického klíče, ale ratchet klíče příjemce může „zaostávat" kvůli úspoře paměti.
 
-Transmitter provede ratchet jednou pro každou odeslanou zprávu. Nemusí být uloženy žádné další tagy. Transmitter musí také udržovat čítač pro 'N', číslo zprávy ve stávajícím řetězci. Hodnota 'N' je zahrnuta v odeslané zprávě. Viz definice bloku Message Number.
 
-Příjemce musí posunout ratchet dopředu o maximální velikost okna a uložit tagy do "sady tagů", která je asociována se session. Jakmile je přijat, uložený tag může být zahozen, a pokud nejsou žádné předchozí nepřijaté tagy, okno může být posunuto. Příjemce by měl udržovat hodnotu 'N' asociovanou s každým session tagem a kontrolovat, že číslo v odeslané zprávě odpovídá této hodnotě. Viz definice bloku Message Number.
+### 4b) Session Tag Ratchet
+
+Ratchets for every message, as in Signal.
+The session tag ratchet is synchronized with the symmetric key ratchet,
+but the receiver key ratchet may "lag behind" to save memory.
+
+Transmitter ratchets once for each message transmitted.
+No additional tags must be stored.
+The transmitter must also keep a counter for 'N', the message number
+of the message in the current chain. The 'N' value is included
+in the sent message.
+See the Message Number block definition.
+
+Receiver must ratchet ahead by the max window size and store the tags in a "tag set",
+which is associated with the session.
+Once received, the stored tag may be discarded, and if there are no previous
+unreceived tags, the window may be advanced.
+The receiver should keep the 'N' value associated with each session tag,
+and check that the number in the sent message matches this value.
+See the Message Number block definition.
+
 
 #### KDF
 
-Toto je definice RATCHET_TAG().
+This is the definition of RATCHET_TAG().
 
 ```
 
@@ -1592,19 +2058,33 @@ Inputs:
   tag_n = keydata_n[32:39]
 
 ```
-### Ukázková implementace
 
-Ratchets pro každou zprávu, jako v aplikaci Signal. Každý symetrický klíč má přiřazené číslo zprávy a session tag. Ratchet session klíče je synchronizován s ratchetem symetrického tagu, ale ratchet klíče příjemce může "zaostávat" kvůli úspoře paměti.
 
-Transmitter se posune jednou pro každou odeslanou zprávu. Není nutné ukládat žádné další klíče.
+### 4c) Symmetric Key Ratchet
 
-Když příjemce obdrží session tag, pokud ještě neposunul symetrický key ratchet dopředu k přidruženému klíči, musí se "dohnat" k přidruženému klíči. Příjemce pravděpodobně uloží do cache klíče pro všechny předchozí tagy, které ještě nebyly přijaty. Po přijetí může být uložený klíč zahozen, a pokud neexistují žádné předchozí nepřijaté tagy, může být okno posunuto dopředu.
+Ratchets for every message, as in Signal.
+Each symmetric key has an associated message number and session tag.
+The session key ratchet is synchronized with the symmetric tag ratchet,
+but the receiver key ratchet may "lag behind" to save memory.
 
-Pro efektivitu jsou session tag a symetrické klíčové ratchety oddělené, takže session tag ratchet může běžet před symetrickým klíčovým ratchetem. To také poskytuje dodatečnou bezpečnost, protože session tagy jdou ven po drátě.
+Transmitter ratchets once for each message transmitted.
+No additional keys must be stored.
+
+When receiver gets a session tag, if it has not already ratcheted the
+symmetric key ratchet ahead to the associated key, it must "catch up" to the associated key.
+The receiver will probably cache the keys for any previous tags
+that have not yet been received.
+Once received, the stored key may be discarded, and if there are no previous
+unreceived tags, the window may be advanced.
+
+For efficiency, the session tag and symmetric key ratchets are separate so
+the session tag ratchet can run ahead of the symmetric key ratchet.
+This also provides some additional security, since the session tags go out on the wire.
+
 
 #### KDF
 
-Toto je definice RATCHET_KEY().
+This is the definition of RATCHET_KEY().
 
 ```
 
@@ -1640,17 +2120,30 @@ Inputs:
 
 
 ```
-### 4a) DH Ratchet
 
-Toto nahrazuje formát sekce AES definovaný ve specifikaci ElGamal/AES+SessionTags.
 
-Toto používá stejný formát bloků jako je definován ve specifikaci [NTCP2](/docs/specs/ntcp2/). Jednotlivé typy bloků jsou definovány odlišně.
 
-Existují obavy, že povzbuzování implementátorů ke sdílení kódu může vést k problémům s parsováním. Implementátoři by měli pečlivě zvážit výhody a rizika sdílení kódu a zajistit, aby se pravidla pro pořadí a platné bloky lišila pro oba kontexty.
+### 5) Payload
+
+This replaces the AES section format defined in the ElGamal/AES+SessionTags specification.
+
+This uses the same block format as defined in the [NTCP2](/docs/specs/ntcp2/) specification.
+Individual block types are defined differently.
+
+There are concerns that encouraging implementers to share code
+may lead to parsing issues. Implementers should carefully consider
+the benefits and risks of sharing code, and ensure that the
+ordering and valid block rules are different for the two contexts.
+
+
+
 
 ### Payload Section Decrypted data
 
-Délka šifrovaných dat je zbývající část dat. Délka dešifrovaných dat je o 16 menší než délka šifrovaných dat. Všechny typy bloků jsou podporovány. Typický obsah zahrnuje následující bloky:
+Encrypted length is the remainder of the data.
+Decrypted length is 16 less than the encrypted length.
+All block types are supported.
+Typical contents include the following blocks:
 
 | Payload Block Type | Type Number | Block Length |
 |--------------------|-------------|--------------|
@@ -1663,15 +2156,23 @@ Délka šifrovaných dat je zbývající část dat. Délka dešifrovaných dat 
 | ACK Request        | 9           | 3            |
 | Garlic Clove       | 11          | varies       |
 | Padding            | 254         | varies       |
+
+
+
+
+
 ### Unencrypted data
+There are zero or more blocks in the encrypted frame.
+Each block contains a one-byte identifier, a two-byte length,
+and zero or more bytes of data.
 
-V šifrovaném rámci se nachází nula nebo více bloků. Každý blok obsahuje jednobytový identifikátor, dvoubytovou délku a nula nebo více bajtů dat.
+For extensibility, receivers MUST ignore blocks with unknown type nunmbers,
+and treat them as padding.
 
-Z důvodu rozšiřitelnosti MUSÍ příjemci ignorovat bloky s neznámými čísly typů a zacházet s nimi jako s výplní.
+Encrypted data is 65535 bytes max, including a 16-byte authentication header,
+so the max unencrypted data is 65519 bytes.
 
-Šifrovaná data mají maximálně 65535 bajtů, včetně 16bajtové autentizační hlavičky, takže maximální nešifrovaná data jsou 65519 bajtů.
-
-(Poly1305 autentizační tag není zobrazen):
+(Poly1305 auth tag not shown):
 
 ```
 
@@ -1716,35 +2217,50 @@ Z důvodu rozšiřitelnosti MUSÍ příjemci ignorovat bloky s neznámými čís
   Maximum single block data size is 65516 bytes.
 
 ```
+
+
 ### Block Ordering Rules
+In the New Session message,
+the DateTime block is required, and must be the first block.
 
-Ve zprávě New Session je blok DateTime povinný a musí být prvním blokem.
+Other allowed blocks:
 
-Další povolené bloky:
+- Garlic Clove (type 11)
+- Options (type 5)
+- Padding (type 254)
 
-- Garlic Clove (typ 11)
-- Možnosti (typ 5)
-- Výplň (typ 254)
+In the New Session Reply message,
+no blocks are required.
 
-V odpovědi zprávy New Session Reply nejsou vyžadovány žádné bloky.
+Other allowed blocks:
 
-Další povolené bloky:
+- Garlic Clove (type 11)
+- Options (type 5)
+- Padding (type 254)
 
-- Garlic Clove (typ 11)
-- Možnosti (typ 5)
-- Výplň (typ 254)
+No other blocks are allowed.
+Padding, if present, must be the last block.
 
-Žádné další bloky nejsou povoleny. Padding, pokud je přítomen, musí být posledním blokem.
+In the Existing Session message, no blocks are required, and order is unspecified, except for the
+following requirements:
 
-V existující relaci nejsou vyžadovány žádné bloky a pořadí není specifikováno, kromě následujících požadavků:
+Termination, if present, must be the last block except for Padding.
+Padding, if present, must be the last block.
 
-Ukončení, pokud je přítomno, musí být posledním blokem kromě Padding. Padding, pokud je přítomen, musí být posledním blokem.
+There may be multiple Garlic Clove blocks in a single frame.
+There may be up to two Next Key blocks in a single frame.
+Multiple Padding blocks are not allowed in a single frame.
+Other block types probably won't have multiple blocks in
+a single frame, but it is not prohibited.
 
-V jednom snímku může být více bloků Garlic Clove. V jednom snímku mohou být až dva bloky Next Key. Více bloků Padding v jednom snímku není povoleno. Ostatní typy bloků pravděpodobně nebudou mít více bloků v jednom snímku, ale není to zakázáno.
 
 ### DateTime
-
-Vypršení platnosti. Pomáhá při prevenci opakovaných odpovědí. Bob musí ověřit, že zpráva je aktuální, pomocí tohoto časového razítka. Bob musí implementovat Bloomův filtr nebo jiný mechanismus pro prevenci replay útoků, pokud je čas platný. Obecně zahrnuto pouze ve zprávách New Session.
+An expiration.
+Assists in reply prevention.
+Bob must validate that the message is recent, using this timestamp.
+Bob must implement a Bloom filter or other mechanism to prevent replay attacks,
+if the time is valid.
+Generally included in New Session messages only.
 
 ```
 
@@ -1758,9 +2274,17 @@ Vypršení platnosti. Pomáhá při prevenci opakovaných odpovědí. Bob musí 
                Wraps around in 2106
 
 ```
-### 4b) Session Tag Ratchet
 
-Jeden dešifrovaný Garlic Clove jak je specifikován v [I2NP](/docs/specs/i2np/), s modifikacemi pro odstranění polí, která jsou nepoužívaná nebo redundantní. Upozornění: Tento formát se významně liší od toho pro ElGamal/AES. Každý clove je samostatný payload blok. Garlic Cloves nesmí být fragmentovány napříč bloky nebo napříč ChaChaPoly rámci.
+
+### Garlic Clove
+
+A single decrypted Garlic Clove as specified in [I2NP](/docs/specs/i2np/),
+with modifications to remove fields that are unused
+or redundant.
+Warning: This format is significantly different than
+the one for ElGamal/AES. Each clove is a separate payload block.
+Garlic Cloves may not be fragmented across blocks or
+across ChaChaPoly frames.
 
 ```
 
@@ -1794,40 +2318,45 @@ Jeden dešifrovaný Garlic Clove jak je specifikován v [I2NP](/docs/specs/i2np/
   Expiration :: 4 bytes, seconds since the epoch
 
 ```
-Poznámky:
 
-- Implementátoři musí zajistit, že při čtení bloku
-  nebudou chybně formátovaná nebo škodlivá data způsobovat
-  přečtení dat přesahující do dalšího bloku.
+Notes:
 
-- Formát Clove Set specifikovaný v [I2NP](/docs/specs/i2np/) se nepoužívá.
-  Každý clove je obsažen ve svém vlastním bloku.
+- Implementers must ensure that when reading a block,
+  malformed or malicious data will not cause reads to
+  overrun into the next block.
 
-- Hlavička I2NP zprávy má 9 bajtů, s identickým formátem
-  jako ten používaný v [NTCP2](/docs/specs/ntcp2/).
+- The Clove Set format specified in [I2NP](/docs/specs/i2np/) is not used.
+  Each clove is contained in its own block.
 
-- Certifikát, ID zprávy a vypršení z
-  definice Garlic Message v [I2NP](/docs/specs/i2np/) nejsou zahrnuty.
+- The I2NP message header is 9 bytes, with an identical format
+  to that used in [NTCP2](/docs/specs/ntcp2/).
 
-- Certificate, Clove ID a Expiration z definice
-  Garlic Clove v [I2NP](/docs/specs/i2np/) nejsou zahrnuty.
+- The Certificate, Message ID, and Expiration from the
+  Garlic Message definition in [I2NP](/docs/specs/i2np/) are not included.
 
-Zdůvodnění:
+- The Certificate, Clove ID, and Expiration from the
+  Garlic Clove definition in [I2NP](/docs/specs/i2np/) are not included.
 
-- Certifikáty nebyly nikdy použity.
-- Samostatné ID zprávy a ID clove nebyly nikdy použity.
-- Samostatné expirační doby nebyly nikdy použity.
-- Celkové úspory ve srovnání se starými formáty Clove Set a Clove
-  jsou přibližně 35 bajtů pro 1 clove, 54 bajtů pro 2 cloves
-  a 73 bajtů pro 3 cloves.
-- Formát bloku je rozšiřitelný a jakákoli nová pole mohou být přidána
-  jako nové typy bloků.
+Justification:
+
+- The certificates were never used.
+- The separate message ID and clove IDs were never used.
+- The separate expirations were never used.
+- The overall savings compared to the old Clove Set and Clove formats
+  is approximately 35 bytes for 1 clove, 54 bytes for 2 cloves,
+  and 73 bytes for 3 cloves.
+- The block format is extensible and any new fields may be added
+  as new block types.
+
 
 ### Termination
+Implementation is optional.
+Drop the session.
+This must be the last non-padding block in the frame.
+No more messages will be sent in this session.
 
-Implementace je volitelná. Ukončit relaci. Toto musí být poslední nepadovací blok v rámci. V této relaci již nebudou odesílány žádné další zprávy.
+Not allowed in NS or NSR. Only included in Existing Session messages.
 
-Není povoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
 
 ```
 
@@ -1848,11 +2377,18 @@ Není povoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
                Format unspecified and may vary based on reason code.
 
 ```
-### 4c) Symmetric Key Ratchet
 
-NEIMPLEMENTOVÁNO, pro další studium. Předat aktualizované volby. Volby zahrnují různé parametry pro relaci. Viz sekce Analýza délky značky relace níže pro více informací.
 
-Blok možností může mít variabilní délku, protože může být přítomen more_options.
+
+### Options
+UNIMPLEMENTED, for further study.
+Pass updated options.
+Options include various parameters for the session.
+See the Session Tag Length Analysis section below for more information.
+
+The options block may be variable length,
+as more_options may be present.
+
 
 ```
 
@@ -1903,24 +2439,36 @@ Blok možností může mít variabilní délku, protože může být přítomen 
   more_options :: Format undefined, for future use
 
 ```
-SOTW je doporučení odesílatele pro příjemce ohledně okna příchozích tagů příjemce (maximální předstih). RITW je prohlášení odesílatele o okně příchozích tagů (maximální předstih), které plánuje použít. Každá strana pak nastaví nebo upraví předstih na základě nějakého minima nebo maxima nebo jiného výpočtu.
 
-Poznámky:
+SOTW is the sender's recommendation to the receiver for the
+receiver's inbound tag window (the maximum lookahead).
+RITW is the sender's declaration of the inbound tag window
+(maximum lookahead) that he plans to use.
+Each side then sets or adjusts the lookahead based
+on some minimum or maximum or other calculation.
 
-- Podpora pro nestandardní délku session tagu doufejme
-  nikdy nebude vyžadována.
-- Okno tagů je MAX_SKIP v dokumentaci Signal.
 
-Problémy:
+Notes:
 
-- Vyjednávání opcí bude teprve určeno.
-- Výchozí hodnoty budou teprve určeny.
-- Možnosti paddingu a zpoždění jsou zkopírovány z NTCP2,
-  ale tyto možnosti tam nebyly plně implementovány ani prostudovány.
+- Support for non-default session tag length will hopefully
+  never be required.
+- The tag window is MAX_SKIP in the Signal documentation.
+
+Issues:
+
+- Options negotiation is TBD.
+- Defaults TBD.
+- Padding and delay options are copied from NTCP2,
+  but those options have not been fully implemented or studied there.
+
 
 ### Message Numbers
+Implementation is optional.
+The length (number of messages sent) in the previous tag set (PN).
+Receiver may immediately delete tags higher than PN from the previous tag set.
+Receiver may expire tags less than or equal to PN from the previous tag set
+after a short time (e.g. 2 minutes).
 
-Implementace je volitelná. Délka (počet odeslaných zpráv) v předchozí sadě tagů (PN). Příjemce může okamžitě smazat tagy vyšší než PN z předchozí sady tagů. Příjemce může nechat vypršet tagy menší nebo rovné PN z předchozí sady tagů po krátké době (např. 2 minuty).
 
 ```
 
@@ -1933,21 +2481,26 @@ Implementace je volitelná. Délka (počet odeslaných zpráv) v předchozí sad
   PN :: 2 bytes big endian. The index of the last tag sent in the previous tag set.
 
 ```
-Poznámky:
 
-- Maximální PN je 65535.
-- Definice PN se rovná definici Signal, minus jedna.
-  To je podobné tomu, co dělá Signal, ale v Signal jsou PN a N v hlavičce.
-  Zde jsou v zašifrovaném těle zprávy.
-- Neposílejte tento blok v tag set 0, protože neexistoval žádný předchozí tag set.
 
-### 5) Datová část
+Notes:
 
-Další DH ratchet klíč je v datové části a je volitelný. Nerotujeme pokaždé. (To se liší od Signal, kde je v hlavičce a posílá se pokaždé)
+- Maximum PN is 65535.
+- The definitions of PN is equal to the definition Signal, minus one.
+  This is similar to what Signal does, but in Signal, PN and N are in the header.
+  Here, they're in the encrypted message body.
+- Do not send this block in tag set 0, because there was no previous tag set.
 
-Pro první ratchet, Key ID = 0.
 
-Není povoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
+### Next DH Ratchet Public Key
+The next DH ratchet key is in the payload,
+and it is optional. We don't ratchet every time.
+(This is different than in signal, where it is in the header, and sent every time)
+
+For the first ratchet,
+Key ID = 0.
+
+Not allowed in NS or NSR. Only included in Existing Session messages.
 
 ```
 
@@ -1979,23 +2532,28 @@ Není povoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
 
 
 ```
-Poznámky:
 
-- Key ID je rostoucí čítač pro lokální klíč používaný pro danou sadu tagů, začínající na 0.
-- ID se nesmí změnit, dokud se nezmění klíč.
-- Možná to není striktně nutné, ale je to užitečné pro ladění.
-  Signal nepoužívá key ID.
-- Maximální Key ID je 32767.
-- Ve vzácném případě, že se sady tagů v obou směrech ratchetují současně,
-  bude frame obsahovat dva bloky Next Key, jeden pro forward klíč a jeden pro reverse klíč.
-- Čísla ID klíčů a sad tagů musí být sekvenční.
-- Podrobnosti viz sekce DH Ratchet výše.
+Notes:
 
-### Sekce Payload Dešifrovaná data
+- Key ID is an incrementing counter for the local key used for that tag set, starting at 0.
+- The ID must not change unless the key changes.
+- It may not be strictly necessary, but it's useful for debugging.
+  Signal does not use a key ID.
+- The maximum Key ID is 32767.
+- In the rare case that the tag sets in both directions are ratcheting at
+  the same time, a frame will contain two Next Key blocks, one for
+  the forward key and one for the reverse key.
+- Key and tag set ID numbers must be sequential.
+- See the DH Ratchet section above for details.
 
-Toto je odesláno pouze v případě, že byl přijat blok s požadavkem na potvrzení. Může být přítomno více potvrzení pro potvrzení více zpráv.
 
-Nepovoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
+### Ack
+
+This is only sent if an ack request block was received.
+Multiple acks may be present to ack multiple messages.
+
+Not allowed in NS or NSR. Only included in Existing Session messages.
+
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2014,20 +2572,26 @@ Nepovoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
 
 
 ```
-Poznámky:
 
-- ID sady tagů a N jednoznačně identifikují zprávu, která je potvrzována.
-- V prvních sadách tagů použitých pro relaci v každém směru je ID sady tagů 0.
-- Nebyly odeslány žádné bloky NextKey, takže neexistují žádné ID klíčů.
-- Pro všechny sady tagů použité po výměnách NextKey je číslo sady tagů (1 + Alice's key ID + Bob's key ID).
 
-### Nešifrovaná data
+Notes:
 
-Požádat o in-band ack. Pro nahrazení out-of-band DeliveryStatus Message v Garlic Clove.
+- The tag set ID and N uniquely identify the message being acked.
+- In the first tag sets used for a session in each direction, the tag set ID is 0.
+- No NextKey blocks have been sent, so there are no key IDs.
+- For all tag sets used after NextKey exchanges, The tag set number is (1 + Alice's key ID + Bob's key ID).
 
-Pokud je vyžádáno explicitní potvrzení, aktuální ID tagset a číslo zprávy (N) jsou vráceny v bloku potvrzení.
 
-Není povoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
+
+### Ack Request
+Request an in-band ack.
+To replace the out-of-band DeliveryStatus Message in the Garlic Clove.
+
+If an explicit ack is requested, the current tagset ID and message number (N)
+are returned in an ack block.
+
+Not allowed in NS or NSR. Only included in Existing Session messages.
+
 
 ```
 
@@ -2041,11 +2605,20 @@ Není povoleno v NS nebo NSR. Zahrnuto pouze ve zprávách Existing Session.
          bits 7-0: Unused, set to 0 for future compatibility
 
 ```
-### Pravidla řazení bloků
 
-Veškeré vyplnění je uvnitř AEAD rámců. TODO Vyplnění uvnitř AEAD by mělo zhruba dodržovat vyjednaná parametry. TODO Alice poslala své požadované tx/rx min/max parametry ve zprávě NS. TODO Bob poslal své požadované tx/rx min/max parametry ve zprávě NSR. Aktualizované možnosti mohou být odeslány během datové fáze. Viz informace o bloku možností výše.
 
-Pokud je přítomen, musí to být poslední blok v rámci.
+
+### Padding
+All padding is inside AEAD frames.
+TODO Padding inside AEAD should roughly adhere to the negotiated parameters.
+TODO Alice sent her requested tx/rx min/max parameters in the NS message.
+TODO Bob sent his requested tx/rx min/max parameters in the NSR message.
+Updated options may be sent during the data phase.
+See options block information above.
+
+If present, this must be the last block in the frame.
+
+
 
 ```
 
@@ -2062,42 +2635,53 @@ Pokud je přítomen, musí to být poslední blok v rámci.
   padding :: zeros or random data
 
 ```
-Poznámky:
 
-- Výplň samými nulami je v pořádku, protože bude zašifrována.
-- Strategie výplně budou teprve určeny.
-- Rámce obsahující pouze výplň jsou povoleny.
-- Výchozí výplň je 0-15 bajtů.
-- Viz blok options pro vyjednávání parametrů výplně
-- Viz blok options pro parametry min/max výplně
-- Reakce routeru na porušení vyjednaných parametrů výplně závisí na implementaci.
+Notes:
 
-### DateTime
+- All-zero padding is fine, as it will be encrypted.
+- Padding strategies TBD.
+- Padding-only frames are allowed.
+- Padding default is 0-15 bytes.
+- See options block for padding parameter negotiation
+- See options block for min/max padding parameters
+- Router response on violation of negotiated padding is implementation-dependent.
 
-Implementace by měly ignorovat neznámé typy bloků kvůli dopředné kompatibilitě.
 
-### Garlic Clove
+### Other block types
+Implementations should ignore unknown block types for
+forward compatibility.
 
-- Délka paddingu má být buď rozhodována na bázi jednotlivých zpráv a
-  odhadů distribuce délek, nebo mají být přidána náhodná zpoždění.
-  Tato protiopatření mají být zahrnuta pro odolnost vůči DPI, jelikož velikosti
-  zpráv by jinak prozradily, že I2P provoz je přenášen transportním
-  protokolem. Přesné schéma paddingu je oblastí budoucí práce, Příloha A
-  poskytuje více informací k tomuto tématu.
+
+### Future work
+- The padding length is either to be decided on a per-message basis and
+  estimates of the length distribution, or random delays should be added.
+  These countermeasures are to be included to resist DPI, as message sizes
+  would otherwise reveal that I2P traffic is being carried by the transport
+  protocol. The exact padding scheme is an area of future work, Appendix A
+  provides more information on the topic.
+
+
 
 ## Typical Usage Patterns
 
-### Ukončení
 
-Toto je nejběžnější případ použití a většina non-HTTP streaming případů použití bude totožná s tímto případem použití také. Pošle se krátká počáteční zpráva, následuje odpověď a další zprávy se odesílají v obou směrech.
+### HTTP GET
 
-HTTP GET obecně zapadá do jedné I2NP zprávy. Alice pošle malý požadavek s jednou novou Session zprávou, přibalí reply leaseset. Alice zahrnuje okamžité ratchet na nový klíč. Zahrnuje sig pro svázání s destinací. Není požadováno žádné potvrzení.
+This is the most typical use case, and most non-HTTP streaming use cases
+will be identical to this use case as well.
+A small initial message is sent, a reply follows,
+and additional messages are sent in both directions.
 
-Bob se okamžitě přepne na další klíč.
+An HTTP GET generally fits in a single I2NP message.
+Alice sends a small request with a single new Session message, bundling a reply leaseset.
+Alice includes immediate ratchet to new key.
+Includes sig to bind to destination. No ack requested.
 
-Alice okamžitě provádí ratcheting.
+Bob ratchets immediately.
 
-Pokračuje s těmito relacemi.
+Alice ratchets immediately.
+
+Continues on with those sessions.
 
 ```
 
@@ -2156,17 +2740,31 @@ Alice                           Bob
                       with bundled HTTP reply part 5
 
 ```
-### Možnosti
 
-Alice má tři možnosti:
 
-1) Odeslat pouze první zprávu (velikost okna = 1), jako u HTTP GET. Nedoporučuje se.
 
-2) Odeslat až do streaming okna, ale používat stejný Elligator2-kódovaný cleartext veřejný klíč. Všechny zprávy obsahují stejný další veřejný klíč (ratchet). Toto bude viditelné pro OBGW/IBEP, protože všechny začínají se stejným cleartextem. Věci pokračují jako v 1). Nedoporučuje se.
+### HTTP POST
 
-3) Doporučená implementace.    Posílat až do streaming window, ale použitím jiného Elligator2-kódovaného cleartext veřejného klíče (session) pro každou zprávu.    Všechny zprávy obsahují stejný další veřejný klíč (ratchet).    Toto nebude viditelné pro OBGW/IBEP, protože všechny začínają jiným cleartext.    Bob musí rozpoznat, že všechny obsahují stejný další veřejný klíč,    a odpovědět na všechny se stejným ratchet.    Alice použije tento další veřejný klíč a pokračuje.
+Alice has three options:
 
-Možnost 3 průběh zpráv:
+1) Send the first message only (window size = 1), as in HTTP GET.
+   Not recommended.
+
+2) Send up to streaming window, but using same Elligator2-encoded cleartext public key.
+   All messages contain same next public key (ratchet).
+   This will be visible to OBGW/IBEP because they all start with the same cleartext.
+   Things proceed as in 1).
+   Not recommended.
+
+3) Recommended implementation.
+   Send up to streaming window, but using a different Elligator2-encoded cleartext public key (session) for each.
+   All messages contain same next public key (ratchet).
+   This will not be visible to OBGW/IBEP because they all start with different cleartext.
+   Bob must recognize that they all contain the same next public key,
+   and respond to all with the same ratchet.
+   Alice uses that next public key and continues.
+
+Option 3 message flow:
 
 ```
 
@@ -2249,11 +2847,16 @@ Alice                           Bob
                       with bundled streaming ack
 
 ```
-### Čísla zpráv
 
-Jedna zpráva s očekávanou jednou odpovědí. Další zprávy nebo odpovědi mohou být odeslány.
 
-Podobné HTTP GET, ale s menšími možnostmi pro velikost okna session tag a životnost. Možná nepožadovat ratchet.
+
+### Repliable Datagram
+
+A single message, with a single reply expected.
+Additional messages or replies may be sent.
+
+Similar to HTTP GET, but with smaller options for session tag window size and lifetime.
+Maybe don't request a ratchet.
 
 ```
 
@@ -2308,11 +2911,20 @@ Alice                           Bob
                       with bundled message
 
 ```
-### Další veřejný klíč DH Ratchet
 
-Více anonymních zpráv, bez očekávání odpovědí.
 
-V tomto scénáři Alice požaduje session, ale bez bindingu. Je odeslána zpráva New session. Žádný reply LS není připojen. Reply DSM je připojen (toto je jediný případ použití, který vyžaduje připojené DSM). Žádný next key není zahrnut. Žádný reply nebo ratchet není požadován. Žádný ratchet není odeslán. Volby nastavují okno session tags na nulu.
+
+### Multiple Raw Datagrams
+
+Multiple anonymous messages, with no replies expected.
+
+In this scenario, Alice requests a session, but without binding.
+New session message is sent.
+No reply LS is bundled.
+A reply DSM is bundled (this is the only use case that requires bundled DSMs).
+No next key is included. No reply or ratchet is requested.
+No ratchet is sent.
+Options set session tags window to zero.
 
 ```
 
@@ -2351,11 +2963,17 @@ Alice                           Bob
   Existing Session     ------------------->
 
 ```
-### Potvrzení
 
-Jediná anonymní zpráva, bez očekávané odpovědi.
 
-Jednorázová zpráva je odeslána. Žádné odpovědní LS nebo DSM nejsou připojeny. Žádný další klíč není zahrnut. Žádná odpověď nebo ratchet není vyžádán. Žádný ratchet není odeslán. Možnosti nastavují okno session tags na nulu.
+
+### Single Raw Datagram
+
+A single anonymous messages, with no reply expected.
+
+One-time message is sent.
+No reply LS or DSM are bundled. No next key is included. No reply or ratchet is requested.
+No ratchet is sent.
+Options set session tags window to zero.
 
 ```
 
@@ -2367,95 +2985,149 @@ Alice                           Bob
   without bundled Delivery Status Message
 
 ```
-### Žádost o potvrzení
 
-Dlouhodobé relace mohou provést ratchet, nebo požádat o ratchet, kdykoli, aby udržely forward secrecy od daného okamžiku. Relace musí provést ratchet, když se blíží limitu odeslaných zpráv na relaci (65535).
+
+
+### Long-Lived Sessions
+
+Long-lived sessions may ratchet, or request a ratchet, at any time,
+to maintain forward secrecy from that point in time.
+Sessions must ratchet as they approach the limit of sent messages per-session (65535).
+
+
 
 ## Implementation Considerations
 
-### Výplň
+### Defense
 
-Stejně jako u stávajícího protokolu ElGamal/AES+SessionTag musí implementace omezit ukládání session tagů a chránit se proti útokům vyčerpáním paměti.
+As with the existing ElGamal/AES+SessionTag protocol, implementations must
+limit session tag storage and protect against memory exhaustion attacks.
 
-Některé doporučené strategie zahrnují:
+Some recommended strategies include:
 
-- Pevný limit na počet uložených session tagů
-- Agresivní vypršení nečinných příchozích sessions při tlaku na paměť
-- Limit na počet příchozích sessions navázaných na jednu vzdálenou destinaci
-- Adaptivní snížení okna session tagů a mazání starých nepoužívaných tagů
-  při tlaku na paměť
-- Odmítnutí ratchet operace na požádání, pokud je tlak na paměť
+- Hard limit on number of session tags stored
+- Aggressive expiration of idle inbound sessions when under memory pressure
+- Limit on number of inbound sessions bound to a single far-end destination
+- Adaptive reduction of session tag window and deletion of old unused tags
+  when under memory pressure
+- Refusal to ratchet when requested, if under memory pressure
 
-### Ostatní typy bloků
 
-Doporučené parametry a časové limity:
+### Parameters
 
-- Velikost NSR tagset: 12 tsmin a tsmax
-- Velikost ES tagset 0: tsmin 24, tsmax 160
-- Velikost ES tagset (1+): 160 tsmin a tsmax
-- Timeout NSR tagset: 3 minuty pro příjemce
-- Timeout ES tagset: 8 minut pro odesílatele, 10 minut pro příjemce
-- Odstranit předchozí ES tagset po: 3 minutách
-- Tagset look ahead tagu N: min(tsmax, tsmin + N/4)
-- Tagset trim behind tagu N: min(tsmax, tsmin + N/4) / 2
-- Poslat další klíč u tagu: TBD
-- Poslat další klíč po životnosti tagset: TBD
-- Nahradit relaci pokud NS přijato po: 3 minutách
-- Maximální odchylka hodin: -5 minut až +2 minuty
-- Doba trvání NS replay filtru: 5 minut
-- Velikost paddingu: 0-15 bajtů (další strategie TBD)
+Recommended parameters and timeouts:
 
-### Budoucí práce
+- NSR tagset size: 12 tsmin and tsmax
+- ES tagset 0 size: tsmin 24, tsmax 160
+- ES tagset (1+) size: 160 tsmin and tsmax
+- NSR tagset timeout: 3 minutes for receiver
+- ES tagset timeout: 8 minutes for sender, 10 minutes for receiver
+- Remove previous ES tagset after: 3 minutes
+- Tagset look ahead of tag N: min(tsmax, tsmin + N/4)
+- Tagset trim behind tag N: min(tsmax, tsmin + N/4) / 2
+- Send next key at tag: TBD
+- Send next key after tagset lifetime: TBD
+- Replace session if NS received after: 3 minutes
+- Max clock skew: -5 minutes to +2 minutes
+- NS replay filter duration: 5 minutes
+- Padding size: 0-15 bytes (other strategies TBD)
 
-Následují doporučení pro klasifikaci příchozích zpráv.
+
+### Classification
+
+Following are recommendations for classifying incoming messages.
+
 
 ### X25519 Only
 
-Na tunnelu, který je používán výhradně s tímto protokolem, proveďte identifikaci tak, jak se aktuálně provádí s ElGamal/AES+SessionTags:
+On a tunnel that is solely used with this protocol, do identification
+as is done currently with ElGamal/AES+SessionTags:
 
-Nejprve zpracujte počáteční data jako session tag a vyhledejte session tag. Pokud je nalezen, dešifrujte pomocí uložených dat spojených s tímto session tagem.
+First, treat the initial data as a session tag, and look up the session tag.
+If found, decrypt using the stored data associated with that session tag.
 
-Pokud nebyl nalezen, zpracuj počáteční data jako DH veřejný klíč a nonce. Proveď DH operaci a specifikovaný KDF, a pokus se dešifrovat zbývající data.
+If not found, treat the initial data as a DH public key and nonce.
+Perform a DH operation and the specified KDF, and attempt to decrypt the remaining data.
 
-### HTTP GET
 
-Na tunelu, který podporuje jak tento protokol, tak ElGamal/AES+SessionTags, klasifikujte příchozí zprávy následovně:
+### X25519 Shared with ElGamal/AES+SessionTags
 
-Kvůli chybě ve specifikaci ElGamal/AES+SessionTags není AES blok doplněn na náhodnou délku, která by nebyla dělitelná 16. Proto je délka zpráv Existing Session modulo 16 vždy 0 a délka zpráv New Session modulo 16 je vždy 2 (jelikož ElGamal blok je dlouhý 514 bajtů).
+On a tunnel that supports both this protocol and
+ElGamal/AES+SessionTags, classify incoming messages as follows:
 
-Pokud délka modulo 16 není 0 nebo 2, považujte počáteční data za session tag a vyhledejte tento session tag. Pokud je nalezen, dešifrujte pomocí uložených dat přidružených k tomuto session tagu.
+Due to a flaw in the ElGamal/AES+SessionTags specification,
+the AES block is not padded to a random non-mod-16 length.
+Therefore, the length of Existing Session messages mod 16 is always 0,
+and the length of New Session messages mod 16 is always 2 (since the
+ElGamal block is 514 bytes long).
 
-Pokud není nalezen a délka mod 16 není 0 nebo 2, považujte počáteční data za DH veřejný klíč a nonce. Proveďte DH operaci a specifikovanou KDF a pokuste se dešifrovat zbývající data. (na základě relativního mixu provozu a relativních nákladů X25519 a ElGamal DH operací může být tento krok proveden jako poslední)
+If the length mod 16 is not 0 or 2,
+treat the initial data as a session tag, and look up the session tag.
+If found, decrypt using the stored data associated with that session tag.
 
-Jinak, pokud je délka mod 16 rovna 0, považujte počáteční data za ElGamal/AES session tag a vyhledejte tento session tag. Pokud je nalezen, dešifrujte pomocí uložených dat spojených s tímto session tagem.
+If not found, and the length mod 16 is not 0 or 2,
+treat the initial data as a DH public key and nonce.
+Perform a DH operation and the specified KDF, and attempt to decrypt the remaining data.
+(based on the relative traffic mix, and the relative costs of X25519 and ElGamal DH operations,
+ths step may be done last instead)
 
-Pokud není nalezeno a data jsou dlouhá alespoň 642 (514 + 128) bajtů a délka mod 16 je 2, považujte počáteční data za ElGamal blok. Pokuste se dešifrovat zbývající data.
+Otherwise, if the length mod 16 is 0,
+treat the initial data as a ElGamal/AES session tag, and look up the session tag.
+If found, decrypt using the stored data associated with that session tag.
 
-Vezměte na vědomí, že pokud bude specifikace ElGamal/AES+SessionTag aktualizována tak, aby umožňovala padding jiný než mod-16, bude třeba postupovat odlišně.
+If not found, and the data is at least 642 (514 + 128) bytes long,
+and the length mod 16 is 2,
+treat the initial data as a ElGamal block.
+Attempt to decrypt the remaining data.
 
-### HTTP POST
+Note that if the ElGamal/AES+SessionTag spec is updated to allow
+non-mod-16 padding, things will need to be done differently.
 
-Počáteční implementace spoléhají na obousměrný provoz ve vyšších vrstvách. To znamená, že implementace předpokládají, že provoz v opačném směru bude brzy přenášen, což vynutí jakoukoli požadovanou odpověď na vrstvě ECIES.
 
-Nicméně určitý provoz může být jednosměrný nebo s velmi nízkou šířkou pásma, takže neexistuje provoz vyšší vrstvy, který by vygeneroval včasnou odpověď.
 
-Příjem NS a NSR zpráv vyžaduje odpověď; příjem ACK Request a Next Key bloků také vyžaduje odpověď.
+### Protocol-layer Responses
 
-Sofistikovaná implementace může spustit časovač při přijetí jedné z těchto zpráv, která vyžaduje odpověď, a vygenerovat "prázdnou" (bez bloku Garlic Clove) odpověď na vrstvě ECIES, pokud není odeslán žádný zpětný provoz v krátkém časovém období (např. 1 sekunda).
+Initial implementations rely on bidirectional traffic at the higher layers.
+That is, the implementations assume that traffic in the opposite direction
+will soon be transmitted, which will force any required response at the ECIES layer.
 
-Může být také vhodné nastavit ještě kratší timeout pro odpovědi na NS a NSR zprávy, aby se provoz co nejdříve přesunul k efektivním ES zprávám.
+However, certain traffic may be unidirectional or very low bandwidth,
+such that there is no higher-layer traffic to generate a timely response.
+
+Receipt of NS and NSR messages require a response;
+receipt of ACK Request and Next Key blocks also require a response.
+
+A sophisticated implementation may start a timer when one of these
+messages is received which requires a response,
+and generate an "empty" (no Garlic Clove block) response
+at the ECIES layer
+if no reverse traffic is sent in a short period of time (e.g. 1 second).
+
+It may also be appropriate for an even shorter timeout for
+responses to NS and NSR messages, to shift the traffic to
+the efficient ES messages as soon as possible.
+
+
 
 ## Analysis
 
-### Odpověditelný datagram
 
-Režijní náklad zpráv pro první dvě zprávy v každém směru je následující. To předpokládá pouze jednu zprávu v každém směru před ACK, nebo že jakékoliv další zprávy jsou odesílány spekulativně jako zprávy Existing Session. Pokud neexistují spekulativní potvrzení doručených session tagů, režijní náklad starého protokolu je mnohem vyšší.
+### Overhead
 
-Pro analýzu nového protokolu se nepředpokládá žádné vyplňování. Nepředpokládá se žádný přibalený leaseSet.
+Message overhead for the first two messages in each direction are as follows.
+This assumes only one message in each direction before the ACK,
+or that any additional messages are sent speculatively as Existing Session messages.
+If there is no speculative acks of delivered session tags, the
+overhead or the old protocol is much higher.
 
-### Vícenásobné Raw datagramy
+No padding is assumed for analysis of the new protocol.
+No bundled leaseset is assumed.
 
-Zpráva nové relace, stejná v každém směru:
+
+### ElGamal/AES+SessionTags
+
+New session message, same each direction:
+
 
 ```
 
@@ -2479,7 +3151,8 @@ ElGamal block:
   Total:
   1657 bytes
 ```
-Zprávy existující relace, stejné v každém směru:
+
+Existing session messages, same each direction:
 
 ```
 
@@ -2497,13 +3170,17 @@ AES block:
   - 0 byte padding assuming 1936 byte message
   151 total
 ```
+
+
 ```
 Four message total (two each direction)
   3616 bytes overhead
 ```
-### Jednotný Raw Datagram
 
-Zpráva Alice-to-Bob New Session:
+
+### ECIES-X25519-AEAD-Ratchet
+
+Alice-to-Bob New Session message:
 
 ```
 
@@ -2519,7 +3196,8 @@ Zpráva Alice-to-Bob New Session:
   Total:
   148 bytes overhead
 ```
-Zpráva Bob-to-Alice New Session Reply:
+
+Bob-to-Alice New Session Reply message:
 
 ```
 
@@ -2534,7 +3212,8 @@ Zpráva Bob-to-Alice New Session Reply:
   Total:
   117 bytes overhead
 ```
-Stávající zprávy relace, stejné v každém směru:
+
+Existing session messages, same each direction:
 
 ```
 
@@ -2547,16 +3226,19 @@ Stávající zprávy relace, stejné v každém směru:
   Total:
   69 bytes
 ```
-### Dlouhodobé relace
 
-Celkem čtyři zprávy (dvě v každém směru):
+
+### Comparison
+
+Four message total (two each direction):
 
 ```
 
 372 bytes
   90% (approx. 10x) reduction compared to ElGamal/AES+SessionTags
 ```
-Pouze handshake:
+
+Handshake only:
 
 ```
 
@@ -2564,99 +3246,181 @@ ElGamal: 1657 + 1657 = 3314 bytes
   Ratchet: 148 _ 117 = 265 bytes
   92% (approx. 12x) reduction compared to ElGamal/AES+SessionTags
 ```
-Dlouhodobý celkový součet (ignorování handshakes):
+
+Long-term total (ignoring handshakes):
+
 
 ```
 ElGamal: 151 + 32 byte tag sent previously = 183 bytes
   Ratchet: 69 bytes
   64% (approx. 3x) reduction compared to ElGamal/AES+SessionTags
 ```
+
+
 ### CPU
 
-TODO aktualizovat tuto sekci poté, co bude návrh stabilní.
+TODO update this section after proposal is stable.
 
-Následující kryptografické operace jsou vyžadovány každou stranou pro výměnu zpráv New Session a New Session Reply:
+The following cryptographic operations are required by each party to exchange
+New Session and New Session Reply messages:
 
-- HMAC-SHA256: 3 na HKDF, celkem TBD
-- ChaChaPoly: 2 každý
-- Generování klíče X25519: 2 Alice, 1 Bob
-- X25519 DH: 3 každý
-- Ověření podpisu: 1 (Bob)
+- HMAC-SHA256: 3 per HKDF, total TBD
+- ChaChaPoly: 2 each
+- X25519 key generation: 2 Alice, 1 Bob
+- X25519 DH: 3 each
+- Signature verification: 1 (Bob)
 
-Alice vypočítá 5 ECDH na vázanou relaci (minimum), 2 pro každou NS zprávu Bobovi a 3 pro každou Bobovu NSR zprávu.
+Alice calculates 5 ECDHs per-bound-session (minimum), 2 for each NS message to Bob,
+and 3 for each of Bob's NSR messages.
 
-Bob také vypočítá 6 ECDH per-bound-session, 3 pro každou z Alice NS zpráv a 3 pro každou ze svých NSR zpráv.
+Bob also calculates 6 ECDHs per-bound-session, 3 for each of Alice's NS messages, and 3 for each of his NSR messages.
 
-Následující kryptografické operace jsou vyžadovány každou stranou pro každou zprávu Existing Session:
+The following cryptographic operations are required by each party for each Existing Session message:
 
 - HKDF: 2
 - ChaChaPoly: 1
 
-### Obrana
 
-Současná délka session tagu je 32 bajtů. Zatím jsme nenašli žádné odůvodnění pro tuto délku, ale pokračujeme ve výzkumu archivů. Výše uvedený návrh definuje novou délku tagu jako 8 bajtů. Analýza odůvodňující 8bajtový tag je následující:
 
-Předpokládá se, že session tag ratchet generuje náhodné, rovnoměrně distribuované tagy. Neexistuje žádný kryptografický důvod pro konkrétní délku session tagu. Session tag ratchet je synchronizován se symetrickým klíčovým ratchetem, ale generuje nezávislý výstup. Výstupy obou ratchetů mohou mít různé délky.
+### Tag Length
 
-Jediným problémem je tedy kolize session tagů. Předpokládá se, že implementace se nebudou pokoušet řešit kolize pokusem o dešifrování v obou sessions; implementace jednoduše přiřadí tag buď k předchozí nebo nové session, a jakákoli zpráva přijatá s tímto tagem v druhé session bude zahozena po neúspěšném dešifrování.
+Current session tag length is 32 bytes.
+We have not yet found any justification for that length, but we are continuing to research the archives.
+The proposal above defines the new tag length as 8 bytes.
+The analysis justifying an 8 byte tag is as follows:
 
-Cílem je vybrat délku session tag, která je dostatečně velká pro minimalizaci rizika kolizí, a zároveň dostatečně malá pro minimalizaci využití paměti.
+The session tag ratchet is assumed to generate random, uniformly distributed tags.
+There is no cryptographic reason for a particular session tag length.
+The session tag ratchet is synchronized to, but generates an independent output from,
+the symmetric key ratchet. The outputs of the two ratchets may be different lengths.
 
-Toto předpokládá, že implementace omezují ukládání session tagů, aby zabránily útokům vyčerpáním paměti. To také výrazně sníží šance, že útočník dokáže vytvořit kolize. Viz sekce Implementační úvahy níže.
+Therefore, the only concern is session tag collision.
+It is assumed that implementations will not attempt to handle collisions
+by trying to decrypt with both sessions;
+implementations will simply associate the tag with either the previous or new
+session, and any message received with that tag on the other session
+will be dropped after the decryption fails.
 
-V nejhorším případě předpokládejme zaneprázdněný server s 64 novými inbound relacemi za sekundu. Předpokládejme 15minutovou životnost inbound session tagů (stejně jako nyní, pravděpodobně by měla být snížena). Předpokládejme inbound session tag okno o velikosti 32. 64 * 15 * 60 * 32 = 1,843,200 tagů. Současné maximum inbound tagů v Java I2P je 750,000 a pokud víme, nikdy nebylo dosaženo.
+The goal is to select a session tag length that is large enough
+to minimize the risk of collisions, while small enough
+to minimize memory usage.
 
-Cíl 1 kolize session tagů na milion (1e-6) je pravděpodobně dostatečný. Pravděpodobnost zahození zprávy na cestě kvůli přetížení je daleko vyšší.
+This assumes that implementations limit session tag storage to
+prevent memory exhaustion attacks. This also will greatly reduce the chances that an attacker
+can create collisions. See the Implementation Considerations section below.
 
-Ref: https://en.wikipedia.org/wiki/Birthday_paradox sekce tabulka pravděpodobností.
+For a worst case, assume a busy server with 64 new inbound sessions per second.
+Assume 15 minute inbound session tag lifetime (same as now, probably should be reduced).
+Assume inbound session tag window of 32.
+64 * 15 * 60 * 32 =  1,843,200 tags
+Current Java I2P max inbound tags is 750,000 and has never been hit as far as we know.
 
-S 32bytovými session tagy (256 bitů) je prostor session tagů 1,2e77. Pravděpodobnost kolize s pravděpodobností 1e-18 vyžaduje 4,8e29 záznamů. Pravděpodobnost kolize s pravděpodobností 1e-6 vyžaduje 4,8e35 záznamů. 1,8 milionu tagů po 32 bytech je celkem asi 59 MB.
+A target of 1 in a million (1e-6) session tag collisions is probably sufficient.
+The probability of dropping a message along the way due to congestion is far higher than that.
 
-S 16bytovými session tagy (128 bitů) je prostor session tagů 3,4e38. Pravděpodobnost kolize s pravděpodobností 1e-18 vyžaduje 2,6e10 záznamů. Pravděpodobnost kolize s pravděpodobností 1e-6 vyžaduje 2,6e16 záznamů. 1,8 milionu tagů po 16 bajtech každý představuje celkem asi 30 MB.
+Ref: https://en.wikipedia.org/wiki/Birthday_paradox
+Probability table section.
 
-S 8bytovými session tagy (64 bitů) je prostor session tagů 1,8e19. Pravděpodobnost kolize s pravděpodobností 1e-18 vyžaduje 6,1 záznamů. Pravděpodobnost kolize s pravděpodobností 1e-6 vyžaduje 6,1e6 (6 100 000) záznamů. 1,8 milionu tagů po 8 bytech každý činí celkem asi 15 MB.
+With 32 byte session tags (256 bits) the session tag space is 1.2e77.
+The probability of a collision with probability 1e-18 requires 4.8e29 entries.
+The probability of a collision with probability 1e-6 requires 4.8e35 entries.
+1.8 million tags of 32 bytes each is about 59 MB total.
 
-6,1 milionu aktivních tagů je více než 3x více než náš nejhorší odhad 1,8 milionu tagů. Pravděpodobnost kolize by tedy byla menší než jedna ku milionu. Docházíme tedy k závěru, že 8bajtové session tagy jsou dostatečné. To vede ke 4x snížení úložného prostoru, kromě 2x snížení kvůli tomu, že transmit tagy nejsou uložené. Takže budeme mít 8x snížení využití paměti pro session tagy ve srovnání s ElGamal/AES+SessionTags.
+With 16 byte session tags (128 bits) the session tag space is 3.4e38.
+The probability of a collision with probability 1e-18 requires 2.6e10 entries.
+The probability of a collision with probability 1e-6 requires 2.6e16 entries.
+1.8 million tags of 16 bytes each is about 30 MB total.
 
-Pro zachování flexibility v případě, že by tyto předpoklady byly chybné, zahrneme do možností pole délky session tagu, takže výchozí délka může být přepsána na základě jednotlivých relací. Neočekáváme, že budeme implementovat dynamické vyjednávání délky tagů, pokud to nebude naprosto nezbytné.
+With 8 byte session tags (64 bits) the session tag space is 1.8e19.
+The probability of a collision with probability 1e-18 requires 6.1 entries.
+The probability of a collision with probability 1e-6 requires 6.1e6 (6,100,000) entries.
+1.8 million tags of 8 bytes each is about 15 MB total.
 
-Implementace by měly minimálně rozpoznat kolize session tagů, zvládnout je elegantně a zalogovat nebo spočítat počet kolizí. Ačkoli jsou stále extrémně nepravděpodobné, budou mnohem pravděpodobnější než byly u ElGamal/AES+SessionTags a skutečně se mohou stát.
+6.1 million active tags is over 3x more than our worst-case estimate of 1.8 million tags.
+So the probability of collision would be less than one in a million.
+We therefore conclude that 8 byte session tags are sufficient.
+This results in a 4x reduction of storage space,
+in addition to the 2x reduction because transmit tags are not stored.
+So we will have a 8x reduction in session tag memory usage compared to ElGamal/AES+SessionTags.
 
-### Parametry
+To maintain flexibility should these assumptions be wrong,
+we will include a session tag length field in the options,
+so that the default length may be overridden on a per-session basis.
+We do not expect to implement dynamic tag length negotiation
+unless absolutely necessary.
 
-Při použití dvakrát více relací za sekundu (128) a dvakrát většího okna tagů (64) máme 4krát více tagů (7,4 milionu). Maximum pro šanci kolize jedna ku milionu je 6,1 milionu tagů. 12bajtové (nebo dokonce 10bajtové) tagy by přidaly obrovskou rezervu.
+Implementations should, at a minimum, recognize session tag collisions,
+handle them gracefully, and log or count the number of collisions.
+While still extremely unlikely, they will be much more likely than
+they were for ElGamal/AES+SessionTags, and could actually happen.
 
-Je však šance jeden k milionu pro kolizi dobrým cílem? Mnohem větší než šance být zahozena cestou není příliš užitečná. Cíl pro falešně pozitivní výsledky pro Java DecayingBloomFilter je zhruba 1 ku 10 000, ale dokonce ani 1 ku 1 000 není vážným problémem. Snížením cíle na 1 ku 10 000 je dostatečná rezerva s 8bajtovými tagy.
 
-### Klasifikace
+### Alternate
 
-Odesílatel generuje tagy a klíče za běhu, takže není potřeba žádné úložiště. To snižuje celkové požadavky na úložiště na polovinu ve srovnání s ElGamal/AES. ECIES tagy mají 8 bajtů namísto 32 u ElGamal/AES. To snižuje celkové požadavky na úložiště o další faktor 4. Klíče relací pro jednotlivé tagy nejsou na straně příjemce ukládány kromě "mezer", které jsou při rozumných mírách ztrát minimální.
+Using twice the sessions per second (128) and twice the tag window (64),
+we have 4 times the tags (7.4 million). Max for one in a million
+chance of collision is 6.1 million tags.
+12 byte (or even 10 byte) tags would add a huge margin.
 
-33% snížení času vypršení tagu vytváří další 33% úspory, za předpokladu krátkých časů relací.
+However, is the one in a million chance of collision a good target?
+Much larger than the chance of being dropped along the way is not much use.
+The false-positive target for Java's DecayingBloomFilter is roughly
+1 in 10,000, but even 1 in 1000 isn't of grave concern.
+By reducing the target to 1 in 10,000, there's plenty of margin
+with 8 byte tags.
 
-Proto je celková úspora místa oproti ElGamal/AES faktorem 10,7, neboli 92%.
+
+### Storage
+
+The sender generates tags and keys on the fly, so there is no storage.
+This cuts overall storage requirements in half compared to ElGamal/AES.
+ECIES tags are 8 bytes instead of 32 for ElGamal/AES.
+This cuts overall storage requirements by another factor of 4.
+Per-tag session keys are not stored at the receiver except for "gaps",
+which are minimal for reasonable loss rates.
+
+The 33% reduction in tag expiration time creates another 33% savings,
+assuming short session times.
+
+Therefore, the total space savings vs. ElGamal/AES is a factor of 10.7, or 92%.
+
+
 
 ## Related Changes
 
-### Pouze X25519
 
-Databázové vyhledávání z ECIES destinací: Viz [Proposal 154](/proposals/154-ecies-lookups), nyní začleněno v [I2NP](/docs/specs/i2np/) pro vydání 0.9.46.
 
-Tento návrh vyžaduje podporu LS2 pro publikování veřejného klíče X25519 s leaseset. Nejsou vyžadovány žádné změny ve specifikacích LS2 v [I2NP](/docs/specs/i2np/). Veškerá podpora byla navržena, specifikována a implementována v [Návrhu 123](/proposals/123-new-netdb-entries) implementovaném ve verzi 0.9.38.
+### I2NP Changes Required
 
-### X25519 sdílené s ElGamal/AES+SessionTags
+Database Lookups from ECIES Destinations: See [Proposal 154](/proposals/154-ecies-lookups),
+now incorporated in [I2NP](/docs/specs/i2np/) for release 0.9.46.
 
-Žádné. Tento návrh vyžaduje podporu LS2 a nastavení vlastnosti v I2CP možnostech pro aktivaci. Nejsou vyžadovány žádné změny ve specifikacích [I2CP](/docs/specs/i2cp/). Veškerá podpora byla navržena, specifikována a implementována v [Návrhu 123](/proposals/123-new-netdb-entries) implementovaném ve verzi 0.9.38.
+This proposal requires LS2 support to publish the X25519 public key with the leaseset.
+No changes are required to the LS2 specifications in [I2NP](/docs/specs/i2np/).
+All support was designed, specified, and implemented in [Proposal 123](/proposals/123-new-netdb-entries) implemented in 0.9.38.
 
-Možnost potřebná k povolení ECIES je jedna I2CP vlastnost pro I2CP, BOB, SAM nebo i2ptunnel.
 
-Typické hodnoty jsou i2cp.leaseSetEncType=4 pouze pro ECIES, nebo i2cp.leaseSetEncType=4,0 pro ECIES a ElGamal duální klíče.
 
-### Odpovědi na protokolové vrstvě
+### I2CP Changes Required
 
-Tato sekce je zkopírována z [Návrhu 123](/proposals/123-new-netdb-entries).
+None.
+This proposal requires LS2 support, and a property to be set in the I2CP options to be enabled.
+No changes are required to the [I2CP](/docs/specs/i2cp/) specifications.
+All support was designed, specified, and implemented in [Proposal 123](/proposals/123-new-netdb-entries) implemented in 0.9.38.
 
-Možnost v mapování SessionConfig:
+The option required to enable ECIES is a single I2CP property
+for I2CP, BOB, SAM, or i2ptunnel.
+
+Typical values are i2cp.leaseSetEncType=4 for ECIES only,
+or i2cp.leaseSetEncType=4,0 for ECIES and ElGamal dual keys.
+
+
+
+### I2CP Options
+
+This section is copied from [Proposal 123](/proposals/123-new-netdb-entries).
+
+Option in SessionConfig Mapping:
 
 ```
   i2cp.leaseSetEncType=nnn[,nnn]  The encryption types to be used.
@@ -2664,14 +3428,54 @@ Možnost v mapování SessionConfig:
                                   1-3: See proposal 145
                                   4: This proposal.
 ```
+
+
 ### Create Leaseset2 Message
 
-Tento návrh vyžaduje LS2, který je podporován od verze 0.9.38. Nejsou potřeba žádné změny specifikací [I2CP](/docs/specs/i2cp/). Veškerá podpora byla navržena, specifikována a implementována v [Proposal 123](/proposals/123-new-netdb-entries) implementovaném ve verzi 0.9.38.
+This proposal requires LS2 which is supported as of release 0.9.38.
+No changes are required to the [I2CP](/docs/specs/i2cp/) specifications.
+All support was designed, specified, and implemented in [Proposal 123](/proposals/123-new-netdb-entries) implemented in 0.9.38.
 
-### Režie
 
-Jakýkoliv router podporující LS2 s duálními klíči (0.9.38 nebo vyšší) by měl podporovat připojení k destinacím s duálními klíči.
 
-Pouze ECIES destinace budou vyžadovat, aby většina floodfillů byla aktualizována na verzi 0.9.46 pro získání šifrovaných odpovědí na vyhledávání. Viz [Proposal 154](/proposals/154-ecies-lookups).
 
-ECIES-only destinace se mohou připojit pouze k jiným destinacím, které jsou buď také ECIES-only, nebo dual-key.
+### Compatibility
+
+Any router supporting LS2 with dual keys (0.9.38 or higher) should support
+connection to destinations with dual keys.
+
+ECIES-only destinations will require a majority of the floodfills to be updated
+to 0.9.46 to get encrypted lookup replies. See [Proposal 154](/proposals/154-ecies-lookups).
+
+ECIES-only destinations can only connect with other destinations that are
+either ECIES-only, or dual-key.
+
+
+## References
+
+* [Common](/docs/specs/common-structures/)
+* [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
+* [ElG-AES](/docs/specs/elgamal-aes/)
+* [Elligator2](https://elligator.cr.yp.to/elligator-20130828.pdf)
+* [GARLICSPEC](/docs/overview/garlic-routing/)
+* [I2CP](/docs/specs/i2cp/)
+* [I2NP](/docs/specs/i2np/)
+* [NTCP2](/docs/specs/ntcp2/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [Prop111](/proposals/111-ntcp-2/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop142](/proposals/142-new-crypto-template/)
+* [Prop145](/proposals/145-ecies/)
+* [Prop152](/proposals/152-ecies-tunnels/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop154](/proposals/154-ecies-lookups/)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)
+* [RFC-7905](https://tools.ietf.org/html/rfc7905)
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+* [Signal](https://signal.org/docs/specifications/doubleratchet/)
+* [SPEC](/docs/specs/ecies/)
+* [SSU](/docs/specs/ssu2/)
+* [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)

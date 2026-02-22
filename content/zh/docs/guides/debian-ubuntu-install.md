@@ -160,7 +160,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **步骤 3：下载仓库签名密钥**
 
 ```bash
-curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
+curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
 ```
 **步骤 4：验证密钥指纹**
 
@@ -256,8 +256,8 @@ sudo dpkg-reconfigure i2p
 
 为了获得最佳性能和网络参与度,请通过您的 NAT/防火墙转发 I2P 端口:
 
-1. 打开 `http://127.0.0.1:7657/`
-2. 导航到 `http://127.0.0.1:7657/confignet`
+1. 打开 [I2P Router Console](http://127.0.0.1:7657/)
+2. 导航到 [Network Configuration page](http://127.0.0.1:7657/confignet)
 3. 记录列出的端口号(通常是 9000-31000 之间的随机端口)
 4. 在您的路由器/防火墙中转发这些 UDP 和 TCP 端口
 
@@ -267,7 +267,7 @@ sudo dpkg-reconfigure i2p
 
 默认带宽设置较为保守。请根据你的互联网连接调整这些设置:
 
-1. 访问`http://127.0.0.1:7657/config.jsp`
+1. 访问[配置页面](http://127.0.0.1:7657/config.jsp)
 2. 找到带宽设置部分
 3. 默认值为 96 KB/s 下载 / 40 KB/s 上传
 4. 如果您的网络速度更快,请提高这些数值(例如,对于典型的宽带连接,可设置为 250 KB/s 下载 / 100 KB/s 上传)
@@ -320,7 +320,7 @@ sudo dpkg-reconfigure i2p
 现在 I2P 已安装并运行：
 
 - [配置你的浏览器](/docs/guides/browser-config)以访问 I2P 站点
-- 探索 `http://127.0.0.1:7657/` 来监控你的 router
+- 探索 [I2P router console](http://127.0.0.1:7657/) 来监控你的 router
 - 了解你可以使用的 [I2P 应用程序](/docs/applications/)
 - 阅读 [I2P 的工作原理](/docs/overview/tech-intro)以理解网络运作机制
 

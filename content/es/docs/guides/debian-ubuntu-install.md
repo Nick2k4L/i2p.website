@@ -37,7 +37,7 @@ Los paquetes de Debian son compatibles con:
 
 **Arquitecturas soportadas**: amd64, i386, armhf, arm64, powerpc, ppc64el, s390x
 
-Los paquetes de I2P pueden funcionar en otros sistemas basados en Debian que no estén listados explícitamente arriba. Si encuentras problemas, por favor repórtalos en nuestro GitLab.
+Los paquetes de I2P pueden funcionar en otros sistemas basados en Debian que no estén listados explícitamente arriba. Si encuentras problemas, por favor [repórtalos en nuestro GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/).
 
 ## Métodos de Instalación
 
@@ -189,7 +189,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Paso 3: Descargar la clave de firma del repositorio**
 
 ```bash
-curl -o i2p-archive-keyring.gpg `https://geti2p.net/_static/i2p-archive-keyring.gpg`
+curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
 ```
 **Paso 4: Verificar la huella digital de la clave**
 
@@ -285,8 +285,8 @@ Después de iniciar I2P por primera vez, tomará varios minutos integrarse a la 
 
 Para un rendimiento óptimo y participación en la red, reenvía los puertos de I2P a través de tu NAT/firewall:
 
-1. Abre la `http://127.0.0.1:7657/`
-2. Navega a la `http://127.0.0.1:7657/confignet`
+1. Abre la [Consola del Router I2P](http://127.0.0.1:7657/)
+2. Navega a la [página de Configuración de Red](http://127.0.0.1:7657/confignet)
 3. Anota los números de puerto listados (generalmente puertos aleatorios entre 9000-31000)
 4. Reenvía estos puertos UDP y TCP en tu router/firewall
 
@@ -296,7 +296,7 @@ Si necesitas ayuda con el reenvío de puertos, [portforward.com](https://portfor
 
 La configuración de ancho de banda predeterminada es conservadora. Ajústala según tu conexión a internet:
 
-1. Visita la `http://127.0.0.1:7657/config.jsp`
+1. Visita la [página de Configuración](http://127.0.0.1:7657/config.jsp)
 2. Encuentra la sección de configuración de ancho de banda
 3. Los valores predeterminados son 96 KB/s de descarga / 40 KB/s de subida
 4. Aumenta estos valores si tienes una conexión a internet más rápida (por ejemplo, 250 KB/s de bajada / 100 KB/s de subida para una conexión de banda ancha típica)
@@ -351,7 +351,7 @@ Por favor, proporcione el texto que desea traducir. No se ha incluido ningún co
 Ahora que I2P está instalado y en funcionamiento:
 
 - [Configura tu navegador](/docs/guides/browser-config) para acceder a sitios I2P
-- Explora la `http://127.0.0.1:7657/` para monitorear tu router
+- Explora la [consola del router I2P](http://127.0.0.1:7657/) para monitorear tu router
 - Conoce las [aplicaciones I2P](/docs/applications/) que puedes usar
 - Lee sobre [cómo funciona I2P](/docs/overview/tech-intro) para entender la red
 

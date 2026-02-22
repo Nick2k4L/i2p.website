@@ -9,582 +9,628 @@ thread: "http://zzz.i2p/topics/2234"
 toc: true
 ---
 
-## अवलोकन
+## Overview
 
-यह लहसुन फार्म वायर प्रोटोकॉल के लिए स्पेसिफिकेशन है,
-जो JRaft पर आधारित है, TCP पर इसके "exts" कोड
-और इसके "dmprinter" नमूना अनुप्रयोग के कार्यान्वयन के लिए [JRAFT](https://github.com/datatechnology/jraft)।
-JRaft Raft प्रोटोकॉल का एक कार्यान्वयन है [RAFT](/docs/research/ongaro2014-raft.pdf)।
-
-हम किसी भी कार्यान्वयन को दस्तावेजीकृत वायर प्रोटोकॉल के साथ नहीं पहचान सके।
-हालांकि, JRaft कार्यान्वयन इतना सरल है कि हम
-कोड का निरीक्षण कर सके और फिर इसके प्रोटोकॉल को दस्तावेजीकृत कर सके।
-यह प्रस्ताव उसी प्रयास का परिणाम है।
-
-यह मेटा लीजसेट में प्रविष्टियां प्रकाशित करने वाले राउटर के समन्वय के लिए बैकएंड होगा। प्रस्ताव 123 देखें।
+This is the spec for the Garlic Farm wire protocol,
+based on JRaft, its "exts" code for implementation over TCP,
+and its "dmprinter" sample application [JRAFT](https://github.com/datatechnology/jraft).
 
 
-## लक्ष्य
+We were unable to find any implementation with a documented wire protocol.
+However, the JRaft implementation is simple enough that we could
+inspect the code and then document its protocol.
+This proposal is the result of that effort.
 
-- छोटा कोड आकार
-- मौजूदा कार्यान्वयन पर आधारित
-- कोई अनुक्रमणित जावा ऑब्जेक्ट्स या कोई जावा-विशिष्ट फीचर्स या इनकोडिंग नहीं
-- कोई भी बूटस्ट्रैपिंग दायरे से बाहर है। कम से कम एक अन्य सर्वर को हार्डकोडेड, या इस प्रोटोकॉल के आउट-ऑफ-बैंड से कॉन्फ़िगर माना जाएगा।
-- आउट-ऑफ-बैंड और इन-आई2पी उपयोग के मामलों का समर्थन करें।
-
-
-## डिज़ाइन
-
-Raft प्रोटोकॉल कोई ठोस प्रोटोकॉल नहीं है; यह केवल एक राज्य मशीन को परिभाषित करता है।
-इसलिए हम JRaft के ठोस प्रोटोकॉल को दस्तावेजीकृत करते हैं और अपने प्रोटोकॉल को उस पर आधारित करते हैं।
-प्रमाणपत्र हैंडशेक को छोड़कर JRaft प्रोटोकॉल में कोई परिवर्तन नहीं हैं।
-
-Raft एक नेता का चयन करता है जिसका काम एक लॉग प्रकाशित करना है।
-लॉग में Raft कॉन्फ़िगरेशन डेटा और एप्लिकेशन डेटा शामिल है।
-एप्लिकेशन डेटा प्रत्येक सर्वर के राउटर की स्थिति और मेटा LS2 क्लस्टर के लिए गंतव्य को शामिल करता है।
-सर्वर मेटा LS2 के प्रकाशक और सामग्री को निर्धारित करने के लिए एक सामान्य एल्गोरिदम का उपयोग करते हैं।
-मेटा LS2 के प्रकाशक आवश्यक रूप से Raft नेता नहीं होते।
+This will be the backend for coordination of routers publishing
+entries in a Meta LeaseSet. See proposal 123.
 
 
-## स्पेसिफिकेशन
+## Goals
 
-वायर प्रोटोकॉल एसएसएल सॉकेट्स या गैर-एसएसएल आई2पी सॉकेट्स पर होता है।
-आई2पी सॉकेट्स HTTP प्रॉक्सी के माध्यम से प्रॉक्सी किए जाते हैं।
-क्लियरनेट गैर-एसएसएल सॉकेट्स का समर्थन नहीं है।
-
-### हैंडशेक और प्रमाणीकरण
-
-JRaft द्वारा परिभाषित नहीं।
-
-लक्ष्य:
-
-- उपयोगकर्ता/पासवर्ड प्रमाणीकरण पद्धति
-- संस्करण पहचानकर्ता
-- क्लस्टर पहचानकर्ता
-- विस्तार योग्य
-- जब आई2पी सॉकेट्स के लिए प्रॉक्साइड किया जाता है तो प्रॉक्सीकरण की सरलता
-- अनावश्यक रूप से सर्वर को लहसुन फार्म सर्वर के रूप में प्रकट न करें
-- सरल प्रोटोकॉल ताकि एक पूर्ण वेब सर्वर कार्यान्वयन की आवश्यकता न हो
-- सामान्य मानकों के साथ संगत, ताकि कार्यान्वयन आवश्यक होने पर
-   स्टैंडर्ड लाइब्रेरी का उपयोग कर सकें
-
-हम एक वेबस्केट-जैसे हैंडशेक [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) और
-HTTP डाइजेस्ट प्रमाणीकरण [RFC-2617](https://tools.ietf.org/html/rfc2617) का उपयोग करेंगे।
-RFC 2617 बेसिक प्रमाणीकरण का समर्थन नहीं है।
-HTTP प्रॉक्सी के माध्यम से प्रॉक्सी करने पर, प्रॉक्सी के साथ
-[RFC-2616](https://tools.ietf.org/html/rfc2616) में निर्दिष्ट तरीके से संवाद करें।
-
-#### प्रमाण-पत्र
-
-उपयोगकर्ता नाम और पासवर्ड प्रति क्लस्टर हैं,
-या प्रति सर्वर हैं, यह कार्यान्वयन-निर्भर है।
+- Small code size
+- Based on existing implementation
+- No serialized Java objects or any Java-specific features or encoding
+- Any bootstrapping is out-of-scope. At least one other server is assumed
+  to be hardcoded, or configured out-of-band of this protocol.
+- Support both out-of-band and in-I2P use cases.
 
 
-#### HTTP अनुरोध 1
+## Design
 
-प्रारंभकर्ता निम्नलिखित भेजेगा।
+The Raft protocol is not a concrete protocol; it defines only a state machine.
+Therefore we document the concrete protocol of JRaft and base our protocol on it.
+There are no changes to the JRaft protocol other than the addition of
+an authentication handshake.
 
-सभी पंक्तियां HTTP द्वारा निर्दिष्ट के रूप में CRLF के साथ समाप्त होती हैं।
+Raft elects a Leader whose job is to publish a log.
+The log contains Raft Configuration data and Application data.
+Application data contains the status of each Server's Router and the Destination
+for the Meta LS2 cluster.
+The servers use a common algorithm to determine the publisher and contents
+of the Meta LS2.
+The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+
+
+
+## Specification
+
+The wire protocol is over SSL sockets or non-SSL I2P sockets.
+I2P sockets are proxied through the HTTP Proxy.
+There is no support for clearnet non-SSL sockets.
+
+### Handshake and authentication
+
+Not defined by JRaft.
+
+Goals:
+
+- User/password authentication method
+- Version identifier
+- Cluster identifier
+- Extensible
+- Ease of proxying when used for I2P sockets
+- Do not unnecessarily expose server as a Garlic Farm server
+- Simple protocol so a full web server implementation is not required
+- Compatible with common standards, so implementations may use
+  standard libraries if desired
+
+We will use an websocket-like handshake and
+HTTP Digest authentication [RFC 2617](https://tools.ietf.org/html/rfc2617).
+RFC 2617 Basic authentication is NOT supported.
+When proxying through the HTTP proxy, communicate with
+the proxy as specified in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+
+#### Credentials
+
+Whether usernames and passwords are per-cluster, or
+per-server, is implementation-dependent.
+
+
+#### HTTP Request 1
+
+The originator will send the following.
+
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
   Connection: close
-  (कोई अन्य हेडर्स अनदेखा किए जाते हैं)
-  (रिक्त रेखा)
+  (any other headers ignored)
+  (blank line)
 
-  CLUSTER क्लस्टर का नाम है (डिफ़ॉल्ट "farm")
-  VERSION लहसुन फार्म का संस्करण है (वर्तमान में "1")
+  CLUSTER is the name of the cluster (default "farm")
+  VERSION is the Garlic Farm version (currently "1")
+
 ```
 
 
-HTTP प्रतिक्रिया 1
-```````````````
+#### HTTP Response 1
 
-यदि पथ सही नहीं है, तो प्राप्तकर्ता एक मानक "HTTP/1.1 404 Not Found" प्रतिक्रिया भेजेगा,
-[RFC-2616](https://tools.ietf.org/html/rfc2616) के अनुसार।
+If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
+as in [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-यदि पथ सही है, तो प्राप्तकर्ता एक मानक "HTTP/1.1 401 Unauthorized" प्रतिक्रिया भेजेगा,
-जिसमें WWW-Authenticate HTTP डाइजेस्ट प्रमाणीकरण हेडर शामिल है,
-[RFC-2617](https://tools.ietf.org/html/rfc2617) के अनुसार।
+If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
+including the WWW-Authenticate HTTP digest authentication header,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-दोनों पक्ष तब सॉकेट को बंद कर देंगे।
+Both parties will then close the socket.
 
 
-HTTP अनुरोध 2
-`````````````
+#### HTTP Request 2
 
-प्रारंभकर्ता निम्नलिखित भेजेगा,
-[RFC-2617](https://tools.ietf.org/html/rfc2617) के अनुसार और [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) के अनुसार।
+The originator will send the following,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-सभी पंक्तियां HTTP द्वारा निर्दिष्ट के रूप में CRLF के साथ समाप्त होती हैं।
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
   Connection: keep-alive, Upgrade
   Upgrade: websocket
-  (Sec-Websocket-* हेडर्स यदि प्रॉक्सी किया गया हो)
-  Authorization: (RFC 2617 के अनुसार HTTP डाइजेस्ट अधिकरण हेडर)
-  (कोई अन्य हेडर्स अनदेखा किए जाते हैं)
-  (रिक्त रेखा)
+  (Sec-Websocket-* headers if proxied)
+  Authorization: (HTTP digest authorization header as in RFC 2617)
+  (any other headers ignored)
+  (blank line)
 
-  CLUSTER क्लस्टर का नाम है (डिफ़ॉल्ट "farm")
-  VERSION लहसुन फार्म का संस्करण है (वर्तमान में "1")
+  CLUSTER is the name of the cluster (default "farm")
+  VERSION is the Garlic Farm version (currently "1")
+
 ```
 
 
-HTTP प्रतिक्रिया 2
-```````````````
+#### HTTP Response 2
 
-यदि प्रमाणीकरण सही नहीं है, तो प्राप्तकर्ता एक अन्य मानक "HTTP/1.1 401 Unauthorized" प्रतिक्रिया भेजेगा,
-[RFC-2617](https://tools.ietf.org/html/rfc2617) के अनुसार।
+If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
+as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-यदि प्रमाणीकरण सही है, तो प्राप्तकर्ता निम्नलिखित प्रतिक्रिया भेजेगा,
-[WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) के अनुसार।
+If the authentication is correct, the recipient will send the following response,
+as in the WebSocket protocol.
 
-सभी पंक्तियां HTTP द्वारा निर्दिष्ट के रूप में CRLF के साथ समाप्त होती हैं।
+All lines are teriminated with CRLF as required by HTTP.
 
 ```text
+
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
-  (Sec-Websocket-* हेडर्स)
-  (कोई अन्य हेडर्स अनदेखा किए जाते हैं)
-  (रिक्त रेखा)
+  (Sec-Websocket-* headers)
+  (any other headers ignored)
+  (blank line)
+
 ```
 
-इसके प्राप्त होने के बाद, सॉकेट खुला रहता है।
-नीचे परिभाषित Raft प्रोटोकॉल उसी सॉकेट पर प्रारंभ होता है।
+After this is received, the socket remains open.
+The Raft protocol as defined below commences, on the same socket.
 
 
-कैशिंग
-```````
+#### Caching
 
-प्रमाण-पत्र कम से कम एक घंटे के लिए कैश किए जाने चाहिए, ताकि
-बाद के कनेक्शन सीधे उपर्युक्त
-"HTTP अनुरोध 2" पर आगे बढ़ सकें।
-
-
-### संदेश प्रकार
-
-संदेशों के दो प्रकार होते हैं, अनुरोध और प्रतिक्रिया।
-अनुरोधों में लॉग प्रविष्टियाँ हो सकती हैं, और ये परिवर्तनशील आकार के होते हैं;
-प्रतिक्रिया में लॉग प्रविष्टियाँ नहीं होती हैं, और ये निश्चित आकार के होते हैं।
-
-संदेश प्रकार 1-4 मानक RPC संदेश हैं जो Raft द्वारा परिभाषित हैं।
-यह Raft प्रोटोकॉल का मुख्य भाग है।
-
-संदेश प्रकार 5-15 विस्तारित RPC संदेश हैं जो
-JRaft द्वारा परिभाषित किए गए हैं, ग्राहकों का समर्थन करने, गतिशील सर्वर परिवर्तनों के लिए,
-और कुशल लॉग सिंक्रोनाइज़ेशन हेतु।
-
-संदेश प्रकार 16-17 लॉग संपीड़न RPC संदेश हैं जो
-Raft अनुभाग 7 में परिभाषित हैं।
+Credentials shall be cached for at least one hour, so that
+subsequent connections may jump directly to
+"HTTP Request 2" above.
 
 
-| संदेश | संख्या | भेजने वाला | प्राप्त करने वाला | नोट्स |
-|-------|--------|------------|-------------------|-------|
-| RequestVoteRequest | 1 | उम्मीदवार | अनुयायी | मानक Raft RPC; लॉग प्रविष्टियाँ नहीं होनी चाहिए |
-| RequestVoteResponse | 2 | अनुयायी | उम्मीदवार | मानक Raft RPC |
-| AppendEntriesRequest | 3 | नेता | अनुयायी | मानक Raft RPC |
-| AppendEntriesResponse | 4 | अनुयायी | नेता/ग्राहक | मानक Raft RPC |
-| ClientRequest | 5 | ग्राहक | नेता/अनुयायी | प्रतिक्रिया AppendEntriesResponse है; केवल एप्लिकेशन लॉग प्रविष्टियाँ होनी चाहिए |
-| AddServerRequest | 6 | ग्राहक | नेता | केवल एक ClusterServer लॉग प्रविष्टि होनी चाहिए |
-| AddServerResponse | 7 | नेता | ग्राहक | नेता एक JoinClusterRequest भी भेजेगा |
-| RemoveServerRequest | 8 | अनुयायी | नेता | केवल एक ClusterServer लॉग प्रविष्टि होनी चाहिए |
-| RemoveServerResponse | 9 | नेता | अनुयायी | |
-| SyncLogRequest | 10 | नेता | अनुयायी | केवल एक LogPack लॉग प्रविष्टि होनी चाहिए |
-| SyncLogResponse | 11 | अनुयायी | नेता | |
-| JoinClusterRequest | 12 | नेता | नया सर्वर | जुड़ने का निमंत्रण; केवल एक Configuration लॉग प्रविष्टि होनी चाहिए |
-| JoinClusterResponse | 13 | नया सर्वर | नेता | |
-| LeaveClusterRequest | 14 | नेता | अनुयायी | छोड़ने का आदेश |
-| LeaveClusterResponse | 15 | अनुयायी | नेता | |
-| InstallSnapshotRequest | 16 | नेता | अनुयायी | Raft अनुभाग 7; केवल एक SnapshotSyncRequest लॉग प्रविष्टि होनी चाहिए |
-| InstallSnapshotResponse | 17 | अनुयायी | नेता | Raft अनुभाग 7 |
+
+### Message Types
+
+There are two types of messages, requests and responses.
+Requests may contain Log Entries, and are variable-sized;
+responses do not contain Log Entries, and are fixed-size.
+
+Message types 1-4 are the standard RPC messages defined by Raft.
+This is the core Raft protocol.
+
+Message types 5-15 are the extended RPC messages defined by
+JRaft, to support clients, dynamic server changes, and
+efficient log synchronization.
+
+Message types 16-17 are the Log Compaction RPC messages defined
+in Raft section 7.
 
 
-### स्थापना
+| Message | Number | Sent By | Sent To | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| RequestVoteRequest | 1 | Candidate | Follower | Standard Raft RPC; must not contain log entries |
+| RequestVoteResponse | 2 | Follower | Candidate | Standard Raft RPC |
+| AppendEntriesRequest | 3 | Leader | Follower | Standard Raft RPC |
+| AppendEntriesResponse | 4 | Follower | Leader / Client | Standard Raft RPC |
+| ClientRequest | 5 | Client | Leader / Follower | Response is AppendEntriesResponse; must contain Application log entries only |
+| AddServerRequest | 6 | Client | Leader | Must contain a single ClusterServer log entry only |
+| AddServerResponse | 7 | Leader | Client | Leader will also send a JoinClusterRequest |
+| RemoveServerRequest | 8 | Follower | Leader | Must contain a single ClusterServer log entry only |
+| RemoveServerResponse | 9 | Leader | Follower | |
+| SyncLogRequest | 10 | Leader | Follower | Must contain a single LogPack log entry only |
+| SyncLogResponse | 11 | Follower | Leader | |
+| JoinClusterRequest | 12 | Leader | New Server | Invitation to join; must contain a single Configuration log entry only |
+| JoinClusterResponse | 13 | New Server | Leader | |
+| LeaveClusterRequest | 14 | Leader | Follower | Command to leave |
+| LeaveClusterResponse | 15 | Follower | Leader | |
+| InstallSnapshotRequest | 16 | Leader | Follower | Raft Section 7; Must contain a single SnapshotSyncRequest log entry only |
+| InstallSnapshotResponse | 17 | Follower | Leader | Raft Section 7 |
 
-HTTP हैंडशेक के बाद, स्थापना क्रम इस प्रकार है:
+
+### Establishment
+
+After the HTTP handshake, the establishment sequence is as follows:
 
 ```text
-नया सर्वर ऐलिस              रैंडम अनुयायी बॉब
 
-  ग्राहकअनुरोध   ------->
-          <---------   प्रविष्टियाँसंलग्नप्रतिक्रिया
+New Server Alice              Random Follower Bob
 
-  यदि बॉब कहता है कि वह नेता है, तो नीचे की तरह जारी रखें।
-  अन्यथा, ऐलिस को बॉब से डिस्कनेक्ट होना चाहिए और नेता से कनेक्ट होना चाहिए।
+  ClientRequest   ------->
+          <---------   AppendEntriesResponse
+
+  If Bob says he is the leader, continue as below.
+  Else, Alice must disconnect from Bob and connect to the leader.
 
 
-  नया सर्वर ऐलिस              नेता चार्ली
+  New Server Alice              Leader Charlie
 
-  ग्राहकअनुरोध   ------->
-          <---------   प्रविष्टियाँसंलग्नप्रतिक्रिया
-  सर्वरजोड़ेंअनुरोध   ------->
-          <---------   सर्वरजोड़ेंप्रतिक्रिया
-          <---------   क्लस्टरमेंशामिलहोअनुरोध
-  क्लस्टरमेंशामिलहोप्रतिक्रिया  ------->
-          <---------   लॉगसिंकअनुरोध
-                       या स्नैपशॉटइंस्टॉलअनुरोध
-  लॉगसिंकप्रतिक्रिया  ------->
-  या स्नैपशॉटइंस्टॉलप्रतिक्रिया
+  ClientRequest   ------->
+          <---------   AppendEntriesResponse
+  AddServerRequest   ------->
+          <---------   AddServerResponse
+          <---------   JoinClusterRequest
+  JoinClusterResponse  ------->
+          <---------   SyncLogRequest
+                       OR InstallSnapshotRequest
+  SyncLogResponse  ------->
+  OR InstallSnapshotResponse
+
 ```
 
-डिस्कनेक्ट क्रम:
+Disconnect Sequence:
 
 ```text
-अनुयायी ऐलिस              नेता चार्ली
 
-  सर्वरहटाएंअनुरोध   ------->
-          <---------   सर्वरहटाएंप्रतिक्रिया
-          <---------   क्लस्टरछोड़ेंअनुरोध
-  क्लस्टरछोड़ेंप्रतिक्रिया  ------->
+Follower Alice              Leader Charlie
+
+  RemoveServerRequest   ------->
+          <---------   RemoveServerResponse
+          <---------   LeaveClusterRequest
+  LeaveClusterResponse  ------->
+
 ```
 
-निर्वाचन क्रम:
+Election Sequence:
 
 ```text
-उम्मीदवार ऐलिस               अनुयायी बॉब
 
-  निवेदनवोटअनुरोध   ------->
-          <---------   निवेदनवोटप्रतिक्रिया
+Candidate Alice               Follower Bob
 
-  यदि ऐलिस चुनाव जीतता है:
+  RequestVoteRequest   ------->
+          <---------   RequestVoteResponse
 
-  नेता ऐलिस                अनुयायी बॉब
+  if Alice wins election:
 
-  प्रविष्टियाँसंलग्नअनुरोध   ------->
-  (हार्टबीट)
-          <---------   प्रविष्टियाँसंलग्नप्रतिक्रिया
+  Leader Alice                Follower Bob
+
+  AppendEntriesRequest   ------->
+  (heartbeat)
+          <---------   AppendEntriesResponse
+
 ```
 
 
-### परिभाषाएँ
+### Definitions
 
-- स्रोत: संदेश के प्रेरक की पहचान करता है
-- गंतव्य: संदेश के प्राप्तकर्ता की पहचान करता है
-- अवधियाँ: Raft देखें। 0 पर आरंभ की जाती हैं, मोनोफोनिक रूप से वृद्धि करती हैं
-- सूचकांक: Raft देखें। 0 पर आरंभ की जाती हैं, मोनोफोनिक रूप से वृद्धि करती हैं
-
-
-### अनुरोध
-
-अनुरोधों में एक हेडर और शून्य या अधिक लॉग प्रविष्टियाँ होती हैं।
-अनुरोधों में एक निश्चित आकार का हेडर और परिवर्तनशील आकार का लॉग प्रविष्टियाँ होती हैं।
+- Source: Identifies the originator of the message
+- Destination: Identifies the recipient of the message
+- Terms: See Raft. Initialized to 0, increases monotonically
+- Indexes: See Raft. Initialized to 0, increases monotonically
 
 
-अनुरोध हेडर
-````````````
 
-अनुरोध हेडर 45 बाइट्स का होता है, जैसा नीचे दिया गया है।
-सभी मान असंकेतित बड़ी-बाइट वाले होते हैं।
+### Requests
 
-```dataspec
-संदेश प्रकार:       1 बाइट
-  स्रोत:              ID, 4 बाइट्स का पूर्णांक
-  गंतव्य:             ID, 4 बाइट्स का पूर्णांक
-  अवधि:               वर्तमान अवधि (नोट्स देखें), 8 बाइट्स का पूर्णांक
-  अंतिम लॉग अवधि:     8 बाइट्स का पूर्णांक
-  अंतिम लॉग सूचकांक:    8 बाइट्स का पूर्णांक
-  कमिट सूचकांक:        8 बाइट्स का पूर्णांक
-  लॉग प्रविष्टियाँ आकार:  बाइट्स में कुल आकार, 4 बाइट्स का पूर्णांक
-  लॉग प्रविष्टियाँ:    नीचे देखें, निर्दिष्ट लंबाई
+Requests contain a header and zero or more log entries.
+Requests contain a fixed-size header and optional Log Entries of variable size.
+
+
+#### Request Header
+
+The request header is 45 bytes, as follows.
+All values are unsigned big-endian.
+
+```text
+
+Message type:      1 byte
+  Source:            ID, 4 byte integer
+  Destination:       ID, 4 byte integer
+  Term:              Current term (see notes), 8 byte integer
+  Last Log Term:     8 byte integer
+  Last Log Index:    8 byte integer
+  Commit Index:      8 byte integer
+  Log entries size:  Total size in bytes, 4 byte integer
+  Log entries:       see below, total length as specified
+
 ```
 
 
-#### नोट्स
+#### Notes
 
-निवेदनवोटअनुरोध में, अवधि उम्मीदवार की अवधि है।
-अन्यथा, यह नेता की वर्तमान अवधि है।
+In the RequestVoteRequest, Term is the candidate's term.
+Otherwise, it is the leader's current term.
 
-प्रविष्टियाँसंलग्नअनुरोध में, जब लॉग प्रविष्टियाँ आकार शून्य होता है,
-यह संदेश एक हार्टबीट (कीपअलाइव) संदेश है।
+In the AppendEntriesRequest, when the log entries size is zero,
+this message is a heartbeat (keepalive) message.
 
 
-लॉग प्रविष्टियाँ
-`````````````
 
-लॉग में शून्य या अधिक लॉग प्रविष्टियाँ होती हैं।
-प्रत्येक लॉग प्रविष्टि इस प्रकार होती है।
-सभी मान असंकेतित बड़ी-बाइट वाले होते हैं।
+#### Log Entries
 
-```dataspec
-अवधि:            8 बाइट्स का पूर्णांक
-  मूल्य प्रकार:     1 बाइट
-  प्रविष्टि आकार:    बाइट्स में, 4 बाइट्स का पूर्णांक
-  प्रविष्टि:         निर्दिष्ट लंबाई
+The log contains zero or more log entries.
+Each log entry is as follows.
+All values are unsigned big-endian.
+
+```text
+
+Term:           8 byte integer
+  Value type:     1 byte
+  Entry size:     In bytes, 4 byte integer
+  Entry:          length as specified
+
 ```
 
 
-लॉग सामग्री
-````````````
+#### Log Contents
 
-सभी मान असंकेतित बड़ी-बाइट वाले होते हैं।
+All values are unsigned big-endian.
 
-| लॉग मूल्य प्रकार | संख्या |
-|------------------|--------|
-| एप्लिकेशन | 1 |
-| कॉन्फ़िगरेशन | 2 |
-| क्लस्टरसर्वर | 3 |
-| लॉगपैक | 4 |
-| स्नैपशॉटसिंकअनुरोध | 5 |
-
-
-#### एप्लिकेशन
-
-एप्लिकेशन सामग्री UTF-8 एन्कोडेड [JSON](https://www.json.org/json-en.html) होती है।
-नीचे एप्लिकेशन स्तर अनुभाग देखें।
+| Log Value Type | Number |
+| :--- | :--- |
+| Application | 1 |
+| Configuration | 2 |
+| ClusterServer | 3 |
+| LogPack | 4 |
+| SnapshotSyncRequest | 5 |
 
 
-#### कॉन्फ़िगरेशन
+#### Application
 
-यह नए क्लस्टर कॉन्फ़िगरेशन को धारक द्वारा धारावाहिक करने और सहयोगियों को प्रतिलिपित करने के लिए उपयोग किया जाता है।
-यह शून्य या अधिक क्लस्टरसर्वर कॉन्फ़िगरेशन शामिल करता है।
+Application contents are UTF-8 encoded [JSON](https://www.json.org/).
+See the Application Layer section below.
 
-```dataspec
-लॉग सूचकांक:  8 बाइट्स का पूर्णांक
-  अंतिम लॉग सूचकांक:  8 बाइट्स का पूर्णांक
-  प्रत्येक सर्वर के लिए क्लस्टरसर्वर डेटा:
-    ID:                4 बाइट्स का पूर्णांक
-    अंत बिंदु डेटा लंबाई: बाइट्स में, 4 बाइट्स का पूर्णांक
-    अंत बिंदु डेटा:     "tcp://localhost:9001" के रूप में ASCII स्ट्रिंग, निर्दिष्ट लंबाई
+
+#### Configuration
+
+This is used for the leader to serialize a new cluster configuration and replicate to peers.
+It contains zero or more ClusterServer configurations.
+
+
+```text
+
+Log Index:  8 byte integer
+  Last Log Index:  8 byte integer
+  ClusterServer Data for each server:
+    ID:                4 byte integer
+    Endpoint data len: In bytes, 4 byte integer
+    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+
 ```
 
 
-#### क्लस्टरसर्वर
+#### ClusterServer
 
-क्लस्टर में एक सर्वर की कॉन्फ़िगरेशन जानकारी।
-यह केवल एक सर्वरजोड़ेंअनुरोध या सर्वरहटाएंअनुरोध संदेश में शामिल होता है।
+The configuration information for a server in a cluster.
+This is included only in a AddServerRequest or RemoveServerRequest message.
 
-सर्वरजोड़ेंअनुरोध संदेश में उपयोग किया गया:
+When used in a AddServerRequest Message:
 
-```dataspec
-ID:                4 बाइट्स का पूर्णांक
-  अंत बिंदु डेटा लंबाई: बाइट्स में, 4 बाइट्स का पूर्णांक
-  अंत बिंदु डेटा:     "tcp://localhost:9001" के रूप में ASCII स्ट्रिंग, निर्दिष्ट लंबाई
+```text
+
+ID:                4 byte integer
+  Endpoint data len: In bytes, 4 byte integer
+  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+
 ```
 
 
-सर्वरहटाएंअनुरोध संदेश में उपयोग किया गया:
+When used in a RemoveServerRequest Message:
 
-```dataspec
-ID:                4 बाइट्स का पूर्णांक
+```text
+
+ID:                4 byte integer
+
 ```
 
 
-#### लॉगपैक
+#### LogPack
 
-यह केवल लॉगसिंकअनुरोध संदेश में शामिल होता है।
+This is included only in a SyncLogRequest message.
 
-निम्नलिखित प्रसारण से पहले gzipped होता है:
+The following is gzipped before transmission:
 
-```dataspec
-सूचकांक डेटा लंबाई: बाइट्स में, 4 बाइट्स का पूर्णांक
-  लॉग डेटा लंबाई:   बाइट्स में, 4 बाइट्स का पूर्णांक
-  सूचकांक डेटा:     प्रत्येक सूचकांक के लिए 8 बाइट्स, निर्दिष्ट लंबाई
-  लॉग डेटा:         निर्दिष्ट लंबाई
+
+```text
+
+Index data len: In bytes, 4 byte integer
+  Log data len:   In bytes, 4 byte integer
+  Index data:     8 bytes for each index, length as specified
+  Log data:       length as specified
+
 ```
 
 
-#### स्नैपशॉटसिंकअनुरोध
 
-यह केवल एक स्नैपशॉटइंस्टॉलअनुरोध संदेश में शामिल होता है।
+#### SnapshotSyncRequest
 
-```dataspec
-अंतिम लॉग सूचकांक:  8 बाइट्स का पूर्णांक
-  अंतिम लॉग अवधि:   8 बाइट्स का पूर्णांक
-  कॉन्फ़िग डेटा लंबाई: बाइट्स में, 4 बाइट्स का पूर्णांक
-  कॉन्फ़िग डेटा:     निर्दिष्ट लंबाई
-  ऑफ़सेट:          डेटाबेस में डेटा का ऑफ़सेट, बाइट्स में, 8 बाइट्स का पूर्णांक
-  डेटा लंबाई:        बाइट्स में, 4 बाइट्स का पूर्णांक
-  डेटा:            निर्दिष्ट लंबाई
-  किया गया:         1 यदि किया गया है, 0 यदि नहीं किया गया (1 बाइट)
+This is included only in a InstallSnapshotRequest message.
+
+```text
+
+Last Log Index:  8 byte integer
+  Last Log Term:   8 byte integer
+  Config data len: In bytes, 4 byte integer
+  Config data:     length as specified
+  Offset:          The offset of the data in the database, in bytes, 8 byte integer
+  Data len:        In bytes, 4 byte integer
+  Data:            length as specified
+  Is Done:         1 if done, 0 if not done (1 byte)
+
 ```
 
 
-### प्रतिक्रियाएँ
 
-सभी प्रतिक्रियाएँ 26 बाइट्स की होती हैं, जैसा नीचे दिखाया गया है।
-सभी मान असंकेतित बड़ी-बाइट वाला होते हैं।
 
-```dataspec
-संदेश प्रकार:   1 बाइट
-  स्रोत:         ID, 4 बाइट्स का पूर्णांक
-  गंतव्य:    आमतौर पर वास्तविक गंतव्य ID (नोट्स देखें), 4 बाइट्स का पूर्णांक
-  अवधि:         वर्तमान अवधि, 8 बाइट्स का पूर्णांक
-  अगला सूचकांक:  नेता का अंतिम लॉग सूचकांक + 1 के रूप में आरंभ, 8 बाइट्स का पूर्णांक
-  स्वीकारा गया:   1 यदि स्वीकारा गया है, 0 यदि स्वीकारा नहीं गया (नोट्स देखें), 1 बाइट
+### Responses
+
+All responses are 26 bytes, as follows.
+All values are unsigned big-endian.
+
+```text
+
+Message type:   1 byte
+  Source:         ID, 4 byte integer
+  Destination:    Usually the actual destination ID (see notes), 4 byte integer
+  Term:           Current term, 8 byte integer
+  Next Index:     Initialized to leader last log index + 1, 8 byte integer
+  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+
 ```
 
 
-नोट्स
-`````
+#### Notes
 
-गंतव्य ID आमतौर पर इस संदेश के लिए वास्तविक गंतव्य होता है।
-हालांकि, प्रविष्टियाँसंलग्नप्रतिक्रिया, सर्वरजोड़ेंप्रतिक्रिया, और सर्वरहटाएंप्रतिक्रिया में,
-यह वर्तमान नेता का ID होता है।
+The Destination ID is usually the actual destination for this message.
+However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
+it is the ID of the current leader.
 
-निवेदनवोटप्रतिक्रिया में, स्वीकारा गया 1 होता है उम्मीदवार (अनुरोधकर्ता) के पक्ष में एक वोट के लिए,
-और 0 होता है कोई वोट न होने के लिए।
-
-
-## एप्लिकेशन स्तर
-
-प्रत्येक सर्वर समय-समय पर एप्लिकेशन डेटा को लॉग में एक ग्राहकअनुरोध में पोस्ट करता है।
-एप्लिकेशन डेटा प्रत्येक सर्वर के राउटर की स्थिति और मेटा LS2 क्लस्टर के गंतव्य को शामिल करता है।
-सर्वर मेटा LS2 के प्रकाशक और सामग्री को निर्धारित करने के लिए एक सामान्य एल्गोरिदम का उपयोग करते हैं।
-लॉग में "सबसे अच्छा" हाल ही का स्टेटस वाला सर्वर मेटा LS2 का प्रकाशक होता है।
-मेटा LS2 का प्रकाशक आवश्यक रूप से Raft नेता नहीं होता है।
+In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
+and 0 for no vote.
 
 
-### एप्लिकेशन डेटा सामग्री
+## Application Layer
 
-एप्लिकेशन सामग्री UTF-8 एन्कोडेड [JSON](https://www.json.org/json-en.html) होती है,
-सरलता और विस्तार के लिए।
-पूरी स्पेसिफिकेशन TBD है।
-लक्ष्य यह प्रदान करना है कि "सबसे अच्छा"
-राउटर मेटा LS2 को प्रकाशित करने के लिए एक एल्गोरिदम लिखने के लिए पर्याप्त डेटा हो,
-और प्रकाशक के पास मेटा LS2 में गंतव्यों का भार निर्धारित करने के लिए पर्याप्त जानकारी हो।
-डेटा में राउटर और गंतव्य के आंकड़े शामिल होंगे।
-
-डेटा में अन्य सर्वरों के स्वास्थ्य की दूर-संवेदन करने वाली डेटा के लिए एक विकल्प हो सकता है,
-और मेटा LS को पुनर्प्राप्त करने की क्षमता भी हो सकती है।
-ये डेटा पहले रिलीज में समर्थित नहीं होंगे।
-
-डेटा में एक प्रशासक ग्राहक द्वारा पोस्ट की गई कॉन्फ़िगरेशन जानकारी के लिए एक विकल्प हो सकता है।
-ये डेटा पहले रिलीज में समर्थित नहीं होंगे।
-
-यदि "नाम: मूल्य" सूचीबद्ध है, तो वह JSON मैप कुंजी और मूल्य निर्दिष्ट करता है।
-अन्यथा, स्पेसिफिकेशन TBD है।
+Each Server periodically posts Application data to the log in a ClientRequest.
+Application data contains the status of each Server's Router and the Destination
+for the Meta LS2 cluster.
+The servers use a common algorithm to determine the publisher and contents
+of the Meta LS2.
+The server with the "best" recent status in the log is the Meta LS2 publisher.
+The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
 
 
-क्लस्टर डेटा (शीर्ष स्तर):
+### Application Data Contents
 
-- क्लस्टर: क्लस्टर का नाम
-- तिथि: इस डेटा की तिथि (लॉन्ग, युग के बाद मिलीसेकंड में)
-- आईडी: Raft ID (पूर्णांक)
+Application contents are UTF-8 encoded [JSON](https://json.org/),
+for simplicity and extensibility.
+The full specification is TBD.
+The goal is to provide enough data to write an algorithm to determine the "best"
+router to publish the Meta LS2, and for the publisher to have sufficient information
+to weight the Destinations in the Meta LS2.
+The data will contain both router and Destination statistics.
 
-कॉन्फ़िगरेशन डेटा (कॉन्फ़िग):
+The data may optionally contain remote sensing data on the health of the
+other servers, and the ability to fetch the Meta LS.
+These data would not be supported in the first release.
 
-- कोई भी कॉन्फ़िगरेशन पैरामीटर
+The data may optionally contain configuration information posted
+by an administrator client.
+These data would not be supported in the first release.
 
-मेटाLS प्रकाशन की स्थिति (मेटा):
-
-- गंतव्य: मेटाल्स गंतव्य, base64
-- अंतिमप्रकाशनएलएस: यदि मौजूद हो, अंतिम प्रकाशित मेटाल्स के base64 एन्कोडिंग
-- अंतिमप्रकाशनसमय: मिलीसेकंड में, या कभी नहीं के लिए 0
-- प्रकाशनकॉन्फ़िग: प्रकाशक कॉन्फ़िग स्थिति ऑफ/ऑन/ऑटो
-- प्रकाशन: मेटाल्स प्रकाशन की स्थिति बुलियन सही/गलत
-
-राउटर डेटा (राउटर):
-
-- अंतिमप्रकाशनआरआई: यदि मौजूद हो, अंतिम प्रकाशित राउटर जानकारी का base64 एन्कोडिंग
-- अपटाइम: मिलीसेकंड में अपटाइम
-- जॉब लैग
-- अन्वेषण सुरंग
-- भागीदारी सुरंग
-- कॉन्फ़िगर किया गया बैंडविड्थ
-- वर्तमान बैंडविड्थ
-
-गंतव्य (गंतव्य):
-सूची
-
-गंतव्य डेटा:
-
-- गंतव्य: गंतव्य, base64
-- अपटाइम: मिलीसेकंड में अपटाइम
-- कॉन्फ़िगर की गई सुरंग
-- वर्तमान सुरंग
-- कॉन्फ़िगर किया गया बैंडविड्थ
-- वर्तमान बैंडविड्थ
-- कॉन्फ़िगर किए गए कनेक्शन
-- वर्तमान कनेक्शन
-- ब्लैकलिस्ट डेटा
-
-दूरस्थ राउटर संवेदन डेटा:
-
-- अंतिम आरआई संस्करण देखा गया
-- एलएस फ़ेच समय
-- कनेक्शन परीक्षण डेटा
-- निकटतम बाढ़फिल्टर प्रोफाइल डेटा
-  कल, आज, और कल के समय अवधि के लिए
-
-दूरस्थ गंतव्य संवेदन डेटा:
-
-- अंतिम एलएस संस्करण देखा गया
-- एलएस फ़ेच समय
-- कनेक्शन परीक्षण डेटा
-- निकटतम बाढ़फिल्टर प्रोफाइल डेटा
-  कल, आज, और कल के समय अवधि के लिए
-
-मेटा एलएस संवेदन डेटा:
-
-- अंतिम संस्करण देखा गया
-- फ़ेच समय
-- निकटतम बाढ़फिल्टर प्रोफाइल डेटा
-  कल, आज, और कल के समय अवधि के लिए
+If "name: value" is listed, that specifies the JSON map key and value.
+Otherwise, specification is TBD.
 
 
-## प्रशासन इंटरफेस
+Cluster data (top level):
 
-TBD, संभवतः एक अलग प्रस्ताव।
-पहले रिलीज के लिए आवश्यक नहीं।
+- cluster: Cluster name
+- date: Date of this data (long, ms since the epoch)
+- id: Raft ID (integer)
 
-एक एडमिन इंटरफेस की आवश्यकताएँ:
+Configuration data (config):
 
-- कई मास्टर गंतव्यों हेतु समर्थन, यानी कई वर्चुअल क्लस्टर (फार्म)
-- साझा क्लस्टर स्थिति का व्यापक दृश्य प्रदान करें - सदस्य द्वारा प्रकाशित सभी आंकड़े, वर्तमान नेता कौन है, आदि।
-- क्लस्टर से एक प्रतिभागी या नेता के हटाने के लिए जोर देने की क्षमता
-- मेटाLS का जबरदस्त प्रकाशन (यदि वर्तमान नोड प्रकाशक है) की क्षमता
-- मेटाLS से हैशों को बाहर निकालने की क्षमता (यदि वर्तमान नोड प्रकाशक है)
-- बल्क परिनियोजन के लिए कॉन्फ़िगरेशन आयात/निर्यात कार्यक्षमता
+- Any configuration parameters
+
+MetaLS publishing status (meta):
+
+- destination: the metals destination, base64
+- lastPublishedLS: if present, base64 encoding of the last published metals
+- lastPublishedTime: in ms, or 0 if never
+- publishConfig: Publisher config status off/on/auto
+- publishing: metals publisher status boolean true/false
+
+Router data (router):
+
+- lastPublishedRI: if present, base64 encoding of the last published router info
+- uptime: Uptime in ms
+- Job lag
+- Exploratory tunnels
+- Participating tunnels
+- Configured bandwidth
+- Current bandwidth
+
+Destinations (destinations):
+List
+
+Destination data:
+
+- destination: the destination, base64
+- uptime: Uptime in ms
+- Configured tunnels
+- Current tunnels
+- Configured bandwidth
+- Current bandwidth
+- Configured connections
+- Current connections
+- Blacklist data
+
+Remote router sensing data:
+
+- Last RI version seen
+- LS Fetch time
+- Connection test data
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
+
+Remote destination sensing data:
+
+- Last LS version seen
+- LS Fetch time
+- Connection test data
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
+
+Meta LS sensing data:
+
+- Last version seen
+- Fetch time
+- Closest floodfills profile data
+  for time periods yesterday, today, and tomorrow
 
 
-## राउटर इंटरफेस
+## Administration Interface
 
-TBD, संभावित रूप से एक अलग प्रस्ताव।
-आई2पीकंट्रोल पहले रिलीज के लिए आवश्यक नहीं है और विस्तृत बदलाव एक अलग प्रस्ताव में शामिल किए जाएंगे।
+TBD, possibly a separate proposal.
+Not required for the first release.
 
-लहसुन फार्म से राउटर एपीआई के लिए आवश्यकताएँ (इन-JVM जावा या आई2पीकंट्रोल)
+Requirements of an admin interface:
+
+- Support for multiple master destinations, i.e. multiple virtual clusters (farms)
+- Provide comprehensive view of shared cluster state - all stats published by members, who is the current leader, etc.
+- Ability to force removal of a participant or leader from the cluster
+- Ability to force publish metaLS (if current node is publisher)
+- Ability to exclude hashes from metaLS (if current node is publisher)
+- Configuration import/export functionality for bulk deployments
+
+
+
+## Router Interface
+
+TBD, possibly a separate proposal.
+i2pcontrol is not required for the first release and detailed changes will be included in a separate proposal.
+
+Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
 
 - getLocalRouterStatus()
 - getLocalLeafHash(Hash masterHash)
 - getLocalLeafStatus(Hash leaf)
-- getRemoteMeasuredStatus(Hash masterOrLeaf) // संभवतः एमवीपी में नहीं
-- publishMetaLS(Hash masterHash, List<MetaLease> contents) // या हस्ताक्षरित MetaLeaseSet? कौन हस्ताक्षर करता है?
+- getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
+- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
 - stopPublishingMetaLS(Hash masterHash)
-- प्रमाणीकरण TBD?
+- authentication TBD?
 
 
-## औचित्य
+## Justification
 
-एटॉमिक्स बहुत बड़ा है और हमें इसे आई2पी पर मार्ग विभाजित करने के लिए अनुकूलित नहीं करने देगा। इसके अलावा, इसका वायर फॉर्मेट अप्रलेखित है, और यह
-जावा serialization पर निर्भर करता है।
-
-
-## नोट्स
+Atomix is too large and won't allow customization for us to route
+the protocol over I2P. Also, its wire format is undocumented, and depends
+on Java serialization.
 
 
-## मुद्दे
-
-- एक ग्राहक के लिए अज्ञात नेता के बारे में जानकारी प्राप्त करने और उससे कनेक्ट करने का कोई तरीका नहीं है।
-  यह एक मामूली बदलाव होगा यदि एक अनुयायी प्रविष्टियाँसंलग्नप्रतिक्रिया में लॉग प्रविष्टि के रूप में कॉन्फ़िगरेशन भेजता है।
+## Notes
 
 
-## संक्रमण
 
-कोई पिछड़ा संगतता मुद्दे नहीं हैं।
+## Issues
+
+- There's no way for a client to find out about and connect to an unknown leader.
+  It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
 
 
-## संदर्भ
+
+## Migration
+
+No backward compatibility issues.
+
+
+## References
 
 * [JRAFT](https://github.com/datatechnology/jraft)
-* [JSON](https://www.json.org/json-en.html)
+* [JSON](https://json.org/)
 * [RAFT](/docs/research/ongaro2014-raft.pdf)
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
+
+
+
+
+

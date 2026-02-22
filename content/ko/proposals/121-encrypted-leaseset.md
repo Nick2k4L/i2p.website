@@ -10,56 +10,60 @@ supercededby: "123"
 toc: true
 ---
 
-## 개요
+## Overview
 
-이 제안서는 LeaseSet을 암호화하는 메커니즘을 재설계하는 것에 관한 것입니다.
-
-
-## 동기
-
-현재 암호화된 LS는 끔찍하고 안전하지 않습니다. 저는 그것을 설계하고 구현했기 때문에 그렇게 말할 수 있습니다.
-
-이유:
-
-- AES CBC로 암호화됨
-- 모든 사람에게 단일 AES 키
-- Lease 만료가 여전히 노출됨
-- 암호화 공개 키가 여전히 노출됨
+This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
 
-## 설계
+## Motivation
 
-### 목표
+Current encrypted LS is horrendous and insecure. I can say that, I designed and
+implemented it.
 
-- 전체를 불투명하게 만들기
-- 각 수신자에 대한 키
+Reasons:
 
-
-### 전략
-
-GPG/OpenPGP가 하는 것처럼 하십시오. 각 수신자를 위해 대칭 키를 비대칭으로 암호화합니다. 데이터는 그 비대칭 키로 복호화됩니다. 예를 들어 [RFC-4880-S5.1]을 참조하십시오._ 작고 빠른 알고리즘을 찾을 수 있다면 가능합니다.
-
-작고 빠른 비대칭 암호화를 찾는 것이 핵심입니다. ElGamal은 514 바이트로 여기서 약간 부담스럽습니다. 우리는 더 잘할 수 있습니다.
-
-예를 들어 `http://security.stackexchange.com/questions/824...` 을 참조하십시오.
-
-이것은 수신자 수가 적을 때 (또는 실제로는 키가 적을 때) 작동합니다; 원하시면 여전히 여러 사람에게 키를 배포할 수 있습니다.
+- AES CBC encrypted
+- Single AES key for everybody
+- Lease expirations still exposed
+- Encryption pubkey still exposed
 
 
-## 사양
+## Design
 
-- 목적지
-- 게시된 타임스탬프
-- 만료
-- 플래그
-- 데이터 길이
-- 암호화된 데이터
-- 서명
+### Goals
 
-암호화된 데이터는 일부 enctype 지정자로 접두사로 붙일 수 있습니다, 아니면 아닐 수도 있습니다.
+- Make entire thing opaque
+- Keys for each recipient
 
 
-## 참고 문헌
+### Strategy
 
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1
+Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+IF we can find an algo that's small and fast.
+
+Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
+bytes is a little painful here. We can do better.
+
+See e.g. http://security.stackexchange.com/questions/824...
+
+This works for small numbers of recipients (or actually, keys; you can still
+distribute keys to multiple people if you like).
+
+
+## Specification
+
+- Destination
+- Published timestamp
+- Expiration
+- Flags
+- Length of data
+- Encrypted data
+- Signature
+
+Encrypted data could be prefixed with some enctype specifier, or not.
+
+
+## References
+
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

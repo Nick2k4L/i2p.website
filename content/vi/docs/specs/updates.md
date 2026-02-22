@@ -222,7 +222,7 @@ Các file jar và war trong zip không còn được nén bằng pack200 như đ
 ### Ghi chú
 
 - Đối với các bản phát hành, phiên bản SU3 là phiên bản router "cơ bản", ví dụ "0.9.20".
-- Đối với các bản build phát triển, được hỗ trợ từ bản phát hành 0.9.20, phiên bản SU3 là phiên bản router "đầy đủ", ví dụ "0.9.20-5" hoặc "0.9.20-5-rc". Xem RouterVersion.java trong mã nguồn I2P.
+- Đối với các bản build phát triển, được hỗ trợ từ bản phát hành 0.9.20, phiên bản SU3 là phiên bản router "đầy đủ", ví dụ "0.9.20-5" hoặc "0.9.20-5-rc". Xem RouterVersion.java trong [mã nguồn I2P](https://github.com/i2p/i2p.i2p).
 
 ## Đặc tả Tệp SU3 Reseed
 
@@ -371,7 +371,7 @@ TBD, chưa được triển khai, xem đề xuất 130. Các cập nhật blockl
 ## Tài liệu tham khảo
 
 - **[CRYPTO-SIG]** [Mật mã học - Chữ ký](/docs/specs/cryptography#sig)
-- **[I2P-SRC]** Mã nguồn I2P
+- **[I2P-SRC]** [Mã nguồn I2P](https://github.com/i2p/i2p.i2p)
 - **[PLUGIN]** [Đặc tả Plugin](/docs/specs/plugin)
 - **[Python]** [Chữ ký RSA Raw của Python](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)
 - **[RFC-3339]** [RFC 3339 - Ngày và Thời gian](https://tools.ietf.org/html/rfc3339)

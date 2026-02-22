@@ -20,7 +20,7 @@ There are two ways to contribute translations:
 
 **This is the easiest way to translate I2P.** Transifex provides a web-based interface that makes translation simple and accessible.
 
-1. Sign up at Transifex
+1. Sign up at [Transifex](https://www.transifex.com/otf/I2P/)
 2. Request to join the I2P translation team
 3. Start translating directly in your browser
 
@@ -48,7 +48,7 @@ The router console is the web interface you see when running I2P. Translating it
 
 ### Using Transifex (Recommended)
 
-1. Go to I2P on Transifex
+1. Go to [I2P on Transifex](https://www.transifex.com/otf/I2P/)
 2. Select the router console project
 3. Choose your language
 4. Start translating
@@ -100,7 +100,7 @@ ant updaters
 ```
 
 **Submit your work:**
-- Create merge request on GitLab
+- Create merge request on [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p)
 - Or share files with the development team on IRC
 
 ---
@@ -250,7 +250,7 @@ Your work directly helps people around the world use I2P safely and privately. T
 Ready to start translating?
 
 1. **Choose your method:**
-   - Quick start: Sign up on Transifex
+   - Quick start: [Sign up on Transifex](https://www.transifex.com/otf/I2P/)
    - Manual approach: Join [#i2p-dev on IRC](/contact/#irc)
 
 2. **Start small:** Translate a few strings to get familiar with the process

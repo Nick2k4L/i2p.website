@@ -11,42 +11,58 @@ implementedin: "0.9.30"
 toc: true
 ---
 
-## Genel Bakış
+## Overview
 
-Bu öneri, tanıtımların başarı oranını artırmakla ilgilidir.
+This proposal is about improving the success rate for introductions.
 
-## Motivasyon
 
-Tanıtıcılar belli bir süre sonra geçerliliğini yitirir, ancak bu bilgi
-RouterInfo içinde yayımlanmaz. Yönlendiriciler, bir tanıtıcının artık geçerli olmadığı zamanı şu anda tahmin etmek için sezgileri kullanmalıdır.
+## Motivation
 
-## Tasarım
+Introducers expire after a certain time, but that info isn't published in the
+Router Info. Routers must currently use heuristics to estimate when an
+introducer is no longer valid.
 
-Bir SSU RouterAddress'inde tanıtıcılar içeren yayımlayıcı, her bir tanıtıcı için isteğe bağlı olarak geçerlilik sürelerini ekleyebilir.
 
-## Spesifikasyon
+## Design
+
+In an SSU Router Address containing introducers, the publisher may optionally
+include expiration times for each introducer.
+
+
+## Specification
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: Tanıtıcı numarası (0-2)
+X :: The introducer number (0-2)
 
-nnnnnnnnnn :: Epok zamanından bu yana saniye (ms değil).
+nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
 ```
 
-### Notlar
-* Her bir geçerlilik süresi, RouterInfo yayın tarihinden daha sonra olmalı ve RouterInfo yayın tarihinden en fazla 6 saat sonra olmalıdır.
+### Notes
 
-* Yayın yapan yönlendiriciler ve tanıtıcılar, tanıtıcının süresi dolana kadar geçerli kalmasını sağlamaya çalışmalıdır, ancak bunu garanti etmelerinin bir yolu yoktur.
+* Each expiration must be greater than the publish date of the Router Info,
+  and less than 6 hours after the publish date of the Router Info.
 
-* Yönlendiriciler, süresinin dolmasının ardından yayımlanan bir tanıtıcıyı kullanmamalıdır.
+* Publishing routers and introducers should attempt to keep the introducer valid
+  until expiration, however there is no way for them to guarantee this.
 
-* Tanıtıcı süre sonları RouterAddress eşleminde yer alır.
-  Bunlar, (şu anda kullanılmayan) RouterAddress içindeki 8 baytlık süre alanı değildir.
+* Routers should not use a published introducer after its expiration.
 
-**Örnek:** `iexp0=1486309470`
+* The introducer expirations are in the Router Address mapping.
+  They are not the (currently unused) 8-byte expiration field in the Router Address.
 
-## Geçiş
+**Example:** `iexp0=1486309470`
 
-Sorun yok. Uygulama isteğe bağlıdır.
-Eski yönlendiriciler bilinmeyen parametreleri göz ardı edeceklerinden geriye dönük uyum sağlanmıştır.
+
+## Migration
+
+No issues. Implementation is optional.
+Backwards compatibility is assured, as older routers will ignore unknown parameters.
+
+
+## References
+
+* [RouterAddress](/docs/specs/common-structures/#routeraddress)
+* [RouterInfo](/docs/specs/common-structures/#routerinfo)
+* [TRAC-TICKET](http://trac.i2p2.i2p/ticket/1352)

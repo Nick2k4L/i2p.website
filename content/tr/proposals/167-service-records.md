@@ -10,367 +10,384 @@ target: "0.9.66"
 toc: true
 ---
 
-## Durum
-2025-04-01'de ikinci incelemede onaylandı; belirtimler güncellenmiştir; henüz uygulanmadı.
+## Status
+Approved on 2nd review 2025-04-01; specs are updated; not yet implemented.
 
 
-## Genel Bakış
+## Overview
 
-I2P'nin merkezi bir DNS sistemi yoktur.
-Ancak, adres defteri ve b32 host adı sistemi ile birlikte router,
-tam destinasyonları arayabilir ve kiralama setlerini çekebilir, bu setler
-ağ geçitleri ve anahtarlar listesi içerir, böylece müşteriler bu destinasyona bağlanabilir.
+I2P lacks a centralized DNS system.
+However, the address book, together with the b32 hostname system, allows
+the router to look up full destinations and fetch lease sets, which contain
+a list of gateways and keys so that clients may connect to that destination.
 
-Bu bağlamda, kiralama setleri bir nevi DNS kaydı gibidir. Ancak, şu anda bu hostun
-herhangi bir hizmeti destekleyip desteklemediğini öğrenmek için bir kolaylık yoktur,
-ya o destinasyonda ya da farklı bir destinasyonda, DNS SRV kayıtlarına benzer bir
-biçimde [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782).
+So, leasesets are somewhat like a DNS record. But there is currently no facility to
+find out if that host supports any services, either on that destination or a different one,
+in a manner similar to DNS [SRV records](https://en.wikipedia.org/wiki/SRV_record) as defined in [RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
-Bunun için ilk başvuru eşler arası e-posta olabilir.
-Diğer potansiyel uygulamalar: DNS, GNS, anahtar sunucuları, sertifika yetkilileri, zaman sunucuları,
-bittorrent, kripto paralar, diğer eşler arası uygulamalar.
+The first application for this may be peer-to-peer email.
+Other possible applications: DNS, GNS, key servers, certificate authorities, time servers,
+bittorrent, cryptocurrencies, other peer-to-peer applications.
 
 
-## İlgili Öneriler ve Alternatifler
+## Related Proposals and Alternatives
 
-### Servis Listeleri
+### Service Lists
 
-LS2 önerisi 123 [Prop123](/proposals/123-new-netdb-entries/) bir destinasyonun
-küresel bir hizmete katıldığını belirten 'servis kayıtlarını' tanımlamıştır.
-Bu kayıtları küresel 'servis listeleri' içine
-toplayacaktı. Bu, karmaşıklık, kimlik doğrulama eksikliği,
-güvenlik ve spam konuları nedeniyle hiç uygulanmadı.
+The LS2 [Proposal 123](/proposals/123-new-netdb-entries/) defined 'service records' that indicated a destination
+was participating in a global service. The floodfills would aggregate these records
+into global 'service lists'.
+This was never implemented due to complexity, lack of authentication,
+security, and spamming concerns.
 
-Bu öneri, belirli bir destinasyon için bir servis araması sağladığı için farklıdır,
-bazı küresel hizmetler için küresel bir destinasyon havuzu değil.
+This proposal is different in that it provides lookup for a service for a specific destination,
+not a global pool of destinations for some global service.
 
 ### GNS
 
-GNS GNS, herkesin kendi DNS sunucusunu çalıştırması gerektiğini önermektedir.
-Bu öneri tamamlayıcıdır, çünkü GNS'nin (veya DNS'nin) desteklendiğini belirtmek için
-standart bir servis adı "domain" olarak 53 numaralı portta servis kayıtlarını kullanabiliriz.
+GNS proposes that everybody runs their own DNS server.
+This proposal is complementary, in that we could use service records to specify
+that GNS (or DNS) is supported, with a standard service name of "domain" on port 53.
 
 ### Dot well-known
 
-DOTWELLKNOWN içinde, hizmetlerin bir HTTP isteği ile aranması önerilmektedir
-/.well-known/i2pmail.key. Bu, her hizmetin
-anahtarı barındıracak bir ilişkili web sitesi olması gerektiği anlamına gelir. Çoğu kullanıcı web sitesi çalıştırmaz.
+It has been [proposed](http://i2pforum.i2p/viewtopic.php?p=3102) that services be looked up via an HTTP request to
+/.well-known/i2pmail.key. This requires that every service must have a related
+website to host the key. Most users do not run websites.
 
-Bir çözüm yolu, b32 adresi için bir hizmetin aslında
-o b32 adresinde çalıştığını varsayabiliriz. Öyle ki, örneğin.example.i2p için hizmet aramak,
-`http://example.i2p/.well-known/i2pmail.key` adresinden HTTP ile almak gerektirir,
-ancak aaa...aaa.b32.i2p için bir hizmet bu aramayı gerektirmez, doğrudan bağlanabilir.
+One workaround is that we could presume that a service for a b32 address is actually
+running on that b32 address. So that looking for the service for example.i2p requires
+the HTTP fetch from http://example.i2p/.well-known/i2pmail.key, but
+a service for aaa...aaa.b32.i2p does not require that lookup, it can just connect directly.
 
-Ancak burada bir belirsizlik var, çünkü example.i2p de kendi b32 adresi ile adreslenebilir.
+But there's an ambiguity there, because example.i2p can also be addressed by its b32.
 
-### MX Kayıtları
+### MX Records
 
-SRV kayıtları, herhangi bir hizmet için MX kayıtlarının genel bir versiyonudur.
-"_smtp._tcp", "MX" kaydıdır.
-Eğer SRV kayıtlarımız varsa MX kayıtlarına gerek yoktur, ve tek başına MX kayıtları
-herhangi bir hizmet için genel bir kayıt sağlamaz.
-
-
-## Tasarım
-
-Servis kayıtları LS2 içinde seçenekler bölümüne yerleştirilir [LS2](/docs/specs/common-structures/).
-LS2 seçenekler bölümü şu anda kullanılmamaktadır.
-LS1 için desteklenmemektedir.
-Bu, tünel bant genişliği önerisine [Prop168](/proposals/168-tunnel-bandwidth/) benzerdir,
-tünel yapı kayıtları için seçenekler tanımlar.
-
-Belirli bir hostname veya b32 için bir servis adresi aramak için, router
-kiralama setini çeker ve özelliklerde servis kaydını arar.
-
-Hizmet LS'nin kendisi ile aynı destinasyonda barındırılabilir veya farklı bir hostname/b32 referansında bulunabilir.
-
-Hizmetin hedef destinasyonu farklıysa, hedef LS de
-"hizmeti desteklediğini" belirten bir servis kayıtları içermelidir.
-
-Tasarım, floodfill'lerde özel bir destek veya önbelleğe alma veya herhangi bir değişiklik gerektirmez.
-Sadece kiralama seti yayıncısı ve bir servis kaydı arayan müşteri
-bu değişiklikleri desteklemelidir.
-
-Müşterilerin servis kayıtlarını almasını kolaylaştırmak için küçük I2CP ve SAM uzantıları önerilmektedir.
+SRV records are simply a generic version of MX records for any service.
+"_smtp._tcp" is the "MX" record.
+There is no need for MX records if we have SRV records, and MX records
+alone do not provide a generic record for any service.
 
 
-## Belirtim
+## Design
 
-### LS2 Seçenek Belirtimi
+Service records are placed in the options section in [LS2](/docs/specs/common-structures/).
+The LS2 options section is currently unused.
+Not supported for LS1.
+This is similar to the [tunnel bandwidth proposal](/proposals/168-tunnel-bandwidth/),
+which defines options for tunnel build records.
 
-LS2 seçenekleri, imzanın değişmez olması için anahtar göre sıraya dizilmiş OLMALIDIR.
+To lookup a service address for a specific hostname or b32, the router fetches the
+leaseset and looks up the service record in the properties.
 
-Aşağıdaki gibi tanımlanır:
+The service may be hosted on the same destination as the LS itself, or may reference
+a different hostname/b32.
 
-- servis seçeneği := seçenek anahtarı seçenek değeri
-- seçenek anahtarı := _service._proto
-- hizmet := İstenen hizmetin sembolik adı. Küçük harf olmalıdır. Örnek: "smtp".
-  İzin verilen karakterler [a-z0-9-] ve '-' ile başlamamalı veya bitmemelidir.
-  [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) veya Linux /etc/services tanımlandığı yerlerde standart tanımlayıcılar kullanılmalıdır.
-- proto := İstenen hizmetin taşıma protokolü. Küçük harf olmalı, ya "tcp" ya da "udp".
-  "tcp", akış anlamına gelir ve "udp", yanıt verilebilir datagram anlamına gelir.
-  Ham datagramlar ve datagram2 için protokol göstergeleri daha sonra tanımlanabilir.
-  İzin verilen karakterler [a-z0-9-] ve '-' ile başlamamalıdır.
-- seçenek değeri := self | srv kayıt[,srv kayıt]*
-- self := "0" ttl port [app seçenekleri]
-- srv kayıt := "1" ttl öncelik ağırlık port hedef [app seçenekleri]
-- ttl := canlı kalma süresi, tam sayı saniyeler. Pozitif tam sayı. Örnek: "86400".
-  Ayrıntılar için aşağıdaki Öneriler bölümüne bakınız, en az 86400 (bir gün) önerilir.
-- öncelik := Hedef ev sahibinin önceliği, daha düşük değer, daha çok tercih edilir. Negatif olmayan bir tam sayı. Örnek: "0"
-  Sadece birden fazla kayıt varsa yararlıdır, ancak tek kayıt bile olsa gereklidir.
-- ağırlık := Aynı önceliğe sahip kayıtlar için nispi ağırlık. Daha yüksek değer, seçilme şansının daha fazla olması demektir. Negatif olmayan bir tam sayı. Örnek: "0"
-  Sadece birden fazla kayıt varsa yararlıdır, ancak tek kayıt bile olsa gereklidir.
-- port := Hizmetin bulunacağı I2CP portu. Negatif olmayan bir tam sayı. Örnek: "25"
-  Port 0 desteklenir ancak önerilmez.
-- hedef := Hizmeti sağlayan hedefin hostname veya b32. Geçerli bir hostname olarak [NAMING](/docs/overview/naming/) içinde tanımlanmıştır. Küçük harf olmalıdır.
-  Örnek: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" ya da "example.i2p".
-  b32 önerilir, hostname "iyi bilinen," yani resmi veya varsayılan adres defterlerindeyse.
-- app seçenekleri := uygulamaya özgü rastgele metin, " " veya "," içeremez. Kodlama UTF-8'dir.
+If the target destination for the service is different, the target LS must also
+include a service record, pointing to itself, indicating that it supports the service.
 
-### Örnekler
+The design does not require special support or caching or any changes in the floodfills.
+Only the leaseset publisher, and the client looking up a service record,
+must support these changes.
+
+Minor I2CP and SAM extensions are proposed to facilitate retrieval of
+service records by clients.
 
 
-Tek bir SMTP sunucusuna işaret eden aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için LS2'de:
+
+## Specification
+
+### LS2 Option Specification
+
+LS2 options MUST be sorted by key, so the signature is invariant.
+
+Defined as follows:
+
+- serviceoption := optionkey optionvalue
+- optionkey := _service._proto
+- service := The symbolic name of the desired service. Must be lower case. Example: "smtp".
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+  Standard identifiers from the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services must be used if defined there.
+- proto := The transport protocol of the desired service. Must be lower case, either "tcp" or "udp".
+  "tcp" means streaming and "udp" means repliable datagrams.
+  Protocol indicators for raw datagrams and datagram2 may be defined later.
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+- optionvalue := self | srvrecord[,srvrecord]*
+- self := "0" ttl port [appoptions]
+- srvrecord := "1" ttl priority weight port target [appoptions]
+- ttl := time to live, integer seconds. Positive integer. Example: "86400".
+  A minimum of 86400 (one day) is recommended, see Recommendations section below for details.
+- priority := The priority of the target host, lower value means more preferred. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- weight := A relative weight for records with the same priority. Higher value means more chance of getting picked. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
+  Port 0 is supported but not recommended.
+- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/overview/naming/). Must be lower case.
+  Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
+  b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
+- appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
+
+### Examples
+
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to one SMTP server:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-İki SMTP sunucusuna işaret eden aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için LS2'de:
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to two SMTP servers:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-Kendisine bir SMTP sunucusu olarak işaret eden bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p için LS2'de:
+In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to itself as a SMTP server:
 
     "_smtp._tcp" "0 999999 25"
 
-E-posta yönlendirmesi için olası format (aşağıya bakınız):
+Possible format for redirecting email (see below):
 
     "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-### Sınırlar
+### Limits
+
+The Mapping data structure format used for LS2 options limits keys and values to 255 bytes (not chars) max.
+With a b32 target, the optionvalue is about 67 bytes, so only 3 records would fit.
+Maybe only one or two with a long appoptions field, or up to four or five with a short hostname.
+This should be sufficient; multiple records should be rare.
 
 
-LS2 seçenekleri için kullanılan Veri Yapısı Formatı anahtarları ve değerleri maksimum 255 byte (karakter değil) ile sınırlandırır.
-Bir b32 hedefi ile, bilgi değeri yaklaşık 67 byte olur, bu nedenle sadece 3 kayıt sığabilir.
-Belki uzun bir app seçenekleri alanıyla sadece bir veya iki, ya da kısa bir hostname ile dört veya beş.
-Bu yeterli olmalıdır; birden fazla kayıt nadir olmalıdır.
+### Differences from RFC 2782
+
+- No trailing dots
+- No name after the proto
+- Lower case required
+- In text format with comma-separated records, not binary DNS format
+- Different record type indicators
+- Additional appoptions field
 
 
-### [RFC2782] ile Farklılıklar
+### Notes
+
+No wildcarding such as (asterisk), (asterisk)._tcp, or _tcp is allowed.
+Each supported service must have its own record.
 
 
-- Sonunda nokta yok
-- Proto ardından isim yok
-- Küçük harf gereklidir
-- Metin formatında, virgülle ayrılmış kayıtlar, ikili DNS formatında değil
-- Farklı kayıt türü göstergeleri
-- Ek app seçenekleri alanı
+
+### Service Name Registry
+
+Non-standard identifiers that are not listed in the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services
+may be requested and added to the [common structures specification](/docs/specs/common-structures/).
+
+Service-specific appoptions formats may also be added there.
 
 
-### Notlar
+### I2CP Specification
 
+The [I2CP protocol](/docs/specs/i2cp/) must be extended to support service lookups.
+Additional MessageStatusMessage and/or HostReplyMessage error codes related to service lookup
+are required.
+To make the lookup facility general, not just service record-specific,
+the design is to support retrieval of all LS2 options.
 
-(asterisk) ve (asterisk)._tcp gibi genel wildcard'lama izin verilmez.
-Her desteklenen hizmetin kendi kaydı olmalıdır.
+Implementation: Extend HostLookupMessage to add request for
+LS2 options for hash, hostname, and destination (request types 2-4).
+Extend HostReplyMessage to add the options mapping if requested.
+Extend HostReplyMessage with additional error codes.
 
+Options mappings may be cached or negative cached for a short time on either the client or router side,
+implementation-dependent. Recommended maximum time is one hour, unless the service record TTL is shorter.
+Service records may be cached up to the TTL specified by the application, client, or router.
 
-### Servis Adı Kaydı
+Extend the specification as follows:
 
-[REGISTRY](http://www.dns-sd.org/ServiceTypes.html) veya Linux /etc/services'te listelenmeyen standart olmayan tanımlayıcılar
-talep edilebilir ve ortak yapılar belirtimine [LS2](/docs/specs/common-structures/) eklenebilir.
+#### Configuration options
 
-Hizmete özgü app seçenek formatları da oraya eklenebilir.
-
-
-### I2CP Belirtimi
-
-[I2CP](/docs/specs/i2cp/) protokolü, hizmet aramalarını destekleyecek şekilde genişletilmelidir.
-Servis aramasıyla ilgili ek MessageStatusMessage ve / veya HostReplyMessage hata kodları gereklidir.
-Hizmet kaydı özellikli olup olmadığını belirtmek için arama kolaylığının genel olması amaçlanmıştır,
-tüm LS2 seçeneklerinin alınmasını desteklemek için tasarlanmıştır.
-
-Uygulama: HostLookupMessage'ı genişletme ile hash, hostname ve destinasyon (istek türleri 2-4)
-için LS2 seçeneklerini talep etmek.
-İstendiğinde HostReplyMessage'ı seçenekler haritalamasını eklemek için genişletme.
-HostReplyMessage'a ek hata kodları ekleme.
-
-Seçenek haritaları, müşteri veya router tarafında, uygulamaya bağlı olarak kısa bir süre önbelleğe alınabilir veya negatif önbelleğe alınabilir. Önerilen maksimum süre bir saattir, hizmet kaydı TTL'si daha kısa olmadıkça.
-Hizmet kayıtları uygulama, müşteri veya router tarafından belirtilen TTL'ye kadar önbelleğe alınabilir.
-
-Belirtileri aşağıdaki gibi genişletin:
-
-### Yapılandırma seçenekleri
-
-
-[I2CP-OPTIONS]'a aşağıdakileri ekleyin
+Add the following to the [I2CP configuration options](/docs/specs/i2cp/)
 
 i2cp.leaseSetOption.nnn
 
-Kiralanacak seçenekler. Sadece LS2 için kullanılabilir.
-nnn, 0 ile başlar. Seçenek değeri "anahtar=değer" içerir.
-(tırnakları içermeyin)
+Options to be put in the leaseset. Only available for LS2.
+nnn starts with 0. Option value contains "key=value".
+(do not include quotes)
 
-Örnek:
-
-    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
-
-
-### HostLookup Mesajı
+Example:
+i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-- Görünüm tipi 2: Hash görünümü, seçenekler haritalama talebi
-- Görünüm tipi 3: Hostname görünümü, seçenekler haritalama talebi
-- Görünüm tipi 4: Destinasyon görünümü, seçenekler haritalama talebi
+#### HostLookup Message
 
-Görünüm tipi 4 için, öğe 5 bir Destinasyondur.
+- Lookup type 2: Hash lookup, request options mapping
+- Lookup type 3: Hostname lookup, request options mapping
+- Lookup type 4: Destination lookup, request options mapping
 
-
-### HostReply Mesajı
-
-
-Görünüm türleri 2-4 için, router kiralama setini çekmelidir,
-anahtar, adres defterinde olsa bile.
-
-Başarılı olursa, HostReply, kiralama setinden gelen seçenekler Haritalamasını
-içerir ve destinasyondan sonra öğe 5 olarak dahil eder.
-Haritalamada seçenek yoksa, veya kiralama seti 1. versiyon ise,
-hala boş bir Haritalama olarak dahil edilecektir (iki byte: 0 0).
-Gelecekte tanımlanan parametreler için örneklerin bulunabileceği için
-kiralama setindeki tüm örnekler dahil edilecektir, sadece hizmet kaydı örnekleri değil.
-
-Kiralama seti görünümü başarısız olursa, yanıt, yeni hata kodu 6 (Kiralama seti görünümü başarısızlığı) içerecek
-ve haritalamayı içermeyecektir.
-Hata kodu 6 döndürüldüğünde, Destinasyon alanı olabilir veya olmayabilir.
-Adres defterinde bir hostname görünümü başarılı olduysa, veya bir önceki görünüm başarıyla sonuçlandı ve sonuç önbelleğe alındı,
-ya da Görünüm mesajında Destinasyon mevcutsa (görünüm türü 4),
-bulunacaktır.
-
-Bir görünüm türü desteklenmiyorsa,
-yanıt yeni hata kodu 7 (görünüm türü desteklenmiyor) içerecektir.
+For lookup type 4, item 5 is a Destination.
 
 
-### SAM Beliritimi
 
-[SAMv3](/docs/api/samv3/) protokolü, hizmet aramaları için genişletilmelidir.
+#### HostReply Message
 
-NAMING LOOKUP'ı aşağıdaki gibi genişletin:
+For lookup types 2-4, the router must fetch the leaseset,
+even if the lookup key is in the address book.
 
-NAMING LOOKUP NAME=example.i2p OPTIONS=true yanıt içinde seçenekler haritalaması talep eder.
+If successful, the HostReply will contain the options Mapping
+from the leaseset, and includes it as item 5 after the destination.
+If there are no options in the Mapping, or the leaseset was version 1,
+it will still be included as an empty Mapping (two bytes: 0 0).
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.
 
-NAME, OPTIONS=true olduğunda tam base64 destinasyonu olabilir.
+On leaseset lookup failure, the reply will contain a new error code 6 (Leaseset lookup failure)
+and will not include a mapping.
+When error code 6 is returned, the Destination field may or may not be present.
+It will be present if a hostname lookup in the address book was successful,
+or if a previous lookup was successful and the result was cached,
+or if the Destination was present in the lookup message (lookup type 4).
 
-Kiralama seti görünümü başarılı olduysa ve seçenekler kiralama setinde mevcutsa,
-yanıtta, destinasyonun ardından,
-bir veya daha fazla seçenek OPTION:key=value formunda olacaktır.
-Her seçenek, ayrı bir OPTION: ön eki taşıyacaktır.
-Gelecekte tanımlanan parametreler için seçeneklerin bulunabilir olması durumunda
-kiralama setindeki tüm seçenekler dahil edilecektir, sadece hizmet kaydı seçenekleri değil.
-Örnek:
-
-    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
-
-'=' içeren anahtarlar ve bir yeni satır içeren anahtarlar veya değerler,
-geçersiz olarak kabul edilir ve yanıt içindeki anahtar/değer çifti çıkarılır.
-
-Kiralama setinde bulunan seçenekler yoksa veya kiralama seti 1. versiyon ise,
-yanıtta herhangi bir seçenek bulunmayacaktır.
-
-OPTIONS=true aramada varsa ve kiralama seti bulunamadıysa, yeni bir sonuç değeri olarak LEASESET_NOT_FOUND dönecektir.
+If a lookup type is not supported,
+the reply will contain a new error code 7 (lookup type unsupported).
 
 
-## İsim Araması Alternatifi
 
-Tam bir hostname olarak hizmet aramalarını desteklemek üzere
-bir alternatif tasarım, [NAMING]'i güncelleyerek, '_'
-ile başlayan hostnamelere yönelik işler tanımlamaktı.
-Bu iki nedenle reddedildi:
+### SAM Specification
 
-- I2CP ve SAM değişiklikleri, TTL ve port bilgilerini
-  müşteri tarafına iletmek için yine de gerekli olacaktır.
-- Bu, gelecekte tanımlanacak diğer LS2
-  seçeneklerini almak için genel bir olanak sağlamayacaktır.
+The [SAMv3 protocol](/docs/api/samv3/) must be extended to support service lookups.
+
+Extend NAMING LOOKUP as follows:
+
+NAMING LOOKUP NAME=example.i2p OPTIONS=true requests the options mapping in the reply.
+
+NAME may be a full base64 destination when OPTIONS=true.
+
+If the destination lookup was successful and options were present in the leaseset,
+then in the reply, following the destination,
+will be one or more options in the form of OPTION:key=value.
+Each option will have a separate OPTION: prefix.
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.
+Example:
+
+NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+
+Keys containing '=', and keys or values containing a newline,
+are considered invalid and the key/value pair will be removed from the reply.
+
+If there are no options found in the leaseset, or if the leaseset was version 1,
+then the response will not include any options.
+
+If OPTIONS=true was in the lookup, and the leaseset is not found, a new result value LEASESET_NOT_FOUND will be returned.
 
 
-## Öneriler
+## Naming Lookup Alternative
 
-Sunucular, en az 86400 ve uygulama için standart portu belirtmelidir.
+An alternative design was considered, to support lookups of services
+as a full hostname, for example _smtp._tcp.example.i2p,
+by updating the [naming specification](/docs/overview/naming/) to specify handling of hostnames starting with '_'.
+This was rejected for two reasons:
+
+- I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.
+- It would not be a general facility that could be used to retrieve other LS2
+  options that could be defined in the future.
 
 
-## Gelişmiş Özellikler
+## Recommendations
 
-### Özyinelemeli Aramalar
+Servers should specify a TTL of at least 86400, and the standard port for the application.
 
-Muhtemelen özyinelemeli aramalara destek sağlanması, her bir ardışık kiralama setinin
-başka bir kiralama setine işaret eden bir hizmet kaydının, DNS tarzında kontrol edilmesi gerekir.
-Bu, en azından ilk bir uygulamada muhtemelen gerekli değildir.
+
+
+## Advanced Features
+
+### Recursive Lookups
+
+It may be desirable to support recursive lookups, where each successive leaseset
+is checked for a service record pointing to another leaseset, DNS-style.
+This is probably not necessary, at least in an initial implementation.
 
 TODO
 
 
-### Uygulamaya Özgü Alanlar
 
-Servis kaydında uygulamaya özgü verilere sahip olmak istenebilir.
-Örneğin, example.i2p operatörü, email'ın
-example@mail.i2p adresine yönlendirilmesi gerektiğini belirtmek isteyebilir. "example@"
-kısmı hizmet kaydının ayrı bir alanında olmalı veya hedeften çıkarılmalıdır.
+### Application-specific fields
 
-Operatör kendi email hizmetini çalıştırıyor olsa bile, email'
-in example@example.i2p adresine gönderilmesi gerektiğini belirtmek isteyebilir.
-Çoğu I2P hizmeti tek bir kişi tarafından işletilmektedir.
-Bu nedenle burada ayrı bir alan da faydalı olabilir.
+It may be desirable to have application-specific data in the service record.
+For example, the operator of example.i2p may wish to indicate that email should
+be forwarded to example@mail.i2p. The "example@" part would need to be in a separate field
+of the service record, or stripped from the target.
 
-Bunu nasıl genel bir şekilde yapılacağı hakkında TODO
+Even if the operator runs his own email service, he may wish to indicate that
+email should be sent to example@example.i2p. Most I2P services are run by a single person.
+So a separate field may be helpful here as well.
 
-
-### E-posta İçin Gerekli Değişiklikler
-
-Bu önerinin kapsamı dışındadır. Daha fazla bilgi için DOTWELLKNOWN tartışmasına bakınız.
+TODO how to do this in a generic way
 
 
-## Uygulama Notları
+### Changes required for Email
 
-Hizmet kayıtları, TTL'ye kadar router veya uygulama tarafından önbelleğe alınabilir,
-uygulamaya bağlı olarak. Kalıcı olarak önbelleğe alınıp alınmayacağı da uygulamaya bağlıdır.
-
-Aramalar, hedef kiralama setini de kontrol etmeli ve "self" kaydını
-içerdiğini doğrulamalıdır, hedef destinasyonu müşteriye döndürmeden önce.
+Out of the scope of this proposal. See the [discussion on i2pforum](http://i2pforum.i2p/viewtopic.php?p=3102) for more details.
 
 
-## Güvenlik Analizi
+## Implementation Notes
 
-Kiralama seti imzalı olduğundan, içindeki herhangi bir servis kaydı
-hedefin imza anahtarı ile kimlik doğrulaması yapılmıştır.
+Caching of service records up to the TTL may be done by the router or the application,
+implementation-dependent. Whether to cache persistently is also implementation-dependent.
 
-Servis kayıtları, kiralama seti şifreli değilse, floodfill'ler için
-açıktır ve görünürdedir. Kiralama setini talep eden herhangi bir router,
-servis kayıtlarını görebilecektir.
-
-"self" dışında bir SRV kaydı (yani farklı bir hostname/b32 hedefe işaret eden)
-hedef hostname/b32'nin rızasını gerektirmez.
-Bir hizmetin keyfi bir destinasyona yönlendirilmesinin
-bir tür saldırıyı kolaylaştırıp kolaylaştıramayacağı veya
-böyle bir saldırının amacının ne olacağı açık değildir.
-Bununla birlikte, bu öneri, hedefin
-kendisi üzerinde bir "self" SRV kaydı yayınlamasını gerektirerek
-böyle bir saldırıyı önlemektedir. Uygulayıcılar hedefin
-kiralama setinde bir "self" kaydını kontrol etmelidir.
+Lookups must also lookup the target leaseset and verify it contains a "self" record
+before returning the target destination to the client.
 
 
-## Uyumluluk
+## Security Analysis
 
-LS2: Hiçbir sorun yok. Tüm bilinen uygulamalar şu anda LS2 içindeki seçenek alanını yoksayar,
-ve dolu bir seçenek alanını doğru bir şekilde atlar.
-Bu, LS2'nin geliştirilmesi sırasında Java I2P ve i2pd tarafından yapılan testlerle doğrulanmıştır.
-LS2, 0.9.38'de 2016 yılında uygulanmış ve tüm router uygulamaları tarafından iyi bir şekilde desteklenmiştir.
-Tasarım, floodfilllerde özel bir destek veya önbelleğe alma veya herhangi bir değişiklik gerektirmez.
+As the leaseset is signed, any service records within it are authenticated by the signing key of the destination.
 
-İsimlendirme: '_' i2p hostnamelerinde geçerli bir karakter değildir.
+The service records are public and visible to floodfills, unless the leaseset is encrypted.
+Any router requesting the leaseset will be able to see the service records.
 
-I2CP: Görünüm türleri 2-4, desteklendiği minimum API versiyonunun altındaki router'lara gönderilmemelidir (TBD).
-
-SAM: Java SAM sunucusu, OPTIONS=true gibi ek anahtar/değerleri yoksayar.
-i2pd'nin de aynı şekilde davranıp davranmadığı kontrol edilmelidir.
-SAM istemcileri, yalnızca OPTIONS=true ile talep edildiklerinde yanıtta ek değerleri alır.
-Herhangi bir sürüm artışı gerekli görünmemektedir.
+A SRV record other than "self" (i.e., one that points to a different hostname/b32 target)
+does not require the consent of the targeted hostname/b32.
+It's not clear if a redirection of a service to an arbitrary destination could facilitate some
+sort of attack, or what the purpose of such an attack would be.
+However, this proposal mitigates such an attack by requiring that the target
+also publish a "self" SRV record. Implementers must check for a "self" record
+in the leaseset of the target.
 
 
+## Compatibility
+
+LS2: No issues. All known implementations currently ignore the options field in LS2,
+and correctly skip over a non-empty options field.
+This was verified in testing by both Java I2P and i2pd during the development of LS2.
+LS2 was implemented in 0.9.38 in 2016 and is well-supported by all router implementations.
+The design does not require special support or caching or any changes in the floodfills.
+
+Naming: '_' is not a valid character in i2p hostnames.
+
+I2CP: Lookup types 2-4 should not be sent to routers below the minimum API version
+at which it is supported (TBD).
+
+SAM: Java SAM server ignores additional keys/values such as OPTIONS=true.
+i2pd should as well, to be verified.
+SAM clients will not get the additional values in the reply unless requested with OPTIONS=true.
+No version bump should be necessary.
+
+
+## Migration
+
+Implementations may add support at any time, no coordination is needed,
+except for an agreement on the effective API version for the I2CP changes.
+SAM compatibility versions for each implementation will be documented in the SAM spec.
+
+
+## References
+
+* [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
+* [I2CP](/docs/specs/i2cp/)
+* [I2CP-OPTIONS](/docs/specs/i2cp/)
+* [LS2](/docs/specs/common-structures/)
+* [GNS](http://zzz.i2p/topcs/1545)
+* [NAMING](/docs/overview/naming/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop168](/proposals/168-tunnel-bandwidth/)
+* [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)
+* [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+* [SAMv3](/docs/api/samv3/)
+* [SRV](https://en.wikipedia.org/wiki/SRV_record)
