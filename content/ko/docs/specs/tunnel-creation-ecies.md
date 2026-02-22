@@ -1,5 +1,5 @@
 ---
-title: "ECIES-X25519 Tunnel 생성"
+title: "Tunnel 생성 사양 (ECIES-X25519)"
 description: "전방향 보안을 위해 ECIES-X25519 암호화 기본 요소를 사용한 tunnel Build 메시지 암호화."
 slug: "tunnel-creation-ecies"
 aliases: 

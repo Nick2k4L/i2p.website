@@ -1,5 +1,5 @@
 ---
-title: "ECIES-X25519 Tunnel Creation"
+title: "Tunnel Creation Specification (ECIES-X25519)"
 description: "Tunnel Build message encryption using ECIES-X25519 crypto primitives for forward secrecy."
 slug: "tunnel-creation-ecies"
 aliases:

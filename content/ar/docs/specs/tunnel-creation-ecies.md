@@ -1,5 +1,5 @@
 ---
-title: "إنشاء tunnel باستخدام ECIES-X25519"
+title: "مواصفات إنشاء tunnel (ECIES-X25519)"
 description: "تشفير رسائل بناء tunnel باستخدام عمليات التشفير الأساسية ECIES-X25519 لتوفير السرية الأمامية."
 slug: "tunnel-creation-ecies"
 aliases: 

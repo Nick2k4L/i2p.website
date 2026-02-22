@@ -1,5 +1,5 @@
 ---
-title: "ECIES-X25519 Tunnel Creation"
+title: "Specifikace vytváření tunelů (ECIES-X25519)"
 description: "Šifrování zpráv Tunnel Build pomocí kryptografických primitiv ECIES-X25519 pro forward secrecy (dopřednou bezpečnost)."
 slug: "tunnel-creation-ecies"
 aliases: 

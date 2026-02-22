@@ -1,5 +1,5 @@
 ---
-title: "ECIES-X25519 Tunnel Oluşturma"
+title: "Tunnel Oluşturma Spesifikasyonu (ECIES-X25519)"
 description: "İleri gizlilik için ECIES-X25519 kriptografik temel öğelerini kullanarak tunnel Build mesajı şifreleme."
 slug: "tunnel-creation-ecies"
 aliases: 

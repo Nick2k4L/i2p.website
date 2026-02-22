@@ -1,5 +1,5 @@
 ---
-title: "Tạo Tunnel ECIES-X25519"
+title: "Đặc tả Tạo Tunnel (ECIES-X25519)"
 description: "Mã hóa thông điệp Tunnel Build sử dụng các thành phần mật mã ECIES-X25519 để đảm bảo tính bảo mật chuyển tiếp."
 slug: "tunnel-creation-ecies"
 aliases: 
