@@ -1,176 +1,124 @@
 ---
 title: "Протоколы постквантовой криптографии"
+aliases: 
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2025-06-12"
+lastupdated: "2026-02-23"
 status: "Открыть"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
 toc: true
 ---
 
-## Overview
+### Статус
 
-While research and competition for suitable post-quantum (PQ)
-cryptography have been proceeding for a decade, the choices
-have not become clear until recently.
-
-We started looking at the implications of PQ crypto
-in 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
-
-TLS standards added hybrid encryption support in the last two years and it now
-is used for a significant portion of encrypted traffic on the internet
-due to support in Chrome and Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
-
-NIST recently finalized and published the recommended algorithms
-for post-quantum cryptography [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards).
-Several common cryptography libraries now support the NIST standards
-or will be releasing support in the near future.
-
-Both [Cloudflare](https://blog.cloudflare.com/pq-2024/) and [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) recommend that migration start immediately.
-See also the 2022 NSA PQ FAQ [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF).
-I2P should be a leader in security and cryptography.
-Now is the time to implement the recommended algorithms.
-Using our flexible crypto type and signature type system,
-we will add types for hybrid crypto, and for PQ and hybrid signatures.
-
-
-## Goals
-
-- Select PQ-resistant algorithms
-- Add PQ-only and hybrid algorithms to I2P protocols where appropriate
-- Define multiple variants
-- Select best variants after implementation, testing, analysis, and research
-- Add support incrementally and with backward compatibility
-
-
-## Non-Goals
-
-- Don't change one-way (Noise N) encryption protocols
-- Don't move away from SHA256, not threatened near-term by PQ
-- Don't select the final preferred variants at this time
-
-
-## Threat Model
-
-- Routers at the OBEP or IBGW, possibly colluding,
-  storing garlic messages for later decryption (forward secrecy)
-- Network observers
-  storing transport messages for later decryption (forward secrecy)
-- Network participants forging signatures for RI, LS, streaming, datagrams,
-  or other structures
-
-
-## Affected Protocols
-
-We will modify the following protocols, roughly in order
-of development. The overall rollout will probably be from late 2025 through mid-2027.
-See the Priorities and Rollout section below for details.
-
-
-| Protocol / Feature | Status |
+| Протокол / Функция | Статус |
 |--------------------|--------|
-| Hybrid MLKEM Ratchet and LS | Approved 2026-06; beta target 2025-08; release target 2025-11 |
-| Hybrid MLKEM NTCP2 | Some details to be finalized |
-| Hybrid MLKEM SSU2 | Some details to be finalized |
-| MLDSA SigTypes 12-14 | Proposal is stable but may not be finalized until 2026 |
-| MLDSA Dests | Tested on live net, requires net upgrade for floodfill support |
-| Hybrid SigTypes 15-17 | Preliminary |
+| Ratchet | Завершено в Java I2P и i2pd |
+| NTCP2 | Бета Q1 2026 |
+| SSU2 | Реализация начнется вскоре, Бета Q23 2026 |
+| MLDSA SigTypes | Низкий приоритет, вероятно 2027+ |
+## Обзор
+
+Хотя исследования и конкуренция в области подходящей постквантовой (PQ) криптографии ведутся уже десятилетие, выбор стал ясен лишь недавно.
+
+Мы начали изучать последствия постквантовой криптографии в 2022 году [zzz.i2p](http://zzz.i2p/topics/3294).
+
+Стандарты TLS добавили поддержку гибридного шифрования за последние два года, и теперь оно используется для значительной части зашифрованного трафика в интернете благодаря поддержке в Chrome и Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
+
+NIST недавно завершил работу и опубликовал рекомендуемые алгоритмы для постквантовой криптографии [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Несколько популярных криптографических библиотек уже поддерживают стандарты NIST или выпустят поддержку в ближайшем будущем.
+
+Как [Cloudflare](https://blog.cloudflare.com/pq-2024/), так и [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) рекомендуют начать миграцию немедленно. См. также FAQ NSA по постквантовой криптографии от 2022 года [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P должен быть лидером в области безопасности и криптографии. Сейчас самое время реализовать рекомендованные алгоритмы. Используя нашу гибкую систему типов криптографии и типов подписей, мы добавим типы для гибридной криптографии, а также для постквантовых и гибридных подписей.
+
+## Цели
+
+- Выбрать устойчивые к квантовым атакам алгоритмы
+- Добавить только квантово-устойчивые и гибридные алгоритмы в протоколы I2P там, где это уместно
+- Определить несколько вариантов
+- Выбрать лучшие варианты после реализации, тестирования, анализа и исследований
+- Добавить поддержку поэтапно и с обратной совместимостью
+
+## Не цели
+
+- Не изменять протоколы одностороннего шифрования (Noise N)
+- Не отказываться от SHA256, в краткосрочной перспективе не подвержен угрозе от PQ
+- Не выбирать окончательные предпочтительные варианты в настоящее время
+
+## Модель угроз
+
+- Router'ы на OBEP или IBGW, возможно сговаривающиеся,
+  сохраняющие garlic сообщения для последующей расшифровки (прямая секретность)
+- Наблюдатели сети,
+  сохраняющие транспортные сообщения для последующей расшифровки (прямая секретность)
+- Участники сети, подделывающие подписи для RI, LS, streaming, датаграмм
+  или других структур
+
+## Затронутые протоколы
+
+Мы будем модифицировать следующие протоколы, примерно в порядке разработки. Общее развёртывание, вероятно, будет проходить с конца 2025 года до середины 2027 года. Подробности см. в разделе "Приоритеты и развёртывание" ниже.
+
+| Протокол / Функция | Статус |
+|--------------------|--------|
+| Hybrid MLKEM Ratchet и LS | Одобрено 2025-06; бета 2025-08; релиз 2025-11 |
+| Hybrid MLKEM NTCP2 | Протестировано в живой сети, Одобрено 2026-02; цель бета 2026-05; цель релиза 2026-08 |
+| Hybrid MLKEM SSU2 | Одобрено 2026-02; цель бета 2026-08; цель релиза 2026-11 |
+| MLDSA SigTypes 12-14 | Предложение стабильно, но может быть не финализировано до 2027 |
+| MLDSA Dests | Протестировано в живой сети, требует обновления сети для поддержки floodfill |
+| Hybrid SigTypes 15-17 | Предварительный |
 | Hybrid Dests | |
+## Дизайн
 
+Мы будем поддерживать стандарты NIST FIPS 203 и 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), которые основаны на CRYSTALS-Kyber и CRYSTALS-Dilithium (версии 3.1, 3 и более старые), но НЕ совместимы с ними.
 
-### Status
+### Обмен ключами
 
-| Protocol / Feature | Status |
-|--------------------|--------|
-| Ratchet | Complete in Java I2P and i2pd |
-| NTCP2 | Beta, some details to be finalized, probably Q2 2026 |
-| SSU2 | Not started, probably Q3 2026 |
-| MLDSA SigTypes | Low priority, probably 2027+ |
+Мы будем поддерживать гибридный обмен ключами в следующих протоколах:
 
+| Протокол | Тип Noise | Поддерживает только PQ? | Поддерживает Hybrid? |
+|----------|-----------|-------------------------|----------------------|
+| NTCP2    | XK        | нет                     | да                   |
+| SSU2     | XK        | нет                     | да                   |
+| Ratchet  | IK        | нет                     | да                   |
+| TBM      | N         | нет                     | нет                  |
+| NetDB    | N         | нет                     | нет                  |
+PQ KEM предоставляет только эфемерные ключи и не поддерживает напрямую рукопожатия со статическими ключами, такие как Noise XK и IK.
 
-## Design
+Noise N не использует двусторонний обмен ключами и поэтому не подходит для гибридного шифрования.
 
-We will support the NIST FIPS 203 and 204 standards [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-which are based on, but NOT compatible with,
-CRYSTALS-Kyber and CRYSTALS-Dilithium (versions 3.1, 3, and older).
+Таким образом, мы будем поддерживать только гибридное шифрование для NTCP2, SSU2 и Ratchet. Мы определим три варианта ML-KEM согласно [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), всего для 3 новых типов шифрования. Гибридные типы будут определены только в сочетании с X25519.
 
+Новые типы шифрования:
 
-
-### Key Exchange
-
-We will support hybrid key exchange in the following protocols:
-
-| Proto   | Noise Type | Support PQ only? | Support Hybrid? |
-|---------|------------|------------------|-----------------|
-| NTCP2   | XK         | no               | yes             |
-| SSU2    | XK         | no               | yes             |
-| Ratchet | IK         | no               | yes             |
-| TBM     | N          | no               | no              |
-| NetDB   | N          | no               | no              |
-
-PQ KEM provides ephemeral keys only, and does not directly support
-static-key handshakes such as Noise XK and IK.
-
-Noise N does not use a two-way key exchange and so it is not suitable
-for hybrid encryption.
-
-So we will support hybrid encryption only, for NTCP2, SSU2, and Ratchet.
-We will define the three ML-KEM variants as in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf),
-for 3 new encryption types total.
-Hybrid types will only be defined in combination with X25519.
-
-The new encryption types are:
-
-| Type | Code |
+| Тип | Код |
 |------|------|
 | MLKEM512_X25519 | 5 |
 | MLKEM768_X25519 | 6 |
 | MLKEM1024_X25519 | 7 |
+Накладные расходы будут существенными. Типичные размеры сообщений 1 и 2 (для XK и IK) в настоящее время составляют около 100 байт (до любой дополнительной полезной нагрузки). Это увеличится в 8-15 раз в зависимости от алгоритма.
 
-Overhead will be substantial. Typical message 1 and 2 sizes (for XK and IK)
-are currently around 100 bytes (before any additional payload).
-This will increase by 8x to 15x depending on algorithm.
+### Подписи
 
+Мы будем поддерживать PQ и гибридные подписи в следующих структурах:
 
-### Signatures
+| Тип | Поддерживает только PQ? | Поддерживает Hybrid? |
+|------|-------------------------|---------------------|
+| RouterInfo | да | да |
+| LeaseSet | да | да |
+| Streaming SYN/SYNACK/Close | да | да |
+| Repliable Datagrams | да | да |
+| Datagram2 (prop. 163) | да | да |
+| I2CP create session msg | да | да |
+| SU3 файлы | да | да |
+| X.509 сертификаты | да | да |
+| Java keystores | да | да |
+Таким образом, мы будем поддерживать как только PQ, так и гибридные подписи. Мы определим три варианта ML-DSA согласно [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), три гибридных варианта с Ed25519 и три только PQ варианта с предварительным хешированием только для файлов SU3, что составит в общей сложности 9 новых типов подписей. Гибридные типы будут определены только в сочетании с Ed25519. Мы будем использовать стандартный ML-DSA, НЕ варианты с предварительным хешированием (HashML-DSA), за исключением файлов SU3.
 
-We will support PQ and hybrid signatures in the following structures:
+Мы будем использовать "хеджированный" или рандомизированный вариант подписи, а не "детерминированный" вариант, как определено в [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) разделе 3.4. Это гарантирует, что каждая подпись будет отличаться, даже при подписании одних и тех же данных, и обеспечивает дополнительную защиту от атак по побочным каналам. См. раздел с примечаниями по реализации ниже для получения дополнительной информации о выборе алгоритмов, включая кодирование и контекст.
 
-| Type | Support PQ only? | Support Hybrid? |
-|------|------------------|-----------------|
-| RouterInfo | yes | yes |
-| LeaseSet | yes | yes |
-| Streaming SYN/SYNACK/Close | yes | yes |
-| Repliable Datagrams | yes | yes |
-| Datagram2 (prop. 163) | yes | yes |
-| I2CP create session msg | yes | yes |
-| SU3 files | yes | yes |
-| X.509 certificates | yes | yes |
-| Java keystores | yes | yes |
+Новые типы подписей:
 
-
-So we will support both PQ-only and hybrid signatures.
-We will define the three ML-DSA variants as in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf),
-three hybrid variants with Ed25519,
-and three PQ-only variants with prehash for SU3 files only,
-for 9 new signature types total.
-Hybrid types will only be defined in combination with Ed25519.
-We will use the standard ML-DSA, NOT the pre-hash variants (HashML-DSA),
-except for SU3 files.
-
-We will use the "hedged" or randomized signing variant,
-not the "determinstic" variant, as defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) section 3.4.
-This ensures that each signature is different, even when over the same data,
-and provides additional protection against side-channel attacks.
-See the implementation notes section below for additional details
-about algorithm choices including encoding and context.
-
-
-The new signature types are:
-
-| Type | Code |
+| Тип | Код |
 |------|------|
 | MLDSA44 | 12 |
 | MLDSA65 | 13 |
@@ -181,255 +129,177 @@ The new signature types are:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
+Сертификаты X.509 и другие кодировки DER будут использовать композитные структуры и OID, определённые в [черновике IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-X.509 certificates and other DER encodings will use the
-composite structures and OIDs defined in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Накладные расходы будут существенными. Типичные размеры destination и router identity Ed25519 составляют 391 байт. Они увеличатся в 3,5-6,8 раза в зависимости от алгоритма. Подписи Ed25519 составляют 64 байта. Они увеличатся в 38-76 раз в зависимости от алгоритма. Типичные подписанные RouterInfo, leaseSet, датаграммы с возможностью ответа и подписанные streaming-сообщения составляют около 1КБ. Они увеличатся в 3-8 раз в зависимости от алгоритма.
 
-Overhead will be substantial. Typical Ed25519 destination and router identity
-sizes are 391 bytes.
-These will increase by 3.5x to 6.8x depending on algorithm.
-Ed25519 signatures are 64 bytes.
-These will increase by 38x to 76x depending on algorithm.
-Typical signed RouterInfo, LeaseSet, repliable datagrams, and signed streaming messages are about 1KB.
-These will increase by 3x to 8x depending on algorithm.
+Поскольку новые типы назначений и идентификаторов router не будут содержать отступов, они не будут сжимаемыми. Размеры назначений и идентификаторов router, сжатых gzip при передаче, увеличатся в 12-38 раз в зависимости от алгоритма.
 
-As the new destination and router identity types will not contain padding,
-they will not be compressible. Sizes of destinations and router identities
-that are gzipped in-transit will increase by 12x - 38x depending on algorithm.
+### Допустимые комбинации
 
+Для Destinations новые типы подписей поддерживаются со всеми типами шифрования в leaseset. Установите тип шифрования в сертификате ключа как NONE (255).
 
+Для RouterIdentities тип шифрования ElGamal устарел. Новые типы подписей поддерживаются только с шифрованием X25519 (тип 4). Новые типы шифрования будут указаны в RouterAddresses. Тип шифрования в сертификате ключа будет по-прежнему тип 4.
 
-### Legal Combinations
+### Требуется новая криптография
 
-For Destinations, the new signature types are supported with all encryption
-types in the leaseset. Set the encryption type in the key certificate to NONE (255).
+- ML-KEM (ранее CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (ранее CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128 (ранее Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Используется только для SHAKE128
+- SHA3-256 (ранее Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 и SHAKE256 (XOF расширения для SHA3-128 и SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-For RouterIdentities, ElGamal encryption type is deprecated.
-The new signature types are supported with X25519 (type 4) encryption only.
-The new encryption types will be indicated in the RouterAddresses.
-The encryption type in the key certificate will continue to be type 4.
+Тестовые векторы для SHA3-256, SHAKE128 и SHAKE256 доступны на сайте [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
 
+Обратите внимание, что библиотека Java bouncycastle поддерживает все вышеперечисленное. Поддержка библиотеки C++ доступна в OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
+### Альтернативы
 
-### New Crypto Required
-
-- ML-KEM (formerly CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA (formerly CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128 (formerly Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Used only for SHAKE128
-- SHA3-256 (formerly Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 and SHAKE256 (XOF extensions to SHA3-128 and SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-
-Test vectors for SHA3-256, SHAKE128, and SHAKE256 are at [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
-
-Note that the Java bouncycastle library supports all the above.
-C++ library support is in OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
-
-
-### Alternatives
-
-We will not support [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), it is much much slower and bigger than ML-DSA.
-We will not support the upcoming FIPS206 (Falcon), it is not yet standardized.
-We will not support NTRU or other PQ candidates that were not standardized by NIST.
-
+Мы не будем поддерживать [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), поскольку он намного медленнее и больше по размеру, чем ML-DSA. Мы не будем поддерживать предстоящий FIPS206 (Falcon), поскольку он еще не стандартизирован. Мы не будем поддерживать NTRU или другие постквантовые кандидаты, которые не были стандартизированы NIST.
 
 ### Rosenpass
 
-There is some research [paper](https://eprint.iacr.org/2020/379.pdf) on adapting Wireguard (IK)
-for pure PQ crypto, but there are several open questions in that paper.
-Later, this approach was implemented as Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
-for PQ Wireguard.
+Существует исследовательская [статья](https://eprint.iacr.org/2020/379.pdf) по адаптации Wireguard (IK) для чистой PQ криптографии, но в этой статье остается несколько открытых вопросов. Позже этот подход был реализован как Rosenpass [Rosenpass](https://rosenpass.eu/) [техническая документация](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) для PQ Wireguard.
 
-Rosenpass uses a Noise KK-like handshake with preshared Classic McEliece 460896 static keys
-(500 KB each) and Kyber-512 (essentially MLKEM-512) ephemeral keys.
-As the Classic McEliece ciphertexts are only 188 bytes, and the Kyber-512
-public keys and ciphertexts are reasonable, both handshake messages fit in a standard UDP MTU.
-The output shared key (osk) from the PQ KK handshake is used as the input preshared key (psk)
-for the standard Wireguard IK handshake.
-So there are two complete handshakes in total, one pure PQ and one pure X25519.
+Rosenpass использует рукопожатие типа Noise KK с предварительно разделенными статическими ключами Classic McEliece 460896 (по 500 КБ каждый) и эфемерными ключами Kyber-512 (по сути MLKEM-512). Поскольку шифртексты Classic McEliece составляют всего 188 байт, а публичные ключи и шифртексты Kyber-512 имеют разумный размер, оба сообщения рукопожатия помещаются в стандартный UDP MTU. Выходной разделяемый ключ (osk) из PQ KK рукопожатия используется в качестве входного предварительно разделенного ключа (psk) для стандартного Wireguard IK рукопожатия. Таким образом, всего происходит два полных рукопожатия: одно чисто PQ и одно чисто X25519.
 
-We can't do any of this to replace our XK and IK handshakes because:
+Мы не можем сделать ничего из этого для замены наших XK и IK рукопожатий, потому что:
 
-- We can't do KK, Bob doesn't have Alice's static key
-- 500KB static keys are far too big
-- We don't want an extra round-trip
+- Мы не можем использовать KK, у Боба нет статического ключа Алисы
+- Статические ключи размером 500КБ слишком велики
+- Мы не хотим дополнительного обмена сообщениями
 
-There is a lot of good information in the whitepaper,
-and we will review it for ideas and inspiration. TODO.
+В белой книге содержится много полезной информации, и мы изучим её для получения идей и вдохновения. TODO.
 
+## Спецификация
 
+### Общие структуры
 
-## Specification
-
-### Common Structures
-
-Update the sections and tables in the common structures document [/docs/specs/common-structures/](/docs/specs/common-structures/) as follows:
-
+Обновите разделы и таблицы в документе общих структур [/docs/specs/common-structures/](/docs/specs/common-structures/) следующим образом:
 
 ### PublicKey
 
-The new Public Key types are:
+Новые типы публичных ключей:
 
-| Type | Public Key Length | Since | Usage |
+| Тип | Длина публичного ключа | С версии | Использование |
 |------|-------------------|-------|-------|
-| MLKEM512_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM768_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM1024_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM512 | 800 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM768 | 1184 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM1024 | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM512_CT | 768 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
+| MLKEM512_X25519 | 32 | 0.9.xx | См. предложение 169, только для leaseSet, не для RI или Destination |
+| MLKEM768_X25519 | 32 | 0.9.xx | См. предложение 169, только для leaseSet, не для RI или Destination |
+| MLKEM1024_X25519 | 32 | 0.9.xx | См. предложение 169, только для leaseSet, не для RI или Destination |
+| MLKEM512 | 800 | 0.9.xx | См. предложение 169, только для handshake, не для leaseSet, RI или Destination |
+| MLKEM768 | 1184 | 0.9.xx | См. предложение 169, только для handshake, не для leaseSet, RI или Destination |
+| MLKEM1024 | 1568 | 0.9.xx | См. предложение 169, только для handshake, не для leaseSet, RI или Destination |
+| MLKEM512_CT | 768 | 0.9.xx | См. предложение 169, только для handshake, не для leaseSet, RI или Destination |
+| MLKEM768_CT | 1088 | 0.9.xx | См. предложение 169, только для handshake, не для leaseSet, RI или Destination |
+| MLKEM1024_CT | 1568 | 0.9.xx | См. предложение 169, только для handshake, не для leaseSet, RI или Destination |
+| NONE | 0 | 0.9.xx | См. предложение 169, только для destination с типами подписи PQ, не для RI или leaseSet |
+Гибридные публичные ключи являются ключами X25519. Публичные ключи KEM являются эфемерными PQ ключами, отправляемыми от Алисы к Бобу. Кодирование и порядок байтов определены в [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
-Hybrid public keys are the X25519 key.
-KEM public keys are the ephemeral PQ key sent from Alice to Bob.
-Encoding and byte order are defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
-
-MLKEM*_CT keys are not really public keys, they are the "ciphertext" sent from Bob to Alice in the Noise handshake.
-They are listed here for completeness.
-
-
+MLKEM*_CT ключи на самом деле не являются публичными ключами, они представляют собой "зашифрованный текст", отправляемый от Боба к Алисе в рукопожатии Noise. Они перечислены здесь для полноты картины.
 
 ### PrivateKey
 
-The new Private Key types are:
+Новые типы приватных ключей:
 
-| Type | Private Key Length | Since | Usage |
+| Тип | Длина приватного ключа | Начиная с | Использование |
 |------|---------------------|-------|-------|
-| MLKEM512_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM768_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM1024_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-
-Hybrid private keys are the X25519 keys.
-KEM private keys are for Alice only.
-KEM encoding and byte order are defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
-
-
-
+| MLKEM512_X25519 | 32 | 0.9.xx | См. предложение 169, только для Leasesets, не для RI или Destinations |
+| MLKEM768_X25519 | 32 | 0.9.xx | См. предложение 169, только для Leasesets, не для RI или Destinations |
+| MLKEM1024_X25519 | 32 | 0.9.xx | См. предложение 169, только для Leasesets, не для RI или Destinations |
+| MLKEM512 | 1632 | 0.9.xx | См. предложение 169, только для рукопожатий, не для Leasesets, RI или Destinations |
+| MLKEM768 | 2400 | 0.9.xx | См. предложение 169, только для рукопожатий, не для Leasesets, RI или Destinations |
+| MLKEM1024 | 3168 | 0.9.xx | См. предложение 169, только для рукопожатий, не для Leasesets, RI или Destinations |
+Гибридные приватные ключи — это X25519 ключи. KEM приватные ключи предназначены только для Alice. Кодирование KEM и порядок байтов определены в [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ### SigningPublicKey
 
-The new Signing Public Key types are:
+Новые типы открытых ключей подписи:
 
-| Type | Length (bytes) | Since | Usage |
+| Тип | Длина (байты) | С версии | Использование |
 |------|----------------|-------|-------|
-| MLDSA44 | 1312 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 1952 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 2592 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
-| MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
-| MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-
-Hybrid signing public keys are the Ed25519 key followed by the PQ key, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
-Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
-
+| MLDSA44 | 1312 | 0.9.xx | См. предложение 169 |
+| MLDSA65 | 1952 | 0.9.xx | См. предложение 169 |
+| MLDSA87 | 2592 | 0.9.xx | См. предложение 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 0.9.xx | См. предложение 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 0.9.xx | См. предложение 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 0.9.xx | См. предложение 169 |
+| MLDSA44ph | 1344 | 0.9.xx | Только для файлов SU3, не для структур netDb |
+| MLDSA65ph | 1984 | 0.9.xx | Только для файлов SU3, не для структур netDb |
+| MLDSA87ph | 2624 | 0.9.xx | Только для файлов SU3, не для структур netDb |
+Гибридные публичные ключи подписи представляют собой ключ Ed25519, за которым следует PQ ключ, как указано в [черновике IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Кодирование и порядок байтов определены в [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### SigningPrivateKey
 
-The new Signing Private Key types are:
+Новые типы приватных ключей подписи:
 
-| Type | Length (bytes) | Since | Usage |
+| Тип | Длина (байт) | С версии | Использование |
 |------|----------------|-------|-------|
-| MLDSA44 | 2560 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 4032 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 4896 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 2592 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 4064 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 4928 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
+| MLDSA44 | 2560 | 0.9.xx | См. предложение 169 |
+| MLDSA65 | 4032 | 0.9.xx | См. предложение 169 |
+| MLDSA87 | 4896 | 0.9.xx | См. предложение 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2592 | 0.9.xx | См. предложение 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 4064 | 0.9.xx | См. предложение 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4928 | 0.9.xx | См. предложение 169 |
+| MLDSA44ph | 2592 | 0.9.xx | Только для SU3 файлов, не для структур netDb. См. предложение 169 |
+| MLDSA65ph | 4064 | 0.9.xx | Только для SU3 файлов, не для структур netDb. См. предложение 169 |
+| MLDSA87ph | 4928 | 0.9.xx | Только для SU3 файлов, не для структур netDb. См. предложение 169 |
+Гибридные приватные ключи подписи представляют собой ключ Ed25519, за которым следует PQ ключ, как описано в [черновике IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Кодирование и порядок байтов определены в [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
-Hybrid signing private keys are the Ed25519 key followed by the PQ key, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
-Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+### Подпись
 
+Новые типы подписей:
 
-### Signature
-
-The new Signature types are:
-
-| Type | Length (bytes) | Since | Usage |
+| Тип | Длина (байт) | С версии | Использование |
 |------|----------------|-------|-------|
-| MLDSA44 | 2420 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 3309 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 4627 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 2484 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 3373 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 4691 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
+| MLDSA44 | 2420 | 0.9.xx | См. предложение 169 |
+| MLDSA65 | 3309 | 0.9.xx | См. предложение 169 |
+| MLDSA87 | 4627 | 0.9.xx | См. предложение 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2484 | 0.9.xx | См. предложение 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 3373 | 0.9.xx | См. предложение 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4691 | 0.9.xx | См. предложение 169 |
+| MLDSA44ph | 2484 | 0.9.xx | Только для файлов SU3, не для структур netDb. См. предложение 169 |
+| MLDSA65ph | 3373 | 0.9.xx | Только для файлов SU3, не для структур netDb. См. предложение 169 |
+| MLDSA87ph | 4691 | 0.9.xx | Только для файлов SU3, не для структур netDb. См. предложение 169 |
+Гибридные подписи представляют собой подпись Ed25519, за которой следует PQ подпись, как в [черновике IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Гибридные подписи проверяются путем проверки обеих подписей, и проверка считается неуспешной, если любая из них не проходит. Кодирование и порядок байтов определены в [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
-Hybrid signatures are the Ed25519 signature followed by the PQ signature, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
-Hybrid signatures are verified by verifying both signatures, and failing
-if either one fails.
-Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+### Сертификаты ключей
 
+Новые типы публичных ключей подписи:
 
-
-### Key Certificates
-
-The new Signing Public Key types are:
-
-| Type | Type Code | Total Public Key Length | Since | Usage |
+| Тип | Код типа | Общая длина открытого ключа | С версии | Использование |
 |------|-----------|-------------------------|-------|-------|
-| MLDSA44 | 12 | 1312 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 13 | 1952 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 14 | 2592 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 18 | n/a | 0.9.xx | Only for SU3 files |
-| MLDSA65ph | 19 | n/a | 0.9.xx | Only for SU3 files |
-| MLDSA87ph | 20 | n/a | 0.9.xx | Only for SU3 files |
+| MLDSA44 | 12 | 1312 | 0.9.xx | См. предложение 169 |
+| MLDSA65 | 13 | 1952 | 0.9.xx | См. предложение 169 |
+| MLDSA87 | 14 | 2592 | 0.9.xx | См. предложение 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 0.9.xx | См. предложение 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 0.9.xx | См. предложение 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 0.9.xx | См. предложение 169 |
+| MLDSA44ph | 18 | н/д | 0.9.xx | Только для файлов SU3 |
+| MLDSA65ph | 19 | н/д | 0.9.xx | Только для файлов SU3 |
+| MLDSA87ph | 20 | н/д | 0.9.xx | Только для файлов SU3 |
+Новые типы криптографических открытых ключей:
 
-
-
-The new Crypto Public Key types are:
-
-| Type | Type Code | Total Public Key Length | Since | Usage |
+| Тип | Код типа | Общая длина публичного ключа | С версии | Использование |
 |------|-----------|-------------------------|-------|-------|
-| MLKEM512_X25519 | 5 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM768_X25519 | 6 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM1024_X25519 | 7 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| NONE | 255 | 0 | 0.9.xx | See proposal 169 |
+| MLKEM512_X25519 | 5 | 32 | 0.9.xx | См. предложение 169, только для Leasesets, не для RI или Destinations |
+| MLKEM768_X25519 | 6 | 32 | 0.9.xx | См. предложение 169, только для Leasesets, не для RI или Destinations |
+| MLKEM1024_X25519 | 7 | 32 | 0.9.xx | См. предложение 169, только для Leasesets, не для RI или Destinations |
+| NONE | 255 | 0 | 0.9.xx | См. предложение 169 |
+Гибридные типы ключей НИКОГДА не включаются в сертификаты ключей; только в leaseSet.
 
+Для назначений с Hybrid или PQ типами подписей используйте NONE (тип 255) для типа шифрования, но криптографический ключ отсутствует, и вся основная секция размером 384 байта предназначена для ключа подписи.
 
-Hybrid key types are NEVER included in key certificates; only in leasesets.
+### Размеры Destination
 
-For destinations with Hybrid or PQ signature types,
-use NONE (type 255) for the encryption type,
-but there is no crypto key, and the
-entire 384-byte main section is for the signing key.
+Вот длины для новых типов Destination. Тип шифрования для всех — NONE (тип 255), а длина ключа шифрования считается равной 0. Вся секция в 384 байта используется для первой части открытого ключа подписи. ПРИМЕЧАНИЕ: Это отличается от спецификации для типов подписей ECDSA_SHA512_P521 и RSA, где мы сохраняли 256-байтовый ElGamal ключ в destination, даже если он не использовался.
 
+Без заполнения. Общая длина составляет 7 + общая длина ключа. Длина сертификата ключа составляет 4 + избыточная длина ключа.
 
-### Destination sizes
-
-Here are lengths for the new Destination types.
-Enc type for all is NONE (type 255) and the encryption key length is treated as 0.
-The entire 384-byte section is used for the first part of the signing public key.
-NOTE: This is different than the spec for the ECDSA_SHA512_P521
-and the RSA signature types, where we maintained the 256-byte ElGamal
-key in the destination even though it was unused.
-
-No padding.
-Total length is 7 + total key length.
-Key certificate length is 4 + excess key length.
-
-Example 1319-byte destination byte stream for MLDSA44:
+Пример 1319-байтового потока байтов назначения для MLDSA44:
 
 skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
-
-
-| Type | Type Code | Total Public Key Length | Main | Excess | Total Dest Length |
+| Тип | Код типа | Общая длина публичного ключа | Основной | Избыток | Общая длина назначения |
 |------|-----------|-------------------------|------|--------|-------------------|
 | MLDSA44 | 12 | 1312 | 384 | 928 | 1319 |
 | MLDSA65 | 13 | 1952 | 384 | 1568 | 1959 |
@@ -437,25 +307,15 @@ skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 384 | 960 | 1351 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 384 | 1600 | 1991 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 384 | 2240 | 2631 |
+### Размеры RouterIdent
 
+Вот длины для новых типов Destination. Тип шифрования для всех - X25519 (тип 4). Вся секция размером 352 байта после открытого ключа X25519 используется для первой части открытого ключа подписи. Без дополнения. Общая длина составляет 39 + общая длина ключа. Длина сертификата ключа составляет 4 + избыточная длина ключа.
 
-
-### RouterIdent sizes
-
-Here are lengths for the new Destination types.
-Enc type for all is X25519 (type 4).
-The entire 352-byte section after the X28819 public key is used for the first part of the signing public key.
-No padding.
-Total length is 39 + total key length.
-Key certificate length is 4 + excess key length.
-
-Example 1351-byte router identity byte stream for MLDSA44:
+Пример 1351-байтового потока байтов идентичности router для MLDSA44:
 
 enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 
-
-
-| Type | Type Code | Total Public Key Length | Main | Excess | Total RouterIdent Length |
+| Тип | Код типа | Общая длина открытого ключа | Основной | Избыток | Общая длина RouterIdent |
 |------|-----------|-------------------------|------|--------|--------------------------|
 | MLDSA44 | 12 | 1312 | 352 | 960 | 1351 |
 | MLDSA65 | 13 | 1952 | 352 | 1600 | 1991 |
@@ -463,23 +323,19 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
+### Шаблоны рукопожатий
 
+Handshake используют паттерны handshake [Noise Protocol](https://noiseprotocol.org/noise.html).
 
+Используется следующее соответствие букв:
 
-### Handshake Patterns
+- e = одноразовый эфемерный ключ
+- s = статический ключ
+- p = полезная нагрузка сообщения
+- e1 = одноразовый эфемерный PQ ключ, отправленный от Alice к Bob
+- ekem1 = шифротекст KEM, отправленный от Bob к Alice
 
-Handshakes use [Noise Protocol](https://noiseprotocol.org/noise.html) handshake patterns.
-
-The following letter mapping is used:
-
-- e = one-time ephemeral key
-- s = static key
-- p = message payload
-- e1 = one-time ephemeral PQ key, sent from Alice to Bob
-- ekem1 = the KEM ciphertext, sent from Bob to Alice
-
-The following modifications to XK and IK for hybrid forward secrecy (hfs) are
-as specified in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) section 5:
+Следующие модификации XK и IK для гибридной прямой секретности (hfs) указаны в [спецификации Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) разделе 5:
 
 ```
 XK:                       XKhfs:
@@ -503,8 +359,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-
-The e1 pattern is defined as follows, as specified in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) section 4:
+Шаблон e1 определяется следующим образом, как указано в разделе 4 [спецификации Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
 ```
 For Alice:
@@ -522,9 +377,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-
-
-The ekem1 pattern is defined as follows, as specified in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) section 4:
+Паттерн ekem1 определяется следующим образом, как указано в [спецификации Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf), раздел 4:
 
 ```
 For Bob:
@@ -549,52 +402,39 @@ For Bob:
   kem_shared_key = DECAPS(kem_ciphertext, decap_key)
   MixKey(kem_shared_key)
 ```
+### KDF рукопожатия Noise
 
+#### Проблемы
 
+- Стоит ли изменить хеш-функцию рукопожатия? См. [сравнение](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
+  SHA256 не уязвима к PQ, но если мы хотим обновить
+  нашу хеш-функцию, сейчас самое время, пока мы меняем другие вещи.
+  Текущее предложение IETF SSH [черновик IETF](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) — использовать MLKEM768
+  с SHA256 и MLKEM1024 с SHA384. Это предложение включает
+  обсуждение соображений безопасности.
+- Стоит ли прекратить отправку ratchet-данных 0-RTT (кроме LS)?
+- Стоит ли переключить ratchet с IK на XK, если мы не отправляем данные 0-RTT?
 
+#### Обзор
 
-### Noise Handshake KDF
+Этот раздел относится как к протоколам IK, так и к XK.
 
-#### Issues
+Гибридное рукопожатие определено в [спецификации Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). Первое сообщение от Алисы к Бобу содержит e1, ключ инкапсуляции, перед полезной нагрузкой сообщения. Это рассматривается как дополнительный статический ключ; вызовите EncryptAndHash() для него (как Алиса) или DecryptAndHash() (как Боб). Затем обработайте полезную нагрузку сообщения как обычно.
 
-- Should we change the handshake hash function? See [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
-  SHA256 is not vulnerable to PQ, but if we do want to upgrade
-  our hash function, now is the time, while we're changing other things.
-  The current IETF SSH proposal [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) is to use MLKEM768
-  with SHA256, and MLKEM1024 with SHA384. That proposal includes
-  a discussion of the security considerations.
-- Should we stop sending 0-RTT ratchet data (other than the LS)?
-- Should we switch ratchet from IK to XK if we don't send 0-RTT data?
+Второе сообщение, от Боба к Алисе, содержит ekem1, зашифрованный текст, перед полезной нагрузкой сообщения. Это рассматривается как дополнительный статический ключ; вызовите EncryptAndHash() на нём (как Боб) или DecryptAndHash() (как Алиса). Затем вычислите kem_shared_key и вызовите MixKey(kem_shared_key). Затем обработайте полезную нагрузку сообщения как обычно.
 
+#### Определенные операции ML-KEM
 
-#### Overview
-
-This section applies to both IK and XK protocols.
-
-The hybrid handshake is defined in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
-The first message, from Alice to Bob, contains e1, the encapsulation key, before the message payload.
-This is treated as an additional static key; call EncryptAndHash() on it (as Alice)
-or DecryptAndHash() (as Bob).
-Then process the message payload as usual.
-
-The second message, from Bob to Alice, contains ekem1, the ciphertext, before the message payload.
-This is treated as an additional static key; call EncryptAndHash() on it (as Bob)
-or DecryptAndHash() (as Alice).
-Then, calculate the kem_shared_key and call MixKey(kem_shared_key).
-Then process the message payload as usual.
-
-
-#### Defined ML-KEM Operations
-
-We define the following functions corresponding to the cryptographic building blocks used
-as defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Мы определяем следующие функции, соответствующие криптографическим строительным блокам, используемым согласно определению в [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
+
     Alice creates the encapsulation and decapsulation keys
     The encapsulation key is sent in message 1.
     encap_key and decap_key sizes vary based on ML-KEM variant.
 
 (ciphertext, kem_shared_key) = ENCAPS(encap_key)
+
     Bob calculates the ciphertext and shared key,
     using the ciphertext received in message 1.
     The ciphertext is sent in message 2.
@@ -602,25 +442,22 @@ as defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pd
     The kem_shared_key is always 32 bytes.
 
 kem_shared_key = DECAPS(ciphertext, decap_key)
+
     Alice calculates the shared key,
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Note that both the encap_key and the ciphertext are encrypted inside ChaCha/Poly
-blocks in the Noise handshake messages 1 and 2.
-They will be decrypted as part of the handshake process.
+Обратите внимание, что как encap_key, так и ciphertext зашифрованы внутри блоков ChaCha/Poly в сообщениях рукопожатия Noise 1 и 2. Они будут расшифрованы как часть процесса рукопожатия.
 
-The kem_shared_key is mixed into the chaining key with MixHash().
-See below for details.
+Параметр kem_shared_key смешивается с chaining key с помощью MixHash(). Подробности см. ниже.
 
+#### Alice KDF для сообщения 1
 
-#### Alice KDF for Message 1
+Для XK: После шаблона сообщения 'es' и перед полезной нагрузкой добавить:
 
-For XK: After the 'es' message pattern and before the payload, add:
+ИЛИ
 
-OR
-
-For IK: After the 'es' message pattern and before the 's' message pattern, add:
+Для IK: После шаблона сообщения 'es' и перед шаблоном сообщения 's' добавить:
 
 ```
 This is the "e1" message pattern:
@@ -644,15 +481,13 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
+#### KDF Боба для Сообщения 1
 
+Для XK: После шаблона сообщения 'es' и перед полезной нагрузкой добавьте:
 
-#### Bob KDF for Message 1
+ИЛИ
 
-For XK: After the 'es' message pattern and before the payload, add:
-
-OR
-
-For IK: After the 'es' message pattern and before the 's' message pattern, add:
+Для IK: После шаблона сообщения 'es' и перед шаблоном сообщения 's' добавить:
 
 ```
 This is the "e1" message pattern:
@@ -674,15 +509,13 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
+#### Bob KDF для сообщения 2
 
+Для XK: После шаблона сообщения 'ee' и перед полезной нагрузкой добавьте:
 
-#### Bob KDF for Message 2
+ИЛИ
 
-For XK: After the 'ee' message pattern and before the payload, add:
-
-OR
-
-For IK: After the 'ee' message pattern and before the 'se' message pattern, add:
+Для IK: После шаблона сообщения 'ee' и перед шаблоном сообщения 'se' добавьте:
 
 ```
 This is the "ekem1" message pattern:
@@ -705,11 +538,9 @@ This is the "ekem1" message pattern:
 
   End of "ekem1" message pattern.
 ```
+#### KDF Алисы для Сообщения 2
 
-
-#### Alice KDF for Message 2
-
-After the 'ee' message pattern (and before the 'ss' message pattern for IK), add:
+После шаблона сообщения 'ee' (и перед шаблоном сообщения 'ss' для IK), добавьте:
 
 ```
 This is the "ekem1" message pattern:
@@ -731,46 +562,32 @@ This is the "ekem1" message pattern:
 
   End of "ekem1" message pattern.
 ```
+#### KDF для Сообщения 3 (только XK)
 
+неизменённый
 
-#### KDF for Message 3 (XK only)
+#### KDF для split()
 
-unchanged
-
-
-#### KDF for split()
-
-unchanged
-
-
+неизменный
 
 ### Ratchet
 
-Update the ECIES-Ratchet specification [/docs/specs/ecies/](/docs/specs/ecies/) as follows:
+Обновить спецификацию ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) следующим образом:
 
-
-#### Noise identifiers
+#### Идентификаторы Noise
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
+#### 1b) Новый формат сессии (с привязкой)
 
+Изменения: Текущий ratchet содержал статический ключ в первой секции ChaCha и полезную нагрузку во второй секции. С ML-KEM теперь есть три секции. Первая секция содержит зашифрованный PQ публичный ключ. Вторая секция содержит статический ключ. Третья секция содержит полезную нагрузку.
 
-#### 1b) New session format (with binding)
-
-Changes: Current ratchet contained the static key in the first ChaCha section,
-and the payload in the second section.
-With ML-KEM, there are now three sections.
-The first section contains the encrypted PQ public key.
-The second section contains the static key.
-The third section contains the payload.
-
-
-Encrypted format:
+Зашифрованный формат:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |   New Session Ephemeral Public Key    |
@@ -816,8 +633,7 @@ Encrypted format:
   |             16 bytes                  |
   +----+----+----+----+----+----+----+----+
 ```
-
-Decrypted format:
+Расшифрованный формат:
 
 ```
 Payload Part 1:
@@ -856,35 +672,24 @@ Payload Part 1:
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Размеры:
 
-Sizes:
-
-| Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
+| Тип | Код типа | Длина X | Длина сообщения 1 | Длина зашифр. сообщения 1 | Длина расшифр. сообщения 1 | Длина PQ ключа | Длина pl |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
 | X25519 | 4 | 32 | 96+pl | 64+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 912+pl | 880+pl | 800+pl | 800 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1296+pl | 1360+pl | 1184+pl | 1184 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1680+pl | 1648+pl | 1568+pl | 1568 | pl |
+Обратите внимание, что полезная нагрузка должна содержать блок DateTime, поэтому минимальный размер полезной нагрузки составляет 7. Минимальные размеры сообщения 1 могут быть рассчитаны соответственно.
 
-Note that the payload must contain a DateTime block, so the minimum payload size is 7.
-The minimum message 1 sizes may be calculated accordingly.
+#### 1g) Формат ответа New Session Reply
 
+Изменения: Текущий ratchet имеет пустую полезную нагрузку для первой секции ChaCha и полезную нагрузку во второй секции. С ML-KEM теперь есть три секции. Первая секция содержит зашифрованный PQ ciphertext. Вторая секция имеет пустую полезную нагрузку. Третья секция содержит полезную нагрузку.
 
-
-#### 1g) New Session Reply format
-
-Changes: Current ratchet has an empty payload for the first ChaCha section,
-and the payload in the second section.
-With ML-KEM, there are now three sections.
-The first section contains the encrypted PQ ciphertext.
-The second section has an empty payload.
-The third section contains the payload.
-
-
-Encrypted format:
+Зашифрованный формат:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |       Session Tag   8 bytes           |
   +----+----+----+----+----+----+----+----+
   |                                       |
@@ -924,8 +729,7 @@ Encrypted format:
   |             16 bytes                  |
   +----+----+----+----+----+----+----+----+
 ```
-
-Decrypted format:
+Расшифрованный формат:
 
 ```
 Payload Part 1:
@@ -957,45 +761,47 @@ Payload Part 1:
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Размеры:
 
-Sizes:
-
-| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
+| Тип | Код типа | Y длина | Msg 2 длина | Msg 2 зашифр. длина | Msg 2 расшифр. длина | PQ CT длина | opt длина |
 |------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 72+pl | 32+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-
-Note that while message 2 will normally have a nonzero payload,
-the ratchet specification [/docs/specs/ecies/](/docs/specs/ecies/) does not require it, so the minimum payload size is 0.
-The minimum message 2 sizes may be calculated accordingly.
-
-
+Обратите внимание, что хотя сообщение 2 обычно имеет ненулевую полезную нагрузку, спецификация ratchet [/docs/specs/ecies/](/docs/specs/ecies/) не требует этого, поэтому минимальный размер полезной нагрузки равен 0. Минимальные размеры сообщения 2 могут быть рассчитаны соответственно.
 
 ### NTCP2
 
-Update the NTCP2 specification [/docs/specs/ntcp2/](/docs/specs/ntcp2/) as follows:
+Обновите спецификацию NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) следующим образом:
 
-
-#### Noise identifiers
+#### Идентификаторы Noise
 
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-
 #### 1) SessionRequest
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+Изменения: Текущий NTCP2 содержит только опции в секции ChaCha. С ML-KEM секция ChaCha также будет содержать зашифрованный постквантовый публичный ключ.
 
+Изменения: Текущий NTCP2 содержит только опции в разделе ChaCha. С ML-KEM раздел ChaCha также будет содержать зашифрованный PQ публичный ключ.
 
-Raw contents:
+Чтобы PQ и не-PQ NTCP2 могли поддерживаться на одном и том же адресе и порту router'а, мы используем самый значимый бит значения X (эфемерный публичный ключ X25519), чтобы отметить, что это PQ соединение. Этот бит всегда сброшен для не-PQ соединений.
+
+Для Алисы, после шифрования сообщения с помощью Noise, но до AES обфускации X, установить X[31] |= 0x7f.
+
+Для Боба, после AES де-обфускации X, проверить X[31] & 0x80. Если бит установлен, очистить его с помощью X[31] &= 0x7f, и расшифровать через Noise как PQ соединение. Если бит сброшен, расшифровать через Noise как обычное не-PQ соединение.
+
+Для PQ NTCP2, анонсируемого на другом адресе и порту router, это не требуется.
+
+Для получения дополнительной информации см. раздел "Опубликованные адреса" ниже.
+
+Исходное содержимое:
 
 ```
-+----+----+----+----+----+----+----+----+
-  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |        MS bit set to 1 and then       |
   +        obfuscated with RH_B           +
   |       AES-CBC-256 encrypted X         |
   +             (32 bytes)                +
@@ -1023,13 +829,12 @@ Raw contents:
   |     length defined in options block   |
   +----+----+----+----+----+----+----+----+
 
-  Same as before except add a second ChaChaPoly frame
+  Same as current specification except add a second ChaChaPoly frame
 ```
-
-Unencrypted data (Poly1305 authentication tag not shown):
+Незашифрованные данные (тег аутентификации Poly1305 не показан):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |                   X                   |
@@ -1053,30 +858,24 @@ Unencrypted data (Poly1305 authentication tag not shown):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Примечание: поле версии в блоке опций сообщения 1 должно быть установлено в 2, даже для PQ соединений.
 
-Sizes:
+Размеры:
 
-| Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | opt len |
+| Тип | Код типа | Длина X | Длина сообщения 1 | Длина зашифр. сообщения 1 | Длина расшифр. сообщения 1 | Длина PQ ключа | Длина опций |
 |------|-----------|-------|-----------|---------------|---------------|------------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 880+pad | 848 | 816 | 800 | 16 |
 | MLKEM768_X25519 | 6 | 32 | 1264+pad | 1232 | 1200 | 1184 | 16 |
 | MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
-
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
-
+Примечание: Коды типов предназначены только для внутреннего использования. Роутеры останутся типа 4, а поддержка будет указана в адресах роутеров.
 
 #### 2) SessionCreated
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
-
-Raw contents:
+Исходное содержимое:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +        obfuscated with RH_B           +
   |       AES-CBC-256 encrypted Y         |
@@ -1108,13 +907,12 @@ Raw contents:
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-  Same as before except add a second ChaChaPoly frame
+  Same as current specification except add a second ChaChaPoly frame
 ```
-
-Unencrypted data (Poly1305 auth tag not shown):
+Незашифрованные данные (тег аутентификации Poly1305 не показан):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |                  Y                    |
@@ -1138,64 +936,82 @@ Unencrypted data (Poly1305 auth tag not shown):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Размеры:
 
-Sizes:
-
-| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
+| Тип | Код типа | Y длина | Длина сообщ. 2 | Длина зашифр. сообщ. 2 | Длина расшифр. сообщ. 2 | Длина PQ CT | Длина opt |
 |------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
 | MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
 | MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
-
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
-
-
+Примечание: Коды типов предназначены только для внутреннего использования. Роутеры останутся типа 4, а поддержка будет указана в адресах router.
 
 #### 3) SessionConfirmed
 
-Unchanged
+Без изменений
 
+#### Функция формирования ключа (KDF) (для фазы данных)
 
-#### Key Derivation Function (KDF) (for data phase)
+Без изменений
 
-Unchanged
+#### Опубликованные адреса
 
+Во всех случаях используйте имя транспорта NTCP2 как обычно.
 
+Используйте тот же адрес/порт, что и для не-PQ, не заблокированных файрволом. Поддерживается только один вариант PQ. В адресе router опубликуйте v=2 (как обычно) и новый параметр pq=[3|4|5] для указания MLKEM 512/768/1024. Alice устанавливает старший бит эфемерного ключа (key[31] & 0x80) в запросе сессии, чтобы указать, что это гибридное соединение. См. выше. Старые router будут игнорировать параметр pq и подключаться не-PQ как обычно.
 
+Различные адрес/порт как не-PQ, или только PQ, без брандмауэра НЕ поддерживается. Это не будет реализовано до тех пор, пока не-PQ NTCP2 не будет отключен, что произойдет через несколько лет. Когда не-PQ будет отключен, может поддерживаться несколько вариантов PQ, но только один на адрес. В адресе router публикуйте v=[3|4|5] для указания MLKEM 512/768/1024. Alice не устанавливает MSB эфемерного ключа. Более старые router'ы проверят параметр v и пропустят этот адрес как неподдерживаемый.
 
+Адреса за firewall (IP не публикуется): В адресе router'а публикуйте v=2 (как обычно). Нет необходимости публиковать параметр pq.
+
+Alice может подключиться к PQ Bob, используя PQ-вариант, который публикует Bob, независимо от того, рекламирует ли Alice поддержку pq в информации своего router или рекламирует ли она тот же вариант.
+
+#### Максимальное заполнение
+
+В текущей спецификации сообщения 1 и 2 определены как имеющие "разумное" количество заполнения, с рекомендуемым диапазоном 0-31 байт и без указанного максимума.
+
+Java I2P реализует максимум 256 байт заполнения для non-PQ соединений, однако это ранее не было задокументировано.
+
+Используйте определенный размер сообщения как максимальное заполнение, то есть максимальное заполнение удвоит размер сообщения следующим образом:
+
+| Максимальное заполнение сообщения | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
+|-----------------------------------|-----------|-----------|------------|
+| Session Request                   |       880 |     1264  |    1648    |
+| Session Created                   |       848 |     1136  |    1616    |
 ### SSU2
 
-Update the SSU2 specification [/docs/specs/ssu2/](/docs/specs/ssu2/) as follows:
+Обновите спецификацию SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) следующим образом:
 
-
-#### Noise identifiers
+#### Идентификаторы Noise
 
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
-- "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256"
 
+Обратите внимание, что MLKEM-1024 НЕ поддерживается для SSU2, поскольку ключи слишком велики, чтобы поместиться в стандартную дейтаграмму размером 1500 байт.
 
-#### Long Header
+#### Длинный заголовок
 
-The long header is 32 bytes. It is used before a session is created, for Token Request, SessionRequest, SessionCreated, and Retry.
-It is also used for out-of-session Peer Test and Hole Punch messages.
+Длинный заголовок составляет 32 байта. Он используется до создания сессии для сообщений Token Request, SessionRequest, SessionCreated и Retry. Он также используется для внесессионных сообщений Peer Test и Hole Punch.
 
-For PQ connections, set the ver (version) field to 3 or 4, to indicate MLKEM-512 or MLKEM-768.
+В следующих сообщениях установите поле ver (версия) в длинном заголовке равным 3 или 4, чтобы указать MLKEM-512 или MLKEM-768.
 
-Discussion: Setting the version field to 3 or 4 may not be strictly necessary for all message types,
-but doing so aids earlier failure detection for unsupported post-quantum connections.
-Token Request and Retry (types 9 and 10) would be good to have versions 3/4 for consistency.
-Peer Test and Hole Punch messages (types 7 and 11) may not require this treatment
-but could follow the same pattern for uniformity.
+- (0) Запрос сессии
+- (1) Сессия создана
+- (9) Повторная попытка
+- (10) Запрос токена
+- (11) Пробивание отверстия
 
+В следующих сообщениях установите поле ver (версия) в длинном заголовке на 2, как обычно, даже если поддерживается MLKEM-512 или MLKEM-768. Реализации также могут установить значение 3 или 4, если другая сторона это поддерживает, но это не обязательно. Реализации должны принимать любое значение от 2 до 4.
 
-Before header encryption:
+- (7) Тест узла (сообщения вне сессии 5-7)
+
+Обсуждение: Установка поля версии в значение 3 или 4 может быть не строго необходимой для всех типов сообщений, но это способствует более раннему обнаружению ошибок для неподдерживаемых пост-квантовых соединений. Token Request и Retry (типы 9 и 10) должны иметь версии 3/4 для согласованности. Сообщения Hole Punch (тип 11) могут не требовать такой обработки, но мы будем следовать тому же шаблону для единообразия. Сообщения Peer Test (тип 7) находятся вне сессии и не указывают на намерение инициировать сессию.
+
+Перед шифрованием заголовка:
 
 ```
 
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1222,23 +1038,40 @@ Before header encryption:
   Token :: 8 bytes, unsigned big endian integer
 
 ```
+#### Короткий заголовок
 
+без изменений
 
-#### Short Header
+#### SessionRequest (Тип 0)
 
-unchanged
+Изменения: Текущий SSU2 содержит только блочные данные в секции ChaCha. С ML-KEM секция ChaCha также будет содержать зашифрованный PQ публичный ключ.
 
-
-#### SessionRequest (Type 0)
-
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
-
-Raw contents:
+Изменение KDF для защиты от подмены: Для решения проблем, поднятых в Предложении 165 [Prop165]_, но с другим решением, мы изменяем KDF для Session Request. Это касается только PQ-сессий. KDF для не-PQ сессий остается неизменным.
 
 ```
-+----+----+----+----+----+----+----+----+
+
+// End of KDF for initial chain key (unchanged)
+  // Bob static key
+  // MixHash(bpk)
+  h = SHA256(h || bpk);
+
+  // Start of KDF for session request
+  // NEW for PQ only
+  // bhash = Bob router hash (32 bytes)
+  // MixHash(bhash)
+  h = SHA256(h || bhash);
+
+  // Rest of KDF for session request, unchanged, as in SSU2 spec
+  // MixHash(header)
+  h = SHA256(h || header)
+
+  ...
+
+```
+Исходное содержимое:
+
+```
+  +----+----+----+----+----+----+----+----+
   |  Long Header bytes 0-15, ChaCha20     |
   +  encrypted with Bob intro key         +
   |    See Header Encryption KDF          |
@@ -1278,11 +1111,10 @@ Raw contents:
 
 
 ```
-
-Unencrypted data (Poly1305 authentication tag not shown):
+Незашифрованные данные (тег аутентификации Poly1305 не показан):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1308,34 +1140,26 @@ Unencrypted data (Poly1305 authentication tag not shown):
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
+Размеры, не включая накладные расходы IP:
 
-Sizes, not including IP overhead:
-
-| Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
+| Тип | Код типа | Длина X | Длина сообщ. 1 | Длина зашифр. сообщ. 1 | Длина расшифр. сообщ. 1 | Длина PQ ключа | Длина pl |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 896+pl | 832+pl | 800+pl | 800 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1280+pl | 1216+pl | 1184+pl | 1184 | pl |
-| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
+| MLKEM1024_X25519 | 7 | н/д | слишком большой | | | | |
+Примечание: Коды типов предназначены только для внутреннего использования. Router останутся типа 4, а поддержка будет указана в адресах router.
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
+Минимальный MTU для MLKEM768_X25519: Около 1316 для IPv4 и 1336 для IPv6.
 
-Minimum MTU for MLKEM768_X25519:
-About 1316 for IPv4 and 1336 for IPv6.
+#### SessionCreated (Тип 1)
 
+Изменения: Текущий SSU2 содержит только блочные данные в секции ChaCha. С ML-KEM секция ChaCha будет также содержать зашифрованный PQ публичный ключ.
 
-
-#### SessionCreated (Type 1)
-
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
-
-Raw contents:
+Необработанное содержимое:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |  Long Header bytes 0-15, ChaCha20     |
   +  encrypted with Bob intro key and     +
   | derived key, see Header Encryption KDF|
@@ -1375,11 +1199,10 @@ Raw contents:
 
 
 ```
-
-Unencrypted data (Poly1305 auth tag not shown):
+Нешифрованные данные (тег аутентификации Poly1305 не показан):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1405,633 +1228,392 @@ Unencrypted data (Poly1305 auth tag not shown):
   |      see below for allowed blocks     |
   +----+----+----+----+----+----+----+----+
 ```
+Размеры, не включая накладные расходы IP:
 
-Sizes, not including IP overhead:
-
-| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
+| Тип | Код типа | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
+| MLKEM1024_X25519 | 7 | н/д | слишком большой | | | | |
+Примечание: Коды типов предназначены только для внутреннего использования. Роутеры останутся типа 4, а поддержка будет указана в адресах роутеров.
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
+Минимальный MTU для MLKEM768_X25519: Около 1316 для IPv4 и 1336 для IPv6.
 
-Minimum MTU for MLKEM768_X25519:
-About 1316 for IPv4 and 1336 for IPv6.
+#### SessionConfirmed (Тип 2)
 
+без изменений
 
-#### SessionConfirmed (Type 2)
+#### KDF для фазы данных
 
-unchanged
+неизменен
 
+#### Реле и тест пиров
 
+Следующие блоки содержат поля версии. Они останутся версии 2 (для совместимости с не-PQ Bob), и не изменятся на версию 3/4 для PQ.
 
-#### KDF for data phase
+- Запрос ретрансляции
+- Ответ ретрансляции
+- Введение ретрансляции
+- Тест узла
 
-unchanged
+PQ-подписи: блоки Relay, блоки Peer Test и сообщения Peer Test содержат подписи. К сожалению, PQ-подписи превышают размер MTU. В настоящее время отсутствует механизм фрагментации блоков Relay или Peer Test или сообщений на несколько UDP-пакетов. Протокол должен быть расширен для поддержки фрагментации. Это будет сделано в отдельном предложении (TBD). До завершения этой работы Relay и Peer Test поддерживаться не будут.
 
+#### Опубликованные адреса
 
+Во всех случаях используйте имя транспорта SSU2 как обычно. MLKEM-1024 не поддерживается.
 
-#### Relay and Peer Test
+Используйте тот же адрес/порт, что и для не-PQ, не заблокированного файрволлом. Поддерживается один или оба варианта PQ. В адресе router публикуйте v=2 (как обычно) и новый параметр pq=[3|4|3,4] для указания MLKEM 512/768/оба. Старые router будут игнорировать параметр pq и подключаться в режиме не-PQ как обычно.
 
-Relay blocks, Peer Test blocks, and Peer Test messages all contain signatures.
-Unfortunately, PQ signatures are larger than the MTU.
-There is no current mechanism to fragment Relay or Peer Test blocks or messages
-across multiple UDP packets.
-The protocol must be extended to support fragmentation.
-This will be done in a separate proposal TBD.
-Until that is completed, Relay and Peer Test will not be supported.
+Различные адреса/порты как не-PQ, или только PQ, без файрвола НЕ поддерживается. Это не будет реализовано до тех пор, пока не-PQ SSU2 не будет отключен, что произойдет через несколько лет. Когда не-PQ будет отключен, поддерживается один или оба варианта PQ. В адресе router опубликуйте v=[3|4|3,4] для указания MLKEM 512/768/оба. Старые router проверят параметр v и пропустят этот адрес как неподдерживаемый.
 
-TODO: Should the following remain version 2 (for compatibility with a non-PQ Bob),
-or should they be version 3/4 for PQ?
+Адреса за файрволом (IP не публикуется): В адресе router публикуйте v=2 (как обычно). Параметр pq ДОЛЖЕН публиковаться в адресах за файрволом для поддержки relay.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
+Алиса может подключиться к PQ Бобу, используя PQ вариант, который публикует Боб, независимо от того, рекламирует ли Алиса поддержку pq в своей router info или рекламирует ли она тот же вариант.
 
+#### MTU
 
-#### Issues
+Будьте осторожны, чтобы не превысить MTU с MLKEM768. Минимальный MTU для SSU2 составляет 1280, что является размером сообщения 1 без заполнения. Не включайте заполнение в сообщение 1, если MTU Алисы или Боба составляет 1280.
 
-We could internally use the version field and use 3 for MLKEM512 and 4 for MLKEM768.
+#### Проблемы
 
-For messages 1 and 2, MLKEM768 would increase packet sizes beyond the 1280 minimum MTU.
-Probably would just not support it for that connection if the MTU was too low.
+Мы можем внутренне использовать поле version и применять 3 для MLKEM512 и 4 для MLKEM768.
 
-For messages 1 and 2, MLKEM1024 would increase packet sizes beyond 1500 maximum MTU.
-This would require fragmenting messages 1 and 2, and it would be a big complication.
-Probably won't do it.
+Для сообщений 1 и 2 MLKEM768 увеличил бы размеры пакетов сверх минимального MTU в 1280. Вероятно, просто не будет поддерживаться для этого соединения, если MTU слишком низкий.
 
-Relay and Peer Test: See above
+Для сообщений 1 и 2 MLKEM1024 увеличил бы размеры пакетов сверх максимального MTU в 1500 байт. Это потребовало бы фрагментации сообщений 1 и 2, что стало бы серьезным усложнением. Вероятно, этого делать не будем.
 
+Relay и Peer Test: См. выше
 
-### Streaming
+### Потоковая передача
 
-TODO: Is there a more efficient way to define signing/verification
-to avoid copying the signature?
+TODO: Существует ли более эффективный способ определения подписи/верификации, чтобы избежать копирования подписи?
 
+### Файлы SU3
 
+ЗАДАЧИ
 
-### SU3 Files
+[Черновик IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) раздел 8.1 запрещает использование HashML-DSA в сертификатах X.509 и не назначает OID для HashML-DSA из-за сложностей реализации и снижения безопасности.
 
-TODO
+Для PQ-only подписей файлов SU3 используйте OID, определенные в [черновике IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) для вариантов без предварительного хеширования в сертификатах. Мы не определяем гибридные подписи файлов SU3, поскольку нам может потребоваться дважды хешировать файлы (хотя HashML-DSA и X2559 используют одну и ту же хеш-функцию SHA512). Также объединение двух ключей и подписей в сертификате X.509 было бы полностью нестандартным.
 
-[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) section 8.1 disallows HashML-DSA in X.509 certificates
-and does not assign OIDs for HashML-DSA, because of implementation
-complexities and reduced security.
+Обратите внимание, что мы запрещаем подписывание файлов SU3 с помощью Ed25519, и хотя мы определили подписывание Ed25519ph, мы никогда не согласовали для него OID и не использовали его.
 
-For PQ-only signatures of SU3 files,
-use the OIDs defined in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) of the non-prehash variants for the certificates.
-We do not define hybrid signatures of SU3 files,
-because we may have to hash the files twice (although HashML-DSA and X2559 use the same
-hash function SHA512). Also, concatenating two keys and signatures in
-a X.509 certificate would be completely nonstandard.
+Обычные типы подписей запрещены для файлов SU3; используйте варианты ph (prehash).
 
-Note that we disallow Ed25519 signing of SU3 files,
-and while we have defined Ed25519ph signing, we have never agreed on an OID for it,
-or used it.
+### Другие спецификации
 
-The normal sig types are disallowed for SU3 files; use the ph (prehash) variants.
+Новый максимальный размер Destination будет составлять 2599 (3468 в base 64).
 
-
-
-### Other Specs
-
-The new maximum Destination size will be 2599 (3468 in base 64).
-
-Update other documents that give guidance on Destination sizes, including:
+Обновите другие документы, содержащие рекомендации по размерам Destination, включая:
 
 - SAMv3
 - Bittorrent
-- Developer guidelines
-- Naming / addressbook / jump servers
-- Other docs
+- Руководство для разработчиков
+- Именование / адресная книга / jump-серверы
+- Другие документы
 
+## Анализ накладных расходов
 
-## Overhead Analysis
+### Обмен ключами
 
-### Key Exchange
+Увеличение размера (байт):
 
-Size increase (bytes):
-
-| Type | Pubkey (Msg 1) | Cipertext (Msg 2) |
+| Тип | Pubkey (Сообщение 1) | Cipertext (Сообщение 2) |
 |------|----------------|-------------------|
 | MLKEM512_X25519 | +816 | +784 |
 | MLKEM768_X25519 | +1200 | +1104 |
 | MLKEM1024_X25519 | +1584 | +1584 |
+Скорость:
 
-Speed:
+Скорости по данным [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
-Speeds as reported by [Cloudflare](https://blog.cloudflare.com/pq-2024/):
-
-| Type | Relative speed |
+| Тип | Относительная скорость |
 |------|----------------|
-| X25519 DH/keygen | baseline |
-| MLKEM512 | 2.25x faster |
-| MLKEM768 | 1.5x faster |
-| MLKEM1024 | 1x (same) |
+| X25519 DH/keygen | базовая |
+| MLKEM512 | в 2,25 раза быстрее |
+| MLKEM768 | в 1,5 раза быстрее |
+| MLKEM1024 | 1x (одинаково) |
 | XK | 4x DH (keygen + 3 DH) |
-| MLKEM512_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 4.9x DH = 22% slower |
-| MLKEM768_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 5.3x DH = 32% slower |
-| MLKEM1024_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 6x DH = 50% slower |
+| MLKEM512_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 4.9x DH = на 22% медленнее |
+| MLKEM768_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 5.3x DH = на 32% медленнее |
+| MLKEM1024_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 6x DH = на 50% медленнее |
+Предварительные результаты тестирования в Java:
 
-
-Preliminary test results in Java:
-
-| Type | Relative DH/encaps | DH/decaps | keygen |
+| Тип | Относительное DH/encaps | DH/decaps | keygen |
 |------|-------------------|-----------|--------|
-| X25519 | baseline | baseline | baseline |
-| MLKEM512 | 29x faster | 22x faster | 17x faster |
-| MLKEM768 | 17x faster | 14x faster | 9x faster |
-| MLKEM1024 | 12x faster | 10x faster | 6x faster |
+| X25519 | базовый | базовый | базовый |
+| MLKEM512 | в 29 раз быстрее | в 22 раза быстрее | в 17 раз быстрее |
+| MLKEM768 | в 17 раз быстрее | в 14 раз быстрее | в 9 раз быстрее |
+| MLKEM1024 | в 12 раз быстрее | в 10 раз быстрее | в 6 раз быстрее |
+### Подписи
 
+Размер:
 
-### Signatures
+Типичные размеры ключей, подписей, RIdent, Dest или увеличение размеров (Ed25519 включен для справки) при условии использования типа шифрования X25519 для RI. Добавленный размер для Router Info, LeaseSet, датаграмм с возможностью ответа и каждого из двух streaming пакетов (SYN и SYN ACK). Текущие Destinations и Leasesets содержат повторяющиеся отступы и сжимаются при передаче. Новые типы не содержат отступов и не будут сжиматься, что приведет к гораздо большему увеличению размера при передаче. См. раздел проектирования выше.
 
-Size:
-
-Typical key, sig, RIdent, Dest sizes or size increases (Ed25519 included for reference)
-assuming X25519 encryption type for RIs.
-Added size for a Router Info, LeaseSet, repliable datagrams, and each of the two streaming (SYN and SYN ACK) packets listed.
-Current Destinations and Leasesets contain repeated padding and are compressible in-transit.
-New types do not contain padding and will not be compressible,
-resulting in a much higher size increase in-transit.
-See design section above.
-
-
-| Type | Pubkey | Sig | Key+Sig | RIdent | Dest | RInfo | LS/Streaming/Datagram (each msg) |
+| Тип | Pubkey | Sig | Key+Sig | RIdent | Dest | RInfo | LS/Streaming/Datagram (каждое сообщение) |
 |------|--------|-----|---------|--------|------|-------|----------------------------------|
-| EdDSA_SHA512_Ed25519 | 32 | 64 | 96 | 391 | 391 | baseline | baseline |
+| EdDSA_SHA512_Ed25519 | 32 | 64 | 96 | 391 | 391 | базовый | базовый |
 | MLDSA44 | 1312 | 2420 | 3732 | 1351 | 1319 | +3316 | +3284 |
 | MLDSA65 | 1952 | 3309 | 5261 | 1991 | 1959 | +5668 | +5636 |
 | MLDSA87 | 2592 | 4627 | 7219 | 2631 | 2599 | +7072 | +7040 |
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
+Скорость:
 
-Speed:
+Скорости по данным [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
-Speeds as reported by [Cloudflare](https://blog.cloudflare.com/pq-2024/):
-
-| Type | Relative speed sign | verify |
+| Тип | Относительная скорость подписи | верификация |
 |------|---------------------|--------|
-| EdDSA_SHA512_Ed25519 | baseline | baseline |
-| MLDSA44 | 5x slower | 2x faster |
+| EdDSA_SHA512_Ed25519 | базовая | базовая |
+| MLDSA44 | в 5 раз медленнее | в 2 раза быстрее |
 | MLDSA65 | ??? | ??? |
 | MLDSA87 | ??? | ??? |
+Предварительные результаты тестирования в Java:
 
-Preliminary test results in Java:
-
-| Type | Relative speed sign | verify | keygen |
+| Тип | Относительная скорость подписи | проверка | генерация ключей |
 |------|---------------------|--------|--------|
-| EdDSA_SHA512_Ed25519 | baseline | baseline | baseline |
-| MLDSA44 | 4.6x slower | 1.7x faster | 2.6x faster |
-| MLDSA65 | 8.1x slower | same | 1.5x faster |
-| MLDSA87 | 11.1x slower | 1.5x slower | same |
+| EdDSA_SHA512_Ed25519 | базовая | базовая | базовая |
+| MLDSA44 | в 4.6 раза медленнее | в 1.7 раза быстрее | в 2.6 раза быстрее |
+| MLDSA65 | в 8.1 раза медленнее | одинаково | в 1.5 раза быстрее |
+| MLDSA87 | в 11.1 раза медленнее | в 1.5 раза медленнее | одинаково |
+## Анализ безопасности
 
+Категории безопасности NIST кратко изложены в [презентации NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) на слайде 10. Предварительные критерии: Наша минимальная категория безопасности NIST должна быть 2 для гибридных протоколов и 3 для протоколов только с постквантовой криптографией.
 
-
-
-## Security Analysis
-
-NIST security categories are summarized in [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10.
-Preliminary criteria:
-Our minimum NIST security category should be 2 for hybrid protocols
-and 3 for PQ-only.
-
-| Category | As Secure As |
+| Категория | Уровень безопасности как у |
 |----------|--------------|
 | 1 | AES128 |
 | 2 | SHA256 |
 | 3 | AES192 |
 | 4 | SHA384 |
 | 5 | AES256 |
+### Рукопожатия
 
+Это все гибридные протоколы. Реализации должны отдавать предпочтение MLKEM768; MLKEM512 недостаточно безопасен.
 
-### Handshakes
-These are all hybrid protocols.
-Implementations should prefer MLKEM768; MLKEM512 is not secure enough.
+Категории безопасности NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
-NIST security categories [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
-
-| Algorithm | Security Category |
-|-----------|-------------------|
+| Алгоритм | Категория безопасности |
+|----------|------------------------|
 | MLKEM512 | 1 |
 | MLKEM768 | 3 |
 | MLKEM1024 | 5 |
+### Подписи
 
+Данное предложение определяет как гибридные, так и исключительно PQ типы подписей. Гибридный MLDSA44 предпочтительнее чем исключительно PQ MLDSA65. Размеры ключей и подписей для MLDSA65 и MLDSA87 вероятно слишком велики для нас, по крайней мере на начальном этапе.
 
-### Signatures
-This proposal defines both hybrid and PQ-only signature types.
-MLDSA44 hybrid is preferable to MLDSA65 PQ-only.
-The keys and sig sizes for MLDSA65 and MLDSA87 are probably too big for us, at least at first.
+Категории безопасности NIST [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
 
-NIST security categories [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
-
-| Algorithm | Security Category |
-|-----------|-------------------|
+| Алгоритм | Категория безопасности |
+|----------|------------------------|
 | MLDSA44 | 2 |
 | MLKEM67 | 3 |
 | MLKEM87 | 5 |
+## Настройки типа
 
+Хотя мы определим и реализуем 3 криптографических типа и 9 типов подписей, мы планируем измерять производительность в процессе разработки и дополнительно анализировать влияние увеличения размеров структур. Мы также будем продолжать исследования и мониторинг разработок в других проектах и протоколах.
 
-## Type Preferences
+После года или более разработки мы попытаемся остановиться на предпочтительном типе или значении по умолчанию для каждого случая использования. Выбор потребует компромиссов между пропускной способностью, процессором и предполагаемым уровнем безопасности. Не все типы могут подходить или быть разрешены для всех случаев использования.
 
-While we will define and implement 3 crypto and 9 signature types, we
-plan to measure performance during development, and further analyze
-the effects of increased structure sizes. We will also continue
-to research and monitor developments in other projects and protocols.
+Предварительные настройки следующие, могут быть изменены:
 
-After a year or more of development we will attempt to settle on
-a preferred type or default for each use case.
-Selection will require making tradeoffs of bandwidth, CPU, and estimated security level.
-All types may not be suitable or allowed for all use cases.
-
-
-Preliminary preferences are as follows, subject to change:
-
-Encryption: MLKEM768_X25519
+Шифрование: MLKEM768_X25519
 
 Signatures: MLDSA44_EdDSA_SHA512_Ed25519
 
-Preliminary restrictions are as follows, subject to change:
+Предварительные ограничения следующие и могут быть изменены:
 
-Encryption: MLKEM1024_X25519 not allowed for SSU2
+Шифрование: MLKEM1024_X25519 не разрешено для SSU2
 
-Signatures: MLDSA87 and hybrid variant probably too large;
-MLDSA65 and hybrid variant may be too large
+Подписи: MLDSA87 и гибридный вариант, вероятно, слишком большие; MLDSA65 и гибридный вариант могут быть слишком большими
 
+## Примечания по реализации
 
+### Поддержка библиотек
 
-## Implementation Notes
+Библиотеки Bouncycastle, BoringSSL и WolfSSL теперь поддерживают MLKEM и MLDSA. Поддержка OpenSSL будет в их версии 3.5, выпуск которой запланирован на 8 апреля 2025 года [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-### Library Support
+Библиотека Noise от southernstorm.com, адаптированная для Java I2P, содержала предварительную поддержку гибридных рукопожатий, но мы удалили её как неиспользуемую; нам придётся добавить её обратно и обновить в соответствии со [спецификацией Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 
-Bouncycastle, BoringSSL, and WolfSSL libraries support MLKEM and MLDSA now.
-OpenSSL support is be in their 3.5 release April 8, 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+### Варианты подписания
 
-The southernstorm.com Noise library adapted by Java I2P contained preliminary support for
-hybrid handshakes, but we removed it as unused; we will have to add it back
-and update it to match [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
+Мы будем использовать "хеджированный" или рандомизированный вариант подписи, а не "детерминистический" вариант, как определено в [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) раздел 3.4. Это гарантирует, что каждая подпись будет отличаться, даже при подписании одних и тех же данных, и обеспечивает дополнительную защиту от атак по побочным каналам. Хотя [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) указывает, что "хеджированный" вариант является стандартным по умолчанию, это может быть не так в различных библиотеках. Разработчики должны убедиться, что для подписи используется "хеджированный" вариант.
 
-### Signing Variants
+Мы используем стандартный процесс подписи (называемый Pure ML-DSA Signature Generation), который кодирует сообщение внутренне как 0x00 || len(ctx) || ctx || message, где ctx — это некоторое опциональное значение размером 0x00..0xFF. Мы не используем никакого опционального контекста. len(ctx) == 0. Этот процесс определен в [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Алгоритм 2 шаг 10 и Алгоритм 3 шаг 5. Обратите внимание, что некоторые опубликованные тестовые векторы могут потребовать установки режима, в котором сообщение не кодируется.
 
-We will use the "hedged" or randomized signing variant,
-not the "determinstic" variant, as defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) section 3.4.
-This ensures that each signature is different, even when over the same data,
-and provides additional protection against side-channel attacks.
-While [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) specifies that the "hedged" variant is the default,
-this may or may not be true in various libraries.
-Implementors must ensure that the "hedged" variant is used for signing.
+### Надёжность
 
-We use the normal signing process (called Pure ML-DSA Signature Generation)
-which encodes the message internally as 0x00 || len(ctx) || ctx || message,
-where ctx is some optional value of size 0x00..0xFF.
-We are not using any optional context. len(ctx) == 0.
-This process is defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 step 10 and Algorithm 3 step 5.
-Note that some published test vectors may require setting a mode
-where the message is not encoded.
+Увеличение размера приведет к значительно большей фрагментации tunnel для хранения NetDB, установления соединений streaming и других сообщений. Проверьте изменения производительности и надежности.
 
+### Размеры структур
 
-
-### Reliability
-
-Size increase will result in much more tunnel fragmentation
-for NetDB stores, streaming handshakes, and other messages.
-Check for performance and reliability changes.
-
-
-### Structure Sizes
-
-Find and check any code that limits the byte size of router infos and leasesets.
-
+Найдите и проверьте любой код, который ограничивает размер в байтах router infos и leasesets.
 
 ### NetDB
 
-Review and possibly reduce maximum LS/RI stored in RAM or on disk,
-to limit storage increase.
-Increase minimum bandwidth requirements for floodfills?
-
+Рассмотреть и возможно уменьшить максимальное количество LS/RI, хранящихся в RAM или на диске, чтобы ограничить увеличение хранилища. Увеличить минимальные требования к пропускной способности для floodfill?
 
 ### Ratchet
 
-#### Shared Tunnels
+#### Общие туннели
 
-Auto-classify/detect of multiple protocols on the same tunnels should be possible based
-on a length check of message 1 (New Session Message).
-Using MLKEM512_X25519 as an example, message 1 length is 816 bytes larger
-than current ratchet protocol, and the minimum message 1 size (with only a DateTime payload included)
-is 919 bytes. Most message 1 sizes with current ratchet have a payload less than
-816 bytes, so they can be classified as non-hybrid ratchet.
-Large messages are probably POSTs which are rare.
+Автоматическая классификация/обнаружение множественных протоколов в одних и тех же tunnel должна быть возможна на основе проверки длины сообщения 1 (New Session Message). Используя MLKEM512_X25519 в качестве примера, длина сообщения 1 на 816 байт больше, чем у текущего ratchet протокола, а минимальный размер сообщения 1 (с включенной только полезной нагрузкой DateTime) составляет 919 байт. Большинство размеров сообщений 1 с текущим ratchet имеют полезную нагрузку менее 816 байт, поэтому они могут быть классифицированы как не-гибридный ratchet. Большие сообщения, вероятно, являются POST-запросами, которые редки.
 
-So the recommended strategy is:
+Поэтому рекомендуемая стратегия:
 
-- If message 1 is less than 919 bytes, it's the current ratchet protocol.
-- If message 1 is greater than or equal to 919 bytes, it's probably MLKEM512_X25519.
-  Try MLKEM512_X25519 first, and if it fails, try the current ratchet protocol.
+- Если сообщение 1 содержит менее 919 байт, это текущий протокол ratchet.
+- Если сообщение 1 содержит 919 байт или более, это вероятно MLKEM512_X25519.
+  Сначала попробуйте MLKEM512_X25519, и если это не сработает, попробуйте текущий протокол ratchet.
 
-This should allow us to efficiently support standard ratchet and hybrid ratchet
-on the same destination, just as we previously supported ElGamal and ratchet
-on the same destination. Therefore, we can migrate to the MLKEM hybrid protocol
-much more quickly than if we could not support dual-protocols for the same destination,
-because we can add MLKEM support to existing destinations.
+Это должно позволить нам эффективно поддерживать стандартный ratchet и гибридный ratchet на одном и том же получателе, точно так же, как мы ранее поддерживали ElGamal и ratchet на одном получателе. Поэтому мы можем перейти на гибридный протокол MLKEM гораздо быстрее, чем если бы мы не могли поддерживать двойные протоколы для одного получателя, поскольку мы можем добавить поддержку MLKEM к существующим получателям.
 
-The required supported combinations are:
+Требуемые поддерживаемые комбинации:
 
 - X25519 + MLKEM512
 - X25519 + MLKEM768
 - X25519 + MLKEM1024
 
-The following combinations may be complex, and are NOT required to be supported,
-but may be, implementation-dependent:
+Следующие комбинации могут быть сложными и НЕ обязательны к поддержке, но могут поддерживаться в зависимости от реализации:
 
-- More than one MLKEM
-- ElG + one or more MLKEM
-- X25519 + one or more MLKEM
-- ElG + X25519 + one or more MLKEM
+- Более одного MLKEM
+- ElG + один или несколько MLKEM
+- X25519 + один или несколько MLKEM
+- ElG + X25519 + один или несколько MLKEM
 
-We may not attempt to support multiple MLKEM algorithms
-(for example, MLKEM512_X25519 and MLKEM_768_X25519)
-on the same destination. Pick just one; however, that depends on us
-selecting a preferred MLKEM variant, so HTTP client tunnels can use one.
-Implementation-dependent.
+Мы можем не пытаться поддерживать несколько алгоритмов MLKEM (например, MLKEM512_X25519 и MLKEM_768_X25519) на одном и том же destination. Выберите только один; однако это зависит от того, выберем ли мы предпочтительный вариант MLKEM, чтобы HTTP клиентские tunnel могли использовать один из них. Зависит от реализации.
 
-We MAY attempt to support three algorithms (for example X25519, MLKEM512_X25519, and MLKEM769_X25519)
-on the same destination. The classification and retry strategy may be too complex.
-The configuration and configuration UI may be too complex.
-Implementation-dependent.
+МЫ МОЖЕМ попытаться поддерживать три алгоритма (например, X25519, MLKEM512_X25519 и MLKEM769_X25519) на одном и том же destination. Классификация и стратегия повторных попыток могут быть слишком сложными. Конфигурация и интерфейс конфигурации могут быть слишком сложными. Зависит от реализации.
 
-We will probably NOT attempt to support ElGamal and hybrid algorithms on the same destination.
-ElGamal is obsolete, and ElGamal + hybrid only (no X25519) doesn't make much sense.
-Also, ElGamal and Hybrid New Session Messages are both large, so
-classification strategies would often have to try both decryptions,
-which would be inefficient.
-Implementation-dependent.
+Мы вероятно НЕ будем пытаться поддерживать алгоритмы ElGamal и гибридные алгоритмы на одном и том же назначении. ElGamal устарел, а ElGamal + гибридный только (без X25519) не имеет особого смысла. Кроме того, сообщения о новых сессиях ElGamal и Hybrid оба большие, поэтому стратегии классификации часто должны были бы пробовать оба расшифровывания, что было бы неэффективно. Зависит от реализации.
 
-Clients may use the same or different X25519 static keys for the X25519
-and the hybrid protocols on the same tunnels, implementation-dependent.
+Клиенты могут использовать одни и те же или разные статические ключи X25519 для протоколов X25519 и гибридного на одних и тех же туннелях, в зависимости от реализации.
 
+#### Прямая секретность
 
-#### Forward Secrecy
+Спецификация ECIES позволяет включать Garlic Messages в полезную нагрузку New Session Message, что обеспечивает доставку 0-RTT для начального потокового пакета, обычно HTTP GET, вместе с leaseset клиента. Однако полезная нагрузка New Session Message не имеет прямой секретности. Поскольку данное предложение делает акцент на улучшенной прямой секретности для ratchet, реализации могут или должны отложить включение потоковой полезной нагрузки или полного потокового сообщения до первого Existing Session Message. Это произойдет за счет доставки 0-RTT. Стратегии также могут зависеть от типа трафика или типа tunnel, или от GET против POST, например. Зависит от реализации.
 
-The ECIES specification allows Garlic Messages in the New Session Message payload,
-which allows for 0-RTT delivery of the initial streaming packet,
-usually a HTTP GET, together with the client's leaseset.
-However, the New Session Message payload does not have forward secrecy.
-As this proposal is emphasizing enhanced forward secrecy for ratchet,
-implementations may or should defer inclusion of the streaming payload,
-or the full streaming message, until the first Existing Session Message.
-This would be at the expense of 0-RTT delivery.
-Strategies may also depend on traffic type or tunnel type,
-or on GET vs. POST, for example.
-Implementation-dependent.
+#### Размер новой сессии
 
-#### New Session Size
-
-MLKEM, MLDSA, or both on the same destination, will dramatically increase
-the size of the New Session Message, as described above.
-This may significantly decrease the reliability of New Session Message
-delivery through tunnels, where they must be fragmented into
-multiple 1024 byte tunnel messages. Delivery success is
-proportional to the exponential number of fragments.
-Implementations may use various strategies to limit the size of the message,
-at the expense of 0-RTT delivery.
-Implementation-dependent.
-
+MLKEM, MLDSA или оба алгоритма на одном и том же пункте назначения значительно увеличат размер сообщения New Session Message, как описано выше. Это может существенно снизить надежность доставки сообщений New Session Message через туннели, где они должны быть фрагментированы на несколько сообщений туннеля по 1024 байта. Успех доставки пропорционален экспоненциальному количеству фрагментов. Реализации могут использовать различные стратегии для ограничения размера сообщения за счет доставки 0-RTT. Зависит от реализации.
 
 ### NTCP2
 
-We set the MSB of the ephemeral key
-(key[31] & 0x80) in the session request to indicate that this
-is a hybrid connection.
-This allows us to run both standard NTCP and hybrid NTCP
-on the same port.
-Only one hybrid variant would be supported, and advertised in the router address.
-For example, v=2,3 or v=2,4 or v=2,5.
+Мы устанавливаем старший бит временного ключа (key[31] & 0x80) в запросе сессии, чтобы указать, что это гибридное соединение. Это позволяет нам запускать как стандартный NTCP, так и гибридный NTCP на одном порту. Поддерживался бы только один гибридный вариант, который объявляется в адресе router. Например, v=2,3 или v=2,4 или v=2,5.
 
-#### Obfuscation
+#### Обфускация
 
-As Alice, for a PQ connection, before obfuscation, set X[31] |= 0x80.
-This makes X an invalid X25519 public key.
-After obfuscation, AES-CBC will randomize it.
-The MSB of X will be random after obfuscation.
+Как Alice, для PQ соединения, перед обфускацией, установите X[31] |= 0x80. Это делает X недействительным открытым ключом X25519. После обфускации AES-CBC рандомизирует его. MSB для X будет случайным после обфускации.
 
-As Bob, test if (X[31] & 0x80) != 0 after de-obfuscation.
-If so, it's a PQ connection.
+Как Bob, проверьте, если (X[31] & 0x80) != 0 после де-обфускации. Если да, то это PQ соединение.
 
-The minimum router version required for NTCP2-PQ is TBD.
+Минимальная версия router, требуемая для NTCP2-PQ, будет определена позже.
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
-
+Примечание: Коды типов предназначены только для внутреннего использования. Router останутся типа 4, а поддержка будет указана в адресах router.
 
 ### SSU2
 
-We use the version field in the long header and set it to 3 for MLKEM512 and 4 for MLKEM768.
-v=2,3,4 in the address would be sufficient.
+Мы используем поле версии в длинном заголовке и устанавливаем его в 3 для MLKEM512 и 4 для MLKEM768. v=2,3,4 в адресе было бы достаточно.
 
-Check and verify that SSU2 can handle MLDSA-signed RI fragmented across
-multiple packets (6-8?).
+Проверить и убедиться, что SSU2 может обрабатывать MLDSA-подписанный RI, фрагментированный на несколько пакетов (6-8?).
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
+Примечание: Коды типов предназначены только для внутреннего использования. Роутеры останутся типа 4, а поддержка будет указана в адресах роутеров.
 
+## Совместимость router
 
+### Имена транспортов
 
+Во всех случаях используйте имена транспортов NTCP2 и SSU2 как обычно.
 
-## Router Compatibility
+### Типы шифрования router
 
-### Transport Names
+У нас есть несколько альтернатив для рассмотрения:
 
-We will probably not require new transport names,
-if we can run both standard and hybrid on the same port,
-with version flags.
+#### Роутеры типа 5/6/7
 
-If we do require new transport names, they would be:
+Не рекомендуется. Используйте только новые транспорты, перечисленные выше, которые соответствуют типу router. Старые router не могут подключаться, строить tunnel через них или отправлять сообщения netDb. Потребуется несколько циклов релизов для отладки и обеспечения поддержки перед включением по умолчанию. Может продлить развертывание на год или более по сравнению с альтернативами ниже.
 
+#### Роутеры типа 4
 
-| Transport | Type |
-|-----------|------|
-| NTCP2PQ1 | MLKEM512_X25519 |
-| NTCP2PQ2 | MLKEM768_X25519 |
-| NTCP2PQ3 | MLKEM1024_X25519 |
-| SSU2PQ1 | MLKEM512_X25519 |
-| SSU2PQ2 | MLKEM768_X25519 |
+Рекомендуется. Поскольку PQ не влияет на статический ключ X25519 или протоколы N handshake, мы могли бы оставить router'ы как тип 4 и просто анонсировать новые транспорты. Старые router'ы по-прежнему могли бы подключаться, строить tunnel'ы через них или отправлять netDb сообщения.
 
-Note that SSU2 cannot support MLKEM1024, it is too big.
+#### Рекомендации
 
+MLKEM-768 рекомендуется для Ratchet, NTCP2 и SSU2, как лучший баланс между безопасностью и длиной ключа.
 
+### Типы подписей router
 
-### Router Enc. Types
+#### Router типов 12-17
 
-We have several alternatives to consider:
+Старые router не могут проверить RI и поэтому не могут подключаться, строить tunnel через них или отправлять сообщения netDb. Потребуется несколько циклов релизов для отладки и обеспечения поддержки перед включением по умолчанию. Будут те же проблемы, что и при развертывании enc. type 5/6/7; может продлить развертывание на год или более по сравнению с альтернативой развертывания type 4 enc. type, указанной выше.
 
-#### Type 5/6/7 Routers
+Альтернативы отсутствуют.
 
-Not recommended.
-Use only the new transports listed above that match the router type.
-Older routers cannot connect, build tunnels through, or send netdb messages to.
-Would take several release cycles to debug and ensure support before enabling by default.
-Might extend rollout by a year or more over alternatives below.
+### Типы шифрования LS
 
+#### Ключи LS типа 5-7
 
-#### Type 4 Routers
+Они могут присутствовать в LS со старыми ключами type 4 X25519. Старые router игнорируют неизвестные ключи.
 
-Recommended.
-As PQ does not affect the X25519 static key or N handshake protocols,
-we could leave the routers as type 4, and just advertise new transports.
-Older routers could still connect, build tunnels through, or send netdb messages to.
+Узлы назначения могут поддерживать несколько типов ключей, но только путем пробной расшифровки сообщения 1 с каждым ключом. Накладные расходы можно снизить, ведя счетчик успешных расшифровок для каждого ключа и сначала пробуя наиболее используемый ключ. Java I2P использует эту стратегию для ElGamal+X25519 на одном и том же узле назначения.
 
+### Типы подписей назначения
 
-#### NTCP2 Alternatives
+#### Типы 12-17 получателей
 
-Type 4 routers could advertise both NTCP2 and NTCP2PQ* addresses.
-These could use the same static key and other parameters, or not.
-These will probably need to be on different ports;
-it would be very difficult to support both NTCP2 and NTCP2PQ* protocols
-on the same port, as there is no header or framing that would allow
-Bob to classify and frame the incoming Session Request message.
+Router'ы проверяют подписи leaseSet'ов и поэтому не могут подключиться или получить leaseSet'ы для назначений типа 12-17. Потребуется несколько циклов релизов для отладки и обеспечения поддержки перед включением по умолчанию.
 
-Separate ports and addresses will be difficult for Java but straightforward for i2pd.
+Альтернатив нет.
 
+## Приоритеты и развертывание
 
-#### SSU2 Alternatives
+Наиболее ценными данными является end-to-end трафик, зашифрованный с помощью ratchet. Для внешнего наблюдателя между переходами tunnel этот трафик зашифрован дважды дополнительно — tunnel шифрованием и transport шифрованием. Для внешнего наблюдателя между OBEP и IBGW он зашифрован только один раз дополнительно — transport шифрованием. Для участника OBEP или IBGW единственным шифрованием является ratchet. Однако, поскольку tunnel являются однонаправленными, перехват обоих сообщений в ratchet handshake потребовал бы сговора router'ов, если только tunnel не были построены с OBEP и IBGW на одном и том же router'е.
 
-Type 4 routers could advertise both SSU2 and SSU2PQ* addresses.
-With added header flags, Bob could identify the incoming transport
-type in the first message. Therefore, we could support
-both SSU2 and SSUPQ* on the same port.
+Наиболее тревожная модель угроз PQ прямо сейчас — это сохранение трафика сегодня для расшифровки через много-много лет (прямая секретность). Гибридный подход защитил бы от этого.
 
-These could be published as separate addresses (as i2pd has done
-in previous transitions) or in the same address with a parameter
-indicating PQ support (as Java i2p has done in previous transitions).
+Модель угроз PQ по взлому ключей аутентификации за разумный период времени (скажем, несколько месяцев) с последующим выдачей себя за другого при аутентификации или расшифровкой почти в реальном времени, находится гораздо дальше в будущем? И именно тогда нам потребуется мигрировать на статические ключи PQC.
 
-If in the same address, or on the same port in different addresses, these would use the same static key and other parameters.
-If in different addresses with different ports, these could use the same static key and other parameters, or not.
+Итак, самая ранняя модель угроз PQ - это OBEP/IBGW, сохраняющие трафик для последующей расшифровки. Нам следует сначала реализовать гибридный ratchet.
 
-Separate ports and addresses will be difficult for Java but straightforward for i2pd.
+Ratchet имеет наивысший приоритет. Транспорты идут следующими. Подписи имеют самый низкий приоритет.
 
+Развертывание подписей также произойдет на год или более позже, чем развертывание шифрования, поскольку обратная совместимость невозможна. Кроме того, внедрение MLDSA в индустрии будет стандартизировано CA/Browser Forum и центрами сертификации. Центрам сертификации сначала необходима поддержка модулей аппаратной защиты (HSM), которая в настоящее время недоступна [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Мы ожидаем, что CA/Browser Forum будет определять решения по конкретным выборам параметров, включая поддержку или требование композитных подписей [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-#### Recommendations
-
-TODO
-
-
-### Router Sig. Types
-
-#### Type 12-17 Routers
-
-Older routers verify RIs and so cannot connect, build tunnels through, or send netdb messages to.
-Would take several release cycles to debug and ensure support before enabling by default.
-Would be the same issues as the enc. type 5/6/7 rollout;
-might extend rollout by a year or more over the type 4 enc. type rollout alternative listed above.
-
-No alternatives.
-
-
-### LS Enc. Types
-
-#### Type 5-7 LS Keys
-
-These may be present in the LS with older type 4 X25519 keys.
-Older routers will ignore unknown keys.
-
-Destinations can support multiple key types, but only by doing trial decrypts of
-message 1 with each key.
-The overhead may be mitigated by maintaining counts of successful decrypts for each key,
-and trying the most-used key first.
-Java I2P uses this strategy for ElGamal+X25519 on the same destination.
-
-
-### Dest. Sig. Types
-
-#### Type 12-17 Dests
-
-Routers verify leaseset signatures and so cannot connect, or receive leasesets for type 12-17 destinations.
-Would take several release cycles to debug and ensure support before enabling by default.
-
-No alternatives.
-
-
-## Priorities and Rollout
-
-The most valuable data are the end-to-end traffic, encrypted with ratchet.
-As an external observer between tunnel hops, that's encrypted twice more, with tunnel encryption and transport encryption.
-As an external observer between OBEP and IBGW, it's encrypted only once more, with transport encryption.
-As a OBEP or IBGW participant, ratchet is the only encryption.
-However, as tunnels are unidirectional, capturing both messages in the ratchet handshake
-would require colluding routers, unless tunnels were built with the
-OBEP and IBGW on the same router.
-
-The most worrisome PQ threat model right now is storing traffic today, for decryption many many years from now (forward secrecy).
-A hybrid approach would protect that.
-
-The PQ threat model of breaking the authentication keys in some reasonable period of time
-(say a few months) and then impersonating the authentication or decrypting in almost-real-time,
-is much farther off? And that's when we'd want to migrate to PQC static keys.
-
-So, the earliest PQ threat model is OBEP/IBGW storing traffic for later decryption.
-We should implement hybrid ratchet first.
-
-Ratchet is the highest priority.
-Transports are next.
-Signatures are the lowest priority.
-
-Signature rollout will also be a year or more later than encryption rollout,
-because no backward compatibility is possible.
-Also, MLDSA adoption in the industry will be standardized by the CA/Browser Forum
-and Certificate Authorities. CAs need hardware security module (HSM) support
-first, which is not currently available [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/).
-We expect the CA/Browser Forum to drive decisions on specific parameter
-choices, including whether to support or require composite signatures [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
-
-
-
-
-| Milestone | Target |
+| Этап | Цель |
 |-----------|--------|
-| Ratchet beta | Late 2025 |
-| Select best enc type | Early 2026 |
-| NTCP2 beta | Early 2026 |
-| SSU2 beta | Mid 2026 |
-| Ratchet production | Mid 2026 |
-| Ratchet default | Late 2026 |
-| Signature beta | Late 2026 |
-| NTCP2 production | Late 2026 |
-| SSU2 production | Early 2027 |
-| Select best sig type | Early 2027 |
-| NTCP2 default | Early 2027 |
-| SSU2 default | Mid 2027 |
-| Signature production | Mid 2027 |
+| Ratchet beta | Конец 2025 |
+| Выбор лучшего типа шифрования | Начало 2026 |
+| NTCP2 beta | Начало 2026 |
+| SSU2 beta | Середина 2026 |
+| Ratchet production | Середина 2026 |
+| Ratchet по умолчанию | Конец 2026 |
+| Signature beta | Конец 2026 |
+| NTCP2 production | Конец 2026 |
+| SSU2 production | Начало 2027 |
+| Выбор лучшего типа подписи | Начало 2027 |
+| NTCP2 по умолчанию | Начало 2027 |
+| SSU2 по умолчанию | Середина 2027 |
+| Signature production | Середина 2027 |
+## Миграция
 
+Если мы не сможем поддерживать как старые, так и новые ratchet протоколы на одних и тех же tunnel, миграция будет гораздо сложнее.
 
+Мы должны иметь возможность просто попробовать один-за-другим, как мы делали с X25519, чтобы это было доказано.
 
-## Migration
+## Проблемы
 
-If we can't support both old and new ratchet protocols on the same tunnels,
-migration will be much more difficult.
-
-We should be able to just try one-then-the-other, as we did with X25519, to be proven.
-
-
-
-
-## Issues
-
-- Noise Hash selection - stay with SHA256 or upgrade?
-  SHA256 should be good for another 20-30 years, not threatened by PQ,
-  See [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) and [NCCOE presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
-  If SHA256 is broken we have worse problems (netdb).
-- NTCP2 separate port, separate router address
+- Выбор Noise Hash - остаться с SHA256 или обновиться?
+  SHA256 должен быть хорош еще на 20-30 лет, не подвержен угрозе от PQ,
+  См. [презентацию NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) и [презентацию NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Если SHA256 сломается, у нас будут более серьезные проблемы (netdb).
+- NTCP2 отдельный порт, отдельный адрес router
 - SSU2 relay / peer test
-- SSU2 version field
-- SSU2 router address version
+- Поле версии SSU2
+- Версия адреса router SSU2
 
-
-## References
+## Ссылки
 
 * [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
 * [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
@@ -2054,6 +1636,7 @@ We should be able to just try one-then-the-other, as we did with X25519, to be p
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)
 * [Rosenpass](https://rosenpass.eu/)
