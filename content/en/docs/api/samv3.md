@@ -151,12 +151,12 @@ Warning: Some of these may be very old or unsupported. None are tested, reviewed
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">i2p-sam</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">Javascript</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;">Typescript</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.1</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">no</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://codeberg.org/diva.exchange/i2p-sam">codeberg.org/diva.exchange/i2p-sam</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://github.com/diva-exchange/i2p-sam">github.com/diva-exchange/i2p-sam</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">node-i2p</td>
