@@ -6,12 +6,22 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-01-16"
+lastupdated: "2026-02-23"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
 toc: true
 ---
+
+### Status
+
+| Protocol / Feature | Status |
+|--------------------|--------|
+| Ratchet | Complete in Java I2P and i2pd |
+| NTCP2 | Beta Q1 2026 |
+| SSU2 | Implementation starting soon, Beta Q23 2026 |
+| MLDSA SigTypes | Low priority, probably 2027+ |
+
 
 ## Overview
 
@@ -74,23 +84,13 @@ See the Priorities and Rollout section below for details.
 
 | Protocol / Feature | Status |
 |--------------------|--------|
-| Hybrid MLKEM Ratchet and LS | Approved 2026-06; beta target 2025-08; release target 2025-11 |
-| Hybrid MLKEM NTCP2 | Some details to be finalized |
-| Hybrid MLKEM SSU2 | Some details to be finalized |
-| MLDSA SigTypes 12-14 | Proposal is stable but may not be finalized until 2026 |
+| Hybrid MLKEM Ratchet and LS | Approved 2025-06; beta 2025-08; release 2025-11 |
+| Hybrid MLKEM NTCP2 | Tested on live net, Approved 2026-02; beta target 2026-05; release target 2026-08 |
+| Hybrid MLKEM SSU2 | Approved 2026-02; beta target 2026-08; release target 2026-11 |
+| MLDSA SigTypes 12-14 | Proposal is stable but may not be finalized until 2027 |
 | MLDSA Dests | Tested on live net, requires net upgrade for floodfill support |
 | Hybrid SigTypes 15-17 | Preliminary |
 | Hybrid Dests | |
-
-
-### Status
-
-| Protocol / Feature | Status |
-|--------------------|--------|
-| Ratchet | Complete in Java I2P and i2pd |
-| NTCP2 | Beta, some details to be finalized, probably Q2 2026 |
-| SSU2 | Not started, probably Q3 2026 |
-| MLDSA SigTypes | Low priority, probably 2027+ |
 
 
 ## Design
@@ -773,7 +773,7 @@ The third section contains the payload.
 Encrypted format:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |   New Session Ephemeral Public Key    |
@@ -887,7 +887,7 @@ The third section contains the payload.
 Encrypted format:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |       Session Tag   8 bytes           |
   +----+----+----+----+----+----+----+----+
   |                                       |
@@ -993,12 +993,33 @@ Update the NTCP2 specification [/docs/specs/ntcp2/](/docs/specs/ntcp2/) as follo
 Changes: Current NTCP2 contains only the options in the ChaCha section.
 With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
 
+Changes: Current NTCP2 contains only the options in the ChaCha section.
+With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+
+So that PQ and non-PQ NTCP2 may be supported on the same router address and port,
+we use the most significant bit of the X value (X25519 ephemeral public key) to mark that it
+is a PQ connection. This bit is always unset for non-PQ connections.
+
+For Alice, after the message is encrypted by Noise, but before the AES
+obfuscation of X, set X[31] |= 0x7f.
+
+For Bob, after the AES de-obfuscation of X, test X[31] & 0x80.
+If the bit is set, clear it with X[31] &= 0x7f, and decrypt via Noise
+as a PQ connection.
+If the bit is clear, decrypt via Noise as a non-PQ connection as usual.
+
+For PQ NTCP2 advertised on a different router address and port,
+this is not required.
+
+For additional information, see the Published Addresses section below.
+
+
 
 Raw contents:
 
 ```
-+----+----+----+----+----+----+----+----+
-  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |        MS bit set to 1 and then       |
   +        obfuscated with RH_B           +
   |       AES-CBC-256 encrypted X         |
   +             (32 bytes)                +
@@ -1026,13 +1047,13 @@ Raw contents:
   |     length defined in options block   |
   +----+----+----+----+----+----+----+----+
 
-  Same as before except add a second ChaChaPoly frame
+  Same as current specification except add a second ChaChaPoly frame
 ```
 
 Unencrypted data (Poly1305 authentication tag not shown):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |                   X                   |
@@ -1057,6 +1078,10 @@ Unencrypted data (Poly1305 authentication tag not shown):
   +----+----+----+----+----+----+----+----+
 ```
 
+Note: the version field in the message 1 options block must be set to 2,
+even for PQ connections.
+
+
 Sizes:
 
 | Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | opt len |
@@ -1072,14 +1097,10 @@ and support will be indicated in the router addresses.
 
 #### 2) SessionCreated
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
-
 Raw contents:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +        obfuscated with RH_B           +
   |       AES-CBC-256 encrypted Y         |
@@ -1111,13 +1132,13 @@ Raw contents:
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-  Same as before except add a second ChaChaPoly frame
+  Same as current specification except add a second ChaChaPoly frame
 ```
 
 Unencrypted data (Poly1305 auth tag not shown):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |                  Y                    |
@@ -1166,6 +1187,58 @@ Unchanged
 Unchanged
 
 
+#### Published Addresses
+
+In all cases, use the NTCP2 transport name as usual.
+
+Use the same address/port as non-PQ, non-firewalled.
+Only one PQ variant is supported.
+In the router address, publish v=2 (as usual) and the new parameter pq=[3|4|5]
+to indicate MLKEM 512/768/1024.
+Alice sets the MSB of the ephemeral key
+(key[31] & 0x80) in the session request to indicate that this
+is a hybrid connection. See above.
+Older routers will ignore the pq parameter and connect non-pq as usual.
+
+Different address/port as non-PQ, or PQ-only, non-firewalled is NOT supported.
+This will not be implemented until non-PQ NTCP2 is disabled, several years from now.
+When non-PQ is disabled,
+multiple PQ variants may be supported, but only one per-address.
+In the router address, publish v=[3|4|5]
+to indicate MLKEM 512/768/1024.
+Alice does not set the MSB of the ephemeral key.
+Older routers will check the v parameter and skip this address as unsupported.
+
+Firewalled addresses (no IP published):
+In the router address, publish v=2 (as usual).
+There is no need to publish a pq parameter.
+
+Alice may connect to a PQ Bob using the PQ variant that Bob publishes,
+whether or not Alice advertises pq support in her router info, or
+whether she advertises the same variant.
+
+
+
+#### Maximum Padding
+
+In the current specification, messages 1 and 2 are defined to have a "reasonable"
+amount of padding, with a range of 0-31 bytes recommended, and no maximum specified.
+
+Java I2P implements a maximum of 256 bytes padding for non-PQ connections, however this
+was not previously documented.
+
+Use the defined message size as the maximum padding,
+that is, the maximum padding will double the message size, as follows:
+
+| Message Max Padding | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
+|---------------------|-----------|-----------|------------|
+| Session Request  |       880   |     1264   |    1648  |
+| Session Created  |       848   |     1136   |    1616	 |
+
+
+
+
+
 
 
 ### SSU2
@@ -1177,7 +1250,9 @@ Update the SSU2 specification [/docs/specs/ssu2/](/docs/specs/ssu2/) as follows:
 
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
-- "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256"
+
+Note that MLKEM-1024 is NOT supported for SSU2, as the keys are too large
+to fit within a standard 1500 byte datagram.
 
 
 #### Long Header
@@ -1185,20 +1260,36 @@ Update the SSU2 specification [/docs/specs/ssu2/](/docs/specs/ssu2/) as follows:
 The long header is 32 bytes. It is used before a session is created, for Token Request, SessionRequest, SessionCreated, and Retry.
 It is also used for out-of-session Peer Test and Hole Punch messages.
 
-For PQ connections, set the ver (version) field to 3 or 4, to indicate MLKEM-512 or MLKEM-768.
+In the following messages,
+set the ver (version) field in the long header to 3 or 4, to indidate MLKEM-512 or MLKEM-768.
+
+- (0) Session Request
+- (1) Session Created
+- (9) Retry
+- (10) Token Request
+- (11) Hole Punch
+
+In the following messages,
+set the ver (version) field in the long header to 2, as usual, even if MLKEM-512 or MLKEM-768 is supported.
+Implementations may also set the value to 3 or 4, if the other end supports it, but this is not necessary.
+Implementations should accept any value 2-4.
+
+- (7) Peer Test (out of session messages 5-7)
 
 Discussion: Setting the version field to 3 or 4 may not be strictly necessary for all message types,
 but doing so aids earlier failure detection for unsupported post-quantum connections.
-Token Request and Retry (types 9 and 10) would be good to have versions 3/4 for consistency.
-Peer Test and Hole Punch messages (types 7 and 11) may not require this treatment
-but could follow the same pattern for uniformity.
+Token Request and Retry (types 9 and 10) should have versions 3/4 for consistency.
+Hole Punch messages (type 11) may not require this treatment
+but we will follow the same pattern for uniformity.
+Peer Test messages (type 7) is out-of-session and does not indicate intent to
+initiate a session.
 
 
 Before header encryption:
 
 ```
 
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1237,11 +1328,38 @@ unchanged
 Changes: Current SSU2 contains only the block data in the ChaCha section.
 With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
 
+KDF Change for Spoof Protection:
+To address the issues raised in Proposal 165 [Prop165]_,
+but with a different solution, we modify the KDF for Session Request.
+This is only for PQ sessions. The KDF for non-PQ sessions remains unchanged.
+
+```
+
+// End of KDF for initial chain key (unchanged)
+  // Bob static key
+  // MixHash(bpk)
+  h = SHA256(h || bpk);
+
+  // Start of KDF for session request
+  // NEW for PQ only
+  // bhash = Bob router hash (32 bytes)
+  // MixHash(bhash)
+  h = SHA256(h || bhash);
+
+  // Rest of KDF for session request, unchanged, as in SSU2 spec
+  // MixHash(header)
+  h = SHA256(h || header)
+
+  ...
+
+```
+
+
 
 Raw contents:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |  Long Header bytes 0-15, ChaCha20     |
   +  encrypted with Bob intro key         +
   |    See Header Encryption KDF          |
@@ -1285,7 +1403,7 @@ Raw contents:
 Unencrypted data (Poly1305 authentication tag not shown):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1338,7 +1456,7 @@ With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
 Raw contents:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |  Long Header bytes 0-15, ChaCha20     |
   +  encrypted with Bob intro key and     +
   | derived key, see Header Encryption KDF|
@@ -1382,7 +1500,7 @@ Raw contents:
 Unencrypted data (Poly1305 auth tag not shown):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1439,6 +1557,16 @@ unchanged
 
 #### Relay and Peer Test
 
+The following blocks contain version fields.
+They will remain version 2 (for compatibility with a non-PQ Bob),
+and will not change to version 3/4 for PQ.
+ 
+- Relay Request
+- Relay Response
+- Relay Intro
+- Peer Test
+
+PQ Signatures:
 Relay blocks, Peer Test blocks, and Peer Test messages all contain signatures.
 Unfortunately, PQ signatures are larger than the MTU.
 There is no current mechanism to fragment Relay or Peer Test blocks or messages
@@ -1447,13 +1575,42 @@ The protocol must be extended to support fragmentation.
 This will be done in a separate proposal TBD.
 Until that is completed, Relay and Peer Test will not be supported.
 
-TODO: Should the following remain version 2 (for compatibility with a non-PQ Bob),
-or should they be version 3/4 for PQ?
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
+
+#### Published Addresses
+
+In all cases, use the SSU2 transport name as usual.
+MLKEM-1024 is not supported.
+
+Use the same address/port as non-PQ, non-firewalled.
+One or both PQ variants are supported.
+In the router address, publish v=2 (as usual) and the new parameter pq=[3|4|3,4]
+to indicate MLKEM 512/768/both.
+Older routers will ignore the pq parameter and connect non-pq as usual.
+
+Different address/port as non-PQ, or PQ-only, non-firewalled is NOT supported.
+This will not be implemented until non-PQ SSU2 is disabled, several years from now.
+When non-PQ is disabled,
+one or both PQ variants are supported.
+In the router address, publish v=[3|4|3,4]
+to indicate MLKEM 512/768/both.
+Older routers will check the v parameter and skip this address as unsupported.
+
+Firewalled addresses (no IP published):
+In the router address, publish v=2 (as usual).
+The pq parameter MUST be publised in firewalled addresses, to support relay.
+
+Alice may connect to a PQ Bob using the PQ variant that Bob publishes,
+whether or not Alice advertises pq support in her router info, or
+whether she advertises the same variant.
+
+
+#### MTU
+
+Use caution not to exceed the MTU with MLKEM768.
+The minimum MTU for SSU2 is 1280, which is the size of message 1 without padding.
+Do not include padding in message 1 if Alice or Bob's MTU is 1280.
+
 
 
 #### Issues
@@ -1849,22 +2006,7 @@ and support will be indicated in the router addresses.
 
 ### Transport Names
 
-We will probably not require new transport names,
-if we can run both standard and hybrid on the same port,
-with version flags.
-
-If we do require new transport names, they would be:
-
-
-| Transport | Type |
-|-----------|------|
-| NTCP2PQ1 | MLKEM512_X25519 |
-| NTCP2PQ2 | MLKEM768_X25519 |
-| NTCP2PQ3 | MLKEM1024_X25519 |
-| SSU2PQ1 | MLKEM512_X25519 |
-| SSU2PQ2 | MLKEM768_X25519 |
-
-Note that SSU2 cannot support MLKEM1024, it is too big.
+In all cases, use the NTCP2 and SSU2 transport names as usual.
 
 
 
@@ -1889,38 +2031,10 @@ we could leave the routers as type 4, and just advertise new transports.
 Older routers could still connect, build tunnels through, or send netdb messages to.
 
 
-#### NTCP2 Alternatives
-
-Type 4 routers could advertise both NTCP2 and NTCP2PQ* addresses.
-These could use the same static key and other parameters, or not.
-These will probably need to be on different ports;
-it would be very difficult to support both NTCP2 and NTCP2PQ* protocols
-on the same port, as there is no header or framing that would allow
-Bob to classify and frame the incoming Session Request message.
-
-Separate ports and addresses will be difficult for Java but straightforward for i2pd.
-
-
-#### SSU2 Alternatives
-
-Type 4 routers could advertise both SSU2 and SSU2PQ* addresses.
-With added header flags, Bob could identify the incoming transport
-type in the first message. Therefore, we could support
-both SSU2 and SSUPQ* on the same port.
-
-These could be published as separate addresses (as i2pd has done
-in previous transitions) or in the same address with a parameter
-indicating PQ support (as Java i2p has done in previous transitions).
-
-If in the same address, or on the same port in different addresses, these would use the same static key and other parameters.
-If in different addresses with different ports, these could use the same static key and other parameters, or not.
-
-Separate ports and addresses will be difficult for Java but straightforward for i2pd.
-
-
 #### Recommendations
 
-TODO
+MLKEM-768 is recommended for Ratchet, NTCP2, and SSU2, as the best
+balance of security and key length.
 
 
 ### Router Sig. Types
@@ -2057,6 +2171,7 @@ We should be able to just try one-then-the-other, as we did with X25519, to be p
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)
 * [Rosenpass](https://rosenpass.eu/)
