@@ -227,8 +227,7 @@ if [ ${#SUCCESSFULLY_TRANSLATED_FILES[@]} -gt 0 ]; then
     git config user.name "github-actions[bot]"
     git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    # Add translated files, hash file, and segment cache
-    git add scripts/translate/claude_translation_hashes.json 2>/dev/null || true
+    # Add segment cache (includes file hashes and segment translations)
     git add scripts/translate/claude_segment_cache.json 2>/dev/null || true
 
     # Find and add all translated files for each target language

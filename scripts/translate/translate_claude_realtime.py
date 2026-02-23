@@ -371,35 +371,48 @@ def calculate_file_hash(file_path: Path) -> str:
     return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
 
-def load_translation_hashes() -> Dict[str, str]:
-    """Load translation hashes from JSON file."""
-    if not TRANSLATION_HASHES_FILE.exists():
-        return {}
+def _content_dir_from_base(base_dir: Path) -> Path:
+    """Derive the content/ directory from a base directory."""
+    content_dir = base_dir / "content"
+    return content_dir if content_dir.exists() else base_dir
 
+
+def _file_cache_key(file_path: Path, base_dir: Path) -> str:
+    """Compute the cache key for a file (relative to content/ dir, e.g. 'en/blog/post.md')."""
+    content_dir = _content_dir_from_base(base_dir)
     try:
-        data = json.loads(TRANSLATION_HASHES_FILE.read_text(encoding="utf-8"))
-        return data.get("hashes", {})
-    except (json.JSONDecodeError, FileNotFoundError):
-        return {}
+        rel_path = file_path.relative_to(content_dir)
+    except ValueError:
+        try:
+            rel_path = file_path.relative_to(base_dir)
+        except ValueError:
+            rel_path = file_path
+    return str(rel_path).replace("\\", "/")
 
 
-def save_translation_hashes(hashes: Dict[str, str]) -> None:
-    """Save translation hashes to JSON file."""
-    data = {"hashes": hashes}
-    TRANSLATION_HASHES_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
-
-
-def get_files_to_translate(files: List[Path], base_dir: Optional[Path] = None) -> List[Path]:
+def get_files_to_translate(
+    files: List[Path],
+    base_dir: Optional[Path] = None,
+    segment_cache: Optional[Dict] = None
+) -> List[Path]:
     """Compare file hashes and return list of files that need translation.
 
     Args:
         files: List of file paths to check
-        base_dir: Base directory for relative paths in hash file (default: current working directory)
+        base_dir: Base directory (default: current working directory)
+        segment_cache: Segment cache dict containing file_hash entries
 
     Returns:
         List of files that are new or have changed (hash differs)
     """
-    stored_hashes = load_translation_hashes()
+    # Read stored hashes from segment cache
+    stored_hashes = {}
+    if segment_cache:
+        for file_key, file_data in segment_cache.get("files", {}).items():
+            fh = file_data.get("file_hash")
+            if fh:
+                stored_hashes[file_key] = fh
+
     files_to_translate = []
 
     if base_dir is None:
@@ -409,36 +422,32 @@ def get_files_to_translate(files: List[Path], base_dir: Optional[Path] = None) -
         if not file_path.exists():
             continue
 
-        # Calculate relative path from base_dir for consistency
-        try:
-            rel_path = file_path.relative_to(base_dir)
-        except ValueError:
-            # If file is not under base_dir, use absolute path
-            rel_path = file_path
-
-        rel_path_str = str(rel_path).replace("\\", "/")  # Normalize path separators
-
+        rel_path_str = _file_cache_key(file_path, base_dir)
         current_hash = calculate_file_hash(file_path)
         stored_hash = stored_hashes.get(rel_path_str)
 
-        if stored_hash is None:
-            # New file
-            files_to_translate.append(file_path)
-        elif stored_hash != current_hash:
-            # File has changed
+        if stored_hash is None or stored_hash != current_hash:
             files_to_translate.append(file_path)
 
     return files_to_translate
 
 
-def update_translation_hashes(files: List[Path], base_dir: Optional[Path] = None) -> None:
-    """Update translation hashes for successfully translated files.
+def update_translation_hashes(
+    files: List[Path],
+    base_dir: Optional[Path] = None,
+    segment_cache: Optional[Dict] = None
+) -> None:
+    """Update file hashes in the segment cache for successfully translated files.
+
+    Does NOT save to disk; caller must call save_segment_cache() afterward.
 
     Args:
         files: List of file paths to update hashes for
-        base_dir: Base directory for relative paths in hash file (default: current working directory)
+        base_dir: Base directory (default: current working directory)
+        segment_cache: Segment cache dict (modified in place)
     """
-    stored_hashes = load_translation_hashes()
+    if segment_cache is None:
+        return
 
     if base_dir is None:
         base_dir = Path.cwd()
@@ -447,18 +456,12 @@ def update_translation_hashes(files: List[Path], base_dir: Optional[Path] = None
         if not file_path.exists():
             continue
 
-        # Calculate relative path from base_dir for consistency
-        try:
-            rel_path = file_path.relative_to(base_dir)
-        except ValueError:
-            # If file is not under base_dir, use absolute path
-            rel_path = file_path
-
-        rel_path_str = str(rel_path).replace("\\", "/")  # Normalize path separators
+        rel_path_str = _file_cache_key(file_path, base_dir)
         current_hash = calculate_file_hash(file_path)
-        stored_hashes[rel_path_str] = current_hash
 
-    save_translation_hashes(stored_hashes)
+        if rel_path_str not in segment_cache.get("files", {}):
+            segment_cache.setdefault("files", {})[rel_path_str] = {"segments": {}}
+        segment_cache["files"][rel_path_str]["file_hash"] = current_hash
 
 
 # =============================================================================
@@ -470,21 +473,64 @@ def calculate_segment_hash(text: str) -> str:
     return hashlib.sha256(text.strip().encode("utf-8")).hexdigest()[:16]
 
 
+def _migrate_cache_v1_to_v2(cache: Dict) -> Dict:
+    """Migrate segment cache from version 1 to version 2.
+
+    Imports file hashes from claude_translation_hashes.json into the
+    segment cache, eliminating the need for a separate hashes file.
+    """
+    if TRANSLATION_HASHES_FILE.exists():
+        try:
+            hash_data = json.loads(TRANSLATION_HASHES_FILE.read_text(encoding="utf-8"))
+            old_hashes = hash_data.get("hashes", {})
+
+            for old_key, file_hash in old_hashes.items():
+                # Normalize key: old format is "content/en/blog/post.md"
+                # New format is "en/blog/post.md" (relative to content/ dir)
+                new_key = old_key[len("content/"):] if old_key.startswith("content/") else old_key
+
+                if new_key not in cache["files"]:
+                    cache["files"][new_key] = {"segments": {}}
+
+                cache["files"][new_key]["file_hash"] = file_hash
+
+            print(f"Migrated {len(old_hashes)} file hashes from {TRANSLATION_HASHES_FILE.name} into segment cache")
+        except (json.JSONDecodeError, FileNotFoundError) as e:
+            print(f"Warning: Could not read old hashes file during migration: {e}", file=sys.stderr)
+
+    cache["version"] = 2
+    return cache
+
+
 def load_segment_cache() -> Dict:
-    """Load segment cache from JSON file."""
+    """Load segment cache from JSON file.
+
+    Handles migration from v1 (separate hashes file) to v2 (hashes merged in).
+    """
     if not SEGMENT_CACHE_FILE.exists():
-        return {"version": 1, "files": {}}
+        cache = {"version": 2, "files": {}}
+        # Migrate hashes from old file if it exists
+        if TRANSLATION_HASHES_FILE.exists():
+            cache = _migrate_cache_v1_to_v2(cache)
+        return cache
 
     try:
         data = json.loads(SEGMENT_CACHE_FILE.read_text(encoding="utf-8"))
-        # Ensure structure is correct
         if "version" not in data:
             data["version"] = 1
         if "files" not in data:
             data["files"] = {}
+
+        # Migrate v1 -> v2
+        if data["version"] < 2:
+            data = _migrate_cache_v1_to_v2(data)
+
         return data
     except (json.JSONDecodeError, FileNotFoundError):
-        return {"version": 1, "files": {}}
+        cache = {"version": 2, "files": {}}
+        if TRANSLATION_HASHES_FILE.exists():
+            cache = _migrate_cache_v1_to_v2(cache)
+        return cache
 
 
 def save_segment_cache(cache: Dict) -> None:
@@ -629,125 +675,32 @@ def build_cache_from_existing(
 
     for source_path in source_files:
         try:
-            # Read and parse source file
             source_content = source_path.read_text(encoding="utf-8")
             source_fm, source_body = split_front_matter(source_content)
             source_tokens = tokenize_markdown(source_body)
-
-            # Assign segment IDs
             assign_segment_ids(source_fm, source_tokens)
 
-            # Calculate relative path for cache key
             rel_path = source_path.relative_to(content_root)
             file_path_str = str(rel_path).replace("\\", "/")
 
             if verbose:
                 print(f"Processing: {file_path_str}")
 
-            # Build list of source segments with their hashes
-            source_segments = []
+            # Count source segments for reporting
+            seg_count = sum(1 for e in source_fm if e.key not in NO_TRANSLATE_KEYS and e.segment_id)
+            seg_count += sum(1 for t in source_tokens if t.type in ("heading", "paragraph", "list", "table") and t.segment_id)
+            total_segments += seg_count
 
-            for entry in source_fm:
-                if entry.key not in NO_TRANSLATE_KEYS and entry.segment_id:
-                    source_hash = calculate_segment_hash(entry.text)
-                    source_segments.append({
-                        "type": "frontmatter",
-                        "segment_id": entry.segment_id,
-                        "source_hash": source_hash,
-                        "source_text": entry.text
-                    })
-
-            for token in source_tokens:
-                if token.type == "heading" and token.segment_id:
-                    source_hash = calculate_segment_hash(token.text)
-                    source_segments.append({
-                        "type": "heading",
-                        "segment_id": token.segment_id,
-                        "source_hash": source_hash,
-                        "source_text": token.text
-                    })
-                elif token.type == "paragraph" and token.segment_id:
-                    source_hash = calculate_segment_hash(token.text)
-                    source_segments.append({
-                        "type": "paragraph",
-                        "segment_id": token.segment_id,
-                        "source_hash": source_hash,
-                        "source_text": token.text
-                    })
-                elif token.type == "list" and token.segment_id:
-                    source_text = "\n".join(token.lines)
-                    source_hash = calculate_segment_hash(source_text)
-                    source_segments.append({
-                        "type": "list",
-                        "segment_id": token.segment_id,
-                        "source_hash": source_hash,
-                        "source_text": source_text
-                    })
-                elif token.type == "table" and token.segment_id:
-                    source_text = "\n".join(token.lines)
-                    source_hash = calculate_segment_hash(source_text)
-                    source_segments.append({
-                        "type": "table",
-                        "segment_id": token.segment_id,
-                        "source_hash": source_hash,
-                        "source_text": source_text
-                    })
-
-            total_segments += len(source_segments)
-
-            # Now check each target language for existing translations
-            for target_lang in TARGET_LANGUAGES:
-                # Construct target path
-                target_rel_path = str(rel_path).replace(f"{source_lang}/", f"{target_lang}/", 1)
-                target_path = content_root / target_rel_path
-
-                if not target_path.exists():
-                    continue
-
-                try:
-                    # Parse translated file
-                    target_content = target_path.read_text(encoding="utf-8")
-                    target_fm, target_body = split_front_matter(target_content)
-                    target_tokens = tokenize_markdown(target_body)
-
-                    # Assign segment IDs to target
-                    assign_segment_ids(target_fm, target_tokens)
-
-                    # Build lookup for target segments
-                    target_fm_lookup = {e.segment_id: e.text for e in target_fm if e.segment_id}
-                    target_token_lookup = {}
-                    for t in target_tokens:
-                        if t.segment_id:
-                            if t.type in ("heading", "paragraph"):
-                                target_token_lookup[t.segment_id] = t.text
-                            elif t.type in ("list", "table"):
-                                target_token_lookup[t.segment_id] = "\n".join(t.lines)
-
-                    # Match source segments with target translations
-                    for seg in source_segments:
-                        seg_id = seg["segment_id"]
-                        translated = None
-
-                        if seg["type"] == "frontmatter":
-                            translated = target_fm_lookup.get(seg_id)
-                        else:
-                            translated = target_token_lookup.get(seg_id)
-
-                        if translated:
-                            update_segment_cache(
-                                cache,
-                                file_path_str,
-                                seg_id,
-                                seg["source_hash"],
-                                target_lang,
-                                translated
-                            )
-                            total_translations += 1
-
-                except Exception as e:
-                    if verbose:
-                        print(f"  Warning: Could not parse {target_path}: {e}")
-                    continue
+            cached = build_cache_for_file(
+                cache=cache,
+                file_path_str=file_path_str,
+                source_fm=source_fm,
+                source_tokens=source_tokens,
+                content_dir=content_root,
+                source_lang=source_lang,
+                verbose=verbose
+            )
+            total_translations += cached
 
         except Exception as e:
             if verbose:
@@ -768,6 +721,116 @@ def build_cache_from_existing(
         print(f"{'='*60}\n")
 
     return total_translations
+
+
+def build_cache_for_file(
+    cache: Dict,
+    file_path_str: str,
+    source_fm: List[FrontMatterEntry],
+    source_tokens: List[Token],
+    content_dir: Path,
+    source_lang: str = "en",
+    target_languages: Optional[List[str]] = None,
+    verbose: bool = True
+) -> int:
+    """Build segment cache for a single file from existing translations on disk.
+
+    Reads existing translated files for each target language, parses them,
+    matches segments by ID, and populates the cache. This avoids unnecessary
+    API calls when the segment cache is cold for a file that already has
+    translations on disk.
+
+    Args:
+        cache: The segment cache dict (modified in place)
+        file_path_str: Cache key for the file (e.g., "en/blog/post.md")
+        source_fm: Already-parsed source front matter entries (with segment_ids)
+        source_tokens: Already-parsed source tokens (with segment_ids)
+        content_dir: Path to the content/ directory
+        source_lang: Source language code (default: "en")
+        target_languages: Languages to check (default: TARGET_LANGUAGES)
+        verbose: Print progress
+
+    Returns:
+        Number of segment-language pairs cached
+    """
+    if target_languages is None:
+        target_languages = TARGET_LANGUAGES
+
+    # Build source segments list
+    source_segments = []
+    for entry in source_fm:
+        if entry.key not in NO_TRANSLATE_KEYS and entry.segment_id:
+            source_hash = calculate_segment_hash(entry.text)
+            source_segments.append({
+                "type": "frontmatter",
+                "segment_id": entry.segment_id,
+                "source_hash": source_hash,
+            })
+
+    for token in source_tokens:
+        if token.segment_id and token.type in ("heading", "paragraph"):
+            source_hash = calculate_segment_hash(token.text)
+            source_segments.append({
+                "type": token.type,
+                "segment_id": token.segment_id,
+                "source_hash": source_hash,
+            })
+        elif token.segment_id and token.type in ("list", "table"):
+            source_text = "\n".join(token.lines)
+            source_hash = calculate_segment_hash(source_text)
+            source_segments.append({
+                "type": token.type,
+                "segment_id": token.segment_id,
+                "source_hash": source_hash,
+            })
+
+    cached_count = 0
+
+    for target_lang in target_languages:
+        # Construct target path from cache key
+        target_rel = file_path_str.replace(f"{source_lang}/", f"{target_lang}/", 1)
+        target_path = content_dir / target_rel
+
+        if not target_path.exists():
+            continue
+
+        try:
+            target_content = target_path.read_text(encoding="utf-8")
+            target_fm, target_body = split_front_matter(target_content)
+            target_tokens = tokenize_markdown(target_body)
+            assign_segment_ids(target_fm, target_tokens)
+
+            # Build lookup for target segments
+            target_fm_lookup = {e.segment_id: e.text for e in target_fm if e.segment_id}
+            target_token_lookup = {}
+            for t in target_tokens:
+                if t.segment_id:
+                    if t.type in ("heading", "paragraph"):
+                        target_token_lookup[t.segment_id] = t.text
+                    elif t.type in ("list", "table"):
+                        target_token_lookup[t.segment_id] = "\n".join(t.lines)
+
+            # Match source segments with target translations
+            for seg in source_segments:
+                seg_id = seg["segment_id"]
+                if seg["type"] == "frontmatter":
+                    translated = target_fm_lookup.get(seg_id)
+                else:
+                    translated = target_token_lookup.get(seg_id)
+
+                if translated:
+                    update_segment_cache(
+                        cache, file_path_str, seg_id,
+                        seg["source_hash"], target_lang, translated
+                    )
+                    cached_count += 1
+
+        except Exception as e:
+            if verbose:
+                print(f"  Warning: Could not parse {target_path}: {e}")
+            continue
+
+    return cached_count
 
 
 def split_front_matter(text: str) -> tuple[List[FrontMatterEntry], str]:
@@ -1127,6 +1190,30 @@ def translate_file(
         if verbose:
             print(f"Processing {len(segments)} segments -> {target_lang.upper()}\n")
 
+        # Auto-warm segment cache from existing translations on disk
+        if use_cache and segment_cache is not None:
+            file_cache = segment_cache.get("files", {}).get(file_path_str, {})
+            existing_segments = file_cache.get("segments", {})
+
+            if len(existing_segments) < len(segments) // 2:
+                if verbose:
+                    print(f"  Cache cold for {file_path_str} ({len(existing_segments)} cached vs {len(segments)} total)")
+                    print(f"  Auto-building cache from existing translations on disk...")
+
+                content_dir = output_root / "content"
+                if content_dir.exists():
+                    cached_count = build_cache_for_file(
+                        cache=segment_cache,
+                        file_path_str=file_path_str,
+                        source_fm=fm_entries,
+                        source_tokens=tokens,
+                        content_dir=content_dir,
+                        source_lang=source_lang,
+                        verbose=verbose
+                    )
+                    if verbose:
+                        print(f"  Pre-cached {cached_count} segment translations from disk\n")
+
         # Translate segments (with caching)
         for idx, (seg_type, seg) in enumerate(segments, start=1):
             segment_id = seg.segment_id if hasattr(seg, 'segment_id') else None
@@ -1469,12 +1556,15 @@ def main() -> int:
             print(f"Error: No files matching pattern '{pattern}' in {source_dir}", file=sys.stderr)
             return 1
 
+    # Load segment cache early (needed for file hash checks and segment caching)
+    segment_cache = load_segment_cache()
+
     # Filter by hash if requested
     if args.check_hashes and not args.dry_run:
         base_dir = Path(args.output_root).resolve() if args.output_root else Path.cwd()
 
         original_count = len(files)
-        files = get_files_to_translate(files, base_dir=base_dir)
+        files = get_files_to_translate(files, base_dir=base_dir, segment_cache=segment_cache)
 
         if not files:
             if not args.quiet:
@@ -1498,9 +1588,6 @@ def main() -> int:
             return 1
 
     translator = ClaudeTranslator(api_key=api_key, model=args.model)
-
-    # Load segment cache
-    segment_cache = load_segment_cache() if args.use_cache else None
 
     if not args.quiet:
         print(f"\n{'='*60}")
@@ -1530,7 +1617,7 @@ def main() -> int:
             verbose=not args.quiet,
             copy_html=args.copy_html,
             use_cache=args.use_cache,
-            segment_cache=segment_cache
+            segment_cache=segment_cache if args.use_cache else None
         )
 
         total_cache_hits += cache_hits
@@ -1541,14 +1628,14 @@ def main() -> int:
         else:
             failed.append(file_path)
 
-    # Save segment cache
-    if args.use_cache and segment_cache is not None and not args.dry_run:
-        save_segment_cache(segment_cache)
-
-    # Update hashes for successfully translated files
+    # Update file hashes in segment cache for successfully translated files
     if args.update_hashes and successful and not args.dry_run:
         base_dir = output_root if args.output_root else Path.cwd()
-        update_translation_hashes(successful, base_dir=base_dir)
+        update_translation_hashes(successful, base_dir=base_dir, segment_cache=segment_cache)
+
+    # Save segment cache (includes file hashes and segment translations)
+    if segment_cache is not None and not args.dry_run:
+        save_segment_cache(segment_cache)
 
     # Summary
     if not args.quiet:

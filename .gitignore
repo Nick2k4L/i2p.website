@@ -51,8 +51,9 @@ __pycache__/
 .claude/
 .cursor/
 
-# Translation batch state
-scripts/claude_batch_state.json
+# Translation state files (not needed in repo)
+scripts/translate/claude_batch_state.json
+scripts/translate/claude_translation_hashes.json
 
 # Environment variables
 .env
