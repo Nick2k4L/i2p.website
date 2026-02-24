@@ -75,9 +75,17 @@ downloads:
       torrent: "magnet:?xt=urn:btih:missing"
 
   android:
-    file: "I2P.apk"
-    version: "2.10.1"
-    coming_soon: true
+    file: "I2P-2.11.0.apk"
+    size: "~9.2M"
+    requirements: "Android 5.0+"
+    sha256: "055b685ad106c84c122eafc957bb9253618aad99a00b3e6e1e6eb419cf10a347"
+    sig: "https://files.i2p.net/2.11.0/I2P-2.11.0.apk.sig"
+    links:
+      primary: "https://files.i2p.net/2.11.0/I2P-2.11.0.apk"
+      mirror: "https://mirror.stormycloud.org/2.11.0/I2P-2.11.0.apk"
+      torrent: "magnet:?xt=urn:btih:missing"
+      i2p: "http://mirror.stormycloud.i2p/2.11.0/I2P-2.11.0.apk"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.11.0/I2P-2.11.0.apk"
 
 # Mirrors
 mirrors:
