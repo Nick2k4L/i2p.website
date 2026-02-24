@@ -993,9 +993,6 @@ Update the NTCP2 specification [/docs/specs/ntcp2/](/docs/specs/ntcp2/) as follo
 Changes: Current NTCP2 contains only the options in the ChaCha section.
 With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
 So that PQ and non-PQ NTCP2 may be supported on the same router address and port,
 we use the most significant bit of the X value (X25519 ephemeral public key) to mark that it
 is a PQ connection. This bit is always unset for non-PQ connections.
