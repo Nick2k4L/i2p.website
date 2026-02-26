@@ -1,44 +1,44 @@
 ---
 title: "NTCP2 Transport"
-description: "TCP transport založený na Noise pro spojení mezi routery"
+description: "TCP transport založený na Noise protokolu pro spojení router-router"
 slug: "ntcp2"
 category: "Transporty"
-lastUpdated: "2026-01"
-accurateFor: "0.9.66"
+lastUpdated: "2026-02"
+accurateFor: "0.9.69"
 ---
 
 ## Přehled
 
-NTCP2 je autentifikovaný protokol pro dohodnutí klíčů, který zlepšuje odolnost [NTCP](/docs/transport/ntcp) proti různým formám automatické identifikace a útokům.
+NTCP2 je autentizovaný protokol pro dohodu o klíčích, který zlepšuje odolnost [NTCP](/docs/transport/ntcp) proti různým formám automatické identifikace a útoků.
 
-NTCP2 je navržen pro flexibilitu a koexistenci s NTCP. Může být podporován na stejném portu jako NTCP, nebo na jiném portu, nebo zcela bez současné podpory NTCP. Podrobnosti najdete v sekci Publikované informace o routeru níže.
+NTCP2 je navržen pro flexibilitu a koexistenci s NTCP. Může být podporován na stejném portu jako NTCP, nebo na jiném portu, nebo zcela bez současné podpory NTCP. Podrobnosti najdete v sekci Published Router Info níže.
 
-Stejně jako u ostatních I2P transportů je NTCP2 definován výhradně pro point-to-point (router-to-router) přenos I2NP zpráv. Nejedná se o datové roury obecného účelu.
+Stejně jako u ostatních I2P transportů je NTCP2 definován výhradně pro point-to-point (router-to-router) přenos I2NP zpráv. Není to univerzální datový kanál.
 
-NTCP2 je podporován od verze 0.9.36. Viz [Prop111](/proposals/111-ntcp-2) pro původní návrh, včetně diskuze na pozadí a dalších informací.
+NTCP2 je podporován od verze 0.9.36. Viz [Prop111](/proposals/111-ntcp-2) pro původní návrh, včetně diskuse na pozadí a dalších informací.
 
 ## Noise Protocol Framework
 
 NTCP2 používá Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revize 33, 2017-10-04). Noise má podobné vlastnosti jako protokol Station-To-Station [STS](#references), který je základem pro protokol [SSU](/docs/transport/ssu). V terminologii Noise je Alice iniciátor a Bob je respondent.
 
-NTCP2 je založeno na protokolu Noise Noise_XK_25519_ChaChaPoly_SHA256. (Skutečný identifikátor pro počáteční funkci odvození klíčů je "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256" pro označení rozšíření I2P - viz sekce KDF 1 níže) Tento protokol Noise používá následující primitiva:
+NTCP2 je založen na Noise protokolu Noise_XK_25519_ChaChaPoly_SHA256. (Skutečný identifikátor pro počáteční funkci odvození klíče je "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256" k označení I2P rozšíření - viz sekce KDF 1 níže) Tento Noise protokol používá následující primitiva:
 
-- Handshake Pattern: XK Alice přenáší svůj klíč Bobovi (X) Alice už zná Bobův statický klíč (K)
-- DH Function: X25519 X25519 DH s délkou klíče 32 bajtů jak je specifikováno v [RFC-7748](https://tools.ietf.org/html/rfc7748).
-- Cipher Function: ChaChaPoly AEAD_CHACHA20_POLY1305 jak je specifikováno v [RFC-7539](https://tools.ietf.org/html/rfc7539) sekce 2.8. 12 bajtový nonce, s prvními 4 bajty nastavenými na nulu.
-- Hash Function: SHA256 Standardní 32-bajtový hash, již rozsáhle používaný v I2P.
+- Handshake Pattern: XK Alice přenáší svůj klíč Bobovi (X) Alice již zná Bobův statický klíč (K)
+- DH Function: X25519 X25519 DH s délkou klíče 32 bajtů podle specifikace v [RFC-7748](https://tools.ietf.org/html/rfc7748).
+- Cipher Function: ChaChaPoly AEAD_CHACHA20_POLY1305 podle specifikace v [RFC-7539](https://tools.ietf.org/html/rfc7539) sekce 2.8. 12 bajtový nonce, s prvními 4 bajty nastavenými na nulu.
+- Hash Function: SHA256 Standardní 32bajtový hash, již hojně používaný v I2P.
 
 ## Doplňky k frameworku
 
-NTCP2 definuje následující vylepšení pro Noise_XK_25519_ChaChaPoly_SHA256. Tato obecně následují pokyny v [NOISE](https://noiseprotocol.org/noise.html) sekci 13.
+NTCP2 definuje následující vylepšení pro Noise_XK_25519_ChaChaPoly_SHA256. Tato obecně následují směrnice v sekci 13 [NOISE](https://noiseprotocol.org/noise.html).
 
-1) Efemérní klíče v otevřeném textu jsou zamaskované pomocí AES šifrování s použitím známého klíče a IV. 2) Do zpráv 1 a 2 je přidáno náhodné výplňové pole v otevřeném textu. Výplňové pole v otevřeném textu je zahrnuto do výpočtu hashe handshaku (MixHash). Viz sekce KDF níže pro zprávu 2 a zprávu 3 část 1. Do zprávy 3 a zpráv datové fáze je přidáno náhodné AEAD výplňové pole. 3) Je přidáno dvoubytové pole délky rámce, jak je vyžadováno pro Noise přes TCP a stejně jako v obfs4. Toto se používá pouze ve zprávách datové fáze. AEAD rámce zpráv 1 a 2 mají pevnou délku. AEAD rámec zprávy 3 část 1 má pevnou délku. Délka AEAD rámce zprávy 3 část 2 je specifikována ve zprávě 1. 4) Dvoubytové pole délky rámce je zamaskované pomocí SipHash-2-4, stejně jako v obfs4. 5) Formát užitečného obsahu je definován pro zprávy 1, 2, 3 a datovou fázi. Tyto samozřejmě nejsou definovány v rámci frameworku.
+1) Klíče v otevřeném textu (cleartext ephemeral keys) jsou zastírány pomocí AES šifrování s použitím známého klíče a IV. 2) K zprávám 1 a 2 je přidáno náhodné padding v otevřeném textu. Padding v otevřeném textu je zahrnut do výpočtu handshake hash (MixHash). Viz sekce KDF níže pro zprávu 2 a zprávu 3 část 1. Náhodné AEAD padding je přidáno ke zprávě 3 a zprávám datové fáze. 3) Je přidáno dvoubajtové pole délky rámce, jak je vyžadováno pro Noise over TCP a jako v obfs4. Toto je použito pouze ve zprávách datové fáze. AEAD rámce zpráv 1 a 2 mají pevnou délku. AEAD rámec zprávy 3 část 1 má pevnou délku. Délka AEAD rámce zprávy 3 část 2 je specifikována ve zprávě 1. 4) Dvoubajtové pole délky rámce je zastíráno pomocí SipHash-2-4, jako v obfs4. 5) Formát payload je definován pro zprávy 1,2,3 a datovou fázi. Samozřejmě, tyto nejsou definovány v rámci frameworku.
 
 ## Zprávy
 
-Všechny NTCP2 zprávy mají délku menší nebo rovnou 65537 bajtů. Formát zpráv je založen na Noise zprávách, s úpravami pro rámcování a nerozlišitelnost. Implementace používající standardní Noise knihovny mohou potřebovat předpracovat přijaté zprávy do/z formátu Noise zpráv. Všechna zašifrovaná pole jsou AEAD šifrotexty.
+Všechny NTCP2 zprávy mají délku maximálně 65537 bajtů. Formát zprávy je založen na Noise zprávách s úpravami pro rámování a nerozeznatelnost. Implementace používající standardní Noise knihovny možná budou muset předběžně zpracovat přijaté zprávy do/z formátu Noise zpráv. Všechna zašifrovaná pole jsou AEAD šifrotexty.
 
-Sekvence navázání spojení je následující:
+Sekvence vytváření je následující:
 
 ```
 Alice                           Bob
@@ -47,7 +47,7 @@ SessionRequest ------------------->
 <------------------- SessionCreated
 SessionConfirmed ----------------->
 ```
-Pomocí terminologie Noise je sekvence ustanovení a dat následující: (Vlastnosti zabezpečení datové části z [Noise](https://noiseprotocol.org/noise.html) )
+Používając terminologii Noise, sekvence navázání spojení a dat je následující: (Vlastnosti zabezpečení užitečného zatížení z [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -58,20 +58,20 @@ XK(s, rs):           Authentication   Confidentiality
   -> s, se                  2                5
   <-                        2                5
 ```
-Jakmile je relace navázána, Alice a Bob si mohou vyměňovat Data zprávy.
+Jakmile je relace navázána, Alice a Bob si mohou vyměňovat datové zprávy.
 
 Všechny typy zpráv (SessionRequest, SessionCreated, SessionConfirmed, Data a TimeSync) jsou specifikovány v této sekci.
 
-Některé označení:
+Některé značení:
 
     - RH_A = Router Hash for Alice (32 bytes)
     - RH_B = Router Hash for Bob (32 bytes)
 
 ### Autentizované šifrování
 
-Existují tři oddělené instance autentizovaného šifrování (CipherStates). Jedna během fáze handshake a dvě (odesílání a příjem) pro datovou fáze. Každá má svůj vlastní klíč z KDF.
+Existují tři samostatné instance autentifikovaného šifrování (CipherStates). Jedna během fáze handshake a dvě (odesílání a příjem) pro datovou fázi. Každá má svůj vlastní klíč z KDF.
 
-Šifrovaná/ověřená data budou reprezentována jako
+Šifrovaná/autentizovaná data budou reprezentována jako
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -86,7 +86,7 @@ Existují tři oddělené instance autentizovaného šifrování (CipherStates).
 
 Šifrovaný a ověřený formát dat.
 
-Vstupy pro funkce šifrování/dešifrování:
+Vstupy do funkcí pro šifrování/dešifrování:
 
 ```
 k :: 32 byte cipher key, as generated from KDF
@@ -132,25 +132,25 @@ encrypted data :: Same size as plaintext data, 0 - 65519 bytes
 
 MAC :: Poly1305 message authentication code, 16 bytes
 ```
-Pro ChaCha20 to, co je zde popsáno, odpovídá [RFC-7539](https://tools.ietf.org/html/rfc7539), které se také podobně používá v TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
+Pro ChaCha20 to, co je zde popsáno, odpovídá [RFC-7539](https://tools.ietf.org/html/rfc7539), který se také podobně používá v TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
 
 #### Poznámky
 
-- Jelikož ChaCha20 je proudová šifra, plaintexty nemusí být doplněny. Dodatečné bajty keystream jsou zahozeny.
-- Klíč pro šifru (256 bitů) je dohodnut pomocí SHA256 KDF. Podrobnosti KDF pro každou zprávu jsou uvedeny v samostatných sekcích níže.
-- ChaChaPoly rámce pro zprávy 1, 2 a první část zprávy 3 mají známou velikost. Počínaje druhou částí zprávy 3 mají rámce proměnnou velikost. Velikost části 1 zprávy 3 je specifikována ve zprávě 1. Od datové fáze jsou rámce předloženy dvoubajtovou délkou zastřenou pomocí SipHash jako v obfs4.
-- Padding je mimo autentizovaný datový rámec pro zprávy 1 a 2. Padding je použit v KDF pro následující zprávu, takže manipulace bude detekována. Počínaje zprávou 3 je padding uvnitř autentizovaného datového rámce.
+- Protože ChaCha20 je proudová šifra, plaintexty nemusí být doplňovány. Další bajty keystream jsou zahozeny.
+- Klíč pro šifru (256 bitů) je dohodnut prostřednictvím SHA256 KDF. Podrobnosti KDF pro každou zprávu jsou uvedeny v samostatných sekcích níže.
+- ChaChaPoly rámce pro zprávy 1, 2 a první část zprávy 3 mají známou velikost. Počínaje druhou částí zprávy 3 mají rámce proměnlivou velikost. Velikost části 1 zprávy 3 je specifikována ve zprávě 1. Počínaje datovou fází jsou rámce předsazeny dvoubajtovou délkou obfuskovanou pomocí SipHash jako v obfs4.
+- Padding je mimo autentizovaný datový rámec pro zprávy 1 a 2. Padding je použit v KDF pro další zprávu, takže manipulace bude detekována. Počínaje zprávou 3 je padding uvnitř autentizovaného datového rámce.
 
 #### Zpracování chyb AEAD
 
-- Ve zprávách 1, 2 a ve zprávě 3 částech 1 a 2 je velikost AEAD zprávy známa předem. Při selhání AEAD autentifikace musí příjemce zastavit další zpracování zpráv a zavřít spojení bez odpovědi. Toto by mělo být abnormální ukončení (TCP RST).
-- Pro odolnost proti sondování by měl Bob ve zprávě 1 po selhání AEAD nastavit náhodný timeout (rozsah TBD) a poté načíst náhodný počet bajtů (rozsah TBD) před zavřením socketu. Bob by měl udržovat černou listinu IP adres s opakovanými selháními.
-- Ve fázi dat je velikost AEAD zprávy "zašifrována" (obfuskována) pomocí SipHash. Je třeba dbát na to, aby nevznikl dešifrovací oracle. Při selhání AEAD autentifikace ve fázi dat by měl příjemce nastavit náhodný timeout (rozsah TBD) a poté načíst náhodný počet bajtů (rozsah TBD). Po načtení nebo při timeoutu čtení by měl příjemce odeslat payload s ukončovacím blokem obsahujícím kód důvodu "AEAD selhání" a zavřít spojení.
-- Provést stejnou akci při chybě pro neplatnou hodnotu pole délky ve fázi dat.
+- V zprávách 1, 2 a ve zprávě 3 částech 1 a 2 je velikost AEAD zprávy známa předem. Při selhání AEAD autentizace musí příjemce zastavit další zpracování zpráv a uzavřít spojení bez odpovědi. Toto by mělo být abnormální uzavření (TCP RST).
+- Pro odolnost proti sondování by Bob ve zprávě 1 po selhání AEAD měl nastavit náhodný timeout (rozsah TBD) a poté přečíst náhodný počet bajtů (rozsah TBD) před uzavřením socketu. Bob by měl udržovat černou listinu IP adres s opakovanými selháními.
+- Ve fázi dat je velikost AEAD zprávy "zašifrována" (obfuskována) pomocí SipHash. Je třeba dbát na to, aby se nevytvořil dešifrovací oracle. Při selhání AEAD autentizace ve fázi dat by příjemce měl nastavit náhodný timeout (rozsah TBD) a poté přečíst náhodný počet bajtů (rozsah TBD). Po přečtení nebo při vypršení timeoutu pro čtení by příjemce měl odeslat payload s ukončovacím blokem obsahujícím kód důvodu "selhání AEAD" a uzavřít spojení.
+- Proveďte stejnou chybovou akci pro neplatnou hodnotu pole délky ve fázi dat.
 
-### Funkce pro derivaci klíčů (KDF) (pro handshake zprávu 1)
+### Funkce pro odvození klíče (KDF) (pro handshake zprávu 1)
 
-KDF generuje šifrovací klíč k pro fázi handshake z výsledku DH, používající HMAC-SHA256(key, data) jak je definováno v [RFC-2104](https://tools.ietf.org/html/rfc2104). Jedná se o funkce InitializeSymmetric(), MixHash() a MixKey(), přesně tak jak jsou definovány ve specifikaci Noise.
+KDF generuje klíč k pro šifrování fáze handshake z výsledku DH, pomocí HMAC-SHA256(key, data) jak je definováno v [RFC-2104](https://tools.ietf.org/html/rfc2104). Jedná se o funkce InitializeSymmetric(), MixHash() a MixKey(), přesně jak jsou definovány ve specifikaci Noise.
 
 ```
 This is the "e" message pattern:
@@ -235,7 +235,7 @@ End of "es" message pattern.
 
 Alice posílá Bobovi.
 
-Noise obsah: Alice's ephemeral key X Noise payload: 16 bajtový blok možností Non-noise payload: Náhodné vyplnění
+Noise obsah: Alice ephemeral klíč X Noise payload: 16 bajtový option blok Non-noise payload: Náhodné vyplnění
 
 (Vlastnosti zabezpečení payload z [Noise](https://noiseprotocol.org/noise.html) )
 
@@ -263,13 +263,13 @@ XK(s, rs):           Authentication   Confidentiality
         Bob's static key pair.  The result is hashed along with the old ck to
         derive a new ck and k, and n is set to zero.
 ```
-Hodnota X je šifrována pro zajištění nerozlišitelnosti a jedinečnosti payload, což jsou nezbytná protiopatření proti DPI. K dosažení tohoto cíle používáme šifrování AES místo složitějších a pomalejších alternativ jako je elligator2. Asymetrické šifrování veřejným klíčem Bobova routeru by bylo příliš pomalé. Šifrování AES používá hash Bobova routeru jako klíč a Bobovo IV publikované v síťové databázi.
+Hodnota X je zašifrována, aby byla zajištěna nerozlišitelnost a jedinečnost payload, což jsou nezbytná protiopatření proti DPI. K dosažení tohoto cíle používáme AES šifrování místo složitějších a pomalejších alternativ, jako je elligator2. Asymetrické šifrování veřejným klíčem Bobova routeru by bylo příliš pomalé. AES šifrování používá hash Bobova routeru jako klíč a Bobovo IV, jak je publikováno v síťové databázi.
 
-Šifrování AES slouží pouze k odolnosti proti DPI. Každá strana znající hash Bobova routeru a IV, které jsou publikovány v síťové databázi, může dešifrovat hodnotu X v této zprávě.
+AES šifrování slouží pouze k odolnosti proti DPI. Jakákoli strana znající Bobův router hash a IV, které jsou publikovány v síťové databázi, může dešifrovat hodnotu X v této zprávě.
 
-Výplň není šifrována Alicí. Může být nutné, aby Bob výplň dešifroval, aby se zabránilo časovým útokům.
+Výplň není šifrována Alicí. Může být nutné, aby Bob dešifroval výplň, aby zabránil časovým útokům.
 
-Nezpracovaný obsah:
+Surový obsah:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -307,7 +307,7 @@ padding :: Random data, 0 or more bytes.
            It is authenticated so that any tampering will cause the
            next message to fail.
 ```
-Nešifrovaná data (Poly1305 autentifikační tag není zobrazen):
+Nešifrovaná data (autentifikační tag Poly1305 není zobrazen):
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -343,7 +343,7 @@ padding :: Random data, 0 or more bytes.
            It is authenticated so that any tampering will cause the
            next message to fail.
 ```
-Blok možností: Poznámka: Všechna pole jsou v big-endian pořadí.
+Blok možností: Poznámka: Všechna pole jsou ve formátu big-endian.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -358,7 +358,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 ver :: 1 byte, protocol version (currently 2)
 
 padLen :: 2 bytes, length of the padding, 0 or more
-          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          See below for max guidelines. Random size from 0 to 64 bytes minimum is recommended.
           (Distribution is implementation-dependent)
 
 m3p2Len :: 2 bytes, length of the the second AEAD frame in SessionConfirmed
@@ -373,41 +373,46 @@ Reserved :: 4 bytes, set to 0 for compatibility with future options
 ```
 #### Poznámky
 
-- Když je publikovaná adresa "NTCP", Bob podporuje jak NTCP, tak NTCP2 na stejném portu. Z důvodu kompatibility musí Alice při navazování spojení na adresu publikovanou jako "NTCP" omezit maximální velikost této zprávy včetně paddingu na 287 bajtů nebo méně. To umožňuje automatickou identifikaci protokolu ze strany Boba. Když je publikována jako "NTCP2", neexistuje žádné omezení velikosti. Viz sekce Published Addresses a Version Detection níže.
+- Když je publikovaná adresa "NTCP", Bob podporuje jak NTCP tak NTCP2 na stejném portu. Z důvodu kompatibility, když Alice navazuje spojení na adresu publikovanou jako "NTCP", musí omezit maximální velikost této zprávy včetně výplně na 287 bajtů nebo méně. To usnadňuje automatickou identifikaci protokolu ze strany Boba. Když je publikována jako "NTCP2", neexistuje žádné omezení velikosti. Viz sekce Publikované adresy a Detekce verzí níže.
 
-- Jedinečná hodnota X v počátečním AES bloku zajišťuje, že šifrovaný text je pro každou relaci odlišný.
+- Jedinečná hodnota X v počátečním AES bloku zajišťuje, že šifrovaný text je odlišný pro každou relaci.
 
-- Bob musí odmítnout spojení, kde je hodnota časové značky příliš vzdálená od aktuálního času. Označme maximální časový rozdíl jako "D". Bob musí udržovat místní cache dříve použitých handshake hodnot a odmítnout duplikáty, aby zabránil replay útokům. Hodnoty v cache musí mít životnost alespoň 2*D. Hodnoty cache jsou závislé na implementaci, nicméně lze použít 32-bajtovou hodnotu X (nebo její šifrovaný ekvivalent).
+- Bob musí odmítnout spojení, kde je hodnota časového razítka příliš vzdálená od aktuálního času. Nazvěme maximální časový rozdíl "D". Bob musí udržovat lokální mezipaměť dříve použitých hodnot handshake a odmítat duplikáty, aby zabránil replay útokům. Hodnoty v mezipaměti musí mít životnost alespoň 2*D. Hodnoty mezipaměti jsou závislé na implementaci, nicméně lze použít 32-bytovou hodnotu X (nebo její šifrovaný ekvivalent).
 
 - Diffie-Hellman dočasné klíče nesmí být nikdy znovu použity, aby se zabránilo kryptografickým útokům, a opětovné použití bude odmítnuto jako replay útok.
 
-- Možnosti "KE" a "auth" musí být kompatibilní, tj. sdílené tajemství K musí mít odpovídající velikost. Pokud budou přidány další možnosti "auth", mohlo by to implicitně změnit význam příznaku "KE" pro použití jiného KDF nebo jiné velikosti ořezání.
+- Možnosti "KE" a "auth" musí být kompatibilní, tj. sdílené tajemství K musí mít odpovídající velikost. Pokud budou přidány další možnosti "auth", mohlo by to implicitně změnit význam příznaku "KE" tak, aby používal jiný KDF nebo jinou velikost zkrácení.
 
-- Bob musí ověřit, že Alicein ephemeral klíč je platný bod na křivce zde.
+- Bob musí ověřit, že Aliceův dočasný klíč je platný bod na křivce zde.
 
-- Padding by měl být omezen na rozumné množství. Bob může odmítnout spojení s nadměrným paddingem. Bob specifikuje své možnosti paddingu ve zprávě 2. Směrnice pro min/max zatím nejsou stanoveny. Náhodná velikost od 0 do minimálně 31 bajtů? (Distribuce závisí na implementaci) Java implementace aktuálně omezují padding na maximálně 256 bajtů.
+- Padding by měl být omezen na rozumné množství. Bob může odmítnout spojení s nadměrným padding. Bob specifikuje své možnosti padding ve zprávě 2. Minimální/maximální pokyny budou určeny později. Náhodná velikost od 0 do minimálně 31 bajtů? (Distribuce závisí na implementaci) Java implementace aktuálně omezují padding na maximálně 256 bajtů.
 
-- Při jakékoli chybě, včetně AEAD, DH, časové značky, zjevného replay útoku nebo selhání validace klíče, musí Bob zastavit další zpracování zpráv a zavřít připojení bez odpovědi. Toto by mělo být abnormální uzavření (TCP RST). Pro odolnost proti sondování by měl Bob po selhání AEAD nastavit náhodný timeout (rozsah TBD) a poté přečíst náhodný počet bajtů (rozsah TBD), před zavřením socketu.
+- Při jakékoli chybě, včetně AEAD, DH, časového razítka, zjevného opakování nebo selhání validace klíče, musí Bob zastavit další zpracování zpráv a uzavřít spojení bez odpovědi. Toto by mělo být abnormální uzavření (TCP RST). Pro odolnost proti sondování by měl Bob po selhání AEAD nastavit náhodný timeout (rozsah TBD) a poté přečíst náhodný počet bytů (rozsah TBD), před uzavřením socketu.
 
-- Bob může provést rychlou MSB kontrolu pro platný klíč (X[31] & 0x80 == 0) před pokusem o dešifrování. Pokud je vysoký bit nastaven, implementujte odolnost proti sondování jako u selhání AEAD.
+- Bob může provést rychlou MSB kontrolu platného klíče (X[31] & 0x80 == 0) před pokusem o dešifrování. Pokud je nejvyšší bit nastaven, implementujte odolnost proti sondování stejně jako u selhání AEAD.
 
-- Zmírnění DoS: DH je relativně nákladná operace. Stejně jako u předchozího NTCP protokolu by routery měly přijmout všechna nezbytná opatření k zabránění vyčerpání CPU nebo připojení. Stanovte limity na maximální aktivní připojení a maximální počet probíhajících nastavování připojení. Vynuťte časové limity čtení (jak per čtení, tak celkové pro "slowloris"). Omezte opakovaná nebo současná připojení ze stejného zdroje. Udržujte černé listiny zdrojů, které opakovaně selhávají. Neodpovídejte na selhání AEAD.
+- Zmírnění DoS: DH je relativně nákladná operace. Stejně jako u předchozího protokolu NTCP by měly routery přijmout všechna nezbytná opatření k zabránění vyčerpání CPU nebo připojení. Nastavte limity na maximální počet aktivních připojení a maximální počet probíhajících nastavování připojení. Vynucujte časové limity pro čtení (jak pro jednotlivé čtení, tak celkové pro "slowloris"). Omezte opakovaná nebo současná připojení ze stejného zdroje. Udržujte černé listiny zdrojů, které opakovaně selhávají. Neodpovídejte na selhání AEAD.
 
-- Pro usnadnění rychlé detekce verze a handshaking musí implementace zajistit, že Alice uloží do bufferu a poté vyprázdní celý obsah první zprávy najednou, včetně paddingu. To zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nejsou segmentována OS nebo middleboxy) a Bob je obdrží najednou. Navíc musí implementace zajistit, že Bob uloží do bufferu a poté vyprázdní celý obsah druhé zprávy najednou, včetně paddingu, a že Bob uloží do bufferu a poté vyprázdní celý obsah třetí zprávy najednou. To je také kvůli efektivitě a pro zajištění účinnosti náhodného paddingu.
+- Pro usnadnění rychlé detekce verze a handshakingu musí implementace zajistit, že Alice nejprve uloží do bufferu a poté vyprázdní celý obsah první zprávy najednou, včetně paddingu. To zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nebudou segmentována OS nebo middleboxes) a Bob je přijme všechna najednou. Navíc musí implementace zajistit, že Bob uloží do bufferu a poté vyprázdní celý obsah druhé zprávy najednou, včetně paddingu, a že Bob uloží do bufferu a poté vyprázdní celý obsah třetí zprávy najednou. To je také kvůli efektivitě a k zajištění účinnosti náhodného paddingu.
 
-- pole "ver": Celkový protokol Noise, rozšíření a NTCP protokol včetně specifikací payload, indikující NTCP2. Toto pole může být použito k indikaci podpory pro budoucí změny.
+- pole "ver": Celkový Noise protokol, rozšíření a NTCP protokol včetně specifikací payload, indikující NTCP2. Toto pole může být použito k indikaci podpory budoucích změn.
 
-- Délka části 2 zprávy 3: Toto je velikost druhého AEAD rámce (včetně 16-bajtového MAC) obsahujícího Router Info Alice a volitelné vyplnění, které bude odesláno ve zprávě SessionConfirmed. Jelikož routery periodicky regenerují a znovu publikují své Router Info, velikost aktuálního Router Info se může změnit před odesláním zprávy 3. Implementace musí zvolit jednu ze dvou strategií:
+- Délka části 2 zprávy 3: Toto je velikost druhého AEAD rámce (včetně 16-bajtového MAC) obsahujícího Router Info Alice a volitelné doplnění, které bude odesláno ve zprávě SessionConfirmed. Protože routery pravidelně regenerují a znovu publikují své Router Info, velikost aktuálního Router Info se může změnit před odesláním zprávy 3. Implementace musí zvolit jednu ze dvou strategií:
 
-a\) uložit aktuální Router Info, které bude odesláno ve zprávě 3, takže je známa velikost, a volitelně přidat místo pro padding;
+a\) uložit aktuální Router Info pro odeslání ve zprávě 3, aby byla známa velikost, a volitelně přidat místo pro padding;
 
-b\) zvýšit specifikovanou velikost dostatečně, aby umožnila možný nárůst velikosti Router Info, a vždy přidat padding při skutečném odeslání zprávy 3. V obou případech musí délka "m3p2len" obsažená ve zprávě 1 být přesně velikostí tohoto rámce při odeslání ve zprávě 3.
+b\) zvětšit specifikovanou velikost dostatečně, aby umožnila možné zvětšení velikosti Router Info, a vždy přidat padding když je zpráva 3 skutečně odeslána. V obou případech musí být délka "m3p2len" zahrnutá ve zprávě 1 přesně velikostí tohoto rámce při odeslání ve zprávě 3.
 
-- Bob musí ukončit spojení, pokud po validaci zprávy 1 a načtení paddingu zůstanou nějaká příchozí data. Neměla by existovat žádná další data od Alice, protože Bob ještě neodpověděl zprávou 2.
+- Bob musí ukončit spojení, pokud po validaci zprávy 1 a načtení paddingu zůstanou jakákoliv příchozí data. Neměla by existovat žádná další data od Alice, protože Bob ještě neodpověděl zprávou 2.
 
-- Pole network ID se používá k rychlé identifikaci spojení napříč sítěmi. Pokud je toto pole nenulové a neodpovídá network ID Boba, Bob by se měl odpojit a blokovat budoucí spojení. Jakékoli spojení z testovacích sítí by mělo mít jiné ID a test selže. Od verze 0.9.42. Více informací najdete v návrhu 147.
+- Pole network ID se používá k rychlé identifikaci připojení mezi sítěmi. Pokud je toto pole nenulové a neodpovídá network ID Boba, Bob by se měl odpojit a blokovat budoucí připojení. Všechna připojení z testovacích sítí by měla mít jiné ID a test neprojedou. Od verze 0.9.42. Více informací najdete v návrhu 147.
 
-### Funkce derivace klíče (KDF) (pro handshake zprávu 2 a zprávu 3 část 1)
+- Přes API 0.9.68 (vydání 2.11.0) implementovalo Java I2P maximum 256 bajtů paddingu pro non-PQ připojení, nicméně toto
+  nebylo dříve dokumentováno.
+  Od API 0.9.69 (vydání 2.12.0) implementuje Java I2P stejný maximální padding pro non-PQ připojení
+  jako pro MLKEM-512. Maximální padding je 880 bajtů.
+
+### Funkce pro odvození klíče (KDF) (pro handshake zprávu 2 a zprávu 3 část 1)
 
 ```
 // take h saved from message 1 KDF
@@ -476,9 +481,9 @@ End of "ee" message pattern.
 
 Bob posílá Alici.
 
-Noise obsah: Bobův dočasný klíč Y Noise payload: 16 bajtový blok možností Non-noise payload: Náhodné vyplnění
+Noise obsah: Bobův dočasný klíč Y Noise payload: 16 bajtový blok možností Non-noise payload: Náhodné výplň
 
-(Vlastnosti zabezpečení datové části z [Noise](https://noiseprotocol.org/noise.html) )
+(Vlastnosti zabezpečení užitečného zatížení z [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -504,11 +509,11 @@ XK(s, rs):           Authentication   Confidentiality
   "ee": A DH is performed between the Bob's ephemeral key pair and the Alice's ephemeral key pair.
   The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
 ```
-Hodnota Y je šifrována pro zajištění nerozlišitelnosti a jedinečnosti payload, které jsou nezbytné jako protiopatření proti DPI. K dosažení tohoto cíle používáme šifrování AES namísto složitějších a pomalejších alternativ, jako je elligator2. Asymetrické šifrování veřejným klíčem Alice routeru by bylo příliš pomalé. Šifrování AES používá hash Bob's routeru jako klíč a AES stav ze zprávy 1 (který byl inicializován s Bob's IV publikovaným v network database).
+Hodnota Y je šifrována za účelem zajištění nerozlišitelnosti a jedinečnosti payload, které jsou nezbytná opatření proti DPI. K dosažení tohoto cíle používáme šifrování AES místo složitějších a pomalejších alternativ jako je elligator2. Asymetrické šifrování veřejným klíčem Alice routeru by bylo příliš pomalé. Šifrování AES používá hash Bob routeru jako klíč a AES stav ze zprávy 1 (který byl inicializován s Bob IV, jak je publikován v síťové databázi).
 
-AES šifrování slouží pouze k odolnosti proti DPI. Jakákoli strana znající Bobův router hash a IV, které jsou publikovány v síťové databázi, a zachytí prvních 32 bajtů zprávy 1, může dešifrovat hodnotu Y v této zprávě.
+AES šifrování slouží pouze k odolnosti vůči DPI. Jakákoliv strana znající hash routeru Boba a IV, které jsou publikovány v síťové databázi, a která zachytila prvních 32 bajtů zprávy 1, může dešifrovat hodnotu Y v této zprávě.
 
-Nezpracovaný obsah:
+Surový obsah:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -539,7 +544,7 @@ Y :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
         key: RH_B
         iv: Using AES state from message 1
 ```
-Nešifrovaná data (Poly1305 auth tag není zobrazen):
+Nešifrovaná data (Poly1305 autentizační tag není zobrazen):
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -574,11 +579,11 @@ padding :: Random data, 0 or more bytes.
 ```
 #### Poznámky
 
-- Alice musí ověřit, že Bobův ephemeral klíč je platný bod na křivce.
-- Padding by měl být omezen na rozumné množství. Alice může odmítnout spojení s nadměrným paddingem. Alice specifikuje své možnosti paddingu ve zprávě 3. Min/max pokyny budou stanoveny později. Náhodná velikost od 0 do minimálně 31 bajtů? (Distribuce závisí na implementaci)
-- Při jakékoli chybě, včetně AEAD, DH, časového razítka, zjevného přehrání nebo selhání validace klíče, musí Alice zastavit další zpracování zpráv a uzavřít spojení bez odpovědi. Toto by mělo být abnormální ukončení (TCP RST).
-- Pro usnadnění rychlého handshaku musí implementace zajistit, že Bob ukládá do bufferu a poté vyprázdní celý obsah první zprávy najednou, včetně paddingu. To zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nejsou segmentována OS nebo middleboxy) a Alice je obdrží najednou. Toto je také pro efektivitu a k zajištění účinnosti náhodného paddingu.
-- Alice musí ukončit spojení neúspěšně, pokud po validaci zprávy 2 a načtení paddingu zůstanou jakákoli příchozí data. Neměla by být žádná další data od Boba, protože Alice ještě neodpověděla zprávou 3.
+- Alice musí ověřit, že Bobův dočasný klíč je platný bod na křivce.
+- Padding by měl být omezen na rozumné množství. Alice může odmítnout připojení s nadměrným paddingem. Alice specifikuje své možnosti paddingu ve zprávě 3. Min/max směrnice ještě nejsou určeny. Náhodná velikost od 0 do minimálně 31 bajtů? (Distribuce závisí na implementaci)
+- Při jakékoli chybě, včetně AEAD, DH, časového razítka, zdánlivého replay útoku nebo selhání ověření klíče, musí Alice zastavit další zpracování zpráv a zavřít připojení bez odpovědi. Toto by mělo být abnormální uzavření (TCP RST).
+- Pro usnadnění rychlého handshakingu musí implementace zajistit, že Bob uloží do bufferu a poté vyprázdní celý obsah první zprávy najednou, včetně paddingu. Toto zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nebudou segmentována OS nebo middleboxy) a Alice je obdrží všechna najednou. Toto je také pro efektivitu a zajištění účinnosti náhodného paddingu.
+- Alice musí ukončit připojení, pokud po ověření zprávy 2 a načtení paddingu zůstanou jakákoli příchozí data. Od Boba by neměla být žádná další data, protože Alice ještě neodpověděla zprávou 3.
 
 Blok možností: Poznámka: Všechna pole jsou v big-endian formátu.
 
@@ -592,7 +597,7 @@ Blok možností: Poznámka: Všechna pole jsou v big-endian formátu.
 Reserved :: 10 bytes total, set to 0 for compatibility with future options
 
 padLen :: 2 bytes, big endian, length of the padding, 0 or more
-          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          See below for max guidelines. Random size from 0 to 64 bytes minimum is recommended.
           (Distribution is implementation-dependent)
 
 tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
@@ -600,13 +605,17 @@ tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
 ```
 #### Poznámky
 
-- Alice musí odmítnout připojení, kde je hodnota časového razítka příliš vzdálená od aktuálního času. Nazývejme maximální časovou odchylku "D". Alice musí udržovat lokální cache dříve použitých handshake hodnot a odmítnout duplicity, aby zabránila replay útokům. Hodnoty v cache musí mít životnost alespoň 2*D. Hodnoty cache jsou závislé na implementaci, nicméně může být použita 32-bajtová hodnota Y (nebo její zašifrovaný ekvivalent).
+- Alice musí odmítnout připojení, kde je hodnota časového razítka příliš vzdálená od aktuálního času. Nazvěme maximální rozdíl času "D". Alice musí udržovat lokální cache dříve použitých hodnot handshake a odmítat duplikáty, aby zabránila replay útokům. Hodnoty v cache musí mít životnost alespoň 2*D. Hodnoty cache jsou závislé na implementaci, nicméně může být použita 32-bajtová hodnota Y (nebo její šifrovaný ekvivalent).
+
+- Prostřednictvím API 0.9.68 (vydání 2.11.0), Java I2P implementovala maximum 256 bajtů paddingu pro non-PQ spojení, toto však nebylo dříve zdokumentováno.
+  Od API 0.9.69 (vydání 2.12.0), Java I2P implementuje stejný maximální padding pro non-PQ spojení
+  jako pro MLKEM-512. Maximální padding je 848 bajtů.
 
 #### Problémy
 
-- Zahrnout zde možnosti min/max paddingu?
+- Zahrnout zde možnosti min/max odsazení?
 
-### Šifrování pro část 1 handshake zprávy 3, pomocí KDF zprávy 2)
+### Šifrování pro handshake zprávu 3 část 1, pomocí zprávy 2 KDF)
 
 ```
 // take h saved from message 2 KDF
@@ -636,7 +645,7 @@ h = SHA256(h || ciphertext);
 
 End of "s" message pattern.
 ```
-### Funkce pro odvození klíče (KDF) (pro handshake zprávu 3 část 2)
+### Funkce pro odvození klíčů (KDF) (pro handshake zprávu 3 část 2)
 
 ```
 This is the "se" message pattern:
@@ -695,9 +704,9 @@ temp_key = (all zeros)
 
 Alice posílá Bobovi.
 
-Noise obsah: Alice's static key Noise payload: Alice's RouterInfo a náhodné vyplnění Non-noise payload: žádný
+Noise obsah: Alicin statický klíč Noise payload: Alicina RouterInfo a náhodné vyplnění Non-noise payload: žádný
 
-(Bezpečnostní vlastnosti užitečného zatížení z [Noise](https://noiseprotocol.org/noise.html) )
+(Vlastnosti zabezpečení datové části z [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -726,7 +735,7 @@ XK(s, rs):           Authentication   Confidentiality
   ephemeral key pair.  The result is hashed along with the old ck to derive a
   new ck and k, and n is set to zero.
 ```
-Toto obsahuje dva ChaChaPoly rámce. První je Alicin zašifrovaný statický veřejný klíč. Druhý je Noise payload: Alicina zašifrovaná RouterInfo, volitelné možnosti a volitelné odsazení. Používají různé klíče, protože funkce MixKey() je volána mezi nimi.
+Toto obsahuje dva ChaChaPoly rámce. První je Alicin šifrovaný statický veřejný klíč. Druhý je Noise payload: Alicina šifrovaná RouterInfo, volitelné možnosti a volitelné vyplnění. Používají různé klíče, protože mezi nimi je volána funkce MixKey().
 
 Nezpracovaný obsah:
 
@@ -768,7 +777,7 @@ Nezpracovaný obsah:
 S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
-Nešifrovaná data (Poly1305 autentifikační značky nejsou zobrazeny):
+Nešifrovaná data (Poly1305 autentizační tagy nejsou zobrazeny):
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -806,37 +815,37 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 ```
 #### Poznámky
 
-- Bob musí provést obvyklou validaci Router Info. Ujistit se, že typ podpisu je podporován, ověřit podpis, ověřit, že časové razítko je v mezích, a jakékoli další potřebné kontroly.
+- Bob musí provést běžnou validaci Router Info. Ujistit se, že typ podpisu je podporován, ověřit podpis, ověřit, že časové razítko je v mezích, a jakékoli další potřebné kontroly.
 
-- Bob musí ověřit, že Alicin statický klíč přijatý v prvním rámci odpovídá statickému klíči v Router Info. Bob musí nejprve vyhledat v Router Info adresu NTCP nebo NTCP2 Router Address s odpovídající volbou verze (v). Viz sekce Published Router Info a Unpublished Router Info níže.
+- Bob musí ověřit, že Alicin statický klíč přijatý v prvním rámci odpovídá statickému klíči v Router Info. Bob musí nejprve prohledat Router Info pro NTCP nebo NTCP2 Router Address s odpovídající verzí (v) možností. Viz sekce Published Router Info a Unpublished Router Info níže.
 
-- Pokud má Bob starší verzi RouterInfo Alice ve své netdb, ověř, že statický klíč v router info je stejný v obou verzích, pokud je přítomen, a pokud je starší verze méně než XXX stará (viz čas rotace klíčů níže)
+- Pokud má Bob starší verzi Alice RouterInfo ve své netdb, ověř, že statický klíč v router info je ve obou stejný, pokud je přítomen, a pokud je starší verze méně než XXX stará (viz doba rotace klíčů níže)
 
 - Bob musí zde ověřit, že statický klíč Alice je platný bod na křivce.
 
-- Měly by být zahrnuty možnosti pro specifikaci parametrů paddingu.
+- Možnosti by měly být zahrnuty pro specifikaci parametrů odsazení.
 
-- Při jakékoli chybě, včetně selhání validace AEAD, RI, DH, časové známky nebo klíče, musí Bob zastavit další zpracování zpráv a uzavřít spojení bez odpovědi. Mělo by se jednat o abnormální uzavření (TCP RST).
+- Při jakékoli chybě, včetně selhání AEAD, RI, DH, časového razítka nebo validace klíče, musí Bob zastavit další zpracování zpráv a uzavřít spojení bez odpovědi. Mělo by se jednat o abnormální uzavření (TCP RST).
 
-- Pro usnadnění rychlého handshake musí implementace zajistit, že Alice uloží do bufferu a poté odešle celý obsah třetí zprávy najednou, včetně obou AEAD rámců. To zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nebudou segmentována OS nebo middleboxy) a Bob je přijme všechna najednou. Toto je také z důvodu efektivity a pro zajištění účinnosti náhodného paddingu.
+- Pro usnadnění rychlého handshaku musí implementace zajistit, že Alice vyrovná do bufferu a poté najednou vyprázdní celý obsah třetí zprávy, včetně obou AEAD rámců. To zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nebudou segmentována OS nebo middleboxy) a Bob je přijme najednou. Slouží to také pro efektivitu a zajištění účinnosti náhodného paddingu.
 
-- Délka rámce části 2 zprávy 3: Délku tohoto rámce (včetně MAC) posílá Alice ve zprávě 1. Viz tato zpráva pro důležité poznámky o poskytnutí dostatečného prostoru pro padding.
+- Délka rámce části 2 zprávy 3: Délku tohoto rámce (včetně MAC) posílá Alice ve zprávě 1. Viz tuto zprávu pro důležité poznámky o ponechání dostatečného prostoru pro padding.
 
-- Obsah rámce části 2 zprávy 3: Formát tohoto rámce je stejný jako formát rámců datové fáze, s výjimkou toho, že délku rámce posílá Alice ve zprávě 1. Viz níže pro formát rámce datové fáze. Rámec musí obsahovat 1 až 3 bloky v následujícím pořadí:
+- Obsah rámce části 2 zprávy 3: Formát tohoto rámce je stejný jako formát rámců datové fáze, s výjimkou toho, že délku rámce poslala Alice ve zprávě 1. Viz níže formát rámce datové fáze. Rámec musí obsahovat 1 až 3 bloky v následujícím pořadí:
 
 1)  Blok Router Info Alice (povinný)   2)  Blok možností (volitelný)
 
-3\) Blok výplně (volitelný) Tento rámec nesmí nikdy obsahovat žádný jiný typ bloku.
+3\) Padding blok (volitelný) Tento rámec nesmí nikdy obsahovat žádný jiný typ bloku.
 
-- Odsazení části 2 zprávy 3 není vyžadováno, pokud Alice připojí rámec datové fáze (volitelně obsahující odsazení) na konec zprávy 3 a odešle oboje najednou, protože pozorovateli se to bude jevit jako jeden velký proud bajtů. Jelikož Alice obecně, ale ne vždy, má I2NP zprávu k odeslání Bobovi (proto se k němu připojila), je toto doporučená implementace z důvodu efektivity a k zajištění účinnosti náhodného odsazení.
+- Výplň druhé části zprávy 3 není vyžadována, pokud Alice připojí rámec datové fáze (volitelně obsahující výplň) na konec zprávy 3 a pošle obě najednou, protože se pozorovateli budou jevit jako jeden velký proud bajtů. Jelikož Alice bude obecně, ale ne vždy, mít I2NP zprávu k odeslání Bobovi (proto se k němu připojila), je toto doporučená implementace kvůli efektivitě a zajištění účinnosti náhodné výplně.
 
-- Celková délka obou AEAD rámců zprávy 3 (část 1 a 2) je 65535 bajtů; část 1 má 48 bajtů, takže maximální délka rámce části 2 je 65487; maximální délka prostého textu části 2 bez MAC je 65471.
+- Celková délka obou Message 3 AEAD rámců (část 1 a 2) je 65535 bajtů; část 1 má 48 bajtů, takže maximální délka rámce části 2 je 65487; maximální délka prostého textu části 2 bez MAC je 65471.
 
-### Funkce odvození klíčů (KDF) (pro fázi dat)
+### Funkce pro odvození klíčů (KDF) (pro datovou fázi)
 
-Fáze dat používá vstup asociovaných dat nulové délky.
+Fáze dat používá vstup přidružených dat s nulovou délkou.
 
-KDF generuje dva šifrovací klíče k_ab a k_ba z řetězového klíče ck, pomocí HMAC-SHA256(key, data) jak je definováno v [RFC-2104](https://tools.ietf.org/html/rfc2104). Toto je funkce Split(), přesně jak je definována ve specifikaci Noise.
+KDF generuje dva šifrovací klíče k_ab a k_ba z chaining key ck, používá HMAC-SHA256(key, data) jak je definováno v [RFC-2104](https://tools.ietf.org/html/rfc2104). Toto je funkce Split(), přesně jak je definována ve specifikaci Noise.
 
 ```
 ck = from handshake phase
@@ -897,13 +906,13 @@ temp_key = (all zeros)
 ```
 ### 4) Fáze dat
 
-Noise payload: Jak je definován níže, včetně náhodného paddingu Non-noise payload: žádný
+Noise payload: Jak je definováno níže, včetně náhodného odsazení Non-noise payload: žádný
 
-Počínaje 2. částí zprávy 3 jsou všechny zprávy uvnitř autentizovaného a šifrovaného ChaChaPoly "rámce" s předřazenou dvoubajtovou zastřenou délkou. Veškeré vyplnění je uvnitř rámce. Uvnitř rámce je standardní formát s nulovými nebo více "bloky". Každý blok má jednobajtový typ a dvoubajtovou délku. Typy zahrnují datum/čas, I2NP zprávu, možnosti, ukončení a vyplnění.
+Počínaje 2. částí zprávy 3 jsou všechny zprávy uvnitř autentifikovaného a šifrovaného ChaChaPoly "rámce" s předřazenou dvoubajtovou obfuskovanou délkou. Veškeré vyplnění je uvnitř rámce. Uvnitř rámce je standardní formát s nulovými nebo více "bloky". Každý blok má jednobajtový typ a dvoubajtovou délku. Typy zahrnují datum/čas, I2NP zprávu, možnosti, ukončení a vyplnění.
 
 Poznámka: Bob může, ale není povinen, poslat své RouterInfo Alici jako svou první zprávu Alici ve fázi dat.
 
-(Vlastnosti zabezpečení užitečného zatížení z [Noise](https://noiseprotocol.org/noise.html) )
+(Vlastnosti zabezpečení payloadu z [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -925,16 +934,16 @@ XK(s, rs):           Authentication   Confidentiality
 ```
 #### Poznámky
 
-- Pro efektivitu a k minimalizaci identifikace pole délky musí implementace zajistit, že odesílatel ukládá do vyrovnávací paměti a poté vyprazdňuje celý obsah datových zpráv najednou, včetně pole délky a AEAD rámce. To zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nejsou segmentována OS nebo middlewarovými zařízeními) a budou přijata najednou druhou stranou. To je také pro efektivitu a k zajištění účinnosti náhodného doplňování.
-- Router může zvolit ukončení relace při AEAD chybě, nebo může pokračovat v pokusech o komunikaci. Pokud pokračuje, router by měl ukončit po opakovaných chybách.
+- Pro efektivitu a minimalizaci identifikace pole délky musí implementace zajistit, že odesílatel ukládá do vyrovnávací paměti a poté vyprázdní celý obsah datových zpráv najednou, včetně pole délky a AEAD rámce. To zvyšuje pravděpodobnost, že data budou obsažena v jednom TCP paketu (pokud nebudou segmentována operačním systémem nebo middleboxy) a přijata najednou druhou stranou. Toto je také pro efektivitu a zajištění účinnosti náhodného paddingu.
+- Router může zvolit ukončení relace při AEAD chybě, nebo může pokračovat v pokusech o komunikaci. Pokud pokračuje, router by měl ukončit relaci po opakovaných chybách.
 
-#### SipHash zamaskovaná délka
+#### SipHash zastřená délka
 
 Reference: [SipHash](https://www.131002.net/siphash/)
 
-Jakmile obě strany dokončí handshake, přenášejí datové části, které jsou poté šifrovány a autentizovány v ChaChaPoly "rámcích".
+Jakmile obě strany dokončí handshake, přenášejí payloady, které jsou poté šifrovány a autentifikovány v ChaChaPoly "rámcích".
 
-Každý rámec je předcházen dvoubajtovou délkou v pořadí big endian. Tato délka specifikuje počet následujících šifrovaných bajtů rámce, včetně MAC. Aby se zabránilo přenosu identifikovatelných polí délky v datovém toku, délka rámce je obfuskována pomocí XOR s maskou odvozenou ze SipHash, inicializovanou z KDF datové fáze. Všimněte si, že oba směry mají jedinečné SipHash klíče a IV z KDF.
+Každý rámec je předcházen dvoubajtovou délkou ve formátu big endian. Tato délka specifikuje počet šifrovaných bajtů rámce, které následují, včetně MAC. Aby se zabránilo přenosu identifikovatelných polí délky v datovém proudu, je délka rámce obfuskována pomocí XOR s maskou odvozenou ze SipHash, jak byla inicializována z KDF datové fáze. Poznámka: oba směry mají jedinečné SipHash klíče a IV z KDF.
 
 ```
     sipk1, sipk2 = The SipHash keys from the KDF.  (two 8-byte long integers)
@@ -947,11 +956,11 @@ Každý rámec je předcházen dvoubajtovou délkou v pořadí big endian. Tato 
 
     The first length output will be XORed with with IV[1].
 ```
-Příjemce má identické SipHash klíče a IV. Dekódování délky se provádí odvozením masky použité k maskování délky a XOR operací s zkráceným digestem k získání délky rámce. Délka rámce je celková délka šifrovaného rámce včetně MAC.
+Příjemce má identické SipHash klíče a IV. Dekódování délky se provádí odvozením masky použité k zamaskování délky a XOR operací zkráceného digestu pro získání délky rámce. Délka rámce je celková délka šifrovaného rámce včetně MAC.
 
 #### Poznámky
 
-- Pokud používáte funkci knihovny SipHash, která vrací unsigned long integer, použijte dva nejméně významné bajty jako Mask. Převeďte long integer na další IV jako little endian.
+- Pokud používáte funkci knihovny SipHash, která vrací unsigned long integer, použijte nejméně významné dva bajty jako Mask. Převeďte long integer na další IV jako little endian.
 
 #### Surový obsah
 
@@ -984,7 +993,7 @@ Maximum ChaChaPoly frame is 65535 bytes.
 ```
 #### Poznámky
 
-- Jelikož příjemce musí získat celý rámec pro kontrolu MAC, doporučuje se, aby odesílatel omezil rámce na několik KB spíše než maximalizoval velikost rámce. To minimalizuje latenci u příjemce.
+- Jelikož příjemce musí získat celý rámec pro kontrolu MAC, doporučuje se, aby odesílatel omezil velikost rámců na několik KB namísto maximalizace velikosti rámce. Tím se minimalizuje latence u příjemce.
 
 #### Nešifrovaná data
 
@@ -992,9 +1001,9 @@ V šifrovaném rámci je nula nebo více bloků. Každý blok obsahuje jednobyto
 
 Pro rozšiřitelnost musí příjemci ignorovat bloky s neznámými identifikátory a zacházet s nimi jako s výplní.
 
-Šifrovaná data mají maximálně 65535 bytů, včetně 16-bytové ověřovací hlavičky, takže maximální nešifrovaná data jsou 65519 bytů.
+Šifrovaná data mají maximálně 65535 bytů, včetně 16bytové autentizační hlavičky, takže maximální nešifrovaná data jsou 65519 bytů.
 
-(Poly1305 autentizační tag není zobrazen):
+(Poly1305 auth tag není zobrazen):
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1034,13 +1043,13 @@ Maximum single block data size is 65516 bytes.
 ```
 #### Pravidla řazení bloků
 
-V handshake zprávě 3 část 2 musí být pořadí: RouterInfo, následované Options pokud jsou přítomny, následované Padding pokud je přítomno. Žádné jiné bloky nejsou povoleny.
+Ve zprávě handshake 3 část 2 musí být pořadí: RouterInfo, následované Options pokud jsou přítomny, následované Padding pokud je přítomno. Žádné jiné bloky nejsou povoleny.
 
-Ve fázi dat není pořadí specifikováno, kromě následujících požadavků: Padding, je-li přítomen, musí být posledním blokem. Termination, je-li přítomen, musí být posledním blokem kromě Padding.
+Ve fázi dat není pořadí specifikováno, kromě následujících požadavků: Padding, pokud je přítomen, musí být posledním blokem. Termination, pokud je přítomen, musí být posledním blokem kromě Padding.
 
 V jednom rámci může být více I2NP bloků. Více Padding bloků není v jednom rámci povoleno. Ostatní typy bloků pravděpodobně nebudou mít více bloků v jednom rámci, ale není to zakázáno.
 
-#### DatumČas
+#### DateTime
 
 Speciální případ pro synchronizaci času:
 
@@ -1054,13 +1063,13 @@ size :: 2 bytes, big endian, value = 4
 timestamp :: Unix timestamp, unsigned seconds.
              Wraps around in 2106
 ```
-POZNÁMKA: Implementace musí zaokrouhlovat na nejbližší sekundu, aby se zabránilo časovému posunu v síti.
+POZNÁMKA: Implementace musí zaokrouhlovat na nejbližší sekundu, aby se zabránilo časovému zkreslení v síti.
 
 #### Možnosti
 
-Předat aktualizované možnosti. Možnosti zahrnují: Minimální a maximální padding.
+Předejte aktualizované možnosti. Možnosti zahrnují: Minimální a maximální padding.
 
-Blok opcí bude mít proměnnou délku.
+Blok možností bude mít proměnnou délku.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1105,12 +1114,12 @@ more_options :: Format TBD
 ```
 #### Problémy s možnostmi
 
-- Formát opcí je dosud neurčen (TBD).
-- Vyjednávání opcí je dosud neurčeno (TBD).
+- Formát možností je zatím neurčen.
+- Vyjednávání možností je zatím neurčeno.
 
 #### RouterInfo
 
-Předat Alice RouterInfo Bobovi. Používá se ve zprávě handshake 3 část 2. Předat Alice RouterInfo Bobovi, nebo Bobovo Alice. Používá se volitelně ve fázi dat.
+Předej RouterInfo Alice Bobovi. Používá se ve zprávě handshake 3 část 2. Předej RouterInfo Alice Bobovi, nebo Bobovu Alici. Používá se volitelně ve fázi dat.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1133,22 +1142,22 @@ routerinfo :: Alice's or Bob's RouterInfo
 ```
 #### Poznámky
 
-- Při použití ve fázi dat musí příjemce (Alice nebo Bob) ověřit, že se jedná o stejný Router Hash jako původně odeslaný (pro Alice) nebo odeslaný k (pro Bob). Poté s ním nakládat jako s lokální I2NP DatabaseStore Message. Ověřit podpis, ověřit novější časové razítko a uložit do lokální netDb. Pokud je flag bit 0 roven 1 a přijímající strana je floodfill, nakládat s ním jako s DatabaseStore Message s nenulovým reply tokenem a zaplavit ho do nejbližších floodfillů.
-- Router Info NENÍ komprimován pomocí gzip (na rozdíl od DatabaseStore Message, kde je)
-- Flooding nesmí být požadován, pokud v RouterInfo nejsou publikované RouterAddresses. Přijímající router nesmí zaplavit RouterInfo, pokud v něm nejsou publikované RouterAddresses.
-- Implementátoři musí zajistit, že při čtení bloku nezpůsobí poškozená nebo škodlivá data přečtení za hranice následujícího bloku.
-- Tento protokol neposkytuje potvrzení, že RouterInfo byl přijat, uložen nebo zaplavený (ani ve fázi handshake, ani ve fázi dat). Pokud je potvrzení žádoucí a příjemce je floodfill, měl by odesílatel místo toho poslat standardní I2NP DatabaseStoreMessage s reply tokenem.
+- Při použití ve fázi dat musí příjemce (Alice nebo Bob) ověřit, že se jedná o stejný Router Hash, jaký byl původně odeslán (pro Alice) nebo na který byl odeslán (pro Bob). Poté s ním nakládat jako s místní I2NP DatabaseStore Message. Ověřit podpis, ověřit novější časové razítko a uložit do místní netDb. Pokud je flag bit 0 nastaven na 1 a přijímající strana je floodfill, nakládat s ním jako s DatabaseStore Message s nenulovým reply tokenem a zaplavit jej k nejbližším floodfillům.
+- Router Info NENÍ komprimován gzip (na rozdíl od DatabaseStore Message, kde komprimován je)
+- Flooding nesmí být vyžádán, pokud RouterInfo neobsahuje publikované RouterAddresses. Přijímající router nesmí RouterInfo zaplavit, pokud v něm nejsou publikované RouterAddresses.
+- Implementátoři musí zajistit, že při čtení bloku nebudou poškozená nebo škodlivá data způsobovat přečtení do dalšího bloku.
+- Tento protokol neposkytuje potvrzení, že RouterInfo byl přijat, uložen nebo zaplavěn (ani ve fázi handshake ani ve fázi dat). Pokud je potvrzení žádoucí a příjemce je floodfill, měl by odesílatel místo toho poslat standardní I2NP DatabaseStoreMessage s reply tokenem.
 
 #### Problémy
 
-- Mohlo by být také použito ve fázi dat, namísto I2NP DatabaseStoreMessage. Například Bob by ji mohl použít k zahájení fáze dat.
-- Je povoleno, aby tato zpráva obsahovala RI pro routery jiné než původce, jako obecná náhrada za DatabaseStoreMessages, např. pro flooding pomocí floodfills?
+- Mohlo by být také použito ve fázi dat, místo I2NP DatabaseStoreMessage. Například Bob by to mohl použít k zahájení fáze dat.
+- Je dovoleno, aby toto obsahovalo RI pro routery jiné než původce, jako obecná náhrada za DatabaseStoreMessages, např. pro flooding floodfilly?
 
-#### I2NP zpráva
+#### I2NP Message
 
-Jediná I2NP zpráva s upravenou hlavičkou. I2NP zprávy nesmí být fragmentovány napříč bloky nebo napříč ChaChaPoly rámci.
+Jedna I2NP zpráva s upravenou hlavičkou. I2NP zprávy nesmí být fragmentovány napříč bloky nebo napříč ChaChaPoly rámci.
 
-Toto používá prvních 9 bytů ze standardní NTCP I2NP hlavičky a odstraňuje posledních 7 bytů hlavičky následovně: zkrátí expiraci z 8 na 4 byty (sekundy místo milisekund, stejně jako u SSU), odstraní 2-bytovou délku (použije velikost bloku - 9) a odstraní jednobytový SHA256 kontrolní součet.
+Toto používá prvních 9 bajtů ze standardní NTCP I2NP hlavičky a odstraňuje posledních 7 bajtů hlavičky následovně: zkrátí expiraci z 8 na 4 bajty (sekundy místo milisekund, stejně jako pro SSU), odstraní 2-bajtovou délku (použije velikost bloku - 9) a odstraní jednobajtový SHA256 kontrolní součet.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1172,11 +1181,11 @@ message :: I2NP message body
 ```
 #### Poznámky
 
-- Implementátoři musí zajistit, že při čtení bloku nebudou poškozená nebo škodlivá data způsobovat, že čtení přesáhne do následujícího bloku.
+- Implementátoři musí zajistit, že při čtení bloku nebudou poškozená nebo škodlivá data způsobovat přečtení do následujícího bloku.
 
 #### Ukončení
 
-Noise doporučuje explicitní zprávu o ukončení. Původní NTCP ji nemá. Ukončit spojení. Toto musí být posledním ne-výplňovým blokem v rámci.
+Noise doporučuje explicitní zprávu o ukončení. Původní NTCP ji nemá. Ukončit spojení. Toto musí být poslední blok bez výplně v rámci.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1218,15 +1227,15 @@ addl data :: optional, 0 or more bytes, for future expansion, debugging,
 ```
 #### Poznámky
 
-Ne všechny důvody mohou být skutečně použity, závisí na implementaci. Selhání handshake obecně povede k uzavření s TCP RST namísto toho. Viz poznámky v sekcích handshake zpráv výše. Další uvedené důvody jsou pro konzistenci, logování, ladění, nebo pokud se změní zásady.
+Ne všechny důvody mohou být skutečně použity, závisí na implementaci. Selhání handshaku obecně povede k uzavření s TCP RST místo toho. Viz poznámky v sekcích zpráv handshaku výše. Dodatečné uvedené důvody jsou pro konzistenci, logování, ladění nebo v případě změn zásad.
 
-#### Výplň
+#### Padding
 
-Toto je pro výplň uvnitř AEAD rámců. Výplň pro zprávy 1 a 2 je mimo AEAD rámce. Veškerá výplň pro zprávu 3 a datovou fázi je uvnitř AEAD rámců.
+Toto je pro padding uvnitř AEAD rámců. Padding pro zprávy 1 a 2 jsou mimo AEAD rámce. Veškerý padding pro zprávu 3 a datovou fázi jsou uvnitř AEAD rámců.
 
-Padding uvnitř AEAD by měl zhruba odpovídat vyjednaným parametrům. Bob odeslal své požadované tx/rx min/max parametry ve zprávě 2. Alice odeslala své požadované tx/rx min/max parametry ve zprávě 3. Aktualizované možnosti mohou být odeslány během datové fáze. Viz informace o bloku možností výše.
+Padding uvnitř AEAD by mělo přibližně odpovídat vyjednaným parametrům. Bob poslal své požadované tx/rx min/max parametry ve zprávě 2. Alice poslala své požadované tx/rx min/max parametry ve zprávě 3. Aktualizované možnosti mohou být poslány během datové fáze. Viz informace o bloku možností výše.
 
-Pokud je přítomen, musí být posledním blokem v rámci.
+Pokud je přítomen, musí to být poslední blok v rámci.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1246,128 +1255,128 @@ padding :: random data
 - Velikost = 0 je povolena.
 - Strategie paddingu TBD.
 - Minimální padding TBD.
-- Rámce pouze s paddingem jsou povoleny.
-- Výchozí hodnoty paddingu TBD.
-- Viz blok options pro vyjednání parametrů paddingu
+- Pouze paddingové rámce jsou povoleny.
+- Výchozí padding TBD.
+- Viz blok options pro vyjednávání parametrů paddingu
 - Viz blok options pro parametry min/max paddingu
-- Noise omezuje zprávy na 64KB. Pokud je nutný větší padding, pošlete více rámců.
+- Noise omezuje zprávy na 64KB. Pokud je potřeba více paddingu, pošlete více rámců.
 - Odpověď routeru na porušení vyjednaného paddingu je závislá na implementaci.
 
-#### Ostatní typy bloků
+#### Další typy bloků
 
-Implementace by měly neznámé typy bloků ignorovat kvůli dopředné kompatibilitě, kromě zprávy 3 část 2, kde neznámé bloky nejsou povoleny.
+Implementace by měly ignorovat neznámé typy bloků kvůli zpětné kompatibilitě, s výjimkou zprávy 3 části 2, kde neznámé bloky nejsou povoleny.
 
 #### Budoucí práce
 
-- Délka paddingu má být rozhodována buď na základě jednotlivých zpráv a odhadů distribuce délky, nebo by měly být přidány náhodné zpoždění. Tato protiopatření mají být zahrnuta pro odolnost proti DPI, protože velikosti zpráv by jinak prozradily, že I2P provoz je přenášen transportním protokolem. Přesné schéma paddingu je oblastí budoucí práce.
+- Délka paddingu má být buď rozhodnuta na základě jednotlivých zpráv a odhadů distribuce délek, nebo by měly být přidány náhodné prodlevy. Tato protiopatření mají být zahrnuta pro odolnost vůči DPI, protože velikosti zpráv by jinak odhalily, že I2P provoz je přenášen transportním protokolem. Přesné schéma paddingu je oblastí budoucí práce.
 
 ### 5) Ukončení
 
-Spojení mohou být ukončena pomocí normálního nebo abnormálního uzavření TCP socketu, nebo, jak Noise doporučuje, explicitní ukončovací zprávou. Explicitní ukončovací zpráva je definována ve fázi dat výše.
+Připojení mohou být ukončena normálním nebo abnormálním uzavřením TCP socketu, nebo, jak Noise doporučuje, explicitní ukončovací zprávou. Explicitní ukončovací zpráva je definována ve fázi dat výše.
 
-Při jakémkoliv normálním nebo abnormálním ukončení by routery měly vynulovat veškerá dočasná data v paměti, včetně dočasných klíčů handshake, symetrických kryptografických klíčů a souvisejících informací.
+Při jakémkoli normálním nebo abnormálním ukončení by routery měly vynulovat veškerá dočasná data v paměti, včetně dočasných klíčů handshaku, symetrických kryptografických klíčů a souvisejících informací.
 
-## Publikované informace o routeru
+## Publikované informace o router
 
 ### Možnosti
 
-Od verze 0.9.50 je v NTCP2 adresách podporována možnost "caps", podobně jako u SSU. V možnosti "caps" může být publikována jedna nebo více schopností. Schopnosti mohou být v libovolném pořadí, ale "46" je doporučené pořadí pro konzistenci napříč implementacemi. Existují dvě definované schopnosti:
+Od verze 0.9.50 je možnost "caps" podporována v NTCP2 adresách, podobně jako u SSU. V možnosti "caps" může být publikována jedna nebo více schopností. Schopnosti mohou být v libovolném pořadí, ale "46" je doporučené pořadí pro konzistenci napříč implementacemi. Jsou definovány dvě schopnosti:
 
-4: Označuje schopnost odchozího IPv4. Pokud je IP adresa publikována v poli host, tato schopnost není nutná. Pokud je router skrytý, nebo NTCP2 je pouze odchozí, '4' a '6' mohou být kombinovány v jedné adrese.
+4: Označuje odchozí IPv4 schopnost. Pokud je IP adresa publikována v poli host, tato schopnost není nutná. Pokud je router skrytý nebo je NTCP2 pouze odchozí, '4' a '6' mohou být zkombinované v jedné adrese.
 
-6: Označuje schopnost odchozího IPv6. Pokud je IP adresa publikována v poli host, tato schopnost není nutná. Pokud je router skrytý nebo NTCP2 funguje pouze pro odchozí spojení, '4' a '6' mohou být kombinovány v jedné adrese.
+6: Označuje schopnost odchozího IPv6. Pokud je IP publikována v poli hostitele, tato schopnost není nutná. Pokud je router skrytý, nebo je NTCP2 pouze odchozí, '4' a '6' mohou být zkombinována v jedné adrese.
 
 ### Publikované adresy
 
 Publikovaná RouterAddress (část RouterInfo) bude mít identifikátor protokolu buď "NTCP" nebo "NTCP2".
 
-RouterAddress musí obsahovat možnosti "host" a "port", stejně jako v současném NTCP protokolu.
+RouterAddress musí obsahovat možnosti "host" a "port", jako v současném NTCP protokolu.
 
 RouterAddress musí obsahovat tři možnosti pro indikaci podpory NTCP2:
 
-- s=(Base64 klíč) Aktuální Noise statický veřejný klíč (s) pro tuto RouterAddress. Kódován v Base 64 pomocí standardní I2P Base 64 abecedy. 32 bytů v binární podobě, 44 bytů jako Base 64 kódovaný, little-endian X25519 veřejný klíč.
-- i=(Base64 IV) Aktuální IV pro šifrování hodnoty X ve zprávě 1 pro tuto RouterAddress. Kódován v Base 64 pomocí standardní I2P Base 64 abecedy. 16 bytů v binární podobě, 24 bytů jako Base 64 kódovaný, big-endian.
-- v=2 Aktuální verze (2). Když je publikována jako "NTCP", je implicitně podporována také verze 1. Podpora budoucích verzí bude pomocí hodnot oddělených čárkami, např. v=2,3 Implementace by měla ověřit kompatibilitu, včetně více verzí, pokud je přítomna čárka. Verze oddělené čárkami musí být v číselném pořadí.
+- s=(Base64 klíč) Aktuální Noise statický veřejný klíč (s) pro tuto RouterAddress. Kódován Base 64 pomocí standardní I2P Base 64 abecedy. 32 bytů v binární podobě, 44 bytů jako Base 64 kódovaný, little-endian X25519 veřejný klíč.
+- i=(Base64 IV) Aktuální IV pro šifrování hodnoty X ve zprávě 1 pro tuto RouterAddress. Kódován Base 64 pomocí standardní I2P Base 64 abecedy. 16 bytů v binární podobě, 24 bytů jako Base 64 kódovaný, big-endian.
+- v=2 Aktuální verze (2). Když je publikováno jako "NTCP", je implikována dodatečná podpora pro verzi 1. Podpora budoucích verzí bude s hodnotami oddělenými čárkami, např. v=2,3 Implementace by měla ověřit kompatibilitu, včetně více verzí pokud je přítomna čárka. Verze oddělené čárkami musí být v číselném pořadí.
 
-Alice musí ověřit, že jsou všechny tři možnosti přítomny a platné před připojením pomocí protokolu NTCP2.
+Alice musí ověřit, že všechny tři možnosti jsou přítomné a platné před připojením pomocí protokolu NTCP2.
 
-Když je publikován jako "NTCP" s možnostmi "s", "i" a "v", router musí přijímat příchozí spojení na daném hostiteli a portu pro protokoly NTCP i NTCP2 a automaticky detekovat verzi protokolu.
+Když je publikována jako "NTCP" s možnostmi "s", "i" a "v", router musí přijímat příchozí spojení na daném hostiteli a portu pro protokoly NTCP i NTCP2 a automaticky detekovat verzi protokolu.
 
-Když je publikováno jako "NTCP2" s možnostmi "s", "i" a "v", router přijímá příchozí spojení na daném hostiteli a portu pouze pro protokol NTCP2.
+Když je publikováno jako "NTCP2" s možnostmi "s", "i" a "v", router přijímá příchozí připojení na tomto hostiteli a portu pouze pro protokol NTCP2.
 
-Pokud router podporuje jak NTCP1, tak NTCP2 připojení, ale neimplementuje automatickou detekci verze pro příchozí připojení, musí inzerovat jak "NTCP", tak "NTCP2" adresy a zahrnout NTCP2 možnosti pouze do "NTCP2" adresy. Router by měl nastavit nižší hodnotu nákladů (vyšší prioritu) v "NTCP2" adrese než v "NTCP" adrese, takže NTCP2 je upřednostňováno.
+Pokud router podporuje jak NTCP1, tak NTCP2 připojení, ale neimplementuje automatickou detekci verze pro příchozí připojení, musí inzerovat jak "NTCP", tak "NTCP2" adresy a zahrnout NTCP2 možnosti pouze v "NTCP2" adrese. Router by měl nastavit nižší hodnotu nákladů (vyšší prioritu) v "NTCP2" adrese než v "NTCP" adrese, takže NTCP2 je preferováno.
 
-Pokud je v rámci stejného RouterInfo publikováno více NTCP2 RouterAddresses (buď jako "NTCP" nebo "NTCP2") pro dodatečné IP adresy nebo porty, všechny adresy specifikující stejný port musí obsahovat identické NTCP2 možnosti a hodnoty. Zejména všechny musí obsahovat stejný statický klíč a iv.
+Pokud je ve stejném RouterInfo publikováno více NTCP2 RouterAddresses (buď jako "NTCP" nebo "NTCP2") (pro dodatečné IP adresy nebo porty), všechny adresy specifikující stejný port musí obsahovat identické NTCP2 možnosti a hodnoty. Konkrétně všechny musí obsahovat stejný statický klíč a iv.
 
 ### Nepublikovaná NTCP2 adresa
 
-Pokud Alice nepublikuje svou NTCP2 adresu (jako "NTCP" nebo "NTCP2") pro příchozí spojení, musí publikovat "NTCP2" router adresu obsahující pouze její statický klíč a NTCP2 verzi, aby Bob mohl validovat klíč poté, co obdrží Alice RouterInfo ve zprávě 3 část 2.
+Pokud Alice nepublikuje svou NTCP2 adresu (jako "NTCP" nebo "NTCP2") pro příchozí spojení, musí publikovat "NTCP2" router adresu obsahující pouze svůj statický klíč a NTCP2 verzi, aby Bob mohl ověřit klíč poté, co obdrží Alice RouterInfo ve zprávě 3 část 2.
 
 - s=(Base64 klíč) Jak je definováno výše pro publikované adresy.
 - v=2 Jak je definováno výše pro publikované adresy.
 
-Tato router adresa nebude obsahovat možnosti "i", "host" nebo "port", protože tyto nejsou vyžadovány pro odchozí NTCP2 připojení. Publikované náklady pro tuto adresu nejsou striktně důležité, jelikož je pouze příchozí; může však být užitečné pro ostatní routery, pokud jsou náklady nastaveny výše (nižší priorita) než u ostatních adres. Navrhovaná hodnota je 14.
+Tato adresa routeru nebude obsahovat možnosti "i", "host" nebo "port", protože tyto nejsou vyžadovány pro odchozí NTCP2 spojení. Publikované náklady pro tuto adresu nejsou striktně důležité, protože je pouze příchozí; nicméně může být užitečné pro ostatní routery, pokud jsou náklady nastaveny výše (nižší priorita) než u jiných adres. Doporučená hodnota je 14.
 
-Alice může také jednoduše přidat možnosti "s" a "v" k existující publikované "NTCP" adrese.
+Alice může také jednoduše přidat možnosti "s" a "v" k existující publikované NTCP adrese.
 
 ### Rotace veřejného klíče a IV
 
-Kvůli ukládání RouterInfo do cache nesmí routery rotovat statický veřejný klíč nebo IV, dokud je router v provozu, ať už je v publikované adrese nebo ne. Routery musí tento klíč a IV trvale uložit pro opětovné použití po okamžitém restartu, aby příchozí spojení nadále fungovala a časy restartů nebyly odhaleny. Routery musí trvale uložit nebo jinak určit čas posledního vypnutí, aby mohl být při spuštění vypočítán předchozí čas nečinnosti.
+Kvůli ukládání RouterInfo do mezipaměti nesmí routery rotovat statický veřejný klíč nebo IV, když je router v provozu, ať už v publikované adrese nebo ne. Routery musí tento klíč a IV trvale uložit pro opětovné použití po okamžitém restartu, aby příchozí spojení nadále fungovala a časy restartů nebyly odhaleny. Routery musí trvale uložit, nebo jinak určit, čas posledního vypnutí, aby mohl být při startu vypočítán čas předchozího výpadku.
 
-V závislosti na obavách ohledně odhalení časů restartů mohou routery rotovat tento klíč nebo IV při spuštění, pokud byl router předtím vypnutý po nějakou dobu (alespoň pár hodin).
+S ohledem na obavy z odhalení časů restartů mohou routery rotovat tento klíč nebo IV při spuštění, pokud byl router předtím vypnutý po určitou dobu (alespoň několik hodin).
 
-Pokud má router jakékoliv publikované NTCP2 RouterAddresses (jako NTCP nebo NTCP2), minimální doba výpadku před rotací by měla být mnohem delší, například jeden měsíc, pokud se nezměnila místní IP adresa nebo router neprovádí "rekeys".
+Pokud má router nějaké publikované NTCP2 RouterAddresses (jako NTCP nebo NTCP2), minimální doba odstavení před rotací by měla být mnohem delší, například jeden měsíc, pokud se nezměnila lokální IP adresa nebo router neprovede "rekeys".
 
-Pokud má router jakékoli publikované SSU RouterAddresses, ale ne NTCP2 (jako NTCP nebo NTCP2), měla by být minimální doba nečinnosti před rotací delší, například jeden den, pokud se nezměnila místní IP adresa nebo router neprovedl "rekeys". To platí i v případě, že publikovaná SSU adresa má introducery.
+Pokud má router jakékoliv publikované SSU RouterAddresses, ale ne NTCP2 (jako NTCP nebo NTCP2), minimální doba nečinnosti před rotací by měla být delší, například jeden den, pokud se nezměnila místní IP adresa nebo router neprovede "rekeys". To platí i když publikovaná SSU adresa má introducery.
 
-Pokud router nemá žádné publikované RouterAddresses (NTCP, NTCP2, nebo SSU), minimální doba výpadku před rotací může být pouhé dvě hodiny, i když se IP adresa změní, pokud router neprovedl "rekeys" (obnovu klíčů).
+Pokud router nemá žádné publikované RouterAddresses (NTCP, NTCP2, nebo SSU), minimální doba nečinnosti před rotací může být pouhé dvě hodiny, i když se změní IP adresa, pokud router neprovede "rekeys".
 
-Pokud router provede "rekeys" na jiný Router Hash, měl by také vygenerovat nový noise key a IV.
+Pokud router provede "rekey" na jiný Router Hash, měl by také vygenerovat nový noise klíč a IV.
 
-Implementace si musí být vědomy toho, že změna statického veřejného klíče nebo IV znemožní příchozí NTCP2 spojení od routerů, které mají v cache starší RouterInfo. Publikování RouterInfo, výběr tunnel peerů (včetně OBGW i IB nejbližšího hopu), výběr zero-hop tunnelů, výběr transportu a další implementační strategie to musí zohlednit.
+Implementace si musí být vědomy toho, že změna statického veřejného klíče nebo IV zabrání příchozím NTCP2 spojením od routerů, které mají uložený starší RouterInfo. Publikování RouterInfo, výběr tunnel peerů (včetně OBGW i IB nejbližších hopů), výběr zero-hop tunelů, výběr transportu a další implementační strategie to musí brát v úvahu.
 
-Rotace IV podléhá stejným pravidlům jako rotace klíčů, s výjimkou toho, že IV nejsou přítomny kromě publikovaných RouterAddresses, takže neexistuje žádné IV pro skryté nebo firewallované routery. Pokud se něco změní (verze, klíč, možnosti?), doporučuje se, aby se IV také změnilo.
+Rotace IV podléhá stejným pravidlům jako rotace klíčů, s výjimkou toho, že IV nejsou přítomny kromě publikovaných RouterAddresses, takže pro skryté nebo za firewallem chráněné routery neexistuje žádné IV. Pokud se něco změní (verze, klíč, možnosti?), doporučuje se, aby se změnilo také IV.
 
-Poznámka: Minimální doba výpadku před rekeying může být upravena pro zajištění zdraví sítě a pro zabránění reseeding routerem, který je vypnutý po středně dlouhou dobu.
+Poznámka: Minimální doba nečinnosti před přegenerováním klíčů může být upravena za účelem zajištění zdraví sítě a zamezení opětovnému seedování u routeru, který byl nedostupný po mírně delší dobu.
 
 ## Detekce verze
 
 Když je publikován jako "NTCP", router musí automaticky detekovat verzi protokolu pro příchozí spojení.
 
-Tato detekce závisí na implementaci, ale zde je obecné vodítko.
+Tato detekce závisí na implementaci, ale zde je několik obecných pokynů.
 
-Pro detekci verze příchozího NTCP spojení postupuje Bob následovně:
+Pro detekci verze příchozího NTCP spojení Bob postupuje následovně:
 
-- Počkejte na alespoň 64 bajtů (minimální velikost NTCP2 zprávy 1)
+- Čekejte alespoň na 64 bajtů (minimální velikost NTCP2 zprávy 1)
 
-- Pokud jsou počáteční přijatá data 288 nebo více bajtů, příchozí spojení je verze 1.
+- Pokud jsou prvotní přijatá data 288 nebo více bajtů, příchozí spojení je verze 1.
 
-- Pokud méně než 288 bytů, buď
+- Pokud méně než 288 bajtů, pak buď
 
-> - Počkejte krátkou dobu na více dat (dobrá strategie před širokou adopcí NTCP2), pokud je celkem přijato alespoň 288 bajtů, je to NTCP 1.   >   > - Zkuste první fáze dekódování jako verze 2, pokud selže, počkejte krátkou dobu na více dat (dobrá strategie po široké adopci NTCP2)   >   >   > - Dešifrujte prvních 32 bajtů (klíč X) paketu SessionRequest pomocí AES-256 s klíčem RH_B.   >   > - Ověřte platný bod na křivce. Pokud selže, počkejte krátkou dobu na více dat pro NTCP 1   >   > - Ověřte AEAD rámec. Pokud selže, počkejte krátkou dobu na více dat pro NTCP 1
+> - Počkat krátkou dobu na více dat (dobrá strategie před rozšířeným přijetím NTCP2), pokud je celkem přijato alespoň 288, je to NTCP 1.   >   > - Zkusit první fáze dekódování jako verze 2, pokud selže, počkat krátkou dobu na více dat (dobrá strategie po rozšířeném přijetí NTCP2)   >   >   > - Dešifrovat prvních 32 bajtů (X klíč) SessionRequest paketu pomocí AES-256 s klíčem RH_B.   >   > - Ověřit platný bod na křivce. Pokud selže, počkat krátkou dobu na více dat pro NTCP 1   >   > - Ověřit AEAD rámec. Pokud selže, počkat krátkou dobu na více dat pro NTCP 1
 
 Upozorňujeme, že změny nebo dodatečné strategie mohou být doporučeny, pokud detekujeme aktivní útoky TCP segmentace na NTCP 1.
 
-Pro usnadnění rychlé detekce verze a handshake musí implementace zajistit, aby Alice uložila do bufferu a poté najednou vyprázdnila celý obsah první zprávy včetně paddingu. Tím se zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nebudou segmentována OS nebo middleboxy) a Bob je obdrží najednou. Toto je také kvůli efektivitě a k zajištění účinnosti náhodného paddingu. Toto platí jak pro NTCP, tak pro NTCP2 handshake.
+Pro usnadnění rychlé detekce verze a handshake musí implementace zajistit, aby Alice ukládala do bufferu a poté vyprázdnila celý obsah první zprávy najednou, včetně paddingu. Tím se zvyšuje pravděpodobnost, že data budou obsažena v jediném TCP paketu (pokud nebudou segmentována OS nebo middleboxy) a Bob je přijme všechna najednou. Toto je také pro efektivitu a pro zajištění účinnosti náhodného paddingu. Toto se vztahuje na handshake jak u NTCP, tak u NTCP2.
 
 ## Varianty, záložní řešení a obecné problémy
 
 - Pokud Alice i Bob podporují NTCP2, Alice by se měla připojit pomocí NTCP2.
-- Pokud se Alice nepodaří připojit k Bobovi pomocí NTCP2 z jakéhokoli důvodu, připojení selže. Alice nesmí opakovat pokus pomocí NTCP 1.
+- Pokud se Alice nepodaří připojit k Bobovi pomocí NTCP2 z jakéhokoli důvodu, připojení selže. Alice se nesmí pokusit o opětovné připojení pomocí NTCP 1.
 
-## Pokyny pro zkosení hodin
+## Pokyny pro odchylku hodin
 
-Časové značky peerů jsou zahrnuty v prvních dvou handshake zprávách, Session Request a Session Created. Časový posun mezi dvěma peery větší než +/- 60 sekund je obecně fatální. Pokud si Bob myslí, že jeho místní hodiny jsou špatné, může upravit své hodiny pomocí vypočítaného posunu nebo nějakého externího zdroje. Jinak by Bob měl odpovědět s Session Created i když je maximální posun překročen, spíše než jednoduše ukončit spojení. To umožňuje Alice získat Bobovu časovou značku a vypočítat posun, a pokud je to nutné, podniknout akci. Bob v tomto bodě nemá identitu Alice routeru, ale kvůli úspoře zdrojů může být žádoucí, aby Bob na určitou dobu zakázal příchozí spojení z Alice IP adresy, nebo po opakovaných pokusech o spojení s nadměrným posunem.
+Časové značky peerů jsou zahrnuty v prvních dvou handshake zprávách, Session Request a Session Created. Časový posun mezi dvěma peery větší než +/- 60 sekund je obecně fatální. Pokud si Bob myslí, že jeho místní hodiny jsou špatné, může upravit své hodiny pomocí vypočítaného posunu nebo nějakého externího zdroje. Jinak by Bob měl odpovědět Session Created, i když je maximální posun překročen, spíše než jednoduše zavřít spojení. To umožňuje Alici získat Bobovu časovou značku a vypočítat posun a v případě potřeby podniknout kroky. Bob v tomto okamžiku nemá identitu Alice routeru, ale pro úsporu zdrojů může být žádoucí, aby Bob zakázal příchozí spojení z Alice IP na určité časové období, nebo po opakovaných pokusech o připojení s nadměrným posunem.
 
-Alice by měla upravit vypočítaný posun hodin odečtením poloviny RTT. Pokud si Alice myslí, že její lokální hodiny jsou špatné, může upravit své hodiny pomocí vypočítaného posunu nebo nějakého externího zdroje. Pokud si Alice myslí, že Bobovy hodiny jsou špatné, může Boba zakázat na určité časové období. V obou případech by Alice měla spojení ukončit.
+Alice by měla upravit vypočítaný posun hodin odečtením poloviny RTT. Pokud si Alice myslí, že její místní hodiny jsou špatné, může upravit své hodiny pomocí vypočítaného posunu nebo některého externího zdroje. Pokud si Alice myslí, že Bobovy hodiny jsou špatné, může Boba zakázat na určité období. V každém případě by Alice měla ukončit spojení.
 
-Pokud Alice odpoví s Session Confirmed (pravděpodobně proto, že skew je velmi blízko k limitu 60s a výpočty Alice a Boba nejsou úplně stejné kvůli RTT), Bob by měl upravit vypočítaný clock skew odečtením poloviny RTT. Pokud upravený clock skew překročí maximum, Bob by měl poté odpovědět zprávou Disconnect obsahující důvodový kód clock skew a uzavřít spojení. V tomto bodě má Bob identitu routeru Alice a může Alice zakázat na určité časové období.
+Pokud Alice skutečně odpoví pomocí Session Confirmed (pravděpodobně proto, že skew je velmi blízko k limitu 60s a výpočty Alice a Boba nejsou úplně stejné kvůli RTT), Bob by měl upravit vypočítané zpoždění hodin odečtením poloviny RTT. Pokud upravené zpoždění hodin překročí maximum, Bob by pak měl odpovědět zprávou Disconnect obsahující kód důvodu zpoždění hodin a uzavřít spojení. V tomto okamžiku má Bob identitu router Alice a může Alice zakázat na určité časové období.
 
 ## Reference
 
 - [Společné struktury](/docs/specs/common-structures)
 - [I2NP](/docs/specs/i2np)
-- [Síťová databáze](/docs/overview/network-database)
+- [Network Database](/docs/overview/network-database)
 - [NOISE - Noise Protocol Framework](https://noiseprotocol.org/noise.html)
 - [NTCP](/docs/transport/ntcp)
 - [Prop104](/proposals/104-tls-transport)
@@ -1381,4 +1390,4 @@ Pokud Alice odpoví s Session Confirmed (pravděpodobně proto, že skew je velm
 - [RFC-7905](https://tools.ietf.org/html/rfc7905)
 - [SipHash](https://www.131002.net/siphash/)
 - [SSU](/docs/transport/ssu)
-- **[STS]** Diffie, W.; van Oorschot P. C.; Wiener M. J., Autentizace a autentizované výměny klíčů
+- **[STS]** Diffie, W.; van Oorschot P. C.; Wiener M. J., Authentication and Authenticated Key Exchanges

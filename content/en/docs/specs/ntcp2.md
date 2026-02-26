@@ -3,8 +3,8 @@ title: "NTCP2 Transport"
 description: "Noise-based TCP transport for router-to-router links"
 slug: "ntcp2"
 category: "Transports"
-lastUpdated: "2026-01"
-accurateFor: "0.9.66"
+lastUpdated: "2026-02"
+accurateFor: "0.9.69"
 ---
 
 ## Overview
@@ -371,7 +371,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 ver :: 1 byte, protocol version (currently 2)
 
 padLen :: 2 bytes, length of the padding, 0 or more
-          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          See below for max guidelines. Random size from 0 to 64 bytes minimum is recommended.
           (Distribution is implementation-dependent)
 
 m3p2Len :: 2 bytes, length of the the second AEAD frame in SessionConfirmed
@@ -420,6 +420,15 @@ Reserved :: 4 bytes, set to 0 for compatibility with future options
 - Bob must fail the connection if any incoming data remains after validating message 1 and reading in the padding. There should be no extra data from Alice, as Bob has not responded with message 2 yet.
 
 - The network ID field is used to quickly identify cross-network connections. If this field is nonzero, and does not match Bob's network ID, Bob should disconnect and block future connections. Any connections from test networks should have a different ID and will fail the test. As of 0.9.42. See proposal 147 for more information.
+
+- Through API 0.9.68 (release 2.11.0), Java I2P implemented a maximum of 256 bytes padding for non-PQ connections, however this
+  was not previously documented.
+  As of API 0.9.69 (release 2.12.0), Java I2P implements the same max padding for non-PQ connections
+  as for MLKEM-512. The maximum padding is 880 bytes.
+
+
+
+
 
 ### Key Derivation Function (KDF) (for handshake message 2 and message 3 part 1)
 
@@ -610,7 +619,7 @@ Options block: Note: All fields are big-endian.
 Reserved :: 10 bytes total, set to 0 for compatibility with future options
 
 padLen :: 2 bytes, big endian, length of the padding, 0 or more
-          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          See below for max guidelines. Random size from 0 to 64 bytes minimum is recommended.
           (Distribution is implementation-dependent)
 
 tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
@@ -620,6 +629,11 @@ tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
 #### Notes
 
 - Alice must reject connections where the timestamp value is too far off from the current time. Call the maximum delta time "D". Alice must maintain a local cache of previously-used handshake values and reject duplicates, to prevent replay attacks. Values in the cache must have a lifetime of at least 2*D. The cache values are implementation-dependent, however the 32-byte Y value (or its encrypted equivalent) may be used.
+
+- Through API 0.9.68 (release 2.11.0), Java I2P implemented a maximum of 256 bytes padding for non-PQ connections, however this
+  was not previously documented.
+  As of API 0.9.69 (release 2.12.0), Java I2P implements the same max padding for non-PQ connections
+  as for MLKEM-512. The maximum padding is 848 bytes.
 
 #### Issues
 

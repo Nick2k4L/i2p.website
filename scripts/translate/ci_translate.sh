@@ -136,7 +136,8 @@ translate_language() {
             --target-lang "$TARGET_LANG" \
             --model claude-sonnet-4-20250514 \
             --overwrite \
-            --check-hashes \
+            --no-check-hashes \
+            --no-update-hashes \
             --output-root "$REPO_ROOT" \
             --quiet \
             $COPY_HTML_FLAG; then

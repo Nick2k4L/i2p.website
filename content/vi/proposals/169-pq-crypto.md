@@ -1,177 +1,125 @@
 ---
-title: "Giao thức Mật mã Hậu Lượng tử"
+title: "Các Giao thức Mật mã Hậu Lượng tử"
+aliases: 
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2025-06-12"
+lastupdated: "2026-02-26"
 status: "Mở"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
 toc: true
 ---
 
-## Overview
+### Trạng thái
 
-While research and competition for suitable post-quantum (PQ)
-cryptography have been proceeding for a decade, the choices
-have not become clear until recently.
-
-We started looking at the implications of PQ crypto
-in 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
-
-TLS standards added hybrid encryption support in the last two years and it now
-is used for a significant portion of encrypted traffic on the internet
-due to support in Chrome and Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
-
-NIST recently finalized and published the recommended algorithms
-for post-quantum cryptography [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards).
-Several common cryptography libraries now support the NIST standards
-or will be releasing support in the near future.
-
-Both [Cloudflare](https://blog.cloudflare.com/pq-2024/) and [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) recommend that migration start immediately.
-See also the 2022 NSA PQ FAQ [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF).
-I2P should be a leader in security and cryptography.
-Now is the time to implement the recommended algorithms.
-Using our flexible crypto type and signature type system,
-we will add types for hybrid crypto, and for PQ and hybrid signatures.
-
-
-## Goals
-
-- Select PQ-resistant algorithms
-- Add PQ-only and hybrid algorithms to I2P protocols where appropriate
-- Define multiple variants
-- Select best variants after implementation, testing, analysis, and research
-- Add support incrementally and with backward compatibility
-
-
-## Non-Goals
-
-- Don't change one-way (Noise N) encryption protocols
-- Don't move away from SHA256, not threatened near-term by PQ
-- Don't select the final preferred variants at this time
-
-
-## Threat Model
-
-- Routers at the OBEP or IBGW, possibly colluding,
-  storing garlic messages for later decryption (forward secrecy)
-- Network observers
-  storing transport messages for later decryption (forward secrecy)
-- Network participants forging signatures for RI, LS, streaming, datagrams,
-  or other structures
-
-
-## Affected Protocols
-
-We will modify the following protocols, roughly in order
-of development. The overall rollout will probably be from late 2025 through mid-2027.
-See the Priorities and Rollout section below for details.
-
-
-| Protocol / Feature | Status |
+| Giao thức / Tính năng | Trạng thái |
 |--------------------|--------|
-| Hybrid MLKEM Ratchet and LS | Approved 2026-06; beta target 2025-08; release target 2025-11 |
-| Hybrid MLKEM NTCP2 | Some details to be finalized |
-| Hybrid MLKEM SSU2 | Some details to be finalized |
-| MLDSA SigTypes 12-14 | Proposal is stable but may not be finalized until 2026 |
-| MLDSA Dests | Tested on live net, requires net upgrade for floodfill support |
-| Hybrid SigTypes 15-17 | Preliminary |
+| Ratchet | Hoàn thành trong Java I2P và i2pd |
+| NTCP2 | Beta Q1 2026 |
+| SSU2 | Bắt đầu triển khai sớm, Beta Q23 2026 |
+| MLDSA SigTypes | Ưu tiên thấp, có thể 2027+ |
+## Tổng quan
+
+Trong khi nghiên cứu và cạnh tranh cho mật mã học hậu lượng tử (PQ) phù hợp đã diễn ra trong một thập kỷ, các lựa chọn vẫn chưa trở nên rõ ràng cho đến gần đây.
+
+Chúng tôi bắt đầu xem xét các tác động của mã hóa PQ vào năm 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
+
+Các tiêu chuẩn TLS đã bổ sung hỗ trợ mã hóa hybrid trong hai năm qua và hiện tại đang được sử dụng cho một phần đáng kể lưu lượng được mã hóa trên internet nhờ sự hỗ trợ từ Chrome và Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
+
+NIST gần đây đã hoàn thiện và công bố các thuật toán được khuyến nghị cho mật mã học hậu lượng tử [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Một số thư viện mật mã học phổ biến hiện đã hỗ trợ các tiêu chuẩn NIST hoặc sẽ phát hành hỗ trợ trong tương lai gần.
+
+Cả [Cloudflare](https://blog.cloudflare.com/pq-2024/) và [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) đều khuyến nghị rằng việc chuyển đổi nên bắt đầu ngay lập tức. Xem thêm NSA PQ FAQ năm 2022 [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P nên là người dẫn đầu về bảo mật và mật mã học. Giờ là lúc triển khai các thuật toán được khuyến nghị. Sử dụng hệ thống loại mật mã và loại chữ ký linh hoạt của chúng tôi, chúng tôi sẽ thêm các loại cho mật mã hybrid, và cho chữ ký PQ và hybrid.
+
+## Mục tiêu
+
+- Chọn các thuật toán kháng PQ
+- Thêm các thuật toán chỉ-PQ và lai tạp vào các giao thức I2P khi thích hợp
+- Định nghĩa nhiều biến thể
+- Chọn các biến thể tốt nhất sau khi triển khai, thử nghiệm, phân tích và nghiên cứu
+- Thêm hỗ trợ từng bước và với khả năng tương thích ngược
+
+## Mục tiêu không thực hiện
+
+- Không thay đổi các giao thức mã hóa một chiều (Noise N)
+- Không chuyển khỏi SHA256, không bị đe dọa trong ngắn hạn bởi PQ
+- Không chọn các biến thể ưa thích cuối cùng tại thời điểm này
+
+## Mô hình Đe dọa
+
+- Các router tại OBEP hoặc IBGW, có thể thông đồng,
+  lưu trữ các thông điệp garlic để giải mã sau này (forward secrecy)
+- Các bên quan sát mạng
+  lưu trữ các thông điệp truyền tải để giải mã sau này (forward secrecy)
+- Các thành viên mạng giả mạo chữ ký cho RI, LS, streaming, datagram,
+  hoặc các cấu trúc khác
+
+## Giao thức bị ảnh hưởng
+
+Chúng tôi sẽ sửa đổi các giao thức sau đây, theo thứ tự phát triển tương đối. Việc triển khai tổng thể có thể sẽ diễn ra từ cuối năm 2025 đến giữa năm 2027. Xem phần Ưu tiên và Triển khai bên dưới để biết chi tiết.
+
+| Giao thức / Tính năng | Trạng thái |
+|--------------------|--------|
+| Hybrid MLKEM Ratchet và LS | Được phê duyệt 2025-06; beta 2025-08; phát hành 2025-11 |
+| Hybrid MLKEM NTCP2 | Đã thử nghiệm trên mạng thực, Được phê duyệt 2026-02; mục tiêu beta 2026-05; mục tiêu phát hành 2026-08 |
+| Hybrid MLKEM SSU2 | Được phê duyệt 2026-02; mục tiêu beta 2026-08; mục tiêu phát hành 2026-11 |
+| MLDSA SigTypes 12-14 | Đề xuất ổn định nhưng có thể không được hoàn thiện cho đến 2027 |
+| MLDSA Dests | Đã thử nghiệm trên mạng thực, yêu cầu nâng cấp mạng để hỗ trợ floodfill |
+| Hybrid SigTypes 15-17 | Sơ bộ |
 | Hybrid Dests | |
+## Thiết kế
 
+Chúng tôi sẽ hỗ trợ các tiêu chuẩn NIST FIPS 203 và 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) dựa trên, nhưng KHÔNG tương thích với CRYSTALS-Kyber và CRYSTALS-Dilithium (các phiên bản 3.1, 3 và cũ hơn).
 
-### Status
+### Trao Đổi Khóa
 
-| Protocol / Feature | Status |
-|--------------------|--------|
-| Ratchet | Complete in Java I2P and i2pd |
-| NTCP2 | Beta, some details to be finalized, probably Q2 2026 |
-| SSU2 | Not started, probably Q3 2026 |
-| MLDSA SigTypes | Low priority, probably 2027+ |
+Chúng tôi sẽ hỗ trợ trao đổi khóa hybrid trong các giao thức sau:
 
+| Proto   | Loại Noise | Chỉ hỗ trợ PQ? | Hỗ trợ Hybrid? |
+|---------|-------------|----------------|----------------|
+| NTCP2   | XK          | không          | có             |
+| SSU2    | XK          | không          | có             |
+| Ratchet | IK          | không          | có             |
+| TBM     | N           | không          | không          |
+| NetDB   | N           | không          | không          |
+PQ KEM chỉ cung cấp các khóa tạm thời và không hỗ trợ trực tiếp các bắt tay khóa tĩnh như Noise XK và IK.
 
-## Design
+Noise N không sử dụng trao đổi khóa hai chiều nên không phù hợp cho mã hóa lai.
 
-We will support the NIST FIPS 203 and 204 standards [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-which are based on, but NOT compatible with,
-CRYSTALS-Kyber and CRYSTALS-Dilithium (versions 3.1, 3, and older).
+Vì vậy chúng tôi sẽ chỉ hỗ trợ mã hóa hybrid, cho NTCP2, SSU2, và Ratchet. Chúng tôi sẽ định nghĩa ba biến thể ML-KEM như trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), tổng cộng cho 3 loại mã hóa mới. Các loại hybrid sẽ chỉ được định nghĩa kết hợp với X25519.
 
+Các loại mã hóa mới là:
 
-
-### Key Exchange
-
-We will support hybrid key exchange in the following protocols:
-
-| Proto   | Noise Type | Support PQ only? | Support Hybrid? |
-|---------|------------|------------------|-----------------|
-| NTCP2   | XK         | no               | yes             |
-| SSU2    | XK         | no               | yes             |
-| Ratchet | IK         | no               | yes             |
-| TBM     | N          | no               | no              |
-| NetDB   | N          | no               | no              |
-
-PQ KEM provides ephemeral keys only, and does not directly support
-static-key handshakes such as Noise XK and IK.
-
-Noise N does not use a two-way key exchange and so it is not suitable
-for hybrid encryption.
-
-So we will support hybrid encryption only, for NTCP2, SSU2, and Ratchet.
-We will define the three ML-KEM variants as in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf),
-for 3 new encryption types total.
-Hybrid types will only be defined in combination with X25519.
-
-The new encryption types are:
-
-| Type | Code |
+| Loại | Mã |
 |------|------|
 | MLKEM512_X25519 | 5 |
 | MLKEM768_X25519 | 6 |
 | MLKEM1024_X25519 | 7 |
+Chi phí phụ trội sẽ rất đáng kể. Kích thước điển hình của message 1 và 2 (cho XK và IK) hiện tại khoảng 100 byte (trước khi có bất kỳ payload bổ sung nào). Điều này sẽ tăng từ 8 đến 15 lần tùy thuộc vào thuật toán.
 
-Overhead will be substantial. Typical message 1 and 2 sizes (for XK and IK)
-are currently around 100 bytes (before any additional payload).
-This will increase by 8x to 15x depending on algorithm.
+### Chữ ký số
 
+Chúng tôi sẽ hỗ trợ chữ ký PQ và hybrid trong các cấu trúc sau:
 
-### Signatures
-
-We will support PQ and hybrid signatures in the following structures:
-
-| Type | Support PQ only? | Support Hybrid? |
+| Loại | Hỗ trợ chỉ PQ? | Hỗ trợ Hybrid? |
 |------|------------------|-----------------|
-| RouterInfo | yes | yes |
-| LeaseSet | yes | yes |
-| Streaming SYN/SYNACK/Close | yes | yes |
-| Repliable Datagrams | yes | yes |
-| Datagram2 (prop. 163) | yes | yes |
-| I2CP create session msg | yes | yes |
-| SU3 files | yes | yes |
-| X.509 certificates | yes | yes |
-| Java keystores | yes | yes |
+| RouterInfo | có | có |
+| LeaseSet | có | có |
+| Streaming SYN/SYNACK/Close | có | có |
+| Repliable Datagrams | có | có |
+| Datagram2 (prop. 163) | có | có |
+| I2CP create session msg | có | có |
+| SU3 files | có | có |
+| X.509 certificates | có | có |
+| Java keystores | có | có |
+Vậy nên chúng tôi sẽ hỗ trợ cả chữ ký chỉ PQ và hybrid. Chúng tôi sẽ định nghĩa ba biến thể ML-DSA như trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), ba biến thể hybrid với Ed25519, và ba biến thể chỉ PQ với prehash chỉ dành cho các tập tin SU3, tổng cộng 9 loại chữ ký mới. Các loại hybrid sẽ chỉ được định nghĩa kết hợp với Ed25519. Chúng tôi sẽ sử dụng ML-DSA tiêu chuẩn, KHÔNG phải các biến thể pre-hash (HashML-DSA), ngoại trừ các tập tin SU3.
 
+Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, không phải biến thể "xác định", như được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) mục 3.4. Điều này đảm bảo rằng mỗi chữ ký là khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp bảo vệ bổ sung chống lại các cuộc tấn công kênh phụ. Xem phần ghi chú triển khai bên dưới để biết thêm chi tiết về các lựa chọn thuật toán bao gồm mã hóa và ngữ cảnh.
 
-So we will support both PQ-only and hybrid signatures.
-We will define the three ML-DSA variants as in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf),
-three hybrid variants with Ed25519,
-and three PQ-only variants with prehash for SU3 files only,
-for 9 new signature types total.
-Hybrid types will only be defined in combination with Ed25519.
-We will use the standard ML-DSA, NOT the pre-hash variants (HashML-DSA),
-except for SU3 files.
+Các loại chữ ký mới là:
 
-We will use the "hedged" or randomized signing variant,
-not the "determinstic" variant, as defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) section 3.4.
-This ensures that each signature is different, even when over the same data,
-and provides additional protection against side-channel attacks.
-See the implementation notes section below for additional details
-about algorithm choices including encoding and context.
-
-
-The new signature types are:
-
-| Type | Code |
-|------|------|
+| Loại | Mã |
+|------|-----|
 | MLDSA44 | 12 |
 | MLDSA65 | 13 |
 | MLDSA87 | 14 |
@@ -181,255 +129,177 @@ The new signature types are:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
+Chứng chỉ X.509 và các mã hóa DER khác sẽ sử dụng các cấu trúc tổng hợp và OID được định nghĩa trong [bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-X.509 certificates and other DER encodings will use the
-composite structures and OIDs defined in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Overhead sẽ rất đáng kể. Kích thước destination và router identity Ed25519 điển hình là 391 byte. Chúng sẽ tăng từ 3.5x đến 6.8x tùy thuộc vào thuật toán. Chữ ký Ed25519 có kích thước 64 byte. Chúng sẽ tăng từ 38x đến 76x tùy thuộc vào thuật toán. RouterInfo đã ký, LeaseSet, datagram có thể trả lời, và tin nhắn streaming đã ký điển hình có kích thước khoảng 1KB. Chúng sẽ tăng từ 3x đến 8x tùy thuộc vào thuật toán.
 
-Overhead will be substantial. Typical Ed25519 destination and router identity
-sizes are 391 bytes.
-These will increase by 3.5x to 6.8x depending on algorithm.
-Ed25519 signatures are 64 bytes.
-These will increase by 38x to 76x depending on algorithm.
-Typical signed RouterInfo, LeaseSet, repliable datagrams, and signed streaming messages are about 1KB.
-These will increase by 3x to 8x depending on algorithm.
+Vì các loại nhận dạng đích và router mới sẽ không chứa padding, chúng sẽ không thể nén được. Kích thước của các đích và nhận dạng router được nén gzip trong quá trình truyền tải sẽ tăng từ 12x - 38x tùy thuộc vào thuật toán.
 
-As the new destination and router identity types will not contain padding,
-they will not be compressible. Sizes of destinations and router identities
-that are gzipped in-transit will increase by 12x - 38x depending on algorithm.
+### Các Kết Hợp Hợp Pháp
 
+Đối với Destinations, các loại chữ ký mới được hỗ trợ với tất cả các loại mã hóa trong leaseset. Đặt loại mã hóa trong key certificate thành NONE (255).
 
+Đối với RouterIdentities, loại mã hóa ElGamal đã bị loại bỏ. Các loại chữ ký mới chỉ được hỗ trợ với mã hóa X25519 (loại 4). Các loại mã hóa mới sẽ được chỉ ra trong RouterAddresses. Loại mã hóa trong key certificate sẽ tiếp tục là loại 4.
 
-### Legal Combinations
+### Yêu cầu Mật mã Mới
 
-For Destinations, the new signature types are supported with all encryption
-types in the leaseset. Set the encryption type in the key certificate to NONE (255).
+- ML-KEM (trước đây là CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (trước đây là CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128 (trước đây là Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Chỉ được sử dụng cho SHAKE128
+- SHA3-256 (trước đây là Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 và SHAKE256 (phần mở rộng XOF cho SHA3-128 và SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-For RouterIdentities, ElGamal encryption type is deprecated.
-The new signature types are supported with X25519 (type 4) encryption only.
-The new encryption types will be indicated in the RouterAddresses.
-The encryption type in the key certificate will continue to be type 4.
+Các test vector cho SHA3-256, SHAKE128, và SHAKE256 có tại [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
 
+Lưu ý rằng thư viện Java bouncycastle hỗ trợ tất cả các mục trên. Hỗ trợ thư viện C++ có trong OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
+### Các lựa chọn thay thế
 
-### New Crypto Required
-
-- ML-KEM (formerly CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA (formerly CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128 (formerly Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Used only for SHAKE128
-- SHA3-256 (formerly Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 and SHAKE256 (XOF extensions to SHA3-128 and SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-
-Test vectors for SHA3-256, SHAKE128, and SHAKE256 are at [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
-
-Note that the Java bouncycastle library supports all the above.
-C++ library support is in OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
-
-
-### Alternatives
-
-We will not support [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), it is much much slower and bigger than ML-DSA.
-We will not support the upcoming FIPS206 (Falcon), it is not yet standardized.
-We will not support NTRU or other PQ candidates that were not standardized by NIST.
-
+Chúng tôi sẽ không hỗ trợ [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), nó chậm hơn và lớn hơn rất nhiều so với ML-DSA. Chúng tôi sẽ không hỗ trợ FIPS206 sắp tới (Falcon), nó chưa được tiêu chuẩn hóa. Chúng tôi sẽ không hỗ trợ NTRU hoặc các ứng viên PQ khác mà không được tiêu chuẩn hóa bởi NIST.
 
 ### Rosenpass
 
-There is some research [paper](https://eprint.iacr.org/2020/379.pdf) on adapting Wireguard (IK)
-for pure PQ crypto, but there are several open questions in that paper.
-Later, this approach was implemented as Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
-for PQ Wireguard.
+Có một số nghiên cứu [paper](https://eprint.iacr.org/2020/379.pdf) về việc điều chỉnh Wireguard (IK) cho mật mã PQ thuần túy, nhưng có một số câu hỏi mở trong bài báo đó. Sau đó, phương pháp này đã được triển khai dưới dạng Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) cho PQ Wireguard.
 
-Rosenpass uses a Noise KK-like handshake with preshared Classic McEliece 460896 static keys
-(500 KB each) and Kyber-512 (essentially MLKEM-512) ephemeral keys.
-As the Classic McEliece ciphertexts are only 188 bytes, and the Kyber-512
-public keys and ciphertexts are reasonable, both handshake messages fit in a standard UDP MTU.
-The output shared key (osk) from the PQ KK handshake is used as the input preshared key (psk)
-for the standard Wireguard IK handshake.
-So there are two complete handshakes in total, one pure PQ and one pure X25519.
+Rosenpass sử dụng bắt tay kiểu Noise KK với khóa tĩnh Classic McEliece 460896 được chia sẻ trước (mỗi khóa 500 KB) và khóa tạm thời Kyber-512 (về cơ bản là MLKEM-512). Vì bản mã Classic McEliece chỉ có 188 bytes, và khóa công khai cùng bản mã Kyber-512 có kích thước hợp lý, cả hai thông điệp bắt tay đều vừa với MTU UDP tiêu chuẩn. Khóa chia sẻ đầu ra (osk) từ bắt tay PQ KK được sử dụng làm khóa chia sẻ trước đầu vào (psk) cho bắt tay Wireguard IK tiêu chuẩn. Vậy tổng cộng có hai bắt tay hoàn chỉnh, một thuần PQ và một thuần X25519.
 
-We can't do any of this to replace our XK and IK handshakes because:
+Chúng ta không thể làm bất kỳ điều nào trong số này để thay thế các handshake XK và IK của mình bởi vì:
 
-- We can't do KK, Bob doesn't have Alice's static key
-- 500KB static keys are far too big
-- We don't want an extra round-trip
+- Chúng ta không thể thực hiện KK, Bob không có khóa tĩnh của Alice
+- Khóa tĩnh 500KB quá lớn
+- Chúng ta không muốn có thêm một vòng khứ hồi
 
-There is a lot of good information in the whitepaper,
-and we will review it for ideas and inspiration. TODO.
+Có rất nhiều thông tin hữu ích trong whitepaper, và chúng tôi sẽ xem xét nó để tìm ý tưởng và cảm hứng. TODO.
 
+## Đặc tả kỹ thuật
 
+### Cấu trúc Chung
 
-## Specification
-
-### Common Structures
-
-Update the sections and tables in the common structures document [/docs/specs/common-structures/](/docs/specs/common-structures/) as follows:
-
+Cập nhật các phần và bảng trong tài liệu cấu trúc chung [/docs/specs/common-structures/](/docs/specs/common-structures/) như sau:
 
 ### PublicKey
 
-The new Public Key types are:
+Các loại Public Key mới là:
 
-| Type | Public Key Length | Since | Usage |
+| Loại | Độ dài Khóa công khai | Từ phiên bản | Cách sử dụng |
 |------|-------------------|-------|-------|
-| MLKEM512_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM768_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM1024_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM512 | 800 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM768 | 1184 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM1024 | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM512_CT | 768 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
+| MLKEM512_X25519 | 32 | 0.9.xx | Xem đề xuất 169, chỉ dành cho Leasesets, không dành cho RIs hoặc Destinations |
+| MLKEM768_X25519 | 32 | 0.9.xx | Xem đề xuất 169, chỉ dành cho Leasesets, không dành cho RIs hoặc Destinations |
+| MLKEM1024_X25519 | 32 | 0.9.xx | Xem đề xuất 169, chỉ dành cho Leasesets, không dành cho RIs hoặc Destinations |
+| MLKEM512 | 800 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| MLKEM768 | 1184 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| MLKEM1024 | 1568 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| MLKEM512_CT | 768 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| MLKEM768_CT | 1088 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| MLKEM1024_CT | 1568 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| NONE | 0 | 0.9.xx | Xem đề xuất 169, chỉ dành cho destinations có loại chữ ký PQ, không dành cho RIs hoặc Leasesets |
+Khóa công khai lai là khóa X25519. Khóa công khai KEM là khóa PQ tạm thời được gửi từ Alice đến Bob. Mã hóa và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
-Hybrid public keys are the X25519 key.
-KEM public keys are the ephemeral PQ key sent from Alice to Bob.
-Encoding and byte order are defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
-
-MLKEM*_CT keys are not really public keys, they are the "ciphertext" sent from Bob to Alice in the Noise handshake.
-They are listed here for completeness.
-
-
+Các khóa MLKEM*_CT thực sự không phải là public key, chúng là "ciphertext" được gửi từ Bob đến Alice trong quá trình bắt tay Noise. Chúng được liệt kê ở đây để đầy đủ thông tin.
 
 ### PrivateKey
 
-The new Private Key types are:
+Các loại Private Key mới là:
 
-| Type | Private Key Length | Since | Usage |
+| Loại | Độ dài Private Key | Từ phiên bản | Cách sử dụng |
 |------|---------------------|-------|-------|
-| MLKEM512_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM768_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM1024_X25519 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-| MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-
-Hybrid private keys are the X25519 keys.
-KEM private keys are for Alice only.
-KEM encoding and byte order are defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
-
-
-
+| MLKEM512_X25519 | 32 | 0.9.xx | Xem đề xuất 169, chỉ dành cho Leasesets, không dành cho RIs hoặc Destinations |
+| MLKEM768_X25519 | 32 | 0.9.xx | Xem đề xuất 169, chỉ dành cho Leasesets, không dành cho RIs hoặc Destinations |
+| MLKEM1024_X25519 | 32 | 0.9.xx | Xem đề xuất 169, chỉ dành cho Leasesets, không dành cho RIs hoặc Destinations |
+| MLKEM512 | 1632 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| MLKEM768 | 2400 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+| MLKEM1024 | 3168 | 0.9.xx | Xem đề xuất 169, chỉ dành cho handshakes, không dành cho Leasesets, RIs hoặc Destinations |
+Khóa riêng hybrid là khóa X25519. Khóa riêng KEM chỉ dành cho Alice. Mã hóa KEM và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ### SigningPublicKey
 
-The new Signing Public Key types are:
+Các loại Signing Public Key mới là:
 
-| Type | Length (bytes) | Since | Usage |
+| Loại | Độ dài (bytes) | Từ phiên bản | Cách sử dụng |
 |------|----------------|-------|-------|
-| MLDSA44 | 1312 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 1952 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 2592 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
-| MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
-| MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-
-Hybrid signing public keys are the Ed25519 key followed by the PQ key, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
-Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
-
+| MLDSA44 | 1312 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65 | 1952 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87 | 2592 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44ph | 1344 | 0.9.xx | Chỉ dành cho tệp SU3, không dùng cho cấu trúc netDb |
+| MLDSA65ph | 1984 | 0.9.xx | Chỉ dành cho tệp SU3, không dùng cho cấu trúc netDb |
+| MLDSA87ph | 2624 | 0.9.xx | Chỉ dành cho tệp SU3, không dùng cho cấu trúc netDb |
+Các khóa công khai ký hybrid là khóa Ed25519 theo sau bởi khóa PQ, như trong [bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### SigningPrivateKey
 
-The new Signing Private Key types are:
+Các loại Signing Private Key mới là:
 
 | Type | Length (bytes) | Since | Usage |
 |------|----------------|-------|-------|
-| MLDSA44 | 2560 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 4032 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 4896 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 2592 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 4064 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 4928 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
+| MLDSA44 | 2560 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65 | 4032 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87 | 4896 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2592 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 4064 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4928 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44ph | 2592 | 0.9.xx | Chỉ dành cho tệp SU3, không dành cho cấu trúc netDb. Xem đề xuất 169 |
+| MLDSA65ph | 4064 | 0.9.xx | Chỉ dành cho tệp SU3, không dành cho cấu trúc netDb. Xem đề xuất 169 |
+| MLDSA87ph | 4928 | 0.9.xx | Chỉ dành cho tệp SU3, không dành cho cấu trúc netDb. Xem đề xuất 169 |
+Các khóa riêng tư ký hybrid là khóa Ed25519 theo sau bởi khóa PQ, như trong [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
-Hybrid signing private keys are the Ed25519 key followed by the PQ key, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
-Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+### Chữ ký
 
+Các loại Signature mới là:
 
-### Signature
-
-The new Signature types are:
-
-| Type | Length (bytes) | Since | Usage |
+| Loại | Độ dài (byte) | Từ phiên bản | Sử dụng |
 |------|----------------|-------|-------|
-| MLDSA44 | 2420 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 3309 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 4627 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 2484 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 3373 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 4691 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-| MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
+| MLDSA44 | 2420 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65 | 3309 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87 | 4627 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2484 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 3373 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4691 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44ph | 2484 | 0.9.xx | Chỉ dành cho tệp SU3, không dành cho cấu trúc netDb. Xem đề xuất 169 |
+| MLDSA65ph | 3373 | 0.9.xx | Chỉ dành cho tệp SU3, không dành cho cấu trúc netDb. Xem đề xuất 169 |
+| MLDSA87ph | 4691 | 0.9.xx | Chỉ dành cho tệp SU3, không dành cho cấu trúc netDb. Xem đề xuất 169 |
+Chữ ký hybrid là chữ ký Ed25519 theo sau bởi chữ ký PQ, như trong [bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Chữ ký hybrid được xác minh bằng cách xác minh cả hai chữ ký, và sẽ thất bại nếu một trong hai thất bại. Mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
-Hybrid signatures are the Ed25519 signature followed by the PQ signature, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
-Hybrid signatures are verified by verifying both signatures, and failing
-if either one fails.
-Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+### Chứng chỉ Khóa
 
+Các loại Signing Public Key mới là:
 
-
-### Key Certificates
-
-The new Signing Public Key types are:
-
-| Type | Type Code | Total Public Key Length | Since | Usage |
+| Loại | Mã Loại | Tổng Độ Dài Public Key | Từ Phiên Bản | Cách Sử Dụng |
 |------|-----------|-------------------------|-------|-------|
-| MLDSA44 | 12 | 1312 | 0.9.xx | See proposal 169 |
-| MLDSA65 | 13 | 1952 | 0.9.xx | See proposal 169 |
-| MLDSA87 | 14 | 2592 | 0.9.xx | See proposal 169 |
-| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 0.9.xx | See proposal 169 |
-| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 0.9.xx | See proposal 169 |
-| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 0.9.xx | See proposal 169 |
-| MLDSA44ph | 18 | n/a | 0.9.xx | Only for SU3 files |
-| MLDSA65ph | 19 | n/a | 0.9.xx | Only for SU3 files |
-| MLDSA87ph | 20 | n/a | 0.9.xx | Only for SU3 files |
+| MLDSA44 | 12 | 1312 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65 | 13 | 1952 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87 | 14 | 2592 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 0.9.xx | Xem đề xuất 169 |
+| MLDSA44ph | 18 | n/a | 0.9.xx | Chỉ dành cho các tệp SU3 |
+| MLDSA65ph | 19 | n/a | 0.9.xx | Chỉ dành cho các tệp SU3 |
+| MLDSA87ph | 20 | n/a | 0.9.xx | Chỉ dành cho các tệp SU3 |
+Các loại Crypto Public Key mới là:
 
-
-
-The new Crypto Public Key types are:
-
-| Type | Type Code | Total Public Key Length | Since | Usage |
+| Loại | Mã Loại | Tổng Độ Dài Public Key | Từ Phiên Bản | Cách Sử Dụng |
 |------|-----------|-------------------------|-------|-------|
-| MLKEM512_X25519 | 5 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM768_X25519 | 6 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| MLKEM1024_X25519 | 7 | 32 | 0.9.xx | See proposal 169, for Leasesets only, not for RIs or Destinations |
-| NONE | 255 | 0 | 0.9.xx | See proposal 169 |
+| MLKEM512_X25519 | 5 | 32 | 0.9.xx | Xem đề xuất 169, chỉ cho leaseSet, không dành cho RI hoặc Destination |
+| MLKEM768_X25519 | 6 | 32 | 0.9.xx | Xem đề xuất 169, chỉ cho leaseSet, không dành cho RI hoặc Destination |
+| MLKEM1024_X25519 | 7 | 32 | 0.9.xx | Xem đề xuất 169, chỉ cho leaseSet, không dành cho RI hoặc Destination |
+| NONE | 255 | 0 | 0.9.xx | Xem đề xuất 169 |
+Các loại khóa hybrid KHÔNG BAO GIỜ được bao gồm trong chứng chỉ khóa; chỉ có trong leaseSet.
 
+Đối với các đích có loại chữ ký Hybrid hoặc PQ, sử dụng NONE (loại 255) cho kiểu mã hóa, nhưng không có khóa mã hóa, và toàn bộ phần chính 384-byte là dành cho khóa ký.
 
-Hybrid key types are NEVER included in key certificates; only in leasesets.
+### Kích thước đích
 
-For destinations with Hybrid or PQ signature types,
-use NONE (type 255) for the encryption type,
-but there is no crypto key, and the
-entire 384-byte main section is for the signing key.
+Dưới đây là độ dài cho các loại Destination mới. Loại mã hóa cho tất cả là NONE (loại 255) và độ dài khóa mã hóa được coi là 0. Toàn bộ phần 384 byte được sử dụng cho phần đầu tiên của signing public key. LƯU Ý: Điều này khác với đặc tả cho các loại chữ ký ECDSA_SHA512_P521 và RSA, nơi chúng ta duy trì khóa ElGamal 256 byte trong destination mặc dù nó không được sử dụng.
 
+Không có padding. Tổng độ dài là 7 + tổng độ dài khóa. Độ dài chứng chỉ khóa là 4 + độ dài khóa dư thừa.
 
-### Destination sizes
-
-Here are lengths for the new Destination types.
-Enc type for all is NONE (type 255) and the encryption key length is treated as 0.
-The entire 384-byte section is used for the first part of the signing public key.
-NOTE: This is different than the spec for the ECDSA_SHA512_P521
-and the RSA signature types, where we maintained the 256-byte ElGamal
-key in the destination even though it was unused.
-
-No padding.
-Total length is 7 + total key length.
-Key certificate length is 4 + excess key length.
-
-Example 1319-byte destination byte stream for MLDSA44:
+Ví dụ luồng byte đích 1319-byte cho MLDSA44:
 
 skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
-
-
-| Type | Type Code | Total Public Key Length | Main | Excess | Total Dest Length |
+| Loại | Mã Loại | Tổng Độ Dài Public Key | Chính | Dư Thừa | Tổng Độ Dài Dest |
 |------|-----------|-------------------------|------|--------|-------------------|
 | MLDSA44 | 12 | 1312 | 384 | 928 | 1319 |
 | MLDSA65 | 13 | 1952 | 384 | 1568 | 1959 |
@@ -437,25 +307,15 @@ skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 384 | 960 | 1351 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 384 | 1600 | 1991 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 384 | 2240 | 2631 |
+### Kích thước RouterIdent
 
+Đây là độ dài cho các loại Destination mới. Loại mã hóa cho tất cả là X25519 (loại 4). Toàn bộ phần 352-byte sau khóa công khai X25519 được sử dụng cho phần đầu của khóa công khai ký. Không có padding. Tổng độ dài là 39 + tổng độ dài khóa. Độ dài chứng chỉ khóa là 4 + độ dài khóa dư thừa.
 
-
-### RouterIdent sizes
-
-Here are lengths for the new Destination types.
-Enc type for all is X25519 (type 4).
-The entire 352-byte section after the X28819 public key is used for the first part of the signing public key.
-No padding.
-Total length is 39 + total key length.
-Key certificate length is 4 + excess key length.
-
-Example 1351-byte router identity byte stream for MLDSA44:
+Ví dụ luồng byte router identity 1351-byte cho MLDSA44:
 
 enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 
-
-
-| Type | Type Code | Total Public Key Length | Main | Excess | Total RouterIdent Length |
+| Loại | Mã Loại | Tổng Chiều Dài Public Key | Chính | Dư Thừa | Tổng Chiều Dài RouterIdent |
 |------|-----------|-------------------------|------|--------|--------------------------|
 | MLDSA44 | 12 | 1312 | 352 | 960 | 1351 |
 | MLDSA65 | 13 | 1952 | 352 | 1600 | 1991 |
@@ -463,23 +323,19 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
+### Mẫu Bắt Tay
 
+Handshake sử dụng các mẫu handshake [Noise Protocol](https://noiseprotocol.org/noise.html).
 
+Ánh xạ chữ cái sau đây được sử dụng:
 
-### Handshake Patterns
+- e = khóa tạm thời một lần
+- s = khóa tĩnh
+- p = tải trọng thông điệp
+- e1 = khóa PQ tạm thời một lần, được gửi từ Alice đến Bob
+- ekem1 = văn bản mã hóa KEM, được gửi từ Bob đến Alice
 
-Handshakes use [Noise Protocol](https://noiseprotocol.org/noise.html) handshake patterns.
-
-The following letter mapping is used:
-
-- e = one-time ephemeral key
-- s = static key
-- p = message payload
-- e1 = one-time ephemeral PQ key, sent from Alice to Bob
-- ekem1 = the KEM ciphertext, sent from Bob to Alice
-
-The following modifications to XK and IK for hybrid forward secrecy (hfs) are
-as specified in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) section 5:
+Các thay đổi sau đây đối với XK và IK cho tính bảo mật chuyển tiếp lai (hybrid forward secrecy - hfs) được quy định trong [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) mục 5:
 
 ```
 XK:                       XKhfs:
@@ -503,8 +359,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-
-The e1 pattern is defined as follows, as specified in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) section 4:
+Mẫu e1 được định nghĩa như sau, theo quy định trong [thông số kỹ thuật Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) mục 4:
 
 ```
 For Alice:
@@ -522,9 +377,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-
-
-The ekem1 pattern is defined as follows, as specified in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) section 4:
+Mẫu ekem1 được định nghĩa như sau, theo quy định trong [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) phần 4:
 
 ```
 For Bob:
@@ -549,52 +402,39 @@ For Bob:
   kem_shared_key = DECAPS(kem_ciphertext, decap_key)
   MixKey(kem_shared_key)
 ```
-
-
-
-
 ### Noise Handshake KDF
 
-#### Issues
+#### Vấn đề
 
-- Should we change the handshake hash function? See [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
-  SHA256 is not vulnerable to PQ, but if we do want to upgrade
-  our hash function, now is the time, while we're changing other things.
-  The current IETF SSH proposal [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) is to use MLKEM768
-  with SHA256, and MLKEM1024 with SHA384. That proposal includes
-  a discussion of the security considerations.
-- Should we stop sending 0-RTT ratchet data (other than the LS)?
-- Should we switch ratchet from IK to XK if we don't send 0-RTT data?
+- Chúng ta có nên thay đổi hàm hash handshake không? Xem [so sánh](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
+  SHA256 không dễ bị tổn thương bởi PQ, nhưng nếu chúng ta muốn nâng cấp
+  hàm hash của mình, bây giờ là lúc thích hợp, trong khi chúng ta đang thay đổi những thứ khác.
+  Đề xuất SSH IETF hiện tại [bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) là sử dụng MLKEM768
+  với SHA256, và MLKEM1024 với SHA384. Đề xuất đó bao gồm
+  một thảo luận về các cân nhắc bảo mật.
+- Chúng ta có nên ngừng gửi dữ liệu ratchet 0-RTT (ngoài LS) không?
+- Chúng ta có nên chuyển ratchet từ IK sang XK nếu chúng ta không gửi dữ liệu 0-RTT không?
 
+#### Tổng quan
 
-#### Overview
+Phần này áp dụng cho cả giao thức IK và XK.
 
-This section applies to both IK and XK protocols.
+Quá trình bắt tay hybrid được định nghĩa trong [thông số kỹ thuật Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). Thông điệp đầu tiên, từ Alice đến Bob, chứa e1, khóa đóng gói, trước payload của thông điệp. Điều này được xử lý như một khóa tĩnh bổ sung; gọi EncryptAndHash() trên nó (với vai trò Alice) hoặc DecryptAndHash() (với vai trò Bob). Sau đó xử lý payload thông điệp như bình thường.
 
-The hybrid handshake is defined in [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
-The first message, from Alice to Bob, contains e1, the encapsulation key, before the message payload.
-This is treated as an additional static key; call EncryptAndHash() on it (as Alice)
-or DecryptAndHash() (as Bob).
-Then process the message payload as usual.
+Tin nhắn thứ hai, từ Bob tới Alice, chứa ekem1, bản mã hóa, trước payload của tin nhắn. Điều này được xem như một khóa tĩnh bổ sung; gọi EncryptAndHash() trên nó (với vai trò Bob) hoặc DecryptAndHash() (với vai trò Alice). Sau đó, tính toán kem_shared_key và gọi MixKey(kem_shared_key). Tiếp theo xử lý payload tin nhắn như bình thường.
 
-The second message, from Bob to Alice, contains ekem1, the ciphertext, before the message payload.
-This is treated as an additional static key; call EncryptAndHash() on it (as Bob)
-or DecryptAndHash() (as Alice).
-Then, calculate the kem_shared_key and call MixKey(kem_shared_key).
-Then process the message payload as usual.
+#### Các Thao Tác ML-KEM Được Định Nghĩa
 
-
-#### Defined ML-KEM Operations
-
-We define the following functions corresponding to the cryptographic building blocks used
-as defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Chúng tôi định nghĩa các hàm sau tương ứng với các khối xây dựng mật mã được sử dụng như đã định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
+
     Alice creates the encapsulation and decapsulation keys
     The encapsulation key is sent in message 1.
     encap_key and decap_key sizes vary based on ML-KEM variant.
 
 (ciphertext, kem_shared_key) = ENCAPS(encap_key)
+
     Bob calculates the ciphertext and shared key,
     using the ciphertext received in message 1.
     The ciphertext is sent in message 2.
@@ -602,25 +442,22 @@ as defined in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pd
     The kem_shared_key is always 32 bytes.
 
 kem_shared_key = DECAPS(ciphertext, decap_key)
+
     Alice calculates the shared key,
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Note that both the encap_key and the ciphertext are encrypted inside ChaCha/Poly
-blocks in the Noise handshake messages 1 and 2.
-They will be decrypted as part of the handshake process.
+Lưu ý rằng cả encap_key và ciphertext đều được mã hóa bên trong các khối ChaCha/Poly trong các thông điệp bắt tay Noise 1 và 2. Chúng sẽ được giải mã như một phần của quá trình bắt tay.
 
-The kem_shared_key is mixed into the chaining key with MixHash().
-See below for details.
+kem_shared_key được trộn vào chaining key với MixHash(). Xem chi tiết bên dưới.
 
+#### Alice KDF cho Message 1
 
-#### Alice KDF for Message 1
+Đối với XK: Sau pattern thông báo 'es' và trước payload, thêm:
 
-For XK: After the 'es' message pattern and before the payload, add:
+HOẶC
 
-OR
-
-For IK: After the 'es' message pattern and before the 's' message pattern, add:
+Đối với IK: Sau message pattern 'es' và trước message pattern 's', thêm:
 
 ```
 This is the "e1" message pattern:
@@ -644,15 +481,13 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
+#### Bob KDF cho Message 1
 
+Đối với XK: Sau mẫu thông điệp 'es' và trước payload, thêm:
 
-#### Bob KDF for Message 1
+HOẶC
 
-For XK: After the 'es' message pattern and before the payload, add:
-
-OR
-
-For IK: After the 'es' message pattern and before the 's' message pattern, add:
+Đối với IK: Sau mẫu thông điệp 'es' và trước mẫu thông điệp 's', thêm:
 
 ```
 This is the "e1" message pattern:
@@ -674,15 +509,13 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
+#### Bob KDF cho Message 2
 
+Đối với XK: Sau pattern thông điệp 'ee' và trước payload, thêm:
 
-#### Bob KDF for Message 2
+HOẶC
 
-For XK: After the 'ee' message pattern and before the payload, add:
-
-OR
-
-For IK: After the 'ee' message pattern and before the 'se' message pattern, add:
+Đối với IK: Sau message pattern 'ee' và trước message pattern 'se', thêm:
 
 ```
 This is the "ekem1" message pattern:
@@ -705,11 +538,9 @@ This is the "ekem1" message pattern:
 
   End of "ekem1" message pattern.
 ```
+#### Alice KDF cho Message 2
 
-
-#### Alice KDF for Message 2
-
-After the 'ee' message pattern (and before the 'ss' message pattern for IK), add:
+Sau mẫu thông điệp 'ee' (và trước mẫu thông điệp 'ss' cho IK), thêm:
 
 ```
 This is the "ekem1" message pattern:
@@ -731,46 +562,32 @@ This is the "ekem1" message pattern:
 
   End of "ekem1" message pattern.
 ```
+#### KDF cho Thông điệp 3 (chỉ XK)
 
+không thay đổi
 
-#### KDF for Message 3 (XK only)
+#### KDF cho split()
 
-unchanged
-
-
-#### KDF for split()
-
-unchanged
-
-
+không thay đổi
 
 ### Ratchet
 
-Update the ECIES-Ratchet specification [/docs/specs/ecies/](/docs/specs/ecies/) as follows:
+Cập nhật đặc tả ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) như sau:
 
-
-#### Noise identifiers
+#### Định danh Noise
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
+#### 1b) Định dạng phiên mới (với binding)
 
+Thay đổi: Ratchet hiện tại chứa khóa tĩnh trong phần ChaCha đầu tiên và payload trong phần thứ hai. Với ML-KEM, hiện tại có ba phần. Phần đầu tiên chứa khóa công khai PQ được mã hóa. Phần thứ hai chứa khóa tĩnh. Phần thứ ba chứa payload.
 
-#### 1b) New session format (with binding)
-
-Changes: Current ratchet contained the static key in the first ChaCha section,
-and the payload in the second section.
-With ML-KEM, there are now three sections.
-The first section contains the encrypted PQ public key.
-The second section contains the static key.
-The third section contains the payload.
-
-
-Encrypted format:
+Định dạng mã hóa:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |   New Session Ephemeral Public Key    |
@@ -816,8 +633,7 @@ Encrypted format:
   |             16 bytes                  |
   +----+----+----+----+----+----+----+----+
 ```
-
-Decrypted format:
+Định dạng đã giải mã:
 
 ```
 Payload Part 1:
@@ -856,35 +672,24 @@ Payload Part 1:
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Kích thước:
 
-Sizes:
-
-| Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
+| Loại | Mã Loại | Độ dài X | Độ dài Msg 1 | Độ dài Msg 1 Enc | Độ dài Msg 1 Dec | Độ dài khóa PQ | Độ dài pl |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
 | X25519 | 4 | 32 | 96+pl | 64+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 912+pl | 880+pl | 800+pl | 800 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1296+pl | 1360+pl | 1184+pl | 1184 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1680+pl | 1648+pl | 1568+pl | 1568 | pl |
+Lưu ý rằng payload phải chứa một khối DateTime, do đó kích thước payload tối thiểu là 7. Kích thước tối thiểu của message 1 có thể được tính toán tương ứng.
 
-Note that the payload must contain a DateTime block, so the minimum payload size is 7.
-The minimum message 1 sizes may be calculated accordingly.
+#### 1g) Định dạng New Session Reply
 
+Thay đổi: Ratchet hiện tại có payload trống cho phần ChaCha đầu tiên, và payload trong phần thứ hai. Với ML-KEM, hiện có ba phần. Phần đầu tiên chứa PQ ciphertext được mã hóa. Phần thứ hai có payload trống. Phần thứ ba chứa payload.
 
-
-#### 1g) New Session Reply format
-
-Changes: Current ratchet has an empty payload for the first ChaCha section,
-and the payload in the second section.
-With ML-KEM, there are now three sections.
-The first section contains the encrypted PQ ciphertext.
-The second section has an empty payload.
-The third section contains the payload.
-
-
-Encrypted format:
+Định dạng mã hóa:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |       Session Tag   8 bytes           |
   +----+----+----+----+----+----+----+----+
   |                                       |
@@ -924,8 +729,7 @@ Encrypted format:
   |             16 bytes                  |
   +----+----+----+----+----+----+----+----+
 ```
-
-Decrypted format:
+Định dạng đã giải mã:
 
 ```
 Payload Part 1:
@@ -957,45 +761,45 @@ Payload Part 1:
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Kích thước:
 
-Sizes:
-
-| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
+| Loại | Mã Loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 Mã hóa | Độ dài Msg 2 Giải mã | Độ dài PQ CT | Độ dài tùy chọn |
 |------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 72+pl | 32+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-
-Note that while message 2 will normally have a nonzero payload,
-the ratchet specification [/docs/specs/ecies/](/docs/specs/ecies/) does not require it, so the minimum payload size is 0.
-The minimum message 2 sizes may be calculated accordingly.
-
-
+Lưu ý rằng trong khi thông điệp 2 thường sẽ có payload khác không, đặc tả ratchet [/docs/specs/ecies/](/docs/specs/ecies/) không yêu cầu điều này, vì vậy kích thước payload tối thiểu là 0. Kích thước tối thiểu của thông điệp 2 có thể được tính toán tương ứng.
 
 ### NTCP2
 
-Update the NTCP2 specification [/docs/specs/ntcp2/](/docs/specs/ntcp2/) as follows:
+Cập nhật đặc tả NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) như sau:
 
-
-#### Noise identifiers
+#### Định danh Noise
 
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-
 #### 1) SessionRequest
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+Thay đổi: NTCP2 hiện tại chỉ chứa các tùy chọn trong phần ChaCha. Với ML-KEM, phần ChaCha cũng sẽ chứa khóa công khai PQ được mã hóa.
 
+Để PQ và non-PQ NTCP2 có thể được hỗ trợ trên cùng một địa chỉ router và cổng, chúng tôi sử dụng bit có nghĩa quan trọng nhất của giá trị X (khóa công khai tạm thời X25519) để đánh dấu rằng đó là kết nối PQ. Bit này luôn không được đặt cho các kết nối non-PQ.
 
-Raw contents:
+Đối với Alice, sau khi thông điệp được mã hóa bởi Noise, nhưng trước khi thực hiện AES obfuscation của X, đặt X[31] |= 0x7f.
+
+Đối với Bob, sau khi thực hiện AES de-obfuscation của X, kiểm tra X[31] & 0x80. Nếu bit được thiết lập, xóa nó bằng X[31] &= 0x7f, và giải mã qua Noise như một kết nối PQ. Nếu bit không được thiết lập, giải mã qua Noise như một kết nối không phải PQ như thông thường.
+
+Đối với PQ NTCP2 được quảng cáo trên một địa chỉ router và cổng khác, điều này không bắt buộc.
+
+Để biết thêm thông tin, xem phần Địa chỉ Đã công bố bên dưới.
+
+Nội dung thô:
 
 ```
-+----+----+----+----+----+----+----+----+
-  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |        MS bit set to 1 and then       |
   +        obfuscated with RH_B           +
   |       AES-CBC-256 encrypted X         |
   +             (32 bytes)                +
@@ -1023,13 +827,12 @@ Raw contents:
   |     length defined in options block   |
   +----+----+----+----+----+----+----+----+
 
-  Same as before except add a second ChaChaPoly frame
+  Same as current specification except add a second ChaChaPoly frame
 ```
-
-Unencrypted data (Poly1305 authentication tag not shown):
+Dữ liệu không được mã hóa (thẻ xác thực Poly1305 không được hiển thị):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |                   X                   |
@@ -1053,30 +856,24 @@ Unencrypted data (Poly1305 authentication tag not shown):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Lưu ý: trường version trong khối tùy chọn message 1 phải được đặt thành 2, ngay cả đối với các kết nối PQ.
 
-Sizes:
+Kích thước:
 
-| Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | opt len |
+| Loại | Mã Loại | Độ dài X | Độ dài Msg 1 | Độ dài Msg 1 Mã hóa | Độ dài Msg 1 Giải mã | Độ dài khóa PQ | Độ dài tùy chọn |
 |------|-----------|-------|-----------|---------------|---------------|------------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 880+pad | 848 | 816 | 800 | 16 |
 | MLKEM768_X25519 | 6 | 32 | 1264+pad | 1232 | 1200 | 1184 | 16 |
 | MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
-
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
-
+Lưu ý: Mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong địa chỉ router.
 
 #### 2) SessionCreated
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
-
-Raw contents:
+Nội dung thô:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +        obfuscated with RH_B           +
   |       AES-CBC-256 encrypted Y         |
@@ -1108,13 +905,12 @@ Raw contents:
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-  Same as before except add a second ChaChaPoly frame
+  Same as current specification except add a second ChaChaPoly frame
 ```
-
-Unencrypted data (Poly1305 auth tag not shown):
+Dữ liệu không mã hóa (thẻ xác thực Poly1305 không hiển thị):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
   |                  Y                    |
@@ -1138,64 +934,82 @@ Unencrypted data (Poly1305 auth tag not shown):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
+Kích thước:
 
-Sizes:
-
-| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
+| Loại | Mã Loại | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
 | MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
 | MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
-
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
-
-
+Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Router sẽ vẫn là loại 4, và việc hỗ trợ sẽ được chỉ ra trong các địa chỉ router.
 
 #### 3) SessionConfirmed
 
-Unchanged
+Không thay đổi
 
+#### Hàm Dẫn Xuất Khóa (KDF) (cho giai đoạn dữ liệu)
 
-#### Key Derivation Function (KDF) (for data phase)
+Không thay đổi
 
-Unchanged
+#### Địa chỉ đã Công bố
 
+Trong tất cả các trường hợp, sử dụng tên giao thức NTCP2 transport như thường lệ.
 
+Sử dụng cùng địa chỉ/cổng như non-PQ, non-firewalled. Chỉ hỗ trợ một biến thể PQ. Trong địa chỉ router, xuất bản v=2 (như thường lệ) và tham số mới pq=[3|4|5] để chỉ ra MLKEM 512/768/1024. Alice đặt MSB của khóa ephemeral (key[31] & 0x80) trong session request để chỉ ra rằng đây là kết nối hybrid. Xem phần trên. Các router cũ sẽ bỏ qua tham số pq và kết nối non-pq như thường lệ.
 
+Địa chỉ/cổng khác với non-PQ, hoặc chỉ PQ, không có tường lửa KHÔNG được hỗ trợ. Điều này sẽ không được triển khai cho đến khi non-PQ NTCP2 bị vô hiệu hóa, vài năm nữa. Khi non-PQ bị vô hiệu hóa, nhiều biến thể PQ có thể được hỗ trợ, nhưng chỉ một biến thể cho mỗi địa chỉ. Trong địa chỉ router, xuất bản v=[3|4|5] để chỉ ra MLKEM 512/768/1024. Alice không đặt MSB của khóa tạm thời. Các router cũ hơn sẽ kiểm tra tham số v và bỏ qua địa chỉ này vì không được hỗ trợ.
 
+Địa chỉ bị tường lửa chặn (không công bố IP): Trong địa chỉ router, công bố v=2 (như thường lệ). Không cần công bố tham số pq.
+
+Alice có thể kết nối đến một PQ Bob bằng cách sử dụng biến thể PQ mà Bob công bố, bất kể Alice có quảng cáo hỗ trợ pq trong router info của mình hay không, hoặc liệu cô ấy có quảng cáo cùng biến thể đó hay không.
+
+#### Padding Tối Đa
+
+Trong đặc tả hiện tại, thông điệp 1 và 2 được định nghĩa có một lượng padding "hợp lý", với khoảng 0-31 byte được khuyến nghị, và không chỉ định tối đa.
+
+Qua API 0.9.68 (phiên bản 2.11.0), Java I2P đã triển khai tối đa 256 bytes padding cho các kết nối không phải PQ, tuy nhiên điều này chưa được ghi lại trước đây. Kể từ API 0.9.69 (phiên bản 2.12.0), Java I2P triển khai cùng mức padding tối đa cho các kết nối không phải PQ như đối với MLKEM-512. Xem bảng dưới đây.
+
+Sử dụng kích thước thông điệp đã định nghĩa làm padding tối đa, tức là padding tối đa sẽ tăng gấp đôi kích thước thông điệp cho các kết nối PQ, như sau:
+
+| Message Max Padding | non-PQ (thru 0.9.68) | non-PQ (as of 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
+|---------------------|----------------------|-----------------------|-----------|-----------|------------|
+| Session Request  |   256   |   880   |    880   |     1264   |    1648  |
+| Session Created  |   256   |   848   |    848   |     1136   |    1616  |
 ### SSU2
 
-Update the SSU2 specification [/docs/specs/ssu2/](/docs/specs/ssu2/) as follows:
+Cập nhật đặc tả SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) như sau:
 
-
-#### Noise identifiers
+#### Định danh Noise
 
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
-- "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256"
 
+Lưu ý rằng MLKEM-1024 KHÔNG được hỗ trợ cho SSU2, vì các khóa quá lớn để có thể vừa trong một datagram tiêu chuẩn 1500 byte.
 
-#### Long Header
+#### Header Dài
 
-The long header is 32 bytes. It is used before a session is created, for Token Request, SessionRequest, SessionCreated, and Retry.
-It is also used for out-of-session Peer Test and Hole Punch messages.
+Header dài có kích thước 32 byte. Nó được sử dụng trước khi một phiên được tạo, cho Token Request, SessionRequest, SessionCreated, và Retry. Nó cũng được sử dụng cho các tin nhắn Peer Test và Hole Punch ngoài phiên.
 
-For PQ connections, set the ver (version) field to 3 or 4, to indicate MLKEM-512 or MLKEM-768.
+Trong các thông điệp sau, đặt trường ver (phiên bản) trong long header thành 3 hoặc 4, để chỉ định MLKEM-512 hoặc MLKEM-768.
 
-Discussion: Setting the version field to 3 or 4 may not be strictly necessary for all message types,
-but doing so aids earlier failure detection for unsupported post-quantum connections.
-Token Request and Retry (types 9 and 10) would be good to have versions 3/4 for consistency.
-Peer Test and Hole Punch messages (types 7 and 11) may not require this treatment
-but could follow the same pattern for uniformity.
+- (0) Yêu cầu phiên
+- (1) Phiên đã tạo
+- (9) Thử lại
+- (10) Yêu cầu token
+- (11) Hole Punch
 
+Trong các thông điệp sau đây, đặt trường ver (version) trong long header thành 2 như thường lệ, ngay cả khi MLKEM-512 hoặc MLKEM-768 được hỗ trợ. Các triển khai cũng có thể đặt giá trị thành 3 hoặc 4, nếu đầu kia hỗ trợ, nhưng điều này không cần thiết. Các triển khai nên chấp nhận bất kỳ giá trị nào từ 2-4.
 
-Before header encryption:
+- (7) Kiểm tra Peer (các tin nhắn ngoài phiên 5-7)
+
+Thảo luận: Việc đặt trường version thành 3 hoặc 4 có thể không thực sự cần thiết cho tất cả các loại thông điệp, nhưng làm như vậy giúp phát hiện lỗi sớm hơn đối với các kết nối post-quantum không được hỗ trợ. Token Request và Retry (loại 9 và 10) nên có version 3/4 để đảm bảo tính nhất quán. Thông điệp Hole Punch (loại 11) có thể không yêu cầu xử lý này nhưng chúng ta sẽ tuân theo cùng một mô hình để đồng nhất. Thông điệp Peer Test (loại 7) là ngoài phiên và không chỉ ra ý định khởi tạo một phiên.
+
+Trước khi mã hóa header:
 
 ```
 
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1222,23 +1036,40 @@ Before header encryption:
   Token :: 8 bytes, unsigned big endian integer
 
 ```
+#### Tiêu Đề Ngắn
 
+không thay đổi
 
-#### Short Header
+#### SessionRequest (Loại 0)
 
-unchanged
+Thay đổi: SSU2 hiện tại chỉ chứa dữ liệu block trong phần ChaCha. Với ML-KEM, phần ChaCha cũng sẽ chứa khóa công khai PQ được mã hóa.
 
-
-#### SessionRequest (Type 0)
-
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
-
-Raw contents:
+Thay đổi KDF cho Bảo vệ Chống Giả mạo: Để giải quyết các vấn đề được nêu ra trong Đề xuất 165 [Prop165]_, nhưng với một giải pháp khác, chúng tôi sửa đổi KDF cho Session Request. Điều này chỉ áp dụng cho các phiên PQ. KDF cho các phiên không phải PQ vẫn giữ nguyên.
 
 ```
-+----+----+----+----+----+----+----+----+
+
+// End of KDF for initial chain key (unchanged)
+  // Bob static key
+  // MixHash(bpk)
+  h = SHA256(h || bpk);
+
+  // Start of KDF for session request
+  // NEW for PQ only
+  // bhash = Bob router hash (32 bytes)
+  // MixHash(bhash)
+  h = SHA256(h || bhash);
+
+  // Rest of KDF for session request, unchanged, as in SSU2 spec
+  // MixHash(header)
+  h = SHA256(h || header)
+
+  ...
+
+```
+Nội dung thô:
+
+```
+  +----+----+----+----+----+----+----+----+
   |  Long Header bytes 0-15, ChaCha20     |
   +  encrypted with Bob intro key         +
   |    See Header Encryption KDF          |
@@ -1278,11 +1109,10 @@ Raw contents:
 
 
 ```
-
-Unencrypted data (Poly1305 authentication tag not shown):
+Dữ liệu không mã hóa (thẻ xác thực Poly1305 không được hiển thị):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1308,34 +1138,26 @@ Unencrypted data (Poly1305 authentication tag not shown):
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
+Kích thước, không bao gồm overhead IP:
 
-Sizes, not including IP overhead:
-
-| Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
+| Loại | Mã Loại | Độ dài X | Độ dài Msg 1 | Độ dài Msg 1 Enc | Độ dài Msg 1 Dec | Độ dài khóa PQ | Độ dài pl |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 896+pl | 832+pl | 800+pl | 800 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1280+pl | 1216+pl | 1184+pl | 1184 | pl |
-| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
+| MLKEM1024_X25519 | 7 | n/a | quá lớn | | | | |
+Lưu ý: Mã loại chỉ dành cho sử dụng nội bộ. Router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong các địa chỉ router.
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
+MTU tối thiểu cho MLKEM768_X25519: Khoảng 1316 cho IPv4 và 1336 cho IPv6.
 
-Minimum MTU for MLKEM768_X25519:
-About 1316 for IPv4 and 1336 for IPv6.
+#### SessionCreated (Loại 1)
 
+Thay đổi: SSU2 hiện tại chỉ chứa dữ liệu khối trong phần ChaCha. Với ML-KEM, phần ChaCha cũng sẽ chứa khóa công khai PQ được mã hóa.
 
-
-#### SessionCreated (Type 1)
-
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
-
-
-Raw contents:
+Nội dung thô:
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |  Long Header bytes 0-15, ChaCha20     |
   +  encrypted with Bob intro key and     +
   | derived key, see Header Encryption KDF|
@@ -1375,11 +1197,10 @@ Raw contents:
 
 
 ```
-
-Unencrypted data (Poly1305 auth tag not shown):
+Dữ liệu không mã hóa (thẻ xác thực Poly1305 không hiển thị):
 
 ```
-+----+----+----+----+----+----+----+----+
+  +----+----+----+----+----+----+----+----+
   |      Destination Connection ID        |
   +----+----+----+----+----+----+----+----+
   |   Packet Number   |type| ver| id |flag|
@@ -1405,163 +1226,131 @@ Unencrypted data (Poly1305 auth tag not shown):
   |      see below for allowed blocks     |
   +----+----+----+----+----+----+----+----+
 ```
+Kích thước, không bao gồm overhead IP:
 
-Sizes, not including IP overhead:
-
-| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
+| Loại | Mã Loại | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
+| MLKEM1024_X25519 | 7 | n/a | quá lớn | | | | |
+Lưu ý: Mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong địa chỉ router.
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
+MTU tối thiểu cho MLKEM768_X25519: Khoảng 1316 cho IPv4 và 1336 cho IPv6.
 
-Minimum MTU for MLKEM768_X25519:
-About 1316 for IPv4 and 1336 for IPv6.
+#### SessionConfirmed (Loại 2)
 
+không thay đổi
 
-#### SessionConfirmed (Type 2)
+#### KDF cho giai đoạn dữ liệu
 
-unchanged
+không thay đổi
 
+#### Relay và Kiểm tra Peer
 
+Các block sau đây chứa các trường phiên bản. Chúng sẽ vẫn giữ phiên bản 2 (để tương thích với Bob không hỗ trợ PQ) và sẽ không thay đổi thành phiên bản 3/4 cho PQ.
 
-#### KDF for data phase
+- Yêu cầu Relay
+- Phản hồi Relay
+- Giới thiệu Relay
+- Kiểm tra Peer
 
-unchanged
+Chữ ký PQ: Các khối Relay, khối Peer Test và thông điệp Peer Test đều chứa chữ ký. Thật không may, chữ ký PQ có kích thước lớn hơn MTU. Hiện tại không có cơ chế nào để phân mảnh các khối Relay hoặc Peer Test hay thông điệp qua nhiều gói UDP. Giao thức phải được mở rộng để hỗ trợ phân mảnh. Điều này sẽ được thực hiện trong một đề xuất riêng biệt TBD. Cho đến khi hoàn thành, Relay và Peer Test sẽ không được hỗ trợ.
 
+#### Địa chỉ đã công bố
 
+Trong tất cả các trường hợp, sử dụng tên transport SSU2 như thường lệ. MLKEM-1024 không được hỗ trợ.
 
-#### Relay and Peer Test
+Sử dụng cùng địa chỉ/cổng như non-PQ, non-firewalled. Một hoặc cả hai biến thể PQ đều được hỗ trợ. Trong địa chỉ router, xuất bản v=2 (như thường lệ) và tham số mới pq=[3|4|3,4] để chỉ ra MLKEM 512/768/cả hai. Các router cũ sẽ bỏ qua tham số pq và kết nối non-pq như thường lệ.
 
-Relay blocks, Peer Test blocks, and Peer Test messages all contain signatures.
-Unfortunately, PQ signatures are larger than the MTU.
-There is no current mechanism to fragment Relay or Peer Test blocks or messages
-across multiple UDP packets.
-The protocol must be extended to support fragmentation.
-This will be done in a separate proposal TBD.
-Until that is completed, Relay and Peer Test will not be supported.
+Địa chỉ/cổng khác với non-PQ, hoặc chỉ PQ, non-firewalled KHÔNG được hỗ trợ. Điều này sẽ không được triển khai cho đến khi non-PQ SSU2 bị vô hiệu hóa, vài năm nữa. Khi non-PQ bị vô hiệu hóa, một hoặc cả hai biến thể PQ đều được hỗ trợ. Trong địa chỉ router, xuất bản v=[3|4|3,4] để chỉ ra MLKEM 512/768/cả hai. Các router cũ hơn sẽ kiểm tra tham số v và bỏ qua địa chỉ này vì không được hỗ trợ.
 
-TODO: Should the following remain version 2 (for compatibility with a non-PQ Bob),
-or should they be version 3/4 for PQ?
+Địa chỉ bị tường lửa chặn (không công bố IP): Trong địa chỉ router, công bố v=2 (như thường lệ). Tham số pq BẮT BUỘC phải được công bố trong các địa chỉ bị tường lửa chặn, để hỗ trợ relay.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
+Alice có thể kết nối đến PQ Bob bằng cách sử dụng biến thể PQ mà Bob công bố, bất kể Alice có quảng cáo hỗ trợ pq trong router info của mình hay không, hoặc liệu cô ấy có quảng cáo cùng biến thể đó hay không.
 
+#### MTU
 
-#### Issues
+Hãy cẩn thận không vượt quá MTU với MLKEM768. MTU tối thiểu cho SSU2 là 1280, đây là kích thước của message 1 không có padding. Không bao gồm padding trong message 1 nếu MTU của Alice hoặc Bob là 1280.
 
-We could internally use the version field and use 3 for MLKEM512 and 4 for MLKEM768.
+#### Vấn đề
 
-For messages 1 and 2, MLKEM768 would increase packet sizes beyond the 1280 minimum MTU.
-Probably would just not support it for that connection if the MTU was too low.
+Chúng ta có thể sử dụng trường version nội bộ và dùng 3 cho MLKEM512 và 4 cho MLKEM768.
 
-For messages 1 and 2, MLKEM1024 would increase packet sizes beyond 1500 maximum MTU.
-This would require fragmenting messages 1 and 2, and it would be a big complication.
-Probably won't do it.
+Đối với thông điệp 1 và 2, MLKEM768 sẽ làm tăng kích thước gói tin vượt quá MTU tối thiểu 1280. Có thể sẽ không hỗ trợ nó cho kết nối đó nếu MTU quá thấp.
 
-Relay and Peer Test: See above
+Đối với thông điệp 1 và 2, MLKEM1024 sẽ làm tăng kích thước gói tin vượt quá MTU tối đa 1500. Điều này sẽ yêu cầu phân mảnh thông điệp 1 và 2, và sẽ là một biến chứng lớn. Có lẽ sẽ không thực hiện.
 
+Relay và Peer Test: Xem phía trên
 
 ### Streaming
 
-TODO: Is there a more efficient way to define signing/verification
-to avoid copying the signature?
+TODO: Có cách nào hiệu quả hơn để định nghĩa việc ký/xác minh nhằm tránh sao chép chữ ký không?
 
+### Tệp SU3
 
+CẦN LÀM
 
-### SU3 Files
+[Bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) mục 8.1 không cho phép HashML-DSA trong chứng chỉ X.509 và không gán OID cho HashML-DSA, do độ phức tạp trong triển khai và bảo mật giảm.
 
-TODO
+Đối với chữ ký chỉ PQ của các tệp SU3, sử dụng các OID được định nghĩa trong [bản nháp IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) của các biến thể non-prehash cho các chứng chỉ. Chúng tôi không định nghĩa chữ ký hybrid của các tệp SU3, vì chúng tôi có thể phải băm các tệp hai lần (mặc dù HashML-DSA và X2559 sử dụng cùng hàm băm SHA512). Ngoài ra, việc nối hai khóa và chữ ký trong một chứng chỉ X.509 sẽ hoàn toàn không theo chuẩn.
 
-[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) section 8.1 disallows HashML-DSA in X.509 certificates
-and does not assign OIDs for HashML-DSA, because of implementation
-complexities and reduced security.
+Lưu ý rằng chúng tôi không cho phép ký Ed25519 cho các tệp SU3, và mặc dù chúng tôi đã định nghĩa việc ký Ed25519ph, chúng tôi chưa bao giờ thống nhất về OID cho nó, hoặc sử dụng nó.
 
-For PQ-only signatures of SU3 files,
-use the OIDs defined in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) of the non-prehash variants for the certificates.
-We do not define hybrid signatures of SU3 files,
-because we may have to hash the files twice (although HashML-DSA and X2559 use the same
-hash function SHA512). Also, concatenating two keys and signatures in
-a X.509 certificate would be completely nonstandard.
+Các loại chữ ký thông thường không được phép cho tệp SU3; sử dụng các biến thể ph (prehash).
 
-Note that we disallow Ed25519 signing of SU3 files,
-and while we have defined Ed25519ph signing, we have never agreed on an OID for it,
-or used it.
+### Các Thông Số Kỹ Thuật Khác
 
-The normal sig types are disallowed for SU3 files; use the ph (prehash) variants.
+Kích thước Destination tối đa mới sẽ là 2599 (3468 trong base 64).
 
-
-
-### Other Specs
-
-The new maximum Destination size will be 2599 (3468 in base 64).
-
-Update other documents that give guidance on Destination sizes, including:
+Cập nhật các tài liệu khác đưa ra hướng dẫn về kích thước Destination, bao gồm:
 
 - SAMv3
 - Bittorrent
-- Developer guidelines
-- Naming / addressbook / jump servers
-- Other docs
+- Hướng dẫn dành cho nhà phát triển
+- Đặt tên / sổ địa chỉ / jump servers
+- Tài liệu khác
 
+## Phân Tích Chi Phí Phụ Trội
 
-## Overhead Analysis
+### Trao đổi khóa
 
-### Key Exchange
+Tăng kích thước (bytes):
 
-Size increase (bytes):
-
-| Type | Pubkey (Msg 1) | Cipertext (Msg 2) |
+| Loại | Pubkey (Msg 1) | Cipertext (Msg 2) |
 |------|----------------|-------------------|
 | MLKEM512_X25519 | +816 | +784 |
 | MLKEM768_X25519 | +1200 | +1104 |
 | MLKEM1024_X25519 | +1584 | +1584 |
+Tốc độ:
 
-Speed:
+Tốc độ như được báo cáo bởi [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
-Speeds as reported by [Cloudflare](https://blog.cloudflare.com/pq-2024/):
-
-| Type | Relative speed |
+| Loại | Tốc độ tương đối |
 |------|----------------|
-| X25519 DH/keygen | baseline |
-| MLKEM512 | 2.25x faster |
-| MLKEM768 | 1.5x faster |
-| MLKEM1024 | 1x (same) |
+| X25519 DH/keygen | cơ sở |
+| MLKEM512 | nhanh hơn 2.25x |
+| MLKEM768 | nhanh hơn 1.5x |
+| MLKEM1024 | 1x (tương đương) |
 | XK | 4x DH (keygen + 3 DH) |
-| MLKEM512_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 4.9x DH = 22% slower |
-| MLKEM768_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 5.3x DH = 32% slower |
-| MLKEM1024_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 6x DH = 50% slower |
+| MLKEM512_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 4.9x DH = chậm hơn 22% |
+| MLKEM768_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 5.3x DH = chậm hơn 32% |
+| MLKEM1024_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 6x DH = chậm hơn 50% |
+Kết quả kiểm tra sơ bộ trong Java:
 
-
-Preliminary test results in Java:
-
-| Type | Relative DH/encaps | DH/decaps | keygen |
+| Loại | DH/encaps tương đối | DH/decaps | keygen |
 |------|-------------------|-----------|--------|
-| X25519 | baseline | baseline | baseline |
-| MLKEM512 | 29x faster | 22x faster | 17x faster |
-| MLKEM768 | 17x faster | 14x faster | 9x faster |
-| MLKEM1024 | 12x faster | 10x faster | 6x faster |
+| X25519 | cơ sở | cơ sở | cơ sở |
+| MLKEM512 | nhanh hơn 29x | nhanh hơn 22x | nhanh hơn 17x |
+| MLKEM768 | nhanh hơn 17x | nhanh hơn 14x | nhanh hơn 9x |
+| MLKEM1024 | nhanh hơn 12x | nhanh hơn 10x | nhanh hơn 6x |
+### Chữ ký
 
+Kích thước:
 
-### Signatures
+Kích thước điển hình của key, sig, RIdent, Dest hoặc mức tăng kích thước (Ed25519 được bao gồm để tham khảo) giả sử loại mã hóa X25519 cho các RI. Kích thước được thêm vào cho một Router Info, LeaseSet, các datagram có thể trả lời, và mỗi gói streaming (SYN và SYN ACK) được liệt kê. Các Destination và Leaseset hiện tại chứa padding lặp lại và có thể nén trong quá trình truyền tải. Các loại mới không chứa padding và sẽ không thể nén được, dẫn đến mức tăng kích thước cao hơn nhiều trong quá trình truyền tải. Xem phần thiết kế ở trên.
 
-Size:
-
-Typical key, sig, RIdent, Dest sizes or size increases (Ed25519 included for reference)
-assuming X25519 encryption type for RIs.
-Added size for a Router Info, LeaseSet, repliable datagrams, and each of the two streaming (SYN and SYN ACK) packets listed.
-Current Destinations and Leasesets contain repeated padding and are compressible in-transit.
-New types do not contain padding and will not be compressible,
-resulting in a much higher size increase in-transit.
-See design section above.
-
-
-| Type | Pubkey | Sig | Key+Sig | RIdent | Dest | RInfo | LS/Streaming/Datagram (each msg) |
+| Loại | Pubkey | Sig | Key+Sig | RIdent | Dest | RInfo | LS/Streaming/Datagram (mỗi msg) |
 |------|--------|-----|---------|--------|------|-------|----------------------------------|
 | EdDSA_SHA512_Ed25519 | 32 | 64 | 96 | 391 | 391 | baseline | baseline |
 | MLDSA44 | 1312 | 2420 | 3732 | 1351 | 1319 | +3316 | +3284 |
@@ -1570,468 +1359,259 @@ See design section above.
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
+Tốc độ:
 
-Speed:
+Tốc độ như được báo cáo bởi [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
-Speeds as reported by [Cloudflare](https://blog.cloudflare.com/pq-2024/):
-
-| Type | Relative speed sign | verify |
+| Loại | Tốc độ tương đối ký | xác minh |
 |------|---------------------|--------|
-| EdDSA_SHA512_Ed25519 | baseline | baseline |
-| MLDSA44 | 5x slower | 2x faster |
+| EdDSA_SHA512_Ed25519 | cơ sở | cơ sở |
+| MLDSA44 | chậm hơn 5 lần | nhanh hơn 2 lần |
 | MLDSA65 | ??? | ??? |
 | MLDSA87 | ??? | ??? |
+Kết quả kiểm tra sơ bộ trong Java:
 
-Preliminary test results in Java:
-
-| Type | Relative speed sign | verify | keygen |
+| Loại | Dấu hiệu tốc độ tương đối | xác minh | tạo khóa |
 |------|---------------------|--------|--------|
-| EdDSA_SHA512_Ed25519 | baseline | baseline | baseline |
-| MLDSA44 | 4.6x slower | 1.7x faster | 2.6x faster |
-| MLDSA65 | 8.1x slower | same | 1.5x faster |
-| MLDSA87 | 11.1x slower | 1.5x slower | same |
+| EdDSA_SHA512_Ed25519 | cơ sở | cơ sở | cơ sở |
+| MLDSA44 | chậm hơn 4.6x | nhanh hơn 1.7x | nhanh hơn 2.6x |
+| MLDSA65 | chậm hơn 8.1x | tương đương | nhanh hơn 1.5x |
+| MLDSA87 | chậm hơn 11.1x | chậm hơn 1.5x | tương đương |
+## Phân Tích Bảo Mật
 
+Các danh mục bảo mật NIST được tóm tắt trong [bài thuyết trình NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10. Tiêu chí sơ bộ: Danh mục bảo mật NIST tối thiểu của chúng ta nên là 2 đối với các giao thức hybrid và 3 đối với PQ-only.
 
-
-
-## Security Analysis
-
-NIST security categories are summarized in [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10.
-Preliminary criteria:
-Our minimum NIST security category should be 2 for hybrid protocols
-and 3 for PQ-only.
-
-| Category | As Secure As |
-|----------|--------------|
+| Danh mục | Bảo mật tương đương |
+|----------|---------------------|
 | 1 | AES128 |
 | 2 | SHA256 |
 | 3 | AES192 |
 | 4 | SHA384 |
 | 5 | AES256 |
+### Bắt tay
 
+Đây là tất cả các giao thức hybrid. Các triển khai nên ưu tiên MLKEM768; MLKEM512 không đủ an toàn.
 
-### Handshakes
-These are all hybrid protocols.
-Implementations should prefer MLKEM768; MLKEM512 is not secure enough.
+Các danh mục bảo mật NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
-NIST security categories [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
-
-| Algorithm | Security Category |
-|-----------|-------------------|
+| Thuật toán | Loại Bảo mật |
+|-----------|--------------|
 | MLKEM512 | 1 |
 | MLKEM768 | 3 |
 | MLKEM1024 | 5 |
+### Chữ ký
 
+Đề xuất này định nghĩa cả các loại chữ ký hybrid và chỉ PQ. MLDSA44 hybrid được ưu tiên hơn MLDSA65 chỉ PQ. Kích thước khóa và chữ ký cho MLDSA65 và MLDSA87 có thể quá lớn đối với chúng ta, ít nhất là lúc đầu.
 
-### Signatures
-This proposal defines both hybrid and PQ-only signature types.
-MLDSA44 hybrid is preferable to MLDSA65 PQ-only.
-The keys and sig sizes for MLDSA65 and MLDSA87 are probably too big for us, at least at first.
+Các danh mục bảo mật NIST [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
 
-NIST security categories [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
-
-| Algorithm | Security Category |
+| Thuật toán | Danh mục Bảo mật |
 |-----------|-------------------|
 | MLDSA44 | 2 |
 | MLKEM67 | 3 |
 | MLKEM87 | 5 |
+## Tùy chọn Loại
 
+Trong khi chúng tôi sẽ định nghĩa và triển khai 3 loại crypto và 9 loại signature, chúng tôi dự định đo lường hiệu suất trong quá trình phát triển, và phân tích thêm các ảnh hưởng của việc tăng kích thước cấu trúc. Chúng tôi cũng sẽ tiếp tục nghiên cứu và theo dõi các phát triển trong các dự án và giao thức khác.
 
-## Type Preferences
+Sau một năm hoặc hơn phát triển, chúng tôi sẽ cố gắng quyết định loại ưa thích hoặc mặc định cho từng trường hợp sử dụng. Việc lựa chọn sẽ yêu cầu cân nhắc giữa băng thông, CPU và mức độ bảo mật ước tính. Không phải tất cả các loại đều phù hợp hoặc được cho phép cho mọi trường hợp sử dụng.
 
-While we will define and implement 3 crypto and 9 signature types, we
-plan to measure performance during development, and further analyze
-the effects of increased structure sizes. We will also continue
-to research and monitor developments in other projects and protocols.
+Các thiết lập ưu tiên sơ bộ như sau, có thể thay đổi:
 
-After a year or more of development we will attempt to settle on
-a preferred type or default for each use case.
-Selection will require making tradeoffs of bandwidth, CPU, and estimated security level.
-All types may not be suitable or allowed for all use cases.
+Mã hóa: MLKEM768_X25519
 
+Chữ ký: MLDSA44_EdDSA_SHA512_Ed25519
 
-Preliminary preferences are as follows, subject to change:
+Các hạn chế sơ bộ như sau, có thể thay đổi:
 
-Encryption: MLKEM768_X25519
+Mã hóa: MLKEM1024_X25519 không được phép cho SSU2
 
-Signatures: MLDSA44_EdDSA_SHA512_Ed25519
+Chữ ký: MLDSA87 và biến thể hybrid có thể quá lớn; MLDSA65 và biến thể hybrid có thể quá lớn
 
-Preliminary restrictions are as follows, subject to change:
+## Ghi chú Triển khai
 
-Encryption: MLKEM1024_X25519 not allowed for SSU2
+### Hỗ trợ Thư viện
 
-Signatures: MLDSA87 and hybrid variant probably too large;
-MLDSA65 and hybrid variant may be too large
+Các thư viện Bouncycastle, BoringSSL, và WolfSSL hiện đã hỗ trợ MLKEM và MLDSA. Hỗ trợ OpenSSL sẽ có trong phiên bản 3.5 của họ vào ngày 8 tháng 4 năm 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
+Thư viện Noise của southernstorm.com được Java I2P điều chỉnh có chứa hỗ trợ sơ bộ cho hybrid handshakes (bắt tay lai), nhưng chúng tôi đã loại bỏ nó vì không được sử dụng; chúng tôi sẽ phải thêm lại và cập nhật để phù hợp với [đặc tả Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 
+### Các Biến Thể Ký
 
-## Implementation Notes
+Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, không phải biến thể "deterministic", như được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) mục 3.4. Điều này đảm bảo rằng mỗi chữ ký đều khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp bảo vệ bổ sung chống lại các cuộc tấn công kênh phụ. Mặc dù [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) chỉ định rằng biến thể "hedged" là mặc định, điều này có thể đúng hoặc không trong các thư viện khác nhau. Những người triển khai phải đảm bảo rằng biến thể "hedged" được sử dụng để ký.
 
-### Library Support
+Chúng tôi sử dụng quy trình ký bình thường (được gọi là Pure ML-DSA Signature Generation) mã hóa thông điệp nội bộ thành 0x00 || len(ctx) || ctx || message, trong đó ctx là một giá trị tùy chọn có kích thước từ 0x00..0xFF. Chúng tôi không sử dụng bất kỳ ngữ cảnh tùy chọn nào. len(ctx) == 0. Quy trình này được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 bước 10 và Algorithm 3 bước 5. Lưu ý rằng một số test vector đã công bố có thể yêu cầu thiết lập chế độ mà thông điệp không được mã hóa.
 
-Bouncycastle, BoringSSL, and WolfSSL libraries support MLKEM and MLDSA now.
-OpenSSL support is be in their 3.5 release April 8, 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+### Độ tin cậy
 
-The southernstorm.com Noise library adapted by Java I2P contained preliminary support for
-hybrid handshakes, but we removed it as unused; we will have to add it back
-and update it to match [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
+Việc tăng kích thước sẽ dẫn đến phân mảnh tunnel nhiều hơn cho các kho lưu trữ NetDB, quá trình bắt tay streaming và các thông điệp khác. Hãy kiểm tra các thay đổi về hiệu suất và độ tin cậy.
 
-### Signing Variants
+### Kích Thước Cấu Trúc
 
-We will use the "hedged" or randomized signing variant,
-not the "determinstic" variant, as defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) section 3.4.
-This ensures that each signature is different, even when over the same data,
-and provides additional protection against side-channel attacks.
-While [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) specifies that the "hedged" variant is the default,
-this may or may not be true in various libraries.
-Implementors must ensure that the "hedged" variant is used for signing.
-
-We use the normal signing process (called Pure ML-DSA Signature Generation)
-which encodes the message internally as 0x00 || len(ctx) || ctx || message,
-where ctx is some optional value of size 0x00..0xFF.
-We are not using any optional context. len(ctx) == 0.
-This process is defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 step 10 and Algorithm 3 step 5.
-Note that some published test vectors may require setting a mode
-where the message is not encoded.
-
-
-
-### Reliability
-
-Size increase will result in much more tunnel fragmentation
-for NetDB stores, streaming handshakes, and other messages.
-Check for performance and reliability changes.
-
-
-### Structure Sizes
-
-Find and check any code that limits the byte size of router infos and leasesets.
-
+Tìm và kiểm tra bất kỳ mã nào giới hạn kích thước byte của router info và leaseSet.
 
 ### NetDB
 
-Review and possibly reduce maximum LS/RI stored in RAM or on disk,
-to limit storage increase.
-Increase minimum bandwidth requirements for floodfills?
-
+Xem xét và có thể giảm số lượng LS/RI tối đa được lưu trữ trong RAM hoặc trên đĩa, để hạn chế việc tăng dung lượng lưu trữ. Tăng yêu cầu băng thông tối thiểu cho các floodfill?
 
 ### Ratchet
 
 #### Shared Tunnels
 
-Auto-classify/detect of multiple protocols on the same tunnels should be possible based
-on a length check of message 1 (New Session Message).
-Using MLKEM512_X25519 as an example, message 1 length is 816 bytes larger
-than current ratchet protocol, and the minimum message 1 size (with only a DateTime payload included)
-is 919 bytes. Most message 1 sizes with current ratchet have a payload less than
-816 bytes, so they can be classified as non-hybrid ratchet.
-Large messages are probably POSTs which are rare.
+Việc tự động phân loại/phát hiện nhiều giao thức trên cùng các tunnel có thể thực hiện được dựa trên việc kiểm tra độ dài của thông điệp 1 (New Session Message). Sử dụng MLKEM512_X25519 làm ví dụ, độ dài thông điệp 1 lớn hơn 816 byte so với giao thức ratchet hiện tại, và kích thước tối thiểu của thông điệp 1 (chỉ bao gồm payload DateTime) là 919 byte. Hầu hết các kích thước thông điệp 1 với ratchet hiện tại có payload nhỏ hơn 816 byte, do đó chúng có thể được phân loại là ratchet không lai. Các thông điệp lớn có thể là POST và thường hiếm gặp.
 
-So the recommended strategy is:
+Vì vậy chiến lược được khuyến nghị là:
 
-- If message 1 is less than 919 bytes, it's the current ratchet protocol.
-- If message 1 is greater than or equal to 919 bytes, it's probably MLKEM512_X25519.
-  Try MLKEM512_X25519 first, and if it fails, try the current ratchet protocol.
+- Nếu message 1 nhỏ hơn 919 byte, đó là giao thức ratchet hiện tại.
+- Nếu message 1 lớn hơn hoặc bằng 919 byte, có thể là MLKEM512_X25519.
+  Thử MLKEM512_X25519 trước, và nếu thất bại, hãy thử giao thức ratchet hiện tại.
 
-This should allow us to efficiently support standard ratchet and hybrid ratchet
-on the same destination, just as we previously supported ElGamal and ratchet
-on the same destination. Therefore, we can migrate to the MLKEM hybrid protocol
-much more quickly than if we could not support dual-protocols for the same destination,
-because we can add MLKEM support to existing destinations.
+Điều này sẽ cho phép chúng ta hỗ trợ hiệu quả cả ratchet tiêu chuẩn và hybrid ratchet trên cùng một destination, giống như trước đây chúng ta đã hỗ trợ ElGamal và ratchet trên cùng một destination. Do đó, chúng ta có thể chuyển đổi sang giao thức MLKEM hybrid nhanh hơn nhiều so với việc không thể hỗ trợ dual-protocols cho cùng một destination, bởi vì chúng ta có thể thêm hỗ trợ MLKEM vào các destination hiện có.
 
-The required supported combinations are:
+Các kết hợp được hỗ trợ bắt buộc là:
 
 - X25519 + MLKEM512
 - X25519 + MLKEM768
 - X25519 + MLKEM1024
 
-The following combinations may be complex, and are NOT required to be supported,
-but may be, implementation-dependent:
+Các kết hợp sau đây có thể phức tạp và KHÔNG bắt buộc phải được hỗ trợ, nhưng có thể được hỗ trợ tùy thuộc vào cách triển khai:
 
-- More than one MLKEM
-- ElG + one or more MLKEM
-- X25519 + one or more MLKEM
-- ElG + X25519 + one or more MLKEM
+- Nhiều hơn một MLKEM
+- ElG + một hoặc nhiều MLKEM
+- X25519 + một hoặc nhiều MLKEM
+- ElG + X25519 + một hoặc nhiều MLKEM
 
-We may not attempt to support multiple MLKEM algorithms
-(for example, MLKEM512_X25519 and MLKEM_768_X25519)
-on the same destination. Pick just one; however, that depends on us
-selecting a preferred MLKEM variant, so HTTP client tunnels can use one.
-Implementation-dependent.
+Chúng tôi có thể không cố gắng hỗ trợ nhiều thuật toán MLKEM (ví dụ, MLKEM512_X25519 và MLKEM_768_X25519) trên cùng một destination. Chỉ chọn một; tuy nhiên, điều này phụ thuộc vào việc chúng ta lựa chọn một biến thể MLKEM ưu tiên, để các tunnel HTTP client có thể sử dụng một. Phụ thuộc vào triển khai.
 
-We MAY attempt to support three algorithms (for example X25519, MLKEM512_X25519, and MLKEM769_X25519)
-on the same destination. The classification and retry strategy may be too complex.
-The configuration and configuration UI may be too complex.
-Implementation-dependent.
+Chúng ta CÓ THỂ cố gắng hỗ trợ ba thuật toán (ví dụ X25519, MLKEM512_X25519, và MLKEM769_X25519) trên cùng một destination. Việc phân loại và chiến lược thử lại có thể quá phức tạp. Cấu hình và giao diện cấu hình có thể quá phức tạp. Phụ thuộc vào việc triển khai.
 
-We will probably NOT attempt to support ElGamal and hybrid algorithms on the same destination.
-ElGamal is obsolete, and ElGamal + hybrid only (no X25519) doesn't make much sense.
-Also, ElGamal and Hybrid New Session Messages are both large, so
-classification strategies would often have to try both decryptions,
-which would be inefficient.
-Implementation-dependent.
+Chúng tôi có thể sẽ KHÔNG cố gắng hỗ trợ thuật toán ElGamal và hybrid trên cùng một destination. ElGamal đã lỗi thời, và ElGamal + hybrid only (không có X25519) không có nhiều ý nghĩa. Ngoài ra, cả ElGamal và Hybrid New Session Messages đều có kích thước lớn, do đó các chiến lược phân loại thường phải thử cả hai cách giải mã, điều này sẽ không hiệu quả. Phụ thuộc vào cách triển khai.
 
-Clients may use the same or different X25519 static keys for the X25519
-and the hybrid protocols on the same tunnels, implementation-dependent.
+Các client có thể sử dụng cùng hoặc khác nhau các khóa tĩnh X25519 cho các giao thức X25519 và hybrid trên cùng một tunnel, tùy thuộc vào cách triển khai.
 
+#### Bảo mật tiến về phía trước
 
-#### Forward Secrecy
+Đặc tả ECIES cho phép Garlic Messages trong payload của New Session Message, điều này cho phép giao hàng 0-RTT của gói streaming ban đầu, thường là HTTP GET, cùng với leaseset của client. Tuy nhiên, payload của New Session Message không có tính bảo mật chuyển tiếp (forward secrecy). Vì đề xuất này nhấn mạnh việc tăng cường forward secrecy cho ratchet, các triển khai có thể hoặc nên hoãn việc bao gồm payload streaming, hoặc toàn bộ thông điệp streaming, cho đến Existing Session Message đầu tiên. Điều này sẽ phải đánh đổi khả năng giao hàng 0-RTT. Các chiến lược cũng có thể phụ thuộc vào loại traffic hoặc loại tunnel, hoặc vào GET so với POST, chẳng hạn. Phụ thuộc vào triển khai.
 
-The ECIES specification allows Garlic Messages in the New Session Message payload,
-which allows for 0-RTT delivery of the initial streaming packet,
-usually a HTTP GET, together with the client's leaseset.
-However, the New Session Message payload does not have forward secrecy.
-As this proposal is emphasizing enhanced forward secrecy for ratchet,
-implementations may or should defer inclusion of the streaming payload,
-or the full streaming message, until the first Existing Session Message.
-This would be at the expense of 0-RTT delivery.
-Strategies may also depend on traffic type or tunnel type,
-or on GET vs. POST, for example.
-Implementation-dependent.
+#### Kích Thước Phiên Mới
 
-#### New Session Size
-
-MLKEM, MLDSA, or both on the same destination, will dramatically increase
-the size of the New Session Message, as described above.
-This may significantly decrease the reliability of New Session Message
-delivery through tunnels, where they must be fragmented into
-multiple 1024 byte tunnel messages. Delivery success is
-proportional to the exponential number of fragments.
-Implementations may use various strategies to limit the size of the message,
-at the expense of 0-RTT delivery.
-Implementation-dependent.
-
+MLKEM, MLDSA, hoặc cả hai trên cùng một đích đến, sẽ tăng đáng kể kích thước của New Session Message, như đã mô tả ở trên. Điều này có thể làm giảm đáng kể độ tin cậy của việc gửi New Session Message qua tunnel, nơi chúng phải được phân mảnh thành nhiều tunnel message 1024 byte. Thành công trong việc gửi tỷ lệ thuận với số lượng mảnh theo cấp số nhân. Các implementation có thể sử dụng nhiều chiến lược khác nhau để giới hạn kích thước của message, với chi phí là việc gửi 0-RTT. Phụ thuộc vào implementation.
 
 ### NTCP2
 
-We set the MSB of the ephemeral key
-(key[31] & 0x80) in the session request to indicate that this
-is a hybrid connection.
-This allows us to run both standard NTCP and hybrid NTCP
-on the same port.
-Only one hybrid variant would be supported, and advertised in the router address.
-For example, v=2,3 or v=2,4 or v=2,5.
+Chúng tôi thiết lập MSB của khóa tạm thời (key[31] & 0x80) trong yêu cầu phiên để chỉ ra rằng đây là kết nối lai. Điều này cho phép chúng tôi chạy cả NTCP tiêu chuẩn và NTCP lai trên cùng một cổng. Chỉ một biến thể lai được hỗ trợ và được quảng cáo trong địa chỉ router. Ví dụ, v=2,3 hoặc v=2,4 hoặc v=2,5.
 
-#### Obfuscation
+#### Làm mờ
 
-As Alice, for a PQ connection, before obfuscation, set X[31] |= 0x80.
-This makes X an invalid X25519 public key.
-After obfuscation, AES-CBC will randomize it.
-The MSB of X will be random after obfuscation.
+Với vai trò Alice, đối với kết nối PQ, trước khi làm mờ, đặt X[31] |= 0x80. Điều này làm cho X trở thành khóa công khai X25519 không hợp lệ. Sau khi làm mờ, AES-CBC sẽ làm ngẫu nhiên hóa nó. MSB của X sẽ là ngẫu nhiên sau khi làm mờ.
 
-As Bob, test if (X[31] & 0x80) != 0 after de-obfuscation.
-If so, it's a PQ connection.
+Với tư cách là Bob, kiểm tra xem (X[31] & 0x80) != 0 sau khi bỏ obfuscation. Nếu đúng, đây là kết nối PQ.
 
-The minimum router version required for NTCP2-PQ is TBD.
+Phiên bản router tối thiểu yêu cầu cho NTCP2-PQ là TBD.
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
-
+Lưu ý: Mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong địa chỉ router.
 
 ### SSU2
 
-We use the version field in the long header and set it to 3 for MLKEM512 and 4 for MLKEM768.
-v=2,3,4 in the address would be sufficient.
+Chúng tôi sử dụng trường version trong long header và đặt nó thành 3 cho MLKEM512 và 4 cho MLKEM768. v=2,3,4 trong địa chỉ sẽ là đủ.
 
-Check and verify that SSU2 can handle MLDSA-signed RI fragmented across
-multiple packets (6-8?).
+Kiểm tra và xác minh rằng SSU2 có thể xử lý RI được ký MLDSA phân mảnh trên nhiều gói tin (6-8?).
 
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
+Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong địa chỉ router.
 
+## Tương thích Router
 
+### Tên Transport
 
+Trong tất cả các trường hợp, sử dụng tên transport NTCP2 và SSU2 như thường lệ.
 
-## Router Compatibility
+### Các Loại Mã Hóa Router
 
-### Transport Names
+Chúng ta có một số lựa chọn thay thế để xem xét:
 
-We will probably not require new transport names,
-if we can run both standard and hybrid on the same port,
-with version flags.
+#### Router Loại 5/6/7
 
-If we do require new transport names, they would be:
+Không được khuyến khích. Chỉ sử dụng các giao thức vận chuyển mới được liệt kê ở trên phù hợp với loại router. Các router cũ hơn không thể kết nối, xây dựng tunnel qua, hoặc gửi tin nhắn netdb đến. Sẽ mất vài chu kỳ phát hành để debug và đảm bảo hỗ trợ trước khi bật mặc định. Có thể kéo dài quá trình triển khai thêm một năm hoặc hơn so với các phương án thay thế bên dưới.
 
+#### Type 4 Router
 
-| Transport | Type |
-|-----------|------|
-| NTCP2PQ1 | MLKEM512_X25519 |
-| NTCP2PQ2 | MLKEM768_X25519 |
-| NTCP2PQ3 | MLKEM1024_X25519 |
-| SSU2PQ1 | MLKEM512_X25519 |
-| SSU2PQ2 | MLKEM768_X25519 |
+Được khuyến nghị. Vì PQ không ảnh hưởng đến khóa tĩnh X25519 hoặc các giao thức bắt tay N, chúng ta có thể để các router ở loại 4, và chỉ quảng bá các transport mới. Các router cũ vẫn có thể kết nối, xây dựng tunnel thông qua, hoặc gửi tin nhắn netDb đến.
 
-Note that SSU2 cannot support MLKEM1024, it is too big.
+#### Khuyến nghị
 
+MLKEM-768 được khuyến nghị cho Ratchet, NTCP2, và SSU2, vì là sự cân bằng tốt nhất giữa bảo mật và độ dài khóa.
 
+### Các Loại Chữ Ký Router
 
-### Router Enc. Types
+#### Router Loại 12-17
 
-We have several alternatives to consider:
+Các router cũ hơn xác minh RIs và do đó không thể kết nối, xây dựng tunnel thông qua, hoặc gửi tin nhắn netDb đến. Sẽ cần vài chu kỳ phát hành để gỡ lỗi và đảm bảo hỗ trợ trước khi bật theo mặc định. Sẽ có những vấn đề tương tự như việc triển khai enc. type 5/6/7; có thể kéo dài việc triển khai thêm một năm hoặc hơn so với phương án thay thế triển khai enc. type 4 được liệt kê ở trên.
 
-#### Type 5/6/7 Routers
+Không có lựa chọn thay thế.
 
-Not recommended.
-Use only the new transports listed above that match the router type.
-Older routers cannot connect, build tunnels through, or send netdb messages to.
-Would take several release cycles to debug and ensure support before enabling by default.
-Might extend rollout by a year or more over alternatives below.
+### Các loại mã hóa LS
 
+#### Khóa LS Loại 5-7
 
-#### Type 4 Routers
+Những key này có thể có mặt trong leaseSet với các key X25519 loại 4 cũ hơn. Các router cũ sẽ bỏ qua những key không xác định.
 
-Recommended.
-As PQ does not affect the X25519 static key or N handshake protocols,
-we could leave the routers as type 4, and just advertise new transports.
-Older routers could still connect, build tunnels through, or send netdb messages to.
+Các destination có thể hỗ trợ nhiều loại khóa, nhưng chỉ bằng cách thực hiện thử giải mã thông điệp 1 với từng khóa. Chi phí phụ trội có thể được giảm thiểu bằng cách duy trì số lượng giải mã thành công cho từng khóa, và thử khóa được sử dụng nhiều nhất trước. Java I2P sử dụng chiến lược này cho ElGamal+X25519 trên cùng một destination.
 
-
-#### NTCP2 Alternatives
-
-Type 4 routers could advertise both NTCP2 and NTCP2PQ* addresses.
-These could use the same static key and other parameters, or not.
-These will probably need to be on different ports;
-it would be very difficult to support both NTCP2 and NTCP2PQ* protocols
-on the same port, as there is no header or framing that would allow
-Bob to classify and frame the incoming Session Request message.
-
-Separate ports and addresses will be difficult for Java but straightforward for i2pd.
-
-
-#### SSU2 Alternatives
-
-Type 4 routers could advertise both SSU2 and SSU2PQ* addresses.
-With added header flags, Bob could identify the incoming transport
-type in the first message. Therefore, we could support
-both SSU2 and SSUPQ* on the same port.
-
-These could be published as separate addresses (as i2pd has done
-in previous transitions) or in the same address with a parameter
-indicating PQ support (as Java i2p has done in previous transitions).
-
-If in the same address, or on the same port in different addresses, these would use the same static key and other parameters.
-If in different addresses with different ports, these could use the same static key and other parameters, or not.
-
-Separate ports and addresses will be difficult for Java but straightforward for i2pd.
-
-
-#### Recommendations
-
-TODO
-
-
-### Router Sig. Types
-
-#### Type 12-17 Routers
-
-Older routers verify RIs and so cannot connect, build tunnels through, or send netdb messages to.
-Would take several release cycles to debug and ensure support before enabling by default.
-Would be the same issues as the enc. type 5/6/7 rollout;
-might extend rollout by a year or more over the type 4 enc. type rollout alternative listed above.
-
-No alternatives.
-
-
-### LS Enc. Types
-
-#### Type 5-7 LS Keys
-
-These may be present in the LS with older type 4 X25519 keys.
-Older routers will ignore unknown keys.
-
-Destinations can support multiple key types, but only by doing trial decrypts of
-message 1 with each key.
-The overhead may be mitigated by maintaining counts of successful decrypts for each key,
-and trying the most-used key first.
-Java I2P uses this strategy for ElGamal+X25519 on the same destination.
-
-
-### Dest. Sig. Types
+### Loại Chữ Ký Đích
 
 #### Type 12-17 Dests
 
-Routers verify leaseset signatures and so cannot connect, or receive leasesets for type 12-17 destinations.
-Would take several release cycles to debug and ensure support before enabling by default.
+Các router xác minh chữ ký leaseSet và do đó không thể kết nối hoặc nhận leaseSet cho các điểm đến loại 12-17. Sẽ cần nhiều chu kỳ phát hành để gỡ lỗi và đảm bảo hỗ trợ trước khi bật theo mặc định.
 
-No alternatives.
+Không có lựa chọn thay thế.
 
+## Ưu tiên và Triển khai
 
-## Priorities and Rollout
+Dữ liệu có giá trị nhất là lưu lượng end-to-end, được mã hóa bằng ratchet. Với tư cách là người quan sát bên ngoài giữa các tunnel hop, dữ liệu đó được mã hóa thêm hai lần nữa, bằng tunnel encryption và transport encryption. Với tư cách là người quan sát bên ngoài giữa OBEP và IBGW, nó chỉ được mã hóa thêm một lần nữa, bằng transport encryption. Với tư cách là người tham gia OBEP hoặc IBGW, ratchet là mã hóa duy nhất. Tuy nhiên, vì các tunnel là đơn hướng, việc bắt giữ cả hai thông điệp trong ratchet handshake sẽ yêu cầu các router thông đồng, trừ khi các tunnel được xây dựng với OBEP và IBGW trên cùng một router.
 
-The most valuable data are the end-to-end traffic, encrypted with ratchet.
-As an external observer between tunnel hops, that's encrypted twice more, with tunnel encryption and transport encryption.
-As an external observer between OBEP and IBGW, it's encrypted only once more, with transport encryption.
-As a OBEP or IBGW participant, ratchet is the only encryption.
-However, as tunnels are unidirectional, capturing both messages in the ratchet handshake
-would require colluding routers, unless tunnels were built with the
-OBEP and IBGW on the same router.
+Mô hình đe dọa PQ đáng lo ngại nhất hiện tại là việc lưu trữ lưu lượng ngày hôm nay để giải mã nhiều năm sau (forward secrecy). Một phương pháp lai sẽ bảo vệ được điều đó.
 
-The most worrisome PQ threat model right now is storing traffic today, for decryption many many years from now (forward secrecy).
-A hybrid approach would protect that.
+Mô hình đe dọa PQ về việc phá vỡ các khóa xác thực trong một khoảng thời gian hợp lý (chẳng hạn vài tháng) và sau đó mạo danh xác thực hoặc giải mã gần như thời gian thực, thì còn xa hơn nhiều? Và đó là lúc chúng ta muốn di chuyển sang các khóa tĩnh PQC.
 
-The PQ threat model of breaking the authentication keys in some reasonable period of time
-(say a few months) and then impersonating the authentication or decrypting in almost-real-time,
-is much farther off? And that's when we'd want to migrate to PQC static keys.
+Vậy nên, mô hình đe dọa PQ sớm nhất là OBEP/IBGW lưu trữ lưu lượng để giải mã sau này. Chúng ta nên triển khai hybrid ratchet trước.
 
-So, the earliest PQ threat model is OBEP/IBGW storing traffic for later decryption.
-We should implement hybrid ratchet first.
+Ratchet có độ ưu tiên cao nhất. Transports là tiếp theo. Signatures có độ ưu tiên thấp nhất.
 
-Ratchet is the highest priority.
-Transports are next.
-Signatures are the lowest priority.
+Việc triển khai chữ ký cũng sẽ muộn hơn việc triển khai mã hóa một năm hoặc hơn, vì không thể tương thích ngược. Ngoài ra, việc áp dụng MLDSA trong ngành công nghiệp sẽ được chuẩn hóa bởi CA/Browser Forum và các Certificate Authorities. Các CA cần hỗ trợ hardware security module (HSM) trước tiên, hiện tại chưa có sẵn [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Chúng tôi kỳ vọng CA/Browser Forum sẽ đưa ra quyết định về các lựa chọn tham số cụ thể, bao gồm việc có hỗ trợ hay yêu cầu composite signatures hay không [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-Signature rollout will also be a year or more later than encryption rollout,
-because no backward compatibility is possible.
-Also, MLDSA adoption in the industry will be standardized by the CA/Browser Forum
-and Certificate Authorities. CAs need hardware security module (HSM) support
-first, which is not currently available [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/).
-We expect the CA/Browser Forum to drive decisions on specific parameter
-choices, including whether to support or require composite signatures [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+| Cột mốc | Mục tiêu |
+|---------|----------|
+| Ratchet beta | Cuối 2025 |
+| Chọn loại mã hóa tốt nhất | Đầu 2026 |
+| NTCP2 beta | Đầu 2026 |
+| SSU2 beta | Giữa 2026 |
+| Ratchet production | Giữa 2026 |
+| Ratchet mặc định | Cuối 2026 |
+| Signature beta | Cuối 2026 |
+| NTCP2 production | Cuối 2026 |
+| SSU2 production | Đầu 2027 |
+| Chọn loại chữ ký tốt nhất | Đầu 2027 |
+| NTCP2 mặc định | Đầu 2027 |
+| SSU2 mặc định | Giữa 2027 |
+| Signature production | Giữa 2027 |
+## Di chuyển
 
+Nếu chúng ta không thể hỗ trợ cả giao thức ratchet cũ và mới trên cùng các tunnel, việc di chuyển sẽ khó khăn hơn nhiều.
 
+Chúng ta nên có thể chỉ cần thử cái này-rồi-cái kia, như chúng ta đã làm với X25519, để được chứng minh.
 
+## Vấn đề
 
-| Milestone | Target |
-|-----------|--------|
-| Ratchet beta | Late 2025 |
-| Select best enc type | Early 2026 |
-| NTCP2 beta | Early 2026 |
-| SSU2 beta | Mid 2026 |
-| Ratchet production | Mid 2026 |
-| Ratchet default | Late 2026 |
-| Signature beta | Late 2026 |
-| NTCP2 production | Late 2026 |
-| SSU2 production | Early 2027 |
-| Select best sig type | Early 2027 |
-| NTCP2 default | Early 2027 |
-| SSU2 default | Mid 2027 |
-| Signature production | Mid 2027 |
+- Lựa chọn Noise Hash - giữ nguyên SHA256 hay nâng cấp?
+  SHA256 sẽ tốt trong 20-30 năm nữa, không bị đe dọa bởi PQ,
+  Xem [bài thuyết trình NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) và [bài thuyết trình NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Nếu SHA256 bị phá thì chúng ta có vấn đề tồi tệ hơn (netdb).
+- NTCP2 cổng riêng biệt, địa chỉ router riêng biệt
+- SSU2 relay / kiểm tra peer
+- Trường phiên bản SSU2
+- Phiên bản địa chỉ router SSU2
 
-
-
-## Migration
-
-If we can't support both old and new ratchet protocols on the same tunnels,
-migration will be much more difficult.
-
-We should be able to just try one-then-the-other, as we did with X25519, to be proven.
-
-
-
-
-## Issues
-
-- Noise Hash selection - stay with SHA256 or upgrade?
-  SHA256 should be good for another 20-30 years, not threatened by PQ,
-  See [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) and [NCCOE presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
-  If SHA256 is broken we have worse problems (netdb).
-- NTCP2 separate port, separate router address
-- SSU2 relay / peer test
-- SSU2 version field
-- SSU2 router address version
-
-
-## References
+## Tài liệu tham khảo
 
 * [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
 * [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
@@ -2054,6 +1634,7 @@ We should be able to just try one-then-the-other, as we did with X25519, to be p
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)
 * [Rosenpass](https://rosenpass.eu/)

@@ -1,42 +1,42 @@
 ---
 title: "Transport NTCP2"
-description: "Transport TCP basé sur Noise pour les liens router-to-router"
+description: "Transport TCP basé sur Noise pour les liaisons router-à-router"
 slug: "ntcp2"
 category: "Transports"
-lastUpdated: "2026-01"
-accurateFor: "0.9.66"
+lastUpdated: "2026-02"
+accurateFor: "0.9.69"
 ---
 
 ## Aperçu
 
 NTCP2 est un protocole d'accord de clés authentifié qui améliore la résistance de [NTCP](/docs/transport/ntcp) à diverses formes d'identification automatisée et d'attaques.
 
-NTCP2 est conçu pour la flexibilité et la coexistence avec NTCP. Il peut être pris en charge sur le même port que NTCP, ou sur un port différent, ou sans support NTCP simultané du tout. Voir la section Informations du routeur publiées ci-dessous pour plus de détails.
+NTCP2 est conçu pour la flexibilité et la coexistence avec NTCP. Il peut être pris en charge sur le même port que NTCP, ou sur un port différent, ou sans prise en charge simultanée de NTCP du tout. Voir la section Informations du Router Publié ci-dessous pour plus de détails.
 
-Comme pour les autres transports I2P, NTCP2 est défini uniquement pour le transport point-à-point (router à router) des messages I2NP. Ce n'est pas un canal de données à usage général.
+Comme pour les autres transports I2P, NTCP2 est défini uniquement pour le transport point-à-point (router vers router) de messages I2NP. Ce n'est pas un canal de données à usage général.
 
-NTCP2 est pris en charge à partir de la version 0.9.36. Voir [Prop111](/proposals/111-ntcp-2) pour la proposition originale, incluant la discussion de contexte et des informations supplémentaires.
+NTCP2 est pris en charge à partir de la version 0.9.36. Voir [Prop111](/proposals/111-ntcp-2) pour la proposition originale, incluant les discussions de contexte et des informations supplémentaires.
 
 ## Framework de Protocole Noise
 
-NTCP2 utilise le Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Révision 33, 2017-10-04). Noise a des propriétés similaires au protocole Station-To-Station [STS](#references), qui est la base du protocole [SSU](/docs/transport/ssu). Dans le jargon de Noise, Alice est l'initiateur, et Bob est le répondeur.
+NTCP2 utilise le Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Révision 33, 2017-10-04). Noise a des propriétés similaires au protocole Station-To-Station [STS](#references), qui est la base du protocole [SSU](/docs/transport/ssu). Dans la terminologie Noise, Alice est l'initiateur, et Bob est le répondeur.
 
 NTCP2 est basé sur le protocole Noise Noise_XK_25519_ChaChaPoly_SHA256. (L'identifiant réel pour la fonction de dérivation de clé initiale est "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256" pour indiquer les extensions I2P - voir la section KDF 1 ci-dessous) Ce protocole Noise utilise les primitives suivantes :
 
-- Modèle de négociation : XK Alice transmet sa clé à Bob (X) Alice connaît déjà la clé statique de Bob (K)
+- Modèle de poignée de main : XK Alice transmet sa clé à Bob (X) Alice connaît déjà la clé statique de Bob (K)
 - Fonction DH : X25519 X25519 DH avec une longueur de clé de 32 octets comme spécifié dans [RFC-7748](https://tools.ietf.org/html/rfc7748).
 - Fonction de chiffrement : ChaChaPoly AEAD_CHACHA20_POLY1305 comme spécifié dans [RFC-7539](https://tools.ietf.org/html/rfc7539) section 2.8. Nonce de 12 octets, avec les 4 premiers octets définis à zéro.
-- Fonction de hachage : SHA256 Hachage standard de 32 octets, déjà utilisé de manière extensive dans I2P.
+- Fonction de hachage : SHA256 Hachage standard de 32 octets, déjà largement utilisé dans I2P.
 
 ## Ajouts au Framework
 
 NTCP2 définit les améliorations suivantes à Noise_XK_25519_ChaChaPoly_SHA256. Celles-ci suivent généralement les directives de la section 13 de [NOISE](https://noiseprotocol.org/noise.html).
 
-1)  Les clés éphémères en clair sont obscurcies avec un chiffrement AES utilisant une clé et un IV connus. 2)  Un remplissage aléatoire en clair est ajouté aux messages 1 et 2. Le remplissage en clair est inclus dans le calcul du hachage de la négociation (MixHash). Voir les sections KDF ci-dessous pour le message 2 et la partie 1 du message 3. Un remplissage AEAD aléatoire est ajouté au message 3 et aux messages de la phase de données. 3)  Un champ de longueur de trame de deux octets est ajouté, comme requis pour Noise sur TCP, et comme dans obfs4. Ceci est utilisé uniquement dans les messages de la phase de données. Les trames AEAD des messages 1 et 2 ont une longueur fixe. La trame AEAD de la partie 1 du message 3 a une longueur fixe. La longueur de la trame AEAD de la partie 2 du message 3 est spécifiée dans le message 1. 4)  Le champ de longueur de trame de deux octets est obscurci avec SipHash-2-4, comme dans obfs4. 5)  Le format de la charge utile est défini pour les messages 1, 2, 3, et la phase de données. Bien sûr, ceux-ci ne sont pas définis dans le framework.
+1) Les clés éphémères en clair sont obscurcies avec le chiffrement AES en utilisant une clé et un IV connus. 2) Un remplissage aléatoire en clair est ajouté aux messages 1 et 2. Le remplissage en clair est inclus dans le calcul de hachage de la poignée de main (MixHash). Voir les sections KDF ci-dessous pour le message 2 et la partie 1 du message 3. Un remplissage AEAD aléatoire est ajouté au message 3 et aux messages de la phase de données. 3) Un champ de longueur de trame de deux octets est ajouté, comme requis pour Noise sur TCP, et comme dans obfs4. Ceci est utilisé uniquement dans les messages de la phase de données. Les trames AEAD des messages 1 et 2 ont une longueur fixe. La trame AEAD de la partie 1 du message 3 a une longueur fixe. La longueur de la trame AEAD de la partie 2 du message 3 est spécifiée dans le message 1. 4) Le champ de longueur de trame de deux octets est obscurci avec SipHash-2-4, comme dans obfs4. 5) Le format de charge utile est défini pour les messages 1, 2, 3, et la phase de données. Bien sûr, ceux-ci ne sont pas définis dans le framework.
 
 ## Messages
 
-Tous les messages NTCP2 font 65537 octets ou moins en longueur. Le format de message est basé sur les messages Noise, avec des modifications pour l'encadrement et l'indiscernabilité. Les implémentations utilisant des bibliothèques Noise standard peuvent avoir besoin de pré-traiter les messages reçus vers/depuis le format de message Noise. Tous les champs chiffrés sont des textes chiffrés AEAD.
+Tous les messages NTCP2 font 65537 octets ou moins en longueur. Le format de message est basé sur les messages Noise, avec des modifications pour le cadrage et l'indiscernabilité. Les implémentations utilisant les bibliothèques Noise standard peuvent avoir besoin de pré-traiter les messages reçus vers/depuis le format de message Noise. Tous les champs chiffrés sont des textes chiffrés AEAD.
 
 La séquence d'établissement est la suivante :
 
@@ -58,7 +58,7 @@ XK(s, rs):           Authentication   Confidentiality
   -> s, se                  2                5
   <-                        2                5
 ```
-Une fois qu'une session a été établie, Alice et Bob peuvent échanger des messages Data.
+Une fois qu'une session a été établie, Alice et Bob peuvent échanger des messages de données.
 
 Tous les types de messages (SessionRequest, SessionCreated, SessionConfirmed, Data et TimeSync) sont spécifiés dans cette section.
 
@@ -136,21 +136,21 @@ Pour ChaCha20, ce qui est décrit ici correspond à [RFC-7539](https://tools.iet
 
 #### Notes
 
-- Puisque ChaCha20 est un chiffrement par flot, les textes en clair n'ont pas besoin d'être complétés. Les octets de flux de clés supplémentaires sont supprimés.
+- Puisque ChaCha20 est un chiffrement de flux, les textes en clair n'ont pas besoin d'être complétés par du bourrage. Les octets de flux de clés supplémentaires sont supprimés.
 - La clé pour le chiffrement (256 bits) est convenue au moyen du KDF SHA256. Les détails du KDF pour chaque message sont dans des sections séparées ci-dessous.
-- Les trames ChaChaPoly pour les messages 1, 2, et la première partie du message 3, ont une taille connue. À partir de la deuxième partie du message 3, les trames ont une taille variable. La taille de la partie 1 du message 3 est spécifiée dans le message 1. À partir de la phase de données, les trames sont précédées d'une longueur de deux octets obscurcie avec SipHash comme dans obfs4.
-- Le remplissage est en dehors de la trame de données authentifiée pour les messages 1 et 2. Le remplissage est utilisé dans le KDF pour le message suivant donc la manipulation sera détectée. À partir du message 3, le remplissage est à l'intérieur de la trame de données authentifiée.
+- Les trames ChaChaPoly pour les messages 1, 2, et la première partie du message 3, sont de taille connue. En commençant par la deuxième partie du message 3, les trames sont de taille variable. La taille de la partie 1 du message 3 est spécifiée dans le message 1. En commençant par la phase de données, les trames sont précédées d'une longueur de deux octets obfusquée avec SipHash comme dans obfs4.
+- Le bourrage est à l'extérieur de la trame de données authentifiées pour les messages 1 et 2. Le bourrage est utilisé dans le KDF pour le message suivant donc la falsification sera détectée. En commençant dans le message 3, le bourrage est à l'intérieur de la trame de données authentifiées.
 
 #### Gestion des erreurs AEAD
 
-- Dans les messages 1, 2, et les parties 1 et 2 du message 3, la taille du message AEAD est connue à l'avance. En cas d'échec d'authentification AEAD, le destinataire doit arrêter tout traitement ultérieur de message et fermer la connexion sans répondre. Cela devrait être une fermeture anormale (TCP RST).
-- Pour la résistance au sondage, dans le message 1, après un échec AEAD, Bob devrait définir un délai d'attente aléatoire (plage à déterminer) puis lire un nombre aléatoire d'octets (plage à déterminer) avant de fermer le socket. Bob devrait maintenir une liste noire d'IP avec des échecs répétés.
-- Dans la phase de données, la taille du message AEAD est "chiffrée" (obfusquée) avec SipHash. Il faut prendre soin d'éviter de créer un oracle de déchiffrement. En cas d'échec d'authentification AEAD en phase de données, le destinataire devrait définir un délai d'attente aléatoire (plage à déterminer) puis lire un nombre aléatoire d'octets (plage à déterminer). Après la lecture, ou en cas de dépassement du délai de lecture, le destinataire devrait envoyer une charge utile avec un bloc de terminaison contenant un code de raison "échec AEAD", et fermer la connexion.
+- Dans les messages 1, 2, et les parties 1 et 2 du message 3, la taille du message AEAD est connue à l'avance. En cas d'échec d'authentification AEAD, le destinataire doit arrêter le traitement ultérieur des messages et fermer la connexion sans répondre. Ceci devrait être une fermeture anormale (TCP RST).
+- Pour la résistance au probing, dans le message 1, après un échec AEAD, Bob devrait définir un délai d'attente aléatoire (plage à déterminer) puis lire un nombre aléatoire d'octets (plage à déterminer) avant de fermer la socket. Bob devrait maintenir une liste noire d'IP avec des échecs répétés.
+- Dans la phase de données, la taille du message AEAD est "chiffrée" (obfusquée) avec SipHash. Il faut prendre soin d'éviter de créer un oracle de déchiffrement. En cas d'échec d'authentification AEAD dans la phase de données, le destinataire devrait définir un délai d'attente aléatoire (plage à déterminer) puis lire un nombre aléatoire d'octets (plage à déterminer). Après la lecture, ou en cas de délai d'attente de lecture, le destinataire devrait envoyer une charge utile avec un bloc de terminaison contenant un code de raison "échec AEAD", et fermer la connexion.
 - Prendre la même action d'erreur pour une valeur de champ de longueur invalide dans la phase de données.
 
-### Fonction de dérivation de clé (KDF) (pour le message de handshake 1)
+### Fonction de Dérivation de Clé (KDF) (pour le message de handshake 1)
 
-Le KDF génère une clé de chiffrement de phase de handshake k à partir du résultat DH, en utilisant HMAC-SHA256(key, data) tel que défini dans [RFC-2104](https://tools.ietf.org/html/rfc2104). Il s'agit des fonctions InitializeSymmetric(), MixHash(), et MixKey(), exactement telles que définies dans la spécification Noise.
+Le KDF génère une clé de chiffrement de phase handshake k à partir du résultat DH, en utilisant HMAC-SHA256(key, data) comme défini dans [RFC-2104](https://tools.ietf.org/html/rfc2104). Ce sont les fonctions InitializeSymmetric(), MixHash(), et MixKey(), exactement comme définies dans la spécification Noise.
 
 ```
 This is the "e" message pattern:
@@ -235,9 +235,9 @@ End of "es" message pattern.
 
 Alice envoie à Bob.
 
-Contenu Noise : clé éphémère X d'Alice Charge utile Noise : bloc d'options de 16 octets Charge utile non-Noise : rembourrage aléatoire
+Contenu Noise : clé éphémère X d'Alice Charge utile Noise : bloc d'option de 16 octets Charge utile non-Noise : remplissage aléatoire
 
-(Propriétés de sécurité de la charge utile de [Noise](https://noiseprotocol.org/noise.html) )
+(Propriétés de sécurité de la charge utile d'après [Noise](https://noiseprotocol.org/noise.html))
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -263,11 +263,11 @@ XK(s, rs):           Authentication   Confidentiality
         Bob's static key pair.  The result is hashed along with the old ck to
         derive a new ck and k, and n is set to zero.
 ```
-La valeur X est chiffrée pour garantir l'indiscernabilité et l'unicité de la charge utile, qui sont des contre-mesures DPI nécessaires. Nous utilisons le chiffrement AES pour y parvenir, plutôt que des alternatives plus complexes et plus lentes comme elligator2. Le chiffrement asymétrique vers la clé publique du router de Bob serait beaucoup trop lent. Le chiffrement AES utilise le hash du router de Bob comme clé et l'IV de Bob tel que publié dans la base de données réseau.
+La valeur X est chiffrée pour garantir l'indiscernabilité et l'unicité de la charge utile, qui sont des contre-mesures DPI nécessaires. Nous utilisons le chiffrement AES pour y parvenir, plutôt que des alternatives plus complexes et plus lentes telles qu'elligator2. Le chiffrement asymétrique avec la clé publique du router de Bob serait bien trop lent. Le chiffrement AES utilise le hash du router de Bob comme clé et l'IV de Bob tel que publié dans la base de données réseau.
 
-Le chiffrement AES sert uniquement à la résistance contre l'inspection approfondie des paquets (DPI). Toute partie connaissant le hash du router de Bob et l'IV, qui sont publiés dans la base de données réseau, peut déchiffrer la valeur X de ce message.
+Le chiffrement AES sert uniquement à la résistance contre l'inspection approfondie de paquets (DPI). Toute partie connaissant le hachage du router de Bob et l'IV, qui sont publiés dans la base de données réseau, peut déchiffrer la valeur X dans ce message.
 
-Le remplissage n'est pas chiffré par Alice. Il peut être nécessaire pour Bob de déchiffrer le remplissage, pour empêcher les attaques temporelles.
+Le padding n'est pas chiffré par Alice. Il peut être nécessaire pour Bob de déchiffrer le padding, pour empêcher les attaques temporelles.
 
 Contenu brut :
 
@@ -307,7 +307,7 @@ padding :: Random data, 0 or more bytes.
            It is authenticated so that any tampering will cause the
            next message to fail.
 ```
-Données non chiffrées (tag d'authentification Poly1305 non affiché) :
+Données non chiffrées (étiquette d'authentification Poly1305 non affichée) :
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -343,7 +343,7 @@ padding :: Random data, 0 or more bytes.
            It is authenticated so that any tampering will cause the
            next message to fail.
 ```
-Bloc d'options : Note : Tous les champs sont en big-endian.
+Bloc d'options : Remarque : Tous les champs sont en big-endian.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -358,7 +358,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 ver :: 1 byte, protocol version (currently 2)
 
 padLen :: 2 bytes, length of the padding, 0 or more
-          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          See below for max guidelines. Random size from 0 to 64 bytes minimum is recommended.
           (Distribution is implementation-dependent)
 
 m3p2Len :: 2 bytes, length of the the second AEAD frame in SessionConfirmed
@@ -373,41 +373,45 @@ Reserved :: 4 bytes, set to 0 for compatibility with future options
 ```
 #### Notes
 
-- Lorsque l'adresse publiée est "NTCP", Bob prend en charge à la fois NTCP et NTCP2 sur le même port. Pour des raisons de compatibilité, lors de l'initiation d'une connexion vers une adresse publiée comme "NTCP", Alice doit limiter la taille maximale de ce message, y compris le rembourrage, à 287 octets ou moins. Cela facilite l'identification automatique du protocole par Bob. Lorsqu'elle est publiée comme "NTCP2", il n'y a pas de restriction de taille. Voir les sections Adresses Publiées et Détection de Version ci-dessous.
+- Lorsque l'adresse publiée est "NTCP", Bob prend en charge à la fois NTCP et NTCP2 sur le même port. Pour des raisons de compatibilité, lors de l'initiation d'une connexion vers une adresse publiée comme "NTCP", Alice doit limiter la taille maximale de ce message, y compris le padding, à 287 octets ou moins. Cela facilite l'identification automatique du protocole par Bob. Lorsqu'elle est publiée comme "NTCP2", il n'y a aucune restriction de taille. Voir les sections Adresses Publiées et Détection de Version ci-dessous.
 
 - La valeur X unique dans le bloc AES initial garantit que le texte chiffré est différent pour chaque session.
 
-- Bob doit rejeter les connexions où la valeur de l'horodatage est trop éloignée de l'heure actuelle. Appelons le delta de temps maximum "D". Bob doit maintenir un cache local des valeurs de handshake précédemment utilisées et rejeter les doublons, pour empêcher les attaques de rejeu. Les valeurs dans le cache doivent avoir une durée de vie d'au moins 2*D. Les valeurs du cache dépendent de l'implémentation, cependant la valeur X de 32 octets (ou son équivalent chiffré) peut être utilisée.
+- Bob doit rejeter les connexions où la valeur de l'horodatage est trop éloignée de l'heure actuelle. Appelons le delta de temps maximum "D". Bob doit maintenir un cache local des valeurs de handshake précédemment utilisées et rejeter les doublons, pour éviter les attaques de rejeu. Les valeurs dans le cache doivent avoir une durée de vie d'au moins 2*D. Les valeurs du cache dépendent de l'implémentation, cependant la valeur X de 32 octets (ou son équivalent chiffré) peut être utilisée.
 
-- Les clés éphémères Diffie-Hellman ne doivent jamais être réutilisées, pour prévenir les attaques cryptographiques, et leur réutilisation sera rejetée comme une attaque par rejeu.
+- Les clés éphémères Diffie-Hellman ne doivent jamais être réutilisées, pour prévenir les attaques cryptographiques, et la réutilisation sera rejetée comme une attaque par rejeu.
 
-- Les options "KE" et "auth" doivent être compatibles, c'est-à-dire que le secret partagé K doit être de la taille appropriée. Si davantage d'options "auth" sont ajoutées, cela pourrait implicitement changer la signification du flag "KE" pour utiliser un KDF différent ou une taille de troncature différente.
+- Les options "KE" et "auth" doivent être compatibles, c'est-à-dire que le secret partagé K doit avoir la taille appropriée. Si davantage d'options "auth" sont ajoutées, cela pourrait implicitement changer la signification du flag "KE" pour utiliser un KDF différent ou une taille de troncature différente.
 
 - Bob doit valider que la clé éphémère d'Alice est un point valide sur la courbe ici.
 
-- Le padding devrait être limité à une quantité raisonnable. Bob peut rejeter les connexions avec un padding excessif. Bob spécifiera ses options de padding dans le message 2. Directives min/max à déterminer. Taille aléatoire de 0 à 31 octets minimum ? (La distribution dépend de l'implémentation) Les implémentations Java limitent actuellement le padding à 256 octets maximum.
+- Le rembourrage devrait être limité à une quantité raisonnable. Bob peut rejeter les connexions avec un rembourrage excessif. Bob spécifiera ses options de rembourrage dans le message 2. Directives min/max à déterminer. Taille aléatoire de 0 à 31 octets minimum ? (La distribution dépend de l'implémentation) Les implémentations Java limitent actuellement le rembourrage à 256 octets maximum.
 
-- En cas d'erreur, y compris échec AEAD, DH, horodatage, rejeu apparent, ou validation de clé, Bob doit arrêter tout traitement ultérieur de message et fermer la connexion sans répondre. Ceci devrait être une fermeture anormale (TCP RST). Pour la résistance au sondage, après un échec AEAD, Bob devrait définir un délai d'attente aléatoire (plage à déterminer) puis lire un nombre aléatoire d'octets (plage à déterminer), avant de fermer la socket.
+- En cas d'erreur, y compris AEAD, DH, horodatage, rejeu apparent, ou échec de validation de clé, Bob doit arrêter le traitement ultérieur des messages et fermer la connexion sans répondre. Cela devrait être une fermeture anormale (TCP RST). Pour la résistance au sondage, après un échec AEAD, Bob devrait définir un délai d'attente aléatoire (plage à déterminer) puis lire un nombre aléatoire d'octets (plage à déterminer), avant de fermer la socket.
 
-- Bob peut effectuer une vérification MSB rapide pour une clé valide (X[31] & 0x80 == 0) avant de tenter le déchiffrement. Si le bit de poids fort est défini, implémenter la résistance au sondage comme pour les échecs AEAD.
+- Bob peut effectuer une vérification MSB rapide pour une clé valide (X[31] & 0x80 == 0) avant de tenter le déchiffrement. Si le bit de poids fort est défini, implémenter une résistance au sondage comme pour les échecs AEAD.
 
-- Atténuation DoS : DH est une opération relativement coûteuse. Comme avec le protocole NTCP précédent, les routers doivent prendre toutes les mesures nécessaires pour prévenir l'épuisement du CPU ou des connexions. Placer des limites sur le nombre maximum de connexions actives et le nombre maximum d'établissements de connexion en cours. Appliquer des timeouts de lecture (à la fois par lecture et total pour "slowloris"). Limiter les connexions répétées ou simultanées depuis la même source. Maintenir des listes noires pour les sources qui échouent de manière répétée. Ne pas répondre aux échecs AEAD.
+- Atténuation DoS : DH est une opération relativement coûteuse. Comme avec le protocole NTCP précédent, les routers doivent prendre toutes les mesures nécessaires pour prévenir l'épuisement du CPU ou des connexions. Placer des limites sur le nombre maximum de connexions actives et le nombre maximum d'établissements de connexion en cours. Appliquer des délais de lecture (à la fois par lecture et total pour "slowloris"). Limiter les connexions répétées ou simultanées depuis la même source. Maintenir des listes noires pour les sources qui échouent de manière répétée. Ne pas répondre aux échecs AEAD.
 
-- Pour faciliter la détection rapide de version et la négociation, les implémentations doivent s'assurer qu'Alice met en mémoire tampon puis vide entièrement le contenu du premier message d'un coup, y compris le rembourrage. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou les middleboxes), et reçues entièrement d'un coup par Bob. De plus, les implémentations doivent s'assurer que Bob met en mémoire tampon puis vide entièrement le contenu du deuxième message d'un coup, y compris le rembourrage, et que Bob met en mémoire tampon puis vide entièrement le contenu du troisième message d'un coup. Ceci est également pour l'efficacité et pour assurer l'efficacité du rembourrage aléatoire.
+- Pour faciliter la détection rapide de version et la négociation, les implémentations doivent s'assurer qu'Alice met en mémoire tampon puis vide entièrement le contenu du premier message d'un coup, y compris le remplissage. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou les middleboxes), et reçues d'un coup par Bob. De plus, les implémentations doivent s'assurer que Bob met en mémoire tampon puis vide entièrement le contenu du deuxième message d'un coup, y compris le remplissage. et que Bob met en mémoire tampon puis vide entièrement le contenu du troisième message d'un coup. Ceci est également pour l'efficacité et pour garantir l'efficacité du remplissage aléatoire.
 
-- Champ "ver" : Le protocole Noise global, les extensions, et le protocole NTCP incluant les spécifications de charge utile, indiquant NTCP2. Ce champ peut être utilisé pour indiquer la prise en charge de modifications futures.
+- Champ "ver" : Le protocole Noise global, les extensions, et le protocole NTCP incluant les spécifications de charge utile, indiquant NTCP2. Ce champ peut être utilisé pour indiquer la prise en charge de futurs changements.
 
-- Longueur de la partie 2 du message 3 : Il s'agit de la taille de la seconde trame AEAD (incluant le MAC de 16 octets) contenant les Router Info d'Alice et le rembourrage optionnel qui sera envoyé dans le message SessionConfirmed. Comme les routeurs régénèrent et republient périodiquement leurs Router Info, la taille des Router Info actuelles peut changer avant l'envoi du message 3. Les implémentations doivent choisir l'une des deux stratégies suivantes :
+- Longueur de la partie 2 du message 3 : Il s'agit de la taille de la seconde trame AEAD (incluant le MAC de 16 octets) contenant les informations du router d'Alice et un remplissage optionnel qui sera envoyé dans le message SessionConfirmed. Comme les routers régénèrent et republient périodiquement leurs informations de router, la taille des informations actuelles du router peut changer avant l'envoi du message 3. Les implémentations doivent choisir l'une des deux stratégies suivantes :
 
-a\) sauvegarder les informations du router actuelles à envoyer dans le message 3, afin que la taille soit connue, et optionnellement ajouter de l'espace pour le remplissage ;
+a\) sauvegarder les informations actuelles du router à envoyer dans le message 3, afin que la taille soit connue, et éventuellement ajouter de l'espace pour le rembourrage ;
 
-b\) augmenter la taille spécifiée suffisamment pour permettre une possible augmentation de la taille des Router Info, et toujours ajouter un remplissage lorsque le message 3 est effectivement envoyé. Dans les deux cas, la longueur "m3p2len" incluse dans le message 1 doit être exactement la taille de cette trame lorsqu'elle est envoyée dans le message 3.
+b) augmenter la taille spécifiée suffisamment pour permettre une éventuelle augmentation de la taille du Router Info, et toujours ajouter un rembourrage lorsque le message 3 est effectivement envoyé. Dans les deux cas, la longueur "m3p2len" incluse dans le message 1 doit être exactement la taille de cette trame lors de l'envoi dans le message 3.
 
-- Bob doit faire échouer la connexion si des données entrantes subsistent après avoir validé le message 1 et lu le padding. Il ne devrait pas y avoir de données supplémentaires d'Alice, car Bob n'a pas encore répondu avec le message 2.
+- Bob doit faire échouer la connexion s'il reste des données entrantes après avoir validé le message 1 et lu le rembourrage. Il ne devrait y avoir aucune donnée supplémentaire d'Alice, car Bob n'a pas encore répondu avec le message 2.
 
-- Le champ ID de réseau est utilisé pour identifier rapidement les connexions inter-réseaux. Si ce champ est non nul et ne correspond pas à l'ID de réseau de Bob, Bob devrait se déconnecter et bloquer les futures connexions. Toute connexion provenant de réseaux de test devrait avoir un ID différent et échouera au test. À partir de la version 0.9.42. Voir la proposition 147 pour plus d'informations.
+- Le champ ID réseau est utilisé pour identifier rapidement les connexions inter-réseaux. Si ce champ est non nul et ne correspond pas à l'ID réseau de Bob, Bob devrait se déconnecter et bloquer les connexions futures. Toute connexion provenant de réseaux de test devrait avoir un ID différent et échouera au test. Depuis la version 0.9.42. Voir la proposition 147 pour plus d'informations.
 
-### Fonction de dérivation de clé (KDF) (pour le message de négociation 2 et la partie 1 du message 3)
+- Jusqu'à l'API 0.9.68 (version 2.11.0), Java I2P implémentait un maximum de 256 octets de remplissage pour les connexions non-PQ, cependant cela n'était pas documenté précédemment.
+  À partir de l'API 0.9.69 (version 2.12.0), Java I2P implémente le même remplissage maximum pour les connexions non-PQ
+  que pour MLKEM-512. Le remplissage maximum est de 880 octets.
+
+### Fonction de Dérivation de Clé (KDF) (pour le message de handshake 2 et la partie 1 du message 3)
 
 ```
 // take h saved from message 1 KDF
@@ -476,9 +480,9 @@ End of "ee" message pattern.
 
 Bob envoie à Alice.
 
-Contenu Noise : clé éphémère Y de Bob Charge utile Noise : bloc d'options de 16 octets Charge utile non-Noise : remplissage aléatoire
+Contenu Noise : clé éphémère Y de Bob Charge utile Noise : bloc d'option de 16 octets Charge utile non-noise : Remplissage aléatoire
 
-(Propriétés de sécurité de la charge utile provenant de [Noise](https://noiseprotocol.org/noise.html) )
+(Propriétés de sécurité de la charge utile de [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -504,9 +508,9 @@ XK(s, rs):           Authentication   Confidentiality
   "ee": A DH is performed between the Bob's ephemeral key pair and the Alice's ephemeral key pair.
   The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
 ```
-La valeur Y est chiffrée pour assurer l'indiscernabilité et l'unicité de la charge utile, qui sont des contre-mesures DPI nécessaires. Nous utilisons le chiffrement AES pour y parvenir, plutôt que des alternatives plus complexes et plus lentes telles qu'elligator2. Le chiffrement asymétrique vers la clé publique du router d'Alice serait beaucoup trop lent. Le chiffrement AES utilise le hash du router de Bob comme clé et l'état AES du message 1 (qui a été initialisé avec l'IV de Bob tel que publié dans la base de données réseau).
+La valeur Y est chiffrée pour garantir l'indiscernabilité et l'unicité de la charge utile, qui sont des contre-mesures DPI nécessaires. Nous utilisons le chiffrement AES pour y parvenir, plutôt que des alternatives plus complexes et plus lentes comme elligator2. Le chiffrement asymétrique vers la clé publique du router d'Alice serait bien trop lent. Le chiffrement AES utilise le hash du router de Bob comme clé et l'état AES du message 1 (qui a été initialisé avec l'IV de Bob tel que publié dans la base de données réseau).
 
-Le chiffrement AES est uniquement destiné à la résistance DPI. Toute partie connaissant le hachage du router de Bob et l'IV, qui sont publiés dans la base de données réseau, et ayant capturé les 32 premiers octets du message 1, peut déchiffrer la valeur Y dans ce message.
+Le chiffrement AES est uniquement destiné à résister à l'inspection approfondie de paquets (DPI). Toute partie connaissant le hash du router de Bob et l'IV, qui sont publiés dans la base de données réseau, et ayant capturé les 32 premiers octets du message 1, peut déchiffrer la valeur Y dans ce message.
 
 Contenu brut :
 
@@ -539,7 +543,7 @@ Y :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
         key: RH_B
         iv: Using AES state from message 1
 ```
-Données non chiffrées (étiquette d'authentification Poly1305 non affichée) :
+Données non chiffrées (balise d'authentification Poly1305 non affichée) :
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -576,11 +580,11 @@ padding :: Random data, 0 or more bytes.
 
 - Alice doit valider que la clé éphémère de Bob est un point valide sur la courbe ici.
 - Le padding devrait être limité à une quantité raisonnable. Alice peut rejeter les connexions avec un padding excessif. Alice spécifiera ses options de padding dans le message 3. Directives min/max à déterminer. Taille aléatoire de 0 à 31 octets minimum ? (La distribution dépend de l'implémentation)
-- En cas d'erreur, y compris AEAD, DH, horodatage, replay apparent, ou échec de validation de clé, Alice doit arrêter le traitement ultérieur des messages et fermer la connexion sans répondre. Cela devrait être une fermeture anormale (TCP RST).
-- Pour faciliter l'établissement de liaison rapide, les implémentations doivent s'assurer que Bob met en tampon puis vide tout le contenu du premier message en une fois, y compris le padding. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou les middleboxes), et reçues en une fois par Alice. C'est aussi pour l'efficacité et pour assurer l'efficacité du padding aléatoire.
-- Alice doit faire échouer la connexion si des données entrantes restent après avoir validé le message 2 et lu le padding. Il ne devrait pas y avoir de données supplémentaires de Bob, car Alice n'a pas encore répondu avec le message 3.
+- En cas d'erreur, y compris AEAD, DH, horodatage, replay apparent, ou échec de validation de clé, Alice doit arrêter tout traitement ultérieur de message et fermer la connexion sans répondre. Cela devrait être une fermeture anormale (TCP RST).
+- Pour faciliter un handshake rapide, les implémentations doivent s'assurer que Bob met en tampon puis vide tout le contenu du premier message d'un coup, y compris le padding. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmenté par l'OS ou les middleboxes), et reçues d'un coup par Alice. C'est aussi pour l'efficacité et pour assurer l'efficacité du padding aléatoire.
+- Alice doit faire échouer la connexion si des données entrantes restent après avoir validé le message 2 et lu le padding. Il ne devrait y avoir aucune donnée supplémentaire de Bob, car Alice n'a pas encore répondu avec le message 3.
 
-Bloc d'options : Note : Tous les champs sont en big-endian.
+Bloc d'options : Remarque : Tous les champs sont en big-endian.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -592,7 +596,7 @@ Bloc d'options : Note : Tous les champs sont en big-endian.
 Reserved :: 10 bytes total, set to 0 for compatibility with future options
 
 padLen :: 2 bytes, big endian, length of the padding, 0 or more
-          Min/max guidelines TBD. Random size from 0 to 31 bytes minimum?
+          See below for max guidelines. Random size from 0 to 64 bytes minimum is recommended.
           (Distribution is implementation-dependent)
 
 tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
@@ -600,11 +604,15 @@ tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
 ```
 #### Notes
 
-- Alice doit rejeter les connexions où la valeur d'horodatage est trop éloignée de l'heure actuelle. Appelons le delta de temps maximum "D". Alice doit maintenir un cache local des valeurs de poignée de main précédemment utilisées et rejeter les doublons, pour empêcher les attaques par rejeu. Les valeurs dans le cache doivent avoir une durée de vie d'au moins 2*D. Les valeurs du cache dépendent de l'implémentation, cependant la valeur Y de 32 octets (ou son équivalent chiffré) peut être utilisée.
+- Alice doit rejeter les connexions où la valeur de l'horodatage est trop éloignée de l'heure actuelle. Appelons le delta de temps maximum "D". Alice doit maintenir un cache local des valeurs de handshake précédemment utilisées et rejeter les doublons, pour empêcher les attaques par rejeu. Les valeurs dans le cache doivent avoir une durée de vie d'au moins 2*D. Les valeurs du cache dépendent de l'implémentation, cependant la valeur Y de 32 octets (ou son équivalent chiffré) peut être utilisée.
+
+- Jusqu'à l'API 0.9.68 (version 2.11.0), Java I2P implémentait un maximum de 256 octets de padding pour les connexions non-PQ, cependant cela n'était pas documenté auparavant.
+  À partir de l'API 0.9.69 (version 2.12.0), Java I2P implémente le même padding maximum pour les connexions non-PQ
+  que pour MLKEM-512. Le padding maximum est de 848 octets.
 
 #### Problèmes
 
-- Inclure les options de padding min/max ici ?
+- Inclure ici les options de remplissage min/max ?
 
 ### Chiffrement pour la partie 1 du message 3 de handshake, en utilisant le KDF du message 2)
 
@@ -636,7 +644,7 @@ h = SHA256(h || ciphertext);
 
 End of "s" message pattern.
 ```
-### Fonction de dérivation de clé (KDF) (pour la partie 2 du message 3 de négociation)
+### Fonction de dérivation de clé (KDF) (pour la partie 2 du message 3 de handshake)
 
 ```
 This is the "se" message pattern:
@@ -697,7 +705,7 @@ Alice envoie à Bob.
 
 Contenu Noise : clé statique d'Alice Charge utile Noise : RouterInfo d'Alice et remplissage aléatoire Charge utile non-noise : aucune
 
-(Propriétés de sécurité du payload de [Noise](https://noiseprotocol.org/noise.html) )
+(Propriétés de sécurité de la charge utile tirées de [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -726,7 +734,7 @@ XK(s, rs):           Authentication   Confidentiality
   ephemeral key pair.  The result is hashed along with the old ck to derive a
   new ck and k, and n is set to zero.
 ```
-Ceci contient deux trames ChaChaPoly. La première est la clé publique statique chiffrée d'Alice. La seconde est la charge utile Noise : le RouterInfo chiffré d'Alice, les options facultatives et le remplissage optionnel. Elles utilisent des clés différentes, car la fonction MixKey() est appelée entre les deux.
+Cela contient deux trames ChaChaPoly. La première est la clé publique statique chiffrée d'Alice. La seconde est la charge utile Noise : le RouterInfo chiffré d'Alice, les options facultatives et le rembourrage optionnel. Elles utilisent des clés différentes, car la fonction MixKey() est appelée entre les deux.
 
 Contenu brut :
 
@@ -768,7 +776,7 @@ Contenu brut :
 S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
-Données non chiffrées (tags d'authentification Poly1305 non affichés) :
+Données non chiffrées (balises d'authentification Poly1305 non affichées) :
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -806,37 +814,37 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 ```
 #### Notes
 
-- Bob doit effectuer la validation habituelle des Router Info. S'assurer que le type de signature est pris en charge, vérifier la signature, vérifier que l'horodatage est dans les limites, et toute autre vérification nécessaire.
+- Bob doit effectuer la validation habituelle des Router Info. S'assurer que le type de signature est pris en charge, vérifier la signature, vérifier que l'horodatage est dans les limites acceptables, et effectuer toute autre vérification nécessaire.
 
-- Bob doit vérifier que la clé statique d'Alice reçue dans la première trame correspond à la clé statique dans les informations du routeur. Bob doit d'abord rechercher dans les informations du routeur une adresse de routeur NTCP ou NTCP2 avec une option de version (v) correspondante. Voir les sections Informations de routeur publiées et Informations de routeur non publiées ci-dessous.
+- Bob doit vérifier que la clé statique d'Alice reçue dans la première trame correspond à la clé statique dans le Router Info. Bob doit d'abord rechercher dans le Router Info une Router Address NTCP ou NTCP2 avec une option de version (v) correspondante. Voir les sections Router Info Publié et Router Info Non Publié ci-dessous.
 
-- Si Bob a une version plus ancienne du RouterInfo d'Alice dans sa netDb, vérifier que la clé statique dans le router info est la même dans les deux, si présente, et si la version plus ancienne a moins de XXX d'ancienneté (voir le temps de rotation des clés ci-dessous)
+- Si Bob a une version plus ancienne du RouterInfo d'Alice dans sa netdb, vérifier que la clé statique dans les informations du routeur est la même dans les deux versions, si elle est présente, et si la version plus ancienne a moins de XXX âge (voir temps de rotation des clés ci-dessous)
 
 - Bob doit valider que la clé statique d'Alice est un point valide sur la courbe ici.
 
 - Les options doivent être incluses, pour spécifier les paramètres de remplissage.
 
-- En cas d'erreur, y compris un échec de validation AEAD, RI, DH, horodatage ou clé, Bob doit arrêter le traitement ultérieur des messages et fermer la connexion sans répondre. Cela devrait être une fermeture anormale (TCP RST).
+- En cas d'erreur, y compris d'échec de validation AEAD, RI, DH, d'horodatage ou de clé, Bob doit arrêter le traitement des messages et fermer la connexion sans répondre. Cela devrait être une fermeture anormale (TCP RST).
 
-- Pour faciliter une négociation rapide, les implémentations doivent s'assurer qu'Alice met en mémoire tampon puis envoie l'intégralité du contenu du troisième message d'un coup, y compris les deux trames AEAD. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf segmentation par l'OS ou les middleboxes), et reçues d'un seul coup par Bob. C'est aussi pour l'efficacité et pour assurer l'efficacité du remplissage aléatoire.
+- Pour faciliter une négociation rapide, les implémentations doivent s'assurer qu'Alice met en mémoire tampon puis envoie l'intégralité du contenu du troisième message d'un coup, y compris les deux trames AEAD. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou les middleboxes), et reçues en une seule fois par Bob. Ceci est également pour l'efficacité et pour assurer l'efficacité du remplissage aléatoire.
 
-- Longueur de la trame de la partie 2 du message 3 : La longueur de cette trame (MAC inclus) est envoyée par Alice dans le message 1. Voir ce message pour des notes importantes sur la nécessité de prévoir suffisamment d'espace pour le remplissage.
+- Longueur de la trame partie 2 du message 3 : La longueur de cette trame (y compris MAC) est envoyée par Alice dans le message 1. Voir ce message pour des notes importantes sur l'allocation d'un espace suffisant pour le padding.
 
-- Contenu de la trame de la partie 2 du message 3 : Le format de cette trame est identique au format des trames de la phase de données, excepté que la longueur de la trame est envoyée par Alice dans le message 1. Voir ci-dessous pour le format des trames de la phase de données. La trame doit contenir 1 à 3 blocs dans l'ordre suivant :
+- Contenu de la trame partie 2 du message 3 : Le format de cette trame est identique au format des trames de la phase de données, sauf que la longueur de la trame est envoyée par Alice dans le message 1. Voir ci-dessous pour le format des trames de la phase de données. La trame doit contenir 1 à 3 blocs dans l'ordre suivant :
 
-1)  Bloc Router Info d'Alice (requis)   2)  Bloc d'options (optionnel)
+1)  Bloc d'informations du router d'Alice (requis)   2)  Bloc d'options (optionnel)
 
 3\) Bloc de remplissage (optionnel) Cette trame ne doit jamais contenir d'autre type de bloc.
 
-- Le remplissage de la partie 2 du message 3 n'est pas requis si Alice ajoute une trame de phase de données (contenant éventuellement du remplissage) à la fin du message 3 et envoie les deux à la fois, car cela apparaîtra comme un grand flux d'octets à un observateur. Comme Alice aura généralement, mais pas toujours, un message I2NP à envoyer à Bob (c'est pourquoi elle s'est connectée à lui), c'est l'implémentation recommandée, pour l'efficacité et pour assurer l'efficacité du remplissage aléatoire.
+- Le padding de la partie 2 du message 3 n'est pas requis si Alice ajoute une trame de phase de données (contenant optionnellement du padding) à la fin du message 3 et envoie les deux en même temps, car cela apparaîtra comme un gros flux d'octets à un observateur. Comme Alice aura généralement, mais pas toujours, un message I2NP à envoyer à Bob (c'est pourquoi elle s'est connectée à lui), c'est l'implémentation recommandée, pour l'efficacité et pour garantir l'efficacité du padding aléatoire.
 
 - La longueur totale des deux trames AEAD du Message 3 (parties 1 et 2) est de 65535 octets ; la partie 1 fait 48 octets donc la longueur maximale de trame de la partie 2 est de 65487 ; la longueur maximale de texte en clair de la partie 2 excluant le MAC est de 65471.
 
 ### Fonction de dérivation de clé (KDF) (pour la phase de données)
 
-La phase de données utilise une entrée de données associées de longueur zéro.
+La phase de données utilise une entrée de données associées de longueur nulle.
 
-La KDF génère deux clés de chiffrement k_ab et k_ba à partir de la clé de chaînage ck, en utilisant HMAC-SHA256(key, data) tel que défini dans [RFC-2104](https://tools.ietf.org/html/rfc2104). Il s'agit de la fonction Split(), exactement telle que définie dans la spécification Noise.
+Le KDF génère deux clés de chiffrement k_ab et k_ba à partir de la clé de chaînage ck, en utilisant HMAC-SHA256(key, data) tel que défini dans [RFC-2104](https://tools.ietf.org/html/rfc2104). Il s'agit de la fonction Split(), exactement comme définie dans la spécification Noise.
 
 ```
 ck = from handshake phase
@@ -897,13 +905,13 @@ temp_key = (all zeros)
 ```
 ### 4) Phase de données
 
-Charge utile Noise : Comme défini ci-dessous, incluant un remplissage aléatoire Charge utile non-noise : aucune
+Charge utile Noise : Comme défini ci-dessous, incluant un remplissage aléatoire Charge utile non-Noise : aucune
 
 À partir de la 2ème partie du message 3, tous les messages sont à l'intérieur d'une "frame" ChaChaPoly authentifiée et chiffrée avec une longueur obfusquée de deux octets en préfixe. Tout le padding est à l'intérieur de la frame. À l'intérieur de la frame se trouve un format standard avec zéro ou plusieurs "blocs". Chaque bloc a un type d'un octet et une longueur de deux octets. Les types incluent date/heure, message I2NP, options, terminaison et padding.
 
-Note : Bob peut, mais n'est pas obligé d'envoyer ses RouterInfo à Alice comme premier message à Alice dans la phase de données.
+Note : Bob peut, mais n'est pas tenu, d'envoyer ses RouterInfo à Alice comme premier message à Alice dans la phase de données.
 
-(Propriétés de sécurité de la charge utile depuis [Noise](https://noiseprotocol.org/noise.html) )
+(Propriétés de sécurité de la charge utile d'après [Noise](https://noiseprotocol.org/noise.html))
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -925,16 +933,16 @@ XK(s, rs):           Authentication   Confidentiality
 ```
 #### Notes
 
-- Pour l'efficacité et pour minimiser l'identification du champ de longueur, les implémentations doivent s'assurer que l'expéditeur met en mémoire tampon puis vide entièrement le contenu des messages de données d'un coup, y compris le champ de longueur et la trame AEAD. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou les middleboxes), et reçues d'un seul coup par l'autre partie. C'est aussi pour l'efficacité et pour assurer l'efficacité du bourrage aléatoire.
-- Le router peut choisir de terminer la session en cas d'erreur AEAD, ou peut continuer à tenter des communications. S'il continue, le router devrait terminer après des erreurs répétées.
+- Pour l'efficacité et pour minimiser l'identification du champ de longueur, les implémentations doivent s'assurer que l'expéditeur met en mémoire tampon puis vide l'intégralité du contenu des messages de données d'un coup, incluant le champ de longueur et la trame AEAD. Ceci augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou les middleboxes), et reçues d'un coup par l'autre partie. C'est aussi pour l'efficacité et pour assurer l'efficacité du padding aléatoire.
+- Le router peut choisir de terminer la session en cas d'erreur AEAD, ou peut continuer à tenter de communiquer. S'il continue, le router devrait terminer après des erreurs répétées.
 
-#### Longueur obfusquée SipHash
+#### Longueur obscurcie SipHash
 
 Référence : [SipHash](https://www.131002.net/siphash/)
 
-Une fois que les deux parties ont terminé la négociation, elles transfèrent des charges utiles qui sont ensuite chiffrées et authentifiées dans des "trames" ChaChaPoly.
+Une fois que les deux côtés ont terminé la négociation, ils transfèrent des charges utiles qui sont alors chiffrées et authentifiées dans des "trames" ChaChaPoly.
 
-Chaque trame est précédée d'une longueur de deux octets, en big endian. Cette longueur spécifie le nombre d'octets de trame chiffrés qui suivent, y compris le MAC. Pour éviter de transmettre des champs de longueur identifiables dans le flux, la longueur de trame est obscurcie en appliquant un XOR avec un masque dérivé de SipHash, tel qu'initialisé à partir du KDF de la phase de données. Notez que les deux directions ont des clés SipHash et des IV uniques provenant du KDF.
+Chaque trame est précédée d'une longueur de deux octets, en big endian. Cette longueur spécifie le nombre d'octets de trame chiffrés qui suivent, y compris le MAC. Pour éviter de transmettre des champs de longueur identifiables dans le flux, la longueur de la trame est obfusquée en appliquant un XOR avec un masque dérivé de SipHash, tel qu'initialisé à partir du KDF de la phase de données. Notez que les deux directions ont des clés SipHash et des IV uniques provenant du KDF.
 
 ```
     sipk1, sipk2 = The SipHash keys from the KDF.  (two 8-byte long integers)
@@ -947,11 +955,11 @@ Chaque trame est précédée d'une longueur de deux octets, en big endian. Cette
 
     The first length output will be XORed with with IV[1].
 ```
-Le récepteur possède les mêmes clés SipHash et IV. Le décodage de la longueur se fait en dérivant le masque utilisé pour obfusquer la longueur et en appliquant un XOR au digest tronqué pour obtenir la longueur de la trame. La longueur de la trame correspond à la longueur totale de la trame chiffrée incluant le MAC.
+Le récepteur possède les mêmes clés SipHash et IV. Le décodage de la longueur se fait en dérivant le masque utilisé pour obfusquer la longueur et en appliquant un XOR au condensé tronqué pour obtenir la longueur de la trame. La longueur de la trame est la longueur totale de la trame chiffrée incluant le MAC.
 
 #### Notes
 
-- Si vous utilisez une fonction de bibliothèque SipHash qui retourne un entier long non signé, utilisez les deux octets les moins significatifs comme Mask. Convertissez l'entier long vers le prochain IV en little endian.
+- Si vous utilisez une fonction de bibliothèque SipHash qui retourne un entier long non signé, utilisez les deux octets les moins significatifs comme Masque. Convertissez l'entier long vers le prochain IV en little endian.
 
 #### Contenu brut
 
@@ -988,11 +996,11 @@ Maximum ChaChaPoly frame is 65535 bytes.
 
 #### Données non chiffrées
 
-Il y a zéro ou plusieurs blocs dans la trame chiffrée. Chaque bloc contient un identifiant d'un octet, une longueur de deux octets, et zéro ou plusieurs octets de données.
+Il y a zéro ou plusieurs blocs dans la trame chiffrée. Chaque bloc contient un identifiant d'un octet, une longueur de deux octets et zéro ou plusieurs octets de données.
 
-Pour des raisons d'extensibilité, les récepteurs doivent ignorer les blocs avec des identifiants inconnus et les traiter comme du remplissage.
+Pour l'extensibilité, les récepteurs doivent ignorer les blocs avec des identifiants inconnus et les traiter comme du remplissage.
 
-Les données chiffrées font 65535 octets maximum, incluant un en-tête d'authentification de 16 octets, donc les données non chiffrées font 65519 octets maximum.
+Les données chiffrées font au maximum 65535 octets, incluant un en-tête d'authentification de 16 octets, donc les données non chiffrées font au maximum 65519 octets.
 
 (Tag d'authentification Poly1305 non affiché) :
 
@@ -1032,13 +1040,13 @@ Block type is 1 byte
 Block length is 2 bytes
 Maximum single block data size is 65516 bytes.
 ```
-#### Règles d'ordre des blocs
+#### Règles d'ordonnancement des blocs
 
-Dans le message de handshake 3 partie 2, l'ordre doit être : RouterInfo, suivi des Options si présentes, suivi du Padding si présent. Aucun autre bloc n'est autorisé.
+Dans le message de négociation 3 partie 2, l'ordre doit être : RouterInfo, suivi des Options si présentes, suivi du Padding si présent. Aucun autre bloc n'est autorisé.
 
-Dans la phase de données, l'ordre n'est pas spécifié, sauf pour les exigences suivantes : le Padding, s'il est présent, doit être le dernier bloc. La Termination, si elle est présente, doit être le dernier bloc à l'exception du Padding.
+Dans la phase de données, l'ordre n'est pas spécifié, sauf pour les exigences suivantes : Le Padding, s'il est présent, doit être le dernier bloc. La Termination, si elle est présente, doit être le dernier bloc sauf pour le Padding.
 
-Il peut y avoir plusieurs blocs I2NP dans une seule trame. Plusieurs blocs de remplissage ne sont pas autorisés dans une seule trame. Les autres types de blocs n'auront probablement pas plusieurs blocs dans une seule trame, mais ce n'est pas interdit.
+Il peut y avoir plusieurs blocs I2NP dans une seule trame. Plusieurs blocs de bourrage ne sont pas autorisés dans une seule trame. D'autres types de blocs n'auront probablement pas plusieurs blocs dans une seule trame, mais ce n'est pas interdit.
 
 #### DateTime
 
@@ -1054,11 +1062,11 @@ size :: 2 bytes, big endian, value = 4
 timestamp :: Unix timestamp, unsigned seconds.
              Wraps around in 2106
 ```
-NOTE : Les implémentations doivent arrondir à la seconde la plus proche pour éviter le biais d'horloge dans le réseau.
+NOTE : Les implémentations doivent arrondir à la seconde la plus proche pour éviter un biais d'horloge dans le réseau.
 
 #### Options
 
-Passer les options mises à jour. Les options incluent : Padding minimum et maximum.
+Transmettre les options mises à jour. Les options incluent : Rembourrage minimum et maximum.
 
 Le bloc d'options aura une longueur variable.
 
@@ -1110,7 +1118,7 @@ more_options :: Format TBD
 
 #### RouterInfo
 
-Transmettre les RouterInfo d'Alice à Bob. Utilisé dans la partie 2 du message 3 de l'établissement de connexion. Transmettre les RouterInfo d'Alice à Bob, ou ceux de Bob à Alice. Utilisé optionnellement pendant la phase de données.
+Transmettre le RouterInfo d'Alice à Bob. Utilisé dans la partie 2 du message 3 de l'établissement de connexion. Transmettre le RouterInfo d'Alice à Bob, ou celui de Bob à Alice. Utilisé optionnellement dans la phase de données.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1133,16 +1141,16 @@ routerinfo :: Alice's or Bob's RouterInfo
 ```
 #### Notes
 
-- Lorsqu'utilisé dans la phase de données, le destinataire (Alice ou Bob) doit valider que c'est le même Router Hash que celui envoyé initialement (pour Alice) ou envoyé vers (pour Bob). Ensuite, le traiter comme un message I2NP DatabaseStore local. Valider la signature, valider l'horodatage plus récent, et stocker dans la netDb locale. Si le bit de flag 0 est à 1, et que la partie réceptrice est floodfill, le traiter comme un message DatabaseStore avec un jeton de réponse non nul, et le diffuser vers les floodfills les plus proches.
+- Lorsque utilisé dans la phase de données, le destinataire (Alice ou Bob) doit valider qu'il s'agit du même Router Hash que celui initialement envoyé (pour Alice) ou auquel il a été envoyé (pour Bob). Ensuite, le traiter comme un message I2NP DatabaseStore local. Valider la signature, valider l'horodatage plus récent, et stocker dans la netdb locale. Si le bit de flag 0 est 1, et que la partie réceptrice est floodfill, le traiter comme un message DatabaseStore avec un jeton de réponse non nul, et le diffuser vers les floodfills les plus proches.
 - Le Router Info n'est PAS compressé avec gzip (contrairement à un message DatabaseStore, où il l'est)
 - La diffusion ne doit pas être demandée à moins qu'il y ait des RouterAddresses publiées dans le RouterInfo. Le router récepteur ne doit pas diffuser le RouterInfo à moins qu'il contienne des RouterAddresses publiées.
-- Les implémenteurs doivent s'assurer que lors de la lecture d'un bloc, des données malformées ou malveillantes ne provoqueront pas de débordement de lecture dans le bloc suivant.
-- Ce protocole ne fournit pas d'accusé de réception que le RouterInfo a été reçu, stocké ou diffusé (ni dans la phase de handshake ni dans la phase de données). Si un accusé de réception est souhaité, et que le destinataire est floodfill, l'expéditeur devrait plutôt envoyer un message I2NP DatabaseStoreMessage standard avec un jeton de réponse.
+- Les implémenteurs doivent s'assurer que lors de la lecture d'un bloc, des données mal formées ou malveillantes ne provoqueront pas de débordement de lecture dans le bloc suivant.
+- Ce protocole ne fournit pas d'accusé de réception indiquant que le RouterInfo a été reçu, stocké, ou diffusé (que ce soit dans la phase de handshake ou de données). Si un accusé de réception est souhaité, et que le destinataire est floodfill, l'expéditeur devrait plutôt envoyer un message I2NP DatabaseStoreMessage standard avec un jeton de réponse.
 
 #### Problèmes
 
-- Pourrait également être utilisé dans la phase de données, au lieu d'un I2NP DatabaseStoreMessage. Par exemple, Bob pourrait l'utiliser pour démarrer la phase de données.
-- Est-il autorisé que ceci contienne le RI pour des routeurs autres que l'expéditeur, comme remplacement général des DatabaseStoreMessages, par exemple pour le flooding par les floodfills ?
+- Pourrait également être utilisé dans la phase de données, au lieu d'un I2NP DatabaseStoreMessage. Par exemple, Bob pourrait l'utiliser pour initier la phase de données.
+- Est-il autorisé que ceci contienne le RI pour des routers autres que l'initiateur, comme un remplacement général pour les DatabaseStoreMessages, par exemple pour le flooding par les floodfills ?
 
 #### Message I2NP
 
@@ -1172,11 +1180,11 @@ message :: I2NP message body
 ```
 #### Notes
 
-- Les implémenteurs doivent s'assurer que lors de la lecture d'un bloc, des données malformées ou malveillantes ne provoqueront pas de débordement de lecture dans le bloc suivant.
+- Les implémenteurs doivent s'assurer que lors de la lecture d'un bloc, des données mal formées ou malveillantes ne provoqueront pas de débordement de lecture dans le bloc suivant.
 
 #### Terminaison
 
-Noise recommande un message de terminaison explicite. Le NTCP original n'en a pas. Abandonner la connexion. Ceci doit être le dernier bloc non-rembourrage dans la trame.
+Noise recommande un message de terminaison explicite. Le NTCP original n'en a pas. Fermer la connexion. Ceci doit être le dernier bloc non-padding dans la trame.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1218,15 +1226,15 @@ addl data :: optional, 0 or more bytes, for future expansion, debugging,
 ```
 #### Notes
 
-Toutes les raisons ne sont pas nécessairement utilisées, cela dépend de l'implémentation. Les échecs de handshake résulteront généralement en une fermeture avec TCP RST à la place. Voir les notes dans les sections de messages de handshake ci-dessus. Les raisons supplémentaires listées sont pour la cohérence, la journalisation, le débogage, ou en cas de changements de politique.
+Toutes les raisons ne peuvent pas être réellement utilisées, cela dépend de l'implémentation. Les échecs de handshake entraîneront généralement une fermeture avec TCP RST à la place. Voir les notes dans les sections des messages de handshake ci-dessus. Les raisons supplémentaires listées sont pour la cohérence, la journalisation, le débogage, ou en cas de changements de politique.
 
 #### Remplissage
 
-Ceci est pour le remplissage à l'intérieur des trames AEAD. Le remplissage pour les messages 1 et 2 se trouve à l'extérieur des trames AEAD. Tout le remplissage pour le message 3 et la phase de données se trouve à l'intérieur des trames AEAD.
+Ceci concerne le remplissage à l'intérieur des trames AEAD. Le remplissage pour les messages 1 et 2 se trouve à l'extérieur des trames AEAD. Tout le remplissage pour le message 3 et la phase de données se trouve à l'intérieur des trames AEAD.
 
-Le rembourrage à l'intérieur d'AEAD devrait approximativement respecter les paramètres négociés. Bob a envoyé ses paramètres min/max tx/rx demandés dans le message 2. Alice a envoyé ses paramètres min/max tx/rx demandés dans le message 3. Des options mises à jour peuvent être envoyées pendant la phase de données. Voir les informations du bloc d'options ci-dessus.
+Le padding à l'intérieur d'AEAD devrait approximativement respecter les paramètres négociés. Bob a envoyé ses paramètres tx/rx min/max demandés dans le message 2. Alice a envoyé ses paramètres tx/rx min/max demandés dans le message 3. Des options mises à jour peuvent être envoyées pendant la phase de données. Voir les informations sur le bloc d'options ci-dessus.
 
-Si présent, ce doit être le dernier bloc dans la trame.
+Si présent, ceci doit être le dernier bloc dans la trame.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1246,11 +1254,11 @@ padding :: random data
 - Taille = 0 est autorisée.
 - Stratégies de remplissage à déterminer.
 - Remplissage minimum à déterminer.
-- Les trames contenant uniquement du remplissage sont autorisées.
+- Les trames de remplissage uniquement sont autorisées.
 - Valeurs par défaut du remplissage à déterminer.
 - Voir le bloc d'options pour la négociation des paramètres de remplissage
 - Voir le bloc d'options pour les paramètres de remplissage min/max
-- Noise limite les messages à 64KB. Si plus de remplissage est nécessaire, envoyez plusieurs trames.
+- Noise limite les messages à 64KB. Si plus de remplissage est nécessaire, envoyer plusieurs trames.
 - La réponse du router en cas de violation du remplissage négocié dépend de l'implémentation.
 
 #### Autres types de blocs
@@ -1259,116 +1267,116 @@ Les implémentations doivent ignorer les types de blocs inconnus pour la compati
 
 #### Travaux futurs
 
-- La longueur du bourrage (padding) doit être décidée soit sur une base par message et des estimations de la distribution de longueur, soit des délais aléatoires doivent être ajoutés. Ces contre-mesures doivent être incluses pour résister à la DPI (inspection approfondie de paquets), car les tailles de messages révéleraient autrement que le trafic I2P est transporté par le protocole de transport. Le schéma de bourrage exact constitue un domaine de travail futur.
+- La longueur du rembourrage doit être décidée soit au cas par cas pour chaque message avec des estimations de la distribution des longueurs, soit des délais aléatoires doivent être ajoutés. Ces contre-mesures doivent être incluses pour résister à l'inspection approfondie de paquets (DPI), car les tailles des messages révéleraient sinon que du trafic I2P est transporté par le protocole de transport. Le schéma de rembourrage exact constitue un domaine de travail futur.
 
 ### 5) Résiliation
 
-Les connexions peuvent être terminées par une fermeture normale ou anormale de socket TCP, ou, comme Noise le recommande, par un message de terminaison explicite. Le message de terminaison explicite est défini dans la phase de données ci-dessus.
+Les connexions peuvent être fermées via une fermeture normale ou anormale du socket TCP, ou, comme Noise le recommande, un message de terminaison explicite. Le message de terminaison explicite est défini dans la phase de données ci-dessus.
 
-Lors de toute terminaison normale ou anormale, les routers doivent remettre à zéro toutes les données éphémères en mémoire, y compris les clés éphémères de négociation, les clés cryptographiques symétriques et les informations associées.
+Lors de toute terminaison normale ou anormale, les routers doivent remettre à zéro toutes les données éphémères en mémoire, y compris les clés éphémères de handshake, les clés cryptographiques symétriques et les informations associées.
 
-## Informations de Router Publiées
+## Informations du Router Publiées
 
 ### Capacités
 
-À partir de la version 0.9.50, l'option "caps" est prise en charge dans les adresses NTCP2, de manière similaire à SSU. Une ou plusieurs capacités peuvent être publiées dans l'option "caps". Les capacités peuvent être dans n'importe quel ordre, mais "46" est l'ordre recommandé, pour la cohérence entre les implémentations. Il y a deux capacités définies :
+À partir de la version 0.9.50, l'option "caps" est prise en charge dans les adresses NTCP2, similaire à SSU. Une ou plusieurs capacités peuvent être publiées dans l'option "caps". Les capacités peuvent être dans n'importe quel ordre, mais "46" est l'ordre recommandé, pour la cohérence entre les implémentations. Il y a deux capacités définies :
 
-4: Indique la capacité IPv4 sortante. Si une IP est publiée dans le champ host, cette capacité n'est pas nécessaire. Si le router est caché, ou si NTCP2 est uniquement sortant, '4' et '6' peuvent être combinés dans une seule adresse.
+4: Indique la capacité IPv4 sortante. Si une IP est publiée dans le champ host, cette capacité n'est pas nécessaire. Si le router est caché, ou si NTCP2 est en sortie uniquement, '4' et '6' peuvent être combinés dans une seule adresse.
 
-6: Indique une capacité IPv6 sortante. Si une IP est publiée dans le champ host, cette capacité n'est pas nécessaire. Si le router est caché, ou si NTCP2 est en sortie uniquement, '4' et '6' peuvent être combinés dans une seule adresse.
+6: Indique la capacité IPv6 sortante. Si une IP est publiée dans le champ host, cette capacité n'est pas nécessaire. Si le router est caché, ou si NTCP2 est en sortie uniquement, '4' et '6' peuvent être combinés dans une seule adresse.
 
-### Adresses Publiées
+### Adresses publiées
 
-La RouterAddress publiée (partie du RouterInfo) aura un identifiant de protocole soit "NTCP" soit "NTCP2".
+L'adresse RouterAddress publiée (partie des RouterInfo) aura un identifiant de protocole soit "NTCP" soit "NTCP2".
 
 Le RouterAddress doit contenir les options "host" et "port", comme dans le protocole NTCP actuel.
 
-La RouterAddress doit contenir trois options pour indiquer la prise en charge de NTCP2 :
+La RouterAddress doit contenir trois options pour indiquer le support NTCP2 :
 
-- s=(Clé Base64) La clé publique statique Noise actuelle (s) pour cette RouterAddress. Encodée en Base 64 utilisant l'alphabet I2P Base 64 standard. 32 octets en binaire, 44 octets encodés en Base 64, clé publique X25519 little-endian.
-- i=(IV Base64) L'IV actuel pour chiffrer la valeur X dans le message 1 pour cette RouterAddress. Encodé en Base 64 utilisant l'alphabet I2P Base 64 standard. 16 octets en binaire, 24 octets encodés en Base 64, big-endian.
-- v=2 La version actuelle (2). Lorsque publié comme "NTCP", un support additionnel pour la version 1 est implicite. Le support pour les versions futures se fera avec des valeurs séparées par des virgules, par exemple v=2,3. L'implémentation doit vérifier la compatibilité, y compris les versions multiples si une virgule est présente. Les versions séparées par des virgules doivent être dans l'ordre numérique.
+- s=(Clé Base64) La clé publique statique Noise (s) actuelle pour cette RouterAddress. Encodée en Base 64 en utilisant l'alphabet I2P Base 64 standard. 32 octets en binaire, 44 octets encodés en Base 64, clé publique X25519 little-endian.
+- i=(IV Base64) L'IV actuel pour chiffrer la valeur X dans le message 1 pour cette RouterAddress. Encodé en Base 64 en utilisant l'alphabet I2P Base 64 standard. 16 octets en binaire, 24 octets encodés en Base 64, big-endian.
+- v=2 La version actuelle (2). Lorsque publié comme "NTCP", un support additionnel pour la version 1 est implicite. Le support pour les versions futures se fera avec des valeurs séparées par des virgules, par exemple v=2,3. L'implémentation doit vérifier la compatibilité, incluant les versions multiples si une virgule est présente. Les versions séparées par des virgules doivent être dans l'ordre numérique.
 
 Alice doit vérifier que les trois options sont présentes et valides avant de se connecter en utilisant le protocole NTCP2.
 
-Lorsqu'il est publié comme "NTCP" avec les options "s", "i", et "v", le router doit accepter les connexions entrantes sur cet hôte et ce port pour les protocoles NTCP et NTCP2, et détecter automatiquement la version du protocole.
+Lorsqu'il est publié comme "NTCP" avec les options "s", "i" et "v", le router doit accepter les connexions entrantes sur cet hôte et ce port pour les protocoles NTCP et NTCP2, et détecter automatiquement la version du protocole.
 
-Lorsque publié comme "NTCP2" avec les options "s", "i", et "v", le router accepte les connexions entrantes sur cet hôte et ce port pour le protocole NTCP2 uniquement.
+Lorsqu'il est publié comme "NTCP2" avec les options "s", "i" et "v", le router accepte les connexions entrantes sur cet hôte et ce port pour le protocole NTCP2 uniquement.
 
-Si un router prend en charge les connexions NTCP1 et NTCP2 mais n'implémente pas la détection automatique de version pour les connexions entrantes, il doit annoncer à la fois les adresses "NTCP" et "NTCP2", et inclure les options NTCP2 uniquement dans l'adresse "NTCP2". Le router devrait définir une valeur de coût plus faible (priorité plus élevée) dans l'adresse "NTCP2" que dans l'adresse "NTCP", afin que NTCP2 soit privilégié.
+Si un router prend en charge les connexions NTCP1 et NTCP2 mais n'implémente pas la détection automatique de version pour les connexions entrantes, il doit annoncer à la fois les adresses "NTCP" and "NTCP2", et inclure les options NTCP2 dans l'adresse "NTCP2" uniquement. Le router devrait définir une valeur de coût plus faible (priorité plus élevée) dans l'adresse "NTCP2" que dans l'adresse "NTCP", afin que NTCP2 soit préféré.
 
-Si plusieurs NTCP2 RouterAddresses (soit comme "NTCP" ou "NTCP2") sont publiées dans le même RouterInfo (pour des adresses IP ou ports supplémentaires), toutes les adresses spécifiant le même port doivent contenir des options et valeurs NTCP2 identiques. En particulier, toutes doivent contenir la même clé statique et le même iv.
+Si plusieurs NTCP2 RouterAddresses (soit comme "NTCP" ou "NTCP2") sont publiées dans le même RouterInfo (pour des adresses IP ou ports supplémentaires), toutes les adresses spécifiant le même port doivent contenir les options et valeurs NTCP2 identiques. En particulier, toutes doivent contenir la même clé statique et le même iv.
 
 ### Adresse NTCP2 non publiée
 
-Si Alice ne publie pas son adresse NTCP2 (comme "NTCP" ou "NTCP2") pour les connexions entrantes, elle doit publier une adresse router "NTCP2" contenant uniquement sa clé statique et la version NTCP2, afin que Bob puisse valider la clé après avoir reçu le RouterInfo d'Alice dans la partie 2 du message 3.
+Si Alice ne publie pas son adresse NTCP2 (comme "NTCP" ou "NTCP2") pour les connexions entrantes, elle doit publier une adresse router "NTCP2" contenant uniquement sa clé statique et sa version NTCP2, afin que Bob puisse valider la clé après avoir reçu le RouterInfo d'Alice dans la partie 2 du message 3.
 
 - s=(clé Base64) Comme défini ci-dessus pour les adresses publiées.
 - v=2 Comme défini ci-dessus pour les adresses publiées.
 
-Cette adresse de router ne contiendra pas les options "i", "host" ou "port", car elles ne sont pas requises pour les connexions NTCP2 sortantes. Le coût publié pour cette adresse n'a pas d'importance stricte, car elle est uniquement entrante ; cependant, il peut être utile aux autres routers que le coût soit défini plus haut (priorité plus faible) que les autres adresses. La valeur suggérée est 14.
+Cette adresse de router ne contiendra pas les options "i", "host" ou "port", car elles ne sont pas requises pour les connexions NTCP2 sortantes. Le coût publié pour cette adresse n'a pas strictement d'importance, car elle est uniquement entrante ; cependant, il peut être utile aux autres routers si le coût est défini plus élevé (priorité plus faible) que les autres adresses. La valeur suggérée est 14.
 
 Alice peut également simplement ajouter les options "s" et "v" à une adresse "NTCP" publiée existante.
 
-### Rotation de la clé publique et du vecteur d'initialisation
+### Rotation de la clé publique et de l'IV
 
-En raison de la mise en cache des RouterInfos, les routers ne doivent pas faire de rotation de la clé publique statique ou de l'IV pendant que le router est en fonctionnement, que ce soit dans une adresse publiée ou non. Les routers doivent stocker de manière persistante cette clé et cet IV pour les réutiliser après un redémarrage immédiat, afin que les connexions entrantes continuent de fonctionner et que les temps de redémarrage ne soient pas exposés. Les routers doivent stocker de manière persistante, ou déterminer autrement, l'heure du dernier arrêt, afin que la durée d'arrêt précédente puisse être calculée au démarrage.
+En raison de la mise en cache des RouterInfos, les routers ne doivent pas faire la rotation de la clé publique statique ou de l'IV pendant que le router est en fonctionnement, que ce soit dans une adresse publiée ou non. Les routers doivent stocker de manière persistante cette clé et cet IV pour les réutiliser après un redémarrage immédiat, afin que les connexions entrantes continuent de fonctionner et que les temps de redémarrage ne soient pas exposés. Les routers doivent stocker de manière persistante, ou déterminer autrement, l'heure du dernier arrêt, afin que le temps d'arrêt précédent puisse être calculé au démarrage.
 
-En raison des préoccupations concernant l'exposition des heures de redémarrage, les routeurs peuvent faire la rotation de cette clé ou de cet IV au démarrage si le routeur était précédemment hors ligne pendant un certain temps (au moins quelques heures).
+Sous réserve des préoccupations concernant l'exposition des heures de redémarrage, les routers peuvent effectuer une rotation de cette clé ou IV au démarrage si le router était précédemment arrêté pendant un certain temps (au moins quelques heures).
 
-Si le router a des RouterAddresses NTCP2 publiées (comme NTCP ou NTCP2), le temps d'arrêt minimum avant la rotation devrait être beaucoup plus long, par exemple un mois, sauf si l'adresse IP locale a changé ou si le router effectue un "rekeys".
+Si le router a des RouterAddresses NTCP2 publiées (en tant que NTCP ou NTCP2), le temps d'arrêt minimum avant la rotation devrait être beaucoup plus long, par exemple un mois, sauf si l'adresse IP locale a changé ou si le router "rekeys".
 
-Si le router a des RouterAddresses SSU publiées, mais pas NTCP2 (comme NTCP ou NTCP2), le temps d'arrêt minimum avant la rotation devrait être plus long, par exemple une journée, sauf si l'adresse IP locale a changé ou si le router "rekeys". Ceci s'applique même si l'adresse SSU publiée a des introducers.
+Si le router a des RouterAddresses SSU publiées, mais pas NTCP2 (en tant que NTCP ou NTCP2), le temps d'arrêt minimum avant la rotation devrait être plus long, par exemple un jour, sauf si l'adresse IP locale a changé ou si le router effectue un "rekeys". Ceci s'applique même si l'adresse SSU publiée a des introducers.
 
-Si le router n'a pas de RouterAddresses publiées (NTCP, NTCP2, ou SSU), le temps d'arrêt minimum avant la rotation peut être aussi court que deux heures, même si l'adresse IP change, à moins que le router ne "rekeys".
+Si le router n'a pas de RouterAddresses publiées (NTCP, NTCP2, ou SSU), le temps d'arrêt minimum avant la rotation peut être aussi court que deux heures, même si l'adresse IP change, à moins que le router ne « renouvelle ses clés ».
 
 Si le router "rekeys" vers un Router Hash différent, il devrait également générer une nouvelle clé noise et un nouvel IV.
 
-Les implémentations doivent être conscientes que changer la clé publique statique ou l'IV empêchera les connexions NTCP2 entrantes provenant de routeurs qui ont mis en cache une RouterInfo plus ancienne. La publication de RouterInfo, la sélection des pairs de tunnel (y compris à la fois OBGW et le saut le plus proche IB), la sélection de tunnel à zéro saut, la sélection de transport, et d'autres stratégies d'implémentation doivent prendre cela en compte.
+Les implémentations doivent être conscientes que le changement de la clé publique statique ou de l'IV interdira les connexions NTCP2 entrantes des routeurs qui ont mis en cache une RouterInfo plus ancienne. La publication de RouterInfo, la sélection des pairs de tunnel (y compris OBGW et le saut le plus proche IB), la sélection de tunnel à zéro saut, la sélection de transport et d'autres stratégies d'implémentation doivent en tenir compte.
 
-La rotation des IV est soumise aux mêmes règles que la rotation des clés, sauf que les IV ne sont présents que dans les RouterAddresses publiées, il n'y a donc pas d'IV pour les routeurs cachés ou derrière un pare-feu. Si quelque chose change (version, clé, options ?), il est recommandé que l'IV change également.
+La rotation d'IV est soumise aux mêmes règles que la rotation de clés, sauf que les IV ne sont présents que dans les RouterAddresses publiées, il n'y a donc pas d'IV pour les routeurs cachés ou derrière un pare-feu. Si quoi que ce soit change (version, clé, options ?) il est recommandé que l'IV change également.
 
-Note : Le temps d'arrêt minimum avant la regénération des clés peut être modifié pour assurer la santé du réseau et pour empêcher le reseeding par un router en panne pendant une durée modérée.
+Note : Le temps d'arrêt minimum avant la regénération des clés peut être modifié pour assurer la santé du réseau et empêcher le reseeding par un router arrêté pendant une durée modérée.
 
-## Détection de Version
+## Détection de version
 
-Lorsque publié comme "NTCP", le router doit automatiquement détecter la version du protocole pour les connexions entrantes.
+Lorsqu'il est publié comme "NTCP", le router doit automatiquement détecter la version du protocole pour les connexions entrantes.
 
 Cette détection dépend de l'implémentation, mais voici quelques conseils généraux.
 
 Pour détecter la version d'une connexion NTCP entrante, Bob procède comme suit :
 
-- Attendre au moins 64 octets (taille minimale du message NTCP2 1)
+- Attendre au moins 64 octets (taille minimale du message 1 NTCP2)
 
-- Si les données reçues initiales font 288 octets ou plus, la connexion entrante est en version 1.
+- Si les données initiales reçues font 288 octets ou plus, la connexion entrante est en version 1.
 
 - Si moins de 288 octets, soit
 
 > - Attendre un court moment pour plus de données (bonne stratégie avant l'adoption généralisée de NTCP2) si au moins 288 octets ont été reçus au total, c'est NTCP 1.   >   > - Essayer les premières étapes de décodage en version 2, si cela échoue, attendre un court moment pour plus de données (bonne stratégie après l'adoption généralisée de NTCP2)   >   >   > - Déchiffrer les 32 premiers octets (la clé X) du paquet SessionRequest en utilisant AES-256 avec la clé RH_B.   >   > - Vérifier un point valide sur la courbe. Si cela échoue, attendre un court moment pour plus de données pour NTCP 1   >   > - Vérifier la trame AEAD. Si cela échoue, attendre un court moment pour plus de données pour NTCP 1
 
-Notez que des changements ou des stratégies supplémentaires peuvent être recommandés si nous détectons des attaques actives de segmentation TCP sur NTCP 1.
+Notez que des modifications ou des stratégies supplémentaires peuvent être recommandées si nous détectons des attaques de segmentation TCP actives sur NTCP 1.
 
-Pour faciliter la détection rapide de version et l'établissement de liaison, les implémentations doivent s'assurer qu'Alice met en mémoire tampon puis vide l'intégralité du contenu du premier message d'un coup, y compris le remplissage. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou les middleboxes), et reçues d'un coup par Bob. C'est également pour l'efficacité et pour garantir l'efficacité du remplissage aléatoire. Ceci s'applique aux établissements de liaison NTCP et NTCP2.
+Pour faciliter la détection rapide de version et l'établissement de liaison, les implémentations doivent s'assurer qu'Alice met en mémoire tampon puis transmet d'un coup tout le contenu du premier message, y compris le remplissage. Cela augmente la probabilité que les données soient contenues dans un seul paquet TCP (sauf si segmentées par l'OS ou des équipements intermédiaires), et reçues d'un coup par Bob. C'est aussi pour l'efficacité et pour garantir l'efficacité du remplissage aléatoire. Ceci s'applique aux établissements de liaison NTCP et NTCP2.
 
-## Variantes, solutions de repli et problèmes généraux
+## Variantes, Solutions de Repli et Problèmes Généraux
 
-- Si Alice et Bob supportent tous deux NTCP2, Alice devrait se connecter avec NTCP2.
-- Si Alice échoue à se connecter à Bob en utilisant NTCP2 pour quelque raison que ce soit, la connexion échoue. Alice ne peut pas réessayer en utilisant NTCP 1.
+- Si Alice et Bob prennent tous deux en charge NTCP2, Alice devrait se connecter avec NTCP2.
+- Si Alice échoue à se connecter à Bob en utilisant NTCP2 pour une raison quelconque, la connexion échoue. Alice ne peut pas réessayer en utilisant NTCP 1.
 
-## Directives de décalage d'horloge
+## Directives sur la dérive d'horloge
 
-Les horodatages des pairs sont inclus dans les deux premiers messages de négociation, Session Request et Session Created. Un décalage d'horloge entre deux pairs supérieur à +/- 60 secondes est généralement fatal. Si Bob pense que son horloge locale est défaillante, il peut ajuster son horloge en utilisant le décalage calculé, ou une source externe. Sinon, Bob devrait répondre avec un Session Created même si le décalage maximal est dépassé, plutôt que de simplement fermer la connexion. Cela permet à Alice d'obtenir l'horodatage de Bob et de calculer le décalage, et de prendre des mesures si nécessaire. Bob n'a pas l'identité router d'Alice à ce moment-là, mais pour économiser les ressources, il peut être souhaitable pour Bob de bannir les connexions entrantes depuis l'IP d'Alice pendant une certaine période, ou après des tentatives de connexion répétées avec un décalage excessif.
+Les horodatages des pairs sont inclus dans les deux premiers messages de négociation, Session Request et Session Created. Un décalage d'horloge entre deux pairs supérieur à +/- 60 secondes est généralement fatal. Si Bob pense que son horloge locale est incorrecte, il peut ajuster son horloge en utilisant le décalage calculé, ou une source externe. Sinon, Bob devrait répondre avec un Session Created même si le décalage maximum est dépassé, plutôt que de simplement fermer la connexion. Cela permet à Alice d'obtenir l'horodatage de Bob et de calculer le décalage, et de prendre des mesures si nécessaire. Bob n'a pas l'identité du router d'Alice à ce stade, mais pour préserver les ressources, il peut être souhaitable pour Bob de bannir les connexions entrantes depuis l'IP d'Alice pendant une certaine période, ou après des tentatives de connexion répétées avec un décalage excessif.
 
-Alice devrait ajuster le décalage d'horloge calculé en soustrayant la moitié du RTT. Si Alice pense que son horloge locale est défaillante, elle peut ajuster son horloge en utilisant le décalage calculé, ou une source externe. Si Alice pense que l'horloge de Bob est défaillante, elle peut bannir Bob pendant une certaine période de temps. Dans les deux cas, Alice devrait fermer la connexion.
+Alice devrait ajuster le décalage d'horloge calculé en soustrayant la moitié du RTT. Si Alice pense que son horloge locale est défaillante, elle peut ajuster son horloge en utilisant le décalage calculé, ou une source externe. Si Alice pense que l'horloge de Bob est défaillante, elle peut bannir Bob pendant une certaine période. Dans les deux cas, Alice devrait fermer la connexion.
 
-Si Alice répond effectivement avec Session Confirmed (probablement parce que le décalage d'horloge est très proche de la limite de 60s, et que les calculs d'Alice et Bob ne sont pas exactement identiques en raison du RTT), Bob devrait ajuster le décalage d'horloge calculé en soustrayant la moitié du RTT. Si le décalage d'horloge ajusté dépasse le maximum, Bob devrait alors répondre avec un message Disconnect contenant un code de raison de décalage d'horloge, et fermer la connexion. À ce stade, Bob a l'identité du router d'Alice, et peut bannir Alice pendant une certaine période de temps.
+Si Alice répond effectivement avec Session Confirmed (probablement parce que le décalage est très proche de la limite de 60s, et que les calculs d'Alice et Bob ne sont pas exactement identiques à cause du RTT), Bob devrait ajuster le décalage d'horloge calculé en soustrayant la moitié du RTT. Si le décalage d'horloge ajusté dépasse le maximum, Bob devrait alors répondre avec un message Disconnect contenant un code de raison de décalage d'horloge, et fermer la connexion. À ce stade, Bob a l'identité du router d'Alice, et peut bannir Alice pendant une certaine période.
 
 ## Références
 
 - [Structures Communes](/docs/specs/common-structures)
 - [I2NP](/docs/specs/i2np)
 - [Base de Données Réseau](/docs/overview/network-database)
-- [NOISE - Noise Protocol Framework](https://noiseprotocol.org/noise.html)
+- [NOISE - Framework de Protocole Noise](https://noiseprotocol.org/noise.html)
 - [NTCP](/docs/transport/ntcp)
 - [Prop104](/proposals/104-tls-transport)
 - [Prop109](/proposals/109-pt-transport)
