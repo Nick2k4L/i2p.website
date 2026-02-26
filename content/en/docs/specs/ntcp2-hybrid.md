@@ -555,16 +555,19 @@ whether she advertises the same variant.
 In the current specification, messages 1 and 2 are defined to have a "reasonable"
 amount of padding, with a range of 0-31 bytes recommended, and no maximum specified.
 
-Java I2P implements a maximum of 256 bytes padding for non-PQ connections, however this
+Through API 0.9.68 (release 2.11.0), Java I2P implemented a maximum of 256 bytes padding for non-PQ connections, however this
 was not previously documented.
+As of API 0.9.69 (release 2.12.0), Java I2P implements the same max padding for non-PQ connections
+as for MLKEM-512. See table below.
+
 
 Use the defined message size as the maximum padding,
-that is, the maximum padding will double the message size, as follows:
+that is, the maximum padding will double the message size for PQ connections, as follows:
 
-| Message Max Padding | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
-|---------------------|-----------|-----------|------------|
-| Session Request  |       880   |     1264   |    1648  |
-| Session Created  |       848   |     1136   |    1616	 |
+| Message Max Padding | non-PQ (thru 0.9.68) | non-PQ (as of 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
+|---------------------|----------------------|-----------------------|-----------|-----------|------------|
+| Session Request  |   256   |   880   |    880   |     1264   |    1648  |
+| Session Created  |   256   |   848   |    848   |     1136   |    1616  |
 
 
 
