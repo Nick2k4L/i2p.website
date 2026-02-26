@@ -61,8 +61,11 @@ log_info "Detecting changed files in content/en/..."
 PREV_COMMIT="${CI_COMMIT_BEFORE_SHA:-HEAD~1}"
 CURRENT_COMMIT="${CI_COMMIT_SHA:-HEAD}"
 
-# Find changed .md and .html files in content/en/
-CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR "$PREV_COMMIT" "$CURRENT_COMMIT" | grep -E '^content/en/.*\.(md|html)$' || true)
+# Find ALL changed .md and .html files (en + translations)
+ALL_CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR "$PREV_COMMIT" "$CURRENT_COMMIT" | grep -E '^content/.*\.(md|html)$' || true)
+
+# Extract only English source changes
+CHANGED_FILES=$(echo "$ALL_CHANGED_FILES" | grep -E '^content/en/' || true)
 
 if [ -z "$CHANGED_FILES" ]; then
     log_info "No changed .md or .html files found in content/en/"
@@ -126,6 +129,15 @@ translate_language() {
         local REL_PATH
         REL_PATH=$(relpath "$FILE_PATH" "$REPO_ROOT")
 
+        # Skip if the translated file was already updated in the same commit
+        local TRANSLATED_REL
+        TRANSLATED_REL=$(echo "$REL_PATH" | sed "s|^content/en/|content/$TARGET_LANG/|")
+        if echo "$ALL_CHANGED_FILES" | grep -qF "$TRANSLATED_REL"; then
+            log_info "  [$TARGET_LANG] Skipping (already updated in this commit): $REL_PATH"
+            echo "$FILE_PATH" >> "$RESULT_FILE.success"
+            continue
+        fi
+
         local COPY_HTML_FLAG=""
         if [[ "$FILE_PATH" == *.html ]]; then
             COPY_HTML_FLAG="--copy-html"
@@ -166,7 +178,7 @@ translate_language() {
 }
 
 export -f translate_language relpath log_info log_warn log_error
-export PYTHON_SCRIPT REPO_ROOT FILES_TO_TRANSLATE RESULT_DIR
+export PYTHON_SCRIPT REPO_ROOT FILES_TO_TRANSLATE RESULT_DIR ALL_CHANGED_FILES
 export RED GREEN YELLOW NC
 
 # Launch translations in parallel, limited to MAX_PARALLEL at a time
