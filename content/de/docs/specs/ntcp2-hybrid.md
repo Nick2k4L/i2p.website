@@ -46,7 +46,9 @@ Die Verschlüsselungstypen sind:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### Zulässige Kombinationen
+</table>
+
+### Zulässige Kombinationen
 
 Die neuen Verschlüsselungstypen werden in den RouterAddresses angegeben. Der Verschlüsselungstyp im Schlüsselzertifikat wird weiterhin Typ 4 sein.
 
@@ -404,7 +406,9 @@ Größen:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Hinweis: Typencodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den router-Adressen angezeigt.
+</table>
+
+Hinweis: Typencodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den router-Adressen angezeigt.
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ Größen:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angezeigt.
+</table>
+
+Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angezeigt.
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ Verwende die definierte Nachrichtengröße als maximales Padding, das heißt, da
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## Overhead-Analyse
+</table>
+
+## Overhead-Analyse
 
 ### Schlüsselaustausch
 
@@ -607,7 +615,9 @@ Größenzunahme (Bytes):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## Sicherheitsanalyse
+</table>
+
+## Sicherheitsanalyse
 
 NIST-Sicherheitskategorien sind in der [NIST-Präsentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) auf Folie 10 zusammengefasst. Vorläufige Kriterien: Unsere minimale NIST-Sicherheitskategorie sollte 2 für hybride Protokolle und 3 für reine PQ-Protokolle sein.
 
@@ -636,7 +646,9 @@ NIST-Sicherheitskategorien sind in der [NIST-Präsentation](https://www.nccoe.ni
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### Handshakes
+</table>
+
+### Handshakes
 
 Dies sind alles Hybrid-Protokolle. Implementierungen sollten MLKEM768 bevorzugen; MLKEM512 ist nicht sicher genug.
 
@@ -659,7 +671,9 @@ NIST-Sicherheitskategorien [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIS
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## Implementierungshinweise
+</table>
+
+## Implementierungshinweise
 
 ### Bibliotheksunterstützung
 

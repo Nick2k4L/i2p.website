@@ -46,7 +46,9 @@ PQ KEM 仅提供临时密钥，不直接支持静态密钥握手（如 Noise XK 
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### 合法组合
+</table>
+
+### 合法组合
 
 新的加密类型在RouterAddresses中指示。密钥证书中的加密类型将继续为类型4。
 
@@ -404,7 +406,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中指示。
+</table>
+
+注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中指示。
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中标明。
+</table>
+
+注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中标明。
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ Alice 可以使用 Bob 发布的 PQ 变体连接到 PQ Bob，无论 Alice 是否
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## 开销分析
+</table>
+
+## 开销分析
 
 ### 密钥交换
 
@@ -607,7 +615,9 @@ Alice 可以使用 Bob 发布的 PQ 变体连接到 PQ Bob，无论 Alice 是否
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## 安全分析
+</table>
+
+## 安全分析
 
 NIST安全类别在[NIST演示文稿](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)第10页有总结。初步标准：我们的最低NIST安全类别对于混合协议应为2级，对于仅PQ协议应为3级。
 
@@ -636,7 +646,9 @@ NIST安全类别在[NIST演示文稿](https://www.nccoe.nist.gov/sites/default/f
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### 握手
+</table>
+
+### 握手
 
 这些都是混合协议。实现应该优先选择 MLKEM768；MLKEM512 不够安全。
 
@@ -659,7 +671,9 @@ NIST 安全类别 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.20
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## 实现说明
+</table>
+
+## 实现说明
 
 ### 库支持
 

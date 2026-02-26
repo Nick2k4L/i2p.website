@@ -46,7 +46,9 @@ Các loại mã hóa là:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### Các Kết Hợp Hợp Pháp
+</table>
+
+### Các Kết Hợp Hợp Pháp
 
 Các loại mã hóa mới được chỉ định trong RouterAddresses. Loại mã hóa trong key certificate sẽ tiếp tục là loại 4.
 
@@ -404,7 +406,9 @@ Kích thước:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong các địa chỉ router.
+</table>
+
+Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong các địa chỉ router.
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ Kích thước:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và việc hỗ trợ sẽ được chỉ ra trong địa chỉ router.
+</table>
+
+Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và việc hỗ trợ sẽ được chỉ ra trong địa chỉ router.
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ Sử dụng kích thước thông điệp đã định nghĩa làm padding tối
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## Phân Tích Chi Phí Hoạt Động
+</table>
+
+## Phân Tích Chi Phí Hoạt Động
 
 ### Trao Đổi Khóa
 
@@ -607,7 +615,9 @@ Tăng kích thước (byte):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## Phân tích Bảo mật
+</table>
+
+## Phân tích Bảo mật
 
 Các danh mục bảo mật NIST được tóm tắt trong [bài thuyết trình NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10. Tiêu chí sơ bộ: Danh mục bảo mật NIST tối thiểu của chúng ta nên là 2 cho các giao thức hybrid và 3 cho PQ-only.
 
@@ -636,7 +646,9 @@ Các danh mục bảo mật NIST được tóm tắt trong [bài thuyết trình
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### Bắt tay
+</table>
+
+### Bắt tay
 
 Đây đều là các giao thức kết hợp. Các triển khai nên ưu tiên MLKEM768; MLKEM512 không đủ bảo mật.
 
@@ -659,7 +671,9 @@ Các danh mục bảo mật NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FI
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## Ghi chú Triển khai
+</table>
+
+## Ghi chú Triển khai
 
 ### Hỗ trợ Thư viện
 

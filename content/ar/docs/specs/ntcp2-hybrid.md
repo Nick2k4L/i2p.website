@@ -46,7 +46,9 @@ PQ Hybrid NTCP2 معرّف فقط على نفس العنوان والمنفذ ا
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### التركيبات القانونية
+</table>
+
+### التركيبات القانونية
 
 يتم الإشارة إلى أنواع التشفير الجديدة في RouterAddresses. سيستمر نوع التشفير في شهادة المفتاح بكونه من النوع 4.
 
@@ -404,7 +406,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>ملاحظة: أكواد الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين أجهزة router.
+</table>
+
+ملاحظة: أكواد الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين أجهزة router.
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>ملاحظة: رموز الأنواع مخصصة للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين router.
+</table>
+
+ملاحظة: رموز الأنواع مخصصة للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين router.
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## تحليل الحمولة الإضافية
+</table>
+
+## تحليل الحمولة الإضافية
 
 ### تبادل المفاتيح
 
@@ -607,7 +615,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## تحليل الأمان
+</table>
+
+## تحليل الأمان
 
 تم تلخيص فئات الأمان NIST في [عرض NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) الشريحة 10. المعايير الأولية: يجب أن تكون فئة الأمان NIST الدنيا لدينا 2 للبروتوكولات المختلطة و 3 لـ PQ فقط.
 
@@ -636,7 +646,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### المصافحات
+</table>
+
+### المصافحات
 
 هذه كلها بروتوكولات مختلطة. يجب أن تفضل التطبيقات MLKEM768؛ فإن MLKEM512 ليس آمناً بما فيه الكفاية.
 
@@ -659,7 +671,9 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## ملاحظات التنفيذ
+</table>
+
+## ملاحظات التنفيذ
 
 ### دعم المكتبة
 

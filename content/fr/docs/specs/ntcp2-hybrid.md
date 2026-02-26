@@ -46,7 +46,9 @@ Les types de chiffrement sont :
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### Combinaisons légales
+</table>
+
+### Combinaisons légales
 
 Les nouveaux types de chiffrement sont indiqués dans les RouterAddresses. Le type de chiffrement dans le certificat de clé continuera d'être de type 4.
 
@@ -404,7 +406,9 @@ Tailles :
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Remarque : Les codes de type sont uniquement à usage interne. Les routeurs resteront de type 4, et la prise en charge sera indiquée dans les adresses de routeur.
+</table>
+
+Remarque : Les codes de type sont uniquement à usage interne. Les routeurs resteront de type 4, et la prise en charge sera indiquée dans les adresses de routeur.
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ Tailles :
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Note : Les codes de type sont uniquement à usage interne. Les routeurs resteront de type 4, et la prise en charge sera indiquée dans les adresses de routeur.
+</table>
+
+Note : Les codes de type sont uniquement à usage interne. Les routeurs resteront de type 4, et la prise en charge sera indiquée dans les adresses de routeur.
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ Utilisez la taille de message définie comme le rembourrage maximum, c'est-à-di
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## Analyse des coûts généraux
+</table>
+
+## Analyse des coûts généraux
 
 ### Échange de clés
 
@@ -607,7 +615,9 @@ Augmentation de taille (octets) :
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## Analyse de sécurité
+</table>
+
+## Analyse de sécurité
 
 Les catégories de sécurité NIST sont résumées dans la [présentation NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) diapositive 10. Critères préliminaires : Notre catégorie de sécurité NIST minimale devrait être 2 pour les protocoles hybrides et 3 pour les protocoles PQ uniquement.
 
@@ -636,7 +646,9 @@ Les catégories de sécurité NIST sont résumées dans la [présentation NIST](
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### Négociations de connexion
+</table>
+
+### Négociations de connexion
 
 Ce sont tous des protocoles hybrides. Les implémentations devraient privilégier MLKEM768 ; MLKEM512 n'est pas suffisamment sécurisé.
 
@@ -659,7 +671,9 @@ Catégories de sécurité NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## Notes d'implémentation
+</table>
+
+## Notes d'implémentation
 
 ### Support de bibliothèque
 

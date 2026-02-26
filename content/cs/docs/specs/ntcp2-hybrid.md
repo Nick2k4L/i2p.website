@@ -46,7 +46,9 @@ Typy šifrování jsou:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### Právní kombinace
+</table>
+
+### Právní kombinace
 
 Nové typy šifrování jsou uvedeny v RouterAddresses. Typ šifrování v certifikátu klíče bude nadále typu 4.
 
@@ -404,7 +406,9 @@ Velikosti:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude označena v adresách routeru.
+</table>
+
+Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude označena v adresách routeru.
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ Velikosti:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude označena v adresách routerů.
+</table>
+
+Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude označena v adresách routerů.
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ Použijte definovanou velikost zprávy jako maximální padding, to znamená, ž
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## Analýza režie
+</table>
+
+## Analýza režie
 
 ### Výměna klíčů
 
@@ -607,7 +615,9 @@ Nárůst velikosti (bajtů):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## Analýza bezpečnosti
+</table>
+
+## Analýza bezpečnosti
 
 Bezpečnostní kategorie NIST jsou shrnuty v [NIST prezentaci](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) na snímku 10. Předběžná kritéria: Naše minimální bezpečnostní kategorie NIST by měla být 2 pro hybridní protokoly a 3 pro PQ-only.
 
@@ -636,7 +646,9 @@ Bezpečnostní kategorie NIST jsou shrnuty v [NIST prezentaci](https://www.nccoe
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### Handshakes
+</table>
+
+### Handshakes
 
 Všechny tyto protokoly jsou hybridní. Implementace by měly preferovat MLKEM768; MLKEM512 není dostatečně bezpečný.
 
@@ -659,7 +671,9 @@ Bezpečnostní kategorie NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## Poznámky k implementaci
+</table>
+
+## Poznámky k implementaci
 
 ### Podpora knihoven
 

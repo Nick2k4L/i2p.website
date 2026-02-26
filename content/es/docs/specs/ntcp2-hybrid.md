@@ -46,7 +46,9 @@ Los tipos de cifrado son:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### Combinaciones Legales
+</table>
+
+### Combinaciones Legales
 
 Los nuevos tipos de cifrado se indican en las RouterAddresses. El tipo de cifrado en el certificado de clave seguirá siendo tipo 4.
 
@@ -404,7 +406,9 @@ Tamaños:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
+</table>
+
+Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ Tamaños:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte será indicado en las direcciones del router.
+</table>
+
+Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte será indicado en las direcciones del router.
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ Usar el tamaño de mensaje definido como el relleno máximo, es decir, el rellen
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## Análisis de Sobrecarga
+</table>
+
+## Análisis de Sobrecarga
 
 ### Intercambio de Claves
 
@@ -607,7 +615,9 @@ Aumento de tamaño (bytes):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## Análisis de Seguridad
+</table>
+
+## Análisis de Seguridad
 
 Las categorías de seguridad NIST se resumen en la [presentación NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) diapositiva 10. Criterios preliminares: Nuestra categoría mínima de seguridad NIST debería ser 2 para protocolos híbridos y 3 para solo PQ.
 
@@ -636,7 +646,9 @@ Las categorías de seguridad NIST se resumen en la [presentación NIST](https://
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### Handshakes
+</table>
+
+### Handshakes
 
 Todos estos son protocolos híbridos. Las implementaciones deberían preferir MLKEM768; MLKEM512 no es lo suficientemente seguro.
 
@@ -659,7 +671,9 @@ Categorías de seguridad NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## Notas de Implementación
+</table>
+
+## Notas de Implementación
 
 ### Soporte de Bibliotecas
 

@@ -46,7 +46,9 @@ PQ KEM yalnızca geçici anahtarlar sağlar ve Noise XK ve IK gibi statik anahta
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 </tr>
-</table>### Yasal Kombinasyonlar
+</table>
+
+### Yasal Kombinasyonlar
 
 Yeni şifreleme türleri RouterAddresses içinde belirtilir. Anahtar sertifikasındaki şifreleme türü tip 4 olmaya devam edecektir.
 
@@ -404,7 +406,9 @@ Boyutlar:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Not: Tip kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
+</table>
+
+Not: Tip kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
 #### 2) SessionCreated
 
@@ -525,7 +529,9 @@ Boyutlar:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
-</table>Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
+</table>
+
+Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
 #### 3) SessionConfirmed
 
@@ -580,7 +586,9 @@ Tanımlanan mesaj boyutunu maksimum dolgu olarak kullanın, yani maksimum dolgu 
 <td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
-</table>## Ek Yük Analizi
+</table>
+
+## Ek Yük Analizi
 
 ### Anahtar Değişimi
 
@@ -607,7 +615,9 @@ Boyut artışı (bayt):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
-</table>## Güvenlik Analizi
+</table>
+
+## Güvenlik Analizi
 
 NIST güvenlik kategorileri [NIST sunumunun](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 10. slaydında özetlenmiştir. Ön kriterler: Hibrit protokoller için minimum NIST güvenlik kategorimiz 2, PQ-only (yalnızca kuantum sonrası) için 3 olmalıdır.
 
@@ -636,7 +646,9 @@ NIST güvenlik kategorileri [NIST sunumunun](https://www.nccoe.nist.gov/sites/de
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
-</table>### El Sıkışmaları
+</table>
+
+### El Sıkışmaları
 
 Bunların hepsi hibrit protokollerdir. Uygulamalar MLKEM768'i tercih etmelidir; MLKEM512 yeterince güvenli değildir.
 
@@ -659,7 +671,9 @@ NIST güvenlik kategorileri [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NI
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
-</table>## Uygulama Notları
+</table>
+
+## Uygulama Notları
 
 ### Kütüphane Desteği
 
