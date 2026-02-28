@@ -560,12 +560,6 @@ For Bob:
 
 #### Issues
 
-- Should we change the handshake hash function? See [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
-  SHA256 is not vulnerable to PQ, but if we do want to upgrade
-  our hash function, now is the time, while we're changing other things.
-  The current IETF SSH proposal [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) is to use MLKEM768
-  with SHA256, and MLKEM1024 with SHA384. That proposal includes
-  a discussion of the security considerations.
 - Should we stop sending 0-RTT ratchet data (other than the LS)?
 - Should we switch ratchet from IK to XK if we don't send 0-RTT data?
 
@@ -1624,20 +1618,6 @@ Take care not to include padding size such that message 1 or 2 would exceed
 the local or remote MTU.
 
 
-#### Issues
-
-We could internally use the version field and use 3 for MLKEM512 and 4 for MLKEM768.
-
-For messages 1 and 2, MLKEM768 would increase packet sizes beyond the 1280 minimum MTU.
-Probably would just not support it for that connection if the MTU was too low.
-
-For messages 1 and 2, MLKEM1024 would increase packet sizes beyond 1500 maximum MTU.
-This would require fragmenting messages 1 and 2, and it would be a big complication.
-Probably won't do it.
-
-Relay and Peer Test: See above
-
-
 ### Streaming
 
 TODO: Is there a more efficient way to define signing/verification
@@ -1815,7 +1795,7 @@ plan to measure performance during development, and further analyze
 the effects of increased structure sizes. We will also continue
 to research and monitor developments in other projects and protocols.
 
-After a year or more of development we will attempt to settle on
+After development and testing we will settle on
 a preferred type or default for each use case.
 Selection will require making tradeoffs of bandwidth, CPU, and estimated security level.
 All types may not be suitable or allowed for all use cases.
@@ -1828,8 +1808,6 @@ Encryption: MLKEM768_X25519
 Signatures: MLDSA44_EdDSA_SHA512_Ed25519
 
 Preliminary restrictions are as follows, subject to change:
-
-Encryption: MLKEM1024_X25519 not allowed for SSU2
 
 Signatures: MLDSA87 and hybrid variant probably too large;
 MLDSA65 and hybrid variant may be too large
