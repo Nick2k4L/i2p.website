@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-02-26"
+lastupdated: "2026-02-28"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1443,7 +1443,7 @@ Note: Type codes are for internal use only. Routers will remain type 4,
 and support will be indicated in the router addresses.
 
 Minimum MTU for MLKEM768_X25519:
-About 1316 for IPv4 and 1336 for IPv6.
+1318 for IPv4 and 1338 for IPv6. See below.
 
 
 
@@ -1540,7 +1540,7 @@ Note: Type codes are for internal use only. Routers will remain type 4,
 and support will be indicated in the router addresses.
 
 Minimum MTU for MLKEM768_X25519:
-About 1316 for IPv4 and 1336 for IPv6.
+1318 for IPv4 and 1338 for IPv6. See below.
 
 
 #### SessionConfirmed (Type 2)
@@ -1584,15 +1584,22 @@ MLKEM-1024 is not supported.
 
 Use the same address/port as non-PQ, non-firewalled.
 One or both PQ variants are supported.
-In the router address, publish v=2 (as usual) and the new parameter pq=[3|4|3,4]
+In the router address, publish v=2 (as usual) and the new parameter pq=[3|4|3,4|4,3]
 to indicate MLKEM 512/768/both.
+Routers with a MTU less than the minimum specified below must not publish
+a "pq" parameter containing "4".
+Publish 4,3 to indicate a preference for MLKEM-768 or 3,4 to indicate
+a preference for MLKEM-512. The actual version is up to the initiator,
+and the preference may not be honored.
+Routers with a MTU less than the minimum specified below must not connect
+using MLKEM768.
 Older routers will ignore the pq parameter and connect non-pq as usual.
 
 Different address/port as non-PQ, or PQ-only, non-firewalled is NOT supported.
 This will not be implemented until non-PQ SSU2 is disabled, several years from now.
 When non-PQ is disabled,
 one or both PQ variants are supported.
-In the router address, publish v=[3|4|3,4]
+In the router address, publish v=[3|4|3,4|4,3]
 to indicate MLKEM 512/768/both.
 Older routers will check the v parameter and skip this address as unsupported.
 
@@ -1608,9 +1615,13 @@ whether she advertises the same variant.
 #### MTU
 
 Use caution not to exceed the MTU with MLKEM768.
-The minimum MTU for SSU2 is 1280, which is the size of message 1 without padding.
-Do not include padding in message 1 if Alice or Bob's MTU is 1280.
-
+The Minimum MTU for MLKEM768_X25519 is 1318 for IPv4 and 1338 for IPv6
+(assuming a min payload of 10 bytes with a DateTime and a Padding or RelayTagRequest block).
+The minimum MTU for SSU2 in general is 1280, so not all peers may use MLKEM768.
+Do not publish or use MLKEM768 if the actual MTU is less than the minimum,
+either locally or as advertised by the peer.
+Take care not to include padding size such that message 1 or 2 would exceed
+the local or remote MTU.
 
 
 #### Issues
