@@ -1273,9 +1273,11 @@ Alice, kendi router bilgisinde pq desteğinin reklamını yapıp yapmadığına 
 
 MLKEM768 ile MTU'yu aşmamaya dikkat edin. SSU2 için minimum MTU 1280'dir, bu da dolgu olmadan mesaj 1'in boyutudur. Alice veya Bob'un MTU'su 1280 ise mesaj 1'e dolgu eklemeyin.
 
-#### Sorunlar
+### Streaming
 
 Dahili olarak sürüm alanını kullanabilir ve MLKEM512 için 3, MLKEM768 için 4 kullanabiliriz.
+
+### SU3 Dosyaları
 
 Mesaj 1 ve 2 için, MLKEM768 paket boyutlarını 1280 minimum MTU'nun ötesine çıkaracaktır. MTU çok düşükse muhtemelen bu bağlantı için desteklenmeyecektir.
 
@@ -1283,27 +1285,15 @@ Mesaj 1 ve 2 için, MLKEM1024 paket boyutlarını 1500 maksimum MTU'nun ötesine
 
 Relay ve Peer Testi: Yukarıya bakınız
 
-### Streaming
-
 TODO: İmzalama/doğrulama işlemlerini imzayı kopyalamaktan kaçınacak şekilde tanımlamanın daha verimli bir yolu var mı?
 
-### SU3 Dosyaları
-
 YAPILACAKLAR
+
+### Diğer Spesifikasyonlar
 
 [IETF taslağı](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) bölüm 8.1, uygulama karmaşıklıkları ve azalmış güvenlik nedeniyle X.509 sertifikalarında HashML-DSA kullanımını yasaklamakta ve HashML-DSA için OID atamamaktadır.
 
 SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantların [IETF taslağında](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) tanımlanan OID'leri kullanın. SU3 dosyalarının hibrit imzalarını tanımlamıyoruz, çünkü dosyaları iki kez hash'lememiz gerekebilir (HashML-DSA ve X2559 aynı hash fonksiyonu SHA512'yi kullanmasına rağmen). Ayrıca, bir X.509 sertifikasında iki anahtarı ve imzayı birleştirmek tamamen standart dışı olurdu.
-
-SU3 dosyalarının Ed25519 ile imzalanmasına izin vermediğimizi ve Ed25519ph imzalamayı tanımlamış olmamıza rağmen, bunun için hiçbir zaman bir OID üzerinde anlaşmadığımızı veya kullanmadığımızı unutmayın.
-
-Normal imza türleri SU3 dosyaları için izin verilmez; ph (prehash) varyantlarını kullanın.
-
-### Diğer Spesifikasyonlar
-
-Yeni maksimum Destination boyutu 2599 olacaktır (base 64'te 3468).
-
-Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, bunlar şunlardır:
 
 - SAMv3
 - Bittorrent
@@ -1315,16 +1305,16 @@ Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, 
 
 ### Anahtar Değişimi
 
-Boyut artışı (bayt):
+SU3 dosyalarının Ed25519 ile imzalanmasına izin vermediğimizi ve Ed25519ph imzalamayı tanımlamış olmamıza rağmen, bunun için hiçbir zaman bir OID üzerinde anlaşmadığımızı veya kullanmadığımızı unutmayın.
 
 | Tür | Pubkey (Msg 1) | Cipertext (Msg 2) |
 |------|----------------|-------------------|
 | MLKEM512_X25519 | +816 | +784 |
 | MLKEM768_X25519 | +1200 | +1104 |
 | MLKEM1024_X25519 | +1584 | +1584 |
-Hız:
+Normal imza türleri SU3 dosyaları için izin verilmez; ph (prehash) varyantlarını kullanın.
 
-[Cloudflare](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
+Yeni maksimum Destination boyutu 2599 olacaktır (base 64'te 3468).
 
 | Tür | Göreli hız |
 |------|------------|
@@ -1336,7 +1326,7 @@ Hız:
 | MLKEM512_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 4.9x DH = %22 daha yavaş |
 | MLKEM768_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 5.3x DH = %32 daha yavaş |
 | MLKEM1024_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 6x DH = %50 daha yavaş |
-Java'daki ön test sonuçları:
+Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, bunlar şunlardır:
 
 | Tip | Göreceli DH/encaps | DH/decaps | keygen |
 |------|-------------------|-----------|--------|
@@ -1346,9 +1336,9 @@ Java'daki ön test sonuçları:
 | MLKEM1024 | 12x daha hızlı | 10x daha hızlı | 6x daha hızlı |
 ### İmzalar
 
-Boyut:
+Boyut artışı (bayt):
 
-X25519 şifreleme türünün RI'ler için kullanıldığı varsayılarak tipik anahtar, imza, RIdent, Dest boyutları veya boyut artışları (referans için Ed25519 dahil edilmiştir). Bir Router Info, LeaseSet, yanıtlanabilir datagram'lar ve listelenen iki streaming (SYN ve SYN ACK) paketinin her biri için eklenen boyut. Mevcut Destination'lar ve LeaseSet'ler tekrarlanan dolgu içerir ve transit sırasında sıkıştırılabilir. Yeni türler dolgu içermez ve sıkıştırılamaz olacak, bu da transit sırasında çok daha yüksek boyut artışına neden olur. Yukarıdaki tasarım bölümüne bakınız.
+Hız:
 
 | Tip | Pubkey | Sig | Key+Sig | RIdent | Dest | RInfo | LS/Streaming/Datagram (her mesaj) |
 |------|--------|-----|---------|--------|------|-------|----------------------------------|
@@ -1359,9 +1349,9 @@ X25519 şifreleme türünün RI'ler için kullanıldığı varsayılarak tipik a
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
-Hız:
-
 [Cloudflare](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
+
+Java'daki ön test sonuçları:
 
 | Tip | Göreceli hız işareti | doğrulama |
 |------|---------------------|----------|
@@ -1369,7 +1359,7 @@ Hız:
 | MLDSA44 | 5x daha yavaş | 2x daha hızlı |
 | MLDSA65 | ??? | ??? |
 | MLDSA87 | ??? | ??? |
-Java'da ön test sonuçları:
+Boyut:
 
 | Tür | Göreceli hız işareti | doğrulama | anahtar üretimi |
 |------|---------------------|-----------|-----------------|
@@ -1379,7 +1369,7 @@ Java'da ön test sonuçları:
 | MLDSA87 | 11,1x daha yavaş | 1,5x daha yavaş | aynı |
 ## Güvenlik Analizi
 
-NIST güvenlik kategorileri [NIST sunumu](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slayt 10'da özetlenmiştir. Ön kriterler: Hibrit protokoller için minimum NIST güvenlik kategorimiz 2, PQ-only için 3 olmalıdır.
+X25519 şifreleme türünün RI'ler için kullanıldığı varsayılarak tipik anahtar, imza, RIdent, Dest boyutları veya boyut artışları (referans için Ed25519 dahil edilmiştir). Bir Router Info, LeaseSet, yanıtlanabilir datagram'lar ve listelenen iki streaming (SYN ve SYN ACK) paketinin her biri için eklenen boyut. Mevcut Destination'lar ve LeaseSet'ler tekrarlanan dolgu içerir ve transit sırasında sıkıştırılabilir. Yeni türler dolgu içermez ve sıkıştırılamaz olacak, bu da transit sırasında çok daha yüksek boyut artışına neden olur. Yukarıdaki tasarım bölümüne bakınız.
 
 | Kategori | Güvenlik Seviyesi |
 |----------|-------------------|
@@ -1390,9 +1380,9 @@ NIST güvenlik kategorileri [NIST sunumu](https://www.nccoe.nist.gov/sites/defau
 | 5 | AES256 |
 ### El Sıkışmalar
 
-Bunların hepsi hibrit protokollerdir. Uygulamalar MLKEM768'i tercih etmelidir; MLKEM512 yeterince güvenli değildir.
+Hız:
 
-NIST güvenlik kategorileri [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+[Cloudflare](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
 
 | Algoritma | Güvenlik Kategorisi |
 |-----------|-------------------|
@@ -1401,9 +1391,9 @@ NIST güvenlik kategorileri [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NI
 | MLKEM1024 | 5 |
 ### İmzalar
 
-Bu öneri hem hibrit hem de sadece PQ imza türlerini tanımlar. MLDSA44 hibrit, sadece PQ olan MLDSA65'ten daha tercih edilir. MLDSA65 ve MLDSA87 için anahtar ve imza boyutları muhtemelen bizim için çok büyük, en azından başlangıçta.
+Java'da ön test sonuçları:
 
-NIST güvenlik kategorileri [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
+NIST güvenlik kategorileri [NIST sunumu](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slayt 10'da özetlenmiştir. Ön kriterler: Hibrit protokoller için minimum NIST güvenlik kategorimiz 2, PQ-only için 3 olmalıdır.
 
 | Algoritma | Güvenlik Kategorisi |
 |-----------|-------------------|
@@ -1412,172 +1402,170 @@ NIST güvenlik kategorileri [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NI
 | MLKEM87 | 5 |
 ## Tür Tercihleri
 
+Bunların hepsi hibrit protokollerdir. Uygulamalar MLKEM768'i tercih etmelidir; MLKEM512 yeterince güvenli değildir.
+
+NIST güvenlik kategorileri [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+
+Bu öneri hem hibrit hem de sadece PQ imza türlerini tanımlar. MLDSA44 hibrit, sadece PQ olan MLDSA65'ten daha tercih edilir. MLDSA65 ve MLDSA87 için anahtar ve imza boyutları muhtemelen bizim için çok büyük, en azından başlangıçta.
+
+NIST güvenlik kategorileri [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
+
 3 kripto ve 9 imza türü tanımlayıp uygulayacağımız sırada, geliştirme sürecinde performansı ölçmeyi ve artan yapı boyutlarının etkilerini daha detaylı analiz etmeyi planlıyoruz. Ayrıca diğer projelerde ve protokollerdeki gelişmeleri araştırmaya ve takip etmeye devam edeceğiz.
 
 Bir yıl veya daha fazla geliştirme sürecinden sonra, her kullanım durumu için tercih edilen bir tür veya varsayılan ayar üzerinde karar vermeye çalışacağız. Seçim, bant genişliği, CPU ve tahmini güvenlik seviyesi arasında ödünleşimler yapmayı gerektirecektir. Tüm türler her kullanım durumu için uygun olmayabilir veya izin verilmeyebilir.
 
 Ön tercihler aşağıdaki gibidir, değişikliğe tabidir:
 
+## Uygulama Notları
+
+### Kütüphane Desteği
+
 Şifreleme: MLKEM768_X25519
 
 İmzalar: MLDSA44_EdDSA_SHA512_Ed25519
+
+### İmzalama Varyantları
 
 Ön kısıtlamalar aşağıdaki gibidir, değişikliğe tabidir:
 
 Şifreleme: MLKEM1024_X25519, SSU2 için izin verilmiyor
 
+### Güvenilirlik
+
 İmzalar: MLDSA87 ve hibrit varyantı muhtemelen çok büyük; MLDSA65 ve hibrit varyantı çok büyük olabilir
 
-## Uygulama Notları
-
-### Kütüphane Desteği
+### Yapı Boyutları
 
 Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı destekliyor. OpenSSL desteği 8 Nisan 2025'teki 3.5 sürümlerinde olacak [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
+### NetDB
+
 Java I2P tarafından uyarlanan southernstorm.com Noise kütüphanesi hibrit el sıkışmalar için ön destek içeriyordu, ancak kullanılmadığı için kaldırdık; bunu geri ekleyip [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) ile eşleşecek şekilde güncellememiz gerekecek.
 
-### İmzalama Varyantları
+### Ratchet
+
+#### Sorunlar
 
 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı gibi, "deterministik" varyant değil, "hedge edilmiş" veya rastgeleleştirilmiş imzalama varyantını kullanacağız. Bu, aynı veri üzerinde bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sunar. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), "hedge edilmiş" varyantın varsayılan olduğunu belirtse de, bu çeşitli kütüphanelerde geçerli olabilir veya olmayabilir. Uygulayıcılar, imzalama için "hedge edilmiş" varyantın kullanıldığından emin olmalıdır.
 
 Normal imzalama sürecini (Pure ML-DSA Signature Generation olarak adlandırılır) kullanıyoruz, bu süreç mesajı dahili olarak 0x00 || len(ctx) || ctx || message şeklinde kodlar, burada ctx 0x00..0xFF boyutunda isteğe bağlı bir değerdir. Herhangi bir isteğe bağlı bağlam kullanmıyoruz. len(ctx) == 0. Bu süreç [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algoritma 2 adım 10 ve Algoritma 3 adım 5'te tanımlanmıştır. Yayınlanan bazı test vektörlerinin mesajın kodlanmadığı bir mod ayarlaması gerektirebileceğini unutmayın.
 
-### Güvenilirlik
-
-Boyut artışı, NetDB depolamaları, streaming el sıkışmaları ve diğer mesajlar için çok daha fazla tunnel fragmentasyonuna neden olacaktır. Performans ve güvenilirlik değişikliklerini kontrol edin.
-
-### Yapı Boyutları
-
-Router bilgilerinin ve leaseSet'lerin bayt boyutunu sınırlayan herhangi bir kodu bulun ve kontrol edin.
-
-### NetDB
-
-RAM'de veya diskte depolanan maksimum LS/RI sayısını gözden geçir ve muhtemelen azalt, depolama artışını sınırlamak için. floodfill'ler için minimum bant genişliği gereksinimlerini artır?
-
-### Ratchet
-
-#### Paylaşımlı Tunnel'lar
-
-Aynı tunnel'lar üzerinde birden fazla protokolün otomatik sınıflandırılması/tespiti, mesaj 1'in (New Session Message) uzunluk kontrolüne dayalı olarak mümkün olmalıdır. MLKEM512_X25519 örnek olarak alındığında, mesaj 1 uzunluğu mevcut ratchet protokolünden 816 bayt daha büyüktür ve minimum mesaj 1 boyutu (yalnızca DateTime payload dahil) 919 bayttır. Mevcut ratchet ile çoğu mesaj 1 boyutu 816 bayttan daha az payload'a sahiptir, bu nedenle hibrit olmayan ratchet olarak sınıflandırılabilirler. Büyük mesajlar muhtemelen nadiren görülen POST'lardır.
-
-Bu nedenle önerilen strateji şudur:
-
 - Eğer mesaj 1, 919 bayttan küçükse, mevcut ratchet protokolüdür.
 - Eğer mesaj 1, 919 bayt veya daha büyükse, muhtemelen MLKEM512_X25519'dur.
   Önce MLKEM512_X25519'u deneyin, başarısız olursa mevcut ratchet protokolünü deneyin.
 
-Bu, daha önce aynı hedefte ElGamal ve ratchet'i desteklediğimiz gibi, aynı hedefte standart ratchet ve hibrit ratchet'i verimli bir şekilde desteklememizi sağlamalıdır. Dolayısıyla, aynı hedef için çift protokol desteği sunamasaydık olacağından çok daha hızlı bir şekilde MLKEM hibrit protokolüne geçiş yapabiliriz, çünkü mevcut hedeflere MLKEM desteği ekleyebiliriz.
+Boyut artışı, NetDB depolamaları, streaming el sıkışmaları ve diğer mesajlar için çok daha fazla tunnel fragmentasyonuna neden olacaktır. Performans ve güvenilirlik değişikliklerini kontrol edin.
 
-Gerekli desteklenen kombinasyonlar şunlardır:
+Router bilgilerinin ve leaseSet'lerin bayt boyutunu sınırlayan herhangi bir kodu bulun ve kontrol edin.
 
 - X25519 + MLKEM512
 - X25519 + MLKEM768
 - X25519 + MLKEM1024
 
-Aşağıdaki kombinasyonlar karmaşık olabilir ve desteklenmesi ZORUNLU DEĞİLDİR, ancak implementasyon-bağımlı olarak desteklenebilir:
+RAM'de veya diskte depolanan maksimum LS/RI sayısını gözden geçir ve muhtemelen azalt, depolama artışını sınırlamak için. floodfill'ler için minimum bant genişliği gereksinimlerini artır?
 
 - Birden fazla MLKEM
 - ElG + bir veya daha fazla MLKEM
 - X25519 + bir veya daha fazla MLKEM
 - ElG + X25519 + bir veya daha fazla MLKEM
 
+Aynı tunnel'lar üzerinde birden fazla protokolün otomatik sınıflandırılması/tespiti, mesaj 1'in (New Session Message) uzunluk kontrolüne dayalı olarak mümkün olmalıdır. MLKEM512_X25519 örnek olarak alındığında, mesaj 1 uzunluğu mevcut ratchet protokolünden 816 bayt daha büyüktür ve minimum mesaj 1 boyutu (yalnızca DateTime payload dahil) 919 bayttır. Mevcut ratchet ile çoğu mesaj 1 boyutu 816 bayttan daha az payload'a sahiptir, bu nedenle hibrit olmayan ratchet olarak sınıflandırılabilirler. Büyük mesajlar muhtemelen nadiren görülen POST'lardır.
+
+Bu nedenle önerilen strateji şudur:
+
+Bu, daha önce aynı hedefte ElGamal ve ratchet'i desteklediğimiz gibi, aynı hedefte standart ratchet ve hibrit ratchet'i verimli bir şekilde desteklememizi sağlamalıdır. Dolayısıyla, aynı hedef için çift protokol desteği sunamasaydık olacağından çok daha hızlı bir şekilde MLKEM hibrit protokolüne geçiş yapabiliriz, çünkü mevcut hedeflere MLKEM desteği ekleyebiliriz.
+
+Gerekli desteklenen kombinasyonlar şunlardır:
+
+#### Paylaşımlı Tunnel'lar
+
+Aşağıdaki kombinasyonlar karmaşık olabilir ve desteklenmesi ZORUNLU DEĞİLDİR, ancak implementasyon-bağımlı olarak desteklenebilir:
+
+#### İleri Gizlilik
+
 Aynı hedef üzerinde birden fazla MLKEM algoritmasını (örneğin, MLKEM512_X25519 ve MLKEM_768_X25519) desteklemeye çalışmayabiliriz. Sadece birini seçin; ancak bu, tercih edilen bir MLKEM varyantı seçmemize bağlıdır, böylece HTTP istemci tunnel'ları birini kullanabilir. Uygulama bağımlıdır.
 
+### NTCP2
+
 Aynı hedef üzerinde üç algoritmayı (örneğin X25519, MLKEM512_X25519 ve MLKEM769_X25519) desteklemeye çalışabiliriz. Sınıflandırma ve yeniden deneme stratejisi çok karmaşık olabilir. Yapılandırma ve yapılandırma arayüzü çok karmaşık olabilir. Uygulamaya bağlıdır.
+
+#### Yeni Oturum Boyutu
 
 Muhtemelen aynı hedef üzerinde ElGamal ve hibrit algoritmaları desteklemeye ÇALIŞMAYACAĞIZ. ElGamal eskimiştir ve ElGamal + hibrit sadece (X25519 yok) pek mantıklı değildir. Ayrıca, ElGamal ve Hibrit Yeni Oturum Mesajları her ikisi de büyüktür, bu nedenle sınıflandırma stratejileri genellikle her iki şifre çözme işlemini de denemek zorunda kalacaktır, bu da verimsiz olacaktır. Uygulamaya bağlıdır.
 
 İstemciler aynı tunnel'lar üzerinde X25519 ve hibrit protokoller için aynı veya farklı X25519 statik anahtarları kullanabilirler, bu implementasyon-bağımlıdır.
 
-#### İleri Gizlilik
-
 ECIES spesifikasyonu, New Session Message yükünde Garlic Messages'a izin verir, bu da ilk streaming paketinin (genellikle bir HTTP GET) istemcinin leaseset'i ile birlikte 0-RTT teslimatını sağlar. Ancak, New Session Message yükü forward secrecy'ye sahip değildir. Bu öneri ratchet için gelişmiş forward secrecy'yi vurguladığından, implementasyonlar streaming yükünü veya tam streaming mesajını ilk Existing Session Message'a kadar erteleyebilir veya ertelemelidir. Bu, 0-RTT teslimatın pahasına olacaktır. Stratejiler ayrıca trafik türüne veya tunnel türüne, ya da örneğin GET vs. POST'a bağlı olabilir. Implementasyon-bağımlıdır.
-
-#### Yeni Oturum Boyutu
 
 MLKEM, MLDSA veya aynı hedefte her ikisi birden, yukarıda açıklandığı gibi New Session Message boyutunu dramatik şekilde artıracaktır. Bu, 1024 bayt tunnel mesajlarına parçalanması gereken tunnel'lar aracılığıyla New Session Message teslimatının güvenilirliğini önemli ölçüde azaltabilir. Teslimat başarısı, parça sayısının üstelsel oranıyla doğru orantılıdır. Uygulamalar, 0-RTT teslimat pahasına mesaj boyutunu sınırlamak için çeşitli stratejiler kullanabilir. Uygulamaya bağlıdır.
 
-### NTCP2
+### SSU2
 
 Bunun hibrit bir bağlantı olduğunu belirtmek için oturum isteğinde geçici anahtarın MSB'sini (key[31] & 0x80) ayarlıyoruz. Bu, aynı port üzerinde hem standart NTCP hem de hibrit NTCP çalıştırmamıza olanak tanır. Yalnızca bir hibrit varyant desteklenecek ve router adresinde duyurulacaktır. Örneğin, v=2,3 veya v=2,4 veya v=2,5.
-
-#### Gizleme
 
 Alice olarak, PQ bağlantısı için, obfuscation öncesinde X[31] |= 0x80 ayarlayın. Bu, X'i geçersiz bir X25519 public key yapar. Obfuscation sonrasında, AES-CBC bunu rastgele hale getirir. Obfuscation sonrasında X'in MSB'si rastgele olacaktır.
 
 Bob olarak, de-obfuscation (gizleme kaldırma) işleminden sonra (X[31] & 0x80) != 0 olup olmadığını test edin. Eğer öyleyse, bu bir PQ bağlantısıdır.
 
-NTCP2-PQ için gereken minimum router sürümü henüz belirlenmemiştir.
-
-Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tür 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
-
-### SSU2
-
-Uzun başlıkta versiyon alanını kullanıyoruz ve MLKEM512 için 3, MLKEM768 için 4 olarak ayarlıyoruz. Adreste v=2,3,4 yeterli olacaktır.
-
-SSU2'nin MLDSA-imzalı RI'yi birden fazla pakete (6-8?) bölünmüş şekilde işleyebilidiğini kontrol edin ve doğrulayın.
-
-Not: Tip kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
-
 ## Router Uyumluluğu
 
 ### Transport İsimleri
 
-Her durumda, NTCP2 ve SSU2 transport isimlerini her zamanki gibi kullanın.
+NTCP2-PQ için gereken minimum router sürümü henüz belirlenmemiştir.
 
 ### Router Şifreleme Türleri
 
-Değerlendirmemiz gereken birkaç alternatifimiz var:
+Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tür 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
+
+#### Gizleme
+
+Uzun başlıkta versiyon alanını kullanıyoruz ve MLKEM512 için 3, MLKEM768 için 4 olarak ayarlıyoruz. Adreste v=2,3,4 yeterli olacaktır.
 
 #### Tip 5/6/7 Router'lar
 
-Önerilmez. Yalnızca yukarıda listelenen ve router türüyle eşleşen yeni aktarımları kullanın. Eski router'lar bağlanamaz, üzerinden tunnel kuramaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlanması için birkaç sürüm döngüsü alır. Aşağıdaki alternatiflere göre kullanıma sunumunu bir yıl veya daha fazla uzatabilir.
+SSU2'nin MLDSA-imzalı RI'yi birden fazla pakete (6-8?) bölünmüş şekilde işleyebilidiğini kontrol edin ve doğrulayın.
 
 #### Tip 4 Router'lar
 
-Önerilen. PQ, X25519 statik anahtarını veya N handshake protokollerini etkilemediğinden, router'ları tip 4 olarak bırakabilir ve sadece yeni transport'ları duyurabiliriz. Eski router'lar yine de bağlanabilir, tunnel'lar kurabilir veya netDb mesajları gönderebilir.
-
-#### Öneriler
-
-MLKEM-768, güvenlik ve anahtar uzunluğu arasındaki en iyi denge olarak Ratchet, NTCP2 ve SSU2 için önerilir.
+Not: Tip kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
 ### Router İmza Türleri
 
-#### Tip 12-17 Router'lar
+#### Öneriler
 
-Eski router'lar RI'ları doğrular ve bu nedenle bağlanamaz, üzerinden tunnel oluşturamaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlama için birkaç sürüm döngüsü gerekir. Enc. type 5/6/7 dağıtımıyla aynı sorunlar olur; yukarıda listelenen type 4 enc. type dağıtım alternatifine göre dağıtımı bir yıl veya daha fazla uzatabilir.
+Her durumda, NTCP2 ve SSU2 transport isimlerini her zamanki gibi kullanın.
 
-Alternatif yok.
+Değerlendirmemiz gereken birkaç alternatifimiz var:
 
 ### LS Şifreleme Türleri
 
+#### Tip 12-17 Router'lar
+
+Önerilmez. Yalnızca yukarıda listelenen ve router türüyle eşleşen yeni aktarımları kullanın. Eski router'lar bağlanamaz, üzerinden tunnel kuramaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlanması için birkaç sürüm döngüsü alır. Aşağıdaki alternatiflere göre kullanıma sunumunu bir yıl veya daha fazla uzatabilir.
+
+Önerilen. PQ, X25519 statik anahtarını veya N handshake protokollerini etkilemediğinden, router'ları tip 4 olarak bırakabilir ve sadece yeni transport'ları duyurabiliriz. Eski router'lar yine de bağlanabilir, tunnel'lar kurabilir veya netDb mesajları gönderebilir.
+
+### Hedef İmza Türleri
+
 #### Tip 5-7 LS Anahtarları
+
+MLKEM-768, güvenlik ve anahtar uzunluğu arasındaki en iyi denge olarak Ratchet, NTCP2 ve SSU2 için önerilir.
+
+Eski router'lar RI'ları doğrular ve bu nedenle bağlanamaz, üzerinden tunnel oluşturamaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlama için birkaç sürüm döngüsü gerekir. Enc. type 5/6/7 dağıtımıyla aynı sorunlar olur; yukarıda listelenen type 4 enc. type dağıtım alternatifine göre dağıtımı bir yıl veya daha fazla uzatabilir.
+
+## Öncelikler ve Dağıtım
+
+Alternatif yok.
 
 Bunlar, eski tip 4 X25519 anahtarları olan LS'de bulunabilir. Eski router'lar bilinmeyen anahtarları göz ardı eder.
 
 Hedefler birden fazla anahtar türünü destekleyebilir, ancak yalnızca her anahtarla mesaj 1'in deneme şifre çözmelerini yaparak. Ek yük, her anahtar için başarılı şifre çözme sayılarını tutarak ve en çok kullanılan anahtarı önce deneyerek hafifletilebilir. Java I2P aynı hedef üzerinde ElGamal+X25519 için bu stratejiyi kullanır.
 
-### Hedef İmza Türleri
-
-#### Tip 12-17 Hedefler
-
 Router'lar leaseSet imzalarını doğrular ve bu nedenle tip 12-17 hedefler için bağlantı kuramaz veya leaseSet alamaz. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlanması için birkaç sürüm döngüsü gerekir.
 
 Alternatif yok.
 
-## Öncelikler ve Dağıtım
-
 En değerli veriler, ratchet ile şifrelenmiş uçtan uca trafiklerdir. Tünel atlamaları arasındaki harici bir gözlemci olarak, bu veriler iki kez daha şifrelenir: tünel şifrelemesi ve taşıma şifrelemesi ile. OBEP ve IBGW arasındaki harici bir gözlemci olarak, yalnızca bir kez daha şifrelenir: taşıma şifrelemesi ile. Bir OBEP veya IBGW katılımcısı olarak, ratchet tek şifrelemedir. Ancak, tüneller tek yönlü olduğundan, ratchet el sıkışmasındaki her iki mesajı yakalamak, tüneller aynı router üzerinde OBEP ve IBGW ile kurulmadıkça, işbirlikçi router'lar gerektirir.
-
-Şu anda en endişe verici PQ tehdit modeli, trafiği bugün depolayıp bundan yıllar sonra şifresini çözmek (ileri gizlilik). Hibrit bir yaklaşım bunu koruyabilir.
-
-Kimlik doğrulama anahtarlarını makul bir süre içinde (örneğin birkaç ay) kırma ve ardından kimliğe bürünme veya neredeyse gerçek zamanlı şifre çözme şeklindeki PQ tehdit modeli çok daha uzak bir gelecekte mi? Ve işte o zaman PQC statik anahtarlara geçiş yapmak isteyeceğiz.
-
-Yani, en erken PQ tehdit modeli OBEP/IBGW'nin trafiği daha sonra şifre çözme için depolamasıdır. Önce hibrit ratchet'i uygulamamız gerekiyor.
-
-Ratchet en yüksek önceliğe sahiptir. Transport'lar sonraki sırada gelir. İmzalar en düşük önceliğe sahiptir.
-
-İmza dağıtımı da şifreleme dağıtımından bir yıl veya daha fazla geç olacaktır, çünkü geriye dönük uyumluluk mümkün değildir. Ayrıca, endüstride MLDSA benimsenimesi CA/Browser Forum ve Sertifika Otoriteleri tarafından standardize edilecektir. CA'lar önce donanım güvenlik modülü (HSM) desteğine ihtiyaç duymaktadır ve bu şu anda mevcut değildir [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). CA/Browser Forum'un kompozit imzaları destekleme veya zorunlu kılma dahil olmak üzere belirli parametre seçimlerinde kararları yönlendirmesini bekliyoruz [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Kilometre Taşı | Hedef |
 |-----------|--------|
@@ -1596,9 +1584,9 @@ Ratchet en yüksek önceliğe sahiptir. Transport'lar sonraki sırada gelir. İm
 | İmza üretim | 2027 ortası |
 ## Geçiş
 
-Aynı tunnel'larda hem eski hem de yeni ratchet protokollerini destekleyemezsek, geçiş çok daha zor olacaktır.
+Şu anda en endişe verici PQ tehdit modeli, trafiği bugün depolayıp bundan yıllar sonra şifresini çözmek (ileri gizlilik). Hibrit bir yaklaşım bunu koruyabilir.
 
-X25519'da yaptığımız gibi, kanıtlanması için birini-sonra-diğerini deneyebilmeliyiz.
+Kimlik doğrulama anahtarlarını makul bir süre içinde (örneğin birkaç ay) kırma ve ardından kimliğe bürünme veya neredeyse gerçek zamanlı şifre çözme şeklindeki PQ tehdit modeli çok daha uzak bir gelecekte mi? Ve işte o zaman PQC statik anahtarlara geçiş yapmak isteyeceğiz.
 
 ## Sorunlar
 
