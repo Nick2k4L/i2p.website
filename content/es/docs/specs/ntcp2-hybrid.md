@@ -2,7 +2,7 @@
 title: "PQ Hybrid NTCP2"
 description: "Variante híbrida post-cuántica del protocolo de transporte NTCP2 usando ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-02"
+lastupdated: "2026-03"
 category: "Transportes"
 accurateFor: "0.9.69"
 ---
@@ -13,52 +13,55 @@ Beta Q1 2026, lanzamiento Q2 2026
 
 ## Descripción general
 
-Esta es la variante híbrida post-cuántica del protocolo de transporte NTCP2, según se diseñó en la Propuesta 169. Consulta esa propuesta para obtener información adicional.
+Esta es la variante híbrida post-cuántica del protocolo de transporte NTCP2, tal como se diseñó en la Propuesta 169. Consulte dicha propuesta para obtener información adicional de contexto.
 
-PQ Hybrid NTCP2 solo está definido en la misma dirección y puerto que NTCP2 estándar. No se permite la operación en un puerto diferente, o sin soporte para NTCP2 estándar, y no será permitido durante varios años, cuando NTCP2 estándar sea descontinuado.
+PQ Hybrid NTCP2 solo se define en la misma dirección y puerto que el NTCP2 estándar. No está permitido operar en un puerto diferente ni sin soporte de NTCP2 estándar, y esto no cambiará durante varios años, hasta que el NTCP2 estándar sea obsoleto.
 
-Esta especificación documenta únicamente los cambios requeridos al NTCP2 estándar para soportar PQ Hybrid. Consulte la especificación NTCP2 para los detalles de implementación base.
+Esta especificación documenta únicamente los cambios necesarios en el NTCP2 estándar para soportar PQ Hybrid. Consulte la especificación de NTCP2 para los detalles de implementación de referencia.
 
 ## Diseño
 
-Soportamos los estándares NIST FIPS 203 y 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) que están basados en, pero NO son compatibles con, CRYSTALS-Kyber y CRYSTALS-Dilithium (versiones 3.1, 3 y anteriores).
+Admitimos los estándares NIST FIPS 203 y 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), los cuales están basados en CRYSTALS-Kyber y CRYSTALS-Dilithium (versiones 3.1, 3 y anteriores), pero NO son compatibles con ellos.
 
-### Intercambio de Claves
+### Intercambio de claves
 
-PQ KEM proporciona únicamente claves efímeras y no soporta directamente handshakes de clave estática como Noise XK e IK. Los tipos de cifrado son los mismos que se utilizan en PQ Hybrid Ratchet y están definidos en el documento de estructuras comunes [/docs/specs/common-structures/](/docs/specs/common-structures/), como en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf). Los tipos híbridos solo están definidos en combinación con X25519.
+PQ KEM proporciona únicamente claves efímeras y no admite directamente handshakes de clave estática como Noise XK e IK. Los tipos de cifrado son los mismos que se utilizan en PQ Hybrid Ratchet y están definidos en el documento de estructuras comunes [/docs/specs/common-structures/](/docs/specs/common-structures/); al igual que en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), los tipos híbridos solo se definen en combinación con X25519.
 
 Los tipos de cifrado son:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Código</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">NTCP2 Version</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ### Combinaciones Legales
 
-Los nuevos tipos de cifrado se indican en las RouterAddresses. El tipo de cifrado en el certificado de clave seguirá siendo tipo 4.
+Los nuevos tipos de cifrado se indican en los RouterAddresses. El tipo de cifrado en el certificado de clave continuará siendo el tipo 4.
 
 ## Especificación
 
-### Patrones de Handshake
+### Patrones de protocolo de enlace
 
-Los handshakes utilizan patrones de handshake del [Protocolo Noise](https://noiseprotocol.org/noise.html).
+Los handshakes (intercambios de autenticación) utilizan patrones de handshake del [Protocolo Noise](https://noiseprotocol.org/noise.html).
 
-Se utiliza el siguiente mapeo de letras:
+Se utiliza la siguiente correspondencia de letras:
 
 - e = clave efímera de un solo uso
 - s = clave estática
@@ -66,7 +69,7 @@ Se utiliza el siguiente mapeo de letras:
 - e1 = clave PQ efímera de un solo uso, enviada de Alice a Bob
 - ekem1 = el texto cifrado KEM, enviado de Bob a Alice
 
-Las siguientes modificaciones a XK e IK para el secreto hacia adelante híbrido (hfs) están especificadas en la [especificación Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sección 5:
+Las siguientes modificaciones a XK e IK para la confidencialidad directa híbrida (hfs) son las especificadas en la sección 5 de [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
 ```
 XK:                       XKhfs:
@@ -82,7 +85,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-El patrón e1 se define de la siguiente manera, como se especifica en la sección 4 de [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+El patrón e1 se define de la siguiente manera, según lo especificado en la sección 4 de la [especificación Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
 ```
 For Alice:
@@ -100,7 +103,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-El patrón ekem1 se define de la siguiente manera, como se especifica en la sección 4 de [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+El patrón ekem1 se define de la siguiente manera, tal como se especifica en la sección 4 de [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
 ```
 For Bob:
@@ -125,17 +128,17 @@ For Bob:
   kem_shared_key = DECAPS(kem_ciphertext, decap_key)
   MixKey(kem_shared_key)
 ```
-### KDF de Handshake Noise
+### KDF del protocolo de handshake Noise
 
 #### Descripción general
 
-El handshake híbrido se define en la [especificación Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). El primer mensaje, de Alice a Bob, contiene e1, la clave de encapsulación, antes de la carga útil del mensaje. Esto se trata como una clave estática adicional; llama a EncryptAndHash() en ella (como Alice) o DecryptAndHash() (como Bob). Luego procesa la carga útil del mensaje como de costumbre.
+El handshake híbrido se define en la [especificación Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). El primer mensaje, de Alice a Bob, contiene e1, la clave de encapsulación, antes del payload del mensaje. Esto se trata como una clave estática adicional; se llama a EncryptAndHash() (como Alice) o DecryptAndHash() (como Bob). Luego se procesa el payload del mensaje de forma habitual.
 
-El segundo mensaje, de Bob a Alice, contiene ekem1, el texto cifrado, antes de la carga útil del mensaje. Este se trata como una clave estática adicional; llama a EncryptAndHash() en él (como Bob) o DecryptAndHash() (como Alice). Luego, calcula el kem_shared_key y llama a MixKey(kem_shared_key). Después procesa la carga útil del mensaje como de costumbre.
+El segundo mensaje, de Bob a Alice, contiene ekem1, el texto cifrado, antes del payload del mensaje. Este se trata como una clave estática adicional; se llama a EncryptAndHash() sobre él (como Bob) o DecryptAndHash() (como Alice). Luego, se calcula el kem_shared_key y se llama a MixKey(kem_shared_key). A continuación, se procesa el payload del mensaje de la manera habitual.
 
 #### Operaciones ML-KEM Definidas
 
-Definimos las siguientes funciones correspondientes a los bloques de construcción criptográficos utilizados según se define en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Definimos las siguientes funciones correspondientes a los bloques de construcción criptográficos utilizados según lo definido en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -157,13 +160,13 @@ kem_shared_key = DECAPS(ciphertext, decap_key)
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Ten en cuenta que tanto el encap_key como el texto cifrado están encriptados dentro de bloques ChaCha/Poly en los mensajes 1 y 2 del handshake Noise. Serán descifrados como parte del proceso de handshake.
+Tenga en cuenta que tanto la encap_key como el texto cifrado están cifrados dentro de bloques ChaCha/Poly en los mensajes 1 y 2 del protocolo de enlace Noise. Serán descifrados como parte del proceso de protocolo de enlace.
 
-La kem_shared_key se mezcla en la chaining key con MixHash(). Ver más abajo para detalles.
+El kem_shared_key se mezcla en la clave de encadenamiento con MixHash(). Consulte a continuación para obtener más detalles.
 
-#### Alice KDF para Mensaje 1
+#### KDF de Alice para el Mensaje 1
 
-Después del patrón de mensaje 'es' y antes de la carga útil, añadir:
+Después del patrón de mensaje 'es' y antes del payload, añadir:
 
 ```
 This is the "e1" message pattern:
@@ -187,9 +190,9 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
-#### Bob KDF para el Mensaje 1
+#### KDF de Bob para el Mensaje 1
 
-Después del patrón de mensaje 'es' y antes de la carga útil, añadir:
+Después del patrón de mensaje 'es' y antes del payload, añadir:
 
 ```
 This is the "e1" message pattern:
@@ -211,9 +214,9 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
-#### Bob KDF para Mensaje 2
+#### KDF de Bob para el Mensaje 2
 
-Para XK: Después del patrón de mensaje 'ee' y antes de la carga útil, añadir:
+Para XK: Después del patrón de mensaje 'ee' y antes del payload, agregar:
 
 ```
 This is the "ekem1" message pattern:
@@ -238,7 +241,7 @@ This is the "ekem1" message pattern:
 ```
 #### KDF de Alice para el Mensaje 2
 
-Después del patrón de mensaje 'ee', agregar:
+Después del patrón de mensaje 'ee', añadir:
 
 ```
 This is the "ekem1" message pattern:
@@ -260,7 +263,7 @@ This is the "ekem1" message pattern:
 
   End of "ekem1" message pattern.
 ```
-#### KDF para Mensaje 3 (solo XK)
+#### KDF para el Mensaje 3 (solo XK)
 
 sin cambios
 
@@ -268,9 +271,9 @@ sin cambios
 
 sin cambios
 
-### Detalles del Handshake
+### Detalles del protocolo de enlace
 
-#### Identificadores de ruido
+#### Identificadores de Noise
 
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
@@ -280,15 +283,15 @@ sin cambios
 
 Cambios: El NTCP2 actual contiene solo las opciones en la sección ChaCha. Con ML-KEM, la sección ChaCha también contendrá la clave pública PQ cifrada.
 
-Para que PQ y non-PQ NTCP2 puedan ser soportados en la misma dirección de router y puerto, usamos el bit más significativo del valor X (clave pública efímera X25519) para marcar que es una conexión PQ. Este bit siempre está desactivado para conexiones non-PQ.
+Para que PQ y no-PQ NTCP2 puedan ser compatibles en la misma dirección y puerto del router, utilizamos el bit más significativo del valor X (clave pública efímera X25519) para indicar que se trata de una conexión PQ. Este bit siempre está sin establecer en las conexiones no-PQ.
 
-Para Alice, después de que el mensaje sea cifrado por Noise, pero antes de la ofuscación AES de X, establecer X[31] |= 0x7f.
+Para Alice, después de que el mensaje sea cifrado por Noise, pero antes de la ofuscación AES de X, establezca X[31] |= 0x7f.
 
-Para Bob, después de la des-ofuscación AES de X, probar X[31] & 0x80. Si el bit está establecido, limpiarlo con X[31] &= 0x7f, y descifrar vía Noise como una conexión PQ. Si el bit está limpio, descifrar vía Noise como una conexión no-PQ como de costumbre.
+Para Bob, después de la des-ofuscación AES de X, comprobar X[31] & 0x80. Si el bit está establecido, borrarlo con X[31] &= 0x7f, y descifrar mediante Noise como una conexión PQ. Si el bit está vacío, descifrar mediante Noise como una conexión no PQ de la forma habitual.
 
-Para PQ NTCP2 anunciado en una dirección de router y puerto diferentes, esto no es requerido.
+Para PQ NTCP2 anunciado en una dirección de router y puerto diferente, esto no es necesario.
 
-Para obtener información adicional, consulte la sección de Direcciones Publicadas a continuación.
+Para obtener información adicional, consulte la sección Direcciones publicadas a continuación.
 
 Contenido sin procesar:
 
@@ -357,8 +360,8 @@ Tamaños:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Código de Tipo</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">X len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Enc len</th>
@@ -407,8 +410,7 @@ Tamaños:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
+Nota: Los códigos de tipo son únicamente para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
 #### 2) SessionCreated
 
@@ -480,8 +482,8 @@ Tamaños:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Código de Tipo</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Y len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Enc len</th>
@@ -530,8 +532,7 @@ Tamaños:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte será indicado en las direcciones del router.
+Nota: Los códigos de tipo son únicamente para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
 #### 3) SessionConfirmed
 
@@ -541,31 +542,31 @@ Sin cambios
 
 Sin cambios
 
-#### Direcciones Publicadas
+#### Direcciones publicadas
 
-En todos los casos, utiliza el nombre de transporte NTCP2 como de costumbre.
+En todos los casos, utilice el nombre del transporte NTCP2 como de costumbre.
 
-Usa la misma dirección/puerto que non-PQ, non-firewalled. Solo se admite una variante PQ. En la dirección del router, publica v=2 (como es habitual) y el nuevo parámetro pq=[3|4|5] para indicar MLKEM 512/768/1024. Alice establece el MSB de la clave efímera (key[31] & 0x80) en la solicitud de sesión para indicar que esta es una conexión híbrida. Ver arriba. Los routers más antiguos ignorarán el parámetro pq y se conectarán non-pq como es habitual.
+Utiliza la misma dirección/puerto que la variante sin PQ y sin firewall. Solo se admite una variante PQ. En la dirección del router, publica `v=2` (como de costumbre) y el nuevo parámetro `pq=[3|4|5]` para indicar MLKEM 512/768/1024. Alice establece el MSB de la clave efímera (`key[31] & 0x80`) en la solicitud de sesión para indicar que se trata de una conexión híbrida. Ver más arriba. Los routers más antiguos ignorarán el parámetro `pq` y se conectarán sin PQ como de costumbre.
 
-Dirección/puerto diferente como no-PQ, o solo-PQ, sin firewall NO está soportado. Esto no se implementará hasta que NTCP2 no-PQ se deshabilite, dentro de varios años. Cuando no-PQ se deshabilite, múltiples variantes PQ pueden ser soportadas, pero solo una por dirección. Cuando esté soportado, en la dirección del router, publica v=[3|4|5] para indicar MLKEM 512/768/1024. Alice no establece el MSB de la clave efímera. Los routers más antiguos verificarán el parámetro v y omitirán esta dirección como no soportada.
+No está soportado tener una dirección/puerto diferente como no-PQ, o solo-PQ sin firewall. Esto no se implementará hasta que NTCP2 no-PQ sea deshabilitado, dentro de varios años. Cuando no-PQ sea deshabilitado, podrán soportarse múltiples variantes PQ, pero solo una por dirección. Cuando sea soportado, en la dirección del router se publicará v=[3|4|5] para indicar MLKEM 512/768/1024. Alice no establece el MSB de la clave efímera. Los routers más antiguos verificarán el parámetro v y omitirán esta dirección como no soportada.
 
-Direcciones con firewall (sin IP publicada): En la dirección del router, publicar v=2 (como es habitual). No es necesario publicar un parámetro pq.
+Direcciones con firewall (sin IP publicada): En la dirección del router, publicar v=2 (como de costumbre). No es necesario publicar un parámetro pq.
 
-Alice puede conectarse a un Bob PQ usando la variante PQ que Bob publica, sin importar si Alice anuncia soporte pq en su información de router, o si anuncia la misma variante.
+Alice puede conectarse a un Bob PQ utilizando la variante PQ que Bob publica, independientemente de si Alice anuncia soporte PQ en su router info, o si anuncia la misma variante.
 
-#### Relleno Máximo
+#### Relleno máximo
 
-En la especificación actual, los mensajes 1 y 2 están definidos para tener una cantidad "razonable" de relleno, con un rango recomendado de 0-31 bytes y sin máximo especificado.
+En la especificación actual, los mensajes 1 y 2 están definidos para tener una cantidad "razonable" de relleno, con un rango recomendado de 0 a 31 bytes y sin un máximo especificado.
 
-Hasta la API 0.9.68 (versión 2.11.0), Java I2P implementaba un máximo de 256 bytes de relleno para conexiones no-PQ, sin embargo esto no estaba documentado previamente. A partir de la API 0.9.69 (versión 2.12.0), Java I2P implementa el mismo relleno máximo para conexiones no-PQ que para MLKEM-512. Ver tabla a continuación.
+A través de la API 0.9.68 (versión 2.11.0), Java I2P implementó un máximo de 256 bytes de relleno para conexiones no-PQ, aunque esto no estaba documentado anteriormente. A partir de la API 0.9.69 (versión 2.12.0), Java I2P implementa el mismo relleno máximo para conexiones no-PQ que para MLKEM-512. Véase la tabla a continuación.
 
-Usar el tamaño de mensaje definido como el relleno máximo, es decir, el relleno máximo duplicará el tamaño del mensaje para conexiones PQ, como sigue:
+Utilice el tamaño de mensaje definido como el relleno máximo, es decir, el relleno máximo duplicará el tamaño del mensaje para las conexiones PQ, de la siguiente manera:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Relleno Máximo del Mensaje</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">no-PQ (hasta 0.9.68)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">no-PQ (desde 0.9.69)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Message Max Padding</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (thru 0.9.68)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (as of 0.9.69)</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-512</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-768</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-1024</th>
@@ -587,18 +588,17 @@ Usar el tamaño de mensaje definido como el relleno máximo, es decir, el rellen
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
 </table>
+## Análisis de sobrecarga
 
-## Análisis de Sobrecarga
-
-### Intercambio de Claves
+### Intercambio de claves
 
 Aumento de tamaño (bytes):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Pubkey (Msg 1)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Texto cifrado (Msg 2)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Ciphertext (Msg 2)</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
@@ -616,15 +616,14 @@ Aumento de tamaño (bytes):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
 </table>
-
 ## Análisis de Seguridad
 
-Las categorías de seguridad NIST se resumen en la [presentación NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) diapositiva 10. Criterios preliminares: Nuestra categoría mínima de seguridad NIST debería ser 2 para protocolos híbridos y 3 para solo PQ.
+Las categorías de seguridad NIST se resumen en la [presentación NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), diapositiva 10. Criterios preliminares: nuestra categoría de seguridad NIST mínima debería ser 2 para protocolos híbridos y 3 para protocolos exclusivamente poscuánticos (PQ-only).
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Categoría</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tan Seguro Como</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Category</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">As Secure As</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
@@ -647,17 +646,16 @@ Las categorías de seguridad NIST se resumen en la [presentación NIST](https://
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
 </table>
-
 ### Handshakes
 
-Todos estos son protocolos híbridos. Las implementaciones deberían preferir MLKEM768; MLKEM512 no es lo suficientemente seguro.
+Todos estos son protocolos híbridos. Las implementaciones deben preferir MLKEM768; MLKEM512 no es suficientemente seguro.
 
 Categorías de seguridad NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Algoritmo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Categoría de Seguridad</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Algorithm</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Security Category</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512</td>
@@ -672,32 +670,31 @@ Categorías de seguridad NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
+## Notas de implementación
 
-## Notas de Implementación
+### Soporte de biblioteca
 
-### Soporte de Bibliotecas
+Las bibliotecas Bouncycastle, BoringSSL y WolfSSL ya admiten MLKEM y MLDSA. El soporte de OpenSSL estará disponible en su versión 3.5 del 8 de abril de 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-Las bibliotecas Bouncycastle, BoringSSL y WolfSSL ahora soportan MLKEM y MLDSA. El soporte de OpenSSL estará en su versión 3.5 el 8 de abril de 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+### Identificación del tráfico entrante
 
-### Identificación de Tráfico Entrante
-
-Establecemos el MSB de la clave efímera (key[31] & 0x80) en la solicitud de sesión para indicar que esta es una conexión híbrida. Esto nos permite ejecutar tanto NTCP estándar como NTCP híbrido en el mismo puerto. Solo se admite una variante híbrida para conexiones entrantes, y se anuncia en la dirección del router. Por ejemplo, pq=3 o pq=4.
+Establecemos el MSB (bit más significativo) de la clave efímera (key[31] & 0x80) en la solicitud de sesión para indicar que se trata de una conexión híbrida. Esto nos permite ejecutar tanto NTCP estándar como NTCP híbrido en el mismo puerto. Solo se admite una variante híbrida para conexiones entrantes, la cual se anuncia en la dirección del router. Por ejemplo, pq=3 o pq=4.
 
 #### Ofuscación
 
-Como Alice, para una conexión PQ, antes de la ofuscación, establecer X[31] |= 0x80. Esto hace que X sea una clave pública X25519 inválida. Después de la ofuscación, AES-CBC la aleatorizará. El MSB de X será aleatorio después de la ofuscación.
+Como Alice, para una conexión PQ, antes de la ofuscación, establece X[31] |= 0x80. Esto convierte X en una clave pública X25519 no válida. Después de la ofuscación, AES-CBC la aleatorizará. El MSB de X será aleatorio después de la ofuscación.
 
-Como Bob, verifica si (X[31] & 0x80) != 0 después de la des-ofuscación. Si es así, es una conexión PQ.
+Como Bob, verificar si (X[31] & 0x80) != 0 después de la de-ofuscación. Si es así, se trata de una conexión PQ.
 
-La versión mínima del router requerida para NTCP2-PQ está por determinar.
+La versión mínima del router requerida para NTCP2-PQ está por determinarse.
 
-Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
+Nota: Los códigos de tipo son únicamente para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
 ## Compatibilidad del Router
 
 ### Nombres de Transporte
 
-En todos los casos, usa el nombre de transporte NTCP2 como siempre. Los routers más antiguos ignorarán el parámetro pq y se conectarán con NTCP2 estándar como de costumbre.
+En todos los casos, utilice el nombre de transporte NTCP2 de la manera habitual. Los routers más antiguos ignorarán el parámetro pq y se conectarán con el NTCP2 estándar como de costumbre.
 
 ## Referencias
 

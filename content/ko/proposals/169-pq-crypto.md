@@ -556,7 +556,7 @@ This is the "ekem1" message pattern:
 
   End of "ekem1" message pattern.
 ```
-#### 메시지 3을 위한 KDF (XK만 해당)
+#### 메시지 3의 KDF
 
 변경되지 않음
 
