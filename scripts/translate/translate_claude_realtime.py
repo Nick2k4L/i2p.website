@@ -533,12 +533,65 @@ def load_segment_cache() -> Dict:
         return cache
 
 
+def _merge_cache(target: Dict, source: Dict) -> None:
+    """Merge source cache into target, combining translations per segment.
+
+    Used during parallel CI runs where multiple language jobs may update
+    the cache concurrently. Each language writes to a different translation
+    key within each segment, so merging is non-conflicting.
+    """
+    for file_key, file_data in source.get("files", {}).items():
+        if file_key not in target.get("files", {}):
+            target.setdefault("files", {})[file_key] = file_data
+            continue
+        target_file = target["files"][file_key]
+        # Update file hash if source has one
+        if "file_hash" in file_data:
+            target_file["file_hash"] = file_data["file_hash"]
+        # Merge segments
+        for seg_id, seg_data in file_data.get("segments", {}).items():
+            if seg_id not in target_file.get("segments", {}):
+                target_file.setdefault("segments", {})[seg_id] = seg_data
+            else:
+                target_seg = target_file["segments"][seg_id]
+                target_seg["source_hash"] = seg_data["source_hash"]
+                for lang, trans in seg_data.get("translations", {}).items():
+                    target_seg.setdefault("translations", {})[lang] = trans
+
+
 def save_segment_cache(cache: Dict) -> None:
-    """Save segment cache to JSON file."""
-    SEGMENT_CACHE_FILE.write_text(
-        json.dumps(cache, indent=2, ensure_ascii=False),
-        encoding="utf-8"
-    )
+    """Save segment cache to JSON file with file locking for parallel safety.
+
+    When multiple translation processes run in parallel (e.g., CI translating
+    to different languages simultaneously), this uses file locking to prevent
+    race conditions. Before writing, it re-reads the current file and merges
+    any updates from other processes.
+    """
+    import fcntl
+
+    lock_file = SEGMENT_CACHE_FILE.with_suffix(".lock")
+
+    with open(lock_file, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        try:
+            # Re-read current cache from disk to pick up changes from
+            # other parallel processes, then merge our updates in
+            if SEGMENT_CACHE_FILE.exists():
+                try:
+                    disk_cache = json.loads(
+                        SEGMENT_CACHE_FILE.read_text(encoding="utf-8")
+                    )
+                    _merge_cache(disk_cache, cache)
+                    cache = disk_cache
+                except (json.JSONDecodeError, FileNotFoundError):
+                    pass  # Use our in-memory cache as-is
+
+            SEGMENT_CACHE_FILE.write_text(
+                json.dumps(cache, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+        finally:
+            fcntl.flock(lf, fcntl.LOCK_UN)
 
 
 def get_cached_translation(
@@ -550,14 +603,32 @@ def get_cached_translation(
 ) -> Optional[str]:
     """Get cached translation for a segment if source hash matches.
 
+    Uses a two-pass lookup:
+    1. Primary: exact segment_id match with hash validation
+    2. Fallback: scan all segments for matching source_hash (handles ID shifting
+       when paragraphs are added/removed, causing sequential IDs to shift)
+
     Returns:
         Cached translation string if found and hash matches, None otherwise
     """
     file_cache = cache.get("files", {}).get(file_path_str, {})
-    segment_cache = file_cache.get("segments", {}).get(segment_id, {})
+    segments = file_cache.get("segments", {})
 
-    if segment_cache.get("source_hash") == source_hash:
-        return segment_cache.get("translations", {}).get(target_lang)
+    # Primary lookup: by segment_id + hash match
+    segment_data = segments.get(segment_id, {})
+    if segment_data.get("source_hash") == source_hash:
+        result = segment_data.get("translations", {}).get(target_lang)
+        if result is not None:
+            return result
+
+    # Fallback: scan all segments for matching source_hash
+    # This handles cases where segment IDs shifted (e.g., p_005 became p_006
+    # because a new paragraph was inserted above)
+    for sid, sdata in segments.items():
+        if sid != segment_id and sdata.get("source_hash") == source_hash:
+            result = sdata.get("translations", {}).get(target_lang)
+            if result is not None:
+                return result
 
     return None
 
@@ -1369,6 +1440,24 @@ def translate_file(
                         update_segment_cache(
                             segment_cache, file_path_str, segment_id, source_hash, target_lang, translated
                         )
+
+        # Clean up stale segment entries for this file to prevent unbounded
+        # cache growth from shifted sequential IDs (e.g., old p_005 still cached
+        # after content was removed and it became p_004)
+        if use_cache and segment_cache is not None:
+            current_ids = set()
+            for _, seg in segments:
+                sid = getattr(seg, "segment_id", None)
+                if sid:
+                    current_ids.add(sid)
+            file_segments = (
+                segment_cache.get("files", {})
+                .get(file_path_str, {})
+                .get("segments", {})
+            )
+            stale_ids = [sid for sid in file_segments if sid not in current_ids]
+            for sid in stale_ids:
+                del file_segments[sid]
 
         output_text = reconstruct_markdown(fm_entries, tokens)
 

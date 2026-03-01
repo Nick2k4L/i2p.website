@@ -146,10 +146,8 @@ translate_language() {
         if python3 "$PYTHON_SCRIPT" \
             --source "$FILE_PATH" \
             --target-lang "$TARGET_LANG" \
-            --model claude-sonnet-4-20250514 \
+            --model claude-sonnet-4-6 \
             --overwrite \
-            --no-check-hashes \
-            --no-update-hashes \
             --output-root "$REPO_ROOT" \
             --quiet \
             $COPY_HTML_FLAG; then
