@@ -40,6 +40,7 @@ import json
 import os
 import re
 import sys
+import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -323,8 +324,15 @@ class ClaudeTranslator:
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model
 
-    def translate(self, text: str, target_lang: str, source_lang: str = "en") -> str:
-        """Translate a text segment using Claude API."""
+    def translate(
+        self, text: str, target_lang: str, source_lang: str = "en",
+        max_retries: int = 5
+    ) -> str:
+        """Translate a text segment using Claude API with retry logic.
+
+        Retries with exponential backoff on rate-limit (429), server errors
+        (500+), and transient network failures.
+        """
 
         # Language name mapping
         lang_names = {
@@ -344,25 +352,57 @@ class ClaudeTranslator:
 {text}
 </source_text>"""
 
-        try:
-            response = self.client.messages.create(
-                model=self.model,
-                max_tokens=4096,
-                system=system_prompt,
-                messages=[
-                    {"role": "user", "content": user_prompt}
-                ]
-            )
+        last_exc = None
+        for attempt in range(max_retries):
+            try:
+                response = self.client.messages.create(
+                    model=self.model,
+                    max_tokens=4096,
+                    system=system_prompt,
+                    messages=[
+                        {"role": "user", "content": user_prompt}
+                    ]
+                )
 
-            raw_translation = response.content[0].text.strip()
+                raw_translation = response.content[0].text.strip()
 
-            # Clean up translation artifacts
-            translated = clean_translation_artifacts(raw_translation)
+                # Clean up translation artifacts
+                translated = clean_translation_artifacts(raw_translation)
 
-            return translated
+                return translated
 
-        except Exception as exc:
-            raise RuntimeError(f"Claude API request failed: {exc}") from exc
+            except anthropic.RateLimitError as exc:
+                last_exc = exc
+                # Use Retry-After header if available, otherwise exponential backoff
+                wait = getattr(exc, "retry_after", None) or (2 ** attempt * 5)
+                print(f"  Rate limited (attempt {attempt + 1}/{max_retries}), "
+                      f"waiting {wait}s...", file=sys.stderr)
+                time.sleep(wait)
+
+            except anthropic.APIStatusError as exc:
+                last_exc = exc
+                if exc.status_code >= 500:
+                    wait = 2 ** attempt * 2
+                    print(f"  Server error {exc.status_code} (attempt {attempt + 1}/"
+                          f"{max_retries}), waiting {wait}s...", file=sys.stderr)
+                    time.sleep(wait)
+                else:
+                    # 4xx errors (except 429) are not retryable
+                    raise RuntimeError(f"Claude API request failed: {exc}") from exc
+
+            except anthropic.APIConnectionError as exc:
+                last_exc = exc
+                wait = 2 ** attempt * 2
+                print(f"  Connection error (attempt {attempt + 1}/{max_retries}), "
+                      f"waiting {wait}s...", file=sys.stderr)
+                time.sleep(wait)
+
+            except Exception as exc:
+                raise RuntimeError(f"Claude API request failed: {exc}") from exc
+
+        raise RuntimeError(
+            f"Claude API request failed after {max_retries} retries: {last_exc}"
+        ) from last_exc
 
 
 def calculate_file_hash(file_path: Path) -> str:
