@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # CI Translation Script
-# Automatically translates changed content/en/ files using Claude API (realtime)
+# Automatically translates changed content/en/ files using Together AI (Qwen3-235B)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
@@ -34,8 +34,8 @@ relpath() {
 }
 
 # Check required environment variables
-if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
-    log_error "ANTHROPIC_API_KEY environment variable is required"
+if [ -z "${TOGETHER_API_KEY:-}" ]; then
+    log_error "TOGETHER_API_KEY environment variable is required"
     exit 1
 fi
 
@@ -101,7 +101,7 @@ FAILED_LANGUAGES=()
 
 # Max parallel translation jobs
 # Keep low to avoid API rate limits — each job makes many API calls per segment
-MAX_PARALLEL=${MAX_PARALLEL_TRANSLATIONS:-2}
+MAX_PARALLEL=${MAX_PARALLEL_TRANSLATIONS:-4}
 
 # Test if Python script exists and is readable
 if [ ! -f "$PYTHON_SCRIPT" ]; then
@@ -147,7 +147,7 @@ translate_language() {
         if python3 "$PYTHON_SCRIPT" \
             --source "$FILE_PATH" \
             --target-lang "$TARGET_LANG" \
-            --model claude-sonnet-4-6 \
+            --provider together \
             --overwrite \
             --output-root "$REPO_ROOT" \
             --quiet \
@@ -227,13 +227,15 @@ done
 
 log_info "Parallel translation complete. Success: ${#SUCCESSFULLY_TRANSLATED_FILES[@]} files, Failed languages: ${#FAILED_LANGUAGES[@]}"
 
-# Commit and push translated files (even if some languages failed)
-# We commit partial translations because:
-# 1. Transient API errors (500s) shouldn't block all translations
-# 2. 11/12 languages succeeding is better than 0/12
-# 3. Failed languages can be retried on the next commit
+# STRICT: All languages must succeed. Any failure = job failure, no partial commits.
+if [ ${#FAILED_LANGUAGES[@]} -gt 0 ]; then
+    log_error "Translation failed for ${#FAILED_LANGUAGES[@]} language(s): ${FAILED_LANGUAGES[*]}"
+    log_error "All languages must succeed. Not committing partial translations."
+    exit 1
+fi
+
 if [ ${#SUCCESSFULLY_TRANSLATED_FILES[@]} -gt 0 ]; then
-    log_info "Committing translated files..."
+    log_info "All languages succeeded. Committing translated files..."
 
     # Configure git (works for both GitHub Actions and GitLab CI)
     git config user.name "github-actions[bot]"
@@ -260,11 +262,7 @@ if [ ${#SUCCESSFULLY_TRANSLATED_FILES[@]} -gt 0 ]; then
     if git diff --staged --quiet; then
         log_info "No changes to commit"
     else
-        # Build commit message
         COMMIT_MSG="Auto-translate: Update translations for changed content/en/ files"
-        if [ ${#FAILED_LANGUAGES[@]} -gt 0 ]; then
-            COMMIT_MSG="$COMMIT_MSG (failed: ${FAILED_LANGUAGES[*]})"
-        fi
 
         # Commit translations
         git commit -m "$COMMIT_MSG" || {
@@ -315,18 +313,8 @@ if [ ${#SUCCESSFULLY_TRANSLATED_FILES[@]} -gt 0 ]; then
 
         log_info "Successfully committed and pushed translated files"
     fi
-
-    # Report failed languages as warning, not error
-    if [ ${#FAILED_LANGUAGES[@]} -gt 0 ]; then
-        log_warn "Some translations failed for languages: ${FAILED_LANGUAGES[*]}"
-        log_warn "These will be retried on the next commit that touches these files"
-    fi
 else
-    # No translations succeeded at all
-    if [ ${#FAILED_LANGUAGES[@]} -gt 0 ]; then
-        log_error "All translations failed for languages: ${FAILED_LANGUAGES[*]}"
-        exit 1
-    fi
+    log_info "No files needed translation"
 fi
 
 log_info "Translation process completed"

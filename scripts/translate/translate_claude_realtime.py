@@ -46,6 +46,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Optional, Dict
 
+import unicodedata
+
 try:
     import anthropic
 except ImportError:
@@ -77,9 +79,10 @@ INSTRUCTIONS:
 TRANSLATION RULES:
 1. Keep untranslated: code blocks, commands, URLs, file paths, variable names, JSON/YAML, Markdown syntax
 2. Keep I2P terms in English: router, tunnel, leaseSet, netDb, floodfill, NTCP2, SSU, SAMv3, I2PTunnel, I2CP, I2NP, eepsite, garlic encryption
-3. Preserve ALL Markdown formatting exactly (headings, lists, links, inline code)
-4. Translate naturally for meaning, not literally
-5. For technical terms without equivalents: keep English + add localized explanation in parentheses (once per document)
+3. Keep project and software names in English exactly as written: i2pd, Go-I2P, Emissary, I2P+, Java I2P, Kovri, XD, MuWire, BiglyBT
+4. Preserve ALL Markdown formatting exactly (headings, lists, links, inline code)
+5. Translate naturally for meaning, not literally
+6. For technical terms without equivalents: keep English + add localized explanation in parentheses (once per document)
 
 EXAMPLE INPUT:
 <source_text>
@@ -403,6 +406,355 @@ class ClaudeTranslator:
         raise RuntimeError(
             f"Claude API request failed after {max_retries} retries: {last_exc}"
         ) from last_exc
+
+
+# =============================================================================
+# TOGETHER AI (OPENAI-COMPATIBLE) TRANSLATOR
+# =============================================================================
+
+class TogetherTranslator:
+    """Translate text segments using Together AI's OpenAI-compatible API.
+
+    Designed for Qwen3-235B-A22B-Instruct which provides good translation
+    quality at ~7.5x lower cost than Claude Sonnet.
+    """
+
+    def __init__(
+        self, api_key: str,
+        model: str = "Qwen/Qwen3-235B-A22B-Instruct-2507-tput"
+    ) -> None:
+        try:
+            from openai import OpenAI
+        except ImportError:
+            print("Error: openai package required for Together AI. "
+                  "Install with: pip install openai", file=sys.stderr)
+            sys.exit(1)
+
+        self.client = OpenAI(
+            api_key=api_key,
+            base_url="https://api.together.xyz/v1"
+        )
+        self.model = model
+        self.total_input_tokens = 0
+        self.total_output_tokens = 0
+
+    def translate(
+        self, text: str, target_lang: str, source_lang: str = "en",
+        max_retries: int = 5
+    ) -> str:
+        """Translate a text segment using Together AI with retry logic."""
+        lang_names = {
+            "en": "English", "es": "Spanish", "de": "German", "ko": "Korean",
+            "fr": "French", "it": "Italian", "pt": "Portuguese", "ru": "Russian",
+            "ja": "Japanese", "zh": "Chinese", "cs": "Czech", "tr": "Turkish",
+            "vi": "Vietnamese", "hi": "Hindi", "ar": "Arabic"
+        }
+
+        target_lang_name = lang_names.get(target_lang.lower(), target_lang)
+        source_lang_name = lang_names.get(source_lang.lower(), source_lang)
+
+        system_prompt = SYSTEM_PROMPT.replace("{target_lang}", target_lang_name)
+
+        user_prompt = f"""[{source_lang_name} → {target_lang_name}]
+<source_text>
+{text}
+</source_text>"""
+
+        last_exc = None
+        for attempt in range(max_retries):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    max_tokens=4096,
+                )
+
+                if response.usage:
+                    self.total_input_tokens += response.usage.prompt_tokens
+                    self.total_output_tokens += response.usage.completion_tokens
+
+                raw_translation = response.choices[0].message.content.strip()
+                translated = clean_translation_artifacts(raw_translation)
+                return translated
+
+            except Exception as exc:
+                last_exc = exc
+                error_str = str(exc).lower()
+                if "rate" in error_str or "429" in error_str:
+                    wait = 2 ** attempt * 5
+                    print(f"  Rate limited (attempt {attempt + 1}/{max_retries}), "
+                          f"waiting {wait}s...", file=sys.stderr)
+                    time.sleep(wait)
+                elif "500" in error_str or "502" in error_str or "503" in error_str:
+                    wait = 2 ** attempt * 2
+                    print(f"  Server error (attempt {attempt + 1}/{max_retries}), "
+                          f"waiting {wait}s...", file=sys.stderr)
+                    time.sleep(wait)
+                else:
+                    raise RuntimeError(f"Together API error: {exc}") from exc
+
+        raise RuntimeError(
+            f"Together API failed after {max_retries} retries: {last_exc}"
+        ) from last_exc
+
+
+# =============================================================================
+# POST-TRANSLATION VALIDATION
+# =============================================================================
+
+# Unicode script ranges for language contamination detection
+_SCRIPT_RANGES = {
+    "ar": {"Arabic"},
+    "hi": {"Devanagari"},
+    "ko": {"Hangul"},
+    "zh": {"CJK", "Han"},
+    "ru": {"Cyrillic"},
+    "cs": {"Latin"},
+    "de": {"Latin"},
+    "es": {"Latin"},
+    "fr": {"Latin"},
+    "pt": {"Latin"},
+    "tr": {"Latin"},
+    "vi": {"Latin"},
+}
+
+# Scripts that should NEVER appear in output for a given target language
+# (small amounts of Latin are OK everywhere since technical terms stay English)
+_FORBIDDEN_SCRIPTS = {
+    "ar": {"Cyrillic", "Hangul", "Devanagari"},
+    "hi": {"Cyrillic", "Hangul", "Arabic"},
+    "ko": {"Cyrillic", "Arabic", "Devanagari"},
+    "zh": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+    "ru": {"Hangul", "Arabic", "Devanagari"},
+    "cs": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+    "de": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+    "es": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+    "fr": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+    "pt": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+    "tr": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+    "vi": {"Cyrillic", "Hangul", "Arabic", "Devanagari"},
+}
+
+
+def _extract_urls(text: str) -> set:
+    """Extract all URLs from text."""
+    return set(re.findall(r'https?://[^\s\)\]>"\']+', text))
+
+
+def _extract_code_spans(text: str) -> set:
+    """Extract inline code spans (backtick-delimited)."""
+    return set(re.findall(r'`([^`]+)`', text))
+
+
+def _detect_script_contamination(text: str, target_lang: str) -> list:
+    """Detect characters from scripts that shouldn't appear in the target language.
+
+    Returns list of (script_name, example_char, position) tuples for violations.
+    """
+    forbidden = _FORBIDDEN_SCRIPTS.get(target_lang, set())
+    if not forbidden:
+        return []
+
+    violations = []
+    seen_scripts = set()
+
+    for i, char in enumerate(text):
+        if not char.strip():
+            continue
+        try:
+            script = unicodedata.name(char, "").split()[0]
+        except (ValueError, IndexError):
+            continue
+
+        # Map Unicode character names to script categories
+        script_cat = None
+        if "CYRILLIC" in script:
+            script_cat = "Cyrillic"
+        elif "HANGUL" in script:
+            script_cat = "Hangul"
+        elif "ARABIC" in script:
+            script_cat = "Arabic"
+        elif "DEVANAGARI" in script:
+            script_cat = "Devanagari"
+
+        if script_cat and script_cat in forbidden and script_cat not in seen_scripts:
+            seen_scripts.add(script_cat)
+            violations.append((script_cat, char, i))
+
+    return violations
+
+
+def validate_translation(
+    source: str,
+    translated: str,
+    target_lang: str,
+    segment_type: str = "paragraph"
+) -> list:
+    """Validate a translation against the source text.
+
+    Returns a list of validation error strings. Empty list = passed.
+
+    Checks:
+    1. URLs preserved (all source URLs appear in translation)
+    2. Code spans preserved (backtick content unchanged)
+    3. No script contamination (e.g., Cyrillic in Arabic output)
+    4. Translation is not empty
+    5. Translation is not identical to source (unless very short/technical)
+    """
+    errors = []
+
+    # 1. Empty translation
+    if not translated.strip():
+        errors.append("Translation is empty")
+        return errors
+
+    # 2. URL preservation
+    source_urls = _extract_urls(source)
+    translated_urls = _extract_urls(translated)
+    missing_urls = source_urls - translated_urls
+    if missing_urls:
+        errors.append(f"Missing URLs: {', '.join(list(missing_urls)[:3])}")
+
+    # 3. Code span preservation (only for paragraphs and lists, not headings)
+    if segment_type in ("paragraph", "list"):
+        source_code = _extract_code_spans(source)
+        translated_code = _extract_code_spans(translated)
+        # Code spans should be preserved exactly
+        missing_code = source_code - translated_code
+        if missing_code:
+            # Filter out very short spans that might legitimately change
+            significant_missing = {c for c in missing_code if len(c) > 2}
+            if significant_missing:
+                errors.append(
+                    f"Modified code spans: {', '.join(list(significant_missing)[:3])}"
+                )
+
+    # 4. Script contamination
+    contamination = _detect_script_contamination(translated, target_lang)
+    if contamination:
+        details = ", ".join(
+            f"{script}('{char}')" for script, char, _ in contamination
+        )
+        errors.append(f"Script contamination: {details}")
+
+    # 5. Unchanged translation (for non-trivial, non-technical text)
+    # Skip this check for headings (often contain technical names that stay English)
+    # and for short text (< 50 chars) which is often mostly technical terms
+    if (len(source) > 50 and segment_type not in ("heading", "frontmatter")
+            and source.strip() == translated.strip()):
+        errors.append("Translation identical to source")
+
+    return errors
+
+
+def translate_with_validation(
+    translator,
+    source_text: str,
+    target_lang: str,
+    source_lang: str,
+    segment_type: str,
+    max_validation_retries: int = 2,
+    verbose: bool = True
+) -> str:
+    """Translate text with post-translation validation and retry.
+
+    On validation failure, retries with a more specific prompt that
+    describes what went wrong.
+
+    Args:
+        translator: ClaudeTranslator or TogetherTranslator instance
+        source_text: Text to translate
+        target_lang: Target language code
+        source_lang: Source language code
+        segment_type: Type of segment (heading, paragraph, list, table)
+        max_validation_retries: Max retries on validation failure
+        verbose: Print validation details
+
+    Returns:
+        Validated translation string
+    """
+    translated = translator.translate(source_text, target_lang, source_lang)
+
+    for retry in range(max_validation_retries):
+        errors = validate_translation(
+            source_text, translated, target_lang, segment_type
+        )
+
+        if not errors:
+            return translated
+
+        if verbose:
+            print(f"  VALIDATION FAILED (attempt {retry + 1}): "
+                  f"{'; '.join(errors)}", file=sys.stderr)
+
+        # Build a correction prompt with specific feedback
+        lang_names = {
+            "en": "English", "es": "Spanish", "de": "German", "ko": "Korean",
+            "fr": "French", "it": "Italian", "pt": "Portuguese", "ru": "Russian",
+            "ja": "Japanese", "zh": "Chinese", "cs": "Czech", "tr": "Turkish",
+            "vi": "Vietnamese", "hi": "Hindi", "ar": "Arabic"
+        }
+        target_lang_name = lang_names.get(target_lang.lower(), target_lang)
+
+        correction_feedback = "\n".join(f"- {e}" for e in errors)
+        correction_prompt = (
+            f"Your previous translation had these issues:\n{correction_feedback}\n\n"
+            f"Please re-translate to {target_lang_name}, fixing these issues. "
+            f"Preserve ALL URLs, code spans (backtick content), and technical terms exactly."
+        )
+
+        # Re-translate with feedback — use a fresh call with the correction context
+        system_prompt = SYSTEM_PROMPT.replace("{target_lang}", target_lang_name)
+        source_lang_name = lang_names.get(source_lang.lower(), source_lang)
+
+        if isinstance(translator, ClaudeTranslator):
+            try:
+                response = translator.client.messages.create(
+                    model=translator.model,
+                    max_tokens=4096,
+                    system=system_prompt,
+                    messages=[
+                        {"role": "user", "content": f"[{source_lang_name} → {target_lang_name}]\n<source_text>\n{source_text}\n</source_text>"},
+                        {"role": "assistant", "content": f"<translation>\n{translated}\n</translation>"},
+                        {"role": "user", "content": correction_prompt},
+                    ]
+                )
+                raw = response.content[0].text.strip()
+                translated = clean_translation_artifacts(raw)
+            except Exception:
+                break  # Fall through with best attempt
+        elif isinstance(translator, TogetherTranslator):
+            try:
+                response = translator.client.chat.completions.create(
+                    model=translator.model,
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": f"[{source_lang_name} → {target_lang_name}]\n<source_text>\n{source_text}\n</source_text>"},
+                        {"role": "assistant", "content": f"<translation>\n{translated}\n</translation>"},
+                        {"role": "user", "content": correction_prompt},
+                    ],
+                    max_tokens=4096,
+                )
+                if response.usage:
+                    translator.total_input_tokens += response.usage.prompt_tokens
+                    translator.total_output_tokens += response.usage.completion_tokens
+                raw = response.choices[0].message.content.strip()
+                translated = clean_translation_artifacts(raw)
+            except Exception:
+                break
+
+    # Final validation — log but accept anyway (best effort)
+    final_errors = validate_translation(
+        source_text, translated, target_lang, segment_type
+    )
+    if final_errors and verbose:
+        print(f"  VALIDATION WARNING (accepting anyway): "
+              f"{'; '.join(final_errors)}", file=sys.stderr)
+
+    return translated
 
 
 def calculate_file_hash(file_path: Path) -> str:
@@ -1199,7 +1551,7 @@ def copy_html_file(
 def translate_file(
     source_path: Path,
     target_lang: str,
-    translator: ClaudeTranslator,
+    translator,
     output_root: Path,
     source_lang: str = "en",
     dry_run: bool = False,
@@ -1207,14 +1559,15 @@ def translate_file(
     verbose: bool = True,
     copy_html: bool = False,
     use_cache: bool = True,
-    segment_cache: Optional[Dict] = None
+    segment_cache: Optional[Dict] = None,
+    validate: bool = True
 ) -> tuple[bool, int, int]:
     """Translate a single markdown file or copy an HTML file.
 
     Args:
         source_path: Path to source file
         target_lang: Target language code
-        translator: ClaudeTranslator instance
+        translator: ClaudeTranslator or TogetherTranslator instance
         output_root: Root directory for output
         source_lang: Source language code
         dry_run: If True, don't write files
@@ -1223,6 +1576,7 @@ def translate_file(
         copy_html: If True, copy HTML files without translation
         use_cache: If True, use segment-level caching
         segment_cache: Shared segment cache dict (modified in place)
+        validate: If True, validate translations and retry on failure
 
     Returns:
         Tuple of (success, cache_hits, cache_misses)
@@ -1349,7 +1703,13 @@ def translate_file(
                 else:
                     if verbose:
                         print(f"[{idx}/{len(segments)}] frontmatter:{entry.key}: {source_text[:40]!r}")
-                    translated = translator.translate(source_text, target_lang, source_lang)
+                    if validate:
+                        translated = translate_with_validation(
+                            translator, source_text, target_lang, source_lang,
+                            "frontmatter", verbose=verbose
+                        )
+                    else:
+                        translated = translator.translate(source_text, target_lang, source_lang)
                     entry.translated = translated
                     cache_misses += 1
                     if verbose:
@@ -1380,7 +1740,13 @@ def translate_file(
                 else:
                     if verbose:
                         print(f"[{idx}/{len(segments)}] heading ({segment_id}): {source_text[:40]!r}")
-                    translated = translator.translate(source_text, target_lang, source_lang)
+                    if validate:
+                        translated = translate_with_validation(
+                            translator, source_text, target_lang, source_lang,
+                            "heading", verbose=verbose
+                        )
+                    else:
+                        translated = translator.translate(source_text, target_lang, source_lang)
                     token.translated = translated
                     cache_misses += 1
                     if verbose:
@@ -1410,7 +1776,13 @@ def translate_file(
                 else:
                     if verbose:
                         print(f"[{idx}/{len(segments)}] paragraph ({segment_id}): {source_text[:40]!r}")
-                    translated = translator.translate(source_text, target_lang, source_lang)
+                    if validate:
+                        translated = translate_with_validation(
+                            translator, source_text, target_lang, source_lang,
+                            "paragraph", verbose=verbose
+                        )
+                    else:
+                        translated = translator.translate(source_text, target_lang, source_lang)
                     token.translated = translated
                     cache_misses += 1
                     if verbose:
@@ -1440,7 +1812,13 @@ def translate_file(
                 else:
                     if verbose:
                         print(f"[{idx}/{len(segments)}] list ({segment_id}): {source_text[:40]!r}")
-                    translated = translator.translate(source_text, target_lang, source_lang)
+                    if validate:
+                        translated = translate_with_validation(
+                            translator, source_text, target_lang, source_lang,
+                            "list", verbose=verbose
+                        )
+                    else:
+                        translated = translator.translate(source_text, target_lang, source_lang)
                     token.lines = translated.split("\n")
                     cache_misses += 1
                     if verbose:
@@ -1470,7 +1848,13 @@ def translate_file(
                 else:
                     if verbose:
                         print(f"[{idx}/{len(segments)}] table ({segment_id}): {source_text[:40]!r}")
-                    translated = translator.translate(source_text, target_lang, source_lang)
+                    if validate:
+                        translated = translate_with_validation(
+                            translator, source_text, target_lang, source_lang,
+                            "table", verbose=verbose
+                        )
+                    else:
+                        translated = translator.translate(source_text, target_lang, source_lang)
                     token.lines = translated.split("\n")
                     cache_misses += 1
                     if verbose:
@@ -1584,6 +1968,15 @@ def main() -> int:
     parser.add_argument("--no-update-hashes", dest="update_hashes", action="store_false", help="Don't update translation hashes")
     parser.add_argument("--copy-html", action="store_true", help="Copy HTML files without translation (for data files like papers.html)")
 
+    # Provider options
+    parser.add_argument("--provider", choices=["claude", "together"], default="claude",
+                        help="Translation provider (default: claude)")
+    parser.add_argument("--together-model",
+                        default="Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
+                        help="Together AI model (default: Qwen/Qwen3-235B-A22B-Instruct-2507-tput)")
+    parser.add_argument("--no-validate", dest="validate", action="store_false", default=True,
+                        help="Disable post-translation validation")
+
     # Segment caching options
     parser.add_argument("--no-cache", dest="use_cache", action="store_false", default=True,
                         help="Disable segment-level caching (translate all segments)")
@@ -1643,10 +2036,18 @@ def main() -> int:
         print("Error: --target-lang is required for translation", file=sys.stderr)
         return 1
 
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        print("Error: ANTHROPIC_API_KEY environment variable is required", file=sys.stderr)
-        return 1
+    # Get API key based on provider
+    if args.provider == "together":
+        api_key = os.getenv("TOGETHER_API_KEY")
+        if not api_key:
+            print("Error: TOGETHER_API_KEY environment variable is required "
+                  "when using --provider together", file=sys.stderr)
+            return 1
+    else:
+        api_key = os.getenv("ANTHROPIC_API_KEY")
+        if not api_key:
+            print("Error: ANTHROPIC_API_KEY environment variable is required", file=sys.stderr)
+            return 1
 
     # Handle clear-cache
     if args.clear_cache:
@@ -1716,16 +2117,22 @@ def main() -> int:
             print(f"  File path: {files[0]}", file=sys.stderr)
             return 1
 
-    translator = ClaudeTranslator(api_key=api_key, model=args.model)
+    if args.provider == "together":
+        translator = TogetherTranslator(api_key=api_key, model=args.together_model)
+        provider_label = f"Together AI ({args.together_model})"
+    else:
+        translator = ClaudeTranslator(api_key=api_key, model=args.model)
+        provider_label = f"Claude ({args.model})"
 
     if not args.quiet:
         print(f"\n{'='*60}")
-        print(f"Claude Real-time Translation")
+        print(f"Real-time Translation")
         print(f"{'='*60}")
         print(f"Files: {len(files)}")
         print(f"Target language: {args.target_lang.upper()}")
-        print(f"Model: {args.model}")
+        print(f"Provider: {provider_label}")
         print(f"Segment caching: {'enabled' if args.use_cache else 'disabled'}")
+        print(f"Validation: {'enabled' if args.validate else 'disabled'}")
         print(f"{'='*60}\n")
 
     # Translate files
@@ -1746,7 +2153,8 @@ def main() -> int:
             verbose=not args.quiet,
             copy_html=args.copy_html,
             use_cache=args.use_cache,
-            segment_cache=segment_cache if args.use_cache else None
+            segment_cache=segment_cache if args.use_cache else None,
+            validate=args.validate
         )
 
         total_cache_hits += cache_hits
@@ -1781,6 +2189,14 @@ def main() -> int:
                 print(f"  Hits: {total_cache_hits} ({hit_rate:.1f}%)")
                 print(f"  Misses (API calls): {total_cache_misses}")
                 print(f"  Total segments: {total_segments}")
+        if isinstance(translator, TogetherTranslator):
+            print(f"\nTogether AI Token Usage:")
+            print(f"  Input tokens: {translator.total_input_tokens:,}")
+            print(f"  Output tokens: {translator.total_output_tokens:,}")
+            # Qwen3-235B pricing: $0.20/M input, $0.60/M output
+            input_cost = translator.total_input_tokens * 0.20 / 1_000_000
+            output_cost = translator.total_output_tokens * 0.60 / 1_000_000
+            print(f"  Estimated cost: ${input_cost + output_cost:.6f}")
         if failed:
             print(f"\nFailed files:")
             for f in failed:

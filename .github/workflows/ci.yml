@@ -145,10 +145,11 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install anthropic
+        run: pip install anthropic openai
       - name: Run Translation Script
         id: translate
         env:
+          TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CI_COMMIT_BEFORE_SHA: ${{ github.event.before }}
           CI_COMMIT_SHA: ${{ github.sha }}
