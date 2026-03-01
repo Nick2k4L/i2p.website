@@ -1,31 +1,31 @@
 ---
-title: "PQ Hybrid NTCP2"
-description: "Post-quantum hybrid variant of the NTCP2 transport protocol using ML-KEM"
-slug: "ntcp2-hybrid"
+title: "PQ Hybrid SSU2"
+description: "Post-quantum hybrid variant of the SSU2 transport protocol using ML-KEM"
+slug: "ssu2-hybrid"
 lastupdated: "2026-03"
 category: "Transports"
-accurateFor: "0.9.69"
+accurateFor: "0.9.70"
 ---
 
 
 
 ### Status
 
-Beta Q1 2026, release Q2 2026
+Beta Q2 2026, release Q3 2026
 
 
 ## Overview
 
-This is the hybrid post-quantum variant of the NTCP2 transport protocol,
+This is the hybrid post-quantum variant of the SSU2 transport protocol,
 as designed in Proposal 169.
 See that proposal for additional background.
 
-PQ Hybrid NTCP2 is only defined on the same address and port as standard NTCP2.
-Operation on a different port, or without standard NTCP2 support, is not permitted,
-and will not be for several years, when standard NTCP2 is deprecated.
+PQ Hybrid SSU2 is only defined on the same address and port as standard SSU2.
+Operation on a different port, or without standard SSU2 support, is not permitted,
+and will not be for several years, when standard SSU2 is deprecated.
 
-This specification documents only the changes required to standard NTCP2 to
-support PQ Hybrid. See the NTCP2 specification for the baseline implementation details.
+This specification documents only the changes required to standard SSU2 to
+support PQ Hybrid. See the SSU2 specification for the baseline implementation details.
 
 
 
@@ -52,7 +52,7 @@ The encryption types are:
 <tr style="background-color: var(--color-bg-secondary);">
 <th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Code</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">NTCP2 Version</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">SSU2 Version</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
@@ -63,11 +63,6 @@ The encryption types are:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
 
@@ -317,7 +312,7 @@ This is the "ekem1" message pattern:
 ```
 
 
-#### KDF for Message 3 (XK only)
+#### KDF for Message 3
 
 unchanged
 
@@ -330,35 +325,113 @@ unchanged
 
 ### Handshake Details
 
-
 #### Noise identifiers
 
-- "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
-- "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
-- "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256"
+- "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
+- "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
+
+Note that MLKEM-1024 is NOT supported for SSU2, as the keys are too large
+to fit within a standard 1500 byte datagram.
 
 
-#### 1) SessionRequest
+#### Long Header
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
+The long header is 32 bytes. It is used before a session is created, for Token Request, SessionRequest, SessionCreated, and Retry.
+It is also used for out-of-session Peer Test and Hole Punch messages.
+
+In the following messages,
+set the ver (version) field in the long header to 3 or 4, to indidate MLKEM-512 or MLKEM-768.
+
+- (0) Session Request
+- (1) Session Created
+- (9) Retry
+- (10) Token Request
+- (11) Hole Punch
+
+In the following messages,
+set the ver (version) field in the long header to 2, as usual, even if MLKEM-512 or MLKEM-768 is supported.
+Implementations may also set the value to 3 or 4, if the other end supports it, but this is not necessary.
+Implementations should accept any value 2-4.
+
+- (7) Peer Test (out of session messages 5-7)
+
+Discussion: Setting the version field to 3 or 4 may not be strictly necessary for all message types,
+but doing so aids earlier failure detection for unsupported post-quantum connections.
+Token Request and Retry (types 9 and 10) should have versions 3/4 for consistency.
+Hole Punch messages (type 11) may not require this treatment
+but we will follow the same pattern for uniformity.
+Peer Test messages (type 7) is out-of-session and does not indicate intent to
+initiate a session.
+
+
+Before header encryption:
+
+```
+
+  +----+----+----+----+----+----+----+----+
+  |      Destination Connection ID        |
+  +----+----+----+----+----+----+----+----+
+  |   Packet Number   |type| ver| id |flag|
+  +----+----+----+----+----+----+----+----+
+  |        Source Connection ID           |
+  +----+----+----+----+----+----+----+----+
+  |                 Token                 |
+  +----+----+----+----+----+----+----+----+
+
+  Destination Connection ID :: 8 bytes, unsigned big endian integer
+
+  Packet Number :: 4 bytes, unsigned big endian integer
+
+  type :: The message type = 0, 1, 7, 9, 10, or 11
+
+  ver :: The protocol version = 2, 3, or 4 for non-PQ, MLKEM512, MLKEM768
+
+  id :: 1 byte, the network ID (currently 2, except for test networks)
+
+  flag :: 1 byte, unused, set to 0 for future compatibility
+
+  Source Connection ID :: 8 bytes, unsigned big endian integer
+
+  Token :: 8 bytes, unsigned big endian integer
+
+```
+
+
+#### Short Header
+
+unchanged
+
+
+#### SessionRequest (Type 0)
+
+Changes: Current SSU2 contains only the block data in the ChaCha section.
 With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
 
-So that PQ and non-PQ NTCP2 may be supported on the same router address and port,
-we use the most significant bit of the X value (X25519 ephemeral public key) to mark that it
-is a PQ connection. This bit is always unset for non-PQ connections.
+KDF Change for Spoof Protection:
+To address the issues raised in Proposal 165 [Prop165]_,
+but with a different solution, we modify the KDF for Session Request.
+This is only for PQ sessions. The KDF for non-PQ sessions remains unchanged.
 
-For Alice, after the message is encrypted by Noise, but before the AES
-obfuscation of X, set X[31] |= 0x7f.
+```
 
-For Bob, after the AES de-obfuscation of X, test X[31] & 0x80.
-If the bit is set, clear it with X[31] &= 0x7f, and decrypt via Noise
-as a PQ connection.
-If the bit is clear, decrypt via Noise as a non-PQ connection as usual.
+// End of KDF for initial chain key (unchanged)
+  // Bob static key
+  // MixHash(bpk)
+  h = SHA256(h || bpk);
 
-For PQ NTCP2 advertised on a different router address and port,
-this is not required.
+  // Start of KDF for session request
+  // NEW for PQ only
+  // bhash = Bob router hash (32 bytes)
+  // MixHash(bhash)
+  h = SHA256(h || bhash);
 
-For additional information, see the Published Addresses section below.
+  // Rest of KDF for session request, unchanged, as in SSU2 spec
+  // MixHash(header)
+  h = SHA256(h || header)
+
+  ...
+
+```
 
 
 
@@ -366,40 +439,57 @@ Raw contents:
 
 ```
   +----+----+----+----+----+----+----+----+
-  |        MS bit set to 1 and then       |
-  +        obfuscated with RH_B           +
-  |       AES-CBC-256 encrypted X         |
-  +             (32 bytes)                +
+  |  Long Header bytes 0-15, ChaCha20     |
+  +  encrypted with Bob intro key         +
+  |    See Header Encryption KDF          |
+  +----+----+----+----+----+----+----+----+
+  |  Long Header bytes 16-31, ChaCha20    |
+  +  encrypted with Bob intro key n=0     +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +       X, ChaCha20 encrypted           +
+  |       with Bob intro key n=0          |
+  +              (32 bytes)               +
   |                                       |
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +      (see table below for length)     +
-  |   k defined in KDF for message 1      |
-  +   n = 0                               +
-  |   see KDF for associated data         |
-  ~   n = 0                               ~
+  |                                       |
+  +                                       +
+  |   ChaCha20 encrypted data (MLKEM)     |
+  +          (length varies)              +
+  |  k defined in KDF for Session Request |
+  +  n = 0                                +
+  |  see KDF for associated data          |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
-  |   k defined in KDF for message 1      |
-  +   n = 0                               +
-  |   see KDF for associated data         |
+  |   ChaCha20 encrypted data (payload)   |
+  +          (length varies)              +
+  |  k defined in KDF for Session Request |
+  +  n = 0                                +
+  |  see KDF for associated data          |
   +----+----+----+----+----+----+----+----+
-  |     unencrypted authenticated         |
-  ~         padding (optional)            ~
-  |     length defined in options block   |
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
 
-  Same as current specification except add a second ChaChaPoly frame
+
 ```
 
 Unencrypted data (Poly1305 authentication tag not shown):
 
 ```
+  +----+----+----+----+----+----+----+----+
+  |      Destination Connection ID        |
+  +----+----+----+----+----+----+----+----+
+  |   Packet Number   |type| ver| id |flag|
+  +----+----+----+----+----+----+----+----+
+  |        Source Connection ID           |
+  +----+----+----+----+----+----+----+----+
+  |                 Token                 |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -413,124 +503,90 @@ Unencrypted data (Poly1305 authentication tag not shown):
   +      (see table below for length)     +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |               options                 |
-  +              (16 bytes)               +
-  |                                       |
-  +----+----+----+----+----+----+----+----+
-  |     unencrypted authenticated         |
-  +         padding (optional)            +
-  |     length defined in options block   |
-  ~               .   .   .               ~
-  |                                       |
+  |     Noise payload (block data)        |
+  +          (length varies)              +
+  |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
 
-Note: the version field in the message 1 options block must be set to 2,
-even for PQ connections.
+Sizes, not including IP overhead:
 
-
-Sizes:
-
-<table style="border: 1px solid var(--color-border); border-collapse: collapse;">
-<tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">X len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Enc len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Dec len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">PQ key len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">64+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">--</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">880+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">816</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">800</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1264+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1232</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1200</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1184</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1648+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-</table>
+| Type | Type Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
+|------|-----------|-------|-----------|---------------|---------------|------------|--------|
+| X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 896+pl | 832+pl | 800+pl | 800 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1280+pl | 1216+pl | 1184+pl | 1184 | pl |
+| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
 
 Note: Type codes are for internal use only. Routers will remain type 4,
 and support will be indicated in the router addresses.
 
+Minimum MTU for MLKEM768_X25519:
+1318 for IPv4 and 1338 for IPv6. See below.
 
-#### 2) SessionCreated
+
+
+#### SessionCreated (Type 1)
+
+Changes: Current SSU2 contains only the block data in the ChaCha section.
+With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+
 
 Raw contents:
 
 ```
   +----+----+----+----+----+----+----+----+
+  |  Long Header bytes 0-15, ChaCha20     |
+  +  encrypted with Bob intro key and     +
+  | derived key, see Header Encryption KDF|
+  +----+----+----+----+----+----+----+----+
+  |  Long Header bytes 16-31, ChaCha20    |
+  +  encrypted with derived key n=0       +
+  |  See Header Encryption KDF            |
+  +----+----+----+----+----+----+----+----+
   |                                       |
-  +        obfuscated with RH_B           +
-  |       AES-CBC-256 encrypted Y         |
+  +       Y, ChaCha20 encrypted           +
+  |       with derived key n=0            |
   +              (32 bytes)               +
-  |                                       |
+  |       See Header Encryption KDF       |
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaCha20 data (MLKEM)               |
   +   Encrypted and authenticated data    +
-  -      (see table below for length)     -
-  +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
+  |  length varies                        |
+  +  k defined in KDF for Session Created +
+  |  n = 0; see KDF for associated data   |
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
+  |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
-  -           32 bytes                    -
-  +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
+  |  length varies                        |
+  +  k defined in KDF for Session Created +
+  |  n = 0; see KDF for associated data   |
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |     unencrypted authenticated         |
-  +         padding (optional)            +
-  |     length defined in options block   |
-  ~               .   .   .               ~
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-  Same as current specification except add a second ChaChaPoly frame
+
 ```
 
 Unencrypted data (Poly1305 auth tag not shown):
 
 ```
+  +----+----+----+----+----+----+----+----+
+  |      Destination Connection ID        |
+  +----+----+----+----+----+----+----+----+
+  |   Packet Number   |type| ver| id |flag|
+  +----+----+----+----+----+----+----+----+
+  |        Source Connection ID           |
+  +----+----+----+----+----+----+----+----+
+  |                 Token                 |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -544,161 +600,107 @@ Unencrypted data (Poly1305 auth tag not shown):
   +      (see table below for length)     +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |               options                 |
-  +              (16 bytes)               +
-  |                                       |
-  +----+----+----+----+----+----+----+----+
-  |     unencrypted authenticated         |
-  +         padding (optional)            +
-  |     length defined in options block   |
-  ~               .   .   .               ~
-  |                                       |
+  |     Noise payload (block data)        |
+  +          (length varies)              +
+  |      see below for allowed blocks     |
   +----+----+----+----+----+----+----+----+
 ```
 
-Sizes:
+Sizes, not including IP overhead:
 
-<table style="border: 1px solid var(--color-border); border-collapse: collapse;">
-<tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Y len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Enc len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Dec len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">PQ CT len</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">64+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">--</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">848+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">816</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">784</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">768</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1088</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
-</tr>
-</table>
+| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
+|------|-----------|-------|-----------|---------------|---------------|-----------|--------|
+| X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
 
 Note: Type codes are for internal use only. Routers will remain type 4,
 and support will be indicated in the router addresses.
 
+Minimum MTU for MLKEM768_X25519:
+1318 for IPv4 and 1338 for IPv6. See below.
 
 
-#### 3) SessionConfirmed
+#### SessionConfirmed (Type 2)
 
-Unchanged
+unchanged
 
 
-#### Key Derivation Function (KDF) (for data phase)
 
-Unchanged
+#### KDF for data phase
+
+unchanged
+
+
+
+#### Relay and Peer Test
+
+The following blocks contain version fields.
+They will remain version 2 (for compatibility with a non-PQ Bob),
+and will not change to version 3/4 for PQ.
+ 
+- Relay Request
+- Relay Response
+- Relay Intro
+- Peer Test
+
+PQ Signatures:
+Relay blocks, Peer Test blocks, and Peer Test messages all contain signatures.
+Unfortunately, PQ signatures are larger than the MTU.
+There is no current mechanism to fragment Relay or Peer Test blocks or messages
+across multiple UDP packets.
+The protocol must be extended to support fragmentation.
+This will be done in a separate proposal TBD.
+Until that is completed, Relay and Peer Test will not be supported.
+
 
 
 #### Published Addresses
 
-In all cases, use the NTCP2 transport name as usual.
+In all cases, use the SSU2 transport name as usual.
+MLKEM-1024 is not supported.
 
 Use the same address/port as non-PQ, non-firewalled.
-Only one PQ variant is supported.
-In the router address, publish v=2 (as usual) and the new parameter pq=[3|4|5]
-to indicate MLKEM 512/768/1024.
-Alice sets the MSB of the ephemeral key
-(key[31] & 0x80) in the session request to indicate that this
-is a hybrid connection. See above.
+One or both PQ variants are supported.
+In the router address, publish v=2 (as usual) and the new parameter pq=[3|4|3,4|4,3]
+to indicate MLKEM 512/768/both.
+Routers with a MTU less than the minimum specified below must not publish
+a "pq" parameter containing "4".
+Publish 4,3 to indicate a preference for MLKEM-768 or 3,4 to indicate
+a preference for MLKEM-512. The actual version is up to the initiator,
+and the preference may not be honored.
+Routers with a MTU less than the minimum specified below must not connect
+using MLKEM768.
 Older routers will ignore the pq parameter and connect non-pq as usual.
 
 Different address/port as non-PQ, or PQ-only, non-firewalled is NOT supported.
-This will not be implemented until non-PQ NTCP2 is disabled, several years from now.
+This will not be implemented until non-PQ SSU2 is disabled, several years from now.
 When non-PQ is disabled,
-multiple PQ variants may be supported, but only one per-address.
-When it is supported,
-in the router address, publish v=[3|4|5]
-to indicate MLKEM 512/768/1024.
-Alice does not set the MSB of the ephemeral key.
+one or both PQ variants are supported.
+In the router address, publish v=[3|4|3,4|4,3]
+to indicate MLKEM 512/768/both.
 Older routers will check the v parameter and skip this address as unsupported.
 
 Firewalled addresses (no IP published):
 In the router address, publish v=2 (as usual).
-There is no need to publish a pq parameter.
+The pq parameter MUST be publised in firewalled addresses, to support relay.
 
 Alice may connect to a PQ Bob using the PQ variant that Bob publishes,
 whether or not Alice advertises pq support in her router info, or
 whether she advertises the same variant.
 
 
+#### MTU
 
-#### Maximum Padding
-
-In the current specification, messages 1 and 2 are defined to have a "reasonable"
-amount of padding, with a range of 0-31 bytes recommended, and no maximum specified.
-
-Through API 0.9.68 (release 2.11.0), Java I2P implemented a maximum of 256 bytes padding for non-PQ connections, however this
-was not previously documented.
-As of API 0.9.69 (release 2.12.0), Java I2P implements the same max padding for non-PQ connections
-as for MLKEM-512. See table below.
-
-
-Use the defined message size as the maximum padding,
-that is, the maximum padding will double the message size for PQ connections, as follows:
-
-<table style="border: 1px solid var(--color-border); border-collapse: collapse;">
-<tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Message Max Padding</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (thru 0.9.68)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (as of 0.9.69)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-512</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-768</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-1024</th>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">Session Request</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">256</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">880</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">880</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1264</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1648</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">Session Created</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">256</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
-</tr>
-</table>
+Use caution not to exceed the MTU with MLKEM768.
+The Minimum MTU for MLKEM768_X25519 is 1318 for IPv4 and 1338 for IPv6
+(assuming a min payload of 10 bytes with a DateTime and a Padding or RelayTagRequest block).
+The minimum MTU for SSU2 in general is 1280, so not all peers may use MLKEM768.
+Do not publish or use MLKEM768 if the actual MTU is less than the minimum,
+either locally or as advertised by the peer.
+Take care not to include padding size such that message 1 or 2 would exceed
+the local or remote MTU.
 
 
 
@@ -724,11 +726,6 @@ Size increase (bytes):
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1200</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1104</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
 </table>
 
@@ -786,10 +783,6 @@ NIST security categories [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
-</tr>
-<tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
 

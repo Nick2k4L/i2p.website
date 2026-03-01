@@ -730,7 +730,7 @@ This is the "ekem1" message pattern:
 ```
 
 
-#### KDF for Message 3 (XK only)
+#### KDF for Message 3
 
 unchanged
 
