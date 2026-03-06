@@ -4,10 +4,10 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-02-28"
+lastupdated: "2026-03-06"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
-target: "0.9.80"
+target: "0.9.70"
 toc: true
 ---
 
@@ -989,9 +989,9 @@ En los siguientes mensajes, establezca el campo ver (versión) en el encabezado 
 
 - (0) Solicitud de sesión
 - (1) Sesión creada
-- (9) Reintentar
+- (9) Reintentar (nota: Reintentar con terminación puede contener cualquier versión 2-4)
 - (10) Solicitud de token
-- (11) Hole Punch
+- (11) Perforación de agujero (Hole Punch)
 
 En los siguientes mensajes, establece el campo ver (versión) en la cabecera larga a 2, como de costumbre, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo admite, pero no es necesario. Las implementaciones deben aceptar cualquier valor entre 2 y 4.
 

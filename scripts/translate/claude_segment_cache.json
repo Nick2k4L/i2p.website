@@ -2626,10 +2626,10 @@
           }
         },
         "fm_target": {
-          "source_hash": "b9e194275e346506",
+          "source_hash": "790c3ba334d9b13f",
           "translations": {
             "ko": "0.9.80",
-            "ru": "0.9.80",
+            "ru": "0.9.70",
             "cs": "0.9.80",
             "de": "0.9.80",
             "fr": "0.9.80",
@@ -5609,10 +5609,10 @@
           }
         },
         "list_011": {
-          "source_hash": "6485a5d86fdcdcc1",
+          "source_hash": "199d2a6be829c51b",
           "translations": {
             "ko": "- (0) 세션 요청\n- (1) 세션 생성됨\n- (9) 재시도\n- (10) 토큰 요청\n- (11) 홀 펀치",
-            "ru": "- (0) Запрос сессии\n- (1) Сессия создана\n- (9) Повторная попытка\n- (10) Запрос токена\n- (11) Пробивание отверстия",
+            "ru": "- (0) Запрос сеанса\n- (1) Сеанс создан\n- (9) Повтор (примечание: Повтор с завершением может содержать любую версию 2-4)\n- (10) Запрос токена\n- (11) Пробивка отверстия (Hole Punch)",
             "cs": "- (0) Požadavek relace\n- (1) Relace vytvořena\n- (9) Opakovat\n- (10) Požadavek tokenu\n- (11) Hole Punch",
             "de": "- (0) Session Request\n- (1) Session Created\n- (9) Retry\n- (10) Token Request\n- (11) Hole Punch",
             "fr": "- (0) Demande de session\n- (1) Session créée\n- (9) Nouvelle tentative\n- (10) Demande de jeton\n- (11) Perforation de trou",
@@ -8186,7 +8186,7 @@
           }
         }
       },
-      "file_hash": "e069383437a6b4f0365e377080844f9cc0aecec26ab7ed23113a0e5d4a4215aa"
+      "file_hash": "c36026bd918cea4ab9b2a566a3218a533b71c8de90a6ed04347874c8d9abe1e2"
     },
     "en/docs/api/samv3.md": {
       "segments": {
@@ -14984,9 +14984,9 @@
           }
         },
         "list_003": {
-          "source_hash": "6485a5d86fdcdcc1",
+          "source_hash": "199d2a6be829c51b",
           "translations": {
-            "ru": "- (0) Запрос сессии\n- (1) Сессия создана\n- (9) Повтор\n- (10) Запрос токена\n- (11) Hole Punch",
+            "ru": "- (0) Запрос сеанса\n- (1) Сеанс создан\n- (9) Повтор (примечание: Повтор с завершением может содержать любую версию 2-4)\n- (10) Запрос токена\n- (11) Пробивка отверстия (Hole Punch)",
             "zh": "- (0) 会话请求\n- (1) 会话已创建\n- (9) 重试\n- (10) 令牌请求\n- (11) 打洞",
             "es": "- (0) Solicitud de sesión\n- (1) Sesión creada\n- (9) Reintento\n- (10) Solicitud de token\n- (11) Hole Punch",
             "ko": "- (0) 세션 요청\n- (1) 세션 생성됨\n- (9) 재시도\n- (10) 토큰 요청\n- (11) 홀 펀치",
@@ -15885,7 +15885,7 @@
           }
         }
       },
-      "file_hash": "87b8d8bfa5e8eeaf28d9cdee073307c5a483a2fd36a973116b22da67d667bc3f"
+      "file_hash": "54c4808a1a595068657138dfb86f57ce9feab743b6c72748eaec9828d2b8dc22"
     }
   }
 }

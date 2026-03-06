@@ -281,11 +281,11 @@ El encabezado largo tiene 32 bytes. Se utiliza antes de que se cree una sesión,
 
 En los siguientes mensajes, establezca el campo ver (versión) en el encabezado largo en 3 o 4, para indicar MLKEM-512 o MLKEM-768.
 
-- (0) Solicitud de sesión
-- (1) Sesión creada
-- (9) Reintento
-- (10) Solicitud de token
-- (11) Hole Punch
+- (0) Solicitud de Sesión
+- (1) Sesión Creada
+- (9) Reintentar (nota: Reintento con Terminación puede contener cualquier versión 2-4)
+- (10) Solicitud de Token
+- (11) Perforación de Agujero (Hole Punch)
 
 En los siguientes mensajes, establezca el campo ver (versión) en la cabecera larga en 2, como de costumbre, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo soporta, pero esto no es necesario. Las implementaciones deben aceptar cualquier valor entre 2 y 4.
 
