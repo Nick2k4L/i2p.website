@@ -2,11 +2,7 @@
 title: "Протокол клиента I2P (I2CP)"
 description: "Как приложения согласовывают сессии, tunnel и leaseSet с I2P router."
 slug: "i2cp"
-aliases:
-  - "/ru/docs/protocol/i2cp"
-  - "/ru/docs/protocol/i2cp/"
-  - "/ru/docs/api/i2cp"
-  - "/ru/docs/api/i2cp/"
+aliases: 
 category: "Протоколы"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

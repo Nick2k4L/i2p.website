@@ -2,9 +2,7 @@
 title: "Спецификация I2NP"
 description: "Форматы сообщений протокола сети I2P (I2NP), приоритеты и общие структуры для связи между router'ами."
 slug: "i2np"
-aliases:
-  - "/ru/docs/protocol/i2np"
-  - "/ru/docs/protocol/i2np/"
+aliases: 
 category: "Протоколы"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"
