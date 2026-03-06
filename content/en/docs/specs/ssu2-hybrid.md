@@ -344,7 +344,7 @@ set the ver (version) field in the long header to 3 or 4, to indidate MLKEM-512 
 
 - (0) Session Request
 - (1) Session Created
-- (9) Retry
+- (9) Retry (note: Retry with Termination may contain any version 2-4)
 - (10) Token Request
 - (11) Hole Punch
 

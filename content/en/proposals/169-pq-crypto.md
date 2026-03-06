@@ -6,10 +6,10 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-02-28"
+lastupdated: "2026-03-06"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
-target: "0.9.80"
+target: "0.9.70"
 toc: true
 ---
 
@@ -1259,7 +1259,7 @@ set the ver (version) field in the long header to 3 or 4, to indidate MLKEM-512 
 
 - (0) Session Request
 - (1) Session Created
-- (9) Retry
+- (9) Retry (note: Retry with Termination may contain any version 2-4)
 - (10) Token Request
 - (11) Hole Punch
 
