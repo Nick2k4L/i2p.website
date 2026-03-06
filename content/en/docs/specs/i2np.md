@@ -4,8 +4,6 @@ description: "I2P Network Protocol (I2NP) message formats, priorities, and commo
 slug: "i2np"
 aliases:
   - "/spec/i2np"
-  - "/en/docs/protocol/i2np"
-  - "/en/docs/protocol/i2np/"
 category: "Protocols"
 lastUpdated: "2025-12"
 accurateFor: "0.9.66"
