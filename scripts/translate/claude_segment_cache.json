@@ -25230,7 +25230,15 @@
             "zh": "I2CP 概述",
             "ko": "I2CP 개요",
             "es": "Descripción general de I2CP",
-            "ru": "Обзор I2CP"
+            "ru": "Обзор I2CP",
+            "fr": "Aperçu de I2CP",
+            "pt": "Visão geral do I2CP",
+            "de": "I2CP-Übersicht",
+            "tr": "I2CP'ye Genel Bakış",
+            "vi": "Tổng quan về I2CP",
+            "ar": "نظرة عامة على I2CP",
+            "cs": "Přehled I2CP",
+            "hi": "I2CP अवलोकन"
           }
         },
         "fm_description": {
@@ -25239,7 +25247,15 @@
             "zh": "I2P客户端协议（I2CP）概述——会话管理、选项、有效载荷格式和多路复用。",
             "ko": "I2P 클라이언트 프로토콜(I2CP) 개요 - 세션 관리, 옵션, 페이로드 형식 및 다중화.",
             "es": "Descripción general del Protocolo de Cliente I2P (I2CP) - gestión de sesiones, opciones, formato de carga útil y multiplexación.",
-            "ru": "Обзор протокола клиентов I2P (I2CP) — управление сессиями, параметры, формат полезной нагрузки и мультиплексирование."
+            "ru": "Обзор протокола клиентов I2P (I2CP) — управление сессиями, параметры, формат полезной нагрузки и мультиплексирование.",
+            "fr": "Aperçu du protocole client I2P (I2CP) - gestion des sessions, options, format de la charge utile et multiplexage.",
+            "pt": "Visão geral do Protocolo de Cliente I2P (I2CP) - gerenciamento de sessão, opções, formato de carga útil e multiplexação.",
+            "de": "Überblick über das I2P-Clientprotokoll (I2CP) – Sitzungsverwaltung, Optionen, Nutzdatenformat und Multiplexing.",
+            "tr": "I2P İstemci Protokolü'nün (I2CP) genel bakışı - oturum yönetimi, seçenekler, yük biçimi ve çoklama.",
+            "vi": "Tổng quan về Giao thức Máy khách I2P (I2CP) - quản lý phiên, các tùy chọn, định dạng tải trọng và đa hợp.",
+            "ar": "نظرة عامة على بروتوكول عميل I2P (I2CP) - إدارة الجلسة، الخيارات، تنسيق الحمولة، والتعددية.",
+            "cs": "Přehled I2P klientského protokolu (I2CP) – správa relací, možnosti, formát užitečného zatížení a multiplexování.",
+            "hi": "I2P क्लाइंट प्रोटोकॉल (I2CP) का अवलोकन - सत्र प्रबंधन, विकल्प, पेलोड प्रारूप और मल्टीप्लेक्सिंग।"
           }
         },
         "fm_category": {
@@ -25248,7 +25264,15 @@
             "zh": "协议",
             "ko": "프로토콜",
             "es": "Protocolos",
-            "ru": "Протоколы"
+            "ru": "Протоколы",
+            "fr": "Protocoles",
+            "pt": "Protocolos",
+            "de": "Protokolle",
+            "tr": "Protokoller",
+            "vi": "Giao thức",
+            "ar": "البروتوكولات",
+            "cs": "Protokoly",
+            "hi": "प्रोटोकॉल"
           }
         },
         "h2_001": {
@@ -25257,7 +25281,15 @@
             "zh": "概述",
             "ko": "개요",
             "es": "Resumen",
-            "ru": "Обзор"
+            "ru": "Обзор",
+            "fr": "Aperçu",
+            "pt": "Visão geral",
+            "de": "Übersicht",
+            "tr": "Genel Bakış",
+            "vi": "Tổng quan",
+            "ar": "نظرة عامة",
+            "cs": "Přehled",
+            "hi": "अवलोकन"
           }
         },
         "p_001": {
@@ -25266,7 +25298,15 @@
             "zh": "I2P客户端协议（I2CP）在路由器与任何希望在网络上传输通信的客户端之间实现了明确的职责分离。它通过单个TCP套接字发送和接收消息，实现安全且异步的消息传递。使用I2CP时，客户端应用程序会告知路由器其身份（即其“目标”）、所需的匿名性、可靠性与延迟之间的权衡，以及消息的发送位置。相应地，路由器通过I2CP通知客户端是否有消息到达，并请求授权以使用某些隧道。",
             "ko": "I2P 클라이언트 프로토콜(I2CP)은 라우터와 네트워크를 통해 통신하려는 모든 클라이언트 간의 책임을 명확히 분리합니다. I2CP는 단일 TCP 소켓을 통해 메시지를 송수신함으로써 안전하고 비동기적인 메시징을 가능하게 합니다. I2CP를 사용하면 클라이언트 애플리케이션이 라우터에게 자신이 누구인지(자신의 \"대상\"), 어떤 익명성·신뢰성·지연 시간 간의 트레이드오프를 선택할지, 그리고 메시지를 어디로 보낼지를 지정할 수 있습니다. 반대로 라우터는 I2CP를 통해 메시지가 도착했을 때 클라이언트에게 알리거나 일부 터널 사용을 위한 인증을 요청할 수 있습니다.",
             "es": "El Protocolo de Cliente I2P (I2CP) proporciona una fuerte separación de responsabilidades entre el enrutador y cualquier cliente que desee comunicarse a través de la red. Permite mensajería segura y asincrónica enviando y recibiendo mensajes sobre un único socket TCP. Con I2CP, una aplicación cliente le indica al enrutador quién es (su \"destino\"), qué compensaciones hacer en cuanto a anonimato, confiabilidad y latencia, y a dónde enviar los mensajes. A su vez, el enrutador utiliza I2CP para informar al cliente cuándo han llegado mensajes, y para solicitar autorización para utilizar ciertos túneles.",
-            "ru": "Протокол клиент-серверного взаимодействия I2P (I2CP) обеспечивает чёткое разделение ответственности между маршрутизатором и любым клиентом, желающим взаимодействовать через сеть. Он позволяет осуществлять безопасную и асинхронную передачу сообщений посредством отправки и получения сообщений через один TCP-сокет. С помощью I2CP клиентское приложение сообщает маршрутизатору, кто оно («назначение»), какие компромиссы между анонимностью, надёжностью и задержкой следует применить, а также куда направлять сообщения. В свою очередь, маршрутизатор использует I2CP, чтобы уведомить клиент о прибытии сообщений и запросить разрешение на использование некоторых туннелей."
+            "ru": "Протокол клиент-серверного взаимодействия I2P (I2CP) обеспечивает чёткое разделение ответственности между маршрутизатором и любым клиентом, желающим взаимодействовать через сеть. Он позволяет осуществлять безопасную и асинхронную передачу сообщений посредством отправки и получения сообщений через один TCP-сокет. С помощью I2CP клиентское приложение сообщает маршрутизатору, кто оно («назначение»), какие компромиссы между анонимностью, надёжностью и задержкой следует применить, а также куда направлять сообщения. В свою очередь, маршрутизатор использует I2CP, чтобы уведомить клиент о прибытии сообщений и запросить разрешение на использование некоторых туннелей.",
+            "fr": "Le protocole client I2P (I2CP) assure une séparation stricte des responsabilités entre le routeur et tout client souhaitant communiquer via le réseau. Il permet des échanges sécurisés et asynchrones en envoyant et en recevant des messages sur une seule socket TCP. Grâce à I2CP, une application cliente indique au routeur son identité (sa « destination »), les compromis souhaités en matière d'anonymat, de fiabilité et de latence, ainsi que les destinataires des messages. En retour, le routeur utilise I2CP pour informer le client de l'arrivée de messages et pour demander l'autorisation d'utiliser certains tunnels.",
+            "pt": "O Protocolo de Cliente I2P (I2CP) expõe uma forte separação de responsabilidades entre o roteador e qualquer cliente que deseje se comunicar pela rede. Ele permite mensagens seguras e assíncronas enviando e recebendo mensagens por meio de um único socket TCP. Com o I2CP, uma aplicação cliente informa ao roteador quem ela é (sua \"destinação\"), quais compensações de anonimato, confiabilidade e latência devem ser feitas, e para onde as mensagens devem ser enviadas. Por sua vez, o roteador utiliza o I2CP para informar ao cliente quando mensagens chegaram, e para solicitar autorização para que alguns túneis sejam utilizados.",
+            "de": "Das I2P-Client-Protokoll (I2CP) stellt eine klare Trennung der Zuständigkeiten zwischen dem Router und jedem Client her, der über das Netzwerk kommunizieren möchte. Es ermöglicht sichere und asynchrone Nachrichtenübermittlung, indem Nachrichten über einen einzelnen TCP-Socket gesendet und empfangen werden. Über I2CP teilt eine Client-Anwendung dem Router mit, wer sie ist (ihre „Zieladresse“), welche Kompromisse hinsichtlich Anonymität, Zuverlässigkeit und Latenz akzeptabel sind, und wohin Nachrichten gesendet werden sollen. Der Router nutzt I2CP wiederum, um dem Client mitzuteilen, wenn Nachrichten eingetroffen sind, und um die Genehmigung anzufordern, bestimmte Tunnel verwenden zu dürfen.",
+            "tr": "I2P İstemci Protokolü (I2CP), ağ üzerinden iletişim kurmak isteyen yönlendirici ile herhangi bir istemci arasında güçlü bir sorumluluk ayrımı sağlar. I2CP, tek bir TCP soketi üzerinden mesaj gönderip alarak güvenli ve eşzamansız mesajlaşmayı mümkün kılar. I2CP ile bir istemci uygulaması, yönlendiriciye kim olduğunu (\"hedefi\"), hangi anonimlik, güvenilirlik ve gecikme ödünlerini vereceğini ve mesajların nereye gönderileceğini bildirir. Buna karşılık yönlendirici, gelen mesajlar olduğunda bunu istemciye bildirmek ve bazı tünellerin kullanılması için yetkilendirme talep etmek amacıyla I2CP'yi kullanır.",
+            "vi": "Giao thức Khách hàng I2P (I2CP) tạo ra sự tách biệt rõ ràng giữa bộ định tuyến và bất kỳ khách hàng nào muốn giao tiếp qua mạng. Nó cho phép gửi và nhận tin nhắn một cách an toàn và không đồng bộ thông qua một cổng kết nối TCP duy nhất. Với I2CP, một ứng dụng khách sẽ thông báo cho bộ định tuyến biết họ là ai (điểm đến \"destination\" của họ), các mức độ ẩn danh, độ tin cậy và độ trễ phù hợp, cũng như nơi cần gửi tin nhắn đến. Đổi lại, bộ định tuyến sử dụng I2CP để thông báo cho khách hàng khi có tin nhắn đến, và yêu cầu cấp quyền để sử dụng một số đường hầm nhất định.",
+            "ar": "يُظهر بروتوكول عميل I2P (I2CP) فصلًا قويًا بين المهام الموكولة للراوتر وأي عميل يرغب في التواصل عبر الشبكة. ويوفر هذا البروتوكول تبادل الرسائل بشكل آمن وعشوائي من خلال إرسال واستقبال الرسائل عبر مقبس TCP واحد. باستخدام I2CP، تخبر تطبيقات العميل الراوتر عن هويتها (ما يُعرف بـ \"الوجهة\" الخاصة بها)، وعن خيارات التوازن بين الخصوصية والموثوقية وتأخير النقل، بالإضافة إلى تحديد الجهة التي ينبغي إرسال الرسائل إليها. وفي المقابل، يستخدم الراوتر بروتوكول I2CP لإبلاغ العميل عند وصول أية رسائل، وطلب التفويض لاستخدام بعض الأنفاق (tunnels).",
+            "cs": "I2P Client Protocol (I2CP) umožňuje silné oddělení odpovědností mezi směrovačem a libovolným klientem, který si přeje komunikovat přes síť. Zajišťuje bezpečnou a asynchronní výměnu zpráv prostřednictvím odesílání a příjmu zpráv přes jediné TCP spojení. Pomocí I2CP klientová aplikace sděluje směrovači, kým je (svou „cílovou adresou“), jaké kompromisy mezi anonymitou, spolehlivostí a latencí mají být zvoleny, a kam mají být zprávy posílány. Naopak směrovač prostřednictvím I2CP informuje klienta o příchozích zprávách a požaduje autorizaci pro použití některých tunelů.",
+            "hi": "I2P क्लाइंट प्रोटोकॉल (I2CP) राउटर तथा उस नेटवर्क पर संचार करने वाले किसी भी क्लाइंट के बीच जिम्मेदारियों को स्पष्ट रूप से अलग करता है। यह एकल टीसीपी सॉकेट के माध्यम से संदेश भेजकर और प्राप्त करके सुरक्षित एवं अतुल्यकालिक संदेशन को सक्षम करता है। I2CP के साथ, एक क्लाइंट अनुप्रयोग राउटर को यह बताता है कि वे कौन हैं (उनका \"गंतव्य\"), किस स्तर की गोपनीयता, विश्वसनीयता और विलंबता के बलिदान की अनुमति है, तथा संदेश कहाँ भेजे जाएँ। इसके बदले में, राउटर I2CP का उपयोग करके क्लाइंट को यह बताता है कि कोई संदेश प्राप्त हुआ है या नहीं, और कुछ टनल के उपयोग के लिए प्राधिकरण का अनुरोध करता है।"
           }
         },
         "p_002": {
@@ -25275,7 +25315,15 @@
             "zh": "该协议本身使用 Java 实现，以提供客户端 SDK。此 SDK 通过 i2p.jar 包提供，实现了 I2CP 的客户端部分。客户端永远不应需要访问包含路由器本身及 I2CP 路由器端的 router.jar 包。非 Java 客户端还需要实现[流式传输库](/docs/api/streaming/)以支持类 TCP 的连接。",
             "ko": "프로토콜 자체는 자바로 구현되어 클라이언트 SDK를 제공합니다. 이 SDK는 I2CP의 클라이언트 측을 구현하는 i2p.jar 패키지로 제공됩니다. 클라이언트는 라우터 자체와 I2CP의 라우터 측을 포함하는 router.jar 패키지에 접근할 필요가 절대 없습니다. 자바가 아닌 클라이언트의 경우 TCP 스타일 연결을 위한 [스트리밍 라이브러리](/docs/api/streaming/)도 구현해야 합니다.",
             "es": "El protocolo en sí está implementado en Java, para proporcionar el SDK del cliente. Este SDK se expone en el paquete i2p.jar, que implementa el lado cliente de I2CP. Los clientes nunca deberían necesitar acceder al paquete router.jar, que contiene el enrutador mismo y el lado del enrutador de I2CP. Un cliente que no sea en Java también tendría que implementar la [biblioteca de streaming](/docs/api/streaming/) para conexiones de estilo TCP.",
-            "ru": "Сам протокол реализован на Java для предоставления клиентского SDK. Этот SDK представлен в пакете i2p.jar, который реализует клиентскую часть I2CP. Клиентам никогда не нужно обращаться к пакету router.jar, в котором содержится сам маршрутизатор и сторонняя часть I2CP. Клиент на другом языке, кроме Java, также должен реализовать [библиотеку потоковой передачи](/docs/api/streaming/) для соединений по типу TCP."
+            "ru": "Сам протокол реализован на Java для предоставления клиентского SDK. Этот SDK представлен в пакете i2p.jar, который реализует клиентскую часть I2CP. Клиентам никогда не нужно обращаться к пакету router.jar, в котором содержится сам маршрутизатор и сторонняя часть I2CP. Клиент на другом языке, кроме Java, также должен реализовать [библиотеку потоковой передачи](/docs/api/streaming/) для соединений по типу TCP.",
+            "fr": "Le protocole lui-même est implémenté en Java, afin de fournir le SDK client. Ce SDK est exposé dans le paquet i2p.jar, qui implémente le côté client d'I2CP. Les clients ne devraient jamais avoir à accéder au paquet router.jar, qui contient le routeur lui-même ainsi que le côté routeur d'I2CP. Un client non-Java devrait également implémenter la [bibliothèque de streaming](/docs/api/streaming/) pour les connexions de type TCP.",
+            "pt": "O próprio protocolo é implementado em Java, para fornecer o SDK do cliente. Este SDK é exposto no pacote i2p.jar, que implementa o lado cliente do I2CP. Os clientes nunca deveriam precisar acessar o pacote router.jar, que contém o roteador em si e o lado do roteador do I2CP. Um cliente não Java também teria que implementar a [biblioteca de streaming](/docs/api/streaming/) para conexões no estilo TCP.",
+            "de": "Das Protokoll selbst ist in Java implementiert, um das Client-SDK bereitzustellen. Dieses SDK wird im i2p.jar-Paket bereitgestellt, das die Client-Seite von I2CP implementiert. Clients sollten niemals auf das router.jar-Paket zugreifen müssen, das den Router selbst sowie die Router-Seite von I2CP enthält. Ein Nicht-Java-Client müsste außerdem die [Streaming-Bibliothek](/docs/api/streaming/) für TCP-ähnliche Verbindungen implementieren.",
+            "tr": "Protokolün kendisi, İstemci SDK'sını sunmak için Java'da uygulanmıştır. Bu SDK, I2CP'nin istemci tarafını uygulayan i2p.jar paketinde sunulur. İstemciler, yönlendiriciyi ve I2CP'nin yönlendirici tarafını içeren router.jar paketine asla erişmek zorunda kalmamalıdır. Java dışı bir istemci, TCP tarzı bağlantılar için [akış kütüphanesini](/docs/api/streaming/) de uygulamak zorundadır.",
+            "vi": "Giao thức này được triển khai bằng Java nhằm cung cấp SDK dành cho khách hàng. SDK này được cung cấp trong gói i2p.jar, thực hiện phần phía khách hàng của I2CP. Khách hàng không bao giờ cần truy cập vào gói router.jar, gói này chứa bộ định tuyến và phần phía bộ định tuyến của I2CP. Một khách hàng không dùng Java cũng sẽ phải triển khai [thư viện streaming](/docs/api/streaming/) để thiết lập kết nối theo kiểu TCP.",
+            "ar": "يتم تنفيذ البروتوكول نفسه بلغة جافا، لتوفير مكتبة تطوير العميل (Client SDK). وتُعرض هذه المكتبة من خلال الحزمة i2p.jar، التي تنفذ الجانب الخاص بالعميل في بروتوكول I2CP. لا ينبغي للعملاء أبدًا الحاجة إلى الوصول إلى الحزمة router.jar، التي تحتوي على الموجه نفسه والجانب الخاص بالموجه في بروتوكول I2CP. كما أن العميل غير المبني بلغة جافا سيتوجب عليه أيضًا تنفيذ [مكتبة البث](/docs/api/streaming/) للاتصالات على نمط TCP.",
+            "cs": "Samotný protokol je implementován v jazyce Java, aby poskytoval klientskou SDK. Tato SDK je zpřístupněna v balíčku i2p.jar, který implementuje klientskou stranu I2CP. Klienti by nikdy neměli potřebovat přístup k balíčku router.jar, který obsahuje samotný směrovač a stranu směrovače I2CP. Klient, který nepoužívá Java, by také musel implementovat [streamovací knihovnu](/docs/api/streaming/) pro TCP-style spojení.",
+            "hi": "प्रोटोकॉल स्वयं जावा में लागू किया गया है, जिससे क्लाइंट SDK प्रदान किया जा सके। यह SDK i2p.jar पैकेज में उपलब्ध है, जो I2CP के क्लाइंट-साइड को लागू करता है। क्लाइंट्स को कभी भी राउटर.jar पैकेज तक पहुँचने की आवश्यकता नहीं होनी चाहिए, जिसमें स्वयं राउटर और I2CP का राउटर-साइड शामिल है। एक गैर-जावा क्लाइंट को TCP-शैली के कनेक्शन के लिए [स्ट्रीमिंग लाइब्रेरी](/docs/api/streaming/) को भी लागू करना होगा।"
           }
         },
         "p_003": {
@@ -25284,7 +25332,15 @@
             "zh": "应用程序可以通过使用[简单匿名消息（SAM）](/docs/api/samv3/)协议来利用基础的 I2CP 以及[流式传输](/docs/api/streaming/)和[数据报](/docs/specs/datagrams/)库，该协议不要求客户端处理任何类型的加密。此外，客户端也可以通过多种代理访问网络——HTTP、CONNECT 以及 SOCKS 4/4a/5。或者，Java 客户端可以直接使用 ministreaming.jar 和 streaming.jar 中的这些库。因此，无论是 Java 还是非 Java 应用程序都有多种选择。",
             "ko": "애플리케이션은 암호화 처리를 클라이언트가 직접 다루지 않아도 되는 [간단한 익명 메시징(SAM)](/docs/api/samv3/) 프로토콜을 사용함으로써 기본 I2CP와 [스트리밍](/docs/api/streaming/) 및 [데이터그램](/docs/specs/datagrams/) 라이브러리를 활용할 수 있습니다. 또한 클라이언트는 HTTP, CONNECT, SOCKS 4/4a/5 프록시 중 하나를 통해 네트워크에 접근할 수 있습니다. 또는 Java 클라이언트의 경우 ministreaming.jar와 streaming.jar에 포함된 라이브러리에 직접 접근할 수도 있습니다. 따라서 Java 애플리케이션과 비-Java 애플리케이션 모두를 위한 여러 가지 옵션이 존재합니다.",
             "es": "Las aplicaciones pueden aprovechar el I2CP base junto con las bibliotecas de [transmisión continua](/docs/api/streaming/) y [datagramas](/docs/specs/datagrams/) mediante el uso del protocolo [Simple Anonymous Messaging (SAM)](/docs/api/samv3/), que no requiere que los clientes gestionen ningún tipo de criptografía. Además, los clientes pueden acceder a la red a través de varios proxies: HTTP, CONNECT y SOCKS 4/4a/5. Alternativamente, los clientes en Java pueden acceder a esas bibliotecas mediante ministreaming.jar y streaming.jar. Por tanto, existen varias opciones tanto para aplicaciones en Java como para aplicaciones no Java.",
-            "ru": "Приложения могут использовать базовый I2CP вместе с библиотеками [потоковой передачи](/docs/api/streaming/) и [датаграмм](/docs/specs/datagrams/), применяя протокол [Простого Анонимного Обмена Сообщениями (SAM)](/docs/api/samv3/), который не требует от клиентов работы с криптографией. Кроме того, клиенты могут получать доступ к сети через один из нескольких прокси-протоколов — HTTP, CONNECT и SOCKS 4/4a/5. Альтернативно, клиенты на Java могут обращаться к этим библиотекам через ministreaming.jar и streaming.jar. Таким образом, существует несколько вариантов для приложений как на Java, так и на других языках."
+            "ru": "Приложения могут использовать базовый I2CP вместе с библиотеками [потоковой передачи](/docs/api/streaming/) и [датаграмм](/docs/specs/datagrams/), применяя протокол [Простого Анонимного Обмена Сообщениями (SAM)](/docs/api/samv3/), который не требует от клиентов работы с криптографией. Кроме того, клиенты могут получать доступ к сети через один из нескольких прокси-протоколов — HTTP, CONNECT и SOCKS 4/4a/5. Альтернативно, клиенты на Java могут обращаться к этим библиотекам через ministreaming.jar и streaming.jar. Таким образом, существует несколько вариантов для приложений как на Java, так и на других языках.",
+            "fr": "Les applications peuvent tirer parti de l'I2CP de base ainsi que des bibliothèques de [flux](/docs/api/streaming/) et de [datagrammes](/docs/specs/datagrams/) en utilisant le protocole [Simple Anonymous Messaging (SAM)](/docs/api/samv3/), qui ne demande pas aux clients de gérer quelque forme de cryptographie que ce soit. De plus, les clients peuvent accéder au réseau via plusieurs types de proxys - HTTP, CONNECT, et SOCKS 4/4a/5. Alternativement, les clients Java peuvent accéder à ces bibliothèques via ministreaming.jar et streaming.jar. Il existe donc plusieurs options pour les applications Java comme pour celles qui ne le sont pas.",
+            "pt": "Aplicativos podem aproveitar o I2CP básico mais as bibliotecas de [streaming](/docs/api/streaming/) e [datagrama](/docs/specs/datagrams/) utilizando o protocolo [Simple Anonymous Messaging (SAM)](/docs/api/samv3/), que não exige que os clientes lidem com qualquer tipo de criptografia. Além disso, os clientes podem acessar a rede por meio de diversos proxies – HTTP, CONNECT e SOCKS 4/4a/5. Alternativamente, clientes em Java podem acessar essas bibliotecas nos arquivos ministreaming.jar e streaming.jar. Assim, existem várias opções tanto para aplicações em Java quanto para aplicações não baseadas em Java.",
+            "de": "Anwendungen können die Basis-I2CP-Protokolle sowie die [Streaming](/docs/api/streaming/)- und [Datagramm](/docs/specs/datagrams/)-Bibliotheken nutzen, indem sie das [Simple Anonymous Messaging (SAM)](/docs/api/samv3/)-Protokoll verwenden, das es Clients erspart, sich mit kryptografischen Verfahren beschäftigen zu müssen. Außerdem können Clients über verschiedene Proxys auf das Netzwerk zugreifen – HTTP, CONNECT sowie SOCKS 4/4a/5. Alternativ können Java-Clients direkt auf die Bibliotheken in ministreaming.jar und streaming.jar zugreifen. Damit stehen sowohl Java- als auch Nicht-Java-Anwendungen mehrere Möglichkeiten zur Verfügung.",
+            "tr": "Uygulamalar, istemcilerin herhangi bir şifrelemeyle uğraşmasını gerektirmeyen [Simple Anonymous Messaging (SAM)](/docs/api/samv3/) protokolünü kullanarak temel I2CP'yi artı [streaming](/docs/api/streaming/) ve [datagram](/docs/specs/datagrams/) kütüphanelerinden yararlanabilir. Ayrıca, istemciler birkaç vekil sunucu türü aracılığıyla ağa erişebilir - HTTP, CONNECT ve SOCKS 4/4a/5. Alternatif olarak, Java istemcileri ministreaming.jar ve streaming.jar içindeki bu kütüphanelere erişebilir. Böylece hem Java hem de Java dışı uygulamalar için birkaç seçenek vardır.",
+            "vi": "Các ứng dụng có thể tận dụng I2CP cơ bản cùng với các thư viện [streaming](/docs/api/streaming/) và [datagram](/docs/specs/datagrams/) bằng cách sử dụng giao thức [Simple Anonymous Messaging (SAM)](/docs/api/samv3/), giao thức này không yêu cầu khách hàng phải xử lý bất kỳ hình thức mã hóa nào. Ngoài ra, các khách hàng có thể truy cập mạng thông qua một trong các proxy - HTTP, CONNECT và SOCKS 4/4a/5. Ngoài ra, các khách hàng Java có thể truy cập các thư viện đó trong ministreaming.jar và streaming.jar. Do đó, có một số lựa chọn cho cả ứng dụng Java và không phải Java.",
+            "ar": "يمكن للتطبيقات الاستفادة من بروتوكول I2CP الأساسي بالإضافة إلى مكتبات [التدفق](/docs/api/streaming/) و[داتاجرام](/docs/specs/datagrams/) من خلال استخدام بروتوكول [الرسائل المجهولة البسيطة (SAM)](/docs/api/samv3/)، الذي لا يتطلب من العميل التعامل مع أي نوع من التشفير. كما يمكن للعملاء الوصول إلى الشبكة من خلال أحد العديد من الوكيلات - HTTP، CONNECT، وSOCKS 4/4a/5. بديلًا، يمكن للعملاء المكتوبين بلغة Java الوصول إلى تلك المكتبات من خلال ministreaming.jar وstreaming.jar. وبالتالي، توجد عدة خيارات لكل من التطبيقات المكتوبة بلغة Java وغير Java.",
+            "cs": "Aplikace mohou využívat základní I2CP spolu s knihovnami pro [streamování](/docs/api/streaming/) a [datagramy](/docs/specs/datagrams/) pomocí protokolu [Simple Anonymous Messaging (SAM)](/docs/api/samv3/), který od klientů nevyžaduje práci s žádným druhem kryptografie. Klienti mohou také přistupovat k síti prostřednictvím několika typů proxy – HTTP, CONNECT a SOCKS 4/4a/5. Alternativně mohou klienti v Javě přistupovat k těmto knihovnám přes ministreaming.jar a streaming.jar. Existuje tedy několik možností jak pro aplikace v Javě, tak pro aplikace v jiných jazycích.",
+            "hi": "आवेदन आधार I2CP के साथ-साथ [स्ट्रीमिंग](/docs/api/streaming/) और [डेटाग्राम](/docs/specs/datagrams/) लाइब्रेरी का लाभ [सिंपल एनोनिमस मैसेजिंग (SAM)](/docs/api/samv3/) प्रोटोकॉल का उपयोग करके उठा सकते हैं, जिसके लिए क्लाइंट्स को किसी भी प्रकार की क्रिप्टोग्राफी से निपटने की आवश्यकता नहीं होती। इसके अलावा, क्लाइंट्स कई प्रॉक्सी में से किसी एक के माध्यम से नेटवर्क तक पहुँच सकते हैं - HTTP, CONNECT, और SOCKS 4/4a/5। वैकल्पिक रूप से, जावा क्लाइंट ministreaming.jar और streaming.jar में उन लाइब्रेरी तक पहुँच सकते हैं। इसलिए जावा और गैर-जावा दोनों प्रकार के आवेदनों के लिए कई विकल्प उपलब्ध हैं।"
           }
         },
         "p_004": {
@@ -25293,7 +25349,15 @@
             "zh": "在 I2P 0.6 版本发布时，客户端到路由器的端到端加密（即在 I2CP 连接上加密数据）已被禁用，仅保留由路由器实现的 ElGamal/AES 端到端加密。目前客户端库仍需实现的唯一加密功能是用于 [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) 和 [Session Configurations](/docs/specs/i2cp/#struct_SessionConfig) 的 DSA 公私钥签名，以及这些密钥的管理。",
             "ko": "클라이언트 측 종단 간 암호화(I2CP 연결을 통한 데이터 암호화)는 I2P 릴리스 0.6에서 비활성화되었으며, 라우터에서 구현된 ElGamal/AES 종단 간 암호화만 유지되었습니다. 클라이언트 라이브러리가 여전히 구현해야 하는 유일한 암호화 기술은 [LeaseSet](/docs/specs/i2cp/#msg_CreateLeaseSet) 및 [세션 구성](/docs/specs/i2cp/#struct_SessionConfig)을 위한 DSA 공개/개인 키 서명과 해당 키 관리입니다.",
             "es": "La encriptación de extremo a extremo en el lado del cliente (encriptar los datos a través de la conexión I2CP) fue deshabilitada en la versión 0.6 de I2P, dejando únicamente la encriptación de extremo a extremo ElGamal/AES que se implementa en el router. La única criptografía que aún deben implementar las bibliotecas cliente es la firma de claves pública/privada DSA para [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) y [Configuraciones de Sesión](/docs/specs/i2cp/#struct_SessionConfig), así como la gestión de esas claves.",
-            "ru": "Шифрование с конца в конец на стороне клиента (шифрование данных через соединение I2CP) было отключено в релизе I2P 0.6, при этом осталось шифрование с конца в конец по схеме ElGamal/AES, реализованное в маршрутизаторе. Единственная криптография, которую клиентским библиотекам всё ещё необходимо реализовывать — это подпись по алгоритму DSA с открытым/закрытым ключом для [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) и [Session Configurations](/docs/specs/i2cp/#struct_SessionConfig), а также управление этими ключами."
+            "ru": "Шифрование с конца в конец на стороне клиента (шифрование данных через соединение I2CP) было отключено в релизе I2P 0.6, при этом осталось шифрование с конца в конец по схеме ElGamal/AES, реализованное в маршрутизаторе. Единственная криптография, которую клиентским библиотекам всё ещё необходимо реализовывать — это подпись по алгоритму DSA с открытым/закрытым ключом для [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) и [Session Configurations](/docs/specs/i2cp/#struct_SessionConfig), а также управление этими ключами.",
+            "fr": "Le chiffrement de bout en bout côté client (chiffrement des données sur la connexion I2CP) a été désactivé dans la version 0.6 d'I2P, laissant en place le chiffrement de bout en bout ElGamal/AES qui est implémenté au niveau du routeur. La seule cryptographie que les bibliothèques clientes doivent encore implémenter est la signature de clés publique/privée DSA pour les [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) et les [Configurations de session](/docs/specs/i2cp/#struct_SessionConfig), ainsi que la gestion de ces clés.",
+            "pt": "A criptografia ponta a ponta no lado do cliente (criptografar os dados sobre a conexão I2CP) foi desativada na versão 0.6 do I2P, mantendo-se a criptografia ponta a ponta ElGamal/AES que é implementada no roteador. A única criptografia que as bibliotecas cliente ainda precisam implementar é a assinatura de chaves pública/privada DSA para [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) e [Configurações de Sessão](/docs/specs/i2cp/#struct_SessionConfig), além da gestão dessas chaves.",
+            "de": "Die Ende-zu-Ende-Verschlüsselung auf Clientseite (Verschlüsselung der Daten über die I2CP-Verbindung) wurde in I2P-Version 0.6 deaktiviert, wodurch die im Router implementierte ElGamal/AES-Ende-zu-Ende-Verschlüsselung beibehalten wurde. Die einzige Kryptografie, die Client-Bibliotheken weiterhin implementieren müssen, ist die DSA-Verschlüsselung mit öffentlichen/privaten Schlüsseln für [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) und [Sitzungskonfigurationen](/docs/specs/i2cp/#struct_SessionConfig) sowie die Verwaltung dieser Schlüssel.",
+            "tr": "İstemci tarafında uçtan uca şifreleme (verilerin I2CP bağlantısı üzerinden şifrelenmesi), 0.6 sürümünde I2P'de devre dışı bırakıldı ve yönlendiricide uygulanan ElGamal/AES uçtan uca şifreleme mevcut kaldı. İstemci kütüphanelerinin hâlâ uygulaması gereken tek kriptografi, [LeaseSet'ler](/docs/specs/i2cp/#msg_CreateLeaseSet) ve [Oturum Yapılandırmaları](/docs/specs/i2cp/#struct_SessionConfig) için DSA ortak/özel anahtar imzalama işlemi ile bu anahtarların yönetimidir.",
+            "vi": "Việc mã hóa đầu cuối ở phía máy khách (mã hóa dữ liệu qua kết nối I2CP) đã bị tắt trong bản phát hành I2P 0.6, chỉ giữ lại việc mã hóa đầu cuối ElGamal/AES được thực hiện trong bộ định tuyến. Nhiệm vụ mã hóa duy nhất mà các thư viện máy khách vẫn phải triển khai là chữ ký khóa công khai/khóa riêng DSA cho [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) và [Cấu hình phiên](/docs/specs/i2cp/#struct_SessionConfig), cùng với việc quản lý các khóa đó.",
+            "ar": "تم تعطيل التشفير من طرف إلى طرف من جانب العميل (تشفير البيانات عبر اتصال I2CP) في إصدار I2P 0.6، مع الاحتفاظ بتشفير ElGamal/AES من طرف إلى طرف الذي يتم تنفيذه في الموجه. الشيفرة الوحيدة التي يجب أن تنفذها مكتبات العميل تظل هي توقيع المفتاح العام/الخاص DSA لـ [LeaseSets](/docs/specs/i2cp/#msg_CreateLeaseSet) و[Session Configurations](/docs/specs/i2cp/#struct_SessionConfig)، وإدارة هذه المفاتيح.",
+            "cs": "Šifrování typu end-to-end na straně klienta (šifrování dat přes I2CP připojení) bylo zakázáno v I2P verzi 0.6, přičemž bylo ponecháno end-to-end šifrování pomocí ElGamal/AES, které je implementováno v routeru. Jedinou kryptografií, kterou musí klientské knihovny stále implementovat, je podepisování veřejných a soukromých klíčů DSA pro [LeaseSet](/docs/specs/i2cp/#msg_CreateLeaseSet) a [konfigurace relace](/docs/specs/i2cp/#struct_SessionConfig), a správa těchto klíčů.",
+            "hi": "क्लाइंट-साइड एंड-टू-एंड एन्क्रिप्शन (I2CP कनेक्शन के माध्यम से डेटा को एन्क्रिप्ट करना) को I2P रिलीज 0.6 में अक्षम कर दिया गया था, जिससे राउटर में लागू ElGamal/AES एंड-टू-एंड एन्क्रिप्शन बरकरार रहा। क्लाइंट लाइब्रेरीज को अभी भी केवल [लीजसेट्स](/docs/specs/i2cp/#msg_CreateLeaseSet) और [सत्र विन्यास](/docs/specs/i2cp/#struct_SessionConfig) के लिए DSA सार्वजनिक/निजी कुंजी हस्ताक्षर, तथा उन कुंजियों के प्रबंधन को लागू करना होता है।"
           }
         },
         "p_005": {
@@ -25302,7 +25366,15 @@
             "zh": "在标准的 I2P 安装中，外部 Java 客户端通过 I2CP 使用端口 7654 与本地路由器通信。默认情况下，路由器绑定到地址 127.0.0.1。要绑定到 0.0.0.0，请设置路由器高级配置选项 `i2cp.tcp.bindAllInterfaces=true` 并重启路由器。与路由器位于同一 JVM 中的客户端通过内部 JVM 接口直接将消息传递给路由器。",
             "ko": "표준 I2P 설치에서는 포트 7654를 외부 Java 클라이언트가 I2CP를 통해 로컬 라우터와 통신하는 데 사용합니다. 기본적으로 라우터는 주소 127.0.0.1에 바인딩됩니다. 0.0.0.0에 바인딩하려면 라우터 고급 설정 옵션 `i2cp.tcp.bindAllInterfaces=true`를 설정하고 라우터를 재시작해야 합니다. 라우터와 동일한 JVM 내의 클라이언트는 내부 JVM 인터페이스를 통해 메시지를 직접 라우터에 전달합니다.",
             "es": "En una instalación estándar de I2P, el puerto 7654 es utilizado por clientes Java externos para comunicarse con el router local mediante I2CP. Por defecto, el router se enlaza a la dirección 127.0.0.1. Para enlazarlo a 0.0.0.0, establezca la opción avanzada de configuración del router `i2cp.tcp.bindAllInterfaces=true` y reinicie. Los clientes que se ejecutan en la misma JVM que el router pasan los mensajes directamente al router a través de una interfaz interna de la JVM.",
-            "ru": "В стандартной установке I2P порт 7654 используется внешними Java-клиентами для связи с локальным маршрутизатором через I2CP. По умолчанию маршрутизатор привязывается к адресу 127.0.0.1. Чтобы привязаться к 0.0.0.0, установите расширенный параметр конфигурации маршрутизатора `i2cp.tcp.bindAllInterfaces=true` и перезапустите его. Клиенты, работающие в той же JVM, что и маршрутизатор, передают сообщения напрямую через внутренний интерфейс JVM."
+            "ru": "В стандартной установке I2P порт 7654 используется внешними Java-клиентами для связи с локальным маршрутизатором через I2CP. По умолчанию маршрутизатор привязывается к адресу 127.0.0.1. Чтобы привязаться к 0.0.0.0, установите расширенный параметр конфигурации маршрутизатора `i2cp.tcp.bindAllInterfaces=true` и перезапустите его. Клиенты, работающие в той же JVM, что и маршрутизатор, передают сообщения напрямую через внутренний интерфейс JVM.",
+            "fr": "Dans une installation standard d'I2P, le port 7654 est utilisé par les clients Java externes pour communiquer avec le routeur local via I2CP. Par défaut, le routeur s'associe à l'adresse 127.0.0.1. Pour s'associer à 0.0.0.0, définissez l'option de configuration avancée du routeur `i2cp.tcp.bindAllInterfaces=true` et redémarrez. Les clients situés dans la même machine virtuelle Java (JVM) que le routeur transmettent les messages directement au routeur via une interface JVM interne.",
+            "pt": "Em uma instalação padrão do I2P, a porta 7654 é usada por clientes Java externos para se comunicar com o roteador local através do I2CP. Por padrão, o roteador vincula-se ao endereço 127.0.0.1. Para vincular-se ao 0.0.0.0, defina a opção avançada de configuração do roteador `i2cp.tcp.bindAllInterfaces=true` e reinicie. Clientes na mesma JVM que o roteador passam mensagens diretamente para o roteador através de uma interface interna da JVM.",
+            "de": "Bei einer Standard-I2P-Installation wird Port 7654 von externen Java-Clients verwendet, um über I2CP mit dem lokalen Router zu kommunizieren. Standardmäßig bindet der Router an die Adresse 127.0.0.1. Um an 0.0.0.0 zu binden, setzen Sie die erweiterte Konfigurationsoption `i2cp.tcp.bindAllInterfaces=true` und starten Sie den Router neu. Clients in derselben JVM wie der Router leiten Nachrichten direkt über eine interne JVM-Schnittstelle an den Router weiter.",
+            "tr": "Standart bir I2P kurulumunda, dış Java istemcilerin yerel yönlendiriciyle I2CP üzerinden iletişim kurmak için 7654 numaralı bağlantı noktası kullanılır. Varsayılan olarak, yönlendirici 127.0.0.1 adresine bağlanır. 0.0.0.0 adresine bağlanmak için yönlendiricinin gelişmiş yapılandırma seçeneği olan `i2cp.tcp.bindAllInterfaces=true` değerini ayarlayıp yönlendiriciyi yeniden başlatın. Yönlendiriciyle aynı JVM içinde bulunan istemciler, mesajları doğrudan bir iç JVM arayüzü üzerinden yönlendiriciye iletir.",
+            "vi": "Trong một cài đặt I2P tiêu chuẩn, cổng 7654 được các ứng dụng khách Java bên ngoài sử dụng để giao tiếp với bộ định tuyến cục bộ thông qua I2CP. Theo mặc định, bộ định tuyến liên kết với địa chỉ 127.0.0.1. Để liên kết với 0.0.0.0, hãy đặt tùy chọn cấu hình nâng cao của bộ định tuyến là `i2cp.tcp.bindAllInterfaces=true` và khởi động lại. Các ứng dụng khách chạy trong cùng JVM với bộ định tuyến sẽ truyền tin nhắn trực tiếp đến bộ định tuyến thông qua một giao diện JVM nội bộ.",
+            "ar": "في تثبيت I2P القياسي، يتم استخدام المنفذ 7654 من قبل العميلات الخارجية المكتوبة بلغة جافا للتواصل مع الموجه المحلي عبر بروتوكول I2CP. بشكل افتراضي، يرتبط الموجه بالعنوان 127.0.0.1. للارتباط بالعنوان 0.0.0.0، يجب تعيين خيار التهيئة المتقدمة للموجه `i2cp.tcp.bindAllInterfaces=true` ثم إعادة التشغيل. أما العميلات الموجودة ضمن نفس بيئة تشغيل جافا (JVM) مثل الموجه، فتقوم بنقل الرسائل مباشرة إلى الموجه عبر واجهة داخلية داخل JVM.",
+            "cs": "Ve standardní instalaci I2P se port 7654 používá pro komunikaci externích Java klientů s místním směrovačem přes I2CP. Ve výchozím nastavení se směrovač váže na adresu 127.0.0.1. Chcete-li se vázat na 0.0.0.0, nastavte pokročilou konfigurační možnost směrovače `i2cp.tcp.bindAllInterfaces=true` a restartujte směrovač. Klienti běžící ve stejném JVM jako směrovač předávají zprávy přímo směrovači přes interní rozhraní JVM.",
+            "hi": "एक मानक I2P स्थापना में, बाहरी जावा क्लाइंट द्वारा I2CP के माध्यम से स्थानीय राउटर के साथ संचार के लिए पोर्ट 7654 का उपयोग किया जाता है। डिफ़ॉल्ट रूप से, राउटर पते 127.0.0.1 से बाध्य होता है। 0.0.0.0 से बाध्य होने के लिए, राउटर उन्नत विन्यास विकल्प `i2cp.tcp.bindAllInterfaces=true` सेट करें और राउटर को पुनः आरंभ करें। राउटर के समान JVM में स्थित क्लाइंट संदेशों को एक आंतरिक JVM इंटरफ़ेस के माध्यम से सीधे राउटर को पास करते हैं।"
           }
         },
         "p_006": {
@@ -25311,7 +25383,15 @@
             "zh": "某些路由器和客户端实现还可能支持通过 SSL 的外部连接，可通过配置 `i2cp.SSL=true` 选项启用。尽管 SSL 并非默认设置，但强烈建议对任何可能暴露在公共互联网上的流量启用 SSL。除非启用了 SSL，否则授权用户名/密码（如有）、[目标地址](/docs/specs/common-structures/#type_PrivateKey) 的 [私钥](/docs/specs/common-structures/#type_PrivateKey) 和 [签名私钥](/docs/specs/common-structures/#type_SigningPrivateKey) 都将以明文形式传输。某些路由器和客户端实现还可能支持通过域套接字（domain sockets）的外部连接。",
             "ko": "일부 라우터 및 클라이언트 구현은 `i2cp.SSL=true` 옵션으로 구성할 경우 SSL을 통한 외부 연결을 지원할 수도 있습니다. SSL은 기본값이 아니지만, 공개 인터넷에 노출될 수 있는 모든 트래픽에 대해서는 강력히 권장됩니다. SSL이 활성화되지 않으면 인증을 위한 사용자 이름/비밀번호(있는 경우), [대상(Destination)](/docs/specs/common-structures/#struct_Destination)의 [개인 키(Private Key)](/docs/specs/common-structures/#type_PrivateKey) 및 [서명용 개인 키(Signing Private Key)](/docs/specs/common-structures/#type_SigningPrivateKey)가 모두 평문으로 전송됩니다. 일부 라우터 및 클라이언트 구현은 도메인 소켓을 통한 외부 연결도 지원할 수 있습니다.",
             "es": "Algunas implementaciones del router y del cliente también pueden admitir conexiones externas a través de SSL, según esté configurado mediante la opción `i2cp.SSL=true`. Aunque SSL no es el valor predeterminado, se recomienda encarecidamente para cualquier tráfico que pueda estar expuesto a Internet. El usuario y la contraseña de autorización (si los hay), la [Clave Privada](/docs/specs/common-structures/#type_PrivateKey) y la [Clave Privada de Firma](/docs/specs/common-structures/#type_SigningPrivateKey) para el [Destino](/docs/specs/common-structures/#struct_Destination) se transmiten en texto claro a menos que SSL esté habilitado. Algunas implementaciones del router y del cliente también pueden admitir conexiones externas mediante sockets de dominio.",
-            "ru": "Некоторые реализации маршрутизатора и клиента также могут поддерживать внешние подключения по SSL, как настроено параметром `i2cp.SSL=true`. Хотя SSL не является значением по умолчанию, его настоятельно рекомендуется использовать для любого трафика, который может быть доступен в открытом Интернете. Учётные данные авторизации (имя пользователя и пароль, если таковые имеются), [Закрытый ключ](/docs/specs/common-structures/#type_PrivateKey) и [Закрытый ключ для подписи](/docs/specs/common-structures/#type_SigningPrivateKey) для [Назначения](/docs/specs/common-structures/#struct_Destination) передаются открыто, если SSL не включён. Некоторые реализации маршрутизатора и клиента также могут поддерживать внешние подключения через доменные сокеты."
+            "ru": "Некоторые реализации маршрутизатора и клиента также могут поддерживать внешние подключения по SSL, как настроено параметром `i2cp.SSL=true`. Хотя SSL не является значением по умолчанию, его настоятельно рекомендуется использовать для любого трафика, который может быть доступен в открытом Интернете. Учётные данные авторизации (имя пользователя и пароль, если таковые имеются), [Закрытый ключ](/docs/specs/common-structures/#type_PrivateKey) и [Закрытый ключ для подписи](/docs/specs/common-structures/#type_SigningPrivateKey) для [Назначения](/docs/specs/common-structures/#struct_Destination) передаются открыто, если SSL не включён. Некоторые реализации маршрутизатора и клиента также могут поддерживать внешние подключения через доменные сокеты.",
+            "fr": "Certaines implémentations de routeur et de client peuvent également prendre en charge les connexions externes via SSL, comme configuré par l'option `i2cp.SSL=true`. Bien que SSL ne soit pas activé par défaut, son utilisation est fortement recommandée pour tout trafic susceptible d'être exposé à Internet. Le nom d'utilisateur et le mot de passe d'autorisation (le cas échéant), la [clé privée](/docs/specs/common-structures/#type_PrivateKey) et la [clé privée de signature](/docs/specs/common-structures/#type_SigningPrivateKey) pour la [Destination](/docs/specs/common-structures/#struct_Destination) sont tous transmis en clair sauf si SSL est activé. Certaines implémentations de routeur et de client peuvent également prendre en charge les connexions externes via des sockets de domaine.",
+            "pt": "Algumas implementações de roteador e cliente também podem suportar conexões externas por SSL, conforme configurado pela opção `i2cp.SSL=true`. Embora o SSL não seja o padrão, é fortemente recomendado para qualquer tráfego que possa ser exposto à Internet aberta. O usuário e senha de autorização (se houver), a [Chave Privada](/docs/specs/common-structures/#type_PrivateKey) e a [Chave Privada de Assinatura](/docs/specs/common-structures/#type_SigningPrivateKey) para a [Destinação](/docs/specs/common-structures/#struct_Destination) são todos transmitidos em texto claro, a menos que o SSL esteja habilitado. Algumas implementações de roteador e cliente também podem suportar conexões externas por meio de sockets de domínio.",
+            "de": "Einige Router- und Client-Implementierungen können auch externe Verbindungen über SSL unterstützen, wie durch die Option `i2cp.SSL=true` konfiguriert. Obwohl SSL nicht standardmäßig aktiviert ist, wird es dringend empfohlen, wenn der Datenverkehr dem offenen Internet ausgesetzt sein könnte. Der Autorisierungs-Benutzername/Passwort (falls vorhanden), der [Private Schlüssel](/docs/specs/common-structures/#type_PrivateKey) und der [Signierungs-Private-Schlüssel](/docs/specs/common-structures/#type_SigningPrivateKey) für das [Ziel (Destination)](/docs/specs/common-structures/#struct_Destination) werden alle unverschlüsselt übertragen, sofern SSL nicht aktiviert ist. Einige Router- und Client-Implementierungen können außerdem externe Verbindungen über Domain-Sockets unterstützen.",
+            "tr": "Bazı yönlendirici ve istemci uygulamaları, `i2cp.SSL=true` seçeneğiyle yapılandırıldığı şekilde SSL üzerinden harici bağlantılara da destek verebilir. SSL varsayılan olmasa da, açık İnternet'e maruz kalabilecek tüm trafiğe kesinlikle tavsiye edilir. SSL etkin değilse, yetkilendirme kullanıcı adı/parolası (varsa), [Hedef](/docs/specs/common-structures/#struct_Destination) için [Özel Anahtar](/docs/specs/common-structures/#type_PrivateKey) ve [İmzalama Özel Anahtarı](/docs/specs/common-structures/#type_SigningPrivateKey) açık bir şekilde iletilir. Bazı yönlendirici ve istemci uygulamaları aynı zamanda etki alanı soketleri üzerinden harici bağlantılara da destekleyebilir.",
+            "vi": "Một số triển khai bộ định tuyến và máy khách cũng có thể hỗ trợ kết nối bên ngoài thông qua SSL, được cấu hình bằng tùy chọn `i2cp.SSL=true`. Mặc dù SSL không phải là mặc định, nhưng được khuyến nghị mạnh mẽ đối với mọi lưu lượng có thể bị phơi nhiễm ra Internet công cộng. Thông tin xác thực người dùng/mật khẩu (nếu có), [Khóa riêng](/docs/specs/common-structures/#type_PrivateKey) và [Khóa riêng ký](/docs/specs/common-structures/#type_SigningPrivateKey) cho [Đích đến](/docs/specs/common-structures/#struct_Destination) đều được truyền không mã hóa trừ khi SSL được bật. Một số triển khai bộ định tuyến và máy khách cũng có thể hỗ trợ kết nối bên ngoài thông qua cổng kết nối (domain sockets).",
+            "ar": "قد تدعم بعض تطبيقات الموجه (router) والعميل (client) أيضًا الاتصالات الخارجية عبر SSL، كما هو مُعدّ بواسطة الخيار `i2cp.SSL=true`. ورغم أن SSL ليس هو الإعداد الافتراضي، فإنه يُوصى به بشدة لأي حركة مرور قد تتعرض للإنترنت المفتوح. يتم إرسال اسم المستخدم/كلمة المرور للمصادقة (إن وُجدت)، ومفتاح [الخاصة](/docs/specs/common-structures/#type_PrivateKey) ومفتاح [التوقيع الخاص](/docs/specs/common-structures/#type_SigningPrivateKey) الخاص بـ [الوجهة](/docs/specs/common-structures/#struct_Destination) بشكل نصي واضح ما لم يتم تمكين SSL. كما قد تدعم بعض تطبيقات الموجه والعميل الاتصالات الخارجية عبر نطاقات المOCKETs (domain sockets).",
+            "cs": "Některé implementace směrovače a klienta mohou podporovat také externí připojení přes SSL, jak je nakonfigurováno volbou `i2cp.SSL=true`. I když SSL není výchozí, doporučuje se jej používat pro veškerý provoz, který může být vystaven otevřenému Internetu. Uživatelské jméno a heslo pro autorizaci (pokud je použito), [soukromý klíč](/docs/specs/common-structures/#type_PrivateKey) a [klíč pro podepisování](/docs/specs/common-structures/#type_SigningPrivateKey) pro [cíl](/docs/specs/common-structures/#struct_Destination) jsou všechny přenášeny v otevřené podobě, pokud není SSL povoleno. Některé implementace směrovače a klienta mohou podporovat také externí připojení přes doménové sokety.",
+            "hi": "कुछ राउटर और क्लाइंट लागू करने में `i2cp.SSL=true` विकल्प द्वारा विनिर्दिष्ट SSL के माध्यम से बाह्य कनेक्शन का समर्थन भी हो सकता है। जबकि SSL डिफ़ॉल्ट नहीं है, खुले इंटरनेट के लिए उजागर हो सकने वाले किसी भी ट्रैफ़िक के लिए इसकी अत्यधिक अनुशंसा की जाती है। प्राधिकरण उपयोगकर्ता/पासवर्ड (यदि कोई हो), [निजी कुंजी](/docs/specs/common-structures/#type_PrivateKey) और [साइनिंग निजी कुंजी](/docs/specs/common-structures/#type_SigningPrivateKey) [गंतव्य](/docs/specs/common-structures/#struct_Destination) के लिए सभी स्पष्ट-रूप में संचारित किए जाते हैं जब तक कि SSL सक्षम नहीं है। कुछ राउटर और क्लाइंट लागू करने में डोमेन सॉकेट के माध्यम से बाह्य कनेक्शन का भी समर्थन हो सकता है।"
           }
         },
         "h2_002": {
@@ -25320,7 +25400,15 @@
             "zh": "I2CP 协议规范",
             "ko": "I2CP 프로토콜 사양",
             "es": "Especificación del Protocolo I2CP",
-            "ru": "Спецификация протокола I2CP"
+            "ru": "Спецификация протокола I2CP",
+            "fr": "Spécification du protocole I2CP",
+            "pt": "Especificação do Protocolo I2CP",
+            "de": "I2CP-Protokollspezifikation",
+            "tr": "I2CP Protokolü Spesifikasyonu",
+            "vi": "Đặc tả Giao thức I2CP",
+            "ar": "مواصفات بروتوكول I2CP",
+            "cs": "Specifikace protokolu I2CP",
+            "hi": "I2CP प्रोटोकॉल विनिर्देश"
           }
         },
         "p_007": {
@@ -25329,7 +25417,15 @@
             "zh": "请参阅 [I2CP 规范页面](/docs/specs/i2cp/) 以获取完整的协议规范。",
             "ko": "전체 프로토콜 사양은 [I2CP 사양 페이지](/docs/specs/i2cp/)를 참조하세요.",
             "es": "Consulta la [página de la especificación I2CP](/docs/specs/i2cp/) para obtener la especificación completa del protocolo.",
-            "ru": "Полная спецификация протокола доступна на [странице спецификации I2CP](/docs/specs/i2cp/)."
+            "ru": "Полная спецификация протокола доступна на [странице спецификации I2CP](/docs/specs/i2cp/).",
+            "fr": "Voir la [page de spécification I2CP](/docs/specs/i2cp/) pour la spécification complète du protocole.",
+            "pt": "Veja a [página de Especificação I2CP](/docs/specs/i2cp/) para a especificação completa do protocolo.",
+            "de": "Siehe die [I2CP-Spezifikationsseite](/docs/specs/i2cp/) für die vollständige Protokollspezifikation.",
+            "tr": "Tam protokol belirtimi için [I2CP Spesifikasyon sayfasına](/docs/specs/i2cp/) bakın.",
+            "vi": "Xem trang [Thông số kỹ thuật I2CP](/docs/specs/i2cp/) để biết thông số giao thức đầy đủ.",
+            "ar": "انظر [صفحة مواصفات I2CP](/docs/specs/i2cp/) للحصول على مواصفات البروتوكول الكاملة.",
+            "cs": "Kompletní specifikaci protokolu najdete na stránce [specifikace I2CP](/docs/specs/i2cp/).",
+            "hi": "पूर्ण प्रोटोकॉल विशिष्टता के लिए [I2CP विशिष्टता पृष्ठ](/docs/specs/i2cp/) देखें।"
           }
         },
         "h2_003": {
@@ -25338,7 +25434,15 @@
             "zh": "I2CP 初始化 {#initialization}",
             "ko": "I2CP 초기화 {#initialization}",
             "es": "Inicialización de I2CP {#initialization}",
-            "ru": "Инициализация I2CP {#initialization}"
+            "ru": "Инициализация I2CP {#initialization}",
+            "fr": "Initialisation I2CP {#initialization}",
+            "pt": "Inicialização I2CP {#initialization}",
+            "de": "I2CP-Initialisierung {#initialization}",
+            "tr": "I2CP Başlatma {#initialization}",
+            "vi": "Khởi tạo I2CP {#initialization}",
+            "ar": "تهيئة I2CP {#initialization}",
+            "cs": "Inicializace I2CP {#initialization}",
+            "hi": "I2CP आरंभीकरण {#initialization}"
           }
         },
         "p_008": {
@@ -25347,7 +25451,15 @@
             "zh": "当客户端连接到路由器时，首先发送一个协议版本字节（0x2A）。然后发送一个[获取日期消息](/docs/specs/i2cp/#msg_GetDate)，并等待路由器返回的[设置日期消息](/docs/specs/i2cp/#msg_SetDate)响应。接着，客户端发送一个包含会话配置的[创建会话消息](/docs/specs/i2cp/#msg_CreateSession)。之后，客户端等待路由器发来的[请求LeaseSet消息](/docs/specs/i2cp/#msg_RequestLeaseSet)，该消息表明入站隧道已建立，客户端随后以包含已签名LeaseSet的CreateLeaseSetMessage进行响应。此后，客户端即可与其他I2P目标发起或接收连接。",
             "ko": "클라이언트가 라우터에 연결하면, 먼저 단일 프로토콜 버전 바이트(0x2A)를 보냅니다. 그 후 [GetDate 메시지](/docs/specs/i2cp/#msg_GetDate)를 전송하고 [SetDate 메시지](/docs/specs/i2cp/#msg_SetDate) 응답을 기다립니다. 다음으로 세션 설정을 포함하는 [CreateSession 메시지](/docs/specs/i2cp/#msg_CreateSession)를 전송합니다. 이후 라우터로부터 수신 터널이 생성되었음을 알리는 [RequestLeaseSet 메시지](/docs/specs/i2cp/#msg_RequestLeaseSet)를 수신할 때까지 대기한 후, 서명된 LeaseSet을 포함하는 CreateLeaseSetMessage로 응답합니다. 이제 클라이언트는 다른 I2P 목적지로 연결을 시작하거나, 다른 곳으로부터 연결을 수신할 수 있습니다.",
             "es": "Cuando un cliente se conecta al router, primero envía un único byte de versión de protocolo (0x2A). Luego envía un [Mensaje GetDate](/docs/specs/i2cp/#msg_GetDate) y espera la respuesta del [Mensaje SetDate](/docs/specs/i2cp/#msg_SetDate). A continuación, envía un [Mensaje CreateSession](/docs/specs/i2cp/#msg_CreateSession) que contiene la configuración de la sesión. Después espera un [Mensaje RequestLeaseSet](/docs/specs/i2cp/#msg_RequestLeaseSet) del router, lo cual indica que los túneles entrantes han sido creados, y responde con un CreateLeaseSetMessage que contiene el LeaseSet firmado. El cliente ya puede iniciar o recibir conexiones desde otras destinaciones I2P.",
-            "ru": "Когда клиент подключается к маршрутизатору, он сначала отправляет один байт версии протокола (0x2A). Затем он отправляет [Сообщение GetDate](/docs/specs/i2cp/#msg_GetDate) и ожидает ответа [Сообщения SetDate](/docs/specs/i2cp/#msg_SetDate). Далее клиент отправляет [Сообщение CreateSession](/docs/specs/i2cp/#msg_CreateSession), содержащее конфигурацию сессии. После этого он ожидает получения от маршрутизатора [Сообщения RequestLeaseSet](/docs/specs/i2cp/#msg_RequestLeaseSet), которое указывает на то, что входящие туннели построены, и отвечает сообщением CreateLeaseSetMessage, содержащим подписанный LeaseSet. Теперь клиент может инициировать соединения или принимать подключения от других I2P-адресов."
+            "ru": "Когда клиент подключается к маршрутизатору, он сначала отправляет один байт версии протокола (0x2A). Затем он отправляет [Сообщение GetDate](/docs/specs/i2cp/#msg_GetDate) и ожидает ответа [Сообщения SetDate](/docs/specs/i2cp/#msg_SetDate). Далее клиент отправляет [Сообщение CreateSession](/docs/specs/i2cp/#msg_CreateSession), содержащее конфигурацию сессии. После этого он ожидает получения от маршрутизатора [Сообщения RequestLeaseSet](/docs/specs/i2cp/#msg_RequestLeaseSet), которое указывает на то, что входящие туннели построены, и отвечает сообщением CreateLeaseSetMessage, содержащим подписанный LeaseSet. Теперь клиент может инициировать соединения или принимать подключения от других I2P-адресов.",
+            "fr": "Lorsqu'un client se connecte au routeur, il envoie d'abord un unique octet indiquant la version du protocole (0x2A). Ensuite, il envoie un message [GetDate](/docs/specs/i2cp/#msg_GetDate) et attend la réponse [SetDate](/docs/specs/i2cp/#msg_SetDate). Puis, il envoie un message [CreateSession](/docs/specs/i2cp/#msg_CreateSession) contenant la configuration de la session. Il attend ensuite un message [RequestLeaseSet](/docs/specs/i2cp/#msg_RequestLeaseSet) provenant du routeur, indiquant que les tunnels entrants ont été créés, et répond avec un message CreateLeaseSet contenant le LeaseSet signé. Le client peut désormais initier ou recevoir des connexions depuis d'autres destinations I2P.",
+            "pt": "Quando um cliente se conecta ao roteador, ele primeiro envia um único byte de versão do protocolo (0x2A). Em seguida, envia uma [Mensagem GetDate](/docs/specs/i2cp/#msg_GetDate) e aguarda a resposta da [Mensagem SetDate](/docs/specs/i2cp/#msg_SetDate). Depois, envia uma [Mensagem CreateSession](/docs/specs/i2cp/#msg_CreateSession) contendo a configuração da sessão. Em seguida, aguarda uma [Mensagem RequestLeaseSet](/docs/specs/i2cp/#msg_RequestLeaseSet) do roteador, indicando que os túneis de entrada foram criados, e responde com uma CreateLeaseSetMessage contendo o LeaseSet assinado. O cliente agora pode iniciar ou receber conexões de outras destinações I2P.",
+            "de": "Wenn ein Client eine Verbindung zum Router herstellt, sendet er zunächst ein einzelnes Protokoll-Versionsbyte (0x2A). Danach sendet er eine [GetDate-Nachricht](/docs/specs/i2cp/#msg_GetDate) und wartet auf die Antwort in Form einer [SetDate-Nachricht](/docs/specs/i2cp/#msg_SetDate). Anschließend sendet er eine [CreateSession-Nachricht](/docs/specs/i2cp/#msg_CreateSession), die die Sitzungskonfiguration enthält. Danach wartet er auf eine [RequestLeaseSet-Nachricht](/docs/specs/i2cp/#msg_RequestLeaseSet) vom Router, die anzeigt, dass die eingehenden Tunnel erstellt wurden, und antwortet mit einer CreateLeaseSet-Nachricht, die das signierte LeaseSet enthält. Der Client kann nun Verbindungen zu anderen I2P-Zielen aufbauen oder von ihnen empfangen.",
+            "tr": "Bir istemci yönlendiriciye bağlandığında, önce tek bir protokol sürümü baytı (0x2A) gönderir. Ardından bir [GetDate Mesajı](/docs/specs/i2cp/#msg_GetDate) gönderir ve [SetDate Mesajı](/docs/specs/i2cp/#msg_SetDate) yanıtını bekler. Daha sonra oturum yapılandırmasını içeren bir [CreateSession Mesajı](/docs/specs/i2cp/#msg_CreateSession) gönderir. Bundan sonra yönlendiriciden gelen, gelen tünelin oluşturulduğunu belirten bir [RequestLeaseSet Mesajı](/docs/specs/i2cp/#msg_RequestLeaseSet)'nı bekler ve imzalanmış LeaseSet içeren bir CreateLeaseSetMesajı ile yanıt verir. Artık istemci diğer I2P hedeflerinden bağlantıları başlatabilir veya alabilir.",
+            "vi": "Khi một client kết nối với router, nó trước tiên gửi một byte duy nhất thể hiện phiên bản giao thức (0x2A). Sau đó, nó gửi một [Tin nhắn GetDate](/docs/specs/i2cp/#msg_GetDate) và chờ phản hồi [Tin nhắn SetDate](/docs/specs/i2cp/#msg_SetDate). Tiếp theo, nó gửi một [Tin nhắn CreateSession](/docs/specs/i2cp/#msg_CreateSession) chứa cấu hình phiên làm việc. Sau đó, client chờ một [Tin nhắn RequestLeaseSet](/docs/specs/i2cp/#msg_RequestLeaseSet) từ router, cho biết các tunnel nhận đã được tạo xong, rồi phản hồi bằng một CreateLeaseSetMessage chứa LeaseSet đã ký. Giờ đây, client có thể bắt đầu hoặc nhận các kết nối từ các đích I2P khác.",
+            "ar": "عندما يتصل عميل بالراوتر، فإنه يُرسل أولاً بايتاً واحداً لإصدار البروتوكول (0x2A). ثم يُرسل رسالة [GetDate Message](/docs/specs/i2cp/#msg_GetDate) وينتظر استجابة رسالة [SetDate Message](/docs/specs/i2cp/#msg_SetDate). بعد ذلك، يُرسل رسالة [CreateSession Message](/docs/specs/i2cp/#msg_CreateSession) التي تحتوي على تهيئة الجلسة. ثم ينتظر بعد ذلك رسالة [RequestLeaseSet Message](/docs/specs/i2cp/#msg_RequestLeaseSet) من الراوتر، والتي تشير إلى أن الأنفاق الواردة قد تم إنشاؤها، ويجيب بإرسال رسالة CreateLeaseSetMessage تحتوي على LeaseSet الموقع. يمكن للعميل الآن بدء الاتصالات أو استقبالها من عناوين I2P أخرى.",
+            "cs": "Když se klient připojí k routeru, nejprve pošle jeden bajt určující verzi protokolu (0x2A). Poté pošle [Zprávu GetDate](/docs/specs/i2cp/#msg_GetDate) a čeká na odpověď [Zprávy SetDate](/docs/specs/i2cp/#msg_SetDate). Následně pošle [Zprávu CreateSession](/docs/specs/i2cp/#msg_CreateSession) obsahující konfiguraci relace. Poté čeká na [Zprávu RequestLeaseSet](/docs/specs/i2cp/#msg_RequestLeaseSet) od routeru, která signalizuje, že byly vytvořeny příchozí tunely, a odpoví zprávou CreateLeaseSetMessage obsahující podepsaný LeaseSet. Klient nyní může iniciovat nebo přijímat spojení od jiných cílů v síti I2P.",
+            "hi": "जब कोई क्लाइंट राउटर से जुड़ता है, तो सबसे पहले वह एक एकल प्रोटोकॉल संस्करण बाइट (0x2A) भेजता है। फिर वह एक [GetDate संदेश](/docs/specs/i2cp/#msg_GetDate) भेजता है और [SetDate संदेश](/docs/specs/i2cp/#msg_SetDate) प्रतिक्रिया की प्रतीक्षा करता है। इसके बाद, वह सत्र विन्यास युक्त एक [CreateSession संदेश](/docs/specs/i2cp/#msg_CreateSession) भेजता है। इसके बाद वह राउटर से [RequestLeaseSet संदेश](/docs/specs/i2cp/#msg_RequestLeaseSet) की प्रतीक्षा करता है, जो इंगित करता है कि इनबाउंड टनल बना लिए गए हैं, और एक CreateLeaseSet संदेश के साथ प्रतिक्रिया देता है जिसमें हस्ताक्षरित LeaseSet होता है। अब क्लाइंट अन्य I2P गंतव्यों से कनेक्शन शुरू कर सकता है या कनेक्शन प्राप्त कर सकता है।"
           }
         },
         "h2_004": {
@@ -25356,7 +25468,15 @@
             "zh": "I2CP 选项 {#options}",
             "ko": "I2CP 옵션 {#options}",
             "es": "Opciones I2CP {#options}",
-            "ru": "Параметры I2CP {#options}"
+            "ru": "Параметры I2CP {#options}",
+            "fr": "Options I2CP {#options}",
+            "pt": "Opções I2CP {#options}",
+            "de": "I2CP-Optionen {#options}",
+            "tr": "I2CP Seçenekleri {#options}",
+            "vi": "Tùy chọn I2CP {#options}",
+            "ar": "خيارات I2CP {#options}",
+            "cs": "Možnosti I2CP {#options}",
+            "hi": "I2CP विकल्प {#options}"
           }
         },
         "h3_001": {
@@ -25365,7 +25485,15 @@
             "zh": "路由器端选项",
             "ko": "라우터 측 옵션",
             "es": "Opciones del lado del router",
-            "ru": "Опции на стороне роутера"
+            "ru": "Опции на стороне роутера",
+            "fr": "Options côté routeur",
+            "pt": "Opções do lado do roteador",
+            "de": "Routerseitige Optionen",
+            "tr": "Yönlendirici Tarafı Seçenekler",
+            "vi": "Tùy chọn phía bộ định tuyến",
+            "ar": "خيارات جانب الموجه",
+            "cs": "Možnosti na straně směrovače",
+            "hi": "राउटर-साइड विकल्प"
           }
         },
         "p_009": {
@@ -25374,7 +25502,15 @@
             "zh": "以下选项传统上通过包含在 [CreateSession 消息](/docs/specs/i2cp/#msg_CreateSession) 或 [ReconfigureSession 消息](/docs/specs/i2cp/#msg_ReconfigureSession) 中的 [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) 传递给路由器。",
             "ko": "다음 옵션들은 일반적으로 [세션 생성 메시지](/docs/specs/i2cp/#msg_CreateSession) 또는 [세션 재구성 메시지](/docs/specs/i2cp/#msg_ReconfigureSession)에 포함된 [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig)를 통해 라우터에 전달됩니다.",
             "es": "Las siguientes opciones se pasan tradicionalmente al router mediante un [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) contenido en un [CreateSession Message](/docs/specs/i2cp/#msg_CreateSession) o un [ReconfigureSession Message](/docs/specs/i2cp/#msg_ReconfigureSession).",
-            "ru": "Следующие параметры традиционно передаются маршрутизатору через [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig), содержащийся в сообщении [CreateSession Message](/docs/specs/i2cp/#msg_CreateSession) или в сообщении [ReconfigureSession Message](/docs/specs/i2cp/#msg_ReconfigureSession)."
+            "ru": "Следующие параметры традиционно передаются маршрутизатору через [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig), содержащийся в сообщении [CreateSession Message](/docs/specs/i2cp/#msg_CreateSession) или в сообщении [ReconfigureSession Message](/docs/specs/i2cp/#msg_ReconfigureSession).",
+            "fr": "Les options suivantes sont traditionnellement transmises au routeur via un [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) contenu dans un message [CreateSession](/docs/specs/i2cp/#msg_CreateSession) ou un message [ReconfigureSession](/docs/specs/i2cp/#msg_ReconfigureSession).",
+            "pt": "As seguintes opções são tradicionalmente passadas para o roteador por meio de um [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) contido em uma [Mensagem CreateSession](/docs/specs/i2cp/#msg_CreateSession) ou em uma [Mensagem ReconfigureSession](/docs/specs/i2cp/#msg_ReconfigureSession).",
+            "de": "Die folgenden Optionen werden traditionell über eine [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig), die in einer [CreateSession-Nachricht](/docs/specs/i2cp/#msg_CreateSession) oder einer [ReconfigureSession-Nachricht](/docs/specs/i2cp/#msg_ReconfigureSession) enthalten ist, an den Router übergeben.",
+            "tr": "Aşağıdaki seçenekler geleneksel olarak bir [CreateSession Mesajı](/docs/specs/i2cp/#msg_CreateSession) veya bir [ReconfigureSession Mesajı](/docs/specs/i2cp/#msg_ReconfigureSession) içinde bulunan bir [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) aracılığıyla yönlendiriciye iletilir.",
+            "vi": "Các tùy chọn sau đây thường được truyền tới bộ định tuyến thông qua một [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) nằm trong tin nhắn [CreateSession](/docs/specs/i2cp/#msg_CreateSession) hoặc tin nhắn [ReconfigureSession](/docs/specs/i2cp/#msg_ReconfigureSession).",
+            "ar": "تُمرَّر الخيارات التالية تقليديًا إلى الموجه عبر [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) مُحتَوٍ في رسالة [CreateSession Message](/docs/specs/i2cp/#msg_CreateSession) أو رسالة [ReconfigureSession Message](/docs/specs/i2cp/#msg_ReconfigureSession).",
+            "cs": "Následující možnosti jsou tradičně předávány routeru prostřednictvím [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) obsažené v zprávě [CreateSession Message](/docs/specs/i2cp/#msg_CreateSession) nebo v zprávě [ReconfigureSession Message](/docs/specs/i2cp/#msg_ReconfigureSession).",
+            "hi": "निम्नलिखित विकल्पों को पारंपरिक रूप से [CreateSession संदेश](/docs/specs/i2cp/#msg_CreateSession) या [ReconfigureSession संदेश](/docs/specs/i2cp/#msg_ReconfigureSession) में निहित [SessionConfig](/docs/specs/i2cp/#struct_SessionConfig) के माध्यम से राउटर को पारित किया जाता है।"
           }
         },
         "p_010": {
@@ -25383,7 +25519,15 @@
             "zh": "注意：较大的数量、长度或方差设置可能会导致显著的性能或可靠性问题。",
             "ko": "참고: 큰 수량, 길이 또는 분산 설정은 성능이나 신뢰성에 심각한 문제를 일으킬 수 있습니다.",
             "es": "Nota: Configuraciones con cantidades, longitudes o varianzas grandes pueden causar problemas significativos de rendimiento o confiabilidad.",
-            "ru": "Примечание: высокие значения количества, длины или дисперсии могут вызвать серьёзные проблемы с производительностью или надёжностью."
+            "ru": "Примечание: высокие значения количества, длины или дисперсии могут вызвать серьёзные проблемы с производительностью или надёжностью.",
+            "fr": "Remarque : des paramètres élevés en quantité, en longueur ou en variance peuvent entraîner des problèmes importants de performance ou de fiabilité.",
+            "pt": "Observação: Configurações com quantidade, comprimento ou variação elevados podem causar problemas significativos de desempenho ou confiabilidade.",
+            "de": "Hinweis: Hohe Mengen-, Längen- oder Varianzeinstellungen können erhebliche Leistungs- oder Zuverlässigkeitsprobleme verursachen.",
+            "tr": "Not: Büyük miktar, uzunluk veya varyans ayarları önemli performans veya güvenilirlik sorunlarına neden olabilir.",
+            "vi": "Lưu ý: Cài đặt số lượng, độ dài hoặc độ lệch lớn có thể gây ra các vấn đề nghiêm trọng về hiệu suất hoặc độ tin cậy.",
+            "ar": "ملاحظة: قد تؤدي إعدادات الكمية الكبيرة أو الطول أو التباين إلى مشاكل كبيرة في الأداء أو الموثوقية.",
+            "cs": "Poznámka: Vysoká hodnota množství, délky nebo rozptylu může způsobit významné problémy s výkonem nebo spolehlivostí.",
+            "hi": "नोट: बड़ी मात्रा, लंबाई या भिन्नता की सेटिंग्स के कारण प्रदर्शन या विश्वसनीयता में गंभीर समस्याएं हो सकती हैं।"
           }
         },
         "p_011": {
@@ -25392,7 +25536,15 @@
             "zh": "注意：自 0.7.7 版本起，选项名称和值必须使用 UTF-8 编码。这主要对昵称等字段有用。在此版本之前，包含多字节字符的选项会被损坏。由于选项以 [映射（Mapping）](/docs/specs/common-structures/#type_Mapping) 形式编码，所有选项名称和值的最大长度限制为 255 字节（而非字符）。",
             "ko": "참고: 릴리스 0.7.7부터 옵션 이름과 값은 UTF-8 인코딩을 사용해야 합니다. 이는 주로 닉네임에 유용합니다. 해당 릴리스 이전에는 멀티바이트 문자를 포함한 옵션이 손상되었습니다. 옵션은 [매핑](/docs/specs/common-structures/#type_Mapping)으로 인코딩되므로, 모든 옵션 이름과 값은 최대 255바이트(문자가 아닌)로 제한됩니다.",
             "es": "Nota: A partir de la versión 0.7.7, los nombres y valores de las opciones deben usar codificación UTF-8. Esto es principalmente útil para apodos. Antes de esa versión, las opciones con caracteres multibyte se corrompían. Dado que las opciones están codificadas en un [Mapping](/docs/specs/common-structures/#type_Mapping), todos los nombres y valores de opciones están limitados a un máximo de 255 bytes (no caracteres).",
-            "ru": "Примечание: Начиная с версии 0.7.7, имена и значения параметров должны использовать кодировку UTF-8. Это в первую очередь полезно для псевдонимов. В более ранних версиях параметры с многобайтовыми символами повреждались. Поскольку параметры кодируются в [Mapping](/docs/specs/common-structures/#type_Mapping), длина имён и значений параметров ограничена максимум 255 байтами (не символами)."
+            "ru": "Примечание: Начиная с версии 0.7.7, имена и значения параметров должны использовать кодировку UTF-8. Это в первую очередь полезно для псевдонимов. В более ранних версиях параметры с многобайтовыми символами повреждались. Поскольку параметры кодируются в [Mapping](/docs/specs/common-structures/#type_Mapping), длина имён и значений параметров ограничена максимум 255 байтами (не символами).",
+            "fr": "Remarque : À partir de la version 0.7.7, les noms et valeurs des options doivent utiliser l'encodage UTF-8. Cela est principalement utile pour les surnoms. Avant cette version, les options contenant des caractères multioctets étaient corrompues. Étant donné que les options sont encodées dans une [Mapping](/docs/specs/common-structures/#type_Mapping), les noms et valeurs d'options sont limités à un maximum de 255 octets (et non caractères).",
+            "pt": "Observação: A partir da versão 0.7.7, os nomes e valores das opções devem usar codificação UTF-8. Isso é principalmente útil para apelidos. Antes dessa versão, opções com caracteres multibyte eram corrompidas. Como as opções são codificadas em um [Mapping](/docs/specs/common-structures/#type_Mapping), todos os nomes e valores de opções são limitados a no máximo 255 bytes (não caracteres).",
+            "de": "Hinweis: Ab Version 0.7.7 müssen Optionennamen und -werte die UTF-8-Kodierung verwenden. Dies ist vor allem für Spitznamen nützlich. Vor dieser Version wurden Optionen mit mehrbyte-Zeichen beschädigt. Da Optionen in einer [Mapping](/docs/specs/common-structures/#type_Mapping) kodiert sind, sind alle Optionennamen und -werte auf maximal 255 Bytes (nicht Zeichen) begrenzt.",
+            "tr": "Not: 0.7.7 sürümünden itibaren, seçenek adları ve değerleri UTF-8 kodlaması kullanmalıdır. Bu özellik özellikle takma isimler için faydalıdır. Bu sürüm öncesinde, çok baytlı karakterler içeren seçenekler bozuluyordu. Seçenekler bir [Mapping](/docs/specs/common-structures/#type_Mapping) içinde kodlandığından, tüm seçenek adları ve değerleri en fazla 255 bayt (karakter değil) ile sınırlıdır.",
+            "vi": "Lưu ý: Kể từ phiên bản 0.7.7, tên và giá trị tùy chọn phải sử dụng mã hóa UTF-8. Điều này chủ yếu hữu ích cho biệt danh. Trước phiên bản này, các tùy chọn có ký tự đa byte bị hỏng. Vì các tùy chọn được mã hóa trong một [Mapping](/docs/specs/common-structures/#type_Mapping), tất cả tên và giá trị tùy chọn đều bị giới hạn tối đa 255 byte (không phải ký tự).",
+            "ar": "ملاحظة: بدءًا من الإصدار 0.7.7، يجب أن تستخدم أسماء الخيارات وقيمها ترميز UTF-8. وهذا مفيد بشكل أساسي لأسماء المستخدم. قبل هذا الإصدار، كانت الخيارات التي تحتوي على أحرف متعددة البايت تتعرض للتلف. وبما أن الخيارات تُشفَّر ضمن [Mapping](/docs/specs/common-structures/#type_Mapping)، فإن جميع أسماء الخيارات وقيمها محدودة بحد أقصى 255 بايت (وليس حرفًا).",
+            "cs": "Poznámka: Počínaje verzí 0.7.7 musí názvy a hodnoty možností používat kódování UTF-8. To je především užitečné pro přezdívky. Před touto verzí docházelo ke poškození možností obsahujících znaky vícebajtových znaků. Jelikož jsou možnosti kódovány ve [struktuře Mapování](/docs/specs/common-structures/#type_Mapping), jsou všechny názvy a hodnoty možností omezeny maximálně na 255 bajtů (nikoli znaků).",
+            "hi": "नोट: संस्करण 0.7.7 से, विकल्प नाम और मान UTF-8 एन्कोडिंग का उपयोग करने चाहिए। यह मुख्य रूप से उपनामों के लिए उपयोगी है। इस संस्करण से पहले, बहु-बाइट वर्णों वाले विकल्प दूषित हो जाते थे। चूंकि विकल्प [मैपिंग](/docs/specs/common-structures/#type_Mapping) में एन्कोडेड होते हैं, सभी विकल्प नाम और मान अधिकतम 255 बाइट्स (वर्ण नहीं) तक सीमित हैं।"
           }
         },
         "h3_002": {
@@ -25401,7 +25553,15 @@
             "zh": "客户端选项",
             "ko": "클라이언트 측 옵션",
             "es": "Opciones del lado del cliente",
-            "ru": "Опции на стороне клиента"
+            "ru": "Опции на стороне клиента",
+            "fr": "Options côté client",
+            "pt": "Opções do lado do cliente",
+            "de": "Optionen auf Client-Seite",
+            "tr": "İstemci tarafı seçenekleri",
+            "vi": "Tùy chọn phía máy khách",
+            "ar": "خيارات جانب العميل",
+            "cs": "Možnosti na straně klienta",
+            "hi": "क्लाइंट-साइड विकल्प"
           }
         },
         "p_012": {
@@ -25410,7 +25570,15 @@
             "zh": "以下选项将在客户端侧进行解释，如果通过 I2PClient.createSession() 调用传递给 I2PSession，则会被解析。流式传输库还应将这些选项传递给 I2CP。其他实现可能具有不同的默认值。",
             "ko": "다음 옵션들은 클라이언트 측에서 해석되며, I2PClient.createSession() 호출을 통해 I2PSession에 전달될 경우 해석됩니다. 스트리밍 라이브러리도 이러한 옵션들을 I2CP로 전달해야 합니다. 다른 구현체는 다를 수 있는 기본값을 가질 수 있습니다.",
             "es": "Las siguientes opciones se interpretan en el lado del cliente y serán interpretadas si se pasan a la I2PSession mediante la llamada I2PClient.createSession(). La biblioteca de streaming también debería pasar estas opciones a I2CP. Otras implementaciones pueden tener valores predeterminados diferentes.",
-            "ru": "Следующие параметры интерпретируются на стороне клиента и будут обработаны, если переданы в I2PSession через вызов I2PClient.createSession(). Библиотека потоковой передачи также должна передавать эти параметры через I2CP. Другие реализации могут иметь другие значения по умолчанию."
+            "ru": "Следующие параметры интерпретируются на стороне клиента и будут обработаны, если переданы в I2PSession через вызов I2PClient.createSession(). Библиотека потоковой передачи также должна передавать эти параметры через I2CP. Другие реализации могут иметь другие значения по умолчанию.",
+            "fr": "Les options suivantes sont interprétées côté client et seront prises en compte si elles sont transmises à la I2PSession via l'appel I2PClient.createSession(). La bibliothèque de streaming devrait également transmettre ces options à I2CP. D'autres implémentations peuvent avoir des valeurs par défaut différentes.",
+            "pt": "As seguintes opções são interpretadas no lado do cliente e serão interpretadas se passadas para a I2PSession através da chamada I2PClient.createSession(). A biblioteca de streaming também deve repassar essas opções ao I2CP. Outras implementações podem ter padrões diferentes.",
+            "de": "Die folgenden Optionen werden auf der Client-Seite interpretiert und werden berücksichtigt, wenn sie über den I2PClient.createSession()-Aufruf an die I2PSession übergeben werden. Die Streaming-Bibliothek sollte diese Optionen außerdem an I2CP weiterleiten. Andere Implementierungen können andere Standardwerte haben.",
+            "tr": "Aşağıdaki seçenekler istemci tarafında yorumlanır ve I2PClient.createSession() çağrısı aracılığıyla I2PSession'a iletilirse yorumlanır. Akış kütüphanesi bu seçenekleri ayrıca I2CP'ye iletmelidir. Diğer uygulamalar farklı varsayılanlara sahip olabilir.",
+            "vi": "Các tùy chọn sau được diễn giải ở phía máy khách và sẽ được xử lý nếu được truyền tới I2PSession thông qua lời gọi I2PClient.createSession(). Thư viện streaming cũng nên chuyển các tùy chọn này tới I2CP. Các triển khai khác có thể có giá trị mặc định khác nhau.",
+            "ar": "تُفسَّر الخيارات التالية من جانب العميل، وستُفسَّر إذا تم تمريرها إلى الجلسة I2PSession عبر استدعاء I2PClient.createSession(). يجب أن تقوم المكتبة الخاصة بالتدفق (streaming lib) أيضًا بتمرير هذه الخيارات إلى I2CP. قد تمتلك التنفيذات الأخرى قيمًا افتراضية مختلفة.",
+            "cs": "Následující možnosti jsou interpretovány na straně klienta a budou interpretovány, pokud jsou předány I2PSession prostřednictvím volání I2PClient.createSession(). Knihovna pro streamování by měla tyto možnosti rovněž předat do I2CP. Jiné implementace mohou mít odlišné výchozí hodnoty.",
+            "hi": "निम्नलिखित विकल्प क्लाइंट पक्ष पर व्याख्या की जाते हैं, और यदि उन्हें I2PClient.createSession() कॉल के माध्यम से I2PSession को पारित किया जाता है तो उनकी व्याख्या की जाएगी। स्ट्रीमिंग लाइब्रेरी को इन विकल्पों को I2CP तक पहुँचाना भी चाहिए। अन्य लागू करने में अलग-अलग डिफ़ॉल्ट हो सकते हैं।"
           }
         },
         "p_013": {
@@ -25419,7 +25587,15 @@
             "zh": "注意：所有参数（包括数字）均为字符串。布尔值 true/false 为不区分大小写的字符串，任何不区分大小写不等于 \"true\" 的值都将被解释为 false。所有选项名称均区分大小写。",
             "ko": "참고: 숫자를 포함한 모든 인수는 문자열입니다. 참/거짓 값은 대소문자를 구분하지 않는 문자열입니다. 대소문자를 구분하지 않고 \"true\"가 아닌 모든 값은 거짓으로 해석됩니다. 모든 옵션 이름은 대소문자를 구분합니다.",
             "es": "Nota: Todos los argumentos, incluidos los números, son cadenas de texto. Los valores verdadero/falso son cadenas que no distinguen entre mayúsculas y minúsculas. Cualquier valor que no sea \"true\" (indistintamente de mayúsculas y minúsculas) se interpreta como falso. Los nombres de todas las opciones distinguen entre mayúsculas y minúsculas.",
-            "ru": "Примечание: Все аргументы, включая числа, являются строками. Значения true/false — строки без учёта регистра. Любое значение, отличное от \"true\" (без учёта регистра), интерпретируется как false. Названия всех параметров чувствительны к регистру."
+            "ru": "Примечание: Все аргументы, включая числа, являются строками. Значения true/false — строки без учёта регистра. Любое значение, отличное от \"true\" (без учёта регистра), интерпретируется как false. Названия всех параметров чувствительны к регистру.",
+            "fr": "Remarque : Tous les arguments, y compris les nombres, sont des chaînes de caractères. Les valeurs vrai/faux sont des chaînes insensibles à la casse. Toute valeur autre qu'une chaîne « true » (insensible à la casse) est interprétée comme faux. Les noms d'options sont sensibles à la casse.",
+            "pt": "Observação: Todos os argumentos, incluindo números, são strings. Valores verdadeiro/falso são strings não sensíveis a maiúsculas/minúsculas. Qualquer valor diferente de \"true\" (verdadeiro), independentemente de maiúsculas e minúsculas, é interpretado como falso. Todos os nomes de opções são sensíveis a maiúsculas e minúsculas.",
+            "de": "Hinweis: Alle Argumente, einschließlich Zahlen, sind Zeichenketten. Wahrheitswerte (true/false) sind nicht auf Groß-/Kleinschreibung empfindliche Zeichenketten. Alles, was nicht „true“ (unabhängig von der Groß-/Kleinschreibung) ist, wird als false interpretiert. Alle Optionennamen sind auf Groß-/Kleinschreibung empfindlich.",
+            "tr": "Not: Sayılar dahil olmak üzere tüm argümanlar dizelerdir. Doğru/yanlış değerleri büyük/küçük harf duyarlı olmayan dizelerdir. Büyük/küçük harf duyarlı olmayan \"true\" (doğru) dışında her şey yanlış olarak yorumlanır. Tüm seçenek adları büyük/küçük harfe duyarlıdır.",
+            "vi": "Lưu ý: Tất cả các đối số, bao gồm cả số, đều là chuỗi ký tự. Các giá trị đúng/sai là các chuỗi không phân biệt chữ hoa/thường. Bất kỳ giá trị nào khác ngoài \"true\" (không phân biệt hoa thường) đều được hiểu là sai. Tên của tất cả các tùy chọn phân biệt chữ hoa/thường.",
+            "ar": "ملاحظة: جميع الوسائط، بما في ذلك الأرقام، هي سلاسل نصية. القيم الصحيحة/الخاطئة هي سلاسل نصية غير حساسة لحالة الأحرف. أي شيء آخر بخلاف \"true\" (بأي حالة أحرف) يُفسَّر على أنه خاطئ. جميع أسماء الخيارات حساسة لحالة الأحرف.",
+            "cs": "Poznámka: Všechny argumenty, včetně čísel, jsou řetězce. Hodnoty true/false jsou řetězce nezávislé na velikosti písmen. Cokoli jiného než „true“ (bez rozlišení velikosti písmen) je interpretováno jako false. Názvy všech možností rozlišují velikost písmen.",
+            "hi": "नोट: सभी तर्क, संख्याओं सहित, स्ट्रिंग हैं। सत्य/असत्य मान केस-असंवेदनशील स्ट्रिंग हैं। केस-असंवेदनशील \"true\" के अलावा कुछ भी असत्य के रूप में व्याख्या किया जाता है। सभी विकल्प नाम केस-संवेदनशील हैं।"
           }
         },
         "h2_005": {
@@ -25428,7 +25604,15 @@
             "zh": "I2CP 载荷数据格式与多路复用 {#format}",
             "ko": "I2CP 페이로드 데이터 형식 및 다중화 {#format}",
             "es": "Formato de Datos de Carga I2CP y Multiplexación {#format}",
-            "ru": "Формат данных полезной нагрузки I2CP и мультиплексирование {#format}"
+            "ru": "Формат данных полезной нагрузки I2CP и мультиплексирование {#format}",
+            "fr": "Format des données utiles I2CP et multiplexage {#format}",
+            "pt": "Formato dos Dados de Carga I2CP e Multiplexação {#format}",
+            "de": "I2CP-Nutzdatenformat und Multiplexing {#format}",
+            "tr": "I2CP Yük Veri Biçimi ve Çoklama {#format}",
+            "vi": "Định dạng Dữ liệu Payload I2CP và Đa hợp kênh {#format}",
+            "ar": "تنسيق بيانات حمولة I2CP ودمج القنوات (Multiplexing) {#format}",
+            "cs": "Formát datové části I2CP a multiplexování {#format}",
+            "hi": "I2CP पेलोड डेटा प्रारूप और मल्टीप्लेक्सिंग {#format}"
           }
         },
         "p_014": {
@@ -25437,7 +25621,15 @@
             "zh": "I2CP 处理的端到端消息（即客户端在 [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) 中发送的数据，以及在 [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload) 中接收的数据）使用标准的 10 字节 gzip 头进行压缩，该头以 0x1F 0x8B 0x08 开始，符合 [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) 的规定。从 0.7.1 版本开始，I2P 利用了 gzip 头中原本被忽略的部分来包含协议、源端口（from-port）和目标端口（to-port）信息，从而支持在同一目标地址上实现流式传输和数据报传输，并允许多通道环境下使用数据报进行查询/响应操作的可靠运行。",
             "ko": "I2CP에서 처리하는 종단 간 메시지(클라이언트가 [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage)에서 전송하고 클라이언트가 [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)에서 수신하는 데이터)는 [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt)에서 명시한 대로 0x1F 0x8B 0x08로 시작하는 표준 10바이트 gzip 헤더를 사용하여 압축됩니다. 0.7.1 릴리스부터 I2P는 동일한 대상에 대해 스트리밍과 데이터그램을 지원하고 여러 채널이 존재하더라도 데이터그램을 이용한 질의/응답이 신뢰성 있게 작동할 수 있도록 gzip 헤더의 무시되는 부분을 활용하여 프로토콜, 발신 포트(from-port), 수신 포트(to-port) 정보를 포함합니다.",
             "es": "Los mensajes de extremo a extremo gestionados por I2CP (es decir, los datos enviados por el cliente en un [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) y recibidos por el cliente en un [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)) están comprimidos con un encabezado gzip estándar de 10 bytes que comienza con 0x1F 0x8B 0x08 según lo especificado por [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). A partir de la versión 0.7.1, I2P utiliza partes ignoradas del encabezado gzip para incluir información de protocolo, puerto de origen y puerto de destino, lo que permite el uso de streaming y datagramas en el mismo destino, y hace posible que las consultas/respuestas mediante datagramas funcionen de forma confiable incluso con múltiples canales.",
-            "ru": "Сообщения с сквозным шифрованием, обрабатываемые I2CP (то есть данные, отправленные клиентом в [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) и полученные клиентом в [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)), сжимаются с использованием стандартного 10-байтового заголовка gzip, начинающегося с 0x1F 0x8B 0x08, как указано в [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). Начиная с версии 0.7.1, I2P использует игнорируемые части заголовка gzip для включения информации о протоколе, порте отправителя и порте получателя, что обеспечивает поддержку потоковой передачи и датаграмм на одном и том же адресате, а также надёжную работу запросов/ответов с использованием датаграмм при наличии нескольких каналов."
+            "ru": "Сообщения с сквозным шифрованием, обрабатываемые I2CP (то есть данные, отправленные клиентом в [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) и полученные клиентом в [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)), сжимаются с использованием стандартного 10-байтового заголовка gzip, начинающегося с 0x1F 0x8B 0x08, как указано в [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). Начиная с версии 0.7.1, I2P использует игнорируемые части заголовка gzip для включения информации о протоколе, порте отправителя и порте получателя, что обеспечивает поддержку потоковой передачи и датаграмм на одном и том же адресате, а также надёжную работу запросов/ответов с использованием датаграмм при наличии нескольких каналов.",
+            "fr": "Les messages de bout en bout gérés par I2CP (c'est-à-dire les données envoyées par le client dans un [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) et reçues par le client dans un [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)) sont compressés avec un en-tête gzip standard de 10 octets commençant par 0x1F 0x8B 0x08, tel que spécifié par la [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). À compter de la version 0.7.1, I2P utilise des parties ignorées de l'en-tête gzip pour inclure des informations sur le protocole, le port d'origine (from-port) et le port de destination (to-port), permettant ainsi aux flux et aux datagrammes d'utiliser la même destination, et rendant fiables les échanges requête/réponse par datagrammes en présence de plusieurs canaux.",
+            "pt": "As mensagens de ponta a ponta manipuladas pelo I2CP (ou seja, os dados enviados pelo cliente em uma [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) e recebidos pelo cliente em uma [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)) são compactados com um cabeçalho gzip padrão de 10 bytes que começa com 0x1F 0x8B 0x08 conforme especificado pela [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). A partir da versão 0.7.1, o I2P utiliza partes ignoradas do cabeçalho gzip para incluir informações de protocolo, porta de origem e porta de destino, permitindo assim o uso de streaming e datagramas no mesmo destino, e possibilitando que consultas/respostas usando datagramas funcionem de forma confiável na presença de múltiplos canais.",
+            "de": "Die von I2CP verarbeiteten Ende-zu-Ende-Nachrichten (d. h. die Daten, die vom Client in einer [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) gesendet und vom Client in einer [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload) empfangen werden), werden mit einem standardmäßigen 10-Byte-Gzip-Header komprimiert, der gemäß [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) mit 0x1F 0x8B 0x08 beginnt. Ab Version 0.7.1 nutzt I2P ungenutzte Teile des Gzip-Headers, um Protokoll-, From-Port- und To-Port-Informationen einzufügen, wodurch Streaming und Datagramme am selben Ziel unterstützt werden und Abfrage/Antwort mittels Datagrammen zuverlässig funktioniert, auch bei mehreren Kanälen.",
+            "tr": "I2CP tarafından işlenen uçtan uca mesajlar (yani bir istemcinin [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) içinde gönderdiği ve bir istemcinin [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload) içinde aldığı veri), [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) tarafından belirtildiği gibi 0x1F 0x8B 0x08 ile başlayan standart 10 baytlık bir gzip başlığıyla sıkıştırılır. 0.7.1 sürümünden itibaren I2P, aynı hedef üzerinde akış ve veriagramları desteklemek ve birden fazla kanal varken veriagramlar kullanarak sorgu/yanıt işleminin güvenilir bir şekilde çalışmasını sağlamak amacıyla gzip başlığının görmezden gelinen bölümlerine protokol, gönderen-port ve alan-port bilgilerini eklemektedir.",
+            "vi": "Các tin nhắn đầu cuối được xử lý bởi I2CP (tức là dữ liệu do client gửi trong một [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) và nhận bởi client trong một [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)) được nén gzip với tiêu đề gzip tiêu chuẩn 10 byte bắt đầu bằng 0x1F 0x8B 0x08 như được quy định trong [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). Kể từ phiên bản 0.7.1, I2P sử dụng các phần bỏ qua trong tiêu đề gzip để bao gồm thông tin giao thức, cổng-gửi (from-port) và cổng-nhận (to-port), do đó hỗ trợ cả luồng (streaming) và datagram trên cùng một đích, đồng thời cho phép truy vấn/phản hồi sử dụng datagram hoạt động đáng tin cậy khi có nhiều kênh.",
+            "ar": "تُضغط الرسائل من طرف إلى طرف التي تُعالجها واجهة I2CP (أي البيانات التي يُرسلها العميل في رسالة [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) ويستقبلها العميل في رسالة [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)) باستخدام ضغط gzip قياسي برأس 10 بايت يبدأ بـ 0x1F 0x8B 0x08 كما هو محدد في [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). بدءًا من الإصدار 0.7.1، تستخدم I2P أجزاءً مهملة من رأس gzip لإدراج معلومات البروتوكول ومنفذ المرسل ومنفذ المستقبل، مما يدعم البث والداتاغرامات على نفس الوجهة، ويسمح بعمل استعلامات واستجابات باستخدام الداتاغرامات بشكل موثوق عند وجود قنوات متعددة.",
+            "cs": "End-to-end zprávy zpracovávané přes I2CP (tj. data odeslaná klientem ve zprávě [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) a přijatá klientem ve zprávě [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload)) jsou komprimovány pomocí standardního 10bajtového gzip hlavičky začínající sekvencí 0x1F 0x8B 0x08, jak je specifikováno v [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt). Počínaje verzí 0.7.1 I2P využívá nepoužívané části gzip hlavičky k vložení informací o protokolu, zdrojovém portu (from-port) a cílovém portu (to-port), čímž umožňuje použití streamování a datagramů na stejné destinaci a spolehlivé fungování dotazů/odpovědí pomocí datagramů i při více kanálech.",
+            "hi": "I2CP द्वारा संभाले गए एंड-टू-एंड संदेश (अर्थात, क्लाइंट द्वारा [SendMessageMessage](/docs/specs/i2cp/#msg_SendMessage) में भेजे गए डेटा और क्लाइंट द्वारा [MessagePayloadMessage](/docs/specs/i2cp/#msg_MessagePayload) में प्राप्त किए गए डेटा) को [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) द्वारा निर्दिष्ट 0x1F 0x8B 0x08 के साथ शुरू होने वाले मानक 10-बाइट ग़ज़िप हेडर के साथ ग़ज़िप किया जाता है। रिलीज़ 0.7.1 से, I2P ग़ज़िप हेडर के अनदेखे हिस्सों का उपयोग प्रोटोकॉल, from-port और to-port जानकारी शामिल करने के लिए करता है, जिससे एक ही गंतव्य पर स्ट्रीमिंग और डेटाग्राम का समर्थन होता है, और बहुल चैनलों की उपस्थिति में डेटाग्राम का उपयोग करके प्रश्न/उत्तर को विश्वसनीय तरीके से काम करने की अनुमति मिलती है।"
           }
         },
         "p_015": {
@@ -25446,7 +25638,15 @@
             "zh": "gzip 功能无法完全关闭，但设置 `i2cp.gzip=false` 会将 gzip 压缩力度设为 0，可能节省少量 CPU 资源。实现方可以根据内容可压缩性的评估，按每个套接字或每条消息为单位选择不同的 gzip 压缩力度。由于 API 0.9.57（提案 161）中实现了对目标填充数据的可压缩性优化，即使有效载荷本身不可压缩，也建议对双向流式 SYN 数据包以及可回复的数据报进行压缩。对于压缩力度为 0 的情况，实现方可以编写一个简单的 gzip/gunzip 函数，相比通用 gzip 库能显著提升效率。",
             "ko": "gzip 기능은 완전히 끌 수 없지만, `i2cp.gzip=false`로 설정하면 gzip effort 값을 0으로 바꾸어 약간의 CPU 사용량을 절약할 수 있습니다. 구현체는 콘텐츠의 압축 가능성 평가에 따라 소켓별 또는 메시지별로 서로 다른 gzip effort 값을 선택할 수 있습니다. API 0.9.57(제안서 161)에서 구현된 대상지 패딩의 압축 가능성 덕분에, 페이로드 자체가 압축 불가능하더라도 양방향 스트리밍 SYN 패킷과 응답 가능한 데이터그램의 압축을 권장합니다. 구현체는 gzip effort 값이 0일 경우를 위해 간단한 gzip/gunzip 함수를 작성할 수 있으며, 이 경우 기존 gzip 라이브러리보다 훨씬 높은 효율을 얻을 수 있습니다.",
             "es": "La función gzip no puede desactivarse completamente; sin embargo, establecer `i2cp.gzip=false` fija el nivel de compresión gzip en 0, lo cual podría ahorrar un poco de CPU. Las implementaciones pueden seleccionar distintos niveles de compresión gzip por socket o por mensaje, dependiendo de una evaluación de la capacidad de compresión del contenido. Debido a la capacidad de compresión del relleno del destino implementado en la API 0.9.57 (propuesta 161), se recomienda la compresión de los paquetes SYN del flujo en ambas direcciones, así como de los datagramas con respuesta, incluso si la carga útil no es compresible. Las implementaciones podrían considerar escribir una función trivial de gzip/gunzip para un esfuerzo de compresión 0, lo que proporcionaría grandes mejoras de eficiencia frente a una biblioteca gzip en este caso.",
-            "ru": "Функцию gzip нельзя полностью отключить, однако установка параметра `i2cp.gzip=false` приводит к тому, что уровень сжатия gzip устанавливается в 0, что может немного сэкономить процессорное время. Реализации могут выбирать различные уровни сжатия gzip для каждого сокета или сообщения в зависимости от оценки степени сжимаемости содержимого. Из-за сжимаемости дополнительных данных назначения, реализованной в API 0.9.57 (предложение 161), рекомендуется использовать сжатие для SYN-пакетов потоковой передачи в обоих направлениях, а также для ответных датаграмм, даже если полезная нагрузка не поддаётся сжатию. Реализациям может быть полезно написать упрощённую функцию gzip/gunzip для уровня сжатия 0, что обеспечит значительный выигрыш в эффективности по сравнению с использованием полноценной библиотеки gzip в данном случае."
+            "ru": "Функцию gzip нельзя полностью отключить, однако установка параметра `i2cp.gzip=false` приводит к тому, что уровень сжатия gzip устанавливается в 0, что может немного сэкономить процессорное время. Реализации могут выбирать различные уровни сжатия gzip для каждого сокета или сообщения в зависимости от оценки степени сжимаемости содержимого. Из-за сжимаемости дополнительных данных назначения, реализованной в API 0.9.57 (предложение 161), рекомендуется использовать сжатие для SYN-пакетов потоковой передачи в обоих направлениях, а также для ответных датаграмм, даже если полезная нагрузка не поддаётся сжатию. Реализациям может быть полезно написать упрощённую функцию gzip/gunzip для уровня сжатия 0, что обеспечит значительный выигрыш в эффективности по сравнению с использованием полноценной библиотеки gzip в данном случае.",
+            "fr": "La fonction gzip ne peut pas être complètement désactivée, mais définir `i2cp.gzip=false` règle l'effort de compression gzip à 0, ce qui peut permettre d'économiser un peu de CPU. Les implémentations peuvent choisir différents niveaux d'effort gzip selon les sockets ou les messages, en fonction d'une évaluation de la compressibilité du contenu. En raison de la compressibilité du remplissage de destination mise en œuvre dans l'API 0.9.57 (proposition 161), il est recommandé de compresser les paquets SYN de flux dans les deux sens ainsi que les datagrammes avec accusé de réception, même si la charge utile n'est pas compressible. Les implémentations peuvent souhaiter écrire une fonction gzip/gunzip simplifiée pour un effort gzip de 0, ce qui offrirait de grandes améliorations d'efficacité par rapport à une bibliothèque gzip dans ce cas précis.",
+            "pt": "A função gzip não pode ser completamente desativada, no entanto, definir `i2cp.gzip=false` ajusta o nível de esforço do gzip para 0, o que pode economizar um pouco de CPU. As implementações podem escolher diferentes níveis de esforço do gzip por socket ou por mensagem, dependendo da avaliação da compressibilidade do conteúdo. Devido à compressibilidade do preenchimento do destino implementado na API 0.9.57 (proposta 161), recomenda-se a compressão dos pacotes SYN de streaming em ambas as direções e dos datagramas com resposta, mesmo que a carga útil não seja compressível. As implementações podem desejar escrever uma função trivial de gzip/descompactação para um esforço de gzip igual a 0, o que proporcionará grandes ganhos de eficiência em comparação com uma biblioteca gzip neste caso.",
+            "de": "Die gzip-Funktion kann nicht vollständig deaktiviert werden. Durch die Einstellung `i2cp.gzip=false` wird jedoch der gzip-Aufwand auf 0 gesetzt, was etwas CPU-Leistung sparen kann. Implementierungen können je nach Einschätzung der Komprimierbarkeit des Inhalts für jeden Socket oder jede Nachricht unterschiedliche gzip-Aufwände wählen. Aufgrund der in API 0.9.57 (Vorschlag 161) implementierten Komprimierbarkeit der Ziel-Padding-Daten wird empfohlen, die Streaming-SYN-Pakete in beide Richtungen sowie repliable Datagramme zu komprimieren, auch wenn die Nutzlast nicht komprimierbar ist. Implementierungen könnten eine triviale gzip/gunzip-Funktion für einen gzip-Aufwand von 0 schreiben, was in diesem Fall deutliche Effizienzvorteile gegenüber einer gzip-Bibliothek bietet.",
+            "tr": "gzip işlevi tamamen kapatılamaz, ancak `i2cp.gzip=false` ayarı gzip çabasını 0'a indirir ve bu da biraz CPU tasarrufu sağlayabilir. Uygulamalar, içeriğin sıkıştırılabilirliği değerlendirilerek mesaj başına veya soket başına farklı gzip çabaları seçebilir. Yükün sıkıştırılamaz olması durumunda bile, API 0.9.57'de (öneri 161) uygulanan hedef dolgusunun sıkıştırılabilirliği, her iki yöndeki akış SYN paketlerinin ve yanıtlanabilir verigramların sıkıştırılması önerilir. Uygulamalar, gzip çabası 0 için bir gzip/gunzip kütüphanesine göre büyük verimlilik kazançları sağlayan basit bir gzip/gunzip işlevi yazmak isteyebilir.",
+            "vi": "Hàm gzip không thể bị tắt hoàn toàn, tuy nhiên việc thiết lập `i2cp.gzip=false` sẽ đặt mức nỗ lực nén gzip về 0, điều này có thể tiết kiệm một chút tài nguyên CPU. Các triển khai có thể lựa chọn các mức nỗ lực gzip khác nhau tùy theo từng socket hoặc từng tin nhắn, dựa trên đánh giá khả năng nén của nội dung. Do khả năng nén được thực hiện thông qua việc đệm địa chỉ đích theo API 0.9.57 (đề xuất 161), việc nén các gói tin SYN truyền theo luồng theo cả hai hướng và các gói tin datagram có thể phản hồi là được khuyến nghị, ngay cả khi phần tải (payload) không thể nén được. Các triển khai có thể muốn viết một hàm gzip/gunzip đơn giản cho mức nỗ lực gzip bằng 0, điều này sẽ mang lại hiệu quả lớn hơn so với việc sử dụng một thư viện gzip trong trường hợp này.",
+            "ar": "لا يمكن تعطيل وظيفة الضغط gzip بشكل كامل، ولكن تعيين `i2cp.gzip=false` يجعل مستوى جهد الضغط gzip يساوي 0، مما قد يوفر بعض وحدة المعالجة المركزية (CPU). يمكن لل реализациات اختيار مستويات ضغط gzip مختلفة لكل اتصال أو لكل رسالة، بناءً على تقييم إمكانية ضغط المحتوى. ونظرًا لإمكانية الضغط لحشو الوجهة التي تم تنفيذها في واجهة برمجة التطبيقات API 0.9.57 (الاقتراح 161)، يُوصى بضغط حزم الاتصال التسلسلي (SYN) في كلا الاتجاهين، وكذلك حزم البيانات القابلة للرد، حتى لو كان المحتوى الأساسي غير قابل للضغط. قد ترغب التنفيذات في كتابة دالة ضغط/فك ضغط gzip بسيطة جدًا عند جهد ضغط يساوي 0، مما يحقق مكاسب كبيرة في الكفاءة مقارنة باستخدام مكتبة gzip في هذه الحالة.",
+            "cs": "Funkci gzip nelze úplně vypnout, ale nastavení `i2cp.gzip=false` nastaví úsilí komprese gzip na 0, což může ušetřit trochu výkonu CPU. Implementace mohou volit různé úrovně úsilí gzip pro jednotlivé sokety nebo zprávy, a to na základě odhadu komprimovatelnosti obsahu. Kvůli komprimovatelnosti doplňování cíle implementovaného v API 0.9.57 (návrh 161) se doporučuje komprese streamovacích SYN paketů v obou směrech i odpovědných datagramů, i když samotná užitečná zátěž není komprimovatelná. Implementace si mohou přát napsat triviální funkci gzip/gunzip pro úsilí 0, která v tomto případě přinese výrazné zvýšení efektivity oproti použití gzip knihovny.",
+            "hi": "ग़ज़िप समारोह को पूरी तरह से बंद नहीं किया जा सकता है, हालांकि `i2cp.gzip=false` सेट करने से ग़ज़िप प्रयास सेटिंग 0 पर जाती है, जो थोड़ा सा सीपीयू बचा सकता है। लागूकर्ता सामग्री की संपीड़न क्षमता के आकलन के आधार पर प्रति-सॉकेट या प्रति-संदेश आधार पर विभिन्न ग़ज़िप प्रयास चुन सकते हैं। एपीआई 0.9.57 (प्रस्ताव 161) में लागू की गई गंतव्य पैडिंग की संपीड़न क्षमता के कारण, प्रत्येक दिशा में स्ट्रीमिंग सिन पैकेटों और उत्तर योग्य डेटाग्राम की संपीड़न की अनुशंसा की जाती है, भले ही पेलोड संपीड़ित न हो। इस मामले में ग़ज़िप प्रयास 0 के लिए ग़ज़िप/गनज़िप समारोह को सरल बनाने के लिए लागूकर्ता चाह सकते हैं, जो इस मामले में ग़ज़िप लाइब्रेरी की तुलना में बड़ी दक्षता प्राप्त करेगा।"
           }
         },
         "p_016": {
@@ -25455,7 +25655,15 @@
             "zh": "注意：I2P 协议号 224-254 保留用于实验性协议。I2P 协议号 255 保留用于未来扩展。",
             "ko": "참고: I2P 프로토콜 번호 224-254는 실험용 프로토콜을 위해 예약되어 있으며, I2P 프로토콜 번호 255는 향후 확장을 위해 예약되어 있습니다.",
             "es": "Nota: Los números de protocolo I2P del 224 al 254 están reservados para protocolos experimentales. El número de protocolo I2P 255 está reservado para futuras ampliaciones.",
-            "ru": "Примечание: номера протоколов I2P 224–254 зарезервированы для экспериментальных протоколов. Номер протокола I2P 255 зарезервирован для будущего расширения."
+            "ru": "Примечание: номера протоколов I2P 224–254 зарезервированы для экспериментальных протоколов. Номер протокола I2P 255 зарезервирован для будущего расширения.",
+            "fr": "Remarque : les numéros de protocole I2P 224 à 254 sont réservés aux protocoles expérimentaux. Le numéro de protocole I2P 255 est réservé à un usage futur.",
+            "pt": "Observação: Os números de protocolo I2P de 224 a 254 são reservados para protocolos experimentais. O número de protocolo I2P 255 é reservado para expansão futura.",
+            "de": "Hinweis: Die I2P-Protokollnummern 224–254 sind für experimentelle Protokolle reserviert. Die I2P-Protokollnummer 255 ist für zukünftige Erweiterungen reserviert.",
+            "tr": "Not: I2P protokol numaraları 224-254 deneysel protokoller için ayrılmıştır. I2P protokol numarası 255 gelecekteki genişletmeler için ayrılmıştır.",
+            "vi": "Lưu ý: Các số giao thức I2P từ 224 đến 254 được dành riêng cho các giao thức thử nghiệm. Số giao thức I2P 255 được dành riêng cho việc mở rộng trong tương lai.",
+            "ar": "ملاحظة: تم حجز أرقام البروتوكولات من 224 إلى 254 في I2P للبروتوكولات التجريبية. رقم البروتوكول 255 في I2P محجوز للتوسع المستقبلي.",
+            "cs": "Poznámka: Čísla protokolů I2P 224–254 jsou vyhrazena pro experimentální protokoly. Číslo protokolu I2P 255 je vyhrazeno pro budoucí rozšíření.",
+            "hi": "नोट: प्रयोगात्मक प्रोटोकॉल के लिए I2P प्रोटोकॉल संख्या 224-254 आरक्षित हैं। भविष्य के विस्तार के लिए I2P प्रोटोकॉल संख्या 255 आरक्षित है।"
           }
         },
         "p_017": {
@@ -25464,7 +25672,15 @@
             "zh": "数据完整性通过 [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) 规定的标准 gzip CRC-32 进行验证。",
             "ko": "데이터 무결성은 [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt)에서 명시한 표준 gzip CRC-32를 사용하여 검증됩니다.",
             "es": "La integridad de los datos se verifica con el CRC-32 estándar de gzip según lo especificado en [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt).",
-            "ru": "Целостность данных проверяется с помощью стандартной CRC-32 gzip, как указано в [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt)."
+            "ru": "Целостность данных проверяется с помощью стандартной CRC-32 gzip, как указано в [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt).",
+            "fr": "L'intégrité des données est vérifiée à l'aide du CRC-32 standard gzip tel que spécifié par la [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt).",
+            "pt": "A integridade dos dados é verificada com o CRC-32 padrão gzip conforme especificado em [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt).",
+            "de": "Die Datenintegrität wird mit dem standardmäßigen gzip CRC-32 gemäß [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) überprüft.",
+            "tr": "Veri bütünlüğü, [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) tarafından belirtildiği gibi standart gzip CRC-32 ile doğrulanır.",
+            "vi": "Tính toàn vẹn dữ liệu được xác minh bằng chuẩn gzip CRC-32 như đã nêu trong [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt).",
+            "ar": "يتم التحقق من سلامة البيانات باستخدام معيار gzip CRC-32 كما هو محدد في [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt).",
+            "cs": "Integrita dat je ověřena standardní kontrolní sumou gzip CRC-32 dle [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt).",
+            "hi": "डेटा अखंडता को [RFC 1952](http://www.ietf.org/rfc/rfc1952.txt) द्वारा निर्दिष्ट मानक gzip CRC-32 के साथ सत्यापित किया जाता है।"
           }
         },
         "h2_006": {
@@ -25473,7 +25689,15 @@
             "zh": "与标准IP的重要区别 {#ip-differences}",
             "ko": "표준 IP와의 주요 차이점 {#ip-differences}",
             "es": "Diferencias importantes con respecto a IP estándar {#ip-differences}",
-            "ru": "Важные различия от стандартного IP {#ip-differences}"
+            "ru": "Важные различия от стандартного IP {#ip-differences}",
+            "fr": "Différences importantes par rapport à l'IP standard {#ip-differences}",
+            "pt": "Diferenças Importantes em Relação ao IP Padrão {#ip-differences}",
+            "de": "Wichtige Unterschiede zum Standard-IP {#ip-differences}",
+            "tr": "Standart IP'den Önemli Farklılıklar {#ip-differences}",
+            "vi": "Những khác biệt quan trọng so với IP tiêu chuẩn {#ip-differences}",
+            "ar": "الاختلافات المهمة عن بروتوكول IP القياسي {#ip-differences}",
+            "cs": "Důležité rozdíly oproti standardnímu IP {#ip-differences}",
+            "hi": "मानक IP से महत्वपूर्ण अंतर {#ip-differences}"
           }
         },
         "p_018": {
@@ -25482,7 +25706,15 @@
             "zh": "I2CP 端口用于 I2P 套接字和数据报。它们与本地套接字或端口无关。由于在 0.7.1 版本之前 I2P 不支持端口和协议号，为了向后兼容，I2P 中的端口和协议号与标准 IP 中的有所区别：",
             "ko": "I2CP 포트는 I2P 소켓과 데이터그램을 위한 것입니다. 이들은 로컬 소켓이나 포트와는 관련이 없습니다. I2P가 0.7.1 릴리스 이전까지 포트와 프로토콜 번호를 지원하지 않았기 때문에, 하위 호환성을 위해 포트와 프로토콜 번호가 표준 IP의 그것과 다소 다릅니다:",
             "es": "Los puertos I2CP son para sockets y datagramas de I2P. No tienen relación con tus sockets o puertos locales. Debido a que I2P no admitía puertos ni números de protocolo antes de la versión 0.7.1, los puertos y números de protocolo son algo diferentes a los del protocolo IP estándar, por compatibilidad con versiones anteriores:",
-            "ru": "Порты I2CP предназначены для сокетов и датаграмм I2P. Они не связаны с вашими локальными сокетами или портами. Поскольку I2P не поддерживал порты и номера протоколов до выпуска 0.7.1, порты и номера протоколов в нём несколько отличаются от стандартных IP-решений, во имя обратной совместимости:"
+            "ru": "Порты I2CP предназначены для сокетов и датаграмм I2P. Они не связаны с вашими локальными сокетами или портами. Поскольку I2P не поддерживал порты и номера протоколов до выпуска 0.7.1, порты и номера протоколов в нём несколько отличаются от стандартных IP-решений, во имя обратной совместимости:",
+            "fr": "Les ports I2CP sont destinés aux sockets et aux datagrammes I2P. Ils n'ont aucun rapport avec vos sockets ou ports locaux. Étant donné qu'I2P ne prenait pas en charge les ports et les numéros de protocole avant la version 0.7.1, les ports et les numéros de protocole sont légèrement différents de ceux utilisés dans l'IP standard, pour des raisons de compatibilité ascendante :",
+            "pt": "As portas I2CP são para sockets e datagramas I2P. Elas não têm relação com seus sockets ou portas locais. Como o I2P não suportava portas e números de protocolo antes da versão 0.7.1, as portas e números de protocolo são um pouco diferentes das usadas em IP padrão, por compatibilidade com versões anteriores:",
+            "de": "I2CP-Ports sind für I2P-Sockets und -Datagramme vorgesehen. Sie haben keine Beziehung zu Ihren lokalen Sockets oder Ports. Da I2P vor der Version 0.7.1 keine Unterstützung für Ports und Protokollnummern bot, unterscheiden sich Ports und Protokollnummern in I2P etwas von denen im Standard-IP-Protokoll, aus Gründen der Abwärtskompatibilität:",
+            "tr": "I2CP portları I2P soketleri ve datagramları içindir. Bunlar yerel soketleriniz veya portlarınızla ilgili değildir. I2P, 0.7.1 sürümüne kadar portları ve protokol numaralarını desteklemediği için, geriye dönük uyumluluk açısından portlar ve protokol numaraları standart IP'dekiyle biraz farklıdır:",
+            "vi": "Các cổng I2CP dành cho các socket và datagram I2P. Chúng không liên quan đến các socket hoặc cổng cục bộ của bạn. Vì I2P không hỗ trợ cổng và số giao thức trước phiên bản 0.7.1, nên các cổng và số giao thức trong I2P có phần khác biệt so với chuẩn IP, nhằm đảm bảo tính tương thích ngược:",
+            "ar": "منافذ I2CP مخصصة لمآخذ I2P ووحدات الباتاجرام. وهي غير مرتبطة بمآخذك أو منافذك المحلية. نظرًا لأن I2P لم يدعم المنافذ وأرقام البروتوكولات قبل الإصدار 0.7.1، فإن المنافذ وأرقام البروتوكولات تختلف قليلًا عما هو موجود في بروتوكول IP القياسي، وذلك من أجل التوافق مع الإصدارات السابقة:",
+            "cs": "Porty I2CP jsou určeny pro I2P sokety a datagramy. Nemají žádný vztah k vašim lokálním soketům nebo portům. Protože I2P nepodporoval porty a čísla protokolů před vydáním 0.7.1, jsou porty a čísla protokolů odlišná od těch ve standardním IP z důvodu zpětné kompatibility:",
+            "hi": "I2CP पोर्ट्स I2P सॉकेट्स और डेटाग्राम के लिए होते हैं। ये आपके स्थानीय सॉकेट्स या पोर्ट्स से संबंधित नहीं होते। चूंकि I2P रिलीज़ 0.7.1 से पहले पोर्ट्स और प्रोटोकॉल नंबर का समर्थन नहीं करता था, इसलिए पुराने संस्करणों के साथ संगतता बनाए रखने के लिए पोर्ट्स और प्रोटोकॉल नंबर मानक आईपी की तुलना में थोड़े अलग होते हैं:"
           }
         },
         "list_001": {
@@ -25491,7 +25723,15 @@
             "zh": "- 端口 0 是有效的，具有特殊含义。\n- 端口 1-1023 并无特殊或特权含义。\n- 服务器默认在端口 0 上监听，表示“所有端口”。\n- 客户端默认发送到端口 0，表示“任意端口”。\n- 客户端默认从端口 0 发送，表示“未指定”。\n- 服务器可以在端口 0 上运行一个服务，同时在更高端口上运行其他服务。如果是这样，端口 0 的服务是默认服务；如果传入的套接字或数据报端口不匹配其他服务，则将连接到该默认服务。\n- 大多数 I2P 目的地仅运行一个服务，因此你可以使用默认设置，忽略 I2CP 端口配置。\n- 协议号 0 是有效的，表示“任意协议”。但不推荐使用，且可能无法正常工作。流式传输要求协议号设置为 6。\n- 流式套接字通过内部连接 ID 进行跟踪。因此，不需要 dest:port:dest:port:protocol 这个五元组保持唯一。例如，两个目的地之间可以存在多个具有相同端口的套接字。客户端在发起出站连接时，无需选择“空闲端口”。",
             "ko": "- 포트 0은 유효하며 특별한 의미를 가집니다.\n- 포트 1-1023은 특별하거나 권한이 부여된 포트가 아닙니다.\n- 서버는 기본적으로 포트 0에서 수신 대기하며, 이는 \"모든 포트\"를 의미합니다.\n- 클라이언트는 기본적으로 포트 0으로 전송하며, 이는 \"임의의 포트\"를 의미합니다.\n- 클라이언트는 기본적으로 포트 0에서 전송하며, 이는 \"지정되지 않음\"을 의미합니다.\n- 서버는 포트 0에서 수신 대기하는 서비스와 더 높은 포트에서 수신 대기하는 다른 서비스를 가질 수 있습니다. 이 경우 포트 0의 서비스가 기본값이며, 들어오는 소켓이나 데이터그램 포트가 다른 서비스와 일치하지 않을 경우 이 서비스에 연결됩니다.\n- 대부분의 I2P 목적지에는 하나의 서비스만 실행되므로 기본값을 사용하고 I2CP 포트 설정은 무시할 수 있습니다.\n- 프로토콜 0은 유효하며 \"임의의 프로토콜\"을 의미합니다. 그러나 이는 권장되지 않으며 작동하지 않을 가능성이 높습니다. 스트리밍은 프로토콜 번호가 6으로 설정되어야 합니다.\n- 스트리밍 소켓은 내부 연결 ID로 추적됩니다. 따라서 dest:port:dest:port:protocol의 5튜플이 유일할 필요는 없습니다. 예를 들어, 두 목적지 사이에 동일한 포트를 사용하는 여러 소켓이 존재할 수 있습니다. 클라이언트는 아웃바운드 연결을 위해 \"사용 가능한 포트\"를 선택할 필요가 없습니다.",
             "es": "- El puerto 0 es válido y tiene un significado especial.\n- Los puertos 1-1023 no son especiales ni privilegiados.\n- Los servidores escuchan en el puerto 0 por defecto, lo que significa \"todos los puertos\".\n- Los clientes envían al puerto 0 por defecto, lo que significa \"cualquier puerto\".\n- Los clientes envían desde el puerto 0 por defecto, lo que significa \"no especificado\".\n- Los servidores pueden tener un servicio escuchando en el puerto 0 y otros servicios escuchando en puertos superiores. En ese caso, el servicio del puerto 0 es el predeterminado y se conectará a él si el puerto del socket entrante o del datagrama no coincide con otro servicio.\n- La mayoría de los destinos I2P solo tienen un servicio en ejecución, por lo que puedes usar los valores predeterminados e ignorar la configuración de puertos I2CP.\n- El protocolo 0 es válido y significa \"cualquier protocolo\". Sin embargo, no se recomienda y probablemente no funcione. El protocolo de streaming requiere que el número de protocolo se establezca en 6.\n- Los sockets de streaming se rastrean mediante un ID interno de conexión. Por lo tanto, no es necesario que la 5-tupla de dest:puerto:dest:puerto:protocolo sea única. Por ejemplo, puede haber múltiples sockets con los mismos puertos entre dos destinos. Los clientes no necesitan elegir un \"puerto libre\" para una conexión saliente.",
-            "ru": "- Порт 0 является допустимым и имеет особое значение.\n- Порты 1–1023 не являются специальными или привилегированными.\n- Серверы по умолчанию прослушивают порт 0, что означает «все порты».\n- Клиенты по умолчанию отправляют данные на порт 0, что означает «любой порт».\n- Клиенты по умолчанию отправляют данные с порта 0, что означает «неуказанный».\n- На серверах может быть сервис, прослушивающий порт 0, и другие сервисы, прослушивающие более высокие порты. В таком случае сервис на порту 0 будет использоваться по умолчанию и к нему будет установлено соединение, если входящий порт сокета или датаграммы не соответствует другому сервису.\n- На большинстве I2P-адресов работает только одна служба, поэтому вы можете использовать значения по умолчанию и игнорировать настройку портов I2CP.\n- Протокол 0 является допустимым и означает «любой протокол». Однако это не рекомендуется и, вероятно, работать не будет. Для потоковой передачи необходимо, чтобы номер протокола был установлен в 6.\n- Потоковые сокеты отслеживаются по внутреннему идентификатору соединения. Следовательно, нет необходимости в уникальности 5-кортежа dest:port:dest:port:protocol. Например, может существовать несколько сокетов с одинаковыми портами между двумя адресами. Клиентам не нужно выбирать «свободный порт» для исходящего соединения."
+            "ru": "- Порт 0 является допустимым и имеет особое значение.\n- Порты 1–1023 не являются специальными или привилегированными.\n- Серверы по умолчанию прослушивают порт 0, что означает «все порты».\n- Клиенты по умолчанию отправляют данные на порт 0, что означает «любой порт».\n- Клиенты по умолчанию отправляют данные с порта 0, что означает «неуказанный».\n- На серверах может быть сервис, прослушивающий порт 0, и другие сервисы, прослушивающие более высокие порты. В таком случае сервис на порту 0 будет использоваться по умолчанию и к нему будет установлено соединение, если входящий порт сокета или датаграммы не соответствует другому сервису.\n- На большинстве I2P-адресов работает только одна служба, поэтому вы можете использовать значения по умолчанию и игнорировать настройку портов I2CP.\n- Протокол 0 является допустимым и означает «любой протокол». Однако это не рекомендуется и, вероятно, работать не будет. Для потоковой передачи необходимо, чтобы номер протокола был установлен в 6.\n- Потоковые сокеты отслеживаются по внутреннему идентификатору соединения. Следовательно, нет необходимости в уникальности 5-кортежа dest:port:dest:port:protocol. Например, может существовать несколько сокетов с одинаковыми портами между двумя адресами. Клиентам не нужно выбирать «свободный порт» для исходящего соединения.",
+            "fr": "- Le port 0 est valide et a une signification particulière.\n- Les ports 1 à 1023 ne sont ni spéciaux ni privilégiés.\n- Les serveurs écoutent sur le port 0 par défaut, ce qui signifie « tous les ports ».\n- Les clients envoient vers le port 0 par défaut, ce qui signifie « n'importe quel port ».\n- Les clients envoient depuis le port 0 par défaut, ce qui signifie « non spécifié ».\n- Un serveur peut avoir un service à l'écoute sur le port 0 et d'autres services à l'écoute sur des ports supérieurs. Dans ce cas, le service sur le port 0 est celui par défaut, et une connexion sera établie avec lui si le port de la socket entrante ou du datagramme ne correspond à aucun autre service.\n- La plupart des destinations I2P n'exécutent qu'un seul service, vous pouvez donc utiliser les valeurs par défaut et ignorer la configuration du port I2CP.\n- Le protocole 0 est valide et signifie « n'importe quel protocole ». Toutefois, cela n'est pas recommandé et ne fonctionnera probablement pas. Le streaming nécessite que le numéro de protocole soit défini à 6.\n- Les sockets de streaming sont suivis par un identifiant de connexion interne. Par conséquent, il n'est pas nécessaire que le 5-tuple de dest:port:dest:port:protocole soit unique. Par exemple, il peut exister plusieurs sockets avec les mêmes ports entre deux destinations. Les clients n'ont pas besoin de choisir un « port libre » pour une connexion sortante.",
+            "pt": "- A porta 0 é válida e possui significado especial.\n- As portas 1-1023 não são especiais nem privilegiadas.\n- Servidores escutam na porta 0 por padrão, o que significa \"todas as portas\".\n- Clientes enviam para a porta 0 por padrão, o que significa \"qualquer porta\".\n- Clientes enviam da porta 0 por padrão, o que significa \"não especificado\".\n- Servidores podem ter um serviço escutando na porta 0 e outros serviços escutando em portas superiores. Nesse caso, o serviço na porta 0 é o padrão e será usado se a porta do socket ou datagrama de entrada não corresponder a outro serviço.\n- A maioria dos destinos I2P executa apenas um serviço, portanto você pode usar os valores padrão e ignorar a configuração de porta I2CP.\n- O protocolo 0 é válido e significa \"qualquer protocolo\". No entanto, isso não é recomendado e provavelmente não funcionará. O streaming exige que o número do protocolo seja definido como 6.\n- Os sockets de streaming são rastreados por um ID interno de conexão. Portanto, não é necessário que a 5-tupla de dest:porta:dest:porta:protocolo seja única. Por exemplo, pode haver vários sockets com as mesmas portas entre dois destinos. Os clientes não precisam escolher uma \"porta livre\" para uma conexão de saída.",
+            "de": "- Port 0 ist gültig und hat eine besondere Bedeutung.\n- Die Ports 1–1023 sind nicht besonders oder privilegiert.\n- Server lauschen standardmäßig auf Port 0, was „alle Ports“ bedeutet.\n- Clients senden standardmäßig an Port 0, was „beliebiger Port“ bedeutet.\n- Clients senden standardmäßig von Port 0, was „nicht angegeben“ bedeutet.\n- Server können einen Dienst auf Port 0 und andere Dienste auf höheren Ports lauschen haben. In diesem Fall ist der Dienst auf Port 0 der Standard und wird verwendet, wenn der eingehende Socket- oder Datagramm-Port mit keinem anderen Dienst übereinstimmt.\n- Auf den meisten I2P-Zielen läuft nur ein einziger Dienst, daher können Sie die Standardwerte verwenden und die I2CP-Port-Konfiguration ignorieren.\n- Protokoll 0 ist gültig und bedeutet „beliebiges Protokoll“. Dies wird jedoch nicht empfohlen und funktioniert wahrscheinlich nicht. Für Streaming muss die Protokollnummer auf 6 gesetzt sein.\n- Streaming-Sockets werden über eine interne Verbindungs-ID verfolgt. Daher ist es nicht erforderlich, dass das 5-Tupel aus Ziel:Port:Ziel:Port:Protokoll eindeutig ist. Beispielsweise kann es mehrere Sockets mit denselben Ports zwischen zwei Zielen geben. Clients müssen keinen „freien Port“ für eine ausgehende Verbindung wählen.",
+            "tr": "- 0 numaralı port geçerlidir ve özel bir anlam taşır.\n- 1-1023 numaralı portlar özel veya ayrıcalıklı değildir.\n- Sunucular varsayılan olarak 0 numaralı portu dinler; bu, \"tüm portlar\" anlamına gelir.\n- İstemciler varsayılan olarak 0 numaralı porta gönderir; bu, \"herhangi bir port\" anlamına gelir.\n- İstemciler varsayılan olarak 0 numaralı porttan gönderir; bu, \"belirtilmemiş\" anlamına gelir.\n- Sunucular, 0 numaralı portta dinleyen bir hizmete ve daha yüksek portlarda dinleyen diğer hizmetlere sahip olabilir. Bu durumda 0 numaralı porttaki hizmet varsayılan olur ve gelen soket veya datagram portu başka bir hizmetle eşleşmiyorsa bu hizmete bağlanılır.\n- Çoğu I2P hedefinde yalnızca bir hizmet çalışır; bu yüzden varsayılanları kullanabilir ve I2CP port yapılandırmasını göz ardı edebilirsiniz.\n- 0 numaralı protokol geçerlidir ve \"herhangi bir protokol\" anlamına gelir. Ancak bu önerilmez ve büyük olasılıkla çalışmaz. Akış (streaming) için protokol numarasının 6 olarak ayarlanması gerekir.\n- Akış soketleri, iç bir bağlantı kimliği (ID) ile izlenir. Bu yüzden, dest:port:dest:port:protokol'den oluşan 5-linin benzersiz olması gerekmez. Örneğin, iki hedef arasında aynı portlara sahip birden fazla soket olabilir. İstemcilerin giden bir bağlantı için \"boş bir port\" seçmesi gerekmez.",
+            "vi": "- Cổng 0 là hợp lệ và có ý nghĩa đặc biệt.\n- Các cổng 1-1023 không đặc biệt hay được cấp quyền gì.\n- Máy chủ lắng nghe trên cổng 0 theo mặc định, có nghĩa là \"tất cả các cổng\".\n- Máy khách gửi đến cổng 0 theo mặc định, có nghĩa là \"bất kỳ cổng nào\".\n- Máy khách gửi đi từ cổng 0 theo mặc định, có nghĩa là \"chưa xác định\".\n- Máy chủ có thể có một dịch vụ đang lắng nghe trên cổng 0 và các dịch vụ khác đang lắng nghe trên các cổng cao hơn. Trong trường hợp đó, dịch vụ trên cổng 0 sẽ là mặc định, và sẽ được kết nối nếu cổng socket hoặc datagram đầu vào không khớp với dịch vụ nào khác.\n- Hầu hết các điểm đến I2P chỉ chạy một dịch vụ, do đó bạn có thể sử dụng các giá trị mặc định và bỏ qua cấu hình cổng I2CP.\n- Giao thức 0 là hợp lệ và có nghĩa là \"bất kỳ giao thức nào\". Tuy nhiên, điều này không được khuyến khích và có thể sẽ không hoạt động. Giao thức streaming yêu cầu số giao thức phải được đặt thành 6.\n- Các socket streaming được theo dõi thông qua một ID kết nối nội bộ. Do đó, không yêu cầu bắt buộc 5-tuple gồm dest:port:dest:port:protocol phải là duy nhất. Ví dụ, có thể có nhiều socket với cùng cổng giữa hai điểm đến. Máy khách không cần phải chọn một \"cổng trống\" cho kết nối đi.",
+            "ar": "- المنفذ 0 صالح وله معنى خاص.\n- المنافذ من 1 إلى 1023 ليست خاصة أو مُمتَيزة.\n- تستمع الخوادم افتراضيًا إلى المنفذ 0، مما يعني \"جميع المنافذ\".\n- تُرسل العميلات افتراضيًا إلى المنفذ 0، مما يعني \"أي منفذ\".\n- تُرسل العميلات من المنفذ 0 افتراضيًا، مما يعني \"غير محدد\".\n- قد تحتوي الخوادم على خدمة تستمع إلى المنفذ 0 وخدمات أخرى تستمع إلى منافذ أعلى. في هذه الحالة، تكون خدمة المنفذ 0 هي الافتراضية، وستُستخدم عند الاتصال إذا لم يتطابق منفذ المقبس أو حزمة البيانات الواردة مع خدمة أخرى.\n- معظم وجهات I2P تحتوي فقط على خدمة واحدة قيد التشغيل، لذلك يمكنك استخدام الإعدادات الافتراضية وتجاهل تهيئة منفذ I2CP.\n- البروتوكول 0 صالح ويعني \"أي بروتوكول\". ومع ذلك، لا يُوصى باستخدامه، ومن المرجح ألا يعمل. يتطلب البث (Streaming) أن يكون رقم البروتوكول مضبوطًا على 6.\n- يتم تتبع مقابس البث (Streaming sockets) بواسطة معرّف اتصال داخلي. وبالتالي، ليس هناك حاجة إلى أن يكون الرباعي المكوّن من dest:port:dest:port:protocol فريدًا. على سبيل المثال، قد توجد مقابس متعددة بنفس المنافذ بين وجهتين. لا تحتاج العميلات إلى اختيار \"منفذ حر\" للاتصال الصادر.",
+            "cs": "- Port 0 je platný a má speciální význam.\n- Porty 1–1023 nejsou speciální ani privilegované.\n- Servery naslouchají ve výchozím nastavení na portu 0, což znamená „všechny porty“.\n- Klienti odesílají ve výchozím nastavení na port 0, což znamená „libovolný port“.\n- Klienti odesílají z portu 0 ve výchozím nastavení, což znamená „nespecifikováno“.\n- Servery mohou mít službu naslouchající na portu 0 a další služby naslouchající na vyšších portech. V takovém případě je služba na portu 0 výchozí a k ní se připojí, pokud příchozí port soketu nebo datagramu neodpovídá žádné jiné službě.\n- U většiny cílů I2P běží pouze jedna služba, takže můžete použít výchozí nastavení a konfiguraci portu I2CP ignorovat.\n- Protokol 0 je platný a znamená „libovolný protokol“. Toto ale není doporučeno a pravděpodobně nebude fungovat. Pro proudování je nutné nastavit číslo protokolu na 6.\n- Streamovací sokety jsou sledovány pomocí interního identifikátoru připojení. Proto není vyžadováno, aby byla pětice dest:port:dest:port:protokol unikátní. Například může existovat více soketů se stejnými porty mezi dvěma cíli. Klienti nemusí vybírat „volný port“ pro odchozí připojení.",
+            "hi": "- पोर्ट 0 मान्य है और इसका विशेष अर्थ है।\n- पोर्ट 1-1023 विशेष या विशेषाधिकार प्राप्त नहीं हैं।\n- सर्वर डिफ़ॉल्ट रूप से पोर्ट 0 पर सुनते हैं, जिसका अर्थ है \"सभी पोर्ट\"।\n- क्लाइंट डिफ़ॉल्ट रूप से पोर्ट 0 पर भेजते हैं, जिसका अर्थ है \"कोई भी पोर्ट\"।\n- क्लाइंट डिफ़ॉल्ट रूप से पोर्ट 0 से भेजते हैं, जिसका अर्थ है \"अनिर्दिष्ट\"।\n- सर्वर में पोर्ट 0 पर सेवा सुनने के साथ-साथ उच्च पोर्ट पर अन्य सेवाएं भी सुन सकती हैं। यदि ऐसा है, तो पोर्ट 0 सेवा डिफ़ॉल्ट होगी, और इससे तब कनेक्ट किया जाएगा जब आने वाला सॉकेट या डेटाग्राम पोर्ट किसी अन्य सेवा से मेल नहीं खाता होगा।\n- अधिकांश I2P गंतव्यों पर केवल एक सेवा चलती है, इसलिए आप डिफ़ॉल्ट का उपयोग कर सकते हैं और I2CP पोर्ट कॉन्फ़िगरेशन को अनदेखा कर सकते हैं।\n- प्रोटोकॉल 0 मान्य है और इसका अर्थ है \"कोई भी प्रोटोकॉल\"। हालाँकि, इसकी अनुशंसा नहीं की जाती है, और शायद यह काम नहीं करेगा। स्ट्रीमिंग के लिए आवश्यक है कि प्रोटोकॉल नंबर 6 पर सेट हो।\n- स्ट्रीमिंग सॉकेट को एक आंतरिक कनेक्शन ID द्वारा ट्रैक किया जाता है। इसलिए, dest:port:dest:port:protocol के 5-टुपल के अद्वितीय होने की आवश्यकता नहीं है। उदाहरण के लिए, दो गंतव्यों के बीच समान पोर्ट के साथ कई सॉकेट हो सकते हैं। बाहर जाने वाले कनेक्शन के लिए क्लाइंट को \"मुक्त पोर्ट\" चुनने की आवश्यकता नहीं है।"
           }
         },
         "h2_007": {
@@ -25500,7 +25740,15 @@
             "zh": "未来工作 {#future}",
             "ko": "향후 작업 {#future}",
             "es": "Trabajo Futuro {#future}",
-            "ru": "Будущая работа {#future}"
+            "ru": "Будущая работа {#future}",
+            "fr": "Travaux futurs {#future}",
+            "pt": "Trabalhos Futuros {#future}",
+            "de": "Zukünftige Arbeiten {#future}",
+            "tr": "Gelecek Çalışmalar {#future}",
+            "vi": "Công việc trong tương lai {#future}",
+            "ar": "العمل المستقبلي {#future}",
+            "cs": "Budoucí práce {#future}",
+            "hi": "भविष्य का कार्य {#future}"
           }
         },
         "list_002": {
@@ -25509,11 +25757,19 @@
             "zh": "- 当前的授权机制可以修改为使用哈希密码。\n- 创建租赁集（Create Lease Set）消息中包含了签名私钥，但这是不必要的。密钥撤销功能尚未实现。该字段应替换为随机数据或直接移除。\n- 某些改进可能会使用之前已定义但未实现的消息。",
             "ko": "- 현재의 인증 메커니즘은 해시된 비밀번호를 사용하도록 수정될 수 있습니다.\n- 리스 세트 생성(Create Lease Set) 메시지에 서명용 개인 키(Signing Private Keys)가 포함되어 있으나, 이는 필요하지 않습니다. 폐기 기능은 구현되어 있지 않으며, 랜덤 데이터로 대체하거나 제거되어야 합니다.\n- 일부 개선 사항에서 이전에 정의되었으나 구현되지 않은 메시지를 활용할 수 있을 수 있습니다.",
             "es": "- El mecanismo de autorización actual podría modificarse para usar contraseñas hasheadas.\n- La clave privada de firma se incluye en el mensaje Crear Conjunto de Arrendamiento (Create Lease Set), pero no es necesaria. La revocación no está implementada. Debería reemplazarse con datos aleatorios o eliminarse.\n- Algunas mejoras podrían ser capaces de usar mensajes previamente definidos pero no implementados.",
-            "ru": "- Текущий механизм авторизации можно изменить для использования хешированных паролей.\n- Закрытый ключ подписи включается в сообщение Create Lease Set, хотя это не требуется. Отзыв не реализован. Следует заменить его случайными данными или удалить.\n- Некоторые улучшения могут использовать сообщения, ранее определённые, но не реализованные."
+            "ru": "- Текущий механизм авторизации можно изменить для использования хешированных паролей.\n- Закрытый ключ подписи включается в сообщение Create Lease Set, хотя это не требуется. Отзыв не реализован. Следует заменить его случайными данными или удалить.\n- Некоторые улучшения могут использовать сообщения, ранее определённые, но не реализованные.",
+            "fr": "- Le mécanisme d'autorisation actuel pourrait être modifié pour utiliser des mots de passe hachés.\n- La clé privée de signature est incluse dans le message Create Lease Set, ce qui n'est pas nécessaire. La révocation n'est pas implémentée. Elle devrait être remplacée par des données aléatoires ou supprimée.\n- Certaines améliorations pourraient être capables d'utiliser des messages précédemment définis mais non implémentés.",
+            "pt": "- O mecanismo atual de autorização poderia ser modificado para usar senhas com hash.\n- A Chave Privada de Assinatura está incluída na mensagem Criar Conjunto de Arrendamento (Create Lease Set), mas não é necessária. A revogação não está implementada. Ela deveria ser substituída por dados aleatórios ou removida.\n- Algumas melhorias podem ser capazes de usar mensagens previamente definidas, mas não implementadas.",
+            "de": "- Der aktuelle Autorisierungsmechanismus könnte so angepasst werden, dass gehashte Passwörter verwendet werden.\n- Der Signatur-Privatschlüssel ist in der „Create Lease Set“-Nachricht enthalten, was nicht erforderlich ist. Die Sperrung ist nicht implementiert. Er sollte durch zufällige Daten ersetzt oder entfernt werden.\n- Einige Verbesserungen könnten möglicherweise bereits definierte, aber bisher nicht implementierte Nachrichten nutzen.",
+            "tr": "- Mevcut yetkilendirme mekanizması, karmalanmış parolaları kullanacak şekilde değiştirilebilir.\n- Kiralık Seti Oluştur (Create Lease Set) mesajına İmzalama Özel Anahtarları dahil edilmiştir, ancak bu gerekli değildir. İptal işlemi henüz uygulanmamıştır. Rastgele verilerle değiştirilmeli veya kaldırılmalıdır.\n- Bazı iyileştirmeler daha önce tanımlanmış ancak uygulanmamış mesajları kullanabilir.",
+            "vi": "- Cơ chế xác thực hiện tại có thể được sửa đổi để sử dụng mật khẩu đã băm.\n- Khóa riêng ký được bao gồm trong tin nhắn Tạo bộ thuê (Create Lease Set), nhưng nó không bắt buộc. Việc thu hồi khóa chưa được triển khai. Thành phần này nên được thay thế bằng dữ liệu ngẫu nhiên hoặc loại bỏ hoàn toàn.\n- Một số cải tiến có thể tận dụng các tin nhắn đã được định nghĩa trước đó nhưng chưa được triển khai.",
+            "ar": "- يمكن تعديل آلية المصادقة الحالية لاستخدام كلمات المرور المشفرة (hashed passwords).\n- يتم تضمين المفتاح الخاص للتوقيع (Signing Private Keys) في رسالة إنشاء مجموعة العقود (Create Lease Set)، وهذا ليس مطلوبًا. ولم يتم تنفيذ إبطال المفتاح (Revocation). ينبغي استبداله ببيانات عشوائية أو إزالته.\n- قد تتيح بعض التحسينات استخدام رسائل تم تعريفها مسبقًا ولكن لم يتم تنفيذها.",
+            "cs": "- Stávající autorizační mechanismus by mohl být upraven tak, aby používal hašovaná hesla.\n- Soukromý podpisový klíč je zahrnut v zprávě Create Lease Set, ale není vyžadován. Odvolání klíče není implementováno. Měl by být nahrazen náhodnými daty nebo odstraněn.\n- Některá vylepšení by mohla využít zprávy, které byly dříve definovány, ale nebyly implementovány.",
+            "hi": "- वर्तमान प्राधिकरण तंत्र को हैश किए गए पासवर्ड के उपयोग के लिए संशोधित किया जा सकता है।\n- Create Lease Set संदेश में साइनिंग निजी कुंजियाँ शामिल हैं, जिनकी आवश्यकता नहीं है। निरसन लागू नहीं किया गया है। इसे यादृच्छिक डेटा से प्रतिस्थापित किया जाना चाहिए या हटा दिया जाना चाहिए।\n- कुछ सुधार पहले परिभाषित लेकिन लागू न किए गए संदेशों का उपयोग कर सकते हैं।"
           }
         }
       },
-      "file_hash": "0931bb7d9bc721da78f6bb3bcf14c09908034b6fa60e31328da68c614b2c8e49"
+      "file_hash": "a8de807086b5a9005f81230b230235052ba9c51fa971a730fb13130838d6959f"
     },
     "en/docs/specs/i2np-overview.md": {
       "segments": {
@@ -25523,7 +25779,15 @@
             "zh": "I2NP 概述",
             "es": "Descripción general de I2NP",
             "ru": "Обзор I2NP",
-            "ko": "I2NP 개요"
+            "ko": "I2NP 개요",
+            "pt": "Visão geral do I2NP",
+            "de": "I2NP-Übersicht",
+            "fr": "Aperçu d'I2NP",
+            "tr": "I2NP Genel Bakış",
+            "ar": "نظرة عامة على I2NP",
+            "vi": "Tổng quan về I2NP",
+            "cs": "Přehled I2NP",
+            "hi": "I2NP अवलोकन"
           }
         },
         "fm_description": {
@@ -25532,7 +25796,15 @@
             "zh": "I2P网络协议（I2NP）概述——消息格式、类型、优先级和大小限制。",
             "es": "Descripción general del protocolo de red I2P (I2NP) - formato de mensaje, tipos, prioridades y limitaciones de tamaño.",
             "ru": "Обзор сетевого протокола I2P (I2NP) — формат сообщений, типы, приоритеты и ограничения по размеру.",
-            "ko": "I2P 네트워크 프로토콜(I2NP) 개요 - 메시지 형식, 유형, 우선순위 및 크기 제한."
+            "ko": "I2P 네트워크 프로토콜(I2NP) 개요 - 메시지 형식, 유형, 우선순위 및 크기 제한.",
+            "pt": "Visão geral do Protocolo de Rede I2P (I2NP) - formato de mensagem, tipos, prioridades e limites de tamanho.",
+            "de": "Überblick über das I2P-Netzwerkprotokoll (I2NP) – Nachrichtenformat, Typen, Prioritäten und Größenbeschränkungen.",
+            "fr": "Aperçu du protocole réseau I2P (I2NP) - format des messages, types, priorités et contraintes de taille.",
+            "tr": "I2P Ağ Protokolü (I2NP) genel bakış - mesaj formatı, türleri, öncelikleri ve boyut sınırlamaları.",
+            "ar": "نظرة عامة على بروتوكول شبكة I2P (I2NP) - تنسيق الرسائل، الأنواع، الأولويات، وقيود الحجم.",
+            "vi": "Tổng quan về Giao thức Mạng I2P (I2NP) - định dạng tin nhắn, các loại, độ ưu tiên và giới hạn kích thước.",
+            "cs": "Přehled protokolu sítě I2P (I2NP) – formát zpráv, typy, priority a omezení velikosti.",
+            "hi": "I2P नेटवर्क प्रोटोकॉल (I2NP) का अवलोकन - संदेश प्रारूप, प्रकार, प्राथमिकताएँ, और आकार सीमाएँ।"
           }
         },
         "fm_category": {
@@ -25541,7 +25813,15 @@
             "zh": "协议",
             "es": "Protocolos",
             "ru": "Протоколы",
-            "ko": "프로토콜"
+            "ko": "프로토콜",
+            "pt": "Protocolos",
+            "de": "Protokolle",
+            "fr": "Protocoles",
+            "tr": "Protokoller",
+            "ar": "البروتوكولات",
+            "vi": "Giao thức",
+            "cs": "Protocols",
+            "hi": "प्रोटोकॉल"
           }
         },
         "h2_001": {
@@ -25550,7 +25830,15 @@
             "zh": "概述",
             "es": "Resumen",
             "ru": "Обзор",
-            "ko": "개요"
+            "ko": "개요",
+            "pt": "Visão Geral",
+            "de": "Übersicht",
+            "fr": "Aperçu",
+            "tr": "Genel Bakış",
+            "ar": "نظرة عامة",
+            "vi": "Tổng quan",
+            "cs": "Přehled",
+            "hi": "अवलोकन"
           }
         },
         "p_001": {
@@ -25559,7 +25847,15 @@
             "zh": "I2P网络协议（I2NP）位于I2CP与各种I2P传输协议之间，负责管理路由器之间消息的路由与混合，以及在与对等体通信时（存在多个共同支持的传输方式）选择使用哪种传输方式。",
             "es": "El Protocolo de Red I2P (I2NP), que se encuentra entre I2CP y los diversos protocolos de transporte de I2P, gestiona el enrutamiento y mezclado de mensajes entre routers, así como la selección de qué transportes utilizar al comunicarse con un par cuando hay múltiples transportes comunes soportados.",
             "ru": "Протокол сети I2P (I2NP), расположенный между I2CP и различными транспортными протоколами I2P, управляет маршрутизацией и перемешиванием сообщений между маршрутизаторами, а также выбором транспортов для использования при взаимодействии с узлом, с которым поддерживается несколько общих транспортов.",
-            "ko": "I2CP와 다양한 I2P 전송 프로토콜 사이에 위치한 I2P 네트워크 프로토콜(I2NP)은 라우터 간 메시지의 라우팅 및 믹싱을 관리하며, 여러 공통 전송 방식을 지원하는 피어와 통신할 때 어떤 전송 방식을 사용할지 선택하는 기능도 담당합니다."
+            "ko": "I2CP와 다양한 I2P 전송 프로토콜 사이에 위치한 I2P 네트워크 프로토콜(I2NP)은 라우터 간 메시지의 라우팅 및 믹싱을 관리하며, 여러 공통 전송 방식을 지원하는 피어와 통신할 때 어떤 전송 방식을 사용할지 선택하는 기능도 담당합니다.",
+            "pt": "O Protocolo de Rede I2P (I2NP), que fica entre o I2CP e os vários protocolos de transporte do I2P, gerencia o roteamento e a mistura de mensagens entre roteadores, bem como a seleção dos transportes a serem usados ao se comunicar com um par quando há vários transportes comuns suportados.",
+            "de": "Das I2P-Netzwerkprotokoll (I2NP), das zwischen I2CP und den verschiedenen I2P-Transportprotokollen liegt, verwaltet das Routing und die Vermischung von Nachrichten zwischen Routern sowie die Auswahl der zu verwendenden Transporte, wenn mit einem Peer kommuniziert wird, für den mehrere gemeinsame Transporte unterstützt werden.",
+            "fr": "Le protocole réseau I2P (I2NP), qui se situe entre I2CP et les différents protocoles de transport I2P, gère le routage et le mélange des messages entre les routeurs, ainsi que la sélection des transports à utiliser lors de la communication avec un pair pour lequel plusieurs transports communs sont pris en charge.",
+            "tr": "I2CP ve çeşitli I2P taşıma protokolleri arasında yer alan I2P Ağ Protokolü (I2NP), yönlendiriciler arasındaki mesajların yönlendirilmesi ve karıştırılmasından sorumludur ve aynı zamanda bir eş ile iletişim kurarken birden fazla ortak taşıma protokolü desteklendiğinde hangi taşıma protokollerinin kullanılacağının seçilmesini sağlar.",
+            "ar": "بروتوكول شبكة I2P (I2NP)، الذي يقع بين I2CP والبروتوكولات النقل المختلفة لـ I2P، يُعنى بإدارة توجيه وخلط الرسائل بين الراوترات، وكذلك اختيار وسائط النقل المستخدمة عند التواصل مع ندّ يدعم عدة وسائط نقل مشتركة.",
+            "vi": "Giao thức Mạng I2P (I2NP), nằm giữa I2CP và các giao thức truyền tải I2P khác nhau, quản lý việc định tuyến và trộn lẫn các thông điệp giữa các bộ định tuyến, cũng như việc lựa chọn giao thức truyền tải nào sử dụng khi giao tiếp với một máy ngang hàng mà cả hai bên cùng hỗ trợ nhiều giao thức truyền tải.",
+            "cs": "I2P síťový protokol (I2NP), který je umístěn mezi I2CP a různými přenosovými protokoly I2P, spravuje směrování a mixování zpráv mezi směrovači, stejně jako výběr přenosových protokolů pro komunikaci se sousedem, pokud je podporováno více společných přenosových protokolů.",
+            "hi": "I2P नेटवर्क प्रोटोकॉल (I2NP), जो I2CP तथा विभिन्न I2P परिवहन प्रोटोकॉल के बीच स्थित है, राउटरों के बीच संदेशों के मार्गदर्शन और मिश्रण के साथ-साथ उस पीयर के साथ संचार के लिए किन परिवहन प्रोटोकॉल का उपयोग करना है, इसके चयन का प्रबंधन करता है, जिसके लिए कई सामान्य परिवहन प्रोटोकॉल समर्थित हैं।"
           }
         },
         "h2_002": {
@@ -25568,7 +25864,15 @@
             "zh": "I2NP 定义",
             "es": "Definición de I2NP",
             "ru": "Определение I2NP",
-            "ko": "I2NP 정의"
+            "ko": "I2NP 정의",
+            "pt": "Definição de I2NP",
+            "de": "I2NP-Definition",
+            "fr": "Définition d'I2NP",
+            "tr": "I2NP Tanımı",
+            "ar": "تعريف I2NP",
+            "vi": "Định nghĩa I2NP",
+            "cs": "Definice I2NP",
+            "hi": "I2NP परिभाषा"
           }
         },
         "p_002": {
@@ -25577,7 +25881,15 @@
             "zh": "I2NP（I2P 网络协议）消息可用于单跳、路由器到路由器、点对点通信。通过将消息加密并封装在其他消息中，它们可以安全地经过多个跳点传输至最终目的地。优先级仅在源节点本地使用，即在出站传输排队时使用。",
             "es": "Los mensajes I2NP (I2P Network Protocol) pueden usarse para mensajes de un solo salto, de router a router, punto a punto. Al cifrar y encapsular mensajes dentro de otros mensajes, pueden enviarse de forma segura a través de múltiples saltos hasta el destino final. La prioridad solo se utiliza localmente en el origen, es decir, al encolar para entrega saliente.",
             "ru": "Сообщения I2NP (I2P Network Protocol) могут использоваться для одношаговых, маршрутизатор-к-маршрутизатору, точечных сообщений. Шифруя и оборачивая сообщения в другие сообщения, их можно безопасно отправлять через несколько узлов до конечного пункта назначения. Приоритет используется только локально на исходном узле, т.е. при постановке в очередь для исходящей доставки.",
-            "ko": "I2NP(I2P 네트워크 프로토콜) 메시지는 원-홉(one-hop), 라우터 간, 점대점(point-to-point) 메시지에 사용할 수 있습니다. 메시지를 암호화하고 다른 메시지 안에 래핑함으로써 여러 홉을 거쳐 최종 목적지까지 안전하게 전송할 수 있습니다. 우선순위는 출발지에서만 로컬로 사용되며, 외부 전송을 위해 대기열에 들어갈 때 적용됩니다."
+            "ko": "I2NP(I2P 네트워크 프로토콜) 메시지는 원-홉(one-hop), 라우터 간, 점대점(point-to-point) 메시지에 사용할 수 있습니다. 메시지를 암호화하고 다른 메시지 안에 래핑함으로써 여러 홉을 거쳐 최종 목적지까지 안전하게 전송할 수 있습니다. 우선순위는 출발지에서만 로컬로 사용되며, 외부 전송을 위해 대기열에 들어갈 때 적용됩니다.",
+            "pt": "As mensagens I2NP (I2P Network Protocol) podem ser usadas para mensagens ponto-a-ponto, de roteador para roteador, com um único salto. Ao criptografar e encapsular mensagens dentro de outras mensagens, elas podem ser enviadas de forma segura através de múltiplos saltos até o destino final. A prioridade é usada apenas localmente na origem, ou seja, durante o enfileiramento para entrega de saída.",
+            "de": "I2NP-(I2P-Netzwerkprotokoll-)Nachrichten können für Ein-Sprung-, Router-zu-Router-, Punkt-zu-Punkt-Nachrichten verwendet werden. Durch Verschlüsselung und Einbetten von Nachrichten in andere Nachrichten können sie sicher über mehrere Zwischenstationen an das endgültige Ziel gesendet werden. Die Priorität wird nur lokal am Ursprungsort verwendet, d. h. beim Warten auf den Ausgangsversand.",
+            "fr": "Les messages I2NP (I2P Network Protocol) peuvent être utilisés pour des messages point à point d'un seul saut, d'un routeur à un autre. En chiffrant et en encapsulant des messages dans d'autres messages, ils peuvent être envoyés de manière sécurisée à travers plusieurs sauts jusqu'à leur destination finale. La priorité n'est utilisée qu'au niveau local à l'origine, c'est-à-dire lors de la mise en file d'attente pour la remise sortante.",
+            "tr": "I2NP (I2P Ağ Protokolü) mesajları, tek sıçramalı, yönlendirici-yönlendirici, noktadan noktaya mesajlar için kullanılabilir. Mesajlar, diğer mesajların içine şifrelenerek ve sarılarak, çoklu sıçramalarla son hedefe güvenli bir şekilde gönderilebilir. Öncelik yalnızca orijinde yerel olarak kullanılır, yani giden teslimat için kuyruğa alınırken.",
+            "ar": "يمكن استخدام رسائل I2NP (بروتوكول شبكة I2P) للرسائل من نوع \"وجهة واحدة\"، أو من نوع \"راوتر إلى راوتر\"، أو من نوع \"نقطة إلى نقطة\". وبتشفير الرسائل ولفّها داخل رسائل أخرى، يمكن إرسالها بطريقة آمنة عبر عدة محطات وسيطة حتى تصل إلى الوجهة النهائية. ويُستخدم الأولوية فقط محليًا في نقطة المنشأ، أي عند ترتيبها في قائمة الانتظار للإرسال الخارجي.",
+            "vi": "Các tin nhắn I2NP (I2P Network Protocol) có thể được sử dụng cho các tin nhắn một bước nhảy, từ router đến router, điểm-điểm. Bằng cách mã hóa và gói các tin nhắn vào bên trong các tin nhắn khác, chúng có thể được gửi một cách an toàn qua nhiều bước nhảy đến đích cuối cùng. Độ ưu tiên chỉ được sử dụng cục bộ tại điểm khởi tạo, ví dụ: khi xếp hàng đợi để gửi đi.",
+            "cs": "Zprávy I2NP (I2P Network Protocol) lze použít pro zprávy typu jedno skoknutí, směrovač-směrovač, bod-bod. Šifrováním a zabalením zpráv do jiných zpráv je lze bezpečným způsobem odeslat přes více skoků až k cílovému místu určení. Priorita se používá pouze lokálně na původním místě, tj. při zařazování do fronty pro odchozí doručení.",
+            "hi": "I2NP (I2P नेटवर्क प्रोटोकॉल) संदेशों का उपयोग एक-हॉप, राउटर-से-राउटर, पॉइंट-टू-पॉइंट संदेशों के लिए किया जा सकता है। संदेशों को अन्य संदेशों में एन्क्रिप्ट और लपेटकर, उन्हें अंतिम गंतव्य तक कई हॉप्स के माध्यम से सुरक्षित तरीके से भेजा जा सकता है। प्राथमिकता का उपयोग केवल उत्पत्ति स्थल पर स्थानीय स्तर पर किया जाता है, अर्थात आउटबाउंड डिलीवरी के लिए कतार में लगाते समय।"
           }
         },
         "p_003": {
@@ -25586,7 +25898,15 @@
             "zh": "下列列出的优先级可能不是最新的，并且可能随时更改。优先级队列的实现方式可能有所不同。",
             "es": "Las prioridades enumeradas a continuación pueden no estar actualizadas y están sujetas a cambios. La implementación de la cola de prioridades puede variar.",
             "ru": "Перечисленные ниже приоритеты могут быть устаревшими и подлежат изменению. Реализация очереди приоритетов может различаться.",
-            "ko": "아래 나열된 우선순위는 최신이 아닐 수 있으며 변경될 수 있습니다. 우선순위 큐 구현 방식은 달라질 수 있습니다."
+            "ko": "아래 나열된 우선순위는 최신이 아닐 수 있으며 변경될 수 있습니다. 우선순위 큐 구현 방식은 달라질 수 있습니다.",
+            "pt": "As prioridades listadas abaixo podem não estar atualizadas e estão sujeitas a alterações. A implementação da fila de prioridades pode variar.",
+            "de": "Die unten aufgeführten Prioritäten sind möglicherweise nicht aktuell und können sich ändern. Die Implementierung der Prioritätswarteschlangen kann variieren.",
+            "fr": "Les priorités énumérées ci-dessous peuvent ne pas être à jour et sont sujettes à modification. La mise en œuvre de la file d'attente par priorité peut varier.",
+            "tr": "Aşağıda listelenen öncelikler güncel olmayabilir ve değişikliğe tabidir. Öncelik kuyruğu uygulaması değişiklik gösterebilir.",
+            "ar": "قد لا تكون الأولويات المذكورة أدناه حالية وتخضع للتغيير. وقد تختلف طريقة تنفيذ قائمة الانتظار حسب الأولوية.",
+            "vi": "Các mức độ ưu tiên được liệt kê bên dưới có thể không còn cập nhật và có thể thay đổi. Việc triển khai hàng đợi ưu tiên có thể khác nhau.",
+            "cs": "Uvedené priority nemusí být aktuální a mohou být změněny. Implementace fronty priorit se může lišit.",
+            "hi": "नीचे सूचीबद्ध प्राथमिकताएँ वर्तमान नहीं हो सकती हैं और परिवर्तन के अधीन हैं। प्राथमिकता कतार लागूकरण में भिन्नता हो सकती है।"
           }
         },
         "h2_003": {
@@ -25595,7 +25915,15 @@
             "zh": "消息格式 {#format}",
             "es": "Formato del mensaje {#format}",
             "ru": "Формат сообщения {#format}",
-            "ko": "메시지 형식 {#format}"
+            "ko": "메시지 형식 {#format}",
+            "pt": "Formato da Mensagem {#format}",
+            "de": "Nachrichtenformat {#format}",
+            "fr": "Format du message {#format}",
+            "tr": "İleti Biçimi {#format}",
+            "ar": "تنسيق الرسالة {#format}",
+            "vi": "Định dạng tin nhắn {#format}",
+            "cs": "Formát zprávy {#format}",
+            "hi": "संदेश प्रारूप {#format}"
           }
         },
         "p_004": {
@@ -25604,7 +25932,15 @@
             "zh": "下表指定了 NTCP 中使用的传统 16 字节头部。SSU 和 NTCP2 传输协议使用经过修改的头部。",
             "es": "La siguiente tabla especifica el encabezado tradicional de 16 bytes utilizado en NTCP. Los transportes SSU y NTCP2 utilizan encabezados modificados.",
             "ru": "В следующей таблице указан традиционный 16-байтовый заголовок, используемый в NTCP. Транспорты SSU и NTCP2 используют изменённые заголовки.",
-            "ko": "다음 표는 NTCP에서 사용하는 기존의 16바이트 헤더를 명시합니다. SSU 및 NTCP2 전송 방식은 수정된 헤더를 사용합니다."
+            "ko": "다음 표는 NTCP에서 사용하는 기존의 16바이트 헤더를 명시합니다. SSU 및 NTCP2 전송 방식은 수정된 헤더를 사용합니다.",
+            "pt": "A tabela a seguir especifica o cabeçalho tradicional de 16 bytes usado no NTCP. Os transportes SSU e NTCP2 utilizam cabeçalhos modificados.",
+            "de": "Die folgende Tabelle legt den traditionellen 16-Byte-Header fest, der in NTCP verwendet wird. Die SSU- und NTCP2-Transportschichten verwenden modifizierte Header.",
+            "fr": "Le tableau suivant spécifie l'en-tête traditionnel de 16 octets utilisé dans NTCP. Les transports SSU et NTCP2 utilisent des en-têtes modifiés.",
+            "tr": "Aşağıdaki tablo NTCP'de kullanılan geleneksel 16 baytlık başlığı belirtir. SSU ve NTCP2 taşıma katmanları, değiştirilmiş başlıkları kullanır.",
+            "ar": "تحدد الجدول التالي الرأس التقليدي بحجم 16 بايت المستخدم في NTCP. تستخدم وسائط النقل SSU وNTCP2 رؤوسًا معدلة.",
+            "vi": "Bảng dưới đây mô tả phần tiêu đề truyền thống 16 byte được sử dụng trong NTCP. Các giao thức truyền tải SSU và NTCP2 sử dụng các tiêu đề đã được sửa đổi.",
+            "cs": "Následující tabulka uvádí tradiční 16bajtovou hlavičku používanou v NTCP. Přenosy SSU a NTCP2 používají upravené hlavičky.",
+            "hi": "निम्नलिखित तालिका NTCP में उपयोग किए जाने वाले पारंपरिक 16-बाइट हेडर को निर्दिष्ट करती है। SSU और NTCP2 ट्रांसपोर्ट संशोधित हेडर का उपयोग करते हैं।"
           }
         },
         "p_005": {
@@ -25613,7 +25949,15 @@
             "zh": "尽管最大有效载荷大小名义上为 64KB，但根据[隧道实现页面](/docs/specs/tunnel-implementation/)中描述的将 I2NP 消息分段为多个 1KB 隧道消息的方法，实际大小会受到进一步限制。",
             "es": "Aunque el tamaño máximo de carga útil es nominalmente de 64KB, dicho tamaño está además limitado por el método de fragmentación de mensajes I2NP en múltiples mensajes de túnel de 1KB, tal como se describe en la [página de implementación de túneles](/docs/specs/tunnel-implementation/).",
             "ru": "Хотя номинальный максимальный размер полезной нагрузки составляет 64 КБ, фактический размер дополнительно ограничен методом фрагментации сообщений I2NP на несколько туннельных сообщений по 1 КБ, как описано на [странице реализации туннелей](/docs/specs/tunnel-implementation/).",
-            "ko": "최대 페이로드 크기는 명목상 64KB이지만, [터널 구현 페이지](/docs/specs/tunnel-implementation/)에 설명된 대로 I2NP 메시지를 여러 개의 1KB 터널 메시지로 분할하는 방식에 의해 실제 크기가 추가로 제한된다."
+            "ko": "최대 페이로드 크기는 명목상 64KB이지만, [터널 구현 페이지](/docs/specs/tunnel-implementation/)에 설명된 대로 I2NP 메시지를 여러 개의 1KB 터널 메시지로 분할하는 방식에 의해 실제 크기가 추가로 제한된다.",
+            "pt": "Embora o tamanho máximo do payload seja nominalmente de 64KB, esse tamanho é ainda mais limitado pelo método de fragmentação de mensagens I2NP em múltiplas mensagens de túnel de 1KB, conforme descrito na [página de implementação de túneis](/docs/specs/tunnel-implementation/).",
+            "de": "Obwohl die maximale Nutzlastgröße nominell 64 KB beträgt, wird die Größe weiter durch die Methode eingeschränkt, I2NP-Nachrichten in mehrere 1-KB-Tunnelnachrichten aufzuteilen, wie auf der [Tunnel-Implementierungsseite](/docs/specs/tunnel-implementation/) beschrieben.",
+            "fr": "Bien que la taille maximale de charge utile soit théoriquement de 64 Ko, elle est davantage limitée par la méthode de fragmentation des messages I2NP en plusieurs messages tunnel de 1 Ko, comme décrit sur la [page de mise en œuvre des tunnels](/docs/specs/tunnel-implementation/).",
+            "tr": "Maksimum yük boyutu nominal olarak 64KB olsa da, bu boyut [tünel uygulaması sayfasında](/docs/specs/tunnel-implementation/) açıklandığı gibi I2NP mesajlarının birden fazla 1KB'lık tünel mesajına parçalanma yöntemi tarafından daha da sınırlanır.",
+            "ar": "بينما يكون الحد الأقصى لحجم الحمولة 64 كيلوبايت نظريًا، فإن الحجم يخضع لقيود إضافية تتعلق بطريقة تجزئة رسائل I2NP إلى رسائل نفق متعددة بحجم 1 كيلوبايت كما هو موضح في [صفحة تنفيذ النفق](/docs/specs/tunnel-implementation/).",
+            "vi": "Mặc dù kích thước tải trọng tối đa danh nghĩa là 64KB, kích thước này còn bị giới hạn hơn nữa bởi phương pháp phân mảnh các tin nhắn I2NP thành nhiều tin nhắn đường hầm 1KB như được mô tả trên trang [triển khai đường hầm](/docs/specs/tunnel-implementation/).",
+            "cs": "I když je maximální velikost dat nominálně 64 KB, skutečná velikost je dále omezena způsobem fragmentace zpráv I2NP do více 1 KB velkých tunelových zpráv, jak je popsáno na [stránce s popisem implementace tunelů](/docs/specs/tunnel-implementation/).",
+            "hi": "हालांकि अधिकतम पेलोड आकार औपचारिक रूप से 64KB है, आकार को [टनल लागूकरण पृष्ठ](/docs/specs/tunnel-implementation/) पर वर्णित आई2एनपी संदेशों को कई 1KB टनल संदेशों में खंडित करने की विधि द्वारा और अधिक सीमित किया जाता है।"
           }
         },
         "p_006": {
@@ -25622,7 +25966,15 @@
             "zh": "最大分片数量为64个，但由于消息可能无法完全对齐，因此消息在名义上必须能够容纳在63个分片内。",
             "es": "El número máximo de fragmentos es 64, y es posible que el mensaje no esté perfectamente alineado, por lo que el mensaje debe caber nominalmente en 63 fragmentos.",
             "ru": "Максимальное количество фрагментов — 64, и сообщение может быть не perfectly выровнено, поэтому сообщение должно умещаться в 63 фрагмента.",
-            "ko": "최대 조각 수는 64개이며, 메시지가 완벽하게 정렬되지 않을 수 있으므로 메시지는 명목상 63개의 조각 안에 들어가야 합니다."
+            "ko": "최대 조각 수는 64개이며, 메시지가 완벽하게 정렬되지 않을 수 있으므로 메시지는 명목상 63개의 조각 안에 들어가야 합니다.",
+            "pt": "O número máximo de fragmentos é 64, e a mensagem pode não ser perfeitamente alinhada, portanto, a mensagem deve caber nominalmente em 63 fragmentos.",
+            "de": "Die maximale Anzahl an Fragmenten beträgt 64, und die Nachricht ist möglicherweise nicht perfekt ausgerichtet, sodass die Nachricht nominell in 63 Fragmenten Platz haben muss.",
+            "fr": "Le nombre maximal de fragments est de 64, et le message peut ne pas être parfaitement aligné, donc le message doit idéalement tenir dans 63 fragments.",
+            "tr": "Parça sayısı en fazla 64 olabilir ve mesaj tam olarak hizalanmamış olabilir, bu yüzden mesaj nominal olarak 63 parçaya sığmalıdır.",
+            "ar": "الحد الأقصى لعدد القطع هو 64، وقد لا تكون الرسالة محاذاة بشكل مثالي، لذلك يجب أن تتسع الرسالة في 63 قطعة على الأكثر نظريًا.",
+            "vi": "Số lượng phân mảnh tối đa là 64, và thông điệp có thể không được căn chỉnh hoàn hảo, do đó thông điệp phải vừa đủ trong 63 phân mảnh theo quy định.",
+            "cs": "Maximální počet fragmentů je 64 a zpráva nemusí být dokonale zarovnána, takže musí teoreticky vejít do 63 fragmentů.",
+            "hi": "अधिकतम फ्रैगमेंट्स की संख्या 64 है, और संदेश पूरी तरह संरेखित नहीं हो सकता है, इसलिए संदेश को आम तौर पर 63 फ्रैगमेंट्स में फिट होना चाहिए।"
           }
         },
         "p_007": {
@@ -25631,7 +25983,15 @@
             "zh": "初始片段的最大大小为 956 字节（假设为 TUNNEL 传递模式）；后续片段的最大大小为 996 字节。因此最大大小约为 956 + (62 × 996) = 62708 字节，即 61.2 KB。",
             "es": "El tamaño máximo de un fragmento inicial es de 956 bytes (suponiendo el modo de entrega TUNNEL); el tamaño máximo de un fragmento subsiguiente es de 996 bytes. Por lo tanto, el tamaño máximo es aproximadamente 956 + (62 * 996) = 62708 bytes, o 61,2 KB.",
             "ru": "Максимальный размер начального фрагмента составляет 956 байт (при условии режима доставки TUNNEL); максимальный размер последующего фрагмента — 996 байт. Следовательно, максимальный размер составляет приблизительно 956 + (62 × 996) = 62708 байт или 61,2 КБ.",
-            "ko": "초기 조각의 최대 크기는 956바이트(TUNNEL 전달 모드 가정 시)이며, 후속 조각의 최대 크기는 996바이트입니다. 따라서 최대 크기는 약 956 + (62 × 996) = 62708바이트, 즉 61.2KB입니다."
+            "ko": "초기 조각의 최대 크기는 956바이트(TUNNEL 전달 모드 가정 시)이며, 후속 조각의 최대 크기는 996바이트입니다. 따라서 최대 크기는 약 956 + (62 × 996) = 62708바이트, 즉 61.2KB입니다.",
+            "pt": "O tamanho máximo de um fragmento inicial é de 956 bytes (assumindo o modo de entrega TUNNEL); o tamanho máximo de um fragmento subsequente é de 996 bytes. Portanto, o tamanho máximo é aproximadamente 956 + (62 * 996) = 62708 bytes, ou 61,2 KB.",
+            "de": "Die maximale Größe eines anfänglichen Fragments beträgt 956 Bytes (unter der Annahme des TUNNEL-Liefermodus); die maximale Größe eines nachfolgenden Fragments beträgt 996 Bytes. Daher beträgt die maximale Größe ungefähr 956 + (62 × 996) = 62708 Bytes oder 61,2 KB.",
+            "fr": "La taille maximale d'un fragment initial est de 956 octets (en supposant le mode de livraison TUNNEL) ; la taille maximale d'un fragment suivant est de 996 octets. Par conséquent, la taille maximale est d'environ 956 + (62 × 996) = 62708 octets, soit 61,2 Ko.",
+            "tr": "İlk parçanın maksimum boyutu 956 bayttır (TUNNEL teslimat modu varsayılırsa); takip eden parçanın maksimum boyutu 996 bayttır. Bu nedenle maksimum boyut yaklaşık olarak 956 + (62 * 996) = 62708 bayt veya 61,2 KB'dır.",
+            "ar": "أقصى حجم لجزء أولي هو 956 بايت (بافتراض وضعية التسليم TUNNEL)؛ وأقصى حجم لجزء لاحق هو 996 بايت. وبالتالي، فإن أقصى حجم ممكن هو تقريبًا 956 + (62 × 996) = 62708 بايت، أو 61.2 كيلوبايت.",
+            "vi": "Kích thước tối đa của một đoạn ban đầu là 956 byte (giả sử ở chế độ giao hàng TUNNEL); kích thước tối đa của một đoạn tiếp theo là 996 byte. Do đó, kích thước tối đa vào khoảng 956 + (62 × 996) = 62708 byte, hay 61,2 KB.",
+            "cs": "Maximální velikost počátečního fragmentu je 956 bajtů (za předpokladu doručování přes TUNNEL); maximální velikost následného fragmentu je 996 bajtů. Celková maximální velikost je tedy přibližně 956 + (62 × 996) = 62708 bajtů, neboli 61,2 KB.",
+            "hi": "एक प्रारंभिक खंड का अधिकतम आकार 956 बाइट्स है (TUNNEL डिलीवरी मोड मानते हुए); एक अनुवर्ती खंड का अधिकतम आकार 996 बाइट्स है। इसलिए अधिकतम आकार लगभग 956 + (62 * 996) = 62708 बाइट्स, या 61.2 KB है।"
           }
         },
         "p_008": {
@@ -25640,7 +26000,15 @@
             "zh": "此外，传输方式可能还有额外的限制。NTCP 的限制是 16KB - 6 = 16378 字节。SSU 的限制大约是 32 KB。NTCP2 的限制大约是 64KB - 20 = 65516 字节，这超过了隧道所能支持的最大容量。",
             "es": "Además, los transportes pueden tener restricciones adicionales. El límite de NTCP es de 16 KB - 6 = 16378 bytes. El límite de SSU es aproximadamente 32 KB. El límite de NTCP2 es aproximadamente 64 KB - 20 = 65516 bytes, que es superior a lo que un túnel puede soportar.",
             "ru": "Кроме того, транспорты могут иметь дополнительные ограничения. Ограничение NTCP составляет 16 КБ - 6 = 16378 байт. Ограничение SSU составляет приблизительно 32 КБ. Ограничение NTCP2 составляет приблизительно 64 КБ - 20 = 65516 байт, что выше, чем может поддерживать туннель.",
-            "ko": "또한 전송 방식마다 추가적인 제한이 있을 수 있습니다. NTCP의 제한은 16KB - 6 = 16378바이트입니다. SSU의 제한은 약 32KB 정도이며, NTCP2의 제한은 약 64KB - 20 = 65516바이트로, 터널이 지원할 수 있는 크기보다 더 큽니다."
+            "ko": "또한 전송 방식마다 추가적인 제한이 있을 수 있습니다. NTCP의 제한은 16KB - 6 = 16378바이트입니다. SSU의 제한은 약 32KB 정도이며, NTCP2의 제한은 약 64KB - 20 = 65516바이트로, 터널이 지원할 수 있는 크기보다 더 큽니다.",
+            "pt": "Além disso, os transportes podem ter restrições adicionais. O limite do NTCP é de 16KB - 6 = 16378 bytes. O limite do SSU é de aproximadamente 32 KB. O limite do NTCP2 é de aproximadamente 64KB - 20 = 65516 bytes, o que é maior do que o que um túnel pode suportar.",
+            "de": "Zusätzlich können die Transportschichten zusätzliche Beschränkungen aufweisen. Die NTCP-Begrenzung liegt bei 16KB - 6 = 16378 Bytes. Die SSU-Begrenzung beträgt etwa 32 KB. Die NTCP2-Begrenzung liegt bei etwa 64KB - 20 = 65516 Bytes, was höher ist als das, was ein Tunnel unterstützen kann.",
+            "fr": "De plus, les protocoles de transport peuvent avoir des restrictions supplémentaires. La limite NTCP est de 16 Ko - 6 = 16378 octets. La limite SSU est d'environ 32 Ko. La limite NTCP2 est d'environ 64 Ko - 20 = 65516 octets, ce qui est supérieur à ce qu'un tunnel peut supporter.",
+            "tr": "Ayrıca, aktarımlar ek sınırlamalara sahip olabilir. NTCP sınırı 16KB - 6 = 16378 bayttır. SSU sınırı yaklaşık 32 KB'dır. NTCP2 sınırı yaklaşık 64KB - 20 = 65516 bayttır ve bu, bir tünelin destekleyebileceğinden daha yüksektir.",
+            "ar": "بالإضافة إلى ذلك، قد تكون هناك قيود إضافية على وسائل النقل. فإن الحد الأقصى لـ NTCP هو 16 كيلوبايت - 6 = 16378 بايت. والحد الأقصى لـ SSU هو تقريبًا 32 كيلوبايت. والحد الأقصى لـ NTCP2 هو تقريبًا 64 كيلوبايت - 20 = 65516 بايت، وهو أعلى مما يمكن أن تدعمه النفق.",
+            "vi": "Ngoài ra, các giao thức truyền tải có thể có các giới hạn bổ sung. Giới hạn NTCP là 16KB - 6 = 16378 byte. Giới hạn SSU là khoảng 32 KB. Giới hạn NTCP2 là khoảng 64KB - 20 = 65516 byte, cao hơn mức mà một tunnel có thể hỗ trợ.",
+            "cs": "Kromě toho mohou mít přenosy další omezení. Limit NTCP je 16 KB - 6 = 16378 bajtů. Limit SSU je přibližně 32 KB. Limit NTCP2 je přibližně 64 KB - 20 = 65516 bajtů, což je vyšší hodnota, než jakou může tunel podporovat.",
+            "hi": "इसके अतिरिक्त, ट्रांसपोर्ट में अतिरिक्त प्रतिबंध हो सकते हैं। NTCP सीमा 16KB - 6 = 16378 बाइट्स है। SSU सीमा लगभग 32 KB है। NTCP2 सीमा लगभग 64KB - 20 = 65516 बाइट्स है, जो किसी टनल द्वारा समर्थित सीमा से अधिक है।"
           }
         },
         "p_009": {
@@ -25649,7 +26017,15 @@
             "zh": "请注意，这些并非客户端所见数据报的限制，因为路由器可能会将回复的leaseSet和/或会话标签与客户端消息捆绑在一个大蒜消息（garlic message）中。leaseSet和标签总共可能增加约5.5KB。因此，当前数据报限制约为10KB。此限制将在未来的版本中提高。",
             "es": "Tenga en cuenta que estos no son los límites para los datagramas que ve el cliente, ya que el router puede agrupar un leaseset de respuesta y/o etiquetas de sesión junto con el mensaje del cliente en un mensaje de ajo (garlic message). El leaseset y las etiquetas juntos pueden sumar aproximadamente 5,5 KB. Por lo tanto, el límite actual de datagrama es de unos 10 KB. Este límite se aumentará en una versión futura.",
             "ru": "Обратите внимание, что это не пределы для датаграмм, которые видит клиент, поскольку маршрутизатор может объединить набор аренд (leaseset) и/или теги сеанса вместе с сообщением клиента в одном чесночном (garlic) сообщении. Набор аренд и теги вместе могут добавить около 5,5 КБ. Поэтому текущий предел датаграммы составляет около 10 КБ. Этот предел будет увеличен в одной из будущих версий.",
-            "ko": "클라이언트가 보는 데이터그램의 한계치는 아님에 유의하세요. 라우터는 클라이언트 메시지와 함께 응답용 leaseSet 및/또는 세션 태그를 마늘(garlic) 메시지 안에 묶어 전송할 수 있기 때문입니다. leaseSet과 태그는 함께 약 5.5KB 정도를 추가할 수 있습니다. 따라서 현재 데이터그램 한계치는 약 10KB 정도입니다. 이 한계치는 향후 릴리스에서 증가될 예정입니다."
+            "ko": "클라이언트가 보는 데이터그램의 한계치는 아님에 유의하세요. 라우터는 클라이언트 메시지와 함께 응답용 leaseSet 및/또는 세션 태그를 마늘(garlic) 메시지 안에 묶어 전송할 수 있기 때문입니다. leaseSet과 태그는 함께 약 5.5KB 정도를 추가할 수 있습니다. 따라서 현재 데이터그램 한계치는 약 10KB 정도입니다. 이 한계치는 향후 릴리스에서 증가될 예정입니다.",
+            "pt": "Observe que esses não são os limites para datagramas vistos pelo cliente, pois o roteador pode agrupar um leaseset de resposta e/ou tags de sessão junto com a mensagem do cliente em uma mensagem garlic. O leaseset e as tags juntos podem adicionar cerca de 5,5 KB. Portanto, o limite atual de datagrama é de cerca de 10 KB. Esse limite será aumentado em uma versão futura.",
+            "de": "Beachten Sie, dass dies nicht die Grenzwerte für Datagramme sind, die der Client wahrnimmt, da der Router ein Antwort-LeaseSet und/oder Sitzungstags zusammen mit der Client-Nachricht in einer Garlic-Nachricht bündeln kann. Das LeaseSet und die Tags können zusammen etwa 5,5 KB hinzufügen. Daher beträgt die aktuelle Datagramm-Grenze etwa 10 KB. Diese Grenze wird in einer zukünftigen Version erhöht werden.",
+            "fr": "Notez que ce ne sont pas les limites pour les datagrammes perçus par le client, car le routeur peut regrouper un jeu de baux de réponse et/ou des étiquettes de session avec le message du client dans un message aux multiples couches (garlic message). Le jeu de baux et les étiquettes peuvent ensemble ajouter environ 5,5 Ko. Par conséquent, la limite actuelle pour les datagrammes est d'environ 10 Ko. Cette limite sera augmentée dans une prochaine version.",
+            "tr": "İstemcinin gördüğü veri birimleri için bu sınırların geçerli olmadığını unutmayın, çünkü yönlendirici bir sarımsak mesajında istemci mesajıyla birlikte bir yanıt leaseset'i ve/veya oturum etiketlerini birleştirebilir. Leaseset ve etiketler birlikte yaklaşık 5,5 KB ekleyebilir. Bu nedenle geçerli veri birimi sınırı yaklaşık 10 KB'dir. Bu sınır gelecekteki bir sürümde artırılacaktır.",
+            "ar": "لاحظ أن هذه ليست الحدود الخاصة بحزم البيانات التي يراها العميل، لأن الموجه قد يجمع مجموعة تأجير (leaseset) و/أو علامات جلسة (session tags) مع رسالة العميل ضمن رسالة ثومية (garlic message). حيث يمكن أن تضيف مجموعة التأجير والعلامات معًا حوالي 5.5 كيلوبايت. وبالتالي فإن الحد الحالي لحزمة البيانات هو حوالي 10 كيلوبايت. وسيتم زيادة هذا الحد في إصدار قادم.",
+            "vi": "Lưu ý rằng đây không phải là giới hạn đối với các gói tin mà client nhìn thấy, vì router có thể gom gói thuê (leaseset) phản hồi và/hoặc các thẻ phiên (session tags) cùng với tin nhắn của client vào một tin nhắn garlic. Kích thước của gói thuê và các thẻ cộng lại có thể làm tăng khoảng 5,5KB. Do đó, giới hạn gói tin hiện tại vào khoảng 10KB. Giới hạn này sẽ được tăng lên trong một bản phát hành tương lai.",
+            "cs": "Vezměte prosím na vědomí, že to nejsou limity pro datagramy, které vidí klient, protože směrovač může seskupit reply leaseset a/nebo session tags spolu se zprávou klienta do jedné garlic zprávy. Leaseset a tagy dohromady mohou přidat přibližně 5,5 KB. Aktuální limit pro datagramy je proto přibližně 10 KB. Tento limit bude zvýšen v budoucí verzi.",
+            "hi": "ध्यान दें कि ये वे सीमाएं नहीं हैं जो क्लाइंट डेटाग्राम के लिए देखता है, क्योंकि राउटर एक गैरलिक संदेश में क्लाइंट संदेश के साथ एक रिप्लाई लीज़सेट और/या सत्र टैग्स को एक साथ पैक कर सकता है। लीज़सेट और टैग्स मिलकर लगभग 5.5KB जोड़ सकते हैं। इसलिए वर्तमान डेटाग्राम सीमा लगभग 10KB है। भविष्य के संस्करण में इस सीमा में वृद्धि की जाएगी।"
           }
         },
         "h2_004": {
@@ -25658,7 +26034,15 @@
             "zh": "消息类型 {#types}",
             "es": "Tipos de mensajes {#types}",
             "ru": "Типы сообщений {#types}",
-            "ko": "메시지 유형 {#types}"
+            "ko": "메시지 유형 {#types}",
+            "pt": "Tipos de Mensagem {#types}",
+            "de": "Nachrichtentypen {#types}",
+            "fr": "Types de messages {#types}",
+            "tr": "Mesaj Türleri {#types}",
+            "ar": "أنواع الرسائل {#types}",
+            "vi": "Các loại tin nhắn {#types}",
+            "cs": "Typy zpráv {#types}",
+            "hi": "संदेश प्रकार {#types}"
           }
         },
         "p_010": {
@@ -25667,7 +26051,15 @@
             "zh": "编号较大的优先级更高。大多数流量为 TunnelDataMessages（优先级 400），因此任何高于 400 的优先级本质上属于高优先级，而低于 400 的则属于低优先级。还需注意，许多消息通常通过探索性隧道（exploratory tunnels）而非客户端隧道进行路由，因此除非第一跳恰好位于同一节点，否则它们可能不在同一个队列中。",
             "es": "Un número mayor de prioridad indica una prioridad más alta. La mayoría del tráfico corresponde a TunnelDataMessages (prioridad 400), por lo que cualquier valor por encima de 400 es esencialmente alta prioridad, y cualquier valor por debajo es baja prioridad. Tenga en cuenta también que muchos de los mensajes generalmente se enrutan a través de túneles exploratorios, no túneles de cliente, y por lo tanto pueden no estar en la misma cola a menos que los primeros saltos ocurran en el mismo par.",
             "ru": "Чем выше номер приоритета, тем выше приоритет. Большая часть трафика — это TunnelDataMessages (приоритет 400), поэтому всё, что выше 400, по сути является высоким приоритетом, а всё, что ниже, — низким. Также обратите внимание, что многие сообщения обычно передаются через исследовательские туннели, а не клиентские, и поэтому могут находиться не в той же очереди, если первые прыжки случайно не приходятся на одного и того же пира.",
-            "ko": "번호가 높은 우선순위일수록 더 높은 우선순위를 가진다. 대부분의 트래픽은 TunnelDataMessage(우선순위 400)이므로, 400보다 높은 값은 본질적으로 높은 우선순위이며, 400보다 낮은 값은 낮은 우선순위이다. 또한 많은 메시지들이 클라이언트 튜널이 아닌 탐사용 튜널(exploratory tunnel)을 통해 일반적으로 라우팅되므로, 첫 번째 홉(first hop)이 운 좋게 동일한 피어에 있지 않는 한 동일한 큐에 있지 않을 수 있다는 점에도 유의해야 한다."
+            "ko": "번호가 높은 우선순위일수록 더 높은 우선순위를 가진다. 대부분의 트래픽은 TunnelDataMessage(우선순위 400)이므로, 400보다 높은 값은 본질적으로 높은 우선순위이며, 400보다 낮은 값은 낮은 우선순위이다. 또한 많은 메시지들이 클라이언트 튜널이 아닌 탐사용 튜널(exploratory tunnel)을 통해 일반적으로 라우팅되므로, 첫 번째 홉(first hop)이 운 좋게 동일한 피어에 있지 않는 한 동일한 큐에 있지 않을 수 있다는 점에도 유의해야 한다.",
+            "pt": "Quanto maior o número da prioridade, maior é a prioridade. A maioria do tráfego é composta por TunnelDataMessages (prioridade 400), portanto qualquer valor acima de 400 é essencialmente alta prioridade, e qualquer valor abaixo é baixa prioridade. Observe também que muitas das mensagens geralmente são roteadas através de túneis exploratórios, não túneis de cliente, e por isso podem não estar na mesma fila, a menos que os primeiros saltos aconteçam de estar no mesmo par.",
+            "de": "Eine höhere Prioritätsnummer bedeutet eine höhere Priorität. Der Großteil des Datenverkehrs besteht aus TunnelDataMessages (Priorität 400), sodass alles darüber im Wesentlichen hohe Priorität hat und alles darunter niedrige Priorität. Beachten Sie außerdem, dass viele Nachrichten im Allgemeinen über explorative Tunnel und nicht über Client-Tunnel weitergeleitet werden und sich daher möglicherweise nicht in derselben Warteschlange befinden, es sei denn, die ersten Hops liegen zufällig auf demselben Peer.",
+            "fr": "Une priorité numérotée plus élevée correspond à une priorité plus élevée. La majorité du trafic est constituée de TunnelDataMessages (priorité 400), donc tout ce qui est au-dessus de 400 est essentiellement une priorité élevée, et tout ce qui est en dessous est une priorité faible. Notez également que bon nombre de messages sont généralement acheminés via des tunnels exploratoires, et non des tunnels clients, et peuvent donc ne pas se trouver dans la même file d'attente, sauf si les premiers sauts se trouvent par hasard sur le même pair.",
+            "tr": "Daha yüksek numaralı öncelik, daha yüksek önceliktir. Trafik büyük ölçüde TunnelDataMessages'tir (öncelik 400), bu yüzden 400'ün üzerindekiler temelde yüksek öncelikli, altındakiler ise düşük önceliklidir. Ayrıca, mesajların çoğu genellikle istemci tünelleri değil, keşif tünelleri aracılığıyla yönlendirilir ve bu nedenle ilk zıplayışlar aynı eş üzerinde olmazsa aynı kuyrukta olmayabilirler.",
+            "ar": "كلما كان الرقم الأعلى أولوية أعلى. إن الجزء الأكبر من حركة المرور يتكون من TunnelDataMessages (الأولوية 400)، وبالتالي فإن أي شيء فوق 400 يُعتبر عمليًا أولوية عالية، وأي شيء تحته أولوية منخفضة. لاحظ أيضًا أن العديد من الرسائل يتم توجيهها عادةً عبر أنفاق استكشافية، وليس عبر أنفاق العميل، وبالتالي قد لا تكون في نفس الطابور ما لم تكن المحطات الأولى تقع على نفس الندّ.",
+            "vi": "Độ ưu tiên có số cao hơn thì mức ưu tiên càng cao. Phần lớn lưu lượng là TunnelDataMessages (độ ưu tiên 400), do đó mọi thứ trên 400 về cơ bản là ưu tiên cao, và mọi thứ dưới đó là ưu tiên thấp. Lưu ý thêm rằng nhiều tin nhắn thường được định tuyến thông qua các tunnel thăm dò (exploratory tunnels), chứ không phải tunnel khách hàng (client tunnels), và do đó có thể không nằm trong cùng một hàng đợi trừ khi các bước nhảy đầu tiên tình cờ nằm trên cùng một peer.",
+            "cs": "Vyšší číslo priority znamená vyšší prioritu. Většina provozu jsou TunnelDataMessages (priorita 400), takže cokoli nad 400 je v podstatě vysoká priorita a cokoli pod tím je nízká priorita. Dále si také povšimněte, že mnoho zpráv je obecně směrováno přes průzkumné tunely, nikoli klientské tunely, a proto nemusí být ve stejné frontě, pokud se první skoky náhodou neshodují na stejném peeru.",
+            "hi": "उच्च संख्या वाली प्राथमिकता का अर्थ है उच्च प्राथमिकता। अधिकांश ट्रैफ़िक TunnelDataMessages (प्राथमिकता 400) होता है, इसलिए 400 से ऊपर कुछ भी व्यावहारिक रूप से उच्च प्राथमिकता का होता है, और 400 से नीचे कुछ भी निम्न प्राथमिकता का होता है। ध्यान दें कि कई संदेशों को आमतौर पर क्लाइंट टनल के बजाय अन्वेषणात्मक टनल के माध्यम से रूट किया जाता है, और इसलिए जब तक पहले छलांग (हॉप्स) संयोगवश एक ही पीयर पर न हों, तब तक वे समान कतार में नहीं हो सकते।"
           }
         },
         "p_011": {
@@ -25676,7 +26068,15 @@
             "zh": "此外，并非所有消息类型都是未加密发送的。例如，在测试隧道时，路由器会封装一个 DeliveryStatusMessage，该消息被封装在 GarlicMessage 中，而后者又被封装在 DataMessage 中。",
             "es": "Además, no todos los tipos de mensajes se envían sin cifrar. Por ejemplo, al probar un túnel, el router encapsula un DeliveryStatusMessage, que a su vez se encapsula en un GarlicMessage, el cual se encapsula en un DataMessage.",
             "ru": "Кроме того, не все типы сообщений отправляются без шифрования. Например, при тестировании туннеля маршрутизатор оборачивает сообщение DeliveryStatusMessage, которое, в свою очередь, оборачивается в GarlicMessage, а затем в DataMessage.",
-            "ko": "또한 모든 메시지 유형이 암호화되지 않은 상태로 전송되는 것은 아닙니다. 예를 들어 터널을 테스트할 때, 라우터는 DeliveryStatusMessage를 감싸고, 이는 다시 GarlicMessage에 감싸지며, 최종적으로 DataMessage에 감싸집니다."
+            "ko": "또한 모든 메시지 유형이 암호화되지 않은 상태로 전송되는 것은 아닙니다. 예를 들어 터널을 테스트할 때, 라우터는 DeliveryStatusMessage를 감싸고, 이는 다시 GarlicMessage에 감싸지며, 최종적으로 DataMessage에 감싸집니다.",
+            "pt": "Além disso, nem todos os tipos de mensagens são enviados sem criptografia. Por exemplo, ao testar um túnel, o roteador encapsula uma DeliveryStatusMessage, que é encapsulada em uma GarlicMessage, que por sua vez é encapsulada em uma DataMessage.",
+            "de": "Außerdem werden nicht alle Nachrichtentypen unverschlüsselt gesendet. Beispielsweise umfasst der Router beim Testen eines Tunnels eine DeliveryStatusMessage, die in eine GarlicMessage eingepackt ist, die wiederum in eine DataMessage eingepackt ist.",
+            "fr": "En outre, tous les types de messages ne sont pas envoyés non chiffrés. Par exemple, lors du test d'un tunnel, le routeur encapsule un DeliveryStatusMessage, qui est lui-même encapsulé dans un GarlicMessage, lequel est encapsulé dans un DataMessage.",
+            "tr": "Ayrıca tüm mesaj türleri şifrelenmeden gönderilmemektedir. Örneğin bir tünel test edilirken, yönlendirici DeliveryStatusMessage'ı GarlicMessage içinde, GarlicMessage ise DataMessage içinde sarmalar.",
+            "ar": "أيضًا، ليست جميع أنواع الرسائل تُرسل بدون تشفير. على سبيل المثال، عند اختبار نفق، يقوم الموجه بتغليف رسالة حالة التسليم (DeliveryStatusMessage)، والتي بدورها تُغلف في رسالة ثومية (GarlicMessage)، ثم تُغلف داخل رسالة بيانات (DataMessage).",
+            "vi": "Ngoài ra, không phải tất cả các loại tin nhắn đều được gửi mà không mã hóa. Ví dụ, khi kiểm tra một tunnel, router sẽ bao bọc một DeliveryStatusMessage, được đặt bên trong một GarlicMessage, và tiếp tục được bao bọc bởi một DataMessage.",
+            "cs": "Také ne všechny typy zpráv jsou odesílány nešifrovaně. Například při testování tunelu router zabalí DeliveryStatusMessage, která je zabalena v GarlicMessage, která je zase zabalena v DataMessage.",
+            "hi": "इसके अलावा, सभी संदेश प्रकार एन्क्रिप्टेड किए बिना भेजे नहीं जाते हैं। उदाहरण के लिए, एक टनल का परीक्षण करते समय, राउटर एक DeliveryStatusMessage को लपेटता है, जिसे GarlicMessage में लपेटा जाता है, जिसे बदले में DataMessage में लपेटा जाता है।"
           }
         },
         "h2_005": {
@@ -25685,7 +26085,15 @@
             "zh": "完整协议规范",
             "es": "Especificación completa del protocolo",
             "ru": "Полная спецификация протокола",
-            "ko": "완전한 프로토콜 사양"
+            "ko": "완전한 프로토콜 사양",
+            "pt": "Especificação Completa do Protocolo",
+            "de": "Vollständige Protokollspezifikation",
+            "fr": "Spécification complète du protocole",
+            "tr": "Tam Protokol Spesifikasyonu",
+            "ar": "مواصفات البروتوكول الكاملة",
+            "vi": "Đặc tả Giao thức Đầy đủ",
+            "cs": "Úplná specifikace protokolu",
+            "hi": "पूर्ण प्रोटोकॉल विशिष्टता"
           }
         },
         "p_012": {
@@ -25694,7 +26102,15 @@
             "zh": "请参阅 [I2NP 规范页面](/docs/specs/i2np/) 以获取完整的协议规范。另请参阅 [通用数据结构规范页面](/docs/specs/common-structures/)。",
             "es": "Consulta la [página de Especificación I2NP](/docs/specs/i2np/) para obtener la especificación completa del protocolo. Consulta también la [página de Especificación de Estructuras de Datos Comunes](/docs/specs/common-structures/).",
             "ru": "Полная спецификация протокола доступна на странице [спецификации I2NP](/docs/specs/i2np/). См. также страницу [спецификации общих структур данных](/docs/specs/common-structures/).",
-            "ko": "전체 프로토콜 사양은 [I2NP 사양 페이지](/docs/specs/i2np/)를 참조하세요. 또한 [공용 데이터 구조 사양 페이지](/docs/specs/common-structures/)도 함께 참조하세요."
+            "ko": "전체 프로토콜 사양은 [I2NP 사양 페이지](/docs/specs/i2np/)를 참조하세요. 또한 [공용 데이터 구조 사양 페이지](/docs/specs/common-structures/)도 함께 참조하세요.",
+            "pt": "Consulte a [página de especificação do I2NP](/docs/specs/i2np/) para a especificação completa do protocolo. Consulte também a [página de especificação de estruturas de dados comuns](/docs/specs/common-structures/).",
+            "de": "Siehe die [I2NP-Spezifikationsseite](/docs/specs/i2np/) für die vollständige Protokollspezifikation. Siehe auch die [Spezifikationsseite für gemeinsame Datenstrukturen](/docs/specs/common-structures/).",
+            "fr": "Voir la [page de spécification I2NP](/docs/specs/i2np/) pour la spécification complète du protocole. Voir également la [page de spécification des structures de données communes](/docs/specs/common-structures/).",
+            "tr": "Tam protokol belirtimi için [I2NP Spesifikasyon sayfasına](/docs/specs/i2np/) bakın. Ayrıca [Ortak Veri Yapısı Spesifikasyonu sayfasına](/docs/specs/common-structures/) da bakın.",
+            "ar": "انظر [صفحة مواصفات I2NP](/docs/specs/i2np/) للحصول على مواصفات البروتوكول الكاملة. انظر أيضًا [صفحة مواصفات هياكل البيانات المشتركة](/docs/specs/common-structures/).",
+            "vi": "Xem trang [Thông số kỹ thuật I2NP](/docs/specs/i2np/) để biết thông số giao thức đầy đủ. Xem thêm trang [Thông số kỹ thuật Cấu trúc Dữ liệu Chung](/docs/specs/common-structures/).",
+            "cs": "Kompletní specifikaci protokolu naleznete na stránce [specifikace I2NP](/docs/specs/i2np/). Viz také stránka [specifikace běžných datových struktur](/docs/specs/common-structures/).",
+            "hi": "पूर्ण प्रोटोकॉल विनिर्देश के लिए [I2NP विनिर्देश पृष्ठ](/docs/specs/i2np/) देखें। साथ ही [सामान्य डेटा संरचना विनिर्देश पृष्ठ](/docs/specs/common-structures/) भी देखें।"
           }
         },
         "h2_006": {
@@ -25703,7 +26119,15 @@
             "zh": "未来工作",
             "es": "Trabajo Futuro",
             "ru": "Будущая работа",
-            "ko": "향후 작업"
+            "ko": "향후 작업",
+            "pt": "Trabalhos Futuros",
+            "de": "Zukünftige Arbeiten",
+            "fr": "Travaux futurs",
+            "tr": "Gelecek Çalışmalar",
+            "ar": "العمل المستقبلي",
+            "vi": "Công việc trong tương lai",
+            "cs": "Budoucí práce",
+            "hi": "भावी कार्य"
           }
         },
         "p_013": {
@@ -25712,11 +26136,19 @@
             "zh": "目前尚不清楚当前的优先级方案是否普遍有效，以及各种消息的优先级是否应进一步调整。这需要进一步的研究、分析和测试。",
             "es": "No está claro si el esquema de prioridades actual es generalmente efectivo, ni si las prioridades para los diversos mensajes deberían ajustarse más. Este es un tema para investigación, análisis y pruebas adicionales.",
             "ru": "Неясно, насколько эффективна текущая система приоритетов в целом и следует ли дополнительно корректировать приоритеты различных сообщений. Это тема для дальнейших исследований, анализа и тестирования.",
-            "ko": "현재의 우선순위 체계가 일반적으로 효과적인지 여부와 다양한 메시지의 우선순위를 추가로 조정해야 하는지는 불분명하다. 이는 추가 연구, 분석 및 테스트가 필요한 주제이다."
+            "ko": "현재의 우선순위 체계가 일반적으로 효과적인지 여부와 다양한 메시지의 우선순위를 추가로 조정해야 하는지는 불분명하다. 이는 추가 연구, 분석 및 테스트가 필요한 주제이다.",
+            "pt": "Não está claro se o esquema de prioridade atual é geralmente eficaz, nem se as prioridades para as diversas mensagens devem ser ajustadas ainda mais. Este é um tema para pesquisas, análises e testes adicionais.",
+            "de": "Es ist unklar, ob das derzeitige Prioritätenschema allgemein wirksam ist und ob die Prioritäten für verschiedene Nachrichten weiter angepasst werden sollten. Dies ist ein Thema für weitere Forschung, Analyse und Tests.",
+            "fr": "Il n'est pas clair si le schéma de priorité actuel est généralement efficace, ni si les priorités pour les différents messages devraient être davantage ajustées. Il s'agit d'un sujet nécessitant des recherches, des analyses et des tests supplémentaires.",
+            "tr": "Mevcut öncelik şemasının genel olarak etkili olup olmadığı ve çeşitli mesajlar için önceliklerin daha fazla ayarlanması gerekip gerekmediği henüz açık değil. Bu, daha ileri araştırma, analiz ve testler için bir konudur.",
+            "ar": "ليست واضحة ما إذا كان نظام الأولوية الحالي فعالًا بشكل عام، أو ما إذا كان ينبغي تعديل أولويات الرسائل المختلفة أكثر. هذا موضوع يحتاج إلى مزيد من البحث والتحليل والاختبار.",
+            "vi": "Chưa rõ liệu sơ đồ ưu tiên hiện tại có hiệu quả nói chung hay không, và liệu các mức ưu tiên cho các tin nhắn khác nhau có cần được điều chỉnh thêm hay không. Đây là chủ đề cần nghiên cứu, phân tích và thử nghiệm thêm.",
+            "cs": "Není jasné, zda je současný systém priorit obecně účinný a zda by měly být priority jednotlivých zpráv dále upraveny. Toto je téma pro další výzkum, analýzu a testování.",
+            "hi": "यह स्पष्ट नहीं है कि वर्तमान प्राथमिकता योजना सामान्य रूप से प्रभावी है या नहीं, और विभिन्न संदेशों के लिए प्राथमिकताओं को आगे समायोजित करने की आवश्यकता है या नहीं। यह आगे के अनुसंधान, विश्लेषण और परीक्षण का विषय है।"
           }
         }
       },
-      "file_hash": "a8795efa444e61beebb737286da6c8dd4b615fe737e7e167cb2ef7f67c42221b"
+      "file_hash": "20cbba659efa194401851a807d614e9cf32cd25bdfe09fc016fa27ddd438a1cf"
     }
   }
 }
