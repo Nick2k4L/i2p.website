@@ -635,4 +635,4 @@ I2CP ports are for I2P sockets and datagrams. They are unrelated to your local s
 
 - The current authorization mechanism could be modified to use hashed passwords.
 - The Signing Private Keys is included in the Create Lease Set message, it is not required. Revocation is unimplemented. It should be replaced with random data or removed.
-- Some improvements may be able to use messages previously defined but not implemented.
+- Some improvements may be able to use messages previously defined but not implemented. 

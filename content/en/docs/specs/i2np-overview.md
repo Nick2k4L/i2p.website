@@ -10,7 +10,7 @@ lastUpdated: "2018-10"
 accurateFor: "0.9.37"
 ---
 
-## Overview
+## Overview 
 
 The I2P Network Protocol (I2NP), which is sandwiched between I2CP and the various I2P transport protocols, manages the routing and mixing of messages between routers, as well as the selection of what transports to use when communicating with a peer for which there are multiple common transports supported.
 

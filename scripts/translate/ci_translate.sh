@@ -101,7 +101,7 @@ FAILED_LANGUAGES=()
 
 # Max parallel translation jobs
 # Keep low to avoid API rate limits — each job makes many API calls per segment
-MAX_PARALLEL=${MAX_PARALLEL_TRANSLATIONS:-4}
+MAX_PARALLEL=${MAX_PARALLEL_TRANSLATIONS:-12}
 
 # Test if Python script exists and is readable
 if [ ! -f "$PYTHON_SCRIPT" ]; then
