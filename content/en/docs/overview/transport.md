@@ -2,19 +2,25 @@
 title: "Transport Overview"
 description: "Overview of I2P's transport layer for point-to-point router communication"
 slug: "transport"
-lastUpdated: "2018-06"
-accurateFor: "0.9.36"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Transports in I2P
 
 A "transport" in I2P is a method for direct, point-to-point communication between two routers. Transports must provide confidentiality and integrity against external adversaries while authenticating that the router contacted is the one who should receive a given message.
 
-I2P supports multiple transports simultaneously. There are three transports currently implemented:
+I2P supports multiple transports simultaneously. There are two transports currently implemented:
+
+1. [NTCP2](/docs/specs/ntcp2/), a TCP-based protocol
+2. [SSU2](/docs/specs/ssu2/), a UDP-based protocol
+
+These transports are designed with modern crytography, indistinguishability, censorship-resistance,
+obfuscation, padding, and other security features. They are comlete redesigns of the following obsolete protocols
+that were developed early in the life of the I2P project:
 
 1. [NTCP](/docs/legacy/ntcp/), a Java New I/O (NIO) TCP transport
 2. [SSU](/docs/legacy/ssu/), or Secure Semireliable UDP
-3. [NTCP2](/docs/specs/ntcp2/), a new version of NTCP
 
 Each provides a "connection" paradigm, with authentication, flow control, acknowledgments and retransmission.
 
@@ -26,6 +32,7 @@ The transport subsystem in I2P provides the following services:
 
 - Reliable delivery of [I2NP](/docs/specs/i2np/) messages. Transports support I2NP message delivery ONLY. They are not general-purpose data pipes.
 - In-order delivery of messages is NOT guaranteed by all transports.
+- Deduplication of messages is NOT guaranteed by all transports.
 - Maintain a set of router addresses, one or more for each transport, that the router publishes as its global contact information (the RouterInfo). Each transport may connect using one of these addresses, which may be IPv4 or (as of version 0.9.8) IPv6.
 - Selection of the best transport for each outgoing message
 - Queueing of outbound messages by priority
@@ -54,8 +61,9 @@ Each transport method may publish multiple router addresses.
 Typical scenarios are:
 
 - A router has no published addresses, so it is considered "hidden" and cannot receive incoming connections
-- A router is firewalled, and therefore publishes an SSU address which contains a list of cooperating peers or "introducers" who will assist in NAT traversal (see [the SSU spec](/docs/legacy/ssu/) for details)
-- A router is not firewalled or its NAT ports are open; it publishes both NTCP and SSU addresses containing directly-accessible IP and ports.
+- A router is firewalled and cannot receive inbound connections, even via "introducers", but publish a router address indicating transport and protocol compatibility
+- A router is firewalled, and therefore publishes an SSU2 address which contains a list of cooperating peers or "introducers" who will assist in NAT traversal (see [the SSU spec](/docs/legacy/ssu/) for details)
+- A router is not firewalled or its NAT ports are open; it publishes both NTCP2 and SSU2 addresses containing directly-accessible IP and ports.
 
 ---
 
@@ -90,6 +98,6 @@ Additional transports may be developed, including:
 
 Work continues on adjusting default connection limits for each transport. I2P is designed as a "mesh network", where it is assumed that any router can connect to any other router. This assumption may be broken by routers that have exceeded their connection limits, and by routers that are behind restrictive state firewalls (restricted routes).
 
-The current connection limits are higher for SSU than for NTCP, based on the assumption that the memory requirements for an NTCP connection are higher than that for SSU. However, as NTCP buffers are partially in the kernel and SSU buffers are on the Java heap, that assumption is difficult to verify.
+The current connection limits are higher for SSU2 than for NTCP2, based on the assumption that the memory requirements for an NTCP2 connection are higher than that for SSU2. However, as NTCP2 buffers are partially in the kernel and SSU2 buffers are on the Java heap, that assumption is difficult to verify.
 
 Analyze [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) and see how transport-layer padding may improve things.
