@@ -3,8 +3,8 @@ title: "SSU2 Specification"
 description: "Secure Semi-Reliable UDP Transport Protocol Version 2"
 slug: "ssu2"
 category: "Transports"
-lastUpdated: "2025-04"
-accurateFor: "0.9.65"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Status
@@ -113,6 +113,34 @@ This specification defines the following enhancements to Noise_XK_25519_ChaChaPo
 5)  The payload format is defined for messages 1, 2, and the data phase. Of course, this is not defined in Noise.
 
 The data phase uses encryption similar to, but not compatible with, the Noise data phase.
+
+### Optional Protocol Features
+
+SSU2 is a large and complex protocol. To simplify initial implementation,
+the following features are optional, but recommended.
+Implementers should start with the core protocol, and only work on optional features once everything else is working.
+
+#### PQ Hybrid Variant
+
+As advertised in the "pq" parameter.
+See **[SSU-PQ]** [PQ Hybrid SSU2](/docs/specs/ssu2-hybrid)
+
+#### Peer Test
+
+As advertised with a "B" in the "caps" parameter.
+This is a sub-protocol that cooperatively detects public IP and port, and intervening firewalls.
+
+#### Relay
+
+As advertised with a "C" in the "caps" parameter.
+This is a sub-protocol that cooperatively traverses firewalls.
+
+#### Connection Migration
+
+No parameter. Drop these messages if you do not support.
+This is a sub-protocol that identifies and preserves sessions when one party changes IP or port,
+which happens much more often than you might expect.
+
 
 ## Definitions
 
@@ -4033,6 +4061,7 @@ We specify above that the token must be a randomly-generated 8 byte value, not g
 - **[RouterIdentity]** [RouterIdentity Structure](/docs/specs/common-structures#struct-routeridentity)
 - **[SigningPublicKey]** [SigningPublicKey Type](/docs/specs/common-structures#type-signingpublickey)
 - **[SSU]** [SSU Transport](/docs/transport/ssu)
+- **[SSU-PQ]** [PQ Hybrid SSU2](/docs/specs/ssu2-hybrid)
 - **[STS]** [Station-to-Station Protocol](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
 - **[Ticket1112]** [I2P Ticket 1112](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1112)
 - **[Ticket1849]** [I2P Ticket 1849](https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues/1849)
