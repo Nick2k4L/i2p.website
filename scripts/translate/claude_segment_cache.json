@@ -26149,6 +26149,572 @@
         }
       },
       "file_hash": "20cbba659efa194401851a807d614e9cf32cd25bdfe09fc016fa27ddd438a1cf"
+    },
+    "en/docs/overview/transport.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "39c085a518e89898",
+          "translations": {
+            "zh": "传输概述",
+            "es": "Resumen de Transportes",
+            "ko": "Transport 개요",
+            "ru": "Обзор транспорта",
+            "cs": "Přehled transportu",
+            "de": "Transport-Übersicht",
+            "fr": "Aperçu du transport",
+            "tr": "Transport Genel Bakış",
+            "vi": "Tổng quan về Transport",
+            "hi": "ट्रांसपोर्ट अवलोकन",
+            "ar": "نظرة عامة على النقل",
+            "pt": "Visão Geral do Transporte"
+          }
+        },
+        "fm_description": {
+          "source_hash": "65cc1a8227e54ad9",
+          "translations": {
+            "zh": "I2P点对点router通信传输层概述",
+            "es": "Visión general de la capa de transporte de I2P para la comunicación punto a punto entre routers",
+            "ko": "지점 간 router 통신을 위한 I2P의 전송 계층 개요",
+            "ru": "Обзор транспортного уровня I2P для связи между router'ами точка-точка",
+            "cs": "Přehled transportní vrstvy I2P pro komunikaci mezi routery typu point-to-point",
+            "de": "Überblick über die Transportschicht von I2P für punkt-zu-punkt router-Kommunikation",
+            "fr": "Aperçu de la couche transport d'I2P pour la communication router à router point-à-point",
+            "tr": "Router'lar arası nokta-nokta iletişim için I2P'nin transport katmanına genel bakış",
+            "vi": "Tổng quan về tầng vận chuyển của I2P cho giao tiếp router điểm-điểm",
+            "hi": "बिंदु-से-बिंदु router संचार के लिए I2P की transport layer का अवलोकन",
+            "ar": "نظرة عامة على طبقة النقل في I2P للاتصال المباشر بين أجهزة router",
+            "pt": "Visão geral da camada de transporte do I2P para comunicação ponto-a-ponto entre routers"
+          }
+        },
+        "h2_001": {
+          "source_hash": "b57de1745b806107",
+          "translations": {
+            "zh": "I2P 中的传输协议",
+            "es": "Transportes en I2P",
+            "ko": "I2P의 Transport",
+            "ru": "Транспорты в I2P",
+            "cs": "Transporty v I2P",
+            "de": "Transports in I2P",
+            "fr": "Transports dans I2P",
+            "tr": "I2P'de Transport'lar",
+            "vi": "Transport trong I2P",
+            "hi": "I2P में Transports",
+            "ar": "وسائل النقل في I2P",
+            "pt": "Transportes no I2P"
+          }
+        },
+        "p_001": {
+          "source_hash": "4935a7e549ece62a",
+          "translations": {
+            "zh": "I2P中的\"transport\"（传输层）是两个router之间直接点对点通信的方法。Transport必须提供针对外部对手的机密性和完整性保护，同时验证所联系的router确实是应该接收给定消息的那个router。",
+            "es": "Un \"transport\" en I2P es un método para la comunicación directa punto a punto entre dos routers. Los transports deben proporcionar confidencialidad e integridad contra adversarios externos mientras autentican que el router contactado es el que debería recibir un mensaje determinado.",
+            "ko": "I2P에서 \"transport\"는 두 router 간의 직접적인 지점 대 지점 통신을 위한 방법입니다. Transport는 외부 공격자로부터 기밀성과 무결성을 제공해야 하며, 동시에 연결된 router가 주어진 메시지를 받아야 할 올바른 대상인지 인증해야 합니다.",
+            "ru": "\"Транспорт\" в I2P — это метод прямой связи точка-к-точке между двумя router. Транспорты должны обеспечивать конфиденциальность и целостность против внешних злоумышленников, одновременно аутентифицируя, что контактируемый router является тем, кто должен получить данное сообщение.",
+            "cs": "\"Transport\" v I2P je metoda pro přímou komunikaci typu bod-bod mezi dvěma routery. Transports musí poskytovat důvěrnost a integritu proti externím protivníkům a současně ověřovat, že kontaktovaný router je ten, který by měl danou zprávu obdržet.",
+            "de": "Ein \"Transport\" in I2P ist eine Methode für direkte, punkt-zu-punkt Kommunikation zwischen zwei routern. Transports müssen Vertraulichkeit und Integrität gegen externe Angreifer bieten und gleichzeitig authentifizieren, dass der kontaktierte router derjenige ist, der eine bestimmte Nachricht erhalten soll.",
+            "fr": "Un \"transport\" dans I2P est une méthode de communication directe, point à point entre deux routers. Les transports doivent fournir la confidentialité et l'intégrité contre les adversaires externes tout en authentifiant que le router contacté est bien celui qui devrait recevoir un message donné.",
+            "tr": "I2P'de \"transport\" (taşıma), iki router arasında doğrudan, noktadan noktaya iletişim için kullanılan bir yöntemdir. Transport'lar, dış saldırganlara karşı gizlilik ve bütünlük sağlamalı, aynı zamanda iletişim kurulan router'ın belirli bir mesajı alması gereken router olduğunu doğrulamalıdır.",
+            "vi": "Một \"transport\" trong I2P là một phương thức để giao tiếp trực tiếp, điểm-tới-điểm giữa hai router. Các transport phải cung cấp tính bảo mật và toàn vẹn chống lại các đối thủ bên ngoài trong khi xác thực rằng router được liên hệ là router đúng để nhận một thông điệp cụ thể.",
+            "hi": "I2P में एक \"transport\" दो router के बीच प्रत्यक्ष, point-to-point संचार के लिए एक विधि है। Transport को बाहरी विरोधियों के खिलाफ गोपनीयता और अखंडता प्रदान करनी चाहिए, जबकि यह प्रमाणित करना चाहिए कि संपर्क किया गया router वही है जिसे दिया गया संदेश प्राप्त करना चाहिए।",
+            "ar": "\"النقل\" في I2P هو طريقة للاتصال المباشر من نقطة إلى نقطة بين اثنين من router. يجب أن توفر وسائل النقل السرية والتكامل ضد الخصوم الخارجيين مع المصادقة على أن router المتصل به هو الذي يجب أن يتلقى رسالة معينة.",
+            "pt": "Um \"transport\" no I2P é um método para comunicação direta, ponto-a-ponto entre dois routers. Os transports devem fornecer confidencialidade e integridade contra adversários externos enquanto autenticam que o router contatado é aquele que deveria receber uma determinada mensagem."
+          }
+        },
+        "p_002": {
+          "source_hash": "a0e229b47fccb914",
+          "translations": {
+            "zh": "I2P 同时支持多种传输协议。目前已实现三种传输协议：",
+            "es": "I2P soporta múltiples transportes simultáneamente. Actualmente hay tres transportes implementados:",
+            "ko": "I2P는 여러 전송 방식을 동시에 지원합니다. 현재 구현된 전송 방식은 세 가지입니다:",
+            "ru": "I2P поддерживает несколько транспортов одновременно. В настоящее время реализованы три транспорта:",
+            "cs": "I2P podporuje více transportů současně. V současnosti jsou implementovány tři transporty:",
+            "de": "I2P unterstützt mehrere Transporte gleichzeitig. Derzeit sind drei Transporte implementiert:",
+            "fr": "I2P prend en charge plusieurs transports simultanément. Il existe actuellement trois transports implémentés :",
+            "tr": "I2P aynı anda birden fazla taşıma protokolünü destekler. Şu anda uygulanmış üç taşıma protokolü bulunmaktadır:",
+            "vi": "I2P hỗ trợ đồng thời nhiều phương thức truyền tải. Hiện tại có ba phương thức truyền tải được triển khai:",
+            "hi": "I2P एक साथ कई transports का समर्थन करता है। वर्तमान में तीन transports लागू किए गए हैं:",
+            "ar": "يدعم I2P عدة وسائل نقل في نفس الوقت. هناك ثلاث وسائل نقل مُطبقة حالياً:",
+            "pt": "I2P suporta múltiplos transportes simultaneamente. Existem três transportes atualmente implementados:"
+          }
+        },
+        "list_001": {
+          "source_hash": "7c94822738495cd4",
+          "translations": {
+            "zh": "1. [NTCP](/docs/legacy/ntcp/)，一个Java新I/O (NIO) TCP传输协议\n2. [SSU](/docs/legacy/ssu/)，或安全半可靠UDP\n3. [NTCP2](/docs/specs/ntcp2/)，NTCP的新版本",
+            "es": "1. [NTCP](/docs/legacy/ntcp/), un transporte TCP Java New I/O (NIO)\n2. [SSU](/docs/legacy/ssu/), o UDP Semiseguro Semifiable\n3. [NTCP2](/docs/specs/ntcp2/), una nueva versión de NTCP",
+            "ko": "1. [NTCP](/docs/legacy/ntcp/), Java New I/O (NIO) TCP 전송 방식\n2. [SSU](/docs/legacy/ssu/), 또는 Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), NTCP의 새로운 버전",
+            "ru": "1. [NTCP](/docs/legacy/ntcp/), TCP-транспорт на основе Java New I/O (NIO)\n2. [SSU](/docs/legacy/ssu/), или Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), новая версия NTCP",
+            "cs": "1. [NTCP](/docs/legacy/ntcp/), Java New I/O (NIO) TCP transport\n2. [SSU](/docs/legacy/ssu/), neboli Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), nová verze NTCP",
+            "de": "1. [NTCP](/docs/legacy/ntcp/), ein Java New I/O (NIO) TCP-Transport\n2. [SSU](/docs/legacy/ssu/), oder Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), eine neue Version von NTCP",
+            "fr": "1. [NTCP](/docs/legacy/ntcp/), un transport TCP Java New I/O (NIO)\n2. [SSU](/docs/legacy/ssu/), ou Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), une nouvelle version de NTCP",
+            "tr": "1. [NTCP](/docs/legacy/ntcp/), bir Java New I/O (NIO) TCP taşıma protokolü\n2. [SSU](/docs/legacy/ssu/), veya Güvenli Yarı-güvenilir UDP\n3. [NTCP2](/docs/specs/ntcp2/), NTCP'nin yeni bir sürümü",
+            "vi": "1. [NTCP](/docs/legacy/ntcp/), một giao thức truyền tải TCP Java New I/O (NIO)\n2. [SSU](/docs/legacy/ssu/), hoặc Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), phiên bản mới của NTCP",
+            "hi": "1. [NTCP](/docs/legacy/ntcp/), एक Java New I/O (NIO) TCP transport\n2. [SSU](/docs/legacy/ssu/), या Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), NTCP का एक नया संस्करण",
+            "ar": "1. [NTCP](/docs/legacy/ntcp/)، نقل TCP لـ Java New I/O (NIO)\n2. [SSU](/docs/legacy/ssu/)، أو Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/)، إصدار جديد من NTCP",
+            "pt": "1. [NTCP](/docs/legacy/ntcp/), um transporte TCP Java New I/O (NIO)\n2. [SSU](/docs/legacy/ssu/), ou Secure Semireliable UDP\n3. [NTCP2](/docs/specs/ntcp2/), uma nova versão do NTCP"
+          }
+        },
+        "p_003": {
+          "source_hash": "ecf3ee8721705979",
+          "translations": {
+            "zh": "每种都提供\"连接\"范式，具有身份验证、流量控制、确认和重传功能。",
+            "es": "Cada uno proporciona un paradigma de \"conexión\", con autenticación, control de flujo, confirmaciones y retransmisión.",
+            "ko": "각각은 인증, 흐름 제어, 확인 응답 및 재전송 기능을 갖춘 \"연결\" 패러다임을 제공합니다.",
+            "ru": "Каждый предоставляет парадигму \"соединения\" с аутентификацией, управлением потоком, подтверждениями и повторной передачей.",
+            "cs": "Každý poskytuje paradigma \"připojení\" s autentizací, řízením toku, potvrzeními a retransmisí.",
+            "de": "Jedes bietet ein \"Verbindungs\"-Paradigma mit Authentifizierung, Flusskontrolle, Bestätigungen und Neuübertragung.",
+            "fr": "Chacun fournit un paradigme de \"connexion\", avec authentification, contrôle de flux, accusés de réception et retransmission.",
+            "tr": "Her biri kimlik doğrulama, akış kontrolü, onaylar ve yeniden iletim ile bir \"bağlantı\" paradigması sağlar.",
+            "vi": "Mỗi cái cung cấp một mô hình \"kết nối\", với xác thực, kiểm soát luồng, xác nhận và truyền lại.",
+            "hi": "प्रत्येक एक \"कनेक्शन\" प्रतिमान प्रदान करता है, जिसमें प्रमाणीकरण, फ्लो कंट्रोल, acknowledgments और retransmission शामिल है।",
+            "ar": "كل منهما يوفر نموذج \"اتصال\"، مع المصادقة والتحكم في التدفق والإقرارات وإعادة الإرسال.",
+            "pt": "Cada um fornece um paradigma de \"conexão\", com autenticação, controle de fluxo, confirmações e retransmissão."
+          }
+        },
+        "list_002": {
+          "source_hash": "769860d2935bddb1",
+          "translations": {
+            "zh": "- 可靠传递 [I2NP](/docs/specs/i2np/) 消息。传输层仅支持 I2NP 消息传递。它们不是通用数据管道。\n- 并非所有传输都保证消息的顺序传递。\n- 维护一组 router 地址，每种传输一个或多个地址，router 将其作为全局联系信息发布（RouterInfo）。每种传输可以使用这些地址中的一个进行连接，这些地址可能是 IPv4 或（自版本 0.9.8 起）IPv6。\n- 为每条出站消息选择最佳传输\n- 按优先级对出站消息进行排队\n- 根据 router 配置进行带宽限制，包括出站和入站\n- 建立和拆除传输连接\n- 点对点通信加密\n- 维护每种传输的连接限制，实施这些限制的各种阈值，并将阈值状态传达给 router，以便其根据状态进行操作更改\n- 使用 UPnP（通用即插即用）开放防火墙端口\n- 协作式 NAT/防火墙穿越\n- 通过多种方法检测本地 IP，包括 UPnP、检查传入连接和枚举网络设备\n- 在传输之间协调防火墙状态和本地 IP 及其变化\n- 向 router 和用户界面传达防火墙状态和本地 IP 及其变化\n- 确定一致性时钟，用于定期更新 router 时钟，作为 NTP 的备份\n- 维护每个对等节点的状态，包括是否已连接、是否最近连接过以及上次尝试时是否可达\n- 根据本地规则集验证有效的 IP 地址\n- 遵守 router 维护的自动和手动禁用对等节点列表，拒绝与这些对等节点的出站和入站连接",
+            "es": "- Entrega confiable de mensajes [I2NP](/docs/specs/i2np/). Los transportes soportan entrega de mensajes I2NP ÚNICAMENTE. No son tuberías de datos de propósito general.\n- La entrega en orden de los mensajes NO está garantizada por todos los transportes.\n- Mantener un conjunto de direcciones del router, una o más para cada transporte, que el router publica como su información de contacto global (el RouterInfo). Cada transporte puede conectarse usando una de estas direcciones, que pueden ser IPv4 o (a partir de la versión 0.9.8) IPv6.\n- Selección del mejor transporte para cada mensaje saliente\n- Encolamiento de mensajes salientes por prioridad\n- Limitación de ancho de banda, tanto saliente como entrante, según la configuración del router\n- Configuración y desconexión de conexiones de transporte\n- Cifrado de comunicaciones punto a punto\n- Mantenimiento de límites de conexión para cada transporte, implementación de varios umbrales para estos límites, y comunicación del estado del umbral al router para que pueda hacer cambios operacionales basados en el estado\n- Apertura de puertos del firewall usando UPnP (Universal Plug and Play)\n- Traversal cooperativo de NAT/Firewall\n- Detección de IP local por varios métodos, incluyendo UPnP, inspección de conexiones entrantes, y enumeración de dispositivos de red\n- Coordinación del estado del firewall e IP local, y cambios en cualquiera de los dos, entre los transportes\n- Comunicación del estado del firewall e IP local, y cambios en cualquiera de los dos, al router y la interfaz de usuario\n- Determinación de un reloj de consenso, que se usa para actualizar periódicamente el reloj del router, como respaldo para NTP\n- Mantenimiento del estado de cada peer, incluyendo si está conectado, si estuvo conectado recientemente, y si fue alcanzable en el último intento\n- Cualificación de direcciones IP válidas según un conjunto de reglas locales\n- Cumplimiento de las listas automatizadas y manuales de peers prohibidos mantenidas por el router, y rechazo de conexiones salientes y entrantes a esos peers",
+            "ko": "- [I2NP](/docs/specs/i2np/) 메시지의 신뢰할 수 있는 전달. 전송 계층은 I2NP 메시지 전달만을 지원합니다. 범용 데이터 파이프가 아닙니다.\n- 모든 전송 계층에서 메시지의 순차적 전달이 보장되지는 않습니다.\n- router가 전역 연락처 정보(RouterInfo)로 게시하는 router 주소 집합을 유지합니다. 각 전송 계층마다 하나 이상의 주소를 가지며, IPv4 또는 (버전 0.9.8부터) IPv6 주소일 수 있습니다.\n- 각 발신 메시지에 대한 최적의 전송 계층 선택\n- 우선순위별 발신 메시지 대기열 처리\n- router 설정에 따른 발신 및 수신 대역폭 제한\n- 전송 연결의 설정 및 해제\n- 지점 간 통신 암호화\n- 각 전송 계층의 연결 제한 유지, 이러한 제한에 대한 다양한 임계값 구현, 그리고 상태에 따른 운영 변경을 할 수 있도록 router에 임계값 상태 전달\n- UPnP(Universal Plug and Play)를 사용한 방화벽 포트 개방\n- 협력적 NAT/방화벽 통과\n- UPnP, 들어오는 연결 검사, 네트워크 장치 열거 등 다양한 방법을 통한 로컬 IP 감지\n- 전송 계층 간 방화벽 상태와 로컬 IP, 그리고 이들의 변경 사항 조정\n- 방화벽 상태와 로컬 IP, 그리고 이들의 변경 사항을 router와 사용자 인터페이스에 전달\n- NTP의 백업으로 router의 시계를 주기적으로 업데이트하는 데 사용되는 합의 시계 결정\n- 각 피어의 상태 유지, 연결 여부, 최근 연결 여부, 마지막 시도에서 도달 가능 여부 포함\n- 로컬 규칙 집합에 따른 유효한 IP 주소 검증\n- router가 유지하는 자동 및 수동 금지된 피어 목록을 준수하고, 해당 피어에 대한 발신 및 수신 연결 거부",
+            "ru": "- Надежная доставка сообщений [I2NP](/docs/specs/i2np/). Транспорты поддерживают доставку сообщений I2NP ТОЛЬКО. Они не являются универсальными каналами передачи данных.\n- Доставка сообщений по порядку НЕ гарантируется всеми транспортами.\n- Поддержка набора адресов router'а, одного или нескольких для каждого транспорта, которые router публикует как свою глобальную контактную информацию (RouterInfo). Каждый транспорт может подключаться используя один из этих адресов, которые могут быть IPv4 или (начиная с версии 0.9.8) IPv6.\n- Выбор лучшего транспорта для каждого исходящего сообщения\n- Постановка в очередь исходящих сообщений по приоритету\n- Ограничение пропускной способности, как исходящей, так и входящей, согласно конфигурации router'а\n- Установка и разрыв транспортных соединений\n- Шифрование связи точка-точка\n- Поддержание лимитов соединений для каждого транспорта, реализация различных пороговых значений для этих лимитов и передача статуса порогов router'у для возможности внесения операционных изменений на основе статуса\n- Открытие портов межсетевого экрана с использованием UPnP (Universal Plug and Play)\n- Совместное преодоление NAT/межсетевого экрана\n- Обнаружение локального IP различными методами, включая UPnP, проверку входящих соединений и перечисление сетевых устройств\n- Координация статуса межсетевого экрана и локального IP, а также изменений любого из них, между транспортами\n- Передача статуса межсетевого экрана и локального IP, а также изменений любого из них, router'у и пользовательскому интерфейсу\n- Определение согласованного времени, которое используется для периодического обновления часов router'а в качестве резервного варианта для NTP\n- Поддержание статуса для каждого узла, включая подключен ли он, был ли недавно подключен и был ли достижим в последней попытке\n- Квалификация допустимых IP-адресов согласно локальному набору правил\n- Соблюдение автоматических и ручных списков заблокированных узлов, поддерживаемых router'ом, и отклонение исходящих и входящих соединений к этим узлам",
+            "cs": "- Spolehlivé doručování [I2NP](/docs/specs/i2np/) zpráv. Transporty podporují doručování I2NP zpráv POUZE. Nejsou to univerzální datové roury.\n- Doručování zpráv v pořadí NENÍ garantováno všemi transporty.\n- Udržování sady router adres, jedné nebo více pro každý transport, které router publikuje jako své globální kontaktní informace (RouterInfo). Každý transport se může připojit pomocí jedné z těchto adres, která může být IPv4 nebo (od verze 0.9.8) IPv6.\n- Výběr nejlepšího transportu pro každou odchozí zprávu\n- Řazení odchozích zpráv podle priority do fronty\n- Omezení šířky pásma, jak odchozího tak příchozího, podle konfigurace routeru\n- Nastavení a ukončování transportních připojení\n- Šifrování point-to-point komunikace\n- Udržování limitů připojení pro každý transport, implementace různých prahových hodnot pro tyto limity a komunikace stavu prahových hodnot routeru, aby mohl provádět operační změny na základě stavu\n- Otevírání portů firewallu pomocí UPnP (Universal Plug and Play)\n- Kooperativní procházení NAT/Firewallu\n- Detekce lokální IP různými metodami, včetně UPnP, kontroly příchozích připojení a výčtu síťových zařízení\n- Koordinace stavu firewallu a lokální IP a změn kteréhokoli z nich mezi transporty\n- Komunikace stavu firewallu a lokální IP a změn kteréhokoli z nich routeru a uživatelskému rozhraní\n- Určení konsenzu času, který se používá k periodické aktualizaci času routeru jako záloha pro NTP\n- Udržování stavu pro každý peer, včetně toho, zda je připojen, zda byl nedávno připojen a zda byl dostupný při posledním pokusu\n- Kvalifikace platných IP adres podle místní sady pravidel\n- Respektování automatizovaných a manuálních seznamů zakázaných peerů udržovaných routerem a odmítání odchozích a příchozích připojení k těmto peerům",
+            "de": "- Zuverlässige Zustellung von [I2NP](/docs/specs/i2np/) Nachrichten. Transports unterstützen NUR die Zustellung von I2NP Nachrichten. Sie sind keine allgemeinen Datenleitungen.\n- Die Zustellung von Nachrichten in der richtigen Reihenfolge wird NICHT von allen Transports garantiert.\n- Verwaltung einer Sammlung von router-Adressen, eine oder mehrere für jeden Transport, die der router als seine globalen Kontaktinformationen veröffentlicht (die RouterInfo). Jeder Transport kann sich über eine dieser Adressen verbinden, die IPv4 oder (ab Version 0.9.8) IPv6 sein können.\n- Auswahl des besten Transports für jede ausgehende Nachricht\n- Warteschlangen für ausgehende Nachrichten nach Priorität\n- Bandbreitenbegrenzung, sowohl ausgehend als auch eingehend, entsprechend der router-Konfiguration\n- Aufbau und Abbau von Transport-Verbindungen\n- Verschlüsselung der Punkt-zu-Punkt-Kommunikation\n- Verwaltung von Verbindungslimits für jeden Transport, Implementierung verschiedener Schwellenwerte für diese Limits und Kommunikation des Schwellenwert-Status an den router, damit dieser betriebliche Änderungen basierend auf dem Status vornehmen kann\n- Firewall-Port-Öffnung mit UPnP (Universal Plug and Play)\n- Kooperative NAT/Firewall-Durchquerung\n- Lokale IP-Erkennung durch verschiedene Methoden, einschließlich UPnP, Inspektion eingehender Verbindungen und Aufzählung von Netzwerkgeräten\n- Koordination des Firewall-Status und der lokalen IP sowie Änderungen an beiden zwischen den Transports\n- Kommunikation des Firewall-Status und der lokalen IP sowie Änderungen an beiden an den router und die Benutzeroberfläche\n- Bestimmung einer Konsens-Uhr, die verwendet wird, um regelmäßig die router-Uhr zu aktualisieren, als Backup für NTP\n- Verwaltung des Status für jeden Peer, einschließlich ob er verbunden ist, ob er kürzlich verbunden war und ob er beim letzten Versuch erreichbar war\n- Qualifikation gültiger IP-Adressen nach einem lokalen Regelsatz\n- Befolgen der automatisierten und manuellen Listen gesperrter Peers, die vom router verwaltet werden, und Verweigerung ausgehender und eingehender Verbindungen zu diesen Peers",
+            "fr": "- Livraison fiable des messages [I2NP](/docs/specs/i2np/). Les transports prennent en charge la livraison de messages I2NP UNIQUEMENT. Ce ne sont pas des canaux de données à usage général.\n- La livraison ordonnée des messages n'est PAS garantie par tous les transports.\n- Maintenir un ensemble d'adresses de router, une ou plusieurs pour chaque transport, que le router publie comme ses informations de contact globales (le RouterInfo). Chaque transport peut se connecter en utilisant l'une de ces adresses, qui peut être IPv4 ou (à partir de la version 0.9.8) IPv6.\n- Sélection du meilleur transport pour chaque message sortant\n- Mise en file d'attente des messages sortants par priorité\n- Limitation de bande passante, tant sortante qu'entrante, selon la configuration du router\n- Établissement et rupture des connexions de transport\n- Chiffrement des communications point à point\n- Maintien des limites de connexion pour chaque transport, mise en œuvre de divers seuils pour ces limites, et communication du statut des seuils au router afin qu'il puisse apporter des modifications opérationnelles basées sur le statut\n- Ouverture de port de pare-feu utilisant UPnP (Universal Plug and Play)\n- Traversée coopérative de NAT/Pare-feu\n- Détection d'IP locale par diverses méthodes, incluant UPnP, inspection des connexions entrantes, et énumération des périphériques réseau\n- Coordination du statut de pare-feu et de l'IP locale, et des changements de l'un ou l'autre, parmi les transports\n- Communication du statut de pare-feu et de l'IP locale, et des changements de l'un ou l'autre, au router et à l'interface utilisateur\n- Détermination d'une horloge de consensus, qui est utilisée pour mettre à jour périodiquement l'horloge du router, comme sauvegarde pour NTP\n- Maintien du statut pour chaque pair, incluant s'il est connecté, s'il était récemment connecté, et s'il était atteignable lors de la dernière tentative\n- Qualification des adresses IP valides selon un ensemble de règles locales\n- Respect des listes automatisées et manuelles de pairs bannis maintenues par le router, et refus des connexions sortantes et entrantes vers ces pairs",
+            "tr": "- [I2NP](/docs/specs/i2np/) mesajlarının güvenilir teslimatı. Transport protokolleri YALNIZCA I2NP mesaj teslimatını destekler. Bunlar genel amaçlı veri kanalları değildir.\n- Mesajların sıralı teslimatı tüm transport protokolleri tarafından garanti edilmez.\n- Router'ın global iletişim bilgisi (RouterInfo) olarak yayınladığı, her transport için bir veya daha fazla router adresi setinin korunması. Her transport bu adreslerden birini kullanarak bağlanabilir; bu adresler IPv4 veya (0.9.8 sürümünden itibaren) IPv6 olabilir.\n- Her giden mesaj için en iyi transport'un seçilmesi\n- Giden mesajların öncelik sırasına göre kuyruğa alınması\n- Router yapılandırmasına göre hem giden hem de gelen bant genişliği sınırlaması\n- Transport bağlantılarının kurulması ve sonlandırılması\n- Noktadan-noktaya iletişimin şifrelenmesi\n- Her transport için bağlantı sınırlarının korunması, bu sınırlar için çeşitli eşiklerin uygulanması ve duruma dayalı operasyonel değişiklikler yapabilmesi için eşik durumunun router'a iletilmesi\n- UPnP (Universal Plug and Play) kullanarak güvenlik duvarı port açma\n- İşbirlikçi NAT/Güvenlik Duvarı geçişi\n- UPnP, gelen bağlantıları inceleme ve ağ cihazlarını listeleme dahil çeşitli yöntemlerle yerel IP tespiti\n- Transport'lar arasında güvenlik duvarı durumu ve yerel IP'nin, ve bunlardaki değişikliklerin koordinasyonu\n- Güvenlik duvarı durumu ve yerel IP'nin, ve bunlardaki değişikliklerin router'a ve kullanıcı arayüzüne iletilmesi\n- NTP'ye yedek olarak router'ın saatini periyodik olarak güncellemek için kullanılan konsensüs saatinin belirlenmesi\n- Her peer için durumun korunması; bağlı olup olmadığı, yakın zamanda bağlı olup olmadığı ve son denemede erişilebilir olup olmadığı dahil\n- Yerel kural setine göre geçerli IP adreslerinin nitelendirilmesi\n- Router tarafından tutulan otomatik ve manuel yasaklı peer listelerinin onurlandırılması ve bu peer'lara giden ve gelen bağlantıların reddedilmesi",
+            "vi": "- Giao hàng đáng tin cậy các thông điệp [I2NP](/docs/specs/i2np/). Các transport chỉ hỗ trợ giao hàng thông điệp I2NP. Chúng không phải là các đường ống dữ liệu đa mục đích.\n- Giao hàng thông điệp theo thứ tự KHÔNG được đảm bảo bởi tất cả các transport.\n- Duy trì một tập hợp các địa chỉ router, một hoặc nhiều cho mỗi transport, mà router công bố như thông tin liên lạc toàn cầu của nó (RouterInfo). Mỗi transport có thể kết nối sử dụng một trong các địa chỉ này, có thể là IPv4 hoặc (từ phiên bản 0.9.8) IPv6.\n- Lựa chọn transport tốt nhất cho mỗi thông điệp gửi đi\n- Xếp hàng các thông điệp gửi đi theo mức độ ưu tiên\n- Giới hạn băng thông, cả gửi đi và nhận về, theo cấu hình của router\n- Thiết lập và ngắt kết nối transport\n- Mã hóa truyền thông điểm-tới-điểm\n- Duy trì giới hạn kết nối cho mỗi transport, triển khai các ngưỡng khác nhau cho các giới hạn này, và truyền đạt trạng thái ngưỡng tới router để nó có thể thực hiện các thay đổi hoạt động dựa trên trạng thái\n- Mở cổng tường lửa sử dụng UPnP (Universal Plug and Play)\n- Vượt qua NAT/Firewall hợp tác\n- Phát hiện IP cục bộ bằng các phương pháp khác nhau, bao gồm UPnP, kiểm tra các kết nối đến, và liệt kê các thiết bị mạng\n- Điều phối trạng thái tường lửa và IP cục bộ, và các thay đổi đối với cả hai, giữa các transport\n- Truyền đạt trạng thái tường lửa và IP cục bộ, và các thay đổi đối với cả hai, tới router và giao diện người dùng\n- Xác định đồng hồ đồng thuận, được sử dụng để định kỳ cập nhật đồng hồ của router, như một phương án dự phòng cho NTP\n- Duy trì trạng thái cho mỗi peer, bao gồm việc nó có đang kết nối không, có kết nối gần đây không, và có thể tiếp cận được trong lần thử cuối cùng không\n- Đánh giá các địa chỉ IP hợp lệ theo một tập quy tắc cục bộ\n- Tuân thủ các danh sách tự động và thủ công của các peer bị cấm do router duy trì, và từ chối các kết nối gửi đi và nhận về tới các peer đó",
+            "hi": "- [I2NP](/docs/specs/i2np/) संदेशों की विश्वसनीय डिलीवरी। Transports केवल I2NP संदेश डिलीवरी का समर्थन करते हैं। ये सामान्य-उद्देश्य डेटा पाइप नहीं हैं।\n- सभी transports द्वारा संदेशों की क्रमबद्ध डिलीवरी की गारंटी नहीं है।\n- Router addresses का एक सेट बनाए रखना, प्रत्येक transport के लिए एक या अधिक, जिन्हें router अपनी वैश्विक संपर्क जानकारी (RouterInfo) के रूप में प्रकाशित करता है। प्रत्येक transport इन addresses में से किसी एक का उपयोग करके कनेक्ट हो सकता है, जो IPv4 या (version 0.9.8 के अनुसार) IPv6 हो सकते हैं।\n- प्रत्येक आउटगोइंग संदेश के लिए सबसे अच्छे transport का चयन\n- प्राथमिकता के अनुसार आउटबाउंड संदेशों की queueing\n- Router कॉन्फ़िगरेशन के अनुसार आउटबाउंड और इनबाउंड दोनों की bandwidth सीमा\n- Transport connections का setup और teardown\n- Point-to-point communications की encryption\n- प्रत्येक transport के लिए connection limits का रखरखाव, इन limits के लिए विभिन्न thresholds का implementation, और threshold status को router तक पहुंचाना ताकि वह status के आधार पर operational changes कर सके\n- UPnP (Universal Plug and Play) का उपयोग करके firewall port opening\n- Cooperative NAT/Firewall traversal\n- विभिन्न methods द्वारा local IP detection, जिसमें UPnP, incoming connections का inspection, और network devices की enumeration शामिल है\n- Transports के बीच firewall status और local IP के coordination, और इनमें से किसी भी में changes\n- Firewall status और local IP, और इनमें से किसी भी में changes को router और user interface तक पहुंचाना\n- Consensus clock का निर्धारण, जो NTP के backup के रूप में router की clock को आवधिक रूप से अपडेट करने के लिए उपयोग किया जाता है\n- प्रत्येक peer के लिए status का रखरखाव, जिसमें यह शामिल है कि वह कनेक्टेड है या नहीं, हाल ही में कनेक्टेड था या नहीं, और अंतिम प्रयास में पहुंच योग्य था या नहीं\n- Local rule set के अनुसार valid IP addresses की qualification\n- Router द्वारा maintained automated और manual banned peers की सूचियों का सम्मान करना, और उन peers के साथ outbound और inbound connections को मना करना",
+            "ar": "- التسليم الموثوق لرسائل [I2NP](/docs/specs/i2np/). تدعم وسائل النقل تسليم رسائل I2NP فقط. فهي ليست أنابيب بيانات عامة الغرض.\n- التسليم المرتب للرسائل غير مضمون من قبل جميع وسائل النقل.\n- الاحتفاظ بمجموعة من عناوين router، واحد أو أكثر لكل وسيلة نقل، والتي ينشرها router كمعلومات الاتصال العامة الخاصة به (RouterInfo). قد تتصل كل وسيلة نقل باستخدام أحد هذه العناوين، والتي قد تكون IPv4 أو (اعتبارًا من الإصدار 0.9.8) IPv6.\n- اختيار أفضل وسيلة نقل لكل رسالة صادرة\n- ترتيب الرسائل الصادرة حسب الأولوية في قائمة الانتظار\n- تحديد عرض النطاق الترددي، الصادر والوارد على حد سواء، وفقًا لتكوين router\n- إعداد وإنهاء اتصالات وسائل النقل\n- تشفير الاتصالات من نقطة إلى نقطة\n- صيانة حدود الاتصال لكل وسيلة نقل، وتنفيذ عتبات مختلفة لهذه الحدود، وإيصال حالة العتبة إلى router حتى يتمكن من إجراء تغييرات تشغيلية بناءً على الحالة\n- فتح منافذ Firewall باستخدام UPnP (Universal Plug and Play)\n- اجتياز NAT/Firewall التعاوني\n- اكتشاف IP المحلي بطرق مختلفة، بما في ذلك UPnP، وفحص الاتصالات الواردة، وتعداد أجهزة الشبكة\n- تنسيق حالة firewall و IP المحلي، والتغييرات في أي منهما، بين وسائل النقل\n- إيصال حالة firewall و IP المحلي، والتغييرات في أي منهما، إلى router وواجهة المستخدم\n- تحديد ساعة إجماع، والتي تُستخدم لتحديث ساعة router بشكل دوري، كنسخة احتياطية لـ NTP\n- صيانة الحالة لكل نظير، بما في ذلك ما إذا كان متصلاً، وما إذا كان متصلاً مؤخرًا، وما إذا كان قابلاً للوصول في المحاولة الأخيرة\n- تأهيل عناوين IP الصالحة وفقًا لمجموعة قواعد محلية\n- احترام القوائم الآلية واليدوية للأقران المحظورين التي يحتفظ بها router، ورفض الاتصالات الصادرة والواردة إلى هؤلاء الأقران",
+            "pt": "- Entrega confiável de mensagens [I2NP](/docs/specs/i2np/). Os transportes suportam entrega de mensagens I2NP APENAS. Eles não são canais de dados de uso geral.\n- A entrega ordenada de mensagens NÃO é garantida por todos os transportes.\n- Manter um conjunto de endereços do router, um ou mais para cada transporte, que o router publica como suas informações de contato globais (o RouterInfo). Cada transporte pode se conectar usando um desses endereços, que podem ser IPv4 ou (a partir da versão 0.9.8) IPv6.\n- Seleção do melhor transporte para cada mensagem de saída\n- Enfileiramento de mensagens de saída por prioridade\n- Limitação de largura de banda, tanto de saída quanto de entrada, de acordo com a configuração do router\n- Configuração e desconexão de conexões de transporte\n- Criptografia de comunicações ponto a ponto\n- Manutenção de limites de conexão para cada transporte, implementação de vários limiares para esses limites, e comunicação do status do limiar ao router para que ele possa fazer mudanças operacionais baseadas no status\n- Abertura de porta do firewall usando UPnP (Universal Plug and Play)\n- Travessia cooperativa de NAT/Firewall\n- Detecção de IP local por vários métodos, incluindo UPnP, inspeção de conexões de entrada, e enumeração de dispositivos de rede\n- Coordenação do status do firewall e IP local, e mudanças em qualquer um deles, entre os transportes\n- Comunicação do status do firewall e IP local, e mudanças em qualquer um deles, ao router e à interface do usuário\n- Determinação de um relógio de consenso, que é usado para atualizar periodicamente o relógio do router, como backup para o NTP\n- Manutenção do status para cada peer, incluindo se está conectado, se foi conectado recentemente, e se estava alcançável na última tentativa\n- Qualificação de endereços IP válidos de acordo com um conjunto de regras locais\n- Honrar as listas automatizadas e manuais de peers banidos mantidas pelo router, e recusar conexões de saída e entrada para esses peers"
+          }
+        },
+        "p_004": {
+          "source_hash": "e539ccc07e887e2a",
+          "translations": {
+            "zh": "---",
+            "es": "---",
+            "ko": "---",
+            "ru": "---",
+            "cs": "---",
+            "de": "---",
+            "fr": "---",
+            "tr": "---",
+            "vi": "---",
+            "hi": "---",
+            "ar": "---",
+            "pt": "---"
+          }
+        },
+        "p_005": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "I2P 中的传输子系统提供以下服务：",
+            "es": "El subsistema de transporte en I2P proporciona los siguientes servicios:",
+            "ko": "I2P의 전송 하위 시스템은 다음과 같은 서비스를 제공합니다:",
+            "ru": "Подсистема транспорта в I2P предоставляет следующие услуги:",
+            "cs": "Transportní subsystém v I2P poskytuje následující služby:",
+            "de": "Das Transport-Subsystem in I2P bietet die folgenden Dienste:",
+            "fr": "Le sous-système de transport dans I2P fournit les services suivants :",
+            "tr": "I2P'deki transport alt sistemi aşağıdaki hizmetleri sağlar:",
+            "vi": "Hệ thống con transport trong I2P cung cấp các dịch vụ sau:",
+            "hi": "I2P में transport subsystem निम्नलिखित सेवाएं प्रदान करता है:",
+            "ar": "يوفر نظام النقل الفرعي في I2P الخدمات التالية:",
+            "pt": "O subsistema de transporte no I2P fornece os seguintes serviços:"
+          }
+        },
+        "h2_002": {
+          "source_hash": "8efbb06e6b615fe3",
+          "translations": {
+            "zh": "传输服务",
+            "es": "Servicios de Transporte",
+            "ko": "전송 서비스",
+            "ru": "Транспортные сервисы",
+            "cs": "Transportní služby",
+            "de": "Transport-Dienste",
+            "fr": "Services de transport",
+            "tr": "Transport Hizmetleri",
+            "vi": "Dịch vụ Vận chuyển",
+            "hi": "ट्रांसपोर्ट सेवाएं",
+            "ar": "خدمات النقل",
+            "pt": "Serviços de Transporte"
+          }
+        },
+        "p_006": {
+          "source_hash": "8a828dbf550af9cc",
+          "translations": {
+            "zh": "---",
+            "es": "---",
+            "ko": "---",
+            "ru": "---",
+            "cs": "---",
+            "de": "---",
+            "fr": "---",
+            "tr": "---",
+            "vi": "---",
+            "hi": "---",
+            "ar": "---",
+            "pt": "---"
+          }
+        },
+        "list_003": {
+          "source_hash": "c66f76d2090c8fa1",
+          "translations": {
+            "zh": "- router 没有发布地址，因此被认为是\"隐藏的\"，无法接收传入连接\n- router 处于防火墙后面，因此发布一个包含协作对等节点或\"介绍者\"列表的 SSU 地址，这些介绍者将协助进行 NAT 穿越（详情请参见 [SSU 规范](/docs/legacy/ssu/)）\n- router 不在防火墙后面或其 NAT 端口已开放；它发布包含可直接访问的 IP 和端口的 NTCP 和 SSU 地址",
+            "es": "- Un router no tiene direcciones publicadas, por lo que se considera \"oculto\" y no puede recibir conexiones entrantes\n- Un router está protegido por firewall, y por lo tanto publica una dirección SSU que contiene una lista de peers cooperativos o \"introducers\" que ayudarán en el traversal NAT (consulta [la especificación SSU](/docs/legacy/ssu/) para más detalles)\n- Un router no está protegido por firewall o sus puertos NAT están abiertos; publica tanto direcciones NTCP como SSU que contienen IP y puertos directamente accesibles.",
+            "ko": "- router가 공개된 주소를 가지지 않아서 \"숨겨진\" 것으로 간주되며 들어오는 연결을 받을 수 없습니다\n- router가 방화벽으로 보호되어 있어서, NAT 통과를 도와줄 협력 피어나 \"introducer\" 목록을 포함하는 SSU 주소를 공개합니다 (자세한 내용은 [SSU 사양](/docs/legacy/ssu/)을 참조하세요)\n- router가 방화벽으로 보호되지 않거나 NAT 포트가 열려 있어서, 직접 접근 가능한 IP와 포트를 포함하는 NTCP와 SSU 주소를 모두 공개합니다.",
+            "ru": "- Router не имеет опубликованных адресов, поэтому считается \"скрытым\" и не может принимать входящие соединения\n- Router находится за файрволом, и поэтому публикует SSU адрес, который содержит список сотрудничающих узлов или \"introducers\", которые будут помогать в обходе NAT (подробности см. в [спецификации SSU](/docs/legacy/ssu/))\n- Router не находится за файрволом или его NAT порты открыты; он публикует как NTCP, так и SSU адреса, содержащие напрямую доступные IP и порты.",
+            "cs": "- Router nemá publikované adresy, takže je považován za \"skrytý\" a nemůže přijímat příchozí připojení\n- Router je za firewallem, a proto publikuje SSU adresu, která obsahuje seznam spolupracujících uzlů nebo \"introducers\", kteří pomohou s NAT traversal (viz [SSU specifikace](/docs/legacy/ssu/) pro podrobnosti)\n- Router není za firewallem nebo má otevřené NAT porty; publikuje jak NTCP, tak SSU adresy obsahující přímo přístupné IP a porty.",
+            "de": "- Ein router hat keine veröffentlichten Adressen, daher wird er als \"versteckt\" betrachtet und kann keine eingehenden Verbindungen empfangen\n- Ein router ist durch eine Firewall geschützt und veröffentlicht daher eine SSU-Adresse, die eine Liste kooperierender Peers oder \"Introducer\" enthält, die beim NAT-Traversal helfen (siehe [die SSU-Spezifikation](/docs/legacy/ssu/) für Details)\n- Ein router ist nicht durch eine Firewall geschützt oder seine NAT-Ports sind offen; er veröffentlicht sowohl NTCP- als auch SSU-Adressen, die direkt zugängliche IP-Adressen und Ports enthalten.",
+            "fr": "- Un router n'a pas d'adresses publiées, il est donc considéré comme \"caché\" et ne peut pas recevoir de connexions entrantes\n- Un router est derrière un pare-feu, et publie donc une adresse SSU qui contient une liste de pairs coopérants ou \"introducers\" qui aideront à la traversée NAT (voir [la spécification SSU](/docs/legacy/ssu/) pour plus de détails)\n- Un router n'est pas derrière un pare-feu ou ses ports NAT sont ouverts ; il publie des adresses NTCP et SSU contenant des IP et ports directement accessibles.",
+            "tr": "- Bir router yayınlanmış adreslere sahip değildir, bu nedenle \"gizli\" olarak kabul edilir ve gelen bağlantıları alamaz\n- Bir router güvenlik duvarının arkasındadır ve bu nedenle NAT geçişinde yardımcı olacak işbirlikçi eşler veya \"introducers\" listesi içeren bir SSU adresi yayınlar (ayrıntılar için [SSU spesifikasyonuna](/docs/legacy/ssu/) bakın)\n- Bir router güvenlik duvarının arkasında değildir veya NAT portları açıktır; doğrudan erişilebilir IP ve portları içeren hem NTCP hem de SSU adreslerini yayınlar.",
+            "vi": "- Một router không có địa chỉ được công bố, vì vậy nó được coi là \"ẩn\" và không thể nhận kết nối đến\n- Một router bị tường lửa chặn, và do đó công bố một địa chỉ SSU chứa danh sách các peer hợp tác hoặc \"introducers\" sẽ hỗ trợ trong việc vượt qua NAT (xem [đặc tả SSU](/docs/legacy/ssu/) để biết chi tiết)\n- Một router không bị tường lửa chặn hoặc các cổng NAT của nó đã mở; nó công bố cả địa chỉ NTCP2 và SSU chứa IP và cổng có thể truy cập trực tiếp.",
+            "hi": "- एक router के पास कोई प्रकाशित पते नहीं हैं, इसलिए इसे \"छुपा हुआ\" माना जाता है और यह आने वाले कनेक्शन प्राप्त नहीं कर सकता\n- एक router firewalled है, और इसलिए यह एक SSU पता प्रकाशित करता है जिसमें सहयोगी peers या \"introducers\" की सूची होती है जो NAT traversal में सहायता करेंगे (विवरण के लिए [SSU spec](/docs/legacy/ssu/) देखें)\n- एक router firewalled नहीं है या इसके NAT ports खुले हैं; यह NTCP और SSU दोनों पते प्रकाशित करता है जिनमें सीधे पहुँच योग्य IP और ports होते हैं।",
+            "ar": "- router لا يحتوي على عناوين منشورة، لذلك يُعتبر \"مخفي\" ولا يمكنه استقبال اتصالات واردة\n- router محجوب بجدار حماية، وبالتالي ينشر عنوان SSU يحتوي على قائمة من النظراء المتعاونين أو \"المقدمين\" الذين سيساعدون في اجتياز NAT (انظر [مواصفات SSU](/docs/legacy/ssu/) للتفاصيل)\n- router غير محجوب بجدار حماية أو منافذ NAT مفتوحة؛ ينشر عناوين NTCP و SSU تحتوي على IP ومنافذ قابلة للوصول مباشرة.",
+            "pt": "- Um router não possui endereços publicados, então é considerado \"oculto\" e não pode receber conexões de entrada\n- Um router está atrás de firewall e, portanto, publica um endereço SSU que contém uma lista de pares cooperantes ou \"introducers\" que irão auxiliar na travessia de NAT (veja [a especificação SSU](/docs/legacy/ssu/) para detalhes)\n- Um router não está atrás de firewall ou suas portas NAT estão abertas; ele publica endereços NTCP e SSU contendo IP e portas diretamente acessíveis."
+          }
+        },
+        "p_007": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "传输子系统维护一组router地址，每个地址都包含传输方法、IP和端口信息。这些地址构成了对外公布的联系点，由router发布到netDb中。地址还可以包含任意一组额外的选项。",
+            "es": "El subsistema de transporte mantiene un conjunto de direcciones de router, cada una de las cuales enumera un método de transporte, IP y puerto. Estas direcciones constituyen los puntos de contacto anunciados y son publicadas por el router en la base de datos de red. Las direcciones también pueden contener un conjunto arbitrario de opciones adicionales.",
+            "ko": "전송 하위시스템은 router 주소 집합을 유지하며, 각 주소는 전송 방법, IP, 포트를 나열합니다. 이러한 주소들은 광고된 연결 지점을 구성하고, router에 의해 netDb에 게시됩니다. 주소는 또한 임의의 추가 옵션 집합을 포함할 수 있습니다.",
+            "ru": "Транспортная подсистема поддерживает набор адресов router, каждый из которых содержит метод транспорта, IP-адрес и порт. Эти адреса составляют рекламируемые точки контакта и публикуются router в базе данных сети. Адреса также могут содержать произвольный набор дополнительных опций.",
+            "cs": "Transportní subsystém udržuje sadu router adres, z nichž každá obsahuje transportní metodu, IP a port. Tyto adresy tvoří inzerované kontaktní body a jsou publikovány routerem do síťové databáze. Adresy mohou také obsahovat libovolnou sadu dalších možností.",
+            "de": "Das Transport-Subsystem verwaltet eine Reihe von router-Adressen, von denen jede eine Transportmethode, IP und Port auflistet. Diese Adressen stellen die beworbenen Kontaktpunkte dar und werden vom router in der netDb veröffentlicht. Adressen können auch eine beliebige Menge zusätzlicher Optionen enthalten.",
+            "fr": "Le sous-système de transport maintient un ensemble d'adresses de router, chacune répertoriant une méthode de transport, une IP et un port. Ces adresses constituent les points de contact annoncés et sont publiées par le router dans la base de données réseau. Les adresses peuvent également contenir un ensemble arbitraire d'options supplémentaires.",
+            "tr": "Transport alt sistemi, her biri bir transport yöntemi, IP ve port listeleyen bir dizi router adresi tutar. Bu adresler, ilan edilen iletişim noktalarını oluşturur ve router tarafından netDb'ye yayınlanır. Adresler ayrıca rastgele bir dizi ek seçenek içerebilir.",
+            "vi": "Hệ thống con transport duy trì một tập hợp các địa chỉ router, mỗi địa chỉ liệt kê một phương thức transport, IP và cổng. Những địa chỉ này tạo thành các điểm liên lạc được quảng cáo, và được router công bố lên cơ sở dữ liệu mạng. Các địa chỉ cũng có thể chứa một tập hợp tùy ý các tùy chọn bổ sung.",
+            "hi": "transport subsystem router addresses का एक सेट बनाए रखता है, जिनमें से प्रत्येक में एक transport method, IP, और port की सूची होती है। ये addresses विज्ञापित संपर्क बिंदुओं का निर्माण करते हैं, और router द्वारा network database में प्रकाशित किए जाते हैं। Addresses में अतिरिक्त विकल्पों का एक मनमाना सेट भी हो सकता है।",
+            "ar": "يحتفظ نظام النقل الفرعي بمجموعة من عناوين router، كل منها يسرد طريقة النقل وعنوان IP والمنفذ. هذه العناوين تشكل نقاط الاتصال المعلنة، وينشرها router إلى قاعدة بيانات الشبكة. قد تحتوي العناوين أيضاً على مجموعة اختيارية من الخيارات الإضافية.",
+            "pt": "O subsistema de transporte mantém um conjunto de endereços de router, cada um dos quais lista um método de transporte, IP e porta. Estes endereços constituem os pontos de contato anunciados e são publicados pelo router na base de dados da rede. Os endereços também podem conter um conjunto arbitrário de opções adicionais."
+          }
+        },
+        "h2_003": {
+          "source_hash": "048339790e489076",
+          "translations": {
+            "zh": "传输地址",
+            "es": "Direcciones de Transporte",
+            "ko": "전송 주소",
+            "ru": "Транспортные адреса",
+            "cs": "Transportní adresy",
+            "de": "Transport-Adressen",
+            "fr": "Adresses de transport",
+            "tr": "Aktarım Adresleri",
+            "vi": "Địa Chỉ Vận Chuyển",
+            "hi": "Transport Addresses",
+            "ar": "عناوين النقل",
+            "pt": "Endereços de Transporte"
+          }
+        },
+        "p_008": {
+          "source_hash": "a9075869dd3a8492",
+          "translations": {
+            "zh": "每种传输方法可能会发布多个 router 地址。",
+            "es": "Cada método de transporte puede publicar múltiples direcciones de router.",
+            "ko": "각 전송 방법은 여러 router 주소를 게시할 수 있습니다.",
+            "ru": "Каждый метод транспорта может публиковать несколько адресов router'а.",
+            "cs": "Každá transportní metoda může publikovat více router adres.",
+            "de": "Jede Transportmethode kann mehrere router-Adressen veröffentlichen.",
+            "fr": "Chaque méthode de transport peut publier plusieurs adresses de router.",
+            "tr": "Her taşıma yöntemi birden fazla router adresi yayınlayabilir.",
+            "vi": "Mỗi phương thức vận chuyển có thể công bố nhiều địa chỉ router.",
+            "hi": "प्रत्येक transport method कई router addresses प्रकाशित कर सकता है।",
+            "ar": "قد تنشر كل طريقة نقل عدة عناوين router متعددة.",
+            "pt": "Cada método de transporte pode publicar múltiplos endereços de router."
+          }
+        },
+        "p_009": {
+          "source_hash": "f2a2004b51c5d0b1",
+          "translations": {
+            "zh": "典型场景包括：",
+            "es": "Los escenarios típicos son:",
+            "ko": "일반적인 시나리오는 다음과 같습니다:",
+            "ru": "Типичные сценарии:",
+            "cs": "Typické scénáře jsou:",
+            "de": "Typische Szenarien sind:",
+            "fr": "Les scénarios typiques sont :",
+            "tr": "Tipik senaryolar şunlardır:",
+            "vi": "Các tình huống điển hình là:",
+            "hi": "सामान्य परिस्थितियां हैं:",
+            "ar": "السيناريوهات النموذجية هي:",
+            "pt": "Cenários típicos são:"
+          }
+        },
+        "p_010": {
+          "source_hash": "21677f392ec1011a",
+          "translations": {
+            "zh": "---",
+            "es": "---",
+            "ko": "---",
+            "ru": "---",
+            "cs": "---",
+            "de": "---",
+            "fr": "---",
+            "tr": "---",
+            "vi": "---",
+            "hi": "---",
+            "ar": "---",
+            "pt": "---"
+          }
+        },
+        "list_004": {
+          "source_hash": "a4ccbd1c6920ce28",
+          "translations": {
+            "zh": "- 传输偏好的配置\n- 传输是否已连接到对等节点\n- 当前连接数与各种连接限制阈值的比较\n- 最近对该对等节点的连接尝试是否失败\n- 消息大小，因为不同传输有不同的大小限制\n- 对等节点是否可以接受该传输的传入连接，如其 RouterInfo 中所宣告的\n- 连接是否为间接连接（需要引介者）或直接连接\n- 对等节点的传输偏好，如其 RouterInfo 中所宣告的",
+            "es": "- Configuración de preferencias de transporte\n- Si el transporte ya está conectado al peer\n- El número de conexiones actuales comparado con varios umbrales de límite de conexión\n- Si los intentos de conexión recientes al peer han fallado\n- El tamaño del mensaje, ya que diferentes transportes tienen diferentes límites de tamaño\n- Si el peer puede aceptar conexiones entrantes para ese transporte, según se anuncia en su RouterInfo\n- Si la conexión sería indirecta (requiriendo introducers) o directa\n- La preferencia de transporte del peer, según se anuncia en su RouterInfo",
+            "ko": "- 전송 선호도 구성\n- 전송이 이미 피어에 연결되어 있는지 여부\n- 다양한 연결 제한 임계값과 비교한 현재 연결 수\n- 피어에 대한 최근 연결 시도가 실패했는지 여부\n- 서로 다른 전송이 서로 다른 크기 제한을 갖기 때문에 메시지의 크기\n- RouterInfo에서 광고된 바와 같이 피어가 해당 전송에 대한 수신 연결을 수락할 수 있는지 여부\n- 연결이 간접적(introducer가 필요함)인지 직접적인지 여부\n- RouterInfo에서 광고된 바와 같이 피어의 전송 선호도",
+            "ru": "- Настройка предпочтений транспорта\n- Подключен ли транспорт уже к узлу\n- Количество текущих соединений по сравнению с различными пороговыми значениями лимитов соединений\n- Не удались ли недавние попытки подключения к узлу\n- Размер сообщения, поскольку разные транспорты имеют разные ограничения по размеру\n- Может ли узел принимать входящие соединения для данного транспорта, как указано в его RouterInfo\n- Будет ли соединение косвенным (требующим введения) или прямым\n- Предпочтения транспорта узла, как указано в его RouterInfo",
+            "cs": "- Konfigurace transportních preferencí\n- Zda je transport již připojen k peer\n- Počet aktuálních připojení ve srovnání s různými prahovými hodnotami limitů připojení\n- Zda nedávné pokusy o připojení k peer selhaly\n- Velikost zprávy, protože různé transporty mají různé limity velikosti\n- Zda peer může přijímat příchozí připojení pro daný transport, jak je inzerováno v jeho RouterInfo\n- Zda by připojení bylo nepřímé (vyžadující introducery) nebo přímé\n- Transportní preference peer, jak je inzerována v jeho RouterInfo",
+            "de": "- Konfiguration der Transportpräferenzen\n- Ob der Transport bereits mit dem Peer verbunden ist\n- Die Anzahl der aktuellen Verbindungen im Vergleich zu verschiedenen Verbindungsgrenzwerten\n- Ob kürzliche Verbindungsversuche zum Peer fehlgeschlagen sind\n- Die Größe der Nachricht, da verschiedene Transporte unterschiedliche Größenbeschränkungen haben\n- Ob der Peer eingehende Verbindungen für diesen Transport akzeptieren kann, wie in seiner RouterInfo angekündigt\n- Ob die Verbindung indirekt (Introducer erforderlich) oder direkt wäre\n- Die Transportpräferenz des Peers, wie in seiner RouterInfo angekündigt",
+            "fr": "- Configuration des préférences de transport\n- Si le transport est déjà connecté au pair\n- Le nombre de connexions actuelles comparé aux différents seuils de limite de connexion\n- Si les tentatives de connexion récentes au pair ont échoué\n- La taille du message, car différents transports ont des limites de taille différentes\n- Si le pair peut accepter des connexions entrantes pour ce transport, comme annoncé dans son RouterInfo\n- Si la connexion serait indirecte (nécessitant des introducers) ou directe\n- La préférence de transport du pair, comme annoncée dans son RouterInfo",
+            "tr": "- Transport tercihlerinin yapılandırması\n- Transport'un eşe zaten bağlı olup olmadığı\n- Mevcut bağlantı sayısının çeşitli bağlantı limiti eşikleriyle karşılaştırılması\n- Eşe yapılan son bağlantı denemelerinin başarısız olup olmadığı\n- Mesajın boyutu, çünkü farklı transport'lar farklı boyut limitlerine sahiptir\n- Eşin RouterInfo'sunda ilan ettiği şekilde, o transport için gelen bağlantıları kabul edip edemeyeceği\n- Bağlantının dolaylı (introducers gerektiren) veya doğrudan olup olmayacağı\n- Eşin RouterInfo'sunda ilan ettiği transport tercihi",
+            "vi": "- Cấu hình tùy chọn vận chuyển\n- Liệu vận chuyển đã được kết nối với peer hay chưa\n- Số lượng kết nối hiện tại so với các ngưỡng giới hạn kết nối khác nhau\n- Liệu các nỗ lực kết nối gần đây với peer có thất bại hay không\n- Kích thước của thông điệp, vì các vận chuyển khác nhau có giới hạn kích thước khác nhau\n- Liệu peer có thể chấp nhận kết nối đến cho vận chuyển đó hay không, như được quảng cáo trong RouterInfo của nó\n- Liệu kết nối có phải là gián tiếp (yêu cầu introducers) hay trực tiếp\n- Tùy chọn vận chuyển của peer, như được quảng cáo trong RouterInfo của nó",
+            "hi": "- transport प्राथमिकताओं का कॉन्फ़िगरेशन\n- क्या transport पहले से ही peer से जुड़ा है\n- विभिन्न कनेक्शन सीमा थ्रेशोल्ड की तुलना में वर्तमान कनेक्शन्स की संख्या\n- क्या peer के साथ हाल की कनेक्शन प्रयास असफल हुए हैं\n- संदेश का आकार, क्योंकि अलग-अलग transport की अलग आकार सीमाएं होती हैं\n- क्या peer उस transport के लिए आने वाले कनेक्शन स्वीकार कर सकता है, जैसा कि उसके RouterInfo में विज्ञापित है\n- क्या कनेक्शन अप्रत्यक्ष होगा (introducers की आवश्यकता) या प्रत्यक्ष\n- peer की transport प्राथमिकता, जैसा कि उसके RouterInfo में विज्ञापित है",
+            "ar": "- إعداد تفضيلات النقل\n- ما إذا كان النقل متصلاً بالفعل بالنظير\n- عدد الاتصالات الحالية مقارنة بعتبات حدود الاتصال المختلفة\n- ما إذا كانت محاولات الاتصال الأخيرة بالنظير قد فشلت\n- حجم الرسالة، حيث أن وسائل النقل المختلفة لها حدود أحجام مختلفة\n- ما إذا كان النظير يمكنه قبول الاتصالات الواردة لذلك النقل، كما هو معلن في RouterInfo الخاص به\n- ما إذا كان الاتصال سيكون غير مباشر (يتطلب introducers) أم مباشر\n- تفضيل النقل للنظير، كما هو معلن في RouterInfo الخاص به",
+            "pt": "- Configuração das preferências de transporte\n- Se o transporte já está conectado ao peer\n- O número de conexões atuais comparado aos vários limites de conexão\n- Se tentativas recentes de conexão ao peer falharam\n- O tamanho da mensagem, já que diferentes transportes têm diferentes limites de tamanho\n- Se o peer pode aceitar conexões de entrada para esse transporte, conforme anunciado em seu RouterInfo\n- Se a conexão seria indireta (requerendo introducers) ou direta\n- A preferência de transporte do peer, conforme anunciada em seu RouterInfo"
+          }
+        },
+        "p_011": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "传输系统仅传送 [I2NP messages](/docs/specs/i2np/)。为任何消息选择的传输方式独立于上层协议和内容（router 或客户端消息，外部应用程序是否使用 TCP 或 UDP 连接到 I2P，上层是否使用 [the streaming library](/docs/api/streaming/) 或 [datagrams](/docs/api/datagrams/) 等）。",
+            "es": "El sistema de transporte entrega únicamente [mensajes I2NP](/docs/specs/i2np/). El transporte seleccionado para cualquier mensaje es independiente de los protocolos y contenidos de las capas superiores (mensajes del router o del cliente, si una aplicación externa estaba usando TCP o UDP para conectarse a I2P, si la capa superior estaba usando [la biblioteca de streaming](/docs/api/streaming/) o [datagramas](/docs/api/datagrams/), etc.).",
+            "ko": "전송 시스템은 [I2NP 메시지](/docs/specs/i2np/)만을 전달합니다. 메시지에 대해 선택된 전송 방식은 상위 계층 프로토콜 및 내용(router 또는 클라이언트 메시지, 외부 애플리케이션이 I2P에 연결하기 위해 TCP 또는 UDP를 사용했는지 여부, 상위 계층이 [스트리밍 라이브러리](/docs/api/streaming/) 또는 [데이터그램](/docs/api/datagrams/)을 사용했는지 여부 등)과는 독립적입니다.",
+            "ru": "Транспортная система доставляет только [I2NP сообщения](/docs/specs/i2np/). Транспорт, выбранный для любого сообщения, не зависит от протоколов верхнего уровня и содержимого (сообщения router или клиента, использовало ли внешнее приложение TCP или UDP для подключения к I2P, использовал ли верхний уровень [библиотеку потоков](/docs/api/streaming/) или [датаграммы](/docs/api/datagrams/) и т.д.).",
+            "cs": "Transportní systém doručuje pouze [I2NP zprávy](/docs/specs/i2np/). Transport vybraný pro jakoukoli zprávu je nezávislý na protokolech a obsahu vyšší vrstvy (zprávy routeru nebo klienta, zda externí aplikace používala TCP nebo UDP pro připojení k I2P, zda vyšší vrstva používala [streaming knihovnu](/docs/api/streaming/) nebo [datagramy](/docs/api/datagrams/), atd.).",
+            "de": "Das Transportsystem übermittelt ausschließlich [I2NP messages](/docs/specs/i2np/). Der für eine Nachricht gewählte Transport ist unabhängig von den oberen Protokollschichten und Inhalten (Router- oder Client-Nachrichten, ob eine externe Anwendung TCP oder UDP zur Verbindung mit I2P verwendete, ob die obere Schicht [die streaming library](/docs/api/streaming/) oder [datagrams](/docs/api/datagrams/) nutzte, usw.).",
+            "fr": "Le système de transport livre uniquement les [messages I2NP](/docs/specs/i2np/). Le transport sélectionné pour tout message est indépendant des protocoles et contenus des couches supérieures (messages de router ou de client, qu'une application externe utilise TCP ou UDP pour se connecter à I2P, que la couche supérieure utilise [la bibliothèque de streaming](/docs/api/streaming/) ou les [datagrammes](/docs/api/datagrams/), etc.).",
+            "tr": "Taşıma sistemi yalnızca [I2NP mesajları](/docs/specs/i2np/) iletir. Herhangi bir mesaj için seçilen taşıma, üst katman protokollerinden ve içerikten bağımsızdır (router veya istemci mesajları, harici bir uygulamanın I2P'ye bağlanmak için TCP veya UDP kullanıp kullanmadığı, üst katmanın [streaming kütüphanesi](/docs/api/streaming/) veya [datagramları](/docs/api/datagrams/) kullanıp kullanmadığı, vb.).",
+            "vi": "Hệ thống transport chỉ truyền tải [các thông điệp I2NP](/docs/specs/i2np/). Transport được chọn cho bất kỳ thông điệp nào đều độc lập với các giao thức và nội dung tầng trên (thông điệp router hoặc client, cho dù ứng dụng bên ngoài có sử dụng TCP hay UDP để kết nối với I2P, cho dù tầng trên có sử dụng [thư viện streaming](/docs/api/streaming/) hay [datagrams](/docs/api/datagrams/), v.v.).",
+            "hi": "ट्रांसपोर्ट सिस्टम केवल [I2NP messages](/docs/specs/i2np/) को डिलीवर करता है। किसी भी संदेश के लिए चुना गया ट्रांसपोर्ट ऊपरी-स्तर के प्रोटोकॉल और सामग्री से स्वतंत्र होता है (router या client messages, बाहरी एप्लिकेशन I2P से कनेक्ट करने के लिए TCP या UDP का उपयोग कर रहा था या नहीं, ऊपरी स्तर [the streaming library](/docs/api/streaming/) या [datagrams](/docs/api/datagrams/) का उपयोग कर रहा था या नहीं, आदि)।",
+            "ar": "نظام النقل يوصل [رسائل I2NP](/docs/specs/i2np/) فقط. النقل المختار لأي رسالة مستقل عن بروتوكولات الطبقة العليا والمحتويات (رسائل router أو العميل، سواء كان التطبيق الخارجي يستخدم TCP أو UDP للاتصال بـ I2P، سواء كانت الطبقة العليا تستخدم [مكتبة التدفق](/docs/api/streaming/) أو [datagrams](/docs/api/datagrams/)، إلخ).",
+            "pt": "O sistema de transporte entrega apenas [mensagens I2NP](/docs/specs/i2np/). O transporte selecionado para qualquer mensagem é independente dos protocolos e conteúdos das camadas superiores (mensagens do router ou cliente, se uma aplicação externa estava usando TCP ou UDP para conectar ao I2P, se a camada superior estava usando [a biblioteca de streaming](/docs/api/streaming/) ou [datagramas](/docs/api/datagrams/), etc.)."
+          }
+        },
+        "h2_004": {
+          "source_hash": "e16e85dac38e3b51",
+          "translations": {
+            "zh": "传输选择",
+            "es": "Selección de Transporte",
+            "ko": "전송 방식 선택",
+            "ru": "Выбор транспорта",
+            "cs": "Výběr transportu",
+            "de": "Transport-Auswahl",
+            "fr": "Sélection du transport",
+            "tr": "Taşıma Seçimi",
+            "vi": "Lựa chọn Transport",
+            "hi": "परिवहन चयन",
+            "ar": "اختيار النقل",
+            "pt": "Seleção de Transporte"
+          }
+        },
+        "p_012": {
+          "source_hash": "b699b1c60bf6ed2b",
+          "translations": {
+            "zh": "对于每个传出消息，传输系统会向每个传输层征求\"投标\"。投标值最低（最优）的传输层赢得投标并接收消息进行传递。传输层可以拒绝投标。",
+            "es": "Para cada mensaje saliente, el sistema de transporte solicita \"ofertas\" de cada transporte. El transporte que oferte el valor más bajo (mejor) gana la puja y recibe el mensaje para su entrega. Un transporte puede negarse a ofertar.",
+            "ko": "각 송신 메시지에 대해 전송 시스템은 각 전송 방식으로부터 \"입찰\"을 요청합니다. 가장 낮은(최적) 값으로 입찰한 전송 방식이 입찰에서 승리하고 배송을 위해 메시지를 받습니다. 전송 방식은 입찰을 거부할 수 있습니다.",
+            "ru": "Для каждого исходящего сообщения транспортная система запрашивает \"ставки\" от каждого транспорта. Транспорт, предложивший наименьшее (лучшее) значение, выигрывает торги и получает сообщение для доставки. Транспорт может отказаться от участия в торгах.",
+            "cs": "Pro každou odchozí zprávu transportní systém vyžádá \"nabídky\" od každého transportu. Transport s nejnižší (nejlepší) nabídkou vyhraje a obdrží zprávu k doručení. Transport může odmítnout podat nabídku.",
+            "de": "Für jede ausgehende Nachricht fordert das Transport-System \"Gebote\" von jedem Transport an. Der Transport mit dem niedrigsten (besten) Gebot gewinnt die Ausschreibung und erhält die Nachricht zur Zustellung. Ein Transport kann die Abgabe eines Gebots verweigern.",
+            "fr": "Pour chaque message sortant, le système de transport sollicite des \"offres\" de chaque transport. Le transport offrant la valeur la plus basse (meilleure) remporte l'enchère et reçoit le message à livrer. Un transport peut refuser de faire une offre.",
+            "tr": "Her giden mesaj için, aktarım sistemi her aktarımdan \"teklif\" ister. En düşük (en iyi) değeri teklif eden aktarım, teklifi kazanır ve mesajı teslim etmek üzere alır. Bir aktarım teklif vermeyi reddedebilir.",
+            "vi": "Đối với mỗi thông điệp gửi đi, hệ thống transport sẽ yêu cầu \"đấu giá\" từ mỗi transport. Transport đưa ra giá trị thấp nhất (tốt nhất) sẽ thắng cuộc đấu giá và nhận thông điệp để gửi đi. Một transport có thể từ chối tham gia đấu giá.",
+            "hi": "प्रत्येक आउटगोइंग संदेश के लिए, transport system प्रत्येक transport से \"बोलियाँ\" माँगता है। सबसे कम (सर्वोत्तम) मूल्य की बोली लगाने वाला transport बोली जीत जाता है और डिलीवरी के लिए संदेश प्राप्त करता है। कोई transport बोली लगाने से मना कर सकता है।",
+            "ar": "لكل رسالة صادرة، يطلب نظام النقل \"عروضاً\" من كل وسيلة نقل. وسيلة النقل التي تقدم أقل قيمة (الأفضل) تفوز بالعرض وتستلم الرسالة للتسليم. يمكن لوسيلة النقل أن ترفض تقديم عرض.",
+            "pt": "Para cada mensagem de saída, o sistema de transporte solicita \"ofertas\" de cada transporte. O transporte que oferecer o valor mais baixo (melhor) ganha a oferta e recebe a mensagem para entrega. Um transporte pode recusar-se a fazer uma oferta."
+          }
+        },
+        "p_013": {
+          "source_hash": "ab9b309e68109b59",
+          "translations": {
+            "zh": "传输层是否出价以及出价值取决于众多因素：",
+            "es": "Si un transporte hace una oferta, y con qué valor, depende de numerosos factores:",
+            "ko": "transport가 입찰하는지 여부와 어떤 값으로 입찰하는지는 다음과 같은 여러 요인에 따라 달라집니다:",
+            "ru": "То, будет ли транспорт делать ставку и с каким значением, зависит от множества факторов:",
+            "cs": "Zda transport nabídne a s jakou hodnotou, závisí na mnoha faktorech:",
+            "de": "Ob ein Transport ein Gebot abgibt und mit welchem Wert, hängt von zahlreichen Faktoren ab:",
+            "fr": "Le fait qu'un transport fasse une offre, et avec quelle valeur, dépend de nombreux facteurs :",
+            "tr": "Bir transport'un teklif verip vermeyeceği ve hangi değerle vereceği çok sayıda faktöre bağlıdır:",
+            "vi": "Việc một transport có đấu thầu hay không, và với giá trị bao nhiêu, phụ thuộc vào nhiều yếu tố:",
+            "hi": "कोई transport बिड करता है या नहीं, और किस मूल्य के साथ, यह कई कारकों पर निर्भर करता है:",
+            "ar": "ما إذا كان النقل يقدم عرضاً، وبأي قيمة، يعتمد على عوامل عديدة:",
+            "pt": "Se um transporte faz uma oferta, e com que valor, depende de vários fatores:"
+          }
+        },
+        "p_014": {
+          "source_hash": "26d92e39d0836e5e",
+          "translations": {
+            "zh": "一般来说，出价值的选择确保两个router在任何时候只通过单一传输方式连接。然而，这并不是强制要求。",
+            "es": "En general, los valores de oferta se seleccionan de modo que dos routers solo estén conectados por un único transporte en cualquier momento dado. Sin embargo, esto no es un requisito.",
+            "ko": "일반적으로 bid 값은 두 router가 한 번에 하나의 전송 방식으로만 연결되도록 선택됩니다. 그러나 이는 필수 요구사항은 아닙니다.",
+            "ru": "В общем случае значения bid выбираются так, чтобы два router'а были подключены только одним транспортом в любой момент времени. Однако это не является обязательным требованием.",
+            "cs": "Obecně jsou hodnoty nabídek vybírány tak, aby dva routery byly v daný okamžik propojeny pouze jedním transportem. Nicméně to není požadavek.",
+            "de": "Im Allgemeinen werden die Bid-Werte so gewählt, dass zwei router zu jedem Zeitpunkt nur durch einen einzigen Transport verbunden sind. Dies ist jedoch keine Anforderung.",
+            "fr": "En général, les valeurs d'enchères sont sélectionnées de sorte que deux routeurs ne soient connectés que par un seul transport à la fois. Cependant, ce n'est pas une exigence.",
+            "tr": "Genel olarak, bid değerleri iki router'ın herhangi bir zamanda yalnızca tek bir transport ile bağlı olacağı şekilde seçilir. Ancak bu bir gereklilik değildir.",
+            "vi": "Nói chung, các giá trị bid được chọn sao cho hai router chỉ được kết nối bằng một transport duy nhất tại bất kỳ thời điểm nào. Tuy nhiên, đây không phải là một yêu cầu bắt buộc.",
+            "hi": "सामान्यतः, bid values इस प्रकार चुने जाते हैं कि दो routers किसी भी समय केवल एक single transport से जुड़े हों। हालांकि, यह कोई आवश्यकता नहीं है।",
+            "ar": "بشكل عام، يتم اختيار قيم المزايدة بحيث يكون هناك router واحد فقط متصل بـ router آخر عبر وسيلة نقل واحدة في أي وقت. ومع ذلك، هذا ليس شرطاً إلزامياً.",
+            "pt": "Em geral, os valores de lance são selecionados para que dois routers sejam conectados por apenas um transporte por vez. No entanto, isso não é um requisito."
+          }
+        },
+        "list_005": {
+          "source_hash": "6792dd63f8b0c100",
+          "translations": {
+            "zh": "- 类似 TLS/SSH 的传输协议\n- 适用于无法被所有其他 router 访问的 router 的\"间接\"传输协议（\"受限路由\"的一种形式）\n- 与 Tor 兼容的可插拔传输协议",
+            "es": "- Un transporte similar a TLS/SSH\n- Un transporte \"indirecto\" para routers que no son accesibles por todos los otros routers (una forma de \"rutas restringidas\")\n- Transportes conectables compatibles con Tor",
+            "ko": "- TLS/SSH와 유사한 전송 방식\n- 모든 다른 router에서 접근할 수 없는 router를 위한 \"간접\" 전송 방식 (\"제한된 경로\"의 한 형태)\n- Tor 호환 플러그형 전송",
+            "ru": "- Транспорт, похожий на TLS/SSH\n- \"Косвенный\" транспорт для router'ов, которые недоступны для всех других router'ов (одна из форм \"ограниченных маршрутов\")\n- Подключаемые транспорты, совместимые с Tor",
+            "cs": "- Transport podobný TLS/SSH\n- \"Nepřímý\" transport pro routery, které nejsou dostupné pro všechny ostatní routery (jedna forma \"omezených tras\")\n- Tor-kompatibilní pluggable transports",
+            "de": "- Ein TLS/SSH-ähnlicher Transport\n- Ein \"indirekter\" Transport für Router, die nicht von allen anderen Routern erreichbar sind (eine Form von \"eingeschränkten Routen\")\n- Tor-kompatible Pluggable Transports",
+            "fr": "- Un transport ressemblant à TLS/SSH\n- Un transport \"indirect\" pour les routeurs qui ne sont pas accessibles par tous les autres routeurs (une forme de \"routes restreintes\")\n- Des transports enfichables compatibles avec Tor",
+            "tr": "- TLS/SSH benzeri bir taşıma protokolü\n- Diğer tüm router'lar tarafından erişilemeyen router'lar için \"dolaylı\" taşıma protokolü (\"kısıtlı rotalar\"ın bir türü)\n- Tor-uyumlu takılabilir taşıma protokolleri",
+            "vi": "- Một giao thức truyền tải giống TLS/SSH\n- Một giao thức truyền tải \"gián tiếp\" cho các router không thể truy cập được bởi tất cả các router khác (một dạng của \"restricted routes\")\n- Các giao thức truyền tải pluggable tương thích với Tor",
+            "hi": "- एक TLS/SSH समान transport\n- उन routers के लिए एक \"अप्रत्यक्ष\" transport जो अन्य सभी routers द्वारा पहुंचे जाने योग्य नहीं हैं (\"प्रतिबंधित routes\" का एक रूप)\n- Tor-संगत pluggable transports",
+            "ar": "- نقل يشبه TLS/SSH\n- نقل \"غير مباشر\" لأجهزة router التي لا يمكن الوصول إليها من قبل جميع أجهزة router الأخرى (شكل واحد من \"المسارات المقيدة\")\n- نقل قابل للإضافة متوافق مع Tor",
+            "pt": "- Um transporte similar ao TLS/SSH\n- Um transporte \"indireto\" para routers que não são acessíveis por todos os outros routers (uma forma de \"rotas restritas\")\n- Transportes plugáveis compatíveis com Tor"
+          }
+        },
+        "p_015": {
+          "source_hash": "21a951c4f806b2c6",
+          "translations": {
+            "zh": "---",
+            "es": "---",
+            "ko": "---",
+            "ru": "---",
+            "cs": "---",
+            "de": "---",
+            "fr": "---",
+            "tr": "---",
+            "vi": "---",
+            "hi": "---",
+            "ar": "---",
+            "pt": "---"
+          }
+        },
+        "p_016": {
+          "source_hash": "cb3f91d54eee30e5",
+          "translations": {
+            "zh": "可能会开发其他传输协议，包括：",
+            "es": "Pueden desarrollarse transportes adicionales, incluyendo:",
+            "ko": "다음을 포함하여 추가적인 전송 방식들이 개발될 수 있습니다:",
+            "ru": "Дополнительные транспорты могут быть разработаны, включая:",
+            "cs": "Další transporty mohou být vyvíjeny, včetně:",
+            "de": "Zusätzliche Transportprotokolle können entwickelt werden, einschließlich:",
+            "fr": "Des transports supplémentaires peuvent être développés, notamment :",
+            "tr": "Ek aktarım protokolleri geliştirilebilir, bunlar şunları içerir:",
+            "vi": "Các phương thức truyền tải bổ sung có thể được phát triển, bao gồm:",
+            "hi": "अतिरिक्त transports विकसित किए जा सकते हैं, जिनमें शामिल हैं:",
+            "ar": "قد يتم تطوير وسائل نقل إضافية، بما في ذلك:",
+            "pt": "Transportes adicionais podem ser desenvolvidos, incluindo:"
+          }
+        },
+        "h2_005": {
+          "source_hash": "c6249f27dfee8542",
+          "translations": {
+            "zh": "新传输协议和未来工作",
+            "es": "Nuevos Transportes y Trabajo Futuro",
+            "ko": "새로운 전송 방식과 향후 작업",
+            "ru": "Новые транспорты и будущая работа",
+            "cs": "Nové transporty a budoucí práce",
+            "de": "Neue Transporte und zukünftige Arbeiten",
+            "fr": "Nouveaux Transports et Travaux Futurs",
+            "tr": "Yeni Aktarım Yöntemleri ve Gelecekteki Çalışmalar",
+            "vi": "Giao thức Truyền tải Mới và Công việc Tương lai",
+            "hi": "नए transports और भविष्य का कार्य",
+            "ar": "وسائل النقل الجديدة والعمل المستقبلي",
+            "pt": "Novos Transportes e Trabalho Futuro"
+          }
+        },
+        "p_017": {
+          "source_hash": "94d7be5c9043958e",
+          "translations": {
+            "zh": "我们继续调整每种传输协议的默认连接限制。I2P被设计为一个\"网状网络\"，假设任何router都可以连接到任何其他router。这个假设可能会被超出连接限制的router以及位于限制性状态防火墙后的router（受限路由）所打破。",
+            "es": "El trabajo continúa en el ajuste de los límites de conexión predeterminados para cada transporte. I2P está diseñado como una \"red de malla\", donde se asume que cualquier router puede conectarse a cualquier otro router. Esta suposición puede verse quebrantada por routers que han excedido sus límites de conexión, y por routers que están detrás de firewalls de estado restrictivos (rutas restringidas).",
+            "ko": "각 전송 방식의 기본 연결 제한을 조정하는 작업이 계속되고 있습니다. I2P는 \"메시 네트워크\"로 설계되어 있으며, 모든 router가 다른 모든 router에 연결할 수 있다고 가정합니다. 이러한 가정은 연결 제한을 초과한 router들과 제한적인 상태 방화벽 뒤에 있는 router들(제한된 경로)에 의해 깨질 수 있습니다.",
+            "ru": "Продолжается работа по настройке лимитов соединений по умолчанию для каждого транспорта. I2P спроектирован как \"mesh-сеть\" (ячеистая сеть), где предполагается, что любой router может подключиться к любому другому router. Это предположение может нарушаться роутерами, которые превысили свои лимиты соединений, и роутерами, находящимися за ограничительными файерволами с контролем состояний (restricted routes).",
+            "cs": "Pokračuje práce na úpravě výchozích limitů připojení pro každý transport. I2P je navrženo jako \"mesh síť\", kde se předpokládá, že jakýkoli router se může připojit k jakémukoli jinému routeru. Tento předpoklad může být narušen routery, které překročily své limity připojení, a routery, které jsou za restriktivními stavovými firewally (omezené trasy).",
+            "de": "Die Arbeit an der Anpassung der Standard-Verbindungslimits für jeden Transport geht weiter. I2P ist als \"Mesh-Netzwerk\" konzipiert, bei dem davon ausgegangen wird, dass sich jeder router mit jedem anderen router verbinden kann. Diese Annahme kann durch router gebrochen werden, die ihre Verbindungslimits überschritten haben, und durch router, die sich hinter restriktiven Stateful-Firewalls befinden (eingeschränkte Routen).",
+            "fr": "Le travail continue sur l'ajustement des limites de connexion par défaut pour chaque transport. I2P est conçu comme un \"réseau maillé\", où il est supposé que tout router peut se connecter à tout autre router. Cette supposition peut être compromise par des routers qui ont dépassé leurs limites de connexion, et par des routers qui sont derrière des pare-feu d'état restrictifs (routes restreintes).",
+            "tr": "Her transport için varsayılan bağlantı sınırlarını ayarlama çalışmaları devam ediyor. I2P, herhangi bir router'ın diğer herhangi bir router'a bağlanabileceği varsayımıyla \"mesh ağ\" olarak tasarlanmıştır. Bu varsayım, bağlantı sınırlarını aşan router'lar ve kısıtlayıcı durum firewall'ları arkasında bulunan router'lar (kısıtlı rotalar) tarafından bozulabilir.",
+            "vi": "Công việc tiếp tục được thực hiện để điều chỉnh giới hạn kết nối mặc định cho mỗi phương thức truyền tải. I2P được thiết kế như một \"mạng lưới ô\", trong đó giả định rằng bất kỳ router nào cũng có thể kết nối với bất kỳ router nào khác. Giả định này có thể bị phá vỡ bởi các router đã vượt quá giới hạn kết nối của chúng, và bởi các router nằm sau tường lửa trạng thái hạn chế (các tuyến đường bị hạn chế).",
+            "hi": "प्रत्येक transport के लिए डिफ़ॉल्ट कनेक्शन सीमा को समायोजित करने का काम जारी है। I2P को एक \"mesh network\" के रूप में डिज़ाइन किया गया है, जहां यह माना जाता है कि कोई भी router किसी भी अन्य router से जुड़ सकता है। यह अवधारणा उन routers द्वारा टूट सकती है जिन्होंने अपनी कनेक्शन सीमा पार कर ली है, और उन routers द्वारा जो प्रतिबंधात्मक state firewalls के पीछे हैं (restricted routes)।",
+            "ar": "يستمر العمل على تعديل حدود الاتصال الافتراضية لكل وسيلة نقل. تم تصميم I2P كـ\"شبكة شبكية\"، حيث يُفترض أن أي router يمكنه الاتصال بأي router آخر. قد يتم كسر هذا الافتراض من قبل routers تجاوزت حدود الاتصال الخاصة بها، وبواسطة routers الموجودة خلف جدران حماية حالة مقيدة (مسارات مقيدة).",
+            "pt": "O trabalho continua no ajuste dos limites padrão de conexão para cada transporte. O I2P é projetado como uma \"rede mesh\", onde se assume que qualquer router pode se conectar a qualquer outro router. Esta suposição pode ser quebrada por routers que excederam seus limites de conexão, e por routers que estão atrás de firewalls de estado restritivos (rotas restritas)."
+          }
+        },
+        "p_018": {
+          "source_hash": "d277dff4ad059a19",
+          "translations": {
+            "zh": "当前SSU的连接限制比NTCP更高，这基于NTCP连接的内存需求比SSU更高的假设。然而，由于NTCP缓冲区部分位于内核中，而SSU缓冲区位于Java堆上，这个假设很难验证。",
+            "es": "Los límites de conexión actuales son más altos para SSU que para NTCP, basándose en la suposición de que los requerimientos de memoria para una conexión NTCP son mayores que los de SSU. Sin embargo, como los búferes de NTCP están parcialmente en el kernel y los búferes de SSU están en el heap de Java, esa suposición es difícil de verificar.",
+            "ko": "현재 연결 제한은 NTCP 연결의 메모리 요구사항이 SSU보다 높다는 가정에 기반하여 SSU가 NTCP보다 더 높게 설정되어 있습니다. 그러나 NTCP 버퍼는 부분적으로 커널에 있고 SSU 버퍼는 Java 힙에 있기 때문에, 이러한 가정을 검증하기는 어렵습니다.",
+            "ru": "Текущие ограничения подключений выше для SSU, чем для NTCP, исходя из предположения, что требования к памяти для NTCP соединения выше, чем для SSU. Однако, поскольку буферы NTCP частично находятся в ядре, а буферы SSU - в куче Java, это предположение трудно проверить.",
+            "cs": "Současné limity připojení jsou vyšší pro SSU než pro NTCP, založené na předpokladu, že paměťové požadavky pro NTCP připojení jsou vyšší než pro SSU. Nicméně, jelikož NTCP buffery jsou částečně v kernelu a SSU buffery jsou na Java heap, tento předpoklad je obtížné ověřit.",
+            "de": "Die aktuellen Verbindungslimits sind für SSU höher als für NTCP, basierend auf der Annahme, dass die Speicheranforderungen für eine NTCP-Verbindung höher sind als die für SSU. Da sich NTCP-Puffer jedoch teilweise im Kernel befinden und SSU-Puffer auf dem Java-Heap liegen, ist diese Annahme schwer zu überprüfen.",
+            "fr": "Les limites de connexion actuelles sont plus élevées pour SSU que pour NTCP, basées sur l'hypothèse que les exigences mémoire pour une connexion NTCP sont plus élevées que celles pour SSU. Cependant, comme les tampons NTCP sont partiellement dans le noyau et les tampons SSU sont sur le tas Java, cette hypothèse est difficile à vérifier.",
+            "tr": "Mevcut bağlantı limitleri, NTCP bağlantısı için bellek gereksinimlerinin SSU'ya göre daha yüksek olduğu varsayımına dayanarak, SSU için NTCP'ye göre daha yüksek tutulmuştur. Ancak, NTCP tamponları kısmen çekirdekte ve SSU tamponları Java heap'inde bulunduğundan, bu varsayımı doğrulamak zordur.",
+            "vi": "Các giới hạn kết nối hiện tại cao hơn đối với SSU so với NTCP, dựa trên giả định rằng yêu cầu bộ nhớ cho một kết nối NTCP cao hơn so với SSU. Tuy nhiên, vì buffer NTCP một phần nằm trong kernel và buffer SSU nằm trên Java heap, giả định đó khó có thể xác minh.",
+            "hi": "वर्तमान कनेक्शन सीमाएं SSU के लिए NTCP की तुलना में अधिक हैं, इस धारणा के आधार पर कि NTCP कनेक्शन के लिए मेमोरी आवश्यकताएं SSU की तुलना में अधिक हैं। हालांकि, चूंकि NTCP बफर आंशिक रूप से कर्नेल में हैं और SSU बफर Java heap पर हैं, इस धारणा को सत्यापित करना कठिन है।",
+            "ar": "حدود الاتصال الحالية أعلى بالنسبة لـ SSU مقارنة بـ NTCP، بناءً على افتراض أن متطلبات الذاكرة لاتصال NTCP أعلى من تلك الخاصة بـ SSU. ومع ذلك، نظراً لأن مخازن NTCP موجودة جزئياً في النواة ومخازن SSU موجودة في كومة Java، فإن هذا الافتراض صعب التحقق منه.",
+            "pt": "Os limites de conexão atuais são mais altos para SSU do que para NTCP, baseados na suposição de que os requisitos de memória para uma conexão NTCP são maiores do que para SSU. No entanto, como os buffers NTCP estão parcialmente no kernel e os buffers SSU estão no heap Java, essa suposição é difícil de verificar."
+          }
+        },
+        "p_019": {
+          "source_hash": "b0fae7c8e17d4aa3",
+          "translations": {
+            "zh": "分析[Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf)，了解传输层填充如何改善情况。",
+            "es": "Analiza [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) y observa cómo el relleno a nivel de capa de transporte puede mejorar las cosas.",
+            "ko": "[Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf)를 분석하고 전송 계층 패딩이 어떻게 상황을 개선할 수 있는지 확인해보세요.",
+            "ru": "Проанализируйте [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) и посмотрите, как padding на транспортном уровне может улучшить ситуацию.",
+            "cs": "Analyzujte [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) a podívejte se, jak může padding transportní vrstvy věci zlepšit.",
+            "de": "Analysieren Sie [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) und sehen Sie, wie Transport-Layer-Padding die Situation verbessern könnte.",
+            "fr": "Analysez [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) et voyez comment le remplissage au niveau de la couche transport pourrait améliorer les choses.",
+            "tr": "[Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) belgesini analiz edin ve taşıma katmanı dolgulamasının (padding) durumu nasıl iyileştirebileceğini görün.",
+            "vi": "Phân tích [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) và xem cách padding ở tầng transport có thể cải thiện mọi thứ.",
+            "hi": "[Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) का विश्लेषण करें और देखें कि transport-layer padding चीजों को कैसे बेहतर बना सकती है।",
+            "ar": "حلل [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) وانظر كيف يمكن لحشو طبقة النقل أن يحسن الأمور.",
+            "pt": "Analise [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) e veja como o preenchimento da camada de transporte pode melhorar as coisas."
+          }
+        },
+        "list_006": {
+          "source_hash": "a071b8a1f08196cf",
+          "translations": {
+            "fr": "- Un transport similaire à TLS/SSH\n- Un transport « indirect » pour les routeurs qui ne sont pas accessibles par tous les autres routeurs (une forme de « routes restreintes »)\n- Des transports extensibles compatibles avec Tor",
+            "de": "- Ein TLS/SSH-ähnlicher Transport\n- Ein „indirekter“ Transport für Router, die nicht von allen anderen Routern erreichbar sind (eine Form von „eingeschränkten Routen“)\n- Tor-kompatible einsetzbare Transportschichten",
+            "ko": "- TLS/SSH와 유사한 전송 방식\n- 다른 모든 라우터로부터 접근할 수 없는 라우터를 위한 \"간접\" 전송 방식 (\"제한된 경로\"의 한 형태)\n- Tor와 호환되는 확장 가능한 전송 방식(pluggable transports)",
+            "vi": "- Giao thức truyền tải giống TLS/SSH\n- Giao thức truyền tải \"gián tiếp\" dành cho các bộ định tuyến không thể kết nối được với tất cả các bộ định tuyến khác (một dạng của \"tuyến đường bị hạn chế\")\n- Các giao thức truyền tải cắm thêm tương thích với Tor",
+            "tr": "- TLS/SSH benzeri bir taşıma yöntemi\n- Tüm diğer yönlendiriciler tarafından erişilemeyen yönlendiriciler için \"dolaylı\" bir taşıma yöntemi (sınırlı yolların bir biçimi)\n- Tor ile uyumlu eklenebilir taşıma yöntemleri",
+            "zh": "- 类似 TLS/SSH 的传输方式\n- 用于无法被所有其他路由器直接访问的路由器的“间接”传输方式（一种“受限路由”形式）\n- 兼容 Tor 的可插拔传输协议",
+            "cs": "- Přenos podobný TLS/SSH\n- „Nepřímý“ přenos pro směrovače, které nejsou dosažitelné všemi ostatními směrovači (jedna forma „omezených tras“)\n- Tor-kompatibilní připojitelné přenosy",
+            "pt": "- Um transporte semelhante a TLS/SSH\n- Um transporte \"indireto\" para roteadores que não são alcançáveis por todos os outros roteadores (uma forma de \"rotas restritas\")\n- Transportes plugáveis compatíveis com Tor",
+            "es": "- Un transporte similar a TLS/SSH\n- Un transporte \"indirecto\" para routers que no son accesibles por todos los demás routers (una forma de \"rutas restringidas\")\n- Transportes intercambiables compatibles con Tor",
+            "ar": "- نقلة تشبه TLS/SSH من حيث المظهر\n- نقلة \"غير مباشرة\" للراوترات التي لا يمكن الوصول إليها من قبل جميع الراوترات الأخرى (شكل من أشكال \"الطرق المقيدة\")\n- نقلات قابلة للإضافة متوافقة مع تور",
+            "ru": "- Транспорт, похожий на TLS/SSH\n- «Косвенный» транспорт для маршрутизаторов, которые недоступны для всех остальных маршрутизаторов (один из видов «ограниченных маршрутов»)\n- Совместимые с Tor модульные транспорты",
+            "hi": "- एक TLS/SSH जैसा ट्रांसपोर्ट\n- उन राउटर्स के लिए एक \"अप्रत्यक्ष\" ट्रांसपोर्ट जो अन्य सभी राउटर्स द्वारा पहुंच योग्य नहीं हैं (सीमित मार्गों का एक रूप)\n- टोर-अनुकूल लगाने योग्य ट्रांसपोर्ट"
+          }
+        },
+        "p_020": {
+          "source_hash": "cee2cc25b4023b7c",
+          "translations": {
+            "fr": "Analyser [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) et voir comment le bourrage au niveau de la couche transport pourrait améliorer les choses.",
+            "de": "Analysieren Sie [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) und prüfen Sie, wie eine Auffüllung auf Transportschicht-Ebene die Dinge verbessern könnte.",
+            "ko": "[프로토콜 난독화의 해제 및 개선](http://www.iis.se/docs/hjelmvik_breaking.pdf)을 분석하고 전송 계층 패딩이 어떻게 상황을 개선할 수 있는지 살펴보세요.",
+            "vi": "Phân tích [Phá vỡ và Cải thiện Việc Ngụy trang Giao thức](http://www.iis.se/docs/hjelmvik_breaking.pdf) và xem xét cách thức thêm độn ở tầng truyền tải có thể cải thiện tình hình.",
+            "tr": "[Protokol Gizlemeyi Kırmak ve İyileştirmek](http://www.iis.se/docs/hjelmvik_breaking.pdf) adlı çalışmayı inceleyin ve taşıma katmanı dolgusunun durumları nasıl iyileştirebileceğine bakın.",
+            "zh": "分析《Breaking and Improving Protocol Obfuscation》(http://www.iis.se/docs/hjelmvik_breaking.pdf)，并研究传输层填充如何改善现状。",
+            "cs": "Analyzujte [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) a zjistěte, jak by mohlo vylepšit věci přidávání náhodných dat (padding) na transportní vrstvě.",
+            "pt": "Analise [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) e veja como o preenchimento na camada de transporte pode melhorar as coisas.",
+            "es": "Analice [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) y vea cómo el relleno a nivel de capa de transporte podría mejorar las cosas.",
+            "ar": "قم بتحليل [كسر وتحسين تشويش البروتوكول](http://www.iis.se/docs/hjelmvik_breaking.pdf) وانظر كيف يمكن أن تُحسن الحشو على طبقة النقل من الأمور.",
+            "ru": "Проанализируйте [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) и оцените, как дополнение на транспортном уровне может улучшить ситуацию.",
+            "hi": "[ब्रेकिंग एंड इम्प्रूविंग प्रोटोकॉल ऑब्फस्केशन](http://www.iis.se/docs/hjelmvik_breaking.pdf) का विश्लेषण करें और देखें कि ट्रांसपोर्ट-लेयर पैडिंग किस प्रकार चीजों में सुधार कर सकती है।"
+          }
+        }
+      },
+      "file_hash": "124f03b2b55c42f498ddbeb04262bd84b9632f6c51c181af8580318c8a0a3cb9"
     }
   }
 }

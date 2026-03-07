@@ -2,8 +2,8 @@
 title: "Visão Geral do Transporte"
 description: "Visão geral da camada de transporte do I2P para comunicação ponto-a-ponto entre routers"
 slug: "transport"
-lastUpdated: "2018-06"
-accurateFor: "0.9.36"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Transportes no I2P
@@ -17,12 +17,6 @@ I2P suporta múltiplos transportes simultaneamente. Existem três transportes at
 3. [NTCP2](/docs/specs/ntcp2/), uma nova versão do NTCP
 
 Cada um fornece um paradigma de "conexão", com autenticação, controle de fluxo, confirmações e retransmissão.
-
----
-
-## Serviços de Transporte
-
-O subsistema de transporte no I2P fornece os seguintes serviços:
 
 - Entrega confiável de mensagens [I2NP](/docs/specs/i2np/). Os transportes suportam entrega de mensagens I2NP APENAS. Eles não são canais de dados de uso geral.
 - A entrega ordenada de mensagens NÃO é garantida por todos os transportes.
@@ -45,27 +39,25 @@ O subsistema de transporte no I2P fornece os seguintes serviços:
 
 ---
 
-## Endereços de Transporte
+O subsistema de transporte no I2P fornece os seguintes serviços:
 
-O subsistema de transporte mantém um conjunto de endereços de router, cada um dos quais lista um método de transporte, IP e porta. Estes endereços constituem os pontos de contato anunciados e são publicados pelo router na base de dados da rede. Os endereços também podem conter um conjunto arbitrário de opções adicionais.
+## Serviços de Transporte
 
-Cada método de transporte pode publicar múltiplos endereços de router.
-
-Cenários típicos são:
+---
 
 - Um router não possui endereços publicados, então é considerado "oculto" e não pode receber conexões de entrada
 - Um router está atrás de firewall e, portanto, publica um endereço SSU que contém uma lista de pares cooperantes ou "introducers" que irão auxiliar na travessia de NAT (veja [a especificação SSU](/docs/legacy/ssu/) para detalhes)
 - Um router não está atrás de firewall ou suas portas NAT estão abertas; ele publica endereços NTCP e SSU contendo IP e portas diretamente acessíveis.
 
+O subsistema de transporte mantém um conjunto de endereços de router, cada um dos quais lista um método de transporte, IP e porta. Estes endereços constituem os pontos de contato anunciados e são publicados pelo router na base de dados da rede. Os endereços também podem conter um conjunto arbitrário de opções adicionais.
+
+## Endereços de Transporte
+
+Cada método de transporte pode publicar múltiplos endereços de router.
+
+Cenários típicos são:
+
 ---
-
-## Seleção de Transporte
-
-O sistema de transporte entrega apenas [mensagens I2NP](/docs/specs/i2np/). O transporte selecionado para qualquer mensagem é independente dos protocolos e conteúdos das camadas superiores (mensagens do router ou cliente, se uma aplicação externa estava usando TCP ou UDP para conectar ao I2P, se a camada superior estava usando [a biblioteca de streaming](/docs/api/streaming/) ou [datagramas](/docs/api/datagrams/), etc.).
-
-Para cada mensagem de saída, o sistema de transporte solicita "ofertas" de cada transporte. O transporte que oferecer o valor mais baixo (melhor) ganha a oferta e recebe a mensagem para entrega. Um transporte pode recusar-se a fazer uma oferta.
-
-Se um transporte faz uma oferta, e com que valor, depende de vários fatores:
 
 - Configuração das preferências de transporte
 - Se o transporte já está conectado ao peer
@@ -76,20 +68,34 @@ Se um transporte faz uma oferta, e com que valor, depende de vários fatores:
 - Se a conexão seria indireta (requerendo introducers) ou direta
 - A preferência de transporte do peer, conforme anunciada em seu RouterInfo
 
+O sistema de transporte entrega apenas [mensagens I2NP](/docs/specs/i2np/). O transporte selecionado para qualquer mensagem é independente dos protocolos e conteúdos das camadas superiores (mensagens do router ou cliente, se uma aplicação externa estava usando TCP ou UDP para conectar ao I2P, se a camada superior estava usando [a biblioteca de streaming](/docs/api/streaming/) ou [datagramas](/docs/api/datagrams/), etc.).
+
+## Seleção de Transporte
+
+Para cada mensagem de saída, o sistema de transporte solicita "ofertas" de cada transporte. O transporte que oferecer o valor mais baixo (melhor) ganha a oferta e recebe a mensagem para entrega. Um transporte pode recusar-se a fazer uma oferta.
+
+Se um transporte faz uma oferta, e com que valor, depende de vários fatores:
+
 Em geral, os valores de lance são selecionados para que dois routers sejam conectados por apenas um transporte por vez. No entanto, isso não é um requisito.
-
----
-
-## Novos Transportes e Trabalho Futuro
-
-Transportes adicionais podem ser desenvolvidos, incluindo:
 
 - Um transporte similar ao TLS/SSH
 - Um transporte "indireto" para routers que não são acessíveis por todos os outros routers (uma forma de "rotas restritas")
 - Transportes plugáveis compatíveis com Tor
 
+---
+
+Transportes adicionais podem ser desenvolvidos, incluindo:
+
+## Novos Transportes e Trabalho Futuro
+
 O trabalho continua no ajuste dos limites padrão de conexão para cada transporte. O I2P é projetado como uma "rede mesh", onde se assume que qualquer router pode se conectar a qualquer outro router. Esta suposição pode ser quebrada por routers que excederam seus limites de conexão, e por routers que estão atrás de firewalls de estado restritivos (rotas restritas).
+
+- Um transporte semelhante a TLS/SSH
+- Um transporte "indireto" para roteadores que não são alcançáveis por todos os outros roteadores (uma forma de "rotas restritas")
+- Transportes plugáveis compatíveis com Tor
 
 Os limites de conexão atuais são mais altos para SSU do que para NTCP, baseados na suposição de que os requisitos de memória para uma conexão NTCP são maiores do que para SSU. No entanto, como os buffers NTCP estão parcialmente no kernel e os buffers SSU estão no heap Java, essa suposição é difícil de verificar.
 
 Analise [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) e veja como o preenchimento da camada de transporte pode melhorar as coisas.
+
+Analise [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) e veja como o preenchimento na camada de transporte pode melhorar as coisas.

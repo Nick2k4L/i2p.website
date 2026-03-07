@@ -2,8 +2,8 @@
 title: "Přehled transportu"
 description: "Přehled transportní vrstvy I2P pro komunikaci mezi routery typu point-to-point"
 slug: "transport"
-lastUpdated: "2018-06"
-accurateFor: "0.9.36"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Transporty v I2P
@@ -17,12 +17,6 @@ I2P podporuje více transportů současně. V současnosti jsou implementovány 
 3. [NTCP2](/docs/specs/ntcp2/), nová verze NTCP
 
 Každý poskytuje paradigma "připojení" s autentizací, řízením toku, potvrzeními a retransmisí.
-
----
-
-## Transportní služby
-
-Transportní subsystém v I2P poskytuje následující služby:
 
 - Spolehlivé doručování [I2NP](/docs/specs/i2np/) zpráv. Transporty podporují doručování I2NP zpráv POUZE. Nejsou to univerzální datové roury.
 - Doručování zpráv v pořadí NENÍ garantováno všemi transporty.
@@ -45,27 +39,25 @@ Transportní subsystém v I2P poskytuje následující služby:
 
 ---
 
-## Transportní adresy
+Transportní subsystém v I2P poskytuje následující služby:
 
-Transportní subsystém udržuje sadu router adres, z nichž každá obsahuje transportní metodu, IP a port. Tyto adresy tvoří inzerované kontaktní body a jsou publikovány routerem do síťové databáze. Adresy mohou také obsahovat libovolnou sadu dalších možností.
+## Transportní služby
 
-Každá transportní metoda může publikovat více router adres.
-
-Typické scénáře jsou:
+---
 
 - Router nemá publikované adresy, takže je považován za "skrytý" a nemůže přijímat příchozí připojení
 - Router je za firewallem, a proto publikuje SSU adresu, která obsahuje seznam spolupracujících uzlů nebo "introducers", kteří pomohou s NAT traversal (viz [SSU specifikace](/docs/legacy/ssu/) pro podrobnosti)
 - Router není za firewallem nebo má otevřené NAT porty; publikuje jak NTCP, tak SSU adresy obsahující přímo přístupné IP a porty.
 
+Transportní subsystém udržuje sadu router adres, z nichž každá obsahuje transportní metodu, IP a port. Tyto adresy tvoří inzerované kontaktní body a jsou publikovány routerem do síťové databáze. Adresy mohou také obsahovat libovolnou sadu dalších možností.
+
+## Transportní adresy
+
+Každá transportní metoda může publikovat více router adres.
+
+Typické scénáře jsou:
+
 ---
-
-## Výběr transportu
-
-Transportní systém doručuje pouze [I2NP zprávy](/docs/specs/i2np/). Transport vybraný pro jakoukoli zprávu je nezávislý na protokolech a obsahu vyšší vrstvy (zprávy routeru nebo klienta, zda externí aplikace používala TCP nebo UDP pro připojení k I2P, zda vyšší vrstva používala [streaming knihovnu](/docs/api/streaming/) nebo [datagramy](/docs/api/datagrams/), atd.).
-
-Pro každou odchozí zprávu transportní systém vyžádá "nabídky" od každého transportu. Transport s nejnižší (nejlepší) nabídkou vyhraje a obdrží zprávu k doručení. Transport může odmítnout podat nabídku.
-
-Zda transport nabídne a s jakou hodnotou, závisí na mnoha faktorech:
 
 - Konfigurace transportních preferencí
 - Zda je transport již připojen k peer
@@ -76,20 +68,34 @@ Zda transport nabídne a s jakou hodnotou, závisí na mnoha faktorech:
 - Zda by připojení bylo nepřímé (vyžadující introducery) nebo přímé
 - Transportní preference peer, jak je inzerována v jeho RouterInfo
 
+Transportní systém doručuje pouze [I2NP zprávy](/docs/specs/i2np/). Transport vybraný pro jakoukoli zprávu je nezávislý na protokolech a obsahu vyšší vrstvy (zprávy routeru nebo klienta, zda externí aplikace používala TCP nebo UDP pro připojení k I2P, zda vyšší vrstva používala [streaming knihovnu](/docs/api/streaming/) nebo [datagramy](/docs/api/datagrams/), atd.).
+
+## Výběr transportu
+
+Pro každou odchozí zprávu transportní systém vyžádá "nabídky" od každého transportu. Transport s nejnižší (nejlepší) nabídkou vyhraje a obdrží zprávu k doručení. Transport může odmítnout podat nabídku.
+
+Zda transport nabídne a s jakou hodnotou, závisí na mnoha faktorech:
+
 Obecně jsou hodnoty nabídek vybírány tak, aby dva routery byly v daný okamžik propojeny pouze jedním transportem. Nicméně to není požadavek.
-
----
-
-## Nové transporty a budoucí práce
-
-Další transporty mohou být vyvíjeny, včetně:
 
 - Transport podobný TLS/SSH
 - "Nepřímý" transport pro routery, které nejsou dostupné pro všechny ostatní routery (jedna forma "omezených tras")
 - Tor-kompatibilní pluggable transports
 
+---
+
+Další transporty mohou být vyvíjeny, včetně:
+
+## Nové transporty a budoucí práce
+
 Pokračuje práce na úpravě výchozích limitů připojení pro každý transport. I2P je navrženo jako "mesh síť", kde se předpokládá, že jakýkoli router se může připojit k jakémukoli jinému routeru. Tento předpoklad může být narušen routery, které překročily své limity připojení, a routery, které jsou za restriktivními stavovými firewally (omezené trasy).
+
+- Přenos podobný TLS/SSH
+- „Nepřímý“ přenos pro směrovače, které nejsou dosažitelné všemi ostatními směrovači (jedna forma „omezených tras“)
+- Tor-kompatibilní připojitelné přenosy
 
 Současné limity připojení jsou vyšší pro SSU než pro NTCP, založené na předpokladu, že paměťové požadavky pro NTCP připojení jsou vyšší než pro SSU. Nicméně, jelikož NTCP buffery jsou částečně v kernelu a SSU buffery jsou na Java heap, tento předpoklad je obtížné ověřit.
 
 Analyzujte [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) a podívejte se, jak může padding transportní vrstvy věci zlepšit.
+
+Analyzujte [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) a zjistěte, jak by mohlo vylepšit věci přidávání náhodných dat (padding) na transportní vrstvě.
