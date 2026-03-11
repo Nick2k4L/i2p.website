@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Status
 
-Substantially complete. See [Prop159](/proposals/159-ssu2) for additional background and goals, including security analysis, threat models, a review of SSU 1 security and issues, and excerpts of the QUIC specifications.
+Completed. See [Prop159](/proposals/159-ssu2) for additional background and goals, including security analysis, threat models, a review of SSU 1 security and issues, and excerpts of the QUIC specifications.
 
 Rollout plan:
 
@@ -1255,7 +1255,7 @@ Raw contents:
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1269,10 +1269,8 @@ Raw contents:
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1285,7 +1283,7 @@ Raw contents:
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 

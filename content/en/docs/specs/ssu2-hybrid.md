@@ -283,6 +283,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 
 
@@ -309,6 +315,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 
 
@@ -404,8 +416,8 @@ unchanged
 
 #### SessionRequest (Type 0)
 
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+Changes: Current SSU2 contains only the block data in a single ChaCha section.
+With ML-KEM, there will be a new ChaCha section before the block data, containing the encrypted PQ public key.
 
 KDF Change for Spoof Protection:
 To address the issues raised in Proposal 165 [Prop165]_,
@@ -462,6 +474,10 @@ Raw contents:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -528,8 +544,8 @@ Minimum MTU for MLKEM768_X25519:
 
 #### SessionCreated (Type 1)
 
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+Changes: Current SSU2 contains only the payload in a single ChaCha section.
+With ML-KEM, there will be a new ChaCha section before the payload, containing the encrypted PQ ciphertext.
 
 
 Raw contents:
@@ -556,16 +572,20 @@ Raw contents:
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

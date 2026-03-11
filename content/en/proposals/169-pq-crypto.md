@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-06"
+lastupdated: "2026-03-11"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -701,6 +701,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 
 
@@ -727,6 +733,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 
 
@@ -984,8 +996,8 @@ Update the NTCP2 specification [/docs/specs/ntcp2/](/docs/specs/ntcp2/) as follo
 
 #### 1) SessionRequest
 
-Changes: Current NTCP2 contains only the options in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+Changes: Current NTCP2 contains only the options in a single ChaCha section.
+With ML-KEM, there will be a new ChaCha section before the options, containing the encrypted PQ public key.
 
 So that PQ and non-PQ NTCP2 may be supported on the same router address and port,
 we use the most significant bit of the X value (X25519 ephemeral public key) to mark that it
@@ -1018,20 +1030,28 @@ Raw contents:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -1088,6 +1108,9 @@ and support will be indicated in the router addresses.
 
 #### 2) SessionCreated
 
+Changes: Current NTCP2 contains only the options in a single ChaCha section.
+With ML-KEM, there will be a new ChaCha section before the options, containing the encrypted PQ ciphertext.
+
 Raw contents:
 
 ```
@@ -1100,20 +1123,26 @@ Raw contents:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -1319,8 +1348,8 @@ unchanged
 
 #### SessionRequest (Type 0)
 
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+Changes: Current SSU2 contains only the block data in a single ChaCha section.
+With ML-KEM, there will be a new ChaCha section before the block data, containing the encrypted PQ public key.
 
 KDF Change for Spoof Protection:
 To address the issues raised in Proposal 165 [Prop165]_,
@@ -1377,6 +1406,10 @@ Raw contents:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1443,8 +1476,8 @@ Minimum MTU for MLKEM768_X25519:
 
 #### SessionCreated (Type 1)
 
-Changes: Current SSU2 contains only the block data in the ChaCha section.
-With ML-KEM, the ChaCha section will also contain the encrypted PQ public key.
+Changes: Current SSU2 contains only the payload in a single ChaCha section.
+With ML-KEM, there will be a new ChaCha section before the payload, containing the encrypted PQ ciphertext.
 
 
 Raw contents:
@@ -1467,20 +1500,22 @@ Raw contents:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaCha20 data (MLKEM)               |
-  +   Encrypted and authenticated data    +
-  |  length varies                        |
+  |   ChaCha20 encrypted data (MLKEM)     |
+  ~  length varies                        ~
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaCha20 data (payload)             |
-  +   Encrypted and authenticated data    +
-  |  length varies                        |
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (payload)   |
+  ~  length varies                        ~
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
