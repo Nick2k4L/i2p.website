@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-02-28"
+lastupdated: "2026-03-11"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -531,6 +531,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF da Alice para Mensagem 2
 
@@ -555,6 +561,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF para Mensagem 3 (apenas XK)
 
@@ -777,7 +789,7 @@ Atualize a especificação NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) da seg
 
 #### 1) SessionRequest
 
-Mudanças: O NTCP2 atual contém apenas as opções na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
+Alterações: o NTCP2 atual contém apenas as opções em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes das opções, contendo a chave pública PQ criptografada.
 
 Para que NTCP2 PQ e não-PQ possam ser suportados no mesmo endereço e porta do router, usamos o bit mais significativo do valor X (chave pública efêmera X25519) para marcar que é uma conexão PQ. Este bit sempre permanece desmarcado para conexões não-PQ.
 
@@ -801,20 +813,28 @@ Conteúdo bruto:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -864,6 +884,8 @@ Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão
 
 #### 2) SessionCreated
 
+Alterações: o NTCP2 atual contém apenas as opções em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes das opções, contendo o cifro PQ criptografado.
+
 Conteúdo bruto:
 
 ```
@@ -876,20 +898,26 @@ Conteúdo bruto:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -936,7 +964,7 @@ Tamanhos:
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
 | MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
 | MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
-Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão tipo 4, e o suporte será indicado nos endereços do router.
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
 #### 3) SessionConfirmed
 
@@ -1036,9 +1064,9 @@ inalterado
 
 #### SessionRequest (Tipo 0)
 
-Mudanças: O SSU2 atual contém apenas os dados do bloco na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
+Alterações: O SSU2 atual contém apenas os dados do bloco em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes dos dados do bloco, contendo a chave pública do PQ criptografada.
 
-Mudança KDF para Proteção contra Spoofing: Para abordar os problemas levantados na Proposta 165 [Prop165]_, mas com uma solução diferente, modificamos o KDF para Session Request. Isso é apenas para sessões PQ. O KDF para sessões não-PQ permanece inalterado.
+Mudança de KDF para Proteção contra Falsificação: Para abordar os problemas levantados na Proposta 165 [Prop165]_, mas com uma solução diferente, modificamos o KDF para Solicitação de Sessão. Isso aplica-se apenas a sessões PQ. O KDF para sessões não-PQ permanece inalterado.
 
 ```
 
@@ -1087,6 +1115,10 @@ Conteúdo bruto:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1146,7 +1178,7 @@ MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
 
 #### SessionCreated (Tipo 1)
 
-Mudanças: O SSU2 atual contém apenas os dados do bloco na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
+Alterações: O SSU2 atual contém apenas o payload em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes do payload, contendo o ciphertext PQ criptografado.
 
 Conteúdo bruto:
 
@@ -1168,20 +1200,22 @@ Conteúdo bruto:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaCha20 data (MLKEM)               |
-  +   Encrypted and authenticated data    +
-  |  length varies                        |
+  |   ChaCha20 encrypted data (MLKEM)     |
+  ~  length varies                        ~
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaCha20 data (payload)             |
-  +   Encrypted and authenticated data    +
-  |  length varies                        |
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (payload)   |
+  ~  length varies                        ~
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
@@ -1220,7 +1254,7 @@ Dados não criptografados (tag de autenticação Poly1305 não mostrada):
   |      see below for allowed blocks     |
   +----+----+----+----+----+----+----+----+
 ```
-Tamanhos, não incluindo sobrecarga IP:
+Tamanhos, não incluindo overhead do IP:
 
 | Tipo | Código do Tipo | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
@@ -1228,7 +1262,7 @@ Tamanhos, não incluindo sobrecarga IP:
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | muito grande | | | | |
-Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão tipo 4, e o suporte será indicado nos endereços do router.
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
 MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
 
@@ -1261,7 +1295,7 @@ Endereço/porta diferentes como não-PQ, ou apenas PQ, não-firewalled NÃO é s
 
 Endereços com firewall (nenhum IP publicado): No endereço do router, publique v=2 (como de costume). O parâmetro pq DEVE ser publicado em endereços com firewall, para suportar relay.
 
-Alice pode conectar-se a um Bob PQ usando a variante PQ que Bob publica, independentemente de Alice anunciar ou não o suporte PQ em suas informações de router, ou se ela anuncia a mesma variante.
+Alice pode se conectar a um Bob PQ usando a variante PQ que Bob publica, independentemente de Alice anunciar suporte pq em suas informações de router, ou se ela anuncia a mesma variante.
 
 #### MTU
 
@@ -1353,7 +1387,7 @@ Velocidades conforme relatado pela [Cloudflare](https://blog.cloudflare.com/pq-2
 | MLDSA44 | 5x mais lento | 2x mais rápido |
 | MLDSA65 | ??? | ??? |
 | MLDSA87 | ??? | ??? |
-Resultados preliminares de teste em Java:
+Resultados preliminares de testes em Java:
 
 | Tipo | Sinal de velocidade relativa | verificar | keygen |
 |------|------------------------------|-----------|--------|
@@ -1491,7 +1525,7 @@ Como Bob, teste se (X[31] & 0x80) != 0 após a des-ofuscação. Se for o caso, �
 
 A versão mínima do router necessária para NTCP2-PQ está por definir.
 
-Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão tipo 4, e o suporte será indicado nos endereços do router.
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
 ### SSU2
 

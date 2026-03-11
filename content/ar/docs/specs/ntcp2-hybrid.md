@@ -2,7 +2,7 @@
 title: "PQ Hybrid NTCP2"
 description: "المتغير الهجين لما بعد الكم من بروتوكول النقل NTCP2 باستخدام ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-02"
+lastupdated: "2026-03"
 category: "وسائل النقل"
 accurateFor: "0.9.69"
 ---
@@ -31,23 +31,26 @@ PQ Hybrid NTCP2 معرّف فقط على نفس العنوان والمنفذ ا
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">النوع</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">الكود</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">NTCP2 Version</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ### التركيبات القانونية
 
 يتم الإشارة إلى أنواع التشفير الجديدة في RouterAddresses. سيستمر نوع التشفير في شهادة المفتاح بكونه من النوع 4.
@@ -235,6 +238,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Alice KDF للرسالة 2
 
@@ -259,6 +268,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF للرسالة 3 (XK فقط)
 
@@ -278,7 +293,7 @@ This is the "ekem1" message pattern:
 
 #### 1) طلب الجلسة (SessionRequest)
 
-التغييرات: يحتوي NTCP2 الحالي فقط على الخيارات في قسم ChaCha. مع ML-KEM، سيحتوي قسم ChaCha أيضًا على المفتاح العام المشفر للتشفير ما بعد الكمي (PQ).
+التغييرات: يحتوي NTCP2 الحالي فقط على الخيارات في قسم ChaCha واحد. مع ML-KEM، سيكون هناك قسم ChaCha جديد قبل الخيارات، يحتوي على المفتاح العمومي للتشفير الكمي (PQ) المشفر.
 
 حتى يمكن دعم NTCP2 مع PQ وبدون PQ على نفس عنوان router ونفس المنفذ، نستخدم البت الأكثر أهمية من قيمة X (المفتاح العام المؤقت X25519) للإشارة إلى أنه اتصال PQ. هذا البت يكون دائماً غير مُعيَّن للاتصالات غير PQ.
 
@@ -302,20 +317,28 @@ This is the "ekem1" message pattern:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -357,14 +380,14 @@ This is the "ekem1" message pattern:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">النوع</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">كود النوع</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول X</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول الرسالة 1</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول تشفير الرسالة 1</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول فك تشفير الرسالة 1</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول مفتاح PQ</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول اختياري</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">X len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ key len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -407,10 +430,11 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
 ملاحظة: أكواد الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين أجهزة router.
 
 #### 2) SessionCreated
+
+التغييرات: يحتوي NTCP2 الحالي فقط على الخيارات في قسم تشاتشا واحد. مع ML-KEM، سيكون هناك قسم تشاتشا جديد قبل الخيارات، يحتوي على نص التعمية الكمي المشفر (PQ ciphertext).
 
 المحتويات الخام:
 
@@ -424,20 +448,26 @@ This is the "ekem1" message pattern:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  -           16 bytes                    -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -480,14 +510,14 @@ This is the "ekem1" message pattern:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">النوع</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">كود النوع</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول Y</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول الرسالة 2</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول الرسالة 2 المشفرة</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول الرسالة 2 المفكوكة</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول PQ CT</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">طول الخيارات</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Y len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ CT len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -530,16 +560,15 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-ملاحظة: رموز الأنواع مخصصة للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين router.
+ملاحظة: أكواد الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين أجهزة router.
 
 #### 3) SessionConfirmed
 
-غير متغير
+دون تغيير
 
 #### دالة اشتقاق المفتاح (KDF) (لمرحلة البيانات)
 
-دون تغيير
+غير متغير
 
 #### العناوين المنشورة
 
@@ -563,15 +592,15 @@ This is the "ekem1" message pattern:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">الحد الأقصى لحشو الرسالة</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (حتى 0.9.68)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (اعتباراً من 0.9.69)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Message Max Padding</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (thru 0.9.68)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (as of 0.9.69)</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-512</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-768</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-1024</th>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">طلب الجلسة</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Session Request</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">256</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">880</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">880</td>
@@ -579,7 +608,7 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1648</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;">إنشاء الجلسة</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Session Created</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">256</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
@@ -587,7 +616,6 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
 </table>
-
 ## تحليل الحمولة الإضافية
 
 ### تبادل المفاتيح
@@ -596,9 +624,9 @@ This is the "ekem1" message pattern:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">النوع</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Pubkey (Msg 1)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Cipertext (Msg 2)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Ciphertext (Msg 2)</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
@@ -616,15 +644,14 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
 </table>
-
 ## تحليل الأمان
 
 تم تلخيص فئات الأمان NIST في [عرض NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) الشريحة 10. المعايير الأولية: يجب أن تكون فئة الأمان NIST الدنيا لدينا 2 للبروتوكولات المختلطة و 3 لـ PQ فقط.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">الفئة</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">آمن مثل</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Category</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">As Secure As</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
@@ -647,7 +674,6 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
 </table>
-
 ### المصافحات
 
 هذه كلها بروتوكولات مختلطة. يجب أن تفضل التطبيقات MLKEM768؛ فإن MLKEM512 ليس آمناً بما فيه الكفاية.
@@ -656,8 +682,8 @@ This is the "ekem1" message pattern:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">الخوارزمية</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">فئة الأمان</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Algorithm</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Security Category</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512</td>
@@ -672,7 +698,6 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ## ملاحظات التنفيذ
 
 ### دعم المكتبة
@@ -691,7 +716,7 @@ This is the "ekem1" message pattern:
 
 الحد الأدنى لإصدار router المطلوب لـ NTCP2-PQ لم يتم تحديده بعد.
 
-ملاحظة: رموز الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين router.
+ملاحظة: أكواد الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين أجهزة router.
 
 ## توافق Router
 

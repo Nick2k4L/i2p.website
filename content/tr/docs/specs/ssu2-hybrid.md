@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Mesaj 2 için Alice KDF
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Mesaj 3 için KDF
 
@@ -330,7 +342,7 @@ unchanged
 
 #### SessionRequest (Tür 0)
 
-Değişiklikler: Mevcut SSU2, ChaCha bölümünde yalnızca blok verilerini içermektedir. ML-KEM ile ChaCha bölümü, şifrelenmiş PQ (post-kuantum) genel anahtarını da içerecektir.
+Değişiklikler: Mevcut SSU2 yalnızca tek bir ChaCha bölümünde blok verilerini içerir. ML-KEM ile blok verilerinden önce şifrelenmiş kuantum sonrası genel anahtarı içeren yeni bir ChaCha bölümü eklenecek.
 
 Sahte Kimlik Koruması için KDF Değişikliği: Proposal 165 [Prop165]_'te dile getirilen sorunları farklı bir çözümle ele almak amacıyla, Session Request için KDF'yi değiştiriyoruz. Bu yalnızca PQ (post-kuantum) oturumları için geçerlidir. PQ olmayan oturumlar için KDF değişmeden kalmaktadır.
 
@@ -381,6 +393,10 @@ Ham içerikler:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ MLKEM768_X25519 için minimum MTU: IPv4 için 1318 ve IPv6 için 1338. Aşağıy
 
 #### SessionCreated (Tür 1)
 
-Değişiklikler: Mevcut SSU2, ChaCha bölümünde yalnızca blok verilerini içermektedir. ML-KEM ile ChaCha bölümü, şifrelenmiş PQ (post-kuantum) genel anahtarını da içerecektir.
+Değişiklikler: Mevcut SSU2 yalnızca tek bir ChaCha bölümünde yükü içerir. ML-KEM ile, yükten önce gelen ve şifrelenmiş KF şifre metnini içeren yeni bir ChaCha bölümü eklenecek.
 
 Ham içerikler:
 
@@ -466,16 +482,20 @@ Ham içerikler:
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

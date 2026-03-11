@@ -2,7 +2,7 @@
 title: "PQ Hybrid NTCP2"
 description: "Biến thể lai hậu lượng tử của giao thức truyền tải NTCP2 sử dụng ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-02"
+lastupdated: "2026-03"
 category: "Phương thức vận chuyển"
 accurateFor: "0.9.69"
 ---
@@ -33,21 +33,24 @@ Các loại mã hóa là:
 <tr style="background-color: var(--color-bg-secondary);">
 <th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">NTCP2 Version</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ### Các Kết Hợp Hợp Pháp
 
 Các loại mã hóa mới được chỉ định trong RouterAddresses. Loại mã hóa trong key certificate sẽ tiếp tục là loại 4.
@@ -235,6 +238,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Alice KDF cho Message 2
 
@@ -259,6 +268,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF cho Thông điệp 3 (chỉ XK)
 
@@ -278,7 +293,7 @@ không thay đổi
 
 #### 1) SessionRequest
 
-Thay đổi: NTCP2 hiện tại chỉ chứa các tùy chọn trong phần ChaCha. Với ML-KEM, phần ChaCha cũng sẽ chứa khóa công khai PQ được mã hóa.
+Thay đổi: NTCP2 hiện tại chỉ chứa các tùy chọn trong một phần ChaCha duy nhất. Với ML-KEM, sẽ có một phần ChaCha mới trước các tùy chọn, chứa khóa công khai PQ được mã hóa.
 
 Để PQ và NTCP2 không phải PQ có thể được hỗ trợ trên cùng một địa chỉ router và cổng, chúng ta sử dụng bit quan trọng nhất của giá trị X (khóa công khai tạm thời X25519) để đánh dấu rằng đó là kết nối PQ. Bit này luôn được bỏ đặt cho các kết nối không phải PQ.
 
@@ -302,20 +317,28 @@ Nội dung thô:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -357,14 +380,14 @@ Kích thước:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Loại</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Mã Loại</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài X</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài Msg 1</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài Msg 1 mã hóa</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài Msg 1 giải mã</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài khóa PQ</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài tùy chọn</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">X len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ key len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -407,10 +430,11 @@ Kích thước:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
 Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong các địa chỉ router.
 
 #### 2) SessionCreated
+
+Thay đổi: NTCP2 hiện tại chỉ chứa các tùy chọn trong một phần ChaCha duy nhất. Với ML-KEM, sẽ có một phần ChaCha mới trước các tùy chọn, chứa văn bản mã hóa PQ đã được mã hóa.
 
 Nội dung thô:
 
@@ -424,20 +448,26 @@ Nội dung thô:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  -           16 bytes                    -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -480,14 +510,14 @@ Kích thước:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Loại</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Mã Loại</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài Y</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài Msg 2</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài Msg 2 Enc</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài Msg 2 Dec</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài PQ CT</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Độ dài opt</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Y len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ CT len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -530,8 +560,7 @@ Kích thước:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và việc hỗ trợ sẽ được chỉ ra trong địa chỉ router.
+Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong các địa chỉ router.
 
 #### 3) SessionConfirmed
 
@@ -587,7 +616,6 @@ Sử dụng kích thước thông điệp đã định nghĩa làm padding tối
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
 </table>
-
 ## Phân Tích Chi Phí Hoạt Động
 
 ### Trao Đổi Khóa
@@ -596,9 +624,9 @@ Tăng kích thước (byte):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Loại</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Pubkey (Msg 1)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Cipertext (Msg 2)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Ciphertext (Msg 2)</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
@@ -616,15 +644,14 @@ Tăng kích thước (byte):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
 </table>
-
 ## Phân tích Bảo mật
 
 Các danh mục bảo mật NIST được tóm tắt trong [bài thuyết trình NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10. Tiêu chí sơ bộ: Danh mục bảo mật NIST tối thiểu của chúng ta nên là 2 cho các giao thức hybrid và 3 cho PQ-only.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Danh mục</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Bảo mật tương đương</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Category</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">As Secure As</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
@@ -647,7 +674,6 @@ Các danh mục bảo mật NIST được tóm tắt trong [bài thuyết trình
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
 </table>
-
 ### Bắt tay
 
 Đây đều là các giao thức kết hợp. Các triển khai nên ưu tiên MLKEM768; MLKEM512 không đủ bảo mật.
@@ -656,8 +682,8 @@ Các danh mục bảo mật NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FI
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Thuật toán</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Danh mục Bảo mật</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Algorithm</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Security Category</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512</td>
@@ -672,7 +698,6 @@ Các danh mục bảo mật NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FI
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ## Ghi chú Triển khai
 
 ### Hỗ trợ Thư viện
@@ -691,7 +716,7 @@ Với vai trò Bob, kiểm tra xem (X[31] & 0x80) != 0 sau khi de-obfuscation. N
 
 Phiên bản router tối thiểu cần thiết cho NTCP2-PQ sẽ được xác định sau.
 
-Lưu ý: Mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong địa chỉ router.
+Lưu ý: Các mã loại chỉ dành cho sử dụng nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ ra trong các địa chỉ router.
 
 ## Khả năng tương thích Router
 

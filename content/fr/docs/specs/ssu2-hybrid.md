@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF d'Alice pour le Message 2
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF pour le Message 3
 
@@ -330,7 +342,7 @@ unchanged
 
 #### SessionRequest (Type 0)
 
-Modifications : Le SSU2 actuel ne contient que les données de bloc dans la section ChaCha. Avec ML-KEM, la section ChaCha contiendra également la clé publique PQ chiffrée.
+Modifications : le SSU2 actuel contient uniquement les données du bloc dans une seule section ChaCha. Avec ML-KEM, une nouvelle section ChaCha sera ajoutée avant les données du bloc, contenant la clé publique PQC chiffrée.
 
 Modification du KDF pour la protection contre l'usurpation d'identité : Pour résoudre les problèmes soulevés dans la Proposition 165 [Prop165]_, mais avec une solution différente, nous modifions le KDF pour la Session Request. Cela s'applique uniquement aux sessions PQ. Le KDF pour les sessions non-PQ reste inchangé.
 
@@ -381,6 +393,10 @@ Contenu brut :
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ MTU minimum pour MLKEM768_X25519 : 1318 pour IPv4 et 1338 pour IPv6. Voir ci-des
 
 #### SessionCreated (Type 1)
 
-Modifications : Le SSU2 actuel ne contient que les données de bloc dans la section ChaCha. Avec ML-KEM, la section ChaCha contiendra également la clé publique PQ chiffrée.
+Changements : le SSU2 actuel contient uniquement la charge utile dans une seule section ChaCha. Avec ML-KEM, une nouvelle section ChaCha sera ajoutée avant la charge utile, contenant le chiffré PQC (cryptographie post-quantique) chiffré.
 
 Contenu brut :
 
@@ -466,16 +482,20 @@ Contenu brut :
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

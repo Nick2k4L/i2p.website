@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF de Alice para a Mensagem 2
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF para Mensagem 3
 
@@ -330,7 +342,7 @@ inalterado
 
 #### SessionRequest (Tipo 0)
 
-Alterações: O SSU2 atual contém apenas os dados do bloco na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
+Alterações: o SSU2 atual contém apenas os dados do bloco em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes dos dados do bloco, contendo a chave pública PQ criptografada.
 
 Mudança no KDF para Proteção contra Spoofing: Para resolver os problemas levantados na Proposta 165 [Prop165]_, mas com uma solução diferente, modificamos o KDF para Session Request. Isso se aplica apenas a sessões PQ. O KDF para sessões não-PQ permanece inalterado.
 
@@ -381,6 +393,10 @@ Conteúdo bruto:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
 
 #### SessionCreated (Tipo 1)
 
-Alterações: O SSU2 atual contém apenas os dados do bloco na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
+Alterações: o SSU2 atual contém apenas o payload em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes do payload, contendo o ciphertext PQ criptografado.
 
 Conteúdo bruto:
 
@@ -466,16 +482,20 @@ Conteúdo bruto:
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

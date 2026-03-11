@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### دالة اشتقاق المفاتيح (KDF) لأليس للرسالة 2
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### دالة اشتقاق المفاتيح (KDF) للرسالة 3
 
@@ -383,6 +395,10 @@ unchanged
   |  see KDF for associated data          |
   +----+----+----+----+----+----+----+----+
   |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
   +                                       +
   |   ChaCha20 encrypted data (payload)   |
   +          (length varies)              +
@@ -440,7 +456,7 @@ unchanged
 
 #### SessionCreated (النوع 1)
 
-التغييرات: يحتوي SSU2 الحالي على بيانات الكتلة فقط في قسم ChaCha. مع ML-KEM، سيحتوي قسم ChaCha أيضاً على المفتاح العام المشفّر للتشفير ما بعد الكمومي (PQ).
+التغييرات: يحتوي SSU2 الحالي فقط على الحمولة في قسم واحد من نوع ChaCha. مع ML-KEM، سيكون هناك قسم جديد من نوع ChaCha قبل الحمولة، ويحتوي على النص المشفر الكمي (PQ ciphertext) المشفر.
 
 المحتويات الخام:
 
@@ -466,16 +482,20 @@ unchanged
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

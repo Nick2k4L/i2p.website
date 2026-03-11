@@ -2,7 +2,7 @@
 title: "PQ Hybrid NTCP2"
 description: "Variante híbrida pós-quântica do protocolo de transporte NTCP2 usando ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-02"
+lastupdated: "2026-03"
 category: "Transportes"
 accurateFor: "0.9.69"
 ---
@@ -31,23 +31,26 @@ Os tipos de criptografia são:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Código</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">NTCP2 Version</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ### Combinações Legais
 
 Os novos tipos de criptografia são indicados nos RouterAddresses. O tipo de criptografia no certificado de chave continuará sendo tipo 4.
@@ -235,6 +238,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF de Alice para Mensagem 2
 
@@ -259,6 +268,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF para Mensagem 3 (apenas XK)
 
@@ -278,7 +293,7 @@ inalterado
 
 #### 1) SessionRequest
 
-Alterações: O NTCP2 atual contém apenas as opções na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
+Alterações: o NTCP2 atual contém apenas as opções em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes das opções, contendo a chave pública PQ criptografada.
 
 Para que PQ e não-PQ NTCP2 possam ser suportados no mesmo endereço e porta do router, usamos o bit mais significativo do valor X (chave pública efêmera X25519) para marcar que é uma conexão PQ. Este bit está sempre desabilitado para conexões não-PQ.
 
@@ -302,20 +317,28 @@ Conteúdo bruto:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -357,8 +380,8 @@ Tamanhos:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Código do Tipo</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">X len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Enc len</th>
@@ -407,10 +430,11 @@ Tamanhos:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
 Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão do tipo 4, e o suporte será indicado nos endereços do router.
 
 #### 2) SessionCreated
+
+Alterações: o NTCP2 atual contém apenas as opções em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes das opções, contendo o texto cifrado PQ criptografado.
 
 Conteúdo bruto:
 
@@ -424,20 +448,26 @@ Conteúdo bruto:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  -           16 bytes                    -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -480,14 +510,14 @@ Tamanhos:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Código do Tipo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Comprimento Y</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Comprimento Msg 2</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Comprimento Msg 2 Enc</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Comprimento Msg 2 Dec</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Comprimento PQ CT</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Comprimento opt</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Y len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ CT len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -530,8 +560,7 @@ Tamanhos:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão tipo 4, e o suporte será indicado nos endereços do router.
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão do tipo 4, e o suporte será indicado nos endereços do router.
 
 #### 3) SessionConfirmed
 
@@ -563,9 +592,9 @@ Use o tamanho de mensagem definido como o padding máximo, ou seja, o padding m�
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Preenchimento Máximo da Mensagem</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">não-PQ (até 0.9.68)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">não-PQ (a partir de 0.9.69)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Message Max Padding</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (thru 0.9.68)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (as of 0.9.69)</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-512</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-768</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-1024</th>
@@ -587,7 +616,6 @@ Use o tamanho de mensagem definido como o padding máximo, ou seja, o padding m�
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
 </table>
-
 ## Análise de Sobrecarga
 
 ### Troca de Chaves
@@ -596,9 +624,9 @@ Aumento de tamanho (bytes):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tipo</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Pubkey (Msg 1)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Texto Cifrado (Msg 2)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Ciphertext (Msg 2)</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
@@ -616,15 +644,14 @@ Aumento de tamanho (bytes):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
 </table>
-
 ## Análise de Segurança
 
 As categorias de segurança NIST estão resumidas no slide 10 da [apresentação NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Critérios preliminares: Nossa categoria mínima de segurança NIST deve ser 2 para protocolos híbridos e 3 para apenas PQ.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Categoria</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tão Seguro Quanto</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Category</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">As Secure As</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
@@ -647,7 +674,6 @@ As categorias de segurança NIST estão resumidas no slide 10 da [apresentação
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
 </table>
-
 ### Handshakes
 
 Estes são todos protocolos híbridos. As implementações devem preferir MLKEM768; MLKEM512 não é suficientemente seguro.
@@ -656,8 +682,8 @@ Categorias de segurança NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Algoritmo</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Categoria de Segurança</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Algorithm</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Security Category</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512</td>
@@ -672,7 +698,6 @@ Categorias de segurança NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ## Notas de Implementação
 
 ### Suporte de Biblioteca
@@ -691,7 +716,7 @@ Como Bob, teste se (X[31] & 0x80) != 0 após a des-obfuscação. Se for o caso, 
 
 A versão mínima do router necessária para NTCP2-PQ é TBD.
 
-Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão tipo 4, e o suporte será indicado nos endereços do router.
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão do tipo 4, e o suporte será indicado nos endereços do router.
 
 ## Compatibilidade do Router
 

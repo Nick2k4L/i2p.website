@@ -1215,7 +1215,7 @@ El mensaje Session Confirmed debe contener la Router Info firmada completa de Al
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ El mensaje Session Confirmed debe contener la Router Info firmada completa de Al
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ El mensaje Session Confirmed debe contener la Router Info firmada completa de Al
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 Desafortunadamente, el Router Info, incluso cuando está comprimido con gzip en el bloque RI, puede exceder el MTU. Por lo tanto, el Session Confirmed puede fragmentarse a través de dos o más paquetes. Este es el ÚNICO caso en el protocolo SSU2 donde una carga útil protegida por AEAD se fragmenta a través de dos o más paquetes.

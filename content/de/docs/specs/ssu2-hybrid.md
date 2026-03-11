@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Alice KDF für Nachricht 2
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF für Nachricht 3
 
@@ -330,7 +342,7 @@ unverändert
 
 #### SessionRequest (Typ 0)
 
-Änderungen: Das aktuelle SSU2 enthält im ChaCha-Abschnitt nur die Block-Daten. Mit ML-KEM wird der ChaCha-Abschnitt zusätzlich den verschlüsselten öffentlichen PQ-Schlüssel enthalten.
+Änderungen: Das aktuelle SSU2 enthält nur die Blockdaten in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird ein neuer ChaCha-Abschnitt vor den Blockdaten hinzugefügt, der den verschlüsselten PQ-Öffentlichen-Schlüssel enthält.
 
 KDF-Änderung zum Schutz vor Spoofing: Um die in Proposal 165 [Prop165]_ aufgeworfenen Probleme zu lösen, jedoch mit einem anderen Ansatz, modifizieren wir die KDF für Session Request. Dies gilt ausschließlich für PQ-Sessions. Die KDF für Nicht-PQ-Sessions bleibt unverändert.
 
@@ -381,6 +393,10 @@ Roher Inhalt:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ Minimale MTU für MLKEM768_X25519: 1318 für IPv4 und 1338 für IPv6. Siehe unte
 
 #### SessionCreated (Typ 1)
 
-Änderungen: Das aktuelle SSU2 enthält im ChaCha-Abschnitt nur die Block-Daten. Mit ML-KEM wird der ChaCha-Abschnitt zusätzlich den verschlüsselten öffentlichen PQ-Schlüssel enthalten.
+Änderungen: Das aktuelle SSU2 enthält nur die Nutzlast in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird ein neuer ChaCha-Abschnitt vor der Nutzlast hinzugefügt, der den verschlüsselten PQ-Ciphertext enthält.
 
 Roher Inhalt:
 
@@ -466,16 +482,20 @@ Roher Inhalt:
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

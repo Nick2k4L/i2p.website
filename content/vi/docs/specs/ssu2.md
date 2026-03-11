@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Trạng thái
 
-Về cơ bản đã hoàn thành. Xem [Prop159](/proposals/159-ssu2) để biết thêm thông tin nền và mục tiêu, bao gồm phân tích bảo mật, mô hình mối đe dọa, đánh giá bảo mật và các vấn đề của SSU 1, cũng như các trích đoạn từ đặc tả QUIC.
+Đã hoàn thành. Xem [Đề xuất 159](/proposals/159-ssu2) để biết thêm thông tin nền tảng và mục tiêu, bao gồm phân tích bảo mật, mô hình mối đe dọa, đánh giá về bảo mật và các vấn đề của SSU 1, cùng các trích đoạn từ đặc tả QUIC.
 
 Kế hoạch triển khai:
 
@@ -1215,7 +1215,7 @@ Thông điệp Session Confirmed phải chứa Router Info đã ký đầy đủ
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ Thông điệp Session Confirmed phải chứa Router Info đã ký đầy đủ
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ Thông điệp Session Confirmed phải chứa Router Info đã ký đầy đủ
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 Thật không may, Router Info, ngay cả khi được nén gzip trong khối RI, có thể vượt quá MTU. Do đó, Session Confirmed có thể bị phân mảnh thành hai hoặc nhiều gói tin. Đây là trường hợp DUY NHẤT trong giao thức SSU2 mà một payload được bảo vệ AEAD bị phân mảnh thành hai hoặc nhiều gói tin.

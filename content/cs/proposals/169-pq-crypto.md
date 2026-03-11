@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-02-28"
+lastupdated: "2026-03-11"
 status: "Otevřít"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -537,6 +537,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Alice KDF pro zprávu 2
 
@@ -561,6 +567,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF pro Zprávu 3 (pouze XK)
 
@@ -783,7 +795,7 @@ Aktualizujte specifikaci NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) následo
 
 #### 1) SessionRequest
 
-Změny: Současný NTCP2 obsahuje pouze možnosti v sekci ChaCha. S ML-KEM bude sekce ChaCha také obsahovat zašifrovaný PQ veřejný klíč.
+Změny: Aktuální NTCP2 obsahuje pouze možnosti v jediné sekci ChaCha. U ML-KEM bude před možnostmi nová sekce ChaCha obsahující zašifrovaný kvantově odolný veřejný klíč.
 
 Aby bylo možné podporovat PQ i non-PQ NTCP2 na stejné adrese a portu routeru, používáme nejvýznamnější bit hodnoty X (X25519 ephemeral public key) k označení, že se jedná o PQ připojení. Tento bit je vždy nenastaven pro non-PQ připojení.
 
@@ -807,20 +819,28 @@ Nezpracovaný obsah:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -870,6 +890,8 @@ Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu
 
 #### 2) SessionCreated
 
+Změny: Aktuální NTCP2 obsahuje pouze možnosti v jedné sekci ChaCha. U ML-KEM bude před těmito možnostmi nová sekce ChaCha obsahující šifrovaný PQ šifrový text.
+
 Nezpracovaný obsah:
 
 ```
@@ -882,20 +904,26 @@ Nezpracovaný obsah:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -1042,9 +1070,9 @@ nezměněno
 
 #### SessionRequest (Typ 0)
 
-Změny: Současný SSU2 obsahuje v sekci ChaCha pouze bloková data. S ML-KEM bude sekce ChaCha také obsahovat šifrovaný PQ veřejný klíč.
+Změny: Aktuální SSU2 obsahuje bloková data pouze v jedné sekci ChaCha. U ML-KEM bude před blokovými daty přidána nová sekce ChaCha, která bude obsahovat zašifrovaný kvantově odolný veřejný klíč.
 
-Změna KDF pro ochranu proti spoofingu: K řešení problémů uvedených v Návrhu 165 [Prop165]_, ale s jiným řešením, upravujeme KDF pro Session Request. Toto platí pouze pro PQ sessions. KDF pro non-PQ sessions zůstává nezměněno.
+Změna KDF pro ochranu proti falšování: Za účelem řešení problémů uvedených v návrhu 165 [Prop165]_, avšak s jiným řešením, upravujeme KDF pro Session Request. Tato změna se týká pouze PQ relací. KDF pro ne-PQ relace zůstává beze změny.
 
 ```
 
@@ -1066,7 +1094,7 @@ Změna KDF pro ochranu proti spoofingu: K řešení problémů uvedených v Náv
   ...
 
 ```
-Surový obsah:
+Nezpracovaný obsah:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1093,6 +1121,10 @@ Surový obsah:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1146,15 +1178,15 @@ Velikosti, nezahrnují režii IP protokolu:
 | MLKEM512_X25519 | 5 | 32 | 896+pl | 832+pl | 800+pl | 800 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1280+pl | 1216+pl | 1184+pl | 1184 | pl |
 | MLKEM1024_X25519 | 7 | n/a | příliš velké | | | | |
-Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routeru.
+Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
 Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
 
 #### SessionCreated (Typ 1)
 
-Změny: Současné SSU2 obsahuje pouze bloková data v sekci ChaCha. S ML-KEM bude sekce ChaCha také obsahovat šifrovaný PQ veřejný klíč.
+Změny: Aktuální SSU2 obsahuje uživatelská data pouze v jedné sekci ChaCha. U ML-KEM bude před uživatelskými daty přidána nová sekce ChaCha, která bude obsahovat zašifrovaný PQ šifrovací text.
 
-Surový obsah:
+Nezpracovaný obsah:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1174,20 +1206,22 @@ Surový obsah:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaCha20 data (MLKEM)               |
-  +   Encrypted and authenticated data    +
-  |  length varies                        |
+  |   ChaCha20 encrypted data (MLKEM)     |
+  ~  length varies                        ~
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaCha20 data (payload)             |
-  +   Encrypted and authenticated data    +
-  |  length varies                        |
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (payload)   |
+  ~  length varies                        ~
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
@@ -1226,7 +1260,7 @@ Nešifrovaná data (Poly1305 auth tag nezobrazena):
   |      see below for allowed blocks     |
   +----+----+----+----+----+----+----+----+
 ```
-Velikosti, bez započtení režie IP:
+Velikosti, nezahrnují režii IP protokolu:
 
 | Typ | Kód typu | Y délka | Msg 2 délka | Msg 2 Enc délka | Msg 2 Dec délka | PQ CT délka | pl délka |
 |-----|-----------|---------|-------------|-----------------|-----------------|-------------|----------|
@@ -1234,7 +1268,7 @@ Velikosti, bez započtení režie IP:
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | příliš velký | | | | |
-Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude označena v adresách routerů.
+Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
 Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
 
@@ -1267,7 +1301,7 @@ Odlišná adresa/port než non-PQ, nebo pouze PQ, ne-firewall NENÍ podporováno
 
 Adresy za firewallem (žádná IP publikována): V adrese routeru publikujte v=2 (jako obvykle). Parametr pq MUSÍ být publikován v adresách za firewallem pro podporu relay.
 
-Alice se může připojit k PQ Bobovi pomocí PQ varianty, kterou Bob publikuje, bez ohledu na to, zda Alice inzeruje podporu pq ve svých informacích o routeru, nebo zda inzeruje stejnou variantu.
+Alice se může připojit k PQ Bobovi pomocí PQ varianty, kterou Bob publikuje, bez ohledu na to, zda Alice inzeruje pq podporu ve svých router informacích, nebo zda inzeruje stejnou variantu.
 
 #### MTU
 
@@ -1349,9 +1383,9 @@ Rychlost:
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
-Rychlosti podle zprávy od [Cloudflare](https://blog.cloudflare.com/pq-2024/):
+Běžné typy sig jsou pro SU3 soubory zakázané; používejte varianty ph (prehash).
 
-Předběžné výsledky testů v Javě:
+Nová maximální velikost Destination bude 2599 (3468 v base 64).
 
 | Typ | Relativní rychlost podpisu | ověření |
 |------|---------------------|--------|
@@ -1359,7 +1393,7 @@ Předběžné výsledky testů v Javě:
 | MLDSA44 | 5x pomalejší | 2x rychlejší |
 | MLDSA65 | ??? | ??? |
 | MLDSA87 | ??? | ??? |
-Velikost:
+Aktualizujte další dokumenty, které poskytují pokyny ohledně velikostí Destination, včetně:
 
 | Typ | Relativní rychlost podpisu | ověření | generování klíčů |
 |------|---------------------------|---------|------------------|
@@ -1497,7 +1531,7 @@ Klienti mohou používat stejné nebo různé X25519 statické klíče pro X2551
 
 Specifikace ECIES umožňuje Garlic Messages v datové části New Session Message, což umožňuje 0-RTT doručení počátečního streamovacího paketu, obvykle HTTP GET, společně s leaseset klienta. Datová část New Session Message však nemá forward secrecy. Jelikož tento návrh klade důraz na rozšířenou forward secrecy pro ratchet, implementace mohou nebo by měly odložit zahrnutí streamovací datové části, nebo celé streamovací zprávy, až do první Existing Session Message. To by bylo na úkor 0-RTT doručení. Strategie mohou také záviset na typu provozu nebo typu tunelu, nebo například na GET vs. POST. Závislé na implementaci.
 
-MLKEM, MLDSA, nebo obojí na stejném cíli dramaticky zvýší velikost New Session Message, jak je popsáno výše. To může výrazně snížit spolehlivost doručování New Session Message přes tunely, kde musí být fragmentovány do více tunnel zpráv o velikosti 1024 bajtů. Úspěšnost doručení je úměrná exponenciálnímu počtu fragmentů. Implementace mohou používat různé strategie pro omezení velikosti zprávy na úkor 0-RTT doručování. Závislé na implementaci.
+Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
 ### SSU2
 
@@ -1505,7 +1539,7 @@ Nastavujeme MSB dočasného klíče (key[31] & 0x80) v požadavku na relaci pro 
 
 Jako Alice, pro PQ spojení, před obfuskací, nastavte X[31] |= 0x80. Tím se z X stane neplatný X25519 veřejný klíč. Po obfuskaci jej AES-CBC randomizuje. MSB hodnoty X bude po obfuskaci náhodný.
 
-Jako Bob, otestujte, zda (X[31] & 0x80) != 0 po de-obfuskaci. Pokud ano, jedná se o PQ spojení.
+Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
 ## Kompatibilita routerů
 
@@ -1551,7 +1585,7 @@ Doporučeno. Jelikož PQ neovlivňuje statický klíč X25519 ani protokoly N ha
 
 MLKEM-768 je doporučeno pro Ratchet, NTCP2 a SSU2 jako nejlepší rovnováha mezi bezpečností a délkou klíče.
 
-Starší routery ověřují RI a proto se nemohou připojit, budovat tunely skrz ně, nebo jim posílat netDb zprávy. Trvalo by několik cyklů vydání na ladění a zajištění podpory před výchozím povolením. Byly by to stejné problémy jako při zavedení enc. type 5/6/7; mohlo by prodloužit zavedení o rok nebo více oproti výše uvedené alternativě zavedení enc. type 4.
+Máme několik alternativ k zvážení:
 
 ## Priority a zavedení
 

@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Estado
 
-Substancialmente completo. Veja [Prop159](/proposals/159-ssu2) para informações adicionais e objetivos, incluindo análise de segurança, modelos de ameaça, uma revisão da segurança e problemas do SSU 1, e trechos das especificações QUIC.
+Concluído. Veja [Prop159](/proposals/159-ssu2) para informações adicionais e objetivos, incluindo análise de segurança, modelos de ameaças, uma revisão da segurança do SSU 1 e seus problemas, e trechos das especificações do QUIC.
 
 Plano de implementação:
 
@@ -1215,7 +1215,7 @@ A mensagem Session Confirmed deve conter o Router Info completo assinado de Alic
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ A mensagem Session Confirmed deve conter o Router Info completo assinado de Alic
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ A mensagem Session Confirmed deve conter o Router Info completo assinado de Alic
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 Infelizmente, o Router Info, mesmo quando comprimido com gzip no bloco RI, pode exceder o MTU. Portanto, o Session Confirmed pode ser fragmentado em dois ou mais pacotes. Este é o ÚNICO caso no protocolo SSU2 onde uma carga útil protegida por AEAD é fragmentada em dois ou mais pacotes.

@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF Alice pro zprávu 2
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF pro zprávu 3
 
@@ -330,7 +342,7 @@ unchanged
 
 #### SessionRequest (Typ 0)
 
-Změny: Aktuální SSU2 obsahuje v sekci ChaCha pouze data bloků. S ML-KEM bude sekce ChaCha obsahovat také zašifrovaný PQ veřejný klíč.
+Změny: Aktuální SSU2 obsahuje bloková data pouze v jedné sekci ChaCha. U ML-KEM bude před blokovými daty přidána nová sekce ChaCha, která bude obsahovat zašifrovaný kvantově odolný veřejný klíč.
 
 Změna KDF pro ochranu před spoofingem: Pro řešení problémů nastolených v Návrhu 165 [Prop165]_, avšak s odlišným řešením, upravujeme KDF pro Session Request. Tato změna se týká pouze PQ relací. KDF pro non-PQ relace zůstává nezměněn.
 
@@ -381,6 +393,10 @@ Nezpracovaný obsah:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ Minimální MTU pro MLKEM768_X25519: 1318 pro IPv4 a 1338 pro IPv6. Viz níže.
 
 #### SessionCreated (Typ 1)
 
-Změny: Aktuální SSU2 obsahuje v sekci ChaCha pouze data bloků. S ML-KEM bude sekce ChaCha obsahovat také zašifrovaný PQ veřejný klíč.
+Změny: Současný SSU2 obsahuje užitečná data pouze v jedné sekci ChaCha. U ML-KEM bude před užitečnými daty nová sekce ChaCha obsahující zašifrovaný PQ šifrový text.
 
 Nezpracovaný obsah:
 
@@ -466,16 +482,20 @@ Nezpracovaný obsah:
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

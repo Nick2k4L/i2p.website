@@ -238,6 +238,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Alice 在消息 2 中的 KDF
 
@@ -262,6 +268,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### 消息 3 的 KDF（仅限 XK）
 
@@ -281,7 +293,7 @@ This is the "ekem1" message pattern:
 
 #### 1) SessionRequest
 
-变更：当前的 NTCP2 仅包含 ChaCha 部分中的选项。使用 ML-KEM 后，ChaCha 部分还将包含加密的 PQ 公钥。
+变更：当前的 NTCP2 仅在单个 ChaCha 段中包含选项。使用 ML-KEM 后，将在选项之前新增一个 ChaCha 段，其中包含已加密的后量子（PQ）公钥。
 
 为了在同一个 router 地址和端口上同时支持 PQ 和非 PQ NTCP2，我们使用 X 值（X25519 临时公钥）的最高有效位来标记这是一个 PQ 连接。对于非 PQ 连接，此位始终为未设置状态。
 
@@ -305,20 +317,28 @@ This is the "ekem1" message pattern:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -414,6 +434,8 @@ This is the "ekem1" message pattern:
 
 #### 2) SessionCreated
 
+变更：当前的 NTCP2 仅在单个 ChaCha 段中包含选项。使用 ML-KEM 后，将在选项之前新增一个 ChaCha 段，其中包含加密的后量子（PQ）密文。
+
 原始内容：
 
 ```
@@ -426,20 +448,26 @@ This is the "ekem1" message pattern:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  -           16 bytes                    -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -532,7 +560,7 @@ This is the "ekem1" message pattern:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中标明。
+注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中指示。
 
 #### 3) SessionConfirmed
 

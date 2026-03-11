@@ -1,9 +1,9 @@
 ---
 title: "PQ Hybrid NTCP2"
-description: "Post-kvantová hybridní varianta transportního protokolu NTCP2 používající ML-KEM"
+description: "Hybridní varianta protokolu přenosu NTCP2 odolná proti kvantovým počítačům s využitím ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-02"
-category: "Transporty"
+lastupdated: "2026-03"
+category: "Přenosy"
 accurateFor: "0.9.69"
 ---
 
@@ -13,19 +13,19 @@ Beta Q1 2026, vydání Q2 2026
 
 ## Přehled
 
-Toto je hybridní post-kvantová varianta transportního protokolu NTCP2, jak je navržena v Návrhu 169. Pro další informace viz tento návrh.
+Toto je hybridní post-kvantová varianta protokolu přenosu NTCP2, navržená v Návrhu 169. Další informace naleznete v tomto návrhu.
 
-PQ Hybrid NTCP2 je definováno pouze na stejné adrese a portu jako standardní NTCP2. Provoz na jiném portu nebo bez podpory standardního NTCP2 není povolen a nebude několik let, dokud nebude standardní NTCP2 zastaralé.
+PQ Hybrid NTCP2 je definován pouze na stejné adrese a portu jako standardní NTCP2. Provoz na jiném portu nebo bez podpory standardního NTCP2 není povolen a nebudete jej moci používat po několik let, dokud nebude standardní NTCP2 zastaralý.
 
-Tato specifikace dokumentuje pouze změny potřebné pro standardní NTCP2 pro podporu PQ Hybrid. Pro podrobnosti základní implementace viz specifikaci NTCP2.
+Tato specifikace popisuje pouze změny potřebné pro standard NTCP2, aby podporoval PQ Hybrid. Základní implementační detaily naleznete v specifikaci NTCP2.
 
-## Design
+## Návrh
 
-Podporujeme standardy NIST FIPS 203 a 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), které jsou založeny na CRYSTALS-Kyber a CRYSTALS-Dilithium (verze 3.1, 3 a starší), ale NEJSOU s nimi kompatibilní.
+Podporujeme standardy NIST FIPS 203 a 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), které jsou založeny na, ale NEJSOU kompatibilní s, CRYSTALS-Kyber a CRYSTALS-Dilithium (verze 3.1, 3 a starší).
 
 ### Výměna klíčů
 
-PQ KEM poskytuje pouze dočasné klíče a nepodporuje přímo handshaky se statickými klíči jako jsou Noise XK a IK. Typy šifrování jsou stejné jako ty používané v PQ Hybrid Ratchet a jsou definovány v dokumentu společných struktur [/docs/specs/common-structures/](/docs/specs/common-structures/), stejně jako v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf). Hybridní typy jsou definovány pouze v kombinaci s X25519.
+PQ KEM poskytuje pouze dočasné klíče a přímo nepodporuje handshaky se statickými klíči, jako jsou Noise XK a IK. Typy šifrování jsou stejné jako v PQ Hybrid Ratchet a jsou definovány v dokumentu společných struktur [/docs/specs/common-structures/](/docs/specs/common-structures/), podle [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf). Hybridní typy jsou definovány pouze ve spojení s X25519.
 
 Typy šifrování jsou:
 
@@ -33,40 +33,43 @@ Typy šifrování jsou:
 <tr style="background-color: var(--color-bg-secondary);">
 <th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">NTCP2 Version</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
+### Platné kombinace
 
-### Právní kombinace
-
-Nové typy šifrování jsou uvedeny v RouterAddresses. Typ šifrování v certifikátu klíče bude nadále typu 4.
+Nové typy šifrování jsou uvedeny v RouterAddresses. Typ šifrování v certifikátu klíče bude nadále typ 4.
 
 ## Specifikace
 
-### Vzory handshake
+### Vzory navazování spojení
 
-Handshaky používají vzory handshaku z [Noise Protocol](https://noiseprotocol.org/noise.html).
+Handshakes používají vzory handshake protokolu [Noise Protocol](https://noiseprotocol.org/noise.html).
 
 Používá se následující mapování písmen:
 
-- e = jednorázový dočasný klíč
+- e = jednorázový efemérní klíč
 - s = statický klíč
-- p = užitečné zatížení zprávy
-- e1 = jednorázový dočasný PQ klíč, odeslaný od Alice k Bobovi
-- ekem1 = šifrový text KEM, odeslaný od Boba k Alici
+- p = užitečné datové zatížení zprávy
+- e1 = jednorázový efemérní PQ klíč, odeslaný od Alice k Bobovi
+- ekem1 = KEM šifrový text, odeslaný od Boba k Alici
 
-Následující úpravy XK a IK pro hybridní dopřednou bezpečnost (hfs) jsou specifikovány v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekce 5:
+Následující modifikace XK a IK pro hybridní dopřednou tajnost (hfs) jsou uvedeny v sekci 5 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
 ```
 XK:                       XKhfs:
@@ -82,7 +85,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-Vzor e1 je definován následovně, jak je specifikováno v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
+Vzor e1 je definován následovně, jak je uvedeno v části 4 specifikace [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
 ```
 For Alice:
@@ -100,7 +103,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-Vzor ekem1 je definován následovně, jak je specifikováno v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
+Vzor ekem1 je definován následovně, jak je uvedeno v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf), část 4:
 
 ```
 For Bob:
@@ -129,13 +132,13 @@ For Bob:
 
 #### Přehled
 
-Hybridní handshake je definován v [Noise HFS specifikaci](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). První zpráva, od Alice k Bobovi, obsahuje e1, enkapsulační klíč, před obsahem zprávy. Tento je považován za dodatečný statický klíč; zavolejte EncryptAndHash() na něj (jako Alice) nebo DecryptAndHash() (jako Bob). Poté zpracujte obsah zprávy obvyklým způsobem.
+Hybridní handshake je definován ve [specifikaci Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). První zpráva, od Alice k Bobovi, obsahuje e1, klíč pro encapsulaci, před datovou částí zprávy. Tento klíč je považován za dodatečný statický klíč; aplikujte na něj funkci EncryptAndHash() (jako Alice) nebo DecryptAndHash() (jako Bob). Poté zpracujte datovou část zprávy běžným způsobem.
 
-Druhá zpráva, od Boba k Alice, obsahuje ekem1, šifrovaný text, před samotným obsahem zprávy. S tímto se zachází jako s dalším statickým klíčem; zavolejte na něj EncryptAndHash() (jako Bob) nebo DecryptAndHash() (jako Alice). Poté vypočítejte kem_shared_key a zavolejte MixKey(kem_shared_key). Poté zpracujte obsah zprávy jako obvykle.
+Druhá zpráva, od Boba k Alici, obsahuje ekem1, šifrovaný text, před datovou částí zprávy. Toto je považováno za dodatečný statický klíč; zavolejte na něj EncryptAndHash() (jako Bob) nebo DecryptAndHash() (jako Alice). Poté vypočítejte kem_shared_key a zavolejte MixKey(kem_shared_key). Následně zpracujte datovou část zprávy obvyklým způsobem.
 
-#### Definované ML-KEM operace
+#### Definované operace ML-KEM
 
-Definujeme následující funkce odpovídající kryptografickým stavebním blokům používaným podle definice v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Definujeme následující funkce odpovídající kryptografickým stavebním blokům, jak jsou definovány v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -157,13 +160,13 @@ kem_shared_key = DECAPS(ciphertext, decap_key)
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Všimněte si, že jak encap_key, tak ciphertext jsou šifrovány uvnitř ChaCha/Poly bloků ve zprávách 1 a 2 Noise handshake. Budou dešifrovány jako součást procesu handshake.
+Všimněte si, že jak encap_key, tak šifrovací text jsou zašifrovány uvnitř bloků ChaCha/Poly ve zprávách handshake protokolu Noise 1 a 2. Budou dešifrovány jako součást procesu handshake.
 
-Parametr kem_shared_key je smíchán do chaining key pomocí MixHash(). Podrobnosti naleznete níže.
+kem_shared_key je kombinován do řetězového klíče pomocí MixHash(). Podrobnosti viz níže.
 
-#### Alice KDF pro Zprávu 1
+#### Alice KDF pro zprávu 1
 
-Po vzoru zprávy 'es' a před užitečným nákladem přidejte:
+Za vzor zprávy „es“ a před užitečný obsah přidejte:
 
 ```
 This is the "e1" message pattern:
@@ -189,7 +192,7 @@ This is the "e1" message pattern:
 ```
 #### Bob KDF pro zprávu 1
 
-Po vzoru zprávy 'es' a před užitečným nákladem přidejte:
+Za vzor zprávy „es“ a před užitečný obsah přidejte:
 
 ```
 This is the "e1" message pattern:
@@ -211,9 +214,9 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
-#### Bob KDF pro Zprávu 2
+#### Bobův KDF pro zprávu 2
 
-Pro XK: Po vzoru zprávy 'ee' a před payload, přidej:
+Pro XK: Po vzoru zprávy „ee“ a před daty přidejte:
 
 ```
 This is the "ekem1" message pattern:
@@ -235,10 +238,16 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
-```
-#### Alice KDF pro Zprávu 2
 
-Po vzoru zprávy 'ee' přidejte:
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
+```
+#### Alice KDF pro zprávu 2
+
+Po vzoru zprávy „ee“ přidejte:
 
 ```
 This is the "ekem1" message pattern:
@@ -259,18 +268,24 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
-```
-#### KDF pro Zprávu 3 (pouze XK)
 
-beze změny
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
+```
+#### KDF pro zprávu 3 (pouze XK)
+
+unchanged
 
 #### KDF pro split()
 
-nezměněno
+unchanged
 
-### Podrobnosti handshake
+### Podrobnosti o handshake
 
-#### Identifikátory Noise
+#### Identifikátory šumu
 
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
@@ -278,17 +293,17 @@ nezměněno
 
 #### 1) SessionRequest
 
-Změny: Současný NTCP2 obsahuje pouze možnosti v sekci ChaCha. S ML-KEM bude sekce ChaCha také obsahovat šifrovaný PQ veřejný klíč.
+Změny: Současný NTCP2 obsahuje pouze možnosti v jedné sekci ChaCha. S ML-KEM bude před těmito možnostmi přidána nová sekce ChaCha, obsahující zašifrovaný kvantově odolný veřejný klíč.
 
-Aby bylo možné podporovat PQ i non-PQ NTCP2 na stejné router adrese a portu, používáme nejvýznamnější bit hodnoty X (X25519 ephemeral public key) k označení, že se jedná o PQ spojení. Tento bit je vždy nevyplněn pro non-PQ spojení.
+Aby bylo možné podporovat PQ i non-PQ NTCP2 na stejné adrese a portu směrovače, používáme nejvýznamnější bit hodnoty X (X25519 efemérní veřejný klíč) k označení, že se jedná o PQ spojení. U non-PQ spojení je tento bit vždy vynulován.
 
-Pro Alice, poté co je zpráva zašifrována pomocí Noise, ale před AES obfuskací X, nastavte X[31] |= 0x7f.
+U Alice, po zašifrování zprávy pomocí Noise, ale před AES zamaskováním X, nastavte X[31] |= 0x7f.
 
-Pro Boba, po AES de-obfuskaci X, otestovat X[31] & 0x80. Pokud je bit nastaven, vynulovat ho pomocí X[31] &= 0x7f a dešifrovat přes Noise jako PQ připojení. Pokud je bit vynulován, dešifrovat přes Noise jako běžné non-PQ připojení jako obvykle.
+Pro Boba po deobfuskaci X pomocí AES otestujte X[31] & 0x80. Je-li bit nastaven, vymažte jej pomocí X[31] &= 0x7f a dešifrujte pomocí Noise jako PQ spojení. Je-li bit vymazán, dešifrujte pomocí Noise jako běžné (ne-PQ) spojení.
 
-Pro PQ NTCP2 inzerovaný na jiné adrese routeru a portu to není vyžadováno.
+U PQ NTCP2 inzerovaného na různé adrese a portu směrovače toto není vyžadováno.
 
-Další informace naleznete v sekci Publikované adresy níže.
+Další informace naleznete v části Publikované adresy níže.
 
 Surový obsah:
 
@@ -302,20 +317,28 @@ Surový obsah:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -324,7 +347,7 @@ Surový obsah:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-Nezašifrovaná data (Poly1305 autentifikační tag není zobrazen):
+Nezašifrovaná data (ověřovací značka Poly1305 není zobrazena):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -351,20 +374,20 @@ Nezašifrovaná data (Poly1305 autentifikační tag není zobrazen):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
-Poznámka: pole verze v bloku možností zprávy 1 musí být nastaveno na 2, a to i pro PQ připojení.
+Poznámka: pole verze v bloku možností zprávy 1 musí být nastaveno na hodnotu 2, i pro PQ připojení.
 
 Velikosti:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Kód typu</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">X délka</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka zprávy 1</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka šifrované zprávy 1</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka dešifrované zprávy 1</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka PQ klíče</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">opt délka</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">X len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ key len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -407,12 +430,13 @@ Velikosti:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude označena v adresách routeru.
+Poznámka: Kódy typů jsou určeny pouze pro vnitřní použití. Směrovače zůstanou typu 4 a podpora bude indikována v adresách směrovače.
 
 #### 2) SessionCreated
 
-Nezpracovaný obsah:
+Změny: Aktuální NTCP2 obsahuje pouze možnosti v jedné sekci ChaCha. U ML-KEM bude před možnostmi nová sekce ChaCha obsahující zašifrovaný PQ šifrový text.
+
+Surový obsah:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -424,20 +448,26 @@ Nezpracovaný obsah:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  -           16 bytes                    -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -449,7 +479,7 @@ Nezpracovaný obsah:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-Nešifrovaná data (Poly1305 auth tag nezobrazena):
+Nešifrovaná data (ověřovací značka Poly1305 není zobrazena):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -480,14 +510,14 @@ Velikosti:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Kód typu</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka Y</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka Msg 2</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka Msg 2 Enc</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka Msg 2 Dec</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka PQ CT</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Délka opt</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Y len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ CT len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -530,42 +560,41 @@ Velikosti:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude označena v adresách routerů.
+Poznámka: Kódy typů jsou určeny pouze pro vnitřní použití. Směrovače zůstanou typu 4 a podpora bude indikována v adresách směrovače.
 
 #### 3) SessionConfirmed
 
 Nezměněno
 
-#### Funkce pro odvození klíčů (KDF) (pro datovou fázi)
+#### Funkce odvození klíče (KDF) (pro datovou fázi)
 
 Nezměněno
 
 #### Publikované adresy
 
-Ve všech případech použijte název NTCP2 transportu jako obvykle.
+Ve všech případech používejte název přenosu NTCP2 jako obvykle.
 
-Použijte stejnou adresu/port jako non-PQ, non-firewalled. Je podporována pouze jedna PQ varianta. V adrese routeru publikujte v=2 (jako obvykle) a nový parametr pq=[3|4|5] pro označení MLKEM 512/768/1024. Alice nastaví MSB dočasného klíče (key[31] & 0x80) v požadavku relace pro označení, že se jedná o hybridní spojení. Viz výše. Starší routery budou parametr pq ignorovat a připojí se non-pq jako obvykle.
+Použijte stejnou adresu/port jako u nepřekvapivé (non-PQ), nefiltrované verze. Podporován je pouze jeden typ PQ varianty. V adrese routeru publikujte v=2 (jako obvykle) a nový parametr pq=[3|4|5] pro označení MLKEM 512/768/1024. Alice nastaví nejvyšší bit (MSB) dočasného klíče (key[31] & 0x80) ve žádosti o relaci, čímž indikuje, že se jedná o hybridní připojení. Viz výše. Starší routery parametr pq ignorují a připojí se klasicky bez PQ, jak je zvykem.
 
-Různá adresa/port jako non-PQ, nebo pouze PQ, bez firewallu NENÍ podporováno. Toto nebude implementováno, dokud nebude zakázáno non-PQ NTCP2, což bude za několik let. Když bude non-PQ zakázáno, může být podporováno více PQ variant, ale pouze jedna na adresu. Když bude podporováno, v router adrese publikuj v=[3|4|5] pro označení MLKEM 512/768/1024. Alice nenastavuje MSB ephemeral klíče. Starší routery zkontrolují parametr v a přeskočí tuto adresu jako nepodporovanou.
+Různé adresy/porty pro nepostkvantové (non-PQ) a pouze postkvantové (PQ) připojení, které není za firewallem, NEJSOU podporovány. Tato funkce nebude implementována, dokud nebude nepostkvantový NTCP2 zakázán – což nastane až za několik let. Až bude nepostkvantové spojení zakázáno, mohou být podporovány více varianty PQ, ale pouze jedna na jednu adresu. Až bude tato funkce podporována, v adrese routeru uveďte v=[3|4|5] pro označení MLKEM 512/768/1024. Alice NEnastavuje MSB (nejvyšší bit) dočasného klíče. Starší routery zkontrolují parametr v a adresu přeskočí jako nepodporovanou.
 
-Adresy za firewallem (žádná IP zveřejněna): V adrese routeru zveřejněte v=2 (jako obvykle). Není potřeba zveřejňovat parametr pq.
+Adresy za firewallem (žádná IP nezveřejněna): Ve směrovači zveřejněte v=2 (jako obvykle). Není třeba zveřejňovat parametr pq.
 
-Alice se může připojit k PQ Bobovi pomocí PQ varianty, kterou Bob publikuje, bez ohledu na to, zda Alice inzeruje podporu pq ve svých informacích routeru, nebo zda inzeruje stejnou variantu.
+Alice se může připojit k PQ Bobovi pomocí PQ varianty, kterou Bob publikuje, bez ohledu na to, zda Alice propaguje podporu PQ ve svých informacích o routeru nebo zda propaguje stejnou variantu.
 
-#### Maximální výplň
+#### Maximální doplnění
 
-V současné specifikaci jsou zprávy 1 a 2 definovány tak, aby měly "rozumné" množství paddingu, s doporučeným rozsahem 0-31 bajtů a bez specifikovaného maxima.
+V současné specifikaci je u zpráv 1 a 2 definováno, že by měly mít „rozumné“ množství doplňovacích bajtů, doporučuje se rozsah 0–31 bajtů a žádné maximum není stanoveno.
 
-Do API 0.9.68 (vydání 2.11.0) implementovala Java I2P maximum 256 bajtů padding pro non-PQ připojení, avšak toto nebylo dříve zdokumentováno. Od API 0.9.69 (vydání 2.12.0) implementuje Java I2P stejné maximální padding pro non-PQ připojení jako pro MLKEM-512. Viz tabulka níže.
+Do API 0.9.68 (verze 2.11.0) implementoval Java I2P maximální doplnění o 256 bajtů pro nepost-kvantové spojení, avšak dříve to nebylo zdokumentováno. Od API 0.9.69 (verze 2.12.0) implementuje Java I2P stejné maximální doplnění pro nepost-kvantová spojení jako pro MLKEM-512. Viz níže uvedená tabulka.
 
-Použijte definovanou velikost zprávy jako maximální padding, to znamená, že maximální padding zdvojnásobí velikost zprávy pro PQ připojení, a to následovně:
+Použijte definovanou velikost zprávy jako maximální doplnění, to znamená, že maximální doplnění zdvojnásobí velikost zprávy pro PQ připojení, a to následovně:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
 <th style="border: 1px solid var(--color-border); padding: 8px;">Message Max Padding</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (do 0.9.68)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (od 0.9.69)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (thru 0.9.68)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (as of 0.9.69)</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-512</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-768</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-1024</th>
@@ -587,18 +616,17 @@ Použijte definovanou velikost zprávy jako maximální padding, to znamená, ž
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
 </table>
-
 ## Analýza režie
 
 ### Výměna klíčů
 
-Nárůst velikosti (bajtů):
+Zvýšení velikosti (bajty):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Pubkey (Msg 1)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Cipertext (Msg 2)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Ciphertext (Msg 2)</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
@@ -616,15 +644,14 @@ Nárůst velikosti (bajtů):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
 </table>
+## Bezpečnostní analýza
 
-## Analýza bezpečnosti
-
-Bezpečnostní kategorie NIST jsou shrnuty v [NIST prezentaci](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) na snímku 10. Předběžná kritéria: Naše minimální bezpečnostní kategorie NIST by měla být 2 pro hybridní protokoly a 3 pro PQ-only.
+Kategorie bezpečnosti NIST jsou shrnuty na [prezentaci NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), snímek 10. Předběžná kritéria: Naše minimální kategorie bezpečnosti NIST by měla být 2 pro hybridní protokoly a 3 pro pouze PQ protokoly.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Kategorie</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Tak bezpečná jako</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Category</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">As Secure As</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
@@ -647,17 +674,16 @@ Bezpečnostní kategorie NIST jsou shrnuty v [NIST prezentaci](https://www.nccoe
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
 </table>
-
 ### Handshakes
 
-Všechny tyto protokoly jsou hybridní. Implementace by měly preferovat MLKEM768; MLKEM512 není dostatečně bezpečný.
+To jsou všechno hybridní protokoly. Implementace by měly dávat přednost MLKEM768; MLKEM512 není dostatečně bezpečný.
 
 Bezpečnostní kategorie NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Algoritmus</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Kategorie zabezpečení</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Algorithm</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Security Category</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512</td>
@@ -672,34 +698,33 @@ Bezpečnostní kategorie NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ## Poznámky k implementaci
 
 ### Podpora knihoven
 
-Knihovny Bouncycastle, BoringSSL a WolfSSL nyní podporují MLKEM a MLDSA. Podpora OpenSSL bude v jejich vydání 3.5 dne 8. dubna 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Knihovny Bouncycastle, BoringSSL a WolfSSL nyní podporují MLKEM a MLDSA. Podpora v OpenSSL bude k dispozici v jejich verzi 3.5, která vyjde 8. dubna 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Identifikace příchozího provozu
 
-Nastavujeme MSB dočasného klíče (key[31] & 0x80) v session request, abychom označili, že se jedná o hybridní spojení. To nám umožňuje provozovat standardní NTCP i hybridní NTCP na stejném portu. Pro příchozí spojení je podporována pouze jedna hybridní varianta, která je inzerována v router address. Například pq=3 nebo pq=4.
+Nastavíme nejvýznamnější bit (MSB) dočasného klíče (key[31] & 0x80) ve vyžádání relace, abychom indikovali, že se jedná o hybridní připojení. To nám umožňuje spouštět jak standardní NTCP, tak hybridní NTCP na stejném portu. Pro příchozí spojení je podporována pouze jedna hybridní varianta, která je inzerována v adrese směrovače. Například pq=3 nebo pq=4.
 
-#### Obfuskace
+#### Zakrývání
 
-Jako Alice, pro PQ spojení, před obfuskací nastav X[31] |= 0x80. Tím se X stane neplatným X25519 veřejným klíčem. Po obfuskaci ho AES-CBC randomizuje. MSB z X bude po obfuskaci náhodný.
+Jako Alice pro PQ spojení před zamaskováním nastavte X[31] |= 0x80. Tím se X stane neplatným veřejným klíčem X25519. Po zamaskování jej AES-CBC náhodně promíchá. Nejvýznamnější bit (MSB) hodnoty X bude po zamaskování náhodný.
 
-Jako Bob testujte, zda (X[31] & 0x80) != 0 po de-obfuskaci. Pokud ano, jedná se o PQ připojení.
+Jako Bob otestujte, zda po deobfuskaci platí (X[31] & 0x80) != 0. Pokud ano, jedná se o PQ spojení.
 
-Minimální verze routeru vyžadovaná pro NTCP2-PQ bude určena později.
+Minimální verze směrovače vyžadovaná pro NTCP2-PQ je stanovena později (TBD).
 
-Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
+Poznámka: Kódy typů jsou určeny pouze pro vnitřní použití. Směrovače zůstanou typu 4 a podpora bude indikována v adresách směrovače.
 
-## Kompatibilita routeru
+## Kompatibilita směrovače
 
-### Názvy transportů
+### Názvy přenosových protokolů
 
-Ve všech případech použijte název transportu NTCP2 jako obvykle. Starší routery budou ignorovat parametr pq a připojí se pomocí standardního NTCP2 jako obvykle.
+Ve všech případech používejte název přenosu NTCP2 jako obvykle. Starší směrovače budou parametr pq ignorovat a připojí se standardním způsobem přes NTCP2.
 
-## Reference
+## Odkazy
 
 * [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
 * [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)

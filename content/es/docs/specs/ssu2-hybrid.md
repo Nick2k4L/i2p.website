@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF de Alice para el Mensaje 2
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF para el Mensaje 3
 
@@ -281,11 +293,11 @@ El encabezado largo tiene 32 bytes. Se utiliza antes de que se cree una sesión,
 
 En los siguientes mensajes, establezca el campo ver (versión) en el encabezado largo en 3 o 4, para indicar MLKEM-512 o MLKEM-768.
 
-- (0) Solicitud de Sesión
-- (1) Sesión Creada
-- (9) Reintentar (nota: Reintento con Terminación puede contener cualquier versión 2-4)
-- (10) Solicitud de Token
-- (11) Perforación de Agujero (Hole Punch)
+- (0) Solicitud de sesión
+- (1) Sesión creada
+- (9) Reintento
+- (10) Solicitud de token
+- (11) Hole Punch
 
 En los siguientes mensajes, establezca el campo ver (versión) en la cabecera larga en 2, como de costumbre, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo soporta, pero esto no es necesario. Las implementaciones deben aceptar cualquier valor entre 2 y 4.
 
@@ -330,7 +342,7 @@ sin cambios
 
 #### SessionRequest (Tipo 0)
 
-Cambios: El SSU2 actual contiene únicamente los datos del bloque en la sección ChaCha. Con ML-KEM, la sección ChaCha también contendrá la clave pública PQ cifrada.
+Cambios: El SSU2 actual contiene solo los datos del bloque en una única sección ChaCha. Con ML-KEM, habrá una nueva sección ChaCha antes de los datos del bloque, que contendrá la clave pública CP cifrada.
 
 Cambio en KDF para protección contra suplantación: Para abordar los problemas planteados en la Propuesta 165 [Prop165]_, pero con una solución diferente, modificamos el KDF para Session Request. Esto aplica únicamente a las sesiones PQ. El KDF para las sesiones no PQ permanece sin cambios.
 
@@ -381,6 +393,10 @@ Contenido sin procesar:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abaj
 
 #### SessionCreated (Tipo 1)
 
-Cambios: El SSU2 actual contiene únicamente los datos del bloque en la sección ChaCha. Con ML-KEM, la sección ChaCha también contendrá la clave pública PQ cifrada.
+Cambios: El SSU2 actual contiene solo la carga útil en una única sección ChaCha. Con ML-KEM, habrá una nueva sección ChaCha antes de la carga útil, que contendrá el cifrado PQ cifrado.
 
 Contenido sin procesar:
 
@@ -466,16 +482,20 @@ Contenido sin procesar:
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Stav
 
-Podstatně dokončeno. Viz [Prop159](/proposals/159-ssu2) pro další pozadí a cíle, včetně bezpečnostní analýzy, modelů hrozeb, přehledu bezpečnosti a problémů SSU 1 a úryvků ze specifikací QUIC.
+Dokončeno. Další informace a cíle, včetně analýzy zabezpečení, modelů hrozeb, přehledu bezpečnosti SSU 1 a problémů a výňatků ze specifikací QUIC, naleznete v [Prop159](/proposals/159-ssu2).
 
 Plán zavádění:
 
@@ -1215,7 +1215,7 @@ Zpráva Session Confirmed musí obsahovat úplné podepsané Router Info od Alic
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ Zpráva Session Confirmed musí obsahovat úplné podepsané Router Info od Alic
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ Zpráva Session Confirmed musí obsahovat úplné podepsané Router Info od Alic
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 Bohužel Router Info, i když je gzip komprimované v RI bloku, může překročit MTU. Proto může být Session Confirmed fragmentováno napříč dvěma nebo více pakety. Toto je JEDINÝ případ v SSU2 protokolu, kdy je AEAD-chráněný payload fragmentován napříč dvěma nebo více pakety.

@@ -238,6 +238,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Alice KDF для сообщения 2
 
@@ -262,6 +268,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF для сообщения 3 (только XK)
 
@@ -281,7 +293,7 @@ This is the "ekem1" message pattern:
 
 #### 1) SessionRequest
 
-Изменения: Текущий NTCP2 содержит только опции в секции ChaCha. С ML-KEM секция ChaCha также будет содержать зашифрованный PQ публичный ключ.
+Изменения: текущий NTCP2 содержит только параметры в одном разделе ChaCha. С ML-KEM появится новый раздел ChaCha перед параметрами, содержащий зашифрованный квантово-устойчивый открытый ключ.
 
 Чтобы PQ и не-PQ NTCP2 могли поддерживаться на одном и том же адресе и порту router'а, мы используем старший бит значения X (эфемерный публичный ключ X25519) для обозначения того, что это PQ соединение. Этот бит всегда сброшен для не-PQ соединений.
 
@@ -305,20 +317,28 @@ This is the "ekem1" message pattern:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -414,6 +434,8 @@ This is the "ekem1" message pattern:
 
 #### 2) SessionCreated
 
+Изменения: текущий NTCP2 содержит только параметры в одном разделе ChaCha. С ML-KEM появится новый раздел ChaCha перед параметрами, содержащий зашифрованный PQ-шифртекст.
+
 Исходное содержимое:
 
 ```
@@ -426,20 +448,26 @@ This is the "ekem1" message pattern:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  -           16 bytes                    -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -688,7 +716,7 @@ Java I2P реализует максимум 256 байт дополнения �
 
 Минимальная версия router, необходимая для NTCP2-PQ, пока не определена.
 
-Примечание: Коды типов предназначены только для внутреннего использования. Роутеры останутся типа 4, а поддержка будет указана в адресах роутеров.
+Примечание: Коды типов предназначены только для внутреннего использования. Router останутся типа 4, а поддержка будет указана в адресах router.
 
 ## Совместимость router'ов
 

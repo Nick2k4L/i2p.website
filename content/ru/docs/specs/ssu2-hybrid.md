@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF Алисы для сообщения 2
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF для сообщения 3
 
@@ -330,7 +342,7 @@ This is the "ekem1" message pattern:
 
 #### SessionRequest (Тип 0)
 
-Изменения: в текущей реализации SSU2 раздел ChaCha содержит только блочные данные. С введением ML-KEM раздел ChaCha будет также содержать зашифрованный постквантовый открытый ключ.
+Изменения: текущий SSU2 содержит только данные блока в одном разделе ChaCha. С ML-KEM появится новый раздел ChaCha перед данными блока, содержащий зашифрованный квантово-устойчивый открытый ключ.
 
 Изменение KDF для защиты от спуфинга: для решения проблем, поднятых в Proposal 165 [Prop165]_, но с использованием иного подхода, мы модифицируем KDF для Session Request. Это применяется только для PQ-сессий. KDF для не-PQ-сессий остаётся без изменений.
 
@@ -381,6 +393,10 @@ This is the "ekem1" message pattern:
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ This is the "ekem1" message pattern:
 
 #### SessionCreated (Тип 1)
 
-Изменения: в текущей реализации SSU2 раздел ChaCha содержит только блочные данные. С введением ML-KEM раздел ChaCha будет также содержать зашифрованный постквантовый открытый ключ.
+Изменения: текущий SSU2 содержит только полезную нагрузку в одном разделе ChaCha. При использовании ML-KEM появится новый раздел ChaCha перед полезной нагрузкой, содержащий зашифрованный PQ-шифртекст.
 
 Необработанное содержимое:
 
@@ -466,16 +482,20 @@ This is the "ekem1" message pattern:
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |

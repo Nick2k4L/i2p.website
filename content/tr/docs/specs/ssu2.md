@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Durum
 
-Büyük ölçüde tamamlandı. Ek bilgi ve hedefler için [Prop159](/proposals/159-ssu2) bağlantısına bakın; bu bağlantı güvenlik analizi, tehdit modelleri, SSU 1 güvenlik incelemesi ve sorunları ile QUIC spesifikasyonlarından alıntıları içerir.
+Tamamlandı. Güvenlik analizi, tehdit modelleri, SSU 1 güvenliği ve sorunlarının bir incelemesi ile QUIC spesifikasyonlarından alınan alıntılar dahil olmak üzere ek bilgi ve hedefler için [Prop159](/proposals/159-ssu2) sayfasına bakın.
 
 Dağıtım planı:
 
@@ -1215,7 +1215,7 @@ Session Confirmed mesajı, Bob'un birkaç gerekli kontrolü gerçekleştirebilme
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ Session Confirmed mesajı, Bob'un birkaç gerekli kontrolü gerçekleştirebilme
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ Session Confirmed mesajı, Bob'un birkaç gerekli kontrolü gerçekleştirebilme
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 Ne yazık ki Router Info, RI bloğunda gzip ile sıkıştırılsa bile MTU'yu aşabilir. Bu nedenle Session Confirmed iki veya daha fazla pakete bölünebilir. Bu, SSU2 protokolünde AEAD korumalı bir yükün iki veya daha fazla pakete bölündüğü TEK durumdur.

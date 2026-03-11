@@ -1,8 +1,8 @@
 ---
-title: "PQ Hybrid NTCP2"
-description: "Post-Quanten-Hybrid-Variante des NTCP2 Transportprotokolls unter Verwendung von ML-KEM"
+title: "PQ-Hybrid-NTCP2"
+description: "Post-quanten-hybride Variante des NTCP2-Transportprotokolls unter Verwendung von ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-02"
+lastupdated: "2026-03"
 category: "Transports"
 accurateFor: "0.9.69"
 ---
@@ -13,60 +13,63 @@ Beta Q1 2026, Veröffentlichung Q2 2026
 
 ## Übersicht
 
-Dies ist die hybride Post-Quantum-Variante des NTCP2-Transportprotokolls, wie in Vorschlag 169 entworfen. Siehe diesen Vorschlag für zusätzliche Hintergrundinformationen.
+Dies ist die hybride post-quanten-sichere Variante des NTCP2-Transportprotokolls, wie sie in Vorschlag 169 entworfen wurde. Siehe diesen Vorschlag für zusätzlichen Hintergrund.
 
-PQ Hybrid NTCP2 ist nur auf derselben Adresse und demselben Port wie Standard-NTCP2 definiert. Der Betrieb auf einem anderen Port oder ohne Standard-NTCP2-Unterstützung ist nicht erlaubt und wird es auch für mehrere Jahre nicht sein, bis Standard-NTCP2 als veraltet eingestuft wird.
+PQ Hybrid NTCP2 ist nur für dieselbe Adresse und denselben Port wie standardmäßiges NTCP2 definiert. Der Betrieb an einem anderen Port oder ohne Unterstützung für standardmäßiges NTCP2 ist nicht zulässig und wird dies mehrere Jahre lang auch nicht sein, bis standardmäßiges NTCP2 als veraltet gilt.
 
-Diese Spezifikation dokumentiert nur die Änderungen, die am Standard-NTCP2 erforderlich sind, um PQ Hybrid zu unterstützen. Siehe die NTCP2-Spezifikation für die grundlegenden Implementierungsdetails.
+Diese Spezifikation beschreibt ausschließlich die Änderungen, die erforderlich sind, um NTCP2 um PQ-Hybrid zu erweitern. Für die Grundimplementierungsdetails siehe die NTCP2-Spezifikation.
 
 ## Design
 
-Wir unterstützen die NIST FIPS 203 und 204 Standards [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), die auf CRYSTALS-Kyber und CRYSTALS-Dilithium basieren, aber NICHT kompatibel sind mit den Versionen 3.1, 3 und älteren.
+Wir unterstützen die NIST FIPS 203- und 204-Standards [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), die auf CRYSTALS-Kyber und CRYSTALS-Dilithium (Versionen 3.1, 3 und älter) basieren, aber NICHT kompatibel damit sind.
 
 ### Schlüsselaustausch
 
-PQ KEM stellt nur ephemerale Schlüssel zur Verfügung und unterstützt nicht direkt Static-Key-Handshakes wie Noise XK und IK. Die Verschlüsselungstypen sind die gleichen wie in PQ Hybrid Ratchet verwendet und sind im Dokument für gemeinsame Strukturen [/docs/specs/common-structures/](/docs/specs/common-structures/) definiert, wie in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf). Hybride Typen sind nur in Kombination mit X25519 definiert.
+PQ KEM bietet nur temporäre Schlüssel und unterstützt keine statischen Schlüssel-Handshakes wie Noise XK und IK direkt. Die Verschlüsselungstypen sind identisch mit denen im PQ Hybrid Ratchet und werden im Dokument zu gemeinsamen Strukturen [/docs/specs/common-structures/](/docs/specs/common-structures/) definiert, wie in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf). Hybride Typen sind nur in Kombination mit X25519 definiert.
 
 Die Verschlüsselungstypen sind:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">NTCP2 Version</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ### Zulässige Kombinationen
 
-Die neuen Verschlüsselungstypen werden in den RouterAddresses angegeben. Der Verschlüsselungstyp im Schlüsselzertifikat wird weiterhin Typ 4 sein.
+Die neuen Verschlüsselungstypen werden in den RouterAddresses angezeigt. Der Verschlüsselungstyp im Schlüsselzertifikat bleibt Typ 4.
 
 ## Spezifikation
 
 ### Handshake-Muster
 
-Handshakes verwenden [Noise Protocol](https://noiseprotocol.org/noise.html) Handshake-Muster.
+Die Handshakes verwenden [Noise Protocol](https://noiseprotocol.org/noise.html) Handshake-Muster.
 
 Die folgende Buchstabenzuordnung wird verwendet:
 
-- e = einmaliger ephemerer Schlüssel
+- e = einmaliger temporärer Schlüssel
 - s = statischer Schlüssel
-- p = Nachrichten-Payload
-- e1 = einmaliger ephemerer PQ-Schlüssel, von Alice an Bob gesendet
-- ekem1 = der KEM-Chiffretext, von Bob an Alice gesendet
+- p = Nachrichtennutzlast
+- e1 = einmaliger temporärer PQ-Schlüssel, gesendet von Alice an Bob
+- ekem1 = der KEM-Chiffretext, gesendet von Bob an Alice
 
-Die folgenden Änderungen an XK und IK für hybride Forward Secrecy (hfs) sind wie in der [Noise HFS Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) Abschnitt 5 spezifiziert:
+Die folgenden Änderungen an XK und IK für die hybride Vorwärtsgeheimhaltung (hfs) entsprechen den Vorgaben aus Abschnitt 5 der [Noise HFS-Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
 ```
 XK:                       XKhfs:
@@ -82,7 +85,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-Das e1-Muster ist wie folgt definiert, wie in der [Noise HFS-Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) Abschnitt 4 angegeben:
+Das e1-Muster ist wie folgt definiert, wie in Abschnitt 4 der [Noise HFS-Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) festgelegt:
 
 ```
 For Alice:
@@ -100,7 +103,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-Das ekem1-Muster ist wie folgt definiert, wie in der [Noise HFS-Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) Abschnitt 4 spezifiziert:
+Das ekem1-Muster ist wie folgt definiert, wie in Abschnitt 4 der [Noise HFS-Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) spezifiziert:
 
 ```
 For Bob:
@@ -125,17 +128,17 @@ For Bob:
   kem_shared_key = DECAPS(kem_ciphertext, decap_key)
   MixKey(kem_shared_key)
 ```
-### Noise Handshake KDF
+### Noise-Handshake-KDF
 
-#### Überblick
+#### Übersicht
 
-Der Hybrid-Handshake ist in der [Noise HFS Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) definiert. Die erste Nachricht von Alice an Bob enthält e1, den Encapsulation-Schlüssel, vor der Nachrichtenutzlast. Dieser wird als zusätzlicher statischer Schlüssel behandelt; rufen Sie EncryptAndHash() darauf auf (als Alice) oder DecryptAndHash() (als Bob). Verarbeiten Sie dann die Nachrichtenutzlast wie üblich.
+Der Hybrid-Handshake ist in der [Noise HFS-Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) definiert. Die erste Nachricht, von Alice an Bob, enthält e1, den Kapselungsschlüssel, vor dem Nachrichtennutzdaten. Dieser wird als zusätzlicher statischer Schlüssel behandelt; rufe EncryptAndHash() darauf auf (als Alice) oder DecryptAndHash() (als Bob). Danach werden die Nachrichtennutzdaten wie üblich verarbeitet.
 
-Die zweite Nachricht, von Bob an Alice, enthält ekem1, den Chiffretext, vor der Nachrichten-Payload. Dies wird als zusätzlicher statischer Schlüssel behandelt; rufe EncryptAndHash() darauf auf (als Bob) oder DecryptAndHash() (als Alice). Berechne dann den kem_shared_key und rufe MixKey(kem_shared_key) auf. Verarbeite dann die Nachrichten-Payload wie üblich.
+Die zweite Nachricht von Bob an Alice enthält ekem1, den Chiffretext, vor der Nutzlast der Nachricht. Dies wird als zusätzlicher statischer Schlüssel behandelt; rufe EncryptAndHash() darauf auf (als Bob) bzw. DecryptAndHash() (als Alice). Danach wird der kem_shared_key berechnet und MixKey(kem_shared_key) aufgerufen. Anschließend wird die Nachrichtennutzlast wie üblich verarbeitet.
 
 #### Definierte ML-KEM-Operationen
 
-Wir definieren die folgenden Funktionen entsprechend den kryptographischen Bausteinen, die wie in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert verwendet werden.
+Wir definieren die folgenden Funktionen, die den verwendeten kryptografischen Bausteinen entsprechen, wie in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) festgelegt.
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -143,7 +146,7 @@ Wir definieren die folgenden Funktionen entsprechend den kryptographischen Baust
     The encapsulation key is sent in message 1.
     encap_key and decap_key sizes vary based on ML-KEM variant.
 
-(ciphertext, kem_shared_key) = ENCAPS(encap_key)
+(Chiffrat, kem_shared_key) = ENCAPS(encap_key)
 
     Bob calculates the ciphertext and shared key,
     using the ciphertext received in message 1.
@@ -151,19 +154,19 @@ Wir definieren die folgenden Funktionen entsprechend den kryptographischen Baust
     ciphertext size varies based on ML-KEM variant.
     The kem_shared_key is always 32 bytes.
 
-kem_shared_key = DECAPS(ciphertext, decap_key)
+kem_shared_key = DECAPS(Ziffertext, decap_key)
 
     Alice calculates the shared key,
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Beachten Sie, dass sowohl der encap_key als auch der ciphertext innerhalb von ChaCha/Poly-Blöcken in den Noise-Handshake-Nachrichten 1 und 2 verschlüsselt sind. Sie werden als Teil des Handshake-Prozesses entschlüsselt.
+Beachten Sie, dass sowohl der encap_key als auch der Ciphertext innerhalb der ChaCha/Poly-Blöcke in den Noise-Handshake-Nachrichten 1 und 2 verschlüsselt sind. Sie werden im Rahmen des Handshake-Prozesses entschlüsselt.
 
-Der kem_shared_key wird mit MixHash() in den chaining key eingemischt. Siehe unten für Details.
+Der kem_shared_key wird mit MixHash() in den Verkettungsschlüssel eingemischt. Siehe unten für Details.
 
-#### Alice KDF für Nachricht 1
+#### Alice-KDF für Nachricht 1
 
-Nach dem 'es' Nachrichtenmuster und vor der Nutzdaten, füge hinzu:
+Nach dem 'es'-Nachrichtenmuster und vor der Nutzlast hinzufügen:
 
 ```
 This is the "e1" message pattern:
@@ -189,7 +192,7 @@ This is the "e1" message pattern:
 ```
 #### Bob KDF für Nachricht 1
 
-Nach dem 'es' Nachrichtenmuster und vor der Nutzlast, fügen Sie hinzu:
+Nach dem 'es'-Nachrichtenmuster und vor der Nutzlast hinzufügen:
 
 ```
 This is the "e1" message pattern:
@@ -211,9 +214,9 @@ This is the "e1" message pattern:
   the keydata and chain key remain the same,
   and n now equals 1 (instead of 0 for non-hybrid).
 ```
-#### Bob KDF für Nachricht 2
+#### Bob-KDF für Nachricht 2
 
-Für XK: Nach dem 'ee' Nachrichtenmuster und vor der Payload, hinzufügen:
+Für XK: Fügen Sie nach dem 'ee'-Nachrichtenmuster und vor der Nutzlast Folgendes hinzu:
 
 ```
 This is the "ekem1" message pattern:
@@ -235,10 +238,16 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
-```
-#### Alice KDF für Nachricht 2
 
-Nach dem 'ee' Nachrichtenmuster hinzufügen:
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
+```
+#### Alice-KDF für Nachricht 2
+
+Fügen Sie nach dem Muster der Nachricht „ee“ Folgendes hinzu:
 
 ```
 This is the "ekem1" message pattern:
@@ -259,36 +268,42 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### KDF für Nachricht 3 (nur XK)
 
-unverändert
+unchanged
 
 #### KDF für split()
 
-unverändert
+unchanged
 
 ### Handshake-Details
 
-#### Noise-Kennungen
+#### Noise-Identifikatoren
 
-- "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
-- "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
-- "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256"
+- „Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256“
+- „Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256“
+- „Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM1024_ChaChaPoly_SHA256“
 
 #### 1) SessionRequest
 
-Änderungen: Das aktuelle NTCP2 enthält nur die Optionen im ChaCha-Abschnitt. Mit ML-KEM wird der ChaCha-Abschnitt auch den verschlüsselten PQ-Public-Key enthalten.
+Änderungen: Das aktuelle NTCP2 enthält nur die Optionen in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird es einen neuen ChaCha-Abschnitt vor den Optionen geben, der den verschlüsselten Öffentlichen PQ-Schlüssel enthält.
 
-Damit PQ und Nicht-PQ NTCP2 auf derselben router-Adresse und demselben Port unterstützt werden können, verwenden wir das höchstwertige Bit des X-Werts (X25519 ephemeral public key), um zu kennzeichnen, dass es sich um eine PQ-Verbindung handelt. Dieses Bit ist bei Nicht-PQ-Verbindungen immer nicht gesetzt.
+Damit PQ- und Nicht-PQ-NTCP2-Verbindungen auf derselben Routeradresse und demselben Port unterstützt werden können, verwenden wir das höchstwertige Bit des X-Werts (X25519 ephemeraler öffentlicher Schlüssel), um anzugeben, dass es sich um eine PQ-Verbindung handelt. Dieses Bit ist für Nicht-PQ-Verbindungen immer deaktiviert.
 
-Für Alice wird nach der Verschlüsselung der Nachricht durch Noise, aber vor der AES-Verschleierung von X, X[31] |= 0x7f gesetzt.
+Für Alice, nachdem die Nachricht durch Noise verschlüsselt wurde, aber vor der AES-Verfälschung von X, setze X[31] |= 0x7f.
 
-Für Bob, nach der AES-Entschleierung von X, teste X[31] & 0x80. Wenn das Bit gesetzt ist, lösche es mit X[31] &= 0x7f und entschlüssele über Noise als PQ-Verbindung. Wenn das Bit nicht gesetzt ist, entschlüssele über Noise als Nicht-PQ-Verbindung wie gewohnt.
+Für Bob, nach der AES-Deobfuskation von X, teste X[31] & 0x80. Wenn das Bit gesetzt ist, lösche es mit X[31] &= 0x7f und entschlüssele via Noise als PQ-Verbindung. Wenn das Bit nicht gesetzt ist, entschlüssele via Noise wie üblich als Nicht-PQ-Verbindung.
 
-Für PQ NTCP2, das auf einer anderen router-Adresse und einem anderen Port angekündigt wird, ist dies nicht erforderlich.
+Für PQ NTCP2, das auf einer anderen Routeradresse und einem anderen Port angeboten wird, ist dies nicht erforderlich.
 
-Für weitere Informationen siehe den Abschnitt "Published Addresses" unten.
+Weitere Informationen finden Sie im Abschnitt „Veröffentlichte Adressen“ weiter unten.
 
 Rohinhalte:
 
@@ -302,20 +317,28 @@ Rohinhalte:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
+  |   ChaChaPoly encrypted data (MLKEM)   |
   +      (see table below for length)     +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
-  ~   n = 0                               ~
+  ~                                       ~
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
-  |   ChaChaPoly frame (options)          |
-  +         32 bytes                      +
+  |   ChaCha20 encrypted data (options)   |
+  +         16 bytes                      +
   |   k defined in KDF for message 1      |
   +   n = 0                               +
   |   see KDF for associated data         |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
   ~         padding (optional)            ~
@@ -324,7 +347,7 @@ Rohinhalte:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht angezeigt):
+Unverschlüsselte Daten (Poly1305-Authentifizierungstag nicht angezeigt):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -351,20 +374,20 @@ Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht angezeigt):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
-Hinweis: Das Versionsfeld im Optionsblock von Nachricht 1 muss auf 2 gesetzt werden, auch für PQ-Verbindungen.
+Hinweis: Das Versionsfeld im Optionsblock der Nachricht 1 muss auch für PQ-Verbindungen auf 2 gesetzt werden.
 
 Größen:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ Code</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">X Länge</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Länge</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Verschl Länge</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Entschl Länge</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">PQ Schlüssel Länge</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">opt Länge</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">X len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Enc len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Msg 1 Dec len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">PQ key len</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">opt len</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">X25519</td>
@@ -407,12 +430,13 @@ Größen:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Hinweis: Typencodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den router-Adressen angezeigt.
+Hinweis: Typ-Codes sind nur für den internen Gebrauch. Router behalten den Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
 #### 2) SessionCreated
 
-Roher Inhalt:
+Änderungen: Das aktuelle NTCP2 enthält nur die Optionen in einem einzelnen ChaCha-Abschnitt. Mit ML-KEM wird ein neuer ChaCha-Abschnitt vor den Optionen hinzugefügt, der den verschlüsselten PQ-Ciphertext enthält.
+
+Rohinhalte:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -424,20 +448,26 @@ Roher Inhalt:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (MLKEM)            |
-  +   Encrypted and authenticated data    +
+  |   ChaCha20 encrypted data (MLKEM)     |
   -      (see table below for length)     -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |   ChaChaPoly frame (options)          |
-  +   Encrypted and authenticated data    +
-  -           32 bytes                    -
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |   ChaCha20 encrypted data (options)   |
+  -           16 bytes                    -
   +   k defined in KDF for message 2      +
-  |   n = 0; see KDF for associated data  |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |     unencrypted authenticated         |
@@ -449,7 +479,7 @@ Roher Inhalt:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-Unverschlüsselte Daten (Poly1305 Auth-Tag nicht gezeigt):
+Unverschlüsselte Daten (Poly1305-Authentifizierungstag nicht angezeigt):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -480,8 +510,8 @@ Größen:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ Code</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type Code</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Y len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 len</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Msg 2 Enc len</th>
@@ -530,8 +560,7 @@ Größen:
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
 </tr>
 </table>
-
-Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angezeigt.
+Hinweis: Typ-Codes sind nur für den internen Gebrauch. Router behalten den Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
 #### 3) SessionConfirmed
 
@@ -543,29 +572,29 @@ Unverändert
 
 #### Veröffentlichte Adressen
 
-In allen Fällen verwenden Sie wie gewohnt den NTCP2-Transportnamen.
+Verwenden Sie in allen Fällen den NTCP2-Transportnamen wie gewohnt.
 
-Verwende dieselbe Adresse/Port wie non-PQ, non-firewalled. Nur eine PQ-Variante wird unterstützt. In der Router-Adresse veröffentliche v=2 (wie üblich) und den neuen Parameter pq=[3|4|5] um MLKEM 512/768/1024 anzuzeigen. Alice setzt das MSB des ephemeral key (key[31] & 0x80) in der Session-Anfrage, um anzuzeigen, dass dies eine Hybrid-Verbindung ist. Siehe oben. Ältere Router ignorieren den pq-Parameter und verbinden sich non-pq wie üblich.
+Verwenden Sie dieselbe Adresse/denselben Port wie bei nicht-PQ, nicht-firewalled. Nur eine PQ-Variante wird unterstützt. In der Router-Adresse veröffentlichen Sie v=2 (wie üblich) und den neuen Parameter pq=[3|4|5], um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des temporären Schlüssels (key[31] & 0x80) in der Sitzungsanfrage, um anzugeben, dass es sich um eine hybride Verbindung handelt. Siehe oben. Ältere Router werden den pq-Parameter ignorieren und wie gewohnt nicht-pq verbinden.
 
-Unterschiedliche Adresse/Port als Nicht-PQ, oder nur-PQ, nicht-firewalled wird NICHT unterstützt. Dies wird nicht implementiert werden, bis Nicht-PQ NTCP2 deaktiviert wird, was erst in einigen Jahren der Fall sein wird. Wenn Nicht-PQ deaktiviert ist, können mehrere PQ-Varianten unterstützt werden, aber nur eine pro Adresse. Wenn es unterstützt wird, veröffentliche in der router-Adresse v=[3|4|5] um MLKEM 512/768/1024 anzugeben. Alice setzt nicht das MSB des ephemeral key. Ältere router werden den v-Parameter prüfen und diese Adresse als nicht unterstützt überspringen.
+Unterschiedliche Adressen/Ports für nicht-PQ, oder nur PQ, nicht hinter einer Firewall, werden NICHT unterstützt. Dies wird nicht implementiert, bis nicht-PQ NTCP2 deaktiviert ist, was erst in mehreren Jahren der Fall sein wird. Wenn nicht-PQ deaktiviert ist, könnten mehrere PQ-Varianten unterstützt werden, jedoch nur eine pro Adresse. Sobald dies unterstützt wird, muss in der Routeradresse v=[3|4|5] veröffentlicht werden, um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des ephemeren Schlüssels nicht. Ältere Router prüfen den v-Parameter und überspringen diese Adresse als nicht unterstützte Variante.
 
-Firewall-geschützte Adressen (keine IP veröffentlicht): In der router-Adresse v=2 veröffentlichen (wie gewöhnlich). Es ist nicht erforderlich, einen pq-Parameter zu veröffentlichen.
+Gefeuwalled-Adressen (keine IP veröffentlicht): In der Routeradresse v=2 veröffentlichen (wie üblich). Es ist nicht notwendig, einen pq-Parameter zu veröffentlichen.
 
-Alice kann sich mit einem PQ Bob über die PQ-Variante verbinden, die Bob veröffentlicht, unabhängig davon, ob Alice pq-Unterstützung in ihren router-Informationen bewirbt oder ob sie dieselbe Variante bewirbt.
+Alice kann sich mit einem PQ-Bob über die PQ-Variante verbinden, die Bob veröffentlicht, unabhängig davon, ob Alice PQ-Unterstützung in ihren Router-Infos annonciert oder ob sie dieselbe Variante annonciert.
 
-#### Maximale Polsterung
+#### Maximale Auffüllung
 
-In der aktuellen Spezifikation sind die Nachrichten 1 und 2 definiert, um eine "angemessene" Menge an Padding zu haben, mit einem empfohlenen Bereich von 0-31 Bytes und ohne spezifiziertes Maximum.
+In der aktuellen Spezifikation ist für die Nachrichten 1 und 2 eine „angemessene“ Menge an Auffüllung (Padding) vorgesehen, wobei ein Bereich von 0–31 Bytes empfohlen wird, ohne dass ein Maximum festgelegt ist.
 
-Bis API 0.9.68 (Release 2.11.0) implementierte Java I2P maximal 256 Bytes Padding für Nicht-PQ-Verbindungen, dies war jedoch zuvor nicht dokumentiert. Ab API 0.9.69 (Release 2.12.0) implementiert Java I2P das gleiche maximale Padding für Nicht-PQ-Verbindungen wie für MLKEM-512. Siehe Tabelle unten.
+Bis API 0.9.68 (Release 2.11.0) implementierte Java I2P eine maximale Auffüllung von 256 Bytes für Nicht-PQ-Verbindungen, was jedoch zuvor nicht dokumentiert war. Ab API 0.9.69 (Release 2.12.0) implementiert Java I2P dieselbe maximale Auffüllung für Nicht-PQ-Verbindungen wie für MLKEM-512. Siehe Tabelle unten.
 
-Verwende die definierte Nachrichtengröße als maximales Padding, das heißt, das maximale Padding wird die Nachrichtengröße für PQ-Verbindungen verdoppeln, wie folgt:
+Verwenden Sie die definierte Nachrichtengröße als maximale Auffüllung, das heißt, die maximale Auffüllung verdoppelt die Nachrichtengröße für PQ-Verbindungen, wie folgt:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Nachrichten Max Padding</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (bis 0.9.68)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (ab 0.9.69)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Message Max Padding</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (thru 0.9.68)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">non-PQ (as of 0.9.69)</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-512</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-768</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">MLKEM-1024</th>
@@ -587,18 +616,17 @@ Verwende die definierte Nachrichtengröße als maximales Padding, das heißt, da
 <td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 </tr>
 </table>
-
-## Overhead-Analyse
+## Analyse der Overhead-Kosten
 
 ### Schlüsselaustausch
 
-Größenzunahme (Bytes):
+Größenanstieg (Bytes):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Typ</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Type</th>
 <th style="border: 1px solid var(--color-border); padding: 8px;">Pubkey (Msg 1)</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Chiffretext (Msg 2)</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Ciphertext (Msg 2)</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512_X25519</td>
@@ -616,15 +644,14 @@ Größenzunahme (Bytes):
 <td style="border: 1px solid var(--color-border); padding: 8px;">+1584</td>
 </tr>
 </table>
-
 ## Sicherheitsanalyse
 
-NIST-Sicherheitskategorien sind in der [NIST-Präsentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) auf Folie 10 zusammengefasst. Vorläufige Kriterien: Unsere minimale NIST-Sicherheitskategorie sollte 2 für hybride Protokolle und 3 für reine PQ-Protokolle sein.
+Die NIST-Sicherheitskategorien sind in [NIST-Präsentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), Folie 10, zusammengefasst. Vorläufige Kriterien: Unsere minimale NIST-Sicherheitskategorie sollte bei Hybridprotokollen 2 und bei reinen PQ-Protokollen 3 betragen.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Kategorie</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">So sicher wie</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Category</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">As Secure As</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
@@ -647,17 +674,16 @@ NIST-Sicherheitskategorien sind in der [NIST-Präsentation](https://www.nccoe.ni
 <td style="border: 1px solid var(--color-border); padding: 8px;">AES256</td>
 </tr>
 </table>
-
 ### Handshakes
 
-Dies sind alles Hybrid-Protokolle. Implementierungen sollten MLKEM768 bevorzugen; MLKEM512 ist nicht sicher genug.
+Dies sind alles hybride Protokolle. Implementierungen sollten MLKEM768 bevorzugen; MLKEM512 ist nicht sicher genug.
 
 NIST-Sicherheitskategorien [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
-<th style="border: 1px solid var(--color-border); padding: 8px;">Algorithmus</th>
-<th style="border: 1px solid var(--color-border); padding: 8px;">Sicherheitskategorie</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Algorithm</th>
+<th style="border: 1px solid var(--color-border); padding: 8px;">Security Category</th>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM512</td>
@@ -672,32 +698,31 @@ NIST-Sicherheitskategorien [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIS
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 </tr>
 </table>
-
 ## Implementierungshinweise
 
 ### Bibliotheksunterstützung
 
-Bouncycastle, BoringSSL und WolfSSL Bibliotheken unterstützen jetzt MLKEM und MLDSA. OpenSSL Unterstützung wird in ihrer 3.5 Version am 8. April 2025 verfügbar sein [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Die Bibliotheken Bouncycastle, BoringSSL und WolfSSL unterstützen jetzt MLKEM und MLDSA. Die Unterstützung durch OpenSSL wird im Release 3.5 am 8. April 2025 erfolgen [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-### Identifikation des eingehenden Datenverkehrs
+### Identifizierung eingehenden Datenverkehrs
 
-Wir setzen das MSB des ephemeren Schlüssels (key[31] & 0x80) in der Session-Anfrage, um anzuzeigen, dass dies eine Hybrid-Verbindung ist. Dies ermöglicht es uns, sowohl Standard-NTCP als auch Hybrid-NTCP auf demselben Port zu betreiben. Nur eine Hybrid-Variante wird für eingehende Verbindungen unterstützt und in der Router-Adresse angekündigt. Zum Beispiel pq=3 oder pq=4.
+Wir setzen das MSB des temporären Schlüssels (key[31] & 0x80) im Sitzungsanfragepaket, um anzugeben, dass es sich um eine hybride Verbindung handelt. Dies ermöglicht es uns, sowohl standardmäßiges NTCP als auch hybrides NTCP am selben Port zu betreiben. Für eingehende Verbindungen wird nur eine hybride Variante unterstützt und in der Routeradresse angekündigt. Zum Beispiel pq=3 oder pq=4.
 
 #### Verschleierung
 
-Als Alice, für eine PQ-Verbindung, vor der Verschleierung, setze X[31] |= 0x80. Dies macht X zu einem ungültigen X25519 öffentlichen Schlüssel. Nach der Verschleierung wird AES-CBC ihn randomisieren. Das MSB von X wird nach der Verschleierung zufällig sein.
+Als Alice, für eine PQ-Verbindung, vor der Verschleierung, setze X[31] |= 0x80. Dadurch wird X ein ungültiger X25519-Öffentlicher Schlüssel. Nach der Verschleierung wird AES-CBC diesen Wert randomisieren. Das MSB von X wird nach der Verschleierung zufällig sein.
 
-Als Bob testen, ob (X[31] & 0x80) != 0 nach der Entschleierung. Wenn ja, ist es eine PQ-Verbindung.
+Als Bob testen, ob (X[31] & 0x80) != 0 nach der De-Verfälschung gilt. Wenn ja, handelt es sich um eine PQ-Verbindung.
 
-Die mindestens erforderliche Router-Version für NTCP2-PQ ist noch zu bestimmen.
+Die minimale Router-Version, die für NTCP2-PQ erforderlich ist, steht noch aus (TBD).
 
-Hinweis: Typ-Codes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angezeigt.
+Hinweis: Typ-Codes sind nur für den internen Gebrauch. Router behalten den Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
 ## Router-Kompatibilität
 
-### Transport-Namen
+### Transportnamen
 
-Verwenden Sie in allen Fällen den NTCP2-Transportnamen wie gewohnt. Ältere Router werden den pq-Parameter ignorieren und sich wie gewohnt mit Standard-NTCP2 verbinden.
+Verwenden Sie in allen Fällen wie gewohnt den NTCP2-Transportnamen. Ältere Router werden den pq-Parameter ignorieren und wie üblich mit standardmäßigem NTCP2 eine Verbindung herstellen.
 
 ## Referenzen
 

@@ -233,6 +233,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### Alice 消息 2 的密钥派生函数（KDF）
 
@@ -257,6 +263,12 @@ This is the "ekem1" message pattern:
   chainKey = keydata[0:31]
 
   End of "ekem1" message pattern.
+
+  // AEAD parameters for payload section
+  ... as in standard SSU2 ...
+  k = keydata[32:63]
+  ...
+
 ```
 #### 消息3的密钥派生函数（KDF）
 
@@ -283,7 +295,7 @@ unchanged
 
 - (0) 会话请求
 - (1) 会话已创建
-- (9) 重试（注意：终止重试可能包含任何版本 2-4）
+- (9) 重试
 - (10) 令牌请求
 - (11) 打洞
 
@@ -330,7 +342,7 @@ unchanged
 
 #### SessionRequest（类型 0）
 
-变更说明：当前的 SSU2 在 ChaCha 段中仅包含块数据。引入 ML-KEM 后，ChaCha 段中还将包含加密后的后量子（PQ）公钥。
+变更：当前的 SSU2 仅在单个 ChaCha 段中包含块数据。使用 ML-KEM 后，将在块数据前新增一个 ChaCha 段，其中包含已加密的 PQ 公钥。
 
 用于防欺骗的 KDF 变更：为解决提案 165 [Prop165]_ 中提出的问题，但采用不同的解决方案，我们对 Session Request 的 KDF 进行了修改。此变更仅适用于 PQ 会话，非 PQ 会话的 KDF 保持不变。
 
@@ -381,6 +393,10 @@ unchanged
   |  k defined in KDF for Session Request |
   +  n = 0                                +
   |  see KDF for associated data          |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
+  |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -440,7 +456,7 @@ MLKEM768_X25519 的最小 MTU：IPv4 为 1318，IPv6 为 1338。详见下文。
 
 #### SessionCreated（类型 1）
 
-变更说明：当前的 SSU2 在 ChaCha 段中仅包含块数据。引入 ML-KEM 后，ChaCha 段中还将包含加密后的后量子（PQ）公钥。
+变更：当前的 SSU2 仅在单个 ChaCha 段中包含有效载荷。使用 ML-KEM 后，将在有效载荷之前新增一个 ChaCha 段，用于包含加密的后量子密文。
 
 原始内容：
 
@@ -466,16 +482,20 @@ MLKEM768_X25519 的最小 MTU：IPv4 为 1318，IPv6 为 1338。详见下文。
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (before mixKey)                      |
+  +  n = 0; see KDF for associated data   +
+  |                                       |
+  +----+----+----+----+----+----+----+----+
+  |                                       |
+  +        Poly1305 MAC (16 bytes)        +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |   ChaCha20 data (payload)             |
   +   Encrypted and authenticated data    +
   |  length varies                        |
   +  k defined in KDF for Session Created +
-  |  n = 0; see KDF for associated data   |
-  +                                       +
+  |  (after mixKey)                       |
+  +  n = 0; see KDF for associated data   +
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
