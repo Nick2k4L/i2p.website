@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-11"
+lastupdated: "2026-03-12"
 status: "Mở"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -15,10 +15,10 @@ toc: true
 
 | Giao thức / Tính năng | Trạng thái |
 |--------------------|--------|
-| Ratchet | Đã hoàn thiện trong Java I2P và i2pd |
-| NTCP2 | Bản beta Quý 1 năm 2026 |
-| SSU2 | Bắt đầu triển khai sớm, bản beta Quý 23 năm 2026 |
-| MLDSA SigTypes | Ưu tiên thấp, có thể vào năm 2027 trở đi |
+| Ratchet | Đã hoàn thành trong Java I2P và i2pd |
+| NTCP2 | Bản beta Q1 2026, phát hành Q2 2026 |
+| SSU2 | Đang triển khai, bản beta Q2 2026, phát hành Q3 2026 |
+| MLDSA SigTypes | Tạm hoãn đến năm 2027-2028, xem [PLANTS](https://datatracker.ietf.org/wg/plants/about/) |
 ## Tổng quan
 
 Trong khi nghiên cứu và cạnh tranh để tìm ra mật mã hậu lượng tử (PQ) phù hợp đã diễn ra trong một thập kỷ, các lựa chọn vẫn chưa rõ ràng cho đến gần đây.
@@ -99,6 +99,8 @@ Chi phí phát sinh sẽ rất lớn. Kích thước thông điệp điển hìn
 
 ### Chữ ký
 
+LƯU Ý: Mọi thông tin trong đề xuất này liên quan đến chữ ký MLDSA đều mang tính chất sơ bộ. Việc phát triển hỗ trợ chữ ký MLDSA trong I2P đang tạm hoãn cho đến cuối năm 2027 hoặc 2028, chờ các tổ chức tiêu chuẩn chọn thuật toán, có thể giảm kích thước khóa và/hoặc chữ ký, đồng thời thúc đẩy việc áp dụng trong ngành. Xem [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) và [PLANTS](https://datatracker.ietf.org/wg/plants/about/).
+
 Chúng tôi sẽ hỗ trợ chữ ký PQ và chữ ký lai trong các cấu trúc sau:
 
 | Loại | Chỉ hỗ trợ PQ? | Hỗ trợ kết hợp? |
@@ -112,9 +114,9 @@ Chúng tôi sẽ hỗ trợ chữ ký PQ và chữ ký lai trong các cấu trú
 | SU3 files | yes | yes |
 | X.509 certificates | yes | yes |
 | Java keystores | yes | yes |
-Do đó, chúng tôi sẽ hỗ trợ cả chữ ký chỉ dùng mật mã hậu lượng tử (PQ-only) và chữ ký lai (hybrid). Chúng tôi sẽ định nghĩa ba biến thể ML-DSA như trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), ba biến thể lai kết hợp với Ed25519, và ba biến thể chỉ dùng mật mã hậu lượng tử với bước băm trước (prehash) dành riêng cho tệp SU3, tổng cộng tạo ra 9 loại chữ ký mới. Các loại chữ ký lai chỉ được định nghĩa khi kết hợp với Ed25519. Chúng tôi sẽ sử dụng ML-DSA tiêu chuẩn, KHÔNG dùng các biến thể có băm trước (HashML-DSA), ngoại trừ đối với các tệp SU3.
+Do đó, chúng tôi sẽ hỗ trợ cả chữ ký chỉ dùng mật mã hậu lượng tử (PQ-only) và chữ ký lai (hybrid). Chúng tôi sẽ định nghĩa ba biến thể ML-DSA như trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), ba biến thể lai kết hợp với Ed25519, và ba biến thể chỉ dùng PQ kết hợp với hàm băm trước (prehash) dành riêng cho tệp SU3, tổng cộng có 9 loại chữ ký mới. Các loại chữ ký lai chỉ được định nghĩa khi kết hợp với Ed25519. Chúng tôi sẽ sử dụng ML-DSA tiêu chuẩn, KHÔNG dùng các biến thể có băm trước (HashML-DSA), ngoại trừ đối với các tệp SU3.
 
-Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, chứ không phải biến thể "deterministic", như được định nghĩa trong mục 3.4 của [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf). Điều này đảm bảo rằng mỗi chữ ký đều khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp lớp bảo vệ bổ sung chống lại các cuộc tấn công kênh rò rỉ. Xem phần ghi chú triển khai bên dưới để biết thêm chi tiết về các lựa chọn thuật toán, bao gồm mã hóa và ngữ cảnh.
+Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, chứ không dùng biến thể "deterministic", như được định nghĩa trong mục 3.4 của [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf). Điều này đảm bảo rằng mỗi chữ ký đều khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp lớp bảo vệ bổ sung chống lại các cuộc tấn công kênh bên. Xem phần ghi chú triển khai bên dưới để biết thêm chi tiết về các lựa chọn thuật toán, bao gồm mã hóa và ngữ cảnh.
 
 Các loại chữ ký mới là:
 
@@ -131,15 +133,15 @@ Các loại chữ ký mới là:
 | MLDSA87ph | 20 |
 Chứng chỉ X.509 và các định dạng mã hóa DER khác sẽ sử dụng các cấu trúc ghép và OID được định nghĩa trong [bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-Chi phí phát sinh sẽ rất lớn. Kích thước điển hình của định danh đích và định danh router Ed25519 là 391 byte. Kích thước này sẽ tăng từ 3,5x đến 6,8x tùy theo thuật toán. Chữ ký Ed25519 là 64 byte. Kích thước này sẽ tăng từ 38x đến 76x tùy theo thuật toán. Các thông điệp RouterInfo có chữ ký, LeaseSet, datagram có thể trả lời và thông điệp streaming có chữ ký điển hình vào khoảng 1KB. Kích thước này sẽ tăng từ 3x đến 8x tùy theo thuật toán.
+Chi phí phát sinh sẽ rất lớn. Kích thước điển hình của định danh đích và định danh router Ed25519 là 391 byte. Kích thước này sẽ tăng từ 3,5x đến 6,8x tùy theo thuật toán. Chữ ký Ed25519 là 64 byte. Kích thước này sẽ tăng từ 38x đến 76x tùy theo thuật toán. Các thông điệp RouterInfo đã ký, LeaseSet, datagram có thể trả lời và thông điệp streaming đã ký điển hình khoảng 1KB. Kích thước này sẽ tăng từ 3x đến 8x tùy theo thuật toán.
 
-Do các loại định danh đích và định danh bộ định tuyến mới sẽ không chứa phần đệm, chúng sẽ không thể nén được. Kích thước của các định danh đích và định danh bộ định tuyến được nén gzip trong quá trình truyền sẽ tăng lên từ 12 đến 38 lần tùy thuộc vào thuật toán.
+Vì các loại định danh đích và định danh bộ định tuyến mới sẽ không chứa phần đệm, chúng sẽ không thể nén được. Kích thước của các định danh đích và định danh bộ định tuyến được nén gzip trong quá trình truyền sẽ tăng từ 12 đến 38 lần, tùy thuộc vào thuật toán.
 
 ### Các kết hợp hợp lệ
 
-Đối với Destinations, các loại chữ ký mới được hỗ trợ với mọi loại mã hóa trong leaseset. Hãy đặt loại mã hóa trong chứng chỉ khóa về NONE (255).
+Đối với Destinations, các kiểu chữ ký mới được hỗ trợ với mọi kiểu mã hóa trong leaseset. Hãy đặt kiểu mã hóa trong chứng chỉ khóa thành NONE (255).
 
-Đối với RouterIdentities, loại mã hóa ElGamal đã bị ngừng sử dụng. Các loại chữ ký mới chỉ được hỗ trợ với mã hóa X25519 (loại 4). Các loại mã hóa mới sẽ được chỉ ra trong RouterAddresses. Loại mã hóa trong chứng chỉ khóa sẽ tiếp tục là loại 4.
+Đối với RouterIdentities, kiểu mã hóa ElGamal đã bị ngừng sử dụng. Các kiểu chữ ký mới chỉ được hỗ trợ với mã hóa X25519 (loại 4). Các loại mã hóa mới sẽ được chỉ ra trong RouterAddresses. Loại mã hóa trong chứng chỉ khóa sẽ tiếp tục là loại 4.
 
 ### Yêu cầu mã hóa mới
 
@@ -151,19 +153,19 @@ Do các loại định danh đích và định danh bộ định tuyến mới s
 
 Các vector kiểm thử cho SHA3-256, SHAKE128 và SHAKE256 nằm tại [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
 
-Lưu ý rằng thư viện Java bouncycastle hỗ trợ tất cả các mục nêu trên. Hỗ trợ thư viện C++ có trong OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Lưu ý rằng thư viện bouncycastle của Java hỗ trợ tất cả các thuật toán nêu trên. Thư viện C++ được hỗ trợ trong OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Các lựa chọn thay thế
 
-Chúng tôi sẽ không hỗ trợ [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), vì nó chậm hơn và lớn hơn nhiều so với ML-DSA. Chúng tôi sẽ không hỗ trợ FIPS206 sắp tới (Falcon), vì nó vẫn chưa được chuẩn hóa. Chúng tôi sẽ không hỗ trợ NTRU hoặc các ứng viên PQ khác chưa được NIST chuẩn hóa.
+Chúng tôi sẽ không hỗ trợ [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), vì nó chậm hơn và lớn hơn rất nhiều so với ML-DSA. Chúng tôi sẽ không hỗ trợ FIPS206 sắp tới (Falcon), vì nó vẫn chưa được chuẩn hóa. Chúng tôi sẽ không hỗ trợ NTRU hoặc các ứng viên PQ khác chưa được NIST chuẩn hóa.
 
 ### Rosenpass
 
-Có một số nghiên cứu [bài báo](https://eprint.iacr.org/2020/379.pdf) về việc thích ứng Wireguard (IK) cho mật mã lượng tử (PQ) thuần túy, nhưng bài báo đó vẫn còn một số câu hỏi chưa được giải quyết. Sau đó, cách tiếp cận này đã được triển khai thành Rosenpass [Rosenpass](https://rosenpass.eu/) [bản thuyết minh](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) cho Wireguard PQ.
+Có một số nghiên cứu [bài báo](https://eprint.iacr.org/2020/379.pdf) về việc thích ứng Wireguard (IK) cho mật mã hoàn toàn PQ, nhưng bài báo đó vẫn còn một số câu hỏi chưa được giải quyết. Sau đó, hướng tiếp cận này đã được hiện thực hóa thành Rosenpass [Rosenpass](https://rosenpass.eu/) [bản thuyết minh](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) dành cho Wireguard PQ.
 
-Rosenpass sử dụng một quá trình bắt tay kiểu Noise KK với các khóa tĩnh Classic McEliece 460896 đã chia sẻ trước (500 KB mỗi khóa) và các khóa tạm thời Kyber-512 (về cơ bản là MLKEM-512). Vì văn bản được mã hóa từ Classic McEliece chỉ dài 188 byte, đồng thời khóa công khai và văn bản mã hóa của Kyber-512 ở kích thước hợp lý, nên cả hai thông điệp bắt tay đều vừa với kích thước MTU UDP tiêu chuẩn. Khóa chia sẻ đầu ra (osk) từ quá trình bắt tay PQ KK được dùng làm khóa đã chia sẻ trước (psk) đầu vào cho quá trình bắt tay Wireguard IK tiêu chuẩn. Như vậy, tổng cộng có hai lần bắt tay hoàn chỉnh, một lần hoàn toàn dựa trên mật mã chống lượng tử (PQ), và một lần hoàn toàn dùng X25519.
+Rosenpass sử dụng một bước bắt tay kiểu Noise KK với các khóa tĩnh Classic McEliece 460896 đã chia sẻ trước (500 KB mỗi khóa) và các khóa tạm thời Kyber-512 (về cơ bản là MLKEM-512). Vì bản mã của Classic McEliece chỉ dài 188 byte, đồng thời khóa công khai và bản mã của Kyber-512 ở kích thước hợp lý, nên cả hai thông điệp bắt tay đều vừa với MTU UDP tiêu chuẩn. Khóa chia sẻ đầu ra (osk) từ bước bắt tay PQ KK được dùng làm khóa đã chia sẻ trước (psk) đầu vào cho bước bắt tay Wireguard IK tiêu chuẩn. Do đó, tổng cộng có hai bước bắt tay hoàn chỉnh, một hoàn toàn là PQ và một hoàn toàn là X25519.
 
-Chúng ta không thể làm bất kỳ điều gì trong số này để thay thế các lần bắt tay XK và IK vì:
+Chúng ta không thể thực hiện bất kỳ điều gì trong số này để thay thế các lần bắt tay XK và IK vì:
 
 - Chúng ta không thể thực hiện KK, vì Bob không có khóa tĩnh của Alice
 - Khóa tĩnh 500KB là quá lớn
@@ -179,7 +181,7 @@ Cập nhật các phần và bảng trong tài liệu cấu trúc chung [/docs/s
 
 ### PublicKey
 
-Các loại Khóa Công khai mới là:
+Các loại Khóa công khai mới là:
 
 | Loại | Độ dài Khóa Công khai | Kể từ | Mục đích sử dụng |
 |------|------------------------|-------|-------------|
@@ -193,13 +195,13 @@ Các loại Khóa Công khai mới là:
 | MLKEM768_CT | 1088 | 0.9.xx | Xem đề xuất 169, chỉ dùng cho bắt tay (handshakes), không dùng cho Leasesets, RIs hay Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | Xem đề xuất 169, chỉ dùng cho bắt tay (handshakes), không dùng cho Leasesets, RIs hay Destinations |
 | NONE | 0 | 0.9.xx | Xem đề xuất 169, chỉ dành cho các Destination có kiểu chữ ký PQ, không dùng cho RIs hay Leasesets |
-Khóa công khai lai là khóa X25519. Khóa công khai KEM là khóa lượng tử tạm thời được gửi từ Alice đến Bob. Việc mã hóa và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Khóa công khai dạng hybrid là khóa X25519. Khóa công khai KEM là khóa lượng tử tạm thời (ephemeral PQ key) được gửi từ Alice sang Bob. Việc mã hóa và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 Các khóa MLKEM*_CT không thực sự là khóa công khai, mà là "bản mã" được gửi từ Bob đến Alice trong quá trình bắt tay Noise. Chúng được liệt kê ở đây để đầy đủ thông tin.
 
 ### PrivateKey
 
-Các loại Khóa riêng tư mới là:
+Các kiểu Khóa Riêng mới là:
 
 | Loại | Độ dài Khóa Riêng | Kể từ | Mục đích sử dụng |
 |------|---------------------|-------|--------------|
@@ -209,7 +211,7 @@ Các loại Khóa riêng tư mới là:
 | MLKEM512 | 1632 | 0.9.xx | Xem đề xuất 169, chỉ dùng cho quá trình bắt tay (handshakes), không dùng cho Leasesets, RIs hay Destinations |
 | MLKEM768 | 2400 | 0.9.xx | Xem đề xuất 169, chỉ dùng cho quá trình bắt tay (handshakes), không dùng cho Leasesets, RIs hay Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | Xem đề xuất 169, chỉ dùng cho quá trình bắt tay (handshakes), không dùng cho Leasesets, RIs hay Destinations |
-Khóa riêng biệt hybrid là các khóa X25519. Khóa riêng biệt KEM chỉ dành cho Alice. Việc mã hóa KEM và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Khóa riêng hybrid là các khóa X25519. Khóa riêng KEM chỉ dành cho Alice. Việc mã hóa KEM và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ### SigningPublicKey
 
@@ -230,7 +232,7 @@ Khóa công khai ký lai là khóa Ed25519 theo sau bởi khóa PQ, như trong [
 
 ### SigningPrivateKey
 
-Các kiểu Khóa riêng dùng để ký mới là:
+Các loại Khóa riêng dùng để ký mới là:
 
 | Loại | Độ dài (byte) | Kể từ | Cách sử dụng |
 |------|----------------|-------|-------|
@@ -243,7 +245,7 @@ Các kiểu Khóa riêng dùng để ký mới là:
 | MLDSA44ph | 2592 | 0.9.xx | Chỉ dùng cho tệp SU3, không dùng cho cấu trúc netDb. Xem đề xuất 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Chỉ dùng cho tệp SU3, không dùng cho cấu trúc netDb. Xem đề xuất 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Chỉ dùng cho tệp SU3, không dùng cho cấu trúc netDb. Xem đề xuất 169 |
-Khóa riêng để ký hybrid gồm khóa Ed25519 theo sau là khóa PQ, như trong [bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Việc mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Khóa riêng để ký lai là khóa Ed25519 theo sau bởi khóa PQ, như trong [bản thảo IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Việc mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Chữ ký
 
@@ -1650,6 +1652,7 @@ Chúng ta nên có thể thử lần lượt từng cái một, giống như cá
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [PLANTS](https://datatracker.ietf.org/wg/plants/about/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)

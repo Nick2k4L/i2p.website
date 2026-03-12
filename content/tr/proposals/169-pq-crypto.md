@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-11"
+lastupdated: "2026-03-12"
 status: "Aç"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -16,9 +16,9 @@ toc: true
 | Protokol / Özellik | Durum |
 |--------------------|--------|
 | Ratchet | Java I2P ve i2pd'de tamamlandı |
-| NTCP2 | Beta 2026 1. Çeyrek |
-| SSU2 | Uygulama yakında başlıyor, Beta 2026 2-3. Çeyrek |
-| MLDSA SigTypes | Düşük öncelik, muhtemelen 2027+ |
+| NTCP2 | 2026 1. Çeyrek Beta, 2026 2. Çeyrek yayın |
+| SSU2 | Uygulama devam ediyor, 2026 2. Çeyrek Beta, 2026 3. Çeyrek yayın |
+| MLDSA SigTypes | 2027-2028 yılına kadar askıya alındı, [PLANTS](https://datatracker.ietf.org/wg/plants/about/) sayfasına bakın |
 ## Genel Bakış
 
 Uygun kuantum sonrası (PQ) kriptografi için araştırma ve rekabet on yıldır devam ederken, seçenekler yakın zamana kadar netlik kazanmamıştı.
@@ -99,6 +99,8 @@ Ek yük önemli olacaktır. Tipik mesaj 1 ve 2 boyutları (XK ve IK için) şu a
 
 ### İmzalar
 
+NOT: Bu teklifte MLDSA imzalarıyla ilgili tüm bilgiler öncedir. I2P'de MLDSA imza desteğiyle ilgili çalışmalar, standart kuruluşlarının algoritmaları seçmesi, muhtemelen anahtar ve/veya imza boyutlarını azaltması ve endüstriyel benimsenmeyi teşvik etmesine kadar 2027 sonuna veya 2028'e kadar askıya alınmıştır. Bkz. [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) ve [PLANTS](https://datatracker.ietf.org/wg/plants/about/).
+
 Aşağıdaki yapılarda PQ ve hibrit imzaları destekleyeceğiz:
 
 | Tür | Yalnızca PQ Destekler mi? | Hibrit Destekler mi? |
@@ -112,9 +114,9 @@ Aşağıdaki yapılarda PQ ve hibrit imzaları destekleyeceğiz:
 | SU3 dosyaları | evet | evet |
 | X.509 sertifikaları | evet | evet |
 | Java anahtar depoları | evet | evet |
-Bu nedenle hem PQ-only hem de hibrit imzaları destekleyeceğiz. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)'te tanımlandığı gibi üç ML-DSA varyantını, Ed25519 ile üç hibrit varyantı ve yalnızca SU3 dosyaları için prehash ile üç PQ-only varyantını tanımlayacağız, toplamda 9 yeni imza tipi. Hibrit tipler yalnızca Ed25519 ile kombinasyon halinde tanımlanacak. SU3 dosyaları hariç, pre-hash varyantları (HashML-DSA) DEĞİL standart ML-DSA kullanacağız.
+Bu yüzden sadece PQ ve hibrit imzaları destekleyeceğiz. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) belgesinde olduğu gibi üç ML-DSA çeşidini, Ed25519 ile üç hibrit çeşidi ve yalnızca SU3 dosyaları için önceden hashlenmiş üç PQ-only çeşidini tanımlayarak toplamda 9 yeni imza türü oluşturacağız. Hibrit türler yalnızca Ed25519 ile birlikte tanımlanacaktır. SU3 dosyaları hariç, standart ML-DSA'yı, önceden hashlenmiş varyantlar (HashML-DSA) yerine kullanacağız.
 
-[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı gibi "deterministik" varyant yerine "korumalı" veya rastgele imzalama varyantını kullanacağız. Bu, aynı veri üzerinde bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sağlar. Kodlama ve bağlam dahil algoritma seçimleri hakkında ek ayrıntılar için aşağıdaki uygulama notları bölümüne bakın.
+[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı gibi "deterministik" varyant yerine "hedged" veya rastgele imzalama varyantını kullanacağız. Bu, aynı veriler üzerinde bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sunar. Algoritma seçimleri, kodlama ve bağlam da dahil olmak üzere ek ayrıntılar için aşağıda yer alan uygulama notları bölümüne bakın.
 
 Yeni imza türleri şunlardır:
 
@@ -129,17 +131,17 @@ Yeni imza türleri şunlardır:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-X.509 sertifikaları ve diğer DER kodlamaları, [IETF taslağında](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) tanımlanan kompozit yapıları ve OID'leri kullanacaktır.
+X.509 sertifikaları ve diğer DER kodlamaları [IETF taslağında](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) tanımlanan bileşik yapıları ve OID'leri kullanacaktır.
 
-Ek yük önemli olacaktır. Tipik Ed25519 hedef ve router kimlik boyutları 391 bayttır. Bunlar algoritmaya bağlı olarak 3,5x ila 6,8x artacaktır. Ed25519 imzaları 64 bayttır. Bunlar algoritmaya bağlı olarak 38x ila 76x artacaktır. Tipik imzalanmış RouterInfo, LeaseSet, yanıtlanabilir datagramlar ve imzalanmış akış mesajları yaklaşık 1KB'tır. Bunlar algoritmaya bağlı olarak 3x ila 8x artacaktır.
+Ek yük önemli ölçüde artacak. Tipik Ed25519 hedef ve yönlendirici kimlik boyutları 391 bayttır. Bu değer, algoritmaya göre 3,5 kat ila 6,8 kat arasında artacaktır. Ed25519 imzaları 64 bayttır. Bu değer, algoritmaya göre 38 kat ila 76 kat arasında artacaktır. Tipik imzalı RouterInfo, LeaseSet, yanıt verilebilir datagramlar ve imzalı akış mesajları yaklaşık 1 KB boyutundadır. Bu değerler, algoritmaya göre 3 kat ila 8 kat arasında artacaktır.
 
-Yeni hedef ve router kimlik türleri dolgu içermediğinden, sıkıştırılabilir olmayacaktır. Aktarım sırasında gzip ile sıkıştırılan hedeflerin ve router kimliklerinin boyutları, algoritma türüne bağlı olarak 12 kat - 38 kat artacaktır.
+Yeni hedef ve yönlendirici kimlik türlerinde dolgu olmayacağı için, bu türler sıkıştırılamaz olacaktır. Aktarım sırasında gzip ile sıkıştırılan hedeflerin ve yönlendirici kimliklerinin boyutları algoritmaya göre 12x - 38x oranında artacaktır.
 
 ### Yasal Kombinasyonlar
 
-Destination'lar için, yeni imza türleri leaseset'teki tüm şifreleme türleriyle desteklenir. Anahtar sertifikasındaki şifreleme türünü NONE (255) olarak ayarlayın.
+Hedefler için yeni imza türleri, kiralık setinde (leaseset) tüm şifreleme türleriyle desteklenir. Anahtar sertifikasındaki şifreleme türünü YOK (255) olarak ayarlayın.
 
-RouterIdentity'ler için ElGamal şifreleme türü artık kullanımdan kaldırılmıştır. Yeni imza türleri yalnızca X25519 (tür 4) şifrelemesi ile desteklenmektedir. Yeni şifreleme türleri RouterAddress'lerde belirtilecektir. Anahtar sertifikasındaki şifreleme türü tür 4 olmaya devam edecektir.
+RouterIdentity'ler için ElGamal şifreleme türü kullanım dışıdır. Yeni imza türleri yalnızca X25519 (tür 4) şifreleme ile desteklenir. Yeni şifreleme türleri RouterAddress'larda belirtilecektir. Anahtar sertifikasındaki şifreleme türü hâlâ tür 4 olarak kalacaktır.
 
 ### Yeni Kripto Gerekli
 
@@ -149,19 +151,19 @@ RouterIdentity'ler için ElGamal şifreleme türü artık kullanımdan kaldırı
 - SHA3-256 (eski adıyla Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 - SHAKE128 ve SHAKE256 (SHA3-128 ve SHA3-256'nın XOF uzantıları) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-SHA3-256, SHAKE128 ve SHAKE256 için test vektörleri [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) adresinde bulunmaktadır.
+SHA3-256, SHAKE128 ve SHAKE256 için test vektörleri [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) adresindedir.
 
-Java bouncycastle kütüphanesinin yukarıdakilerin tamamını desteklediğini unutmayın. C++ kütüphane desteği OpenSSL 3.5'te mevcuttur [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Java bouncycastle kütüphanesinin yukarıdaki tümünü desteklediğini unutmayın. C++ kütüphane desteği OpenSSL 3.5'te mevcuttur [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Alternatifler
 
-[FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+) desteğini sunmayacağız, ML-DSA'dan çok çok daha yavaş ve büyüktür. Yaklaşan FIPS206 (Falcon) desteğini sunmayacağız, henüz standartlaştırılmamıştır. NTRU veya NIST tarafından standartlaştırılmamış diğer PQ adaylarını desteklemeyeceğiz.
+[FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+) desteklemeyeceğiz, ML-DSA'dan çok daha yavaş ve büyük. Henüz standartlaştırılmadığı için yaklaşan FIPS206 (Falcon)'u desteklemeyeceğiz. NIST tarafından standartlaştırılmamış NTRU veya diğer Kuantum sonrası (PQ) adaylarını desteklemeyeceğiz.
 
 ### Rosenpass
 
-Wireguard'ı (IK) saf PQ kripto için uyarlama konusunda bazı araştırma [makalesi](https://eprint.iacr.org/2020/379.pdf) bulunmakta, ancak bu makalede birkaç açık soru var. Daha sonra, bu yaklaşım PQ Wireguard için Rosenpass [Rosenpass](https://rosenpass.eu/) [teknik raporu](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) olarak uygulandı.
+Saf PQ kriptosu için Wireguard (IK)'yi uyarlamaya yönelik bazı araştırmalar [makale](https://eprint.iacr.org/2020/379.pdf) mevcuttur, ancak bu makalede birkaç açık soru vardır. Daha sonra bu yaklaşım, PQ Wireguard için Rosenpass [Rosenpass](https://rosenpass.eu/) [beyazkâğıt](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) olarak uygulandı.
 
-Rosenpass, önceden paylaşılmış Classic McEliece 460896 statik anahtarları (her biri 500 KB) ve Kyber-512 (temelde MLKEM-512) geçici anahtarları ile Noise KK benzeri bir el sıkışma kullanır. Classic McEliece şifre metinleri yalnızca 188 bayt olduğu ve Kyber-512 genel anahtarları ile şifre metinleri makul boyutta olduğu için, her iki el sıkışma mesajı da standart bir UDP MTU'ya sığar. PQ KK el sıkışmasından çıkan paylaşılan anahtar (osk), standart Wireguard IK el sıkışması için girdi önceden paylaşılmış anahtar (psk) olarak kullanılır. Böylece toplamda iki tam el sıkışma vardır, biri tamamen PQ ve diğeri tamamen X25519.
+Rosenpass, önceden paylaşılan Classic McEliece 460896 statik anahtarlarını (her biri 500 KB) ve Kyber-512 (aslında MLKEM-512) geçici anahtarlarını kullanan bir Noise KK benzeri el sıkışma protokolü kullanır. Classic McEliece şifrelerinin uzunluğu yalnızca 188 bayt ve Kyber-512 genel anahtarları ile şifreleri makul boyutlarda olduğundan, her iki el sıkışma mesajı da standart bir UDP MTU'suna sığar. Kuantum sonrası (PQ) KK el sıkışmasından elde edilen çıktı paylaşılan anahtar (osk), standart Wireguard IK el sıkışması için girdi paylaşılan anahtarı (psk) olarak kullanılır. Böylece toplamda biri tamamen kuantum sonrası, diğeri tamamen X25519 tabanlı olmak üzere iki adet tam el sıkışma gerçekleştirilir.
 
 XK ve IK el sıkışmalarımızı değiştirmek için bunların hiçbirini yapamayız çünkü:
 
@@ -169,7 +171,7 @@ XK ve IK el sıkışmalarımızı değiştirmek için bunların hiçbirini yapam
 - 500KB statik anahtarlar çok büyük
 - Ekstra bir gidiş-dönüş istemiyoruz
 
-Whitepaper'da çok sayıda faydalı bilgi bulunmaktadır ve bunu fikirler ve ilham için gözden geçireceğiz. TODO.
+Beyaz kitapta birçok iyi bilgi var ve fikirler ile ilham için bunu inceleyeceğiz. YAPILACAK.
 
 ## Spesifikasyon
 
@@ -179,7 +181,7 @@ Ortak yapılar belgesindeki [/docs/specs/common-structures/](/docs/specs/common-
 
 ### PublicKey
 
-Yeni Public Key türleri şunlardır:
+Yeni Genel Anahtar türleri şunlardır:
 
 | Tip | Public Key Uzunluğu | Başlangıç | Kullanım |
 |------|-------------------|-------|-------|
@@ -193,13 +195,13 @@ Yeni Public Key türleri şunlardır:
 | MLKEM768_CT | 1088 | 0.9.xx | Proposal 169'a bakın, sadece handshake'ler için, Leasesets, RI'ler veya Destinations için değil |
 | MLKEM1024_CT | 1568 | 0.9.xx | Proposal 169'a bakın, sadece handshake'ler için, Leasesets, RI'ler veya Destinations için değil |
 | NONE | 0 | 0.9.xx | Proposal 169'a bakın, sadece PQ sig tipli destinations için, RI'ler veya Leasesets için değil |
-Hibrit public key'ler X25519 anahtarıdır. KEM public key'ler Alice'ten Bob'a gönderilen geçici PQ anahtarıdır. Kodlama ve byte sırası [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)'te tanımlanmıştır.
+Hibrit genel anahtarlar X25519 anahtarıdır. KEM genel anahtarları, Alice'den Bob'a gönderilen geçici PQ anahtarıdır. Kodlama ve bayt sırası [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) belgesinde tanımlanmıştır.
 
-MLKEM*_CT anahtarları gerçek anlamda public key değildir, bunlar Noise handshake işleminde Bob'dan Alice'e gönderilen "ciphertext" (şifreli metin) verisidir. Eksiksiz olması için burada listelenmiştir.
+MLKEM*_CT anahtarları aslında açık anahtarlar değil, Bob'ın Alice'e gönderdiği Gürültü (Noise) el sıkışmasındaki "şifreli metin"dir. Tamamlanmışlık açısından burada listelenmiştir.
 
 ### PrivateKey
 
-Yeni Private Key türleri şunlardır:
+Yeni Özel Anahtar türleri şunlardır:
 
 | Tip | Özel Anahtar Uzunluğu | Sürümden İtibaren | Kullanım |
 |------|---------------------|-------|-------|
@@ -209,11 +211,11 @@ Yeni Private Key türleri şunlardır:
 | MLKEM512 | 1632 | 0.9.xx | Öneri 169'a bakın, yalnızca handshake'ler için, Leaseset, RI veya Destinationlar için değil |
 | MLKEM768 | 2400 | 0.9.xx | Öneri 169'a bakın, yalnızca handshake'ler için, Leaseset, RI veya Destinationlar için değil |
 | MLKEM1024 | 3168 | 0.9.xx | Öneri 169'a bakın, yalnızca handshake'ler için, Leaseset, RI veya Destinationlar için değil |
-Hibrit özel anahtarlar X25519 anahtarlarıdır. KEM özel anahtarları yalnızca Alice içindir. KEM kodlaması ve bayt sırası [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)'te tanımlanmıştır.
+Hibrit özel anahtarlar X25519 anahtarlarıdır. KEM özel anahtarları yalnızca Alice içindir. KEM kodlama ve bayt sırası [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) belgesinde tanımlanmıştır.
 
 ### SigningPublicKey
 
-Yeni İmzalama Genel Anahtarı türleri şunlardır:
+Yeni İmzalama Genel Anahtar türleri şunlardır:
 
 | Tip | Uzunluk (bayt) | Sürümden İtibaren | Kullanım |
 |------|----------------|-------|-------|
@@ -483,7 +485,7 @@ This is the "e1" message pattern:
 ```
 #### Mesaj 1 için Bob KDF
 
-XK için: 'es' mesaj kalıbından sonra ve yükten önce, şunu ekleyin:
+XK için: 'es' mesaj deseni sonrasında ve payload öncesinde, şunu ekleyin:
 
 VEYA
 
@@ -576,11 +578,11 @@ This is the "ekem1" message pattern:
 ```
 #### Mesaj 3 için KDF (yalnızca XK)
 
-değişmedi
+değişmemiş
 
 #### split() için KDF
 
-değişmemiş
+değişmedi
 
 ### Ratchet
 
@@ -795,7 +797,7 @@ NTCP2 spesifikasyonunu [/docs/specs/ntcp2/](/docs/specs/ntcp2/) aşağıdaki şe
 
 #### 1) SessionRequest
 
-Değişiklikler: Geçerli NTCP2 yalnızca tek bir ChaCha bölümündeki seçenekleri içerir. ML-KEM ile seçeneklerden önce, şifrelenmiş PQ genel anahtarını içeren yeni bir ChaCha bölümü eklenecek.
+Değişiklikler: Mevcut NTCP2 sadece ChaCha bölümündeki seçenekleri içeriyor. ML-KEM ile birlikte, ChaCha bölümü ayrıca şifrelenmiş PQ public key'i de içerecek.
 
 PQ ve PQ olmayan NTCP2'nin aynı router adresi ve portu üzerinde desteklenebilmesi için, X değerinin (X25519 geçici açık anahtarı) en anlamlı bitini bunun bir PQ bağlantısı olduğunu işaretlemek için kullanırız. Bu bit, PQ olmayan bağlantılar için her zaman sıfırlanmış durumdadır.
 
@@ -890,7 +892,7 @@ Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak 
 
 #### 2) SessionCreated
 
-Değişiklikler: Geçerli NTCP2 yalnızca tek bir ChaCha bölümündeki seçenekleri içerir. ML-KEM ile seçeneklerden önce şifrelenmiş KF (kuvantum sonrası) şifreli metnini içeren yeni bir ChaCha bölümü eklenecek.
+Ham içerikler:
 
 Ham içerikler:
 
@@ -974,7 +976,7 @@ Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak 
 
 #### 3) SessionConfirmed
 
-Değişmedi
+Değişmemiş
 
 #### Anahtar Türetme Fonksiyonu (KDF) (veri aşaması için)
 
@@ -984,21 +986,21 @@ Değişmemiş
 
 Tüm durumlarda, her zamanki gibi NTCP2 transport adını kullanın.
 
-PQ olmayan, güvenlik duvarı arkasında olmayan ile aynı adres/port kullanın. Sadece bir PQ varyantı desteklenir. Router adresinde, v=2 (her zamanki gibi) ve MLKEM 512/768/1024'ü belirtmek için yeni parametre pq=[3|4|5] yayınlayın. Alice, bunun hibrit bir bağlantı olduğunu belirtmek için oturum isteğinde ephemeral anahtarın MSB'sini (key[31] & 0x80) ayarlar. Yukarıya bakın. Eski router'lar pq parametresini yok sayacak ve her zamanki gibi PQ olmayan bağlantı kuracaktır.
-
 PQ olmayan ile farklı adres/port veya yalnızca PQ, güvenlik duvarı olmayan desteklenmiyor. Bu, PQ olmayan NTCP2 devre dışı bırakılana kadar, şu andan birkaç yıl sonrasına kadar uygulanmayacak. PQ olmayan devre dışı bırakıldığında, birden fazla PQ varyantı desteklenebilir, ancak adres başına yalnızca bir tane. Router adresinde, MLKEM 512/768/1024'ü belirtmek için v=[3|4|5] yayınla. Alice, geçici anahtarın MSB'sini ayarlamaz. Eski router'lar v parametresini kontrol edecek ve bu adresi desteklenmeyen olarak atlayacak.
 
 Firewall'lu adresler (IP yayınlanmaz): Router adresinde, v=2 yayınlayın (her zamanki gibi). Bir pq parametresi yayınlamaya gerek yoktur.
 
 Alice, kendi router bilgilerinde pq desteğinin reklamını yapıp yapmadığına veya aynı varyantın reklamını yapıp yapmadığına bakılmaksızın, Bob'un yayınladığı PQ varyantını kullanarak PQ Bob'a bağlanabilir.
 
-#### Maksimum Dolgu
-
 Mevcut spesifikasyonda, 1 ve 2 numaralı mesajların "makul" miktarda dolgu içermesi tanımlanmıştır, 0-31 bayt aralığı önerilmekte ve maksimum değer belirtilmemektedir.
+
+#### Maksimum Dolgu
 
 API 0.9.68 (sürüm 2.11.0) aracılığıyla, Java I2P, PQ olmayan bağlantılar için maksimum 256 bayt padding uyguladı, ancak bu daha önce belgelenmemişti. API 0.9.69 (sürüm 2.12.0) itibariyle, Java I2P, PQ olmayan bağlantılar için MLKEM-512 ile aynı maksimum padding'i uygular. Aşağıdaki tabloya bakın.
 
 Tanımlanan mesaj boyutunu maksimum padding olarak kullanın, yani maksimum padding PQ bağlantıları için mesaj boyutunu ikiye katlayacaktır, şu şekilde:
+
+SSU2 spesifikasyonunu [/docs/specs/ssu2/](/docs/specs/ssu2/) aşağıdaki gibi güncelleyin:
 
 | Mesaj Maksimum Padding | non-PQ (0.9.68'e kadar) | non-PQ (0.9.69 itibariyle) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |------------------------|--------------------------|----------------------------|-----------|-----------|------------|
@@ -1006,20 +1008,20 @@ Tanımlanan mesaj boyutunu maksimum padding olarak kullanın, yani maksimum padd
 | Session Created        |   256                    |   848                      |    848    |     1136  |    1616    |
 ### SSU2
 
-SSU2 spesifikasyonunu [/docs/specs/ssu2/](/docs/specs/ssu2/) aşağıdaki gibi güncelleyin:
+MLKEM-1024'ün SSU2 için desteklenmediğini unutmayın, çünkü anahtarlar standart 1500 baytlık datagram içine sığmayacak kadar büyüktür.
 
 #### Noise tanımlayıcıları
 
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
 
-MLKEM-1024'ün SSU2 için desteklenmediğini unutmayın, çünkü anahtarlar standart 1500 baytlık datagram içine sığmayacak kadar büyüktür.
+Uzun başlık 32 bayttır. Bir oturum oluşturulmadan önce Token Request, SessionRequest, SessionCreated ve Retry için kullanılır. Ayrıca oturum-dışı Peer Test ve Hole Punch mesajları için de kullanılır.
 
 #### Uzun Başlık
 
-Uzun başlık 32 bayttır. Bir oturum oluşturulmadan önce Token Request, SessionRequest, SessionCreated ve Retry için kullanılır. Ayrıca oturum-dışı Peer Test ve Hole Punch mesajları için de kullanılır.
-
 Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768'i belirtmek için uzun başlıktaki ver (sürüm) alanını 3 veya 4 olarak ayarlayın.
+
+Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768 desteklense bile, uzun başlıktaki ver (version) alanını her zamanki gibi 2 olarak ayarlayın. Uygulamalar, diğer uç bunu destekliyorsa değeri 3 veya 4 olarak da ayarlayabilir, ancak bu gerekli değildir. Uygulamalar 2-4 arası herhangi bir değeri kabul etmelidir.
 
 - (0) Oturum İsteği
 - (1) Oturum Oluşturuldu
@@ -1027,13 +1029,13 @@ Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768'i belirtmek için uzun başlı
 - (10) Token İsteği
 - (11) Delik Delme
 
-Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768 desteklense bile, uzun başlıktaki ver (version) alanını her zamanki gibi 2 olarak ayarlayın. Uygulamalar, diğer uç bunu destekliyorsa değeri 3 veya 4 olarak da ayarlayabilir, ancak bu gerekli değildir. Uygulamalar 2-4 arası herhangi bir değeri kabul etmelidir.
+Tartışma: Sürüm alanını 3 veya 4 olarak ayarlamak tüm mesaj türleri için kesinlikle gerekli olmayabilir, ancak bunu yapmak desteklenmeyen kuantum sonrası bağlantılar için daha erken hata tespitine yardımcı olur. Token Request ve Retry (tip 9 ve 10) tutarlılık için 3/4 sürümlerine sahip olmalıdır. Hole Punch mesajları (tip 11) bu muameleyi gerektirmeyebilir ancak tekdüzelik için aynı kalıbı izleyeceğiz. Peer Test mesajları (tip 7) oturum dışıdır ve bir oturum başlatma niyetini göstermez.
 
 - (7) Peer Test (oturum dışı mesajlar 5-7)
 
-Tartışma: Sürüm alanını 3 veya 4 olarak ayarlamak tüm mesaj türleri için kesinlikle gerekli olmayabilir, ancak bunu yapmak desteklenmeyen kuantum sonrası bağlantılar için daha erken hata tespitine yardımcı olur. Token Request ve Retry (tip 9 ve 10) tutarlılık için 3/4 sürümlerine sahip olmalıdır. Hole Punch mesajları (tip 11) bu muameleyi gerektirmeyebilir ancak tekdüzelik için aynı kalıbı izleyeceğiz. Peer Test mesajları (tip 7) oturum dışıdır ve bir oturum başlatma niyetini göstermez.
-
 Header şifrelemesinden önce:
+
+değişmemiş
 
 ```
 
@@ -1070,9 +1072,9 @@ değişmedi
 
 #### SessionRequest (Tip 0)
 
-Değişiklikler: Mevcut SSU2, tek bir ChaCha bölümünde yalnızca blok verilerini içerir. ML-KEM ile, blok verilerinden önce gelen ve şifrelenmiş PQ genel anahtarını içeren yeni bir ChaCha bölümü eklenecek.
+Spoof Koruması için KDF Değişikliği: Proposal 165 [Prop165]_'te ortaya çıkan sorunları ele almak için, ancak farklı bir çözümle, Session Request için KDF'yi değiştiriyoruz. Bu sadece PQ oturumları içindir. PQ olmayan oturumlar için KDF değişmeden kalır.
 
-Sahte Koruması için KDF Değişikliği: Farklı bir çözümle [Öneri 165]'de ortaya konulan sorunları ele almak için Oturum İsteği için KDF'yi değiştiriyoruz. Bu yalnızca KAP oturumları içindir. KAP olmayan oturumlar için KDF değişmeden kalır.
+Ham içerikler:
 
 ```
 
@@ -1184,7 +1186,7 @@ MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336
 
 #### SessionCreated (Tip 1)
 
-Değişiklikler: Mevcut SSU2 yalnızca tek bir ChaCha bölümünde yükü içerir. ML-KEM ile, yükten önce gelen ve şifrelenmiş KAP şifreli metnini içeren yeni bir ChaCha bölümü eklenecek.
+Ham içerik:
 
 Ham içerikler:
 
@@ -1274,7 +1276,7 @@ MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336
 
 #### SessionConfirmed (Tip 2)
 
-değişmemiş
+değişmedi
 
 #### Veri aşaması için KDF
 
@@ -1289,11 +1291,9 @@ Aşağıdaki bloklar sürüm alanları içerir. Bunlar sürüm 2'de kalacak (PQ 
 - Relay Tanıtımı
 - Eş Testi
 
-PQ İmzalar: Relay blokları, Peer Test blokları ve Peer Test mesajları hepsi imza içerir. Ne yazık ki, PQ imzalar MTU'dan daha büyüktür. Şu anda Relay veya Peer Test bloklarını ya da mesajlarını birden fazla UDP paketine parçalamak için bir mekanizma bulunmamaktadır. Protokol, parçalamayı destekleyecek şekilde genişletilmelidir. Bu, belirlenecek ayrı bir öneride yapılacaktır. Bu tamamlanana kadar, Relay ve Peer Test desteklenmeyecektir.
+Tüm durumlarda, SSU2 transport adını her zamanki gibi kullanın. MLKEM-1024 desteklenmez.
 
 #### Yayınlanan Adresler
-
-Tüm durumlarda, SSU2 transport adını her zamanki gibi kullanın. MLKEM-1024 desteklenmez.
 
 PQ olmayan, güvenlik duvarı arkasında olmayan ile aynı adres/port'u kullanın. Bir veya her iki PQ varyantı desteklenir. Router adresinde, v=2 (her zamanki gibi) ve MLKEM 512/768/her ikisini belirtmek için yeni pq=[3|4|3,4] parametresini yayınlayın. Eski router'lar pq parametresini görmezden gelecek ve her zamanki gibi PQ olmayan bağlantı kuracaktır.
 
@@ -1301,7 +1301,9 @@ PQ olmayan ile farklı adres/port veya sadece PQ, güvenlik duvarı olmayan DEST
 
 Firewallı adresler (yayınlanan IP yok): Router adresinde, v=2 yayınlayın (her zamanki gibi). Relay desteği için pq parametresi firewallı adreslerde MUTLAKA yayınlanmalıdır.
 
-Alice, kendi router bilgilerinde pq desteğinin reklamını yapıp yapmadığına veya aynı varyantın reklamını yapıp yapmadığına bakılmaksızın, Bob'un yayınladığı PQ varyantını kullanarak PQ Bob'a bağlanabilir.
+Alice, kendi router bilgisinde pq desteğinin reklamını yapıp yapmadığına veya aynı varyantın reklamını yapıp yapmadığına bakılmaksızın, Bob'un yayınladığı PQ varyantını kullanarak bir PQ Bob'a bağlanabilir.
+
+Mevcut spesifikasyonda, 1 ve 2 numaralı mesajların "makul" miktarda dolgu içermesi tanımlanmıştır, 0-31 bayt aralığı önerilmekte ve maksimum değer belirtilmemektedir.
 
 #### MTU
 
@@ -1309,11 +1311,9 @@ MLKEM768 ile MTU'yu aşmamaya dikkat edin. SSU2 için minimum MTU 1280'dir, bu d
 
 ### Streaming
 
-Dahili olarak sürüm alanını kullanabilir ve MLKEM512 için 3, MLKEM768 için 4 kullanabiliriz.
+Mesaj 1 ve 2 için, MLKEM768 paket boyutlarını 1280 minimum MTU'nun ötesine çıkaracaktır. MTU çok düşükse muhtemelen bu bağlantı için desteklenmeyecektir.
 
 ### SU3 Dosyaları
-
-Mesaj 1 ve 2 için, MLKEM768 paket boyutlarını 1280 minimum MTU'nun ötesine çıkaracaktır. MTU çok düşükse muhtemelen bu bağlantı için desteklenmeyecektir.
 
 Mesaj 1 ve 2 için, MLKEM1024 paket boyutlarını 1500 maksimum MTU'nun ötesine çıkaracaktır. Bu, mesaj 1 ve 2'nin parçalanmasını gerektirecek ve büyük bir komplikasyon olacaktır. Muhtemelen yapılmayacak.
 
@@ -1323,11 +1323,13 @@ TODO: İmzalama/doğrulama işlemlerini imzayı kopyalamaktan kaçınacak şekil
 
 YAPILACAKLAR
 
-### Diğer Spesifikasyonlar
-
 [IETF taslağı](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) bölüm 8.1, uygulama karmaşıklıkları ve azalmış güvenlik nedeniyle X.509 sertifikalarında HashML-DSA kullanımını yasaklamakta ve HashML-DSA için OID atamamaktadır.
 
+### Diğer Spesifikasyonlar
+
 SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantların [IETF taslağında](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) tanımlanan OID'leri kullanın. SU3 dosyalarının hibrit imzalarını tanımlamıyoruz, çünkü dosyaları iki kez hash'lememiz gerekebilir (HashML-DSA ve X2559 aynı hash fonksiyonu SHA512'yi kullanmasına rağmen). Ayrıca, bir X.509 sertifikasında iki anahtarı ve imzayı birleştirmek tamamen standart dışı olurdu.
+
+SU3 dosyalarının Ed25519 ile imzalanmasına izin vermediğimizi ve Ed25519ph imzalamayı tanımlamış olmamıza rağmen, bunun için hiçbir zaman bir OID üzerinde anlaşmadığımızı veya kullanmadığımızı unutmayın.
 
 - SAMv3
 - Bittorrent
@@ -1339,16 +1341,16 @@ SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantla
 
 ### Anahtar Değişimi
 
-SU3 dosyalarının Ed25519 ile imzalanmasına izin vermediğimizi ve Ed25519ph imzalamayı tanımlamış olmamıza rağmen, bunun için hiçbir zaman bir OID üzerinde anlaşmadığımızı veya kullanmadığımızı unutmayın.
+Normal imza türleri SU3 dosyaları için izin verilmez; ph (prehash) varyantlarını kullanın.
 
 | Tür | Pubkey (Msg 1) | Cipertext (Msg 2) |
 |------|----------------|-------------------|
 | MLKEM512_X25519 | +816 | +784 |
 | MLKEM768_X25519 | +1200 | +1104 |
 | MLKEM1024_X25519 | +1584 | +1584 |
-Normal imza türleri SU3 dosyaları için izin verilmez; ph (prehash) varyantlarını kullanın.
-
 Yeni maksimum Destination boyutu 2599 olacaktır (base 64'te 3468).
+
+Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, bunlar şunlardır:
 
 | Tür | Göreli hız |
 |------|------------|
@@ -1360,7 +1362,7 @@ Yeni maksimum Destination boyutu 2599 olacaktır (base 64'te 3468).
 | MLKEM512_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 4.9x DH = %22 daha yavaş |
 | MLKEM768_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 5.3x DH = %32 daha yavaş |
 | MLKEM1024_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 6x DH = %50 daha yavaş |
-Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, bunlar şunlardır:
+Boyut artışı (bayt):
 
 | Tip | Göreceli DH/encaps | DH/decaps | keygen |
 |------|-------------------|-----------|--------|
@@ -1370,9 +1372,9 @@ Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, 
 | MLKEM1024 | 12x daha hızlı | 10x daha hızlı | 6x daha hızlı |
 ### İmzalar
 
-Boyut artışı (bayt):
-
 Hız:
+
+[Cloudflare](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
 
 | Tip | Pubkey | Sig | Key+Sig | RIdent | Dest | RInfo | LS/Streaming/Datagram (her mesaj) |
 |------|--------|-----|---------|--------|------|-------|----------------------------------|
@@ -1383,9 +1385,9 @@ Hız:
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
-Normal imza türleri SU3 dosyaları için izin verilmez; ph (prehash) varyantlarını kullanın.
-
 Yeni maksimum Destination boyutu 2599 olacaktır (base 64'te 3468).
+
+Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, bunlar şunlardır:
 
 | Tip | Göreceli hız işareti | doğrulama |
 |------|---------------------|----------|
@@ -1393,7 +1395,7 @@ Yeni maksimum Destination boyutu 2599 olacaktır (base 64'te 3468).
 | MLDSA44 | 5x daha yavaş | 2x daha hızlı |
 | MLDSA65 | ??? | ??? |
 | MLDSA87 | ??? | ??? |
-Destination boyutları hakkında rehberlik veren diğer belgeleri güncelleyin, bunlar şunlardır:
+Boyut artışı (bayt):
 
 | Tür | Göreceli hız işareti | doğrulama | anahtar üretimi |
 |------|---------------------|-----------|-----------------|
@@ -1414,9 +1416,9 @@ X25519 şifreleme türünün RI'ler için kullanıldığı varsayılarak tipik a
 | 5 | AES256 |
 ### El Sıkışmalar
 
-Hız:
-
 [Cloudflare](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
+
+Java'da ön test sonuçları:
 
 | Algoritma | Güvenlik Kategorisi |
 |-----------|-------------------|
@@ -1425,9 +1427,9 @@ Hız:
 | MLKEM1024 | 5 |
 ### İmzalar
 
-Java'da ön test sonuçları:
-
 NIST güvenlik kategorileri [NIST sunumu](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slayt 10'da özetlenmiştir. Ön kriterler: Hibrit protokoller için minimum NIST güvenlik kategorimiz 2, PQ-only için 3 olmalıdır.
+
+Bunların hepsi hibrit protokollerdir. Uygulamalar MLKEM768'i tercih etmelidir; MLKEM512 yeterince güvenli değildir.
 
 | Algoritma | Güvenlik Kategorisi |
 |-----------|-------------------|
@@ -1435,8 +1437,6 @@ NIST güvenlik kategorileri [NIST sunumu](https://www.nccoe.nist.gov/sites/defau
 | MLKEM67 | 3 |
 | MLKEM87 | 5 |
 ## Tür Tercihleri
-
-Bunların hepsi hibrit protokollerdir. Uygulamalar MLKEM768'i tercih etmelidir; MLKEM512 yeterince güvenli değildir.
 
 NIST güvenlik kategorileri [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
@@ -1450,60 +1450,60 @@ Bir yıl veya daha fazla geliştirme sürecinden sonra, her kullanım durumu iç
 
 Ön tercihler aşağıdaki gibidir, değişikliğe tabidir:
 
+Şifreleme: MLKEM768_X25519
+
 ## Uygulama Notları
 
 ### Kütüphane Desteği
 
-Şifreleme: MLKEM768_X25519
-
 İmzalar: MLDSA44_EdDSA_SHA512_Ed25519
-
-### İmzalama Varyantları
 
 Ön kısıtlamalar aşağıdaki gibidir, değişikliğe tabidir:
 
-Şifreleme: MLKEM1024_X25519, SSU2 için izin verilmiyor
+### İmzalama Varyantları
 
-### Güvenilirlik
+Şifreleme: MLKEM1024_X25519, SSU2 için izin verilmiyor
 
 İmzalar: MLDSA87 ve hibrit varyantı muhtemelen çok büyük; MLDSA65 ve hibrit varyantı çok büyük olabilir
 
-### Yapı Boyutları
+### Güvenilirlik
 
 Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı destekliyor. OpenSSL desteği 8 Nisan 2025'teki 3.5 sürümlerinde olacak [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-### NetDB
+### Yapı Boyutları
 
 Java I2P tarafından uyarlanan southernstorm.com Noise kütüphanesi hibrit el sıkışmalar için ön destek içeriyordu, ancak kullanılmadığı için kaldırdık; bunu geri ekleyip [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) ile eşleşecek şekilde güncellememiz gerekecek.
+
+### NetDB
+
+[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı gibi, "deterministik" varyant değil, "hedge edilmiş" veya rastgeleleştirilmiş imzalama varyantını kullanacağız. Bu, aynı veri üzerinde bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sunar. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), "hedge edilmiş" varyantın varsayılan olduğunu belirtse de, bu çeşitli kütüphanelerde geçerli olabilir veya olmayabilir. Uygulayıcılar, imzalama için "hedge edilmiş" varyantın kullanıldığından emin olmalıdır.
 
 ### Ratchet
 
 #### Sorunlar
 
-[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı gibi, "deterministik" varyant değil, "hedge edilmiş" veya rastgeleleştirilmiş imzalama varyantını kullanacağız. Bu, aynı veri üzerinde bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sunar. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), "hedge edilmiş" varyantın varsayılan olduğunu belirtse de, bu çeşitli kütüphanelerde geçerli olabilir veya olmayabilir. Uygulayıcılar, imzalama için "hedge edilmiş" varyantın kullanıldığından emin olmalıdır.
-
 Normal imzalama sürecini (Pure ML-DSA Signature Generation olarak adlandırılır) kullanıyoruz, bu süreç mesajı dahili olarak 0x00 || len(ctx) || ctx || message şeklinde kodlar, burada ctx 0x00..0xFF boyutunda isteğe bağlı bir değerdir. Herhangi bir isteğe bağlı bağlam kullanmıyoruz. len(ctx) == 0. Bu süreç [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algoritma 2 adım 10 ve Algoritma 3 adım 5'te tanımlanmıştır. Yayınlanan bazı test vektörlerinin mesajın kodlanmadığı bir mod ayarlaması gerektirebileceğini unutmayın.
+
+Boyut artışı, NetDB depolamaları, streaming el sıkışmaları ve diğer mesajlar için çok daha fazla tunnel fragmentasyonuna neden olacaktır. Performans ve güvenilirlik değişikliklerini kontrol edin.
 
 - Eğer mesaj 1, 919 bayttan küçükse, mevcut ratchet protokolüdür.
 - Eğer mesaj 1, 919 bayt veya daha büyükse, muhtemelen MLKEM512_X25519'dur.
   Önce MLKEM512_X25519'u deneyin, başarısız olursa mevcut ratchet protokolünü deneyin.
 
-Boyut artışı, NetDB depolamaları, streaming el sıkışmaları ve diğer mesajlar için çok daha fazla tunnel fragmentasyonuna neden olacaktır. Performans ve güvenilirlik değişikliklerini kontrol edin.
-
 Router bilgilerinin ve leaseSet'lerin bayt boyutunu sınırlayan herhangi bir kodu bulun ve kontrol edin.
+
+RAM'de veya diskte depolanan maksimum LS/RI sayısını gözden geçir ve muhtemelen azalt, depolama artışını sınırlamak için. floodfill'ler için minimum bant genişliği gereksinimlerini artır?
 
 - X25519 + MLKEM512
 - X25519 + MLKEM768
 - X25519 + MLKEM1024
 
-RAM'de veya diskte depolanan maksimum LS/RI sayısını gözden geçir ve muhtemelen azalt, depolama artışını sınırlamak için. floodfill'ler için minimum bant genişliği gereksinimlerini artır?
+Aynı tunnel'lar üzerinde birden fazla protokolün otomatik sınıflandırılması/tespiti, mesaj 1'in (New Session Message) uzunluk kontrolüne dayalı olarak mümkün olmalıdır. MLKEM512_X25519 örnek olarak alındığında, mesaj 1 uzunluğu mevcut ratchet protokolünden 816 bayt daha büyüktür ve minimum mesaj 1 boyutu (yalnızca DateTime payload dahil) 919 bayttır. Mevcut ratchet ile çoğu mesaj 1 boyutu 816 bayttan daha az payload'a sahiptir, bu nedenle hibrit olmayan ratchet olarak sınıflandırılabilirler. Büyük mesajlar muhtemelen nadiren görülen POST'lardır.
 
 - Birden fazla MLKEM
 - ElG + bir veya daha fazla MLKEM
 - X25519 + bir veya daha fazla MLKEM
 - ElG + X25519 + bir veya daha fazla MLKEM
-
-Aynı tunnel'lar üzerinde birden fazla protokolün otomatik sınıflandırılması/tespiti, mesaj 1'in (New Session Message) uzunluk kontrolüne dayalı olarak mümkün olmalıdır. MLKEM512_X25519 örnek olarak alındığında, mesaj 1 uzunluğu mevcut ratchet protokolünden 816 bayt daha büyüktür ve minimum mesaj 1 boyutu (yalnızca DateTime payload dahil) 919 bayttır. Mevcut ratchet ile çoğu mesaj 1 boyutu 816 bayttan daha az payload'a sahiptir, bu nedenle hibrit olmayan ratchet olarak sınıflandırılabilirler. Büyük mesajlar muhtemelen nadiren görülen POST'lardır.
 
 Bu nedenle önerilen strateji şudur:
 
@@ -1511,25 +1511,27 @@ Bu, daha önce aynı hedefte ElGamal ve ratchet'i desteklediğimiz gibi, aynı h
 
 Gerekli desteklenen kombinasyonlar şunlardır:
 
-#### Paylaşımlı Tunnel'lar
-
 Aşağıdaki kombinasyonlar karmaşık olabilir ve desteklenmesi ZORUNLU DEĞİLDİR, ancak implementasyon-bağımlı olarak desteklenebilir:
 
-#### İleri Gizlilik
+#### Paylaşımlı Tunnel'lar
 
 Aynı hedef üzerinde birden fazla MLKEM algoritmasını (örneğin, MLKEM512_X25519 ve MLKEM_768_X25519) desteklemeye çalışmayabiliriz. Sadece birini seçin; ancak bu, tercih edilen bir MLKEM varyantı seçmemize bağlıdır, böylece HTTP istemci tunnel'ları birini kullanabilir. Uygulama bağımlıdır.
 
-### NTCP2
+#### İleri Gizlilik
 
 Aynı hedef üzerinde üç algoritmayı (örneğin X25519, MLKEM512_X25519 ve MLKEM769_X25519) desteklemeye çalışabiliriz. Sınıflandırma ve yeniden deneme stratejisi çok karmaşık olabilir. Yapılandırma ve yapılandırma arayüzü çok karmaşık olabilir. Uygulamaya bağlıdır.
 
-#### Yeni Oturum Boyutu
+### NTCP2
 
 Muhtemelen aynı hedef üzerinde ElGamal ve hibrit algoritmaları desteklemeye ÇALIŞMAYACAĞIZ. ElGamal eskimiştir ve ElGamal + hibrit sadece (X25519 yok) pek mantıklı değildir. Ayrıca, ElGamal ve Hibrit Yeni Oturum Mesajları her ikisi de büyüktür, bu nedenle sınıflandırma stratejileri genellikle her iki şifre çözme işlemini de denemek zorunda kalacaktır, bu da verimsiz olacaktır. Uygulamaya bağlıdır.
+
+#### Yeni Oturum Boyutu
 
 İstemciler aynı tunnel'lar üzerinde X25519 ve hibrit protokoller için aynı veya farklı X25519 statik anahtarları kullanabilirler, bu implementasyon-bağımlıdır.
 
 ECIES spesifikasyonu, New Session Message yükünde Garlic Messages'a izin verir, bu da ilk streaming paketinin (genellikle bir HTTP GET) istemcinin leaseset'i ile birlikte 0-RTT teslimatını sağlar. Ancak, New Session Message yükü forward secrecy'ye sahip değildir. Bu öneri ratchet için gelişmiş forward secrecy'yi vurguladığından, implementasyonlar streaming yükünü veya tam streaming mesajını ilk Existing Session Message'a kadar erteleyebilir veya ertelemelidir. Bu, 0-RTT teslimatın pahasına olacaktır. Stratejiler ayrıca trafik türüne veya tunnel türüne, ya da örneğin GET vs. POST'a bağlı olabilir. Implementasyon-bağımlıdır.
+
+MLKEM, MLDSA veya aynı hedefte her ikisi birden, yukarıda açıklandığı gibi New Session Message boyutunu dramatik şekilde artıracaktır. Bu, 1024 bayt tunnel mesajlarına parçalanması gereken tunnel'lar aracılığıyla New Session Message teslimatının güvenilirliğini önemli ölçüde azaltabilir. Teslimat başarısı, parça sayısının üstelsel oranıyla doğru orantılıdır. Uygulamalar, 0-RTT teslimat pahasına mesaj boyutunu sınırlamak için çeşitli stratejiler kullanabilir. Uygulamaya bağlıdır.
 
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
@@ -1537,7 +1539,7 @@ Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak 
 
 Bunun hibrit bir bağlantı olduğunu belirtmek için oturum isteğinde geçici anahtarın MSB'sini (key[31] & 0x80) ayarlıyoruz. Bu, aynı port üzerinde hem standart NTCP hem de hibrit NTCP çalıştırmamıza olanak tanır. Yalnızca bir hibrit varyant desteklenecek ve router adresinde duyurulacaktır. Örneğin, v=2,3 veya v=2,4 veya v=2,5.
 
-Alice olarak, PQ bağlantısı için, obfuscation öncesinde X[31] |= 0x80 ayarlayın. Bu, X'i geçersiz bir X25519 public key yapar. Obfuscation sonrasında, AES-CBC bunu rastgele hale getirir. Obfuscation sonrasında X'in MSB'si rastgele olacaktır.
+Bob olarak, de-obfuscation (gizleme kaldırma) işleminden sonra (X[31] & 0x80) != 0 olup olmadığını test edin. Eğer öyleyse, bu bir PQ bağlantısıdır.
 
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
@@ -1549,49 +1551,47 @@ NTCP2-PQ için gereken minimum router sürümü henüz belirlenmemiştir.
 
 ### Router Şifreleme Türleri
 
-Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tür 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
+Uzun başlıkta versiyon alanını kullanıyoruz ve MLKEM512 için 3, MLKEM768 için 4 olarak ayarlıyoruz. Adreste v=2,3,4 yeterli olacaktır.
 
 #### Gizleme
 
-Uzun başlıkta versiyon alanını kullanıyoruz ve MLKEM512 için 3, MLKEM768 için 4 olarak ayarlıyoruz. Adreste v=2,3,4 yeterli olacaktır.
+SSU2'nin MLDSA-imzalı RI'yi birden fazla pakete (6-8?) bölünmüş şekilde işleyebilidiğini kontrol edin ve doğrulayın.
 
 #### Tip 5/6/7 Router'lar
 
-SSU2'nin MLDSA-imzalı RI'yi birden fazla pakete (6-8?) bölünmüş şekilde işleyebilidiğini kontrol edin ve doğrulayın.
+Not: Tip kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
 #### Tip 4 Router'lar
 
-Not: Tip kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
+Her durumda, NTCP2 ve SSU2 transport isimlerini her zamanki gibi kullanın.
 
 ### Router İmza Türleri
 
 #### Öneriler
 
-Her durumda, NTCP2 ve SSU2 transport isimlerini her zamanki gibi kullanın.
-
 Değerlendirmemiz gereken birkaç alternatifimiz var:
+
+Önerilmez. Yalnızca yukarıda listelenen ve router türüyle eşleşen yeni aktarımları kullanın. Eski router'lar bağlanamaz, üzerinden tunnel kuramaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlanması için birkaç sürüm döngüsü alır. Aşağıdaki alternatiflere göre kullanıma sunumunu bir yıl veya daha fazla uzatabilir.
 
 ### LS Şifreleme Türleri
 
 #### Tip 12-17 Router'lar
 
-Önerilmez. Yalnızca yukarıda listelenen ve router türüyle eşleşen yeni aktarımları kullanın. Eski router'lar bağlanamaz, üzerinden tunnel kuramaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlanması için birkaç sürüm döngüsü alır. Aşağıdaki alternatiflere göre kullanıma sunumunu bir yıl veya daha fazla uzatabilir.
-
 Önerilen. PQ, X25519 statik anahtarını veya N handshake protokollerini etkilemediğinden, router'ları tip 4 olarak bırakabilir ve sadece yeni transport'ları duyurabiliriz. Eski router'lar yine de bağlanabilir, tunnel'lar kurabilir veya netDb mesajları gönderebilir.
+
+MLKEM-768, güvenlik ve anahtar uzunluğu arasındaki en iyi denge olarak Ratchet, NTCP2 ve SSU2 için önerilir.
 
 ### Hedef İmza Türleri
 
 #### Tip 5-7 LS Anahtarları
 
-MLKEM-768, güvenlik ve anahtar uzunluğu arasındaki en iyi denge olarak Ratchet, NTCP2 ve SSU2 için önerilir.
+Eski router'lar RI'ları doğrular ve bu nedenle bağlanamaz, üzerinden tunnel oluşturamaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlama için birkaç sürüm döngüsü gerekir. Enc. type 5/6/7 dağıtımıyla aynı sorunlar olur; yukarıda listelenen type 4 enc. type dağıtım alternatifine göre dağıtımı bir yıl veya daha fazla uzatabilir.
 
-Değerlendirmemiz gereken birkaç alternatifimiz var:
+Önerilmez. Yalnızca yukarıda listelenen ve router türüyle eşleşen yeni aktarımları kullanın. Eski router'lar bağlanamaz, üzerinden tunnel kuramaz veya netDb mesajları gönderemez. Varsayılan olarak etkinleştirmeden önce hata ayıklama ve destek sağlanması için birkaç sürüm döngüsü alır. Aşağıdaki alternatiflere göre kullanıma sunumunu bir yıl veya daha fazla uzatabilir.
 
 ## Öncelikler ve Dağıtım
 
 Alternatif yok.
-
-Bunlar, eski tip 4 X25519 anahtarları olan LS'de bulunabilir. Eski router'lar bilinmeyen anahtarları göz ardı eder.
 
 Hedefler birden fazla anahtar türünü destekleyebilir, ancak yalnızca her anahtarla mesaj 1'in deneme şifre çözmelerini yaparak. Ek yük, her anahtar için başarılı şifre çözme sayılarını tutarak ve en çok kullanılan anahtarı önce deneyerek hafifletilebilir. Java I2P aynı hedef üzerinde ElGamal+X25519 için bu stratejiyi kullanır.
 
@@ -1600,6 +1600,8 @@ Router'lar leaseSet imzalarını doğrular ve bu nedenle tip 12-17 hedefler içi
 Alternatif yok.
 
 En değerli veriler, ratchet ile şifrelenmiş uçtan uca trafiklerdir. Tünel atlamaları arasındaki harici bir gözlemci olarak, bu veriler iki kez daha şifrelenir: tünel şifrelemesi ve taşıma şifrelemesi ile. OBEP ve IBGW arasındaki harici bir gözlemci olarak, yalnızca bir kez daha şifrelenir: taşıma şifrelemesi ile. Bir OBEP veya IBGW katılımcısı olarak, ratchet tek şifrelemedir. Ancak, tüneller tek yönlü olduğundan, ratchet el sıkışmasındaki her iki mesajı yakalamak, tüneller aynı router üzerinde OBEP ve IBGW ile kurulmadıkça, işbirlikçi router'lar gerektirir.
+
+Şu anda en endişe verici PQ tehdit modeli, trafiği bugün depolayıp bundan yıllar sonra şifresini çözmek (ileri gizlilik). Hibrit bir yaklaşım bunu koruyabilir.
 
 | Kilometre Taşı | Hedef |
 |-----------|--------|
@@ -1618,9 +1620,9 @@ En değerli veriler, ratchet ile şifrelenmiş uçtan uca trafiklerdir. Tünel a
 | İmza üretim | 2027 ortası |
 ## Geçiş
 
-Şu anda en endişe verici PQ tehdit modeli, trafiği bugün depolayıp bundan yıllar sonra şifresini çözmek (ileri gizlilik). Hibrit bir yaklaşım bunu koruyabilir.
-
 Kimlik doğrulama anahtarlarını makul bir süre içinde (örneğin birkaç ay) kırma ve ardından kimliğe bürünme veya neredeyse gerçek zamanlı şifre çözme şeklindeki PQ tehdit modeli çok daha uzak bir gelecekte mi? Ve işte o zaman PQC statik anahtarlara geçiş yapmak isteyeceğiz.
+
+Yani, en erken PQ tehdit modeli OBEP/IBGW'nin trafiği daha sonra şifre çözme için depolamasıdır. Önce hibrit ratchet'i uygulamamız gerekiyor.
 
 ## Sorunlar
 
@@ -1656,6 +1658,7 @@ Kimlik doğrulama anahtarlarını makul bir süre içinde (örneğin birkaç ay)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [PLANTS](https://datatracker.ietf.org/wg/plants/about/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)

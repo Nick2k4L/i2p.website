@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-11"
+lastupdated: "2026-03-12"
 status: "Öffnen"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -16,9 +16,9 @@ toc: true
 | Protokoll / Funktion | Status |
 |--------------------|--------|
 | Ratchet | Vollständig in Java I2P und i2pd |
-| NTCP2 | Beta Q1 2026 |
-| SSU2 | Implementierung beginnt bald, Beta Q23 2026 |
-| MLDSA SigTypes | Niedrige Priorität, wahrscheinlich 2027+ |
+| NTCP2 | Beta Q1 2026, Veröffentlichung Q2 2026 |
+| SSU2 | Implementierung läuft, Beta Q2 2026, Veröffentlichung Q3 2026 |
+| MLDSA SigTypes | Auf Eis gelegt bis 2027–2028, siehe [PLANTS](https://datatracker.ietf.org/wg/plants/about/) |
 ## Überblick
 
 Während die Forschung und der Wettbewerb um geeignete Post-Quantum-(PQ-)Kryptographie seit einem Jahrzehnt voranschreiten, sind die Optionen erst kürzlich klar geworden.
@@ -99,6 +99,8 @@ Der Overhead wird erheblich sein. Typische Nachrichtengrößen 1 und 2 (für XK 
 
 ### Signaturen
 
+HINWEIS: Alle in diesem Vorschlag enthaltenen Informationen zu MLDSA-Signaturen sind vorläufig. Die Arbeit an der Unterstützung von MLDSA-Signaturen in I2P ist bis Ende 2027 oder 2028 ausgesetzt, abhängig von der Arbeit der Standardisierungsgremien bei der Auswahl von Algorithmen, der möglichen Reduzierung der Schlüssel- und/oder Signaturgrößen sowie der Förderung der Akzeptanz in der Industrie. Siehe [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) und [PLANTS](https://datatracker.ietf.org/wg/plants/about/).
+
 Wir werden PQ- und Hybrid-Signaturen in den folgenden Strukturen unterstützen:
 
 | Typ | Unterstützt nur PQ? | Unterstützt Hybrid? |
@@ -112,9 +114,9 @@ Wir werden PQ- und Hybrid-Signaturen in den folgenden Strukturen unterstützen:
 | SU3-Dateien | ja | ja |
 | X.509-Zertifikate | ja | ja |
 | Java keystores | ja | ja |
-Wir werden also sowohl reine PQ- als auch hybride Signaturen unterstützen. Wir werden die drei ML-DSA-Varianten wie in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) definiert, drei hybride Varianten mit Ed25519 und drei reine PQ-Varianten mit Prehash nur für SU3-Dateien definieren, insgesamt 9 neue Signaturtypen. Hybride Typen werden nur in Kombination mit Ed25519 definiert. Wir werden das Standard-ML-DSA verwenden, NICHT die Pre-hash-Varianten (HashML-DSA), außer für SU3-Dateien.
+Wir werden daher sowohl PQ-alleinige als auch hybride Signaturen unterstützen. Wir definieren die drei ML-DSA-Varianten wie in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), drei hybride Varianten mit Ed25519 sowie drei PQ-alleinige Varianten mit Pre-Hash nur für SU3-Dateien, insgesamt also 9 neue Signaturtypen. Hybride Typen werden nur in Kombination mit Ed25519 definiert. Wir verwenden den Standard-ML-DSA, NICHT die Pre-Hash-Varianten (HashML-DSA), mit Ausnahme von SU3-Dateien.
 
-Wir werden die "hedged" oder randomisierte Signaturvariante verwenden, nicht die "deterministische" Variante, wie in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Abschnitt 3.4 definiert. Dies stellt sicher, dass jede Signatur unterschiedlich ist, auch wenn sie über dieselben Daten erstellt wird, und bietet zusätzlichen Schutz vor Seitenkanalangriffen. Siehe den Abschnitt zu Implementierungshinweisen unten für weitere Details zu Algorithmusauswahlen einschließlich Kodierung und Kontext.
+Wir verwenden die „hedged“ oder randomisierte Signaturvariante, nicht die „deterministische“ Variante, wie in Abschnitt 3.4 von [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) definiert. Dies stellt sicher, dass jede Signatur unterschiedlich ist, selbst bei denselben Daten, und bietet zusätzlichen Schutz gegen Seitenkanalangriffe. Weitere Einzelheiten zu den gewählten Algorithmen, einschließlich Kodierung und Kontext, finden Sie im Abschnitt zu Implementierungshinweisen weiter unten.
 
 Die neuen Signaturtypen sind:
 
@@ -129,17 +131,17 @@ Die neuen Signaturtypen sind:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-X.509-Zertifikate und andere DER-Kodierungen werden die zusammengesetzten Strukturen und OIDs verwenden, die im [IETF-Entwurf](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) definiert sind.
+X.509-Zertifikate und andere DER-Kodierungen verwenden die in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) definierten Verbundstrukturen und OIDs.
 
-Der Overhead wird erheblich sein. Typische Ed25519-Destination- und Router-Identity-Größen betragen 391 Bytes. Diese werden je nach Algorithmus um das 3,5- bis 6,8-fache ansteigen. Ed25519-Signaturen sind 64 Bytes groß. Diese werden je nach Algorithmus um das 38- bis 76-fache ansteigen. Typische signierte RouterInfo, leaseSet, beantwortbare Datagramme und signierte Streaming-Nachrichten sind etwa 1KB groß. Diese werden je nach Algorithmus um das 3- bis 8-fache ansteigen.
+Der Overhead wird beträchtlich sein. Typische Größen für Ed25519-Destinationen und Router-Identitäten betragen 391 Bytes. Diese werden je nach Algorithmus um das 3,5- bis 6,8-Fache ansteigen. Ed25519-Signaturen sind 64 Bytes groß und werden je nach Algorithmus um das 38- bis 76-Fache größer. Typische signierte RouterInfo-, LeaseSet-, repliable Datagramm- und signierte Streaming-Nachrichten umfassen etwa 1 KB. Diese werden je nach Algorithmus um das 3- bis 8-Fache wachsen.
 
-Da die neuen Destination- und Router-Identity-Typen keine Füllbytes enthalten werden, sind sie nicht komprimierbar. Die Größe von Destinations und Router-Identities, die während der Übertragung mit gzip komprimiert werden, wird sich je nach Algorithmus um das 12- bis 38-fache erhöhen.
+Da die neuen Typen für Ziel- und Router-Identitäten keine Auffüllung enthalten, sind sie nicht komprimierbar. Die Größen von Ziel- und Router-Identitäten, die während der Übertragung mit Gzip komprimiert werden, steigen um das 12- bis 38-fache, abhängig vom Algorithmus.
 
 ### Gültige Kombinationen
 
-Für Destinations werden die neuen Signaturtypen mit allen Verschlüsselungstypen im leaseSet unterstützt. Setzen Sie den Verschlüsselungstyp im Schlüsselzertifikat auf NONE (255).
+Für Ziele werden die neuen Signaturtypen mit allen Verschlüsselungstypen in der leaseset unterstützt. Setzen Sie den Verschlüsselungstyp im Schlüsselzertifikat auf NONE (255).
 
-Für RouterIdentities ist die ElGamal-Verschlüsselungsart veraltet. Die neuen Signaturtypen werden nur mit X25519 (Typ 4) Verschlüsselung unterstützt. Die neuen Verschlüsselungstypen werden in den RouterAddresses angegeben. Der Verschlüsselungstyp im Schlüsselzertifikat wird weiterhin Typ 4 sein.
+Für Router-Identitäten ist der ElGamal-Verschlüsselungstyp veraltet. Die neuen Signaturtypen werden nur mit X25519 (Typ 4) Verschlüsselung unterstützt. Die neuen Verschlüsselungstypen werden in den Router-Adressen angegeben. Der Verschlüsselungstyp im Schlüsselzertifikat bleibt weiterhin Typ 4.
 
 ### Neue Kryptografie erforderlich
 
@@ -149,19 +151,19 @@ Für RouterIdentities ist die ElGamal-Verschlüsselungsart veraltet. Die neuen S
 - SHA3-256 (ehemals Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 - SHAKE128 und SHAKE256 (XOF-Erweiterungen zu SHA3-128 und SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-Testvektoren für SHA3-256, SHAKE128 und SHAKE256 sind bei [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) verfügbar.
+Testvektoren für SHA3-256, SHAKE128 und SHAKE256 sind unter [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) verfügbar.
 
-Beachten Sie, dass die Java bouncycastle-Bibliothek alle oben genannten unterstützt. C++-Bibliotheksunterstützung ist in OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/) verfügbar.
+Beachten Sie, dass die Java-Bouncycastle-Bibliothek alle oben genannten Funktionen unterstützt. Die Unterstützung für C++-Bibliotheken ist in OpenSSL 3.5 verfügbar [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Alternativen
 
-Wir werden [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+) nicht unterstützen, es ist viel viel langsamer und größer als ML-DSA. Wir werden das kommende FIPS206 (Falcon) nicht unterstützen, es ist noch nicht standardisiert. Wir werden NTRU oder andere PQ-Kandidaten, die nicht von NIST standardisiert wurden, nicht unterstützen.
+Wir werden [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+) nicht unterstützen, da es viel langsamer und größer ist als ML-DSA. Wir werden den bevorstehenden FIPS206 (Falcon) nicht unterstützen, da er noch nicht standardisiert ist. Wir werden NTRU oder andere PQ-Kandidaten, die nicht von NIST standardisiert wurden, nicht unterstützen.
 
 ### Rosenpass
 
-Es gibt einige Forschungsarbeiten [paper](https://eprint.iacr.org/2020/379.pdf) zur Anpassung von Wireguard (IK) für reine PQ-Kryptographie, aber es gibt mehrere offene Fragen in dieser Arbeit. Später wurde dieser Ansatz als Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) für PQ Wireguard implementiert.
+Es gibt einige Forschungsarbeiten [paper](https://eprint.iacr.org/2020/379.pdf) zur Anpassung von Wireguard (IK) für reine PQ-Kryptografie, aber in diesem Papier bleiben mehrere Fragen offen. Später wurde dieser Ansatz als Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) für PQ-Wireguard implementiert.
 
-Rosenpass verwendet einen Noise KK-ähnlichen Handshake mit vorab geteilten statischen Classic McEliece 460896 Schlüsseln (jeweils 500 KB) und Kyber-512 (im Wesentlichen MLKEM-512) ephemeren Schlüsseln. Da die Classic McEliece Chiffretexte nur 188 Bytes groß sind und die Kyber-512 öffentlichen Schlüssel und Chiffretexte angemessen sind, passen beide Handshake-Nachrichten in eine Standard-UDP-MTU. Der ausgegebene geteilte Schlüssel (osk) aus dem PQ KK Handshake wird als Eingabe-Vorabschlüssel (psk) für den Standard-Wireguard IK Handshake verwendet. Es gibt also insgesamt zwei vollständige Handshakes, einen rein PQ und einen rein X25519.
+Rosenpass verwendet einen Noise-KK-ähnlichen Handshake mit vorab geteilten statischen Classic-McEliece-460896-Schlüsseln (jeweils 500 KB) und Kyber-512 (im Wesentlichen MLKEM-512) ephemeren Schlüsseln. Da die Classic-McEliece-Chiffrate nur 188 Byte betragen und die Kyber-512-Öffentlichen Schlüssel sowie Chiffrate vernünftig klein sind, passen beide Handshake-Nachrichten in eine Standard-UDP-MTU. Der ausgegebene gemeinsame Schlüssel (osk) aus dem PQ-KK-Handshake wird als eingehender vorab geteilter Schlüssel (psk) für den standardmäßigen WireGuard-IK-Handshake verwendet. Es finden somit insgesamt zwei vollständige Handshakes statt, einer rein PQ-basiert und einer rein X25519-basiert.
 
 Wir können nichts davon tun, um unsere XK- und IK-Handshakes zu ersetzen, weil:
 
@@ -169,17 +171,17 @@ Wir können nichts davon tun, um unsere XK- und IK-Handshakes zu ersetzen, weil:
 - 500KB statische Schlüssel sind viel zu groß
 - Wir wollen keinen zusätzlichen Roundtrip
 
-Es gibt viele gute Informationen im Whitepaper, und wir werden es auf Ideen und Inspiration hin durchgehen. TODO.
+Es gibt viele gute Informationen im Whitepaper, und wir werden es auf Ideen und Inspiration überprüfen. TODO.
 
 ## Spezifikation
 
 ### Gemeinsame Strukturen
 
-Aktualisieren Sie die Abschnitte und Tabellen im Common-Structures-Dokument [/docs/specs/common-structures/](/docs/specs/common-structures/) wie folgt:
+Aktualisieren Sie die Abschnitte und Tabellen im Dokument zu gemeinsamen Strukturen [/docs/specs/common-structures/](/docs/specs/common-structures/) wie folgt:
 
 ### PublicKey
 
-Die neuen Public Key-Typen sind:
+Die neuen Public-Key-Typen sind:
 
 | Typ | Public Key Länge | Seit | Verwendung |
 |------|-------------------|-------|-------|
@@ -193,13 +195,13 @@ Die neuen Public Key-Typen sind:
 | MLKEM768_CT | 1088 | 0.9.xx | Siehe Vorschlag 169, nur für Handshakes, nicht für Leasesets, RIs oder Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | Siehe Vorschlag 169, nur für Handshakes, nicht für Leasesets, RIs oder Destinations |
 | NONE | 0 | 0.9.xx | Siehe Vorschlag 169, nur für Destinations mit PQ-Signaturtypen, nicht für RIs oder Leasesets |
-Hybride öffentliche Schlüssel sind der X25519-Schlüssel. KEM-öffentliche Schlüssel sind der ephemere PQ-Schlüssel, der von Alice an Bob gesendet wird. Kodierung und Byte-Reihenfolge sind in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert.
+Hybride öffentliche Schlüssel sind der X25519-Schlüssel. KEM-öffentliche Schlüssel sind die temporären PQ-Schlüssel, die von Alice an Bob gesendet werden. Die Kodierung und die Bytereihenfolge sind in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert.
 
-MLKEM*_CT-Schlüssel sind nicht wirklich öffentliche Schlüssel, sie sind der "Ciphertext" (verschlüsselte Text), der von Bob an Alice im Noise-Handshake gesendet wird. Sie sind hier der Vollständigkeit halber aufgeführt.
+MLKEM*_CT-Schlüssel sind nicht wirklich öffentliche Schlüssel, sondern das „Kryptogramm“, das von Bob an Alice im Noise-Handshake gesendet wird. Sie werden hier der Vollständigkeit halber aufgeführt.
 
 ### PrivateKey
 
-Die neuen Private Key-Typen sind:
+Die neuen privaten Schlüsseltypen sind:
 
 | Typ | Private Schlüssellänge | Seit | Verwendung |
 |------|---------------------|-------|-------|
@@ -209,7 +211,7 @@ Die neuen Private Key-Typen sind:
 | MLKEM512 | 1632 | 0.9.xx | Siehe Vorschlag 169, nur für Handshakes, nicht für Leasesets, RIs oder Destinations |
 | MLKEM768 | 2400 | 0.9.xx | Siehe Vorschlag 169, nur für Handshakes, nicht für Leasesets, RIs oder Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | Siehe Vorschlag 169, nur für Handshakes, nicht für Leasesets, RIs oder Destinations |
-Hybride private Schlüssel sind die X25519-Schlüssel. KEM private Schlüssel sind nur für Alice. KEM-Kodierung und Byte-Reihenfolge sind in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert.
+Hybride private Schlüssel sind die X25519-Schlüssel. KEM-Private-Schlüssel sind ausschließlich für Alice bestimmt. Die KEM-Kodierung und Byte-Reihenfolge sind in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert.
 
 ### SigningPublicKey
 
@@ -795,7 +797,7 @@ Aktualisieren Sie die NTCP2-Spezifikation [/docs/specs/ntcp2/](/docs/specs/ntcp2
 
 #### 1) SessionRequest
 
-Änderungen: Das aktuelle NTCP2 enthält nur die Optionen in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird es einen neuen ChaCha-Abschnitt vor den Optionen geben, der den verschlüsselten Öffentlichen PQ-Schlüssel enthält.
+Änderungen: Das aktuelle NTCP2 enthält nur die Optionen im ChaCha-Abschnitt. Mit ML-KEM wird der ChaCha-Abschnitt auch den verschlüsselten PQ-Public-Key enthalten.
 
 Damit PQ und Nicht-PQ NTCP2 auf derselben Router-Adresse und demselben Port unterstützt werden können, verwenden wir das höchstwertige Bit des X-Werts (X25519 ephemeral public key), um zu kennzeichnen, dass es sich um eine PQ-Verbindung handelt. Dieses Bit ist bei Nicht-PQ-Verbindungen immer nicht gesetzt.
 
@@ -890,7 +892,7 @@ Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben T
 
 #### 2) SessionCreated
 
-Änderungen: Das aktuelle NTCP2 enthält nur die Optionen in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird ein neuer ChaCha-Abschnitt vor den Optionen hinzugefügt, der den verschlüsselten PQ-Ciphertext enthält.
+Rohe Inhalte:
 
 Rohe Inhalte:
 
@@ -984,21 +986,21 @@ Unverändert
 
 Verwenden Sie in allen Fällen den NTCP2-Transportnamen wie gewohnt.
 
-Verwenden Sie dieselbe Adresse/Port wie bei non-PQ, non-firewalled. Nur eine PQ-Variante wird unterstützt. In der router-Adresse veröffentlichen Sie v=2 (wie üblich) und den neuen Parameter pq=[3|4|5] um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des ephemeral key (key[31] & 0x80) in der session request, um anzuzeigen, dass dies eine Hybrid-Verbindung ist. Siehe oben. Ältere router ignorieren den pq-Parameter und verbinden sich wie gewohnt non-pq.
-
 Unterschiedliche Adresse/Port als nicht-PQ, oder nur-PQ, nicht-firewalled wird NICHT unterstützt. Dies wird nicht implementiert, bis nicht-PQ NTCP2 deaktiviert wird, was noch mehrere Jahre dauern wird. Wenn nicht-PQ deaktiviert ist, können mehrere PQ-Varianten unterstützt werden, aber nur eine pro Adresse. In der router-Adresse, veröffentliche v=[3|4|5] um MLKEM 512/768/1024 anzuzeigen. Alice setzt nicht das MSB des ephemeral key. Ältere router werden den v-Parameter prüfen und diese Adresse als nicht unterstützt überspringen.
 
 Firewall-geschützte Adressen (keine IP veröffentlicht): In der router-Adresse v=2 veröffentlichen (wie üblich). Es ist nicht erforderlich, einen pq-Parameter zu veröffentlichen.
 
 Alice kann sich mit einem PQ Bob über die PQ-Variante verbinden, die Bob veröffentlicht, unabhängig davon, ob Alice pq-Unterstützung in ihren Router-Informationen bewirbt oder ob sie dieselbe Variante bewirbt.
 
-#### Maximaler Padding
-
 In der aktuellen Spezifikation sind die Nachrichten 1 und 2 definiert, um eine "angemessene" Menge an Padding zu haben, wobei ein Bereich von 0-31 Bytes empfohlen wird und kein Maximum spezifiziert ist.
+
+#### Maximaler Padding
 
 Bis API 0.9.68 (Release 2.11.0) implementierte Java I2P ein Maximum von 256 Bytes Padding für Nicht-PQ-Verbindungen, jedoch war dies zuvor nicht dokumentiert. Ab API 0.9.69 (Release 2.12.0) implementiert Java I2P das gleiche maximale Padding für Nicht-PQ-Verbindungen wie für MLKEM-512. Siehe Tabelle unten.
 
 Verwenden Sie die definierte Nachrichtengröße als maximales Padding, das heißt, das maximale Padding wird die Nachrichtengröße für PQ-Verbindungen verdoppeln, wie folgt:
+
+Aktualisieren Sie die SSU2-Spezifikation [/docs/specs/ssu2/](/docs/specs/ssu2/) wie folgt:
 
 | Message Max Padding | non-PQ (bis 0.9.68) | non-PQ (ab 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |---------------------|----------------------|-----------------------|-----------|-----------|------------|
@@ -1006,20 +1008,20 @@ Verwenden Sie die definierte Nachrichtengröße als maximales Padding, das heiß
 | Session Created  |   256   |   848   |    848   |     1136   |    1616  |
 ### SSU2
 
-Aktualisieren Sie die SSU2-Spezifikation [/docs/specs/ssu2/](/docs/specs/ssu2/) wie folgt:
+Beachten Sie, dass MLKEM-1024 für SSU2 NICHT unterstützt wird, da die Schlüssel zu groß sind, um in ein Standard-1500-Byte-Datagramm zu passen.
 
 #### Noise-Identifikatoren
 
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
 
-Beachten Sie, dass MLKEM-1024 für SSU2 NICHT unterstützt wird, da die Schlüssel zu groß sind, um in ein Standard-1500-Byte-Datagramm zu passen.
+Der lange Header ist 32 Bytes groß. Er wird verwendet, bevor eine Sitzung erstellt wird, für Token Request, SessionRequest, SessionCreated und Retry. Er wird auch für sitzungsunabhängige Peer Test und Hole Punch Nachrichten verwendet.
 
 #### Langer Header
 
-Der lange Header ist 32 Bytes groß. Er wird verwendet, bevor eine Sitzung erstellt wird, für Token Request, SessionRequest, SessionCreated und Retry. Er wird auch für sitzungsunabhängige Peer Test und Hole Punch Nachrichten verwendet.
-
 In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header auf 3 oder 4, um MLKEM-512 oder MLKEM-768 anzuzeigen.
+
+In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header wie üblich auf 2, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen können den Wert auch auf 3 oder 4 setzen, wenn die Gegenstelle dies unterstützt, aber das ist nicht notwendig. Implementierungen sollten jeden Wert von 2-4 akzeptieren.
 
 - (0) Session Request
 - (1) Session Created
@@ -1027,13 +1029,13 @@ In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header 
 - (10) Token Request
 - (11) Hole Punch
 
-In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header wie üblich auf 2, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen können den Wert auch auf 3 oder 4 setzen, wenn die Gegenstelle dies unterstützt, aber das ist nicht notwendig. Implementierungen sollten jeden Wert von 2-4 akzeptieren.
+Diskussion: Das Setzen des Versionsfelds auf 3 oder 4 ist möglicherweise nicht für alle Nachrichtentypen zwingend erforderlich, aber es hilft bei der früheren Fehlererkennung für nicht unterstützte Post-Quantum-Verbindungen. Token Request und Retry (Typen 9 und 10) sollten aus Konsistenzgründen die Versionen 3/4 haben. Hole Punch-Nachrichten (Typ 11) erfordern diese Behandlung möglicherweise nicht, aber wir werden für Einheitlichkeit dem gleichen Muster folgen. Peer Test-Nachrichten (Typ 7) sind außerhalb der Session und zeigen nicht die Absicht an, eine Session zu initiieren.
 
 - (7) Peer Test (Nachrichten außerhalb der Sitzung 5-7)
 
-Diskussion: Das Setzen des Versionsfelds auf 3 oder 4 ist möglicherweise nicht für alle Nachrichtentypen zwingend erforderlich, aber es hilft bei der früheren Fehlererkennung für nicht unterstützte Post-Quantum-Verbindungen. Token Request und Retry (Typen 9 und 10) sollten aus Konsistenzgründen die Versionen 3/4 haben. Hole Punch-Nachrichten (Typ 11) erfordern diese Behandlung möglicherweise nicht, aber wir werden für Einheitlichkeit dem gleichen Muster folgen. Peer Test-Nachrichten (Typ 7) sind außerhalb der Session und zeigen nicht die Absicht an, eine Session zu initiieren.
-
 Vor der Header-Verschlüsselung:
+
+unverändert
 
 ```
 
@@ -1070,9 +1072,9 @@ unverändert
 
 #### SessionRequest (Typ 0)
 
-Änderungen: Das aktuelle SSU2 enthält nur die Blockdaten in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird ein neuer ChaCha-Abschnitt vor den Blockdaten hinzugefügt, der den verschlüsselten PQ-öffentlichen Schlüssel enthält.
+KDF-Änderung für Spoof-Schutz: Um die in Vorschlag 165 [Prop165]_ aufgeworfenen Probleme anzugehen, aber mit einer anderen Lösung, ändern wir die KDF für Session Request. Dies gilt nur für PQ-Sitzungen. Die KDF für Nicht-PQ-Sitzungen bleibt unverändert.
 
-KDF-Änderung zum Schutz vor Spoofing: Um die in Vorschlag 165 [Prop165]_ aufgezeigten Probleme zu beheben, jedoch mit einem anderen Ansatz, ändern wir den KDF für die Sitzungsanfrage. Dies gilt nur für PQ-Sitzungen. Der KDF für Nicht-PQ-Sitzungen bleibt unverändert.
+Roher Inhalt:
 
 ```
 
@@ -1184,7 +1186,7 @@ Mindest-MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.
 
 #### SessionCreated (Typ 1)
 
-Änderungen: Das aktuelle SSU2 enthält nur die Nutzlast in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird es einen neuen ChaCha-Abschnitt vor der Nutzlast geben, der den verschlüsselten PQ-Ciphertext enthält.
+Rohe Inhalte:
 
 Rohe Inhalte:
 
@@ -1289,11 +1291,9 @@ Die folgenden Blöcke enthalten Versionsfelder. Sie bleiben Version 2 (für Komp
 - Relay Intro
 - Peer Test
 
-PQ-Signaturen: Relay-Blöcke, Peer-Test-Blöcke und Peer-Test-Nachrichten enthalten alle Signaturen. Leider sind PQ-Signaturen größer als die MTU. Es gibt derzeit keinen Mechanismus, um Relay- oder Peer-Test-Blöcke oder -Nachrichten über mehrere UDP-Pakete zu fragmentieren. Das Protokoll muss erweitert werden, um Fragmentierung zu unterstützen. Dies wird in einem separaten Vorschlag erfolgen, der noch zu bestimmen ist. Bis dies abgeschlossen ist, werden Relay und Peer Test nicht unterstützt.
+Verwenden Sie in allen Fällen wie gewohnt den SSU2-Transportnamen. MLKEM-1024 wird nicht unterstützt.
 
 #### Veröffentlichte Adressen
-
-Verwenden Sie in allen Fällen wie gewohnt den SSU2-Transportnamen. MLKEM-1024 wird nicht unterstützt.
 
 Verwenden Sie dieselbe Adresse/Port wie bei nicht-PQ, nicht-firewalled. Eine oder beide PQ-Varianten werden unterstützt. In der router-Adresse veröffentlichen Sie v=2 (wie üblich) und den neuen Parameter pq=[3|4|3,4], um MLKEM 512/768/beide anzuzeigen. Ältere router werden den pq-Parameter ignorieren und sich wie gewohnt nicht-pq verbinden.
 
@@ -1301,7 +1301,9 @@ Unterschiedliche Adresse/Port als non-PQ, oder PQ-only, non-firewalled wird NICH
 
 Firewalled-Adressen (keine IP veröffentlicht): In der router-Adresse v=2 veröffentlichen (wie üblich). Der pq-Parameter MUSS in firewalled-Adressen veröffentlicht werden, um relay zu unterstützen.
 
-Alice kann sich mit einem PQ Bob über die PQ-Variante verbinden, die Bob veröffentlicht, unabhängig davon, ob Alice pq-Unterstützung in ihren Router-Informationen bewirbt oder ob sie dieselbe Variante bewirbt.
+Alice kann sich mit einem PQ Bob über die PQ-Variante verbinden, die Bob veröffentlicht, unabhängig davon, ob Alice pq-Unterstützung in ihren router-Informationen bewirbt oder ob sie dieselbe Variante bewirbt.
+
+In der aktuellen Spezifikation sind die Nachrichten 1 und 2 definiert, um eine "angemessene" Menge an Padding zu haben, wobei ein Bereich von 0-31 Bytes empfohlen wird und kein Maximum spezifiziert ist.
 
 #### MTU
 
@@ -1309,11 +1311,9 @@ Seien Sie vorsichtig, die MTU mit MLKEM768 nicht zu überschreiten. Die minimale
 
 ### Streaming
 
-Wir könnten intern das Versionsfeld verwenden und 3 für MLKEM512 und 4 für MLKEM768 nutzen.
+Für Nachrichten 1 und 2 würde MLKEM768 die Paketgrößen über die minimale MTU von 1280 hinaus vergrößern. Wahrscheinlich würde es einfach nicht für diese Verbindung unterstützt werden, wenn die MTU zu niedrig wäre.
 
 ### SU3-Dateien
-
-Für Nachrichten 1 und 2 würde MLKEM768 die Paketgrößen über die minimale MTU von 1280 hinaus vergrößern. Wahrscheinlich würde es einfach nicht für diese Verbindung unterstützt werden, wenn die MTU zu niedrig wäre.
 
 Für Nachrichten 1 und 2 würde MLKEM1024 die Paketgrößen über die maximale MTU von 1500 hinaus vergrößern. Das würde eine Fragmentierung der Nachrichten 1 und 2 erfordern und wäre eine große Komplikation. Wahrscheinlich werden wir das nicht machen.
 
@@ -1323,11 +1323,13 @@ TODO: Gibt es eine effizientere Möglichkeit, das Signieren/Verifizieren zu defi
 
 TODO
 
-### Andere Spezifikationen
-
 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) Abschnitt 8.1 verbietet HashML-DSA in X.509-Zertifikaten und weist keine OIDs für HashML-DSA zu, aufgrund von Implementierungskomplexitäten und reduzierter Sicherheit.
 
+### Andere Spezifikationen
+
 Für reine PQ-Signaturen von SU3-Dateien verwenden Sie die OIDs, die im [IETF-Entwurf](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) der Non-Prehash-Varianten für die Zertifikate definiert sind. Wir definieren keine hybriden Signaturen von SU3-Dateien, da wir die Dateien möglicherweise zweimal hashen müssten (obwohl HashML-DSA und X2559 dieselbe Hash-Funktion SHA512 verwenden). Außerdem wäre das Verketten von zwei Schlüsseln und Signaturen in einem X.509-Zertifikat völlig nicht-standardkonform.
+
+Beachten Sie, dass wir Ed25519-Signierung von SU3-Dateien nicht zulassen, und obwohl wir Ed25519ph-Signierung definiert haben, haben wir uns nie auf eine OID dafür geeinigt oder sie verwendet.
 
 - SAMv3
 - Bittorrent
@@ -1339,16 +1341,16 @@ Für reine PQ-Signaturen von SU3-Dateien verwenden Sie die OIDs, die im [IETF-En
 
 ### Schlüsselaustausch
 
-Beachten Sie, dass wir Ed25519-Signierung von SU3-Dateien nicht zulassen, und obwohl wir Ed25519ph-Signierung definiert haben, haben wir uns nie auf eine OID dafür geeinigt oder sie verwendet.
+Die normalen Signaturtypen sind für SU3-Dateien nicht erlaubt; verwenden Sie die ph (prehash) Varianten.
 
 | Type | Pubkey (Msg 1) | Cipertext (Msg 2) |
 |------|----------------|-------------------|
 | MLKEM512_X25519 | +816 | +784 |
 | MLKEM768_X25519 | +1200 | +1104 |
 | MLKEM1024_X25519 | +1584 | +1584 |
-Die normalen Signaturtypen sind für SU3-Dateien nicht erlaubt; verwenden Sie die ph (prehash) Varianten.
-
 Die neue maximale Destination-Größe wird 2599 sein (3468 in Base64).
+
+Aktualisiere andere Dokumente, die Anleitungen zu Destination-Größen geben, einschließlich:
 
 | Typ | Relative Geschwindigkeit |
 |------|----------------|
@@ -1360,7 +1362,7 @@ Die neue maximale Destination-Größe wird 2599 sein (3468 in Base64).
 | MLKEM512_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 4,9x DH = 22% langsamer |
 | MLKEM768_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 5,3x DH = 32% langsamer |
 | MLKEM1024_X25519 | 4x DH + 2x PQ (keygen + enc/dec) = 6x DH = 50% langsamer |
-Aktualisiere andere Dokumente, die Anleitungen zu Destination-Größen geben, einschließlich:
+Größenzunahme (Bytes):
 
 | Typ | Relative DH/encaps | DH/decaps | keygen |
 |------|-------------------|-----------|--------|
@@ -1370,9 +1372,9 @@ Aktualisiere andere Dokumente, die Anleitungen zu Destination-Größen geben, ei
 | MLKEM1024 | 12x schneller | 10x schneller | 6x schneller |
 ### Signaturen
 
-Größenzunahme (Bytes):
-
 Geschwindigkeit:
+
+Geschwindigkeiten wie von [Cloudflare](https://blog.cloudflare.com/pq-2024/) berichtet:
 
 | Typ | Pubkey | Sig | Key+Sig | RIdent | Dest | RInfo | LS/Streaming/Datagram (jede Nachricht) |
 |------|--------|-----|---------|--------|------|-------|----------------------------------|
@@ -1383,9 +1385,9 @@ Geschwindigkeit:
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
-Die normalen Signaturtypen sind für SU3-Dateien nicht erlaubt; verwenden Sie die ph (prehash) Varianten.
-
 Die neue maximale Destination-Größe wird 2599 sein (3468 in Base64).
+
+Aktualisiere andere Dokumente, die Anleitungen zu Destination-Größen geben, einschließlich:
 
 | Typ | Relatives Geschwindigkeitszeichen | verifizieren |
 |-----|-----------------------------------|--------------|
@@ -1393,7 +1395,7 @@ Die neue maximale Destination-Größe wird 2599 sein (3468 in Base64).
 | MLDSA44 | 5x langsamer | 2x schneller |
 | MLDSA65 | ??? | ??? |
 | MLDSA87 | ??? | ??? |
-Aktualisiere andere Dokumente, die Anleitungen zu Destination-Größen geben, einschließlich:
+Größenzunahme (Bytes):
 
 | Typ | Relatives Geschwindigkeitszeichen | Verifikation | Schlüsselgenerierung |
 |------|---------------------|--------|--------|
@@ -1414,9 +1416,9 @@ Typische Größen oder Größenzunahmen für Schlüssel, Signatur, RIdent, Dest 
 | 5 | AES256 |
 ### Handshakes
 
-Geschwindigkeit:
-
 Geschwindigkeiten wie von [Cloudflare](https://blog.cloudflare.com/pq-2024/) berichtet:
+
+Vorläufige Testergebnisse in Java:
 
 | Algorithmus | Sicherheitskategorie |
 |-------------|---------------------|
@@ -1425,9 +1427,9 @@ Geschwindigkeiten wie von [Cloudflare](https://blog.cloudflare.com/pq-2024/) ber
 | MLKEM1024 | 5 |
 ### Signaturen
 
-Vorläufige Testergebnisse in Java:
-
 NIST-Sicherheitskategorien sind in der [NIST-Präsentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) Folie 10 zusammengefasst. Vorläufige Kriterien: Unsere minimale NIST-Sicherheitskategorie sollte 2 für Hybridprotokolle und 3 für reine PQ-Protokolle sein.
+
+Dies sind alles Hybrid-Protokolle. Implementierungen sollten MLKEM768 bevorzugen; MLKEM512 ist nicht sicher genug.
 
 | Algorithmus | Sicherheitskategorie |
 |-------------|---------------------|
@@ -1435,8 +1437,6 @@ NIST-Sicherheitskategorien sind in der [NIST-Präsentation](https://www.nccoe.ni
 | MLKEM67 | 3 |
 | MLKEM87 | 5 |
 ## Typ-Einstellungen
-
-Dies sind alles Hybrid-Protokolle. Implementierungen sollten MLKEM768 bevorzugen; MLKEM512 ist nicht sicher genug.
 
 NIST-Sicherheitskategorien [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
@@ -1450,60 +1450,60 @@ Nach einem Jahr oder mehr der Entwicklung werden wir versuchen, einen bevorzugte
 
 Die vorläufigen Präferenzen sind wie folgt und können sich ändern:
 
+Verschlüsselung: MLKEM768_X25519
+
 ## Implementierungshinweise
 
 ### Bibliotheksunterstützung
 
-Verschlüsselung: MLKEM768_X25519
-
 Signatures: MLDSA44_EdDSA_SHA512_Ed25519
-
-### Signatur-Varianten
 
 Vorläufige Einschränkungen sind wie folgt, vorbehaltlich Änderungen:
 
-Verschlüsselung: MLKEM1024_X25519 nicht erlaubt für SSU2
+### Signatur-Varianten
 
-### Zuverlässigkeit
+Verschlüsselung: MLKEM1024_X25519 nicht erlaubt für SSU2
 
 Signaturen: MLDSA87 und Hybrid-Variante wahrscheinlich zu groß; MLDSA65 und Hybrid-Variante möglicherweise zu groß
 
-### Strukturgrößen
+### Zuverlässigkeit
 
 Die Bibliotheken Bouncycastle, BoringSSL und WolfSSL unterstützen jetzt MLKEM und MLDSA. OpenSSL-Unterstützung wird in ihrer Version 3.5 am 8. April 2025 verfügbar sein [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-### NetDB
+### Strukturgrößen
 
 Die von Java I2P angepasste Noise-Bibliothek von southernstorm.com enthielt vorläufige Unterstützung für hybride Handshakes, aber wir haben sie als ungenutzt entfernt; wir werden sie wieder hinzufügen und aktualisieren müssen, um der [Noise HFS-Spezifikation](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) zu entsprechen.
+
+### NetDB
+
+Wir werden die "hedged" oder randomisierte Signaturvariante verwenden, nicht die "deterministische" Variante, wie in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Abschnitt 3.4 definiert. Dies stellt sicher, dass jede Signatur unterschiedlich ist, auch wenn sie über dieselben Daten erstellt wird, und bietet zusätzlichen Schutz gegen Seitenkanalangriffe. Obwohl [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) spezifiziert, dass die "hedged" Variante der Standard ist, kann dies in verschiedenen Bibliotheken der Fall sein oder auch nicht. Implementierer müssen sicherstellen, dass die "hedged" Variante für die Signaturerstellung verwendet wird.
 
 ### Ratchet
 
 #### Probleme
 
-Wir werden die "hedged" oder randomisierte Signaturvariante verwenden, nicht die "deterministische" Variante, wie in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Abschnitt 3.4 definiert. Dies stellt sicher, dass jede Signatur unterschiedlich ist, auch wenn sie über dieselben Daten erstellt wird, und bietet zusätzlichen Schutz gegen Seitenkanalangriffe. Obwohl [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) spezifiziert, dass die "hedged" Variante der Standard ist, kann dies in verschiedenen Bibliotheken der Fall sein oder auch nicht. Implementierer müssen sicherstellen, dass die "hedged" Variante für die Signaturerstellung verwendet wird.
-
 Wir verwenden den normalen Signierungsprozess (genannt Pure ML-DSA Signature Generation), der die Nachricht intern als 0x00 || len(ctx) || ctx || message kodiert, wobei ctx ein optionaler Wert der Größe 0x00..0xFF ist. Wir verwenden keinen optionalen Kontext. len(ctx) == 0. Dieser Prozess ist definiert in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 Schritt 10 und Algorithm 3 Schritt 5. Beachten Sie, dass einige veröffentlichte Testvektoren möglicherweise das Setzen eines Modus erfordern, bei dem die Nachricht nicht kodiert wird.
+
+Eine Größenerhöhung führt zu deutlich mehr tunnel-Fragmentierung für NetDB-Speicherungen, Streaming-Handshakes und andere Nachrichten. Prüfen Sie auf Leistungs- und Zuverlässigkeitsänderungen.
 
 - Wenn Nachricht 1 weniger als 919 Bytes hat, ist es das aktuelle ratchet-Protokoll.
 - Wenn Nachricht 1 größer oder gleich 919 Bytes ist, ist es wahrscheinlich MLKEM512_X25519.
   Versuche zuerst MLKEM512_X25519, und falls es fehlschlägt, versuche das aktuelle ratchet-Protokoll.
 
-Eine Größenerhöhung führt zu deutlich mehr tunnel-Fragmentierung für NetDB-Speicherungen, Streaming-Handshakes und andere Nachrichten. Prüfen Sie auf Leistungs- und Zuverlässigkeitsänderungen.
-
 Finden und überprüfen Sie jeglichen Code, der die Bytegröße von Router-Infos und leasesets begrenzt.
+
+Überprüfen und möglicherweise reduzieren der maximalen LS/RI, die im RAM oder auf der Festplatte gespeichert werden, um den Speicherplatzzuwachs zu begrenzen. Mindestbandbreitenanforderungen für floodfills erhöhen?
 
 - X25519 + MLKEM512
 - X25519 + MLKEM768
 - X25519 + MLKEM1024
 
-Überprüfen und möglicherweise reduzieren der maximalen LS/RI, die im RAM oder auf der Festplatte gespeichert werden, um den Speicherplatzzuwachs zu begrenzen. Mindestbandbreitenanforderungen für floodfills erhöhen?
+Eine automatische Klassifizierung/Erkennung mehrerer Protokolle auf denselben tunneln sollte basierend auf einer Längenprüfung von Nachricht 1 (New Session Message) möglich sein. Mit MLKEM512_X25519 als Beispiel ist Nachricht 1 um 816 Bytes größer als das aktuelle ratchet-Protokoll, und die minimale Größe von Nachricht 1 (mit nur einer DateTime-Nutzlast) beträgt 919 Bytes. Die meisten Nachricht-1-Größen mit aktuellem ratchet haben eine Nutzlast von weniger als 816 Bytes, sodass sie als nicht-hybrid ratchet klassifiziert werden können. Große Nachrichten sind wahrscheinlich POSTs, die selten sind.
 
 - Mehr als ein MLKEM
 - ElG + ein oder mehrere MLKEM
 - X25519 + ein oder mehrere MLKEM
 - ElG + X25519 + ein oder mehrere MLKEM
-
-Eine automatische Klassifizierung/Erkennung mehrerer Protokolle auf denselben tunneln sollte basierend auf einer Längenprüfung von Nachricht 1 (New Session Message) möglich sein. Mit MLKEM512_X25519 als Beispiel ist Nachricht 1 um 816 Bytes größer als das aktuelle ratchet-Protokoll, und die minimale Größe von Nachricht 1 (mit nur einer DateTime-Nutzlast) beträgt 919 Bytes. Die meisten Nachricht-1-Größen mit aktuellem ratchet haben eine Nutzlast von weniger als 816 Bytes, sodass sie als nicht-hybrid ratchet klassifiziert werden können. Große Nachrichten sind wahrscheinlich POSTs, die selten sind.
 
 Die empfohlene Strategie ist also:
 
@@ -1511,25 +1511,27 @@ Dies sollte es uns ermöglichen, Standard-Ratchet und Hybrid-Ratchet effizient a
 
 Die erforderlichen unterstützten Kombinationen sind:
 
-#### Geteilte Tunnels
-
 Die folgenden Kombinationen können komplex sein und müssen NICHT unterstützt werden, können aber implementierungsabhängig unterstützt werden:
 
-#### Forward Secrecy
+#### Geteilte Tunnels
 
 Wir werden möglicherweise nicht versuchen, mehrere MLKEM-Algorithmen (zum Beispiel MLKEM512_X25519 und MLKEM_768_X25519) am selben Ziel zu unterstützen. Wählen Sie nur einen aus; dies hängt jedoch davon ab, dass wir eine bevorzugte MLKEM-Variante auswählen, damit HTTP-Client-tunnel eine verwenden können. Implementierungsabhängig.
 
-### NTCP2
+#### Forward Secrecy
 
 Wir KÖNNEN versuchen, drei Algorithmen (zum Beispiel X25519, MLKEM512_X25519 und MLKEM769_X25519) für dasselbe Ziel zu unterstützen. Die Klassifizierung und Wiederholungsstrategie könnten zu komplex sein. Die Konfiguration und Benutzeroberfläche für die Konfiguration könnten zu komplex sein. Implementierungsabhängig.
 
-#### Neue Sitzungsgröße
+### NTCP2
 
 Wir werden wahrscheinlich NICHT versuchen, ElGamal und Hybrid-Algorithmen am selben Ziel zu unterstützen. ElGamal ist veraltet, und ElGamal + Hybrid allein (ohne X25519) macht nicht viel Sinn. Außerdem sind sowohl ElGamal- als auch Hybrid New Session Messages groß, sodass Klassifizierungsstrategien oft beide Entschlüsselungen versuchen müssten, was ineffizient wäre. Implementierungsabhängig.
+
+#### Neue Sitzungsgröße
 
 Clients können dieselben oder unterschiedliche X25519 statische Schlüssel für die X25519 und die hybriden Protokolle auf denselben tunnels verwenden, implementierungsabhängig.
 
 Die ECIES-Spezifikation erlaubt Garlic Messages in der New Session Message-Nutzlast, was die 0-RTT-Übertragung des ersten Streaming-Pakets ermöglicht, normalerweise ein HTTP GET, zusammen mit dem leaseSet des Clients. Die New Session Message-Nutzlast hat jedoch keine Forward Secrecy. Da dieser Vorschlag verstärkte Forward Secrecy für ratchet betont, können oder sollten Implementierungen die Einbeziehung der Streaming-Nutzlast oder der vollständigen Streaming-Nachricht bis zur ersten Existing Session Message verschieben. Dies würde zu Lasten der 0-RTT-Übertragung gehen. Strategien können auch vom Traffic-Typ oder tunnel-Typ abhängen, oder von GET vs. POST, zum Beispiel. Implementierungsabhängig.
+
+MLKEM, MLDSA oder beide auf demselben Ziel werden die Größe der New Session Message drastisch erhöhen, wie oben beschrieben. Dies kann die Zuverlässigkeit der Zustellung von New Session Messages durch tunnel erheblich verringern, wo sie in mehrere 1024 Byte tunnel-Nachrichten fragmentiert werden müssen. Der Zustellungserfolg ist proportional zur exponentiellen Anzahl der Fragmente. Implementierungen können verschiedene Strategien verwenden, um die Größe der Nachricht zu begrenzen, auf Kosten der 0-RTT-Zustellung. Implementierungsabhängig.
 
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
@@ -1537,7 +1539,7 @@ Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben T
 
 Wir setzen das MSB des ephemeral key (key[31] & 0x80) in der Session-Anfrage, um anzuzeigen, dass dies eine Hybrid-Verbindung ist. Dies ermöglicht es uns, sowohl Standard-NTCP als auch Hybrid-NTCP auf demselben Port zu betreiben. Nur eine Hybrid-Variante würde unterstützt und in der Router-Adresse beworben werden. Zum Beispiel v=2,3 oder v=2,4 oder v=2,5.
 
-Als Alice, für eine PQ-Verbindung, vor der Verschleierung, setze X[31] |= 0x80. Dies macht X zu einem ungültigen X25519 öffentlichen Schlüssel. Nach der Verschleierung wird AES-CBC ihn randomisieren. Das MSB von X wird nach der Verschleierung zufällig sein.
+Als Bob testen, ob (X[31] & 0x80) != 0 nach der Entschleierung. Falls ja, ist es eine PQ-Verbindung.
 
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
@@ -1549,49 +1551,47 @@ Die minimal erforderliche router-Version für NTCP2-PQ ist noch zu bestimmen.
 
 ### Router-Verschlüsselungstypen
 
-Hinweis: Typcodes sind nur für interne Verwendung. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angezeigt.
+Wir verwenden das Versionsfeld im langen Header und setzen es auf 3 für MLKEM512 und 4 für MLKEM768. v=2,3,4 in der Adresse wäre ausreichend.
 
 #### Verschleierung
 
-Wir verwenden das Versionsfeld im langen Header und setzen es auf 3 für MLKEM512 und 4 für MLKEM768. v=2,3,4 in der Adresse wäre ausreichend.
+Überprüfen und verifizieren, dass SSU2 MLDSA-signierte RI handhaben kann, die über mehrere Pakete (6-8?) fragmentiert sind.
 
 #### Typ 5/6/7 Router
 
-Überprüfen und verifizieren, dass SSU2 MLDSA-signierte RI handhaben kann, die über mehrere Pakete (6-8?) fragmentiert sind.
+Hinweis: Type-Codes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den router-Adressen angezeigt.
 
 #### Typ 4 Router
 
-Hinweis: Type-Codes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den router-Adressen angezeigt.
+Verwenden Sie in allen Fällen die NTCP2- und SSU2-Transportnamen wie gewohnt.
 
 ### Router Sig. Typen
 
 #### Empfehlungen
 
-Verwenden Sie in allen Fällen die NTCP2- und SSU2-Transportnamen wie gewohnt.
-
 Wir haben mehrere Alternativen zu berücksichtigen:
+
+Nicht empfohlen. Verwenden Sie nur die oben aufgeführten neuen Transporte, die zum router-Typ passen. Ältere router können sich nicht verbinden, keine tunnel durch sie bauen oder netDb-Nachrichten an sie senden. Es würde mehrere Veröffentlichungszyklen dauern, um zu debuggen und die Unterstützung sicherzustellen, bevor es standardmäßig aktiviert wird. Könnte die Einführung um ein Jahr oder mehr gegenüber den unten genannten Alternativen verlängern.
 
 ### LS Verschlüsselungstypen
 
 #### Typ 12-17 Router
 
-Nicht empfohlen. Verwenden Sie nur die oben aufgeführten neuen Transporte, die zum router-Typ passen. Ältere router können sich nicht verbinden, keine tunnel durch sie bauen oder netDb-Nachrichten an sie senden. Es würde mehrere Veröffentlichungszyklen dauern, um zu debuggen und die Unterstützung sicherzustellen, bevor es standardmäßig aktiviert wird. Könnte die Einführung um ein Jahr oder mehr gegenüber den unten genannten Alternativen verlängern.
-
 Empfohlen. Da PQ den X25519 static key oder N handshake-Protokolle nicht beeinflusst, könnten wir die Router als Typ 4 belassen und nur neue Transporte bewerben. Ältere Router könnten sich weiterhin verbinden, tunnel durch sie bauen oder netDb-Nachrichten an sie senden.
+
+MLKEM-768 wird für Ratchet, NTCP2 und SSU2 empfohlen, da es die beste Balance zwischen Sicherheit und Schlüssellänge bietet.
 
 ### Dest. Sig. Typen
 
 #### Typ 5-7 LS Keys
 
-MLKEM-768 wird für Ratchet, NTCP2 und SSU2 empfohlen, da es die beste Balance zwischen Sicherheit und Schlüssellänge bietet.
+Ältere router verifizieren RIs und können daher keine Verbindung aufbauen, Tunnel durch sie erstellen oder netDb-Nachrichten an sie senden. Würde mehrere Release-Zyklen benötigen, um zu debuggen und Unterstützung sicherzustellen, bevor es standardmäßig aktiviert wird. Wären die gleichen Probleme wie beim enc. type 5/6/7 Rollout; könnte den Rollout um ein Jahr oder mehr gegenüber der oben aufgeführten type 4 enc. type Rollout-Alternative verlängern.
 
-Wir haben mehrere Alternativen zu berücksichtigen:
+Nicht empfohlen. Verwenden Sie nur die oben aufgeführten neuen Transporte, die zum router-Typ passen. Ältere router können sich nicht verbinden, keine tunnel durch sie bauen oder netDb-Nachrichten an sie senden. Es würde mehrere Veröffentlichungszyklen dauern, um zu debuggen und die Unterstützung sicherzustellen, bevor es standardmäßig aktiviert wird. Könnte die Einführung um ein Jahr oder mehr gegenüber den unten genannten Alternativen verlängern.
 
 ## Prioritäten und Einführung
 
 Keine Alternativen.
-
-Diese können im LS mit älteren Typ 4 X25519-Schlüsseln vorhanden sein. Ältere Router werden unbekannte Schlüssel ignorieren.
 
 Destinations können mehrere Schlüsseltypen unterstützen, aber nur durch das Durchführen von Probeentschlüsselungen von Nachricht 1 mit jedem Schlüssel. Der Overhead kann durch das Führen von Zählern erfolgreicher Entschlüsselungen für jeden Schlüssel gemildert werden, wobei der am häufigsten verwendete Schlüssel zuerst versucht wird. Java I2P verwendet diese Strategie für ElGamal+X25519 auf derselben Destination.
 
@@ -1600,6 +1600,8 @@ Router verifizieren leaseSet-Signaturen und können daher nicht verbinden oder l
 Keine Alternativen.
 
 Die wertvollsten Daten sind der End-to-End-Verkehr, verschlüsselt mit ratchet. Als externer Beobachter zwischen tunnel-Hops ist das zweimal zusätzlich verschlüsselt, mit tunnel-Verschlüsselung und Transport-Verschlüsselung. Als externer Beobachter zwischen OBEP und IBGW ist es nur einmal zusätzlich verschlüsselt, mit Transport-Verschlüsselung. Als OBEP- oder IBGW-Teilnehmer ist ratchet die einzige Verschlüsselung. Da tunnels jedoch unidirektional sind, würde das Abfangen beider Nachrichten im ratchet-Handshake kollaborierende router erfordern, es sei denn, tunnels wurden mit OBEP und IBGW auf demselben router aufgebaut.
+
+Das derzeit besorgniserregendste PQ-Bedrohungsmodell ist die Speicherung von Datenverkehr heute zur Entschlüsselung in vielen Jahren (Forward Secrecy). Ein hybrider Ansatz würde davor schützen.
 
 | Meilenstein | Ziel |
 |-------------|------|
@@ -1618,9 +1620,9 @@ Die wertvollsten Daten sind der End-to-End-Verkehr, verschlüsselt mit ratchet. 
 | Signatur Produktion | Mitte 2027 |
 ## Migration
 
-Das derzeit besorgniserregendste PQ-Bedrohungsmodell ist die Speicherung von Datenverkehr heute zur Entschlüsselung in vielen Jahren (Forward Secrecy). Ein hybrider Ansatz würde davor schützen.
-
 Das PQ-Bedrohungsmodell, bei dem die Authentifizierungsschlüssel in einem angemessenen Zeitraum (sagen wir ein paar Monate) gebrochen und dann die Authentifizierung nachgeahmt oder nahezu in Echtzeit entschlüsselt wird, ist noch viel weiter entfernt? Und dann wäre der Zeitpunkt gekommen, zu PQC-statischen Schlüsseln zu migrieren.
+
+Das früheste PQ-Bedrohungsmodell ist also OBEP/IBGW, das Datenverkehr für spätere Entschlüsselung speichert. Wir sollten zuerst hybrid ratchet implementieren.
 
 ## Probleme
 
@@ -1656,6 +1658,7 @@ Das PQ-Bedrohungsmodell, bei dem die Authentifizierungsschlüssel in einem angem
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [PLANTS](https://datatracker.ietf.org/wg/plants/about/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)
