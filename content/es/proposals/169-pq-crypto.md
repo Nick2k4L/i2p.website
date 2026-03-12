@@ -14,11 +14,11 @@ toc: true
 ### Estado
 
 | Protocolo / Característica | Estado |
-|----------------------------|--------|
+|--------------------|--------|
 | Ratchet | Completo en Java I2P e i2pd |
-| NTCP2 | Beta Q1 2026, lanzamiento Q2 2026 |
-| SSU2 | Implementación en curso, Beta Q2 2026, lanzamiento Q3 2026 |
-| Tipos de firma MLDSA | En espera hasta 2027-2028, ver [PLANTS](https://datatracker.ietf.org/wg/plants/about/) |
+| NTCP2 | Beta Q1 2026 |
+| SSU2 | Implementación comenzando pronto, Beta Q2/Q3 2026 |
+| MLDSA SigTypes | Baja prioridad, probablemente 2027+ |
 ## Descripción general
 
 Si bien la investigación y la competencia por criptografía poscuántica (PQ) adecuada han avanzado durante una década, las opciones no se han aclarado hasta hace poco.
@@ -59,14 +59,14 @@ Tanto [Cloudflare](https://blog.cloudflare.com/pq-2024/) como [NIST](https://www
 Modificaremos los siguientes protocolos, aproximadamente en orden de desarrollo. El despliegue general probablemente se llevará a cabo desde finales de 2025 hasta mediados de 2027. Consulte la sección de Prioridades y Despliegue a continuación para más detalles.
 
 | Protocolo / Característica | Estado |
-|--------------------|--------|
-| Hybrid MLKEM Ratchet y LS | Aprobado 2025-06; beta 2025-08; lanzamiento 2025-11 |
-| Hybrid MLKEM NTCP2 | Probado en red en vivo, Aprobado 2026-02; objetivo beta 2026-05; objetivo lanzamiento 2026-08 |
-| Hybrid MLKEM SSU2 | Aprobado 2026-02; objetivo beta 2026-08; objetivo lanzamiento 2026-11 |
-| MLDSA SigTypes 12-14 | La propuesta es estable pero puede no finalizarse hasta 2027 |
-| MLDSA Dests | Probado en red en vivo, requiere actualización de red para soporte floodfill |
-| Hybrid SigTypes 15-17 | Preliminar |
-| Hybrid Dests | |
+|----------------------------|--------|
+| Ratchet híbrido MLKEM y LS | Aprobado 2025-06; versión beta 2025-08; lanzamiento 2025-11 |
+| NTCP2 híbrido MLKEM | Probado en red activa, Aprobado 2026-02; versión beta prevista 2026-02; lanzamiento previsto 2026-05 |
+| SSU2 híbrido MLKEM | Aprobado 2026-02; versión beta prevista 2026-05; lanzamiento previsto 2026-08 |
+| Tipos de firma MLDSA 12-14 | Preliminar, en espera hasta 2027 |
+| Destinos MLDSA | Preliminar, en espera hasta 2027, probado en red activa, requiere actualización de red para soporte floodfill |
+| Tipos de firma híbridos 15-17 | Preliminar, en espera hasta 2027 |
+| Destinos híbridos | |
 ## Diseño
 
 Admitiremos los estándares NIST FIPS 203 y 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), que están basados en, pero NO son compatibles con, CRYSTALS-Kyber y CRYSTALS-Dilithium (versiones 3.1, 3 y anteriores).
@@ -99,9 +99,9 @@ La sobrecarga será considerable. Los tamaños típicos de los mensajes 1 y 2 (p
 
 ### Firmas
 
-NOTA: Toda la información en esta propuesta relacionada con las firmas MLDSA es preliminar. El trabajo sobre el soporte de firmas MLDSA en I2P está suspendido hasta finales de 2027 o 2028, a la espera de que los organismos de estándares seleccionen algoritmos, posiblemente reduzcan el tamaño de las claves y/o de las firmas, y promuevan la adopción industrial. Ver [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) y [PLANTS](https://datatracker.ietf.org/wg/plants/about/).
+Admitiremos firmas PQ e híbridas en las siguientes estructuras:
 
-Soportaremos firmas PQ e híbridas en las siguientes estructuras:
+Por lo tanto, admitiremos tanto firmas exclusivamente PQ como firmas híbridas. Definiremos las tres variantes de ML-DSA tal como se especifica en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), tres variantes híbridas con Ed25519 y tres variantes exclusivamente PQ con prehash únicamente para archivos SU3, lo que da un total de 9 nuevos tipos de firma. Los tipos híbridos solo se definirán en combinación con Ed25519. Utilizaremos el ML-DSA estándar, NO las variantes de pre-hash (HashML-DSA), excepto para los archivos SU3.
 
 | Tipo | ¿Admite solo PQ? | ¿Admite híbrido? |
 |------|------------------|-----------------|
@@ -114,11 +114,11 @@ Soportaremos firmas PQ e híbridas en las siguientes estructuras:
 | Archivos SU3 | sí | sí |
 | Certificados X.509 | sí | sí |
 | Almacenes de claves Java | sí | sí |
-Por lo tanto, admitiremos tanto firmas solo PQ como firmas híbridas. Definiremos las tres variantes ML-DSA según se indica en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), tres variantes híbridas con Ed25519, y tres variantes solo PQ con prehash para archivos SU3 únicamente, lo que da un total de 9 nuevos tipos de firma. Los tipos híbridos solo se definirán en combinación con Ed25519. Usaremos ML-DSA estándar, NO las variantes con prehash (HashML-DSA), excepto para archivos SU3.
-
-Utilizaremos la variante de firma "hedged" (protegida) o aleatorizada, no la variante "determinista", tal como se define en la sección 3.4 de [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf). Esto garantiza que cada firma sea diferente, incluso sobre los mismos datos, y proporciona protección adicional contra ataques de canal lateral. Vea la sección de notas sobre la implementación más abajo para obtener detalles adicionales sobre las elecciones del algoritmo, incluyendo codificación y contexto.
+Utilizaremos la variante de firma "con cobertura" (hedged) o aleatorizada, no la variante "determinista", tal como se define en la sección 3.4 de [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf). Esto garantiza que cada firma sea diferente, incluso cuando se aplica sobre los mismos datos, y proporciona protección adicional contra ataques de canal lateral. Consulte la sección de notas de implementación a continuación para obtener detalles adicionales sobre las decisiones algorítmicas, incluyendo la codificación y el contexto.
 
 Los nuevos tipos de firma son:
+
+Los certificados X.509 y otras codificaciones DER utilizarán las estructuras compuestas y OIDs definidos en el [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Tipo | Código |
 |------|------|
@@ -131,17 +131,17 @@ Los nuevos tipos de firma son:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-Los certificados X.509 y otras codificaciones DER utilizarán las estructuras compuestas y los OID definidos en el [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+La sobrecarga será considerable. Los tamaños típicos de identidad de destino y router con Ed25519 son de 391 bytes. Estos aumentarán entre 3,5x y 6,8x según el algoritmo. Las firmas Ed25519 son de 64 bytes. Estas aumentarán entre 38x y 76x según el algoritmo. Los RouterInfo firmados típicos, LeaseSet, datagramas con respuesta y mensajes de streaming firmados son aproximadamente 1 KB. Estos aumentarán entre 3x y 8x según el algoritmo.
 
-La sobrecarga será considerable. Los tamaños típicos de destino Ed25519 y de identidad de router son de 391 bytes. Estos aumentarán entre 3,5x y 6,8x según el algoritmo. Las firmas Ed25519 tienen 64 bytes. Estas aumentarán entre 38x y 76x según el algoritmo. Los RouterInfo firmados, LeaseSet, datagramas con respuesta y mensajes firmados por streaming típicos tienen aproximadamente 1 KB. Estos aumentarán entre 3x y 8x según el algoritmo.
+Dado que los nuevos tipos de destino e identidad de router no contendrán relleno, no serán compresibles. Los tamaños de los destinos e identidades de router que se comprimen con gzip en tránsito aumentarán entre 12x y 38x dependiendo del algoritmo.
 
-Como los nuevos tipos de identidad de destino y de enrutador no contendrán relleno, no serán comprimibles. Los tamaños de los destinos y las identidades de enrutador que se compriman con gzip en tránsito aumentarán entre 12 y 38 veces, dependiendo del algoritmo.
+Para los Destinations (destinos), los nuevos tipos de firma son compatibles con todos los tipos de cifrado en el leaseSet. Establezca el tipo de cifrado en el certificado de clave en NONE (255).
 
 ### Combinaciones Legales
 
-Para los Destinos, los nuevos tipos de firma son compatibles con todos los tipos de cifrado en el leaseset. Establezca el tipo de cifrado en el certificado de clave en NONE (255).
+Para RouterIdentities, el tipo de cifrado ElGamal está obsoleto. Los nuevos tipos de firma son compatibles únicamente con el cifrado X25519 (tipo 4). Los nuevos tipos de cifrado se indicarán en las RouterAddresses. El tipo de cifrado en el certificado de clave continuará siendo el tipo 4.
 
-Para las RouterIdentities, el tipo de cifrado ElGamal está obsoleto. Los nuevos tipos de firma son compatibles únicamente con cifrado X25519 (tipo 4). Los nuevos tipos de cifrado se indicarán en las RouterAddresses. El tipo de cifrado en el certificado de clave continuará siendo tipo 4.
+Los vectores de prueba para SHA3-256, SHAKE128 y SHAKE256 están disponibles en [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
 
 ### Nueva Criptografía Requerida
 
@@ -151,37 +151,37 @@ Para las RouterIdentities, el tipo de cifrado ElGamal está obsoleto. Los nuevos
 - SHA3-256 (anteriormente Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 - SHAKE128 y SHAKE256 (extensiones XOF de SHA3-128 y SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-Los vectores de prueba para SHA3-256, SHAKE128 y SHAKE256 están disponibles en [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
+Ten en cuenta que la biblioteca Java bouncycastle admite todo lo anterior. La compatibilidad con la biblioteca C++ está disponible en OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-Tenga en cuenta que la biblioteca Java bouncycastle soporta todo lo anterior. El soporte para bibliotecas C++ se encuentra en OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+No admitiremos [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), ya que es mucho más lento y pesado que ML-DSA. No admitiremos el próximo FIPS 206 (Falcon), puesto que aún no ha sido estandarizado. No admitiremos NTRU ni otros candidatos de criptografía post-cuántica que no hayan sido estandarizados por el NIST.
 
 ### Alternativas
 
-No admitiremos [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), ya que es mucho más lento y genera claves mucho más grandes que ML-DSA. Tampoco admitiremos el próximo FIPS206 (Falcon), ya que aún no está estandarizado. No admitiremos NTRU ni otros candidatos a criptografía poscuántica que no hayan sido estandarizados por NIST.
+Existe una [investigación](https://eprint.iacr.org/2020/379.pdf) sobre la adaptación de Wireguard (IK) para criptografía puramente PQ (post-cuántica), aunque dicho trabajo presenta varias cuestiones abiertas sin resolver. Posteriormente, este enfoque fue implementado como Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) para PQ Wireguard.
 
 ### Rosenpass
 
-Hay una investigación [artículo](https://eprint.iacr.org/2020/379.pdf) sobre la adaptación de Wireguard (IK) para criptografía puramente PQ, pero existen varias preguntas abiertas en dicho artículo. Posteriormente, este enfoque se implementó como Rosenpass [Rosenpass](https://rosenpass.eu/) [documento técnico](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) para Wireguard PQ.
-
-Rosenpass utiliza un intercambio de claves similar al Noise KK con claves estáticas Classic McEliece 460896 precompartidas (500 KB cada una) y claves efímeras Kyber-512 (esencialmente MLKEM-512). Dado que los textos cifrados de Classic McEliece tienen solo 188 bytes, y las claves públicas y textos cifrados de Kyber-512 son razonablemente pequeños, ambos mensajes del intercambio caben en un MTU UDP estándar. La clave compartida de salida (osk) del intercambio PQ KK se utiliza como clave precompartida de entrada (psk) para el intercambio estándar Wireguard IK. Por lo tanto, hay dos intercambios completos en total, uno puramente PQ y otro puramente X25519.
+Rosenpass utiliza un handshake similar a Noise KK con claves estáticas preshared Classic McEliece 460896 (500 KB cada una) y claves efímeras Kyber-512 (esencialmente MLKEM-512). Dado que los textos cifrados de Classic McEliece tienen solo 188 bytes, y las claves públicas y textos cifrados de Kyber-512 son de tamaño razonable, ambos mensajes del handshake caben en un MTU UDP estándar. La clave compartida de salida (osk) del handshake PQ KK se utiliza como clave preshared de entrada (psk) para el handshake IK estándar de Wireguard. Por lo tanto, hay dos handshakes completos en total: uno puramente PQ y otro puramente X25519.
 
 No podemos hacer nada de esto para reemplazar nuestros handshakes XK e IK porque:
+
+Hay mucha información valiosa en el whitepaper, y lo revisaremos en busca de ideas e inspiración. PENDIENTE.
 
 - No podemos usar KK, Bob no tiene la clave estática de Alice
 - Las claves estáticas de 500KB son demasiado grandes
 - No queremos un viaje de ida y vuelta adicional
 
-Hay mucha información valiosa en el documento técnico, y lo revisaremos en busca de ideas e inspiración. POR HACER.
+Actualice las secciones y tablas en el documento de estructuras comunes [/docs/specs/common-structures/](/docs/specs/common-structures/) de la siguiente manera:
 
 ## Especificación
 
 ### Estructuras Comunes
 
-Actualice las secciones y tablas en el documento de estructuras comunes [/docs/specs/common-structures/](/docs/specs/common-structures/) de la siguiente manera:
+Los nuevos tipos de Clave Pública son:
 
 ### PublicKey
 
-Los nuevos tipos de clave pública son:
+Las claves públicas híbridas son la clave X25519. Las claves públicas KEM son la clave PQ efímera enviada de Alice a Bob. La codificación y el orden de bytes se definen en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 | Tipo | Longitud de Clave Pública | Desde | Uso |
 |------|--------------------------|-------|-----|
@@ -195,13 +195,13 @@ Los nuevos tipos de clave pública son:
 | MLKEM768_CT | 1088 | 0.9.xx | Ver propuesta 169, solo para handshakes, no para Leasesets, RIs ni Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | Ver propuesta 169, solo para handshakes, no para Leasesets, RIs ni Destinations |
 | NONE | 0 | 0.9.xx | Ver propuesta 169, solo para destinations con tipos de firma PQ (post-cuántica), no para RIs ni Leasesets |
-Las claves públicas híbridas son la clave X25519. Las claves públicas KEM son la clave PQ efímera enviada desde Alice a Bob. La codificación y el orden de bytes están definidos en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Las claves MLKEM*_CT no son realmente claves públicas, son el "texto cifrado" (ciphertext) enviado de Bob a Alice en el handshake de Noise. Se enumeran aquí por completitud.
 
-Las claves MLKEM*_CT no son realmente claves públicas, sino el "texto cifrado" enviado por Bob a Alice durante el handshake de Noise. Se incluyen aquí por completitud.
+Los nuevos tipos de Clave Privada son:
 
 ### PrivateKey
 
-Los nuevos tipos de clave privada son:
+Las claves privadas híbridas son las claves X25519. Las claves privadas KEM son exclusivas para Alice. La codificación KEM y el orden de bytes se definen en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 | Tipo | Longitud de Clave Privada | Desde | Uso |
 |------|--------------------------|-------|-----|
@@ -211,11 +211,11 @@ Los nuevos tipos de clave privada son:
 | MLKEM512 | 1632 | 0.9.xx | Ver propuesta 169, solo para handshakes (negociaciones de conexión), no para Leasesets, RIs ni Destinations |
 | MLKEM768 | 2400 | 0.9.xx | Ver propuesta 169, solo para handshakes, no para Leasesets, RIs ni Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | Ver propuesta 169, solo para handshakes, no para Leasesets, RIs ni Destinations |
-Las claves privadas híbridas son las claves X25519. Las claves privadas KEM son solo para Alice. La codificación KEM y el orden de bytes se definen en [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Los nuevos tipos de Clave Pública de Firma son:
 
 ### SigningPublicKey
 
-Los nuevos tipos de clave pública de firma son:
+Las claves públicas de firma híbridas consisten en la clave Ed25519 seguida de la clave PQ, tal como se define en el [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). La codificación y el orden de bytes se definen en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 | Tipo | Longitud (bytes) | Desde | Uso |
 |------|-----------------|-------|-----|
@@ -228,11 +228,11 @@ Los nuevos tipos de clave pública de firma son:
 | MLDSA44ph | 1344 | 0.9.xx | Solo para archivos SU3, no para estructuras netdb |
 | MLDSA65ph | 1984 | 0.9.xx | Solo para archivos SU3, no para estructuras netdb |
 | MLDSA87ph | 2624 | 0.9.xx | Solo para archivos SU3, no para estructuras netdb |
-Las claves públicas de firma híbridas son la clave Ed25519 seguida de la clave PQ, como se indica en el [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). La codificación y el orden de bytes están definidos en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Los nuevos tipos de Signing Private Key (clave privada de firma) son:
 
 ### SigningPrivateKey
 
-Los nuevos tipos de clave privada de firma son:
+Las claves privadas de firma híbrida consisten en la clave Ed25519 seguida de la clave PQ (post-cuántica), tal como se define en el [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). La codificación y el orden de bytes se definen en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 | Tipo | Longitud (bytes) | Desde | Uso |
 |------|----------------|-------|-------|
@@ -245,11 +245,11 @@ Los nuevos tipos de clave privada de firma son:
 | MLDSA44ph | 2592 | 0.9.xx | Solo para archivos SU3, no para estructuras netdb. Ver propuesta 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Solo para archivos SU3, no para estructuras netdb. Ver propuesta 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Solo para archivos SU3, no para estructuras netdb. Ver propuesta 169 |
-Las claves privadas de firma híbridas son la clave Ed25519 seguida de la clave PQ, como se indica en el [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). La codificación y el orden de bytes se definen en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Los nuevos tipos de firma son:
 
 ### Firma
 
-Los nuevos tipos de firma son:
+Las firmas híbridas son la firma Ed25519 seguida de la firma PQ (post-cuántica), tal como se define en el [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Las firmas híbridas se verifican comprobando ambas firmas, y el proceso falla si cualquiera de ellas no es válida. La codificación y el orden de bytes se definen en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 | Tipo | Longitud (bytes) | Desde | Uso |
 |------|----------------|-------|-------|
@@ -266,7 +266,7 @@ Las firmas híbridas consisten en la firma Ed25519 seguida de la firma PQ, tal c
 
 ### Certificados de clave
 
-Los nuevos tipos de clave pública de firma son:
+Las claves públicas de firma híbridas consisten en la clave Ed25519 seguida de la clave PQ, tal como se define en el [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). La codificación y el orden de bytes se definen en [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 | Tipo | Código de Tipo | Longitud Total de Clave Pública | Desde | Uso |
 |------|-----------|-------------------------|-------|-------|
@@ -1295,7 +1295,7 @@ Diferente dirección/puerto que el no-PQ, o solo-PQ, no-firewall NO está soport
 
 Direcciones con firewall (sin IP publicada): En la dirección del router, publicar v=2 (como de costumbre). El parámetro pq DEBE publicarse en las direcciones con firewall para admitir el relay (retransmisión).
 
-Direcciones detrás de firewall (sin IP publicada): En la dirección del router, publicar v=2 (como es habitual). El parámetro pq DEBE publicarse en direcciones detrás de firewall, para soportar el reenvío (relay).
+Direcciones detrás de firewall (sin IP publicada): En la dirección del router, publicar v=2 (como es habitual). El parámetro pq DEBE publicarse en direcciones detrás de firewall, para permitir el reenvío (relay).
 
 En la especificación actual, los mensajes 1 y 2 están definidos para tener una cantidad "razonable" de relleno, con un rango recomendado de 0 a 31 bytes y sin un máximo especificado.
 
@@ -1533,7 +1533,7 @@ Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán 
 
 Verificar que SSU2 pueda manejar un RI firmado con MLDSA fragmentado en múltiples paquetes (¿6-8?).
 
-Compruebe y verifique que SSU2 pueda manejar RI firmados con MLDSA fragmentados en múltiples paquetes (6-8?).
+Compruebe y verifique que SSU2 pueda manejar RI firmado con MLDSA fragmentado en múltiples paquetes (6-8?).
 
 Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
@@ -1579,7 +1579,7 @@ Los routers verifican las firmas de los leaseSet y, por lo tanto, no pueden cone
 
 #### Destinos de tipo 12-17
 
-Los routers verifican las firmas de los leasesets y por lo tanto no pueden conectarse, ni recibir leasesets para destinos de tipo 12-17. Se necesitarían varios ciclos de lanzamiento para depurar y garantizar el soporte antes de habilitarlo por defecto.
+Los routers verifican las firmas de los leaseset y por lo tanto no pueden conectarse, ni recibir leasesets para destinos de tipo 12-17. Se necesitarían varios ciclos de lanzamiento para depurar y garantizar el soporte antes de habilitarlo por defecto.
 
 Estas pueden estar presentes en el LS con claves X25519 de tipo 4 más antiguas. Los routers más antiguos ignorarán las claves desconocidas.
 
@@ -1595,26 +1595,26 @@ Ratchet es la prioridad más alta. Los transportes son los siguientes. Las firma
 
 El despliegue de firmas también llegará un año o más después que el despliegue del cifrado, ya que no es posible ninguna compatibilidad con versiones anteriores. Además, la adopción de MLDSA en la industria será estandarizada por el CA/Browser Forum y las Autoridades de Certificación. Las CAs necesitan primero soporte de módulo de seguridad de hardware (HSM), que actualmente no está disponible [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Esperamos que el CA/Browser Forum impulse las decisiones sobre opciones de parámetros específicos, incluyendo si se deben admitir o requerir firmas compuestas [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-Si no podemos admitir los protocolos ratchet antiguo y nuevo en los mismos tunnels, la migración será mucho más difícil.
+La implementación de la firma también ocurrirá un año o más tarde que la implementación del cifrado, porque no es posible la compatibilidad hacia atrás.
+
+El trabajo sobre el soporte de firmas MLDSA en I2P está en pausa hasta finales de 2027 o 2028, a la espera de que los organismos de estándares seleccionen algoritmos, posiblemente reduzcan el tamaño de las claves y/o de las firmas, y promuevan la adopción industrial. Véase [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) y [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Además, la adopción de MLDSA en la industria será estandarizada por el CA/Browser Forum y las Autoridades de Certificación (CA). Las CA necesitan primero soporte de módulos de seguridad hardware (HSM), que actualmente no está disponible [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Esperamos que el CA/Browser Forum impulse las decisiones sobre opciones específicas de parámetros, incluyendo si apoyar o requerir firmas compuestas [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Hito | Objetivo |
 |-----------|--------|
-| Ratchet beta | Finales de 2025 |
-| Seleccionar mejor tipo de cifrado | Principios de 2026 |
-| NTCP2 beta | Principios de 2026 |
-| SSU2 beta | Mediados de 2026 |
-| Ratchet producción | Mediados de 2026 |
-| Ratchet predeterminado | Finales de 2026 |
-| Firma beta | Finales de 2026 |
-| NTCP2 producción | Finales de 2026 |
-| SSU2 producción | Principios de 2027 |
-| Seleccionar mejor tipo de firma | Principios de 2027 |
-| NTCP2 predeterminado | Principios de 2027 |
-| SSU2 predeterminado | Mediados de 2027 |
-| Firma producción | Mediados de 2027 |
+| Beta de Ratchet | Finales de 2025 |
+| Seleccionar mejor tipo de cifrado | Finales de 2025 |
+| Beta de NTCP2 | Principios de 2026 |
+| Beta de SSU2 | Principios de 2026 |
+| Producción de Ratchet | Principios de 2026 |
+| Ratchet predeterminado | Principios de 2026 |
+| Beta de firma (Signature) | ¿Finales de 2027? |
+| Producción de NTCP2 | Mediados de 2026 |
+| Producción de SSU2 | Mediados de 2026 |
+| Seleccionar mejor tipo de firma | ¿2028? |
+| Producción de firma (Signature) | ¿2028? |
 ## Migración
 
-Deberíamos poder simplemente probar uno tras otro, como hicimos con X25519, para ser verificados.
+Si no podemos admitir tanto los protocolos de trinquete antiguos como los nuevos en los mismos túneles, la migración será mucho más difícil.
 
 Deberíamos poder simplemente intentar uno y luego el otro, como hicimos con X25519, para comprobarlo.
 
@@ -1652,7 +1652,6 @@ Deberíamos poder simplemente intentar uno y luego el otro, como hicimos con X25
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
-* [PLANTS](https://datatracker.ietf.org/wg/plants/about/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)
