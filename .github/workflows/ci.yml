@@ -60,6 +60,10 @@ jobs:
       - name: Build with Hugo
         run: hugo --minify --gc
 
+      - name: Copy extensionless static files missed by Hugo
+        run: |
+          cp -r static/.well-known/matrix public/.well-known/
+
       - name: Optimize Images (SVG & WebP Conversion)
         if: github.ref == 'refs/heads/main'
         run: |
@@ -213,6 +217,11 @@ jobs:
         if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
         run: hugo --minify --gc
 
+      - name: Copy extensionless static files missed by Hugo
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+        run: |
+          cp -r static/.well-known/matrix public/.well-known/
+
       - name: Download Build Artifact
         if: github.event_name == 'push'
         uses: actions/download-artifact@v4
@@ -255,6 +264,11 @@ jobs:
       - name: Build Site (for dispatch)
         if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
         run: hugo --minify --gc
+
+      - name: Copy extensionless static files missed by Hugo
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+        run: |
+          cp -r static/.well-known/matrix public/.well-known/
 
       - name: Download Build Artifact
         if: github.event_name == 'push'
@@ -311,6 +325,11 @@ jobs:
       - name: Build Site (for dispatch)
         if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
         run: hugo --minify --gc
+
+      - name: Copy extensionless static files missed by Hugo
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+        run: |
+          cp -r static/.well-known/matrix public/.well-known/
 
       - name: Download Build Artifact
         if: github.event_name == 'push'
