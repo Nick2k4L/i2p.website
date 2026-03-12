@@ -85,11 +85,11 @@ See the Priorities and Rollout section below for details.
 | Protocol / Feature | Status |
 |--------------------|--------|
 | Hybrid MLKEM Ratchet and LS | Approved 2025-06; beta 2025-08; release 2025-11 |
-| Hybrid MLKEM NTCP2 | Tested on live net, Approved 2026-02; beta target 2026-05; release target 2026-08 |
-| Hybrid MLKEM SSU2 | Approved 2026-02; beta target 2026-08; release target 2026-11 |
-| MLDSA SigTypes 12-14 | Proposal is stable but may not be finalized until 2027 |
-| MLDSA Dests | Tested on live net, requires net upgrade for floodfill support |
-| Hybrid SigTypes 15-17 | Preliminary |
+| Hybrid MLKEM NTCP2 | Tested on live net, Approved 2026-02; beta target 2026-02; release target 2026-05 |
+| Hybrid MLKEM SSU2 | Approved 2026-02; beta target 2026-05; release target 2026-08 |
+| MLDSA SigTypes 12-14 | Preliminary, on hold until 2027 |
+| MLDSA Dests | Preliminary, on hold until 2027, Tested on live net, requires net upgrade for floodfill support |
+| Hybrid SigTypes 15-17 | Preliminary, on hold until 2027 |
 | Hybrid Dests | |
 
 
@@ -2137,6 +2137,14 @@ Signatures are the lowest priority.
 
 Signature rollout will also be a year or more later than encryption rollout,
 because no backward compatibility is possible.
+
+Work on MLDSA signature support in I2P is on hold until late 2027 or 2028,
+pending work by standards bodies to select algorithms, possibly reduce
+key and/or signature sizes, and promote industry adoption.
+See
+[CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+and
+[PLANTS](https://datatracker.ietf.org/wg/plants/about/).
 Also, MLDSA adoption in the industry will be standardized by the CA/Browser Forum
 and Certificate Authorities. CAs need hardware security module (HSM) support
 first, which is not currently available [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/).
@@ -2149,18 +2157,16 @@ choices, including whether to support or require composite signatures [IETF draf
 | Milestone | Target |
 |-----------|--------|
 | Ratchet beta | Late 2025 |
-| Select best enc type | Early 2026 |
+| Select best enc type | Late 2025 |
 | NTCP2 beta | Early 2026 |
-| SSU2 beta | Mid 2026 |
-| Ratchet production | Mid 2026 |
-| Ratchet default | Late 2026 |
-| Signature beta | Late 2026 |
-| NTCP2 production | Late 2026 |
-| SSU2 production | Early 2027 |
-| Select best sig type | Early 2027 |
-| NTCP2 default | Early 2027 |
-| SSU2 default | Mid 2027 |
-| Signature production | Mid 2027 |
+| SSU2 beta | Early 2026 |
+| Ratchet production | Early 2026 |
+| Ratchet default | Early 2026 |
+| Signature beta | Late 2027? |
+| NTCP2 production | Mid 2026 |
+| SSU2 production | Mid 2026 |
+| Select best sig type | 2028? |
+| Signature production | 2028? |
 
 
 
