@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-11"
+lastupdated: "2026-03-12"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -18,9 +18,9 @@ toc: true
 | Protocol / Feature | Status |
 |--------------------|--------|
 | Ratchet | Complete in Java I2P and i2pd |
-| NTCP2 | Beta Q1 2026 |
-| SSU2 | Implementation starting soon, Beta Q23 2026 |
-| MLDSA SigTypes | Low priority, probably 2027+ |
+| NTCP2 | Beta Q1 2026, release Q2 2026 |
+| SSU2 | Implementation in progress, Beta Q2 2026, release Q3 2026 |
+| MLDSA SigTypes | On hold until 2027-2028, see [PLANTS](https://datatracker.ietf.org/wg/plants/about/) |
 
 
 ## Overview
@@ -138,6 +138,20 @@ This will increase by 8x to 15x depending on algorithm.
 
 
 ### Signatures
+
+NOTE:
+All information in this proposal related to MLDSA signatures is preliminary.
+Work on MLDSA signature support in I2P is on hold until late 2027 or 2028,
+pending work by standards bodies to select algorithms, possibly reduce
+key and/or signature sizes, and promote industry adoption.
+See
+[CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+and
+[PLANTS](https://datatracker.ietf.org/wg/plants/about/).
+
+
+
+
 
 We will support PQ and hybrid signatures in the following structures:
 
@@ -2195,6 +2209,7 @@ We should be able to just try one-then-the-other, as we did with X25519, to be p
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
 * [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [PLANTS](https://datatracker.ietf.org/wg/plants/about/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
 * [RFC-2104](https://tools.ietf.org/html/rfc2104)
