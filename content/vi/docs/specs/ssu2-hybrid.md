@@ -662,23 +662,13 @@ Các thư viện Bouncycastle, BoringSSL và WolfSSL hiện đã hỗ trợ MLKE
 
 ### Nhận dạng lưu lượng đến
 
-Chúng ta đặt bit MSB của khóa tạm thời (key[31] & 0x80) trong session request để chỉ ra rằng đây là một kết nối hybrid. Điều này cho phép chúng ta chạy đồng thời cả NTCP tiêu chuẩn và NTCP hybrid trên cùng một cổng. Chỉ một biến thể hybrid được hỗ trợ cho kết nối đến (inbound) và được quảng bá trong địa chỉ router. Ví dụ: pq=3 hoặc pq=4.
-
-#### Làm rối mã
-
-Với tư cách là Alice, để thiết lập kết nối PQ, trước khi thực hiện obfuscation (che giấu), hãy đặt X[31] |= 0x80. Điều này làm cho X trở thành một khóa công khai X25519 không hợp lệ. Sau khi obfuscation, AES-CBC sẽ ngẫu nhiên hóa nó. Bit có trọng số cao nhất (MSB) của X sẽ ngẫu nhiên sau khi obfuscation.
-
-Với tư cách là Bob, hãy kiểm tra xem (X[31] & 0x80) != 0 sau khi de-obfuscation (giải mã làm mờ). Nếu điều kiện đúng, đây là kết nối PQ.
-
-Phiên bản router tối thiểu yêu cầu cho NTCP2-PQ vẫn chưa được xác định.
-
-Lưu ý: Mã loại (type codes) chỉ dành cho mục đích nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ định trong các địa chỉ router.
+Trường phiên bản trong phần tiêu đề dài của thông điệp Yêu cầu phiên là 2 đối với không dùng mật mã hậu lượng tử (non-PQ), 3 đối với MLKEM-512, và 4 đối với MLKEM-768. Điều này cho phép chúng ta chạy đồng thời cả SSU2 tiêu chuẩn và SSU2 lai trên cùng một cổng, đồng thời hỗ trợ cả hai biến thể MLKEM cùng lúc.
 
 ## Khả năng tương thích của Router
 
 ### Tên Transport
 
-Trong mọi trường hợp, hãy sử dụng tên transport NTCP2 như thông thường. Các router cũ hơn sẽ bỏ qua tham số pq và kết nối bằng NTCP2 tiêu chuẩn như bình thường.
+Trong mọi trường hợp, hãy sử dụng tên giao thức SSU2 như thông thường. Các bộ định tuyến cũ hơn sẽ bỏ qua tham số pq và kết nối bằng SSU2 tiêu chuẩn như thường lệ.
 
 ## Tài liệu tham khảo
 
@@ -701,7 +691,6 @@ Trong mọi trường hợp, hãy sử dụng tên transport NTCP2 như thông t
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

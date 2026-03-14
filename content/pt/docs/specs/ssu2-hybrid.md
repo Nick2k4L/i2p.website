@@ -342,7 +342,7 @@ inalterado
 
 #### SessionRequest (Tipo 0)
 
-Alterações: o SSU2 atual contém apenas os dados do bloco em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes dos dados do bloco, contendo a chave pública PQ criptografada.
+Alterações: O SSU2 atual contém apenas os dados do bloco na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
 
 Mudança no KDF para Proteção contra Spoofing: Para resolver os problemas levantados na Proposta 165 [Prop165]_, mas com uma solução diferente, modificamos o KDF para Session Request. Isso se aplica apenas a sessões PQ. O KDF para sessões não-PQ permanece inalterado.
 
@@ -662,23 +662,13 @@ As bibliotecas Bouncycastle, BoringSSL e WolfSSL já suportam MLKEM e MLDSA. O s
 
 ### Identificação de Tráfego de Entrada
 
-Definimos o MSB (bit mais significativo) da chave efêmera (key[31] & 0x80) na solicitação de sessão para indicar que esta é uma conexão híbrida. Isso nos permite executar tanto o NTCP padrão quanto o NTCP híbrido na mesma porta. Apenas uma variante híbrida é suportada para entrada (inbound) e anunciada no endereço do router. Por exemplo, pq=3 ou pq=4.
-
-#### Ofuscação
-
-Como Alice, para uma conexão PQ, antes da ofuscação, defina X[31] |= 0x80. Isso torna X uma chave pública X25519 inválida. Após a ofuscação, o AES-CBC irá aleatorizar. O MSB de X será aleatório após a ofuscação.
-
-Como Bob, teste se (X[31] & 0x80) != 0 após a desofuscação. Se for o caso, trata-se de uma conexão PQ.
-
-A versão mínima do router necessária para NTCP2-PQ está por ser definida.
-
-Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão do tipo 4, e o suporte será indicado nos endereços do router.
+O campo de versão no cabeçalho longo da mensagem de Solicitação de Sessão é 2 para não-PQ, 3 para MLKEM-512 e 4 para MLKEM-768. Isso nos permite executar tanto o SSU2 padrão quanto o SSU2 híbrido na mesma porta, e suportar ambas as variantes de MLKEM simultaneamente.
 
 ## Compatibilidade do Router
 
 ### Nomes de Transporte
 
-Em todos os casos, utilize o nome do transporte NTCP2 como de costume. Roteadores mais antigos ignorarão o parâmetro pq e se conectarão com o NTCP2 padrão como de costume.
+Em todos os casos, use o nome do transporte SSU2 como de costume. Roteadores mais antigos ignorarão o parâmetro pq e se conectarão com o SSU2 padrão como de costume.
 
 ## Referências
 
@@ -701,7 +691,6 @@ Em todos os casos, utilize o nome do transporte NTCP2 como de costume. Roteadore
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
