@@ -3,48 +3,36 @@
 
 # Static assets - long cache
 /*.webp
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.jpg
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.jpeg
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.png
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.svg
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.css
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.js
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.woff
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 /*.woff2
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 # HTML - shorter cache
 /*.html
   Cache-Control: public, max-age=3600
 
 # Images directory
 /images/*
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 # CSS directory
 /css/*
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 # JS directory
 /js/*
-  Cache-Control: public, max-age=604800, immutable
-
+  Cache-Control: public, max-age=604800
 # Matrix well-known delegation
 /.well-known/matrix/*
   Content-Type: application/json
