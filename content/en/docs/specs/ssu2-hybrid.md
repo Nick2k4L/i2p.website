@@ -818,37 +818,18 @@ OpenSSL support is be in their 3.5 release April 8, 2025 [OpenSSL](https://opens
 
 ### Inbound Traffic Identification
 
-We set the MSB of the ephemeral key
-(key[31] & 0x80) in the session request to indicate that this
-is a hybrid connection.
-This allows us to run both standard NTCP and hybrid NTCP
-on the same port.
-Only one hybrid variant is supported for inbound, and advertised in the router address.
-For example, pq=3 or pq=4.
-
-
-#### Obfuscation
-
-As Alice, for a PQ connection, before obfuscation, set X[31] |= 0x80.
-This makes X an invalid X25519 public key.
-After obfuscation, AES-CBC will randomize it.
-The MSB of X will be random after obfuscation.
-
-As Bob, test if (X[31] & 0x80) != 0 after de-obfuscation.
-If so, it's a PQ connection.
-
-The minimum router version required for NTCP2-PQ is TBD.
-
-Note: Type codes are for internal use only. Routers will remain type 4,
-and support will be indicated in the router addresses.
+The version field in the long header of the Session Request message
+is 2 for non-PQ, 3 for MLKEM-512, and 4 for MLKEM-768.
+This allows us to run both standard SSU2 and hybrid SSU2
+on the same port, and support both MLKEM variants at once.
 
 
 ## Router Compatibility
 
 ### Transport Names
 
-In all cases, use the NTCP2 transport name as usual.
-Older routers will ignore the pq parameter and connect with standard NTCP2 as usual.
+In all cases, use the SSU2 transport name as usual.
+Older routers will ignore the pq parameter and connect with standard SSU2 as usual.
 
 
 
@@ -873,7 +854,6 @@ Older routers will ignore the pq parameter and connect with standard NTCP2 as us
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
