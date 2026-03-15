@@ -1096,7 +1096,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1382,6 +1382,7 @@ Unfortunately, the Router Info, even when gzip compressed in the RI block, may e
 The headers for each packet are constructed as follows:
 
 - ALL headers are short headers with the same packet number 0
+- ALL headers are type = 2 (session confirmed)
 - ALL headers contain a "frag" field, with the fragment number and total number of fragments
 - The unencrypted header of fragment 0 is the associated data (AD) for the "jumbo" message
 - Each header is encrypted using the last 24 bytes of data in THAT packet
