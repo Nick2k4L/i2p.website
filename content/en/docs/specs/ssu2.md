@@ -3650,7 +3650,7 @@ Alice                         Bob                  Charlie
 4.      <-------------- RelayResponse
 ```
 
-NOTE: RI may be sent either I2NP Database Store messages in I2NP blocks, or as RI blocks (if small enough). These may be contained in the same packets as the ralay blocks, if small enough.
+NOTE: RI may be sent either I2NP Database Store messages in I2NP blocks, or as RI blocks (if small enough). These may be contained in the same packets as the relay blocks, if small enough.
 
 In SSU 1, Charlie's router info contains the IP, port, intro key, relay tag, and expiration of each introducer.
 
