@@ -342,7 +342,7 @@ unchanged
 
 #### SessionRequest (Tür 0)
 
-Değişiklikler: Mevcut SSU2 yalnızca tek bir ChaCha bölümünde blok verilerini içerir. ML-KEM ile blok verilerinden önce şifrelenmiş kuantum sonrası genel anahtarı içeren yeni bir ChaCha bölümü eklenecek.
+Değişiklikler: Mevcut SSU2, ChaCha bölümünde yalnızca blok verilerini içermektedir. ML-KEM ile ChaCha bölümü, şifrelenmiş PQ (post-kuantum) genel anahtarını da içerecektir.
 
 Sahte Kimlik Koruması için KDF Değişikliği: Proposal 165 [Prop165]_'te dile getirilen sorunları farklı bir çözümle ele almak amacıyla, Session Request için KDF'yi değiştiriyoruz. Bu yalnızca PQ (post-kuantum) oturumları için geçerlidir. PQ olmayan oturumlar için KDF değişmeden kalmaktadır.
 
@@ -662,23 +662,13 @@ Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı des
 
 ### Gelen Trafik Tanımlama
 
-Bunun hibrit bir bağlantı olduğunu belirtmek için oturum isteğindeki geçici anahtarın MSB'sini (key[31] & 0x80) ayarlarız. Bu, aynı port üzerinde hem standart NTCP hem de hibrit NTCP çalıştırmamıza olanak tanır. Gelen bağlantılar için yalnızca bir hibrit varyant desteklenir ve bu varyant router adresinde duyurulur. Örneğin, pq=3 veya pq=4.
-
-#### Gizleme
-
-Alice olarak, bir PQ bağlantısı için, gizleme işleminden önce X[31] |= 0x80 olarak ayarlayın. Bu, X'i geçersiz bir X25519 açık anahtarı haline getirir. Gizleme işleminden sonra AES-CBC onu rastgele hale getirecektir. Gizleme işleminin ardından X'in MSB'si (en yüksek değerli bit) rastgele olacaktır.
-
-Bob olarak, gizleme kaldırıldıktan sonra (X[31] & 0x80) != 0 olup olmadığını test edin. Eğer öyleyse, bu bir PQ (post-kuantum) bağlantısıdır.
-
-NTCP2-PQ için gereken minimum router sürümü henüz belirlenmemiştir.
-
-Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar 4. tür olarak kalacak ve destek, router adreslerinde belirtilecektir.
+Oturum İsteği mesajının uzun başlığında yer alan sürüm alanı, PQ olmayanlar için 2, MLKEM-512 için 3 ve MLKEM-768 için 4'tür. Bu, standart SSU2 ve hibrit SSU2'yi aynı portta çalıştırabilmemizi ve her iki MLKEM çeşidini aynı anda destekleyebilmemizi sağlar.
 
 ## Router Uyumluluğu
 
 ### Taşıma Adları
 
-Her durumda, NTCP2 transport adını her zamanki gibi kullanın. Eski router'lar pq parametresini görmezden gelecek ve standart NTCP2 ile her zamanki gibi bağlanacaktır.
+Tüm durumlarda, SSU2 taşıma adını olduğu gibi kullanın. Eski yönlendiriciler pq parametresini yoksayar ve her zamanki gibi standart SSU2 ile bağlanır.
 
 ## Referanslar
 
@@ -701,7 +691,6 @@ Her durumda, NTCP2 transport adını her zamanki gibi kullanın. Eski router'lar
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

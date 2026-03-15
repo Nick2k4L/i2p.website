@@ -342,7 +342,7 @@ unverändert
 
 #### SessionRequest (Typ 0)
 
-Änderungen: Das aktuelle SSU2 enthält nur die Blockdaten in einem einzigen ChaCha-Abschnitt. Mit ML-KEM wird ein neuer ChaCha-Abschnitt vor den Blockdaten hinzugefügt, der den verschlüsselten PQ-Öffentlichen-Schlüssel enthält.
+Änderungen: Das aktuelle SSU2 enthält im ChaCha-Abschnitt nur die Block-Daten. Mit ML-KEM wird der ChaCha-Abschnitt zusätzlich den verschlüsselten öffentlichen PQ-Schlüssel enthalten.
 
 KDF-Änderung zum Schutz vor Spoofing: Um die in Proposal 165 [Prop165]_ aufgeworfenen Probleme zu lösen, jedoch mit einem anderen Ansatz, modifizieren wir die KDF für Session Request. Dies gilt ausschließlich für PQ-Sessions. Die KDF für Nicht-PQ-Sessions bleibt unverändert.
 
@@ -662,23 +662,13 @@ Die Bibliotheken Bouncycastle, BoringSSL und WolfSSL unterstützen MLKEM und MLD
 
 ### Identifizierung des eingehenden Datenverkehrs
 
-Wir setzen das MSB (Most Significant Bit) des ephemeren Schlüssels (key[31] & 0x80) in der Session-Request, um anzuzeigen, dass es sich um eine Hybrid-Verbindung handelt. Dies ermöglicht es uns, sowohl Standard-NTCP als auch Hybrid-NTCP auf demselben Port zu betreiben. Für eingehende Verbindungen wird nur eine Hybrid-Variante unterstützt und in der router-Adresse bekanntgegeben. Zum Beispiel pq=3 oder pq=4.
-
-#### Verschleierung
-
-Als Alice, für eine PQ-Verbindung, vor der Verschleierung, setze X[31] |= 0x80. Dies macht X zu einem ungültigen X25519-Public-Key. Nach der Verschleierung wird AES-CBC ihn randomisieren. Das MSB von X wird nach der Verschleierung zufällig sein.
-
-Als Bob prüfen, ob (X[31] & 0x80) != 0 nach der De-Verschleierung gilt. Falls ja, handelt es sich um eine PQ-Verbindung.
-
-Die mindestens erforderliche Router-Version für NTCP2-PQ ist noch festzulegen.
-
-Hinweis: Typ-Codes sind nur für den internen Gebrauch bestimmt. Router bleiben vom Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
+Das Versionsfeld im langen Header der Session Request-Nachricht ist 2 für nicht-PQ, 3 für MLKEM-512 und 4 für MLKEM-768. Dies ermöglicht es uns, sowohl standardmäßiges SSU2 als auch hybrides SSU2 am selben Port auszuführen und beide MLKEM-Varianten gleichzeitig zu unterstützen.
 
 ## Router-Kompatibilität
 
 ### Transportbezeichnungen
 
-Verwende in allen Fällen wie gewohnt den NTCP2-Transportnamen. Ältere Router ignorieren den pq-Parameter und verbinden sich wie üblich über Standard-NTCP2.
+Verwenden Sie in allen Fällen wie gewohnt den SSU2-Transportnamen. Ältere Router werden den pq-Parameter ignorieren und wie üblich mit Standard-SSU2 eine Verbindung herstellen.
 
 ## Referenzen
 
@@ -701,7 +691,6 @@ Verwende in allen Fällen wie gewohnt den NTCP2-Transportnamen. Ältere Router i
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

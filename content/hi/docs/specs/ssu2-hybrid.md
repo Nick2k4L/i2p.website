@@ -662,23 +662,13 @@ Bouncycastle, BoringSSL, और WolfSSL लाइब्रेरी अब MLKEM
 
 ### इनबाउंड ट्रैफ़िक पहचान
 
-हम session request में ephemeral key का MSB (key[31] & 0x80) सेट करते हैं ताकि यह इंगित किया जा सके कि यह एक hybrid connection है। इससे हम एक ही port पर standard NTCP और hybrid NTCP दोनों चला सकते हैं। inbound के लिए केवल एक hybrid variant समर्थित है, और इसे router address में advertise किया जाता है। उदाहरण के लिए, pq=3 या pq=4।
-
-#### अस्पष्टीकरण (Obfuscation)
-
-Alice के रूप में, एक PQ कनेक्शन के लिए, obfuscation से पहले, X[31] |= 0x80 सेट करें। इससे X एक अमान्य X25519 public key बन जाती है। Obfuscation के बाद, AES-CBC इसे randomize कर देगा। Obfuscation के बाद X का MSB (Most Significant Bit) random होगा।
-
-Bob के रूप में, de-obfuscation के बाद जाँचें कि (X[31] & 0x80) != 0 है या नहीं। यदि हाँ, तो यह एक PQ कनेक्शन है।
-
-NTCP2-PQ के लिए आवश्यक न्यूनतम router संस्करण TBD है।
-
-नोट: Type codes केवल आंतरिक उपयोग के लिए हैं। Routers type 4 ही रहेंगे, और समर्थन router addresses में इंगित किया जाएगा।
+गैर-पीक्यू के लिए सत्र अनुरोध संदेश के लंबे हेडर में संस्करण फ़ील्ड 2 है, एमएलकेईएम-512 के लिए 3 है, और एमएलकेईएम-768 के लिए 4 है। इससे हमें एक ही पोर्ट पर मानक एसएसयू2 और हाइब्रिड एसएसयू2 दोनों चलाने और दोनों एमएलकेईएम संस्करणों का एक साथ समर्थन करने की अनुमति मिलती है।
 
 ## Router संगतता
 
 ### Transport Names
 
-सभी मामलों में, NTCP2 transport नाम का उपयोग सामान्य रूप से करें। पुराने router pq पैरामीटर को अनदेखा कर देंगे और सामान्य रूप से standard NTCP2 के साथ कनेक्ट होंगे।
+सभी मामलों में, सामान्य रूप से SSU2 ट्रांसपोर्ट नाम का उपयोग करें। पुराने राउटर pq पैरामीटर को अनदेखा कर देंगे और मानक SSU2 के साथ सामान्य रूप से कनेक्ट हो जाएंगे।
 
 ## संदर्भ
 
@@ -701,7 +691,6 @@ NTCP2-PQ के लिए आवश्यक न्यूनतम router सं
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

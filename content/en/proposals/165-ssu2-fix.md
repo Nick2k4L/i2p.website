@@ -3,14 +3,14 @@ title: "I2P proposal #165: SSU2 fix"
 number: "165"
 author: "weko, orignal, the Anonymous, zzz"
 created: "2024-01-19"
-lastupdated: "2024-11-17"
-status: "Open"
+lastupdated: "2026-03-15"
+status: "Rejected"
 thread: "http://i2pforum.i2p/viewforum.php?f=13"
 target: "0.9.62"
 toc: true
 ---
 
-Proposal by weko, orignal, the Anonymous and zzz.
+Status: Closed, obsolete. Replaced by a different fix integrated into proposal 169.
 
 
 ### Overview
