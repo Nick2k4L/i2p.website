@@ -10,58 +10,51 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## 概述
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+本提案旨在提高引入（introduction）的成功率。
 
 
-## Design
+## 动机
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+引入者（introducer）会在一定时间后过期，但该信息并未在路由器信息（Router Info）中公布。目前路由器必须使用启发式方法来估计某个引入者是否已失效。
 
 
-## Specification
+## 设计
+
+在包含引入者的 SSU 路由器地址（Router Address）中，发布者可选择性地为每个引入者包含过期时间。
+
+
+## 规范
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: 引入者编号 (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: 自纪元以来的秒数（非毫秒）。
 ```
 
-### Notes
+### 说明
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* 每个过期时间必须大于路由器信息（Router Info）的发布日期，且不超过发布日期之后的6小时。
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* 发布路由器和引入者应尽量保证引入者在过期前有效，但无法保证这一点。
 
-* Routers should not use a published introducer after its expiration.
+* 路由器不应在引入者过期后继续使用该引入者。
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* 引入者过期时间位于路由器地址（Router Address）的映射中，而非路由器地址中当前未使用的8字节过期字段。
 
-**Example:** `iexp0=1486309470`
+**示例：** `iexp0=1486309470`
 
 
-## Migration
+## 迁移
 
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+无问题。实现为可选。
+向后兼容性有保障，因为旧版路由器会忽略未知参数。
 
 
-## References
+## 参考资料
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

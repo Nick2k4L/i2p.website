@@ -6,92 +6,89 @@ author: "str4d"
 description: "2018 will be the year of new protocols, new collaborations, and a more refined focus."
 categories: ["roadmap"]
 ---
+أحد الأمور العديدة التي ناقشناها في 34C3 هو ما ينبغي أن نركز عليه في العام القادم. وبشكل خاص، أردنا خارطة طريق تكون واضحة بشأن ما نريد التأكد من إنجازه، مقابل ما سيكون من الجيد وجوده، وأن نتمكن من مساعدة المبتدئين على الانضمام إلى إحدى هاتين الفئتين. وإليك ما توصلنا إليه:
 
-One of the many things we discussed at 34C3 was what we should focus on for the coming year. In particular, we wanted a roadmap that was clear about what we want to ensure we get done, vs what would be really nice to have, and be able to help onboard newcomers to either category. Here is what we came up with:
+## الأولوية: تشفير (وأمور تتعلق بالتشفير) جديد!
 
-## Priority: New crypto(graphy!)
+ما زالت العديد من البدائل والبروتوكولات الحالية تحتفظ بتصاميمها الأصلية من حوالي عام 2005، وتحتاج إلى تحسين. لدينا عدد من المقترحات المفتوحة منذ عدة سنوات تحتوي على أفكار، لكن التقدم كان بطيئًا. اتفقنا جميعًا على أن هذا يجب أن يكون أولويتنا القصوى لعام 2018. المكونات الأساسية هي:
 
-Many of the current primitives and protocols still retain their original designs from circa 2005, and need improvement. We have had a number of open proposals for several years with ideas, but forward progress has been slow. We all agreed that this needs to be our top priority for 2018. The core components are:
+- بروتوكولات نقل جديدة (لتحل محل NTCP و SSU). انظر Prop111.
+- بروتوكول تشفير بصل جديد لبناء الأنفاق واستخدامها.
+- أنواع بيانات NetDB جديدة لتمكين Destinations محسّنة. انظر Prop123.
+- ترقية بروتوكول من طرف إلى طرف (لإحلاله محل ElGamal).
 
-- New transport protocols (to replace NTCP and SSU). See Prop111.
-- New onion-encryption protocol for building and using tunnels.
-- New NetDB datatypes to enable enhanced Destinations. See Prop123.
-- Upgraded end-to-end protocol (replacing ElGamal).
+ينقسم العمل على هذه الأولوية إلى عدة مجالات:
 
-Work on this priority falls into several areas:
+- كتابة المقترحات.
+- كتابة تطبيقات عملية يمكننا اختبارها.
+- مراجعة المقترحات.
 
-- Writing proposals.
-- Writing working implementations of them that we can test.
-- Reviewing proposals.
+لا يمكننا إصدار مواصفات بروتوكولات جديدة عبر الشبكة بأكملها دون العمل في كل هذه المجالات.
 
-We cannot release new protocol specifications across the entire network without work on all of these areas.
+## من الجيد وجودها: إعادة استخدام الشيفرة
 
-## Nice-to-have: Code reuse
+إحدى الفوائد من بدء العمل المذكور أعلاه الآن هي أنه على مدار السنوات القليلة الماضية، كانت هناك جهود مستقلة لإنشاء بروتوكولات وبيئات بروتوكولات بسيطة تحقق العديد من الأهداف التي نسعى إليها في بروتوكولاتنا الخاصة، وحظيت بقبول واسع في المجتمع الأوسع. ومن خلال الاستفادة من هذا العمل، نحصل على "تأثير مضاعف للقوة":
 
-One of the benefits of starting the above work now, is that over the last few years there have been independent efforts to create simple protocols and protocol frameworks that achieve many of the aims we have for our own protocols, and have gained traction with the wider community. By leveraging this work, we get a "force multiplier" effect:
+- نستفيد من تصاميم البروتوكولات، وإثباتات الأمان، والشيفرة المكتوبة من قبل آخرين، مما يقلل من كمية العمل المطلوبة للوصول إلى نفس مستوى اكتمال الميزات وضمانات الأمان.
 
-- We benefit from protocol designs, security proofs, and code written by others, reducing the amount of work we need to do for the same level of feature-completeness and security assurances.
+- يمكن للمجتمعات الأخرى الاستفادة من العمل الذي نقوم به، مما يزيد من اهتمامهم بالتعاون معنا، والتفكير في I2P ككل.
 
-- Work we do can be leveraged by other communities, increasing their interest in collaborating with us, and thinking about I2P as a whole.
+سأعتمد بشكل خاص في مقترحاتي على [إطار عمل Noise Protocol](https://noiseprotocol.org/)، و[صيغة حزمة SPHINX](https://katzenpost.mixnetworks.org/docs/specs/sphinx.html). ولديّ تعاونات مقررة مع عدة أشخاص خارج I2P لهذه المواضيع!
 
-My proposals in particular will be leveraging the [Noise Protocol Framework](https://noiseprotocol.org/), and the [SPHINX packet format](https://katzenpost.mixnetworks.org/docs/specs/sphinx.html). I have collaborations lined up with several people outside I2P for these!
+## الأولوية: التعاون عبر الإنترنت المفتوح (Clearnet)
 
-## Priority: Clearnet collaboration
+في هذا السياق، كنا نبني اهتمامًا تدريجيًا على مدار الستة أشهر الماضية أو نحو ذلك. عبر PETS2017 و34C3 وRWC2018، أجريت مناقشات جيدة جدًا حول السبل التي يمكننا من خلالها تحسين التعاون مع المجتمع الأوسع. هذا مهم جدًا لضمان حصولنا على أكبر قدر ممكن من المراجعات للبروتوكولات الجديدة. أكبر عائق رأيته هو أن غالبية تعاون تطوير I2P يحدث حاليًا داخل I2P نفسه، مما يزيد بشكل كبير من الجهد المطلوب للمساهمة.
 
-On that topic, we've been slowly building interest over the last six months or so. Across PETS2017, 34C3, and RWC2018, I've had some very good discussions about ways in which we can improve collaboration with the wider community. This is really important to ensure we can garner as much review as possible for new protocols. The biggest blocker I've seen is the fact that the majority of I2P development collaboration currently happens inside I2P itself, which significantly increases the effort required to contribute.
+الأولويتان في هذا المجال هما:
 
-The two priorities in this area are:
+- إنشاء منتدى تطوير تابع للمشروع يمكن الوصول إليه من داخل وخارج I2P.
 
-- Set up a project-run development forum that is accessible both inside and outside I2P.
+- إنشاء قوائم بريدية لمراجعة ومناقشة المقترحات (ربما متصلة بالمنتدى أعلاه).
 
-- Set up mailing lists for review and discussion of proposals (possibly connected to the above forum).
+أهداف أخرى تُصنف على أنها "من الجيد وجودها":
 
-Other goals which are classed as nice-to-have:
+- إعداد مسار عملي من git إلى mtn، لتمكيننا من طلب مساهمات من الإنترنت المفتوح على GitHub مع الحفاظ على بيئة التطوير الرسمية على Monotone.
 
-- Set up a usable git-to-mtn pathway, to enable us to effectively solicit clearnet contributions on GitHub while keeping the canonical dev environment on Monotone.
+- كتابة "ورقة موقف" تشرح I2P بدقة للجمهور الأكاديمي، وتحدد موقعه ضمن الأدبيات الحالية.
 
-- Write a "position paper" that accurately explains I2P to academic audiences, and puts it in context with existing literature.
+أتوقع أن التعاون مع الأشخاص خارج I2P سيتم بالكامل على GitHub، لتقليل الاحتكاك إلى الحد الأدنى.
 
-I expect that collaborations with people outside I2P will be done entirely on GitHub, for minimal friction.
+## الأولوية: التحضير لإصدارات طويلة العمر
 
-## Priority: Preparation for long-lived releases
+أصبح I2P الآن في Debian Sid (مستودعهم غير المستقر) الذي سيُستقر في حوالي سنة ونصف، وقد تم أيضًا استيراده إلى مستودع Ubuntu ليُدرج في الإصدار LTS القادم في أبريل. سنبدأ في رؤية إصدارات I2P تبقى لسنوات، وعلينا التأكد من قدرتنا على التعامل مع وجودها في الشبكة.
 
-I2P is now in Debian Sid (their unstable repo) which will stablilise in around a year and a half, and has also been pulled into the Ubuntu repository for inclusion in the next LTS release in April. We are going to start having I2P versions that end up hanging around for years, and we need to ensure we can handle their presence in the network.
+الهدف الأساسي هنا هو نشر أكبر عدد ممكن من البروتوكولات الجديدة عمليًا في العام القادم، لاستهداف الإصدار المستقر التالي من Debian. بالنسبة لتلك التي تتطلب عمليات نشر تمتد لعدة سنوات، ينبغي أن نُدخل تغييرات التوافق الأمامي في أبكر وقت ممكن.
 
-The primary goal here is to roll out as many of the new protocols as we feasibly can in the next year, to hit the next Debian stable release. For those that require multi-year rollouts, we should incorporate the forward-compatability changes as early as we can.
+## الأولوية: تحويل التطبيقات الحالية إلى إضافات (Pluginization)
 
-## Priority: Pluginization of current apps
+يشجع نموذج Debian على وجود حزم منفصلة للمكونات المنفصلة. اتفقنا على أن فصل التطبيقات الحالية المكتوبة بلغة Java عن جهاز التوجيه الأساسي (الراوتر) سيكون مفيدًا لأسباب عديدة:
 
-The Debian model encourages having separate packages for separate components. We agreed that decoupling the currently-bundled Java applications from the core Java router would be beneficial for several reasons:
+- يُثبت الحدود بين التطبيقات والراوتر.
+- يجب أن يسهل تشغيل هذه التطبيقات مع أجهزة توجيه غير مبنية على Java.
+- سيسمح للجهات الخارجية بإنشاء "حزم I2P" تحتوي فقط على التطبيقات التي يرغبون بها.
 
-- It codifies the boundary between the applications and the router.
+بالاقتران مع الأولويات السابقة، يدفع هذا المشروع الرئيسي لـ I2P أكثر نحو نموذج مشابه لنواة لينكس. سنركز أكثر على الشبكة نفسها، ونترك المطورين من الطرف الثالث يركزون على التطبيقات التي تستخدم الشبكة (وهو أمر أصبح أسهل بكثير بعد عملنا في السنوات القليلة الماضية على واجهات برمجة التطبيقات والمكتبات).
 
-- It should make it easier to get these apps running with non-Java routers.
+## من الجيد وجودها: تحسينات التطبيقات
 
-- It would enable third parties to create "I2P bundles" containing just the applications they want.
+توجد مجموعة من التحسينات على مستوى التطبيقات التي نريد العمل عليها، لكننا حاليًا لا نملك الوقت الكافي من المطورين للقيام بذلك، نظرًا لأولوياتنا الأخرى. هذا مجال نرغب بشدة في رؤية مساهمات جديدة فيه! بمجرد اكتمال الفصل المذكور أعلاه، سيكون من الأسهل بكثير لأي شخص العمل على تطبيق معين بشكل مستقل عن الراوتر الرئيسي المكتوب بلغة Java.
 
-In combination with the earlier priorities, this moves the main I2P project more in the direction of e.g. the Linux kernel. We will spend more time focusing on the network itself, leaving third-party developers to focus on applications that use the network (something that is significantly easier to do after our work in the last few years on APIs and libraries).
+إحدى هذه التطبيقات التي نرغب في الحصول على مساعدة بشأنها هي I2P Android. سنحافظ على تحديثها مع إصدارات I2P الأساسية، وسنقوم بإصلاح الأخطاء قدر الإمكان، لكن هناك الكثير الذي يمكن فعله لتحسين الشيفرة الأساسية وكذلك سهولة الاستخدام.
 
-## Nice-to-have: App improvements
+## الأولوية: استقرار Susimail و I2P-Bote
 
-There are a bunch of app-level improvements that we want to work on, but do not currently have the developer time to do so, given our other priorities. This is an area we would love to see new contributors for! Once the above decoupling is complete, it will be significantly easier for someone to work on a specific application independently of the main Java router.
+مع ذلك، نريد العمل بشكل خاص على إصلاحات Susimail و I2P-Bote في المدى القريب (وقد تم تضمين بعضها بالفعل في الإصدار 0.9.33). لم يُبذل لهما الكثير من العمل في السنوات القليلة الماضية مقارنة بتطبيقات I2P الأخرى، لذا نريد قضاء بعض الوقت لرفع مستوى قواعد الشيفرة الخاصة بهما، وجعلها أسهل على المساهمين الجدد للانخراط فيها!
 
-One such application we would love to have help with is I2P Android. We will be keeping it up-to-date with the core I2P releases, and fixing bugs as we can, but there is much that could be done to improve the underlying code as well as the usability.
+## من الجيد وجودها: تصنيف التذاكر (Ticket triage)
 
-## Priority: Susimail and I2P-Bote stabilisation
+لدينا تراكم كبير من التذاكر في عدد من أنظمة فرعية وتطبيقات I2P. كجزء من جهد الاستقرار المذكور أعلاه، نرغب بشدة في تنظيف بعض المشكلات القديمة الطويلة الأمد. والأهم من ذلك، نريد التأكد من تنظيم تذاكرنا بشكل صحيح، لتمكين المساهمين الجدد من العثور على تذاكر جيدة يمكنهم العمل عليها.
 
-Having said that, we do want to work specifically on Susimail and I2P-Bote fixes in the near term (some of which have landed in 0.9.33). They have had less work over the last few years than other I2P apps, and so we want to spend some time bringing their codebases up to par, and making them easier for new contributors to jump into!
+## الأولوية: دعم المستخدمين
 
-## Nice-to-have: Ticket triage
+إحدى جوانب ما سبق التي سنركز عليها هي الحفاظ على التواصل مع المستخدمين الذين يبذلون الجهد للإبلاغ عن المشكلات. شكرًا جزيلاً لكم! كلما قللنا من دورة التغذية الراجعة، تمكنا من حل المشكلات التي يواجهها المستخدمون الجدد بشكل أسرع، وازداد احتمال استمرارهم في المشاركة في المجتمع.
 
-We have a large backlog of tickets in a number of I2P subsystems and apps. As part of the above stabilisation effort, we would love to clean up some of our older long-standing issues. More importantly, we want to ensure that our tickets are correctly organised, so that new contributors can find good tickets to work on.
+## نرحب بمساعدتكم!
 
-## Priority: User support
+كل هذا يبدو طموحًا جدًا، وهو كذلك! لكن العديد من البنود المذكورة أعلاه تتداخل، ومع التخطيط الدقيق يمكننا تحقيق تقدم كبير فيها.
 
-One aspect of the above we will be focusing on is keeping in touch with users who take the time to report issues. Thank you! The smaller we can make the feedback loop, the quicker we can resolve problems that new users face, and the more likely it is that they keep participating in the community.
-
-## We'd love your help!
-
-That all looks very ambitious, and it is! But many of the items above overlap, and with careful planning we can make a serious dent in them.
-
-If you are interested in helping with any of the goals above, come chat to us! You can find us on OFTC and Freenode (#i2p-dev), and Twitter (@GetI2P).
+إذا كنت مهتمًا بالمساعدة في أي من الأهداف المذكورة أعلاه، فتعال للدردشة معنا! يمكنك العثور علينا على OFTC و Freenode (#i2p-dev)، وعلى تويتر (@GetI2P).

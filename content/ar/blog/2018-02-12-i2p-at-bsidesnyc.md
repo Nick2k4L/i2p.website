@@ -5,25 +5,24 @@ author: "sadie, str4d"
 description: "Trip report about the I2P meetup at BSidesNYC"
 categories: ["Meetup"]
 ---
+حضرت سادي وstr4d فعالية BSidesNYC يوم السبت الموافق 20 يناير. نشكر فريق BSides على تنظيم مؤتمر رائع!
 
-Sadie and str4d attended BSidesNYC on Saturday January 20th. Thank you to the BSides Team for setting such a great conference!
+بخلاف عدد قليل من المحاضرات، عملنا في الغالب على عدة أهداف وضعناها لهذا اليوم خلال فترة ما بعد الظهر في المنطقة المشتركة في كلية جون جاي.
 
-Aside from a few talks, we mostly worked on several goals that we had set for the day during the afternoon in the common area at John Jay College.
+كانت مهمتنا الأكثر إلحاحًا هي كتابة خارطة الطريق العامة لعام 2018، بعد المناقشات التي جرت في 34C3. وقد تم الآن [نشرها](/blog/2018/02/11/high-level-roadmap-for-2018/) - تفضلوا بزيارة! كما استأنفنا بعض مسارات التواصل التي تم تأجيلها خلال فترة العطلة حول عملية الاستجابة للثغرات الناشئة لدينا، وتحويلها إلى "استخدام إنتاجي".
 
-Our most pressing task was writing the high-level roadmap for 2018, following the discussions at 34C3. This has [now been posted](/blog/2018/02/11/high-level-roadmap-for-2018/) - go check it out! We also picked up some communication threads that were put aside over the holiday period around our nascent Vulnerability Response Process, and getting it into "production use".
+كانت المهمة الأكبر والأكثر تكرارًا هي العمل على هيكل المعلومات لموقع I2P الجديد. لدينا شعار جديد وصفحة رئيسية صمّمها لنا الفريق في [Ura Design](https://ura.design)، لكننا كنا عالقين في تحديد كيفية تنظيم تنقل المحتوى لإنشاء تجربة تهيئة أكثر سهولة للمستخدم. أكملنا مسودة أولية لهذا الهيكل، ونعمل الآن مع Ura على استكماله، قبل الشروع في باقي أعمال التصميم.
 
-The biggest and most tedious task was working on the information architecture for the new I2P website. We have a new logo and front page which was designed for us by the team at [Ura Design](https://ura.design), but have been blocked on figuring out how to organise content navigation to create a more user-friendly onboarding experience. We finished an initial draft of this, and are now working with Ura to finalize it, before beginning work on the remaining design work.
+وأخيرًا، ناقشنا أفكارًا للانخراط والتواصل هذا العام. اتفقنا على أن من الجيد إنشاء مستويات تبرعات محددة، مع استخدام ملصقاتنا الحالية كمستوى منخفض، وتقديم مكافآت أخرى للتبرعات الأكبر. تشمل الأفكار المحتملة للمكافآت:
 
-Finally, we discussed ideas for engagement and outreach this year. We agreed it would be a good idea to create specific donation tiers, with our existing stickers at the lower level, and other rewards for larger donations. Potential reward ideas include:
+- مزيد من أنواع الملصقات (مثل ملصق قابل للتكرار المتناهي)
+- قمصان مطبوعة بشعارنا الجديد
+- أنواع أخرى من المنتجات التذكارية (كنزات، أوشحة)
+- فكرة إضافية: أجهزة Raspberry Pi في علب مطبوعة ثلاثية الأبعاد حسب الطلب، مُعدّة مسبقًا بـ I2P!
+  وهذا يتطلب تسوية أمور مثل:
 
-- More sticker variants (e.g. tesselating sticker)
-- T-shirts printed with our new logo
-- Other kinds of merch (hoodies, scarves)
-- Extension idea: Raspberry Pis in custom 3D-printed cases, pre-loaded with I2P!
-  This would require ironing out things like:
+  - وجود عشوائية كافية عند التشغيل لتوليد المواد المفتاحية.
+  - التأكد من أن العتاد يمكنه التعامل مع كمية كافية من حركة الشبكة ليكون مشاركًا مفيدًا في الشبكة (كانت أجهزة Pi الأقدم تعاني من سرعات محدودة في واجهة الشبكة).
+  - تصنيعها فعليًا!
 
-  - Having sufficient randomness at boot for generating key material.
-  - Ensuring the hardware can handle sufficient network traffic to be a useful network participant (older Pis had restricted network interface speeds).
-  - Actually making them!
-
-This meetup was a trial run for an idea that we discussed at 34C3: having more informal I2P-focused meetups throughout the year. And it worked out well! If you are interested in helping to organise a future meetup, please get in touch with us. This year I2P developers and community members are attending FOSDEM, HOPE, Citizen Lab, and BSidesTO, and likely other events - so we will need lots of new stickers!
+كانت هذه اللقاء غير رسمي تجربة أولية لفكرة ناقشناها في 34C3: إقامة لقاءات غير رسمية تركّز على I2P طوال العام. وقد نجحت التجربة! إذا كنت مهتمًا بالمساعدة في تنظيم لقاء مستقبلي، يرجى التواصل معنا. سيحضر مطورو I2P وأعضاء مجتمعها هذا العام فعاليات FOSDEM وHOPE وCitizen Lab وBSidesTO، وربما فعاليات أخرى - لذا سنحتاج إلى الكثير من الملصقات الجديدة!

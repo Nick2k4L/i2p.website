@@ -5,35 +5,34 @@ author: "str4d"
 description: "We are pleased to announce that this summer, I2P will be embarking on a development program aimed at improving the privacy software ecosystem for both developers and users."
 categories: ["summer-dev"]
 ---
+In den letzten Jahren hat sich immer deutlicher gezeigt, wie wichtig es ist, dass Nutzer die Kontrolle über ihre eigenen Daten behalten. In dieser Hinsicht wurden bereits hervorragende Fortschritte erzielt – etwa durch den Aufstieg von Messaging-Apps wie Signal oder Dateispeichersystemen wie Tahoe-LAFS. Die laufende Arbeit von Let's Encrypt, HTTPS weltweit zu verbreiten, gewinnt stetig an Bedeutung.
 
-Over the last few years, the need for users to be in control of their own data has become increasingly apparent. Some excellent progress had been made in this regard with the rise of messaging apps like Signal, and file storage systems like Tahoe-LAFS. The ongoing work of Let's Encrypt to bring HTTPS to the whole world is steadily gaining traction.
+Doch den Schutz von Privatsphäre und Anonymität direkt in Anwendungen zu integrieren, ist alles andere als einfach. Ein Großteil der Software, die Menschen täglich nutzen, wurde nicht mit Datenschutz im Blick entwickelt, und die Werkzeuge, die Entwicklern zur Verfügung stehen, sind in der Regel nicht einfach zu handhaben. Die kürzlich veröffentlichte OnionScan-Studie zeigt eindrücklich, wie leicht selbst technisch versierte Nutzer ihre Dienste falsch konfigurieren können – was ihre ursprünglichen Ziele komplett untergräbt.
 
-But building privacy and anonymity into applications is not trivial. Much of the software people use every day was not designed to be privacy-preserving, and the tools developers have available are generally not easy to work with. The recently-published OnionScan survey gives some insight into just how easy it is for even technical users to mis-configure their services, completely undermining their intentions.
+## Entwickler dabei unterstützen, ihre Nutzer zu schützen
 
-## Helping developers help their users
+Wir freuen uns, ankündigen zu können, dass I2P diesen Sommer ein Entwicklungsprogramm starten wird, das darauf abzielt, das Ökosystem der Datenschutz-Software zu verbessern. Unser Ziel ist es, sowohl Entwicklern, die I2P in ihren Anwendungen nutzen möchten, als auch Nutzern, die versuchen, ihre Apps über I2P zu konfigurieren und auszuführen, das Leben zu erleichtern.
 
-We are pleased to announce that this summer, I2P will be embarking on a development program aimed at improving the privacy software ecosystem. Our goal is to make life easier both for developers wanting to leverage I2P in their applications, and for users trying to configure and run their apps through I2P.
+Unser Fokus in diesem Sommer liegt auf drei sich ergänzenden Bereichen:
 
-We will be focusing our time this summer into three complementary areas:
+### Juni: APIs
 
-### June: APIs
+Im Juni werden wir die verschiedenen Bibliotheken aktualisieren, die für die Interaktion mit I2P existieren. In diesem Jahr haben wir bereits große Fortschritte bei der Erweiterung unserer SAM-API erzielt, etwa durch zusätzliche Funktionen wie Unterstützung für Datagramme und Ports. Diese Funktionen werden wir in unseren C++- und Python-Bibliotheken künftig einfacher zugänglich machen.
 
-In June, we will be updating the various libraries that exist for interfacing with I2P. We have made significant progress this year on extending our SAM API with additional features, such as support for datagrams and ports. We plan to make these features easily accessible in our C++ and Python libraries.
+Außerdem werden wir es Java- und Android-Entwicklern bald deutlich einfacher machen, I2P-Unterstützung in ihre Anwendungen einzubauen. Bleibt dran!
 
-We will also soon be making it much easier for Java and Android developers to add I2P support to their applications. Stay tuned!
+### Juli: Apps
 
-### July: Apps
-
-In July we will be working with applications that have expressed interest in adding support for I2P. There are some really neat ideas being developed in the privacy space right now, and we want to help their communities leverage over a decade of research and development on peer-to-peer anonymity. Extending these applications to work natively over I2P is a good step forward for usability, and in the process will improve how these applications think about and handle user information.
+Im Juli werden wir mit Anwendungen zusammenarbeiten, die Interesse an der Integration von I2P gezeigt haben. Derzeit entstehen im Bereich Datenschutz einige wirklich interessante Ideen, und wir möchten deren Communities dabei helfen, von mehr als einem Jahrzehnt Forschung und Entwicklung im Bereich Peer-to-Peer-Anonymität zu profitieren. Die native Unterstützung von I2P in diesen Anwendungen ist ein wichtiger Schritt zur Verbesserung der Benutzerfreundlichkeit – und wird gleichzeitig die Art und Weise verbessern, wie diese Anwendungen mit Nutzerdaten umgehen.
 
 ### August: Plugins
 
-Finally, in August we will turn out attention to the apps we bundle inside I2P, and the wider array of plugins. Some of these are due for some love, to make them more user-friendly - as well as fix any outstanding bugs! We hope that longtime I2P supporters will enjoy the outcome of this work.
+Abschließend widmen wir uns im August den Anwendungen, die wir direkt in I2P bündeln, sowie der breiteren Palette an Plugins. Einige davon benötigen dringend Aufmerksamkeit, um benutzerfreundlicher zu werden – und um offene Fehler zu beheben! Wir hoffen, dass langjährige Unterstützer von I2P die Ergebnisse dieser Arbeit genießen werden.
 
-## Take part in Summer Dev!
+## Mach mit beim Summer Dev!
 
-We have many more ideas for things we'd like to get done in these areas. If you're interested in hacking on privacy and anonymity software, designing usable websites or interfaces, or writing guides for users: come and chat with us on IRC or Twitter! We are always happy to welcome newcomers into our community. We'll be sending I2P stickers out to all new contributors taking part!
+Wir haben noch viele weitere Ideen, was wir in diesen Bereichen erreichen möchten. Wenn du Interesse daran hast, an Software für Privatsphäre und Anonymität zu programmieren, benutzerfreundliche Webseiten oder Schnittstellen zu entwerfen oder Anleitungen für Nutzer zu schreiben: Komm und chatte mit uns auf IRC oder Twitter! Wir begrüßen Neueinsteiger in unserer Community jederzeit gerne. Allen neuen Mitwirkenden schicken wir I2P-Aufkleber zu!
 
-Likewise, if you are an application developer who wants a hand with integrating I2P, or even just to chat about the concepts or details: get in touch! If you want to get involved in our July Apps month, contact @GetI2P, @i2p or @str4d on Twitter. You can also find us in #i2p-dev on OFTC or FreeNode.
+Ebenso, wenn du ein Anwendungsentwickler bist, der Unterstützung bei der Integration von I2P benötigt – oder einfach nur über Konzepte und Details sprechen möchte: Melde dich! Wenn du im Juli bei unserem Apps-Monat mitmachen möchtest, kontaktiere @GetI2P, @i2p oder @str4d auf Twitter. Du findest uns auch im #i2p-dev auf OFTC oder FreeNode.
 
-We'll be posting here as we go, but you can also follow our progress, and share your own ideas and work, with the hashtag #I2PSummer on Twitter. Bring on the summer!
+Wir werden hier regelmäßig Berichte veröffentlichen, aber du kannst unseren Fortschritt auch auf Twitter mit dem Hashtag #I2PSummer verfolgen – und deine eigenen Ideen und Projekte teilen. Der Sommer kann kommen!

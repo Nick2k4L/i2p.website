@@ -5,15 +5,14 @@ author: "idk"
 description: "Offering an I2P Mirror"
 categories: ["tutorial"]
 ---
+هذه المقالة المدونة تهدف إلى أن تكون دليلاً عامًا لإنشاء نسخة مكررة (Mirror) لخدمة من شبكة الإنترنت العادية (clear-net) كموقع ضمن شبكة I2P (eepSite). وستوسع هذه المقالة ما ورد في المقالة السابقة حول الأنفاق الأساسية (I2PTunnel).
 
-This blog post is intended as a general guide to running a mirror of a clear-net service as an eepSite. It elaborates on the previous blog post about basic I2PTunnel tunnels.
+لسوء الحظ، من المرجح أنه من المستحيل *تمامًا* تغطية جميع الحالات الممكنة لجعل موقع ويب موجود متوفرًا كموقع ضمن شبكة I2P (eepSite)، نظرًا لتنوع البرمجيات الخادمية بشكل كبير، ناهيك عن الخصوصيات الفعلية لأي نشر معين للبرمجيات. بدلًا من ذلك، سأحاول أن أنقل، بأكبر قدر ممكن من التحديد، العملية العامة لإعداد خدمة للنشر على شبكة I2P المخفية (eepWeb) أو خدمات مخفية أخرى.
 
-Unfortunately, it's probably impossible to *completely* cover all possible cases of making an existing web site available as an eepSite, there's simply too diverse an array of server-side software, not to mention the in-practice peculiarities of any particular deployment of software. Instead, I'm going to try and convey, as specifically as possible, the general process preparing a service for deployment to the eepWeb or other hidden services.
+سيتم في معظم هذا الدليل معاملة القارئ كمشارك في الحوار، وتحديدًا عندما أقصد ذلك حقًا، سأوجه كلامي مباشرةً إلى القارئ (أي باستخدام "أنت" بدلًا من "المرء")، وسأستخدم غالبًا عناوين فرعية على شكل أسئلة أعتقد أن القارئ قد يطرحها. ففي النهاية، هذه "عملية" يجب على المسؤول (Administrator) أن يعتبر نفسه "مشاركًا" فيها تمامًا كما هو الحال عند استضافة أي خدمة أخرى.
 
-Much of this guide will be treating the reader as a conversational participant, in particular If I really mean it I will address the reader directly(i.e. using "you" instead of "one") and I'll frequently head sections with questions I think the reader might be asking. This is, after all, a "process" that an administrator must consider themselves "involved" in just like hosting any other service.
+**تحذيرات:**
 
-**DISCLAIMERS:**
+رغم أن من الرائع أن أتمكن من ذلك، إلا أنه من المستحيل عليَّ أن أضع تعليمات محددة لكل نوع من البرمجيات التي قد يستخدمها المرء لاستضافة مواقع الويب. وبالتالي، يتطلب هذا البرنامج التعليمي بعض الافتراضات من جانب الكاتب، وبعض التفكير النقدي والحس السليم من جانب القارئ. لتوضيح الأمر، **أنا افترضت أن الشخص الذي يتبع هذا البرنامج التعليمي يدير بالفعل خدمة على الإنترنت العادي (clear-web) مرتبطة بهوية حقيقية أو منظمة**، وبالتالي فهو يوفر فقط وسيلة للوصول المجهول، وليس تجهيل نفسه.
 
-While it would be wonderful, it's probably impossible for me to put specific instructions for every single kind of software that one might use to host web sites. As such, this tutorial requires some assumptions on the part of the writer and some critical thinking and common sense on the part of the reader. To be clear, **I have assumed that the person following this tutorial is already operating a clear-web service linkable to a real identity or organization** and thus is simply offering anonymous access and not anonymizing themselves.
-
-Thus, **it makes no attempt whatsoever to anonymize** a connection from one server to another. If you want to run a new, un-linkable hidden service that hosts content not linked to you, then you should not be doing it from your own clearnet server or from your own house.
+وبالتالي، **لا يحاول هذا الدليل بأي شكل من الأشكال تجهيل الاتصال من خادم إلى آخر**. فإذا كنت ترغب في تشغيل خدمة مخفية جديدة لا يمكن ربطها بك، وتستضيف محتوى غير مرتبط بك، فعليك ألا تقوم بذلك من خادم الإنترنت العادي الخاص بك أو من منزلك.

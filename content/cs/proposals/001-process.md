@@ -8,52 +8,51 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
+## Přehled
 
-## Overview
+Tento dokument popisuje, jak změnit specifikace I2P, jak fungují návrhy I2P a vztah mezi návrhy I2P a specifikacemi.
 
-This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
+Tento dokument je adaptován z procesu návrhů Tor a většina obsahu níže byla původně napsána Nickem Mathewsonem.
 
-This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
+Tento je informativní dokument.
 
-This is an informational document.
+## Motivace
 
-## Motivation
+Předtím byl náš proces aktualizace specifikací I2P relativně neformální: navrhovali jsme návrh na vývojovém fóru a diskutovali o změnách, poté jsme dosáhli konsensu a opravili specifikaci s návrhy změn (ne nutně v tomto pořadí), a nakonec jsme provedli změny.
 
-Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
+To mělo několik problémů.
 
-This had a few problems.
+První, i při nejefektivnějším procesu, specifikace často zůstávaly nesynchronizované s kódem. Nejhorší případy byly ty, kde byla implementace odložena: specifikace a kód mohly zůstat nesynchronizované po několik verzí.
 
-First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
+Druhé, bylo obtížné se účastnit diskuse, protože nebylo vždy jasné, které části diskusního vlákna byly součástí návrhu, nebo které změny specifikací byly provedeny. Vývojová fóra jsou navíc přístupná pouze uvnitř I2P, což znamená, že návrhy mohly být zobrazeny pouze lidmi, kteří používají I2P.
 
-Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
+Třetí, bylo velmi snadné zapomenout na některé návrhy, protože se pohřbily několik stránek zpět ve fórovém vláknu.
 
-Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
+## Jak změnit specifikace nyní
 
-## How to change the specs now
+Nejdříve někdo napíše dokument návrhu. Měl by popisovat změnu, která by měla být provedena podrobně, a poskytnout somej ideu, jak ji implementovat. Jakmile je dostatečně rozvinut, stává se návrhem.
 
-First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
+Podobně jako RFC, každý návrh dostává číslo. Na rozdíl od RFC, návrhy mohou změnit svůj obsah över čas a zachovat stejné číslo, dokud nejsou konečně přijaty nebo odmítnuty. Historie každého návrhu bude uložena v repozitáři webových stránek I2P.
 
-Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
+Jakmile je návrh v repozitáři, měli bychom o něm diskutovat na odpovídajícím vláknu a vylepšovat ho, dokud nedosáhneme konsensu, že je to dobrý nápad, a že je dostatečně podrobný pro implementaci. Když k tomu dojde, implementujeme návrh a začleníme ho do specifikací. Takže specifikace zůstávají kanonickou dokumentací pro protokol I2P: žádný návrh není nikdy kanonickou dokumentací pro implementovanou funkci.
 
-Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
+(Tento proces je khá podobný Python Enhancement Process, s hlavní výjimkou, že návrhy I2P se po implementaci znovu začleňují do specifikací, zatímco PEPy se *stávají* novou specifikací.)
 
-(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
+### Malé změny
 
-### Small changes
+Je stále v pořádku provést malé změny přímo do specifikace, pokud lze kód napsat více nebo méně okamžitě, nebo kosmetické změny, pokud není vyžadována žádná změna kódu. Tento dokument odráží současnou *intent* vývojářů, ne trvalý slib, že budeme vždy používat tento proces v budoucnu: rezervujeme si právo být opravdu nadšení a běžet implementovat něco v noci plné kofeinu nebo M&M.
 
-It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
+## Jak se přidávají nové návrhy
 
-## How new proposals get added
+Chcete-li předložit návrh, zveřejněte ho na vývojovém fóru nebo vytvořte ticket s připojeným návrhem.
 
-To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
+Jakmile je myšlenka navržena, existuje správně formátovaný (viz níže) návrh, a hrubý konsensus uvnitř aktivní vývojářské komunity existuje, že tato myšlenka si zaslouží úvahu, editoři návrhů oficiálně přidají návrh.
 
-Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
+Aktuální editoři návrhů jsou zzz a str4d.
 
-The current proposal editors are zzz and str4d.
+## Co by mělo být v návrhu
 
-## What should go in a proposal
-
-Every proposal should have a header containing these fields:
+Každý návrh by měl mít hlavičku obsahující tyto pole:
 
 ```
 :author:
@@ -63,11 +62,11 @@ Every proposal should have a header containing these fields:
 :status:
 ```
 
-- The `author` field should contain the names of the authors of this proposal.
-- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
-- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
+- Pole `author` by mělo obsahovat jména autorů tohoto návrhu.
+- Pole `thread` by mělo být odkazem na vývojové fórum vlákno, kde byl tento návrh původně zveřejněn, nebo na nové vlákno vytvořené pro diskusi o tomto návrhu.
+- Pole `lastupdated` by mělo být inicializováno jako `created` a mělo by být aktualizováno pokaždé, když je návrh změněn.
 
-These fields should be set when necessary:
+Tyto pole by měly být nastaveny, pokud je to nutné:
 
 ```
 :supercedes:
@@ -75,92 +74,92 @@ These fields should be set when necessary:
 :editor:
 ```
 
-- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
-- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
+- Pole `supercedes` je čárkou oddělený seznam všech návrhů, které tento návrh nahrazuje. Tyto návrhy by měly být odmítnuty a měly by mít nastavené pole `supercededby` na číslo tohoto návrhu.
+- Pole `editor` by mělo být nastaveno, pokud jsou provedeny významné změny tohoto návrhu, které nezmění podstatně jeho obsah. Pokud je obsah podstatně měněn, měl by být přidán další `author` nebo vytvořen nový návrh, který nahrazuje tento.
 
-These fields are optional but recommended:
+Tyto pole jsou volitelné, ale doporučené:
 
 ```
 :target:
 :implementedin:
 ```
 
-- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
-- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
+- Pole `target` by mělo popisovat, ve které verzi se navrhuje implementovat tento návrh (pokud je Otevřený nebo Přijatý).
+- Pole `implementedin` by mělo popisovat, ve které verzi byl tento návrh implementován (pokud je Dokončený nebo Uzavřený).
 
-The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
+Tělo návrhu by mělo začínat sekcí Přehled, která vysvětluje, o čem je návrh, co dělá a o jakém stavu se jedná.
 
-After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
+Po Přehledu se návrh stává volnějším. V závislosti na jeho délce a složitosti může návrh rozdělit na sekce podle potřeby nebo následovat krátký diskusní formát. Každý návrh by měl obsahovat alespoň následující informace, než je Přijat, i když informace nemusí být v sekcích s těmito názvy.
 
-**Motivation**
-: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
+**Motivace**
+: Jaký problém se návrh snaží vyřešit? Proč je tento problém důležitý? Pokud jsou možné several přístupy, proč zvolit tento?
 
 **Design**
-: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
+: Vysokouhlíkový pohled na nové nebo upravené funkce, jak nové nebo upravené funkce fungují, jak spolu fungují a jak interagují s ostatními částmi I2P. Toto je hlavní tělo návrhu. Některé návrhy budou začínat pouze s Motivací a Designem a budou čekat na specifikaci, dokud Design nebude přibližně správný.
 
-**Security implications**
-: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
+**Bezpečnostní důsledky**
+: Jaké účinky mohou mít navrhované změny na anonymitu, jak jsou tyto účinky dobře pochopeny a tak dále.
 
-**Specification**
-: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
+**Specifikace**
+: Podrobný popis toho, co je třeba přidat do specifikací I2P, aby se návrh implementoval. Toto by mělo být v přibližně stejné podrobnosti, jako budou specifikace obsahovat: mělo by být možné pro nezávislé programátory napsat vzájemně kompatibilní implementace návrhu na základě jeho specifikací.
 
-**Compatibility**
-: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
+**Kompatibilita**
+: Budou verze I2P, které budou následovat tento návrh, kompatibilní s verzemi, které nebudou? Pokud ano, jak bude kompatibilita dosažena? Obecně se snažíme nedropovat kompatibilitu, pokud je to možné; jsme neudělali "flag day" změnu od března 2008 a nechceme udělat další.
 
-**Implementation**
-: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
+**Implementace**
+: Pokud bude návrh obtížně implementovatelný v současné architektuře I2P, dokument může obsahovat somej diskusi o tom, jak to provést. Skutečné patche by měly být na veřejných monotone větvích nebo nahrány do Trac.
 
-**Performance and scalability notes**
-: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
+**Poznámky k výkonu a škálovatelnosti**
+: Pokud bude funkce mít účinek na výkon (v RAM, CPU, šířce pásma) nebo škálovatelnost, mělo by být somej analýzy toho, jak významný bude tento účinek, aby se zabránilo skutečným regresím výkonu a aby se neztrácel čas na zanedbatelné zisky.
 
-**References**
-: If the proposal refers to outside documents, these should be listed.
+**Reference**
+: Pokud návrh odkazuje na vnější dokumenty, měly by být tyto dokumenty uvedeny.
 
-## Proposal status
+## Stav návrhu
 
-**Open**
-: A proposal under discussion.
+**Otevřený**
+: Návrh pod diskusí.
 
-**Accepted**
-: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
+**Přijatý**
+: Návrh je kompletní a chceme ho implementovat. Po tomto bodě by se měly podstatné změny návrhu vyhnout a považovat za znamení, že proces selhal někde.
 
-**Finished**
-: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
+**Dokončený**
+: Návrh byl přijat a implementován. Po tomto bodě by se neměl návrh měnit.
 
-**Closed**
-: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
+**Uzavřený**
+: Návrh byl přijat, implementován a sloučen do hlavních specifikačních dokumentů. Návrh by se neměl měnit po tomto bodě.
 
-**Rejected**
-: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
+**Odmítnutý**
+: Nechceme implementovat funkci tak, jak je popsána zde, i když můžeme udělat somej jinou verzi. Viz poznámky v dokumentu pro podrobnosti. Návrh by se neměl měnit po tomto bodě; aby se přinesla somej jiná verze myšlenky, napište nový návrh.
 
-**Draft**
-: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
+**Návrh**
+: Tento návrh ještě není kompletní; existují určité chybějící části. Prosím, nepřidávejte žádné nové návrhy se stavem; umístěte je do podsložky "ideas" místo toho.
 
-**Needs-Revision**
-: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
+**Potřebuje revizi**
+: Nápad pro návrh je dobrý, ale návrh, jak je popsán, má vážné problémy, které brání jeho přijetí. Viz poznámky v dokumentu pro podrobnosti.
 
-**Dead**
-: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
+**Mrtvý**
+: Návrh nebyl dotčen po dlouhou dobu a nezdá se, že by někdo chtěl dokončit ho brzy. Může se stát "Otevřeným" znovu, pokud získá nového protagonistu.
 
-**Needs-Research**
-: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
+**Potřebuje výzkum**
+: Existují výzkumné problémy, které je třeba vyřešit, bevor je jasné, zda je návrh dobrý.
 
 **Meta**
-: This is not a proposal, but a document about proposals.
+: Toto není návrh, ale dokument o návrzích.
 
-**Reserve**
-: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
+**Rezervní**
+: Tento návrh není něco, co plánujeme implementovat, ale mohli bychom ho obnovit někdy v budoucnu, pokud se rozhodneme udělat něco podobného.
 
-**Informational**
-: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
+**Informativní**
+: Tento návrh je poslední slovo o tom, co dělá. Není možné ho změnit na specifikaci, pokud někdo nezkopíruje a nevloží ho do nové specifikace pro nový subsystém.
 
-The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
+Editoři udržují správný stav návrhů na základě hrubého konsensu a své vlastní diskrece.
 
-## Proposal numbering
+## Číslování návrhů
 
-Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
+Čísla 000-099 jsou rezervována pro speciální a meta-návrhy. 100 a výše jsou používána pro skutečné návrhy. Čísla nejsou recyklována.
 
-## References
+## Reference
 
 * [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
 * [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)

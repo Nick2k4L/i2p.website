@@ -10,58 +10,51 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## Tổng quan
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+Đề xuất này nhằm cải thiện tỷ lệ thành công cho các giới thiệu (introductions).
 
 
-## Design
+## Động lực
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+Các máy giới thiệu (introducers) sẽ hết hạn sau một khoảng thời gian nhất định, nhưng thông tin này không được công bố trong Router Info. Hiện tại, các router phải sử dụng các phương pháp ước lượng (heuristics) để dự đoán khi nào một máy giới thiệu không còn hiệu lực.
 
 
-## Specification
+## Thiết kế
+
+Trong một địa chỉ Router SSU chứa các máy giới thiệu, người xuất bản có thể tùy chọn thêm thời gian hết hạn cho từng máy giới thiệu.
+
+
+## Đặc tả
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: Số thứ tự của máy giới thiệu (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: Thời gian tính bằng giây (không phải mili giây) kể từ thời điểm epoch.
 ```
 
-### Notes
+### Ghi chú
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* Mỗi thời gian hết hạn phải lớn hơn thời điểm công bố của Router Info, và nhỏ hơn 6 giờ so với thời điểm công bố đó.
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* Các router xuất bản và các máy giới thiệu nên cố gắng duy trì hiệu lực của máy giới thiệu cho đến khi hết hạn, tuy nhiên không có cách nào để đảm bảo điều này.
 
-* Routers should not use a published introducer after its expiration.
+* Các router không nên sử dụng một máy giới thiệu đã hết hạn.
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* Các thời gian hết hạn của máy giới thiệu nằm trong phần ánh xạ địa chỉ Router (Router Address mapping). Chúng không phải là trường hết hạn 8 byte (hiện chưa dùng) trong địa chỉ Router.
 
-**Example:** `iexp0=1486309470`
+**Ví dụ:** `iexp0=1486309470`
 
 
-## Migration
+## Di chuyển (Migration)
 
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+Không có vấn đề gì. Việc triển khai là tùy chọn.  
+Tính tương thích ngược được đảm bảo, vì các router cũ sẽ bỏ qua các tham số không biết.
 
 
-## References
+## Tài liệu tham khảo
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

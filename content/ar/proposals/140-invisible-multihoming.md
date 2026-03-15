@@ -8,87 +8,55 @@ status: "مفتوح"
 thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
+## نظرة عامة
 
-## Overview
+يحدد هذا الاقتراح تصميم بروتوكول يمكّن عميل I2P أو خدمة أو عملية موازنة خارجية من إدارة عدة موجهات (routers) تستضيف بشكل شفاف وجهة واحدة [Destination](/docs/specs/common-structures/#destination).
 
-This proposal outlines a design for a protocol enabling an I2P client, service
-or external balancer process to manage multiple routers transparently hosting a
-single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
+حاليًا لا يحدد هذا الاقتراح تنفيذًا ملموسًا. يمكن تنفيذه كامتداد لـ [I2CP](/docs/specs/i2cp/)، أو كبروتوكول جديد.
 
-The proposal currently does not specify a concrete implementation. It could be
-implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
+## الدوافع
 
+"المُضيف المتعدد" (Multihoming) هو استخدام عدة موجهات لاستضافة نفس الوجهة. الطريقة الحالية لتحقيق المُضيف المتعدد في I2P هي تشغيل نفس الوجهة على كل موجه بشكل مستقل؛ والموجه الذي يستخدمه العملاء في أي وقت معين هو آخر موجه نشر مجموعة تأجير (LeaseSet).
 
-## Motivation
+هذا حل مؤقت، ومن المرجح ألا يعمل بشكل جيد للمواقع الكبيرة على نطاق واسع. لنفترض أن لدينا 100 موجه متعدد المضيفين، ولكل موجه 16 نفقًا. هذا يعني 1600 عملية نشر لمجموعة التأجير كل 10 دقائق، أي ما يقارب 3 عمليات في الثانية. ستُثقل خوادم الفيض (floodfills) وستُفعّل آليات التقييد (throttles). وهذا قبل أن نذكر حتى حركة البحث (lookup traffic).
 
-Multihoming is where multiple routers are used to host the same Destination.
-The current way to multihome with I2P is to run the same Destination on each
-router independently; the router that gets used by clients at any particular
-time is the last one to publish a LeaseSet.
+يحل الاقتراح 123 هذه المشكلة باستخدام "مجموعة تأجير فائقة" (meta-LeaseSet)، تسرد 100 تجزئة حقيقية لمجموعة التأجير. تصبح عملية البحث عملية من مرحلتين: أولًا البحث عن مجموعة التأجير الفائقة، ثم واحدة من مجموعات التأجير المسماة. هذا حل جيد لمشكلة حركة البحث، لكنه وحده يخلق تسريبًا كبيرًا للخصوصية: من الممكن تحديد أي الموجهات المتعددة المُضيفة متصلة بالشبكة من خلال مراقبة مجموعة التأجير الفائقة المنشورة، لأن كل مجموعة تأجير حقيقية تتوافق مع موجه واحد فقط.
 
-This is a hack and presumably won't work for large websites at scale. Say we had
-100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
-every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
-and throttles would kick in. And that's before we even mention the lookup
-traffic.
+نحتاج إلى طريقة تمكن عميل I2P أو خدمة من توزيع وجهة واحدة عبر عدة موجهات، بطريقة لا يمكن التمييز بينها وبين استخدام موجه واحد (من منظور مجموعة التأجير نفسها).
 
-Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
-LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
-meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
-the lookup traffic issue, but on its own it creates a significant privacy leak:
-It is possible to determine which multihoming routers are online by monitoring
-the published meta-LeaseSet, because each real LeaseSet has corresponds to a
-single router.
+## التصميم
 
-We need a way for an I2P client or service to spread a single Destination across
-multiple routers, in a way that is indistinguishable to using a single router
-(from the perspective of the LeaseSet itself).
+### التعريفات
 
+    المستخدم
+        الشخص أو المؤسسة التي ترغب في استخدام المُضيف المتعدد لوجهاتها. تُعتبر وجهة واحدة هنا دون فقدان العمومية (WLOG).
 
-## Design
+    العميل
+        التطبيق أو الخدمة التي تعمل خلف الوجهة. قد يكون تطبيقًا من جانب العميل أو الخادم أو من ند إلى ند؛ نشير إليه على أنه عميل بمعنى أنه يتصل بموجهات I2P.
 
-### Definitions
+        يتكون العميل من ثلاثة أجزاء، قد تكون جميعها في نفس العملية أو قد تُقسم عبر عمليات أو أجهزة (في إعداد متعدد العملاء):
 
-    User
-        The person or organisation wanting to multihome their Destination(s). A
-        single Destination is considered here without loss of generality (WLOG).
+        الموازن (Balancer)
+            الجزء من العميل الذي يدير اختيار الأقران وبناء الأنفاق. يوجد موازن واحد في كل مرة، ويتواصل مع جميع موجهات I2P. قد توجد موازنات احتياطية (failover).
 
-    Client
-        The application or service running behind the Destination. It may be a
-        client-side, server-side, or peer-to-peer application; we refer to it as
-        a client in the sense that it connects to the I2P routers.
+        الواجهة الأمامية (Frontend)
+            الجزء من العميل الذي يمكن تشغيله بشكل متوازٍ. تتواصل كل واجهة أمامية مع موجه I2P واحد فقط.
 
-        The client consists of three parts, which may all be in the same process
-        or may be split across processes or machines (in a multi-client setup):
+        الواجهة الخلفية (Backend)
+            الجزء من العميل الذي يُشترك فيه جميع الواجهات الأمامية. لا يتواصل مباشرة مع أي موجه I2P.
 
-        Balancer
-            The part of the client that manages peer selection and tunnel
-            building. There is a single balancer at any one time, and it
-            communicates with all I2P routers. There may be failover balancers.
+    الموجه (Router)
+        موجه I2P يشغله المستخدم ويقع عند الحدود بين شبكة I2P وشبكة المستخدم (مثل جهاز حافة في الشبكات المؤسسية). يبني الأنفاق بناءً على أوامر من الموازن، ويرشّد الحزم للعميل أو الواجهة الأمامية.
 
-        Frontend
-            The part of the client that can be operated in parallel. Each
-            frontend communicates with a single I2P router.
+### نظرة عامة عامة
 
-        Backend
-            The part of the client that is shared between all frontends. It has
-            no direct communication with any I2P router.
+تخيل التكوين المطلوب التالي:
 
-    Router
-        An I2P router run by the user that sits at the boundary between the I2P
-        network and the user's network (akin to an edge device in corporate
-        networks). It builds tunnels under the command of a balancer, and routes
-        packets for a client or frontend.
+- تطبيق عميل بوجهة واحدة.
+- أربعة موجهات، يدير كل منها ثلاثة أنفاق داخلة.
+- يجب نشر جميع الأنفاق الاثني عشر في مجموعة تأجير واحدة.
 
-### High-level overview
-
-Imagine the following desired configuration:
-
-- A client application with one Destination.
-- Four routers, each managing three inbound tunnels.
-- All twelve tunnels should be published in a single LeaseSet.
-
-### Single-client
+### عميل واحد
 
 ```
                 -{ [Tunnel 1]===\
@@ -108,7 +76,7 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### Multi-client
+### عميل متعدد
 
 ```
                 -{ [Tunnel 1]===\
@@ -128,43 +96,37 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### General client process
+### عملية العميل العامة
 
-- Load or generate a Destination.
+- تحميل أو توليد وجهة.
 
-- Open up a session with each router, tied to the Destination.
+- فتح جلسة مع كل موجه، مرتبطة بالوجهة.
 
-- Periodically (around every ten minutes, but more or less based on tunnel
-  liveness):
+- بشكل دوري (حوالي كل عشر دقائق، ولكن أكثر أو أقل حسب حياة النفق):
 
-  - Obtain the fast tier from each router.
+  - الحصول على الطبقة السريعة (fast tier) من كل موجه.
 
-  - Use the superset of peers to build tunnels to/from each router.
+  - استخدام مجموعة الأقران الفائقة لبناء أنفاق من وإلى كل موجه.
 
-    - By default, tunnels to/from a particular router will use peers from
-      that router's fast tier, but this is not enforced by the protocol.
+    - بشكل افتراضي، ستستخدم الأنفاق من/إلى موجه معين أقرانًا من الطبقة السريعة لذلك الموجه، لكن البروتوكول لا يفرض ذلك.
 
-  - Collect the set of active inbound tunnels from all active routers, and create a
-    LeaseSet.
+  - جمع مجموعة الأنفاق الداخلة النشطة من جميع الموجهات النشطة، وإنشاء مجموعة تأجير.
 
-  - Publish the LeaseSet through one or more of the routers.
+  - نشر مجموعة التأجير عبر واحد أو أكثر من الموجهات.
 
-### Differences to I2CP
+### الاختلافات عن I2CP
 
-To create and manage this configuration, the client needs the following new
-functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
+لإنشاء وإدارة هذا التكوين، يحتاج العميل إلى الوظائف الجديدة التالية التي تتجاوز ما يوفره حاليًا [I2CP](/docs/specs/i2cp/):
 
-- Tell a router to build tunnels, without creating a LeaseSet for them.
-- Get a list of the current tunnels in the inbound pool.
+- إخبار الموجه ببناء أنفاق، دون إنشاء مجموعة تأجير لها.
+- الحصول على قائمة بالأنفاق الحالية في مجموعة الأنفاق الداخلة.
 
-Additionally, the following functionality would enable significant flexibility
-in how the client manages its tunnels:
+بالإضافة إلى ذلك، تتيح الوظائف التالية مرونة كبيرة في كيفية إدارة العميل لأنفاقه:
 
-- Get the contents of a router's fast tier.
-- Tell a router to build an inbound or outbound tunnel using a given list of
-  peers.
+- الحصول على محتويات الطبقة السريعة لموجه.
+- إخبار الموجه ببناء نفق داخلي أو خارجي باستخدام قائمة معينة من الأقران.
 
-### Protocol outline
+### مخطط البروتوكول
 
 ```
          Client                           Router
@@ -183,125 +145,90 @@ in how the client manages its tunnels:
   Packet Received  <---------------------
 ```
 
-### Messages
+### الرسائل
 
 **Create Session**
-- Create a session for the given Destination.
+- إنشاء جلسة للوجهة المحددة.
 
 **Session Status**
-- Confirmation that the session has been set up, and the client can now start building tunnels.
+- تأكيد أن الجلسة قد تم إعدادها، ويمكن للعميل الآن بدء بناء الأنفاق.
 
 **Get Fast Tier**
-- Request a list of the peers that the router currently would consider building tunnels through.
+- طلب قائمة بالأقران التي يعتبرها الموجه حاليًا مناسبة لبناء أنفاق من خلالها.
 
 **Peer List**
-- A list of peers known to the router.
+- قائمة بالأقران المعروفة للموجه.
 
 **Create Tunnel**
-- Request that the router build a new tunnel through the specified peers.
+- طلب من الموجه بناء نفق جديد عبر الأقران المحددة.
 
 **Tunnel Status**
-- The result of a particular tunnel build, once it is available.
+- نتيجة بناء نفق معين، عند توفرها.
 
 **Get Tunnel Pool**
-- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
+- طلب قائمة بالأنفاق الحالية في مجموعة الأنفاق الداخلة أو الخارجة للوجهة.
 
 **Tunnel List**
-- A list of tunnels for the requested pool.
+- قائمة بالأنفاق لمجموعة الأنفاق المطلوبة.
 
 **Publish LeaseSet**
-- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
+- طلب من الموجه نشر مجموعة التأجير المقدمة عبر أحد الأنفاق الخارجة للوجهة. لا حاجة لرد الحالة؛ يجب على الموجه الاستمرار في إعادة المحاولة حتى يتأكد من نشر مجموعة التأجير.
 
 **Send Packet**
-- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
+- حزمة صادرة من العميل. يمكن تحديد نفق خارجي يجب (أو ينبغي؟) إرسال الحزمة من خلاله.
 
 **Send Status**
-- Informs the client of the success or failure of sending a packet.
+- إبلاغ العميل بنجاح أو فشل إرسال حزمة.
 
 **Packet Received**
-- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
+- حزمة واردة للعميل. يمكن تحديد النفق الداخلي الذي استُلمت من خلاله الحزمة (?)
 
+## الآثار الأمنية
 
-## Security implications
+من منظور الموجهات، هذا التصميم مكافئ وظيفيًا للوضع الحالي. لا يزال الموجه يبني جميع الأنفاق، ويحافظ على ملفاته الشخصية للأقران، ويفصل بين عمليات الموجه والعميل. في التكوين الافتراضي يكون مطابقًا تمامًا، لأن الأنفاق لهذا الموجه تُبنى من طبقته السريعة الخاصة.
 
-From the perspective of the routers, this design is functionally equivalent to
-the status quo. The router still builds all tunnels, maintains its own peer
-profiles, and enforces separation between router and client operations. In the
-default configuration is completely identical, because tunnels for that router
-are built from its own fast tier.
+من منظور قاعدة بيانات الشبكة (netDB)، تكون مجموعة تأجير واحدة تم إنشاؤها عبر هذا البروتوكول مطابقة للوضع الحالي، لأنها تعتمد على وظائف موجودة مسبقًا. ومع ذلك، بالنسبة لمجموعات التأجير الكبيرة التي تقترب من 16 تأجيرًا، قد يكون من الممكن لمراقب تحديد أن مجموعة التأجير متعددة المضيفين:
 
-From the perspective of the netDB, a single LeaseSet created via this protocol
-is identical to the status quo, because it leverages pre-existing functionality.
-However, for larger LeaseSets approaching 16 Leases, it may be possible for an
-observer to determine that the LeaseSet is multihomed:
+- الحد الأقصى الحالي لحجم الطبقة السريعة هو 75 قرينًا. يتم اختيار بوابة الدخول الداخلة (IBGW، العقدة المنشورة في التأجير) من جزء من هذه الطبقة (مقسّم عشوائيًا لكل مجموعة أنفاق حسب الهاش، وليس العدد):
 
-- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
-  (IBGW, the node published in a Lease) is selected from a fraction of the tier
-  (partitioned randomly per-tunnel pool by hash, not count):
+      1 قفزة
+          الطبقة السريعة بأكملها
 
-      1 hop
-          The whole fast tier
+      2 قفزات
+          نصف الطبقة السريعة
+          (الافتراضي حتى منتصف 2014)
 
-      2 hops
-          Half of the fast tier
-          (the default until mid-2014)
+      3+ قفزات
+          ربع الطبقة السريعة
+          (3 هي القيمة الافتراضية الحالية)
 
-      3+ hops
-          A quarter of the fast tier
-          (3 being the current default)
+  هذا يعني أن IBGWs ستكون في المتوسط من مجموعة تتكون من 20 إلى 30 قرينًا.
 
-  That means on average the IBGWs will be from a set of 20-30 peers.
+- في إعداد مُضيف واحد، ستكون مجموعة التأجير الكاملة المكونة من 16 نفقًا لديها 16 IBGWs مختارة عشوائيًا من مجموعة تصل إلى (نقول) 20 قرينًا.
 
-- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
-  randomly selected from a set of up to (say) 20 peers.
+- في إعداد مُضيف متعدد بـ 4 موجهات باستخدام التكوين الافتراضي، ستكون مجموعة التأجير الكاملة المكونة من 16 نفقًا لديها 16 IBGWs مختارة عشوائيًا من مجموعة لا تزيد عن 80 قرينًا، على الرغم من وجود احتمال لوجود عدد من الأقران المشتركين بين الموجهات.
 
-- In a 4-router multihomed setup using the default configuration, a full
-  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
-  80 peers, though there are likely to be a fraction of common peers between
-  routers.
+وبالتالي، من الممكن باستخدام التحليل الإحصائي تحديد أن مجموعة التأجير تم إنشاؤها بواسطة هذا البروتوكول. قد يكون من الممكن أيضًا تحديد عدد الموجهات، على الرغم من أن تأثير التغير (churn) على الطبقات السريعة سيقلل من فعالية هذا التحليل.
 
-Thus with the default configuration, it may be possible through statistical
-analysis to figure out that a LeaseSet is being generated by this protocol. It
-might also be possible to figure out how many routers there are, although the
-effect of churn on the fast tiers would reduce the effectiveness of this
-analysis.
+بما أن العميل لديه تحكم كامل في الأقران الذين يختارهم، يمكن تقليل أو إزالة تسريب المعلومات هذا من خلال اختيار IBGWs من مجموعة محدودة من الأقران.
 
-As the client has full control over which peers it selects, this information
-leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
-peers.
+## التوافق
 
+هذا التصميم متوافق تمامًا مع الشبكة، لأنه لا توجد تغييرات على تنسيق مجموعة التأجير. ستحتاج جميع الموجهات إلى معرفة البروتوكول الجديد، لكن هذا ليس مصدر قلق لأنها ستكون جميعها تحت سيطرة الكيان نفسه.
 
-## Compatibility
+## ملاحظات حول الأداء والقابلية للتوسع
 
-This design is completely backwards-compatible with the network, because there
-are no changes to the LeaseSet format. All routers would need to be aware of
-the new protocol, but this is not a concern as they would all be controlled by
-the same entity.
+الحد الأقصى البالغ 16 تأجيرًا لكل مجموعة تأجير لا يتغير بسبب هذا الاقتراح. بالنسبة للوجهات التي تتطلب أنفاقًا أكثر من ذلك، هناك تعديلان شبكيان محتملان:
 
+- زيادة الحد الأقصى لحجم مجموعات التأجير. سيكون هذا أبسط تنفيذًا (رغم أنه سيتطلب دعمًا شبكيًا واسع الانتشار قبل أن يمكن استخدامه على نطاق واسع)، لكنه قد يؤدي إلى عمليات بحث أبطأ بسبب أحجام الحزم الأكبر. ويُعرّف الحد الأقصى الممكن لمجموعة التأجير بـ MTU للنقل الأساسي، وبالتالي يكون حوالي 16 كيلوبايت.
 
-## Performance and scalability notes
+- تنفيذ الاقتراح 123 لمجموعات التأجير الطبقية. بالاقتران مع هذا الاقتراح، يمكن توزيع الوجهات الخاصة بمجموعات التأجير الفرعية عبر عدة موجهات، مما يعمل بشكل فعّال كعناوين IP متعددة لخدمة الشبكة الواضحة (clearnet).
 
-The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
-Destinations that require more tunnels than this, there are two possible network
-modifications:
+## الشكر والتقدير
 
-- Increase the upper limit on the size of LeaseSets. This would be the simplest
-  to implement (though it would still require pervasive network support before
-  it could be widely used), but could result in slower lookups due to the larger
-  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
-  underlying transports, and is therefore around 16kB.
+شكرًا لـ psi على المناقشة التي أدت إلى هذا الاقتراح.
 
-- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
-  the Destinations for the sub-LeaseSets could be spread across multiple
-  routers, effectively acting like multiple IP addresses for a clearnet service.
-
-
-## Acknowledgements
-
-Thanks to psi for the discussion that led to this proposal.
-
-
-## References
+## المراجع
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [I2CP](/docs/specs/i2cp/)

@@ -4,46 +4,45 @@ date: 2019-07-29
 author: "sadie"
 description: "I2P developers are attending multiple conferences this month"
 ---
+# جدول المؤتمر أغسطس 2019
 
-# Conference Schedule August 2019
+مرحباً بالجميع،
 
-Hi Everyone,
+سيكون الشهر القادم مزدحماً! التقيوا بمهندسي I2P في ورشتي عمل في مؤتمر Defcon 27، والتواصلوا مع الباحثين الذين راقبوا رقابة I2P في مؤتمر FOCI '19.
 
-Next month will be busy! Meet up with I2P developers at two workshops at Defcon 27, and connect with researchers who have been observing I2P censorship at FOCI '19.
-
-## I2P for Cryptocurrency Developers
+## I2P لمطوري العملات الرقمية
 
 **zzz**
 
-- Monero Village
-- August 9, 3:15pm
-- Monero Village will be on the 26th floor of Bally's [map](https://defcon.org/html/defcon-27/dc-27-venue.html)
+- قرية Monero
+- 9 أغسطس، الساعة 3:15 مساءً
+- ستكون قرية Monero في الطابق 26 من فندق Bally's [الخريطة](https://defcon.org/html/defcon-27/dc-27-venue.html)
 
-This workshop will assist developers in designing applications to communicate over I2P for anonymity and security. We will discuss common requirements for cryptocurrency applications, and review each application's architecture and specific needs.Then, we will cover tunnel communications, router and library selection, and packaging choices, and answer all questions related to integrating I2P.
+ستساعد هذه الورشة المطورين في تصميم تطبيقات للتواصل عبر شبكة I2P من أجل الخصوصية والأمان. سنناقش المتطلبات الشائعة للتطبيقات المتعلقة بالعملات الرقمية، ونستعرض معمارية كل تطبيق واحتياجاته الخاصة. ثم نتطرق إلى اتصالات الأنفاق (tunnel communications)، واختيار الموجه (router) والمكتبات، وخيارات التغليف، ونجيب على جميع الأسئلة المتعلقة بدمج I2P.
 
-The goal is to create secure, scalable, extensible, and efficient designs that meets the needs of each particular project.
+الهدف هو إنشاء تصاميم آمنة وقابلة للتوسع وقابلة للتطوير وفعالة تلبي احتياجات كل مشروع على حدة.
 
-## I2P For Application Developers
+## I2P لمطوري التطبيقات
 
 **idk**
 
-- Crypto & Privacy Village
-- Saturday August 10, 2pm - 3:30pm
-- Planet Hollywood [map](https://defcon.org/images/defcon-27/maps/ph-final-public.pdf)
-- This workshop is not recorded. So don't miss it!
+- قرية التشفير والخصوصية (Crypto & Privacy Village)
+- السبت 10 أغسطس، من الساعة 2:00 ظهراً حتى 3:30 مساءً
+- فندق Planet Hollywood [الخريطة](https://defcon.org/images/defcon-27/maps/ph-final-public.pdf)
+- هذه الورشة لن يتم تسجيلها. لذا لا تفوتها!
 
-The workshop provides an introduction to the ways an application can be made to work with the I2P Anonymous Peer-to-Peer network. Developers should learn that the use of anonymous P2P in their applications need not be that different than what they are already doing in non-anonymous Peer-to-Peer applications. It begins with an introduction to the I2P plugins system, showing how the existing plugins set themselves up to do communication over I2P and what's good and bad about each approach. Afterwards, we'll continue on to the programatically controlling I2P via it's SAM and I2PControl API's. Finally, we'll take a dive into the SAMv3 API by starting a new library utilizing it in Lua and writing a simple application.
+تقدم هذه الورشة مقدمة حول الطرق التي يمكن من خلالها جعل التطبيق يعمل مع شبكة I2P للاتصالات الند للند المجهولة. يجب أن يتعلم المطورون أن استخدام الشبكات الند للند المجهولة في تطبيقاتهم لا يختلف كثيراً عن ما يفعلونه بالفعل في التطبيقات الند للند غير المجهولة. تبدأ الورشة بمقدمة عن نظام إضافات I2P، وتوضح كيف تقوم الإضافات الحالية بإعداد نفسها للتواصل عبر I2P، وما هي الجوانب الجيدة والسيئة في كل نهج. بعد ذلك، نواصل الحديث عن التحكم البرمجي في I2P من خلال واجهتي SAM و I2PControl API. وأخيراً، نتعمق في واجهة SAMv3 API من خلال بدء مكتبة جديدة باستخدامها بلغة Lua وكتابة تطبيق بسيط.
 
-## Measuring I2P Censorship at a Global Scale
+## قياس رقابة I2P على مستوى عالمي
 
 **sadie**
 
 - FOCI '19
-- Tuesday August 13th 10:30am
-- Hyatt Regency Santa Clara
-- Co-located with USENIX Security '19
-- [Workshop Program](https://www.usenix.org/conference/foci19/workshop-program)
+- الثلاثاء 13 أغسطس، الساعة 10:30 صباحاً
+- فندق هيات ريجنسي سانتا كلارا
+- يُقام بالتزامن مع مؤتمر USENIX Security '19
+- [برنامج الورشة](https://www.usenix.org/conference/foci19/workshop-program)
 
-The prevalence of Internet censorship has prompted the creation of several measurement platforms for monitoring filtering activities. An important challenge faced by these platforms revolves around the trade-off between depth of measurement and breadth of coverage. In this paper, we present an opportunistic censorship measurement infrastructure built on top of a network of distributed VPN servers run by volunteers, which we used to measure the extent to which the I2P anonymity network is blocked around the world. This infrastructure provides us with not only numerous and geographically diverse vantage points, but also the ability to conduct in-depth measurements across all levels of the network stack. Using this infrastructure, we measured at a global scale the availability of four different I2P services: the official homepage, its mirror site, reseed servers, and active relays in the network. Within a period of one month, we conducted a total of 54K measurements from 1.7K network locations in 164 countries. With different techniques for detecting domain name blocking, network packet injection, and block pages, we discovered I2P censorship in five countries: China, Iran, Oman, Qatar, and Kuwait. Finally, we conclude by discussing potential approaches to circumvent censorship on I2P.
+أدى انتشار رقابة الإنترنت إلى دفع إنشاء منصات متعددة لقياس ومراقبة أنشطة التصفية. وتشكل إحدى التحديات المهمة التي تواجه هذه المنصات المفاضلة بين عمق القياس واتساع التغطية. في هذا البحث، نقدم بنية تحتية لقياس الرقابة الاستغلالية (opportunistic censorship measurement infrastructure) مبنية على شبكة من خوادم VPN موزعة يديرها متطوعون، استخدمناها لقياس مدى حجب شبكة I2P للخصوصية في مختلف أنحاء العالم. توفر لنا هذه البنية ليس فقط عددًا كبيرًا من نقاط الرصد الجغرافية المتنوعة، بل أيضًا القدرة على إجراء قياسات متعمقة عبر جميع مستويات طبقة الشبكة. باستخدام هذه البنية، قمنا بقياس مدى توفر أربع خدمات مختلفة من I2P على نطاق عالمي: الصفحة الرئيسية الرسمية، موقع النسخ الاحتياطي (mirror site)، خوادم إعادة التهيئة (reseed servers)، والمرسلات النشطة في الشبكة. خلال فترة شهر واحد، أجرينا ما مجموعه 54 ألف قياس من 1.7 ألف موقع شبكي في 164 دولة. وباستخدام تقنيات مختلفة لاكتشاف حجب أسماء النطاقات، وإدخال الحزم الشبكية (network packet injection)، وصفحات الحظر، اكتشفنا رقابة I2P في خمس دول: الصين، إيران، عُمان، قطر، والكويت. وأخيراً، نختتم بالحديث عن الأساليب المحتملة للتغلب على الرقابة المفروضة على I2P.
 
-**Note:** Images referenced in the original post (monerovillageblog.png, cryptovillageblog.png, censorship.jpg) may need to be added to `/static/images/blog/` directory.
+**ملاحظة:** قد تحتاج الصور المشار إليها في المنشور الأصلي (monerovillageblog.png، cryptovillageblog.png، censorship.jpg) إلى إضافتها إلى الدليل `/static/images/blog/`.

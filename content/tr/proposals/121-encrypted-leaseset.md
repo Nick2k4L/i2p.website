@@ -9,61 +9,55 @@ thread: "http://zzz.i2p/topics/2047"
 supercededby: "123"
 toc: true
 ---
+## Genel Bakış
 
-## Overview
-
-This proposal is about redesigning the mechanism for encrypting LeaseSets.
-
-
-## Motivation
-
-Current encrypted LS is horrendous and insecure. I can say that, I designed and
-implemented it.
-
-Reasons:
-
-- AES CBC encrypted
-- Single AES key for everybody
-- Lease expirations still exposed
-- Encryption pubkey still exposed
+Bu öneri, LeaseSet'leri şifreleme mekanizmasını yeniden tasarlamaktadır.
 
 
-## Design
+## Motivasyon
 
-### Goals
+Şu anki şifrelenmiş LS berbat ve güvensiz. Bunu söyleyebilirim, çünkü ben tasarladım ve uyguladım.
 
-- Make entire thing opaque
-- Keys for each recipient
+Nedenler:
 
-
-### Strategy
-
-Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-IF we can find an algo that's small and fast.
-
-Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
-bytes is a little painful here. We can do better.
-
-See e.g. http://security.stackexchange.com/questions/824...
-
-This works for small numbers of recipients (or actually, keys; you can still
-distribute keys to multiple people if you like).
+- AES CBC şifreleme
+- Herkes için tek bir AES anahtarı
+- Kiralama süreleri hala açık
+- Şifreleme pubkey hala açık
 
 
-## Specification
+## Tasarım
 
-- Destination
-- Published timestamp
-- Expiration
-- Flags
-- Length of data
-- Encrypted data
-- Signature
+### Hedefler
 
-Encrypted data could be prefixed with some enctype specifier, or not.
+- Tüm şeyi opak hale getirmek
+- Her alıcı için anahtarlar
 
 
-## References
+### Strateji
+
+GPG/OpenPGP gibi yapın. Her alıcı için simetrik bir anahtarı asimetrik olarak şifreleyin. Veriler bu asimetrik anahtar ile şifrelenir. Örnek olarak [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1) bölümüne bakın. Eğer küçük ve hızlı bir algoritma bulabilirsek.
+
+Bulmaca, küçük ve hızlı bir asimetrik şifreleme bulmaktır. 514 byte'lık ElGamal burada biraz can sıkıcı. Daha iyisini yapabiliriz.
+
+Örnek olarak http://security.stackexchange.com/questions/824... bölümüne bakın.
+
+Bu, alıcıların (veya aslında anahtarların) küçük sayıları için çalışır; eğer isterseniz, anahtarları birden fazla kişiye dağıtabilirsiniz.
+
+
+## Özellikler
+
+- Hedef
+- Yayınlanan zaman damgası
+- Süre sonu
+- Bayraklar
+- Veri uzunluğu
+- Şifrelenmiş veri
+- İmza
+
+Şifrelenmiş veri, bazı enctype belirteci ile öneklenmemiş olabilir.
+
+
+## Referanslar
 
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

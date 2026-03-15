@@ -8,89 +8,87 @@ status: "مفتوح"
 thread: "http://zzz.i2p/topics/2234"
 toc: true
 ---
+## نظرة عامة
 
-## Overview
-
-This is the spec for the Garlic Farm wire protocol,
-based on JRaft, its "exts" code for implementation over TCP,
-and its "dmprinter" sample application [JRAFT](https://github.com/datatechnology/jraft).
-
-
-We were unable to find any implementation with a documented wire protocol.
-However, the JRaft implementation is simple enough that we could
-inspect the code and then document its protocol.
-This proposal is the result of that effort.
-
-This will be the backend for coordination of routers publishing
-entries in a Meta LeaseSet. See proposal 123.
+هذا هو المواصفة الخاصة ببروتوكول الاتصال "Garlic Farm"،
+والمبنية على JRaft، ورمز "exts" الخاص بها للتنفيذ عبر TCP،
+وتطبيقها النموذجي "dmprinter" [JRAFT](https://github.com/datatechnology/jraft).
 
 
-## Goals
+لم نتمكن من العثور على أي تنفيذ يحتوي على بروتوكول اتصال موثق. ومع ذلك، فإن تنفيذ JRaft بسيط بما يكفي
+لأن نفحص الكود ثم نوثق بروتوكوله.
+هذا الاقتراح هو نتيجة لذلك الجهد.
 
-- Small code size
-- Based on existing implementation
-- No serialized Java objects or any Java-specific features or encoding
-- Any bootstrapping is out-of-scope. At least one other server is assumed
-  to be hardcoded, or configured out-of-band of this protocol.
-- Support both out-of-band and in-I2P use cases.
+سيكون هذا هو الطريقة الخلفية لتنسيق الراوترات التي تنشر
+إدخالات في Meta LeaseSet. انظر الاقتراح 123.
 
 
-## Design
+## الأهداف
 
-The Raft protocol is not a concrete protocol; it defines only a state machine.
-Therefore we document the concrete protocol of JRaft and base our protocol on it.
-There are no changes to the JRaft protocol other than the addition of
-an authentication handshake.
+- حجم صغير للشفرة
+- مبني على تنفيذ موجود
+- لا توجد كائنات جافا متسلسلة أو أي ميزات أو ترميزات خاصة بجافا
+- أي عملية إقلاع (bootstrapping) خارج نطاق هذا الاقتراح. يُفترض أن يكون هناك خادم آخر على الأقل
+  مُدخل مسبقًا أو مُهيأ خارج نطاق هذا البروتوكول.
+- دعم حالات الاستخدام خارج النطاق (out-of-band) واستخدام I2P داخليًا.
 
-Raft elects a Leader whose job is to publish a log.
-The log contains Raft Configuration data and Application data.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+
+## التصميم
+
+بروتوكول Raft ليس بروتوكولًا ملموسًا؛ بل يعرّف فقط آلة حالة.
+لذلك نوثق البروتوكول الملموس لـ JRaft ونبني بروتوكولنا عليه.
+لا توجد تغييرات على بروتوكول JRaft سوى إضافة
+مراسلة مصادقة (authentication handshake).
+
+يُنتخب Raft قائدًا (Leader) مهمته نشر سجل (log).
+يحتوي السجل على بيانات تكوين Raft وبيانات التطبيق.
+تحتوي بيانات التطبيق على حالة راوتر كل خادم ووجهة
+مجموعة Meta LS2.
+تستخدم الخوادم خوارزمية مشتركة لتحديد الناشر ومحتويات
+Meta LS2.
+ناشر Meta LS2 ليس بالضرورة قائد Raft.
 
 
 
-## Specification
+## المواصفات
 
-The wire protocol is over SSL sockets or non-SSL I2P sockets.
-I2P sockets are proxied through the HTTP Proxy.
-There is no support for clearnet non-SSL sockets.
+يتم بروتوكول الاتصال عبر مقابس SSL أو مقابس I2P غير مشفرة.
+تُمرّر مقابس I2P عبر وكيل HTTP.
+لا يوجد دعم لمقابس clearnet غير مشفرة.
 
-### Handshake and authentication
+### مراسلة المصادقة
 
-Not defined by JRaft.
+غير معرّفة بواسطة JRaft.
 
-Goals:
+الأهداف:
 
-- User/password authentication method
-- Version identifier
-- Cluster identifier
-- Extensible
-- Ease of proxying when used for I2P sockets
-- Do not unnecessarily expose server as a Garlic Farm server
-- Simple protocol so a full web server implementation is not required
-- Compatible with common standards, so implementations may use
-  standard libraries if desired
+- طريقة مصادقة باستخدام اسم المستخدم/كلمة المرور
+- معرف الإصدار
+- معرف المجموعة (cluster)
+- قابلة للتوسيع
+- سهولة التوجيه عند استخدام مقابس I2P
+- عدم التعرض غير الضروري للخادم كخادم Garlic Farm
+- بروتوكول بسيط بحيث لا يتطلب تنفيذ خادم ويب كامل
+- التوافق مع المعايير الشائعة، بحيث يمكن للتنفيذات استخدام
+  مكتبات قياسية إذا رغبت
 
-We will use an websocket-like handshake and
-HTTP Digest authentication [RFC 2617](https://tools.ietf.org/html/rfc2617).
-RFC 2617 Basic authentication is NOT supported.
-When proxying through the HTTP proxy, communicate with
-the proxy as specified in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+سنستخدم مراسلة تشبه WebSocket
+ومصادقة HTTP Digest [RFC 2617](https://tools.ietf.org/html/rfc2617).
+مصادقة HTTP الأساسية (Basic) حسب RFC 2617 غير مدعومة.
+عند التوجيه عبر وكيل HTTP، يتم التواصل مع
+الوكيل حسب المواصفات في [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-#### Credentials
+#### بيانات الاعتماد
 
-Whether usernames and passwords are per-cluster, or
-per-server, is implementation-dependent.
+ما إذا كانت أسماء المستخدمين وكلمات المرور خاصة بكل مجموعة أو
+بكل خادم، يعتمد على التنفيذ.
 
 
-#### HTTP Request 1
+#### طلب HTTP 1
 
-The originator will send the following.
+يرسل المُبْدِع ما يلي.
 
-All lines are teriminated with CRLF as required by HTTP.
+جميع الأسطر تنتهي بـ CRLF حسب المطلوب في HTTP.
 
 ```text
 
@@ -98,33 +96,33 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
   Connection: close
-  (any other headers ignored)
-  (blank line)
+  (أي رؤوس أخرى تُهمل)
+  (سطر فارغ)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER هو اسم المجموعة (الافتراضي "farm")
+  VERSION هو إصدار Garlic Farm (حاليًا "1")
 
 ```
 
 
-#### HTTP Response 1
+#### استجابة HTTP 1
 
-If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
-as in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+إذا لم يكن المسار صحيحًا، يرسل المستلم استجابة قياسية "HTTP/1.1 404 Not Found"،
+كما في [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
-including the WWW-Authenticate HTTP digest authentication header,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+إذا كان المسار صحيحًا، يرسل المستلم استجابة قياسية "HTTP/1.1 401 Unauthorized"،
+متضمنًا رأس مصادقة HTTP Digest WWW-Authenticate،
+كما في [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Both parties will then close the socket.
+ثم يغلق الطرفان المقابس.
 
 
-#### HTTP Request 2
+#### طلب HTTP 2
 
-The originator will send the following,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+يرسل المُبْدِع ما يلي،
+كما في [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-All lines are teriminated with CRLF as required by HTTP.
+جميع الأسطر تنتهي بـ CRLF حسب المطلوب في HTTP.
 
 ```text
 
@@ -133,104 +131,104 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Cache-Control: no-cache
   Connection: keep-alive, Upgrade
   Upgrade: websocket
-  (Sec-Websocket-* headers if proxied)
-  Authorization: (HTTP digest authorization header as in RFC 2617)
-  (any other headers ignored)
-  (blank line)
+  (رؤوس Sec-Websocket-* إذا تم التوجيه)
+  Authorization: (رأس تفويض HTTP Digest حسب RFC 2617)
+  (أي رؤوس أخرى تُهمل)
+  (سطر فارغ)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER هو اسم المجموعة (الافتراضي "farm")
+  VERSION هو إصدار Garlic Farm (حاليًا "1")
 
 ```
 
 
-#### HTTP Response 2
+#### استجابة HTTP 2
 
-If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+إذا لم تكن المصادقة صحيحة، يرسل المستلم استجابة قياسية أخرى "HTTP/1.1 401 Unauthorized"،
+كما في [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-If the authentication is correct, the recipient will send the following response,
-as in the WebSocket protocol.
+إذا كانت المصادقة صحيحة، يرسل المستلم الاستجابة التالية،
+كما في بروتوكول WebSocket.
 
-All lines are teriminated with CRLF as required by HTTP.
+جميع الأسطر تنتهي بـ CRLF حسب المطلوب في HTTP.
 
 ```text
 
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
-  (Sec-Websocket-* headers)
-  (any other headers ignored)
-  (blank line)
+  (رؤوس Sec-Websocket-*)
+  (أي رؤوس أخرى تُهمل)
+  (سطر فارغ)
 
 ```
 
-After this is received, the socket remains open.
-The Raft protocol as defined below commences, on the same socket.
+بعد استلام هذا، يبقى المقبس مفتوحًا.
+يبدأ بروتوكول Raft كما هو محدد أدناه، على نفس المقبس.
 
 
-#### Caching
+#### التخزين المؤقت
 
-Credentials shall be cached for at least one hour, so that
-subsequent connections may jump directly to
-"HTTP Request 2" above.
-
-
-
-### Message Types
-
-There are two types of messages, requests and responses.
-Requests may contain Log Entries, and are variable-sized;
-responses do not contain Log Entries, and are fixed-size.
-
-Message types 1-4 are the standard RPC messages defined by Raft.
-This is the core Raft protocol.
-
-Message types 5-15 are the extended RPC messages defined by
-JRaft, to support clients, dynamic server changes, and
-efficient log synchronization.
-
-Message types 16-17 are the Log Compaction RPC messages defined
-in Raft section 7.
+يجب تخزين بيانات الاعتماد لمدة ساعة على الأقل، بحيث
+يمكن للاتصالات اللاحقة الانتقال مباشرة إلى
+"طلب HTTP 2" أعلاه.
 
 
-| Message | Number | Sent By | Sent To | Notes |
+
+### أنواع الرسائل
+
+توجد نوعان من الرسائل: طلبات واستجابات.
+قد تحتوي الطلبات على إدخالات السجل (Log Entries)، وهي ذات حجم متغير؛
+لا تحتوي الاستجابات على إدخالات السجل، وهي ذات حجم ثابت.
+
+أنواع الرسائل من 1 إلى 4 هي رسائل RPC القياسية المعرفة بواسطة Raft.
+هذا هو جوهر بروتوكول Raft.
+
+أنواع الرسائل من 5 إلى 15 هي رسائل RPC الموسع المعرفة بواسطة
+JRaft، لدعم العملاء، التغييرات الديناميكية للخوادم، و
+مزامنة السجل بكفاءة.
+
+أنواع الرسائل من 16 إلى 17 هي رسائل RPC لضغط السجل (Log Compaction) المعرفة
+في قسم 7 من Raft.
+
+
+| الرسالة | الرقم | يرسلها | يرسل إلى | ملاحظات |
 | :--- | :--- | :--- | :--- | :--- |
-| RequestVoteRequest | 1 | Candidate | Follower | Standard Raft RPC; must not contain log entries |
-| RequestVoteResponse | 2 | Follower | Candidate | Standard Raft RPC |
-| AppendEntriesRequest | 3 | Leader | Follower | Standard Raft RPC |
-| AppendEntriesResponse | 4 | Follower | Leader / Client | Standard Raft RPC |
-| ClientRequest | 5 | Client | Leader / Follower | Response is AppendEntriesResponse; must contain Application log entries only |
-| AddServerRequest | 6 | Client | Leader | Must contain a single ClusterServer log entry only |
-| AddServerResponse | 7 | Leader | Client | Leader will also send a JoinClusterRequest |
-| RemoveServerRequest | 8 | Follower | Leader | Must contain a single ClusterServer log entry only |
+| RequestVoteRequest | 1 | Candidate | Follower | RPC قياسي لـ Raft؛ لا يجب أن يحتوي على إدخالات السجل |
+| RequestVoteResponse | 2 | Follower | Candidate | RPC قياسي لـ Raft |
+| AppendEntriesRequest | 3 | Leader | Follower | RPC قياسي لـ Raft |
+| AppendEntriesResponse | 4 | Follower | Leader / Client | RPC قياسي لـ Raft |
+| ClientRequest | 5 | Client | Leader / Follower | الاستجابة هي AppendEntriesResponse؛ يجب أن تحتوي فقط على إدخالات سجل التطبيق |
+| AddServerRequest | 6 | Client | Leader | يجب أن يحتوي على إدخال سجل ClusterServer واحد فقط |
+| AddServerResponse | 7 | Leader | Client | سيرسل القائد أيضًا JoinClusterRequest |
+| RemoveServerRequest | 8 | Follower | Leader | يجب أن يحتوي على إدخال سجل ClusterServer واحد فقط |
 | RemoveServerResponse | 9 | Leader | Follower | |
-| SyncLogRequest | 10 | Leader | Follower | Must contain a single LogPack log entry only |
+| SyncLogRequest | 10 | Leader | Follower | يجب أن يحتوي على إدخال سجل LogPack واحد فقط |
 | SyncLogResponse | 11 | Follower | Leader | |
-| JoinClusterRequest | 12 | Leader | New Server | Invitation to join; must contain a single Configuration log entry only |
+| JoinClusterRequest | 12 | Leader | New Server | دعوة للانضمام؛ يجب أن يحتوي على إدخال سجل Configuration واحد فقط |
 | JoinClusterResponse | 13 | New Server | Leader | |
-| LeaveClusterRequest | 14 | Leader | Follower | Command to leave |
+| LeaveClusterRequest | 14 | Leader | Follower | أمر بالمغادرة |
 | LeaveClusterResponse | 15 | Follower | Leader | |
-| InstallSnapshotRequest | 16 | Leader | Follower | Raft Section 7; Must contain a single SnapshotSyncRequest log entry only |
-| InstallSnapshotResponse | 17 | Follower | Leader | Raft Section 7 |
+| InstallSnapshotRequest | 16 | Leader | Follower | قسم 7 من Raft؛ يجب أن يحتوي على إدخال سجل SnapshotSyncRequest واحد فقط |
+| InstallSnapshotResponse | 17 | Follower | Leader | قسم 7 من Raft |
 
 
-### Establishment
+### الإقامة
 
-After the HTTP handshake, the establishment sequence is as follows:
+بعد مراسلة HTTP، تكون تسلسل الإقامة كما يلي:
 
 ```text
 
-New Server Alice              Random Follower Bob
+الخادم الجديد أليس              المتابع العشوائي بوب
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
 
-  If Bob says he is the leader, continue as below.
-  Else, Alice must disconnect from Bob and connect to the leader.
+  إذا قال بوب إنه القائد، استمر أدناه.
+  وإلا، يجب على أليس فصل الاتصال من بوب والاتصال بالقائد.
 
 
-  New Server Alice              Leader Charlie
+  الخادم الجديد أليس              القائد تشارلي
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
@@ -245,11 +243,11 @@ New Server Alice              Random Follower Bob
 
 ```
 
-Disconnect Sequence:
+تسلسل الفصل:
 
 ```text
 
-Follower Alice              Leader Charlie
+المتابع أليس              القائد تشارلي
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
@@ -258,18 +256,18 @@ Follower Alice              Leader Charlie
 
 ```
 
-Election Sequence:
+تسلسل الانتخابات:
 
 ```text
 
-Candidate Alice               Follower Bob
+المرشح أليس               المتابع بوب
 
   RequestVoteRequest   ------->
           <---------   RequestVoteResponse
 
-  if Alice wins election:
+  إذا فازت أليس بالانتخابات:
 
-  Leader Alice                Follower Bob
+  القائد أليس                المتابع بوب
 
   AppendEntriesRequest   ------->
   (heartbeat)
@@ -278,142 +276,142 @@ Candidate Alice               Follower Bob
 ```
 
 
-### Definitions
+### التعريفات
 
-- Source: Identifies the originator of the message
-- Destination: Identifies the recipient of the message
-- Terms: See Raft. Initialized to 0, increases monotonically
-- Indexes: See Raft. Initialized to 0, increases monotonically
-
-
-
-### Requests
-
-Requests contain a header and zero or more log entries.
-Requests contain a fixed-size header and optional Log Entries of variable size.
+- المصدر (Source): يحدد مُرسِل الرسالة
+- الوجهة (Destination): يحدد مُستقبِل الرسالة
+- المصطلحات (Terms): انظر Raft. تُهيأ إلى 0، وتزداد بشكل رتيب
+- الفهارس (Indexes): انظر Raft. تُهيأ إلى 0، وتزداد بشكل رتيب
 
 
-#### Request Header
 
-The request header is 45 bytes, as follows.
-All values are unsigned big-endian.
+### الطلبات
+
+تحتوي الطلبات على رأس وإدخالات سجل صفر أو أكثر.
+تحتوي الطلبات على رأس بحجم ثابت وإدخالات سجل اختيارية بحجم متغير.
+
+
+#### رأس الطلب
+
+رأس الطلب بحجم 45 بايت، كما يلي.
+جميع القيم بدون إشارة وبنظام big-endian.
 
 ```text
 
-Message type:      1 byte
-  Source:            ID, 4 byte integer
-  Destination:       ID, 4 byte integer
-  Term:              Current term (see notes), 8 byte integer
-  Last Log Term:     8 byte integer
-  Last Log Index:    8 byte integer
-  Commit Index:      8 byte integer
-  Log entries size:  Total size in bytes, 4 byte integer
-  Log entries:       see below, total length as specified
+نوع الرسالة:      1 بايت
+  المصدر:            معرف، عدد صحيح 4 بايت
+  الوجهة:       معرف، عدد صحيح 4 بايت
+  المصطلح:              المصطلح الحالي (انظر الملاحظات)، عدد صحيح 8 بايت
+  المصطلح الأخير للسجل:     عدد صحيح 8 بايت
+  فهرس السجل الأخير:    عدد صحيح 8 بايت
+  فهرس الالتزام:      عدد صحيح 8 بايت
+  حجم إدخالات السجل:  الحجم الكلي بالبايت، عدد صحيح 4 بايت
+  إدخالات السجل:       انظر أدناه، الطول الكلي حسب المحدد
 
 ```
 
 
-#### Notes
+#### ملاحظات
 
-In the RequestVoteRequest, Term is the candidate's term.
-Otherwise, it is the leader's current term.
+في RequestVoteRequest، المصطلح هو مصطلح المرشح.
+وإلا، فهو المصطلح الحالي للقائد.
 
-In the AppendEntriesRequest, when the log entries size is zero,
-this message is a heartbeat (keepalive) message.
+في AppendEntriesRequest، عندما يكون حجم إدخالات السجل صفرًا،
+تكون هذه الرسالة رسالة نبض (heartbeat) (keepalive).
 
 
 
-#### Log Entries
+#### إدخالات السجل
 
-The log contains zero or more log entries.
-Each log entry is as follows.
-All values are unsigned big-endian.
+يحتوي السجل على إدخالات سجل صفر أو أكثر.
+كل إدخال سجل يكون كما يلي.
+جميع القيم بدون إشارة وبنظام big-endian.
 
 ```text
 
-Term:           8 byte integer
-  Value type:     1 byte
-  Entry size:     In bytes, 4 byte integer
-  Entry:          length as specified
+المصطلح:           عدد صحيح 8 بايت
+  نوع القيمة:     1 بايت
+  حجم الإدخال:     بالبايت، عدد صحيح 4 بايت
+  الإدخال:          الطول حسب المحدد
 
 ```
 
 
-#### Log Contents
+#### محتويات السجل
 
-All values are unsigned big-endian.
+جميع القيم بدون إشارة وبنظام big-endian.
 
-| Log Value Type | Number |
+| نوع قيمة السجل | الرقم |
 | :--- | :--- |
-| Application | 1 |
-| Configuration | 2 |
+| التطبيق | 1 |
+| التكوين | 2 |
 | ClusterServer | 3 |
 | LogPack | 4 |
 | SnapshotSyncRequest | 5 |
 
 
-#### Application
+#### التطبيق
 
-Application contents are UTF-8 encoded [JSON](https://www.json.org/).
-See the Application Layer section below.
+محتويات التطبيق مشفرة بـ UTF-8 بصيغة [JSON](https://www.json.org/).
+انظر قسم طبقة التطبيق أدناه.
 
 
-#### Configuration
+#### التكوين
 
-This is used for the leader to serialize a new cluster configuration and replicate to peers.
-It contains zero or more ClusterServer configurations.
+يُستخدم هذا لتمكين القائد من تسلسل تكوين مجموعة جديد ونسخه إلى الأقران.
+يحتوي على تكوينات ClusterServer صفر أو أكثر.
 
 
 ```text
 
-Log Index:  8 byte integer
-  Last Log Index:  8 byte integer
-  ClusterServer Data for each server:
-    ID:                4 byte integer
-    Endpoint data len: In bytes, 4 byte integer
-    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+فهرس السجل:  عدد صحيح 8 بايت
+  فهرس السجل الأخير:  عدد صحيح 8 بايت
+  بيانات ClusterServer لكل خادم:
+    المعرف:                عدد صحيح 4 بايت
+    طول بيانات النقطة الطرفية: بالبايت، عدد صحيح 4 بايت
+    بيانات النقطة الطرفية:     سلسلة ASCII على شكل "tcp://localhost:9001"، الطول حسب المحدد
 
 ```
 
 
 #### ClusterServer
 
-The configuration information for a server in a cluster.
-This is included only in a AddServerRequest or RemoveServerRequest message.
+معلومات التكوين لخادم ضمن مجموعة.
+تُدرج فقط في رسالة AddServerRequest أو RemoveServerRequest.
 
-When used in a AddServerRequest Message:
+عند استخدامها في رسالة AddServerRequest:
 
 ```text
 
-ID:                4 byte integer
-  Endpoint data len: In bytes, 4 byte integer
-  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+المعرف:                عدد صحيح 4 بايت
+  طول بيانات النقطة الطرفية: بالبايت، عدد صحيح 4 بايت
+  بيانات النقطة الطرفية:     سلسلة ASCII على شكل "tcp://localhost:9001"، الطول حسب المحدد
 
 ```
 
 
-When used in a RemoveServerRequest Message:
+عند استخدامها في رسالة RemoveServerRequest:
 
 ```text
 
-ID:                4 byte integer
+المعرف:                عدد صحيح 4 بايت
 
 ```
 
 
 #### LogPack
 
-This is included only in a SyncLogRequest message.
+تُدرج فقط في رسالة SyncLogRequest.
 
-The following is gzipped before transmission:
+يتم ضغط ما يلي باستخدام gzip قبل الإرسال:
 
 
 ```text
 
-Index data len: In bytes, 4 byte integer
-  Log data len:   In bytes, 4 byte integer
-  Index data:     8 bytes for each index, length as specified
-  Log data:       length as specified
+طول بيانات الفهرس: بالبايت، عدد صحيح 4 بايت
+  طول بيانات السجل:   بالبايت، عدد صحيح 4 بايت
+  بيانات الفهرس:     8 بايت لكل فهرس، الطول حسب المحدد
+  بيانات السجل:       الطول حسب المحدد
 
 ```
 
@@ -421,207 +419,207 @@ Index data len: In bytes, 4 byte integer
 
 #### SnapshotSyncRequest
 
-This is included only in a InstallSnapshotRequest message.
+تُدرج فقط في رسالة InstallSnapshotRequest.
 
 ```text
 
-Last Log Index:  8 byte integer
-  Last Log Term:   8 byte integer
-  Config data len: In bytes, 4 byte integer
-  Config data:     length as specified
-  Offset:          The offset of the data in the database, in bytes, 8 byte integer
-  Data len:        In bytes, 4 byte integer
-  Data:            length as specified
-  Is Done:         1 if done, 0 if not done (1 byte)
+فهرس السجل الأخير:  عدد صحيح 8 بايت
+  مصطلح السجل الأخير:   عدد صحيح 8 بايت
+  طول بيانات التكوين: بالبايت، عدد صحيح 4 بايت
+  بيانات التكوين:     الطول حسب المحدد
+  الإزاحة:          إزاحة البيانات في قاعدة البيانات، بالبايت، عدد صحيح 8 بايت
+  طول البيانات:        بالبايت، عدد صحيح 4 بايت
+  البيانات:            الطول حسب المحدد
+  تم:         1 إذا اكتمل، 0 إذا لم يكتمل (1 بايت)
 
 ```
 
 
 
 
-### Responses
+### الاستجابات
 
-All responses are 26 bytes, as follows.
-All values are unsigned big-endian.
+جميع الاستجابات بحجم 26 بايت، كما يلي.
+جميع القيم بدون إشارة وبنظام big-endian.
 
 ```text
 
-Message type:   1 byte
-  Source:         ID, 4 byte integer
-  Destination:    Usually the actual destination ID (see notes), 4 byte integer
-  Term:           Current term, 8 byte integer
-  Next Index:     Initialized to leader last log index + 1, 8 byte integer
-  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+نوع الرسالة:   1 بايت
+  المصدر:         المعرف، عدد صحيح 4 بايت
+  الوجهة:    عادةً معرف الوجهة الفعلي (انظر الملاحظات)، عدد صحيح 4 بايت
+  المصطلح:           المصطلح الحالي، عدد صحيح 8 بايت
+  الفهرس التالي:     يُهيأ إلى فهرس السجل الأخير للقائد + 1، عدد صحيح 8 بايت
+  مقبول:    1 إذا مُقبولة، 0 إذا لم تُقبل (انظر الملاحظات)، 1 بايت
 
 ```
 
 
-#### Notes
+#### ملاحظات
 
-The Destination ID is usually the actual destination for this message.
-However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
-it is the ID of the current leader.
+معرف الوجهة عادةً هو الوجهة الفعلية لهذه الرسالة.
+ومع ذلك، بالنسبة لـ AppendEntriesResponse و AddServerResponse و RemoveServerResponse،
+فهو معرف القائد الحالي.
 
-In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
-and 0 for no vote.
-
-
-## Application Layer
-
-Each Server periodically posts Application data to the log in a ClientRequest.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The server with the "best" recent status in the log is the Meta LS2 publisher.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+في RequestVoteResponse، تكون القيمة Is Accepted تساوي 1 للتصويت للمرشح (الطالب)،
+و 0 في حالة عدم التصويت.
 
 
-### Application Data Contents
+## طبقة التطبيق
 
-Application contents are UTF-8 encoded [JSON](https://json.org/),
-for simplicity and extensibility.
-The full specification is TBD.
-The goal is to provide enough data to write an algorithm to determine the "best"
-router to publish the Meta LS2, and for the publisher to have sufficient information
-to weight the Destinations in the Meta LS2.
-The data will contain both router and Destination statistics.
-
-The data may optionally contain remote sensing data on the health of the
-other servers, and the ability to fetch the Meta LS.
-These data would not be supported in the first release.
-
-The data may optionally contain configuration information posted
-by an administrator client.
-These data would not be supported in the first release.
-
-If "name: value" is listed, that specifies the JSON map key and value.
-Otherwise, specification is TBD.
+ينشر كل خادم بشكل دوري بيانات التطبيق في السجل عبر ClientRequest.
+تحتوي بيانات التطبيق على حالة راوتر كل خادم ووجهة
+مجموعة Meta LS2.
+تستخدم الخوادم خوارزمية مشتركة لتحديد الناشر ومحتويات
+Meta LS2.
+الخادم الذي لديه "أفضل" حالة حديثة في السجل هو الناشر لـ Meta LS2.
+ناشر Meta LS2 ليس بالضرورة قائد Raft.
 
 
-Cluster data (top level):
+### محتويات بيانات التطبيق
 
-- cluster: Cluster name
-- date: Date of this data (long, ms since the epoch)
-- id: Raft ID (integer)
+محتويات التطبيق مشفرة بـ UTF-8 بصيغة [JSON](https://json.org/)،
+لأجل البساطة والتوسع.
+المواصفة الكاملة لم تُحدد بعد.
+الهدف هو توفير بيانات كافية لكتابة خوارزمية لتحديد "أفضل"
+راوتر لنشر Meta LS2، ولتمكين الناشر من امتلاك معلومات كافية
+لإعطاء أوزان للوجهات في Meta LS2.
+ستحتوي البيانات على إحصائيات الراوتر والوجهة معًا.
 
-Configuration data (config):
+قد تحتوي البيانات اختياريًا على بيانات استشعار عن بُعد حول صحة
+الخوادم الأخرى، والقدرة على جلب Meta LS.
+لن تُدعم هذه البيانات في الإصدار الأول.
 
-- Any configuration parameters
+قد تحتوي البيانات اختياريًا على معلومات تكوين تم نشرها
+بواسطة عميل مسؤول.
+لن تُدعم هذه البيانات في الإصدار الأول.
 
-MetaLS publishing status (meta):
-
-- destination: the metals destination, base64
-- lastPublishedLS: if present, base64 encoding of the last published metals
-- lastPublishedTime: in ms, or 0 if never
-- publishConfig: Publisher config status off/on/auto
-- publishing: metals publisher status boolean true/false
-
-Router data (router):
-
-- lastPublishedRI: if present, base64 encoding of the last published router info
-- uptime: Uptime in ms
-- Job lag
-- Exploratory tunnels
-- Participating tunnels
-- Configured bandwidth
-- Current bandwidth
-
-Destinations (destinations):
-List
-
-Destination data:
-
-- destination: the destination, base64
-- uptime: Uptime in ms
-- Configured tunnels
-- Current tunnels
-- Configured bandwidth
-- Current bandwidth
-- Configured connections
-- Current connections
-- Blacklist data
-
-Remote router sensing data:
-
-- Last RI version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
-
-Remote destination sensing data:
-
-- Last LS version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
-
-Meta LS sensing data:
-
-- Last version seen
-- Fetch time
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
+إذا تم سرد "name: value"، فهذا يحدد مفتاح وقيمة الخريطة في JSON.
+وإلا، المواصفة لم تُحدد بعد.
 
 
-## Administration Interface
+بيانات المجموعة (المستوى العلوي):
 
-TBD, possibly a separate proposal.
-Not required for the first release.
+- cluster: اسم المجموعة
+- date: تاريخ هذه البيانات (عدد طويل، بالمللي ثانية منذ العصر)
+- id: معرف Raft (عدد صحيح)
 
-Requirements of an admin interface:
+بيانات التكوين (config):
 
-- Support for multiple master destinations, i.e. multiple virtual clusters (farms)
-- Provide comprehensive view of shared cluster state - all stats published by members, who is the current leader, etc.
-- Ability to force removal of a participant or leader from the cluster
-- Ability to force publish metaLS (if current node is publisher)
-- Ability to exclude hashes from metaLS (if current node is publisher)
-- Configuration import/export functionality for bulk deployments
+- أي معلمات تكوين
+
+حالة نشر MetaLS (meta):
+
+- destination: وجهة metals، بترميز base64
+- lastPublishedLS: إذا وُجدت، ترميز base64 للـ metals المنشور آخر مرة
+- lastPublishedTime: بالمللي ثانية، أو 0 إذا لم يُنشر قط
+- publishConfig: حالة تكوين الناشر (تشغيل/إيقاف/تلقائي)
+- publishing: حالة ناشر metals (قيمة منطقية true/false)
+
+بيانات الراوتر (router):
+
+- lastPublishedRI: إذا وُجدت، ترميز base64 لمعلومات الراوتر المنشورة آخر مرة
+- uptime: وقت التشغيل بالمللي ثانية
+- تأخر المهام (Job lag)
+- الأنفاق الاستكشافية
+- الأنفاق المشاركة
+- عرض النطاق المهيأ
+- عرض النطاق الحالي
+
+الوجهات (destinations):
+قائمة
+
+بيانات الوجهة:
+
+- destination: الوجهة، بترميز base64
+- uptime: وقت التشغيل بالمللي ثانية
+- الأنفاق المهيأة
+- الأنفاق الحالية
+- عرض النطاق المهيأ
+- عرض النطاق الحالي
+- الاتصالات المهيأة
+- الاتصالات الحالية
+- بيانات القائمة السوداء
+
+بيانات استشعار الراوتر البعيد:
+
+- آخر إصدار RI تم رؤيته
+- وقت جلب LS
+- بيانات اختبار الاتصال
+- بيانات ملفات floodfills الأقرب
+  لفترات الزمن بالأمس، اليوم، وغدًا
+
+بيانات استشعار الوجهة البعيدة:
+
+- آخر إصدار LS تم رؤيته
+- وقت جلب LS
+- بيانات اختبار الاتصال
+- بيانات ملفات floodfills الأقرب
+  لفترات الزمن بالأمس، اليوم، وغدًا
+
+بيانات استشعار Meta LS:
+
+- آخر إصدار تم رؤيته
+- وقت الجلب
+- بيانات ملفات floodfills الأقرب
+  لفترات الزمن بالأمس، اليوم، وغدًا
+
+
+## واجهة الإدارة
+
+لم تُحدد بعد، ربما في اقتراح منفصل.
+غير مطلوبة للإصدار الأول.
+
+متطلبات واجهة الإدارة:
+
+- دعم وجهات رئيسية متعددة، أي مجموعات افتراضية متعددة (مزارع)
+- توفير عرض شامل لحالة المجموعة المشتركة - جميع الإحصائيات المنشورة من الأعضاء، من هو القائد الحالي، إلخ.
+- القدرة على إجبار إزالة مشارك أو قائد من المجموعة
+- القدرة على إجبار نشر metaLS (إذا كان العقدة الحالية هي الناشر)
+- القدرة على استبعاد هاشات من metaLS (إذا كانت العقدة الحالية هي الناشر)
+- وظيفة استيراد/تصدير التكوين للنشر الجماعي
 
 
 
-## Router Interface
+## واجهة الراوتر
 
-TBD, possibly a separate proposal.
-i2pcontrol is not required for the first release and detailed changes will be included in a separate proposal.
+لم تُحدد بعد، ربما في اقتراح منفصل.
+i2pcontrol غير مطلوب للإصدار الأول وسيتم تضمين التغييرات التفصيلية في اقتراح منفصل.
 
-Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
+متطلبات واجهة Garlic Farm إلى الراوتر (في-JVM جافا أو i2pcontrol)
 
 - getLocalRouterStatus()
 - getLocalLeafHash(Hash masterHash)
 - getLocalLeafStatus(Hash leaf)
-- getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
-- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
+- getRemoteMeasuredStatus(Hash masterOrLeaf) // ربما غير مطلوب في النسخة الأولية
+- publishMetaLS(Hash masterHash, List<MetaLease> contents) // أو MetaLeaseSet موقع؟ من يوقع؟
 - stopPublishingMetaLS(Hash masterHash)
-- authentication TBD?
+- المصادقة لم تُحدد بعد؟
 
 
-## Justification
+## التبرير
 
-Atomix is too large and won't allow customization for us to route
-the protocol over I2P. Also, its wire format is undocumented, and depends
-on Java serialization.
-
-
-## Notes
+Atomix كبيرة جدًا ولن تسمح لنا بتخصيصها لتشغيل
+البروتوكول عبر I2P. أيضًا، تنسيق اتصالها غير موثق، ويعتمد
+على تسلسل جافا.
 
 
-
-## Issues
-
-- There's no way for a client to find out about and connect to an unknown leader.
-  It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
+## ملاحظات
 
 
 
-## Migration
+## القضايا
 
-No backward compatibility issues.
+- لا توجد طريقة للعميل لمعرفة القائد غير المعروف والاتصال به.
+  سيكون تغييرًا بسيطًا أن يرسل المتابع Configuration كإدخال سجل في AppendEntriesResponse.
 
 
-## References
+
+## الهجرة
+
+لا توجد مشكلات توافق مع الإصدارات السابقة.
+
+
+## المراجع
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://json.org/)
@@ -629,8 +627,3 @@ No backward compatibility issues.
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
-
-
-
-
-

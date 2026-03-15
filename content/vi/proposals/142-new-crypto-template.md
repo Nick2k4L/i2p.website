@@ -11,89 +11,85 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
+## Tổng quan
 
-## Overview
+Tài liệu này mô tả những vấn đề quan trọng cần xem xét khi đề xuất
+thay thế hoặc bổ sung vào hệ mã hóa bất đối xứng ElGamal hiện tại của chúng ta.
 
-This document describes important issues to consider when proposing
-a replacement or addition to our ElGamal asymmetric encryption.
-
-This is an informational document.
-
-
-## Motivation
-
-ElGamal is old and slow, and there are better alternatives.
-However, there are several issues that must be addressed before we can add or change to any new algorithm.
-This document highlights these unresolved issues.
+Đây là một tài liệu mang tính thông tin.
 
 
+## Động lực
 
-## Background Research
-
-Anybody proposing new crypto must first be familiar with the following documents:
-
-- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
-- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
-- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
-- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
-- Discussion threads here for each of the above proposals, linked within
-- [2018 proposal priorities](http://zzz.i2p/topics/2494)
-- [ECIES proposal](http://zzz.i2p/topics/2418)
-- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
-- [Low-level crypto overview](/docs/specs/common-structures/)
-
-
-## Asymmetric Crypto Uses
-
-As a review, we use ElGamal for:
-
-1) Tunnel Build messages (key is in RouterIdentity)
-
-2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
-
-3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
-
-4) Ephemeral DH for NTCP and SSU
-
-
-## Design
-
-Any proposal to replace ElGamal with something else must provide the following details.
+ElGamal là thuật toán cũ và chậm, và hiện đã có những phương án thay thế tốt hơn.
+Tuy nhiên, có một số vấn đề phải được giải quyết trước khi chúng ta có thể thêm hoặc chuyển sang bất kỳ thuật toán mới nào.
+Tài liệu này nêu bật các vấn đề chưa được giải quyết này.
 
 
 
-## Specification
+## Nghiên cứu nền tảng
 
-Any proposal for new asymmetric crypto must fully specify the following things.
+Bất kỳ ai đề xuất mã hóa mới đều phải làm quen trước với các tài liệu sau:
 
-
-
-### 1. General
-
-Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
-
-- Which of the above cases 1-4 do you propose to use the new crypto for?
-- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
-- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
-- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
-- Completely specify how and why this is backward compatible, and fully specify a migration plan.
-- Which unimplemented proposals are prerequisites for your proposal?
+- [Đề xuất 111 NTCP2](/proposals/111-ntcp-2/)
+- [Đề xuất 123 LS2](/proposals/123-new-netdb-entries/)
+- [Đề xuất 136 các kiểu chữ ký thử nghiệm](/proposals/136-experimental-sigtypes/)
+- [Đề xuất 137 các kiểu chữ ký tùy chọn](/proposals/137-optional-sigtypes/)
+- Các chuỗi thảo luận tại đây cho từng đề xuất nêu trên, được liên kết bên trong
+- [Các ưu tiên đề xuất năm 2018](http://zzz.i2p/topics/2494)
+- [Đề xuất ECIES](http://zzz.i2p/topics/2418)
+- [Tổng quan về mã hóa bất đối xứng mới](http://zzz.i2p/topics/1768)
+- [Tổng quan về mã hóa cấp thấp](/docs/specs/common-structures/)
 
 
-### 2. Specific crypto type
+## Các ứng dụng mã hóa bất đối xứng
 
-Answer the following questions in your proposal:
+Để nhắc lại, chúng ta sử dụng ElGamal cho:
 
-- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
-- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
-- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
-  For 3rd party or non-Java, provide links and licenses
-- Proposed crypto type number(s) (experimental range or not)
+1) Các thông điệp xây dựng tunnel (khóa nằm trong RouterIdentity)
 
+2) Mã hóa giữa các router đối với netdb và các thông điệp I2NP khác (Khóa nằm trong RouterIdentity)
 
+3) Mã hóa đầu cuối ElGamal+AES/SessionTag cho client (khóa nằm trong LeaseSet, khóa Destination không được sử dụng)
 
-
-## Notes
+4) DH tạm thời cho NTCP và SSU
 
 
+## Thiết kế
 
+Bất kỳ đề xuất nào thay thế ElGamal bằng một phương pháp khác đều phải cung cấp các chi tiết sau.
+
+
+
+## Đặc tả
+
+Bất kỳ đề xuất nào về mã hóa bất đối xứng mới đều phải đặc tả đầy đủ những điều sau đây.
+
+
+
+### 1. Tổng quát
+
+Hãy trả lời các câu hỏi sau trong đề xuất của bạn. Lưu ý rằng điều này có thể cần một đề xuất riêng biệt so với các chi tiết ở mục 2) bên dưới, vì nó có thể xung đột với các đề xuất hiện tại 111, 123, 136, 137 hoặc các đề xuất khác.
+
+- Bạn đề xuất sử dụng mã hóa mới cho các trường hợp nào trong số các trường hợp 1-4 ở trên?
+- Nếu cho 1) hoặc 2) (router), khóa công khai sẽ được đặt ở đâu, trong RouterIdentity hay trong các thuộc tính RouterInfo? Bạn có định sử dụng loại mã hóa trong chứng chỉ khóa không? Hãy đặc tả hoàn toàn. Giải thích rõ ràng cho quyết định của bạn.
+- Nếu cho 3) (client), bạn có định lưu khóa công khai trong Destination và sử dụng loại mã hóa trong chứng chỉ khóa (như trong đề xuất ECIES), hay lưu trong LS2 (như trong đề xuất 123), hay một phương án khác? Hãy đặc tả hoàn toàn và giải thích rõ ràng cho quyết định của bạn.
+- Đối với mọi ứng dụng, việc hỗ trợ sẽ được công bố như thế nào? Nếu cho 3), liệu nó có nằm trong LS2 hay ở nơi khác? Nếu cho 1) và 2), liệu nó có tương tự như các đề xuất 136 và/hoặc 137 không? Hãy đặc tả hoàn toàn và giải thích rõ ràng cho các quyết định của bạn. Có thể cần một đề xuất riêng cho phần này.
+- Hãy đặc tả hoàn toàn cách thức và lý do đảm bảo tính tương thích ngược, đồng thời đặc tả đầy đủ kế hoạch chuyển đổi.
+- Những đề xuất nào chưa được triển khai là điều kiện tiên quyết cho đề xuất của bạn?
+
+
+### 2. Loại mã hóa cụ thể
+
+Hãy trả lời các câu hỏi sau trong đề xuất của bạn:
+
+- Thông tin mã hóa tổng quát, các đường cong/thông số cụ thể, hoàn toàn giải thích rõ ràng cho lựa chọn của bạn. Cung cấp các liên kết đến đặc tả và thông tin khác.
+- Kết quả kiểm tra tốc độ so sánh với ElG và các phương án thay thế khác nếu có thể. Bao gồm mã hóa, giải mã và tạo khóa.
+- Khả năng sẵn có của thư viện trong C++ và Java (cả OpenJDK, BouncyCastle và bên thứ ba)
+  Đối với thư viện bên thứ ba hoặc không phải Java, hãy cung cấp liên kết và giấy phép
+- Số hiệu loại mã hóa đề xuất (trong phạm vi thử nghiệm hay không) 
+
+
+
+
+## Ghi chú

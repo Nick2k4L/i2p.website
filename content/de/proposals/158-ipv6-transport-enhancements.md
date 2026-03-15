@@ -12,59 +12,58 @@ thread: "http://zzz.i2p/topics/3060"
 target: "0.9.50"
 toc: true
 ---
+## Hinweis
+Netzwerk-Deployment und Tests sind im Gange.
+Kleine Überarbeitungen vorbehalten.
 
-## Note
-Network deployment and testing in progress.
-Subject to minor revisions.
 
+## Übersicht
 
-## Overview
-
-This proposal is to implement enhancements to the SSU and NTCP2 transports for IPv6.
+Dieser Vorschlag sieht Verbesserungen der SSU- und NTCP2-Transportschichten für IPv6 vor.
 
 
 ## Motivation
 
-As IPv6 grows around the world and IPv6-only setups (especially on mobile) becomes more common,
-we need to improve our support for IPv6 and remove the assumptions that
-all routers are IPv4-capable.
+Da IPv6 weltweit zunehmend verbreitet ist und IPv6-only-Konfigurationen (insbesondere auf Mobilgeräten) immer häufiger werden,
+müssen wir unsere IPv6-Unterstützung verbessern und die Annahme fallenlassen,
+dass alle Router IPv4-fähig sind.
 
 
 
-### Connectivity Checking
+### Verbindungsprüfung
 
-When selecting peers for tunnels, or selecting OBEP/IBGW paths for routing messages,
-it helps to calculate whether router A can connect to router B.
-In general, this means determining if A has outbound capability for a transport and address type (IPv4/v6)
-that matches one of B's advertised inbound addresses.
+Beim Auswählen von Peers für Tunnel oder beim Auswählen von OBEP/IBGW-Pfaden zur Weiterleitung von Nachrichten
+ist es hilfreich zu ermitteln, ob Router A eine Verbindung zu Router B herstellen kann.
+Im Allgemeinen bedeutet dies, festzustellen, ob A über eine ausgehende Fähigkeit für einen Transport und Adresstyp (IPv4/v6) verfügt,
+die zu einer der von B angekündigten eingehenden Adressen passt.
 
-However, in many cases we don't know A's capabilites and have to make assumptions.
-If A is hidden or firewalled, the addresses are not published, and we don't have direct knowledge -
-so we assume it's IPv4 capable, and not IPv6 capable.
-The solution is adding two new "caps" or capabilities to the Router Info to indicate outbound capability for IPv4 and IPv6.
-
-
-### IPv6 Introducers
-
-Our specifications for SSU contain errors and inconsistencies about whether
-IPv6 introducers are supported for IPv4 introductions.
-In any case, this has never been implemented in either Java I2P or i2pd.
-This needs to be corrected.
+In vielen Fällen kennen wir jedoch A's Fähigkeiten nicht und müssen Annahmen treffen.
+Wenn A versteckt oder hinter einer Firewall ist, werden die Adressen nicht veröffentlicht, und wir haben keine direkten Informationen –
+daher nehmen wir an, dass A IPv4-fähig, aber nicht IPv6-fähig ist.
+Die Lösung besteht darin, zwei neue „caps“ oder Fähigkeiten zum Router-Info hinzuzufügen, um ausgehende Fähigkeiten für IPv4 und IPv6 anzugeben.
 
 
-### IPv6 Introdutions
+### IPv6-Introducer
 
-Our specifications for SSU make clear that
-IPv6 introductions are not supported.
-This was under the assumption that IPv6 is never firewalled.
-This is clearly not true, and we need to improve support for firewalled IPv6 routers.
+Unsere Spezifikationen für SSU enthalten Fehler und Inkonsistenzen bezüglich der Frage,
+ob IPv6-Introducer für IPv4-Introductionen unterstützt werden.
+In jedem Fall wurde dies bisher weder in Java I2P noch in i2pd implementiert.
+Dies muss korrigiert werden.
 
 
-### Introduction Diagrams
+### IPv6-Introductionen
 
-Legend: ----- is IPv4, ====== is IPv6
+Unsere Spezifikationen für SSU legen klar fest,
+dass IPv6-Introductionen nicht unterstützt werden.
+Dies basierte auf der Annahme, dass IPv6 niemals durch eine Firewall blockiert wird.
+Dies ist eindeutig nicht zutreffend, und wir müssen die Unterstützung für hinter einer Firewall befindliche IPv6-Router verbessern.
 
-**Current IPv4-only:**
+
+### Einführungsdiagramme
+
+Legende: ----- ist IPv4, ====== ist IPv6
+
+**Aktuell nur IPv4:**
 
 ```
         Alice                         Bob                  Charlie
@@ -77,7 +76,7 @@ Legend: ----- is IPv4, ====== is IPv6
     Data <--------------------------------------------------> Data
 ```
 
-**IPv4 introduction, IPv6 introducer:**
+**IPv4-Introduction, IPv6-Introducer:**
 
 ```
 Alice                         Bob                  Charlie
@@ -90,7 +89,7 @@ Alice                         Bob                  Charlie
     Data <--------------------------------------------------> Data
 ```
 
-**IPv6 introduction, IPv6 introducer:**
+**IPv6-Introduction, IPv6-Introducer:**
 
 ```
 Alice                         Bob                  Charlie
@@ -103,7 +102,7 @@ Alice                         Bob                  Charlie
     Data <==================================================> Data
 ```
 
-**IPv6 introduction, IPv4 introducer:**
+**IPv6-Introduction, IPv4-Introducer:**
 
 ```
 Alice                         Bob                  Charlie
@@ -119,179 +118,178 @@ Alice                         Bob                  Charlie
 
 ## Design
 
-There are three changes to be implemented.
+Es müssen drei Änderungen implementiert werden.
 
-- Add "4" and "6" capabilities to Router Address capabilities to indicate outbound IPv4 and IPv6 support
-- Add support for IPv4 introductions via IPv6 introducers
-- Add support for IPv6 introductions via IPv4 and IPv6 introducers
-
-
-
-## Specification
-
-### 4/6 Caps
-
-This was originally implemented without a formal proposal, but it is required for
-IPv6 introductions, so we include it here.
+- Hinzufügen der Fähigkeiten „4“ und „6“ zu den Router-Adress-Fähigkeiten, um ausgehende IPv4- und IPv6-Unterstützung anzugeben
+- Unterstützung für IPv4-Introductionen über IPv6-Introducer hinzufügen
+- Unterstützung für IPv6-Introductionen über IPv4- und IPv6-Introducer hinzufügen
 
 
-Two new capabilities "4" and "6" are defined.
-These new capabilities will be added to the "caps" property in the Router Address, not in the Router Info caps.
-We currently don't have a "caps" property defined for NTCP2.
-An SSU address with introducers is, by definition, ipv4 right now. We don't support ipv6 introduction at all.
-However, this proposal is compatible with a IPv6 introductions. See below.
 
-Additionally, a router may support connectivity via an overlay network such as I2P-over-Yggdrasil,
-but does not wish to publish an address, or that address does not have a standard IPv4 or IPv6 format.
-This new capability system should be flexible enough to support these networks as well.
+## Spezifikation
 
-We define the following changes:
+### 4/6-Fähigkeiten (Caps)
 
-NTCP2: Add "caps" property
+Diese wurde ursprünglich ohne formellen Vorschlag implementiert, ist aber erforderlich für
+IPv6-Introductionen, daher wird sie hier aufgenommen.
 
-SSU: Add support for a Router Address without a host or introducers, to indicate outbound support
-for IPv4, IPv6, or both.
+Zwei neue Fähigkeiten „4“ und „6“ werden definiert.
+Diese neuen Fähigkeiten werden der „caps“-Eigenschaft in der Router-Adresse hinzugefügt, nicht zu den Router-Info-Fähigkeiten.
+Derzeit ist für NTCP2 keine „caps“-Eigenschaft definiert.
+Eine SSU-Adresse mit Introducer ist per Definition aktuell immer ipv4. Wir unterstützen keine ipv6-Introduction.
+Dieser Vorschlag ist jedoch kompatibel mit IPv6-Introductionen. Siehe unten.
 
-Both transports: Define the following caps values:
+Zusätzlich kann ein Router eine Verbindung über ein Overlay-Netzwerk wie I2P-over-Yggdrasil unterstützen,
+möchte jedoch keine Adresse veröffentlichen, oder diese Adresse hat kein standardmäßiges IPv4- oder IPv6-Format.
+Das neue Fähigkeitssystem sollte flexibel genug sein, um auch diese Netzwerke zu unterstützen.
 
-- "4": IPv4 support
-- "6": IPv6 support
+Folgende Änderungen werden definiert:
 
-Multiple values may be supported in a single address. See below.
-At least one of these caps are mandatory if no "host" value is included in the Router Address.
-At most one of these caps is optional if a "host" value is included in the Router Address.
-Additional transport caps may be defined in the future to indicate support for overlay networks or other connectivity.
+NTCP2: „caps“-Eigenschaft hinzufügen
+
+SSU: Unterstützung für eine Router-Adresse ohne Host oder Introducer hinzufügen, um ausgehende Unterstützung
+für IPv4, IPv6 oder beides anzugeben.
+
+Beide Transportschichten: Folgende caps-Werte definieren:
+
+- „4“: IPv4-Unterstützung
+- „6“: IPv6-Unterstützung
+
+Mehrere Werte können in einer einzigen Adresse unterstützt werden. Siehe unten.
+Mindestens einer dieser caps ist obligatorisch, wenn kein „host“-Wert in der Router-Adresse enthalten ist.
+Höchstens einer dieser caps ist optional, wenn ein „host“-Wert in der Router-Adresse enthalten ist.
+Zukünftig können zusätzliche Transport-Fähigkeiten definiert werden, um Unterstützung für Overlay-Netzwerke oder andere Verbindungen anzugeben.
 
 
-#### Use cases and examples
+#### Anwendungsfälle und Beispiele
 
 SSU:
 
-SSU with host: 4/6 optional, never more than one.
-Example: SSU caps="4" host="1.2.3.4" key=... port="1234"
+SSU mit Host: 4/6 optional, niemals mehr als einer.
+Beispiel: SSU caps="4" host="1.2.3.4" key=... port="1234"
 
-SSU outbound only for one, other is published: Caps only, 4/6.
-Example: SSU caps="6"
+SSU nur ausgehend für eine, andere wird veröffentlicht: Nur caps, 4/6.
+Beispiel: SSU caps="6"
 
-SSU with introducers: never combined. 4 or 6 is required.
-Example: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
+SSU mit Introducer: niemals kombiniert. 4 oder 6 ist erforderlich.
+Beispiel: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
 
-SSU hidden: Caps only, 4, 6, or 46. Multiple is allowed.
-No need for two addresses one with 4 and one with 6.
-Example: SSU caps="46"
+SSU versteckt: Nur caps, 4, 6 oder 46. Mehrfach erlaubt.
+Kein Bedarf an zwei Adressen, eine mit 4 und eine mit 6.
+Beispiel: SSU caps="46"
 
 NTCP2:
 
-NTCP2 with host: 4/6 optional, never more than one.
-Example: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
+NTCP2 mit Host: 4/6 optional, niemals mehr als einer.
+Beispiel: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
 
-NTCP2 outbound only for one, other is published: Caps, s, v only, 4/6/y, multiple is allowed.
-Example: NTCP2 caps="6" i=... s=... v="2"
+NTCP2 nur ausgehend für eine, andere wird veröffentlicht: caps, s, v nur, 4/6/y, mehrfach erlaubt.
+Beispiel: NTCP2 caps="6" i=... s=... v="2"
 
-NTCP2 hidden: Caps, s, v only 4/6, multiple is allowed No need for two addresses one with 4 and one with 6.
-Example: NTCP2 caps="46" i=... s=... v="2"
-
-
-
-### IPv6 Introducers for IPv4
-
-The following changes are required to correct errors and inconsistencies in the specs.
-We have also described this as "part 1" of the proposal.
-
-#### Spec Changes
-
-The SSU specification currently says (IPv6 notes):
-
-IPv6 is supported as of version 0.9.8. Published relay addresses may be IPv4 or IPv6, and Alice-Bob communication may be via IPv4 or IPv6.
-
-Add the following:
-
-While the specification was changed as of version 0.9.8, Alice-Bob communication via IPv6 was not actually supported until version 0.9.50.
-Earlier versions of Java routers erroneously published the 'C' capability for IPv6 addresses,
-even though they did not actually act as an introducer via IPv6.
-Therefore, routers should only trust the 'C' capability on an IPv6 address if the router version is 0.9.50 or higher.
+NTCP2 versteckt: caps, s, v nur 4/6, mehrfach erlaubt. Kein Bedarf an zwei Adressen, eine mit 4 und eine mit 6.
+Beispiel: NTCP2 caps="46" i=... s=... v="2"
 
 
 
-The SSU specification currently says (Relay Request):
+### IPv6-Introducer für IPv4
 
-The IP address is only included if it is be different than the packet's source address and port.
-In the current implementation, the IP length is always 0 and the port is always 0,
-and the receiver should use the packet's source address and port.
-This message may be sent via IPv4 or IPv6. If IPv6, Alice must include her IPv4 address and port.
+Die folgenden Änderungen sind erforderlich, um Fehler und Inkonsistenzen in den Spezifikationen zu korrigieren.
+Wir haben dies auch als „Teil 1“ des Vorschlags bezeichnet.
 
-Add the following:
+#### Spezifikationsänderungen
 
-The IP and port must be included to introduce an IPv4 address when sending this message over IPv6.
-This is supported as of release 0.9.50.
+Die SSU-Spezifikation sagt aktuell (IPv6-Anmerkungen):
 
+IPv6 wird ab Version 0.9.8 unterstützt. Veröffentlichte Relay-Adressen können IPv4 oder IPv6 sein, und die Kommunikation zwischen Alice und Bob kann über IPv4 oder IPv6 erfolgen.
 
+Folgendes hinzufügen:
 
-### IPv6 Introductions
-
-All three of the SSU relay messages (RelayRequest, RelayResponse, and RelayIntro) contain IP length fields
-to indicate the length of the (Alice, Bob, or Charlie) IP address to follow.
-
-Therefore, no change to the format of the messages is required.
-Only textual changes to the specifications, indicating that 16-byte IP addresses are allowed.
-
-The following changes are required to the specs.
-We have also described this as "part 2" of the proposal.
+Obwohl die Spezifikation ab Version 0.9.8 geändert wurde, wurde die Kommunikation zwischen Alice und Bob über IPv6 erst ab Version 0.9.50 tatsächlich unterstützt.
+Ältere Versionen von Java-Routern veröffentlichten fälschlicherweise die 'C'-Fähigkeit für IPv6-Adressen,
+obwohl sie nicht tatsächlich als Introducer über IPv6 fungierten.
+Daher sollten Router die 'C'-Fähigkeit für eine IPv6-Adresse nur vertrauen, wenn die Router-Version 0.9.50 oder höher ist.
 
 
-#### Spec Changes
 
-The SSU specification currently says (IPv6 notes):
+Die SSU-Spezifikation sagt aktuell (Relay Request):
 
-Bob-Charlie and Alice-Charlie communication is via IPv4 only.
+Die IP-Adresse wird nur dann enthalten, wenn sie sich von der Quelladresse und dem Port des Pakets unterscheidet.
+In der aktuellen Implementierung ist die IP-Länge immer 0 und der Port immer 0,
+und der Empfänger sollte die Quelladresse und den Port des Pakets verwenden.
+Diese Nachricht kann über IPv4 oder IPv6 gesendet werden. Bei IPv6 muss Alice ihre IPv4-Adresse und ihren Port angeben.
 
-The SSU specification currently says (Relay Request):
+Folgendes hinzufügen:
 
-There are no plans to implement relaying for IPv6.
+Die IP-Adresse und der Port müssen enthalten sein, um eine IPv4-Adresse einzuführen, wenn diese Nachricht über IPv6 gesendet wird.
+Dies wird ab Release 0.9.50 unterstützt.
 
-Change to say:
 
-Relaying for IPv6 is supported as of release 0.9.xx
 
-The SSU specification currently says (Relay Response):
+### IPv6-Introductionen
 
-Charlie's IP address must be IPv4, as that is the address that Alice will send the SessionRequest to after the Hole Punch.
-There are no plans to implement relaying for IPv6.
+Alle drei SSU-Relay-Nachrichten (RelayRequest, RelayResponse und RelayIntro) enthalten IP-Längenfelder,
+um die Länge der (Alice, Bob oder Charlie) IP-Adresse anzugeben, die folgt.
 
-Change to say:
+Daher ist keine Änderung am Format der Nachrichten erforderlich.
+Nur textuelle Änderungen an den Spezifikationen, die darauf hinweisen, dass 16-Byte-IP-Adressen erlaubt sind.
 
-Charlie's IP address may be IPv4 or, as of release 0.9.xx, IPv6.
-That is the address that Alice will send the SessionRequest to after the Hole Punch.
-Relaying for IPv6 is supported as of release 0.9.xx
+Die folgenden Änderungen sind an den Spezifikationen erforderlich.
+Wir haben dies auch als „Teil 2“ des Vorschlags bezeichnet.
 
-The SSU specification currently says (Relay Intro):
 
-Alice's IP address is always 4 bytes in the current implementation, because Alice is trying to connect to Charlie via IPv4.
-This message must be sent via an established IPv4 connection,
-as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
+#### Spezifikationsänderungen
 
-Change to say:
+Die SSU-Spezifikation sagt aktuell (IPv6-Anmerkungen):
 
-For IPv4, Alice's IP address is always 4 bytes, because Alice is trying to connect to Charlie via IPv4.
-As of release 0.9.xx, IPv6 is supported, and Alice's IP address may be 16 bytes.
+Die Kommunikation zwischen Bob und Charlie sowie zwischen Alice und Charlie erfolgt ausschließlich über IPv4.
 
-For IPv4, this message must be sent via an established IPv4 connection,
-as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
-As of release 0.9.xx, IPv6 is supported, and this message may be sent via an established IPv6 connection.
+Die SSU-Spezifikation sagt aktuell (Relay Request):
 
-Also add:
+Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
 
-As of release 0.9.xx, any SSU address published with introducers must contain "4" or "6" in the "caps" option.
+Ändern in:
+
+Relaying für IPv6 wird ab Release 0.9.xx unterstützt.
+
+Die SSU-Spezifikation sagt aktuell (Relay Response):
+
+Die IP-Adresse von Charlie muss IPv4 sein, da dies die Adresse ist, an die Alice die SessionRequest nach dem Hole Punch sendet.
+Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
+
+Ändern in:
+
+Die IP-Adresse von Charlie kann IPv4 oder, ab Release 0.9.xx, IPv6 sein.
+Das ist die Adresse, an die Alice die SessionRequest nach dem Hole Punch sendet.
+Relaying für IPv6 wird ab Release 0.9.xx unterstützt.
+
+Die SSU-Spezifikation sagt aktuell (Relay Intro):
+
+Die IP-Adresse von Alice ist in der aktuellen Implementierung immer 4 Bytes lang, da Alice versucht, eine Verbindung zu Charlie über IPv4 herzustellen.
+Diese Nachricht muss über eine etablierte IPv4-Verbindung gesendet werden,
+da dies der einzige Weg ist, wie Bob Charlies IPv4-Adresse kennt, um sie Alice in der RelayResponse zurückzugeben.
+
+Ändern in:
+
+Für IPv4 ist die IP-Adresse von Alice immer 4 Bytes lang, da Alice versucht, eine Verbindung zu Charlie über IPv4 herzustellen.
+Ab Release 0.9.xx wird IPv6 unterstützt, und die IP-Adresse von Alice kann 16 Bytes lang sein.
+
+Für IPv4 muss diese Nachricht über eine etablierte IPv4-Verbindung gesendet werden,
+da dies der einzige Weg ist, wie Bob Charlies IPv4-Adresse kennt, um sie Alice in der RelayResponse zurückzugeben.
+Ab Release 0.9.xx wird IPv6 unterstützt, und diese Nachricht kann über eine etablierte IPv6-Verbindung gesendet werden.
+
+Außerdem hinzufügen:
+
+Ab Release 0.9.xx muss jede veröffentlichte SSU-Adresse mit Introducer „4“ oder „6“ in der „caps“-Option enthalten.
 
 
 ## Migration
 
-All old routers should ignore the caps property in NTCP2, and unknown capability characters in the SSU caps property.
+Alle alten Router sollten die caps-Eigenschaft in NTCP2 sowie unbekannte Fähigkeitszeichen in der SSU-caps-Eigenschaft ignorieren.
 
-Any SSU address with introducers that does not contain a "4" or "6" cap is assumed to be for IPv4 introduction.
+Jede SSU-Adresse mit Introducer, die keine „4“- oder „6“-Fähigkeit enthält, wird als für IPv4-Introduction angenommen.
 
 
-## References
+## Referenzen
 
 * [CAPS](http://zzz.i2p/topics/3050)
 * [NTCP2](/docs/specs/ntcp2/)

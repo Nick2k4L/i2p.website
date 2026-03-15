@@ -9,61 +9,55 @@ thread: "http://zzz.i2p/topics/2047"
 supercededby: "123"
 toc: true
 ---
+## Обзор
 
-## Overview
-
-This proposal is about redesigning the mechanism for encrypting LeaseSets.
-
-
-## Motivation
-
-Current encrypted LS is horrendous and insecure. I can say that, I designed and
-implemented it.
-
-Reasons:
-
-- AES CBC encrypted
-- Single AES key for everybody
-- Lease expirations still exposed
-- Encryption pubkey still exposed
+Это предложение посвящено переработке механизма шифрования LeaseSets.
 
 
-## Design
+## Мотивация
 
-### Goals
+Текущий шифрованный LS ужасен и не безопасен. Я могу это сказать, поскольку я сам diseñ и реализовал его.
 
-- Make entire thing opaque
-- Keys for each recipient
+Причины:
 
-
-### Strategy
-
-Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-IF we can find an algo that's small and fast.
-
-Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
-bytes is a little painful here. We can do better.
-
-See e.g. http://security.stackexchange.com/questions/824...
-
-This works for small numbers of recipients (or actually, keys; you can still
-distribute keys to multiple people if you like).
+- Шифрование с использованием AES CBC
+- Одный ключ AES для всех
+- Сроки истечения аренды по-прежнему открыты
+- Открытый ключ шифрования по-прежнему открыт
 
 
-## Specification
+## Дизайн
 
-- Destination
-- Published timestamp
-- Expiration
-- Flags
-- Length of data
-- Encrypted data
-- Signature
+### Цели
 
-Encrypted data could be prefixed with some enctype specifier, or not.
+- Сделать всю систему непрозрачной
+- Ключи для каждого получателя
 
 
-## References
+### Стратегия
+
+Сделать как в GPG/OpenPGP. Асимметрично зашифровать симметричный ключ для каждого получателя. Данные расшифровываются с помощью этого асимметричного ключа. См. например [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1), если мы сможем найти алгоритм, который небольшой и быстрый.
+
+Проблема заключается в нахождении асимметричного шифрования, которое небольшое и быстрое. ElGamal с 514 байтами немного болезненно здесь. Мы можем сделать лучше.
+
+См. например http://security.stackexchange.com/questions/824...
+
+Это работает для небольших чисел получателей (или на самом деле, ключей; вы все равно можете распространять ключи среди нескольких людей).
+
+
+## Спецификация
+
+- Назначение
+- Опубликованный таймстамп
+- Срок истечения
+- Флаги
+- Длина данных
+- Зашифрованные данные
+- Подпись
+
+Зашифрованные данные могут быть предварены некоторым указателем типа шифрования, или нет.
+
+
+## Ссылки
 
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

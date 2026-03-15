@@ -5,21 +5,20 @@ author: "str4d"
 description: "I2P Android and Bote have been released on Google Play in Norway, as a test run for a future worldwide release."
 categories: ["press"]
 ---
+يوجد تطبيق I2P للأندرويد منذ أكثر من ثلاث سنوات. خلال هذه الفترة، تطور من مشروع تجريبي بسيط إلى منفذ أندرويد عملي وفعال من موجه I2P. كان هدفنا النهائي هو إصدار تطبيق I2P للأندرويد على Google Play، لتسهيل اكتشاف المستخدمين له وتثبيته واستخدامه على أجهزتهم التي تعمل بنظام الأندرويد. وبعد عمل طويل على تحسين واجهة المستخدم وإصلاح الأخطاء وإجراء الاختبارات، نعتقد أن تطبيق I2P للأندرويد أصبح أخيرًا جاهزًا للوصول إلى المستخدمين.
 
-I2P Android has existed for over three years. In that time, it has evolved from a simple test project into a usable, useful Android port of the I2P router. Our eventual goal has been to release I2P Android on Google Play, to make it easier for users to discover, install and use I2P on their Android devices. After much work improving the user interface, fixing bugs and testing, we think that I2P Android is finally ready to go where the users are.
+في البداية، سنقوم فقط بإصدار التطبيق للمستخدمين في النرويج كتجربة أولية. سيكون لتطبيق I2P للأندرويد ظهورًا أكبر بكثير على Google Play مما كان عليه من قبل، وستظهر أخطاء ومشاكل في سهولة الاستخدام نحتاج إلى إصلاحها. سيكون من الأسهل (وأقل إرهاقًا!) الاستجابة للتغذية الراجعة إذا كنا نتعامل فقط مع تقارير من مئات المستخدمين بدلًا من آلاف (وهو ما يعني بالفعل زيادة كبيرة جدًا في عدد التغذية الراجعة مقارنة بما حصلنا عليه من قبل).
 
-Initially, we are only releasing to Android users in Norway, as a test run. I2P Android will have far more exposure on Google Play than it has ever had before, and there will be bugs and usability issues that we need to fix. It will be much easier (and less stressful!) to respond to feedback if we only need to deal with reports from hundreds of users instead of thousands (already orders of magnitude more feedback than we have ever had).
+وبالتوازي، نُصدر لأول مرة إصدارًا عامًا من تطبيق Bote، وهو منفذ أندرويد من I2P-Bote. يُعد Bote بريدًا إلكترونيًا خاصًا وموزعًا وآمنًا، وسهل الاستخدام. يعمل التطبيق فوق شبكة I2P، ورغم أنه يعمل كتطبيق مستقل، فإنه سيستخدم تطبيق I2P للأندرويد افتراضيًا إذا كان مثبتًا. كما هو الحال مع I2P للأندرويد، سنقوم في البداية فقط بإصدار Bote للمستخدمين في النرويج.
 
-Simultaneously we are making the first public release of Bote, an Android port of I2P-Bote. Bote is private, distributed, secure email, made easy. It runs on top of the I2P network, and while it works as a standalone app, it will use the I2P Android app by default if installed. As with I2P Android, we are initially only releasing Bote to Android users in Norway.
+يتم إصدار التطبيقين على Google Play من قبل [The Privacy Solutions Project](https://privacysolutions.no/). راجع [منشور المدونة الخاص بهم](https://blog.privacysolutions.no/2014/08/23/i2p-on-google-play-in-norway/) للحصول على مزيد من المعلومات، وروابط صفحة Google Play للمستخدمين في النرويج.
 
-The apps are being released on Google Play by [The Privacy Solutions Project](https://privacysolutions.no/). See their [blog post](https://blog.privacysolutions.no/2014/08/23/i2p-on-google-play-in-norway/) for further information, and links to the Google Play page for Norway users.
+بصفتي المطور الرئيسي لتطبيق I2P للأندرويد وBote، أتطلع إلى تعليقاتكم. أنتم من سيستخدمون هذه التطبيقات، وستساعدنا وجهات نظركم في تطوير تطبيقات بسيطة وسهلة الاستخدام تجعل الخصوصية في متناول الجميع.
 
-As lead developer for I2P Android and Bote, I look forward to your comments. You are the people who will be using them, and your perspectives will help me craft simple, intuitive apps that make privacy accessible to everyone.
+## تفاصيل إصدار الموقع الإلكتروني
 
-## Website release details
+لقد قمنا أيضًا بتحديث تطبيق I2P للأندرويد على الموقع الإلكتروني ليتماشى مع الإصدار التجريبي المُنشر في النرويج. سيتم تحديث هذا الإصدار مع التغييرات أثناء استجابتنا للتغذية الراجعة من المستخدمين النرويجيين، بالاتجاه نحو إصدارنا المستقر القادم.
 
-We have also updated I2P Android on the website to match the release candidate deployed in Norway. This version will be updated with changes as we respond to feedback from Norwegian users, heading towards our next stable release.
+يرجى ملاحظة أننا قمنا بترقية واجهة برمجة تطبيقات الأندرويد (Android API) إلى الإصدار 9. وهذا يعني أن نظام Android 2.2 Froyo لن يتم دعمه بعد الآن؛ والحد الأدنى المطلوب الآن هو نظام Android 2.3 Gingerbread.
 
-Please note that we have upgraded the Android API to 9. This means that Froyo Android 2.2 will not be supported anymore; the minimum requirement is now Gingerbread Android 2.3.
-
-Also note that if you have an earlier version of I2P Android, you will need to uninstall and reinstall because we have changed the release keys. Further information about this will be provided in a subsequent blog post.
+كما يرجى ملاحظة أنه إذا كان لديك إصدار سابق من تطبيق I2P للأندرويد، فستحتاج إلى إلغاء تثبيته وإعادة تثبيته مرة أخرى لأننا قمنا بتغيير مفاتيح الإصدار. سيتم تقديم مزيد من المعلومات حول هذا الأمر في منشور مدونة لاحق.

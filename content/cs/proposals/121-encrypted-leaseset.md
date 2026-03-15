@@ -9,61 +9,56 @@ thread: "http://zzz.i2p/topics/2047"
 supercededby: "123"
 toc: true
 ---
+## Přehled
 
-## Overview
-
-This proposal is about redesigning the mechanism for encrypting LeaseSets.
-
-
-## Motivation
-
-Current encrypted LS is horrendous and insecure. I can say that, I designed and
-implemented it.
-
-Reasons:
-
-- AES CBC encrypted
-- Single AES key for everybody
-- Lease expirations still exposed
-- Encryption pubkey still exposed
+Tato návrh se zabývá přepracováním mechanismu pro šifrování LeaseSets.
 
 
-## Design
+## Motivace
 
-### Goals
+Současné šifrované LS jsou hrozné a nebezpečné. Mohu to říct, protože jsem je navrhl a implementoval.
 
-- Make entire thing opaque
-- Keys for each recipient
+Důvody:
 
-
-### Strategy
-
-Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-IF we can find an algo that's small and fast.
-
-Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
-bytes is a little painful here. We can do better.
-
-See e.g. http://security.stackexchange.com/questions/824...
-
-This works for small numbers of recipients (or actually, keys; you can still
-distribute keys to multiple people if you like).
+- Šifrováno pomocí AES CBC
+- Jeden AES klíč pro všechny
+- Časové expirace Lease jsou stále přístupné
+- Šifrovací pubkey jsou stále přístupné
 
 
-## Specification
+## Návrh
 
-- Destination
-- Published timestamp
-- Expiration
-- Flags
-- Length of data
-- Encrypted data
-- Signature
+### Cíle
 
-Encrypted data could be prefixed with some enctype specifier, or not.
+- Zcela zakrýt celý proces
+- Klíče pro každého příjemce
 
 
-## References
+### Strategie
+
+Postupujme stejně jako GPG/OpenPGP. Asymetricky šifrujeme symetrický klíč pro každého příjemce. Data jsou dešifrována pomocí toho asymetrického klíče. Viz např. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+Pokud můžeme najít algoritmus, který je malý a rychlý.
+
+Trikem je najít asymetrickou šifru, která je malá a rychlá. ElGamal s 514 bajty je zde trochu bolestivý. Můžeme to udělat lépe.
+
+Viz např. http://security.stackexchange.com/questions/824...
+
+Toto funguje pro malé počty příjemců (nebo vlastně, klíčů; můžete stále distribuovat klíče více lidem, pokud chcete).
+
+
+## Specifikace
+
+- Cílový router
+- Publikovaný timestamp
+- Expirace
+- Flagy
+- Délka dat
+- Šifrovaná data
+- Podpis
+
+Šifrovaná data mohou být předřazena nějakým specifikátorem enctype, nebo ne.
+
+
+## Reference
 
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

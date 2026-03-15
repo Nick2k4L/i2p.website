@@ -9,259 +9,182 @@ thread: "http://zzz.i2p/topics/3279"
 target: "0.9.57"
 toc: true
 ---
+## 状态
 
-## Status
+已在 0.9.57 版本中实现。  
+保留本提案开放，以便我们进一步增强并讨论“未来规划”部分中的想法。
 
-Implemented in 0.9.57.
-Leaving this proposal open so we may enhance and discuss the ideas in the "Future Planning" section.
+## 概述
 
+### 摘要
 
-## Overview
+自 0.6 版本（2005 年）以来，Destination 中的 ElGamal 公钥一直未被使用。  
+虽然我们的规范确实说明该字段未被使用，但**并未说明**实现可以避免生成 ElGamal 密钥对，而仅用随机数据填充该字段。
 
+我们提议修改规范，明确指出该字段将被忽略，且实现**可以**用随机数据填充该字段。  
+此更改是向后兼容的。目前没有已知的实现会验证 ElGamal 公钥。
 
-### Summary
+此外，本提案为实现者提供指导，说明如何生成 Destination 和路由器身份（Router Identity）的填充数据，使其在保持安全性的同时具备良好的可压缩性，并避免 Base64 表示形式看起来像是损坏或不安全的。  
+这在不进行破坏性协议变更的前提下，提供了移除填充字段的大部分好处。  
+可压缩的 Destination 可减少流式 SYN 和可回复数据报的大小；可压缩的 Router Identity 可减少数据库存储消息、SSU2 Session Confirmed 消息以及 reseed su3 文件的大小。
 
-The ElGamal public key in Destinations has been unused since release 0.6 (2005).
-While our specifications do say that it is unused, they do NOT say that implementations can avoid
-generating an ElGamal key pair and simply fill the field with random data.
+最后，本提案讨论了新的 Destination 和 Router Identity 格式可能性，这些格式将彻底消除填充字段。同时也简要讨论了后量子密码学（post-quantum crypto）及其对未来规划的潜在影响。
 
-We propose changing the specifications to say that
-the field is ignored and that implementations MAY fill the field with random data.
-This change is backward-compatible. There is no known implementation that validates
-the ElGamal public key.
+### 目标
 
-Additionally, this proposal offers guidance to implementers on how to generate the
-random data for Destination AND Router Identity padding so that it is compressible while
-still being secure, and without having Base 64 representations appear to be corrupt or insecure.
-This provides most of the benefits of removing the padding fields without any
-disruptive protocol changes.
-Compressible Destinations reduces streaming SYN and repliable datagram size;
-compressible Router Identities reduce Database Store Messages, SSU2 Session Confirmed messages,
-and reseed su3 files.
+- 消除为 Destination 生成 ElGamal 密钥对的要求  
+- 推荐最佳实践，使 Destination 和 Router Identity 高度可压缩，同时在 Base64 表示中不显示明显模式  
+- 鼓励所有实现采用最佳实践，使这些字段无法被区分  
+- 减少流式 SYN 大小  
+- 减少可回复数据报大小  
+- 减少 SSU2 RI 块大小  
+- 减少 SSU2 Session Confirmed 大小和分片频率  
+- 减少包含 RI 的数据库存储消息大小  
+- 减少 reseed 文件大小  
+- 在所有协议和 API 中保持兼容性  
+- 更新规范  
+- 讨论新的 Destination 和 Router Identity 格式的替代方案  
 
-Finally, the proposal discusses possibilities for new Destination and Router Identity formats
-that would eliminate the padding altogether. There is also a brief discussion of post-quantum
-crypto and how that may affect future planning.
+通过消除生成 ElGamal 密钥的要求，实现可能能够完全移除 ElGamal 代码，具体取决于其他协议中的向后兼容性考虑。
 
+## 设计
 
+严格来说，32 字节的签名公钥（在 Destination 和 Router Identity 中均有）以及 32 字节的加密公钥（仅在 Router Identity 中）本身就是提供足够熵的随机数，足以确保这些结构的 SHA-256 哈希在网络数据库 DHT 中具有密码学强度和随机分布。
 
-### Goals
+然而，出于谨慎考虑，我们建议在 ElG 公钥字段和填充字段中至少使用 32 字节的随机数据。此外，如果这些字段全为零，则 Base64 表示的 Destination 将包含大量连续的 AAAA 字符，可能引起用户警觉或困惑。
 
-- Eliminate requirement to generate ElGamal keypair for Destinations
-- Recommend best practices so Destinations and Router Identities are highly compressible,
-  yet do not display obvious patterns in Base 64 representations.
-- Encourage adoption of best practices by all implementations so
-  the fields are not distinguishable
-- Reduce streaming SYN size
-- Reduce repliable datagram size
-- Reduce SSU2 RI block size
-- Reduce SSU2 Session Confirmed size and fragmentation frequency
-- Reduce Database Store Message (with RI) size
-- Reduce reseed file size
-- Maintain compatibility in all protocols and APIs
-- Update specifications
-- Discuss alternatives for new Destination and Router Identity formats
+对于 Ed25519 签名类型和 X25519 加密类型：  
+Destination 将包含该随机数据的 11 份副本（352 字节）。  
+Router Identity 将包含该随机数据的 10 份副本（320 字节）。
 
-By eliminating the requirement to generate ElGamal keys, implementations may
-be able to completely remove ElGamal code, subject to backward-compatibility considerations
-in other protocols.
+### 预计节省
 
+Destination 包含在每个流式 SYN 和可回复数据报中。  
+Router Info（包含 Router Identity）包含在数据库存储消息以及 NTCP2 和 SSU2 的 Session Confirmed 消息中。
 
+NTCP2 不压缩 Router Info。  
+数据库存储消息和 SSU2 Session Confirmed 消息中的 RIs 会被 gzip 压缩。  
+reseed SU3 文件中的 Router Infos 被 zip 压缩。
 
-## Design
+数据库存储消息中的 Destination 不被压缩。  
+流式 SYN 消息在 I2CP 层被 gzip 压缩。
 
-Strictly speaking, the 32-byte signing public key alone (in both Destinations and Router Identities)
-and the 32-byte encryption public key (in Router Identities only) is a random number
-that provides all the entropy necessary for the SHA-256 hashes of these structures
-to be cryptographically strong and randomly distributed in the network database DHT.
+对于 Ed25519 签名类型和 X25519 加密类型，预计节省如下：
 
-However, out of an abundance of caution, we recommend a minimum of 32 bytes of random data
-be used in the ElG public key field and padding. Additionally, if the fields were all zeros,
-Base 64 destinations would contain long runs of AAAA characters, which may cause alarm
-or confusion to users.
-
-For Ed25519 signature type and X25519 encryption type:
-Destinations will contain 11 copies (352 bytes) of the random data.
-Router Identities will contain 10 copies (320 bytes) of the random data.
-
-
-
-### Estimated Savings
-
-Destinations are included in every streaming SYN
-and repliable datagram.
-Router Infos (containing Router Identities) are included in Database Store Messages
-and in the Session Confirmed messages in NTCP2 and SSU2.
-
-NTCP2 does not compress the Router Info.
-RIs in Database Store Messages and SSU2 Session Confirmed messages are gzipped.
-Router Infos are zipped in reseed SU3 files.
-
-Destinations in Database Store Messages are not compressed.
-Streaming SYN messages are gzipped at the I2CP layer.
-
-For Ed25519 signature type and X25519 encryption type,
-estimated savings:
-
-| Data Type | Total Size | Keys and Cert | Uncompressed Padding | Compressed Padding | Size | Savings |
+| 数据类型 | 总大小 | 密钥和证书 | 未压缩填充 | 压缩后填充 | 大小 | 节省 |
 |-----------|------------|---------------|----------------------|--------------------|------|---------|
-| Destination | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
-| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
-| Router Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytes (29%) |
+| Destination | 391 | 39 | 352 | 32 | 71 | 320 字节 (82%) |
+| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 字节 (74%) |
+| Router Info | 1000 典型 | 71 | 320 | 32 | 722 典型 | 288 字节 (29%) |
 
-Notes: Assumes 7-byte certificate is not compressible, zero additional gzip overhead.
-Neither is true, but effects will be small.
-Ignores other compressible parts of the Router Info.
+注：假设 7 字节证书不可压缩，且无额外 gzip 开销。  
+这两点均不完全准确，但影响很小。  
+忽略 Router Info 中其他可压缩部分。
 
+## 规范
 
+以下是我们当前规范的建议变更。
 
-## Specification
+### 通用结构
+修改通用结构规范，明确指出 256 字节的 Destination 公钥字段将被忽略，且可包含随机数据。
 
-Proposed changes to our current specifications are documented below.
+在通用结构规范中新增一节，推荐 Destination 公钥字段以及 Destination 和 Router Identity 中填充字段的最佳实践，如下所示：
 
+使用强加密伪随机数生成器（PRNG）生成 32 字节的随机数据，并将这 32 字节重复填充至公钥字段（用于 Destination）和填充字段（用于 Destination 和 Router Identity）。
 
-### Common Structures
-Change the common structures specification
-to specify that the 256-byte Destination public key field is ignored and may
-contain random data.
-
-Add a section to the common structures specification
-recommending best practice for the Destination public key field and the
-padding fields in the Destination and Router Identity, as follows:
-
-Generate 32 bytes of random data using a strong cryptographic pseudo-random number generator (PRNG)
-and repeat those 32 bytes as necessary to fill the public key field (for Destinations)
-and the padding field (for Destinations and Router Identities).
-
-### Private Key File
-The private key file (eepPriv.dat) format is not an official part of our specifications
-but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
-and other implementations do support it.
-This enables portability of private keys to different implementations.
-Add a note to that javadoc that the encryption public key may be random padding
-and the encryption private key may be all zeros or random data.
+### 私钥文件
+私钥文件格式（eepPriv.dat）并非我们规范的正式部分，但它在 [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html) 中有文档记录，其他实现也支持该格式。  
+这使得私钥可在不同实现之间移植。  
+在该 javadoc 中添加注释：加密公钥可以是随机填充，加密私钥可以是全零或随机数据。
 
 ### SAM
-Note in the SAM specification that the encryption private key is unused and may be ignored.
-Any random data may be returned by the client.
-The SAM Bridge may send random data on creation (with DEST GENERATE or SESSION CREATE DESTINATION=TRANSIENT)
-rather than all zeros, so the Base 64 representation does not have a string of AAAA characters
-and look broken.
-
+在 SAM 规范中注明：加密私钥未被使用，可被忽略。  
+客户端可返回任意随机数据。  
+SAM Bridge 在创建时（使用 DEST GENERATE 或 SESSION CREATE DESTINATION=TRANSIENT）可发送随机数据而非全零，以避免 Base64 表示中出现 AAAA 字符串而显得异常。
 
 ### I2CP
-No changes required to I2CP. The private key for the encryption public key in the Destination
-is not sent to the router.
+I2CP 无需更改。Destination 中加密公钥对应的私钥不会发送给路由器。
 
+## 未来规划
 
-## Future Planning
+### 协议变更
 
+以协议变更和失去向后兼容性为代价，我们可以更改协议和规范，彻底移除 Destination、Router Identity 或两者中的填充字段。
 
-### Protocol Changes
+该提案与“b33”加密 leaseset 格式有相似之处，仅包含密钥和类型字段。
 
-At a cost of protocol changes and a lack of backward compatibility, we could
-change our protocols and specifications to eliminate the padding field in
-the Destination, Router Identity, or both.
+为保持一定兼容性，某些协议层可在传递给其他协议层前“扩展”填充字段为全零。
 
-This proposal bears some similarity to the "b33" encrypted leaseset format,
-containing only a key and a type field.
+对于 Destination，我们还可以从密钥证书中移除加密类型字段，节省 2 字节。  
+或者，Destination 可获得一个新的加密类型，表示公钥为零（及填充）。
 
-To maintain some compatibility, certain protocol layers could "expand" the padding field
-with all zeros to present to other protocol layers.
+如果在某协议层未包含新旧格式之间的兼容转换，则以下规范、API、协议和应用将受到影响：
 
-For Destinations, we could also remove the encryption type field in the key certificate,
-at a savings of two bytes.
-Alternatively, Destinations could get a new encryption type in the key certificate,
-indicating a zero public key (and padding).
+- 通用结构规范  
+- I2NP  
+- I2CP  
+- NTCP2  
+- SSU2  
+- Ratchet  
+- 流式传输  
+- SAM  
+- BitTorrent  
+- 重种子（Reseeding）  
+- 私钥文件  
+- Java 核心和路由器 API  
+- i2pd API  
+- 第三方 SAM 库  
+- 捆绑和第三方工具  
+- 多个 Java 插件  
+- 用户界面  
+- P2P 应用（如 MuWire、bitcoin、monero）  
+- hosts.txt、地址簿和订阅  
 
-If compatibility conversion between old and new formats is not included at some protocol layer,
-the following specifications, APIs, protocols, and applications would be affected:
+如果在某一层指定了转换机制，则受影响列表将缩短。
 
-- Common structures spec
-- I2NP
-- I2CP
-- NTCP2
-- SSU2
-- Ratchet
-- Streaming
-- SAM
-- Bittorrent
-- Reseeding
-- Private Key File
-- Java core and router API
-- i2pd API
-- Third-party SAM libraries
-- Bundled and third-party tools
-- Several Java plugins
-- User interfaces
-- P2P applications e.g. MuWire, bitcoin, monero
-- hosts.txt, addressbook, and subscriptions
+这些变更的成本和收益尚不明确。
 
-If conversion is specified at some layer, the list would be reduced.
+具体提案待定：
 
-The costs and benefits of these changes are not clear.
+### PQ 密钥
 
-Specific proposals TBD:
+对于任何预期算法，后量子（PQ）加密公钥都大于 256 字节。这将消除 Router Identity 中的所有填充以及上述变更带来的任何节省。
 
+在 SSL 所采用的“混合”PQ 方法中，PQ 密钥仅为临时密钥，不会出现在 Router Identity 中。
 
+PQ 签名密钥目前不可行，且 Destination 不包含加密公钥。  
+Ratchet 的静态密钥位于 Lease Set 中，而非 Destination。  
+因此，我们可以将 Destination 排除在以下讨论之外。
 
+因此，PQ 仅影响 Router Info，且仅针对 PQ 静态（非临时）密钥，不适用于 PQ 混合模式。  
+这将需要新的加密类型，并影响 NTCP2、SSU2 以及加密的数据库查找消息及其回复。  
+其设计、开发和部署的预计时间框架为 ????????  
+但将在混合或 Ratchet ???????????? 之后
 
+进一步讨论见 [此主题](http://zzz.i2p/topics/3294)。
 
-### PQ Keys
+## 问题
 
-Post-Quantum (PQ) encryption public keys, for any anticipated algorithm,
-are larger than 256 bytes. This would eliminate any padding and any savings from proposed
-changes above, for Router Identities.
+可能希望以较慢速率对网络进行“重密钥”（rekey），以为新路由器提供掩护。  
+“重密钥”可能仅意味着更改填充，而非真正更改密钥。
 
-In a "hybrid" PQ approach, like what SSL is doing, the PQ keys would be ephemeral only,
-and would not appear in the Router Identity.
+现有 Destination 无法重密钥。
 
-PQ signing keys are not viable,
-and Destinations do not contain encryption public keys.
-Static keys for ratchet are in the Lease Set, not the Destination.
-so we may eliminate Destinations from the following discussion.
+是否应通过密钥证书中的不同加密类型来标识公钥字段中带有填充的 Router Identity？这将导致兼容性问题。
 
-So PQ only affects Router Infos, and only for PQ static (not ephemeral) keys, not for PQ hybrid.
-This would be for a new encryption type and would affect NTCP2, SSU2, and
-encrypted Database Lookup Messages and replies.
-Estimated time frame for design, development, and rollout of that would be ????????
-But would be after hybrid or ratchet ????????????
+## 迁移
 
-For further discussion see [this topic](http://zzz.i2p/topics/3294).
+用填充替换 ElGamal 密钥不存在向后兼容性问题。
 
+如果实现重密钥，其过程将类似于之前三次路由器身份转换：  
+从 DSA-SHA1 到 ECDSA 签名，再到 EdDSA 签名，再到 X25519 加密。
 
+在考虑向后兼容性并禁用 SSU 后，实现可能能够完全移除 ElGamal 代码。  
+目前网络中约有 14% 的路由器使用 ElGamal 加密类型，包括许多 floodfill 节点。
 
+Java I2P 的草案合并请求位于 [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66)。
 
-## Issues
-
-It may be desirable to rekey the network at a slow rate, to provide cover for new routers.
-"Rekeying" could mean simply changing the padding, not really changing the keys.
-
-It is not possible to rekey existing Destinations.
-
-Should Router Identities with padding in the public key field be identified with a different
-encryption type in the key certificate? This would cause compatibility issues.
-
-
-
-
-## Migration
-
-No backward compatibility issues for replacing the ElGamal key with padding.
-
-Rekeying, if implemented, would be similar to that done
-in three previous router identity transitions:
-From DSA-SHA1 to ECDSA signatures, then to
-EdDSA signatures, then to X25519 encryption.
-
-Subject to backward compatibility issues, and after disabling SSU,
-implementations may remove ElGamal code completely.
-Approximately 14% of routers in the network are ElGamal encryption type, including many floodfills.
-
-A draft merge request for Java I2P is at [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
-
-
-## References
+## 参考资料
 
 * [Common](/docs/specs/common-structures/)
 * [Datagram](/docs/api/datagrams/)

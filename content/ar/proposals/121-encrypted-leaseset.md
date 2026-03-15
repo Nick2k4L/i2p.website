@@ -9,61 +9,56 @@ thread: "http://zzz.i2p/topics/2047"
 supercededby: "123"
 toc: true
 ---
+## نظرة عامة
 
-## Overview
-
-This proposal is about redesigning the mechanism for encrypting LeaseSets.
-
-
-## Motivation
-
-Current encrypted LS is horrendous and insecure. I can say that, I designed and
-implemented it.
-
-Reasons:
-
-- AES CBC encrypted
-- Single AES key for everybody
-- Lease expirations still exposed
-- Encryption pubkey still exposed
+هذا الاقتراح يتعلق بإعادة تصميم آليّة تشفير LeaseSets.
 
 
-## Design
+## الدافع
 
-### Goals
+LeaseSet المشفرة الحالية سيئة للغاية وغير آمنة. يمكنني القول ذلك، لقد قمت بتصميمها وتنفيذها.
 
-- Make entire thing opaque
-- Keys for each recipient
+الأسباب:
 
-
-### Strategy
-
-Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-IF we can find an algo that's small and fast.
-
-Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
-bytes is a little painful here. We can do better.
-
-See e.g. http://security.stackexchange.com/questions/824...
-
-This works for small numbers of recipients (or actually, keys; you can still
-distribute keys to multiple people if you like).
+- مشفرة باستخدام AES CBC
+- مفتاح AES واحد للجميع
+- انتهاء صلاحية Lease مازالت مكشوفة
+- مفتاح التشفير العام مازال مكشوفا
 
 
-## Specification
+## التصميم
 
-- Destination
-- Published timestamp
-- Expiration
-- Flags
-- Length of data
-- Encrypted data
-- Signature
+### الأهداف
 
-Encrypted data could be prefixed with some enctype specifier, or not.
+- جعل الشيء كله غامضا
+- مفاتيح لكل مستلم
 
 
-## References
+### الاستراتيجية
+
+افعل مثل GPG/OpenPGP. تشفير مفتاح متعظم بشكل غير متماثل لكل مستلم. البيانات مشفرة باستخدام ذلك المفتاح غير المتماثل. انظر على سبيل المثال [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+إذا كنا نستطيع أن نجده خوارزمية صغيرة وسريعة.
+
+الخدعة هي العثور على تشفير غير متماثل صغير وسريع. ElGamal عند 514 بايت يسبب بعض الألم هنا. يمكننا أن نفعل أفضل من ذلك.
+
+انظر على سبيل المثال http://security.stackexchange.com/questions/824...
+
+هذا يعمل لعدد صغير من المستلمين (أو في الواقع، المفاتيح؛ يمكنك仍 توزيع المفاتيح على عدة أشخاص إذا كنت ترغب في ذلك).
+
+
+## المواصفات
+
+- الوجهة
+- الطابع الزمني المنشور
+- الانتهاء
+- الأعلام
+- طول البيانات
+- البيانات المشفرة
+- التوقيع
+
+البيانات المشفرة يمكن أن تكون مسبوقة ببعض محدد enctype، أو لا.
+
+
+## المراجع
 
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

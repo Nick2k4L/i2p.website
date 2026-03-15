@@ -8,52 +8,51 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
+## Обзор
 
-## Overview
+Этот документ описывает, как изменить спецификации I2P, как работают предложения I2P, и связь между предложениями I2P и спецификациями.
 
-This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
+Этот документ адаптирован из процесса предложений Tor, и большая часть содержания ниже была первоначально написана Ником Мэтьюсоном.
 
-This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
+Это информационный документ.
 
-This is an informational document.
+## Мотивация
 
-## Motivation
+Ранее наш процесс обновления спецификаций I2P был относительно неформальным: мы делали предложение на форуме разработчиков и обсуждали изменения, затем мы достигали консенсуса и патчили спецификацию с черновыми изменениями (не обязательно в том порядке), и, наконец, мы реализовывали изменения.
 
-Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
+У этого процесса были несколько проблем.
 
-This had a few problems.
+Во-первых, даже при самой эффективной реализации старый процесс часто приводил к тому, что спецификация была не синхронизирована с кодом. В худших случаях, когда реализация откладывалась, спецификация и код могли оставаться не синхронизированными в течение нескольких версий.
 
-First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
+Во-вторых, было трудно участвовать в обсуждении, поскольку не всегда было ясно, какие части обсуждения были частью предложения, или какие изменения спецификации были реализованы. Форумы разработчиков также доступны только внутри I2P, что означает, что предложения могли быть просмотрены только людьми, использующими I2P.
 
-Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
+В-третьих, было очень легко забыть о некоторых предложениях, поскольку они могли быть埋ены несколько страниц назад в списке тем форума.
 
-Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
+## Как изменить спецификации сейчас
 
-## How to change the specs now
+Сначала кто-то пишет документ с предложением. Он должен описывать изменение, которое должно быть сделано в деталях, и давать некоторое представление о том, как его реализовать. Как только он достаточно проработан, он становится предложением.
 
-First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
+Как и в случае с RFC, каждое предложение получает номер. В отличие от RFC, предложения могут меняться со временем и сохранять тот же номер, пока они не будут окончательно приняты или отклонены. История каждого предложения будет храниться в репозитории сайта I2P.
 
-Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
+Как только предложение попадает в репозиторий, мы должны обсудить его на соответствующей теме и улучшить его до тех пор, пока мы не достигнем консенсуса, что это хорошая идея, и что она достаточно подробна для реализации. Когда это происходит, мы реализуем предложение и включаем его в спецификации. Таким образом, спецификации остаются канонической документацией для протокола I2P: ни одно предложение никогда не является канонической документацией для реализованной функции.
 
-Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
+(Этот процесс довольно похож на процесс улучшения Python, с основным исключением, что предложения I2P重新 интегрируются в спецификации после реализации, тогда как PEP становятся новой спецификацией.)
 
-(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
+### Небольшие изменения
 
-### Small changes
+Все еще можно делать небольшие изменения直接 в спецификации, если код может быть написан более или менее сразу, или косметические изменения, если не требуется изменение кода. Этот документ отражает текущую *интенцию* разработчиков, а не постоянное обещание всегда использовать этот процесс в будущем: мы сохраняем за собой право стать действительно взволнованными и убежать, чтобы реализовать что-то в сессии хакинга, наполненной кофеином или M&M's.
 
-It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
+## Как добавляются новые предложения
 
-## How new proposals get added
+Чтобы представить предложение, опубликуйте его на форуме разработчиков или создайте тикет с прикрепленным предложением.
 
-To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
+Как только идея была предложена, существует правильно оформленный (см. ниже) черновик, и существует грубый консенсус внутри активного сообщества разработчиков, что эта идея заслуживает рассмотрения, редакторы предложений официально добавляют предложение.
 
-Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
+Текущими редакторами предложений являются zzz и str4d.
 
-The current proposal editors are zzz and str4d.
+## Что должно быть в предложении
 
-## What should go in a proposal
-
-Every proposal should have a header containing these fields:
+Каждое предложение должно иметь заголовок, содержащий следующие поля:
 
 ```
 :author:
@@ -63,11 +62,11 @@ Every proposal should have a header containing these fields:
 :status:
 ```
 
-- The `author` field should contain the names of the authors of this proposal.
-- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
-- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
+- Поле `author` должно содержать имена авторов этого предложения.
+- Поле `thread` должно быть ссылкой на тему форума разработчиков, где это предложение было первоначально опубликовано, или на новую тему, созданную для обсуждения этого предложения.
+- Поле `lastupdated` должно первоначально быть равно полю `created` и должно быть обновлено всякий раз, когда предложение меняется.
 
-These fields should be set when necessary:
+Эти поля должны быть установлены при необходимости:
 
 ```
 :supercedes:
@@ -75,92 +74,92 @@ These fields should be set when necessary:
 :editor:
 ```
 
-- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
-- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
+- Поле `supercedes` является списком, разделенным запятыми, всех предложений, которые это предложение заменяет. Эти предложения должны быть отклонены и иметь поле `supercededby`, установленное для номера этого предложения.
+- Поле `editor` должно быть установлено, если значительные изменения внесены в это предложение, которые не существенно изменяют его содержание. Если содержание существенно изменяется, либо добавляется дополнительный `author`, либо создается новое предложение, заменяющее это.
 
-These fields are optional but recommended:
+Эти поля являются необязательными, но рекомендуется:
 
 ```
 :target:
 :implementedin:
 ```
 
-- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
-- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
+- Поле `target` должно описывать, в какой версии предложение надеется быть реализованным (если оно Открыто или Принято).
+- Поле `implementedin` должно описывать, в какой версии предложение было реализовано (если оно Завершено или Закрыто).
 
-The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
+Тело предложения должно начинаться с раздела Обзор, объясняющего, о чем предложение, что оно делает и в каком состоянии оно находится.
 
-After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
+После Обзора предложение становится более свободным. В зависимости от его длины и сложности, предложение может разбиваться на разделы, как это уместно, или следовать короткому дискурсивному формату. Каждое предложение должно содержать хотя бы следующую информацию до того, как оно будет Принято, хотя информация не обязательно должна быть в разделах с этими названиями.
 
-**Motivation**
-: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
+**Мотивация**
+: Какая проблема пытается решить предложение? Почему эта проблема имеет значение? Если возможны несколько подходов, почему выбран этот?
 
-**Design**
-: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
+**Дизайн**
+: Высокоуровневый взгляд на то, какие новые или измененные функции есть, как работают новые или измененные функции, как они взаимодействуют друг с другом и как они взаимодействуют с остальной частью I2P. Это основная часть предложения. Некоторые предложения могут начинаться только с Мотивации и Дизайна и ждать спецификации, пока Дизайн не покажется примерно правильным.
 
-**Security implications**
-: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
+**Влияние на безопасность**
+: Какие эффекты могут иметь предложенные изменения на анонимность, насколько хорошо поняты эти эффекты и т. д.
 
-**Specification**
-: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
+**Спецификация**
+: Подробное описание того, что нужно добавить в спецификации I2P, чтобы реализовать предложение. Это должно быть в примерно таком же деталях, как и спецификации в конечном итоге будут содержать: должно быть возможно для независимых программистов написать совместимые реализации предложения на основе его спецификаций.
 
-**Compatibility**
-: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
+**Совместимость**
+: Будут ли версии I2P, следующие предложению, совместимы с версиями, которые не следуют? Если да, то как будет достигнута совместимость? Обычно мы стараемся не нарушать совместимость, если это возможно; мы не сделали "день флага" с марта 2008 года, и мы не хотим сделать еще один.
 
-**Implementation**
-: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
+**Реализация**
+: Если предложение будет сложно реализовать в текущей архитектуре I2P, документ может содержать некоторое обсуждение того, как сделать это работоспособным. Фактические патчи должны быть на публичных ветках monotone или загружены в Trac.
 
-**Performance and scalability notes**
-: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
+**Примечания о производительности и масштабируемости**
+: Если функция будет иметь эффект на производительность (в ОЗУ, CPU, пропускной способности) или масштабируемости, должна быть некоторая аналитика того, насколько значительным будет этот эффект, чтобы мы могли избежать действительно дорогих регрессий производительности и чтобы мы могли избежать тратить время на незначительные выгоды.
 
-**References**
-: If the proposal refers to outside documents, these should be listed.
+**Ссылки**
+: Если предложение ссылается на внешние документы, они должны быть перечислены.
 
-## Proposal status
+## Статус предложения
 
-**Open**
-: A proposal under discussion.
+**Открыто**
+: Предложение, находящееся в обсуждении.
 
-**Accepted**
-: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
+**Принято**
+: Предложение завершено, и мы намерены реализовать его. После этого момента существенные изменения предложения должны быть избегаемы и рассматриваться как знак того, что процесс где-то потерпел неудачу.
 
-**Finished**
-: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
+**Завершено**
+: Предложение было принято и реализовано. После этого момента предложение не должно быть изменено.
 
-**Closed**
-: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
+**Закрыто**
+: Предложение было принято, реализовано и объединено с основными документами спецификации. Предложение не должно быть изменено после этого момента.
 
-**Rejected**
-: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
+**Отклонено**
+: Мы не будем реализовывать функцию, описанную здесь, хотя мы можем сделать некоторую другую версию. См. комментарии в документе для подробностей. Предложение не должно быть изменено после этого момента; чтобы представить некоторую другую версию идеи, напишите новое предложение.
 
-**Draft**
-: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
+**Черновик**
+: Это еще не полное предложение; есть определенные пропущенные части. Пожалуйста, не добавляйте новые предложения со статусом "Черновик"; положите их в подкаталог "ideas" вместо этого.
 
-**Needs-Revision**
-: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
+**Требует пересмотра**
+: Идея предложения хороша, но предложение, как оно стоит, имеет серьезные проблемы, которые не позволяют его принять. См. комментарии в документе для подробностей.
 
-**Dead**
-: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
+**Мертв**
+: Предложение не трогалось в течение долгого времени, и не кажется, что кто-то собирается его завершить скоро. Оно может стать "Открытым" снова, если оно получит нового сторонника.
 
-**Needs-Research**
-: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
+**Требует исследования**
+: Есть проблемы, требующие решения, прежде чем станет ясно, является ли предложение хорошей идеей.
 
-**Meta**
-: This is not a proposal, but a document about proposals.
+**Мета**
+: Это не предложение, а документ о предложениях.
 
-**Reserve**
-: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
+**Резерв**
+: Это предложение не является чем-то, что мы планируем реализовать в настоящее время, но мы можем захотеть возродить его когда-нибудь, если мы решим сделать что-то подобное.
 
-**Informational**
-: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
+**Информационный**
+: Это предложение является последним словом о том, что оно делает. Оно не станет спецификацией, если только кто-то не скопирует и не вставит его в новую спецификацию для новой подсистемы.
 
-The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
+Редакторы поддерживают правильный статус предложений, основанный на грубом консенсусе и их собственном усмотрении.
 
-## Proposal numbering
+## Нумерация предложений
 
-Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
+Номера 000-099 зарезервированы для специальных и мета-предложений. 100 и выше используются для фактических предложений. Номера не перерабатываются.
 
-## References
+## Ссылки
 
 * [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
 * [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)

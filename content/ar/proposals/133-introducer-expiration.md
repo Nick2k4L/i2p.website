@@ -10,58 +10,54 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## نظرة عامة
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+تتعلق هذه المقترح بتحسين معدل نجاح عمليات التعريف (introductions).
 
 
-## Design
+## الدوافع
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+تنتهي صلاحية أجهزة التعريف (introducers) بعد فترة زمنية معينة، ولكن هذه المعلومة لا تُنشر في معلومات الراوتر (Router Info). يجب حاليًا على الراوترات استخدام أساليب تقديرية (heuristics) لتخمين ما إذا كان جهاز التعريف لم يعد صالحًا.
 
 
-## Specification
+## التصميم
+
+في عنوان راوتر SSU يحتوي على أجهزة تعريف، يمكن للناشر تضمين أوقات انتهاء الصلاحية لكل جهاز تعريف بشكل اختياري.
+
+
+## المواصفات
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: رقم جهاز التعريف (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: الوقت بالثواني (ليس بالميلي ثانية) منذ بداية العصر (epoch).
 ```
 
-### Notes
+### ملاحظات
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* يجب أن يكون كل وقت انتهاء صلاحية أكبر من تاريخ نشر معلومات الراوتر (Router Info)،
+  وأقل من 6 ساعات بعد تاريخ النشر.
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* ينبغي لراوترات النشر وأجهزة التعريف محاولة الحفاظ على صلاحية جهاز التعريف حتى انتهاء الوقت المحدد،
+  ولكن لا توجد طريقة لضمان ذلك.
 
-* Routers should not use a published introducer after its expiration.
+* يجب على الراوترات ألا تستخدم جهاز تعريف منشورًا بعد انتهاء صلاحيته.
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* توجد أوقات انتهاء صلاحية أجهزة التعريف ضمن خريطة عنوان الراوتر (Router Address mapping).
+  وهي ليست الحقل المكون من 8 بايت لانتهاء الصلاحية (الذي لا يستخدم حاليًا) في عنوان الراوتر.
 
-**Example:** `iexp0=1486309470`
-
-
-## Migration
-
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+**مثال:** `iexp0=1486309470`
 
 
-## References
+## الهجرة
+
+لا توجد مشكلات. التنفيذ اختياري.
+تُضمن التوافق العكسي، حيث ستتجاهل الراوترات الأقدم المعلمات غير المعروفة.
+
+
+## المراجع
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

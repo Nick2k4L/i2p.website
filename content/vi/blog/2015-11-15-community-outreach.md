@@ -5,29 +5,28 @@ author: "lazygravy"
 description: "A start to more frequent community status reports."
 categories: ["community"]
 ---
-
 ## Meta
 
-Greetings! This is the first in a long series of blogs to help the community see what is happening in the I2P community. Since many awesome events are happening *inside* the network, we think it will be worthwhile to talk about some of activities here.
+Xin chào! Đây là bài đầu tiên trong một loạt bài blog dài nhằm giúp cộng đồng thấy được những điều đang diễn ra trong cộng đồng I2P. Vì có rất nhiều sự kiện tuyệt vời đang xảy ra *bên trong* mạng lưới, chúng tôi cho rằng sẽ rất đáng để nói về một số hoạt động tại đây.
 
-## A Call for Feedback
+## Lời kêu gọi phản hồi
 
-Let's face it -- our console needs improvement. Our site could use an update as well. We are looking for feedback on how to improve the usability of I2P for new and existing users!
+Hãy thẳng thắn — bảng điều khiển của chúng ta cần được cải thiện. Trang web của chúng ta cũng cần được cập nhật. Chúng tôi đang tìm kiếm phản hồi về cách cải thiện tính dễ sử dụng của I2P cho cả người dùng mới và hiện tại!
 
-Any and all feedback is welcome. Please contact @GetI2P, @str4d, or @YrB1rd. If you don't feel comfortable using Twitter, we are always available via the in-network IRC channel. You don't have to be a long time user. We want to hear from all sorts of people!
+Mọi phản hồi đều được hoan nghênh. Vui lòng liên hệ @GetI2P, @str4d hoặc @YrB1rd. Nếu bạn không thoải mái khi sử dụng Twitter, chúng tôi luôn sẵn sàng qua kênh IRC trong mạng. Bạn không cần phải là người dùng lâu năm. Chúng tôi muốn nghe từ mọi loại người!
 
-## Developer Meeting Synopsis
+## Tóm tắt cuộc họp nhà phát triển
 
-On 03 November there was an I2P developer meeting. This meeting focused on adding new links to the router console, preparation for CCC, finding a replacement for forum.i2p, and website improvements.
+Vào ngày 03 tháng Mười Một đã diễn ra cuộc họp nhà phát triển I2P. Cuộc họp này tập trung vào việc thêm các liên kết mới vào bảng điều khiển router, chuẩn bị cho CCC, tìm kiếm giải pháp thay thế cho forum.i2p và cải thiện trang web.
 
-The consensus was to not add dogecoindark.i2p. There are concerns about usability due to many images being included on the page. Exchanged.i2p is conditionally added, as long as the maintainer adds a disclaimer on the site. I2Pwiki.i2p (a backup of ugha.i2p, an older wiki) was accepted, as was lenta.i2p (a russian news site).
+Thỏa thuận chung là không thêm dogecoindark.i2p. Có lo ngại về tính dễ sử dụng do trang chứa quá nhiều hình ảnh. exchanged.i2p được thêm vào có điều kiện, miễn là người quản trị thêm cảnh báo trên trang. i2pwiki.i2p (bản sao lưu của ugha.i2p, một wiki cũ hơn) đã được chấp nhận, cũng như lenta.i2p (một trang tin tức Nga).
 
-str4d proposed blocking off the \*.i2p.i2p namespace so they can be used for developer's services. He also suggested a more formalized technical proposal system, with more prominence on the main website.
+str4d đề xuất chặn vùng tên \*.i2p.i2p để chúng có thể được dùng cho các dịch vụ của nhà phát triển. Anh ấy cũng đề xuất một hệ thống đề xuất kỹ thuật chính thức hơn, với vị trí nổi bật hơn trên trang web chính.
 
-The I2P Team is going to be in Hamburg, Germany for the 32nd Chaos Computer Congress. More details are to come on this, but we can promise there will be stickers.
+Nhóm I2P sẽ có mặt tại Hamburg, Đức tham dự Hội nghị Chaos Computer lần thứ 32. Sẽ có thêm chi tiết sau, nhưng chúng tôi có thể hứa sẽ có tem dán.
 
-## General Announcements
+## Thông báo chung
 
-Thank you to TorontoCrypto for hosting the newest I2P reseed server!
+Xin cảm ơn TorontoCrypto đã tổ chức máy chủ reseed I2P mới nhất!
 
-Translation deadline Thursday, 12 November, translators please update. All translations are done via Transifex.
+Hạn chót dịch thuật là Thứ Năm, ngày 12 tháng Mười Một, các dịch giả vui lòng cập nhật. Tất cả bản dịch đều được thực hiện thông qua Transifex.

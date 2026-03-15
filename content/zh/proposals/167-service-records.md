@@ -9,375 +9,317 @@ thread: "http://zzz.i2p/topics/3641"
 target: "0.9.66"
 toc: true
 ---
-
-## Status
-Approved on 2nd review 2025-04-01; specs are updated; not yet implemented.
-
-
-## Overview
-
-I2P lacks a centralized DNS system.
-However, the address book, together with the b32 hostname system, allows
-the router to look up full destinations and fetch lease sets, which contain
-a list of gateways and keys so that clients may connect to that destination.
-
-So, leasesets are somewhat like a DNS record. But there is currently no facility to
-find out if that host supports any services, either on that destination or a different one,
-in a manner similar to DNS [SRV records](https://en.wikipedia.org/wiki/SRV_record) as defined in [RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782).
-
-The first application for this may be peer-to-peer email.
-Other possible applications: DNS, GNS, key servers, certificate authorities, time servers,
-bittorrent, cryptocurrencies, other peer-to-peer applications.
+## 状态
+2025-04-01 第二次审查通过；规范已更新；尚未实现。
 
 
-## Related Proposals and Alternatives
+## 概述
 
-### Service Lists
+I2P 缺乏集中式的 DNS 系统。  
+然而，地址簿结合 b32 主机名系统，允许路由器查找完整目的地并获取包含网关列表和密钥的租赁集（leaseSet），以便客户端可以连接到该目的地。
 
-The LS2 [Proposal 123](/proposals/123-new-netdb-entries/) defined 'service records' that indicated a destination
-was participating in a global service. The floodfills would aggregate these records
-into global 'service lists'.
-This was never implemented due to complexity, lack of authentication,
-security, and spamming concerns.
+因此，leaseset 在某种程度上类似于 DNS 记录。但目前尚无机制可查询某个主机是否支持任何服务（无论是在该目的地还是其他目的地），类似于 [RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782) 中定义的 DNS [SRV 记录](https://en.wikipedia.org/wiki/SRV_record)。
 
-This proposal is different in that it provides lookup for a service for a specific destination,
-not a global pool of destinations for some global service.
+此功能的首个应用可能是点对点电子邮件。  
+其他可能的应用包括：DNS、GNS、密钥服务器、证书颁发机构、时间服务器、BitTorrent、加密货币以及其他点对点应用。
+
+
+## 相关提案与替代方案
+
+### 服务列表
+
+LS2 [提案 123](/proposals/123-new-netdb-entries/) 定义了“服务记录”，表明某个目的地正在参与全局服务。洪泛填充节点（floodfills）会将这些记录聚合为全局“服务列表”。  
+由于复杂性、缺乏认证、安全性和垃圾信息等问题，该提案从未实现。
+
+本提案的不同之处在于，它提供针对特定目的地的服务查找，而不是为某个全局服务提供全局目的地池。
 
 ### GNS
 
-GNS proposes that everybody runs their own DNS server.
-This proposal is complementary, in that we could use service records to specify
-that GNS (or DNS) is supported, with a standard service name of "domain" on port 53.
+GNS 提议每个人运行自己的 DNS 服务器。  
+本提案是互补的，我们可以使用服务记录来指定支持 GNS（或 DNS），标准服务名称为 "domain"，端口为 53。
 
 ### Dot well-known
 
-It has been [proposed](http://i2pforum.i2p/viewtopic.php?p=3102) that services be looked up via an HTTP request to
-/.well-known/i2pmail.key. This requires that every service must have a related
-website to host the key. Most users do not run websites.
+曾有 [提议](http://i2pforum.i2p/viewtopic.php?p=3102) 通过 HTTP 请求 / .well-known/i2pmail.key 来查找服务。这要求每个服务都必须有一个相关网站来托管密钥。大多数用户并不运行网站。
 
-One workaround is that we could presume that a service for a b32 address is actually
-running on that b32 address. So that looking for the service for example.i2p requires
-the HTTP fetch from http://example.i2p/.well-known/i2pmail.key, but
-a service for aaa...aaa.b32.i2p does not require that lookup, it can just connect directly.
+一种变通方法是，我们可以假定 b32 地址的服务实际上运行在该 b32 地址上。因此，查找 example.i2p 的服务需要从 http://example.i2p/.well-known/i2pmail.key 获取 HTTP 内容，但查找 aaa...aaa.b32.i2p 的服务则不需要此查找，可直接连接。
 
-But there's an ambiguity there, because example.i2p can also be addressed by its b32.
+但这里存在歧义，因为 example.i2p 也可以通过其 b32 地址寻址。
 
-### MX Records
+### MX 记录
 
-SRV records are simply a generic version of MX records for any service.
-"_smtp._tcp" is the "MX" record.
-There is no need for MX records if we have SRV records, and MX records
-alone do not provide a generic record for any service.
+SRV 记录只是针对任意服务的通用版 MX 记录。  
+"_smtp._tcp" 就是 "MX" 记录。  
+如果我们已有 SRV 记录，则无需 MX 记录，而仅靠 MX 记录无法为任意服务提供通用记录。
 
 
-## Design
+## 设计
 
-Service records are placed in the options section in [LS2](/docs/specs/common-structures/).
-The LS2 options section is currently unused.
-Not supported for LS1.
-This is similar to the [tunnel bandwidth proposal](/proposals/168-tunnel-bandwidth/),
-which defines options for tunnel build records.
+服务记录放置在 [LS2](/docs/specs/common-structures/) 的选项部分中。  
+LS2 的选项部分当前未使用。  
+不支持 LS1。  
+这类似于 [隧道带宽提案](/proposals/168-tunnel-bandwidth/)，后者为隧道构建记录定义了选项。
 
-To lookup a service address for a specific hostname or b32, the router fetches the
-leaseset and looks up the service record in the properties.
+要查找特定主机名或 b32 的服务地址，路由器会获取 leaseset 并在属性中查找服务记录。
 
-The service may be hosted on the same destination as the LS itself, or may reference
-a different hostname/b32.
+该服务可能托管在与 LS 相同的目的地，也可能引用不同的主机名/b32。
 
-If the target destination for the service is different, the target LS must also
-include a service record, pointing to itself, indicating that it supports the service.
+如果服务的目标目的地不同，则目标 LS 也必须包含一个指向自身的服务记录，表明其支持该服务。
 
-The design does not require special support or caching or any changes in the floodfills.
-Only the leaseset publisher, and the client looking up a service record,
-must support these changes.
+该设计不需要洪泛填充节点的特殊支持、缓存或任何更改。  
+仅 leaseset 发布者和查找服务记录的客户端需要支持这些更改。
 
-Minor I2CP and SAM extensions are proposed to facilitate retrieval of
-service records by clients.
+建议对 I2CP 和 SAM 进行小幅扩展，以方便客户端检索服务记录。
 
 
+## 规范
 
-## Specification
+### LS2 选项规范
 
-### LS2 Option Specification
+LS2 选项必须按键排序，以确保签名不变。
 
-LS2 options MUST be sorted by key, so the signature is invariant.
-
-Defined as follows:
+定义如下：
 
 - serviceoption := optionkey optionvalue
 - optionkey := _service._proto
-- service := The symbolic name of the desired service. Must be lower case. Example: "smtp".
-  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
-  Standard identifiers from the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services must be used if defined there.
-- proto := The transport protocol of the desired service. Must be lower case, either "tcp" or "udp".
-  "tcp" means streaming and "udp" means repliable datagrams.
-  Protocol indicators for raw datagrams and datagram2 may be defined later.
-  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+- service := 所需服务的符号名称。必须小写。示例："smtp"。  
+  允许字符为 [a-z0-9-]，且不能以 '-' 开头或结尾。  
+  如果已在 [DNS-SD 服务类型注册表](http://www.dns-sd.org/ServiceTypes.html) 或 Linux /etc/services 中定义，则必须使用其中的标准标识符。
+- proto := 所需服务的传输协议。必须小写，为 "tcp" 或 "udp"。  
+  "tcp" 表示流式传输，"udp" 表示可回复的数据报。  
+  原始数据报和 datagram2 的协议指示符可稍后定义。  
+  允许字符为 [a-z0-9-]，且不能以 '-' 开头或结尾。
 - optionvalue := self | srvrecord[,srvrecord]*
 - self := "0" ttl port [appoptions]
 - srvrecord := "1" ttl priority weight port target [appoptions]
-- ttl := time to live, integer seconds. Positive integer. Example: "86400".
-  A minimum of 86400 (one day) is recommended, see Recommendations section below for details.
-- priority := The priority of the target host, lower value means more preferred. Non-negative integer. Example: "0"
-  Only useful if more than one record, but required even if just one record.
-- weight := A relative weight for records with the same priority. Higher value means more chance of getting picked. Non-negative integer. Example: "0"
-  Only useful if more than one record, but required even if just one record.
-- port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
-  Port 0 is supported but not recommended.
-- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/overview/naming/). Must be lower case.
-  Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
-  b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
-- appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
+- ttl := 生存时间，单位为秒的整数。正整数。示例："86400"。  
+  建议最小值为 86400（一天），详见下文“建议”部分。
+- priority := 目标主机的优先级，数值越低越优先。非负整数。示例："0"  
+  仅在多条记录时有用，但即使只有一条记录也必须包含。
+- weight := 具有相同优先级的记录的相对权重。数值越高越可能被选中。非负整数。示例："0"  
+  仅在多条记录时有用，但即使只有一条记录也必须包含。
+- port := 服务所在的 I2CP 端口。非负整数。示例："25"  
+  支持端口 0，但不推荐。
+- target := 提供服务的目的地的主机名或 b32。有效的 [主机名](/docs/overview/naming/)。必须小写。  
+  示例："aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" 或 "example.i2p"。  
+  除非主机名“众所周知”（即在官方或默认地址簿中），否则推荐使用 b32。
+- appoptions := 应用程序特定的任意文本，不得包含 " " 或 ","。编码为 UTF-8。
 
-### Examples
+### 示例
 
-In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to one SMTP server:
+在 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p 的 LS2 中，指向一个 SMTP 服务器：
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to two SMTP servers:
+在 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p 的 LS2 中，指向两个 SMTP 服务器：
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to itself as a SMTP server:
+在 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p 的 LS2 中，指向自身作为 SMTP 服务器：
 
     "_smtp._tcp" "0 999999 25"
 
-Possible format for redirecting email (see below):
+重定向邮件的可能格式（见下文）：
 
     "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-### Limits
+### 限制
 
-The Mapping data structure format used for LS2 options limits keys and values to 255 bytes (not chars) max.
-With a b32 target, the optionvalue is about 67 bytes, so only 3 records would fit.
-Maybe only one or two with a long appoptions field, or up to four or five with a short hostname.
-This should be sufficient; multiple records should be rare.
-
-
-### Differences from RFC 2782
-
-- No trailing dots
-- No name after the proto
-- Lower case required
-- In text format with comma-separated records, not binary DNS format
-- Different record type indicators
-- Additional appoptions field
+LS2 选项使用的映射数据结构格式限制键和值最多 255 字节（非字符）。  
+使用 b32 目标时，optionvalue 约为 67 字节，因此仅能容纳 3 条记录。  
+若 appoptions 字段较长，可能只能容纳一两条；若主机名较短，最多可容纳四到五条。  
+这应已足够；多条记录的情况应属罕见。
 
 
-### Notes
+### 与 RFC 2782 的差异
 
-No wildcarding such as (asterisk), (asterisk)._tcp, or _tcp is allowed.
-Each supported service must have its own record.
-
-
-
-### Service Name Registry
-
-Non-standard identifiers that are not listed in the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services
-may be requested and added to the [common structures specification](/docs/specs/common-structures/).
-
-Service-specific appoptions formats may also be added there.
+- 无尾随点
+- proto 后无名称
+- 必须小写
+- 文本格式中记录以逗号分隔，非二进制 DNS 格式
+- 不同的记录类型指示符
+- 新增 appoptions 字段
 
 
-### I2CP Specification
+### 注释
 
-The [I2CP protocol](/docs/specs/i2cp/) must be extended to support service lookups.
-Additional MessageStatusMessage and/or HostReplyMessage error codes related to service lookup
-are required.
-To make the lookup facility general, not just service record-specific,
-the design is to support retrieval of all LS2 options.
+不允许使用通配符，如 (星号)、(星号)._tcp 或 _tcp。  
+每个支持的服务必须拥有自己的记录。
 
-Implementation: Extend HostLookupMessage to add request for
-LS2 options for hash, hostname, and destination (request types 2-4).
-Extend HostReplyMessage to add the options mapping if requested.
-Extend HostReplyMessage with additional error codes.
 
-Options mappings may be cached or negative cached for a short time on either the client or router side,
-implementation-dependent. Recommended maximum time is one hour, unless the service record TTL is shorter.
-Service records may be cached up to the TTL specified by the application, client, or router.
+### 服务名称注册表
 
-Extend the specification as follows:
+未在 [DNS-SD 服务类型注册表](http://www.dns-sd.org/ServiceTypes.html) 或 Linux /etc/services 中列出的非标准标识符  
+可申请并添加至 [通用结构规范](/docs/specs/common-structures/)。
 
-#### Configuration options
+特定服务的 appoptions 格式也可添加于此处。
 
-Add the following to the [I2CP configuration options](/docs/specs/i2cp/)
+
+### I2CP 规范
+
+[I2CP 协议](/docs/specs/i2cp/) 必须扩展以支持服务查找。  
+需要新增与服务查找相关的 MessageStatusMessage 和/或 HostReplyMessage 错误码。  
+为使查找功能通用而不仅限于服务记录，设计为支持检索所有 LS2 选项。
+
+实现：扩展 HostLookupMessage 以添加对哈希、主机名和目的地的 LS2 选项请求（请求类型 2-4）。  
+扩展 HostReplyMessage 以在请求时包含选项映射。  
+扩展 HostReplyMessage 以添加额外错误码。
+
+选项映射可在客户端或路由器端短暂缓存或负缓存，具体取决于实现。  
+建议最大时间为一小时，除非服务记录 TTL 更短。  
+服务记录可由应用程序、客户端或路由器根据指定的 TTL 缓存。
+
+按如下方式扩展规范：
+
+#### 配置选项
+
+向 [I2CP 配置选项](/docs/specs/i2cp/) 添加以下内容
 
 i2cp.leaseSetOption.nnn
 
-Options to be put in the leaseset. Only available for LS2.
-nnn starts with 0. Option value contains "key=value".
-(do not include quotes)
+要放入 leaseset 的选项。仅适用于 LS2。  
+nnn 从 0 开始。选项值包含 "key=value"。  
+（不要包含引号）
 
-Example:
+示例：
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-#### HostLookup Message
+#### HostLookup 消息
 
-- Lookup type 2: Hash lookup, request options mapping
-- Lookup type 3: Hostname lookup, request options mapping
-- Lookup type 4: Destination lookup, request options mapping
+- 查找类型 2：哈希查找，请求选项映射
+- 查找类型 3：主机名查找，请求选项映射
+- 查找类型 4：目的地查找，请求选项映射
 
-For lookup type 4, item 5 is a Destination.
-
-
-
-#### HostReply Message
-
-For lookup types 2-4, the router must fetch the leaseset,
-even if the lookup key is in the address book.
-
-If successful, the HostReply will contain the options Mapping
-from the leaseset, and includes it as item 5 after the destination.
-If there are no options in the Mapping, or the leaseset was version 1,
-it will still be included as an empty Mapping (two bytes: 0 0).
-All options from the leaseset will be included, not just service record options.
-For example, options for parameters defined in the future may be present.
-
-On leaseset lookup failure, the reply will contain a new error code 6 (Leaseset lookup failure)
-and will not include a mapping.
-When error code 6 is returned, the Destination field may or may not be present.
-It will be present if a hostname lookup in the address book was successful,
-or if a previous lookup was successful and the result was cached,
-or if the Destination was present in the lookup message (lookup type 4).
-
-If a lookup type is not supported,
-the reply will contain a new error code 7 (lookup type unsupported).
+对于查找类型 4，第 5 项为 Destination。
 
 
+#### HostReply 消息
 
-### SAM Specification
+对于查找类型 2-4，路由器必须获取 leaseset，即使查找键在地址簿中。
 
-The [SAMv3 protocol](/docs/api/samv3/) must be extended to support service lookups.
+若成功，HostReply 将包含来自 leaseset 的选项映射，并作为第 5 项跟在目的地之后。  
+如果映射中无选项，或 leaseset 为版本 1，则仍包含为空映射（两个字节：0 0）。  
+将包含 leaseset 中的所有选项，而不仅是服务记录选项。  
+例如，未来定义的参数选项可能存在。
 
-Extend NAMING LOOKUP as follows:
+若 leaseset 查找失败，回复将包含新错误码 6（Leaseset 查找失败），且不包含映射。  
+当返回错误码 6 时，Destination 字段可能存在也可能不存在。  
+若地址簿中的主机名查找成功，或之前的查找成功且结果已缓存，或查找消息中包含 Destination（查找类型 4），则该字段存在。
 
-NAMING LOOKUP NAME=example.i2p OPTIONS=true requests the options mapping in the reply.
+若查找类型不受支持，回复将包含新错误码 7（查找类型不受支持）。
 
-NAME may be a full base64 destination when OPTIONS=true.
 
-If the destination lookup was successful and options were present in the leaseset,
-then in the reply, following the destination,
-will be one or more options in the form of OPTION:key=value.
-Each option will have a separate OPTION: prefix.
-All options from the leaseset will be included, not just service record options.
-For example, options for parameters defined in the future may be present.
-Example:
+### SAM 规范
+
+[SAMv3 协议](/docs/api/samv3/) 必须扩展以支持服务查找。
+
+按如下方式扩展 NAMING LOOKUP：
+
+NAMING LOOKUP NAME=example.i2p OPTIONS=true 请求在回复中包含选项映射。
+
+当 OPTIONS=true 时，NAME 可以是完整的 base64 目的地。
+
+若目的地查找成功且 leaseset 中存在选项，则在回复中，目的地之后将包含一个或多个形如 OPTION:key=value 的选项。  
+每个选项都有独立的 OPTION: 前缀。  
+将包含 leaseset 中的所有选项，而不仅是服务记录选项。  
+例如，未来定义的参数选项可能存在。  
+示例：
 
 NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-Keys containing '=', and keys or values containing a newline,
-are considered invalid and the key/value pair will be removed from the reply.
+包含 '=' 的键，以及包含换行符的键或值，被视为无效，键值对将从回复中移除。
 
-If there are no options found in the leaseset, or if the leaseset was version 1,
-then the response will not include any options.
+若在 leaseset 中未找到选项，或 leaseset 为版本 1，则响应不包含任何选项。
 
-If OPTIONS=true was in the lookup, and the leaseset is not found, a new result value LEASESET_NOT_FOUND will be returned.
+若查找中包含 OPTIONS=true 且未找到 leaseset，则返回新结果值 LEASESET_NOT_FOUND。
 
 
-## Naming Lookup Alternative
+## 命名查找替代方案
 
-An alternative design was considered, to support lookups of services
-as a full hostname, for example _smtp._tcp.example.i2p,
-by updating the [naming specification](/docs/overview/naming/) to specify handling of hostnames starting with '_'.
-This was rejected for two reasons:
+曾考虑另一种设计，通过更新 [命名规范](/docs/overview/naming/) 以处理以 '_' 开头的主机名，支持以完整主机名查找服务，例如 _smtp._tcp.example.i2p。  
+该方案因两个原因被拒绝：
 
-- I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.
-- It would not be a general facility that could be used to retrieve other LS2
-  options that could be defined in the future.
+- 仍需对 I2CP 和 SAM 进行更改，以将 TTL 和端口信息传递给客户端。
+- 它不会成为通用设施，无法用于检索未来可能定义的其他 LS2 选项。
 
 
-## Recommendations
+## 建议
 
-Servers should specify a TTL of at least 86400, and the standard port for the application.
-
-
-
-## Advanced Features
-
-### Recursive Lookups
-
-It may be desirable to support recursive lookups, where each successive leaseset
-is checked for a service record pointing to another leaseset, DNS-style.
-This is probably not necessary, at least in an initial implementation.
-
-TODO
+服务器应指定至少 86400 的 TTL，以及应用程序的标准端口。
 
 
+## 高级功能
 
-### Application-specific fields
+### 递归查找
 
-It may be desirable to have application-specific data in the service record.
-For example, the operator of example.i2p may wish to indicate that email should
-be forwarded to example@mail.i2p. The "example@" part would need to be in a separate field
-of the service record, or stripped from the target.
+可能需要支持递归查找，即依次检查每个 leaseset 是否包含指向另一个 leaseset 的服务记录，类似 DNS 方式。  
+这在初始实现中可能并非必要。
 
-Even if the operator runs his own email service, he may wish to indicate that
-email should be sent to example@example.i2p. Most I2P services are run by a single person.
-So a separate field may be helpful here as well.
-
-TODO how to do this in a generic way
+待办
 
 
-### Changes required for Email
+### 应用程序特定字段
 
-Out of the scope of this proposal. See the [discussion on i2pforum](http://i2pforum.i2p/viewtopic.php?p=3102) for more details.
+可能需要在服务记录中包含应用程序特定数据。  
+例如，example.i2p 的运营者可能希望指示邮件应转发至 example@mail.i2p。"example@" 部分需要位于服务记录的单独字段中，或从目标中剥离。
 
+即使运营者运行自己的邮件服务，他可能也希望指示邮件应发送至 example@example.i2p。大多数 I2P 服务由单个人运行。  
+因此，单独字段在此也可能有帮助。
 
-## Implementation Notes
-
-Caching of service records up to the TTL may be done by the router or the application,
-implementation-dependent. Whether to cache persistently is also implementation-dependent.
-
-Lookups must also lookup the target leaseset and verify it contains a "self" record
-before returning the target destination to the client.
+待办：如何以通用方式实现
 
 
-## Security Analysis
+### 邮件所需更改
 
-As the leaseset is signed, any service records within it are authenticated by the signing key of the destination.
-
-The service records are public and visible to floodfills, unless the leaseset is encrypted.
-Any router requesting the leaseset will be able to see the service records.
-
-A SRV record other than "self" (i.e., one that points to a different hostname/b32 target)
-does not require the consent of the targeted hostname/b32.
-It's not clear if a redirection of a service to an arbitrary destination could facilitate some
-sort of attack, or what the purpose of such an attack would be.
-However, this proposal mitigates such an attack by requiring that the target
-also publish a "self" SRV record. Implementers must check for a "self" record
-in the leaseset of the target.
+超出本提案范围。详见 [i2pforum 上的讨论](http://i2pforum.i2p/viewtopic.php?p=3102) 以获取更多细节。
 
 
-## Compatibility
+## 实现说明
 
-LS2: No issues. All known implementations currently ignore the options field in LS2,
-and correctly skip over a non-empty options field.
-This was verified in testing by both Java I2P and i2pd during the development of LS2.
-LS2 was implemented in 0.9.38 in 2016 and is well-supported by all router implementations.
-The design does not require special support or caching or any changes in the floodfills.
+路由器或应用程序可选择性地根据 TTL 缓存服务记录，具体取决于实现。是否持久缓存也取决于实现。
 
-Naming: '_' is not a valid character in i2p hostnames.
-
-I2CP: Lookup types 2-4 should not be sent to routers below the minimum API version
-at which it is supported (TBD).
-
-SAM: Java SAM server ignores additional keys/values such as OPTIONS=true.
-i2pd should as well, to be verified.
-SAM clients will not get the additional values in the reply unless requested with OPTIONS=true.
-No version bump should be necessary.
+查找时还必须查找目标 leaseset 并验证其包含 "self" 记录，然后才能将目标目的地返回给客户端。
 
 
-## Migration
+## 安全分析
 
-Implementations may add support at any time, no coordination is needed,
-except for an agreement on the effective API version for the I2CP changes.
-SAM compatibility versions for each implementation will be documented in the SAM spec.
+由于 leaseset 经过签名，其中的任何服务记录均由目的地的签名密钥认证。
+
+服务记录是公开的，洪泛填充节点可见，除非 leaseset 被加密。  
+任何请求 leaseset 的路由器都将能看到服务记录。
+
+指向不同主机名/b32 目标的 SRV 记录（即非 "self"）不需要目标主机名/b32 的同意。  
+尚不清楚将服务重定向到任意目的地是否可能促成某种攻击，或此类攻击的目的为何。  
+然而，本提案通过要求目标也发布 "self" SRV 记录来缓解此类攻击。实现者必须检查目标 leaseset 中的 "self" 记录。
 
 
-## References
+## 兼容性
+
+LS2：无问题。所有已知实现目前忽略 LS2 中的选项字段，并能正确跳过非空选项字段。  
+在 LS2 开发期间，Java I2P 和 i2pd 均已通过测试验证。  
+LS2 于 2016 年在 0.9.38 版本中实现，所有路由器实现均支持良好。  
+该设计不需要洪泛填充节点的特殊支持、缓存或任何更改。
+
+命名：'_' 不是 i2p 主机名中的有效字符。
+
+I2CP：低于支持该功能的最低 API 版本（待定）的路由器不应发送查找类型 2-4。
+
+SAM：Java SAM 服务器忽略 OPTIONS=true 等附加键值。  
+i2pd 也应如此，待验证。  
+SAM 客户端除非使用 OPTIONS=true 请求，否则不会在回复中获得附加值。  
+无需版本升级。
+
+
+## 迁移
+
+实现可随时添加支持，无需协调，  
+除了需就 I2CP 更改的有效 API 版本达成一致。  
+各实现的 SAM 兼容版本将在 SAM 规范中记录。
+
+
+## 参考文献
 
 * [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
 * [I2CP](/docs/specs/i2cp/)

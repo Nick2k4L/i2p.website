@@ -5,33 +5,32 @@ author: "Meeh"
 description: "Organization launch"
 categories: ["press"]
 ---
+مرحباً بالجميع!
 
-Hello all!
+اليوم نُعلن عن مشروع "Privacy Solutions"، وهو منظمة جديدة تقوم بتطوير وصيانة برنامج I2P. تشمل Privacy Solutions عدة مشاريع تطويرية جديدة مصممة لتعزيز الخصوصية والأمان والتخفي للمسخدمين، وتعتمد على بروتوكولات وتقنيات I2P.
 
-Today we announce the Privacy Solutions project, a new organization that develops and maintains I2P software. Privacy Solutions includes several new development efforts designed to enhance the privacy, security, and anonymity for users, based on I2P protocols and technology.
+وتشمل هذه الجهود:
 
-These efforts include:
+1. حزمة متصفح Abscond.
+2. مشروع موجه i2pd بلغة C++.
+3. مشروع مراقبة شبكة I2P "BigBrother".
+4. مشروع العملة الرقمية Anoncoin.
+5. مشروع العملة الرقمية Monero.
 
-1. The Abscond browser bundle.
-2. The i2pd C++ router project.
-3. The "BigBrother" I2P network monitoring project.
-4. The Anoncoin crypto-coin project.
-5. The Monero crypto-coin project.
+تم تمويل منظمة Privacy Solutions في بدايتها من قبل داعمي مشروعي Anoncoin و Monero. تُعد Privacy Solutions منظمة غير ربحية مقرها النرويج، مسجلة في السجلات الحكومية النرويجية. (تشبه نوعاً ما المنظمات الأمريكية المسجلة تحت البند 501(c)3).
 
-Privacy Solutions' initial funding was provided by the supporters of the Anoncoin and Monero projects. Privacy Solutions is a Norway-based non-profit type of organization registered within the Norwegian government registers. (Kind of like US 501(c)3.)
+تخطط Privacy Solutions للتقدم بطلب للحصول على تمويل من الحكومة النرويجية لأبحاث الشبكة، وذلك بسبب مشروع BigBrother (سنتناول لاحقاً ما هو عليه) والعملات التي تخطط لاستخدام الشبكات منخفضة التأخير كطبقة نقل رئيسية. ستدعم أبحاثنا التقدم في تقنيات البرمجيات فيما يتعلق بالتخفي والأمان والخصوصية.
 
-Privacy Solutions plans to apply for funding from the Norwegian goverment for network research, because of BigBrother (We'll get back to what that is) and the coins that are planned to use low-latency networks as primary transport layer. Our research will support advances in software technology for anonymity, security, and privacy.
+أولاً، القليل عن حزمة متصفح Abscond. بدأ هذا المشروع في البداية كمشروع فردي من قبل Meeh، ولكن لاحقاً بدأ أصدقاء بإرسال تصحيحات (patches)، والآن يسعى المشروع إلى توفير نفس سهولة الوصول إلى I2P التي يوفرها متصفح Tor من خلال حزمة المتصفح الخاصة به. إصدارنا الأول ليس بعيداً، فهناك فقط بعض مهام النصوص البرمجية لـ gitian المتبقية، بما في ذلك إعداد سلسلة أدوات Apple. ولكن مرة أخرى، سنضيف مراقبة باستخدام PROCESS_INFORMATION (هي بنية C تحتفظ بمعلومات عملية حيوية حول عملية ما) من النسخة القائمة على Java للتحقق من حالة I2P قبل أن نعلنها مستقرة. كما سيتم الانتقال إلى i2pd بمجرد جاهزيته، ولن يكون هناك أي داعٍ بعد ذلك لتضمين بيئة تشغيل Java (JRE) في الحزمة. يمكنك معرفة المزيد عن حزمة متصفح Abscond على الرابط https://hideme.today/dev
 
-First a little bit about the Abscond Browser Bundle. This was first a one-man project by Meeh, but later on friends started sending patches, the project is now trying to create the same easy access to I2P as Tor has with their browser bundle. Our first release isn't far away, it's just some gitian script tasks left, including setup of the Apple toolchain. But again we will add monitoring with PROCESS_INFORMATION (A C struct keeping vital proces information about an process) from the Java instance to check on I2P before we declare it stable. I2pd will also switch with the Java version once it's ready, and there is no point in shipping a JRE in the bundle anymore. You can read more about the Abscond Browser Bundle at https://hideme.today/dev
+نود أيضاً إعلامكم بالحالة الحالية لمشروع i2pd. يدعم i2pd الآن البث ثنائي الاتجاه، ما يسمح باستخدامه ليس فقط لبروتوكول HTTP، بل أيضاً لقنوات الاتصال طويلة الأمد. تم إضافة دعم فوري لـ IRC. يمكن لمستخدمي i2pd استخدامه بنفس الطريقة التي يستخدمون بها I2P القائم على Java للوصول إلى شبكة I2P IRC. تُعد I2PTunnel إحدى الميزات الأساسية لشبكة I2P، حيث تسمح للتطبيقات غير التابعة لـ I2P بالتواصل بشكل شفاف. ولهذا فهي ميزة حيوية في i2pd، وواحدة من المراحل المهمة الرئيسية.
 
-We would also like to inform of the current status of i2pd. I2pd supports bi-directional streaming now, that allows to use not only HTTP but long-lived communication channels. Instant IRC support has been added. I2pd users are able to use it same way as Java I2P for access to I2P IRC network. I2PTunnel is one of key features of I2P network, allowing non-I2P applications communicate transparently. That's why it's vital feature for i2pd and one of key milestones.
+أخيراً، إذا كنت معتاداً على I2P، فمن المحتمل أنك تعرف موقع Bigbrother.i2p، وهو نظام مقاييس (metrics) قام Meeh بإنشائه منذ أكثر من عام. مؤخراً لاحظنا أن Meeh لديه فعلاً 100 غيغابايت من البيانات غير المكررة من العقد التي أرسلت تقاريرها منذ الإطلاق الأولي. سيتم نقل هذا النظام أيضاً إلى Privacy Solutions وإعادة كتابته باستخدام نظام خلفي خالٍ من نقطة فشل واحدة (NSPOF). وسنبدأ أيضاً باستخدام أداة Graphite (http://graphite.wikidot.com/screen-shots). هذا سيمكننا من الحصول على نظرة شاملة رائعة على الشبكة دون التأثير على خصوصية مستخدمينا النهائيين. تقوم العميلات بتصفية جميع البيانات باستثناء الدولة، وهاش الموجه (router hash)، ومعدل النجاح في بناء الأنفاق. اسم هذه الخدمة، كما هو الحال دائماً، مجرد نكتة صغيرة من Meeh.
 
-At last, if you are familiar with I2P you probably know about Bigbrother.i2p, which is a metrics system Meeh made over a year back. Recently we noticed that Meeh actually have 100Gb of non-duplicated data from nodes reporting in since initial launch. This will also be moved to Privacy Solutions and be rewritten with a NSPOF backend. With this we will aslo start using the Graphite (http://graphite.wikidot.com/screen-shots). This will give us a great overview over the network without privacy issues for our end users. The clients filter all data except country, router hash and success rate on tunnel buildings. The name of this service is as always a little joke from Meeh.
+قمنا بتقليص بعض الأخبار هنا، فإذا كنت مهتماً بمزيد من المعلومات، يرجى زيارة https://blog.privacysolutions.no/ لا نزال قيد الإنشاء وسيتم إضافة المزيد من المحتوى!
 
-We have shorted down a bit of the news here, if you're interested in more information please visit https://blog.privacysolutions.no/ We're still under construction and more content will come!
+لمزيد من المعلومات، يرجى التواصل عبر: press@privacysolutions.no
 
-For further information contact: press@privacysolutions.no
+مع أطيب التحيات،
 
-Best regards,
-
-Mikal "Meeh" Villa
+ميكال "Meeh" فيلا

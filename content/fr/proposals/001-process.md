@@ -8,52 +8,51 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
+## Vue d'ensemble
 
-## Overview
+Ce document décrit comment modifier les spécifications I2P, comment fonctionnent les propositions I2P et la relation entre les propositions I2P et les spécifications.
 
-This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
+Ce document est adapté du processus de proposition Tor, et une grande partie du contenu ci-dessous a été rédigée à l'origine par Nick Mathewson.
 
-This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
-
-This is an informational document.
+Il s'agit d'un document informatif.
 
 ## Motivation
 
-Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
+Autrefois, notre processus de mise à jour des spécifications I2P était relativement informel : nous faisions une proposition sur le forum de développement et discutions des changements, puis nous arrivions à un consensus et patchions la spécification avec des changements de projet (pas nécessairement dans cet ordre), et enfin nous mettions en œuvre les changements.
 
-This had a few problems.
+Cela posait quelques problèmes.
 
-First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
+Tout d'abord, même à son niveau le plus efficace, l'ancien processus faisait souvent que la spécification était désynchronisée avec le code. Les cas les plus graves étaient ceux où la mise en œuvre était différée : la spécification et le code pouvaient rester désynchronisés pendant des versions.
 
-Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
+Deuxièmement, il était difficile de participer à la discussion, puisqu'il n'était pas toujours clair quelles parties du fil de discussion faisaient partie de la proposition, ou quels changements de la spécification avaient été mis en œuvre. Les forums de développement ne sont accessibles qu'à l'intérieur d'I2P, ce qui signifie que les propositions ne pouvaient être consultées que par les personnes qui utilisent I2P.
 
-Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
+Troisièmement, il était très facile d'oublier certaines propositions parce qu'elles étaient noyées plusieurs pages plus loin dans la liste des threads du forum.
 
-## How to change the specs now
+## Comment modifier les spécifications maintenant
 
-First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
+Tout d'abord, quelqu'un rédige un document de proposition. Il devrait décrire le changement qui doit être apporté en détail et donner une idée de la façon de le mettre en œuvre. Une fois qu'il est suffisamment détaillé, il devient une proposition.
 
-Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
+Comme un RFC, chaque proposition reçoit un numéro. Contrairement aux RFC, les propositions peuvent changer au fil du temps et conserver le même numéro, jusqu'à ce qu'elles soient finalement acceptées ou rejetées. L'historique de chaque proposition sera stocké dans le référentiel du site Web d'I2P.
 
-Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
+Une fois qu'une proposition est dans le référentiel, nous devons la discuter sur le thread correspondant et l'améliorer jusqu'à ce que nous ayons atteint un consensus pour qu'elle soit une bonne idée, et qu'elle soit suffisamment détaillée pour être mise en œuvre. Lorsque cela se produit, nous mettons en œuvre la proposition et l'incorporons dans les spécifications. Ainsi, les spécifications restent la documentation canonique pour le protocole I2P : aucune proposition n'est jamais la documentation canonique pour une fonctionnalité mise en œuvre.
 
-(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
+(Ce processus est assez similaire au processus d'amélioration de Python, avec la principale exception que les propositions I2P sont réintégrées dans les spécifications après la mise en œuvre, alors que les PEP *deviennent* la nouvelle spécification.)
 
-### Small changes
+### Petits changements
 
-It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
+Il est toujours possible d'apporter de petits changements directement à la spécification si le code peut être écrit plus ou moins immédiatement, ou des changements cosmétiques si aucun changement de code n'est requis. Ce document reflète l'intention actuelle des développeurs, et non une promesse permanente d'utiliser toujours ce processus à l'avenir : nous nous reservons le droit de nous enthousiasmer et de mettre en œuvre quelque chose dans une session de programmation nocturne animée par du café ou des M&M's.
 
-## How new proposals get added
+## Comment de nouvelles propositions sont ajoutées
 
-To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
+Pour soumettre une proposition, publiez-la sur le forum de développement ou entrez un ticket avec la proposition attachée.
 
-Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
+Une fois qu'une idée a été proposée, un projet de proposition correctement formaté (voir ci-dessous) existe, et un consensus approximatif au sein de la communauté de développement active existe pour que cette idée mérite d'être examinée, les éditeurs de proposition l'ajouteront officiellement.
 
-The current proposal editors are zzz and str4d.
+Les éditeurs de proposition actuels sont zzz et str4d.
 
-## What should go in a proposal
+## Ce qui doit figurer dans une proposition
 
-Every proposal should have a header containing these fields:
+Chaque proposition doit avoir un en-tête contenant les champs suivants :
 
 ```
 :author:
@@ -63,11 +62,11 @@ Every proposal should have a header containing these fields:
 :status:
 ```
 
-- The `author` field should contain the names of the authors of this proposal.
-- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
-- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
+- Le champ `author` doit contenir les noms des auteurs de cette proposition.
+- Le champ `thread` doit être un lien vers le thread du forum de développement où cette proposition a été publiée à l'origine, ou vers un nouveau thread créé pour discuter de cette proposition.
+- Le champ `lastupdated` doit être initialisé à la même valeur que le champ `created`, et doit être mis à jour chaque fois que la proposition est modifiée.
 
-These fields should be set when necessary:
+Ces champs doivent être définis lorsque cela est nécessaire :
 
 ```
 :supercedes:
@@ -75,92 +74,92 @@ These fields should be set when necessary:
 :editor:
 ```
 
-- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
-- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
+- Le champ `supercedes` est une liste séparée par des virgules de toutes les propositions que cette proposition remplace. Ces propositions doivent être rejetées et avoir leur champ `supercededby` défini sur le numéro de cette proposition.
+- Le champ `editor` doit être défini si des changements importants sont apportés à cette proposition qui n'altèrent pas substantiellement son contenu. Si le contenu est substantiellement modifié, soit un autre `author` doit être ajouté, soit une nouvelle proposition doit être créée pour remplacer celle-ci.
 
-These fields are optional but recommended:
+Ces champs sont facultatifs mais recommandés :
 
 ```
 :target:
 :implementedin:
 ```
 
-- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
-- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
+- Le champ `target` doit décrire quelle version de la proposition est espérée pour la mise en œuvre (si elle est ouverte ou acceptée).
+- Le champ `implementedin` doit décrire quelle version de la proposition a été mise en œuvre (si elle est terminée ou close).
 
-The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
+Le corps de la proposition doit commencer par une section Vue d'ensemble expliquant ce que propose la proposition, ce qu'elle fait et dans quel état elle se trouve.
 
-After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
+Après la Vue d'ensemble, la proposition devient plus libre. Selon sa longueur et sa complexité, la proposition peut se diviser en sections comme il convient, ou suivre un format discursif court. Chaque proposition doit contenir au moins les informations suivantes avant d'être acceptée, bien que les informations n'aient pas besoin d'être dans des sections avec ces noms.
 
 **Motivation**
-: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
+: Quel est le problème que la proposition tente de résoudre ? Pourquoi ce problème est-il important ? Si plusieurs approches sont possibles, pourquoi choisir celle-ci ?
 
-**Design**
-: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
+**Conception**
+: Une vue d'ensemble de ce que sont les nouvelles fonctionnalités ou les fonctionnalités modifiées, de la façon dont elles fonctionnent, de la façon dont elles interagissent les unes avec les autres et de la façon dont elles interagissent avec le reste d'I2P. Il s'agit du corps principal de la proposition. Certaines propositions commenceront avec seulement une Motivation et une Conception, et attendront une spécification jusqu'à ce que la Conception semble approximativement correcte.
 
-**Security implications**
-: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
+**Implications de sécurité**
+: Quels effets les changements proposés pourraient avoir sur l'anonymat, à quel point ces effets sont bien compris, etc.
 
-**Specification**
-: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
+**Spécification**
+: Une description détaillée de ce qui doit être ajouté aux spécifications I2P pour mettre en œuvre la proposition. Cela doit être dans autant de détails que les spécifications contiendront finalement : il doit être possible pour des programmeurs indépendants de rédiger des mises en œuvre compatibles entre elles de la proposition sur la base de ses spécifications.
 
-**Compatibility**
-: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
+**Compatibilité**
+: Les versions d'I2P qui suivent la proposition seront-elles compatibles avec les versions qui ne le font pas ? Si oui, comment la compatibilité sera-t-elle assurée ? En général, nous essayons de ne pas abandonner la compatibilité si possible ; nous n'avons pas effectué de changement de "jour du drapeau" depuis mars 2008, et nous ne voulons pas en faire un autre.
 
-**Implementation**
-: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
+**Mise en œuvre**
+: Si la proposition sera difficile à mettre en œuvre dans l'architecture actuelle d'I2P, le document peut contenir une discussion sur la façon de la rendre fonctionnelle. Les patchs réels doivent être sur des branches monotone publiques, ou être téléchargés sur Trac.
 
-**Performance and scalability notes**
-: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
+**Notes sur les performances et la scalabilité**
+: Si la fonctionnalité aura un effet sur les performances (en RAM, CPU, bande passante) ou la scalabilité, il doit y avoir une analyse de l'importance de cet effet, afin que nous puissions éviter des régressions de performances vraiment coûteuses, et que nous puissions éviter de perdre du temps sur des gains insignifiants.
 
-**References**
-: If the proposal refers to outside documents, these should be listed.
+**Références**
+: Si la proposition fait référence à des documents externes, ceux-ci doivent être énumérés.
 
-## Proposal status
+## État de la proposition
 
-**Open**
-: A proposal under discussion.
+**Ouverte**
+: Une proposition en discussion.
 
-**Accepted**
-: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
+**Acceptée**
+: La proposition est complète, et nous avons l'intention de la mettre en œuvre. Après ce point, les changements substantiels de la proposition doivent être évités et considérés comme un signe que le processus a échoué à un moment donné.
 
-**Finished**
-: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
+**Terminée**
+: La proposition a été acceptée et mise en œuvre. Après ce point, la proposition ne doit pas être modifiée.
 
-**Closed**
-: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
+**Close**
+: La proposition a été acceptée, mise en œuvre et fusionnée dans les documents de spécification principaux. La proposition ne doit pas être modifiée après ce point.
 
-**Rejected**
-: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
+**Rejetée**
+: Nous n'allons pas mettre en œuvre la fonctionnalité comme décrite ici, bien que nous puissions faire une autre version. Voir les commentaires dans le document pour plus de détails. La proposition ne doit pas être modifiée après ce point ; pour soulever une autre version de l'idée, rédigez une nouvelle proposition.
 
-**Draft**
-: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
+**Brouillon**
+: Ce n'est pas encore une proposition complète ; il y a des pièces manquantes. S'il vous plaît, n'ajoutez pas de nouvelles propositions avec ce statut ; mettez-les dans le répertoire "idées" à la place.
 
-**Needs-Revision**
-: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
+**Nécessite une révision**
+: L'idée de la proposition est bonne, mais la proposition telle qu'elle est a des problèmes graves qui l'empêchent d'être acceptée. Voir les commentaires dans le document pour plus de détails.
 
-**Dead**
-: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
+**Mort**
+: La proposition n'a pas été touchée depuis longtemps, et il ne semble pas que quelqu'un soit sur le point de la compléter bientôt. Elle peut redevenir "Ouverte" si elle obtient un nouveau promoteur.
 
-**Needs-Research**
-: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
+**Nécessite des recherches**
+: Il y a des problèmes de recherche qui doivent être résolus avant qu'il ne soit clair que la proposition est une bonne idée.
 
 **Meta**
-: This is not a proposal, but a document about proposals.
+: Ce n'est pas une proposition, mais un document sur les propositions.
 
-**Reserve**
-: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
+**Réserve**
+: Cette proposition n'est pas quelque chose que nous prévoyons actuellement de mettre en œuvre, mais nous pourrions vouloir la ressusciter un jour si nous décidons de faire quelque chose comme ce que propose la proposition.
 
-**Informational**
-: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
+**Informationnel**
+: Cette proposition est le dernier mot sur ce qu'elle fait. Elle ne va pas se transformer en spécification à moins que quelqu'un ne la copie et la colle dans une nouvelle spécification pour un nouveau sous-système.
 
-The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
+Les éditeurs maintiennent le statut correct des propositions, en fonction d'un consensus approximatif et de leur propre discrétion.
 
-## Proposal numbering
+## Numérotation des propositions
 
-Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
+Les numéros 000-099 sont réservés pour les propositions spéciales et métas. 100 et plus sont utilisés pour les propositions réelles. Les numéros ne sont pas recyclés.
 
-## References
+## Références
 
 * [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
 * [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)

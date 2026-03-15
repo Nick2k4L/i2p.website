@@ -10,58 +10,54 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## अवलोकन
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+यह प्रस्ताव परिचयों के लिए सफलता दर में सुधार करने के बारे में है।
 
 
-## Design
+## प्रेरणा
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+परिचयक (introducers) एक निश्चित समय के बाद समाप्त हो जाते हैं, लेकिन यह जानकारी राउटर जानकारी (Router Info) में प्रकाशित नहीं की जाती। वर्तमान में राउटर को यह अनुमान लगाने के लिए ह्यूरिस्टिक्स (heuristics) का उपयोग करना पड़ता है कि कोई परिचयक अब मान्य नहीं है।
 
 
-## Specification
+## डिज़ाइन
+
+SSU राउटर पते में परिचयकों को शामिल करते हुए, प्रकाशक वैकल्पिक रूप से प्रत्येक परिचयक के लिए समाप्ति समय शामिल कर सकता है।
+
+
+## विनिर्देश
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: परिचयक संख्या (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: एपॉक (epoch) के बाद का समय सेकंड में (मिलीसेकंड में नहीं)।
 ```
 
-### Notes
+### नोट्स
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* प्रत्येक समाप्ति समय राउटर जानकारी की प्रकाशन तिथि से अधिक होना चाहिए,
+  और राउटर जानकारी की प्रकाशन तिथि के 6 घंटे के भीतर होना चाहिए।
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* प्रकाशन करने वाले राउटर और परिचयक परिचयक को समाप्ति तक मान्य रखने का प्रयास करना चाहिए,
+  हालाँकि इसे सुनिश्चित करने का कोई तरीका नहीं है।
 
-* Routers should not use a published introducer after its expiration.
+* राउटर को समाप्ति के बाद किसी प्रकाशित परिचयक का उपयोग नहीं करना चाहिए।
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* परिचयक समाप्ति राउटर पता मैपिंग में होती है।
+  वे राउटर पते में (वर्तमान में अप्रयुक्त) 8-बाइट समाप्ति फ़ील्ड नहीं हैं।
 
-**Example:** `iexp0=1486309470`
-
-
-## Migration
-
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+**उदाहरण:** `iexp0=1486309470`
 
 
-## References
+## माइग्रेशन
+
+कोई समस्या नहीं। लागू करना वैकल्पिक है।
+पुराने राउटर अज्ञात पैरामीटर को अनदेखा कर देंगे, इसलिए पिछड़ी संगतता सुनिश्चित है।
+
+
+## संदर्भ
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

@@ -8,52 +8,51 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
+## 概述
 
-## Overview
+本文档描述了如何修改I2P规范、I2P提案的工作原理以及I2P提案与规范之间的关系。
 
-This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
+本文档改编自Tor提案流程，下面的内容大部分最初由Nick Mathewson编写。
 
-This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
+这是一个信息文档。
 
-This is an informational document.
+## 动机
 
-## Motivation
+以前，我们更新I2P规范的流程相对比较非正式：我们会在开发论坛上提出一个提案并讨论更改，然后我们会达成共识并用草稿更改修补规范（不一定按这个顺序），最后我们会实现这些更改。
 
-Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
+这种做法有几个问题。
 
-This had a few problems.
+首先，即使在最有效的情况下，旧的流程也经常导致规范与代码不同步。最糟糕的情况是那些被延迟实现的：规范和代码可能会在版本之间保持不同步。
 
-First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
+第二，参与讨论很困难，因为不总是清楚哪些部分的讨论线程属于提案，或者哪些规范更改已经被实现。开发论坛只能在I2P内部访问，这意味着提案只能被使用I2P的人查看。
 
-Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
+第三，很容易忘记一些提案，因为它们会被埋在论坛线程列表的几页后面。
 
-Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
+## 如何修改规范
 
-## How to change the specs now
+现在，首先有人编写一个提案文档。它应该详细描述应该做出的更改，并给出一些关于如何实现它的想法。一旦它被充分阐述，就成为一个提案。
 
-First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
+像RFC一样，每个提案都会得到一个编号。与RFC不同，提案可以随着时间的推移而更改并保留相同的编号，直到它们被最终接受或拒绝。每个提案的历史将存储在I2P网站仓库中。
 
-Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
+一旦提案进入仓库，我们应该在相应的线程中讨论它并改进它，直到我们达成共识认为这是一个好主意，并且它的详细程度足以实现。当这种情况发生时，我们实现提案并将其纳入规范中。因此，规范仍然是I2P协议的规范文档：没有任何提案是已实现功能的规范文档。
 
-Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
+（这个过程与Python增强流程非常相似，主要区别在于I2P提案在实现后会被重新集成到规范中，而PEP会成为新的规范。）
 
-(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
+### 小更改
 
-### Small changes
+如果代码可以立即编写，或者如果不需要代码更改，则仍然可以直接对规范进行小更改。这份文档反映了当前开发人员的*意图*，而不是对未来始终使用此流程的永久承诺：我们保留在兴奋时运行并实现某些功能的权利，例如在咖啡因或M&M驱动的通宵编码会话中。
 
-It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
+## 如何添加新提案
 
-## How new proposals get added
+要提交提案，请在开发论坛上发布它或提交一个带有提案附件的票据。
 
-To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
+一旦一个想法被提议，存在一个格式正确（见下文）的草稿，并且在活跃的开发社区中存在粗略的共识认为这个想法值得考虑，提案编辑器将正式添加提案。
 
-Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
+当前的提案编辑器是zzz和str4d。
 
-The current proposal editors are zzz and str4d.
+## 提案中应该包含什么
 
-## What should go in a proposal
-
-Every proposal should have a header containing these fields:
+每个提案都应该有一个包含以下字段的标题：
 
 ```
 :author:
@@ -63,11 +62,11 @@ Every proposal should have a header containing these fields:
 :status:
 ```
 
-- The `author` field should contain the names of the authors of this proposal.
-- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
-- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
+- `author`字段应该包含提案的作者姓名。
+- `thread`字段应该是开发论坛线程的链接，原始提案在那里被发布，或者是为讨论此提案而创建的新线程。
+- `lastupdated`字段应该最初等于`created`字段，并且应该在每次提案更改时更新。
 
-These fields should be set when necessary:
+这些字段应该在必要时设置：
 
 ```
 :supercedes:
@@ -75,92 +74,92 @@ These fields should be set when necessary:
 :editor:
 ```
 
-- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
-- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
+- `supercedes`字段是一个用逗号分隔的被此提案替换的所有提案列表。这些提案应该被拒绝，并且它们的`supercededby`字段应该设置为此提案的编号。
+- `editor`字段应该设置，如果对提案进行了重大更改，但这些更改并没有实质性地改变其内容。如果内容正在被实质性地改变，应该添加一个额外的`author`，或者创建一个新的提案来替换这个提案。
 
-These fields are optional but recommended:
+这些字段是可选的，但建议使用：
 
 ```
 :target:
 :implementedin:
 ```
 
-- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
-- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
+- `target`字段应该描述提案希望在哪个版本中实现（如果它是开放或接受的）。
+- `implementedin`字段应该描述提案在哪个版本中实现（如果它是完成或关闭的）。
 
-The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
+提案的正文应该以概述部分开始，解释提案的内容、它的作用以及它的状态。
 
-After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
+在概述之后，提案变得更加自由形式。根据其长度和复杂性，提案可以分成适当的部分，或者遵循简短的讨论格式。每个提案在被接受之前都应该至少包含以下信息，尽管这些信息不需要在具有这些名称的部分中。
 
-**Motivation**
-: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
+**动机**
+：提案试图解决什么问题？为什么这个问题很重要？如果有多种方法可以解决这个问题，为什么选择这种方法？
 
-**Design**
-: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
+**设计**
+：对新功能或修改功能的高层次概述，包括它们如何工作、如何相互操作以及如何与I2P的其他部分交互。这是提案的主要内容。一些提案可能一开始只有动机和设计，并且在设计看起来大致正确之前等待规范。
 
-**Security implications**
-: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
+**安全影响**
+：提议的更改可能对匿名性产生什么影响，这些影响有多好地被理解，以及其他问题。
 
-**Specification**
-: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
+**规范**
+：对需要添加到I2P规范中的内容的详细描述，以实现提案。这应该与规范最终包含的细节程度大致相同：应该能够让独立的程序员根据提案的规范编写互相兼容的实现。
 
-**Compatibility**
-: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
+**兼容性**
+：是否会有后续版本的I2P与不遵循提案的版本兼容？如果兼容，如何实现兼容性？一般来说，我们尽量不丢弃兼容性；自2008年3月以来，我们还没有进行过“旗日”更改，我们也不想再进行一次。
 
-**Implementation**
-: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
+**实现**
+：如果提案在I2P的当前架构中难以实现，文档可以包含一些关于如何实现它的讨论。实际补丁应该放在公共monotone分支上，或上传到Trac。
 
-**Performance and scalability notes**
-: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
+**性能和可扩展性注意事项**
+：如果功能会影响性能（在RAM、CPU、带宽方面）或可扩展性，应该有一些分析来确定这种影响的重要性，以便我们可以避免真正昂贵的性能回归，并避免浪费时间在微不足道的收益上。
 
-**References**
-: If the proposal refers to outside documents, these should be listed.
+**参考**
+：如果提案引用外部文档，这些文档应该被列出。
 
-## Proposal status
+## 提案状态
 
-**Open**
-: A proposal under discussion.
+**开放**
+：正在讨论的提案。
 
-**Accepted**
-: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
+**接受**
+：提案已完成，我们打算实现它。在此之后，应该避免对提案进行实质性更改，并将其视为流程在某个地方失败的迹象。
 
-**Finished**
-: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
+**完成**
+：提案已被接受并实现。在此之后，提案不应该被更改。
 
-**Closed**
-: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
+**关闭**
+：提案已被接受、实现并合并到主规范文档中。在此之后，提案不应该被更改。
 
-**Rejected**
-: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
+**拒绝**
+：我们不会按照此处描述的功能来实现它，尽管我们可能会实现其他版本。请参阅文档中的评论以获取详细信息。在此之后，提案不应该被更改；要提出其他版本的想法，请编写一个新提案。
 
-**Draft**
-: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
+**草稿**
+：这还不是一个完整的提案；缺少明确的部分。请不要添加任何新的具有此状态的提案；相反，将它们放在“ideas”子目录中。
 
-**Needs-Revision**
-: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
+**需要修订**
+：提案的想法很好，但提案本身存在严重问题，阻止它被接受。请参阅文档中的评论以获取详细信息。
 
-**Dead**
-: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
+**死亡**
+：提案已经有一段时间没有被触碰了，它看起来像没有人会很快完成它。如果有人重新提出它，可以使其再次成为“开放”状态。
 
-**Needs-Research**
-: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
+**需要研究**
+：在清楚提案是否是一个好主意之前，需要解决一些研究问题。
 
-**Meta**
-: This is not a proposal, but a document about proposals.
+**元**
+：这不是一个提案，而是一个关于提案的文档。
 
-**Reserve**
-: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
+**保留**
+：此提案不是我们目前计划实现的东西，但我们可能会在某一天重新提出它，如果我们决定做类似的事情。
 
-**Informational**
-: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
+**信息**
+：此提案是正在做的事情的最后一个词。如果没有人将其复制并粘贴到新的子系统的新规范中，它不会变成规范。
 
-The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
+编辑器根据粗略的共识和自己的判断来维护提案的正确状态。
 
-## Proposal numbering
+## 提案编号
 
-Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
+000-099之间的编号保留用于特殊和元提案。100及以上用于实际提案。编号不会被回收。
 
-## References
+## 参考
 
 * [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
 * [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)

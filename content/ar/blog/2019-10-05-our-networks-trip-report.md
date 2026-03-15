@@ -5,13 +5,12 @@ author: "idk"
 description: "Our Networks Trip Report- idk"
 categories: ["conferences"]
 ---
+## تقرير من مؤتمر Our Networks
 
-## Our Networks Trip Report
+في عطلة نهاية الأسبوع بتاريخ 20 سبتمبر، سافرت إلى تورونتو للقاء سادي للمشاركة في مؤتمر Our Networks. يغطي مؤتمر Our Networks مجموعة واسعة من المواضيع، بما في ذلك العديد من تقنيات الند للند (peer-to-peer)، مع التركيز على إمكاناتها في جعل العالم مكانًا أفضل.
 
-The weekend of September 20th I traveled to Toronto to meet with Sadie to take part in the Our Networks conference. The Our Networks conference encompasses a wide variety of topic including many peer-to-peer technologies with an eye toward their potential to make the world a better place.
+كان المؤتمر مثيرًا للاهتمام، ومليئًا بأشخاص أذكياء جدًا يعملون على كل شيء بدءًا من الشبكات الشبكية المادية (physical mesh networks) وصولاً إلى الويب الموزع (distributed web)، وبالطبع إلى إخفاء الهوية. تحدثنا مع أشخاص رائعين من Tor وProtocol Labs وParity Labs ومشروع Dat، إضافة إلى فنانين وعلماء اجتماع متنوعين. كان هناك الكثير من المرح أيضًا، وبيئة رائعة. أرى أن مشروع Dat على وجه الخصوص يقدم فرصًا رائعة للتعاون في المستقبل.
 
-The conference was fascinating, full of very smart people working on everything from physical mesh networks to the distributed web to, of course, anonymity. We got to talk to some great people from Tor, Protocol Labs, Parity Labs, the Dat Project, as well as a variety of artists and social scientists. Lots of fun too, and a great environment. Dat in particular presents some pretty cool opportunities for future co-operation I think.
+لم أكن أنوي إلقاء محاضرة، لكننا استمتعنا كثيرًا لدرجة أنه عندما طُلب منا ذلك، قمنا أنا وسادي بإعداد عرض سريع، وألقيت محاضرة خفيفة (lightning talk) عن I2P وكيف أن خيارات التصميم الخاصة بها ذات صلة بتطوير تطبيقات الند للند. تم تسجيل المحاضرة، وعند توفر الفيديو، سأحرص على إضافته إلى هذه المدونة. في العام القادم، سأقدّم بعض المساهمات لمكتبتهم الخاصة بالنشرات (Zine Library) حول I2P.
 
-I hadn't planned on giving a talk, but we were having so much fun that when we were asked, Sadie and I put something together and I gave a quick lightning talk about I2P and how it's design choices are relevant to Peer-to-Peer application development. The talk was recorded and when the video becomes available, I'll make sure to add it to this blog. Next year, I'll have some submissions for their Zine Library about I2P.
-
-Besides that, I really enjoyed my time visiting Toronto, it was a great place to visit.
+بخلاف ذلك، استمتعت حقًا بزيارتي لتورونتو، فقد كانت وجهة رائعة للزيارة.

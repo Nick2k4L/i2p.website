@@ -5,19 +5,18 @@ author: "hottuna"
 description: "itoopie and I2PControl are launching! I'm happy to announce that itoopie and I2PControl are available publicly."
 categories: ["community"]
 ---
+itoopie وI2PControl قيد التشغيل!
 
-itoopie and I2PControl are launching!
+يسعدني أن أعلن عن توفر itoopie وI2PControl للجمهور.
 
-I'm happy to announce that itoopie and I2PControl are available publicly.
+itoopie هو واجهة رسومية مصممة لتكون مكملة لوحدة تحكم موجه I2P. يهدف itoopie إلى توفير واجهة أبسط وأسهل في التعلم مقارنة بوحدة تحكم موجه I2P.
 
-itoopie is a graphical interface intended as a compliment to the I2P Router Console. The aim of itoopie is to provide an interface that is simpler and has a lower learning curve than the I2P Router Console.
+I2PControl هو إضافة لـ I2P توفر واجهة JSONRPC لموجه I2P. تدعم هذه الواجهة ضبط الإعدادات الأساسية (مثل عرض النطاق الترددي والمنافذ وغيرها)، وقراءة العديد من الإحصائيات، وتُقدَّم عبر اتصال HTTP مشفر باستخدام SSL.
 
-I2PControl is an I2P plugin providing a JSONRPC interface for the I2P router. The interface supports setting basic settings (bandwidth, ports etc.), reading many stats and is provided over an SSL encrypted HTTP connection.
+يمكن العثور على مزيد من المعلومات والتعليمات على itoopie.i2p.
 
-More information and instructions can be found at itoopie.i2p.
+تم تمويل هذا المشروع من قبل خدمات VPN Relakks وIpredator، وتم إطلاقه من قبل Jan-Erik Fiske و[Peter Sunde](http://twitter.com/brokep).
 
-This project has been funded by the VPN services Relakks & Ipredator and was initiated by Jan-Erik Fiske and [Peter Sunde](http://twitter.com/brokep).
-
-Thank you Jan-Erik and Peter,
+شكرًا جزيلاً لك يا Jan-Erik وPeter،
 
 // hottuna

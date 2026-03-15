@@ -8,87 +8,57 @@ status: "खुला"
 thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
+## अवलोकन
 
-## Overview
+यह प्रस्ताव एक प्रोटोकॉल के डिज़ाइन को रेखांकित करता है जो एक I2P क्लाइंट, सेवा या बाहरी बैलेंसर प्रक्रिया को एकल [Destination](/docs/specs/common-structures/#destination) की मेजबानी पारदर्शी रूप से कई राउटर्स के माध्यम से प्रबंधित करने में सक्षम बनाता है।
 
-This proposal outlines a design for a protocol enabling an I2P client, service
-or external balancer process to manage multiple routers transparently hosting a
-single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
-
-The proposal currently does not specify a concrete implementation. It could be
-implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
+यह प्रस्ताव वर्तमान में कोई विशिष्ट कार्यान्वयन निर्दिष्ट नहीं करता है। इसे [I2CP](/docs/specs/i2cp/) के एक एक्सटेंशन के रूप में या एक नए प्रोटोकॉल के रूप में लागू किया जा सकता है।
 
 
-## Motivation
+## प्रेरणा
 
-Multihoming is where multiple routers are used to host the same Destination.
-The current way to multihome with I2P is to run the same Destination on each
-router independently; the router that gets used by clients at any particular
-time is the last one to publish a LeaseSet.
+मल्टीहोमिंग वह स्थिति है जहाँ एक ही Destination की मेजबानी करने के लिए कई राउटर्स का उपयोग किया जाता है। I2P के साथ मल्टीहोम करने का वर्तमान तरीका यह है कि प्रत्येक राउटर पर स्वतंत्र रूप से उसी Destination को चलाया जाए; किसी विशेष समय में क्लाइंट द्वारा उपयोग किया जाने वाला राउटर वह होता है जिसने अंतिम LeaseSet प्रकाशित किया हो।
 
-This is a hack and presumably won't work for large websites at scale. Say we had
-100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
-every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
-and throttles would kick in. And that's before we even mention the lookup
-traffic.
+यह एक हैक है और बड़े पैमाने पर बड़ी वेबसाइटों के लिए काम नहीं करेगा। मान लीजिए हमारे पास 100 मल्टीहोमिंग राउटर्स हैं, जिनमें से प्रत्येक के पास 16 टनल हैं। इसका अर्थ है हर 10 मिनट में 1600 LeaseSet प्रकाशित हो रहे हैं, या लगभग प्रति सेकंड 3। फ्लडफिल्स अतिभारित हो जाएंगे और थ्रॉटल्स सक्रिय हो जाएंगे। और यह तब है जब हमने अभी तक लुकअप ट्रैफ़िक का उल्लेख भी नहीं किया है।
 
-Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
-LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
-meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
-the lookup traffic issue, but on its own it creates a significant privacy leak:
-It is possible to determine which multihoming routers are online by monitoring
-the published meta-LeaseSet, because each real LeaseSet has corresponds to a
-single router.
+प्रस्ताव 123 एक मेटा-LeaseSet के साथ इस समस्या का समाधान करता है, जो 100 वास्तविक LeaseSet हैश को सूचीबद्ध करता है। एक लुकअप दो-चरणीय प्रक्रिया बन जाती है: पहले मेटा-LeaseSet की खोज करना, और फिर नामित LeaseSet में से एक की। यह लुकअप ट्रैफ़िक समस्या के लिए एक अच्छा समाधान है, लेकिन अकेले यह एक महत्वपूर्ण गोपनीयता लीक पैदा करता है: यह निर्धारित करना संभव है कि कौन से मल्टीहोमिंग राउटर्स ऑनलाइन हैं, यदि प्रकाशित मेटा-LeaseSet की निगरानी की जाए, क्योंकि प्रत्येक वास्तविक LeaseSet का संबंध एकल राउटर से होता है।
 
-We need a way for an I2P client or service to spread a single Destination across
-multiple routers, in a way that is indistinguishable to using a single router
-(from the perspective of the LeaseSet itself).
+हमें I2P क्लाइंट या सेवा के लिए एक ऐसा तरीका चाहिए जो एकल Destination को कई राउटर्स पर इस तरह फैलाए कि LeaseSet के दृष्टिकोण से एकल राउटर के उपयोग के समान ही लगे।
 
 
-## Design
+## डिज़ाइन
 
-### Definitions
+### परिभाषाएँ
 
     User
-        The person or organisation wanting to multihome their Destination(s). A
-        single Destination is considered here without loss of generality (WLOG).
+        वह व्यक्ति या संगठन जो अपने Destination(s) को मल्टीहोम करना चाहता है। यहाँ सामान्यीकृत रूप से (WLOG) एकल Destination पर विचार किया गया है।
 
     Client
-        The application or service running behind the Destination. It may be a
-        client-side, server-side, or peer-to-peer application; we refer to it as
-        a client in the sense that it connects to the I2P routers.
+        Destination के पीछे चलने वाला अनुप्रयोग या सेवा। यह क्लाइंट-साइड, सर्वर-साइड या पीयर-टू-पीयर अनुप्रयोग हो सकता है; हम इसे क्लाइंट के रूप में संदर्भित करते हैं क्योंकि यह I2P राउटर्स से जुड़ता है।
 
-        The client consists of three parts, which may all be in the same process
-        or may be split across processes or machines (in a multi-client setup):
+        क्लाइंट तीन भागों से मिलकर बना होता है, जो सभी एक ही प्रक्रिया में हो सकते हैं या प्रक्रियाओं या मशीनों में विभाजित हो सकते हैं (मल्टी-क्लाइंट सेटअप में):
 
         Balancer
-            The part of the client that manages peer selection and tunnel
-            building. There is a single balancer at any one time, and it
-            communicates with all I2P routers. There may be failover balancers.
+            क्लाइंट का वह भाग जो पीयर चयन और टनल निर्माण का प्रबंधन करता है। किसी एक समय में एकल बैलेंसर होता है, और यह सभी I2P राउटर्स के साथ संचार करता है। फेलओवर बैलेंसर्स भी हो सकते हैं।
 
         Frontend
-            The part of the client that can be operated in parallel. Each
-            frontend communicates with a single I2P router.
+            क्लाइंट का वह भाग जिसे समानांतर में संचालित किया जा सकता है। प्रत्येक फ्रंटएंड एकल I2P राउटर के साथ संचार करता है।
 
         Backend
-            The part of the client that is shared between all frontends. It has
-            no direct communication with any I2P router.
+            क्लाइंट का वह भाग जो सभी फ्रंटएंड्स के बीच साझा किया जाता है। इसका किसी भी I2P राउटर के साथ कोई सीधा संचार नहीं होता।
 
     Router
-        An I2P router run by the user that sits at the boundary between the I2P
-        network and the user's network (akin to an edge device in corporate
-        networks). It builds tunnels under the command of a balancer, and routes
-        packets for a client or frontend.
+        उपयोगकर्ता द्वारा चलाया जाने वाला एक I2P राउटर जो I2P नेटवर्क और उपयोगकर्ता के नेटवर्क के बीच सीमा पर स्थित होता है (कॉर्पोरेट नेटवर्क में एज डिवाइस के समान)। यह बैलेंसर के निर्देश पर टनल बनाता है, और क्लाइंट या फ्रंटएंड के लिए पैकेट रूट करता है।
 
-### High-level overview
+### उच्च-स्तरीय अवलोकन
 
-Imagine the following desired configuration:
+निम्नलिखित वांछित विन्यास की कल्पना करें:
 
-- A client application with one Destination.
-- Four routers, each managing three inbound tunnels.
-- All twelve tunnels should be published in a single LeaseSet.
+- एक Destination के साथ एक क्लाइंट अनुप्रयोग।
+- चार राउटर्स, जिनमें से प्रत्येक तीन आगमन टनल का प्रबंधन करता है।
+- सभी बारह टनल एकल LeaseSet में प्रकाशित होने चाहिए।
 
-### Single-client
+### सिंगल-क्लाइंट
 
 ```
                 -{ [Tunnel 1]===\
@@ -108,7 +78,7 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### Multi-client
+### मल्टी-क्लाइंट
 
 ```
                 -{ [Tunnel 1]===\
@@ -128,43 +98,37 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### General client process
+### सामान्य क्लाइंट प्रक्रिया
 
-- Load or generate a Destination.
+- एक Destination लोड या उत्पन्न करें।
 
-- Open up a session with each router, tied to the Destination.
+- प्रत्येक राउटर के साथ एक सत्र खोलें, जो Destination से जुड़ा हो।
 
-- Periodically (around every ten minutes, but more or less based on tunnel
-  liveness):
+- आवधिक रूप से (लगभग हर दस मिनट में, लेकिन टनल की जीवंतता के आधार पर अधिक या कम):
 
-  - Obtain the fast tier from each router.
+  - प्रत्येक राउटर से त्वरित टियर प्राप्त करें।
 
-  - Use the superset of peers to build tunnels to/from each router.
+  - पीयर्स के सुपरसेट का उपयोग करके प्रत्येक राउटर के लिए टनल बनाएं।
 
-    - By default, tunnels to/from a particular router will use peers from
-      that router's fast tier, but this is not enforced by the protocol.
+    - डिफ़ॉल्ट रूप से, किसी विशेष राउटर के लिए टनल उस राउटर के त्वरित टियर से पीयर्स का उपयोग करेंगे, लेकिन यह प्रोटोकॉल द्वारा लागू नहीं किया जाता है।
 
-  - Collect the set of active inbound tunnels from all active routers, and create a
-    LeaseSet.
+  - सभी सक्रिय राउटर्स से सक्रिय आगमन टनल का संग्रह करें, और एक LeaseSet बनाएं।
 
-  - Publish the LeaseSet through one or more of the routers.
+  - एक या अधिक राउटर्स के माध्यम से LeaseSet प्रकाशित करें।
 
-### Differences to I2CP
+### I2CP से अंतर
 
-To create and manage this configuration, the client needs the following new
-functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
+इस विन्यास को बनाने और प्रबंधित करने के लिए, क्लाइंट को वर्तमान में [I2CP](/docs/specs/i2cp/) द्वारा प्रदान किए जा रहे कार्यक्षमता से अधिक निम्नलिखित नई कार्यक्षमता की आवश्यकता होती है:
 
-- Tell a router to build tunnels, without creating a LeaseSet for them.
-- Get a list of the current tunnels in the inbound pool.
+- उनके लिए एक LeaseSet बनाए बिना, एक राउटर को टनल बनाने के लिए कहें।
+- आगमन पूल में वर्तमान टनल की सूची प्राप्त करें।
 
-Additionally, the following functionality would enable significant flexibility
-in how the client manages its tunnels:
+इसके अतिरिक्त, निम्नलिखित कार्यक्षमता क्लाइंट को अपने टनल के प्रबंधन में महत्वपूर्ण लचीलापन प्रदान करेगी:
 
-- Get the contents of a router's fast tier.
-- Tell a router to build an inbound or outbound tunnel using a given list of
-  peers.
+- राउटर के त्वरित टियर की सामग्री प्राप्त करें।
+- दिए गए पीयर्स की सूची का उपयोग करके एक आगमन या आउटगोइंग टनल बनाने के लिए राउटर को निर्देश दें।
 
-### Protocol outline
+### प्रोटोकॉल रूपरेखा
 
 ```
          Client                           Router
@@ -183,125 +147,95 @@ in how the client manages its tunnels:
   Packet Received  <---------------------
 ```
 
-### Messages
+### संदेश
 
-**Create Session**
-- Create a session for the given Destination.
+**Create Session**  
+- दिए गए Destination के लिए एक सत्र बनाएं।
 
-**Session Status**
-- Confirmation that the session has been set up, and the client can now start building tunnels.
+**Session Status**  
+- पुष्टि कि सत्र स्थापित कर दिया गया है, और क्लाइंट अब टनल बनाना शुरू कर सकता है।
 
-**Get Fast Tier**
-- Request a list of the peers that the router currently would consider building tunnels through.
+**Get Fast Tier**  
+- उन पीयर्स की सूची के लिए अनुरोध करें जिनके माध्यम से राउटर वर्तमान में टनल बनाने पर विचार करेगा।
 
-**Peer List**
-- A list of peers known to the router.
+**Peer List**  
+- राउटर को ज्ञात पीयर्स की सूची।
 
-**Create Tunnel**
-- Request that the router build a new tunnel through the specified peers.
+**Create Tunnel**  
+- राउटर से निर्दिष्ट पीयर्स के माध्यम से एक नया टनल बनाने का अनुरोध करें।
 
-**Tunnel Status**
-- The result of a particular tunnel build, once it is available.
+**Tunnel Status**  
+- एक विशेष टनल निर्माण का परिणाम, एक बार उपलब्ध होने पर।
 
-**Get Tunnel Pool**
-- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
+**Get Tunnel Pool**  
+- Destination के लिए आगमन या आउटगोइंग पूल में वर्तमान टनल की सूची के लिए अनुरोध करें।
 
-**Tunnel List**
-- A list of tunnels for the requested pool.
+**Tunnel List**  
+- अनुरोधित पूल के लिए टनल की सूची।
 
-**Publish LeaseSet**
-- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
+**Publish LeaseSet**  
+- राउटर से Destination के लिए आउटगोइंग टनल में से एक के माध्यम से प्रदान किए गए LeaseSet को प्रकाशित करने का अनुरोध करें। कोई प्रतिक्रिया स्थिति की आवश्यकता नहीं है; राउटर को तब तक पुनः प्रयास करते रहना चाहिए जब तक कि यह संतुष्ट न हो जाए कि LeaseSet प्रकाशित हो चुका है।
 
-**Send Packet**
-- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
+**Send Packet**  
+- क्लाइंट से एक आउटगोइंग पैकेट। वैकल्पिक रूप से एक आउटगोइंग टनल को निर्दिष्ट करता है जिसके माध्यम से पैकेट भेजा जाना चाहिए (चाहिए?)।
 
-**Send Status**
-- Informs the client of the success or failure of sending a packet.
+**Send Status**  
+- क्लाइंट को पैकेट भेजने में सफलता या विफलता के बारे में सूचित करता है।
 
-**Packet Received**
-- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
-
-
-## Security implications
-
-From the perspective of the routers, this design is functionally equivalent to
-the status quo. The router still builds all tunnels, maintains its own peer
-profiles, and enforces separation between router and client operations. In the
-default configuration is completely identical, because tunnels for that router
-are built from its own fast tier.
-
-From the perspective of the netDB, a single LeaseSet created via this protocol
-is identical to the status quo, because it leverages pre-existing functionality.
-However, for larger LeaseSets approaching 16 Leases, it may be possible for an
-observer to determine that the LeaseSet is multihomed:
-
-- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
-  (IBGW, the node published in a Lease) is selected from a fraction of the tier
-  (partitioned randomly per-tunnel pool by hash, not count):
-
-      1 hop
-          The whole fast tier
-
-      2 hops
-          Half of the fast tier
-          (the default until mid-2014)
-
-      3+ hops
-          A quarter of the fast tier
-          (3 being the current default)
-
-  That means on average the IBGWs will be from a set of 20-30 peers.
-
-- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
-  randomly selected from a set of up to (say) 20 peers.
-
-- In a 4-router multihomed setup using the default configuration, a full
-  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
-  80 peers, though there are likely to be a fraction of common peers between
-  routers.
-
-Thus with the default configuration, it may be possible through statistical
-analysis to figure out that a LeaseSet is being generated by this protocol. It
-might also be possible to figure out how many routers there are, although the
-effect of churn on the fast tiers would reduce the effectiveness of this
-analysis.
-
-As the client has full control over which peers it selects, this information
-leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
-peers.
+**Packet Received**  
+- क्लाइंट के लिए एक आगमन पैकेट। वैकल्पिक रूप से आगमन टनल को निर्दिष्ट करता है जिसके माध्यम से पैकेट प्राप्त हुआ था(?)
 
 
-## Compatibility
+## सुरक्षा प्रभाव
 
-This design is completely backwards-compatible with the network, because there
-are no changes to the LeaseSet format. All routers would need to be aware of
-the new protocol, but this is not a concern as they would all be controlled by
-the same entity.
+राउटर्स के दृष्टिकोण से, यह डिज़ाइन वर्तमान स्थिति के समार्थ है। राउटर अभी भी सभी टनल बनाता है, अपने स्वयं के पीयर प्रोफाइल बनाए रखता है, और राउटर और क्लाइंट संचालन के बीच अलगाव लागू करता है। डिफ़ॉल्ट विन्यास में यह पूरी तरह से समान है, क्योंकि उस राउटर के लिए टनल उसके स्वयं के त्वरित टियर से बनाए जाते हैं।
+
+netDB के दृष्टिकोण से, इस प्रोटोकॉल के माध्यम से बनाया गया एकल LeaseSet वर्तमान स्थिति के समान है, क्योंकि यह पूर्व-मौजूद कार्यक्षमता का उपयोग करता है। हालाँकि, 16 लीज़ तक पहुँचने वाले बड़े LeaseSet के लिए, यह संभव हो सकता है कि एक पर्यवेक्षक निर्धारित कर सके कि LeaseSet मल्टीहोम्ड है:
+
+- त्वरित टियर का वर्तमान अधिकतम आकार 75 पीयर्स है। आगमन गेटवे (IBGW, वह नोड जो लीज़ में प्रकाशित होता है) टियर के एक अंश से चुना जाता है (हैश द्वारा प्रति-टनल पूल यादृच्छिक रूप से विभाजित, गिनती नहीं):
+
+      1 हॉप
+          पूरा त्वरित टियर
+
+      2 हॉप्स
+          त्वरित टियर का आधा भाग
+          (मध्य-2014 तक डिफ़ॉल्ट)
+
+      3+ हॉप्स
+          त्वरित टियर का एक चौथाई भाग
+          (3 वर्तमान डिफ़ॉल्ट है)
+
+  इसका अर्थ है कि औसतन IBGWs 20-30 पीयर्स के सेट से होंगे।
+
+- एकल-होम्ड सेटअप में, पूर्ण 16-टनल LeaseSet में 16 IBGWs होंगे जो अधिकतम (मान लीजिए) 20 पीयर्स के सेट से यादृच्छिक रूप से चुने गए होंगे।
+
+- 4-राउटर मल्टीहोम्ड सेटअप में डिफ़ॉल्ट विन्यास का उपयोग करके, पूर्ण 16-टनल LeaseSet में 16 IBGWs होंगे जो अधिकतम 80 पीयर्स के सेट से यादृच्छिक रूप से चुने गए होंगे, हालाँकि राउटर्स के बीच सामान्य पीयर्स का एक अंश होने की संभावना है।
+
+इस प्रकार डिफ़ॉल्ट विन्यास के साथ, यह संभव हो सकता है कि सांख्यिकीय विश्लेषण के माध्यम से यह पता लगाया जा सके कि LeaseSet इस प्रोटोकॉल द्वारा उत्पन्न किया जा रहा है। यह भी संभव हो सकता है कि यह पता लगाया जा सके कि कितने राउटर्स हैं, हालाँकि त्वरित टियर्स पर चरमराहट का प्रभाव इस विश्लेषण की प्रभावशीलता को कम कर देगा।
+
+चूँकि क्लाइंट के पास वह पीयर्स चुनने पर पूर्ण नियंत्रण है जिन्हें यह चुनता है, इस सूचना लीक को कम या समाप्त किया जा सकता है यदि IBGWs को पीयर्स के कम किए गए सेट से चुना जाए।
 
 
-## Performance and scalability notes
+## संगतता
 
-The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
-Destinations that require more tunnels than this, there are two possible network
-modifications:
-
-- Increase the upper limit on the size of LeaseSets. This would be the simplest
-  to implement (though it would still require pervasive network support before
-  it could be widely used), but could result in slower lookups due to the larger
-  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
-  underlying transports, and is therefore around 16kB.
-
-- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
-  the Destinations for the sub-LeaseSets could be spread across multiple
-  routers, effectively acting like multiple IP addresses for a clearnet service.
+यह डिज़ाइन नेटवर्क के साथ पूरी तरह से पिछड़ा-संगत है, क्योंकि LeaseSet प्रारूप में कोई परिवर्तन नहीं है। सभी राउटर्स को नए प्रोटोकॉल के बारे में जागरूक होने की आवश्यकता होगी, लेकिन यह चिंता का विषय नहीं है क्योंकि वे सभी एक ही संस्था द्वारा नियंत्रित किए जाएंगे।
 
 
-## Acknowledgements
+## प्रदर्शन और स्केलेबिलिटी टिप्पणियाँ
 
-Thanks to psi for the discussion that led to this proposal.
+LeaseSet प्रति 16 लीज़ की ऊपरी सीमा इस प्रस्ताव द्वारा अपरिवर्तित रहती है। उन Destination के लिए जिन्हें इससे अधिक टनल की आवश्यकता होती है, दो संभावित नेटवर्क संशोधन हैं:
+
+- LeaseSet के आकार पर ऊपरी सीमा बढ़ाएँ। इसे लागू करना सबसे सरल होगा (हालाँकि इसके व्यापक उपयोग से पहले यह अभी भी व्यापक नेटवर्क समर्थन की आवश्यकता होगी), लेकिन बड़े पैकेट आकार के कारण धीमे लुकअप का परिणाम हो सकता है। अधिकतम व्यवहार्य LeaseSet आकार अंतर्निहित ट्रांसपोर्ट्स के MTU द्वारा परिभाषित किया जाता है, और इसलिए लगभग 16kB है।
+
+- पदानुक्रमित LeaseSet के लिए प्रस्ताव 123 लागू करें। इस प्रस्ताव के संयोजन में, सब-LeaseSet के लिए Destination को कई राउटर्स पर फैलाया जा सकता है, प्रभावी रूप से क्लियरनेट सेवा के लिए कई IP पतों की तरह कार्य करते हुए।
 
 
-## References
+## स्वीकृति
+
+इस प्रस्ताव के लिए चर्चा के लिए psi के प्रति धन्यवाद।
+
+
+## संदर्भ
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [I2CP](/docs/specs/i2cp/)

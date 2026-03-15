@@ -8,84 +8,79 @@ status: "Open"
 thread: "http://zzz.i2p/topics/2099"
 toc: true
 ---
+## Visão Geral
 
-## Overview
+Esta proposta abrange duas melhorias para aumentar o desempenho da rede:
 
-This proposal covers two improvements for improving network performance:
+- Delegar a seleção do IBGW ao OBEP fornecendo uma lista de
+  alternativas em vez de uma única opção.
 
-- Delegating IBGW selection to the OBEP by providing it with a list of
-  alternatives instead of a single option.
-
-- Enabling multicast packet routing at the OBEP.
-
-
-## Motivation
-
-In the direct connection case, the idea is to reduce connection congestion, by
-giving the OBEP flexibility in how it connects to IBGWs. The ability to specify
-multiple tunnels also enables us to implement multicast at the OBEP (by
-delivering the message to all specified tunnels).
-
-An alternative to the delegation part of this proposal would be to send through
-a LeaseSet hash, similar to the existing ability to specify a target
-[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
-newer LeaseSet. However:
-
-1. It would force the OBEP to do a lookup
-
-2. The LeaseSet may not be published to a floodfill, so the lookup would fail.
-
-3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
-
-4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
-   which they could otherwise only discover by scraping all the LeaseSets in the
-   network and looking for a Lease match.
+- Habilitar o roteamento de pacotes multicast no OBEP.
 
 
-## Design
+## Motivação
 
-The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
-delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
+No caso de conexão direta, a ideia é reduzir a congestão da conexão, dando ao
+OBEP flexibilidade na forma como se conecta aos IBGWs. A capacidade de especificar
+múltiplos túneis também nos permite implementar multicast no OBEP (entregando a
+mensagem a todos os túneis especificados).
 
-The OBEP would select one of those to deliver to. The OBEP would select, if
-available, one that it is already connected to, or already knows about. This
-would make the OBEP-IBGW path faster and more reliable, and reduce overall
-network connections.
+Uma alternativa à parte de delegação desta proposta seria enviar através de um
+hash de LeaseSet, semelhante à capacidade existente de especificar um hash de
+[RouterIdentity](/docs/specs/common-structures/#common-structure-specification). Isso resultaria em uma mensagem menor e um LeaseSet potencialmente
+mais recente. No entanto:
 
-We have one unused delivery type (0x03) and two remaining bits (0 and 1) in the
-flags for TUNNEL-DELIVERY, which we can leverage to implement these features.
+1. Isso forçaria o OBEP a fazer uma consulta.
 
+2. O LeaseSet pode não estar publicado em um floodfill, então a consulta falharia.
 
-## Security Implications
+3. O LeaseSet pode estar criptografado, então o OBEP não poderia obter os leases.
 
-This proposal does not change the amount of information leaked about the OBGW's
-target Destination or their view of the NetDB:
-
-- An adversary that controls the OBEP and is scraping LeaseSets from the NetDB
-  can already determine whether a message is being sent to a particular
-  Destination, by searching for the TunnelId / RouterIdentity pair. At
-  worst, the presence of multiple Leases in the TMDI might make it faster to
-  find a match in the adversary's database.
-
-- An adversary that is operating a malicious Destination can already gain
-  information about a connecting victim's view of the NetDB, by publishing
-  LeaseSets containing different inbound tunnels to different floodfills, and
-  observing which tunnels the OBGW connects through. From their point of view,
-  the OBEP selecting which tunnel to use is functionally identical to the OBGW
-  making the selection.
-
-The multicast flag leaks the fact that the OBGW is multicasting to the OBEPs.
-This creates a performance vs. privacy trade-off that should be considered when
-implementing higher-level protocols. Being an optional flag, users can make
-the appropriate decision for their application. There may be benefits to this
-being the default behaviour for compatible applications, however, as wide-spread
-usage by a variety of applications would reduce the information leakage about
-which particular application a message is from.
+4. Especificar um LeaseSet revelaria ao OBEP o [Destination](/docs/specs/common-structures/#destination) da mensagem,
+   que de outra forma só poderia descobrir varrendo todos os LeaseSets da
+   rede e procurando por um lease correspondente.
 
 
-## Specification
+## Projeto
 
-The First Fragment Delivery Instructions would be modified as follows:
+O originador (OBGW) colocaria alguns (todos?) dos [Leases](/docs/specs/common-structures/#lease) de destino nas
+instruções de entrega [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) em vez de escolher apenas um.
+
+O OBEP selecionaria um desses para entregar. O OBEP selecionaria, se
+disponível, um ao qual já está conectado ou que já conhece. Isso tornaria o caminho OBEP-IBGW mais rápido e confiável, e reduziria o número total de
+conexões na rede.
+
+Temos um tipo de entrega não utilizado (0x03) e dois bits restantes (0 e 1) nas
+flags do TUNNEL-DELIVERY, que podemos aproveitar para implementar essas funcionalidades.
+
+
+## Implicações de Segurança
+
+Esta proposta não altera a quantidade de informações vazadas sobre o
+Destination de destino do OBGW ou sua visão do NetDB:
+
+- Um adversário que controle o OBEP e esteja varrendo LeaseSets do NetDB
+  já pode determinar se uma mensagem está sendo enviada para um determinado
+  Destination, buscando o par TunnelId / RouterIdentity. Na pior das hipóteses, a presença de múltiplos Leases no TMDI pode tornar mais rápido encontrar uma correspondência no banco de dados do adversário.
+
+- Um adversário que opere um Destination malicioso já pode obter
+  informações sobre a visão da vítima do NetDB, publicando
+  LeaseSets contendo diferentes túneis de entrada em diferentes floodfills e
+  observando por quais túneis o OBGW se conecta. Do ponto de vista do adversário,
+  o OBEP selecionando qual túnel usar é funcionalmente idêntico ao OBGW
+  fazendo a seleção.
+
+A flag multicast revela ao OBEP o fato de que o OBGW está fazendo multicast. Isso cria uma troca entre desempenho e privacidade que deve ser considerada ao
+implementar protocolos de nível superior. Sendo uma flag opcional, os usuários podem tomar
+a decisão apropriada para sua aplicação. Pode haver benefícios em tornar esse
+comportamento padrão para aplicações compatíveis, entretanto, pois o uso generalizado
+por uma variedade de aplicações reduziria a vazão de informações sobre qual aplicação
+específica uma mensagem provém.
+
+
+## Especificação
+
+As Instruções de Entrega do Primeiro Fragmento seriam modificadas da seguinte forma:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -124,47 +119,47 @@ The First Fragment Delivery Instructions would be modified as follows:
 
 flag ::
        1 byte
-       Bit order: 76543210
-       bits 6-5: delivery type
+       Ordem dos bits: 76543210
+       bits 6-5: tipo de entrega
                  0x03 = TUNNELS
-       bit 0: multicast? If 0, deliver to one of the tunnels
-                         If 1, deliver to all of the tunnels
-                         Set to 0 for compatibility with future uses if
-                         delivery type is not TUNNELS
+       bit 0: multicast? Se 0, entregar a um dos túneis
+                         Se 1, entregar a todos os túneis
+                         Definido como 0 para compatibilidade com usos futuros se
+                         o tipo de entrega não for TUNNELS
 
 Count ::
        1 byte
-       Optional, present if delivery type is TUNNELS
-       2-255 - Number of id/hash pairs to follow
+       Opcional, presente se o tipo de entrega for TUNNELS
+       2-255 - Número de pares id/hash a seguir
 
 Tunnel ID :: TunnelId
 To Hash ::
-       36 bytes each
-       Optional, present if delivery type is TUNNELS
-       id/hash pairs
+       36 bytes cada
+       Opcional, presente se o tipo de entrega for TUNNELS
+       pares id/hash
 
-Total length: Typical length is:
-       75 bytes for count 2 TUNNELS delivery (unfragmented tunnel message);
-       79 bytes for count 2 TUNNELS delivery (first fragment)
+Tamanho total: Comprimento típico é:
+       75 bytes para entrega TUNNELS com contagem 2 (mensagem de túnel não fragmentada);
+       79 bytes para entrega TUNNELS com contagem 2 (primeiro fragmento)
 
-Rest of delivery instructions unchanged
+Resto das instruções de entrega inalterado
 ```
 
 
-## Compatibility
+## Compatibilidade
 
-The only peers that need to be understand the new specification are the OBGWs
-and the OBEPs. We can therefore make this change compatible with the existing
-network by making its use conditional on the target I2P version:
+Os únicos pares que precisam entender a nova especificação são os OBGWs
+e os OBEPs. Portanto, podemos tornar essa mudança compatível com a rede existente
+tornando seu uso condicional à versão do I2P de destino:
 
-* The OBGWs must select compatible OBEPs when building outbound tunnels, based
-  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
+* Os OBGWs devem selecionar OBEPs compatíveis ao construir túneis de saída, com base
+  na versão do I2P anunciada em seu [RouterInfo](/docs/specs/common-structures/#routerinfo).
 
-* Peers that advertise the target version must support parsing the new flags,
-  and must not reject the instructions as invalid.
+* Pares que anunciam a versão de destino devem suportar a análise das novas flags,
+  e não devem rejeitar as instruções como inválidas.
 
 
-## References
+## Referências
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [Leases](/docs/specs/common-structures/#lease)

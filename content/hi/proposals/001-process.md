@@ -8,52 +8,51 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
+## अवलोकन
 
-## Overview
+यह दस्तावेज़ बताता है कि I2P विनिर्देशों में कैसे बदलाव किया जाए, I2P प्रस्ताव कैसे काम करते हैं, और I2P प्रस्तावों और विनिर्देशों के बीच संबंध क्या है।
 
-This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
+यह दस्तावेज़ Tor प्रस्ताव प्रक्रिया से अनुकूलित किया गया है, और नीचे दिए गए अधिकांश सामग्री मूल रूप से Nick Mathewson द्वारा लिखी गई थी।
 
-This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
+यह एक सूचनात्मक दस्तावेज़ है।
 
-This is an informational document.
+## प्रेरणा
 
-## Motivation
+पहले, हमारी I2P विनिर्देशों को अद्यतन करने की प्रक्रिया अपेक्षाकृत अनौपचारिक थी: हम विकास मंच पर एक प्रस्ताव बनाते थे और चर्चा करते थे, फिर हम सहमति तक पहुंचते थे और विनिर्देश को मसौदा परिवर्तनों (आवश्यक रूप से उस क्रम में) के साथ अद्यतन करते थे, और अंत में हम परिवर्तनों को लागू करते थे।
 
-Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
+इसमें कुछ समस्याएं थीं।
 
-This had a few problems.
+पहला, यहां तक कि अपने सबसे कुशल रूप में, पुरानी प्रक्रिया अक्सर विनिर्देश को कोड के साथ असिंक्रोनस बना देती थी। सबसे खराब मामले वे थे जहां कार्यान्वयन स्थगित कर दिया गया था: विनिर्देश और कोड एक से अधिक संस्करणों के लिए असिंक्रोनस रह सकते थे।
 
-First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
+दूसरा, चर्चा में भाग लेना मुश्किल था, क्योंकि यह हमेशा स्पष्ट नहीं था कि चर्चा धागे के कौन से हिस्से प्रस्ताव का हिस्सा थे, या विनिर्देश में कौन से परिवर्तन लागू किए गए थे। विकास मंच केवल I2P के अंदर ही पहुंच योग्य हैं, जिसका अर्थ है कि प्रस्ताव केवल उन लोगों द्वारा देखे जा सकते थे जो I2P का उपयोग करते हैं।
 
-Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
+तीसरा, यह बहुत आसान था कि कुछ प्रस्तावों को भूल जाएं क्योंकि वे मंच धागे सूची में कई पृष्ठों पीछे दब जाते थे।
 
-Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
+## विनिर्देशों को कैसे बदलना है अब
 
-## How to change the specs now
+पहले, कोई एक प्रस्ताव दस्तावेज़ लिखता है। इसमें विस्तार से बताना चाहिए कि क्या बदलाव किया जाना चाहिए, और कुछ विचार देना चाहिए कि इसे कैसे लागू किया जाए। एक बार यह पर्याप्त रूप से विकसित हो जाए, तो यह एक प्रस्ताव बन जाता है।
 
-First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
+एक आरएफसी की तरह, प्रत्येक प्रस्ताव को एक संख्या मिलती है। आरएफसी के विपरीत, प्रस्ताव समय के साथ बदल सकते हैं और एक ही संख्या रख सकते हैं, जब तक वे अंततः स्वीकृत या अस्वीकृत नहीं हो जाते। प्रत्येक प्रस्ताव के लिए इतिहास I2P वेबसाइट रिपॉजिटरी में संग्रहीत किया जाएगा।
 
-Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
+एक बार प्रस्ताव रिपॉजिटरी में हो जाने के बाद, हमें इसे संबंधित धागे पर चर्चा करनी चाहिए और इसे तब तक बेहतर बनाना चाहिए जब तक हमें यह सहमति न हो जाए कि यह एक अच्छा विचार है, और यह विस्तार से पर्याप्त है कि इसे लागू किया जा सके। जब यह होता है, तो हम प्रस्ताव को लागू करते हैं और इसे विनिर्देशों में शामिल करते हैं। इस प्रकार, विनिर्देश I2P प्रोटोकॉल के लिए निर्धारित दस्तावेज़ बने रहते हैं: कोई प्रस्ताव कभी भी लागू की गई सुविधा के लिए निर्धारित दस्तावेज़ नहीं होता है।
 
-Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
+(यह प्रक्रिया पाइथन एन्हांसमेंट प्रोसेस के समान है, लेकिन एक बड़ा अंतर यह है कि I2P प्रस्ताव लागू करने के बाद विनिर्देशों में पुनः एकीकृत हो जाते हैं, जबकि PEP नए विनिर्देश बन जाते हैं।)
 
-(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
+### छोटे परिवर्तन
 
-### Small changes
+यह अभी भी ठीक है कि यदि कोड तुरंत लिखा जा सकता है या कोई कोड परिवर्तन की आवश्यकता नहीं है तो विनिर्देश में सीधे छोटे परिवर्तन किए जाएं। यह दस्तावेज़ वर्तमान विकासकर्ताओं के *उद्देश्य* को दर्शाता है, न कि भविष्य में इस प्रक्रिया का हमेशा उपयोग करने का एक स्थायी वादा: हमें यह अधिकार है कि हम वास्तव में उत्साहित हो जाएं और एक कैफीन-या एमएंडएम-ईंधन वाली सभी रात्रि हैकिंग सत्र में कुछ लागू करें।
 
-It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
+## नए प्रस्ताव कैसे जोड़े जाते हैं
 
-## How new proposals get added
+एक प्रस्ताव जमा करने के लिए, इसे विकास मंच पर पोस्ट करें या एक टिकट दर्ज करें जिसमें प्रस्ताव संलग्न हो।
 
-To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
+एक बार एक विचार प्रस्तावित हो जाने के बाद, एक उचित रूप से स्वरूपित (नीचे देखें) मसौदा अस्तित्व में है, और सक्रिय विकास समुदाय के भीतर एक खुरदरा सहमति है कि यह विचार विचार के योग्य है, प्रस्ताव संपादक आधिकारिक तौर पर प्रस्ताव जोड़ेंगे।
 
-Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
+वर्तमान प्रस्ताव संपादक zzz और str4d हैं।
 
-The current proposal editors are zzz and str4d.
+## प्रस्ताव में क्या जाना चाहिए
 
-## What should go in a proposal
-
-Every proposal should have a header containing these fields:
+प्रत्येक प्रस्ताव में एक हेडर होना चाहिए जिसमें निम्नलिखित क्षेत्र हों:
 
 ```
 :author:
@@ -63,11 +62,11 @@ Every proposal should have a header containing these fields:
 :status:
 ```
 
-- The `author` field should contain the names of the authors of this proposal.
-- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
-- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
+- `author` क्षेत्र में इस प्रस्ताव के लेखकों के नाम होने चाहिए।
+- `thread` क्षेत्र में विकास मंच धागे का लिंक होना चाहिए जहां यह प्रस्ताव मूल रूप से पोस्ट किया गया था, या इस प्रस्ताव की चर्चा के लिए एक नया धागा बनाया गया था।
+- `lastupdated` क्षेत्र को最初 `created` क्षेत्र के समान होना चाहिए, और इसे तब अद्यतन किया जाना चाहिए जब प्रस्ताव में कोई परिवर्तन किया जाता है।
 
-These fields should be set when necessary:
+निम्नलिखित क्षेत्रों को आवश्यकतानुसार सेट किया जाना चाहिए:
 
 ```
 :supercedes:
@@ -75,92 +74,92 @@ These fields should be set when necessary:
 :editor:
 ```
 
-- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
-- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
+- `supercedes` क्षेत्र में उन सभी प्रस्तावों की एक अल्पविराम से अलग सूची होनी चाहिए जिन्हें यह प्रस्ताव प्रतिस्थापित करता है। उन प्रस्तावों को अस्वीकृत किया जाना चाहिए और उनके `supercededby` क्षेत्र को इस प्रस्ताव की संख्या में सेट किया जाना चाहिए।
+- `editor` क्षेत्र को तब सेट किया जाना चाहिए जब इस प्रस्ताव में महत्वपूर्ण परिवर्तन किए जाते हैं जो इसकी सामग्री को मूल रूप से नहीं बदलते हैं। यदि सामग्री को मूल रूप से बदला जा रहा है, तो एक अतिरिक्त `author` जोड़ा जाना चाहिए, या इसे प्रतिस्थापित करने वाला एक नया प्रस्ताव बनाया जाना चाहिए।
 
-These fields are optional but recommended:
+निम्नलिखित क्षेत्र वैकल्पिक हैं लेकिन अनुशंसित हैं:
 
 ```
 :target:
 :implementedin:
 ```
 
-- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
-- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
+- `target` क्षेत्र में यह बताना चाहिए कि प्रस्ताव को किस संस्करण में लागू किया जाना है (यदि यह खुला या स्वीकृत है)।
+- `implementedin` क्षेत्र में यह बताना चाहिए कि प्रस्ताव को किस संस्करण में लागू किया गया था (यदि यह समाप्त या बंद है)।
 
-The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
+प्रस्ताव के शरीर को एक अवलोकन अनुभाग से शुरू करना चाहिए जो बताता है कि प्रस्ताव किस बारे में है, यह क्या करता है, और इसकी वर्तमान स्थिति क्या है।
 
-After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
+अवलोकन के बाद, प्रस्ताव अधिक मुक्त रूप से बन जाता है। इसकी लंबाई और जटिलता के आधार पर, प्रस्ताव को अनुभागों में विभाजित किया जा सकता है या एक छोटी सी चर्चा प्रारूप का पालन किया जा सकता है। प्रत्येक प्रस्ताव में निम्नलिखित जानकारी होनी चाहिए, हालांकि यह जानकारी इन नामों के साथ अनुभागों में नहीं होनी चाहिए:
 
-**Motivation**
-: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
+**प्रेरणा**
+: प्रस्ताव किस समस्या का समाधान करने की कोशिश कर रहा है? यह समस्या क्यों महत्वपूर्ण है? यदि कई दृष्टिकोण संभव हैं, तो इस दृष्टिकोण को क्यों अपनाया जाए?
 
-**Design**
-: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
+**डिज़ाइन**
+: नए या संशोधित सुविधाओं का एक उच्च-स्तरीय दृश्य, वे कैसे काम करते हैं, वे एक दूसरे के साथ कैसे सहयोग करते हैं, और वे I2P के शेष भाग के साथ कैसे बातचीत करते हैं। यह प्रस्ताव का मुख्य भाग है। कुछ प्रस्ताव केवल प्रेरणा और डिज़ाइन के साथ शुरू हो सकते हैं और विनिर्देश तक प्रतीक्षा कर सकते हैं जब तक कि डिज़ाइन लगभग सही न हो जाए।
 
-**Security implications**
-: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
+**सुरक्षा प्रभाव**
+: प्रस्तावित परिवर्तनों के गुमनामी पर क्या प्रभाव पड़ सकते हैं, इन प्रभावों को कितनी अच्छी तरह से समझा जाता है, और इसी तरह।
 
-**Specification**
-: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
+**विनिर्देश**
+: प्रस्ताव को लागू करने के लिए I2P विनिर्देशों में क्या जोड़ा जाना चाहिए, इसका एक विस्तृत विवरण। यह विनिर्देशों में अंततः शामिल की जाने वाली विस्तार से होना चाहिए: यह संभव होना चाहिए कि स्वतंत्र प्रोग्रामर प्रस्ताव के विनिर्देशों के आधार पर संगत कार्यान्वयन लिखें।
 
-**Compatibility**
-: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
+**संगतता**
+: क्या I2P के संस्करण जो प्रस्ताव का पालन करते हैं उन संस्करणों के साथ संगत होंगे जो नहीं करते हैं? यदि हां, तो संगतता कैसे प्राप्त की जाएगी? आमतौर पर, हम संगतता को तोड़ने से बचने की कोशिश करते हैं; हमने मार्च 2008 से एक "फ्लैग दिवस" परिवर्तन नहीं किया है, और हम ऐसा फिर से नहीं करना चाहते हैं।
 
-**Implementation**
-: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
+**कार्यान्वयन**
+: यदि प्रस्ताव I2P की वर्तमान वास्तुकला में कार्यान्वित करना मुश्किल होगा, तो दस्तावेज़ में इसके कार्यान्वयन के बारे में कुछ चर्चा हो सकती है। वास्तविक पैच सार्वजनिक मोनोटोन शाखाओं पर होने चाहिए, या ट्रैक पर अपलोड किए जाने चाहिए।
 
-**Performance and scalability notes**
-: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
+**प्रदर्शन और स्केलेबिलिटी नोट्स**
+: यदि सुविधा प्रदर्शन (रैम, सीपीयू, बैंडविड्थ) या स्केलेबिलिटी पर प्रभाव डालेगी, तो इसका कुछ विश्लेषण होना चाहिए कि यह प्रभाव कितना महत्वपूर्ण होगा, ताकि हम वास्तव में महंगे प्रदर्शन प्रतिगमन से बच सकें, और हम महत्वहीन लाभ पर समय बर्बाद न करें।
 
-**References**
-: If the proposal refers to outside documents, these should be listed.
+**संदर्भ**
+: यदि प्रस्ताव बाहरी दस्तावेजों को संदर्भित करता है, तो उन्हें सूचीबद्ध किया जाना चाहिए।
 
-## Proposal status
+## प्रस्ताव स्थिति
 
-**Open**
-: A proposal under discussion.
+**खुला**
+: चर्चा के तहत एक प्रस्ताव।
 
-**Accepted**
-: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
+**स्वीकृत**
+: प्रस्ताव पूरा हो गया है, और हम इसका कार्यान्वयन करने का इरादा रखते हैं। इस बिंदु के बाद, प्रस्ताव में मूलभूत परिवर्तन से बचा जाना चाहिए, और इसे प्रक्रिया में कहीं न कहीं विफलता के संकेत के रूप में माना जाना चाहिए।
 
-**Finished**
-: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
+**समाप्त**
+: प्रस्ताव स्वीकृत और कार्यान्वित किया गया है। इस बिंदु के बाद, प्रस्ताव को नहीं बदलना चाहिए।
 
-**Closed**
-: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
+**बंद**
+: प्रस्ताव स्वीकृत, कार्यान्वित और मुख्य विनिर्देश दस्तावेजों में विलय कर दिया गया है। प्रस्ताव को इस बिंदु के बाद नहीं बदलना चाहिए।
 
-**Rejected**
-: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
+**अस्वीकृत**
+: हम इस प्रस्ताव के अनुसार सुविधा को लागू नहीं करेंगे, हालांकि हम इसके कुछ अन्य संस्करण को कर सकते हैं। विवरण के लिए दस्तावेज़ में टिप्पणियां देखें। प्रस्ताव को इस बिंदु के बाद नहीं बदलना चाहिए; किसी अन्य संस्करण को लाने के लिए, एक नया प्रस्ताव लिखें।
 
-**Draft**
-: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
+**मसौदा**
+: यह अभी तक एक पूर्ण प्रस्ताव नहीं है; इसमें अभी भी कुछ缺के हैं। कृपया इस स्थिति के साथ कोई नया प्रस्ताव न जोड़ें; इसके बजाय इसे "विचार" उप-निर्देशिका में रखें।
 
-**Needs-Revision**
-: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
+**संशोधन की आवश्यकता**
+: प्रस्ताव का विचार एक अच्छा है, लेकिन प्रस्ताव के रूप में यह गंभीर समस्याओं से ग्रस्त है जो इसे स्वीकृत होने से रोकती हैं। विवरण के लिए दस्तावेज़ में टिप्पणियां देखें।
 
-**Dead**
-: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
+**मृत**
+: प्रस्ताव को लंबे समय से छुआ नहीं गया है, और ऐसा नहीं लगता कि कोई इसे जल्द ही पूरा करेगा। यह फिर से "खुला" हो सकता है यदि यह एक नया प्रस्तावक प्राप्त करता है।
 
-**Needs-Research**
-: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
+**अनुसंधान की आवश्यकता**
+: अनुसंधान समस्याएं हैं जिन्हें हल करने की आवश्यकता है trước कि यह स्पष्ट हो जाए कि प्रस्ताव एक अच्छा विचार है या नहीं।
 
-**Meta**
-: This is not a proposal, but a document about proposals.
+**मेटा**
+: यह एक प्रस्ताव नहीं है, बल्कि प्रस्तावों के बारे में एक दस्तावेज़ है।
 
-**Reserve**
-: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
+**reserve**
+: यह प्रस्ताव कुछ ऐसा नहीं है जिसे हम वर्तमान में लागू करने की योजना बना रहे हैं, लेकिन हम इसे किसी दिन पुनर्जीवित कर सकते हैं यदि हम यह तय करते हैं कि हम कुछ ऐसा करना चाहते हैं जो यह प्रस्ताव प्रस्तावित करता है।
 
-**Informational**
-: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
+**सूचनात्मक**
+: यह प्रस्ताव जो कर रहा है उस पर अंतिम शब्द है। यह एक विनिर्देश में तब तक नहीं बदलेगा जब तक कि कोई इसे एक नए उप-प्रणाली के लिए एक नए विनिर्देश में कॉपी-पेस्ट नहीं करता।
 
-The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
+संपादक प्रस्तावों की सही स्थिति को बनाए रखते हैं, खुरदरी सहमति और अपने विवेक के आधार पर।
 
-## Proposal numbering
+## प्रस्ताव संख्यांकन
 
-Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
+संख्या 000-099 विशेष और मेटा-प्रस्तावों के लिए आरक्षित हैं। 100 और ऊपर वास्तविक प्रस्तावों के लिए उपयोग किए जाते हैं। संख्याएं पुनर्नवीन नहीं की जाती हैं।
 
-## References
+## संदर्भ
 
 * [DEV-FORUM-PROPOSAL](http://zzz.i2p/topics/new?forum_id=7-big-topics-ideas-proposals-and-discussion)
 * [TORSPEC-PROCESS](https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt)

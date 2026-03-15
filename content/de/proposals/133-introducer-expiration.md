@@ -10,58 +10,52 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## Übersicht
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
+Dieser Vorschlag zielt darauf ab, die Erfolgsrate bei Einführungen (Introductions) zu verbessern.
 
 
 ## Motivation
 
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+Einführer (Introducers) verfallen nach einer bestimmten Zeit, diese Information wird jedoch nicht in der Router-Info veröffentlicht. Derzeit müssen Router Heuristiken verwenden, um abzuschätzen, wann ein Einführer nicht mehr gültig ist.
 
 
 ## Design
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+In einer SSU-Router-Adresse, die Einführer enthält, kann der Herausgeber optional für jeden Einführer Ablaufzeiten angeben.
 
 
-## Specification
+## Spezifikation
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: Die Nummer des Einführers (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: Die Zeit in Sekunden (nicht ms) seit der Epoche.
 ```
 
-### Notes
+### Hinweise
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* Jede Ablaufzeit muss größer als das Veröffentlichungsdatum der Router-Info sein und weniger als 6 Stunden nach dem Veröffentlichungsdatum der Router-Info liegen.
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* Herausgebende Router und Einführer sollten versuchen, den Einführer bis zum Ablauf gültig zu halten; es gibt jedoch keine Möglichkeit, dies zu garantieren.
 
-* Routers should not use a published introducer after its expiration.
+* Router sollten einen veröffentlichten Einführer nach dessen Ablauf nicht mehr verwenden.
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* Die Ablaufzeiten der Einführer befinden sich in der Router-Adresse-Zuordnung.  
+  Es handelt sich nicht um das (derzeit ungenutzte) 8-Byte-Ablauf-Feld in der Router-Adresse.
 
-**Example:** `iexp0=1486309470`
+**Beispiel:** `iexp0=1486309470`
 
 
 ## Migration
 
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+Keine Probleme. Die Implementierung ist optional.  
+Die Abwärtskompatibilität ist sichergestellt, da ältere Router unbekannte Parameter ignorieren.
 
 
-## References
+## Referenzen
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

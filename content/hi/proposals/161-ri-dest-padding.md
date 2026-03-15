@@ -9,259 +9,254 @@ thread: "http://zzz.i2p/topics/3279"
 target: "0.9.57"
 toc: true
 ---
+## स्थिति
 
-## Status
-
-Implemented in 0.9.57.
-Leaving this proposal open so we may enhance and discuss the ideas in the "Future Planning" section.
-
-
-## Overview
+0.9.57 में लागू किया गया।
+"भविष्य की योजना" अनुभाग में विचारों को बढ़ाने और चर्चा करने के लिए इस प्रस्ताव को खुला छोड़ रहे हैं।
 
 
-### Summary
+## अवलोकन
 
-The ElGamal public key in Destinations has been unused since release 0.6 (2005).
-While our specifications do say that it is unused, they do NOT say that implementations can avoid
-generating an ElGamal key pair and simply fill the field with random data.
 
-We propose changing the specifications to say that
-the field is ignored and that implementations MAY fill the field with random data.
-This change is backward-compatible. There is no known implementation that validates
-the ElGamal public key.
+### सारांश
 
-Additionally, this proposal offers guidance to implementers on how to generate the
-random data for Destination AND Router Identity padding so that it is compressible while
-still being secure, and without having Base 64 representations appear to be corrupt or insecure.
-This provides most of the benefits of removing the padding fields without any
-disruptive protocol changes.
-Compressible Destinations reduces streaming SYN and repliable datagram size;
-compressible Router Identities reduce Database Store Messages, SSU2 Session Confirmed messages,
-and reseed su3 files.
+डेस्टिनेशन में ElGamal सार्वजनिक कुंजी रिलीज 0.6 (2005) के बाद से अप्रयुक्त है।
+हालांकि हमारे विनिर्देशों में कहा गया है कि यह अप्रयुक्त है, लेकिन यह नहीं कहा गया है कि लागूकर्ता ElGamal कुंजी जोड़ी उत्पन्न करने से बच सकते हैं
+और केवल फ़ील्ड को यादृच्छिक डेटा से भर सकते हैं।
 
-Finally, the proposal discusses possibilities for new Destination and Router Identity formats
-that would eliminate the padding altogether. There is also a brief discussion of post-quantum
-crypto and how that may affect future planning.
+हम प्रस्ताव करते हैं कि विनिर्देशों में बदलाव किया जाए ताकि कहा जा सके कि
+फ़ील्ड को अनदेखा किया जाता है और लागूकर्ता फ़ील्ड को यादृच्छिक डेटा से भर सकते हैं।
+यह परिवर्तन पिछड़े-संगत है। कोई ज्ञात लागूकरण नहीं है जो ElGamal सार्वजनिक कुंजी की पुष्टि करता हो।
+
+इसके अतिरिक्त, यह प्रस्ताव लागूकर्ताओं को डेस्टिनेशन और राउटर आइडेंटिटी पैडिंग के लिए यादृच्छिक डेटा उत्पन्न करने के बारे में मार्गदर्शन प्रदान करता है
+ताकि यह संपीड़ित हो सके, सुरक्षित रहे,
+और Base 64 प्रतिनिधित्व दूषित या असुरक्षित न लगे।
+इससे पैडिंग फ़ील्ड को हटाने के अधिकांश लाभ मिलते हैं, बिना किसी
+अशांत प्रोटोकॉल परिवर्तन के।
+संपीड़ित डेस्टिनेशन स्ट्रीमिंग SYN और उत्तर योग्य डेटाग्राम के आकार को कम करते हैं;
+संपीड़ित राउटर आइडेंटिटीज़ डेटाबेस स्टोर संदेशों, SSU2 सत्र पुष्टि संदेशों,
+और reseed su3 फ़ाइलों को कम करते हैं।
+
+अंत में, प्रस्ताव नए डेस्टिनेशन और राउटर आइडेंटिटी प्रारूपों की संभावनाओं पर चर्चा करता है
+जो पैडिंग को पूरी तरह से समाप्त कर देंगे। पोस्ट-क्वांटम
+क्रिप्टो के बारे में भी एक संक्षिप्त चर्चा है और यह कि भविष्य की योजना को कैसे प्रभावित कर सकता है।
 
 
 
-### Goals
+### लक्ष्य
 
-- Eliminate requirement to generate ElGamal keypair for Destinations
-- Recommend best practices so Destinations and Router Identities are highly compressible,
-  yet do not display obvious patterns in Base 64 representations.
-- Encourage adoption of best practices by all implementations so
-  the fields are not distinguishable
-- Reduce streaming SYN size
-- Reduce repliable datagram size
-- Reduce SSU2 RI block size
-- Reduce SSU2 Session Confirmed size and fragmentation frequency
-- Reduce Database Store Message (with RI) size
-- Reduce reseed file size
-- Maintain compatibility in all protocols and APIs
-- Update specifications
-- Discuss alternatives for new Destination and Router Identity formats
+- डेस्टिनेशन के लिए ElGamal कुंजी जोड़ी उत्पन्न करने की आवश्यकता को समाप्त करना
+- उत्तम प्रथाओं की अनुशंसा करना ताकि डेस्टिनेशन और राउटर आइडेंटिटी अत्यधिक संपीड़ित हों,
+  फिर भी Base 64 प्रतिनिधित्व में स्पष्ट पैटर्न न दिखें।
+- उत्तम प्रथाओं को सभी लागूकरणों द्वारा अपनाने के लिए प्रोत्साहित करना ताकि
+  फ़ील्ड अलग न पहचाने जा सकें
+- स्ट्रीमिंग SYN आकार को कम करना
+- उत्तर योग्य डेटाग्राम आकार को कम करना
+- SSU2 RI ब्लॉक आकार को कम करना
+- SSU2 सत्र पुष्टि आकार और खंडन आवृत्ति को कम करना
+- डेटाबेस स्टोर संदेश (RI के साथ) आकार को कम करना
+- reseed फ़ाइल आकार को कम करना
+- सभी प्रोटोकॉल और API में संगतता बनाए रखना
+- विनिर्देशों को अद्यतन करना
+- नए डेस्टिनेशन और राउटर आइडेंटिटी प्रारूपों के विकल्पों पर चर्चा करना
 
-By eliminating the requirement to generate ElGamal keys, implementations may
-be able to completely remove ElGamal code, subject to backward-compatibility considerations
-in other protocols.
-
-
-
-## Design
-
-Strictly speaking, the 32-byte signing public key alone (in both Destinations and Router Identities)
-and the 32-byte encryption public key (in Router Identities only) is a random number
-that provides all the entropy necessary for the SHA-256 hashes of these structures
-to be cryptographically strong and randomly distributed in the network database DHT.
-
-However, out of an abundance of caution, we recommend a minimum of 32 bytes of random data
-be used in the ElG public key field and padding. Additionally, if the fields were all zeros,
-Base 64 destinations would contain long runs of AAAA characters, which may cause alarm
-or confusion to users.
-
-For Ed25519 signature type and X25519 encryption type:
-Destinations will contain 11 copies (352 bytes) of the random data.
-Router Identities will contain 10 copies (320 bytes) of the random data.
+ElGamal कुंजियों को उत्पन्न करने की आवश्यकता को समाप्त करके, लागूकर्ता
+ElGamal कोड को पूरी तरह से हटा सकते हैं, अन्य प्रोटोकॉल में पिछड़े-संगतता पर विचार करते हुए।
 
 
 
-### Estimated Savings
+## डिज़ाइन
 
-Destinations are included in every streaming SYN
-and repliable datagram.
-Router Infos (containing Router Identities) are included in Database Store Messages
-and in the Session Confirmed messages in NTCP2 and SSU2.
+कठोरता से कहें तो, 32-बाइट हस्ताक्षर सार्वजनिक कुंजी (डेस्टिनेशन और राउटर आइडेंटिटी दोनों में)
+और 32-बाइट एन्क्रिप्शन सार्वजनिक कुंजी (केवल राउटर आइडेंटिटी में) एक यादृच्छिक संख्या है
+जो इन संरचनाओं के SHA-256 हैश के लिए आवश्यक सभी एंट्रॉपी प्रदान करती है
+ताकि नेटवर्क डेटाबेस DHT में क्रिप्टोग्राफिक रूप से मजबूत और यादृच्छिक रूप से वितरित हों।
 
-NTCP2 does not compress the Router Info.
-RIs in Database Store Messages and SSU2 Session Confirmed messages are gzipped.
-Router Infos are zipped in reseed SU3 files.
+हालांकि, अत्यधिक सावधानी के कारण, हम ElG सार्वजनिक कुंजी फ़ील्ड और पैडिंग में
+न्यूनतम 32 बाइट यादृच्छिक डेटा का उपयोग करने की अनुशंसा करते हैं।
+इसके अतिरिक्त, यदि फ़ील्ड सभी शून्य होते, तो Base 64 डेस्टिनेशन में लंबे AAAA अक्षरों के दौर होते,
+जो उपयोगकर्ताओं में चिंता या भ्रम पैदा कर सकते हैं।
 
-Destinations in Database Store Messages are not compressed.
-Streaming SYN messages are gzipped at the I2CP layer.
+Ed25519 हस्ताक्षर प्रकार और X25519 एन्क्रिप्शन प्रकार के लिए:
+डेस्टिनेशन में यादृच्छिक डेटा की 11 प्रतियां (352 बाइट) होंगी।
+राउटर आइडेंटिटी में यादृच्छिक डेटा की 10 प्रतियां (320 बाइट) होंगी।
 
-For Ed25519 signature type and X25519 encryption type,
-estimated savings:
 
-| Data Type | Total Size | Keys and Cert | Uncompressed Padding | Compressed Padding | Size | Savings |
+
+### अनुमानित बचत
+
+डेस्टिनेशन हर स्ट्रीमिंग SYN
+और उत्तर योग्य डेटाग्राम में शामिल होते हैं।
+राउटर इन्फो (राउटर आइडेंटिटी युक्त) डेटाबेस स्टोर संदेशों में शामिल होते हैं
+और NTCP2 और SSU2 में सत्र पुष्टि संदेशों में।
+
+NTCP2 राउटर इन्फो को संपीड़ित नहीं करता है।
+डेटाबेस स्टोर संदेशों और SSU2 सत्र पुष्टि संदेशों में RIs को gzipped किया जाता है।
+राउटर इन्फो को reseed SU3 फ़ाइलों में zipped किया जाता है।
+
+डेटाबेस स्टोर संदेशों में डेस्टिनेशन को संपीड़ित नहीं किया जाता है।
+स्ट्रीमिंग SYN संदेश I2CP परत पर gzipped होते हैं।
+
+Ed25519 हस्ताक्षर प्रकार और X25519 एन्क्रिप्शन प्रकार के लिए,
+अनुमानित बचत:
+
+| डेटा प्रकार | कुल आकार | कुंजियां और प्रमाणपत्र | असंपीड़ित पैडिंग | संपीड़ित पैडिंग | आकार | बचत |
 |-----------|------------|---------------|----------------------|--------------------|------|---------|
-| Destination | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
-| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
-| Router Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytes (29%) |
+| डेस्टिनेशन | 391 | 39 | 352 | 32 | 71 | 320 बाइट (82%) |
+| राउटर आइडेंटिटी | 391 | 71 | 320 | 32 | 103 | 288 बाइट (74%) |
+| राउटर इन्फो | 1000 आमतौर पर | 71 | 320 | 32 | 722 आमतौर पर | 288 बाइट (29%) |
 
-Notes: Assumes 7-byte certificate is not compressible, zero additional gzip overhead.
-Neither is true, but effects will be small.
-Ignores other compressible parts of the Router Info.
-
-
-
-## Specification
-
-Proposed changes to our current specifications are documented below.
+नोट: मान लें कि 7-बाइट प्रमाणपत्र संपीड़ित नहीं है, शून्य अतिरिक्त gzip ओवरहेड।
+दोनों सत्य नहीं हैं, लेकिन प्रभाव छोटे होंगे।
+राउटर इन्फो के अन्य संपीड़ित भागों को अनदेखा करता है।
 
 
-### Common Structures
-Change the common structures specification
-to specify that the 256-byte Destination public key field is ignored and may
-contain random data.
 
-Add a section to the common structures specification
-recommending best practice for the Destination public key field and the
-padding fields in the Destination and Router Identity, as follows:
+## विनिर्देश
 
-Generate 32 bytes of random data using a strong cryptographic pseudo-random number generator (PRNG)
-and repeat those 32 bytes as necessary to fill the public key field (for Destinations)
-and the padding field (for Destinations and Router Identities).
+हमारे वर्तमान विनिर्देशों में प्रस्तावित परिवर्तन नीचे दस्तावेज़ीकृत हैं।
 
-### Private Key File
-The private key file (eepPriv.dat) format is not an official part of our specifications
-but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
-and other implementations do support it.
-This enables portability of private keys to different implementations.
-Add a note to that javadoc that the encryption public key may be random padding
-and the encryption private key may be all zeros or random data.
+
+### सामान्य संरचनाएं
+सामान्य संरचनाओं के विनिर्देश में बदलाव करें
+ताकि 256-बाइट डेस्टिनेशन सार्वजनिक कुंजी फ़ील्ड को अनदेखा किया जाए और यह
+यादृच्छिक डेटा युक्त हो सके।
+
+सामान्य संरचनाओं के विनिर्देश में एक अनुभाग जोड़ें
+डेस्टिनेशन सार्वजनिक कुंजी फ़ील्ड और डेस्टिनेशन और राउटर आइडेंटिटी में
+पैडिंग फ़ील्ड के लिए उत्तम प्रथा की अनुशंसा करने के लिए, निम्नानुसार:
+
+एक मजबूत क्रिप्टोग्राफिक छद्म-यादृच्छिक संख्या जनरेटर (PRNG) का उपयोग करके 32 बाइट यादृच्छिक डेटा उत्पन्न करें
+और सार्वजनिक कुंजी फ़ील्ड (डेस्टिनेशन के लिए)
+और पैडिंग फ़ील्ड (डेस्टिनेशन और राउटर आइडेंटिटी के लिए) को भरने के लिए उन 32 बाइट को आवश्यकतानुसार दोहराएं।
+
+### निजी कुंजी फ़ाइल
+निजी कुंजी फ़ाइल (eepPriv.dat) प्रारूप हमारे विनिर्देशों का आधिकारिक हिस्सा नहीं है
+लेकिन इसे [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
+और अन्य लागूकरणों में दस्तावेज़ीकृत किया गया है।
+यह अलग-अलग लागूकरणों में निजी कुंजियों की पोर्टेबिलिटी को सक्षम करता है।
+उस javadoc में एक नोट जोड़ें कि एन्क्रिप्शन सार्वजनिक कुंजी यादृच्छिक पैडिंग हो सकती है
+और एन्क्रिप्शन निजी कुंजी सभी शून्य या यादृच्छिक डेटा हो सकती है।
 
 ### SAM
-Note in the SAM specification that the encryption private key is unused and may be ignored.
-Any random data may be returned by the client.
-The SAM Bridge may send random data on creation (with DEST GENERATE or SESSION CREATE DESTINATION=TRANSIENT)
-rather than all zeros, so the Base 64 representation does not have a string of AAAA characters
-and look broken.
+SAM विनिर्देश में नोट करें कि डेस्टिनेशन में सार्वजनिक कुंजी के लिए एन्क्रिप्शन निजी कुंजी अप्रयुक्त है और अनदेखा की जा सकती है।
+क्लाइंट द्वारा कोई भी यादृच्छिक डेटा लौटाया जा सकता है।
+SAM ब्रिज निर्माण पर सभी शून्य के बजाय यादृच्छिक डेटा भेज सकता है (DEST GENERATE या SESSION CREATE DESTINATION=TRANSIENT के साथ),
+ताकि Base 64 प्रतिनिधित्व में AAAA अक्षरों की स्ट्रिंग न हो
+और टूटा हुआ न लगे।
 
 
 ### I2CP
-No changes required to I2CP. The private key for the encryption public key in the Destination
-is not sent to the router.
+I2CP में कोई परिवर्तन आवश्यक नहीं है। डेस्टिनेशन में सार्वजनिक कुंजी के लिए निजी कुंजी
+राउटर को भेजी नहीं जाती है।
 
 
-## Future Planning
+## भविष्य की योजना
 
 
-### Protocol Changes
+### प्रोटोकॉल परिवर्तन
 
-At a cost of protocol changes and a lack of backward compatibility, we could
-change our protocols and specifications to eliminate the padding field in
-the Destination, Router Identity, or both.
+प्रोटोकॉल परिवर्तन की लागत और पिछड़े-संगतता की कमी के साथ, हम
+हमारे प्रोटोकॉल और विनिर्देशों में बदलाव कर सकते हैं ताकि
+डेस्टिनेशन, राउटर आइडेंटिटी, या दोनों में पैडिंग फ़ील्ड को समाप्त किया जा सके।
 
-This proposal bears some similarity to the "b33" encrypted leaseset format,
-containing only a key and a type field.
+यह प्रस्ताव "b33" एन्क्रिप्टेड leaseset प्रारूप के समानता रखता है,
+जिसमें केवल एक कुंजी और एक प्रकार फ़ील्ड होता है।
 
-To maintain some compatibility, certain protocol layers could "expand" the padding field
-with all zeros to present to other protocol layers.
+कुछ संगतता बनाए रखने के लिए, कुछ प्रोटोकॉल परतें पैडिंग फ़ील्ड को
+सभी शून्य के साथ "विस्तारित" कर सकती हैं ताकि अन्य प्रोटोकॉल परतों को प्रस्तुत किया जा सके।
 
-For Destinations, we could also remove the encryption type field in the key certificate,
-at a savings of two bytes.
-Alternatively, Destinations could get a new encryption type in the key certificate,
-indicating a zero public key (and padding).
+डेस्टिनेशन के लिए, हम कुंजी प्रमाणपत्र में एन्क्रिप्शन प्रकार फ़ील्ड को भी हटा सकते हैं,
+दो बाइट की बचत के साथ।
+वैकल्पिक रूप से, डेस्टिनेशन को कुंजी प्रमाणपत्र में एक नया एन्क्रिप्शन प्रकार मिल सकता है,
+शून्य सार्वजनिक कुंजी (और पैडिंग) का संकेत देते हुए।
 
-If compatibility conversion between old and new formats is not included at some protocol layer,
-the following specifications, APIs, protocols, and applications would be affected:
+यदि पुराने और नए प्रारूपों के बीच संगतता रूपांतरण को किसी प्रोटोकॉल परत पर शामिल नहीं किया जाता है,
+तो निम्नलिखित विनिर्देश, API, प्रोटोकॉल और अनुप्रयोग प्रभावित होंगे:
 
-- Common structures spec
+- सामान्य संरचनाएं विनिर्देश
 - I2NP
 - I2CP
 - NTCP2
 - SSU2
 - Ratchet
-- Streaming
+- स्ट्रीमिंग
 - SAM
-- Bittorrent
-- Reseeding
-- Private Key File
-- Java core and router API
+- बिटटॉरेंट
+- पुनःसंग्रहण
+- निजी कुंजी फ़ाइल
+- जावा कोर और राउटर API
 - i2pd API
-- Third-party SAM libraries
-- Bundled and third-party tools
-- Several Java plugins
-- User interfaces
-- P2P applications e.g. MuWire, bitcoin, monero
-- hosts.txt, addressbook, and subscriptions
+- तृतीय-पक्ष SAM लाइब्रेरी
+- बंडल और तृतीय-पक्ष उपकरण
+- कई जावा प्लगइन
+- उपयोगकर्ता इंटरफ़ेस
+- P2P अनुप्रयोग जैसे MuWire, बिटकॉइन, मोनेरो
+- hosts.txt, एड्रेसबुक, और सदस्यताएं
 
-If conversion is specified at some layer, the list would be reduced.
+यदि किसी परत पर रूपांतरण निर्दिष्ट किया जाता है, तो सूची कम हो जाएगी।
 
-The costs and benefits of these changes are not clear.
+इन परिवर्तनों की लागत और लाभ स्पष्ट नहीं हैं।
 
-Specific proposals TBD:
-
-
-
-
-
-### PQ Keys
-
-Post-Quantum (PQ) encryption public keys, for any anticipated algorithm,
-are larger than 256 bytes. This would eliminate any padding and any savings from proposed
-changes above, for Router Identities.
-
-In a "hybrid" PQ approach, like what SSL is doing, the PQ keys would be ephemeral only,
-and would not appear in the Router Identity.
-
-PQ signing keys are not viable,
-and Destinations do not contain encryption public keys.
-Static keys for ratchet are in the Lease Set, not the Destination.
-so we may eliminate Destinations from the following discussion.
-
-So PQ only affects Router Infos, and only for PQ static (not ephemeral) keys, not for PQ hybrid.
-This would be for a new encryption type and would affect NTCP2, SSU2, and
-encrypted Database Lookup Messages and replies.
-Estimated time frame for design, development, and rollout of that would be ????????
-But would be after hybrid or ratchet ????????????
-
-For further discussion see [this topic](http://zzz.i2p/topics/3294).
+विशिष्ट प्रस्ताव TBD:
 
 
 
 
-## Issues
 
-It may be desirable to rekey the network at a slow rate, to provide cover for new routers.
-"Rekeying" could mean simply changing the padding, not really changing the keys.
+### PQ कुंजियां
 
-It is not possible to rekey existing Destinations.
+पोस्ट-क्वांटम (PQ) एन्क्रिप्शन सार्वजनिक कुंजियां, किसी भी अपेक्षित एल्गोरिथ्म के लिए,
+256 बाइट से बड़ी हैं। इससे राउटर आइडेंटिटी के लिए पैडिंग और प्रस्तावित परिवर्तनों से बचत समाप्त हो जाएगी।
 
-Should Router Identities with padding in the public key field be identified with a different
-encryption type in the key certificate? This would cause compatibility issues.
+"हाइब्रिड" PQ दृष्टिकोण में, जैसा कि SSL कर रहा है, PQ कुंजियां केवल क्षणिक होंगी,
+और राउटर आइडेंटिटी में दिखाई नहीं देंगी।
 
+PQ हस्ताक्षर कुंजियां व्यवहार्य नहीं हैं,
+और डेस्टिनेशन में एन्क्रिप्शन सार्वजनिक कुंजियां नहीं होतीं।
+ratchet के लिए स्थिर कुंजियां Lease Set में होती हैं, डेस्टिनेशन में नहीं।
+इसलिए हम निम्नलिखित चर्चा से डेस्टिनेशन को हटा सकते हैं।
 
+इसलिए PQ केवल राउटर इन्फो को प्रभावित करता है, और केवल PQ स्थिर (क्षणिक नहीं) कुंजियों के लिए, PQ हाइब्रिड के लिए नहीं।
+यह एक नए एन्क्रिप्शन प्रकार के लिए होगा और NTCP2, SSU2, और
+एन्क्रिप्टेड डेटाबेस लुकअप संदेशों और उत्तरों को प्रभावित करेगा।
+उसके डिज़ाइन, विकास और रोलआउट के लिए अनुमानित समय सीमा ????????
+लेकिन हाइब्रिड या ratchet के बाद ????????????
 
-
-## Migration
-
-No backward compatibility issues for replacing the ElGamal key with padding.
-
-Rekeying, if implemented, would be similar to that done
-in three previous router identity transitions:
-From DSA-SHA1 to ECDSA signatures, then to
-EdDSA signatures, then to X25519 encryption.
-
-Subject to backward compatibility issues, and after disabling SSU,
-implementations may remove ElGamal code completely.
-Approximately 14% of routers in the network are ElGamal encryption type, including many floodfills.
-
-A draft merge request for Java I2P is at [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+आगे चर्चा के लिए देखें [इस विषय](http://zzz.i2p/topics/3294)।
 
 
-## References
+
+
+## मुद्दे
+
+नए राउटर के लिए कवर प्रदान करने के लिए धीमी दर पर नेटवर्क को पुनःकुंजीकृत करना वांछनीय हो सकता है।
+"पुनःकुंजीकरण" का अर्थ केवल पैडिंग को बदलना हो सकता है, वास्तव में कुंजियों को नहीं बदलना।
+
+मौजूदा डेस्टिनेशन को पुनःकुंजीकृत करना संभव नहीं है।
+
+क्या सार्वजनिक कुंजी फ़ील्ड में पैडिंग वाली राउटर आइडेंटिटी को कुंजी प्रमाणपत्र में एक अलग
+एन्क्रिप्शन प्रकार के साथ पहचाना जाना चाहिए? इससे संगतता मुद्दे होंगे।
+
+
+
+
+## माइग्रेशन
+
+ElGamal कुंजी को पैडिंग से बदलने के लिए कोई पिछड़े-संगतता मुद्दे नहीं हैं।
+
+पुनःकुंजीकरण, यदि लागू किया जाता है, तो तीन पिछले राउटर आइडेंटिटी संक्रमण के समान होगा:
+DSA-SHA1 से ECDSA हस्ताक्षर, फिर
+EdDSA हस्ताक्षर, फिर X25519 एन्क्रिप्शन।
+
+पिछड़े-संगतता मुद्दों के अधीन, और SSU को अक्षम करने के बाद,
+लागूकर्ता ElGamal कोड को पूरी तरह से हटा सकते हैं।
+नेटवर्क में लगभग 14% राउटर ElGamal एन्क्रिप्शन प्रकार के हैं, जिनमें कई फ्लडफिल शामिल हैं।
+
+Java I2P के लिए एक मसौदा मर्ज अनुरोध है [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66) पर।
+
+
+## संदर्भ
 
 * [Common](/docs/specs/common-structures/)
 * [Datagram](/docs/api/datagrams/)

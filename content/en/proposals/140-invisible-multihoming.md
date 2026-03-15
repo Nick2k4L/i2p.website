@@ -13,7 +13,7 @@ toc: true
 
 This proposal outlines a design for a protocol enabling an I2P client, service
 or external balancer process to manage multiple routers transparently hosting a
-single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
+single [Destination](/docs/specs/common-structures/#destination).
 
 The proposal currently does not specify a concrete implementation. It could be
 implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.

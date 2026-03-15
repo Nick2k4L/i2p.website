@@ -8,89 +8,78 @@ status: "开放"
 thread: "http://zzz.i2p/topics/2234"
 toc: true
 ---
+## 概述
 
-## Overview
+这是 Garlic Farm 有线协议的规范，  
+基于 JRaft、其用于 TCP 上实现的“exts”代码，  
+以及其“dmprinter”示例应用 [JRAFT](https://github.com/datatechnology/jraft)。
 
-This is the spec for the Garlic Farm wire protocol,
-based on JRaft, its "exts" code for implementation over TCP,
-and its "dmprinter" sample application [JRAFT](https://github.com/datatechnology/jraft).
+我们未能找到任何具有文档化有线协议的实现。  
+然而，JRaft 的实现足够简单，我们可以  
+检查其代码并随后记录其协议。  
+本提案即为此工作的成果。
 
-
-We were unable to find any implementation with a documented wire protocol.
-However, the JRaft implementation is simple enough that we could
-inspect the code and then document its protocol.
-This proposal is the result of that effort.
-
-This will be the backend for coordination of routers publishing
-entries in a Meta LeaseSet. See proposal 123.
+这将成为路由器发布 Meta LeaseSet 条目时协调的后端。参见提案 123。
 
 
-## Goals
+## 目标
 
-- Small code size
-- Based on existing implementation
-- No serialized Java objects or any Java-specific features or encoding
-- Any bootstrapping is out-of-scope. At least one other server is assumed
-  to be hardcoded, or configured out-of-band of this protocol.
-- Support both out-of-band and in-I2P use cases.
-
-
-## Design
-
-The Raft protocol is not a concrete protocol; it defines only a state machine.
-Therefore we document the concrete protocol of JRaft and base our protocol on it.
-There are no changes to the JRaft protocol other than the addition of
-an authentication handshake.
-
-Raft elects a Leader whose job is to publish a log.
-The log contains Raft Configuration data and Application data.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+- 小代码体积
+- 基于现有实现
+- 不使用序列化的 Java 对象或任何 Java 特有功能或编码
+- 引导过程不在本协议范围内。假定至少有一个其他服务器是硬编码的，或通过本协议之外的方式配置
+- 支持带外和 I2P 内使用场景
 
 
+## 设计
 
-## Specification
+Raft 协议不是一个具体的协议；它仅定义了一个状态机。  
+因此我们记录 JRaft 的具体协议并基于其构建我们的协议。  
+除了添加身份验证握手外，对 JRaft 协议没有其他更改。
 
-The wire protocol is over SSL sockets or non-SSL I2P sockets.
-I2P sockets are proxied through the HTTP Proxy.
-There is no support for clearnet non-SSL sockets.
-
-### Handshake and authentication
-
-Not defined by JRaft.
-
-Goals:
-
-- User/password authentication method
-- Version identifier
-- Cluster identifier
-- Extensible
-- Ease of proxying when used for I2P sockets
-- Do not unnecessarily expose server as a Garlic Farm server
-- Simple protocol so a full web server implementation is not required
-- Compatible with common standards, so implementations may use
-  standard libraries if desired
-
-We will use an websocket-like handshake and
-HTTP Digest authentication [RFC 2617](https://tools.ietf.org/html/rfc2617).
-RFC 2617 Basic authentication is NOT supported.
-When proxying through the HTTP proxy, communicate with
-the proxy as specified in [RFC 2616](https://tools.ietf.org/html/rfc2616).
-
-#### Credentials
-
-Whether usernames and passwords are per-cluster, or
-per-server, is implementation-dependent.
+Raft 选举一个 Leader，其职责是发布日志。  
+日志包含 Raft 配置数据和应用数据。  
+应用数据包含每个服务器路由器的状态以及 Meta LS2 集群的目的地。  
+服务器使用共同算法确定 Meta LS2 的发布者和内容。  
+Meta LS2 的发布者不一定是 Raft Leader。
 
 
-#### HTTP Request 1
+## 规范
 
-The originator will send the following.
+有线协议通过 SSL 套接字或非 SSL I2P 套接字进行。  
+I2P 套接字通过 HTTP 代理进行代理。  
+不支持明文非 SSL 套接字。
 
-All lines are teriminated with CRLF as required by HTTP.
+### 握手与认证
+
+JRaft 未定义此部分。
+
+目标：
+
+- 用户/密码认证方式
+- 版本标识符
+- 集群标识符
+- 可扩展
+- 在用于 I2P 套接字时易于代理
+- 不必要地暴露服务器为 Garlic Farm 服务器
+- 简单协议，因此不需要完整的 Web 服务器实现
+- 兼容常见标准，以便实现可选择使用标准库
+
+我们将使用类似 WebSocket 的握手和  
+HTTP Digest 认证 [RFC 2617](https://tools.ietf.org/html/rfc2617)。  
+不支持 RFC 2617 Basic 认证。  
+通过 HTTP 代理代理时，按 [RFC 2616](https://tools.ietf.org/html/rfc2616) 中指定的方式与代理通信。
+
+#### 凭据
+
+用户名和密码是按集群还是按服务器，取决于具体实现。
+
+
+#### HTTP 请求 1
+
+发起方将发送以下内容。
+
+所有行均以 CRLF 结尾，符合 HTTP 要求。
 
 ```text
 
@@ -101,30 +90,30 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   (any other headers ignored)
   (blank line)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER 是集群名称（默认为 "farm"）
+  VERSION 是 Garlic Farm 版本（当前为 "1"）
 
 ```
 
 
-#### HTTP Response 1
+#### HTTP 响应 1
 
-If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
-as in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+如果路径不正确，接收方将发送标准的 "HTTP/1.1 404 Not Found" 响应，  
+如 [RFC 2616](https://tools.ietf.org/html/rfc2616) 所述。
 
-If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
-including the WWW-Authenticate HTTP digest authentication header,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+如果路径正确，接收方将发送标准的 "HTTP/1.1 401 Unauthorized" 响应，  
+包含 WWW-Authenticate HTTP digest 认证头，  
+如 [RFC 2617](https://tools.ietf.org/html/rfc2617) 所述。
 
-Both parties will then close the socket.
+双方随后将关闭套接字。
 
 
-#### HTTP Request 2
+#### HTTP 请求 2
 
-The originator will send the following,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+发起方将发送以下内容，  
+如 [RFC 2617](https://tools.ietf.org/html/rfc2617) 所述。
 
-All lines are teriminated with CRLF as required by HTTP.
+所有行均以 CRLF 结尾，符合 HTTP 要求。
 
 ```text
 
@@ -138,21 +127,21 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   (any other headers ignored)
   (blank line)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER 是集群名称（默认为 "farm"）
+  VERSION 是 Garlic Farm 版本（当前为 "1"）
 
 ```
 
 
-#### HTTP Response 2
+#### HTTP 响应 2
 
-If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+如果认证不正确，接收方将再次发送标准的 "HTTP/1.1 401 Unauthorized" 响应，  
+如 [RFC 2617](https://tools.ietf.org/html/rfc2617) 所述。
 
-If the authentication is correct, the recipient will send the following response,
-as in the WebSocket protocol.
+如果认证正确，接收方将发送以下响应，  
+如 WebSocket 协议所述。
 
-All lines are teriminated with CRLF as required by HTTP.
+所有行均以 CRLF 结尾，符合 HTTP 要求。
 
 ```text
 
@@ -165,72 +154,68 @@ HTTP/1.1 101 Switching Protocols
 
 ```
 
-After this is received, the socket remains open.
-The Raft protocol as defined below commences, on the same socket.
+收到此响应后，套接字保持打开状态。  
+下方定义的 Raft 协议在同一套接字上开始。
 
 
-#### Caching
+#### 缓存
 
-Credentials shall be cached for at least one hour, so that
-subsequent connections may jump directly to
-"HTTP Request 2" above.
-
+凭据应至少缓存一小时，以便后续连接可直接跳转到  
+上述“HTTP 请求 2”。
 
 
-### Message Types
+### 消息类型
 
-There are two types of messages, requests and responses.
-Requests may contain Log Entries, and are variable-sized;
-responses do not contain Log Entries, and are fixed-size.
+有两种消息类型：请求和响应。  
+请求可能包含日志条目，大小可变；  
+响应不包含日志条目，大小固定。
 
-Message types 1-4 are the standard RPC messages defined by Raft.
-This is the core Raft protocol.
+消息类型 1-4 是 Raft 定义的标准 RPC 消息。  
+这是核心 Raft 协议。
 
-Message types 5-15 are the extended RPC messages defined by
-JRaft, to support clients, dynamic server changes, and
-efficient log synchronization.
+消息类型 5-15 是 JRaft 定义的扩展 RPC 消息，  
+用于支持客户端、动态服务器变更和高效日志同步。
 
-Message types 16-17 are the Log Compaction RPC messages defined
-in Raft section 7.
+消息类型 16-17 是 Raft 第 7 节中定义的日志压缩 RPC 消息。
 
 
-| Message | Number | Sent By | Sent To | Notes |
+| 消息 | 编号 | 发送方 | 接收方 | 说明 |
 | :--- | :--- | :--- | :--- | :--- |
-| RequestVoteRequest | 1 | Candidate | Follower | Standard Raft RPC; must not contain log entries |
-| RequestVoteResponse | 2 | Follower | Candidate | Standard Raft RPC |
-| AppendEntriesRequest | 3 | Leader | Follower | Standard Raft RPC |
-| AppendEntriesResponse | 4 | Follower | Leader / Client | Standard Raft RPC |
-| ClientRequest | 5 | Client | Leader / Follower | Response is AppendEntriesResponse; must contain Application log entries only |
-| AddServerRequest | 6 | Client | Leader | Must contain a single ClusterServer log entry only |
-| AddServerResponse | 7 | Leader | Client | Leader will also send a JoinClusterRequest |
-| RemoveServerRequest | 8 | Follower | Leader | Must contain a single ClusterServer log entry only |
+| RequestVoteRequest | 1 | Candidate | Follower | 标准 Raft RPC；不得包含日志条目 |
+| RequestVoteResponse | 2 | Follower | Candidate | 标准 Raft RPC |
+| AppendEntriesRequest | 3 | Leader | Follower | 标准 Raft RPC |
+| AppendEntriesResponse | 4 | Follower | Leader / Client | 标准 Raft RPC |
+| ClientRequest | 5 | Client | Leader / Follower | 响应为 AppendEntriesResponse；必须仅包含应用日志条目 |
+| AddServerRequest | 6 | Client | Leader | 必须仅包含单个 ClusterServer 日志条目 |
+| AddServerResponse | 7 | Leader | Client | Leader 还将发送 JoinClusterRequest |
+| RemoveServerRequest | 8 | Follower | Leader | 必须仅包含单个 ClusterServer 日志条目 |
 | RemoveServerResponse | 9 | Leader | Follower | |
-| SyncLogRequest | 10 | Leader | Follower | Must contain a single LogPack log entry only |
+| SyncLogRequest | 10 | Leader | Follower | 必须仅包含单个 LogPack 日志条目 |
 | SyncLogResponse | 11 | Follower | Leader | |
-| JoinClusterRequest | 12 | Leader | New Server | Invitation to join; must contain a single Configuration log entry only |
+| JoinClusterRequest | 12 | Leader | New Server | 邀请加入；必须仅包含单个配置日志条目 |
 | JoinClusterResponse | 13 | New Server | Leader | |
-| LeaveClusterRequest | 14 | Leader | Follower | Command to leave |
+| LeaveClusterRequest | 14 | Leader | Follower | 离开命令 |
 | LeaveClusterResponse | 15 | Follower | Leader | |
-| InstallSnapshotRequest | 16 | Leader | Follower | Raft Section 7; Must contain a single SnapshotSyncRequest log entry only |
-| InstallSnapshotResponse | 17 | Follower | Leader | Raft Section 7 |
+| InstallSnapshotRequest | 16 | Leader | Follower | Raft 第 7 节；必须仅包含单个 SnapshotSyncRequest 日志条目 |
+| InstallSnapshotResponse | 17 | Follower | Leader | Raft 第 7 节 |
 
 
-### Establishment
+### 建立
 
-After the HTTP handshake, the establishment sequence is as follows:
+HTTP 握手后，建立序列为：
 
 ```text
 
-New Server Alice              Random Follower Bob
+新服务器 Alice              随机 Follower Bob
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
 
-  If Bob says he is the leader, continue as below.
-  Else, Alice must disconnect from Bob and connect to the leader.
+  如果 Bob 表示它是 Leader，则继续如下。
+  否则，Alice 必须断开与 Bob 的连接并连接到 Leader。
 
 
-  New Server Alice              Leader Charlie
+  新服务器 Alice              Leader Charlie
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
@@ -245,7 +230,7 @@ New Server Alice              Random Follower Bob
 
 ```
 
-Disconnect Sequence:
+断开序列：
 
 ```text
 
@@ -258,7 +243,7 @@ Follower Alice              Leader Charlie
 
 ```
 
-Election Sequence:
+选举序列：
 
 ```text
 
@@ -267,7 +252,7 @@ Candidate Alice               Follower Bob
   RequestVoteRequest   ------->
           <---------   RequestVoteResponse
 
-  if Alice wins election:
+  如果 Alice 赢得选举：
 
   Leader Alice                Follower Bob
 
@@ -278,72 +263,70 @@ Candidate Alice               Follower Bob
 ```
 
 
-### Definitions
+### 定义
 
-- Source: Identifies the originator of the message
-- Destination: Identifies the recipient of the message
-- Terms: See Raft. Initialized to 0, increases monotonically
-- Indexes: See Raft. Initialized to 0, increases monotonically
-
-
-
-### Requests
-
-Requests contain a header and zero or more log entries.
-Requests contain a fixed-size header and optional Log Entries of variable size.
+- 源（Source）：标识消息的发起者
+- 目标（Destination）：标识消息的接收者
+- Term：参见 Raft。初始化为 0，单调递增
+- Index：参见 Raft。初始化为 0，单调递增
 
 
-#### Request Header
+### 请求
 
-The request header is 45 bytes, as follows.
-All values are unsigned big-endian.
+请求包含一个头部和零个或多个日志条目。  
+请求包含固定大小的头部和可变大小的可选日志条目。
+
+
+#### 请求头部
+
+请求头部为 45 字节，如下所示。  
+所有值均为无符号大端序。
 
 ```text
 
-Message type:      1 byte
-  Source:            ID, 4 byte integer
-  Destination:       ID, 4 byte integer
-  Term:              Current term (see notes), 8 byte integer
-  Last Log Term:     8 byte integer
-  Last Log Index:    8 byte integer
-  Commit Index:      8 byte integer
-  Log entries size:  Total size in bytes, 4 byte integer
-  Log entries:       see below, total length as specified
+消息类型：      1 字节
+  源：            ID，4 字节整数
+  目标：          ID，4 字节整数
+  Term：          当前 Term（见注释），8 字节整数
+  上一个日志 Term： 8 字节整数
+  上一个日志 Index：8 字节整数
+  提交 Index：     8 字节整数
+  日志条目大小：   总字节数，4 字节整数
+  日志条目：       见下文，总长度按指定
 
 ```
 
 
-#### Notes
+#### 注释
 
-In the RequestVoteRequest, Term is the candidate's term.
-Otherwise, it is the leader's current term.
+在 RequestVoteRequest 中，Term 是候选者的 Term。  
+否则，它是 Leader 的当前 Term。
 
-In the AppendEntriesRequest, when the log entries size is zero,
-this message is a heartbeat (keepalive) message.
+在 AppendEntriesRequest 中，当日志条目大小为零时，  
+此消息为心跳（保活）消息。
 
 
+#### 日志条目
 
-#### Log Entries
-
-The log contains zero or more log entries.
-Each log entry is as follows.
-All values are unsigned big-endian.
+日志包含零个或多个日志条目。  
+每个日志条目如下所示。  
+所有值均为无符号大端序。
 
 ```text
 
-Term:           8 byte integer
-  Value type:     1 byte
-  Entry size:     In bytes, 4 byte integer
-  Entry:          length as specified
+Term：           8 字节整数
+  值类型：         1 字节
+  条目大小：       字节数，4 字节整数
+  条目：           指定长度
 
 ```
 
 
-#### Log Contents
+#### 日志内容
 
-All values are unsigned big-endian.
+所有值均为无符号大端序。
 
-| Log Value Type | Number |
+| 日志值类型 | 编号 |
 | :--- | :--- |
 | Application | 1 |
 | Configuration | 2 |
@@ -354,274 +337,262 @@ All values are unsigned big-endian.
 
 #### Application
 
-Application contents are UTF-8 encoded [JSON](https://www.json.org/).
-See the Application Layer section below.
+应用内容为 UTF-8 编码的 [JSON](https://www.json.org/)。  
+参见下方应用层部分。
 
 
 #### Configuration
 
-This is used for the leader to serialize a new cluster configuration and replicate to peers.
-It contains zero or more ClusterServer configurations.
-
+用于 Leader 序列化新集群配置并复制到对等节点。  
+包含零个或多个 ClusterServer 配置。
 
 ```text
 
-Log Index:  8 byte integer
-  Last Log Index:  8 byte integer
-  ClusterServer Data for each server:
-    ID:                4 byte integer
-    Endpoint data len: In bytes, 4 byte integer
-    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+日志 Index：  8 字节整数
+  上一个日志 Index：  8 字节整数
+  每个服务器的 ClusterServer 数据：
+    ID：                4 字节整数
+    端点数据长度： 字节数，4 字节整数
+    端点数据：     形如 "tcp://localhost:9001" 的 ASCII 字符串，长度按指定
 
 ```
 
 
 #### ClusterServer
 
-The configuration information for a server in a cluster.
-This is included only in a AddServerRequest or RemoveServerRequest message.
+集群中服务器的配置信息。  
+仅包含在 AddServerRequest 或 RemoveServerRequest 消息中。
 
-When used in a AddServerRequest Message:
+在 AddServerRequest 消息中使用时：
 
 ```text
 
-ID:                4 byte integer
-  Endpoint data len: In bytes, 4 byte integer
-  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+ID：                4 字节整数
+  端点数据长度： 字节数，4 字节整数
+  端点数据：     形如 "tcp://localhost:9001" 的 ASCII 字符串，长度按指定
 
 ```
 
 
-When used in a RemoveServerRequest Message:
+在 RemoveServerRequest 消息中使用时：
 
 ```text
 
-ID:                4 byte integer
+ID：                4 字节整数
 
 ```
 
 
 #### LogPack
 
-This is included only in a SyncLogRequest message.
+仅包含在 SyncLogRequest 消息中。
 
-The following is gzipped before transmission:
-
+传输前进行 gzip 压缩：
 
 ```text
 
-Index data len: In bytes, 4 byte integer
-  Log data len:   In bytes, 4 byte integer
-  Index data:     8 bytes for each index, length as specified
-  Log data:       length as specified
+索引数据长度： 字节数，4 字节整数
+  日志数据长度：   字节数，4 字节整数
+  索引数据：     每个索引 8 字节，长度按指定
+  日志数据：       长度按指定
 
 ```
-
 
 
 #### SnapshotSyncRequest
 
-This is included only in a InstallSnapshotRequest message.
+仅包含在 InstallSnapshotRequest 消息中。
 
 ```text
 
-Last Log Index:  8 byte integer
-  Last Log Term:   8 byte integer
-  Config data len: In bytes, 4 byte integer
-  Config data:     length as specified
-  Offset:          The offset of the data in the database, in bytes, 8 byte integer
-  Data len:        In bytes, 4 byte integer
-  Data:            length as specified
-  Is Done:         1 if done, 0 if not done (1 byte)
+上一个日志 Index：  8 字节整数
+  上一个日志 Term：   8 字节整数
+  配置数据长度： 字节数，4 字节整数
+  配置数据：     长度按指定
+  偏移量：          数据库中数据的偏移量（字节），8 字节整数
+  数据长度：        字节数，4 字节整数
+  数据：            长度按指定
+  是否完成：         完成为 1，未完成为 0（1 字节）
 
 ```
 
 
+### 响应
 
-
-### Responses
-
-All responses are 26 bytes, as follows.
-All values are unsigned big-endian.
+所有响应均为 26 字节，如下所示。  
+所有值均为无符号大端序。
 
 ```text
 
-Message type:   1 byte
-  Source:         ID, 4 byte integer
-  Destination:    Usually the actual destination ID (see notes), 4 byte integer
-  Term:           Current term, 8 byte integer
-  Next Index:     Initialized to leader last log index + 1, 8 byte integer
-  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+消息类型：   1 字节
+  源：         ID，4 字节整数
+  目标：       通常为实际目标 ID（见注释），4 字节整数
+  Term：       当前 Term，8 字节整数
+  下一个 Index： 初始化为 Leader 最后日志 Index + 1，8 字节整数
+  是否接受：     接受为 1，否则为 0（见注释），1 字节
 
 ```
 
 
-#### Notes
+#### 注释
 
-The Destination ID is usually the actual destination for this message.
-However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
-it is the ID of the current leader.
+目标 ID 通常是此消息的实际目标。  
+但对于 AppendEntriesResponse、AddServerResponse 和 RemoveServerResponse，  
+它是当前 Leader 的 ID。
 
-In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
-and 0 for no vote.
-
-
-## Application Layer
-
-Each Server periodically posts Application data to the log in a ClientRequest.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The server with the "best" recent status in the log is the Meta LS2 publisher.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+在 RequestVoteResponse 中，Is Accepted 为 1 表示投票给候选者（请求者），  
+为 0 表示不投票。
 
 
-### Application Data Contents
+## 应用层
 
-Application contents are UTF-8 encoded [JSON](https://json.org/),
-for simplicity and extensibility.
-The full specification is TBD.
-The goal is to provide enough data to write an algorithm to determine the "best"
-router to publish the Meta LS2, and for the publisher to have sufficient information
-to weight the Destinations in the Meta LS2.
-The data will contain both router and Destination statistics.
-
-The data may optionally contain remote sensing data on the health of the
-other servers, and the ability to fetch the Meta LS.
-These data would not be supported in the first release.
-
-The data may optionally contain configuration information posted
-by an administrator client.
-These data would not be supported in the first release.
-
-If "name: value" is listed, that specifies the JSON map key and value.
-Otherwise, specification is TBD.
+每个服务器定期在 ClientRequest 中向日志发布应用数据。  
+应用数据包含每个服务器路由器的状态以及 Meta LS2 集群的目的地。  
+服务器使用共同算法确定 Meta LS2 的发布者和内容。  
+日志中“最佳”近期状态的服务器是 Meta LS2 发布者。  
+Meta LS2 的发布者不一定是 Raft Leader。
 
 
-Cluster data (top level):
+### 应用数据内容
 
-- cluster: Cluster name
-- date: Date of this data (long, ms since the epoch)
-- id: Raft ID (integer)
+应用内容为 UTF-8 编码的 [JSON](https://json.org/)，  
+以简化和扩展性。  
+完整规范待定。  
+目标是提供足够数据以编写算法确定“最佳”  
+路由器来发布 Meta LS2，并使发布者拥有足够信息  
+以对 Meta LS2 中的目的地进行加权。  
+数据将包含路由器和目的地的统计信息。
 
-Configuration data (config):
+数据可选择性包含关于其他服务器健康状况的远程感知数据，  
+以及获取 Meta LS 的能力。  
+这些数据在第一版中不支持。
 
-- Any configuration parameters
+数据可选择性包含管理员客户端发布的配置信息。  
+这些数据在第一版中不支持。
 
-MetaLS publishing status (meta):
+如果列出“name: value”，则指定 JSON 映射键和值。  
+否则，规范待定。
 
-- destination: the metals destination, base64
-- lastPublishedLS: if present, base64 encoding of the last published metals
-- lastPublishedTime: in ms, or 0 if never
-- publishConfig: Publisher config status off/on/auto
-- publishing: metals publisher status boolean true/false
+集群数据（顶层）：
 
-Router data (router):
+- cluster: 集群名称
+- date: 此数据的日期（long，自纪元以来的毫秒数）
+- id: Raft ID（整数）
 
-- lastPublishedRI: if present, base64 encoding of the last published router info
-- uptime: Uptime in ms
+配置数据（config）：
+
+- 任何配置参数
+
+MetaLS 发布状态（meta）：
+
+- destination: metals 目的地，base64
+- lastPublishedLS: 如果存在，上次发布的 metals 的 base64 编码
+- lastPublishedTime: 毫秒，或从未发布为 0
+- publishConfig: 发布者配置状态 off/on/auto
+- publishing: metals 发布者状态布尔值 true/false
+
+路由器数据（router）：
+
+- lastPublishedRI: 如果存在，上次发布的路由器信息的 base64 编码
+- uptime: 运行时间（毫秒）
 - Job lag
-- Exploratory tunnels
-- Participating tunnels
-- Configured bandwidth
-- Current bandwidth
+- 探索性隧道
+- 参与的隧道
+- 配置带宽
+- 当前带宽
 
-Destinations (destinations):
-List
+目的地（destinations）：
+列表
 
-Destination data:
+目的地数据：
 
-- destination: the destination, base64
-- uptime: Uptime in ms
-- Configured tunnels
-- Current tunnels
-- Configured bandwidth
-- Current bandwidth
-- Configured connections
-- Current connections
-- Blacklist data
+- destination: 目的地，base64
+- uptime: 运行时间（毫秒）
+- 配置隧道数
+- 当前隧道数
+- 配置带宽
+- 当前带宽
+- 配置连接数
+- 当前连接数
+- 黑名单数据
 
-Remote router sensing data:
+远程路由器感知数据：
 
-- Last RI version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
+- 最近看到的 RI 版本
+- LS 获取时间
+- 连接测试数据
+- 最近的 floodfill 档案数据
+  针对昨天、今天和明天的时间段
 
-Remote destination sensing data:
+远程目的地感知数据：
 
-- Last LS version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
+- 最近看到的 LS 版本
+- LS 获取时间
+- 连接测试数据
+- 最近的 floodfill 档案数据
+  针对昨天、今天和明天的时间段
 
-Meta LS sensing data:
+Meta LS 感知数据：
 
-- Last version seen
-- Fetch time
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
-
-
-## Administration Interface
-
-TBD, possibly a separate proposal.
-Not required for the first release.
-
-Requirements of an admin interface:
-
-- Support for multiple master destinations, i.e. multiple virtual clusters (farms)
-- Provide comprehensive view of shared cluster state - all stats published by members, who is the current leader, etc.
-- Ability to force removal of a participant or leader from the cluster
-- Ability to force publish metaLS (if current node is publisher)
-- Ability to exclude hashes from metaLS (if current node is publisher)
-- Configuration import/export functionality for bulk deployments
+- 最近看到的版本
+- 获取时间
+- 最近的 floodfill 档案数据
+  针对昨天、今天和明天的时间段
 
 
+## 管理接口
 
-## Router Interface
+待定，可能为单独提案。  
+第一版不需要。  
 
-TBD, possibly a separate proposal.
-i2pcontrol is not required for the first release and detailed changes will be included in a separate proposal.
+管理接口需求：
 
-Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
+- 支持多个主目的地，即多个虚拟集群（farms）
+- 提供共享集群状态的全面视图 —— 所有成员发布的统计信息、当前 Leader 是谁等
+- 能够强制从集群中移除参与者或 Leader
+- 能够强制发布 metaLS（如果当前节点是发布者）
+- 能够排除 metaLS 中的哈希（如果当前节点是发布者）
+- 支持批量部署的配置导入/导出功能
+
+
+## 路由器接口
+
+待定，可能为单独提案。  
+i2pcontrol 不是第一版必需的，详细变更将包含在单独提案中。
+
+Garlic Farm 到路由器 API 的需求（JVM 内 Java 或 i2pcontrol）
 
 - getLocalRouterStatus()
 - getLocalLeafHash(Hash masterHash)
 - getLocalLeafStatus(Hash leaf)
-- getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
-- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
+- getRemoteMeasuredStatus(Hash masterOrLeaf) // 可能不在 MVP 中
+- publishMetaLS(Hash masterHash, List<MetaLease> contents) // 或签名的 MetaLeaseSet？谁签名？
 - stopPublishingMetaLS(Hash masterHash)
-- authentication TBD?
+- 认证待定？
 
 
-## Justification
+## 理由
 
-Atomix is too large and won't allow customization for us to route
-the protocol over I2P. Also, its wire format is undocumented, and depends
-on Java serialization.
-
-
-## Notes
+Atomix 过于庞大，且不允许我们自定义以将协议路由到 I2P。  
+此外，其有线格式未文档化，且依赖 Java 序列化。
 
 
-
-## Issues
-
-- There's no way for a client to find out about and connect to an unknown leader.
-  It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
+## 注释
 
 
 
-## Migration
+## 问题
 
-No backward compatibility issues.
+- 客户端无法发现并连接到未知的 Leader。  
+  稍微修改即可让 Follower 在 AppendEntriesResponse 中以日志条目形式发送配置。
 
 
-## References
+## 迁移
+
+无向后兼容性问题。
+
+
+## 参考文献
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://json.org/)
@@ -629,8 +600,3 @@ No backward compatibility issues.
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
-
-
-
-
-

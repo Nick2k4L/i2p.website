@@ -8,52 +8,51 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/1980"
 toc: true
 ---
-
 ## Overview
 
-This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.
+이 문서는 I2P 사양을 변경하는 방법, I2P 제안이 작동하는 방식, 및 I2P 제안과 사양 간의 관계를 설명한다.
 
-This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.
+이 문서는 Tor 제안 프로세스에서採用되었으며, 아래의 많은 내용은 원래 Nick Mathewson이 작성하였다.
 
-This is an informational document.
+이 문서는 정보 제공을 위한 문서이다.
 
 ## Motivation
 
-Previously, our process for updating the I2P specifications was relatively informal: we'd make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.
+이전에는 I2P 사양을 업데이트하는 우리의 프로세스가 상대적으로 비공식적이었다: 개발 포럼에서 제안을 만들고 변경 사항을 논의한 다음, 일치된 후 사양을 초안 변경 사항으로 패치하고(반드시 그 순서대로는 아님), 최종적으로 변경 사항을 구현하였다.
 
-This had a few problems.
+이것은 몇 가지 문제가 있었다.
 
-First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.
+첫째, 가장 효율적인 경우에도 이전 프로세스는 종종 사양과 코드가 일치하지 않는 경우가 있었다. 최악의 경우는 구현이 연기된 경우였다: 사양과 코드가 버전이 변경될 때까지 일치하지 않는 경우가 있었다.
 
-Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.
+둘째, 논의에 참여하기가 어려웠다. 왜냐하면 언제든지 논의 스레드의 어느 부분이 제안의 일부인지, 또는 사양에 어떤 변경 사항이 구현되었는지 명확하지 않았기 때문이다. 개발 포럼은 I2P 내에서만 접근할 수 있으므로, 제안은 I2P를 사용하는 사람들만 볼 수 있었다.
 
-Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.
+셋째, 제안이 포럼 스레드 목록의 여러 페이지 뒤로 묻히기 때문에 일부 제안을 잊어 버리기 쉽かった.
 
 ## How to change the specs now
 
-First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it's fleshed out enough, it becomes a proposal.
+첫째, 누군가가 제안 문서를 작성한다. 그것은 변경해야 할 내용을 자세히 설명해야 하며, 그것을 구현하는 방법에 대한 아이디어를 제공해야 한다. 충분히 발전하면 그것은 제안이 된다.
 
-Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.
+RFC와 마찬가지로, 모든 제안에는 번호가 있다. 그러나 RFC와는 달리, 제안은 시간이 지남에 따라 변경될 수 있으며, 최종적으로 승인되거나 거부될 때까지 동일한 번호를 유지한다. 각 제안의 기록은 I2P 웹사이트 저장소에 저장된다.
 
-Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we've reached consensus that it's a good idea, and that it's detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.
+한 번 제안이 저장소에 있으면, 우리는 해당 스레드에서 그것을 논의하고 일치된 좋은 아이디어인지, 구현할 수 있을 만큼 충분히 자세한지 확인할 때까지 그것을 개선해야 한다. 이것이 발생하면, 우리는 제안을 구현하고 사양에 통합한다. 따라서, 사양은 I2P 프로토콜에 대한 정식 문서이다: 구현된 기능에 대한 정식 문서는 절대 제안이 아니다.
 
-(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs *become* the new spec.)
+(이 프로세스는 Python Enhancement Process와 매우 유사하지만, 주요 차이점은 I2P 제안이 구현 후 사양에 다시 통합된다는 것이다. 반면에 PEP는 새로운 사양이 된다.)
 
 ### Small changes
 
-It's still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers' *intent*, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&M-fueled all-night hacking session.
+まだ, 코드를 거의 즉시 작성할 수 있거나 코드 변경이 필요하지 않은 경우에 사양에 직접 작은 변경 사항을 만들 수 있다. 이 문서는 현재 개발자의 *의도*를 반영한다. 미래에 항상 이 프로세스를 사용할 것이라는 영구적인 약속이 아니다: 우리는 정말 흥奮하고 카페인이나 M&M에 의해 자극된 밤새도록 해킹 세션에서 무언가를 구현하기 위해 달려가도 좋다.
 
 ## How new proposals get added
 
-To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.
+제안을 제출하려면, 개발 포럼에 게시하거나 제안이 첨부된 티켓을 생성한다.
 
-Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.
+한 번 아이디어가 제안되면, 적절하게 형식화된(아래 참조) 초안이 존재하고, 활발한 개발 커뮤니티 내에서 대략적인 일치가 존재하는 경우, 제안 편집자가 공식적으로 제안을 추가한다.
 
-The current proposal editors are zzz and str4d.
+현재 제안 편집자는 zzz와 str4d이다.
 
 ## What should go in a proposal
 
-Every proposal should have a header containing these fields:
+모든 제안에는 다음 필드를 포함하는 헤더가 있어야 한다:
 
 ```
 :author:
@@ -63,11 +62,11 @@ Every proposal should have a header containing these fields:
 :status:
 ```
 
-- The `author` field should contain the names of the authors of this proposal.
-- The `thread` field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.
-- The `lastupdated` field should initially be equal to the `created` field, and should be updated whenever the proposal is changed.
+- `author` 필드는 이 제안의 저자의 이름을 포함해야 한다.
+- `thread` 필드는 이 제안이 원래 게시된 개발 포럼 스레드에 대한 링크 또는 이 제안을 논의하기 위해 생성된 새 스레드에 대한 링크가 되어야 한다.
+- `lastupdated` 필드는 초기에 `created` 필드와 동일해야 하며, 제안이 변경될 때마다 업데이트되어야 한다.
 
-These fields should be set when necessary:
+다음 필드는 필요에 따라 설정되어야 한다:
 
 ```
 :supercedes:
@@ -75,90 +74,90 @@ These fields should be set when necessary:
 :editor:
 ```
 
-- The `supercedes` field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their `supercededby` field set to the number of this proposal.
-- The `editor` field should be set if significant changes are made to this proposal that don't substantially alter its content. If the content is being substantially altered, either an additional `author` should be added, or a new proposal created superceding this one.
+- `supercedes` 필드는 이 제안이 대체하는 모든 제안의 쉼표로 구분된 목록이다. 이러한 제안은 거부되어야 하며, `supercededby` 필드는 이 제안의 번호로 설정되어야 한다.
+- `editor` 필드는 이 제안에 상당한 변경 사항이 있지만 내용을 크게 변경하지 않는 경우에 설정되어야 한다. 내용이 크게 변경되는 경우, 추가적인 `author`를 추가하거나, 이 제안을 대체하는 새로운 제안을 생성해야 한다.
 
-These fields are optional but recommended:
+다음 필드는 선택 사항이지만 권장된다:
 
 ```
 :target:
 :implementedin:
 ```
 
-- The `target` field should describe which version the proposal is hoped to be implemented in (if it's Open or Accepted).
-- The `implementedin` field should describe which version the proposal was implemented in (if it's Finished or Closed).
+- `target` 필드는 이 제안이 구현되기를希望하는 버전을 설명해야 한다(만약 Open 또는 Accepted인 경우).
+- `implementedin` 필드는 이 제안이 구현된 버전을 설명해야 한다(만약 Finished 또는 Closed인 경우).
 
-The body of the proposal should start with an Overview section explaining what the proposal's about, what it does, and about what state it's in.
+제안의 본문은 이 제안이 무엇인지, 무엇을 하는지, 어떤 상태인지 설명하는 Overview 섹션으로 시작해야 한다.
 
-After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.
+Overview 이후, 제안은 더 자유롭게 된다. 제안의 길이와 복잡성에 따라, 제안은 적절한 섹션으로 나누거나, 짧은 논의 형식을 따를 수 있다. 모든 제안에는 다음 정보를 포함해야 한다. 그러나 이러한 정보가 이러한 이름의 섹션에 포함될 필요는 없다.
 
 **Motivation**
-: What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?
+: 이 제안이 무엇을 해결하려고 하는가? 왜 이 문제가 중요하나요? 여러 가지 접근 방식이 가능하다면, 왜 이 접근 방식을 취하는가?
 
 **Design**
-: A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.
+: 새로운 또는 수정된 기능이 무엇인지, 어떻게 작동하는지, 어떻게 상호 작용하는지, I2P의 나머지 부분과 어떻게 상호 작용하는지에 대한 높은 수준의 보기. 이것은 제안의 주요 본문이다. 일부 제안은 Motivation과 Design으로 시작하여 Design이 약간 맞을 때까지 사양을 기다릴 수 있다.
 
 **Security implications**
-: What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.
+: 제안된 변경 사항이 익명성에 미치는 영향, 이러한 영향이 얼마나 잘 이해되는지 등에 대한 설명.
 
 **Specification**
-: A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.
+: 이 제안을 구현하기 위해 I2P 사양에 추가해야 할 내용에 대한 자세한 설명. 이것은 사양이 최종적으로 포함할 내용과 거의 동일한 수준의 자세함이어야 한다. 독립적인 프로그래머가 이 제안의 사양을 기반으로 호환되는 구현을 작성할 수 있어야 한다.
 
 **Compatibility**
-: Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven't made a "flag day" change since March 2008, and we don't want to do another one.
+: I2P의 버전이 이 제안을 따르는 경우, 버전이 이 제안을 따르지 않는 경우와 호환되는지 여부. 호환성이 가능하다면, 어떻게 호환성을 달성할 수 있는지 설명한다. 일반적으로, 우리는 호환성을 유지하려고 노력한다. 2008년 3월 이후 "flag day" 변경을 하지 않았으며, 다시 한 번 하지 않으려고 한다.
 
 **Implementation**
-: If the proposal will be tricky to implement in I2P's current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.
+: 이 제안이 I2P의 현재 아키텍처에서 구현하기 어려울 경우, 문서에는 구현 방법에 대한 일부 논의가 포함될 수 있다. 실제 패치는 공개 monotone 브랜치에 또는 Trac에 업로드되어야 한다.
 
 **Performance and scalability notes**
-: If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.
+: 이 기능이 성능(메모리, CPU, 대역폭) 또는 확장성에 영향을 미칠 경우, 성능 저하를 피하고, 중요하지 않은 성능 개선에 시간을 낭비하지 않도록 영향을 분석해야 한다.
 
 **References**
-: If the proposal refers to outside documents, these should be listed.
+: 이 제안이 외부 문서를 참조하는 경우, 이러한 문서가 나열되어야 한다.
 
 ## Proposal status
 
 **Open**
-: A proposal under discussion.
+: 논의 중인 제안.
 
 **Accepted**
-: The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.
+: 제안이 완료되었으며, 구현할 계획이다. 이 지점 이후로, 제안의 실질적인 변경 사항은 피해야 하며, 프로세스가どこ선가 실패한 표시로 간주되어야 한다.
 
 **Finished**
-: The proposal has been accepted and implemented. After this point, the proposal should not be changed.
+: 제안이 승인되어 구현되었다. 이 지점 이후로, 제안은 변경되어서는 안 된다.
 
 **Closed**
-: The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.
+: 제안이 승인되어 구현되었으며, 주요 사양 문서에 병합되었다. 이 지점 이후로, 제안은 변경되어서는 안 된다.
 
 **Rejected**
-: We're not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.
+: 우리는 이 제안에서 설명한 기능을 구현하지 않을 것이다. 그러나 우리는 이 제안의 다른 버전을 구현할 수 있다. 자세한 내용은 문서의 댓글을 참조하라. 이 지점 이후로, 제안은 변경되어서는 안 된다. 다른 버전의 아이디어를 제기하려면, 새로운 제안을 작성해야 한다.
 
 **Draft**
-: This isn't a complete proposal yet; there are definite missing pieces. Please don't add any new proposals with this status; put them in the "ideas" sub-directory instead.
+: 이것은 아직 완전한 제안이 아니다. 아직 누락된 부분이 있다. 새로운 제안을 추가하지 말고, 대신 "ideas" 하위 디렉토리에 넣어라.
 
 **Needs-Revision**
-: The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.
+: 제안의 아이디어는 좋지만, 제안이 있는 그대로는 심각한 문제가 있어 승인될 수 없다. 자세한 내용은 문서의 댓글을 참조하라.
 
 **Dead**
-: The proposal hasn't been touched in a long time, and it doesn't look like anybody is going to complete it soon. It can become "Open" again if it gets a new proponent.
+: 제안이 오랫동안 건드려지지 않았으며, 곧 완료될 것 같지 않다. 새로운 후원자가 나타나면 다시 "Open"으로 될 수 있다.
 
 **Needs-Research**
-: There are research problems that need to be solved before it's clear whether the proposal is a good idea.
+: 이 제안이 좋은 아이디어인지 여부를 명확히 하기 전에 해결해야 할 연구 문제가 있다.
 
 **Meta**
-: This is not a proposal, but a document about proposals.
+: 이것은 제안이 아니다. 제안에 대한 문서이다.
 
 **Reserve**
-: This proposal is not something we're currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.
+: 이 제안은 현재 구현할 계획이 없지만, 나중에 이 제안에서 설명한 것과 유사한 것을 하기로 결정하면 다시 살릴 수 있다.
 
 **Informational**
-: This proposal is the last word on what it's doing. It isn't going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.
+: 이 제안은正在進行中인 마지막 단어이다. 이것은 새로운 하위 시스템에 대한 새로운 사양으로 복사 및 붙여넣기되지 않는 한 사양이 되지 않을 것이다.
 
-The editors maintain the correct status of proposals, based on rough consensus and their own discretion.
+편집자는 일치된 의견과 자신의 재량에 따라 제안의 올바른 상태를 유지한다.
 
 ## Proposal numbering
 
-Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren't recycled.
+000-099는 특별한 메타 제안을 위한 예약 번호이다. 100 이상은 실제 제안에 사용된다. 번호는 재사용되지 않는다.
 
 ## References
 

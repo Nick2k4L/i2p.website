@@ -5,33 +5,32 @@ author: "Meeh"
 description: "Organization launch"
 categories: ["press"]
 ---
+Xin chào tất cả mọi người!
 
-Hello all!
+Hôm nay chúng tôi xin thông báo về dự án Privacy Solutions, một tổ chức mới phát triển và duy trì phần mềm I2P. Privacy Solutions bao gồm một số nỗ lực phát triển mới nhằm tăng cường quyền riêng tư, bảo mật và ẩn danh cho người dùng, dựa trên các giao thức và công nghệ I2P.
 
-Today we announce the Privacy Solutions project, a new organization that develops and maintains I2P software. Privacy Solutions includes several new development efforts designed to enhance the privacy, security, and anonymity for users, based on I2P protocols and technology.
+Các nỗ lực này bao gồm:
 
-These efforts include:
+1. Gói trình duyệt Abscond.
+2. Dự án router i2pd bằng C++.
+3. Dự án giám sát mạng I2P "BigBrother".
+4. Dự án tiền mã hóa Anoncoin.
+5. Dự án tiền mã hóa Monero.
 
-1. The Abscond browser bundle.
-2. The i2pd C++ router project.
-3. The "BigBrother" I2P network monitoring project.
-4. The Anoncoin crypto-coin project.
-5. The Monero crypto-coin project.
+Nguồn tài trợ ban đầu của Privacy Solutions đến từ những người ủng hộ các dự án Anoncoin và Monero. Privacy Solutions là một tổ chức phi lợi nhuận có trụ sở tại Na Uy, đã đăng ký trong hệ thống đăng ký chính phủ Na Uy. (Tương tự như loại hình 501(c)3 tại Mỹ.)
 
-Privacy Solutions' initial funding was provided by the supporters of the Anoncoin and Monero projects. Privacy Solutions is a Norway-based non-profit type of organization registered within the Norwegian government registers. (Kind of like US 501(c)3.)
+Privacy Solutions dự kiến sẽ xin tài trợ từ chính phủ Na Uy cho nghiên cứu mạng, vì dự án BigBrother (chúng tôi sẽ giải thích rõ hơn về điều này) và các đồng tiền mã hóa dự kiến sử dụng mạng độ trễ thấp làm lớp truyền tải chính. Nghiên cứu của chúng tôi sẽ hỗ trợ các bước tiến trong công nghệ phần mềm về ẩn danh, bảo mật và quyền riêng tư.
 
-Privacy Solutions plans to apply for funding from the Norwegian goverment for network research, because of BigBrother (We'll get back to what that is) and the coins that are planned to use low-latency networks as primary transport layer. Our research will support advances in software technology for anonymity, security, and privacy.
+Trước tiên, xin nói đôi nét về Gói Trình Duyệt Abscond. Ban đầu đây là dự án một người do Meeh thực hiện, nhưng sau đó bạn bè bắt đầu gửi các bản vá, và dự án hiện đang cố gắng tạo ra trải nghiệm truy cập I2P dễ dàng như Tor với gói trình duyệt của họ. Bản phát hành đầu tiên của chúng tôi không còn xa, chỉ còn một vài tác vụ script gitian cần hoàn thành, bao gồm cả việc thiết lập chuỗi công cụ Apple. Tuy nhiên, chúng tôi sẽ thêm phần giám sát bằng PROCESS_INFORMATION (một cấu trúc C lưu trữ thông tin quan trọng về tiến trình) từ phiên bản Java để kiểm tra I2P trước khi công bố phiên bản ổn định. i2pd cũng sẽ thay thế phiên bản Java khi sẵn sàng, và sẽ không còn lý do gì để đóng gói JRE vào bộ cài nữa. Bạn có thể đọc thêm về Gói Trình Duyệt Abscond tại https://hideme.today/dev
 
-First a little bit about the Abscond Browser Bundle. This was first a one-man project by Meeh, but later on friends started sending patches, the project is now trying to create the same easy access to I2P as Tor has with their browser bundle. Our first release isn't far away, it's just some gitian script tasks left, including setup of the Apple toolchain. But again we will add monitoring with PROCESS_INFORMATION (A C struct keeping vital proces information about an process) from the Java instance to check on I2P before we declare it stable. I2pd will also switch with the Java version once it's ready, and there is no point in shipping a JRE in the bundle anymore. You can read more about the Abscond Browser Bundle at https://hideme.today/dev
+Chúng tôi cũng muốn thông báo về tình trạng hiện tại của i2pd. i2pd hiện đã hỗ trợ streaming hai chiều, cho phép sử dụng không chỉ HTTP mà cả các kênh truyền thông lâu dài. Hỗ trợ IRC tức thì đã được thêm vào. Người dùng i2pd có thể sử dụng nó giống như I2P phiên bản Java để truy cập mạng IRC trên I2P. I2PTunnel là một trong những tính năng chính của mạng I2P, cho phép các ứng dụng không phải I2P giao tiếp một cách minh bạch. Vì vậy, đây là tính năng thiết yếu đối với i2pd và là một trong những mốc phát triển quan trọng.
 
-We would also like to inform of the current status of i2pd. I2pd supports bi-directional streaming now, that allows to use not only HTTP but long-lived communication channels. Instant IRC support has been added. I2pd users are able to use it same way as Java I2P for access to I2P IRC network. I2PTunnel is one of key features of I2P network, allowing non-I2P applications communicate transparently. That's why it's vital feature for i2pd and one of key milestones.
+Cuối cùng, nếu bạn đã quen thuộc với I2P, bạn có lẽ đã biết đến Bigbrother.i2p, một hệ thống đo lường do Meeh tạo ra cách đây hơn một năm. Gần đây chúng tôi nhận thấy rằng Meeh thực tế đã thu thập được 100Gb dữ liệu không trùng lặp từ các nút gửi báo cáo kể từ khi ra mắt ban đầu. Dữ liệu này cũng sẽ được chuyển sang Privacy Solutions và được viết lại với backend NSPOF. Cùng lúc đó, chúng tôi cũng sẽ bắt đầu sử dụng Graphite (http://graphite.wikidot.com/screen-shots). Điều này sẽ cung cấp cho chúng tôi cái nhìn tổng quan tuyệt vời về mạng mà không gây ảnh hưởng đến quyền riêng tư của người dùng cuối. Các client sẽ lọc mọi dữ liệu, chỉ giữ lại quốc gia, mã băm router và tỷ lệ thành công trong việc xây dựng tunnel. Tên dịch vụ này, như thường lệ, là một chút đùa vui từ Meeh.
 
-At last, if you are familiar with I2P you probably know about Bigbrother.i2p, which is a metrics system Meeh made over a year back. Recently we noticed that Meeh actually have 100Gb of non-duplicated data from nodes reporting in since initial launch. This will also be moved to Privacy Solutions and be rewritten with a NSPOF backend. With this we will aslo start using the Graphite (http://graphite.wikidot.com/screen-shots). This will give us a great overview over the network without privacy issues for our end users. The clients filter all data except country, router hash and success rate on tunnel buildings. The name of this service is as always a little joke from Meeh.
+Chúng tôi đã rút gọn một chút thông tin ở đây, nếu bạn muốn biết thêm chi tiết, vui lòng truy cập https://blog.privacysolutions.no/ Trang web hiện vẫn đang trong quá trình xây dựng và sẽ có thêm nhiều nội dung hơn!
 
-We have shorted down a bit of the news here, if you're interested in more information please visit https://blog.privacysolutions.no/ We're still under construction and more content will come!
+Để biết thêm thông tin, vui lòng liên hệ: press@privacysolutions.no
 
-For further information contact: press@privacysolutions.no
-
-Best regards,
+Trân trọng,
 
 Mikal "Meeh" Villa

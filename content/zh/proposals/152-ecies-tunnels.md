@@ -15,182 +15,168 @@ target: "0.9.48"
 implementedin: "0.9.48"
 toc: true
 ---
+## 注意
+网络部署和测试正在进行中。  
+可能进行小幅修订。  
+参见 [SPEC](/docs/specs/tunnel-implementation/) 获取官方规范。
 
-## Note
-Network deployment and testing in progress.
-Subject to minor revisions.
-See [SPEC](/docs/specs/tunnel-implementation/) for the official specification.
 
+## 概述
 
-## Overview
+本文档提议对隧道构建消息的加密方式进行修改，  
+使用 [ECIES-X25519](/docs/specs/ecies/) 引入的密码原语。  
+这是整体提案 [Proposal 156](/proposals/156-ecies-routers) 的一部分，  
+旨在将路由器从 ElGamal 迁移至 ECIES-X25519 密钥。
 
-This document proposes changes to Tunnel Build message encryption
-using crypto primitives introduced by [ECIES-X25519](/docs/specs/ecies/).
-It is a portion of the overall proposal
-[Proposal 156](/proposals/156-ecies-routers) for converting routers from ElGamal to ECIES-X25519 keys.
+为实现网络从 ElGamal + AES256 到 ECIES + ChaCha20 的过渡，  
+需要支持包含混合 ElGamal 和 ECIES 路由器的隧道。  
+本文档提供了处理混合隧道跳点的规范。  
+ElGamal 跳点的格式、处理和加密方式不会做任何更改。
 
-For the purposes of transitioning the network from ElGamal + AES256 to ECIES + ChaCha20,
-tunnels with mixed ElGamal and ECIES routers are necessary.
-Specifications for handling mixed tunnel hops are provided.
-No changes will be made to the format, processing, or encryption of ElGamal hops.
+使用 ElGamal 的隧道创建者需要为每个跳点生成临时的 X25519 密钥对，  
+并遵循本规范创建包含 ECIES 跳点的隧道。
 
-ElGamal tunnel creators will need create ephemeral X25519 keypairs per-hop, and
-follow this spec for creating tunnels containing ECIES hops.
+本提案指定了实现 ECIES-X25519 隧道构建所需的变化。  
+如需了解 ECIES 路由器所需的所有变更概览，请参见提案 156 [Proposal 156](/proposals/156-ecies-routers)。
 
-This proposal specifies changes needed for ECIES-X25519 Tunnel Building.
-For an overview of all changes required for ECIES routers, see proposal 156 [Proposal 156](/proposals/156-ecies-routers).
+本提案保持了隧道构建记录的大小不变，  
+以确保兼容性。更小的构建记录和消息将在后续实现——参见 [Proposal 157](/proposals/157-new-tbm)。
 
-This proposal maintains the same size for tunnel build records,
-as required for compatibility. Smaller build records and messages will be
-implemented later - see [Proposal 157](/proposals/157-new-tbm).
 
+### 密码原语
 
-### Cryptographic Primitives
+不引入新的密码原语。实现本提案所需的密码原语包括：
 
-No new cryptographic primitives are introduced. The primitives required to implement this proposal are:
+- AES-256-CBC，见 [Cryptography](/docs/specs/cryptography/)
+- STREAM ChaCha20/Poly1305 函数：  
+  ENCRYPT(k, n, plaintext, ad) 和 DECRYPT(k, n, ciphertext, ad) —— 见 [NTCP2](/docs/specs/ntcp2/) [ECIES-X25519](/docs/specs/ecies/) 和 [RFC-7539](https://tools.ietf.org/html/rfc7539)
+- X25519 DH 函数 —— 见 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/)
+- HKDF(salt, ikm, info, n) —— 见 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/)
 
-- AES-256-CBC as in [Cryptography](/docs/specs/cryptography/)
-- STREAM ChaCha20/Poly1305 functions:
-  ENCRYPT(k, n, plaintext, ad) and DECRYPT(k, n, ciphertext, ad) - as in [NTCP2](/docs/specs/ntcp2/) [ECIES-X25519](/docs/specs/ecies/) and [RFC-7539](https://tools.ietf.org/html/rfc7539)
-- X25519 DH functions - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
-- HKDF(salt, ikm, info, n) - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
+其他在别处定义的 Noise 函数：
 
-Other Noise functions defined elsewhere:
+- MixHash(d) —— 见 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/)
+- MixKey(d) —— 见 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/)
 
-- MixHash(d) - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
-- MixKey(d) - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
 
+### 目标
 
-### Goals
+- 提高密码操作速度
+- 使用 ECIES 原语替换 ElGamal + AES256/CBC，用于 Tunnel BuildRequestRecords 和 BuildReplyRecords
+- 加密后的 BuildRequestRecords 和 BuildReplyRecords 大小不变（528 字节），以确保兼容性
+- 不引入新的 I2NP 消息
+- 保持加密构建记录的大小以确保兼容性
+- 为隧道构建消息添加前向保密性
+- 添加认证加密
+- 检测构建请求记录的跳点重排序
+- 提高时间戳分辨率，以便减少 Bloom 过滤器的大小
+- 添加隧道过期字段，以支持可变隧道生命周期（仅限全 ECIES 隧道）
+- 添加可扩展的选项字段以支持未来功能
+- 复用现有密码原语
+- 在保持兼容性的同时尽可能提升隧道构建消息的安全性
+- 支持混合 ElGamal/ECIES 对等体的隧道
+- 增强对构建消息“标记”攻击的防御能力
+- 跳点在处理构建消息时无需提前知道下一跳的加密类型，  
+  因为此时可能尚未获取下一跳的 RI
+- 最大限度保持与当前网络的兼容性
+- 不改变 ElGamal 路由器的隧道 AES 请求/回复加密
+- 不改变隧道 AES “层” 加密，相关内容见 [Proposal 153](/proposals/153-chacha20-layer-encryption)
+- 继续支持 8 条记录的 TBM/TBRM 和可变大小的 VTBM/VTBRM
+- 不要求全网“旗帜日”式升级
 
-- Increase speed of crypto operations
-- Replace ElGamal + AES256/CBC with ECIES primitives for tunnel BuildRequestRecords and BuildReplyRecords.
-- No change to size of encrypted BuildRequestRecords and BuildReplyRecords (528 bytes) for compatibility
-- No new I2NP messages
-- Maintain encrypted build record size for compatibility
-- Add forward secrecy for Tunnel Build Messages.
-- Add authenticated encryption
-- Detect hops reordering BuildRequestRecords
-- Increase resolution of timestamp so that Bloom filter size may be reduced
-- Add field for tunnel expiration so that varying tunnel lifetimes will be possible (all-ECIES tunnels only)
-- Add extensible options field for future features
-- Reuse existing cryptographic primitives
-- Improve tunnel build message security where possible while maintaining compatibility
-- Support tunnels with mixed ElGamal/ECIES peers
-- Improve defenses against "tagging" attacks on build messages
-- Hops do not need to know the encryption type of the next hop before processing the build message,
-  as they may not have the next hop's RI at that time
-- Maximize compatibility with current network
-- No change to tunnel build AES request/reply encryption for ElGamal routers
-- No change to tunnel AES "layer" encryption, for that see [Proposal 153](/proposals/153-chacha20-layer-encryption)
-- Continue to support both 8-record TBM/TBRM and variable-size VTBM/VTBRM
-- Do not require "flag day" upgrade to entire network
 
+### 非目标
 
-### Non-Goals
+- 重新设计隧道构建消息，要求“旗帜日”式升级
+- 缩小隧道构建消息（需要全 ECIES 跳点和新提案）
+- 使用 [Proposal 143](/proposals/143-build-message-options) 中定义的隧道构建选项，仅小消息需要
+- 双向隧道 —— 参见 [Proposal 119](/proposals/119-bidirectional-tunnels)
+- 更小的隧道构建消息 —— 参见 [Proposal 157](/proposals/157-new-tbm)
 
-- Complete redesign of tunnel build messages requiring a "flag day".
-- Shrinking tunnel build messages (requires all-ECIES hops and a new proposal)
-- Use of tunnel build options as defined in [Proposal 143](/proposals/143-build-message-options), only required for small messages
-- Bidirectional tunnels - for that see [Proposal 119](/proposals/119-bidirectional-tunnels)
-- Smaller tunnel build messages - for that see [Proposal 157](/proposals/157-new-tbm)
 
+## 威胁模型
 
-## Threat Model
+### 设计目标
 
-### Design Goals
+- 任何跳点都无法确定隧道的发起者。
 
-- No hops are able to determine the originator of the tunnel.
+- 中间跳点必须无法确定隧道的方向或其在隧道中的位置。
 
-- Middle hops must not be able to determine the direction of the tunnel
-  or their position in the tunnel.
+- 任何跳点都无法读取其他请求或回复记录的内容，  
+  除了下一跳的截断路由器哈希和临时密钥。
 
-- No hops can read any contents of other request or reply records, except
-  for truncated router hash and ephemeral key for next hop
+- 出站构建的回复隧道成员无法读取任何回复记录。
 
-- No member of reply tunnel for outbound build can read any reply records.
+- 入站构建的出站隧道成员无法读取任何请求记录，  
+  但 OBEP 可以看到下一跳的截断路由器哈希和临时密钥（IBGW）
 
-- No member of outbound tunnel for inbound build can read any request records,
-  except that OBEP can see truncated router hash and ephemeral key for IBGW
 
+### 标记攻击
 
+隧道构建设计的主要目标之一是使共谋路由器 X 和 Y 更难确认它们处于同一隧道中。  
+如果路由器 X 在第 m 跳，路由器 Y 在第 m+1 跳，它们显然会知道；  
+但如果路由器 X 在第 m 跳，而路由器 Y 在第 m+n 跳（n>1），这应困难得多。
 
+标记攻击是指中间跳点 X 以某种方式修改隧道构建消息，  
+使得路由器 Y 在收到消息时能够检测到该修改。  
+目标是使任何被修改的消息在到达路由器 Y 之前被 X 和 Y 之间的某个路由器丢弃。  
+对于未被丢弃而到达路由器 Y 的修改，隧道创建者应在回复中检测到损坏并丢弃该隧道。
 
-### Tagging Attacks
+可能的攻击方式：
 
-A major goal of the tunnel building design is to make it harder
-for colluding routers X and Y to know that they are in a single tunnel.
-If router X is at hop m and router Y is at hop m+1, they obviously will know.
-But if router X is at hop m and router Y is at hop m+n for n>1, this should be much harder.
+- 修改一条构建记录
+- 替换一条构建记录
+- 添加或删除一条构建记录
+- 重新排序构建记录
 
-Tagging attacks are where middle-hop router X alters the tunnel build message in such a way that
-router Y can detect the alteration when the build message gets there.
-The goal is for any altered message is dropped by a router between X and Y before it gets to router Y.
-For modifications that are not dropped before router Y, the tunnel creator should detect the corruption in the reply
-and discard the tunnel.
 
-Possible attacks:
+TODO: 当前设计是否能防止所有这些攻击？
 
-- Alter a build record
-- Replace a build record
-- Add or remove a build record
-- Reorder the build records
 
 
 
+## 设计
 
+### Noise 协议框架
 
-TODO: Does the current design prevent all these attacks?
+本提案基于 Noise 协议框架 [NOISE](https://noiseprotocol.org/noise.html)（修订版 34，2018-07-11）提出要求。  
+在 Noise 术语中，Alice 是发起方，Bob 是响应方。
 
+本提案基于 Noise 协议 Noise_N_25519_ChaChaPoly_SHA256。  
+该 Noise 协议使用以下原语：
 
+- 单向握手模式：N  
+  Alice 不向 Bob 发送其静态密钥（N）
 
+- DH 函数：X25519  
+  X25519 DH，密钥长度为 32 字节，如 [RFC-7748](https://tools.ietf.org/html/rfc7748) 所定义。
 
+- 加密函数：ChaChaPoly  
+  AEAD_CHACHA20_POLY1305，如 [RFC-7539](https://tools.ietf.org/html/rfc7539) 第 2.8 节所定义。  
+  使用 12 字节 nonce，前 4 字节设为零。  
+  与 [NTCP2](/docs/specs/ntcp2/) 中的相同。
 
+- 哈希函数：SHA256  
+  标准 32 字节哈希，I2P 中已广泛使用。
 
-## Design
 
-### Noise Protocol Framework
+#### 对框架的补充
 
-This proposal provides the requirements based on the Noise Protocol Framework
-[NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11).
-In Noise parlance, Alice is the initiator, and Bob is the responder.
+无。
 
-This proposal is based on the Noise protocol Noise_N_25519_ChaChaPoly_SHA256.
-This Noise protocol uses the following primitives:
 
-- One-Way Handshake Pattern: N
-  Alice does not transmit her static key to Bob (N)
+### 握手模式
 
-- DH Function: X25519
-  X25519 DH with a key length of 32 bytes as specified in [RFC-7748](https://tools.ietf.org/html/rfc7748).
+握手使用 [Noise](https://noiseprotocol.org/noise.html) 握手模式。
 
-- Cipher Function: ChaChaPoly
-  AEAD_CHACHA20_POLY1305 as specified in [RFC-7539](https://tools.ietf.org/html/rfc7539) section 2.8.
-  12 byte nonce, with the first 4 bytes set to zero.
-  Identical to that in [NTCP2](/docs/specs/ntcp2/).
+使用以下字母映射：
 
-- Hash Function: SHA256
-  Standard 32-byte hash, already used extensively in I2P.
+- e = 一次性临时密钥
+- s = 静态密钥
+- p = 消息载荷
 
-
-#### Additions to the Framework
-
-None.
-
-
-### Handshake Patterns
-
-Handshakes use [Noise](https://noiseprotocol.org/noise.html) handshake patterns.
-
-The following letter mapping is used:
-
-- e = one-time ephemeral key
-- s = static key
-- p = message payload
-
-The build request is identical to the Noise N pattern.
-This is also identical to the first (Session Request) message in the XK pattern used in [NTCP2](/docs/specs/ntcp2/).
-
+构建请求与 Noise N 模式相同。  
+这也与 [NTCP2](/docs/specs/ntcp2/) 中 XK 模式的第一条消息（会话请求）相同。
 
 ```text
 <- s
@@ -199,532 +185,511 @@ This is also identical to the first (Session Request) message in the XK pattern 
 ```
 
 
-### Request encryption
+### 请求加密
 
-Build request records are created by the tunnel creator and asymmetrically encrypted to the individual hop.
-This asymmetric encryption of request records is currently ElGamal as defined in [Cryptography](/docs/specs/cryptography/)
-and contains a SHA-256 checksum. This design is not forward-secret.
+构建请求记录由隧道创建者生成，并使用非对称加密发送给各个跳点。  
+当前的请求记录非对称加密使用 ElGamal，定义见 [Cryptography](/docs/specs/cryptography/)，  
+并包含 SHA-256 校验和。该设计不具备前向保密性。
 
-The new design will use the one-way Noise pattern "N" with ECIES-X25519 ephemeral-static DH, with an HKDF, and
-ChaCha20/Poly1305 AEAD for forward secrecy, integrity, and authentication.
-Alice is the tunnel build requestor. Each hop in the tunnel is a Bob.
+新设计将使用单向 Noise 模式“N”，结合 ECIES-X25519 临时-静态 DH、HKDF 和  
+ChaCha20/Poly1305 AEAD，以实现前向保密、完整性和认证。  
+Alice 是隧道构建请求方。隧道中的每个跳点都是 Bob。
 
-
-(Payload Security Properties)
+（载荷安全属性）
 
 ```text
-N:                      Authentication   Confidentiality
+N:                      认证   保密性
     -> e, es                  0                2
 
-    Authentication: None (0).
-    This payload may have been sent by any party, including an active attacker.
+    认证：无（0）。  
+    该载荷可能由任何方发送，包括主动攻击者。
 
-    Confidentiality: 2.
-    Encryption to a known recipient, forward secrecy for sender compromise
-    only, vulnerable to replay.  This payload is encrypted based only on DHs
-    involving the recipient's static key pair.  If the recipient's static
-    private key is compromised, even at a later date, this payload can be
-    decrypted.  This message can also be replayed, since there's no ephemeral
-    contribution from the recipient.
+    保密性：2。  
+    加密至已知接收方，仅对发送方密钥泄露具有前向保密性，易受重放攻击。  
+    该载荷仅基于涉及接收方静态密钥对的 DH 进行加密。  
+    如果接收方的静态私钥被泄露（即使在将来），该载荷可被解密。  
+    此消息也可被重放，因为接收方没有临时密钥贡献。
 
-    "e": Alice generates a new ephemeral key pair and stores it in the e
-         variable, writes the ephemeral public key as cleartext into the
-         message buffer, and hashes the public key along with the old h to
-         derive a new h.
+    "e"：Alice 生成新的临时密钥对并存储在 e 变量中，将临时公钥以明文写入消息缓冲区，  
+         并将公钥与旧的 h 一起哈希以派生新的 h。
 
-    "es": A DH is performed between the Alice's ephemeral key pair and the
-          Bob's static key pair.  The result is hashed along with the old ck to
-          derive a new ck and k, and n is set to zero.
+    "es"：在 Alice 的临时密钥对和 Bob 的静态密钥对之间执行 DH。  
+          结果与旧的 ck 一起哈希以派生新的 ck 和 k，n 设为零。
 ```
 
 
+### 回复加密
 
-### Reply encryption
+构建回复记录由跳点创建者生成，并使用对称加密发送回创建者。  
+当前的回复记录对称加密使用 AES，并前置 SHA-256 校验和。  
+该设计不具备前向保密性。
 
-Build reply records are created by the hops creator and symmetrically encrypted to the creator.
-This symmetric encryption of reply records is currently AES with a prepended SHA-256 checksum.
-and contains a SHA-256 checksum. This design is not forward-secret.
-
-The new design will use ChaCha20/Poly1305 AEAD for integrity, and authentication.
-
-
-### Justification
-
-The ephemeral public key in the request does not need to be obfuscated with AES
-or Elligator2. The previous hop is the only one that can see it, and that hop
-knows that the next hop is ECIES.
-
-Reply records do not need full asymmetric encryption with another DH.
+新设计将使用 ChaCha20/Poly1305 AEAD 实现完整性与认证。
 
 
+### 理由
 
-## Specification
+请求中的临时公钥无需使用 AES 或 Elligator2 混淆。  
+只有前一跳能看到它，而前一跳已知下一跳是 ECIES。
+
+回复记录无需使用另一个 DH 进行完整的非对称加密。
+
+
+## 规范
 
 
 
-### Build Request Records
+### 构建请求记录
 
-Encrypted BuildRequestRecords are 528 bytes for both ElGamal and ECIES, for compatibility.
+加密的 BuildRequestRecords 对 ElGamal 和 ECIES 均为 528 字节，以确保兼容性。
 
 
-#### Request Record Unencrypted (ElGamal)
+#### 请求记录未加密（ElGamal）
 
-For reference, this is the current specification of the tunnel BuildRequestRecord for ElGamal routers, taken from [I2NP](/docs/specs/i2np/).
-The unencrypted data is prepended with a nonzero byte and the SHA-256 hash of the data before encryption,
-as defined in [Cryptography](/docs/specs/cryptography/).
+作为参考，这是来自 [I2NP](/docs/specs/i2np/) 的 ElGamal 路由器当前隧道 BuildRequestRecord 规范。  
+未加密数据在加密前会前置一个非零字节和数据的 SHA-256 哈希，  
+定义见 [Cryptography](/docs/specs/cryptography/)。
 
-All fields are big-endian.
+所有字段均为大端序。
 
-Unencrypted size: 222 bytes
+未加密大小：222 字节
 
 ```text
-bytes     0-3: tunnel ID to receive messages as, nonzero
-  bytes    4-35: local router identity hash
-  bytes   36-39: next tunnel ID, nonzero
-  bytes   40-71: next router identity hash
-  bytes  72-103: AES-256 tunnel layer key
-  bytes 104-135: AES-256 tunnel IV key
-  bytes 136-167: AES-256 reply key
-  bytes 168-183: AES-256 reply IV
-  byte      184: flags
-  bytes 185-188: request time (in hours since the epoch, rounded down)
-  bytes 189-192: next message ID
-  bytes 193-221: uninterpreted / random padding
+字节     0-3：接收消息的隧道 ID，非零
+  字节    4-35：本地路由器身份哈希
+  字节   36-39：下一跳隧道 ID，非零
+  字节   40-71：下一跳路由器身份哈希
+  字节  72-103：AES-256 隧道层密钥
+  字节 104-135：AES-256 隧道 IV 密钥
+  字节 136-167：AES-256 回复密钥
+  字节 168-183：AES-256 回复 IV
+  字节      184：标志位
+  字节 185-188：请求时间（自纪元以来的小时数，向下取整）
+  字节 189-192：下一消息 ID
+  字节 193-221：未解释 / 随机填充
 ```
 
 
-#### Request Record Encrypted (ElGamal)
+#### 请求记录已加密（ElGamal）
 
-For reference, this is the current specification of the tunnel BuildRequestRecord for ElGamal routers, taken from [I2NP](/docs/specs/i2np/).
+作为参考，这是来自 [I2NP](/docs/specs/i2np/) 的 ElGamal 路由器当前隧道 BuildRequestRecord 规范。
 
-Encrypted size: 528 bytes
+加密大小：528 字节
 
 ```text
-bytes    0-15: Hop's truncated identity hash
-  bytes  16-528: ElGamal encrypted BuildRequestRecord
+字节    0-15：跳点的截断身份哈希
+  字节  16-528：ElGamal 加密的 BuildRequestRecord
 ```
 
 
 
 
-#### Request Record Unencrypted (ECIES)
+#### 请求记录未加密（ECIES）
 
-This is the proposed specification of the tunnel BuildRequestRecord for ECIES-X25519 routers.
-Summary of changes:
+这是为 ECIES-X25519 路由器提议的隧道 BuildRequestRecord 规范。  
+变更摘要：
 
-- Remove unused 32-byte router hash
-- Change request time from hours to minutes
-- Add expiration field for future variable tunnel time
-- Add more space for flags
-- Add Mapping for additional build options
-- AES-256 reply key and IV are not used for the hop's own reply record
-- Unencrypted record is longer because there is less encryption overhead
+- 移除未使用的 32 字节路由器哈希
+- 将请求时间从小时改为分钟
+- 添加过期字段以支持未来可变隧道时间
+- 增加标志位空间
+- 添加映射以支持额外构建选项
+- 跳点自身的回复记录不使用 AES-256 回复密钥
+- 未加密记录更长，因为加密开销更小
 
+请求记录不包含任何 ChaCha 回复密钥。  
+这些密钥由 KDF 派生。见下文。
 
-The request record does not contain any ChaCha reply keys.
-Those keys are derived from a KDF. See below.
+所有字段均为大端序。
 
-All fields are big-endian.
-
-Unencrypted size: 464 bytes
+未加密大小：464 字节
 
 ```text
-bytes     0-3: tunnel ID to receive messages as, nonzero
-  bytes     4-7: next tunnel ID, nonzero
-  bytes    8-39: next router identity hash
-  bytes   40-71: AES-256 tunnel layer key
-  bytes  72-103: AES-256 tunnel IV key
-  bytes 104-135: AES-256 reply key
-  bytes 136-151: AES-256 reply IV
-  byte      152: flags
-  bytes 153-155: more flags, unused, set to 0 for compatibility
-  bytes 156-159: request time (in minutes since the epoch, rounded down)
-  bytes 160-163: request expiration (in seconds since creation)
-  bytes 164-167: next message ID
-  bytes   168-x: tunnel build options (Mapping)
-  bytes     x-x: other data as implied by flags or options
-  bytes   x-463: random padding
+字节     0-3：接收消息的隧道 ID，非零
+  字节     4-7：下一跳隧道 ID，非零
+  字节    8-39：下一跳路由器身份哈希
+  字节   40-71：AES-256 隧道层密钥
+  字节  72-103：AES-256 隧道 IV 密钥
+  字节 104-135：AES-256 回复密钥
+  字节 136-151：AES-256 回复 IV
+  字节      152：标志位
+  字节 153-155：更多标志位，未使用，为兼容性设为 0
+  字节 156-159：请求时间（自纪元以来的分钟数，向下取整）
+  字节 160-163：请求过期时间（自创建以来的秒数）
+  字节 164-167：下一消息 ID
+  字节   168-x：隧道构建选项（映射）
+  字节     x-x：由标志位或选项隐含的其他数据
+  字节   x-463：随机填充
 ```
 
-The flags field is the same as defined in [Tunnel Creation](/docs/specs/tunnel-implementation/) and contains the following::
+标志位字段定义见 [Tunnel Creation](/docs/specs/tunnel-implementation/)，包含以下内容：
 
- Bit order: 76543210 (bit 7 is MSB)
- bit 7: if set, allow messages from anyone
- bit 6: if set, allow messages to anyone, and send the reply to the
-        specified next hop in a Tunnel Build Reply Message
- bits 5-0: Undefined, must set to 0 for compatibility with future options
+位顺序：76543210（位 7 为最高位）  
+位 7：若设置，则允许任何人发送消息  
+位 6：若设置，则允许向任何人发送消息，并将回复发送到  
+       隧道构建回复消息中指定的下一跳  
+位 5-0：未定义，为兼容未来选项必须设为 0
 
-Bit 7 indicates that the hop will be an inbound gateway (IBGW).  Bit 6
-indicates that the hop will be an outbound endpoint (OBEP).  If neither bit is
-set, the hop will be an intermediate participant.  Both cannot be set at once.
+位 7 表示该跳点将作为入站网关（IBGW）。位 6  
+表示该跳点将作为出站端点（OBEP）。若两者均未设置，  
+该跳点为中间参与者。两者不能同时设置。
 
-The request exipration is for future variable tunnel duration.
-For now, the only supported value is 600 (10 minutes).
+请求过期时间用于未来可变隧道持续时间。  
+目前唯一支持的值是 600（10 分钟）。
 
-The tunnel build options is a Mapping structure as defined in [Common Structures](/docs/specs/common-structures/).
-This is for future use. No options are currently defined.
-If the Mapping structure is empty, this is two bytes 0x00 0x00.
-The maximum size of the Mapping (including the length field) is 296 bytes,
-and the maximum value of the Mapping length field is 294.
-
-
-
-#### Request Record Encrypted (ECIES)
-
-All fields are big-endian except for the ephemeral public key which is little-endian.
-
-Encrypted size: 528 bytes
-
-```text
-bytes    0-15: Hop's truncated identity hash
-  bytes   16-47: Sender's ephemeral X25519 public key
-  bytes  48-511: ChaCha20 encrypted BuildRequestRecord
-  bytes 512-527: Poly1305 MAC
-```
+隧道构建选项是 [Common Structures](/docs/specs/common-structures/) 中定义的映射结构。  
+供将来使用。目前未定义任何选项。  
+若映射结构为空，则为两个字节 0x00 0x00。  
+映射的最大大小（包括长度字段）为 296 字节，  
+映射长度字段的最大值为 294。
 
 
+#### 请求记录已加密（ECIES）
 
-### Build Reply Records
+除临时公钥为小端序外，所有字段均为大端序。
 
-Encrypted BuildReplyRecords are 528 bytes for both ElGamal and ECIES, for compatibility.
-
-
-#### Reply Record Unencrypted (ElGamal)
-ElGamal replies are encrypted with AES.
-
-All fields are big-endian.
-
-Unencrypted size: 528 bytes
+加密大小：528 字节
 
 ```text
-bytes   0-31: SHA-256 Hash of bytes 32-527
-  bytes 32-526: random data
-  byte     527: reply
-
-  total length: 528
+字节    0-15：跳点的截断身份哈希
+  字节   16-47：发送方的临时 X25519 公钥
+  字节  48-511：ChaCha20 加密的 BuildRequestRecord
+  字节 512-527：Poly1305 MAC
 ```
 
 
-#### Reply Record Unencrypted (ECIES)
-This is the proposed specification of the tunnel BuildReplyRecord for ECIES-X25519 routers.
-Summary of changes:
 
-- Add Mapping for build reply options
-- Unencrypted record is longer because there is less encryption overhead
+### 构建回复记录
 
-ECIES replies are encrypted with ChaCha20/Poly1305.
+加密的 BuildReplyRecords 对 ElGamal 和 ECIES 均为 528 字节，以确保兼容性。
 
-All fields are big-endian.
 
-Unencrypted size: 512 bytes
+#### 回复记录未加密（ElGamal）
+ElGamal 回复使用 AES 加密。
+
+所有字段均为大端序。
+
+未加密大小：528 字节
 
 ```text
-bytes    0-x: Tunnel Build Reply Options (Mapping)
-  bytes    x-x: other data as implied by options
-  bytes  x-510: Random padding
-  byte     511: Reply byte
+字节   0-31：字节 32-527 的 SHA-256 哈希
+  字节 32-526：随机数据
+  字节     527：回复
+
+  总长度：528
 ```
 
-The tunnel build reply options is a Mapping structure as defined in [Common Structures](/docs/specs/common-structures/).
-This is for future use. No options are currently defined.
-If the Mapping structure is empty, this is two bytes 0x00 0x00.
-The maximum size of the Mapping (including the length field) is 511 bytes,
-and the maximum value of the Mapping length field is 509.
 
-The reply byte is one of the following values
-as defined in [Tunnel Creation](/docs/specs/tunnel-implementation/) to avoid fingerprinting:
+#### 回复记录未加密（ECIES）
+这是为 ECIES-X25519 路由器提议的隧道 BuildReplyRecord 规范。  
+变更摘要：
 
-- 0x00 (accept)
-- 30 (TUNNEL_REJECT_BANDWIDTH)
+- 添加构建回复选项的映射
+- 未加密记录更长，因为加密开销更小
 
+ECIES 回复使用 ChaCha20/Poly1305 加密。
 
-#### Reply Record Encrypted (ECIES)
+所有字段均为大端序。
 
-Encrypted size: 528 bytes
+未加密大小：512 字节
 
 ```text
-bytes   0-511: ChaCha20 encrypted BuildReplyRecord
-  bytes 512-527: Poly1305 MAC
+字节    0-x：隧道构建回复选项（映射）
+  字节    x-x：由选项隐含的其他数据
+  字节  x-510：随机填充
+  字节     511：回复字节
 ```
 
-After full transition to ECIES records, ranged padding rules are the same as for request records.
+隧道构建回复选项是 [Common Structures](/docs/specs/common-structures/) 中定义的映射结构。  
+供将来使用。目前未定义任何选项。  
+若映射结构为空，则为两个字节 0x00 0x00。  
+映射的最大大小（包括长度字段）为 511 字节，  
+映射长度字段的最大值为 509。
+
+回复字节为以下值之一，  
+定义见 [Tunnel Creation](/docs/specs/tunnel-implementation/)，以避免指纹识别：
+
+- 0x00（接受）
+- 30（TUNNEL_REJECT_BANDWIDTH）
 
 
-### Symmetric Encryption of Records
+#### 回复记录已加密（ECIES）
 
-Mixed tunnels are allowed, and necessary, for the transition from ElGamal to ECIES.
-During the transitionary period, an increasing number of routers will be keyed under ECIES keys.
-
-Symmetric cryptography preprocessing will run in the same way:
-
-- "encryption":
-
-  - cipher run in decryption mode
-  - request records preemptively decrypted in preprocessing (concealing encrypted request records)
-
-- "decryption":
-
-  - cipher run in encryption mode
-  - request records encrypted (revealing next plaintext request record) by participant hops
-
-- ChaCha20 does not have "modes", so it is simply run three times:
-
-  - once in preprocessing
-  - once by the hop
-  - once on final reply processing
-
-When mixed tunnels are used, tunnel creators will need to base the symmetric encryption
-of BuildRequestRecord on the current and previous hop's encryption type.
-
-Each hop will use its own encryption type for encrypting BuildReplyRecords, and the other
-records in the VariableTunnelBuildMessage (VTBM).
-
-On the reply path, the endpoint (sender) will need to undo the [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption), using each hop's reply key.
-
-As a clarifying example, let's look at an outbound tunnel w/ ECIES surrounded by ElGamal:
-
-- Sender (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
-
-All BuildRequestRecords are in their encrypted state (using ElGamal or ECIES).
-
-AES256/CBC cipher, when used, is still used for each record, without chaining across multiple records.
-
-Likewise, ChaCha20 will be used to encrypt each record, not streaming across the entire VTBM.
-
-The request records are preprocessed by the Sender (OBGW):
-
-- H3's record is "encrypted" using:
-
-  - H2's reply key (ChaCha20)
-  - H1's reply key (AES256/CBC)
-
-- H2's record is "encrypted" using:
-
-  - H1's reply key (AES256/CBC)
-
-- H1's record goes out without symmetric encryption
-
-Only H2 checks the reply encryption flag, and sees its followed by AES256/CBC.
-
-After being processed by each hop, the records are in a "decrypted" state:
-
-- H3's record is "decrypted" using:
-
-  - H3's reply key (AES256/CBC)
-
-- H2's record is "decrypted" using:
-
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20-Poly1305)
-
-- H1's record is "decrypted" using:
-
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20)
-  - H1's reply key (AES256/CBC)
-
-The tunnel creator, a.k.a. Inbound Endpoint (IBEP), postprocesses the reply:
-
-- H3's record is "encrypted" using:
-
-  - H3's reply key (AES256/CBC)
-
-- H2's record is "encrypted" using:
-
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20-Poly1305)
-
-- H1's record is "encrypted" using:
-
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20)
-  - H1's reply key (AES256/CBC)
-
-
-### Request Record Keys (ECIES)
-
-These keys are explicitly included in ElGamal BuildRequestRecords.
-For ECIES BuildRequestRecords, the tunnel keys and AES reply keys are included,
-but the ChaCha reply keys are derived from the DH exchange.
-See [Proposal 156](/proposals/156-ecies-routers) for details of the router static ECIES keys.
-
-Below is a description of how to derive the keys previously transmitted in request records.
-
-
-#### KDF for Initial ck and h
-
-This is standard [NOISE](https://noiseprotocol.org/noise.html) for pattern "N" with a standard protocol name.
+加密大小：528 字节
 
 ```text
-This is the "e" message pattern:
+字节   0-511：ChaCha20 加密的 BuildReplyRecord
+  字节 512-527：Poly1305 MAC
+```
 
-  // Define protocol_name.
+在完全过渡到 ECIES 记录后，填充规则与请求记录相同。
+
+
+### 记录的对称加密
+
+允许并需要混合隧道，以实现从 ElGamal 到 ECIES 的过渡。  
+在过渡期间，越来越多的路由器将使用 ECIES 密钥。
+
+对称密码预处理将以相同方式运行：
+
+- “加密”：
+
+  - 密码运行在解密模式
+  - 在预处理中预先解密请求记录（隐藏加密的请求记录）
+
+- “解密”：
+
+  - 密码运行在加密模式
+  - 跳点通过加密揭示下一个明文请求记录
+
+- ChaCha20 没有“模式”，因此只需运行三次：
+
+  - 预处理时一次
+  - 跳点处理时一次
+  - 最终回复处理时一次
+
+当使用混合隧道时，隧道创建者需要根据当前和前一跳的加密类型  
+来决定 BuildRequestRecord 的对称加密方式。
+
+每个跳点将使用自己的加密类型来加密 BuildReplyRecords，  
+以及 VariableTunnelBuildMessage (VTBM) 中的其他记录。
+
+在回复路径上，端点（发送方）需要使用每个跳点的回复密钥  
+撤销 [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption)。
+
+作为澄清示例，考虑一个被 ElGamal 包围的 ECIES 出站隧道：
+
+- 发送方（OBGW） -> ElGamal（H1） -> ECIES（H2） -> ElGamal（H3）
+
+所有 BuildRequestRecords 均处于加密状态（使用 ElGamal 或 ECIES）。
+
+使用 AES256/CBC 时，仍对每条记录单独使用，不跨多条记录链接。
+
+同样，ChaCha20 将用于加密每条记录，而不是在整个 VTBM 上流式加密。
+
+请求记录由发送方（OBGW）预处理：
+
+- H3 的记录使用以下方式“加密”：
+
+  - H2 的回复密钥（ChaCha20）
+  - H1 的回复密钥（AES256/CBC）
+
+- H2 的记录使用以下方式“加密”：
+
+  - H1 的回复密钥（AES256/CBC）
+
+- H1 的记录无需对称加密直接发出
+
+只有 H2 检查回复加密标志，并看到其后跟 AES256/CBC。
+
+每个跳点处理后，记录处于“解密”状态：
+
+- H3 的记录使用以下方式“解密”：
+
+  - H3 的回复密钥（AES256/CBC）
+
+- H2 的记录使用以下方式“解密”：
+
+  - H3 的回复密钥（AES256/CBC）
+  - H2 的回复密钥（ChaCha20-Poly1305）
+
+- H1 的记录使用以下方式“解密”：
+
+  - H3 的回复密钥（AES256/CBC）
+  - H2 的回复密钥（ChaCha20）
+  - H1 的回复密钥（AES256/CBC）
+
+隧道创建者（即入站端点 IBEP）对回复进行后处理：
+
+- H3 的记录使用以下方式“加密”：
+
+  - H3 的回复密钥（AES256/CBC）
+
+- H2 的记录使用以下方式“加密”：
+
+  - H3 的回复密钥（AES256/CBC）
+  - H2 的回复密钥（ChaCha20-Poly1305）
+
+- H1 的记录使用以下方式“加密”：
+
+  - H3 的回复密钥（AES256/CBC）
+  - H2 的回复密钥（ChaCha20）
+  - H1 的回复密钥（AES256/CBC）
+
+
+### 请求记录密钥（ECIES）
+
+这些密钥在 ElGamal BuildRequestRecords 中显式包含。  
+对于 ECIES BuildRequestRecords，隧道密钥和 AES 回复密钥包含在内，  
+但 ChaCha 回复密钥由 DH 交换派生。  
+有关路由器静态 ECIES 密钥的详细信息，参见 [Proposal 156](/proposals/156-ecies-routers)。
+
+以下是派生先前在请求记录中传输的密钥的方法描述。
+
+
+#### KDF 用于初始 ck 和 h
+
+这是标准 [NOISE](https://noiseprotocol.org/noise.html) 对模式“N”使用标准协议名称。
+
+```text
+这是“e”消息模式：
+
+  // 定义 protocol_name。
   Set protocol_name = "Noise_N_25519_ChaChaPoly_SHA256"
-  (31 bytes, US-ASCII encoded, no NULL termination).
+  （31 字节，US-ASCII 编码，无 NULL 终止）。
 
-  // Define Hash h = 32 bytes
-  // Pad to 32 bytes. Do NOT hash it, because it is not more than 32 bytes.
+  // 定义 Hash h = 32 字节
+  // 填充至 32 字节。不要哈希，因为它不超过 32 字节。
   h = protocol_name || 0
 
-  Define ck = 32 byte chaining key. Copy the h data to ck.
+  定义 ck = 32 字节链式密钥。将 h 数据复制到 ck。
   Set chainKey = h
 
   // MixHash(null prologue)
   h = SHA256(h);
 
-  // up until here, can all be precalculated by all routers.
+  // 到此为止，所有路由器均可预先计算。
 ```
 
 
-#### KDF for Request Record
+#### KDF 用于请求记录
 
-ElGamal tunnel creators generate an ephemeral X25519 keypair for each
-ECIES hop in the tunnel, and use scheme above for encrypting their BuildRequestRecord.
-ElGamal tunnel creators will use the scheme prior to this spec for encrypting to ElGamal hops.
+ElGamal 隧道创建者为隧道中的每个 ECIES 跳点生成一个临时 X25519 密钥对，  
+并使用上述方案加密其 BuildRequestRecord。  
+ElGamal 隧道创建者将使用本规范之前的方案加密到 ElGamal 跳点。
 
-ECIES tunnel creators will need to encrypt to each of the ElGamal hop's public key using the
-scheme defined in [Tunnel Creation](/docs/specs/tunnel-implementation/). ECIES tunnel creators will use the above scheme for encrypting
-to ECIES hops.
+ECIES 隧道创建者需要使用 [Tunnel Creation](/docs/specs/tunnel-implementation/) 中定义的方案  
+加密到每个 ElGamal 跳点的公钥。ECIES 隧道创建者将使用上述方案加密到 ECIES 跳点。
 
-This means that tunnel hops will only see encrypted records from their same encryption type.
+这意味着跳点只会看到与其自身加密类型相同的加密记录。
 
-For ElGamal and ECIES tunnel creators, they will generate unique ephemeral X25519 keypairs
-per-hop for encrypting to ECIES hops.
+对于 ElGamal 和 ECIES 隧道创建者，它们将为每个 ECIES 跳点生成唯一的临时 X25519 密钥对，  
+用于加密到 ECIES 跳点。
 
-**IMPORTANT**:
-Ephemeral keys must be unique per ECIES hop, and per build record.
-Failing to use unique keys opens an attack vector for colluding hops to confirm they are in the same tunnel.
-
+**重要**：  
+临时密钥必须在每个 ECIES 跳点和每个构建记录中唯一。  
+若未使用唯一密钥，共谋跳点可能确认它们处于同一隧道中，从而打开攻击向量。
 
 ```text
-// Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
+// 每个跳点的 X25519 静态密钥对 (hesk, hepk) 来自路由器身份
   hesk = GENERATE_PRIVATE()
   hepk = DERIVE_PUBLIC(hesk)
 
   // MixHash(hepk)
-  // || below means append
+  // || 表示连接
   h = SHA256(h || hepk);
 
-  // up until here, can all be precalculated by each router
-  // for all incoming build requests
+  // 到此为止，每个路由器均可为所有传入构建请求预先计算
 
-  // Sender generates an X25519 ephemeral keypair per ECIES hop in the VTBM (sesk, sepk)
+  // 发送方为 VTBM 中的每个 ECIES 跳点生成 X25519 临时密钥对 (sesk, sepk)
   sesk = GENERATE_PRIVATE()
   sepk = DERIVE_PUBLIC(sesk)
 
   // MixHash(sepk)
   h = SHA256(h || sepk);
 
-  End of "e" message pattern.
+  “e”消息模式结束。
 
-  This is the "es" message pattern:
+  这是“es”消息模式：
 
   // Noise es
-  // Sender performs an X25519 DH with Hop's static public key.
-  // Each Hop, finds the record w/ their truncated identity hash,
-  // and extracts the Sender's ephemeral key preceding the encrypted record.
+  // 发送方使用跳点的静态公钥执行 X25519 DH。
+  // 每个跳点找到其截断身份哈希对应的记录，
+  // 并提取加密记录前的发送方临时密钥。
   sharedSecret = DH(sesk, hepk) = DH(hesk, sepk)
 
   // MixKey(DH())
   //[chainKey, k] = MixKey(sharedSecret)
-  // ChaChaPoly parameters to encrypt/decrypt
+  // ChaChaPoly 加密/解密参数
   keydata = HKDF(chainKey, sharedSecret, "", 64)
-  // Save for Reply Record KDF
+  // 保存用于回复记录 KDF
   chainKey = keydata[0:31]
 
-  // AEAD parameters
+  // AEAD 参数
   k = keydata[32:63]
   n = 0
-  plaintext = 464 byte build request record
+  plaintext = 464 字节构建请求记录
   ad = h
   ciphertext = ENCRYPT(k, n, plaintext, ad)
 
-  End of "es" message pattern.
+  “es”消息模式结束。
 
   // MixHash(ciphertext)
-  // Save for Reply Record KDF
+  // 保存用于回复记录 KDF
   h = SHA256(h || ciphertext)
 ```
 
-``replyKey``, ``layerKey`` and ``layerIV`` must still be included inside ElGamal records,
-and can be generated randomly.
+``replyKey``、``layerKey`` 和 ``layerIV`` 仍必须包含在 ElGamal 记录中，  
+可随机生成。
 
 
-### Request Record Encryption (ElGamal)
+### 请求记录加密（ElGamal）
 
-As defined in [Tunnel Creation](/docs/specs/tunnel-implementation/).
-There are no changes to encryption for ElGamal hops.
-
-
+定义见 [Tunnel Creation](/docs/specs/tunnel-implementation/)。  
+ElGamal 跳点的加密方式无变更。
 
 
-### Reply Record Encryption (ECIES)
+### 回复记录加密（ECIES）
 
-The reply record is ChaCha20/Poly1305 encrypted.
+回复记录使用 ChaCha20/Poly1305 加密。
 
 ```text
-// AEAD parameters
-  k = chainkey from build request
+// AEAD 参数
+  k = 来自构建请求的 chainkey
   n = 0
-  plaintext = 512 byte build reply record
-  ad = h from build request
+  plaintext = 512 字节构建回复记录
+  ad = 来自构建请求的 h
 
   ciphertext = ENCRYPT(k, n, plaintext, ad)
 ```
 
 
+### 回复记录加密（ElGamal）
 
-### Reply Record Encryption (ElGamal)
-
-As defined in [Tunnel Creation](/docs/specs/tunnel-implementation/).
-There are no changes to encryption for ElGamal hops.
-
+定义见 [Tunnel Creation](/docs/specs/tunnel-implementation/)。  
+ElGamal 跳点的加密方式无变更。
 
 
-### Security Analysis
+### 安全分析
 
-ElGamal does not provide forward secrecy for Tunnel Build Messages.
+ElGamal 无法为隧道构建消息提供前向保密性。
 
-AES256/CBC is in slightly better standing, only being vulnerable to a theoretical weakening from a
-known plaintext `biclique` attack.
+AES256/CBC 略好，仅理论上可能受到已知明文 `biclique` 攻击的削弱。
 
-The only known practical attack against AES256/CBC is a padding oracle attack, when the IV is known to the attacker.
+对 AES256/CBC 唯一已知的实际攻击是填充预言攻击，当攻击者已知 IV 时可能发生。
 
-An attacker would need to break the next hop's ElGamal encryption to gain the AES256/CBC key info (reply key and IV).
+攻击者需要破解下一跳的 ElGamal 加密才能获取 AES256/CBC 密钥信息（回复密钥和 IV）。
 
-ElGamal is significantly more CPU-intensive than ECIES, leading to potential resource exhaustion.
+ElGamal 比 ECIES 显著更消耗 CPU，可能导致资源耗尽。
 
-ECIES, used with new ephemeral keys per-BuildRequestRecord or VariableTunnelBuildMessage, provides forward-secrecy.
+ECIES 结合每构建请求记录或 VariableTunnelBuildMessage 使用新临时密钥，提供前向保密性。
 
-ChaCha20Poly1305 provides AEAD encryption, allowing the recipient to verify message integrity before attempting decryption.
-
-
-## Justification
-
-This design maximizes reuse of existing cryptographic primitives, protocols, and code.
-This design minimizes risk.
+ChaCha20Poly1305 提供 AEAD 加密，允许接收方在尝试解密前验证消息完整性。
 
 
+## 理由
+
+本设计最大限度复用现有密码原语、协议和代码。  
+本设计将风险降至最低。
 
 
-## Implementation Notes
+## 实现说明
 
-* Older routers do not check the encryption type of the hop and will send ElGamal-encrypted
-  records. Some recent routers are buggy and will send various types of malformed records.
-  Implementers should detect and reject these records prior to the DH operation
-  if possible, to reduce CPU usage.
+* 较旧的路由器不检查跳点的加密类型，会发送 ElGamal 加密的记录。  
+  一些较新的路由器存在缺陷，会发送各种格式错误的记录。  
+  实现者应尽可能在 DH 操作前检测并拒绝这些记录，以减少 CPU 使用。
 
 
-## Issues
+## 问题
 
 
 
-## Migration
+## 迁移
 
-See [Proposal 156](/proposals/156-ecies-routers).
+参见 [Proposal 156](/proposals/156-ecies-routers)。
 
 
-## References
+## 参考文献
 
 * [Common](/docs/specs/common-structures/)
 * [Cryptography](/docs/specs/cryptography/)
@@ -742,7 +707,3 @@ See [Proposal 156](/proposals/156-ecies-routers).
 * [Multiple-Encryption](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)
-
-
-
-

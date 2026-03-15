@@ -8,87 +8,69 @@ status: "Mở"
 thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
+## Tổng quan
 
-## Overview
+Đề xuất này trình bày một thiết kế giao thức cho phép một máy khách I2P, dịch vụ hoặc tiến trình cân bằng tải bên ngoài quản lý nhiều bộ định tuyến một cách minh bạch, cùng lưu trữ một [Destination](/docs/specs/common-structures/#destination) duy nhất.
 
-This proposal outlines a design for a protocol enabling an I2P client, service
-or external balancer process to manage multiple routers transparently hosting a
-single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
-
-The proposal currently does not specify a concrete implementation. It could be
-implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
+Hiện tại, đề xuất này chưa chỉ định một triển khai cụ thể. Nó có thể được triển khai như một phần mở rộng của [I2CP](/docs/specs/i2cp/), hoặc như một giao thức mới.
 
 
-## Motivation
+## Động lực
 
-Multihoming is where multiple routers are used to host the same Destination.
-The current way to multihome with I2P is to run the same Destination on each
-router independently; the router that gets used by clients at any particular
-time is the last one to publish a LeaseSet.
+Đa kết nối (multihoming) là việc sử dụng nhiều bộ định tuyến để lưu trữ cùng một Destination. Cách hiện tại để thực hiện đa kết nối với I2P là chạy cùng một Destination trên mỗi bộ định tuyến một cách độc lập; bộ định tuyến được máy khách sử dụng tại bất kỳ thời điểm nào là bộ định tuyến cuối cùng xuất bản LeaseSet.
 
-This is a hack and presumably won't work for large websites at scale. Say we had
-100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
-every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
-and throttles would kick in. And that's before we even mention the lookup
-traffic.
+Đây là một giải pháp tạm thời và rõ ràng sẽ không hoạt động hiệu quả ở quy mô lớn. Giả sử ta có 100 bộ định tuyến đa kết nối, mỗi bộ có 16 đường hầm. Điều đó đồng nghĩa với 1600 lần xuất bản LeaseSet mỗi 10 phút, hay gần 3 lần mỗi giây. Các nút floodfill sẽ bị quá tải và cơ chế giới hạn (throttles) sẽ được kích hoạt. Và điều này còn chưa tính đến lượng lưu lượng tìm kiếm (lookup traffic).
 
-Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
-LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
-meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
-the lookup traffic issue, but on its own it creates a significant privacy leak:
-It is possible to determine which multihoming routers are online by monitoring
-the published meta-LeaseSet, because each real LeaseSet has corresponds to a
-single router.
+Đề xuất 123 giải quyết vấn đề này bằng một meta-LeaseSet, liệt kê 100 băm LeaseSet thực tế. Việc tìm kiếm trở thành một quá trình hai bước: trước tiên tra cứu meta-LeaseSet, sau đó tra cứu một trong các LeaseSet được đặt tên. Đây là một giải pháp tốt cho vấn đề lưu lượng tìm kiếm, nhưng riêng lẻ thì nó tạo ra một lỗ hổng bảo mật đáng kể: Có thể xác định được bộ định tuyến đa kết nối nào đang hoạt động bằng cách theo dõi meta-LeaseSet được xuất bản, vì mỗi LeaseSet thực tế tương ứng với một bộ định tuyến duy nhất.
 
-We need a way for an I2P client or service to spread a single Destination across
-multiple routers, in a way that is indistinguishable to using a single router
-(from the perspective of the LeaseSet itself).
+Chúng ta cần một cách để một máy khách hoặc dịch vụ I2P có thể phân tán một Destination duy nhất qua nhiều bộ định tuyến, theo cách không thể phân biệt được với việc sử dụng một bộ định tuyến duy nhất (từ góc nhìn của chính LeaseSet).
 
 
-## Design
+## Thiết kế
 
-### Definitions
+### Định nghĩa
 
     User
-        The person or organisation wanting to multihome their Destination(s). A
-        single Destination is considered here without loss of generality (WLOG).
+        Người hoặc tổ chức muốn thực hiện đa kết nối cho Destination(s) của họ.
+        Một Destination duy nhất được xem xét ở đây một cách tổng quát (WLOG).
 
     Client
-        The application or service running behind the Destination. It may be a
-        client-side, server-side, or peer-to-peer application; we refer to it as
-        a client in the sense that it connects to the I2P routers.
+        Ứng dụng hoặc dịch vụ chạy phía sau Destination. Nó có thể là ứng dụng
+        phía máy khách, phía máy chủ, hoặc ngang hàng (peer-to-peer); ta gọi nó
+        là máy khách theo nghĩa nó kết nối với các bộ định tuyến I2P.
 
-        The client consists of three parts, which may all be in the same process
-        or may be split across processes or machines (in a multi-client setup):
+        Máy khách bao gồm ba phần, có thể nằm trong cùng một tiến trình hoặc
+        được chia tách qua nhiều tiến trình hoặc máy (trong cấu hình đa máy khách):
 
         Balancer
-            The part of the client that manages peer selection and tunnel
-            building. There is a single balancer at any one time, and it
-            communicates with all I2P routers. There may be failover balancers.
+            Phần của máy khách quản lý việc chọn máy ngang hàng và xây dựng
+            đường hầm. Tại một thời điểm chỉ có một balancer duy nhất, và nó
+            giao tiếp với tất cả các bộ định tuyến I2P. Có thể có các balancer
+            dự phòng.
 
         Frontend
-            The part of the client that can be operated in parallel. Each
-            frontend communicates with a single I2P router.
+            Phần của máy khách có thể hoạt động song song. Mỗi frontend giao
+            tiếp với một bộ định tuyến I2P duy nhất.
 
         Backend
-            The part of the client that is shared between all frontends. It has
-            no direct communication with any I2P router.
+            Phần của máy khách được chia sẻ giữa tất cả các frontend. Nó không
+            giao tiếp trực tiếp với bất kỳ bộ định tuyến I2P nào.
 
     Router
-        An I2P router run by the user that sits at the boundary between the I2P
-        network and the user's network (akin to an edge device in corporate
-        networks). It builds tunnels under the command of a balancer, and routes
-        packets for a client or frontend.
+        Một bộ định tuyến I2P do người dùng vận hành, nằm ở ranh giới giữa mạng
+        I2P và mạng của người dùng (tương tự như thiết bị biên trong mạng doanh
+        nghiệp). Nó xây dựng các đường hầm theo lệnh từ balancer, và định tuyến
+        các gói tin cho máy khách hoặc frontend.
 
-### High-level overview
+### Tổng quan cấp cao
 
-Imagine the following desired configuration:
+Hãy tưởng tượng cấu hình mong muốn như sau:
 
-- A client application with one Destination.
-- Four routers, each managing three inbound tunnels.
-- All twelve tunnels should be published in a single LeaseSet.
+- Một ứng dụng máy khách với một Destination.
+- Bốn bộ định tuyến, mỗi bộ quản lý ba đường hầm vào.
+- Tất cả mười hai đường hầm nên được xuất bản trong một LeaseSet duy nhất.
 
-### Single-client
+### Đơn máy khách
 
 ```
                 -{ [Tunnel 1]===\
@@ -108,7 +90,7 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### Multi-client
+### Đa máy khách
 
 ```
                 -{ [Tunnel 1]===\
@@ -128,43 +110,37 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### General client process
+### Quy trình máy khách tổng quát
 
-- Load or generate a Destination.
+- Tải hoặc tạo một Destination.
 
-- Open up a session with each router, tied to the Destination.
+- Mở một phiên với mỗi bộ định tuyến, liên kết với Destination.
 
-- Periodically (around every ten minutes, but more or less based on tunnel
-  liveness):
+- Định kỳ (khoảng mỗi mười phút, nhưng có thể nhiều hơn hoặc ít hơn tùy theo trạng thái sống của đường hầm):
 
-  - Obtain the fast tier from each router.
+  - Lấy danh sách tầng nhanh (fast tier) từ mỗi bộ định tuyến.
 
-  - Use the superset of peers to build tunnels to/from each router.
+  - Sử dụng tập hợp con các máy ngang hàng để xây dựng các đường hầm đến/từ mỗi bộ định tuyến.
 
-    - By default, tunnels to/from a particular router will use peers from
-      that router's fast tier, but this is not enforced by the protocol.
+    - Theo mặc định, các đường hầm đến/từ một bộ định tuyến cụ thể sẽ sử dụng các máy ngang hàng từ tầng nhanh của bộ định tuyến đó, nhưng điều này không được giao thức bắt buộc.
 
-  - Collect the set of active inbound tunnels from all active routers, and create a
-    LeaseSet.
+  - Thu thập tập hợp các đường hầm vào đang hoạt động từ tất cả các bộ định tuyến đang hoạt động, và tạo một LeaseSet.
 
-  - Publish the LeaseSet through one or more of the routers.
+  - Xuất bản LeaseSet thông qua một hoặc nhiều bộ định tuyến.
 
-### Differences to I2CP
+### Khác biệt so với I2CP
 
-To create and manage this configuration, the client needs the following new
-functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
+Để tạo và quản lý cấu hình này, máy khách cần các chức năng mới sau đây vượt quá những gì hiện tại được cung cấp bởi [I2CP](/docs/specs/i2cp/):
 
-- Tell a router to build tunnels, without creating a LeaseSet for them.
-- Get a list of the current tunnels in the inbound pool.
+- Yêu cầu bộ định tuyến xây dựng đường hầm, mà không tạo LeaseSet cho chúng.
+- Lấy danh sách các đường hầm hiện tại trong nhóm đường hầm vào.
 
-Additionally, the following functionality would enable significant flexibility
-in how the client manages its tunnels:
+Ngoài ra, các chức năng sau đây sẽ cho phép sự linh hoạt đáng kể trong cách máy khách quản lý các đường hầm của nó:
 
-- Get the contents of a router's fast tier.
-- Tell a router to build an inbound or outbound tunnel using a given list of
-  peers.
+- Lấy nội dung của tầng nhanh (fast tier) của một bộ định tuyến.
+- Yêu cầu bộ định tuyến xây dựng một đường hầm vào hoặc ra bằng một danh sách máy ngang hàng đã cho.
 
-### Protocol outline
+### Khung giao thức
 
 ```
          Client                           Router
@@ -183,125 +159,95 @@ in how the client manages its tunnels:
   Packet Received  <---------------------
 ```
 
-### Messages
+### Các thông điệp
 
 **Create Session**
-- Create a session for the given Destination.
+- Tạo một phiên cho Destination đã cho.
 
 **Session Status**
-- Confirmation that the session has been set up, and the client can now start building tunnels.
+- Xác nhận rằng phiên đã được thiết lập, và máy khách hiện có thể bắt đầu xây dựng các đường hầm.
 
 **Get Fast Tier**
-- Request a list of the peers that the router currently would consider building tunnels through.
+- Yêu cầu danh sách các máy ngang hàng mà bộ định tuyến hiện tại sẽ xem xét để xây dựng đường hầm.
 
 **Peer List**
-- A list of peers known to the router.
+- Danh sách các máy ngang hàng mà bộ định tuyến biết đến.
 
 **Create Tunnel**
-- Request that the router build a new tunnel through the specified peers.
+- Yêu cầu bộ định tuyến xây dựng một đường hầm mới qua các máy ngang hàng đã chỉ định.
 
 **Tunnel Status**
-- The result of a particular tunnel build, once it is available.
+- Kết quả của việc xây dựng một đường hầm cụ thể, khi đã có sẵn.
 
 **Get Tunnel Pool**
-- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
+- Yêu cầu danh sách các đường hầm hiện tại trong nhóm đường hầm vào hoặc ra cho Destination.
 
 **Tunnel List**
-- A list of tunnels for the requested pool.
+- Danh sách các đường hầm cho nhóm đã yêu cầu.
 
 **Publish LeaseSet**
-- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
+- Yêu cầu bộ định tuyến xuất bản LeaseSet được cung cấp thông qua một trong các đường hầm ra cho Destination. Không cần trạng thái phản hồi; bộ định tuyến nên tiếp tục thử lại cho đến khi hài lòng rằng LeaseSet đã được xuất bản.
 
 **Send Packet**
-- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
+- Một gói tin đi ra từ máy khách. Có thể chỉ định một đường hầm ra mà gói tin phải (nên?) được gửi qua.
 
 **Send Status**
-- Informs the client of the success or failure of sending a packet.
+- Thông báo cho máy khách về thành công hoặc thất bại khi gửi gói tin.
 
 **Packet Received**
-- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
+- Một gói tin đến cho máy khách. Có thể chỉ định đường hầm vào mà gói tin đã được nhận qua(?)
 
 
-## Security implications
+## Tác động đến bảo mật
 
-From the perspective of the routers, this design is functionally equivalent to
-the status quo. The router still builds all tunnels, maintains its own peer
-profiles, and enforces separation between router and client operations. In the
-default configuration is completely identical, because tunnels for that router
-are built from its own fast tier.
+Từ góc nhìn của các bộ định tuyến, thiết kế này về mặt chức năng tương đương với trạng thái hiện tại. Bộ định tuyến vẫn xây dựng tất cả các đường hầm, duy trì hồ sơ máy ngang hàng riêng, và thực thi sự tách biệt giữa các hoạt động của bộ định tuyến và máy khách. Trong cấu hình mặc định, nó hoàn toàn giống nhau, vì các đường hầm cho bộ định tuyến đó được xây dựng từ tầng nhanh của chính nó.
 
-From the perspective of the netDB, a single LeaseSet created via this protocol
-is identical to the status quo, because it leverages pre-existing functionality.
-However, for larger LeaseSets approaching 16 Leases, it may be possible for an
-observer to determine that the LeaseSet is multihomed:
+Từ góc nhìn của netDB, một LeaseSet duy nhất được tạo thông qua giao thức này giống hệt với trạng thái hiện tại, vì nó tận dụng chức năng đã tồn tại. Tuy nhiên, đối với các LeaseSet lớn hơn, tiến gần đến 16 Lease, có thể một quan sát viên có thể xác định được rằng LeaseSet đang được đa kết nối:
 
-- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
-  (IBGW, the node published in a Lease) is selected from a fraction of the tier
-  (partitioned randomly per-tunnel pool by hash, not count):
+- Kích thước tối đa hiện tại của tầng nhanh là 75 máy ngang hàng. Cổng vào (IBGW, nút được công bố trong một Lease) được chọn từ một phần của tầng (được phân vùng ngẫu nhiên theo nhóm đường hầm theo băm, không theo số lượng):
 
       1 hop
-          The whole fast tier
+          Toàn bộ tầng nhanh
 
       2 hops
-          Half of the fast tier
-          (the default until mid-2014)
+          Một nửa tầng nhanh
+          (mặc định cho đến giữa năm 2014)
 
       3+ hops
-          A quarter of the fast tier
-          (3 being the current default)
+          Một phần tư tầng nhanh
+          (3 là mặc định hiện tại)
 
-  That means on average the IBGWs will be from a set of 20-30 peers.
+  Điều đó có nghĩa là trung bình các IBGW sẽ đến từ một tập hợp khoảng 20-30 máy ngang hàng.
 
-- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
-  randomly selected from a set of up to (say) 20 peers.
+- Trong cấu hình đơn kết nối, một LeaseSet đầy đủ 16 đường hầm sẽ có 16 IBGW được chọn ngẫu nhiên từ một tập hợp tối đa (giả sử) 20 máy ngang hàng.
 
-- In a 4-router multihomed setup using the default configuration, a full
-  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
-  80 peers, though there are likely to be a fraction of common peers between
-  routers.
+- Trong cấu hình đa kết nối 4 bộ định tuyến sử dụng cấu hình mặc định, một LeaseSet đầy đủ 16 đường hầm sẽ có 16 IBGW được chọn ngẫu nhiên từ một tập hợp tối đa 80 máy ngang hàng, mặc dù có thể có một phần các máy ngang hàng chung giữa các bộ định tuyến.
 
-Thus with the default configuration, it may be possible through statistical
-analysis to figure out that a LeaseSet is being generated by this protocol. It
-might also be possible to figure out how many routers there are, although the
-effect of churn on the fast tiers would reduce the effectiveness of this
-analysis.
+Do đó, với cấu hình mặc định, có thể thông qua phân tích thống kê để xác định rằng LeaseSet đang được tạo bởi giao thức này. Cũng có thể xác định được có bao nhiêu bộ định tuyến, mặc dù tác động của sự thay đổi (churn) trên các tầng nhanh sẽ làm giảm hiệu quả của phân tích này.
 
-As the client has full control over which peers it selects, this information
-leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
-peers.
+Vì máy khách có toàn quyền kiểm soát việc chọn máy ngang hàng nào, rò rỉ thông tin này có thể được giảm thiểu hoặc loại bỏ bằng cách chọn các IBGW từ một tập hợp máy ngang hàng bị thu hẹp.
 
 
-## Compatibility
+## Tương thích
 
-This design is completely backwards-compatible with the network, because there
-are no changes to the LeaseSet format. All routers would need to be aware of
-the new protocol, but this is not a concern as they would all be controlled by
-the same entity.
+Thiết kế này hoàn toàn tương thích ngược với mạng, vì không có thay đổi nào đối với định dạng LeaseSet. Tất cả các bộ định tuyến sẽ cần nhận biết giao thức mới, nhưng điều này không phải là vấn đề vì chúng đều được kiểm soát bởi cùng một thực thể.
 
 
-## Performance and scalability notes
+## Ghi chú về hiệu suất và khả năng mở rộng
 
-The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
-Destinations that require more tunnels than this, there are two possible network
-modifications:
+Giới hạn trên 16 Lease mỗi LeaseSet không bị thay đổi bởi đề xuất này. Đối với các Destination yêu cầu nhiều đường hầm hơn, có hai khả năng sửa đổi mạng:
 
-- Increase the upper limit on the size of LeaseSets. This would be the simplest
-  to implement (though it would still require pervasive network support before
-  it could be widely used), but could result in slower lookups due to the larger
-  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
-  underlying transports, and is therefore around 16kB.
+- Tăng giới hạn trên kích thước của LeaseSet. Đây sẽ là cách đơn giản nhất để triển khai (mặc dù vẫn cần hỗ trợ mạng rộng khắp trước khi có thể sử dụng phổ biến), nhưng có thể dẫn đến việc tìm kiếm chậm hơn do kích thước gói tin lớn hơn. Kích thước LeaseSet khả thi tối đa được xác định bởi MTU của các lớp truyền tải bên dưới, do đó khoảng 16kB.
 
-- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
-  the Destinations for the sub-LeaseSets could be spread across multiple
-  routers, effectively acting like multiple IP addresses for a clearnet service.
+- Triển khai Đề xuất 123 cho các LeaseSet phân tầng. Khi kết hợp với đề xuất này, các Destination cho các sub-LeaseSet có thể được phân tán qua nhiều bộ định tuyến, hiệu quả hoạt động như nhiều địa chỉ IP cho một dịch vụ clearnet.
 
 
-## Acknowledgements
+## Ghi nhận
 
-Thanks to psi for the discussion that led to this proposal.
+Cảm ơn psi vì cuộc thảo luận dẫn đến đề xuất này.
 
 
-## References
+## Tài liệu tham khảo
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [I2CP](/docs/specs/i2cp/)

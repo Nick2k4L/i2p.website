@@ -8,84 +8,56 @@ status: "Open"
 thread: "http://zzz.i2p/topics/2099"
 toc: true
 ---
+## Обзор
 
-## Overview
+В данном предложении рассматриваются два улучшения для повышения производительности сети:
 
-This proposal covers two improvements for improving network performance:
+- Передача выбора IBGW в OBEP путем предоставления ему списка
+  альтернатив вместо одного варианта.
 
-- Delegating IBGW selection to the OBEP by providing it with a list of
-  alternatives instead of a single option.
-
-- Enabling multicast packet routing at the OBEP.
-
-
-## Motivation
-
-In the direct connection case, the idea is to reduce connection congestion, by
-giving the OBEP flexibility in how it connects to IBGWs. The ability to specify
-multiple tunnels also enables us to implement multicast at the OBEP (by
-delivering the message to all specified tunnels).
-
-An alternative to the delegation part of this proposal would be to send through
-a LeaseSet hash, similar to the existing ability to specify a target
-[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
-newer LeaseSet. However:
-
-1. It would force the OBEP to do a lookup
-
-2. The LeaseSet may not be published to a floodfill, so the lookup would fail.
-
-3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
-
-4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
-   which they could otherwise only discover by scraping all the LeaseSets in the
-   network and looking for a Lease match.
+- Включение маршрутизации мультикаст-пакетов на уровне OBEP.
 
 
-## Design
+## Мотивация
 
-The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
-delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
+В случае прямого соединения идея заключается в снижении перегрузки соединений за счёт предоставления OBEP гибкости при подключении к IBGW. Возможность указывать несколько туннелей также позволяет реализовать мультикаст на уровне OBEP (путём доставки сообщения во все указанные туннели).
 
-The OBEP would select one of those to deliver to. The OBEP would select, if
-available, one that it is already connected to, or already knows about. This
-would make the OBEP-IBGW path faster and more reliable, and reduce overall
-network connections.
+Альтернативой части предложения, касающейся делегирования, было бы использование хэша LeaseSet, аналогично существующей возможности указания хэша целевой
+[RouterIdentity](/docs/specs/common-structures/#common-structure-specification). Это привело бы к уменьшению размера сообщения и потенциально более свежему LeaseSet. Однако:
 
-We have one unused delivery type (0x03) and two remaining bits (0 and 1) in the
-flags for TUNNEL-DELIVERY, which we can leverage to implement these features.
+1. Это заставило бы OBEP выполнить поиск.
 
+2. LeaseSet может не быть опубликован в floodfill, поэтому поиск завершится неудачей.
 
-## Security Implications
+3. LeaseSet может быть зашифрован, поэтому OBEP не сможет получить лизы.
 
-This proposal does not change the amount of information leaked about the OBGW's
-target Destination or their view of the NetDB:
-
-- An adversary that controls the OBEP and is scraping LeaseSets from the NetDB
-  can already determine whether a message is being sent to a particular
-  Destination, by searching for the TunnelId / RouterIdentity pair. At
-  worst, the presence of multiple Leases in the TMDI might make it faster to
-  find a match in the adversary's database.
-
-- An adversary that is operating a malicious Destination can already gain
-  information about a connecting victim's view of the NetDB, by publishing
-  LeaseSets containing different inbound tunnels to different floodfills, and
-  observing which tunnels the OBGW connects through. From their point of view,
-  the OBEP selecting which tunnel to use is functionally identical to the OBGW
-  making the selection.
-
-The multicast flag leaks the fact that the OBGW is multicasting to the OBEPs.
-This creates a performance vs. privacy trade-off that should be considered when
-implementing higher-level protocols. Being an optional flag, users can make
-the appropriate decision for their application. There may be benefits to this
-being the default behaviour for compatible applications, however, as wide-spread
-usage by a variety of applications would reduce the information leakage about
-which particular application a message is from.
+4. Указание LeaseSet раскрывает OBEP [Destination](/docs/specs/common-structures/#destination) сообщения,
+   которую иначе он мог бы узнать только путём сканирования всех LeaseSet в сети и поиска совпадения лиза.
 
 
-## Specification
+## Дизайн
 
-The First Fragment Delivery Instructions would be modified as follows:
+Инициатор (OBGW) будет помещать некоторые (все?) целевые [Leases](/docs/specs/common-structures/#lease) в инструкции доставки [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) вместо выбора только одного.
+
+OBEP выберет один из них для доставки. OBEP выберет, если возможно, тот, к которому он уже подключён или о котором уже знает. Это сделает путь OBEP-IBGW быстрее и надёжнее, а также сократит общее количество сетевых соединений.
+
+У нас есть один неиспользуемый тип доставки (0x03) и два оставшихся бита (0 и 1) в флагах для TUNNEL-DELIVERY, которые можно использовать для реализации этих функций.
+
+
+## Последствия для безопасности
+
+Предложение не изменяет объём информации, раскрываемой о целевом Destination OBGW или его представлении о NetDB:
+
+- Атакующий, контролирующий OBEP и сканирующий LeaseSet из NetDB, уже может определить, отправляется ли сообщение конкретному Destination, путём поиска пары TunnelId / RouterIdentity. В худшем случае наличие нескольких Lease в TMDI может ускорить поиск совпадения в базе данных атакующего.
+
+- Атакующий, управляющий злонамеренным Destination, уже может получить информацию о представлении жертвы о NetDB, публикуя LeaseSet, содержащие разные входящие туннели на разных floodfill, и наблюдая, через какие туннели подключается OBGW. С их точки зрения, выбор OBEP туннеля функционально идентичен выбору туннеля самим OBGW.
+
+Флаг мультикаста раскрывает OBEP тот факт, что OBGW использует мультикаст. Это создаёт компромисс между производительностью и приватностью, который следует учитывать при реализации протоколов верхнего уровня. Поскольку флаг является опциональным, пользователи могут принимать решение, соответствующее их приложению. Однако может быть выгодно сделать такое поведение поведением по умолчанию для совместимых приложений, поскольку широкое использование разными приложениями снизит объём утечки информации о том, от какого именно приложения пришло сообщение.
+
+
+## Спецификация
+
+Инструкции доставки первого фрагмента будут изменены следующим образом:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -123,48 +95,44 @@ The First Fragment Delivery Instructions would be modified as follows:
   +----+
 
 flag ::
-       1 byte
-       Bit order: 76543210
-       bits 6-5: delivery type
+       1 байт
+       Порядок битов: 76543210
+       биты 6-5: тип доставки
                  0x03 = TUNNELS
-       bit 0: multicast? If 0, deliver to one of the tunnels
-                         If 1, deliver to all of the tunnels
-                         Set to 0 for compatibility with future uses if
-                         delivery type is not TUNNELS
+       бит 0: мультикаст? Если 0 — доставить в один из туннелей
+                         Если 1 — доставить во все туннели
+                         Установить в 0 для совместимости с будущими версиями,
+                         если тип доставки не TUNNELS
 
 Count ::
-       1 byte
-       Optional, present if delivery type is TUNNELS
-       2-255 - Number of id/hash pairs to follow
+       1 байт
+       Опционально, присутствует, если тип доставки — TUNNELS
+       2-255 — количество пар id/hash, следующих далее
 
 Tunnel ID :: TunnelId
 To Hash ::
-       36 bytes each
-       Optional, present if delivery type is TUNNELS
-       id/hash pairs
+       по 36 байт каждая
+       Опционально, присутствует, если тип доставки — TUNNELS
+       пары id/hash
 
-Total length: Typical length is:
-       75 bytes for count 2 TUNNELS delivery (unfragmented tunnel message);
-       79 bytes for count 2 TUNNELS delivery (first fragment)
+Общая длина: типичная длина:
+       75 байт для доставки TUNNELS с count=2 (нефрагментированное сообщение туннеля);
+       79 байт для доставки TUNNELS с count=2 (первый фрагмент)
 
-Rest of delivery instructions unchanged
+Остальные инструкции доставки остаются без изменений
 ```
 
 
-## Compatibility
+## Совместимость
 
-The only peers that need to be understand the new specification are the OBGWs
-and the OBEPs. We can therefore make this change compatible with the existing
-network by making its use conditional on the target I2P version:
+Единственные пиры, которым необходимо понимать новую спецификацию — это OBGW и OBEP. Поэтому мы можем сделать это изменение совместимым с существующей сетью, сделав его использование условным в зависимости от версии целевого I2P:
 
-* The OBGWs must select compatible OBEPs when building outbound tunnels, based
-  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
+* OBGW должны выбирать совместимые OBEP при построении исходящих туннелей, основываясь на версии I2P, указанной в их [RouterInfo](/docs/specs/common-structures/#routerinfo).
 
-* Peers that advertise the target version must support parsing the new flags,
-  and must not reject the instructions as invalid.
+* Пиры, объявляющие целевую версию, должны поддерживать разбор новых флагов и не должны отвергать инструкции как недопустимые.
 
 
-## References
+## Ссылки
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [Leases](/docs/specs/common-structures/#lease)

@@ -10,58 +10,54 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## Descripción general
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+Esta propuesta trata sobre mejorar la tasa de éxito para las presentaciones.
 
 
-## Design
+## Motivación
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+Las presentadoras expiran después de un cierto tiempo, pero esa información no se publica en la información del enrutador (Router Info). Actualmente, los enrutadores deben usar heurísticas para estimar cuándo una presentadora ya no es válida.
 
 
-## Specification
+## Diseño
+
+En una dirección de enrutador SSU que contenga presentadoras, el editor puede incluir opcionalmente tiempos de expiración para cada presentadora.
+
+
+## Especificación
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: El número de presentadora (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: El tiempo en segundos (no milisegundos) desde la época.
 ```
 
-### Notes
+### Notas
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* Cada expiración debe ser mayor que la fecha de publicación de la información del enrutador (Router Info),
+  y menor que 6 horas después de dicha fecha de publicación.
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* Los enrutadores que publican y las presentadoras deberían intentar mantener la presentadora válida
+  hasta su expiración, sin embargo no existe forma de garantizarlo.
 
-* Routers should not use a published introducer after its expiration.
+* Los enrutadores no deberían usar una presentadora publicada después de su expiración.
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* Las expiraciones de presentadoras están en el mapeo de Dirección del Enrutador.
+  No son el campo de expiración de 8 bytes (actualmente no usado) en la Dirección del Enrutador.
 
-**Example:** `iexp0=1486309470`
-
-
-## Migration
-
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+**Ejemplo:** `iexp0=1486309470`
 
 
-## References
+## Migración
+
+No hay problemas. La implementación es opcional.
+La compatibilidad hacia atrás está asegurada, ya que los enrutadores antiguos ignorarán los parámetros desconocidos.
+
+
+## Referencias
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

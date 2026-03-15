@@ -9,61 +9,56 @@ thread: "http://zzz.i2p/topics/2047"
 supercededby: "123"
 toc: true
 ---
+## Resumen
 
-## Overview
-
-This proposal is about redesigning the mechanism for encrypting LeaseSets.
-
-
-## Motivation
-
-Current encrypted LS is horrendous and insecure. I can say that, I designed and
-implemented it.
-
-Reasons:
-
-- AES CBC encrypted
-- Single AES key for everybody
-- Lease expirations still exposed
-- Encryption pubkey still exposed
+Esta propuesta trata sobre el rediseño del mecanismo para cifrar los LeaseSets.
 
 
-## Design
+## Motivación
 
-### Goals
+El LS cifrado actual es horrible e inseguro. Puedo decirlo, yo lo diseñé e implementé.
 
-- Make entire thing opaque
-- Keys for each recipient
+Razones:
 
-
-### Strategy
-
-Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-IF we can find an algo that's small and fast.
-
-Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
-bytes is a little painful here. We can do better.
-
-See e.g. http://security.stackexchange.com/questions/824...
-
-This works for small numbers of recipients (or actually, keys; you can still
-distribute keys to multiple people if you like).
+- Cifrado AES CBC
+- Una sola clave AES para todos
+- Las expiraciones de los leases siguen expuestas
+- La clave pública de cifrado sigue expuesta
 
 
-## Specification
+## Diseño
 
-- Destination
-- Published timestamp
-- Expiration
-- Flags
-- Length of data
-- Encrypted data
-- Signature
+### Objetivos
 
-Encrypted data could be prefixed with some enctype specifier, or not.
+- Hacer que todo sea opaco
+- Claves para cada destinatario
 
 
-## References
+### Estrategia
+
+Hacer como GPG/OpenPGP. Cifrar asimétricamente una clave simétrica para cada destinatario. Los datos se descifran con esa clave asimétrica. Ver, por ejemplo, [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+Si podemos encontrar un algoritmo que sea pequeño y rápido.
+
+El truco es encontrar un cifrado asimétrico que sea pequeño y rápido. ElGamal con 514 bytes es un poco doloroso aquí. Podemos hacer mejor.
+
+Ver, por ejemplo, http://security.stackexchange.com/questions/824...
+
+Esto funciona para pequeños números de destinatarios (o en realidad, claves; todavía puedes distribuir claves a varias personas si lo deseas).
+
+
+## Especificación
+
+- Destino
+- Timestamp publicado
+- Expiración
+- Indicadores
+- Longitud de los datos
+- Datos cifrados
+- Firma
+
+Los datos cifrados podrían tener un prefijo con un especificador de tipo de cifrado, o no.
+
+
+## Referencias
 
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

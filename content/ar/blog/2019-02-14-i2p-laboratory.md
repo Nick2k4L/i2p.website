@@ -5,11 +5,10 @@ author: "zlatinb"
 description: "I2P Laboratory - Home For Experimental Projects"
 categories: ["development"]
 ---
+مرحبًا بالجميع،
 
-Hello everyone,
+توجد العديد من المشاريع في عالم I2P التي نحن متحمسون لها، ولكن ليس كلها جاهزة للإطلاق الرسمي. قررنا إنشاء مكان يمكننا فيه توفير هذه المشاريع لأي شخص مهتم بتجربتها، وستكون بمثابة أرض اختبار للمشاريع التي قد تصبح يومًا ما منتجات رسمية لـ I2P. هذا المكان هو [مختبر I2P](https://geti2p.net/en/download/lab).
 
-There are many projects in the I2P world that we are excited about, but not all of them are ready for prime-time. We decided to create a place where we can make those available for anyone interested in trying them out, that will serve as proving grounds for projects that may one day become official I2P products. This place is the [I2P Laboratory](https://geti2p.net/en/download/lab).
+في المختبر، سنوفر لكم روابط تحميل جاهزة للتجربة. تذكروا أن جودتها لن تكون على مستوى "إصدارات رسمية"، وبعضها قد لا يكون حتى على مستوى "بيتا". ولا نقدم دعمًا رسميًا لها. وأي من مشاريع المختبر قد يتم إيقافه في أي وقت.
 
-In the lab we will be offering downloads ready for you to try. Keep in mind that they are not going to be "release" quality, and some may not even be "beta" quality. We do not offer official support for them. Any of the lab projects may get discontinued at any time.
-
-If you are feeling adventurous we invite you to try our ideas. We welcome your feedback at the [I2P Lab Forum](https://i2pforum.net/viewforum.php?f=36).
+إذا كنتم تشعرون بالمغامرة، ندعوكم لتجربة أفكارنا. ونرحب بتعليقاتكم على [منتدى I2P Lab](https://i2pforum.net/viewforum.php?f=36).

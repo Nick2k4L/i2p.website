@@ -11,89 +11,75 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
+## 개요
 
-## Overview
+이 문서는 기존의 ElGamal 비대칭 암호화 방식을 대체하거나 새로운 방식을 추가할 때 고려해야 할 중요한 사항들을 설명합니다.
 
-This document describes important issues to consider when proposing
-a replacement or addition to our ElGamal asymmetric encryption.
-
-This is an informational document.
+이 문서는 정보 제공용 문서입니다.
 
 
-## Motivation
+## 동기
 
-ElGamal is old and slow, and there are better alternatives.
-However, there are several issues that must be addressed before we can add or change to any new algorithm.
-This document highlights these unresolved issues.
+ElGamal은 오래되었고 느리며, 더 나은 대안들이 존재합니다. 그러나 새로운 알고리즘을 추가하거나 변경하기 전에 반드시 해결되어야 할 몇 가지 문제가 있습니다. 이 문서는 이러한 미해결 문제들을 강조합니다.
 
 
+## 배경 조사
 
-## Background Research
+새로운 암호화 방식을 제안하려는 사람은 다음 문서들을 먼저 숙지해야 합니다:
 
-Anybody proposing new crypto must first be familiar with the following documents:
-
-- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
-- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
-- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
-- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
-- Discussion threads here for each of the above proposals, linked within
-- [2018 proposal priorities](http://zzz.i2p/topics/2494)
-- [ECIES proposal](http://zzz.i2p/topics/2418)
-- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
-- [Low-level crypto overview](/docs/specs/common-structures/)
-
-
-## Asymmetric Crypto Uses
-
-As a review, we use ElGamal for:
-
-1) Tunnel Build messages (key is in RouterIdentity)
-
-2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
-
-3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
-
-4) Ephemeral DH for NTCP and SSU
+- [제안 111 NTCP2](/proposals/111-ntcp-2/)
+- [제안 123 LS2](/proposals/123-new-netdb-entries/)
+- [제안 136 실험적 서명 타입](/proposals/136-experimental-sigtypes/)
+- [제안 137 선택적 서명 타입](/proposals/137-optional-sigtypes/)
+- 위 각 제안에 대한 토론 스레드 (각 제안 문서 내에 링크됨)
+- [2018년 제안 우선순위](http://zzz.i2p/topics/2494)
+- [ECIES 제안](http://zzz.i2p/topics/2418)
+- [새로운 비대칭 암호화 개요](http://zzz.i2p/topics/1768)
+- [저수준 암호화 개요](/docs/specs/common-structures/)
 
 
-## Design
+## 비대칭 암호화 용도
 
-Any proposal to replace ElGamal with something else must provide the following details.
+복습 차원에서, 우리는 ElGamal을 다음 용도로 사용합니다:
+
+1) 터널 생성 메시지 (키는 RouterIdentity에 있음)
+
+2) 라우터 간 netdb 및 기타 I2NP 메시지 암호화 (키는 RouterIdentity에 있음)
+
+3) 클라이언트 종단 간 ElGamal+AES/SessionTag (키는 LeaseSet에 있음, Destination 키는 사용되지 않음)
+
+4) NTCP 및 SSU를 위한 임시 DH
 
 
+## 설계
 
-## Specification
+ElGamal을 다른 방식으로 대체하려는 모든 제안은 다음 세부 정보를 반드시 제공해야 합니다.
 
-Any proposal for new asymmetric crypto must fully specify the following things.
+
+## 명세
+
+새로운 비대칭 암호화를 제안할 경우, 다음 사항들을 완전히 명시해야 합니다.
 
 
 
-### 1. General
+### 1. 일반 사항
 
-Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
+제안서에서 다음 질문들에 답변하십시오. 아래 2)의 구체적인 내용과 별도의 제안서로 작성해야 할 수도 있으며, 기존 제안 111, 123, 136, 137 또는 기타 제안과 충돌할 수 있음을 유의하십시오.
 
-- Which of the above cases 1-4 do you propose to use the new crypto for?
-- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
-- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
-- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
-- Completely specify how and why this is backward compatible, and fully specify a migration plan.
-- Which unimplemented proposals are prerequisites for your proposal?
-
-
-### 2. Specific crypto type
-
-Answer the following questions in your proposal:
-
-- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
-- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
-- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
-  For 3rd party or non-Java, provide links and licenses
-- Proposed crypto type number(s) (experimental range or not)
+- 위의 사례 1-4 중에서 어떤 용도에 새 암호화 방식을 사용할 것을 제안합니까?
+- 1) 또는 2) (라우터)에 사용할 경우, 공개 키는 RouterIdentity 또는 RouterInfo props 중 어디에 위치해야 합니까? 키 인증서에 암호화 타입을 사용할 의도가 있습니까? 완전히 명시하고, 선택한 방식에 대해 정당화하십시오.
+- 3) (클라이언트)에 사용할 경우, 공개 키를 Destination에 저장하고 키 인증서에 암호화 타입을 사용할 것인지 (ECIES 제안처럼), 아니면 LS2에 저장할 것인지 (제안 123처럼), 또는 다른 방식을 사용할 것인지 명시하십시오. 완전히 명시하고, 결정 사항을 정당화하십시오.
+- 모든 용도에 대해, 지원 여부는 어떻게 공표될 것입니까? 3)에 사용할 경우 LS2에 포함됩니까, 아니면 다른 곳에 포함됩니까? 1) 및 2)에 사용할 경우 제안 136 및/또는 137과 유사한 방식입니까? 완전히 명시하고, 결정 사항을 정당화하십시오. 아마도 이를 위한 별도의 제안서가 필요할 것입니다.
+- 이 방식이 어떻게 하위 호환 가능한지, 그리고 마이그레이션 계획을 완전히 명시하십시오.
+- 귀하의 제안을 위해 전제 조건이 되는 구현되지 않은 제안은 무엇입니까?
 
 
+### 2. 특정 암호화 타입
 
+제안서에서 다음 질문들에 답변하십시오:
 
-## Notes
-
-
-
+- 일반 암호화 정보, 구체적인 곡선/파라미터, 선택 사유를 완전히 정당화하십시오. 명세 및 기타 정보에 대한 링크를 제공하십시오.
+- ElGamal 및 기타 대안과 비교한 속도 테스트 결과 (해당 시). 암호화, 복호화, 키 생성 속도를 포함하십시오.
+- C++ 및 Java(OpenJDK, BouncyCastle, 타사 라이브러리 포함)에서의 라이브러리 가용성  
+  타사 또는 비자바 라이브러리의 경우 링크와 라이선스를 제공하십시오.
+- 제안하는 암호화 타입 번호(실험용 범위 여부 포함)

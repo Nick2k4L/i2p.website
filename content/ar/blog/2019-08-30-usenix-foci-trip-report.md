@@ -5,23 +5,22 @@ author: "sadie"
 description: "USENIX FOCI Trip Report"
 categories: ["conferences"]
 ---
+## تقرير مؤتمر USENIX FOCI
 
-## USENIX FOCI Trip Report
+خلال العام الماضي، كان لدي الحظ بالمشاركة في البحث الذي كان يقوم به نغوين فونغ هوڠ من جامعة ستوني بروك حول رقابة الشبكة I2P. وقد وفرت البنية التحتية المستخدمة في هذا البحث نقاط رصد عديدة ومتنوعة جغرافيًا، بالإضافة إلى القدرة على إجراء قياسات متعمقة عبر جميع مستويات طبقة الشبكة. وشملت خدمات I2P التي تم قياس توافرها الصفحة الرئيسية الرسمية، والموقع المرآة، وخوادم إعادة التهيئة (reseed servers)، وأجهزة التوجيه النشطة.
 
-Over the past year I have had the good fortune to participate in the research Nguyen Phong Hoang from Stony Brook University has been doing regarding I2P censorship. The infrastructure used for this research provided numerous and geographically diverse vantage points, and also the ability to conduct in-depth measurements across all levels of the network stack. I2P services which were measured for availability included official homepage, mirror site, reseed servers and active relays.
+وقد سار عرض التقديم يوم الثلاثاء بشكل جيد جدًا، وكان فونغ مشغولًا جدًا بعده بالإجابة عن الأسئلة المتعلقة بعمله. وأنا أيضًا كنت مشغولًا بالإجابة عن أسئلة حول I2P وما تفعله. وقد حظيت الملصقات الجديدة التي تحمل الشعار المُحدّث من تصميم Ura Design على تقييمات رائعة! كانت تجربة إيجابية جدًا، وسأكون متحمسًا لمواصلة العمل مع فونغ ومراقبة الرقابة على I2P. أشجع أي شخص واجه حظرًا، أو نجح في استخدام I2P للتواصل في بيئات مقيدة، على التواصل معي إن أمكن. حاليًا، تعمل I2P على حلول جديدة للتغلب على الحظر على الإنترنت. وبعد لقائي هذا العام بأشخاص قدّموا لي روايات مباشرة عن آثار الرقابة والحاجة إلى البقاء متصلًا، أصبح من الواضح أكثر الحاجة إلى جعل I2P أكثر مرونة في الأماكن التي تتطلب ذلك، والحاجة إلى أن يُعد الفريق أدلة لاستخدام I2P في هذه الحالات.
 
-The presentation on Tuesday went very well, and Phong was very busy afterwards answering questions about his work. I was busy too answering questions about I2P and what it does. The new stickers featuring the updated logo by Ura Design got rave reviews! It was a very positive experience and I will be looking forward to continuing to work with Phong and monitoring I2P censorship. I would encourage anyone who has encountered blocking, or has had success using I2P to communicate in restricted environments to reach out if you can. I2P is currently working on new solutions to circumvent internet blocking. Having met people this year who have given me first hand accounts of the effects of censorship and the need to stay connected, makes the need for I2P to be more resilient where it needs to be and for the team to be creating guides for using I2P in these situations.
+كما سأقوم بإعداد موارد أفضل للباحثين المهتمين بـ I2P أيضًا.
 
-I will be putting together better resources for researchers interested in I2P, as well.
+كما حالفني الحظ أيضًا بقضاء وقت مع Mhatta، وهو مساهم في I2P، وإقامة اتصالات تمهيدًا لتمويل مستقبلي. أود أن أوجّه شكرًا كبيرًا لبنّاء المجتمع الذين قابلتهم في تونس وقابلتهم مرة أخرى، والذين يقدمون دعمًا كبيرًا للمشروع. كان هذا عامًا مثيرًا حتى الآن، وعليه ما زال أمام I2P الكثير من العمل. يُرجى التفكير في التبرع بوقتك أو تمويل المشروع، إذ يحتاج إلى التوسع بسرعة لمواجهة التحديات الجديدة.
 
-I also had the good fortune to spend time with Mhatta, who is an I2P contributor, and to make connections for future funding. A huge thank you to the community builders I met in Tunis who I met again and who are offering so much support to the project. This has been an exciting year so far, and I2P has so much work to do. Please consider donating your time or funding the project as it needs to scale quickly to new challenges.
+إذا كانت لديك الفرصة، يمكنك قراءة التقرير الكامل "Measuring I2P Censorship at a Global Scale" هنا https://www.usenix.org/conference/foci19/presentation/hoang
 
-If you have an opportunity to, you can read the full report Measuring I2P Censorship at a Global Scale here https://www.usenix.org/conference/foci19/presentation/hoang
+وكان هناك ورشة عمل رائعة أخرى ضمن ورش القياسات بعنوان "On the Importance of Encrypted-SNI (ESNI) to Censorship Circumvention" https://www.usenix.org/conference/foci19/presentation/chai
 
-Another great workshop in the measurements workshop was On the Importance of Encrypted-SNI (ESNI) to Censorship Circumvention https://www.usenix.org/conference/foci19/presentation/chai
+كانت هناك العديد من ورش العمل الرائعة التي حضرتها — وأي شخص يرغب يمكنه الوصول إلى البرنامج والمواد ذات الصلة من هنا: https://www.usenix.org/conference/foci19/workshop-program
 
-There are so many great workshops that I attended - anyone who would like too can access the program and related materials here: https://www.usenix.org/conference/foci19/workshop-program
+سأحضر مؤتمر Our Networks في تورونتو الشهر القادم https://ournetworks.ca/ — ويجب أن تحضر أنت أيضًا! يمكن الاطلاع على البرنامج من هنا https://ournetworks.ca/program/
 
-I will be attending Our Networks in Toronto next month https://ournetworks.ca/ - and so should you! The program can be viewed here https://ournetworks.ca/program/
-
-Sadie
+سادي

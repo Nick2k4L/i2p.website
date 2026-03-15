@@ -10,58 +10,52 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## Обзор
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+В данном предложении речь идет об улучшении доли успешных подключений при установлении соединений.
 
 
-## Design
+## Мотивация
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+Интрогерсеры (introducers) перестают действовать по истечении определённого времени, однако эта информация не публикуется в Router Info. В настоящее время маршрутизаторам приходится использовать эвристику для оценки, когда интрогерсер уже недействителен.
 
 
-## Specification
+## Дизайн
+
+В SSU-адресе маршрутизатора, содержащем интрогерсеров, публикующий может опционально указать время истечения срока действия для каждого интрогерсера.
+
+
+## Спецификация
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: Номер интрогерсера (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: Время в секундах (не миллисекундах) с эпохи Unix.
 ```
 
-### Notes
+### Примечания
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* Каждое время истечения должно быть больше даты публикации Router Info и меньше, чем на 6 часов превышать дату публикации Router Info.
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* Маршрутизаторы, публикующие интрогерсеров, должны стараться поддерживать их работоспособность до указанного времени истечения, однако они не могут гарантировать это.
 
-* Routers should not use a published introducer after its expiration.
+* Маршрутизаторы не должны использовать опубликованного интрогерсера после истечения срока его действия.
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* Время истечения интрогерсеров указывается в карте Router Address.  
+  Это не то же самое, что (в настоящее время неиспользуемое) 8-байтовое поле истечения срока в Router Address.
 
-**Example:** `iexp0=1486309470`
+**Пример:** `iexp0=1486309470`
 
 
-## Migration
+## Миграция
 
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+Проблем нет. Реализация является опциональной.  
+Обеспечивается обратная совместимость, поскольку старые маршрутизаторы будут игнорировать неизвестные параметры.
 
 
-## References
+## Ссылки
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

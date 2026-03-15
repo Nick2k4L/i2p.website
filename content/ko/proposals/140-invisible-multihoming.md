@@ -8,87 +8,55 @@ status: "열기"
 thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
+## 개요
 
-## Overview
+본 제안서는 단일 [Destination](/docs/specs/common-structures/#destination)을 투명하게 호스팅하는 여러 라우터를 I2P 클라이언트, 서비스 또는 외부 로드 밸런서 프로세스가 관리할 수 있도록 하는 프로토콜 설계를 제시한다.
 
-This proposal outlines a design for a protocol enabling an I2P client, service
-or external balancer process to manage multiple routers transparently hosting a
-single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
+현재 이 제안서는 구체적인 구현을 명시하지 않는다. [I2CP](/docs/specs/i2cp/)의 확장으로 구현되거나, 새로운 프로토콜로 구현될 수 있다.
 
-The proposal currently does not specify a concrete implementation. It could be
-implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
+## 동기
 
+멀티홈(Multihoming)이란 동일한 Destination을 여러 라우터가 호스팅하는 것을 의미한다. 현재 I2P에서 멀티홈을 수행하는 방법은 각 라우터에서 독립적으로 동일한 Destination을 실행하는 것이다. 클라이언트가 특정 시점에 사용하는 라우터는 LeaseSet을 가장 최근에 게시한 라우터이다.
 
-## Motivation
+이 방법은 일종의 해킹이며, 대규모 웹사이트에서는 제대로 작동하지 않을 가능성이 높다. 예를 들어 100개의 멀티홈 라우터가 각각 16개의 터널을 가지고 있다고 가정하자. 그러면 10분마다 1600개의 LeaseSet이 게시되며, 이는 초당 거의 3건에 해당한다. 플러드필(Floodfill) 노드는 이를 감당할 수 없게 되고, 제한(throttle)이 작동하게 된다. 게다가 아직 조회(lookup) 트래픽에 대해서는 언급조차 하지 않았다.
 
-Multihoming is where multiple routers are used to host the same Destination.
-The current way to multihome with I2P is to run the same Destination on each
-router independently; the router that gets used by clients at any particular
-time is the last one to publish a LeaseSet.
+제안서 123은 메타-LeaseSet을 사용하여 이 문제를 해결한다. 메타-LeaseSet은 100개의 실제 LeaseSet 해시를 나열한다. 조회는 두 단계로 이루어진다: 먼저 메타-LeaseSet을 조회하고, 그 다음 명시된 LeaseSet 중 하나를 조회한다. 이는 조회 트래픽 문제에 대한 좋은 해결책이지만, 단독으로는 상당한 프라이버시 누출을 초래한다. 각 실제 LeaseSet이 단일 라우터에 대응하기 때문에, 게시된 메타-LeaseSet을 모니터링함으로써 어떤 멀티홈 라우터가 온라인 상태인지 파악할 수 있다.
 
-This is a hack and presumably won't work for large websites at scale. Say we had
-100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
-every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
-and throttles would kick in. And that's before we even mention the lookup
-traffic.
+I2P 클라이언트 또는 서비스가 단일 Destination을 여러 라우터에 분산시키되, LeaseSet 관점에서 단일 라우터를 사용하는 것과 구별할 수 없도록 하는 방법이 필요하다.
 
-Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
-LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
-meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
-the lookup traffic issue, but on its own it creates a significant privacy leak:
-It is possible to determine which multihoming routers are online by monitoring
-the published meta-LeaseSet, because each real LeaseSet has corresponds to a
-single router.
+## 설계
 
-We need a way for an I2P client or service to spread a single Destination across
-multiple routers, in a way that is indistinguishable to using a single router
-(from the perspective of the LeaseSet itself).
+### 정의
 
+    사용자 (User)
+        자신의 Destination을 멀티홈하고자 하는 개인 또는 조직. 일반성을 잃지 않고 단일 Destination을 고려한다 (WLOG).
 
-## Design
+    클라이언트 (Client)
+        Destination 뒤에서 실행되는 애플리케이션 또는 서비스. 클라이언트 측, 서버 측 또는 피어 투 피어 애플리케이션일 수 있으며, I2P 라우터에 연결한다는 의미에서 클라이언트라 칭한다.
 
-### Definitions
+        클라이언트는 세 부분으로 구성되며, 모두 동일한 프로세스 내에 있을 수도 있고, 여러 프로세스 또는 머신에 분산될 수도 있다 (멀티 클라이언트 구성):
 
-    User
-        The person or organisation wanting to multihome their Destination(s). A
-        single Destination is considered here without loss of generality (WLOG).
+        밸런서 (Balancer)
+            피어 선택 및 터널 생성을 관리하는 클라이언트의 구성 요소. 한 번에 하나의 밸런서만 존재하며, 모든 I2P 라우터와 통신한다. 장애 대비 밸런서가 존재할 수 있다.
 
-    Client
-        The application or service running behind the Destination. It may be a
-        client-side, server-side, or peer-to-peer application; we refer to it as
-        a client in the sense that it connects to the I2P routers.
+        프론트엔드 (Frontend)
+            병렬로 운영될 수 있는 클라이언트의 구성 요소. 각 프론트엔드는 단일 I2P 라우터와 통신한다.
 
-        The client consists of three parts, which may all be in the same process
-        or may be split across processes or machines (in a multi-client setup):
+        백엔드 (Backend)
+            모든 프론트엔드 간에 공유되는 클라이언트의 구성 요소. 어떤 I2P 라우터와도 직접 통신하지 않는다.
 
-        Balancer
-            The part of the client that manages peer selection and tunnel
-            building. There is a single balancer at any one time, and it
-            communicates with all I2P routers. There may be failover balancers.
+    라우터 (Router)
+        사용자가 운영하는 I2P 라우터로, I2P 네트워크와 사용자의 네트워크 사이의 경계에 위치한다 (기업 네트워크의 엣지 장치와 유사). 밸런서의 명령에 따라 터널을 생성하고, 클라이언트 또는 프론트엔드를 위해 패킷을 라우팅한다.
 
-        Frontend
-            The part of the client that can be operated in parallel. Each
-            frontend communicates with a single I2P router.
+### 고수준 개요
 
-        Backend
-            The part of the client that is shared between all frontends. It has
-            no direct communication with any I2P router.
+다음과 같은 구성이 요구된다고 가정하자:
 
-    Router
-        An I2P router run by the user that sits at the boundary between the I2P
-        network and the user's network (akin to an edge device in corporate
-        networks). It builds tunnels under the command of a balancer, and routes
-        packets for a client or frontend.
+- 하나의 Destination을 가진 클라이언트 애플리케이션.
+- 각각 3개의 인바운드 터널을 관리하는 4개의 라우터.
+- 12개의 터널 모두가 단일 LeaseSet에 게시되어야 한다.
 
-### High-level overview
-
-Imagine the following desired configuration:
-
-- A client application with one Destination.
-- Four routers, each managing three inbound tunnels.
-- All twelve tunnels should be published in a single LeaseSet.
-
-### Single-client
+### 싱글 클라이언트
 
 ```
                 -{ [Tunnel 1]===\
@@ -108,7 +76,7 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### Multi-client
+### 멀티 클라이언트
 
 ```
                 -{ [Tunnel 1]===\
@@ -128,43 +96,37 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### General client process
+### 일반 클라이언트 프로세스
 
-- Load or generate a Destination.
+- Destination을 로드하거나 생성한다.
 
-- Open up a session with each router, tied to the Destination.
+- 각 라우터와 세션을 열고, 이를 Destination에 연결한다.
 
-- Periodically (around every ten minutes, but more or less based on tunnel
-  liveness):
+- 주기적으로 (약 10분마다, 터널 생존 상태에 따라 더 자주 또는 덜 자주):
 
-  - Obtain the fast tier from each router.
+  - 각 라우터로부터 빠른 티어(fast tier)를 가져온다.
 
-  - Use the superset of peers to build tunnels to/from each router.
+  - 피어의 상위 집합(superset)을 사용하여 각 라우터로/에서 터널을 생성한다.
 
-    - By default, tunnels to/from a particular router will use peers from
-      that router's fast tier, but this is not enforced by the protocol.
+    - 기본적으로 특정 라우터로/에서의 터널은 해당 라우터의 빠른 티어에 있는 피어를 사용하지만, 프로토콜에서 이를 강제하지는 않는다.
 
-  - Collect the set of active inbound tunnels from all active routers, and create a
-    LeaseSet.
+  - 모든 활성 라우터로부터 활성 인바운드 터널 집합을 수집하고, LeaseSet을 생성한다.
 
-  - Publish the LeaseSet through one or more of the routers.
+  - 하나 이상의 라우터를 통해 LeaseSet을 게시한다.
 
-### Differences to I2CP
+### I2CP와의 차이점
 
-To create and manage this configuration, the client needs the following new
-functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
+이 구성을 생성하고 관리하기 위해 클라이언트는 현재 [I2CP](/docs/specs/i2cp/)에서 제공하는 기능 외에 다음의 새로운 기능이 필요하다:
 
-- Tell a router to build tunnels, without creating a LeaseSet for them.
-- Get a list of the current tunnels in the inbound pool.
+- LeaseSet을 생성하지 않고 라우터에 터널 생성을 지시.
+- 인바운드 풀의 현재 터널 목록을 가져오기.
 
-Additionally, the following functionality would enable significant flexibility
-in how the client manages its tunnels:
+또한 다음 기능은 클라이언트가 터널을 관리하는 방식에서 상당한 유연성을 제공한다:
 
-- Get the contents of a router's fast tier.
-- Tell a router to build an inbound or outbound tunnel using a given list of
-  peers.
+- 라우터의 빠른 티어 내용 가져오기.
+- 주어진 피어 목록을 사용하여 라우터에 인바운드 또는 아웃바운드 터널 생성 지시.
 
-### Protocol outline
+### 프로토콜 개요
 
 ```
          Client                           Router
@@ -183,125 +145,90 @@ in how the client manages its tunnels:
   Packet Received  <---------------------
 ```
 
-### Messages
+### 메시지
 
 **Create Session**
-- Create a session for the given Destination.
+- 주어진 Destination에 대한 세션을 생성한다.
 
 **Session Status**
-- Confirmation that the session has been set up, and the client can now start building tunnels.
+- 세션이 설정되었음을 확인하며, 클라이언트가 이제 터널 생성을 시작할 수 있음을 알린다.
 
 **Get Fast Tier**
-- Request a list of the peers that the router currently would consider building tunnels through.
+- 라우터가 현재 터널을 생성할 때 고려할 피어 목록을 요청한다.
 
 **Peer List**
-- A list of peers known to the router.
+- 라우터가 알고 있는 피어 목록.
 
 **Create Tunnel**
-- Request that the router build a new tunnel through the specified peers.
+- 지정된 피어들을 통해 새로운 터널을 생성하도록 라우터에 요청한다.
 
 **Tunnel Status**
-- The result of a particular tunnel build, once it is available.
+- 특정 터널 생성의 결과를 제공하며, 생성 완료 후에 전달된다.
 
 **Get Tunnel Pool**
-- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
+- Destination에 대한 인바운드 또는 아웃바운드 풀의 현재 터널 목록을 요청한다.
 
 **Tunnel List**
-- A list of tunnels for the requested pool.
+- 요청된 풀에 대한 터널 목록.
 
 **Publish LeaseSet**
-- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
+- 제공된 LeaseSet을 Destination의 아웃바운드 터널 중 하나를 통해 게시하도록 라우터에 요청한다. 응답 상태는 필요 없으며, 라우터는 LeaseSet이 게시되었다고 판단할 때까지 계속 재시도해야 한다.
 
 **Send Packet**
-- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
+- 클라이언트에서 보내는 아웃고잉 패킷. 선택적으로 패킷을 반드시(또는 가능하면) 전송해야 할 아웃바운드 터널을 지정할 수 있다.
 
 **Send Status**
-- Informs the client of the success or failure of sending a packet.
+- 패킷 전송 성공 또는 실패 여부를 클라이언트에 알린다.
 
 **Packet Received**
-- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
+- 클라이언트를 위한 인고잉 패킷. 선택적으로 패킷을 수신한 인바운드 터널을 지정할 수 있다(?)
 
+## 보안 영향
 
-## Security implications
+라우터 관점에서 이 설계는 기존 상태와 기능적으로 동일하다. 라우터는 여전히 모든 터널을 생성하고, 자체 피어 프로파일을 유지하며, 라우터와 클라이언트 작업 간의 분리를 강제한다. 기본 구성에서는 완전히 동일한데, 해당 라우터의 터널이 라우터 자신의 빠른 티어에서 생성되기 때문이다.
 
-From the perspective of the routers, this design is functionally equivalent to
-the status quo. The router still builds all tunnels, maintains its own peer
-profiles, and enforces separation between router and client operations. In the
-default configuration is completely identical, because tunnels for that router
-are built from its own fast tier.
+netDB 관점에서 이 프로토콜을 통해 생성된 단일 LeaseSet은 기존 기능을 활용하기 때문에 기존 상태와 동일하다. 그러나 16개의 Lease에 가까운 큰 LeaseSet의 경우, 관찰자가 LeaseSet이 멀티홈임을 파악할 수 있을 수 있다:
 
-From the perspective of the netDB, a single LeaseSet created via this protocol
-is identical to the status quo, because it leverages pre-existing functionality.
-However, for larger LeaseSets approaching 16 Leases, it may be possible for an
-observer to determine that the LeaseSet is multihomed:
+- 현재 빠른 티어의 최대 크기는 75개의 피어이다. 인바운드 게이트웨이(IBGW, Lease에 게시된 노드)는 티어의 일부에서 선택된다 (해시에 따라 터널 풀별로 무작위 분할, 개수 기준 아님):
 
-- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
-  (IBGW, the node published in a Lease) is selected from a fraction of the tier
-  (partitioned randomly per-tunnel pool by hash, not count):
+      1 홉
+          전체 빠른 티어
 
-      1 hop
-          The whole fast tier
+      2 홉
+          빠른 티어의 절반
+          (2014년 중반까지 기본값)
 
-      2 hops
-          Half of the fast tier
-          (the default until mid-2014)
+      3+ 홉
+          빠른 티어의 1/4
+          (현재 기본값은 3)
 
-      3+ hops
-          A quarter of the fast tier
-          (3 being the current default)
+  즉, 평균적으로 IBGW는 20~30개 피어 집합에서 선택된다.
 
-  That means on average the IBGWs will be from a set of 20-30 peers.
+- 싱글홈 구성에서, 16개 터널의 LeaseSet은 최대 20개 피어 집합에서 무작위로 선택된 16개의 IBGW를 가진다.
 
-- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
-  randomly selected from a set of up to (say) 20 peers.
+- 기본 구성에서 4개 라우터를 사용하는 멀티홈 구성에서, 16개 터널의 LeaseSet은 최대 80개 피어 집합에서 무작위로 선택된 16개의 IBGW를 가진다. 다만 라우터 간에 일부 공통 피어가 존재할 가능성이 있다.
 
-- In a 4-router multihomed setup using the default configuration, a full
-  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
-  80 peers, though there are likely to be a fraction of common peers between
-  routers.
+따라서 기본 구성에서는 통계적 분석을 통해 LeaseSet이 이 프로토콜로 생성되었음을 파악할 수 있을 수 있다. 또한 라우터의 수를 추정할 수도 있지만, 빠른 티어의 피어 변동(churn)이 이러한 분석의 정확도를 낮출 것이다.
 
-Thus with the default configuration, it may be possible through statistical
-analysis to figure out that a LeaseSet is being generated by this protocol. It
-might also be possible to figure out how many routers there are, although the
-effect of churn on the fast tiers would reduce the effectiveness of this
-analysis.
+클라이언트가 선택하는 피어를 완전히 제어할 수 있기 때문에, IBGW를 제한된 피어 집합에서 선택함으로써 이러한 정보 유출을 줄이거나 제거할 수 있다.
 
-As the client has full control over which peers it selects, this information
-leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
-peers.
+## 호환성
 
+LeaseSet 형식에 변경이 없기 때문에 이 설계는 네트워크와 완전히 하위 호환된다. 모든 라우터는 새로운 프로토콜을 인식해야 하지만, 모두 동일한 실체에 의해 제어되기 때문에 이는 문제가 되지 않는다.
 
-## Compatibility
+## 성능 및 확장성 참고 사항
 
-This design is completely backwards-compatible with the network, because there
-are no changes to the LeaseSet format. All routers would need to be aware of
-the new protocol, but this is not a concern as they would all be controlled by
-the same entity.
+이 제안서는 LeaseSet 당 최대 16개 Lease라는 상한선을 변경하지 않는다. 이보다 더 많은 터널이 필요한 Destination의 경우, 두 가지 가능한 네트워크 수정이 있다:
 
+- LeaseSet 크기의 상한을 늘린다. 구현하기 가장 간단하지만, 널리 사용되기 전에 네트워크 전반의 지원이 필요하며, 더 큰 패킷 크기로 인해 조회 속도가 느려질 수 있다. LeaseSet의 최대 실용 크기는 기본 전송 계층의 MTU에 의해 결정되며, 약 16kB 정도이다.
 
-## Performance and scalability notes
+- 계층화된 LeaseSet을 위한 제안서 123을 구현한다. 이 제안서와 함께 사용하면, 서브-LeaseSet의 Destination을 여러 라우터에 분산시켜 클리어넷 서비스의 여러 IP 주소처럼 작동할 수 있다.
 
-The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
-Destinations that require more tunnels than this, there are two possible network
-modifications:
+## 감사의 말
 
-- Increase the upper limit on the size of LeaseSets. This would be the simplest
-  to implement (though it would still require pervasive network support before
-  it could be widely used), but could result in slower lookups due to the larger
-  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
-  underlying transports, and is therefore around 16kB.
+이 제안서의 논의를 가능하게 해준 psi에게 감사한다.
 
-- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
-  the Destinations for the sub-LeaseSets could be spread across multiple
-  routers, effectively acting like multiple IP addresses for a clearnet service.
-
-
-## Acknowledgements
-
-Thanks to psi for the discussion that led to this proposal.
-
-
-## References
+## 참고 자료
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [I2CP](/docs/specs/i2cp/)

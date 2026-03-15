@@ -9,245 +9,120 @@ thread: "http://i2pforum.i2p/viewforum.php?f=13"
 target: "0.9.65"
 toc: true
 ---
+### Sunucuya Duyarlı HTTP Proxy Tünel Türü Önerisi
 
-### Proposal for a Host-Aware HTTP Proxy Tunnel Type
+Bu öneri, geleneksel HTTP-over-I2P kullanımında "Paylaşılan Kimlik Sorunu"nu çözmek amacıyla yeni bir HTTP proxy tünel türü sunar. Bu tünel türünün ek davranışları vardır ve potansiyel saldırgan gizli servis operatörlerinin, hedef alınan kullanıcı ajanlarına (tarayıcılara) ve I2P İstemci Uygulaması'na karşı yaptığı izlemeyi engellemeyi veya sınırlamayı amaçlar.
 
-This is a proposal to resolve the “Shared Identity Problem” in
-conventional HTTP-over-I2P usage by introducing a new HTTP proxy tunnel
-type. This tunnel type has supplemental behavior which is intended to
-prevent or limit the utility of tracking conducted by potential hostile
-hidden service operators, against targeted user-agents(browsers) and the
-I2P Client Application itself.
+#### "Paylaşılan Kimlik" sorunu nedir?
 
-#### What is the “Shared Identity” problem?
+"Paylaşılan Kimlik" sorunu, kriptografik adresli bir üst düzey ağda bulunan bir kullanıcı aracının başka bir kullanıcı aracısıyla kriptografik kimliği paylaştığında meydana gelir. Örneğin, bir Firefox ve GNU Wget'in aynı HTTP Proxy'yi kullanacak şekilde yapılandırılması durumunda bu gerçekleşir.
 
-The “Shared Identity” problem occurs when a user-agent on a
-cryptographically addressed overlay network shares a cryptographic
-identity with another user-agent. This occurs, for instance, when a
-Firefox and GNU Wget are both configured to use the same HTTP Proxy.
+Bu senaryoda, sunucu etkinliğe yanıt vermek için kullanılan kriptografik adresi (Destination) toplayıp saklayabilir. Bu adresi, kökeni kriptografik olduğu için her zaman %100 benzersiz olan bir "parmak izi" olarak değerlendirebilir. Bu, Paylaşılan Kimlik sorununun gözlemlenen bağlantılılığını tam anlamıyla kusursuz hale getirir.
 
-In this scenario, it is possible for the server to collect and store the
-cryptographic address(Destination) used to reply to the activity. It can
-treat this as a “Fingerprint” which is always 100% unique, because it is
-cryptographic in origin. This means that the linkability observed by the
-Shared Identity problem is perfect.
+Ancak bu bir sorun mudur?
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-But is it a problem?
-^^^^^^^^^^^^^^^^^^^^
+Paylaşılan kimlik sorunu, aynı protokolü kullanan kullanıcı ajanlarının bağlantısızlık istedikleri durumda bir sorundur. [Bu sorun, HTTP bağlamında ilk kez bu Reddit Tartışmasında](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/) bahsedilmiştir ve silinmiş yorumlara [pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi) sayesinde erişilebilir. *O dönemde* en aktif katılımcılardan biriydim ve *o dönemde* bu sorunun önemsiz olduğunu düşünüyordum. Geçtiğimiz 8 yıl içinde durum ve bu konudaki görüşüm değişti; artık kötü niyetli hedef korelasyonunun oluşturduğu tehdidin, daha fazla sitenin belirli kullanıcıları "profilleme" konumuna gelmesiyle önemli ölçüde arttığını düşünüyorum.
 
-The shared identity problem is a problem when user-agents that speak the
-same protocol desire unlinkability. [It was first mentioned in the
-context of HTTP in this Reddit
-Thread](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/),
-with the deleted comments accessible courtesy of
-[pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi).
-*At the time* I was one of the most active respondents, and *at the
-time* I believed the issue was small. In the past 8 years, the situation
-and my opinion of it have changed, I now believe the threat posed by
-malicious destination correlation grows considerably as more sites are
-in a position to “profile” specific users.
+Bu saldırının giriş engeli çok düşüktür. Sadece bir gizli servis operatörünün birden fazla hizmet işletmesini gerektirir. Aynı anda yapılan ziyaretlere yönelik saldırılar için (aynı anda birden fazla siteye girilmesi) bu tek gerekliliktir. Zaman içinde olmayan bağlantılar için ise bu hizmetlerden birinin, takip edilmek istenen tek bir kullanıcıya ait "hesaplar" barındıran bir hizmet olması gerekir.
 
-This attack has a very low barrier to entry. It only requires that a
-hidden service operator operate multiple services. For attacks on
-contemporary visits(visiting multiple sites at the same time), this is
-the only requirement. For non-contemporary linking, one of those
-services must be a service which hosts “accounts” which belong to a
-single user who is targeted for tracking.
+Şu anda, kullanıcı hesapları barındıran herhangi bir servis operatörü, Paylaşılan Kimlik sorununu istismar ederek, kontrol ettikleri herhangi bir sitedeki etkinliklerle bu hesapları ilişkilendirebilir. Mastodon, Gitlab veya basit forumlar bile birden fazla hizmet işletiyor ve bir kullanıcı için profil oluşturmak istiyorlarsa, bu saldırıları gerçekleştiren saldırganlar olabilirler. Bu gözetim, takip etme, maddi kazanç veya istihbarat amaçlı olabilir. Şu anda bu saldırıyı gerçekleştirebilecek ve anlamlı veriler elde edebilecek onlarca büyük operatör var. Şimdilik bunların bunu yapmayacaklarını varsayıyoruz, ancak bizim görüşlerimizle ilgilenmeyen aktörler kolayca ortaya çıkabilir.
 
-Currently, any service operator who hosts user accounts will be able to
-correlate them with activity across any sites they control by exploiting
-the Shared Identity problem. Mastodon, Gitlab, or even simple forums
-could be attackers in disguise as long as they operate more than one
-service and have an interest in creating a profile for a user. This
-surveillance could be conducted for stalking, financial gain, or
-intelligence-related reasons. Right now there are dozens of major
-operators, who could carry out this attack and gain meaningful data from
-it. We mostly trust them not to for now, but players who don’t care
-about our opinions could easily emerge.
+Bu, açık ağda yapılan ve kuruluşların kendi sitelerindeki etkileşimleri kontrol ettikleri ağlardaki etkileşimlerle ilişkilendirdikleri temel bir profil oluşturma türüyle doğrudan ilişkilidir. I2P'de, kriptografik hedefin benzersiz olması nedeniyle bu teknik bazen coğrafi konumun ek gücü olmamasına rağmen daha güvenilir olabilir.
 
-This is directly related to a fairly basic form of profile-building on
-the clear web where organizations can correlate interactions on their
-site with interations on networks they control. On I2P, because the
-cryptographic destination is unique, this technique can sometimes be
-even more reliable, albeit without the additional power of geolocation.
+Paylaşılan Kimlik, yalnızca coğrafi konumu gizlemek için I2P kullanan bir kullanıcıya karşı etkisizdir. Ayrıca I2P yönlendirmesini kırmak için kullanılamaz. Sadece bağlamsal kimlik yönetimi sorunudur.
 
-The Shared Identity is not useful against a user who is using I2P solely
-to obfuscate geolocation. It also cannot be used to break I2P’s routing.
-It is only a problem of contextual identity management.
+- Paylaşılan Kimlik sorunu, bir I2P kullanıcısının coğrafi konumunu belirlemek için kullanılamaz.
+- Zaman içinde olmayan oturumları bağlamak için Paylaşılan Kimlik sorunu kullanılamaz.
 
--  It is impossible to use the Shared Identity problem to geolocate an
-   I2P user.
--  It is impossible to use the Shared Identity problem to link I2P
-   sessions if they are not contemporary.
+Ancak, muhtemelen çok yaygın olan koşullarda bir I2P kullanıcısının anonimliğini zayıflatmak için kullanılması mümkündür. Bunların yaygın olmasının bir nedeni, "sekme" işlemi destekleyen Firefox gibi bir web tarayıcısının kullanımını teşvik etmemizdir.
 
-However, it is possible to use it to degrade the anonymity of an I2P
-user in circumstances which are probably very common. One reason they
-are common is becase we encourage the use of Firefox, a web browser
-which supports “Tabbed” operation.
+- Paylaşılan Kimlik sorunundan, üçüncü taraf kaynakları isteyebilen *herhangi* bir web tarayıcısında *her zaman* bir parmak izi üretmek mümkündür.
+- Javascript'in devre dışı bırakılması, Paylaşılan Kimlik sorununa karşı **hiçbir şey** ifade etmez.
+- Geleneksel tarayıcı parmak izi gibi yöntemlerle zaman içinde olmayan oturumlar arasında bir bağlantı kurulabiliyorsa, Paylaşılan Kimlik geçişli olarak uygulanabilir ve zaman içinde olmayan bir bağlantı stratejisi mümkün hale gelebilir.
+- Açık ağdaki bir etkinlik ile bir I2P kimliği arasında bir bağlantı kurulabiliyorsa, örneğin hedef, hem I2P hem de açık ağda varlığı olan bir sitede oturum açmışsa, Paylaşılan Kimlik geçişli olarak uygulanabilir ve tamamen anonimliğin kaldırılmasını sağlayabilir.
 
--  It is *always* possible to produce a fingerprint from the Shared
-   Identity problem in *any* web browser which supports requesting
-   third-party resources.
--  Disabling Javascript accomplishes **nothing** against the Shared
-   Identity problem.
--  If a link can be established between non-contemporary sessions such
-   as by “traditional” browser fingerprinting, then the Shared Identity
-   can be applied transitively, potentially enabling a non-contemporary
-   linking strategy.
--  If a link can be established between a clearnet activity and an I2P
-   identity, for instance, if the target is logged into a site with both
-   an I2P and a clearnet presence on both sides, the Shared Identity can
-   be applied transitively, potentially enabling complete
-   de-anonymization.
+Paylaşılan Kimlik sorununun I2P HTTP proxy'sine uygulandığında ciddiyetini nasıl değerlendirdiğiniz, uygulama için bağlamsal kimliğin nerede olduğunu (veya daha doğrusu, potansiyel olarak bilgisiz beklentilere sahip bir "kullanıcı") düşündüğünüze bağlıdır. Birkaç olasılık vardır:
 
-How you view the severity of the Shared Identity problem as it applies
-to the I2P HTTP proxy depends on where you(or more to the point, a
-“user” with potentially uninformed expectationss) think the “contextual
-identity” for the application lies. There are several possibilities:
+1. HTTP hem Uygulama hem de Bağlamsal Kimliktir - Şu anki çalışma şekli budur. Tüm HTTP Uygulamaları bir kimliği paylaşır.
+2. Süreç hem Uygulama hem de Bağlamsal Kimliktir - Bu, bir uygulamanın SAMv3 veya I2CP gibi bir API kullandığı durumda geçerlidir; uygulama kimliğini oluşturur ve ömrünü kontrol eder.
+3. HTTP Uygulamadır, ancak Sunucu Bağlamsal Kimliktir - Bu öneri tam olarak bunu amaçlar; her sunucuyu potansiyel bir "Web Uygulaması" olarak görür ve tehdit yüzeyini buna göre ele alır.
 
-1. HTTP is both the Application and the Contextual Identity - This is
-   how it works now. All HTTP Applications share an identity.
-2. The Process is the Application and the Contextual Identity - This is
-   how it works when an application uses an API like SAMv3 or I2CP,
-   where an application creates it’s identity and controls it’s
-   lifetime.
-3. HTTP is the Application, but the Host is the Contextual Identity
-   -This is the object of this proposal, which treats each Host as a
-   potential “Web Application” and treats the threat surface as such.
+Çözülebilir mi?
+^^^^^^^^^^^^^^
 
-Is it Solvable?
-^^^^^^^^^^^^^^^
+Proxy'nin operasyonunun bir uygulamanın anonimliğini zayıflatabileceği her olası duruma akıllıca yanıt vermesini sağlayan bir proxy oluşturmak muhtemelen mümkün değildir. Ancak, öngörülebilir şekilde davranan belirli bir uygulamaya akıllıca yanıt veren bir proxy oluşturmak mümkündür. Örneğin, modern web tarayıcılarda, kullanıcıların birden fazla sekmede birden fazla web sitesiyle etkileşime gireceği ve bu sitelerin ana bilgisayar adı ile ayrılacağı beklenir.
 
-It is probably not possible to make a proxy which intelligently responds
-to every possible case in which it’s operation could weaken the
-anonymity of an application. However, it is possible to build a proxy
-which intelligently responds to a specific application which behaves in
-a predictable way. For instance, in modern Web Browsers, it is expected
-that users will have multiple tabs open, where they will be interacting
-with multiple web sites, which will be distinguished by hostname.
+Bu, HTTP Proxy'nin her sunucuya kendi Destination'ını vererek kullanıcı aracısının davranışını yansıtarak HTTP Proxy'nin davranışını geliştirerek bu tür HTTP kullanıcı ajanları için iyileştirme yapmamızı sağlar. Bu değişiklik, iki farklı sunucunun artık dönüş kimliğini paylaşmayacağı için, iki sunucudaki istemci etkinliklerini ilişkilendirmek için kullanılan bir parmak izi çıkarmak amacıyla Paylaşılan Kimlik sorununun kullanılmasını imkansız hale getirir.
 
-This allows us to improve upon the behavior of the HTTP Proxy for this
-type of HTTP user-agent by making the behavior of the proxy match the
-behavior of the user-agent by giving each host it’s own Destination when
-used with the HTTP Proxy. This change makes it impossible to use the
-Shared Identity problem to derive a fingerprint which can be used to
-correlate client activity with 2 hosts, because the 2 hosts will simply
-no longer share a return identity.
-
-Description:
-^^^^^^^^^^^^
-
-A new HTTP Proxy will be created and added to Hidden Services
-Manager(I2PTunnel). The new HTTP Proxy will operate as a “multiplexer”
-of I2PSocketManagers. The multiplexer itself has no destination. Each
-individual I2PSocketManager which becomes part of the multiplex has it’s own
-local destination, and it’s own tunnel pool. I2PSocketManagerss are created
-on-demand by the multiplexer, where the “demand” is the first visit to the
-new host. It is possible to optimize the creation of the I2PSocketManagers
-before inserting them into the multiplexer by creating one or more in advance
-and storing them outside the multiplexer. This may improve performance.
-
-An additional I2PSocketManager, with it’s own destination, is set up as the
-carrier of an “Outproxy” for any site which does *not* have an I2P
-Destination, for example any Clearnet site. This effectively makes all
-Outproxy usage a single Contextual Identity, with the caveat that
-configuring multiple Outproxies for the tunnel will cause the normal
-“Sticky” outproxy rotation, where each outproxy only gets requests for a
-single site. This is *almost* the equivalent behavior as isolating
-HTTP-over-I2P proxies by destination, on the clear internet.
-
-Resource Considerations:
-''''''''''''''''''''''''
-
-The new HTTP proxy requires additional resources compared to the
-existing HTTP proxy. It will:
-
--  Potentially build more tunnels and I2PSocketManagers
--  Build tunnels more often
-
-Each of these requires:
-
--  Local computing resources
--  Network resources from peers
-
-Settings:
-'''''''''
-
-In order to minimize the impact of the increased resource usage, the
-proxy should be configured to use as little as possible. Proxies which
-are part of the multiplexer(not the parent proxy) should be configured
-to:
-
--  Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
-   tunnel pools
--  Multiplexed I2PSocketManagers take 3 hops by default.
--  Close sockets after 10 minutes of inactivity
--  I2PSocketManagers started by the Multiplexer share the lifespan of the
-   Multiplexer. Multiplexed tunnels are not “Destructed” until the
-   parent Multiplexer is.
-
-Diagrams:
+Açıklama:
 ^^^^^^^^^
 
-The diagram below represents the current operation of the HTTP proxy,
-which corresponds to “Possibility 1.” under the “Is it a problem”
-section. As you can see, the HTTP proxy interacts with I2P sites
-directly using only one destination. In this scenario, HTTP is both the
-application and the contextual identity.
+Yeni bir HTTP Proxy'si oluşturulacak ve Gizli Servisler Yöneticisi'ne (I2PTunnel) eklenecektir. Yeni HTTP Proxy, I2PSocketManager'ların bir "çoklayıcısı" olarak çalışacaktır. Çoklayıcının kendisinin bir hedefi yoktur. Çoklayıcıya dahil olan her bireysel I2PSocketManager'ın kendi yerel hedefi ve kendi tünel havuzu vardır. I2PSocketManager'lar, çoklayıcı tarafından yeni bir sunucuya ilk ziyarette "talep" edildiğinde isteğe bağlı olarak oluşturulur. Çoklayıcıya eklenmeden önce bir veya daha fazlasını önceden oluşturup çoklayıcının dışında saklayarak I2PSocketManager'ların oluşturulmasını optimize etmek mümkündür. Bu performansı artırabilir.
+
+Herhangi bir I2P Destination'ı *olmayan* siteler için (örneğin herhangi bir Açık Ağ sitesi) bir "Outproxy" taşıyıcısı olarak, kendi hedefine sahip ek bir I2PSocketManager kurulur. Bu, tüm Outproxy kullanımını tek bir Bağlamsal Kimlik haline getirir. Ancak, tünel için birden fazla Outproxy yapılandırılırsa, her outproxy'nin yalnızca tek bir site için istek alacağı normal "Sabit" outproxy döngüsüne neden olur. Bu, açık ağda HTTP-over-I2P proxy'lerini hedefe göre izole etmeye *neredeyse* eşdeğer bir davranıştır.
+
+Kaynak Düşünceleri:
+'''''''''''''''''''
+
+Yeni HTTP proxy, mevcut HTTP proxy'ye kıyasla ek kaynaklar gerektirir. Bu:
+
+- Potansiyel olarak daha fazla tünel ve I2PSocketManager oluşturur
+- Tünelleri daha sık oluşturur
+
+Bunların her biri şunları gerektirir:
+
+- Yerel hesaplama kaynakları
+- Eşlerden ağ kaynakları
+
+Ayarlar:
+''''''''
+
+Artan kaynak kullanımının etkisini en aza indirmek için proxy mümkün olduğunca az kullanacak şekilde yapılandırılmalıdır. Çoklayıcıya ait olmayan (üst proxy olmayan) proxy'ler şu şekilde yapılandırılmalıdır:
+
+- Çoklanmış I2PSocketManager'lar, tünel havuzlarında 1 tünel giriş, 1 tünel çıkış oluşturur
+- Çoklanmış I2PSocketManager'lar varsayılan olarak 3 zıplama yapar.
+- 10 dakika boyunca etkinlik olmazsa soketleri kapatır
+- Çoklayıcı tarafından başlatılan I2PSocketManager'lar, çoklayıcının ömrünü paylaşır. Üst çoklayıcı yok edilene kadar çoklanmış tüneller "Yok Edilmez".
+
+Şemalar:
+^^^^^^^^
+
+Aşağıdaki şema, "Bir sorun mu?" bölümündeki "Olasılık 1."e karşılık gelen mevcut HTTP proxy'nin çalışmasını temsil eder. Gördüğünüz gibi, HTTP proxy yalnızca bir hedef kullanarak doğrudan I2P siteleriyle etkileşime girer. Bu senaryoda, HTTP hem uygulama hem de bağlamsal kimliktir.
 
 ```text
-**Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
+**Mevcut Durum: HTTP Uygulamadır, HTTP Bağlamsal Kimliktir**
                                                       __-> Outproxy <-> i2pgit.org
                                                      /
-Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
+Tarayıcı <-> HTTP Proxy (tek Hedef)<->I2PSocketManager <---> idk.i2p
                                                      \__-> translate.idk.i2p
                                                       \__-> git.idk.i2p
 ```
 
-The diagram below represents the operation of a host-aware HTTP proxy,
-which corresponds to “Possibility 3.” under the “Is it a problem”
-section. In this secenario, HTTP is the application, but the Host
-defines the contextual identity, wherein each I2P site interacts with a
-different HTTP proxy with a unique destination per-host. This prevents
-operators of multiple sites from being able to distinguish when the same
-person is visiting multiple sites which they operate.
+Aşağıdaki şema, "Bir sorun mu?" bölümündeki "Olasılık 3."e karşılık gelen sunucuya duyarlı HTTP proxy'nin çalışmasını temsil eder. Bu senaryoda, HTTP uygulamadır, ancak Sunucu bağlamsal kimliği tanımlar; burada her I2P sitesi, sunucu başına benzersiz bir hedefe sahip farklı bir HTTP proxy'siyle etkileşime girer. Bu, aynı kişinin işlettiği birden fazla siteyi ziyaret ettiğini ayırt edebilmelerini engeller.
 
 ```text
-**After the Change: HTTP is the Application, Host is the Contextual Identity**
-                                                    __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+**Değişiklikten Sonra: HTTP Uygulamadır, Sunucu Bağlamsal Kimliktir**
+                                                    __-> I2PSocketManager (Hedef A - Sadece Outproxy'ler) <--> i2pgit.org
                                                    /
-Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
-                                                   \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
-                                                    \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+Tarayıcı <-> HTTP Proxy Çoklayıcısı (Hedef Yok) <---> I2PSocketManager (Hedef B) <--> idk.i2p
+                                                   \__-> I2PSocketManager (Hedef C) <--> translate.idk.i2p
+                                                    \__-> I2PSocketManager (Hedef C) <--> git.idk.i2p
 ```
 
-Status:
-^^^^^^^
+Durum:
+^^^^^^
 
-A working Java implementation of the host-aware proxy which conforms to
-an older version of this proposal is available at idk's fork under the
-branch: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link in citations. It
-is under heavy revision, in order to break down the changes into smaller
-sections.
+Sunucuya duyarlı proxy'nin, bu önerinin eski bir sürümüne uyan çalışan bir Java uygulaması, idk'nin çatalında i2p.i2p.2.6.0-browser-proxy-post-keepalive dalında mevcuttur. Alıntıdaki bağlantıya bakınız. Değişiklikleri daha küçük bölümlere ayırmak amacıyla yoğun bir şekilde gözden geçirilmektedir.
 
-Implementations with varying capabilities have been written in Go using
-the SAMv3 library, they may be useful for embedding in other Go
-applications or for go-i2p but are unsuitable for Java I2P.
-Additionally, they lack good support for working interactively with
-encrypted leaseSets.
+SAMv3 kütüphanesi kullanılarak Go dilinde çeşitli kapasitelerde uygulamalar yazılmıştır; bunlar diğer Go uygulamalarına gömülebilir veya go-i2p için yararlı olabilir ancak Java I2P için uygun değildir. Ayrıca, şifrelenmiş leaseSet'lerle etkileşimli çalışmak için iyi destek eksik.
 
-Addendum: ``i2psocks``
-                      
+Ek: ``i2psocks``
+               
 
-A simple application-oriented approach to isolating other types of
-clients is possible without implementing a new tunnel type or changing
-the existing I2P code by combining I2PTunnel existing tools which are
-already widely available and tested in the privacy community. However,
-this approach makes a difficult assumption which is not true for HTTP
-and also not true for many other kinds of potentsial I2P clients.
+Yeni bir tünel türü uygulamadan veya mevcut I2P kodunu değiştirmeden diğer tür istemcileri izole etmek için basit bir uygulamaya yönelik yaklaşım mümkündür ve gizlilik topluluğunda zaten yaygın olarak mevcut ve test edilmiş I2PTunnel araçlarını birleştirir. Ancak bu yaklaşım, HTTP için geçerli olmayan ve birçok diğer potansiyel I2P istemcisi için de geçerli olmayan zor bir varsayım yapar.
 
-Roughly, the following script will produce an application-aware SOCKS5
-proxy and socksify the underlying command:
+Yaklaşık olarak, aşağıdaki betik bir uygulamaya duyarlı SOCKS5 proxy'si oluşturur ve temel komutu socksify eder:
 
 ```sh
 #! /bin/sh
@@ -256,15 +131,7 @@ java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
 torsocks --port 7695 $command_to_proxy
 ```
 
-Addendum: ``example implementation of the attack``
-                                                  
+Ek: ``saldırının örnek uygulaması``
+                                  
 
-[An example implementation of the Shared Identity attack on HTTP
-User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
-has existed for several years. An additional example is available in the
-``simple-colluder`` subdirectory of [idk’s prop166
-repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These
-examples are deliberately designed to demonstrate that the attack works
-and would require modification(albeit minor) to be turned into a real
-attack.
-
+[HTTP Kullanıcı Ajanları üzerinde Paylaşılan Kimlik saldırısının örnek bir uygulaması](https://github.com/eyedeekay/colluding_sites_attack/) birkaç yıldır mevcuttur. Ek bir örnek [idk’nin prop166 deposunun](https://git.idk.i2p/idk/i2p.host-aware-proxy) ``simple-colluder`` alt dizininde mevcuttur. Bu örnekler, saldırının işe yaradığını göstermek amacıyla kasıtlı olarak tasarlanmıştır ve gerçek bir saldırıya dönüştürülebilmesi için (küçük olmakla birlikte) değişiklik gerektirir.

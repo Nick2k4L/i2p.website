@@ -9,245 +9,120 @@ thread: "http://i2pforum.i2p/viewforum.php?f=13"
 target: "0.9.65"
 toc: true
 ---
+### Đề xuất về loại Túnel HTTP Proxy Nhận diện Máy chủ
 
-### Proposal for a Host-Aware HTTP Proxy Tunnel Type
+Đây là một đề xuất nhằm giải quyết “Vấn đề Danh tính Chung” trong việc sử dụng HTTP-trên-I2P thông thường bằng cách giới thiệu một loại túnel HTTP proxy mới. Loại túnel này có hành vi bổ sung nhằm ngăn chặn hoặc hạn chế khả năng theo dõi do các máy chủ ẩn tiềm ẩn thù địch thực hiện đối với các user-agent (trình duyệt) mục tiêu và chính Ứng dụng Khách I2P.
 
-This is a proposal to resolve the “Shared Identity Problem” in
-conventional HTTP-over-I2P usage by introducing a new HTTP proxy tunnel
-type. This tunnel type has supplemental behavior which is intended to
-prevent or limit the utility of tracking conducted by potential hostile
-hidden service operators, against targeted user-agents(browsers) and the
-I2P Client Application itself.
+#### "Vấn đề Danh tính Chung" là gì?
 
-#### What is the “Shared Identity” problem?
+Vấn đề "Danh tính Chung" xảy ra khi một user-agent trên một mạng chồng (overlay network) có địa chỉ mã hóa lại chia sẻ danh tính mã hóa với một user-agent khác. Điều này xảy ra, ví dụ, khi cả Firefox và GNU Wget đều được cấu hình để sử dụng cùng một HTTP Proxy.
 
-The “Shared Identity” problem occurs when a user-agent on a
-cryptographically addressed overlay network shares a cryptographic
-identity with another user-agent. This occurs, for instance, when a
-Firefox and GNU Wget are both configured to use the same HTTP Proxy.
+Trong trường hợp này, máy chủ có thể thu thập và lưu trữ địa chỉ mã hóa (Destination) được dùng để phản hồi hoạt động. Nó có thể coi đây là một “dấu vân tay” luôn 100% duy nhất, vì nó có nguồn gốc mã hóa. Điều này có nghĩa là khả năng liên kết quan sát được do Vấn đề Danh tính Chung là hoàn hảo.
 
-In this scenario, it is possible for the server to collect and store the
-cryptographic address(Destination) used to reply to the activity. It can
-treat this as a “Fingerprint” which is always 100% unique, because it is
-cryptographic in origin. This means that the linkability observed by the
-Shared Identity problem is perfect.
-
-But is it a problem?
+Nhưng liệu có phải là một vấn đề?
 ^^^^^^^^^^^^^^^^^^^^
 
-The shared identity problem is a problem when user-agents that speak the
-same protocol desire unlinkability. [It was first mentioned in the
-context of HTTP in this Reddit
-Thread](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/),
-with the deleted comments accessible courtesy of
-[pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi).
-*At the time* I was one of the most active respondents, and *at the
-time* I believed the issue was small. In the past 8 years, the situation
-and my opinion of it have changed, I now believe the threat posed by
-malicious destination correlation grows considerably as more sites are
-in a position to “profile” specific users.
+Vấn đề Danh tính Chung trở thành một vấn đề khi các user-agent sử dụng cùng giao thức lại mong muốn tính không liên kết. [Nó lần đầu tiên được đề cập trong bối cảnh HTTP tại chủ đề Reddit này](https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/), với các bình luận đã bị xóa có thể truy cập thông qua [pullpush.io](https://api.pullpush.io/reddit/search/comment/?link_id=579idi). *Lúc đó*, tôi là một trong những người phản hồi tích cực nhất, và *lúc đó* tôi cho rằng vấn đề này nhỏ. Trong 8 năm qua, tình hình và quan điểm của tôi về nó đã thay đổi; tôi hiện tin rằng mối đe dọa từ việc các Destination ác ý liên kết dữ liệu ngày càng tăng đáng kể khi ngày càng có nhiều trang web ở vị trí “xây dựng hồ sơ” cho người dùng cụ thể.
 
-This attack has a very low barrier to entry. It only requires that a
-hidden service operator operate multiple services. For attacks on
-contemporary visits(visiting multiple sites at the same time), this is
-the only requirement. For non-contemporary linking, one of those
-services must be a service which hosts “accounts” which belong to a
-single user who is targeted for tracking.
+Cuộc tấn công này có ngưỡng tham gia rất thấp. Nó chỉ yêu cầu một máy chủ ẩn vận hành nhiều dịch vụ. Đối với các cuộc tấn công vào các lượt truy cập hiện tại (truy cập nhiều trang cùng lúc), đây là yêu cầu duy nhất. Đối với việc liên kết không cùng thời điểm, một trong các dịch vụ đó phải là dịch vụ lưu trữ “tài khoản” thuộc về một người dùng đơn lẻ bị nhắm mục tiêu theo dõi.
 
-Currently, any service operator who hosts user accounts will be able to
-correlate them with activity across any sites they control by exploiting
-the Shared Identity problem. Mastodon, Gitlab, or even simple forums
-could be attackers in disguise as long as they operate more than one
-service and have an interest in creating a profile for a user. This
-surveillance could be conducted for stalking, financial gain, or
-intelligence-related reasons. Right now there are dozens of major
-operators, who could carry out this attack and gain meaningful data from
-it. We mostly trust them not to for now, but players who don’t care
-about our opinions could easily emerge.
+Hiện tại, bất kỳ nhà điều hành dịch vụ nào lưu trữ tài khoản người dùng đều có thể liên kết chúng với hoạt động trên mọi trang web họ kiểm soát bằng cách khai thác Vấn đề Danh tính Chung. Mastodon, Gitlab, hay thậm chí các diễn đàn đơn giản cũng có thể là kẻ tấn công ngụy trang, miễn là họ vận hành nhiều hơn một dịch vụ và có động cơ xây dựng hồ sơ người dùng. Việc giám sát này có thể được thực hiện vì mục đích theo dõi, lợi ích tài chính hoặc vì lý do tình báo. Hiện tại có hàng chục nhà điều hành lớn có thể thực hiện cuộc tấn công này và thu thập dữ liệu có ý nghĩa từ đó. Chúng ta phần lớn tin tưởng họ sẽ không làm điều đó — ít nhất là hiện tại — nhưng những đối tượng không quan tâm đến quan điểm của chúng ta có thể dễ dàng xuất hiện.
 
-This is directly related to a fairly basic form of profile-building on
-the clear web where organizations can correlate interactions on their
-site with interations on networks they control. On I2P, because the
-cryptographic destination is unique, this technique can sometimes be
-even more reliable, albeit without the additional power of geolocation.
+Điều này liên quan trực tiếp đến một hình thức cơ bản của việc xây dựng hồ sơ trên mạng rõ (clear web), nơi các tổ chức có thể liên kết các tương tác trên trang web của họ với các tương tác trên các mạng mà họ kiểm soát. Trên I2P, do Destination mã hóa là duy nhất, kỹ thuật này đôi khi còn đáng tin cậy hơn, mặc dù không có thêm sức mạnh từ định vị địa lý.
 
-The Shared Identity is not useful against a user who is using I2P solely
-to obfuscate geolocation. It also cannot be used to break I2P’s routing.
-It is only a problem of contextual identity management.
+Vấn đề Danh tính Chung không hữu ích chống lại người dùng chỉ sử dụng I2P để ngụy trang vị trí địa lý. Nó cũng không thể được dùng để phá vỡ định tuyến của I2P. Nó chỉ là một vấn đề quản lý danh tính theo ngữ cảnh.
 
--  It is impossible to use the Shared Identity problem to geolocate an
-   I2P user.
--  It is impossible to use the Shared Identity problem to link I2P
-   sessions if they are not contemporary.
+-  Không thể sử dụng Vấn đề Danh tính Chung để định vị địa lý người dùng I2P.
+-  Không thể sử dụng Vấn đề Danh tính Chung để liên kết các phiên I2P nếu chúng không cùng thời điểm.
 
-However, it is possible to use it to degrade the anonymity of an I2P
-user in circumstances which are probably very common. One reason they
-are common is becase we encourage the use of Firefox, a web browser
-which supports “Tabbed” operation.
+Tuy nhiên, có thể sử dụng nó để làm suy giảm tính ẩn danh của người dùng I2P trong những hoàn cảnh có lẽ rất phổ biến. Một lý do khiến chúng phổ biến là vì chúng ta khuyến khích sử dụng Firefox, một trình duyệt web hỗ trợ chế độ “Tab”.
 
--  It is *always* possible to produce a fingerprint from the Shared
-   Identity problem in *any* web browser which supports requesting
-   third-party resources.
--  Disabling Javascript accomplishes **nothing** against the Shared
-   Identity problem.
--  If a link can be established between non-contemporary sessions such
-   as by “traditional” browser fingerprinting, then the Shared Identity
-   can be applied transitively, potentially enabling a non-contemporary
-   linking strategy.
--  If a link can be established between a clearnet activity and an I2P
-   identity, for instance, if the target is logged into a site with both
-   an I2P and a clearnet presence on both sides, the Shared Identity can
-   be applied transitively, potentially enabling complete
-   de-anonymization.
+-  Luôn *có thể* tạo ra một dấu vân tay từ Vấn đề Danh tính Chung trong *bất kỳ* trình duyệt web nào hỗ trợ yêu cầu tài nguyên bên thứ ba.
+-  Việc tắt Javascript **không làm gì cả** để chống lại Vấn đề Danh tính Chung.
+-  Nếu có thể thiết lập liên kết giữa các phiên không cùng thời điểm, ví dụ bằng “dấu vân tay trình duyệt” truyền thống, thì Danh tính Chung có thể được áp dụng theo cách bắc cầu, từ đó có thể cho phép chiến lược liên kết không cùng thời điểm.
+-  Nếu có thể thiết lập liên kết giữa hoạt động trên mạng rõ và danh tính I2P, ví dụ, nếu mục tiêu đã đăng nhập vào một trang với cả sự hiện diện I2P và mạng rõ ở cả hai phía, Danh tính Chung có thể được áp dụng theo cách bắc cầu, từ đó có thể dẫn đến việc loại bỏ ẩn danh hoàn toàn.
 
-How you view the severity of the Shared Identity problem as it applies
-to the I2P HTTP proxy depends on where you(or more to the point, a
-“user” with potentially uninformed expectationss) think the “contextual
-identity” for the application lies. There are several possibilities:
+Cách bạn đánh giá mức độ nghiêm trọng của Vấn đề Danh tính Chung khi áp dụng cho HTTP proxy I2P phụ thuộc vào việc bạn (hay nói chính xác hơn, một “người dùng” với kỳ vọng có thể chưa được thông tin đầy đủ) nghĩ rằng “danh tính theo ngữ cảnh” cho ứng dụng nằm ở đâu. Có một vài khả năng:
 
-1. HTTP is both the Application and the Contextual Identity - This is
-   how it works now. All HTTP Applications share an identity.
-2. The Process is the Application and the Contextual Identity - This is
-   how it works when an application uses an API like SAMv3 or I2CP,
-   where an application creates it’s identity and controls it’s
-   lifetime.
-3. HTTP is the Application, but the Host is the Contextual Identity
-   -This is the object of this proposal, which treats each Host as a
-   potential “Web Application” and treats the threat surface as such.
+1. HTTP vừa là Ứng dụng vừa là Danh tính Ngữ cảnh — Đây là cách hoạt động hiện tại. Tất cả các Ứng dụng HTTP đều chia sẻ một danh tính.
+2. Tiến trình là Ứng dụng và là Danh tính Ngữ cảnh — Đây là cách hoạt động khi một ứng dụng sử dụng API như SAMv3 hoặc I2CP, nơi ứng dụng tự tạo danh tính và kiểm soát vòng đời của nó.
+3. HTTP là Ứng dụng, nhưng Máy chủ (Host) là Danh tính Ngữ cảnh — Đây là mục tiêu của đề xuất này, coi mỗi Máy chủ như một “Ứng dụng Web” tiềm năng và xử lý bề mặt đe dọa tương ứng.
 
-Is it Solvable?
+Liệu có thể giải quyết được không?
 ^^^^^^^^^^^^^^^
 
-It is probably not possible to make a proxy which intelligently responds
-to every possible case in which it’s operation could weaken the
-anonymity of an application. However, it is possible to build a proxy
-which intelligently responds to a specific application which behaves in
-a predictable way. For instance, in modern Web Browsers, it is expected
-that users will have multiple tabs open, where they will be interacting
-with multiple web sites, which will be distinguished by hostname.
+Có lẽ không thể tạo một proxy thông minh phản hồi mọi trường hợp có thể làm suy yếu tính ẩn danh của một ứng dụng. Tuy nhiên, có thể xây dựng một proxy thông minh phản hồi một ứng dụng cụ thể có hành vi dự đoán được. Ví dụ, trong các Trình duyệt Web hiện đại, người dùng được kỳ vọng sẽ mở nhiều tab, tương tác với nhiều trang web, được phân biệt bằng tên máy chủ (hostname).
 
-This allows us to improve upon the behavior of the HTTP Proxy for this
-type of HTTP user-agent by making the behavior of the proxy match the
-behavior of the user-agent by giving each host it’s own Destination when
-used with the HTTP Proxy. This change makes it impossible to use the
-Shared Identity problem to derive a fingerprint which can be used to
-correlate client activity with 2 hosts, because the 2 hosts will simply
-no longer share a return identity.
+Điều này cho phép chúng ta cải thiện hành vi của HTTP Proxy cho loại user-agent HTTP này bằng cách làm cho hành vi của proxy phù hợp với hành vi của user-agent, bằng cách cấp cho mỗi máy chủ một Destination riêng khi dùng với HTTP Proxy. Thay đổi này khiến việc sử dụng Vấn đề Danh tính Chung để tạo dấu vân tay nhằm liên kết hoạt động của client với 2 máy chủ trở nên không thể, vì 2 máy chủ sẽ không còn chia sẻ cùng một danh tính trả lời.
 
-Description:
+Mô tả:
 ^^^^^^^^^^^^
 
-A new HTTP Proxy will be created and added to Hidden Services
-Manager(I2PTunnel). The new HTTP Proxy will operate as a “multiplexer”
-of I2PSocketManagers. The multiplexer itself has no destination. Each
-individual I2PSocketManager which becomes part of the multiplex has it’s own
-local destination, and it’s own tunnel pool. I2PSocketManagerss are created
-on-demand by the multiplexer, where the “demand” is the first visit to the
-new host. It is possible to optimize the creation of the I2PSocketManagers
-before inserting them into the multiplexer by creating one or more in advance
-and storing them outside the multiplexer. This may improve performance.
+Một HTTP Proxy mới sẽ được tạo và thêm vào Trình quản lý Dịch vụ Ẩn (Hidden Services Manager - I2PTunnel). HTTP Proxy mới sẽ hoạt động như một “bộ đa hợp” (multiplexer) của các I2PSocketManager. Bản thân bộ đa hợp không có destination. Mỗi I2PSocketManager riêng lẻ trở thành một phần của bộ đa hợp sẽ có destination cục bộ riêng và nhóm túnel (tunnel pool) riêng. Các I2PSocketManager được tạo theo yêu cầu bởi bộ đa hợp, trong đó “yêu cầu” là lần truy cập đầu tiên vào một máy chủ mới. Có thể tối ưu hóa việc tạo I2PSocketManager trước khi đưa vào bộ đa hợp bằng cách tạo trước một hoặc nhiều cái và lưu trữ bên ngoài bộ đa hợp. Điều này có thể cải thiện hiệu suất.
 
-An additional I2PSocketManager, with it’s own destination, is set up as the
-carrier of an “Outproxy” for any site which does *not* have an I2P
-Destination, for example any Clearnet site. This effectively makes all
-Outproxy usage a single Contextual Identity, with the caveat that
-configuring multiple Outproxies for the tunnel will cause the normal
-“Sticky” outproxy rotation, where each outproxy only gets requests for a
-single site. This is *almost* the equivalent behavior as isolating
-HTTP-over-I2P proxies by destination, on the clear internet.
+Một I2PSocketManager bổ sung, với destination riêng, được thiết lập làm phương tiện cho “Outproxy” đối với bất kỳ trang nào *không* có Destination I2P, ví dụ như bất kỳ trang mạng rõ nào. Điều này về cơ bản khiến mọi việc sử dụng Outproxy trở thành một Danh tính Ngữ cảnh duy nhất, với lưu ý rằng việc cấu hình nhiều Outproxy cho túnel sẽ dẫn đến việc luân chuyển “Sticky” outproxy thông thường, nơi mỗi outproxy chỉ nhận yêu cầu từ một trang duy nhất. Đây *gần như* tương đương với việc tách biệt các proxy HTTP-trên-I2P theo destination trên mạng rõ.
 
-Resource Considerations:
+Cân nhắc về tài nguyên:
 ''''''''''''''''''''''''
 
-The new HTTP proxy requires additional resources compared to the
-existing HTTP proxy. It will:
+HTTP proxy mới yêu cầu tài nguyên bổ sung so với HTTP proxy hiện tại. Nó sẽ:
 
--  Potentially build more tunnels and I2PSocketManagers
--  Build tunnels more often
+-  Có thể xây dựng nhiều túnel và I2PSocketManager hơn
+-  Xây dựng túnel thường xuyên hơn
 
-Each of these requires:
+Mỗi điều này yêu cầu:
 
--  Local computing resources
--  Network resources from peers
+-  Tài nguyên tính toán cục bộ
+-  Tài nguyên mạng từ các nút đồng đẳng (peers)
 
-Settings:
+Cài đặt:
 '''''''''
 
-In order to minimize the impact of the increased resource usage, the
-proxy should be configured to use as little as possible. Proxies which
-are part of the multiplexer(not the parent proxy) should be configured
-to:
+Để giảm thiểu tác động của việc sử dụng tài nguyên tăng lên, proxy nên được cấu hình để sử dụng càng ít càng tốt. Các proxy là một phần của bộ đa hợp (không phải proxy cha) nên được cấu hình để:
 
--  Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
-   tunnel pools
--  Multiplexed I2PSocketManagers take 3 hops by default.
--  Close sockets after 10 minutes of inactivity
--  I2PSocketManagers started by the Multiplexer share the lifespan of the
-   Multiplexer. Multiplexed tunnels are not “Destructed” until the
-   parent Multiplexer is.
+-  Các I2PSocketManager đa hợp xây dựng 1 túnel vào, 1 túnel ra trong nhóm túnel của chúng
+-  Các I2PSocketManager đa hợp mặc định đi qua 3 nút (hops)
+-  Đóng socket sau 10 phút không hoạt động
+-  Các I2PSocketManager do Bộ đa hợp khởi tạo sẽ chia sẻ vòng đời với Bộ đa hợp. Các túnel đa hợp không bị “hủy bỏ” cho đến khi Bộ đa hợp cha bị hủy.
 
-Diagrams:
+Sơ đồ:
 ^^^^^^^^^
 
-The diagram below represents the current operation of the HTTP proxy,
-which corresponds to “Possibility 1.” under the “Is it a problem”
-section. As you can see, the HTTP proxy interacts with I2P sites
-directly using only one destination. In this scenario, HTTP is both the
-application and the contextual identity.
+Sơ đồ dưới đây biểu diễn hoạt động hiện tại của HTTP proxy, tương ứng với “Khả năng 1.” trong phần “Có phải là vấn đề không”. Như bạn thấy, HTTP proxy tương tác trực tiếp với các trang I2P chỉ bằng một destination. Trong tình huống này, HTTP vừa là ứng dụng vừa là danh tính ngữ cảnh.
 
 ```text
-**Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
+**Tình trạng hiện tại: HTTP là Ứng dụng, HTTP là Danh tính Ngữ cảnh**
                                                       __-> Outproxy <-> i2pgit.org
                                                      /
-Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
+Trình duyệt <-> HTTP Proxy (một Destination)<->I2PSocketManager <---> idk.i2p
                                                      \__-> translate.idk.i2p
                                                       \__-> git.idk.i2p
 ```
 
-The diagram below represents the operation of a host-aware HTTP proxy,
-which corresponds to “Possibility 3.” under the “Is it a problem”
-section. In this secenario, HTTP is the application, but the Host
-defines the contextual identity, wherein each I2P site interacts with a
-different HTTP proxy with a unique destination per-host. This prevents
-operators of multiple sites from being able to distinguish when the same
-person is visiting multiple sites which they operate.
+Sơ đồ dưới đây biểu diễn hoạt động của một HTTP proxy nhận diện máy chủ (host-aware), tương ứng với “Khả năng 3.” trong phần “Có phải là vấn đề không”. Trong tình huống này, HTTP là ứng dụng, nhưng Máy chủ (Host) xác định danh tính ngữ cảnh, trong đó mỗi trang I2P tương tác với một HTTP proxy khác nhau, mỗi máy chủ có một destination riêng biệt. Điều này ngăn các nhà điều hành nhiều trang web phân biệt được khi cùng một người đang truy cập nhiều trang mà họ vận hành.
 
 ```text
-**After the Change: HTTP is the Application, Host is the Contextual Identity**
-                                                    __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+**Sau khi thay đổi: HTTP là Ứng dụng, Máy chủ là Danh tính Ngữ cảnh**
+                                                    __-> I2PSocketManager (Destination A - Chỉ dành cho Outproxy) <--> i2pgit.org
                                                    /
-Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
-                                                   \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
-                                                    \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+Trình duyệt <-> HTTP Proxy Multiplexer (Không có Destination) <---> I2PSocketManager (Destination B) <--> idk.i2p
+                                                   \__-> I2PSocketManager (Destination C) <--> translate.idk.i2p
+                                                    \__-> I2PSocketManager (Destination C) <--> git.idk.i2p
 ```
 
-Status:
+Tình trạng:
 ^^^^^^^
 
-A working Java implementation of the host-aware proxy which conforms to
-an older version of this proposal is available at idk's fork under the
-branch: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link in citations. It
-is under heavy revision, in order to break down the changes into smaller
-sections.
+Một triển khai Java hoạt động của proxy nhận diện máy chủ phù hợp với phiên bản cũ hơn của đề xuất này có sẵn tại nhánh fork của idk: i2p.i2p.2.6.0-browser-proxy-post-keepalive. Liên kết trong phần trích dẫn. Nó đang được sửa đổi mạnh mẽ để chia nhỏ các thay đổi thành các phần nhỏ hơn.
 
-Implementations with varying capabilities have been written in Go using
-the SAMv3 library, they may be useful for embedding in other Go
-applications or for go-i2p but are unsuitable for Java I2P.
-Additionally, they lack good support for working interactively with
-encrypted leaseSets.
+Các triển khai với khả năng khác nhau đã được viết bằng Go sử dụng thư viện SAMv3, có thể hữu ích để nhúng vào các ứng dụng Go khác hoặc cho go-i2p nhưng không phù hợp với Java I2P. Ngoài ra, chúng thiếu hỗ trợ tốt để tương tác với các leaseSet được mã hóa.
 
-Addendum: ``i2psocks``
+Phụ lục: ``i2psocks``
                       
 
-A simple application-oriented approach to isolating other types of
-clients is possible without implementing a new tunnel type or changing
-the existing I2P code by combining I2PTunnel existing tools which are
-already widely available and tested in the privacy community. However,
-this approach makes a difficult assumption which is not true for HTTP
-and also not true for many other kinds of potentsial I2P clients.
+Một cách tiếp cận đơn giản theo hướng ứng dụng để tách biệt các loại client khác là có thể thực hiện mà không cần triển khai loại túnel mới hay thay đổi mã I2P hiện tại, bằng cách kết hợp các công cụ I2PTunnel đã có sẵn và được kiểm thử rộng rãi trong cộng đồng bảo mật. Tuy nhiên, cách tiếp cận này đặt ra một giả định khó khăn, không đúng với HTTP và cũng không đúng với nhiều loại client I2P tiềm năng khác.
 
-Roughly, the following script will produce an application-aware SOCKS5
-proxy and socksify the underlying command:
+Về cơ bản, kịch bản sau sẽ tạo ra một SOCKS5 proxy nhận diện ứng dụng và socksify lệnh nền:
 
 ```sh
 #! /bin/sh
@@ -256,15 +131,7 @@ java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
 torsocks --port 7695 $command_to_proxy
 ```
 
-Addendum: ``example implementation of the attack``
+Phụ lục: ``ví dụ triển khai cuộc tấn công``
                                                   
 
-[An example implementation of the Shared Identity attack on HTTP
-User-Agents](https://github.com/eyedeekay/colluding_sites_attack/)
-has existed for several years. An additional example is available in the
-``simple-colluder`` subdirectory of [idk’s prop166
-repository](https://git.idk.i2p/idk/i2p.host-aware-proxy) These
-examples are deliberately designed to demonstrate that the attack works
-and would require modification(albeit minor) to be turned into a real
-attack.
-
+[Một ví dụ triển khai cuộc tấn công Danh tính Chung lên các HTTP User-Agent](https://github.com/eyedeekay/colluding_sites_attack/) đã tồn tại trong nhiều năm. Một ví dụ bổ sung có sẵn trong thư mục con ``simple-colluder`` của [kho lưu trữ prop166 của idk](https://git.idk.i2p/idk/i2p.host-aware-proxy). Các ví dụ này được thiết kế cố ý để minh họa rằng cuộc tấn công hoạt động và sẽ cần được sửa đổi (dù chỉ là nhỏ) để trở thành một cuộc tấn công thực sự.

@@ -6,46 +6,45 @@ author: "hottuna"
 description: "I2P Meetup in Toronto on August 15-16"
 categories: ["community"]
 ---
+Tým I2P je hrdý na to, že pořádá setkání v Torontu 15.–16. srpna. Na akci se zúčastní mnoho členů naší komunity, kteří budou přednášet, vést workshopy a diskuse o I2P a tématech s ním souvisejících. Tato událost ale není určena jen pro lidi z prostředí I2P – je určena pro každého.
 
-The I2P team is proud to announce that we are going to host a meetup in Toronto on August 15-16. A number of members of our community will be attending and are going to host talks, workshops and discussions about and relating to I2P. This event is not just for I2P people though, it's meant for everyone.
+Pokud máte zájem o I2P, zajímáte se o soukromí/kryptografii/anonymitu nebo si jen chcete popovídat s námi, přijďte. Tato akce je pro každého. Pokud nejste s těmito tématy obeznámeni, stejně přijďte – ukážeme vám, jak I2P funguje a co s ním můžete dělat.
 
-If you're curious about I2P, interested in privacy/cryptography/anonymity or just want to come by and talk to us, please do. This is an event for everyone. If you're not familiar with any of these topics, come by anyway and we'll show you how I2P works and what you can do with it.
+Akce je zcela zdarma, není potřeba se přihlašovat ani registrace.
 
-The event is entirely free, you don't need to sign up or register.
+Setkání by nebylo možné bez našich přátel z [Toronto Crypto](https://torontocrypto.org/), kteří nám pomáhají s organizací události, a bez našich přátel z [Hacklab](https://hacklab.to/), kteří nám poskytli skvělý prostor.
 
-The meetup couldn't have been arranged without our friends at [Toronto Crypto](https://torontocrypto.org/) which have been helping us organize the event, and our friends at [Hacklab](https://hacklab.to/) which are providing us with a very nice space.
+Pokud máte jakékoli otázky, neváhejte nás kontaktovat přes [@geti2p](https://twitter.com/geti2p).
 
-If you have any questions, feel free to contact us on [@geti2p](https://twitter.com/geti2p).
+## Podrobnosti
 
-## Details
+### Místo
 
-### Location
+[Hacklab](https://hacklab.to/) na adrese 1266 Queen Street West, Toronto.
 
-[Hacklab](https://hacklab.to/) at 1266 Queen Street West, Toronto.
+### Den 1, 15. srpna – 15:00
 
-### Day 1, August 15 - 3PM
+Bude zaměřen na úvod do témat souvisejících s I2P, online soukromím a anonymitou. Jsou vítáni lidé všech zázemí a úrovní znalostí.
 
-The focus will be on an introduction to topics surrounding I2P, privacy and anonymity online. People of all backgrounds and knowledge levels are welcome to attend.
-
-- I2P Presentation
-- Crypto party introduction
+- Prezentace I2P
+- Úvod k crypto party
 - Crypto party
 
-The crypto party will contain a number of stations where privacy/anonymity software will be demoed. The goal is to provide people with the tools they need to communicate securely.
+Během crypto party bude k dispozici několik stanic, kde budou předváděny aplikace pro soukromí a anonymitu. Cílem je lidem poskytnout nástroje, které potřebují pro bezpečnou komunikaci.
 
-- Vuze/I2P - Downloading torrents anonymously
-- Veracrypt - Encrypt your data
-- I2PBote - Anonymous decentralized email
-- Your station idea here
+- Vuze/I2P – Anonymní stahování torrentů
+- Veracrypt – Šifrování vašich dat
+- I2PBote – Anonymní decentralizovaný e-mail
+- Vaše nápad na stanici tady
 
-We're currently looking for help staffing the stations. If you want to help out, you can! Bring a monitor/laptop and run a station. The station could be any of the ones listed above, or any other privacy/anonymity related one you would like to run. Please contact us at [@geti2p](https://twitter.com/geti2p) if you're interested.
+Momentálně hledáme lidi, kteří by nám pomohli se stanicemi. Pokud chcete pomoci, můžete! Přineste monitor/laptop a provozujte stanici. Může jít o kteroukoli z výše uvedených stanic, nebo o jakoukoli jinou stanici související s ochranou soukromí/anonymitou, kterou si přejete vést. Pokud máte zájem, kontaktujte nás na [@geti2p](https://twitter.com/geti2p).
 
-### Day 2, August 16 - 1PM
+### Den 2, 16. srpna – 13:00
 
-The focus will be on in-depth topics surrounding I2P, the roadmap and development. Anyone is welcome to attend, but the content will be somewhat technical.
+Bude zaměřen na pokročilá témata týkající se I2P, vývojovou cestu a vývoj. Na akci může každý, ale obsah bude poněkud technický.
 
-- I2P Technical presentation
-- Technical discussion
-- I2P App Dev Into
-- I2PD presentation
-- I2P on Android
+- Technická prezentace I2P
+- Technická diskuze
+- Úvod do vývoje aplikací pro I2P
+- Prezentace I2PD
+- I2P na Androidu

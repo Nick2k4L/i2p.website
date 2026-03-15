@@ -5,35 +5,34 @@ author: "str4d"
 description: "This year's Summer Dev will be focused on metrics collection and performance improvements for the network."
 categories: ["summer-dev"]
 ---
+Es ist wieder soweit! Wir starten unser Sommerentwicklungsprogramm, bei dem wir einen bestimmten Aspekt von I2P in den Fokus rücken, um ihn voranzubringen. In den nächsten drei Monaten werden wir sowohl neue Mitwirkende als auch bestehende Community-Mitglieder ermutigen, eine Aufgabe auszuwählen und Spaß dabei zu haben!
 
-It's that time of year again! We're embarking on our summer development programme, where we focus on a particular aspect of I2P to push it forward. For the next three months, we'll be encouraging both new contributors and existing community members to pick a task and have fun with it!
+Letztes Jahr konzentrierten wir uns darauf, Nutzern und Entwicklern zu helfen, I2P besser zu nutzen, indem wir die API-Werkzeuge verbesserten und Anwendungen, die über I2P laufen, besondere Aufmerksamkeit schenkten. Dieses Jahr möchten wir die Nutzererfahrung verbessern, indem wir an einem Aspekt arbeiten, der alle betrifft: der Performance.
 
-Last year, we focused on helping users and developers leverage I2P, by improving API tooling and giving some love to applications that run over I2P. This year, we want to improve the user experience by working on an aspect that affects everyone: performance.
+Obwohl Onion-Routing-Netzwerke oft als „niedrig-latente“ Netzwerke bezeichnet werden, entsteht durch das Weiterleiten von Datenverkehr über zusätzliche Computer ein erheblicher Overhead. Durch das unidirektionale Tunnel-Design von I2P bedeutet ein Roundtrip zwischen zwei Destinations standardmäßig, dass zwölf Teilnehmer involviert sind! Die Verbesserung der Performance dieser Teilnehmer wird dazu beitragen, sowohl die Latenz von Ende-zu-Ende-Verbindungen zu verringern als auch die Qualität der Tunnel im gesamten Netzwerk zu erhöhen.
 
-Despite onion-routing networks often being called "low-latency" networks, there is significant overhead created by routing traffic through additional computers. I2P's unidirectional tunnel design means that by default, a round trip between two Destinations will involve twelve participants! Improving the performance of these participants will help to both reduce the latency of end-to-end connections and increase the quality of tunnels network-wide.
+## MEHR Geschwindigkeit!
 
-## MOAR speed!
+Unser Entwicklungsprogramm dieses Jahr besteht aus vier Komponenten:
 
-Our development programme this year will have four components:
+### Messen
 
-### Measure
+Ohne eine Basislinie können wir keine Verbesserungen feststellen! Wir werden ein Metriksystem erstellen, um Nutzungs- und Performance-Daten über I2P auf datenschutzfreundliche Weise zu sammeln, sowie verschiedene Benchmarking-Tools für den Betrieb über I2P anpassen (z. B. iperf3).
 
-We can't tell if we improve performance without a baseline! We'll be creating a metrics system for collecting usage and performance data about I2P in a privacy-preserving way, as well as porting various benchmarking tools to run over I2P (e.g. iperf3).
+### Optimieren
 
-### Optimise
+Es gibt viel Potenzial, um die Performance unseres bestehenden Codes zu verbessern, z. B. um den Overhead an der Teilnahme an Tunneln zu reduzieren. Wir werden mögliche Verbesserungen bei kryptografischen Primitiven, Netzwerk-Transports (sowohl auf Link-Ebene als auch Ende-zu-Ende), Peer-Profilierung und Tunnel-Pfadselektion untersuchen.
 
-There's a lot of scope for improving the performance of our existing code, to e.g. reduce the overhead of participating in tunnels. We will be looking at potential improvements to cryptographic primitives, network transports (both at the link-layer and end-to-end), peer profiling, and tunnel path selection.
+### Vorantreiben
 
-### Advance
+Wir haben mehrere offene Vorschläge zur Verbesserung der Skalierbarkeit des I2P-Netzwerks (z. B. Prop115, Prop123, Prop124, Prop125, Prop138, Prop140). Wir werden an diesen Vorschlägen arbeiten und mit der Implementierung der abgeschlossenen Vorschläge in den verschiedenen Netzwerk-Routern beginnen.
 
-We have several open proposals for improving the scalability of the I2P network (e.g. Prop115, Prop123, Prop124, Prop125, Prop138, Prop140). We will be working on these proposals, and begin implementing the finalised ones in the various network routers.
+### Forschen
 
-### Research
+I2P ist ein paketvermitteltes Netzwerk, genau wie das Internet, auf dem es läuft. Das gibt uns große Flexibilität bei der Paketweiterleitung, sowohl für Performance als auch für Datenschutz. Der Großteil dieser Flexibilität ist bisher unerforscht! Wir möchten Forschung fördern, wie verschiedene Clearnet-Techniken zur Verbesserung der Bandbreite auf I2P angewendet werden können und wie sie die Privatsphäre der Netzwerkteilnehmer beeinflussen könnten.
 
-I2P is a packet-switched network, like the internet it runs on top of. This gives us significant flexibility in how we route packets, both for performance and privacy. The majority of this flexibility is unexplored! We want to encourage research into how various clearnet techniques for improving bandwidth can be applied to I2P, and how they might affect the privacy of network participants.
+## Mach mit beim Summer Dev!
 
-## Take part in Summer Dev!
+Wir haben noch viele weitere Ideen, was wir in diesen Bereichen erreichen möchten. Wenn du Interesse daran hast, an Privatsphäre- und Anonymitätssoftware zu programmieren, Protokolle zu entwerfen (kryptografisch oder anders) oder zukünftige Ideen zu erforschen – komm und chatte mit uns auf IRC oder Twitter! Wir freuen uns immer, neue Mitglieder in unserer Community begrüßen zu dürfen. Außerdem versenden wir I2P-Aufkleber an alle neuen Mitwirkenden, die teilnehmen!
 
-We have many more ideas for things we'd like to get done in these areas. If you're interested in hacking on privacy and anonymity software, designing protocols (cryptographic or otherwise), or researching future ideas - come and chat with us on IRC or Twitter! We are always happy to welcome newcomers into our community. We'll also be sending I2P stickers out to all new contributors taking part!
-
-We'll be posting here as we go, but you can also follow our progress, and share your own ideas and work, with the hashtag #I2PSummer on Twitter. Bring on the summer!
+Wir werden hier regelmäßig Berichte veröffentlichen, aber du kannst unseren Fortschritt auch auf Twitter mit dem Hashtag #I2PSummer verfolgen und deine eigenen Ideen und Arbeiten teilen. Auf in den Sommer!

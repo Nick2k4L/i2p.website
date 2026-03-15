@@ -9,61 +9,56 @@ thread: "http://zzz.i2p/topics/2047"
 supercededby: "123"
 toc: true
 ---
+## Überblick
 
-## Overview
-
-This proposal is about redesigning the mechanism for encrypting LeaseSets.
+Dieses Vorschlag betrifft die Neugestaltung des Mechanismus für die Verschlüsselung von LeaseSets.
 
 
 ## Motivation
 
-Current encrypted LS is horrendous and insecure. I can say that, I designed and
-implemented it.
+Die aktuelle verschlüsselte LS ist schrecklich und unsicher. Ich kann das sagen, ich habe sie entworfen und implementiert.
 
-Reasons:
+Gründe:
 
-- AES CBC encrypted
-- Single AES key for everybody
-- Lease expirations still exposed
-- Encryption pubkey still exposed
+- AES CBC verschlüsselt
+- Ein einzelner AES-Schlüssel für alle
+- Lease-Abläufe sind immer noch offen gelegt
+- Verschlüsselungs-Public-Key ist immer noch offen gelegt
 
 
 ## Design
 
-### Goals
+### Ziele
 
-- Make entire thing opaque
-- Keys for each recipient
-
-
-### Strategy
-
-Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-IF we can find an algo that's small and fast.
-
-Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
-bytes is a little painful here. We can do better.
-
-See e.g. http://security.stackexchange.com/questions/824...
-
-This works for small numbers of recipients (or actually, keys; you can still
-distribute keys to multiple people if you like).
+- Das gesamte Ding undurchsichtig machen
+- Schlüssel für jeden Empfänger
 
 
-## Specification
+### Strategie
 
-- Destination
-- Published timestamp
-- Expiration
+Machen wir es wie GPG/OpenPGP. Asymmetrisch verschlüsseln eines symmetrischen Schlüssels für jeden Empfänger. Daten werden mit diesem asymmetrischen Schlüssel entschlüsselt. Siehe z. B. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+Wenn wir einen Algorithmus finden, der klein und schnell ist.
+
+Das Problem ist, einen asymmetrischen Verschlüsselungsalgorithmus zu finden, der klein und schnell ist. ElGamal mit 514 Byte ist hier ein wenig schmerzhaft. Wir können es besser machen.
+
+Siehe z. B. http://security.stackexchange.com/questions/824...
+
+Dies funktioniert für kleine Empfängerzahlen (oder eigentlich, Schlüssel; Sie können Schlüssel immer noch an mehrere Personen verteilen, wenn Sie möchten).
+
+
+## Spezifikation
+
+- Ziel
+- Veröffentlichte Zeitstempel
+- Ablauf
 - Flags
-- Length of data
-- Encrypted data
-- Signature
+- Länge der Daten
+- Verschlüsselte Daten
+- Signatur
 
-Encrypted data could be prefixed with some enctype specifier, or not.
+Die verschlüsselten Daten könnten mit einem enctype-Spezifizierer vorangestellt werden oder nicht.
 
 
-## References
+## Referenzen
 
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

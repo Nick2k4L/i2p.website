@@ -15,181 +15,180 @@ target: "0.9.48"
 implementedin: "0.9.48"
 toc: true
 ---
-
-## Note
-Network deployment and testing in progress.
-Subject to minor revisions.
-See [SPEC](/docs/specs/tunnel-implementation/) for the official specification.
-
-
-## Overview
-
-This document proposes changes to Tunnel Build message encryption
-using crypto primitives introduced by [ECIES-X25519](/docs/specs/ecies/).
-It is a portion of the overall proposal
-[Proposal 156](/proposals/156-ecies-routers) for converting routers from ElGamal to ECIES-X25519 keys.
-
-For the purposes of transitioning the network from ElGamal + AES256 to ECIES + ChaCha20,
-tunnels with mixed ElGamal and ECIES routers are necessary.
-Specifications for handling mixed tunnel hops are provided.
-No changes will be made to the format, processing, or encryption of ElGamal hops.
-
-ElGamal tunnel creators will need create ephemeral X25519 keypairs per-hop, and
-follow this spec for creating tunnels containing ECIES hops.
-
-This proposal specifies changes needed for ECIES-X25519 Tunnel Building.
-For an overview of all changes required for ECIES routers, see proposal 156 [Proposal 156](/proposals/156-ecies-routers).
-
-This proposal maintains the same size for tunnel build records,
-as required for compatibility. Smaller build records and messages will be
-implemented later - see [Proposal 157](/proposals/157-new-tbm).
+## Примечание
+Сетевое развертывание и тестирование в процессе.
+Возможны незначительные правки.
+См. [SPEC](/docs/specs/tunnel-implementation/) для официальной спецификации.
 
 
-### Cryptographic Primitives
+## Обзор
 
-No new cryptographic primitives are introduced. The primitives required to implement this proposal are:
+В этом документе предлагаются изменения шифрования сообщений создания туннеля
+с использованием криптографических примитивов, введенных [ECIES-X25519](/docs/specs/ecies/).
+Это часть общего предложения
+[Предложение 156](/proposals/156-ecies-routers) по переходу маршрутизаторов с ElGamal на ключи ECIES-X25519.
 
-- AES-256-CBC as in [Cryptography](/docs/specs/cryptography/)
-- STREAM ChaCha20/Poly1305 functions:
-  ENCRYPT(k, n, plaintext, ad) and DECRYPT(k, n, ciphertext, ad) - as in [NTCP2](/docs/specs/ntcp2/) [ECIES-X25519](/docs/specs/ecies/) and [RFC-7539](https://tools.ietf.org/html/rfc7539)
-- X25519 DH functions - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
-- HKDF(salt, ikm, info, n) - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
+Для целей перехода сети с ElGamal + AES256 на ECIES + ChaCha20
+необходимы туннели со смешанными узлами ElGamal и ECIES.
+Предоставлены спецификации обработки прыжков в смешанных туннелях.
+Никаких изменений в формат, обработку или шифрование прыжков ElGamal вноситься не будет.
 
-Other Noise functions defined elsewhere:
+Создателям туннелей ElGamal потребуется создавать временные ключевые пары X25519 на каждый прыжок и
+следовать данной спецификации при создании туннелей, содержащих прыжки ECIES.
 
-- MixHash(d) - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
-- MixKey(d) - as in [NTCP2](/docs/specs/ntcp2/) and [ECIES-X25519](/docs/specs/ecies/)
+В этом предложении описываются изменения, необходимые для создания туннелей ECIES-X25519.
+Для общего обзора всех изменений, необходимых для маршрутизаторов ECIES, см. предложение 156 [Предложение 156](/proposals/156-ecies-routers).
 
-
-### Goals
-
-- Increase speed of crypto operations
-- Replace ElGamal + AES256/CBC with ECIES primitives for tunnel BuildRequestRecords and BuildReplyRecords.
-- No change to size of encrypted BuildRequestRecords and BuildReplyRecords (528 bytes) for compatibility
-- No new I2NP messages
-- Maintain encrypted build record size for compatibility
-- Add forward secrecy for Tunnel Build Messages.
-- Add authenticated encryption
-- Detect hops reordering BuildRequestRecords
-- Increase resolution of timestamp so that Bloom filter size may be reduced
-- Add field for tunnel expiration so that varying tunnel lifetimes will be possible (all-ECIES tunnels only)
-- Add extensible options field for future features
-- Reuse existing cryptographic primitives
-- Improve tunnel build message security where possible while maintaining compatibility
-- Support tunnels with mixed ElGamal/ECIES peers
-- Improve defenses against "tagging" attacks on build messages
-- Hops do not need to know the encryption type of the next hop before processing the build message,
-  as they may not have the next hop's RI at that time
-- Maximize compatibility with current network
-- No change to tunnel build AES request/reply encryption for ElGamal routers
-- No change to tunnel AES "layer" encryption, for that see [Proposal 153](/proposals/153-chacha20-layer-encryption)
-- Continue to support both 8-record TBM/TBRM and variable-size VTBM/VTBRM
-- Do not require "flag day" upgrade to entire network
+В этом предложении сохраняется тот же размер записей создания туннеля,
+что требуется для совместимости. Более мелкие записи и сообщения будут
+реализованы позже — см. [Предложение 157](/proposals/157-new-tbm).
 
 
-### Non-Goals
+### Криптографические примитивы
 
-- Complete redesign of tunnel build messages requiring a "flag day".
-- Shrinking tunnel build messages (requires all-ECIES hops and a new proposal)
-- Use of tunnel build options as defined in [Proposal 143](/proposals/143-build-message-options), only required for small messages
-- Bidirectional tunnels - for that see [Proposal 119](/proposals/119-bidirectional-tunnels)
-- Smaller tunnel build messages - for that see [Proposal 157](/proposals/157-new-tbm)
+Новые криптографические примитивы не вводятся. Примитивы, необходимые для реализации этого предложения:
 
+- AES-256-CBC как в [Cryptography](/docs/specs/cryptography/)
+- STREAM ChaCha20/Poly1305 функции:
+  ENCRYPT(k, n, plaintext, ad) и DECRYPT(k, n, ciphertext, ad) — как в [NTCP2](/docs/specs/ntcp2/) [ECIES-X25519](/docs/specs/ecies/) и [RFC-7539](https://tools.ietf.org/html/rfc7539)
+- X25519 DH функции — как в [NTCP2](/docs/specs/ntcp2/) и [ECIES-X25519](/docs/specs/ecies/)
+- HKDF(salt, ikm, info, n) — как в [NTCP2](/docs/specs/ntcp2/) и [ECIES-X25519](/docs/specs/ecies/)
 
-## Threat Model
+Другие функции Noise, определённые в других местах:
 
-### Design Goals
-
-- No hops are able to determine the originator of the tunnel.
-
-- Middle hops must not be able to determine the direction of the tunnel
-  or their position in the tunnel.
-
-- No hops can read any contents of other request or reply records, except
-  for truncated router hash and ephemeral key for next hop
-
-- No member of reply tunnel for outbound build can read any reply records.
-
-- No member of outbound tunnel for inbound build can read any request records,
-  except that OBEP can see truncated router hash and ephemeral key for IBGW
+- MixHash(d) — как в [NTCP2](/docs/specs/ntcp2/) и [ECIES-X25519](/docs/specs/ecies/)
+- MixKey(d) — как в [NTCP2](/docs/specs/ntcp2/) и [ECIES-X25519](/docs/specs/ecies/)
 
 
+### Цели
+
+- Увеличение скорости криптографических операций
+- Замена ElGamal + AES256/CBC на примитивы ECIES для BuildRequestRecords и BuildReplyRecords туннеля.
+- Без изменений размера зашифрованных BuildRequestRecords и BuildReplyRecords (528 байт) для совместимости
+- Без новых сообщений I2NP
+- Сохранение размера зашифрованной записи создания туннеля для совместимости
+- Добавление сквозной секретности для сообщений создания туннеля.
+- Добавление аутентифицированного шифрования
+- Обнаружение переупорядочивания BuildRequestRecords узлами
+- Повышение разрешения временной метки, чтобы можно было уменьшить размер фильтра Блума
+- Добавление поля истечения срока действия туннеля, чтобы стали возможны разные сроки жизни туннелей (только для полностью ECIES-туннелей)
+- Добавление расширяемого поля опций для будущих функций
+- Повторное использование существующих криптографических примитивов
+- Улучшение безопасности сообщений создания туннеля, где это возможно, при сохранении совместимости
+- Поддержка туннелей со смешанными узлами ElGamal/ECIES
+- Улучшение защиты от атак «маркировки» (tagging) на сообщениях создания туннеля
+- Узлам не нужно знать тип шифрования следующего прыжка до обработки сообщения создания туннеля,
+  так как у них может не быть RI следующего узла в этот момент
+- Максимальная совместимость с текущей сетью
+- Без изменений в шифровании AES запросов/ответов для создания туннеля на маршрутизаторах ElGamal
+- Без изменений в «слоевом» шифровании AES туннеля, для этого см. [Предложение 153](/proposals/153-chacha20-layer-encryption)
+- Продолжение поддержки как 8-записных TBM/TBRM, так и переменных VTBM/VTBRM
+- Не требует одновременного обновления всей сети («flag day»)
 
 
-### Tagging Attacks
+### Нецели
 
-A major goal of the tunnel building design is to make it harder
-for colluding routers X and Y to know that they are in a single tunnel.
-If router X is at hop m and router Y is at hop m+1, they obviously will know.
-But if router X is at hop m and router Y is at hop m+n for n>1, this should be much harder.
+- Полная переработка сообщений создания туннеля, требующая «flag day».
+- Уменьшение сообщений создания туннеля (требует всех прыжков ECIES и нового предложения)
+- Использование опций создания туннеля, как определено в [Предложение 143](/proposals/143-build-message-options), требуется только для малых сообщений
+- Двунаправленные туннели — для этого см. [Предложение 119](/proposals/119-bidirectional-tunnels)
+- Уменьшение сообщений создания туннеля — для этого см. [Предложение 157](/proposals/157-new-tbm)
 
-Tagging attacks are where middle-hop router X alters the tunnel build message in such a way that
-router Y can detect the alteration when the build message gets there.
-The goal is for any altered message is dropped by a router between X and Y before it gets to router Y.
-For modifications that are not dropped before router Y, the tunnel creator should detect the corruption in the reply
-and discard the tunnel.
 
-Possible attacks:
+## Модель угроз
 
-- Alter a build record
-- Replace a build record
-- Add or remove a build record
-- Reorder the build records
+### Цели проектирования
+
+- Ни один из узлов не может определить инициатора туннеля.
+
+- Промежуточные узлы не должны определять направление туннеля
+  или свою позицию в туннеле.
+
+- Ни один узел не может читать содержимое других запросов или ответов, кроме
+  усечённого хэша маршрутизатора и временного ключа для следующего узла
+
+- Ни один участник обратного туннеля для исходящего создания не может читать записи ответов.
+
+- Ни один участник исходящего туннеля для входящего создания не может читать записи запросов,
+  за исключением того, что OBEP может видеть усечённый хэш маршрутизатора и временный ключ для IBGW
 
 
 
 
+### Атаки маркировки (tagging)
 
-TODO: Does the current design prevent all these attacks?
+Основная цель проектирования создания туннеля — затруднить
+маршрутизаторам X и Y, действующим сообща, определить, что они находятся в одном туннеле.
+Если маршрутизатор X находится на прыжке m, а маршрутизатор Y — на прыжке m+1, они, очевидно, узнают это.
+Но если маршрутизатор X на прыжке m, а маршрутизатор Y на прыжке m+n при n>1, это должно быть намного сложнее.
+
+Атаки маркировки — это когда промежуточный узел X изменяет сообщение создания туннеля таким образом, что
+маршрутизатор Y может обнаружить изменение, когда сообщение дойдёт до него.
+Цель — чтобы любое изменённое сообщение было отброшено маршрутизатором между X и Y до того, как достигнет Y.
+Для изменений, которые не были отброшены до маршрутизатора Y, создатель туннеля должен обнаружить повреждение в ответе
+и отбросить туннель.
+
+Возможные атаки:
+
+- Изменение записи создания
+- Замена записи создания
+- Добавление или удаление записи создания
+- Переупорядочивание записей создания
 
 
 
 
 
+TODO: Предотвращает ли текущая схема все эти атаки?
 
-## Design
 
-### Noise Protocol Framework
 
-This proposal provides the requirements based on the Noise Protocol Framework
+
+
+
+## Проектирование
+
+### Фреймворк протокола Noise
+
+Это предложение определяет требования на основе фреймворка протокола Noise
 [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11).
-In Noise parlance, Alice is the initiator, and Bob is the responder.
+В терминологии Noise, Алиса — инициатор, а Боб — ответчик.
 
-This proposal is based on the Noise protocol Noise_N_25519_ChaChaPoly_SHA256.
-This Noise protocol uses the following primitives:
+Это предложение основано на протоколе Noise Noise_N_25519_ChaChaPoly_SHA256.
+Этот протокол Noise использует следующие примитивы:
 
-- One-Way Handshake Pattern: N
-  Alice does not transmit her static key to Bob (N)
+- Односторонний шаблон рукопожатия: N
+  Алиса не передаёт свой статический ключ Бобу (N)
 
-- DH Function: X25519
-  X25519 DH with a key length of 32 bytes as specified in [RFC-7748](https://tools.ietf.org/html/rfc7748).
+- Функция DH: X25519
+  X25519 DH с длиной ключа 32 байта, как указано в [RFC-7748](https://tools.ietf.org/html/rfc7748).
 
-- Cipher Function: ChaChaPoly
-  AEAD_CHACHA20_POLY1305 as specified in [RFC-7539](https://tools.ietf.org/html/rfc7539) section 2.8.
-  12 byte nonce, with the first 4 bytes set to zero.
-  Identical to that in [NTCP2](/docs/specs/ntcp2/).
+- Функция шифрования: ChaChaPoly
+  AEAD_CHACHA20_POLY1305 как указано в [RFC-7539](https://tools.ietf.org/html/rfc7539) раздел 2.8.
+  12-байтовый nonce, первые 4 байта установлены в ноль.
+  Идентично тому, что в [NTCP2](/docs/specs/ntcp2/).
 
-- Hash Function: SHA256
-  Standard 32-byte hash, already used extensively in I2P.
-
-
-#### Additions to the Framework
-
-None.
+- Хэш-функция: SHA256
+  Стандартный 32-байтовый хэш, уже широко используется в I2P.
 
 
-### Handshake Patterns
+#### Дополнения к фреймворку
 
-Handshakes use [Noise](https://noiseprotocol.org/noise.html) handshake patterns.
+Отсутствуют.
 
-The following letter mapping is used:
 
-- e = one-time ephemeral key
-- s = static key
-- p = message payload
+### Шаблоны рукопожатия
 
-The build request is identical to the Noise N pattern.
-This is also identical to the first (Session Request) message in the XK pattern used in [NTCP2](/docs/specs/ntcp2/).
+Рукопожатия используют шаблоны [Noise](https://noiseprotocol.org/noise.html).
+
+Используется следующее буквенно-символьное соответствие:
+
+- e = одноразовый временный ключ
+- s = статический ключ
+- p = полезная нагрузка
+
+Запрос создания идентичен шаблону Noise N.
+Это также идентично первому сообщению (Session Request) в шаблоне XK, используемом в [NTCP2](/docs/specs/ntcp2/).
 
 
 ```text
@@ -199,532 +198,529 @@ This is also identical to the first (Session Request) message in the XK pattern 
 ```
 
 
-### Request encryption
+### Шифрование запроса
 
-Build request records are created by the tunnel creator and asymmetrically encrypted to the individual hop.
-This asymmetric encryption of request records is currently ElGamal as defined in [Cryptography](/docs/specs/cryptography/)
-and contains a SHA-256 checksum. This design is not forward-secret.
+Записи запроса создания туннеля создаются создателем туннеля и асимметрично шифруются для отдельного прыжка.
+Это асимметричное шифрование записей запроса в настоящее время — ElGamal, как определено в [Cryptography](/docs/specs/cryptography/)
+и содержит контрольную сумму SHA-256. Эта схема не является сквозной по секретности.
 
-The new design will use the one-way Noise pattern "N" with ECIES-X25519 ephemeral-static DH, with an HKDF, and
-ChaCha20/Poly1305 AEAD for forward secrecy, integrity, and authentication.
-Alice is the tunnel build requestor. Each hop in the tunnel is a Bob.
+Новая схема будет использовать односторонний шаблон Noise "N" с ECIES-X25519 (временный-статический DH), с HKDF и
+AEAD ChaCha20/Poly1305 для сквозной секретности, целостности и аутентификации.
+Алиса — это инициатор создания туннеля. Каждый прыжок в туннеле — это Боб.
 
 
-(Payload Security Properties)
+(Свойства безопасности полезной нагрузки)
 
 ```text
-N:                      Authentication   Confidentiality
+N:                      Аутентификация   Конфиденциальность
     -> e, es                  0                2
 
-    Authentication: None (0).
-    This payload may have been sent by any party, including an active attacker.
+    Аутентификация: Нет (0).
+    Эту полезную нагрузку мог отправить любой участник, включая активного атакующего.
 
-    Confidentiality: 2.
-    Encryption to a known recipient, forward secrecy for sender compromise
-    only, vulnerable to replay.  This payload is encrypted based only on DHs
-    involving the recipient's static key pair.  If the recipient's static
-    private key is compromised, even at a later date, this payload can be
-    decrypted.  This message can also be replayed, since there's no ephemeral
-    contribution from the recipient.
+    Конфиденциальность: 2.
+    Шифрование для известного получателя, сквозная секретность только при компрометации отправителя,
+    уязвимо к повторной передаче. Эта полезная нагрузка шифруется только на основе DH,
+    включающих статическую пару ключей получателя. Если статический закрытый ключ получателя скомпрометирован,
+    даже в будущем, эта полезная нагрузка может быть расшифрована. Это сообщение также может быть повторно передано,
+    так как нет вклада временного ключа от получателя.
 
-    "e": Alice generates a new ephemeral key pair and stores it in the e
-         variable, writes the ephemeral public key as cleartext into the
-         message buffer, and hashes the public key along with the old h to
-         derive a new h.
+    "e": Алиса генерирует новую временную пару ключей и сохраняет её в переменной e,
+         записывает временный открытый ключ в виде открытого текста в буфер сообщения
+         и хэширует открытый ключ вместе со старым h, чтобы вычислить новый h.
 
-    "es": A DH is performed between the Alice's ephemeral key pair and the
-          Bob's static key pair.  The result is hashed along with the old ck to
-          derive a new ck and k, and n is set to zero.
+    "es": Выполняется DH между временной парой ключей Алисы и статической парой ключей Боба.
+          Результат хэшируется вместе со старым ck, чтобы вычислить новый ck и k, и n устанавливается в ноль.
 ```
 
 
 
-### Reply encryption
+### Шифрование ответа
 
-Build reply records are created by the hops creator and symmetrically encrypted to the creator.
-This symmetric encryption of reply records is currently AES with a prepended SHA-256 checksum.
-and contains a SHA-256 checksum. This design is not forward-secret.
+Записи ответа создания туннеля создаются создателем прыжков и симметрично шифруются для создателя.
+Это симметричное шифрование записей ответа в настоящее время — AES с предваряющей контрольной суммой SHA-256.
+и содержит контрольную сумму SHA-256. Эта схема не является сквозной по секретности.
 
-The new design will use ChaCha20/Poly1305 AEAD for integrity, and authentication.
-
-
-### Justification
-
-The ephemeral public key in the request does not need to be obfuscated with AES
-or Elligator2. The previous hop is the only one that can see it, and that hop
-knows that the next hop is ECIES.
-
-Reply records do not need full asymmetric encryption with another DH.
+Новая схема будет использовать AEAD ChaCha20/Poly1305 для целостности и аутентификации.
 
 
+### Обоснование
 
-## Specification
+Временный открытый ключ в запросе не нуждается в маскировке с помощью AES
+или Elligator2. Только предыдущий прыжок может его видеть, и он знает,
+что следующий прыжок использует ECIES.
+
+Записям ответа не требуется полное асимметричное шифрование с другим DH.
 
 
 
-### Build Request Records
-
-Encrypted BuildRequestRecords are 528 bytes for both ElGamal and ECIES, for compatibility.
+## Спецификация
 
 
-#### Request Record Unencrypted (ElGamal)
 
-For reference, this is the current specification of the tunnel BuildRequestRecord for ElGamal routers, taken from [I2NP](/docs/specs/i2np/).
-The unencrypted data is prepended with a nonzero byte and the SHA-256 hash of the data before encryption,
-as defined in [Cryptography](/docs/specs/cryptography/).
+### Записи запроса создания
 
-All fields are big-endian.
+Зашифрованные BuildRequestRecords имеют размер 528 байт как для ElGamal, так и для ECIES, для совместимости.
 
-Unencrypted size: 222 bytes
+
+#### Запись запроса, незашифрованная (ElGamal)
+
+Для справки, это текущая спецификация записи BuildRequestRecord для маршрутизаторов ElGamal, взятая из [I2NP](/docs/specs/i2np/).
+Незашифрованные данные дополняются ненулевым байтом и хэшем SHA-256 данных перед шифрованием,
+как определено в [Cryptography](/docs/specs/cryptography/).
+
+Все поля big-endian.
+
+Незашифрованный размер: 222 байта
 
 ```text
-bytes     0-3: tunnel ID to receive messages as, nonzero
-  bytes    4-35: local router identity hash
-  bytes   36-39: next tunnel ID, nonzero
-  bytes   40-71: next router identity hash
-  bytes  72-103: AES-256 tunnel layer key
-  bytes 104-135: AES-256 tunnel IV key
-  bytes 136-167: AES-256 reply key
-  bytes 168-183: AES-256 reply IV
-  byte      184: flags
-  bytes 185-188: request time (in hours since the epoch, rounded down)
-  bytes 189-192: next message ID
-  bytes 193-221: uninterpreted / random padding
+байты     0-3: ID туннеля, для получения сообщений, ненулевой
+  байты    4-35: хэш идентификатора локального маршрутизатора
+  байты   36-39: следующий ID туннеля, ненулевой
+  байты   40-71: хэш идентификатора следующего маршрутизатора
+  байты  72-103: ключ слоя туннеля AES-256
+  байты 104-135: ключ IV туннеля AES-256
+  байты 136-167: ключ ответа AES-256
+  байты 168-183: IV ответа AES-256
+  байт      184: флаги
+  байты 185-188: время запроса (в часах с эпохи, округлённое вниз)
+  байты 189-192: следующий ID сообщения
+  байты 193-221: неинтерпретируемые / случайные заполнители
 ```
 
 
-#### Request Record Encrypted (ElGamal)
+#### Запись запроса, зашифрованная (ElGamal)
 
-For reference, this is the current specification of the tunnel BuildRequestRecord for ElGamal routers, taken from [I2NP](/docs/specs/i2np/).
+Для справки, это текущая спецификация записи BuildRequestRecord для маршрутизаторов ElGamal, взятая из [I2NP](/docs/specs/i2np/).
 
-Encrypted size: 528 bytes
+Зашифрованный размер: 528 байт
 
 ```text
-bytes    0-15: Hop's truncated identity hash
-  bytes  16-528: ElGamal encrypted BuildRequestRecord
+байты    0-15: Усечённый хэш идентификатора прыжка
+  байты  16-528: ElGamal-зашифрованная BuildRequestRecord
 ```
 
 
 
 
-#### Request Record Unencrypted (ECIES)
+#### Запись запроса, незашифрованная (ECIES)
 
-This is the proposed specification of the tunnel BuildRequestRecord for ECIES-X25519 routers.
-Summary of changes:
+Это предлагаемая спецификация записи BuildRequestRecord для маршрутизаторов ECIES-X25519.
+Краткое описание изменений:
 
-- Remove unused 32-byte router hash
-- Change request time from hours to minutes
-- Add expiration field for future variable tunnel time
-- Add more space for flags
-- Add Mapping for additional build options
-- AES-256 reply key and IV are not used for the hop's own reply record
-- Unencrypted record is longer because there is less encryption overhead
+- Удалён неиспользуемый 32-байтовый хэш маршрутизатора
+- Изменение времени запроса с часов на минуты
+- Добавление поля истечения срока для будущих переменных сроков жизни туннеля
+- Добавление дополнительного места для флагов
+- Добавление сопоставления (Mapping) для дополнительных опций создания
+- Ключи ответа AES-256 не используются для собственной записи ответа прыжка
+- Незашифрованная запись длиннее, так как накладные расходы на шифрование меньше
 
 
-The request record does not contain any ChaCha reply keys.
-Those keys are derived from a KDF. See below.
+Запись запроса не содержит ключей ответа ChaCha.
+Эти ключи выводятся из KDF. См. ниже.
 
-All fields are big-endian.
+Все поля big-endian.
 
-Unencrypted size: 464 bytes
+Незашифрованный размер: 464 байта
 
 ```text
-bytes     0-3: tunnel ID to receive messages as, nonzero
-  bytes     4-7: next tunnel ID, nonzero
-  bytes    8-39: next router identity hash
-  bytes   40-71: AES-256 tunnel layer key
-  bytes  72-103: AES-256 tunnel IV key
-  bytes 104-135: AES-256 reply key
-  bytes 136-151: AES-256 reply IV
-  byte      152: flags
-  bytes 153-155: more flags, unused, set to 0 for compatibility
-  bytes 156-159: request time (in minutes since the epoch, rounded down)
-  bytes 160-163: request expiration (in seconds since creation)
-  bytes 164-167: next message ID
-  bytes   168-x: tunnel build options (Mapping)
-  bytes     x-x: other data as implied by flags or options
-  bytes   x-463: random padding
+байты     0-3: ID туннеля, для получения сообщений, ненулевой
+  байты     4-7: следующий ID туннеля, ненулевой
+  байты    8-39: хэш идентификатора следующего маршрутизатора
+  байты   40-71: ключ слоя туннеля AES-256
+  байты  72-103: ключ IV туннеля AES-256
+  байты 104-135: ключ ответа AES-256
+  байты 136-151: IV ответа AES-256
+  байт      152: флаги
+  байты 153-155: дополнительные флаги, не используются, установлены в 0 для совместимости
+  байты 156-159: время запроса (в минутах с эпохи, округлённое вниз)
+  байты 160-163: истечение срока запроса (в секундах с момента создания)
+  байты 164-167: следующий ID сообщения
+  байты   168-x: опции создания туннеля (Mapping)
+  байты     x-x: другие данные, подразумеваемые флагами или опциями
+  байты   x-463: случайные заполнители
 ```
 
-The flags field is the same as defined in [Tunnel Creation](/docs/specs/tunnel-implementation/) and contains the following::
+Поле флагов такое же, как определено в [Tunnel Creation](/docs/specs/tunnel-implementation/) и содержит следующее::
 
- Bit order: 76543210 (bit 7 is MSB)
- bit 7: if set, allow messages from anyone
- bit 6: if set, allow messages to anyone, and send the reply to the
-        specified next hop in a Tunnel Build Reply Message
- bits 5-0: Undefined, must set to 0 for compatibility with future options
+ Порядок битов: 76543210 (бит 7 — старший)
+ бит 7: если установлен, разрешает сообщения от любого
+ бит 6: если установлен, разрешает сообщения любому и отправляет ответ
+        указанному следующему прыжку в сообщении ответа создания туннеля
+ биты 5-0: Не определены, должны быть установлены в 0 для совместимости с будущими опциями
 
-Bit 7 indicates that the hop will be an inbound gateway (IBGW).  Bit 6
-indicates that the hop will be an outbound endpoint (OBEP).  If neither bit is
-set, the hop will be an intermediate participant.  Both cannot be set at once.
+Бит 7 указывает, что прыжок будет входным шлюзом (IBGW). Бит 6
+указывает, что прыжок будет исходной точкой (OBEP). Если ни один бит не установлен,
+прыжок будет промежуточным участником. Оба не могут быть установлены одновременно.
 
-The request exipration is for future variable tunnel duration.
-For now, the only supported value is 600 (10 minutes).
+Истечение срока запроса предназначено для будущих переменных сроков жизни туннеля.
+Сейчас единственное поддерживаемое значение — 600 (10 минут).
 
-The tunnel build options is a Mapping structure as defined in [Common Structures](/docs/specs/common-structures/).
-This is for future use. No options are currently defined.
-If the Mapping structure is empty, this is two bytes 0x00 0x00.
-The maximum size of the Mapping (including the length field) is 296 bytes,
-and the maximum value of the Mapping length field is 294.
+Опции создания туннеля — это структура Mapping, как определено в [Common Structures](/docs/specs/common-structures/).
+Это для будущего использования. Опции в настоящее время не определены.
+Если структура Mapping пуста, это два байта 0x00 0x00.
+Максимальный размер Mapping (включая поле длины) — 296 байт,
+а максимальное значение поля длины Mapping — 294.
 
 
 
-#### Request Record Encrypted (ECIES)
+#### Запись запроса, зашифрованная (ECIES)
 
-All fields are big-endian except for the ephemeral public key which is little-endian.
+Все поля big-endian, кроме временного открытого ключа, который little-endian.
 
-Encrypted size: 528 bytes
+Зашифрованный размер: 528 байт
 
 ```text
-bytes    0-15: Hop's truncated identity hash
-  bytes   16-47: Sender's ephemeral X25519 public key
-  bytes  48-511: ChaCha20 encrypted BuildRequestRecord
-  bytes 512-527: Poly1305 MAC
+байты    0-15: Усечённый хэш идентификатора прыжка
+  байты   16-47: Временный открытый ключ X25519 отправителя
+  байты  48-511: BuildRequestRecord, зашифрованная ChaCha20
+  байты 512-527: MAC Poly1305
 ```
 
 
 
-### Build Reply Records
+### Записи ответа создания
 
-Encrypted BuildReplyRecords are 528 bytes for both ElGamal and ECIES, for compatibility.
+Зашифрованные BuildReplyRecords имеют размер 528 байт как для ElGamal, так и для ECIES, для совместимости.
 
 
-#### Reply Record Unencrypted (ElGamal)
-ElGamal replies are encrypted with AES.
+#### Запись ответа, незашифрованная (ElGamal)
+Ответы ElGamal шифруются с помощью AES.
 
-All fields are big-endian.
+Все поля big-endian.
 
-Unencrypted size: 528 bytes
+Незашифрованный размер: 528 байт
 
 ```text
-bytes   0-31: SHA-256 Hash of bytes 32-527
-  bytes 32-526: random data
-  byte     527: reply
+байты   0-31: Хэш SHA-256 байтов 32-527
+  байты 32-526: случайные данные
+  байт     527: ответ
 
-  total length: 528
+  общая длина: 528
 ```
 
 
-#### Reply Record Unencrypted (ECIES)
-This is the proposed specification of the tunnel BuildReplyRecord for ECIES-X25519 routers.
-Summary of changes:
+#### Запись ответа, незашифрованная (ECIES)
+Это предлагаемая спецификация записи BuildReplyRecord для маршрутизаторов ECIES-X25519.
+Краткое описание изменений:
 
-- Add Mapping for build reply options
-- Unencrypted record is longer because there is less encryption overhead
+- Добавление Mapping для опций ответа создания туннеля
+- Незашифрованная запись длиннее, так как накладные расходы на шифрование меньше
 
-ECIES replies are encrypted with ChaCha20/Poly1305.
+Ответы ECIES шифруются с помощью ChaCha20/Poly1305.
 
-All fields are big-endian.
+Все поля big-endian.
 
-Unencrypted size: 512 bytes
+Незашифрованный размер: 512 байт
 
 ```text
-bytes    0-x: Tunnel Build Reply Options (Mapping)
-  bytes    x-x: other data as implied by options
-  bytes  x-510: Random padding
-  byte     511: Reply byte
+байты    0-x: Опции ответа создания туннеля (Mapping)
+  байты    x-x: другие данные, подразумеваемые опциями
+  байты  x-510: Случайные заполнители
+  байт     511: Байт ответа
 ```
 
-The tunnel build reply options is a Mapping structure as defined in [Common Structures](/docs/specs/common-structures/).
-This is for future use. No options are currently defined.
-If the Mapping structure is empty, this is two bytes 0x00 0x00.
-The maximum size of the Mapping (including the length field) is 511 bytes,
-and the maximum value of the Mapping length field is 509.
+Опции ответа создания туннеля — это структура Mapping, как определено в [Common Structures](/docs/specs/common-structures/).
+Это для будущего использования. Опции в настоящее время не определены.
+Если структура Mapping пуста, это два байта 0x00 0x00.
+Максимальный размер Mapping (включая поле длины) — 511 байт,
+а максимальное значение поля длины Mapping — 509.
 
-The reply byte is one of the following values
-as defined in [Tunnel Creation](/docs/specs/tunnel-implementation/) to avoid fingerprinting:
+Байт ответа — один из следующих значений,
+как определено в [Tunnel Creation](/docs/specs/tunnel-implementation/), чтобы избежать фингерпринтинга:
 
-- 0x00 (accept)
+- 0x00 (принять)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 
-#### Reply Record Encrypted (ECIES)
+#### Запись ответа, зашифрованная (ECIES)
 
-Encrypted size: 528 bytes
+Зашифрованный размер: 528 байт
 
 ```text
-bytes   0-511: ChaCha20 encrypted BuildReplyRecord
-  bytes 512-527: Poly1305 MAC
+байты   0-511: BuildReplyRecord, зашифрованная ChaCha20
+  байты 512-527: MAC Poly1305
 ```
 
-After full transition to ECIES records, ranged padding rules are the same as for request records.
+После полного перехода на записи ECIES, правила заполнения остаются такими же, как и для записей запроса.
 
 
-### Symmetric Encryption of Records
+### Симметричное шифрование записей
 
-Mixed tunnels are allowed, and necessary, for the transition from ElGamal to ECIES.
-During the transitionary period, an increasing number of routers will be keyed under ECIES keys.
+Смешанные туннели разрешены и необходимы для перехода с ElGamal на ECIES.
+Во время переходного периода всё больше маршрутизаторов будет использовать ключи ECIES.
 
-Symmetric cryptography preprocessing will run in the same way:
+Предварительная обработка симметричной криптографии будет работать одинаково:
 
-- "encryption":
+- «шифрование»:
 
-  - cipher run in decryption mode
-  - request records preemptively decrypted in preprocessing (concealing encrypted request records)
+  - шифр работает в режиме расшифровки
+  - записи запроса предварительно расшифровываются на этапе предварительной обработки (скрывая зашифрованные записи запроса)
 
-- "decryption":
+- «расшифровка»:
 
-  - cipher run in encryption mode
-  - request records encrypted (revealing next plaintext request record) by participant hops
+  - шифр работает в режиме шифрования
+  - записи запроса шифруются (раскрывая следующую запись запроса в открытом виде) узлами-участниками
 
-- ChaCha20 does not have "modes", so it is simply run three times:
+- ChaCha20 не имеет «режимов», поэтому он просто запускается три раза:
 
-  - once in preprocessing
-  - once by the hop
-  - once on final reply processing
+  - один раз на предварительной обработке
+  - один раз узлом
+  - один раз при окончательной обработке ответа
 
-When mixed tunnels are used, tunnel creators will need to base the symmetric encryption
-of BuildRequestRecord on the current and previous hop's encryption type.
+При использовании смешанных туннелей создатели туннелей должны основывать симметричное шифрование
+BuildRequestRecord на типе шифрования текущего и предыдущего прыжка.
 
-Each hop will use its own encryption type for encrypting BuildReplyRecords, and the other
-records in the VariableTunnelBuildMessage (VTBM).
+Каждый прыжок будет использовать свой собственный тип шифрования для шифрования BuildReplyRecords и других
+записей в VariableTunnelBuildMessage (VTBM).
 
-On the reply path, the endpoint (sender) will need to undo the [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption), using each hop's reply key.
+На обратном пути конечная точка (отправитель) должна будет отменить [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption), используя ключ ответа каждого прыжка.
 
-As a clarifying example, let's look at an outbound tunnel w/ ECIES surrounded by ElGamal:
+В качестве поясняющего примера рассмотрим исходящий туннель с ECIES, окружённый ElGamal:
 
-- Sender (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
+- Отправитель (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
 
-All BuildRequestRecords are in their encrypted state (using ElGamal or ECIES).
+Все BuildRequestRecords находятся в зашифрованном состоянии (с использованием ElGamal или ECIES).
 
-AES256/CBC cipher, when used, is still used for each record, without chaining across multiple records.
+AES256/CBC, при использовании, по-прежнему применяется к каждой записи отдельно, без объединения нескольких записей.
 
-Likewise, ChaCha20 will be used to encrypt each record, not streaming across the entire VTBM.
+Аналогично, ChaCha20 будет использоваться для шифрования каждой записи, а не потокового шифрования всего VTBM.
 
-The request records are preprocessed by the Sender (OBGW):
+Записи запроса предварительно обрабатываются отправителем (OBGW):
 
-- H3's record is "encrypted" using:
+- Запись H3 «шифруется» с использованием:
 
-  - H2's reply key (ChaCha20)
-  - H1's reply key (AES256/CBC)
+  - ключа ответа H2 (ChaCha20)
+  - ключа ответа H1 (AES256/CBC)
 
-- H2's record is "encrypted" using:
+- Запись H2 «шифруется» с использованием:
 
-  - H1's reply key (AES256/CBC)
+  - ключа ответа H1 (AES256/CBC)
 
-- H1's record goes out without symmetric encryption
+- Запись H1 отправляется без симметричного шифрования
 
-Only H2 checks the reply encryption flag, and sees its followed by AES256/CBC.
+Только H2 проверяет флаг шифрования ответа и видит, что за ним следует AES256/CBC.
 
-After being processed by each hop, the records are in a "decrypted" state:
+После обработки каждым прыжком записи находятся в «расшифрованном» состоянии:
 
-- H3's record is "decrypted" using:
+- Запись H3 «расшифровывается» с использованием:
 
-  - H3's reply key (AES256/CBC)
+  - ключа ответа H3 (AES256/CBC)
 
-- H2's record is "decrypted" using:
+- Запись H2 «расшифровывается» с использованием:
 
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20-Poly1305)
+  - ключа ответа H3 (AES256/CBC)
+  - ключа ответа H2 (ChaCha20-Poly1305)
 
-- H1's record is "decrypted" using:
+- Запись H1 «расшифровывается» с использованием:
 
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20)
-  - H1's reply key (AES256/CBC)
+  - ключа ответа H3 (AES256/CBC)
+  - ключа ответа H2 (ChaCha20)
+  - ключа ответа H1 (AES256/CBC)
 
-The tunnel creator, a.k.a. Inbound Endpoint (IBEP), postprocesses the reply:
+Создатель туннеля, т.е. конечная точка входа (IBEP), постобрабатывает ответ:
 
-- H3's record is "encrypted" using:
+- Запись H3 «шифруется» с использованием:
 
-  - H3's reply key (AES256/CBC)
+  - ключа ответа H3 (AES256/CBC)
 
-- H2's record is "encrypted" using:
+- Запись H2 «шифруется» с использованием:
 
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20-Poly1305)
+  - ключа ответа H3 (AES256/CBC)
+  - ключа ответа H2 (ChaCha20-Poly1305)
 
-- H1's record is "encrypted" using:
+- Запись H1 «шифруется» с использованием:
 
-  - H3's reply key (AES256/CBC)
-  - H2's reply key (ChaCha20)
-  - H1's reply key (AES256/CBC)
-
-
-### Request Record Keys (ECIES)
-
-These keys are explicitly included in ElGamal BuildRequestRecords.
-For ECIES BuildRequestRecords, the tunnel keys and AES reply keys are included,
-but the ChaCha reply keys are derived from the DH exchange.
-See [Proposal 156](/proposals/156-ecies-routers) for details of the router static ECIES keys.
-
-Below is a description of how to derive the keys previously transmitted in request records.
+  - ключа ответа H3 (AES256/CBC)
+  - ключа ответа H2 (ChaCha20)
+  - ключа ответа H1 (AES256/CBC)
 
 
-#### KDF for Initial ck and h
+### Ключи записи запроса (ECIES)
 
-This is standard [NOISE](https://noiseprotocol.org/noise.html) for pattern "N" with a standard protocol name.
+Эти ключи явно включены в записи BuildRequestRecords ElGamal.
+Для записей BuildRequestRecords ECIES включены ключи туннеля и ключи ответа AES,
+но ключи ответа ChaCha выводятся из обмена DH.
+См. [Предложение 156](/proposals/156-ecies-routers) для деталей статических ключей ECIES маршрутизатора.
+
+Ниже приведено описание способа вывода ключей, ранее передаваемых в записях запроса.
+
+
+#### KDF для начальных ck и h
+
+Это стандартный [NOISE](https://noiseprotocol.org/noise.html) для шаблона "N" со стандартным именем протокола.
 
 ```text
-This is the "e" message pattern:
+Это шаблон сообщения "e":
 
-  // Define protocol_name.
+  // Определить protocol_name.
   Set protocol_name = "Noise_N_25519_ChaChaPoly_SHA256"
-  (31 bytes, US-ASCII encoded, no NULL termination).
+  (31 байт, кодировка US-ASCII, без NULL-терминатора).
 
-  // Define Hash h = 32 bytes
-  // Pad to 32 bytes. Do NOT hash it, because it is not more than 32 bytes.
+  // Определить Hash h = 32 байта
+  // Дополнить до 32 байт. НЕ хэшировать, так как длина не более 32 байт.
   h = protocol_name || 0
 
-  Define ck = 32 byte chaining key. Copy the h data to ck.
+  Определить ck = 32-байтовый цепной ключ. Скопировать данные h в ck.
   Set chainKey = h
 
   // MixHash(null prologue)
   h = SHA256(h);
 
-  // up until here, can all be precalculated by all routers.
+  // до этого момента всё может быть предварительно вычислено всеми маршрутизаторами.
 ```
 
 
-#### KDF for Request Record
+#### KDF для записи запроса
 
-ElGamal tunnel creators generate an ephemeral X25519 keypair for each
-ECIES hop in the tunnel, and use scheme above for encrypting their BuildRequestRecord.
-ElGamal tunnel creators will use the scheme prior to this spec for encrypting to ElGamal hops.
+Создатели туннелей ElGamal генерируют временную пару ключей X25519 для каждого
+прыжка ECIES в туннеле и используют указанную выше схему для шифрования своей записи BuildRequestRecord.
+Создатели туннелей ElGamal будут использовать схему, описанную до этой спецификации, для шифрования прыжков ElGamal.
 
-ECIES tunnel creators will need to encrypt to each of the ElGamal hop's public key using the
-scheme defined in [Tunnel Creation](/docs/specs/tunnel-implementation/). ECIES tunnel creators will use the above scheme for encrypting
-to ECIES hops.
+Создателям туннелей ECIES нужно будет шифровать каждый из открытых ключей прыжков ElGamal
+по схеме, определённой в [Tunnel Creation](/docs/specs/tunnel-implementation/). Создатели туннелей ECIES будут использовать указанную выше схему для шифрования
+прыжков ECIES.
 
-This means that tunnel hops will only see encrypted records from their same encryption type.
+Это означает, что прыжки будут видеть зашифрованные записи только от прыжков с тем же типом шифрования.
 
-For ElGamal and ECIES tunnel creators, they will generate unique ephemeral X25519 keypairs
-per-hop for encrypting to ECIES hops.
+Для создателей туннелей ElGamal и ECIES они будут генерировать уникальные временные пары ключей X25519
+на прыжок для шифрования прыжков ECIES.
 
-**IMPORTANT**:
-Ephemeral keys must be unique per ECIES hop, and per build record.
-Failing to use unique keys opens an attack vector for colluding hops to confirm they are in the same tunnel.
+**ВАЖНО**:
+Временные ключи должны быть уникальны для каждого прыжка ECIES и для каждой записи создания.
+Несоблюдение этого правила открывает вектор атаки для сообщающихся прыжков подтвердить, что они находятся в одном туннеле.
 
 
 ```text
-// Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
+// Статическая пара ключей X25519 каждого прыжка (hesk, hepk) из Идентификатора Маршрутизатора
   hesk = GENERATE_PRIVATE()
   hepk = DERIVE_PUBLIC(hesk)
 
   // MixHash(hepk)
-  // || below means append
+  // || ниже означает добавление
   h = SHA256(h || hepk);
 
-  // up until here, can all be precalculated by each router
-  // for all incoming build requests
+  // до этого момента всё может быть предварительно вычислено каждым маршрутизатором
+  // для всех входящих запросов создания
 
-  // Sender generates an X25519 ephemeral keypair per ECIES hop in the VTBM (sesk, sepk)
+  // Отправитель генерирует временную пару ключей X25519 на каждый прыжок ECIES в VTBM (sesk, sepk)
   sesk = GENERATE_PRIVATE()
   sepk = DERIVE_PUBLIC(sesk)
 
   // MixHash(sepk)
   h = SHA256(h || sepk);
 
-  End of "e" message pattern.
+  Конец шаблона сообщения "e".
 
-  This is the "es" message pattern:
+  Это шаблон сообщения "es":
 
   // Noise es
-  // Sender performs an X25519 DH with Hop's static public key.
-  // Each Hop, finds the record w/ their truncated identity hash,
-  // and extracts the Sender's ephemeral key preceding the encrypted record.
+  // Отправитель выполняет X25519 DH с открытым статическим ключом прыжка.
+  // Каждый прыжок находит запись с усечённым хэшем своего идентификатора,
+  // и извлекает временный ключ отправителя перед зашифрованной записью.
   sharedSecret = DH(sesk, hepk) = DH(hesk, sepk)
 
   // MixKey(DH())
   //[chainKey, k] = MixKey(sharedSecret)
-  // ChaChaPoly parameters to encrypt/decrypt
+  // Параметры ChaChaPoly для шифрования/расшифровки
   keydata = HKDF(chainKey, sharedSecret, "", 64)
-  // Save for Reply Record KDF
+  // Сохранить для KDF записи ответа
   chainKey = keydata[0:31]
 
-  // AEAD parameters
+  // Параметры AEAD
   k = keydata[32:63]
   n = 0
-  plaintext = 464 byte build request record
+  plaintext = 464-байтовая запись запроса создания
   ad = h
   ciphertext = ENCRYPT(k, n, plaintext, ad)
 
-  End of "es" message pattern.
+  Конец шаблона сообщения "es".
 
   // MixHash(ciphertext)
-  // Save for Reply Record KDF
+  // Сохранить для KDF записи ответа
   h = SHA256(h || ciphertext)
 ```
 
-``replyKey``, ``layerKey`` and ``layerIV`` must still be included inside ElGamal records,
-and can be generated randomly.
+``replyKey``, ``layerKey`` и ``layerIV`` по-прежнему должны быть включены внутрь записей ElGamal
+и могут генерироваться случайным образом.
 
 
-### Request Record Encryption (ElGamal)
+### Шифрование записи запроса (ElGamal)
 
-As defined in [Tunnel Creation](/docs/specs/tunnel-implementation/).
-There are no changes to encryption for ElGamal hops.
-
-
+Как определено в [Tunnel Creation](/docs/specs/tunnel-implementation/).
+Никаких изменений в шифровании для прыжков ElGamal не вносится.
 
 
-### Reply Record Encryption (ECIES)
 
-The reply record is ChaCha20/Poly1305 encrypted.
+
+### Шифрование записи ответа (ECIES)
+
+Запись ответа шифруется с помощью ChaCha20/Poly1305.
 
 ```text
-// AEAD parameters
-  k = chainkey from build request
+// Параметры AEAD
+  k = chainkey из запроса создания
   n = 0
-  plaintext = 512 byte build reply record
-  ad = h from build request
+  plaintext = 512-байтовая запись ответа создания
+  ad = h из запроса создания
 
   ciphertext = ENCRYPT(k, n, plaintext, ad)
 ```
 
 
 
-### Reply Record Encryption (ElGamal)
+### Шифрование записи ответа (ElGamal)
 
-As defined in [Tunnel Creation](/docs/specs/tunnel-implementation/).
-There are no changes to encryption for ElGamal hops.
-
-
-
-### Security Analysis
-
-ElGamal does not provide forward secrecy for Tunnel Build Messages.
-
-AES256/CBC is in slightly better standing, only being vulnerable to a theoretical weakening from a
-known plaintext `biclique` attack.
-
-The only known practical attack against AES256/CBC is a padding oracle attack, when the IV is known to the attacker.
-
-An attacker would need to break the next hop's ElGamal encryption to gain the AES256/CBC key info (reply key and IV).
-
-ElGamal is significantly more CPU-intensive than ECIES, leading to potential resource exhaustion.
-
-ECIES, used with new ephemeral keys per-BuildRequestRecord or VariableTunnelBuildMessage, provides forward-secrecy.
-
-ChaCha20Poly1305 provides AEAD encryption, allowing the recipient to verify message integrity before attempting decryption.
-
-
-## Justification
-
-This design maximizes reuse of existing cryptographic primitives, protocols, and code.
-This design minimizes risk.
+Как определено в [Tunnel Creation](/docs/specs/tunnel-implementation/).
+Никаких изменений в шифровании для прыжков ElGamal не вносится.
 
 
 
+### Анализ безопасности
 
-## Implementation Notes
+ElGamal не обеспечивает сквозную секретность для сообщений создания туннеля.
 
-* Older routers do not check the encryption type of the hop and will send ElGamal-encrypted
-  records. Some recent routers are buggy and will send various types of malformed records.
-  Implementers should detect and reject these records prior to the DH operation
-  if possible, to reduce CPU usage.
+AES256/CBC находится в немного лучшем положении, будучи уязвимым только к теоретическому ослаблению из-за
+атаки с известным открытым текстом `biclique`.
+
+Единственная известная практическая атака против AES256/CBC — это атака с оракулом заполнения, когда IV известен атакующему.
+
+Атакующему нужно будет взломать шифрование ElGamal следующего прыжка, чтобы получить информацию о ключе AES256/CBC (ключ ответа и IV).
+
+ElGamal значительно более ресурсоёмок по CPU, чем ECIES, что ведёт к возможному истощению ресурсов.
+
+ECIES, используемый с новыми временными ключами на каждую BuildRequestRecord или VariableTunnelBuildMessage, обеспечивает сквозную секретность.
+
+ChaCha20Poly1305 обеспечивает AEAD-шифрование, позволяя получателю проверить целостность сообщения до попытки расшифровки.
 
 
-## Issues
+## Обоснование
+
+Этот дизайн максимизирует повторное использование существующих криптографических примитивов, протоколов и кода.
+Этот дизайн минимизирует риски.
 
 
 
-## Migration
 
-See [Proposal 156](/proposals/156-ecies-routers).
+## Примечания по реализации
+
+* Старые маршрутизаторы не проверяют тип шифрования прыжка и будут отправлять зашифрованные ElGamal
+  записи. Некоторые недавние маршрутизаторы имеют ошибки и будут отправлять различные типы повреждённых записей.
+  Реализаторам следует обнаруживать и отклонять такие записи до операции DH,
+  если возможно, чтобы снизить нагрузку на CPU.
 
 
-## References
+## Проблемы
+
+
+
+## Миграция
+
+См. [Предложение 156](/proposals/156-ecies-routers).
+
+
+## Ссылки
 
 * [Common](/docs/specs/common-structures/)
 * [Cryptography](/docs/specs/cryptography/)
@@ -742,7 +738,3 @@ See [Proposal 156](/proposals/156-ecies-routers).
 * [Multiple-Encryption](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)
-
-
-
-

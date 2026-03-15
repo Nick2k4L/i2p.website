@@ -5,37 +5,36 @@ author: "mhatta"
 description: "Speeding up your I2P network"
 categories: ["tutorial"]
 ---
+*تم اقتباس هذا المنشور مباشرة من مادة تم إنشاؤها في الأصل لمدونة medium الخاصة بـ mhatta* [medium blog](https://medium.com/@mhatta/speeding-up-your-i2p-network-c08ec9de225d) *.* *له الفضل في المحتوى الأصلي. وقد تم تحديثه في بعض الأماكن التي كانت تشير إلى إصدارات قديمة من I2P على أنها حالية، وتمت مراجعته بشكل طفيف. -idk*
 
-*This post is adapted directly from material originally created for mhatta's* [medium blog](https://medium.com/@mhatta/speeding-up-your-i2p-network-c08ec9de225d) *.* *He deserves the credit for the OP. It has been updated in certain places where* *it refers to old versions of I2P as current and has undergone some light* *editing. -idk*
-
-Right after it starts up, I2P is often seen as a little bit slow. It's true, and we all know why, by nature, [garlic routing](https://en.wikipedia.org/wiki/Garlic_routing) adds overhead to the familiar experience of using the internet so that you can have privacy, but this means that for many or most I2P services, your data will need to go through 12 hops by default.
+بعد بدء تشغيل I2P مباشرة، غالبًا ما يُنظر إليه على أنه بطيء بعض الشيء. هذا صحيح، ونحن جميعًا نعرف السبب، فطبيعة [التوجيه بالثوم (garlic routing)](https://en.wikipedia.org/wiki/Garlic_routing) تضيف عبئًا إضافيًا على تجربة استخدام الإنترنت المألوفة، وذلك لتمكين الخصوصية، ولكن هذا يعني أنه بالنسبة لمعظم خدمات I2P أو جميعها، يجب أن تمر بياناتك عبر 12 محطة (hop) افتراضيًا.
 
 ![Analysis of tools for online anonymity](https://www.researchgate.net/publication/289531182_An_analysis_of_tools_for_online_anonymity)
 
-Also, unlike Tor, I2P was primarily designed as a closed network. You can easily access [eepsites](https://medium.com/@mhatta/how-to-set-up-untraceable-websites-eepsites-on-i2p-1fe26069271d) or other resources inside I2P, but you are not supposed to access [clearnet](https://en.wikipedia.org/wiki/Clearnet_(networking)) websites through I2P. There exist a few I2P "outproxies" similar to [Tor](https://en.wikipedia.org/wiki/Tor_(anonymity_network))'s exit nodes to access clearnet, but most of them are very slow to use as going to the clearnet is effectively *another* hop in the already 6 hops in, six hops out connection.
+أيضًا، على عكس Tor، تم تصميم I2P في المقام الأول كشبكة مغلقة. يمكنك الوصول بسهولة إلى [مواقع eepsites](https://medium.com/@mhatta/how-to-set-up-untraceable-websites-eepsites-on-i2p-1fe26069271d) أو موارد أخرى داخل I2P، ولكن لا يُفترض أن تستخدم I2P للوصول إلى مواقع [الإنترنت العادي (clearnet)](https://en.wikipedia.org/wiki/Clearnet_(networking)). توجد بعض "البروكسيات الخارجة (outproxies)" في I2P تشبه عُقد الخروج (exit nodes) في [Tor](https://en.wikipedia.org/wiki/Tor_(anonymity_network)) للوصول إلى clearnet، لكن معظمها بطيء جدًا في الاستخدام، لأن الانتقال إلى clearnet يُعد فعليًا محطة *إضافية* على الاتصال الموجود أصلًا (6 محطات دخول و6 محطات خروج).
 
-Until a few versions ago, this problem was even harder to deal with because many I2P router users were having difficulties configuring the bandwidth settings for their routers. If everyone who can takes the time to adjust their bandwidth settings properly, they will improve not only your connection but also the I2P network as a whole.
+حتى بضعة إصدارات مضت، كانت هذه المشكلة أصعب في التعامل معها لأن العديد من مستخدمي موجه I2P كانوا يواجهون صعوبات في تهيئة إعدادات عرض النطاق الترددي لموجهاتهم. إذا قام كل من يستطيع بضبط إعدادات عرض النطاق الترددي بشكل صحيح، فسيحسن ذلك ليس فقط اتصاله الشخصي، بل شبكة I2P بأكملها.
 
-## Adjusting bandwidth limits
+## ضبط حدود عرض النطاق الترددي
 
-Since I2P is a peer-to-peer network, you have to share some of your network bandwidth with other peers. You see choose how much in "I2P Bandwidth Configuration" ("Configure Bandwidth" button in the "Applications and Configuration" section of I2P Router Console, or `http://localhost:7657/config).`
+بما أن I2P شبكة ند لند (peer-to-peer)، يجب عليك مشاركة جزء من عرض نطاق ترددي الشبكة مع الأقران الآخرين. يمكنك اختيار المقدار من خلال "تهيئة عرض النطاق الترددي في I2P" ("Configure Bandwidth" في قسم "Applications and Configuration" في لوحة تحكم موجه I2P، أو `http://localhost:7657/config`).
 
 ![I2P Bandwidth Configuration](https://geti2p.net/images/blog/bandwidthmenu.png)
 
-If you see a shared bandwidth limit of 48 KBps, which is very low, then you may not have adjusted your shared bandwidth from the default. As the original author of the material this blog post is adapted from noted, I2P has a default shared bandwidth limit that is very low until the user adjusts it to avoid causing issues with the user's connection.
+إذا رأيت حدًا مشتركًا لعرض النطاق الترددي قدره 48 كيلوبايت في الثانية (KBps)، وهو مقدار منخفض جدًا، فقد لا تكون قد قمت بتعديل عرض النطاق الترددي المشترك من الإعداد الافتراضي. كما لاحظ الكاتب الأصلي للمادة التي اقتُبست منها هذه المدونة، فإن I2P يحتوي على حد افتراضي منخفض جدًا لعرض النطاق الترددي المشترك، وذلك حتى يقوم المستخدم بضبطه لتجنب حدوث مشكلات في اتصاله.
 
-However, since many users may not know exactly which bandwidth settings to adjust, the [I2P 0.9.38 release](https://geti2p.net/en/download) introduced a New Install Wizard. It contains a Bandwidth Test, which automatically detects (thanks to M-Lab's [NDT](https://www.measurementlab.net/tests/ndt/)) and adjusts I2P's bandwidth settings accordingly.
+ومع ذلك، وبما أن العديد من المستخدمين قد لا يعرفون بالضبط أي إعدادات للنطاق الترددي يجب تعديلها، فقد قدم إصدار [I2P 0.9.38](https://geti2p.net/en/download) معالج تثبيت جديد (New Install Wizard). ويتضمن هذا المعالج اختبار عرض النطاق الترددي، الذي يقوم تلقائيًا باكتشاف (بفضل [NDT](https://www.measurementlab.net/tests/ndt/) من M-Lab) وضبط إعدادات عرض النطاق الترددي في I2P وفقًا لذلك.
 
-If you want to re-run the wizard, for instance following a change in your service provider or because you installed I2P before version 0.9.38, you can re-launch it from the 'Setup' link on the 'Help & FAQ' page, or simply access the wizard directly at `http://localhost:7657/welcome`
+إذا أردت إعادة تشغيل المعالج، على سبيل المثال بعد تغيير مزود الخدمة أو لأنك قمت بتثبيت I2P قبل الإصدار 0.9.38، يمكنك إعادة تشغيله من رابط "Setup" في صفحة "Help & FAQ"، أو ببساطة الوصول إلى المعالج مباشرة عبر `http://localhost:7657/welcome`
 
 ![Can you find "Setup"?](https://geti2p.net/images/blog/sidemenu.png)
 
-Using the Wizard is straightforward, simply keep clicking "Next". Sometimes M-Lab's chosen measurement servers are down and the test fails. In such case, click "Previous" (do not use your web browser's "back" button), then try it again.
+استخدام المعالج بسيط جدًا، فقط استمر في النقر على "Next". في بعض الأحيان، قد تكون خوادم القياس المختارة من قبل M-Lab معطلة، وبالتالي يفشل الاختبار. في هذه الحالة، انقر على "Previous" (ولا تستخدم زر "العودة" في متصفحك)، ثم حاول مرة أخرى.
 
 ![Bandwidth Test Results](https://geti2p.net/images/blog/bwresults.png)
 
-## Running I2P continuously
+## تشغيل I2P بشكل مستمر
 
-Even after adjusted the bandwidth, your connection might still be slow As I said, I2P is a P2P network. It will take some time for your I2P router to be discovered by other peers and integrated into the I2P network. If your router not up long enough to become well integrated, or if you shut down un-gracefully too often, the network will remain fairly slow. On the other hand, the longer you run your I2P router continuously, the faster and more stable your connection becomes, and more of your bandwidth share will be used in the network.
+حتى بعد ضبط عرض النطاق الترددي، قد يظل اتصالك بطيئًا. كما قلت، I2P عبارة عن شبكة ند لند (P2P). سيستغرق الأمر بعض الوقت حتى يتم اكتشاف موجه I2P الخاص بك من قبل الأقران الآخرين والاندماج في شبكة I2P. إذا لم يكن موجهك قيد التشغيل لفترة كافية ليتكامل جيدًا، أو إذا قمت بإيقافه بشكل غير لائق كثيرًا، فستبقى الشبكة بطيئة نسبيًا. من ناحية أخرى، كلما قمت بتشغيل موجه I2P الخاص بك بشكل مستمر لفترة أطول، أصبح اتصالك أسرع وأكثر استقرارًا، وسيتم استخدام جزء أكبر من عرض النطاق الترددي المشترك الخاص بك في الشبكة.
 
-However, many people might not be able to stay your I2P router up. In such case, you can still run the I2P router on a remote server such as VPS, then use SSH port forwarding.
+ومع ذلك، قد لا يتمكن الكثيرون من إبقاء موجه I2P الخاص بهم قيد التشغيل باستمرار. في هذه الحالة، لا يزال بإمكانك تشغيل موجه I2P على خادم بعيد مثل VPS، ثم استخدام توجيه منفذ SSH.

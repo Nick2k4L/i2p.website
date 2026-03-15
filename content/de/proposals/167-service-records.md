@@ -9,375 +9,322 @@ thread: "http://zzz.i2p/topics/3641"
 target: "0.9.66"
 toc: true
 ---
-
 ## Status
-Approved on 2nd review 2025-04-01; specs are updated; not yet implemented.
+Am 2. Überprüfung am 2025-04-01 genehmigt; Spezifikationen wurden aktualisiert; noch nicht implementiert.
 
 
-## Overview
+## Übersicht
 
-I2P lacks a centralized DNS system.
-However, the address book, together with the b32 hostname system, allows
-the router to look up full destinations and fetch lease sets, which contain
-a list of gateways and keys so that clients may connect to that destination.
+I2P verfügt über kein zentrales DNS-System.  
+Allerdings ermöglicht das Adressbuch zusammen mit dem b32-Hostnamensystem dem Router, vollständige Ziele aufzulösen und Lease-Sets abzurufen, die eine Liste von Gateways und Schlüsseln enthalten, sodass Clients eine Verbindung zu diesem Ziel herstellen können.
 
-So, leasesets are somewhat like a DNS record. But there is currently no facility to
-find out if that host supports any services, either on that destination or a different one,
-in a manner similar to DNS [SRV records](https://en.wikipedia.org/wiki/SRV_record) as defined in [RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782).
+Lease-Sets sind also in gewisser Weise vergleichbar mit einem DNS-Eintrag. Derzeit gibt es jedoch keine Möglichkeit herauszufinden, ob der Host bestimmte Dienste unterstützt, entweder auf diesem Ziel oder einem anderen, ähnlich wie DNS-[SRV-Einträge](https://en.wikipedia.org/wiki/SRV_record) gemäß [RFC 2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
-The first application for this may be peer-to-peer email.
-Other possible applications: DNS, GNS, key servers, certificate authorities, time servers,
-bittorrent, cryptocurrencies, other peer-to-peer applications.
+Die erste Anwendung dafür könnte Peer-to-Peer-E-Mail sein.  
+Weitere mögliche Anwendungen: DNS, GNS, Schlüsselserver, Zertifizierungsstellen, Zeitserver, BitTorrent, Kryptowährungen, andere Peer-to-Peer-Anwendungen.
 
 
-## Related Proposals and Alternatives
+## Verwandte Vorschläge und Alternativen
 
-### Service Lists
+### Dienstelisten
 
-The LS2 [Proposal 123](/proposals/123-new-netdb-entries/) defined 'service records' that indicated a destination
-was participating in a global service. The floodfills would aggregate these records
-into global 'service lists'.
-This was never implemented due to complexity, lack of authentication,
-security, and spamming concerns.
+Die LS2-[Vorschlag 123](/proposals/123-new-netdb-entries/) definierte „Diensteinträge“, die angaben, dass ein Ziel an einem globalen Dienst teilnimmt. Die Floodfills würden diese Einträge zu globalen „Dienstelisten“ aggregieren.  
+Dies wurde nie implementiert aufgrund von Komplexität, fehlender Authentifizierung, Sicherheits- und Spam-Bedenken.
 
-This proposal is different in that it provides lookup for a service for a specific destination,
-not a global pool of destinations for some global service.
+Dieser Vorschlag unterscheidet sich darin, dass er eine Nachschlagefunktion für einen Dienst eines bestimmten Ziels bereitstellt, nicht für einen globalen Pool von Zielen für einen globalen Dienst.
 
 ### GNS
 
-GNS proposes that everybody runs their own DNS server.
-This proposal is complementary, in that we could use service records to specify
-that GNS (or DNS) is supported, with a standard service name of "domain" on port 53.
+GNS schlägt vor, dass jeder seinen eigenen DNS-Server betreibt.  
+Dieser Vorschlag ist ergänzend, da wir Diensteinträge verwenden könnten, um anzugeben, dass GNS (oder DNS) unterstützt wird, mit einem standardisierten Dienstnamen „domain“ auf Port 53.
 
 ### Dot well-known
 
-It has been [proposed](http://i2pforum.i2p/viewtopic.php?p=3102) that services be looked up via an HTTP request to
-/.well-known/i2pmail.key. This requires that every service must have a related
-website to host the key. Most users do not run websites.
+Es wurde [vorgeschlagen](http://i2pforum.i2p/viewtopic.php?p=3102), dass Dienste über eine HTTP-Anfrage an  
+/.well-known/i2pmail.key aufzulösen seien. Dies erfordert, dass jeder Dienst eine zugehörige Webseite zum Hosten des Schlüssels hat. Die meisten Benutzer betreiben keine Webseiten.
 
-One workaround is that we could presume that a service for a b32 address is actually
-running on that b32 address. So that looking for the service for example.i2p requires
-the HTTP fetch from http://example.i2p/.well-known/i2pmail.key, but
-a service for aaa...aaa.b32.i2p does not require that lookup, it can just connect directly.
+Ein Workaround wäre, anzunehmen, dass ein Dienst für eine b32-Adresse tatsächlich auf dieser b32-Adresse läuft. So erfordert die Suche nach dem Dienst für example.i2p das Abrufen per HTTP von http://example.i2p/.well-known/i2pmail.key, aber ein Dienst für aaa...aaa.b32.i2p erfordert diese Nachschlagefunktion nicht, sondern kann direkt verbunden werden.
 
-But there's an ambiguity there, because example.i2p can also be addressed by its b32.
+Es gibt jedoch eine Mehrdeutigkeit, da example.i2p auch über seine b32-Adresse adressiert werden kann.
 
-### MX Records
+### MX-Einträge
 
-SRV records are simply a generic version of MX records for any service.
-"_smtp._tcp" is the "MX" record.
-There is no need for MX records if we have SRV records, and MX records
-alone do not provide a generic record for any service.
+SRV-Einträge sind einfach eine generische Version von MX-Einträgen für jeden Dienst.  
+„_smtp._tcp“ ist der „MX“-Eintrag.  
+MX-Einträge sind nicht erforderlich, wenn wir SRV-Einträge haben, und MX-Einträge allein bieten keinen generischen Eintrag für jeden Dienst.
 
 
-## Design
+## Entwurf
 
-Service records are placed in the options section in [LS2](/docs/specs/common-structures/).
-The LS2 options section is currently unused.
-Not supported for LS1.
-This is similar to the [tunnel bandwidth proposal](/proposals/168-tunnel-bandwidth/),
-which defines options for tunnel build records.
+Diensteinträge werden im Optionsabschnitt in [LS2](/docs/specs/common-structures/) platziert. Der LS2-Optionsabschnitt ist derzeit ungenutzt.  
+Nicht unterstützt für LS1.  
+Dies ist vergleichbar mit dem [Tunnel-Bandbreiten-Vorschlag](/proposals/168-tunnel-bandwidth/), der Optionen für Tunnel-Bau-Einträge definiert.
 
-To lookup a service address for a specific hostname or b32, the router fetches the
-leaseset and looks up the service record in the properties.
+Um eine Dienstadresse für einen bestimmten Hostnamen oder b32 aufzulösen, holt der Router das Lease-Set und sucht den Diensteintrag in den Eigenschaften.
 
-The service may be hosted on the same destination as the LS itself, or may reference
-a different hostname/b32.
+Der Dienst kann auf demselben Ziel wie das LS selbst gehostet werden oder auf einen anderen Hostnamen/b32 verweisen.
 
-If the target destination for the service is different, the target LS must also
-include a service record, pointing to itself, indicating that it supports the service.
+Wenn das Ziel des Dienstes unterschiedlich ist, muss das Ziel-LS ebenfalls einen Diensteintrag enthalten, der auf sich selbst verweist und angibt, dass es den Dienst unterstützt.
 
-The design does not require special support or caching or any changes in the floodfills.
-Only the leaseset publisher, and the client looking up a service record,
-must support these changes.
+Der Entwurf erfordert keine besondere Unterstützung oder Zwischenspeicherung oder Änderungen an den Floodfills.  
+Nur der Publisher des Lease-Sets und der Client, der einen Diensteintrag nachschlägt, müssen diese Änderungen unterstützen.
 
-Minor I2CP and SAM extensions are proposed to facilitate retrieval of
-service records by clients.
+Kleine Erweiterungen von I2CP und SAM werden vorgeschlagen, um Clients die Abrufung von Diensteinträgen zu erleichtern.
 
 
 
-## Specification
+## Spezifikation
 
-### LS2 Option Specification
+### LS2-Optionsspezifikation
 
-LS2 options MUST be sorted by key, so the signature is invariant.
+LS2-Optionen MÜSSEN nach Schlüssel sortiert sein, damit die Signatur invariant ist.
 
-Defined as follows:
+Folgendermaßen definiert:
 
 - serviceoption := optionkey optionvalue
 - optionkey := _service._proto
-- service := The symbolic name of the desired service. Must be lower case. Example: "smtp".
-  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
-  Standard identifiers from the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services must be used if defined there.
-- proto := The transport protocol of the desired service. Must be lower case, either "tcp" or "udp".
-  "tcp" means streaming and "udp" means repliable datagrams.
-  Protocol indicators for raw datagrams and datagram2 may be defined later.
-  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+- service := Der symbolische Name des gewünschten Dienstes. Muss Kleinbuchstaben sein. Beispiel: „smtp“.  
+  Erlaubte Zeichen sind [a-z0-9-] und dürfen nicht mit einem „-“ beginnen oder enden.  
+  Standard-Bezeichner aus der [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) oder Linux /etc/services müssen verwendet werden, wenn dort definiert.
+- proto := Das Transportprotokoll des gewünschten Dienstes. Muss Kleinbuchstaben sein, entweder „tcp“ oder „udp“.  
+  „tcp“ bedeutet Streaming und „udp“ bedeutet repliable Datagramme.  
+  Protokollindikatoren für Raw-Datagramme und Datagram2 können später definiert werden.  
+  Erlaubte Zeichen sind [a-z0-9-] und dürfen nicht mit einem „-“ beginnen oder enden.
 - optionvalue := self | srvrecord[,srvrecord]*
-- self := "0" ttl port [appoptions]
-- srvrecord := "1" ttl priority weight port target [appoptions]
-- ttl := time to live, integer seconds. Positive integer. Example: "86400".
-  A minimum of 86400 (one day) is recommended, see Recommendations section below for details.
-- priority := The priority of the target host, lower value means more preferred. Non-negative integer. Example: "0"
-  Only useful if more than one record, but required even if just one record.
-- weight := A relative weight for records with the same priority. Higher value means more chance of getting picked. Non-negative integer. Example: "0"
-  Only useful if more than one record, but required even if just one record.
-- port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
-  Port 0 is supported but not recommended.
-- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/overview/naming/). Must be lower case.
-  Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
-  b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
-- appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
+- self := „0“ ttl port [appoptions]
+- srvrecord := „1“ ttl priority weight port target [appoptions]
+- ttl := Gültigkeitsdauer (time to live), ganze Sekunden. Positive ganze Zahl. Beispiel: „86400“.  
+  Ein Minimum von 86400 (ein Tag) wird empfohlen, siehe Abschnitt Empfehlungen unten für Details.
+- priority := Die Priorität des Zielhosts, niedrigere Werte bedeuten bevorzugt. Nicht-negative ganze Zahl. Beispiel: „0“  
+  Nur nützlich, wenn mehr als ein Eintrag vorhanden ist, aber erforderlich, auch wenn nur ein Eintrag existiert.
+- weight := Ein relatives Gewicht für Einträge mit derselben Priorität. Höhere Werte bedeuten größere Auswahlwahrscheinlichkeit. Nicht-negative ganze Zahl. Beispiel: „0“  
+  Nur nützlich, wenn mehr als ein Eintrag vorhanden ist, aber erforderlich, auch wenn nur ein Eintrag existiert.
+- port := Der I2CP-Port, auf dem der Dienst zu finden ist. Nicht-negative ganze Zahl. Beispiel: „25“  
+  Port 0 ist erlaubt, aber nicht empfohlen.
+- target := Der Hostname oder b32 des Ziels, das den Dienst bereitstellt. Ein gültiger [Hostname](/docs/overview/naming/). Muss Kleinbuchstaben sein.  
+  Beispiel: „aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p“ oder „example.i2p“.  
+  b32 wird empfohlen, es sei denn, der Hostname ist „allgemein bekannt“, d.h. in offiziellen oder Standard-Adressbüchern.
+- appoptions := Beliebiger Text, spezifisch für die Anwendung, darf kein „ “ oder „,“ enthalten. Kodierung ist UTF-8.
 
-### Examples
+### Beispiele
 
-In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to one SMTP server:
+In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, verweist auf einen SMTP-Server:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to two SMTP servers:
+In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, verweist auf zwei SMTP-Server:
 
     "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to itself as a SMTP server:
+In LS2 für bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, verweist auf sich selbst als SMTP-Server:
 
     "_smtp._tcp" "0 999999 25"
 
-Possible format for redirecting email (see below):
+Mögliche Formatierung zur Umleitung von E-Mails (siehe unten):
 
     "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-### Limits
+### Grenzwerte
 
-The Mapping data structure format used for LS2 options limits keys and values to 255 bytes (not chars) max.
-With a b32 target, the optionvalue is about 67 bytes, so only 3 records would fit.
-Maybe only one or two with a long appoptions field, or up to four or five with a short hostname.
-This should be sufficient; multiple records should be rare.
-
-
-### Differences from RFC 2782
-
-- No trailing dots
-- No name after the proto
-- Lower case required
-- In text format with comma-separated records, not binary DNS format
-- Different record type indicators
-- Additional appoptions field
+Die für LS2-Optionen verwendete Mapping-Datenstruktur begrenzt Schlüssel und Werte auf maximal 255 Bytes (nicht Zeichen).  
+Bei einem b32-Ziel ist der optionvalue etwa 67 Bytes lang, sodass nur 3 Einträge passen.  
+Möglicherweise nur einer oder zwei bei langem appoptions-Feld, oder bis zu vier oder fünf bei kurzem Hostnamen.  
+Dies sollte ausreichen; mehrere Einträge sollten selten sein.
 
 
-### Notes
+### Unterschiede zu RFC 2782
 
-No wildcarding such as (asterisk), (asterisk)._tcp, or _tcp is allowed.
-Each supported service must have its own record.
-
-
-
-### Service Name Registry
-
-Non-standard identifiers that are not listed in the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services
-may be requested and added to the [common structures specification](/docs/specs/common-structures/).
-
-Service-specific appoptions formats may also be added there.
+- Keine abschließenden Punkte
+- Kein Name nach dem proto
+- Kleinbuchstaben erforderlich
+- Im Textformat mit durch Komma getrennten Einträgen, nicht im binären DNS-Format
+- Unterschiedliche Eintrags-Typ-Indikatoren
+- Zusätzliches appoptions-Feld
 
 
-### I2CP Specification
+### Hinweise
 
-The [I2CP protocol](/docs/specs/i2cp/) must be extended to support service lookups.
-Additional MessageStatusMessage and/or HostReplyMessage error codes related to service lookup
-are required.
-To make the lookup facility general, not just service record-specific,
-the design is to support retrieval of all LS2 options.
+Platzhalter wie (Stern), (Stern)._tcp oder _tcp sind nicht erlaubt.  
+Jeder unterstützte Dienst muss seinen eigenen Eintrag haben.
 
-Implementation: Extend HostLookupMessage to add request for
-LS2 options for hash, hostname, and destination (request types 2-4).
-Extend HostReplyMessage to add the options mapping if requested.
-Extend HostReplyMessage with additional error codes.
 
-Options mappings may be cached or negative cached for a short time on either the client or router side,
-implementation-dependent. Recommended maximum time is one hour, unless the service record TTL is shorter.
-Service records may be cached up to the TTL specified by the application, client, or router.
 
-Extend the specification as follows:
+### Dienstnamens-Registry
 
-#### Configuration options
+Nicht-standardisierte Bezeichner, die nicht in der [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) oder Linux /etc/services aufgeführt sind, können beantragt und der [common structures specification](/docs/specs/common-structures/) hinzugefügt werden.
 
-Add the following to the [I2CP configuration options](/docs/specs/i2cp/)
+Dienstspezifische appoptions-Formate können dort ebenfalls hinzugefügt werden.
+
+
+### I2CP-Spezifikation
+
+Das [I2CP-Protokoll](/docs/specs/i2cp/) muss erweitert werden, um Dienstnachschlagen zu unterstützen.  
+Zusätzliche MessageStatusMessage- und/oder HostReplyMessage-Fehlercodes im Zusammenhang mit Dienstnachschlagen sind erforderlich.  
+Um die Nachschlagefunktion allgemein zu halten, nicht nur spezifisch für Diensteinträge, ist der Entwurf darauf ausgelegt, den Abruf aller LS2-Optionen zu unterstützen.
+
+Implementierung: Erweitere HostLookupMessage, um Anfragen für LS2-Optionen für Hash, Hostnamen und Ziel hinzuzufügen (Anfragetypen 2-4).  
+Erweitere HostReplyMessage, um die Optionszuordnung bei Anfrage hinzuzufügen.  
+Erweitere HostReplyMessage um zusätzliche Fehlercodes.
+
+Optionszuordnungen können kurzzeitig auf Client- oder Router-Seite zwischengespeichert oder negativ zwischengespeichert werden, abhängig von der Implementierung.  
+Empfohlene maximale Zeit ist eine Stunde, es sei denn, die TTL des Diensteintrags ist kürzer.  
+Diensteinträge können bis zur von der Anwendung, dem Client oder dem Router angegebenen TTL zwischengespeichert werden.
+
+Erweitere die Spezifikation wie folgt:
+
+#### Konfigurationsoptionen
+
+Füge Folgendes zu den [I2CP-Konfigurationsoptionen](/docs/specs/i2cp/) hinzu:
 
 i2cp.leaseSetOption.nnn
 
-Options to be put in the leaseset. Only available for LS2.
-nnn starts with 0. Option value contains "key=value".
-(do not include quotes)
+Optionen, die in das Lease-Set eingefügt werden sollen. Nur verfügbar für LS2.  
+nnn beginnt bei 0. Der Optionswert enthält „key=value“.  
+(zitate nicht einschließen)
 
-Example:
+Beispiel:
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-#### HostLookup Message
+#### HostLookup-Nachricht
 
-- Lookup type 2: Hash lookup, request options mapping
-- Lookup type 3: Hostname lookup, request options mapping
-- Lookup type 4: Destination lookup, request options mapping
+- Nachschlagetyp 2: Hash-Nachschlagefunktion, fordert Optionszuordnung an
+- Nachschlagetyp 3: Hostnamen-Nachschlagefunktion, fordert Optionszuordnung an
+- Nachschlagetyp 4: Ziel-Nachschlagefunktion, fordert Optionszuordnung an
 
-For lookup type 4, item 5 is a Destination.
+Für Nachschlagetyp 4 ist Element 5 ein Ziel (Destination).
 
 
+#### HostReply-Nachricht
 
-#### HostReply Message
+Für Nachschlagetypen 2-4 muss der Router das Lease-Set abrufen, auch wenn der Suchschlüssel im Adressbuch steht.
 
-For lookup types 2-4, the router must fetch the leaseset,
-even if the lookup key is in the address book.
+Bei Erfolg enthält die HostReply die Optionszuordnung aus dem Lease-Set und fügt sie als Element 5 nach dem Ziel ein.  
+Wenn keine Optionen in der Zuordnung vorhanden sind oder das Lease-Set Version 1 war, wird sie dennoch als leere Zuordnung eingefügt (zwei Bytes: 0 0).  
+Alle Optionen aus dem Lease-Set werden eingefügt, nicht nur Diensteinträge.  
+Zum Beispiel können Optionen für zukünftig definierte Parameter vorhanden sein.
 
-If successful, the HostReply will contain the options Mapping
-from the leaseset, and includes it as item 5 after the destination.
-If there are no options in the Mapping, or the leaseset was version 1,
-it will still be included as an empty Mapping (two bytes: 0 0).
-All options from the leaseset will be included, not just service record options.
-For example, options for parameters defined in the future may be present.
+Bei einem Fehler beim Abruf des Lease-Sets enthält die Antwort einen neuen Fehlercode 6 (Lease-Set-Abruffehler) und enthält keine Zuordnung.  
+Wenn Fehlercode 6 zurückgegeben wird, kann das Feld Destination vorhanden sein oder auch nicht.  
+Es ist vorhanden, wenn eine Hostnamen-Nachschlagefunktion im Adressbuch erfolgreich war, oder wenn eine vorherige Nachschlagefunktion erfolgreich war und das Ergebnis zwischengespeichert wurde, oder wenn die Destination in der Nachschlage-Nachricht vorhanden war (Nachschlagetyp 4).
 
-On leaseset lookup failure, the reply will contain a new error code 6 (Leaseset lookup failure)
-and will not include a mapping.
-When error code 6 is returned, the Destination field may or may not be present.
-It will be present if a hostname lookup in the address book was successful,
-or if a previous lookup was successful and the result was cached,
-or if the Destination was present in the lookup message (lookup type 4).
-
-If a lookup type is not supported,
-the reply will contain a new error code 7 (lookup type unsupported).
+Wenn ein Nachschlagetyp nicht unterstützt wird, enthält die Antwort einen neuen Fehlercode 7 (Nachschlagetyp nicht unterstützt).
 
 
 
-### SAM Specification
+### SAM-Spezifikation
 
-The [SAMv3 protocol](/docs/api/samv3/) must be extended to support service lookups.
+Das [SAMv3-Protokoll](/docs/api/samv3/) muss erweitert werden, um Dienstnachschlagen zu unterstützen.
 
-Extend NAMING LOOKUP as follows:
+Erweitere NAMING LOOKUP wie folgt:
 
-NAMING LOOKUP NAME=example.i2p OPTIONS=true requests the options mapping in the reply.
+NAMING LOOKUP NAME=example.i2p OPTIONS=true fordert die Optionszuordnung in der Antwort an.
 
-NAME may be a full base64 destination when OPTIONS=true.
+NAME kann eine vollständige base64-Destination sein, wenn OPTIONS=true.
 
-If the destination lookup was successful and options were present in the leaseset,
-then in the reply, following the destination,
-will be one or more options in the form of OPTION:key=value.
-Each option will have a separate OPTION: prefix.
-All options from the leaseset will be included, not just service record options.
-For example, options for parameters defined in the future may be present.
-Example:
+Wenn die Zielauflösung erfolgreich war und Optionen im Lease-Set vorhanden waren, folgen in der Antwort nach der Destination ein oder mehrere Optionen im Format OPTION:key=value.  
+Jede Option hat ein separates OPTION:-Präfix.  
+Alle Optionen aus dem Lease-Set werden eingefügt, nicht nur Diensteinträge.  
+Zum Beispiel können Optionen für zukünftig definierte Parameter vorhanden sein.  
+Beispiel:
 
 NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-Keys containing '=', and keys or values containing a newline,
-are considered invalid and the key/value pair will be removed from the reply.
+Schlüssel, die „=“ enthalten, sowie Schlüssel oder Werte, die einen Zeilenumbruch enthalten, gelten als ungültig, und das Schlüssel-Wert-Paar wird aus der Antwort entfernt.
 
-If there are no options found in the leaseset, or if the leaseset was version 1,
-then the response will not include any options.
+Wenn keine Optionen im Lease-Set gefunden wurden oder das Lease-Set Version 1 war, enthält die Antwort keine Optionen.
 
-If OPTIONS=true was in the lookup, and the leaseset is not found, a new result value LEASESET_NOT_FOUND will be returned.
+Wenn OPTIONS=true in der Anfrage war und das Lease-Set nicht gefunden wurde, wird ein neuer Ergebniswert LEASESET_NOT_FOUND zurückgegeben.
 
 
-## Naming Lookup Alternative
+## Alternative zur Namensauflösung
 
-An alternative design was considered, to support lookups of services
-as a full hostname, for example _smtp._tcp.example.i2p,
-by updating the [naming specification](/docs/overview/naming/) to specify handling of hostnames starting with '_'.
-This was rejected for two reasons:
+Ein alternativer Entwurf wurde in Betracht gezogen, um die Nachschlagefunktion von Diensten als vollständigen Hostnamen zu unterstützen, z.B. _smtp._tcp.example.i2p,  
+indem die [Namensspezifikation](/docs/overview/naming/) aktualisiert wird, um die Behandlung von Hostnamen, die mit „_“ beginnen, festzulegen.  
+Dies wurde aus zwei Gründen abgelehnt:
 
-- I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.
-- It would not be a general facility that could be used to retrieve other LS2
-  options that could be defined in the future.
+- I2CP- und SAM-Änderungen wären weiterhin erforderlich, um TTL- und Portinformationen an den Client weiterzuleiten.
+- Es wäre keine allgemeine Funktion, die verwendet werden könnte, um andere LS2-Optionen abzurufen, die in Zukunft definiert werden könnten.
 
 
-## Recommendations
+## Empfehlungen
 
-Servers should specify a TTL of at least 86400, and the standard port for the application.
+Server sollten eine TTL von mindestens 86400 angeben und den Standardport für die Anwendung verwenden.
 
 
 
-## Advanced Features
+## Erweiterte Funktionen
 
-### Recursive Lookups
+### Rekursive Nachschlagen
 
-It may be desirable to support recursive lookups, where each successive leaseset
-is checked for a service record pointing to another leaseset, DNS-style.
-This is probably not necessary, at least in an initial implementation.
+Es könnte wünschenswert sein, rekursive Nachschlagen zu unterstützen, bei denen jedes nachfolgende Lease-Set auf einen Diensteintrag geprüft wird, der auf ein anderes Lease-Set verweist, DNS-artig.  
+Dies ist wahrscheinlich nicht notwendig, zumindest nicht in einer ersten Implementierung.
 
 TODO
 
 
 
-### Application-specific fields
+### Anwendungsspezifische Felder
 
-It may be desirable to have application-specific data in the service record.
-For example, the operator of example.i2p may wish to indicate that email should
-be forwarded to example@mail.i2p. The "example@" part would need to be in a separate field
-of the service record, or stripped from the target.
+Es könnte wünschenswert sein, anwendungsspezifische Daten im Diensteintrag zu haben.  
+Zum Beispiel könnte der Betreiber von example.i2p angeben wollen, dass E-Mails an example@mail.i2p weitergeleitet werden sollen. Der Teil „example@“ müsste in einem separaten Feld des Diensteintrags stehen oder vom Ziel entfernt werden.
 
-Even if the operator runs his own email service, he may wish to indicate that
-email should be sent to example@example.i2p. Most I2P services are run by a single person.
-So a separate field may be helpful here as well.
+Auch wenn der Betreiber seinen eigenen E-Mail-Dienst betreibt, könnte er angeben wollen, dass E-Mails an example@example.i2p gesendet werden sollen. Die meisten I2P-Dienste werden von einer einzelnen Person betrieben.  
+Ein separates Feld könnte hier ebenfalls hilfreich sein.
 
-TODO how to do this in a generic way
+TODO wie dies auf generische Weise umzusetzen ist
 
 
-### Changes required for Email
+### Für E-Mail erforderliche Änderungen
 
-Out of the scope of this proposal. See the [discussion on i2pforum](http://i2pforum.i2p/viewtopic.php?p=3102) for more details.
-
-
-## Implementation Notes
-
-Caching of service records up to the TTL may be done by the router or the application,
-implementation-dependent. Whether to cache persistently is also implementation-dependent.
-
-Lookups must also lookup the target leaseset and verify it contains a "self" record
-before returning the target destination to the client.
+Außerhalb des Geltungsbereichs dieses Vorschlags. Weitere Details finden sich in der [Diskussion auf i2pforum](http://i2pforum.i2p/viewtopic.php?p=3102).
 
 
-## Security Analysis
+## Implementierungshinweise
 
-As the leaseset is signed, any service records within it are authenticated by the signing key of the destination.
+Das Zwischenspeichern von Diensteinträgen bis zur TTL kann vom Router oder der Anwendung durchgeführt werden, abhängig von der Implementierung. Ob persistent zwischengespeichert wird, ist ebenfalls implementierungsabhängig.
 
-The service records are public and visible to floodfills, unless the leaseset is encrypted.
-Any router requesting the leaseset will be able to see the service records.
-
-A SRV record other than "self" (i.e., one that points to a different hostname/b32 target)
-does not require the consent of the targeted hostname/b32.
-It's not clear if a redirection of a service to an arbitrary destination could facilitate some
-sort of attack, or what the purpose of such an attack would be.
-However, this proposal mitigates such an attack by requiring that the target
-also publish a "self" SRV record. Implementers must check for a "self" record
-in the leaseset of the target.
+Bei Nachschlagen muss auch das Ziel-Lease-Set abgerufen und überprüft werden, ob es einen „self“-Eintrag enthält, bevor das Ziel an den Client zurückgegeben wird.
 
 
-## Compatibility
+## Sicherheitsanalyse
 
-LS2: No issues. All known implementations currently ignore the options field in LS2,
-and correctly skip over a non-empty options field.
-This was verified in testing by both Java I2P and i2pd during the development of LS2.
-LS2 was implemented in 0.9.38 in 2016 and is well-supported by all router implementations.
-The design does not require special support or caching or any changes in the floodfills.
+Da das Lease-Set signiert ist, werden alle darin enthaltenen Diensteinträge durch den Signaturschlüssel des Ziels authentifiziert.
 
-Naming: '_' is not a valid character in i2p hostnames.
+Die Diensteinträge sind öffentlich und für Floodfills sichtbar, es sei denn, das Lease-Set ist verschlüsselt.  
+Jeder Router, der das Lease-Set anfordert, kann die Diensteinträge sehen.
 
-I2CP: Lookup types 2-4 should not be sent to routers below the minimum API version
-at which it is supported (TBD).
+Ein SRV-Eintrag, der nicht „self“ ist (d.h. auf ein anderes Hostnamen-/b32-Ziel verweist), erfordert nicht die Zustimmung des adressierten Hostnamens/b32.  
+Es ist unklar, ob eine Umleitung eines Dienstes zu einem beliebigen Ziel einen Angriff ermöglichen könnte oder welchen Zweck ein solcher Angriff hätte.  
+Dieser Vorschlag mindert jedoch einen solchen Angriff, indem er verlangt, dass das Ziel ebenfalls einen „self“-SRV-Eintrag veröffentlicht. Implementierer müssen im Lease-Set des Ziels auf einen „self“-Eintrag prüfen.
 
-SAM: Java SAM server ignores additional keys/values such as OPTIONS=true.
-i2pd should as well, to be verified.
-SAM clients will not get the additional values in the reply unless requested with OPTIONS=true.
-No version bump should be necessary.
+
+## Kompatibilität
+
+LS2: Keine Probleme. Alle bekannten Implementierungen ignorieren derzeit das Optionsfeld in LS2 und überspringen korrekt ein nicht-leeres Optionsfeld.  
+Dies wurde während der Entwicklung von LS2 durch Tests sowohl in Java I2P als auch in i2pd bestätigt.  
+LS2 wurde in Version 0.9.38 im Jahr 2016 implementiert und wird von allen Router-Implementierungen gut unterstützt.  
+Der Entwurf erfordert keine besondere Unterstützung, Zwischenspeicherung oder Änderungen an den Floodfills.
+
+Namensgebung: „_“ ist kein gültiges Zeichen in I2P-Hostnamen.
+
+I2CP: Nachschlagetypen 2-4 sollten nicht an Router gesendet werden, die unterhalb der minimalen API-Version liegen, ab der sie unterstützt werden (TBD).
+
+SAM: Der Java-SAM-Server ignoriert zusätzliche Schlüssel/Werte wie OPTIONS=true.  
+i2pd sollte dies ebenfalls tun, muss aber noch verifiziert werden.  
+SAM-Clients erhalten die zusätzlichen Werte in der Antwort nur, wenn sie mit OPTIONS=true angefordert wurden.  
+Ein Versionsinkrement sollte nicht erforderlich sein.
 
 
 ## Migration
 
-Implementations may add support at any time, no coordination is needed,
-except for an agreement on the effective API version for the I2CP changes.
-SAM compatibility versions for each implementation will be documented in the SAM spec.
+Implementierungen können jederzeit Unterstützung hinzufügen, keine Koordination ist erforderlich,  
+außer einer Einigung über die effektive API-Version für die I2CP-Änderungen.  
+SAM-Kompatibilitätsversionen für jede Implementierung werden in der SAM-Spezifikation dokumentiert.
 
 
-## References
+## Referenzen
 
 * [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
 * [I2CP](/docs/specs/i2cp/)

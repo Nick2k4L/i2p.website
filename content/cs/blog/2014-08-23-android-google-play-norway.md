@@ -5,21 +5,20 @@ author: "str4d"
 description: "I2P Android and Bote have been released on Google Play in Norway, as a test run for a future worldwide release."
 categories: ["press"]
 ---
+I2P pro Android existuje již více než tři roky. Během této doby se vyvinulo z jednoduchého testovacího projektu v použitelný a užitečný port I2P směrovače pro Android. Naším konečným cílem bylo vydání I2P pro Android na Google Play, aby uživatelé mohli snadněji objevit, nainstalovat a používat I2P na svých zařízeních s Androidem. Po mnoha úpravách uživatelského rozhraní, opravách chyb a testování se nám zdá, že je I2P pro Android konečně připraveno tam, kde jsou uživatelé.
 
-I2P Android has existed for over three years. In that time, it has evolved from a simple test project into a usable, useful Android port of the I2P router. Our eventual goal has been to release I2P Android on Google Play, to make it easier for users to discover, install and use I2P on their Android devices. After much work improving the user interface, fixing bugs and testing, we think that I2P Android is finally ready to go where the users are.
+Zpočátku vydáváme aplikaci pouze pro uživatele Androidu v Norsku, jako testovací spuštění. I2P pro Android bude mít na Google Play daleko větší dosah než kdy dříve, a budou zde chyby a problémy s použitelností, které potřebujeme opravit. Bude mnohem jednodušší (a méně stresující!) reagovat na zpětnou vazbu, pokud budeme muset zpracovávat hlášení od stovek uživatelů místo tisíců (což už je o několik řádů více zpětné vazby, než jsme kdy měli).
 
-Initially, we are only releasing to Android users in Norway, as a test run. I2P Android will have far more exposure on Google Play than it has ever had before, and there will be bugs and usability issues that we need to fix. It will be much easier (and less stressful!) to respond to feedback if we only need to deal with reports from hundreds of users instead of thousands (already orders of magnitude more feedback than we have ever had).
+Současně provádíme první veřejné vydání Bote, portu I2P-Bote pro Android. Bote je soukromý, distribuovaný, bezpečný e-mail, který je snadný na používání. Běží nad sítí I2P a i když funguje jako samostatná aplikace, bude ve výchozím nastavení používat aplikaci I2P pro Android, pokud je nainstalovaná. Stejně jako u I2P pro Android, zpočátku vydáváme Bote pouze pro uživatele Androidu v Norsku.
 
-Simultaneously we are making the first public release of Bote, an Android port of I2P-Bote. Bote is private, distributed, secure email, made easy. It runs on top of the I2P network, and while it works as a standalone app, it will use the I2P Android app by default if installed. As with I2P Android, we are initially only releasing Bote to Android users in Norway.
+Aplikace jsou vydávány na Google Play společností [The Privacy Solutions Project](https://privacysolutions.no/). Další informace a odkazy na stránku Google Play pro uživatele v Norsku najdete ve [svém blogovém příspěvku](https://blog.privacysolutions.no/2014/08/23/i2p-on-google-play-in-norway/).
 
-The apps are being released on Google Play by [The Privacy Solutions Project](https://privacysolutions.no/). See their [blog post](https://blog.privacysolutions.no/2014/08/23/i2p-on-google-play-in-norway/) for further information, and links to the Google Play page for Norway users.
+Jako hlavní vývojář I2P pro Android a Bote se těším na vaše komentáře. Vy jste lidé, kteří je budete používat, a vaše pohledy mi pomohou vytvářet jednoduché, intuitivní aplikace, které učiní soukromí dostupným pro každého.
 
-As lead developer for I2P Android and Bote, I look forward to your comments. You are the people who will be using them, and your perspectives will help me craft simple, intuitive apps that make privacy accessible to everyone.
+## Podrobnosti vydání na webových stránkách
 
-## Website release details
+Aktualizovali jsme také I2P pro Android na webových stránkách, aby odpovídalo vydání nasazenému v Norsku. Tato verze bude aktualizována podle zpětné vazby od norských uživatelů, směrem k našemu dalšímu stabilnímu vydání.
 
-We have also updated I2P Android on the website to match the release candidate deployed in Norway. This version will be updated with changes as we respond to feedback from Norwegian users, heading towards our next stable release.
+Upozorňujeme, že jsme aktualizovali Android API na verzi 9. To znamená, že Froyo Android 2.2 již nebude podporován; minimální požadavek je nyní Gingerbread Android 2.3.
 
-Please note that we have upgraded the Android API to 9. This means that Froyo Android 2.2 will not be supported anymore; the minimum requirement is now Gingerbread Android 2.3.
-
-Also note that if you have an earlier version of I2P Android, you will need to uninstall and reinstall because we have changed the release keys. Further information about this will be provided in a subsequent blog post.
+Dále upozorňujeme, že pokud máte starší verzi I2P pro Android, budete ji muset odinstalovat a znovu nainstalovat, protože jsme změnili klíče vydání. Další informace k tomuto tématu budou uvedeny v následujícím blogovém příspěvku.

@@ -8,89 +8,87 @@ status: "Otevřený"
 thread: "http://zzz.i2p/topics/2234"
 toc: true
 ---
+## Přehled
 
-## Overview
-
-This is the spec for the Garlic Farm wire protocol,
-based on JRaft, its "exts" code for implementation over TCP,
-and its "dmprinter" sample application [JRAFT](https://github.com/datatechnology/jraft).
-
-
-We were unable to find any implementation with a documented wire protocol.
-However, the JRaft implementation is simple enough that we could
-inspect the code and then document its protocol.
-This proposal is the result of that effort.
-
-This will be the backend for coordination of routers publishing
-entries in a Meta LeaseSet. See proposal 123.
+Toto je specifikace protokolu Garlic Farm pro přenos po drátě,
+založená na JRaft, jeho kódu „exts“ pro implementaci přes TCP
+a ukázkové aplikaci „dmprinter“ [JRAFT](https://github.com/datatechnology/jraft).
 
 
-## Goals
+Nepodařilo se nám nalézt žádnou implementaci s dokumentovaným protokolem pro přenos po drátě.
+Implementace JRaft je však dostatečně jednoduchá, abychom mohli
+prozkoumat kód a následně dokumentovat jeho protokol.
+Tento návrh je výsledkem tohoto úsilí.
 
-- Small code size
-- Based on existing implementation
-- No serialized Java objects or any Java-specific features or encoding
-- Any bootstrapping is out-of-scope. At least one other server is assumed
-  to be hardcoded, or configured out-of-band of this protocol.
-- Support both out-of-band and in-I2P use cases.
-
-
-## Design
-
-The Raft protocol is not a concrete protocol; it defines only a state machine.
-Therefore we document the concrete protocol of JRaft and base our protocol on it.
-There are no changes to the JRaft protocol other than the addition of
-an authentication handshake.
-
-Raft elects a Leader whose job is to publish a log.
-The log contains Raft Configuration data and Application data.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+Tato specifikace bude sloužit jako backend pro koordinaci směrovačů publikujících
+záznamy v Meta LeaseSet. Viz návrh 123.
 
 
+## Cíle
 
-## Specification
-
-The wire protocol is over SSL sockets or non-SSL I2P sockets.
-I2P sockets are proxied through the HTTP Proxy.
-There is no support for clearnet non-SSL sockets.
-
-### Handshake and authentication
-
-Not defined by JRaft.
-
-Goals:
-
-- User/password authentication method
-- Version identifier
-- Cluster identifier
-- Extensible
-- Ease of proxying when used for I2P sockets
-- Do not unnecessarily expose server as a Garlic Farm server
-- Simple protocol so a full web server implementation is not required
-- Compatible with common standards, so implementations may use
-  standard libraries if desired
-
-We will use an websocket-like handshake and
-HTTP Digest authentication [RFC 2617](https://tools.ietf.org/html/rfc2617).
-RFC 2617 Basic authentication is NOT supported.
-When proxying through the HTTP proxy, communicate with
-the proxy as specified in [RFC 2616](https://tools.ietf.org/html/rfc2616).
-
-#### Credentials
-
-Whether usernames and passwords are per-cluster, or
-per-server, is implementation-dependent.
+- Malá velikost kódu
+- Založeno na stávající implementaci
+- Žádné serializované Java objekty ani žádné Java-specifické funkce nebo kódování
+- Jakékoli zavádění (bootstrapping) je mimo rozsah. Předpokládá se, že alespoň jeden jiný server je
+  pevně zakódován nebo nakonfigurován mimo tento protokol.
+- Podpora jak scénářů mimo pásmo, tak použití v rámci I2P.
 
 
-#### HTTP Request 1
+## Návrh
 
-The originator will send the following.
+Protokol Raft není konkrétním protokolem; definuje pouze stavový stroj.
+Proto dokumentujeme konkrétní protokol JRaft a na něm založíme náš protokol.
+Jedinou změnou oproti protokolu JRaft je přidání
+ověřovacího handshake.
 
-All lines are teriminated with CRLF as required by HTTP.
+Raft zvolí Vůdce (Leader), jehož úkolem je publikovat záznamy do logu.
+Log obsahuje data konfigurace Raft a aplikační data.
+Aplikační data obsahují stav směrovače každého serveru a cíl (Destination)
+pro cluster Meta LS2.
+Servery používají společný algoritmus k určení vydavatele a obsahu
+Meta LS2.
+Vydavatel Meta LS2 NENÍ nutně Vůdcem Raft.
+
+
+## Specifikace
+
+Protokol pro přenos po drátě běží přes SSL sokety nebo ne-SSL I2P sokety.
+I2P sokety jsou přesměrovány přes HTTP Proxy.
+Není podporováno použití nešifrovaných soketů pro clearnet.
+
+### Handshake a ověření
+
+Není definováno JRaft.
+
+Cíle:
+
+- Metoda ověření uživatel/heslo
+- Identifikátor verze
+- Identifikátor clusteru
+- Rozšiřitelnost
+- Snadné přesměrování při použití I2P soketů
+- Nepřehánět zbytečně expozici serveru jako serveru Garlic Farm
+- Jednoduchý protokol, aby nebyla vyžadována plná implementace webového serveru
+- Kompatibilita s běžnými standardy, aby implementace mohly použít
+  standardní knihovny, pokud je to žádoucí
+
+Použijeme handshake podobné websocketu a
+ověření pomocí HTTP Digest [RFC 2617](https://tools.ietf.org/html/rfc2617).
+RFC 2617 Basic authentication NENÍ podporováno.
+Při přesměrování přes HTTP proxy komunikujte s
+proxy podle specifikace v [RFC 2616](https://tools.ietf.org/html/rfc2616).
+
+#### Přihlašovací údaje
+
+Zda jsou uživatelská jména a hesla specifická pro cluster nebo
+pro server, je závislé na implementaci.
+
+
+#### HTTP Požadavek 1
+
+Iniciátor pošle následující.
+
+Všechny řádky jsou ukončeny CRLF, jak vyžaduje HTTP.
 
 ```text
 
@@ -98,33 +96,33 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
   Connection: close
-  (any other headers ignored)
-  (blank line)
+  (jakékoli další hlavičky jsou ignorovány)
+  (prázdný řádek)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER je název clusteru (výchozí „farm“)
+  VERSION je verze Garlic Farm (aktuálně „1“)
 
 ```
 
 
-#### HTTP Response 1
+#### HTTP Odpověď 1
 
-If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
-as in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+Pokud není cesta správná, příjemce pošle standardní odpověď „HTTP/1.1 404 Not Found“,
+jak je uvedeno v [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
-including the WWW-Authenticate HTTP digest authentication header,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+Pokud je cesta správná, příjemce pošle standardní odpověď „HTTP/1.1 401 Unauthorized“,
+včetně hlavičky WWW-Authenticate s ověřením HTTP digest,
+jak je uvedeno v [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Both parties will then close the socket.
+Obě strany poté zavřou soket.
 
 
-#### HTTP Request 2
+#### HTTP Požadavek 2
 
-The originator will send the following,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+Iniciátor pošle následující,
+jak je uvedeno v [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-All lines are teriminated with CRLF as required by HTTP.
+Všechny řádky jsou ukončeny CRLF, jak vyžaduje HTTP.
 
 ```text
 
@@ -133,104 +131,104 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Cache-Control: no-cache
   Connection: keep-alive, Upgrade
   Upgrade: websocket
-  (Sec-Websocket-* headers if proxied)
-  Authorization: (HTTP digest authorization header as in RFC 2617)
-  (any other headers ignored)
-  (blank line)
+  (Sec-Websocket-* hlavičky pokud je přesměrováno)
+  Authorization: (hlavička autorizace HTTP digest podle RFC 2617)
+  (jakékoli další hlavičky jsou ignorovány)
+  (prázdný řádek)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER je název clusteru (výchozí „farm“)
+  VERSION je verze Garlic Farm (aktuálně „1“)
 
 ```
 
 
-#### HTTP Response 2
+#### HTTP Odpověď 2
 
-If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+Pokud není ověření správné, příjemce pošle další standardní odpověď „HTTP/1.1 401 Unauthorized“,
+jak je uvedeno v [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-If the authentication is correct, the recipient will send the following response,
-as in the WebSocket protocol.
+Pokud je ověření správné, příjemce pošle následující odpověď,
+jak je uvedeno v protokolu WebSocket.
 
-All lines are teriminated with CRLF as required by HTTP.
+Všechny řádky jsou ukončeny CRLF, jak vyžaduje HTTP.
 
 ```text
 
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
-  (Sec-Websocket-* headers)
-  (any other headers ignored)
-  (blank line)
+  (Sec-Websocket-* hlavičky)
+  (jakékoli další hlavičky jsou ignorovány)
+  (prázdný řádek)
 
 ```
 
-After this is received, the socket remains open.
-The Raft protocol as defined below commences, on the same socket.
+Po přijetí této odpovědi zůstane soket otevřen.
+Níže definovaný protokol Raft pak začne běžet na stejném soketu.
 
 
-#### Caching
+#### Ukládání do mezipaměti
 
-Credentials shall be cached for at least one hour, so that
-subsequent connections may jump directly to
-"HTTP Request 2" above.
-
-
-
-### Message Types
-
-There are two types of messages, requests and responses.
-Requests may contain Log Entries, and are variable-sized;
-responses do not contain Log Entries, and are fixed-size.
-
-Message types 1-4 are the standard RPC messages defined by Raft.
-This is the core Raft protocol.
-
-Message types 5-15 are the extended RPC messages defined by
-JRaft, to support clients, dynamic server changes, and
-efficient log synchronization.
-
-Message types 16-17 are the Log Compaction RPC messages defined
-in Raft section 7.
+Přihlašovací údaje musí být uloženy v mezipaměti alespoň na jednu hodinu, aby
+následné připojení mohlo přejít přímo k
+„HTTP Request 2“ výše.
 
 
-| Message | Number | Sent By | Sent To | Notes |
+
+### Typy zpráv
+
+Existují dva typy zpráv: požadavky a odpovědi.
+Požadavky mohou obsahovat záznamy logu a jsou proměnné velikosti;
+odpovědi neobsahují záznamy logu a jsou pevné velikosti.
+
+Typy zpráv 1–4 jsou standardní RPC zprávy definované protokolem Raft.
+Toto je základní protokol Raft.
+
+Typy zpráv 5–15 jsou rozšířené RPC zprávy definované
+JRaft, které podporují klienty, dynamické změny serverů a
+efektivní synchronizaci logu.
+
+Typy zpráv 16–17 jsou RPC zprávy pro kompresi logu definované
+v části 7 protokolu Raft.
+
+
+| Zpráva | Číslo | Odesílatel | Příjemce | Poznámky |
 | :--- | :--- | :--- | :--- | :--- |
-| RequestVoteRequest | 1 | Candidate | Follower | Standard Raft RPC; must not contain log entries |
-| RequestVoteResponse | 2 | Follower | Candidate | Standard Raft RPC |
-| AppendEntriesRequest | 3 | Leader | Follower | Standard Raft RPC |
-| AppendEntriesResponse | 4 | Follower | Leader / Client | Standard Raft RPC |
-| ClientRequest | 5 | Client | Leader / Follower | Response is AppendEntriesResponse; must contain Application log entries only |
-| AddServerRequest | 6 | Client | Leader | Must contain a single ClusterServer log entry only |
-| AddServerResponse | 7 | Leader | Client | Leader will also send a JoinClusterRequest |
-| RemoveServerRequest | 8 | Follower | Leader | Must contain a single ClusterServer log entry only |
-| RemoveServerResponse | 9 | Leader | Follower | |
-| SyncLogRequest | 10 | Leader | Follower | Must contain a single LogPack log entry only |
-| SyncLogResponse | 11 | Follower | Leader | |
-| JoinClusterRequest | 12 | Leader | New Server | Invitation to join; must contain a single Configuration log entry only |
-| JoinClusterResponse | 13 | New Server | Leader | |
-| LeaveClusterRequest | 14 | Leader | Follower | Command to leave |
-| LeaveClusterResponse | 15 | Follower | Leader | |
-| InstallSnapshotRequest | 16 | Leader | Follower | Raft Section 7; Must contain a single SnapshotSyncRequest log entry only |
-| InstallSnapshotResponse | 17 | Follower | Leader | Raft Section 7 |
+| RequestVoteRequest | 1 | Kandidát | Následovník | Standardní Raft RPC; nesmí obsahovat záznamy logu |
+| RequestVoteResponse | 2 | Následovník | Kandidát | Standardní Raft RPC |
+| AppendEntriesRequest | 3 | Vůdce | Následovník | Standardní Raft RPC |
+| AppendEntriesResponse | 4 | Následovník | Vůdce / Klient | Standardní Raft RPC |
+| ClientRequest | 5 | Klient | Vůdce / Následovník | Odpověď je AppendEntriesResponse; musí obsahovat pouze aplikační záznamy logu |
+| AddServerRequest | 6 | Klient | Vůdce | Musí obsahovat pouze jeden záznam logu ClusterServer |
+| AddServerResponse | 7 | Vůdce | Klient | Vůdce také pošle JoinClusterRequest |
+| RemoveServerRequest | 8 | Následovník | Vůdce | Musí obsahovat pouze jeden záznam logu ClusterServer |
+| RemoveServerResponse | 9 | Vůdce | Následovník | |
+| SyncLogRequest | 10 | Vůdce | Následovník | Musí obsahovat pouze jeden záznam logu LogPack |
+| SyncLogResponse | 11 | Následovník | Vůdce | |
+| JoinClusterRequest | 12 | Vůdce | Nový server | Pozvánka k připojení; musí obsahovat pouze jeden záznam logu Configuration |
+| JoinClusterResponse | 13 | Nový server | Vůdce | |
+| LeaveClusterRequest | 14 | Vůdce | Následovník | Příkaz k opuštění |
+| LeaveClusterResponse | 15 | Následovník | Vůdce | |
+| InstallSnapshotRequest | 16 | Vůdce | Následovník | Raft část 7; musí obsahovat pouze jeden záznam logu SnapshotSyncRequest |
+| InstallSnapshotResponse | 17 | Následovník | Vůdce | Raft část 7 |
 
 
-### Establishment
+### Navázání spojení
 
-After the HTTP handshake, the establishment sequence is as follows:
+Po dokončení HTTP handshake probíhá sekvence navázání následovně:
 
 ```text
 
-New Server Alice              Random Follower Bob
+Nový server Alice              Náhodný následovník Bob
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
 
-  If Bob says he is the leader, continue as below.
-  Else, Alice must disconnect from Bob and connect to the leader.
+  Pokud Bob řekne, že je vůdcem, pokračujte níže.
+  Jinak Alice musí odpojit Boba a připojit se k vůdci.
 
 
-  New Server Alice              Leader Charlie
+  Nový server Alice              Vůdce Charlie
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
@@ -239,17 +237,17 @@ New Server Alice              Random Follower Bob
           <---------   JoinClusterRequest
   JoinClusterResponse  ------->
           <---------   SyncLogRequest
-                       OR InstallSnapshotRequest
+                       NEBO InstallSnapshotRequest
   SyncLogResponse  ------->
-  OR InstallSnapshotResponse
+  NEBO InstallSnapshotResponse
 
 ```
 
-Disconnect Sequence:
+Sekvence odpojení:
 
 ```text
 
-Follower Alice              Leader Charlie
+Následovník Alice              Vůdce Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
@@ -258,18 +256,18 @@ Follower Alice              Leader Charlie
 
 ```
 
-Election Sequence:
+Sekvence volby:
 
 ```text
 
-Candidate Alice               Follower Bob
+Kandidát Alice               Následovník Bob
 
   RequestVoteRequest   ------->
           <---------   RequestVoteResponse
 
-  if Alice wins election:
+  Pokud Alice vyhraje volby:
 
-  Leader Alice                Follower Bob
+  Vůdce Alice                Následovník Bob
 
   AppendEntriesRequest   ------->
   (heartbeat)
@@ -278,142 +276,141 @@ Candidate Alice               Follower Bob
 ```
 
 
-### Definitions
+### Definice
 
-- Source: Identifies the originator of the message
-- Destination: Identifies the recipient of the message
-- Terms: See Raft. Initialized to 0, increases monotonically
-- Indexes: See Raft. Initialized to 0, increases monotonically
-
-
-
-### Requests
-
-Requests contain a header and zero or more log entries.
-Requests contain a fixed-size header and optional Log Entries of variable size.
+- Zdroj (Source): Identifikuje odesílatele zprávy
+- Cíl (Destination): Identifikuje příjemce zprávy
+- Termíny (Terms): Viz Raft. Inicializováno na 0, monotónně rostoucí
+- Indexy (Indexes): Viz Raft. Inicializováno na 0, monotónně rostoucí
 
 
-#### Request Header
 
-The request header is 45 bytes, as follows.
-All values are unsigned big-endian.
+### Požadavky
+
+Požadavky obsahují hlavičku a nula nebo více záznamů logu.
+Požadavky obsahují hlavičku pevné velikosti a volitelné záznamy logu proměnné velikosti.
+
+
+#### Hlavička požadavku
+
+Hlavička požadavku má 45 bajtů, následovně.
+Všechny hodnoty jsou neznaménkové, big-endian.
 
 ```text
 
-Message type:      1 byte
-  Source:            ID, 4 byte integer
-  Destination:       ID, 4 byte integer
-  Term:              Current term (see notes), 8 byte integer
-  Last Log Term:     8 byte integer
-  Last Log Index:    8 byte integer
-  Commit Index:      8 byte integer
-  Log entries size:  Total size in bytes, 4 byte integer
-  Log entries:       see below, total length as specified
+Typ zprávy:      1 bajt
+  Zdroj:            ID, 4 bajtové celé číslo
+  Cíl:               ID, 4 bajtové celé číslo
+  Termín:            Aktuální termín (viz poznámky), 8 bajtové celé číslo
+  Poslední termín logu:     8 bajtové celé číslo
+  Poslední index logu:    8 bajtové celé číslo
+  Index potvrzení:      8 bajtové celé číslo
+  Velikost záznamů logu:  Celková velikost v bajtech, 4 bajtové celé číslo
+  Záznamy logu:       viz níže, celková délka podle specifikace
 
 ```
 
 
-#### Notes
+#### Poznámky
 
-In the RequestVoteRequest, Term is the candidate's term.
-Otherwise, it is the leader's current term.
+V RequestVoteRequest je Termín termínem kandidáta.
+Jinak je to aktuální termín vůdce.
 
-In the AppendEntriesRequest, when the log entries size is zero,
-this message is a heartbeat (keepalive) message.
+V AppendEntriesRequest, pokud je velikost záznamů logu nula,
+jde o zprávu heartbeat (keepalive).
 
 
+#### Záznamy logu
 
-#### Log Entries
-
-The log contains zero or more log entries.
-Each log entry is as follows.
-All values are unsigned big-endian.
+Log obsahuje nula nebo více záznamů logu.
+Každý záznam logu je následující.
+Všechny hodnoty jsou neznaménkové, big-endian.
 
 ```text
 
-Term:           8 byte integer
-  Value type:     1 byte
-  Entry size:     In bytes, 4 byte integer
-  Entry:          length as specified
+Termín:           8 bajtové celé číslo
+  Typ hodnoty:     1 bajt
+  Velikost záznamu:     V bajtech, 4 bajtové celé číslo
+  Záznam:          délka podle specifikace
 
 ```
 
 
-#### Log Contents
+#### Obsah logu
 
-All values are unsigned big-endian.
+Všechny hodnoty jsou neznaménkové, big-endian.
 
-| Log Value Type | Number |
+| Typ hodnoty logu | Číslo |
 | :--- | :--- |
-| Application | 1 |
-| Configuration | 2 |
+| Aplikační | 1 |
+| Konfigurace | 2 |
 | ClusterServer | 3 |
 | LogPack | 4 |
 | SnapshotSyncRequest | 5 |
 
 
-#### Application
+#### Aplikační
 
-Application contents are UTF-8 encoded [JSON](https://www.json.org/).
-See the Application Layer section below.
+Obsah aplikace je kódován v UTF-8 [JSON](https://www.json.org/).
+Viz sekce Aplikační vrstva níže.
 
 
-#### Configuration
+#### Konfigurace
 
-This is used for the leader to serialize a new cluster configuration and replicate to peers.
-It contains zero or more ClusterServer configurations.
+Používá se pro serializaci nové konfigurace clusteru vůdcem a její replikaci na partnery.
+Obsahuje nula nebo více konfigurací ClusterServer.
 
 
 ```text
 
-Log Index:  8 byte integer
-  Last Log Index:  8 byte integer
-  ClusterServer Data for each server:
-    ID:                4 byte integer
-    Endpoint data len: In bytes, 4 byte integer
-    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+Index logu:  8 bajtové celé číslo
+  Poslední index logu:  8 bajtové celé číslo
+  Data ClusterServer pro každý server:
+    ID:                4 bajtové celé číslo
+    Délka dat koncového bodu: V bajtech, 4 bajtové celé číslo
+    Data koncového bodu:     ASCII řetězec ve tvaru „tcp://localhost:9001“, délka podle specifikace
 
 ```
 
 
 #### ClusterServer
 
-The configuration information for a server in a cluster.
-This is included only in a AddServerRequest or RemoveServerRequest message.
+Konfigurační informace pro server v clusteru.
+Zahrnuto pouze v zprávě AddServerRequest nebo RemoveServerRequest.
 
-When used in a AddServerRequest Message:
+Použito v AddServerRequest:
 
 ```text
 
-ID:                4 byte integer
-  Endpoint data len: In bytes, 4 byte integer
-  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+ID:                4 bajtové celé číslo
+  Délka dat koncového bodu: V bajtech, 4 bajtové celé číslo
+  Data koncového bodu:     ASCII řetězec ve tvaru „tcp://localhost:9001“, délka podle specifikace
 
 ```
 
 
-When used in a RemoveServerRequest Message:
+Použito v RemoveServerRequest:
 
 ```text
 
-ID:                4 byte integer
+ID:                4 bajtové celé číslo
 
 ```
 
 
 #### LogPack
 
-This is included only in a SyncLogRequest message.
+Zahrnuto pouze v zprávě SyncLogRequest.
 
-The following is gzipped before transmission:
+Následující je před přenosem komprimováno pomocí gzip:
 
 
 ```text
 
-Index data len: In bytes, 4 byte integer
-  Log data len:   In bytes, 4 byte integer
-  Index data:     8 bytes for each index, length as specified
-  Log data:       length as specified
+Délka dat indexu: V bajtech, 4 bajtové celé číslo
+  Délka dat logu:   V bajtech, 4 bajtové celé číslo
+  Data indexu:     8 bajtů pro každý index, délka podle specifikace
+  Data logu:       délka podle specifikace
 
 ```
 
@@ -421,207 +418,207 @@ Index data len: In bytes, 4 byte integer
 
 #### SnapshotSyncRequest
 
-This is included only in a InstallSnapshotRequest message.
+Zahrnuto pouze v zprávě InstallSnapshotRequest.
 
 ```text
 
-Last Log Index:  8 byte integer
-  Last Log Term:   8 byte integer
-  Config data len: In bytes, 4 byte integer
-  Config data:     length as specified
-  Offset:          The offset of the data in the database, in bytes, 8 byte integer
-  Data len:        In bytes, 4 byte integer
-  Data:            length as specified
-  Is Done:         1 if done, 0 if not done (1 byte)
+Poslední index logu:  8 bajtové celé číslo
+  Poslední termín logu:   8 bajtové celé číslo
+  Délka dat konfigurace: V bajtech, 4 bajtové celé číslo
+  Data konfigurace:     délka podle specifikace
+  Offset:          Offset dat v databázi, v bajtech, 8 bajtové celé číslo
+  Délka dat:        V bajtech, 4 bajtové celé číslo
+  Data:            délka podle specifikace
+  Je dokončeno:         1 pokud ano, 0 pokud ne (1 bajt)
 
 ```
 
 
 
 
-### Responses
+### Odpovědi
 
-All responses are 26 bytes, as follows.
-All values are unsigned big-endian.
+Všechny odpovědi mají 26 bajtů, následovně.
+Všechny hodnoty jsou neznaménkové, big-endian.
 
 ```text
 
-Message type:   1 byte
-  Source:         ID, 4 byte integer
-  Destination:    Usually the actual destination ID (see notes), 4 byte integer
-  Term:           Current term, 8 byte integer
-  Next Index:     Initialized to leader last log index + 1, 8 byte integer
-  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+Typ zprávy:   1 bajt
+  Zdroj:         ID, 4 bajtové celé číslo
+  Cíl:            Obvykle skutečné ID cíle (viz poznámky), 4 bajtové celé číslo
+  Termín:           Aktuální termín, 8 bajtové celé číslo
+  Další index:     Inicializováno na poslední index logu vůdce + 1, 8 bajtové celé číslo
+  Je přijato:    1 pokud přijato, 0 pokud nepřijato (viz poznámky), 1 bajt
 
 ```
 
 
-#### Notes
+#### Poznámky
 
-The Destination ID is usually the actual destination for this message.
-However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
-it is the ID of the current leader.
+ID cíle je obvykle skutečný cíl této zprávy.
+U AppendEntriesResponse, AddServerResponse a RemoveServerResponse
+je to však ID aktuálního vůdce.
 
-In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
-and 0 for no vote.
-
-
-## Application Layer
-
-Each Server periodically posts Application data to the log in a ClientRequest.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The server with the "best" recent status in the log is the Meta LS2 publisher.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+V RequestVoteResponse je „Je přijato“ 1 pro hlas pro kandidáta (žadatele),
+a 0 pro nepřijetí hlasu.
 
 
-### Application Data Contents
+## Aplikační vrstva
 
-Application contents are UTF-8 encoded [JSON](https://json.org/),
-for simplicity and extensibility.
-The full specification is TBD.
-The goal is to provide enough data to write an algorithm to determine the "best"
-router to publish the Meta LS2, and for the publisher to have sufficient information
-to weight the Destinations in the Meta LS2.
-The data will contain both router and Destination statistics.
-
-The data may optionally contain remote sensing data on the health of the
-other servers, and the ability to fetch the Meta LS.
-These data would not be supported in the first release.
-
-The data may optionally contain configuration information posted
-by an administrator client.
-These data would not be supported in the first release.
-
-If "name: value" is listed, that specifies the JSON map key and value.
-Otherwise, specification is TBD.
+Každý server pravidelně vkládá aplikační data do logu pomocí ClientRequest.
+Aplikační data obsahují stav směrovače každého serveru a cíl
+pro cluster Meta LS2.
+Servery používají společný algoritmus k určení vydavatele a obsahu
+Meta LS2.
+Server s „nejlepším“ nedávným stavem v logu je vydavatelem Meta LS2.
+Vydavatel Meta LS2 NENÍ nutně Vůdcem Raft.
 
 
-Cluster data (top level):
+### Obsah aplikačních dat
 
-- cluster: Cluster name
-- date: Date of this data (long, ms since the epoch)
-- id: Raft ID (integer)
+Aplikační data jsou kódována v UTF-8 [JSON](https://json.org/),
+pro jednoduchost a rozšiřitelnost.
+Plná specifikace je ještě neznámá (TBD).
+Cílem je poskytnout dostatek dat pro napsání algoritmu, který určí „nejlepší“
+směrovač pro publikování Meta LS2, a aby měl vydavatel dostatek informací
+pro vážení cílů (Destinations) v Meta LS2.
+Data budou obsahovat statistiky směrovače i cílů.
 
-Configuration data (config):
+Data mohou volitelně obsahovat vzdálená měření stavu
+ostatních serverů a schopnost stáhnout Meta LS.
+Tato data nebudou podporována ve verzi 1.0.
 
-- Any configuration parameters
+Data mohou volitelně obsahovat konfigurační informace zadané
+administrátorským klientem.
+Tato data nebudou podporována ve verzi 1.0.
 
-MetaLS publishing status (meta):
-
-- destination: the metals destination, base64
-- lastPublishedLS: if present, base64 encoding of the last published metals
-- lastPublishedTime: in ms, or 0 if never
-- publishConfig: Publisher config status off/on/auto
-- publishing: metals publisher status boolean true/false
-
-Router data (router):
-
-- lastPublishedRI: if present, base64 encoding of the last published router info
-- uptime: Uptime in ms
-- Job lag
-- Exploratory tunnels
-- Participating tunnels
-- Configured bandwidth
-- Current bandwidth
-
-Destinations (destinations):
-List
-
-Destination data:
-
-- destination: the destination, base64
-- uptime: Uptime in ms
-- Configured tunnels
-- Current tunnels
-- Configured bandwidth
-- Current bandwidth
-- Configured connections
-- Current connections
-- Blacklist data
-
-Remote router sensing data:
-
-- Last RI version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
-
-Remote destination sensing data:
-
-- Last LS version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
-
-Meta LS sensing data:
-
-- Last version seen
-- Fetch time
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
+Pokud je uvedeno „název: hodnota“, určuje to klíč a hodnotu v mapě JSON.
+Jinak je specifikace ještě neznámá (TBD).
 
 
-## Administration Interface
+Data clusteru (nejvyšší úroveň):
 
-TBD, possibly a separate proposal.
-Not required for the first release.
+- cluster: Název clusteru
+- date: Datum těchto dat (long, ms od epochy)
+- id: Raft ID (celé číslo)
 
-Requirements of an admin interface:
+Konfigurační data (config):
 
-- Support for multiple master destinations, i.e. multiple virtual clusters (farms)
-- Provide comprehensive view of shared cluster state - all stats published by members, who is the current leader, etc.
-- Ability to force removal of a participant or leader from the cluster
-- Ability to force publish metaLS (if current node is publisher)
-- Ability to exclude hashes from metaLS (if current node is publisher)
-- Configuration import/export functionality for bulk deployments
+- Jakékoli konfigurační parametry
+
+Stav publikování MetaLS (meta):
+
+- destination: cíl MetaLS, base64
+- lastPublishedLS: pokud přítomno, base64 kódování naposledy publikovaného MetaLS
+- lastPublishedTime: v ms, nebo 0 pokud nikdy
+- publishConfig: stav konfigurace vydavatele vypnuto/zapnuto/auto
+- publishing: stav vydavatele MetaLS, boolean true/false
+
+Data směrovače (router):
+
+- lastPublishedRI: pokud přítomno, base64 kódování naposledy publikovaných informací o směrovači
+- uptime: Doba běhu v ms
+- Zpoždění úloh (Job lag)
+- Průzkumné tunely
+- Účastnické tunely
+- Nakonfigurovaná šířka pásma
+- Aktuální šířka pásma
+
+Cíle (destinations):
+Seznam
+
+Data cíle:
+
+- destination: cíl, base64
+- uptime: Doba běhu v ms
+- Nakonfigurované tunely
+- Aktuální tunely
+- Nakonfigurovaná šířka pásma
+- Aktuální šířka pásma
+- Nakonfigurovaná připojení
+- Aktuální připojení
+- Data blacklistu
+
+Data vzdáleného měření směrovače:
+
+- Poslední viděná verze RI
+- Čas stažení LS
+- Data testu připojení
+- Profil nejbližších floodfillů
+  pro časové období včera, dnes a zítra
+
+Data vzdáleného měření cíle:
+
+- Poslední viděná verze LS
+- Čas stažení LS
+- Data testu připojení
+- Profil nejbližších floodfillů
+  pro časové období včera, dnes a zítra
+
+Data vzdáleného měření Meta LS:
+
+- Poslední viděná verze
+- Čas stažení
+- Profil nejbližších floodfillů
+  pro časové období včera, dnes a zítra
+
+
+## Rozhraní pro správu
+
+Ještě neznámé (TBD), možná samostatný návrh.
+Není vyžadováno pro první verzi.
+
+Požadavky na administrační rozhraní:
+
+- Podpora více hlavních cílů, tj. více virtuálních clusterů (farms)
+- Komplexní přehled sdíleného stavu clusteru – všechny statistiky publikované členy, kdo je aktuální vůdce atd.
+- Možnost vynutit odstranění účastníka nebo vůdce z clusteru
+- Možnost vynutit publikování metaLS (pokud aktuální uzel je vydavatelem)
+- Možnost vyloučit hash z metaLS (pokud aktuální uzel je vydavatelem)
+- Funkce pro import/export konfigurace pro hromadná nasazení
 
 
 
-## Router Interface
+## Rozhraní směrovače
 
-TBD, possibly a separate proposal.
-i2pcontrol is not required for the first release and detailed changes will be included in a separate proposal.
+Ještě neznámé (TBD), možná samostatný návrh.
+i2pcontrol není vyžadováno pro první verzi a podrobné změny budou uvedeny v samostatném návrhu.
 
-Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
+Požadavky na rozhraní Garlic Farm – směrovač (v-JVM java nebo i2pcontrol)
 
 - getLocalRouterStatus()
 - getLocalLeafHash(Hash masterHash)
 - getLocalLeafStatus(Hash leaf)
-- getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
-- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
+- getRemoteMeasuredStatus(Hash masterOrLeaf) // pravděpodobně ne v MVP
+- publishMetaLS(Hash masterHash, List<MetaLease> contents) // nebo podepsaný MetaLeaseSet? Kdo podepisuje?
 - stopPublishingMetaLS(Hash masterHash)
-- authentication TBD?
+- ověření ještě neznámé (TBD)?
 
 
-## Justification
+## Odůvodnění
 
-Atomix is too large and won't allow customization for us to route
-the protocol over I2P. Also, its wire format is undocumented, and depends
-on Java serialization.
-
-
-## Notes
+Atomix je příliš velký a nepovolí nám přizpůsobení pro směrování
+protokolu přes I2P. Navíc jeho formát přenosu po drátě není dokumentován a závisí
+na serializaci Java.
 
 
-
-## Issues
-
-- There's no way for a client to find out about and connect to an unknown leader.
-  It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
+## Poznámky
 
 
 
-## Migration
+## Problémy
 
-No backward compatibility issues.
+- Klient nemá žádný způsob, jak zjistit a připojit se k neznámému vůdci.
+  Byla by to malá změna, aby následovník poslal konfiguraci jako záznam logu v odpovědi AppendEntriesResponse.
 
 
-## References
+
+## Migrace
+
+Žádné problémy s zpětnou kompatibilitou.
+
+
+## Reference
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://json.org/)
@@ -629,8 +626,3 @@ No backward compatibility issues.
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
-
-
-
-
-

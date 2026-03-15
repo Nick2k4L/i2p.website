@@ -8,89 +8,88 @@ status: "Open"
 thread: "http://zzz.i2p/topics/2234"
 toc: true
 ---
+## Tổng quan
 
-## Overview
-
-This is the spec for the Garlic Farm wire protocol,
-based on JRaft, its "exts" code for implementation over TCP,
-and its "dmprinter" sample application [JRAFT](https://github.com/datatechnology/jraft).
-
-
-We were unable to find any implementation with a documented wire protocol.
-However, the JRaft implementation is simple enough that we could
-inspect the code and then document its protocol.
-This proposal is the result of that effort.
-
-This will be the backend for coordination of routers publishing
-entries in a Meta LeaseSet. See proposal 123.
+Đây là đặc tả cho giao thức truyền tải Garlic Farm,
+dựa trên JRaft, mã "exts" của nó để triển khai qua TCP,
+và ứng dụng mẫu "dmprinter" của nó [JRAFT](https://github.com/datatechnology/jraft).
 
 
-## Goals
+Chúng tôi không thể tìm thấy bất kỳ triển khai nào có giao thức truyền tải được tài liệu hóa.
+Tuy nhiên, triển khai JRaft đơn giản đến mức chúng tôi có thể
+kiểm tra mã nguồn và sau đó tài liệu hóa giao thức của nó.
+Đề xuất này là kết quả của nỗ lực đó.
 
-- Small code size
-- Based on existing implementation
-- No serialized Java objects or any Java-specific features or encoding
-- Any bootstrapping is out-of-scope. At least one other server is assumed
-  to be hardcoded, or configured out-of-band of this protocol.
-- Support both out-of-band and in-I2P use cases.
-
-
-## Design
-
-The Raft protocol is not a concrete protocol; it defines only a state machine.
-Therefore we document the concrete protocol of JRaft and base our protocol on it.
-There are no changes to the JRaft protocol other than the addition of
-an authentication handshake.
-
-Raft elects a Leader whose job is to publish a log.
-The log contains Raft Configuration data and Application data.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+Đây sẽ là phần nền tảng để điều phối các bộ định tuyến công bố
+các mục trong một Meta LeaseSet. Xem đề xuất 123.
 
 
+## Mục tiêu
 
-## Specification
-
-The wire protocol is over SSL sockets or non-SSL I2P sockets.
-I2P sockets are proxied through the HTTP Proxy.
-There is no support for clearnet non-SSL sockets.
-
-### Handshake and authentication
-
-Not defined by JRaft.
-
-Goals:
-
-- User/password authentication method
-- Version identifier
-- Cluster identifier
-- Extensible
-- Ease of proxying when used for I2P sockets
-- Do not unnecessarily expose server as a Garlic Farm server
-- Simple protocol so a full web server implementation is not required
-- Compatible with common standards, so implementations may use
-  standard libraries if desired
-
-We will use an websocket-like handshake and
-HTTP Digest authentication [RFC 2617](https://tools.ietf.org/html/rfc2617).
-RFC 2617 Basic authentication is NOT supported.
-When proxying through the HTTP proxy, communicate with
-the proxy as specified in [RFC 2616](https://tools.ietf.org/html/rfc2616).
-
-#### Credentials
-
-Whether usernames and passwords are per-cluster, or
-per-server, is implementation-dependent.
+- Kích thước mã nhỏ
+- Dựa trên triển khai hiện có
+- Không sử dụng các đối tượng Java được tuần tự hóa hoặc bất kỳ tính năng hoặc định dạng mã hóa đặc thù nào của Java
+- Việc khởi tạo ban đầu nằm ngoài phạm vi. Giả định rằng ít nhất một máy chủ khác
+  được ghi cứng hoặc cấu hình ngoài băng thông của giao thức này.
+- Hỗ trợ cả các trường hợp sử dụng ngoài băng thông và trong I2P.
 
 
-#### HTTP Request 1
+## Thiết kế
 
-The originator will send the following.
+Giao thức Raft không phải là một giao thức cụ thể; nó chỉ định nghĩa một máy trạng thái.
+Do đó, chúng tôi tài liệu hóa giao thức cụ thể của JRaft và xây dựng giao thức của mình dựa trên đó.
+Không có thay đổi nào đối với giao thức JRaft ngoài việc thêm
+một bước bắt tay xác thực.
 
-All lines are teriminated with CRLF as required by HTTP.
+Raft bầu chọn một Leader có nhiệm vụ công bố một nhật ký (log).
+Nhật ký chứa dữ liệu Cấu hình Raft và dữ liệu Ứng dụng.
+Dữ liệu Ứng dụng chứa trạng thái của bộ định tuyến trên mỗi Máy chủ và Địa điểm (Destination)
+cho cụm Meta LS2.
+Các máy chủ sử dụng một thuật toán chung để xác định người công bố và nội dung
+của Meta LS2.
+Người công bố Meta LS2 KHÔNG nhất thiết phải là Raft Leader.
+
+
+
+## Đặc tả
+
+Giao thức truyền tải được thực hiện qua cổng SSL hoặc cổng I2P không dùng SSL.
+Các cổng I2P được chuyển tiếp qua HTTP Proxy.
+Không hỗ trợ cổng rõ (clearnet) không dùng SSL.
+
+### Bắt tay và xác thực
+
+Không được JRaft định nghĩa.
+
+Mục tiêu:
+
+- Phương pháp xác thực người dùng/mật khẩu
+- Định danh phiên bản
+- Định danh cụm
+- Có thể mở rộng
+- Dễ dàng chuyển tiếp khi dùng cho cổng I2P
+- Không tiết lộ không cần thiết máy chủ như một máy chủ Garlic Farm
+- Giao thức đơn giản để không cần triển khai đầy đủ máy chủ web
+- Tương thích với các tiêu chuẩn phổ biến, để các triển khai có thể sử dụng
+  các thư viện chuẩn nếu muốn
+
+Chúng tôi sẽ sử dụng một giao thức bắt tay giống websocket và
+xác thực HTTP Digest [RFC 2617](https://tools.ietf.org/html/rfc2617).
+Xác thực Cơ bản (Basic) theo RFC 2617 KHÔNG được hỗ trợ.
+Khi chuyển tiếp qua HTTP proxy, giao tiếp với
+proxy theo như được chỉ định trong [RFC 2616](https://tools.ietf.org/html/rfc2616).
+
+#### Chứng thực
+
+Việc tên người dùng và mật khẩu được áp dụng theo cụm hay
+theo máy chủ là tùy thuộc vào triển khai.
+
+
+#### Yêu cầu HTTP 1
+
+Người khởi tạo sẽ gửi nội dung sau.
+
+Tất cả các dòng đều kết thúc bằng CRLF như yêu cầu của HTTP.
 
 ```text
 
@@ -101,30 +100,30 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   (any other headers ignored)
   (blank line)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER là tên của cụm (mặc định là "farm")
+  VERSION là phiên bản Garlic Farm (hiện tại là "1")
 
 ```
 
 
-#### HTTP Response 1
+#### Phản hồi HTTP 1
 
-If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
-as in [RFC 2616](https://tools.ietf.org/html/rfc2616).
+Nếu đường dẫn không đúng, người nhận sẽ gửi phản hồi chuẩn "HTTP/1.1 404 Not Found",
+như trong [RFC 2616](https://tools.ietf.org/html/rfc2616).
 
-If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
-including the WWW-Authenticate HTTP digest authentication header,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+Nếu đường dẫn đúng, người nhận sẽ gửi phản hồi chuẩn "HTTP/1.1 401 Unauthorized",
+bao gồm tiêu đề xác thực HTTP digest WWW-Authenticate,
+như trong [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-Both parties will then close the socket.
+Cả hai bên sau đó sẽ đóng cổng kết nối.
 
 
-#### HTTP Request 2
+#### Yêu cầu HTTP 2
 
-The originator will send the following,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+Người khởi tạo sẽ gửi nội dung sau,
+như trong [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-All lines are teriminated with CRLF as required by HTTP.
+Tất cả các dòng đều kết thúc bằng CRLF như yêu cầu của HTTP.
 
 ```text
 
@@ -138,21 +137,21 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   (any other headers ignored)
   (blank line)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
+  CLUSTER là tên của cụm (mặc định là "farm")
+  VERSION là phiên bản Garlic Farm (hiện tại là "1")
 
 ```
 
 
-#### HTTP Response 2
+#### Phản hồi HTTP 2
 
-If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
-as in [RFC 2617](https://tools.ietf.org/html/rfc2617).
+Nếu xác thực không đúng, người nhận sẽ gửi thêm một phản hồi chuẩn "HTTP/1.1 401 Unauthorized",
+như trong [RFC 2617](https://tools.ietf.org/html/rfc2617).
 
-If the authentication is correct, the recipient will send the following response,
-as in the WebSocket protocol.
+Nếu xác thực đúng, người nhận sẽ gửi phản hồi sau,
+như trong giao thức WebSocket.
 
-All lines are teriminated with CRLF as required by HTTP.
+Tất cả các dòng đều kết thúc bằng CRLF như yêu cầu của HTTP.
 
 ```text
 
@@ -165,72 +164,72 @@ HTTP/1.1 101 Switching Protocols
 
 ```
 
-After this is received, the socket remains open.
-The Raft protocol as defined below commences, on the same socket.
+Sau khi nhận được điều này, cổng kết nối vẫn mở.
+Giao thức Raft như được định nghĩa bên dưới bắt đầu, trên cùng một cổng kết nối.
 
 
-#### Caching
+#### Bộ nhớ đệm
 
-Credentials shall be cached for at least one hour, so that
-subsequent connections may jump directly to
-"HTTP Request 2" above.
-
-
-
-### Message Types
-
-There are two types of messages, requests and responses.
-Requests may contain Log Entries, and are variable-sized;
-responses do not contain Log Entries, and are fixed-size.
-
-Message types 1-4 are the standard RPC messages defined by Raft.
-This is the core Raft protocol.
-
-Message types 5-15 are the extended RPC messages defined by
-JRaft, to support clients, dynamic server changes, and
-efficient log synchronization.
-
-Message types 16-17 are the Log Compaction RPC messages defined
-in Raft section 7.
+Chứng thực phải được lưu vào bộ nhớ đệm ít nhất một giờ, để
+các kết nối tiếp theo có thể nhảy trực tiếp đến
+"Yêu cầu HTTP 2" ở trên.
 
 
-| Message | Number | Sent By | Sent To | Notes |
+
+### Các loại tin nhắn
+
+Có hai loại tin nhắn: yêu cầu và phản hồi.
+Yêu cầu có thể chứa các mục nhật ký (Log Entries), và có kích thước thay đổi;
+phản hồi không chứa các mục nhật ký, và có kích thước cố định.
+
+Các loại tin nhắn 1-4 là các tin nhắn RPC tiêu chuẩn do Raft định nghĩa.
+Đây là phần cốt lõi của giao thức Raft.
+
+Các loại tin nhắn 5-15 là các tin nhắn RPC mở rộng do
+JRaft định nghĩa, để hỗ trợ khách hàng, thay đổi máy chủ động và
+đồng bộ nhật ký hiệu quả.
+
+Các loại tin nhắn 16-17 là các tin nhắn RPC nén nhật ký (Log Compaction) được định nghĩa
+trong phần 7 của Raft.
+
+
+| Tin nhắn | Số | Gửi bởi | Gửi đến | Ghi chú |
 | :--- | :--- | :--- | :--- | :--- |
-| RequestVoteRequest | 1 | Candidate | Follower | Standard Raft RPC; must not contain log entries |
-| RequestVoteResponse | 2 | Follower | Candidate | Standard Raft RPC |
-| AppendEntriesRequest | 3 | Leader | Follower | Standard Raft RPC |
-| AppendEntriesResponse | 4 | Follower | Leader / Client | Standard Raft RPC |
-| ClientRequest | 5 | Client | Leader / Follower | Response is AppendEntriesResponse; must contain Application log entries only |
-| AddServerRequest | 6 | Client | Leader | Must contain a single ClusterServer log entry only |
-| AddServerResponse | 7 | Leader | Client | Leader will also send a JoinClusterRequest |
-| RemoveServerRequest | 8 | Follower | Leader | Must contain a single ClusterServer log entry only |
+| RequestVoteRequest | 1 | Ứng cử viên (Candidate) | Người theo dõi (Follower) | RPC chuẩn của Raft; không được chứa mục nhật ký |
+| RequestVoteResponse | 2 | Follower | Candidate | RPC chuẩn của Raft |
+| AppendEntriesRequest | 3 | Leader | Follower | RPC chuẩn của Raft |
+| AppendEntriesResponse | 4 | Follower | Leader / Client | RPC chuẩn của Raft |
+| ClientRequest | 5 | Client | Leader / Follower | Phản hồi là AppendEntriesResponse; chỉ được chứa các mục nhật ký Ứng dụng |
+| AddServerRequest | 6 | Client | Leader | Chỉ được chứa một mục nhật ký ClusterServer duy nhất |
+| AddServerResponse | 7 | Leader | Client | Leader cũng sẽ gửi một JoinClusterRequest |
+| RemoveServerRequest | 8 | Follower | Leader | Chỉ được chứa một mục nhật ký ClusterServer duy nhất |
 | RemoveServerResponse | 9 | Leader | Follower | |
-| SyncLogRequest | 10 | Leader | Follower | Must contain a single LogPack log entry only |
+| SyncLogRequest | 10 | Leader | Follower | Chỉ được chứa một mục nhật ký LogPack duy nhất |
 | SyncLogResponse | 11 | Follower | Leader | |
-| JoinClusterRequest | 12 | Leader | New Server | Invitation to join; must contain a single Configuration log entry only |
-| JoinClusterResponse | 13 | New Server | Leader | |
-| LeaveClusterRequest | 14 | Leader | Follower | Command to leave |
+| JoinClusterRequest | 12 | Leader | Máy chủ mới | Lời mời tham gia; chỉ được chứa một mục nhật ký Cấu hình duy nhất |
+| JoinClusterResponse | 13 | Máy chủ mới | Leader | |
+| LeaveClusterRequest | 14 | Leader | Follower | Lệnh rời khỏi |
 | LeaveClusterResponse | 15 | Follower | Leader | |
-| InstallSnapshotRequest | 16 | Leader | Follower | Raft Section 7; Must contain a single SnapshotSyncRequest log entry only |
-| InstallSnapshotResponse | 17 | Follower | Leader | Raft Section 7 |
+| InstallSnapshotRequest | 16 | Leader | Follower | Raft Mục 7; Chỉ được chứa một mục nhật ký SnapshotSyncRequest duy nhất |
+| InstallSnapshotResponse | 17 | Follower | Leader | Raft Mục 7 |
 
 
-### Establishment
+### Thiết lập
 
-After the HTTP handshake, the establishment sequence is as follows:
+Sau khi bắt tay HTTP, chuỗi thiết lập như sau:
 
 ```text
 
-New Server Alice              Random Follower Bob
+Máy chủ mới Alice              Người theo dõi ngẫu nhiên Bob
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
 
-  If Bob says he is the leader, continue as below.
-  Else, Alice must disconnect from Bob and connect to the leader.
+  Nếu Bob nói rằng nó là leader, tiếp tục như bên dưới.
+  Nếu không, Alice phải ngắt kết nối với Bob và kết nối với leader.
 
 
-  New Server Alice              Leader Charlie
+  Máy chủ mới Alice              Leader Charlie
 
   ClientRequest   ------->
           <---------   AppendEntriesResponse
@@ -239,13 +238,13 @@ New Server Alice              Random Follower Bob
           <---------   JoinClusterRequest
   JoinClusterResponse  ------->
           <---------   SyncLogRequest
-                       OR InstallSnapshotRequest
+                       HOẶC InstallSnapshotRequest
   SyncLogResponse  ------->
-  OR InstallSnapshotResponse
+  HOẶC InstallSnapshotResponse
 
 ```
 
-Disconnect Sequence:
+Chuỗi ngắt kết nối:
 
 ```text
 
@@ -258,16 +257,16 @@ Follower Alice              Leader Charlie
 
 ```
 
-Election Sequence:
+Chuỗi bầu cử:
 
 ```text
 
-Candidate Alice               Follower Bob
+Ứng cử viên Alice               Follower Bob
 
   RequestVoteRequest   ------->
           <---------   RequestVoteResponse
 
-  if Alice wins election:
+  nếu Alice thắng bầu cử:
 
   Leader Alice                Follower Bob
 
@@ -278,142 +277,142 @@ Candidate Alice               Follower Bob
 ```
 
 
-### Definitions
+### Định nghĩa
 
-- Source: Identifies the originator of the message
-- Destination: Identifies the recipient of the message
-- Terms: See Raft. Initialized to 0, increases monotonically
-- Indexes: See Raft. Initialized to 0, increases monotonically
-
-
-
-### Requests
-
-Requests contain a header and zero or more log entries.
-Requests contain a fixed-size header and optional Log Entries of variable size.
+- Nguồn (Source): Xác định người khởi tạo tin nhắn
+- Đích (Destination): Xác định người nhận tin nhắn
+- Các kỳ hạn (Terms): Xem Raft. Được khởi tạo bằng 0, tăng đơn điệu
+- Chỉ mục (Indexes): Xem Raft. Được khởi tạo bằng 0, tăng đơn điệu
 
 
-#### Request Header
 
-The request header is 45 bytes, as follows.
-All values are unsigned big-endian.
+### Yêu cầu
+
+Yêu cầu chứa một tiêu đề và không hoặc nhiều mục nhật ký.
+Yêu cầu chứa một tiêu đề kích thước cố định và các Mục nhật ký tùy chọn có kích thước thay đổi.
+
+
+#### Tiêu đề yêu cầu
+
+Tiêu đề yêu cầu dài 45 byte, như sau.
+Tất cả các giá trị đều là số nguyên big-endian không dấu.
 
 ```text
 
-Message type:      1 byte
-  Source:            ID, 4 byte integer
-  Destination:       ID, 4 byte integer
-  Term:              Current term (see notes), 8 byte integer
-  Last Log Term:     8 byte integer
-  Last Log Index:    8 byte integer
-  Commit Index:      8 byte integer
-  Log entries size:  Total size in bytes, 4 byte integer
-  Log entries:       see below, total length as specified
+Loại tin nhắn:      1 byte
+  Nguồn:            ID, số nguyên 4 byte
+  Đích:             ID, số nguyên 4 byte
+  Kỳ hạn:           Kỳ hạn hiện tại (xem ghi chú), số nguyên 8 byte
+  Kỳ hạn nhật ký cuối:     số nguyên 8 byte
+  Chỉ mục nhật ký cuối:    số nguyên 8 byte
+  Chỉ mục cam kết:      số nguyên 8 byte
+  Kích thước mục nhật ký:  Tổng kích thước tính bằng byte, số nguyên 4 byte
+  Mục nhật ký:       xem bên dưới, tổng độ dài như đã chỉ định
 
 ```
 
 
-#### Notes
+#### Ghi chú
 
-In the RequestVoteRequest, Term is the candidate's term.
-Otherwise, it is the leader's current term.
+Trong RequestVoteRequest, Term là kỳ hạn của ứng cử viên.
+Trong các trường hợp khác, đó là kỳ hạn hiện tại của leader.
 
-In the AppendEntriesRequest, when the log entries size is zero,
-this message is a heartbeat (keepalive) message.
+Trong AppendEntriesRequest, khi kích thước mục nhật ký bằng 0,
+tin nhắn này là tin nhắn heartbeat (giữ kết nối).
 
 
 
-#### Log Entries
+#### Mục nhật ký
 
-The log contains zero or more log entries.
-Each log entry is as follows.
-All values are unsigned big-endian.
+Nhật ký chứa không hoặc nhiều mục nhật ký.
+Mỗi mục nhật ký như sau.
+Tất cả các giá trị đều là số nguyên big-endian không dấu.
 
 ```text
 
-Term:           8 byte integer
-  Value type:     1 byte
-  Entry size:     In bytes, 4 byte integer
-  Entry:          length as specified
+Kỳ hạn:           số nguyên 8 byte
+  Loại giá trị:     1 byte
+  Kích thước mục:     Tính bằng byte, số nguyên 4 byte
+  Mục:          độ dài như đã chỉ định
 
 ```
 
 
-#### Log Contents
+#### Nội dung nhật ký
 
-All values are unsigned big-endian.
+Tất cả các giá trị đều là số nguyên big-endian không dấu.
 
-| Log Value Type | Number |
+| Loại giá trị nhật ký | Số |
 | :--- | :--- |
-| Application | 1 |
-| Configuration | 2 |
+| Ứng dụng | 1 |
+| Cấu hình | 2 |
 | ClusterServer | 3 |
 | LogPack | 4 |
 | SnapshotSyncRequest | 5 |
 
 
-#### Application
+#### Ứng dụng
 
-Application contents are UTF-8 encoded [JSON](https://www.json.org/).
-See the Application Layer section below.
+Nội dung Ứng dụng được mã hóa UTF-8 theo định dạng [JSON](https://www.json.org/).
+Xem phần Lớp Ứng dụng bên dưới.
 
 
-#### Configuration
+#### Cấu hình
 
-This is used for the leader to serialize a new cluster configuration and replicate to peers.
-It contains zero or more ClusterServer configurations.
+Được dùng để leader tuần tự hóa một cấu hình cụm mới và sao chép tới các máy ngang hàng.
+Chứa không hoặc nhiều cấu hình ClusterServer.
 
 
 ```text
 
-Log Index:  8 byte integer
-  Last Log Index:  8 byte integer
-  ClusterServer Data for each server:
-    ID:                4 byte integer
-    Endpoint data len: In bytes, 4 byte integer
-    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+Chỉ mục nhật ký:  số nguyên 8 byte
+  Chỉ mục nhật ký cuối:  số nguyên 8 byte
+  Dữ liệu ClusterServer cho mỗi máy chủ:
+    ID:                số nguyên 4 byte
+    Độ dài dữ liệu Endpoint: Tính bằng byte, số nguyên 4 byte
+    Dữ liệu Endpoint:     chuỗi ASCII dạng "tcp://localhost:9001", độ dài như đã chỉ định
 
 ```
 
 
 #### ClusterServer
 
-The configuration information for a server in a cluster.
-This is included only in a AddServerRequest or RemoveServerRequest message.
+Thông tin cấu hình cho một máy chủ trong cụm.
+Chỉ được bao gồm trong tin nhắn AddServerRequest hoặc RemoveServerRequest.
 
-When used in a AddServerRequest Message:
+Khi dùng trong tin nhắn AddServerRequest:
 
 ```text
 
-ID:                4 byte integer
-  Endpoint data len: In bytes, 4 byte integer
-  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
+ID:                số nguyên 4 byte
+  Độ dài dữ liệu Endpoint: Tính bằng byte, số nguyên 4 byte
+  Dữ liệu Endpoint:     chuỗi ASCII dạng "tcp://localhost:9001", độ dài như đã chỉ định
 
 ```
 
 
-When used in a RemoveServerRequest Message:
+Khi dùng trong tin nhắn RemoveServerRequest:
 
 ```text
 
-ID:                4 byte integer
+ID:                số nguyên 4 byte
 
 ```
 
 
 #### LogPack
 
-This is included only in a SyncLogRequest message.
+Chỉ được bao gồm trong tin nhắn SyncLogRequest.
 
-The following is gzipped before transmission:
+Nội dung sau được nén bằng gz trước khi truyền:
 
 
 ```text
 
-Index data len: In bytes, 4 byte integer
-  Log data len:   In bytes, 4 byte integer
-  Index data:     8 bytes for each index, length as specified
-  Log data:       length as specified
+Độ dài dữ liệu chỉ mục: Tính bằng byte, số nguyên 4 byte
+  Độ dài dữ liệu nhật ký:   Tính bằng byte, số nguyên 4 byte
+  Dữ liệu chỉ mục:     8 byte cho mỗi chỉ mục, độ dài như đã chỉ định
+  Dữ liệu nhật ký:       độ dài như đã chỉ định
 
 ```
 
@@ -421,207 +420,206 @@ Index data len: In bytes, 4 byte integer
 
 #### SnapshotSyncRequest
 
-This is included only in a InstallSnapshotRequest message.
+Chỉ được bao gồm trong tin nhắn InstallSnapshotRequest.
 
 ```text
 
-Last Log Index:  8 byte integer
-  Last Log Term:   8 byte integer
-  Config data len: In bytes, 4 byte integer
-  Config data:     length as specified
-  Offset:          The offset of the data in the database, in bytes, 8 byte integer
-  Data len:        In bytes, 4 byte integer
-  Data:            length as specified
-  Is Done:         1 if done, 0 if not done (1 byte)
+Chỉ mục nhật ký cuối:  số nguyên 8 byte
+  Kỳ hạn nhật ký cuối:   số nguyên 8 byte
+  Độ dài dữ liệu cấu hình: Tính bằng byte, số nguyên 4 byte
+  Dữ liệu cấu hình:     độ dài như đã chỉ định
+  Offset:          Vị trí dữ liệu trong cơ sở dữ liệu, tính bằng byte, số nguyên 8 byte
+  Độ dài dữ liệu:        Tính bằng byte, số nguyên 4 byte
+  Dữ liệu:            độ dài như đã chỉ định
+  Hoàn tất:         1 nếu xong, 0 nếu chưa xong (1 byte)
 
 ```
 
 
 
 
-### Responses
+### Phản hồi
 
-All responses are 26 bytes, as follows.
-All values are unsigned big-endian.
+Tất cả phản hồi đều dài 26 byte, như sau.
+Tất cả các giá trị đều là số nguyên big-endian không dấu.
 
 ```text
 
-Message type:   1 byte
-  Source:         ID, 4 byte integer
-  Destination:    Usually the actual destination ID (see notes), 4 byte integer
-  Term:           Current term, 8 byte integer
-  Next Index:     Initialized to leader last log index + 1, 8 byte integer
-  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+Loại tin nhắn:   1 byte
+  Nguồn:         ID, số nguyên 4 byte
+  Đích:          Thường là ID đích thực (xem ghi chú), số nguyên 4 byte
+  Kỳ hạn:           Kỳ hạn hiện tại, số nguyên 8 byte
+  Chỉ mục tiếp theo:     Được khởi tạo bằng chỉ mục nhật ký cuối của leader + 1, số nguyên 8 byte
+  Được chấp nhận:    1 nếu được chấp nhận, 0 nếu không (xem ghi chú), 1 byte
 
 ```
 
 
-#### Notes
+#### Ghi chú
 
-The Destination ID is usually the actual destination for this message.
-However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
-it is the ID of the current leader.
+ID Đích thường là ID đích thực cho tin nhắn này.
+Tuy nhiên, đối với AppendEntriesResponse, AddServerResponse và RemoveServerResponse,
+đó là ID của leader hiện tại.
 
-In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
-and 0 for no vote.
-
-
-## Application Layer
-
-Each Server periodically posts Application data to the log in a ClientRequest.
-Application data contains the status of each Server's Router and the Destination
-for the Meta LS2 cluster.
-The servers use a common algorithm to determine the publisher and contents
-of the Meta LS2.
-The server with the "best" recent status in the log is the Meta LS2 publisher.
-The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
+Trong RequestVoteResponse, Is Accepted là 1 nếu bỏ phiếu cho ứng cử viên (người yêu cầu),
+và 0 nếu không bỏ phiếu.
 
 
-### Application Data Contents
+## Lớp Ứng dụng
 
-Application contents are UTF-8 encoded [JSON](https://json.org/),
-for simplicity and extensibility.
-The full specification is TBD.
-The goal is to provide enough data to write an algorithm to determine the "best"
-router to publish the Meta LS2, and for the publisher to have sufficient information
-to weight the Destinations in the Meta LS2.
-The data will contain both router and Destination statistics.
-
-The data may optionally contain remote sensing data on the health of the
-other servers, and the ability to fetch the Meta LS.
-These data would not be supported in the first release.
-
-The data may optionally contain configuration information posted
-by an administrator client.
-These data would not be supported in the first release.
-
-If "name: value" is listed, that specifies the JSON map key and value.
-Otherwise, specification is TBD.
+Mỗi Máy chủ định kỳ đăng dữ liệu Ứng dụng vào nhật ký trong một ClientRequest.
+Dữ liệu Ứng dụng chứa trạng thái của bộ định tuyến trên mỗi Máy chủ và Địa điểm (Destination)
+cho cụm Meta LS2.
+Các máy chủ sử dụng một thuật toán chung để xác định người công bố và nội dung
+của Meta LS2.
+Máy chủ có trạng thái "tốt nhất" gần đây nhất trong nhật ký là người công bố Meta LS2.
+Người công bố Meta LS2 KHÔNG nhất thiết phải là Raft Leader.
 
 
-Cluster data (top level):
+### Nội dung dữ liệu Ứng dụng
 
-- cluster: Cluster name
-- date: Date of this data (long, ms since the epoch)
-- id: Raft ID (integer)
+Nội dung Ứng dụng được mã hóa UTF-8 theo định dạng [JSON](https://json.org/),
+để đơn giản và có thể mở rộng.
+Đặc tả đầy đủ sẽ được xác định sau.
+Mục tiêu là cung cấp đủ dữ liệu để viết một thuật toán xác định bộ định tuyến "tốt nhất"
+để công bố Meta LS2, và để người công bố có đủ thông tin để đánh trọng số các Địa điểm trong Meta LS2.
+Dữ liệu sẽ chứa cả thống kê bộ định tuyến và Địa điểm.
 
-Configuration data (config):
+Dữ liệu có thể tùy chọn chứa dữ liệu cảm biến từ xa về tình trạng sức khỏe của
+các máy chủ khác, và khả năng truy xuất Meta LS.
+Những dữ liệu này sẽ không được hỗ trợ trong phiên bản đầu tiên.
 
-- Any configuration parameters
+Dữ liệu có thể tùy chọn chứa thông tin cấu hình do
+một khách hàng quản trị đăng.
+Những dữ liệu này sẽ không được hỗ trợ trong phiên bản đầu tiên.
 
-MetaLS publishing status (meta):
-
-- destination: the metals destination, base64
-- lastPublishedLS: if present, base64 encoding of the last published metals
-- lastPublishedTime: in ms, or 0 if never
-- publishConfig: Publisher config status off/on/auto
-- publishing: metals publisher status boolean true/false
-
-Router data (router):
-
-- lastPublishedRI: if present, base64 encoding of the last published router info
-- uptime: Uptime in ms
-- Job lag
-- Exploratory tunnels
-- Participating tunnels
-- Configured bandwidth
-- Current bandwidth
-
-Destinations (destinations):
-List
-
-Destination data:
-
-- destination: the destination, base64
-- uptime: Uptime in ms
-- Configured tunnels
-- Current tunnels
-- Configured bandwidth
-- Current bandwidth
-- Configured connections
-- Current connections
-- Blacklist data
-
-Remote router sensing data:
-
-- Last RI version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
-
-Remote destination sensing data:
-
-- Last LS version seen
-- LS Fetch time
-- Connection test data
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
-
-Meta LS sensing data:
-
-- Last version seen
-- Fetch time
-- Closest floodfills profile data
-  for time periods yesterday, today, and tomorrow
+Nếu "name: value" được liệt kê, điều đó chỉ định khóa và giá trị bản đồ JSON.
+Nếu không, đặc tả sẽ được xác định sau.
 
 
-## Administration Interface
+Dữ liệu cụm (cấp cao nhất):
 
-TBD, possibly a separate proposal.
-Not required for the first release.
+- cluster: Tên cụm
+- date: Ngày của dữ liệu này (dài, ms kể từ thời điểm gốc)
+- id: ID Raft (số nguyên)
 
-Requirements of an admin interface:
+Dữ liệu cấu hình (config):
 
-- Support for multiple master destinations, i.e. multiple virtual clusters (farms)
-- Provide comprehensive view of shared cluster state - all stats published by members, who is the current leader, etc.
-- Ability to force removal of a participant or leader from the cluster
-- Ability to force publish metaLS (if current node is publisher)
-- Ability to exclude hashes from metaLS (if current node is publisher)
-- Configuration import/export functionality for bulk deployments
+- Bất kỳ tham số cấu hình nào
+
+Trạng thái công bố MetaLS (meta):
+
+- destination: địa điểm metals, mã hóa base64
+- lastPublishedLS: nếu có, mã hóa base64 của metals đã công bố gần nhất
+- lastPublishedTime: tính bằng ms, hoặc 0 nếu chưa từng
+- publishConfig: trạng thái cấu hình người công bố tắt/bật/tự động
+- publishing: trạng thái boolean người công bố metals đúng/sai
+
+Dữ liệu bộ định tuyến (router):
+
+- lastPublishedRI: nếu có, mã hóa base64 của thông tin bộ định tuyến đã công bố gần nhất
+- uptime: Thời gian hoạt động tính bằng ms
+- Độ trễ công việc (Job lag)
+- Các đường hầm thăm dò (Exploratory tunnels)
+- Các đường hầm tham gia (Participating tunnels)
+- Băng thông đã cấu hình
+- Băng thông hiện tại
+
+Các Địa điểm (destinations):
+Danh sách
+
+Dữ liệu Địa điểm:
+
+- destination: địa điểm, mã hóa base64
+- uptime: Thời gian hoạt động tính bằng ms
+- Số lượng đường hầm đã cấu hình
+- Số lượng đường hầm hiện tại
+- Băng thông đã cấu hình
+- Băng thông hiện tại
+- Số lượng kết nối đã cấu hình
+- Số lượng kết nối hiện tại
+- Dữ liệu danh sách đen (Blacklist data)
+
+Dữ liệu cảm biến bộ định tuyến từ xa:
+
+- Phiên bản RI gần nhất đã thấy
+- Thời gian truy xuất LS
+- Dữ liệu kiểm tra kết nối
+- Dữ liệu hồ sơ floodfill gần nhất
+  cho các khoảng thời gian hôm qua, hôm nay và ngày mai
+
+Dữ liệu cảm biến Địa điểm từ xa:
+
+- Phiên bản LS gần nhất đã thấy
+- Thời gian truy xuất LS
+- Dữ liệu kiểm tra kết nối
+- Dữ liệu hồ sơ floodfill gần nhất
+  cho các khoảng thời gian hôm qua, hôm nay và ngày mai
+
+Dữ liệu cảm biến Meta LS:
+
+- Phiên bản gần nhất đã thấy
+- Thời gian truy xuất
+- Dữ liệu hồ sơ floodfill gần nhất
+  cho các khoảng thời gian hôm qua, hôm nay và ngày mai
+
+
+## Giao diện Quản trị
+
+Sẽ được xác định sau, có thể là một đề xuất riêng.
+Không yêu cầu cho phiên bản đầu tiên.
+
+Yêu cầu của một giao diện quản trị:
+
+- Hỗ trợ nhiều địa điểm chính, tức là nhiều cụm ảo (nông trại)
+- Cung cấp cái nhìn toàn diện về trạng thái cụm chia sẻ - tất cả các thống kê do các thành viên công bố, ai là leader hiện tại, v.v.
+- Khả năng buộc loại bỏ một thành viên hoặc leader khỏi cụm
+- Khả năng buộc công bố metaLS (nếu nút hiện tại là người công bố)
+- Khả năng loại trừ các băm khỏi metaLS (nếu nút hiện tại là người công bố)
+- Chức năng nhập/xuất cấu hình cho triển khai hàng loạt
 
 
 
-## Router Interface
+## Giao diện Bộ định tuyến
 
-TBD, possibly a separate proposal.
-i2pcontrol is not required for the first release and detailed changes will be included in a separate proposal.
+Sẽ được xác định sau, có thể là một đề xuất riêng.
+i2pcontrol không bắt buộc cho phiên bản đầu tiên và các thay đổi chi tiết sẽ được đưa vào một đề xuất riêng.
 
-Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
+Yêu cầu cho API Garlic Farm tới bộ định tuyến (trong-JVM java hoặc i2pcontrol)
 
 - getLocalRouterStatus()
 - getLocalLeafHash(Hash masterHash)
 - getLocalLeafStatus(Hash leaf)
-- getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
-- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
+- getRemoteMeasuredStatus(Hash masterOrLeaf) // có thể không có trong MVP
+- publishMetaLS(Hash masterHash, List<MetaLease> contents) // hoặc MetaLeaseSet đã ký? Ai ký?
 - stopPublishingMetaLS(Hash masterHash)
-- authentication TBD?
+- xác thực TBD?
 
 
-## Justification
+## Cơ sở
 
-Atomix is too large and won't allow customization for us to route
-the protocol over I2P. Also, its wire format is undocumented, and depends
-on Java serialization.
-
-
-## Notes
+Atomix quá lớn và sẽ không cho phép tùy chỉnh để chúng tôi định tuyến
+giao thức qua I2P. Ngoài ra, định dạng truyền tải của nó chưa được tài liệu hóa và phụ thuộc
+vào việc tuần tự hóa Java.
 
 
-
-## Issues
-
-- There's no way for a client to find out about and connect to an unknown leader.
-  It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
+## Ghi chú
 
 
 
-## Migration
+## Vấn đề
 
-No backward compatibility issues.
+- Không có cách nào để một khách hàng biết và kết nối tới một leader chưa biết.
+  Chỉ cần thay đổi nhỏ để một Follower gửi Cấu hình như một Mục nhật ký trong AppendEntriesResponse.
 
 
-## References
+
+## Di chuyển
+
+Không có vấn đề tương thích ngược.
+
+
+## Tài liệu tham khảo
 
 * [JRAFT](https://github.com/datatechnology/jraft)
 * [JSON](https://json.org/)
@@ -629,8 +627,3 @@ No backward compatibility issues.
 * [RFC-2616](https://tools.ietf.org/html/rfc2616)
 * [RFC-2617](https://tools.ietf.org/html/rfc2617)
 * [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
-
-
-
-
-

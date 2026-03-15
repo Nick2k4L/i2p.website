@@ -11,89 +11,76 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
+## Genel Bakış
 
-## Overview
+Bu belge, ElGamal asimetrik şifrelememizin yerine geçecek veya buna eklenecek bir öneri sunarken dikkate alınması gereken önemli konuları açıklamaktadır.
 
-This document describes important issues to consider when proposing
-a replacement or addition to our ElGamal asymmetric encryption.
-
-This is an informational document.
+Bu bir bilgilendirme belgesidir.
 
 
-## Motivation
+## Motivasyon
 
-ElGamal is old and slow, and there are better alternatives.
-However, there are several issues that must be addressed before we can add or change to any new algorithm.
-This document highlights these unresolved issues.
+ElGamal eski ve yavaştır ve daha iyi alternatifler mevcuttur. Ancak yeni bir algoritma eklemek veya geçiş yapmak için çözülmesi gereken birkaç sorun vardır. Bu belge bu çözülmemiş sorunlara dikkat çekmektedir.
 
 
+## Arka Plan Araştırması
 
-## Background Research
+Yeni kripto öneren herkesin öncelikle aşağıdaki belgelerle aşina olması gerekir:
 
-Anybody proposing new crypto must first be familiar with the following documents:
-
-- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
-- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
-- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
-- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
-- Discussion threads here for each of the above proposals, linked within
-- [2018 proposal priorities](http://zzz.i2p/topics/2494)
-- [ECIES proposal](http://zzz.i2p/topics/2418)
-- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
-- [Low-level crypto overview](/docs/specs/common-structures/)
-
-
-## Asymmetric Crypto Uses
-
-As a review, we use ElGamal for:
-
-1) Tunnel Build messages (key is in RouterIdentity)
-
-2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
-
-3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
-
-4) Ephemeral DH for NTCP and SSU
+- [Teklif 111 NTCP2](/proposals/111-ntcp-2/)
+- [Teklif 123 LS2](/proposals/123-new-netdb-entries/)
+- [Teklif 136 deneysel imza türleri](/proposals/136-experimental-sigtypes/)
+- [Teklif 137 isteğe bağlı imza türleri](/proposals/137-optional-sigtypes/)
+- Yukarıdaki her bir teklif için buradaki tartışma başlıkları, içlerinde bağlantı verilmiştir
+- [2018 teklif öncelikleri](http://zzz.i2p/topics/2494)
+- [ECIES teklifi](http://zzz.i2p/topics/2418)
+- [Yeni asimetrik kripto genel bakış](http://zzz.i2p/topics/1768)
+- [Düşük seviye kripto genel bakış](/docs/specs/common-structures/)
 
 
-## Design
+## Asimetrik Kripto Kullanımları
 
-Any proposal to replace ElGamal with something else must provide the following details.
+Gözden geçirme amaçlı, ElGamal'ı şu amaçlarla kullanıyoruz:
+
+1) Tünel Oluşturma mesajları (anahtar RouterIdentity içinde yer alır)
+
+2) Netdb ve diğer I2NP mesajlarının yönlendirici-yönlendirici şifrelenmesi (Anahtar RouterIdentity içinde yer alır)
+
+3) İstemci uçtan uca ElGamal+AES/OturumEtiketi (anahtar LeaseSet içinde yer alır, Hedef anahtarı kullanılmaz)
+
+4) NTCP ve SSU için geçici DH
+
+
+## Tasarım
+
+ElGamal'ı başka bir şeyle değiştirmeyi öneren herhangi bir teklifin aşağıdaki ayrıntıları sağlaması gerekir.
 
 
 
-## Specification
+## Spesifikasyon
 
-Any proposal for new asymmetric crypto must fully specify the following things.
-
-
-
-### 1. General
-
-Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
-
-- Which of the above cases 1-4 do you propose to use the new crypto for?
-- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
-- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
-- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
-- Completely specify how and why this is backward compatible, and fully specify a migration plan.
-- Which unimplemented proposals are prerequisites for your proposal?
-
-
-### 2. Specific crypto type
-
-Answer the following questions in your proposal:
-
-- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
-- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
-- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
-  For 3rd party or non-Java, provide links and licenses
-- Proposed crypto type number(s) (experimental range or not)
+Yeni asimetrik kripto için herhangi bir teklif aşağıdaki unsurları tam olarak belirtmelidir.
 
 
 
+### 1. Genel
 
-## Notes
+Teklifinizde aşağıdaki soruları yanıtlayın. Aşağıdaki 2. maddedeki teknik detaylardan ayrı bir teklif olması gerekebileceğine dikkat edin, çünkü bu mevcut 111, 123, 136, 137 veya diğer tekliflerle çakışabilir.
+
+- Yukarıdaki 1-4 durumlarının hangileri için yeni kriptonun kullanılmasını öneriyorsunuz?
+- Eğer 1) veya 2) (yönlendirici) içinse, açık anahtar RouterIdentity içinde mi yoksa RouterInfo props içinde mi yer alacak? Anahtar sertifikasında kripto türünü kullanmayı mı planlıyorsunuz? Tam olarak belirtin. Her iki durumda da kararınızı gerekçelendirin.
+- Eğer 3) (istemci) içinse, açık anahtarı hedeften mi saklamayı ve anahtar sertifikasında kripto türünü mi kullanmayı planlıyorsunuz (ECIES teklifinde olduğu gibi), yoksa LS2'de mi saklamayı düşünüyorsunuz (123. teklif gibi), ya da başka bir şey mi? Tam olarak belirtin ve kararınızı gerekçelendirin.
+- Tüm kullanımlar için destek nasıl duyurulacak? Eğer 3) içinse, bu LS2'ye mi eklenecek yoksa başka bir yere mi? Eğer 1) ve 2) içinse, bu 136 ve/veya 137. tekliflere benzer mi olacak? Tam olarak belirtin ve kararlarınızı gerekçelendirin. Muhtemelen bunun için ayrı bir teklif gerekecektir.
+- Bunun nasıl ve neden geriye dönük uyumlu olduğunu tam olarak belirtin ve geçiş planını eksiksiz şekilde tanımlayın.
+- Teklifinizin ön koşulu olan henüz uygulanmamış teklifler hangileridir?
 
 
+### 2. Spesifik kripto türü
 
+Teklifinizde aşağıdaki soruları yanıtlayın:
+
+- Genel kripto bilgisi, spesifik eğriler/parametreler, seçiminizi tam olarak gerekçelendirin. Spesifikasyonlara ve diğer bilgilere bağlantılar verin.
+- ElG ve diğer alternatiflerle karşılaştırılmış hız testi sonuçları (uygulanabiliyorsa). Şifreleme, çözme ve anahtar oluşturma işlemlerini dahil edin.
+- C++ ve Java'da (hem OpenJDK, hem BouncyCastle hem de üçüncü taraf) kütüphane uygunluğu
+  Üçüncü taraf veya Java dışı için bağlantılar ve lisanslar verin
+- Önerilen kripto türü numarası/ları (deneysel aralıkta mı değil mi)

@@ -9,61 +9,56 @@ thread: "http://zzz.i2p/topics/2047"
 supercededby: "123"
 toc: true
 ---
+## अवलोकन
 
-## Overview
-
-This proposal is about redesigning the mechanism for encrypting LeaseSets.
-
-
-## Motivation
-
-Current encrypted LS is horrendous and insecure. I can say that, I designed and
-implemented it.
-
-Reasons:
-
-- AES CBC encrypted
-- Single AES key for everybody
-- Lease expirations still exposed
-- Encryption pubkey still exposed
+यह प्रस्ताव LeaseSets को एन्क्रिप्ट करने के तंत्र को पुनः डिज़ाइन करने के बारे में है.
 
 
-## Design
+## प्रेरणा
 
-### Goals
+वर्तमान एन्क्रिप्टेड एलएस भयानक और असुरक्षित है। मैं यह कह सकता हूँ, मैंने इसे डिज़ाइन और लागू किया है।
 
-- Make entire thing opaque
-- Keys for each recipient
+कारण:
 
-
-### Strategy
-
-Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-IF we can find an algo that's small and fast.
-
-Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
-bytes is a little painful here. We can do better.
-
-See e.g. http://security.stackexchange.com/questions/824...
-
-This works for small numbers of recipients (or actually, keys; you can still
-distribute keys to multiple people if you like).
+- AES CBC एन्क्रिप्टेड
+- सभी के लिए एकल AES कुंजी
+- लीज़ समाप्ति अभी भी उजागर
+- एन्क्रिप्शन पबकुंजी अभी भी उजागर
 
 
-## Specification
+## डिज़ाइन
 
-- Destination
-- Published timestamp
-- Expiration
-- Flags
-- Length of data
-- Encrypted data
-- Signature
+### लक्ष्य
 
-Encrypted data could be prefixed with some enctype specifier, or not.
+- पूरी चीज़ को अपारदर्शी बनाना
+- प्रत्येक प्राप्तकर्ता के लिए कुंजी
 
 
-## References
+### रणनीति
+
+जीपीजी/ओपनपीजीपी की तरह करें। प्रत्येक प्राप्तकर्ता के लिए एक सममित कुंजी को असममित रूप से एन्क्रिप्ट करें। डेटा को उस असममित कुंजी के साथ डिक्रिप्ट किया जाता है। देखें उदाहरण के लिए [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+यदि हम एक अल्गो खोज सकते हैं जो छोटा और तेज़ है।
+
+चाल यह है कि एक असममित एन्क्रिप्शन खोजा जाए जो छोटा और तेज़ हो। एल्गामल 514 बाइट्स पर थोड़ा दर्दनाक है। हम बेहतर कर सकते हैं।
+
+देखें उदाहरण के लिए http://security.stackexchange.com/questions/824...
+
+यह छोटी संख्या में प्राप्तकर्ताओं (या वास्तव में, कुंजियों; आप अभी भी कई लोगों को कुंजी वितरित कर सकते हैं) के लिए काम करता है.
+
+
+## विशिष्टीकरण
+
+- गंतव्य
+- प्रकाशित टाइमस्टैम्प
+- समाप्ति
+- ध्वज
+- डेटा की लंबाई
+- एन्क्रिप्टेड डेटा
+- हस्ताक्षर
+
+एन्क्रिप्टेड डेटा को कुछ enctype विशेषज्ञ के साथ पूर्ववर्ती किया जा सकता है, या नहीं.
+
+
+## संदर्भ
 
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)

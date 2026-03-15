@@ -11,89 +11,79 @@ status: "Meta"
 thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
+## 概述
 
-## Overview
+本文档描述了在提议替换或增加我们现有的 ElGamal 非对称加密算法时需要考虑的重要问题。
 
-This document describes important issues to consider when proposing
-a replacement or addition to our ElGamal asymmetric encryption.
-
-This is an informational document.
+这是一份信息性文档。
 
 
-## Motivation
+## 动机
 
-ElGamal is old and slow, and there are better alternatives.
-However, there are several issues that must be addressed before we can add or change to any new algorithm.
-This document highlights these unresolved issues.
-
-
-
-## Background Research
-
-Anybody proposing new crypto must first be familiar with the following documents:
-
-- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
-- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
-- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
-- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
-- Discussion threads here for each of the above proposals, linked within
-- [2018 proposal priorities](http://zzz.i2p/topics/2494)
-- [ECIES proposal](http://zzz.i2p/topics/2418)
-- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
-- [Low-level crypto overview](/docs/specs/common-structures/)
+ElGamal 陈旧且缓慢，已有更好的替代方案。  
+然而，在我们能够添加或切换到任何新算法之前，必须解决若干问题。  
+本文档重点说明这些尚未解决的问题。
 
 
-## Asymmetric Crypto Uses
+## 背景研究
 
-As a review, we use ElGamal for:
+任何提议新加密算法的人都必须首先熟悉以下文档：
 
-1) Tunnel Build messages (key is in RouterIdentity)
-
-2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
-
-3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
-
-4) Ephemeral DH for NTCP and SSU
-
-
-## Design
-
-Any proposal to replace ElGamal with something else must provide the following details.
+- [提案 111 NTCP2](/proposals/111-ntcp-2/)
+- [提案 123 LS2](/proposals/123-new-netdb-entries/)
+- [提案 136 实验性签名类型](/proposals/136-experimental-sigtypes/)
+- [提案 137 可选签名类型](/proposals/137-optional-sigtypes/)
+- 上述每个提案的相关讨论帖，链接均在各提案页面内
+- [2018 年提案优先级](http://zzz.i2p/topics/2494)
+- [ECIES 提案](http://zzz.i2p/topics/2418)
+- [新型非对称加密概述](http://zzz.i2p/topics/1768)
+- [底层加密概述](/docs/specs/common-structures/)
 
 
+## 非对称加密的用途
 
-## Specification
+回顾一下，我们在以下场景中使用 ElGamal：
 
-Any proposal for new asymmetric crypto must fully specify the following things.
+1) 用于隧道构建消息（密钥位于 RouterIdentity 中）
 
+2) 用于路由器之间对 netdb 及其他 I2NP 消息的加密（密钥位于 RouterIdentity 中）
 
+3) 用于客户端端到端的 ElGamal+AES/SessionTag（密钥位于 LeaseSet 中，Destination 密钥未使用）
 
-### 1. General
-
-Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
-
-- Which of the above cases 1-4 do you propose to use the new crypto for?
-- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
-- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
-- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
-- Completely specify how and why this is backward compatible, and fully specify a migration plan.
-- Which unimplemented proposals are prerequisites for your proposal?
+4) 用于 NTCP 和 SSU 的临时 DH 密钥交换
 
 
-### 2. Specific crypto type
+## 设计
 
-Answer the following questions in your proposal:
-
-- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
-- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
-- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
-  For 3rd party or non-Java, provide links and licenses
-- Proposed crypto type number(s) (experimental range or not)
+任何提议用其他算法替换 ElGamal 的方案，必须提供以下详细信息。
 
 
+## 规范
+
+任何关于新非对称加密的提案必须完整说明以下内容。
 
 
-## Notes
+### 1. 通用要求
+
+在你的提案中回答以下问题。请注意，这可能需要与下面第 2) 点中的具体细节分开成独立提案，因为它可能与现有提案 111、123、136、137 或其他提案冲突。
+
+- 你提议将新加密算法用于上述哪几种情况（1-4）？
+- 如果用于 1) 或 2)（路由器），公钥应存放于何处？是在 RouterIdentity 还是 RouterInfo 的属性中？你是否打算在密钥证书中使用加密类型？必须完全明确说明，并为你的决定提供合理依据。
+- 如果用于 3)（客户端），你是否打算将公钥存储在 Destination 中并在密钥证书中使用加密类型（如 ECIES 提案所述），还是将其存储在 LS2 中（如提案 123 所述），或其他方式？必须完全明确说明，并为你的决定提供合理依据。
+- 对于所有用途，如何通告对该算法的支持？如果用于 3)，是放在 LS2 中还是其他位置？如果用于 1) 和 2)，是否类似于提案 136 和/或 137 的方式？必须完全明确说明，并为你的决定提供合理依据。这部分很可能需要一个独立的提案。
+- 完整说明该方案为何以及如何实现向后兼容，并详细说明迁移计划。
+- 你的提案依赖哪些尚未实现的提案作为前提？
 
 
+### 2. 具体加密类型
 
+在你的提案中回答以下问题：
+
+- 提供通用加密信息，具体曲线/参数，并充分论证你的选择。提供规范和其他信息的链接。
+- 提供与 ElGamal 及其他可选方案相比的速度测试结果（如适用）。包括加密、解密和密钥生成性能。
+- C++ 和 Java（包括 OpenJDK、BouncyCastle 和第三方库）中的库支持情况。  
+  对于第三方或非 Java 实现，请提供链接和许可证信息。
+- 建议的加密类型编号（是否使用实验性范围）
+
+
+## 注释

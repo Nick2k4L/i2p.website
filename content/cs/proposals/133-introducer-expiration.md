@@ -10,58 +10,51 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## Přehled
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+Tento návrh se týká zlepšení úspěšnosti úvodů.
 
 
-## Design
+## Motivace
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+Úvodci po určité době vyprší, ale tato informace není zveřejněna v informacích o směrovači (Router Info). Směrovače aktuálně musí používat heuristiku k odhadu, kdy již úvodce není platný.
 
 
-## Specification
+## Návrh
+
+Ve směrovačové adrese SSU obsahující úvodce může vydavatel volitelně uvést čas vypršení platnosti pro každého úvodce.
+
+
+## Specifikace
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: Číslo úvodce (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: Čas v sekundách (nikoli ms) od počátku epochy.
 ```
 
-### Notes
+### Poznámky
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* Každé vypršení musí být větší než datum publikování informací o směrovači (Router Info) a menší než 6 hodin po datu publikování informací o směrovači.
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* Směrovače a úvodci by měli usilovat o udržení platnosti úvodce až do vypršení, avšak nemají způsob, jak to zaručit.
 
-* Routers should not use a published introducer after its expiration.
+* Směrovače by neměly používat publikovaného úvodce po uplynutí jeho platnosti.
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* Vypršení platnosti úvodců je součástí mapování směrovačové adresy (Router Address). Nejedná se o (nyní nepoužívané) 8bytové pole vypršení v rámci směrovačové adresy.
 
-**Example:** `iexp0=1486309470`
+**Příklad:** `iexp0=1486309470`
 
 
-## Migration
+## Migrace
 
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+Žádné problémy. Implementace je volitelná.
+Zpětná kompatibilita je zajištěna, protože starší směrovače budou ignorovat neznámé parametry.
 
 
-## References
+## Reference
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)

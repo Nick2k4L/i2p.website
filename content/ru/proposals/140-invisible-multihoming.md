@@ -8,87 +8,57 @@ status: "Открыть"
 thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
+## Обзор
 
-## Overview
+В этом предложении описывается проект протокола, позволяющего клиенту I2P, сервису или внешнему процессу балансировки управлять несколькими маршрутизаторами, прозрачно размещающими одну и ту же [Destination](/docs/specs/common-structures/#destination).
 
-This proposal outlines a design for a protocol enabling an I2P client, service
-or external balancer process to manage multiple routers transparently hosting a
-single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
-
-The proposal currently does not specify a concrete implementation. It could be
-implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
+На данный момент предложение не определяет конкретную реализацию. Оно может быть реализовано как расширение [I2CP](/docs/specs/i2cp/), либо как новый протокол.
 
 
-## Motivation
+## Мотивация
 
-Multihoming is where multiple routers are used to host the same Destination.
-The current way to multihome with I2P is to run the same Destination on each
-router independently; the router that gets used by clients at any particular
-time is the last one to publish a LeaseSet.
+Мультихоминг — это использование нескольких маршрутизаторов для размещения одной и той же Destination. Текущий способ мультихоминга в I2P — это запуск одной и той же Destination на каждом маршрутизаторе независимо; маршрутизатор, который будет использоваться клиентами в конкретный момент времени, — это тот, который последним опубликовал LeaseSet.
 
-This is a hack and presumably won't work for large websites at scale. Say we had
-100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
-every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
-and throttles would kick in. And that's before we even mention the lookup
-traffic.
+Это костыль, и, вероятно, он не будет работать в масштабе для крупных веб-сайтов. Допустим, у нас есть 100 маршрутизаторов с мультихомингом, каждый с 16 туннелями. Это 1600 публикаций LeaseSet каждые 10 минут, или почти 3 в секунду. Floodfill-узлы будут перегружены, и сработают ограничения. И это ещё до того, как мы упомянем трафик поиска.
 
-Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
-LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
-meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
-the lookup traffic issue, but on its own it creates a significant privacy leak:
-It is possible to determine which multihoming routers are online by monitoring
-the published meta-LeaseSet, because each real LeaseSet has corresponds to a
-single router.
+Предложение 123 решает эту проблему с помощью meta-LeaseSet, в котором перечислены хэши 100 реальных LeaseSet. Поиск становится двухэтапным процессом: сначала ищется meta-LeaseSet, а затем один из указанных LeaseSet. Это хорошее решение проблемы поискового трафика, но само по себе оно создаёт значительную утечку приватности: можно определить, какие маршрутизаторы с мультихомингом находятся в сети, отслеживая опубликованный meta-LeaseSet, поскольку каждый реальный LeaseSet соответствует одному маршрутизатору.
 
-We need a way for an I2P client or service to spread a single Destination across
-multiple routers, in a way that is indistinguishable to using a single router
-(from the perspective of the LeaseSet itself).
+Нам нужен способ, позволяющий клиенту или сервису I2P распределять одну Destination по нескольким маршрутизаторам так, чтобы с точки зрения самого LeaseSet это было неотличимо от использования одного маршрутизатора.
 
 
-## Design
+## Проект
 
-### Definitions
+### Определения
 
     User
-        The person or organisation wanting to multihome their Destination(s). A
-        single Destination is considered here without loss of generality (WLOG).
+        Человек или организация, желающая использовать мультихоминг для своей Destination(s). Здесь рассматривается одна Destination без потери общности (WLOG).
 
     Client
-        The application or service running behind the Destination. It may be a
-        client-side, server-side, or peer-to-peer application; we refer to it as
-        a client in the sense that it connects to the I2P routers.
+        Приложение или сервис, работающий за Destination. Это может быть клиентское, серверное или пиринговое приложение; мы называем его клиентом в том смысле, что он подключается к маршрутизаторам I2P.
 
-        The client consists of three parts, which may all be in the same process
-        or may be split across processes or machines (in a multi-client setup):
+        Клиент состоит из трёх частей, которые могут находиться в одном процессе или быть разделены по процессам или машинам (в многоклиентской конфигурации):
 
         Balancer
-            The part of the client that manages peer selection and tunnel
-            building. There is a single balancer at any one time, and it
-            communicates with all I2P routers. There may be failover balancers.
+            Часть клиента, управляющая выбором пиров и построением туннелей. В каждый момент времени существует один балансировщик, и он взаимодействует со всеми маршрутизаторами I2P. Возможны резервные балансировщики.
 
         Frontend
-            The part of the client that can be operated in parallel. Each
-            frontend communicates with a single I2P router.
+            Часть клиента, которая может работать параллельно. Каждый фронтенд взаимодействует с одним маршрутизатором I2P.
 
         Backend
-            The part of the client that is shared between all frontends. It has
-            no direct communication with any I2P router.
+            Часть клиента, общей для всех фронтендов. Не имеет прямого взаимодействия с каким-либо маршрутизатором I2P.
 
     Router
-        An I2P router run by the user that sits at the boundary between the I2P
-        network and the user's network (akin to an edge device in corporate
-        networks). It builds tunnels under the command of a balancer, and routes
-        packets for a client or frontend.
+        Маршрутизатор I2P, запущенный пользователем, находящийся на границе между сетью I2P и сетью пользователя (аналогично edge-устройству в корпоративных сетях). Строит туннели по команде балансировщика и маршрутизирует пакеты для клиента или фронтенда.
 
-### High-level overview
+### Общее описание
 
-Imagine the following desired configuration:
+Представим следующую желаемую конфигурацию:
 
-- A client application with one Destination.
-- Four routers, each managing three inbound tunnels.
-- All twelve tunnels should be published in a single LeaseSet.
+- Клиентское приложение с одной Destination.
+- Четыре маршрутизатора, каждый управляющий тремя входящими туннелями.
+- Все двенадцать туннелей должны быть опубликованы в одном LeaseSet.
 
-### Single-client
+### Одноклиентская конфигурация
 
 ```
                 -{ [Tunnel 1]===\
@@ -108,7 +78,7 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### Multi-client
+### Многоклиентская конфигурация
 
 ```
                 -{ [Tunnel 1]===\
@@ -128,43 +98,37 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### General client process
+### Общий процесс клиента
 
-- Load or generate a Destination.
+- Загрузить или сгенерировать Destination.
 
-- Open up a session with each router, tied to the Destination.
+- Открыть сессию с каждым маршрутизатором, привязанную к Destination.
 
-- Periodically (around every ten minutes, but more or less based on tunnel
-  liveness):
+- Периодически (примерно каждые десять минут, но чаще или реже в зависимости от активности туннелей):
 
-  - Obtain the fast tier from each router.
+  - Получить быстрый уровень (fast tier) от каждого маршрутизатора.
 
-  - Use the superset of peers to build tunnels to/from each router.
+  - Использовать объединённый набор пиров для построения туннелей к/от каждого маршрутизатора.
 
-    - By default, tunnels to/from a particular router will use peers from
-      that router's fast tier, but this is not enforced by the protocol.
+    - По умолчанию туннели к/от конкретного маршрутизатора будут использовать пиры из его быстрого уровня, но протокол не требует этого.
 
-  - Collect the set of active inbound tunnels from all active routers, and create a
-    LeaseSet.
+  - Собрать набор активных входящих туннелей со всех активных маршрутизаторов и создать LeaseSet.
 
-  - Publish the LeaseSet through one or more of the routers.
+  - Опубликовать LeaseSet через один или несколько маршрутизаторов.
 
-### Differences to I2CP
+### Отличия от I2CP
 
-To create and manage this configuration, the client needs the following new
-functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
+Для создания и управления такой конфигурацией клиенту требуется следующая новая функциональность, которой в настоящее время нет в [I2CP](/docs/specs/i2cp/):
 
-- Tell a router to build tunnels, without creating a LeaseSet for them.
-- Get a list of the current tunnels in the inbound pool.
+- Приказать маршрутизатору построить туннели без создания для них LeaseSet.
+- Получить список текущих туннелей во входящем пуле.
 
-Additionally, the following functionality would enable significant flexibility
-in how the client manages its tunnels:
+Кроме того, следующая функциональность обеспечит значительную гибкость в управлении клиентом своими туннелями:
 
-- Get the contents of a router's fast tier.
-- Tell a router to build an inbound or outbound tunnel using a given list of
-  peers.
+- Получить содержимое быстрого уровня маршрутизатора.
+- Приказать маршрутизатору построить входящий или исходящий туннель с использованием заданного списка пиров.
 
-### Protocol outline
+### Схема протокола
 
 ```
          Client                           Router
@@ -183,125 +147,95 @@ in how the client manages its tunnels:
   Packet Received  <---------------------
 ```
 
-### Messages
+### Сообщения
 
 **Create Session**
-- Create a session for the given Destination.
+- Создать сессию для указанной Destination.
 
 **Session Status**
-- Confirmation that the session has been set up, and the client can now start building tunnels.
+- Подтверждение, что сессия настроена, и клиент может начать построение туннелей.
 
 **Get Fast Tier**
-- Request a list of the peers that the router currently would consider building tunnels through.
+- Запросить список пиров, через которые маршрутизатор в данный момент может строить туннели.
 
 **Peer List**
-- A list of peers known to the router.
+- Список пиров, известных маршрутизатору.
 
 **Create Tunnel**
-- Request that the router build a new tunnel through the specified peers.
+- Запрос на построение маршрутизатором нового туннеля через указанных пиров.
 
 **Tunnel Status**
-- The result of a particular tunnel build, once it is available.
+- Результат построения конкретного туннеля, как только он станет доступен.
 
 **Get Tunnel Pool**
-- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
+- Запросить список текущих туннелей во входящем или исходящем пуле для Destination.
 
 **Tunnel List**
-- A list of tunnels for the requested pool.
+- Список туннелей для запрошенного пула.
 
 **Publish LeaseSet**
-- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
+- Запросить публикацию маршрутизатором предоставленного LeaseSet через один из исходящих туннелей для Destination. Ответный статус не требуется; маршрутизатор должен продолжать повторные попытки, пока не убедится, что LeaseSet опубликован.
 
 **Send Packet**
-- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
+- Исходящий пакет от клиента. Опционально указывает исходящий туннель, через который пакет должен (должен?) быть отправлен.
 
 **Send Status**
-- Informs the client of the success or failure of sending a packet.
+- Сообщает клиенту об успешной или неудачной отправке пакета.
 
 **Packet Received**
-- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
+- Входящий пакет для клиента. Опционально указывает входящий туннель, через который был получен пакет(?)
 
 
-## Security implications
+## Последствия для безопасности
 
-From the perspective of the routers, this design is functionally equivalent to
-the status quo. The router still builds all tunnels, maintains its own peer
-profiles, and enforces separation between router and client operations. In the
-default configuration is completely identical, because tunnels for that router
-are built from its own fast tier.
+С точки зрения маршрутизаторов, этот проект функционально эквивалентен текущему состоянию. Маршрутизатор по-прежнему строит все туннели, поддерживает собственные профили пиров и обеспечивает разделение между операциями маршрутизатора и клиента. В конфигурации по умолчанию всё полностью идентично, поскольку туннели для маршрутизатора строятся из его собственного быстрого уровня.
 
-From the perspective of the netDB, a single LeaseSet created via this protocol
-is identical to the status quo, because it leverages pre-existing functionality.
-However, for larger LeaseSets approaching 16 Leases, it may be possible for an
-observer to determine that the LeaseSet is multihomed:
+С точки зрения netDB, один LeaseSet, созданный с помощью этого протокола, идентичен текущему состоянию, поскольку он использует уже существующую функциональность. Однако для больших LeaseSet, приближающихся к 16 лизам, наблюдатель может определить, что LeaseSet использует мультихоминг:
 
-- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
-  (IBGW, the node published in a Lease) is selected from a fraction of the tier
-  (partitioned randomly per-tunnel pool by hash, not count):
+- Текущий максимальный размер быстрого уровня — 75 пиров. Входной шлюз (IBGW, узел, опубликованный в Lease) выбирается из части этого уровня (разделённой случайным образом по пулу туннелей по хэшу, а не по количеству):
 
-      1 hop
-          The whole fast tier
+      1 хоп
+          Весь быстрый уровень
 
-      2 hops
-          Half of the fast tier
-          (the default until mid-2014)
+      2 хопа
+          Половина быстрого уровня
+          (по умолчанию до середины 2014 года)
 
-      3+ hops
-          A quarter of the fast tier
-          (3 being the current default)
+      3+ хопа
+          Четверть быстрого уровня
+          (3 — текущее значение по умолчанию)
 
-  That means on average the IBGWs will be from a set of 20-30 peers.
+  Это означает, что в среднем IBGW будут выбираться из набора из 20–30 пиров.
 
-- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
-  randomly selected from a set of up to (say) 20 peers.
+- В однородной конфигурации полный LeaseSet с 16 туннелями будет иметь 16 IBGW, случайно выбранных из набора до (скажем) 20 пиров.
 
-- In a 4-router multihomed setup using the default configuration, a full
-  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
-  80 peers, though there are likely to be a fraction of common peers between
-  routers.
+- В 4-маршрутизаторной мультихоминговой конфигурации с настройками по умолчанию полный LeaseSet с 16 туннелями будет иметь 16 IBGW, случайно выбранных из набора максимум из 80 пиров, хотя, вероятно, будет доля общих пиров между маршрутизаторами.
 
-Thus with the default configuration, it may be possible through statistical
-analysis to figure out that a LeaseSet is being generated by this protocol. It
-might also be possible to figure out how many routers there are, although the
-effect of churn on the fast tiers would reduce the effectiveness of this
-analysis.
+Таким образом, при конфигурации по умолчанию с помощью статистического анализа можно определить, что LeaseSet генерируется с помощью этого протокола. Также возможно определить количество маршрутизаторов, хотя влияние смены пиров в быстром уровне снизит эффективность такого анализа.
 
-As the client has full control over which peers it selects, this information
-leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
-peers.
+Поскольку клиент полностью контролирует выбор пиров, эту утечку информации можно уменьшить или устранить, выбирая IBGW из ограниченного набора пиров.
 
 
-## Compatibility
+## Совместимость
 
-This design is completely backwards-compatible with the network, because there
-are no changes to the LeaseSet format. All routers would need to be aware of
-the new protocol, but this is not a concern as they would all be controlled by
-the same entity.
+Этот проект полностью обратно совместим с сетью, поскольку формат LeaseSet не изменяется. Все маршрутизаторы должны быть осведомлены о новом протоколе, но это не является проблемой, поскольку ими будет управлять одна и та же сущность.
 
 
-## Performance and scalability notes
+## Замечания о производительности и масштабируемости
 
-The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
-Destinations that require more tunnels than this, there are two possible network
-modifications:
+Верхний предел в 16 лиз на LeaseSet остаётся неизменным в этом предложении. Для Destination, которым требуется больше туннелей, возможны два варианта модификации сети:
 
-- Increase the upper limit on the size of LeaseSets. This would be the simplest
-  to implement (though it would still require pervasive network support before
-  it could be widely used), but could result in slower lookups due to the larger
-  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
-  underlying transports, and is therefore around 16kB.
+- Увеличить верхний предел размера LeaseSet. Это было бы самым простым в реализации (хотя всё равно потребовало бы повсеместной поддержки сети, прежде чем можно будет широко использовать), но могло бы привести к более медленным поискам из-за увеличения размера пакетов. Максимальный допустимый размер LeaseSet определяется MTU базовых транспортов и составляет около 16 кБ.
 
-- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
-  the Destinations for the sub-LeaseSets could be spread across multiple
-  routers, effectively acting like multiple IP addresses for a clearnet service.
+- Реализовать Предложение 123 для иерархических LeaseSet. В сочетании с этим предложением Destination для под-LeaseSet можно распределить по нескольким маршрутизаторам, что эффективно будет работать как несколько IP-адресов для сервиса в clearnet.
 
 
-## Acknowledgements
+## Благодарности
 
-Thanks to psi for the discussion that led to this proposal.
+Спасибо psi за обсуждение, приведшее к этому предложению.
 
 
-## References
+## Ссылки
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [I2CP](/docs/specs/i2cp/)

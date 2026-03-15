@@ -12,59 +12,58 @@ thread: "http://zzz.i2p/topics/3060"
 target: "0.9.50"
 toc: true
 ---
-
-## Note
-Network deployment and testing in progress.
-Subject to minor revisions.
-
-
-## Overview
-
-This proposal is to implement enhancements to the SSU and NTCP2 transports for IPv6.
+## Ghi chú
+Triển khai mạng và kiểm thử đang được tiến hành.  
+Có thể sửa đổi nhỏ.
 
 
-## Motivation
+## Tổng quan
 
-As IPv6 grows around the world and IPv6-only setups (especially on mobile) becomes more common,
-we need to improve our support for IPv6 and remove the assumptions that
-all routers are IPv4-capable.
+Đề xuất này nhằm thực hiện các cải tiến cho các giao thức truyền tải SSU và NTCP2 đối với IPv6.
 
 
+## Động lực
 
-### Connectivity Checking
-
-When selecting peers for tunnels, or selecting OBEP/IBGW paths for routing messages,
-it helps to calculate whether router A can connect to router B.
-In general, this means determining if A has outbound capability for a transport and address type (IPv4/v6)
-that matches one of B's advertised inbound addresses.
-
-However, in many cases we don't know A's capabilites and have to make assumptions.
-If A is hidden or firewalled, the addresses are not published, and we don't have direct knowledge -
-so we assume it's IPv4 capable, and not IPv6 capable.
-The solution is adding two new "caps" or capabilities to the Router Info to indicate outbound capability for IPv4 and IPv6.
+Khi IPv6 ngày càng phát triển trên toàn thế giới và các thiết lập chỉ dùng IPv6 (đặc biệt trên thiết bị di động) trở nên phổ biến hơn,
+chúng ta cần cải thiện khả năng hỗ trợ IPv6 và loại bỏ các giả định rằng
+tất cả các bộ định tuyến đều có khả năng IPv4.
 
 
-### IPv6 Introducers
 
-Our specifications for SSU contain errors and inconsistencies about whether
-IPv6 introducers are supported for IPv4 introductions.
-In any case, this has never been implemented in either Java I2P or i2pd.
-This needs to be corrected.
+### Kiểm tra kết nối
 
+Khi chọn các điểm ngang hàng (peer) cho các đường hầm, hoặc chọn các đường dẫn OBEP/IBGW để định tuyến tin nhắn,
+sẽ hữu ích nếu tính toán được liệu bộ định tuyến A có thể kết nối tới bộ định tuyến B hay không.
+Nói chung, điều này có nghĩa là xác định xem A có khả năng gửi ra ngoài (outbound) cho một giao thức và loại địa chỉ (IPv4/v6)
+phù hợp với một trong các địa chỉ nhận vào (inbound) được B công bố hay không.
 
-### IPv6 Introdutions
-
-Our specifications for SSU make clear that
-IPv6 introductions are not supported.
-This was under the assumption that IPv6 is never firewalled.
-This is clearly not true, and we need to improve support for firewalled IPv6 routers.
+Tuy nhiên, trong nhiều trường hợp, chúng ta không biết khả năng của A và phải đưa ra giả định.
+Nếu A bị ẩn hoặc bị tường lửa, các địa chỉ sẽ không được công bố, và chúng ta không có thông tin trực tiếp —
+do đó, chúng ta giả định rằng A có khả năng IPv4, nhưng không có khả năng IPv6.
+Giải pháp là thêm hai "khả năng" (caps) mới vào Thông tin Bộ định tuyến (Router Info) để chỉ ra khả năng gửi ra ngoài cho IPv4 và IPv6.
 
 
-### Introduction Diagrams
+### Người giới thiệu IPv6
 
-Legend: ----- is IPv4, ====== is IPv6
+Các đặc tả của chúng ta về SSU có những lỗi và không nhất quán về việc
+có hỗ trợ người giới thiệu IPv6 cho các giới thiệu IPv4 hay không.
+Dù sao đi nữa, điều này chưa từng được triển khai trong cả Java I2P lẫn i2pd.
+Việc này cần được sửa chữa.
 
-**Current IPv4-only:**
+
+### Các giới thiệu IPv6
+
+Các đặc tả của chúng ta về SSU nêu rõ rằng
+các giới thiệu IPv6 không được hỗ trợ.
+Điều này dựa trên giả định rằng IPv6 không bao giờ bị tường lửa.
+Điều này rõ ràng là không đúng, và chúng ta cần cải thiện khả năng hỗ trợ các bộ định tuyến IPv6 bị tường lửa.
+
+
+### Sơ đồ giới thiệu
+
+Chú thích: ----- là IPv4, ====== là IPv6
+
+**Chỉ dùng IPv4 hiện tại:**
 
 ```
         Alice                         Bob                  Charlie
@@ -77,7 +76,7 @@ Legend: ----- is IPv4, ====== is IPv6
     Data <--------------------------------------------------> Data
 ```
 
-**IPv4 introduction, IPv6 introducer:**
+**Giới thiệu IPv4, người giới thiệu IPv6:**
 
 ```
 Alice                         Bob                  Charlie
@@ -90,7 +89,7 @@ Alice                         Bob                  Charlie
     Data <--------------------------------------------------> Data
 ```
 
-**IPv6 introduction, IPv6 introducer:**
+**Giới thiệu IPv6, người giới thiệu IPv6:**
 
 ```
 Alice                         Bob                  Charlie
@@ -103,7 +102,7 @@ Alice                         Bob                  Charlie
     Data <==================================================> Data
 ```
 
-**IPv6 introduction, IPv4 introducer:**
+**Giới thiệu IPv6, người giới thiệu IPv4:**
 
 ```
 Alice                         Bob                  Charlie
@@ -117,181 +116,181 @@ Alice                         Bob                  Charlie
 ```
 
 
-## Design
+## Thiết kế
 
-There are three changes to be implemented.
+Có ba thay đổi cần được triển khai.
 
-- Add "4" and "6" capabilities to Router Address capabilities to indicate outbound IPv4 and IPv6 support
-- Add support for IPv4 introductions via IPv6 introducers
-- Add support for IPv6 introductions via IPv4 and IPv6 introducers
-
-
-
-## Specification
-
-### 4/6 Caps
-
-This was originally implemented without a formal proposal, but it is required for
-IPv6 introductions, so we include it here.
+- Thêm khả năng "4" và "6" vào các khả năng địa chỉ bộ định tuyến để chỉ ra hỗ trợ gửi ra ngoài IPv4 và IPv6
+- Thêm hỗ trợ cho các giới thiệu IPv4 thông qua người giới thiệu IPv6
+- Thêm hỗ trợ cho các giới thiệu IPv6 thông qua người giới thiệu IPv4 và IPv6
 
 
-Two new capabilities "4" and "6" are defined.
-These new capabilities will be added to the "caps" property in the Router Address, not in the Router Info caps.
-We currently don't have a "caps" property defined for NTCP2.
-An SSU address with introducers is, by definition, ipv4 right now. We don't support ipv6 introduction at all.
-However, this proposal is compatible with a IPv6 introductions. See below.
 
-Additionally, a router may support connectivity via an overlay network such as I2P-over-Yggdrasil,
-but does not wish to publish an address, or that address does not have a standard IPv4 or IPv6 format.
-This new capability system should be flexible enough to support these networks as well.
+## Đặc tả
 
-We define the following changes:
+### Khả năng 4/6
 
-NTCP2: Add "caps" property
-
-SSU: Add support for a Router Address without a host or introducers, to indicate outbound support
-for IPv4, IPv6, or both.
-
-Both transports: Define the following caps values:
-
-- "4": IPv4 support
-- "6": IPv6 support
-
-Multiple values may be supported in a single address. See below.
-At least one of these caps are mandatory if no "host" value is included in the Router Address.
-At most one of these caps is optional if a "host" value is included in the Router Address.
-Additional transport caps may be defined in the future to indicate support for overlay networks or other connectivity.
+Tính năng này ban đầu được triển khai mà không có đề xuất chính thức, nhưng nó là bắt buộc cho
+các giới thiệu IPv6, vì vậy chúng tôi đưa nó vào đây.
 
 
-#### Use cases and examples
+Hai khả năng mới "4" và "6" được định nghĩa.
+Các khả năng mới này sẽ được thêm vào thuộc tính "caps" trong Địa chỉ Bộ định tuyến (Router Address), chứ không phải trong các khả năng của Router Info.
+Hiện tại, chúng ta chưa có thuộc tính "caps" được định nghĩa cho NTCP2.
+Một địa chỉ SSU có người giới thiệu hiện tại, theo định nghĩa, là ipv4. Chúng ta hoàn toàn chưa hỗ trợ giới thiệu ipv6.
+Tuy nhiên, đề xuất này tương thích với các giới thiệu IPv6. Xem bên dưới.
+
+Ngoài ra, một bộ định tuyến có thể hỗ trợ kết nối thông qua một mạng overlay như I2P-over-Yggdrasil,
+nhưng không muốn công bố địa chỉ, hoặc địa chỉ đó không có định dạng IPv4 hoặc IPv6 chuẩn.
+Hệ thống khả năng mới này nên đủ linh hoạt để hỗ trợ các mạng này.
+
+Chúng tôi định nghĩa các thay đổi sau:
+
+NTCP2: Thêm thuộc tính "caps"
+
+SSU: Thêm hỗ trợ cho một Địa chỉ Bộ định tuyến không có host hoặc người giới thiệu, để chỉ ra khả năng gửi ra ngoài
+cho IPv4, IPv6, hoặc cả hai.
+
+Cả hai giao thức: Định nghĩa các giá trị caps sau:
+
+- "4": Hỗ trợ IPv4
+- "6": Hỗ trợ IPv6
+
+Nhiều giá trị có thể được hỗ trợ trong một địa chỉ duy nhất. Xem bên dưới.
+Ít nhất một trong các khả năng này là bắt buộc nếu không có giá trị "host" nào được bao gồm trong Địa chỉ Bộ định tuyến.
+Tối đa một trong các khả năng này là tùy chọn nếu có giá trị "host" trong Địa chỉ Bộ định tuyến.
+Các khả năng giao thức bổ sung có thể được định nghĩa trong tương lai để chỉ ra hỗ trợ cho các mạng overlay hoặc các kết nối khác.
+
+
+#### Các trường hợp sử dụng và ví dụ
 
 SSU:
 
-SSU with host: 4/6 optional, never more than one.
-Example: SSU caps="4" host="1.2.3.4" key=... port="1234"
+SSU có host: 4/6 tùy chọn, không bao giờ nhiều hơn một.
+Ví dụ: SSU caps="4" host="1.2.3.4" key=... port="1234"
 
-SSU outbound only for one, other is published: Caps only, 4/6.
-Example: SSU caps="6"
+SSU chỉ gửi ra ngoài cho một loại, loại còn lại được công bố: Chỉ có caps, 4/6.
+Ví dụ: SSU caps="6"
 
-SSU with introducers: never combined. 4 or 6 is required.
-Example: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
+SSU có người giới thiệu: Không bao giờ kết hợp. Yêu cầu 4 hoặc 6.
+Ví dụ: SSU caps="4" iexp0=... ihost0=... iport0=... itag0=... key=...
 
-SSU hidden: Caps only, 4, 6, or 46. Multiple is allowed.
-No need for two addresses one with 4 and one with 6.
-Example: SSU caps="46"
+SSU ẩn: Chỉ có caps, 4, 6, hoặc 46. Cho phép nhiều giá trị.
+Không cần hai địa chỉ, một với 4 và một với 6.
+Ví dụ: SSU caps="46"
 
 NTCP2:
 
-NTCP2 with host: 4/6 optional, never more than one.
-Example: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
+NTCP2 có host: 4/6 tùy chọn, không bao giờ nhiều hơn một.
+Ví dụ: NTCP2 caps="4" host="1.2.3.4" i=... port="1234" s=... v="2"
 
-NTCP2 outbound only for one, other is published: Caps, s, v only, 4/6/y, multiple is allowed.
-Example: NTCP2 caps="6" i=... s=... v="2"
+NTCP2 chỉ gửi ra ngoài cho một loại, loại còn lại được công bố: Chỉ có caps, s, v, 4/6/y, cho phép nhiều giá trị.
+Ví dụ: NTCP2 caps="6" i=... s=... v="2"
 
-NTCP2 hidden: Caps, s, v only 4/6, multiple is allowed No need for two addresses one with 4 and one with 6.
-Example: NTCP2 caps="46" i=... s=... v="2"
-
-
-
-### IPv6 Introducers for IPv4
-
-The following changes are required to correct errors and inconsistencies in the specs.
-We have also described this as "part 1" of the proposal.
-
-#### Spec Changes
-
-The SSU specification currently says (IPv6 notes):
-
-IPv6 is supported as of version 0.9.8. Published relay addresses may be IPv4 or IPv6, and Alice-Bob communication may be via IPv4 or IPv6.
-
-Add the following:
-
-While the specification was changed as of version 0.9.8, Alice-Bob communication via IPv6 was not actually supported until version 0.9.50.
-Earlier versions of Java routers erroneously published the 'C' capability for IPv6 addresses,
-even though they did not actually act as an introducer via IPv6.
-Therefore, routers should only trust the 'C' capability on an IPv6 address if the router version is 0.9.50 or higher.
+NTCP2 ẩn: Chỉ có caps, s, v, 4/6, cho phép nhiều giá trị. Không cần hai địa chỉ, một với 4 và một với 6.
+Ví dụ: NTCP2 caps="46" i=... s=... v="2"
 
 
 
-The SSU specification currently says (Relay Request):
+### Người giới thiệu IPv6 cho IPv4
 
-The IP address is only included if it is be different than the packet's source address and port.
-In the current implementation, the IP length is always 0 and the port is always 0,
-and the receiver should use the packet's source address and port.
-This message may be sent via IPv4 or IPv6. If IPv6, Alice must include her IPv4 address and port.
+Các thay đổi sau đây là cần thiết để sửa lỗi và sự không nhất quán trong các đặc tả.
+Chúng tôi cũng đã mô tả điều này như "phần 1" của đề xuất.
 
-Add the following:
+#### Thay đổi đặc tả
 
-The IP and port must be included to introduce an IPv4 address when sending this message over IPv6.
-This is supported as of release 0.9.50.
+Đặc tả SSU hiện tại nói (ghi chú IPv6):
 
+IPv6 được hỗ trợ kể từ phiên bản 0.9.8. Các địa chỉ chuyển tiếp được công bố có thể là IPv4 hoặc IPv6, và giao tiếp Alice-Bob có thể qua IPv4 hoặc IPv6.
 
+Thêm vào:
 
-### IPv6 Introductions
-
-All three of the SSU relay messages (RelayRequest, RelayResponse, and RelayIntro) contain IP length fields
-to indicate the length of the (Alice, Bob, or Charlie) IP address to follow.
-
-Therefore, no change to the format of the messages is required.
-Only textual changes to the specifications, indicating that 16-byte IP addresses are allowed.
-
-The following changes are required to the specs.
-We have also described this as "part 2" of the proposal.
+Mặc dù đặc tả đã được thay đổi kể từ phiên bản 0.9.8, giao tiếp Alice-Bob qua IPv6 thực tế chưa được hỗ trợ cho đến phiên bản 0.9.50.
+Các phiên bản cũ hơn của bộ định tuyến Java đã sai lầm khi công bố khả năng 'C' cho các địa chỉ IPv6,
+dù thực tế chúng không hoạt động như một người giới thiệu qua IPv6.
+Do đó, các bộ định tuyến chỉ nên tin tưởng khả năng 'C' trên một địa chỉ IPv6 nếu phiên bản bộ định tuyến là 0.9.50 trở lên.
 
 
-#### Spec Changes
 
-The SSU specification currently says (IPv6 notes):
+Đặc tả SSU hiện tại nói (Yêu cầu Chuyển tiếp):
 
-Bob-Charlie and Alice-Charlie communication is via IPv4 only.
+Địa chỉ IP chỉ được bao gồm nếu nó khác với địa chỉ nguồn và cổng của gói tin.
+Trong triển khai hiện tại, độ dài IP luôn bằng 0 và cổng luôn bằng 0,
+và người nhận nên sử dụng địa chỉ nguồn và cổng của gói tin.
+Tin nhắn này có thể được gửi qua IPv4 hoặc IPv6. Nếu là IPv6, Alice phải bao gồm địa chỉ và cổng IPv4 của cô ấy.
 
-The SSU specification currently says (Relay Request):
+Thêm vào:
 
-There are no plans to implement relaying for IPv6.
-
-Change to say:
-
-Relaying for IPv6 is supported as of release 0.9.xx
-
-The SSU specification currently says (Relay Response):
-
-Charlie's IP address must be IPv4, as that is the address that Alice will send the SessionRequest to after the Hole Punch.
-There are no plans to implement relaying for IPv6.
-
-Change to say:
-
-Charlie's IP address may be IPv4 or, as of release 0.9.xx, IPv6.
-That is the address that Alice will send the SessionRequest to after the Hole Punch.
-Relaying for IPv6 is supported as of release 0.9.xx
-
-The SSU specification currently says (Relay Intro):
-
-Alice's IP address is always 4 bytes in the current implementation, because Alice is trying to connect to Charlie via IPv4.
-This message must be sent via an established IPv4 connection,
-as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
-
-Change to say:
-
-For IPv4, Alice's IP address is always 4 bytes, because Alice is trying to connect to Charlie via IPv4.
-As of release 0.9.xx, IPv6 is supported, and Alice's IP address may be 16 bytes.
-
-For IPv4, this message must be sent via an established IPv4 connection,
-as that's the only way that Bob knows Charlie's IPv4 address to return to Alice in the RelayResponse.
-As of release 0.9.xx, IPv6 is supported, and this message may be sent via an established IPv6 connection.
-
-Also add:
-
-As of release 0.9.xx, any SSU address published with introducers must contain "4" or "6" in the "caps" option.
+IP và cổng phải được bao gồm để giới thiệu một địa chỉ IPv4 khi gửi tin nhắn này qua IPv6.
+Tính năng này được hỗ trợ kể từ phiên bản 0.9.50.
 
 
-## Migration
 
-All old routers should ignore the caps property in NTCP2, and unknown capability characters in the SSU caps property.
+### Các giới thiệu IPv6
 
-Any SSU address with introducers that does not contain a "4" or "6" cap is assumed to be for IPv4 introduction.
+Tất cả ba tin nhắn chuyển tiếp SSU (RelayRequest, RelayResponse và RelayIntro) đều chứa các trường độ dài IP
+để chỉ ra độ dài của địa chỉ IP (Alice, Bob hoặc Charlie) theo sau.
+
+Do đó, không cần thay đổi định dạng của các tin nhắn.
+Chỉ cần thay đổi văn bản trong các đặc tả, nêu rõ rằng các địa chỉ IP 16 byte được cho phép.
+
+Các thay đổi sau đây là cần thiết đối với các đặc tả.
+Chúng tôi cũng đã mô tả điều này như "phần 2" của đề xuất.
 
 
-## References
+#### Thay đổi đặc tả
+
+Đặc tả SSU hiện tại nói (ghi chú IPv6):
+
+Giao tiếp Bob-Charlie và Alice-Charlie chỉ qua IPv4.
+
+Đặc tả SSU hiện tại nói (Yêu cầu Chuyển tiếp):
+
+Hiện không có kế hoạch triển khai chuyển tiếp cho IPv6.
+
+Thay đổi thành:
+
+Chuyển tiếp cho IPv6 được hỗ trợ kể từ phiên bản 0.9.xx
+
+Đặc tả SSU hiện tại nói (Phản hồi Chuyển tiếp):
+
+Địa chỉ IP của Charlie phải là IPv4, vì đó là địa chỉ mà Alice sẽ gửi SessionRequest đến sau khi Hole Punch.
+Hiện không có kế hoạch triển khai chuyển tiếp cho IPv6.
+
+Thay đổi thành:
+
+Địa chỉ IP của Charlie có thể là IPv4 hoặc, kể từ phiên bản 0.9.xx, là IPv6.
+Đó là địa chỉ mà Alice sẽ gửi SessionRequest đến sau khi Hole Punch.
+Chuyển tiếp cho IPv6 được hỗ trợ kể từ phiên bản 0.9.xx
+
+Đặc tả SSU hiện tại nói (Giới thiệu Chuyển tiếp):
+
+Địa chỉ IP của Alice luôn là 4 byte trong triển khai hiện tại, vì Alice đang cố kết nối với Charlie qua IPv4.
+Tin nhắn này phải được gửi qua một kết nối IPv4 đã thiết lập,
+vì đó là cách duy nhất để Bob biết địa chỉ IPv4 của Charlie để trả về cho Alice trong RelayResponse.
+
+Thay đổi thành:
+
+Đối với IPv4, địa chỉ IP của Alice luôn là 4 byte, vì Alice đang cố kết nối với Charlie qua IPv4.
+Kể từ phiên bản 0.9.xx, IPv6 được hỗ trợ, và địa chỉ IP của Alice có thể là 16 byte.
+
+Đối với IPv4, tin nhắn này phải được gửi qua một kết nối IPv4 đã thiết lập,
+vì đó là cách duy nhất để Bob biết địa chỉ IPv4 của Charlie để trả về cho Alice trong RelayResponse.
+Kể từ phiên bản 0.9.xx, IPv6 được hỗ trợ, và tin nhắn này có thể được gửi qua một kết nối IPv6 đã thiết lập.
+
+Cũng thêm vào:
+
+Kể từ phiên bản 0.9.xx, mọi địa chỉ SSU được công bố với người giới thiệu phải chứa "4" hoặc "6" trong tùy chọn "caps".
+
+
+## Di chuyển
+
+Tất cả các bộ định tuyến cũ nên bỏ qua thuộc tính caps trong NTCP2, và các ký tự khả năng không biết trong thuộc tính caps của SSU.
+
+Bất kỳ địa chỉ SSU nào có người giới thiệu mà không chứa khả năng "4" hoặc "6" sẽ được coi là dùng để giới thiệu IPv4.
+
+
+## Tài liệu tham khảo
 
 * [CAPS](http://zzz.i2p/topics/3050)
 * [NTCP2](/docs/specs/ntcp2/)

@@ -5,39 +5,38 @@ author: "idk"
 description: "Basic i2ptunnel Setup"
 categories: ["tutorial"]
 ---
+على الرغم من أن موجه I2P بلغة Java يأتي مُهيأً مسبقًا مع خادم ويب ثابت هو jetty لتوفير أول موقع eepSite للمستخدم، فإن العديد من المستخدمين يحتاجون إلى وظائف أكثر تطورًا من خادم الويب الخاص بهم، ويفضلون إنشاء موقع eepSite باستخدام خادم مختلف. وهذا بالطبع ممكن، وفي الحقيقة يكون سهلًا جدًا بمجرد تنفيذه مرة واحدة.
 
-Although the Java I2P router comes pre-configured with a static web server, jetty, to provide the user's first eepSite, many require more sophisticated functionality from their web server and would rather create an eepSite with a different server. This is of course possible, and actually is really easy once you've done it one time.
+على الرغم من سهولة القيام بذلك، هناك بعض الأمور التي يجب أن تأخذها بعين الاعتبار قبل القيام بذلك. ستحتاج إلى إزالة السمات المميزة من خادم الويب الخاص بك، مثل الرؤوس التي قد تكشف الهوية، وصفحات الخطأ الافتراضية التي تُظهر نوع الخادم أو التوزيعة. لمزيد من المعلومات حول التهديدات التي تواجه الخصوصية الناتجة عن تهيئة غير صحيحة للتطبيقات، انظر: [Riseup هنا](https://riseup.net/en/security/network-security/tor/onionservices-best-practices)، [Whonix هنا](https://www.whonix.org/wiki/Onion_Services)، [مقال المدونة هذا حول بعض أخطاء opsec](https://blog.0day.rocks/securing-a-web-hidden-service-89d935ba1c1d)، [و صفحة تطبيقات I2P هنا](https://geti2p.net/docs/applications/supported). وعلى الرغم من أن معظم هذه المعلومات مكتوبة في سياق خدمات البصل في Tor، فإن نفس الإجراءات والمبادئ تنطبق على استضافة التطبيقات عبر I2P.
 
-Although it is easy to do, there are a few things you should consider before doing it. You will want to remove identifying characteristics from your web server, like potentially identifying headers and default error pages that report the server/distro type. More information about threats to anonymity posed by improperly configured applications see: [Riseup here](https://riseup.net/en/security/network-security/tor/onionservices-best-practices), [Whonix Here](https://www.whonix.org/wiki/Onion_Services), [This blog article for some opsec fails](https://blog.0day.rocks/securing-a-web-hidden-service-89d935ba1c1d), [and the I2P applications page here](https://geti2p.net/docs/applications/supported). Although much of this information is expressed for Tor Onion Services, the same procedures and principles apply to hosting applications over I2P.
+### الخطوة الأولى: فتح معالج القنوات (Tunnel Wizard)
 
-### Step One: Open the Tunnel Wizard
+اذهب إلى واجهة I2P على الويب على العنوان 127.0.0.1:7657 وافتح `http://127.0.0.1:7657/i2ptunnelmgr` (روابط إلى localhost). انقر على الزر الذي يقول "Tunnel Wizard" لبدء العملية.
 
-Go to the I2P web interface at 127.0.0.1:7657 and open the `http://127.0.0.1:7657/i2ptunnelmgr` (links to localhost). Click the button that says "Tunnel Wizard" to begin.
+### الخطوة الثانية: اختيار قناة خادم (Server Tunnel)
 
-### Step Two: Select a Server Tunnel
+معالج القنوات بسيط جدًا. بما أننا نقوم بإعداد خادم *http*، كل ما نحتاجه هو اختيار قناة من نوع *server*.
 
-The tunnel wizard is very simple. Since we're setting up an http *server*, all we need to do is select a *server* tunnel.
+### الخطوة الثالثة: اختيار قناة HTTP
 
-### Step Three: Select an HTTP Tunnel
+قناة HTTP هي نوع القناة المُحسّنة لاستضافة خدمات HTTP. وهي تمتلك ميزات تصفية وتحديد معدل الاتصال (rate-limiting) مُفعّلة ومُعدّة خصيصًا لهذا الغرض. قد تعمل القناة القياسية (standard tunnel) أيضًا، ولكن إذا اخترت قناة قياسية فستحتاج إلى التعامل مع هذه الميزات الأمنية بنفسك. ستجد شرحًا أكثر تعمقًا لإعدادات قناة HTTP في البرنامج التعليمي القادم.
 
-An HTTP tunnel is the tunnel type that is optimized for hosting HTTP services. It has filtering and rate-limiting features enabled that are tailored specifically to that purpose. A standard tunnel may work as well, but if you select a standard tunnel you'll need to take care of those security features yourself. A more in-depth dive into the HTTP Tunnel configuration is available in the next tutorial.
+### الخطوة الرابعة: أعطِها اسمًا ووصفًا
 
-### Step Four: Give it a name and a description
+من أجل مصلحتك الشخصية، وسهولة تذكّر الغرض من القناة والتمييز بينها وبين غيرها، اختر اسمًا مميزًا (nickname) ووصفًا مناسبًا. إذا احتجت لاحقًا إلى العودة وإجراء المزيد من الإعدادات، فستكون هذه هي الطريقة التي تتعرف بها على القناة في مدير الخدمات المخفية (hidden services manager).
 
-For your own benefit and ability to remember and distinguish the what you are using the tunnel for, give it a good nickname and description. If you need to come back and do more management later, then this is how you will identify the tunnel in the hidden services manager.
+### الخطوة الخامسة: تهيئة المضيف والمنفذ (Host and Port)
 
-### Step Five: Configure the Host and Port
+في هذه الخطوة، تقوم بتوجيه خادم الويب إلى المنفذ TCP حيث يستمع خادم الويب الخاص بك. وبما أن معظم خوادم الويب تستمع على المنفذ 80 أو 8080، فإن المثال يعرض ذلك. إذا كنت تستخدم منافذ بديلة أو ماكينات افتراضية أو حاويات (containers) لعزل خدمات الويب الخاصة بك، فقد تحتاج إلى تعديل المضيف (host) أو المنفذ (port) أو كليهما.
 
-In this step, you point the web server at the TCP port where your web server is listening. Since most web servers listen on port 80 or port 8080, the example shows that. If you use alternate ports or virtual machines or containers to isolate your web services, you may need to adjust the host, port, or both.
+### الخطوة السادسة: قرر ما إذا كنت تريد بدء التشغيل تلقائيًا
 
-### Step Six: Decide whether to start it automatically
+لا يمكنني التفكير في طريقة لتوسيع الشرح لهذه الخطوة.
 
-I cannot think of a way to elaborate on this step.
+### الخطوة السابعة: راجع إعداداتك
 
-### Step Seven: Review your settings
+أخيرًا، نظر في الإعدادات التي اخترتها. إذا وافقت عليها، احفظها. وإذا لم تُختر بدء القناة تلقائيًا، فاذهب إلى مدير الخدمات المخفية وابدأها يدويًا عندما ترغب في جعل خدمتك متاحة.
 
-Finally, take a look at the settings you have selected. If you approve, save them. If you did not choose to start the tunnel automatically, go to the hidden services manager and start it manually when you wish to make your service available.
+### ملحق: خيارات تخصيص خادم HTTP
 
-### Appendix: HTTP Server Customization Options
-
-I2P provides a detailed panel for configuring the http server tunnel in custom ways. I'll finish this tutorial by walking through all of them. Eventually.
+يوفر I2P لوحة مفصلة لتهيئة قناة خادم HTTP بطرق مخصصة. سأُكمل هذا البرنامج التعليمي بشرح كل هذه الخيارات. في النهاية.

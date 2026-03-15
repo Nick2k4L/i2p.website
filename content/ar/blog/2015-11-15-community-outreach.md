@@ -5,29 +5,28 @@ author: "lazygravy"
 description: "A start to more frequent community status reports."
 categories: ["community"]
 ---
+## ميتا
 
-## Meta
+تحيات! هذه هي المقالة الأولى في سلسلة طويلة من المدونات التي تهدف إلى إطلاع المجتمع على ما يحدث داخل مجتمع I2P. وبما أن العديد من الأحداث الرائعة تحدث *ضمن* الشبكة، نعتقد أنه من الجدير الحديث عن بعض هذه الأنشطة هنا.
 
-Greetings! This is the first in a long series of blogs to help the community see what is happening in the I2P community. Since many awesome events are happening *inside* the network, we think it will be worthwhile to talk about some of activities here.
+## دعوة لتقديم الملاحظات
 
-## A Call for Feedback
+لنواجه الأمر — لوحة التحكم الخاصة بنا تحتاج إلى تحسين. كما أن موقعنا يحتاج إلى تحديث أيضًا. نحن نبحث عن ملاحظات حول كيفية تحسين سهولة استخدام I2P للمستخدمين الجدد والمستخدمين الحاليين!
 
-Let's face it -- our console needs improvement. Our site could use an update as well. We are looking for feedback on how to improve the usability of I2P for new and existing users!
+جميع الملاحظات مرحب بها. يرجى التواصل مع @GetI2P أو @str4d أو @YrB1rd. إذا لم تكن مرتاحًا باستخدام تويتر، فنحن دائمًا متاحون عبر قناة IRC داخل الشبكة. ليس عليك أن تكون مستخدمًا منذ فترة طويلة. نريد أن نسمع من جميع أنواع الأشخاص!
 
-Any and all feedback is welcome. Please contact @GetI2P, @str4d, or @YrB1rd. If you don't feel comfortable using Twitter, we are always available via the in-network IRC channel. You don't have to be a long time user. We want to hear from all sorts of people!
+## ملخص اجتماع المطورين
 
-## Developer Meeting Synopsis
+في 3 نوفمبر، عُقد اجتماع لمطوري I2P. ركّز هذا الاجتماع على إضافة روابط جديدة إلى لوحة تحكم الراوتر، والاستعداد لمؤتمر CCC، وإيجاد بديل لـ forum.i2p، وتحسينات الموقع الإلكتروني.
 
-On 03 November there was an I2P developer meeting. This meeting focused on adding new links to the router console, preparation for CCC, finding a replacement for forum.i2p, and website improvements.
+كان الإجماع على عدم إضافة dogecoindark.i2p. توجد مخاوف بشأن سهولة الاستخدام بسبب تضمين العديد من الصور في الصفحة. تمت إضافة exchanged.i2p بشكل مشروط، بشرط أن يضيف القائم على الموقع إشعارًا تحذيريًا على الصفحة. تم قبول موقع i2Pwiki.i2p (نسخة احتياطية من ugha.i2p، وهو ويكي قديم)، وكذلك تم قبول lenta.i2p (موقع أخبار روسي).
 
-The consensus was to not add dogecoindark.i2p. There are concerns about usability due to many images being included on the page. Exchanged.i2p is conditionally added, as long as the maintainer adds a disclaimer on the site. I2Pwiki.i2p (a backup of ugha.i2p, an older wiki) was accepted, as was lenta.i2p (a russian news site).
+اقترح str4d تخصيص نطاق \*.i2p.i2p ليتم استخدامه لخدمات المطورين. كما اقترح إنشاء نظام رسمي أكثر لتقديم المقترحات التقنية، مع إبراز أكبر على الموقع الرئيسي.
 
-str4d proposed blocking off the \*.i2p.i2p namespace so they can be used for developer's services. He also suggested a more formalized technical proposal system, with more prominence on the main website.
+سيتواجد فريق I2P في هامبورغ، ألمانيا، للمشاركة في مؤتمر Chaos Computer Congress الـ32. تفاصيل إضافية قادمة، ولكن يمكننا أن نعدكم بوجود ملصقات.
 
-The I2P Team is going to be in Hamburg, Germany for the 32nd Chaos Computer Congress. More details are to come on this, but we can promise there will be stickers.
+## إعلانات عامة
 
-## General Announcements
+شكرًا لـ TorontoCrypto لاستضافته خادم إعادة التهيئة (reseed) الأحدث لـ I2P!
 
-Thank you to TorontoCrypto for hosting the newest I2P reseed server!
-
-Translation deadline Thursday, 12 November, translators please update. All translations are done via Transifex.
+آخر موعد للترجمة هو الخميس، 12 نوفمبر. المترجمون، يرجى التحديث. تتم جميع الترجمات عبر Transifex.

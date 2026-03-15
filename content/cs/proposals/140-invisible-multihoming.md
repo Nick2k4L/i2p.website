@@ -8,85 +8,69 @@ status: "Otevřít"
 thread: "http://zzz.i2p/topics/2335"
 toc: true
 ---
+## Přehled
 
-## Overview
+Tento návrh popisuje návrh protokolu umožňujícího klientovi I2P, službě
+nebo externímu procesu vyrovnávání zatížení spravovat více směrovačů transparentně hostujících jedinou [Destination](/docs/specs/common-structures/#destination).
 
-This proposal outlines a design for a protocol enabling an I2P client, service
-or external balancer process to manage multiple routers transparently hosting a
-single [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
-
-The proposal currently does not specify a concrete implementation. It could be
-implemented as an extension to [I2CP](/docs/specs/i2cp/), or as a new protocol.
+Návrh aktuálně nespecifikuje konkrétní implementaci. Může být
+implementován jako rozšíření [I2CP](/docs/specs/i2cp/), nebo jako nový protokol.
 
 
-## Motivation
+## Motivace
 
-Multihoming is where multiple routers are used to host the same Destination.
-The current way to multihome with I2P is to run the same Destination on each
-router independently; the router that gets used by clients at any particular
-time is the last one to publish a LeaseSet.
+Multihoming znamená použití více směrovačů k hostování stejné Destination.
+Současný způsob multihomingu s I2P spočívá v běhu stejné Destination na každém
+směrovači nezávisle; směrovač, který je v daném okamžiku používán klienty, je ten,
+který naposledy publikoval LeaseSet.
 
-This is a hack and presumably won't work for large websites at scale. Say we had
-100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
-every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
-and throttles would kick in. And that's before we even mention the lookup
-traffic.
+Toto je hack a pravděpodobně nebude fungovat pro velké weby ve velkém měřítku. Řekněme, že máme
+100 multihomingových směrovačů, každý s 16 tunely. To je 1600 publikací LeaseSetu
+každých 10 minut, tedy téměř 3 za sekundu. Floodfill uzly by byly zahlceny
+a zapnuly by se omezení. A to ještě ani nebyla zmíněna provoz spojený s vyhledáváním.
 
-Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
-LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
-meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
-the lookup traffic issue, but on its own it creates a significant privacy leak:
-It is possible to determine which multihoming routers are online by monitoring
-the published meta-LeaseSet, because each real LeaseSet has corresponds to a
-single router.
+Návrh 123 tento problém řeší pomocí meta-LeaseSetu, který obsahuje seznam 100 reálných
+hashů LeaseSetu. Vyhledání se stává dvoustupňovým procesem: nejprve vyhledání meta-LeaseSetu a poté jednoho z pojmenovaných LeaseSetů. Toto je dobré řešení problému s provozem při vyhledávání, ale samo o sobě vytváří významnou díru v soukromí:
+Je možné zjistit, které multihomingové směrovače jsou online sledováním publikovaného meta-LeaseSetu, protože každý reálný LeaseSet odpovídá jedinému směrovači.
 
-We need a way for an I2P client or service to spread a single Destination across
-multiple routers, in a way that is indistinguishable to using a single router
-(from the perspective of the LeaseSet itself).
+Potřebujeme způsob, jak umožnit klientovi nebo službě I2P rozprostřít jednu Destination přes
+více směrovačů tak, aby to bylo z hlediska LeaseSetu nerozeznatelné od použití jediného směrovače.
 
 
-## Design
+## Návrh
 
-### Definitions
+### Definice
 
-    User
-        The person or organisation wanting to multihome their Destination(s). A
-        single Destination is considered here without loss of generality (WLOG).
+    Uživatel
+        Osoba nebo organizace, která chce provozovat multihoming svých Destination. Zde je uvažována jediná Destination obecně (WLOG).
 
-    Client
-        The application or service running behind the Destination. It may be a
-        client-side, server-side, or peer-to-peer application; we refer to it as
-        a client in the sense that it connects to the I2P routers.
+    Klient
+        Aplikace nebo služba běžící za Destination. Může se jednat o klientskou, serverovou nebo peer-to-peer aplikaci; označujeme ji jako
+        klienta ve smyslu, že se připojuje ke směrovačům I2P.
 
-        The client consists of three parts, which may all be in the same process
-        or may be split across processes or machines (in a multi-client setup):
+        Klient se skládá ze tří částí, které mohou být všechny ve stejném procesu
+        nebo mohou být rozděleny mezi procesy či stroje (v multi-klientském nastavení):
 
-        Balancer
-            The part of the client that manages peer selection and tunnel
-            building. There is a single balancer at any one time, and it
-            communicates with all I2P routers. There may be failover balancers.
+        Vyvažovač (Balancer)
+            Část klienta, která spravuje výběr peerů a stavbu tunelů. V daném okamžiku existuje pouze jeden vyvažovač a komunikuje se všemi směrovači I2P. Může existovat záložní vyvažovač.
 
         Frontend
-            The part of the client that can be operated in parallel. Each
-            frontend communicates with a single I2P router.
+            Část klienta, která může být provozována paralelně. Každý frontend komunikuje s jedním směrovačem I2P.
 
         Backend
-            The part of the client that is shared between all frontends. It has
-            no direct communication with any I2P router.
+            Část klienta, která je sdílena mezi všemi frontendy. Nemá přímou komunikaci se žádným směrovačem I2P.
 
-    Router
-        An I2P router run by the user that sits at the boundary between the I2P
-        network and the user's network (akin to an edge device in corporate
-        networks). It builds tunnels under the command of a balancer, and routes
-        packets for a client or frontend.
+    Směrovač (Router)
+        Směrovač I2P provozovaný uživatelem, který se nachází na hranici mezi sítí I2P a sítí uživatele (podobně jako hraniční zařízení v firemních
+        sítích). Staví tunely na základě příkazů vyvažovače a směruje pakety pro klienta nebo frontend.
 
-### High-level overview
+### Celkový přehled
 
-Imagine the following desired configuration:
+Představme si následující požadovanou konfiguraci:
 
-- A client application with one Destination.
-- Four routers, each managing three inbound tunnels.
-- All twelve tunnels should be published in a single LeaseSet.
+- Klientská aplikace s jednou Destination.
+- Čtyři směrovače, každý spravující tři příchozí tunely.
+- Všech dvanáct tunelů by mělo být publikováno v jednom LeaseSetu.
 
 ### Single-client
 
@@ -128,180 +112,148 @@ Imagine the following desired configuration:
                   -{ [Tunnel 12]==/
 ```
 
-### General client process
+### Obecný proces klienta
 
-- Load or generate a Destination.
+- Načíst nebo vygenerovat Destination.
 
-- Open up a session with each router, tied to the Destination.
+- Otevřít relaci s každým směrovačem, vázanou k této Destination.
 
-- Periodically (around every ten minutes, but more or less based on tunnel
-  liveness):
+- Pravidelně (asi každých deset minut, ale více či méně podle životnosti tunelů):
 
-  - Obtain the fast tier from each router.
+  - Získat rychlou úroveň (fast tier) od každého směrovače.
 
-  - Use the superset of peers to build tunnels to/from each router.
+  - Použít nadmnožinu peerů k vytvoření tunelů do/ze každého směrovače.
 
-    - By default, tunnels to/from a particular router will use peers from
-      that router's fast tier, but this is not enforced by the protocol.
+    - Ve výchozím nastavení budou tunely do/ze směrovače používat peery z
+      rychlé úrovně tohoto směrovače, ale protokol to nevynucuje.
 
-  - Collect the set of active inbound tunnels from all active routers, and create a
-    LeaseSet.
+  - Shromáždit množinu aktivních příchozích tunelů ze všech aktivních směrovačů a vytvořit LeaseSet.
 
-  - Publish the LeaseSet through one or more of the routers.
+  - Publikovat LeaseSet přes jeden nebo více směrovačů.
 
-### Differences to I2CP
+### Rozdíly oproti I2CP
 
-To create and manage this configuration, the client needs the following new
-functionality beyond what is currently provided by [I2CP](/docs/specs/i2cp/):
+Pro vytvoření a správu této konfigurace potřebuje klient následující nové
+funkce nad rámec toho, co je aktuálně poskytováno [I2CP](/docs/specs/i2cp/):
 
-- Tell a router to build tunnels, without creating a LeaseSet for them.
-- Get a list of the current tunnels in the inbound pool.
+- Říct směrovači, aby postavil tunely, aniž by pro ně vytvářel LeaseSet.
+- Získat seznam aktuálních tunelů v příchozím fondu.
 
-Additionally, the following functionality would enable significant flexibility
-in how the client manages its tunnels:
+Dále by následující funkce umožnily významnou flexibilitu v tom, jak klient spravuje své tunely:
 
-- Get the contents of a router's fast tier.
-- Tell a router to build an inbound or outbound tunnel using a given list of
-  peers.
+- Získat obsah rychlé úrovně směrovače.
+- Říct směrovači, aby postavil příchozí nebo odchozí tunel pomocí daného seznamu
+  peerů.
 
-### Protocol outline
+### Náčrt protokolu
 
 ```
-         Client                           Router
+         Klient                           Směrovač
 
-                    --------------------->  Create Session
-   Session Status  <---------------------
-                    --------------------->  Get Fast Tier
-        Peer List  <---------------------
-                    --------------------->  Create Tunnel
-    Tunnel Status  <---------------------
-                    --------------------->  Get Tunnel Pool
-      Tunnel List  <---------------------
-                    --------------------->  Publish LeaseSet
-                    --------------------->  Send Packet
-      Send Status  <---------------------
-  Packet Received  <---------------------
+                    --------------------->  Vytvořit relaci (Create Session)
+   Stav relace  <---------------------
+                    --------------------->  Získat rychlou úroveň (Get Fast Tier)
+        Seznam peerů  <---------------------
+                    --------------------->  Vytvořit tunel (Create Tunnel)
+    Stav tunelu  <---------------------
+                    --------------------->  Získat fond tunelů (Get Tunnel Pool)
+      Seznam tunelů  <---------------------
+                    --------------------->  Publikovat LeaseSet (Publish LeaseSet)
+                    --------------------->  Odeslat paket (Send Packet)
+      Stav odeslání  <---------------------
+  Přijatý paket  <---------------------
 ```
 
-### Messages
+### Zprávy
 
 **Create Session**
-- Create a session for the given Destination.
+- Vytvořit relaci pro danou Destination.
 
 **Session Status**
-- Confirmation that the session has been set up, and the client can now start building tunnels.
+- Potvrzení, že relace byla nastavena a klient může začít stavět tunely.
 
 **Get Fast Tier**
-- Request a list of the peers that the router currently would consider building tunnels through.
+- Požadavek na seznam peerů, které směrovač aktuálně zvažuje pro stavbu tunelů.
 
 **Peer List**
-- A list of peers known to the router.
+- Seznam peerů známých směrovači.
 
 **Create Tunnel**
-- Request that the router build a new tunnel through the specified peers.
+- Požadavek, aby směrovač postavil nový tunel přes zadané peery.
 
 **Tunnel Status**
-- The result of a particular tunnel build, once it is available.
+- Výsledek konkrétní stavby tunelu, jakmile je k dispozici.
 
 **Get Tunnel Pool**
-- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
+- Požadavek na seznam aktuálních tunelů v příchozím nebo odchozím fondu pro tuto Destination.
 
 **Tunnel List**
-- A list of tunnels for the requested pool.
+- Seznam tunelů pro požadovaný fond.
 
 **Publish LeaseSet**
-- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
+- Požadavek, aby směrovač publikoval poskytnutý LeaseSet přes jeden z odchozích tunelů pro tuto Destination. Není potřeba žádný stav odpovědi; směrovač by měl pokračovat v opakovaném pokusu, dokud nebude spokojen, že LeaseSet byl publikován.
 
 **Send Packet**
-- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
+- Odchozí paket od klienta. Volitelně určuje odchozí tunel, přes který musí (měl?) být paket odeslán.
 
 **Send Status**
-- Informs the client of the success or failure of sending a packet.
+- Informuje klienta o úspěchu či neúspěchu odeslání paketu.
 
 **Packet Received**
-- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
+- Příchozí paket pro klienta. Volitelně určuje příchozí tunel, přes který byl paket přijat(?)
 
 
-## Security implications
+## Bezpečnostní důsledky
 
-From the perspective of the routers, this design is functionally equivalent to
-the status quo. The router still builds all tunnels, maintains its own peer
-profiles, and enforces separation between router and client operations. In the
-default configuration is completely identical, because tunnels for that router
-are built from its own fast tier.
+Z pohledu směrovačů je tento návrh funkčně ekvivalentní současnému stavu. Směrovač stále staví všechny tunely, udržuje své vlastní profily peerů a vynucuje oddělení mezi operacemi směrovače a klienta. Ve výchozím nastavení je zcela identický, protože tunely pro daný směrovač jsou stavěny z jeho vlastní rychlé úrovně.
 
-From the perspective of the netDB, a single LeaseSet created via this protocol
-is identical to the status quo, because it leverages pre-existing functionality.
-However, for larger LeaseSets approaching 16 Leases, it may be possible for an
-observer to determine that the LeaseSet is multihomed:
+Z pohledu netDB je jeden LeaseSet vytvořený tímto protokolem identický se současným stavem, protože využívá již existující funkce. U větších LeaseSetů se blížících 16 Leaseům však může pozorovatel dozvědět, že LeaseSet je multihomed:
 
-- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
-  (IBGW, the node published in a Lease) is selected from a fraction of the tier
-  (partitioned randomly per-tunnel pool by hash, not count):
+- Současná maximální velikost rychlé úrovně je 75 peerů. Inbound Gateway (IBGW, uzel publikovaný v Lease) je vybírán z části této úrovně (rozdělené náhodně podle hash per fond tunelů, nikoli podle počtu):
 
-      1 hop
-          The whole fast tier
+      1 skok
+          Celá rychlá úroveň
 
-      2 hops
-          Half of the fast tier
-          (the default until mid-2014)
+      2 skoky
+          Polovina rychlé úrovně
+          (výchozí až do poloviny roku 2014)
 
-      3+ hops
-          A quarter of the fast tier
-          (3 being the current default)
+      3+ skoky
+          Čtvrtina rychlé úrovně
+          (3 je aktuální výchozí hodnota)
 
-  That means on average the IBGWs will be from a set of 20-30 peers.
+  To znamená, že průměrně budou IBGWy pocházet ze sady 20–30 peerů.
 
-- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
-  randomly selected from a set of up to (say) 20 peers.
+- V jednoduchém nastavení bude plný 16-tunelový LeaseSet mít 16 IBGWů náhodně vybraných ze sady až (řekněme) 20 peerů.
 
-- In a 4-router multihomed setup using the default configuration, a full
-  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
-  80 peers, though there are likely to be a fraction of common peers between
-  routers.
+- V 4-směrovačovém multihomed nastavení s výchozím nastavením bude plný
+  16-tunelový LeaseSet mít 16 IBGWů náhodně vybraných ze sady maximálně 80 peerů, i když mezi směrovači pravděpodobně bude část společných peerů.
 
-Thus with the default configuration, it may be possible through statistical
-analysis to figure out that a LeaseSet is being generated by this protocol. It
-might also be possible to figure out how many routers there are, although the
-effect of churn on the fast tiers would reduce the effectiveness of this
-analysis.
+Takže ve výchozím nastavení může být možné statistickou analýzou zjistit, že LeaseSet je generován tímto protokolem. Může být také možné zjistit, kolik směrovačů je použito, i když efekt rotace na rychlých úrovních by snížil účinnost této analýzy.
 
-As the client has full control over which peers it selects, this information
-leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
-peers.
+Protože klient má plnou kontrolu nad tím, které peery vybírá, může být tento únik informací snížen nebo eliminován výběrem IBGWů z omezené sady peerů.
 
 
-## Compatibility
+## Kompatibilita
 
-This design is completely backwards-compatible with the network, because there
-are no changes to the LeaseSet format. All routers would need to be aware of
-the new protocol, but this is not a concern as they would all be controlled by
-the same entity.
+Tento návrh je zcela zpětně kompatibilní se sítí, protože nejsou provedeny žádné změny ve formátu LeaseSetu. Všichni směrovači by museli znát nový protokol, ale to není problém, protože by všichni byli řízeni stejnou entitou.
 
 
-## Performance and scalability notes
+## Poznámky k výkonu a škálovatelnosti
 
-The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
-Destinations that require more tunnels than this, there are two possible network
-modifications:
+Horní limit 16 Leaseů na LeaseSet tímto návrhem zůstává nezměněn. Pro Destination, které vyžadují více tunelů, existují dvě možné síťové úpravy:
 
-- Increase the upper limit on the size of LeaseSets. This would be the simplest
-  to implement (though it would still require pervasive network support before
-  it could be widely used), but could result in slower lookups due to the larger
-  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
-  underlying transports, and is therefore around 16kB.
+- Zvýšit horní limit velikosti LeaseSetů. To by bylo nejjednodušší na implementaci (i když by stále vyžadovalo rozsáhlou podporu sítě, než by mohlo být široce použito), ale mohlo by vést ke zpomalení vyhledávání kvůli větším velikostem paketů. Maximální realizovatelná velikost LeaseSetu je určena MTU podkladových přenosových prostředků a je tedy kolem 16 kB.
 
-- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
-  the Destinations for the sub-LeaseSets could be spread across multiple
-  routers, effectively acting like multiple IP addresses for a clearnet service.
+- Implementovat Návrh 123 pro hierarchické LeaseSety. V kombinaci s tímto návrhem by mohly být Destination pro dílčí LeaseSety rozprostřeny přes více směrovačů, čímž by efektivně fungovaly jako více IP adres pro clearnetovou službu.
 
 
-## Acknowledgements
+## Poděkování
 
-Thanks to psi for the discussion that led to this proposal.
+Děkujeme psi za diskuzi, která vedla k tomuto návrhu.
 
 
-## References
+## Reference
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [I2CP](/docs/specs/i2cp/)

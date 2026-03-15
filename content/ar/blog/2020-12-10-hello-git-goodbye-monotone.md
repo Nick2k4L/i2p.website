@@ -5,29 +5,28 @@ author: "idk"
 description: "Hello git, goodbye mtn"
 categories: ["Status"]
 ---
+## مرحباً Git، وداعاً Monotone
 
-## Hello Git, Goodbye Monotone
+### اكتمال هجرة I2P إلى Git تقريباً
 
-### The I2P Git Migration is nearly concluded
+على مدار أكثر من عقد، اعتمدت I2P على خدمة Monotone العريقة لتلبية احتياجاتها في التحكم بالإصدار، ولكن خلال السنوات القليلة الماضية، انتقل معظم العالم إلى نظام التحكم بالإصدار الشائع الآن، Git. وفي الوقت نفسه، أصبحت شبكة I2P أسرع وأكثر موثوقية، وتم تطوير حلول بديلة يمكن الوصول إليها للتغلب على عدم إمكانية استئناف عمليات Git.
 
-For over a decade, I2P has relied on the venerable Monotone service to support its version control needs, but during the past few years, most of the world has moved on to the now-universal Git version control system. In that same time, the I2P Network has become faster and more reliable, and accessible workarounds to Git's non-resumability have been developed.
+اليوم يُعد مناسبة مهمة لـ I2P، حيث قمنا بإيقاف فرع mtn i2p.i2p القديم، وانتقلنا رسمياً إلى Git لتطوير مكتبات I2P الأساسية بلغة Java.
 
-Today marks a significant occasion for I2P, as we switched off the old mtn i2p.i2p branch, and moved the development of the core Java I2P libraries from Monotone to Git officially.
+ورغم أن استخدامنا لـ mtn قد تم التشكيك فيه في الماضي، وأنه لم يكن دائماً خياراً شعبياً، أود في هذه اللحظة، كربما آخر مشروع يستخدم Monotone، أن أوجه الشكر لمطوري Monotone، الحاليين والسابقين، أينما كانوا، على البرنامج الذي أنشأوه.
 
-While our use of mtn has been questioned in the past, and it's not always been a popular choice, I'd like to take this moment, as perhaps the very last project to use Monotone to thank the Monotone developers, current and former, wherever they are, for the software they created.
+## التوقيع باستخدام GPG
 
-## GPG Signing
+تتطلب عمليات الإدخال (Checkins) إلى مستودعات مشروع I2P تهيئة التوقيع باستخدام GPG لعمليات Git الخاصة بك، بما في ذلك طلبات الدمج (Merge Requests) وطلبات السحب (Pull Requests). يُرجى تهيئة عميل Git الخاص بك للتوقيع باستخدام GPG قبل أن تقوم بنسخ مستودع i2p.i2p وتقديم أي تعديلات.
 
-Checkins to the I2P Project repositories require you to configure GPG signing for your git commits, including Merge Requests and Pull Requests. Please configure your git client for GPG signing before you fork i2p.i2p and check anything in.
+## المستودعات الرسمية ومزامنة Gitlab/Github
 
-## Official Repositories and Gitlab/Github Syncing
+المستودع الرسمي هو المستودع المُستضاف على `https://i2pgit.org/i2p-hackers/i2p.i2p` وعلى `https://git.idk.i2p/i2p-hackers/i2p.i2p`، ولكن هناك "نسخة مُطابقة" متاحة على Github على الرابط https://github.com/i2p/i2p.i2p.
 
-The official repository is the one hosted at `https://i2pgit.org/i2p-hackers/i2p.i2p` and at `https://git.idk.i2p/i2p-hackers/i2p.i2p`, but there is a "Mirror" available at Github at https://github.com/i2p/i2p.i2p.
+الآن بعد انتقالنا إلى Git، يمكننا مزامنة المستودعات من مثيل Gitlab الخاص بنا المُستضاف ذاتياً إلى Github والعكس. وهذا يعني أنه يمكن إنشاء وتقديم طلب دمج (Merge Request) على Gitlab، وعند دمجه، سيتم مزامنة النتيجة مع Github، كما أن طلب السحب (Pull Request) عند دمجه على Github سيظهر تلقائياً على Gitlab.
 
-Now that we're on git, we can synchronize repositories from our own self-hosted Gitlab instance, to Github, and back again. This means that it is possible to create and submit a merge request on Gitlab and when it is merged, the result will be synced with Github, and a Pull Request on Github, when merged, will appear on Gitlab.
+هذا يعني أنه يمكنك تقديم الكود إلينا عبر مثيل Gitlab الخاص بنا أو عبر Github حسب تفضيلك، ولكن عدد أكبر من مطوري I2P يراقبون Gitlab بانتظام مقارنةً بـ Github. وبالتالي، من المرجح أن تتم عملية دمج طلبات الدمج (MRs) على Gitlab بشكل أسرع من طلبات السحب (PRs) على Github.
 
-This means that it's possible to submit code to us through our Gitlab instance or through Github depending on what you prefer, however, more of the I2P developers are regularly monitoring Gitlab than Github. MR's to Gitlab are more likely to be merged sooner than PR's to Github.
+## الشكر
 
-## Thanks
-
-Congratulations and thanks to everyone who helped in the git migration, especially zzz, eche|on, nextloop, and our site mirror operators! While some of us will miss Monotone, it has become a barrier for new and existing participants in I2P development and we're excited to join the world of developers using Git to manage their distributed projects.
+تهانينا وشكراً للجميع الذين ساعدوا في هجرة Git، خاصةً zzz وeche|on وnextloop ومشغلي نسخ مواقعنا! وعلى الرغم من أن بعضنا سيشعر بغياب Monotone، إلا أنه أصبح عائقاً أمام المشاركين الجدد والقدامى في تطوير I2P، ونحن متحمسون للانضمام إلى عالم المطورين الذين يستخدمون Git لإدارة مشاريعهم الموزعة.

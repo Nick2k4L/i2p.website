@@ -11,89 +11,79 @@ status: "मेटा"
 thread: "http://zzz.i2p/topics/2499"
 toc: true
 ---
+## अवलोकन
 
-## Overview
+यह दस्तावेज़ हमारे एल-गामल असममित एन्क्रिप्शन के प्रतिस्थापन या अतिरिक्त जोड़ के प्रस्ताव के समय विचार करने योग्य महत्वपूर्ण मुद्दों का वर्णन करता है।
 
-This document describes important issues to consider when proposing
-a replacement or addition to our ElGamal asymmetric encryption.
-
-This is an informational document.
+यह एक सूचनात्मक दस्तावेज़ है।
 
 
-## Motivation
+## प्रेरणा
 
-ElGamal is old and slow, and there are better alternatives.
-However, there are several issues that must be addressed before we can add or change to any new algorithm.
-This document highlights these unresolved issues.
-
-
-
-## Background Research
-
-Anybody proposing new crypto must first be familiar with the following documents:
-
-- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
-- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
-- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
-- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
-- Discussion threads here for each of the above proposals, linked within
-- [2018 proposal priorities](http://zzz.i2p/topics/2494)
-- [ECIES proposal](http://zzz.i2p/topics/2418)
-- [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
-- [Low-level crypto overview](/docs/specs/common-structures/)
+एल-गामल पुराना और धीमा है, और इसके बेहतर विकल्प मौजूद हैं।  
+हालांकि, किसी भी नए एल्गोरिथ्म में जोड़ या परिवर्तन करने से पहले कई मुद्दों को संबोधित करना आवश्यक है।  
+यह दस्तावेज़ इन अनसुलझे मुद्दों पर प्रकाश डालता है।
 
 
-## Asymmetric Crypto Uses
+## पृष्ठभूमि अनुसंधान
 
-As a review, we use ElGamal for:
+नई क्रिप्टो का प्रस्ताव देने वाले प्रत्येक व्यक्ति को निम्नलिखित दस्तावेज़ों से पहले से परिचित होना चाहिए:
 
-1) Tunnel Build messages (key is in RouterIdentity)
-
-2) Router-to-router encryption of netdb and other I2NP msgs (Key is in RouterIdentity)
-
-3) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused)
-
-4) Ephemeral DH for NTCP and SSU
-
-
-## Design
-
-Any proposal to replace ElGamal with something else must provide the following details.
+- [प्रस्ताव 111 NTCP2](/proposals/111-ntcp-2/)
+- [प्रस्ताव 123 LS2](/proposals/123-new-netdb-entries/)
+- [प्रस्ताव 136 प्रायोगिक हस्ताक्षर प्रकार](/proposals/136-experimental-sigtypes/)
+- [प्रस्ताव 137 वैकल्पिक हस्ताक्षर प्रकार](/proposals/137-optional-sigtypes/)
+- ऊपर दिए गए प्रत्येक प्रस्ताव के लिए चर्चा थ्रेड्स, भीतर लिंक किए गए
+- [2018 प्रस्ताव प्राथमिकताएँ](http://zzz.i2p/topics/2494)
+- [ECIES प्रस्ताव](http://zzz.i2p/topics/2418)
+- [नई असममित क्रिप्टो का अवलोकन](http://zzz.i2p/topics/1768)
+- [लो-लेवल क्रिप्टो का अवलोकन](/docs/specs/common-structures/)
 
 
+## असममित क्रिप्टो के उपयोग
 
-## Specification
+समीक्षा के रूप में, हम एल-गामल का उपयोग निम्नलिखित के लिए करते हैं:
 
-Any proposal for new asymmetric crypto must fully specify the following things.
+1) टनल बिल्ड संदेश (कुंजी RouterIdentity में होती है)
 
+2) राउटर-से-राउटर एन्क्रिप्शन नेटडीबी और अन्य I2NP संदेशों के लिए (कुंजी RouterIdentity में होती है)
 
+3) क्लाइंट एंड-टू-एंड एल-गामल+AES/सेशनटैग (कुंजी LeaseSet में होती है, Destination कुंजी का उपयोग नहीं होता)
 
-### 1. General
-
-Answer the following questions in your proposal. Note that this may need to be a separate proposal from the specifics in 2) below, as it may conflict with existing proposals 111, 123, 136, 137, or others.
-
-- Which of the above cases 1-4 do you propose to use the new crypto for?
-- If for 1) or 2) (router), Where does the public key go, in the RouterIdentity or the RouterInfo props? Do you intend to use the crypto type in the key cert? Completely specify. Justify your decision either way.
-- If for 3) (client), do you intend to store the public key in the destination and use the crypto type in the key cert (as in the ECIES proposal), or store it in LS2 (as in proposal 123), or something else? Completely specify, and justify your decision.
-- For all uses, how will support be advertised? If for 3), does it go in the LS2, or somewhere else? If for 1) and 2), is it similar to proposals 136 and/or 137? Completely specify, and justify your decisions. Will probably need a separate proposal for this.
-- Completely specify how and why this is backward compatible, and fully specify a migration plan.
-- Which unimplemented proposals are prerequisites for your proposal?
+4) NTCP और SSU के लिए क्षणिक DH
 
 
-### 2. Specific crypto type
+## डिज़ाइन
 
-Answer the following questions in your proposal:
-
-- General crypto info, specific curves/parameters, completely justify your choice. Provide links to specs and other info.
-- Speed test results compared to ElG and other alternatives if applicable. Include encrypt, decrypt, and keygen.
-- Library availability in C++ and Java (both OpenJDK, BouncyCastle, and 3rd party)
-  For 3rd party or non-Java, provide links and licenses
-- Proposed crypto type number(s) (experimental range or not)
+एल-गामल को किसी अन्य चीज़ से बदलने के किसी भी प्रस्ताव में निम्नलिखित विवरण प्रदान करने होंगे।
 
 
+## विनिर्देश
+
+नई असममित क्रिप्टो के लिए कोई भी प्रस्ताव निम्नलिखित चीज़ों को पूरी तरह से विनिर्दिष्ट करना चाहिए।
 
 
-## Notes
+### 1. सामान्य
+
+अपने प्रस्ताव में निम्नलिखित प्रश्नों के उत्तर दें। ध्यान दें कि यह नीचे 2) में विनिर्देशों से एक अलग प्रस्ताव होने की आवश्यकता हो सकती है, क्योंकि यह मौजूदा प्रस्तावों 111, 123, 136, 137 या अन्य के साथ टकराव में हो सकता है।
+
+- ऊपर दिए गए मामलों 1-4 में से आप नई क्रिप्टो का उपयोग किसके लिए प्रस्तावित करते हैं?
+- यदि 1) या 2) (राउटर) के लिए, सार्वजनिक कुंजी कहाँ जाएगी, RouterIdentity या RouterInfo props में? क्या आप कुंजी प्रमाणपत्र में क्रिप्टो प्रकार का उपयोग करने की योजना बना रहे हैं? पूरी तरह से विनिर्दिष्ट करें। अपने निर्णय को तर्कसंगत बनाएं।
+- यदि 3) (क्लाइंट) के लिए, क्या आप सार्वजनिक कुंजी को डेस्टिनेशन में संग्रहीत करने और कुंजी प्रमाणपत्र में क्रिप्टो प्रकार का उपयोग करने की योजना बना रहे हैं (जैसा कि ECIES प्रस्ताव में है), या इसे LS2 में संग्रहीत करने की योजना है (जैसा कि प्रस्ताव 123 में है), या कुछ और? पूरी तरह से विनिर्दिष्ट करें, और अपने निर्णय को तर्कसंगत बनाएं।
+- सभी उपयोगों के लिए, समर्थन को कैसे प्रचारित किया जाएगा? यदि 3) के लिए, क्या यह LS2 में जाएगा, या कहीं और? यदि 1) और 2) के लिए, क्या यह प्रस्ताव 136 और/या 137 के समान है? पूरी तरह से विनिर्दिष्ट करें, और अपने निर्णयों को तर्कसंगत बनाएं। इसके लिए शायद एक अलग प्रस्ताव की आवश्यकता होगी।
+- पूरी तरह से विनिर्दिष्ट करें कि यह कैसे और क्यों पिछड़े संगत है, और प्रवासन योजना को पूरी तरह से विनिर्दिष्ट करें।
+- कौन से अनुपलब्ध प्रस्ताव आपके प्रस्ताव के लिए पूर्वापेक्षा हैं?
 
 
+### 2. विशिष्ट क्रिप्टो प्रकार
 
+अपने प्रस्ताव में निम्नलिखित प्रश्नों के उत्तर दें:
+
+- सामान्य क्रिप्टो जानकारी, विशिष्ट वक्र/पैरामीटर, अपनी पसंद को पूरी तरह से तर्कसंगत बनाएं। विनिर्देश और अन्य जानकारी के लिंक प्रदान करें।
+- एलजी और अन्य विकल्पों की तुलना में गति परीक्षण परिणाम (यदि लागू हो)। एन्क्रिप्ट, डिक्रिप्ट और कुंजी उत्पन्न करना शामिल करें।
+- C++ और जावा (दोनों OpenJDK, BouncyCastle, और तृतीय-पक्ष) में पुस्तकालय की उपलब्धता  
+  तृतीय-पक्ष या गैर-जावा के लिए, लिंक और लाइसेंस प्रदान करें
+- प्रस्तावित क्रिप्टो प्रकार संख्या(एँ) (प्रायोगिक सीमा या नहीं)
+
+
+## नोट्स

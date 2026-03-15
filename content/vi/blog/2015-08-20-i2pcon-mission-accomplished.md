@@ -5,41 +5,40 @@ author: "hottuna"
 description: "I2PCon: Mission Accomplished"
 categories: ["meetup", "i2pcon"]
 ---
+I2PCon đã là một thành công khổng lồ. Với chúng tôi, những người đóng góp cho I2P, sự kiện này đại diện cho một bước tiến lớn về khả năng mà cộng đồng chúng tôi có thể thực hiện, cách chúng tôi truyền đạt các trường hợp sử dụng của I2P và tiếp cận những cá nhân quan tâm đến quyền riêng tư.
 
-I2PCon has been a giant success. For us, the I2P contributors, it represents a leap forward in terms of what we're capable of pulling off as a community, how we communicate the usecases of I2P and reach out to privacy conscious individuals.
+Bằng việc tổ chức sự kiện này, chúng tôi cũng đã phát triển cộng đồng của mình. Những người trước đây chỉ lặng lẽ theo dõi trên các kênh IRC của chúng tôi, hoặc chỉ chạy phần mềm của chúng tôi, hoặc thậm chí có thể chưa từng nghe đến I2P, giờ đây đã trở thành một phần của cộng đồng chúng tôi.
 
-By arranging this event, we've also grown our community. People who've previously only lurked on our irc channels, or run our software or possibly hadn't even heard of I2P are now a part of our community.
+Sự kiện này là bước đi chủ động đầu tiên của chúng tôi nhằm xây dựng một cộng đồng lớn và bao quát, và vì vậy, đây là một thành công tuyệt vời.
 
-This event has been our first active step towards building a large and inclusive community, and as such it's been great success.
+## Những chi tiết nhỏ
 
-## Minutiae
+Vào ngày thứ 2, chúng tôi đã có hai phiên thảo luận ngắn. Một phiên thảo luận chung và một phiên thảo luận về lộ trình phát triển.
 
-On day 2 we had two short discussion sessions. A more general discussion and a roadmapping discussion.
+## Lời cảm ơn
 
-## Thanks
+Chúng tôi đã có những diễn giả tuyệt vời, đến từ cả bên trong và bên ngoài cộng đồng của chúng tôi.
 
-We've had some wonderful speakers, from both inside- and outside of our community.
+David Dagon đã nói chuyện với chúng tôi về hướng đi trong tương lai và cách I2P có thể xử lý các khả năng bị lạm dụng.
 
-David Dagon talked to us about the way forward and how I2P could handle potential abuse.
+Lance James - người tạo ra dự án tiền thân của chúng tôi là iip - đã gửi lời chào và chia sẻ suy nghĩ của ông về hành trình phát triển mà I2P đã đạt được.
 
-Lance James - the creator of our predecessor iip - said Hi and gave us his thoughts about how far I2P has come.
+Nick Johnston đã có một bài nói chuyện tuyệt vời về lý do tại sao quyền riêng tư quan trọng và tại sao bạn nên quan tâm.
 
-Nick Johnston gave us a wonderful talk about why privacy matters and why you should care.
+Tôi cũng muốn cảm ơn các diễn giả từ cộng đồng chúng tôi. psi, @str4d và zzz, những người đều có những bài nói chuyện rất xuất sắc. Việc cải thiện khả năng cung cấp thông tin cho mọi người về I2P là điều sẽ rất quan trọng với chúng tôi trong tương lai.
 
-I would also like to thank the speakers from our community. psi, @str4d and zzz who all had wonderful talks. Improving our ability to inform people about I2P is something that is going to be important for us going forward.
+Tôi xin cảm ơn Sadie và Siew vì đã giúp đỡ chúng tôi trong việc tiếp thị và thiết kế đồ họa. Nếu không có các bạn, I2PCon đã là một sự kiện rất khác biệt.
 
-I would like to thank Sadie and Siew for helping us out with marketing and graphics. Without you I2PCon would've been a very different event.
+Tôi xin cảm ơn @chlorelium và Hacklab vì đã là những người chủ nhà tuyệt vời nhất.
 
-I would like to thank @chlorelium and Hacklab for being the most wonderful of hosts.
+Tôi xin cảm ơn @darknetj, P và @hizeena của Toronto Crypto vì sự hỗ trợ của các bạn trong suốt sự kiện.
 
-I would like to thank @darknetj, P and @hizeena of Toronto Crypto for their help during the event.
+Tôi xin cảm ơn @z3r0fox vì đã làm một công việc tuyệt vời với hệ thống âm thanh-hình ảnh (AV) và thực hiện toàn bộ công việc hậu kỳ cho các video của tất cả các bài nói chuyện.
 
-I would like to thank @z3r0fox for doing a wonderful job with the AV and doing all of the post-production work for the videos of all the talks.
+Tôi xin cảm ơn @killyourtv_i2p vì đã tổ chức một trạm phát nhạc crypto party rất được yêu thích.
 
-I would like to thank @killyourtv_i2p for hosting a very popular crypto party station.
+Cảm ơn nhà báo mới yêu thích nhất của chúng tôi @robinlevinson, vì đã quan tâm đến mục tiêu của chúng tôi và tự tìm hiểu về các công nghệ liên quan.
 
-Thanks to our new favorite journalist @robinlevinson, for showing an interest in our cause and educating yourself about the technologies involved.
+Cảm ơn vì tất cả các chiếc pizza @Panago_Pizza, các bạn đã giúp chúng tôi duy trì năng lượng. Các bạn thực sự đã làm sự kiện này trở nên tốt hơn rất nhiều.
 
-Thanks for all the pizza @Panago_Pizza, it keept us going. You very much made this event better.
-
-Finally I would like to thank everyone else who just showed up to the event and helped out in any way they could. ComradeNosebleed, LazyGravy, cacapo, Xmz, ZeroRax, echelon, it was most excellent to hang out with you.
+Cuối cùng, tôi xin cảm ơn tất cả những người khác đã đến tham dự sự kiện và hỗ trợ theo bất kỳ cách nào có thể. ComradeNosebleed, LazyGravy, cacapo, Xmz, ZeroRax, echelon, thật tuyệt vời khi được gặp gỡ các bạn.

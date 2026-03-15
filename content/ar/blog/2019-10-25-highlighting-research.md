@@ -5,21 +5,20 @@ author: "Hoàng Nguyên Phong"
 description: "An Empirical Study of the I2P Anonymity Network and its Censorship Resistance"
 categories: ["community"]
 ---
+## تسليط الضوء على البحث - دراسة تجريبية لشبكة I2P للإخفاء الهوية وقدرتها على مقاومة الرقابة
 
-## Highlighting Research - An Empirical Study of the I2P Anonymity Network and its Censorship Resistance
+المنشور التالي كتبه الزميل في برنامج زمالة ضوابط المعلومات هوانغ نغوين فونغ. كزميل في برنامج ICFP، ركّز فونغ في بحثه على تحليل جوانب مختلفة من شبكة I2P، وهي أداة إنترنت تعزز الخصوصية يمكن استخدامها للوصول إلى المحتوى عبر الإنترنت من خلال شبكة تعزز الإخفاء الهوية، مما يساعد في تجاوز الرقابة المفروضة من قبل الدولة. وعمل فونغ مع منظمته المضيفة، جامعة ماساتشوستس في أمهرست، على دراسة قدرة شبكة I2P على الصمود أمام الرقابة، بما في ذلك تحديد أساليب الحجب التي قد تستخدمها الجهات الرقابية الحكومية لمنع الوصول إلى I2P، واستكشاف حلول محتملة لجعل I2P أكثر مقاومة لهذا الحجب.
 
-The following blog post is authored by Information Controls Fellow Hoàng Nguyên Phong. As an ICFP fellow, Phong's research focused on analyzing different aspects of the I2P network, a privacy-enhancing Internet tool that can be used to access online content over an anonymity-enhancing network helpful in circumventing state-imposed censorship. Working with his host organization, the University of Massachusetts Amherst, Phong studied the I2P network's censorship resilience, including identifying what blocking methods a state censor might use to inhibit access to I2P and investigating potential solutions to make I2P more resistant to such blockage.
+وقد اكتشف فونغ محاولات حجب على شبكة I2P (وتحديدًا عبر تسميم DNS، والحجب القائم على SNI، وإدخال حزم TCP، وحجب صفحات محددة) تأتي من خمس دول: الصين، وعُمان، وقطر، وإيران، والكويت. ويرى فونغ أنه نظرًا لأن الحجب عادة ما يستهدف صفحة تحميل I2P وخوادم إعادة التهيئة (reseed servers)، فيمكن تخفيف هذا الحجب من خلال استضافة روابط التحميل على مزودي خدمات سحابية كبار — مما يرفع التكلفة الجانبية للحجب. كما قام فونغ ببناء بوابة مقاييس (metrics portal) للمنصة لتمكين الباحثين وغيرهم من فهم من يستخدم I2P بشكل أفضل، ووجد أن هناك حوالي 20,000 ريليه (relay) في الشبكة يوميًا.
 
-Phong found blocking attempts on the I2P network (specifically via DNS poisoning, SNI-based blocking, TCP packet injection, and page-specific blocks) emanating from five countries: China, Oman, Qatar, Iran, and Kuwait. Phong posits that because the blocks are usually imposed on the I2P download page and reseed servers, such blocking could be mitigated by hosting download links to this content on large cloud service providers - raising the collateral cost of blocking. Phong also built a metrics portal for the platform so that researchers and others can better understand who is using I2P, finding that there are about 20,000 relays in the network on a daily basis.
+(مقتطف من منشور مدونة OTF)
 
-(Excerpt taken from OTF blog post)
+- [المنشور الأصلي](https://homepage.np-tokumei.net/post/notes-otf-wrapup-blogpost/)
+- [نسخة OTF من المنشور](https://www.opentech.fund/news/empirical-study-i2p-anonymity-network-and-its-censorship-resistance/)
+- [بوابة مقاييس I2P](https://i2p-metrics.np-tokumei.net/)
 
-- [Original Blog Post](https://homepage.np-tokumei.net/post/notes-otf-wrapup-blogpost/)
-- [OTF Mirror of the Blog Post](https://www.opentech.fund/news/empirical-study-i2p-anonymity-network-and-its-censorship-resistance/)
-- [I2P Metrics Portal](https://i2p-metrics.np-tokumei.net/)
+كما يتوفر ورقة البحث هنا:
 
-The research paper is also available here:
+- [ورقة البحث](https://www.researchgate.net/publication/327445307_An_Empirical_Study_of_the_I2P_Anonymity_Network_and_its_Censorship_Resistance)
 
-- [Research Paper](https://www.researchgate.net/publication/327445307_An_Empirical_Study_of_the_I2P_Anonymity_Network_and_its_Censorship_Resistance)
-
-We thank Phong and his collaborators for their excellent study as we move to address the issues that were identified. It's exciting to see more academic study of I2P and are excited to keep working with him.
+نشكر فونغ وشركاءه على دراستهم الممتازة بينما نعمل على معالجة القضايا التي تم تحديدها. من المثير رؤية المزيد من الدراسات الأكاديمية حول I2P، ونتطلع إلى مواصلة العمل معه.

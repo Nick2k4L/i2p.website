@@ -8,84 +8,53 @@ status: "Open"
 thread: "http://zzz.i2p/topics/2099"
 toc: true
 ---
+## अवलोकन
 
-## Overview
+यह प्रस्ताव नेटवर्क प्रदर्शन में सुधार के लिए दो सुधारों को शामिल करता है:
 
-This proposal covers two improvements for improving network performance:
+- एकल विकल्प के बजाय वैकल्पिकों की सूची प्रदान करके OBEP को IBGW चयन का अधिकार सौंपना।
 
-- Delegating IBGW selection to the OBEP by providing it with a list of
-  alternatives instead of a single option.
-
-- Enabling multicast packet routing at the OBEP.
+- OBEP पर मल्टीकास्ट पैकेट रूटिंग को सक्षम करना।
 
 
-## Motivation
+## प्रेरणा
 
-In the direct connection case, the idea is to reduce connection congestion, by
-giving the OBEP flexibility in how it connects to IBGWs. The ability to specify
-multiple tunnels also enables us to implement multicast at the OBEP (by
-delivering the message to all specified tunnels).
+सीधे कनेक्शन के मामले में, विचार OBEP को IBGWs से कनेक्ट होने के तरीके में लचीलापन देकर कनेक्शन की भीड़ को कम करना है। कई टनल निर्दिष्ट करने की क्षमता हमें OBEP पर मल्टीकास्ट लागू करने में सक्षम बनाती है (सभी निर्दिष्ट टनल को संदेश वितरित करके)।
 
-An alternative to the delegation part of this proposal would be to send through
-a LeaseSet hash, similar to the existing ability to specify a target
-[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
-newer LeaseSet. However:
+इस प्रस्ताव के अधिकार सौंपने के हिस्से के एक वैकल्पिक तरीके के रूप में, एक LeaseSet हैश के माध्यम से भेजना हो सकता है, जैसा कि लक्ष्य [RouterIdentity](/docs/specs/common-structures/#common-structure-specification) हैश निर्दिष्ट करने की मौजूदा क्षमता है। इससे संदेश छोटा होगा और संभावित रूप से एक नया LeaseSet मिलेगा। हालाँकि:
 
-1. It would force the OBEP to do a lookup
+1. इससे OBEP को लुकअप करने के लिए मजबूर किया जाएगा
 
-2. The LeaseSet may not be published to a floodfill, so the lookup would fail.
+2. LeaseSet फ्लडफिल पर प्रकाशित नहीं हो सकता है, इसलिए लुकअप विफल हो सकता है।
 
-3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
+3. LeaseSet एन्क्रिप्टेड हो सकता है, इसलिए OBEP को लीज़ प्राप्त नहीं हो सकतीं।
 
-4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
-   which they could otherwise only discover by scraping all the LeaseSets in the
-   network and looking for a Lease match.
+4. LeaseSet निर्दिष्ट करने से OBEP को संदेश का [Destination](/docs/specs/common-structures/#destination) पता चल जाएगा, जिसे वे अन्यथा केवल नेटवर्क में सभी LeaseSets को स्क्रैप करके और लीज़ मिलान के लिए खोजकर ही पता लगा सकते थे।
 
 
-## Design
+## डिज़ाइन
 
-The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
-delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
+मूल स्रोत (OBGW) एक का चयन करने के बजाय डिलीवरी निर्देशों [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) में लक्ष्य [Leases](/docs/specs/common-structures/#lease) के कुछ (सभी?) को रखेगा।
 
-The OBEP would select one of those to deliver to. The OBEP would select, if
-available, one that it is already connected to, or already knows about. This
-would make the OBEP-IBGW path faster and more reliable, and reduce overall
-network connections.
+OBEP उनमें से एक का चयन करेगा जिसे वितरित करना है। OBEP उसे चुनेगा, यदि उपलब्ध हो, जिससे वह पहले से ही कनेक्टेड है या जिसके बारे में वह पहले से जानता है। इससे OBEP-IBGW पथ तेज़ और अधिक विश्वसनीय होगा, और समग्र नेटवर्क कनेक्शन कम होंगे।
 
-We have one unused delivery type (0x03) and two remaining bits (0 and 1) in the
-flags for TUNNEL-DELIVERY, which we can leverage to implement these features.
+हमारे पास TUNNEL-DELIVERY के लिए एक अप्रयुक्त डिलीवरी प्रकार (0x03) और फ्लैग्स में दो शेष बिट्स (0 और 1) हैं, जिनका उपयोग हम इन सुविधाओं को लागू करने के लिए कर सकते हैं।
 
 
-## Security Implications
+## सुरक्षा प्रभाव
 
-This proposal does not change the amount of information leaked about the OBGW's
-target Destination or their view of the NetDB:
+यह प्रस्ताव OBGW के लक्ष्य Destination या उनके NetDB के दृश्य के बारे में लीक होने वाली जानकारी की मात्रा में कोई परिवर्तन नहीं करता है:
 
-- An adversary that controls the OBEP and is scraping LeaseSets from the NetDB
-  can already determine whether a message is being sent to a particular
-  Destination, by searching for the TunnelId / RouterIdentity pair. At
-  worst, the presence of multiple Leases in the TMDI might make it faster to
-  find a match in the adversary's database.
+- एक ऐसा प्रतिकूलता जो OBEP को नियंत्रित करता है और NetDB से LeaseSets को स्क्रैप कर रहा है, पहले से ही यह निर्धारित कर सकता है कि क्या एक विशेष Destination को संदेश भेजा जा रहा है, TunnelId / RouterIdentity जोड़ी के लिए खोज करके। अधिकतम, TMDI में कई Leases की उपस्थिति प्रतिकूलता के डेटाबेस में मिलान तेज़ी से खोजने में मदद कर सकती है।
 
-- An adversary that is operating a malicious Destination can already gain
-  information about a connecting victim's view of the NetDB, by publishing
-  LeaseSets containing different inbound tunnels to different floodfills, and
-  observing which tunnels the OBGW connects through. From their point of view,
-  the OBEP selecting which tunnel to use is functionally identical to the OBGW
-  making the selection.
+- एक ऐसा प्रतिकूलता जो एक दुर्भावनापूर्ण Destination संचालित कर रहा है, पहले से ही एक जुड़ने वाले पीड़ित के NetDB के दृश्य के बारे में जानकारी प्राप्त कर सकता है, अलग-अलग फ्लडफिल पर अलग-अलग इनबाउंड टनल युक्त LeaseSets प्रकाशित करके, और यह देखकर कि OBGW किन टनल के माध्यम से कनेक्ट होता है। उनके दृष्टिकोण से, OBEP द्वारा टनल का चयन करना OBGW द्वारा चयन करने के कार्यात्मक रूप से समान है।
 
-The multicast flag leaks the fact that the OBGW is multicasting to the OBEPs.
-This creates a performance vs. privacy trade-off that should be considered when
-implementing higher-level protocols. Being an optional flag, users can make
-the appropriate decision for their application. There may be benefits to this
-being the default behaviour for compatible applications, however, as wide-spread
-usage by a variety of applications would reduce the information leakage about
-which particular application a message is from.
+मल्टीकास्ट फ्लैग OBEPs को यह जानकारी लीक करता है कि OBGW मल्टीकास्टिंग कर रहा है। इससे उच्च-स्तरीय प्रोटोकॉल लागू करते समय विचार किए जाने वाले प्रदर्शन बनाम गोपनीयता के बीच एक व्यापार-ऑफ़ उत्पन्न होता है। एक वैकल्पिक फ्लैग होने के कारण, उपयोगकर्ता अपने अनुप्रयोग के लिए उचित निर्णय ले सकते हैं। हालाँकि, संगत अनुप्रयोगों के लिए यह डिफ़ॉल्ट व्यवहार होने के कुछ लाभ हो सकते हैं, क्योंकि विभिन्न अनुप्रयोगों द्वारा व्यापक उपयोग संदेश किस विशेष अनुप्रयोग से है, इस बारे में जानकारी लीक होने को कम करेगा।
 
 
-## Specification
+## विनिर्देश
 
-The First Fragment Delivery Instructions would be modified as follows:
+प्रथम फ्रैगमेंट डिलीवरी निर्देशों में निम्नलिखित परिवर्तन किए जाएंगे:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -151,20 +120,16 @@ Rest of delivery instructions unchanged
 ```
 
 
-## Compatibility
+## संगतता
 
-The only peers that need to be understand the new specification are the OBGWs
-and the OBEPs. We can therefore make this change compatible with the existing
-network by making its use conditional on the target I2P version:
+नए विनिर्देश को समझने की आवश्यकता वाले एकमात्र पीयर OBGWs और OBEPs हैं। इसलिए हम इस परिवर्तन को मौजूदा नेटवर्क के साथ संगत बना सकते हैं यदि इसका उपयोग लक्ष्य I2P संस्करण पर आधारित हो:
 
-* The OBGWs must select compatible OBEPs when building outbound tunnels, based
-  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
+* OBGWs को आउटबाउंड टनल बनाते समय संगत OBEPs का चयन करना चाहिए, उनके [RouterInfo](/docs/specs/common-structures/#routerinfo) में घोषित I2P संस्करण के आधार पर।
 
-* Peers that advertise the target version must support parsing the new flags,
-  and must not reject the instructions as invalid.
+* लक्ष्य संस्करण को घोषित करने वाले पीयर्स को नए फ्लैग्स को पार्स करने का समर्थन करना चाहिए, और निर्देशों को अमान्य के रूप में अस्वीकार नहीं करना चाहिए।
 
 
-## References
+## संदर्भ
 
 * [Destination](/docs/specs/common-structures/#destination)
 * [Leases](/docs/specs/common-structures/#lease)

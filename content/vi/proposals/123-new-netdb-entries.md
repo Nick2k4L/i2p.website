@@ -9,917 +9,860 @@ thread: "http://zzz.i2p/topics/2051"
 supercedes: "110, 120, 121, 122"
 toc: true
 ---
+## Trạng thái
 
-## Status
+Một phần của đề xuất này đã hoàn thành và được triển khai trong 0.9.38 và 0.9.39.  
+Các cấu trúc chung, I2CP, I2NP và các đặc tả khác  
+hiện đã được cập nhật để phản ánh các thay đổi được hỗ trợ hiện nay.
 
-Portions of this proposal are complete, and implemented in 0.9.38 and 0.9.39.
-The Common Structures, I2CP, I2NP, and other specifications
-are now updated to reflect the changes that are supported now.
+Các phần đã hoàn thành vẫn có thể được sửa đổi nhỏ.  
+Các phần khác của đề xuất này vẫn đang trong quá trình phát triển  
+và có thể được sửa đổi đáng kể.
 
-The completed portions are still subject to minor revision.
-Other portions of this proposal are still in development
-and subject to substantial revision.
+Tìm kiếm dịch vụ (loại 9 và 11) là ưu tiên thấp  
+và chưa được lên lịch, có thể được tách thành một đề xuất riêng.
 
-Service Lookup (types 9 and 11) are low-priority and
-unscheduled, and may be split off to a separate proposal.
+## Tổng quan
 
-
-## Overview
-
-This is an update and aggregation of the following 4 proposals:
+Đây là bản cập nhật và tổng hợp của 4 đề xuất sau:
 
 - 110 LS2
-- 120 Meta LS2 for massive multihoming
-- 121 Encrypted LS2
-- 122 Unauthenticated service lookup (anycasting)
+- 120 Meta LS2 cho đa kết nối quy mô lớn
+- 121 LS2 được mã hóa
+- 122 Tìm kiếm dịch vụ không xác thực (anycasting)
 
-These proposals are mostly independent, but for sanity we define and use a
-common format for several of them.
+Các đề xuất này phần lớn độc lập, nhưng vì lý do hợp lý, chúng tôi định nghĩa và sử dụng  
+một định dạng chung cho một số trong số chúng.
 
-The following proposals are somewhat related:
+Các đề xuất sau có liên quan một phần:
 
-- 140 Invisible Multihoming (incompatible with this proposal)
-- 142 New Crypto Template (for new symmetric crypto)
+- 140 Đa kết nối vô hình (không tương thích với đề xuất này)
+- 142 Mẫu mã hóa mới (cho mã hóa đối xứng mới)
 - 144 ECIES-X25519-AEAD-Ratchet
 - 145 ECIES-P256
 - 146 Red25519
 - 148 EdDSA-BLAKE2b-Ed25519
-- 149 B32 for Encrypted LS2
-- 150 Garlic Farm Protocol
+- 149 B32 cho LS2 được mã hóa
+- 150 Giao thức Garlic Farm
 - 151 ECDSA Blinding
 
+## Đề xuất
 
-## Proposal
+Đề xuất này định nghĩa 5 loại DatabaseEntry mới và quy trình  
+lưu trữ và truy xuất chúng từ cơ sở dữ liệu mạng,  
+cũng như phương pháp ký và xác minh chữ ký.
 
-This proposal defines 5 new DatabaseEntry types and the process for
-storing them to and retrieving them from the network database,
-as well as the method for signing them and verifying those signatures.
+### Mục tiêu
 
-### Goals
+- Tương thích ngược
+- LS2 có thể sử dụng với đa kết nối kiểu cũ
+- Không yêu cầu mã hóa hoặc nguyên thủy mới để hỗ trợ
+- Duy trì sự tách biệt giữa mã hóa và chữ ký; hỗ trợ tất cả các phiên bản hiện tại và tương lai
+- Cho phép khóa ký ngoại tuyến tùy chọn
+- Giảm độ chính xác của dấu thời gian để giảm khả năng định danh
+- Cho phép mã hóa mới cho các điểm đến
+- Cho phép đa kết nối quy mô lớn
+- Sửa nhiều vấn đề với LS được mã hóa hiện tại
+- Tùy chọn ẩn danh để giảm khả năng nhìn thấy bởi các floodfill
+- Hỗ trợ cả khóa đơn và nhiều khóa có thể thu hồi
+- Tìm kiếm dịch vụ để dễ dàng tìm kiếm outproxy, khởi động DHT ứng dụng,  
+  và các mục đích sử dụng khác
+- Không làm hỏng bất cứ thứ gì phụ thuộc vào băm điểm đến nhị phân 32 byte, ví dụ như bittorrent
+- Thêm tính linh hoạt cho leaseset thông qua các thuộc tính, giống như chúng ta có trong routerinfos.
+- Đặt dấu thời gian công bố và thời gian hết hạn thay đổi vào tiêu đề, để nó hoạt động ngay cả  
+  khi nội dung được mã hóa (không suy ra dấu thời gian từ lease sớm nhất)
+- Tất cả các loại mới nằm trong cùng không gian DHT và cùng vị trí như leaseset hiện tại,  
+  để người dùng có thể di chuyển từ LS cũ sang LS2,  
+  hoặc chuyển đổi giữa LS2, Meta và Encrypted,  
+  mà không cần thay đổi Destination hoặc băm.
+- Một Destination hiện tại có thể được chuyển sang sử dụng khóa ngoại tuyến,  
+  hoặc trở lại khóa trực tuyến, mà không cần thay đổi Destination hoặc băm.
 
-- Backwards compatible
-- LS2 Usable with old-style mulithoming
-- No new crypto or primitives required for support
-- Maintain decoupling of crypto and signing; support all current and future versions
-- Enable optional offline signing keys
-- Reduce accuracy of timestamps to reduce fingerprinting
-- Enable new crypto for destinations
-- Enable massive multihoming
-- Fix multiple issues with existing encrypted LS
-- Optional blinding to reduce visibility by floodfills
-- Encrypted supports both single-key and multiple revocable keys
-- Service lookup for easier lookup of outproxies, application DHT bootstrap,
-  and other uses
-- Don't break anything that relies on 32-byte binary destination hashes, e.g. bittorrent
-- Add flexibility to leasesets via properties, like we have in routerinfos.
-- Put published timestamp and variable expiration in header, so it works even
-  if contents are encrypted (don't derive timestamp from earliest lease)
-- All new types live in the same DHT space and same locations as existing leasesets,
-  so that users may migrate from the old LS to LS2,
-  or change among LS2, Meta, and Encrypted,
-  without changing the Destination or hash.
-- An existing Destination may be converted to use offline keys,
-  or back to online keys, without changing the Destination or hash.
+### Mục tiêu không đạt được / Ngoài phạm vi
 
+- Thuật toán quay DHT mới hoặc tạo số ngẫu nhiên chung
+- Loại mã hóa mới cụ thể và lược đồ mã hóa end-to-end  
+  để sử dụng loại mới sẽ nằm trong một đề xuất riêng.  
+  Không có mã hóa mới nào được chỉ định hoặc thảo luận ở đây.
+- Mã hóa mới cho RIs hoặc xây dựng tunnel.  
+  Sẽ nằm trong một đề xuất riêng.
+- Phương pháp mã hóa, truyền và nhận tin nhắn I2NP DLM / DSM / DSRM.  
+  Không thay đổi.
+- Cách tạo và hỗ trợ Meta, bao gồm giao tiếp nội bộ giữa các router, quản lý, chuyển đổi và phối hợp.  
+  Hỗ trợ có thể được thêm vào I2CP, hoặc i2pcontrol, hoặc một giao thức mới.  
+  Điều này có thể hoặc không được chuẩn hóa.
+- Cách thực hiện và quản lý các tunnel có thời gian hết hạn dài hơn, hoặc hủy các tunnel hiện tại.  
+  Điều đó cực kỳ khó khăn, và nếu không có nó, bạn không thể có một quá trình tắt máy hợp lý.
+- Thay đổi mô hình mối đe dọa
+- Định dạng lưu trữ ngoại tuyến, hoặc phương pháp lưu trữ/truy xuất/chia sẻ dữ liệu.
+- Chi tiết triển khai không được thảo luận ở đây và được để cho từng dự án.
 
-### Non-Goals / Out-of-scope
+### Cơ sở
 
-- New DHT rotation algorithm or shared random generation
-- The specific new encryption type and end-to-end encryption scheme
-  to use that new type would be in a separate proposal.
-  No new crypto is specified or discussed here.
-- New encryption for RIs or tunnel building.
-  That would be in a separate proposal.
-- Methods of encryption, transmission, and reception of I2NP DLM / DSM / DSRM messages.
-  Not changing.
-- How to generate and support Meta, including backend inter-router communication, management, failover, and coordination.
-  Support may be added to I2CP, or i2pcontrol, or a new protocol.
-  This may or may not be standardized.
-- How to actually implement and manage longer-expiring tunnels, or cancel existing tunnels.
-  That's extremely difficult, and without it, you can't have a reasonable graceful shutdown.
-- Threat model changes
-- Offline storage format, or methods to store/retrieve/share the data.
-- Implementation details are not discussed here and are left to each project.
+LS2 thêm các trường để thay đổi loại mã hóa và cho các thay đổi giao thức trong tương lai.
 
+LS2 được mã hóa sửa một số vấn đề bảo mật với LS được mã hóa hiện tại bằng cách  
+sử dụng mã hóa bất đối xứng cho toàn bộ tập hợp các lease.
 
+Meta LS2 cung cấp đa kết nối linh hoạt, hiệu quả, hiệu quả và quy mô lớn.
 
-### Justification
+Bản ghi dịch vụ và Danh sách dịch vụ cung cấp các dịch vụ anycast như tra cứu tên  
+và khởi động DHT.
 
-LS2 adds fields for changing encryption type and for future protocol changes.
+### Các loại dữ liệu NetDB
 
-Encrypted LS2 fixes several security issues with the existing encrypted LS by
-using asymmetric encryption of the entire set of leases.
+Các số loại được sử dụng trong Tin nhắn Tìm kiếm/Lưu trữ Cơ sở dữ liệu I2NP.
 
-Meta LS2 provides flexible, efficient, effective, and large-scale multihoming.
+Cột end-to-end đề cập đến việc truy vấn/phản hồi có được gửi đến một Destination trong một Tin nhắn Tỏi hay không.
 
-Service Record and Service List provide anycast services such as naming lookup
-and DHT bootstrapping.
+Các loại hiện tại:
 
-
-### NetDB Data Types
-
-The type numbers are used in the I2NP Database Lookup/Store Messages.
-
-The end-to-end column refers to whether queries/responses are sent to a Destination in a Garlic Message.
-
-
-Existing types:
-
-| NetDB Data | Lookup Type | Store Type |
+| NetDB Data | Loại Tìm kiếm | Loại Lưu trữ |
 |------------|-------------|------------|
-| any        | 0           | any        |
+| bất kỳ        | 0           | bất kỳ        |
 | LS         | 1           | 1          |
 | RI         | 2           | 0          |
-| exploratory| 3           | DSRM       |
+| khám phá| 3           | DSRM       |
 
-New types:
+Các loại mới:
 
-| NetDB Data     | Lookup Type | Store Type | Std. LS2 Header? | Sent end-to-end? |
+| NetDB Data     | Loại Tìm kiếm | Loại Lưu trữ | Tiêu đề LS2 chuẩn? | Gửi end-to-end? |
 |----------------|-------------|------------|------------------|------------------|
-| LS2            | 1           | 3          | yes              | yes              |
-| Encrypted LS2  | 1           | 5          | no               | no               |
-| Meta LS2       | 1           | 7          | yes              | no               |
-| Service Record | n/a         | 9          | yes              | no               |
-| Service List   | 4           | 11         | no               | no               |
+| LS2            | 1           | 3          | có              | có              |
+| LS2 được mã hóa  | 1           | 5          | không               | không               |
+| Meta LS2       | 1           | 7          | có              | không               |
+| Bản ghi Dịch vụ | n/a         | 9          | có              | không               |
+| Danh sách Dịch vụ   | 4           | 11         | không               | không               |
 
+### Ghi chú
 
+- Các loại tìm kiếm hiện đang là bit 3-2 trong Tin nhắn Tìm kiếm Cơ sở dữ liệu.  
+  Bất kỳ loại bổ sung nào sẽ yêu cầu sử dụng bit 4.
 
-### Notes
+- Tất cả các loại lưu trữ đều là số lẻ vì các bit trên trong trường loại của Tin nhắn Lưu trữ Cơ sở dữ liệu  
+  bị các router cũ bỏ qua.  
+  Chúng tôi thà để việc phân tích cú pháp thất bại như một LS hơn là như một RI được nén.
 
-- Lookup types are currently bits 3-2 in the Database Lookup Message.
-  Any additional types would require use of bit 4.
+- Loại nên được chỉ định rõ ràng, ngầm định hay không rõ ràng trong dữ liệu được bao phủ bởi chữ ký?
 
-- All store types are odd since upper bits in the Database Store Message
-  type field are ignored by old routers.
-  We would rather have the parse fail as an LS than as a compressed RI.
+### Quy trình Tìm kiếm/Lưu trữ
 
-- Should type be explicit or implicit or neither in the data covered by the signature?
+Các loại 3, 5 và 7 có thể được trả về như phản hồi cho một tìm kiếm leaseset tiêu chuẩn (loại 1).  
+Loại 9 không bao giờ được trả về như phản hồi cho một tìm kiếm.  
+Loại 11 được trả về như phản hồi cho một loại tìm kiếm dịch vụ mới (loại 11).
 
+Chỉ loại 3 có thể được gửi trong một tin nhắn Tỏi từ client đến client.
 
+### Định dạng
 
-### Lookup/Store process
+Các loại 3, 7 và 9 đều có định dạng chung::
 
-Types 3, 5, and 7 may be returned in response to a standard leaseset lookup (type 1).
-Type 9 is never returned in response to a lookup.
-Types 11 is returned in response to a new service lookup type (type 11).
+  Tiêu đề LS2 chuẩn
+  - như được định nghĩa bên dưới
 
-Only type 3 may be sent in a client-to-client Garlic message.
+  Phần riêng cho loại
+  - như được định nghĩa bên dưới cho từng phần
 
+  Chữ ký LS2 chuẩn:
+  - Độ dài như được ngụ ý bởi loại chữ ký của khóa ký
 
+Loại 5 (Được mã hóa) không bắt đầu bằng Destination và có định dạng khác. Xem bên dưới.
 
-### Format
+Loại 11 (Danh sách Dịch vụ) là tập hợp của nhiều Bản ghi Dịch vụ và có định dạng khác. Xem bên dưới.
 
-Types 3, 7, and 9 all have a common format::
-
-  Standard LS2 Header
-  - as defined below
-
-  Type-Specific Part
-  - as defined below in each part
-
-  Standard LS2 Signature:
-  - Length as implied by sig type of signing key
-
-Type 5 (Encrypted) does not start with a Destination and has a
-different format. See below.
-
-Type 11 (Service List) is an aggregation of several Service Records and has a
-different format. See below.
-
-
-### Privacy/Security Considerations
+### Xem xét về Quyền riêng tư/Bảo mật
 
 TBD
 
+## Tiêu đề LS2 chuẩn
 
+Các loại 3, 7 và 9 sử dụng tiêu đề LS2 chuẩn, được chỉ định bên dưới:
 
-## Standard LS2 Header
-
-Types 3, 7, and 9 use the standard LS2 header, specified below:
-
-
-### Format
+### Định dạng
 
 ```
-Standard LS2 Header:
-  - Type (1 byte)
-    Not actually in header, but part of data covered by signature.
-    Take from field in Database Store Message.
-  - Destination (387+ bytes)
-  - Published timestamp (4 bytes, big endian, seconds since epoch, rolls over in 2106)
-  - Expires (2 bytes, big endian) (offset from published timestamp in seconds, 18.2 hours max)
-  - Flags (2 bytes)
-    Bit order: 15 14 ... 3 2 1 0
-    Bit 0: If 0, no offline keys; if 1, offline keys
-    Bit 1: If 0, a standard published leaseset.
-           If 1, an unpublished leaseset. Should not be flooded, published, or
-           sent in response to a query. If this leaseset expires, do not query the
-           netdb for a new one, unless bit 2 is set.
-    Bit 2: If 0, a standard published leaseset.
-           If 1, this unencrypted leaseset will be blinded and encrypted when published.
-           If this leaseset expires, query the blinded location in the netdb for a new one.
-           If this bit is set to 1, set bit 1 to 1 also.
-           As of release 0.9.42.
-    Bits 3-15: set to 0 for compatibility with future uses
-  - If flag indicates offline keys, the offline signature section:
-    Expires timestamp (4 bytes, big endian, seconds since epoch, rolls over in 2106)
-    Transient sig type (2 bytes, big endian)
-    Transient signing public key (length as implied by sig type)
-    Signature of expires timestamp, transient sig type, and public key,
-    by the destination public key,
-    length as implied by destination public key sig type.
-    This section can, and should, be generated offline.
+Tiêu đề LS2 chuẩn:
+  - Loại (1 byte)
+    Không thực sự nằm trong tiêu đề, nhưng là một phần của dữ liệu được bao phủ bởi chữ ký.
+    Lấy từ trường trong Tin nhắn Lưu trữ Cơ sở dữ liệu.
+  - Destination (387+ byte)
+  - Dấu thời gian công bố (4 byte, big endian, giây kể từ epoch, quay vòng vào năm 2106)
+  - Hết hạn (2 byte, big endian) (chênh lệch từ dấu thời gian công bố tính bằng giây, tối đa 18,2 giờ)
+  - Cờ (2 byte)
+    Thứ tự bit: 15 14 ... 3 2 1 0
+    Bit 0: Nếu 0, không có khóa ngoại tuyến; nếu 1, có khóa ngoại tuyến
+    Bit 1: Nếu 0, một leaseset được công bố chuẩn.
+           Nếu 1, một leaseset chưa được công bố. Không nên được lan truyền, công bố hoặc
+           gửi như phản hồi cho một truy vấn. Nếu leaseset này hết hạn, không truy vấn
+           netdb để tìm cái mới, trừ khi bit 2 được đặt.
+    Bit 2: Nếu 0, một leaseset được công bố chuẩn.
+           Nếu 1, leaseset chưa được mã hóa này sẽ được ẩn danh và mã hóa khi công bố.
+           Nếu leaseset này hết hạn, truy vấn vị trí ẩn danh trong netdb để tìm cái mới.
+           Nếu bit này được đặt thành 1, đặt bit 1 thành 1 cũng vậy.
+           Kể từ phiên bản 0.9.42.
+    Bit 3-15: đặt thành 0 để tương thích với các mục đích sử dụng trong tương lai
+  - Nếu cờ cho biết có khóa ngoại tuyến, phần chữ ký ngoại tuyến:
+    Dấu thời gian hết hạn (4 byte, big endian, giây kể từ epoch, quay vòng vào năm 2106)
+    Loại chữ ký tạm thời (2 byte, big endian)
+    Khóa công khai ký tạm thời (độ dài như được ngụ ý bởi loại chữ ký)
+    Chữ ký của dấu thời gian hết hạn, loại chữ ký tạm thời và khóa công khai,
+    bởi khóa công khai destination,
+    độ dài như được ngụ ý bởi loại chữ ký khóa công khai destination.
+    Phần này có thể, và nên, được tạo ngoại tuyến.
 ```
 
-### Justification
+### Cơ sở
 
-- Unpublished/published: For use when sending a database store end-to-end,
-  the sending router may wish to indicate that this leaseset should not be
-  sent to others. We currently use heuristics to maintain this state.
+- Chưa công bố/đã công bố: Để sử dụng khi gửi một lưu trữ cơ sở dữ liệu end-to-end,
+  router gửi có thể muốn chỉ ra rằng leaseset này không nên được
+  gửi cho người khác. Hiện tại chúng tôi sử dụng các phương pháp heuristic để duy trì trạng thái này.
 
-- Published: Replaces the complex logic required to determine the 'version' of the
-  leaseset. Currently, the version is the expiration of the last-expiring lease,
-  and a publishing router must increment that expiration by at least 1ms when
-  publishing a leaseset that only removes an older lease.
+- Đã công bố: Thay thế logic phức tạp cần thiết để xác định 'phiên bản' của
+  leaseset. Hiện tại, phiên bản là thời gian hết hạn của lease có thời gian hết hạn lâu nhất,
+  và một router công bố phải tăng thời gian hết hạn đó lên ít nhất 1ms khi
+  công bố một leaseset chỉ loại bỏ một lease cũ hơn.
 
-- Expires: Allows for an expiration of a netdb entry to be earlier than that of
-  its last-expiring leaseset. May not be useful for LS2, where leasesets
-  are expected to remain with a 11-minute maximum expiration, but
-  for other new types, it is necessary (see Meta LS and Service Record below).
+- Hết hạn: Cho phép thời gian hết hạn của một mục netdb sớm hơn thời gian hết hạn của
+  lease có thời gian hết hạn lâu nhất. Có thể không hữu ích cho LS2, nơi mà các leaseset
+  dự kiến sẽ duy trì với thời gian hết hạn tối đa 11 phút, nhưng
+  cho các loại mới khác, điều này là cần thiết (xem Meta LS và Bản ghi Dịch vụ bên dưới).
 
-- Offline keys are optional, to reduce initial/required implementation complexity.
+- Khóa ngoại tuyến là tùy chọn, để giảm độ phức tạp triển khai ban đầu/yêu cầu.
 
+### Vấn đề
 
-### Issues
+- Có thể giảm độ chính xác của dấu thời gian nhiều hơn nữa (10 phút?) nhưng sẽ phải thêm
+  số phiên bản. Điều này có thể làm hỏng đa kết nối, trừ khi chúng ta có mã hóa bảo toàn thứ tự?
+  Có lẽ không thể làm mà không có dấu thời gian.
 
-- Could reduce timestamp accuracy even more (10 minutes?) but would have to add
-  version number. This could break multihoming, unless we have order preserving encryption?
-  Probably can't do without timestamps at all.
+- Thay thế: 3 byte dấu thời gian (epoch / 10 phút), 1-byte phiên bản, 2-byte hết hạn
 
-- Alternative: 3 byte timestamp (epoch / 10 minutes), 1-byte version, 2-byte expires
+- Loại được chỉ định rõ ràng hay ngầm định trong dữ liệu / chữ ký? Hằng số "Domain" cho chữ ký?
 
-- Is type explicit or implicit in data / signature? "Domain" constants for signature?
+### Ghi chú
 
+- Các router không nên công bố một LS nhiều hơn một lần mỗi giây.
+  Nếu họ làm vậy, họ phải tăng nhân tạo dấu thời gian công bố lên 1
+  so với LS công bố trước đó.
 
-### Notes
+- Các triển khai router có thể lưu trữ bộ nhớ đệm các khóa tạm thời và chữ ký để
+  tránh xác minh mỗi lần. Đặc biệt, các floodfill, và các router ở
+  cả hai đầu của các kết nối lâu dài, có thể hưởng lợi từ điều này.
 
-- Routers should not publish a LS more than once a second.
-  If they do, they must artificially increment the published timestamp by 1
-  over the previously published LS.
+- Khóa và chữ ký ngoại tuyến chỉ phù hợp với các điểm đến lâu dài,
+  tức là máy chủ, không phải máy khách.
 
-- Router implementations could cache the transient keys and signature to
-  avoid verification every time. In particular, floodfills, and routers at
-  both ends of long-lived connections, could benefit from this.
-
-- Offline keys and signature are only appropriate for long-lived destinations,
-  i.e. servers, not clients.
-
-
-
-## New DatabaseEntry types
-
+## Các loại DatabaseEntry mới
 
 ### LeaseSet 2
 
-Changes from existing LeaseSet:
+Thay đổi từ LeaseSet hiện tại:
 
-- Add published timestamp, expires timestamp, flags, and properties
-- Add encryption type
-- Remove revocation key
+- Thêm dấu thời gian công bố, dấu thời gian hết hạn, cờ và thuộc tính
+- Thêm loại mã hóa
+- Loại bỏ khóa thu hồi
 
-Lookup with
-    Standard LS flag (1)
-Store with
-    Standard LS2 type (3)
-Store at
-    Hash of destination
-    This hash is then used to generate the daily "routing key", as in LS1
-Typical expiration
-    10 minutes, as in a regular LS.
-Published by
+Tìm kiếm với
+    Cờ LS chuẩn (1)
+Lưu trữ với
+    Loại LS2 chuẩn (3)
+Lưu trữ tại
+    Băm của destination
+    Băm này sau đó được sử dụng để tạo "khóa định tuyến" hàng ngày, như trong LS1
+Thời gian hết hạn điển hình
+    10 phút, như trong một LS thông thường.
+Được công bố bởi
     Destination
 
-### Format
+### Định dạng
 
 ```
-Standard LS2 Header as specified above
+Tiêu đề LS2 chuẩn như được chỉ định ở trên
 
-  Standard LS2 Type-Specific Part
-  - Properties (Mapping as specified in common structures spec, 2 zero bytes if none)
-  - Number of key sections to follow (1 byte, max TBD)
-  - Key sections:
-    - Encryption type (2 bytes, big endian)
-    - Encryption key length (2 bytes, big endian)
-      This is explicit, so floodfills can parse LS2 with unknown encryption types.
-    - Encryption key (number of bytes specified)
-  - Number of lease2s (1 byte)
-  - Lease2s (40 bytes each)
-    These are leases, but with a 4-byte instead of an 8-byte expiration,
-    seconds since the epoch (rolls over in 2106)
+  Phần riêng cho loại LS2 chuẩn
+  - Thuộc tính (Ánh xạ như được chỉ định trong đặc tả cấu trúc chung, 2 byte 0 nếu không có)
+  - Số lượng phần khóa theo sau (1 byte, tối đa TBD)
+  - Các phần khóa:
+    - Loại mã hóa (2 byte, big endian)
+    - Độ dài khóa mã hóa (2 byte, big endian)
+      Đây là rõ ràng, để các floodfill có thể phân tích cú pháp LS2 với các loại mã hóa chưa biết.
+    - Khóa mã hóa (số byte được chỉ định)
+  - Số lượng lease2 (1 byte)
+  - Lease2 (40 byte mỗi cái)
+    Đây là các lease, nhưng với 4 byte thay vì 8 byte hết hạn,
+    giây kể từ epoch (quay vòng vào năm 2106)
 
-  Standard LS2 Signature:
-  - Signature
-    If flag indicates offline keys, this is signed by the transient pubkey,
-    otherwise, by the destination pubkey
-    Length as implied by sig type of signing key
-    The signature is of everything above.
+  Chữ ký LS2 chuẩn:
+  - Chữ ký
+    Nếu cờ cho biết có khóa ngoại tuyến, đây được ký bởi khóa công khai tạm thời,
+    nếu không, bởi khóa công khai destination
+    Độ dài như được ngụ ý bởi loại chữ ký của khóa ký
+    Chữ ký của tất cả các nội dung ở trên.
 ```
 
+### Cơ sở
 
-### Justification
+- Thuộc tính: Mở rộng và linh hoạt trong tương lai.
+  Được đặt đầu tiên trong trường hợp cần thiết để phân tích cú pháp dữ liệu còn lại.
 
-- Properties: Future expansion and flexibility.
-  Placed first in case necessary for parsing of the remaining data.
+- Nhiều cặp loại mã hóa/khóa công khai nhằm
+  giúp chuyển đổi sang các loại mã hóa mới dễ dàng hơn. Cách khác để làm điều này
+  là công bố nhiều leaseset, có thể sử dụng cùng các tunnel,
+  như chúng ta đang làm hiện tại cho các destination DSA và EdDSA.
+  Việc xác định loại mã hóa đầu vào trên một tunnel
+  có thể được thực hiện bằng cơ chế thẻ phiên hiện tại,
+  và/hoặc giải mã thử bằng từng khóa. Độ dài của các tin nhắn đầu vào
+  cũng có thể cung cấp manh mối.
 
-- Multiple encryption type/public key pairs are
-  to ease transition to new encryption types. The other way to do it
-  is to publish multiple leasesets, possibly using the same tunnels,
-  as we do now for DSA and EdDSA destinations.
-  Identification of the incoming encryption type on a tunnel
-  may be done with the existing session tag mechanism,
-  and/or trial decryption using each key. Lengths of the incoming
-  messages may also provide a clue.
+### Thảo luận
 
-### Discussion
+Đề xuất này tiếp tục sử dụng khóa công khai trong leaseset cho khóa mã hóa end-to-end, và để khóa công khai trong trường Destination không được sử dụng, như hiện nay. Loại mã hóa không được chỉ định trong chứng chỉ khóa Destination, nó sẽ vẫn là 0.
 
-This proposal continues to use the public key in the leaseset for the
-end-to-end encryption key, and leaves the public key field in the
-Destination unused, as it is now. The encryption type is not specified
-in the Destination key certificate, it will remain 0.
+Một phương án thay thế bị từ chối là chỉ định loại mã hóa trong chứng chỉ khóa Destination, sử dụng khóa công khai trong Destination, và không sử dụng khóa công khai trong leaseset. Chúng tôi không có kế hoạch làm điều này.
 
-A rejected alternative is to specify the encryption type in the Destination key certificate,
-use the public key in the Destination, and not use the public key
-in the leaseset. We do not plan to do this.
+Lợi ích của LS2:
 
-Benefits of LS2:
+- Vị trí của khóa công khai thực tế không thay đổi.
+- Loại mã hóa hoặc khóa công khai có thể thay đổi mà không thay đổi Destination.
+- Loại bỏ trường thu hồi không sử dụng
+- Tương thích cơ bản với các loại DatabaseEntry khác trong đề xuất này
+- Cho phép nhiều loại mã hóa
 
-- Location of actual public key doesn't change.
-- Encryption type, or public key, may change without changing the Destination.
-- Removes unused revocation field
-- Basic compatibility with other DatabaseEntry types in this proposal
-- Allow multiple encryption types
+Nhược điểm của LS2:
 
-Drawbacks of LS2:
+- Vị trí của khóa công khai và loại mã hóa khác với RouterInfo
+- Duy trì khóa công khai không sử dụng trong leaseset
+- Yêu cầu triển khai trên toàn mạng; trong phương án thay thế, các loại mã hóa thử nghiệm có thể được sử dụng, nếu được các floodfill cho phép (nhưng xem các đề xuất liên quan 136 và 137 về hỗ trợ các loại chữ ký thử nghiệm). Đề xuất thay thế có thể dễ triển khai và thử nghiệm hơn cho các loại mã hóa thử nghiệm.
 
-- Location of public key and encryption type differs from RouterInfo
-- Maintains unused public key in leaseset
-- Requires implementation across the network; in the alternative, experimental
-  encryption types may be used, if allowed by floodfills
-  (but see related proposals 136 and 137 about support for experimental sig types).
-  The alternative proposal could be easier to implement and test for experimental encryption types.
+### Các vấn đề mã hóa mới
 
+Một phần điều này nằm ngoài phạm vi của đề xuất này,  
+nhưng ghi chú ở đây tạm thời vì chúng tôi chưa có  
+một đề xuất mã hóa riêng biệt nào.  
+Xem thêm các đề xuất ECIES 144 và 145.
 
-### New Encryption Issues
+- Loại mã hóa đại diện cho sự kết hợp  
+  của đường cong, độ dài khóa và lược đồ end-to-end,  
+  bao gồm KDF và MAC, nếu có.
 
-Some of this is out-of-scope for this proposal,
-but putting notes here for now as we don't have
-a separate encryption proposal yet.
-See also the ECIES proposals 144 and 145.
+- Chúng tôi đã bao gồm một trường độ dài khóa, để LS2 có thể  
+  được phân tích cú pháp và xác minh bởi floodfill ngay cả với các loại mã hóa chưa biết.
 
-- The encryption type represents the combination
-  of curve, key length, and end-to-end scheme,
-  including KDF and MAC, if any.
+- Loại mã hóa mới đầu tiên được đề xuất sẽ  
+  có thể là ECIES/X25519. Cách nó được sử dụng end-to-end  
+  (một phiên bản sửa đổi nhẹ của ElGamal/AES+SessionTag  
+  hoặc một cái gì đó hoàn toàn mới, ví dụ ChaCha/Poly) sẽ được chỉ định  
+  trong một hoặc nhiều đề xuất riêng biệt.  
+  Xem thêm các đề xuất ECIES 144 và 145.
 
-- We have included a key length field, so that the LS2 is
-  parsable and verifiable by the floodfill even for unknown encryption types.
+### Ghi chú
 
-- The first new encryption type to be proposed will
-  probably be ECIES/X25519. How it's used end-to-end
-  (either a slightly modified version of ElGamal/AES+SessionTag
-  or something completely new, e.g. ChaCha/Poly) will be specified
-  in one or more separate proposals.
-  See also the ECIES proposals 144 and 145.
+- 8-byte expiration trong leases thay đổi thành 4 byte.
 
+- Nếu chúng ta từng triển khai thu hồi, chúng ta có thể làm điều đó với một trường hết hạn bằng không,  
+  hoặc zero leases, hoặc cả hai. Không cần khóa thu hồi riêng biệt.
 
-### Notes
+- Các khóa mã hóa được sắp xếp theo thứ tự ưu tiên của máy chủ, ưu tiên cao nhất đầu tiên.  
+  Hành vi mặc định của client là chọn khóa đầu tiên có  
+  loại mã hóa được hỗ trợ. Client có thể sử dụng các thuật toán chọn khác  
+  dựa trên hỗ trợ mã hóa, hiệu suất tương đối và các yếu tố khác.
 
-- 8-byte expiration in leases changed to 4 bytes.
+### LS2 được mã hóa
 
-- If we ever implement revocation, we can do it with an expires field of zero,
-  or zero leases, or both. No need for a separate revocation key.
+Mục tiêu:
 
-- Encryption keys are in order of server preference, most-preferred first.
-  Default client behavior is to select the first key with
-  a supported encryption type. Clients may use other selection algorithms
-  based on encryption support, relative performance, and other factors.
+- Thêm ẩn danh
+- Cho phép nhiều loại chữ ký
+- Không yêu cầu các nguyên thủy mã hóa mới
+- Tùy chọn mã hóa cho từng người nhận, có thể thu hồi
+- Hỗ trợ mã hóa LS2 chuẩn và Meta LS2 chỉ
 
+LS2 được mã hóa không bao giờ được gửi trong một tin nhắn tỏi end-to-end.  
+Sử dụng LS2 chuẩn như trên.
 
-### Encrypted LS2
+Thay đổi từ LeaseSet được mã hóa hiện tại:
 
-Goals:
+- Mã hóa toàn bộ để đảm bảo an toàn
+- Mã hóa an toàn, không chỉ bằng AES.
+- Mã hóa cho từng người nhận
 
-- Add blinding
-- Allow multiple sig types
-- Don't require any new crypto primitives
-- Optionally encrypt to each recipient, revokable
-- Support encryption of Standard LS2 and Meta LS2 only
-
-Encrypted LS2 is never sent in an end-to-end garlic message.
-Use the standard LS2 as above.
-
-
-Changes from existing encrypted LeaseSet:
-
-- Encrypt the whole thing for security
-- Securely encrypt, not with AES only.
-- Encrypt to each recipient
-
-Lookup with
-    Standard LS flag (1)
-Store with
-    Encrypted LS2 type (5)
-Store at
-    Hash of blinded sig type and blinded public key
-    Two byte sig type (big endian, e.g. 0x000b) || blinded public key
-    This hash is then used to generate the daily "routing key", as in LS1
-Typical expiration
-    10 minutes, as in a regular LS, or hours, as in a meta LS.
-Published by
+Tìm kiếm với
+    Cờ LS chuẩn (1)
+Lưu trữ với
+    Loại LS2 được mã hóa (5)
+Lưu trữ tại
+    Băm của loại chữ ký ẩn danh và khóa công khai ẩn danh
+    Hai byte loại chữ ký (big endian, ví dụ 0x000b) || khóa công khai ẩn danh
+    Băm này sau đó được sử dụng để tạo "khóa định tuyến" hàng ngày, như trong LS1
+Thời gian hết hạn điển hình
+    10 phút, như trong một LS thông thường, hoặc hàng giờ, như trong một meta LS.
+Được công bố bởi
     Destination
 
+### Định nghĩa
 
-### Definitions
+Chúng tôi định nghĩa các hàm sau tương ứng với các khối xây dựng mật mã được sử dụng  
+cho LS2 được mã hóa:
 
-We define the following functions corresponding to the cryptographic building blocks used
-for encrypted LS2:
+CSRNG(n)  
+    đầu ra n-byte từ một bộ tạo số ngẫu nhiên an toàn về mặt mật mã.
 
-CSRNG(n)
-    n-byte output from a cryptographically-secure random number generator.
+    Ngoài yêu cầu CSRNG phải an toàn về mặt mật mã (và do đó  
+    phù hợp để tạo vật liệu khóa), nó PHẢI an toàn  
+    để một đầu ra n-byte được sử dụng cho vật liệu khóa khi các chuỗi byte ngay trước và sau nó  
+    được phơi bày trên mạng (như trong một muối, hoặc đệm được mã hóa). Các triển khai dựa vào một nguồn đáng ngờ nên băm  
+    bất kỳ đầu ra nào sẽ được phơi bày trên mạng. Xem [PRNG references](http://projectbullrun.org/dual-ec/ext-rand.html) và [Tor dev discussion](https://lists.torproject.org/pipermail/tor-dev/2015-November/009954.html).
 
-    In addition to the requirement of CSRNG being cryptographically-secure (and thus
-    suitable for generating key material), it MUST be safe
-    for some n-byte output to be used for key material when the byte sequences immediately
-    preceding and following it are exposed on the network (such as in a salt, or encrypted
-    padding). Implementations that rely on a potentially-untrustworthy source should hash
-    any output that is to be exposed on the network. See [PRNG references](http://projectbullrun.org/dual-ec/ext-rand.html) and [Tor dev discussion](https://lists.torproject.org/pipermail/tor-dev/2015-November/009954.html).
+H(p, d)  
+    hàm băm SHA-256 nhận một chuỗi cá nhân hóa p và dữ liệu d, và  
+    tạo ra đầu ra có độ dài 32 byte.
 
-H(p, d)
-    SHA-256 hash function that takes a personalization string p and data d, and
-    produces an output of length 32 bytes.
-
-    Use SHA-256 as follows::
+    Sử dụng SHA-256 như sau::
 
         H(p, d) := SHA-256(p || d)
 
-STREAM
-    The ChaCha20 stream cipher as specified in [RFC 7539 Section 2.4](https://tools.ietf.org/html/rfc7539#section-2.4), with the initial counter
-    set to 1. S_KEY_LEN = 32 and S_IV_LEN = 12.
+STREAM  
+    mật mã dòng ChaCha20 như được chỉ định trong [RFC 7539 Section 2.4](https://tools.ietf.org/html/rfc7539#section-2.4), với bộ đếm ban đầu  
+    được đặt thành 1. S_KEY_LEN = 32 và S_IV_LEN = 12.
 
-    ENCRYPT(k, iv, plaintext)
-        Encrypts plaintext using the cipher key k, and nonce iv which MUST be unique for
-        the key k. Returns a ciphertext that is the same size as the plaintext.
+    ENCRYPT(k, iv, plaintext)  
+        Mã hóa plaintext bằng khóa mật mã k, và nonce iv mà PHẢI là duy nhất cho  
+        khóa k. Trả về một bản mã có cùng kích thước với plaintext.
 
-        The entire ciphertext must be indistinguishable from random if the key is secret.
+        Bản mã toàn bộ phải không thể phân biệt với dữ liệu ngẫu nhiên nếu khóa là bí mật.
 
-    DECRYPT(k, iv, ciphertext)
-        Decrypts ciphertext using the cipher key k, and nonce iv. Returns the plaintext.
+    DECRYPT(k, iv, ciphertext)  
+        Giải mã ciphertext bằng khóa mật mã k, và nonce iv. Trả về plaintext.
 
+SIG  
+    lược đồ chữ ký RedDSA (tương ứng với SigType 11) với ẩn danh khóa.  
+    Nó có các hàm sau:
 
-SIG
-    The RedDSA signature scheme (corresponding to SigType 11) with key blinding.
-    It has the following functions:
+    DERIVE_PUBLIC(privkey)  
+        Trả về khóa công khai tương ứng với khóa riêng tư đã cho.
 
-    DERIVE_PUBLIC(privkey)
-        Returns the public key corresponding to the given private key.
+    SIGN(privkey, m)  
+        Trả về chữ ký bởi khóa riêng tư privkey trên thông điệp m đã cho.
 
-    SIGN(privkey, m)
-        Returns a signature by the private key privkey over the given message m.
+    VERIFY(pubkey, m, sig)  
+        Xác minh chữ ký sig đối với khóa công khai pubkey và thông điệp m. Trả về  
+        true nếu chữ ký hợp lệ, false nếu không.
 
-    VERIFY(pubkey, m, sig)
-        Verifies the signature sig against the public key pubkey and message m. Returns
-        true if the signature is valid, false otherwise.
+    Nó cũng phải hỗ trợ các thao tác ẩn danh khóa sau:
 
-    It must also support the following key blinding operations:
+    GENERATE_ALPHA(data, secret)  
+        Tạo alpha cho những người biết dữ liệu và một bí mật tùy chọn.  
+        Kết quả phải được phân bố giống hệt như các khóa riêng tư.
 
-    GENERATE_ALPHA(data, secret)
-        Generate alpha for those who know the data and an optional secret.
-        The result must be identically distributed as the private keys.
+    BLIND_PRIVKEY(privkey, alpha)  
+        Ẩn danh một khóa riêng tư, sử dụng một bí mật alpha.
 
-    BLIND_PRIVKEY(privkey, alpha)
-        Blinds a private key, using a secret alpha.
-
-    BLIND_PUBKEY(pubkey, alpha)
-        Blinds a public key, using a secret alpha.
-        For a given keypair (privkey, pubkey) the following relationship holds::
+    BLIND_PUBKEY(pubkey, alpha)  
+        Ẩn danh một khóa công khai, sử dụng một bí mật alpha.  
+        Đối với một cặp khóa (privkey, pubkey) đã cho, mối quan hệ sau giữ::
 
             BLIND_PUBKEY(pubkey, alpha) ==
             DERIVE_PUBLIC(BLIND_PRIVKEY(privkey, alpha))
 
-DH
-    X25519 public key agreement system. Private keys of 32 bytes, public keys of 32
-    bytes, produces outputs of 32 bytes. It has the following
-    functions:
+DH  
+    hệ thống thỏa thuận khóa công khai X25519. Khóa riêng 32 byte, khóa công khai 32  
+    byte, tạo ra đầu ra 32 byte. Nó có các  
+    hàm sau:
 
-    GENERATE_PRIVATE()
-        Generates a new private key.
+    GENERATE_PRIVATE()  
+        Tạo một khóa riêng mới.
 
-    DERIVE_PUBLIC(privkey)
-        Returns the public key corresponding to the given private key.
+    DERIVE_PUBLIC(privkey)  
+        Trả về khóa công khai tương ứng với khóa riêng đã cho.
 
-    DH(privkey, pubkey)
-        Generates a shared secret from the given private and public keys.
+    DH(privkey, pubkey)  
+        Tạo một bí mật chung từ khóa riêng và khóa công khai đã cho.
 
-HKDF(salt, ikm, info, n)
-    A cryptographic key derivation function which takes some input key material ikm (which
-    should have good entropy but is not required to be a uniformly random string), a salt
-    of length 32 bytes, and a context-specific 'info' value, and produces an output
-    of n bytes suitable for use as key material.
+HKDF(salt, ikm, info, n)  
+    một hàm dẫn xuất khóa mật mã nhận một vật liệu khóa đầu vào ikm (mà  
+    nên có entropy tốt nhưng không yêu cầu là một chuỗi ngẫu nhiên đều), một muối  
+    độ dài 32 byte, và một giá trị 'info' cụ thể theo ngữ cảnh, và tạo ra một đầu ra  
+    n byte phù hợp để sử dụng như vật liệu khóa.
 
-    Use HKDF as specified in [RFC 5869](https://tools.ietf.org/html/rfc5869), using the HMAC hash function SHA-256
-    as specified in [RFC 2104](https://tools.ietf.org/html/rfc2104). This means that SALT_LEN is 32 bytes max.
+    Sử dụng HKDF như được chỉ định trong [RFC 5869](https://tools.ietf.org/html/rfc5869), sử dụng hàm băm HMAC SHA-256  
+    như được chỉ định trong [RFC 2104](https://tools.ietf.org/html/rfc2104). Điều này có nghĩa là SALT_LEN tối đa là 32 byte.
 
+### Định dạng
 
-### Format
+Định dạng LS2 được mã hóa gồm ba lớp lồng nhau:
 
-The encrypted LS2 format consists of three nested layers:
+- Một lớp ngoài chứa thông tin văn bản thuần cần thiết để lưu trữ và truy xuất.
+- Một lớp giữa xử lý xác thực khách hàng.
+- Một lớp trong chứa dữ liệu LS2 thực tế.
 
-- An outer layer containing the necessary plaintext information for storage and retrieval.
-- A middle layer that handles client authentication.
-- An inner layer that contains the actual LS2 data.
+Định dạng tổng thể trông như sau::
 
-The overall format looks like::
+    Dữ liệu lớp 0 + Enc(dữ liệu lớp 1 + Enc(dữ liệu lớp 2)) + Chữ ký
 
-    Layer 0 data + Enc(layer 1 data + Enc(layer 2 data)) + Signature
+Lưu ý rằng LS2 được mã hóa là ẩn danh. Destination không nằm trong tiêu đề.  
+Vị trí lưu trữ DHT là SHA-256(loại chữ ký || khóa công khai ẩn danh), và được quay hàng ngày.
 
-Note that encrypted LS2 is blinded. The Destination is not in the header.
-DHT storage location is SHA-256(sig type || blinded public key), and rotated daily.
+KHÔNG sử dụng tiêu đề LS2 chuẩn được chỉ định ở trên.
 
-Does NOT use the standard LS2 header specified above.
-
-#### Layer 0 (outer)
-Type
+#### Lớp 0 (ngoài)
+Loại  
     1 byte
 
-    Not actually in header, but part of data covered by signature.
-    Take from field in Database Store Message.
+    Không thực sự nằm trong tiêu đề, nhưng là một phần của dữ liệu được bao phủ bởi chữ ký.  
+    Lấy từ trường trong Tin nhắn Lưu trữ Cơ sở dữ liệu.
 
-Blinded Public Key Sig Type
-    2 bytes, big endian
-    This will always be type 11, identifying a Red25519 blinded key.
+Loại chữ ký khóa công khai ẩn danh  
+    2 byte, big endian  
+    Điều này sẽ luôn là loại 11, xác định một khóa ẩn danh Red25519.
 
-Blinded Public Key
-    Length as implied by sig type
+Khóa công khai ẩn danh  
+    Độ dài như được ngụ ý bởi loại chữ ký
 
-Published timestamp
-    4 bytes, big endian
+Dấu thời gian công bố  
+    4 byte, big endian
 
-    Seconds since epoch, rolls over in 2106
+    Giây kể từ epoch, quay vòng vào năm 2106
 
-Expires
-    2 bytes, big endian
+Hết hạn  
+    2 byte, big endian
 
-    Offset from published timestamp in seconds, 18.2 hours max
+    Chênh lệch từ dấu thời gian công bố tính bằng giây, tối đa 18,2 giờ
 
-Flags
-    2 bytes
+Cờ  
+    2 byte
 
-    Bit order: 15 14 ... 3 2 1 0
+    Thứ tự bit: 15 14 ... 3 2 1 0
 
-    Bit 0: If 0, no offline keys; if 1, offline keys
+    Bit 0: Nếu 0, không có khóa ngoại tuyến; nếu 1, có khóa ngoại tuyến
 
-    Other bits: set to 0 for compatibility with future uses
+    Các bit khác: đặt thành 0 để tương thích với các mục đích sử dụng trong tương lai
 
-Transient key data
-    Present if flag indicates offline keys
+Dữ liệu khóa tạm thời  
+    Có mặt nếu cờ cho biết có khóa ngoại tuyến
 
-    Expires timestamp
-        4 bytes, big endian
+    Dấu thời gian hết hạn  
+        4 byte, big endian
 
-        Seconds since epoch, rolls over in 2106
+        Giây kể từ epoch, quay vòng vào năm 2106
 
-    Transient sig type
-        2 bytes, big endian
+    Loại chữ ký tạm thời  
+        2 byte, big endian
 
-    Transient signing public key
-        Length as implied by sig type
+    Khóa công khai ký tạm thời  
+        Độ dài như được ngụ ý bởi loại chữ ký
 
-    Signature
-        Length as implied by blinded public key sig type
+    Chữ ký  
+        Độ dài như được ngụ ý bởi loại chữ ký khóa công khai ẩn danh
 
-        Over expires timestamp, transient sig type, and transient public key.
+        Trên dấu thời gian hết hạn, loại chữ ký tạm thời và khóa công khai tạm thời.
 
-        Verified with the blinded public key.
+        Được xác minh bằng khóa công khai ẩn danh.
 
-lenOuterCiphertext
-    2 bytes, big endian
+lenOuterCiphertext  
+    2 byte, big endian
 
-outerCiphertext
-    lenOuterCiphertext bytes
+outerCiphertext  
+    lenOuterCiphertext byte
 
-    Encrypted layer 1 data. See below for key derivation and encryption algorithms.
+    Dữ liệu lớp 1 đã mã hóa. Xem bên dưới về thuật toán dẫn xuất khóa và mã hóa.
 
-Signature
-    Length as implied by sig type of the signing key used
+Chữ ký  
+    Độ dài như được ngụ ý bởi loại chữ ký của khóa ký được sử dụng
 
-    The signature is of everything above.
+    Chữ ký của tất cả các nội dung ở trên.
 
-    If the flag indicates offline keys, the signature is verified with the transient
-    public key. Otherwise, the signature is verified with the blinded public key.
+    Nếu cờ cho biết có khóa ngoại tuyến, chữ ký được xác minh bằng khóa công khai tạm thời.  
+    Nếu không, chữ ký được xác minh bằng khóa công khai ẩn danh.
 
-
-#### Layer 1 (middle)
-Flags
+#### Lớp 1 (giữa)
+Cờ  
     1 byte
     
-    Bit order: 76543210
+    Thứ tự bit: 76543210
 
-    Bit 0: 0 for everybody, 1 for per-client, auth section to follow
+    Bit 0: 0 cho mọi người, 1 cho từng khách hàng, phần xác thực theo sau
 
-    Bits 3-1: Authentication scheme, only if bit 0 is set to 1 for per-client, otherwise 000
-              000: DH client authentication (or no per-client authentication)
-              001: PSK client authentication
+    Bit 3-1: Sơ đồ xác thực, chỉ nếu bit 0 được đặt thành 1 cho từng khách hàng, nếu không 000  
+              000: Xác thực khách hàng DH (hoặc không có xác thực từng khách hàng)  
+              001: Xác thực khách hàng PSK
 
-    Bits 7-4: Unused, set to 0 for future compatibility
+    Bit 7-4: Không sử dụng, đặt thành 0 để tương thích trong tương lai
 
-DH client auth data
-    Present if flag bit 0 is set to 1 and flag bits 3-1 are set to 000.
+Dữ liệu xác thực khách hàng DH  
+    Có mặt nếu bit cờ 0 được đặt thành 1 và bit cờ 3-1 được đặt thành 000.
 
-    ephemeralPublicKey
-        32 bytes
+    ephemeralPublicKey  
+        32 byte
 
-    clients
-        2 bytes, big endian
+    clients  
+        2 byte, big endian
 
-        Number of authClient entries to follow, 40 bytes each
+        Số lượng mục authClient theo sau, 40 byte mỗi cái
 
-    authClient
-        Authorization data for a single client.
-        See below for the per-client authorization algorithm.
+    authClient  
+        Dữ liệu ủy quyền cho một khách hàng duy nhất.  
+        Xem bên dưới về thuật toán ủy quyền từng khách hàng.
 
-        clientID_i
-            8 bytes
+        clientID_i  
+            8 byte
 
-        clientCookie_i
-            32 bytes
+        clientCookie_i  
+            32 byte
 
-PSK client auth data
-    Present if flag bit 0 is set to 1 and flag bits 3-1 are set to 001.
+Dữ liệu xác thực khách hàng PSK  
+    Có mặt nếu bit cờ 0 được đặt thành 1 và bit cờ 3-1 được đặt thành 001.
 
-    authSalt
-        32 bytes
+    authSalt  
+        32 byte
 
-    clients
-        2 bytes, big endian
+    clients  
+        2 byte, big endian
 
-        Number of authClient entries to follow, 40 bytes each
+        Số lượng mục authClient theo sau, 40 byte mỗi cái
 
-    authClient
-        Authorization data for a single client.
-        See below for the per-client authorization algorithm.
+    authClient  
+        Dữ liệu ủy quyền cho một khách hàng duy nhất.  
+        Xem bên dưới về thuật toán ủy quyền từng khách hàng.
 
-        clientID_i
-            8 bytes
+        clientID_i  
+            8 byte
 
-        clientCookie_i
-            32 bytes
+        clientCookie_i  
+            32 byte
 
+innerCiphertext  
+    Độ dài ngụ ý bởi lenOuterCiphertext (bất kỳ dữ liệu nào còn lại)
 
-innerCiphertext
-    Length implied by lenOuterCiphertext (whatever data remains)
+    Dữ liệu lớp 2 đã mã hóa. Xem bên dưới về thuật toán dẫn xuất khóa và mã hóa.
 
-    Encrypted layer 2 data. See below for key derivation and encryption algorithms.
-
-
-#### Layer 2 (inner)
-Type
+#### Lớp 2 (trong)
+Loại  
     1 byte
 
-    Either 3 (LS2) or 7 (Meta LS2)
+    Hoặc 3 (LS2) hoặc 7 (Meta LS2)
 
-Data
-    LeaseSet2 data for the given type.
+Dữ liệu  
+    Dữ liệu LeaseSet2 cho loại đã cho.
 
-    Includes the header and signature.
+    Bao gồm tiêu đề và chữ ký.
 
+### Dẫn xuất khóa ẩn danh
 
-### Blinding Key Derivation
+Chúng tôi sử dụng sơ đồ sau cho việc ẩn danh khóa,  
+dựa trên Ed25519 và [ZCash RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf).  
+Các chữ ký Re25519 là trên đường cong Ed25519, sử dụng SHA-512 cho hàm băm.
 
-We use the following scheme for key blinding,
-based on Ed25519 and [ZCash RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf).
-The Re25519 signatures are over the Ed25519 curve, using SHA-512 for the hash.
+Chúng tôi không sử dụng [phụ lục A.2 của Tor's rend-spec-v3.txt](https://spec.torproject.org/rend-spec-v3),  
+có mục tiêu thiết kế tương tự, vì các khóa công khai ẩn danh của nó  
+có thể nằm ngoài nhóm con bậc nguyên tố, với các hệ quả bảo mật chưa biết.
 
-We do not use [Tor's rend-spec-v3.txt appendix A.2](https://spec.torproject.org/rend-spec-v3),
-which has similar design goals, because its blinded public keys
-may be off the prime-order subgroup, with unknown security implications.
+#### Mục tiêu
 
+- Khóa công khai ký trong destination chưa ẩn danh phải là  
+  Ed25519 (loại chữ ký 7) hoặc Red25519 (loại chữ ký 11);  
+  không hỗ trợ các loại chữ ký khác
+- Nếu khóa công khai ký là ngoại tuyến, khóa công khai ký tạm thời cũng phải là Ed25519
+- Việc ẩn danh khóa đơn giản về mặt tính toán
+- Sử dụng các nguyên thủy mật mã hiện có
+- Các khóa công khai ẩn danh không thể được gỡ ẩn danh
+- Các khóa công khai ẩn danh phải nằm trên đường cong Ed25519 và nhóm con bậc nguyên tố
+- Phải biết khóa công khai ký của destination  
+  (không yêu cầu destination đầy đủ) để dẫn xuất khóa công khai ẩn danh
+- Tùy chọn cung cấp một bí mật bổ sung cần thiết để dẫn xuất khóa công khai ẩn danh
 
-#### Goals
+#### Bảo mật
 
-- Signing public key in unblinded destination must be
-  Ed25519 (sig type 7) or Red25519 (sig type 11);
-  no other sig types are supported
-- If the signing public key is offline, the transient signing public key must also be Ed25519
-- Blinding is computationally simple
-- Use existing cryptographic primitives
-- Blinded public keys cannot be unblinded
-- Blinded public keys must be on the Ed25519 curve and prime-order subgroup
-- Must know the destination's signing public key
-  (full destination not required) to derive the blinded public key
-- Optionally provide for an additional secret required to derive the blinded public key
+Bảo mật của một sơ đồ ẩn danh yêu cầu rằng  
+phân bố của alpha giống hệt như các khóa riêng chưa ẩn danh.  
+Tuy nhiên, khi chúng ta ẩn danh một khóa riêng Ed25519 (loại chữ ký 7)  
+thành một khóa riêng Red25519 (loại chữ ký 11), phân bố là khác nhau.  
+Để đáp ứng các yêu cầu của [zcash section 4.1.6.1](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf),  
+Red25519 (loại chữ ký 11) nên được sử dụng cho cả các khóa chưa ẩn danh, để  
+"tổ hợp của một khóa công khai được tạo ngẫu nhiên lại và chữ ký(s)  
+dưới khóa đó không tiết lộ khóa mà nó được tạo ngẫu nhiên lại từ."  
+Chúng tôi cho phép loại 7 cho các destination hiện tại, nhưng khuyến nghị  
+loại 11 cho các destination mới sẽ được mã hóa.
 
+#### Định nghĩa
 
-#### Security
+B  
+    Điểm cơ sở Ed25519 (generator) 2^255 - 19 như trong [Ed25519](http://cr.yp.to/papers.html#ed25519)
 
-The security of a blinding scheme requires that the
-distribution of alpha is the same as the unblinded private keys.
-However, when we blind an Ed25519 private key (sig type 7)
-to a Red25519 private key (sig type 11), the distribution is different.
-To meet the requirements of [zcash section 4.1.6.1](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf),
-Red25519 (sig type 11) should be used for the unblinded keys as well, so that
-"the combination of a re-randomized public key and signature(s)
-under that key do not reveal the key from which it was re-randomized."
-We allow type 7 for existing destinations, but recommend
-type 11 for new destinations that will be encrypted.
+L  
+    Bậc Ed25519 2^252 + 27742317777372353535851937790883648493  
+    như trong [Ed25519](http://cr.yp.to/papers.html#ed25519)
 
+DERIVE_PUBLIC(a)  
+    Chuyển một khóa riêng thành công khai, như trong Ed25519 (nhân với G)
 
+alpha  
+    Một số ngẫu nhiên 32 byte được biết bởi những người biết destination.
 
-#### Definitions
+GENERATE_ALPHA(destination, date, secret)  
+    Tạo alpha cho ngày hiện tại, cho những người biết destination và bí mật.  
+    Kết quả phải được phân bố giống hệt như các khóa riêng Ed25519.
 
-B
-    The Ed25519 base point (generator) 2^255 - 19 as in [Ed25519](http://cr.yp.to/papers.html#ed25519)
+a  
+    Khóa riêng ký EdDSA hoặc RedDSA 32 byte chưa ẩn danh được sử dụng để ký destination
 
-L
-    The Ed25519 order 2^252 + 27742317777372353535851937790883648493
-    as in [Ed25519](http://cr.yp.to/papers.html#ed25519)
+A  
+    Khóa công khai ký EdDSA hoặc RedDSA 32 byte chưa ẩn danh trong destination,  
+    = DERIVE_PUBLIC(a), như trong Ed25519
 
-DERIVE_PUBLIC(a)
-    Convert a private key to public, as in Ed25519 (mulitply by G)
+a'  
+    Khóa riêng ký EdDSA 32 byte ẩn danh được sử dụng để ký leaseset được mã hóa  
+    Đây là một khóa riêng EdDSA hợp lệ.
 
-alpha
-    A 32-byte random number known to those who know the destination.
+A'  
+    Khóa công khai ký EdDSA 32 byte ẩn danh trong Destination,  
+    có thể được tạo bằng DERIVE_PUBLIC(a'), hoặc từ A và alpha.  
+    Đây là một khóa công khai EdDSA hợp lệ, trên đường cong và trên nhóm con bậc nguyên tố.
 
-GENERATE_ALPHA(destination, date, secret)
-    Generate alpha for the current date, for those who know the destination and the secret.
-    The result must be identically distributed as Ed25519 private keys.
+LEOS2IP(x)  
+    Đảo ngược thứ tự các byte đầu vào thành little-endian
 
-a
-    The unblinded 32-byte EdDSA or RedDSA signing private key used to sign the destination
+H*(x)  
+    32 byte = (LEOS2IP(SHA512(x))) mod B, giống như trong hash-and-reduce của Ed25519
 
-A
-    The unblinded 32-byte EdDSA or RedDSA signing public key in the destination,
-    = DERIVE_PUBLIC(a), as in Ed25519
+#### Tính toán ẩn danh
 
-a'
-    The blinded 32-byte EdDSA signing private key used to sign the encrypted leaseset
-    This is a valid EdDSA private key.
+Một bí mật alpha mới và các khóa ẩn danh phải được tạo mỗi ngày (UTC).  
+Bí mật alpha và các khóa ẩn danh được tính như sau.
 
-A'
-    The blinded 32-byte EdDSA signing public key in the Destination,
-    may be generated with DERIVE_PUBLIC(a'), or from A and alpha.
-    This is a valid EdDSA public key, on the curve and on the prime-order subgroup.
-
-LEOS2IP(x)
-    Flip the order of the input bytes to little-endian
-
-H*(x)
-    32 bytes = (LEOS2IP(SHA512(x))) mod B, same as in Ed25519 hash-and-reduce
-
-
-#### Blinding Calculations
-
-A new secret alpha and blinded keys must be generated each day (UTC).
-The secret alpha and the blinded keys are calculated as follows.
-
-GENERATE_ALPHA(destination, date, secret), for all parties:
+GENERATE_ALPHA(destination, date, secret), cho tất cả các bên:
 
 ```text
 // GENERATE_ALPHA(destination, date, secret)
 
-  // secret is optional, else zero-length
-  A = destination's signing public key
-  stA = signature type of A, 2 bytes big endian (0x0007 or 0x000b)
-  stA' = signature type of blinded public key A', 2 bytes big endian (0x000b)
+  // bí mật là tùy chọn, nếu không thì độ dài bằng 0
+  A = khóa công khai ký của destination
+  stA = loại chữ ký của A, 2 byte big endian (0x0007 hoặc 0x000b)
+  stA' = loại chữ ký của khóa công khai ẩn danh A', 2 byte big endian (0x000b)
   keydata = A || stA || stA'
-  datestring = 8 bytes ASCII YYYYMMDD from the current date UTC
-  secret = UTF-8 encoded string
+  datestring = 8 byte ASCII YYYYMMDD từ ngày hiện tại UTC
+  secret = chuỗi mã hóa UTF-8
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
-  // treat seed as a 64 byte little-endian value
+  // coi seed là giá trị 64 byte little-endian
   alpha = seed mod L
 ```
 
-BLIND_PRIVKEY(), for the owner publishing the leaseset:
+BLIND_PRIVKEY(), cho chủ sở hữu công bố leaseset:
 
 ```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
-  // If for a Ed25519 private key (type 7)
-  seed = destination's signing private key
-  a = left half of SHA512(seed) and clamped as usual for Ed25519
-  // else, for a Red25519 private key (type 11)
-  a = destination's signing private key
-  // Addition using scalar arithmentic
-  blinded signing private key = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
-  blinded signing public key = A' = DERIVE_PUBLIC(a')
+  // Nếu cho một khóa riêng Ed25519 (loại 7)
+  seed = khóa riêng ký của destination
+  a = nửa trái của SHA512(seed) và được kẹp như thường lệ cho Ed25519
+  // nếu không, cho một khóa riêng Red25519 (loại 11)
+  a = khóa riêng ký của destination
+  // Phép cộng sử dụng số học vô hướng
+  khóa riêng ký ẩn danh = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
+  khóa công khai ký ẩn danh = A' = DERIVE_PUBLIC(a')
 ```
 
-BLIND_PUBKEY(), for the clients retrieving the leaseset:
+BLIND_PUBKEY(), cho các client truy xuất leaseset:
 
 ```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
-  A = destination's signing public key
-  // Addition using group elements (points on the curve)
-  blinded public key = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
+  A = khóa công khai ký của destination
+  // Phép cộng sử dụng phần tử nhóm (điểm trên đường cong)
+  khóa công khai ẩn danh = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
 ```
 
-Both methods of calculating A' yield the same result, as required.
+Cả hai phương pháp tính toán A' đều cho cùng kết quả, như yêu cầu.
 
+#### Ký
 
+Leaseset chưa ẩn danh được ký bởi khóa riêng ký Ed25519 hoặc Red25519 chưa ẩn danh  
+và được xác minh bằng khóa công khai ký Ed25519 hoặc Red25519 chưa ẩn danh (loại chữ ký 7 hoặc 11) như thường lệ.
 
-#### Signing
+Nếu khóa công khai ký là ngoại tuyến,  
+leaset chưa ẩn danh được ký bởi khóa riêng ký tạm thời Ed25519 hoặc Red25519 chưa ẩn danh  
+và được xác minh bằng khóa công khai ký tạm thời Ed25519 hoặc Red25519 chưa ẩn danh (loại chữ ký 7 hoặc 11) như thường lệ.  
+Xem bên dưới để biết thêm ghi chú về khóa ngoại tuyến cho leaseset được mã hóa.
 
-The unblinded leaseset is signed by the unblinded Ed25519 or Red25519 signing private key
-and verified with the unblinded Ed25519 or Red25519 signing public key (sig types 7 or 11) as usual.
+Đối với việc ký leaseset được mã hóa, chúng tôi sử dụng Red25519, dựa trên [RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)  
+để ký và xác minh với các khóa ẩn danh.  
+Các chữ ký Red25519 là trên đường cong Ed25519, sử dụng SHA-512 cho hàm băm.
 
-If the signing public key is offline,
-the unblinded leaseset is signed by the unblinded transient Ed25519 or Red25519 signing private key
-and verified with the unblinded Ed25519 or Red25519 transient signing public key (sig types 7 or 11) as usual.
-See below for additional notes on offline keys for encrytped leasesets.
+Red25519 giống hệt với Ed25519 chuẩn ngoại trừ như được chỉ định bên dưới.
 
-For signing of the encrypted leaseset, we use Red25519, based on [RedDSA](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)
-to sign and verify with blinded keys.
-The Red25519 signatures are over the Ed25519 curve, using SHA-512 for the hash.
+#### Tính toán Ký/Xác minh
 
-Red25519 is identical to standard Ed25519 except as specified below.
+Phần ngoài của leaseset được mã hóa sử dụng các khóa và chữ ký Red25519.
 
+Red25519 gần như giống hệt với Ed25519. Có hai điểm khác biệt:
 
-#### Sign/Verify Calculations
+Khóa riêng Red25519 được tạo từ các số ngẫu nhiên và sau đó phải được giảm mod L, trong đó L được định nghĩa ở trên.  
+Khóa riêng Ed25519 được tạo từ các số ngẫu nhiên và sau đó được "kẹp" bằng  
+mặt nạ bit cho byte 0 và 31. Điều này không được thực hiện cho Red25519.  
+Các hàm GENERATE_ALPHA() và BLIND_PRIVKEY() được định nghĩa ở trên tạo ra các khóa riêng Red25519 đúng bằng cách sử dụng mod L.
 
-The outer portion of the encrypted leaseset uses Red25519 keys and signatures.
+Trong Red25519, phép tính r để ký sử dụng thêm dữ liệu ngẫu nhiên,  
+và sử dụng giá trị khóa công khai thay vì băm của khóa riêng.  
+Do dữ liệu ngẫu nhiên, mọi chữ ký Red25519 đều khác nhau, ngay cả khi  
+ký cùng dữ liệu với cùng khóa.
 
-Red25519 is almost identical to Ed25519. There are two differences:
-
-Red25519 private keys are generated from random numbers and then must be reduced mod L, where L is defined above.
-Ed25519 private keys are generated from random numbers and then "clamped" using
-bitwise masking to bytes 0 and 31. This is not done for Red25519.
-The functions GENERATE_ALPHA() and BLIND_PRIVKEY() defined above generate proper
-Red25519 private keys using mod L.
-
-In Red25519, the calculation of r for signing uses additional random data,
-and uses the public key value rather than the hash of the private key.
-Because of the random data, every Red25519 signature is different, even
-when signing the same data with the same key.
-
-Signing:
+Ký:
 
 ```text
-T = 80 random bytes
+T = 80 byte ngẫu nhiên
   r = H*(T || publickey || message)
-  // rest is the same as in Ed25519
+  // phần còn lại giống như trong Ed25519
 ```
 
-Verification:
+Xác minh:
 
 ```text
-// same as in Ed25519
+// giống như trong Ed25519
 ```
 
+### Mã hóa và xử lý
 
-
-### Encryption and processing
-
-#### Derivation of subcredentials
-As part of the blinding process, we need to ensure that an encrypted LS2 can only be
-decrypted by someone who knows the corresponding Destination's signing public key.
-The full Destination is not required.
-To achieve this, we derive a credential from the signing public key:
+#### Dẫn xuất các subcredentials
+Là một phần của quá trình ẩn danh, chúng ta cần đảm bảo rằng một LS2 được mã hóa chỉ có thể được  
+giải mã bởi ai đó biết khóa công khai ký tương ứng của Destination.  
+Không yêu cầu Destination đầy đủ.  
+Để đạt được điều này, chúng ta dẫn xuất một credential từ khóa công khai ký:
 
 ```text
-A = destination's signing public key
-  stA = signature type of A, 2 bytes big endian (0x0007 or 0x000b)
-  stA' = signature type of A', 2 bytes big endian (0x000b)
+A = khóa công khai ký của destination
+  stA = loại chữ ký của A, 2 byte big endian (0x0007 hoặc 0x000b)
+  stA' = loại chữ ký của A', 2 byte big endian (0x000b)
   keydata = A || stA || stA'
   credential = H("credential", keydata)
 ```
 
-The personalization string ensures that the credential does not collide with any hash used
-as a DHT lookup key, such as the plain Destination hash.
+Chuỗi cá nhân hóa đảm bảo rằng credential không bị trùng với bất kỳ băm nào được sử dụng  
+làm khóa tra cứu DHT, chẳng hạn như băm Destination thuần túy.
 
-For a given blinded key, we can then derive a subcredential:
+Đối với một khóa ẩn danh đã cho, chúng ta có thể dẫn xuất một subcredential:
 
 ```text
 subcredential = H("subcredential", credential || blindedPublicKey)
 ```
 
-The subcredential is included in the key derivation processes below, which binds those
-keys to knowledge of the Destination's signing public key.
+Subcredential được bao gồm trong các quá trình dẫn xuất khóa bên dưới, điều này ràng buộc các khóa đó  
+với việc biết khóa công khai ký của Destination.
 
-#### Layer 1 encryption
-First, the input to the key derivation process is prepared:
+#### Mã hóa lớp 1
+Đầu tiên, đầu vào cho quá trình dẫn xuất khóa được chuẩn bị:
 
 ```text
 outerInput = subcredential || publishedTimestamp
 ```
 
-Next, a random salt is generated:
+Tiếp theo, một muối ngẫu nhiên được tạo:
 
 ```text
 outerSalt = CSRNG(32)
 ```
 
-Then the key used to encrypt layer 1 is derived:
+Sau đó, khóa được sử dụng để mã hóa lớp 1 được dẫn xuất:
 
 ```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
@@ -927,20 +870,20 @@ keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerIV = keys[32:43]
 ```
 
-Finally, the layer 1 plaintext is encrypted and serialized:
+Cuối cùng, văn bản rõ lớp 1 được mã hóa và tuần tự hóa:
 
 ```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
 ```
 
-#### Layer 1 decryption
-The salt is parsed from the layer 1 ciphertext:
+#### Giải mã lớp 1
+Muối được phân tích từ văn bản mã lớp 1:
 
 ```text
 outerSalt = outerCiphertext[0:31]
 ```
 
-Then the key used to encrypt layer 1 is derived:
+Sau đó, khóa được sử dụng để mã hóa lớp 1 được dẫn xuất:
 
 ```text
 outerInput = subcredential || publishedTimestamp
@@ -949,17 +892,17 @@ outerInput = subcredential || publishedTimestamp
   outerIV = keys[32:43]
 ```
 
-Finally, the layer 1 ciphertext is decrypted:
+Cuối cùng, văn bản mã lớp 1 được giải mã:
 
 ```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
 ```
 
-#### Layer 2 encryption
-When client authorization is enabled, ``authCookie`` is calculated as described below.
-When client authorization is disabled, ``authCookie`` is the zero-length byte array.
+#### Mã hóa lớp 2
+Khi xác thực khách hàng được bật, ``authCookie`` được tính như mô tả bên dưới.  
+Khi xác thực khách hàng bị tắt, ``authCookie`` là mảng byte độ dài bằng 0.
 
-Encryption proceeds in a similar fashion to layer 1:
+Việc mã hóa tiến hành theo cách tương tự như lớp 1:
 
 ```text
 innerInput = authCookie || subcredential || publishedTimestamp
@@ -970,11 +913,11 @@ innerInput = authCookie || subcredential || publishedTimestamp
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
 ```
 
-#### Layer 2 decryption
-When client authorization is enabled, ``authCookie`` is calculated as described below.
-When client authorization is disabled, ``authCookie`` is the zero-length byte array.
+#### Giải mã lớp 2
+Khi xác thực khách hàng được bật, ``authCookie`` được tính như mô tả bên dưới.  
+Khi xác thực khách hàng bị tắt, ``authCookie`` là mảng byte độ dài bằng 0.
 
-Decryption proceeds in a similar fashion to layer 1:
+Việc giải mã tiến hành theo cách tương tự như lớp 1:
 
 ```text
 innerInput = authCookie || subcredential || publishedTimestamp
@@ -985,23 +928,22 @@ innerInput = authCookie || subcredential || publishedTimestamp
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
 ```
 
+### Ủy quyền theo khách hàng
 
-### Per-client authorization
+Khi xác thực khách hàng được bật cho một Destination, máy chủ duy trì một danh sách các  
+khách hàng mà họ ủy quyền để giải mã dữ liệu LS2 được mã hóa. Dữ liệu được lưu trữ cho từng khách hàng  
+phụ thuộc vào cơ chế ủy quyền, và bao gồm một số dạng vật liệu khóa mà mỗi  
+khách hàng tạo và gửi đến máy chủ thông qua một cơ chế ngoài băng tần an toàn.
 
-When client authorization is enabled for a Destination, the server maintains a list of
-clients they are authorizing to decrypt the encrypted LS2 data. The data stored per-client
-depends on the authorization mechanism, and includes some form of key material that each
-client generates and sends to the server via a secure out-of-band mechanism.
+Có hai lựa chọn để triển khai ủy quyền theo khách hàng:
 
-There are two alternatives for implementing per-client authorization:
+#### Xác thực khách hàng DH
+Mỗi khách hàng tạo một cặp khóa DH ``[csk_i, cpk_i]``, và gửi khóa công khai ``cpk_i``  
+đến máy chủ.
 
-#### DH client authorization
-Each client generates a DH keypair ``[csk_i, cpk_i]``, and sends the public key ``cpk_i``
-to the server.
-
-Server processing
+Xử lý máy chủ  
 ^^^^^^^^^^^^^^^^^
-The server generates a new ``authCookie`` and an ephemeral DH keypair:
+Máy chủ tạo một ``authCookie`` mới và một cặp khóa DH tạm thời:
 
 ```text
 authCookie = CSRNG(32)
@@ -1009,7 +951,7 @@ authCookie = CSRNG(32)
   epk = DERIVE_PUBLIC(esk)
 ```
 
-Then for each authorized client, the server encrypts ``authCookie`` to its public key:
+Sau đó, đối với mỗi khách hàng được ủy quyền, máy chủ mã hóa ``authCookie`` bằng khóa công khai của nó:
 
 ```text
 sharedSecret = DH(esk, cpk_i)
@@ -1021,13 +963,13 @@ sharedSecret = DH(esk, cpk_i)
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
 ```
 
-The server places each ``[clientID_i, clientCookie_i]`` tuple into layer 1 of the
-encrypted LS2, along with ``epk``.
+Máy chủ đặt mỗi bộ ``[clientID_i, clientCookie_i]`` vào lớp 1 của  
+LS2 được mã hóa, cùng với ``epk``.
 
-Client processing
+Xử lý khách hàng  
 ^^^^^^^^^^^^^^^^^
-The client uses its private key to derive its expected client identifier ``clientID_i``,
-encryption key ``clientKey_i``, and encryption IV ``clientIV_i``:
+Khách hàng sử dụng khóa riêng của nó để dẫn xuất định danh khách hàng mong đợi ``clientID_i``,  
+khóa mã hóa ``clientKey_i``, và IV mã hóa ``clientIV_i``:
 
 ```text
 sharedSecret = DH(csk_i, epk)
@@ -1038,29 +980,28 @@ sharedSecret = DH(csk_i, epk)
   clientID_i = okm[44:51]
 ```
 
-Then the client searches the layer 1 authorization data for an entry that contains
-``clientID_i``. If a matching entry exists, the client decrypts it to obtain
+Sau đó, khách hàng tìm kiếm dữ liệu ủy quyền lớp 1 để tìm mục chứa  
+``clientID_i``. Nếu tồn tại mục khớp, khách hàng giải mã nó để lấy  
 ``authCookie``:
 
 ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 ```
 
-#### Pre-shared key client authorization
-Each client generates a secret 32-byte key ``psk_i``, and sends it to the server.
-Alternatively, the server can generate the secret key, and send it to one or more clients.
+#### Xác thực khách hàng khóa chia sẻ trước (PSK)
+Mỗi khách hàng tạo một khóa bí mật 32 byte ``psk_i``, và gửi nó đến máy chủ.  
+Ngoài ra, máy chủ có thể tạo khóa bí mật, và gửi nó đến một hoặc nhiều khách hàng.
 
-
-Server processing
+Xử lý máy chủ  
 ^^^^^^^^^^^^^^^^^
-The server generates a new ``authCookie`` and salt:
+Máy chủ tạo một ``authCookie`` mới và muối:
 
 ```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
 ```
 
-Then for each authorized client, the server encrypts ``authCookie`` to its pre-shared key:
+Sau đó, đối với mỗi khách hàng được ủy quyền, máy chủ mã hóa ``authCookie`` bằng khóa chia sẻ trước của nó:
 
 ```text
 authInput = psk_i || subcredential || publishedTimestamp
@@ -1071,13 +1012,13 @@ authInput = psk_i || subcredential || publishedTimestamp
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
 ```
 
-The server places each ``[clientID_i, clientCookie_i]`` tuple into layer 1 of the
-encrypted LS2, along with ``authSalt``.
+Máy chủ đặt mỗi bộ ``[clientID_i, clientCookie_i]`` vào lớp 1 của  
+LS2 được mã hóa, cùng với ``authSalt``.
 
-Client processing
+Xử lý khách hàng  
 ^^^^^^^^^^^^^^^^^
-The client uses its pre-shared key to derive its expected client identifier ``clientID_i``,
-encryption key ``clientKey_i``, and encryption IV ``clientIV_i``:
+Khách hàng sử dụng khóa chia sẻ trước của nó để dẫn xuất định danh khách hàng mong đợi ``clientID_i``,  
+khóa mã hóa ``clientKey_i``, và IV mã hóa ``clientIV_i``:
 
 ```text
 authInput = psk_i || subcredential || publishedTimestamp
@@ -1087,1010 +1028,370 @@ authInput = psk_i || subcredential || publishedTimestamp
   clientID_i = okm[44:51]
 ```
 
-Then the client searches the layer 1 authorization data for an entry that contains
-``clientID_i``. If a matching entry exists, the client decrypts it to obtain
+Sau đó, khách hàng tìm kiếm dữ liệu ủy quyền lớp 1 để tìm mục chứa  
+``clientID_i``. Nếu tồn tại mục khớp, khách hàng giải mã nó để lấy  
 ``authCookie``:
 
 ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 ```
 
-#### Security considerations
-Both of the client authorization mechanisms above provide privacy for client membership.
-An entity that only knows the Destination can see how many clients are subscribed at any
-time, but cannot track which clients are being added or revoked.
+#### Xem xét bảo mật
+Cả hai cơ chế ủy quyền khách hàng trên đều cung cấp quyền riêng tư cho thành viên khách hàng.  
+Một thực thể chỉ biết Destination có thể thấy có bao nhiêu khách hàng đang đăng ký tại bất kỳ  
+thời điểm nào, nhưng không thể theo dõi khách hàng nào đang được thêm hoặc thu hồi.
 
-Servers SHOULD randomize the order of clients each time they generate an encrypted LS2, to
-prevent clients learning their position in the list and inferring when other clients have
-been added or revoked.
+Các máy chủ NÊN xáo trộn thứ tự các khách hàng mỗi khi họ tạo một LS2 được mã hóa, để  
+ngăn khách hàng biết vị trí của họ trong danh sách và suy ra khi khách hàng khác được thêm hoặc thu hồi.
 
-A server MAY choose to hide the number of clients that are subscribed by inserting random
-entries into the list of authorization data.
+Một máy chủ CÓ THỂ chọn ẩn số lượng khách hàng đang đăng ký bằng cách chèn các mục ngẫu nhiên  
+vào danh sách dữ liệu ủy quyền.
 
-Advantages of DH client authorization
+Ưu điểm của xác thực khách hàng DH  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Security of the scheme is not solely dependent on the out-of-band exchange of client key
-  material. The client's private key never needs to leave their device, and so an
-  adversary that is able to intercept the out-of-band exchange, but cannot break the DH
-  algorithm, cannot decrypt the encrypted LS2, or determine how long the client is given
-  access.
+- Bảo mật của sơ đồ không hoàn toàn phụ thuộc vào việc trao đổi ngoài băng tần vật liệu khóa khách hàng.  
+  Khóa riêng của khách hàng không cần rời khỏi thiết bị của họ, và do đó một  
+  kẻ thù có thể chặn việc trao đổi ngoài băng tần, nhưng không thể phá vỡ thuật toán DH,  
+  không thể giải mã LS2 được mã hóa, hoặc xác định thời gian khách hàng được cấp quyền truy cập.
 
-Downsides of DH client authorization
+Nhược điểm của xác thực khách hàng DH  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Requires N + 1 DH operations on the server side for N clients.
-- Requires one DH operation on the client side.
-- Requires the client to generate the secret key.
+- Yêu cầu N + 1 thao tác DH ở phía máy chủ cho N khách hàng.
+- Yêu cầu một thao tác DH ở phía khách hàng.
+- Yêu cầu khách hàng tạo khóa bí mật.
 
-Advantages of PSK client authorization
+Ưu điểm của xác thực khách hàng PSK  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Requires no DH operations.
-- Allows the server to generate the secret key.
-- Allows the server to share the same key with multiple clients, if desired.
+- Không yêu cầu thao tác DH nào.
+- Cho phép máy chủ tạo khóa bí mật.
+- Cho phép máy chủ chia sẻ cùng một khóa với nhiều khách hàng, nếu muốn.
 
-Downsides of PSK client authorization
+Nhược điểm của xác thực khách hàng PSK  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Security of the scheme is critically dependent on the out-of-band exchange of client key
-  material. An adversary that intercepts the exchange for a particular client can decrypt
-  any subsequent encrypted LS2 for which that client is authorized, as well as determine
-  when the client's access is revoked.
+- Bảo mật của sơ đồ phụ thuộc nghiêm trọng vào việc trao đổi ngoài băng tần vật liệu khóa khách hàng.  
+  Một kẻ thù chặn được việc trao đổi cho một khách hàng cụ thể có thể giải mã  
+  bất kỳ LS2 được mã hóa nào sau đó mà khách hàng đó được ủy quyền, cũng như xác định  
+  khi quyền truy cập của khách hàng bị thu hồi.
 
+### LS được mã hóa với địa chỉ Base 32
 
-### Encrypted LS with Base 32 Addresses
+Xem đề xuất 149.
 
-See proposal 149.
+Bạn không thể sử dụng LS2 được mã hóa cho bittorrent, vì các phản hồi thông báo gọn gàng là 32 byte.  
+32 byte chỉ chứa băm. Không có chỗ cho dấu hiệu rằng  
+leaseset được mã hóa, hoặc các loại chữ ký.
 
-You can't use an encrypted LS2 for bittorrent, because of compact announce replies which are 32 bytes.
-The 32 bytes contain only the hash. There is no room for an indication that the
-leaseset is encrypted, or the signature types.
+### LS được mã hóa với khóa ngoại tuyến
 
+Đối với leaseset được mã hóa có khóa ngoại tuyến, các khóa riêng ẩn danh cũng phải được tạo ngoại tuyến,  
+một cho mỗi ngày.
 
+Vì khối chữ ký ngoại tuyến tùy chọn nằm trong phần văn bản rõ của leaseset được mã hóa,  
+bất kỳ ai quét các floodfill có thể sử dụng điều này để theo dõi leaseset (nhưng không giải mã nó)  
+trong vài ngày.  
+Để ngăn chặn điều này, chủ sở hữu khóa nên tạo các khóa tạm thời mới  
+cho mỗi ngày cũng vậy.  
+Cả khóa tạm thời và khóa ẩn danh đều có thể được tạo trước, và giao cho router  
+theo lô.
 
-### Encrypted LS with Offline Keys
+Không có định dạng tệp nào được định nghĩa trong đề xuất này để đóng gói nhiều khóa tạm thời và  
+khóa ẩn danh và cung cấp chúng cho client hoặc router.  
+Không có cải tiến giao thức I2CP nào được định nghĩa trong đề xuất này để hỗ trợ  
+leaseset được mã hóa với khóa ngoại tuyến.
 
-For encrypted leasesets with offline keys, the blinded private keys must also be generated offline,
-one for each day.
+### Ghi chú
 
-As the optional offline signature block is in the cleartext part of the encryted leaseset,
-anybody scraping the floodfills could use this to track the leaseset (but not decrypt it)
-over several days.
-To prevent this, the owner of the keys should generate new transient keys
-for each day as well.
-Both the transient and blinded keys can be generated in advance, and delivered to the router
-in a batch.
+- Một dịch vụ sử dụng leaseset được mã hóa sẽ công bố phiên bản được mã hóa đến các  
+  floodfill. Tuy nhiên, để hiệu quả, nó sẽ gửi leaseset chưa được mã hóa đến  
+  client trong tin nhắn tỏi được bao bọc, sau khi xác thực (qua danh sách trắng, ví dụ).
 
-There is no file format defined in this proposal for packaging multiple transient and
-blinded keys and providing them to the client or router.
-There is no I2CP protocol enhancement defined in this proposal to support
-encrypted leasesets with offline keys.
+- Các floodfill có thể giới hạn kích thước tối đa ở mức hợp lý để ngăn lạm dụng.
 
+- Sau khi giải mã, một số kiểm tra nên được thực hiện, bao gồm việc  
+  dấu thời gian và hết hạn bên trong khớp với những cái ở cấp độ trên cùng.
 
+- ChaCha20 được chọn thay vì AES. Mặc dù tốc độ tương tự nếu hỗ trợ phần cứng AES  
+  có sẵn, ChaCha20 nhanh hơn 2,5-3 lần khi  
+  hỗ trợ phần cứng AES không có, chẳng hạn như trên các thiết bị ARM cấp thấp.
 
-### Notes
-
-- A service using encrypted leasesets would publish the encrypted version to the
-  floodfills. However, for efficiency, it would send unencrypted leasesets to
-  clients in the wrapped garlic message, once authenticated (via whitelist, for
-  example).
-
-- Floodfills may limit the max size to a reasonable value to prevent abuse.
-
-- After decryption, several checks should be made, including that
-  the inner timestamp and expiration match those at the top level.
-
-- ChaCha20 was selected over AES. While the speeds are similar if AES
-  hardware support is available, ChaCha20 is 2.5-3x faster when
-  AES hardware support is not available, such as on lower-end ARM devices.
-
-- We do not care enough about speed to use keyed BLAKE2b. It has an output
-  size large enough to accommodate the largest n we require (or we can call it once per
-  desired key with a counter argument). BLAKE2b is much faster than SHA-256, and
-  keyed-BLAKE2b would reduce the total number of hash function calls.
-  However, see proposal 148, where it is proposed that we switch to BLAKE2b for other reasons.
-  See [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
-
+- Chúng tôi không quan tâm đủ về tốc độ để sử dụng BLAKE2b có khóa. Nó có kích thước đầu ra  
+  đủ lớn để chứa n lớn nhất chúng tôi yêu cầu (hoặc chúng tôi có thể gọi nó một lần cho mỗi  
+  khóa mong muốn với một đối số bộ đếm). BLAKE2b nhanh hơn nhiều so với SHA-256, và  
+  BLAKE2b có khóa sẽ giảm tổng số lần gọi hàm băm.  
+  Tuy nhiên, xem đề xuất 148, nơi đề xuất rằng chúng tôi chuyển sang BLAKE2b vì các lý do khác.  
+  Xem [Secure key derivation performance](https://www.lvh.io/posts/secure-key-derivation-performance.html).
 
 ### Meta LS2
 
-This is used to replace multihoming. Like any leaseset, this is signed by the
-creator. This is an authenticated list of destination hashes.
+Điều này được sử dụng để thay thế đa kết nối. Giống như bất kỳ leaseset nào, điều này được ký bởi người tạo. Đây là một danh sách được xác thực của các băm destination.
 
-The Meta LS2 is the top of, and possibly intermediate nodes of,
-a tree structure.
-It contains a number of entries, each pointing to a LS, LS2, or another Meta LS2
-to support massive multihoming.
-A Meta LS2 may contain a mix of LS, LS2, and Meta LS2 entries.
-The leaves of the tree are always a LS or LS2.
-The tree is a DAG; loops are prohibited; clients doing lookups must detect and
-refuse to follow loops.
+Meta LS2 là đỉnh, và có thể là các nút trung gian của,  
+một cấu trúc cây.  
+Nó chứa một số mục, mỗi mục trỏ đến một LS, LS2 hoặc một Meta LS2 khác  
+để hỗ trợ đa kết nối quy mô lớn.  
+Một Meta LS2 có thể chứa hỗn hợp các mục LS, LS2 và Meta LS2.  
+Các lá của cây luôn là một LS hoặc LS2.  
+Cây là một DAG; các vòng lặp bị cấm; các client thực hiện tra cứu phải phát hiện và  
+từ chối theo các vòng lặp.
 
-A Meta LS2 may have a much longer expiration than a standard LS or LS2.
-The top level may have an expiration several hours after the publication date.
-Maximum expiration time will be enforced by floodfills and clients, and is TBD.
+Một Meta LS2 có thể có thời gian hết hạn lâu hơn nhiều so với một LS hoặc LS2 chuẩn.  
+Cấp độ trên cùng có thể có thời gian hết hạn vài giờ sau ngày công bố.  
+Thời gian hết hạn tối đa sẽ được các floodfill và client thực thi, và đang được xác định.
 
-The use case for Meta LS2 is massive multihoming, but with no more
-protection for correlation of routers to leasesets (at router restart time) than
-is provided now with LS or LS2.
-This is equivalent to the "facebook" use case, which probably doesn't need
-correlation protection. This use case probably needs offline keys,
-which are provided in the standard header at each node of the tree.
+Mục đích sử dụng cho Meta LS2 là đa kết nối quy mô lớn, nhưng không có thêm  
+bảo vệ nào cho việc liên kết các router với leaseset (tại thời điểm khởi động lại router) hơn  
+được cung cấp hiện tại với LS hoặc LS2.  
+Điều này tương đương với trường hợp sử dụng "facebook", có lẽ không cần  
+bảo vệ liên kết. Trường hợp sử dụng này có lẽ cần khóa ngoại tuyến,  
+được cung cấp trong tiêu đề chuẩn tại mỗi nút của cây.
 
-The back-end protocol for coordination between the leaf routers, intermediate and master Meta LS signers
-is not specified here. The requirements are extremely simple - just verify that the peer is up,
-and publish a new LS every few hours. The only complexity is for picking new
-publishers for the top-level or intermediate-level Meta LSes on failure.
+Giao thức back-end để phối hợp giữa các router lá, các chữ ký Meta LS trung gian và chính  
+không được chỉ định ở đây. Các yêu cầu cực kỳ đơn giản - chỉ cần xác minh rằng peer đang hoạt động,  
+và công bố một LS mới mỗi vài giờ. Độ phức tạp duy nhất là chọn  
+các publisher mới cho các Meta LS cấp độ trên cùng hoặc cấp độ trung gian khi thất bại.
 
-Mix-and-match leasesets where leases from multiple routers are combined, signed, and published
-in a single leaseset is documented in proposal 140, "invisible multihoming".
-This proposal is untenable as written, because streaming connections would not be
-"sticky" to a single router, see http://zzz.i2p/topics/2335 .
+Leaseset kết hợp nơi các lease từ nhiều router được kết hợp, ký và công bố  
+trong một leaseset duy nhất được ghi trong đề xuất 140, "đa kết nối vô hình".  
+Đề xuất này không khả thi như đã viết, vì các kết nối streaming sẽ không  
+"gắn bó" với một router duy nhất, xem http://zzz.i2p/topics/2335 .
 
-The back-end protocol, and interaction with router and client internals, would be
-quite complex for invisible multihoming.
+Giao thức back-end, và tương tác với nội bộ router và client, sẽ  
+rất phức tạp đối với đa kết nối vô hình.
 
-To avoid overloading the floodfill for the top-level Meta LS, the expiration should
-be several hours at least. Clients must cache the top-level Meta LS, and persist
-it across restarts if unexpired.
+Để tránh quá tải floodfill cho Meta LS cấp độ trên cùng, thời gian hết hạn nên  
+ít nhất là vài giờ. Client phải lưu trữ bộ nhớ đệm Meta LS cấp độ trên cùng, và duy trì  
+nó qua các lần khởi động lại nếu chưa hết hạn.
 
-We need to define some algorithm for clients to traverse the tree, including fallbacks,
-so that the usage is dispersed. Some function of hash distance, cost, and randomness.
-If a node has both LS or LS2 and Meta LS, we need to know when it's allowed
-to use those leasesets, and when to keep traversing the tree.
+Chúng ta cần định nghĩa một số thuật toán để client duyệt cây, bao gồm các phương án dự phòng,  
+để việc sử dụng được phân tán. Một số hàm của khoảng cách băm, chi phí và tính ngẫu nhiên.  
+Nếu một nút có cả LS hoặc LS2 và Meta LS, chúng ta cần biết khi nào được phép  
+sử dụng các leaseset đó, và khi nào nên tiếp tục duyệt cây.
 
+Tìm kiếm với  
+    Cờ LS chuẩn (1)  
+Lưu trữ với  
+    Loại Meta LS2 (7)  
+Lưu trữ tại  
+    Băm của destination  
+    Băm này sau đó được sử dụng để tạo "khóa định tuyến" hàng ngày, như trong LS1  
+Thời gian hết hạn điển hình  
+    Hàng giờ. Tối đa 18,2 giờ (65535 giây)  
+Được công bố bởi  
+    Destination "chính" hoặc điều phối viên, hoặc các điều phối viên trung gian
 
-
-
-Lookup with
-    Standard LS flag (1)
-Store with
-    Meta LS2 type (7)
-Store at
-    Hash of destination
-    This hash is then used to generate the daily "routing key", as in LS1
-Typical expiration
-    Hours. Max 18.2 hours (65535 seconds)
-Published by
-    "master" Destination or coordinator, or intermediate coordinators
-
-### Format
+### Định dạng
 
 ```
-Standard LS2 Header as specified above
+Tiêu đề LS2 chuẩn như được chỉ định ở trên
 
-  Meta LS2 Type-Specific Part
-  - Properties (Mapping as specified in common structures spec, 2 zero bytes if none)
-  - Number of entries (1 byte) Maximum TBD
-  - Entries. Each entry contains: (40 bytes)
-    - Hash (32 bytes)
-    - Flags (2 bytes)
-      TBD. Set all to zero for compatibility with future uses.
-    - Type (1 byte) The type of LS it is referencing;
-      1 for LS, 3 for LS2, 5 for encrypted, 7 for meta, 0 for unknown.
-    - Cost (priority) (1 byte)
-    - Expires (4 bytes) (4 bytes, big endian, seconds since epoch, rolls over in 2106)
-  - Number of revocations (1 byte) Maximum TBD
-  - Revocations: Each revocation contains: (32 bytes)
-    - Hash (32 bytes)
+  Phần riêng cho loại Meta LS2
+  - Thuộc tính (Ánh xạ như được chỉ định trong đặc tả cấu trúc chung, 2 byte 0 nếu không có)
+  - Số lượng mục (1 byte) Tối đa TBD
+  - Các mục. Mỗi mục chứa: (40 byte)
+    - Băm (32 byte)
+    - Cờ (2 byte)
+      TBD. Đặt tất cả về 0 để tương thích với các mục đích sử dụng trong tương lai.
+    - Loại (1 byte) Loại LS mà nó tham chiếu;
+      1 cho LS, 3 cho LS2, 5 cho được mã hóa, 7 cho meta, 0 cho chưa biết.
+    - Chi phí (ưu tiên) (1 byte)
+    - Hết hạn (4 byte) (4 byte, big endian, giây kể từ epoch, quay vòng vào năm 2106)
+  - Số lượng thu hồi (1 byte) Tối đa TBD
+  - Thu hồi: Mỗi thu hồi chứa: (32 byte)
+    - Băm (32 byte)
 
-  Standard LS2 Signature:
-  - Signature (40+ bytes)
-    The signature is of everything above.
+  Chữ ký LS2 chuẩn:
+  - Chữ ký (40+ byte)
+    Chữ ký của tất cả các nội dung ở trên.
 ```
 
-Flags and properties: for future use
+Cờ và thuộc tính: để sử dụng trong tương lai
 
+### Ghi chú
 
-### Notes
+- Một dịch vụ phân tán sử dụng điều này sẽ có một hoặc nhiều "chính" với khóa riêng của destination dịch vụ. Họ sẽ (ngoài băng tần) xác định danh sách hiện tại các destination hoạt động và sẽ công bố Meta LS2. Để dự phòng, nhiều "chính" có thể đa kết nối (tức là công bố đồng thời) Meta LS2.
 
-- A distributed service using this would have one or more "masters" with the
-  private key of the service destination. They would (out of band) determine the
-  current list of active destinations and would publish the Meta LS2. For
-  redundancy, multiple masters could multihome (i.e. concurrently publish) the
-  Meta LS2.
+- Một dịch vụ phân tán có thể bắt đầu với một destination duy nhất hoặc sử dụng đa kết nối kiểu cũ, sau đó chuyển sang Meta LS2. Một tìm kiếm LS chuẩn có thể trả về bất kỳ một trong LS, LS2 hoặc Meta LS2.
 
-- A distributed service could start with a single destination or use old-style
-  multihoming, then transition to a Meta LS2. A standard LS lookup could return
-  any one of a LS, LS2, or Meta LS2.
+- Khi một dịch vụ sử dụng Meta LS2, nó không có tunnel (lease).
 
-- When a service uses a Meta LS2, it has no tunnels (leases).
+### Bản ghi Dịch vụ
 
+Đây là một bản ghi cá nhân nói rằng một destination đang tham gia vào một  
+dịch vụ. Nó được gửi từ người tham gia đến floodfill. Nó không bao giờ được gửi  
+riêng lẻ bởi một floodfill, mà chỉ như một phần của Danh sách Dịch vụ. Bản ghi Dịch vụ cũng được sử dụng để thu hồi sự tham gia vào một dịch vụ, bằng cách đặt  
+thời gian hết hạn thành không.
 
-### Service Record
+Đây không phải là một LS2 nhưng nó sử dụng định dạng tiêu đề và chữ ký LS2 chuẩn.
 
-This is an individual record saying that a destination is participating in a
-service. It is sent from the participant to the floodfill. It is not ever sent
-individually by a floodfill, but only as a part of a Service List. The Service
-Record is also used to revoke participation in a service, by setting the
-expiration to zero.
-
-This is not a LS2 but it uses the standard LS2 header and signature format.
-
-Lookup with
-    n/a, see Service List
-Store with
-    Service Record type (9)
-Store at
-    Hash of service name
-    This hash is then used to generate the daily "routing key", as in LS1
-Typical expiration
-    Hours. Max 18.2 hours (65535 seconds)
-Published by
+Tìm kiếm với  
+    n/a, xem Danh sách Dịch vụ  
+Lưu trữ với  
+    Loại Bản ghi Dịch vụ (9)  
+Lưu trữ tại  
+    Băm của tên dịch vụ  
+    Băm này sau đó được sử dụng để tạo "khóa định tuyến" hàng ngày, như trong LS1  
+Thời gian hết hạn điển hình  
+    Hàng giờ. Tối đa 18,2 giờ (65535 giây)  
+Được công bố bởi  
     Destination
 
-### Format
+### Định dạng
 
 ```
-Standard LS2 Header as specified above
+Tiêu đề LS2 chuẩn như được chỉ định ở trên
 
-  Service Record Type-Specific Part
-  - Port (2 bytes, big endian) (0 if unspecified)
-  - Hash of service name (32 bytes)
+  Phần riêng cho loại Bản ghi Dịch vụ
+  - Cổng (2 byte, big endian) (0 nếu không xác định)
+  - Băm của tên dịch vụ (32 byte)
 
-  Standard LS2 Signature:
-  - Signature (40+ bytes)
-    The signature is of everything above.
+  Chữ ký LS2 chuẩn:
+  - Chữ ký (40+ byte)
+    Chữ ký của tất cả các nội dung ở trên.
 ```
 
-### Notes
+### Ghi chú
 
-- If expires is all zeros, the floodfill should revoke the record and no longer
-  include it in the service list.
+- Nếu hết hạn là toàn bộ số 0, floodfill nên thu hồi bản ghi và không còn  
+  bao gồm nó trong danh sách dịch vụ.
 
-- Storage: The floodfill may strictly throttle storage of these records and
-  limit the number of records stored per hash and their expiration. A whilelist
-  of hashes may also be used.
+- Lưu trữ: Floodfill có thể giới hạn nghiêm ngặt việc lưu trữ các bản ghi này và  
+  giới hạn số lượng bản ghi được lưu trữ cho mỗi băm và thời gian hết hạn của chúng. Một danh sách trắng  
+  các băm cũng có thể được sử dụng.
 
-- Any other netdb type at the same hash has priority, so a service record can never
-  overwrite a LS/RI, but a LS/RI will overwrite all service records at that hash.
+- Bất kỳ loại netdb nào khác tại cùng băm có ưu tiên, vì vậy một bản ghi dịch vụ không bao giờ  
+  có thể ghi đè LS/RI, nhưng một LS/RI sẽ ghi đè tất cả các bản ghi dịch vụ tại băm đó.
 
+### Danh sách Dịch vụ
 
+Điều này không giống gì với một LS2 và sử dụng định dạng khác.
 
-### Service List
-
-This is nothing like a LS2 and uses a different format.
-
-The service list is created and signed by the floodfill. It is unauthenticated
-in that anybody can join a service by publishing a Service Record to a
+Danh sách dịch vụ được tạo và ký bởi floodfill. Nó không được xác thực  
+theo nghĩa bất kỳ ai cũng có thể tham gia một dịch vụ bằng cách công bố một Bản ghi Dịch vụ đến một  
 floodfill.
 
-A Service List contains Short Service Records, not full Service Records. These
-contain signatures but only hashes, not full destinations, so they cannot be
-verified without the full destination.
+Một Danh sách Dịch vụ chứa các Bản ghi Dịch vụ Ngắn, không phải Bản ghi Dịch vụ đầy đủ. Những bản ghi này  
+chứa chữ ký nhưng chỉ băm, không phải destination đầy đủ, vì vậy chúng không thể được  
+xác minh mà không có destination đầy đủ.
 
-The security, if any, and desirability of service lists is TBD.
-Floodfills could limit publication, and lookups, to a whitelist of services,
-but that whitelist may vary based on implementation, or operator preference.
-It may not be possible to achieve consensus on a common, base whitelist
-across implementations.
+Bảo mật, nếu có, và tính mong muốn của danh sách dịch vụ đang được xác định.  
+Các floodfill có thể giới hạn việc công bố và tra cứu, đến một danh sách trắng các dịch vụ,  
+nhưng danh sách trắng đó có thể thay đổi tùy theo triển khai hoặc sở thích của người vận hành.  
+Có thể không thể đạt được sự đồng thuận về một danh sách trắng cơ bản chung  
+giữa các triển khai.
 
-If the service name is included in the service record above,
-then floodfill operators may object; if only the hash is included,
-there's no verification, and a service record could "get in" ahead of
-any other netdb type and get stored in the floodfill.
+Nếu tên dịch vụ được bao gồm trong bản ghi dịch vụ ở trên,  
+thì các người vận hành floodfill có thể phản đối; nếu chỉ băm được bao gồm,  
+thì không có xác minh, và một bản ghi dịch vụ có thể "vào" trước  
+bất kỳ loại netdb nào khác và được lưu trữ trong floodfill.
 
-Lookup with
-    Service List lookup type (11)
-Store with
-    Service List type (11)
-Store at
-    Hash of service name
-    This hash is then used to generate the daily "routing key", as in LS1
-Typical expiration
-    Hours, not specified in the list itself, up to local policy
-Published by
-    Nobody, never sent to floodfill, never flooded.
+Tìm kiếm với  
+    Loại tìm kiếm Danh sách Dịch vụ (11)  
+Lưu trữ với  
+    Loại Danh sách Dịch vụ (11)  
+Lưu trữ tại  
+    Băm của tên dịch vụ  
+    Băm này sau đó được sử dụng để tạo "khóa định tuyến" hàng ngày, như trong LS1  
+Thời gian hết hạn điển hình  
+    Hàng giờ, không được chỉ định trong danh sách, tùy theo chính sách cục bộ  
+Được công bố bởi  
+    Không ai, không bao giờ gửi đến floodfill, không bao giờ được lan truyền.
 
-### Format
+### Định dạng
 
-Does NOT use the standard LS2 header specified above.
-
-```
-- Type (1 byte)
-    Not actually in header, but part of data covered by signature.
-    Take from field in Database Store Message.
-  - Hash of the service name (implicit, in the Database Store message)
-  - Hash of the Creator (floodfill) (32 bytes)
-  - Published timestamp (8 bytes, big endian)
-
-  - Number of Short Service Records (1 byte)
-  - List of Short Service Records:
-    Each Short Service Record contains (90+ bytes)
-    - Dest hash (32 bytes)
-    - Published timestamp (8 bytes, big endian)
-    - Expires (4 bytes, big endian) (offset from published in ms)
-    - Flags (2 bytes)
-    - Port (2 bytes, big endian)
-    - Sig length (2 bytes, big endian)
-    - Signature of dest (40+ bytes)
-
-  - Number of Revocation Records (1 byte)
-  - List of Revocation Records:
-    Each Revocation Record contains (86+ bytes)
-    - Dest hash (32 bytes)
-    - Published timestamp (8 bytes, big endian)
-    - Flags (2 bytes)
-    - Port (2 bytes, big endian)
-    - Sig length (2 bytes, big endian)
-    - Signature of dest (40+ bytes)
-
-  - Signature of floodfill (40+ bytes)
-    The signature is of everything above.
-```
-
-To verify signature of the Service List:
-
-- prepend the hash of the service name
-- remove the hash of the creator
-- Check signature of the modified contents
-
-To verify signature of each Short Service Record:
-
-- Fetch destination
-- Check signature of (published timestamp + expires + flags + port + Hash of
-  service name)
-
-To verify signature of each Revocation Record:
-
-- Fetch destination
-- Check signature of (published timestamp + 4 zero bytes + flags + port + Hash
-  of service name)
-
-### Notes
-
-- We use signature length instead of sig type so we can support unknown signature
-  types.
-
-- There is no expiration of a service list, recipients may make their own
-  decision based on policy or the expiration of the individual records.
-
-- Service Lists are not flooded, only individual Service Records are. Each
-  floodfill creates, signs, and caches a Service List. The floodfill uses its
-  own policy for cache time and the maximum number of service and revocation
-  records.
-
-
-
-## Common Structures Spec Changes Required
-
-
-### Key Certificates
-
-Out of scope for this proposal.
-Add to the ECIES proposals 144 and 145.
-
-
-### New Intermediate Structures
-
-Add new structures for Lease2, MetaLease, LeaseSet2Header, and OfflineSignature.
-Effective as of release 0.9.38.
-
-
-### New NetDB Types
-
-Add structures for each new leaseset type, incorporated from above.
-For LeaseSet2, EncryptedLeaseSet, and MetaLeaseSet,
-effective as of release 0.9.38.
-For Service Record and Service List,
-preliminary and unscheduled.
-
-
-### New Signature Type
-
-Add RedDSA_SHA512_Ed25519 Type 11.
-Public key is 32 bytes; private key is 32 bytes; hash is 64 bytes; signature is 64 bytes.
-
-
-
-## Encryption Spec Changes Required
-
-Out of scope for this proposal.
-See proposals 144 and 145.
-
-
-
-## I2NP Changes Required
-
-Add note: LS2 can only be published to floodfills with a minimum version.
-
-
-### Database Lookup Message
-
-Add the service list lookup type.
-
-### Changes
+KHÔNG sử dụng tiêu đề LS2 chuẩn được chỉ định ở trên.
 
 ```
-Flags byte: Lookup type field, currently bits 3-2, expands to bits 4-2.
-  Lookup type 0x04 is defined as the service list lookup.
+- Loại (1 byte)
+    Không thực sự nằm trong tiêu đề, nhưng là một phần của dữ liệu được bao phủ bởi chữ ký.
+    Lấy từ trường trong Tin nhắn Lưu trữ Cơ sở dữ liệu.
+  - Băm của tên dịch vụ (ngầm, trong Tin nhắn Lưu trữ Cơ sở dữ liệu)
+  - Băm của Người tạo (floodfill) (32 byte)
+  - Dấu thời gian công bố (8 byte, big endian)
 
-  Add note: Service list loookup may only be sent to floodfills with a minimum version.
-  Minimum version is 0.9.38.
+  - Số lượng Bản ghi Dịch vụ Ngắn (1 byte)
+  - Danh sách các Bản ghi Dịch vụ Ngắn:
+    Mỗi Bản ghi Dịch vụ Ngắn chứa (90+ byte)
+    - Băm đích (32 byte)
+    - Dấu thời gian công bố (8 byte, big endian)
+    - Hết hạn (4 byte, big endian) (chênh lệch từ công bố tính bằng ms)
+    - Cờ (2 byte)
+    - Cổng (2 byte, big endian)
+    - Độ dài chữ ký (2 byte, big endian)
+    - Chữ ký của đích (40+ byte)
+
+  - Số lượng Bản ghi Thu hồi (1 byte)
+  - Danh sách các Bản ghi Thu hồi:
+    Mỗi Bản ghi Thu hồi chứa (86+ byte)
+    - Băm đích (32 byte)
+    - Dấu thời gian công bố (8 byte, big endian)
+    - Cờ (2 byte)
+    - Cổng (2 byte, big endian)
+    - Độ dài chữ ký (2 byte, big endian)
+    - Chữ ký của đích (40+ byte)
+
+  - Chữ ký của floodfill (40+ byte)
+    Chữ ký của tất cả các nội dung ở trên.
 ```
 
-### Database Store Message
+Để xác minh chữ ký của Danh sách Dịch vụ:
 
-Add all the new store types.
+- thêm vào đầu băm của tên dịch vụ
+- loại bỏ băm của người tạo
+- Kiểm tra chữ ký của nội dung đã sửa đổi
 
-### Changes
+Để xác minh chữ ký của mỗi Bản ghi Dịch vụ Ngắn:
 
-```
-Type byte: Type field, currently bit 0, expands to bits 3-0.
-  Type 3 is defined as a LS2 store.
-  Type 5 is defined as a encrypted LS2 store.
-  Type 7 is defined as a meta LS2 store.
-  Type 9 is defined as a service record store.
-  Type 11 is defined as a service list store.
-  Other types are undefined and invalid.
+- lấy destination
+- Kiểm tra chữ ký của (dấu thời gian công bố + hết hạn + cờ + cổng + Băm của  
+  tên dịch vụ)
 
-  Add note: All new types may only be published to floodfills with a minimum version.
-  Minimum version is 0.9.38.
-```
+Để xác minh chữ ký của mỗi Bản ghi Thu hồi:
 
+- lấy destination
+- Kiểm tra chữ ký của (dấu thời gian công bố + 4 byte 0 + cờ + cổng + Băm  
+  của tên dịch vụ)
 
+### Ghi chú
 
-## I2CP Changes Required
+- Chúng tôi sử dụng độ dài chữ ký thay vì loại chữ ký để hỗ trợ các loại chữ ký chưa biết.
 
+- Không có thời gian hết hạn của danh sách dịch vụ, người nhận có thể tự quyết định  
+  dựa trên chính sách hoặc thời gian hết hạn của các bản ghi riêng lẻ.
 
-### I2CP Options
+- Danh sách Dịch vụ không được lan truyền, chỉ các Bản ghi Dịch vụ riêng lẻ được. Mỗi  
+  floodfill tạo, ký và lưu trữ bộ nhớ đệm một Danh sách Dịch vụ. Floodfill sử dụng  
+  chính sách riêng của nó cho thời gian lưu trữ bộ nhớ đệm và số lượng tối đa các bản ghi dịch vụ và thu hồi.
 
-New options interpreted router-side, sent in SessionConfig Mapping:
+## Các thay đổi cần thiết đối với Đặc tả Cấu trúc Chung
 
-```
+### Chứng chỉ khóa
 
-  i2cp.leaseSetType=nnn       The type of leaseset to be sent in the Create Leaseset Message
-                              Value is the same as the netdb store type in the table above.
-                              Interpreted client-side, but also passed to the router in the
-                              SessionConfig, to declare intent and check support.
+Ngoài phạm vi của đề xuất này.  
+Thêm vào các đề xuất ECIES 144 và 145.
 
-  i2cp.leaseSetEncType=nnn[,nnn]  The encryption types to be used.
-                                  Interpreted client-side, but also passed to the router in
-                                  the SessionConfig, to declare intent and check support.
-                                  See proposals 144 and 145.
+### Các cấu trúc trung gian mới
 
-  i2cp.leaseSetOfflineExpiration=nnn  The expiration of the offline signature, ASCII,
-                                      seconds since the epoch.
+Thêm các cấu trúc mới cho Lease2, MetaLease, LeaseSet2Header và OfflineSignature.  
+Có hiệu lực kể từ phiên bản 0.9.38.
 
-  i2cp.leaseSetTransientPublicKey=[type:]b64  The base 64 of the transient private key,
-                                              prefixed by an optional sig type number
-                                              or name, default DSA_SHA1.
-                                              Length as inferred from the sig type
+### Các loại NetDB mới
 
-  i2cp.leaseSetOfflineSignature=b64   The base 64 of the offline signature.
-                                      Length as inferred from the destination
-                                      signing public key type
+Thêm cấu trúc cho mỗi loại leaseset mới, được tích hợp từ trên.  
+Đối với LeaseSet2, EncryptedLeaseSet và MetaLeaseSet,  
+có hiệu lực kể từ phiên bản 0.9.38.  
+Đối với Bản ghi Dịch vụ và Danh sách Dịch vụ,  
+ban đầu và chưa lên lịch.
 
-  i2cp.leaseSetSecret=b64     The base 64 of a secret used to blind the
-                              address of the leaseset, default ""
+### Loại chữ ký mới
 
-  i2cp.leaseSetAuthType=nnn   The type of authentication for encrypted LS2.
-                              0 for no per-client authentication (the default)
-                              1 for DH per-client authentication
-                              2 for PSK per-client authentication
+Thêm RedDSA_SHA512_Ed25519 Loại 11.  
+Khóa công khai là 32 byte; khóa riêng là 32 byte; băm là 64 byte; chữ ký là 64 byte.
 
-  i2cp.leaseSetPrivKey=b64    A base 64 private key for the router to use to
-                              decrypt the encrypted LS2,
-                              only if per-client authentication is enabled
-```
+## Các thay đổi cần thiết đối với Đặc tả Mã hóa
 
-New options interpreted client-side:
+Ngoài phạm vi của đề xuất này.  
+Xem các đề xuất 144 và 145.
 
-```
+## Các thay đổi cần thiết đối với I2NP
 
-  i2cp.leaseSetType=nnn     The type of leaseset to be sent in the Create Leaseset Message
-                            Value is the same as the netdb store type in the table above.
-                            Interpreted client-side, but also passed to the router in the
-                            SessionConfig, to declare intent and check support.
-
-  i2cp.leaseSetEncType=nnn[,nnn]  The encryption types to be used.
-                                  Interpreted client-side, but also passed to the router in
-                                  the SessionConfig, to declare intent and check support.
-                                  See proposals 144 and 145.
-
-  i2cp.leaseSetSecret=b64     The base 64 of a secret used to blind the
-                              address of the leaseset, default ""
-
-  i2cp.leaseSetAuthType=nnn       The type of authentication for encrypted LS2.
-                                  0 for no per-client authentication (the default)
-                                  1 for DH per-client authentication
-                                  2 for PSK per-client authentication
-
-  i2cp.leaseSetBlindedType=nnn   The sig type of the blinded key for encrypted LS2.
-                                 Default depends on the destination sig type.
-
-  i2cp.leaseSetClient.dh.nnn=b64name:b64pubkey   The base 64 of the client name (ignored, UI use only),
-                                                 followed by a ':', followed by the base 64 of the public
-                                                 key to use for DH per-client auth. nnn starts with 0
-
-  i2cp.leaseSetClient.psk.nnn=b64name:b64privkey   The base 64 of the client name (ignored, UI use only),
-                                                   followed by a ':', followed by the base 64 of the private
-                                                   key to use for PSK per-client auth. nnn starts with 0
-```
-
-### Session Config
-
-Note that for offline signatures, the options
-i2cp.leaseSetOfflineExpiration,
-i2cp.leaseSetTransientPublicKey, and
-i2cp.leaseSetOfflineSignature are required,
-and the signature is by the transient signing private key.
-
-
-
-### Request Leaseset Message
-
-Router to client.
-No changes.
-The leases are sent with 8-byte timestamps, even if the
-returned leaseset will be a LS2 with 4-byte timestamps.
-Note that the response may be a Create Leaseset or Create Leaseset2 Message.
-
-
-
-### Request Variable Leaseset Message
-
-Router to client.
-No changes.
-The leases are sent with 8-byte timestamps, even if the
-returned leaseset will be a LS2 with 4-byte timestamps.
-Note that the response may be a Create Leaseset or Create Leaseset2 Message.
-
-
-
-### Create Leaseset2 Message
-
-Client to router.
-New message, to use in place of Create Leaseset Message.
-
-
-### Justification
-
-- For the router to parse the store type, the type must be in the message,
-  unless it is passed to the router before hand in the session config.
-  For for common parsing code, it's easier to have it in the message itself.
-
-- For the router to know the type and length of the private key,
-  it must be after the lease set, unless the parser knows the type before hand
-  in the session config.
-  For for common parsing code, it's easier to know it from the message itself.
-
-- The signing private key, previously defined for revocation and unused,
-  is not present in LS2.
-
-### Message Type
-
-The message type for the Create Leaseset2 Message is 41.
-
-
-### Format
-
-```
-Session ID
-  Type byte: Type of lease set to follow
-             Type 1 is a LS
-             Type 3 is a LS2
-             Type 5 is a encrypted LS2
-             Type 7 is a meta LS2
-  LeaseSet: type specified above
-  Number of private keys to follow (1 byte)
-  Encryption Private Keys: For each public key in the lease set,
-                           in the same order
-                           (Not present for Meta LS2)
-                           - Encryption type (2 bytes, big endian)
-                           - Encryption key length (2 bytes, big endian)
-                           - Encryption key (number of bytes specified)
-```
-
-### Notes
-
-- Minimum router version is 0.9.39.
-- Preliminary version with message type 40 was in 0.9.38 but the format was changed.
-  Type 40 is abandoned and is unsupported.
-
-
-### Issues
-
-- More changes are needed to support encrypted and meta LS.
-
-
-
-
-
-### Blinding Info Message
-
-Client to router.
-New message.
-
-
-### Justification
-
-- The router needs to know if a destination is blinded.
-  If it is blinded and uses a secret or per-client authentication,
-  it needs to have that information as well.
-
-- A Host Lookup of a new-format b32 address ("b33")
-  tells the router that the address is blinded, but there's no mechanism to
-  pass the secret or private key to the router in the Host Lookup message.
-  While we could extend the Host Lookup message to add that information,
-  it's cleaner to define a new message.
-
-- We need a programmatic way for the client to tell the router.
-  Otherwise, the user would have to manually configure each destination.
-
-
-### Usage
-
-Before a client sends a message to a blinded destination, it must either
-lookup the "b33" in a Host Lookup message, or send a Blinding Info message.
-If the blinded destination requires a secret or per-client authentication,
-the client must send a Blinding Info message.
-
-The router does not send a reply to this message.
-
-
-### Message Type
-
-The message type for the Blinding Info Message is 42.
-
-
-### Format
-
-```
-Session ID
-  Flags:       1 byte
-               Bit order: 76543210
-               Bit 0: 0 for everybody, 1 for per-client
-               Bits 3-1: Authentication scheme, if bit 0 is set to 1 for per-client, otherwise 000
-                         000: DH client authentication (or no per-client authentication)
-                         001: PSK client authentication
-               Bit 4: 1 if secret required, 0 if no secret required
-               Bits 7-5: Unused, set to 0 for future compatibility
-  Type byte:   Endpoint type to follow
-               Type 0 is a Hash
-               Type 1 is a host name String
-               Type 2 is a Destination
-               Type 3 is a Sig Type and Signing Public Key
-  Blind Type:  2 byte blinded sig type (big endian)
-  Expiration:  4 bytes, big endian, seconds since epoch
-  Endpoint:    Data as specified above
-               For type 0: 32 byte binary hash
-               For type 1: host name String
-               For type 2: binary Destination
-               For type 3: 2 byte sig type (big endian)
-                           Signing Public Key (length as implied by sig type)
-  Private Key: Only if flag bit 0 is set to 1
-               A 32-byte ECIES_X25519 private key
-  Secret:      Only if flag bit 4 is set to 1
-               A secret String
-```
-
-
-### Notes
-
-- Minimum router version is 0.9.43
-
-
-### Issues
-
-### Host Reply Message (enc)
-
-To support lookups of "b33" hostnames and return an indication
-if the router does not have the required information, we define
-additional result codes for the Host Reply Message, as follows:
-
-```
-2: Lookup password required
-   3: Private key required
-   4: Lookup password and private key required
-   5: Leaseset decryption failure
-```
-
-Values 1-255 are already defined as errors, so there is no
-backwards-compatibility issue.
-
-
-
-
-### Meta Redirect Message
-
-Router to client.
-New message.
-
-### Justification
-
-A client doesn't know a priori that a given Hash will resolve
-to a Meta LS.
-
-If a leaseset lookup for a Destination returns a Meta LS,
-the router will do the recursive resolution.
-For datagrams, the client side does not need to know;
-however, for streaming, where the protocol checks the destination in
-the SYN ACK, it must know what the "real" destination is.
-Therefore, we need a new message.
-
-
-### Usage
-
-The router maintains a cache for the actual destination is used from a meta LS.
-When the client sends a message to a destination which resolves to a meta LS,
-the router checks the cache for the actual destination last used.
-If the cache is empty, the router selects a destination from the meta LS,
-and looks up the leaseset.
-If the leaseset lookup is successful, the router adds that destination
-to the cache, and sends the client a Meta Redirect Message.
-This is only done once, unless the destination expires and must be changed.
-The client must also cache the information if needed.
-The Meta Redirect Message is NOT sent in reply to every SendMessage.
-
-The router only sends this message to clients with version 0.9.47 or higher.
-
-The client does not send a reply to this message.
-
-
-### Message Type
-
-The message type for the Meta Redirect Message is 43.
-
-
-### Format
-
-```
-Session ID (2 bytes) The value from the Send Message.
-  Message ID generated by the router (4 bytes)
-  4 byte nonce previously generated by the client
-               (the value from the Send Message, may be zero)
-  Flags:       2 bytes, bit order 15...0
-               Unused, set to 0 for future compatibility
-               Bit 0: 0 - the destination is no longer meta
-                      1 - the destination is now meta
-               Bits 15-1: Unused, set to 0 for future compatibility
-  Original Destination (387+ bytes)
-  (following fields only present if flags bit 0 is 1)
-  MFlags:      2 bytes
-               Unused, set to 0 for future compatibility
-               From the Meta Lease for the actual Destination
-  Expiration:  4 bytes, big endian, seconds since epoch
-               From the Meta Lease for the actual Destination
-  Cost (priority) 1 byte
-               From the Meta Lease for the actual Destination
-  Actual (real) Destination (387+ bytes)
-```
-
-
-
-### Changes to support Meta
-
-How to generate and support Meta, including inter-router communication and coordination,
-is out of scope for this proposal.
-See related proposal 150.
-
-
-### Changes to support Offline Keys
-
-Offline signatures cannot be verified in streaming or repliable datagrams.
-See sections below.
-
-
-## Private Key File Changes Required
-
-The private key file (eepPriv.dat) format is not an official part of our specifications
-but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
-and other implementations do support it.
-This enables portability of private keys to different implementations.
-
-Changes are necessary to store the transient public key and
-offline signing information.
-
-### Changes
-
-```
-If the signing private key is all zeros, the offline information section follows:
-
-  - Expires timestamp
-    (4 bytes, big endian, seconds since epoch, rolls over in 2106)
-  - Sig type of transient Signing Public Key (2 bytes, big endian)
-  - Transient Signing Public key
-    (length as specified by transient sig type)
-  - Signature of above three fields by offline key
-    (length as specified by destination sig type)
-  - Transient Signing Private key
-    (length as specified by transient sig type)
-```
-
-### Private Key File CLI Changes Required
-
-Add support for the following options:
-
-```
--d days              (specify expiration in days of offline sig, default 365)
-      -o offlinedestfile   (generate the online key file,
-                            using the offline key file specified)
-      -r sigtype           (specify sig type of transient key, default Ed25519)
-```
-
-
-
-## Streaming Changes Required
-
-Offline signatures cannot currently be verified in streaming.
-The change below adds the offline signing block to the options.
-This avoids having to retrieve this information via I2CP.
-
-### Changes
-
-```
-Add new option:
-  Bit:          11
-  Flag:         OFFLINE_SIGNATURE
-  Option order: 4
-  Option data:  Variable bytes
-  Function:     Contains the offline signature section from LS2.
-                FROM_INCLUDED must also be set.
-                Expires timestamp
-                (4 bytes, big endian, seconds since epoch, rolls over in 2106)
-                Transient sig type (2 bytes, big endian)
-                Transient signing public key (length as implied by sig type)
-                Signature of expires timestamp, transient sig type,
-                and public key, by the destination public key,
-                length as implied by destination public key sig type.
-
-  Change option:
-  Bit:          3
-  Flag:         SIGNATURE_INCLUDED
-  Option order: Change from 4 to 5
-
-  Add information about transient keys to the
-  Variable Length Signature Notes section:
-  The offline signature option does not needed to be added for a CLOSE packet if
-  a SYN packet containing the option was previously acked.
-  More info TODO
-```
-
-### Notes
-
-- Alternative is to just add a flag, and retrieve the transient public key via I2CP
-  (See Host Lookup / Host Reply Message sections above)
-
-
-
-## Repliable Datagram Changes Required
-
-Offline signatures cannot be verified in the repliable datagram processing.
-Needs a flag to indicate offline signed but there's no place to put a flag.
-Will require a completely new protocol number and format.
-
-
-### Changes
-
-```
-Define new protocol 19 - Repliable datagram with options?
-  - Destination (387+ bytes)
-  - Flags (2 bytes)
-    Bit order: 15 14 ... 3 2 1 0
-    Bit 0: If 0, no offline keys; if 1, offline keys
-    Bits 1-15: set to 0 for compatibility with future uses
-  - If flag indicates offline keys, the offline signature section:
-    Expires timestamp
-    (4 bytes, big endian, seconds since epoch, rolls over in 2106)
-    Transient sig type (2 bytes, big endian)
-    Transient signing public key (length as implied by sig type)
-    Signature of expires timestamp, transient sig type,
-    and public key, by the destination public key,
-    length as implied by destination public key sig type.
-    This section can, and should, be generated offline.
-  - Data
-```
-
-### Notes
-
-- Alternative is to just add a flag, and retrieve the transient public key via I2CP
-  (See Host Lookup / Host Reply Message sections above)
-- Any other options we should add now that we have flag bytes?
-
-
-## SAM V3 Changes Required
-
-SAM must be enhanced to support offline signatures in the DESTINATION base 64.
-
-
-### Changes
-
-```
-Note that in the SESSION CREATE DESTINATION=$privkey,
-  the $privkey raw data (before base64 conversion)
-  may be optionally followed by the Offline Signature as specified in the
-  Common Structures Specification.
-
-  If the signing private key is all zeros, the offline information section follows:
-
-  - Expires timestamp
-    (4 bytes, big endian, seconds since epoch, rolls over in 2106)
-  - Sig type of transient Signing Public Key (2 bytes, big endian)
-  - Transient Signing Public key
-    (length as specified by transient sig type)
-  - Signature of above three fields by offline key
-    (length as specified by destination sig type)
-  - Transient Signing Private key (length as specified by transient sig type)
-```
-
-Note that offline signatures are only supported for STREAM and RAW,
-not for DATAGRAM (until we define a new DATAGRAM protocol).
-
-Note that the SESSION STATUS will return a Signing Private Key of all zeros and
-the Offline Signature data exactly as supplied in the SESSION CREATE.
-
-Note that DEST GENERATE and SESSION CREATE DESTINATION=TRANSIENT
-may not be used to create an offline signed destination.
-
-
-### Issues
-
-Bump version to 3.4, or leave it at 3.1/3.2/3.3 so it can be added
-without requiring all the 3.2/3.3 stuff?
-
-Other changes TBD. See I2CP Host Reply Message section above.
-
-
-
-## BOB Changes Required
-
-BOB would have to be enhanced to support offline signatures and/or Meta LS.
-This is low priority and probably won't ever be specified or implemented.
-SAM V3 is the preferred interface.
-
-
-
-
-## Publishing, Migration, Compatibility
-
-LS2 (other than encrypted LS2) is published at the same DHT location as LS1.
-There is no way to publish both a LS1 and LS2, unless LS2 were at a different location.
-
-Encrypted LS2 is published at the hash of the blinded key type and key data.
-This hash is then used to generate the daily "routing key", as in LS1.
-
-LS2 would only be used when new features are required
-(new crypto, encrypted LS, meta, etc.).
-LS2 can only be published to floodfills of a specified version or higher.
-
-Servers publishing LS2 would know that any connecting clients support LS2.
-They could send LS2 in the garlic.
-
-Clients would send LS2 in garlics only if using new crypto.
-Shared clients would use LS1 indefinitely?
-TODO: How to have a shared clients that supports both old and new crypto?
-
-
-## Rollout
-
-0.9.38 contains floodfill support for standard LS2, including offline keys.
-
-0.9.39 contains I2CP support for LS2 and Encrypted LS2,
-sig type 11 signing/verification,
-floodfill support for Encrypted LS2 (sig types 7 and 11, without offline keys),
-and encrypting/decrypting LS2 (without per-client authorization).
-
-0.9.40 is scheduled to contain support for
-encrypting/decrypting LS2 with per-client authorization,
-floodfill and I2CP support for Meta LS2,
-support for encrypted LS2 with offline keys,
-and b32 support for encrypted LS2.
-
-
-## Acknowledgements
-
-The encrypted LS2 design is heavily influenced by [Tor's v3 hidden service descriptors](https://spec.torproject.org/rend-spec-v3),
-which had similar design goals.
-
-
-## References
-
-* ["High-speed high-security signatures" by Daniel J. Bernstein, Niels Duif, Tanja Lange, Peter Schwabe, and Bo-Yin Yang](https://ed25519.cr.yp.to/)
-* [KEYBLIND-PROOF](https://lists.torproject.org/pipermail/tor-dev/2013-December/005943.html)
-* [KEYBLIND-REFS](https://gitlab.torproject.org/tpo/core/tor/-/issues/8106)
-* [PRNG-REFS](http://projectbullrun.org/dual-ec/ext-rand.html)
-* [RFC-2104](https://tools.ietf.org/html/rfc2104)
-* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
-* [RFC-5869](https://tools.ietf.org/html/rfc5869)
-* [RFC-7539-S2.4](https://tools.ietf.org/html/rfc7539#section-2.4)
-* [TOR-REND-SPEC-V3](https://spec.torproject.org/rend-spec-v3)
-* [UNSCIENTIFIC-KDF-SPEEDS](https://www.lvh.io/posts/secure-key-derivation-performance.html)
-* [ZCASH](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)
+Thêm ghi chú: LS2 chỉ có thể được công

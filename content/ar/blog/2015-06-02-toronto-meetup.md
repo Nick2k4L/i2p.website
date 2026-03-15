@@ -6,46 +6,45 @@ author: "hottuna"
 description: "I2P Meetup in Toronto on August 15-16"
 categories: ["community"]
 ---
+يُسر فريق I2P أن يُعلن عن استضافته لقاءً في تورونتو يومي 15-16 أغسطس. سيحضر عدد من أعضاء مجتمعنا وينظمون محاضرات وورش عمل ومناقشات حول I2P وما يتعلق بها. لكن هذا الحدث ليس مخصصًا فقط لمستخدمي I2P، بل هو مفتوح للجميع.
 
-The I2P team is proud to announce that we are going to host a meetup in Toronto on August 15-16. A number of members of our community will be attending and are going to host talks, workshops and discussions about and relating to I2P. This event is not just for I2P people though, it's meant for everyone.
+إذا كنت مهتمًا بـ I2P، أو مهتمًا بالخصوصية/التشفير/الإخفاء الهوية، أو فقط ترغب في المجيء والتحدث معنا، فالمرجو أن تفعل ذلك. هذا الحدث مفتوح للجميع. وإن لم تكن معتادًا على أي من هذه المواضيع، فتعالَ على كل حال وسنشرح لك كيف يعمل I2P وما يمكنك فعله به.
 
-If you're curious about I2P, interested in privacy/cryptography/anonymity or just want to come by and talk to us, please do. This is an event for everyone. If you're not familiar with any of these topics, come by anyway and we'll show you how I2P works and what you can do with it.
+الحدث مجاني بالكامل، ولا تحتاج إلى التسجيل أو التسجيل المسبق.
 
-The event is entirely free, you don't need to sign up or register.
+لم يكن من الممكن تنظيم هذا اللقاء لولا أصدقائنا في [Toronto Crypto](https://torontocrypto.org/) الذين ساعدونا في تنظيم الفعالية، وأصدقائنا في [Hacklab](https://hacklab.to/) الذين وفّروا لنا مكانًا رائعًا.
 
-The meetup couldn't have been arranged without our friends at [Toronto Crypto](https://torontocrypto.org/) which have been helping us organize the event, and our friends at [Hacklab](https://hacklab.to/) which are providing us with a very nice space.
+إذا كانت لديك أي أسئلة، فلا تتردد في التواصل معنا عبر [@geti2p](https://twitter.com/geti2p).
 
-If you have any questions, feel free to contact us on [@geti2p](https://twitter.com/geti2p).
+## التفاصيل
 
-## Details
+### الموقع
 
-### Location
+[Hacklab](https://hacklab.to/) في 1266 Queen Street West، تورونتو.
 
-[Hacklab](https://hacklab.to/) at 1266 Queen Street West, Toronto.
+### اليوم الأول، 15 أغسطس - 3 مساءً
 
-### Day 1, August 15 - 3PM
+سيتم التركيز على مقدمة حول المواضيع المتعلقة بـ I2P، والخصوصية، والإخفاء الهوية على الإنترنت. يُرحب بجميع الأشخاص بغض النظر عن خلفياتهم أو مستويات معرفتهم.
 
-The focus will be on an introduction to topics surrounding I2P, privacy and anonymity online. People of all backgrounds and knowledge levels are welcome to attend.
+- عرض تقديمي عن I2P
+- مقدمة عن حفلة التشفير (Crypto party)
+- حفلة التشفير (Crypto party)
 
-- I2P Presentation
-- Crypto party introduction
-- Crypto party
+ستتضمن حفلة التشفير عددًا من المحطات التي سيتم فيها عرض برامج تتعلق بالخصوصية والإخفاء الهوية. والهدف هو تزويد الأشخاص بالأدوات التي يحتاجونها للتواصل بشكل آمن.
 
-The crypto party will contain a number of stations where privacy/anonymity software will be demoed. The goal is to provide people with the tools they need to communicate securely.
+- Vuze/I2P - تنزيل التورنتات بشكل مجهول
+- Veracrypt - تشفير بياناتك
+- I2PBote - بريد إلكتروني مجهول ولامركزي
+- فكرتك الخاصة لمحطة هنا
 
-- Vuze/I2P - Downloading torrents anonymously
-- Veracrypt - Encrypt your data
-- I2PBote - Anonymous decentralized email
-- Your station idea here
+نحن حاليًا نبحث عن مساعدة في تشغيل هذه المحطات. إذا أردت المساعدة، فيمكنك ذلك! أحضر شاشة/كمبيوتر محمول وقم بإدارة محطة. يمكن أن تكون المحطة إحدى المحطات المذكورة أعلاه، أو أي محطة أخرى تتعلق بالخصوصية أو الإخفاء الهوية ترغب في تشغيلها. يرجى التواصل معنا عبر [@geti2p](https://twitter.com/geti2p) إذا كنت مهتمًا.
 
-We're currently looking for help staffing the stations. If you want to help out, you can! Bring a monitor/laptop and run a station. The station could be any of the ones listed above, or any other privacy/anonymity related one you would like to run. Please contact us at [@geti2p](https://twitter.com/geti2p) if you're interested.
+### اليوم الثاني، 16 أغسطس - 1 مساءً
 
-### Day 2, August 16 - 1PM
+سيتم التركيز على مواضيع متقدمة حول I2P، والرؤية المستقبلية (roadmap)، والتطوير. يُرحب بحضور الجميع، لكن المحتوى سيكون تقنيًا إلى حد ما.
 
-The focus will be on in-depth topics surrounding I2P, the roadmap and development. Anyone is welcome to attend, but the content will be somewhat technical.
-
-- I2P Technical presentation
-- Technical discussion
-- I2P App Dev Into
-- I2PD presentation
-- I2P on Android
+- عرض تقني عن I2P
+- مناقشة تقنية
+- مقدمة لتطوير تطبيقات I2P (I2P App Dev Intro)
+- عرض عن I2PD
+- I2P على أندرويد

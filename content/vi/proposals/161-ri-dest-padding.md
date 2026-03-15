@@ -9,259 +9,253 @@ thread: "http://zzz.i2p/topics/3279"
 target: "0.9.57"
 toc: true
 ---
+## Trạng thái
 
-## Status
-
-Implemented in 0.9.57.
-Leaving this proposal open so we may enhance and discuss the ideas in the "Future Planning" section.
-
-
-## Overview
+Đã triển khai trong phiên bản 0.9.57.  
+Giữ đề xuất này mở để chúng ta có thể cải thiện và thảo luận các ý tưởng trong phần "Kế hoạch tương lai".
 
 
-### Summary
+## Tổng quan
 
-The ElGamal public key in Destinations has been unused since release 0.6 (2005).
-While our specifications do say that it is unused, they do NOT say that implementations can avoid
-generating an ElGamal key pair and simply fill the field with random data.
 
-We propose changing the specifications to say that
-the field is ignored and that implementations MAY fill the field with random data.
-This change is backward-compatible. There is no known implementation that validates
-the ElGamal public key.
+### Tóm tắt
 
-Additionally, this proposal offers guidance to implementers on how to generate the
-random data for Destination AND Router Identity padding so that it is compressible while
-still being secure, and without having Base 64 representations appear to be corrupt or insecure.
-This provides most of the benefits of removing the padding fields without any
-disruptive protocol changes.
-Compressible Destinations reduces streaming SYN and repliable datagram size;
-compressible Router Identities reduce Database Store Messages, SSU2 Session Confirmed messages,
-and reseed su3 files.
+Khóa công khai ElGamal trong Destinations đã không được sử dụng kể từ phiên bản 0.6 (2005).  
+Mặc dù đặc tả của chúng ta nói rằng trường này không được dùng, nhưng đặc tả KHÔNG nói rằng các triển khai có thể tránh việc tạo cặp khóa ElGamal và đơn giản điền trường này bằng dữ liệu ngẫu nhiên.
 
-Finally, the proposal discusses possibilities for new Destination and Router Identity formats
-that would eliminate the padding altogether. There is also a brief discussion of post-quantum
-crypto and how that may affect future planning.
+Chúng tôi đề xuất thay đổi đặc tả để nói rằng  
+trường này bị bỏ qua và các triển khai CÓ THỂ điền trường này bằng dữ liệu ngẫu nhiên.  
+Thay đổi này tương thích ngược. Không có triển khai nào được biết đến đang xác thực khóa công khai ElGamal.
+
+Ngoài ra, đề xuất này cung cấp hướng dẫn cho các nhà phát triển về cách tạo dữ liệu ngẫu nhiên cho phần đệm (padding) của Destination VÀ Router Identity sao cho dữ liệu này có thể nén tốt, vẫn đảm bảo an toàn, và không khiến biểu diễn Base 64 trông như bị hỏng hoặc không an toàn.  
+Việc này mang lại hầu hết lợi ích của việc loại bỏ các trường đệm mà không cần thay đổi giao thức gây gián đoạn.  
+Destination có thể nén được sẽ giảm kích thước gói SYN trong streaming và gói datagram có thể trả lời;  
+Router Identity có thể nén được sẽ giảm kích thước Database Store Message, gói SSU2 Session Confirmed, và các tệp su3 dùng để reseed.
+
+Cuối cùng, đề xuất này thảo luận về khả năng cho các định dạng mới của Destination và Router Identity  
+sẽ loại bỏ hoàn toàn phần đệm. Cũng có một phần thảo luận ngắn về mật mã hậu lượng tử (post-quantum crypto) và cách điều đó có thể ảnh hưởng đến kế hoạch tương lai.
 
 
 
-### Goals
+### Mục tiêu
 
-- Eliminate requirement to generate ElGamal keypair for Destinations
-- Recommend best practices so Destinations and Router Identities are highly compressible,
-  yet do not display obvious patterns in Base 64 representations.
-- Encourage adoption of best practices by all implementations so
-  the fields are not distinguishable
-- Reduce streaming SYN size
-- Reduce repliable datagram size
-- Reduce SSU2 RI block size
-- Reduce SSU2 Session Confirmed size and fragmentation frequency
-- Reduce Database Store Message (with RI) size
-- Reduce reseed file size
-- Maintain compatibility in all protocols and APIs
-- Update specifications
-- Discuss alternatives for new Destination and Router Identity formats
+- Loại bỏ yêu cầu tạo cặp khóa ElGamal cho Destinations  
+- Đề xuất các phương pháp tốt nhất để Destination và Router Identity có thể nén hiệu quả,  
+  nhưng không hiển thị các mẫu rõ ràng trong biểu diễn Base 64.  
+- Khuyến khích việc áp dụng các phương pháp tốt nhất bởi mọi triển khai để  
+  các trường này không thể phân biệt được  
+- Giảm kích thước gói SYN trong streaming  
+- Giảm kích thước gói datagram có thể trả lời  
+- Giảm kích thước khối RI trong SSU2  
+- Giảm kích thước và tần suất phân mảnh của gói SSU2 Session Confirmed  
+- Giảm kích thước Database Store Message (có chứa RI)  
+- Giảm kích thước tệp reseed  
+- Duy trì tính tương thích trong mọi giao thức và API  
+- Cập nhật đặc tả  
+- Thảo luận các phương án thay thế cho định dạng mới của Destination và Router Identity  
 
-By eliminating the requirement to generate ElGamal keys, implementations may
-be able to completely remove ElGamal code, subject to backward-compatibility considerations
-in other protocols.
-
-
-
-## Design
-
-Strictly speaking, the 32-byte signing public key alone (in both Destinations and Router Identities)
-and the 32-byte encryption public key (in Router Identities only) is a random number
-that provides all the entropy necessary for the SHA-256 hashes of these structures
-to be cryptographically strong and randomly distributed in the network database DHT.
-
-However, out of an abundance of caution, we recommend a minimum of 32 bytes of random data
-be used in the ElG public key field and padding. Additionally, if the fields were all zeros,
-Base 64 destinations would contain long runs of AAAA characters, which may cause alarm
-or confusion to users.
-
-For Ed25519 signature type and X25519 encryption type:
-Destinations will contain 11 copies (352 bytes) of the random data.
-Router Identities will contain 10 copies (320 bytes) of the random data.
+Bằng cách loại bỏ yêu cầu tạo khóa ElGamal, các triển khai có thể  
+có khả năng loại bỏ hoàn toàn mã nguồn ElGamal, tùy theo các cân nhắc về tương thích ngược  
+trong các giao thức khác.
 
 
 
-### Estimated Savings
+## Thiết kế
 
-Destinations are included in every streaming SYN
-and repliable datagram.
-Router Infos (containing Router Identities) are included in Database Store Messages
-and in the Session Confirmed messages in NTCP2 and SSU2.
+Về mặt kỹ thuật, riêng khóa công khai ký 32 byte (trong cả Destinations và Router Identities)  
+và khóa công khai mã hóa 32 byte (chỉ trong Router Identities) là một số ngẫu nhiên  
+cung cấp đủ entropy cần thiết để các giá trị băm SHA-256 của các cấu trúc này  
+có độ mạnh mật mã cao và phân bố ngẫu nhiên trong DHT cơ sở dữ liệu mạng.
 
-NTCP2 does not compress the Router Info.
-RIs in Database Store Messages and SSU2 Session Confirmed messages are gzipped.
-Router Infos are zipped in reseed SU3 files.
+Tuy nhiên, vì cẩn trọng, chúng tôi khuyến nghị sử dụng ít nhất 32 byte dữ liệu ngẫu nhiên  
+trong trường khóa công khai ElGamal và phần đệm. Ngoài ra, nếu các trường này toàn là số 0,  
+các Destination dạng Base 64 sẽ chứa các chuỗi ký tự AAAA dài, có thể gây lo ngại  
+hoặc nhầm lẫn cho người dùng.
 
-Destinations in Database Store Messages are not compressed.
-Streaming SYN messages are gzipped at the I2CP layer.
+Đối với loại chữ ký Ed25519 và loại mã hóa X25519:  
+Destinations sẽ chứa 11 bản sao (352 byte) dữ liệu ngẫu nhiên.  
+Router Identities sẽ chứa 10 bản sao (320 byte) dữ liệu ngẫu nhiên.
 
-For Ed25519 signature type and X25519 encryption type,
-estimated savings:
 
-| Data Type | Total Size | Keys and Cert | Uncompressed Padding | Compressed Padding | Size | Savings |
+
+### Ước tính tiết kiệm
+
+Destinations được bao gồm trong mọi gói SYN streaming  
+và gói datagram có thể trả lời.  
+Router Infos (chứa Router Identities) được bao gồm trong Database Store Messages  
+và trong các gói Session Confirmed của NTCP2 và SSU2.
+
+NTCP2 không nén Router Info.  
+RIs trong Database Store Messages và SSU2 Session Confirmed được nén gzip.  
+Router Infos được nén zip trong các tệp su3 reseed.
+
+Destinations trong Database Store Messages không được nén.  
+Các gói SYN streaming được nén gzip ở tầng I2CP.
+
+Đối với loại chữ ký Ed25519 và loại mã hóa X25519,  
+ước tính tiết kiệm như sau:
+
+| Loại dữ liệu | Kích thước tổng | Khóa và chứng chỉ | Đệm chưa nén | Đệm đã nén | Kích thước | Tiết kiệm |
 |-----------|------------|---------------|----------------------|--------------------|------|---------|
-| Destination | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
-| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
-| Router Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytes (29%) |
+| Destination | 391 | 39 | 352 | 32 | 71 | 320 byte (82%) |
+| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 byte (74%) |
+| Router Info | 1000 thông thường | 71 | 320 | 32 | 722 thông thường | 288 byte (29%) |
 
-Notes: Assumes 7-byte certificate is not compressible, zero additional gzip overhead.
-Neither is true, but effects will be small.
-Ignores other compressible parts of the Router Info.
-
-
-
-## Specification
-
-Proposed changes to our current specifications are documented below.
+Ghi chú: Giả định chứng chỉ 7 byte không nén được, không có chi phí nén gzip bổ sung.  
+Cả hai điều này đều không hoàn toàn đúng, nhưng ảnh hưởng sẽ nhỏ.  
+Bỏ qua các phần khác có thể nén được trong Router Info.
 
 
-### Common Structures
-Change the common structures specification
-to specify that the 256-byte Destination public key field is ignored and may
-contain random data.
 
-Add a section to the common structures specification
-recommending best practice for the Destination public key field and the
-padding fields in the Destination and Router Identity, as follows:
+## Đặc tả
 
-Generate 32 bytes of random data using a strong cryptographic pseudo-random number generator (PRNG)
-and repeat those 32 bytes as necessary to fill the public key field (for Destinations)
-and the padding field (for Destinations and Router Identities).
+Các thay đổi đề xuất đối với đặc tả hiện tại được ghi nhận dưới đây.
 
-### Private Key File
-The private key file (eepPriv.dat) format is not an official part of our specifications
-but it is documented in the [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)
-and other implementations do support it.
-This enables portability of private keys to different implementations.
-Add a note to that javadoc that the encryption public key may be random padding
-and the encryption private key may be all zeros or random data.
+
+### Cấu trúc chung
+Thay đổi đặc tả cấu trúc chung  
+để quy định rằng trường khóa công khai 256 byte của Destination bị bỏ qua và có thể  
+chứa dữ liệu ngẫu nhiên.
+
+Thêm một mục vào đặc tả cấu trúc chung  
+khuyến nghị phương pháp tốt nhất cho trường khóa công khai Destination và các  
+trường đệm trong Destination và Router Identity, như sau:
+
+Tạo 32 byte dữ liệu ngẫu nhiên bằng bộ tạo số ngẫu nhiên mật mã mạnh (PRNG)  
+và lặp lại 32 byte đó khi cần để điền vào trường khóa công khai (đối với Destinations)  
+và trường đệm (đối với Destinations và Router Identities).
+
+
+### Tệp khóa riêng
+Định dạng tệp khóa riêng (eepPriv.dat) không phải là phần chính thức của đặc tả  
+nhưng được tài liệu hóa trong [Java I2P javadocs](http://idk.i2p/javadoc-i2p/net/i2p/data/PrivateKeyFile.html)  
+và các triển khai khác cũng hỗ trợ.  
+Việc này cho phép di chuyển khóa riêng giữa các triển khai khác nhau.  
+Thêm một ghi chú vào javadoc đó rằng khóa công khai mã hóa có thể là dữ liệu đệm ngẫu nhiên  
+và khóa riêng mã hóa có thể là toàn bộ số 0 hoặc dữ liệu ngẫu nhiên.
+
 
 ### SAM
-Note in the SAM specification that the encryption private key is unused and may be ignored.
-Any random data may be returned by the client.
-The SAM Bridge may send random data on creation (with DEST GENERATE or SESSION CREATE DESTINATION=TRANSIENT)
-rather than all zeros, so the Base 64 representation does not have a string of AAAA characters
-and look broken.
+Ghi chú trong đặc tả SAM rằng khóa riêng mã hóa không được dùng và có thể bị bỏ qua.  
+Dữ liệu ngẫu nhiên bất kỳ có thể được trả về bởi client.  
+SAM Bridge có thể gửi dữ liệu ngẫu nhiên khi tạo (với DEST GENERATE hoặc SESSION CREATE DESTINATION=TRANSIENT)  
+thay vì toàn bộ số 0, để biểu diễn Base 64 không chứa chuỗi ký tự AAAA  
+và không trông như bị hỏng.
 
 
 ### I2CP
-No changes required to I2CP. The private key for the encryption public key in the Destination
-is not sent to the router.
+Không cần thay đổi I2CP. Khóa riêng tương ứng với khóa công khai mã hóa trong Destination  
+không được gửi đến router.
 
 
-## Future Planning
+## Kế hoạch tương lai
 
 
-### Protocol Changes
+### Thay đổi giao thức
 
-At a cost of protocol changes and a lack of backward compatibility, we could
-change our protocols and specifications to eliminate the padding field in
-the Destination, Router Identity, or both.
+Với chi phí là thay đổi giao thức và mất tính tương thích ngược, chúng ta có thể  
+thay đổi các giao thức và đặc tả để loại bỏ trường đệm trong  
+Destination, Router Identity, hoặc cả hai.
 
-This proposal bears some similarity to the "b33" encrypted leaseset format,
-containing only a key and a type field.
+Đề xuất này có một số điểm tương đồng với định dạng leaseset mã hóa "b33",  
+chỉ chứa một trường khóa và một trường loại.
 
-To maintain some compatibility, certain protocol layers could "expand" the padding field
-with all zeros to present to other protocol layers.
+Để duy trì một mức độ tương thích, một số tầng giao thức có thể "mở rộng" trường đệm  
+với toàn bộ số 0 để trình bày cho các tầng giao thức khác.
 
-For Destinations, we could also remove the encryption type field in the key certificate,
-at a savings of two bytes.
-Alternatively, Destinations could get a new encryption type in the key certificate,
-indicating a zero public key (and padding).
+Đối với Destinations, chúng ta cũng có thể loại bỏ trường loại mã hóa trong chứng chỉ khóa,  
+tiết kiệm được hai byte.  
+Hoặc, Destinations có thể nhận một loại mã hóa mới trong chứng chỉ khóa,  
+chỉ ra khóa công khai bằng 0 (và phần đệm).
 
-If compatibility conversion between old and new formats is not included at some protocol layer,
-the following specifications, APIs, protocols, and applications would be affected:
+Nếu không có chuyển đổi tương thích giữa định dạng cũ và mới ở một tầng giao thức nào đó,  
+các đặc tả, API, giao thức và ứng dụng sau đây sẽ bị ảnh hưởng:
 
-- Common structures spec
-- I2NP
-- I2CP
-- NTCP2
-- SSU2
-- Ratchet
-- Streaming
-- SAM
-- Bittorrent
-- Reseeding
-- Private Key File
-- Java core and router API
-- i2pd API
-- Third-party SAM libraries
-- Bundled and third-party tools
-- Several Java plugins
-- User interfaces
-- P2P applications e.g. MuWire, bitcoin, monero
-- hosts.txt, addressbook, and subscriptions
+- Đặc tả cấu trúc chung  
+- I2NP  
+- I2CP  
+- NTCP2  
+- SSU2  
+- Ratchet  
+- Streaming  
+- SAM  
+- Bittorrent  
+- Reseeding  
+- Tệp khóa riêng  
+- API lõi và router Java  
+- API i2pd  
+- Thư viện SAM của bên thứ ba  
+- Công cụ tích hợp và của bên thứ ba  
+- Một số plugin Java  
+- Giao diện người dùng  
+- Ứng dụng P2P ví dụ như MuWire, bitcoin, monero  
+- hosts.txt, danh bạ, và đăng ký  
 
-If conversion is specified at some layer, the list would be reduced.
+Nếu việc chuyển đổi được quy định ở một tầng nào đó, danh sách sẽ được rút ngắn.
 
-The costs and benefits of these changes are not clear.
+Chi phí và lợi ích của các thay đổi này chưa rõ ràng.
 
-Specific proposals TBD:
-
-
-
-
-
-### PQ Keys
-
-Post-Quantum (PQ) encryption public keys, for any anticipated algorithm,
-are larger than 256 bytes. This would eliminate any padding and any savings from proposed
-changes above, for Router Identities.
-
-In a "hybrid" PQ approach, like what SSL is doing, the PQ keys would be ephemeral only,
-and would not appear in the Router Identity.
-
-PQ signing keys are not viable,
-and Destinations do not contain encryption public keys.
-Static keys for ratchet are in the Lease Set, not the Destination.
-so we may eliminate Destinations from the following discussion.
-
-So PQ only affects Router Infos, and only for PQ static (not ephemeral) keys, not for PQ hybrid.
-This would be for a new encryption type and would affect NTCP2, SSU2, and
-encrypted Database Lookup Messages and replies.
-Estimated time frame for design, development, and rollout of that would be ????????
-But would be after hybrid or ratchet ????????????
-
-For further discussion see [this topic](http://zzz.i2p/topics/3294).
+Các đề xuất cụ thể sẽ được xác định sau:
 
 
 
 
-## Issues
 
-It may be desirable to rekey the network at a slow rate, to provide cover for new routers.
-"Rekeying" could mean simply changing the padding, not really changing the keys.
+### Khóa PQ
 
-It is not possible to rekey existing Destinations.
+Khóa công khai mã hóa hậu lượng tử (PQ), với bất kỳ thuật toán nào dự kiến,  
+lớn hơn 256 byte. Điều này sẽ loại bỏ hoàn toàn phần đệm và mọi lợi ích tiết kiệm từ các  
+thay đổi đề xuất ở trên, đối với Router Identities.
 
-Should Router Identities with padding in the public key field be identified with a different
-encryption type in the key certificate? This would cause compatibility issues.
+Trong cách tiếp cận "lai" (hybrid) PQ, giống như SSL đang làm, các khóa PQ chỉ là tạm thời,  
+và sẽ không xuất hiện trong Router Identity.
 
+Khóa ký PQ hiện không khả thi,  
+và Destinations không chứa khóa công khai mã hóa.  
+Các khóa tĩnh cho ratchet nằm trong Lease Set, không nằm trong Destination.  
+do đó chúng ta có thể loại bỏ Destinations khỏi phần thảo luận sau.
 
+Vì vậy PQ chỉ ảnh hưởng đến Router Infos, và chỉ với khóa tĩnh PQ (không phải tạm thời), không ảnh hưởng đến PQ lai.  
+Việc này sẽ yêu cầu một loại mã hóa mới và ảnh hưởng đến NTCP2, SSU2, và  
+các tin nhắn tra cứu cơ sở dữ liệu mã hóa và phản hồi.  
+Khung thời gian ước tính để thiết kế, phát triển và triển khai sẽ là ????????  
+Nhưng sẽ diễn ra sau hybrid hoặc ratchet ????????????
 
-
-## Migration
-
-No backward compatibility issues for replacing the ElGamal key with padding.
-
-Rekeying, if implemented, would be similar to that done
-in three previous router identity transitions:
-From DSA-SHA1 to ECDSA signatures, then to
-EdDSA signatures, then to X25519 encryption.
-
-Subject to backward compatibility issues, and after disabling SSU,
-implementations may remove ElGamal code completely.
-Approximately 14% of routers in the network are ElGamal encryption type, including many floodfills.
-
-A draft merge request for Java I2P is at [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+Để thảo luận thêm, xem [chủ đề này](http://zzz.i2p/topics/3294).
 
 
-## References
+
+
+## Vấn đề
+
+Có thể mong muốn thay đổi khóa mạng từ từ, để che giấu cho các router mới.  
+"Thay đổi khóa" (rekeying) có thể chỉ đơn giản là thay đổi phần đệm, không thực sự thay đổi khóa.
+
+Không thể thay đổi khóa cho các Destinations hiện có.
+
+Có nên xác định các Router Identity có phần đệm trong trường khóa công khai bằng một  
+loại mã hóa khác trong chứng chỉ khóa không? Việc này sẽ gây ra các vấn đề tương thích.
+
+
+
+
+## Di chuyển
+
+Không có vấn đề tương thích ngược khi thay thế khóa ElGamal bằng phần đệm.
+
+Việc thay đổi khóa (rekeying), nếu được triển khai, sẽ tương tự như những lần  
+chuyển đổi danh tính router trước đó:  
+Từ chữ ký DSA-SHA1 sang ECDSA, sau đó sang  
+chữ ký EdDSA, rồi đến mã hóa X25519.
+
+Tùy theo các vấn đề tương thích ngược, và sau khi tắt SSU,  
+các triển khai có thể loại bỏ hoàn toàn mã nguồn ElGamal.  
+Khoảng 14% router trong mạng đang dùng loại mã hóa ElGamal, bao gồm nhiều floodfill.
+
+Một yêu cầu hợp nhất bản nháp cho Java I2P đang ở [git.idk.i2p](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66).
+
+
+## Tài liệu tham khảo
 
 * [Common](/docs/specs/common-structures/)
 * [Datagram](/docs/api/datagrams/)

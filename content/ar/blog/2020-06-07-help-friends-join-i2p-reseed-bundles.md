@@ -5,17 +5,16 @@ author: "idk"
 description: "Create, exchange, and use reseed bundles"
 categories: ["reseed"]
 ---
+يتم انضمام معظم الراوترات الجديدة إلى شبكة I2P باستخدام خدمة "reseed" (إعادة الزراعة) للبدء. ولكن خدمات reseed مركزية نسبيًا، ويسهل حجبها، خاصة بالنظر إلى التركيز على الاتصالات اللامركزية والمقاومة للحجب في باقي شبكة I2P. إذا وجدت راوتر I2P الجديد نفسها غير قادرة على البدء، فقد يكون من الممكن استخدام راوتر I2P موجود لإنشاء "حزمة reseed" (Reseed bundle) فعّالة والبدء دون الحاجة إلى خدمة reseed.
 
-Most new I2P routers join the network by bootstrapping with the help of a reseed service. However, reseed services are centralized and comparatively easy to block, considering the emphasis on de-centralized and un-blockable connections in the rest of the I2P network. If a new I2P router finds itself unable to bootstrap, it may be a possible to use an existing I2P router to generate a working "Reseed bundle" and bootstrap without the need of a reseed service.
+يمكن لأي مستخدم لديه اتصال I2P عامل أن يساعد راوتر محجوبة في الانضمام إلى الشبكة من خلال إنشاء ملف reseed ونقله إلى المستخدم الآخر عبر قناة سرية أو غير محجوبة. في الواقع، في العديد من الحالات، لن تتأثر راوترات I2P العاملة بحجب خدمة reseed إطلاقًا، وبالتالي **وجود راوترات I2P عاملة يعني أن هذه الراوترات يمكنها مساعدة الراوترات الجديدة من خلال توفير طريقة خفية للبدء**.
 
-It is possible for a user with a working I2P connection to help a blocked router join the network by generating a reseed file and passing it to them via a secret or non-blocked channel. In fact, in many circumstances, an I2P router that is already connected will not be affected by reseed blocking at all, so **having working I2P routers around means that existing I2P routers can help new I2P routers by providing them with a hidden way of bootstrapping**.
+## إنشاء حزمة Reseed
 
-## Generating a Reseed Bundle
+- لإنشاء حزمة reseed لاستخدامها من قبل آخرين، انتقل إلى `http://127.0.0.1:7657/configreseed`. ستظهر لك قسم يشبه هذا. انقر على الزر المشار إليه بالدائرة الحمراء لإنشاء ملف reseed مضغوط (zip).
+- بعد النقر على الزر، سيتم إنشاء ملف مضغوط يحتوي على المعلومات الكافية لبدء راوتر I2P جديد. قم بتنزيله ونقله إلى الحاسوب الذي يحتوي على راوتر I2P الجديد غير المُهيأ.
 
-- To create a reseed bundle for others to use, go to the `http://127.0.0.1:7657/configreseed`. You will see a section that looks like this. Click the button indicated by the red circle to create a reseed zip.
-- Now that you've clicked the button, a zip will be generated containing enough information to bootstrap a new I2P router. Download it and transfer it to the computer with the new, un-bootstrapped I2P router.
+## إجراء عملية Reseed من ملف
 
-## Performing a Reseed from File
-
-- Obtain an i2preseed.zip file from a friend with an I2P router that is already running, or from a trusted source somewhere on the internet, and visit the `http://127.0.0.1:7657/configreseed`. Click the button that says "Select zip or su3 file" and navigate to that file.
-- When you've selected your reseed file, click the "Reseed from File" button. You're done! Your router will now bootstrap using the zip file, and you will be ready to join the I2P network.
+- احصل على ملف i2preseed.zip من صديق يمتلك راوتر I2P قيد التشغيل، أو من مصدر موثوق على الإنترنت، ثم انتقل إلى `http://127.0.0.1:7657/configreseed`. انقر على الزر الذي يقول "Select zip or su3 file" وابحث عن هذا الملف.
+- بعد اختيار ملف reseed، انقر على الزر "Reseed from File". انتهيت! ستفعل راوترك الآن عملية البدء باستخدام ملف الـ zip، وستكون جاهزًا للانضمام إلى شبكة I2P.

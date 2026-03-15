@@ -10,58 +10,51 @@ target: "0.9.30"
 implementedin: "0.9.30"
 toc: true
 ---
+## Visão Geral
 
-## Overview
-
-This proposal is about improving the success rate for introductions.
-
-
-## Motivation
-
-Introducers expire after a certain time, but that info isn't published in the
-Router Info. Routers must currently use heuristics to estimate when an
-introducer is no longer valid.
+Esta proposta trata da melhoria da taxa de sucesso para introduções.
 
 
-## Design
+## Motivação
 
-In an SSU Router Address containing introducers, the publisher may optionally
-include expiration times for each introducer.
+Os introduzores expiram após um determinado tempo, mas essa informação não é publicada no Router Info. Atualmente, os roteadores precisam usar heurísticas para estimar quando um introduzor já não é válido.
 
 
-## Specification
+## Projeto
+
+Em um Endereço de Roteador SSU contendo introduzores, o publicador pode opcionalmente incluir tempos de expiração para cada introduzor.
+
+
+## Especificação
 
 ```
 iexp{X}={nnnnnnnnnn}
 
-X :: The introducer number (0-2)
+X :: O número do introduzor (0-2)
 
-nnnnnnnnnn :: The time in seconds (not ms) since the epoch.
+nnnnnnnnnn :: O tempo em segundos (não milissegundos) desde a época.
 ```
 
-### Notes
+### Notas
 
-* Each expiration must be greater than the publish date of the Router Info,
-  and less than 6 hours after the publish date of the Router Info.
+* Cada expiração deve ser maior que a data de publicação do Router Info e menor que 6 horas após a data de publicação do Router Info.
 
-* Publishing routers and introducers should attempt to keep the introducer valid
-  until expiration, however there is no way for them to guarantee this.
+* Os roteadores publicadores e os introduzores devem tentar manter o introduzor válido até a expiração, entretanto não há como garantir isso.
 
-* Routers should not use a published introducer after its expiration.
+* Os roteadores não devem usar um introduzor publicado após sua expiração.
 
-* The introducer expirations are in the Router Address mapping.
-  They are not the (currently unused) 8-byte expiration field in the Router Address.
+* As expirações dos introduzores estão no mapeamento do Endereço de Roteador. Elas não são o campo de expiração de 8 bytes (atualmente não utilizado) no Endereço de Roteador.
 
-**Example:** `iexp0=1486309470`
+**Exemplo:** `iexp0=1486309470`
 
 
-## Migration
+## Migração
 
-No issues. Implementation is optional.
-Backwards compatibility is assured, as older routers will ignore unknown parameters.
+Sem problemas. A implementação é opcional.  
+A compatibilidade com versões anteriores é garantida, já que roteadores mais antigos ignorarão parâmetros desconhecidos.
 
 
-## References
+## Referências
 
 * [RouterAddress](/docs/specs/common-structures/#routeraddress)
 * [RouterInfo](/docs/specs/common-structures/#routerinfo)
