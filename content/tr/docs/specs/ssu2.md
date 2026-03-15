@@ -3553,7 +3553,7 @@ Alice                         Bob                  Charlie
 3.                                  <-------------- RelayResponse
 4.      <-------------- RelayResponse
 ```
-Relay Request, Relay Intro ve Relay Response'un tümü oturum içindedir ve veri fazı ACK ve yeniden iletim süreçleri tarafından kapsanır. Relay Request, Relay Intro ve Relay Response blokları ACK gerektiren bloklardır.
+NOT: RI, I2NP bloklarında I2NP Veritabanı Saklama mesajları veya (yeterince küçükse) RI blokları olarak gönderilebilir. Yeterince küçükse, bu bloklar röle bloklarıyla aynı paketlerde yer alabilir.
 
 Unutmayın ki genellikle Charlie, bir Relay Intro'ya hemen bir Relay Response ile yanıt verecektir ve bu yanıt bir ACK bloğu içermelidir. Bu durumda, ACK bloğu içeren ayrı bir mesaj gerekmez.
 

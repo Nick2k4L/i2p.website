@@ -3553,7 +3553,7 @@ Alice                         Bob                  Charlie
 3.                                  <-------------- RelayResponse
 4.      <-------------- RelayResponse
 ```
-Relay Request, Relay Intro a Relay Response jsou všechny v rámci relace a jsou pokryty procesy potvrzování a opětovného odesílání datové fáze. Bloky Relay Request, Relay Intro a Relay Response vyžadují potvrzení.
+POZNÁMKA: Registrační informace (RI) mohou být odeslány buď jako zprávy I2NP Database Store v blocích I2NP, nebo jako bloky RI (pokud jsou dostatečně malé). Pokud jsou dostatečně malé, mohou být obsaženy ve stejných paketech jako reléové bloky.
 
 Všimněte si, že obvykle Charlie okamžitě odpoví na Relay Intro pomocí Relay Response, která by měla obsahovat ACK blok. V takovém případě není potřeba samostatná zpráva s ACK blokem.
 

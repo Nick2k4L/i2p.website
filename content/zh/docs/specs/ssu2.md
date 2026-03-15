@@ -3553,7 +3553,7 @@ Alice                         Bob                  Charlie
 3.                                  <-------------- RelayResponse
 4.      <-------------- RelayResponse
 ```
-Relay Request、Relay Intro 和 Relay Response 都属于会话内消息，受数据阶段 ACK 和重传过程的保护。Relay Request、Relay Intro 和 Relay Response 块都会引发 ack 响应。
+注意：路由信息（RI）可以作为I2NP块中的I2NP数据库存储消息发送，也可以作为RI块发送（如果足够小）。如果足够小，这些可以与中继块包含在同一个数据包中。
 
 请注意，通常情况下，Charlie 会立即对 Relay Intro 响应一个 Relay Response，其中应包含一个 ACK 块。在这种情况下，不需要单独的包含 ACK 块的消息。
 

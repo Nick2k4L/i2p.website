@@ -3553,7 +3553,7 @@ Alice                         Bob                  Charlie
 3.                                  <-------------- RelayResponse
 4.      <-------------- RelayResponse
 ```
-Relay Request, Relay Intro, y Relay Response están todos dentro de la sesión y están cubiertos por los procesos de ACK y retransmisión de la fase de datos. Los bloques Relay Request, Relay Intro, y Relay Response requieren confirmación de recepción.
+NOTA: La RI puede enviarse ya sea como mensajes I2NP Database Store en bloques I2NP, o como bloques RI (si son lo suficientemente pequeños). Estos pueden estar contenidos en los mismos paquetes que los bloques de retransmisión, si son lo suficientemente pequeños.
 
 Ten en cuenta que normalmente, Charlie responderá inmediatamente a un Relay Intro con un Relay Response, que debería incluir un bloque ACK. En ese caso, no se requiere un mensaje separado con un bloque ACK.
 

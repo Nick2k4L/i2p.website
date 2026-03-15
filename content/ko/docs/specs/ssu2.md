@@ -3553,7 +3553,7 @@ Alice                         Bob                  Charlie
 3.                                  <-------------- RelayResponse
 4.      <-------------- RelayResponse
 ```
-Relay Request, Relay Intro, Relay Response는 모두 세션 내에서 처리되며 데이터 단계의 ACK 및 재전송 프로세스에 의해 보호됩니다. Relay Request, Relay Intro, Relay Response 블록은 ack-eliciting입니다.
+참고: RI는 I2NP 블록 내 I2NP 데이터베이스 저장 메시지 또는 충분히 작을 경우 RI 블록으로 전송될 수 있습니다. 충분히 작다면 이러한 블록들은 리레이 블록과 동일한 패킷에 포함될 수 있습니다.
 
 일반적으로 Charlie는 Relay Intro에 대해 ACK 블록이 포함된 Relay Response로 즉시 응답한다는 점에 유의하세요. 이 경우 ACK 블록이 포함된 별도의 메시지는 필요하지 않습니다.
 

@@ -3553,7 +3553,7 @@ Alice                         Bob                  Charlie
 3.                                  <-------------- RelayResponse
 4.      <-------------- RelayResponse
 ```
-Relay Request, Relay Intro, và Relay Response đều nằm trong phiên kết nối và được bao phủ bởi các quy trình ACK và truyền lại của giai đoạn dữ liệu. Các khối Relay Request, Relay Intro, và Relay Response đều yêu cầu xác nhận (ack-eliciting).
+LƯU Ý: RI có thể được gửi dưới dạng các tin nhắn Lưu trữ Cơ sở dữ liệu I2NP trong các khối I2NP, hoặc dưới dạng các khối RI (nếu đủ nhỏ). Chúng có thể được chứa trong cùng các gói tin với các khối chuyển tiếp, nếu đủ nhỏ.
 
 Lưu ý rằng thông thường, Charlie sẽ phản hồi ngay lập tức cho một Relay Intro bằng một Relay Response, cái mà nên bao gồm một ACK block. Trong trường hợp đó, không cần thiết một thông điệp riêng biệt với ACK block.
 
