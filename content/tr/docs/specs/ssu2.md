@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Durum
 
-Tamamlandı. Güvenlik analizi, tehdit modelleri, SSU 1 güvenliği ve sorunlarının bir incelemesi ile QUIC spesifikasyonlarından alınan alıntılar dahil olmak üzere ek bilgi ve hedefler için [Prop159](/proposals/159-ssu2) sayfasına bakın.
+Büyük ölçüde tamamlandı. Ek bilgi ve hedefler için [Prop159](/proposals/159-ssu2) bağlantısına bakın; bu bağlantı güvenlik analizi, tehdit modelleri, SSU 1 güvenlik incelemesi ve sorunları ile QUIC spesifikasyonlarından alıntıları içerir.
 
 Dağıtım planı:
 
@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1337,10 +1337,11 @@ Bob'un bireysel fragmanları onaylaması için herhangi bir mekanizma yoktur. Bo
 
 Alice paket numarası 0'ın ACK'sını almazsa, oturum onaylanmış tüm paketleri olduğu gibi yeniden iletmelidir.
 
-- TÜM başlıklar aynı paket numarası 0 ile kısa başlıklardır
-- TÜM başlıklar parça numarası ve toplam parça sayısını içeren bir "frag" alanı içerir
-- Parça 0'ın şifrelenmemiş başlığı, "jumbo" mesajı için ilişkili veri (AD)'dir
-- Her başlık, O paketteki verinin son 24 baytı kullanılarak şifrelenir
+- TÜM başlıklar, paket numarası 0 olan kısa başlıklardır
+- TÜM başlıklar tür = 2 (oturum onaylandı) şeklindedir
+- TÜM başlıklar, parça numarasını ve toplam parça sayısını içeren bir "frag" alanına sahiptir
+- Parça 0'ın şifrelenmemiş başlığı, "dev" mesajı için ilişkili veri (AD) olarak kullanılır
+- Her başlık, O paketteki son 24 bayt veri kullanılarak şifrelenir
 
 Örnekler:
 

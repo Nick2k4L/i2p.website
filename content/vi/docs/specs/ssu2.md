@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1337,10 +1337,11 @@ Không có cơ chế để Bob xác nhận từng fragment riêng lẻ. Khi Bob 
 
 Nếu Alice không nhận được ACK của gói tin số 0, cô ấy phải truyền lại tất cả các gói tin đã xác nhận phiên như cũ.
 
-- TẤT CẢ header đều là header ngắn với cùng packet number 0
-- TẤT CẢ header đều chứa trường "frag", với số thứ tự fragment và tổng số fragment
-- Header không mã hóa của fragment 0 là dữ liệu liên kết (AD) cho thông điệp "jumbo"
-- Mỗi header được mã hóa bằng 24 byte cuối cùng của dữ liệu trong packet ĐÓ
+- TẤT CẢ các tiêu đề đều là tiêu đề ngắn với cùng số gói bằng 0
+- TẤT CẢ các tiêu đề đều có loại = 2 (đã xác nhận phiên)
+- TẤT CẢ các tiêu đề đều chứa trường "frag", với số thứ tự đoạn và tổng số đoạn
+- Tiêu đề chưa mã hóa của đoạn 0 là dữ liệu liên kết (AD) cho thông điệp "jumbo"
+- Mỗi tiêu đề được mã hóa bằng 24 byte dữ liệu cuối cùng trong GÓI ĐÓ
 
 Ví dụ:
 

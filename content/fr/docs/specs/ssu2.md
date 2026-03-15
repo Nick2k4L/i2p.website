@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Statut
 
-Terminé. Voir [Prop159](/proposals/159-ssu2) pour des informations complémentaires et les objectifs, incluant l'analyse de sécurité, les modèles de menaces, une revue de la sécurité de SSU 1 et ses problèmes, ainsi que des extraits des spécifications QUIC.
+Substantiellement complet. Voir [Prop159](/proposals/159-ssu2) pour des informations supplémentaires et les objectifs, y compris l'analyse de sécurité, les modèles de menace, un examen de la sécurité et des problèmes de SSU 1, et des extraits des spécifications QUIC.
 
 Plan de déploiement :
 
@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1337,10 +1337,11 @@ Il n'y a aucun mécanisme pour que Bob acquitte des fragments individuels. Lorsq
 
 Si Alice ne reçoit pas d'ACK du paquet numéro 0, elle doit retransmettre tous les paquets de session confirmée tels quels.
 
-- TOUS les en-têtes sont des en-têtes courts avec le même numéro de paquet 0
-- TOUS les en-têtes contiennent un champ "frag", avec le numéro de fragment et le nombre total de fragments
-- L'en-tête non chiffré du fragment 0 est la donnée associée (AD) pour le message "jumbo"
-- Chaque en-tête est chiffré en utilisant les 24 derniers octets de données dans CE paquet
+- Tous les en-têtes sont des en-têtes courts avec le même numéro de paquet 0
+- Tous les en-têtes sont de type = 2 (session confirmée)
+- Tous les en-têtes contiennent un champ « frag », indiquant le numéro de fragment et le nombre total de fragments
+- L'en-tête non chiffré du fragment 0 constitue les données associées (AD) pour le message « jumbo »
+- Chaque en-tête est chiffré à l'aide des 24 derniers octets de données de CE paquet
 
 Exemples :
 

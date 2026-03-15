@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1337,10 +1337,11 @@ No hay un mecanismo para que Bob confirme fragmentos individuales. Cuando Bob re
 
 Si Alice no recibe un ACK del paquete número 0, debe retransmitir todos los paquetes de sesión confirmada tal como están.
 
-- TODOS los headers son headers cortos con el mismo número de paquete 0
-- TODOS los headers contienen un campo "frag", con el número de fragmento y el número total de fragmentos
-- El header sin cifrar del fragmento 0 es el dato asociado (AD) para el mensaje "jumbo"
-- Cada header se cifra usando los últimos 24 bytes de datos en ESE paquete
+- TODOS los encabezados son encabezados cortos con el mismo número de paquete 0
+- TODOS los encabezados son de tipo = 2 (sesión confirmada)
+- TODOS los encabezados contienen un campo "frag", con el número de fragmento y el número total de fragmentos
+- El encabezado sin cifrar del fragmento 0 es el dato asociado (AD) para el mensaje "jumbo"
+- Cada encabezado se cifra utilizando los últimos 24 bytes de datos de ESE paquete
 
 Ejemplos:
 

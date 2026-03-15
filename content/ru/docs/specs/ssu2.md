@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1215,7 +1215,7 @@ XK(s, rs):           Authentication   Confidentiality
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ XK(s, rs):           Authentication   Confidentiality
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ XK(s, rs):           Authentication   Confidentiality
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 К сожалению, Router Info, даже при сжатии gzip в блоке RI, может превышать MTU. Поэтому Session Confirmed может быть фрагментирована на два или более пакетов. Это ЕДИНСТВЕННЫЙ случай в протоколе SSU2, когда полезная нагрузка, защищенная AEAD, фрагментируется на два или более пакетов.
@@ -1340,9 +1338,10 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 Если Алиса не получает ACK для пакета номер 0, она должна повторно передать все подтвержденные пакеты сессии как есть.
 
 - ВСЕ заголовки являются короткими заголовками с одинаковым номером пакета 0
+- ВСЕ заголовки имеют тип = 2 (сессия подтверждена)
 - ВСЕ заголовки содержат поле "frag" с номером фрагмента и общим количеством фрагментов
-- Незашифрованный заголовок фрагмента 0 является ассоциированными данными (AD) для "jumbo" сообщения
-- Каждый заголовок шифруется с использованием последних 24 байт данных в ЭТОМ пакете
+- Незашифрованный заголовок фрагмента 0 является ассоциированными данными (AD) для «джамбо»-сообщения
+- Каждый заголовок шифруется с использованием последних 24 байт данных ИЗ ЭТОГО пакета
 
 Примеры:
 

@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1215,7 +1215,7 @@ XK(s, rs):           Authentication   Confidentiality
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ XK(s, rs):           Authentication   Confidentiality
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ XK(s, rs):           Authentication   Confidentiality
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 للأسف، قد تتجاوز معلومات الـ Router حتى عند ضغطها بـ gzip في كتلة الـ RI حجم الـ MTU. لذلك، قد يتم تجزئة الـ Session Confirmed عبر حزمتين أو أكثر. هذه هي الحالة الوحيدة في بروتوكول SSU2 حيث يتم تجزئة الحمولة المحمية بـ AEAD عبر حزمتين أو أكثر.
@@ -1339,10 +1337,11 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 إذا لم تتلق Alice إقرار استلام لحزمة البيانات رقم 0، فيجب عليها إعادة إرسال جميع حزم تأكيد الجلسة كما هي.
 
-- جميع العناوين هي عناوين قصيرة بنفس رقم الحزمة 0
-- جميع العناوين تحتوي على حقل "frag"، مع رقم الجزء والعدد الإجمالي للأجزاء
-- العنوان غير المشفر للجزء 0 هو البيانات المرتبطة (AD) لرسالة "jumbo"
-- كل عنوان مشفر باستخدام آخر 24 بايت من البيانات في تلك الحزمة
+- جميع الرؤوس هي رؤوس قصيرة تحمل رقم حزمة 0
+- جميع الرؤوس من النوع = 2 (تم تأكيد الجلسة)
+- تحتوي جميع الرؤوس على حقل "frag"، يحمل رقم الجزء والعدد الكلي للأجزاء
+- الرأس غير المشفر للجزء 0 يُعد البيانات المرتبطة (AD) بالرسالة "الضخمة" (jumbo)
+- يتم تشفير كل رأس باستخدام آخر 24 بايت من البيانات في تلك الحزمة
 
 أمثلة:
 

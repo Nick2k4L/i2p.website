@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Estado
 
-Concluído. Veja [Prop159](/proposals/159-ssu2) para informações adicionais e objetivos, incluindo análise de segurança, modelos de ameaças, uma revisão da segurança do SSU 1 e seus problemas, e trechos das especificações do QUIC.
+Substancialmente completo. Veja [Prop159](/proposals/159-ssu2) para informações adicionais e objetivos, incluindo análise de segurança, modelos de ameaça, uma revisão da segurança e problemas do SSU 1, e trechos das especificações QUIC.
 
 Plano de implementação:
 
@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1338,9 +1338,10 @@ Não há mecanismo para Bob confirmar fragmentos individuais. Quando Bob recebe 
 Se Alice não receber um ACK do pacote número 0, ela deve retransmitir todos os pacotes confirmados de sessão como estão.
 
 - TODOS os cabeçalhos são cabeçalhos curtos com o mesmo número de pacote 0
+- TODOS os cabeçalhos são do tipo = 2 (sessão confirmada)
 - TODOS os cabeçalhos contêm um campo "frag", com o número do fragmento e o número total de fragmentos
-- O cabeçalho não criptografado do fragmento 0 é os dados associados (AD) para a mensagem "jumbo"
-- Cada cabeçalho é criptografado usando os últimos 24 bytes de dados NESSE pacote
+- O cabeçalho não criptografado do fragmento 0 é o dado associado (AD) para a mensagem "jumbo"
+- Cada cabeçalho é criptografado usando os últimos 24 bytes de dados desse pacote
 
 Exemplos:
 

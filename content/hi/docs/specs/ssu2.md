@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1215,7 +1215,7 @@ Session Confirmed संदेश में Alice की पूर्ण हस�
 +  encrypted with Bob intro key and     +
 | derived key, see Header Encryption KDF|
 +----+----+----+----+----+----+----+----+
-|   ChaCha20 frame (32 bytes)           |
+|   ChaCha20 encrypted data (32 bytes)  |
 +   Encrypted and authenticated data    +
 +   Alice static key S                  +
 | k defined in KDF for Session Created  |
@@ -1229,10 +1229,8 @@ Session Confirmed संदेश में Alice की पूर्ण हस�
 |                                       |
 + Length varies (remainder of packet)   +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+   see below for allowed blocks        +
-|                                       |
++   ChaCha20 encrypted data             +
+|   see below for allowed blocks        |
 +     k defined in KDF for              +
 |     Session Confirmed part 2          |
 +     n = 0                             +
@@ -1245,7 +1243,7 @@ Session Confirmed संदेश में Alice की पूर्ण हस�
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+S :: 32 bytes, ChaCha20 encrypted Alice's X25519 static key, little endian
      inside 48 byte ChaChaPoly frame
 ```
 दुर्भाग्य से, Router Info, RI block में gzip compressed होने पर भी, MTU से अधिक हो सकता है। इसलिए, Session Confirmed दो या अधिक packets में fragmented हो सकता है। यह SSU2 protocol में एकमात्र मामला है जहाँ एक AEAD-protected payload दो या अधिक packets में fragmented होता है।
@@ -1339,10 +1337,11 @@ Bob के पास व्यक्तिगत fragments को ack करन�
 
 यदि Alice को packet number 0 का ACK प्राप्त नहीं होता है, तो उसे सभी session confirmed packets को जैसे हैं वैसे ही retransmit करना होगा।
 
-- सभी headers छोटे headers हैं जिनमें समान packet number 0 है
-- सभी headers में एक "frag" field होता है, जिसमें fragment number और fragments की कुल संख्या होती है
-- Fragment 0 का unencrypted header "jumbo" message के लिए associated data (AD) है
-- प्रत्येक header को उस packet में data के अंतिम 24 bytes का उपयोग करके encrypt किया जाता है
+- सभी हेडर छोटे हेडर होते हैं जिनका पैकेट नंबर 0 होता है
+- सभी हेडर का प्रकार = 2 (सत्र पुष्टि किया गया) होता है
+- सभी हेडर में "frag" फ़ील्ड होता है, जिसमें खंड की संख्या और खंडों की कुल संख्या होती है
+- खंड 0 का एनक्रिप्टेड हेडर "जंबो" संदेश के लिए सहयोगी डेटा (AD) होता है
+- प्रत्येक हेडर को उस पैकेट में अंतिम 24 बाइट्स डेटा का उपयोग करके एनक्रिप्ट किया जाता है
 
 उदाहरण:
 

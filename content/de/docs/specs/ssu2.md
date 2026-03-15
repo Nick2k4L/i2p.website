@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Status
 
-Abgeschlossen. Siehe [Prop159](/proposals/159-ssu2) für zusätzliche Hintergrundinformationen und Ziele, einschließlich Sicherheitsanalyse, Bedrohungsmodelle, eine Überprüfung der SSU 1-Sicherheit und Probleme sowie Auszüge aus den QUIC-Spezifikationen.
+Im Wesentlichen vollständig. Siehe [Prop159](/proposals/159-ssu2) für zusätzliche Hintergrundinformationen und Ziele, einschließlich Sicherheitsanalyse, Bedrohungsmodelle, eine Überprüfung der SSU 1 Sicherheit und Probleme sowie Auszüge aus den QUIC-Spezifikationen.
 
 Rollout-Plan:
 
@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1337,9 +1337,10 @@ Es gibt keinen Mechanismus für Bob, einzelne Fragmente zu bestätigen. Wenn Bob
 
 Wenn Alice keine ACK für Paketnummer 0 erhält, muss sie alle session confirmed Pakete unverändert erneut übertragen.
 
-- ALLE Header sind kurze Header mit derselben Paketnummer 0
-- ALLE Header enthalten ein "frag"-Feld mit der Fragmentnummer und der Gesamtzahl der Fragmente
-- Der unverschlüsselte Header von Fragment 0 ist die zugehörigen Daten (AD) für die "Jumbo"-Nachricht
+- ALLE Header sind kurze Header mit der gleichen Paketnummer 0
+- ALLE Header sind vom Typ = 2 (Sitzung bestätigt)
+- ALLE Header enthalten ein „frag“-Feld mit der Fragmentnummer und der Gesamtanzahl der Fragmente
+- Der unverschlüsselte Header des Fragments 0 ist die assoziierte Daten (AD) für die „jumbo“-Nachricht
 - Jeder Header wird mit den letzten 24 Bytes der Daten in DIESEM Paket verschlüsselt
 
 Beispiele:

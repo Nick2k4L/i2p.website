@@ -9,7 +9,7 @@ accurateFor: "0.9.69"
 
 ## Stav
 
-Dokončeno. Další informace a cíle, včetně analýzy zabezpečení, modelů hrozeb, přehledu bezpečnosti SSU 1 a problémů a výňatků ze specifikací QUIC, naleznete v [Prop159](/proposals/159-ssu2).
+Podstatně dokončeno. Viz [Prop159](/proposals/159-ssu2) pro další pozadí a cíle, včetně bezpečnostní analýzy, modelů hrozeb, přehledu bezpečnosti a problémů SSU 1 a úryvků ze specifikací QUIC.
 
 Plán zavádění:
 
@@ -1060,7 +1060,7 @@ id :: 1 byte, the network ID (currently 2, except for test networks)
 
 ver :: 2
 
-type :: 0
+type :: 1
 
 flag :: 1 byte, unused, set to 0 for future compatibility
 
@@ -1338,8 +1338,9 @@ Neexistuje mechanismus pro Boba k potvrzení jednotlivých fragmentů. Když Bob
 Pokud Alice neobdrží ACK paketu číslo 0, musí znovu odeslat všechny session confirmed pakety beze změny.
 
 - VŠECHNY hlavičky jsou krátké hlavičky se stejným číslem paketu 0
+- VŠECHNY hlavičky mají typ = 2 (relace potvrzena)
 - VŠECHNY hlavičky obsahují pole "frag" s číslem fragmentu a celkovým počtem fragmentů
-- Nešifrovaná hlavička fragmentu 0 je přidružená data (AD) pro "jumbo" zprávu
+- Nešifrovaná hlavička fragmentu 0 je přidružená data (AD) pro „jumbo“ zprávu
 - Každá hlavička je šifrována pomocí posledních 24 bajtů dat v TOMTO paketu
 
 Příklady:
