@@ -333,7 +333,7 @@ Nội dung thô:
   |   ChaCha20 encrypted data (options)   |
   +         16 bytes                      +
   |   k defined in KDF for message 1      |
-  +   n = 0                               +
+  +   n = 1                               +
   |   see KDF for associated data         |
   +----+----+----+----+----+----+----+----+
   |                                       |

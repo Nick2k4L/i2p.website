@@ -898,6 +898,7 @@ def load_segment_cache() -> Dict:
     """Load segment cache from JSON file.
 
     Handles migration from v1 (separate hashes file) to v2 (hashes merged in).
+    Retries on transient read errors (e.g., file being replaced by a writer).
     """
     if not SEGMENT_CACHE_FILE.exists():
         cache = {"version": 2, "files": {}}
@@ -906,23 +907,34 @@ def load_segment_cache() -> Dict:
             cache = _migrate_cache_v1_to_v2(cache)
         return cache
 
-    try:
-        data = json.loads(SEGMENT_CACHE_FILE.read_text(encoding="utf-8"))
-        if "version" not in data:
-            data["version"] = 1
-        if "files" not in data:
-            data["files"] = {}
+    # Retry up to 3 times with short delay to handle the rare case where
+    # a concurrent writer is mid-rename (atomic replace)
+    last_exc = None
+    for attempt in range(3):
+        try:
+            data = json.loads(SEGMENT_CACHE_FILE.read_text(encoding="utf-8"))
+            if "version" not in data:
+                data["version"] = 1
+            if "files" not in data:
+                data["files"] = {}
 
-        # Migrate v1 -> v2
-        if data["version"] < 2:
-            data = _migrate_cache_v1_to_v2(data)
+            # Migrate v1 -> v2
+            if data["version"] < 2:
+                data = _migrate_cache_v1_to_v2(data)
 
-        return data
-    except (json.JSONDecodeError, FileNotFoundError):
-        cache = {"version": 2, "files": {}}
-        if TRANSLATION_HASHES_FILE.exists():
-            cache = _migrate_cache_v1_to_v2(cache)
-        return cache
+            return data
+        except (json.JSONDecodeError, UnicodeDecodeError, FileNotFoundError) as exc:
+            last_exc = exc
+            if attempt < 2:
+                import time as _time
+                _time.sleep(0.5)
+
+    print(f"Warning: Could not read segment cache after 3 attempts: {last_exc}",
+          file=sys.stderr)
+    cache = {"version": 2, "files": {}}
+    if TRANSLATION_HASHES_FILE.exists():
+        cache = _migrate_cache_v1_to_v2(cache)
+    return cache
 
 
 def _merge_cache(target: Dict, source: Dict) -> None:
@@ -952,14 +964,14 @@ def _merge_cache(target: Dict, source: Dict) -> None:
 
 
 def save_segment_cache(cache: Dict) -> None:
-    """Save segment cache to JSON file with file locking for parallel safety.
+    """Save segment cache to JSON file with atomic writes for parallel safety.
 
-    When multiple translation processes run in parallel (e.g., CI translating
-    to different languages simultaneously), this uses file locking to prevent
-    race conditions. Before writing, it re-reads the current file and merges
-    any updates from other processes.
+    Uses write-to-temp-then-rename for atomicity so parallel readers never
+    see a partially-written file. Also uses file locking to serialize
+    concurrent writers (merge before write).
     """
     import fcntl
+    import tempfile
 
     lock_file = SEGMENT_CACHE_FILE.with_suffix(".lock")
 
@@ -975,13 +987,27 @@ def save_segment_cache(cache: Dict) -> None:
                     )
                     _merge_cache(disk_cache, cache)
                     cache = disk_cache
-                except (json.JSONDecodeError, FileNotFoundError):
+                except (json.JSONDecodeError, UnicodeDecodeError, FileNotFoundError):
                     pass  # Use our in-memory cache as-is
 
-            SEGMENT_CACHE_FILE.write_text(
-                json.dumps(cache, indent=2, ensure_ascii=False),
-                encoding="utf-8",
+            # Atomic write: write to temp file in same directory, then rename.
+            # os.rename() is atomic on POSIX, so readers never see partial data.
+            fd, tmp_path = tempfile.mkstemp(
+                dir=SEGMENT_CACHE_FILE.parent,
+                prefix=".segment_cache_",
+                suffix=".tmp",
             )
+            try:
+                with os.fdopen(fd, "w", encoding="utf-8") as tmp_f:
+                    json.dump(cache, tmp_f, indent=2, ensure_ascii=False)
+                os.replace(tmp_path, SEGMENT_CACHE_FILE)
+            except BaseException:
+                # Clean up temp file on any failure
+                try:
+                    os.unlink(tmp_path)
+                except OSError:
+                    pass
+                raise
         finally:
             fcntl.flock(lf, fcntl.LOCK_UN)
 
