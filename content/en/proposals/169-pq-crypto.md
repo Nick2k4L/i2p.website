@@ -1060,7 +1060,7 @@ Raw contents:
   |   ChaCha20 encrypted data (options)   |
   +         16 bytes                      +
   |   k defined in KDF for message 1      |
-  +   n = 0                               +
+  +   n = 1                               +
   |   see KDF for associated data         |
   +----+----+----+----+----+----+----+----+
   |                                       |
@@ -1430,7 +1430,7 @@ Raw contents:
   |   ChaCha20 encrypted data (payload)   |
   +          (length varies)              +
   |  k defined in KDF for Session Request |
-  +  n = 0                                +
+  +  n = 1                                +
   |  see KDF for associated data          |
   +----+----+----+----+----+----+----+----+
   |                                       |

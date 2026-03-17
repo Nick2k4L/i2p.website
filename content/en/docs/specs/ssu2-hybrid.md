@@ -484,7 +484,7 @@ Raw contents:
   |   ChaCha20 encrypted data (payload)   |
   +          (length varies)              +
   |  k defined in KDF for Session Request |
-  +  n = 0                                +
+  +  n = 1                                +
   |  see KDF for associated data          |
   +----+----+----+----+----+----+----+----+
   |                                       |
