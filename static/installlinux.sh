@@ -125,8 +125,8 @@ fi
 
 DOCKER_INSTALL=false
 
-if grep -qi "ubuntu" /etc/os-release; then
-    echo "  Detected Ubuntu"
+if grep -qiE "^ID=(ubuntu|linuxmint|pop|elementary)" /etc/os-release; then
+    echo "  Detected Ubuntu-based"
 
     export DEBIAN_FRONTEND=noninteractive
     echo "i2p i2p/daemon boolean true" | sudo debconf-set-selections 2>/dev/null
@@ -138,7 +138,7 @@ if grep -qi "ubuntu" /etc/os-release; then
     sudo apt-get install -y -qq i2p > /dev/null
     sudo dpkg-reconfigure -f noninteractive i2p 2>/dev/null
 
-elif grep -qi "debian" /etc/os-release; then
+elif grep -qiE "^ID=debian" /etc/os-release; then
     echo "  Detected Debian"
 
     export DEBIAN_FRONTEND=noninteractive
@@ -158,13 +158,21 @@ elif grep -qi "debian" /etc/os-release; then
     sudo apt-get install -y -qq i2p i2p-keyring > /dev/null
     sudo dpkg-reconfigure -f noninteractive i2p 2>/dev/null
 
-elif grep -qi "fedora" /etc/os-release; then
+elif grep -qiE "^ID=(centos|rhel|almalinux|rocky)" /etc/os-release; then
+    DISTRO_NAME=$(. /etc/os-release && echo "$NAME")
+    echo "  Detected ${DISTRO_NAME}"
+
+    sudo dnf install -y dnf-plugins-core > /dev/null 2>&1
+    sudo dnf copr enable -y i2porg/i2p > /dev/null 2>&1
+    sudo dnf install -y i2p > /dev/null
+
+elif grep -qiE "^ID=fedora" /etc/os-release; then
     echo "  Detected Fedora"
 
     sudo dnf copr enable -y i2porg/i2p > /dev/null 2>&1
     sudo dnf install -y i2p > /dev/null
 
-elif grep -qi "opensuse" /etc/os-release; then
+elif grep -qiE "^ID=.*opensuse" /etc/os-release; then
     if grep -qi "tumbleweed" /etc/os-release; then
         echo "  Detected openSUSE Tumbleweed"
         REPO_URL="https://download.opensuse.org/repositories/home:i2p/openSUSE_Tumbleweed/home:i2p.repo"
