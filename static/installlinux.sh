@@ -279,25 +279,11 @@ fi
 if [ "$DOCKER_INSTALL" = false ]; then
     sudo systemctl enable --now i2p > /dev/null 2>&1
 
-    # Port reachability check
+    # Port forwarding reminder
     if [ -n "$ADV_PORT" ]; then
-        echo "  Checking port ${ADV_PORT}..."
-        sleep 5
-
-        EXT_IP=$(curl -s https://ifconfig.me 2>/dev/null)
-        if [ -n "$EXT_IP" ]; then
-            PORT_RESULT=$(curl -s "https://ports.yougetsignal.com/short-test.php" \
-                --data "remoteAddress=${EXT_IP}&portNumber=${ADV_PORT}" 2>/dev/null || echo "")
-
-            if echo "$PORT_RESULT" | grep -q '"open"'; then
-                echo "  Port ${ADV_PORT} is open and reachable."
-            elif echo "$PORT_RESULT" | grep -q '"closed"'; then
-                echo "  Port ${ADV_PORT} is not reachable from outside."
-                echo "  You may need to forward this port in your router/firewall."
-            else
-                echo "  Could not verify port. Check http://127.0.0.1:7657/confignet"
-            fi
-        fi
+        echo "  I2P is configured to use port ${ADV_PORT}."
+        echo "  While not required, forwarding your port will better integrate"
+        echo "  your router into the network. Instructions: https://portforward.com"
     fi
 fi
 
