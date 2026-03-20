@@ -77,7 +77,7 @@ elif grep -qi "opensuse" /etc/os-release; then
 else
     echo "[!] Unsupported distribution detected."
     echo "[?] Would you like to install I2P using Docker instead?"
-    read -p "    Install via Docker? (y/N): " answer
+    read -p "    Install via Docker? (y/N): " answer < /dev/tty
 
     if [[ ! "$answer" =~ ^[Yy] ]]; then
         echo "[!] Exiting. Visit https://geti2p.net for manual installation options."
@@ -116,7 +116,7 @@ if [ "$DOCKER_INSTALL" = false ]; then
     echo "[?] Choose setup mode:"
     echo "    1) Basic    - Start I2P with default settings"
     echo "    2) Advanced - Configure bandwidth, ports, and network settings"
-    read -p "    Selection (1): " setup_mode
+    read -p "    Selection (1): " setup_mode < /dev/tty
 
     if [ "$setup_mode" = "2" ]; then
         echo ""
@@ -143,8 +143,8 @@ if [ "$DOCKER_INSTALL" = false ]; then
         # ── Bandwidth ────────────────────────────────────────────────────
         echo ""
         echo "[?] Configure bandwidth (speeds will be set to 80% of values entered)"
-        read -p "    Download speed in KBps (e.g., 12500 for ~100 Mbps, blank to skip): " dl_speed
-        read -p "    Upload speed in KBps (e.g., 6250 for ~50 Mbps, blank to skip): " ul_speed
+        read -p "    Download speed in KBps (e.g., 12500 for ~100 Mbps, blank to skip): " dl_speed < /dev/tty
+        read -p "    Upload speed in KBps (e.g., 6250 for ~50 Mbps, blank to skip): " ul_speed < /dev/tty
 
         if [ -n "$dl_speed" ] && [ -n "$ul_speed" ]; then
             # Calculate 80%
@@ -169,7 +169,7 @@ if [ "$DOCKER_INSTALL" = false ]; then
 
         # ── Port ─────────────────────────────────────────────────────────
         echo ""
-        read -p "[?] TCP/UDP port for I2P (blank for random): " user_port
+        read -p "[?] TCP/UDP port for I2P (blank for random): " user_port < /dev/tty
 
         if [ -n "$user_port" ]; then
             I2P_PORT="$user_port"
@@ -186,7 +186,7 @@ if [ "$DOCKER_INSTALL" = false ]; then
 
         # ── UPnP ─────────────────────────────────────────────────────────
         echo ""
-        read -p "[?] Enable UPnP? (Y/n): " upnp_answer
+        read -p "[?] Enable UPnP? (Y/n): " upnp_answer < /dev/tty
 
         if [[ "$upnp_answer" =~ ^[Nn] ]]; then
             sudo bash -c "$(declare -f set_config); \
