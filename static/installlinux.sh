@@ -175,8 +175,22 @@ elif grep -qiE "^ID=\"?(centos|rhel|almalinux|rocky)" /etc/os-release; then
         COPR_CHROOT="epel-${EL_VER}-${EL_ARCH}"
     fi
 
-    sudo dnf install -y dnf-plugins-core > /dev/null 2>&1
-    sudo dnf copr enable -y i2porg/i2p "$COPR_CHROOT" > /dev/null 2>&1
+    COPR_REPO_URL="https://download.copr.fedorainfracloud.org/results/i2porg/i2p/${COPR_CHROOT}/"
+    COPR_GPG_URL="https://download.copr.fedorainfracloud.org/results/i2porg/i2p/pubkey.gpg"
+
+    sudo tee /etc/yum.repos.d/i2p-copr.repo > /dev/null << REPO
+[copr:copr.fedorainfracloud.org:i2porg:i2p]
+name=Copr repo for i2p owned by i2porg
+baseurl=${COPR_REPO_URL}
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=${COPR_GPG_URL}
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+REPO
+
     sudo dnf install -y i2p > /dev/null
 
 elif grep -qiE "^ID=\"?fedora" /etc/os-release; then
