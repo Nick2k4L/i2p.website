@@ -35,40 +35,60 @@ if [ "$setup_mode" = "2" ]; then
     read -p "    " run_speedtest < /dev/tty
 
     if [[ ! "$run_speedtest" =~ ^[Nn] ]]; then
-        echo "[+] Downloading ndt7-client..."
-        NDT7_URL="https://github.com/nickolaev/ndt7-client-go/releases/download/v0.6.1/ndt7-client-linux-amd64"
-        NDT7_BIN=$(mktemp)
-        if curl -fsSL -o "$NDT7_BIN" "$NDT7_URL" && chmod +x "$NDT7_BIN"; then
-            echo "[+] Running speed test (this takes ~20 seconds)..."
-            NDT7_OUTPUT=$("$NDT7_BIN" -format=json 2>/dev/null | tail -1)
-            rm -f "$NDT7_BIN"
+        echo "[+] Installing Ookla Speedtest CLI..."
+        SPEEDTEST_TMP=$(mktemp -d)
+        ARCH=$(uname -m)
+        case "$ARCH" in
+            x86_64)  ST_ARCH="x86_64" ;;
+            aarch64) ST_ARCH="aarch64" ;;
+            armv7l)  ST_ARCH="armhf" ;;
+            i686)    ST_ARCH="i386" ;;
+            *)       ST_ARCH="" ;;
+        esac
 
-            # Parse download/upload from the summary JSON (Mbps)
-            if command -v python3 &>/dev/null; then
-                DL_MBPS=$(echo "$NDT7_OUTPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['Download']['Value']:.1f}\")" 2>/dev/null || echo "")
-                UL_MBPS=$(echo "$NDT7_OUTPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['Upload']['Value']:.1f}\")" 2>/dev/null || echo "")
-            fi
+        if [ -n "$ST_ARCH" ]; then
+            ST_URL="https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-${ST_ARCH}.tgz"
+            if curl -fsSL -o "$SPEEDTEST_TMP/speedtest.tgz" "$ST_URL"; then
+                tar -xzf "$SPEEDTEST_TMP/speedtest.tgz" -C "$SPEEDTEST_TMP"
+                echo "[+] Running speed test (this may take 30-60 seconds)..."
+                # Accept license automatically, output JSON
+                ST_OUTPUT=$("$SPEEDTEST_TMP/speedtest" --accept-license --accept-gdpr -f json 2>/dev/null || echo "")
 
-            if [ -n "$DL_MBPS" ] && [ -n "$UL_MBPS" ]; then
-                # Convert Mbps to KBps (÷ 8 × 1000) then take 80%
-                ADV_DL_SPEED=$(python3 -c "print(int(${DL_MBPS} / 8 * 1000 * 0.8))")
-                ADV_UL_SPEED=$(python3 -c "print(int(${UL_MBPS} / 8 * 1000 * 0.8))")
-                echo "[+] Speed test results: ${DL_MBPS} Mbps down / ${UL_MBPS} Mbps up"
-                echo "[+] I2P bandwidth will be set to: ${ADV_DL_SPEED} KBps in / ${ADV_UL_SPEED} KBps out (80%)"
-                echo ""
-                read -p "[?] Accept these values? (Y/n): " accept_speed < /dev/tty
-                if [[ "$accept_speed" =~ ^[Nn] ]]; then
-                    ADV_DL_SPEED=""
-                    ADV_UL_SPEED=""
+                if [ -n "$ST_OUTPUT" ]; then
+                    # Parse bandwidth in bytes/sec from JSON, convert to KBps
+                    DL_BPS=$(echo "$ST_OUTPUT" | sed -n 's/.*"download":{[^}]*"bandwidth":\([0-9]*\).*/\1/p')
+                    UL_BPS=$(echo "$ST_OUTPUT" | sed -n 's/.*"upload":{[^}]*"bandwidth":\([0-9]*\).*/\1/p')
+
+                    if [ -n "$DL_BPS" ] && [ -n "$UL_BPS" ]; then
+                        # bandwidth is in bytes/sec, convert to KBps then 80%
+                        DL_KBPS=$(( DL_BPS / 1024 ))
+                        UL_KBPS=$(( UL_BPS / 1024 ))
+                        DL_MBPS=$(( DL_BPS * 8 / 1000000 ))
+                        UL_MBPS=$(( UL_BPS * 8 / 1000000 ))
+                        ADV_DL_SPEED=$(( DL_KBPS * 80 / 100 ))
+                        ADV_UL_SPEED=$(( UL_KBPS * 80 / 100 ))
+
+                        echo "[+] Speed test results: ~${DL_MBPS} Mbps down / ~${UL_MBPS} Mbps up"
+                        echo "[+] I2P bandwidth will be set to: ${ADV_DL_SPEED} KBps in / ${ADV_UL_SPEED} KBps out (80%)"
+                        echo ""
+                        read -p "[?] Accept these values? (Y/n): " accept_speed < /dev/tty
+                        if [[ "$accept_speed" =~ ^[Nn] ]]; then
+                            ADV_DL_SPEED=""
+                            ADV_UL_SPEED=""
+                        fi
+                    else
+                        echo "[!] Could not parse speed test results."
+                    fi
+                else
+                    echo "[!] Speed test failed to run."
                 fi
             else
-                echo "[!] Could not parse speed test results."
-                rm -f "$NDT7_BIN"
+                echo "[!] Could not download Speedtest CLI. Skipping speed test."
             fi
         else
-            echo "[!] Could not download ndt7-client. Skipping speed test."
-            rm -f "$NDT7_BIN"
+            echo "[!] Unsupported architecture ($ARCH) for speed test. Skipping."
         fi
+        rm -rf "$SPEEDTEST_TMP"
     fi
 
     # Manual bandwidth entry if speed test was skipped or rejected
