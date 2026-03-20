@@ -162,8 +162,21 @@ elif grep -qiE "^ID=\"?(centos|rhel|almalinux|rocky)" /etc/os-release; then
     DISTRO_NAME=$(. /etc/os-release && echo "$NAME")
     echo "  Detected ${DISTRO_NAME}"
 
+    EL_VER=$(. /etc/os-release && echo "${VERSION_ID%%.*}")
+    EL_ARCH=$(uname -m)
+
+    if [ "$EL_ARCH" = "x86_64" ]; then
+        if [ "$EL_VER" = "9" ]; then
+            COPR_CHROOT="alma+epel-9-x86_64"
+        else
+            COPR_CHROOT="alma+epel-${EL_VER}-x86_64_v2"
+        fi
+    else
+        COPR_CHROOT="epel-${EL_VER}-${EL_ARCH}"
+    fi
+
     sudo dnf install -y dnf-plugins-core > /dev/null 2>&1
-    sudo dnf copr enable -y i2porg/i2p > /dev/null 2>&1
+    sudo dnf copr enable -y i2porg/i2p "$COPR_CHROOT" > /dev/null 2>&1
     sudo dnf install -y i2p > /dev/null
 
 elif grep -qiE "^ID=\"?fedora" /etc/os-release; then
