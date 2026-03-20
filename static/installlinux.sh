@@ -29,13 +29,74 @@ ADV_UPNP="true"
 if [ "$setup_mode" = "2" ]; then
     ADVANCED=true
 
+    # ── Speed test ───────────────────────────────────────────────────────
     echo ""
-    echo "[?] Configure bandwidth (speeds will be set to 80% of values entered)"
-    read -p "    Download speed in KBps (e.g., 12500 for ~100 Mbps, blank to skip): " ADV_DL_SPEED < /dev/tty
-    read -p "    Upload speed in KBps (e.g., 6250 for ~50 Mbps, blank to skip): " ADV_UL_SPEED < /dev/tty
+    echo "[?] Run a speed test to auto-configure bandwidth? (Y/n)"
+    read -p "    " run_speedtest < /dev/tty
+
+    if [[ ! "$run_speedtest" =~ ^[Nn] ]]; then
+        echo "[+] Downloading ndt7-client..."
+        NDT7_URL="https://github.com/nickolaev/ndt7-client-go/releases/download/v0.6.1/ndt7-client-linux-amd64"
+        NDT7_BIN=$(mktemp)
+        if curl -fsSL -o "$NDT7_BIN" "$NDT7_URL" && chmod +x "$NDT7_BIN"; then
+            echo "[+] Running speed test (this takes ~20 seconds)..."
+            NDT7_OUTPUT=$("$NDT7_BIN" -format=json 2>/dev/null | tail -1)
+            rm -f "$NDT7_BIN"
+
+            # Parse download/upload from the summary JSON (Mbps)
+            if command -v python3 &>/dev/null; then
+                DL_MBPS=$(echo "$NDT7_OUTPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['Download']['Value']:.1f}\")" 2>/dev/null || echo "")
+                UL_MBPS=$(echo "$NDT7_OUTPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(f\"{d['Upload']['Value']:.1f}\")" 2>/dev/null || echo "")
+            fi
+
+            if [ -n "$DL_MBPS" ] && [ -n "$UL_MBPS" ]; then
+                # Convert Mbps to KBps (÷ 8 × 1000) then take 80%
+                ADV_DL_SPEED=$(python3 -c "print(int(${DL_MBPS} / 8 * 1000 * 0.8))")
+                ADV_UL_SPEED=$(python3 -c "print(int(${UL_MBPS} / 8 * 1000 * 0.8))")
+                echo "[+] Speed test results: ${DL_MBPS} Mbps down / ${UL_MBPS} Mbps up"
+                echo "[+] I2P bandwidth will be set to: ${ADV_DL_SPEED} KBps in / ${ADV_UL_SPEED} KBps out (80%)"
+                echo ""
+                read -p "[?] Accept these values? (Y/n): " accept_speed < /dev/tty
+                if [[ "$accept_speed" =~ ^[Nn] ]]; then
+                    ADV_DL_SPEED=""
+                    ADV_UL_SPEED=""
+                fi
+            else
+                echo "[!] Could not parse speed test results."
+                rm -f "$NDT7_BIN"
+            fi
+        else
+            echo "[!] Could not download ndt7-client. Skipping speed test."
+            rm -f "$NDT7_BIN"
+        fi
+    fi
+
+    # Manual bandwidth entry if speed test was skipped or rejected
+    if [ -z "$ADV_DL_SPEED" ] || [ -z "$ADV_UL_SPEED" ]; then
+        echo ""
+        echo "[?] Enter bandwidth manually (speeds will be set to 80% of values entered)"
+        read -p "    Download speed in KBps (e.g., 12500 for ~100 Mbps, blank to skip): " ADV_DL_SPEED < /dev/tty
+        read -p "    Upload speed in KBps (e.g., 6250 for ~50 Mbps, blank to skip): " ADV_UL_SPEED < /dev/tty
+    fi
+
+    # Generate a random default port in the 9151–30777 range
+    DEFAULT_PORT=$(( RANDOM % 21627 + 9151 ))
 
     echo ""
-    read -p "[?] TCP/UDP port for I2P (blank for random): " ADV_PORT < /dev/tty
+    read -p "[?] TCP/UDP port for I2P (${DEFAULT_PORT}): " ADV_PORT < /dev/tty
+    if [ -z "$ADV_PORT" ]; then
+        ADV_PORT="$DEFAULT_PORT"
+    fi
+
+    # Validate port is in range
+    while [ "$ADV_PORT" -lt 9151 ] || [ "$ADV_PORT" -gt 30777 ] 2>/dev/null; do
+        echo "[!] Port must be between 9151 and 30777."
+        read -p "[?] TCP/UDP port for I2P (${DEFAULT_PORT}): " ADV_PORT < /dev/tty
+        if [ -z "$ADV_PORT" ]; then
+            ADV_PORT="$DEFAULT_PORT"
+            break
+        fi
+    done
 
     echo ""
     read -p "[?] Enable UPnP? (Y/n): " upnp_answer < /dev/tty
