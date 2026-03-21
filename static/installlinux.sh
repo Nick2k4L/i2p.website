@@ -244,6 +244,11 @@ fi
 
 echo "  I2P installed."
 
+# Fix /var/lib/i2p ownership (COPR RPM creates it as root:root but service runs as i2p)
+if id i2p &>/dev/null && [ -d "/var/lib/i2p" ]; then
+    sudo chown -R i2p:i2p /var/lib/i2p
+fi
+
 # ─── Apply advanced configuration ───────────────────────────────────────────
 
 if [ "$ADVANCED" = true ] && [ "$DOCKER_INSTALL" = false ]; then
