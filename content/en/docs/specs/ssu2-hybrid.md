@@ -540,6 +540,9 @@ and support will be indicated in the router addresses.
 Minimum MTU for MLKEM768_X25519:
 1318 for IPv4 and 1338 for IPv6. See below.
 
+Maximum size: Use Bob's MTU as published in his RouterInfo, or the default 1500 if not in the RouterInfo.
+Do not use MLKEM768_X25519 if the published MTU is too low.
+
 
 
 #### SessionCreated (Type 1)
@@ -640,6 +643,16 @@ and support will be indicated in the router addresses.
 
 Minimum MTU for MLKEM768_X25519:
 1318 for IPv4 and 1338 for IPv6. See below.
+
+Maximum size: Alice does not yet have Bob's RouterInfo and does not know his published MTU.
+For this message, use a temporary MTU as follows.
+For MLKEM512_X25519, use the maximum of 1280 or the received SessionRequest size as the MTU.
+For MLKEM768_X25519, use the maximum of (1318 for IPv4 or 1338 for IPv6) or the received SessionRequest size as the MTU.
+The SessionCreated overhead is smaller than the SessionRequest overhead, because the 
+MLKEM ciphertext is smaller than the MLKEM public key.
+This allows for a range of padding sizes in SessionCreated even if there were
+little or no padding in the SessionRequest.
+
 
 
 #### SessionConfirmed (Type 2)
