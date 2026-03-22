@@ -11,6 +11,8 @@ Dự án I2P duy trì các gói chính thức cho Debian, Ubuntu và các bản 
 
 Hãy tập trung vào việc cung cấp DỊCH thuật CHÍNH XÁC và HOÀN CHỈNH mà không cần thêm bất kỳ giải thích hay bình luận nào.
 
+<div class="coming-soon-section">
+
 ## 🚀 Beta: Cài Đặt Tự Động (Thử Nghiệm)
 
 **Dành cho người dùng nâng cao muốn cài đặt tự động nhanh chóng:**
@@ -23,6 +25,8 @@ curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 **Chức năng:** - Phát hiện bản phân phối Linux của bạn (Ubuntu/Debian) - Thêm kho lưu trữ I2P phù hợp - Cài đặt khóa GPG và các gói cần thiết - Cài đặt I2P tự động
 
 ⚠️ **Đây là tính năng beta.** Nếu bạn muốn cài đặt thủ công hoặc muốn hiểu rõ từng bước, hãy sử dụng các phương pháp cài đặt thủ công bên dưới.
+
+</div>
 
 ---
 

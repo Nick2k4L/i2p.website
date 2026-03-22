@@ -11,6 +11,8 @@ I2P projesi, Debian, Ubuntu ve bunların türev dağıtımları için resmi pake
 
 Bu belge I2P'nin temel kavramlarını açıklamaktadır.
 
+<div class="coming-soon-section">
+
 ## 🚀 Beta: Otomatik Kurulum (Deneysel)
 
 **Hızlı otomatik kurulum isteyen ileri düzey kullanıcılar için:**
@@ -23,6 +25,8 @@ curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 **Ne yapar:** - Linux dağıtımınızı algılar (Ubuntu/Debian) - Uygun I2P deposunu ekler - GPG anahtarlarını ve gerekli paketleri kurar - I2P'yi otomatik olarak kurar
 
 ⚠️ **Bu bir beta özelliğidir.** Manuel kurulumu tercih ediyorsanız veya her adımı anlamak istiyorsanız, aşağıdaki manuel kurulum yöntemlerini kullanın.
+
+</div>
 
 ` markers.
 

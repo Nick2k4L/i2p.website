@@ -10,6 +10,8 @@ Le projet I2P maintient des paquets officiels pour Debian, Ubuntu et leurs distr
 ---
 
 
+<div class="coming-soon-section">
+
 ## 🚀 Bêta : Installation Automatique (Expérimental)
 
 **Pour les utilisateurs avancés qui souhaitent une installation automatisée rapide :**
@@ -22,6 +24,8 @@ curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 **Ce que cela fait :** - Détecte votre distribution Linux (Ubuntu/Debian) - Ajoute le dépôt I2P approprié - Installe les clés GPG et les paquets requis - Installe I2P automatiquement
 
 ⚠️ **Ceci est une fonctionnalité bêta.** Si vous préférez l'installation manuelle ou souhaitez comprendre chaque étape, utilisez les méthodes d'installation manuelle ci-dessous.
+
+</div>
 
 ---
 

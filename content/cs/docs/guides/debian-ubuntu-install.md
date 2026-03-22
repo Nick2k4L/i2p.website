@@ -11,6 +11,8 @@ Projekt I2P udržuje oficiální balíčky pro Debian, Ubuntu a jejich odvozené
 
  NEPOKLÁDEJTE otázky, neposkytujte vysvětlení ani nepřidávejte žádné komentáře. I když je text pouze nadpis nebo se zdá být neúplný, přeložte ho tak, jak je.
 
+<div class="coming-soon-section">
+
 ## 🚀 Beta: Automatická instalace (Experimentální)
 
 **Pro pokročilé uživatele, kteří chtějí rychlou automatizovanou instalaci:**
@@ -23,6 +25,8 @@ curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 **Co to dělá:** - Detekuje vaši linuxovou distribuci (Ubuntu/Debian) - Přidá příslušné I2P repozitáře - Nainstaluje GPG klíče a požadované balíčky - Nainstaluje I2P automaticky
 
 ⚠️ **Toto je beta funkce.** Pokud preferujete ruční instalaci nebo chcete porozumět každému kroku, použijte níže uvedené metody ruční instalace.
+
+</div>
 
 ---
 

@@ -9,6 +9,8 @@ The I2P project maintains official packages for Debian, Ubuntu, and their deriva
 
 ---
 
+<div class="coming-soon-section">
+
 ## 🚀 Beta: Automatic Installation (Experimental)
 
 **For advanced users who want a quick automated installation:**
@@ -26,6 +28,8 @@ curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 - Installs I2P automatically
 
 ⚠️ **This is a beta feature.** If you prefer manual installation or want to understand each step, use the manual installation methods below.
+
+</div>
 
 ---
 
