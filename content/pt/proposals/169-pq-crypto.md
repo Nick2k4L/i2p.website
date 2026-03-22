@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-12"
+lastupdated: "2026-03-22"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -58,15 +58,15 @@ Tanto a [Cloudflare](https://blog.cloudflare.com/pq-2024/) quanto o [NIST](https
 
 Modificaremos os seguintes protocolos, aproximadamente em ordem de desenvolvimento. O lançamento geral provavelmente será do final de 2025 até meados de 2027. Consulte a seção Prioridades e Lançamento abaixo para detalhes.
 
-| Protocolo / Recurso | Status |
+| Protocolo / Funcionalidade | Status |
 |--------------------|--------|
-| Ratchet MLKEM Híbrido e LS | Aprovado em 2025-06; versão beta em 2025-08; lançamento em 2025-11 |
-| MLKEM Híbrido NTCP2 | Testado na rede ativa, aprovado em 2026-02; versão beta prevista para 2026-02; lançamento previsto para 2026-05 |
-| MLKEM Híbrido SSU2 | Aprovado em 2026-02; versão beta prevista para 2026-05; lançamento previsto para 2026-08 |
-| SigTypes MLDSA 12-14 | Preliminar, suspenso até 2027 |
-| Destinos MLDSA | Preliminar, suspenso até 2027, testado na rede ativa, requer atualização da rede para suporte a floodfill |
-| SigTypes Híbridos 15-17 | Preliminar, suspenso até 2027 |
-| Destinos Híbridos | |
+| Hybrid MLKEM Ratchet e LS | Aprovado 2025-06; beta 2025-08; lançamento 2025-11 |
+| Hybrid MLKEM NTCP2 | Testado na rede ao vivo, Aprovado 2026-02; meta beta 2026-05; meta lançamento 2026-08 |
+| Hybrid MLKEM SSU2 | Aprovado 2026-02; meta beta 2026-08; meta lançamento 2026-11 |
+| MLDSA SigTypes 12-14 | Proposta é estável mas pode não ser finalizada até 2027 |
+| MLDSA Dests | Testado na rede ao vivo, requer atualização da rede para suporte floodfill |
+| Hybrid SigTypes 15-17 | Preliminar |
+| Hybrid Dests | |
 ## Design
 
 Iremos suportar os padrões NIST FIPS 203 e 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) que são baseados em, mas NÃO compatíveis com, CRYSTALS-Kyber e CRYSTALS-Dilithium (versões 3.1, 3 e anteriores).
@@ -1178,6 +1178,8 @@ Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão
 
 MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
 
+Tamanho máximo: Use o MTU do Bob conforme publicado em seu RouterInfo, ou o valor padrão de 1500 caso não esteja presente no RouterInfo. Não use MLKEM768_X25519 se o MTU publicado for muito baixo.
+
 #### SessionCreated (Tipo 1)
 
 Conteúdo bruto:
@@ -1267,6 +1269,8 @@ Tamanhos, não incluindo overhead do IP:
 Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
 MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
+
+Tamanho máximo: Alice ainda não possui o RouterInfo de Bob e não conhece seu MTU publicado. Para esta mensagem, use um MTU temporário da seguinte forma. Para MLKEM512_X25519, use o maior valor entre 1280 ou o tamanho do SessionRequest recebido como MTU. Para MLKEM768_X25519, use o maior valor entre (1318 para IPv4 ou 1338 para IPv6) ou o tamanho do SessionRequest recebido como MTU. A sobrecarga do SessionCreated é menor que a do SessionRequest, porque o texto cifrado MLKEM é menor que a chave pública MLKEM. Isso permite uma variedade de tamanhos de preenchimento no SessionCreated, mesmo que houvesse pouco ou nenhum preenchimento no SessionRequest.
 
 #### SessionConfirmed (Tipo 2)
 
@@ -1595,26 +1599,28 @@ Ratchet é a prioridade mais alta. Transportes são os próximos. Assinaturas s�
 
 O lançamento de assinaturas também será um ano ou mais tarde do que o lançamento de criptografia, porque nenhuma compatibilidade com versões anteriores é possível. Além disso, a adoção do MLDSA na indústria será padronizada pelo CA/Browser Forum e pelas Autoridades Certificadoras. As CAs precisam primeiro de suporte a módulo de segurança de hardware (HSM), que atualmente não está disponível [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Esperamos que o CA/Browser Forum conduza as decisões sobre escolhas específicas de parâmetros, incluindo se deve apoiar ou exigir assinaturas compostas [rascunho IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-A implementação da assinatura também ocorrerá um ano ou mais depois da implementação da criptografia, porque não é possível manter compatibilidade com versões anteriores.
+Deveríamos conseguir simplesmente tentar um-depois-do-outro, como fizemos com X25519, para ser provado.
 
 O trabalho sobre o suporte à assinatura MLDSA no I2P está suspenso até o final de 2027 ou 2028, aguardando a definição por órgãos de padronização sobre os algoritmos, possivelmente reduzindo os tamanhos de chave e/ou assinatura, além de promover a adoção pela indústria. Veja [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) e [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Além disso, a adoção do MLDSA pela indústria será padronizada pelo Fórum CA/Navegadores (CA/Browser Forum) e pelas Autoridades de Certificação (CAs). As CAs precisam primeiro de suporte em módulos de segurança de hardware (HSM), o que atualmente não está disponível [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Esperamos que o Fórum CA/Navegadores conduza as decisões sobre escolhas específicas de parâmetros, incluindo se apoiar ou exigir assinaturas compostas [rascunho do IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
-| Marco | Previsão |
-|-----------|--------|
-| Beta do Ratchet | Final de 2025 |
-| Selecionar melhor tipo de criptografia | Final de 2025 |
-| Beta do NTCP2 | Início de 2026 |
-| Beta do SSU2 | Início de 2026 |
-| Produção do Ratchet | Início de 2026 |
-| Ratchet como padrão | Início de 2026 |
-| Beta da assinatura | Final de 2027? |
-| Produção do NTCP2 | Meados de 2026 |
-| Produção do SSU2 | Meados de 2026 |
-| Selecionar melhor tipo de assinatura | 2028? |
-| Produção da assinatura | 2028? |
+| Marco | Objetivo |
+|-------|----------|
+| Ratchet beta | Final de 2025 |
+| Selecionar melhor tipo de criptografia | Início de 2026 |
+| NTCP2 beta | Início de 2026 |
+| SSU2 beta | Meio de 2026 |
+| Ratchet produção | Meio de 2026 |
+| Ratchet padrão | Final de 2026 |
+| Signature beta | Final de 2026 |
+| NTCP2 produção | Final de 2026 |
+| SSU2 produção | Início de 2027 |
+| Selecionar melhor tipo de assinatura | Início de 2027 |
+| NTCP2 padrão | Início de 2027 |
+| SSU2 padrão | Meio de 2027 |
+| Signature produção | Meio de 2027 |
 ## Migração
 
-Se não conseguirmos suportar ambos os protocolos de catraca antigo e novo nos mesmos túneis, a migração será muito mais difícil.
+Devemos ser capazes de simplesmente tentar um e depois o outro, como fizemos com o X25519, para ser comprovado.
 
 Deveríamos ser capazes de simplesmente tentar um e depois o outro, como fizemos com o X25519, para ser comprovado.
 

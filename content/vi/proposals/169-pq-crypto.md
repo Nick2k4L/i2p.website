@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-12"
+lastupdated: "2026-03-22"
 status: "Mở"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -61,11 +61,11 @@ Chúng tôi sẽ sửa đổi các giao thức sau đây, theo thứ tự phát 
 | Giao thức / Tính năng | Trạng thái |
 |--------------------|--------|
 | Hybrid MLKEM Ratchet và LS | Đã phê duyệt 2025-06; phiên bản beta 2025-08; phát hành 2025-11 |
-| Hybrid MLKEM NTCP2 | Đã thử nghiệm trên mạng thật, Đã phê duyệt 2026-02; mục tiêu phiên bản beta 2026-02; mục tiêu phát hành 2026-05 |
-| Hybrid MLKEM SSU2 | Đã phê duyệt 2026-02; mục tiêu phiên bản beta 2026-05; mục tiêu phát hành 2026-08 |
-| MLDSA SigTypes 12-14 | Sơ bộ, tạm hoãn đến 2027 |
-| MLDSA Dests | Sơ bộ, tạm hoãn đến 2027, Đã thử nghiệm trên mạng thật, yêu cầu nâng cấp mạng để hỗ trợ floodfill |
-| Hybrid SigTypes 15-17 | Sơ bộ, tạm hoãn đến 2027 |
+| Hybrid MLKEM NTCP2 | Đã thử nghiệm trên mạng thực tế, đã phê duyệt 2026-02; mục tiêu beta 2026-05; mục tiêu phát hành 2026-08 |
+| Hybrid MLKEM SSU2 | Đã phê duyệt 2026-02; mục tiêu beta 2026-08; mục tiêu phát hành 2026-11 |
+| MLDSA SigTypes 12-14 | Đề xuất đã ổn định nhưng có thể chưa được hoàn tất trước năm 2027 |
+| MLDSA Dests | Đã thử nghiệm trên mạng thực tế, yêu cầu nâng cấp mạng để hỗ trợ floodfill |
+| Hybrid SigTypes 15-17 | Sơ bộ |
 | Hybrid Dests | |
 ## Thiết kế
 
@@ -1178,6 +1178,8 @@ Lưu ý: Mã loại chỉ dùng nội bộ. Các bộ định tuyến sẽ giữ
 
 MTU tối thiểu cho MLKEM768_X25519: 1318 đối với IPv4 và 1338 đối với IPv6. Xem bên dưới.
 
+Kích thước tối đa: Sử dụng MTU của Bob như đã công bố trong RouterInfo của anh ấy, hoặc giá trị mặc định 1500 nếu không có trong RouterInfo. Không sử dụng MLKEM768_X25519 nếu MTU được công bố quá thấp.
+
 #### SessionCreated (Loại 1)
 
 Thay đổi: SSU2 hiện tại chỉ chứa phần tải trong một phần ChaCha duy nhất. Với ML-KEM, sẽ có một phần ChaCha mới trước phần tải, chứa mã hóa văn bản PQ.
@@ -1268,6 +1270,8 @@ Lưu ý: Mã loại chỉ dùng nội bộ. Các bộ định tuyến sẽ giữ
 
 MTU tối thiểu cho MLKEM768_X25519: 1318 đối với IPv4 và 1338 đối với IPv6. Xem bên dưới.
 
+Kích thước tối đa: Alice vẫn chưa có RouterInfo của Bob và không biết MTU mà Bob đã công bố. Đối với tin nhắn này, hãy sử dụng MTU tạm thời như sau. Đối với MLKEM512_X25519, hãy dùng giá trị lớn nhất giữa 1280 hoặc kích thước SessionRequest đã nhận làm MTU. Đối với MLKEM768_X25519, hãy dùng giá trị lớn nhất giữa (1318 đối với IPv4 hoặc 1338 đối với IPv6) hoặc kích thước SessionRequest đã nhận làm MTU. Phần dư (overhead) của SessionCreated nhỏ hơn phần dư của SessionRequest, vì ciphertext MLKEM nhỏ hơn khóa công khai MLKEM. Điều này cho phép một phạm vi kích thước đệm (padding) trong SessionCreated ngay cả khi phần đệm trong SessionRequest rất ít hoặc không có.
+
 #### SessionConfirmed (Loại 2)
 
 unchanged
@@ -1278,7 +1282,7 @@ unchanged
 
 #### Kiểm tra Máy chuyển tiếp và Máy ngang hàng
 
-Các khối sau đây chứa các trường phiên bản. Chúng sẽ giữ nguyên phiên bản 2 (để tương thích với Bob không dùng PQ), và sẽ không chuyển sang phiên bản 3/4 cho PQ.
+Các khối sau chứa các trường phiên bản. Chúng sẽ giữ nguyên phiên bản 2 (để tương thích với Bob không dùng PQ), và sẽ không chuyển sang phiên bản 3/4 cho PQ.
 
 - Yêu cầu chuyển tiếp
 - Phản hồi chuyển tiếp
@@ -1291,7 +1295,7 @@ Chữ ký PQ: Các khối Relay, khối Kiểm thử Ngang hàng (Peer Test) và
 
 Trong mọi trường hợp, hãy sử dụng tên giao thức SSU2 như bình thường. MLKEM-1024 không được hỗ trợ.
 
-Sử dụng cùng địa chỉ/cổng như khi không dùng PQ và không bị tường lửa chặn. Hỗ trợ một hoặc cả hai biến thể PQ. Trong địa chỉ bộ định tuyến, công bố v=2 (như thông thường) và tham số mới pq=[3|4|3,4|4,3] để chỉ MLKEM 512/768/cả hai. Các bộ định tuyến có MTU nhỏ hơn giá trị tối thiểu được quy định bên dưới không được phép công bố tham số "pq" chứa "4". Công bố 4,3 để thể hiện ưu tiên MLKEM-768 hoặc 3,4 để thể hiện ưu tiên MLKEM-512. Phiên bản thực tế do bộ khởi tạo quyết định, và ưu tiên có thể không được tuân thủ. Các bộ định tuyến có MTU nhỏ hơn giá trị tối thiểu được quy định bên dưới không được kết nối bằng MLKEM768. Các bộ định tuyến cũ hơn sẽ bỏ qua tham số pq và kết nối theo kiểu không PQ như thông thường.
+Sử dụng cùng địa chỉ/cổng như khi không dùng PQ và không bị tường lửa chặn. Hỗ trợ một hoặc cả hai biến thể PQ. Trong địa chỉ router, công bố v=2 (như thông thường) và tham số mới pq=[3|4|3,4|4,3] để chỉ định MLKEM 512/768/cả hai. Các router có MTU nhỏ hơn giá trị tối thiểu được quy định bên dưới không được phép công bố tham số "pq" chứa "4". Công bố 4,3 để thể hiện ưu tiên dùng MLKEM-768 hoặc 3,4 để thể hiện ưu tiên dùng MLKEM-512. Phiên bản thực tế do bên khởi tạo quyết định, và ưu tiên có thể không được đáp ứng. Các router có MTU nhỏ hơn giá trị tối thiểu được quy định bên dưới không được kết nối bằng MLKEM768. Các router cũ hơn sẽ bỏ qua tham số pq và kết nối theo kiểu không dùng PQ như thông thường.
 
 Việc sử dụng địa chỉ/cổng khác nhau cho chế độ không dùng mã hóa hậu lượng tử (non-PQ), hoặc chỉ dùng mã hóa hậu lượng tử (PQ-only), không bị giới hạn bởi tường lửa HIỆN TẠI KHÔNG được hỗ trợ. Tính năng này sẽ không được triển khai cho đến khi SSU2 không dùng mã hóa hậu lượng tử bị tắt, dự kiến vài năm nữa. Khi chế độ không dùng mã hóa hậu lượng tử bị tắt, một hoặc cả hai biến thể PQ sẽ được hỗ trợ. Trong địa chỉ của bộ định tuyến (router address), hãy công bố v=[3|4|3,4|4,3] để chỉ rõ MLKEM 512/768/cả hai. Các bộ định tuyến cũ hơn sẽ kiểm tra tham số v và bỏ qua địa chỉ này vì không hỗ trợ.
 
@@ -1595,23 +1599,25 @@ Vì vậy, mô hình đe dọa bảo mật hậu lượng tử (PQ) sớm nhất
 
 Ratchet là ưu tiên cao nhất. Các lớp truyền tải đứng thứ hai. Chữ ký điện tử là ưu tiên thấp nhất.
 
-Việc triển khai chữ ký cũng sẽ muộn hơn việc triển khai mã hóa khoảng một năm hoặc hơn, vì không thể tương thích ngược.
+Nếu chúng ta không thể hỗ trợ cả giao thức ratchet cũ và mới trên cùng một tunnel, việc chuyển đổi sẽ khó khăn hơn nhiều.
 
-Việc phát triển hỗ trợ chữ ký MLDSA trong I2P hiện đang tạm dừng cho đến cuối năm 2027 hoặc 2028, chờ các tổ chức tiêu chuẩn hoàn tất việc lựa chọn thuật toán, có thể giảm kích thước khóa và/hoặc chữ ký, đồng thời thúc đẩy việc áp dụng trong ngành. Xem [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) và [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Ngoài ra, việc áp dụng MLDSA trong ngành sẽ được chuẩn hóa bởi Diễn đàn CA/Trình duyệt (CA/Browser Forum) và các Tổ chức Chứng thực (Certificate Authorities). Các CA cần hỗ trợ từ mô-đun bảo mật phần cứng (HSM) trước tiên, điều này hiện chưa khả dụng [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Chúng tôi kỳ vọng Diễn đàn CA/Trình duyệt sẽ dẫn dắt các quyết định về lựa chọn tham số cụ thể, bao gồm việc có hỗ trợ hoặc yêu cầu chữ ký ghép (composite signatures) hay không [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Chúng ta nên có thể thử lần lượt từng cái một, giống như cách chúng ta đã làm với X25519, để được chứng minh.
 
 | Mốc quan trọng | Mục tiêu |
 |-----------|--------|
 | Ratchet beta | Cuối năm 2025 |
-| Chọn loại mã hóa tốt nhất | Cuối năm 2025 |
+| Chọn loại mã hóa tốt nhất | Đầu năm 2026 |
 | NTCP2 beta | Đầu năm 2026 |
-| SSU2 beta | Đầu năm 2026 |
-| Ratchet chính thức | Đầu năm 2026 |
-| Ratchet mặc định | Đầu năm 2026 |
-| Chữ ký (signature) beta | Cuối năm 2027? |
-| NTCP2 chính thức | Giữa năm 2026 |
-| SSU2 chính thức | Giữa năm 2026 |
-| Chọn loại chữ ký tốt nhất | Năm 2028? |
-| Chữ ký (signature) chính thức | Năm 2028? |
+| SSU2 beta | Giữa năm 2026 |
+| Ratchet chính thức | Giữa năm 2026 |
+| Ratchet mặc định | Cuối năm 2026 |
+| Chữ ký số (Signature) beta | Cuối năm 2026 |
+| NTCP2 chính thức | Cuối năm 2026 |
+| SSU2 chính thức | Đầu năm 2027 |
+| Chọn loại chữ ký số tốt nhất | Đầu năm 2027 |
+| NTCP2 mặc định | Đầu năm 2027 |
+| SSU2 mặc định | Giữa năm 2027 |
+| Chữ ký số (Signature) chính thức | Giữa năm 2027 |
 ## Di chuyển
 
 Nếu chúng ta không thể hỗ trợ cả giao thức ratchet cũ và mới trên cùng một tunnel, việc chuyển đổi sẽ khó khăn hơn nhiều.

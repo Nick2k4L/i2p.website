@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-12"
+lastupdated: "2026-03-22"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -59,14 +59,14 @@ Tanto [Cloudflare](https://blog.cloudflare.com/pq-2024/) como [NIST](https://www
 Modificaremos los siguientes protocolos, aproximadamente en orden de desarrollo. El despliegue general probablemente se llevará a cabo desde finales de 2025 hasta mediados de 2027. Consulte la sección de Prioridades y Despliegue a continuación para más detalles.
 
 | Protocolo / Característica | Estado |
-|----------------------------|--------|
-| Ratchet híbrido MLKEM y LS | Aprobado 2025-06; versión beta 2025-08; lanzamiento 2025-11 |
-| NTCP2 híbrido MLKEM | Probado en red activa, Aprobado 2026-02; versión beta prevista 2026-02; lanzamiento previsto 2026-05 |
-| SSU2 híbrido MLKEM | Aprobado 2026-02; versión beta prevista 2026-05; lanzamiento previsto 2026-08 |
-| Tipos de firma MLDSA 12-14 | Preliminar, en espera hasta 2027 |
-| Destinos MLDSA | Preliminar, en espera hasta 2027, probado en red activa, requiere actualización de red para soporte floodfill |
-| Tipos de firma híbridos 15-17 | Preliminar, en espera hasta 2027 |
-| Destinos híbridos | |
+|--------------------|--------|
+| Hybrid MLKEM Ratchet y LS | Aprobado 2025-06; beta 2025-08; lanzamiento 2025-11 |
+| Hybrid MLKEM NTCP2 | Probado en red en vivo, Aprobado 2026-02; objetivo beta 2026-05; objetivo lanzamiento 2026-08 |
+| Hybrid MLKEM SSU2 | Aprobado 2026-02; objetivo beta 2026-08; objetivo lanzamiento 2026-11 |
+| MLDSA SigTypes 12-14 | La propuesta es estable pero puede no finalizarse hasta 2027 |
+| MLDSA Dests | Probado en red en vivo, requiere actualización de red para soporte floodfill |
+| Hybrid SigTypes 15-17 | Preliminar |
+| Hybrid Dests | |
 ## Diseño
 
 Admitiremos los estándares NIST FIPS 203 y 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), que están basados en, pero NO son compatibles con, CRYSTALS-Kyber y CRYSTALS-Dilithium (versiones 3.1, 3 y anteriores).
@@ -1178,6 +1178,8 @@ Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán 
 
 MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abajo.
 
+Tamaño máximo: utiliza el MTU de Bob tal como se publica en su RouterInfo, o el valor predeterminado de 1500 si no está presente en el RouterInfo. No uses MLKEM768_X25519 si el MTU publicado es demasiado bajo.
+
 #### SessionCreated (Tipo 1)
 
 Cambios: el SSU2 actual contiene solo la carga útil en una única sección ChaCha. Con ML-KEM, habrá una nueva sección ChaCha antes de la carga útil, que contendrá el cifrado PQ cifrado.
@@ -1268,6 +1270,8 @@ Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán 
 
 MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abajo.
 
+Tamaño máximo: Alice aún no tiene la RouterInfo de Bob y no conoce su MTU publicado. Para este mensaje, utilice un MTU temporal según lo siguiente. Para MLKEM512_X25519, use el máximo entre 1280 o el tamaño del SessionRequest recibido como MTU. Para MLKEM768_X25519, use el máximo entre (1318 para IPv4 o 1338 para IPv6) o el tamaño del SessionRequest recibido como MTU. La sobrecarga de SessionCreated es menor que la sobrecarga de SessionRequest, porque el texto cifrado MLKEM es más pequeño que la clave pública MLKEM. Esto permite un rango de tamaños de relleno en SessionCreated incluso si hubiera poco o ningún relleno en el SessionRequest.
+
 #### SessionConfirmed (Tipo 2)
 
 sin cambios
@@ -1301,11 +1305,11 @@ En la especificación actual, los mensajes 1 y 2 están definidos para tener una
 
 #### MTU
 
-TODO: ¿Existe una forma más eficiente de definir la firma/verificación para evitar copiar la firma?
+Ten cuidado de no superar el MTU con MLKEM768. El MTU mínimo para MLKEM768_X25519 es 1318 para IPv4 y 1338 para IPv6 (asumiendo un payload mínimo de 10 bytes con un bloque DateTime y un bloque Padding o RelayTagRequest). El MTU mínimo para SSU2 en general es 1280, por lo que no todos los peers pueden usar MLKEM768. No publiques ni uses MLKEM768 si el MTU real es inferior al mínimo, ya sea localmente o según lo anunciado por el peer. Ten cuidado de no incluir un tamaño de relleno tal que el mensaje 1 o 2 supere el MTU local o remoto.
 
 ### Streaming
 
-TODO
+Pendiente: ¿Hay una manera más eficiente de definir la firma/verificación para evitar copiar la firma?
 
 ### Archivos SU3
 
@@ -1313,7 +1317,7 @@ La sección 8.1 del [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-
 
 Para firmas exclusivamente PQ de archivos SU3, utilice los OIDs definidos en el [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) de las variantes sin pre-hash para los certificados. No definimos firmas híbridas de archivos SU3, porque podríamos tener que aplicar hash a los archivos dos veces (aunque HashML-DSA y X2559 utilizan la misma función hash SHA512). Además, concatenar dos claves y firmas en un certificado X.509 sería completamente no estándar.
 
-Tenga en cuenta que no permitimos la firma Ed25519 de archivos SU3 y, aunque hemos definido la firma Ed25519ph, nunca hemos acordado un OID para ella ni la hemos utilizado.
+Para firmas solo PQ de archivos SU3, utilice los OID definidos en el [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) de las variantes sin pre-hash para los certificados. No definimos firmas híbridas de archivos SU3, porque podríamos tener que hacer hash del archivo dos veces (aunque HashML-DSA y X2559 usan la misma función hash SHA512). Además, concatenar dos claves y firmas en un certificado X.509 sería completamente no estándar.
 
 Los tipos de firma normales no están permitidos para los archivos SU3; utilice las variantes ph (prehash).
 
@@ -1321,7 +1325,7 @@ El nuevo tamaño máximo de Destination será de 2599 bytes (3468 en base 64).
 
 ### Otras Especificaciones
 
-Actualizar otros documentos que ofrecen orientación sobre los tamaños de Destination, incluyendo:
+El nuevo tamaño máximo de Destino será 2599 (3468 en base 64).
 
 Aumento de tamaño (bytes):
 
@@ -1342,7 +1346,7 @@ Velocidad:
 | MLKEM512_X25519 | +816 | +784 |
 | MLKEM768_X25519 | +1200 | +1104 |
 | MLKEM1024_X25519 | +1584 | +1584 |
-Velocidades según lo informado por [Cloudflare](https://blog.cloudflare.com/pq-2024/):
+Velocidad:
 
 Resultados preliminares de las pruebas en Java:
 
@@ -1366,7 +1370,7 @@ Tamaño:
 | MLKEM1024 | 12x más rápido | 10x más rápido | 6x más rápido |
 ### Firmas
 
-Tamaños típicos de clave, firma, RIdent y Dest, o incrementos de tamaño (Ed25519 incluido como referencia) asumiendo el tipo de cifrado X25519 para RIs. Se indica el tamaño añadido para un Router Info, LeaseSet, datagramas respondibles y cada uno de los dos paquetes de streaming (SYN y SYN ACK). Los Destinations y Leasesets actuales contienen relleno repetido y son compresibles en tránsito. Los nuevos tipos no contienen relleno y no serán compresibles, lo que resulta en un incremento de tamaño en tránsito significativamente mayor. Véase la sección de diseño más arriba.
+Tamaño:
 
 Tamaños típicos de clave, firma, RIdent y Dest o aumentos de tamaño (Ed25519 incluido como referencia), suponiendo el tipo de cifrado X25519 para RIs. Tamaño adicional para una Información de Router, LeaseSet, datagramas con respuesta y cada uno de los dos paquetes de transmisión (SYN y SYN ACK) listados. Las Destinaciones y LeaseSets actuales contienen relleno repetido y son compresibles durante la transmisión. Los nuevos tipos no contienen relleno y no serán compresibles, lo que resulta en un aumento de tamaño mucho mayor durante la transmisión. Ver sección de diseño anterior.
 
@@ -1379,7 +1383,7 @@ Tamaños típicos de clave, firma, RIdent y Dest o aumentos de tamaño (Ed25519 
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
-Velocidades según lo informado por [Cloudflare](https://blog.cloudflare.com/pq-2024/):
+Velocidad:
 
 Resultados preliminares de las pruebas en Java:
 
@@ -1399,7 +1403,7 @@ Tamaño:
 | MLDSA87 | 11.1x más lento | 1.5x más lento | igual |
 ## Análisis de seguridad
 
-Las categorías de seguridad del NIST se resumen en la [presentación del NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), diapositiva 10. Criterios preliminares: Nuestra categoría de seguridad NIST mínima debería ser 2 para protocolos híbridos y 3 para los exclusivamente poscuánticos (PQ-only).
+Todos estos son protocolos híbridos. Las implementaciones deben preferir MLKEM768; MLKEM512 no es suficientemente seguro.
 
 | Categoría | Tan Seguro Como |
 |-----------|-----------------|
@@ -1531,7 +1535,7 @@ Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán 
 
 ### SSU2
 
-Verificar que SSU2 pueda manejar un RI firmado con MLDSA fragmentado en múltiples paquetes (¿6-8?).
+Utilizamos el campo de versión en el encabezado largo y lo establecemos en 3 para MLKEM512 y 4 para MLKEM768. v=2,3,4 en la dirección sería suficiente.
 
 Compruebe y verifique que SSU2 pueda manejar RI firmado con MLDSA fragmentado en múltiples paquetes (6-8?).
 
@@ -1541,11 +1545,11 @@ Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán 
 
 ### Nombres de Transporte
 
-Tenemos varias alternativas a considerar:
+En todos los casos, utilice los nombres de transporte NTCP2 y SSU2 como de costumbre.
 
 ### Tipos de Enc. del Router
 
-No recomendado. Utilice únicamente los nuevos transportes listados anteriormente que coincidan con el tipo de router. Los routers más antiguos no pueden conectarse, construir tunnels a través de, ni enviar mensajes de netDb. Requeriría varios ciclos de versiones para depurar y garantizar el soporte antes de habilitarlo por defecto. Podría extender el despliegue en un año o más en comparación con las alternativas que se describen a continuación.
+Tenemos varias alternativas para considerar:
 
 #### Routers de Tipo 5/6/7
 
@@ -1557,7 +1561,7 @@ MLKEM-768 es el recomendado para Ratchet, NTCP2 y SSU2, como el mejor equilibrio
 
 #### Recomendaciones
 
-Los routers más antiguos verifican los RIs y, por lo tanto, no pueden conectarse, construir tunnels a través de ellos ni enviarles mensajes netdb. Llevaría varios ciclos de lanzamiento depurar y garantizar el soporte antes de habilitarlo por defecto. Presentaría los mismos problemas que el despliegue de los tipos de cifrado 5/6/7; podría extender el despliegue un año o más en comparación con la alternativa de despliegue del tipo de cifrado 4 mencionada anteriormente.
+Se recomienda MLKEM-768 para Ratchet, NTCP2 y SSU2, ya que ofrece el mejor equilibrio entre seguridad y longitud de clave.
 
 ### Tipos de firma del router
 
@@ -1571,7 +1575,7 @@ Estas pueden estar presentes en el LS con claves X25519 de tipo 4 más antiguas.
 
 #### Claves LS de tipo 5-7
 
-Los destinos pueden admitir múltiples tipos de clave, pero solo mediante intentos de descifrado del mensaje 1 con cada clave. La sobrecarga puede mitigarse manteniendo un recuento de descifrados exitosos para cada clave e intentando primero con la clave más utilizada. Java I2P utiliza esta estrategia para ElGamal+X25519 en el mismo destino.
+Estos pueden estar presentes en el LS con claves X25519 de tipo 4 antiguas. Los routers antiguos ignorarán las claves desconocidas.
 
 Los routers verifican las firmas de los leaseSet y, por lo tanto, no pueden conectarse ni recibir leaseSets para destinos de tipo 12-17. Se necesitarían varios ciclos de lanzamiento para depurar y garantizar el soporte antes de habilitarlo por defecto.
 
@@ -1587,36 +1591,38 @@ Estas pueden estar presentes en el LS con claves X25519 de tipo 4 más antiguas.
 
 El modelo de amenaza PQ (poscuántica) más preocupante en este momento es el almacenamiento de tráfico hoy, para descifrarlo muchos años en el futuro (secreto hacia adelante). Un enfoque híbrido protegería contra eso.
 
-El modelo de amenaza PQ de romper las claves de autenticación en un período de tiempo razonable (digamos unos pocos meses) y luego suplantar la autenticación o descifrar en tiempo casi real, ¿está mucho más lejos? Y es en ese momento cuando querríamos migrar a claves estáticas PQC.
+El modelo de amenaza PQ más preocupante en este momento es almacenar el tráfico actual para descifrarlo muchos, muchos años en el futuro (secreto hacia adelante). Un enfoque híbrido protegería contra eso.
 
 Por lo tanto, el modelo de amenaza PQ (post-cuántica) más temprano es el OBEP/IBGW almacenando tráfico para descifrado posterior. Deberíamos implementar el ratchet híbrido primero.
 
 Ratchet es la prioridad más alta. Los transportes son los siguientes. Las firmas tienen la prioridad más baja.
 
-El despliegue de firmas también llegará un año o más después que el despliegue del cifrado, ya que no es posible ninguna compatibilidad con versiones anteriores. Además, la adopción de MLDSA en la industria será estandarizada por el CA/Browser Forum y las Autoridades de Certificación. Las CAs necesitan primero soporte de módulo de seguridad de hardware (HSM), que actualmente no está disponible [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Esperamos que el CA/Browser Forum impulse las decisiones sobre opciones de parámetros específicos, incluyendo si se deben admitir o requerir firmas compuestas [borrador IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Ratchet tiene la máxima prioridad. Los transportes van después. Las firmas tienen la menor prioridad.
 
-La implementación de la firma también ocurrirá un año o más tarde que la implementación del cifrado, porque no es posible la compatibilidad hacia atrás.
+Deberíamos poder simplemente probar uno tras otro, como hicimos con X25519, para ser verificados.
 
-El trabajo sobre el soporte de firmas MLDSA en I2P está en pausa hasta finales de 2027 o 2028, a la espera de que los organismos de estándares seleccionen algoritmos, posiblemente reduzcan el tamaño de las claves y/o de las firmas, y promuevan la adopción industrial. Véase [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) y [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Además, la adopción de MLDSA en la industria será estandarizada por el CA/Browser Forum y las Autoridades de Certificación (CA). Las CA necesitan primero soporte de módulos de seguridad hardware (HSM), que actualmente no está disponible [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Esperamos que el CA/Browser Forum impulse las decisiones sobre opciones específicas de parámetros, incluyendo si apoyar o requerir firmas compuestas [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+El trabajo sobre el soporte de firmas MLDSA en I2P está suspendido hasta finales de 2027 o 2028, a la espera de que los organismos de estándares seleccionen algoritmos, posiblemente reduzcan el tamaño de las claves y/o firmas, y promuevan la adopción industrial. Véase [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) y [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Además, la adopción de MLDSA en la industria será estandarizada por el CA/Browser Forum y las Autoridades de Certificación. Las AC necesitan primero soporte en módulos de seguridad hardware (HSM), que actualmente no está disponible [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Esperamos que el CA/Browser Forum impulse las decisiones sobre opciones específicas de parámetros, incluyendo si apoyar o requerir firmas compuestas [borrador de IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Hito | Objetivo |
 |-----------|--------|
-| Beta de Ratchet | Finales de 2025 |
-| Seleccionar mejor tipo de cifrado | Finales de 2025 |
-| Beta de NTCP2 | Principios de 2026 |
-| Beta de SSU2 | Principios de 2026 |
-| Producción de Ratchet | Principios de 2026 |
-| Ratchet predeterminado | Principios de 2026 |
-| Beta de firma (Signature) | ¿Finales de 2027? |
-| Producción de NTCP2 | Mediados de 2026 |
-| Producción de SSU2 | Mediados de 2026 |
-| Seleccionar mejor tipo de firma | ¿2028? |
-| Producción de firma (Signature) | ¿2028? |
+| Ratchet beta | Finales de 2025 |
+| Seleccionar mejor tipo de cifrado | Principios de 2026 |
+| NTCP2 beta | Principios de 2026 |
+| SSU2 beta | Mediados de 2026 |
+| Ratchet producción | Mediados de 2026 |
+| Ratchet predeterminado | Finales de 2026 |
+| Firma beta | Finales de 2026 |
+| NTCP2 producción | Finales de 2026 |
+| SSU2 producción | Principios de 2027 |
+| Seleccionar mejor tipo de firma | Principios de 2027 |
+| NTCP2 predeterminado | Principios de 2027 |
+| SSU2 predeterminado | Mediados de 2027 |
+| Firma producción | Mediados de 2027 |
 ## Migración
 
-Si no podemos admitir tanto los protocolos de trinquete antiguos como los nuevos en los mismos túneles, la migración será mucho más difícil.
-
 Deberíamos poder simplemente intentar uno y luego el otro, como hicimos con X25519, para comprobarlo.
+
+Deberíamos poder simplemente intentar uno y luego el otro, como hicimos con X25519, para demostrarlo.
 
 ## Problemas
 

@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-12"
+lastupdated: "2026-03-22"
 status: "Otevřít"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -60,13 +60,13 @@ Budeme upravovat následující protokoly, zhruba v pořadí jejich vývoje. Cel
 
 | Protokol / Funkce | Stav |
 |--------------------|--------|
-| Hybridní MLKEM Ratchet a LS | Schváleno 2025-06; beta 2025-08; vydání 2025-11 |
-| Hybridní MLKEM NTCP2 | Otestováno na ostré síti, schváleno 2026-02; cíl pro beta verzi 2026-02; cíl pro vydání 2026-05 |
-| Hybridní MLKEM SSU2 | Schváleno 2026-02; cíl pro beta verzi 2026-05; cíl pro vydání 2026-08 |
-| MLDSA SigTypes 12–14 | Předběžné, pozastaveno do roku 2027 |
-| MLDSA Dests | Předběžné, pozastaveno do roku 2027, otestováno na ostré síti, vyžaduje aktualizaci sítě pro podporu floodfill |
-| Hybridní SigTypes 15–17 | Předběžné, pozastaveno do roku 2027 |
-| Hybridní Dests | |
+| Hybrid MLKEM Ratchet and LS | Schváleno 2025-06; beta 2025-08; vydání 2025-11 |
+| Hybrid MLKEM NTCP2 | Testováno na živé síti, Schváleno 2026-02; beta cíl 2026-05; cíl vydání 2026-08 |
+| Hybrid MLKEM SSU2 | Schváleno 2026-02; beta cíl 2026-08; cíl vydání 2026-11 |
+| MLDSA SigTypes 12-14 | Návrh je stabilní, ale nemusí být dokončen až do 2027 |
+| MLDSA Dests | Testováno na živé síti, vyžaduje upgrade sítě pro podporu floodfill |
+| Hybrid SigTypes 15-17 | Předběžné |
+| Hybrid Dests | |
 ## Návrh
 
 Budeme podporovat standardy NIST FIPS 203 a 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), které jsou založeny na algoritmech CRYSTALS-Kyber a CRYSTALS-Dilithium, ale NEJSOU s nimi kompatibilní (verze 3.1, 3 a starší).
@@ -1184,6 +1184,8 @@ Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu
 
 Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
 
+Maximální velikost: Použijte Bobův MTU uvedený v jeho RouterInfo nebo výchozí hodnotu 1500, pokud není v RouterInfo uvedeno. Nepoužívejte MLKEM768_X25519, pokud je uvedené MTU příliš nízké.
+
 #### SessionCreated (Typ 1)
 
 Surový obsah:
@@ -1273,6 +1275,8 @@ Velikosti, nezahrnují režii IP protokolu:
 Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
 Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
+
+Maximální velikost: Alice zatím nemá Bobův RouterInfo a nezná jeho zveřejněnou MTU. Pro tuto zprávu použijte dočasnou MTU následovně. Pro MLKEM512_X25519 použijte maximum z hodnot 1280 nebo velikosti přijatého SessionRequest jako MTU. Pro MLKEM768_X25519 použijte maximum z hodnot (1318 pro IPv4 nebo 1338 pro IPv6) nebo velikosti přijatého SessionRequest jako MTU. Režie SessionCreated je menší než režie SessionRequest, protože MLKEM šifrový text je menší než MLKEM veřejný klíč. To umožňuje širší rozsah velikostí doplňování v SessionCreated, i když bylo v SessionRequest použito minimální nebo žádné doplňování.
 
 #### SessionConfirmed (Typ 2)
 
@@ -1601,23 +1605,25 @@ Routery ověřují podpisy leaseset a nemohou se proto připojit nebo přijímat
 
 Nejcennější data jsou end-to-end provoz, šifrovaný pomocí ratchet. Jako externí pozorovatel mezi skoky tunelu je to šifrováno dvakrát navíc - tunelovou a transportní šifrou. Jako externí pozorovatel mezi OBEP a IBGW je to šifrováno pouze jednou navíc transportní šifrou. Jako účastník OBEP nebo IBGW je ratchet jedinou šifrou. Protože jsou však tunely jednosměrné, zachycení obou zpráv v ratchet handshake by vyžadovalo spolupracující routery, pokud by nebyly tunely vybudovány s OBEP a IBGW na stejném routeru.
 
-Zavedení podpisů bude také o rok či více později než zavedení šifrování, protože není možná žádná zpětná kompatibilita.
+Hrozba PQ spočívající v prolomení autentizačních klíčů v rozumném časovém období (řekněme několik měsíců) a následném vydávání se za autentizaci nebo dešifrování téměř v reálném čase, je mnohem vzdálenější? A to je doba, kdy bychom chtěli přejít na PQC statické klíče.
 
-Práce na podpoře podpisů MLDSA v I2P jsou pozastaveny do konce roku 2027 nebo roku 2028, dokud standardizační organizace nevyberou algoritmy, případně nezmenší velikost klíčů a/nebo podpisů a nepodpoří průmyslové přijetí. Viz [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) a [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Přijetí MLDSA v průmyslu bude standardizováno skupinou CA/Browser Forum a certifikačními autoritami. Certifikační autority nejprve potřebují podporu modulů hardwarové bezpečnosti (HSM), která v současnosti není k dispozici [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Očekáváme, že CA/Browser Forum bude rozhodovat o konkrétních volbách parametrů, včetně toho, zda podporovat nebo vyžadovat kompozitní podpisy [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Takže nejranější PQ model hrozeb je OBEP/IBGW ukládající provoz pro pozdější dešifrování. Měli bychom nejdříve implementovat hybridní ratchet.
 
 | Milník | Cíl |
-|-----------|--------|
+|--------|-----|
 | Ratchet beta | Konec 2025 |
-| Výběr nejlepšího typu šifrování | Konec 2025 |
+| Výběr nejlepšího typu šifrování | Začátek 2026 |
 | NTCP2 beta | Začátek 2026 |
-| SSU2 beta | Začátek 2026 |
-| Ratchet produkční | Začátek 2026 |
-| Ratchet jako výchozí | Začátek 2026 |
-| Signatura beta | Konec 2027? |
-| NTCP2 produkční | Polovina 2026 |
-| SSU2 produkční | Polovina 2026 |
-| Výběr nejlepšího typu podpisu | 2028? |
-| Signatura produkční | 2028? |
+| SSU2 beta | Polovina 2026 |
+| Ratchet produkce | Polovina 2026 |
+| Ratchet výchozí | Konec 2026 |
+| Signature beta | Konec 2026 |
+| NTCP2 produkce | Konec 2026 |
+| SSU2 produkce | Začátek 2027 |
+| Výběr nejlepšího typu podpisu | Začátek 2027 |
+| NTCP2 výchozí | Začátek 2027 |
+| SSU2 výchozí | Polovina 2027 |
+| Signature produkce | Polovina 2027 |
 ## Migrace
 
 Pokud nebudeme schopni podporovat staré i nové ratchet protokoly na stejných tunnelech, migrace bude mnohem obtížnější.

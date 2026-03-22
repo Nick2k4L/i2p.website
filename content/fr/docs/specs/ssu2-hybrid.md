@@ -454,9 +454,11 @@ Remarque : Les codes de type sont réservés à un usage interne uniquement. Les
 
 MTU minimum pour MLKEM768_X25519 : 1318 pour IPv4 et 1338 pour IPv6. Voir ci-dessous.
 
+Taille maximale : Utilisez le MTU de Bob tel que publié dans son RouterInfo, ou la valeur par défaut de 1500 si elle n'est pas présente dans le RouterInfo. N'utilisez pas MLKEM768_X25519 si le MTU publié est trop faible.
+
 #### SessionCreated (Type 1)
 
-Changements : le SSU2 actuel contient uniquement la charge utile dans une seule section ChaCha. Avec ML-KEM, une nouvelle section ChaCha sera ajoutée avant la charge utile, contenant le chiffré PQC (cryptographie post-quantique) chiffré.
+Modifications : le SSU2 actuel contient uniquement la charge utile dans une seule section ChaCha. Avec ML-KEM, une nouvelle section ChaCha sera ajoutée avant la charge utile, contenant le chiffré au post-quantique encrypté.
 
 Contenu brut :
 
@@ -545,6 +547,8 @@ Tailles, sans compter la surcharge IP :
 Remarque : Les codes de type sont réservés à un usage interne uniquement. Les routeurs resteront de type 4, et la prise en charge sera indiquée dans les adresses du routeur.
 
 MTU minimum pour MLKEM768_X25519 : 1318 pour IPv4 et 1338 pour IPv6. Voir ci-dessous.
+
+Taille maximale : Alice ne possède pas encore le RouterInfo de Bob et ne connaît pas son MTU publié. Pour ce message, utilisez un MTU temporaire comme suit. Pour MLKEM512_X25519, utilisez le maximum entre 1280 et la taille du SessionRequest reçu comme MTU. Pour MLKEM768_X25519, utilisez le maximum entre (1318 pour IPv4 ou 1338 pour IPv6) et la taille du SessionRequest reçu comme MTU. La surcharge de SessionCreated est plus faible que celle de SessionRequest, car le chiffré MLKEM est plus petit que la clé publique MLKEM. Cela permet une plage de tailles de bourrage dans SessionCreated, même s’il y avait peu ou pas de bourrage dans le SessionRequest.
 
 #### SessionConfirmed (Type 2)
 
@@ -662,13 +666,13 @@ Les bibliothèques Bouncycastle, BoringSSL et WolfSSL prennent désormais en cha
 
 ### Identification du trafic entrant
 
-Le champ version dans l'en-tête long du message de demande de session est 2 pour le non-PQ, 3 pour MLKEM-512 et 4 pour MLKEM-768. Cela nous permet d'exécuter à la fois SSU2 standard et SSU2 hybride sur le même port, et de prendre en charge simultanément les deux variantes MLKEM.
+Nous définissons le bit de poids fort de la clé éphémère (key[31] & 0x80) dans la demande de session pour indiquer qu'il s'agit d'une connexion hybride. Cela nous permet de faire fonctionner simultanément le NTCP standard et le NTCP hybride sur le même port. Une seule variante hybride est prise en charge pour les connexions entrantes, et est annoncée dans l'adresse du router. Par exemple, pq=3 ou pq=4.
 
 ## Compatibilité des routeurs
 
 ### Noms des transports
 
-Dans tous les cas, utilisez le nom de transport SSU2 comme d'habitude. Les routeurs plus anciens ignoreront le paramètre pq et se connecteront avec SSU2 standard comme d'habitude.
+En tant qu'Alice, pour une connexion PQ, avant l'obfuscation, définir X[31] |= 0x80. Cela rend X une clé publique X25519 invalide. Après l'obfuscation, AES-CBC va la randomiser. Le bit de poids fort de X sera aléatoire après l'obfuscation.
 
 ## Références
 
@@ -691,6 +695,7 @@ Dans tous les cas, utilisez le nom de transport SSU2 comme d'habitude. Les route
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

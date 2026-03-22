@@ -454,9 +454,11 @@ Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar 4. tür olara
 
 MLKEM768_X25519 için minimum MTU: IPv4 için 1318 ve IPv6 için 1338. Aşağıya bakınız.
 
+Maksimum boyut: Bob'ın RouterInfo'sında yayınlandığı gibi Bob'ın MTU'sunu kullanın veya RouterInfo'da yoksa varsayılan 1500 değerini kullanın. Yayınlanan MTU çok düşükse MLKEM768_X25519 kullanmayın.
+
 #### SessionCreated (Tür 1)
 
-Değişiklikler: Mevcut SSU2 yalnızca tek bir ChaCha bölümünde yükü içerir. ML-KEM ile, yükten önce gelen ve şifrelenmiş KF şifre metnini içeren yeni bir ChaCha bölümü eklenecek.
+Değişiklikler: Geçerli SSU2 yalnızca tek bir ChaCha bölümünde yük içerir. ML-KEM ile, yükten önce gelen ve şifrelenmiş KJ şifreli metnini içeren yeni bir ChaCha bölümü eklenecek.
 
 Ham içerikler:
 
@@ -545,6 +547,8 @@ IP ek yükü dahil edilmeden boyutlar:
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar 4. tür olarak kalacak ve destek, router adreslerinde belirtilecektir.
 
 MLKEM768_X25519 için minimum MTU: IPv4 için 1318 ve IPv6 için 1338. Aşağıya bakınız.
+
+Maksimum boyut: Alice henüz Bob'ın RouterInfo'suna sahip değil ve yayınlanan MTU'sunu bilmiyor. Bu mesaj için aşağıdaki şekilde geçici bir MTU kullanın. MLKEM512_X25519 için, MTU olarak 1280 veya alınan SessionRequest boyutunun en büyüğünü kullanın. MLKEM768_X25519 için, MTU olarak (IPv4 için 1318 veya IPv6 için 1338) veya alınan SessionRequest boyutunun en büyüğünü kullanın. MLKEM şifre metni, MLKEM genel anahtarından daha küçük olduğu için SessionCreated yükü, SessionRequest yükünden daha küçüktür. Bu, SessionRequest'te çok az veya hiç doldurma olmasa bile, SessionCreated içinde çeşitli doldurma boyutları aralığına izin verir.
 
 #### SessionConfirmed (Tip 2)
 
@@ -662,13 +666,13 @@ Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı des
 
 ### Gelen Trafik Tanımlama
 
-Oturum İsteği mesajının uzun başlığında yer alan sürüm alanı, PQ olmayanlar için 2, MLKEM-512 için 3 ve MLKEM-768 için 4'tür. Bu, standart SSU2 ve hibrit SSU2'yi aynı portta çalıştırabilmemizi ve her iki MLKEM çeşidini aynı anda destekleyebilmemizi sağlar.
+Bunun hibrit bir bağlantı olduğunu belirtmek için oturum isteğindeki geçici anahtarın MSB'sini (key[31] & 0x80) ayarlarız. Bu, aynı port üzerinde hem standart NTCP hem de hibrit NTCP çalıştırmamıza olanak tanır. Gelen bağlantılar için yalnızca bir hibrit varyant desteklenir ve bu varyant router adresinde duyurulur. Örneğin, pq=3 veya pq=4.
 
 ## Router Uyumluluğu
 
 ### Taşıma Adları
 
-Tüm durumlarda, SSU2 taşıma adını olduğu gibi kullanın. Eski yönlendiriciler pq parametresini yoksayar ve her zamanki gibi standart SSU2 ile bağlanır.
+Alice olarak, bir PQ bağlantısı için, gizleme işleminden önce X[31] |= 0x80 olarak ayarlayın. Bu, X'i geçersiz bir X25519 açık anahtarı haline getirir. Gizleme işleminden sonra AES-CBC onu rastgele hale getirecektir. Gizleme işleminin ardından X'in MSB'si (en yüksek değerli bit) rastgele olacaktır.
 
 ## Referanslar
 
@@ -691,6 +695,7 @@ Tüm durumlarda, SSU2 taşıma adını olduğu gibi kullanın. Eski yönlendiric
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

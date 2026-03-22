@@ -454,9 +454,11 @@ Lưu ý: Mã loại (type codes) chỉ dành cho mục đích nội bộ. Các r
 
 MTU tối thiểu cho MLKEM768_X25519: 1318 đối với IPv4 và 1338 đối với IPv6. Xem bên dưới.
 
+Kích thước tối đa: Sử dụng MTU của Bob như được công bố trong RouterInfo của anh ấy, hoặc giá trị mặc định 1500 nếu không có trong RouterInfo. Không sử dụng MLKEM768_X25519 nếu MTU được công bố quá thấp.
+
 #### SessionCreated (Loại 1)
 
-Thay đổi: SSU2 hiện tại chỉ chứa phần tải trong một phần ChaCha duy nhất. Với ML-KEM, sẽ có một phần ChaCha mới trước phần tải, chứa mã hóa văn bản PQ.
+Thay đổi: SSU2 hiện tại chỉ chứa phần tải trong một phần ChaCha duy nhất. Với ML-KEM, sẽ có một phần ChaCha mới trước phần tải, chứa mã hóa văn bản mật PQ.
 
 Nội dung thô:
 
@@ -545,6 +547,8 @@ Kích thước, không tính chi phí IP:
 Lưu ý: Mã loại (type codes) chỉ dành cho mục đích nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ định trong các địa chỉ router.
 
 MTU tối thiểu cho MLKEM768_X25519: 1318 đối với IPv4 và 1338 đối với IPv6. Xem bên dưới.
+
+Kích thước tối đa: Alice vẫn chưa có RouterInfo của Bob và không biết MTU mà anh ta đã công bố. Đối với tin nhắn này, hãy sử dụng MTU tạm thời như sau. Đối với MLKEM512_X25519, hãy dùng giá trị lớn nhất giữa 1280 hoặc kích thước SessionRequest đã nhận làm MTU. Đối với MLKEM768_X25519, hãy dùng giá trị lớn nhất giữa (1318 đối với IPv4 hoặc 1338 đối với IPv6) hoặc kích thước SessionRequest đã nhận làm MTU. Phần đầu (overhead) của SessionCreated nhỏ hơn phần đầu của SessionRequest, vì văn bản mã hóa MLKEM nhỏ hơn khóa công khai MLKEM. Điều này cho phép một phạm vi kích thước đệm (padding) trong SessionCreated ngay cả khi phần SessionRequest có rất ít hoặc không có đệm.
 
 #### SessionConfirmed (Loại 2)
 
@@ -662,13 +666,13 @@ Các thư viện Bouncycastle, BoringSSL và WolfSSL hiện đã hỗ trợ MLKE
 
 ### Nhận dạng lưu lượng đến
 
-Trường phiên bản trong phần tiêu đề dài của thông điệp Yêu cầu phiên là 2 đối với không dùng mật mã hậu lượng tử (non-PQ), 3 đối với MLKEM-512, và 4 đối với MLKEM-768. Điều này cho phép chúng ta chạy đồng thời cả SSU2 tiêu chuẩn và SSU2 lai trên cùng một cổng, đồng thời hỗ trợ cả hai biến thể MLKEM cùng lúc.
+Chúng ta đặt bit MSB của khóa tạm thời (key[31] & 0x80) trong session request để chỉ ra rằng đây là một kết nối hybrid. Điều này cho phép chúng ta chạy đồng thời cả NTCP tiêu chuẩn và NTCP hybrid trên cùng một cổng. Chỉ một biến thể hybrid được hỗ trợ cho kết nối đến (inbound) và được quảng bá trong địa chỉ router. Ví dụ: pq=3 hoặc pq=4.
 
 ## Khả năng tương thích của Router
 
 ### Tên Transport
 
-Trong mọi trường hợp, hãy sử dụng tên giao thức SSU2 như thông thường. Các bộ định tuyến cũ hơn sẽ bỏ qua tham số pq và kết nối bằng SSU2 tiêu chuẩn như thường lệ.
+Với tư cách là Alice, để thiết lập kết nối PQ, trước khi thực hiện obfuscation (che giấu), hãy đặt X[31] |= 0x80. Điều này làm cho X trở thành một khóa công khai X25519 không hợp lệ. Sau khi obfuscation, AES-CBC sẽ ngẫu nhiên hóa nó. Bit có trọng số cao nhất (MSB) của X sẽ ngẫu nhiên sau khi obfuscation.
 
 ## Tài liệu tham khảo
 
@@ -691,6 +695,7 @@ Trong mọi trường hợp, hãy sử dụng tên giao thức SSU2 như thông 
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

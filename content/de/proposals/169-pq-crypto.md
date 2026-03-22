@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-12"
+lastupdated: "2026-03-22"
 status: "Öffnen"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -58,15 +58,15 @@ Sowohl [Cloudflare](https://blog.cloudflare.com/pq-2024/) als auch [NIST](https:
 
 Wir werden die folgenden Protokolle modifizieren, ungefähr in der Reihenfolge der Entwicklung. Die gesamte Einführung wird wahrscheinlich von Ende 2025 bis Mitte 2027 dauern. Siehe den Abschnitt Prioritäten und Einführung unten für Details.
 
-| Protokoll / Funktion | Status |
+| Protokoll / Feature | Status |
 |--------------------|--------|
-| Hybrider MLKEM-Ratchet und LS | Genehmigt 2025-06; Beta 2025-08; Veröffentlichung 2025-11 |
-| Hybrides MLKEM NTCP2 | Auf dem Live-Netz getestet, genehmigt 2026-02; Beta-Ziel 2026-02; Veröffentlichungsziel 2026-05 |
-| Hybrides MLKEM SSU2 | Genehmigt 2026-02; Beta-Ziel 2026-05; Veröffentlichungsziel 2026-08 |
-| MLDSA-SigTypes 12–14 | Vorläufig, bis 2027 ausgesetzt |
-| MLDSA-Dests | Vorläufig, bis 2027 ausgesetzt, auf dem Live-Netz getestet, erfordert Netzwerk-Upgrade für Floodfill-Unterstützung |
-| Hybride SigTypes 15–17 | Vorläufig, bis 2027 ausgesetzt |
-| Hybride Dests | |
+| Hybrid MLKEM Ratchet and LS | Genehmigt 2025-06; beta 2025-08; Release 2025-11 |
+| Hybrid MLKEM NTCP2 | Im Live-Netz getestet, Genehmigt 2026-02; beta Ziel 2026-05; Release Ziel 2026-08 |
+| Hybrid MLKEM SSU2 | Genehmigt 2026-02; beta Ziel 2026-08; Release Ziel 2026-11 |
+| MLDSA SigTypes 12-14 | Vorschlag ist stabil, aber möglicherweise erst 2027 finalisiert |
+| MLDSA Dests | Im Live-Netz getestet, erfordert Netz-Upgrade für floodfill-Unterstützung |
+| Hybrid SigTypes 15-17 | Vorläufig |
+| Hybrid Dests | |
 ## Design
 
 Wir werden die NIST FIPS 203 und 204 Standards [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) unterstützen, die auf CRYSTALS-Kyber und CRYSTALS-Dilithium (Versionen 3.1, 3 und älter) basieren, aber NICHT kompatibel damit sind.
@@ -1184,6 +1184,8 @@ Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben T
 
 Mindest-MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.
 
+Maximale Größe: Verwenden Sie Bob's MTU, wie in seiner RouterInfo veröffentlicht, oder den Standardwert 1500, falls nicht in der RouterInfo enthalten. Verwenden Sie MLKEM768_X25519 nicht, wenn die veröffentlichte MTU zu niedrig ist.
+
 #### SessionCreated (Typ 1)
 
 Rohe Inhalte:
@@ -1273,6 +1275,8 @@ Größen, ohne IP-Overhead:
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
 Mindest-MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.
+
+Maximale Größe: Alice besitzt noch nicht Bobs RouterInfo und kennt daher seine veröffentlichte MTU nicht. Verwenden Sie für diese Nachricht eine temporäre MTU wie folgt. Bei MLKEM512_X25519 verwenden Sie das Maximum aus 1280 oder der empfangenen SessionRequest-Größe als MTU. Bei MLKEM768_X25519 verwenden Sie das Maximum aus (1318 für IPv4 oder 1338 für IPv6) oder der empfangenen SessionRequest-Größe als MTU. Der Overhead von SessionCreated ist geringer als der von SessionRequest, da der MLKEM-Chiffrat kleiner ist als der MLKEM-Öffentliche-Schlüssel. Dies ermöglicht einen Bereich an Auffüllgrößen in SessionCreated, selbst wenn im SessionRequest wenig oder keine Auffüllung vorhanden war.
 
 #### SessionConfirmed (Typ 2)
 
@@ -1601,23 +1605,25 @@ Keine Alternativen.
 
 Die wertvollsten Daten sind der End-to-End-Verkehr, verschlüsselt mit ratchet. Als externer Beobachter zwischen tunnel-Hops ist das zweimal zusätzlich verschlüsselt, mit tunnel-Verschlüsselung und Transport-Verschlüsselung. Als externer Beobachter zwischen OBEP und IBGW ist es nur einmal zusätzlich verschlüsselt, mit Transport-Verschlüsselung. Als OBEP- oder IBGW-Teilnehmer ist ratchet die einzige Verschlüsselung. Da tunnels jedoch unidirektional sind, würde das Abfangen beider Nachrichten im ratchet-Handshake kollaborierende router erfordern, es sei denn, tunnels wurden mit OBEP und IBGW auf demselben router aufgebaut.
 
-Die Einführung der Signatur wird auch ein Jahr oder länger nach der Einführung der Verschlüsselung erfolgen, da keine Abwärtskompatibilität möglich ist.
+Das PQ-Bedrohungsmodell, bei dem die Authentifizierungsschlüssel in einem angemessenen Zeitraum (sagen wir ein paar Monate) gebrochen und dann die Authentifizierung nachgeahmt oder nahezu in Echtzeit entschlüsselt wird, ist noch viel weiter entfernt? Und dann wäre der Zeitpunkt gekommen, zu PQC-statischen Schlüsseln zu migrieren.
 
-Die Arbeit an der MLDSA-Signaturunterstützung in I2P ist bis Ende 2027 oder 2028 ausgesetzt, abhängig von der Arbeit der Standardisierungsgremien bei der Auswahl von Algorithmen, möglicher Reduzierung der Schlüssel- und/oder Signaturgrößen sowie der Förderung der industriellen Einführung. Siehe [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) und [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Außerdem wird die Einführung von MLDSA in der Industrie durch das CA/Browser Forum und Zertifizierungsstellen standardisiert. Zertifizierungsstellen benötigen zunächst Unterstützung durch Hardware-Sicherheitsmodule (HSM), die derzeit nicht verfügbar ist [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Wir erwarten, dass das CA/Browser Forum Entscheidungen über konkrete Parameterwahl trifft, einschließlich der Frage, ob zusammengesetzte Signaturen unterstützt oder vorgeschrieben werden [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Das früheste PQ-Bedrohungsmodell ist also OBEP/IBGW, das Datenverkehr für spätere Entschlüsselung speichert. Wir sollten zuerst hybrid ratchet implementieren.
 
 | Meilenstein | Ziel |
-|-----------|--------|
-| Ratchet-Beta | Ende 2025 |
-| Auswahl des besten Verschlüsselungstyps | Ende 2025 |
-| NTCP2-Beta | Anfang 2026 |
-| SSU2-Beta | Anfang 2026 |
-| Ratchet-Produktion | Anfang 2026 |
-| Ratchet als Standard | Anfang 2026 |
-| Signatur-Beta | Ende 2027? |
-| NTCP2-Produktion | Mitte 2026 |
-| SSU2-Produktion | Mitte 2026 |
-| Auswahl des besten Signaturtyps | 2028? |
-| Signatur-Produktion | 2028? |
+|-------------|------|
+| Ratchet beta | Ende 2025 |
+| Besten Verschlüsselungstyp auswählen | Anfang 2026 |
+| NTCP2 beta | Anfang 2026 |
+| SSU2 beta | Mitte 2026 |
+| Ratchet Produktion | Mitte 2026 |
+| Ratchet Standard | Ende 2026 |
+| Signatur beta | Ende 2026 |
+| NTCP2 Produktion | Ende 2026 |
+| SSU2 Produktion | Anfang 2027 |
+| Besten Signaturtyp auswählen | Anfang 2027 |
+| NTCP2 Standard | Anfang 2027 |
+| SSU2 Standard | Mitte 2027 |
+| Signatur Produktion | Mitte 2027 |
 ## Migration
 
 Wenn wir nicht sowohl alte als auch neue Ratchet-Protokolle auf denselben Tunnels unterstützen können, wird die Migration viel schwieriger.

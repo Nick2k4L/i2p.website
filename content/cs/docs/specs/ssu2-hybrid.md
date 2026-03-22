@@ -454,9 +454,11 @@ Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůsta
 
 Minimální MTU pro MLKEM768_X25519: 1318 pro IPv4 a 1338 pro IPv6. Viz níže.
 
+Maximální velikost: Použijte Bobův MTU uvedený v jeho RouterInfo nebo výchozích 1500, pokud není v RouterInfo uvedeno. Nepoužívejte MLKEM768_X25519, pokud je uvedené MTU příliš nízké.
+
 #### SessionCreated (Typ 1)
 
-Změny: Současný SSU2 obsahuje užitečná data pouze v jedné sekci ChaCha. U ML-KEM bude před užitečnými daty nová sekce ChaCha obsahující zašifrovaný PQ šifrový text.
+Změny: Aktuální SSU2 obsahuje uživatelská data pouze v jedné ChaCha sekci. U ML-KEM bude před uživatelskými daty přidána nová ChaCha sekce obsahující zašifrovaný PQ šifrový text.
 
 Nezpracovaný obsah:
 
@@ -545,6 +547,8 @@ Velikosti, bez zahrnutí IP režie:
 Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routeru.
 
 Minimální MTU pro MLKEM768_X25519: 1318 pro IPv4 a 1338 pro IPv6. Viz níže.
+
+Maximální velikost: Alice zatím nemá Bobův RouterInfo a nezná jeho zveřejněnou MTU. Pro tuto zprávu použijte dočasnou MTU následovně. Pro MLKEM512_X25519 použijte maximum z hodnot 1280 nebo velikosti přijaté SessionRequest jako MTU. Pro MLKEM768_X25519 použijte maximum z hodnot (1318 pro IPv4 nebo 1338 pro IPv6) nebo velikosti přijaté SessionRequest jako MTU. Režie SessionCreated je menší než režie SessionRequest, protože MLKEM šifrovaný text je menší než MLKEM veřejný klíč. To umožňuje širší rozsah velikostí doplňování v SessionCreated, i když bylo v SessionRequest minimální nebo žádné doplňování.
 
 #### SessionConfirmed (Typ 2)
 

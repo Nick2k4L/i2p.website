@@ -4,7 +4,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-12"
+lastupdated: "2026-03-22"
 status: "Aç"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -60,13 +60,13 @@ Aşağıdaki protokolleri kabaca geliştirme sırasına göre değiştireceğiz.
 
 | Protokol / Özellik | Durum |
 |--------------------|--------|
-| Hibrit MLKEM Ratchet ve LS | Onaylandı 2025-06; beta 2025-08; sürüm 2025-11 |
-| Hibrit MLKEM NTCP2 | Canlı ağda test edildi, onaylandı 2026-02; beta hedefi 2026-02; sürüm hedefi 2026-05 |
-| Hibrit MLKEM SSU2 | Onaylandı 2026-02; beta hedefi 2026-05; sürüm hedefi 2026-08 |
-| MLDSA İmza Türleri 12-14 | Ön sürüm, 2027'ye kadar askıya alındı |
-| MLDSA Adresler | Ön sürüm, 2027'ye kadar askıya alındı, canlı ağda test edildi, floodfill desteği için ağ yükseltmesi gerektirir |
-| Hibrit İmza Türleri 15-17 | Ön sürüm, 2027'ye kadar askıya alındı |
-| Hibrit Adresler | |
+| Hybrid MLKEM Ratchet ve LS | Onaylandı 2025-06; beta 2025-08; sürüm 2025-11 |
+| Hybrid MLKEM NTCP2 | Canlı ağda test edildi, Onaylandı 2026-02; beta hedefi 2026-05; sürüm hedefi 2026-08 |
+| Hybrid MLKEM SSU2 | Onaylandı 2026-02; beta hedefi 2026-08; sürüm hedefi 2026-11 |
+| MLDSA SigTypes 12-14 | Öneri kararlı ancak 2027'ye kadar kesinleşmeyebilir |
+| MLDSA Dests | Canlı ağda test edildi, floodfill desteği için ağ yükseltmesi gerekiyor |
+| Hybrid SigTypes 15-17 | Ön aşamada |
+| Hybrid Dests | |
 ## Tasarım
 
 NIST FIPS 203 ve 204 standartlarını [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) destekleyeceğiz. Bu standartlar CRYSTALS-Kyber ve CRYSTALS-Dilithium (3.1, 3 ve daha eski sürümler) temel alınarak oluşturulmuştur ancak bunlarla uyumlu DEĞİLDİR.
@@ -1184,6 +1184,8 @@ Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak 
 
 MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336.
 
+Maksimum boyut: Bob'ın RouterInfo'sında yayınlanmış olan MTU değerini kullanın, eğer RouterInfo'da yoksa varsayılan 1500 değerini kullanın. Yayınlanmış MTU çok düşükse MLKEM768_X25519 kullanmayın.
+
 #### SessionCreated (Tip 1)
 
 Ham içerik:
@@ -1273,6 +1275,8 @@ IP yükü dahil olmayan boyutlar:
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
 MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336.
+
+Maksimum boyut: Alice henüz Bob'ın RouterInfo'suna sahip değil ve yayınlanan MTU'sunu bilmiyor. Bu mesaj için aşağıdaki şekilde geçici bir MTU kullanın. MLKEM512_X25519 için, MTU olarak 1280 veya alınan SessionRequest boyutunun en büyüğünü kullanın. MLKEM768_X25519 için, MTU olarak (IPv4 için 1318 veya IPv6 için 1338) veya alınan SessionRequest boyutunun en büyüğünü kullanın. MLKEM şifre metni, MLKEM genel anahtarından daha küçük olduğu için SessionCreated yükü, SessionRequest yükünden daha küçüktür. Bu, SessionRequest'te çok az veya hiç doldurma olmasa bile SessionCreated'te çeşitli doldurma boyutları kullanılmasına olanak tanır.
 
 #### SessionConfirmed (Tip 2)
 
@@ -1601,23 +1605,25 @@ Alternatif yok.
 
 En değerli veriler, ratchet ile şifrelenmiş uçtan uca trafiklerdir. Tünel atlamaları arasındaki harici bir gözlemci olarak, bu veriler iki kez daha şifrelenir: tünel şifrelemesi ve taşıma şifrelemesi ile. OBEP ve IBGW arasındaki harici bir gözlemci olarak, yalnızca bir kez daha şifrelenir: taşıma şifrelemesi ile. Bir OBEP veya IBGW katılımcısı olarak, ratchet tek şifrelemedir. Ancak, tüneller tek yönlü olduğundan, ratchet el sıkışmasındaki her iki mesajı yakalamak, tüneller aynı router üzerinde OBEP ve IBGW ile kurulmadıkça, işbirlikçi router'lar gerektirir.
 
-Geriye dönük uyumluluk mümkün olmadığından, imzalama uygulaması şifreleme uygulamasından bir yıl veya daha fazla süre sonra yapılacak.
+Kimlik doğrulama anahtarlarını makul bir süre içinde (örneğin birkaç ay) kırma ve ardından kimliğe bürünme veya neredeyse gerçek zamanlı şifre çözme şeklindeki PQ tehdit modeli çok daha uzak bir gelecekte mi? Ve işte o zaman PQC statik anahtarlara geçiş yapmak isteyeceğiz.
 
-I2P'de MLDSA imza desteği, standart kuruluşlarının algoritmaları seçmesi, olası olarak anahtar ve/veya imza boyutlarını azaltması ve sektörün benimsemesini teşvik etmesi beklenildiği için 2027'nin sonuna veya 2028'e kadar askıya alınmıştır. [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/) ve [PLANTS](https://datatracker.ietf.org/wg/plants/about/) sayfalarına bakınız. Ayrıca, MLDSA'nın sektörde benimsenmesi CA/Tarayıcı Forumu ve Sertifika Yetkilileri (CA) tarafından standartlaştırılacaktır. CA'ların öncelikle donanım güvenlik modülü (HSM) desteğine ihtiyacı var ve bu destek şu anda mevcut değil [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). CA/Tarayıcı Forumu'nun, bileşik imzaların desteklenip desteklenmemesi de dahil olmak üzere belirli parametre seçimleri konusunda kararlar almasını bekliyoruz [IETF taslağı](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Yani, en erken PQ tehdit modeli OBEP/IBGW'nin trafiği daha sonra şifre çözme için depolamasıdır. Önce hibrit ratchet'i uygulamamız gerekiyor.
 
-| Aşama | Hedef |
+| Kilometre Taşı | Hedef |
 |-----------|--------|
-| Ratchet beta | Geç 2025 |
-| En iyi şifreleme türünü seç | Geç 2025 |
-| NTCP2 beta | Erken 2026 |
-| SSU2 beta | Erken 2026 |
-| Ratchet üretim | Erken 2026 |
-| Ratchet varsayılan | Erken 2026 |
-| İmza beta | Geç 2027? |
-| NTCP2 üretim | Orta 2026 |
-| SSU2 üretim | Orta 2026 |
-| En iyi imza türünü seç | 2028? |
-| İmza üretim | 2028? |
+| Ratchet beta | 2025 sonu |
+| En iyi şifreleme türünü seç | 2026 başı |
+| NTCP2 beta | 2026 başı |
+| SSU2 beta | 2026 ortası |
+| Ratchet üretim | 2026 ortası |
+| Ratchet varsayılan | 2026 sonu |
+| İmza beta | 2026 sonu |
+| NTCP2 üretim | 2026 sonu |
+| SSU2 üretim | 2027 başı |
+| En iyi imza türünü seç | 2027 başı |
+| NTCP2 varsayılan | 2027 başı |
+| SSU2 varsayılan | 2027 ortası |
+| İmza üretim | 2027 ortası |
 ## Geçiş
 
 Aynı tunnel'larda hem eski hem de yeni ratchet protokollerini destekleyemezsek, geçiş çok daha zor olacaktır.
