@@ -1,16 +1,14 @@
 ---
 title: "Plán vývoje I2P"
-aliases:
-  - "/cs/get-involved/todo"
-  - "/cs/get-involved/todo/"
-description: "Aktuální vývojové plány a historické milníky pro síť I2P"
+aliases: 
+description: "Současné plány vývoje a historické milníky sítě I2P"
 ---
 
 <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
 ## 🎯 Nadcházející vydání
@@ -25,13 +23,20 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---
 
-## 📦 Nejnovější vydání
+## 📦 Nedávná vydání
 
 ### Vydání 2026
 
@@ -317,7 +322,7 @@ Target: May 2026
 </details>
 ---
 
-### Vydání v roce 2021
+### Vydání z roku 2021
 
 <details>
 <summary>Click to expand 2021 releases</summary>
@@ -391,7 +396,7 @@ Target: May 2026
 </details>
 ---
 
-### Historický archiv 2020-2016
+### Archiv historických dat 2020–2016
 
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
@@ -430,19 +435,22 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 
 ## Informace o vydání
 
-**Cyklus vydání:** Přibližně každých 13 týdnů pro hlavní vydání
+**Cyklus vydání:** Přibližně každých 13 týdnů pro hlavní verze
 
-**Zásady podpory:** - **Aktuální vydání**: Plná podpora s aktualizacemi a bezpečnostními záplatami - **Předchozí vydání**: Pouze bezpečnostní aktualizace - **Starší vydání**: Již nejsou podporována (doporučuje se upgrade)
+**Politika podpory:**  
+- **Aktuální verze**: Plně podporovaná s aktualizacemi a záplatami pro zabezpečení  
+- **Předchozí verze**: Pouze aktualizace zabezpečení  
+- **Starší verze**: Už nepodporované (doporučeno aktualizovat)
 
-**Číslování verzí:** - Začalo se sérií 0.9.x (až po 0.9.66) - Přešlo se na sérii 1.x (1.5.0 až 1.9.0) - Nyní je série 2.x (2.0.0+)
+**Číslování verzí:** – Začalo sérií 0.9.x (až po 0.9.66) – Přešlo na sérii 1.x (1.5.0 až 1.9.0) – Nyní je ve verzi 2.x (2.0.0+)
 
 ---
 
 ## Vývojové zdroje
 
 - **Zdrojový kód**: [i2pgit.org](https://i2pgit.org)
-- **Sledování problémů**: i2pgit.org nebo github issues
-- **Měsíční schůzky**: Momentálně neaktivní
+- **Sledování chyb**: i2pgit.org nebo github issues
+- **Měsíční schůzky**: V současnosti neaktivní
 - **IRC**: #i2p-dev na IRC2P
 - **Poznámky k vydání**: [I2P Blog](/blog/)
 
@@ -450,6 +458,6 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 
 ## Zapojte se
 
-Chcete přispět k budoucnosti I2P? Podívejte se na stránku [Zapojte se](/en/get-involved), kde se dozvíte, jak můžete pomoci s vývojem, testováním, dokumentací a dalšími aktivitami!
+Chcete přispět do budoucnosti I2P? Podívejte se na stránku [Zapojte se](/en/get-involved), kde se dozvíte, jak můžete pomoci s vývojem, testováním, dokumentací a dalšími aktivitami!
 
-Pro nejnovější zprávy a podrobné informace o vydáních navštivte [I2P Blog](/en/blog).
+Pro nejnovější zprávy a podrobné informace o vydání navštivte [I2P Blog](/en/blog).

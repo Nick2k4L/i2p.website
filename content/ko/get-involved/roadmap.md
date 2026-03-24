@@ -1,8 +1,6 @@
 ---
 title: "I2P 개발 로드맵"
-aliases:
-  - "/ko/get-involved/todo"
-  - "/ko/get-involved/todo/"
+aliases: 
 description: "I2P 네트워크의 현재 개발 계획 및 역사적 이정표"
 ---
 
@@ -10,10 +8,10 @@ description: "I2P 네트워크의 현재 개발 계획 및 역사적 이정표"
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
-## 🎯 예정된 릴리스
+## 🎯 다가오는 릴리스
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
@@ -25,15 +23,22 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---
 
-## 📦 최신 릴리스
+## 📦 최근 릴리스
 
-### 2026 릴리스
+### 2026년 출시
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -46,7 +51,7 @@ Target: May 2026
 - SAM support for Datagram 2/3
 
 </div>
-### 2025 릴리스
+### 2025년 릴리스
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -317,7 +322,7 @@ Target: May 2026
 </details>
 ---
 
-### 2021 릴리스
+### 2021년 릴리스
 
 <details>
 <summary>Click to expand 2021 releases</summary>
@@ -391,7 +396,7 @@ Target: May 2026
 </details>
 ---
 
-### 2020-2016 과거 아카이브
+### 2020-2016 역사적 아카이브
 
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
@@ -430,26 +435,29 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 
 ## 릴리스 정보
 
-**릴리스 주기:** 주요 릴리스는 약 13주마다
+**릴리스 주기:** 주요 릴리스는 약 13주마다 진행됩니다
 
-**지원 정책:** - **현재 릴리스**: 업데이트 및 보안 패치로 완전 지원 - **이전 릴리스**: 보안 업데이트만 제공 - **구 릴리스**: 더 이상 지원하지 않음 (업그레이드 권장)
+**지원 정책:**  
+- **현재 릴리스**: 업데이트 및 보안 패치로 완전 지원  
+- **이전 릴리스**: 보안 업데이트만 제공  
+- **오래된 릴리스**: 더 이상 지원되지 않음 (업그레이드 권장)
 
-**버전 번호 체계:** - 0.9.x 시리즈로 시작 (0.9.66까지) - 1.x 시리즈로 전환 (1.5.0부터 1.9.0까지) - 현재 2.x 시리즈 (2.0.0+)
+**버전 번버링:** - 0.9.x 시리즈(0.9.66까지)로 시작 - 1.x 시리즈(1.5.0부터 1.9.0까지)로 전환 - 현재 2.x 시리즈(2.0.0+) 진행 중
 
 ---
 
 ## 개발 리소스
 
 - **소스 코드**: [i2pgit.org](https://i2pgit.org)
-- **이슈 트래커**: i2pgit.org 또는 github issues
-- **월례 회의**: 현재 활성화되지 않음
+- **이슈 트래커**: i2pgit.org 또는 GitHub 이슈
+- **월간 회의**: 현재 비활성 상태
 - **IRC**: IRC2P의 #i2p-dev
-- **릴리스 노트**: [I2P Blog](/blog/)
+- **릴리스 노트**: [I2P 블로그](/blog/)
 
 ---
 
 ## 참여하기
 
-I2P의 미래에 기여하고 싶으신가요? [참여하기](/en/get-involved) 페이지를 확인하여 개발, 테스팅, 문서화 등에 어떻게 도움을 줄 수 있는지 알아보세요!
+I2P의 미래에 기여하고 싶으신가요? 개발, 테스트, 문서화 등 다양한 방법으로 도울 수 있는 방법을 알아보려면 [참여하기](/en/get-involved) 페이지를 확인해 보세요!
 
 최신 뉴스와 자세한 릴리스 정보는 [I2P 블로그](/en/blog)를 방문하세요.

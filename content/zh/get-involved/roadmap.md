@@ -1,8 +1,6 @@
 ---
 title: "I2P 开发路线图"
-aliases:
-  - "/zh/get-involved/todo"
-  - "/zh/get-involved/todo/"
+aliases: 
 description: "I2P 网络的当前开发计划和历史里程碑"
 ---
 
@@ -10,7 +8,7 @@ description: "I2P 网络的当前开发计划和历史里程碑"
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
 ## 🎯 即将发布的版本
@@ -25,8 +23,15 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---

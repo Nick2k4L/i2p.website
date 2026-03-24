@@ -1,19 +1,17 @@
 ---
-title: "Lộ trình Phát triển I2P"
-aliases:
-  - "/vi/get-involved/todo"
-  - "/vi/get-involved/todo/"
-description: "Các kế hoạch phát triển hiện tại và các mốc lịch sử quan trọng của mạng I2P"
+title: "Lộ trình phát triển I2P"
+aliases: 
+description: "Kế hoạch phát triển hiện tại và các mốc lịch sử của mạng I2P"
 ---
 
 <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
-## 🎯 Các Phiên Bản Sắp Tới
+## 🎯 Các bản phát hành sắp tới
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
@@ -25,15 +23,22 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---
 
-## 📦 Các Phiên Bản Mới Nhất
+## 📦 Các bản phát hành gần đây
 
-### Phiên bản 2026
+### Các bản phát hành 2026
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -46,7 +51,7 @@ Target: May 2026
 - SAM support for Datagram 2/3
 
 </div>
-### Các Phiên Bản 2025
+### Các bản phát hành 2025
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -223,7 +228,7 @@ Target: May 2026
 </div>
 ---
 
-### Các phiên bản 2023-2022
+### Phát hành 2023-2022
 
 <details>
 <summary>Click to expand 2023-2022 releases</summary>
@@ -317,7 +322,7 @@ Target: May 2026
 </details>
 ---
 
-### Các Phiên Bản 2021
+### Các bản phát hành năm 2021
 
 <details>
 <summary>Click to expand 2021 releases</summary>
@@ -391,7 +396,7 @@ Target: May 2026
 </details>
 ---
 
-### Lưu trữ Lịch sử 2020-2016
+### Lưu trữ lịch sử 2020-2016
 
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
@@ -428,28 +433,28 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 </details>
 ---
 
-## Thông tin Phát hành
+## Thông tin phát hành
 
-**Chu kỳ phát hành:** Khoảng 13 tuần cho mỗi phiên bản chính
+**Chu kỳ phát hành:** Khoảng 13 tuần cho mỗi bản phát hành chính
 
-**Chính sách hỗ trợ:** - **Phiên bản hiện tại**: Được hỗ trợ đầy đủ với các bản cập nhật và bản vá bảo mật - **Phiên bản trước đó**: Chỉ cập nhật bảo mật - **Phiên bản cũ hơn**: Không còn được hỗ trợ (khuyến nghị nâng cấp)
+**Chính sách hỗ trợ:** - **Phát hành hiện tại**: Được hỗ trợ đầy đủ với các bản cập nhật và bản vá bảo mật - **Phát hành trước đó**: Chỉ cập nhật bảo mật - **Các phiên bản cũ hơn**: Không còn được hỗ trợ (khuyến nghị nâng cấp)
 
-**Đánh số phiên bản:** - Bắt đầu với dòng 0.9.x (từ 0.9.66) - Chuyển sang dòng 1.x (1.5.0 đến 1.9.0) - Hiện tại ở dòng 2.x (2.0.0+)
+**Đánh số phiên bản:** - Bắt đầu bằng chuỗi 0.9.x (đến 0.9.66) - Chuyển sang chuỗi 1.x (1.5.0 đến 1.9.0) - Hiện tại ở chuỗi 2.x (2.0.0+)
 
 ---
 
-## Tài Nguyên Phát Triển
+## Tài nguyên phát triển
 
 - **Mã nguồn**: [i2pgit.org](https://i2pgit.org)
-- **Trình theo dõi vấn đề**: i2pgit.org hoặc github issues
+- **Hệ thống theo dõi lỗi**: i2pgit.org hoặc các vấn đề trên github
 - **Cuộc họp hàng tháng**: Hiện tại không hoạt động
 - **IRC**: #i2p-dev trên IRC2P
-- **Ghi chú phát hành**: [I2P Blog](/blog/)
+- **Ghi chú phát hành**: [Blog I2P](/blog/)
 
 ---
 
-## Tham Gia Đóng Góp
+## Tham gia
 
-Muốn đóng góp cho tương lai của I2P? Hãy xem trang [Tham Gia](/en/get-involved) để tìm hiểu cách bạn có thể giúp đỡ trong phát triển, thử nghiệm, tài liệu và nhiều việc khác!
+Muốn đóng góp vào tương lai của I2P? Hãy xem trang [Tham gia ngay](/en/get-involved) để tìm hiểu cách bạn có thể giúp đỡ trong phát triển, kiểm thử, tài liệu và nhiều hơn nữa!
 
-Để biết tin tức mới nhất và thông tin chi tiết về bản phát hành, hãy truy cập [I2P Blog](/en/blog).
+Để cập nhật tin tức mới nhất và thông tin chi tiết về bản phát hành, hãy truy cập [Blog I2P](/en/blog).

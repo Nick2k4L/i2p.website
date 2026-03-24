@@ -1,16 +1,14 @@
 ---
-title: "خريطة طريق تطوير I2P"
-aliases:
-  - "/ar/get-involved/todo"
-  - "/ar/get-involved/todo/"
-description: "خطط التطوير الحالية والمعالم التاريخية لشبكة I2P"
+title: "خارطة طريق تطوير I2P"
+aliases: 
+description: "خطط التطوير الحالية والمحطات التاريخية لشبكة I2P"
 ---
 
 <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
 ## 🎯 الإصدارات القادمة
@@ -25,8 +23,15 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---
@@ -391,7 +396,7 @@ Target: May 2026
 </details>
 ---
 
-### أرشيف تاريخي 2020-2016
+### الأرشيف التاريخي 2020-2016
 
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
@@ -430,26 +435,29 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 
 ## معلومات الإصدار
 
-**دورة الإصدار:** تقريباً كل 13 أسبوع للإصدارات الرئيسية
+**دورة الإصدار:** تقريبًا كل 13 أسبوعًا للإصدارات الرئيسية
 
-**سياسة الدعم:** - **الإصدار الحالي**: مدعوم بالكامل مع التحديثات وتصحيحات الأمان - **الإصدار السابق**: تصحيحات الأمان فقط - **الإصدارات الأقدم**: لم تعد مدعومة (يُنصح بالترقية)
+**سياسة الدعم:**  
+- **الإصدار الحالي**: مدعوم بالكامل مع التحديثات وتصحيحات الأمان  
+- **الإصدار السابق**: تحديثات أمنية فقط  
+- **الإصدارات الأقدم**: لم يعد مدعومًا (يُوصى بالترقية)
 
-**ترقيم الإصدارات:** - بدأت بسلسلة 0.9.x (حتى 0.9.66) - انتقلت إلى سلسلة 1.x (1.5.0 حتى 1.9.0) - الآن في سلسلة 2.x (2.0.0+)
+**ترقيم الإصدار:** - بدأ بسلسلة 0.9.x (حتى 0.9.66) - انتقل إلى سلسلة 1.x (1.5.0 إلى 1.9.0) - الآن في سلسلة 2.x (2.0.0+)
 
 ---
 
-## موارد التطوير
+## مطوري الموارد
 
-- **الكود المصدري**: [i2pgit.org](https://i2pgit.org)
-- **متتبع المشاكل**: i2pgit.org أو مشاكل github
-- **الاجتماعات الشهرية**: غير نشطة حالياً
+- **شفرة المصدر**: [i2pgit.org](https://i2pgit.org)
+- **تتبع المشكلات**: i2pgit.org أو مشكلات GitHub
+- **الاجتماعات الشهرية**: غير نشطة حاليًا
 - **IRC**: #i2p-dev على IRC2P
 - **ملاحظات الإصدار**: [مدونة I2P](/blog/)
 
 ---
 
-## شارك معنا
+## شارك
 
-تريد المساهمة في مستقبل I2P؟ تحقق من صفحة [المشاركة](/en/get-involved) لتتعلم كيف يمكنك المساعدة في التطوير والاختبار والتوثيق وأكثر!
+تريد المساهمة في مستقبل I2P؟ تحقق من صفحة [انضم إلينا](/en/get-involved) لمعرفة كيفية مساعدتك في التطوير، والاختبار، والتوثيق، والمزيد!
 
-للحصول على أحدث الأخبار ومعلومات الإصدار التفصيلية، قم بزيارة [مدونة I2P](/en/blog).
+للحصول على آخر الأخبار ومعلومات الإصدار المفصلة، قم بزيارة [مدونة I2P](/en/blog).

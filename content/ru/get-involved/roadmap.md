@@ -1,8 +1,6 @@
 ---
-title: "План развития I2P"
-aliases:
-  - "/ru/get-involved/todo"
-  - "/ru/get-involved/todo/"
+title: "Дорожная карта разработки I2P"
+aliases: 
 description: "Текущие планы разработки и исторические вехи сети I2P"
 ---
 
@@ -10,7 +8,7 @@ description: "Текущие планы разработки и историче
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
 ## 🎯 Предстоящие релизы
@@ -25,15 +23,22 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---
 
-## 📦 Последние выпуски
+## 📦 Последние релизы
 
-### Релизы 2026
+### Выпуски 2026 года
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -223,7 +228,7 @@ Target: May 2026
 </div>
 ---
 
-### Релизы 2023-2022
+### Выпуски 2023-2022
 
 <details>
 <summary>Click to expand 2023-2022 releases</summary>
@@ -317,7 +322,7 @@ Target: May 2026
 </details>
 ---
 
-### Релизы 2021 года
+### Выпуски 2021 года
 
 <details>
 <summary>Click to expand 2021 releases</summary>
@@ -391,7 +396,7 @@ Target: May 2026
 </details>
 ---
 
-### Исторический архив 2020-2016
+### Архив 2020-2016 годов
 
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
@@ -428,28 +433,31 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 </details>
 ---
 
-## Информация о релизе
+## Информация о выпуске
 
-**Цикл релизов:** Примерно каждые 13 недель для крупных релизов
+**Цикл выпуска:** Примерно каждые 13 недель для основных выпусков
 
-**Политика поддержки:** - **Текущий релиз**: Полная поддержка с обновлениями и патчами безопасности - **Предыдущий релиз**: Только обновления безопасности - **Старые релизы**: Больше не поддерживаются (рекомендуется обновление)
+**Политика поддержки:**  
+- **Текущая версия**: Полностью поддерживается, доступны обновления и патчи безопасности  
+- **Предыдущая версия**: Только обновления безопасности  
+- **Более старые версии**: Поддержка прекращена (рекомендуется обновление)
 
-**Нумерация версий:** - Начали с серии 0.9.x (до 0.9.66) - Перешли к серии 1.x (1.5.0 до 1.9.0) - Сейчас в серии 2.x (2.0.0+)
+**Нумерация версий:** — Началась с серии 0.9.x (до 0.9.66) — Перешла к серии 1.x (1.5.0 по 1.9.0) — Сейчас находится в серии 2.x (2.0.0+)
 
 ---
 
 ## Ресурсы для разработки
 
 - **Исходный код**: [i2pgit.org](https://i2pgit.org)
-- **Трекер задач**: i2pgit.org или github issues
-- **Ежемесячные встречи**: В настоящее время неактивны
-- **IRC**: #i2p-dev на IRC2P
-- **Примечания к релизам**: [I2P Blog](/blog/)
+- **Система отслеживания ошибок**: i2pgit.org или github issues
+- **Ежемесячные встречи**: В настоящее время не проводятся
+- **IRC**: #i2p-dev в IRC2P
+- **Заметки о выпуске**: [Блог I2P](/blog/)
 
 ---
 
-## Принять участие
+## Присоединиться
 
-Хотите внести вклад в будущее I2P? Посетите страницу [Присоединиться](/en/get-involved), чтобы узнать, как вы можете помочь с разработкой, тестированием, документацией и многим другим!
+Хотите внести вклад в будущее I2P? Посетите страницу [Присоединяйтесь](/en/get-involved), чтобы узнать, как вы можете помочь в разработке, тестировании, документировании и многом другом!
 
-Для получения последних новостей и подробной информации о релизах посетите [блог I2P](/en/blog).
+Актуальные новости и подробную информацию о выпусках можно найти в [блоге I2P](/en/blog).

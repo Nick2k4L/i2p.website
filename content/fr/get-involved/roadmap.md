@@ -1,19 +1,17 @@
 ---
-title: "Feuille de route du développement I2P"
-aliases:
-  - "/fr/get-involved/todo"
-  - "/fr/get-involved/todo/"
-description: "Plans de développement actuels et jalons historiques pour le réseau I2P"
+title: "Feuille de route du développement d'I2P"
+aliases: 
+description: "Plans de développement actuels et jalons historiques du réseau I2P"
 ---
 
 <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
-## 🎯 Versions à venir
+## 🎯 Prochaines sorties
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
@@ -25,15 +23,22 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---
 
-## 📦 Versions récentes
+## 📦 Dernières versions
 
-### Versions 2026
+### Sorties 2026
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -391,7 +396,7 @@ Target: May 2026
 </details>
 ---
 
-### Archives historiques 2020-2016
+### Archive historique 2020-2016
 
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
@@ -428,28 +433,28 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 </details>
 ---
 
-## Informations de version
+## Informations sur la version
 
 **Cycle de publication :** Environ toutes les 13 semaines pour les versions majeures
 
-**Politique de support :** - **Version actuelle** : Entièrement prise en charge avec mises à jour et correctifs de sécurité - **Version précédente** : Correctifs de sécurité uniquement - **Versions plus anciennes** : Plus prises en charge (mise à niveau recommandée)
+**Politique de support :** - **Version actuelle** : Entièrement prise en charge avec mises à jour et correctifs de sécurité - **Version précédente** : Uniquement des mises à jour de sécurité - **Anciennes versions** : Plus supportées (mise à jour recommandée)
 
-**Numérotation des versions :** - Commencé avec la série 0.9.x (jusqu'à 0.9.66) - Transitionné vers la série 1.x (1.5.0 à 1.9.0) - Maintenant dans la série 2.x (2.0.0+)
+**Numérotation des versions :** - A commencé avec la série 0.9.x (jusqu'à 0.9.66) - Passage à la série 1.x (1.5.0 à 1.9.0) - Actuellement en série 2.x (2.0.0+)
 
 ---
 
 ## Ressources de développement
 
-- **Code Source** : [i2pgit.org](https://i2pgit.org)
-- **Suivi des Problèmes** : i2pgit.org ou github issues
-- **Réunions Mensuelles** : Actuellement inactives
+- **Code source** : [i2pgit.org](https://i2pgit.org)
+- **Suivi des bogues** : i2pgit.org ou les bogues GitHub
+- **Réunions mensuelles** : Actuellement inactives
 - **IRC** : #i2p-dev sur IRC2P
-- **Notes de Version** : [Blog I2P](/blog/)
+- **Notes de version** : [Blog I2P](/blog/)
 
 ---
 
-## Participez
+## Participer
 
-Vous souhaitez contribuer à l'avenir d'I2P ? Consultez la page [Participer](/en/get-involved) pour découvrir comment vous pouvez aider avec le développement, les tests, la documentation, et bien plus encore !
+Vous souhaitez contribuer à l'avenir d'I2P ? Consultez la page [Participer](/en/get-involved) pour découvrir comment vous pouvez aider au développement, aux tests, à la documentation, et bien plus encore !
 
-Pour les dernières actualités et les informations détaillées de publication, visitez le [Blog I2P](/en/blog).
+Pour les dernières nouvelles et les informations détaillées sur les versions, visitez le [blog I2P](/en/blog).

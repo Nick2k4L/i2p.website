@@ -1,8 +1,6 @@
 ---
-title: "I2P Entwicklungsfahrplan"
-aliases:
-  - "/de/get-involved/todo"
-  - "/de/get-involved/todo/"
+title: "I2P-Entwicklungs-Roadmap"
+aliases: 
 description: "Aktuelle Entwicklungspläne und historische Meilensteine für das I2P-Netzwerk"
 ---
 
@@ -10,10 +8,10 @@ description: "Aktuelle Entwicklungspläne und historische Meilensteine für das 
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** February 2026
+**Last Updated:** March 2026
 
 </div>
-## 🎯 Kommende Veröffentlichungen
+## 🎯 Ankünftige Veröffentlichungen
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
@@ -25,15 +23,22 @@ Target: May 2026
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Per-tunnel throttling
-- Prometheus-friendly stat subsystem
+- NetDB lookup fixes when ElGamal disabled
+- NetDB published caps adjustments when near limits
+- Fix 60s stats that were high due to rounding
+- UPnP startup fixes
+- Installer fix for eepsite (FCGI error)
+- Gradle build fixes
+- i2psnark standalone build fix
+- Per-tunnel throttling and bandwidth parameters work (WIP)
+- Debian trixie/resolute fixes (WIP)
 
 </div>
 ---
 
-## 📦 Aktuelle Veröffentlichungen
+## 📦 Kürzliche Veröffentlichungen
 
-### 2026 Veröffentlichungen
+### Veröffentlichungen 2026
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -46,7 +51,7 @@ Target: May 2026
 - SAM support for Datagram 2/3
 
 </div>
-### 2025 Veröffentlichungen
+### Veröffentlichungen 2025
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -223,7 +228,7 @@ Target: May 2026
 </div>
 ---
 
-### 2023-2022 Veröffentlichungen
+### Veröffentlichungen 2023-2022
 
 <details>
 <summary>Click to expand 2023-2022 releases</summary>
@@ -317,7 +322,7 @@ Target: May 2026
 </details>
 ---
 
-### 2021 Veröffentlichungen
+### Veröffentlichungen 2021
 
 <details>
 <summary>Click to expand 2021 releases</summary>
@@ -428,28 +433,28 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 </details>
 ---
 
-## Release-Informationen
+## Versionsinformationen
 
-**Veröffentlichungszyklus:** Etwa alle 13 Wochen für Hauptversionen
+**Veröffentlichungszyklus:** Alle etwa 13 Wochen für Hauptversionen
 
 **Support-Richtlinie:** - **Aktuelle Version**: Vollständig unterstützt mit Updates und Sicherheitspatches - **Vorherige Version**: Nur Sicherheitsupdates - **Ältere Versionen**: Nicht mehr unterstützt (Upgrade empfohlen)
 
-**Versionsnummerierung:** - Begonnen mit der 0.9.x-Serie (bis 0.9.66) - Übergang zur 1.x-Serie (1.5.0 bis 1.9.0) - Jetzt in der 2.x-Serie (2.0.0+)
+**Versionsnummerierung:** - Begann mit der 0.9.x-Serie (bis 0.9.66) - Übergang zur 1.x-Serie (1.5.0 bis 1.9.0) - Aktuell in der 2.x-Serie (2.0.0+)
 
 ---
 
 ## Entwicklungsressourcen
 
 - **Quellcode**: [i2pgit.org](https://i2pgit.org)
-- **Issue Tracker**: i2pgit.org oder github issues
-- **Monatliche Meetings**: Derzeit nicht aktiv
+- **Issue-Tracker**: i2pgit.org oder GitHub Issues
+- **Monatliche Treffen**: Derzeit nicht aktiv
 - **IRC**: #i2p-dev auf IRC2P
-- **Release Notes**: [I2P Blog](/blog/)
+- **Versionshinweise**: [I2P Blog](/blog/)
 
 ---
 
 ## Mitmachen
 
-Möchten Sie zur Zukunft von I2P beitragen? Schauen Sie sich die [Mitmachen](/en/get-involved) Seite an, um zu erfahren, wie Sie bei der Entwicklung, beim Testen, der Dokumentation und mehr helfen können!
+Möchten Sie zur Zukunft von I2P beitragen? Schauen Sie sich die Seite [Mitmachen](/en/get-involved) an, um zu erfahren, wie Sie bei Entwicklung, Tests, Dokumentation und vielem mehr helfen können!
 
-Für die neuesten Nachrichten und detaillierte Release-Informationen besuchen Sie den [I2P Blog](/en/blog).
+Für die neuesten Nachrichten und detaillierte Informationen zu Veröffentlichungen besuchen Sie den [I2P-Blog](/en/blog).
