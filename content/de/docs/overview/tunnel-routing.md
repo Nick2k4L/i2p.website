@@ -2,8 +2,8 @@
 title: "Tunnel-Routing"
 description: "Überblick über I2P tunnel Terminologie, Aufbau und Betrieb"
 slug: "tunnel-routing"
-lastUpdated: "2011-07"
-accurateFor: "0.8.7"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 ## Überblick
@@ -117,15 +117,17 @@ Alle tunnel werden regelmäßig von ihrem Ersteller getestet, indem eine Deliver
 
 ---
 
-## Tunnel-Erstellung
-
 Die Tunnel-Erstellung wird durch [garlic routing](/docs/overview/garlic-routing/) abgewickelt, indem eine Tunnel Build Message an einen router gesendet wird, mit der Bitte, dass dieser am tunnel teilnimmt (wobei alle entsprechenden Informationen wie oben beschrieben sowie ein Zertifikat bereitgestellt werden, das derzeit ein 'null'-Zertifikat ist, aber bei Bedarf hashcash oder andere kostenpflichtige Zertifikate unterstützen wird). Dieser router leitet die Nachricht an den nächsten Hop im tunnel weiter. Details finden sich in der [tunnel creation specification](/docs/specs/tunnel-creation/).
+
+## Tunnel-Erstellung
 
 ---
 
+Mehrschichtige Verschlüsselung wird durch [garlic encryption](/docs/overview/garlic-routing/) von tunnel-Nachrichten behandelt. Details finden sich in der [tunnel-Spezifikation](/docs/specs/tunnel-implementation/). Der IV jedes Hops wird mit einem separaten Schlüssel verschlüsselt, wie dort erläutert.
+
 ## Tunnel-Verschlüsselung
 
-Mehrschichtige Verschlüsselung wird durch [garlic encryption](/docs/overview/garlic-routing/) von tunnel-Nachrichten behandelt. Details finden sich in der [tunnel-Spezifikation](/docs/specs/tunnel-implementation/). Der IV jedes Hops wird mit einem separaten Schlüssel verschlüsselt, wie dort erläutert.
+---
 
 ---
 

@@ -26,6 +26,7 @@ Target: May 2026
 - NetDB lookup fixes when ElGamal disabled
 - NetDB published caps adjustments when near limits
 - Fix 60s stats that were high due to rounding
+- Fix classloader issues installing/starting/restarting plugins via the console
 - UPnP startup fixes
 - Installer fix for eepsite (FCGI error)
 - Gradle build fixes

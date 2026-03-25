@@ -2,8 +2,8 @@
 title: "توجيه Tunnel"
 description: "نظرة عامة على مصطلحات وبناء وتشغيل tunnel في I2P"
 slug: "tunnel-routing"
-lastUpdated: "2011-07"
-accurateFor: "0.8.7"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 ## نظرة عامة
@@ -117,15 +117,17 @@ F: Inbound Endpoint (Bob)
 
 ---
 
-## إنشاء Tunnel
-
 يتم التعامل مع إنشاء tunnel من خلال [garlic routing](/docs/overview/garlic-routing/) وهو Tunnel Build Message إلى router، مطالباً إياه بالمشاركة في tunnel (مع توفير جميع المعلومات المناسبة، كما هو مذكور أعلاه، إلى جانب شهادة، والتي هي حالياً شهادة 'null'، ولكنها ستدعم hashcash أو شهادات أخرى غير مجانية عند الضرورة). يقوم ذلك router بإعادة توجيه الرسالة إلى القفزة التالية في tunnel. التفاصيل موجودة في [مواصفات إنشاء tunnel](/docs/specs/tunnel-creation/).
+
+## إنشاء Tunnel
 
 ---
 
+يتم التعامل مع التشفير متعدد الطبقات من خلال garlic encryption لرسائل tunnel. التفاصيل موجودة في [مواصفات tunnel](/docs/specs/tunnel-implementation/). يتم تشفير IV الخاص بكل hop بمفتاح منفصل كما هو موضح هناك.
+
 ## تشفير الـ tunnel
 
-يتم التعامل مع التشفير متعدد الطبقات من خلال garlic encryption لرسائل tunnel. التفاصيل موجودة في [مواصفات tunnel](/docs/specs/tunnel-implementation/). يتم تشفير IV الخاص بكل hop بمفتاح منفصل كما هو موضح هناك.
+---
 
 ---
 

@@ -2,8 +2,8 @@
 title: "Tunnel Yönlendirme"
 description: "I2P tunnel terminolojisi, yapısı ve işleyişine genel bakış"
 slug: "tunnel-routing"
-lastUpdated: "2011-07"
-accurateFor: "0.8.7"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 ## Genel Bakış
@@ -117,15 +117,17 @@ Tüm tunnel'lar, yaratıcıları tarafından periyodik olarak test edilir; bir D
 
 ---
 
-## Tunnel Oluşturma
-
 Tunnel oluşturma, bir router'a Tunnel Build Message gönderen [garlic routing](/docs/overview/garlic-routing/) tarafından ele alınır ve o router'ın tunnel'a katılmasını talep eder (yukarıda belirtildiği gibi tüm uygun bilgileri ve bir sertifika sağlar - bu sertifika şu anda 'null' sertifikadır, ancak gerektiğinde hashcash veya diğer ücretsiz olmayan sertifikaları destekleyecektir). Bu router, mesajı tunnel'daki bir sonraki hop'a iletir. Detaylar [tunnel oluşturma spesifikasyonunda](/docs/specs/tunnel-creation/) bulunabilir.
+
+## Tunnel Oluşturma
 
 ---
 
+Çok katmanlı şifreleme, tunnel mesajlarının [garlic encryption](/docs/overview/garlic-routing/) ile gerçekleştirilir. Detaylar [tunnel spesifikasyonunda](/docs/specs/tunnel-implementation/) bulunmaktadır. Her hop'un IV'si orada açıklandığı gibi ayrı bir anahtar ile şifrelenir.
+
 ## Tunnel Şifreleme
 
-Çok katmanlı şifreleme, tunnel mesajlarının [garlic encryption](/docs/overview/garlic-routing/) ile gerçekleştirilir. Detaylar [tunnel spesifikasyonunda](/docs/specs/tunnel-implementation/) bulunmaktadır. Her hop'un IV'si orada açıklandığı gibi ayrı bir anahtar ile şifrelenir.
+---
 
 ---
 

@@ -2,8 +2,8 @@
 title: "Routage de tunnel"
 description: "Aperçu de la terminologie, de la construction et du fonctionnement des tunnels I2P"
 slug: "tunnel-routing"
-lastUpdated: "2011-07"
-accurateFor: "0.8.7"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 ## Aperçu
@@ -117,15 +117,17 @@ Tous les tunnels sont périodiquement testés par leur créateur en envoyant un 
 
 ---
 
-## Création de tunnel
-
 La création de tunnel est gérée par [garlic routing](/docs/overview/garlic-routing/) un Tunnel Build Message vers un router, demandant qu'il participe au tunnel (en lui fournissant toutes les informations appropriées, comme ci-dessus, ainsi qu'un certificat, qui est actuellement un certificat 'null', mais qui prendra en charge hashcash ou d'autres certificats non gratuits si nécessaire). Ce router transmet le message au saut suivant dans le tunnel. Les détails se trouvent dans la [spécification de création de tunnel](/docs/specs/tunnel-creation/).
+
+## Création de tunnel
 
 ---
 
+Le chiffrement multi-couches est géré par le [garlic encryption](/docs/overview/garlic-routing/) des messages de tunnel. Les détails se trouvent dans la [spécification des tunnels](/docs/specs/tunnel-implementation/). L'IV de chaque saut est chiffré avec une clé séparée comme expliqué là-bas.
+
 ## Chiffrement de tunnel
 
-Le chiffrement multi-couches est géré par le [garlic encryption](/docs/overview/garlic-routing/) des messages de tunnel. Les détails se trouvent dans la [spécification des tunnels](/docs/specs/tunnel-implementation/). L'IV de chaque saut est chiffré avec une clé séparée comme expliqué là-bas.
+---
 
 ---
 

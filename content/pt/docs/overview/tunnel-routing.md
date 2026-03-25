@@ -2,8 +2,8 @@
 title: "Roteamento de Tunnel"
 description: "Visão geral da terminologia, construção e operação de tunnels I2P"
 slug: "tunnel-routing"
-lastUpdated: "2011-07"
-accurateFor: "0.8.7"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 ## Visão Geral
@@ -117,15 +117,17 @@ Todos os tunnels são periodicamente testados pelo seu criador enviando uma Deli
 
 ---
 
-## Criação de Tunnel
-
 A criação de túneis é gerenciada pelo [garlic routing](/docs/overview/garlic-routing/) uma Mensagem de Construção de Túnel para um router, solicitando que ele participe no túnel (fornecendo-lhe todas as informações apropriadas, como acima, junto com um certificado, que atualmente é um certificado 'nulo', mas suportará hashcash ou outros certificados não gratuitos quando necessário). Esse router encaminha a mensagem para o próximo salto no túnel. Os detalhes estão na [especificação de criação de túneis](/docs/specs/tunnel-creation/).
+
+## Criação de Tunnel
 
 ---
 
+A criptografia multicamada é tratada pela [garlic encryption](/docs/overview/garlic-routing/) das mensagens de tunnel. Os detalhes estão na [especificação de tunnel](/docs/specs/tunnel-implementation/). O IV de cada salto é criptografado com uma chave separada, conforme explicado lá.
+
 ## Criptografia de Tunnel
 
-A criptografia multicamada é tratada pela [garlic encryption](/docs/overview/garlic-routing/) das mensagens de tunnel. Os detalhes estão na [especificação de tunnel](/docs/specs/tunnel-implementation/). O IV de cada salto é criptografado com uma chave separada, conforme explicado lá.
+---
 
 ---
 

@@ -2,8 +2,8 @@
 title: "Směrování tunelů"
 description: "Přehled terminologie, konstrukce a provozu I2P tunnelů"
 slug: "tunnel-routing"
-lastUpdated: "2011-07"
-accurateFor: "0.8.7"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 ## Přehled
@@ -117,15 +117,17 @@ Všechny tunnely jsou periodicky testovány jejich tvůrcem odesláním Delivery
 
 ---
 
-## Vytváření tunnelů
-
 Vytváření tunelů je řešeno pomocí [garlic routing](/docs/overview/garlic-routing/) - Tunnel Build Message je odeslána routeru s požadavkem, aby se účastnil tunelu (poskytnutím všech příslušných informací, jak je uvedeno výše, spolu s certifikátem, který je momentálně 'null' certifikát, ale bude podporovat hashcash nebo jiné neplacené certifikáty, když to bude nutné). Tento router předá zprávu dalšímu uzlu v tunelu. Podrobnosti jsou ve [specifikaci vytváření tunelů](/docs/specs/tunnel-creation/).
+
+## Vytváření tunnelů
 
 ---
 
+Vícevrstvé šifrování je zpracováno pomocí [garlic encryption](/docs/overview/garlic-routing/) tunelových zpráv. Podrobnosti jsou ve [specifikaci tunelu](/docs/specs/tunnel-implementation/). IV každého uzlu je šifrováno samostatným klíčem, jak je tam vysvětleno.
+
 ## Šifrování tunelů
 
-Vícevrstvé šifrování je zpracováno pomocí [garlic encryption](/docs/overview/garlic-routing/) tunelových zpráv. Podrobnosti jsou ve [specifikaci tunelu](/docs/specs/tunnel-implementation/). IV každého uzlu je šifrováno samostatným klíčem, jak je tam vysvětleno.
+---
 
 ---
 
