@@ -6,8 +6,8 @@ aliases:
   - "/docs/specs/common-structures"
   - "/docs/specs/common-structures/"
 category: "Design"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 This document describes some data types common to all I2P protocols, like
@@ -1153,7 +1153,10 @@ val_string | 8 | green  | String (len + data)
   the signature will be invariant. Duplicate keys are not allowed.
 
 * The sort method is defined as in Java String.compareTo(), using the Unicode
-  value of the characters.
+  value of the characters, however that may not be honored by all implementations.
+  In use cases where sorting by key is required, non-ASCII keys are strongly discouraged.
+  Due to implementation differences in the lexical sorting of UTF-8 keys, signatures may fail
+  and other hard-to-reproduce issues may arise.
 
 * While it is application-dependent, keys and values are generally
   case-sensitive.
