@@ -2,9 +2,10 @@
 title: "Specifikace běžných struktur"
 description: "Datové typy společné pro všechny I2P protokoly"
 slug: "common-structures"
+aliases: 
 category: "Design"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 Tento dokument popisuje některé datové typy společné všem I2P protokolům, jako je [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/), atd.
@@ -1060,29 +1061,28 @@ Sada mapování klíč/hodnota nebo vlastností
 
 VAROVÁNÍ: Většina použití Mapping je v podepsaných strukturách, kde musí být položky Mapping seřazeny podle klíče, aby byl podpis neměnný. Neseřazení podle klíče bude mít za následek selhání podpisu!
 
+```bytefield
+size       | 4 | red    | Integer, 2 bytes
+key_string | 4 | blue   | String (len + data)
+val_string | 8 | green  | String (len + data)
+;          | 8 | yellow | :: A single byte containing ';'
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
+
 ```
 +----+----+----+----+----+----+----+----+
 |  size   | key_string (len + data)| =  |
 +----+----+----+----+----+----+----+----+
 | val_string (len + data)     | ;  | ...
 +----+----+----+----+----+----+----+
-size :: `Integer`
-        length -> 2 bytes
-        Total number of bytes that follow
-
-key_string :: `String`
-              A string (one byte length followed by UTF-8 encoded characters)
-
-= :: A single byte containing '='
-
-val_string :: `String`
-              A string (one byte length followed by UTF-8 encoded characters)
-
-; :: A single byte containing ';'
 ```
+</details>
 #### Poznámky
 
 * Kódování není optimální - potřebujeme buď znaky '=' a ';', nebo délky řetězců, ale ne oboje
+
+#### Popis
 
 * Některá dokumentace uvádí, že řetězce nesmí obsahovat '=' nebo ';', ale toto kódování je podporuje
 
@@ -1105,17 +1105,20 @@ val_string :: `String`
 
 * Celkový limit délky je 65535 bajtů, plus 2bajtové pole velikosti, nebo celkem 65537.
 
+* Router Identity s typem šifrování X25519 a typem podpisu Ed25519
+  bude obsahovat 10 kopií (320 bajtů) náhodných dat, což při kompresi ušetří přibližně 288 bajtů.
+
 JavaDoc: [net.i2p.data.DataHelper](http://docs.i2p-projekt.de/net/i2p/data/DataHelper.html)
 
 ## Specifikace společné struktury
 
 ### KeysAndCert
 
-#### Popis
+#### Obsah
 
 Veřejný klíč pro šifrování, veřejný klíč pro podepisování a certifikát, používané buď jako RouterIdentity nebo Destination.
 
-#### Obsah
+#### Směrnice pro generování výplně
 
 [PublicKey](#publickey) následovaný [SigningPublicKey](#signingpublickey) a poté [Certificate](#certificate).
 
@@ -1173,7 +1176,7 @@ total length: 387+ bytes
 ```
 
 </details>
-#### Směrnice pro generování výplně
+#### Poznámky
 
 Tyto pokyny byly navrženy v Návrhu 161 a implementovány v API verzi 0.9.57. Tyto pokyny jsou zpětně kompatibilní se všemi verzemi od 0.6 (2005). Pro kontext a další informace viz Návrh 161.
 
@@ -1189,39 +1192,36 @@ Opakujte 32 bajtů náhodných dat podle potřeby tak, aby byla celá struktura 
 
 Příklady:
 
-* Router Identity s typem šifrování X25519 a typem podpisu Ed25519
-  bude obsahovat 10 kopií (320 bajtů) náhodných dat, což při kompresi ušetří přibližně 288 bajtů.
-
 * Destination s typem podpisu Ed25519
   bude obsahovat 11 kopií (352 bajtů) náhodných dat, což při kompresi ušetří přibližně 320 bajtů.
 
+* Nepředpokládejte, že mají vždy 387 bajtů! Mají 387 bajtů plus délku certifikátu specifikovanou na bajtech 385-386, která může být nenulová.
+
 Implementace musí samozřejmě ukládat celou strukturu o velikosti 387+ bytů, protože SHA-256 hash struktury pokrývá celý obsah.
 
-#### Poznámky
-
-* Nepředpokládejte, že mají vždy 387 bajtů! Mají 387 bajtů plus délku certifikátu specifikovanou na bajtech 385-386, která může být nenulová.
+#### Popis
 
 * Od vydání 0.9.12, pokud je certifikát Key Certificate, hranice polí klíčů se mohou lišit. Podrobnosti najdete v sekci Key Certificate výše.
 
 * Kryptografický veřejný klíč je zarovnán na začátku a podepisující veřejný klíč je zarovnán na konci. Výplň (pokud existuje) je uprostřed.
 
+* Certifikát pro RouterIdentity byl vždy NULL až do vydání 0.9.12.
+
 JavaDoc: [net.i2p.data.KeysAndCert](http://docs.i2p-projekt.de/net/i2p/data/KeysAndCert.html)
 
 ### RouterIdentity
 
-#### Popis
+#### Obsah
 
 Definuje způsob, jak jednoznačně identifikovat konkrétní router
 
-#### Obsah
+#### Poznámky
 
 Identické s KeysAndCert.
 
 Viz [KeysAndCert](#keysandcert) pro pokyny k generování náhodných dat pro pole padding.
 
-#### Poznámky
-
-* Certifikát pro RouterIdentity byl vždy NULL až do vydání 0.9.12.
+#### Popis
 
 * Nepředpokládejte, že tyto jsou vždy 387 bajtů! Jsou to 387 bajtů plus délka certifikátu specifikovaná na bajtech 385-386, která může být nenulová.
 
@@ -1233,23 +1233,23 @@ Viz [KeysAndCert](#keysandcert) pro pokyny k generování náhodných dat pro po
   jsou podporovány od verze 0.9.48.
   Před tím byly všechny RouterIdentity typu ElGamal.
 
+* Veřejný klíč destinace byl použit pro staré i2cp-to-i2cp šifrování, které bylo zakázáno ve verzi 0.6 (2005), v současnosti je nepoužíván kromě IV pro LeaseSet šifrování, které je zastaralé. Místo toho se používá veřejný klíč v LeaseSet.
+
 JavaDoc: [net.i2p.data.router.RouterIdentity](http://docs.i2p-projekt.de/net/i2p/data/router/RouterIdentity.html)
 
 ### Cíl
 
-#### Popis
+#### Obsah
 
 Destination definuje konkrétní koncový bod, kam mohou být zprávy směrovány pro bezpečné doručení.
 
-#### Obsah
+#### Poznámky
 
 Identické s [KeysAndCert](#keysandcert), s výjimkou toho, že veřejný klíč se nikdy nepoužívá a může obsahovat náhodná data namísto platného ElGamal veřejného klíče.
 
 Viz [KeysAndCert](#keysandcert) pro pokyny k generování náhodných dat pro pole veřejného klíče a výplně.
 
-#### Poznámky
-
-* Veřejný klíč destinace byl použit pro staré i2cp-to-i2cp šifrování, které bylo zakázáno ve verzi 0.6 (2005), v současnosti je nepoužíván kromě IV pro LeaseSet šifrování, které je zastaralé. Místo toho se používá veřejný klíč v LeaseSet.
+#### Popis
 
 * Nepředpokládejte, že mají vždy 387 bajtů! Mají 387 bajtů plus délku certifikátu specifikovanou na bajtech 385-386, která může být nenulová.
 
@@ -1257,15 +1257,17 @@ Viz [KeysAndCert](#keysandcert) pro pokyny k generování náhodných dat pro po
 
 * Crypto Public Key je zarovnán na začátku a Signing Public Key je zarovnán na konci. Výplň (pokud existuje) je uprostřed.
 
+* Veřejný klíč cíle byl použit pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
+
 JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Destination.html)
 
 ### Lease
 
-#### Popis
+#### Obsah
 
 Definuje autorizaci pro konkrétní tunnel k přijímání zpráv určených pro [Destination](#destination).
 
-#### Obsah
+#### Popis
 
 SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté [TunnelId](#tunnelid) a nakonec konečné [Date](#date).
 
@@ -1310,11 +1312,11 @@ JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 ### LeaseSet
 
-#### Popis
+#### Obsah
 
 Obsahuje všechny aktuálně autorizované [Leases](#lease) pro konkrétní [Destination](#destination), [PublicKey](#publickey), kterým lze šifrovat garlic zprávy, a poté [SigningPublicKey](#signingpublickey), který lze použít k odvolání této konkrétní verze struktury. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je klíčována pod SHA256 obsažené [Destination](#destination).
 
-#### Obsah
+#### Poznámky
 
 [Destination](#destination), následovaná [PublicKey](#publickey) pro šifrování, poté [SigningPublicKey](#signingpublickey), který lze použít k odvolání této verze LeaseSet, pak 1 byte [Integer](#integer) specifikující kolik struktur [Lease](#lease) je v sadě, následované skutečnými strukturami [Lease](#lease) a nakonec [Signature](#signature) předchozích bytů podepsaná [SigningPrivateKey](#signingprivatekey) [Destination](#destination).
 
@@ -1411,9 +1413,7 @@ signature :: `Signature`
 ```
 
 </details>
-#### Poznámky
-
-* Veřejný klíč cíle byl použit pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
+#### Popis
 
 * Šifrovací klíč se používá pro end-to-end ElGamal/AES+SessionTag šifrování
   [ELGAMAL-AES](/docs/specs/elgamal-aes/). V současnosti se generuje znovu při každém spuštění routeru, není
@@ -1434,15 +1434,17 @@ signature :: `Signature`
 
 * Před verzí 0.9.7, když byl zahrnut ve zprávě DatabaseStore odeslané původním routerem, router nastavil všechna vypršení publikovaných leaseů na stejnou hodnotu, tu nejčasnějšího lease. Od verze 0.9.7 router publikuje skutečné vypršení lease pro každý lease. Toto je implementační detail a není součástí specifikace struktur.
 
+* Celková velikost: 40 bajtů
+
 JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
 
 ### Lease2
 
-#### Popis
+#### Obsah
 
 Definuje autorizaci pro konkrétní tunnel přijímat zprávy zaměřené na [Destination](#destination). Stejné jako [Lease](#lease), ale se 4-bytovým end_date. Používá se v [LeaseSet2](#leaseset2). Podporováno od verze 0.9.38; pro více informací viz návrh 123.
 
-#### Obsah
+#### Poznámky
 
 SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté [TunnelId](#tunnelid) a nakonec 4bajtové datum ukončení.
 
@@ -1480,19 +1482,19 @@ end_date :: 4 byte date
 ```
 
 </details>
-#### Poznámky
+#### Popis
 
-* Celková velikost: 40 bajtů
+* Tato sekce může a měla by být vygenerována offline.
 
 JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.html)
 
 ### OfflineSignature
 
-#### Popis
+#### Obsah
 
 Toto je volitelná část [LeaseSet2Header](#leaseset2header). Také se používá ve streaming a I2CP. Podporováno od verze 0.9.38; více informací viz návrh 123.
 
-#### Obsah
+#### Poznámky
 
 Obsahuje expiraci, sigtype a přechodný [SigningPublicKey](#signingpublickey) a [Signature](#signature).
 
@@ -1541,17 +1543,21 @@ signature :: `Signature`
 ```
 
 </details>
-#### Poznámky
+#### Popis
 
-* Tato sekce může a měla by být vygenerována offline.
+* **Flags** (2 bajty):
+  * Bit 0: Pokud je nastaven, jsou přítomny offline klíče (viz [OfflineSignature](#offlinesignature))
+  * Bit 1: Pokud je nastaven, jedná se o nepublikovaný leaseset
+  * Bit 2: Pokud je nastaven, jedná se o zaslepený leaseset
+  * Bity 15-3: Rezervováno, nastaveno na 0
 
 ### LeaseSet2Header
 
-#### Popis
+#### Obsah
 
 Toto je společná část [LeaseSet2](#leaseset2) a [MetaLeaseSet](#metaleaseset). Podporováno od verze 0.9.38; více informací v návrhu 123.
 
-#### Obsah
+#### Poznámky
 
 Obsahuje [Destination](#destination), dvě časová razítka a volitelný [OfflineSignature](#offlinesignature).
 
@@ -1612,13 +1618,7 @@ offline_signature :: `OfflineSignature`
 ```
 
 </details>
-#### Poznámky
-
-* **Flags** (2 bajty):
-  * Bit 0: Pokud je nastaven, jsou přítomny offline klíče (viz [OfflineSignature](#offlinesignature))
-  * Bit 1: Pokud je nastaven, jedná se o nepublikovaný leaseset
-  * Bit 2: Pokud je nastaven, jedná se o zaslepený leaseset
-  * Bity 15-3: Rezervováno, nastaveno na 0
+#### Popis
 
 * Celková velikost: minimálně 395 bajtů
 
@@ -1633,39 +1633,57 @@ offline_signature :: `OfflineSignature`
   má čas 'published' nejméně o sekundu pozdější než předchozí, jinak
   floodfill neuloží ani nezaplavní nový leaseset.
 
+- serviceoption := optionkey optionvalue
+- optionkey := _service._proto
+- service := Symbolické jméno požadované služby. Musí být psané malými písmeny. Příklad: "smtp".
+  Povolené znaky jsou [a-z0-9-] a nesmí začínat nebo končit znakem '-'.
+  Musí být použity standardní identifikátory z [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) nebo Linux /etc/services, pokud jsou tam definovány.
+- proto := Transportní protokol požadované služby. Musí být psán malými písmeny, buď "tcp" nebo "udp".
+  "tcp" znamená streamování a "udp" znamená odpověditelné datagramy.
+  Indikátory protokolů pro surové datagramy a datagram2 mohou být definovány později.
+  Povolené znaky jsou [a-z0-9-] a nesmí začínat nebo končit znakem '-'.
+- optionvalue := self | srvrecord[,srvrecord]*
+- self := "0" ttl port [appoptions]
+- srvrecord := "1" ttl priority weight port target [appoptions]
+- ttl := doba života, celočíselné sekundy. Kladné číslo. Příklad: "86400".
+  Doporučuje se minimum 86400 (jeden den), podrobnosti viz sekce Doporučení níže.
+- priority := Priorita cílového hostitele, nižší hodnota znamená vyšší preference. Nezáporné číslo. Příklad: "0"
+  Užitečné pouze při více než jednom záznamu, ale vyžadované i při jediném záznamu.
+- weight := Relativní váha pro záznamy se stejnou prioritou. Vyšší hodnota znamená větší šanci výběru. Nezáporné číslo. Příklad: "0"
+  Užitečné pouze při více než jednom záznamu, ale vyžadované i při jediném záznamu.
+- port := I2CP port, na kterém má být služba nalezena. Nezáporné číslo. Příklad: "25"
+  Port 0 je podporován, ale není doporučen.
+- target := Hostname nebo b32 cíle poskytujícího službu. Platný hostname podle [NAMING](/docs/overview/naming/). Musí být psán malými písmeny.
+  Příklad: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" nebo "example.i2p".
+  b32 je doporučeno, pokud hostname není "dobře známý", tj. v oficiálních nebo výchozích adresářích.
+- appoptions := libovolný text specifický pro aplikaci, nesmí obsahovat " " nebo ",". Kódování je UTF-8.
+
 ### LeaseSet2
 
-#### Popis
+#### Obsah
 
 Obsaženo v I2NP DatabaseStore zprávě typu 3. Podporováno od verze 0.9.38; více informací najdete v návrhu 123.
 
 Obsahuje všechny aktuálně autorizované [Lease2](#lease2) pro konkrétní [Destination](#destination) a [PublicKey](#publickey), kterým mohou být garlic zprávy šifrovány. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je klíčována pod SHA256 obsaženého [Destination](#destination).
 
-#### Obsah
+#### Preference šifrovacího klíče
 
 [LeaseSet2Header](#leaseset2header), následovaný možnostmi, pak jeden nebo více [PublicKey](#publickey) pro šifrování, [Integer](#integer) určující kolik [Lease2](#lease2) struktur je v sadě, následovaný skutečnými [Lease2](#lease2) strukturami a nakonec [Signature](#signature) předchozích bytů podepsaný [Destination](#destination) [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
-~
 options          | 8 | gray   | Mapping, varies, 2 bytes minimum
-~
-numk             | 1 | red    | Integer, 1 byte, number of encryption keys (1 <= numk <= max TBD)
-keytype0         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
-keylen0          | 2 | cyan   | Length of PublicKey, 2 bytes
-encryption_key_0 | 3 | green  | PublicKey, keylen bytes
-~
-keytypen         | 2 | cyan   | Encryption type of PublicKey, 2 bytes
-keylenn          | 2 | cyan   | Length of PublicKey, 2 bytes
-encryption_key_n | 4 | green  | PublicKey, keylen bytes
-~
+numk             | 2 | red    | Integer, 1 byte, number of encryption keys (1 <= numk <= max TBD)
+keytype0         | 3 | cyan   | Encryption type of PublicKey, 2 bytes
+keylen0          | 3 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_0 | 8 | green  | PublicKey, keylen bytes
+keytypen         | 4 | cyan   | Encryption type of PublicKey, 2 bytes
+keylenn          | 4 | cyan   | Length of PublicKey, 2 bytes
+encryption_key_n | 8 | green  | PublicKey, keylen bytes
 num              | 1 | red    | Integer, 1 byte, number of Lease2s (0-16)
 Lease2 0         | 7 | yellow | Lease2, 40 bytes
-~
 Lease2 ($num-1)  | 8 | yellow | Lease2, 40 bytes
-~
 signature        | 8 | purple | Signature, 40 bytes or as specified in destination's key cert
-~
 ```
 <details class="content-section">
 <summary>View original ASCII diagram</summary>
@@ -1752,7 +1770,7 @@ signature :: `Signature`
 ```
 
 </details>
-#### Preference šifrovacího klíče
+#### Možnosti
 
 Pro publikované (serverové) leaseSety jsou šifrovací klíče seřazeny podle preference serveru, s nejpreferovanějším jako prvním. Pokud klienti podporují více než jeden typ šifrování, doporučuje se, aby respektovali preferenci serveru a vybrali první podporovaný typ jako šifrovací metodu pro připojení k serveru. Obecně jsou novější (s vyšším číslem) typy klíčů bezpečnější nebo efektivnější a jsou preferované, takže klíče by měly být uvedeny v opačném pořadí podle typu klíče.
 
@@ -1760,7 +1778,7 @@ Klienti však mohou, v závislosti na implementaci, vybírat podle svých vlastn
 
 Pořadí klíčů v nepublikovaných (klientských) leaseStech v podstatě nezáleží, protože spojení obvykle nebudou pokoušena k nepublikovaným klientům. Pokud se toto pořadí nepoužívá k určení kombinované preference, jak je popsáno výše.
 
-#### Možnosti
+#### Poznámky
 
 Od API 0.9.66 je definován standardní formát pro možnosti záznamů služeb. Podrobnosti najdete v návrhu 167. V budoucnu mohou být definovány další možnosti kromě záznamů služeb s použitím jiného formátu.
 
@@ -1768,30 +1786,7 @@ Volby LS2 MUSÍ být seřazeny podle klíče, takže podpis je neměnný.
 
 Možnosti záznamu služby jsou definovány následovně:
 
-- serviceoption := optionkey optionvalue
-- optionkey := _service._proto
-- service := Symbolické jméno požadované služby. Musí být psané malými písmeny. Příklad: "smtp".
-  Povolené znaky jsou [a-z0-9-] a nesmí začínat nebo končit znakem '-'.
-  Musí být použity standardní identifikátory z [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) nebo Linux /etc/services, pokud jsou tam definovány.
-- proto := Transportní protokol požadované služby. Musí být psán malými písmeny, buď "tcp" nebo "udp".
-  "tcp" znamená streamování a "udp" znamená odpověditelné datagramy.
-  Indikátory protokolů pro surové datagramy a datagram2 mohou být definovány později.
-  Povolené znaky jsou [a-z0-9-] a nesmí začínat nebo končit znakem '-'.
-- optionvalue := self | srvrecord[,srvrecord]*
-- self := "0" ttl port [appoptions]
-- srvrecord := "1" ttl priority weight port target [appoptions]
-- ttl := doba života, celočíselné sekundy. Kladné číslo. Příklad: "86400".
-  Doporučuje se minimum 86400 (jeden den), podrobnosti viz sekce Doporučení níže.
-- priority := Priorita cílového hostitele, nižší hodnota znamená vyšší preference. Nezáporné číslo. Příklad: "0"
-  Užitečné pouze při více než jednom záznamu, ale vyžadované i při jediném záznamu.
-- weight := Relativní váha pro záznamy se stejnou prioritou. Vyšší hodnota znamená větší šanci výběru. Nezáporné číslo. Příklad: "0"
-  Užitečné pouze při více než jednom záznamu, ale vyžadované i při jediném záznamu.
-- port := I2CP port, na kterém má být služba nalezena. Nezáporné číslo. Příklad: "25"
-  Port 0 je podporován, ale není doporučen.
-- target := Hostname nebo b32 cíle poskytujícího službu. Platný hostname podle [NAMING](/docs/overview/naming/). Musí být psán malými písmeny.
-  Příklad: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" nebo "example.i2p".
-  b32 je doporučeno, pokud hostname není "dobře známý", tj. v oficiálních nebo výchozích adresářích.
-- appoptions := libovolný text specifický pro aplikaci, nesmí obsahovat " " nebo ",". Kódování je UTF-8.
+* Veřejný klíč cílového uzlu byl používán pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
 
 Příklady:
 
@@ -1807,9 +1802,7 @@ V LS2 pro bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, odkazující sá
 
 "_smtp._tcp" "0 999999 25"
 
-#### Poznámky
-
-* Veřejný klíč cílového uzlu byl používán pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
+#### Popis
 
 * Šifrovací klíče se používají pro end-to-end ElGamal/AES+SessionTag šifrování
   [ELGAMAL-AES](/docs/specs/elgamal-aes/) (typ 0) nebo jiná end-to-end šifrovací schémata.
@@ -1829,17 +1822,28 @@ V LS2 pro bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, odkazující sá
 
 * Mapování možností, pokud je velikost větší než jedna, musí být seřazeno podle klíče, aby byl podpis neměnný.
 
+* Celková velikost: 40 bytů
+
 JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
 
 ### MetaLease
 
-#### Popis
+#### Obsah
 
 Definuje autorizaci pro konkrétní tunnel pro přijímání zpráv cílených na [Destination](#destination). Stejné jako [Lease2](#lease2), ale s příznaky a cenou namísto tunnel id. Používá [MetaLeaseSet](#metaleaseset). Obsaženo v I2NP DatabaseStore zprávě typu 7. Podporováno od verze 0.9.38; viz návrh 123 pro více informací.
 
-#### Obsah
+#### Poznámky
 
 SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté příznaky a náklady, a nakonec 4bajtové datum ukončení.
+
+```bytefield
+tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
+flags     | 3 | red    | 3 bytes
+cost      | 1 | green  | 1 byte
+end_date  | 4 | yellow | 4 bytes, seconds since epoch
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1876,23 +1880,38 @@ end_date :: 4 byte date
             Seconds since the epoch, rolls over in 2106.
 
 ```
-#### Poznámky
+</details>
+#### Popis
 
-* Celková velikost: 40 bytů
+* Veřejný klíč destinace byl používán pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
 
 JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
 
 ### MetaLeaseSet
 
-#### Popis
+#### Obsah
 
 Obsaženo v I2NP DatabaseStore zprávě typu 7. Definováno od verze 0.9.38; naplánováno k fungování od verze 0.9.40; viz návrh 123 pro více informací.
 
 Obsahuje všechny aktuálně autorizované [MetaLease](#metalease) pro konkrétní [Destination](#destination) a [PublicKey](#publickey), kterým lze šifrovat garlic zprávy. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je indexována pod SHA256 obsaženého [Destination](#destination).
 
-#### Obsah
+#### Poznámky
 
 [LeaseSet2Header](#leaseset2header), následovaný možnostmi, [Integer](#integer) specifikující kolik struktur [Lease2](#lease2) je v sadě, následovaný skutečnými strukturami [Lease2](#lease2) a nakonec [Signature](#signature) předchozích bytů podepsaných [SigningPrivateKey](#signingprivatekey) [Destination](#destination) nebo přechodným klíčem.
+
+```bytefield
+ls2_header       | 8 | blue   | LeaseSet2Header, varies
+options          | 8 | green  | Mapping, varies, 2 bytes minimum
+num              | 1 | red    | Integer, 1 byte
+MetaLease 0      | 7 | yellow | 40 bytes
+MetaLease ($num-1) | 8 | yellow | 40 bytes
+numr             | 1 | red    | Integer, 1 byte
+revocation_0     | 8 | cyan   | Hash, 32 bytes
+revocation_n     | 8 | cyan   | Hash, 32 bytes
+signature        | 8 | purple | Signature, 40+ bytes
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1966,9 +1985,8 @@ signature :: `Signature`
                        if present in the header
 
 ```
-#### Poznámky
-
-* Veřejný klíč destinace byl používán pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
+</details>
+#### Popis
 
 * Podpis je nad výše uvedenými daty, PŘEDŘAZENÝMI s jediným bajtem
   obsahujícím typ DatabaseStore (7).
@@ -1977,19 +1995,35 @@ signature :: `Signature`
 
 * Viz poznámka k poli 'published' v [LeaseSet2Header](#leaseset2header)
 
+* Veřejný klíč cíle byl používán pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
+
 JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/MetaLeaseSet.html)
 
 ### EncryptedLeaseSet
 
-#### Popis
+#### Obsah
 
 Obsaženo ve zprávě I2NP DatabaseStore typu 5. Definováno od verze 0.9.38; funkční od verze 0.9.39; více informací viz návrh 123.
 
 Pouze blinded klíč a doba vypršení jsou viditelné v nešifrovaném textu. Skutečný leaseSet je šifrovaný.
 
-#### Obsah
+#### Poznámky
 
 Dvoubajtový typ podpisu, zaslepený [SigningPrivateKey](#signingprivatekey), čas publikování, vypršení a příznaky. Poté dvoubajtová délka následovaná zašifrovanými daty. Nakonec [Signature](#signature) předchozích bajtů podepsaná zaslepeným [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.
+
+```bytefield
+sigtype            | 2 | red    | 2 bytes
+blinded_public_key | 8 | blue   | SigningPublicKey, varies
+published          | 4 | green  | 4 bytes, seconds since epoch
+expires            | 2 | yellow | 2 bytes
+flags              | 2 | red    | 2 bytes
+offline_signature  | 8 | orange | OfflineSignature, optional, varies
+len                | 2 | gray   | Integer, 2 bytes
+encrypted_data     | 8 | cyan   | Encrypted data, len bytes
+signature          | 8 | purple | Signature, varies
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2021,51 +2055,9 @@ Dvoubajtový typ podpisu, zaslepený [SigningPrivateKey](#signingprivatekey), č
 ~                                       ~
 |                                       |
 +----+----+----+----+----+----+----+----+
-
-sigtype :: A two byte signature type of the public key to follow
-           length -> 2 bytes
-
-blinded_public_key :: `SigningPublicKey`
-                      length -> As inferred from the sigtype
-
-published :: 4 byte date
-             length -> 4 bytes
-             Seconds since the epoch, rolls over in 2106.
-
-expires :: 2 byte time
-           length -> 2 bytes
-           Offset from published timestamp in seconds, 18.2 hours max
-
-flags :: 2 bytes
-  Bit order: 15 14 ... 3 2 1 0
-  Bit 0: If 0, no offline keys; if 1, offline keys
-  Bit 1: If 0, a standard published leaseset.
-         If 1, an unpublished leaseset. Should not be flooded, published, or
-         sent in response to a query. If this leaseset expires, do not query the
-         netdb for a new one.
-  Bits 15-2: set to 0 for compatibility with future uses
-
-offline_signature :: `OfflineSignature`
-                     length -> varies
-                     Optional, only present if bit 0 is set in the flags.
-
-len :: `Integer`
-        length -> 2 bytes
-        length of encrypted_data to follow
-        value: 1 <= num <= max TBD
-
-encrypted_data :: Data encrypted
-                  length -> len bytes
-
-signature :: `Signature`
-             length -> As specified by the sigtype of the blinded pubic key,
-                       or by the sigtype of the transient public key,
-                       if present in the header
-
 ```
-#### Poznámky
-
-* Veřejný klíč cíle byl používán pro staré I2CP-to-I2CP šifrování, které bylo zakázáno ve verzi 0.6, v současnosti se nepoužívá.
+</details>
+#### Popis
 
 * Podpis je nad výše uvedenými daty, PŘEDPOJENÝMI s jediným bajtem
   obsahujícím typ DatabaseStore (5).
@@ -2085,17 +2077,30 @@ signature :: `Signature`
 * Viz poznámka k poli 'published' v [LeaseSet2Header](#leaseset2header)
   (stejný problém, i když zde nepoužíváme formát LeaseSet2Header)
 
+* Cena je typicky 5 nebo 6 pro SSU a 10 nebo 11 pro NTCP.
+
+* Expiration (vypršení platnosti) se v současnosti nepoužívá, vždy null (všechny nuly). Od vydání 0.9.3 se předpokládá nulové expiration a neukládá se, takže jakékoliv nenulové expiration způsobí selhání ověření podpisu RouterInfo. Implementace expiration (nebo jiné použití těchto bajtů) bude změna nekompatibilní zpětně. Routery MUSÍ nastavit toto pole na všechny nuly. Od vydání 0.9.12 je nenulové pole expiration opět rozpoznáváno, nicméně musíme počkat několik vydání, než toto pole použijeme, dokud ho nebude rozpoznávat naprostá většina sítě.
+
 JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/EncryptedLeaseSet.html)
 
 ### RouterAddress
 
-#### Popis
+#### Obsah
 
 Tato struktura definuje způsoby, jak kontaktovat router prostřednictvím transportního protokolu.
 
-#### Obsah
+#### Poznámky
 
 1 byte [Integer](#integer) definující relativní náklady na použití adresy, kde 0 je zdarma a 255 je drahé, následované datem vypršení [Date](#date), po kterém by adresa neměla být použita, nebo pokud je null, adresa nikdy nevyprší. Poté následuje [String](#string) definující transportní protokol, který tato router adresa používá. Nakonec je zde [Mapping](#mapping) obsahující všechny transportně specifické možnosti potřebné k navázání spojení, jako je IP adresa, číslo portu, e-mailová adresa, URL atd.
+
+```bytefield
+cost            | 1 | green  | Integer, 1 byte
+expiration      | 7 | yellow | Date, 8 bytes
+transport_style | 8 | blue   | String, 1-256 bytes
+options         | 8 | purple | Mapping
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2110,42 +2115,48 @@ Tato struktura definuje způsoby, jak kontaktovat router prostřednictvím trans
 ~                                       ~
 |                                       |
 +----+----+----+----+----+----+----+----+
-
-cost :: `Integer`
-        length -> 1 byte
-
-        case 0 -> free
-        case 255 -> expensive
-
-expiration :: `Date` (must be all zeros, see notes below)
-              length -> 8 bytes
-
-              case null -> never expires
-
-transport_style :: `String`
-                   length -> 1-256 bytes
-
-options :: `Mapping`
 ```
-#### Poznámky
-
-* Cena je typicky 5 nebo 6 pro SSU a 10 nebo 11 pro NTCP.
-
-* Expiration (vypršení platnosti) se v současnosti nepoužívá, vždy null (všechny nuly). Od vydání 0.9.3 se předpokládá nulové expiration a neukládá se, takže jakékoliv nenulové expiration způsobí selhání ověření podpisu RouterInfo. Implementace expiration (nebo jiné použití těchto bajtů) bude změna nekompatibilní zpětně. Routery MUSÍ nastavit toto pole na všechny nuly. Od vydání 0.9.12 je nenulové pole expiration opět rozpoznáváno, nicméně musíme počkat několik vydání, než toto pole použijeme, dokud ho nebude rozpoznávat naprostá většina sítě.
+</details>
+#### Popis
 
 * Následující možnosti, ačkoli nejsou vyžadovány, jsou standardní a očekává se, že budou přítomny ve většině router adres: "host" (IPv4 nebo IPv6 adresa nebo název hostitele) a "port".
+
+* Hodnota peer_size [Integer](#integer) může být následována seznamem tolika router hashů.
+  Toto se v současnosti nepoužívá. Bylo určeno pro formu omezených tras,
+  která není implementována.
+  Některé implementace mohou vyžadovat, aby byl seznam seřazen, takže signatura je invariantní.
+  Je třeba toto prozkoumat před povolením této funkce.
+
+* Podpis může být ověřen pomocí veřejného podpisového klíče router_ident.
+
+* Viz stránku síťové databáze [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) pro standardní možnosti, které
+  se očekávají ve všech router infos.
 
 JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
 
 ### RouterInfo
 
-#### Popis
+#### Obsah
 
 Definuje všechna data, která chce router publikovat, aby je mohla síť vidět. [RouterInfo](#routerinfo) je jedna ze dvou struktur uložených v síťové databázi (druhou je [LeaseSet](#leaseset)) a je indexována pod SHA256 hash obsaženého [RouterIdentity](#routeridentity).
 
-#### Obsah
+#### Poznámky
 
 [RouterIdentity](#routeridentity) následovaná [Date](#date), kdy byl záznam publikován
+
+```bytefield
+router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
+published              | 8 | green  | Date, 8 bytes
+size                   | 1 | red    | Integer, 1 byte
+RouterAddress 0        | 7 | yellow | varies
+RouterAddress 1        | 8 | yellow | varies
+RouterAddress ($size-1)| 8 | yellow | varies
+psiz                   | 1 | red    | Integer, 1 byte
+options                | 7 | purple | Mapping
+signature              | 8 | cyan   | Signature, 40+ bytes
+```
+<details class="content-section">
+<summary>View original ASCII diagram</summary>
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -2191,47 +2202,38 @@ Definuje všechna data, která chce router publikovat, aby je mohla síť vidět
 +                                       +
 |                                       |
 +----+----+----+----+----+----+----+----+
-
-router_ident :: `RouterIdentity`
-                length -> >= 387+ bytes
-
-published :: `Date`
-             length -> 8 bytes
-
-size :: `Integer`
-        length -> 1 byte
-        The number of `RouterAddress`es to follow, 0-255
-
-addresses :: [`RouterAddress`]
-             length -> varies
-
-peer_size :: `Integer`
-             length -> 1 byte
-             The number of peer `Hash`es to follow, 0-255, unused, always zero
-             value -> 0
-
-options :: `Mapping`
-
-signature :: `Signature`
-             length -> 40 bytes or as specified in router_ident's key
-                       certificate
 ```
+</details>
 #### Poznámky
-
-* Hodnota peer_size [Integer](#integer) může být následována seznamem tolika router hashů.
-  Toto se v současnosti nepoužívá. Bylo určeno pro formu omezených tras,
-  která není implementována.
-  Některé implementace mohou vyžadovat, aby byl seznam seřazen, takže signatura je invariantní.
-  Je třeba toto prozkoumat před povolením této funkce.
-
-* Podpis může být ověřen pomocí veřejného podpisového klíče router_ident.
-
-* Viz stránku síťové databáze [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) pro standardní možnosti, které
-  se očekávají ve všech router infos.
 
 * Velmi staré routery vyžadovaly, aby byly adresy seřazeny podle SHA256 jejich dat,
   takže podpis je invariantní.
   To už není vyžadováno a nestojí za implementaci kvůli zpětné kompatibilitě.
+
+- [ECIES](/docs/specs/ecies/)
+- [ECIES-HYBRID](/docs/specs/ecies-hybrid/)
+- [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+- [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)
+- [ELGAMAL-AES](/docs/specs/elgamal-aes/)
+- [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)
+- [I2CP](/docs/specs/i2cp/)
+- [I2NP](/docs/specs/i2np/)
+- [NAMING](/docs/overview/naming/)
+- [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)
+- [Prop134](/proposals/134-gost/)
+- [Prop169](/proposals/169-pq-crypto/)
+- [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)
+- [SSU](/docs/legacy/ssu/)
+- [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)
+
+* Podpis může být ověřen pomocí veřejného klíče pro podepisování z router_ident.
+
+* Viz stránka databáze sítě [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) pro standardní možnosti, které
+  se očekávají v informacích všech routerů.
+
+* Velmi staré směrovače vyžadovaly, aby byly adresy seřazeny podle SHA256 jejich dat,
+  aby byl podpis neměnný.
+  Tento požadavek již není nutný a pro zpětnou kompatibilitu není implementace jeho hodna úsilí.
 
 JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
 
