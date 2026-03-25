@@ -2,8 +2,8 @@
 title: "Tunnel Routing"
 description: "Overview of I2P tunnel terminology, construction, and operation"
 slug: "tunnel-routing"
-lastUpdated: "2011-07"
-accurateFor: "0.8.7"
+lastUpdated: "2026-03"
+accurateFor: "0.9.68"
 ---
 
 ## Overview
@@ -115,6 +115,11 @@ The router uses 2-hop tunnels by default for its exploratory tunnels. Client tun
 ## Tunnel Testing
 
 All tunnels are periodically tested by their creator by sending a DeliveryStatusMessage out an outbound tunnel and bound for another inbound tunnel (testing both tunnels at once). If either fails a number of consecutive tests, it is marked as no longer functional. If it was used for a client's inbound tunnel, a new leaseSet is created. Tunnel test failures are also reflected in the [capacity rating in the peer profile](/docs/overview/peer-selection/#capacity).
+
+NOTE: As of 2026-02, tunnel testing is mandatory.
+To mitigate tunnel building attacks, and maintain capacity for in-use tunnels,
+routers may delete participating tunnels that have received no traffic as of two minutes after creation.
+Routers must initiate tunnel testing of newly created tunnels well before two minutes.
 
 ---
 
