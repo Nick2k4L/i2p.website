@@ -15,6 +15,16 @@ description: "I2P 网络的当前开发计划和历史里程碑"
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
+### Version 2.13.0
+<div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
+Target: August 2026
+</div>
+
+- SSU2-PQ transport (prop. 169)
+- I2CP lookup support for LS service record parameters (prop. 167)
+- Refactor Noise initialization
+
+
 ### Version 2.12.0
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
 Target: May 2026
@@ -22,7 +32,7 @@ Target: May 2026
 
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
-- I2CP lookup support for LS service record parameters (prop. 167)
+- Start work on I2CP lookup support for LS service record parameters (prop. 167)
 - NetDB lookup fixes when ElGamal disabled
 - NetDB published caps adjustments when near limits
 - Fix 60s stats that were high due to rounding
@@ -33,6 +43,7 @@ Target: May 2026
 - i2psnark standalone build fix
 - Per-tunnel throttling and bandwidth parameters work (WIP)
 - Debian trixie/resolute fixes (WIP)
+- Migrate from Transifex to Weblate
 
 </div>
 ---
