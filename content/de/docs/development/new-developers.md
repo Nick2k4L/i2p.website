@@ -7,6 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 notes: Übersetzungsteil aktualisieren
 aliases:
+  - "/de/newdevelopers"
   - "/de/docs/develop/new-developers"
   - "/de/docs/develop/new-developers/"
   - "/docs/develop/new-developers/"

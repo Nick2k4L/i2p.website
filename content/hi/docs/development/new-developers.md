@@ -7,6 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 notes: अनुवाद भाग अपडेट करें
 aliases:
+  - "/hi/newdevelopers"
   - "/hi/docs/develop/new-developers"
   - "/hi/docs/develop/new-developers/"
   - "/docs/develop/new-developers/"

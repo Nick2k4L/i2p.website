@@ -7,6 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 notes: обновить часть перевода
 aliases:
+  - "/ru/newdevelopers"
   - "/ru/docs/develop/new-developers"
   - "/ru/docs/develop/new-developers/"
   - "/docs/develop/new-developers/"

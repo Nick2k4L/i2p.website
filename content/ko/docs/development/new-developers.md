@@ -7,6 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 notes: 번역 부분 업데이트
 aliases:
+  - "/ko/newdevelopers"
   - "/ko/docs/develop/new-developers"
   - "/ko/docs/develop/new-developers/"
   - "/docs/develop/new-developers/"

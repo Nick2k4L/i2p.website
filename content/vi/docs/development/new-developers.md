@@ -7,6 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 notes: cập nhật phần dịch thuật
 aliases:
+  - "/vi/newdevelopers"
   - "/vi/docs/develop/new-developers"
   - "/vi/docs/develop/new-developers/"
   - "/docs/develop/new-developers/"

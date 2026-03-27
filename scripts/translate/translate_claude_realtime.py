@@ -289,6 +289,12 @@ class FrontMatterEntry:
     def formatted(self) -> str:
         value = self.translated if self.translated is not None else self.text
         quote = self.quote
+
+        # Handle YAML arrays (multiline values starting with newline)
+        if value.startswith("\n"):
+            # This is an array - output key: followed by array items
+            return f"{self.key}:{value}"
+
         if quote == '"':
             escaped = value.replace('"', '\\"')
             return f'{self.key}: "{escaped}"'
@@ -1343,17 +1349,52 @@ def split_front_matter(text: str) -> tuple[List[FrontMatterEntry], str]:
         return [], text
 
     entries: List[FrontMatterEntry] = []
-    for raw in fm_lines:
+    i = 0
+    while i < len(fm_lines):
+        raw = fm_lines[i]
+
         if not raw.strip():
+            i += 1
             continue
 
         if ":" not in raw:
+            i += 1
             continue
 
         key, _, raw_value = raw.partition(":")
         key = key.strip()
         raw_value = raw_value.strip()
 
+        # Handle YAML arrays (multi-line values starting with -)
+        # If the value is empty and next lines are indented array items
+        if not raw_value and i + 1 < len(fm_lines):
+            array_lines = []
+            j = i + 1
+            # Collect array items (lines starting with spaces and -)
+            while j < len(fm_lines):
+                next_line = fm_lines[j]
+                # Check if it's an array item (indented, starts with -)
+                if next_line.strip() and not next_line[0].isspace():
+                    break  # Next key found
+                if next_line.strip().startswith("-"):
+                    array_lines.append(next_line)
+                    j += 1
+                elif next_line.strip():
+                    # Non-array line, stop
+                    break
+                else:
+                    j += 1
+
+            if array_lines:
+                # Preserve the array as raw multiline text
+                # Store the full array structure in text field
+                text = "\n" + "\n".join(array_lines)
+                raw_value = ""  # Keep raw_value empty to signal array
+                entries.append(FrontMatterEntry(key=key, raw_value=raw_value, quote=None, text=text))
+                i = j  # Skip past array items
+                continue
+
+        # Handle simple scalar values
         quote = None
         text = raw_value
         if raw_value.startswith('"') and raw_value.endswith('"'):
@@ -1364,6 +1405,7 @@ def split_front_matter(text: str) -> tuple[List[FrontMatterEntry], str]:
             text = raw_value[1:-1].replace("''", "'")
 
         entries.append(FrontMatterEntry(key=key, raw_value=raw_value, quote=quote, text=text))
+        i += 1
 
     body = "\n".join(lines[end_index + 1:])
     return entries, body
