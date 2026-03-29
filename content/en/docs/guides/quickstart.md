@@ -6,7 +6,7 @@ lastUpdated: "2026-03"
 accurateFor: "2.11.0"
 ---
 
-**I2P is a fully encrypted, peer-to-peer anonymous network that runs "inside" the internet**, and the Java implementation from geti2p.net remains the flagship way to use it. Unlike Tor, which primarily anonymizes access to the regular web, I2P creates an entirely self-contained network of hidden services, websites, email, chat, and file sharing. 
+**I2P is a fully encrypted, peer-to-peer anonymous network that runs "inside" the internet**, and the Java implementation from i2p.net remains the flagship way to use it. Unlike Tor, which primarily anonymizes access to the regular web, I2P creates an entirely self-contained network of hidden services, websites, email, chat, and file sharing. 
 
 ---
 

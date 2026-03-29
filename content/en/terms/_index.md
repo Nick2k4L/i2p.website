@@ -131,4 +131,4 @@ By using our Website or Software, you acknowledge that you have read, understood
 
 **Last Updated**: October 2025
 
-These terms apply to the I2P project website (geti2p.net) and I2P software distributed by the I2P project.
+These terms apply to the I2P project website (i2p.net) and I2P software distributed by the I2P project.

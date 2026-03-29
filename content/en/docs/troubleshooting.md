@@ -440,7 +440,7 @@ sudo rm /etc/apt/sources.list.d/i2p.list
 echo "deb [signed-by=/usr/share/keyrings/i2p-archive-keyring.gpg] https://deb.i2p.net/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/i2p.list
 
 # Download and install current signing key
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 sudo cp i2p-archive-keyring.gpg /usr/share/keyrings/
 
 # Update and install
@@ -448,17 +448,6 @@ sudo apt update
 sudo apt install i2p i2p-keyring
 ```
 
-**GPG signature verification failures** occur when repository keys expire or change:
-
-```bash
-# Error: "The following signatures were invalid"
-# Solution: Install current keyring package
-sudo apt install i2p-keyring
-
-# Manual key import if package unavailable
-wget https://geti2p.net/_static/i2p-debian-repo.key.asc
-sudo apt-key add i2p-debian-repo.key.asc
-```
 
 **Service won't start after package installation** most commonly stems from AppArmor profile issues on Debian/Ubuntu:
 
@@ -522,7 +511,7 @@ Common wrapper.config problems:
 
 Router console updates occasionally fail mid-download due to network interruptions. Manual update procedure:
 
-1. Download i2pupdate_X.X.X.zip from https://geti2p.net/en/download
+1. Download i2pupdate_X.X.X.zip from https://i2p.net/en/download
 2. Verify SHA256 checksum matches published hash
 3. Copy to I2P install directory as `i2pupdate.zip`
 4. Restart router - automatically detects and extracts update

@@ -143,7 +143,7 @@ Note that client registry and port mapper are separate systems:
 
 ```markdown
 ✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
-✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
+✅ GOOD: [Configuration Specification](https://i2p.net/spec/configuration)
 
 ❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
@@ -573,7 +573,7 @@ Use blockquotes for special notices:
 **Do:**
 - Provide clearnet alternatives for all I2P-internal links
 - Verify URLs are accessible before publishing
-- Use persistent URLs (geti2p.net, not temporary hosting)
+- Use persistent URLs (i2p.net, not temporary hosting)
 
 ### 4. Incomplete Code Examples
 
@@ -631,7 +631,7 @@ reviewStatus: "verified"
 
 **Internal links** (within documentation):
 ```markdown
-See [clients.config specification](https://geti2p.net/spec/configuration#clients-config)
+See [clients.config specification](https://i2p.net/spec/configuration#clients-config)
 ```
 
 **External links** (to other resources):
