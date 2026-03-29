@@ -6,7 +6,7 @@ lastUpdated: "2026-03"
 accurateFor: "2.11.0"
 ---
 
-**I2P es una red anónima cifrada completamente y de igual a igual que funciona "dentro" de internet**, y la implementación en Java de geti2p.net sigue siendo la forma principal de usarla. A diferencia de Tor, que principalmente anonimiza el acceso a la web convencional, I2P crea una red totalmente autónoma compuesta por servicios ocultos, sitios web, correo electrónico, chat y compartición de archivos.
+**I2P es una red anónima cifrada completamente y de tipo par-a-par que funciona "dentro" de internet**, y la implementación en Java de i2p.net sigue siendo la forma principal de usarla. A diferencia de Tor, que principalmente anonimiza el acceso a la web convencional, I2P crea una red totalmente autónoma compuesta por servicios ocultos, sitios web, correo electrónico, chat y compartición de archivos.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Điều khoản dịch vụ"
 description: "Điều khoản và điều kiện sử dụng trang web và phần mềm của dự án I2P."
-type: "pháp lý"
+type: "legal"
 layout: "legal"
 lastUpdated: "2025-10"
 ---
@@ -24,7 +24,6 @@ Bạn có thể sử dụng Trang web của chúng tôi để:
 ### Prohibited Use
 
 Bạn không được sử dụng Trang web của chúng tôi để:
-
 
 - Violate any applicable laws or regulations
 - Transmit malicious code or harmful software
@@ -128,7 +127,8 @@ Nếu bạn có câu hỏi về các Điều khoản Dịch vụ này, vui lòng
 
 Bằng việc sử dụng Trang web hoặc Phần mềm của chúng tôi, bạn xác nhận rằng mình đã đọc, hiểu và đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này.
 
-
 **Cập nhật lần cuối**: Tháng 10 năm 2025
 
 Các điều khoản này áp dụng cho trang web của dự án I2P (geti2p.net) và phần mềm I2P do dự án I2P phân phối.
+
+Các điều khoản này áp dụng cho trang web dự án I2P (i2p.net) và phần mềm I2P được phân phối bởi dự án I2P.

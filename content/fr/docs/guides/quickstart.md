@@ -6,7 +6,7 @@ lastUpdated: "2026-03"
 accurateFor: "2.11.0"
 ---
 
-**I2P est un réseau anonyme, pair à pair et entièrement chiffré qui fonctionne « à l'intérieur » d'Internet**, et l'implémentation en Java provenant de geti2p.net reste la méthode principale pour l'utiliser. Contrairement à Tor, qui anonymise principalement l'accès au web classique, I2P crée un réseau entièrement autonome composé de services cachés, de sites web, de messagerie électronique, de messagerie instantanée et de partage de fichiers.
+**I2P est un réseau anonyme, pair-à-pair et entièrement chiffré qui fonctionne « à l'intérieur » d'Internet**, et l'implémentation Java provenant de i2p.net reste la méthode principale pour l'utiliser. Contrairement à Tor, qui anonymise principalement l'accès au web classique, I2P crée un réseau entièrement autonome composé de services cachés, de sites web, de messagerie électronique, de chat et de partage de fichiers.
 
 ---
 

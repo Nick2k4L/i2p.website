@@ -11,23 +11,26 @@ El proyecto I2P mantiene paquetes oficiales para Debian, Ubuntu y sus distribuci
 
 <div class="coming-soon-section">
 
-## 🚀 Beta: Instalación Automática (Experimental)
+## 🚀 Beta: Automatic Installation (Experimental)
 
-**Para usuarios avanzados que desean una instalación automatizada rápida:**
+**For advanced users who want a quick automated installation:**
 
-Este comando de una línea detectará automáticamente tu distribución e instalará I2P. **Úsalo con precaución** - revisa el [script de instalación](https://i2p.net/installlinux.sh) antes de ejecutarlo.
+This one-liner will automatically detect your distribution and install I2P. **Use with caution** - review the [installation script](https://i2p.net/installlinux.sh) before running.
 
 ```bash
 curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 ```
-**Lo que esto hace:** - Detecta tu distribución de Linux (Ubuntu/Debian) - Añade el repositorio de I2P apropiado - Instala las claves GPG y los paquetes necesarios - Instala I2P automáticamente
 
-⚠️ **Esta es una función beta.** Si prefieres la instalación manual o quieres entender cada paso, utiliza los métodos de instalación manual que se describen a continuación.
+**What this does:**
+- Detects your Linux distribution (Ubuntu/Debian)
+- Adds the appropriate I2P repository
+- Installs GPG keys and required packages
+- Installs I2P automatically
+
+⚠️ **This is a beta feature.** If you prefer manual installation or want to understand each step, use the manual installation methods below.
 
 </div>
-
 ---
-
 
 ## Plataformas Compatibles
 
@@ -51,7 +54,6 @@ Elige el método de instalación que coincida con tu distribución:
 - **Opción 2**: [Debian y distribuciones basadas en Debian](#debian-installation) (incluyendo LMDE, Kali, ParrotOS)
 
 ---
-
 
 ## Instalación en Ubuntu
 
@@ -96,10 +98,6 @@ Si prefieres una interfaz gráfica, puedes añadir el PPA usando el Centro de So
 
 Inicia "Software y Actualizaciones" desde tu menú de aplicaciones.
 
-```markdown
-![Menú del Centro de Software](/images/guides/debian/software-center-menu.png)
-```
-
 **Paso 2: Navegar a Otro Software**
 
 Selecciona la pestaña "Otro software" y haz clic en el botón "Añadir" en la parte inferior para configurar un nuevo PPA.
@@ -110,11 +108,11 @@ Selecciona la pestaña "Otro software" y haz clic en el botón "Añadir" en la p
 
 En el cuadro de diálogo PPA, introduce:
 
+![Diálogo Añadir PPA](/images/guides/debian/software-center-ppatool.png)
+
 ```
 ppa:i2p-maintainers/i2p
 ```
-![Diálogo Añadir PPA](/images/guides/debian/software-center-ppatool.png)
-
 **Paso 4: Recargar la información del repositorio**
 
 Haz clic en el botón "Reload" para descargar la información actualizada del repositorio.
@@ -193,7 +191,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Paso 3: Descargar la clave de firma del repositorio**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
 ```
 **Paso 4: Verificar la huella digital de la clave**
 
@@ -348,15 +346,13 @@ Si estás usando los repositorios antiguos `deb.i2p2.de` o `deb.i2p2.no`:
 
 ---
 
-Por favor, proporcione el texto que desea traducir. No se ha incluido ningún contenido después de "Text to translate:" en su mensaje.
-
 ## Next Steps
 
-Ahora que I2P está instalado y en funcionamiento:
+Por favor, proporcione el texto que desea traducir. No se ha incluido ningún contenido después de "Text to translate:" en su mensaje.
 
 - [Configura tu navegador](/docs/guides/browser-config) para acceder a sitios I2P
 - Explora la [consola del router I2P](http://127.0.0.1:7657/) para monitorear tu router
 - Conoce las [aplicaciones I2P](/docs/applications/) que puedes usar
 - Lee sobre [cómo funciona I2P](/docs/overview/tech-intro) para entender la red
 
-¡Bienvenido a la Internet Invisible!
+Ahora que I2P está instalado y en funcionamiento:

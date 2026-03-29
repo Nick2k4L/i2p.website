@@ -55,12 +55,7 @@ once to transition from INITIALIZED state.
 ```
 ### 配置属性
 
-在编写配置文件文档时：
-1. 显示精确的属性名称
-2. 指定文件编码（I2P 配置文件使用 UTF-8）
-3. 提供完整的示例
-4. 记录默认值
-5. 注明属性引入/更改的版本
+在编写配置文件文档时： 1. 显示精确的属性名称 2. 指定文件编码（I2P 配置文件使用 UTF-8） 3. 提供完整的示例 4. 记录默认值 5. 注明属性引入/更改的版本
 
 **示例：**
 
@@ -127,7 +122,7 @@ Note that client registry and port mapper are separate systems:
 
 ```markdown
 ✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
-✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
+✅ GOOD: [Configuration Specification](https://i2p.net/spec/configuration)
 
 ❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
@@ -552,7 +547,7 @@ reviewStatus: "verified"
 **内部链接** (文档内):
 
 ```markdown
-See [clients.config specification](https://geti2p.net/spec/configuration#clients-config)
+See [clients.config specification](https://i2p.net/spec/configuration#clients-config)
 ```
 **外部链接**（指向其他资源）：
 

@@ -9,24 +9,27 @@ Das I2P-Projekt pflegt offizielle Pakete für Debian, Ubuntu und deren abgeleite
 
 ---
 
-
 <div class="coming-soon-section">
 
-## 🚀 Beta: Automatische Installation (Experimentell)
+## 🚀 Beta: Automatic Installation (Experimental)
 
-**Für fortgeschrittene Benutzer, die eine schnelle automatisierte Installation wünschen:**
+**For advanced users who want a quick automated installation:**
 
-Dieser Einzeiler erkennt automatisch Ihre Distribution und installiert I2P. **Mit Vorsicht verwenden** - überprüfen Sie das [Installationsskript](https://i2p.net/installlinux.sh) vor der Ausführung.
+This one-liner will automatically detect your distribution and install I2P. **Use with caution** - review the [installation script](https://i2p.net/installlinux.sh) before running.
 
 ```bash
 curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 ```
-**Was dies tut:** - Erkennt Ihre Linux-Distribution (Ubuntu/Debian) - Fügt das entsprechende I2P-Repository hinzu - Installiert GPG-Schlüssel und erforderliche Pakete - Installiert I2P automatisch
 
-⚠️ **Dies ist eine Beta-Funktion.** Wenn Sie die manuelle Installation bevorzugen oder jeden Schritt verstehen möchten, verwenden Sie die unten aufgeführten manuellen Installationsmethoden.
+**What this does:**
+- Detects your Linux distribution (Ubuntu/Debian)
+- Adds the appropriate I2P repository
+- Installs GPG keys and required packages
+- Installs I2P automatically
+
+⚠️ **This is a beta feature.** If you prefer manual installation or want to understand each step, use the manual installation methods below.
 
 </div>
-
 ---
 
 ## Unterstützte Plattformen
@@ -51,7 +54,6 @@ Wählen Sie die Installationsmethode, die zu Ihrer Distribution passt:
 - **Option 2**: [Debian und Debian-basierte Distributionen](#debian-installation) (einschließlich LMDE, Kali, ParrotOS)
 
 ---
-
 
 ## Ubuntu Installation
 
@@ -129,7 +131,6 @@ Sobald die Installation abgeschlossen ist, fahren Sie mit der [Konfiguration nac
 
 ---
 
-
 ## Debian Installation
 
 Debian und dessen nachgelagerte Distributionen (LMDE, Kali Linux, ParrotOS, Knoppix, etc.) sollten das offizielle I2P Debian-Repository unter `deb.i2p.net` verwenden.
@@ -190,7 +191,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Schritt 3: Repository-Signaturschlüssel herunterladen**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
 ```
 **Schritt 4: Den Schlüssel-Fingerabdruck überprüfen**
 
@@ -311,7 +312,6 @@ Um auf I2P-Seiten (eepsites) und Dienste zuzugreifen, konfigurieren Sie Ihren Br
 Siehe unsere [Anleitung zur Browser-Konfiguration](/docs/guides/browser-config) für detaillierte Einrichtungsanleitungen für Firefox, Chrome und andere Browser.
 
 ---
-
 
 ## Debian-Installation
 

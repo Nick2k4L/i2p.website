@@ -6,7 +6,7 @@ lastUpdated: "2026-03"
 accurateFor: "2.11.0"
 ---
 
-**I2P là một mạng ngang hàng ẩn danh, được mã hóa hoàn toàn, chạy "bên trong" internet**, và phiên bản triển khai bằng Java từ geti2p.net vẫn là cách tiêu chuẩn để sử dụng nó. Không giống như Tor, vốn chủ yếu ẩn danh hóa việc truy cập vào web thông thường, I2P tạo ra một mạng lưới hoàn toàn khép kín gồm các dịch vụ ẩn, trang web, email, trò chuyện và chia sẻ tệp tin.
+**I2P là một mạng ngang hàng ẩn danh được mã hóa hoàn toàn, chạy "bên trong" internet**, và phiên bản triển khai bằng Java từ i2p.net vẫn là cách tiêu chuẩn để sử dụng nó. Không giống như Tor, vốn chủ yếu ẩn danh hóa việc truy cập vào web thông thường, I2P tạo ra một mạng lưới hoàn toàn độc lập gồm các dịch vụ ẩn, trang web, email, trò chuyện và chia sẻ tệp tin.
 
 ---
 

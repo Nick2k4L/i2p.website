@@ -409,7 +409,7 @@ sudo rm /etc/apt/sources.list.d/i2p.list
 echo "deb [signed-by=/usr/share/keyrings/i2p-archive-keyring.gpg] https://deb.i2p.net/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/i2p.list
 
 # Download and install current signing key
-curl -o i2p-archive-keyring.gpg https://geti2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 sudo cp i2p-archive-keyring.gpg /usr/share/keyrings/
 
 # Update and install
@@ -417,17 +417,6 @@ sudo apt update
 sudo apt install i2p i2p-keyring
 ```
 **Falhas na verificação de assinaturas GPG** ocorrem quando as chaves do repositório expiram ou são alteradas:
-
-```bash
-# Error: "The following signatures were invalid"
-# Solution: Install current keyring package
-sudo apt install i2p-keyring
-
-# Manual key import if package unavailable
-wget https://geti2p.net/_static/i2p-debian-repo.key.asc
-sudo apt-key add i2p-debian-repo.key.asc
-```
-**O serviço não inicia após a instalação do pacote** geralmente se deve a problemas nos perfis do AppArmor no Debian/Ubuntu:
 
 ```bash
 # Check service status
@@ -444,7 +433,7 @@ sudo aa-complain /usr/sbin/wrapper
 # Check logs for specific errors  
 sudo journalctl -xe -u i2p.service
 ```
-**Problemas de permissão** no I2P instalado via pacote:
+**O serviço não inicia após a instalação do pacote** geralmente se deve a problemas nos perfis do AppArmor no Debian/Ubuntu:
 
 ```bash
 # Fix ownership (package install uses 'i2psvc' user)
@@ -455,9 +444,9 @@ sudo chmod 750 /var/log/i2p /var/lib/i2p
 i2psvc soft nofile 4096  
 i2psvc hard nofile 8192
 ```
-**Problemas de compatibilidade com Java:**
+**Problemas de permissão** no I2P instalado via pacote:
 
-I2P 2.10.0 requer **Java 8 no mínimo**. Sistemas mais antigos podem ter Java 7 ou anterior:
+**Problemas de compatibilidade com Java:**
 
 ```bash
 # Check Java version
@@ -469,20 +458,20 @@ sudo apt install openjdk-11-jre-headless
 # Set default Java if multiple versions installed
 sudo update-alternatives --config java
 ```
+I2P 2.10.0 requer **Java 8 no mínimo**. Sistemas mais antigos podem ter Java 7 ou anterior:
+
 **Erros de configuração do Wrapper** impedem a inicialização do serviço:
 
 A localização do Wrapper.config varia conforme o método de instalação: - Instalação do usuário: `~/.i2p/wrapper.config` - Instalação por pacote: `/etc/i2p/wrapper.config` ou `/var/lib/i2p/wrapper.config`
-
-Problemas comuns no wrapper.config:
 
 - Caminhos incorretos: `wrapper.java.command` deve apontar para uma instalação válida do Java
 - Memória insuficiente: `wrapper.java.maxmemory` definido muito baixo (aumente para 512+)
 - Localização incorreta do pidfile: `wrapper.pidfile` deve ser um local gravável
 - Binário do wrapper ausente: Algumas plataformas não possuem wrapper pré-compilado (use runplain.sh como alternativa)
 
-**Falhas de atualização e atualizações corrompidas:**
+Problemas comuns no wrapper.config:
 
-Ocasionalmente, as atualizações da console do router falham no meio do download devido a interrupções na rede. Procedimento de atualização manual:
+**Falhas de atualização e atualizações corrompidas:**
 
 1. Baixe i2pupdate_X.X.X.zip de https://geti2p.net/en/download
 2. Verifique se o checksum SHA256 corresponde ao hash publicado
@@ -491,22 +480,22 @@ Ocasionalmente, as atualizações da console do router falham no meio do downloa
 5. Aguarde 5-10 minutos para a instalação da atualização
 6. Verifique a nova versão em http://127.0.0.1:7657
 
-**Migração a partir de versões muito antigas** (pré-0.9.47) para versões atuais pode falhar devido a chaves de assinatura incompatíveis ou funcionalidades removidas. Atualizações incrementais necessárias:
+Ocasionalmente, as atualizações da console do router falham no meio do download devido a interrupções na rede. Procedimento de atualização manual:
 
 - Versões anteriores à 0.9.9: Não é possível verificar as assinaturas atuais - é necessária atualização manual
 - Versões com Java 6/7: É necessário atualizar o Java antes de atualizar o I2P para a versão 2.x
 - Grandes saltos de versão: Atualize primeiro para uma versão intermediária (0.9.47 é a recomendada)
 
-**Quando usar instalador vs pacote:**
+**Migração a partir de versões muito antigas** (pré-0.9.47) para versões atuais pode falhar devido a chaves de assinatura incompatíveis ou funcionalidades removidas. Atualizações incrementais necessárias:
 
 - **Pacotes (apt/yum):** Melhor para servidores, atualizações automáticas de segurança, integração ao sistema, gerenciamento com o systemd
 - **Instalador (.jar):** Melhor para instalação no nível do usuário, Windows, macOS, instalações personalizadas, disponibilidade da versão mais recente
 
 ## Corrupção do arquivo de configuração e recuperação
 
-A persistência da configuração do I2P depende de vários arquivos críticos. A corrupção geralmente resulta de **desligamento inadequado**, **erros de disco** ou **erros de edição manual**. Compreender a finalidade de cada arquivo permite um reparo cirúrgico em vez de uma reinstalação completa.
+**Quando usar instalador vs pacote:**
 
-**Arquivos críticos e suas funções:**
+A persistência da configuração do I2P depende de vários arquivos críticos. A corrupção geralmente resulta de **desligamento inadequado**, **erros de disco** ou **erros de edição manual**. Compreender a finalidade de cada arquivo permite um reparo cirúrgico em vez de uma reinstalação completa.
 
 - **router.keys** (516+ bytes): Identidade criptográfica do router - perder isso cria uma nova identidade
 - **router.info** (gerado automaticamente): Informações do router publicadas - é seguro apagar, regenera-se  
@@ -517,7 +506,7 @@ A persistência da configuração do I2P depende de vários arquivos críticos. 
 - **keyData/** (diretório): Chaves de destino para eepsites e serviços - perder isto altera endereços
 - **addressbook/** (diretório): Mapeamentos locais de nomes de host .i2p
 
-**Procedimento de backup completo** antes de qualquer modificação:
+**Arquivos críticos e suas funções:**
 
 ```bash
 # Stop I2P first
@@ -537,14 +526,14 @@ cp -r ~/.i2p/eepsite $BACKUP_DIR/  # if hosting sites
 # Optional but recommended
 tar -czf $BACKUP_DIR.tar.gz $BACKUP_DIR
 ```
-**Sintomas de corrupção do Router.config:**
+**Procedimento de backup completo** antes de qualquer modificação:
 
 - O router não inicia, com erros de análise sintática nos logs
 - As configurações não persistem após a reinicialização
 - Valores padrão inesperados aparecem  
 - Caracteres ilegíveis ao visualizar o arquivo
 
-**Reparar router.config corrompido:**
+**Sintomas de corrupção do Router.config:**
 
 1. Faça backup do existente: `cp router.config router.config.broken`
 2. Verifique a codificação do arquivo: Deve ser UTF-8 sem BOM (marca de ordem de bytes)
@@ -552,7 +541,7 @@ tar -czf $BACKUP_DIR.tar.gz $BACKUP_DIR
 4. Problemas comuns de corrupção: caracteres não ASCII nos valores, problemas de final de linha (CRLF vs LF)
 5. Se não for possível corrigir: Exclua router.config - o router gera uma configuração padrão, preservando a identidade
 
-**Configurações essenciais do router.config que devem ser preservadas:**
+**Reparar router.config corrompido:**
 
 ```properties
 i2np.bandwidth.inboundKBytesPerSecond=512
@@ -561,17 +550,17 @@ router.updatePolicy=notify
 routerconsole.lang=en
 router.hiddenMode=false
 ```
-**router.keys perdido ou inválido** cria uma nova identidade do router (roteador do I2P). Isso é aceitável, a menos que:
+**Configurações essenciais do router.config que devem ser preservadas:**
 
 - Executando floodfill (perde o status de floodfill)
 - Hospedando eepsites com endereço publicado (perde a continuidade)  
 - Reputação estabelecida na rede
 
+**router.keys perdido ou inválido** cria uma nova identidade do router (roteador do I2P). Isso é aceitável, a menos que:
+
 Sem cópia de segurança, não é possível recuperar - crie uma nova: apague router.keys, reinicie o I2P; uma nova identidade será criada.
 
 **Distinção crítica:** router.keys (identidade) vs keyData/* (serviços). Perder router.keys altera a identidade do router. Perder keyData/mysite-keys.dat altera o endereço .i2p do seu eepsite - catastrófico se o endereço tiver sido publicado.
-
-**Faça backup das chaves do eepsite/serviço separadamente:**
 
 ```bash
 # Identify your service keys
@@ -583,11 +572,11 @@ cp ~/.i2p/keyData/myservice-keys.dat ~/backups/myservice-keys-$(date +%Y%m%d).da
 # Store securely (encrypted if sensitive)
 gpg -c ~/backups/myservice-keys-*.dat
 ```
+**Faça backup das chaves do eepsite/serviço separadamente:**
+
 **Corrupção em NetDb e peerProfiles (perfis de pares):**
 
 Sintomas: Zero pares ativos, não é possível construir tunnels, "Database corruption detected" nos logs
-
-Correção segura (todos farão reseed (obter novamente os dados iniciais da rede) e reconstruirão automaticamente):
 
 ```bash
 i2prouter stop
@@ -596,9 +585,9 @@ rm -rf ~/.i2p/peerProfiles/*
 i2prouter start
 # Wait 10-15 minutes for reseed and integration
 ```
-Esses diretórios contêm apenas informações de rede em cache - excluí-los força uma nova inicialização (bootstrap), mas não resulta em perda de dados críticos.
+Correção segura (todos farão reseed (obter novamente os dados iniciais da rede) e reconstruirão automaticamente):
 
-**Estratégias de prevenção:**
+Esses diretórios contêm apenas informações de rede em cache - excluí-los força uma nova inicialização (bootstrap), mas não resulta em perda de dados críticos.
 
 1. **Sempre desligue corretamente:** Use `i2prouter stop` ou o botão "Shutdown" do console do router - nunca mate o processo à força
 2. **Backups automatizados:** Tarefa cron de backup semanal de ~/.i2p para um disco separado
@@ -607,7 +596,7 @@ Esses diretórios contêm apenas informações de rede em cache - excluí-los fo
 5. **Nobreak (UPS) recomendado:** Falhas de energia durante gravações corrompem arquivos
 6. **Controle de versão das configurações críticas:** Repositório Git para router.config, i2ptunnel.config permite reversão
 
-**As permissões de arquivo são importantes:**
+**Estratégias de prevenção:**
 
 ```bash
 # Correct permissions (user install)
@@ -620,18 +609,18 @@ chmod 755 ~/.i2p
 ```
 ## Mensagens de erro comuns decodificadas
 
-O sistema de logs do I2P fornece mensagens de erro específicas que localizam exatamente os problemas. Compreender essas mensagens acelera a solução de problemas.
+**As permissões de arquivo são importantes:**
 
-**"No tunnels available"** aparece quando o router ainda não construiu tunnels suficientes para o funcionamento. Isso é **normal durante os primeiros 5-10 minutos** após a inicialização. Se persistir por mais de 15 minutos:
+O sistema de logs do I2P fornece mensagens de erro específicas que localizam exatamente os problemas. Compreender essas mensagens acelera a solução de problemas.
 
 1. Verifique se os pares ativos > 10 em http://127.0.0.1:7657
 2. Verifique se a alocação de largura de banda é adequada (mínimo de 128+ KB/sec)
 3. Examine a taxa de sucesso do tunnel em http://127.0.0.1:7657/tunnels (deve ser >40%)
 4. Revise os logs para identificar os motivos de rejeição na construção do tunnel
 
-**"Desvio de relógio detectado"** ou **"NTCP2 disconnect code 7"** indicam que a hora do sistema difere do consenso da rede em mais de 90 segundos. O I2P exige precisão de ±60 segundos. Conexões com routers com desvio de horário são rejeitadas automaticamente.
+**"No tunnels available"** aparece quando o router ainda não construiu tunnels suficientes para o funcionamento. Isso é **normal durante os primeiros 5-10 minutos** após a inicialização. Se persistir por mais de 15 minutos:
 
-Corrigir imediatamente:
+**"Desvio de relógio detectado"** ou **"NTCP2 disconnect code 7"** indicam que a hora do sistema difere do consenso da rede em mais de 90 segundos. O I2P exige precisão de ±60 segundos. Conexões com routers com desvio de horário são rejeitadas automaticamente.
 
 ```bash
 # Linux  
@@ -645,18 +634,18 @@ date  # Verify correct time
 # Verify after sync
 http://127.0.0.1:7657/logs  # Should no longer show clock skew warnings
 ```
-**"Build timeout"** ou **"Tunnel build timeout exceeded"** significa que a construção do tunnel através da cadeia de pares não foi concluída dentro da janela de tempo limite (geralmente 60 segundos). Causas:
+Corrigir imediatamente:
 
 - **Pares lentos:** Router selecionou participantes sem resposta para o tunnel
 - **Congestionamento de rede:** A rede I2P está enfrentando alta carga
 - **Largura de banda insuficiente:** Seus limites de largura de banda impedem a construção de tunnel em tempo hábil
 - **Router sobrecarregado:** Tunnels participantes em excesso consumindo recursos
 
+**"Build timeout"** ou **"Tunnel build timeout exceeded"** significa que a construção do tunnel através da cadeia de pares não foi concluída dentro da janela de tempo limite (geralmente 60 segundos). Causas:
+
 Soluções: aumentar a largura de banda, reduzir os tunnels participantes (`router.maxParticipatingTunnels` em http://127.0.0.1:7657/configadvanced), ativar o redirecionamento de portas para melhorar a seleção de pares.
 
 **"Router is shutting down"** ou **"Graceful shutdown in progress"** aparecem durante o encerramento normal ou a recuperação após uma falha. Um encerramento controlado pode levar **até 10 minutos** enquanto o router fecha os tunnels, notifica os pares e salva o estado.
-
-Se ficar preso no estado de encerramento por mais de 11 minutos, force a finalização:
 
 ```bash
 # Linux  
@@ -665,7 +654,7 @@ kill -9 $(pgrep -f i2p)
 # Windows
 taskkill /F /IM javaw.exe
 ```
-**"java.lang.OutOfMemoryError: Java heap space"** indica esgotamento do heap (área de memória dinâmica). Soluções imediatas:
+Se ficar preso no estado de encerramento por mais de 11 minutos, force a finalização:
 
 1. Edite wrapper.config: `wrapper.java.maxmemory=512` (ou superior)
 2. **Encerramento completo obrigatório** - reiniciar não aplicará a alteração
@@ -673,23 +662,23 @@ taskkill /F /IM javaw.exe
 4. Inicie o router do zero
 5. Verifique a alocação de memória em http://127.0.0.1:7657/graphs - deve mostrar folga
 
-**Erros de memória relacionados:**
+**"java.lang.OutOfMemoryError: Java heap space"** indica esgotamento do heap (área de memória dinâmica). Soluções imediatas:
 
 - **"GC overhead limit exceeded":** Gastando tempo excessivo na coleta de lixo - aumente o heap
 - **"Metaspace" (área de metadados da JVM):** Espaço de metadados de classes Java esgotado - adicione `wrapper.java.additional.X=-XX:MaxMetaspaceSize=256M`
 
-**Específico do Windows:** O Kaspersky Antivirus limita o heap (área de memória dinâmica) do Java a 512MB independentemente das configurações do wrapper.config - desinstale-o ou adicione o I2P às exclusões.
+**Erros de memória relacionados:**
 
-**"Tempo limite de conexão"** ou **"Erro do I2CP - porta 7654"** quando os aplicativos tentam se conectar ao router:
+**Específico do Windows:** O Kaspersky Antivirus limita o heap (área de memória dinâmica) do Java a 512MB independentemente das configurações do wrapper.config - desinstale-o ou adicione o I2P às exclusões.
 
 1. Verifique se o router está em execução: http://127.0.0.1:7657 deve responder
 2. Verifique a porta I2CP: `netstat -an | grep 7654` deve mostrar LISTENING
 3. Certifique-se de que o firewall do localhost permite: `sudo ufw allow from 127.0.0.1`  
 4. Verifique se a aplicação está usando a porta correta (I2CP=7654, SAM=7656)
 
-**"Certificate validation failed"** ou **"RouterInfo corrupt"** durante o reseed (processo de obtenção inicial da netDb):
+**"Tempo limite de conexão"** ou **"Erro do I2CP - porta 7654"** quando os aplicativos tentam se conectar ao router:
 
-Causas-raiz: Desvio de relógio (corrigir primeiro), netDb corrompida, certificados de reseed (processo de inicialização da rede) inválidos
+**"Certificate validation failed"** ou **"RouterInfo corrupt"** durante o reseed (processo de obtenção inicial da netDb):
 
 ```bash
 # After fixing clock:
@@ -697,7 +686,7 @@ i2prouter stop
 rm -rf ~/.i2p/netDb/*  # Delete corrupted database
 i2prouter start  # Auto-reseeds with fresh data
 ```
-**"Corrupção de banco de dados detectada"** indica corrupção de dados em nível de disco em netDb ou em peerProfiles:
+Causas-raiz: Desvio de relógio (corrigir primeiro), netDb corrompida, certificados de reseed (processo de inicialização da rede) inválidos
 
 ```bash
 # Safe fix - all will rebuild
@@ -705,15 +694,15 @@ i2prouter stop
 rm -rf ~/.i2p/netDb/* ~/.i2p/peerProfiles/*
 i2prouter start
 ```
-Verifique a saúde do disco com ferramentas SMART - corrupção recorrente sugere falha iminente no armazenamento.
+**"Corrupção de banco de dados detectada"** indica corrupção de dados em nível de disco em netDb ou em peerProfiles:
 
 ## Desafios específicos da plataforma
 
-Diferentes sistemas operacionais apresentam desafios específicos de implantação do I2P relacionados a permissões, políticas de segurança e integração com o sistema.
+Verifique a saúde do disco com ferramentas SMART - corrupção recorrente sugere falha iminente no armazenamento.
 
 ### Problemas de permissões e serviços no Linux
 
-O I2P instalado via pacote é executado como o usuário do sistema **i2psvc** (Debian/Ubuntu) ou **i2p** (outras distribuições), exigindo permissões específicas:
+Diferentes sistemas operacionais apresentam desafios específicos de implantação do I2P relacionados a permissões, políticas de segurança e integração com o sistema.
 
 ```bash
 # Fix package install permissions  
@@ -726,7 +715,7 @@ chown -R $USER:$USER ~/.i2p
 chmod 700 ~/.i2p
 chmod 600 ~/.i2p/router.keys ~/.i2p/*.config
 ```
-**Limites de descritores de arquivo** afetam a capacidade do router para conexões. Os limites padrão (1024) são insuficientes para routers de alta largura de banda:
+O I2P instalado via pacote é executado como o usuário do sistema **i2psvc** (Debian/Ubuntu) ou **i2p** (outras distribuições), exigindo permissões específicas:
 
 ```bash
 # Check current limits
@@ -750,7 +739,7 @@ LimitNOFILE=8192
 sudo systemctl daemon-reload
 sudo systemctl restart i2p
 ```
-**Conflitos do AppArmor** comuns no Debian/Ubuntu impedem a inicialização do serviço:
+**Limites de descritores de arquivo** afetam a capacidade do router para conexões. Os limites padrão (1024) são insuficientes para routers de alta largura de banda:
 
 ```bash
 # Error: "Failed at step APPARMOR spawning /usr/sbin/wrapper"
@@ -766,7 +755,7 @@ sudo dpkg-reconfigure -plow i2p
 # Solution 3: LXC/Proxmox containers - disable AppArmor in container config
 lxc.apparmor.profile: unconfined
 ```
-**Problemas com o SELinux** em RHEL/CentOS/Fedora:
+**Conflitos do AppArmor** comuns no Debian/Ubuntu impedem a inicialização do serviço:
 
 ```bash
 # Temporary: Set permissive mode
@@ -779,7 +768,7 @@ sudo semodule -i i2p_policy.pp
 # Or disable SELinux for I2P process (less secure)
 sudo semanage permissive -a i2p_t
 ```
-**Solução de problemas de serviços do SystemD:**
+**Problemas com o SELinux** em RHEL/CentOS/Fedora:
 
 ```bash
 # Detailed service status
@@ -796,9 +785,9 @@ sudo systemctl restart i2p.service && sudo journalctl -f -u i2p.service
 ```
 ### Interferência do Firewall do Windows e de programas antivírus
 
-O Windows Defender e produtos antivírus de terceiros frequentemente sinalizam o I2P devido a padrões de comportamento de rede. Uma configuração adequada evita bloqueios desnecessários, mantendo a segurança.
+**Solução de problemas de serviços do SystemD:**
 
-**Configurar o Firewall do Windows Defender:**
+O Windows Defender e produtos antivírus de terceiros frequentemente sinalizam o I2P devido a padrões de comportamento de rede. Uma configuração adequada evita bloqueios desnecessários, mantendo a segurança.
 
 ```powershell
 # Run PowerShell as Administrator
@@ -817,13 +806,13 @@ Add-MpPreference -ExclusionPath "$env:APPDATA\I2P"
 Add-MpPreference -ExclusionPath "$env:LOCALAPPDATA\I2P"
 Add-MpPreference -ExclusionProcess "javaw.exe"
 ```
+**Configurar o Firewall do Windows Defender:**
+
 Substitua a porta 22648 pela sua porta I2P correta indicada em http://127.0.0.1:7657/confignet.
 
 **Problema específico do Kaspersky Antivirus:** O "Application Control" da Kaspersky limita o heap do Java a 512MB, independentemente das configurações do wrapper.config. Isso causa OutOfMemoryError em routers de alta largura de banda.
 
 Soluções: 1. Adicione o I2P às exclusões do Kaspersky: Configurações → Adicional → Ameaças e Exclusões → Gerenciar Exclusões 2. Ou desinstale o Kaspersky (recomendado para o funcionamento do I2P)
-
-**Orientações gerais para antivírus de terceiros:**
 
 - Adicione o diretório de instalação do I2P às exclusões  
 - Adicione %APPDATA%\I2P e %LOCALAPPDATA%\I2P às exclusões
@@ -832,9 +821,9 @@ Soluções: 1. Adicione o I2P às exclusões do Kaspersky: Configurações → A
 
 ### Gatekeeper do macOS bloqueando a instalação
 
-O Gatekeeper do macOS impede a execução de aplicativos não assinados. Os instaladores do I2P não são assinados com um Apple Developer ID, o que gera alertas de segurança.
+**Orientações gerais para antivírus de terceiros:**
 
-**Ignorar o Gatekeeper para o instalador do I2P:**
+O Gatekeeper do macOS impede a execução de aplicativos não assinados. Os instaladores do I2P não são assinados com um Apple Developer ID, o que gera alertas de segurança.
 
 ```bash
 # Method 1: Remove quarantine attribute
@@ -852,15 +841,15 @@ java -jar ~/Downloads/i2pinstall_*.jar
 # Select "Open" from menu → "Open" again in dialog
 # Bypasses Gatekeeper for this specific file
 ```
-**Após a instalação, a execução** ainda pode gerar avisos:
+**Ignorar o Gatekeeper para o instalador do I2P:**
 
 ```bash
 # If I2P won't start due to Gatekeeper:
 xattr -dr com.apple.quarantine ~/i2p/
 ```
-**Nunca desative permanentemente o Gatekeeper (recurso de segurança do macOS)** - risco de segurança para outros aplicativos. Use apenas exceções específicas por arquivo.
+**Após a instalação, a execução** ainda pode gerar avisos:
 
-**Configuração do firewall no macOS:**
+**Nunca desative permanentemente o Gatekeeper (recurso de segurança do macOS)** - risco de segurança para outros aplicativos. Use apenas exceções específicas por arquivo.
 
 1. Preferências do Sistema → Segurança e Privacidade → Firewall → Opções do Firewall
 2. Clique em "+" para adicionar o aplicativo  
@@ -869,11 +858,11 @@ xattr -dr com.apple.quarantine ~/i2p/
 
 ### Problemas do aplicativo I2P para Android
 
+**Configuração do firewall no macOS:**
+
 As restrições de versão do Android e as limitações de recursos criam desafios únicos.
 
 **Requisitos mínimos:** - Android 5.0+ (nível de API 21+) obrigatório para as versões atuais - 512 MB de RAM no mínimo, 1 GB+ recomendado   - 100 MB de armazenamento para o aplicativo + dados do router - Restrições de aplicativos em segundo plano desativadas para o I2P
-
-**O aplicativo falha imediatamente:**
 
 1. **Verifique a versão do Android:** Configurações → Sobre o telefone → Versão do Android (deve ser 5.0+)
 2. **Desinstale todas as versões do I2P:** Instale apenas uma variante:
@@ -883,28 +872,28 @@ As restrições de versão do Android e as limitações de recursos criam desafi
 3. **Limpe os dados do app:** Configurações → Apps → I2P → Armazenamento → Limpar dados
 4. **Reinstale a partir de um estado limpo**
 
-**Otimização de bateria encerrando o router:**
+**O aplicativo falha imediatamente:**
 
-O Android encerra agressivamente aplicativos em segundo plano para economizar bateria. O I2P precisa ser excluído:
+**Otimização de bateria encerrando o router:**
 
 1. Configurações → Bateria → Otimização da bateria (ou Uso da bateria do app)
 2. Localize I2P → Não otimizar (ou Permitir atividade em segundo plano)
 3. Configurações → Apps → I2P → Bateria → Permitir atividade em segundo plano + Remover restrições
 
-**Problemas de conexão em dispositivos móveis:**
+O Android encerra agressivamente aplicativos em segundo plano para economizar bateria. O I2P precisa ser excluído:
 
 - **Bootstrap (inicialização) requer WiFi:** O processo de reseed inicial (obtenção inicial de pares) baixa uma quantidade significativa de dados - use WiFi, não dados móveis
 - **Mudanças na rede:** O I2P não lida bem com trocas de rede - reinicie o aplicativo após uma transição WiFi/celular
 - **Largura de banda para dispositivos móveis:** Configure de forma conservadora em 64-128 KB/sec para evitar o esgotamento dos dados móveis
 
-**Otimização de desempenho para dispositivos móveis:**
+**Problemas de conexão em dispositivos móveis:**
 
 1. App I2P → Menu → Configurações → Largura de banda
 2. Defina limites apropriados: 64 KB/sec de entrada, 32 KB/sec de saída para dados móveis
 3. Reduza os tunnels participantes: Configurações → Avançado → Máximo de tunnels participantes: 100-200
 4. Ative "Parar o I2P quando a tela estiver desligada" para economizar bateria
 
-**Uso de torrents no Android:**
+**Otimização de desempenho para dispositivos móveis:**
 
 - Limite para no máximo 2-3 torrents simultâneos
 - Reduza a agressividade do DHT  
@@ -913,15 +902,15 @@ O Android encerra agressivamente aplicativos em segundo plano para economizar ba
 
 ## Problemas de reseed e bootstrap
 
-Novas instalações do I2P exigem **reseeding** (processo inicial de obtenção de pares) - buscar informações iniciais de pares em servidores HTTPS públicos para ingressar na rede. Problemas de reseeding deixam os usuários com zero pares e sem acesso à rede.
+**Uso de torrents no Android:**
 
-**"No active peers" após uma instalação limpa** normalmente indica falha no reseed (processo de obtenção inicial de pares). Sintomas:
+Novas instalações do I2P exigem **reseeding** (processo inicial de obtenção de pares) - buscar informações iniciais de pares em servidores HTTPS públicos para ingressar na rede. Problemas de reseeding deixam os usuários com zero pares e sem acesso à rede.
 
 - Pares conhecidos: 0 ou fica abaixo de 5
 - "Network: Testing" permanece por mais de 15 minutos
 - Os logs mostram "Reseed failed" ou erros de conexão com servidores de reseed
 
-**Por que o reseed (processo inicial de obtenção de pares) falha:**
+**"No active peers" após uma instalação limpa** normalmente indica falha no reseed (processo de obtenção inicial de pares). Sintomas:
 
 1. **Firewall bloqueando HTTPS:** Firewalls corporativos/ISPs bloqueiam conexões aos reseed servers (servidores de inicialização da rede) (porta 443)
 2. **Erros de certificado SSL:** O sistema não possui certificados raiz atualizados
@@ -929,7 +918,7 @@ Novas instalações do I2P exigem **reseeding** (processo inicial de obtenção 
 4. **Desvio de relógio:** A validação do certificado SSL falha quando o horário do sistema está errado
 5. **Censura geográfica:** Alguns países/ISPs bloqueiam reseed servers conhecidos
 
-**Forçar reseed manual (carregamento inicial da rede):**
+**Por que o reseed (processo inicial de obtenção de pares) falha:**
 
 1. Acesse http://127.0.0.1:7657/configreseed
 2. Clique em "Save changes and reseed now"  
@@ -937,9 +926,9 @@ Novas instalações do I2P exigem **reseeding** (processo inicial de obtenção 
 4. Aguarde 5-10 minutos para o processamento
 5. Verifique http://127.0.0.1:7657 - os pares conhecidos devem aumentar para 50+
 
-**Configurar proxy de reseed** para redes restritivas:
+**Forçar reseed manual (carregamento inicial da rede):**
 
-http://127.0.0.1:7657/configreseed → Configuração do proxy:
+**Configurar proxy de reseed** para redes restritivas:
 
 - Proxy HTTP: [proxy-server]:[port]
 - Ou SOCKS5: [socks-server]:[port]  
@@ -947,18 +936,18 @@ http://127.0.0.1:7657/configreseed → Configuração do proxy:
 - Credenciais, se necessário
 - Salve e force o reseed
 
-**Alternativa: proxy do Tor para reseed (processo de inicialização da netDb):**
+http://127.0.0.1:7657/configreseed → Configuração do proxy:
 
-Se o Tor Browser ou o daemon do Tor estiver em execução:
+**Alternativa: proxy do Tor para reseed (processo de inicialização da netDb):**
 
 - Tipo de proxy: SOCKS5
 - Host: 127.0.0.1
 - Porta: 9050 (porta SOCKS padrão do Tor)
 - Ativar e reseed (obter novamente os pares iniciais da rede)
 
-**Reseed manual (processo de obtenção de pares iniciais) via arquivo su3** (último recurso):
+Se o Tor Browser ou o daemon do Tor estiver em execução:
 
-Quando todas as tentativas de reseed (obtenção inicial de entradas do netDb) automatizado falharem, obtenha o arquivo de reseed por um canal fora de banda:
+**Reseed manual (processo de obtenção de pares iniciais) via arquivo su3** (último recurso):
 
 1. Baixe i2pseeds.su3 de uma fonte confiável em uma conexão sem restrições (https://reseed.i2p.rocks/i2pseeds.su3, https://reseed-fr.i2pd.xyz/i2pseeds.su3)
 2. Encerre o I2P completamente
@@ -967,13 +956,13 @@ Quando todas as tentativas de reseed (obtenção inicial de entradas do netDb) a
 5. Exclua i2pseeds.su3 após o processamento
 6. Verifique se o número de pares aumenta em http://127.0.0.1:7657
 
-**Erros de certificado SSL durante o reseed (processo inicial de obtenção de pares do netDb):**
+Quando todas as tentativas de reseed (obtenção inicial de entradas do netDb) automatizado falharem, obtenha o arquivo de reseed por um canal fora de banda:
 
 ```
 Error: "Reseed: Certificate verification failed"  
 Cause: System root certificates outdated or missing
 ```
-Soluções:
+**Erros de certificado SSL durante o reseed (processo inicial de obtenção de pares do netDb):**
 
 ```bash
 # Linux - update certificates
@@ -986,9 +975,9 @@ sudo update-ca-certificates
 # macOS - update system
 # Software Update includes certificate trust updates
 ```
-**Travado em 0 pares conhecidos por mais de 30 minutos:**
+Soluções:
 
-Indica falha completa de reseed (processo de obtenção inicial de pares). Procedimento de solução de problemas:
+**Travado em 0 pares conhecidos por mais de 30 minutos:**
 
 1. **Verifique se a data e hora do sistema estão corretas** (problema mais comum - corrija PRIMEIRO)
 2. **Teste a conectividade HTTPS:** Tente acessar https://reseed.i2p.rocks no navegador - se falhar, é um problema de rede
@@ -996,26 +985,26 @@ Indica falha completa de reseed (processo de obtenção inicial de pares). Proce
 4. **Tente uma URL de reseed diferente:** http://127.0.0.1:7657/configreseed → adicione uma URL de reseed personalizada: https://reseed-fr.i2pd.xyz/
 5. **Use o método manual com arquivo su3** se as tentativas automatizadas estiverem esgotadas
 
-**Reseed servers ocasionalmente fora do ar (servidores que fornecem os pares iniciais):** I2P inclui vários reseed servers pré-configurados no código. Se um falhar, o router tenta outros automaticamente. A falha completa de todos os reseed servers é extremamente rara, mas possível.
+Indica falha completa de reseed (processo de obtenção inicial de pares). Procedimento de solução de problemas:
 
-**reseed servers (servidores de inicialização da rede) ativos no momento** (em outubro de 2025):
+**Reseed servers ocasionalmente fora do ar (servidores que fornecem os pares iniciais):** I2P inclui vários reseed servers pré-configurados no código. Se um falhar, o router tenta outros automaticamente. A falha completa de todos os reseed servers é extremamente rara, mas possível.
 
 - https://reseed.i2p.rocks/
 - https://reseed-fr.i2pd.xyz/
 - https://i2p.novg.net/
 - https://i2p-projekt.de/
 
+**reseed servers (servidores de inicialização da rede) ativos no momento** (em outubro de 2025):
+
 Adicione como URLs personalizadas se tiver problemas com os valores padrão.
 
 **Para usuários em regiões fortemente censuradas:**
 
-Considere usar as pontes Snowflake/Meek através do Tor para o reseed inicial (processo de obtenção inicial de pares e endereços da rede), e depois alternar para acesso direto ao I2P assim que estiver integrado à rede. Ou obtenha i2pseeds.su3 por meio de esteganografia, e-mail ou USB de fora da zona de censura.
-
 ## Quando procurar ajuda adicional
 
-Este guia abrange a vasta maioria dos problemas do I2P, mas alguns exigem a atenção de desenvolvedores ou o conhecimento especializado da comunidade.
+Considere usar as pontes Snowflake/Meek através do Tor para o reseed inicial (processo de obtenção inicial de pares e endereços da rede), e depois alternar para acesso direto ao I2P assim que estiver integrado à rede. Ou obtenha i2pseeds.su3 por meio de esteganografia, e-mail ou USB de fora da zona de censura.
 
-**Procure ajuda da comunidade I2P quando:**
+Este guia abrange a vasta maioria dos problemas do I2P, mas alguns exigem a atenção de desenvolvedores ou o conhecimento especializado da comunidade.
 
 - O router trava repetidamente após seguir todas as etapas de solução de problemas
 - Vazamentos de memória provocando crescimento contínuo além do heap (área de memória dinâmica) alocado
@@ -1024,7 +1013,7 @@ Este guia abrange a vasta maioria dos problemas do I2P, mas alguns exigem a aten
 - Vulnerabilidades de segurança descobertas
 - Solicitações de funcionalidades ou sugestões de melhoria
 
-**Antes de solicitar ajuda, reúna informações de diagnóstico:**
+**Procure ajuda da comunidade I2P quando:**
 
 1. Versão do I2P: http://127.0.0.1:7657 (por exemplo, "2.10.0")
 2. Versão do Java: saída de `java -version`
@@ -1034,7 +1023,7 @@ Este guia abrange a vasta maioria dos problemas do I2P, mas alguns exigem a aten
 6. Status do encaminhamento de portas: bloqueado por firewall ou OK
 7. Trechos relevantes do log: últimas 50 linhas mostrando erros de http://127.0.0.1:7657/logs
 
-**Canais oficiais de suporte:**
+**Antes de solicitar ajuda, reúna informações de diagnóstico:**
 
 - **Fórum:** https://i2pforum.net (clearnet) ou http://i2pforum.i2p (dentro do I2P)
 - **IRC:** #i2p em Irc2P (irc.postman.i2p via I2P) ou irc.freenode.net (clearnet)
@@ -1042,12 +1031,12 @@ Este guia abrange a vasta maioria dos problemas do I2P, mas alguns exigem a aten
 - **Rastreador de bugs:** https://i2pgit.org/i2p-hackers/i2p.i2p/-/issues para bugs confirmados
 - **Lista de discussão:** i2p-dev@lists.i2p-projekt.de para perguntas sobre desenvolvimento
 
-**Expectativas realistas importam.** I2P é mais lento do que a clearnet (internet aberta) por design fundamental - o tunneling (encapsulamento em túnel) criptografado de múltiplos saltos cria latência inerente. Um router I2P funcionando com carregamentos de página de 30 segundos e velocidades de torrent de 50 KB/sec está **funcionando corretamente**, não está com defeito. Usuários que esperam velocidades de clearnet ficarão desapontados independentemente da otimização da configuração.
+**Canais oficiais de suporte:**
 
 ## Conclusão
+
+**Expectativas realistas importam.** I2P é mais lento do que a clearnet (internet aberta) por design fundamental - o tunneling (encapsulamento em túnel) criptografado de múltiplos saltos cria latência inerente. Um router I2P funcionando com carregamentos de página de 30 segundos e velocidades de torrent de 50 KB/sec está **funcionando corretamente**, não está com defeito. Usuários que esperam velocidades de clearnet ficarão desapontados independentemente da otimização da configuração.
 
 A maioria dos problemas no I2P decorre de três categorias: paciência insuficiente durante o bootstrap (processo de inicialização; requer 10-15 minutos), alocação de recursos inadequada (mínimo de 512 MB de RAM, 256 KB/sec de largura de banda) ou redirecionamento de portas mal configurado. Compreender a arquitetura distribuída do I2P e o design voltado ao anonimato ajuda os usuários a distinguir o comportamento esperado de problemas reais.
 
 O status "Firewalled" do router, embora não seja o ideal, não impede o uso do I2P — apenas limita a contribuição para a rede e degrada ligeiramente o desempenho. Novos usuários devem priorizar a **estabilidade em vez da otimização**: execute o router continuamente por vários dias antes de ajustar configurações avançadas, pois a integração melhora naturalmente com o tempo de atividade.
-
-Ao solucionar problemas, verifique primeiro o básico: hora correta do sistema, largura de banda adequada, router em execução contínua e 10 ou mais pares ativos. A maioria dos problemas se resolve ao tratar desses fundamentos, em vez de ajustar parâmetros de configuração obscuros. O I2P recompensa a paciência e a operação contínua com desempenho aprimorado, à medida que o router constrói reputação e otimiza a seleção de pares ao longo de dias e semanas de tempo de atividade.

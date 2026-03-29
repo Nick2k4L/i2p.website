@@ -1,7 +1,7 @@
 ---
 title: "Smluvní podmínky"
 description: "Podmínky používání webových stránek a softwaru projektu I2P."
-type: "právní"
+type: "legal"
 layout: "legal"
 lastUpdated: "2025-10"
 ---
@@ -127,7 +127,8 @@ Máte-li dotazy ohledně těchto Smluvních podmínek, kontaktujte nás:
 
 Používáním našich webových stránek nebo softwaru berete na vědomí, že jste si přečetli, porozuměli a souhlasíte s tím, že budete vázáni těmito Podmínkami poskytování služeb.
 
-
 **Naposledy aktualizováno**: říjen 2025
 
 Tyto podmínky se vztahují na webové stránky projektu I2P (geti2p.net) a na software I2P distribuovaný projektem I2P.
+
+Tyto podmínky se vztahují na webové stránky projektu I2P (i2p.net) a software I2P distribuovaný projektem I2P.

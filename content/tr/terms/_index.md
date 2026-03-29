@@ -1,7 +1,7 @@
 ---
 title: "Hizmet Koşulları"
 description: "I2P projesinin web sitesi ve yazılımını kullanmaya ilişkin şartlar ve koşullar."
-type: "yasal"
+type: "legal"
 layout: "legal"
 lastUpdated: "2025-10"
 ---
@@ -55,8 +55,7 @@ Aşağıdakilerden yalnızca siz sorumlusunuz:
 
 ### Yazılım Lisansı
 
-Aksi belirtilmedikçe, I2P projesi Web Sitesi içeriğindeki tüm fikri mülkiyet haklarının sahibidir veya bunlar için lisans sahibidir.
-İçeriği yalnızca kişisel, ticari olmayan kullanım için görüntüleyebilir ve yazdırabilirsiniz.
+Aksi belirtilmedikçe, I2P projesi Web Sitesi içeriğindeki tüm fikri mülkiyet haklarının sahibidir veya bunlar için lisans sahibidir. İçeriği yalnızca kişisel, ticari olmayan kullanım için görüntüleyebilir ve yazdırabilirsiniz.
 
 ### Garanti Verilmez
 
@@ -128,8 +127,8 @@ Bu Hizmet Koşulları hakkında sorularınız varsa, lütfen bizimle iletişime 
 
 Web Sitemizi veya Yazılımımızı kullanarak, bu Hizmet Şartlarını okuduğunuzu, anladığınızı ve bunlara bağlı kalmayı kabul ettiğinizi beyan edersiniz.
 
-
 **Son Güncelleme**: Ekim 2025
 
-
 Bu koşullar I2P projesinin web sitesi (geti2p.net) ve I2P projesi tarafından dağıtılan I2P yazılımı için geçerlidir.
+
+Bu koşullar, I2P projesi web sitesine (i2p.net) ve I2P projesi tarafından dağıtılan I2P yazılımına uygulanır.

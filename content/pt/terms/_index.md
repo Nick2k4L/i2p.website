@@ -1,7 +1,7 @@
 ---
 title: "Termos de Serviço"
 description: "Termos e condições de uso do site e do software do projeto I2P."
-type: "jurídico"
+type: "legal"
 layout: "legal"
 lastUpdated: "2025-10"
 ---

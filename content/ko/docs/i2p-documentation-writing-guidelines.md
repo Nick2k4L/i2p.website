@@ -122,7 +122,7 @@ Note that client registry and port mapper are separate systems:
 
 ```markdown
 ✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
-✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
+✅ GOOD: [Configuration Specification](https://i2p.net/spec/configuration)
 
 ❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
@@ -149,10 +149,7 @@ reviewStatus: "verified"
 
 ### 콘텐츠의 버전 참조
 
-버전을 언급할 때:
-1. 현재 버전에는 **굵게**를 사용하세요: "**버전 2.10.0** (2025년 9월)"
-2. 과거를 참조할 때는 버전 번호와 날짜를 모두 명시하세요
-3. 필요할 경우 API 버전은 I2P 버전과 구분하여 명시하세요
+버전을 언급할 때: 1. 현재 버전에는 **굵게**를 사용하세요: "**버전 2.10.0** (2025년 9월)" 2. 과거를 참조할 때는 버전 번호와 날짜를 모두 명시하세요 3. 필요할 경우 API 버전은 I2P 버전과 구분하여 명시하세요
 
 **예시:**
 
@@ -550,7 +547,7 @@ reviewStatus: "verified"
 **내부 링크** (문서 내):
 
 ```markdown
-See [clients.config specification](https://geti2p.net/spec/configuration#clients-config)
+See [clients.config specification](https://i2p.net/spec/configuration#clients-config)
 ```
 **외부 링크** (다른 리소스로 연결):
 

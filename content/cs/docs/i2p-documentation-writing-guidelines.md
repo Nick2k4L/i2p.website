@@ -122,7 +122,7 @@ Note that client registry and port mapper are separate systems:
 
 ```markdown
 ✅ GOOD: [ClientApp Javadoc](https://i2p.github.io/i2p.i2p/net/i2p/app/ClientApp.html)
-✅ GOOD: [Configuration Specification](https://geti2p.net/spec/configuration)
+✅ GOOD: [Configuration Specification](https://i2p.net/spec/configuration)
 
 ❌ BAD: See the ClientApp docs at http://idk.i2p/...
 ❌ BAD: [link](url) with no descriptive text
@@ -547,7 +547,7 @@ reviewStatus: "verified"
 **Interní odkazy** (v rámci dokumentace):
 
 ```markdown
-See [clients.config specification](https://geti2p.net/spec/configuration#clients-config)
+See [clients.config specification](https://i2p.net/spec/configuration#clients-config)
 ```
 **Externí odkazy** (na další zdroje):
 

@@ -6,7 +6,7 @@ lastUpdated: "2026-03"
 accurateFor: "2.11.0"
 ---
 
-**I2P je plně šifrovaná, peer-to-peer anonymní síť, která běží „uvnitř“ internetu**, a její Java implementace z geti2p.net zůstává hlavním způsobem jejího použití. Na rozdíl od Toru, který primárně anonymizuje přístup k běžnému webu, I2P vytváří zcela uzavřenou síť skrytých služeb, webových stránek, e-mailů, chatů a sdílení souborů.
+**I2P je plně šifrovaná, peer-to-peer anonymní síť, která běží „uvnitř“ internetu**, a její java implementace z i2p.net zůstává hlavním způsobem jejího použití. Na rozdíl od Toru, který především anonymizuje přístup k běžnému webu, I2P vytváří zcela uzavřenou síť skrytých služeb, webových stránek, e-mailů, chatů a sdílení souborů.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "شروط الخدمة"
 description: "شروط وأحكام استخدام الموقع الإلكتروني لمشروع I2P وبرمجياته."
-type: "قانوني"
+type: "legal"
 layout: "legal"
 lastUpdated: "2025-10"
 ---
