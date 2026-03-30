@@ -2,10 +2,12 @@
 title: "I2NP 개요"
 description: "I2P 네트워크 프로토콜(I2NP) 개요 - 메시지 형식, 유형, 우선순위 및 크기 제한."
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "프로토콜"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## 개요
@@ -168,10 +170,14 @@ I2NP(I2P 네트워크 프로토콜) 메시지는 원-홉(one-hop), 라우터 간
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
+## 터널 테스트
+
+API 버전 0.9.68 2026-02부터 터널 테스트가 필수입니다. 라우터는 처음 두 분 동안 트래픽을 수신하지 않은 참여 터널을 삭제할 수 있습니다.
+
 ## 완전한 프로토콜 사양
 
 전체 프로토콜 사양은 [I2NP 사양 페이지](/docs/specs/i2np/)를 참조하세요. 또한 [공용 데이터 구조 사양 페이지](/docs/specs/common-structures/)도 함께 참조하세요.
 
 ## 향후 작업
 
-현재의 우선순위 체계가 일반적으로 효과적인지 여부와 다양한 메시지의 우선순위를 추가로 조정해야 하는지는 불분명하다. 이는 추가 연구, 분석 및 테스트가 필요한 주제이다.
+현재의 우선순위 체계가 일반적으로 효과적인지 여부와 다양한 메시지의 우선순위를 추가로 조정해야 할지 여부는 명확하지 않습니다. 이는 추가 연구, 분석 및 테스트가 필요한 주제입니다.

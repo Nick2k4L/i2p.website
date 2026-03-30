@@ -3,11 +3,10 @@ title: "Spécification I2NP"
 description: "Formats de messages, priorités et structures communes du protocole réseau I2P (I2NP) pour la communication entre routeurs."
 slug: "i2np"
 aliases:
-  - "/fr/docs/protocol/i2np"
-  - "/fr/docs/protocol/i2np/"
+  - "/spec/i2np"
 category: "Protocoles"
-lastUpdated: "2025-12"
-accurateFor: "0.9.66"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Aperçu
@@ -31,12 +30,20 @@ Un résumé de base des versions du protocole I2NP est le suivant. Pour plus de 
 </thead>
 <tbody>
 <tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.68</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel testing required</td>
+</tr>
+<tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.66</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">LeaseSet2 service record options (see proposal 167)</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.65</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel build bandwidth parameters (see proposal 168)</td>
+</tr>
+<tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.62</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Minimum peers will build tunnels through, as of 0.9.68<br>Minimum floodfill peers will send DSM to, as of 0.9.68</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.59</td>
@@ -1184,9 +1191,11 @@ from ::
 
 Un simple accusé de réception de message. Généralement créé par l'expéditeur du message, et encapsulé dans un Garlic Message avec le message lui-même, pour être retourné par la destination.
 
+Ce message est également utilisé pour le test des tunnels, où l'initiateur l'envoie à travers un tunnel sortant, vers un tunnel entrant, puis de retour à lui-même. Dans ce cas également, il est généralement encapsulé dans du garlic encryption. Le test des tunnels est requis à partir de la version 0.9.68 de l'API (2026-02), car les routeurs sont autorisés à abandonner les tunnels participants n'ayant reçu aucun trafic après les deux premières minutes.
+
 #### Sommaire
 
-L'ID du message livré, et l'heure de création ou d'arrivée.
+L'ID du message livré, ainsi que l'heure de création ou d'arrivée.
 
 ```
 +----+----+----+----+----+----+----+----+----+----+----+----+
@@ -1210,7 +1219,7 @@ time_stamp :: Date
 
 ### Garlic {#msg-Garlic}
 
-Attention : Ceci est le format utilisé pour les messages garlic chiffrés avec ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). Le format pour les messages garlic et cloves garlic ECIES-AEAD-X25519-Ratchet est significativement différent ; voir [ECIES](/docs/specs/ecies/) pour la spécification.
+Avertissement : Ceci est le format utilisé pour les messages épelés chiffrés avec ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). Le format pour les messages épelés utilisant ECIES-AEAD-X25519-Ratchet ainsi que pour les clous d'ail est sensiblement différent ; voir [ECIES](/docs/specs/ecies/) pour la spécification.
 
 #### Description
 
@@ -1218,7 +1227,7 @@ Utilisé pour encapsuler plusieurs messages I2NP chiffrés
 
 #### Sommaire
 
-Une fois déchiffré, une série de [Garlic Cloves](#struct-GarlicClove) et des données supplémentaires, également connues sous le nom de Clove Set.
+Une fois déchiffré, une série de [Garlic Cloves](#struct-GarlicClove) et des données supplémentaires, également appelée un ensemble de Clove (Clove Set).
 
 Chiffré :
 
@@ -1240,7 +1249,7 @@ data ::
      $length bytes
      ElGamal encrypted data
 ```
-Données déchiffrées, également appelées Clove Set :
+Données déchiffrées, également appelées ensemble Clove (Clove Set) :
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1294,7 +1303,7 @@ Expiration :: Date (8 bytes)
 
 #### Description
 
-Un message envoyé de la passerelle ou d'un participant d'un tunnel vers le participant suivant ou le point de terminaison. Les données sont de longueur fixe, contenant des messages I2NP qui sont fragmentés, regroupés par lots, complétés et chiffrés.
+Un message envoyé depuis la passerelle ou un participant d'un tunnel vers le participant suivant ou le point de terminaison. Les données ont une longueur fixe et contiennent des messages I2NP fragmentés, regroupés, complétés et chiffrés.
 
 #### Sommaire
 
@@ -1329,7 +1338,7 @@ data ::
 
 #### Description
 
-Encapsule un autre message I2NP à envoyer dans un tunnel au niveau de la passerelle d'entrée du tunnel.
+Encapsule un autre message I2NP à envoyer dans un tunnel à la passerelle entrante du tunnel.
 
 #### Sommaire
 
@@ -1359,7 +1368,7 @@ data ::
 
 #### Description
 
-Utilisé par les Garlic Messages et Garlic Cloves pour encapsuler des données arbitraires.
+Utilisé par les messages Garlic et les gousses Garlic pour encapsuler des données arbitraires.
 
 #### Sommaire
 
@@ -1420,7 +1429,7 @@ total size: 8*528 = 4224 bytes
 
 ### TunnelBuildReply {#msg-TunnelBuildReply}
 
-DÉPRÉCIÉ, utilisez [VariableTunnelBuildReply](#msg-VariableTunnelBuildReply)
+OBSOLÈTE, utiliser [VariableTunnelBuildReply](#msg-VariableTunnelBuildReply)
 
 ```
 Same format as TunnelBuildMessage, with BuildResponseRecords
@@ -1489,7 +1498,7 @@ Same format as VariableTunnelBuildMessage, with BuildResponseRecords.
 
 #### Description
 
-À partir de la version API 0.9.51, pour les routers ECIES-X25519 uniquement.
+À partir de la version d'API 0.9.51, uniquement pour les routeurs ECIES-X25519.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1518,7 +1527,7 @@ total size: 1+$num*218
 
 #### Description
 
-Envoyé depuis le point de sortie sortant d'un nouveau tunnel vers l'initiateur. À partir de la version API 0.9.51, pour les routeurs ECIES-X25519 uniquement.
+Envoyé depuis le point de terminaison sortant d'un nouveau tunnel vers l'initiateur. À partir de la version 0.9.51 de l'API, uniquement pour les routeurs ECIES-X25519.
 
 ```
 +----+----+----+----+----+----+----+----+

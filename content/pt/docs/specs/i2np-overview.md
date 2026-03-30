@@ -2,10 +2,12 @@
 title: "Visão geral do I2NP"
 description: "Visão geral do Protocolo de Rede I2P (I2NP) - formato de mensagem, tipos, prioridades e limites de tamanho."
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "Protocolos"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Visão Geral
@@ -168,9 +170,13 @@ Além disso, nem todos os tipos de mensagens são enviados sem criptografia. Por
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
+## Teste de Túnel
+
+O teste de túnel é obrigatório a partir da versão 0.9.68 da API em 2026-02, pois os roteadores podem descartar túneis participantes que não receberam nenhum tráfego após os primeiros dois minutos.
+
 ## Especificação Completa do Protocolo
 
-Consulte a [página de especificação do I2NP](/docs/specs/i2np/) para a especificação completa do protocolo. Consulte também a [página de especificação de estruturas de dados comuns](/docs/specs/common-structures/).
+Veja a [página de Especificação I2NP](/docs/specs/i2np/) para a especificação completa do protocolo. Veja também a [página de Especificação de Estruturas de Dados Comuns](/docs/specs/common-structures/).
 
 ## Trabalhos Futuros
 

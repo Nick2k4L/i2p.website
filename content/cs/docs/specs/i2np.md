@@ -3,11 +3,10 @@ title: "Specifikace I2NP"
 description: "Formáty zpráv, priority a běžné struktury I2P Network Protocol (I2NP) pro komunikaci mezi routery."
 slug: "i2np"
 aliases:
-  - "/cs/docs/protocol/i2np"
-  - "/cs/docs/protocol/i2np/"
+  - "/spec/i2np"
 category: "Protokoly"
-lastUpdated: "2025-12"
-accurateFor: "0.9.66"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Přehled
@@ -31,12 +30,20 @@ Základní přehled verzí I2NP protokolu je následující. Pro podrobnosti viz
 </thead>
 <tbody>
 <tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.68</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel testing required</td>
+</tr>
+<tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.66</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">LeaseSet2 service record options (see proposal 167)</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.65</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel build bandwidth parameters (see proposal 168)</td>
+</tr>
+<tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.62</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Minimum peers will build tunnels through, as of 0.9.68<br>Minimum floodfill peers will send DSM to, as of 0.9.68</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.59</td>
@@ -1184,9 +1191,11 @@ from ::
 
 Jednoduché potvrzení zprávy. Obvykle vytvořeno původcem zprávy a zabaleno do Garlic Message spolu se samotnou zprávou, aby bylo vráceno cílem.
 
+Tato zpráva se používá také pro testování tunelů, kdy odesílatel pošle zprávu výstupním tunelem do vstupního tunelu a zpět k sobě. I v tomto případě je obvykle zabalena pomocí garlic encryption. Testování tunelů je vyžadováno od verze API 0.9.68 z roku 2026-02, protože směrovače mají povoleno odmítat zapojené tunely, které po prvních dvou minutách nepřijaly žádný provoz.
+
 #### Obsah
 
-ID doručené zprávy a čas vytvoření nebo příchodu.
+ID doručené zprávy a čas jejího vytvoření nebo přijetí.
 
 ```
 +----+----+----+----+----+----+----+----+----+----+----+----+
@@ -1214,13 +1223,13 @@ Upozornění: Toto je formát používaný pro ElGamal-šifrované garlic zpráv
 
 #### Popis
 
-Používá se k zabalení více šifrovaných I2NP zpráv
+Používá se k zabalení více šifrovaných zpráv I2NP
 
 #### Obsah
 
-Po dešifrování série [Garlic Cloves](#struct-GarlicClove) a dalších dat, také známých jako Clove Set.
+Po dešifrování série [Garlic Cloves](#struct-GarlicClove) a dalších dat, známých také jako Clove Set.
 
-Šifrováno:
+Šifrované:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1240,7 +1249,7 @@ data ::
      $length bytes
      ElGamal encrypted data
 ```
-Dešifrovaná data, také známá jako Clove Set:
+Dešifrovaná data, známá také jako Clove Set:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1294,7 +1303,7 @@ Expiration :: Date (8 bytes)
 
 #### Popis
 
-Zpráva odeslaná z gateway nebo účastníka tunnelu k dalšímu účastníkovi nebo koncovému bodu. Data mají pevnou délku a obsahují I2NP zprávy, které jsou fragmentovány, seskupeny do dávek, doplněny a zašifrovány.
+Zpráva odeslaná z brány nebo účastníka tunelu dalšímu účastníkovi nebo koncovému bodu. Data mají pevnou délku a obsahují fragmentované, seskupené, doplněné a šifrované zprávy I2NP.
 
 #### Obsah
 
@@ -1329,7 +1338,7 @@ data ::
 
 #### Popis
 
-Zabaluje další I2NP zprávu, která má být odeslána do tunnel na vstupní bráně tunnel.
+Zabalení jiné zprávy I2NP, která má být odeslána do tunelu na vstupní bráně tunelu.
 
 #### Obsah
 
@@ -1359,11 +1368,11 @@ data ::
 
 #### Popis
 
-Používáno Garlic Messages a Garlic Cloves pro zabalení libovolných dat.
+Používá se u Garlic zpráv a Garlic cloves pro zabalení libovolných dat.
 
 #### Obsah
 
-Celé číslo délky následované neprůhlednými daty.
+Celé číslo udávající délku, následované neprůhlednými daty.
 
 ```
 +----+----+----+----+----+-//-+
@@ -1489,7 +1498,7 @@ Same format as VariableTunnelBuildMessage, with BuildResponseRecords.
 
 #### Popis
 
-Od verze API 0.9.51, pouze pro ECIES-X25519 routery.
+Počínaje verzí API 0.9.51, pouze pro směrovače ECIES-X25519.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1518,7 +1527,7 @@ total size: 1+$num*218
 
 #### Popis
 
-Odesláno z odchozího koncového bodu nového tunelu k původci. Od verze API 0.9.51 pouze pro routery ECIES-X25519.
+Odesláno z odchozího koncového bodu nového tunelu původci. Od verze API 0.9.51 pouze pro směrovače ECIES-X25519.
 
 ```
 +----+----+----+----+----+----+----+----+

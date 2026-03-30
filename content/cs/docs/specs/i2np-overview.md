@@ -2,10 +2,12 @@
 title: "Přehled I2NP"
 description: "Přehled protokolu sítě I2P (I2NP) – formát zpráv, typy, priority a omezení velikosti."
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "Protocols"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Přehled
@@ -168,9 +170,13 @@ Také ne všechny typy zpráv jsou odesílány nešifrovaně. Například při t
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
-## Úplná specifikace protokolu
+## Testování tunelu
 
-Kompletní specifikaci protokolu naleznete na stránce [specifikace I2NP](/docs/specs/i2np/). Viz také stránka [specifikace běžných datových struktur](/docs/specs/common-structures/).
+Testování tunelů je vyžadováno od verze API 0.9.68 z února 2026, protože směrovače mají povoleno odmítat účast na tunelech, které po prvních dvou minutách neobdržely žádný provoz.
+
+## Kompletní specifikace protokolu
+
+Kompletní specifikaci protokolu najdete na stránce [specifikace I2NP](/docs/specs/i2np/). Viz také stránka [specifikace běžných datových struktur](/docs/specs/common-structures/).
 
 ## Budoucí práce
 

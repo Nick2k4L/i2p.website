@@ -3,11 +3,10 @@ title: "Especificação I2NP"
 description: "Formatos de mensagem do Protocolo de Rede I2P (I2NP), prioridades e estruturas comuns para comunicação entre routers."
 slug: "i2np"
 aliases:
-  - "/pt/docs/protocol/i2np"
-  - "/pt/docs/protocol/i2np/"
+  - "/spec/i2np"
 category: "Protocolos"
-lastUpdated: "2025-12"
-accurateFor: "0.9.66"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Visão Geral
@@ -31,12 +30,20 @@ Um resumo básico das versões do protocolo I2NP é o seguinte. Para detalhes, v
 </thead>
 <tbody>
 <tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.68</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel testing required</td>
+</tr>
+<tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.66</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">LeaseSet2 service record options (see proposal 167)</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.65</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel build bandwidth parameters (see proposal 168)</td>
+</tr>
+<tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.62</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Minimum peers will build tunnels through, as of 0.9.68<br>Minimum floodfill peers will send DSM to, as of 0.9.68</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.59</td>
@@ -1184,9 +1191,11 @@ from ::
 
 Um simples reconhecimento de mensagem. Geralmente criado pelo originador da mensagem e encapsulado numa Garlic Message junto com a própria mensagem, para ser retornado pelo destino.
 
+Esta mensagem também é usada para teste de túnel, no qual o originador a envia por meio de um túnel de saída, para um túnel de entrada, de volta para si mesmo. Nessa aplicação, ela também é normalmente encapsulada com alho (Garlic wrapped). O teste de túnel é obrigatório a partir da versão 0.9.68 da API, em 2026-02, pois os roteadores podem descartar túneis participantes que não tenham recebido qualquer tráfego após os primeiros dois minutos.
+
 #### Conteúdo
 
-O ID da mensagem entregue, e o horário de criação ou chegada.
+O ID da mensagem entregue e a hora de criação ou chegada.
 
 ```
 +----+----+----+----+----+----+----+----+----+----+----+----+
@@ -1210,15 +1219,15 @@ time_stamp :: Date
 
 ### Garlic {#msg-Garlic}
 
-Aviso: Este é o formato usado para mensagens garlic criptografadas com ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). O formato para mensagens garlic e cravos garlic ECIES-AEAD-X25519-Ratchet é significativamente diferente; consulte [ECIES](/docs/specs/ecies/) para a especificação.
+Aviso: Este é o formato usado para mensagens de alho criptografadas com ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). O formato para mensagens de alho e favos de alho criptografados com ECIES-AEAD-X25519-Ratchet é significativamente diferente; veja [ECIES](/docs/specs/ecies/) para a especificação.
 
 #### Descrição
 
-Usado para envolver múltiples mensagens I2NP criptografadas
+Usado para agrupar múltiplas mensagens I2NP criptografadas
 
 #### Conteúdo
 
-Quando descriptografado, uma série de [Garlic Cloves](#struct-GarlicClove) e dados adicionais, também conhecido como um Clove Set.
+Quando descriptografado, uma série de [Dentes de Alho](#struct-GarlicClove) e dados adicionais, também conhecidos como Conjunto de Dentes (Clove Set).
 
 Criptografado:
 
@@ -1240,7 +1249,7 @@ data ::
      $length bytes
      ElGamal encrypted data
 ```
-Dados descriptografados, também conhecidos como Clove Set:
+Dados descriptografados, também conhecidos como Conjunto de Clove:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1294,7 +1303,7 @@ Expiration :: Date (8 bytes)
 
 #### Descrição
 
-Uma mensagem enviada do gateway ou participante de um tunnel para o próximo participante ou endpoint. Os dados têm comprimento fixo, contendo mensagens I2NP que são fragmentadas, agrupadas, preenchidas e criptografadas.
+Uma mensagem enviada do gateway ou participante de um túnel para o próximo participante ou ponto final. Os dados têm comprimento fixo e contêm mensagens I2NP que são fragmentadas, agrupadas, preenchidas e criptografadas.
 
 #### Conteúdo
 
@@ -1329,7 +1338,7 @@ data ::
 
 #### Descrição
 
-Encapsula outra mensagem I2NP para ser enviada através de um tunnel no gateway de entrada do tunnel.
+Envolve outra mensagem I2NP para ser enviada a um túnel no gateway de entrada do túnel.
 
 #### Conteúdo
 
@@ -1359,11 +1368,11 @@ data ::
 
 #### Descrição
 
-Usado por Garlic Messages e Garlic Cloves para encapsular dados arbitrários.
+Usado por Mensagens de Alho e Pedaços de Alho para encapsular dados arbitrários.
 
 #### Conteúdo
 
-Um Integer de comprimento, seguido por dados opacos.
+Um inteiro de comprimento, seguido por dados opacos.
 
 ```
 +----+----+----+----+----+-//-+
@@ -1384,7 +1393,7 @@ data ::
 
 ### TunnelBuild {#msg-TunnelBuild}
 
-DESCONTINUADO, use [VariableTunnelBuild](#msg-VariableTunnelBuild)
+OBSOLETO, use [VariableTunnelBuild](#msg-VariableTunnelBuild)
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1420,7 +1429,7 @@ total size: 8*528 = 4224 bytes
 
 ### TunnelBuildReply {#msg-TunnelBuildReply}
 
-DESCONTINUADO, use [VariableTunnelBuildReply](#msg-VariableTunnelBuildReply)
+OBSOLETO, use [VariableTunnelBuildReply](#msg-VariableTunnelBuildReply)
 
 ```
 Same format as TunnelBuildMessage, with BuildResponseRecords
@@ -1489,7 +1498,7 @@ Same format as VariableTunnelBuildMessage, with BuildResponseRecords.
 
 #### Descrição
 
-A partir da versão 0.9.51 da API, apenas para routers ECIES-X25519.
+A partir da versão da API 0.9.51, apenas para roteadores ECIES-X25519.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1518,7 +1527,7 @@ total size: 1+$num*218
 
 #### Descrição
 
-Enviado do endpoint de saída de um novo tunnel para o originador. A partir da versão 0.9.51 da API, apenas para routers ECIES-X25519.
+Enviado do ponto de extremidade de saída de um novo túnel para o originador. A partir da versão da API 0.9.51, apenas para roteadores ECIES-X25519.
 
 ```
 +----+----+----+----+----+----+----+----+

@@ -2,10 +2,12 @@
 title: "Tổng quan về I2NP"
 description: "Tổng quan về Giao thức Mạng I2P (I2NP) - định dạng tin nhắn, các loại, độ ưu tiên và giới hạn kích thước."
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "Giao thức"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Tổng quan
@@ -168,7 +170,11 @@ Ngoài ra, không phải tất cả các loại tin nhắn đều được gửi
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
-## Đặc tả Giao thức Đầy đủ
+## Kiểm tra tunnel
+
+Việc kiểm tra tunnel là bắt buộc kể từ phiên bản API 0.9.68 năm 2026-02, vì các router được phép hủy các tunnel đang tham gia nếu không nhận được lưu lượng nào sau hai phút đầu tiên.
+
+## Thông số kỹ thuật giao thức đầy đủ
 
 Xem trang [Thông số kỹ thuật I2NP](/docs/specs/i2np/) để biết thông số giao thức đầy đủ. Xem thêm trang [Thông số kỹ thuật Cấu trúc Dữ liệu Chung](/docs/specs/common-structures/).
 

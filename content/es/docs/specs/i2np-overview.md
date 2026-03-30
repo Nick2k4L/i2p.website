@@ -2,10 +2,12 @@
 title: "Descripción general de I2NP"
 description: "Descripción general del protocolo de red I2P (I2NP) - formato de mensaje, tipos, prioridades y limitaciones de tamaño."
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "Protocolos"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Resumen
@@ -168,10 +170,14 @@ Además, no todos los tipos de mensajes se envían sin cifrar. Por ejemplo, al p
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
+## Prueba de túnel
+
+La prueba de túneles es obligatoria a partir de la versión 0.9.68 de la API en 2026-02, ya que los routers pueden descartar túneles participantes que no hayan recibido tráfico tras los primeros dos minutos.
+
 ## Especificación completa del protocolo
 
-Consulta la [página de Especificación I2NP](/docs/specs/i2np/) para obtener la especificación completa del protocolo. Consulta también la [página de Especificación de Estructuras de Datos Comunes](/docs/specs/common-structures/).
+Consulta la [página de especificación de I2NP](/docs/specs/i2np/) para obtener la especificación completa del protocolo. Consulta también la [página de especificación de estructuras de datos comunes](/docs/specs/common-structures/).
 
 ## Trabajo Futuro
 
-No está claro si el esquema de prioridades actual es generalmente efectivo, ni si las prioridades para los diversos mensajes deberían ajustarse más. Este es un tema para investigación, análisis y pruebas adicionales.
+No está claro si el esquema de prioridades actual es generalmente efectivo, ni si las prioridades para los diversos mensajes deberían ajustarse más. Este es un tema para futuras investigaciones, análisis y pruebas.

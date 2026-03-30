@@ -2,10 +2,11 @@
 title: "I2NP 规范"
 description: "I2P网络协议(I2NP)消息格式、优先级以及router间通信的通用结构。"
 slug: "i2np"
-aliases: 
+aliases:
+  - "/spec/i2np"
 category: "协议"
-lastUpdated: "2025-12"
-accurateFor: "0.9.66"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## 概述
@@ -29,12 +30,20 @@ I2P网络协议（I2NP）是位于I2P传输协议之上的层。它是一个rout
 </thead>
 <tbody>
 <tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.68</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel testing required</td>
+</tr>
+<tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.66</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">LeaseSet2 service record options (see proposal 167)</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.65</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel build bandwidth parameters (see proposal 168)</td>
+</tr>
+<tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.62</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Minimum peers will build tunnels through, as of 0.9.68<br>Minimum floodfill peers will send DSM to, as of 0.9.68</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.59</td>
@@ -1182,9 +1191,11 @@ from ::
 
 一个简单的消息确认。通常由消息发起者创建，与消息本身一起包装在 Garlic Message 中，由目标节点返回。
 
+此消息也用于隧道测试，发起方通过出站隧道将其发送至入站隧道，再返回自身。在此应用场景中，消息通常也经过大蒜加密（Garlic wrapped）。自 API 版本 0.9.68（2026-02）起，隧道测试成为必要要求，因为路由器被允许丢弃在前两分钟内未收到任何流量的参与隧道。
+
 #### 目录
 
-已投递消息的ID，以及创建或到达时间。
+已传递消息的 ID，以及创建或到达时间。
 
 ```
 +----+----+----+----+----+----+----+----+----+----+----+----+
@@ -1208,15 +1219,15 @@ time_stamp :: Date
 
 ### Garlic {#msg-Garlic}
 
-警告：这是用于 ElGamal 加密 garlic 消息的格式 [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)。ECIES-AEAD-X25519-Ratchet garlic 消息和 garlic clove 的格式有很大不同；请参阅 [ECIES](/docs/specs/ecies/) 规范。
+警告：此格式用于 ElGamal 加密的 garlic 消息 [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)。ECIES-AEAD-X25519-Ratchet garlic 消息及 garlic cloves 的格式有显著不同；详见 [ECIES](/docs/specs/ecies/) 规范。
 
 #### 描述
 
-用于包装多个加密的 I2NP 消息
+用于封装多个加密的 I2NP 消息
 
 #### 目录
 
-解密后，是一系列的 [Garlic Cloves](#struct-GarlicClove) 和附加数据，也称为 Clove Set。
+解密后，得到一系列[大蒜瓣](#struct-GarlicClove)和附加数据，也称为瓣集合（Clove Set）。
 
 已加密：
 
@@ -1238,7 +1249,7 @@ data ::
      $length bytes
      ElGamal encrypted data
 ```
-解密数据，也称为 Clove Set：
+解密后的数据，也称为Clove集合：
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1292,7 +1303,7 @@ Expiration :: Date (8 bytes)
 
 #### 描述
 
-从隧道网关或参与者发送到下一个参与者或端点的消息。数据长度固定，包含经过分片、批处理、填充和加密的I2NP消息。
+从隧道的网关或参与者发送给下一个参与者或终点的消息。该数据具有固定长度，包含被分片、批量处理、填充并加密的 I2NP 消息。
 
 #### 目录
 
@@ -1327,7 +1338,7 @@ data ::
 
 #### 描述
 
-将另一个I2NP消息封装，以便在tunnel的入站网关发送到tunnel中。
+封装另一个 I2NP 消息，以便发送到隧道的入站网关。
 
 #### 目录
 
@@ -1357,7 +1368,7 @@ data ::
 
 #### 描述
 
-由 Garlic Messages 和 Garlic Cloves 用于包装任意数据。
+由大蒜消息（Garlic Messages）和大蒜瓣（Garlic Cloves）用于封装任意数据。
 
 #### 目录
 
@@ -1487,7 +1498,7 @@ Same format as VariableTunnelBuildMessage, with BuildResponseRecords.
 
 #### 描述
 
-从 API 版本 0.9.51 开始，仅适用于 ECIES-X25519 router。
+自 API 版本 0.9.51 起，仅适用于 ECIES-X25519 路由器。
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1516,7 +1527,7 @@ total size: 1+$num*218
 
 #### 描述
 
-从新 tunnel 的出站端点发送给发起者。自 API 版本 0.9.51 起，仅适用于 ECIES-X25519 router。
+从新隧道的出站端点发送给发起方。自 API 版本 0.9.51 起，仅适用于 ECIES-X25519 路由器。
 
 ```
 +----+----+----+----+----+----+----+----+

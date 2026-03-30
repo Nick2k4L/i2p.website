@@ -3,11 +3,10 @@ title: "مواصفات I2NP"
 description: "تنسيقات رسائل بروتوكول شبكة I2P (I2NP)، والأولويات، والهياكل المشتركة للاتصال بين أجهزة router."
 slug: "i2np"
 aliases:
-  - "/ar/docs/protocol/i2np"
-  - "/ar/docs/protocol/i2np/"
+  - "/spec/i2np"
 category: "البروتوكولات"
-lastUpdated: "2025-12"
-accurateFor: "0.9.66"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## نظرة عامة
@@ -31,12 +30,20 @@ accurateFor: "0.9.66"
 </thead>
 <tbody>
 <tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.68</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel testing required</td>
+</tr>
+<tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.66</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">LeaseSet2 service record options (see proposal 167)</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.65</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel build bandwidth parameters (see proposal 168)</td>
+</tr>
+<tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.62</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Minimum peers will build tunnels through, as of 0.9.68<br>Minimum floodfill peers will send DSM to, as of 0.9.68</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.59</td>
@@ -1184,9 +1191,11 @@ from ::
 
 إقرار رسالة بسيط. يتم إنشاؤه عادةً من قبل منشئ الرسالة، ويُلف في Garlic Message مع الرسالة نفسها، ليتم إرجاعه من قبل الوجهة.
 
+يُستخدم هذا الرسالة أيضًا لاختبار النفق، حيث يُرسل المُرسل لها عبر نفق صادر إلى نفق وارد، ثم يعود إليها مرة أخرى. وفي هذا التطبيق أيضًا، تكون الرسالة عادةً مغلفة بتقنية Garlic. وقد أصبح اختبار النفق مطلوبًا بدءًا من إصدار واجهة برمجة التطبيقات (API) 0.9.68 لعام 2026-02، حيث يُسمح للراوترات بحذف النُفق المشاركة التي لم تستلم أي حركة مرور بعد أول دقيقتين.
+
 #### المحتويات
 
-معرف الرسالة المُسلمة، ووقت الإنشاء أو الوصول.
+معرّف الرسالة التي تم تسليمها، ووقت إنشائها أو وصولها.
 
 ```
 +----+----+----+----+----+----+----+----+----+----+----+----+
@@ -1210,17 +1219,17 @@ time_stamp :: Date
 
 ### Garlic {#msg-Garlic}
 
-تحذير: هذا هو التنسيق المستخدم لرسائل garlic المشفرة بـ ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). التنسيق الخاص برسائل garlic وفصوص garlic من نوع ECIES-AEAD-X25519-Ratchet مختلف بشكل كبير؛ راجع [ECIES](/docs/specs/ecies/) للحصول على المواصفات.
+تحذير: هذا هو التنسيق المستخدم للرسائل المغطية المشفرة باستخدام خوارزمية إل-غامال [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). أما تنسيق رسائل الثوم المشفرة باستخدام ECIES-AEAD-X25519-Ratchet والقطع الثومية (garlic cloves) فهو مختلف بشكل كبير؛ انظر [ECIES](/docs/specs/ecies/) للمواصفات.
 
 #### الوصف
 
-يُستخدم لتغليف رسائل I2NP متعددة ومُشفرة
+تُستخدم لتغليف رسائل I2NP المشفرة المتعددة
 
 #### المحتويات
 
-عند فك التشفير، سلسلة من [Garlic Cloves](#struct-GarlicClove) وبيانات إضافية، والتي تُعرف أيضاً باسم مجموعة الفصوص (Clove Set).
+عند فك التشفير، تكون سلسلة من [Garlic Cloves](#struct-GarlicClove) وبيانات إضافية، والمعروفة أيضًا باسم Clove Set.
 
-مُشفر:
+مشفر:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1240,7 +1249,7 @@ data ::
      $length bytes
      ElGamal encrypted data
 ```
-البيانات المفكوكة التشفير، والمعروفة أيضاً باسم Clove Set:
+البيانات المُفكَّكة التشفير، والمعروفة أيضًا باسم مجموعة Clove:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1294,7 +1303,7 @@ Expiration :: Date (8 bytes)
 
 #### الوصف
 
-رسالة يتم إرسالها من gateway الـ tunnel أو المشارك إلى المشارك التالي أو نقطة النهاية. البيانات ذات طول ثابت، وتحتوي على رسائل I2NP التي يتم تجزئتها وتجميعها وحشوها وتشفيرها.
+رسالة تُرسل من بوابة النفق أو أحد مشاركيه إلى المشارك التالي أو النهاية. تكون البيانات ذات طول ثابت، وتحتوي على رسائل I2NP التي تم تجزئتها وتجميعها وإضافة الحشو إليها وتشفيرها.
 
 #### المحتويات
 
@@ -1329,7 +1338,7 @@ data ::
 
 #### الوصف
 
-يغلف رسالة I2NP أخرى ليتم إرسالها إلى نفق عند البوابة الداخلية للنفق.
+يلف رسالة I2NP أخرى لإرسالها عبر نفق عند بوابة الدخول الخاصة بالنفق.
 
 #### المحتويات
 
@@ -1359,11 +1368,11 @@ data ::
 
 #### الوصف
 
-يُستخدم بواسطة Garlic Messages و Garlic Cloves لتغليف البيانات العشوائية.
+تُستخدم بواسطة رسائل Garlic وGarlic Cloves لتغليف بيانات عشوائية.
 
 #### المحتويات
 
-عدد صحيح للطول، متبوعًا ببيانات معتمة.
+عدد صحيح للطول، يتبعه بيانات غير شفافة.
 
 ```
 +----+----+----+----+----+-//-+
@@ -1489,7 +1498,7 @@ Same format as VariableTunnelBuildMessage, with BuildResponseRecords.
 
 #### الوصف
 
-اعتبارًا من إصدار API 0.9.51، لـ routers من نوع ECIES-X25519 فقط.
+اعتبارًا من إصدار API 0.9.51، للراوترات التي تستخدم ECIES-X25519 فقط.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1518,7 +1527,7 @@ total size: 1+$num*218
 
 #### الوصف
 
-يُرسل من النقطة النهائية الصادرة لـ tunnel جديد إلى المُنشئ. اعتباراً من إصدار API 0.9.51، لأجهزة router من نوع ECIES-X25519 فقط.
+تم الإرسال من نقطة النهاية الصادرة لتونيل جديد إلى المصدر. بدءًا من إصدار API 0.9.51، ولأجهزة التوجيه ECIES-X25519 فقط.
 
 ```
 +----+----+----+----+----+----+----+----+

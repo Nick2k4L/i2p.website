@@ -2,10 +2,12 @@
 title: "Aperçu d'I2NP"
 description: "Aperçu du protocole réseau I2P (I2NP) - format des messages, types, priorités et contraintes de taille."
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "Protocoles"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Aperçu
@@ -168,6 +170,10 @@ En outre, tous les types de messages ne sont pas envoyés non chiffrés. Par exe
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
+## Test des tunnels
+
+Un test des tunnels est requis à compter de la version 0.9.68 de l'API (2026-02), car les routeurs peuvent désormais abandonner les tunnels participants n'ayant reçu aucun trafic après les deux premières minutes.
+
 ## Spécification complète du protocole
 
 Voir la [page de spécification I2NP](/docs/specs/i2np/) pour la spécification complète du protocole. Voir également la [page de spécification des structures de données communes](/docs/specs/common-structures/).

@@ -3,11 +3,10 @@ title: "I2NP Spesifikasyonu"
 description: "Router'dan router'a iletişim için I2P Network Protocol (I2NP) mesaj formatları, öncelikleri ve ortak yapıları."
 slug: "i2np"
 aliases:
-  - "/tr/docs/protocol/i2np"
-  - "/tr/docs/protocol/i2np/"
+  - "/spec/i2np"
 category: "Protokoller"
-lastUpdated: "2025-12"
-accurateFor: "0.9.66"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Genel Bakış
@@ -31,12 +30,20 @@ I2NP protokol sürümlerinin temel özeti aşağıdaki gibidir. Ayrıntılar iç
 </thead>
 <tbody>
 <tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.68</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel testing required</td>
+</tr>
+<tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.66</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">LeaseSet2 service record options (see proposal 167)</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.65</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel build bandwidth parameters (see proposal 168)</td>
+</tr>
+<tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.62</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Minimum peers will build tunnels through, as of 0.9.68<br>Minimum floodfill peers will send DSM to, as of 0.9.68</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.59</td>
@@ -1184,6 +1191,8 @@ from ::
 
 Basit bir mesaj onayı. Genellikle mesaj gönderen tarafından oluşturulur ve mesajın kendisiyle birlikte bir Garlic Message içinde sarılarak hedef tarafından geri gönderilir.
 
+Bu mesaj aynı zamanda tünel testi için de kullanılır; gönderen, mesajı giden bir tünele, ardından kendisine dönen gelen bir tünele gönderir. Bu uygulamada da mesaj genellikle Garlic şifrelemesiyle sarılmıştır. Tünel testi, API sürüm 0.9.68 2026-02'den itibaren gereklidir çünkü yönlendiriciler ilk iki dakika içinde herhangi bir trafiği almayan tünel katılımcılarını bırakmaya yetkilidir.
+
 #### İçindekiler
 
 Teslim edilen mesajın kimliği ve oluşturulma veya varış zamanı.
@@ -1210,15 +1219,15 @@ time_stamp :: Date
 
 ### Garlic {#msg-Garlic}
 
-Uyarı: Bu, ElGamal ile şifrelenmiş garlic mesajları için kullanılan formattır [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). ECIES-AEAD-X25519-Ratchet garlic mesajları ve garlic clove'ları için format önemli ölçüde farklıdır; spesifikasyon için [ECIES](/docs/specs/ecies/) bölümüne bakın.
+Uyarı: Bu, ElGamal ile şifrelenmiş sarımsak mesajları için kullanılan formattır [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). ECIES-AEAD-X25519-Ratchet sarımsak mesajları ve sarımsak kabuklarının formatı önemli ölçüde farklıdır; spesifikasyon için [ECIES](/docs/specs/ecies/) sayfasına bakın.
 
 #### Açıklama
 
-Birden fazla şifrelenmiş I2NP Message'ı sarmak için kullanılır
+Birden fazla şifrelenmiş I2NP Mesajını sarmalamak için kullanılır
 
 #### İçindekiler
 
-Şifrelendiğinde, bir dizi [Garlic Cloves](#struct-GarlicClove) ve ek veriler, aynı zamanda Clove Set olarak da bilinir.
+Şifresi çözüldüğünde, [Sarımsak Dişleri](#struct-GarlicClove) serisi ve ek veriler, aynı zamanda Clove Set (Sarımsak Kümesi) olarak da bilinir.
 
 Şifrelenmiş:
 
@@ -1240,7 +1249,7 @@ data ::
      $length bytes
      ElGamal encrypted data
 ```
-Şifrelenmiş veriler, aynı zamanda Clove Set olarak da bilinir:
+Şifresi çözülmüş veri, aynı zamanda Clove Set (Çivi Seti) olarak da bilinir:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1294,7 +1303,7 @@ Expiration :: Date (8 bytes)
 
 #### Açıklama
 
-Bir tunnel'ın gateway'inden veya katılımcısından bir sonraki katılımcıya veya uç noktaya gönderilen mesaj. Veri sabit uzunluktadır ve parçalanmış, toplu hale getirilmiş, doldurulmuş ve şifrelenmiş I2NP mesajları içerir.
+Bir tünelin geçidi veya katılanından bir sonraki katılan veya uç noktaya gönderilen mesaj. Veri sabit uzunlukta olup, parçalanmış, toplu hâle getirilmiş, doldurulmuş ve şifrelenmiş I2NP mesajlarını içerir.
 
 #### İçindekiler
 
@@ -1329,7 +1338,7 @@ data ::
 
 #### Açıklama
 
-Başka bir I2NP mesajını tunnel'ın gelen ağ geçidinde tunnel içine gönderilmek üzere sarar.
+Bir tünelin giriş geçidi noktasına gönderilmek üzere başka bir I2NP mesajını sarmalar.
 
 #### İçindekiler
 
@@ -1359,11 +1368,11 @@ data ::
 
 #### Açıklama
 
-Garlic Messages ve Garlic Cloves tarafından rastgele verileri sarmak için kullanılır.
+Sarımsak Mesajları ve Sarımsak Dilimleri tarafından keyfi verileri sarmalamak için kullanılır.
 
 #### İçindekiler
 
-Bir uzunluk Integer'ı, ardından opak veri.
+Bir uzunluk Tamsayısı, ardından opak veri.
 
 ```
 +----+----+----+----+----+-//-+
@@ -1384,7 +1393,7 @@ data ::
 
 ### TunnelBuild {#msg-TunnelBuild}
 
-KULLANIM DIŞI, [VariableTunnelBuild](#msg-VariableTunnelBuild) kullanın
+KULLANIMI BIRAKILDI, [VariableTunnelBuild](#msg-VariableTunnelBuild) kullanın
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1420,7 +1429,7 @@ total size: 8*528 = 4224 bytes
 
 ### TunnelBuildReply {#msg-TunnelBuildReply}
 
-KULLANIMI SONLANDIRILDI, [VariableTunnelBuildReply](#msg-VariableTunnelBuildReply) kullanın
+KULLANIMI BIRAKILDI, [VariableTunnelBuildReply](#msg-VariableTunnelBuildReply) kullanın
 
 ```
 Same format as TunnelBuildMessage, with BuildResponseRecords
@@ -1489,7 +1498,7 @@ Same format as VariableTunnelBuildMessage, with BuildResponseRecords.
 
 #### Açıklama
 
-API sürüm 0.9.51 itibariyle, yalnızca ECIES-X25519 router'lar için.
+Sadece ECIES-X25519 yönlendiriciler için, API sürümü 0.9.51 itibarıyla.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -1518,7 +1527,7 @@ total size: 1+$num*218
 
 #### Açıklama
 
-Yeni bir tunnel'ın çıkış uç noktasından başlatıcıya gönderilir. API sürüm 0.9.51 itibariyle, yalnızca ECIES-X25519 router'ları için.
+Yeni bir tünelin giden ucu tarafından orijinatöre gönderildi. API sürümü 0.9.51'den itibaren yalnızca ECIES-X25519 yönlendiricileri için.
 
 ```
 +----+----+----+----+----+----+----+----+

@@ -2,10 +2,12 @@
 title: "I2NP 概述"
 description: "I2P网络协议（I2NP）概述——消息格式、类型、优先级和大小限制。"
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "协议"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## 概述
@@ -168,9 +170,13 @@ I2NP（I2P 网络协议）消息可用于单跳、路由器到路由器、点对
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
+## 隧道测试
+
+自 API 版本 0.9.68（2026-02）起，必须进行隧道测试，因为路由器可能会丢弃在前两分钟内未收到任何流量的参与隧道。
+
 ## 完整协议规范
 
-请参阅 [I2NP 规范页面](/docs/specs/i2np/) 以获取完整的协议规范。另请参阅 [通用数据结构规范页面](/docs/specs/common-structures/)。
+有关完整协议规范，请参见 [I2NP 规范页面](/docs/specs/i2np/)。另请参见 [通用数据结构规范页面](/docs/specs/common-structures/)。
 
 ## 未来工作
 

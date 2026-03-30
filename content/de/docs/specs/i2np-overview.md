@@ -2,10 +2,12 @@
 title: "I2NP-Übersicht"
 description: "Überblick über das I2P-Netzwerkprotokoll (I2NP) – Nachrichtenformat, Typen, Prioritäten und Größenbeschränkungen."
 slug: "i2np-overview"
-aliases: 
+aliases:
+  - "/en/docs/protocol/i2np"
+  - "/en/docs/protocol/i2np/"
 category: "Protokolle"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Übersicht
@@ -168,10 +170,14 @@ Außerdem werden nicht alle Nachrichtentypen unverschlüsselt gesendet. Beispiel
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
+## Tunnel-Test
+
+Ab API-Version 0.9.68 vom Februar 2026 ist ein Tunnel-Test erforderlich, da Router es erlaubt ist, an Tunneln teilzunehmen, die nach den ersten zwei Minuten keinen Datenverkehr erhalten haben.
+
 ## Vollständige Protokollspezifikation
 
 Siehe die [I2NP-Spezifikationsseite](/docs/specs/i2np/) für die vollständige Protokollspezifikation. Siehe auch die [Spezifikationsseite für gemeinsame Datenstrukturen](/docs/specs/common-structures/).
 
 ## Zukünftige Arbeiten
 
-Es ist unklar, ob das derzeitige Prioritätenschema allgemein wirksam ist und ob die Prioritäten für verschiedene Nachrichten weiter angepasst werden sollten. Dies ist ein Thema für weitere Forschung, Analyse und Tests.
+Es ist nicht klar, ob das derzeitige Prioritätenschema allgemein wirksam ist und ob die Prioritäten für verschiedene Nachrichten weiter angepasst werden sollten. Dies ist ein Thema für weitere Forschung, Analyse und Tests.
