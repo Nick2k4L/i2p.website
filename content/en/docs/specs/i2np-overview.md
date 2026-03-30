@@ -6,8 +6,8 @@ aliases:
   - "/en/docs/protocol/i2np"
   - "/en/docs/protocol/i2np/"
 category: "Protocols"
-lastUpdated: "2018-10"
-accurateFor: "0.9.37"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Overview 
@@ -171,6 +171,13 @@ Also, not all message types are sent unencrypted. For example, when testing a tu
 <td style="border: 1px solid var(--color-border); padding: 8px;">Obsolete, Unused</td>
 </tr>
 </table>
+
+
+## Tunnel Testing
+
+Tunnel testing is required as of API version 0.9.68 2026-02, as routers are allowed to drop participating tunnels that
+have not received any traffic after the first two minutes.
+
 
 ## Full Protocol Specification
 

@@ -5,8 +5,8 @@ slug: "i2np"
 aliases:
   - "/spec/i2np"
 category: "Protocols"
-lastUpdated: "2025-12"
-accurateFor: "0.9.66"
+lastUpdated: "2026-03"
+accurateFor: "0.9.69"
 ---
 
 ## Overview
@@ -30,12 +30,20 @@ A basic summary of the I2NP protocol versions is as follows. For details, see be
 </thead>
 <tbody>
 <tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.68</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel testing required</td>
+</tr>
+<tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.66</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">LeaseSet2 service record options (see proposal 167)</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.65</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Tunnel build bandwidth parameters (see proposal 168)</td>
+</tr>
+<tr>
+<td style="border: 1px solid var(--color-border); padding: 8px;">0.9.62</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Minimum peers will build tunnels through, as of 0.9.68<br>Minimum floodfill peers will send DSM to, as of 0.9.68</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.59</td>
@@ -1201,6 +1209,12 @@ from ::
 #### Description
 
 A simple message acknowledgment. Generally created by the message originator, and wrapped in a Garlic Message with the message itself, to be returned by the destination.
+
+This message is also used for tunnel testing, where the originator sends it through an outbound tunnel, to an inbound tunnel, back to itself.
+In this application also, it is usually Garlic wrapped.
+Tunnel testing is required as of API version 0.9.68 2026-02, as routers are allowed to drop participating tunnels that
+have not received any traffic after the first two minutes.
+
 
 #### Contents
 
