@@ -276,9 +276,9 @@ thankYou = "感谢您支持互联网隐私与自由！"
 everyContribution = "每一份贡献，无论大小，都有助于保持 I2P 的强大与独立。"
 
 [banner]
-banner_message = "I2P 2.11.0 已发布"
-banner_link_text = "阅读公告"
-banner_link_url = "/blog/2026/02/09/i2p-2.11.0-release/"
+banner_message = "帮助决定 I2P 的下一款周边商品！"
+banner_link_text = "参与我们的投票"
+banner_link_url = "#poll"
 banner_close = "关闭横幅"
 
 [donatePage]

@@ -291,9 +291,9 @@ thankYou = "인터넷 프라이버시와 자유를 지원해 주셔서 감사합
 everyContribution = "크든 작든, 모든 기여는 I2P를 강하고 독립적으로 유지하는 데 도움이 됩니다."
 
 [banner]
-banner_message = "I2P 2.11.0이 출시되었습니다"
-banner_link_text = "공지 읽기"
-banner_link_url = "/blog/2026/02/09/i2p-2.11.0-release/"
+banner_message = "I2P의 다음 굿즈를 결정하는 데 참여하세요!"
+banner_link_text = "설문에 참여하기"
+banner_link_url = "#poll"
 banner_close = "배너 닫기"
 
 [donatePage]

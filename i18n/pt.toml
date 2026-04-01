@@ -276,9 +276,9 @@ thankYou = "Obrigado por apoiar a privacidade e a liberdade na internet!"
 everyContribution = "Toda contribuição, grande ou pequena, ajuda a manter o I2P forte e independente."
 
 [banner]
-banner_message = "I2P 2.11.0 foi lançado"
-banner_link_text = "Leia o anúncio"
-banner_link_url = "/blog/2026/02/09/i2p-2.11.0-release/"
+banner_message = "Ajude a decidir o próximo merchandise do I2P!"
+banner_link_text = "Participe da nossa enquete"
+banner_link_url = "#poll"
 banner_close = "Fechar banner"
 
 [donatePage]
