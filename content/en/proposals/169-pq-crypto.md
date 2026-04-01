@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-22"
+lastupdated: "2026-04-01"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -200,7 +200,7 @@ The new signature types are:
 | MLDSA87ph | 20 |
 
 X.509 certificates and other DER encodings will use the
-composite structures and OIDs defined in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+composite structures and OIDs defined in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 Overhead will be substantial. Typical Ed25519 destination and router identity
 sizes are 391 bytes.
@@ -282,7 +282,7 @@ and we will review it for ideas and inspiration. TODO.
 Update the sections and tables in the common structures document [/docs/specs/common-structures/](/docs/specs/common-structures/) as follows:
 
 
-### PublicKey
+#### PublicKey
 
 The new Public Key types are:
 
@@ -308,7 +308,7 @@ They are listed here for completeness.
 
 
 
-### PrivateKey
+#### PrivateKey
 
 The new Private Key types are:
 
@@ -328,7 +328,7 @@ KEM encoding and byte order are defined in [FIPS 203](https://nvlpubs.nist.gov/n
 
 
 
-### SigningPublicKey
+#### SigningPublicKey
 
 The new Signing Public Key types are:
 
@@ -344,11 +344,11 @@ The new Signing Public Key types are:
 | MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
 
-Hybrid signing public keys are the Ed25519 key followed by the PQ key, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Composite hybrid signing public keys are the PQ key followed by the Ed25519 key, as in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 
-### SigningPrivateKey
+#### SigningPrivateKey
 
 The new Signing Private Key types are:
 
@@ -364,11 +364,16 @@ The new Signing Private Key types are:
 | MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 
-Hybrid signing private keys are the Ed25519 key followed by the PQ key, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Composite hybrid signing private keys are the PQ key followed by the Ed25519 key, as in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
+Signing private keys are never sent on the wire. Applications may choose to store the 32-bit seed
+as recommended in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+instead of the expanded multi-KB private key.
+This is implementation-dependent.
 
-### Signature
+
+#### Signature
 
 The new Signature types are:
 
@@ -384,14 +389,14 @@ The new Signature types are:
 | MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 
-Hybrid signatures are the Ed25519 signature followed by the PQ signature, as in [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Composite hybrid signatures are the PQ signature followed by the Ed25519 signature, as in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 Hybrid signatures are verified by verifying both signatures, and failing
 if either one fails.
 Encoding and byte order are defined in [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 
 
-### Key Certificates
+#### Key Certificates
 
 The new Signing Public Key types are:
 
@@ -427,7 +432,7 @@ but there is no crypto key, and the
 entire 384-byte main section is for the signing key.
 
 
-### Destination sizes
+#### Destination sizes
 
 Here are lengths for the new Destination types.
 Enc type for all is NONE (type 255) and the encryption key length is treated as 0.
@@ -457,7 +462,7 @@ skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
 
 
-### RouterIdent sizes
+#### RouterIdent sizes
 
 Here are lengths for the new Destination types.
 Enc type for all is X25519 (type 4).
@@ -480,6 +485,69 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
+
+
+
+
+
+### Composite Signatures
+
+Add a new specification for composite signature algorithms, as follows:
+Composite hybrid signatures are as defined in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+However, as usual, public keys and signatures within I2P omit DER encodings.
+
+Composite signatures always use prehashing so potentially large messages do not need to be processed
+twice. This is external to the MLDSA algorithm, we use the standard MLDSA, not HashML-DSA.
+
+
+#### Signing Algorithm
+
+```
+
+  M = message
+  Prefix = "CompositeAlgorithmSignatures2025" (32 bytes, not null terminated)
+  Label = (30 bytes, not null terminated), one of:
+          "COMPSIG-MLDSA44-Ed25519-SHA512"
+          "COMPSIG-MLDSA65-Ed25519-SHA512"
+          "COMPSIG-MLDSA87-Ed25519-SHA512"  // not in [COMPOSITE-SIGS]
+  ctx = "" (0 bytes)
+  len(ctx) = 0  (1 byte)
+  PH(M) = SHA512(M) (64 bytes)
+
+
+  Compute a hash of the message prepended as follows:
+
+  M' = Prefix || Label || len(ctx) || ctx || PH( M )
+
+  M' length is 127 bytes.
+
+  Sign the prehashed message M':
+
+  signature = MLDSA_SIGN(M') || Ed25519_SIGN(M')
+
+```
+
+#### Verification Algorithm
+
+Same as signing algorithm. Fail if either signature fails.
+
+```
+
+  M' = as above
+
+  signature = MLDSA_VERIFY(M') && Ed25519_VERIFY(M')
+
+
+```
+
+#### Issues
+
+[COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) does not define
+the MLDSA87 + Ed25519 combination, presumably because of the mismatch in security strength.
+It does define MLDSA87 + Ed448, using SHAKE256/64 as the prehash function.
+This combination is not currently included in this proposal, because we do not currently support Ed448.
+
+
 
 
 
@@ -1763,7 +1831,7 @@ Preliminary test results in Java:
 
 ### Signatures
 
-Size:
+#### Sizes
 
 Typical key, sig, RIdent, Dest sizes or size increases (Ed25519 included for reference)
 assuming X25519 encryption type for RIs.
@@ -1784,7 +1852,7 @@ See design section above.
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
 
-Speed:
+#### Speeds
 
 Speeds as reported by [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
@@ -2155,14 +2223,15 @@ Work on MLDSA signature support in I2P is on hold until late 2027 or 2028,
 pending work by standards bodies to select algorithms, possibly reduce
 key and/or signature sizes, and promote industry adoption.
 See
-[CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+[CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/),
+[COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/),
 and
 [PLANTS](https://datatracker.ietf.org/wg/plants/about/).
-Also, MLDSA adoption in the industry will be standardized by the CA/Browser Forum
+Also, MLDSA adoption in the industry will be standardized by the IETF, CA/Browser Forum,
 and Certificate Authorities. CAs need hardware security module (HSM) support
 first, which is not currently available [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/).
-We expect the CA/Browser Forum to drive decisions on specific parameter
-choices, including whether to support or require composite signatures [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+We expect the IETF and CA/Browser Forum to drive decisions on specific parameter
+choices, including whether to support or require composite signatures [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 
 
@@ -2195,14 +2264,9 @@ We should be able to just try one-then-the-other, as we did with X25519, to be p
 
 ## Issues
 
-- Noise Hash selection - stay with SHA256 or upgrade?
-  SHA256 should be good for another 20-30 years, not threatened by PQ,
-  See [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) and [NCCOE presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
-  If SHA256 is broken we have worse problems (netdb).
-- NTCP2 separate port, separate router address
-- SSU2 relay / peer test
-- SSU2 version field
-- SSU2 router address version
+SHA256 should be good for another 20-30 years, not threatened by PQ,
+See [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) and [NCCOE presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+If SHA256 is broken we have worse problems (netdb).
 
 
 ## References
