@@ -1,10 +1,12 @@
 ---
 title: "Protocoles de Cryptographie Post-Quantique"
-aliases: 
+aliases:
+  - "/proposals/169-pq-crypto"
+  - "/proposals/169-pq-crypto/"
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-03-22"
+lastupdated: "2026-04-01"
 status: "Ouvrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -131,7 +133,7 @@ Les certificats X.509 et autres encodages DER utiliseront les structures composi
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-La surcharge sera substantielle. Les tailles typiques des destinations Ed25519 et des identités de router sont de 391 octets. Celles-ci augmenteront de 3,5x à 6,8x selon l'algorithme. Les signatures Ed25519 font 64 octets. Celles-ci augmenteront de 38x à 76x selon l'algorithme. Les RouterInfo signés typiques, leaseSet, datagrammes avec réponse possible, et messages de streaming signés font environ 1KB. Ceux-ci augmenteront de 3x à 8x selon l'algorithme.
+Les certificats X.509 et autres encodages DER utiliseront les structures composites et les OID définis dans [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 Comme les nouveaux types d'identité de destination et de router ne contiendront pas de remplissage, ils ne seront pas compressibles. Les tailles des destinations et des identités de router qui sont compressées en gzip pendant le transit augmenteront de 12x à 38x selon l'algorithme.
 
@@ -179,7 +181,7 @@ Mettez à jour les sections et tableaux dans le document des structures communes
 
 Les nouveaux types de clés publiques sont :
 
-### PublicKey
+#### PublicKey
 
 Les clés publiques hybrides sont la clé X25519. Les clés publiques KEM sont la clé PQ éphémère envoyée d'Alice à Bob. L'encodage et l'ordre des octets sont définis dans [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
@@ -199,7 +201,7 @@ Les clés MLKEM*_CT ne sont pas vraiment des clés publiques, elles sont le "tex
 
 Les nouveaux types de clés privées sont :
 
-### PrivateKey
+#### PrivateKey
 
 Les clés privées hybrides sont les clés X25519. Les clés privées KEM sont uniquement pour Alice. L'encodage KEM et l'ordre des octets sont définis dans [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
@@ -213,7 +215,7 @@ Les clés privées hybrides sont les clés X25519. Les clés privées KEM sont u
 | MLKEM1024 | 3168 | 0.9.xx | Voir proposition 169, pour les négociations uniquement, pas pour les leasesets, RI ou Destinations |
 Les nouveaux types de clés publiques de signature sont :
 
-### SigningPublicKey
+#### SigningPublicKey
 
 Les clés publiques de signature hybrides sont la clé Ed25519 suivie de la clé PQ, comme dans le [brouillon IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). L'encodage et l'ordre des octets sont définis dans [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
@@ -228,9 +230,9 @@ Les clés publiques de signature hybrides sont la clé Ed25519 suivie de la clé
 | MLDSA44ph | 1344 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb |
 | MLDSA65ph | 1984 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb |
 | MLDSA87ph | 2624 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb |
-Les nouveaux types de clés privées de signature sont :
+Les clés publiques de signature hybrides composites sont constituées de la clé PQC suivie de la clé Ed25519, comme indiqué dans [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Le codage et l'ordre des octets sont définis dans [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
-### SigningPrivateKey
+#### SigningPrivateKey
 
 Les clés privées de signature hybrides sont la clé Ed25519 suivie de la clé PQ, comme dans le [brouillon IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). L'encodage et l'ordre des octets sont définis dans [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
@@ -245,11 +247,13 @@ Les clés privées de signature hybrides sont la clé Ed25519 suivie de la clé 
 | MLDSA44ph | 2592 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb. Voir proposition 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb. Voir proposition 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb. Voir proposition 169 |
+Les clés privées de signature hybride composites sont constituées de la clé PQC suivie de la clé Ed25519, comme indiqué dans [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Le codage et l'ordre des octets sont définis dans [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+
+Les clés privées de signature ne sont jamais transmises sur le réseau. Les applications peuvent choisir de stocker la graine de 32 bits comme recommandé dans [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/), au lieu de la clé privée développée de plusieurs ko. Cela dépend de l'implémentation.
+
+#### Signature
+
 Les nouveaux types de signature sont :
-
-### Signature
-
-Les signatures hybrides sont la signature Ed25519 suivie de la signature PQ, comme dans le [projet IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Les signatures hybrides sont vérifiées en vérifiant les deux signatures, et échouent si l'une d'entre elles échoue. L'encodage et l'ordre des octets sont définis dans [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 | Type | Longueur (octets) | Depuis | Usage |
 |------|-------------------|--------|-------|
@@ -262,9 +266,9 @@ Les signatures hybrides sont la signature Ed25519 suivie de la signature PQ, com
 | MLDSA44ph | 2484 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb. Voir proposition 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb. Voir proposition 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Uniquement pour les fichiers SU3, pas pour les structures netDb. Voir proposition 169 |
-Les nouveaux types de clés publiques de signature sont :
+Les signatures hybrides composites sont la signature PQ suivie de la signature Ed25519, comme décrit dans [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Les signatures hybrides sont vérifiées en validant les deux signatures, et échouent si l'une d'elles échoue. Le codage et l'ordre des octets sont définis dans [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
-### Certificats de clés
+#### Certificats de clés
 
 Les clés publiques de signature hybrides sont la clé Ed25519 suivie de la clé PQ, comme dans le [brouillon IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). L'encodage et l'ordre des octets sont définis dans [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
@@ -289,13 +293,13 @@ Les nouveaux types de clés publiques cryptographiques sont :
 | NONE | 255 | 0 | 0.9.xx | Voir proposition 169 |
 Les types de clés hybrides ne sont JAMAIS inclus dans les certificats de clé ; seulement dans les leaseSets.
 
-Pour les destinations avec des types de signature Hybrid ou PQ, utilisez NONE (type 255) pour le type de chiffrement, mais il n'y a pas de clé cryptographique, et toute la section principale de 384 octets est destinée à la clé de signature.
+Pour les destinations ayant des types de signature Hybride ou PQ, utilisez NONE (type 255) pour le type de chiffrement, mais il n'y a pas de clé cryptographique, et les 384 octets entiers de la section principale sont destinés à la clé de signature.
 
-### Tailles de destination
+#### Tailles de destination
 
 Voici les longueurs pour les nouveaux types de Destination. Le type de chiffrement pour tous est NONE (type 255) et la longueur de la clé de chiffrement est traitée comme 0. Toute la section de 384 octets est utilisée pour la première partie de la clé publique de signature. NOTE : Ceci est différent de la spécification pour les types de signature ECDSA_SHA512_P521 et RSA, où nous avons maintenu la clé ElGamal de 256 octets dans la destination même si elle n'était pas utilisée.
 
-Aucun remplissage. La longueur totale est de 7 + longueur totale de la clé. La longueur du certificat de clé est de 4 + longueur de clé excédentaire.
+Pas de remplissage. La longueur totale est de 7 + la longueur totale de la clé. La longueur du certificat de clé est de 4 + la longueur excédentaire de la clé.
 
 Exemple de flux d'octets de destination de 1319 octets pour MLDSA44 :
 
@@ -309,11 +313,11 @@ skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 384 | 960 | 1351 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 384 | 1600 | 1991 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 384 | 2240 | 2631 |
-### Tailles des RouterIdent
+#### Tailles des RouterIdent
 
 Voici les longueurs pour les nouveaux types de Destination. Le type de chiffrement pour tous est X25519 (type 4). La section entière de 352 octets après la clé publique X25519 est utilisée pour la première partie de la clé publique de signature. Pas de remplissage. La longueur totale est 39 + longueur totale de la clé. La longueur du certificat de clé est 4 + longueur excédentaire de la clé.
 
-Exemple de flux d'octets d'identité de router de 1351 octets pour MLDSA44 :
+Exemple de flux d'octets d'identité de routeur de 1351 octets pour MLDSA44 :
 
 enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 
@@ -325,9 +329,57 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
+### Signatures composites
+
+Ajouter une nouvelle spécification pour les algorithmes de signature composite, comme suit : les signatures hybrides composites sont définies dans [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Cependant, comme d'habitude, les clés publiques et les signatures au sein d'I2P omettent les encodages DER.
+
+Les signatures composites utilisent toujours un pré-hachage, de sorte que les messages potentiellement volumineux n'ont pas besoin d'être traités deux fois. Ceci est externe à l'algorithme MLDSA ; nous utilisons le MLDSA standard, et non HashML-DSA.
+
+#### Algorithme de signature
+
+```
+
+  M = message
+  Prefix = "CompositeAlgorithmSignatures2025" (32 bytes, not null terminated)
+  Label = (30 bytes, not null terminated), one of:
+          "COMPSIG-MLDSA44-Ed25519-SHA512"
+          "COMPSIG-MLDSA65-Ed25519-SHA512"
+          "COMPSIG-MLDSA87-Ed25519-SHA512"  // not in [COMPOSITE-SIGS]
+  ctx = "" (0 bytes)
+  len(ctx) = 0  (1 byte)
+  PH(M) = SHA512(M) (64 bytes)
+
+
+  Compute a hash of the message prepended as follows:
+
+  M' = Prefix || Label || len(ctx) || ctx || PH( M )
+
+  M' length is 127 bytes.
+
+  Sign the prehashed message M':
+
+  signature = MLDSA_SIGN(M') || Ed25519_SIGN(M')
+
+```
+#### Algorithme de vérification
+
+Identique à l'algorithme de signature. Échoue si l'une ou l'autre signature échoue.
+
+```
+
+  M' = as above
+
+  signature = MLDSA_VERIFY(M') && Ed25519_VERIFY(M')
+
+
+```
+#### Problèmes
+
+[COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) ne définit pas la combinaison MLDSA87 + Ed25519, probablement en raison de la différence de niveau de sécurité. Il définit toutefois MLDSA87 + Ed448, en utilisant SHAKE256/64 comme fonction de pré-hachage. Cette combinaison n'est pas actuellement incluse dans cette proposition, car nous ne prenons pas en charge Ed448 pour le moment.
+
 ### Modèles de négociation
 
-Les handshakes utilisent les modèles de handshake du [Noise Protocol](https://noiseprotocol.org/noise.html).
+Les saluts utilisent les schémas de salut du [protocole Noise](https://noiseprotocol.org/noise.html).
 
 Le mappage de lettres suivant est utilisé :
 
@@ -337,7 +389,7 @@ Le mappage de lettres suivant est utilisé :
 - e1 = clé PQ éphémère à usage unique, envoyée d'Alice à Bob
 - ekem1 = le texte chiffré KEM, envoyé de Bob à Alice
 
-Les modifications suivantes à XK et IK pour le secret de transmission hybride (hfs) sont spécifiées dans la [spécification Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) section 5 :
+Les modifications suivantes apportées à XK et IK pour la confidentialité post-compromise hybride (hfs) sont spécifiées dans la section 5 de la [spécification Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) :
 
 ```
 XK:                       XKhfs:
@@ -419,15 +471,15 @@ For Bob:
 
 #### Aperçu
 
-Cette section s'applique aux protocoles IK et XK.
+Cette section s'applique aux deux protocoles IK et XK.
 
-Le handshake hybride est défini dans la [spécification Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). Le premier message, d'Alice vers Bob, contient e1, la clé d'encapsulation, avant la charge utile du message. Celle-ci est traitée comme une clé statique supplémentaire ; appelez EncryptAndHash() dessus (en tant qu'Alice) ou DecryptAndHash() (en tant que Bob). Ensuite, traitez la charge utile du message comme d'habitude.
+L'initialisation hybride est définie dans la [spécification Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). Le premier message, d'Alice vers Bob, contient e1, la clé d'encapsulation, avant la charge utile du message. Cette clé est traitée comme une clé statique supplémentaire ; appliquez-lui EncryptAndHash() (en tant qu'Alice) ou DecryptAndHash() (en tant que Bob). Ensuite, traitez la charge utile du message comme d'habitude.
 
 Le second message, de Bob à Alice, contient ekem1, le texte chiffré, avant la charge utile du message. Ceci est traité comme une clé statique supplémentaire ; appelez EncryptAndHash() dessus (en tant que Bob) ou DecryptAndHash() (en tant qu'Alice). Ensuite, calculez la kem_shared_key et appelez MixKey(kem_shared_key). Puis traitez la charge utile du message comme d'habitude.
 
 #### Opérations ML-KEM définies
 
-Nous définissons les fonctions suivantes correspondant aux blocs de construction cryptographiques utilisés tels que définis dans [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Nous définissons les fonctions suivantes correspondant aux composants cryptographiques utilisés tels que définis dans [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -435,7 +487,7 @@ Nous définissons les fonctions suivantes correspondant aux blocs de constructio
     The encapsulation key is sent in message 1.
     encap_key and decap_key sizes vary based on ML-KEM variant.
 
-(ciphertext, kem_shared_key) = ENCAPS(encap_key)
+(chiffre, clé_partagée_kem) = ENCAPS(clé_encapsulation)
 
     Bob calculates the ciphertext and shared key,
     using the ciphertext received in message 1.
@@ -449,13 +501,13 @@ kem_shared_key = DECAPS(ciphertext, decap_key)
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Notez que la encap_key et le ciphertext sont tous deux chiffrés à l'intérieur des blocs ChaCha/Poly dans les messages 1 et 2 de la négociation Noise. Ils seront déchiffrés dans le cadre du processus de négociation.
+Notez que la clé de encapsulation (encap_key) et le texte chiffré sont tous deux chiffrés à l'intérieur de blocs ChaCha/Poly dans les messages 1 et 2 de la poignée de main Noise. Ils seront déchiffrés dans le cadre du processus de poignée de main.
 
 La kem_shared_key est mélangée dans la clé de chaînage avec MixHash(). Voir ci-dessous pour les détails.
 
 #### KDF d'Alice pour le Message 1
 
-Pour XK : Après le motif de message 'es' et avant la charge utile, ajouter :
+Pour XK : après le motif de message 'es' et avant la charge utile, ajouter :
 
 OU
 
@@ -485,7 +537,7 @@ This is the "e1" message pattern:
 ```
 #### KDF de Bob pour le Message 1
 
-Pour XK : Après le motif de message 'es' et avant la charge utile, ajouter :
+Pour XK : après le motif de message 'es' et avant la charge utile, ajouter :
 
 OU
 
@@ -513,7 +565,7 @@ This is the "e1" message pattern:
 ```
 #### KDF de Bob pour le Message 2
 
-Pour XK : Après le motif de message 'ee' et avant la charge utile, ajouter :
+Pour XK : après le motif de message 'ee' et avant la charge utile, ajouter :
 
 OU
 
@@ -588,7 +640,7 @@ inchangé
 
 Mettre à jour la spécification ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) comme suit :
 
-#### Identificateurs Noise
+#### Identifiants Noise
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
@@ -698,7 +750,7 @@ Notez que la charge utile doit contenir un bloc DateTime, donc la taille minimal
 
 #### 1g) Format de réponse pour nouvelle session
 
-Modifications : Le ratchet actuel a une charge utile vide pour la première section ChaCha, et la charge utile dans la deuxième section. Avec ML-KEM, il y a maintenant trois sections. La première section contient le texte chiffré PQ chiffré. La deuxième section a une charge utile vide. La troisième section contient la charge utile.
+Changements : le ratchet actuel possède une charge utile vide dans la première section ChaCha, et la charge utile dans la deuxième section. Avec ML-KEM, il existe désormais trois sections. La première section contient le chiffré PQC chiffré. La deuxième section a une charge utile vide. La troisième section contient la charge utile.
 
 Format chiffré :
 
@@ -797,7 +849,7 @@ Mettre à jour la spécification NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) 
 
 #### 1) SessionRequest
 
-Modifications : Le NTCP2 actuel ne contient que les options de la section ChaCha. Avec ML-KEM, la section ChaCha contiendra également la clé publique PQ chiffrée.
+Changements : le NTCP2 actuel contient uniquement les options dans une seule section ChaCha. Avec ML-KEM, une nouvelle section ChaCha apparaîtra avant les options, contenant la clé publique QP chiffrée.
 
 Afin que NTCP2 PQ et non-PQ puissent être pris en charge sur la même adresse et le même port de router, nous utilisons le bit le plus significatif de la valeur X (clé publique éphémère X25519) pour marquer qu'il s'agit d'une connexion PQ. Ce bit est toujours désactivé pour les connexions non-PQ.
 
@@ -937,7 +989,7 @@ Contenu brut :
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-Données non chiffrées (étiquette d'authentification Poly1305 non affichée) :
+Tailles :
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1184,7 +1236,7 @@ Note : Les codes de type sont uniquement à usage interne. Les routeurs resteron
 
 MTU minimum pour MLKEM768_X25519 : Environ 1316 pour IPv4 et 1336 pour IPv6.
 
-Taille maximale : utilisez le MTU de Bob tel que publié dans son RouterInfo, ou la valeur par défaut de 1500 si celui-ci n'est pas présent dans le RouterInfo. N'utilisez pas MLKEM768_X25519 si le MTU publié est trop faible.
+Données non chiffrées (étiquette d'authentification Poly1305 non affichée) :
 
 #### SessionCreated (Type 1)
 
@@ -1235,7 +1287,7 @@ Contenu brut :
 
 
 ```
-Données non chiffrées (étiquette d'authentification Poly1305 non affichée) :
+Tailles :
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1276,7 +1328,7 @@ Note : Les codes de type sont uniquement à usage interne. Les routeurs resteron
 
 MTU minimum pour MLKEM768_X25519 : Environ 1316 pour IPv4 et 1336 pour IPv6.
 
-Taille maximale : Alice ne possède pas encore le RouterInfo de Bob et ne connaît pas son MTU publié. Pour ce message, utilisez un MTU temporaire comme suit. Pour MLKEM512_X25519, utilisez le maximum entre 1280 et la taille du SessionRequest reçu comme MTU. Pour MLKEM768_X25519, utilisez le maximum entre (1318 pour IPv4 ou 1338 pour IPv6) et la taille du SessionRequest reçu comme MTU. La surcharge de SessionCreated est plus faible que celle de SessionRequest, car le chiffré MLKEM est plus petit que la clé publique MLKEM. Cela permet une plage de tailles de bourrage dans SessionCreated, même s’il y avait peu ou pas de bourrage dans le SessionRequest.
+Signatures PQ : Les blocs Relay, les blocs Peer Test et les messages Peer Test contiennent tous des signatures. Malheureusement, les signatures PQ sont plus grandes que le MTU. Il n'existe actuellement aucun mécanisme pour fragmenter les blocs Relay ou Peer Test ou les messages sur plusieurs paquets UDP. Le protocole doit être étendu pour supporter la fragmentation. Cela sera fait dans une proposition séparée à déterminer. Jusqu'à ce que cela soit terminé, Relay et Peer Test ne seront pas supportés.
 
 #### SessionConfirmed (Type 2)
 
@@ -1301,7 +1353,7 @@ Dans tous les cas, utilisez le nom de transport SSU2 comme d'habitude. MLKEM-102
 
 Utilisez la même adresse/port que pour non-PQ, non-firewalled. Une ou les deux variantes PQ sont prises en charge. Dans l'adresse du router, publiez v=2 (comme d'habitude) et le nouveau paramètre pq=[3|4|3,4] pour indiquer MLKEM 512/768/les deux. Les anciens routers ignoreront le paramètre pq et se connecteront en non-pq comme d'habitude.
 
-Une adresse/port différente comme non-PQ, ou PQ uniquement, non-firewall n'est PAS prise en charge. Cela ne sera pas implémenté jusqu'à ce que SSU2 non-PQ soit désactivé, dans plusieurs années. Quand non-PQ est désactivé, une ou les deux variantes PQ sont prises en charge. Dans l'adresse du router, publier v=[3|4|3,4] pour indiquer MLKEM 512/768/les deux. Les anciens routers vérifieront le paramètre v et ignoreront cette adresse comme non prise en charge.
+Faites attention à ne pas dépasser la MTU avec MLKEM768. La MTU minimale pour SSU2 est de 1280, qui correspond à la taille du message 1 sans padding. N'incluez pas de padding dans le message 1 si la MTU d'Alice ou Bob est de 1280.
 
 Adresses derrière pare-feu (aucune IP publiée) : Dans l'adresse du router, publier v=2 (comme d'habitude). Le paramètre pq DOIT être publié dans les adresses derrière pare-feu, pour supporter le relais.
 
@@ -1311,7 +1363,7 @@ Dans la spécification actuelle, les messages 1 et 2 sont définis comme ayant u
 
 #### MTU
 
-Faites attention à ne pas dépasser la MTU avec MLKEM768. La MTU minimale pour SSU2 est de 1280, qui correspond à la taille du message 1 sans padding. N'incluez pas de padding dans le message 1 si la MTU d'Alice ou Bob est de 1280.
+Nous pourrions utiliser en interne le champ version et utiliser 3 pour MLKEM512 et 4 pour MLKEM768.
 
 ### Streaming
 
@@ -1376,7 +1428,7 @@ Augmentation de taille (octets) :
 | MLKEM1024 | 12x plus rapide | 10x plus rapide | 6x plus rapide |
 ### Signatures
 
-Vitesse :
+#### Tailles
 
 Vitesses rapportées par [Cloudflare](https://blog.cloudflare.com/pq-2024/) :
 
@@ -1389,7 +1441,7 @@ Vitesses rapportées par [Cloudflare](https://blog.cloudflare.com/pq-2024/) :
 | MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 2484 | 3828 | 1383 | 1351 | +3412 | +3380 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 3373 | 5357 | 2023 | 1991 | +5668 | +5636 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
-La nouvelle taille maximale de Destination sera de 2599 (3468 en base 64).
+#### Vitesses
 
 Mettre à jour les autres documents qui donnent des conseils sur les tailles de Destination, notamment :
 
@@ -1607,7 +1659,7 @@ Les données les plus précieuses sont le trafic de bout en bout, chiffré avec 
 
 Le modèle de menace PQ consistant à casser les clés d'authentification dans un délai raisonnable (disons quelques mois) puis à usurper l'authentification ou à déchiffrer en temps quasi-réel, est beaucoup plus lointain ? Et c'est alors que nous voudrions migrer vers des clés statiques PQC.
 
-Ainsi, le modèle de menace PQ le plus précoce est OBEP/IBGW stockant le trafic pour un déchiffrement ultérieur. Nous devrions d'abord implémenter le ratchet hybride.
+Les travaux sur la prise en charge des signatures MLDSA dans I2P sont en suspens jusqu'à la fin 2027 ou 2028, en attendant que les organismes de standardisation choisissent des algorithmes, éventuellement réduisent la taille des clés et/ou des signatures, et favorisent l'adoption par l'industrie. Voir [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/), [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/), et [PLANTS](https://datatracker.ietf.org/wg/plants/about/). Par ailleurs, l'adoption de MLDSA par l'industrie sera standardisée par l'IETF, le CA/Browser Forum et les autorités de certification. Les AC ont besoin d'abord d'un support par les modules matériels de sécurité (HSM), qui n'est pas disponible actuellement [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Nous nous attendons à ce que l'IETF et le CA/Browser Forum pilotent les décisions concernant les choix spécifiques de paramètres, notamment sur la prise en charge ou l'obligation de signatures composites [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Étape | Cible |
 |-------|-------|
@@ -1626,20 +1678,13 @@ Ainsi, le modèle de menace PQ le plus précoce est OBEP/IBGW stockant le trafic
 | Signature production | Milieu 2027 |
 ## Migration
 
-Si nous ne pouvons pas prendre en charge à la fois les anciens et nouveaux protocoles ratchet sur les mêmes tunnels, la migration sera beaucoup plus difficile.
+Ratchet est la priorité la plus élevée. Les transports sont suivants. Les signatures ont la priorité la plus basse.
 
-Nous devrions pouvoir simplement essayer l'un puis l'autre, comme nous l'avons fait avec X25519, pour être prouvé.
+Le déploiement des signatures sera également reporté d'un an ou plus par rapport au déploiement du chiffrement, car aucune rétrocompatibilité n'est possible. De plus, l'adoption de MLDSA dans l'industrie sera standardisée par le CA/Browser Forum et les Autorités de Certification. Les AC ont d'abord besoin du support des modules de sécurité matériel (HSM), qui n'est actuellement pas disponible [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Nous nous attendons à ce que le CA/Browser Forum conduise les décisions sur les choix de paramètres spécifiques, y compris s'il faut supporter ou exiger les signatures composites [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 ## Problèmes
 
-- Sélection de Hash Noise - conserver SHA256 ou mettre à niveau ?
-  SHA256 devrait être bon pour encore 20-30 ans, pas menacé par PQ,
-  Voir [présentation NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) et [présentation NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
-  Si SHA256 est cassé, nous avons des problèmes plus graves (netdb).
-- NTCP2 port séparé, adresse router séparée
-- SSU2 relay / test de pair
-- Champ de version SSU2
-- Version d'adresse router SSU2
+Le SHA256 devrait rester sûr pendant encore 20 à 30 ans et n'est pas menacé par l'informatique quantique. Voir la [présentation du NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) et la [présentation du NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Si le SHA256 venait à être cassé, nous aurions des problèmes bien plus graves (notamment au niveau du netDb).
 
 ## Références
 
