@@ -2,7 +2,7 @@
 title: "Creating and Running an I2P Reseed Server"
 description: "Complete guide to setting up and operating an I2P reseed server to help new routers join the network"
 slug: "reseed-server"
-lastUpdated: "2025-10"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -229,6 +229,16 @@ Email **zzz** (I2P lead developer) with the following information:
 - **I2P Email**: zzz@mail.i2p
 - **Clearnet Email**: zzz@i2pmail.org
 
+
+### Privacy Policy
+
+A reseed operator is a trusted role in the network.
+While we do not have a formal privacy policy, you must ensure the privacy of our users
+by not publicizing logs or IPs found in those logs, except as necessary to discuss administration issues with the I2P reseed team.
+
+
+
+
 ### Required Information
 
 Include in your email:
@@ -236,8 +246,8 @@ Include in your email:
 1. **Reseed server URL**: The full HTTPS URL (e.g., `https://reseed.example.com`)
 2. **Public reseed certificate**: Located at `/home/i2p/.reseed/` (attach the `.crt` file)
 3. **Contact email**: Your preferred contact method for server maintenance notifications
-4. **Server location**: Optional but helpful (country/region)
-5. **Expected uptime**: Your commitment to maintaining the server
+4. **Public SSL certificate**: ONLY required if selfsigned. NOT required for Let's Encrypt certificates
+5. **Privacy policy agreement**: A statement that you agree to the privacy policy above
 
 ### Verification
 
