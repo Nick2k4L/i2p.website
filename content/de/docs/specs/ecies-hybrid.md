@@ -2,9 +2,12 @@
 title: "PQ Hybrid ECIES-X25519-AEAD-Ratchet"
 description: "Post-Quanten-Hybrid-Variante des ECIES-Verschlüsselungsprotokolls mit ML-KEM"
 slug: "ecies-hybrid"
+aliases:
+  - "/docs/specs/ecies-hybrid"
+  - "/docs/specs/ecies-hybrid/"
 category: "Protokolle"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-04"
+accurateFor: "0.9.69"
 ---
 
 ## Hinweis
@@ -192,7 +195,7 @@ This is the "e1" message pattern:
 
 End of "e1" message pattern.
 
-NOTE: For the next section (payload for XK or static key for IK),
+NOTE: For the next section (static key for IK),
 the keydata and chain key remain the same, and n now equals 1
 (instead of 0 for non-hybrid).
 ```
@@ -216,7 +219,7 @@ This is the "e1" message pattern:
 
 End of "e1" message pattern.
 
-NOTE: For the next section (payload for XK or static key for IK),
+NOTE: For the next section (static key for IK),
 the keydata and chain key remain the same, and n now equals 1
 (instead of 0 for non-hybrid).
 ```

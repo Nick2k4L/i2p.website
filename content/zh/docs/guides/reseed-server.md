@@ -1,7 +1,8 @@
 ---
 title: "创建和运行 I2P Reseed 服务器"
 description: "完整指南：设置和运行 I2P reseed 服务器以帮助新 router 加入网络"
-lastUpdated: "2025-10"
+slug: "reseed-server"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -205,43 +206,43 @@ jc21/nginx-proxy-manager:latest
 
 在您的邮件中包含:
 
+### Verification
+
+I2P 开发者将验证您的 reseed 服务器是否: - 正确配置并提供 router 信息 - 使用有效的 SSL 证书 - 提供正确签名的 SU3 文件 - 可访问且响应正常
+
 1. **Reseed 服务器 URL**：完整的 HTTPS URL（例如，`https://reseed.example.com`）
 2. **公共 reseed 证书**：位于 `/home/i2p/.reseed/`（附加 `.crt` 文件）
 3. **联系邮箱**：用于服务器维护通知的首选联系方式
 4. **服务器位置**：可选但有帮助（国家/地区）
 5. **预期正常运行时间**：您对维护服务器的承诺
 
-### Verification
-
-I2P 开发者将验证您的 reseed 服务器是否:
-- 正确配置并提供 router 信息
-- 使用有效的 SSL 证书
-- 提供正确签名的 SU3 文件
-- 可访问且响应正常
+### 安装 Nginx Proxy Manager
 
 一旦获得批准,您的 reseed 服务器将被添加到随 I2P router 分发的列表中,帮助新用户加入网络!
 
-## Monitoring and Maintenance
-
-### 安装 Nginx Proxy Manager
-
 监控您的 reseed 服务:
 
-```bash
-sudo systemctl status reseed
-sudo journalctl -u reseed -f
-```
+## Monitoring and Maintenance
+
 ### 配置代理管理器
 
 密切关注系统资源：
 
 ```bash
-htop
-df -h
+sudo systemctl status reseed
+sudo journalctl -u reseed -f
 ```
 ### Update Reseed Tools
 
 定期更新 reseed-tools 以获取最新的改进：
+
+```bash
+htop
+df -h
+```
+### 联系信息
+
+如果通过 Nginx Proxy Manager 使用 Let's Encrypt,证书将自动续期。验证续期是否正常工作:
 
 ```bash
 cd /home/i2p/reseed-tools
@@ -250,43 +251,43 @@ make build
 sudo make install
 sudo systemctl restart reseed
 ```
-### 联系信息
+### 必需信息
 
-如果通过 Nginx Proxy Manager 使用 Let's Encrypt,证书将自动续期。验证续期是否正常工作:
+检查日志中的错误：
 
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 ## 配置服务
 
-### 必需信息
+### 验证
 
-检查日志中的错误：
+常见问题：- I2P router 未运行或 netDb 为空 - 端口 8443 已被占用 - `/home/i2p/.reseed/` 目录的权限问题
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-常见问题：- I2P router 未运行或 netDb 为空 - 端口 8443 已被占用 - `/home/i2p/.reseed/` 目录的权限问题
-
-### 验证
-
 确保你的 I2P router 正在运行并已填充其 netDb：
+
+### SSL Certificate Errors
+
+你应该看到许多 `.dat` 文件。如果是空的,请等待你的 I2P router 发现对等节点。
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-你应该看到许多 `.dat` 文件。如果是空的,请等待你的 I2P router 发现对等节点。
-
-### SSL Certificate Errors
-
 验证您的证书是否有效:
+
+### 检查服务状态
+
+检查：- DNS 记录正确指向您的服务器 - 防火墙允许端口 80 和 443 - Nginx Proxy Manager 正在运行：`docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
-### 检查服务状态
+### 无法通过域名访问
 
-检查：- DNS 记录正确指向您的服务器 - 防火墙允许端口 80 和 443 - Nginx Proxy Manager 正在运行：`docker ps`
+通过运行一个 reseed 服务器,您正在为 I2P 网络提供关键基础设施。感谢您为更加私密和去中心化的互联网做出贡献!
 
 ## Security Considerations
 
@@ -299,11 +300,10 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 
 ## Contributing to the Network
 
-通过运行一个 reseed 服务器,您正在为 I2P 网络提供关键基础设施。感谢您为更加私密和去中心化的互联网做出贡献!
-
 如有问题或需要帮助,请联系 I2P 社区: - **论坛**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: 各网络上的 #i2p - **开发**: [i2pgit.org](https://i2pgit.org)
 
 ---
 
-
 *指南最初由 [Stormy Cloud](https://www.stormycloud.org) 创建,经改编用于 I2P 文档。*
+
+*本指南最初由 [Stormy Cloud](https://www.stormycloud.org) 创建，后为 I2P 文档改编。*

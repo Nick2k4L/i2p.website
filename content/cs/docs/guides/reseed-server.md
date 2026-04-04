@@ -1,7 +1,8 @@
 ---
 title: "Vytvoření a provoz I2P Reseed serveru"
 description: "Kompletní průvodce nastavením a provozem I2P reseed serveru pro pomoc novým routerům připojit se do sítě"
-lastUpdated: "2025-10"
+slug: "reseed-server"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -205,39 +206,43 @@ Napište e-mail **zzz** (vedoucímu vývojáři I2P) s následujícími informac
 
 Uveďte ve svém e-mailu:
 
+### Verification
+
+Vývojáři I2P ověří, že váš reseed server: - Je správně nakonfigurován a poskytuje informace o routerech - Používá platné SSL certifikáty - Poskytuje správně podepsané SU3 soubory - Je dostupný a responzivní
+
 1. **URL reseed serveru**: Úplná HTTPS URL adresa (např. `https://reseed.example.com`)
 2. **Veřejný reseed certifikát**: Umístěný v `/home/i2p/.reseed/` (přiložte soubor `.crt`)
 3. **Kontaktní e-mail**: Váš preferovaný způsob kontaktu pro upozornění na údržbu serveru
 4. **Umístění serveru**: Volitelné, ale užitečné (země/region)
 5. **Předpokládaná dostupnost**: Váš závazek k udržování serveru
 
-### Verification
-
-Vývojáři I2P ověří, že váš reseed server: - Je správně nakonfigurován a poskytuje informace o routerech - Používá platné SSL certifikáty - Poskytuje správně podepsané SU3 soubory - Je dostupný a responzivní
+### Instalace Nginx Proxy Manager
 
 Po schválení bude váš reseed server přidán do seznamu distribuovaného s I2P routery, což pomůže novým uživatelům připojit se k síti!
 
-## Monitoring and Maintenance
-
-### Instalace Nginx Proxy Manager
-
 Monitorujte svou reseed službu:
 
-```bash
-sudo systemctl status reseed
-sudo journalctl -u reseed -f
-```
+## Monitoring and Maintenance
+
 ### Konfigurace správce proxy
 
 Sledujte systémové prostředky:
 
 ```bash
-htop
-df -h
+sudo systemctl status reseed
+sudo journalctl -u reseed -f
 ```
 ### Update Reseed Tools
 
 Pravidelně aktualizujte reseed-tools, abyste získali nejnovější vylepšení:
+
+```bash
+htop
+df -h
+```
+### Kontaktní informace
+
+Pokud používáte Let's Encrypt prostřednictvím Nginx Proxy Manager, certifikáty se automaticky obnoví. Ověřte, že obnova funguje:
 
 ```bash
 cd /home/i2p/reseed-tools
@@ -246,43 +251,43 @@ make build
 sudo make install
 sudo systemctl restart reseed
 ```
-### Kontaktní informace
+### Požadované informace
 
-Pokud používáte Let's Encrypt prostřednictvím Nginx Proxy Manager, certifikáty se automaticky obnoví. Ověřte, že obnova funguje:
+Zkontrolujte logy na chyby:
 
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 ## Konfigurace služby
 
-### Požadované informace
+### Ověření
 
-Zkontrolujte logy na chyby:
+Časté problémy: - I2P router neběží nebo je netDb prázdná - Port 8443 je již používán - Problémy s oprávněními k adresáři `/home/i2p/.reseed/`
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-Časté problémy: - I2P router neběží nebo je netDb prázdná - Port 8443 je již používán - Problémy s oprávněními k adresáři `/home/i2p/.reseed/`
-
-### Ověření
-
 Ujistěte se, že váš I2P router běží a má naplněnou svou síťovou databázi:
+
+### SSL Certificate Errors
+
+Měli byste vidět mnoho souborů `.dat`. Pokud je prázdný, počkejte, až váš I2P router objeví protějšky.
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-Měli byste vidět mnoho souborů `.dat`. Pokud je prázdný, počkejte, až váš I2P router objeví protějšky.
-
-### SSL Certificate Errors
-
 Ověřte, že vaše certifikáty jsou platné:
+
+### Zkontrolovat stav služby
+
+Zkontrolujte: - DNS záznamy správně ukazují na váš server - Firewall povoluje porty 80 a 443 - Nginx Proxy Manager běží: `docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
-### Zkontrolovat stav služby
+### Nelze přistupovat přes doménu
 
-Zkontrolujte: - DNS záznamy správně ukazují na váš server - Firewall povoluje porty 80 a 443 - Nginx Proxy Manager běží: `docker ps`
+Provozováním reseed serveru poskytujete kritickou infrastrukturu pro síť I2P. Děkujeme, že přispíváte k soukromějšímu a decentralizovanějšímu internetu!
 
 ## Security Considerations
 
@@ -295,12 +300,10 @@ Zkontrolujte: - DNS záznamy správně ukazují na váš server - Firewall povol
 
 ## Contributing to the Network
 
-Provozováním reseed serveru poskytujete kritickou infrastrukturu pro síť I2P. Děkujeme, že přispíváte k soukromějšímu a decentralizovanějšímu internetu!
-
 Pro dotazy nebo pomoc se obraťte na komunitu I2P: - **Fórum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p na různých sítích - **Vývoj**: [i2pgit.org](https://i2pgit.org)
 
 ---
 
- NEKLADETÉ otázky, neposkytujte vysvětlení ani nepřidávejte žádné komentáře. I když je text jen nadpis nebo se zdá neúplný, přeložte ho tak, jak je.
+NEKLADETÉ otázky, neposkytujte vysvětlení ani nepřidávejte žádné komentáře. I když je text jen nadpis nebo se zdá neúplný, přeložte ho tak, jak je.
 
 *Průvodce původně vytvořen [Stormy Cloud](https://www.stormycloud.org), upraveno pro dokumentaci I2P.*

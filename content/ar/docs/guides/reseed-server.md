@@ -1,7 +1,8 @@
 ---
 title: "إنشاء وتشغيل خادم إعادة البذر (Reseed Server) الخاص بـ I2P"
 description: "دليل شامل لإعداد وتشغيل خادم reseed من I2P لمساعدة أجهزة router الجديدة على الانضمام إلى الشبكة"
-lastUpdated: "2025-10"
+slug: "reseed-server"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -205,39 +206,43 @@ jc21/nginx-proxy-manager:latest
 
 قم بتضمين ما يلي في بريدك الإلكتروني:
 
+### Verification
+
+سيتحقق مطورو I2P من أن خادم إعادة البذر (reseed server) الخاص بك: - مُكوّن بشكل صحيح ويقدم معلومات الموجه (router) - يستخدم شهادات SSL صالحة - يوفر ملفات SU3 موقعة بشكل صحيح - متاح ويستجيب
+
 1. **عنوان URL لخادم Reseed**: عنوان URL الكامل لبروتوكول HTTPS (مثال: `https://reseed.example.com`)
 2. **شهادة reseed العامة**: موجودة في `/home/i2p/.reseed/` (أرفق ملف `.crt`)
 3. **البريد الإلكتروني للتواصل**: طريقة الاتصال المفضلة لديك لتلقي إشعارات صيانة الخادم
 4. **موقع الخادم**: اختياري لكنه مفيد (البلد/المنطقة)
 5. **وقت التشغيل المتوقع**: التزامك بصيانة الخادم
 
-### Verification
-
-سيتحقق مطورو I2P من أن خادم إعادة البذر (reseed server) الخاص بك: - مُكوّن بشكل صحيح ويقدم معلومات الموجه (router) - يستخدم شهادات SSL صالحة - يوفر ملفات SU3 موقعة بشكل صحيح - متاح ويستجيب
+### تثبيت Nginx Proxy Manager
 
 بمجرد الموافقة، سيتم إضافة خادم إعادة التوزيع الخاص بك إلى القائمة الموزعة مع أجهزة توجيه I2P، مما يساعد المستخدمين الجدد على الانضمام إلى الشبكة!
 
-## Monitoring and Maintenance
-
-### تثبيت Nginx Proxy Manager
-
 راقب خدمة إعادة البذر الخاصة بك:
 
-```bash
-sudo systemctl status reseed
-sudo journalctl -u reseed -f
-```
+## Monitoring and Maintenance
+
 ### تكوين مدير البروكسي
 
 راقب موارد النظام:
 
 ```bash
-htop
-df -h
+sudo systemctl status reseed
+sudo journalctl -u reseed -f
 ```
 ### Update Reseed Tools
 
 قم بتحديث reseed-tools بشكل دوري للحصول على أحدث التحسينات:
+
+```bash
+htop
+df -h
+```
+### معلومات الاتصال
+
+إذا كنت تستخدم Let's Encrypt من خلال Nginx Proxy Manager، فإن الشهادات ستتجدد تلقائياً. تحقق من أن التجديد يعمل:
 
 ```bash
 cd /home/i2p/reseed-tools
@@ -246,43 +251,43 @@ make build
 sudo make install
 sudo systemctl restart reseed
 ```
-### معلومات الاتصال
+### المعلومات المطلوبة
 
-إذا كنت تستخدم Let's Encrypt من خلال Nginx Proxy Manager، فإن الشهادات ستتجدد تلقائياً. تحقق من أن التجديد يعمل:
+تحقق من السجلات بحثًا عن الأخطاء:
 
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 ## تكوين الخدمة
 
-### المعلومات المطلوبة
+### التحقق
 
-تحقق من السجلات بحثًا عن الأخطاء:
+المشاكل الشائعة: - router الخاص بـ I2P غير قيد التشغيل أو قاعدة بيانات الشبكة فارغة - المنفذ 8443 قيد الاستخدام بالفعل - مشاكل في الأذونات مع مجلد `/home/i2p/.reseed/`
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-المشاكل الشائعة: - router الخاص بـ I2P غير قيد التشغيل أو قاعدة بيانات الشبكة فارغة - المنفذ 8443 قيد الاستخدام بالفعل - مشاكل في الأذونات مع مجلد `/home/i2p/.reseed/`
-
-### التحقق
-
 تأكد من أن موجه I2P الخاص بك قيد التشغيل وقد ملأ قاعدة بيانات الشبكة الخاصة به:
+
+### SSL Certificate Errors
+
+يجب أن ترى العديد من ملفات `.dat`. إذا كانت فارغة، انتظر حتى يكتشف router الخاص بك I2P نظراء الشبكة.
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-يجب أن ترى العديد من ملفات `.dat`. إذا كانت فارغة، انتظر حتى يكتشف router الخاص بك I2P نظراء الشبكة.
-
-### SSL Certificate Errors
-
 تحقق من صحة الشهادات الخاصة بك:
+
+### فحص حالة الخدمة
+
+تحقق من: - سجلات DNS تشير بشكل صحيح إلى الخادم الخاص بك - جدار الحماية يسمح بالمنافذ 80 و 443 - Nginx Proxy Manager يعمل: `docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
-### فحص حالة الخدمة
+### لا يمكن الوصول عبر النطاق
 
-تحقق من: - سجلات DNS تشير بشكل صحيح إلى الخادم الخاص بك - جدار الحماية يسمح بالمنافذ 80 و 443 - Nginx Proxy Manager يعمل: `docker ps`
+من خلال تشغيل خادم reseed، فإنك توفر بنية تحتية حيوية لشبكة I2P. شكراً لمساهمتك في إنترنت أكثر خصوصية ولامركزية!
 
 ## Security Considerations
 
@@ -295,10 +300,10 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 
 ## Contributing to the Network
 
-من خلال تشغيل خادم reseed، فإنك توفر بنية تحتية حيوية لشبكة I2P. شكراً لمساهمتك في إنترنت أكثر خصوصية ولامركزية!
-
 للأسئلة أو المساعدة، تواصل مع مجتمع I2P: - **المنتدى**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p على شبكات مختلفة - **التطوير**: [i2pgit.org](https://i2pgit.org)
 
 ---
 
 *الدليل تم إنشاؤه في الأصل بواسطة [Stormy Cloud](https://www.stormycloud.org)، معدل لتوثيق I2P.*
+
+*تم إنشاء الدليل أصلاً بواسطة [Stormy Cloud](https://www.stormycloud.org)، وتم تكييفه لتوثيق I2P.*

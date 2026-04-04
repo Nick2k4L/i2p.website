@@ -1,7 +1,8 @@
 ---
 title: "I2P 리시드 서버 생성 및 실행"
 description: "I2P 리시드 서버를 설정하고 운영하여 새로운 라우터가 네트워크에 참여할 수 있도록 돕는 완전한 가이드"
-lastUpdated: "2025-10"
+slug: "reseed-server"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -205,39 +206,43 @@ reseed 서버가 작동하면 I2P 개발자에게 연락하여 공식 reseed 서
 
 이메일에 다음을 포함하세요:
 
+### Verification
+
+I2P 개발자들은 귀하의 리시드 서버가 다음을 충족하는지 확인할 것입니다: - 적절히 구성되어 있고 router 정보를 제공하고 있는지 - 유효한 SSL 인증서를 사용하고 있는지 - 올바르게 서명된 SU3 파일을 제공하고 있는지 - 접근 가능하고 응답하는지
+
 1. **Reseed 서버 URL**: 전체 HTTPS URL (예: `https://reseed.example.com`)
 2. **공개 reseed 인증서**: `/home/i2p/.reseed/`에 위치 (`.crt` 파일 첨부)
 3. **연락처 이메일**: 서버 유지보수 알림을 위한 선호하는 연락 방법
 4. **서버 위치**: 선택 사항이지만 유용함 (국가/지역)
 5. **예상 가동 시간**: 서버 유지에 대한 귀하의 약속
 
-### Verification
-
-I2P 개발자들은 귀하의 리시드 서버가 다음을 충족하는지 확인할 것입니다: - 적절히 구성되어 있고 router 정보를 제공하고 있는지 - 유효한 SSL 인증서를 사용하고 있는지 - 올바르게 서명된 SU3 파일을 제공하고 있는지 - 접근 가능하고 응답하는지
+### Nginx Proxy Manager 설치
 
 승인되면, 귀하의 리시드 서버가 I2P router와 함께 배포되는 목록에 추가되어 새로운 사용자들이 네트워크에 참여하는 데 도움이 됩니다!
 
-## Monitoring and Maintenance
-
-### Nginx Proxy Manager 설치
-
 reseed 서비스를 모니터링하세요:
 
-```bash
-sudo systemctl status reseed
-sudo journalctl -u reseed -f
-```
+## Monitoring and Maintenance
+
 ### 프록시 관리자 구성
 
 시스템 리소스를 주시하세요:
 
 ```bash
-htop
-df -h
+sudo systemctl status reseed
+sudo journalctl -u reseed -f
 ```
 ### Update Reseed Tools
 
 최신 개선 사항을 받기 위해 주기적으로 reseed-tools를 업데이트하세요:
+
+```bash
+htop
+df -h
+```
+### 연락처 정보
+
+Nginx Proxy Manager를 통해 Let's Encrypt를 사용하는 경우, 인증서가 자동으로 갱신됩니다. 갱신이 정상적으로 작동하는지 확인하세요:
 
 ```bash
 cd /home/i2p/reseed-tools
@@ -246,43 +251,43 @@ make build
 sudo make install
 sudo systemctl restart reseed
 ```
-### 연락처 정보
+### 필수 정보
 
-Nginx Proxy Manager를 통해 Let's Encrypt를 사용하는 경우, 인증서가 자동으로 갱신됩니다. 갱신이 정상적으로 작동하는지 확인하세요:
+오류 확인을 위한 로그 검사:
 
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 ## 서비스 구성
 
-### 필수 정보
+### 검증
 
-오류 확인을 위한 로그 검사:
+일반적인 문제: - I2P router가 실행되지 않았거나 netDb가 비어있음 - 8443 포트가 이미 사용 중 - `/home/i2p/.reseed/` 디렉토리에 대한 권한 문제
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-일반적인 문제: - I2P router가 실행되지 않았거나 netDb가 비어있음 - 8443 포트가 이미 사용 중 - `/home/i2p/.reseed/` 디렉토리에 대한 권한 문제
-
-### 검증
-
 I2P router가 실행 중이고 네트워크 데이터베이스가 채워져 있는지 확인하세요:
+
+### SSL Certificate Errors
+
+많은 `.dat` 파일들이 보일 것입니다. 비어있다면, I2P router가 피어를 발견할 때까지 기다리세요.
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-많은 `.dat` 파일들이 보일 것입니다. 비어있다면, I2P router가 피어를 발견할 때까지 기다리세요.
-
-### SSL Certificate Errors
-
 인증서가 유효한지 확인하세요:
+
+### 서비스 상태 확인
+
+확인: - DNS 레코드가 서버를 올바르게 가리키고 있는지 - 방화벽이 80번과 443번 포트를 허용하는지 - Nginx Proxy Manager가 실행 중인지: `docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
-### 서비스 상태 확인
+### 도메인을 통해 액세스할 수 없음
 
-확인: - DNS 레코드가 서버를 올바르게 가리키고 있는지 - 방화벽이 80번과 443번 포트를 허용하는지 - Nginx Proxy Manager가 실행 중인지: `docker ps`
+reseed 서버를 운영함으로써, 당신은 I2P 네트워크를 위한 중요한 인프라를 제공하고 있습니다. 더 프라이빗하고 탈중앙화된 인터넷에 기여해 주셔서 감사합니다!
 
 ## Security Considerations
 
@@ -295,11 +300,10 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 
 ## Contributing to the Network
 
-reseed 서버를 운영함으로써, 당신은 I2P 네트워크를 위한 중요한 인프라를 제공하고 있습니다. 더 프라이빗하고 탈중앙화된 인터넷에 기여해 주셔서 감사합니다!
-
 질문이나 도움이 필요하시면 I2P 커뮤니티에 문의하세요: - **포럼**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: 다양한 네트워크의 #i2p - **개발**: [i2pgit.org](https://i2pgit.org)
 
 ---
 
-
 *가이드는 원래 [Stormy Cloud](https://www.stormycloud.org)에 의해 작성되었으며, I2P 문서를 위해 수정되었습니다.*
+
+*가이드는 원래 [Stormy Cloud](https://www.stormycloud.org)에 의해 작성되었으며, I2P 문서용으로 수정되었습니다.*

@@ -1,7 +1,8 @@
 ---
 title: "Tạo và Chạy Máy Chủ Reseed I2P"
 description: "Hướng dẫn đầy đủ về cách thiết lập và vận hành máy chủ reseed I2P để giúp các router mới tham gia mạng lưới"
-lastUpdated: "2025-10"
+slug: "reseed-server"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -205,39 +206,43 @@ Gửi email cho **zzz** (trưởng nhóm phát triển I2P) với các thông ti
 
 Bao gồm trong email của bạn:
 
+### Verification
+
+Các nhà phát triển I2P sẽ xác minh rằng reseed server của bạn: - Được cấu hình đúng và đang phục vụ thông tin router - Sử dụng chứng chỉ SSL hợp lệ - Cung cấp các tệp SU3 được ký đúng cách - Có thể truy cập và phản hồi tốt
+
 1. **URL máy chủ reseed**: URL HTTPS đầy đủ (ví dụ: `https://reseed.example.com`)
 2. **Chứng chỉ reseed công khai**: Nằm tại `/home/i2p/.reseed/` (đính kèm tệp `.crt`)
 3. **Email liên hệ**: Phương thức liên hệ ưu tiên của bạn để nhận thông báo bảo trì máy chủ
 4. **Vị trí máy chủ**: Tùy chọn nhưng hữu ích (quốc gia/khu vực)
 5. **Thời gian hoạt động dự kiến**: Cam kết của bạn trong việc duy trì máy chủ
 
-### Verification
-
-Các nhà phát triển I2P sẽ xác minh rằng reseed server của bạn: - Được cấu hình đúng và đang phục vụ thông tin router - Sử dụng chứng chỉ SSL hợp lệ - Cung cấp các tệp SU3 được ký đúng cách - Có thể truy cập và phản hồi tốt
+### Cài đặt Nginx Proxy Manager
 
 Sau khi được phê duyệt, reseed server của bạn sẽ được thêm vào danh sách phân phối cùng với các I2P router, giúp người dùng mới tham gia vào mạng lưới!
 
-## Monitoring and Maintenance
-
-### Cài đặt Nginx Proxy Manager
-
 Giám sát dịch vụ reseed của bạn:
 
-```bash
-sudo systemctl status reseed
-sudo journalctl -u reseed -f
-```
+## Monitoring and Maintenance
+
 ### Cấu hình Proxy Manager
 
 Theo dõi tài nguyên hệ thống:
 
 ```bash
-htop
-df -h
+sudo systemctl status reseed
+sudo journalctl -u reseed -f
 ```
 ### Update Reseed Tools
 
 Định kỳ cập nhật reseed-tools để có được các cải tiến mới nhất:
+
+```bash
+htop
+df -h
+```
+### Thông Tin Liên Hệ
+
+Nếu sử dụng Let's Encrypt thông qua Nginx Proxy Manager, chứng chỉ sẽ tự động gia hạn. Xác minh quá trình gia hạn đang hoạt động:
 
 ```bash
 cd /home/i2p/reseed-tools
@@ -246,43 +251,43 @@ make build
 sudo make install
 sudo systemctl restart reseed
 ```
-### Thông Tin Liên Hệ
+### Thông tin Bắt buộc
 
-Nếu sử dụng Let's Encrypt thông qua Nginx Proxy Manager, chứng chỉ sẽ tự động gia hạn. Xác minh quá trình gia hạn đang hoạt động:
+Kiểm tra logs để tìm lỗi:
 
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 ## Cấu hình Dịch vụ
 
-### Thông tin Bắt buộc
+### Xác minh
 
-Kiểm tra logs để tìm lỗi:
+Các vấn đề thường gặp: - I2P router chưa chạy hoặc netDb trống - Cổng 8443 đã được sử dụng - Vấn đề về quyền truy cập với thư mục `/home/i2p/.reseed/`
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-Các vấn đề thường gặp: - I2P router chưa chạy hoặc netDb trống - Cổng 8443 đã được sử dụng - Vấn đề về quyền truy cập với thư mục `/home/i2p/.reseed/`
-
-### Xác minh
-
 Đảm bảo router I2P của bạn đang chạy và đã điền dữ liệu vào network database:
+
+### SSL Certificate Errors
+
+Bạn sẽ thấy nhiều tệp `.dat`. Nếu trống, hãy đợi router I2P của bạn khám phá các peer.
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-Bạn sẽ thấy nhiều tệp `.dat`. Nếu trống, hãy đợi router I2P của bạn khám phá các peer.
-
-### SSL Certificate Errors
-
 Xác minh chứng chỉ của bạn hợp lệ:
+
+### Kiểm tra Trạng thái Dịch vụ
+
+Kiểm tra: - Bản ghi DNS đang trỏ đúng đến máy chủ của bạn - Tường lửa cho phép cổng 80 và 443 - Nginx Proxy Manager đang chạy: `docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
-### Kiểm tra Trạng thái Dịch vụ
+### Không thể truy cập qua tên miền
 
-Kiểm tra: - Bản ghi DNS đang trỏ đúng đến máy chủ của bạn - Tường lửa cho phép cổng 80 và 443 - Nginx Proxy Manager đang chạy: `docker ps`
+Bằng cách vận hành một reseed server, bạn đang cung cấp cơ sở hạ tầng quan trọng cho mạng lưới I2P. Cảm ơn bạn đã đóng góp cho một internet riêng tư và phi tập trung hơn!
 
 ## Security Considerations
 
@@ -294,8 +299,6 @@ Kiểm tra: - Bản ghi DNS đang trỏ đúng đến máy chủ của bạn - T
 - **Giao diện quản trị**: Hạn chế giao diện quản trị Nginx Proxy Manager (cổng 81) chỉ cho các IP đáng tin cậy
 
 ## Contributing to the Network
-
-Bằng cách vận hành một reseed server, bạn đang cung cấp cơ sở hạ tầng quan trọng cho mạng lưới I2P. Cảm ơn bạn đã đóng góp cho một internet riêng tư và phi tập trung hơn!
 
 Nếu có thắc mắc hoặc cần hỗ trợ, hãy liên hệ với cộng đồng I2P: - **Diễn đàn**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p trên nhiều mạng khác nhau - **Phát triển**: [i2pgit.org](https://i2pgit.org)
 

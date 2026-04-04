@@ -1,7 +1,8 @@
 ---
 title: "Criando e Executando um Servidor de Reseed I2P"
 description: "Guia completo para configurar e operar um servidor de reseed I2P para ajudar novos routers a ingressarem na rede"
-lastUpdated: "2025-10"
+slug: "reseed-server"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -205,39 +206,43 @@ Envie um email para **zzz** (desenvolvedor líder do I2P) com as seguintes infor
 
 Inclua no seu email:
 
+### Verification
+
+Os desenvolvedores do I2P irão verificar se o seu servidor de reseed está: - Devidamente configurado e servindo informações de router - Usando certificados SSL válidos - Fornecendo arquivos SU3 corretamente assinados - Acessível e responsivo
+
 1. **URL do servidor de reseed**: A URL HTTPS completa (ex.: `https://reseed.example.com`)
 2. **Certificado público de reseed**: Localizado em `/home/i2p/.reseed/` (anexe o arquivo `.crt`)
 3. **Email de contato**: Seu método de contato preferido para notificações de manutenção do servidor
 4. **Localização do servidor**: Opcional, mas útil (país/região)
 5. **Tempo de atividade esperado**: Seu compromisso em manter o servidor
 
-### Verification
-
-Os desenvolvedores do I2P irão verificar se o seu servidor de reseed está: - Devidamente configurado e servindo informações de router - Usando certificados SSL válidos - Fornecendo arquivos SU3 corretamente assinados - Acessível e responsivo
+### Instalar o Nginx Proxy Manager
 
 Uma vez aprovado, seu servidor de reseed será adicionado à lista distribuída com os roteadores I2P, ajudando novos usuários a entrarem na rede!
 
-## Monitoring and Maintenance
-
-### Instalar o Nginx Proxy Manager
-
 Monitore seu serviço de reseed:
 
-```bash
-sudo systemctl status reseed
-sudo journalctl -u reseed -f
-```
+## Monitoring and Maintenance
+
 ### Configurar o Gestor de Proxy
 
 Fique de olho nos recursos do sistema:
 
 ```bash
-htop
-df -h
+sudo systemctl status reseed
+sudo journalctl -u reseed -f
 ```
 ### Update Reseed Tools
 
 Atualize periodicamente as reseed-tools para obter as últimas melhorias:
+
+```bash
+htop
+df -h
+```
+### Informações de Contato
+
+Se estiver usando Let's Encrypt através do Nginx Proxy Manager, os certificados renovarão automaticamente. Verifique se a renovação está funcionando:
 
 ```bash
 cd /home/i2p/reseed-tools
@@ -246,43 +251,43 @@ make build
 sudo make install
 sudo systemctl restart reseed
 ```
-### Informações de Contato
+### Informação Obrigatória
 
-Se estiver usando Let's Encrypt através do Nginx Proxy Manager, os certificados renovarão automaticamente. Verifique se a renovação está funcionando:
+Verifique os logs em busca de erros:
 
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 ## Configurando o Serviço
 
-### Informação Obrigatória
+### Verificação
 
-Verifique os logs em busca de erros:
+Problemas comuns: - Router I2P não está em execução ou a base de dados de rede está vazia - Porta 8443 já está em uso - Problemas de permissão com o diretório `/home/i2p/.reseed/`
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-Problemas comuns: - Router I2P não está em execução ou a base de dados de rede está vazia - Porta 8443 já está em uso - Problemas de permissão com o diretório `/home/i2p/.reseed/`
-
-### Verificação
-
 Certifique-se de que o seu router I2P está em execução e preencheu a sua base de dados de rede:
+
+### SSL Certificate Errors
+
+Você deverá ver muitos arquivos `.dat`. Se estiver vazio, aguarde até que o seu roteador I2P descubra peers.
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-Você deverá ver muitos arquivos `.dat`. Se estiver vazio, aguarde até que o seu roteador I2P descubra peers.
-
-### SSL Certificate Errors
-
 Verifique se seus certificados são válidos:
+
+### Verificar Status do Serviço
+
+Verifique: - Os registros DNS estão apontando corretamente para o seu servidor - O firewall permite as portas 80 e 443 - O Nginx Proxy Manager está em execução: `docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
-### Verificar Status do Serviço
+### Não é possível acessar via domínio
 
-Verifique: - Os registros DNS estão apontando corretamente para o seu servidor - O firewall permite as portas 80 e 443 - O Nginx Proxy Manager está em execução: `docker ps`
+Ao executar um servidor de reseed, você está fornecendo infraestrutura crítica para a rede I2P. Obrigado por contribuir para uma internet mais privada e descentralizada!
 
 ## Security Considerations
 
@@ -294,8 +299,6 @@ Verifique: - Os registros DNS estão apontando corretamente para o seu servidor 
 - **Interface administrativa**: Restrinja a interface administrativa do Nginx Proxy Manager (porta 81) a IPs confiáveis
 
 ## Contributing to the Network
-
-Ao executar um servidor de reseed, você está fornecendo infraestrutura crítica para a rede I2P. Obrigado por contribuir para uma internet mais privada e descentralizada!
 
 Para dúvidas ou assistência, entre em contato com a comunidade I2P: - **Fórum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p em várias redes - **Desenvolvimento**: [i2pgit.org](https://i2pgit.org)
 

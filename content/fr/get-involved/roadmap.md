@@ -1,6 +1,8 @@
 ---
 title: "Feuille de route du développement d'I2P"
-aliases: 
+aliases:
+  - "/en/get-involved/todo"
+  - "/en/get-involved/todo/"
 description: "Plans de développement actuels et jalons historiques du réseau I2P"
 ---
 
@@ -8,7 +10,7 @@ description: "Plans de développement actuels et jalons historiques du réseau I
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** March 2026
+**Last Updated:** April 2026
 
 </div>
 ## 🎯 Prochaines sorties
@@ -22,6 +24,7 @@ Target: August 2026
 
 - SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
+- Continue work on per-tunnel throttling and bandwidth parameters
 - Refactor Noise initialization
 
 

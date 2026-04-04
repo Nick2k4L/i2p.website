@@ -1,7 +1,8 @@
 ---
 title: "I2P रीसीड सर्वर बनाना और चलाना"
 description: "नए राउटर्स को नेटवर्क में शामिल होने में मदद करने के लिए I2P reseed सर्वर सेटअप और संचालन की संपूर्ण गाइड"
-lastUpdated: "2025-10"
+slug: "reseed-server"
+lastUpdated: "2026-04"
 accurateFor: "2.10.0"
 ---
 
@@ -205,39 +206,43 @@ jc21/nginx-proxy-manager:latest
 
 अपने ईमेल में शामिल करें:
 
+### Verification
+
+I2P डेवलपर्स यह सत्यापित करेंगे कि आपका reseed सर्वर: - उचित रूप से कॉन्फ़िगर किया गया है और router जानकारी प्रदान कर रहा है - वैध SSL सर्टिफिकेट्स का उपयोग कर रहा है - सही ढंग से साइन की गई SU3 फ़ाइलें प्रदान कर रहा है - सुलभ और उत्तरदायी है
+
 1. **Reseed सर्वर URL**: पूर्ण HTTPS URL (उदाहरण के लिए, `https://reseed.example.com`)
 2. **सार्वजनिक reseed प्रमाणपत्र**: `/home/i2p/.reseed/` पर स्थित (`.crt` फ़ाइल संलग्न करें)
 3. **संपर्क ईमेल**: सर्वर रखरखाव सूचनाओं के लिए आपकी पसंदीदा संपर्क विधि
 4. **सर्वर स्थान**: वैकल्पिक लेकिन सहायक (देश/क्षेत्र)
 5. **अपेक्षित अपटाइम**: सर्वर को बनाए रखने के लिए आपकी प्रतिबद्धता
 
-### Verification
-
-I2P डेवलपर्स यह सत्यापित करेंगे कि आपका reseed सर्वर: - उचित रूप से कॉन्फ़िगर किया गया है और router जानकारी प्रदान कर रहा है - वैध SSL सर्टिफिकेट्स का उपयोग कर रहा है - सही ढंग से साइन की गई SU3 फ़ाइलें प्रदान कर रहा है - सुलभ और उत्तरदायी है
+### Nginx Proxy Manager इंस्टॉल करें
 
 एक बार स्वीकृत होने के बाद, आपका reseed server I2P routers के साथ वितरित की जाने वाली सूची में जोड़ दिया जाएगा, जिससे नए उपयोगकर्ताओं को नेटवर्क से जुड़ने में मदद मिलेगी!
 
-## Monitoring and Maintenance
-
-### Nginx Proxy Manager इंस्टॉल करें
-
 अपनी reseed सेवा की निगरानी करें:
 
-```bash
-sudo systemctl status reseed
-sudo journalctl -u reseed -f
-```
+## Monitoring and Maintenance
+
 ### प्रॉक्सी मैनेजर को कॉन्फ़िगर करें
 
 सिस्टम संसाधनों पर नज़र रखें:
 
 ```bash
-htop
-df -h
+sudo systemctl status reseed
+sudo journalctl -u reseed -f
 ```
 ### Update Reseed Tools
 
 नवीनतम सुधार प्राप्त करने के लिए reseed-tools को समय-समय पर अपडेट करें:
+
+```bash
+htop
+df -h
+```
+### संपर्क जानकारी
+
+यदि Nginx Proxy Manager के माध्यम से Let's Encrypt का उपयोग कर रहे हैं, तो प्रमाणपत्र स्वतः नवीनीकृत हो जाएंगे। नवीनीकरण कार्य कर रहा है इसकी पुष्टि करें:
 
 ```bash
 cd /home/i2p/reseed-tools
@@ -246,43 +251,43 @@ make build
 sudo make install
 sudo systemctl restart reseed
 ```
-### संपर्क जानकारी
+### आवश्यक जानकारी
 
-यदि Nginx Proxy Manager के माध्यम से Let's Encrypt का उपयोग कर रहे हैं, तो प्रमाणपत्र स्वतः नवीनीकृत हो जाएंगे। नवीनीकरण कार्य कर रहा है इसकी पुष्टि करें:
+त्रुटियों के लिए लॉग जांचें:
 
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 ## सेवा को कॉन्फ़िगर करना
 
-### आवश्यक जानकारी
+### सत्यापन
 
-त्रुटियों के लिए लॉग जांचें:
+सामान्य समस्याएं: - I2P router चालू नहीं है या network database खाली है - Port 8443 पहले से उपयोग में है - `/home/i2p/.reseed/` directory के साथ अनुमति संबंधी समस्याएं
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-सामान्य समस्याएं: - I2P router चालू नहीं है या network database खाली है - Port 8443 पहले से उपयोग में है - `/home/i2p/.reseed/` directory के साथ अनुमति संबंधी समस्याएं
-
-### सत्यापन
-
 सुनिश्चित करें कि आपका I2P router चल रहा है और उसने अपना network database populate कर लिया है:
+
+### SSL Certificate Errors
+
+आपको कई `.dat` फ़ाइलें दिखाई देनी चाहिए। यदि खाली है, तो अपने I2P router को peers खोजने के लिए प्रतीक्षा करें।
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-आपको कई `.dat` फ़ाइलें दिखाई देनी चाहिए। यदि खाली है, तो अपने I2P router को peers खोजने के लिए प्रतीक्षा करें।
-
-### SSL Certificate Errors
-
 अपने प्रमाणपत्रों को मान्य होने की पुष्टि करें:
+
+### सेवा की स्थिति जांचें
+
+जांचें: - DNS रिकॉर्ड आपके सर्वर की ओर सही तरीके से पॉइंट कर रहे हैं - Firewall पोर्ट 80 और 443 की अनुमति देता है - Nginx Proxy Manager चल रहा है: `docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
-### सेवा की स्थिति जांचें
+### डोमेन के माध्यम से एक्सेस नहीं कर सकते
 
-जांचें: - DNS रिकॉर्ड आपके सर्वर की ओर सही तरीके से पॉइंट कर रहे हैं - Firewall पोर्ट 80 और 443 की अनुमति देता है - Nginx Proxy Manager चल रहा है: `docker ps`
+reseed सर्वर चलाकर, आप I2P नेटवर्क के लिए महत्वपूर्ण इंफ्रास्ट्रक्चर प्रदान कर रहे हैं। अधिक निजी और विकेन्द्रीकृत इंटरनेट में योगदान देने के लिए धन्यवाद!
 
 ## Security Considerations
 
@@ -294,8 +299,6 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 - **Admin interface**: Nginx Proxy Manager admin interface (पोर्ट 81) को विश्वसनीय IPs तक सीमित रखें
 
 ## Contributing to the Network
-
-reseed सर्वर चलाकर, आप I2P नेटवर्क के लिए महत्वपूर्ण इंफ्रास्ट्रक्चर प्रदान कर रहे हैं। अधिक निजी और विकेन्द्रीकृत इंटरनेट में योगदान देने के लिए धन्यवाद!
 
 प्रश्नों या सहायता के लिए, I2P समुदाय से संपर्क करें: - **Forum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: विभिन्न नेटवर्क पर #i2p - **Development**: [i2pgit.org](https://i2pgit.org)
 
