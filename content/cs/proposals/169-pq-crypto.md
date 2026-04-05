@@ -133,7 +133,7 @@ Certifikáty X.509 a další DER kódování budou používat kompozitní strukt
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-X.509 certifikáty a další DER kódování použijí složené struktury a OID definované v [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Overhead bude značný. Typické velikosti Ed25519 destinací a router identit jsou 391 bajtů. Ty se zvětší 3,5x až 6,8x v závislosti na algoritmu. Ed25519 podpisy mají 64 bajtů. Ty se zvětší 38x až 76x v závislosti na algoritmu. Typické podepsané RouterInfo, leaseSet, odpovědné datagramy a podepsané streaming zprávy mají kolem 1KB. Ty se zvětší 3x až 8x v závislosti na algoritmu.
 
 Jelikož nové typy destinací a router identit nebudou obsahovat výplň, nebudou kompresibilní. Velikosti destinací a router identit, které jsou gzip komprimovány při přenosu, se zvětší 12x - 38x v závislosti na algoritmu.
 
@@ -230,7 +230,7 @@ Hybridní veřejné klíče pro podepisování jsou klíč Ed25519 následovaný
 | MLDSA44ph | 1344 | 0.9.xx | Pouze pro SU3 soubory, ne pro netDb struktury |
 | MLDSA65ph | 1984 | 0.9.xx | Pouze pro SU3 soubory, ne pro netDb struktury |
 | MLDSA87ph | 2624 | 0.9.xx | Pouze pro SU3 soubory, ne pro netDb struktury |
-Složené hybridní veřejné klíče pro podepisování se skládají z PQ klíče následovaného klíčem Ed25519, jak je uvedeno v [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Kódování a pořadí bajtů jsou definovány v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Nové typy Signing Private Key jsou:
 
 #### SigningPrivateKey
 
@@ -247,13 +247,13 @@ Hybridní podepisovací soukromé klíče jsou klíč Ed25519 následovaný PQ k
 | MLDSA44ph | 2592 | 0.9.xx | Pouze pro SU3 soubory, ne pro netDb struktury. Viz návrh 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Pouze pro SU3 soubory, ne pro netDb struktury. Viz návrh 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Pouze pro SU3 soubory, ne pro netDb struktury. Viz návrh 169 |
-Složené hybridní privátní klíče pro podepisování jsou tvořeny PQ klíčem následovaným Ed25519 klíčem, jak je uvedeno v [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Kódování a pořadí bajtů jsou definovány v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Nové typy podpisů jsou:
 
-Soukromé klíče pro podepisování nikdy nejsou přenášeny po síti. Aplikace si mohou zvolit uložení 32bitového seedu, jak je doporučeno v [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/), místo rozbaleného soukromého klíče o velikosti několika kilobajtů. Toto je závislé na implementaci.
+Hybridní podpisy jsou podpis Ed25519 následovaný PQ podpisem, jak je uvedeno v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Hybridní podpisy se ověřují ověřením obou podpisů a selhávají, pokud jeden z nich selže. Kódování a pořadí bytů jsou definovány v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 #### Podpis
 
-Nové typy podpisů jsou:
+Nové typy veřejných klíčů pro podepisování jsou:
 
 | Typ | Délka (bajty) | Od verze | Použití |
 |------|----------------|-------|-------|
@@ -266,7 +266,7 @@ Nové typy podpisů jsou:
 | MLDSA44ph | 2484 | 0.9.xx | Pouze pro soubory SU3, ne pro struktury netDb. Viz návrh 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Pouze pro soubory SU3, ne pro struktury netDb. Viz návrh 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Pouze pro soubory SU3, ne pro struktury netDb. Viz návrh 169 |
-Složené hybridní podpisy jsou tvořeny postupně kvantově odolnou podpisovou metodou (PQ) následovanou podpisem Ed25519, jak je uvedeno v [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Hybridní podpisy jsou ověřovány ověřením obou podpisů a celý proces selže, pokud selže alespoň jeden z nich. Kódování a pořadí bajtů jsou definovány v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Nové typy kryptografických veřejných klíčů jsou:
 
 #### Klíčové certifikáty
 
@@ -283,7 +283,7 @@ Hybridní veřejné klíče pro podepisování jsou klíč Ed25519 následovaný
 | MLDSA44ph | 18 | n/a | 0.9.xx | Pouze pro SU3 soubory |
 | MLDSA65ph | 19 | n/a | 0.9.xx | Pouze pro SU3 soubory |
 | MLDSA87ph | 20 | n/a | 0.9.xx | Pouze pro SU3 soubory |
-Nové typy kryptografických veřejných klíčů jsou:
+Pro destinace s Hybrid nebo PQ typy podpisů použijte NONE (typ 255) pro typ šifrování, ale není zde žádný kryptografický klíč a celá 384-bajtová hlavní sekce je určena pro podpisový klíč.
 
 | Typ | Kód typu | Celková délka veřejného klíče | Od verze | Použití |
 |------|-----------|-------------------------|-------|-------|
@@ -293,17 +293,17 @@ Nové typy kryptografických veřejných klíčů jsou:
 | NONE | 255 | 0 | 0.9.xx | Viz návrh 169 |
 Hybridní typy klíčů nejsou NIKDY zahrnuty v certifikátech klíčů; pouze v leaseSets.
 
-U cílů s hybridním nebo PQ typem podpisu použijte typ šifrování NONE (typ 255), ale žádný kryptografický klíč není a celých 384 bajtů hlavní části je vyhrazeno pro podpisový klíč.
+Bez výplně. Celková délka je 7 + celková délka klíče. Délka certifikátu klíče je 4 + přebytečná délka klíče.
 
 #### Velikosti destinací
 
 Zde jsou délky pro nové typy Destination. Typ šifrování pro všechny je NONE (typ 255) a délka šifrovacího klíče je považována za 0. Celá 384-bajtová sekce se používá pro první část veřejného podpisového klíče. POZNÁMKA: To se liší od specifikace pro typy podpisů ECDSA_SHA512_P521 a RSA, kde jsme zachovali 256-bajtový ElGamal klíč v destination, i když nebyl používán.
 
-Žádné doplňování. Celková délka je 7 + celková délka klíče. Délka certifikátu klíče je 4 + nadbytečná délka klíče.
+skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
 Příklad 1319-bajtového proudu bajtů cíle pro MLDSA44:
 
-skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
+Příklad 1351-bajtového proudu bajtů identity routeru pro MLDSA44:
 
 | Typ | Kód typu | Celková délka veřejného klíče | Hlavní | Přebytek | Celková délka Dest |
 |------|-----------|-------------------------|------|--------|-------------------|
@@ -317,7 +317,7 @@ skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
 Zde jsou délky pro nové typy Destination. Typ šifrování pro všechny je X25519 (typ 4). Celá 352-bajtová sekce po veřejném klíči X25519 se používá pro první část veřejného podpisového klíče. Žádné vyplňování. Celková délka je 39 + celková délka klíče. Délka certifikátu klíče je 4 + přebytečná délka klíče.
 
-Příklad 1351bytového datového proudu identifikátoru směrovače pro MLDSA44:
+Handshakes používají vzory handshake [Noise Protocol](https://noiseprotocol.org/noise.html).
 
 enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 
@@ -329,13 +329,13 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
-### Složené podpisy
+### PublicKey
 
-Přidejte novou specifikaci pro kompozitní algoritmy podpisů následujícím způsobem: Kompozitní hybridní podpisy jsou definovány v dokumentu [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Jak je obvyklé, veřejné klíče a podpisy uvnitř I2P však vynechávají DER kódování.
+Následující úpravy XK a IK pro hybridní dopřednou sekretnost (hfs) jsou specifikovány v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekce 5:
 
-Složené podpisy vždy používají předhašování, takže potenciálně velké zprávy není třeba zpracovávat dvakrát. Toto je externí vůči algoritmu MLDSA, používáme standardní MLDSA, nikoli HashML-DSA.
+Vzor e1 je definován následovně, jak je specifikováno v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
 
-#### Algoritmus podepisování
+#### KDF pro split()
 
 ```
 
@@ -361,9 +361,9 @@ Složené podpisy vždy používají předhašování, takže potenciálně velk
   signature = MLDSA_SIGN(M') || Ed25519_SIGN(M')
 
 ```
-#### Ověřovací algoritmus
+#### Identifikátory Noise
 
-Stejné jako podepisovací algoritmus. Selže, pokud selže některý podpis.
+Vzor ekem1 je definován následovně, jak je specifikováno v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
 
 ```
 
@@ -375,11 +375,11 @@ Stejné jako podepisovací algoritmus. Selže, pokud selže některý podpis.
 ```
 #### Problémy
 
-[COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) nedefinuje kombinaci MLDSA87 + Ed25519, pravděpodobně kvůli neshodě v úrovni bezpečnosti. Definuje však kombinaci MLDSA87 + Ed448 s použitím SHAKE256/64 jako předhashovací funkce. Tato kombinace není v současnosti zahrnuta v tomto návrhu, protože aktuálně nepodporujeme Ed448.
+Tato sekce se vztahuje na protokoly IK i XK.
 
 ### Vzory handshake
 
-Handshakes používají vzory handshake protokolu [Noise Protocol](https://noiseprotocol.org/noise.html).
+Hybridní handshake je definován v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). První zpráva, od Alice k Bobovi, obsahuje e1, enkapsulační klíč, před datovou částí zprávy. Toto je považováno za dodatečný statický klíč; zavolejte na něj EncryptAndHash() (jako Alice) nebo DecryptAndHash() (jako Bob). Poté zpracujte datovou část zprávy obvyklým způsobem.
 
 Používá se následující mapování písmen:
 
@@ -389,7 +389,7 @@ Používá se následující mapování písmen:
 - e1 = jednorázový dočasný PQ klíč, odeslaný od Alice k Bobovi
 - ekem1 = šifrový text KEM, odeslaný od Boba k Alici
 
-Následující úpravy XK a IK pro hybridní dopřednou tajnost (hfs) jsou uvedeny v sekci 5 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+Definujeme následující funkce odpovídající kryptografickým stavebním blokům použitým podle definice v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ```
 XK:                       XKhfs:
@@ -413,7 +413,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-Vzor e1 je definován následovně, jak je uvedeno v části 4 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+(encap_key, decap_key) = PQ_KEYGEN()
 
 ```
 For Alice:
@@ -431,7 +431,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-Vzor ekem1 je definován následovně, jak je uvedeno v části 4 specifikace [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+(ciphertext, kem_shared_key) = ENCAPS(encap_key)
 
 ```
 For Bob:
@@ -471,23 +471,23 @@ For Bob:
 
 #### Přehled
 
-Tato část se vztahuje na protokoly IK i XK.
+kem_shared_key = DECAPS(ciphertext, decap_key)
 
-Hybridní handshake je definován v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). První zpráva, od Alice k Bobovi, obsahuje e1, klíč pro encapsulaci, před datovou částí zprávy. Tento klíč je považován za dodatečný statický klíč; volejte na něj funkci EncryptAndHash() (jako Alice) nebo DecryptAndHash() (jako Bob). Poté zpracujte datovou část zprávy obvyklým způsobem.
+Všimněte si, že jak encap_key, tak ciphertext jsou šifrovány uvnitř ChaCha/Poly bloků ve zprávách 1 a 2 Noise handshake. Budou dešifrovány jako součást procesu handshake.
 
 Druhá zpráva, od Boba k Alici, obsahuje ekem1, šifrovaný text, před datovou částí zprávy. Toto se zachází jako s dodatečným statickým klíčem; zavolej EncryptAndHash() na něj (jako Bob) nebo DecryptAndHash() (jako Alice). Poté vypočítej kem_shared_key a zavolej MixKey(kem_shared_key). Pak zpracuj datovou část zprávy jako obvykle.
 
 #### Definované operace ML-KEM
 
-Definujeme následující funkce odpovídající kryptografickým stavebním blokům, jak jsou definovány v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Pro XK: Po vzoru zprávy 'es' a před nákladem přidejte:
 
-(encap_key, decap_key) = PQ_KEYGEN()
+NEBO
 
     Alice creates the encapsulation and decapsulation keys
     The encapsulation key is sent in message 1.
     encap_key and decap_key sizes vary based on ML-KEM variant.
 
-(ciphertext, kem_shared_key) = ENCAPS(encap_key)
+Pro IK: Po vzoru zprávy 'es' a před vzorem zprávy 's' přidejte:
 
     Bob calculates the ciphertext and shared key,
     using the ciphertext received in message 1.
@@ -495,19 +495,19 @@ Definujeme následující funkce odpovídající kryptografickým stavebním blo
     ciphertext size varies based on ML-KEM variant.
     The kem_shared_key is always 32 bytes.
 
-kem_shared_key = DECAPS(ciphertext, decap_key)
+Pro XK: Po vzoru zprávy 'es' a před payloadem přidejte:
 
     Alice calculates the shared key,
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Všimněte si, že jak encap_key, tak ciphertext jsou zašifrovány uvnitř bloků ChaCha/Poly ve zprávách handshake protokolu Noise 1 a 2. Budou dešifrovány jako součást procesu handshake.
+NEBO
 
 kem_shared_key se vmíchá do chaining key pomocí MixHash(). Podrobnosti viz níže.
 
 #### Alice KDF pro Zprávu 1
 
-Pro XK: Po vzoru zprávy „es“ a před daty přidejte:
+Pro XK: Po vzoru zprávy 'ee' a před nákladem přidat:
 
 NEBO
 
@@ -537,7 +537,7 @@ This is the "e1" message pattern:
 ```
 #### Bob KDF pro zprávu 1
 
-Pro XK: Po vzoru zprávy „es“ a před daty přidejte:
+Pro XK: Po vzoru zprávy 'ee' a před nákladem přidat:
 
 NEBO
 
@@ -565,7 +565,7 @@ This is the "e1" message pattern:
 ```
 #### Bob KDF pro Zprávu 2
 
-Pro XK: Za vzorem zprávy „ee“ a před užitečným zatížením přidejte:
+Aktualizujte specifikaci ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) následovně:
 
 NEBO
 
@@ -632,13 +632,13 @@ This is the "ekem1" message pattern:
 
 nezměněno
 
-#### KDF pro split()
+#### Identifikátory Noise
 
 nezměněno
 
 ### Ratchet
 
-Aktualizujte specifikaci ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) následujícím způsobem:
+Změny: Současný ratchet má prázdný payload pro první ChaCha sekci a payload ve druhé sekci. S ML-KEM jsou nyní tři sekce. První sekce obsahuje šifrovaný PQ ciphertext. Druhá sekce má prázdný payload. Třetí sekce obsahuje payload.
 
 #### Identifikátory Noise
 
@@ -750,7 +750,7 @@ Všimněte si, že payload musí obsahovat blok DateTime, takže minimální vel
 
 #### 1g) Formát odpovědi na novou relaci
 
-Změny: Aktuální ratchet má prázdný datový obsah v první části ChaCha a datový obsah ve druhé části. U ML-KEM jsou nyní tři části. První část obsahuje zašifrovaný PQ šifrový text. Druhá část má prázdný datový obsah. Třetí část obsahuje datový obsah.
+Změny: Současný NTCP2 obsahuje pouze možnosti v sekci ChaCha. S ML-KEM bude sekce ChaCha také obsahovat zašifrovaný PQ veřejný klíč.
 
 Šifrovaný formát:
 
@@ -849,11 +849,11 @@ Aktualizujte specifikaci NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) následo
 
 #### 1) SessionRequest
 
-Změny: Aktuální NTCP2 obsahuje pouze možnosti v jedné sekci ChaCha. S ML-KEM bude před těmito možnostmi přidána nová sekce ChaCha, která bude obsahovat zašifrovaný kvantově odolný veřejný klíč.
+Nezpracovaný obsah:
 
 Aby bylo možné podporovat PQ i non-PQ NTCP2 na stejné adrese a portu routeru, používáme nejvýznamnější bit hodnoty X (X25519 ephemeral public key) k označení, že se jedná o PQ připojení. Tento bit je vždy nenastaven pro non-PQ připojení.
 
-Pro Alici, po zašifrování zprávy pomocí Noise, ale před AES obfuskací X, nastavte X[31] |= 0x7f.
+U Alice, po zašifrování zprávy pomocí Noise, ale před AES zamaskováním X, nastavte X[31] |= 0x80.
 
 Pro Boba, po AES de-obfuskaci X, otestujte X[31] & 0x80. Pokud je bit nastaven, vymažte jej pomocí X[31] &= 0x7f a dešifrujte přes Noise jako PQ spojení. Pokud je bit vymazán, dešifrujte přes Noise jako non-PQ spojení obvyklým způsobem.
 
@@ -861,7 +861,7 @@ Pro PQ NTCP2 inzerované na jiné router adrese a portu to není vyžadováno.
 
 Pro další informace viz sekci Publikované adresy níže.
 
-Surové obsahy:
+Nešifrovaná data (Poly1305 auth tag nezobrazena):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -930,7 +930,7 @@ Nešifrovaná data (Poly1305 autentifikační tag není zobrazen):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
-Poznámka: pole verze v bloku možností zprávy 1 musí být nastaveno na 2, a to i pro PQ připojení.
+Poznámka: pole verze v bloku možností zprávy 1 musí být nastaveno na hodnotu 2, i pro PQ připojení.
 
 Velikosti:
 
@@ -946,7 +946,7 @@ Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu
 
 Nezpracovaný obsah:
 
-Surové obsahy:
+Nešifrovaná data (Poly1305 auth tag nezobrazena):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1148,7 +1148,7 @@ Surový obsah:
   ...
 
 ```
-Surové obsahy:
+Nešifrovaná data (Poly1305 auth tag nezobrazena):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1242,7 +1242,7 @@ Nešifrovaná data (Poly1305 auth tag nezobrazena):
 
 Surový obsah:
 
-Surové obsahy:
+Nešifrovaná data (Poly1305 auth tag nezobrazena):
 
 ```
   +----+----+----+----+----+----+----+----+

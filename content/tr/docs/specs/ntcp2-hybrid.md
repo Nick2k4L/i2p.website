@@ -297,7 +297,7 @@ Değişiklikler: Mevcut NTCP2 yalnızca tek bir ChaCha bölümündeki seçenekle
 
 Aynı yönlendirici adresi ve bağlantı noktasında PQ ve PQ olmayan NTCP2'nin desteklenebilmesi için, bunun bir PQ bağlantısı olduğunu belirtmek üzere X değerinin (X25519 geçici ortak anahtarı) en anlamlı bitini kullanıyoruz. Bu bit, PQ olmayan bağlantılarda her zaman sıfırlanır.
 
-Alice için, mesaj Noise tarafından şifrelendikten sonra ancak X'in AES şifrelemesi uygulanmadan önce, X[31] |= 0x7f ayarlayın.
+Alice için, ileti Noise tarafından şifrelendikten sonra ancak X'in AES ile gizlenmesinden önce, X[31] |= 0x80 değerini ayarlayın.
 
 Bob için, X'in AES ile şifresi çözüldükten sonra X[31] & 0x80 değerini test edin. Eğer bit ayarlanmışsa, X[31] &= 0x7f ile temizleyin ve bir PQ bağlantısı olarak Noise ile şifresini çözün. Eğer bit temizse, normalde olduğu gibi bir PQ olmayan bağlantı olarak Noise ile şifresini çözün.
 
@@ -572,23 +572,23 @@ Değişmedi
 
 #### Yayınlanan Adresler
 
-Tüm durumlarda, NTCP2 taşıma adını olduğu gibi kullanın.
+Tüm durumlarda, NTCP2 taşıma adını her zamanki gibi kullanın.
 
-PQ olmayan, güvenlik duvarına sahip olmayan ile aynı adres/bağlantı noktasını kullanın. Sadece bir PQ çeşidi desteklenir. Yönlendirici adresinde, v=2'yi (normal şekilde) ve MLKEM 512/768/1024'ü belirtmek için yeni parametre pq=[3|4|5]'i yayınlayın. Alice, bu bağlantının hibrit bir bağlantı olduğunu belirtmek için oturum isteğinde geçici anahtarın MSB'sini (key[31] & 0x80) ayarlar. Yukarıya bakın. Eski yönlendiriciler pq parametresini yoksayar ve normal şekilde pq'suz bağlanır.
+PQ'sız ve duvar arkasında olmayan yapıyla aynı adres/bağı kullanın. Sadece bir PQ çeşidi desteklenir. Yönlendirici adresinde, MLKEM 512/768/1024'ü belirtmek için v=2 (normal şekilde) ve yeni pq=[3|4|5] parametresini yayınlayın. Alice, oturum isteğinde geçici anahtarın en anlamlı bitini (key[31] & 0x80) ayarlayarak bunun hibrit bir bağlantı olduğunu belirtir. Yukarıya bakın. Eski yönlendiriciler pq parametresini görmezden gelir ve normal şekilde pq'sız bağlanır.
 
-Farklı adres/bağlantı noktası, PQ olmayan ya da yalnızca PQ ve duvar arkası olmayan yapılar desteklenmez. PQ olmayan NTCP2 devre dışı bırakılana kadar, bu özellik birkaç yıl boyunca uygulanmayacaktır. PQ olmayan devre dışı bırakıldığında, birden fazla PQ çeşidi desteklenebilir ancak adres başına yalnızca biri olabilir. Desteklendiğinde, yönlendirici adresinde MLKEM 512/768/1024'ü belirtmek için v=[3|4|5] yayımlanmalıdır. Alice, geçici anahtarın MSB'sini ayarlamaz. Eski yönlendiriciler v parametresini kontrol eder ve bu adresi desteklenmiyor olarak atlar.
+Farklı adres/bağlantı noktası, non-PQ veya yalnızca PQ, duvar arkası olmayan yapılar desteklenmez. Bu özellik, non-PQ NTCP2 devre dışı bırakılana kadar, şu andan itibariyle birkaç yıl boyunca uygulanmayacaktır. Non-PQ devre dışı bırakıldığında, birden fazla PQ çeşidi desteklenebilir ancak adres başına yalnızca biri olur. Desteklendiğinde, yönlendirici adresinde MLKEM 512/768/1024'ü belirtmek için v=[3|4|5] yayımlanmalıdır. Alice, geçici anahtarın MSB'sini (en anlamlı bit) ayarlamaz. Daha eski yönlendiriciler v parametresini kontrol eder ve bu adresi desteklenmeyen olarak atlar.
 
 Güvenlik duvarına alınmış adresler (yayınlanan IP yok): Yönlendirici adresinde, v=2'yi yayınlayın (normal şekilde). pq parametresi yayınlamaya gerek yok.
 
-Alice, Bob'un yayınladığı PQ varyantını kullanarak PQ Bob'a bağlanabilir; Alice, yönlendirici bilgisinde PQ desteğini ilan etmiş olsun ya da etmemiş olsun ve aynı varyantı ilan etmiş olsun ya da etmemiş olsun fark etmez.
+Alice, Bob'un yayınladığı PQ varyantını kullanarak PQ Bob'a bağlanabilir ve bu, Alice'in yönlendirici bilgisinde PQ desteğini duyurup duurmamasına veya aynı varyantı duyurup duyurmamasına bakılmaksızın geçerlidir.
 
 #### Maksimum Dolgu
 
-Geçerli spesifikasyonda, 1. ve 2. mesajların "makul" miktarda dolgu içermesi tanımlanmıştır ve önerilen aralık 0-31 bayt olarak belirtilmiştir, maksimum değer belirtilmemiştir.
+Geçerli spesifikasyonda, 1. ve 2. mesajlara "makul" miktarda dolgu eklenmesi öngörülmüş olup, 0-31 bayt aralığı önerilmekte, ancak maksimum değer belirtilmemektedir.
 
-API 0.9.68'e kadar (sürüm 2.11.0), Java I2P PQ olmayan bağlantılar için maksimum 256 bayt doldurma uyguladı, ancak bu daha önce belgelenmemişti. API 0.9.69'dan itibaren (sürüm 2.12.0), Java I2P PQ olmayan bağlantılar için MLKEM-512 ile aynı maksimum doldurmayı uygular. Aşağıdaki tabloya bakın.
+API 0.9.68'e kadar (sürüm 2.11.0), Java I2P PQ olmayan bağlantılar için maksimum 256 bayt doldurma uyguladı, ancak bu durum daha önce belgelenmemişti. API 0.9.69'dan itibaren (sürüm 2.12.0), Java I2P PQ olmayan bağlantılar için MLKEM-512 ile aynı maksimum doldurmayı uygular. Aşağıdaki tabloya bakın.
 
-PQ bağlantıları için maksimum doldurma, tanımlanan mesaj boyutu kadar olacak, yani maksimum doldurma mesaj boyutunu iki katına çıkartacaktır, şu şekilde:
+PQ bağlantıları için maksimum doldurma, tanımlanan mesaj boyutunun iki katı olacak şekilde, maksimum doldurma olarak tanımlanmış mesaj boyutunu kullanın, şu şekilde:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -646,7 +646,7 @@ Boyut artışı (bayt):
 </table>
 ## Güvenlik Analizi
 
-NIST güvenlik kategorileri, [NIST sunumu](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 10. sayfasında özetlenmiştir. Ön kriterler: Hibrit protokoller için minimum NIST güvenlik kategorimiz 2, sadece KPK için ise 3 olmalıdır.
+NIST güvenlik kategorileri, [NIST sunumu](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 10. sayfasında özetlenmiştir. Ön koşullar: Hibrit protokoller için en düşük NIST güvenlik kategorimiz 2, yalnızca kuantum sonrası (PQ-only) için ise 3 olmalıdır.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -702,7 +702,7 @@ NIST güvenlik kategorileri [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NI
 
 ### Kütüphane Desteği
 
-Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı destekliyor. OpenSSL desteği 8 Nisan 2025'te yapılacakları 3.5 sürümüyle gelecek [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı destekliyor. OpenSSL desteği, 8 Nisan 2025'te yayınlanacak olan 3.5 sürümünde yer alacak [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Gelen Trafik Tanımlama
 
@@ -714,7 +714,7 @@ Alice olarak, PQ bağlantısı için şifrelemeden önce X[31] |= 0x80 ayarlayı
 
 Bob olarak, şifre çözmeden sonra (X[31] & 0x80) != 0 olup olmadığını test edin. Eğer öyleyse, bu bir PQ bağlantısıdır.
 
-NTCP2-PQ için gerekli minimum yönlendirici sürümü henüz belirlenmedi (TBD).
+NTCP2-PQ için gereken minimum yönlendirici sürümü henüz belirlenmedi (TBD).
 
 Not: Tür kodları yalnızca iç kullanım içindir. Yönlendiriciler tür 4 olarak kalacak ve destek yönlendirici adreslerinde belirtilecektir.
 

@@ -297,7 +297,7 @@ Changements : le NTCP2 actuel contient uniquement les options dans une seule sec
 
 Afin que les connexions NTCP2 PQ et non-PQ puissent être prises en charge sur la même adresse et le même port du routeur, nous utilisons le bit de poids fort de la valeur X (clé publique éphémère X25519) pour indiquer qu'il s'agit d'une connexion PQ. Ce bit est toujours à zéro pour les connexions non-PQ.
 
-Pour Alice, après le chiffrement du message par Noise, mais avant l'obfuscation AES de X, définir X[31] |= 0x7f.
+Pour Alice, après que le message a été chiffré par Noise, mais avant l'obfuscation AES de X, définir X[31] |= 0x80.
 
 Pour Bob, après la désobfuscation AES de X, tester X[31] & 0x80. Si le bit est positionné, le réinitialiser avec X[31] &= 0x7f, puis déchiffrer via Noise comme une connexion PQ. Si le bit n'est pas positionné, déchiffrer via Noise comme une connexion non-PQ, comme d'habitude.
 
@@ -574,21 +574,21 @@ Inchangé
 
 Dans tous les cas, utilisez le nom de transport NTCP2 comme d'habitude.
 
-Utilisez la même adresse/port que pour les connexions non-PQ et non-protégées par pare-feu. Un seul variant PQ est pris en charge. Dans l'adresse du routeur, publiez v=2 (comme d'habitude) et le nouveau paramètre pq=[3|4|5] pour indiquer MLKEM 512/768/1024. Alice définit le bit de poids fort de la clé éphémère (key[31] & 0x80) dans la demande de session pour indiquer qu'il s'agit d'une connexion hybride. Voir ci-dessus. Les routeurs plus anciens ignoreront le paramètre pq et se connecteront en non-PQ comme d'habitude.
+Utilisez la même adresse/le même port que pour la version non-PQ et non protégée par pare-feu. Un seul variant PQ est pris en charge. Dans l'adresse du routeur, publiez v=2 (comme d'habitude) ainsi que le nouveau paramètre pq=[3|4|5] pour indiquer MLKEM 512/768/1024. Alice définit le bit de poids fort de la clé éphémère (key[31] & 0x80) dans la demande de session pour indiquer qu'il s'agit d'une connexion hybride. Voir ci-dessus. Les routeurs plus anciens ignoreront le paramètre pq et se connecteront en mode non-PQ comme d'habitude.
 
-L'utilisation d'une adresse/port différente pour les connexions non-PQ ou uniquement PQ, non protégées par pare-feu, n'est PAS prise en charge. Cela ne sera pas implémenté tant que NTCP2 non-PQ ne sera pas désactivé, ce qui n'aura lieu que dans plusieurs années. Lorsque le mode non-PQ sera désactivé, plusieurs variantes PQ pourront être prises en charge, mais une seule par adresse. Quand cela sera pris en charge, le routeur devra publier v=[3|4|5] dans son adresse pour indiquer MLKEM 512/768/1024. Alice ne définit pas le bit de poids fort (MSB) de la clé éphémère. Les anciens routeurs vérifieront le paramètre v et ignoreront cette adresse en la considérant comme non prise en charge.
+L'utilisation d'une adresse/port différente pour les connexions non-PQ ou PQ uniquement, en l'absence de pare-feu, n'est PAS prise en charge. Cela ne sera pas implémenté avant la désactivation du NTCP2 non-PQ, ce qui n'aura lieu que dans plusieurs années. Lorsque le mode non-PQ sera désactivé, plusieurs variantes PQ pourront être prises en charge, mais une seule par adresse. Quand cela sera pris en charge, le routeur devra publier v=[3|4|5] dans l'adresse pour indiquer MLKEM 512/768/1024. Alice ne définit pas le bit de poids fort (MSB) de la clé éphémère. Les anciens routeurs vérifieront le paramètre v et ignoreront cette adresse en la considérant comme non prise en charge.
 
-Adresses derrière pare-feu (aucune IP publiée) : Dans l'adresse du routeur, publiez v=2 (comme d'habitude). Il n'est pas nécessaire de publier un paramètre pq.
+Adresses derrière pare-feu (aucune IP publiée) : dans l'adresse du routeur, publiez v=2 (comme d'habitude). Il n'est pas nécessaire de publier un paramètre pq.
 
-Alice peut se connecter à un Bob PQ en utilisant la variante PQ que Bob publie, qu'Alice annonce ou non le support de pq dans ses informations de routeur, ou qu'elle annonce la même variante.
+Alice peut se connecter à un Bob PQ en utilisant la variante PQ que Bob publie, qu'Alice annonce ou non la prise en charge de pq dans ses informations de routeur, ou qu'elle annonce la même variante.
 
 #### Remplissage maximal
 
 Dans la spécification actuelle, les messages 1 et 2 sont définis comme devant comporter une quantité « raisonnable » de bourrage, une plage de 0 à 31 octets étant recommandée, sans maximum spécifié.
 
-Jusqu'à l'API 0.9.68 (version 2.11.0), Java I2P appliquait un remplissage maximal de 256 octets pour les connexions non-PQ, mais cela n'avait pas été documenté auparavant. À compter de l'API 0.9.69 (version 2.12.0), Java I2P applique le même remplissage maximal pour les connexions non-PQ que pour MLKEM-512. Voir le tableau ci-dessous.
+Jusqu'à l'API 0.9.68 (version 2.11.0), Java I2P appliquait un remplissage maximal de 256 octets pour les connexions non-PQ, mais ceci n'était pas documenté auparavant. À compter de l'API 0.9.69 (version 2.12.0), Java I2P implémente le même remplissage maximal pour les connexions non-PQ que pour MLKEM-512. Voir tableau ci-dessous.
 
-Utiliser la taille de message définie comme remplissage maximal, c'est-à-dire que le remplissage maximal doublera la taille du message pour les connexions PQ, comme suit :
+Utilisez la taille de message définie comme remplissage maximal, c'est-à-dire que le remplissage maximal doublera la taille du message pour les connexions PQ, comme suit :
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -646,7 +646,7 @@ Augmentation de la taille (octets) :
 </table>
 ## Analyse de sécurité
 
-Les catégories de sécurité du NIST sont résumées dans la diapositive 10 de la [présentation NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Critères préliminaires : Notre catégorie de sécurité NIST minimale devrait être 2 pour les protocoles hybrides et 3 pour les systèmes uniquement PQC (PQ-only).
+Les catégories de sécurité du NIST sont résumées dans la diapositive 10 de la [présentation NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Critères préliminaires : notre catégorie minimale de sécurité NIST devrait être 2 pour les protocoles hybrides et 3 pour les protocoles uniquement PQC (PQ-only).
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -702,15 +702,15 @@ Catégories de sécurité NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS
 
 ### Support de la bibliothèque
 
-Les bibliothèques Bouncycastle, BoringSSL et WolfSSL prennent désormais en charge MLKEM et MLDSA. Le support par OpenSSL sera inclus dans leur version 3.5 prévue pour le 8 avril 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Les bibliothèques Bouncycastle, BoringSSL et WolfSSL prennent désormais en charge MLKEM et MLDSA. Le support par OpenSSL sera inclus dans leur version 3.5 prévue le 8 avril 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Identification du trafic entrant
 
-Nous définissons le bit de poids fort (MSB) de la clé éphémère (key[31] & 0x80) dans la demande de session pour indiquer qu'il s'agit d'une connexion hybride. Cela nous permet d'exécuter à la fois le NTCP standard et le NTCP hybride sur le même port. Un seul variant hybride est pris en charge pour les connexions entrantes, et est annoncé dans l'adresse du routeur. Par exemple, pq=3 ou pq=4.
+Nous définissons le bit de poids fort (MSB) de la clé éphémère (key[31] & 0x80) dans la requête de session pour indiquer qu'il s'agit d'une connexion hybride. Cela nous permet d'exécuter à la fois NTCP standard et NTCP hybride sur le même port. Un seul variant hybride est pris en charge pour les connexions entrantes, et est annoncé dans l'adresse du routeur. Par exemple, pq=3 ou pq=4.
 
 #### Obfuscation
 
-En tant qu'Alice, pour une connexion PQ, avant l'obfuscation, définir X[31] |= 0x80. Cela rend X une clé publique X25519 invalide. Après l'obfuscation, AES-CBC la rendra aléatoire. Le bit de poids fort (MSB) de X sera aléatoire après l'obfuscation.
+Comme Alice, pour une connexion PQ, avant l'obfuscation, définir X[31] |= 0x80. Cela rend X une clé publique X25519 invalide. Après l'obfuscation, AES-CBC la rendra aléatoire. Le bit de poids fort (MSB) de X sera aléatoire après l'obfuscation.
 
 En tant que Bob, tester si (X[31] & 0x80) != 0 après désobfuscation. Si c'est le cas, il s'agit d'une connexion PQ.
 

@@ -297,7 +297,7 @@ Změny: Současný NTCP2 obsahuje pouze možnosti v jedné sekci ChaCha. S ML-KE
 
 Aby bylo možné podporovat PQ i non-PQ NTCP2 na stejné adrese a portu směrovače, používáme nejvýznamnější bit hodnoty X (X25519 efemérní veřejný klíč) k označení, že se jedná o PQ spojení. U non-PQ spojení je tento bit vždy vynulován.
 
-U Alice, po zašifrování zprávy pomocí Noise, ale před AES zamaskováním X, nastavte X[31] |= 0x7f.
+U Alice, po zašifrování zprávy pomocí Noise, ale před AES zamaskováním X, nastavte X[31] |= 0x80.
 
 Pro Boba po deobfuskaci X pomocí AES otestujte X[31] & 0x80. Je-li bit nastaven, vymažte jej pomocí X[31] &= 0x7f a dešifrujte pomocí Noise jako PQ spojení. Je-li bit vymazán, dešifrujte pomocí Noise jako běžné (ne-PQ) spojení.
 
@@ -479,7 +479,7 @@ Surový obsah:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-Nešifrovaná data (ověřovací značka Poly1305 není zobrazena):
+Nešifrovaná data (ověřovací tag Poly1305 není zobrazen):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -572,23 +572,23 @@ Nezměněno
 
 #### Publikované adresy
 
-Ve všech případech používejte název přenosu NTCP2 jako obvykle.
+Ve všech případech použijte název přenosu NTCP2 jako obvykle.
 
-Použijte stejnou adresu/port jako u nepřekvapivé (non-PQ), nefiltrované verze. Podporován je pouze jeden typ PQ varianty. V adrese routeru publikujte v=2 (jako obvykle) a nový parametr pq=[3|4|5] pro označení MLKEM 512/768/1024. Alice nastaví nejvyšší bit (MSB) dočasného klíče (key[31] & 0x80) ve žádosti o relaci, čímž indikuje, že se jedná o hybridní připojení. Viz výše. Starší routery parametr pq ignorují a připojí se klasicky bez PQ, jak je zvykem.
+Použijte stejnou adresu/port jako u nepřekvapivé (non-PQ) a nefiltrované (non-firewalled) varianty. Je podporována pouze jedna PQ varianta. V adrese směrovače publikujte v=2 (jako obvykle) a nový parametr pq=[3|4|5] pro označení MLKEM 512/768/1024. Alice nastaví nejvyšší bit (MSB) dočasného klíče (key[31] & 0x80) ve žádosti o relaci, čímž indikuje, že se jedná o hybridní připojení. Viz výše. Starší směrovače parametr pq ignorují a připojí se klasicky bez PQ.
 
-Různé adresy/porty pro nepostkvantové (non-PQ) a pouze postkvantové (PQ) připojení, které není za firewallem, NEJSOU podporovány. Tato funkce nebude implementována, dokud nebude nepostkvantový NTCP2 zakázán – což nastane až za několik let. Až bude nepostkvantové spojení zakázáno, mohou být podporovány více varianty PQ, ale pouze jedna na jednu adresu. Až bude tato funkce podporována, v adrese routeru uveďte v=[3|4|5] pro označení MLKEM 512/768/1024. Alice NEnastavuje MSB (nejvyšší bit) dočasného klíče. Starší routery zkontrolují parametr v a adresu přeskočí jako nepodporovanou.
+Různé adresy/porty pro nepost-kvantové (non-PQ) nebo pouze post-kvantové (PQ), nebráněné připojení NEJSOU podporovány. Tato funkce nebude implementována, dokud nebude nepost-kvantový NTCP2 zakázán, což nastane až za několik let. Až bude nepost-kvantový režim zakázán, mohou být podporovány více varianty PQ, ale maximálně jedna na jednu adresu. Pokud bude tato funkce podporována, uveďte ve formátu adresy směrovače v=[3|4|5] pro označení MLKEM 512/768/1024. Alice NEnastavuje MSB (nejvyšší bit) dočasného klíče. Starší směrovače zkontrolují parametr v a adresu přeskočí jako nepodporovanou.
 
-Adresy za firewallem (žádná IP nezveřejněna): Ve směrovači zveřejněte v=2 (jako obvykle). Není třeba zveřejňovat parametr pq.
+Adresy za firewallem (žádná IP nezveřejněna): V adrese směrovače zveřejněte v=2 (jako obvykle). Není třeba zveřejňovat parametr pq.
 
-Alice se může připojit k PQ Bobovi pomocí PQ varianty, kterou Bob publikuje, bez ohledu na to, zda Alice propaguje podporu PQ ve svých informacích o routeru nebo zda propaguje stejnou variantu.
+Alice se může připojit k PQ Bobovi pomocí PQ varianty, kterou Bob publikuje, bez ohledu na to, zda Alice uvádí podporu PQ ve svých informacích o routeru nebo zda uvádí stejnou variantu.
 
 #### Maximální doplnění
 
-V současné specifikaci je u zpráv 1 a 2 definováno, že by měly mít „rozumné“ množství doplňovacích bajtů, doporučuje se rozsah 0–31 bajtů a žádné maximum není stanoveno.
+V současné specifikaci je stanoveno, že zprávy 1 a 2 mají mít „rozumné“ množství doplňovacích dat (padding), doporučuje se rozsah 0–31 bajtů a žádné maximum není specifikováno.
 
-Do API 0.9.68 (verze 2.11.0) implementoval Java I2P maximální doplnění o 256 bajtů pro nepost-kvantové spojení, avšak dříve to nebylo zdokumentováno. Od API 0.9.69 (verze 2.12.0) implementuje Java I2P stejné maximální doplnění pro nepost-kvantová spojení jako pro MLKEM-512. Viz níže uvedená tabulka.
+Do API 0.9.68 (verze 2.11.0) implementoval Java I2P maximální doplňování 256 bajtů pro nepost-kvantové spojení, avšak to dříve nebylo zdokumentováno. Od API 0.9.69 (verze 2.12.0) implementuje Java I2P stejné maximální doplňování pro nepost-kvantová spojení jako pro MLKEM-512. Viz níže uvedená tabulka.
 
-Použijte definovanou velikost zprávy jako maximální doplnění, to znamená, že maximální doplnění zdvojnásobí velikost zprávy pro PQ připojení, a to následovně:
+Použijte definovanou velikost zprávy jako maximální doplňování, to znamená, že maximální doplňování zdvojnásobí velikost zprávy pro PQ připojení, a to následovně:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -646,7 +646,7 @@ Zvýšení velikosti (bajty):
 </table>
 ## Bezpečnostní analýza
 
-Kategorie bezpečnosti NIST jsou shrnuty na [prezentaci NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), snímek 10. Předběžná kritéria: Naše minimální kategorie bezpečnosti NIST by měla být 2 pro hybridní protokoly a 3 pro pouze PQ protokoly.
+Kategorie zabezpečení NIST jsou shrnuty na [prezentaci NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), snímek 10. Předběžná kritéria: Naše minimální kategorie zabezpečení NIST by měla být 2 pro hybridní protokoly a 3 pro pouze PQ.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -706,11 +706,11 @@ Knihovny Bouncycastle, BoringSSL a WolfSSL nyní podporují MLKEM a MLDSA. Podpo
 
 ### Identifikace příchozího provozu
 
-Nastavíme nejvýznamnější bit (MSB) dočasného klíče (key[31] & 0x80) ve vyžádání relace, abychom indikovali, že se jedná o hybridní připojení. To nám umožňuje spouštět jak standardní NTCP, tak hybridní NTCP na stejném portu. Pro příchozí spojení je podporována pouze jedna hybridní varianta, která je inzerována v adrese směrovače. Například pq=3 nebo pq=4.
+Nastavíme nejvýznamnější bit (MSB) dočasného klíče (key[31] & 0x80) ve vyžádání spojení, abychom indikovali, že se jedná o hybridní připojení. To nám umožňuje spouštět standardní NTCP i hybridní NTCP na stejném portu. Pro příchozí spojení je podporována pouze jedna hybridní varianta, která je inzerována v adrese routeru. Například pq=3 nebo pq=4.
 
 #### Zakrývání
 
-Jako Alice pro PQ spojení před zamaskováním nastavte X[31] |= 0x80. Tím se X stane neplatným veřejným klíčem X25519. Po zamaskování jej AES-CBC náhodně promíchá. Nejvýznamnější bit (MSB) hodnoty X bude po zamaskování náhodný.
+Jako Alice pro PQ spojení před obfuskací nastavte X[31] |= 0x80. Tím se X stane neplatným veřejným klíčem X25519. Po obfuskaci jej AES-CBC náhodně promíchá. Nejvýznamnější bit (MSB) hodnoty X bude po obfuskaci náhodný.
 
 Jako Bob otestujte, zda po deobfuskaci platí (X[31] & 0x80) != 0. Pokud ano, jedná se o PQ spojení.
 

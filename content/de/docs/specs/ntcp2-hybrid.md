@@ -297,7 +297,7 @@ unchanged
 
 Damit PQ- und Nicht-PQ-NTCP2-Verbindungen auf derselben Routeradresse und demselben Port unterstützt werden können, verwenden wir das höchstwertige Bit des X-Werts (X25519 ephemeraler öffentlicher Schlüssel), um anzugeben, dass es sich um eine PQ-Verbindung handelt. Dieses Bit ist für Nicht-PQ-Verbindungen immer deaktiviert.
 
-Für Alice, nachdem die Nachricht durch Noise verschlüsselt wurde, aber vor der AES-Verfälschung von X, setze X[31] |= 0x7f.
+Für Alice, nachdem die Nachricht durch Noise verschlüsselt wurde, aber vor der AES-Verfälschung von X, setze X[31] |= 0x80.
 
 Für Bob, nach der AES-Deobfuskation von X, teste X[31] & 0x80. Wenn das Bit gesetzt ist, lösche es mit X[31] &= 0x7f und entschlüssele via Noise als PQ-Verbindung. Wenn das Bit nicht gesetzt ist, entschlüssele via Noise wie üblich als Nicht-PQ-Verbindung.
 
@@ -572,23 +572,23 @@ Unverändert
 
 #### Veröffentlichte Adressen
 
-Verwenden Sie in allen Fällen den NTCP2-Transportnamen wie gewohnt.
+Verwenden Sie in allen Fällen den NTCP2-Transportnamen wie üblich.
 
-Verwenden Sie dieselbe Adresse/denselben Port wie bei nicht-PQ, nicht-firewalled. Nur eine PQ-Variante wird unterstützt. In der Router-Adresse veröffentlichen Sie v=2 (wie üblich) und den neuen Parameter pq=[3|4|5], um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des temporären Schlüssels (key[31] & 0x80) in der Sitzungsanfrage, um anzugeben, dass es sich um eine hybride Verbindung handelt. Siehe oben. Ältere Router werden den pq-Parameter ignorieren und wie gewohnt nicht-pq verbinden.
+Verwenden Sie dieselbe Adresse/denselben Port wie bei nicht-PQ, nicht-firewalled. Nur eine PQ-Variante wird unterstützt. In der Router-Adresse veröffentlichen Sie v=2 (wie üblich) und den neuen Parameter pq=[3|4|5], um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des temporären Schlüssels (key[31] & 0x80) im Sitzungsanfragepaket, um anzugeben, dass es sich um eine hybride Verbindung handelt. Siehe oben. Ältere Router ignorieren den pq-Parameter und verbinden sich wie gewohnt ohne PQ.
 
-Unterschiedliche Adressen/Ports für nicht-PQ, oder nur PQ, nicht hinter einer Firewall, werden NICHT unterstützt. Dies wird nicht implementiert, bis nicht-PQ NTCP2 deaktiviert ist, was erst in mehreren Jahren der Fall sein wird. Wenn nicht-PQ deaktiviert ist, könnten mehrere PQ-Varianten unterstützt werden, jedoch nur eine pro Adresse. Sobald dies unterstützt wird, muss in der Routeradresse v=[3|4|5] veröffentlicht werden, um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des ephemeren Schlüssels nicht. Ältere Router prüfen den v-Parameter und überspringen diese Adresse als nicht unterstützte Variante.
+Unterschiedliche Adressen/Ports für nicht-PQ, oder nur-PQ, nicht hinter einer Firewall, werden NICHT unterstützt. Dies wird nicht implementiert, bis nicht-PQ NTCP2 deaktiviert ist, was erst in mehreren Jahren der Fall sein wird. Wenn nicht-PQ deaktiviert ist, könnten mehrere PQ-Varianten unterstützt werden, jedoch nur eine pro Adresse. Wenn es unterstützt wird, muss in der Routeradresse v=[3|4|5] veröffentlicht werden, um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des temporären Schlüssels nicht. Ältere Router prüfen den v-Parameter und überspringen diese Adresse als nicht unterstützte Option.
 
 Gefeuwalled-Adressen (keine IP veröffentlicht): In der Routeradresse v=2 veröffentlichen (wie üblich). Es ist nicht notwendig, einen pq-Parameter zu veröffentlichen.
 
-Alice kann sich mit einem PQ-Bob über die PQ-Variante verbinden, die Bob veröffentlicht, unabhängig davon, ob Alice PQ-Unterstützung in ihren Router-Infos annonciert oder ob sie dieselbe Variante annonciert.
+Alice kann eine Verbindung zu einem PQ-Bob über die PQ-Variante herstellen, die Bob veröffentlicht, unabhängig davon, ob Alice PQ-Unterstützung in ihren Router-Infos annonciert oder ob sie dieselbe Variante annonciert.
 
 #### Maximale Auffüllung
 
-In der aktuellen Spezifikation ist für die Nachrichten 1 und 2 eine „angemessene“ Menge an Auffüllung (Padding) vorgesehen, wobei ein Bereich von 0–31 Bytes empfohlen wird, ohne dass ein Maximum festgelegt ist.
+In der aktuellen Spezifikation ist vorgesehen, dass die Nachrichten 1 und 2 eine „angemessene“ Menge an Auffüllung (Padding) aufweisen, wobei ein Bereich von 0–31 Bytes empfohlen wird, ohne dass ein Maximum festgelegt ist.
 
-Bis API 0.9.68 (Release 2.11.0) implementierte Java I2P eine maximale Auffüllung von 256 Bytes für Nicht-PQ-Verbindungen, was jedoch zuvor nicht dokumentiert war. Ab API 0.9.69 (Release 2.12.0) implementiert Java I2P dieselbe maximale Auffüllung für Nicht-PQ-Verbindungen wie für MLKEM-512. Siehe Tabelle unten.
+Bis API 0.9.68 (Release 2.11.0) implementierte Java I2P eine maximale Auffüllung von 256 Bytes für Nicht-PQ-Verbindungen, was jedoch zuvor nicht dokumentiert war. Ab API 0.9.69 (Release 2.12.0) implementiert Java I2P die gleiche maximale Auffüllung für Nicht-PQ-Verbindungen wie für MLKEM-512. Siehe Tabelle unten.
 
-Verwenden Sie die definierte Nachrichtengröße als maximale Auffüllung, das heißt, die maximale Auffüllung verdoppelt die Nachrichtengröße für PQ-Verbindungen, wie folgt:
+Verwenden Sie die definierte Nachrichtengröße als maximale Auffüllung, das heißt, die maximale Auffüllung verdoppelt die Nachrichtengröße bei PQ-Verbindungen, wie folgt:
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -646,7 +646,7 @@ Größenanstieg (Bytes):
 </table>
 ## Sicherheitsanalyse
 
-Die NIST-Sicherheitskategorien sind in [NIST-Präsentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), Folie 10, zusammengefasst. Vorläufige Kriterien: Unsere minimale NIST-Sicherheitskategorie sollte bei Hybridprotokollen 2 und bei reinen PQ-Protokollen 3 betragen.
+Die NIST-Sicherheitskategorien sind in [NIST-Präsentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf), Folie 10, zusammengefasst. Vorläufige Kriterien: Unsere minimale NIST-Sicherheitskategorie sollte für Hybridprotokolle 2 und für reine PQ-Protokolle 3 betragen.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -706,13 +706,13 @@ Die Bibliotheken Bouncycastle, BoringSSL und WolfSSL unterstützen jetzt MLKEM u
 
 ### Identifizierung eingehenden Datenverkehrs
 
-Wir setzen das MSB des temporären Schlüssels (key[31] & 0x80) im Sitzungsanfragepaket, um anzugeben, dass es sich um eine hybride Verbindung handelt. Dies ermöglicht es uns, sowohl standardmäßiges NTCP als auch hybrides NTCP am selben Port zu betreiben. Für eingehende Verbindungen wird nur eine hybride Variante unterstützt und in der Routeradresse angekündigt. Zum Beispiel pq=3 oder pq=4.
+Wir setzen das MSB des temporären Schlüssels (key[31] & 0x80) im Sitzungsanfragepaket, um anzugeben, dass es sich um eine hybride Verbindung handelt. Dadurch können wir sowohl standardmäßiges NTCP als auch hybrides NTCP am selben Port betreiben. Für eingehende Verbindungen wird nur eine hybride Variante unterstützt und in der Routeradresse angekündigt. Zum Beispiel pq=3 oder pq=4.
 
 #### Verschleierung
 
-Als Alice, für eine PQ-Verbindung, vor der Verschleierung, setze X[31] |= 0x80. Dadurch wird X ein ungültiger X25519-Öffentlicher Schlüssel. Nach der Verschleierung wird AES-CBC diesen Wert randomisieren. Das MSB von X wird nach der Verschleierung zufällig sein.
+Als Alice, für eine PQ-Verbindung, vor der Verschleierung, setze X[31] |= 0x80. Dadurch wird X zu einem ungültigen X25519-öffentlichen Schlüssel. Nach der Verschleierung wird AES-CBC diesen Wert randomisieren. Das MSB von X wird nach der Verschleierung zufällig sein.
 
-Als Bob testen, ob (X[31] & 0x80) != 0 nach der De-Verfälschung gilt. Wenn ja, handelt es sich um eine PQ-Verbindung.
+Als Bob testen, ob (X[31] & 0x80) != 0 nach der De-Obfuskation gilt. Wenn ja, handelt es sich um eine PQ-Verbindung.
 
 Die minimale Router-Version, die für NTCP2-PQ erforderlich ist, steht noch aus (TBD).
 

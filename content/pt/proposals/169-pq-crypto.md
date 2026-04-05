@@ -133,7 +133,7 @@ Certificados X.509 e outras codificações DER utilizarão as estruturas compost
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-Certificados X.509 e outras codificações DER utilizarão as estruturas compostas e OIDs definidos em [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+O overhead será substancial. Os tamanhos típicos de destino Ed25519 e identidade de router são 391 bytes. Estes aumentarão de 3,5x a 6,8x dependendo do algoritmo. As assinaturas Ed25519 são de 64 bytes. Estas aumentarão de 38x a 76x dependendo do algoritmo. RouterInfo assinados típicos, leaseSet, datagramas respondíveis e mensagens de streaming assinadas têm cerca de 1KB. Estes aumentarão de 3x a 8x dependendo do algoritmo.
 
 Como os novos tipos de identidade de destino e router não conterão preenchimento, eles não serão compressíveis. Os tamanhos de destinos e identidades de router que são compactados com gzip em trânsito aumentarão de 12x a 38x dependendo do algoritmo.
 
@@ -230,7 +230,7 @@ Chaves públicas de assinatura híbridas são a chave Ed25519 seguida pela chave
 | MLDSA44ph | 1344 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb |
 | MLDSA65ph | 1984 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb |
 | MLDSA87ph | 2624 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb |
-As chaves públicas de assinatura híbridas compostas são a chave PQ seguida pela chave Ed25519, conforme descrito em [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). A codificação e a ordem dos bytes são definidas em [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Os novos tipos de Chave Privada de Assinatura são:
 
 #### SigningPrivateKey
 
@@ -247,13 +247,13 @@ As chaves privadas de assinatura híbridas são a chave Ed25519 seguida pela cha
 | MLDSA44ph | 2592 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb. Ver proposta 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb. Ver proposta 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb. Ver proposta 169 |
-As chaves privadas de assinatura híbridas compostas são a chave PQ seguida pela chave Ed25519, conforme descrito em [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). A codificação e a ordem dos bytes são definidas em [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Os novos tipos de assinatura são:
 
-As chaves privadas de assinatura nunca são enviadas pela rede. Aplicativos podem optar por armazenar a semente de 32 bits conforme recomendado em [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/), em vez da chave privada expandida de vários KB. Isso depende da implementação.
+As assinaturas híbridas são a assinatura Ed25519 seguida pela assinatura PQ, como no [rascunho IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). As assinaturas híbridas são verificadas verificando ambas as assinaturas, e falhando se qualquer uma falhar. A codificação e ordem de bytes são definidas no [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 #### Assinatura
 
-Os novos tipos de assinatura são:
+Os novos tipos de Chave Pública de Assinatura são:
 
 | Tipo | Comprimento (bytes) | Desde | Uso |
 |------|---------------------|-------|-----|
@@ -266,7 +266,7 @@ Os novos tipos de assinatura são:
 | MLDSA44ph | 2484 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb. Ver proposta 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb. Ver proposta 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Apenas para arquivos SU3, não para estruturas netDb. Ver proposta 169 |
-Assinaturas híbridas compostas são a assinatura PQ seguida pela assinatura Ed25519, conforme descrito em [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Assinaturas híbridas são verificadas mediante a verificação de ambas as assinaturas, falhando se qualquer uma delas falhar. A codificação e a ordem dos bytes são definidas em [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Os novos tipos de Chave Pública Criptográfica são:
 
 #### Certificados de Chave
 
@@ -283,7 +283,7 @@ Chaves públicas de assinatura híbridas são a chave Ed25519 seguida pela chave
 | MLDSA44ph | 18 | n/d | 0.9.xx | Apenas para arquivos SU3 |
 | MLDSA65ph | 19 | n/d | 0.9.xx | Apenas para arquivos SU3 |
 | MLDSA87ph | 20 | n/d | 0.9.xx | Apenas para arquivos SU3 |
-Os novos tipos de Chave Pública Criptográfica são:
+Para destinos com tipos de assinatura Hybrid ou PQ, use NONE (tipo 255) para o tipo de criptografia, mas não há chave criptográfica, e toda a seção principal de 384 bytes é para a chave de assinatura.
 
 | Tipo | Código do Tipo | Comprimento Total da Chave Pública | Desde | Uso |
 |------|----------------|-------------------------------------|-------|-----|
@@ -293,17 +293,17 @@ Os novos tipos de Chave Pública Criptográfica são:
 | NONE | 255 | 0 | 0.9.xx | Ver proposta 169 |
 Tipos de chave híbrida NUNCA são incluídos em certificados de chave; apenas em leaseSets.
 
-Para destinos com tipos de assinatura Híbrida ou PQ, use NONE (tipo 255) para o tipo de criptografia, mas não há chave criptográfica, e toda a seção principal de 384 bytes é destinada à chave de assinatura.
+Sem preenchimento. O comprimento total é 7 + comprimento total da chave. O comprimento do certificado da chave é 4 + comprimento excessivo da chave.
 
 #### Tamanhos de destino
 
 Aqui estão os comprimentos para os novos tipos de Destination. O tipo Enc para todos é NONE (tipo 255) e o comprimento da chave de criptografia é tratado como 0. Toda a seção de 384 bytes é usada para a primeira parte da chave pública de assinatura. NOTA: Isso é diferente da especificação para os tipos de assinatura ECDSA_SHA512_P521 e RSA, onde mantivemos a chave ElGamal de 256 bytes no destination mesmo que não fosse usada.
 
-Sem preenchimento. O comprimento total é 7 + comprimento total da chave. O comprimento do certificado da chave é 4 + comprimento excedente da chave.
+skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
 Exemplo de fluxo de bytes de destino de 1319 bytes para MLDSA44:
 
-skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
+Exemplo de fluxo de bytes de identidade do router de 1351 bytes para MLDSA44:
 
 | Tipo | Código do Tipo | Comprimento Total da Chave Pública | Principal | Excesso | Comprimento Total do Dest |
 |------|----------------|-------------------------------------|-----------|---------|---------------------------|
@@ -317,7 +317,7 @@ skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
 Aqui estão os comprimentos para os novos tipos de Destination. O tipo de criptografia para todos é X25519 (tipo 4). Toda a seção de 352 bytes após a chave pública X25519 é usada para a primeira parte da chave pública de assinatura. Sem preenchimento. O comprimento total é 39 + comprimento total da chave. O comprimento do certificado da chave é 4 + comprimento excedente da chave.
 
-Exemplo de fluxo de bytes de identidade de roteador de 1351 bytes para MLDSA44:
+Os handshakes usam padrões de handshake do [Noise Protocol](https://noiseprotocol.org/noise.html).
 
 enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 
@@ -329,13 +329,13 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
 | MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
-### Assinaturas Compostas
+### PublicKey
 
-Adicione uma nova especificação para algoritmos de assinatura compostos, conforme a seguir: assinaturas híbridas compostas são conforme definidas em [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). No entanto, como de costume, chaves públicas e assinaturas dentro do I2P omitem codificações DER.
+As seguintes modificações ao XK e IK para sigilo futuro híbrido (hfs) são especificadas conforme a [especificação Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) seção 5:
 
-As assinaturas compostas sempre usam pré-hashing, de modo que mensagens potencialmente grandes não precisam ser processadas duas vezes. Isso é externo ao algoritmo MLDSA; usamos o MLDSA padrão, não o HashML-DSA.
+O padrão e1 é definido como segue, conforme especificado na seção 4 da [especificação Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
 
-#### Algoritmo de Assinatura
+#### KDF para split()
 
 ```
 
@@ -361,9 +361,9 @@ As assinaturas compostas sempre usam pré-hashing, de modo que mensagens potenci
   signature = MLDSA_SIGN(M') || Ed25519_SIGN(M')
 
 ```
-#### Algoritmo de Verificação
+#### Identificadores Noise
 
-O mesmo que o algoritmo de assinatura. Falha se qualquer uma das assinaturas falhar.
+O padrão ekem1 é definido como segue, conforme especificado na [especificação Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) seção 4:
 
 ```
 
@@ -375,11 +375,11 @@ O mesmo que o algoritmo de assinatura. Falha se qualquer uma das assinaturas fal
 ```
 #### Problemas
 
-[COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) não define a combinação MLDSA87 + Ed25519, presumivelmente por causa da diferença no nível de segurança. Ele define MLDSA87 + Ed448, usando SHAKE256/64 como função de pré-hash. Esta combinação não está atualmente incluída nesta proposta, porque atualmente não damos suporte a Ed448.
+Esta seção se aplica tanto aos protocolos IK quanto XK.
 
 ### Padrões de Handshake
 
-Os handshakes utilizam padrões de handshake do [Noise Protocol](https://noiseprotocol.org/noise.html).
+O handshake híbrido é definido na [especificação Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). A primeira mensagem, de Alice para Bob, contém e1, a chave de encapsulamento, antes da carga útil da mensagem. Isso é tratado como uma chave estática adicional; chame EncryptAndHash() nela (como Alice) ou DecryptAndHash() (como Bob). Em seguida, processe a carga útil da mensagem como de costume.
 
 O seguinte mapeamento de letras é usado:
 
@@ -389,7 +389,7 @@ O seguinte mapeamento de letras é usado:
 - e1 = chave PQ efêmera de uso único, enviada de Alice para Bob
 - ekem1 = o texto cifrado KEM, enviado de Bob para Alice
 
-As seguintes modificações em XK e IK para a secreção encaminhada híbrida (hfs) são conforme especificado na seção 5 da [especificação HFS do Noise](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+Definimos as seguintes funções correspondentes aos blocos fundamentais criptográficos utilizados conforme definido em [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ```
 XK:                       XKhfs:
@@ -413,7 +413,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-O padrão e1 é definido como segue, conforme especificado na seção 4 da [especificação Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+(encap_key, decap_key) = PQ_KEYGEN()
 
 ```
 For Alice:
@@ -431,7 +431,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-O padrão ekem1 é definido da seguinte forma, conforme especificado na seção 4 da [especificação Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf):
+(ciphertext, kem_shared_key) = ENCAPS(encap_key)
 
 ```
 For Bob:
@@ -465,23 +465,23 @@ For Bob:
 
 #### Visão Geral
 
-Esta seção se aplica a ambos os protocolos IK e XK.
+kem_shared_key = DECAPS(ciphertext, decap_key)
 
-O handshake híbrido é definido na [especificação Noise HFS](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). A primeira mensagem, de Alice para Bob, contém e1, a chave de encapsulamento, antes do conteúdo da mensagem. Isso é tratado como uma chave estática adicional; chame EncryptAndHash() com ela (como Alice) ou DecryptAndHash() (como Bob). Em seguida, processe o conteúdo da mensagem normalmente.
+Note que tanto a encap_key quanto o ciphertext são criptografados dentro de blocos ChaCha/Poly nas mensagens 1 e 2 do handshake Noise. Eles serão descriptografados como parte do processo de handshake.
 
 A segunda mensagem, de Bob para Alice, contém ekem1, o texto cifrado, antes da carga útil da mensagem. Isso é tratado como uma chave estática adicional; chame EncryptAndHash() nela (como Bob) ou DecryptAndHash() (como Alice). Em seguida, calcule a kem_shared_key e chame MixKey(kem_shared_key). Então processe a carga útil da mensagem normalmente.
 
 #### Operações ML-KEM Definidas
 
-Definimos as seguintes funções correspondentes aos blocos criptográficos utilizados, conforme definido em [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Para XK: Após o padrão de mensagem 'es' e antes da carga útil, adicione:
 
-(encap_key, decap_key) = PQ_KEYGEN()
+OU
 
     Alice creates the encapsulation and decapsulation keys
     The encapsulation key is sent in message 1.
     encap_key and decap_key sizes vary based on ML-KEM variant.
 
-(ciphertext, kem_shared_key) = ENCAPS(encap_key)
+Para IK: Após o padrão de mensagem 'es' e antes do padrão de mensagem 's', adicione:
 
     Bob calculates the ciphertext and shared key,
     using the ciphertext received in message 1.
@@ -489,19 +489,19 @@ Definimos as seguintes funções correspondentes aos blocos criptográficos util
     ciphertext size varies based on ML-KEM variant.
     The kem_shared_key is always 32 bytes.
 
-kem_shared_key = DECAPS(ciphertext, decap_key)
+Para XK: Após o padrão de mensagem 'es' e antes da carga útil, adicione:
 
     Alice calculates the shared key,
     using the ciphertext received in message 2.
     The kem_shared_key is always 32 bytes.
 
-Observe que tanto a encap_key quanto o ciphertext são criptografados dentro de blocos ChaCha/Poly nas mensagens 1 e 2 do handshake Noise. Eles serão descriptografados como parte do processo de handshake.
+OU
 
 A kem_shared_key é misturada na chaining key com MixHash(). Veja abaixo para detalhes.
 
 #### KDF da Alice para Mensagem 1
 
-Para XK: Após o padrão de mensagem 'es' e antes do payload, adicione:
+Para XK: Após o padrão de mensagem 'ee' e antes do payload, adicione:
 
 OU
 
@@ -531,7 +531,7 @@ This is the "e1" message pattern:
 ```
 #### Bob KDF para Mensagem 1
 
-Para XK: Após o padrão de mensagem 'es' e antes do payload, adicione:
+Para XK: Após o padrão de mensagem 'ee' e antes do payload, adicione:
 
 OU
 
@@ -559,7 +559,7 @@ This is the "e1" message pattern:
 ```
 #### Bob KDF para Mensagem 2
 
-Para XK: Após o padrão de mensagem 'ee' e antes do payload, adicione:
+Atualize a especificação ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) da seguinte forma:
 
 OU
 
@@ -626,13 +626,13 @@ This is the "ekem1" message pattern:
 
 inalterado
 
-#### KDF para split()
+#### Identificadores Noise
 
 inalterado
 
 ### Ratchet
 
-Atualize a especificação ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) conforme a seguir:
+Mudanças: O ratchet atual tem uma carga útil vazia para a primeira seção ChaCha, e a carga útil na segunda seção. Com ML-KEM, agora existem três seções. A primeira seção contém o texto cifrado PQ criptografado. A segunda seção tem uma carga útil vazia. A terceira seção contém a carga útil.
 
 #### Identificadores Noise
 
@@ -744,7 +744,7 @@ Note que a carga útil deve conter um bloco DateTime, então o tamanho mínimo d
 
 #### 1g) Formato de Resposta de Nova Sessão
 
-Alterações: o ratchet atual tem um payload vazio na primeira seção ChaCha e o payload na segunda seção. Com o ML-KEM, agora existem três seções. A primeira seção contém o ciphertext PQ criptografado. A segunda seção tem um payload vazio. A terceira seção contém o payload.
+Mudanças: O NTCP2 atual contém apenas as opções na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
 
 Formato criptografado:
 
@@ -843,11 +843,11 @@ Atualize a especificação NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) da seg
 
 #### 1) SessionRequest
 
-Alterações: o NTCP2 atual contém apenas as opções em uma única seção ChaCha. Com o ML-KEM, haverá uma nova seção ChaCha antes das opções, contendo a chave pública PQ criptografada.
+Conteúdo bruto:
 
 Para que NTCP2 PQ e não-PQ possam ser suportados no mesmo endereço e porta do router, usamos o bit mais significativo do valor X (chave pública efêmera X25519) para marcar que é uma conexão PQ. Este bit sempre permanece desmarcado para conexões não-PQ.
 
-Para Alice, após a mensagem ser criptografada pelo Noise, mas antes da ofuscação AES de X, defina X[31] |= 0x7f.
+Para Alice, após a mensagem ser criptografada pelo Noise, mas antes da ofuscação AES de X, defina X[31] |= 0x80.
 
 Para Bob, após a des-ofuscação AES de X, teste X[31] & 0x80. Se o bit estiver definido, limpe-o com X[31] &= 0x7f, e descriptografe via Noise como uma conexão PQ. Se o bit estiver limpo, descriptografe via Noise como uma conexão não-PQ normalmente.
 
@@ -855,7 +855,7 @@ Para PQ NTCP2 anunciado em um endereço de router e porta diferentes, isso não 
 
 Para informações adicionais, consulte a seção Endereços Publicados abaixo.
 
-Conteúdo bruto:
+Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -924,7 +924,7 @@ Dados não criptografados (tag de autenticação Poly1305 não mostrada):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
-Nota: o campo de versão no bloco de opções da mensagem 1 deve ser definido como 2, mesmo para conexões PQ.
+Observação: o campo de versão no bloco de opções da mensagem 1 deve ser definido como 2, mesmo para conexões PQ.
 
 Tamanhos:
 
@@ -940,7 +940,7 @@ Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão
 
 Conteúdo bruto:
 
-Conteúdo bruto:
+Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1142,7 +1142,7 @@ Conteúdo bruto:
   ...
 
 ```
-Conteúdo bruto:
+Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1236,7 +1236,7 @@ Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
 Conteúdo bruto:
 
-Conteúdo bruto:
+Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
 ```
   +----+----+----+----+----+----+----+----+

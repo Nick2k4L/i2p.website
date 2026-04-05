@@ -293,11 +293,11 @@ sin cambios
 
 #### 1) SessionRequest
 
-Cambios: el NTCP2 actual contiene solo las opciones en una única sección ChaCha. Con ML-KEM, habrá una nueva sección ChaCha antes de las opciones, que contendrá la clave pública PQ cifrada.
+Cambios: El NTCP2 actual contiene solo las opciones en la sección ChaCha. Con ML-KEM, la sección ChaCha también contendrá la clave pública PQ cifrada.
 
 Para que PQ y no-PQ NTCP2 puedan ser compatibles en la misma dirección y puerto del router, utilizamos el bit más significativo del valor X (clave pública efímera X25519) para indicar que se trata de una conexión PQ. Este bit siempre está sin establecer en las conexiones no-PQ.
 
-Para Alice, después de que el mensaje sea cifrado por Noise, pero antes de la ofuscación AES de X, establezca X[31] |= 0x7f.
+Para Alice, después de que el mensaje es cifrado por Noise, pero antes de la ofuscación AES de X, establezca X[31] |= 0x80.
 
 Para Bob, después de la des-ofuscación AES de X, comprobar X[31] & 0x80. Si el bit está establecido, borrarlo con X[31] &= 0x7f, y descifrar mediante Noise como una conexión PQ. Si el bit está vacío, descifrar mediante Noise como una conexión no PQ de la forma habitual.
 

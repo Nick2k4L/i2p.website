@@ -297,7 +297,7 @@ This is the "ekem1" message pattern:
 
 为了在同一个 router 地址和端口上同时支持 PQ 和非 PQ NTCP2，我们使用 X 值（X25519 临时公钥）的最高有效位来标记这是一个 PQ 连接。对于非 PQ 连接，此位始终为未设置状态。
 
-对于Alice，在消息被Noise加密之后，但在对X进行AES混淆之前，设置X[31] |= 0x7f。
+对于 Alice，在消息被 Noise 加密之后，但在对 X 进行 AES 混淆之前，设置 X[31] |= 0x80。
 
 对于 Bob，在对 X 进行 AES 去混淆后，测试 X[31] & 0x80。如果该位被设置，则通过 X[31] &= 0x7f 清除它，并通过 Noise 作为 PQ 连接进行解密。如果该位未设置，则像往常一样通过 Noise 作为非 PQ 连接进行解密。
 
