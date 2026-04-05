@@ -30,9 +30,9 @@ specification.
 
 ## Design
 
-We use the NIST FIPS 203 standard [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-which is based on, but not compatible with, CRYSTALS-Kyber (versions
-3.1, 3, and older).
+We support the NIST FIPS 203 standard [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+which is based on, but NOT compatible with,
+CRYSTALS-Kyber.
 
 Hybrid handshakes are as specified in
 [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
