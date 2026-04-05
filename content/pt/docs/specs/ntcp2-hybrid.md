@@ -2,7 +2,7 @@
 title: "PQ Hybrid NTCP2"
 description: "Variante híbrida pós-quântica do protocolo de transporte NTCP2 usando ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-03"
+lastupdated: "2026-04"
 category: "Transportes"
 accurateFor: "0.9.69"
 ---
@@ -21,7 +21,7 @@ Esta especificação documenta apenas as mudanças necessárias ao NTCP2 padrão
 
 ## Design
 
-Nós suportamos os padrões NIST FIPS 203 e 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) que são baseados em, mas NÃO compatíveis com, CRYSTALS-Kyber e CRYSTALS-Dilithium (versões 3.1, 3 e anteriores).
+Nós apoiamos o padrão NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), que é baseado, mas NÃO compatível com, CRYSTALS-Kyber.
 
 ### Troca de Chaves
 
@@ -297,7 +297,7 @@ Alterações: O NTCP2 atual contém apenas as opções na seção ChaCha. Com ML
 
 Para que PQ e não-PQ NTCP2 possam ser suportados no mesmo endereço e porta do router, usamos o bit mais significativo do valor X (chave pública efêmera X25519) para marcar que é uma conexão PQ. Este bit está sempre desabilitado para conexões não-PQ.
 
-Para Alice, após a mensagem ser criptografada pelo Noise, mas antes da ofuscação AES de X, defina X[31] |= 0x80.
+Para Alice, depois que a mensagem é criptografada pelo Noise, mas antes da ofuscação AES de X, defina X[31] |= 0x7f.
 
 Para Bob, após a des-ofuscação AES de X, teste X[31] & 0x80. Se o bit estiver definido, limpe-o com X[31] &= 0x7f, e descriptografe via Noise como uma conexão PQ. Se o bit estiver limpo, descriptografe via Noise como uma conexão não-PQ como de costume.
 
@@ -479,7 +479,7 @@ Conteúdo bruto:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-Dados não criptografados (tag de autenticação Poly1305 não mostrada):
+Tamanhos:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -572,8 +572,6 @@ Inalterado
 
 #### Endereços Publicados
 
-Em todos os casos, use o nome de transporte NTCP2 como de costume.
-
 Use o mesmo endereço/porta como não-PQ, não-firewalled. Apenas uma variante PQ é suportada. No endereço do router, publique v=2 (como de costume) e o novo parâmetro pq=[3|4|5] para indicar MLKEM 512/768/1024. Alice define o MSB da chave efêmera (key[31] & 0x80) na solicitação de sessão para indicar que esta é uma conexão híbrida. Veja acima. Routers mais antigos irão ignorar o parâmetro pq e conectar não-pq como de costume.
 
 Endereço/porta diferentes como não-PQ, ou apenas PQ, não-protegido por firewall NÃO é suportado. Isso não será implementado até que o NTCP2 não-PQ seja desabilitado, daqui a vários anos. Quando o não-PQ for desabilitado, múltiplas variantes PQ podem ser suportadas, mas apenas uma por endereço. Quando for suportado, no endereço do router, publique v=[3|4|5] para indicar MLKEM 512/768/1024. Alice não define o MSB da chave efêmera. Routers mais antigos verificarão o parâmetro v e pularão este endereço como não suportado.
@@ -582,13 +580,15 @@ Endereços com firewall (nenhum IP publicado): No endereço do router, publique 
 
 Alice pode conectar-se a um Bob PQ usando a variante PQ que Bob publica, independentemente de Alice anunciar suporte pq em suas informações do router, ou se ela anuncia a mesma variante.
 
-#### Preenchimento Máximo
-
 Na especificação atual, as mensagens 1 e 2 são definidas para ter uma quantidade "razoável" de padding, com um intervalo de 0-31 bytes recomendado, e nenhum máximo especificado.
+
+#### Preenchimento Máximo
 
 Até a API 0.9.68 (versão 2.11.0), o Java I2P implementava um máximo de 256 bytes de padding para conexões não-PQ, porém isso não estava documentado anteriormente. A partir da API 0.9.69 (versão 2.12.0), o Java I2P implementa o mesmo padding máximo para conexões não-PQ que para MLKEM-512. Veja a tabela abaixo.
 
 Use o tamanho de mensagem definido como o padding máximo, ou seja, o padding máximo dobrará o tamanho da mensagem para conexões PQ, da seguinte forma:
+
+Aumento de tamanho (bytes):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -620,7 +620,7 @@ Use o tamanho de mensagem definido como o padding máximo, ou seja, o padding m�
 
 ### Troca de Chaves
 
-Aumento de tamanho (bytes):
+As categorias de segurança NIST estão resumidas no slide 10 da [apresentação NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Critérios preliminares: Nossa categoria mínima de segurança NIST deve ser 2 para protocolos híbridos e 3 para apenas PQ.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -646,7 +646,7 @@ Aumento de tamanho (bytes):
 </table>
 ## Análise de Segurança
 
-As categorias de segurança NIST estão resumidas no slide 10 da [apresentação NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Critérios preliminares: Nossa categoria mínima de segurança NIST deve ser 2 para protocolos híbridos e 3 para apenas PQ.
+Estes são todos protocolos híbridos. As implementações devem preferir MLKEM768; MLKEM512 não é suficientemente seguro.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -676,9 +676,9 @@ As categorias de segurança NIST estão resumidas no slide 10 da [apresentação
 </table>
 ### Handshakes
 
-Estes são todos protocolos híbridos. As implementações devem preferir MLKEM768; MLKEM512 não é suficientemente seguro.
-
 Categorias de segurança NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+
+As bibliotecas Bouncycastle, BoringSSL e WolfSSL agora suportam MLKEM e MLDSA. O suporte do OpenSSL estará em sua versão 3.5 lançada em 8 de abril de 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -702,19 +702,19 @@ Categorias de segurança NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/
 
 ### Suporte de Biblioteca
 
-As bibliotecas Bouncycastle, BoringSSL e WolfSSL agora suportam MLKEM e MLDSA. O suporte do OpenSSL estará em sua versão 3.5 lançada em 8 de abril de 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Definimos o MSB da chave efêmera (key[31] & 0x80) na solicitação de sessão para indicar que esta é uma conexão híbrida. Isso nos permite executar tanto NTCP padrão quanto NTCP híbrido na mesma porta. Apenas uma variante híbrida é suportada para entrada e anunciada no endereço do router. Por exemplo, pq=3 ou pq=4.
 
 ### Identificação de Tráfego de Entrada
 
-Definimos o MSB da chave efêmera (key[31] & 0x80) na solicitação de sessão para indicar que esta é uma conexão híbrida. Isso nos permite executar tanto NTCP padrão quanto NTCP híbrido na mesma porta. Apenas uma variante híbrida é suportada para entrada e anunciada no endereço do router. Por exemplo, pq=3 ou pq=4.
+Como Alice, para uma conexão PQ, antes da ofuscação, defina X[31] |= 0x80. Isso torna X uma chave pública X25519 inválida. Após a ofuscação, AES-CBC irá randomizá-la. O MSB de X será aleatório após a ofuscação.
 
 #### Ofuscação
-
-Como Alice, para uma conexão PQ, antes da ofuscação, defina X[31] |= 0x80. Isso torna X uma chave pública X25519 inválida. Após a ofuscação, AES-CBC irá randomizá-la. O MSB de X será aleatório após a ofuscação.
 
 Como Bob, teste se (X[31] & 0x80) != 0 após a des-obfuscação. Se for o caso, é uma conexão PQ.
 
 A versão mínima do router necessária para NTCP2-PQ é TBD.
+
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão tipo 4, e o suporte será indicado nos endereços do router.
 
 Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão do tipo 4, e o suporte será indicado nos endereços do router.
 
@@ -726,18 +726,12 @@ Em todos os casos, use o nome de transporte NTCP2 como de costume. Routers mais 
 
 ## Referências
 
-* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
-* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
-* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
-* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)

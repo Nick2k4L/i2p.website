@@ -2,7 +2,7 @@
 title: "PQ 混合 NTCP2"
 description: "使用 ML-KEM 的 NTCP2 传输协议的后量子混合变体"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-03"
+lastupdated: "2026-04"
 category: "传输协议"
 accurateFor: "0.9.69"
 ---
@@ -21,7 +21,7 @@ PQ 混合 NTCP2 只能在与标准 NTCP2 相同的地址和端口上定义。不
 
 ## 设计
 
-我们支持 NIST FIPS 203 和 204 标准 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)，这些标准基于但不兼容 CRYSTALS-Kyber 和 CRYSTALS-Dilithium（版本 3.1、3 及更早版本）。
+我们支持基于 CRYSTALS-Kyber 但与之不兼容的 NIST FIPS 203 标准 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)。
 
 ### 密钥交换
 
@@ -297,7 +297,7 @@ This is the "ekem1" message pattern:
 
 为了在同一个 router 地址和端口上同时支持 PQ 和非 PQ NTCP2，我们使用 X 值（X25519 临时公钥）的最高有效位来标记这是一个 PQ 连接。对于非 PQ 连接，此位始终为未设置状态。
 
-对于 Alice，在消息被 Noise 加密之后，但在对 X 进行 AES 混淆之前，设置 X[31] |= 0x80。
+对于Alice，在消息被Noise加密之后，但在对X进行AES混淆之前，设置X[31] |= 0x7f。
 
 对于 Bob，在对 X 进行 AES 去混淆后，测试 X[31] & 0x80。如果该位被设置，则通过 X[31] &= 0x7f 清除它，并通过 Noise 作为 PQ 连接进行解密。如果该位未设置，则像往常一样通过 Noise 作为非 PQ 连接进行解密。
 
@@ -479,7 +479,7 @@ This is the "ekem1" message pattern:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-未加密数据（未显示 Poly1305 认证标签）：
+大小：
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -572,8 +572,6 @@ This is the "ekem1" message pattern:
 
 #### 已发布地址
 
-在所有情况下，像往常一样使用 NTCP2 传输名称。
-
 使用与非PQ、非防火墙相同的地址/端口。仅支持一种PQ变体。在router地址中，发布v=2（如常）和新参数pq=[3|4|5]来指示MLKEM 512/768/1024。Alice在会话请求中设置临时密钥的MSB（key[31] & 0x80）来指示这是一个混合连接。见上文。较旧的router将忽略pq参数并照常进行非pq连接。
 
 不支持使用与非PQ不同的地址/端口，或仅PQ、非防火墙的配置。这在几年后非PQ NTCP2被禁用之前不会被实现。当非PQ被禁用时，可能会支持多个PQ变体，但每个地址只能有一个。当支持时，在router地址中，发布v=[3|4|5]来指示MLKEM 512/768/1024。Alice不设置临时密钥的MSB。较旧的router将检查v参数并跳过此地址，视为不支持。
@@ -582,13 +580,15 @@ This is the "ekem1" message pattern:
 
 Alice 可以使用 Bob 发布的 PQ 变体连接到 PQ Bob，无论 Alice 是否在其 router 信息中宣传 pq 支持，或者她是否宣传相同的变体。
 
-#### 最大填充
-
 在当前规范中，消息1和消息2被定义为具有"合理"的填充量，建议范围为0-31字节，未指定最大值。
+
+#### 最大填充
 
 在 API 0.9.68（版本 2.11.0）之前，Java I2P 为非 PQ 连接实现了最大 256 字节的填充，但这之前并未记录在文档中。从 API 0.9.69（版本 2.12.0）开始，Java I2P 为非 PQ 连接实现了与 MLKEM-512 相同的最大填充。请参见下表。
 
 使用定义的消息大小作为最大填充，也就是说，最大填充将使 PQ 连接的消息大小翻倍，如下所示：
+
+大小增加（字节）：
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -620,7 +620,7 @@ Alice 可以使用 Bob 发布的 PQ 变体连接到 PQ Bob，无论 Alice 是否
 
 ### 密钥交换
 
-大小增加（字节）：
+NIST安全类别在[NIST演示文稿](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)第10页有总结。初步标准：我们的最低NIST安全类别对于混合协议应为2级，对于仅PQ协议应为3级。
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -646,7 +646,7 @@ Alice 可以使用 Bob 发布的 PQ 变体连接到 PQ Bob，无论 Alice 是否
 </table>
 ## 安全分析
 
-NIST安全类别在[NIST演示文稿](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)第10页有总结。初步标准：我们的最低NIST安全类别对于混合协议应为2级，对于仅PQ协议应为3级。
+这些都是混合协议。实现应该优先选择 MLKEM768；MLKEM512 不够安全。
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -676,9 +676,9 @@ NIST安全类别在[NIST演示文稿](https://www.nccoe.nist.gov/sites/default/f
 </table>
 ### 握手
 
-这些都是混合协议。实现应该优先选择 MLKEM768；MLKEM512 不够安全。
-
 NIST 安全类别 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)：
+
+Bouncycastle、BoringSSL 和 WolfSSL 库现在已支持 MLKEM 和 MLDSA。OpenSSL 的支持将在 2025 年 4 月 8 日发布的 3.5 版本中提供 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)。
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -702,19 +702,19 @@ NIST 安全类别 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.20
 
 ### 库支持
 
-Bouncycastle、BoringSSL 和 WolfSSL 库现在已支持 MLKEM 和 MLDSA。OpenSSL 的支持将在 2025 年 4 月 8 日发布的 3.5 版本中提供 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)。
+我们在会话请求中设置临时密钥的最高位（key[31] & 0x80）来表示这是一个混合连接。这允许我们在同一端口上同时运行标准 NTCP 和混合 NTCP。入站连接只支持一种混合变体，并在 router 地址中进行广告。例如，pq=3 或 pq=4。
 
 ### 入站流量识别
 
-我们在会话请求中设置临时密钥的最高位（key[31] & 0x80）来表示这是一个混合连接。这允许我们在同一端口上同时运行标准 NTCP 和混合 NTCP。入站连接只支持一种混合变体，并在 router 地址中进行广告。例如，pq=3 或 pq=4。
+作为 Alice，对于 PQ 连接，在混淆之前，设置 X[31] |= 0x80。这使得 X 成为一个无效的 X25519 公钥。混淆后，AES-CBC 会将其随机化。混淆后 X 的最高有效位将是随机的。
 
 #### 混淆
-
-作为 Alice，对于 PQ 连接，在混淆之前，设置 X[31] |= 0x80。这使得 X 成为一个无效的 X25519 公钥。混淆后，AES-CBC 会将其随机化。混淆后 X 的最高有效位将是随机的。
 
 作为 Bob，在去混淆后测试 (X[31] & 0x80) != 0。如果是，则这是一个 PQ 连接。
 
 支持 NTCP2-PQ 所需的最低 router 版本待定。
+
+注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中指示。
 
 注意：类型代码仅供内部使用。Router 将保持类型 4，支持情况将在 router 地址中指示。
 
@@ -726,18 +726,12 @@ Bouncycastle、BoringSSL 和 WolfSSL 库现在已支持 MLKEM 和 MLDSA。OpenSS
 
 ## 参考文献
 
-* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
-* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
-* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
-* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)

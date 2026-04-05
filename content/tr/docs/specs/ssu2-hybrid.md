@@ -2,7 +2,7 @@
 title: "PQ Hibrit SSU2"
 description: "ML-KEM kullanan SSU2 taşıma protokolünün kuantum sonrası hibrit varyantı"
 slug: "ssu2-hybrid"
-lastupdated: "2026-03"
+lastupdated: "2026-04"
 category: "Aktarımlar"
 accurateFor: "0.9.70"
 ---
@@ -21,7 +21,7 @@ Bu belirtim, yalnızca standart SSU2'nin PQ Hybrid desteği için gerektirdiği 
 
 ## Tasarım
 
-CRYSTALS-Kyber ve CRYSTALS-Dilithium'a (3.1, 3 ve daha eski sürümler) dayanan ancak bunlarla UYUMLU OLMAYAN NIST FIPS 203 ve 204 standartlarını [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) destekliyoruz.
+CRYSTALS-Kyber'a dayalı ancak onunla UYUMLU OLMAYAN NIST FIPS 203 standardını destekliyoruz [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ### Anahtar Değişimi
 
@@ -454,7 +454,7 @@ Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar 4. tür olara
 
 MLKEM768_X25519 için minimum MTU: IPv4 için 1318 ve IPv6 için 1338. Aşağıya bakınız.
 
-Maksimum boyut: Bob'ın RouterInfo'sında yayınlandığı gibi Bob'ın MTU'sunu kullanın veya RouterInfo'da yoksa varsayılan 1500 değerini kullanın. Yayınlanan MTU çok düşükse MLKEM768_X25519 kullanmayın.
+Değişiklikler: Mevcut SSU2 yalnızca tek bir ChaCha bölümünde yükü içerir. ML-KEM ile, yükten önce gelen ve şifrelenmiş KF şifre metnini içeren yeni bir ChaCha bölümü eklenecek.
 
 #### SessionCreated (Tür 1)
 
@@ -676,18 +676,12 @@ Alice olarak, bir PQ bağlantısı için, gizleme işleminden önce X[31] |= 0x8
 
 ## Referanslar
 
-* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
-* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
-* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
-* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
@@ -695,7 +689,6 @@ Alice olarak, bir PQ bağlantısı için, gizleme işleminden önce X[31] |= 0x8
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

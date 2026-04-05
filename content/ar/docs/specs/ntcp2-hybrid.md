@@ -2,7 +2,7 @@
 title: "PQ Hybrid NTCP2"
 description: "المتغير الهجين لما بعد الكم من بروتوكول النقل NTCP2 باستخدام ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-03"
+lastupdated: "2026-04"
 category: "وسائل النقل"
 accurateFor: "0.9.69"
 ---
@@ -21,7 +21,7 @@ PQ Hybrid NTCP2 معرّف فقط على نفس العنوان والمنفذ ا
 
 ## التصميم
 
-نحن ندعم معايير NIST FIPS 203 و 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) والتي تستند إلى، ولكنها غير متوافقة مع، CRYSTALS-Kyber و CRYSTALS-Dilithium (الإصدارات 3.1، 3، والأقدم).
+نحن ندعم معيار NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) الذي يستند إلى خوارزمية CRYSTALS-Kyber، ولكن ليس متوافقًا معها.
 
 ### تبادل المفاتيح
 
@@ -297,7 +297,7 @@ This is the "ekem1" message pattern:
 
 حتى يمكن دعم NTCP2 مع PQ وبدون PQ على نفس عنوان router ونفس المنفذ، نستخدم البت الأكثر أهمية من قيمة X (المفتاح العام المؤقت X25519) للإشارة إلى أنه اتصال PQ. هذا البت يكون دائماً غير مُعيَّن للاتصالات غير PQ.
 
-بالنسبة لأليس، بعد تشفير الرسالة باستخدام Noise، ولكن قبل التشويش AES على X، اضبط X[31] |= 0x80.
+بالنسبة لأليس، بعد تشفير الرسالة بواسطة Noise، ولكن قبل تشويش AES للمتغير X، قم بتعيين X[31] |= 0x7f.
 
 بالنسبة لبوب، بعد إلغاء التشويش AES للـ X، اختبر X[31] & 0x80. إذا كانت البت مضبوطة، امحها باستخدام X[31] &= 0x7f، وفك التشفير عبر Noise كاتصال PQ. إذا كانت البت غير مضبوطة، فك التشفير عبر Noise كاتصال غير PQ كالمعتاد.
 
@@ -479,7 +479,7 @@ This is the "ekem1" message pattern:
 
   Same as current specification except add a second ChaChaPoly frame
 ```
-البيانات غير المشفرة (علامة المصادقة Poly1305 غير معروضة):
+الأحجام:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -572,8 +572,6 @@ This is the "ekem1" message pattern:
 
 #### العناوين المنشورة
 
-في جميع الحالات، استخدم اسم نقل NTCP2 كالمعتاد.
-
 استخدم نفس العنوان/المنفذ كما هو الحال مع non-PQ، non-firewalled. يتم دعم متغير PQ واحد فقط. في عنوان router، انشر v=2 (كالمعتاد) والمعامل الجديد pq=[3|4|5] للإشارة إلى MLKEM 512/768/1024. تقوم Alice بتعيين MSB للمفتاح المؤقت (key[31] & 0x80) في طلب الجلسة للإشارة إلى أن هذا اتصال مختلط. انظر أعلاه. ستتجاهل routers الأقدم معامل pq وتتصل non-pq كالمعتاد.
 
 عنوان/منفذ مختلف كـ non-PQ، أو PQ-only، non-firewalled غير مدعوم. لن يتم تنفيذ هذا حتى يتم تعطيل non-PQ NTCP2، بعد عدة سنوات من الآن. عندما يتم تعطيل non-PQ، قد يتم دعم متغيرات PQ متعددة، ولكن واحد فقط لكل عنوان. عندما يتم دعمه، في عنوان الـ router، انشر v=[3|4|5] للإشارة إلى MLKEM 512/768/1024. Alice لا تقوم بتعيين MSB للمفتاح المؤقت. أجهزة الـ router الأقدم ستتحقق من معامل v وتتخطى هذا العنوان كغير مدعوم.
@@ -582,13 +580,15 @@ This is the "ekem1" message pattern:
 
 يمكن لـ Alice الاتصال بـ PQ Bob باستخدام متغير PQ الذي ينشره Bob، سواء كانت Alice تعلن عن دعم pq في معلومات router الخاص بها أم لا، أو ما إذا كانت تعلن عن نفس المتغير.
 
-#### الحد الأقصى للحشو
-
 في المواصفة الحالية، يتم تعريف الرسائل 1 و 2 لتحتوي على كمية "معقولة" من الحشو، مع نطاق موصى به من 0-31 بايت، ولا يتم تحديد حد أقصى.
+
+#### الحد الأقصى للحشو
 
 حتى API 0.9.68 (الإصدار 2.11.0)، نفذت Java I2P حداً أقصى قدره 256 بايت للحشو للاتصالات غير PQ، ولكن هذا لم يكن موثقاً سابقاً. اعتباراً من API 0.9.69 (الإصدار 2.12.0)، تنفذ Java I2P نفس الحد الأقصى للحشو للاتصالات غير PQ كما هو الحال مع MLKEM-512. انظر الجدول أدناه.
 
 استخدم حجم الرسالة المحدد كحد أقصى للحشو، أي أن الحد الأقصى للحشو سيضاعف حجم الرسالة لاتصالات PQ، كما يلي:
+
+زيادة الحجم (بايت):
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -620,7 +620,7 @@ This is the "ekem1" message pattern:
 
 ### تبادل المفاتيح
 
-زيادة الحجم (بايت):
+تم تلخيص فئات الأمان NIST في [عرض NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) الشريحة 10. المعايير الأولية: يجب أن تكون فئة الأمان NIST الدنيا لدينا 2 للبروتوكولات المختلطة و 3 لـ PQ فقط.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -646,7 +646,7 @@ This is the "ekem1" message pattern:
 </table>
 ## تحليل الأمان
 
-تم تلخيص فئات الأمان NIST في [عرض NIST](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) الشريحة 10. المعايير الأولية: يجب أن تكون فئة الأمان NIST الدنيا لدينا 2 للبروتوكولات المختلطة و 3 لـ PQ فقط.
+هذه كلها بروتوكولات مختلطة. يجب أن تفضل التطبيقات MLKEM768؛ فإن MLKEM512 ليس آمناً بما فيه الكفاية.
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -676,9 +676,9 @@ This is the "ekem1" message pattern:
 </table>
 ### المصافحات
 
-هذه كلها بروتوكولات مختلطة. يجب أن تفضل التطبيقات MLKEM768؛ فإن MLKEM512 ليس آمناً بما فيه الكفاية.
-
 فئات الأمان NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+
+مكتبات Bouncycastle و BoringSSL و WolfSSL تدعم الآن MLKEM و MLDSA. دعم OpenSSL سيكون متاحاً في إصدارهم 3.5 في 8 أبريل 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 <table style="border: 1px solid var(--color-border); border-collapse: collapse;">
 <tr style="background-color: var(--color-bg-secondary);">
@@ -702,19 +702,19 @@ This is the "ekem1" message pattern:
 
 ### دعم المكتبة
 
-مكتبات Bouncycastle و BoringSSL و WolfSSL تدعم الآن MLKEM و MLDSA. دعم OpenSSL سيكون متاحاً في إصدارهم 3.5 في 8 أبريل 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+نحن نعين البت الأكثر أهمية (MSB) للمفتاح المؤقت (key[31] & 0x80) في طلب الجلسة للإشارة إلى أن هذا اتصال هجين. هذا يسمح لنا بتشغيل كل من NTCP القياسي و NTCP الهجين على نفس المنفذ. يتم دعم نوع هجين واحد فقط للاتصالات الواردة، ويتم الإعلان عنه في عنوان router. على سبيل المثال، pq=3 أو pq=4.
 
 ### تحديد حركة البيانات الواردة
 
-نحن نعين البت الأكثر أهمية (MSB) للمفتاح المؤقت (key[31] & 0x80) في طلب الجلسة للإشارة إلى أن هذا اتصال هجين. هذا يسمح لنا بتشغيل كل من NTCP القياسي و NTCP الهجين على نفس المنفذ. يتم دعم نوع هجين واحد فقط للاتصالات الواردة، ويتم الإعلان عنه في عنوان router. على سبيل المثال، pq=3 أو pq=4.
+كـ Alice، لاتصال PQ، قبل التشويش، اضبط X[31] |= 0x80. هذا يجعل X مفتاحًا عامًا غير صالح لـ X25519. بعد التشويش، سيقوم AES-CBC بجعله عشوائيًا. ستكون MSB الخاصة بـ X عشوائية بعد التشويش.
 
 #### التشويش
-
-كـ Alice، لاتصال PQ، قبل التشويش، اضبط X[31] |= 0x80. هذا يجعل X مفتاحًا عامًا غير صالح لـ X25519. بعد التشويش، سيقوم AES-CBC بجعله عشوائيًا. ستكون MSB الخاصة بـ X عشوائية بعد التشويش.
 
 كـ Bob، اختبر إذا كان (X[31] & 0x80) != 0 بعد إلغاء التشويش. إذا كان كذلك، فإنه اتصال PQ.
 
 الحد الأدنى لإصدار router المطلوب لـ NTCP2-PQ لم يتم تحديده بعد.
+
+ملاحظة: رموز الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين router.
 
 ملاحظة: أكواد الأنواع للاستخدام الداخلي فقط. ستبقى أجهزة router من النوع 4، وسيتم الإشارة إلى الدعم في عناوين أجهزة router.
 
@@ -726,18 +726,12 @@ This is the "ekem1" message pattern:
 
 ## المراجع
 
-* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
-* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
-* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
-* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)

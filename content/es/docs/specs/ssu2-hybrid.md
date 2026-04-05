@@ -2,7 +2,7 @@
 title: "PQ Hybrid SSU2"
 description: "Variante híbrida post-cuántica del protocolo de transporte SSU2 utilizando ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-03"
+lastupdated: "2026-04"
 category: "Transportes"
 accurateFor: "0.9.70"
 ---
@@ -21,7 +21,7 @@ Esta especificación documenta únicamente los cambios necesarios en el SSU2 est
 
 ## Diseño
 
-Soportamos los estándares NIST FIPS 203 y 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) que están basados en, pero NO son compatibles con, CRYSTALS-Kyber y CRYSTALS-Dilithium (versiones 3.1, 3 y anteriores).
+Apoyamos el estándar NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) que se basa en, pero NO es compatible con, CRYSTALS-Kyber.
 
 ### Intercambio de claves
 
@@ -454,7 +454,7 @@ Nota: Los códigos de tipo son solo para uso interno. Los routers seguirán sien
 
 MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abajo.
 
-Tamaño máximo: utiliza la MTU de Bob tal como se publica en su RouterInfo, o el valor predeterminado de 1500 si no está presente en el RouterInfo. No uses MLKEM768_X25519 si la MTU publicada es demasiado baja.
+Cambios: El SSU2 actual contiene solo la carga útil en una única sección ChaCha. Con ML-KEM, habrá una nueva sección ChaCha antes de la carga útil, que contendrá el cifrado PQ cifrado.
 
 #### SessionCreated (Tipo 1)
 
@@ -676,18 +676,12 @@ Como Alice, para una conexión PQ, antes de la ofuscación, establece X[31] |= 0
 
 ## Referencias
 
-* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
-* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
-* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
-* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
@@ -695,7 +689,6 @@ Como Alice, para una conexión PQ, antes de la ofuscación, establece X[31] |= 0
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

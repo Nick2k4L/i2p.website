@@ -22,7 +22,7 @@ Cette spécification ne contient que les différences par rapport au standard [E
 
 ## Conception
 
-Nous utilisons la norme NIST FIPS 203 [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) qui est basée sur CRYSTALS-Kyber (versions 3.1, 3 et antérieures), mais n'est pas compatible avec celui-ci.
+Nous prenons en charge la norme NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), qui est basée sur CRYSTALS-Kyber, mais n'est PAS compatible avec celui-ci.
 
 Les handshakes hybrides sont tels que spécifiés dans [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 

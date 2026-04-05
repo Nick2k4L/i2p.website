@@ -2,9 +2,12 @@
 title: "PQ 混合 ECIES-X25519-AEAD-Ratchet"
 description: "使用 ML-KEM 的 ECIES 加密协议的后量子混合变体"
 slug: "ecies-hybrid"
+aliases:
+  - "/docs/specs/ecies-hybrid"
+  - "/docs/specs/ecies-hybrid/"
 category: "协议"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-04"
+accurateFor: "0.9.69"
 ---
 
 ## 注意
@@ -19,7 +22,7 @@ accurateFor: "0.9.67"
 
 ## 设计
 
-我们使用 NIST FIPS 203 标准 [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)，该标准基于但不兼容 CRYSTALS-Kyber（版本 3.1、3 及更早版本）。
+我们支持基于 CRYSTALS-Kyber 但与之**不兼容**的 NIST FIPS 203 标准 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)。
 
 混合握手按照 [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 中的规范执行。
 
@@ -192,7 +195,7 @@ This is the "e1" message pattern:
 
 End of "e1" message pattern.
 
-NOTE: For the next section (payload for XK or static key for IK),
+NOTE: For the next section (static key for IK),
 the keydata and chain key remain the same, and n now equals 1
 (instead of 0 for non-hybrid).
 ```
@@ -216,7 +219,7 @@ This is the "e1" message pattern:
 
 End of "e1" message pattern.
 
-NOTE: For the next section (payload for XK or static key for IK),
+NOTE: For the next section (static key for IK),
 the keydata and chain key remain the same, and n now equals 1
 (instead of 0 for non-hybrid).
 ```

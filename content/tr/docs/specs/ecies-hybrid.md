@@ -2,9 +2,12 @@
 title: "PQ Hybrid ECIES-X25519-AEAD-Ratchet"
 description: "ML-KEM kullanan ECIES şifreleme protokolünün kuantum sonrası hibrit varyantı"
 slug: "ecies-hybrid"
+aliases:
+  - "/docs/specs/ecies-hybrid"
+  - "/docs/specs/ecies-hybrid/"
 category: "Protokoller"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-04"
+accurateFor: "0.9.69"
 ---
 
 ## Not
@@ -19,7 +22,7 @@ Bu spesifikasyon yalnızca standart [ECIES](/docs/specs/ecies/) ile olan farklı
 
 ## Tasarım
 
-NIST FIPS 203 standardını [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) kullanıyoruz, bu standart CRYSTALS-Kyber (sürüm 3.1, 3 ve daha eski) tabanlı ancak onunla uyumlu değildir.
+CRYSTALS-Kyber'a dayalı ancak onunla UYUMLU OLMAYAN NIST FIPS 203 standardını destekliyoruz [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 Hybrid handshake'ler [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) belirtiminde tanımlandığı gibidir.
 
@@ -192,7 +195,7 @@ This is the "e1" message pattern:
 
 End of "e1" message pattern.
 
-NOTE: For the next section (payload for XK or static key for IK),
+NOTE: For the next section (static key for IK),
 the keydata and chain key remain the same, and n now equals 1
 (instead of 0 for non-hybrid).
 ```
@@ -216,7 +219,7 @@ This is the "e1" message pattern:
 
 End of "e1" message pattern.
 
-NOTE: For the next section (payload for XK or static key for IK),
+NOTE: For the next section (static key for IK),
 the keydata and chain key remain the same, and n now equals 1
 (instead of 0 for non-hybrid).
 ```

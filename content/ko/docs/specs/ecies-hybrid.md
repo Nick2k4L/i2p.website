@@ -22,7 +22,7 @@ accurateFor: "0.9.69"
 
 ## 설계
 
-우리는 CRYSTALS-Kyber(버전 3.1, 3 및 이전 버전)를 기반으로 하지만 호환되지 않는 NIST FIPS 203 표준 [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)을 사용합니다.
+우리는 CRYSTALS-Kyber를 기반으로 하지만 이와 호환되지 않는 NIST FIPS 203 표준 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)을 지원합니다.
 
 Hybrid handshake는 [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)에 명시된 바와 같습니다.
 

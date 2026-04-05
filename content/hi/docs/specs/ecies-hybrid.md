@@ -22,7 +22,7 @@ accurateFor: "0.9.69"
 
 ## डिज़ाइन
 
-हम NIST FIPS 203 मानक [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) का उपयोग करते हैं जो CRYSTALS-Kyber (संस्करण 3.1, 3, और पुराने) पर आधारित है, लेकिन इसके साथ संगत नहीं है।
+हम NIST FIPS 203 मानक [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) का समर्थन करते हैं जो CRYSTALS-Kyber पर आधारित है, लेकिन उसके साथ संगत नहीं है।
 
 Hybrid handshakes [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) में निर्दिष्ट के अनुसार हैं।
 

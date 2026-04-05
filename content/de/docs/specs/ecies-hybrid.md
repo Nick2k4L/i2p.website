@@ -22,7 +22,7 @@ Diese Spezifikation enthält nur die Unterschiede zum Standard-[ECIES](/docs/spe
 
 ## Design
 
-Wir verwenden den NIST FIPS 203 Standard [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), der auf CRYSTALS-Kyber (Versionen 3.1, 3 und älteren) basiert, aber nicht mit diesen kompatibel ist.
+Wir unterstützen den NIST FIPS 203-Standard [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), der auf CRYSTALS-Kyber basiert, aber NICHT damit kompatibel ist.
 
 Hybrid-Handshakes sind wie in [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) spezifiziert.
 

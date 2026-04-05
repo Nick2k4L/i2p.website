@@ -22,7 +22,7 @@ Việc triển khai, kiểm thử và phát hành đang trong quá trình thực
 
 ## Thiết kế
 
-Chúng tôi sử dụng tiêu chuẩn NIST FIPS 203 [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) dựa trên, nhưng không tương thích với, CRYSTALS-Kyber (các phiên bản 3.1, 3, và cũ hơn).
+Chúng tôi hỗ trợ tiêu chuẩn NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), tiêu chuẩn này dựa trên CRYSTALS-Kyber nhưng KHÔNG tương thích với CRYSTALS-Kyber.
 
 Hybrid handshakes được chỉ định như trong [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 

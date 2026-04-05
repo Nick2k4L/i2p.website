@@ -2,7 +2,7 @@
 title: "PQ Hybrid SSU2"
 description: "النسخة الهجينة المقاومة للحوسبة الكمية من بروتوكول النقل SSU2 باستخدام ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-03"
+lastupdated: "2026-04"
 category: "وسائل النقل"
 accurateFor: "0.9.70"
 ---
@@ -21,7 +21,7 @@ accurateFor: "0.9.70"
 
 ## التصميم
 
-ندعم معياري NIST FIPS 203 و 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) اللذين يستندان إلى CRYSTALS-Kyber و CRYSTALS-Dilithium (الإصدارات 3.1 و 3 والأقدم)، ولكنهما غير متوافقَين معهما.
+نحن ندعم معيار NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) الذي يستند إلى خوارزمية CRYSTALS-Kyber، لكنه غير متوافق معها.
 
 ### تبادل المفاتيح
 
@@ -454,7 +454,7 @@ unchanged
 
 الحد الأدنى لـ MTU لـ MLKEM768_X25519: 1318 لـ IPv4 و1338 لـ IPv6. انظر أدناه.
 
-الحجم الأقصى: استخدم MTU الخاص بـ Bob كما هو منشور في RouterInfo الخاص به، أو القيمة الافتراضية 1500 إذا لم يكن موجودًا في RouterInfo. لا تستخدم MLKEM768_X25519 إذا كان MTU المنشور منخفضًا جدًا.
+التغييرات: يحتوي SSU2 الحالي فقط على الحمولة في قسم واحد من نوع ChaCha. مع ML-KEM، سيكون هناك قسم جديد من نوع ChaCha قبل الحمولة، ويحتوي على النص المشفر الكمي (PQ ciphertext) المشفر.
 
 #### SessionCreated (النوع 1)
 
@@ -676,18 +676,12 @@ unchanged
 
 ## المراجع
 
-* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
-* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
-* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
-* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
@@ -695,7 +689,6 @@ unchanged
 * [Noise](https://noiseprotocol.org/noise.html)
 * [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
 * [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
-* [NTCP2](/docs/specs/ntcp2/)
 * [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
 * [Prop165](/docs/proposals/165/)
 * [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)

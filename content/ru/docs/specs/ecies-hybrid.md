@@ -22,7 +22,7 @@ accurateFor: "0.9.69"
 
 ## Дизайн
 
-Мы используем стандарт NIST FIPS 203 [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), который основан на CRYSTALS-Kyber (версии 3.1, 3 и более старые), но не совместим с ним.
+Мы поддерживаем стандарт NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), который основан на CRYSTALS-Kyber, но НЕ совместим с ним.
 
 Гибридные рукопожатия выполняются в соответствии со спецификацией [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 
