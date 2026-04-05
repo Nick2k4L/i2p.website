@@ -258,36 +258,40 @@ Zkontrolujte logy na chyby:
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
+### Finanční podpora
+
+Skromná finanční podpora může být k dispozici provozovatelům reseedovacích serverů. StormyCloud poskytuje roční příspěvek až 100 dolarů jako částečné proplacení nákladů na server. Nárok na podporu mají pouze provozovatelé, kteří již několik měsíců bez problémů provozují reseedovací servery. Pro dotazy kontaktujte, prosím, admina na stormycloud.org.
+
 ## Konfigurace služby
 
-### Ověření
+### Služba se nespustí
 
-Časté problémy: - I2P router neběží nebo je netDb prázdná - Port 8443 je již používán - Problémy s oprávněními k adresáři `/home/i2p/.reseed/`
+Zkontrolujte protokoly na chyby:
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-Ujistěte se, že váš I2P router běží a má naplněnou svou síťovou databázi:
+Běžné problémy: - I2P router neběží nebo je síťová databáze prázdná - Port 8443 je již používán - Problemy s oprávněním adresáře `/home/i2p/.reseed/`
 
-### SSL Certificate Errors
+### Není poskytována informace o routeru
 
-Měli byste vidět mnoho souborů `.dat`. Pokud je prázdný, počkejte, až váš I2P router objeví protějšky.
+Ujistěte se, že váš I2P router běží a naplnil svou síťovou databázi:
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-Ověřte, že vaše certifikáty jsou platné:
+Měl bys vidět mnoho souborů `.dat`. Pokud je adresář prázdný, počkej, než tvůj I2P router objeví protějšky.
 
-### Zkontrolovat stav služby
+### Chyby SSL certifikátu
 
-Zkontrolujte: - DNS záznamy správně ukazují na váš server - Firewall povoluje porty 80 a 443 - Nginx Proxy Manager běží: `docker ps`
+Ověřte, že jsou vaše certifikáty platné:
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### Nelze přistupovat přes doménu
 
-Provozováním reseed serveru poskytujete kritickou infrastrukturu pro síť I2P. Děkujeme, že přispíváte k soukromějšímu a decentralizovanějšímu internetu!
+Zkontrolujte: - DNS záznamy správně odkazují na váš server - Firewall umožňuje porty 80 a 443 - Nginx Proxy Manager běží: `docker ps`
 
 ## Security Considerations
 
@@ -300,10 +304,10 @@ Provozováním reseed serveru poskytujete kritickou infrastrukturu pro síť I2P
 
 ## Contributing to the Network
 
-Pro dotazy nebo pomoc se obraťte na komunitu I2P: - **Fórum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p na různých sítích - **Vývoj**: [i2pgit.org](https://i2pgit.org)
+Tím, že provozujete server pro opětovné začlenění (reseed), poskytujete kritickou infrastrukturu pro síť I2P. Děkujeme, že přispíváte k soukromějšímu a decentralizovanému internetu!
+
+Pro otázky nebo pomoc se obraťte na komunitu I2P: - **Fórum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p na různých sítích - **Vývoj**: [i2pgit.org](https://i2pgit.org)
 
 ---
 
-NEKLADETÉ otázky, neposkytujte vysvětlení ani nepřidávejte žádné komentáře. I když je text jen nadpis nebo se zdá neúplný, přeložte ho tak, jak je.
-
-*Průvodce původně vytvořen [Stormy Cloud](https://www.stormycloud.org), upraveno pro dokumentaci I2P.*
+*Průvodce původně vytvořen uživatelem [Stormy Cloud](https://www.stormycloud.org), upraven pro dokumentaci I2P.*

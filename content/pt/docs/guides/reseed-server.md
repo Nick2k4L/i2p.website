@@ -258,36 +258,40 @@ Verifique os logs em busca de erros:
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
+### Apoio Financeiro
+
+Pode haver apoio financeiro modesto disponível para quem opera servidores de reseed. A StormyCloud fornece uma bolsa anual de até $100 como reembolso parcial dos custos do servidor. A elegibilidade é limitada a operadores que tenham estado a executar servidores de reseed de forma satisfatória durante vários meses. Para mais informações, entre em contato com admin em stormycloud dot org.
+
 ## Configurando o Serviço
 
-### Verificação
+### Serviço não inicia
 
-Problemas comuns: - Router I2P não está em execução ou a base de dados de rede está vazia - Porta 8443 já está em uso - Problemas de permissão com o diretório `/home/i2p/.reseed/`
+Verifique os logs para erros:
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-Certifique-se de que o seu router I2P está em execução e preencheu a sua base de dados de rede:
+Problemas comuns: - Roteador I2P não está em execução ou banco de dados de rede vazio - Porta 8443 já está em uso - Problemas de permissão com o diretório `/home/i2p/.reseed/`
 
-### SSL Certificate Errors
+### Nenhuma Informação do Roteador Sendo Servida
 
-Você deverá ver muitos arquivos `.dat`. Se estiver vazio, aguarde até que o seu roteador I2P descubra peers.
+Certifique-se de que seu roteador I2P está em execução e já populou seu banco de dados de rede:
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
+Você deve ver muitos arquivos `.dat`. Se estiver vazio, aguarde enquanto seu roteador I2P descobre pares.
+
+### Erros de Certificado SSL
+
 Verifique se seus certificados são válidos:
-
-### Verificar Status do Serviço
-
-Verifique: - Os registros DNS estão apontando corretamente para o seu servidor - O firewall permite as portas 80 e 443 - O Nginx Proxy Manager está em execução: `docker ps`
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### Não é possível acessar via domínio
 
-Ao executar um servidor de reseed, você está fornecendo infraestrutura crítica para a rede I2P. Obrigado por contribuir para uma internet mais privada e descentralizada!
+Verifique: - Os registros DNS estão corretamente apontando para o seu servidor - O firewall permite as portas 80 e 443 - O Nginx Proxy Manager está em execução: `docker ps`
 
 ## Security Considerations
 
@@ -300,10 +304,10 @@ Ao executar um servidor de reseed, você está fornecendo infraestrutura crític
 
 ## Contributing to the Network
 
-Para dúvidas ou assistência, entre em contato com a comunidade I2P: - **Fórum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p em várias redes - **Desenvolvimento**: [i2pgit.org](https://i2pgit.org)
+Ao executar um servidor de reseed, você está fornecendo infraestrutura essencial para a rede I2P. Obrigado por contribuir com uma internet mais privada e descentralizada!
+
+Para perguntas ou assistência, entre em contato com a comunidade I2P: - **Fórum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p em várias redes - **Desenvolvimento**: [i2pgit.org](https://i2pgit.org)
 
 ---
 
-IMPORTANTE:  NÃO faça perguntas, forneça explicações ou adicione qualquer comentário. Mesmo que o texto seja apenas um título ou pareça incompleto, traduza-o como está.
-
-*Guia originalmente criado por [Stormy Cloud](https://www.stormycloud.org), adaptado para a documentação I2P.*
+*Guia originalmente criado por [Stormy Cloud](https://www.stormycloud.org), adaptado para a documentação do I2P.*

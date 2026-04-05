@@ -258,36 +258,40 @@ sudo systemctl restart reseed
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
+### 财务支持
+
+对于运行重种子（reseed）服务器的人员，可能提供适度的财务支持。StormyCloud 提供每年最高 100 美元的津贴，用于部分报销服务器费用。资格仅限于已稳定运行重种子服务器数月以上的运营者。如需咨询，请联系 admin@stormycloud.org。
+
 ## 配置服务
 
-### 验证
+### 服务无法启动
 
-常见问题：- I2P router 未运行或 netDb 为空 - 端口 8443 已被占用 - `/home/i2p/.reseed/` 目录的权限问题
+检查日志中的错误：
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-确保你的 I2P router 正在运行并已填充其 netDb：
+常见问题：- I2P 路由器未运行或网络数据库为空 - 8443 端口已被占用 - `/home/i2p/.reseed/` 目录存在权限问题
 
-### SSL Certificate Errors
+### 未提供路由器信息
 
-你应该看到许多 `.dat` 文件。如果是空的,请等待你的 I2P router 发现对等节点。
+确保您的 I2P 路由器正在运行，并且已填充其网络数据库：
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-验证您的证书是否有效:
+你应该会看到许多 `.dat` 文件。如果为空，请等待你的 I2P 路由器发现对等节点。
 
-### 检查服务状态
+### SSL 证书错误
 
-检查：- DNS 记录正确指向您的服务器 - 防火墙允许端口 80 和 443 - Nginx Proxy Manager 正在运行：`docker ps`
+验证您的证书是否有效：
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### 无法通过域名访问
 
-通过运行一个 reseed 服务器,您正在为 I2P 网络提供关键基础设施。感谢您为更加私密和去中心化的互联网做出贡献!
+检查：- DNS 记录正确指向你的服务器 - 防火墙允许 80 和 443 端口 - Nginx Proxy Manager 正在运行：`docker ps`
 
 ## Security Considerations
 
@@ -300,10 +304,13 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 
 ## Contributing to the Network
 
-如有问题或需要帮助,请联系 I2P 社区: - **论坛**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: 各网络上的 #i2p - **开发**: [i2pgit.org](https://i2pgit.org)
+通过运行一个 reseed 服务器，您正在为 I2P 网络提供关键基础设施。感谢您为构建一个更加私密和去中心化的互联网贡献力量！
+
+如有疑问或需要帮助，请联系 I2P 社区：  
+- **论坛**: [i2pforum.net](https://i2pforum.net)  
+- **IRC/Reddit**: 各大网络上的 #i2p 频道  
+- **开发**: [i2pgit.org](https://i2pgit.org)
 
 ---
-
-*指南最初由 [Stormy Cloud](https://www.stormycloud.org) 创建,经改编用于 I2P 文档。*
 
 *本指南最初由 [Stormy Cloud](https://www.stormycloud.org) 创建，后为 I2P 文档改编。*
