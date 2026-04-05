@@ -299,6 +299,16 @@ If using Let's Encrypt through Nginx Proxy Manager, certificates will auto-renew
 docker logs nginx-proxy-manager | grep -i certificate
 ```
 
+
+### Financial Support
+
+Modest financial support may be available to those running reseed servers.
+StormyCloud provides a yearly stipend of up to $100 as partial reimbursement for server costs.
+Eligibility is limited to operators who have been running reseed servers in good standing for several months.
+To inquire, please reach out to admin at stormycloud dot org.
+
+
+
 ## Troubleshooting
 
 ### Service Won't Start
