@@ -1086,7 +1086,7 @@ we use the most significant bit of the X value (X25519 ephemeral public key) to 
 is a PQ connection. This bit is always unset for non-PQ connections.
 
 For Alice, after the message is encrypted by Noise, but before the AES
-obfuscation of X, set X[31] |= 0x7f.
+obfuscation of X, set X[31] |= 0x80.
 
 For Bob, after the AES de-obfuscation of X, test X[31] & 0x80.
 If the bit is set, clear it with X[31] &= 0x7f, and decrypt via Noise
