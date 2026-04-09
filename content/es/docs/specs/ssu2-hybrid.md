@@ -21,7 +21,7 @@ Esta especificación documenta únicamente los cambios necesarios en el SSU2 est
 
 ## Diseño
 
-Apoyamos el estándar NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) que se basa en, pero NO es compatible con, CRYSTALS-Kyber.
+Soportamos los estándares NIST FIPS 203 y 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) que están basados en, pero NO son compatibles con, CRYSTALS-Kyber y CRYSTALS-Dilithium (versiones 3.1, 3 y anteriores).
 
 ### Intercambio de claves
 
@@ -295,17 +295,20 @@ En los siguientes mensajes, establezca el campo ver (versión) en el encabezado 
 
 - (0) Solicitud de sesión
 - (1) Sesión creada
-- (9) Reintento
+- (9) Reintentar (nota: Reintentar con terminación puede contener cualquier versión 2-4)
 - (10) Solicitud de token
-- (11) Hole Punch
 
-En los siguientes mensajes, establezca el campo ver (versión) en la cabecera larga en 2, como de costumbre, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo soporta, pero esto no es necesario. Las implementaciones deben aceptar cualquier valor entre 2 y 4.
+En el siguiente mensaje, establezca el campo ver (versión) en el encabezado largo a cualquier versión entre 2 y 4, porque la elección de la versión corresponde a Alice, no a Charlie. Es aceptable establecerla siempre en 2. Las implementaciones deberían aceptar cualquier valor entre 2 y 4.
 
-- (7) Prueba de par (mensajes fuera de sesión 5-7)
+- (11) Perforación de agujero
 
-Discusión: Establecer el campo de versión en 3 o 4 puede no ser estrictamente necesario para todos los tipos de mensajes, pero hacerlo ayuda a detectar fallos más tempranamente en conexiones post-cuánticas no compatibles. Los mensajes Token Request y Retry (tipos 9 y 10) deberían tener las versiones 3/4 por coherencia. Los mensajes Hole Punch (tipo 11) pueden no requerir este tratamiento, pero seguiremos el mismo patrón por uniformidad. Los mensajes Peer Test (tipo 7) están fuera de sesión y no indican intención de iniciar una sesión.
+En el siguiente mensaje, establezca el campo ver (versión) en la cabecera larga a 2, como es habitual, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo admite, pero esto no es necesario. Las implementaciones deberían aceptar cualquier valor entre 2 y 4.
 
-Antes del cifrado del encabezado:
+- (7) Prueba de pares (mensajes fuera de sesión 5-7)
+
+Discusión: Establecer el campo de versión en 3 o 4 puede no ser estrictamente necesario para todos los tipos de mensaje, pero hacerlo ayuda a detectar fallas más tempranas en conexiones post-cuánticas no compatibles. Los mensajes de Solicitud de Token y Reintento (tipos 9 y 10) deberían tener versiones 3/4 por consistencia. Los mensajes de Prueba entre Pares (tipo 7) están fuera de sesión y no indican la intención de iniciar una sesión.
+
+Antes del cifrado de cabecera:
 
 ```
 
@@ -562,12 +565,10 @@ sin cambios
 
 Los siguientes bloques contienen campos de versión. Permanecerán en la versión 2 (para mantener compatibilidad con un Bob no-PQ) y no cambiarán a la versión 3/4 para PQ.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
-
-Firmas PQ: Los bloques Relay, los bloques Peer Test y los mensajes Peer Test contienen firmas. Desafortunadamente, las firmas PQ son más grandes que la MTU. No existe actualmente ningún mecanismo para fragmentar bloques o mensajes Relay o Peer Test en múltiples paquetes UDP. El protocolo debe extenderse para admitir la fragmentación. Esto se realizará en una propuesta separada que está por definirse. Hasta que se complete, Relay y Peer Test no serán compatibles.
+- Solicitud de retransmisión
+- Respuesta de retransmisión
+- Introducción de retransmisión
+- Prueba de pares
 
 #### Direcciones Publicadas
 

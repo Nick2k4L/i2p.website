@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-01"
+lastupdated: "2026-04-09"
 status: "Öffnen"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -181,7 +181,7 @@ Aktualisieren Sie die Abschnitte und Tabellen im Common-Structures-Dokument [/do
 
 Die neuen Public Key-Typen sind:
 
-#### PublicKey
+#### Probleme
 
 Hybride öffentliche Schlüssel sind der X25519-Schlüssel. KEM-öffentliche Schlüssel sind der ephemere PQ-Schlüssel, der von Alice an Bob gesendet wird. Kodierung und Byte-Reihenfolge sind in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert.
 
@@ -853,7 +853,7 @@ Rohe Inhalte:
 
 Damit PQ und Nicht-PQ NTCP2 auf derselben Router-Adresse und demselben Port unterstützt werden können, verwenden wir das höchstwertige Bit des X-Werts (X25519 ephemeral public key), um zu kennzeichnen, dass es sich um eine PQ-Verbindung handelt. Dieses Bit ist bei Nicht-PQ-Verbindungen immer nicht gesetzt.
 
-Für Alice, nachdem die Nachricht durch Noise verschlüsselt wurde, aber vor der AES-Verwischung von X, setze X[31] |= 0x80.
+Hinweis: Das Versionsfeld im Optionsblock von Nachricht 1 muss auf 2 gesetzt werden, auch bei PQ-Verbindungen.
 
 Für Bob nach der AES-Entschleierung von X: teste X[31] & 0x80. Wenn das Bit gesetzt ist, lösche es mit X[31] &= 0x7f und entschlüssele via Noise als PQ-Verbindung. Wenn das Bit nicht gesetzt ist, entschlüssele via Noise als normale Nicht-PQ-Verbindung wie üblich.
 
@@ -930,7 +930,7 @@ Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht gezeigt):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
-Hinweis: Das Versionsfeld im Optionsblock der Nachricht 1 muss auch für PQ-Verbindungen auf 2 gesetzt werden.
+Hinweis: Typcodes sind nur für interne Verwendung. Router bleiben Typ 4, und die Unterstützung wird in den router-Adressen angezeigt.
 
 Größen:
 
@@ -1075,17 +1075,20 @@ In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header 
 
 In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header wie üblich auf 2, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen können den Wert auch auf 3 oder 4 setzen, wenn die Gegenstelle dies unterstützt, aber das ist nicht notwendig. Implementierungen sollten jeden Wert von 2-4 akzeptieren.
 
-- (0) Session Request
-- (1) Session Created
-- (9) Retry
-- (10) Token Request
+- (0) Sitzungsanfrage
+- (1) Sitzung erstellt
+- (9) Wiederholung (Hinweis: Wiederholung mit Beendigung kann eine beliebige Version 2–4 enthalten)
+- (10) Token-Anfrage
+
+Setzen Sie im folgenden Nachrichtentext das Feld „ver“ (Version) im langen Header auf eine beliebige Version 2–4, da die Wahl der Version bei Alice und nicht bei Charlie liegt. Es ist akzeptabel, dieses Feld immer auf 2 zu setzen. Implementierungen sollten jeden Wert zwischen 2 und 4 akzeptieren.
+
 - (11) Hole Punch
 
-Diskussion: Das Setzen des Versionsfelds auf 3 oder 4 ist möglicherweise nicht für alle Nachrichtentypen zwingend erforderlich, aber es hilft bei der früheren Fehlererkennung für nicht unterstützte Post-Quantum-Verbindungen. Token Request und Retry (Typen 9 und 10) sollten aus Konsistenzgründen die Versionen 3/4 haben. Hole Punch-Nachrichten (Typ 11) erfordern diese Behandlung möglicherweise nicht, aber wir werden für Einheitlichkeit dem gleichen Muster folgen. Peer Test-Nachrichten (Typ 7) sind außerhalb der Session und zeigen nicht die Absicht an, eine Session zu initiieren.
+Setzen Sie im folgenden Nachrichtentext das Feld „ver“ (Version) im langen Header wie üblich auf 2, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen dürfen den Wert auch auf 3 oder 4 setzen, falls das andere Ende dies unterstützt, dies ist jedoch nicht erforderlich. Implementierungen sollten jeden Wert zwischen 2 und 4 akzeptieren.
 
-- (7) Peer Test (Nachrichten außerhalb der Sitzung 5-7)
+- (7) Peer-Test (Nachrichten außerhalb der Sitzung 5–7)
 
-Vor der Header-Verschlüsselung:
+Diskussion: Das Setzen des Versionsfeldes auf 3 oder 4 ist möglicherweise nicht für alle Nachrichtentypen streng notwendig, hilft aber bei der frühen Erkennung von Fehlern bei nicht unterstützten post-quanten-sicheren Verbindungen. Token-Anfrage- und Wiederholungs-Nachrichten (Typen 9 und 10) sollten aus Konsistenzgründen die Versionen 3/4 verwenden. Peer-Test-Nachrichten (Typ 7) sind außerhalb der Sitzung und zeigen nicht die Absicht an, eine Sitzung zu initiieren.
 
 unverändert
 
@@ -1342,10 +1345,10 @@ unverändert
 
 Die folgenden Blöcke enthalten Versionsfelder. Sie bleiben Version 2 (für Kompatibilität mit einem nicht-PQ Bob) und werden nicht zu Version 3/4 für PQ geändert.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
+- Weiterleitungsanfrage
+- Weiterleitungsantwort
+- Weiterleitungsinfo
+- Peertest
 
 Verwenden Sie in allen Fällen wie gewohnt den SSU2-Transportnamen. MLKEM-1024 wird nicht unterstützt.
 
@@ -1390,8 +1393,8 @@ Beachten Sie, dass wir Ed25519-Signierung von SU3-Dateien nicht zulassen, und ob
 - SAMv3
 - Bittorrent
 - Entwicklerrichtlinien
-- Benennung / Adressbuch / Jump-Server
-- Andere Dokumente
+- Namensgebung / Adressbuch / Sprungserver
+- Weitere Dokumente
 
 ## Overhead-Analyse
 
@@ -1542,9 +1545,9 @@ Wir verwenden den normalen Signierungsprozess (genannt Pure ML-DSA Signature Gen
 
 Eine Größenerhöhung führt zu deutlich mehr tunnel-Fragmentierung für NetDB-Speicherungen, Streaming-Handshakes und andere Nachrichten. Prüfen Sie auf Leistungs- und Zuverlässigkeitsänderungen.
 
-- Wenn Nachricht 1 weniger als 919 Bytes hat, ist es das aktuelle ratchet-Protokoll.
-- Wenn Nachricht 1 größer oder gleich 919 Bytes ist, ist es wahrscheinlich MLKEM512_X25519.
-  Versuche zuerst MLKEM512_X25519, und falls es fehlschlägt, versuche das aktuelle ratchet-Protokoll.
+- Wenn Nachricht 1 kleiner als 919 Bytes ist, handelt es sich um das aktuelle Ratchet-Protokoll.
+- Wenn Nachricht 1 größer oder gleich 919 Bytes ist, handelt es sich wahrscheinlich um MLKEM512_X25519.
+  Versuchen Sie zuerst MLKEM512_X25519, und falls dies fehlschlägt, versuchen Sie das aktuelle Ratchet-Protokoll.
 
 Finden und überprüfen Sie jeglichen Code, der die Bytegröße von Router-Infos und leasesets begrenzt.
 

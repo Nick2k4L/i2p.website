@@ -21,7 +21,7 @@ Tato specifikace dokumentuje pouze změny potřebné pro standardní SSU2 k podp
 
 ## Návrh
 
-Podporujeme standard NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), který je založen na CRYSTALS-Kyber, ale NENÍ s ním kompatibilní.
+Podporujeme standardy NIST FIPS 203 a 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), které vycházejí z CRYSTALS-Kyber a CRYSTALS-Dilithium (verze 3.1, 3 a starší), ale NEJSOU s nimi kompatibilní.
 
 ### Výměna klíčů
 
@@ -293,19 +293,22 @@ Dlouhá hlavička má 32 bajtů. Používá se před vytvořením relace, pro To
 
 V následujících zprávách nastavte pole ver (verze) v dlouhém záhlaví na hodnotu 3 nebo 4, což označuje MLKEM-512 nebo MLKEM-768.
 
-- (0) Žádost o relaci
+- (0) Požadavek na relaci
 - (1) Relace vytvořena
-- (9) Opakování
-- (10) Žádost o token
-- (11) Hole Punch
+- (9) Opakování (poznámka: Opakování s ukončením může obsahovat jakoukoli verzi 2–4)
+- (10) Požadavek na token
 
-V následujících zprávách nastavte pole ver (verze) v dlouhém záhlaví na hodnotu 2, jako obvykle, i když je podporováno MLKEM-512 nebo MLKEM-768. Implementace mohou také nastavit hodnotu na 3 nebo 4, pokud to druhá strana podporuje, není to však nutné. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
+V následující zprávě nastavte pole ver (verze) v dlouhém záhlaví na libovolnou verzi 2–4, protože volbu verze provádí Alice, nikoli Charlie. Přijatelné je ji vždy nastavit na 2. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
 
-- (7) Peer Test (zprávy mimo relaci 5-7)
+- (11) Průraz otvoru
 
-Diskuze: Nastavení pole verze na 3 nebo 4 nemusí být striktně nutné pro všechny typy zpráv, ale napomáhá dřívější detekci selhání u nepodporovaných post-kvantových spojení. Zprávy Token Request a Retry (typy 9 a 10) by měly mít verze 3/4 pro konzistenci. Zprávy Hole Punch (typ 11) toto ošetření nemusí vyžadovat, ale budeme se řídit stejným vzorem pro jednotnost. Zprávy Peer Test (typ 7) jsou mimo relaci a nenaznačují záměr zahájit relaci.
+V následující zprávě nastavte pole ver (verze) v dlouhém záhlaví na 2, jak je obvyklé, i když je podporován MLKEM-512 nebo MLKEM-768. Implementace mohou hodnotu nastavit na 3 nebo 4, pokud to druhý konec podporuje, ale není to nutné. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
 
-Před šifrováním záhlaví:
+- (7) Test protějšku (zprávy mimo relaci 5–7)
+
+Diskuze: Nastavení pole verze na 3 nebo 4 nemusí být striktně nutné pro všechny typy zpráv, ale usnadňuje dřívější detekci chyb u nepodporovaných post-kvantových připojení. Zprávy Token Request a Retry (typy 9 a 10) by měly mít z důvodu konzistence verze 3/4. Zprávy Peer Test (typ 7) jsou mimo relaci a neindikují záměr zahájit relaci.
+
+Před šifrováním hlavičky:
 
 ```
 
@@ -562,12 +565,10 @@ unchanged
 
 Následující bloky obsahují pole verze. Zůstanou ve verzi 2 (kvůli kompatibilitě s non-PQ Bobem) a nebudou změněny na verzi 3/4 pro PQ.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
-
-PQ signatury: Bloky Relay, bloky Peer Test a zprávy Peer Test obsahují signatury. Bohužel PQ signatury jsou větší než MTU. Neexistuje žádný současný mechanismus pro fragmentaci bloků nebo zpráv Relay či Peer Test napříč více UDP pakety. Protokol musí být rozšířen o podporu fragmentace. To bude provedeno v samostatném návrhu, který bude stanoven. Do doby, než bude toto dokončeno, nebudou Relay a Peer Test podporovány.
+- Žádost o přepojení
+- Odpověď na přepojení
+- Úvod k přepojení
+- Test protějšku
 
 #### Zveřejněné adresy
 

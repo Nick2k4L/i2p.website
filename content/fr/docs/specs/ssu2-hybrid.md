@@ -21,7 +21,7 @@ Cette spécification documente uniquement les modifications requises par rapport
 
 ## Conception
 
-Nous soutenons la norme NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), qui est basée sur CRYSTALS-Kyber, mais n'est PAS compatible avec celui-ci.
+Nous prenons en charge les normes NIST FIPS 203 et 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) qui sont basées sur CRYSTALS-Kyber et CRYSTALS-Dilithium (versions 3.1, 3 et antérieures), mais NON compatibles avec ces derniers.
 
 ### Échange de clés
 
@@ -295,15 +295,18 @@ Dans les messages suivants, définissez le champ ver (version) dans l'en-tête l
 
 - (0) Demande de session
 - (1) Session créée
-- (9) Nouvelle tentative
+- (9) Nouvel essai (remarque : Nouvel essai avec terminaison peut contenir n'importe quelle version 2 à 4)
 - (10) Demande de jeton
-- (11) Hole Punch
 
-Dans les messages suivants, définissez le champ ver (version) dans l'en-tête long à 2, comme d'habitude, même si MLKEM-512 ou MLKEM-768 est pris en charge. Les implémentations peuvent également définir la valeur à 3 ou 4, si l'autre extrémité le prend en charge, mais ce n'est pas nécessaire. Les implémentations doivent accepter toute valeur comprise entre 2 et 4.
+Dans le message suivant, définissez le champ ver (version) dans l'en-tête long sur n'importe quelle version 2 à 4, car le choix de la version appartient à Alice, pas à Charlie. Il est acceptable de le définir systématiquement sur 2. Les implémentations doivent accepter toute valeur comprise entre 2 et 4.
 
-- (7) Test de pair (messages hors session 5-7)
+- (11) Percer un trou (Hole Punch)
 
-Discussion : Définir le champ de version à 3 ou 4 n'est pas forcément indispensable pour tous les types de messages, mais cela facilite la détection précoce des échecs pour les connexions post-quantiques non prises en charge. Les messages Token Request et Retry (types 9 et 10) devraient utiliser les versions 3/4 par souci de cohérence. Les messages Hole Punch (type 11) ne nécessitent peut-être pas ce traitement, mais nous suivrons le même schéma par uniformité. Les messages Peer Test (type 7) sont hors session et n'indiquent pas l'intention d'initier une session.
+Dans le message suivant, définissez le champ ver (version) de l'en-tête long sur 2, comme d'habitude, même si MLKEM-512 ou MLKEM-768 est pris en charge. Les implémentations peuvent également définir la valeur à 3 ou 4, si l'autre extrémité le prend en charge, mais ce n'est pas nécessaire. Les implémentations doivent accepter toute valeur comprise entre 2 et 4.
+
+- (7) Test du pair (messages hors session 5-7)
+
+Discussion : Définir le champ de version à 3 ou 4 pourrait ne pas être strictement nécessaire pour tous les types de messages, mais cela permet une détection plus précoce des échecs liés aux connexions post-quantiques non prises en charge. Les messages de demande de jeton (Token Request) et de nouvelle tentative (Retry), de types 9 et 10, devraient avoir des versions 3/4 par souci de cohérence. Les messages de test entre pairs (Peer Test), de type 7, sont hors session et n'indiquent pas l'intention d'initier une session.
 
 Avant le chiffrement de l'en-tête :
 
@@ -562,12 +565,10 @@ unchanged
 
 Les blocs suivants contiennent des champs de version. Ils resteront en version 2 (pour assurer la compatibilité avec un Bob non-PQ) et ne passeront pas en version 3/4 pour le PQ.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
-
-Signatures PQ : Les blocs Relay, les blocs Peer Test et les messages Peer Test contiennent tous des signatures. Malheureusement, les signatures PQ sont plus grandes que le MTU (taille maximale des paquets réseau). Il n'existe actuellement aucun mécanisme permettant de fragmenter les blocs ou messages Relay et Peer Test sur plusieurs paquets UDP. Le protocole doit être étendu pour prendre en charge la fragmentation. Cela sera traité dans une proposition distincte, à définir ultérieurement. Tant que cette extension ne sera pas finalisée, les fonctionnalités Relay et Peer Test ne seront pas prises en charge.
+- Demande de relais
+- Réponse de relais
+- Introduction de relais
+- Test de pair
 
 #### Adresses publiées
 

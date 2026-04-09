@@ -21,7 +21,7 @@ Diese Spezifikation dokumentiert ausschließlich die Änderungen, die am Standar
 
 ## Design
 
-Wir unterstützen den NIST FIPS 203-Standard [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), der auf CRYSTALS-Kyber basiert, aber NICHT damit kompatibel ist.
+Wir unterstützen die NIST FIPS 203 und 204 Standards [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), die auf CRYSTALS-Kyber und CRYSTALS-Dilithium (Versionen 3.1, 3 und älter) basieren, jedoch NICHT mit diesen kompatibel sind.
 
 ### Schlüsselaustausch
 
@@ -295,15 +295,18 @@ Setzen Sie in den folgenden Nachrichten das Feld ver (Version) im langen Header 
 
 - (0) Sitzungsanfrage
 - (1) Sitzung erstellt
-- (9) Wiederholen
+- (9) Wiederholung (Hinweis: Wiederholung mit Beendigung kann eine beliebige Version 2–4 enthalten)
 - (10) Token-Anfrage
-- (11) Hole Punch
 
-In den folgenden Nachrichten ist das ver-Feld (Version) im langen Header wie üblich auf 2 zu setzen, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen können den Wert auch auf 3 oder 4 setzen, wenn die Gegenseite dies unterstützt, jedoch ist dies nicht zwingend erforderlich. Implementierungen sollten jeden Wert von 2 bis 4 akzeptieren.
+Setzen Sie im folgenden Nachrichtentext das Feld „ver“ (Version) im langen Header auf eine beliebige Version 2–4, da die Wahl der Version bei Alice und nicht bei Charlie liegt. Es ist akzeptabel, diesen Wert stets auf 2 zu setzen. Implementierungen sollten jeden Wert zwischen 2 und 4 akzeptieren.
 
-- (7) Peer Test (Nachrichten außerhalb der Sitzung 5–7)
+- (11) Lochstanzung
 
-Diskussion: Das Setzen des Versionsfelds auf 3 oder 4 ist möglicherweise nicht für alle Nachrichtentypen zwingend erforderlich, erleichtert jedoch die frühere Fehlererkennung bei nicht unterstützten Post-Quantum-Verbindungen. Token Request und Retry (Typen 9 und 10) sollten aus Konsistenzgründen die Versionen 3/4 verwenden. Hole Punch-Nachrichten (Typ 11) erfordern diese Behandlung möglicherweise nicht, wir werden jedoch zur Einheitlichkeit dasselbe Muster befolgen. Peer Test-Nachrichten (Typ 7) befinden sich außerhalb einer Sitzung und signalisieren keine Absicht, eine Sitzung einzuleiten.
+Setzen Sie im folgenden Nachrichtenheader das Feld „ver“ (Version) im langen Header wie üblich auf 2, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen dürfen den Wert auch auf 3 oder 4 setzen, falls das andere Ende dies unterstützt, dies ist jedoch nicht erforderlich. Implementierungen sollten jeden Wert zwischen 2 und 4 akzeptieren.
+
+- (7) Peer-Test (Nachrichten außerhalb der Sitzung 5-7)
+
+Diskussion: Das Setzen des Versionsfeldes auf 3 oder 4 ist möglicherweise nicht für alle Nachrichtentypen streng notwendig, trägt aber zur früheren Erkennung von Fehlern bei nicht unterstützten post-quanten-sicheren Verbindungen bei. Token-Anfrage- und Wiederholungs-Nachrichten (Typen 9 und 10) sollten aus Konsistenzgründen die Versionen 3/4 aufweisen. Peer-Test-Nachrichten (Typ 7) sind außerhalb der Sitzung und zeigen nicht die Absicht an, eine Sitzung zu initiieren.
 
 Vor der Header-Verschlüsselung:
 
@@ -562,12 +565,10 @@ unverändert
 
 Die folgenden Blöcke enthalten Versionsfelder. Sie bleiben bei Version 2 (zur Kompatibilität mit einem Nicht-PQ-Bob) und werden für PQ nicht auf Version 3/4 geändert.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
-
-PQ-Signaturen: Relay-Blöcke, Peer-Test-Blöcke und Peer-Test-Nachrichten enthalten alle Signaturen. Leider sind PQ-Signaturen größer als die MTU. Es gibt derzeit keinen Mechanismus, um Relay- oder Peer-Test-Blöcke bzw. -Nachrichten über mehrere UDP-Pakete zu fragmentieren. Das Protokoll muss erweitert werden, um Fragmentierung zu unterstützen. Dies wird in einem separaten, noch zu erstellenden Vorschlag behandelt. Bis dessen Fertigstellung werden Relay und Peer Test nicht unterstützt.
+- Weiterleitungsanfrage
+- Weiterleitungsantwort
+- Weiterleitungsinfo
+- Peertest
 
 #### Veröffentlichte Adressen
 

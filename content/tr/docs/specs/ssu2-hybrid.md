@@ -21,7 +21,7 @@ Bu belirtim, yalnızca standart SSU2'nin PQ Hybrid desteği için gerektirdiği 
 
 ## Tasarım
 
-CRYSTALS-Kyber'a dayalı ancak onunla UYUMLU OLMAYAN NIST FIPS 203 standardını destekliyoruz [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+CRYSTALS-Kyber ve CRYSTALS-Dilithium'a (3.1, 3 ve daha eski sürümler) dayanan ancak bunlarla UYUMLU OLMAYAN NIST FIPS 203 ve 204 standartlarını [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) destekliyoruz.
 
 ### Anahtar Değişimi
 
@@ -295,15 +295,18 @@ Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768'i belirtmek için uzun başlı
 
 - (0) Oturum İsteği
 - (1) Oturum Oluşturuldu
-- (9) Yeniden Deneme
+- (9) Yeniden Dene (not: Sonlandırma ile Yeniden Dene, herhangi bir 2-4 sürümünü içerebilir)
 - (10) Token İsteği
+
+Aşağıdaki mesajda, uzun başlıktaki ver (sürüm) alanını 2-4 arası herhangi bir sürüm olarak ayarlayın, çünkü sürüm seçimi Charlie'nin değil Alice'in yapar. Her zaman 2 olarak ayarlamak kabul edilebilir. Uygulamalar 2-4 arası herhangi bir değeri kabul etmelidir.
+
 - (11) Delik Açma
 
-Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768 desteklense bile, uzun başlıktaki ver (version/sürüm) alanını her zamanki gibi 2 olarak ayarlayın. Uygulamalar, karşı taraf destekliyorsa değeri 3 veya 4 olarak da ayarlayabilir; ancak bu zorunlu değildir. Uygulamalar 2-4 arasındaki herhangi bir değeri kabul etmelidir.
+Aşağıdaki mesajda, MLKEM-512 veya MLKEM-768'in desteklenmesi durumunda bile, uzun başlıkta ver (sürüm) alanını her zamanki gibi 2 olarak ayarlayın. Uygulamalar, karşı taraf destekliyorsa değeri 3 veya 4 olarak da ayarlayabilir, ancak bu gerekli değildir. Uygulamalar, 2-4 arası herhangi bir değeri kabul etmelidir.
 
 - (7) Eş Testi (oturum dışı mesajlar 5-7)
 
-Tartışma: Sürüm alanını 3 veya 4 olarak ayarlamak tüm mesaj türleri için kesinlikle gerekli olmayabilir; ancak bunu yapmak, desteklenmeyen post-kuantum bağlantıları için erken hata tespitine yardımcı olur. Token Request ve Retry mesajları (tür 9 ve 10), tutarlılık açısından 3/4 sürümlerine sahip olmalıdır. Hole Punch mesajları (tür 11) bu işlemi gerektirmeyebilir, ancak tekdüzelik için aynı kalıbı izleyeceğiz. Peer Test mesajları (tür 7) oturum dışıdır ve bir oturum başlatma niyetini göstermez.
+Tartışma: Sürüm alanının 3 veya 4 olarak ayarlanması tüm mesaj türleri için kesinlikle gerekli olmayabilir, ancak kuantuma dayanıksız olmayan desteklenmeyen bağlantılar için erken hata tespitini kolaylaştırır. Belirteç İstek ve Tekrar Mesajları (türleri 9 ve 10) tutarlılık açısından 3/4 sürümüne sahip olmalıdır. Eş Testi mesajları (tür 7) oturum dışıdır ve oturum başlatma niyetini belirtmez.
 
 Başlık şifrelemesinden önce:
 
@@ -562,12 +565,10 @@ unchanged
 
 Aşağıdaki bloklar sürüm alanları içermektedir. Bu alanlar, (PQ desteklemeyen Bob ile uyumluluk sağlamak amacıyla) sürüm 2 olarak kalacak ve PQ için sürüm 3/4'e geçmeyecektir.
 
-- Relay İsteği
-- Relay Yanıtı
-- Relay Girişi
-- Peer Testi
-
-PQ İmzaları: Relay blokları, Peer Test blokları ve Peer Test mesajlarının tamamı imza içermektedir. Ne var ki PQ imzaları MTU'dan daha büyüktür. Şu anda Relay veya Peer Test bloklarını ya da mesajlarını birden fazla UDP paketine bölmek için herhangi bir mekanizma bulunmamaktadır. Protokolün parçalama (fragmentation) desteği sunacak şekilde genişletilmesi gerekmektedir. Bu işlem, henüz belirlenmemiş ayrı bir öneri kapsamında gerçekleştirilecektir. Söz konusu çalışma tamamlanana kadar Relay ve Peer Test desteklenmeyecektir.
+- Yönlendirme İsteği
+- Yönlendirme Yanıtı
+- Yönlendirme Tanıtımı
+- Eş Testi
 
 #### Yayınlanan Adresler
 

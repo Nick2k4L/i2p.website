@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-01"
+lastupdated: "2026-04-09"
 status: "Otevřít"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1075,17 +1075,20 @@ V následujících zprávách nastavte pole ver (verze) v dlouhé hlavičce na 3
 
 V následujících zprávách nastavte pole ver (verze) v dlouhé hlavičce na 2, jako obvykle, i když je podporováno MLKEM-512 nebo MLKEM-768. Implementace mohou také nastavit hodnotu na 3 nebo 4, pokud ji druhá strana podporuje, ale není to nutné. Implementace by měly přijímat jakoukoliv hodnotu 2-4.
 
-- (0) Požadavek relace
+- (0) Požadavek na relaci
 - (1) Relace vytvořena
-- (9) Opakovat
-- (10) Požadavek tokenu
-- (11) Hole Punch
+- (9) Opakování (poznámka: Opakování s ukončením může obsahovat jakoukoli verzi 2–4)
+- (10) Požadavek na token
 
-Diskuse: Nastavení pole verze na 3 nebo 4 nemusí být striktně nutné pro všechny typy zpráv, ale pomáhá to dřívější detekci selhání u nepodporovaných post-kvantových spojení. Token Request a Retry (typy 9 a 10) by měly mít verze 3/4 pro konzistenci. Hole Punch zprávy (typ 11) možná nevyžadují toto zacházení, ale budeme následovat stejný vzorec pro jednotnost. Peer Test zprávy (typ 7) jsou mimo relaci a nenaznačují záměr iniciovat relaci.
+Ve zprávě níže nastavte pole ver (verze) v dlouhém záhlaví na libovolnou verzi 2–4, protože volbu verze provádí Alice, nikoli Charlie. Přijatelné je ji vždy nastavit na 2. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
 
-- (7) Test protějšku (zprávy mimo relaci 5-7)
+- (11) Průraz otvoru
 
-Před šifrováním hlavičky:
+V následující zprávě nastavte pole ver (verze) v dlouhém záhlaví na hodnotu 2, jak je obvyklé, i když je podporován MLKEM-512 nebo MLKEM-768. Implementace mohou hodnotu nastavit na 3 nebo 4, pokud to druhá strana podporuje, ale není to nutné. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
+
+- (7) Testování protějšku (mimo relační zprávy 5–7)
+
+Diskuze: Nastavení pole verze na 3 nebo 4 nemusí být striktně nutné pro všechny typy zpráv, ale pomáhá dřívější detekci selhání u nepodporovaných post-kvantových připojení. Zprávy Token Request a Retry (typy 9 a 10) by měly mít verze 3/4 z důvodu konzistence. Zprávy Peer Test (typ 7) jsou mimo relaci a nesvědčí o záměru iniciovat relaci.
 
 nezměněno
 
@@ -1224,7 +1227,7 @@ Nešifrovaná data (Poly1305 autentifikační tag není zobrazen):
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
-Velikosti, nezahrnují režii IP protokolu:
+Velikosti, bez započtení režie IP:
 
 | Typ | Kód typu | X délka | Délka Msg 1 | Délka Msg 1 Enc | Délka Msg 1 Dec | Délka PQ klíče | délka pl |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
@@ -1316,7 +1319,7 @@ Velikosti:
   |      see below for allowed blocks     |
   +----+----+----+----+----+----+----+----+
 ```
-Velikosti, nezahrnují režii IP protokolu:
+Velikosti, bez započtení režie IP:
 
 | Typ | Kód typu | Y délka | Msg 2 délka | Msg 2 Enc délka | Msg 2 Dec délka | PQ CT délka | pl délka |
 |-----|-----------|---------|-------------|-----------------|-----------------|-------------|----------|
@@ -1342,10 +1345,10 @@ nezměněno
 
 Následující bloky obsahují pole verzí. Zůstanou verzí 2 (kvůli kompatibilitě s non-PQ Bobem) a nezmění se na verzi 3/4 pro PQ.
 
-- Relay Request
-- Relay Response
-- Relay Intro
-- Peer Test
+- Žádost o přepojení (Relay Request)
+- Odpověď na přepojení (Relay Response)
+- Úvodní zpráva přepojení (Relay Intro)
+- Test protějšku (Peer Test)
 
 Ve všech případech použijte název transportu SSU2 jako obvykle. MLKEM-1024 není podporován.
 
@@ -1390,8 +1393,8 @@ Všimněte si, že nepovolujeme Ed25519 podepisování SU3 souborů, a ačkoli j
 - SAMv3
 - Bittorrent
 - Pokyny pro vývojáře
-- Pojmenování / adresář / jump servery
-- Další dokumentace
+- Pojmenování / adresář / skokové servery
+- Ostatní dokumenty
 
 ## Analýza režie
 
@@ -1542,9 +1545,9 @@ Používáme běžný proces podepisování (nazývaný Pure ML-DSA Signature Ge
 
 Zvýšení velikosti povede k mnohem větší fragmentaci tunelů pro NetDB úložiště, streaming handshakes a další zprávy. Zkontrolujte změny výkonu a spolehlivosti.
 
-- Pokud je zpráva 1 menší než 919 bajtů, jedná se o současný ratchet protokol.
+- Pokud je zpráva 1 menší než 919 bajtů, jedná se o aktuální protokol ratchet.
 - Pokud je zpráva 1 větší nebo rovna 919 bajtům, pravděpodobně se jedná o MLKEM512_X25519.
-  Zkuste nejprve MLKEM512_X25519, a pokud selže, zkuste současný ratchet protokol.
+  Nejprve zkuste MLKEM512_X25519 a pokud selže, zkuste aktuální protokol ratchet.
 
 Najděte a zkontrolujte jakýkoli kód, který omezuje velikost v bajtech u router infos a leasesets.
 

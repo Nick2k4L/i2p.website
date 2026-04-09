@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-01"
+lastupdated: "2026-04-09"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -181,7 +181,7 @@ Atualize as seções e tabelas no documento de estruturas comuns [/docs/specs/co
 
 Os novos tipos de Chave Pública são:
 
-#### PublicKey
+#### Problemas
 
 Chaves públicas híbridas são a chave X25519. Chaves públicas KEM são a chave PQ efêmera enviada de Alice para Bob. A codificação e ordem de bytes são definidas em [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
@@ -847,7 +847,7 @@ Conteúdo bruto:
 
 Para que NTCP2 PQ e não-PQ possam ser suportados no mesmo endereço e porta do router, usamos o bit mais significativo do valor X (chave pública efêmera X25519) para marcar que é uma conexão PQ. Este bit sempre permanece desmarcado para conexões não-PQ.
 
-Para Alice, após a mensagem ser criptografada pelo Noise, mas antes da ofuscação AES de X, defina X[31] |= 0x80.
+Nota: o campo de versão no bloco de opções da mensagem 1 deve ser definido como 2, mesmo para conexões PQ.
 
 Para Bob, após a des-ofuscação AES de X, teste X[31] & 0x80. Se o bit estiver definido, limpe-o com X[31] &= 0x7f, e descriptografe via Noise como uma conexão PQ. Se o bit estiver limpo, descriptografe via Noise como uma conexão não-PQ normalmente.
 
@@ -924,7 +924,7 @@ Dados não criptografados (tag de autenticação Poly1305 não mostrada):
   |                                       |
   +----+----+----+----+----+----+----+----+
 ```
-Observação: o campo de versão no bloco de opções da mensagem 1 deve ser definido como 2, mesmo para conexões PQ.
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão tipo 4, e o suporte será indicado nos endereços do router.
 
 Tamanhos:
 
@@ -1071,15 +1071,18 @@ Nas mensagens seguintes, defina o campo ver (version) no cabeçalho longo para 2
 
 - (0) Solicitação de Sessão
 - (1) Sessão Criada
-- (9) Tentar Novamente
+- (9) Repetir (observação: Repetir com Término pode conter qualquer versão de 2 a 4)
 - (10) Solicitação de Token
-- (11) Perfuração de Hole
 
-Discussão: Definir o campo de versão para 3 ou 4 pode não ser estritamente necessário para todos os tipos de mensagem, mas fazê-lo ajuda na detecção mais precoce de falhas para conexões pós-quânticas não suportadas. Token Request e Retry (tipos 9 e 10) devem ter versões 3/4 para consistência. Mensagens Hole Punch (tipo 11) podem não exigir esse tratamento, mas seguiremos o mesmo padrão para uniformidade. Mensagens Peer Test (tipo 7) são fora de sessão e não indicam intenção de iniciar uma sessão.
+Na mensagem a seguir, defina o campo ver (versão) no cabeçalho longo para qualquer versão entre 2 e 4, pois a escolha da versão é de Alice, não de Charlie. Definir sempre como 2 é aceitável. As implementações devem aceitar qualquer valor entre 2 e 4.
 
-- (7) Teste de Peer (mensagens fora de sessão 5-7)
+- (11) Furo de perfuração
 
-Antes da criptografia do cabeçalho:
+Na mensagem a seguir, defina o campo ver (versão) no cabeçalho longo como 2, como de costume, mesmo que MLKEM-512 ou MLKEM-768 seja suportado. Implementações também podem definir o valor como 3 ou 4, se a outra extremidade suportar, mas isso não é necessário. Implementações devem aceitar qualquer valor entre 2 e 4.
+
+- (7) Teste de Par (mensagens fora da sessão 5-7)
+
+Discussão: Definir o campo de versão como 3 ou 4 pode não ser estritamente necessário para todos os tipos de mensagem, mas fazê-lo ajuda na detecção precoce de falhas em conexões pós-quânticas não suportadas. As mensagens Token Request e Retry (tipos 9 e 10) devem ter versões 3/4 por consistência. As mensagens Peer Test (tipo 7) são fora de sessão e não indicam a intenção de iniciar uma sessão.
 
 inalterado
 
@@ -1218,7 +1221,7 @@ Dados não criptografados (tag de autenticação Poly1305 não mostrada):
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
-Tamanhos, não incluindo overhead do IP:
+Tamanhos, não incluindo sobrecarga IP:
 
 | Tipo | Código do Tipo | Tamanho X | Tamanho Msg 1 | Tamanho Msg 1 Criptografada | Tamanho Msg 1 Descriptografada | Tamanho chave PQ | Tamanho pl |
 |------|----------------|-----------|---------------|-------------------------------|----------------------------------|------------------|------------|
@@ -1310,7 +1313,7 @@ Tamanhos:
   |      see below for allowed blocks     |
   +----+----+----+----+----+----+----+----+
 ```
-Tamanhos, não incluindo overhead do IP:
+Tamanhos, não incluindo sobrecarga IP:
 
 | Tipo | Código do Tipo | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
@@ -1336,10 +1339,10 @@ inalterado
 
 Os seguintes blocos contêm campos de versão. Eles permanecerão na versão 2 (para compatibilidade com um Bob não-PQ), e não mudarão para a versão 3/4 para PQ.
 
-- Solicitação de Relay
-- Resposta de Relay
-- Introdução de Relay
-- Teste de Peer
+- Solicitação de Retransmissão
+- Resposta de Retransmissão
+- Introdução de Retransmissão
+- Teste de Par
 
 Em todos os casos, use o nome do transporte SSU2 como de costume. MLKEM-1024 não é suportado.
 
@@ -1384,7 +1387,7 @@ Aumento de tamanho (bytes):
 - SAMv3
 - Bittorrent
 - Diretrizes para desenvolvedores
-- Nomenclatura / catálogo de endereços / servidores de redirecionamento
+- Nomenclatura / agenda de endereços / servidores jump
 - Outros documentos
 
 ## Análise de Sobrecarga
@@ -1536,9 +1539,9 @@ Portanto, a estratégia recomendada é:
 
 Isso deve nos permitir suportar eficientemente o ratchet padrão e o ratchet híbrido no mesmo destino, assim como anteriormente suportávamos ElGamal e ratchet no mesmo destino. Portanto, podemos migrar para o protocolo híbrido MLKEM muito mais rapidamente do que se não pudéssemos suportar protocolos duplos para o mesmo destino, porque podemos adicionar suporte MLKEM a destinos existentes.
 
-- Se a mensagem 1 for menor que 919 bytes, é o protocolo ratchet atual.
+- Se a mensagem 1 for menor que 919 bytes, é o protocolo de trava atual.
 - Se a mensagem 1 for maior ou igual a 919 bytes, provavelmente é MLKEM512_X25519.
-  Tente MLKEM512_X25519 primeiro e, se falhar, tente o protocolo ratchet atual.
+  Tente MLKEM512_X25519 primeiro, e se falhar, tente o protocolo de trava atual.
 
 As combinações suportadas obrigatórias são:
 

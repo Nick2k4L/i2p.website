@@ -21,7 +21,7 @@ PQ Hybrid SSU2 chỉ được định nghĩa trên cùng địa chỉ và cổng
 
 ## Thiết kế
 
-Chúng tôi hỗ trợ tiêu chuẩn NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), tiêu chuẩn này dựa trên CRYSTALS-Kyber nhưng KHÔNG tương thích với CRYSTALS-Kyber.
+Chúng tôi hỗ trợ các tiêu chuẩn NIST FIPS 203 và 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), được xây dựng dựa trên, nhưng KHÔNG tương thích với, CRYSTALS-Kyber và CRYSTALS-Dilithium (phiên bản 3.1, 3 và các phiên bản cũ hơn).
 
 ### Trao đổi khóa
 
@@ -293,19 +293,22 @@ Header dài có độ dài 32 byte. Nó được sử dụng trước khi một 
 
 Trong các thông điệp sau, đặt trường ver (version) trong long header thành 3 hoặc 4, để chỉ định MLKEM-512 hoặc MLKEM-768.
 
-- (0) Yêu cầu phiên (Session Request)
-- (1) Phiên đã tạo (Session Created)
-- (9) Thử lại (Retry)
-- (10) Yêu cầu token (Token Request)
+- (0) Yêu cầu phiên
+- (1) Phiên đã tạo
+- (9) Thử lại (lưu ý: Thử lại với Chấm dứt có thể chứa bất kỳ phiên bản 2-4 nào)
+- (10) Yêu cầu mã thông báo
+
+Trong thông điệp dưới đây, hãy đặt trường ver (phiên bản) trong phần tiêu đề dài thành bất kỳ giá trị nào từ 2 đến 4, vì việc chọn phiên bản do Alice quyết định, không phải Charlie. Việc luôn đặt giá trị thành 2 là chấp nhận được. Các triển khai nên chấp nhận mọi giá trị từ 2 đến 4.
+
 - (11) Đục lỗ (Hole Punch)
 
-Trong các thông điệp sau, hãy đặt trường ver (version) trong phần header dài thành 2 như thông thường, ngay cả khi MLKEM-512 hoặc MLKEM-768 được hỗ trợ. Các triển khai cũng có thể đặt giá trị này thành 3 hoặc 4 nếu phía đầu kia hỗ trợ, nhưng điều này không bắt buộc. Các triển khai nên chấp nhận bất kỳ giá trị nào từ 2 đến 4.
+Trong thông điệp dưới đây, hãy đặt trường ver (phiên bản) trong tiêu đề dài thành 2, như thông lệ, ngay cả khi hỗ trợ MLKEM-512 hoặc MLKEM-768. Các triển khai cũng có thể đặt giá trị thành 3 hoặc 4 nếu đầu bên kia hỗ trợ, nhưng điều này không bắt buộc. Các triển khai nên chấp nhận bất kỳ giá trị nào từ 2 đến 4.
 
-- (7) Kiểm tra ngang hàng (Peer Test) (các thông điệp ngoài phiên 5-7)
+- (7) Kiểm tra ngang hàng (tin nhắn ngoài phiên 5-7)
 
-Thảo luận: Việc đặt trường version thành 3 hoặc 4 có thể không thực sự cần thiết cho tất cả các loại thông điệp, nhưng làm như vậy giúp phát hiện lỗi sớm hơn đối với các kết nối hậu lượng tử (post-quantum) chưa được hỗ trợ. Token Request và Retry (loại 9 và 10) nên có version 3/4 để đảm bảo tính nhất quán. Các thông điệp Hole Punch (loại 11) có thể không yêu cầu cách xử lý này, nhưng chúng ta sẽ tuân theo cùng một mẫu để đảm bảo tính đồng nhất. Thông điệp Peer Test (loại 7) là thông điệp ngoài phiên (out-of-session) và không biểu thị ý định khởi tạo một phiên.
+Thảo luận: Việc thiết lập trường phiên bản thành 3 hoặc 4 có thể không bắt buộc đối với tất cả các loại tin nhắn, nhưng việc này giúp phát hiện lỗi sớm hơn đối với các kết nối hậu lượng tử không được hỗ trợ. Các tin nhắn Yêu cầu Token và Thử lại (loại 9 và 10) nên có phiên bản 3/4 để đảm bảo tính nhất quán. Tin nhắn Kiểm tra ngang hàng (loại 7) nằm ngoài phiên và không thể hiện ý định khởi tạo một phiên.
 
-Trước khi mã hóa header:
+Trước khi mã hóa tiêu đề:
 
 ```
 
@@ -562,12 +565,10 @@ unchanged
 
 Các khối sau đây chứa các trường phiên bản. Chúng sẽ giữ nguyên phiên bản 2 (để tương thích với Bob không hỗ trợ PQ), và sẽ không thay đổi sang phiên bản 3/4 cho PQ.
 
-- Yêu cầu chuyển tiếp (Relay Request)
-- Phản hồi chuyển tiếp (Relay Response)
-- Giới thiệu chuyển tiếp (Relay Intro)
-- Kiểm tra ngang hàng (Peer Test)
-
-Chữ ký PQ: Các khối Relay, khối Peer Test và thông điệp Peer Test đều chứa chữ ký. Thật không may, chữ ký PQ có kích thước lớn hơn MTU. Hiện tại không có cơ chế nào để phân mảnh các khối hoặc thông điệp Relay hay Peer Test qua nhiều gói UDP. Giao thức phải được mở rộng để hỗ trợ phân mảnh. Điều này sẽ được thực hiện trong một đề xuất riêng, còn chưa được xác định. Cho đến khi hoàn thành, Relay và Peer Test sẽ không được hỗ trợ.
+- Yêu cầu chuyển tiếp
+- Phản hồi chuyển tiếp
+- Giới thiệu chuyển tiếp
+- Kiểm tra ngang hàng
 
 #### Địa chỉ đã công bố
 
