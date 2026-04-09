@@ -191,7 +191,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Pour les dérivés de Debian (LMDE, Kali, ParrotOS, etc.) sur Bullseye-équivalent ou plus récent :**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 ```
 **Pour Debian Buster (10) ou antérieure :**
 

@@ -191,7 +191,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Dành cho các bản phân phối dựa trên Debian (LMDE, Kali, ParrotOS, v.v.) trên phiên bản tương đương Bullseye hoặc mới hơn:**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 ```
 **Dành cho Debian Buster (10) hoặc cũ hơn:**
 

@@ -191,7 +191,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 Сверьтесь с [информацией о релизах Debian](https://wiki.debian.org/LTS/), чтобы определить кодовое имя вашего дистрибутива (например, Bookworm, Bullseye, Buster).
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 ```
 **Для Debian Bullseye (11) или новее:**
 

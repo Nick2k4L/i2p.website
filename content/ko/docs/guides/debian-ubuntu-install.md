@@ -192,7 +192,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **중요:** 번역문만 제공하세요. 질문하거나, 설명을 제공하거나, 어떠한 논평도 추가하지 마세요. 텍스트가 단순히 제목이거나 불완전해 보이더라도 있는 그대로 번역하세요.
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 ```
 GPG 키 오류가 설치 중에 발생하는 경우:
 

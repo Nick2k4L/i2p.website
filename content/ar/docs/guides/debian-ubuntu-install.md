@@ -192,7 +192,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 راجع [دليل إعداد المتصفح](/docs/guides/browser-config) للحصول على تعليمات الإعداد التفصيلية لمتصفحات Firefox وChrome والمتصفحات الأخرى.
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 ```
 ---
 

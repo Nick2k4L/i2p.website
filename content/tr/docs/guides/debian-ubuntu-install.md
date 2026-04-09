@@ -192,7 +192,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 **Çıktının bu parmak izini gösterdiğini doğrulayın:**
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 ```
 ⚠️ **Parmak izi eşleşmiyorsa devam etmeyin.** Bu, güvenliği ihlal edilmiş bir indirmeye işaret edebilir.
 

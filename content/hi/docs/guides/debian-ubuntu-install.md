@@ -192,7 +192,7 @@ echo "deb https://deb.i2p.net/ $(dpkg --status tzdata | grep Provides | cut -f2 
 यदि I2P अपडेट प्राप्त नहीं कर रहा है:
 
 ```bash
-curl -o i2p-archive-keyring.gpg https://i2p.net/_static/i2p-archive-keyring.gpg
+curl -o i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
 ```
 यदि आप पुराने `deb.i2p2.de` या `deb.i2p2.no` repositories का उपयोग कर रहे हैं:
 
