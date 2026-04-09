@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-01"
+lastupdated: "2026-04-09"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -1372,9 +1372,15 @@ set the ver (version) field in the long header to 3 or 4, to indidate MLKEM-512 
 - (1) Session Created
 - (9) Retry (note: Retry with Termination may contain any version 2-4)
 - (10) Token Request
+
+In the following message,
+set the ver (version) field in the long header to any version 2-4, because the choice of version
+is Alice's, not Charlie's. Always setting it to 2 is acceptable.
+Implementations should accept any value 2-4.
+
 - (11) Hole Punch
 
-In the following messages,
+In the following message,
 set the ver (version) field in the long header to 2, as usual, even if MLKEM-512 or MLKEM-768 is supported.
 Implementations may also set the value to 3 or 4, if the other end supports it, but this is not necessary.
 Implementations should accept any value 2-4.
@@ -1384,8 +1390,6 @@ Implementations should accept any value 2-4.
 Discussion: Setting the version field to 3 or 4 may not be strictly necessary for all message types,
 but doing so aids earlier failure detection for unsupported post-quantum connections.
 Token Request and Retry (types 9 and 10) should have versions 3/4 for consistency.
-Hole Punch messages (type 11) may not require this treatment
-but we will follow the same pattern for uniformity.
 Peer Test messages (type 7) is out-of-session and does not indicate intent to
 initiate a session.
 

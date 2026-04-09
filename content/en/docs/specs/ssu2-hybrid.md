@@ -358,9 +358,15 @@ set the ver (version) field in the long header to 3 or 4, to indidate MLKEM-512 
 - (1) Session Created
 - (9) Retry (note: Retry with Termination may contain any version 2-4)
 - (10) Token Request
+
+In the following message,
+set the ver (version) field in the long header to any version 2-4, because the choice of version
+is Alice's, not Charlie's. Always setting it to 2 is acceptable.
+Implementations should accept any value 2-4.
+
 - (11) Hole Punch
 
-In the following messages,
+In the following message,
 set the ver (version) field in the long header to 2, as usual, even if MLKEM-512 or MLKEM-768 is supported.
 Implementations may also set the value to 3 or 4, if the other end supports it, but this is not necessary.
 Implementations should accept any value 2-4.
@@ -370,8 +376,6 @@ Implementations should accept any value 2-4.
 Discussion: Setting the version field to 3 or 4 may not be strictly necessary for all message types,
 but doing so aids earlier failure detection for unsupported post-quantum connections.
 Token Request and Retry (types 9 and 10) should have versions 3/4 for consistency.
-Hole Punch messages (type 11) may not require this treatment
-but we will follow the same pattern for uniformity.
 Peer Test messages (type 7) is out-of-session and does not indicate intent to
 initiate a session.
 
@@ -677,15 +681,6 @@ and will not change to version 3/4 for PQ.
 - Relay Response
 - Relay Intro
 - Peer Test
-
-PQ Signatures:
-Relay blocks, Peer Test blocks, and Peer Test messages all contain signatures.
-Unfortunately, PQ signatures are larger than the MTU.
-There is no current mechanism to fragment Relay or Peer Test blocks or messages
-across multiple UDP packets.
-The protocol must be extended to support fragmentation.
-This will be done in a separate proposal TBD.
-Until that is completed, Relay and Peer Test will not be supported.
 
 
 
