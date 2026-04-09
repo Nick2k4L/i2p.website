@@ -4,8 +4,6 @@ description: "Zásady ochrany soukromí pro aplikaci I2P pro Android. I2P neshro
 type: "legal"
 layout: "legal"
 lastUpdated: "2026-04"
-aliases:
-  - /en/privacy/android/
 ---
 
 ## Přehled

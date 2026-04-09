@@ -4,8 +4,6 @@ description: "I2P Android 应用的隐私政策。I2P 不收集、存储或分�
 type: "legal"
 layout: "legal"
 lastUpdated: "2026-04"
-aliases:
-  - /en/privacy/android/
 ---
 
 ## 概述

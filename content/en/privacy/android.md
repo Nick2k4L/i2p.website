@@ -4,8 +4,6 @@ description: "Privacy policy for the I2P Android application. I2P does not colle
 type: "legal"
 layout: "legal"
 lastUpdated: "2026-04"
-aliases:
-  - /en/privacy/android/
 ---
 
 ## Overview

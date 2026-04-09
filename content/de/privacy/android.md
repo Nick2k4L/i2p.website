@@ -4,8 +4,6 @@ description: "Datenschutzerklärung für die I2P-Android-Anwendung. I2P erfasst,
 type: "legal"
 layout: "legal"
 lastUpdated: "2026-04"
-aliases:
-  - /en/privacy/android/
 ---
 
 ## Übersicht

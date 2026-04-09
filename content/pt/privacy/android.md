@@ -4,8 +4,6 @@ description: "Política de privacidade para o aplicativo I2P para Android. O I2P
 type: "legal"
 layout: "legal"
 lastUpdated: "2026-04"
-aliases:
-  - /en/privacy/android/
 ---
 
 ## Visão geral

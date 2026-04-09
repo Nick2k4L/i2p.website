@@ -4,8 +4,6 @@ description: "Chính sách bảo mật dành cho ứng dụng I2P trên Android.
 type: "legal"
 layout: "legal"
 lastUpdated: "2026-04"
-aliases:
-  - /en/privacy/android/
 ---
 
 ## Tổng quan

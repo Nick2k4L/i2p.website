@@ -4,8 +4,6 @@ description: "Политика конфиденциальности для Andro
 type: "legal"
 layout: "legal"
 lastUpdated: "2026-04"
-aliases:
-  - /en/privacy/android/
 ---
 
 ## Обзор
