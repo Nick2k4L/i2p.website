@@ -277,9 +277,9 @@ thankYou = "İnternet gizliliğini ve özgürlüğünü desteklediğiniz için t
 everyContribution = "Büyük veya küçük her katkı, I2P'nin güçlü ve bağımsız kalmasına yardımcı olur."
 
 [banner]
-banner_message = "I2P'nin sonraki ürünlerine karar vermemize yardım edin!"
-banner_link_text = "Anketimize katılın"
-banner_link_url = "#poll"
+banner_message = "I2P 2.12.0 yayınlandı!"
+banner_link_text = "Şimdi indir"
+banner_link_url = "https://i2p.net/en/blog/2026/04/20/i2p-2.12.0-release/"
 banner_close = "Banner"
 
 [donatePage]
