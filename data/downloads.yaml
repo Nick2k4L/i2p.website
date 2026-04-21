@@ -63,6 +63,18 @@ downloads:
       i2p: "http://mirror.stormycloud.i2p/2.12.0/i2pinstall_2.12.0.jar"
       tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.12.0/i2pinstall_2.12.0.jar"
 
+  android:
+    file: "I2P-2.12.0.apk"
+    size: "~9.3M"
+    requirements: "Android 5.0+"
+    sha256: "d39dce38320d689d1841fb0c43dd559b174f5b672a6a554808f48a13d43018d4"
+    links:
+      primary: "https://files.i2p.net/2.12.0/I2P-2.12.0.apk"
+      mirror: "https://mirror.stormycloud.org/2.12.0/I2P-2.12.0.apk"
+      torrent: "magnet:?xt=urn:btih:missing"
+      i2p: "http://mirror.stormycloud.i2p/2.12.0/I2P-2.12.0.apk"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.12.0/I2P-2.12.0.apk"
+
   source:
     file: "i2psource_2.12.0.tar.bz2"
     size: "~38M"
@@ -73,13 +85,6 @@ downloads:
       torrent: "magnet:?xt=urn:btih:missing"
       github: "https://github.com/i2p/i2p.i2p"
 
-  android:
-    file: "I2P-2.12.0.apk"
-    size: "~9.2M"
-    requirements: "Android 5.0+"
-    coming_soon: true
-    links:
-      primary: ""
 
 # Mirrors
 mirrors:
