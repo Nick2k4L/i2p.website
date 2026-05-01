@@ -10,7 +10,7 @@ description: "Planos de desenvolvimento atuais e marcos históricos para a rede 
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** April 2026
+**Last Updated:** 2026-05
 
 </div>
 ## 🎯 Próximos Lançamentos
@@ -28,10 +28,16 @@ Target: August 2026
 - Refactor Noise initialization
 
 
-### Version 2.12.0
+
+---
+
+## 📦 Recent Releases
+
+### 2026 Releases
+
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-Target: May 2026
-</div>
+
+**Version 2.12.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released April 20, 2026</span>
 
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
@@ -49,11 +55,8 @@ Target: May 2026
 - Migrate from Transifex to Weblate
 
 </div>
----
 
-## 📦 Lançamentos Recentes
 
-### Lançamentos de 2026
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -66,7 +69,10 @@ Target: May 2026
 - SAM support for Datagram 2/3
 
 </div>
-### Lançamentos de 2025
+
+
+
+### 2025 Releases
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
@@ -86,6 +92,7 @@ Target: May 2026
 - Hidden mode improvements and fixes
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
 **Version 2.9.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released June 2, 2025</span>
@@ -104,6 +111,7 @@ Target: May 2026
 - Wrapper update to 3.5.60
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
 **Version 2.8.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 29, 2025</span>
@@ -111,6 +119,7 @@ Target: May 2026
 - Fix SHA256 corruption bug
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
 **Version 2.8.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 17, 2025</span>
@@ -127,6 +136,7 @@ Target: May 2026
 - .i2p.alt support
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
 **Version 2.8.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released February 3, 2025</span>
@@ -147,9 +157,11 @@ Target: May 2026
 - rrd4j 3.10
 
 </div>
+
 <div style="margin: 3rem 0; padding: 1rem 0; border-top: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border);">
   <h3 style="margin: 0; color: var(--color-primary);">📅 2024 Releases</h3>
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
 **Version 2.7.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— October 8, 2024</span>
@@ -162,6 +174,7 @@ Target: May 2026
 - Console /netdb refactoring
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
 **Version 2.6.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— August 6, 2024</span>
@@ -171,6 +184,7 @@ Target: May 2026
 - Bundle translation status report
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
 **Version 2.6.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— July 19, 2024</span>
@@ -187,6 +201,7 @@ Target: May 2026
 - Fix JS variable scoping issues
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
 **Version 2.5.2** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 15, 2024</span>
@@ -196,6 +211,7 @@ Target: May 2026
 - Update to rrd4j 3.9.1-preview
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
 **Version 2.5.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 6, 2024</span>
@@ -207,6 +223,7 @@ Target: May 2026
 - Update to Tomcat 9.0.88
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
 **Version 2.5.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— April 8, 2024</span>
@@ -225,6 +242,7 @@ Target: May 2026
 - Update gradlew to 8.5
 
 </div>
+
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
 
 **Version 2.4.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— December 18, 2023</span>
@@ -241,9 +259,10 @@ Target: May 2026
 - UPnP fixes
 
 </div>
+
 ---
 
-### Lançamentos 2023-2022
+### 2023-2022 Releases
 
 <details>
 <summary>Click to expand 2023-2022 releases</summary>
@@ -335,9 +354,10 @@ Target: May 2026
 - IRCv3 message tag support
 
 </details>
+
 ---
 
-### Lançamentos de 2021
+### 2021 Releases
 
 <details>
 <summary>Click to expand 2021 releases</summary>
@@ -409,9 +429,10 @@ Target: May 2026
 - Review and update VCS information
 
 </details>
+
 ---
 
-### Arquivo Histórico 2020-2016
+### 2020-2016 Historical Archive
 
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
@@ -446,30 +467,37 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 - **0.9.24 (January 2016)**: SAM v3.2, Require Java 7, NetDB Family, Ed25519 transition
 
 </details>
----
-
-## Informações da Versão
-
-**Ciclo de Lançamento:** Aproximadamente a cada 13 semanas para versões principais
-
-**Política de Suporte:** - **Versão atual**: Totalmente suportada com atualizações e correções de segurança - **Versão anterior**: Apenas atualizações de segurança - **Versões mais antigas**: Não são mais suportadas (atualização recomendada)
-
-**Numeração de Versões:** - Iniciou com a série 0.9.x (até 0.9.66) - Transicionou para a série 1.x (1.5.0 até 1.9.0) - Agora na série 2.x (2.0.0+)
 
 ---
 
-## Recursos de Desenvolvimento
+## Release Information
 
-- **Código Fonte**: [i2pgit.org](https://i2pgit.org)
-- **Rastreador de Problemas**: i2pgit.org ou issues do github
-- **Reuniões Mensais**: Atualmente não ativas
-- **IRC**: #i2p-dev no IRC2P
-- **Notas de Lançamento**: [Blog do I2P](/blog/)
+**Release Cycle:** Approximately every 13 weeks for major releases
+
+**Support Policy:**
+- **Current release**: Fully supported with updates and security patches
+- **Previous release**: Security updates only
+- **Older releases**: No longer supported (upgrade recommended)
+
+**Version Numbering:**
+- Started with 0.9.x series (through 0.9.66)
+- Transitioned to 1.x series (1.5.0 through 1.9.0)
+- Now in 2.x series (2.0.0+) 
 
 ---
 
-## Participe
+## Development Resources
 
-Quer contribuir para o futuro do I2P? Confira a página [Participe](/en/get-involved) para saber como você pode ajudar com desenvolvimento, testes, documentação e muito mais!
+- **Source Code**: [i2pgit.org](https://i2pgit.org)
+- **Issue Tracker**: i2pgit.org or github issues
+- **Monthly Meetings**: Not currently active
+- **IRC**: #i2p-dev on IRC2P
+- **Release Notes**: [I2P Blog](/blog/)
 
-Para as últimas notícias e informações detalhadas sobre lançamentos, visite o [Blog do I2P](/en/blog).
+---
+
+## Get Involved
+
+Want to contribute to I2P's future? Check out the [Get Involved](/en/get-involved) page to learn how you can help with development, testing, documentation, and more! 
+
+For the latest news and detailed release information, visit the [I2P Blog](/en/blog).
