@@ -10,7 +10,7 @@ description: "Current development plans and historical milestones for the I2P ne
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** April 2026
+**Last Updated:** 2026-05
 
 </div>
 
@@ -29,10 +29,16 @@ Target: August 2026
 - Refactor Noise initialization
 
 
-### Version 2.12.0
+
+---
+
+## 📦 Recent Releases
+
+### 2026 Releases
+
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-Target: May 2026
-</div>
+
+**Version 2.12.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released April 20, 2026</span>
 
 - NTCP2-PQ transport (prop. 169)
 - Start work on SSU2-PQ transport (prop. 169)
@@ -51,11 +57,7 @@ Target: May 2026
 
 </div>
 
----
 
-## 📦 Recent Releases
-
-### 2026 Releases
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 

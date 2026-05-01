@@ -5,8 +5,8 @@ slug: "samv3"
 aliases:
   - "/docs/api/samv3"
   - "/docs/api/samv3/"
-lastUpdated: "2025-04"
-accurateFor: "0.9.66"
+lastUpdated: "2026-05"
+accurateFor: "0.9.69"
 ---
 
 SAM is a simple client protocol for interacting with I2P. SAM is the recommended protocol for non-Java applications to connect to the I2P network, and is supported by multiple router implementations. Java applications should use the streaming or I2CP APIs directly.
@@ -240,7 +240,7 @@ To implement a basic TCP-only, peer-to-peer application, the client must support
 - `HELLO VERSION MIN=3.1 MAX=3.1` - Needed for all of the remaining ones
 - `DEST GENERATE SIGNATURE_TYPE=7` - To generate our private key and destination
 - `NAMING LOOKUP NAME=...` - To convert .i2p addresses to destinations
-- `SESSION CREATE STYLE=STREAM ID=... DESTINATION=... i2cp.leaseSetEncType=4,0` - Needed for STREAM CONNECT and STREAM ACCEPT
+- `SESSION CREATE STYLE=STREAM ID=... DESTINATION=... i2cp.leaseSetEncType=6,4` - Needed for STREAM CONNECT and STREAM ACCEPT
 - `STREAM CONNECT ID=... DESTINATION=...` - To make outgoing connections
 - `STREAM ACCEPT ID=...` - To accept incoming connections
 
@@ -268,7 +268,7 @@ I2P supports multiple signature and encryption types. For backward compatibility
 
 The signature type is specified in the DEST GENERATE and SESSION CREATE (for transient) commands. All clients should set `SIGNATURE_TYPE=7` (Ed25519).
 
-The encryption type is specified in the SESSION CREATE command. Multiple encryption types are allowed. Clients should set either `i2cp.leaseSetEncType=4` (for ECIES-X25519 only) or `i2cp.leaseSetEncType=4,0` (for ECIES-X25519 and ElGamal, if compatibility is required).
+The encryption type is specified in the SESSION CREATE command. Multiple encryption types are allowed. Clients should set either `i2cp.leaseSetEncType=4` (for ECIES-X25519 only) or `i2cp.leaseSetEncType=6,4` (for MLKEM-768 and ECIES-X25519, for routers supporting API 0.9.67 or higher)
 
 ## Version 3 Changes
 
