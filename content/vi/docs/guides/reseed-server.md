@@ -47,7 +47,7 @@ Clone kho reseed-tools và build ứng dụng:
 
 ```bash
 cd /home/i2p
-git clone https://i2pgit.org/idk/reseed-tools
+git clone https://github.com/go-i2p/reseed-tools
 cd reseed-tools
 make build
 sudo make install
@@ -258,40 +258,40 @@ Kiểm tra logs để tìm lỗi:
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
-### Hỗ trợ tài chính
+### Xác minh
 
-Hỗ trợ tài chính khiêm tốn có thể được cung cấp cho những người vận hành máy chủ reseed. StormyCloud cung cấp khoản trợ cấp hàng năm lên đến 100 đô la Mỹ nhằm hoàn trả một phần chi phí máy chủ. Điều kiện tham gia giới hạn ở những người vận hành đã duy trì máy chủ reseed hoạt động ổn định trong vài tháng. Để tìm hiểu thêm, vui lòng liên hệ admin tại stormycloud dot org.
+Các vấn đề thường gặp: - I2P router chưa chạy hoặc netDb trống - Cổng 8443 đã được sử dụng - Vấn đề về quyền truy cập với thư mục `/home/i2p/.reseed/`
 
 ## Cấu hình Dịch vụ
 
-### Dịch vụ không khởi động được
+### SSL Certificate Errors
 
-Kiểm tra nhật ký để tìm lỗi:
+Đảm bảo router I2P của bạn đang chạy và đã điền dữ liệu vào network database:
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-Các vấn đề thường gặp: - Bộ định tuyến I2P không hoạt động hoặc cơ sở dữ liệu mạng trống - Cổng 8443 đã được sử dụng - Vấn đề về quyền truy cập với thư mục `/home/i2p/.reseed/`
+Bạn sẽ thấy nhiều tệp `.dat`. Nếu trống, hãy đợi router I2P của bạn khám phá các peer.
 
-### Không có thông tin Router nào đang được cung cấp
+### Kiểm tra Trạng thái Dịch vụ
 
-Đảm bảo rằng bộ định tuyến I2P của bạn đang chạy và đã điền đầy đủ cơ sở dữ liệu mạng:
+Xác minh chứng chỉ của bạn hợp lệ:
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-Bạn sẽ thấy nhiều tệp `.dat`. Nếu không có gì, hãy đợi bộ định tuyến I2P của bạn tìm thấy các peer.
+Kiểm tra: - Bản ghi DNS đang trỏ đúng đến máy chủ của bạn - Tường lửa cho phép cổng 80 và 443 - Nginx Proxy Manager đang chạy: `docker ps`
 
-### Lỗi chứng chỉ SSL
+### Không thể truy cập qua tên miền
 
-Xác minh chứng chỉ của bạn có hiệu lực:
+Bằng cách vận hành một reseed server, bạn đang cung cấp cơ sở hạ tầng quan trọng cho mạng lưới I2P. Cảm ơn bạn đã đóng góp cho một internet riêng tư và phi tập trung hơn!
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### Không thể truy cập qua tên miền
 
-Kiểm tra: - Bản ghi DNS đang trỏ đúng đến máy chủ của bạn - Tường lửa cho phép cổng 80 và 443 - Nginx Proxy Manager đang chạy: `docker ps`
+Nếu có thắc mắc hoặc cần hỗ trợ, hãy liên hệ với cộng đồng I2P: - **Diễn đàn**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p trên nhiều mạng khác nhau - **Phát triển**: [i2pgit.org](https://i2pgit.org)
 
 ## Security Considerations
 
@@ -304,10 +304,10 @@ Kiểm tra: - Bản ghi DNS đang trỏ đúng đến máy chủ của bạn - T
 
 ## Contributing to the Network
 
-Bằng cách vận hành một máy chủ reseed, bạn đang cung cấp cơ sở hạ tầng thiết yếu cho mạng I2P. Cảm ơn bạn đã đóng góp vào việc xây dựng một internet riêng tư và phi tập trung hơn!
-
-Để được hỏi đáp hoặc hỗ trợ, hãy liên hệ với cộng đồng I2P: - **Diễn đàn**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p trên các mạng khác nhau - **Phát triển**: [i2pgit.org](https://i2pgit.org)
+---
 
 ---
+
+*Hướng dẫn ban đầu được tạo bởi [Stormy Cloud](https://www.stormycloud.org), chuyển thể cho tài liệu I2P.*
 
 *Hướng dẫn được tạo ban đầu bởi [Stormy Cloud](https://www.stormycloud.org), điều chỉnh để phù hợp với tài liệu I2P.*

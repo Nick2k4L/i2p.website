@@ -47,7 +47,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt-get install golang-go git mak
 
 ```bash
 cd /home/i2p
-git clone https://i2pgit.org/idk/reseed-tools
+git clone https://github.com/go-i2p/reseed-tools
 cd reseed-tools
 make build
 sudo make install
@@ -258,40 +258,40 @@ sudo systemctl restart reseed
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
-### الدعم المالي
+### التحقق
 
-قد تتوفر دعماً مالياً متواضعاً لأولئك الذين يشغلون خوادم إعادة التهيئة (reseed servers). توفر StormyCloud منحة سنوية تصل إلى 100 دولار كتعويض جزئي عن تكاليف الخادم. يقتصر الأهلية على المشغلين الذين أداروا خوادم إعادة التهيئة بشكل جيد لعدة أشهر. للاستفسار، يُرجى التواصل مع admin at stormycloud dot org.
+المشاكل الشائعة: - router الخاص بـ I2P غير قيد التشغيل أو قاعدة بيانات الشبكة فارغة - المنفذ 8443 قيد الاستخدام بالفعل - مشاكل في الأذونات مع مجلد `/home/i2p/.reseed/`
 
 ## تكوين الخدمة
 
-### الخدمة لا تبدأ
+### SSL Certificate Errors
 
-تحقق من السجلات بحثًا عن الأخطاء:
+تأكد من أن موجه I2P الخاص بك قيد التشغيل وقد ملأ قاعدة بيانات الشبكة الخاصة به:
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-القضايا الشائعة: - جهاز التوجيه I2P غير قيد التشغيل أو قاعدة البيانات الشبكية فارغة - المنفذ 8443 قيد الاستخدام بالفعل - مشكلات في الأذونات مع الدليل `/home/i2p/.reseed/`
+يجب أن ترى العديد من ملفات `.dat`. إذا كانت فارغة، انتظر حتى يكتشف router الخاص بك I2P نظراء الشبكة.
 
-### لا يتم تقديم معلومات الموجه
+### فحص حالة الخدمة
 
-تأكد من أن جهاز التوجيه I2P قيد التشغيل وقد ملأ قاعدة بيانات الشبكة الخاصة به:
+تحقق من صحة الشهادات الخاصة بك:
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-يجب أن ترى العديد من ملفات `.dat`. إذا كانت فارغة، انتظر حتى يقوم جهاز التوجيه الخاص بك في I2P باكتشاف الأقران.
+تحقق من: - سجلات DNS تشير بشكل صحيح إلى الخادم الخاص بك - جدار الحماية يسمح بالمنافذ 80 و 443 - Nginx Proxy Manager يعمل: `docker ps`
 
-### أخطاء شهادة SSL
+### لا يمكن الوصول عبر النطاق
 
-تحقق من صحة شهاداتك:
+من خلال تشغيل خادم reseed، فإنك توفر بنية تحتية حيوية لشبكة I2P. شكراً لمساهمتك في إنترنت أكثر خصوصية ولامركزية!
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### لا يمكن الوصول عبر النطاق
 
-تحقق من: - سجلات DNS تشير بشكل صحيح إلى خادمك - جدار الحماية يسمح بالمنافذ 80 و 443 - مدير وكيل Nginx قيد التشغيل: `docker ps`
+للأسئلة أو المساعدة، تواصل مع مجتمع I2P: - **المنتدى**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p على شبكات مختلفة - **التطوير**: [i2pgit.org](https://i2pgit.org)
 
 ## Security Considerations
 
@@ -304,13 +304,10 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 
 ## Contributing to the Network
 
-من خلال تشغيل خادم إعادة الزرع (reseed server)، فإنك تُسهم في توفير بنية تحتية حيوية لشبكة I2P. نشكرك على دعمك لإنترنت أكثر خصوصية وتوزيعًا!
-
-لأي أسئلة أو طلب مساعدة، تواصل مع مجتمع I2P:
-- **المنتدى**: [i2pforum.net](https://i2pforum.net)
-- **IRC/Reddit**: #i2p على شبكات مختلفة
-- **التطوير**: [i2pgit.org](https://i2pgit.org)
-
 ---
+
+*الدليل تم إنشاؤه في الأصل بواسطة [Stormy Cloud](https://www.stormycloud.org)، معدل لتوثيق I2P.*
+
+*تم إنشاء الدليل أصلاً بواسطة [Stormy Cloud](https://www.stormycloud.org)، وتم تكييفه لتوثيق I2P.*
 
 *تم إنشاء الدليل أصلاً بواسطة [Stormy Cloud](https://www.stormycloud.org)، وتم تعديله لتوثيق I2P.*

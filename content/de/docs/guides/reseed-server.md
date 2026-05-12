@@ -47,7 +47,7 @@ Klonen Sie das reseed-tools-Repository und erstellen Sie die Anwendung:
 
 ```bash
 cd /home/i2p
-git clone https://i2pgit.org/idk/reseed-tools
+git clone https://github.com/go-i2p/reseed-tools
 cd reseed-tools
 make build
 sudo make install
@@ -258,40 +258,40 @@ Prüfen Sie die Logs auf Fehler:
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
-### Finanzielle Unterstützung
+### Verifizierung
 
-Für Betreiber von Reseed-Servern ist möglicherweise eine bescheidene finanzielle Unterstützung verfügbar. StormyCloud bietet eine jährliche Zulage von bis zu 100 US-Dollar als teilweise Erstattung für Serverkosten. Die Berechtigung ist auf Betreiber beschränkt, die bereits mehrere Monate lang Reseed-Server zuverlässig betreiben. Für Anfragen wenden Sie sich bitte an admin bei stormycloud punkt org.
+Häufige Probleme: - I2P router läuft nicht oder die netDb ist leer - Port 8443 wird bereits verwendet - Berechtigungsprobleme mit dem Verzeichnis `/home/i2p/.reseed/`
 
 ## Konfiguration des Dienstes
 
-### Dienst wird nicht gestartet
-
-Überprüfen Sie die Protokolle auf Fehler:
-
-```bash
-sudo journalctl -u reseed -n 50
-```
-Häufige Probleme: - I2P-Router läuft nicht oder Netzwerkdatenbank ist leer - Port 8443 wird bereits verwendet - Berechtigungsprobleme mit dem Verzeichnis `/home/i2p/.reseed/`
-
-### Keine Router-Informationen werden bereitgestellt
+### SSL Certificate Errors
 
 Stellen Sie sicher, dass Ihr I2P-Router läuft und seine Netzwerkdatenbank gefüllt hat:
 
 ```bash
-ls -lh /home/i2p/.i2p/netDb/
+sudo journalctl -u reseed -n 50
 ```
-Sie sollten viele `.dat`-Dateien sehen. Falls leer, warten Sie, bis Ihr I2P-Router Peers gefunden hat.
+Sie sollten viele `.dat`-Dateien sehen. Falls leer, warten Sie, bis Ihr I2P-Router Peers entdeckt hat.
 
-### SSL-Zertifikatfehler
+### Dienststatus überprüfen
 
 Überprüfen Sie, ob Ihre Zertifikate gültig sind:
+
+```bash
+ls -lh /home/i2p/.i2p/netDb/
+```
+Überprüfen Sie: - DNS-Einträge zeigen korrekt auf Ihren Server - Firewall erlaubt Ports 80 und 443 - Nginx Proxy Manager läuft: `docker ps`
+
+### Kein Zugriff über Domain möglich
+
+Indem Sie einen Reseed-Server betreiben, stellen Sie kritische Infrastruktur für das I2P-Netzwerk bereit. Vielen Dank, dass Sie zu einem privateren und dezentraleren Internet beitragen!
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### Kein Zugriff über Domain möglich
 
-Überprüfen Sie: - DNS-Einträge zeigen korrekt auf Ihren Server - Die Firewall erlaubt die Ports 80 und 443 - Nginx Proxy Manager läuft: `docker ps`
+Bei Fragen oder für Unterstützung wenden Sie sich an die I2P-Community: - **Forum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p in verschiedenen Netzwerken - **Entwicklung**: [i2pgit.org](https://i2pgit.org)
 
 ## Security Considerations
 
@@ -304,10 +304,10 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 
 ## Contributing to the Network
 
-Indem Sie einen Reseed-Server betreiben, stellen Sie eine kritische Infrastruktur für das I2P-Netzwerk bereit. Vielen Dank, dass Sie zu einem privateren und dezentraleren Internet beitragen!
-
-Für Fragen oder Unterstützung wenden Sie sich an die I2P-Community: - **Forum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: #i2p auf verschiedenen Netzwerken - **Entwicklung**: [i2pgit.org](https://i2pgit.org)
-
 ---
+
+*Anleitung ursprünglich erstellt von [Stormy Cloud](https://www.stormycloud.org), angepasst für die I2P-Dokumentation.*
+
+*Anleitung ursprünglich erstellt von [Stormy Cloud](https://www.stormycloud.org), angepasst für die I2P-Dokumentation.*
 
 *Anleitung ursprünglich erstellt von [Stormy Cloud](https://www.stormycloud.org), angepasst für die I2P-Dokumentation.*

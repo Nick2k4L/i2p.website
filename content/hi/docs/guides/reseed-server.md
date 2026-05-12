@@ -47,7 +47,7 @@ reseed-tools रिपॉजिटरी को क्लोन करें औ
 
 ```bash
 cd /home/i2p
-git clone https://i2pgit.org/idk/reseed-tools
+git clone https://github.com/go-i2p/reseed-tools
 cd reseed-tools
 make build
 sudo make install

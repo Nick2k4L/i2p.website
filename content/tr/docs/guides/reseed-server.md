@@ -47,7 +47,7 @@ reseed-tools deposunu klonlayın ve uygulamayı derleyin:
 
 ```bash
 cd /home/i2p
-git clone https://i2pgit.org/idk/reseed-tools
+git clone https://github.com/go-i2p/reseed-tools
 cd reseed-tools
 make build
 sudo make install
@@ -258,40 +258,40 @@ Hataları kontrol etmek için günlükleri inceleyin:
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
-### Mali Destek
+### Doğrulama
 
-ReSeed sunucularını çalıştıranlara küçük miktarda mali destek sağlanabilir. StormyCloud, sunucu maliyetlerinin kısmi olarak karşılanması amacıyla yılda 100 ABD dolarına kadar bir ödeme yapmaktadır. Bu ödemeden faydalanma hakkı, birkaç aydır sorunsuz bir şekilde ReSeed sunucusu çalıştıran operatörlere sınırlıdır. Dilerseniz admin@stormycloud.org adresi üzerinden iletişime geçebilirsiniz.
+Yaygın sorunlar: - I2P router çalışmıyor veya network database boş - 8443 portu zaten kullanımda - `/home/i2p/.reseed/` dizini ile ilgili izin sorunları
 
 ## Servisi Yapılandırma
 
-### Hizmet Başlamıyor
+### SSL Certificate Errors
 
-Hatalar için kayıtları kontrol edin:
+I2P router'ınızın çalıştığından ve ağ veritabanını doldurduğundan emin olun:
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-Sık karşılaşılan sorunlar: - I2P yönlendiricisi çalışmıyor veya ağ veritabanı boş - 8443 numaralı port zaten kullanımda - `/home/i2p/.reseed/` diziniyle ilgili izin sorunları
+Birçok `.dat` dosyası görmelisiniz. Eğer boşsa, I2P router'ınızın eşleri keşfetmesini bekleyin.
 
-### Herhangi Bir Yönlendirici Bilgisi Sunulmuyor
+### Servis Durumunu Kontrol Edin
 
-I2P yönlendiricinizin çalıştığından ve ağ veritabanını doldurduğundan emin olun:
+Sertifikalarınızın geçerli olduğunu doğrulayın:
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-Birçok `.dat` dosyası görmelisiniz. Boşsa, I2P yönlendiricinizin eşleri keşfetmesini bekleyin.
+Kontrol edin: - DNS kayıtları sunucunuza doğru şekilde yönlendiriliyor - Güvenlik duvarı 80 ve 443 portlarına izin veriyor - Nginx Proxy Manager çalışıyor: `docker ps`
 
-### SSL Sertifika Hataları
+### Etki Alanı Üzerinden Erişilemiyor
 
-Sertifikalarınızın geçerli olduğunu doğrulayın:
+Bir reseed sunucusu çalıştırarak, I2P ağı için kritik altyapı sağlıyorsunuz. Daha özel ve merkezi olmayan bir internete katkıda bulunduğunuz için teşekkür ederiz!
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### Etki Alanı Üzerinden Erişilemiyor
 
-Kontrol edin: - DNS kayıtları sunucunuza doğru şekilde yönlendirilmiş olmalı - Güvenlik duvarı 80 ve 443 portlarına izin vermelidir - Nginx Proxy Manager çalışıyor olmalı: `docker ps`
+Sorularınız veya yardım talepleriniz için I2P topluluğuna ulaşın: - **Forum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: Çeşitli ağlarda #i2p - **Geliştirme**: [i2pgit.org](https://i2pgit.org)
 
 ## Security Considerations
 
@@ -304,10 +304,10 @@ Kontrol edin: - DNS kayıtları sunucunuza doğru şekilde yönlendirilmiş olma
 
 ## Contributing to the Network
 
-Bir yeniden doğrulama (reseed) sunucusu çalıştırarak I2P ağı için kritik altyapı sağlıyorsunuz. Daha gizli ve merkezi olmayan bir internete katkı sağladığınız için teşekkür ederiz!
-
-Sorularınız veya yardım için I2P topluluğuna ulaşın: - **Forum**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: çeşitli ağlarda #i2p - **Geliştirme**: [i2pgit.org](https://i2pgit.org)
-
 ---
+
+*Rehber aslen [Stormy Cloud](https://www.stormycloud.org) tarafından oluşturulmuştur, I2P dokümantasyonu için uyarlanmıştır.*
+
+*Rehberin orijinali [Stormy Cloud](https://www.stormycloud.org) tarafından oluşturulmuş, I2P belgeleri için uyarlanmıştır.*
 
 *Rehber orijinal olarak [Stormy Cloud](https://www.stormycloud.org) tarafından oluşturulmuş, I2P belgeleri için uyarlanmıştır.*

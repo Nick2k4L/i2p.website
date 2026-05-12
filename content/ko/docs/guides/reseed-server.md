@@ -47,7 +47,7 @@ reseed-tools 저장소를 복제하고 애플리케이션을 빌드하세요:
 
 ```bash
 cd /home/i2p
-git clone https://i2pgit.org/idk/reseed-tools
+git clone https://github.com/go-i2p/reseed-tools
 cd reseed-tools
 make build
 sudo make install
@@ -258,40 +258,40 @@ sudo systemctl restart reseed
 ```bash
 docker logs nginx-proxy-manager | grep -i certificate
 ```
-### 재정 지원
+### 검증
 
-리시드 서버 운영자에게는 소규모의 재정적 지원이 제공될 수 있습니다. StormyCloud는 서버 비용의 부분적인 상환을 위해 최대 연 $100의 지원금을 제공합니다. 이 지원금은 여러 달 동안 정상적으로 리시드 서버를 운영해온 운영자에게만 제공됩니다. 문의는 admin@stormycloud.org로 연락해 주세요.
+일반적인 문제: - I2P router가 실행되지 않았거나 netDb가 비어있음 - 8443 포트가 이미 사용 중 - `/home/i2p/.reseed/` 디렉토리에 대한 권한 문제
 
 ## 서비스 구성
 
-### 서비스가 시작되지 않음
+### SSL Certificate Errors
 
-오류를 위해 로그를 확인하세요:
+I2P router가 실행 중이고 네트워크 데이터베이스가 채워져 있는지 확인하세요:
 
 ```bash
 sudo journalctl -u reseed -n 50
 ```
-일반적인 문제: - I2P 라우터가 실행 중이지 않거나 네트워크 데이터베이스가 비어 있음 - 포트 8443가 이미 사용 중임 - `/home/i2p/.reseed/` 디렉터리에 대한 권한 문제
+많은 `.dat` 파일들이 보일 것입니다. 비어있다면, I2P router가 피어를 발견할 때까지 기다리세요.
 
-### 라우터 정보가 제공되지 않음
+### 서비스 상태 확인
 
-I2P 라우터가 실행 중이며 네트워크 데이터베이스를 채웠는지 확인하세요:
+인증서가 유효한지 확인하세요:
 
 ```bash
 ls -lh /home/i2p/.i2p/netDb/
 ```
-여러 개의 `.dat` 파일을 확인할 수 있어야 합니다. 비어 있다면, I2P 라우터가 피어를 찾을 때까지 기다리세요.
+확인: - DNS 레코드가 서버를 올바르게 가리키고 있는지 - 방화벽이 80번과 443번 포트를 허용하는지 - Nginx Proxy Manager가 실행 중인지: `docker ps`
 
-### SSL 인증서 오류
+### 도메인을 통해 액세스할 수 없음
 
-인증서가 유효한지 확인하세요:
+reseed 서버를 운영함으로써, 당신은 I2P 네트워크를 위한 중요한 인프라를 제공하고 있습니다. 더 프라이빗하고 탈중앙화된 인터넷에 기여해 주셔서 감사합니다!
 
 ```bash
 openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 ```
 ### 도메인을 통해 액세스할 수 없음
 
-확인: - DNS 레코드가 서버를 올바르게 가리키고 있는지 - 방화벽이 포트 80과 443을 허용하는지 - Nginx Proxy Manager가 실행 중인지: `docker ps`
+질문이나 도움이 필요하시면 I2P 커뮤니티에 문의하세요: - **포럼**: [i2pforum.net](https://i2pforum.net) - **IRC/Reddit**: 다양한 네트워크의 #i2p - **개발**: [i2pgit.org](https://i2pgit.org)
 
 ## Security Considerations
 
@@ -304,13 +304,10 @@ openssl s_client -connect reseed.example.com:443 -servername reseed.example.com
 
 ## Contributing to the Network
 
-리시드 서버를 운영함으로써 귀하는 I2P 네트워크를 위한 중요한 인프라를 제공하고 있습니다. 보다 사적인, 탈중앙화된 인터넷을 위해 기여해 주셔서 감사합니다!
-
-질문이나 도움이 필요하면 I2P 커뮤니티에 문의하세요:  
-- **포럼**: [i2pforum.net](https://i2pforum.net)  
-- **IRC/Reddit**: 다양한 네트워크의 #i2p 채널  
-- **개발**: [i2pgit.org](https://i2pgit.org)
-
 ---
+
+*가이드는 원래 [Stormy Cloud](https://www.stormycloud.org)에 의해 작성되었으며, I2P 문서를 위해 수정되었습니다.*
+
+*가이드는 원래 [Stormy Cloud](https://www.stormycloud.org)에 의해 작성되었으며, I2P 문서용으로 수정되었습니다.*
 
 *가이드는 원래 [Stormy Cloud](https://www.stormycloud.org)에 의해 작성되었으며, I2P 문서용으로 수정되었습니다.*
