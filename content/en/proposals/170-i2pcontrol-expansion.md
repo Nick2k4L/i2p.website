@@ -1,5 +1,5 @@
 ---
-title: "i2pcontrol-expansion"
+title: "I2PControl Expansion"
 number: "170"
 author: "Nick2k4"
 created: "2026-05-20"
@@ -16,17 +16,25 @@ This proposal exposes new information to the i2pcontrol API, allowing for greate
 Motivation
 ==========
 
-The reason for this proposal is to allow for greater flexibility in the I2P API for applications to implement and manage an I2P administrative interface. Exposing such information to i2pcontrol allows for users to create more advanced applications and provide better support for remote management.
+The use case for this proposal is creating a unified and simplified router console that can be shared across every router implementation with the standard suite of i2p tunnels. Essentially, this proposal allows for a more intuitive and user-friendly experience for users across the I2P network.
+
+This proposal will also allow for greater flexibility in the I2P API for applications to implement and manage an I2P administrative interface. Exposing such information to i2pcontrol allows for users to create more advanced applications and provide better support for remote management.
 
 Design
 ======
 
-When users interact with the i2pcontrol API, they will be able to access new endpoints that provide the information mentioned above. For example, the i2pcontrol API will expose new methods `TunnelManager` and `AddressBook` that will allow users to enter parameters to create, delete, retrieve, and modify tunnels and addressbooks. Additionally, the pre-existing `RouterInfo` method will have new parameters to expose information about the router.
+When users interact with the i2pcontrol API, they will be able to access new endpoints that provide the information mentioned above. 
+For example, the i2pcontrol API will expose new methods `TunnelManager` and `AddressBook` that will allow 
+users to enter parameters to create, delete, retrieve, and modify tunnels and addressbooks. 
+Additionally, the pre-existing `RouterInfo` method will have new parameters to expose information about the router.
 
 Security implications
 =====================
 
-There are no expected additional security implications from this proposal, as the information being exposed is already accessible through other means. However, it is important to ensure that proper authentication and authorization mechanisms are in place for accessing the i2pcontrol API, to prevent unauthorized access to sensitive information or control over the router.
+There are no expected additional security implications from this proposal, 
+as the information being exposed is already accessible through other means. 
+However, it is important to ensure that proper authentication and authorization mechanisms are in place for accessing the i2pcontrol API, 
+to prevent unauthorized access to sensitive information or control over the router.
 
 API Specification & Methods
 ===========================
@@ -44,60 +52,60 @@ All requests follow the JSON-RPC 2.0 structure:
 }
 ```
 
-Method - RouterInfo
+Method - RouterInfo (GETTERS)
 -------------------
 
 Below contains the new parameters for `RouterInfo` method and what they return:
 
-- `i2p.router.news` - returns all router news entries.
-- `i2p.router.id` - returns the router hash as a Base64 string, or `null`.
-- `i2p.router.clockskew` - returns the average peer clock skew, or `null`.
-- `i2p.router.info` - returns the serialized RouterInfo as a Base64 string, or `null`.
-- `i2p.router.logs` - returns recent router log messages.
-- `i2p.router.logs.clear` - clears the router log buffer and returns `"success"`.
+- `i2p.router.news` - returns all router news entries. Return Type - `String`
+- `i2p.router.id` - returns the router hash as a Base64 string, or `null`. Return Type - `String`
+- `i2p.router.clockskew` - returns the average peer clock skew, or `null`. Return Type - `long`
+- `i2p.router.info` - returns the serialized RouterInfo as a Base64 string, or `null`. Return Type - `String`
+- `i2p.router.logs` - returns recent router log messages. Return Type - `List<String>`
+- `i2p.router.logs.clear` - clears the router log buffer and returns `"success"`. Return Type - `String`
 
-- `i2p.router.net.total.received.bytes` - returns total bytes received since startup. *(adopted from i2pd)*
-- `i2p.router.net.total.sent.bytes` - returns total bytes sent since startup. *(adopted from i2pd)*
-- `i2p.router.net.total.transit.bytes` - returns total transit bytes forwarded since startup. *(adopted from i2pd)*
-- `i2p.router.net.bw.transit.15s` - returns 15-second average transit bandwidth (bytes/sec). *(adopted from i2pd)*
+- `i2p.router.net.total.received.bytes` - returns total bytes received since startup. *(adopted from i2pd)* Return Type - `long`
+- `i2p.router.net.total.sent.bytes` - returns total bytes sent since startup. *(adopted from i2pd)* Return Type - `long`
+- `i2p.router.net.total.transit.bytes` - returns total transit bytes forwarded since startup. *(adopted from i2pd)* Return Type - `long`
+- `i2p.router.net.bw.transit.15s` - returns 15-second average transit bandwidth (bytes/sec). *(adopted from i2pd)* Return Type - `long`
 
-- `i2p.router.net.tunnels.shareratio` - returns the tunnel share ratio.
-- `i2p.router.net.tunnels.participating.info` - returns participating tunnel info.
-- `i2p.router.net.tunnels.i2ptunnel` - returns configured I2PTunnel controller info (quick stats of all).
-- `i2p.router.net.tunnels.exploratory.inbound` - returns exploratory inbound tunnel count.
-- `i2p.router.net.tunnels.exploratory.outbound` - returns exploratory outbound tunnel count.
-- `i2p.router.net.tunnels.exploratory.info.list` - returns exploratory tunnel info list.
-- `i2p.router.net.tunnels.client.inbound` - returns client inbound tunnel count.
-- `i2p.router.net.tunnels.client.outbound` - returns client outbound tunnel count.
-- `i2p.router.net.tunnels.client.info.list` - returns client tunnel info list.
+- `i2p.router.net.tunnels.shareratio` - returns the tunnel share ratio. Return Type - `double`
+- `i2p.router.net.tunnels.participating.info` - returns participating tunnel info. Return Type - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.i2ptunnel` - returns configured I2PTunnel controller info (quick stats of all). Return Type - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.exploratory.inbound` - returns exploratory inbound tunnel count. Return Type - `int`
+- `i2p.router.net.tunnels.exploratory.outbound` - returns exploratory outbound tunnel count. Return Type - `int`
+- `i2p.router.net.tunnels.exploratory.info.list` - returns exploratory tunnel info list. Return Type - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.client.inbound` - returns client inbound tunnel count. Return Type - `int`
+- `i2p.router.net.tunnels.client.outbound` - returns client outbound tunnel count. Return Type - `int`
+- `i2p.router.net.tunnels.client.info.list` - returns client tunnel info list. Return Type - `List<Map<String, Object>>`
 
-- `i2p.router.net.status.v6` - returns IPv6 network status code. *(adopted from i2pd)*
-- `i2p.router.net.error` - returns IPv4 network error code. *(adopted from i2pd)*
-- `i2p.router.net.error.v6` - returns IPv6 network error code. *(adopted from i2pd)*
-- `i2p.router.net.testing` - returns whether IPv4 network is in testing state (0 or 1). *(adopted from i2pd)*
-- `i2p.router.net.testing.v6` - returns whether IPv6 network is in testing state (0 or 1). *(adopted from i2pd)*
+- `i2p.router.net.status.v6` - returns IPv6 network status code. *(adopted from i2pd)* Return Type - `int`
+- `i2p.router.net.error` - returns IPv4 network error code. *(adopted from i2pd)* Return Type - `int`
+- `i2p.router.net.error.v6` - returns IPv6 network error code. *(adopted from i2pd)* Return Type - `int`
+- `i2p.router.net.testing` - returns whether IPv4 network is in testing state (0 or 1). *(adopted from i2pd)* Return Type - `int`
+- `i2p.router.net.testing.v6` - returns whether IPv6 network is in testing state (0 or 1). *(adopted from i2pd)* Return Type - `int`
 
-- `i2p.router.net.tunnels.successrate` - returns recent tunnel build success rate (%). *(adopted from i2pd)*
-- `i2p.router.net.tunnels.totalsuccessrate` - returns total tunnel build success rate since startup (%). *(adopted from i2pd)*
-- `i2p.router.net.tunnels.queue` - returns tunnel build request queue size. *(adopted from i2pd)*
-- `i2p.router.net.tunnels.tbmqueue` - returns Tunnel Build Message queue size. *(adopted from i2pd)*
+- `i2p.router.net.tunnels.successrate` - returns recent tunnel build success rate (%). *(adopted from i2pd)* Return Type - `double`
+- `i2p.router.net.tunnels.totalsuccessrate` - returns total tunnel build success rate since startup (%). *(adopted from i2pd)* Return Type - `double`
+- `i2p.router.net.tunnels.queue` - returns tunnel build request queue size. *(adopted from i2pd)* Return Type - `int`
+- `i2p.router.net.tunnels.tbmqueue` - returns Tunnel Build Message queue size. *(adopted from i2pd)* Return Type - `int`
 
-- `i2p.router.netdb.peers` - returns a list of known peer hashes.
-- `i2p.router.netdb.activepeers.info` - returns serialized RouterInfo data for active peers.
-- `i2p.router.netdb.ntcp.limit` - returns NTCP connection limit.
-- `i2p.router.netdb.ssu.limit` - returns SSU connection limit.
-- `i2p.router.netdb.bannedpeers` - returns banned peers with ban details.
-- `i2p.router.netdb.activepeers.list` - returns active peer hashes.
-- `i2p.router.netdb.peers.list` - returns known peer hashes.
-- `i2p.router.netdb.peers.info` - returns serialized RouterInfo data for known peers.
-- `i2p.router.netdb.activepeers.stats` - returns active peer stats.
+- `i2p.router.netdb.peers` - returns a list of known peer hashes. Return Type - `List<String>`
+- `i2p.router.netdb.activepeers.info` - returns serialized RouterInfo data for active peers. Return Type - `List<String>`
+- `i2p.router.netdb.ntcp.limit` - returns NTCP connection limit. Return Type - `int`
+- `i2p.router.netdb.ssu.limit` - returns SSU connection limit. Return Type - `int`
+- `i2p.router.netdb.bannedpeers` - returns banned peers with ban details. Return Type - `Map<String, Map<String, Object>>`
+- `i2p.router.netdb.activepeers.list` - returns active peer hashes. Return Type - `List<String>`
+- `i2p.router.netdb.peers.list` - returns known peer hashes. Return Type - `List<String>`
+- `i2p.router.netdb.peers.info` - returns serialized RouterInfo data for known peers. Return Type - `List<String>`
+- `i2p.router.netdb.activepeers.stats` - returns active peer stats. Return Type - `List<Map<String, Object>>`
 
-- `i2p.router.addressbook.private.list` - returns private address book entries.
-- `i2p.router.addressbook.local.list` - returns local address book entries.
-- `i2p.router.addressbook.router.list` - returns router address book entries.
-- `i2p.router.addressbook.published.list` - returns published address book entries.
-- `i2p.router.addressbook.subscriptions` - returns subscription file path and entries.
-- `i2p.router.addressbook.config` - returns address book config path and entries.
+- `i2p.router.addressbook.private.list` - returns private address book entries. Return Type - `List<Map<String, String>>`
+- `i2p.router.addressbook.local.list` - returns local address book entries. Return Type - `List<Map<String, String>>`
+- `i2p.router.addressbook.router.list` - returns router address book entries. Return Type - `List<Map<String, String>>`
+- `i2p.router.addressbook.published.list` - returns published address book entries. Return Type - `List<Map<String, String>>`
+- `i2p.router.addressbook.subscriptions` - returns subscription file path and entries. Return Type - `Map<String, Object>`
+- `i2p.router.addressbook.config` - returns address book config path and entries. Return Type - `Map<String, Object>`
 
 Example:
 
@@ -122,7 +130,7 @@ Return:
 }
 ```
 
-Method - AddressBook
+Method - AddressBook (SETTERS)
 --------------------
 
 For the `AddressBook` method, three parameters/arguments are required for deleting and adding entries to the address book:
@@ -251,7 +259,7 @@ Return:
 }
 ```
 
-Method - TunnelManager
+Method - TunnelManager (1 MARKED GETTER, REST SETTERS)
 --------
 
 The `TunnelManager` method is used to create, edit, get, start, stop, restart, and delete I2PTunnel controllers.
@@ -447,7 +455,7 @@ Return:
 }
 ```
 
-Get example:
+Get example (ONLY GETTER) Returns - `Map<String, Object>`(information) and `String` (status):
 
 ```json
 {
@@ -576,7 +584,7 @@ This proposal is not yet implemented in Java I2P, yet the code is available in t
 i2pd
 ----
 
-Methods and parameters marked as "(adopded from i2pd)" are implemented in i2pd and unchanged in this proposal. i2pd's extensions will not require modification as part of this proposal. Unmarked parts of this proposal are not implemented in i2pd.
+Methods and parameters marked as "(adopted from i2pd)" are implemented in i2pd and unchanged in this proposal. i2pd's extensions will not require modification as part of this proposal. Unmarked parts of this proposal are not implemented in i2pd.
 
 go-i2p
 ------

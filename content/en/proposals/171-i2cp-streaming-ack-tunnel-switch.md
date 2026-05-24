@@ -1,0 +1,119 @@
+---
+title: "I2CP Flag for Outbound Tunnel Switching"
+number: "171"
+author: "onon, eyedeekay"
+created: "2026-05-19"
+lastupdated: "2026-05-23"
+status: "Draft"
+toc: true
+---
+
+## Overview
+
+I2CP client connections can become stalled when delivery acknowledgments
+are silently lost. The sender retransmits until an acknowledgment is
+received or the connection is torn down, with no reliable way to confirm
+that acknowledgments are reaching the other side.
+This proposal adds one new flag bit to the
+[SendMessageExpiresMessage](/docs/specs/i2cp/)
+flags field so that a client can instruct the router to select a different
+outbound tunnel for subsequent messages to the same destination.
+
+## Triggers
+
+Two conditions SHOULD prompt the client to set the flag on the next
+outbound message:
+
+**Sender side**
+
+No acknowledgment has been received within the client's current
+retransmit timeout period.
+
+**Receiver side**
+
+The receiver has observed the remote retransmitting the same data
+more than once, indicating that its acknowledgments are not reaching
+the remote. The receiver SHOULD set this flag on its next outbound
+I2CP message so that acknowledgments reach the remote via a different
+path. The receiver MUST wait until: (1) it has received a duplicate,
+(2) it has sent at least one acknowledgment, and (3) the remote has
+retransmitted again before setting the flag.
+
+To limit timing-correlation attacks, a client MUST NOT set the flag
+more than once per 10-second window per connection. The client SHOULD
+also delay setting the flag by a jitter drawn uniformly from
+`[0, min(T/4, 2000ms)]`, where T is the client's current retransmit
+timeout in milliseconds, after detecting the stall condition, to reduce
+timing-correlation precision.
+
+## Specification
+
+The flags field of [SendMessageExpiresMessage](/docs/specs/i2cp/) occupies the upper 2 bytes
+after the Date field (redefined as of release 0.8.4) and is transmitted
+big-endian. Bit 15 is currently unused; this proposal defines it.
+
+Bit order: 15...0
+
+| Bit | Name | Description |
+|-----|------|-------------|
+| 15 | SWITCH_OUTBOUND_TUNNEL | If 1, the router SHOULD select a different outbound tunnel from its pool for subsequent messages to this destination. If no alternate tunnel is available, this flag is silently ignored. The router MUST NOT close or retire the previously-used tunnel solely because this flag was set. |
+
+This flag defaults to 0. Routers that do not implement it MUST ignore it
+without error.
+
+## Implementation Notes
+
+When `SWITCH_OUTBOUND_TUNNEL` is set, the router SHOULD select a tunnel
+uniformly at random from the outbound pool, excluding:
+
+- the tunnel currently in use for this session, and
+- the single most recently failed tunnel in the pool, if any.
+
+All other tunnel health metrics, build times, or selection history
+MUST NOT influence the choice, as weighted selection could favor sybil
+attackers. If the pool contains no eligible tunnel after these
+exclusions the flag is silently ignored.
+
+This flag incurs no additional tunnel messages; switching tunnels may
+change apparent latency. The 10-second per-connection rate limit
+(see Triggers) prevents excessive switching.
+
+## Anonymity Considerations
+
+The flags in [SendMessageExpiresMessage](/docs/specs/i2cp/) are carried over I2CP, which
+is a local interface between the client and its own router. They are not
+visible to network observers.
+
+The anonymity risk is traffic-pattern-based: an adversary with visibility
+across multiple tunnel endpoints can observe *when* tunnel usage changes.
+
+Switching outbound tunnels in direct response to a client-side stall
+creates a detectable behavioral pattern. There are two concrete
+observation vectors:
+
+**Sybil attack on outbound tunnel first hops**
+
+Each outbound tunnel's first hop sees all traffic entering that
+tunnel from the sender's router. An adversary controlling the first
+hop of more than one tunnel in the sender's pool observes traffic
+stopping on one first hop and starting on another in close temporal
+proximity, linking both tunnels to the same sender. With a pool of N
+tunnels, an adversary controlling K first hops has a K/N probability
+of observing any given switch event.
+
+**Traffic-gap timing**
+
+During the stall the client is not sending new data, so the old
+outbound tunnel goes quiet. When the switch occurs, traffic resumes
+on a different path. An adversary with a vantage point on the
+sender's router — such as the sender's network provider, or the
+first-hop node itself — can observe the silence-then-resumption
+pattern. The gap duration additionally leaks an approximation of
+the client's current retransmit timeout value.
+
+Clients MUST comply with the rate-limiting and jitter requirements in
+Triggers.
+
+## References
+
+- [I2CP Specification](/docs/specs/i2cp/)
