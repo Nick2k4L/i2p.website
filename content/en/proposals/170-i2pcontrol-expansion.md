@@ -8,36 +8,31 @@ status: "Open"
 toc: true
 ---
 
-Overview
-========
+## Overview
 
 This proposal exposes new information to the i2pcontrol API, allowing for greater flexibility. This information includes: adding, deleting, retrieving, and modifying addressbooks, and hidden services. This proposal also exposes more information about your router, such as, peers, news, netdb, and more.
 
-Motivation
-==========
+## Motivation
 
 The use case for this proposal is creating a unified and simplified router console that can be shared across every router implementation with the standard suite of i2p tunnels. Essentially, this proposal allows for a more intuitive and user-friendly experience for users across the I2P network.
 
 This proposal will also allow for greater flexibility in the I2P API for applications to implement and manage an I2P administrative interface. Exposing such information to i2pcontrol allows for users to create more advanced applications and provide better support for remote management.
 
-Design
-======
+## Design
 
 When users interact with the i2pcontrol API, they will be able to access new endpoints that provide the information mentioned above.
 For example, the i2pcontrol API will expose new methods `TunnelManager` and `AddressBook` that will allow
 users to enter parameters to create, delete, retrieve, and modify tunnels and addressbooks.
 Additionally, the pre-existing `RouterInfo` method will have new parameters to expose information about the router.
 
-Security implications
-=====================
+## Security implications
 
 There are no expected additional security implications from this proposal,
 as the information being exposed is already accessible through other means.
 However, it is important to ensure that proper authentication and authorization mechanisms are in place for accessing the i2pcontrol API,
 to prevent unauthorized access to sensitive information or control over the router.
 
-API Specification & Methods
-===========================
+## API Specification & Methods
 
 All requests follow the JSON-RPC 2.0 structure:
 
@@ -52,8 +47,7 @@ All requests follow the JSON-RPC 2.0 structure:
 }
 ```
 
-Method - RouterInfo (GETTERS)
--------------------
+### Method - RouterInfo (GETTERS)
 
 Below contains the new parameters for `RouterInfo` method and what they return:
 
@@ -130,8 +124,7 @@ Return:
 }
 ```
 
-Method - AddressBook (SETTERS)
---------------------
+### Method - AddressBook (SETTERS)
 
 For the `AddressBook` method, three parameters/arguments are required for deleting and adding entries to the address book:
 
@@ -259,8 +252,7 @@ Return:
 }
 ```
 
-Method - TunnelManager (1 MARKED GETTER, REST SETTERS)
---------
+### Method - TunnelManager (1 MARKED GETTER, REST SETTERS)
 
 The `TunnelManager` method is used to create, edit, get, start, stop, restart, and delete I2PTunnel controllers.
 
@@ -521,8 +513,7 @@ Return:
 }
 ```
 
-Method - ClientServicesInfo *(adopted from i2pd)*
--------------------------------------------------
+### Method - ClientServicesInfo *(adopted from i2pd)*
 
 The `ClientServicesInfo` method returns status information about client services running on the router. Include the desired service keys (with any value) in `params` to request each service's status.
 
@@ -568,35 +559,28 @@ Return:
 }
 ```
 
-Compatibility
-=============
+## Compatibility
 
 Compatibility with the existing i2pcontrol API should be maintained, as the new methods and parameters are added in a way that does not interfere with existing functionality. Existing applications using the i2pcontrol API should continue to work without modification, while new applications can take advantage of the additional information and capabilities provided by this proposal.
 
-Implementation
-==============
+## Implementation
 
-Java I2P
---------
+### Java I2P
 
 This proposal is not yet implemented in Java I2P, yet the code is available in the [i2p.plugins.i2pcontrol](https://github.com/i2p/i2p.plugins.i2pcontrol) repository under pull request [#6](https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6). This was done to allow for testing and development of the new methods without affecting the existing code. This will be updated into the main I2P repository under i2pcontrol directory once the code is ready for production use.
 
-i2pd
-----
+### i2pd
 
 Methods and parameters marked as "(adopted from i2pd)" are implemented in i2pd and unchanged in this proposal. i2pd's extensions will not require modification as part of this proposal. Unmarked parts of this proposal are not implemented in i2pd.
 
-go-i2p
-------
+### go-i2p
 
 go-i2p is motivated to pursue this proposal in order to enable and enhance it's router console application. It will adopt and implement the proposal in the future.
 
-emissary
---------
+### emissary
 
 Likelihood of adoption in emissary is unknown at this time, however emissary is likely to benefit from this proposal in the same ways as go-i2p.
 
-Performance
-===========
+## Performance
 
 No performance impact expected.

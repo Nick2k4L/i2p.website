@@ -57,11 +57,7 @@ Bit order: 15...0
 
 | Bit | Name | Description |
 |-----|------|-------------|
-| 15 | SWITCH_OUTBOUND_TUNNEL | If 1, the router SHOULD select a different
-outbound tunnel from its pool for subsequent messages to this destination. If
-no alternate tunnel is available, this flag is silently ignored. The router
-MUST NOT close or retire the previously-used tunnel solely because this flag
-was set. |
+| 15 | SWITCH_OUTBOUND_TUNNEL | If 1, the router SHOULD select a different outbound tunnel from its pool for subsequent messages to this destination. If no alternate tunnel is available, this flag is silently ignored. The router MUST NOT close or retire the previously-used tunnel solely because this flag was set. |
 
 This flag defaults to 0. Routers that do not implement it MUST ignore it
 without error.

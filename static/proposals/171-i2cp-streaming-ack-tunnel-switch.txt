@@ -15,20 +15,22 @@ I2CP Flag for Outbound Tunnel Switching
 Overview
 ========
 
-I2CP client connections can become stalled when delivery acknowledgments
+Streaming client connections can become stalled when delivery acknowledgments
 are silently lost. The sender retransmits until an acknowledgment is
 received or the connection is torn down, with no reliable way to confirm
 that acknowledgments are reaching the other side.
 This proposal adds one new flag bit to the [SendMessageExpiresMessage]_
 flags field so that a client can instruct the router to select a different
-outbound tunnel for subsequent messages to the same destination.
+outbound tunnel for subsequent messages to the same destination. The
+streaming protocol uses this bit to initiate a tunnel switch upon detecting
+a stalled connection.
 
 
 Triggers
 ========
 
 Two conditions SHOULD prompt the client to set the flag on the next
-outbound message:
+outbound message. These conditions are measured at the streaming layer.
 
 Sender side
     No acknowledgment has been received within the client's current
