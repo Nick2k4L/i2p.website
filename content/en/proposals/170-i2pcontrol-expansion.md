@@ -23,17 +23,17 @@ This proposal will also allow for greater flexibility in the I2P API for applica
 Design
 ======
 
-When users interact with the i2pcontrol API, they will be able to access new endpoints that provide the information mentioned above. 
-For example, the i2pcontrol API will expose new methods `TunnelManager` and `AddressBook` that will allow 
-users to enter parameters to create, delete, retrieve, and modify tunnels and addressbooks. 
+When users interact with the i2pcontrol API, they will be able to access new endpoints that provide the information mentioned above.
+For example, the i2pcontrol API will expose new methods `TunnelManager` and `AddressBook` that will allow
+users to enter parameters to create, delete, retrieve, and modify tunnels and addressbooks.
 Additionally, the pre-existing `RouterInfo` method will have new parameters to expose information about the router.
 
 Security implications
 =====================
 
-There are no expected additional security implications from this proposal, 
-as the information being exposed is already accessible through other means. 
-However, it is important to ensure that proper authentication and authorization mechanisms are in place for accessing the i2pcontrol API, 
+There are no expected additional security implications from this proposal,
+as the information being exposed is already accessible through other means.
+However, it is important to ensure that proper authentication and authorization mechanisms are in place for accessing the i2pcontrol API,
 to prevent unauthorized access to sensitive information or control over the router.
 
 API Specification & Methods

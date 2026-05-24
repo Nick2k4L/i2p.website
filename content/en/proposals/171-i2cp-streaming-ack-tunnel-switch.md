@@ -10,24 +10,24 @@ toc: true
 
 ## Overview
 
-I2CP client connections can become stalled when delivery acknowledgments
-are silently lost. The sender retransmits until an acknowledgment is
-received or the connection is torn down, with no reliable way to confirm
-that acknowledgments are reaching the other side.
-This proposal adds one new flag bit to the
-[SendMessageExpiresMessage](/docs/specs/i2cp/)
-flags field so that a client can instruct the router to select a different
-outbound tunnel for subsequent messages to the same destination.
+Streaming client connections can become stalled when delivery acknowledgments
+are silently lost. The sender retransmits until an acknowledgment is received
+or the connection is torn down, with no reliable way to confirm that
+acknowledgments are reaching the other side. This proposal adds one new flag
+bit to the [SendMessageExpiresMessage](/docs/specs/i2cp/) flags field so that a
+client can instruct the router to select a different outbound tunnel for
+subsequent messages to the same destination. The streaming protocol uses this
+bit to initiate a tunnel switch upon detecting a stalled connection.
 
 ## Triggers
 
-Two conditions SHOULD prompt the client to set the flag on the next
-outbound message:
+Two conditions SHOULD prompt the client to set the flag on the next outbound
+message. These conditions are measured at the streaming layer.
 
 **Sender side**
 
-No acknowledgment has been received within the client's current
-retransmit timeout period.
+No acknowledgment has been received within the client's current retransmit
+timeout period.
 
 **Receiver side**
 
@@ -48,7 +48,8 @@ timing-correlation precision.
 
 ## Specification
 
-The flags field of [SendMessageExpiresMessage](/docs/specs/i2cp/) occupies the upper 2 bytes
+The flags field of [SendMessageExpiresMessage](/docs/specs/i2cp/) occupies the
+upper 2 bytes
 after the Date field (redefined as of release 0.8.4) and is transmitted
 big-endian. Bit 15 is currently unused; this proposal defines it.
 
@@ -56,7 +57,11 @@ Bit order: 15...0
 
 | Bit | Name | Description |
 |-----|------|-------------|
-| 15 | SWITCH_OUTBOUND_TUNNEL | If 1, the router SHOULD select a different outbound tunnel from its pool for subsequent messages to this destination. If no alternate tunnel is available, this flag is silently ignored. The router MUST NOT close or retire the previously-used tunnel solely because this flag was set. |
+| 15 | SWITCH_OUTBOUND_TUNNEL | If 1, the router SHOULD select a different
+outbound tunnel from its pool for subsequent messages to this destination. If
+no alternate tunnel is available, this flag is silently ignored. The router
+MUST NOT close or retire the previously-used tunnel solely because this flag
+was set. |
 
 This flag defaults to 0. Routers that do not implement it MUST ignore it
 without error.
@@ -80,7 +85,8 @@ change apparent latency. The 10-second per-connection rate limit
 
 ## Anonymity Considerations
 
-The flags in [SendMessageExpiresMessage](/docs/specs/i2cp/) are carried over I2CP, which
+The flags in [SendMessageExpiresMessage](/docs/specs/i2cp/) are carried over
+I2CP, which
 is a local interface between the client and its own router. They are not
 visible to network observers.
 
