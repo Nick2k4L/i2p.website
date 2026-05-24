@@ -1,5 +1,5 @@
 ---
-title: "i2pcontrol-expansion"
+title: "I2PControl Genişletmesi"
 number: "170"
 author: "Nick2k4"
 created: "2026-05-20"
@@ -8,23 +8,25 @@ status: "Aç"
 toc: true
 ---
 
-Genel Bakış ========
+## Genel Bakış
 
 Bu öneri, i2pcontrol API'sine yeni bilgiler sunarak daha fazla esneklik sağlar. Bu bilgiler, adres defterlerine ekleme, silme, geri alma ve değiştirme işlemlerinin yanı sıra gizli hizmetleri de içerir. Bu öneri aynı zamanda yönlendiriciniz hakkında eşler, haberler, netdb ve daha fazlası gibi daha fazla bilgiyi de ortaya çıkarır.
 
-Motivasyon ==========
+## Motivasyon
 
-Bu teklifin nedeni, uygulamaların bir I2P yönetim arayüzü uygulamasına ve yönetimine olanak tanıyan daha büyük esneklik için I2P API'sine izin vermektir. i2pcontrol'e bu tür bilgileri sunmak, kullanıcıların daha gelişmiş uygulamalar oluşturmasına ve uzaktan yönetim için daha iyi destek sağlamasına olanak tanır.
+Bu teklifin kullanım senaryosu, standart i2p tünel takımıyla birlikte her yönlendirici uygulamasında paylaşılabilen birleştirilmiş ve sadeleştirilmiş bir yönlendirici konsolu oluşturmaktır. Temelde bu teklif, I2P ağındaki kullanıcılar için daha sezgisel ve kullanıcı dostu bir deneyim sağlar.
 
-Tasarım ======
+Bu öneri, uygulamaların bir I2P yönetim arayüzünü uygulaması ve yönetmesi için I2P API'sinde daha büyük esneklik sağlamayı da mümkün kılacaktır. i2pcontrol'e bu tür bilgilerin sunulması, kullanıcıların daha gelişmiş uygulamalar oluşturmasına ve uzaktan yönetim için daha iyi destek sağlamasına olanak tanır.
+
+## Tasarım
 
 Kullanıcılar i2pcontrol API'siyle etkileşime girdiğinde, yukarıda bahsedilen bilgileri sağlayan yeni uç noktalara erişebilecekler. Örneğin, i2pcontrol API'si, kullanıcıların tünel ve adres defterleri oluşturmak, silmek, almak ve değiştirmek için parametreler girebilecekleri yeni `TunnelManager` ve `AddressBook` metodlarını ortaya çıkaracak. Ayrıca, önceden var olan `RouterInfo` metodu, yönlendirici hakkında bilgi vermek için yeni parametrelere sahip olacaktır.
 
-Güvenlik etkileri =====================
+## Güvenlik etkileri
 
 Bu öneriden kaynaklı beklenen ek güvenlik etkileri yoktur çünkü ortaya çıkarılan bilgi zaten diğer yollarla erişilebilirdir. Ancak hassas bilgilere erişimin veya yönlendirici üzerinde kontrolün yetkisiz erişime karşı korunabilmesi için i2pcontrol API'sine erişimde uygun kimlik doğrulama ve yetkilendirme mekanizmalarının yerinde olduğundan emin olmak önemlidir.
 
-API Spesifikasyonu ve Yöntemleri ===========================
+## API Spesifikasyonu ve Yöntemleri
 
 Tüm istekler JSON-RPC 2.0 yapısını takip eder:
 
@@ -38,59 +40,59 @@ Tüm istekler JSON-RPC 2.0 yapısını takip eder:
   "id": 1
 }
 ```
-Yöntem - YönlendiriciBilgisi -------------------
+### Yöntem - RouterInfo (ALICILAR)
 
 Aşağıda, `RouterInfo` yöntemi için yeni parametreler ve bunların döndürdükleri yer alır:
 
-- `i2p.router.news` - tüm yönlendirici haber girişlerini döndürür.
-- `i2p.router.id` - yönlendirici karmasını Base64 dizesi olarak veya `null` değerini döndürür.
-- `i2p.router.clockskew` - ortalama eş saat sapmasını veya `null` değerini döndürür.
-- `i2p.router.info` - seri hale getirilmiş RouterInfo'yu Base64 dizesi olarak veya `null` değerini döndürür.
-- `i2p.router.logs` - son yönlendirici günlük mesajlarını döndürür.
-- `i2p.router.logs.clear` - yönlendirici günlük arabelleğini temizler ve `"success"` (başarı) döndürür.
+- `i2p.router.news` - tüm yönlendirici haberlerini döndürür. Dönüş Türü - `String`
+- `i2p.router.id` - yönlendirici karmasını Base64 dizesi olarak veya `null` döndürür. Dönüş Türü - `String`
+- `i2p.router.clockskew` - ortalama eş saat sapmasını veya `null` döndürür. Dönüş Türü - `long`
+- `i2p.router.info` - serileştirilmiş RouterInfo'yu Base64 dizesi olarak veya `null` döndürür. Dönüş Türü - `String`
+- `i2p.router.logs` - son yönlendirici log mesajlarını döndürür. Dönüş Türü - `List<String>`
+- `i2p.router.logs.clear` - yönlendirici log arabelleğini temizler ve `"success"` döndürür. Dönüş Türü - `String`
 
-- `i2p.router.net.total.received.bytes` - başlangıçtan bu yana alınan toplam baytları döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.total.sent.bytes` - başlangıçtan bu yana gönderilen toplam baytları döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.total.transit.bytes` - başlangıçtan bu yana iletilen toplam transit baytlarını döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.bw.transit.15s` - 15 saniyelik ortalama transit bant genişliğini döndürür (bayt/saniye). *(i2pd'den alınmıştır)*
+- `i2p.router.net.total.received.bytes` - başlangıçtan bu yana alınan toplam baytları döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `long`
+- `i2p.router.net.total.sent.bytes` - başlangıçtan bu yana gönderilen toplam baytları döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `long`
+- `i2p.router.net.total.transit.bytes` - başlangıçtan bu yana iletilen toplam transit baytlarını döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `long`
+- `i2p.router.net.bw.transit.15s` - 15 saniyelik ortalama transit bant genişliğini döndürür (bayt/saniye). *(i2pd'den alınmıştır)* Dönüş Türü - `long`
 
-- `i2p.router.net.tunnels.shareratio` - tünel paylaşım oranını döndürür.
-- `i2p.router.net.tunnels.participating.info` - katılımcı tünel bilgisini döndürür.
-- `i2p.router.net.tunnels.i2ptunnel` - yapılandırılmış I2PTunnel denetleyici bilgisini döndürür (tümünün hızlı istatistikleri).
-- `i2p.router.net.tunnels.exploratory.inbound` - keşif amaçlı gelen tünel sayısını döndürür.
-- `i2p.router.net.tunnels.exploratory.outbound` - keşif amaçlı giden tünel sayısını döndürür.
-- `i2p.router.net.tunnels.exploratory.info.list` - keşif amaçlı tünel bilgi listesini döndürür.
-- `i2p.router.net.tunnels.client.inbound` - istemci gelen tünel sayısını döndürür.
-- `i2p.router.net.tunnels.client.outbound` - istemci giden tünel sayısını döndürür.
-- `i2p.router.net.tunnels.client.info.list` - istemci tünel bilgi listesini döndürür.
+- `i2p.router.net.tunnels.shareratio` - tünel paylaşım oranını döndürür. Dönüş Türü - `double`
+- `i2p.router.net.tunnels.participating.info` - katılımcı tünel bilgisini döndürür. Dönüş Türü - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.i2ptunnel` - yapılandırılmış I2PTunnel denetleyici bilgisini döndürür (tümünün hızlı istatistikleri). Dönüş Türü - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.exploratory.inbound` - keşif amaçlı gelen tünel sayısını döndürür. Dönüş Türü - `int`
+- `i2p.router.net.tunnels.exploratory.outbound` - keşif amaçlı giden tünel sayısını döndürür. Dönüş Türü - `int`
+- `i2p.router.net.tunnels.exploratory.info.list` - keşif amaçlı tünellerin bilgi listesini döndürür. Dönüş Türü - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.client.inbound` - istemciye ait gelen tünel sayısını döndürür. Dönüş Türü - `int`
+- `i2p.router.net.tunnels.client.outbound` - istemciye ait giden tünel sayısını döndürür. Dönüş Türü - `int`
+- `i2p.router.net.tunnels.client.info.list` - istemci tünellerinin bilgi listesini döndürür. Dönüş Türü - `List<Map<String, Object>>`
 
-- `i2p.router.net.status.v6` - IPv6 ağ durumu kodunu döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.error` - IPv4 ağ hatası kodunu döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.error.v6` - IPv6 ağ hatası kodunu döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.testing` - IPv4 ağının test durumunda olup olmadığını döndürür (0 veya 1). *(i2pd'den alınmıştır)*
-- `i2p.router.net.testing.v6` - IPv6 ağının test durumunda olup olmadığını döndürür (0 veya 1). *(i2pd'den alınmıştır)*
+- `i2p.router.net.status.v6` - IPv6 ağ durumu kodunu döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `int`
+- `i2p.router.net.error` - IPv4 ağ hata kodunu döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `int`
+- `i2p.router.net.error.v6` - IPv6 ağ hata kodunu döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `int`
+- `i2p.router.net.testing` - IPv4 ağının test durumunda olup olmadığını döndürür (0 veya 1). *(i2pd'den alınmıştır)* Dönüş Türü - `int`
+- `i2p.router.net.testing.v6` - IPv6 ağının test durumunda olup olmadığını döndürür (0 veya 1). *(i2pd'den alınmıştır)* Dönüş Türü - `int`
 
-- `i2p.router.net.tunnels.successrate` - Son tünel oluşturma başarı oranını (%) döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.tunnels.totalsuccessrate` - Başlangıçtan beri toplam tünel oluşturma başarı oranını (%) döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.tunnels.queue` - Tünel oluşturma istek kuyruğu boyutunu döndürür. *(i2pd'den alınmıştır)*
-- `i2p.router.net.tunnels.tbmqueue` - Tünel Oluşturma Mesajı kuyruğu boyutunu döndürür. *(i2pd'den alınmıştır)*
+- `i2p.router.net.tunnels.successrate` - Son tunel oluşturma başarı oranını (%) döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `double`
+- `i2p.router.net.tunnels.totalsuccessrate` - Başlangıçtan beri toplam tunel oluşturma başarı oranını (%) döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `double`
+- `i2p.router.net.tunnels.queue` - Tunel oluşturma istek kuyruğu boyutunu döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `int`
+- `i2p.router.net.tunnels.tbmqueue` - Tunel Oluşturma Mesajı kuyruğu boyutunu döndürür. *(i2pd'den alınmıştır)* Dönüş Türü - `int`
 
-- `i2p.router.netdb.peers` - bilinen eş hash'lerinin bir listesini döndürür.
-- `i2p.router.netdb.activepeers.info` - etkin eşler için seri hale getirilmiş RouterInfo verilerini döndürür.
-- `i2p.router.netdb.ntcp.limit` - NTCP bağlantı sınırını döndürür.
-- `i2p.router.netdb.ssu.limit` - SSU bağlantı sınırını döndürür.
-- `i2p.router.netdb.bannedpeers` - yasaklanmış eşleri ve yasaklama ayrıntılarını döndürür.
-- `i2p.router.netdb.activepeers.list` - etkin eş hash'lerini döndürür.
-- `i2p.router.netdb.peers.list` - bilinen eş hash'lerini döndürür.
-- `i2p.router.netdb.peers.info` - bilinen eşler için seri hale getirilmiş RouterInfo verilerini döndürür.
-- `i2p.router.netdb.activepeers.stats` - etkin eş istatistiklerini döndürür.
+- `i2p.router.netdb.peers` - bilinen eş hash'lerinin bir listesini döndürür. Dönüş Türü - `List<String>`
+- `i2p.router.netdb.activepeers.info` - etkin eşler için serileştirilmiş RouterInfo verilerini döndürür. Dönüş Türü - `List<String>`
+- `i2p.router.netdb.ntcp.limit` - NTCP bağlantı sınırını döndürür. Dönüş Türü - `int`
+- `i2p.router.netdb.ssu.limit` - SSU bağlantı sınırını döndürür. Dönüş Türü - `int`
+- `i2p.router.netdb.bannedpeers` - yasaklanmış eşleri ve yasaklama ayrıntılarını döndürür. Dönüş Türü - `Map<String, Map<String, Object>>`
+- `i2p.router.netdb.activepeers.list` - etkin eş hash'lerini döndürür. Dönüş Türü - `List<String>`
+- `i2p.router.netdb.peers.list` - bilinen eş hash'lerini döndürür. Dönüş Türü - `List<String>`
+- `i2p.router.netdb.peers.info` - bilinen eşler için serileştirilmiş RouterInfo verilerini döndürür. Dönüş Türü - `List<String>`
+- `i2p.router.netdb.activepeers.stats` - etkin eş istatistiklerini döndürür. Dönüş Türü - `List<Map<String, Object>>`
 
-- `i2p.router.addressbook.private.list` - özel adres defteri girişlerini döndürür.
-- `i2p.router.addressbook.local.list` - yerel adres defteri girişlerini döndürür.
-- `i2p.router.addressbook.router.list` - yönlendirici adres defteri girişlerini döndürür.
-- `i2p.router.addressbook.published.list` - yayınlanan adres defteri girişlerini döndürür.
-- `i2p.router.addressbook.subscriptions` - abonelik dosya yolunu ve girişlerini döndürür.
-- `i2p.router.addressbook.config` - adres defteri yapılandırma yolunu ve girişlerini döndürür.
+- `i2p.router.addressbook.private.list` - özel adres defteri girişlerini döndürür. Dönüş Türü - `List<Map<String, String>>`
+- `i2p.router.addressbook.local.list` - yerel adres defteri girişlerini döndürür. Dönüş Türü - `List<Map<String, String>>`
+- `i2p.router.addressbook.router.list` - yönlendirici adres defteri girişlerini döndürür. Dönüş Türü - `List<Map<String, String>>`
+- `i2p.router.addressbook.published.list` - yayınlanan adres defteri girişlerini döndürür. Dönüş Türü - `List<Map<String, String>>`
+- `i2p.router.addressbook.subscriptions` - abonelik dosya yolunu ve girişlerini döndürür. Dönüş Türü - `Map<String, Object>`
+- `i2p.router.addressbook.config` - adres defteri yapılandırma yolunu ve girişlerini döndürür. Dönüş Türü - `Map<String, Object>`
 
 Örnek:
 
@@ -113,7 +115,7 @@ Dönüş:
     "id": 1
 }
 ```
-Yöntem - Adres Defteri --------------------
+### Yöntem - Adres Defteri (AYARLAYICILAR)
 
 `AddressBook` yöntemi için, adres defterine giriş eklemek ve silmek amacıyla üç parametre/bağımsız değişken gereklidir:
 
@@ -236,7 +238,7 @@ Dönüş:
   "id": 1
 }
 ```
-Yöntem - TünelYöneticisi --------
+### Yöntem - TunnelManager (1 İŞARETLİ ALICI, DİĞERLERİ AYARLAYICI)
 
 `TunnelManager` yöntemi, I2PTunnel denetleyicilerini oluşturmak, düzenlemek, almak, başlatmak, durdurmak, yeniden başlatmak ve silmek için kullanılır.
 
@@ -427,7 +429,7 @@ Dönüş:
   "id": 1
 }
 ```
-Örnek al:
+Örnek al (SADECE GETTER) Şunu döndürür - `Map<String, Object>` (bilgi) ve `String` (durum):
 
 ```json
 {
@@ -489,7 +491,7 @@ Dönüş:
   "id": 1
 }
 ```
-Yöntem - ClientServicesInfo *(i2pd'den alınmıştır)* -------------------------------------------------
+### Yöntem - ClientServicesInfo *(i2pd'den uyarlanmıştır)*
 
 `ClientServicesInfo` yöntemi, yönlendirici üzerinde çalışan istemci hizmetleriyle ilgili durum bilgilerini döndürür. Her hizmetin durumunu istemek için, istenen hizmet anahtarlarını (herhangi bir değerle birlikte) `params` içine ekleyin.
 
@@ -533,28 +535,28 @@ Dönüş:
   "id": 1
 }
 ```
-Uyumluluk =============
+## Uyumluluk
 
 Yeni yöntemlerin ve parametrelerin mevcut işlevselliği etkilemeyecek şekilde eklenmesi nedeniyle, mevcut i2pcontrol API'si ile uyumluluk korunmalıdır. i2pcontrol API'sini kullanan mevcut uygulamalar değişiklik yapılmadan çalışmaya devam etmelidir, bu önerinin sağladığı ek bilgilerden ve yeteneklerden ise yeni uygulamalar yararlanabilir.
 
-Uygulama ==============
+## Uygulama
 
-Java I2P --------
+### Java I2P
 
 Bu öneri henüz Java I2P'de uygulanmadı, ancak kod [i2p.plugins.i2pcontrol](https://github.com/i2p/i2p.plugins.i2pcontrol) deposunda çekme isteği [#6](https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6) altında mevcuttur. Mevcut kodu etkilemeden yeni yöntemlerin test edilmesi ve geliştirilmesi için bu şekilde yapılmıştır. Kod üretim kullanımı için hazır olduğunda ana I2P deposuna i2pcontrol dizini altında entegre edilecektir.
 
-i2pd ----
+### i2pd
 
-"(i2pd'den alınan)" olarak işaretlenen yöntemler ve parametreler i2pd'de uygulanmış ve bu teklifte değiştirilmemiştir. i2pd'nin uzantıları bu teklif kapsamında değiştirilmesi gerekmez. Bu teklifte işaretsiz kısım, i2pd'de uygulanmamıştır.
+"(i2pd'den alınan)" olarak işaretlenen yöntemler ve parametreler i2pd içinde uygulanmış olup bu teklif kapsamında değiştirilmemiştir. i2pd'nin uzantıları bu teklif kapsamında herhangi bir değişiklik gerektirmeyecektir. Bu teklifte işaretsiz olarak kalan bölümler i2pd'de uygulanmamıştır.
 
-go-i2p ------
+### go-i2p
 
 go-i2p, yönlendirici konsolu uygulamasını etkinleştirmek ve geliştirmek amacıyla bu öneriyi benimsemeye ve ileride uygulamaya isteklidir.
 
-emissary --------
+### emissary
 
 Emissary'de benimsenme olasılığı şu anda bilinmiyor, ancak Emissary'nin bu tekliften go-i2p ile aynı şekillerde yararlanması muhtemeldir.
 
-Performans ===========
+## Performans
 
 Performans etkisi beklenmiyor.

@@ -1,5 +1,5 @@
 ---
-title: "i2pcontrol-expansion"
+title: "Expansão do I2PControl"
 number: "170"
 author: "Nick2k4"
 created: "2026-05-20"
@@ -8,23 +8,25 @@ status: "Abrir"
 toc: true
 ---
 
-Visão Geral ========
+## Visão Geral
 
 Esta proposta expõe novas informações para a API i2pcontrol, permitindo maior flexibilidade. Essas informações incluem: adicionar, excluir, recuperar e modificar livros de endereços e serviços ocultos. Esta proposta também expõe mais informações sobre seu roteador, como pares, notícias, netDb e mais.
 
-Motivação ==========
+## Motivação
 
-A razão para esta proposta é permitir maior flexibilidade na API do I2P para que aplicações possam implementar e gerenciar uma interface administrativa do I2P. Expor tais informações ao i2pcontrol permite que os usuários criem aplicações mais avançadas e ofereçam melhor suporte para gerenciamento remoto.
+O caso de uso para esta proposta é a criação de um console de roteador unificado e simplificado que possa ser compartilhado entre todas as implementações de roteador com o conjunto padrão de túneis i2p. Essencialmente, esta proposta permite uma experiência mais intuitiva e amigável para os usuários em toda a rede I2P.
 
-Design ======
+Esta proposta também permitirá maior flexibilidade na API do I2P para que aplicações possam implementar e gerenciar uma interface administrativa do I2P. Expor tais informações ao i2pcontrol permite que os usuários criem aplicações mais avançadas e ofereçam melhor suporte para gerenciamento remoto.
+
+## Design
 
 Quando os usuários interagirem com a API i2pcontrol, poderão acessar novos endpoints que fornecem as informações mencionadas acima. Por exemplo, a API i2pcontrol exporá novos métodos `TunnelManager` e `AddressBook` que permitirão aos usuários inserir parâmetros para criar, excluir, recuperar e modificar túneis e livros de endereços. Além disso, o método preexistente `RouterInfo` terá novos parâmetros para expor informações sobre o roteador.
 
-Implicações de segurança =====================
+## Implicações de segurança
 
 Não há implicações de segurança adicionais esperadas a partir desta proposta, pois as informações expostas já são acessíveis por outros meios. No entanto, é importante garantir que mecanismos adequados de autenticação e autorização estejam em vigor para acessar a API i2pcontrol, a fim de evitar acesso não autorizado a informações sensíveis ou controle sobre o roteador.
 
-Especificação da API e Métodos ===========================
+## Especificação da API e Métodos
 
 Todas as solicitações seguem a estrutura JSON-RPC 2.0:
 
@@ -38,59 +40,59 @@ Todas as solicitações seguem a estrutura JSON-RPC 2.0:
   "id": 1
 }
 ```
-Método - RouterInfo -------------------
+### Método - RouterInfo (GETTERS)
 
 Abaixo estão os novos parâmetros do método `RouterInfo` e o que eles retornam:
 
-- `i2p.router.news` - retorna todas as entradas de notícias do roteador.
-- `i2p.router.id` - retorna o hash do roteador como uma string Base64, ou `null`.
-- `i2p.router.clockskew` - retorna a média da diferença de relógio dos pares (clock skew), ou `null`.
-- `i2p.router.info` - retorna o RouterInfo serializado como uma string Base64, ou `null`.
-- `i2p.router.logs` - retorna mensagens recentes do log do roteador.
-- `i2p.router.logs.clear` - limpa o buffer de log do roteador e retorna `"success"`.
+- `i2p.router.news` - retorna todas as entradas de notícias do roteador. Tipo de retorno - `String`
+- `i2p.router.id` - retorna o hash do roteador como uma string Base64, ou `null`. Tipo de retorno - `String`
+- `i2p.router.clockskew` - retorna a diferença média de relógio dos pares, ou `null`. Tipo de retorno - `long`
+- `i2p.router.info` - retorna o RouterInfo serializado como uma string Base64, ou `null`. Tipo de retorno - `String`
+- `i2p.router.logs` - retorna mensagens recentes do log do roteador. Tipo de retorno - `List<String>`
+- `i2p.router.logs.clear` - limpa o buffer de log do roteador e retorna `"success"`. Tipo de retorno - `String`
 
-- `i2p.router.net.total.received.bytes` - retorna o total de bytes recebidos desde a inicialização. *(adotado do i2pd)*
-- `i2p.router.net.total.sent.bytes` - retorna o total de bytes enviados desde a inicialização. *(adotado do i2pd)*
-- `i2p.router.net.total.transit.bytes` - retorna o total de bytes em trânsito encaminhados desde a inicialização. *(adotado do i2pd)*
-- `i2p.router.net.bw.transit.15s` - retorna a largura de banda média de trânsito nos últimos 15 segundos (bytes/seg). *(adotado do i2pd)*
+- `i2p.router.net.total.received.bytes` - retorna o total de bytes recebidos desde a inicialização. *(adotado do i2pd)* Tipo de Retorno - `long`
+- `i2p.router.net.total.sent.bytes` - retorna o total de bytes enviados desde a inicialização. *(adotado do i2pd)* Tipo de Retorno - `long`
+- `i2p.router.net.total.transit.bytes` - retorna o total de bytes em trânsito encaminhados desde a inicialização. *(adotado do i2pd)* Tipo de Retorno - `long`
+- `i2p.router.net.bw.transit.15s` - retorna a largura de banda média de trânsito nos últimos 15 segundos (bytes/seg). *(adotado do i2pd)* Tipo de Retorno - `long`
 
-- `i2p.router.net.tunnels.shareratio` - retorna a taxa de compartilhamento de túneis.
-- `i2p.router.net.tunnels.participating.info` - retorna informações sobre túneis participantes.
-- `i2p.router.net.tunnels.i2ptunnel` - retorna informações dos controladores configurados do I2PTunnel (estatísticas rápidas de todos).
-- `i2p.router.net.tunnels.exploratory.inbound` - retorna a quantidade de túneis exploratórios de entrada.
-- `i2p.router.net.tunnels.exploratory.outbound` - retorna a quantidade de túneis exploratórios de saída.
-- `i2p.router.net.tunnels.exploratory.info.list` - retorna a lista de informações dos túneis exploratórios.
-- `i2p.router.net.tunnels.client.inbound` - retorna a quantidade de túneis cliente de entrada.
-- `i2p.router.net.tunnels.client.outbound` - retorna a quantidade de túneis cliente de saída.
-- `i2p.router.net.tunnels.client.info.list` - retorna a lista de informações dos túneis cliente.
+- `i2p.router.net.tunnels.shareratio` - retorna a taxa de compartilhamento de túneis. Tipo de retorno - `double`
+- `i2p.router.net.tunnels.participating.info` - retorna informações sobre túneis participantes. Tipo de retorno - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.i2ptunnel` - retorna informações do controlador I2PTunnel configurado (estatísticas rápidas de todos). Tipo de retorno - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.exploratory.inbound` - retorna a quantidade de túneis exploratórios de entrada. Tipo de retorno - `int`
+- `i2p.router.net.tunnels.exploratory.outbound` - retorna a quantidade de túneis exploratórios de saída. Tipo de retorno - `int`
+- `i2p.router.net.tunnels.exploratory.info.list` - retorna a lista de informações de túneis exploratórios. Tipo de retorno - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.client.inbound` - retorna a quantidade de túneis cliente de entrada. Tipo de retorno - `int`
+- `i2p.router.net.tunnels.client.outbound` - retorna a quantidade de túneis cliente de saída. Tipo de retorno - `int`
+- `i2p.router.net.tunnels.client.info.list` - retorna a lista de informações de túneis cliente. Tipo de retorno - `List<Map<String, Object>>`
 
-- `i2p.router.net.status.v6` - retorna o código de status da rede IPv6. *(adotado do i2pd)*
-- `i2p.router.net.error` - retorna o código de erro da rede IPv4. *(adotado do i2pd)*
-- `i2p.router.net.error.v6` - retorna o código de erro da rede IPv6. *(adotado do i2pd)*
-- `i2p.router.net.testing` - retorna se a rede IPv4 está em estado de teste (0 ou 1). *(adotado do i2pd)*
-- `i2p.router.net.testing.v6` - retorna se a rede IPv6 está em estado de teste (0 ou 1). *(adotado do i2pd)*
+- `i2p.router.net.status.v6` - retorna o código de status da rede IPv6. *(adotado do i2pd)* Tipo de Retorno - `int`
+- `i2p.router.net.error` - retorna o código de erro da rede IPv4. *(adotado do i2pd)* Tipo de Retorno - `int`
+- `i2p.router.net.error.v6` - retorna o código de erro da rede IPv6. *(adotado do i2pd)* Tipo de Retorno - `int`
+- `i2p.router.net.testing` - retorna se a rede IPv4 está em estado de teste (0 ou 1). *(adotado do i2pd)* Tipo de Retorno - `int`
+- `i2p.router.net.testing.v6` - retorna se a rede IPv6 está em estado de teste (0 ou 1). *(adotado do i2pd)* Tipo de Retorno - `int`
 
-- `i2p.router.net.tunnels.successrate` - retorna a taxa de sucesso recente na criação de túneis (%). *(adotado do i2pd)*
-- `i2p.router.net.tunnels.totalsuccessrate` - retorna a taxa total de sucesso na criação de túneis desde a inicialização (%). *(adotado do i2pd)*
-- `i2p.router.net.tunnels.queue` - retorna o tamanho da fila de solicitações de criação de túneis. *(adotado do i2pd)*
-- `i2p.router.net.tunnels.tbmqueue` - retorna o tamanho da fila de mensagens de construção de túnel (Tunnel Build Message). *(adotado do i2pd)*
+- `i2p.router.net.tunnels.successrate` - retorna a taxa de sucesso recente na criação de túneis (%). *(adotado do i2pd)* Tipo de Retorno - `double`
+- `i2p.router.net.tunnels.totalsuccessrate` - retorna a taxa total de sucesso na criação de túneis desde a inicialização (%). *(adotado do i2pd)* Tipo de Retorno - `double`
+- `i2p.router.net.tunnels.queue` - retorna o tamanho da fila de solicitações de criação de túneis. *(adotado do i2pd)* Tipo de Retorno - `int`
+- `i2p.router.net.tunnels.tbmqueue` - retorna o tamanho da fila de mensagens de construção de túneis (Tunnel Build Message). *(adotado do i2pd)* Tipo de Retorno - `int`
 
-- `i2p.router.netdb.peers` - retorna uma lista de hashes de pares conhecidos.
-- `i2p.router.netdb.activepeers.info` - retorna dados serializados do RouterInfo para pares ativos.
-- `i2p.router.netdb.ntcp.limit` - retorna o limite de conexões NTCP.
-- `i2p.router.netdb.ssu.limit` - retorna o limite de conexões SSU.
-- `i2p.router.netdb.bannedpeers` - retorna os pares banidos com detalhes do banimento.
-- `i2p.router.netdb.activepeers.list` - retorna os hashes dos pares ativos.
-- `i2p.router.netdb.peers.list` - retorna os hashes dos pares conhecidos.
-- `i2p.router.netdb.peers.info` - retorna dados serializados do RouterInfo para pares conhecidos.
-- `i2p.router.netdb.activepeers.stats` - retorna estatísticas dos pares ativos.
+- `i2p.router.netdb.peers` - retorna uma lista de hashes de pares conhecidos. Tipo de Retorno - `List<String>`
+- `i2p.router.netdb.activepeers.info` - retorna dados serializados do RouterInfo para pares ativos. Tipo de Retorno - `List<String>`
+- `i2p.router.netdb.ntcp.limit` - retorna o limite de conexões NTCP. Tipo de Retorno - `int`
+- `i2p.router.netdb.ssu.limit` - retorna o limite de conexões SSU. Tipo de Retorno - `int`
+- `i2p.router.netdb.bannedpeers` - retorna os pares banidos com detalhes do banimento. Tipo de Retorno - `Map<String, Map<String, Object>>`
+- `i2p.router.netdb.activepeers.list` - retorna os hashes dos pares ativos. Tipo de Retorno - `List<String>`
+- `i2p.router.netdb.peers.list` - retorna os hashes dos pares conhecidos. Tipo de Retorno - `List<String>`
+- `i2p.router.netdb.peers.info` - retorna dados serializados do RouterInfo para pares conhecidos. Tipo de Retorno - `List<String>`
+- `i2p.router.netdb.activepeers.stats` - retorna estatísticas dos pares ativos. Tipo de Retorno - `List<Map<String, Object>>`
 
-- `i2p.router.addressbook.private.list` - retorna entradas da agenda privada.
-- `i2p.router.addressbook.local.list` - retorna entradas da agenda local.
-- `i2p.router.addressbook.router.list` - retorna entradas da agenda do roteador.
-- `i2p.router.addressbook.published.list` - retorna entradas da agenda publicada.
-- `i2p.router.addressbook.subscriptions` - retorna o caminho do arquivo de inscrições e suas entradas.
-- `i2p.router.addressbook.config` - retorna o caminho do arquivo de configuração da agenda e suas entradas.
+- `i2p.router.addressbook.private.list` - retorna entradas da agenda privada. Tipo de Retorno - `List<Map<String, String>>`
+- `i2p.router.addressbook.local.list` - retorna entradas da agenda local. Tipo de Retorno - `List<Map<String, String>>`
+- `i2p.router.addressbook.router.list` - retorna entradas da agenda do roteador. Tipo de Retorno - `List<Map<String, String>>`
+- `i2p.router.addressbook.published.list` - retorna entradas da agenda publicada. Tipo de Retorno - `List<Map<String, String>>`
+- `i2p.router.addressbook.subscriptions` - retorna o caminho do arquivo de inscrição e suas entradas. Tipo de Retorno - `Map<String, Object>`
+- `i2p.router.addressbook.config` - retorna o caminho do arquivo de configuração da agenda e suas entradas. Tipo de Retorno - `Map<String, Object>`
 
 Exemplo:
 
@@ -113,7 +115,7 @@ Retorno:
     "id": 1
 }
 ```
-Método - Catálogo de Endereços --------------------
+### Método - Catálogo de Endereços (DEFINIDORES)
 
 Para o método `AddressBook`, são necessários três parâmetros/argumentos para excluir e adicionar entradas na agenda de endereços:
 
@@ -236,7 +238,7 @@ Retorno:
   "id": 1
 }
 ```
-Método - TunnelManager --------
+### Método - TunnelManager (1 GETTER MARCADO, RESTANTE SETTERS)
 
 O método `TunnelManager` é usado para criar, editar, obter, iniciar, parar, reiniciar e excluir controladores de I2PTunnel.
 
@@ -427,7 +429,7 @@ Retorno:
   "id": 1
 }
 ```
-Exemplo de obtenção:
+Obter exemplo (APENAS GETTER) Retorna - `Map<String, Object>` (informação) e `String` (status):
 
 ```json
 {
@@ -489,7 +491,7 @@ Retorno:
   "id": 1
 }
 ```
-Método - ClientServicesInfo *(adotado do i2pd)* -------------------------------------------------
+### Método - ClientServicesInfo *(adotado do i2pd)*
 
 O método `ClientServicesInfo` retorna informações de status sobre os serviços clientes em execução no roteador. Inclua as chaves de serviço desejadas (com qualquer valor) em `params` para solicitar o status de cada serviço.
 
@@ -533,28 +535,28 @@ Retorno:
   "id": 1
 }
 ```
-Compatibilidade =============
+## Compatibilidade
 
 A compatibilidade com a API i2pcontrol existente deve ser mantida, já que os novos métodos e parâmetros são adicionados de forma que não interfira com a funcionalidade existente. Aplicativos existentes que utilizam a API i2pcontrol devem continuar funcionando sem modificações, enquanto novos aplicativos podem aproveitar as informações e capacidades adicionais fornecidas por esta proposta.
 
-Implementação ==============
+## Implementação
 
-Java I2P --------
+### Java I2P
 
 Esta proposta ainda não foi implementada no Java I2P, mas o código está disponível no repositório [i2p.plugins.i2pcontrol](https://github.com/i2p/i2p.plugins.i2pcontrol) sob a solicitação de pull [#6](https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6). Isso foi feito para permitir testes e desenvolvimento dos novos métodos sem afetar o código existente. Isso será atualizado no repositório principal do I2P, no diretório i2pcontrol, assim que o código estiver pronto para uso em produção.
 
-i2pd ----
+### i2pd
 
-Métodos e parâmetros marcados como "(adotados do i2pd)" são implementados no i2pd e inalterados nesta proposta. As extensões do i2pd não exigirão modificações como parte desta proposta. Partes não marcadas desta proposta não estão implementadas no i2pd.
+Métodos e parâmetros marcados como "(adotados do i2pd)" são implementados no i2pd e permanecem inalterados nesta proposta. As extensões do i2pd não exigirão modificações como parte desta proposta. Partes não marcadas desta proposta não estão implementadas no i2pd.
 
-go-i2p ------
+### go-i2p
 
 O go-i2p tem interesse em seguir esta proposta para habilitar e aprimorar seu aplicativo de console do roteador. Ele adotará e implementará a proposta no futuro.
 
-emissary --------
+### emissary
 
 A probabilidade de adoção no Emissary é desconhecida no momento, porém o Emissary provavelmente se beneficiará desta proposta da mesma forma que o go-i2p.
 
-Desempenho ===========
+## Desempenho
 
 Não se espera impacto no desempenho.

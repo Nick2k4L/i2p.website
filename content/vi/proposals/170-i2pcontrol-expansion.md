@@ -1,5 +1,5 @@
 ---
-title: "i2pcontrol-expansion"
+title: "Mở rộng I2PControl"
 number: "170"
 author: "Nick2k4"
 created: "2026-05-20"
@@ -8,23 +8,25 @@ status: "Mở"
 toc: true
 ---
 
-Tổng quan ========
+## Tổng quan
 
 Đề xuất này công bố thông tin mới cho API i2pcontrol, cho phép linh hoạt hơn. Thông tin này bao gồm: thêm, xóa, truy xuất và sửa đổi sổ địa chỉ và các dịch vụ ẩn. Đề xuất này cũng cung cấp thêm thông tin về router của bạn, chẳng hạn như các peer, tin tức, netdb, và nhiều hơn nữa.
 
-Động lực ==========
+## Động lực
 
-Lý do cho đề xuất này là để mang lại sự linh hoạt cao hơn trong API của I2P, cho phép các ứng dụng triển khai và quản lý giao diện quản trị I2P. Việc cung cấp thông tin như vậy cho i2pcontrol cho phép người dùng tạo ra các ứng dụng nâng cao hơn và hỗ trợ tốt hơn cho việc quản lý từ xa.
+Trường hợp sử dụng cho đề xuất này là tạo ra một bảng điều khiển router thống nhất và đơn giản hóa, có thể được chia sẻ trên mọi triển khai router với bộ công cụ tiêu chuẩn các tunnel i2p. Về cơ bản, đề xuất này cho phép người dùng trên toàn mạng I2P có trải nghiệm trực quan và thân thiện hơn.
 
-Thiết kế ======
+Đề xuất này cũng sẽ mang lại sự linh hoạt cao hơn trong API của I2P, cho phép các ứng dụng triển khai và quản lý giao diện quản trị I2P. Việc cung cấp thông tin như vậy cho i2pcontrol cho phép người dùng tạo ra các ứng dụng nâng cao hơn và hỗ trợ tốt hơn cho việc quản lý từ xa.
+
+## Thiết kế
 
 Khi người dùng tương tác với API i2pcontrol, họ sẽ có thể truy cập các endpoint mới cung cấp thông tin như đã nêu ở trên. Ví dụ, API i2pcontrol sẽ cung cấp các phương thức mới là `TunnelManager` và `AddressBook`, cho phép người dùng nhập các tham số để tạo, xóa, truy xuất và sửa đổi các tunnel và sổ địa chỉ. Ngoài ra, phương thức hiện có `RouterInfo` sẽ có các tham số mới để hiển thị thông tin về router.
 
-Hệ quả về bảo mật =====================
+## Hệ quả về bảo mật
 
 Không có các hệ quả về an ninh bổ sung nào được dự kiến từ đề xuất này, vì thông tin được tiết lộ hiện đã có thể truy cập được thông qua các phương tiện khác. Tuy nhiên, điều quan trọng là phải đảm bảo các cơ chế xác thực và ủy quyền phù hợp được thiết lập để truy cập API i2pcontrol, nhằm ngăn chặn việc truy cập trái phép vào thông tin nhạy cảm hoặc kiểm soát bộ định tuyến.
 
-Đặc tả API & Các phương thức ===========================
+## Đặc tả API & Các phương thức
 
 Tất cả các yêu cầu đều tuân theo cấu trúc JSON-RPC 2.0:
 
@@ -38,59 +40,59 @@ Tất cả các yêu cầu đều tuân theo cấu trúc JSON-RPC 2.0:
   "id": 1
 }
 ```
-Phương thức - RouterInfo -------------------
+### Phương thức - RouterInfo (GETTERS)
 
 Bên dưới chứa các tham số mới cho phương thức `RouterInfo` và giá trị mà chúng trả về:
 
-- `i2p.router.news` - trả về tất cả các mục tin tức của router.
-- `i2p.router.id` - trả về mã băm của router dưới dạng chuỗi Base64, hoặc `null`.
-- `i2p.router.clockskew` - trả về độ lệch trung bình của đồng hồ các peer, hoặc `null`.
-- `i2p.router.info` - trả về RouterInfo được serial hóa dưới dạng chuỗi Base64, hoặc `null`.
-- `i2p.router.logs` - trả về các thông báo nhật ký router gần đây.
-- `i2p.router.logs.clear` - xóa bộ đệm nhật ký router và trả về `"success"`.
+- `i2p.router.news` - trả về tất cả các mục tin tức của router. Kiểu trả về - `String`
+- `i2p.router.id` - trả về mã băm của router dưới dạng chuỗi Base64, hoặc `null`. Kiểu trả về - `String`
+- `i2p.router.clockskew` - trả về độ lệch trung bình của đồng hồ các peer, hoặc `null`. Kiểu trả về - `long`
+- `i2p.router.info` - trả về RouterInfo đã được serial hóa dưới dạng chuỗi Base64, hoặc `null`. Kiểu trả về - `String`
+- `i2p.router.logs` - trả về các thông báo nhật ký router gần đây. Kiểu trả về - `List<String>`
+- `i2p.router.logs.clear` - xóa bộ đệm nhật ký router và trả về `"success"`. Kiểu trả về - `String`
 
-- `i2p.router.net.total.received.bytes` - trả về tổng số byte đã nhận kể từ khi khởi động. *(tham khảo từ i2pd)*
-- `i2p.router.net.total.sent.bytes` - trả về tổng số byte đã gửi kể từ khi khởi động. *(tham khảo từ i2pd)*
-- `i2p.router.net.total.transit.bytes` - trả về tổng số byte chuyển tiếp đã được chuyển tiếp kể từ khi khởi động. *(tham khảo từ i2pd)*
-- `i2p.router.net.bw.transit.15s` - trả về băng thông trung bình chuyển tiếp trong 15 giây (byte/giây). *(tham khảo từ i2pd)*
+- `i2p.router.net.total.received.bytes` - trả về tổng số byte đã nhận kể từ khi khởi động. *(tham khảo từ i2pd)* Kiểu trả về - `long`
+- `i2p.router.net.total.sent.bytes` - trả về tổng số byte đã gửi kể từ khi khởi động. *(tham khảo từ i2pd)* Kiểu trả về - `long`
+- `i2p.router.net.total.transit.bytes` - trả về tổng số byte chuyển tiếp đã được chuyển tiếp kể từ khi khởi động. *(tham khảo từ i2pd)* Kiểu trả về - `long`
+- `i2p.router.net.bw.transit.15s` - trả về băng thông trung bình chuyển tiếp trong 15 giây (byte/giây). *(tham khảo từ i2pd)* Kiểu trả về - `long`
 
-- `i2p.router.net.tunnels.shareratio` - trả về tỷ lệ chia sẻ tunnel.
-- `i2p.router.net.tunnels.participating.info` - trả về thông tin các tunnel đang tham gia.
-- `i2p.router.net.tunnels.i2ptunnel` - trả về thông tin bộ điều khiển I2PTunnel đã cấu hình (thống kê nhanh của tất cả).
-- `i2p.router.net.tunnels.exploratory.inbound` - trả về số lượng tunnel nội tuyến thăm dò.
-- `i2p.router.net.tunnels.exploratory.outbound` - trả về số lượng tunnel ngoại tuyến thăm dò.
-- `i2p.router.net.tunnels.exploratory.info.list` - trả về danh sách thông tin tunnel thăm dò.
-- `i2p.router.net.tunnels.client.inbound` - trả về số lượng tunnel nội tuyến của khách hàng.
-- `i2p.router.net.tunnels.client.outbound` - trả về số lượng tunnel ngoại tuyến của khách hàng.
-- `i2p.router.net.tunnels.client.info.list` - trả về danh sách thông tin tunnel khách hàng.
+- `i2p.router.net.tunnels.shareratio` - trả về tỷ lệ chia sẻ tunnel. Kiểu dữ liệu trả về - `double`
+- `i2p.router.net.tunnels.participating.info` - trả về thông tin các tunnel đang tham gia. Kiểu dữ liệu trả về - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.i2ptunnel` - trả về thông tin bộ điều khiển I2PTunnel đã cấu hình (thống kê nhanh của tất cả). Kiểu dữ liệu trả về - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.exploratory.inbound` - trả về số lượng tunnel nội vi vào (inbound). Kiểu dữ liệu trả về - `int`
+- `i2p.router.net.tunnels.exploratory.outbound` - trả về số lượng tunnel nội vi ra (outbound). Kiểu dữ liệu trả về - `int`
+- `i2p.router.net.tunnels.exploratory.info.list` - trả về danh sách thông tin tunnel nội vi. Kiểu dữ liệu trả về - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.client.inbound` - trả về số lượng tunnel client vào (inbound). Kiểu dữ liệu trả về - `int`
+- `i2p.router.net.tunnels.client.outbound` - trả về số lượng tunnel client ra (outbound). Kiểu dữ liệu trả về - `int`
+- `i2p.router.net.tunnels.client.info.list` - trả về danh sách thông tin tunnel client. Kiểu dữ liệu trả về - `List<Map<String, Object>>`
 
-- `i2p.router.net.status.v6` - trả về mã trạng thái mạng IPv6. *(tham khảo từ i2pd)*
-- `i2p.router.net.error` - trả về mã lỗi mạng IPv4. *(tham khảo từ i2pd)*
-- `i2p.router.net.error.v6` - trả về mã lỗi mạng IPv6. *(tham khảo từ i2pd)*
-- `i2p.router.net.testing` - trả về giá trị cho biết mạng IPv4 có đang ở trạng thái kiểm thử hay không (0 hoặc 1). *(tham khảo từ i2pd)*
-- `i2p.router.net.testing.v6` - trả về giá trị cho biết mạng IPv6 có đang ở trạng thái kiểm thử hay không (0 hoặc 1). *(tham khảo từ i2pd)*
+- `i2p.router.net.status.v6` - trả về mã trạng thái mạng IPv6. *(tham khảo từ i2pd)* Kiểu trả về - `int`
+- `i2p.router.net.error` - trả về mã lỗi mạng IPv4. *(tham khảo từ i2pd)* Kiểu trả về - `int`
+- `i2p.router.net.error.v6` - trả về mã lỗi mạng IPv6. *(tham khảo từ i2pd)* Kiểu trả về - `int`
+- `i2p.router.net.testing` - trả về giá trị cho biết mạng IPv4 có đang ở trạng thái kiểm thử hay không (0 hoặc 1). *(tham khảo từ i2pd)* Kiểu trả về - `int`
+- `i2p.router.net.testing.v6` - trả về giá trị cho biết mạng IPv6 có đang ở trạng thái kiểm thử hay không (0 hoặc 1). *(tham khảo từ i2pd)* Kiểu trả về - `int`
 
-- `i2p.router.net.tunnels.successrate` - trả về tỷ lệ thành công gần đây khi tạo tunnel (%). *(tham khảo từ i2pd)*
-- `i2p.router.net.tunnels.totalsuccessrate` - trả về tỷ lệ thành công tổng thể khi tạo tunnel kể từ khi khởi động (%). *(tham khảo từ i2pd)*
-- `i2p.router.net.tunnels.queue` - trả về kích thước hàng đợi yêu cầu tạo tunnel. *(tham khảo từ i2pd)*
-- `i2p.router.net.tunnels.tbmqueue` - trả về kích thước hàng đợi Tin nhắn Tạo Tunnel (Tunnel Build Message). *(tham khảo từ i2pd)*
+- `i2p.router.net.tunnels.successrate` - trả về tỷ lệ thành công gần đây khi tạo tunnel (%). *(tham khảo từ i2pd)* Kiểu trả về - `double`
+- `i2p.router.net.tunnels.totalsuccessrate` - trả về tỷ lệ thành công tổng thể khi tạo tunnel kể từ lúc khởi động (%). *(tham khảo từ i2pd)* Kiểu trả về - `double`
+- `i2p.router.net.tunnels.queue` - trả về kích thước hàng đợi yêu cầu tạo tunnel. *(tham khảo từ i2pd)* Kiểu trả về - `int`
+- `i2p.router.net.tunnels.tbmqueue` - trả về kích thước hàng đợi Tin nhắn Tạo Tunnel (Tunnel Build Message). *(tham khảo từ i2pd)* Kiểu trả về - `int`
 
-- `i2p.router.netdb.peers` - trả về danh sách các mã băm ngang hàng đã biết.
-- `i2p.router.netdb.activepeers.info` - trả về dữ liệu RouterInfo đã được serial hóa cho các ngang hàng đang hoạt động.
-- `i2p.router.netdb.ntcp.limit` - trả về giới hạn kết nối NTCP.
-- `i2p.router.netdb.ssu.limit` - trả về giới hạn kết nối SSU.
-- `i2p.router.netdb.bannedpeers` - trả về các ngang hàng bị cấm kèm thông tin cấm.
-- `i2p.router.netdb.activepeers.list` - trả về danh sách mã băm ngang hàng đang hoạt động.
-- `i2p.router.netdb.peers.list` - trả về danh sách mã băm ngang hàng đã biết.
-- `i2p.router.netdb.peers.info` - trả về dữ liệu RouterInfo đã được serial hóa cho các ngang hàng đã biết.
-- `i2p.router.netdb.activepeers.stats` - trả về thống kê các ngang hàng đang hoạt động.
+- `i2p.router.netdb.peers` - trả về danh sách các mã băm peer đã biết. Kiểu trả về - `List<String>`
+- `i2p.router.netdb.activepeers.info` - trả về dữ liệu RouterInfo đã được serial hóa cho các peer đang hoạt động. Kiểu trả về - `List<String>`
+- `i2p.router.netdb.ntcp.limit` - trả về giới hạn kết nối NTCP. Kiểu trả về - `int`
+- `i2p.router.netdb.ssu.limit` - trả về giới hạn kết nối SSU. Kiểu trả về - `int`
+- `i2p.router.netdb.bannedpeers` - trả về các peer bị cấm cùng thông tin chi tiết về việc cấm. Kiểu trả về - `Map<String, Map<String, Object>>`
+- `i2p.router.netdb.activepeers.list` - trả về các mã băm peer đang hoạt động. Kiểu trả về - `List<String>`
+- `i2p.router.netdb.peers.list` - trả về các mã băm peer đã biết. Kiểu trả về - `List<String>`
+- `i2p.router.netdb.peers.info` - trả về dữ liệu RouterInfo đã được serial hóa cho các peer đã biết. Kiểu trả về - `List<String>`
+- `i2p.router.netdb.activepeers.stats` - trả về thống kê của các peer đang hoạt động. Kiểu trả về - `List<Map<String, Object>>`
 
-- `i2p.router.addressbook.private.list` - trả về các mục trong sổ địa chỉ riêng tư.
-- `i2p.router.addressbook.local.list` - trả về các mục trong sổ địa chỉ cục bộ.
-- `i2p.router.addressbook.router.list` - trả về các mục trong sổ địa chỉ của router.
-- `i2p.router.addressbook.published.list` - trả về các mục trong sổ địa chỉ đã được công bố.
-- `i2p.router.addressbook.subscriptions` - trả về đường dẫn tệp đăng ký và các mục trong đó.
-- `i2p.router.addressbook.config` - trả về đường dẫn tệp cấu hình sổ địa chỉ và các mục trong đó.
+- `i2p.router.addressbook.private.list` - trả về các mục trong sổ địa chỉ riêng tư. Kiểu trả về - `List<Map<String, String>>`
+- `i2p.router.addressbook.local.list` - trả về các mục trong sổ địa chỉ cục bộ. Kiểu trả về - `List<Map<String, String>>`
+- `i2p.router.addressbook.router.list` - trả về các mục trong sổ địa chỉ của router. Kiểu trả về - `List<Map<String, String>>`
+- `i2p.router.addressbook.published.list` - trả về các mục trong sổ địa chỉ đã công bố. Kiểu trả về - `List<Map<String, String>>`
+- `i2p.router.addressbook.subscriptions` - trả về đường dẫn tệp đăng ký và các mục tương ứng. Kiểu trả về - `Map<String, Object>`
+- `i2p.router.addressbook.config` - trả về đường dẫn cấu hình sổ địa chỉ và các mục tương ứng. Kiểu trả về - `Map<String, Object>`
 
 Ví dụ:
 
@@ -113,7 +115,7 @@ Trả về:
     "id": 1
 }
 ```
-Phương thức - Sổ địa chỉ --------------------
+### Phương thức - Sổ địa chỉ (Bộ đặt)
 
 Đối với phương thức `AddressBook`, ba tham số/đối số là bắt buộc để xóa và thêm mục vào sổ địa chỉ:
 
@@ -236,7 +238,7 @@ Trả về:
   "id": 1
 }
 ```
-Phương thức - TunnelManager --------
+### Phương thức - TunnelManager (1 GETTER ĐƯỢC ĐÁNH DẤU, CÁC SETTER CÒN LẠI)
 
 Phương thức `TunnelManager` được sử dụng để tạo, chỉnh sửa, lấy, khởi động, dừng, khởi động lại và xóa các bộ điều khiển I2PTunnel.
 
@@ -427,7 +429,7 @@ Trả về:
   "id": 1
 }
 ```
-Lấy ví dụ:
+Lấy ví dụ (CHỈ GETTER) Trả về - `Map<String, Object>` (thông tin) và `String` (trạng thái):
 
 ```json
 {
@@ -489,7 +491,7 @@ Trả về:
   "id": 1
 }
 ```
-Phương thức - ClientServicesInfo *(được áp dụng từ i2pd)* -------------------------------------------------
+### Phương thức - ClientServicesInfo *(được áp dụng từ i2pd)*
 
 Phương thức `ClientServicesInfo` trả về thông tin trạng thái về các dịch vụ khách đang chạy trên router. Hãy đưa các khóa dịch vụ mong muốn (kèm bất kỳ giá trị nào) vào `params` để yêu cầu trạng thái của từng dịch vụ.
 
@@ -533,28 +535,28 @@ Trả về:
   "id": 1
 }
 ```
-Tương thích =============
+## Tương thích
 
 Việc tương thích với API i2pcontrol hiện có cần được duy trì, vì các phương thức và tham số mới được thêm vào theo cách không làm ảnh hưởng đến chức năng hiện tại. Các ứng dụng hiện có sử dụng API i2pcontrol vẫn phải tiếp tục hoạt động mà không cần thay đổi, trong khi các ứng dụng mới có thể tận dụng thông tin và khả năng bổ sung do đề xuất này cung cấp.
 
-Triển khai ==============
+## Triển khai
 
-Java I2P --------
+### Java I2P
 
 Đề xuất này hiện chưa được triển khai trong Java I2P, tuy nhiên mã nguồn đã có sẵn trong kho lưu trữ [i2p.plugins.i2pcontrol](https://github.com/i2p/i2p.plugins.i2pcontrol) dưới dạng yêu cầu kéo [#6](https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6). Việc này được thực hiện nhằm cho phép kiểm thử và phát triển các phương thức mới mà không ảnh hưởng đến mã nguồn hiện tại. Khi mã nguồn đã sẵn sàng để sử dụng trong môi trường sản xuất, nó sẽ được cập nhật vào kho I2P chính trong thư mục i2pcontrol.
 
-i2pd ----
+### i2pd
 
 Các phương thức và tham số được đánh dấu là "(tham khảo từ i2pd)" đã được triển khai trong i2pd và không thay đổi trong đề xuất này. Các phần mở rộng của i2pd sẽ không cần sửa đổi như một phần của đề xuất này. Các phần không được đánh dấu trong đề xuất này chưa được triển khai trong i2pd.
 
-go-i2p ------
+### go-i2p
 
 go-i2p có động lực theo đuổi đề xuất này để có thể kích hoạt và cải thiện ứng dụng bảng điều khiển router của nó. Nó sẽ áp dụng và triển khai đề xuất này trong tương lai.
 
-emissary --------
+### emissary
 
 Khả năng áp dụng trong Emissary hiện tại chưa xác định, tuy nhiên Emissary có khả năng được hưởng lợi từ đề xuất này theo những cách tương tự như go-i2p.
 
-Hiệu suất ===========
+## Hiệu suất
 
 Không dự kiến ảnh hưởng đến hiệu suất.

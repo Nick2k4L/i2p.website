@@ -1,5 +1,5 @@
 ---
-title: "i2pcontrol-expansion"
+title: "Rozšíření I2PControl"
 number: "170"
 author: "Nick2k4"
 created: "2026-05-20"
@@ -8,23 +8,25 @@ status: "Otevřít"
 toc: true
 ---
 
-Přehled ========
+## Přehled
 
 Tento návrh zpřístupňuje nové informace přes API i2pcontrol, čímž umožňuje větší flexibilitu. Tyto informace zahrnují: přidávání, mazání, načítání a úpravu addressbooků (adresářů) a skrytých služeb. Návrh také zpřístupňuje další informace o vašem routeru, jako jsou peerové, novinky, netDb a další.
 
-Motivace ==========
+## Motivace
 
-Důvodem tohoto návrhu je umožnit větší flexibilitu v I2P API pro aplikace, které implementují a spravují správcovské rozhraní I2P. Zpřístupnění takových informací prostřednictvím i2pcontrol umožňuje uživatelům vytvářet pokročilejší aplikace a poskytovat lepší podporu pro vzdálenou správu.
+Případ použití pro tento návrh spočívá vytvoření sjednoceného a zjednodušeného konzolového rozhraní směrovače, které lze sdílet napříč všemi implementacemi směrovače s běžnou sadou i2p tunelů. Tento návrh v podstatě umožňuje intuitivnější a uživatelsky přívětivější zkušenost pro uživatele po celé síti I2P.
 
-Návrh ======
+Tento návrh také umožní větší flexibilitu v I2P API pro aplikace, které budou implementovat a spravovat správcovské rozhraní I2P. Zpřístupnění takových informací prostřednictvím i2pcontrol umožňuje uživatelům vytvářet pokročilejší aplikace a poskytovat lepší podporu pro vzdálenou správu.
+
+## Návrh
 
 Když uživatelé budou komunikovat s rozhraním i2pcontrol API, budou mít přístup k novým koncovým bodům, které poskytují výše zmíněné informace. Například rozhraní i2pcontrol API zpřístupní nové metody `TunnelManager` a `AddressBook`, které uživatelům umožní zadávat parametry pro vytváření, mazání, načítání a úpravu tunelů a adresářů. Kromě toho bude mít předem existující metoda `RouterInfo` nové parametry pro zobrazení informací o směrovači.
 
-Důsledky pro zabezpečení =====================
+## Důsledky pro zabezpečení
 
 Tento návrh nepřináší žádné další očekávané bezpečnostní důsledky, protože informace, které jsou zpřístupněny, jsou již dostupné jinými prostředky. Je však důležité zajistit, aby byly pro přístup k rozhraní i2pcontrol API implementovány vhodné mechanismy ověřování a autorizace, aby se zabránilo neoprávněnému přístupu k citlivým informacím nebo ovládání směrovače.
 
-Specifikace API a metody ===========================
+## Specifikace API a metody
 
 Všechny požadavky následují strukturu JSON-RPC 2.0:
 
@@ -38,59 +40,59 @@ Všechny požadavky následují strukturu JSON-RPC 2.0:
   "id": 1
 }
 ```
-Metoda - RouterInfo -------------------
+### Metoda - RouterInfo (GETTERS)
 
 Níže jsou uvedeny nové parametry metody `RouterInfo` a to, co vrací:
 
-- `i2p.router.news` - vrací všechny záznamy novinek směrovače.
-- `i2p.router.id` - vrací otisk směrovače jako Base64 řetězec nebo `null`.
-- `i2p.router.clockskew` - vrací průměrnou odchylku hodin protějšků, nebo `null`.
-- `i2p.router.info` - vrací serializované RouterInfo jako Base64 řetězec, nebo `null`.
-- `i2p.router.logs` - vrací poslední zprávy z protokolu směrovače.
-- `i2p.router.logs.clear` - vymaže vyrovnávací paměť protokolu směrovače a vrací `"success"`.
+- `i2p.router.news` - vrací všechny záznamy novinek směrovače. Návratový typ – `String`
+- `i2p.router.id` - vrací otisk směrovače jako Base64 řetězec nebo `null`. Návratový typ – `String`
+- `i2p.router.clockskew` - vrací průměrný časový rozdíl mezi hodinami protějšků nebo `null`. Návratový typ – `long`
+- `i2p.router.info` - vrací serializované RouterInfo jako Base64 řetězec nebo `null`. Návratový typ – `String`
+- `i2p.router.logs` - vrací poslední zprávy z protokolu směrovače. Návratový typ – `List<String>`
+- `i2p.router.logs.clear` - vymaže vyrovnávací paměť protokolu směrovače a vrací `"success"`. Návratový typ – `String`
 
-- `i2p.router.net.total.received.bytes` - vrátí celkový počet přijatých bajtů od spuštění. *(převzato z i2pd)*
-- `i2p.router.net.total.sent.bytes` - vrátí celkový počet odeslaných bajtů od spuštění. *(převzato z i2pd)*
-- `i2p.router.net.total.transit.bytes` - vrátí celkový počet přeposlaných transit bajtů od spuštění. *(převzato z i2pd)*
-- `i2p.router.net.bw.transit.15s` - vrátí průměrnou transit šířku pásma za 15 sekund (bajty/sek). *(převzato z i2pd)*
+- `i2p.router.net.total.received.bytes` - vrátí celkový počet přijatých bajtů od spuštění. *(převzato z i2pd)* Návratový typ – `long`
+- `i2p.router.net.total.sent.bytes` - vrátí celkový počet odeslaných bajtů od spuštění. *(převzato z i2pd)* Návratový typ – `long`
+- `i2p.router.net.total.transit.bytes` - vrátí celkový počet přeposílaných transit bajtů od spuštění. *(převzato z i2pd)* Návratový typ – `long`
+- `i2p.router.net.bw.transit.15s` - vrátí průměrnou transit šířku pásma za 15 sekund (bajty/sek). *(převzato z i2pd)* Návratový typ – `long`
 
-- `i2p.router.net.tunnels.shareratio` - vrátí poměr sdílení tunelů.
-- `i2p.router.net.tunnels.participating.info` - vrátí informace o účastnících se tunelech.
-- `i2p.router.net.tunnels.i2ptunnel` - vrátí informace o nakonfigurovaném ovladači I2PTunnel (rychlé statistiky všech).
-- `i2p.router.net.tunnels.exploratory.inbound` - vrátí počet průzkumných příchozích tunelů.
-- `i2p.router.net.tunnels.exploratory.outbound` - vrátí počet průzkumných odchozích tunelů.
-- `i2p.router.net.tunnels.exploratory.info.list` - vrátí seznam informací o průzkumných tunelech.
-- `i2p.router.net.tunnels.client.inbound` - vrátí počet příchozích klientových tunelů.
-- `i2p.router.net.tunnels.client.outbound` - vrátí počet odchozích klientových tunelů.
-- `i2p.router.net.tunnels.client.info.list` - vrátí seznam informací o klientových tunelech.
+- `i2p.router.net.tunnels.shareratio` - vrací poměr sdílení tunelů. Typ návratové hodnoty – `double`
+- `i2p.router.net.tunnels.participating.info` - vrací informace o účastnících se tunelech. Typ návratové hodnoty – `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.i2ptunnel` - vrací informace o nakonfigurovaném ovladači I2PTunnel (rychlé statistiky všech). Typ návratové hodnoty – `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.exploratory.inbound` - vrací počet vstupních průzkumných tunelů. Typ návratové hodnoty – `int`
+- `i2p.router.net.tunnels.exploratory.outbound` - vrací počet výstupních průzkumných tunelů. Typ návratové hodnoty – `int`
+- `i2p.router.net.tunnels.exploratory.info.list` - vrací seznam informací o průzkumných tunelech. Typ návratové hodnoty – `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.client.inbound` - vrací počet vstupních klientních tunelů. Typ návratové hodnoty – `int`
+- `i2p.router.net.tunnels.client.outbound` - vrací počet výstupních klientních tunelů. Typ návratové hodnoty – `int`
+- `i2p.router.net.tunnels.client.info.list` - vrací seznam informací o klientních tunelech. Typ návratové hodnoty – `List<Map<String, Object>>`
 
-- `i2p.router.net.status.v6` - vrací kód stavu IPv6 sítě. *(převzato z i2pd)*
-- `i2p.router.net.error` - vrací kód chyby IPv4 sítě. *(převzato z i2pd)*
-- `i2p.router.net.error.v6` - vrací kód chyby IPv6 sítě. *(převzato z i2pd)*
-- `i2p.router.net.testing` - vrací, zda je IPv4 síť ve stavu testování (0 nebo 1). *(převzato z i2pd)*
-- `i2p.router.net.testing.v6` - vrací, zda je IPv6 síť ve stavu testování (0 nebo 1). *(převzato z i2pd)*
+- `i2p.router.net.status.v6` - vrací kód stavu IPv6 sítě. *(převzato z i2pd)* Návratový typ - `int`
+- `i2p.router.net.error` - vrací kód chyby IPv4 sítě. *(převzato z i2pd)* Návratový typ - `int`
+- `i2p.router.net.error.v6` - vrací kód chyby IPv6 sítě. *(převzato z i2pd)* Návratový typ - `int`
+- `i2p.router.net.testing` - vrací, zda je IPv4 síť ve stavu testování (0 nebo 1). *(převzato z i2pd)* Návratový typ - `int`
+- `i2p.router.net.testing.v6` - vrací, zda je IPv6 síť ve stavu testování (0 nebo 1). *(převzato z i2pd)* Návratový typ - `int`
 
-- `i2p.router.net.tunnels.successrate` - vrací aktuální úspěšnost vytváření tunelů (%). *(převzato z i2pd)*
-- `i2p.router.net.tunnels.totalsuccessrate` - vrací celkovou úspěšnost vytváření tunelů od spuštění (%). *(převzato z i2pd)*
-- `i2p.router.net.tunnels.queue` - vrací velikost fronty požadavků na vytvoření tunelů. *(převzato z i2pd)*
-- `i2p.router.net.tunnels.tbmqueue` - vrací velikost fronty zpráv pro vytvoření tunelů (Tunnel Build Message). *(převzato z i2pd)*
+- `i2p.router.net.tunnels.successrate` - vrací nedávný poměr úspěšnosti vytváření tunelů (%). *(převzato z i2pd)* Návratový typ - `double`
+- `i2p.router.net.tunnels.totalsuccessrate` - vrací celkový poměr úspěšnosti vytváření tunelů od spuštění (%). *(převzato z i2pd)* Návratový typ - `double`
+- `i2p.router.net.tunnels.queue` - vrací velikost fronty požadavků na vytvoření tunelů. *(převzato z i2pd)* Návratový typ - `int`
+- `i2p.router.net.tunnels.tbmqueue` - vrací velikost fronty zpráv pro vytváření tunelů (Tunnel Build Message). *(převzato z i2pd)* Návratový typ - `int`
 
-- `i2p.router.netdb.peers` - vrací seznam známých hashů peerů.
-- `i2p.router.netdb.activepeers.info` - vrací serializovaná data RouterInfo pro aktivní peery.
-- `i2p.router.netdb.ntcp.limit` - vrací limit spojení NTCP.
-- `i2p.router.netdb.ssu.limit` - vrací limit spojení SSU.
-- `i2p.router.netdb.bannedpeers` - vrací seznam zablokovaných peerů s detaily blokování.
-- `i2p.router.netdb.activepeers.list` - vrací seznam hashů aktivních peerů.
-- `i2p.router.netdb.peers.list` - vrací seznam hashů známých peerů.
-- `i2p.router.netdb.peers.info` - vrací serializovaná data RouterInfo pro známé peery.
-- `i2p.router.netdb.activepeers.stats` - vrací statistiky aktivních peerů.
+- `i2p.router.netdb.peers` - vrací seznam známých hashů peerů. Návratový typ - `List<String>`
+- `i2p.router.netdb.activepeers.info` - vrací serializovaná data RouterInfo pro aktivní peery. Návratový typ - `List<String>`
+- `i2p.router.netdb.ntcp.limit` - vrací limit NTCP spojení. Návratový typ - `int`
+- `i2p.router.netdb.ssu.limit` - vrací limit SSU spojení. Návratový typ - `int`
+- `i2p.router.netdb.bannedpeers` - vrací seznam zablokovaných peerů s detaily blokování. Návratový typ - `Map<String, Map<String, Object>>`
+- `i2p.router.netdb.activepeers.list` - vrací hashy aktivních peerů. Návratový typ - `List<String>`
+- `i2p.router.netdb.peers.list` - vrací hashy známých peerů. Návratový typ - `List<String>`
+- `i2p.router.netdb.peers.info` - vrací serializovaná data RouterInfo pro známé peery. Návratový typ - `List<String>`
+- `i2p.router.netdb.activepeers.stats` - vrací statistiky aktivních peerů. Návratový typ - `List<Map<String, Object>>`
 
-- `i2p.router.addressbook.private.list` – vrací položky soukromé adresářové knihy.
-- `i2p.router.addressbook.local.list` – vrací položky místní adresářové knihy.
-- `i2p.router.addressbook.router.list` – vrací položky adresářové knihy směrovače.
-- `i2p.router.addressbook.published.list` – vrací publikované položky adresářové knihy.
-- `i2p.router.addressbook.subscriptions` – vrací cestu k souboru odběrů a jeho položky.
-- `i2p.router.addressbook.config` – vrací cestu ke konfiguračnímu souboru adresářové knihy a její položky.
+- `i2p.router.addressbook.private.list` - vrací záznamy soukromého adresáře. Návratový typ - `List<Map<String, String>>`
+- `i2p.router.addressbook.local.list` - vrací záznamy místního adresáře. Návratový typ - `List<Map<String, String>>`
+- `i2p.router.addressbook.router.list` - vrací záznamy adresáře směrovače. Návratový typ - `List<Map<String, String>>`
+- `i2p.router.addressbook.published.list` - vrací záznamy publikovaného adresáře. Návratový typ - `List<Map<String, String>>`
+- `i2p.router.addressbook.subscriptions` - vrací cestu k souboru odběrů a jeho záznamy. Návratový typ - `Map<String, Object>`
+- `i2p.router.addressbook.config` - vrací cestu ke konfiguraci adresáře a jeho záznamy. Návratový typ - `Map<String, Object>`
 
 Příklad:
 
@@ -113,7 +115,7 @@ Návrat:
     "id": 1
 }
 ```
-Metoda - AddressBook --------------------
+### Metoda - AddressBook (SETTERS)
 
 Pro metodu `AddressBook` jsou pro mazání a přidávání záznamů do adresáře vyžadovány tři parametry:
 
@@ -236,7 +238,7 @@ Návrat:
   "id": 1
 }
 ```
-Metoda - Správce tunelů --------
+### Metoda – Správce tunelů (1 OZNAČENÝ GETTER, ZBYTEK SETTERY)
 
 Metoda `TunnelManager` se používá k vytváření, úpravě, získávání, spouštění, zastavování, restartování a mazání kontrolérů I2PTunnel.
 
@@ -427,7 +429,7 @@ Návrat:
   "id": 1
 }
 ```
-Získat příklad:
+Získat příklad (Pouze GETTER) Vrací - `Map<String, Object>` (informace) a `String` (stav):
 
 ```json
 {
@@ -489,7 +491,7 @@ Návrat:
   "id": 1
 }
 ```
-Metoda - ClientServicesInfo *(převzato z i2pd)* -------------------------------------------------
+### Metoda – ClientServicesInfo *(převzato z i2pd)*
 
 Metoda `ClientServicesInfo` vrací informace o stavu klientských služeb běžících na routeru. Zahrňte požadované klíče služeb (s libovolnou hodnotou) do `params`, abyste vyžádali stav jednotlivých služeb.
 
@@ -533,28 +535,28 @@ Návrat:
   "id": 1
 }
 ```
-Kompatibilita =============
+## Kompatibilita
 
 Kompatibilita se stávajícím i2pcontrol API by měla být zachována, protože nové metody a parametry jsou přidávány způsobem, který neovlivňuje stávající funkčnost. Stávající aplikace využívající i2pcontrol API by měly nadále fungovat bez úprav, zatímco nové aplikace si mohou využít dodatečné informace a možnosti poskytované tímto návrhem.
 
-Implementace ==============
+## Implementace
 
-Java I2P --------
+### Java I2P
 
 Tento návrh zatím není implementován v Java I2P, avšak kód je dostupný v repozitáři [i2p.plugins.i2pcontrol](https://github.com/i2p/i2p.plugins.i2pcontrol) pod žádostí o sloučení [#6](https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6). Toto bylo provedeno, aby bylo možné testovat a vyvíjet nové metody, aniž by to ovlivnilo stávající kód. Po připravenosti kódu pro produkční použití bude sloučen do hlavního repozitáře I2P do adresáře i2pcontrol.
 
-i2pd ----
+### i2pd
 
-Metody a parametry označené jako „(převzato z i2pd)“ jsou implementovány v i2pd a v tomto návrhu nejsou změněny. Rozšíření i2pd nebudou v rámci tohoto návrhu vyžadovat úpravy. Části tohoto návrhu, které nejsou označeny, nejsou v i2pd implementovány.
+Metody a parametry označené jako „(převzato z i2pd)“ jsou implementovány v i2pd a v tomto návrhu zůstávají nezměněny. Rozšíření i2pd nevyžadují v rámci tohoto návrhu žádné úpravy. Části tohoto návrhu, které nejsou označeny, nejsou v i2pd implementovány.
 
-go-i2p ------
+### go-i2p
 
 go-i2p má motivaci prosazovat tuto návrh, aby umožnilo a vylepšilo svou aplikaci řídicí konzole. V budoucnu návrh přijme a implementuje.
 
-emissary --------
+### emissary
 
 Pravděpodobnost přijetí v Emissary je v současné době neznámá, avšak Emissary bude pravděpodobně profitovat z této navržené změny stejnými způsoby jako go-i2p.
 
-Výkon ===========
+## Výkon
 
 Nelze očekávat žádný dopad na výkon.

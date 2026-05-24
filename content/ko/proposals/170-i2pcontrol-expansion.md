@@ -1,5 +1,5 @@
 ---
-title: "i2pcontrol-expansion"
+title: "I2PControl 확장"
 number: "170"
 author: "Nick2k4"
 created: "2026-05-20"
@@ -8,24 +8,25 @@ status: "열기"
 toc: true
 ---
 
-개요 ========
+## 개요
 
 이 제안은 i2pcontrol API에 새로운 정보를 공개하여 더 큰 유연성을 제공합니다. 여기에는 addressbook 및 숨겨진 서비스의 추가, 삭제, 검색, 수정이 포함됩니다. 또한 이 제안은 피어, 뉴스, netdb 등 라우터에 대한 더 많은 정보를 공개합니다.
 
-동기 부여 ==========
+## 동기
 
-이 제안의 이유는 애플리케이션이 I2P API를 통해 보다 유연하게 I2P 관리 인터페이스를 구현하고 관리할 수 있도록 하기 위한 것입니다. i2pcontrol에 이러한 정보를 노출함으로써 사용자는 보다 고급 기능의 애플리케이션을 개발하고 원격 관리를 위한 더 나은 지원을 제공할 수 있게 됩니다.
+이 제안의 사용 사례는 표준 i2p 터널 세트를 갖춘 모든 라우터 구현 간에 공유할 수 있는 통합되고 단순화된 라우터 콘솔을 만드는 것이다. 본질적으로, 이 제안은 I2P 네트워크 상의 사용자들에게 보다 직관적이고 사용자 친화적인 경험을 제공한다.
 
-디자인 ======
+이 제안은 애플리케이션이 I2P 관리 인터페이스를 구현하고 관리할 수 있도록 I2P API의 유연성을 더욱 높여줄 것입니다. i2pcontrol에 이러한 정보를 노출함으로써 사용자는 보다 고급 기능의 애플리케이션을 만들고 원격 관리를 위한 향상된 지원을 제공할 수 있게 됩니다.
+
+## 디자인
 
 사용자가 i2pcontrol API와 상호작용할 때 위에서 언급한 정보를 제공하는 새로운 엔드포인트에 접근할 수 있게 됩니다. 예를 들어, i2pcontrol API는 사용자가 매개변수를 입력하여 터널과 주소록을 생성, 삭제, 조회 및 수정할 수 있도록 해주는 새로운 메서드인 `TunnelManager`와 `AddressBook`을 공개할 것입니다. 또한 기존의 `RouterInfo` 메서드는 라우터에 대한 정보를 제공하기 위해 새로운 매개변수를 갖게 됩니다.
 
-보안상의 영향
-=====================
+## 보안상의 의미
 
 이 제안으로부터 예상되는 추가적인 보안 영향은 없습니다. 왜냐하면 노출되는 정보는 이미 다른 수단을 통해 접근이 가능하기 때문입니다. 그러나 민감한 정보에 대한 무단 접근이나 라우터 제어를 방지하기 위해, i2pcontrol API에 대한 적절한 인증 및 권한 부여 메커니즘이 마련되어 있는지 확인하는 것이 중요합니다.
 
-API 사양 및 메서드 ===========================
+## API 사양 및 메서드
 
 모든 요청은 JSON-RPC 2.0 구조를 따릅니다:
 
@@ -39,59 +40,59 @@ API 사양 및 메서드 ===========================
   "id": 1
 }
 ```
-방법 - RouterInfo -------------------
+### 메서드 - RouterInfo (게터)
 
 아래에는 `RouterInfo` 메서드의 새로운 매개변수와 그 반환값이 나와 있습니다:
 
-- `i2p.router.news` - 라우터 뉴스 항목을 모두 반환합니다.
-- `i2p.router.id` - 라우터 해시를 Base64 문자열로 반환하거나, `null`을 반환합니다.
-- `i2p.router.clockskew` - 평균 피어 시계 편차를 반환하거나, `null`을 반환합니다.
-- `i2p.router.info` - 직렬화된 RouterInfo를 Base64 문자열로 반환하거나, `null`을 반환합니다.
-- `i2p.router.logs` - 최근 라우터 로그 메시지를 반환합니다.
-- `i2p.router.logs.clear` - 라우터 로그 버퍼를 지우고 `"success"`를 반환합니다.
+- `i2p.router.news` - 모든 라우터 뉴스 항목을 반환합니다. 반환 형식 - `String`
+- `i2p.router.id` - Base64 문자열로 라우터 해시를 반환하거나, 해시가 없을 경우 `null`을 반환합니다. 반환 형식 - `String`
+- `i2p.router.clockskew` - 평균 피어 시계 편차를 반환하거나, 값이 없을 경우 `null`을 반환합니다. 반환 형식 - `long`
+- `i2p.router.info` - 직렬화된 RouterInfo를 Base64 문자열로 반환하거나, 정보가 없을 경우 `null`을 반환합니다. 반환 형식 - `String`
+- `i2p.router.logs` - 최근 라우터 로그 메시지를 반환합니다. 반환 형식 - `List<String>`
+- `i2p.router.logs.clear` - 라우터 로그 버퍼를 지우고 `"success"`를 반환합니다. 반환 형식 - `String`
 
-- `i2p.router.net.total.received.bytes` - 시작 이후 총 수신된 바이트 수를 반환합니다. *(i2pd에서 채택됨)*
-- `i2p.router.net.total.sent.bytes` - 시작 이후 총 전송된 바이트 수를 반환합니다. *(i2pd에서 채택됨)*
-- `i2p.router.net.total.transit.bytes` - 시작 이후 총 전달된 트랜짓 바이트 수를 반환합니다. *(i2pd에서 채택됨)*
-- `i2p.router.net.bw.transit.15s` - 15초 평균 트랜짓 대역폭(바이트/초)을 반환합니다. *(i2pd에서 채택됨)*
+- `i2p.router.net.total.received.bytes` - 시작 이후 수신된 총 바이트 수를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `long`
+- `i2p.router.net.total.sent.bytes` - 시작 이후 송신된 총 바이트 수를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `long`
+- `i2p.router.net.total.transit.bytes` - 시작 이후 전달된 총 트랜짓(transit) 바이트 수를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `long`
+- `i2p.router.net.bw.transit.15s` - 15초 평균 트랜짓 대역폭(바이트/초)을 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `long`
 
-- `i2p.router.net.tunnels.shareratio` - 터널 공유 비율을 반환합니다.
-- `i2p.router.net.tunnels.participating.info` - 참여 중인 터널 정보를 반환합니다.
-- `i2p.router.net.tunnels.i2ptunnel` - 구성된 I2PTunnel 컨트롤러 정보를 반환합니다(전체에 대한 빠른 통계).
-- `i2p.router.net.tunnels.exploratory.inbound` - 탐색용 수신 터널 수를 반환합니다.
-- `i2p.router.net.tunnels.exploratory.outbound` - 탐색용 발신 터널 수를 반환합니다.
-- `i2p.router.net.tunnels.exploratory.info.list` - 탐색용 터널 정보 목록을 반환합니다.
-- `i2p.router.net.tunnels.client.inbound` - 클라이언트 수신 터널 수를 반환합니다.
-- `i2p.router.net.tunnels.client.outbound` - 클라이언트 발신 터널 수를 반환합니다.
-- `i2p.router.net.tunnels.client.info.list` - 클라이언트 터널 정보 목록을 반환합니다.
+- `i2p.router.net.tunnels.shareratio` - 터널 공유 비율을 반환합니다. 반환 형식 - `double`
+- `i2p.router.net.tunnels.participating.info` - 참여 중인 터널 정보를 반환합니다. 반환 형식 - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.i2ptunnel` - 구성된 I2PTunnel 컨트롤러 정보를 반환합니다(모두에 대한 간단한 통계). 반환 형식 - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.exploratory.inbound` - 탐사용 수신 터널 수를 반환합니다. 반환 형식 - `int`
+- `i2p.router.net.tunnels.exploratory.outbound` - 탐사용 송신 터널 수를 반환합니다. 반환 형식 - `int`
+- `i2p.router.net.tunnels.exploratory.info.list` - 탐사용 터널 정보 목록을 반환합니다. 반환 형식 - `List<Map<String, Object>>`
+- `i2p.router.net.tunnels.client.inbound` - 클라이언트 수신 터널 수를 반환합니다. 반환 형식 - `int`
+- `i2p.router.net.tunnels.client.outbound` - 클라이언트 송신 터널 수를 반환합니다. 반환 형식 - `int`
+- `i2p.router.net.tunnels.client.info.list` - 클라이언트 터널 정보 목록을 반환합니다. 반환 형식 - `List<Map<String, Object>>`
 
-- `i2p.router.net.status.v6` - IPv6 네트워크 상태 코드를 반환합니다. *(i2pd에서 채택함)*
-- `i2p.router.net.error` - IPv4 네트워크 오류 코드를 반환합니다. *(i2pd에서 채택함)*
-- `i2p.router.net.error.v6` - IPv6 네트워크 오류 코드를 반환합니다. *(i2pd에서 채택함)*
-- `i2p.router.net.testing` - IPv4 네트워크가 테스트 상태인지 여부를 반환합니다(0 또는 1). *(i2pd에서 채택함)*
-- `i2p.router.net.testing.v6` - IPv6 네트워크가 테스트 상태인지 여부를 반환합니다(0 또는 1). *(i2pd에서 채택함)*
+- `i2p.router.net.status.v6` - IPv6 네트워크 상태 코드를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `int`
+- `i2p.router.net.error` - IPv4 네트워크 오류 코드를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `int`
+- `i2p.router.net.error.v6` - IPv6 네트워크 오류 코드를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `int`
+- `i2p.router.net.testing` - IPv4 네트워크가 테스트 상태인지 여부를 반환합니다 (0 또는 1). *(i2pd에서 채택함)* 반환 형식 - `int`
+- `i2p.router.net.testing.v6` - IPv6 네트워크가 테스트 상태인지 여부를 반환합니다 (0 또는 1). *(i2pd에서 채택함)* 반환 형식 - `int`
 
-- `i2p.router.net.tunnels.successrate` - 최근 터널 생성 성공률(%)을 반환합니다. *(i2pd에서 채택됨)*
-- `i2p.router.net.tunnels.totalsuccessrate` - 시작 이후 총 터널 생성 성공률(%)을 반환합니다. *(i2pd에서 채택됨)*
-- `i2p.router.net.tunnels.queue` - 터널 생성 요청 큐 크기를 반환합니다. *(i2pd에서 채택됨)*
-- `i2p.router.net.tunnels.tbmqueue` - 터널 생성 메시지(Tunnel Build Message) 큐 크기를 반환합니다. *(i2pd에서 채택됨)*
+- `i2p.router.net.tunnels.successrate` - 최근 터널 생성 성공률(%)을 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `double`
+- `i2p.router.net.tunnels.totalsuccessrate` - 시작 이후의 전체 터널 생성 성공률(%)을 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `double`
+- `i2p.router.net.tunnels.queue` - 터널 생성 요청 큐 크기를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `int`
+- `i2p.router.net.tunnels.tbmqueue` - 터널 생성 메시지(Tunnel Build Message) 큐 크기를 반환합니다. *(i2pd에서 채택함)* 반환 형식 - `int`
 
-- `i2p.router.netdb.peers` - 알려진 피어 해시 목록을 반환합니다.
-- `i2p.router.netdb.activepeers.info` - 활성 피어의 직렬화된 RouterInfo 데이터를 반환합니다.
-- `i2p.router.netdb.ntcp.limit` - NTCP 연결 제한 수를 반환합니다.
-- `i2p.router.netdb.ssu.limit` - SSU 연결 제한 수를 반환합니다.
-- `i2p.router.netdb.bannedpeers` - 차단된 피어와 차단 세부 정보를 반환합니다.
-- `i2p.router.netdb.activepeers.list` - 활성 피어 해시를 반환합니다.
-- `i2p.router.netdb.peers.list` - 알려진 피어 해시를 반환합니다.
-- `i2p.router.netdb.peers.info` - 알려진 피어의 직렬화된 RouterInfo 데이터를 반환합니다.
-- `i2p.router.netdb.activepeers.stats` - 활성 피어 통계를 반환합니다.
+- `i2p.router.netdb.peers` - 알려진 피어 해시 목록을 반환합니다. 반환 유형 - `List<String>`
+- `i2p.router.netdb.activepeers.info` - 활성 피어의 직렬화된 RouterInfo 데이터를 반환합니다. 반환 유형 - `List<String>`
+- `i2p.router.netdb.ntcp.limit` - NTCP 연결 제한을 반환합니다. 반환 유형 - `int`
+- `i2p.router.netdb.ssu.limit` - SSU 연결 제한을 반환합니다. 반환 유형 - `int`
+- `i2p.router.netdb.bannedpeers` - 차단된 피어와 차단 세부 정보를 반환합니다. 반환 유형 - `Map<String, Map<String, Object>>`
+- `i2p.router.netdb.activepeers.list` - 활성 피어 해시를 반환합니다. 반환 유형 - `List<String>`
+- `i2p.router.netdb.peers.list` - 알려진 피어 해시를 반환합니다. 반환 유형 - `List<String>`
+- `i2p.router.netdb.peers.info` - 알려진 피어의 직렬화된 RouterInfo 데이터를 반환합니다. 반환 유형 - `List<String>`
+- `i2p.router.netdb.activepeers.stats` - 활성 피어 통계를 반환합니다. 반환 유형 - `List<Map<String, Object>>`
 
-- `i2p.router.addressbook.private.list` - 개인 주소록 항목을 반환합니다.
-- `i2p.router.addressbook.local.list` - 로컬 주소록 항목을 반환합니다.
-- `i2p.router.addressbook.router.list` - 라우터 주소록 항목을 반환합니다.
-- `i2p.router.addressbook.published.list` - 공개된 주소록 항목을 반환합니다.
-- `i2p.router.addressbook.subscriptions` - 구독 파일 경로와 항목을 반환합니다.
-- `i2p.router.addressbook.config` - 주소록 설정 파일 경로와 항목을 반환합니다.
+- `i2p.router.addressbook.private.list` - 개인 주소록 항목을 반환합니다. 반환 형식 - `List<Map<String, String>>`
+- `i2p.router.addressbook.local.list` - 로컬 주소록 항목을 반환합니다. 반환 형식 - `List<Map<String, String>>`
+- `i2p.router.addressbook.router.list` - 라우터 주소록 항목을 반환합니다. 반환 형식 - `List<Map<String, String>>`
+- `i2p.router.addressbook.published.list` - 공개된 주소록 항목을 반환합니다. 반환 형식 - `List<Map<String, String>>`
+- `i2p.router.addressbook.subscriptions` - 구독 파일 경로와 항목을 반환합니다. 반환 형식 - `Map<String, Object>`
+- `i2p.router.addressbook.config` - 주소록 설정 파일 경로와 항목을 반환합니다. 반환 형식 - `Map<String, Object>`
 
 예시:
 
@@ -114,7 +115,7 @@ API 사양 및 메서드 ===========================
     "id": 1
 }
 ```
-방법 - 주소록 --------------------
+### 메서드 - 주소록 (SETTERS)
 
 `AddressBook` 메서드의 경우 주소록에 항목을 추가하거나 삭제하기 위해 세 가지 매개변수/인수가 필요합니다:
 
@@ -237,7 +238,7 @@ AddressBookConfig 편집을 위해:
   "id": 1
 }
 ```
-방법 - TunnelManager --------
+### 방법 - TunnelManager (1개의 마크된 GETTER, 나머지 SETTERS)
 
 `TunnelManager` 메서드는 I2PTunnel 컨트롤러를 생성, 편집, 조회, 시작, 중지, 재시작 및 삭제하는 데 사용됩니다.
 
@@ -428,7 +429,7 @@ LeaseSet 옵션:
   "id": 1
 }
 ```
-예제 가져오기:
+예제 가져오기 (읽기 전용) 반환값 - `Map<String, Object>`(정보) 및 `String`(상태):
 
 ```json
 {
@@ -490,7 +491,7 @@ LeaseSet 옵션:
   "id": 1
 }
 ```
-방법 - ClientServicesInfo *(i2pd에서 채택됨)* -------------------------------------------------
+### 방법 - ClientServicesInfo *(i2pd에서 채택함)*
 
 `ClientServicesInfo` 메서드는 라우터에서 실행 중인 클라이언트 서비스에 대한 상태 정보를 반환합니다. 각 서비스의 상태를 요청하려면 원하는 서비스 키를 `params`에 (임의의 값과 함께) 포함하세요.
 
@@ -534,28 +535,28 @@ LeaseSet 옵션:
   "id": 1
 }
 ```
-호환성 =============
+## 호환성
 
 기존 i2pcontrol API와의 호환성은 유지되어야 하며, 새로운 메서드와 매개변수는 기존 기능에 간섭하지 않는 방식으로 추가되어야 합니다. 이 제안을 사용하는 새로운 애플리케이션은 추가된 정보와 기능을 활용할 수 있는 반면, 기존의 i2pcontrol API를 사용하는 애플리케이션은 수정 없이 계속 정상 작동해야 합니다.
 
-구현 ==============
+## 구현
 
-Java I2P --------
+### Java I2P
 
 이 제안은 아직 Java I2P에 구현되어 있지 않지만, 코드는 [i2p.plugins.i2pcontrol](https://github.com/i2p/i2p.plugins.i2pcontrol) 저장소의 풀 리퀘스트 [#6](https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6)에서 확인할 수 있습니다. 기존 코드에 영향을 주지 않으면서도 새로운 메서드의 테스트와 개발을 가능하게 하기 위해 이렇게 진행되었습니다. 코드가 실용화 준비가 완료되는 대로, i2pcontrol 디렉터리 아래의 주요 I2P 저장소에 통합될 예정입니다.
 
-i2pd ----
+### i2pd
 
-"(i2pd에서 채택됨)"으로 표시된 메서드와 매개변수는 i2pd에서 구현되어 있으며 본 제안에서 변경되지 않습니다. i2pd의 확장 기능은 본 제안의 일환으로 수정이 필요하지 않습니다. 별도의 표시가 없는 본 제안의 부분들은 i2pd에서 구현되지 않았습니다.
+"(i2pd에서 채택됨)"으로 표시된 메서드와 매개변수는 i2pd에서 구현되어 있으며 본 제안에서 변경되지 않습니다. i2pd의 확장 기능은 본 제안의 일환으로 수정이 필요하지 않습니다. 별도의 표시가 없는 본 제안의 부분들은 i2pd에 구현되어 있지 않습니다.
 
-go-i2p ------
+### go-i2p
 
 go-i2p는 라우터 콘솔 애플리케이션을 가능하게 하고 향상시키기 위해 이 제안을 추진하고자 한다. 향후 이 제안을 채택하고 구현할 예정이다.
 
-emissary --------
+### Emissary
 
 에미서리(Emissary)에서의 채택 가능성은 현재로서는 불확실하지만, 에미서리는 go-i2p와 동일한 방식으로 이 제안으로부터 혜택을 받을 가능성이 높다.
 
-성능 ===========
+## 성능
 
 성능에 영향을 미칠 것으로 예상되지 않습니다.
