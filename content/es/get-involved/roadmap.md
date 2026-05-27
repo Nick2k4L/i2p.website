@@ -25,7 +25,16 @@ Target: August 2026
 - SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
 - Continue work on per-tunnel throttling and bandwidth parameters
+- Connection limit management improvements
+- Memory usage reduction for floodfills
+- Peer profile management improvements
 - Refactor Noise initialization
+- Remember deleted hosts in addressbook so they don't return
+- SSU2 token management improvements
+- SSU2 peer test improvements
+- Security fixes to address audit issues
+- Update minidns to 1.1.1
+- Update json-simple to 2.3.1
 
 
 
