@@ -369,163 +369,163 @@ Ayrıca [I2CP Javadocs](http://javadoc.i2p.net/net/i2p/data/i2cp/package-summary
 <th style="border: 1px solid var(--color-border); padding: 8px;">Since</th>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#bandwidthlimitsmessage">BandwidthLimitsMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#BandwidthLimitsMessage">BandwidthLimitsMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">23</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.7.2</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#blindinginfomessage">BlindingInfoMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#BlindingInfoMessage">BlindingInfoMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">42</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.43</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#createleasesetmessage">CreateLeaseSetMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#CreateLeaseSetMessage">CreateLeaseSetMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">deprecated</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#createleaseset2message">CreateLeaseSet2Message</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#CreateLeaseSet2Message">CreateLeaseSet2Message</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">41</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.39</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#createsessionmessage">CreateSessionMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#CreateSessionMessage">CreateSessionMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#destlookupmessage">DestLookupMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#DestLookupMessage">DestLookupMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">34</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.7</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#destreplymessage">DestReplyMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#DestReplyMessage">DestReplyMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">35</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.7</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#destroysessionmessage">DestroySessionMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#DestroySessionMessage">DestroySessionMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#disconnectmessage">DisconnectMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#DisconnectMessage">DisconnectMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">bidir.</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">30</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#getbandwidthlimitsmessage">GetBandwidthLimitsMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#GetBandwidthLimitsMessage">GetBandwidthLimitsMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">8</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.7.2</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#getdatemessage">GetDateMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#GetDateMessage">GetDateMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#hostlookupmessage">HostLookupMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#HostLookupMessage">HostLookupMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">38</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.11</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#hostreplymessage">HostReplyMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#HostReplyMessage">HostReplyMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">39</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.11</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#messagepayloadmessage">MessagePayloadMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#MessagePayloadMessage">MessagePayloadMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">31</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#messagestatusmessage">MessageStatusMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#MessageStatusMessage">MessageStatusMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">22</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#receivemessagebeginmessage">ReceiveMessageBeginMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#ReceiveMessageBeginMessage">ReceiveMessageBeginMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">deprecated</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#receivemessageendmessage">ReceiveMessageEndMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#ReceiveMessageEndMessage">ReceiveMessageEndMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">deprecated</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#reconfiguresessionmessage">ReconfigureSessionMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#ReconfigureSessionMessage">ReconfigureSessionMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">2</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.7.1</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#reportabusemessage">ReportAbuseMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#ReportAbuseMessage">ReportAbuseMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">bidir.</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">29</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">deprecated</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#requestleasesetmessage">RequestLeaseSetMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#RequestLeaseSetMessage">RequestLeaseSetMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">21</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">deprecated</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#requestvariableleasesetmessage">RequestVariableLeaseSetMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#RequestVariableLeaseSetMessage">RequestVariableLeaseSetMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">37</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.7</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#sendmessagemessage">SendMessageMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#SendMessageMessage">SendMessageMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">5</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#sendmessageexpiresmessage">SendMessageExpiresMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#SendMessageExpiresMessage">SendMessageExpiresMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">C -> R</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">36</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.7.1</td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#sessionstatusmessage">SessionStatusMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#SessionStatusMessage">SessionStatusMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">20</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 <tr>
-<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#msg-setdate">SetDateMessage</a></td>
+<td style="border: 1px solid var(--color-border); padding: 8px;"><a href="#SetDateMessage">SetDateMessage</a></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">R -> C</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">33</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 </tr>
 </table>
-### BandwidthLimitsMessage {#msg-BandwidthLimits}
+### BandwidthLimitsMessage {#BandwidthLimitsMessage}
 
 #### Açıklama
 
 İstemciye bant genişliği sınırlarının ne olduğunu söyle.
 
-Router'dan Client'a [GetBandwidthLimitsMessage](#getbandwidthlimitsmessage) yanıtı olarak gönderilir.
+Router'dan Client'a [GetBandwidthLimitsMessage](#GetBandwidthLimitsMessage) yanıtı olarak gönderilir.
 
 #### İçindekiler
 
@@ -549,7 +549,7 @@ Router'dan Client'a [GetBandwidthLimitsMessage](#getbandwidthlimitsmessage) yan�
 
 İstemci sınırları ayarlanmış tek değerler olabilir ve gerçek router sınırları, router sınırlarının bir yüzdesi veya belirli istemciye özgü olabilir, uygulama bağımlıdır. Router sınırları olarak etiketlenen tüm değerler 0 olabilir, uygulama bağımlıdır. 0.7.2 sürümü itibariyle.
 
-### BlindingInfoMessage {#msg-BlindingInfo}
+### BlindingInfoMessage {#BlindingInfoMessage}
 
 #### Açıklama
 
@@ -596,13 +596,13 @@ Router bu mesaja yanıt göndermez. İstemciden Router'a gönderilir.
 - Hash endpoint türü muhtemelen faydalı değildir, router adres defterinde ters arama yaparak Destination'ı alamadığı sürece.
 - Hostname endpoint türü muhtemelen faydalı değildir, router adres defterinde arama yaparak Destination'ı alamadığı sürece.
 
-### CreateLeaseSetMessage {#msg-CreateLeaseSet}
+### CreateLeaseSetMessage {#CreateLeaseSetMessage}
 
 KULLANIMI TERCİH EDİLMEZ. LeaseSet2, çevrimdışı anahtarlar, ElGamal olmayan şifreleme türleri, çoklu şifreleme türleri veya şifrelenmiş LeaseSet'ler için kullanılamaz. Tüm router'larda 0.9.39 veya daha yüksek sürümlerle CreateLeaseSet2Message kullanın.
 
 #### Açıklama
 
-Bu mesaj bir [RequestLeaseSetMessage](#requestleasesetmessage) veya [RequestVariableLeaseSetMessage](#requestvariableleasesetmessage) yanıtı olarak gönderilir ve I2NP Ağ Veritabanına yayınlanması gereken tüm [Lease](/docs/specs/common-structures/#lease) yapılarını içerir.
+Bu mesaj bir [RequestLeaseSetMessage](#RequestLeaseSetMessage) veya [RequestVariableLeaseSetMessage](#RequestVariableLeaseSetMessage) yanıtı olarak gönderilir ve I2NP Ağ Veritabanına yayınlanması gereken tüm [Lease](/docs/specs/common-structures/#lease) yapılarını içerir.
 
 İstemciden Router'a gönderildi.
 
@@ -622,11 +622,11 @@ PrivateKey, LeaseSet'ten gelen [PublicKey](/docs/specs/common-structures/#public
 
 İptal işlevi uygulanmamıştır. Herhangi bir istemci kütüphanesinde birden fazla router'a bağlantı uygulanmamıştır.
 
-### CreateLeaseSet2Message {#msg-CreateLeaseSet2}
+### CreateLeaseSet2Message {#CreateLeaseSet2Message}
 
 #### Açıklama
 
-Bu mesaj bir [RequestLeaseSetMessage](#requestleasesetmessage) veya [RequestVariableLeaseSetMessage](#requestvariableleasesetmessage) yanıtı olarak gönderilir ve I2NP Ağ Veritabanına yayınlanması gereken tüm [Lease](/docs/specs/common-structures/#lease) yapılarını içerir.
+Bu mesaj bir [RequestLeaseSetMessage](#RequestLeaseSetMessage) veya [RequestVariableLeaseSetMessage](#RequestVariableLeaseSetMessage) yanıtı olarak gönderilir ve I2NP Ağ Veritabanına yayınlanması gereken tüm [Lease](/docs/specs/common-structures/#lease) yapılarını içerir.
 
 Client'tan Router'a gönderilir. 0.9.39 sürümünden beri. EncryptedLeaseSet için client başına kimlik doğrulama 0.9.41 sürümünden itibaren desteklenmektedir. MetaLeaseSet henüz I2CP aracılığıyla desteklenmemektedir. Daha fazla bilgi için öneri 123'e bakınız.
 
@@ -658,13 +658,13 @@ Daha önce iptal için tanımlanmış ve kullanılmamış olan imzalama özel an
 
 Mesaj tipi 40 ile ön sürüm 0.9.38'de bulunuyordu ancak format değiştirildi. Tip 40 terk edildi ve desteklenmiyor. Tip 41, 0.9.39'a kadar geçerli değil.
 
-### CreateSessionMessage {#msg-CreateSession}
+### CreateSessionMessage {#CreateSessionMessage}
 
 #### Açıklama
 
 Bu mesaj, bir oturumu başlatmak için bir istemciden gönderilir; burada oturum, tek bir Destination'ın ağa bağlantısı olarak tanımlanır ve bu Destination için tüm mesajlar bu bağlantıya teslim edilecek ve bu Destination'ın diğer herhangi bir Destination'a gönderdiği tüm mesajlar bu bağlantı üzerinden gönderilecektir.
 
-İstemciden Router'a gönderilir. Router bir [SessionStatusMessage](#sessionstatusmessage) ile yanıtlar.
+İstemciden Router'a gönderilir. Router bir [SessionStatusMessage](#SessionStatusMessage) ile yanıtlar.
 
 #### İçindekiler
 
@@ -673,8 +673,8 @@ Bu mesaj, bir oturumu başlatmak için bir istemciden gönderilir; burada oturum
 #### Notlar
 
 - Bu, istemci tarafından gönderilen ikinci mesajdır. Daha önce istemci
-  bir [GetDateMessage](#getdatemessage) gönderdi ve bir
-  [SetDateMessage](#msg-setdate) yanıtı aldı.
+  bir [GetDateMessage](#GetDateMessage) gönderdi ve bir
+  [SetDateMessage](#SetDateMessage) yanıtı aldı.
 - Session Config içindeki Tarih, router'ın mevcut zamanından çok uzaksa (+/- 30
   saniyeden fazla), oturum reddedilecektir.
 - Bu Destination için router'da zaten bir oturum varsa,
@@ -682,11 +682,11 @@ Bu mesaj, bir oturumu başlatmak için bir istemciden gönderilir; burada oturum
 - Session Config içindeki [Mapping](/docs/specs/common-structures/#mapping), imzanın
   router'da doğru şekilde doğrulanabilmesi için anahtar bazında sıralanmış olmalıdır.
 
-### DestLookupMessage {#msg-DestLookup}
+### DestLookupMessage {#DestLookupMessage}
 
 #### Açıklama
 
-Client'tan Router'a gönderilir. Router bir [DestReplyMessage](#destreplymessage) ile yanıt verir.
+Client'tan Router'a gönderilir. Router bir [DestReplyMessage](#DestReplyMessage) ile yanıt verir.
 
 #### İçindekiler
 
@@ -698,13 +698,13 @@ Client'tan Router'a gönderilir. Router bir [DestReplyMessage](#destreplymessage
 
 0.8.3 sürümünden itibaren, birden fazla bekleyen arama desteklenmekte ve aramalar hem I2PSimpleSession'da hem de standart oturumlarda desteklenmektedir.
 
-[HostLookupMessage](#hostlookupmessage) 0.9.11 sürümünden itibaren tercih edilir.
+[HostLookupMessage](#HostLookupMessage) 0.9.11 sürümünden itibaren tercih edilir.
 
-### DestReplyMessage {#msg-DestReply}
+### DestReplyMessage {#DestReplyMessage}
 
 #### Açıklama
 
-Router'dan Client'a bir [DestLookupMessage](#destlookupmessage)'a yanıt olarak gönderilir.
+Router'dan Client'a bir [DestLookupMessage](#DestLookupMessage)'a yanıt olarak gönderilir.
 
 #### İçindekiler
 
@@ -717,13 +717,13 @@ Router'dan Client'a bir [DestLookupMessage](#destlookupmessage)'a yanıt olarak 
 
 0.8.3 sürümünden itibaren, arama başarısız olursa istenen Hash döndürülür, böylece istemci birden fazla bekleyen arama yapabilir ve yanıtları aramalarla ilişkilendirebilir. Bir Destination yanıtını bir istekle ilişkilendirmek için Destination'ın Hash'ini alın. 0.8.3 sürümünden önce, başarısızlık durumunda yanıt boştu.
 
-### DestroySessionMessage {#msg-DestroySession}
+### DestroySessionMessage {#DestroySessionMessage}
 
 #### Açıklama
 
 Bu mesaj, bir oturumu sonlandırmak için istemciden gönderilir.
 
-Client'tan router'a gönderilir. Router bir [SessionStatusMessage](#sessionstatusmessage) (Destroyed) ile yanıt vermelidir. Ancak, aşağıdaki önemli notlara bakın.
+Client'tan router'a gönderilir. Router bir [SessionStatusMessage](#SessionStatusMessage) (Destroyed) ile yanıt vermelidir. Ancak, aşağıdaki önemli notlara bakın.
 
 #### İçindekiler
 
@@ -733,7 +733,7 @@ Client'tan router'a gönderilir. Router bir [SessionStatusMessage](#sessionstatu
 
 Bu noktada router, oturumla ilgili tüm kaynakları serbest bırakmalıdır.
 
-API 0.9.66 aracılığıyla, Java I2P router ve istemci kütüphaneleri bu spesifikasyondan önemli ölçüde sapma gösterir. Router hiçbir zaman SessionStatus(Destroyed) yanıtı göndermez. Hiç oturum kalmadığında, bir [DisconnectMessage](#disconnectmessage) gönderir. Alt oturumlar varsa veya birincil oturum devam ediyorsa, yanıt vermez.
+API 0.9.66 aracılığıyla, Java I2P router ve istemci kütüphaneleri bu spesifikasyondan önemli ölçüde sapma gösterir. Router hiçbir zaman SessionStatus(Destroyed) yanıtı göndermez. Hiç oturum kalmadığında, bir [DisconnectMessage](#DisconnectMessage) gönderir. Alt oturumlar varsa veya birincil oturum devam ediyorsa, yanıt vermez.
 
 Java client kütüphanesi SessionStatus mesajına tüm oturumları yok ederek ve yeniden bağlanarak yanıt verir.
 
@@ -741,7 +741,7 @@ Birden fazla oturuma sahip bir bağlantıda tekil alt oturumları yok etme işle
 
 Uygulamalar bir birincil oturum için destroy komutunu tüm alt oturumlar için destroy komutu olarak ele almalı, ancak tek bir alt oturum için destroy komutuna izin vermeli ve bağlantıyı açık tutmalıdır, fakat Java I2P şu anda bunu yapmamaktadır. Eğer Java I2P davranışı sonraki sürümlerde değiştirilirse, burada belgelenecektir.
 
-### DisconnectMessage {#msg-Disconnect}
+### DisconnectMessage {#DisconnectMessage}
 
 #### Açıklama
 
@@ -755,13 +755,13 @@ Diğer tarafa sorun olduğunu ve mevcut bağlantının yok edilmek üzere olduğ
 
 Yalnızca router-to-client yönünde uygulanmıştır, en azından Java I2P'de.
 
-### GetBandwidthLimitsMessage {#msg-GetBandwidthLimits}
+### GetBandwidthLimitsMessage {#GetBandwidthLimitsMessage}
 
 #### Açıklama
 
 Router'ın mevcut bant genişliği limitlerinin ne olduğunu belirtmesini talep et.
 
-Client'tan Router'a gönderilir. Router bir [BandwidthLimitsMessage](#bandwidthlimitsmessage) ile yanıtlar.
+Client'tan Router'a gönderilir. Router bir [BandwidthLimitsMessage](#BandwidthLimitsMessage) ile yanıtlar.
 
 #### İçindekiler
 
@@ -773,11 +773,11 @@ Client'tan Router'a gönderilir. Router bir [BandwidthLimitsMessage](#bandwidthl
 
 0.8.3 sürümünden itibaren, hem I2PSimpleSession'da hem de standart oturumlarda desteklenmektedir.
 
-### GetDateMessage {#msg-GetDate}
+### GetDateMessage {#GetDateMessage}
 
 #### Açıklama
 
-Client'tan Router'a gönderilir. Router bir [SetDateMessage](#msg-setdate) ile yanıt verir.
+Client'tan Router'a gönderilir. Router bir [SetDateMessage](#SetDateMessage) ile yanıt verir.
 
 #### İçindekiler
 
@@ -788,15 +788,15 @@ Client'tan Router'a gönderilir. Router bir [SetDateMessage](#msg-setdate) ile y
 
 - Genellikle protocol sürüm byte'ını gönderdikten sonra istemci tarafından gönderilen ilk mesaj.
 - Sürüm dizesi 0.8.7 sürümünden itibaren dahil edilmiştir. Bu sadece istemci ve router aynı JVM'de değilse yararlıdır. Eğer mevcut değilse, istemci 0.8.6 sürümü veya daha eskidir.
-- 0.9.11 sürümünden itibaren, kimlik doğrulama [Mapping](/docs/specs/common-structures/#mapping)'i i2cp.username ve i2cp.password anahtarları ile dahil edilebilir. Bu mesaj imzalanmadığı için Mapping'in sıralanması gerekmez. 0.9.10 dahil ve öncesinde, kimlik doğrulama [Session Config](#struct-sessionconfig) Mapping'inde dahil edilir ve [GetDateMessage](#getdatemessage), [GetBandwidthLimitsMessage](#getbandwidthlimitsmessage) veya [DestLookupMessage](#destlookupmessage) için hiçbir kimlik doğrulama zorlanmaz. Etkinleştirildiğinde, 0.9.16 sürümünden itibaren [GetDateMessage](#getdatemessage) aracılığıyla kimlik doğrulama diğer tüm mesajlardan önce gereklidir. Bu sadece router bağlamı dışında yararlıdır. Bu uyumsuz bir değişikliktir, ancak sadece kimlik doğrulamalı router bağlamı dışındaki oturumları etkileyecektir ki bu nadir olmalıdır.
+- 0.9.11 sürümünden itibaren, kimlik doğrulama [Mapping](/docs/specs/common-structures/#mapping)'i i2cp.username ve i2cp.password anahtarları ile dahil edilebilir. Bu mesaj imzalanmadığı için Mapping'in sıralanması gerekmez. 0.9.10 dahil ve öncesinde, kimlik doğrulama [Session Config](#struct-sessionconfig) Mapping'inde dahil edilir ve [GetDateMessage](#GetDateMessage), [GetBandwidthLimitsMessage](#GetBandwidthLimitsMessage) veya [DestLookupMessage](#DestLookupMessage) için hiçbir kimlik doğrulama zorlanmaz. Etkinleştirildiğinde, 0.9.16 sürümünden itibaren [GetDateMessage](#GetDateMessage) aracılığıyla kimlik doğrulama diğer tüm mesajlardan önce gereklidir. Bu sadece router bağlamı dışında yararlıdır. Bu uyumsuz bir değişikliktir, ancak sadece kimlik doğrulamalı router bağlamı dışındaki oturumları etkileyecektir ki bu nadir olmalıdır.
 
-### HostLookupMessage {#msg-HostLookup}
+### HostLookupMessage {#HostLookupMessage}
 
 #### Açıklama
 
-Client'tan Router'a gönderilir. Router bir [HostReplyMessage](#hostreplymessage) ile yanıtlar.
+Client'tan Router'a gönderilir. Router bir [HostReplyMessage](#HostReplyMessage) ile yanıtlar.
 
-Bu, [DestLookupMessage](#destlookupmessage) yerine geçer ve bir istek kimliği, zaman aşımı ve ana bilgisayar adı arama desteği ekler. Hash aramalarını da desteklediği için, router bunu destekliyorsa tüm aramalar için kullanılabilir. Ana bilgisayar adı aramaları için router, kendi bağlamındaki adlandırma hizmetini sorgulayacaktır. Bu yalnızca client, router bağlamının dışındaysa yararlıdır. Router bağlamının içinde, client'ın adlandırma hizmetini kendisi sorgulaması çok daha verimlidir.
+Bu, [DestLookupMessage](#DestLookupMessage) yerine geçer ve bir istek kimliği, zaman aşımı ve ana bilgisayar adı arama desteği ekler. Hash aramalarını da desteklediği için, router bunu destekliyorsa tüm aramalar için kullanılabilir. Ana bilgisayar adı aramaları için router, kendi bağlamındaki adlandırma hizmetini sorgulayacaktır. Bu yalnızca client, router bağlamının dışındaysa yararlıdır. Router bağlamının içinde, client'ın adlandırma hizmetini kendisi sorgulaması çok daha verimlidir.
 
 #### İçindekiler
 
@@ -846,16 +846,16 @@ Tip 2-4, LeaseSet'ten gelen seçenekler eşlemesinin HostReply mesajında dönd�
 
 #### Notlar
 
-- 0.9.11 sürümünden itibaren. Eski router'lar için [DestLookupMessage](#destlookupmessage) kullanın.
-- Oturum ID'si ve istek ID'si [HostReplyMessage](#hostreplymessage) içinde döndürülecektir. Oturum yoksa oturum ID'si için 0xFFFF kullanın.
+- 0.9.11 sürümünden itibaren. Eski router'lar için [DestLookupMessage](#DestLookupMessage) kullanın.
+- Oturum ID'si ve istek ID'si [HostReplyMessage](#HostReplyMessage) içinde döndürülecektir. Oturum yoksa oturum ID'si için 0xFFFF kullanın.
 - Zaman aşımı Hash aramaları için faydalıdır. Önerilen minimum 10,000 (10 saniye). Gelecekte uzak adlandırma hizmeti aramaları için de faydalı olabilir. Değer, hızlı olması gereken yerel ana bilgisayar adı aramaları için dikkate alınmayabilir.
 - Base 32 ana bilgisayar adı araması desteklenir ancak önce Hash'e dönüştürmek tercih edilir.
 
-### HostReplyMessage {#msg-HostReply}
+### HostReplyMessage {#HostReplyMessage}
 
 #### Açıklama
 
-Router tarafından Client'a [HostLookupMessage](#hostlookupmessage) yanıtı olarak gönderilir.
+Router tarafından Client'a [HostLookupMessage](#HostLookupMessage) yanıtı olarak gönderilir.
 
 #### İçindekiler
 
@@ -883,9 +883,9 @@ Bir arama türü desteklenmiyorsa, yanıt yeni bir hata kodu 7 (arama türü des
 
 #### Notlar
 
-- 0.9.11 sürümü itibariyle. [HostLookupMessage](#hostlookupmessage)
+- 0.9.11 sürümü itibariyle. [HostLookupMessage](#HostLookupMessage)
   notlarına bakın.
-- Session ID ve request ID, [HostLookupMessage](#hostlookupmessage)'dan
+- Session ID ve request ID, [HostLookupMessage](#HostLookupMessage)'dan
   gelenlerin aynısıdır.
 - Sonuç kodu başarı için 0, başarısızlık için 1-255'tir. 1 genel bir
   başarısızlığı gösterir. 0.9.43 itibariyle, "b33" aramalar için genişletilmiş
@@ -894,13 +894,13 @@ Bir arama türü desteklenmiyorsa, yanıt yeni bir hata kodu 7 (arama türü des
   aramalar için genişletilmiş hataları desteklemek üzere ek başarısızlık
   kodları 6-7 tanımlandı. Ek bilgi için 167 numaralı öneriye bakın.
 
-### MessagePayloadMessage {#msg-MessagePayload}
+### MessagePayloadMessage {#MessagePayloadMessage}
 
 #### Açıklama
 
 Bir mesajın yükünü istemciye ilet.
 
-Router'dan İstemci'ye gönderilir. Eğer i2cp.fastReceive=true ise (ki bu varsayılan değil), istemci bir [ReceiveMessageEndMessage](#receivemessageendmessage) ile yanıt verir.
+Router'dan İstemci'ye gönderilir. Eğer i2cp.fastReceive=true ise (ki bu varsayılan değil), istemci bir [ReceiveMessageEndMessage](#ReceiveMessageEndMessage) ile yanıt verir.
 
 #### İçindekiler
 
@@ -910,11 +910,11 @@ Router'dan İstemci'ye gönderilir. Eğer i2cp.fastReceive=true ise (ki bu varsa
 
 #### Notlar
 
-### MessageStatusMessage {#msg-MessageStatus}
+### MessageStatusMessage {#MessageStatusMessage}
 
 #### Açıklama
 
-Gelen veya giden bir mesajın teslimat durumunu istemciye bildir. Router'dan İstemciye gönderilir. Bu mesaj gelen bir mesajın mevcut olduğunu belirtiyorsa, istemci bir [ReceiveMessageBeginMessage](#receivemessagebeginmessage) ile yanıt verir. Giden bir mesaj için, bu bir [SendMessageMessage](#sendmessagemessage) veya [SendMessageExpiresMessage](#sendmessageexpiresmessage) için bir yanıttır.
+Gelen veya giden bir mesajın teslimat durumunu istemciye bildir. Router'dan İstemciye gönderilir. Bu mesaj gelen bir mesajın mevcut olduğunu belirtiyorsa, istemci bir [ReceiveMessageBeginMessage](#ReceiveMessageBeginMessage) ile yanıt verir. Giden bir mesaj için, bu bir [SendMessageMessage](#SendMessageMessage) veya [SendMessageExpiresMessage](#SendMessageExpiresMessage) için bir yanıttır.
 
 #### İçindekiler
 
@@ -949,7 +949,7 @@ Tüm durum kodları:
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Accepted</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">Outgoing message accepted by the local router for delivery. The included nonce matches the nonce in the <a href="#sendmessagemessage">SendMessageMessage</a>, and the included Message ID will be used for subsequent success or failure notification.</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">Outgoing message accepted by the local router for delivery. The included nonce matches the nonce in the <a href="#SendMessageMessage">SendMessageMessage</a>, and the included Message ID will be used for subsequent success or failure notification.</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">2</td>
@@ -1084,15 +1084,15 @@ Tüm durum kodları:
 <td style="border: 1px solid var(--color-border); padding: 8px;">The message was attempted to be sent from and to the same destination or session. This is a guaranteed failure.</td>
 </tr>
 </table>
-Status = 1 (kabul edildi) olduğunda, nonce [SendMessageMessage](#sendmessagemessage) içindeki nonce ile eşleşir ve dahil edilen Message ID sonraki başarı veya başarısızlık bildirimleri için kullanılacaktır. Aksi takdirde, nonce yok sayılabilir.
+Status = 1 (kabul edildi) olduğunda, nonce [SendMessageMessage](#SendMessageMessage) içindeki nonce ile eşleşir ve dahil edilen Message ID sonraki başarı veya başarısızlık bildirimleri için kullanılacaktır. Aksi takdirde, nonce yok sayılabilir.
 
-### ReceiveMessageBeginMessage {#msg-ReceiveMessageBegin}
+### ReceiveMessageBeginMessage {#ReceiveMessageBeginMessage}
 
 KULLANIM DIŞI. i2pd tarafından desteklenmiyor.
 
 #### Açıklama
 
-Router'dan önceden bildirilmiş bir mesajı teslim etmesini talep et. İstemciden Router'a gönderilir. Router bir [MessagePayloadMessage](#messagepayloadmessage) ile yanıt verir.
+Router'dan önceden bildirilmiş bir mesajı teslim etmesini talep et. İstemciden Router'a gönderilir. Router bir [MessagePayloadMessage](#MessagePayloadMessage) ile yanıt verir.
 
 #### İçindekiler
 
@@ -1101,11 +1101,11 @@ Router'dan önceden bildirilmiş bir mesajı teslim etmesini talep et. İstemcid
 
 #### Notlar
 
-[ReceiveMessageBeginMessage](#receivemessagebeginmessage), yeni bir mesajın alınmaya hazır olduğunu belirten bir [MessageStatusMessage](#messagestatusmessage)'a yanıt olarak gönderilir. Eğer [ReceiveMessageBeginMessage](#receivemessagebeginmessage)'da belirtilen mesaj kimliği geçersiz veya yanlışsa, router basitçe yanıt vermeyebilir veya bir [DisconnectMessage](#disconnectmessage) geri gönderebilir.
+[ReceiveMessageBeginMessage](#ReceiveMessageBeginMessage), yeni bir mesajın alınmaya hazır olduğunu belirten bir [MessageStatusMessage](#MessageStatusMessage)'a yanıt olarak gönderilir. Eğer [ReceiveMessageBeginMessage](#ReceiveMessageBeginMessage)'da belirtilen mesaj kimliği geçersiz veya yanlışsa, router basitçe yanıt vermeyebilir veya bir [DisconnectMessage](#DisconnectMessage) geri gönderebilir.
 
 Bu, 0.9.4 sürümünden itibaren varsayılan olan "hızlı alma" modunda kullanılmaz.
 
-### ReceiveMessageEndMessage {#msg-ReceiveMessageEnd}
+### ReceiveMessageEndMessage {#ReceiveMessageEndMessage}
 
 KULLANIM DIŞI. i2pd tarafından desteklenmiyor.
 
@@ -1122,15 +1122,15 @@ Router'a bir mesajın başarıyla teslim edildiğini ve router'ın mesajı sileb
 
 #### Notlar
 
-[ReceiveMessageEndMessage](#receivemessageendmessage), bir [MessagePayloadMessage](#messagepayloadmessage) bir mesajın yükünü tamamen teslim ettikten sonra gönderilir.
+[ReceiveMessageEndMessage](#ReceiveMessageEndMessage), bir [MessagePayloadMessage](#MessagePayloadMessage) bir mesajın yükünü tamamen teslim ettikten sonra gönderilir.
 
 Bu, 0.9.4 sürümünden itibaren varsayılan olan "hızlı alma" modunda kullanılmamaktadır.
 
-### ReconfigureSessionMessage {#msg-ReconfigureSession}
+### ReconfigureSessionMessage {#ReconfigureSessionMessage}
 
 #### Açıklama
 
-İstemciden router'a oturum yapılandırmasını güncellemek için gönderilir. Router bir [SessionStatusMessage](#sessionstatusmessage) ile yanıt verir.
+İstemciden router'a oturum yapılandırmasını güncellemek için gönderilir. Router bir [SessionStatusMessage](#SessionStatusMessage) ile yanıt verir.
 
 #### İçindekiler
 
@@ -1142,10 +1142,10 @@ Bu, 0.9.4 sürümünden itibaren varsayılan olan "hızlı alma" modunda kullan�
 - 0.7.1 sürümü itibariyle.
 - Session Config içindeki Date, router'ın mevcut zamanından çok uzaksa (30 saniyeden fazla +/- fark), session reddedilecektir.
 - Session Config içindeki [Mapping](/docs/specs/common-structures/#mapping), signature'ın router'da doğru şekilde doğrulanması için anahtara göre sıralanmış olmalıdır.
-- Bazı konfigürasyon seçenekleri yalnızca [CreateSessionMessage](#createsessionmessage) içinde ayarlanabilir ve buradaki değişiklikler router tarafından tanınmayacaktır. tunnel seçenekleri inbound.\* ve outbound.\* değişiklikleri her zaman tanınır.
+- Bazı konfigürasyon seçenekleri yalnızca [CreateSessionMessage](#CreateSessionMessage) içinde ayarlanabilir ve buradaki değişiklikler router tarafından tanınmayacaktır. tunnel seçenekleri inbound.\* ve outbound.\* değişiklikleri her zaman tanınır.
 - Genel olarak, router güncellenmiş config'i mevcut config ile birleştirmeli, böylece güncellenmiş config yalnızca yeni veya değiştirilmiş seçenekleri içermesi yeterli. Ancak birleştirme nedeniyle, seçenekler bu şekilde kaldırılamaz; açıkça istenen varsayılan değere ayarlanmalıdır.
 
-### ReportAbuseMessage {#msg-ReportAbuse}
+### ReportAbuseMessage {#ReportAbuseMessage}
 
 KULLANIM DIŞI, KULLANILMIYOR, DESTEKLENMİYOR
 
@@ -1164,15 +1164,15 @@ Router'dan istemciye veya istemciden router'a gönderilir.
 
 #### Notlar
 
-Kullanılmıyor. Tam olarak uygulanmamış. Hem router hem de istemci bir [ReportAbuseMessage](#reportabusemessage) oluşturabilir, ancak hiçbirinin mesaj alındığında bunu işleyecek bir işleyicisi yoktur.
+Kullanılmıyor. Tam olarak uygulanmamış. Hem router hem de istemci bir [ReportAbuseMessage](#ReportAbuseMessage) oluşturabilir, ancak hiçbirinin mesaj alındığında bunu işleyecek bir işleyicisi yoktur.
 
-### RequestLeaseSetMessage {#msg-RequestLeaseSet}
+### RequestLeaseSetMessage {#RequestLeaseSetMessage}
 
 KULLANIM DIŞI. i2pd tarafından desteklenmiyor. Java I2P tarafından 0.9.7 veya daha yüksek sürümdeki istemcilere gönderilmiyor (2013-07). RequestVariableLeaseSetMessage kullanın.
 
 #### Açıklama
 
-Bir istemcinin belirli bir gelen tunnel kümesinin dahil edilmesini yetkilendirmesini talep eder. Router'dan İstemciye gönderilir. İstemci bir [CreateLeaseSetMessage](#createleasesetmessage) ile yanıt verir.
+Bir istemcinin belirli bir gelen tunnel kümesinin dahil edilmesini yetkilendirmesini talep eder. Router'dan İstemciye gönderilir. İstemci bir [CreateLeaseSetMessage](#CreateLeaseSetMessage) ile yanıt verir.
 
 Bir oturum üzerinde gönderilen bu mesajların ilki, tunnel'ların oluşturulduğu ve trafik için hazır olduğuna dair istemciye bir sinyaldir. Router, en az bir gelen VE bir giden tunnel oluşturulana kadar bu mesajların ilkini göndermemelidir. İstemciler, bu mesajların ilki belirli bir süre sonra alınmadığında oturumu zaman aşımına uğratıp yok etmelidir (önerilen: 5 dakika veya daha fazla).
 
@@ -1187,15 +1187,15 @@ Bir oturum üzerinde gönderilen bu mesajların ilki, tunnel'ların oluşturuldu
 
 #### Notlar
 
-Bu, tüm [Lease](/docs/specs/common-structures/#lease) girişleri aynı anda sona erecek şekilde ayarlanmış bir [LeaseSet](/docs/specs/common-structures/#leaseset) talep eder. İstemci sürümü 0.9.7 veya daha yüksek olan durumlar için [RequestVariableLeaseSetMessage](#requestvariableleasesetmessage) kullanılır.
+Bu, tüm [Lease](/docs/specs/common-structures/#lease) girişleri aynı anda sona erecek şekilde ayarlanmış bir [LeaseSet](/docs/specs/common-structures/#leaseset) talep eder. İstemci sürümü 0.9.7 veya daha yüksek olan durumlar için [RequestVariableLeaseSetMessage](#RequestVariableLeaseSetMessage) kullanılır.
 
-### RequestVariableLeaseSetMessage {#msg-RequestVariableLeaseSet}
+### RequestVariableLeaseSetMessage {#RequestVariableLeaseSetMessage}
 
 #### Açıklama
 
 Bir istemcinin belirli bir gelen tunnel kümesinin dahil edilmesini yetkilendirmesini talep edin.
 
-Router'dan Client'a gönderilir. Client bir [CreateLeaseSetMessage](#createleasesetmessage) veya [CreateLeaseSet2Message](#createleaseset2message) ile yanıtlar.
+Router'dan Client'a gönderilir. Client bir [CreateLeaseSetMessage](#CreateLeaseSetMessage) veya [CreateLeaseSet2Message](#CreateLeaseSet2Message) ile yanıtlar.
 
 Bir oturumda gönderilen bu mesajların ilki, tunnel'ların kurulduğunu ve trafiğe hazır olduğunu istemciye bildiren bir sinyaldir. Router, en az bir gelen VE bir giden tunnel kurulana kadar bu mesajların ilkini göndermemelidir. İstemciler, bu mesajların ilki belirli bir süre sonra alınmazsa oturumu sonlandırıp yok etmelidir (önerilen: 5 dakika veya daha fazla).
 
@@ -1209,15 +1209,15 @@ Bir oturumda gönderilen bu mesajların ilki, tunnel'ların kurulduğunu ve traf
 
 Bu, her [Lease](/docs/specs/common-structures/#lease) için ayrı bir son kullanma süresi olan bir [LeaseSet](/docs/specs/common-structures/#leaseset) talep eder.
 
-0.9.7 sürümü itibariyle. Bu sürümden önceki istemciler için [RequestLeaseSetMessage](#requestleasesetmessage) kullanın.
+0.9.7 sürümü itibariyle. Bu sürümden önceki istemciler için [RequestLeaseSetMessage](#RequestLeaseSetMessage) kullanın.
 
-### SendMessageMessage {#msg-SendMessage}
+### SendMessageMessage {#SendMessageMessage}
 
 #### Açıklama
 
 Bu, bir istemcinin [Destination](/docs/specs/common-structures/#destination)'a bir mesaj (payload) gönderme şeklidir. Router varsayılan bir son kullanma tarihi kullanacaktır.
 
-İstemciden Router'a gönderilir. Router bir [MessageStatusMessage](#messagestatusmessage) ile yanıt verir.
+İstemciden Router'a gönderilir. Router bir [MessageStatusMessage](#MessageStatusMessage) ile yanıt verir.
 
 #### İçindekiler
 
@@ -1228,19 +1228,19 @@ Bu, bir istemcinin [Destination](/docs/specs/common-structures/#destination)'a b
 
 #### Notlar
 
-[SendMessageMessage](#sendmessagemessage) tamamen sağlam bir şekilde ulaştığı anda, router teslim için kabul edildiğini belirten bir [MessageStatusMessage](#messagestatusmessage) döndürmelidir. Bu mesaj burada gönderilen aynı nonce'ı içerecektir. Daha sonra, oturum yapılandırmasının teslim garantilerine bağlı olarak, router ek olarak durumu güncelleyen başka bir [MessageStatusMessage](#messagestatusmessage) gönderebilir.
+[SendMessageMessage](#SendMessageMessage) tamamen sağlam bir şekilde ulaştığı anda, router teslim için kabul edildiğini belirten bir [MessageStatusMessage](#MessageStatusMessage) döndürmelidir. Bu mesaj burada gönderilen aynı nonce'ı içerecektir. Daha sonra, oturum yapılandırmasının teslim garantilerine bağlı olarak, router ek olarak durumu güncelleyen başka bir [MessageStatusMessage](#MessageStatusMessage) gönderebilir.
 
-0.8.1 sürümünden itibaren, router eğer i2cp.messageReliability=none ise [MessageStatusMessage](#messagestatusmessage) göndermez.
+0.8.1 sürümünden itibaren, router eğer i2cp.messageReliability=none ise [MessageStatusMessage](#MessageStatusMessage) göndermez.
 
-0.9.4 sürümünden önce, nonce değeri 0'a izin verilmiyordu. 0.9.4 sürümü itibariyle, nonce değeri 0'a izin verilmekte olup, router'a hiçbir [MessageStatusMessage](#messagestatusmessage) göndermemesi gerektiğini bildirmektedir, yani sadece bu mesaj için i2cp.messageReliability=none ayarı varmış gibi davranır.
+0.9.4 sürümünden önce, nonce değeri 0'a izin verilmiyordu. 0.9.4 sürümü itibariyle, nonce değeri 0'a izin verilmekte olup, router'a hiçbir [MessageStatusMessage](#MessageStatusMessage) göndermemesi gerektiğini bildirmektedir, yani sadece bu mesaj için i2cp.messageReliability=none ayarı varmış gibi davranır.
 
-0.9.14 sürümünden önce, i2cp.messageReliability=none ayarlı bir oturumda mesaj bazında geçersiz kılma yapılamıyordu. 0.9.14 sürümü itibariyle, i2cp.messageReliability=none ayarlı bir oturumda, istemci nonce değerini sıfır olmayan bir değere ayarlayarak teslimat başarısı veya başarısızlığı ile birlikte bir [MessageStatusMessage](#messagestatusmessage) teslimi talep edebilir. Router "kabul edildi" [MessageStatusMessage](#messagestatusmessage) göndermeyecek ancak daha sonra istemciye aynı nonce ile birlikte başarı veya başarısızlık değeri içeren bir [MessageStatusMessage](#messagestatusmessage) gönderecektir.
+0.9.14 sürümünden önce, i2cp.messageReliability=none ayarlı bir oturumda mesaj bazında geçersiz kılma yapılamıyordu. 0.9.14 sürümü itibariyle, i2cp.messageReliability=none ayarlı bir oturumda, istemci nonce değerini sıfır olmayan bir değere ayarlayarak teslimat başarısı veya başarısızlığı ile birlikte bir [MessageStatusMessage](#MessageStatusMessage) teslimi talep edebilir. Router "kabul edildi" [MessageStatusMessage](#MessageStatusMessage) göndermeyecek ancak daha sonra istemciye aynı nonce ile birlikte başarı veya başarısızlık değeri içeren bir [MessageStatusMessage](#MessageStatusMessage) gönderecektir.
 
-### SendMessageExpiresMessage {#msg-SendMessageExpires}
+### SendMessageExpiresMessage {#SendMessageExpiresMessage}
 
 #### Açıklama
 
-Client'tan Router'a gönderilir. [SendMessageMessage](#sendmessagemessage) ile aynı, ancak sona erme süresi ve seçenekleri içerir.
+Client'tan Router'a gönderilir. [SendMessageMessage](#SendMessageMessage) ile aynı, ancak sona erme süresi ve seçenekleri içerir.
 
 #### İçindekiler
 
@@ -1363,13 +1363,13 @@ Bit 3-0
 <tr><td style="border: 1px solid var(--color-border); padding: 8px;">1110</td><td style="border: 1px solid var(--color-border); padding: 8px;">125</td></tr>
 <tr><td style="border: 1px solid var(--color-border); padding: 8px;">1111</td><td style="border: 1px solid var(--color-border); padding: 8px;">160</td></tr>
 </table>
-### SessionStatusMessage {#msg-SessionStatus}
+### SessionStatusMessage {#SessionStatusMessage}
 
 #### Açıklama
 
 İstemciyi oturumunun durumu hakkında bilgilendir.
 
-Router'dan Client'a gönderilir, bir [CreateSessionMessage](#createsessionmessage), [ReconfigureSessionMessage](#reconfiguresessionmessage) veya [DestroySessionMessage](#destroysessionmessage)'a yanıt olarak. [CreateSessionMessage](#createsessionmessage)'a yanıt dahil olmak üzere tüm durumlarda, router derhal yanıt vermelidir (tunnel'ların oluşturulmasını beklememelidir).
+Router'dan Client'a gönderilir, bir [CreateSessionMessage](#CreateSessionMessage), [ReconfigureSessionMessage](#ReconfigureSessionMessage) veya [DestroySessionMessage](#DestroySessionMessage)'a yanıt olarak. [CreateSessionMessage](#CreateSessionMessage)'a yanıt dahil olmak üzere tüm durumlarda, router derhal yanıt vermelidir (tunnel'ların oluşturulmasını beklememelidir).
 
 #### İçindekiler
 
@@ -1387,38 +1387,38 @@ Router'dan Client'a gönderilir, bir [CreateSessionMessage](#createsessionmessag
 <td style="border: 1px solid var(--color-border); padding: 8px;">0</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Destroyed</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">The session with the given ID is terminated. May be a response to a <a href="#destroysessionmessage">DestroySessionMessage</a>.</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">The session with the given ID is terminated. May be a response to a <a href="#DestroySessionMessage">DestroySessionMessage</a>.</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Created</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#createsessionmessage">CreateSessionMessage</a>, a new session with the given ID is now active.</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#CreateSessionMessage">CreateSessionMessage</a>, a new session with the given ID is now active.</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">2</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Updated</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#reconfiguresessionmessage">ReconfigureSessionMessage</a>, an existing session with the given ID has been reconfigured.</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#ReconfigureSessionMessage">ReconfigureSessionMessage</a>, an existing session with the given ID has been reconfigured.</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">3</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;"></td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Invalid</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#createsessionmessage">CreateSessionMessage</a>, the configuration is invalid. The included session ID should be ignored. In response to a <a href="#reconfiguresessionmessage">ReconfigureSessionMessage</a>, the new configuration is invalid for the session with the given ID.</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#CreateSessionMessage">CreateSessionMessage</a>, the configuration is invalid. The included session ID should be ignored. In response to a <a href="#ReconfigureSessionMessage">ReconfigureSessionMessage</a>, the new configuration is invalid for the session with the given ID.</td>
 </tr>
 <tr>
 <td style="border: 1px solid var(--color-border); padding: 8px;">4</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">0.9.12</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">Refused</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#createsessionmessage">CreateSessionMessage</a>, the router was unable to create the session, perhaps due to limits being exceeded. The included session ID should be ignored.</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">In response to a <a href="#CreateSessionMessage">CreateSessionMessage</a>, the router was unable to create the session, perhaps due to limits being exceeded. The included session ID should be ignored.</td>
 </tr>
 </table>
 #### Notlar
 
 Durum değerleri yukarıda tanımlanmıştır. Durum Created ise, Session ID oturumun geri kalanında kullanılacak tanımlayıcıdır.
 
-### SetDateMessage {#msg-SetDate}
+### SetDateMessage {#SetDateMessage}
 
 #### Açıklama
 
