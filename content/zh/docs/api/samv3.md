@@ -105,15 +105,6 @@ SAM 版本 3 在 I2P 0.7.3 版本（2009 年 5 月）中引入，是一个稳定
       <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://codeberg.org/weko/i2plib-fork">codeberg.org/weko/i2plib-fork</a></td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">Py2p</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">Python</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.3</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://i2pgit.org/robin/Py2p">i2pgit.org/robin/Py2p</a></td>
-    </tr>
-    <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">i2p-rs</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">Rust</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.1</td>
