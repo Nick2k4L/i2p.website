@@ -323,7 +323,7 @@ everyContribution = "Every contribution, large or small, helps keep I2P strong a
 [banner]
 banner_message = "I2P 2.12.0 Released!"
 banner_link_text = "Download now"
-banner_link_url = "https://i2p.net/en/blog/2026/04/20/i2p-2.12.0-release/"
+banner_link_url = "/blog/2026/04/20/i2p-2.12.0-release/"
 banner_close = "Close banner"
 
 [poll]

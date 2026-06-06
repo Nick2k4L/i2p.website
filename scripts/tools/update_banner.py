@@ -60,6 +60,22 @@ TARGET_LANGUAGES = {
 }
 
 
+def normalize_link_url(url: Optional[str]) -> Optional[str]:
+    """Strip protocol/host/language prefix from full i2p.net URLs.
+
+    The banner template prepends /<lang> to whatever is stored, so the
+    i18n value must be a relative path like "/blog/...". A full URL
+    causes a broken double-prefixed link.
+    """
+    if not url:
+        return url
+    stripped = re.sub(r'^https?://(www\.)?i2p\.net', '', url, flags=re.IGNORECASE)
+    stripped = re.sub(r'^/(' + '|'.join(['en', *TARGET_LANGUAGES.keys()]) + r')(?=/)', '', stripped)
+    if stripped != url:
+        print(f"  Normalized link URL: {url!r} -> {stripped!r}")
+    return stripped
+
+
 def get_claude_client() -> anthropic.Anthropic:
     """Initialize Claude API client."""
     api_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -230,7 +246,9 @@ def main():
     
     if args.dry_run:
         print("=== DRY RUN MODE ===\n")
-    
+
+    args.link_url = normalize_link_url(args.link_url)
+
     # Initialize Claude client
     print("Initializing Claude API client...")
     client = get_claude_client()
