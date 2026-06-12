@@ -210,15 +210,13 @@ defaultContentLanguageInSubdir = true
 
 # Output formats
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
-  section = ["HTML", "RSS"]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS", "JSON"]
 
-# Per-section output formats (only docs needs JSON for search)
-[outputFormats]
-  [outputFormats.JSON]
-    mediaType = "application/json"
-    baseName = "index"
-    isPlainText = true
+[outputFormats.JSON]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
 
 # Related content
 [related]
