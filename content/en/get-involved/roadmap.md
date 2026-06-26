@@ -10,7 +10,7 @@ description: "Current development plans and historical milestones for the I2P ne
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** 2026-05
+**Last Updated:** 2026-06
 
 </div>
 
@@ -25,17 +25,20 @@ Target: August 2026
 
 - SSU2-PQ transport (prop. 169)
 - I2CP lookup support for LS service record parameters (prop. 167)
-- Continue work on per-tunnel throttling and bandwidth parameters
+- Finish per-tunnel throttling and bandwidth parameters (prop. 168)
 - Connection limit management improvements
+- Experimental susimail standalone build option
 - Memory usage reduction for floodfills
-- Peer profile management improvements
+- Peer profile management fixes and improvements
 - Refactor Noise initialization
 - Remember deleted hosts in addressbook so they don't return
 - SSU2 token management improvements
 - SSU2 peer test improvements
 - Security fixes to address audit issues
+- Tunnel test imrovements
 - Update minidns to 1.1.1
 - Update json-simple to 2.3.1
+- Update bouncycastle MLKEM to 1.84
 
 
 
